@@ -1,37 +1,37 @@
 #rateBar {
-    background: #f7f7f7 url(/images/rate_1.gif) repeat-y 0px 0px
+    background: #f7f7f7 url(/images/rate_1.gif) repeat-y 0px 0px;
 }
 
-#content,
-.mainPanel {
-    padding: 0px
+#content {
+    padding: 0px;
 }
 
 .mainPanel {
     overflow: hidden;
+    padding: 0px;
     position: relative;
-    width: 451px
+    width: 451px;
 }
 
 .sidePanel {
-    padding: 0px 0px 10px;
-    width: 175px
+    padding: 0px 0px 10px 0px;
+    width: 175px;
 }
 
 .column {
-    float: left
+    float: left;
 }
 
 .rateRow {
-    background: #faf3d8 url(/images/golden.gif) repeat-x bottom;
-    border: 1px solid #e6e0b6;
+    background: #FAF3D8 url(/images/golden.gif) repeat-x bottom;
+    border: 1px solid #E6E0B6;
     width: 416px;
     padding: 10px 0px;
-    line-height: 150%
+    line-height: 150%;
 }
 
 .rateVoteFrom {
-    color: #908851
+    color: #908851;
 }
 
 .rateRowFirst {
@@ -39,212 +39,213 @@
     background-repeat: no-repeat;
     background-position: 5px 0px;
     width: 53px;
-    vertical-align: top
+    vertical-align: top;
 }
 
 .rateRowSecond {
     width: 70px;
     vertical-align: top;
-    text-align: center
+    text-align: center;
 }
 
 .rateRowThird {
     width: 320px;
     vertical-align: top;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .rateRowThird div {
     padding: 0px 10px 4px 3px;
     margin-right: 10px;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .rateRowThird p {
     overflow: hidden;
-    word-wrap: break-word
+    word-wrap: break-word;
 }
 
 .rateVoteMSG {
     margin: 0px 11px 0px 0px;
     padding: 8px 10px 4px 3px;
-    text-align: left
+    text-align: left;
 }
 
 .rateVoteMSG img {
-    margin-bottom: 5px
+    margin-bottom: 5px;
 }
 
 #rrGreen .rateRow {
-    background: #def0c8;
-    border: 1px solid #b1c79a
+    background: #DEF0C8;
+    border: 1px solid #B1C79A;
 }
 
 #rrGreen .rateVoteFrom {
-    color: #37702a
+    color: #37702A;
 }
 
 #rrGreen .rateRowFirst {
-    background: #def0c8
+    background: #DEF0C8;
 }
 
 #rrGreen .ratePlus {
     margin: 5px 0px 0px 5px;
-    color: #b0cc9c;
-    font-weight: 700;
-    font-size: 26px
+    color: #B0CC9C;
+    font-weight: bold;
+    font-size: 26px;
 }
 
 #rrGreen .rateVoteMSG {
-    border-top: 1px solid #b1c79a
+    border-top: 1px solid #B1C79A;
 }
 
 #rrGreen .rateVoteMSG img {
-    border: 1px solid #b1c79a
+    border: 1px solid #B1C79A;
 }
 
 #rrRed .rateRow {
-    background: #fbebe0;
-    border: 1px solid #debeab
+    background: #FBEBE0;
+    border: 1px solid #DEBEAB;
 }
 
 #rrRed .rateVoteFrom {
-    color: #8b4c23
+    color: #8B4C23;
 }
 
 #rrRed .rateRowFirst {
-    background: #fbebe0
+    background: #FBEBE0;
 }
 
 #rrRed .ratePlus {
     margin: 5px 0px 0px 5px;
-    color: #dec2af;
-    font-weight: 700;
-    font-size: 26px
+    color: #DEC2AF;
+    font-weight: bold;
+    font-size: 26px;
 }
 
 #rrRed .rateVoteMSG {
-    border-top: 1px solid #debeab
+    border-top: 1px solid #DEBEAB;
 }
 
 #rrRed .rateVoteMSG img {
-    border: 1px solid #debeab
+    border: 1px solid #DEBEAB;
 }
 
 #rrBlue .rateRow {
-    background: #d9e6ee;
-    border: 1px solid #99b3c9
+    background: #D9E6EE;
+    border: 1px solid #99B3C9;
 }
 
 #rrBlue .rateVoteFrom {
-    color: #0b5588
+    color: #0B5588;
 }
 
 #rrBlue .rateRowFirst {
-    background: #d9e6ee
+    background: #D9E6EE;
 }
 
 #rrBlue .ratePlus {
     margin: 5px 0px 0px 5px;
-    color: #99b3c9;
-    font-weight: 700;
-    font-size: 26px
+    color: #99B3C9;
+    font-weight: bold;
+    font-size: 26px;
 }
 
 #rrBlue .rateVoteMSG {
-    border-top: 1px solid #99b3c9
+    border-top: 1px solid #99B3C9;
 }
 
 #rrBlue .rateVoteMSG img {
-    border: 1px solid #99b3c9
+    border: 1px solid #99B3C9;
 }
 
 .rateSideTitle {
-    background-color: #e8e8e8;
+    background-color: #E8E8E8;
     padding: 8px 10px;
-    margin: 6px 5px 5px 7px
+    margin: 6px 5px 5px 7px;
 }
 
 .rateInvited {
-    padding: 0px 10px 5px
+    padding: 0px 10px 5px 10px;
 }
 
 .rateInvited ul {
     padding-left: 15px;
-    margin-bottom: 0px
+    margin-bottom: 0px;
 }
 
 .rateInvitedLine {
     padding: 3px 0px 0px 15px;
-    margin: 4px 0px 10px;
-    border-top: 1px solid #ddd
+    margin: 4px 0px 10px 0px;
+    border-top: 1px solid #DDD;
 }
 
 .rateProfile {
-    padding: 0px 10px 5px
+    padding: 0px 10px 5px 10px;
 }
 
 .rateProfile div {
-    padding: 3px 0px
+    padding: 3px 0px;
 }
 
 .rateProfile div img {
-    vertical-align: bottom
+    vertical-align: bottom;
 }
 
 .rateProfileLine {
     padding: 3px 0px 0px 18px;
-    margin: 4px 0px 0px;
-    border-top: 1px solid #ddd
+    margin: 4px 0px 0px 0px;
+    border-top: 1px solid #DDD;
 }
 
 .ratePages {
     list-style-type: none;
     padding-left: 0px;
-    margin: 0
+    margin: 0;
 }
 
 #ratePagesTopDiv {
     float: left;
     vertical-align: top;
-    padding: 1px 28px 0px 0px
+    padding: 1px 28px 0px 0px;
 }
 
 #ratePagesBottomDiv {
     float: right;
     vertical-align: bottom;
-    padding: 6px 12px 0px 0px
+    padding: 6px 12px 0px 0px;
 }
 
 ul.ratePages li {
     float: left;
     margin-right: 1px;
-    padding: 2px 6px
+    padding: 2px 6px;
 }
 
 ul.ratePages li.current {
-    border: 1px solid #dae1e8;
-    background-color: #fff
+    border: 1px solid #DAE1E8;
+    background-color: #fff;
+}
+
+ul.ratePages li.current {
+    border: 1px solid #DAE1E8;
 }
 
 #rateRowsWrap {
-    background-color: #fff;
+    background-color: #FFF;
     margin-right: 1px;
-    padding: 8px 0px
-}
-
-#rateRowsWrap,
-.rateTabs {
-    border-bottom: 1px solid #dae1e8
+    border-bottom: 1px solid #DAE1E8;
+    padding: 8px 0px;
 }
 
 .rateTabs {
     width: 450px;
     height: 24px;
+    border-bottom: 1px solid #DAE1E8;
     vertical-align: bottom;
     list-style-type: none;
     margin: 0;
-    padding: 0px 0px 0px 13px
+    padding: 0px 0px 0px 13px;
 }
 
 .rateTabOn {
@@ -252,15 +253,15 @@ ul.ratePages li.current {
     float: left;
     margin: 0px 3px;
     text-align: center;
-    border: 1px solid #c3cad2;
+    border: 1px solid #C3CAD2;
     border-bottom: 0px;
-    background-color: #fff
+    background-color: #FFF;
 }
 
 .rateTabOn a {
     float: left;
     padding: 5px 10px;
-    text-decoration: none
+    text-decoration: none;
 }
 
 .rateTabOff {
@@ -268,29 +269,29 @@ ul.ratePages li.current {
     float: left;
     margin: 0px 3px;
     text-align: center;
-    border: 1px solid #c3cad2;
+    border: 1px solid #C3CAD2;
     border-bottom: 0px;
-    background-color: #f5f7fa
+    background-color: #F5F7FA;
 }
 
 .rateTabOff a {
     float: left;
-    padding: 5px 10px 3px;
-    border-bottom: 2px #eef0f3 solid;
-    text-decoration: none
+    padding: 5px 10px 3px 10px;
+    border-bottom: 2px #EEF0F3 solid;
+    text-decoration: none;
 }
 
 .rateTabOff a:hover,
 .rateTabOn a:hover {
-    background-color: #fff;
-    text-decoration: none
+    background-color: #FFF;
+    text-decoration: none;
 }
 
 .rateHelp {
     margin: 15px 17px 15px 16px;
-    background-color: #fff;
-    padding: 0px 6px 6px;
-    border: 1px solid #ddd
+    background-color: #FFF;
+    padding: 0px 6px 6px 6px;
+    border: 1px solid #DDD;
 }
 
 #percent {
@@ -298,28 +299,26 @@ ul.ratePages li.current {
     left: 180px;
     top: 27px;
     font-size: 16px;
-    color: #8ba1bc
+    color: #8BA1BC;
 }
 
 #rateLeft {
-    border-top: 1px solid #c0ccd9;
-    background-color: #dae2e8
+    float: left;
+    height: 32px;
+    border-top: 1px solid #C0CCD9;
+    background-color: #DAE2E8;
 }
 
-#rateLeft,
 #rateRight {
     float: left;
-    height: 32px
-}
-
-#rateRight {
-    border-top: 1px solid #ececec;
-    border-right: 1px solid #eee;
-    background-color: #fafafa
+    height: 32px;
+    border-top: 1px solid #ECECEC;
+    border-right: 1px solid #EEE;
+    background-color: #FAFAFA;
 }
 
 #rate {
-    margin: 0px 2px 9px
+    margin: 0px 2px 9px 2px;
 }
 
 #percentGold {
@@ -327,33 +326,33 @@ ul.ratePages li.current {
     left: 190px;
     top: 27px;
     font-size: 16px;
-    color: #aaa26c
+    color: #AAA26C;
 }
 
 #rateLeftGold {
     float: left;
     height: 32px;
-    border-top: 1px solid #ccc490;
-    background-color: #e0d7a3
+    border-top: 1px solid #CCC490;
+    background-color: #E0D7A3;
 }
 
 #rateRightGold {
     float: left;
     height: 32px;
-    border-top: 1px solid #e2daa6;
-    border-right: 1px solid #eee;
-    background-color: #f5ebbb
+    border-top: 1px solid #E2DAA6;
+    border-right: 1px solid #EEE;
+    background-color: #F5EBBB;
 }
 
 #rateGold {
-    margin: 0px 2px 9px
+    margin: 0px 2px 9px 2px;
 }
 
 .noRate {
     margin: 40px 0px;
     text-align: center;
-    color: gray;
-    font-size: 13px
+    color: #808080;
+    font-size: 13px;
 }
 
 #rateNew {
@@ -362,415 +361,425 @@ ul.ratePages li.current {
     font-size: 10px;
     border: 0px;
     padding: 2px 5px 0px 0px;
-    margin-right: 7px
+    margin-right: 7px;
 }
 
 #rateHelp {
-    padding: 0px 30px 30px;
-    line-height: 160%
+    padding: 0px 30px 30px 30px;
+    line-height: 160%;
 }
 
 #rateHelp h2 {
     font-size: 12px;
-    padding: 30px 0px 1px;
-    color: #2b587a;
-    border-bottom: 1px solid #dae2e8;
-    margin: 0px 15px 5px 0px
+    padding: 30px 0px 1px 0px;
+    color: #2B587A;
+    border-bottom: 1px solid #DAE2E8;
+    margin: 0px 15px 5px 0px;
 }
 
 .rateVoteBack {
     text-align: right;
     font-size: 10px;
-    padding: 0px 5px 0px 0px
+    padding: 0px 5px 0px 0px;
 }
 
 .rateVoteBack a {
-    color: #908851
+    color: #908851;
 }
 
 .rateBox {
-    padding: 20px 0px 0px;
+    padding: 20px 0px 0px 0px;
     margin: 0px 10px 0px 80px;
-    width: 430px
+    width: 430px;
 }
 
 .rateBoxInner {
     width: 100%;
-    padding: 10px
+    padding: 10px;
 }
 
 .rateBoxInner2 {
     width: 100%;
-    height: 100%
+    height: 100%;
 }
 
 .rateBoxTD {
     width: 130px;
     height: 180px;
     padding-top: 3px;
-    vertical-align: top
+    vertical-align: top;
 }
 
 .rateBoxQ {
-    font-weight: 700;
+    font-weight: bold;
     font-size: 12px;
     padding-bottom: 3px;
-    margin: 10px 10px 0px
+    margin: 10px 10px 0px 10px;
 }
 
 .rateBoxTD2 {
     width: 110px;
-    margin: 9px 0px 10px 10px
+    margin: 9px 0px 10px 10px;
 }
 
 .rateBoxTD3 {
     background-color: #fff;
-    width: 108px
+    width: 108px;
 }
 
 .rateBoxTD4 {
     width: 100%;
     vertical-align: top;
-    padding-left: 12px
+    padding-left: 12px;
 }
 
 .rateBoxMSG {
-    margin: 5px 0px 6px;
-    padding-top: 4px
+    margin: 5px 0px 6px 0px;
+    padding-top: 4px;
 }
 
-.rateGreen .rateBoxMSG a,
+.rateGreen .rateBoxMSG a {
+    color: #37702A;
+}
+
 .rateGreen .rateBoxMSG a:hover {
-    color: #37702a
+    color: #37702A;
 }
 
 .rateGreen .rateBoxMSG a.active {
-    font-weight: 700
+    font-weight: bold;
 }
 
 .rateBoxText {
     width: 255px;
-    height: 81px
+    height: 81px;
 }
 
 .rateTextDisabled {
     opacity: 0.5;
-    filter: alpha(opacity=50)
+    filter: alpha(opacity=50);
 }
 
 .rateBoxNotice {
     font-size: 10px;
-    margin: 5px 15px 5px 0px
+    margin: 5px 15px 5px 0px;
 }
 
 .rateBoxBottom {
     width: 450px;
-    margin-bottom: 10px
+    margin-bottom: 10px;
 }
 
 .rateBoxLine {
     height: 1px;
-    margin: 0px 1px
+    margin: 0px 1px;
 }
 
 .rateYellow .rateBoxNotice {
-    color: #817945
+    color: #817945;
 }
 
 .rateYellow .rateBoxText {
-    border: 1px solid #c4bb98
+    border: 1px solid #C4BB98;
 }
 
 .rateYellow #rateBoxPlus {
-    color: #c4bb98;
-    font-weight: 700;
-    font-size: 20px
+    color: #C4BB98;
+    font-weight: bold;
+    font-size: 20px;
 }
 
-.rateYellow .rateBoxTD3,
+.rateYellow .rateBoxTD3 {
+    border: 1px solid #C4BB98;
+}
+
 .rateYellow .rateBoxText {
-    border: 1px solid #c4bb98
+    border: 1px solid #C4BB98;
 }
 
 .rateYellow .rateBoxInner {
-    border: 1px solid #c4bb98;
-    background-color: #e9deb4
+    border: 1px solid #C4BB98;
+    background-color: #E9DEB4;
 }
 
 .rateYellow .rateBoxInner2 {
-    background: #faf3d8 url(/images/goldenhigh.gif) repeat-x bottom
+    background: #FAF3D8 url(/images/goldenhigh.gif) repeat-x bottom;
 }
 
 .rateYellow .rateBoxQ {
     color: #817945;
-    border-bottom: 1px solid #e6e0b6
+    border-bottom: 1px solid #E6E0B6;
 }
 
 .rateYellow .rateBoxTD2 {
-    border: 1px solid #e9deb4
+    border: 1px solid #E9DEB4;
 }
 
 .rateYellow .rateBoxMSG {
-    color: #817945
+    color: #817945;
 }
 
 .rateYellow .rateBoxLine {
-    border-top: 1px solid #efeac8
+    border-top: 1px solid #EFEAC8;
 }
 
 .rateGreen .rateBoxNotice {
-    color: #37702a
+    color: #37702A;
 }
 
 .rateGreen .rateBoxText {
-    border: 1px solid #8dbf56
+    border: 1px solid #8DBF56;
 }
 
 .rateGreen #rateBoxPlus {
-    color: #8dbf56;
-    font-weight: 700;
-    font-size: 30px
+    color: #8DBF56;
+    font-weight: bold;
+    font-size: 30px;
 }
 
 .rateGreen .rateBoxTD3 {
-    border: 1px solid #37702a
+    border: 1px solid #37702A;
 }
 
 .rateGreen .rateBoxInner {
-    border: 1px solid #37702a;
-    background-color: #8dbf56
+    border: 1px solid #37702A;
+    background-color: #8DBF56;
 }
 
 .rateGreen .rateBoxInner2 {
-    background: #bed8a1 url(/images/greenhigh.gif) repeat-x bottom
+    background: #BED8A1 url(/images/greenhigh.gif) repeat-x bottom;
 }
 
 .rateGreen .rateBoxQ {
-    color: #37702a;
-    border-bottom: 1px solid #8dbf56
+    color: #37702A;
+    border-bottom: 1px solid #8DBF56;
 }
 
-.rateGreen .rateBoxText,
+.rateGreen .rateBoxText {
+    border: 1px solid #8DBF56;
+}
+
 .rateGreen .rateBoxTD2 {
-    border: 1px solid #8dbf56
+    border: 1px solid #8DBF56;
 }
 
 .rateGreen .rateBoxMSG {
-    color: #37702a
+    color: #37702A;
 }
 
 .rateGreen .rateBoxLine {
-    border-top: 1px solid #d5edbc
+    border-top: 1px solid #D5EDBC;
 }
 
 .rateRed .rateBoxNotice {
-    color: #8b4c23
+    color: #8B4C23;
 }
 
 .rateRed .rateBoxText {
-    border: 1px solid #bf7f56
+    border: 1px solid #BF7F56;
 }
 
 .rateRed #rateBoxPlus {
-    color: #bf7f56;
-    font-weight: 700;
-    font-size: 40px
+    color: #BF7F56;
+    font-weight: bold;
+    font-size: 40px;
 }
 
 .rateRed .rateBoxTD3 {
-    border: 1px solid #99613d
+    border: 1px solid #99613D;
 }
 
 .rateRed .rateBoxInner {
-    border: 1px solid #8b4c23;
-    background-color: #c68d69
+    border: 1px solid #8B4C23;
+    background-color: #C68D69;
 }
 
 .rateRed .rateBoxInner2 {
-    background: #dcbba8 url(/images/redhigh.gif) repeat-x bottom
+    background: #DCBBA8 url(/images/redhigh.gif) repeat-x bottom;
 }
 
 .rateRed .rateBoxQ {
-    color: #8b4c23;
-    border-bottom: 1px solid #c39679
+    color: #8B4C23;
+    border-bottom: 1px solid #C39679;
 }
 
 .rateRed .rateBoxText {
-    border: 1px solid #bf7f56
+    border: 1px solid #BF7F56;
 }
 
 .rateRed .rateBoxTD2 {
-    border: 1px solid #c39679
+    border: 1px solid #C39679;
 }
 
 .rateRed .rateBoxMSG {
-    color: #8b4c23
+    color: #8B4C23;
 }
 
 .rateRed .rateBoxLine {
-    border-top: 1px solid #edd0bc
+    border-top: 1px solid #EDD0BC;
 }
 
 .rateBlue .rateBoxNotice {
-    color: #0b5588
+    color: #0B5588;
 }
 
 .rateBlue .rateBoxText {
-    border: 1px solid #bf7f56
+    border: 1px solid #BF7F56;
 }
 
 .rateBlue #rateBoxPlus {
     color: #8aa6bd;
-    font-weight: 700;
-    font-size: 40px
+    font-weight: bold;
+    font-size: 40px;
 }
 
-.rateBlue .rateBoxTD3,
-.rateBlue .rateBoxInner {
-    border: 1px solid #5a89a9
+.rateBlue .rateBoxTD3 {
+    border: 1px solid #5a89a9;
 }
 
 .rateBlue .rateBoxInner {
-    background-color: #99b3c9
+    border: 1px solid #5a89a9;
+    background-color: #99B3C9;
 }
 
 .rateBlue .rateBoxInner2 {
-    background: #c5dbe9 url(/images/bluehigh.gif) repeat-x bottom
+    background: #c5dbe9 url(/images/bluehigh.gif) repeat-x bottom;
 }
 
 .rateBlue .rateBoxQ {
-    color: #0b5588;
-    border-bottom: 1px solid #99b3c9
+    color: #0B5588;
+    border-bottom: 1px solid #99B3C9;
 }
 
-.rateBlue .rateBoxText,
+.rateBlue .rateBoxText {
+    border: 1px solid #99B3C9;
+}
+
 .rateBlue .rateBoxTD2 {
-    border: 1px solid #99b3c9
+    border: 1px solid #99B3C9;
 }
 
 .rateBlue .rateBoxMSG {
-    color: #0b5588
+    color: #0B5588;
 }
 
 .rateBlue .rateBoxLine {
-    border-top: 1px solid #cedeec
+    border-top: 1px solid #cedeec;
 }
 
 input.customVotes {
     font-size: 26px;
-    font-weight: 700;
+    font-weight: bold;
     width: 71px;
-    margin: 9px 0px 0px;
+    margin: 9px 0px 0px 0px;
     color: #8aa6bd;
     vertical-align: top;
     text-align: center;
     padding: 2px;
-    border: 1px solid #99b3c9
+    border: 1px solid #99B3C9;
 }
 
 .rateOptions {
+    text-align: center;
+    height: 24px;
     vertical-align: bottom;
     list-style-type: none;
     margin: 0px;
-    padding: 20px 0px 0px 120px
-}
-
-.rateOptions,
-.rateOptions li {
-    text-align: center;
-    height: 24px
+    padding: 20px 0px 0px 120px;
 }
 
 .rateOptions li {
+    height: 24px;
     float: left;
-    margin: 0px 3px
+    margin: 0px 3px;
+    text-align: center;
 }
 
 .rateOptions a,
 .rateOptions a:hover {
     float: left;
-    padding: 5px 15px 6px;
+    padding: 5px 15px 6px 15px;
     text-decoration: none;
-    white-space: nowrap
+    white-space: nowrap;
 }
 
 #yellowOption {
-    border: 1px solid #e8e0c3;
-    background-color: #faf3d8
+    border: 1px solid #E8E0C3;
+    background-color: #FAF3D8;
 }
 
 #yellowOption a {
-    color: #a49e79
+    color: #A49E79;
 }
 
-#yellowOption.active a,
-#yellowOption a:hover {
-    color: #817945
+#yellowOption a:hover,
+#yellowOption.active a {
+    color: #817945;
 }
 
 #yellowOption.active {
-    border: 1px solid #c4bb98;
-    background-color: #eee3bd
+    border: 1px solid #C4BB98;
+    background-color: #EEE3BD;
 }
 
 #greenOption {
-    border: 1px solid #cfdebf;
-    background-color: #e8f2dc
+    border: 1px solid #CFDEBF;
+    background-color: #E8F2DC;
 }
 
 #greenOption a {
-    color: #83a67b
+    color: #83A67B;
 }
 
-#greenOption.active a,
-#greenOption a:hover {
-    color: #37702a
+#greenOption a:hover,
+#greenOption.active a {
+    color: #37702A;
 }
 
 #greenOption.active {
-    border: 1px solid #8dbf56;
-    background-color: #c8e0ac
+    border: 1px solid #8DBF56;
+    background-color: #C8E0AC;
 }
 
 #redOption {
-    border: 1px solid #e4d4ca;
-    background-color: #f5e9e2
+    border: 1px solid #E4D4CA;
+    background-color: #F5E9E2;
 }
 
 #redOption a {
-    color: #b79076
+    color: #B79076;
 }
 
-#redOption.active a,
-#redOption a:hover {
-    color: #8b4c23
+#redOption a:hover,
+#redOption.active a {
+    color: #8B4C23;
 }
 
 #redOption.active {
-    border: 1px solid #ca9573;
-    background-color: #e7cbba
+    border: 1px solid #CA9573;
+    background-color: #E7CBBA;
 }
 
 #blueOption {
-    border: 1px solid #ced8e0;
-    background-color: #e4ebf1
+    border: 1px solid #CED8E0;
+    background-color: #E4EBF1;
 }
 
 #blueOption a {
-    color: #7b99b2
+    color: #7B99B2;
 }
 
-#blueOption.active a,
-#blueOption a:hover {
-    color: #0b5588
+#blueOption a:hover,
+#blueOption.active a {
+    color: #0B5588;
 }
 
 #blueOption.active {
-    border: 1px solid #99b3c9;
-    background-color: #cbe2f1
+    border: 1px solid #99B3C9;
+    background-color: #CBE2F1;
 }
 
 .flatTabs {
     padding-top: 12px;
-    background-color: #fafafa
+    background-color: #FAFAFA;
 }

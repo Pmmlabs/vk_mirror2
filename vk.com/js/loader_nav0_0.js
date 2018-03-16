@@ -452,7 +452,7 @@ var stVersions = {
     'landings/vk10_years.css': 18070585902,
     'chronicle.css': 18814776841,
     'market.css': 28878280436,
-    'market.js': 750235529,
+    'market.js': 1753735791,
     'market_adm.css': 20284567743,
     'market_adm.js': 2677502581,
     'stories_admin.css': 20133896978,
@@ -646,4 +646,4 @@ var stTypes = {
         'groups_edit_stories.js': 1
     }
 };
-var _rnd = 8684;
+var _rnd = 4245;

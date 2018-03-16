@@ -1,188 +1,195 @@
 .button {
-    padding: 8px 16px
+    padding: 8px 16px;
 }
 
 .near_btn {
-    padding: 8px 12px
+    padding: 8px 12px;
 }
 
 .small_button {
-    padding: 5px 8px
+    padding: 5px 8px;
 }
 
 .small_near_btn {
-    padding: 5px 7px
+    padding: 5px 7px;
 }
 
 .hb_btn {
-    padding: 12px 0
+    padding: 12px 0;
 }
 
 .mhb_home {
-    width: 43px
+    width: 43px;
 }
 
-.mhi_home,
+.mhi_home {
+    background-image: url(/images/mobile/logo/logo.png);
+}
+
 .mhi_vkhome {
-    background-image: url(/images/mobile/logo/logo.png)
+    background-image: url(/images/mobile/logo/logo.png);
 }
 
 .mhb_notify {
     padding-left: 8px;
     padding-right: 7px;
-    max-height: 3.318em
+    max-height: 3.318em;
 }
 
 .mh_notify_counter {
-    padding-left: 6px
+    padding-left: 6px;
 }
 
 .mhi_notify {
     background-image: url(/images/mobile/notify.png?4);
-    padding-left: 17px
+    padding-left: 17px;
 }
 
 .mhb_back {
     padding-left: 10px;
-    padding-right: 5px
+    padding-right: 5px;
 }
 
 .mhi_back {
     background-image: url(/images/mobile/back.png?3);
-    padding-left: 16px
+    padding-left: 16px;
 }
 
 .mhb_logo {
     padding-left: 9px;
-    padding-right: 9px
+    padding-right: 9px;
 }
 
 .mhi_logo {
-    background-image: url(/images/mobile/logo/logo.png)
+    background-image: url(/images/mobile/logo/logo.png);
 }
 
 .mhi_search {
-    background-image: url(/images/mobile/search_icon.png?4)
+    background-image: url(/images/mobile/search_icon.png?4);
 }
+
+._hover .mhb_search:hover .mhi_search,
+._touch .mhb_search.hover .mhi_search,
+._touch .mhb_search.active .mhi_search {}
 
 .mhu_img,
 .mhu_iwrap {
     width: 32px;
-    height: 32px
+    height: 32px;
 }
 
 ._lm .mhi_home {
-    background-image: url(/images/mobile/menu.png?2)
+    background-image: url(/images/mobile/menu.png?2);
 }
 
 ._lm .mhb_home {
-    width: 43px
+    width: 43px;
 }
 
 .head_search {
-    padding: 8px 7px 7px
+    padding: 8px 7px 7px;
 }
 
 .head_search .row_table_last_column {
-    padding-left: 7px
+    padding-left: 7px;
 }
 
 .head_search .textfield {
-    padding: 7px 24px 6px 28px
+    padding: 7px 24px 6px 28px;
 }
 
 .head_search .iwrap {
-    margin: 0 52px 0 0
+    margin: 0 52px 0 0;
 }
 
 .head_search .i_search {
     background-image: url(/images/mobile/search_icons.png?2);
     background-position: 9px;
-    width: 29px
+    width: 29px;
 }
 
 .head_search .button {
-    padding: 7px 5px 6px!important
+    padding: 7px 5px 6px !important;
 }
 
 .qsearch .clear_btn {
     background-image: url(/images/mobile/search_icons.png?2);
-    width: 29px
+    width: 29px;
 }
 
 .cp_icon_btn .i_icon {
     background-image: url(/images/mobile/attach_icons.png?4);
     width: 32px;
-    height: 32px
+    height: 32px;
 }
 
 .cp_geo_waiting .i_icon_loading {
     margin: 5px 6px;
-    height: 22px
+    height: 22px;
 }
 
 .cp_attach_btn .i_icon {
-    background-position: -224px
+    background-position: -224px;
 }
 
 .cp_attach_btn_sel .i_icon {
-    background-position: -256px
+    background-position: -256px;
 }
 
 .cp_inline_attach_btn .i_icon {
-    background-position: 0
+    background-position: 0;
 }
 
 .cp_geo_btn .i_icon {
-    background-position: -64px
+    background-position: -64px;
 }
 
 .cp_geo_btn_sel .i_icon {
-    background-position: -96px
+    background-position: -96px;
 }
 
 .cp_options_btn .i_icon {
     background-image: url(/images/mobile/attach_icons.png?4);
     background-position: -134px;
-    padding: 4px 10px
+    padding: 4px 10px;
 }
 
 .cp_options_btn_sel .i_icon {
-    background-position: -166px
+    background-position: -166px;
 }
 
 .cp_sticker_btn .i_icon {
-    background-position: -288px
+    background-position: -288px;
 }
 
 .cp_sticker_btn_sel .i_icon {
-    background-position: -320px
+    background-position: -320px;
 }
 
 .away_bottom .item_like,
 .away_bottom .item_repost {
     padding-left: 14px;
-    padding-right: 14px
+    padding-right: 14px;
 }
 
 .qsearch .button {
-    padding: 6px 7px
+    padding: 6px 7px;
 }
 
 #l {
-    margin-right: 44px
+    margin-right: 44px;
 }
 
 .lm_opened #m {
-    margin-left: -44px
+    margin-left: -44px;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
 only screen and (min-device-pixel-ratio: 2) {
     .near_btn {
-        padding-top: 7px
+        padding-top: 7px;
     }
     .small_near_btn {
-        padding-top: 5px
+        padding-top: 5px;
     }
 }

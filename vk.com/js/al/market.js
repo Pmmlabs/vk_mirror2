@@ -1153,7 +1153,8 @@ var Market = {
             var e = extend({}, cur.marketOrderData, {
                     contact_phone: trim(val("market_cart_contact_phone")),
                     delivery_id: cur.marketCartDeliveryDD.val(),
-                    details: trim(val("market_cart_delivery_details"))
+                    details: trim(val("market_cart_delivery_details")),
+                    uid: cur.marketCartBuyerDD ? cur.marketCartBuyerDD.val() : null
                 }),
                 t = !1,
                 r = ge("market_shop_create_order"),
@@ -1176,7 +1177,18 @@ var Market = {
         deliveryChanged: function(e) {
             var t = "",
                 r = !1;
-            0 != e && (t = cur.marketCartDeliveriesData[e].descr, r = cur.marketCartDeliveriesData[e].address_required), val("market_cart_delivery_note", t), toggle("market_cart_delivery_address_block", r)
+            0 != e && cur.marketCartDeliveriesData[e] && (t = cur.marketCartDeliveriesData[e].descr, r = cur.marketCartDeliveriesData[e].address_required), val("market_cart_delivery_note", t), toggle("market_cart_delivery_address_block", r)
+        },
+        buyerChanged: function(e) {
+            e = intval(e), 0 >= e || ajax.post("market?act=a_load_delivery_data", {
+                owner_id: cur.marketOrderData.owner_id,
+                uid: e
+            }, {
+                onDone: function(e) {
+                    var t = intval(e.delivery_id);
+                    cur.marketCartDeliveriesData[t] || (t = 0), cur.marketCartDeliveryDD.val(t, !0), val("market_cart_delivery_address", e.delivery_address), val("market_cart_delivery_person", e.delivery_person), val("market_cart_contact_phone", e.contact_phone)
+                }
+            })
         }
     },
     MarketEditItemBox = {
@@ -1850,8 +1862,7 @@ var Market = {
                     list = [];
                     for (var a = 0, i = e.length; i > a; a++) {
                         var s = clone(e[a]);
-                        o && (s.push(""), s.push(s[1]), s[1] = s[1].replace(o.re, o.val)),
-                            list.push(s)
+                        o && (s.push(""), s.push(s[1]), s[1] = s[1].replace(o.re, o.val)), list.push(s)
                     }
                     t.showSelectList(r, list)
                 }, 300)) : void t.showSelectList(r, cur.tagsList.slice(0, 10))

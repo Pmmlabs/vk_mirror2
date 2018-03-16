@@ -1,5 +1,5 @@
 #landings_ads_cases_css {
-    display: none
+    display: none;
 }
 
 .ads_case_header_dodo .ads_case_header__avatar,
@@ -43,30 +43,30 @@
 .ads_case_tab_content_en.taxovichkof.component2 .ads_case_tab_content__image,
 .ads_case_tab_content_en.yota.component1 .ads_case_tab_content__image,
 .ads_case_tab_content_en.yota.component2 .ads_case_tab_content__image {
-    -ms-high-contrast-adjust: none
+    -ms-high-contrast-adjust: none;
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 .ads_case_header__cover_image {
     background: 50% no-repeat;
     background-size: cover;
     padding-bottom: 31.448%;
-    border-radius: 4px 4px 0 0
+    border-radius: 4px 4px 0 0;
 }
 
 .ads_case_header__container {
     padding-left: 30px;
-    padding-right: 30px
+    padding-right: 30px;
 }
 
 .ads_case_header__info {
@@ -75,47 +75,47 @@
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    border-bottom: 1px solid #e7e8ec
+    border-bottom: 1px solid #e7e8ec;
 }
 
 .ads_case_header__info_left {
     width: 120px;
-    margin-right: 30px
+    margin-right: 30px;
 }
 
 .ads_case_header__avatar-wrap {
-    height: 60px
+    height: 60px;
 }
 
 .ads_case_header__avatar {
     box-sizing: border-box;
     width: 124px;
     height: 124px;
-    background-size: cover!important;
+    background-size: cover !important;
     border-radius: 50%;
-    box-shadow: 0 1px 14px 0 rgba(0, 0, 0, .05), 0 2px 4px 0 rgba(0, 0, 0, .1);
-    border: solid 4px #fff;
+    box-shadow: 0 1px 14px 0 rgba(0, 0, 0, 0.05), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    border: solid 4px white;
     position: relative;
     top: -64px;
-    margin-left: -2px
+    margin-left: -2px;
 }
 
 .ads_case_header__title {
     margin: 0;
     font-size: 24px;
     line-height: 1.25;
-    color: #000
+    color: #000000;
 }
 
 .ads_case_header__summary {
     font-size: 16px;
     line-height: 1.43em;
     margin: 7px 0 0;
-    color: #656565
+    color: #656565;
 }
 
 .ads_case_header_dodo .ads_case_header__avatar {
-    background: url(/images/landings/ads_cases/dodo/logo.png)
+    background: url(/images/landings/ads_cases/dodo/logo.png);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -123,12 +123,12 @@
 (min-resolution: 192dpi) {
     .ads_case_header_dodo .ads_case_header__avatar {
         background-image: url(/images/landings/ads_cases/dodo/logo_2x.png);
-        background-size: 120px 120px
+        background-size: 120px 120px;
     }
 }
 
 .ads_case_header_dodo .ads_case_header__cover_image {
-    background: url(/images/landings/ads_cases/dodo/header.jpg)
+    background: url(/images/landings/ads_cases/dodo/header.jpg);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -136,12 +136,12 @@
 (min-resolution: 192dpi) {
     .ads_case_header_dodo .ads_case_header__cover_image {
         background-image: url(/images/landings/ads_cases/dodo/header_2x.jpg);
-        background-size: 795px 250px
+        background-size: 795px 250px;
     }
 }
 
 .ads_case_header_family776 .ads_case_header__avatar {
-    background: url(/images/landings/ads_cases/family776/logo.png)
+    background: url(/images/landings/ads_cases/family776/logo.png);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -149,12 +149,12 @@
 (min-resolution: 192dpi) {
     .ads_case_header_family776 .ads_case_header__avatar {
         background-image: url(/images/landings/ads_cases/family776/logo_2x.png);
-        background-size: 120px 120px
+        background-size: 120px 120px;
     }
 }
 
 .ads_case_header_family776 .ads_case_header__cover_image {
-    background: url(/images/landings/ads_cases/family776/header.jpg)
+    background: url(/images/landings/ads_cases/family776/header.jpg);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -162,12 +162,12 @@
 (min-resolution: 192dpi) {
     .ads_case_header_family776 .ads_case_header__cover_image {
         background-image: url(/images/landings/ads_cases/family776/header_2x.jpg);
-        background-size: 795px 250px
+        background-size: 795px 250px;
     }
 }
 
 .ads_case_header_gorun .ads_case_header__avatar {
-    background: url(/images/landings/ads_cases/gorun/logo.png)
+    background: url(/images/landings/ads_cases/gorun/logo.png);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -175,12 +175,12 @@
 (min-resolution: 192dpi) {
     .ads_case_header_gorun .ads_case_header__avatar {
         background-image: url(/images/landings/ads_cases/gorun/logo_2x.png);
-        background-size: 120px 120px
+        background-size: 120px 120px;
     }
 }
 
 .ads_case_header_gorun .ads_case_header__cover_image {
-    background: url(/images/landings/ads_cases/gorun/header.jpg)
+    background: url(/images/landings/ads_cases/gorun/header.jpg);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -188,12 +188,12 @@
 (min-resolution: 192dpi) {
     .ads_case_header_gorun .ads_case_header__cover_image {
         background-image: url(/images/landings/ads_cases/gorun/header_2x.jpg);
-        background-size: 795px 250px
+        background-size: 795px 250px;
     }
 }
 
 .ads_case_header_taxovichkof .ads_case_header__avatar {
-    background: url(/images/landings/ads_cases/taxovichkof/logo.png)
+    background: url(/images/landings/ads_cases/taxovichkof/logo.png);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -201,12 +201,12 @@
 (min-resolution: 192dpi) {
     .ads_case_header_taxovichkof .ads_case_header__avatar {
         background-image: url(/images/landings/ads_cases/taxovichkof/logo_2x.png);
-        background-size: 120px 120px
+        background-size: 120px 120px;
     }
 }
 
 .ads_case_header_taxovichkof .ads_case_header__cover_image {
-    background: url(/images/landings/ads_cases/taxovichkof/header.jpg)
+    background: url(/images/landings/ads_cases/taxovichkof/header.jpg);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -214,12 +214,12 @@
 (min-resolution: 192dpi) {
     .ads_case_header_taxovichkof .ads_case_header__cover_image {
         background-image: url(/images/landings/ads_cases/taxovichkof/header_2x.jpg);
-        background-size: 795px 250px
+        background-size: 795px 250px;
     }
 }
 
 .ads_case_header_yota .ads_case_header__avatar {
-    background: url(/images/landings/ads_cases/yota/logo.png)
+    background: url(/images/landings/ads_cases/yota/logo.png);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -227,12 +227,12 @@
 (min-resolution: 192dpi) {
     .ads_case_header_yota .ads_case_header__avatar {
         background-image: url(/images/landings/ads_cases/yota/logo_2x.png);
-        background-size: 120px 120px
+        background-size: 120px 120px;
     }
 }
 
 .ads_case_header_yota .ads_case_header__cover_image {
-    background: url(/images/landings/ads_cases/yota/header.png)
+    background: url(/images/landings/ads_cases/yota/header.png);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -240,7 +240,7 @@
 (min-resolution: 192dpi) {
     .ads_case_header_yota .ads_case_header__cover_image {
         background-image: url(/images/landings/ads_cases/yota/header_2x.png);
-        background-size: 795px 250px
+        background-size: 795px 250px;
     }
 }
 
@@ -248,22 +248,22 @@
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    margin-top: 18px
+    margin-top: 18px;
 }
 
 .ads_case_counter_item {
-    margin-left: 42px
+    margin-left: 42px;
 }
 
 .ads_case_counter_item:first-child {
-    margin-left: 0
+    margin-left: 0;
 }
 
 .ads_case_counter_item__value {
     font-size: 32px;
     line-height: 1.2;
     color: #6690c7;
-    white-space: nowrap
+    white-space: nowrap;
 }
 
 .ads_case_counter_item__label {
@@ -271,15 +271,15 @@
     line-height: 1.2;
     color: #828282;
     margin-top: 3px;
-    white-space: nowrap
+    white-space: nowrap;
 }
 
 .ads_case_text {
-    padding: 30px 0
+    padding: 30px 0;
 }
 
 .ads_case_text+.ads_case_text {
-    padding-top: 2px
+    padding-top: 2px;
 }
 
 .ads_case_text__container {
@@ -287,22 +287,25 @@
     padding-right: 30px;
     font-size: 14px;
     line-height: 1.43;
-    color: #000
+    color: #000;
 }
 
 .ads_case_text__title {
     font-size: 24px;
     line-height: 1.2;
-    margin-bottom: 10px
+    margin-bottom: 10px;
 }
 
 .ads_case_text__text {
     font-size: 14px;
-    line-height: 1.5
+    line-height: 1.5;
 }
 
 .ads_case_image_text {
-    padding: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     min-height: 493px;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -317,28 +320,28 @@
     -ms-flex-align: left;
     align-items: left;
     background: 50% no-repeat;
-    background-size: cover!important
+    background-size: cover !important;
 }
 
 .ads_case_image_text.align_right {
     -webkit-align-items: flex-end;
     -ms-flex-align: end;
-    align-items: flex-end
+    align-items: flex-end;
 }
 
 .ads_case_image_text__content {
     width: 290px;
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 
 .ads_case_image_text.align_right .ads_case_image_text__content {
-    padding-right: 20px
+    padding-right: 20px;
 }
 
 .ads_case_image_text__quote {
     font-size: 16px;
     line-height: 1.38;
-    margin-bottom: 20px
+    margin-bottom: 20px;
 }
 
 .ads_case_image_text__author {
@@ -347,20 +350,20 @@
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    opacity: 0.4
+    opacity: 0.4;
 }
 
 .ads_case_image_text.light_text .ads_case_image_text__quote {
-    color: #fff
+    color: white;
 }
 
 .ads_case_image_text.light_text .ads_case_image_text__author {
-    color: #fff;
-    opacity: 0.6
+    color: white;
+    opacity: 0.6;
 }
 
 .ads_case_image_text.dodo.quote {
-    background: url(/images/landings/ads_cases/dodo/quote.jpg)
+    background: url(/images/landings/ads_cases/dodo/quote.jpg);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -368,12 +371,12 @@
 (min-resolution: 192dpi) {
     .ads_case_image_text.dodo.quote {
         background-image: url(/images/landings/ads_cases/dodo/quote_2x.jpg);
-        background-size: 795px 553px
+        background-size: 795px 553px;
     }
 }
 
 .ads_case_image_text.family776.quote {
-    background: url(/images/landings/ads_cases/family776/quote.jpg)
+    background: url(/images/landings/ads_cases/family776/quote.jpg);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -381,12 +384,12 @@
 (min-resolution: 192dpi) {
     .ads_case_image_text.family776.quote {
         background-image: url(/images/landings/ads_cases/family776/quote_2x.jpg);
-        background-size: 795px 584px
+        background-size: 795px 584px;
     }
 }
 
 .ads_case_image_text.gorun.quote {
-    background: url(/images/landings/ads_cases/gorun/quote_upd.jpg)
+    background: url(/images/landings/ads_cases/gorun/quote_upd.jpg);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -394,12 +397,12 @@
 (min-resolution: 192dpi) {
     .ads_case_image_text.gorun.quote {
         background-image: url(/images/landings/ads_cases/gorun/quote_upd_2x.jpg);
-        background-size: 795px 514px
+        background-size: 795px 514px;
     }
 }
 
 .ads_case_image_text.taxovichkof.quote1 {
-    background: url(/images/landings/ads_cases/taxovichkof/quote1.jpg)
+    background: url(/images/landings/ads_cases/taxovichkof/quote1.jpg);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -407,12 +410,12 @@
 (min-resolution: 192dpi) {
     .ads_case_image_text.taxovichkof.quote1 {
         background-image: url(/images/landings/ads_cases/taxovichkof/quote1_2x.jpg);
-        background-size: 795px 584px
+        background-size: 795px 584px;
     }
 }
 
 .ads_case_image_text.taxovichkof.quote2 {
-    background: url(/images/landings/ads_cases/taxovichkof/quote2_up.jpg)
+    background: url(/images/landings/ads_cases/taxovichkof/quote2_up.jpg);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -420,12 +423,12 @@
 (min-resolution: 192dpi) {
     .ads_case_image_text.taxovichkof.quote2 {
         background-image: url(/images/landings/ads_cases/taxovichkof/quote2_up_2x.jpg);
-        background-size: 795px 584px
+        background-size: 795px 584px;
     }
 }
 
 .ads_case_image_text.yota.quote {
-    background: url(/images/landings/ads_cases/yota/quote_upd.jpg)
+    background: url(/images/landings/ads_cases/yota/quote_upd.jpg);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -433,126 +436,126 @@
 (min-resolution: 192dpi) {
     .ads_case_image_text.yota.quote {
         background-image: url(/images/landings/ads_cases/yota/quote_upd_2x.jpg);
-        background-size: 795px 514px
+        background-size: 795px 514px;
     }
 }
 
 @-webkit-keyframes ads-case-show-text {
-    0% {
+    from {
         -webkit-transform: translateX(30px);
-        transform: translateX(30px)
+        transform: translateX(30px);
     }
     to {
         -webkit-transform: translateX(0px);
-        transform: translateX(0px)
+        transform: translateX(0px);
     }
 }
 
 @-o-keyframes ads-case-show-text {
-    0% {
+    from {
         -o-transform: translateX(30px);
-        transform: translateX(30px)
+        transform: translateX(30px);
     }
     to {
         -o-transform: translateX(0px);
-        transform: translateX(0px)
+        transform: translateX(0px);
     }
 }
 
 @keyframes ads-case-show-text {
-    0% {
+    from {
         -webkit-transform: translateX(30px);
         -o-transform: translateX(30px);
-        transform: translateX(30px)
+        transform: translateX(30px);
     }
     to {
         -webkit-transform: translateX(0px);
         -o-transform: translateX(0px);
-        transform: translateX(0px)
+        transform: translateX(0px);
     }
 }
 
 @-webkit-keyframes ads-case-hide-text {
-    0% {
+    from {
         -webkit-transform: translateX(0px);
-        transform: translateX(0px)
+        transform: translateX(0px);
     }
     to {
         -webkit-transform: translateX(-40px);
-        transform: translateX(-40px)
+        transform: translateX(-40px);
     }
 }
 
 @-o-keyframes ads-case-hide-text {
-    0% {
+    from {
         -o-transform: translateX(0px);
-        transform: translateX(0px)
+        transform: translateX(0px);
     }
     to {
         -o-transform: translateX(-40px);
-        transform: translateX(-40px)
+        transform: translateX(-40px);
     }
 }
 
 @keyframes ads-case-hide-text {
-    0% {
+    from {
         -webkit-transform: translateX(0px);
         -o-transform: translateX(0px);
-        transform: translateX(0px)
+        transform: translateX(0px);
     }
     to {
         -webkit-transform: translateX(-40px);
         -o-transform: translateX(-40px);
-        transform: translateX(-40px)
+        transform: translateX(-40px);
     }
 }
 
 @-webkit-keyframes ads-case-show-image {
-    0% {
+    from {
         -webkit-transform: translateY(40px);
-        transform: translateY(40px)
+        transform: translateY(40px);
     }
     to {
         -webkit-transform: translateY(0px);
-        transform: translateY(0px)
+        transform: translateY(0px);
     }
 }
 
 @-o-keyframes ads-case-show-image {
-    0% {
+    from {
         -o-transform: translateY(40px);
-        transform: translateY(40px)
+        transform: translateY(40px);
     }
     to {
         -o-transform: translateY(0px);
-        transform: translateY(0px)
+        transform: translateY(0px);
     }
 }
 
 @keyframes ads-case-show-image {
-    0% {
+    from {
         -webkit-transform: translateY(40px);
         -o-transform: translateY(40px);
-        transform: translateY(40px)
+        transform: translateY(40px);
     }
     to {
         -webkit-transform: translateY(0px);
         -o-transform: translateY(0px);
-        transform: translateY(0px)
+        transform: translateY(0px);
     }
 }
 
 .ads_case_block_tabs {
-    background-color: #f0f2f5
+    background-color: #f0f2f5;
 }
 
 .ads_case_block_tabs__header {
     padding-left: 30px;
-    padding-right: 30px
+    padding-right: 30px;
 }
 
 .ads_case_block_tabs__body {
-    position: relative
+    position: relative;
 }
 
 .ads_case_block_tabs .ui_tabs {
@@ -562,38 +565,38 @@
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
-    border-bottom: 1px solid #cfd0d1
+    border-bottom: 1px solid #cfd0d1;
 }
 
-.ads_case_block_tabs .ui_tabs:after,
-.ads_case_block_tabs .ui_tabs:before {
+.ads_case_block_tabs .ui_tabs:before,
+.ads_case_block_tabs .ui_tabs:after {
     content: '';
     width: 30px;
     position: absolute;
     bottom: -1px;
-    height: 1px
+    height: 1px;
 }
 
 .ads_case_block_tabs .ui_tabs:before {
     left: 0;
     background: -o-linear-gradient(180deg, #cfd0d1, #f0f2f5);
-    background: linear-gradient(270deg, #cfd0d1, #f0f2f5)
+    background: linear-gradient(270deg, #cfd0d1, #f0f2f5);
 }
 
 .ads_case_block_tabs .ui_tabs:after {
     right: 0;
     background: -o-linear-gradient(0deg, #cfd0d1, #f0f2f5);
     background: linear-gradient(90deg, #cfd0d1, #f0f2f5);
-    visibility: visible
+    visibility: visible;
 }
 
 .ads_case_block_tabs .ui_tab {
     padding: 21px 8px;
-    margin: 0 12px -1px
+    margin: 0 12px -1px;
 }
 
 .ads_case_block_tabs .ui_tab:hover {
-    padding-bottom: 21px
+    padding-bottom: 21px;
 }
 
 .ads_case_tab_content {
@@ -604,17 +607,17 @@
     pointer-events: none;
     visibility: hidden;
     -o-transition: visibility 0s 0.3s;
-    transition: visibility 0s 0.3s
+    transition: visibility 0s 0.3s;
 }
 
 .ads_case_tab_content:first-child {
-    position: relative
+    position: relative;
 }
 
 .ads_case_tab_content.active {
     visibility: visible;
     -o-transition: visibility 0s 0s;
-    transition: visibility 0s 0s
+    transition: visibility 0s 0s;
 }
 
 .ads_case_tab_content__container {
@@ -623,14 +626,14 @@
     padding-top: 40px;
     padding-right: 0;
     position: relative;
-    overflow: hidden
+    overflow: hidden;
 }
 
-.ads_case_block_tabs.no-animation .ads_case_tab_content__image,
-.ads_case_block_tabs.no-animation .ads_case_tab_content__text {
+.ads_case_block_tabs.no-animation .ads_case_tab_content__text,
+.ads_case_block_tabs.no-animation .ads_case_tab_content__image {
     -webkit-animation-duration: 0s!important;
     -o-animation-duration: 0s!important;
-    animation-duration: 0s!important
+    animation-duration: 0s!important;
 }
 
 .ads_case_tab_content__text {
@@ -643,7 +646,7 @@
     -webkit-animation: ads-case-hide-text 0.3s ease-in;
     -o-animation: ads-case-hide-text 0.3s ease-in;
     animation: ads-case-hide-text 0.3s ease-in;
-    padding-bottom: 60px
+    padding-bottom: 60px;
 }
 
 .ads_case_tab_content.active .ads_case_tab_content__text {
@@ -651,7 +654,7 @@
     -webkit-animation: ads-case-show-text 0.3s ease-out;
     -o-animation: ads-case-show-text 0.3s ease-out;
     animation: ads-case-show-text 0.3s ease-out;
-    pointer-events: all
+    pointer-events: all;
 }
 
 .ads_case_tab_content__image {
@@ -660,8 +663,8 @@
     opacity: 0;
     -o-transition: opacity 0.3s;
     transition: opacity 0.3s;
-    background-position: 100% 0!important;
-    background-repeat: no-repeat!important
+    background-position: 100% 0 !important;
+    background-repeat: no-repeat !important;
 }
 
 .ads_case_tab_content.active .ads_case_tab_content__image {
@@ -669,13 +672,13 @@
     -webkit-animation: ads-case-show-image 0.3s ease-in;
     -o-animation: ads-case-show-image 0.3s ease-in;
     animation: ads-case-show-image 0.3s ease-in;
-    pointer-events: all
+    pointer-events: all;
 }
 
 .ads_case_tab_content.dodo.component1 .ads_case_tab_content__image {
     background: url(/images/landings/ads_cases/dodo/component1.png);
     width: 470px;
-    height: 626px
+    height: 626px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -683,14 +686,14 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content.dodo.component1 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/dodo/component1_2x.png);
-        background-size: 470px 626px
+        background-size: 470px 626px;
     }
 }
 
 .ads_case_tab_content.dodo.component2 .ads_case_tab_content__image {
     background: url(/images/landings/ads_cases/dodo/component2.png);
     width: 470px;
-    height: 626px
+    height: 626px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -698,14 +701,14 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content.dodo.component2 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/dodo/component2_2x.png);
-        background-size: 470px 626px
+        background-size: 470px 626px;
     }
 }
 
 .ads_case_tab_content.dodo.component3 .ads_case_tab_content__image {
     background: url(/images/landings/ads_cases/dodo/component3.png);
     width: 470px;
-    height: 626px
+    height: 626px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -713,14 +716,14 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content.dodo.component3 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/dodo/component3_2x.png);
-        background-size: 470px 626px
+        background-size: 470px 626px;
     }
 }
 
 .ads_case_tab_content.dodo.component4 .ads_case_tab_content__image {
     background: url(/images/landings/ads_cases/dodo/component4.png);
     width: 470px;
-    height: 626px
+    height: 626px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -728,14 +731,14 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content.dodo.component4 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/dodo/component4_2x.png);
-        background-size: 470px 626px
+        background-size: 470px 626px;
     }
 }
 
 .ads_case_tab_content.family776.component1 .ads_case_tab_content__image {
     background: url(/images/landings/ads_cases/family776/component1.png);
     width: 440px;
-    height: 566px
+    height: 566px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -743,14 +746,14 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content.family776.component1 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/family776/component1_2x.png);
-        background-size: 440px 566px
+        background-size: 440px 566px;
     }
 }
 
 .ads_case_tab_content.family776.component2 .ads_case_tab_content__image {
     background: url(/images/landings/ads_cases/family776/component2.png);
     width: 440px;
-    height: 566px
+    height: 566px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -758,14 +761,14 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content.family776.component2 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/family776/component2_2x.png);
-        background-size: 440px 566px
+        background-size: 440px 566px;
     }
 }
 
 .ads_case_tab_content.family776.component3 .ads_case_tab_content__image {
     background: url(/images/landings/ads_cases/family776/component3.png);
     width: 440px;
-    height: 566px
+    height: 566px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -773,14 +776,14 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content.family776.component3 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/family776/component3_2x.png);
-        background-size: 440px 566px
+        background-size: 440px 566px;
     }
 }
 
 .ads_case_tab_content.gorun.component1 .ads_case_tab_content__image {
     background: url(/images/landings/ads_cases/gorun/component1.png);
     width: 460px;
-    height: 554px
+    height: 554px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -788,14 +791,14 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content.gorun.component1 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/gorun/component1_2x.png);
-        background-size: 460px 554px
+        background-size: 460px 554px;
     }
 }
 
 .ads_case_tab_content.taxovichkof.component1 .ads_case_tab_content__image {
     background: url(/images/landings/ads_cases/taxovichkof/component1.png);
     width: 500px;
-    height: 586px
+    height: 586px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -803,14 +806,14 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content.taxovichkof.component1 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/taxovichkof/component1_2x.png);
-        background-size: 500px 586px
+        background-size: 500px 586px;
     }
 }
 
 .ads_case_tab_content.taxovichkof.component2 .ads_case_tab_content__image {
     background: url(/images/landings/ads_cases/taxovichkof/component2.png);
     width: 500px;
-    height: 586px
+    height: 586px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -818,14 +821,14 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content.taxovichkof.component2 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/taxovichkof/component2_2x.png);
-        background-size: 500px 586px
+        background-size: 500px 586px;
     }
 }
 
 .ads_case_tab_content.taxovichkof.component3 .ads_case_tab_content__image {
     background: url(/images/landings/ads_cases/taxovichkof/component3.png);
     width: 500px;
-    height: 586px
+    height: 586px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -833,14 +836,14 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content.taxovichkof.component3 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/taxovichkof/component3_2x.png);
-        background-size: 500px 586px
+        background-size: 500px 586px;
     }
 }
 
 .ads_case_tab_content.yota.component1 .ads_case_tab_content__image {
     background: url(/images/landings/ads_cases/yota/component1.png);
     width: 470px;
-    height: 688px
+    height: 688px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -848,14 +851,14 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content.yota.component1 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/yota/component1_2x.png);
-        background-size: 470px 688px
+        background-size: 470px 688px;
     }
 }
 
 .ads_case_tab_content.yota.component2 .ads_case_tab_content__image {
     background: url(/images/landings/ads_cases/yota/component2.png);
     width: 470px;
-    height: 688px
+    height: 688px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -863,12 +866,12 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content.yota.component2 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/yota/component2_2x.png);
-        background-size: 470px 688px
+        background-size: 470px 688px;
     }
 }
 
 .ads_case_tab_content_en.dodo.component1 .ads_case_tab_content__image {
-    background: url(/images/landings/ads_cases/dodo/component1_en.png)
+    background: url(/images/landings/ads_cases/dodo/component1_en.png);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -876,12 +879,12 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content_en.dodo.component1 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/dodo/component1_en_2x.png);
-        background-size: 470px 626px
+        background-size: 470px 626px;
     }
 }
 
 .ads_case_tab_content_en.dodo.component2 .ads_case_tab_content__image {
-    background: url(/images/landings/ads_cases/dodo/component2_en.png)
+    background: url(/images/landings/ads_cases/dodo/component2_en.png);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -889,12 +892,12 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content_en.dodo.component2 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/dodo/component2_en_2x.png);
-        background-size: 470px 626px
+        background-size: 470px 626px;
     }
 }
 
 .ads_case_tab_content_en.dodo.component3 .ads_case_tab_content__image {
-    background: url(/images/landings/ads_cases/dodo/component3_en.png)
+    background: url(/images/landings/ads_cases/dodo/component3_en.png);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -902,12 +905,12 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content_en.dodo.component3 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/dodo/component3_en_2x.png);
-        background-size: 470px 626px
+        background-size: 470px 626px;
     }
 }
 
 .ads_case_tab_content_en.dodo.component4 .ads_case_tab_content__image {
-    background: url(/images/landings/ads_cases/dodo/component4_en.png)
+    background: url(/images/landings/ads_cases/dodo/component4_en.png);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -915,12 +918,12 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content_en.dodo.component4 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/dodo/component4_en_2x.png);
-        background-size: 470px 626px
+        background-size: 470px 626px;
     }
 }
 
 .ads_case_tab_content_en.family776.component1 .ads_case_tab_content__image {
-    background: url(/images/landings/ads_cases/family776/component1_en.png)
+    background: url(/images/landings/ads_cases/family776/component1_en.png);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -928,12 +931,12 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content_en.family776.component1 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/family776/component1_en_2x.png);
-        background-size: 440px 566px
+        background-size: 440px 566px;
     }
 }
 
 .ads_case_tab_content_en.family776.component2 .ads_case_tab_content__image {
-    background: url(/images/landings/ads_cases/family776/component2_en_upd.png)
+    background: url(/images/landings/ads_cases/family776/component2_en_upd.png);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -941,12 +944,12 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content_en.family776.component2 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/family776/component2_en_upd_2x.png);
-        background-size: 440px 566px
+        background-size: 440px 566px;
     }
 }
 
 .ads_case_tab_content_en.family776.component3 .ads_case_tab_content__image {
-    background: url(/images/landings/ads_cases/family776/component3_en.png)
+    background: url(/images/landings/ads_cases/family776/component3_en.png);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -954,12 +957,12 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content_en.family776.component3 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/family776/component3_en_2x.png);
-        background-size: 440px 566px
+        background-size: 440px 566px;
     }
 }
 
 .ads_case_tab_content_en.gorun.component1 .ads_case_tab_content__image {
-    background: url(/images/landings/ads_cases/gorun/component1_en.png)
+    background: url(/images/landings/ads_cases/gorun/component1_en.png);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -967,12 +970,12 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content_en.gorun.component1 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/gorun/component1_en_2x.png);
-        background-size: 460px 554px
+        background-size: 460px 554px;
     }
 }
 
 .ads_case_tab_content_en.taxovichkof.component1 .ads_case_tab_content__image {
-    background: url(/images/landings/ads_cases/taxovichkof/component1_en_upd.png)
+    background: url(/images/landings/ads_cases/taxovichkof/component1_en_upd.png);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -980,12 +983,12 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content_en.taxovichkof.component1 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/taxovichkof/component1_en_upd_2x.png);
-        background-size: 500px 586px
+        background-size: 500px 586px;
     }
 }
 
 .ads_case_tab_content_en.taxovichkof.component2 .ads_case_tab_content__image {
-    background: url(/images/landings/ads_cases/taxovichkof/component2_en.png)
+    background: url(/images/landings/ads_cases/taxovichkof/component2_en.png);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -993,12 +996,12 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content_en.taxovichkof.component2 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/taxovichkof/component2_en_2x.png);
-        background-size: 500px 586px
+        background-size: 500px 586px;
     }
 }
 
 .ads_case_tab_content_en.yota.component1 .ads_case_tab_content__image {
-    background: url(/images/landings/ads_cases/yota/component1_upd_en.png)
+    background: url(/images/landings/ads_cases/yota/component1_upd_en.png);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1006,12 +1009,12 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content_en.yota.component1 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/yota/component1_upd_en_2x.png);
-        background-size: 470px 688px
+        background-size: 470px 688px;
     }
 }
 
 .ads_case_tab_content_en.yota.component2 .ads_case_tab_content__image {
-    background: url(/images/landings/ads_cases/yota/component2_en.png)
+    background: url(/images/landings/ads_cases/yota/component2_en.png);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1019,23 +1022,26 @@
 (min-resolution: 192dpi) {
     .ads_case_tab_content_en.yota.component2 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/yota/component2_en_2x.png);
-        background-size: 470px 688px
+        background-size: 470px 688px;
     }
 }
 
 .ads_case_footer {
-    padding: 29px 30px 30px
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 29px;
+    padding-bottom: 30px;
 }
 
 .ads_case_footer__title {
     font-size: 24px;
     line-height: 1.2;
-    margin-bottom: 21px
+    margin-bottom: 21px;
 }
 
 .ads_case_footer__items {
     overflow: hidden;
-    margin-left: -27px
+    margin-left: -27px;
 }
 
 .ads_case_footer_item {
@@ -1043,26 +1049,26 @@
     box-sizing: border-box;
     padding-left: 27px;
     padding-top: 27px;
-    width: 33.33333%
+    width: 33.33333%;
 }
 
 .ads_case_footer_item:nth-child(-n+3) {
-    padding-top: 0
+    padding-top: 0;
 }
 
-.ads_case_footer_item__summary,
-.ads_case_footer_item__title {
+.ads_case_footer_item__title,
+.ads_case_footer_item__summary {
     font-size: 14px;
-    line-height: 1.43
+    line-height: 1.43;
 }
 
 .ads_case_footer_item__title {
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    color: #2a5885
+    color: #2A5885;
 }
 
 .ads_case_footer_item__summary {
-    color: #828282
+    color: #828282;
 }

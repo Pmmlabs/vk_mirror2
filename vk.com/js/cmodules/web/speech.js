@@ -12,94 +12,79 @@
     return e.m = t, e.c = n, e.p = "", e(0)
 }({
     0: function(t, e, n) {
-        t.exports = n(141)
+        t.exports = n(88)
     },
-    1: function(t, e) {
-        "use strict";
-
+    6: function(t, e) {
         function n() {
-            var t = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || window.MediaDevices && window.MediaDevices.getUserMedia,
-                e = function(e) {
-                    return new Promise(function(n, i) {
-                        t ? t.call(navigator, e, n, i) : i(new Error("NotSupported"))
-                    })
-                },
-                n = function() {
-                    return new Promise(function(t, e) {
-                        if (MediaStreamTrack && MediaStreamTrack.getSources) {
-                            var n = {
-                                audio: "audioinput",
-                                video: "videoinput"
-                            };
-                            return MediaStreamTrack.getSources(function(e) {
-                                t(e.map(function(t) {
-                                    return {
-                                        label: t.label,
-                                        kind: n[t.kind],
-                                        deviceId: t.id,
-                                        groupId: ""
-                                    }
-                                }))
-                            })
-                        }
-                        e(new Error("NotSupported"))
-                    })
-                };
-            t && !navigator.mediaDevices && (navigator.mediaDevices = navigator.mediaDevices || {}), navigator.mediaDevices && (navigator.mediaDevices.getUserMedia || (navigator.mediaDevices.getUserMedia = e), navigator.mediaDevices.enumerateDevices || (navigator.mediaDevices.enumerateDevices = n)), window.AudioContext = window.AudioContext || window.webkitAudioContext, window.AudioContext && (window.AudioContext.prototype.createScriptProcessor = window.AudioContext.prototype.createScriptProcessor || window.AudioContext.prototype.createJavaScriptNode)
+            u = !1, s.length ? c = s.concat(c) : h = -1, c.length && i()
         }
-        Object.defineProperty(e, "__esModule", {
-            value: !0
-        }), e.initFailBack = n
-    },
-    21: function(t, e, n) {
-        "use strict";
 
-        function i(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        function i() {
+            if (!u) {
+                var t = setTimeout(n);
+                u = !0;
+                for (var e = c.length; e;) {
+                    for (s = c, c = []; ++h < e;) s && s[h].run();
+                    h = -1, e = c.length
+                }
+                s = null, u = !1, clearTimeout(t)
+            }
         }
 
         function o(t, e) {
-            if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-            return !e || "object" != typeof e && "function" != typeof e ? t : e
+            this.fun = t, this.array = e
         }
 
-        function r(t, e) {
-            if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-            t.prototype = Object.create(e && e.prototype, {
-                constructor: {
-                    value: t,
-                    enumerable: !1,
-                    writable: !0,
-                    configurable: !0
+        function r() {}
+        var s, a = t.exports = {},
+            c = [],
+            u = !1,
+            h = -1;
+        a.nextTick = function(t) {
+            var e = new Array(arguments.length - 1);
+            if (arguments.length > 1)
+                for (var n = 1; n < arguments.length; n++) e[n - 1] = arguments[n];
+            c.push(new o(t, e)), 1 !== c.length || u || setTimeout(i, 0)
+        }, o.prototype.run = function() {
+            this.fun.apply(null, this.array)
+        }, a.title = "browser", a.browser = !0, a.env = {}, a.argv = [], a.version = "", a.versions = {}, a.on = r, a.addListener = r, a.once = r, a.off = r, a.removeListener = r, a.removeAllListeners = r, a.emit = r, a.binding = function(t) {
+            throw new Error("process.binding is not supported")
+        }, a.cwd = function() {
+            return "/"
+        }, a.chdir = function(t) {
+            throw new Error("process.chdir is not supported")
+        }, a.umask = function() {
+            return 0
+        }
+    },
+    34: function(t, e) {},
+    51: function(t, e, n) {
+        "use strict";
+
+        function i(t, e, n, i) {
+            if (c[t]) {
+                if (e instanceof HTMLMediaElement) {
+                    var o = new AudioContext;
+                    e = o.createMediaElementSource(e), e.connect(o.destination)
                 }
-            }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
+                return new c[t](e, n, i)
+            }
         }
         Object.defineProperty(e, "__esModule", {
             value: !0
-        }), e.Mp3Recorder = void 0;
-        var s = n(85);
-        e.Mp3Recorder = function(t) {
-            function e() {
-                return i(this, e), o(this, t.apply(this, arguments))
+        }), e.createVisualization = i;
+        var o = n(79),
+            r = n(166),
+            s = n(58),
+            a = n(56),
+            c = {
+                wave: o.Wave,
+                frequency: r.Frequency,
+                time: s.Time,
+                pulse: a.Pulse
             }
-            return r(e, t), e.prototype._createWorker = function() {
-                var t = this,
-                    e = {
-                        command: "init",
-                        numberOfChannels: 1,
-                        originalSampleRate: this._ctx.sampleRate
-                    },
-                    n = new Worker("/js/" + jsc("web/speech_worker_mp3.js"));
-                return n.addEventListener("message", function(e) {
-                    var n = e.data;
-                    n.buffer && t.eventTarget.dispatchEvent(new CustomEvent("dataavailable", {
-                        detail: n.buffer
-                    })), "finish" == n.type && t.eventTarget.dispatchEvent(new Event("stop"))
-                }), n.postMessage(e), n
-            }, e
-        }(s.BaseRecorder)
     },
-    26: function(t, e) {
+    56: function(t, e) {
         "use strict";
 
         function n(t, e) {
@@ -138,7 +123,406 @@
             }, t
         }()
     },
-    48: function(t, e) {
+    58: function(t, e) {
+        "use strict";
+
+        function n(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        }
+        Object.defineProperty(e, "__esModule", {
+            value: !0
+        });
+        var i = {
+            lineWidth: 2,
+            color: "#6287AE"
+        };
+        e.Time = function() {
+            function t(e, i, o) {
+                n(this, t), this._source = e, this._canvas = i, this._ctx = i.getContext("2d"), this._options = o || {}, this._node = this._createNode(e)
+            }
+            return t.prototype._getOption = function(t) {
+                return this._options[t] || i[t]
+            }, t.prototype._createNode = function(t) {
+                var e = t.context.createAnalyser();
+                return e.fftSize = 1024, t.connect(e), e
+            }, t.prototype.destroy = function() {
+                this.stop(), this._source.disconnect(), this._node.disconnect(), this._node = null
+            }, t.prototype.start = function() {
+                this._stopped = !1, this._draw()
+            }, t.prototype._draw = function() {
+                var t = this,
+                    e = this._canvas.getBoundingClientRect(),
+                    n = e.right - e.left,
+                    i = e.bottom - e.top,
+                    o = new Uint8Array(this._node.frequencyBinCount);
+                this._node.getByteTimeDomainData(o), this._ctx.clearRect(0, 0, n, i), this._ctx.strokeStyle = this._getOption("color"), this._ctx.lineWidth = this._getOption("lineWidth"), this._ctx.lineCap = "round";
+                var r = 0,
+                    s = 1 * n / this._node.frequencyBinCount;
+                this._ctx.beginPath();
+                for (var a = 0; a < this._node.frequencyBinCount; a++) {
+                    var c = o[a] / 128,
+                        u = c * i / 2;
+                    0 === a ? this._ctx.moveTo(r, u) : this._ctx.lineTo(r, u), r += s
+                }
+                this._ctx.stroke(), this._stopped || window.requestAnimationFrame(function() {
+                    t._draw()
+                })
+            }, t.prototype.stop = function() {
+                this._stopped = !0
+            }, t
+        }()
+    },
+    79: function(t, e, n) {
+        "use strict";
+
+        function i(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        }
+        Object.defineProperty(e, "__esModule", {
+            value: !0
+        }), e.Wave = void 0;
+        var o = n(214),
+            r = {
+                blockWidth: 2,
+                spacing: 1,
+                visTime: 8,
+                color: "#fff"
+            };
+        e.Wave = function() {
+            function t(e, n, r) {
+                i(this, t), this._accum = 0, this._source = e, this._canvas = n;
+                var s = n.getBoundingClientRect();
+                n.width = s.right - s.left, n.height = s.bottom - s.top, this._width = n.width, this._height = n.height, this._ratio = (0, o.canvasGetRatio)(n), this._ctx = n.getContext("2d"), this._options = r || {}, this._accumNode = this._createWaveNode(e)
+            }
+            return t.prototype._getOption = function(t) {
+                return this._options[t] || r[t]
+            }, t.prototype._createWaveNode = function(t) {
+                var e = this,
+                    n = parseInt(this._width / (this._getOption("blockWidth") + this._getOption("spacing"))),
+                    i = this._getOption("visTime") / n,
+                    o = 0,
+                    r = t.context.createScriptProcessor(2048, 1, 1);
+                return r.onaudioprocess = function(t) {
+                    for (var n = t.inputBuffer.getChannelData(0), r = t.inputBuffer.duration / n.length, s = 0; s < n.length; s++) o += r, e._accum = Math.min(1, Math.max(e._accum, Math.abs(n[s]))), o > i && (++e.timeAccumIndex > e.timeAccumItems.length - 1 && (e.timeAccumIndex = 0), e.timeAccumItems[e.timeAccumIndex] = e._accum, e._accum = 0, o = 0)
+                }, this.timeAccumItems = new Array(n), this.timeAccumIndex = 0, t.connect(r), r.connect(t.context.destination), r
+            }, t.prototype.destroy = function() {
+                this.stop(), this._accumNode.disconnect(), this._source.connect(this._source.context.destination), this._node = null, this._canvas = null, this._source = null, this._ctx = null
+            }, t.prototype.start = function() {
+                this._stopped = !1, this._draw()
+            }, t.prototype._draw = function() {
+                var t = this;
+                if (!this._stopped) {
+                    var e = this.timeAccumIndex + 1,
+                        n = 0,
+                        i = void 0,
+                        o = void 0;
+                    this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height), this._ctx.fillStyle = this._getOption("color");
+                    for (var r = 0; r < this.timeAccumItems.length; r++, e++) e >= this.timeAccumItems.length && (e = 0), n = this.timeAccumItems[e] * (this._height - 2) + 2, i = r * (this._getOption("blockWidth") + this._getOption("spacing")), o = (this._height - n) / 2, this._ctx.fillRect(i * this._ratio, o * this._ratio, this._getOption("blockWidth") * this._ratio, n * this._ratio);
+                    window.requestAnimationFrame(function() {
+                        t._draw()
+                    })
+                }
+            }, t.prototype.stop = function() {
+                this._stopped = !0
+            }, t
+        }()
+    },
+    86: function(t, e, n) {
+        "use strict";
+
+        function i(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        }
+
+        function o(t, e) {
+            if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+            return !e || "object" != typeof e && "function" != typeof e ? t : e
+        }
+
+        function r(t, e) {
+            if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
+            t.prototype = Object.create(e && e.prototype, {
+                constructor: {
+                    value: t,
+                    enumerable: !1,
+                    writable: !0,
+                    configurable: !0
+                }
+            }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
+        }
+        Object.defineProperty(e, "__esModule", {
+            value: !0
+        }), e.OpusRecorder = void 0;
+        var s = n(99);
+        e.OpusRecorder = function(t) {
+            function e() {
+                return i(this, e), o(this, t.apply(this, arguments))
+            }
+            return r(e, t), e.prototype._createWorker = function(t) {
+                var e = this,
+                    n = {
+                        command: "init",
+                        numberOfChannels: 1,
+                        originalSampleRate: this._ctx.sampleRate,
+                        encoderSampleRate: this._options.bitsPerSecond,
+                        maxBuffersPerPage: 10,
+                        encoderApplication: 2048
+                    },
+                    i = new Worker("/js/" + jsc("web/speech_worker_opus.js"));
+                return i.addEventListener("message", function(t) {
+                    e.eventTarget.dispatchEvent(new CustomEvent("dataavailable", {
+                        detail: t.data
+                    })), 4 & t.data[5] && e.eventTarget.dispatchEvent(new Event("stop"))
+                }), i.postMessage(n), i
+            }, e
+        }(s.BaseRecorder)
+    },
+    88: function(t, e, n) {
+        "use strict";
+        var i = n(226),
+            o = n(202),
+            r = n(158),
+            s = n(51),
+            a = {
+                isSupport: function() {
+                    return !(!window.AudioContext || !(navigator.getUserMedia || navigator.mediaDevices && navigator.mediaDevices.getUserMedia))
+                },
+                getAvailableMicrophones: function() {
+                    return o.AudioRecorder.isSupport() ? o.AudioRecorder.getAvailableMicrophones() : i.Promise.resolve([])
+                },
+                newRecorder: function() {
+                    return window.Promise || (window.Promise = i.Promise), new o.AudioRecorder
+                },
+                resample: function(t, e, n) {
+                    return (0, r.fastResample)(t, e, n)
+                },
+                createVisualization: s.createVisualization
+            };
+        window.Speech = a;
+        try {
+            stManager.done("speech.js")
+        } catch (c) {}
+    },
+    97: function(t, e) {
+        "use strict";
+
+        function n(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        }
+        Object.defineProperty(e, "__esModule", {
+            value: !0
+        }), e.QuadAlgorithm = function() {
+            function t() {
+                n(this, t), this.clear()
+            }
+            return t.prototype.push = function(t) {
+                this._count++, this._accum += t, this._accum_q += t * t
+            }, t.prototype.get = function() {
+                return 1 == this._count ? this._accum : Math.sqrt((this._accum_q - this._accum * this._accum / this._count) / this._count)
+            }, t.prototype.clear = function() {
+                this._count = 0, this._accum = 0, this._accum_q = 0
+            }, t
+        }()
+    },
+    99: function(t, e) {
+        "use strict";
+
+        function n(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        }
+        if (Object.defineProperty(e, "__esModule", {
+                value: !0
+            }), "function" != typeof window.CustomEvent) {
+            var i = function(t, e) {
+                e = e || {
+                    bubbles: !1,
+                    cancelable: !1,
+                    detail: void 0
+                };
+                var n = document.createEvent("CustomEvent");
+                return n.initCustomEvent(t, e.bubbles, e.cancelable, e.detail), n
+            };
+            i.prototype = window.Event.prototype, window.CustomEvent = i
+        }
+        var o = 4096;
+        e.BaseRecorder = function() {
+            function t(e, i) {
+                var r = this;
+                n(this, t), this._ctx = new AudioContext, this.eventTarget = document.createDocumentFragment(), this._options = i, this._stream = e, this._worker = null;
+                var s = this._ctx.createMediaStreamSource(e),
+                    a = s.context.createScriptProcessor(o, 1, 1);
+                a.addEventListener("audioprocess", function(t) {
+                    if (r._worker) {
+                        for (var e = [], n = 0; n < t.inputBuffer.numberOfChannels; n++) e[n] = t.inputBuffer.getChannelData(n);
+                        r._worker.postMessage({
+                            command: "encode",
+                            buffers: e
+                        })
+                    }
+                }), s.connect(a), a.connect(s.context.destination), this.node = a
+            }
+            return t.prototype.addEventListener = function(t, e, n) {
+                this.eventTarget.addEventListener(t, e, n)
+            }, t.prototype.removeEventListener = function(t, e, n) {
+                this.eventTarget.removeEventListener(t, e, n)
+            }, t.prototype._createWorker = function() {
+                return !1
+            }, t.prototype.start = function(t) {
+                this._worker = this._createWorker(t), this.eventTarget.dispatchEvent(new Event("start"))
+            }, t.prototype.stop = function() {
+                this._worker.postMessage({
+                    command: "done"
+                })
+            }, t
+        }()
+    },
+    102: function(t, e) {
+        t.exports = function(t) {
+            return t.webpackPolyfill || (t.deprecate = function() {}, t.paths = [], t.children = [], t.webpackPolyfill = 1), t
+        }
+    },
+    133: function(t, e, n) {
+        "use strict";
+
+        function i(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        }
+
+        function o(t, e) {
+            if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+            return !e || "object" != typeof e && "function" != typeof e ? t : e
+        }
+
+        function r(t, e) {
+            if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
+            t.prototype = Object.create(e && e.prototype, {
+                constructor: {
+                    value: t,
+                    enumerable: !1,
+                    writable: !0,
+                    configurable: !0
+                }
+            }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
+        }
+        Object.defineProperty(e, "__esModule", {
+            value: !0
+        }), e.Mp3Recorder = void 0;
+        var s = n(99);
+        e.Mp3Recorder = function(t) {
+            function e() {
+                return i(this, e), o(this, t.apply(this, arguments))
+            }
+            return r(e, t), e.prototype._createWorker = function() {
+                var t = this,
+                    e = {
+                        command: "init",
+                        numberOfChannels: 1,
+                        originalSampleRate: this._ctx.sampleRate
+                    },
+                    n = new Worker("/js/" + jsc("web/speech_worker_mp3.js"));
+                return n.addEventListener("message", function(e) {
+                    var n = e.data;
+                    n.buffer && t.eventTarget.dispatchEvent(new CustomEvent("dataavailable", {
+                        detail: n.buffer
+                    })), "finish" == n.type && t.eventTarget.dispatchEvent(new Event("stop"))
+                }), n.postMessage(e), n
+            }, e
+        }(s.BaseRecorder)
+    },
+    153: function(t, e) {
+        t.exports = function() {
+            throw new Error("define cannot be used indirect")
+        }
+    },
+    155: function(t, e) {
+        "use strict";
+
+        function n(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        }
+        Object.defineProperty(e, "__esModule", {
+            value: !0
+        }), e.PeakAlgorithm = function() {
+            function t() {
+                n(this, t), this.clear()
+            }
+            return t.prototype.push = function(t) {
+                this._max = Math.max(this._max, Math.abs(t))
+            }, t.prototype.get = function() {
+                return this._max
+            }, t.prototype.clear = function() {
+                this._max = 0
+            }, t
+        }()
+    },
+    157: function(t, e) {
+        "use strict";
+
+        function n(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        }
+        Object.defineProperty(e, "__esModule", {
+            value: !0
+        }), e.AverageAlgorithm = function() {
+            function t() {
+                n(this, t), this.clear()
+            }
+            return t.prototype.push = function(t) {
+                this._count++, this._accum += t
+            }, t.prototype.get = function() {
+                return this._accum / this._count
+            }, t.prototype.clear = function() {
+                this._count = 0, this._accum = 0
+            }, t
+        }()
+    },
+    158: function(t, e, n) {
+        "use strict";
+
+        function i(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        }
+
+        function o(t, e) {
+            var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : "peak";
+            return new u({
+                srcSampleRate: t.length,
+                dstSampleRate: e,
+                normalizeAlgorithm: n,
+                truncateTo: 0
+            }).push(t)
+        }
+        Object.defineProperty(e, "__esModule", {
+            value: !0
+        }), e.Resampler = void 0, e.fastResample = o;
+        var r = n(157),
+            s = n(155),
+            a = n(97),
+            c = {
+                avg: r.AverageAlgorithm,
+                peak: s.PeakAlgorithm,
+                quad: a.QuadAlgorithm
+            },
+            u = e.Resampler = function() {
+                function t(e) {
+                    i(this, t), this._normalizeAlgorithm = !1, c[e.normalizeAlgorithm] && (this._normalizeAlgorithm = new c[e.normalizeAlgorithm]), this._srcSampleRate = parseInt(e.srcSampleRate || 0), this._dstSampleRate = parseInt(e.dstSampleRate || 0), this._truncateTo = 1, "undefined" != typeof e.truncateTo && (this._truncateTo = e.truncateTo), this._dstSampleRate > 0 ? this._sampleRate = this._srcSampleRate / this._dstSampleRate : this._sampleRate = 0, c[e.algorithm] || (e.algorithm = "peak"), this._algorithm = new c[e.algorithm], this._sampleCount = 0, this._data = []
+                }
+                return t.prototype.push = function(t) {
+                    if (this._sampleRate <= 0) return [];
+                    for (var e = [], n = void 0, i = 0; i < t.length; i++)
+                        if (this._truncateTo > 0 && (t[i] = Math.min(this._truncateTo, Math.abs(t[i]))), this._sampleCount += 1, this._sampleCount >= this._sampleRate)
+                            for (; this._sampleCount >= this._sampleRate;) this._sampleCount -= this._sampleRate, this._sampleCount <= .8 && this._algorithm.push(t[i]), n = this._algorithm.get(), e.push(n), this._normalizeAlgorithm && this._normalizeAlgorithm.push(n), this._algorithm.clear(), this._sampleCount > .2 && this._algorithm.push(t[i]);
+                        else this._algorithm.push(t[i]);
+                    if (this._normalizeAlgorithm) {
+                        var o = this._normalizeAlgorithm.get();
+                        if (this._normalizeAlgorithm.clear(), o > 0)
+                            for (var r = 0; r < e.length; r++) e[r] = e[r] / o, this._truncateTo > 0 && (e[r] = Math.min(this._truncateTo, Math.abs(e[r])))
+                    }
+                    return e
+                }, t
+            }()
+    },
+    166: function(t, e) {
         "use strict";
 
         function n(t, e) {
@@ -190,7 +574,168 @@
             }, t
         }()
     },
-    53: function(t, e, n) {
+    202: function(t, e, n) {
+        "use strict";
+
+        function i(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        }
+        Object.defineProperty(e, "__esModule", {
+            value: !0
+        }), e.AudioRecorder = void 0;
+        var o = function() {
+                function t(t, e) {
+                    for (var n = 0; n < e.length; n++) {
+                        var i = e[n];
+                        i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(t, i.key, i)
+                    }
+                }
+                return function(e, n, i) {
+                    return n && t(e.prototype, n), i && t(e, i), e
+                }
+            }(),
+            r = n(220),
+            s = n(86),
+            a = n(133),
+            c = n(158);
+        (0, r.initFailBack)(), e.AudioRecorder = function() {
+            function t() {
+                i(this, t), this._ctx = new AudioContext, this.eventTarget = document.createDocumentFragment(), this._stream = void 0, this._aquireing = !1, this.buffer = null, this.duration = 0, this.isRecording = !1, this._mimeType = ""
+            }
+            return t.prototype.addEventListener = function(t, e, n) {
+                this.eventTarget.addEventListener(t, e, n)
+            }, t.prototype.removeEventListener = function(t, e, n) {
+                this.eventTarget.removeEventListener(t, e, n)
+            }, t.prototype._onCreateStream = function(t) {
+                return this._stream = t, this.source = this._ctx.createMediaStreamSource(t), this._aquireing = !1, this.source
+            }, t.prototype.aquireMicrophone = function() {
+                var t = this;
+                if (!this._stream) {
+                    if (!this._aquireing) {
+                        this._aquireing = !0;
+                        var e = {
+                            audio: {
+                                mandatory: {},
+                                optional: []
+                            }
+                        };
+                        navigator.mediaDevices && (this._aquirePromise = navigator.mediaDevices.getUserMedia(e).then(function(e) {
+                            return t._onCreateStream(e)
+                        }))
+                    }
+                    return this._aquirePromise
+                }
+                return Promise.resolve(this._stream)
+            }, t.prototype.releaseMicrophone = function() {
+                this._aquirePromise && (this._aquirePromise = null), this._stream && (this._stream.getTracks()[0].stop(), this._stream = null)
+            }, t.selectMimeType = function() {
+                if (window.MediaRecorder && window.MediaRecorder.isTypeSupported) {
+                    for (var t = ["audio/webm;codec=opus", "audio/webm;codec=vorbis", "audio/ogg;codec=opus", "audio/ogg;codec=vorbis", "audio/webm", "audio/ogg", "audio/mpeg"], e = 0; e < t.length; e++)
+                        if (window.MediaRecorder.isTypeSupported(t[e])) return t[e]
+                } else
+                    for (var n = ["audio/ogg;codecs=opus", "audio/mpeg"], i = document.createElement("audio"), o = 0; o < n.length; o++)
+                        if (i.canPlayType(n[o])) return n[o];
+                return !1
+            }, t.prototype._createMediaRecorder = function() {
+                var e = this,
+                    n = void 0,
+                    i = [],
+                    o = {
+                        bitsPerSecond: 16e3,
+                        mimeType: t.selectMimeType()
+                    };
+                return window.MediaRecorder && o.mimeType ? n = new MediaRecorder(this._stream, o) : (o.mimeType || (o.mimeType = "audio/ogg;codecs=opus"), n = "audio/ogg;codecs=opus" == o.mimeType ? new s.OpusRecorder(this._stream, o) : new a.Mp3Recorder(this._stream, o)), this._mimeType = o.mimeType, n.addEventListener("dataavailable", function(t) {
+                    e.duration = Math.round((Date.now() - e._start) / 1e3), e.eventTarget.dispatchEvent(new Event("progress")), i.push(t.detail || t.data)
+                }), n.addEventListener("start", function() {
+                    e._start = Date.now()
+                }), n.addEventListener("stop", function() {
+                    e.isRecording = !1, e.buffer = new Blob(i, {
+                        type: o.mimeType
+                    }), e.wave = (0, c.fastResample)(e._waveData, 256), e.eventTarget.dispatchEvent(new Event("finish"))
+                }), n
+            }, t.prototype._createResampler = function() {
+                var t = this;
+                if (!this._resampler) {
+                    this._resampler = new c.Resampler({
+                        srcSampleRate: this._ctx.sampleRate,
+                        dstSampleRate: 1e3 / 60
+                    });
+                    var e = this.source.context.createScriptProcessor(4096, 1, 1);
+                    e.onaudioprocess = function(e) {
+                        var n = e.inputBuffer.getChannelData(0),
+                            i = t._resampler.push(n);
+                        i.length && (t._waveData = t._waveData.concat(i))
+                    }, this._resamplerNode = e
+                }
+                this.source.connect(this._resamplerNode), this._resamplerNode.connect(this._ctx.destination), this._waveData = []
+            }, t.prototype.record = function() {
+                var t = this;
+                return this.aquireMicrophone().then(function() {
+                    t.isRecording = !0, t.buffer = null, t.duration = 0, t.mediaRecorder = t._createMediaRecorder(), t._createResampler(), t.mediaRecorder.start(1e3)
+                })
+            }, t.prototype.stop = function() {
+                this.mediaRecorder && (this.mediaRecorder.stop(), this.mediaRecorder = null, this.releaseMicrophone())
+            }, t.isSupport = function() {
+                return !(!window.AudioContext || !navigator.mediaDevices)
+            }, o(t, [{
+                key: "mimeType",
+                get: function() {
+                    return this._mimeType
+                }
+            }]), t
+        }()
+    },
+    214: function(t, e) {
+        "use strict";
+
+        function n(t) {
+            var e = t.getContext("2d"),
+                n = e.backingStorePixelRatio || e.webkitBackingStorePixelRatio || e.mozBackingStorePixelRatio || e.msBackingStorePixelRatio || e.oBackingStorePixelRatio || e.backingStorePixelRatio || 1,
+                i = (window.devicePixelRatio || 1) / n;
+            return i > 1 && (t.style.height = t.height + "px", t.style.width = t.width + "px", t.width *= i, t.height *= i), i
+        }
+        Object.defineProperty(e, "__esModule", {
+            value: !0
+        }), e.canvasGetRatio = n
+    },
+    220: function(t, e) {
+        "use strict";
+
+        function n() {
+            var t = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || window.MediaDevices && window.MediaDevices.getUserMedia,
+                e = function(e) {
+                    return new Promise(function(n, i) {
+                        t ? t.call(navigator, e, n, i) : i(new Error("NotSupported"))
+                    })
+                },
+                n = function() {
+                    return new Promise(function(t, e) {
+                        if (MediaStreamTrack && MediaStreamTrack.getSources) {
+                            var n = {
+                                audio: "audioinput",
+                                video: "videoinput"
+                            };
+                            return MediaStreamTrack.getSources(function(e) {
+                                t(e.map(function(t) {
+                                    return {
+                                        label: t.label,
+                                        kind: n[t.kind],
+                                        deviceId: t.id,
+                                        groupId: ""
+                                    }
+                                }))
+                            })
+                        }
+                        e(new Error("NotSupported"))
+                    })
+                };
+            t && !navigator.mediaDevices && (navigator.mediaDevices = navigator.mediaDevices || {}), navigator.mediaDevices && (navigator.mediaDevices.getUserMedia || (navigator.mediaDevices.getUserMedia = e), navigator.mediaDevices.enumerateDevices || (navigator.mediaDevices.enumerateDevices = n)), window.AudioContext = window.AudioContext || window.webkitAudioContext, window.AudioContext && (window.AudioContext.prototype.createScriptProcessor = window.AudioContext.prototype.createScriptProcessor || window.AudioContext.prototype.createJavaScriptNode)
+        }
+        Object.defineProperty(e, "__esModule", {
+            value: !0
+        }), e.initFailBack = n
+    },
+    226: function(t, e, n) {
         var i;
         (function(t, o, r) {
             (function() {
@@ -261,7 +806,7 @@
 
                 function m() {
                     try {
-                        var t = n(118);
+                        var t = n(34);
                         return V = t.runOnLoop || t.runOnContext, p()
                     } catch (e) {
                         return d()
@@ -526,557 +1071,12 @@
                         Promise: _t,
                         polyfill: vt
                     };
-                n(192).amd ? (i = function() {
+                n(153).amd ? (i = function() {
                     return gt
                 }.call(e, n, e, r), !(void 0 !== i && (r.exports = i))) : "undefined" != typeof r && r.exports ? r.exports = gt : "undefined" != typeof this && (this.ES6Promise = gt), vt()
             }).call(this)
-        }).call(e, n(87), function() {
+        }).call(e, n(6), function() {
             return this
-        }(), n(66)(t))
-    },
-    60: function(t, e, n) {
-        "use strict";
-
-        function i(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-        Object.defineProperty(e, "__esModule", {
-            value: !0
-        }), e.AudioRecorder = void 0;
-        var o = function() {
-                function t(t, e) {
-                    for (var n = 0; n < e.length; n++) {
-                        var i = e[n];
-                        i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(t, i.key, i)
-                    }
-                }
-                return function(e, n, i) {
-                    return n && t(e.prototype, n), i && t(e, i), e
-                }
-            }(),
-            r = n(1),
-            s = n(175),
-            a = n(21),
-            c = n(134);
-        (0, r.initFailBack)(), e.AudioRecorder = function() {
-            function t() {
-                i(this, t), this._ctx = new AudioContext, this.eventTarget = document.createDocumentFragment(), this._stream = void 0, this._aquireing = !1, this.buffer = null, this.duration = 0, this.isRecording = !1, this._mimeType = ""
-            }
-            return t.prototype.addEventListener = function(t, e, n) {
-                this.eventTarget.addEventListener(t, e, n)
-            }, t.prototype.removeEventListener = function(t, e, n) {
-                this.eventTarget.removeEventListener(t, e, n)
-            }, t.prototype._onCreateStream = function(t) {
-                return this._stream = t, this.source = this._ctx.createMediaStreamSource(t), this._aquireing = !1, this.source
-            }, t.prototype.aquireMicrophone = function() {
-                var t = this;
-                if (!this._stream) {
-                    if (!this._aquireing) {
-                        this._aquireing = !0;
-                        var e = {
-                            audio: {
-                                mandatory: {},
-                                optional: []
-                            }
-                        };
-                        navigator.mediaDevices && (this._aquirePromise = navigator.mediaDevices.getUserMedia(e).then(function(e) {
-                            return t._onCreateStream(e)
-                        }))
-                    }
-                    return this._aquirePromise
-                }
-                return Promise.resolve(this._stream)
-            }, t.prototype.releaseMicrophone = function() {
-                this._aquirePromise && (this._aquirePromise = null), this._stream && (this._stream.getTracks()[0].stop(), this._stream = null)
-            }, t.selectMimeType = function() {
-                if (window.MediaRecorder && window.MediaRecorder.isTypeSupported) {
-                    for (var t = ["audio/webm;codec=opus", "audio/webm;codec=vorbis", "audio/ogg;codec=opus", "audio/ogg;codec=vorbis", "audio/webm", "audio/ogg", "audio/mpeg"], e = 0; e < t.length; e++)
-                        if (window.MediaRecorder.isTypeSupported(t[e])) return t[e]
-                } else
-                    for (var n = ["audio/ogg;codecs=opus", "audio/mpeg"], i = document.createElement("audio"), o = 0; o < n.length; o++)
-                        if (i.canPlayType(n[o])) return n[o];
-                return !1
-            }, t.prototype._createMediaRecorder = function() {
-                var e = this,
-                    n = void 0,
-                    i = [],
-                    o = {
-                        bitsPerSecond: 16e3,
-                        mimeType: t.selectMimeType()
-                    };
-                return window.MediaRecorder && o.mimeType ? n = new MediaRecorder(this._stream, o) : (o.mimeType || (o.mimeType = "audio/ogg;codecs=opus"), n = "audio/ogg;codecs=opus" == o.mimeType ? new s.OpusRecorder(this._stream, o) : new a.Mp3Recorder(this._stream, o)), this._mimeType = o.mimeType, n.addEventListener("dataavailable", function(t) {
-                    e.duration = Math.round((Date.now() - e._start) / 1e3), e.eventTarget.dispatchEvent(new Event("progress")), i.push(t.detail || t.data)
-                }), n.addEventListener("start", function() {
-                    e._start = Date.now()
-                }), n.addEventListener("stop", function() {
-                    e.isRecording = !1, e.buffer = new Blob(i, {
-                        type: o.mimeType
-                    }), e.wave = (0, c.fastResample)(e._waveData, 256), e.eventTarget.dispatchEvent(new Event("finish"))
-                }), n
-            }, t.prototype._createResampler = function() {
-                var t = this;
-                if (!this._resampler) {
-                    this._resampler = new c.Resampler({
-                        srcSampleRate: this._ctx.sampleRate,
-                        dstSampleRate: 1e3 / 60
-                    });
-                    var e = this.source.context.createScriptProcessor(4096, 1, 1);
-                    e.onaudioprocess = function(e) {
-                        var n = e.inputBuffer.getChannelData(0),
-                            i = t._resampler.push(n);
-                        i.length && (t._waveData = t._waveData.concat(i))
-                    }, this._resamplerNode = e
-                }
-                this.source.connect(this._resamplerNode), this._resamplerNode.connect(this._ctx.destination), this._waveData = []
-            }, t.prototype.record = function() {
-                var t = this;
-                return this.aquireMicrophone().then(function() {
-                    t.isRecording = !0, t.buffer = null, t.duration = 0, t.mediaRecorder = t._createMediaRecorder(), t._createResampler(), t.mediaRecorder.start(1e3)
-                })
-            }, t.prototype.stop = function() {
-                this.mediaRecorder && (this.mediaRecorder.stop(), this.mediaRecorder = null, this.releaseMicrophone())
-            }, t.isSupport = function() {
-                return !(!window.AudioContext || !navigator.mediaDevices)
-            }, o(t, [{
-                key: "mimeType",
-                get: function() {
-                    return this._mimeType
-                }
-            }]), t
-        }()
-    },
-    66: function(t, e) {
-        t.exports = function(t) {
-            return t.webpackPolyfill || (t.deprecate = function() {}, t.paths = [], t.children = [], t.webpackPolyfill = 1), t
-        }
-    },
-    71: function(t, e, n) {
-        "use strict";
-
-        function i(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-        Object.defineProperty(e, "__esModule", {
-            value: !0
-        }), e.Wave = void 0;
-        var o = n(162),
-            r = {
-                blockWidth: 2,
-                spacing: 1,
-                visTime: 8,
-                color: "#fff"
-            };
-        e.Wave = function() {
-            function t(e, n, r) {
-                i(this, t), this._accum = 0, this._source = e, this._canvas = n;
-                var s = n.getBoundingClientRect();
-                n.width = s.right - s.left, n.height = s.bottom - s.top, this._width = n.width, this._height = n.height, this._ratio = (0, o.canvasGetRatio)(n), this._ctx = n.getContext("2d"), this._options = r || {}, this._accumNode = this._createWaveNode(e)
-            }
-            return t.prototype._getOption = function(t) {
-                return this._options[t] || r[t]
-            }, t.prototype._createWaveNode = function(t) {
-                var e = this,
-                    n = parseInt(this._width / (this._getOption("blockWidth") + this._getOption("spacing"))),
-                    i = this._getOption("visTime") / n,
-                    o = 0,
-                    r = t.context.createScriptProcessor(2048, 1, 1);
-                return r.onaudioprocess = function(t) {
-                    for (var n = t.inputBuffer.getChannelData(0), r = t.inputBuffer.duration / n.length, s = 0; s < n.length; s++) o += r, e._accum = Math.min(1, Math.max(e._accum, Math.abs(n[s]))), o > i && (++e.timeAccumIndex > e.timeAccumItems.length - 1 && (e.timeAccumIndex = 0), e.timeAccumItems[e.timeAccumIndex] = e._accum, e._accum = 0, o = 0)
-                }, this.timeAccumItems = new Array(n), this.timeAccumIndex = 0, t.connect(r), r.connect(t.context.destination), r
-            }, t.prototype.destroy = function() {
-                this.stop(), this._accumNode.disconnect(), this._source.connect(this._source.context.destination), this._node = null, this._canvas = null, this._source = null, this._ctx = null
-            }, t.prototype.start = function() {
-                this._stopped = !1, this._draw()
-            }, t.prototype._draw = function() {
-                var t = this;
-                if (!this._stopped) {
-                    var e = this.timeAccumIndex + 1,
-                        n = 0,
-                        i = void 0,
-                        o = void 0;
-                    this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height), this._ctx.fillStyle = this._getOption("color");
-                    for (var r = 0; r < this.timeAccumItems.length; r++, e++) e >= this.timeAccumItems.length && (e = 0), n = this.timeAccumItems[e] * (this._height - 2) + 2, i = r * (this._getOption("blockWidth") + this._getOption("spacing")), o = (this._height - n) / 2, this._ctx.fillRect(i * this._ratio, o * this._ratio, this._getOption("blockWidth") * this._ratio, n * this._ratio);
-                    window.requestAnimationFrame(function() {
-                        t._draw()
-                    })
-                }
-            }, t.prototype.stop = function() {
-                this._stopped = !0
-            }, t
-        }()
-    },
-    85: function(t, e) {
-        "use strict";
-
-        function n(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-        if (Object.defineProperty(e, "__esModule", {
-                value: !0
-            }), "function" != typeof window.CustomEvent) {
-            var i = function(t, e) {
-                e = e || {
-                    bubbles: !1,
-                    cancelable: !1,
-                    detail: void 0
-                };
-                var n = document.createEvent("CustomEvent");
-                return n.initCustomEvent(t, e.bubbles, e.cancelable, e.detail), n
-            };
-            i.prototype = window.Event.prototype, window.CustomEvent = i
-        }
-        var o = 4096;
-        e.BaseRecorder = function() {
-            function t(e, i) {
-                var r = this;
-                n(this, t), this._ctx = new AudioContext, this.eventTarget = document.createDocumentFragment(), this._options = i, this._stream = e, this._worker = null;
-                var s = this._ctx.createMediaStreamSource(e),
-                    a = s.context.createScriptProcessor(o, 1, 1);
-                a.addEventListener("audioprocess", function(t) {
-                    if (r._worker) {
-                        for (var e = [], n = 0; n < t.inputBuffer.numberOfChannels; n++) e[n] = t.inputBuffer.getChannelData(n);
-                        r._worker.postMessage({
-                            command: "encode",
-                            buffers: e
-                        })
-                    }
-                }), s.connect(a), a.connect(s.context.destination), this.node = a
-            }
-            return t.prototype.addEventListener = function(t, e, n) {
-                this.eventTarget.addEventListener(t, e, n)
-            }, t.prototype.removeEventListener = function(t, e, n) {
-                this.eventTarget.removeEventListener(t, e, n)
-            }, t.prototype._createWorker = function() {
-                return !1
-            }, t.prototype.start = function(t) {
-                this._worker = this._createWorker(t), this.eventTarget.dispatchEvent(new Event("start"))
-            }, t.prototype.stop = function() {
-                this._worker.postMessage({
-                    command: "done"
-                })
-            }, t
-        }()
-    },
-    87: function(t, e) {
-        function n() {
-            u = !1, s.length ? c = s.concat(c) : h = -1, c.length && i()
-        }
-
-        function i() {
-            if (!u) {
-                var t = setTimeout(n);
-                u = !0;
-                for (var e = c.length; e;) {
-                    for (s = c, c = []; ++h < e;) s && s[h].run();
-                    h = -1, e = c.length
-                }
-                s = null, u = !1, clearTimeout(t)
-            }
-        }
-
-        function o(t, e) {
-            this.fun = t, this.array = e
-        }
-
-        function r() {}
-        var s, a = t.exports = {},
-            c = [],
-            u = !1,
-            h = -1;
-        a.nextTick = function(t) {
-            var e = new Array(arguments.length - 1);
-            if (arguments.length > 1)
-                for (var n = 1; n < arguments.length; n++) e[n - 1] = arguments[n];
-            c.push(new o(t, e)), 1 !== c.length || u || setTimeout(i, 0)
-        }, o.prototype.run = function() {
-            this.fun.apply(null, this.array)
-        }, a.title = "browser", a.browser = !0, a.env = {}, a.argv = [], a.version = "", a.versions = {}, a.on = r, a.addListener = r, a.once = r, a.off = r, a.removeListener = r, a.removeAllListeners = r, a.emit = r, a.binding = function(t) {
-            throw new Error("process.binding is not supported")
-        }, a.cwd = function() {
-            return "/"
-        }, a.chdir = function(t) {
-            throw new Error("process.chdir is not supported")
-        }, a.umask = function() {
-            return 0
-        }
-    },
-    88: function(t, e) {
-        "use strict";
-
-        function n(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-        Object.defineProperty(e, "__esModule", {
-            value: !0
-        }), e.AverageAlgorithm = function() {
-            function t() {
-                n(this, t), this.clear()
-            }
-            return t.prototype.push = function(t) {
-                this._count++, this._accum += t
-            }, t.prototype.get = function() {
-                return this._accum / this._count
-            }, t.prototype.clear = function() {
-                this._count = 0, this._accum = 0
-            }, t
-        }()
-    },
-    118: function(t, e) {},
-    128: function(t, e) {
-        "use strict";
-
-        function n(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-        Object.defineProperty(e, "__esModule", {
-            value: !0
-        }), e.PeakAlgorithm = function() {
-            function t() {
-                n(this, t), this.clear()
-            }
-            return t.prototype.push = function(t) {
-                this._max = Math.max(this._max, Math.abs(t))
-            }, t.prototype.get = function() {
-                return this._max
-            }, t.prototype.clear = function() {
-                this._max = 0
-            }, t
-        }()
-    },
-    134: function(t, e, n) {
-        "use strict";
-
-        function i(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-
-        function o(t, e) {
-            var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : "peak";
-            return new u({
-                srcSampleRate: t.length,
-                dstSampleRate: e,
-                normalizeAlgorithm: n,
-                truncateTo: 0
-            }).push(t)
-        }
-        Object.defineProperty(e, "__esModule", {
-            value: !0
-        }), e.Resampler = void 0, e.fastResample = o;
-        var r = n(88),
-            s = n(128),
-            a = n(164),
-            c = {
-                avg: r.AverageAlgorithm,
-                peak: s.PeakAlgorithm,
-                quad: a.QuadAlgorithm
-            },
-            u = e.Resampler = function() {
-                function t(e) {
-                    i(this, t), this._normalizeAlgorithm = !1, c[e.normalizeAlgorithm] && (this._normalizeAlgorithm = new c[e.normalizeAlgorithm]), this._srcSampleRate = parseInt(e.srcSampleRate || 0), this._dstSampleRate = parseInt(e.dstSampleRate || 0), this._truncateTo = 1, "undefined" != typeof e.truncateTo && (this._truncateTo = e.truncateTo), this._dstSampleRate > 0 ? this._sampleRate = this._srcSampleRate / this._dstSampleRate : this._sampleRate = 0, c[e.algorithm] || (e.algorithm = "peak"), this._algorithm = new c[e.algorithm], this._sampleCount = 0, this._data = []
-                }
-                return t.prototype.push = function(t) {
-                    if (this._sampleRate <= 0) return [];
-                    for (var e = [], n = void 0, i = 0; i < t.length; i++)
-                        if (this._truncateTo > 0 && (t[i] = Math.min(this._truncateTo, Math.abs(t[i]))), this._sampleCount += 1, this._sampleCount >= this._sampleRate)
-                            for (; this._sampleCount >= this._sampleRate;) this._sampleCount -= this._sampleRate, this._sampleCount <= .8 && this._algorithm.push(t[i]), n = this._algorithm.get(), e.push(n), this._normalizeAlgorithm && this._normalizeAlgorithm.push(n), this._algorithm.clear(), this._sampleCount > .2 && this._algorithm.push(t[i]);
-                        else this._algorithm.push(t[i]);
-                    if (this._normalizeAlgorithm) {
-                        var o = this._normalizeAlgorithm.get();
-                        if (this._normalizeAlgorithm.clear(), o > 0)
-                            for (var r = 0; r < e.length; r++) e[r] = e[r] / o, this._truncateTo > 0 && (e[r] = Math.min(this._truncateTo, Math.abs(e[r])))
-                    }
-                    return e
-                }, t
-            }()
-    },
-    141: function(t, e, n) {
-        "use strict";
-        var i = n(53),
-            o = n(60),
-            r = n(134),
-            s = n(163),
-            a = {
-                isSupport: function() {
-                    return !(!window.AudioContext || !(navigator.getUserMedia || navigator.mediaDevices && navigator.mediaDevices.getUserMedia))
-                },
-                getAvailableMicrophones: function() {
-                    return o.AudioRecorder.isSupport() ? o.AudioRecorder.getAvailableMicrophones() : i.Promise.resolve([])
-                },
-                newRecorder: function() {
-                    return window.Promise || (window.Promise = i.Promise), new o.AudioRecorder
-                },
-                resample: function(t, e, n) {
-                    return (0, r.fastResample)(t, e, n)
-                },
-                createVisualization: s.createVisualization
-            };
-        window.Speech = a;
-        try {
-            stManager.done("speech.js")
-        } catch (c) {}
-    },
-    162: function(t, e) {
-        "use strict";
-
-        function n(t) {
-            var e = t.getContext("2d"),
-                n = e.backingStorePixelRatio || e.webkitBackingStorePixelRatio || e.mozBackingStorePixelRatio || e.msBackingStorePixelRatio || e.oBackingStorePixelRatio || e.backingStorePixelRatio || 1,
-                i = (window.devicePixelRatio || 1) / n;
-            return i > 1 && (t.style.height = t.height + "px", t.style.width = t.width + "px", t.width *= i, t.height *= i), i
-        }
-        Object.defineProperty(e, "__esModule", {
-            value: !0
-        }), e.canvasGetRatio = n
-    },
-    163: function(t, e, n) {
-        "use strict";
-
-        function i(t, e, n, i) {
-            if (c[t]) {
-                if (e instanceof HTMLMediaElement) {
-                    var o = new AudioContext;
-                    e = o.createMediaElementSource(e), e.connect(o.destination)
-                }
-                return new c[t](e, n, i)
-            }
-        }
-        Object.defineProperty(e, "__esModule", {
-            value: !0
-        }), e.createVisualization = i;
-        var o = n(71),
-            r = n(48),
-            s = n(218),
-            a = n(26),
-            c = {
-                wave: o.Wave,
-                frequency: r.Frequency,
-                time: s.Time,
-                pulse: a.Pulse
-            }
-    },
-    164: function(t, e) {
-        "use strict";
-
-        function n(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-        Object.defineProperty(e, "__esModule", {
-            value: !0
-        }), e.QuadAlgorithm = function() {
-            function t() {
-                n(this, t), this.clear()
-            }
-            return t.prototype.push = function(t) {
-                this._count++, this._accum += t, this._accum_q += t * t
-            }, t.prototype.get = function() {
-                return 1 == this._count ? this._accum : Math.sqrt((this._accum_q - this._accum * this._accum / this._count) / this._count)
-            }, t.prototype.clear = function() {
-                this._count = 0, this._accum = 0, this._accum_q = 0
-            }, t
-        }()
-    },
-    175: function(t, e, n) {
-        "use strict";
-
-        function i(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-
-        function o(t, e) {
-            if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-            return !e || "object" != typeof e && "function" != typeof e ? t : e
-        }
-
-        function r(t, e) {
-            if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-            t.prototype = Object.create(e && e.prototype, {
-                constructor: {
-                    value: t,
-                    enumerable: !1,
-                    writable: !0,
-                    configurable: !0
-                }
-            }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-        }
-        Object.defineProperty(e, "__esModule", {
-            value: !0
-        }), e.OpusRecorder = void 0;
-        var s = n(85);
-        e.OpusRecorder = function(t) {
-            function e() {
-                return i(this, e), o(this, t.apply(this, arguments))
-            }
-            return r(e, t), e.prototype._createWorker = function(t) {
-                var e = this,
-                    n = {
-                        command: "init",
-                        numberOfChannels: 1,
-                        originalSampleRate: this._ctx.sampleRate,
-                        encoderSampleRate: this._options.bitsPerSecond,
-                        maxBuffersPerPage: 10,
-                        encoderApplication: 2048
-                    },
-                    i = new Worker("/js/" + jsc("web/speech_worker_opus.js"));
-                return i.addEventListener("message", function(t) {
-                    e.eventTarget.dispatchEvent(new CustomEvent("dataavailable", {
-                        detail: t.data
-                    })), 4 & t.data[5] && e.eventTarget.dispatchEvent(new Event("stop"))
-                }), i.postMessage(n), i
-            }, e
-        }(s.BaseRecorder)
-    },
-    192: function(t, e) {
-        t.exports = function() {
-            throw new Error("define cannot be used indirect")
-        }
-    },
-    218: function(t, e) {
-        "use strict";
-
-        function n(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-        Object.defineProperty(e, "__esModule", {
-            value: !0
-        });
-        var i = {
-            lineWidth: 2,
-            color: "#6287AE"
-        };
-        e.Time = function() {
-            function t(e, i, o) {
-                n(this, t), this._source = e, this._canvas = i, this._ctx = i.getContext("2d"), this._options = o || {}, this._node = this._createNode(e)
-            }
-            return t.prototype._getOption = function(t) {
-                return this._options[t] || i[t]
-            }, t.prototype._createNode = function(t) {
-                var e = t.context.createAnalyser();
-                return e.fftSize = 1024, t.connect(e), e
-            }, t.prototype.destroy = function() {
-                this.stop(), this._source.disconnect(), this._node.disconnect(), this._node = null
-            }, t.prototype.start = function() {
-                this._stopped = !1, this._draw()
-            }, t.prototype._draw = function() {
-                var t = this,
-                    e = this._canvas.getBoundingClientRect(),
-                    n = e.right - e.left,
-                    i = e.bottom - e.top,
-                    o = new Uint8Array(this._node.frequencyBinCount);
-                this._node.getByteTimeDomainData(o), this._ctx.clearRect(0, 0, n, i), this._ctx.strokeStyle = this._getOption("color"), this._ctx.lineWidth = this._getOption("lineWidth"), this._ctx.lineCap = "round";
-                var r = 0,
-                    s = 1 * n / this._node.frequencyBinCount;
-                this._ctx.beginPath();
-                for (var a = 0; a < this._node.frequencyBinCount; a++) {
-                    var c = o[a] / 128,
-                        u = c * i / 2;
-                    0 === a ? this._ctx.moveTo(r, u) : this._ctx.lineTo(r, u), r += s
-                }
-                this._ctx.stroke(), this._stopped || window.requestAnimationFrame(function() {
-                    t._draw()
-                })
-            }, t.prototype.stop = function() {
-                this._stopped = !0
-            }, t
-        }()
+        }(), n(102)(t))
     }
 });

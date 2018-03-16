@@ -1,30 +1,30 @@
 #join_css {
-    display: none
+    display: none;
 }
 
 .join_box_fb_logo,
 .join_finish_img {
-    -ms-high-contrast-adjust: none
+    -ms-high-contrast-adjust: none;
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 .join_box_content {
     padding: 40px 60px 60px;
-    background-color: #f7f8fa
+    background-color: #f7f8fa;
 }
 
 .join_box_msg {
-    text-align: center
+    text-align: center;
 }
 
 .join_box_msg b {
@@ -33,57 +33,57 @@
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     font-size: 14px;
-    display: inline-block
+    display: inline-block;
 }
 
 .join_box_error .msg {
-    margin: 30px -35px
+    margin: 30px -35px;
 }
 
 .join_box_form,
 .join_invite_form {
     margin: 30px auto 0;
-    width: 270px
+    width: 270px;
 }
 
 .join_box_form input.big_text,
 .join_invite_form input.big_text {
     margin-bottom: 15px;
-    width: 270px
+    width: 270px;
 }
 
 .join_box_form .flat_button,
 .join_invite_form .flat_button {
-    margin-top: 5px
+    margin-top: 5px;
 }
 
 .join_box_form .radiobtn,
 .join_invite_form .radiobtn {
     float: left;
     margin-bottom: 15px;
-    padding-right: 30px
+    padding-right: 30px;
 }
 
 .join_box_button,
 .join_invite_button {
-    background-color: #5fb053;
+    background-color: #5FB053;
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto
+    -moz-osx-font-smoothing: auto;
 }
 
-.join_box_button.hover,
 .join_box_button:hover,
-.join_invite_button.hover,
-.join_invite_button:hover {
-    background-color: #68b35d
+.join_invite_button:hover,
+.join_box_button.hover,
+.join_invite_button.hover {
+    background-color: #68B35D;
 }
 
-.join_box_button.active,
 .join_box_button:active,
-.join_invite_button.active,
-.join_invite_button:active {
-    background-color: #5aa84d
+.join_invite_button:active,
+.join_box_button.active,
+.join_invite_button.active {
+    background-color: #5AA84D;
 }
 
 .join_box_label {
@@ -91,54 +91,54 @@
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    color: #939393
+    color: #939393;
 }
 
 .join_box_birthdate_row {
-    padding-bottom: 15px
+    padding-bottom: 15px;
 }
 
 .join_box_bday,
 .join_box_bmonth {
-    margin-right: 10px
+    margin-right: 10px;
 }
 
 .join_box_bday {
-    float: left
+    float: left;
 }
 
 .join_box_bday input.big_text {
     margin-bottom: 0;
-    width: 75px
+    width: 75px;
 }
 
 .join_box_bmonth {
-    float: left
+    float: left;
 }
 
 .join_box_bmonth input.big_text {
     margin-bottom: 0;
-    width: 100px
+    width: 100px;
 }
 
 .join_box_byear {
-    float: left
+    float: left;
 }
 
 .join_box_byear input.big_text {
     margin-bottom: 0;
-    width: 75px
+    width: 75px;
 }
 
-.join_box_fbcontinuewithsign,
-.join_box_fbsign {
-    display: none
+.join_box_fbsign,
+.join_box_fbcontinuewithsign {
+    display: none;
 }
 
 .join_box_fbb {
     width: 270px;
     height: 69px;
-    bottom: 0px
+    bottom: 0px;
 }
 
 .join_box_fbb_continue_with_btn {
@@ -146,7 +146,7 @@
     background: #4267b2;
     border-radius: 3px;
     position: relative;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .join_box_fbb_continue_with_btn:before {
@@ -157,7 +157,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 2
+    z-index: 2;
 }
 
 .join_box_fbb_continue_with_btn:after {
@@ -170,21 +170,21 @@
     width: 28px;
     border: 2px solid #4267b2;
     border-radius: 5px 0px 0px 5px;
-    z-index: 1
+    z-index: 1;
 }
 
 .join_box_or {
     margin: 12px auto 13px;
     width: 120px;
-    text-align: center
+    text-align: center;
 }
 
 .join_box_or_l {
     position: absolute;
-    border-bottom: 1px solid #dcdee0;
+    border-bottom: 1px solid #DCDEE0;
     height: 10px;
     width: 120px;
-    z-index: 4
+    z-index: 4;
 }
 
 .join_box_or_s {
@@ -194,8 +194,8 @@
     padding: 0 10px;
     position: relative;
     z-index: 6;
-    color: #777;
-    background-color: #f7f8fa
+    color: #777777;
+    background-color: #f7f8fa;
 }
 
 .join_box_fb_logo {
@@ -204,7 +204,7 @@
     background: url(/images/icons/fb_white.png) no-repeat 0 0;
     width: 16px;
     height: 16px;
-    vertical-align: middle
+    vertical-align: middle;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -212,7 +212,7 @@
 (min-resolution: 192dpi) {
     .join_box_fb_logo {
         background-image: url(/images/icons/fb_white_2x.png);
-        background-size: 16px 16px
+        background-size: 16px 16px;
     }
 }
 
@@ -220,30 +220,30 @@
     display: inline-block;
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto
+    -moz-osx-font-smoothing: auto;
 }
 
 .join_finish_page .page_block {
     margin: 50px auto;
     padding: 37px 30px;
-    width: 680px
+    width: 680px;
 }
 
 .join_finish_page #footer_wrap {
     padding: 24px 15px 35px;
-    border-top: 1px solid #e4e8ed
+    border-top: 1px solid #e4e8ed;
 }
 
 .join_finish_page .msg {
     margin: 20px 80px;
     background-image: none;
-    padding-left: 18px
+    padding-left: 18px;
 }
 
 .join_header {
-    margin: 0 0 13px;
+    margin: 0 0 13px 0;
     text-align: center;
-    font-size: 20px
+    font-size: 20px;
 }
 
 .join_text {
@@ -251,54 +251,54 @@
     font-size: 14px;
     color: #656565;
     line-height: 22px;
-    text-align: center
+    text-align: center;
 }
 
 .join_finish_form {
     margin: 0 auto;
-    width: 200px
+    width: 200px;
 }
 
 .join_finish_row {
     margin: 0 auto 10px;
-    width: 200px
+    width: 200px;
 }
 
 .join_finish_row input.big_text {
-    width: 200px
+    width: 200px;
 }
 
 .join_finish_row .subheader {
-    margin-top: 22px!important;
-    line-height: 19px
+    margin-top: 22px !important;
+    line-height: 19px;
 }
 
 .join_finish_submit {
     margin: 15px auto 0;
-    width: 200px
+    width: 200px;
 }
 
 .join_other_phone {
     display: block;
     margin: 7px 0 0;
-    font-size: 12.5px
+    font-size: 12.5px;
 }
 
-.join_finish_row input.join_readonly,
 .join_readonly_wrap,
-.join_readonly_wrap.prefix_input_wrap {
+.join_readonly_wrap.prefix_input_wrap,
+.join_finish_row input.join_readonly {
     color: #7c7f82;
     -webkit-text-fill-color: #7c7f82;
     -webkit-opacity: 1;
-    background-color: #f2f4f7;
-    border-color: #d3d9de
+    background-color: #F2F4F7;
+    border-color: #D3D9DE;
 }
 
 .join_finish_img {
     margin: 40px auto 0;
     width: 160px;
     height: 160px;
-    background: url(/images/join/finish_f.png) no-repeat 0 0
+    background: url(/images/join/finish_f.png) no-repeat 0 0;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -306,7 +306,7 @@
 (min-resolution: 192dpi) {
     .join_finish_img {
         background-image: url(/images/join/finish_f_2x.png);
-        background-size: 160px 160px
+        background-size: 160px 160px;
     }
 }
 
@@ -314,19 +314,19 @@
     padding-top: 15px;
     color: #656565;
     text-align: center;
-    font-size: 12.5px
+    font-size: 12.5px;
 }
 
 .join_no_code a {
-    font-size: 13px
+    font-size: 13px;
 }
 
 .join_no_code .progress_inline {
-    height: 15px
+    height: 15px;
 }
 
 .join_finish_tt {
-    width: 250px
+    width: 250px;
 }
 
 #join_about_pass {
@@ -335,77 +335,77 @@
     height: 2px;
     width: 198px;
     overflow: hidden;
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 2px 2px;
 }
 
 #join_about_pass.join_pwd_level0 {
-    display: none
+    display: none;
 }
 
 #join_about_pass.join_pwd_level1 {
-    background: #cd4849;
+    background: #CD4849;
     width: 25%;
-    border-bottom-right-radius: 0
+    border-bottom-right-radius: 0;
 }
 
 #join_about_pass.join_pwd_level2 {
-    background: #ff762d;
+    background: #FF762D;
     width: 50%;
-    border-bottom-right-radius: 0
+    border-bottom-right-radius: 0;
 }
 
 #join_about_pass.join_pwd_level3 {
-    background: #c9b72d;
+    background: #C9B72D;
     width: 75%;
-    border-bottom-right-radius: 0
+    border-bottom-right-radius: 0;
 }
 
 #join_about_pass.join_pwd_level4 {
-    background: #60b92b
+    background: #60B92B;
 }
 
 .join_about_login {
     margin: 7px 0 0;
     font-size: 12.5px;
-    color: #656565
+    color: #656565;
 }
 
 .join_accept_terms {
     margin: 35px 150px -10px;
     text-align: center;
     font-size: 12.5px;
-    line-height: 19px
+    line-height: 19px;
 }
 
 .join_resend_box {
-    text-align: center
+    text-align: center;
 }
 
 .join_robot {
     margin: 0 auto -10px;
     width: 160px;
     height: 160px;
-    background: url(/images/join/robot.gif) no-repeat
+    background: url(/images/join/robot.gif) no-repeat;
 }
 
 .join_already_box {
-    margin: 10px 0 35px
+    margin: 10px 0 35px;
 }
 
 .join_already_box .join_box_or_s {
-    background-color: #fff
+    background-color: #fff;
 }
 
 .join_already_text {
     margin: 0 60px;
-    text-align: center
+    text-align: center;
 }
 
 .join_already_thumb {
     width: 100px;
     height: 100px;
     margin: 25px auto 30px;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .join_already_img {
@@ -413,93 +413,96 @@
     height: 100px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
 }
 
 .join_already_img:before {
-    background-color: #fff
-}
-
-.join_already_img:before,
-.join_already_img:after {
     content: " ";
     display: block;
     position: absolute;
     top: 0;
     left: 0;
     width: 100px;
-    height: 100px
+    height: 100px;
+    background-color: #FFF;
 }
 
 .join_already_img:after {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
-    background-size: cover
+    background-size: cover;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .join_already_img:after {
-        background-image: url(/images/camera_200.png)
+        background-image: url(/images/camera_200.png);
     }
 }
 
 .join_already_controls {
     margin: 0 auto;
-    width: 320px
+    width: 320px;
 }
 
 .join_invite_text {
     margin-left: 30px;
-    margin-right: 30px
+    margin-right: 30px;
 }
 
 .join_invite_img {
     margin: 40px auto 0;
     width: 160px;
     height: 160px;
-    background: url(/images/join/invite_confirm.png) 50% no-repeat
+    background: url(/images/join/invite_confirm.png) 50% no-repeat;
 }
 
 .join_fb_progress {
-    margin-top: 40px
+    margin-top: 40px;
 }
 
 .join_fb_error_button {
     margin-top: 25px;
-    text-align: center
+    text-align: center;
 }
 
 .join_fb_img {
     margin: 40px auto 0;
     background: url(/images/join/join_fb.gif) 50% no-repeat;
     width: 173px;
-    height: 184px
+    height: 184px;
 }
 
 #join_show_result_wrap {
     opacity: 0;
-    filter: alpha(opacity=0)
+    filter: alpha(opacity=0);
 }
 
 .join_fbinfo_label {
-    padding: 0 0 4px;
-    color: #656565
+    padding: 0 0 4px 0;
+    color: #656565;
 }
 
 .join_fb_pic {
-    margin: 0 10px 0 0
+    margin: 0 10px 0 0;
 }
 
 .join_user {
     border-top: 1px solid #e7e8ec;
-    padding: 12px 0
+    padding: 12px 0;
 }
 
 .join_user:first-child {
-    border-top: none
+    border-top: none;
 }
 
 .join_user_thumb {
@@ -507,7 +510,7 @@
     margin: 0 12px 0 0;
     width: 80px;
     height: 80px;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .join_user_img {
@@ -515,66 +518,69 @@
     height: 80px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
 }
 
 .join_user_img:before {
-    background-color: #fff
-}
-
-.join_user_img:before,
-.join_user_img:after {
     content: " ";
     display: block;
     position: absolute;
     top: 0;
     left: 0;
     width: 80px;
-    height: 80px
+    height: 80px;
+    background-color: #FFF;
 }
 
 .join_user_img:after {
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
-    background-size: cover
+    background-size: cover;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .join_user_img:after {
-        background-image: url(/images/camera_200.png)
+        background-image: url(/images/camera_200.png);
     }
 }
 
 .join_user_controls {
     margin: 11px 0 0 10px;
     float: right;
-    text-align: right
+    text-align: right;
 }
 
 .join_user_info {
-    padding: 7px 0 0;
-    overflow: hidden
+    padding: 7px 0 0 0;
+    overflow: hidden;
 }
 
 .join_user_label {
     margin-bottom: 6px;
-    color: #656565
+    color: #656565;
 }
 
 .join_user_name {
     margin-bottom: 5px;
-    font-weight: 700;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #42648b
+    color: #42648B;
 }
 
 .join_next_wrap {
     position: relative;
-    margin: 0 -30px -27px
+    margin: 0 -30px -27px;
 }
 
 .join_next {
@@ -582,16 +588,16 @@
     width: 740px;
     box-sizing: border-box;
     text-align: center;
-    background: #fff
+    background: #FFF;
 }
 
 .join_next.fixed {
     z-index: 200;
     bottom: 0;
-    box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, .08)
+    box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.08);
 }
 
 body.mac .join_next.fixed {
     -webkit-transform: translateZ(0);
-    transform: translateZ(0)
+    transform: translateZ(0);
 }

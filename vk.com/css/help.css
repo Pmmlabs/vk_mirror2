@@ -2,181 +2,182 @@ h4 {
     border-bottom: solid 1px #b9c4da;
     margin: 0px;
     padding: 0px 0px 2px;
-    font-size: 13px
+    font-size: 13px;
 }
 
 .em {
     background: #ffff;
-    margin: 0px 5px 5px;
+    margin: 0px 5px 5px 5px;
     padding: 5px 5px 5px 10px;
-    background: #f7f7f7;
-    border-bottom: 1px solid #dae2e8;
-    border-top: 1px solid #dae2e8
+    background: #F7F7F7;
+    border-bottom: 1px solid #DAE2E8;
+    border-top: 1px solid #DAE2E8;
 }
 
 .emHead {
-    background: #f5edbe;
-    margin: 5px 5px 0px;
+    background: #F5EDBE;
+    margin: 5px 5px 0px 5px;
     padding: 5px 5px 5px 0px;
-    border-bottom: 1px solid #d7cf9e;
-    border-bottom: 1px solid #b7bec6;
+    border-bottom: 1px solid #D7CF9E;
+    border-bottom: 1px solid #B7BEC6;
     color: #000;
-    background: #dae1e8;
+    background: #DAE1E8;
     background: #fff;
     border: 0px;
-    color: #36638e
+    color: #36638E;
 }
 
 .rightNav {
     border: 0px;
     width: 151px;
     padding-left: 6px;
-    float: left
+    float: left;
 }
 
 .rightNav h1 {
     border: 0px;
-    background: #eaeaea;
-    font-weight: 700;
+    background: #EAEAEA;
+    font-weight: bold;
     font-size: 11px;
-    padding: 4px 5px
+    padding: 4px 5px;
 }
 
 .rightLinks {
-    margin-bottom: 10px
+    margin-bottom: 10px;
 }
 
 .rightLinks div {
     padding: 4px 6px 4px 5px;
-    margin: 1px
+    margin: 1px;
 }
 
 .rightLinks .active {
-    background: #fff
+    background: #fff;
 }
 
 .rightLinks .active a {
     cursor: default;
     color: #000;
-    font-weight: 700
+    font-weight: bold;
 }
 
 .rightLinks .active a:hover {
     cursor: default;
-    text-decoration: none
+    text-decoration: none;
 }
 
 .rightLinks img {
     vertical-align: bottom;
-    margin-right: 5px
+    margin-right: 5px;
 }
 
-p.big,
-.tour {
+p.big {
     font-size: 12px;
-    text-align: center
+    text-align: center;
 }
 
 .tour {
-    background: #f9f6e7;
-    border: 1px solid #bead61;
+    background: #F9F6E7;
+    border: 1px solid #BEAD61;
     padding: 8px 25px;
     width: 205px;
+    text-align: center;
     color: #000;
+    font-size: 12px;
     margin: 10px auto;
     cursor: hand;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .tour div {
     font-size: 11px;
-    color: #000
+    color: #000;
 }
 
-a.noUnd:hover,
-.helpNav {
-    text-decoration: none
+a.noUnd:hover {
+    text-decoration: none;
 }
 
 .helpNav {
     margin: 4px 0px;
     padding: 4px 6px;
-    background: #dae1e8;
-    border-top: 1px solid #b7bec6;
+    background: #DAE1E8;
+    border-top: 1px solid #B7BEC6;
     width: 5.3em;
     font-size: 11px;
-    color: #2b587a;
+    text-decoration: none;
+    color: #2B587A;
     cursor: hand;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .helpNav a {
-    text-decoration: none
+    text-decoration: none;
 }
 
 .selled {
-    background-color: #b8c4cf
+    background-color: #B8C4CF;
 }
 
 #expirePad {
-    padding-top: 9px
+    padding-top: 9px;
 }
 
 label#expire_label {
     width: 92px;
     font-size: 10px;
-    font-weight: 400;
-    color: #000
+    font-weight: normal;
+    color: #000;
 }
 
 .xmpplist {
-    padding-left: 0px
+    padding-left: 0px;
 }
 
 .xmpplist li {
     list-style: none;
     padding: 2px 0px 0px 30px;
     height: 20px;
-    color: #666
+    color: #666666;
 }
 
 .xmpplist li a {
-    font-weight: 700
+    font-weight: bold;
 }
 
 .imageBlock {
     width: 210px;
     float: left;
-    clear: left
+    clear: left;
 }
 
 .imageBlock img {
-    border: 1px solid #aaa;
-    background: #fff;
-    padding: 3px
+    border: 1px solid #AAAAAA;
+    background: #FFFFFF;
+    padding: 3px;
 }
 
 .impinfo {
-    color: #36638e
+    color: #36638E;
 }
 
 .sepHelpBlock {
     clear: both;
-    height: 30px
+    height: 30px;
 }
 
 .anchor {
     display: block;
-    height: 10px
+    height: 10px;
 }
 
 .simplePage.jabber {
-    line-height: 150%
+    line-height: 150%;
 }
 
 .simplePage.jabber h4.client {
     display: block;
     width: 350px;
     margin-left: 205px;
-    padding-left: 5px
+    padding-left: 5px;
 }

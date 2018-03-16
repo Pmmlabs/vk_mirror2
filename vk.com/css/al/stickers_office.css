@@ -1,57 +1,57 @@
 #stickers_office_css {
-    display: none
+    display: none;
 }
 
 #graph_loader .loader {
-    -ms-high-contrast-adjust: none
+    -ms-high-contrast-adjust: none;
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 .stickers_office_content {
-    padding: 30px
+    padding: 30px;
 }
 
 .stickers_office_content .stickers_office_name_cell {
-    padding: 12px 0
+    padding: 12px 0;
 }
 
 .stickers_office_content .stickers_office_name_cell.sticker_office_name_cell_stat {
     border-radius: 4px;
     width: 220px;
     padding: 10px;
-    display: inline-block
+    display: inline-block;
 }
 
 .stickers_office_content .stickers_office_name_cell.sticker_office_name_cell_stat:hover {
     background-color: #f0f2f5;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .stickers_office_content .stickers_office_name_cell.sticker_office_name_cell_stat.active {
-    background-color: #f0f2f5
+    background-color: #f0f2f5;
 }
 
 .stickers_office_content .stickers_office_name_cell .stickers_office_img {
     width: 40px;
     height: 40px;
-    vertical-align: middle
+    vertical-align: middle;
 }
 
 .stickers_office_content .stickers_office_name_cell .stickers_office_name {
     margin-left: 12px;
     display: inline-block;
     vertical-align: top;
-    margin-top: 3px
+    margin-top: 3px;
 }
 
 .stickers_office_content .stickers_office_name_cell .stickers_office_name .stickers_office_pack_title {
@@ -59,39 +59,39 @@
     line-height: 1.23;
     letter-spacing: -0.1px;
     text-align: left;
-    color: #000
+    color: #000000;
 }
 
 .stickers_office_content .stickers_office_pack_info {
     margin-top: 4px;
     font-size: 12.5px;
     text-align: left;
-    color: #828282
+    color: #828282;
 }
 
 .stickers_office_content .ui_table .header {
-    height: 52px
+    height: 52px;
 }
 
 .stickers_office_content .ui_table .header .ui_table_cell {
     padding-left: 12px;
     font-weight: 500;
     line-height: 1.23;
-    letter-spacing: -0.1px
+    letter-spacing: -0.1px;
 }
 
 .stickers_office_content .ui_table .header .ui_table_cell .stat_subheader {
     font-size: 10px;
-    color: #6f7985
+    color: #6f7985;
 }
 
 .stats_head {
-    border-top: 0
+    border-top: 0;
 }
 
 #graph_loader {
     text-align: center;
-    display: none
+    display: none;
 }
 
 #graph_loader .loader {
@@ -110,7 +110,7 @@
     -webkit-animation-timing-function: linear;
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
-    background-image: url(/images/icons/round_spinner_big.png)
+    background-image: url(/images/icons/round_spinner_big.png);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -118,12 +118,12 @@
 (min-resolution: 192dpi) {
     #graph_loader .loader {
         background-image: url(/images/icons/round_spinner_big_2x.png);
-        background-size: 34px 34px
+        background-size: 34px 34px;
     }
 }
 
 #stickers_office_export_box .stickers_office_export_box_block {
-    margin: 10px 0
+    margin: 10px 0;
 }
 
 #stickers_office_export_box .stickers_office_export_box_label {
@@ -133,13 +133,13 @@
     font-size: 13px;
     letter-spacing: -0.1px;
     text-align: right;
-    color: #656565
+    color: #656565;
 }
 
 #stickers_office_export_box .stickers_office_export_box_label.selector {
-    padding-top: 6px
+    padding-top: 6px;
 }
 
 #stickers_office_export_box .stickers_office_export_box_value {
-    display: inline-block
+    display: inline-block;
 }

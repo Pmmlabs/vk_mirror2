@@ -1,5 +1,5 @@
 #filebutton_css {
-    display: none
+    display: none;
 }
 
 .file_button_blue,
@@ -10,7 +10,7 @@
     *display: inline;
     position: relative;
     overflow: hidden;
-    zoom: 1
+    zoom: 1;
 }
 
 .file_button {
@@ -22,92 +22,93 @@
     margin: 0px;
     white-space: nowrap;
     outline: none;
-    font-family: tahoma, verdana, arial, sans-serif;
-    overflow: visible
+    padding: 4px 14px 4px;
+    *padding: 5px 15px 3px;
+    font-family: tahoma, verdana, arial, sans-serif, Lucida Sans;
+    overflow: visible;
 }
 
-.file_button,
 .file_button_text {
-    padding: 4px 14px;
-    *padding: 5px 15px 3px
+    padding: 4px 14px 4px;
+    *padding: 5px 15px 3px;
 }
 
 .file_button_wide {
-    display: block
+    display: block;
 }
 
 .file_button_wide .file_button {
-    width: 100%
+    width: 100%;
 }
 
 .file_button_blue {
-    border: 1px solid #45688e;
-    background: #5d81a7
+    border: 1px solid #45688E;
+    background: #5D81A7;
 }
 
 .file_button_blue .file_button {
-    border-top-color: #789abf;
-    border-bottom-color: #5980a9;
-    border-left-color: #5980a9;
-    border-right-color: #5980a9;
-    color: #fff;
-    text-shadow: 0 1px 0 #45688e;
+    border-top-color: #789ABF;
+    border-bottom-color: #5980A9;
+    border-left-color: #5980A9;
+    border-right-color: #5980A9;
+    color: #FFF;
+    text-shadow: 0 1px 0 #45688E;
     *border: 0;
     background: url(/images/button_vk.png) #6181a6 repeat-x top;
     background-position: 0px -16px;
-    *background-position: 0px -16px
+    *background-position: 0px -16px;
 }
 
 .file_button_inner,
-.file_button_inner:active,
-.file_button_inner:hover {
-    cursor: pointer
+.file_button_inner:hover,
+.file_button_inner:active {
+    cursor: pointer;
 }
 
 .file_button_blue .file_button:hover {
-    background-position: 0px -8px
+    background-position: 0px -8px;
 }
 
 .file_button_blue .file_button:active {
     background: #5e80a5;
-    border: 1px solid #5e80a5
+    border: 1px solid #5e80a5;
 }
 
 .file_button_gray {
     border: 1px solid #b3b3b3;
-    background: #e0e0e0
+    background: #e0e0e0;
 }
 
 .file_button_gray .file_button {
-    border-top-color: #fff;
+    border-top-color: #FFF;
     border-bottom-color: #e5e5e5;
     border-left-color: #e7e7e7;
     border-right-color: #e7e7e7;
     color: #444;
-    text-shadow: 0 1px 0 #fff;
+    text-shadow: 0 1px 0 #FFF;
     *border: 0;
-    background: url(/images/button_vk.png) #ddd repeat-x top;
-    background-position: 0px -54px
+    background: url(/images/button_vk.png) #DDD repeat-x top;
+    background-position: 0px -54px;
 }
 
 .file_button_gray .file_button:hover {
-    background-position: 0px -46px
+    background-position: 0px -46px;
 }
 
 .file_button_gray .file_button:active {
     background: #dcdcdc;
-    border: 1px solid #dcdcdc
+    border: 1px solid #dcdcdc;
 }
 
 .file_button_blue .button_lock,
 .file_button_gray .button_lock {
     z-index: 10;
     left: 0px;
-    top: 0px
+    top: 0px;
 }
 
 .file_button_gray .button_lock {
-    background: url('/images/upload.gif') 50% no-repeat
+    background: url('/images/upload.gif') 50% no-repeat;
 }
 
 .file_button .file_input {
@@ -118,9 +119,9 @@
     margin: 0px;
     padding: 0px;
     cursor: pointer;
-    position: absolute
+    position: absolute;
 }
 
 .file_button_lock .file_input {
-    display: none
+    display: none;
 }

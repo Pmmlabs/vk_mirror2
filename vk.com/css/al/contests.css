@@ -1,67 +1,67 @@
 #contests_css {
-    display: none
+    display: none;
 }
 
 .wk_contest_view {
     line-height: 160%;
-    font-size: 1.09em
+    font-size: 1.09em;
 }
 
 .wk_contest_view .wk_wiki_content {
-    padding: 15px 30px 30px
+    padding: 15px 30px 30px;
 }
 
 .wk_contest_view h2 {
-    font-size: 1.09em
+    font-size: 1.09em;
 }
 
 .wk_contest_view #samsung_gs5_img {
     background-image: url(/images/contests/sgs5.jpg);
     width: 500px;
     height: 264px;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 .wk_contest_view .contest_date_info {
-    display: inline-block
+    display: inline-block;
 }
 
 .wk_contest_view .contest_date_row {
-    text-align: left
+    text-align: left;
 }
 
 .wk_contest_view .contest_date_row .contest_date_row_label {
     color: #777;
     width: 150px;
-    display: inline-block
+    display: inline-block;
 }
 
 .wk_contest_view #contest_apply_button_wpap {
     text-align: center;
-    margin: 30px 0 10px
+    margin: 30px 0 10px 0;
 }
 
 .wk_contest_view #apply_contest_button div {
     font-size: 1.09em;
-    padding: 2px 12px
+    padding: 2px 12px;
 }
 
 .contest_paragraph {
-    margin: 20px 0
+    margin: 20px 0;
 }
 
 #contest_apply_wrap {
-    position: relative
+    position: relative;
 }
 
 .wk_contest_view .contest_apply_add_info {
     text-align: center;
     font-size: 11px;
-    color: #777
+    color: #777;
 }
 
 .contest_apply_response_already {
-    display: none
+    display: none;
 }
 
 #contest_apply_response_succ {
@@ -70,110 +70,110 @@
     text-align: center;
     width: 100%;
     margin-top: -10px;
-    opacity: 0.0
+    opacity: 0.0;
 }
 
 .cant_apply_info {
     text-align: center;
     margin: 30px 0;
-    color: #777
+    color: #777;
 }
 
 #contest_admin_wrap {
-    padding: 25px
+    padding: 25px;
 }
 
 #contest_admin_wrap .contest_status {
     color: #777;
     display: inline-block;
-    margin-right: 10px
+    margin-right: 10px;
 }
 
 #contest_admin_wrap .contest_dates {
     margin-top: 6px;
-    display: inline-block
+    display: inline-block;
 }
 
 #contest_admin_wrap .contest_terms {
-    margin-top: 6px
+    margin-top: 6px;
 }
 
 #contest_admin_wrap .contest_participants_summary {
     margin-bottom: 15px;
-    font-weight: 700;
-    color: #45688e;
-    border-bottom: 1px solid #dae1e8;
+    font-weight: bold;
+    color: #45688E;
+    border-bottom: 1px solid #DAE1E8;
     padding-bottom: 4px;
-    margin-top: 20px
+    margin-top: 20px;
 }
 
 #contest_admin_wrap .contest_participant_item {
     cursor: pointer;
-    padding: 6px
+    padding: 6px;
 }
 
 #contest_admin_wrap .contest_participant_item:hover {
-    background-color: #e4e4e4
+    background-color: #E4E4E4;
 }
 
 #contest_admin_wrap .contest_participant_item>div {
     display: inline-block;
-    vertical-align: top
+    vertical-align: top;
 }
 
 #contest_admin_wrap .contest_participant_item>div.mt {
-    margin-top: 11px
+    margin-top: 11px;
 }
 
 #contest_admin_wrap .contest_participant_item .avatar img {
     width: 35px;
     height: 35px;
-    border-radius: 2px
+    border-radius: 2px;
 }
 
 #contest_admin_wrap .contest_participant_item .name {
-    margin-left: 10px
+    margin-left: 10px;
 }
 
 #contest_admin_wrap .contest_participant_item .name .rank {
     color: #666;
-    margin-right: 7px
+    margin-right: 7px;
 }
 
 #contest_admin_wrap .contest_participant_item .counter {
-    float: right
+    float: right;
 }
 
 #contest_admin_wrap .contest_p_invited>div {
     display: inline-block;
-    vertical-align: top
+    vertical-align: top;
 }
 
 #contest_admin_wrap .contest_p_invited .avatar img {
     width: 30px;
     height: 30px;
     border-radius: 2px;
-    display: block
+    display: block;
 }
 
 #contest_admin_wrap .contest_p_invited .name {
-    margin-left: 8px
+    margin-left: 8px;
 }
 
 #contest_admin_wrap .contest_p_invited .name .phone {
     color: #777;
-    margin-top: 2px
+    margin-top: 2px;
 }
 
 #contest_admin_wrap .contest_p_invited {
-    padding: 4px 0px
+    padding: 4px 0px;
 }
 
 #contest_admin_wrap .contest_p_regs {
     padding: 4px 10px;
-    background-color: #f3f3f3;
+    background-color: #F3F3F3;
     display: none;
     max-height: 500px;
     overflow: auto;
-    margin-bottom: 10px
+    margin-bottom: 10px;
 }

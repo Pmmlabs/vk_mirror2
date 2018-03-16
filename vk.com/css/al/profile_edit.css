@@ -1,47 +1,48 @@
 #profile_edit_css {
-    display: none
+    display: none;
 }
 
-.pedit_add_row,
 .pedit_del_icon,
-.pedit_import_box_icon,
-.pedit_privacy_control .privacy_dropdown .header .header_label:after,
-.pedit_privacy_control .privacy_dropdown .header:after,
+.pedit_set_icon,
+.pedit_set_icon,
 .pedit_privacy_control .privacy_edit_wrap a,
 .pedit_privacy_control .privacy_edit_wrap a:before,
-.pedit_set_icon,
+.pedit_privacy_control .privacy_dropdown .header:after,
+.pedit_privacy_control .privacy_dropdown .header .header_label:after,
 .pedit_social_icon_1,
 .pedit_social_icon_3,
-.pedit_social_icon_4 {
-    -ms-high-contrast-adjust: none
+.pedit_social_icon_4,
+.pedit_import_box_icon,
+.pedit_add_row {
+    -ms-high-contrast-adjust: none;
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 .pedit_content {
-    margin: 20px 0
+    margin: 20px 0;
 }
 
 .pedit_result .msg {
-    margin: 15px 15px 20px
+    margin: 15px 15px 20px;
 }
 
 .pedit_row {
-    padding-bottom: 15px
+    padding-bottom: 15px;
 }
 
 .pedit_box_row {
     padding-bottom: 10px;
-    line-height: 1.154
+    line-height: 1.154;
 }
 
 .pedit_label,
@@ -51,60 +52,63 @@
     padding: 6px 10px 0 0;
     line-height: 16px;
     float: left;
-    text-align: right
+    text-align: right;
 }
 
 .pedit_labeled {
     float: left;
-    line-height: 16px
+    line-height: 16px;
 }
 
 .pedit_labeled_l {
     float: left;
-    padding: 6px 0 8px
+    padding: 6px 0 8px 0;
 }
 
 .pedit_label_box {
     width: 110px;
-    line-height: 1.154
+    line-height: 1.154;
 }
 
 .pedit_row_notice {
     color: #656565;
-    font-size: 12.5px
+    font-size: 12.5px;
 }
 
 .pedit_row .progress {
     float: left;
     margin-left: 5px;
-    height: 30px
+    height: 30px;
 }
 
 .pedit_text_w {
     display: block;
-    width: 324px
+    width: 324px;
 }
 
 #profile_editor input.dark,
-#profile_editor textarea,
+#profile_editor textarea {
+    width: 300px;
+}
+
 .pedit_dropdown {
-    width: 300px
+    width: 300px;
 }
 
 .pedit_tt {
-    width: 260px
+    width: 260px;
 }
 
 .pedit_header {
     margin: 15px 0 15px 180px;
-    font-weight: 700;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .pedit_right_control {
     float: left;
-    padding-left: 7px
+    padding-left: 7px;
 }
 
 .pedit_del_icon,
@@ -116,7 +120,7 @@
     width: 20px;
     height: 20px;
     opacity: 0.75;
-    filter: alpha(opacity=75)
+    filter: alpha(opacity=75);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -125,7 +129,7 @@
     .pedit_del_icon,
     .pedit_set_icon {
         background-image: url(/images/cross_2x.png);
-        background-size: 10px 10px
+        background-size: 10px 10px;
     }
 }
 
@@ -133,13 +137,13 @@
 .pedit_set_icon:hover {
     opacity: 1;
     -webkit-filter: none;
-    filter: none
+    filter: none;
 }
 
 .pedit_set_icon {
     opacity: 0.8;
     filter: alpha(opacity=80);
-    background-image: url(/images/icons/cog.png)
+    background-image: url(/images/icons/cog.png);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -147,80 +151,80 @@
 (min-resolution: 192dpi) {
     .pedit_set_icon {
         background-image: url(/images/icons/cog_2x.png);
-        background-size: 14px 14px
+        background-size: 14px 14px;
     }
 }
 
 .pedit_right_control .pedit_del_icon {
-    margin-top: 5px
+    margin-top: 5px;
 }
 
 .pedit_text_w .pedit_del_icon,
 .pedit_text_w .pedit_set_icon {
     height: 15px;
-    margin-left: 5px
+    margin-left: 5px;
 }
 
 .pedit_separator {
     width: 512px;
-    margin: 5px auto 20px;
+    margin: 5px auto 20px auto;
     height: 0;
-    border-top: 1px solid #e7e8ec
+    border-top: 1px solid #e7e8ec;
 }
 
 .pedit_controls {
-    padding: 0 0 0 180px
+    padding: 0 0 0 180px;
 }
 
 .pedit_bday,
 .pedit_bmonth {
-    padding-right: 8px
+    padding-right: 8px;
 }
 
 .pedit_bday input,
 .pedit_byear input {
-    width: 78px
+    width: 78px;
 }
 
 .pedit_bmonth input {
-    width: 128px
+    width: 128px;
 }
 
 #pedit_name_tt_place,
 #pedit_partner_tt_place,
 #pedit_partner_tt_place1 {
     width: 1px;
-    height: 1px
+    height: 1px;
 }
 
 .pedit_general_family_row .pedit_labeled {
-    width: 360px
+    width: 360px;
 }
 
 .pedit_wrap_relation {
-    margin: 0 0 15px;
-    padding: 0
+    margin: 0 0 15px 0;
+    padding: 0;
 }
 
 .pedit_relations_cont:not(:empty)+.pedit_labeled_l {
-    padding-top: 0
+    padding-top: 0;
 }
 
 .pedit_next_input {
-    padding-top: 8px
+    padding-top: 8px;
 }
 
 #pedit_name_request {
-    margin: -5px 15px 20px
+    margin: -5px 15px 20px 15px;
 }
 
 .pedit_privacy_control {
     float: left;
-    padding: 4px 0 0 10px
+    padding: 4px 0 0 10px;
 }
 
 .pedit_privacy_control .privacy_edit_wrap {
-    display: block
+    display: block;
 }
 
 .pedit_privacy_control .privacy_edit_wrap a {
@@ -229,7 +233,7 @@
     background-position: left -25px;
     color: transparent;
     width: 22px;
-    height: 20px
+    height: 20px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -237,7 +241,7 @@
 (min-resolution: 192dpi) {
     .pedit_privacy_control .privacy_edit_wrap a {
         background-image: url(/images/icons/lock_icons_2x.png);
-        background-size: 10px 101px
+        background-size: 10px 101px;
     }
 }
 
@@ -247,7 +251,7 @@
     background: url(/images/icons/profile_edit_arrow.png) no-repeat;
     background-position: right 8px;
     width: 9px;
-    height: 20px
+    height: 20px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -255,28 +259,28 @@
 (min-resolution: 192dpi) {
     .pedit_privacy_control .privacy_edit_wrap a:before {
         background-image: url(/images/icons/profile_edit_arrow_2x.png);
-        background-size: 8px 35px
+        background-size: 8px 35px;
     }
 }
 
 .pedit_privacy_control .privacy_friends_list {
-    display: none
+    display: none;
 }
 
 .pedit_privacy_locked .privacy_edit_wrap a {
-    background-position: left 5px
+    background-position: left 5px;
 }
 
 .pedit_privacy_control .privacy_dropdown {
-    top: -4px
+    top: -4px;
 }
 
 .pedit_privacy_control .privacy_dropdown.pdd_to_up {
-    bottom: -6px
+    bottom: -6px;
 }
 
 .pedit_privacy_control .privacy_dropdown .header {
-    position: relative
+    position: relative;
 }
 
 .pedit_privacy_control .privacy_dropdown .header:after {
@@ -286,7 +290,7 @@
     right: 22px;
     background: url(/images/icons/lock_icons.png) no-repeat 0 -90px;
     width: 10px;
-    height: 11px
+    height: 11px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -294,19 +298,19 @@
 (min-resolution: 192dpi) {
     .pedit_privacy_control .privacy_dropdown .header:after {
         background-image: url(/images/icons/lock_icons_2x.png);
-        background-size: 10px 101px
+        background-size: 10px 101px;
     }
 }
 
 .pedit_privacy_control .privacy_dropdown .item {
-    padding-right: 40px
+    padding-right: 40px;
 }
 
 .pedit_privacy_control .privacy_dropdown .header .header_label:after {
     background: url(/images/icons/profile_edit_arrow.png) no-repeat 1px -29px;
     top: 10px;
     width: 9px;
-    height: 6px
+    height: 6px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -314,12 +318,12 @@
 (min-resolution: 192dpi) {
     .pedit_privacy_control .privacy_dropdown .header .header_label:after {
         background-image: url(/images/icons/profile_edit_arrow_2x.png);
-        background-size: 8px 35px
+        background-size: 8px 35px;
     }
 }
 
 .pedit_privacy_locked .privacy_dropdown .header:after {
-    background-position: 0 -60px
+    background-position: 0 -60px;
 }
 
 .pedit_social_icon_1,
@@ -331,7 +335,7 @@
     background: url(/images/social_integration.png?1) no-repeat;
     padding-right: 0px;
     border-right: 10px solid transparent;
-    background-position: right 0
+    background-position: right 0;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -341,87 +345,85 @@
     .pedit_social_icon_3,
     .pedit_social_icon_4 {
         background-image: url(/images/social_integration_2x.png?1);
-        background-size: 32px 96px
+        background-size: 32px 96px;
     }
 }
 
 .pedit_social_icon_1 {
-    background-position: right -64px
+    padding-right: 0px;
+    border-right: 10px solid transparent;
+    background-position: right -64px;
 }
 
-.pedit_social_icon_1,
 .pedit_social_icon_3 {
     padding-right: 0px;
-    border-right: 10px solid transparent
-}
-
-.pedit_social_icon_3 {
-    background-position: right -32px
+    border-right: 10px solid transparent;
+    background-position: right -32px;
 }
 
 .pedit_social_label {
     padding-top: 1px;
     color: #939393;
-    font-size: 12.5px
+    font-size: 12.5px;
 }
 
 .pedit_social_name {
-    position: relative
+    position: relative;
 }
 
 .pedit_social_name .pedit_del_icon,
 .pedit_social_name .pedit_set_icon {
     position: absolute;
     top: 7px;
-    right: 0
+    right: 0;
 }
 
 .pedit_social_name .pedit_set_icon {
     position: absolute;
     top: 7px;
-    right: 35px
+    right: 35px;
 }
 
 .pedit_box_radio {
-    padding: 6px 0px
+    padding: 6px 0px;
 }
 
 .pedit_label_radio {
-    padding-top: 6px
+    padding-top: 6px;
 }
 
 .pedit_box_row .pedit_label {
-    width: 140px
+    width: 140px;
 }
 
 .pedit_livejournal {
-    padding-top: 12px
+    padding-top: 12px;
 }
 
 .pedit_livejournal .pedit_label {
     width: 140px;
-    padding: 8px 10px 0 0
+    padding: 8px 10px 0 0;
 }
 
 #pedit_show_social_button {
-    margin-top: 5px
+    margin-top: 5px;
 }
 
 #pedit_settings_message {
     padding: 5px 0;
-    text-align: center
+    text-align: center;
 }
 
 #pedit_lj_error {
-    border: 1px solid #e89b88;
-    background-color: #ffefe8;
+    border: 1px solid #E89B88;
+    background-color: #FFEFE8;
     padding: 8px 11px;
     margin-bottom: 8px;
-    display: none
+    display: none;
 }
 
 #pedit_show_social {
-    margin-top: 5px
+    margin-top: 5px;
 }
 
 .pedit_import_info {
@@ -429,23 +431,24 @@
     color: #656565;
     padding: 0;
     line-height: 160%;
-    font-size: 12.5px
+    font-size: 12.5px;
 }
 
 .pedit_import_error {
-    color: #800
+    color: #800;
 }
 
-.pedit_import_progress,
+.pedit_import_progress {
+    margin: 50px 0;
+    text-align: center;
+}
+
 .pedit_twitter_msg {
     margin: 50px 0;
-    text-align: center
-}
-
-.pedit_twitter_msg {
     line-height: 160%;
     font-size: 14px;
-    color: #656565
+    color: #656565;
+    text-align: center;
 }
 
 .pedit_import_box_icon {
@@ -455,7 +458,7 @@
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    background: url(/images/icons/import_contacts.png?7) no-repeat
+    background: url(/images/icons/import_contacts.png?7) no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -463,38 +466,38 @@
 (min-resolution: 192dpi) {
     .pedit_import_box_icon {
         background-image: url(/images/icons/import_contacts_2x.png?7);
-        background-size: 34px 170px
+        background-size: 34px 170px;
     }
 }
 
 .pedit_import_twitter {
-    background-position: 0px -102px
+    background-position: 0px -102px;
 }
 
 .pedit_import_box_title {
-    padding-left: 35px
+    padding-left: 35px;
 }
 
 #pedit_interests textarea {
-    width: 300px
+    width: 300px;
 }
 
 #pedit_interests textarea,
 #pedit_interests textarea~.placeholder .ph_input {
-    height: 100px
+    height: 100px;
 }
 
-#militaries,
+.pedit_edu,
 #primary_uni,
-#schools,
 #unis,
+#schools,
 #works,
-.pedit_edu {
-    display: none
+#militaries {
+    display: none;
 }
 
 .pedit_edu_big_row {
-    margin-top: 10px
+    margin-top: 10px;
 }
 
 .pedit_edu_big_row .pedit_progress {
@@ -502,14 +505,14 @@
     margin-left: 5px;
     position: relative;
     top: 11px;
-    display: none
+    display: none;
 }
 
 .pedit_edu_big_row .add_item_link {
     display: none;
     clear: both;
     margin-left: 180px;
-    padding: 27px 0 8px
+    padding: 27px 0 8px;
 }
 
 .deleted {
@@ -517,17 +520,17 @@
     color: #656565;
     display: none;
     height: 23px;
-    text-align: center
+    text-align: center;
 }
 
 .deleted div {
-    display: inline
+    display: inline;
 }
 
 .pedit_add_row {
     background: url(/images/icons/add_row.png) no-repeat 0 50%;
     padding-left: 24px;
-    margin-left: 160px
+    margin-left: 160px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -535,6 +538,6 @@
 (min-resolution: 192dpi) {
     .pedit_add_row {
         background-image: url(/images/icons/add_row_2x.png);
-        background-size: 14px 14px
+        background-size: 14px 14px;
     }
 }

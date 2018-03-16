@@ -1,47 +1,45 @@
 .calTable {
     width: 156px;
-    text-align: center
+    text-align: center;
 }
 
 .calTable .month {
+    text-align: center;
+    background-color: #36638E;
     font: normal 11px Tahoma;
     padding: 4px;
-    color: #fff
+    color: white;
 }
 
-.calTable .month,
 .calTable .monthArr {
     text-align: center;
-    background-color: #36638e
-}
-
-.calTable .monthArr {
-    padding: 2px
+    padding: 2px;
+    background-color: #36638E;
 }
 
 .calTable a.monthArrow,
 .calTable span.monthArrow {
-    color: #fff;
+    color: #FFF;
     text-align: center;
-    font: 700 13px Tahoma;
-    text-decoration: none
+    font: bold 13px Tahoma;
+    text-decoration: none;
 }
 
 .calTable a.monthArrow:hover {
-    color: #dae2e8;
+    color: #DAE2E8;
     text-align: center;
-    font: 700 13px Tahoma;
-    text-decoration: none
+    font: bold 13px Tahoma;
+    text-decoration: none;
 }
 
 .calTable .daysofweek {
-    background-color: #6b8cab;
-    font: 700 9px Tahoma;
+    background-color: #6B8CAB;
+    font: bold 9px Tahoma;
     text-align: center;
     height: 16px;
     width: 14%;
-    color: #fff;
-    border-bottom: 1px solid #36638e
+    color: white;
+    border-bottom: 1px solid #36638E;
 }
 
 .calTable .day,
@@ -52,30 +50,30 @@
     font-size: 11px;
     font-family: Tahoma;
     color: #333;
-    background-color: #fff;
+    background-color: #FFF;
     text-decoration: none;
     cursor: pointer;
     cursor: hand;
     text-align: center;
-    border-right: 1px solid #dae2e8;
-    border-bottom: 1px solid #dae2e8
+    border-right: 1px solid #DAE2E8;
+    border-bottom: 1px solid #DAE2E8;
 }
 
 .calTable.disabled .day,
-.calTable.disabled .dayLeft,
-.calTable.disabled .dayOn,
 .calTable.disabled .today,
-.calTable.disabled .todayOn {
-    cursor: auto
+.calTable.disabled .todayOn,
+.calTable.disabled .dayLeft,
+.calTable.disabled .dayOn {
+    cursor: auto;
 }
 
 .calTable .dayLeft {
-    border-left: 1px solid #dae2e8
+    border-left: 1px solid #DAE2E8;
 }
 
 .calTable .dayOn {
-    color: #36638e;
-    background-color: #edf0f3
+    color: #36638E;
+    background-color: #EDF0F3;
 }
 
 .calTable .today {
@@ -83,21 +81,21 @@
     width: 10px;
     font-size: 11px;
     font-family: Tahoma;
-    color: #36638e;
-    background-color: #dae2e8;
+    color: #36638E;
+    background-color: #DAE2E8;
     text-decoration: none;
     cursor: pointer;
     cursor: hand;
-    text-align: center
+    text-align: center;
 }
 
 .calTable .pastDay {
-    color: #666
+    color: #666;
 }
 
 .calTable .noMonthDay {
-    color: #ccc;
-    background-color: #f5f8fa
+    color: #CCC;
+    background-color: #F5F8FA;
 }
 
 .calTable .todayOn {
@@ -105,39 +103,39 @@
     width: 10px;
     font-size: 11px;
     font-family: Tahoma;
-    color: #36638e;
-    background-color: #dae2e8;
+    color: #36638E;
+    background-color: #DAE2E8;
     text-decoration: none;
     cursor: pointer;
     cursor: hand;
-    text-align: center
+    text-align: center;
 }
 
 .datepickerDisabled {
-    background-color: #efefef
+    background-color: #EFEFEF;
 }
 
 .datepickerDisabled .calInput {
-    background-color: #efefef;
+    background-color: #EFEFEF;
     color: #606060;
-    cursor: auto
+    cursor: auto;
 }
 
 .datepickerDisabled .calImg img {
-    cursor: auto
+    cursor: auto;
 }
 
 .calInput {
     padding-left: 6px;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .calImg {
     height: 20px;
-    margin-right: -7px
+    margin-right: -7px;
 }
 
 .calImg img {
     margin: 3px 6px 3px -18px;
-    cursor: pointer
+    cursor: pointer;
 }

@@ -1,33 +1,33 @@
 #graph_css {
-    display: none
+    display: none;
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 .graph_right_menu {
     float: right;
-    padding-bottom: 10px
+    padding-bottom: 10px;
 }
 
 .tt_text i {
-    font-weight: 400;
+    font-weight: normal;
     font-style: normal;
-    font-size: 0.9em
+    font-size: 0.9em;
 }
 
 .graph_menu_item {
     border-radius: 2px;
     cursor: pointer;
-    font-weight: 700;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     padding: 3px 8px 4px;
@@ -41,19 +41,23 @@
     text-overflow: ellipsis;
     display: inline-block;
     vertical-align: top;
-    color: #45688e;
-    background: #000;
-    background: transparent
+    color: #45688E;
+    background: #000000;
+    background: transparent;
 }
 
 .graph_menu_item:hover {
     text-decoration: none;
-    color: #45688e;
-    background: #e1e7ed
+    color: #45688E;
+    background: #E1E7ED;
 }
 
-.graph_menu_item.graph_menu_item_sel,
+.graph_menu_item.graph_menu_item_sel {
+    color: #fff;
+    background: #4a76a8;
+}
+
 .graph_menu_item.graph_menu_item_sel:hover {
     color: #fff;
-    background: #4a76a8
+    background: #4a76a8;
 }

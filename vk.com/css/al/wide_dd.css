@@ -1,56 +1,56 @@
 #wide_dd_css {
-    display: none
+    display: none;
 }
 
-.wdd_add_plus,
 .wdd_arr,
-.wddi_thumb.online:after {
-    -ms-high-contrast-adjust: none
+.wddi_thumb.online::after,
+.wdd_add_plus {
+    -ms-high-contrast-adjust: none;
 }
 
-.wddi_thumb.online.mobile:after {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%206%209%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cg%20id%3D%22Symbols%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22%238AC176%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22online%22%20transform%3D%22translate(-136.000000%2C%20-209.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M136%2C210.506398%20C136%2C209.674437%20136.66503%2C209%20137.498576%2C209%20L140.501424%2C209%20C141.329065%2C209%20142%2C209.676463%20142%2C210.506398%20L142%2C216.493602%20C142%2C217.325563%20141.33497%2C218%20140.501424%2C218%20L137.498576%2C218%20C136.670935%2C218%20136%2C217.323537%20136%2C216.493602%20L136%2C210.506398%20Z%20M137%2C211%20L141%2C211%20L141%2C216%20L137%2C216%20L137%2C211%20Z%22%20id%3D%22mobile_s%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
+.wddi_thumb.online.mobile::after {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%206%209%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cg%20id%3D%22Symbols%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22%238AC176%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22online%22%20transform%3D%22translate(-136.000000%2C%20-209.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M136%2C210.506398%20C136%2C209.674437%20136.66503%2C209%20137.498576%2C209%20L140.501424%2C209%20C141.329065%2C209%20142%2C209.676463%20142%2C210.506398%20L142%2C216.493602%20C142%2C217.325563%20141.33497%2C218%20140.501424%2C218%20L137.498576%2C218%20C136.670935%2C218%20136%2C217.323537%20136%2C216.493602%20L136%2C210.506398%20Z%20M137%2C211%20L141%2C211%20L141%2C216%20L137%2C216%20L137%2C211%20Z%22%20id%3D%22mobile_s%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 div.wdd {
-    background: #fff;
-    border: 1px solid #d3d9de;
+    background: #FFF;
+    border: 1px solid #D3D9DE;
     border-radius: 2px;
     padding: 2px 2px 1px;
     position: relative;
-    overflow: visible!important
+    overflow: visible !important;
 }
 
 div.wdd.wdd_focused {
     border-color: #c9d0d6;
-    border-radius: 2px 2px 0 0
+    border-radius: 2px 2px 0 0;
 }
 
 div.wdd.wdd_focused.wdd_toup {
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 2px 2px;
 }
 
 .wdd_bubble {
-    padding: 2px
+    padding: 2px;
 }
 
 .wdd_text::-webkit-input-placeholder {
-    color: #777
+    color: #777;
 }
 
 .wdd_text:-moz-placeholder {
-    color: #777
+    color: #777;
 }
 
 .wdd_text {
@@ -58,7 +58,7 @@ div.wdd.wdd_focused.wdd_toup {
     padding: 4px 6px 7px;
     outline: 0px;
     margin: 0px;
-    border: 0px
+    border: 0px;
 }
 
 .wdd_arr {
@@ -66,7 +66,7 @@ div.wdd.wdd_focused.wdd_toup {
     height: 25px;
     overflow: hidden;
     cursor: pointer;
-    background: url(/images/dropdown_arrow.png) no-repeat 2px 50%
+    background: url(/images/dropdown_arrow.png) no-repeat 2px 50%;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -74,7 +74,7 @@ div.wdd.wdd_focused.wdd_toup {
 (min-resolution: 192dpi) {
     .wdd_arr {
         background-image: url(/images/dropdown_arrow_2x.png);
-        background-size: 11px 7px
+        background-size: 11px 7px;
     }
 }
 
@@ -83,42 +83,42 @@ div.wdd.wdd_focused.wdd_toup {
     z-index: 20;
     display: none;
     left: -1px;
-    top: -1px
+    top: -1px;
 }
 
 .wdd_list {
     border: solid #c9d0d6;
     border-width: 0px 1px 1px;
     border-radius: 0 0 2px 2px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
-    overflow: hidden
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
 .composer_wdd .wdd_list {
-    border-color: #d3d9de;
+    border-color: #D3D9DE;
     border-width: 1px;
     border-radius: 0 0 3px 3px;
-    margin-top: -1px
+    margin-top: -1px;
 }
 
 .post_field_wrap .composer_wdd .wdd_list,
 .reply_field_wrap .composer_wdd .wdd_list {
-    margin: 0 -1px
+    margin: 0 -1px;
 }
 
 .wdd_toup .wdd_list {
     border-width: 1px 1px 0px;
     border-radius: 2px 2px 0 0;
-    box-shadow: none
+    box-shadow: none;
 }
 
 .composer_wdd.wdd_toup .wdd_list {
     border-width: 1px;
-    border-radius: 3px 3px 0 0
+    border-radius: 3px 3px 0 0;
 }
 
 .composer_wdd.wdd_toup .wdd_list .ui_scroll_overflow {
-    border-radius: 2px 2px 0 0
+    border-radius: 2px 2px 0 0;
 }
 
 .wddi,
@@ -126,12 +126,12 @@ div.wdd.wdd_focused.wdd_toup {
     cursor: pointer;
     display: block;
     background: #fff;
-    border-top: 1px solid #e7e8ec
+    border-top: 1px solid #e7e8ec;
 }
 
 .wddi:first-child,
 .wddi_over:first-child {
-    border-top: 0
+    border-top: 0;
 }
 
 .wddi_data {
@@ -140,11 +140,11 @@ div.wdd.wdd_focused.wdd_toup {
     box-sizing: border-box;
     line-height: 15px;
     min-height: 50px;
-    _height: 50px
+    _height: 50px;
 }
 
 .wddi_over {
-    background: #f0f2f5
+    background: #f0f2f5;
 }
 
 .wddi_thumb {
@@ -152,85 +152,84 @@ div.wdd.wdd_focused.wdd_toup {
     width: 34px;
     height: 34px;
     margin-right: 10px;
-    overflow: hidden
+    overflow: hidden;
 }
 
-.wddi_thumb.online:after {
+.wddi_thumb.online::after {
     bottom: 0;
     right: 0;
     border: 2px solid #fff;
     height: 6px;
-    width: 6px
+    width: 6px;
 }
 
-.wddi_thumb.online.mobile:after {
+.wddi_thumb.online.mobile::after {
     bottom: -1px;
     right: 0;
     background-color: #fff;
     height: 9px;
-    width: 6px
+    width: 6px;
 }
 
-.wddi_over .wddi_thumb.online:after {
-    border-color: #f0f2f5
+.wddi_over .wddi_thumb.online::after {
+    border-color: #f0f2f5;
 }
 
-.wddi_over .wddi_thumb.online.mobile:after {
-    background-color: #f0f2f5
+.wddi_over .wddi_thumb.online.mobile::after {
+    background-color: #f0f2f5;
 }
 
 .wddi_img {
     vertical-align: top;
     width: 34px;
     height: 34px;
-    border-radius: 50%
+    border-radius: 50%;
 }
 
 .wddi_text {
-    font-weight: 700;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #42648b
-}
-
-.wddi_text,
-.wddi_sub {
+    color: #42648B;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
 }
 
 .wddi_sub {
     padding-top: 4px;
     line-height: 14px;
-    color: #656565
+    color: #656565;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .wddi_over .wddi_sub {
-    color: #4e5966
+    color: #4E5966;
 }
 
 .wddi_no {
     background: #fafbfc;
-    padding: 18px 15px 17px
+    padding: 18px 15px 17px;
 }
 
 .wdd_bubbles .summary_tab_sel {
     padding: 1px 2px 2px 1px;
-    cursor: default
+    cursor: default;
 }
 
 .wdd_add {
     padding: 1px 2px 2px 1px;
     font-size: 12.5px;
     cursor: pointer;
-    display: none
+    display: none;
 }
 
 .wdd_add2 {
     background: #dae2ea;
     border-radius: 2px;
-    padding: 4px 5px 3px
+    padding: 4px 5px 3px;
 }
 
 .wdd_add3 {
@@ -238,7 +237,7 @@ div.wdd.wdd_focused.wdd_toup {
     overflow: hidden;
     color: #55677d;
     padding: 0 3px;
-    line-height: 110%
+    line-height: 110%;
 }
 
 .wdd_add_plus {
@@ -249,7 +248,7 @@ div.wdd.wdd_focused.wdd_toup {
     margin-left: 3px;
     background: url(/images/icons/common.png?6) no-repeat 0 0;
     -o-transition: opacity 200ms linear;
-    transition: opacity 200ms linear
+    transition: opacity 200ms linear;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -257,30 +256,30 @@ div.wdd.wdd_focused.wdd_toup {
 (min-resolution: 192dpi) {
     .wdd_add_plus {
         background-image: url(/images/icons/common_2x.png?6);
-        background-size: 32px 232px
+        background-size: 32px 232px;
     }
 }
 
 .wdd_add:hover .wdd_add_plus {
     opacity: 1;
     -webkit-filter: none;
-    filter: none
+    filter: none;
 }
 
 .wdd_hl {
     background: #e7edf2;
     padding: 0;
-    margin: 0
+    margin: 0;
 }
 
 .wddi_over .wdd_hl {
-    background: #cfdae6
+    background: #cfdae6;
 }
 
 .wdd_imgs {
     width: 50px;
     height: 50px;
-    position: relative
+    position: relative;
 }
 
 .wdd_img_full,
@@ -290,39 +289,39 @@ div.wdd.wdd_focused.wdd_toup {
     width: 50px;
     height: 50px;
     display: block;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, .4)
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
 }
 
-.wdd_img,
 .wdd_img_full,
 .wdd_img_half,
-.wdd_img_tiny {
-    border-radius: 2px
+.wdd_img_tiny,
+.wdd_img {
+    border-radius: 2px;
 }
 
 .wdd_img {
     width: 50px;
     height: 50px;
-    vertical-align: top
+    vertical-align: top;
 }
 
 .wdd_img_half {
     width: 23px;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .wdd_img_half .wdd_img {
-    margin: 0px -13px
+    margin: 0px -13px;
 }
 
 .wdd_img_tiny {
     width: 23px;
     height: 23px;
-    margin-bottom: 4px
+    margin-bottom: 4px;
 }
 
 .wdd_img_tiny .wdd_img {
-    width: 23px
+    width: 23px;
 }
 
 .wdd_img_layer {
@@ -333,35 +332,35 @@ div.wdd.wdd_focused.wdd_toup {
     height: 100%;
     opacity: 0;
     filter: alpha(opacity=0);
-    z-index: 12
+    z-index: 12;
 }
 
 div.wdd_disabled {
     background-color: #f5f6f7;
-    border-color: #c9cdd1
+    border-color: #c9cdd1;
 }
 
 div.wdd_disabled .wdd_arr:hover {
-    cursor: default
+    cursor: default;
 }
 
 div.wdd_disabled .wdd_add {
-    display: none!important
+    display: none!important;
 }
 
 div.wdd_disabled .summary_tab2,
 div.wdd_disabled .summary_tab2:hover {
-    background: #e7e7e7
+    background: #E7E7E7;
 }
 
 div.wdd_disabled .summary_tab3,
 div.wdd_disabled .summary_tab3:hover {
-    color: #777
+    color: #777777;
 }
 
 div.wdd_disabled .summary_tab_x,
 div.wdd_disabled .summary_tab_x:hover {
     background-position: 0 0;
     opacity: 0.3;
-    cursor: default
+    cursor: default;
 }

@@ -1,25 +1,25 @@
 #groupinfo_css {
-    display: none
+    display: none;
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 .uploaded_stories_rows {
-    padding: 10px
+    padding: 10px;
 }
 
 .uploaded_stories_rows .story {
     margin: 10px;
-    display: inline-block
+    display: inline-block;
 }
 
 .uploaded_stories_rows .story .header {
@@ -27,8 +27,8 @@
     padding-top: 5px;
     padding-left: 5px;
     padding-bottom: 4px;
-    background: #000;
-    background: rgba(0, 0, 0, .4);
+    background: #000000;
+    background: rgba(0, 0, 0, 0.4);
     width: 130px;
     font-size: 12px;
     font-weight: 600;
@@ -37,13 +37,13 @@
     line-height: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #fff;
+    color: white;
     min-height: 48px;
-    border-radius: 6px 6px 0px 0px
+    border-radius: 6px 6px 0px 0px;
 }
 
 .uploaded_stories_rows .story .header a {
-    color: #fff
+    color: white;
 }
 
 .uploaded_stories_rows .story .story_preview {
@@ -52,189 +52,189 @@
     cursor: pointer;
     -o-object-fit: cover;
     object-fit: cover;
-    border-radius: 6px
+    border-radius: 6px;
 }
 
 .gi_section {
-    margin: 0 0 18px
+    margin: 0 0 18px;
 }
 
 .gi_section h2 {
-    margin: 5px 0 7px;
-    font-weight: 700;
+    margin: 5px 0 7px 0;
+    font-weight: bold;
     font-size: 1.09em;
-    color: #36638e;
-    border-color: #b9c4da
+    color: #36638E;
+    border-color: #B9C4DA;
 }
 
 .gi_groupinforow_labeled {
-    padding-top: 10px
+    padding-top: 10px;
 }
 
 .gi_groupinforow_label {
     padding-top: 10px;
-    color: #777;
-    vertical-align: top
+    color: #777777;
+    vertical-align: top;
 }
 
 .marketing_moderation_group_link_row {
-    margin: -4px 28px 16px
+    margin: -4px 28px 16px;
 }
 
 .marketing_moderation_group_link_row .label {
-    color: #777
+    color: #777;
 }
 
 .marketing_moderation_group_link_row .value {
-    margin-left: 10px
+    margin-left: 10px;
 }
 
 table.history tr td,
 table.history tr th {
-    padding-top: 12px
+    padding-top: 12px;
 }
 
 #gi_access_check {
-    padding: 200px
+    padding: 200px;
 }
 
 .gi_section_title {
     padding: 9px 18px;
     background-color: #dfe5eb;
-    color: #36638e;
-    font-weight: 700
+    color: #36638E;
+    font-weight: bold;
 }
 
 .gi_more_link {
     margin: 15px 18px 0;
     padding: 7px;
     border-radius: 2px;
-    background-color: #eff1f3;
+    background-color: #EFF1F3;
     display: block;
     text-align: center;
-    color: #738392
+    color: #738392;
 }
 
 .gi_more_link:hover {
-    background-color: #e9edf1;
-    text-decoration: none
+    background-color: #E9EDF1;
+    text-decoration: none;
 }
 
 .gi_tabsbar {
     padding: 5px;
     background-color: #f5f5f5;
-    border-bottom: 1px solid #e8ebed
+    border-bottom: 1px solid #e8ebed;
 }
 
 .gi_blank {
     padding: 100px 50px;
     text-align: center;
     color: #777;
-    font-size: 15px
+    font-size: 15px;
 }
 
 .gi_subtabsbar {
     padding: 5px 18px;
     background-color: #f5f5f5;
-    border-bottom: 1px solid #e8ebed
+    border-bottom: 1px solid #e8ebed;
 }
 
 .gi_summary_subtab_hidden {
-    display: none
+    display: none;
 }
 
 .gi_block_label {
     color: #777;
     padding-top: 4px;
-    width: 40px
+    width: 40px;
 }
 
 .gi_block_msg {
     line-height: 160%;
-    padding-bottom: 10px
+    padding-bottom: 10px;
 }
 
 .gi_personal_info_disclaimer {
     padding: 10px 18px;
     background-color: #f7f7f7;
     border-bottom: 1px solid #dae1e8;
-    line-height: 160%
+    line-height: 160%;
 }
 
 .gi_table {
     width: 100%;
-    border-collapse: collapse
+    border-collapse: collapse;
 }
 
-.gi_table>tbody>tr>td:first-child,
-.gi_table>thead>tr>th:first-child {
-    padding-left: 28px
+.gi_table>thead>tr>th:first-child,
+.gi_table>tbody>tr>td:first-child {
+    padding-left: 28px;
 }
 
-.gi_table>tbody>tr>td:last-child,
-.gi_table>thead>tr>th:last-child {
-    padding-right: 28px
+.gi_table>thead>tr>th:last-child,
+.gi_table>tbody>tr>td:last-child {
+    padding-right: 28px;
 }
 
 .gi_deleted_post_label {
-    padding: 20px 10px 10px
+    padding: 20px 10px 10px;
 }
 
 .gi_section_actions {
     margin: 8px 0 0;
-    padding: 0 28px
+    padding: 0 28px 0;
 }
 
 .gi_deletedcontent_wrap {
-    padding: 20px
+    padding: 20px;
 }
 
 .gi_deletedcontent_wrap .gi_deletedcontent_topic {
     padding: 10px 20px 15px 0;
     line-height: 20px;
-    color: #656565
+    color: #656565;
 }
 
 .gi_deletedcontent_wrap .gi_deletedcontent_topic:first-child {
-    padding-top: 0
+    padding-top: 0;
 }
 
 .gi_status_cancelled,
 .gi_status_in_process {
     color: red;
-    font-weight: 700;
-    white-space: nowrap
+    font-weight: bold;
+    white-space: nowrap;
 }
 
 .gi_status_in_process {
-    color: #878700
+    color: #878700;
 }
 
 .gi_payment_status_tt_row {
     cursor: pointer;
-    border-bottom: 1px dashed
+    border-bottom: 1px dashed;
 }
 
 .gi_payment_status_tt.tt_w .tt_text {
     line-height: 19px;
-    width: 280px
+    width: 280px;
 }
 
 .mi_tt_label {
-    color: #777
+    color: #777;
 }
 
 .meminfo_sort_selector {
-    margin: 5px 0
+    margin: 5px 0;
 }
 
 .meminfo_sort_selector .meminfo_sort_selector_label {
     display: inline-block;
     vertical-align: middle;
-    margin-right: 5px
+    margin-right: 5px;
 }
 
 .meminfo_sort_selector .meminfo_sort_selector_object {
     display: inline-block;
-    vertical-align: middle
+    vertical-align: middle;
 }

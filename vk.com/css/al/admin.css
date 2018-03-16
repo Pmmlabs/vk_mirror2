@@ -1,28 +1,28 @@
 #admin_css {
-    display: none
+    display: none;
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 .adm_additem_box_wrap {
-    padding: 20px 0
+    padding: 20px 0;
 }
 
 .adm_additem_result .msg {
-    margin: 0 0 15px
+    margin: 0 0 15px;
 }
 
 .adm_additem_row {
-    padding: 0 0 15px
+    padding: 0 0 15px 0;
 }
 
 .adm_additem_row .label {
@@ -32,292 +32,285 @@
     width: 150px;
     line-height: 16px;
     padding: 6px 12px 0 0;
-    color: #656565
+    color: #656565;
 }
 
 .adm_additem_row .labeled {
-    float: left
+    float: left;
 }
 
 .adm_additem_row .radiobtn {
-    padding: 6px 0 4px
+    padding: 6px 0 4px 0;
 }
 
 .adm_additem_row .dark {
-    width: 280px
+    width: 280px;
 }
 
 .adm_additem_progress {
     float: left;
     margin: 6px 0 0 10px;
-    display: none
+    display: none;
 }
 
 .adm_additem_row_control_wrap {
-    padding: 5px 0 0 162px
+    padding: 5px 0 0 162px;
 }
 
 .wrapRows {
-    margin: 0 20px
+    margin: 0 20px;
 }
 
 .wrapRows .checkbox {
     padding-top: 5px;
-    padding-right: 5px
+    padding-right: 5px;
 }
 
 .ed_wrap_head {
-    font-weight: 700;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    padding: 8px 0 4px;
+    padding: 8px 0 4px 0;
     font-size: 13px;
-    color: #36638e;
-    border-bottom: 1px solid #bcc9d6;
-    margin: 0px 15px
+    color: #36638E;
+    border-bottom: 1px solid #BCC9D6;
+    margin: 0px 15px 0px 15px;
 }
 
 .ed_wrap_head:empty {
-    display: none
+    display: none;
 }
 
-.coolLink,
-a.coolLink:hover {
-    padding-bottom: 2px
+.coolLink {
+    padding-bottom: 2px;
 }
 
 a.coolLink:hover {
     text-decoration: none;
-    border-bottom: 1px solid #bcc9d6
+    padding-bottom: 2px;
+    border-bottom: 1px solid #BCC9D6;
 }
 
 .country_row {
     padding: 10px 5px;
-    border-bottom: 1px dashed #bcc9d6;
-    font-size: 13px
+    border-bottom: 1px dashed #BCC9D6;
+    font-size: 13px;
 }
 
 .country_row_hover:hover {
-    background: #e9edf1
+    background: #e9edf1;
 }
 
 #header h1 {
-    font-size: 11px
+    font-size: 11px;
 }
 
 #content {
-    padding: 0px
+    padding: 0px;
 }
 
-.ed_item,
-.uRow {
-    background-color: #fff;
-    border-bottom: 1px dashed #bcc9d6;
+.uRow,
+.ed_item {
+    background-color: #FFF;
+    border-bottom: 1px dashed #BCC9D6;
     padding: 5px;
-    line-height: 16px
+    line-height: 16px;
 }
 
-.ed_item span,
-.uRow span {
+.uRow span,
+.ed_item span {
     font-size: 12px;
     color: #555;
-    font-weight: 400
+    font-weight: normal;
 }
 
-.ed_item span.name,
-.uRow span.name {
+.uRow span.name,
+.ed_item span.name {
     font-size: 13px;
-    color: #000
+    color: black;
 }
 
-.ed_item span a,
-.uRow span a {
+.uRow span a,
+.ed_item span a {
     font-size: 12px;
-    color: gray
+    color: gray;
 }
 
 .ed_item_name {
     margin-bottom: 2px;
-    font-size: 13px
+    font-size: 13px;
 }
 
 .ed_item__unbold {
-    display: none
+    display: none;
 }
 
 .ed_item_bolded .ed_item_name {
-    font-weight: 700;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .ed_item_bolded .ed_item__bold {
-    display: none
+    display: none;
 }
 
 .ed_item_bolded .ed_item__unbold {
-    display: inline
+    display: inline;
 }
 
 .report {
+    padding: 10px;
     color: #696029;
-    background-color: #f5edbe;
-    border: 1px solid #d7cf9e
+    margin: 10px 0px 5px 0px;
+    background-color: #F5EDBE;
+    border: 1px solid #D7CF9E;
 }
 
-.report,
 .reportGrey {
     padding: 10px;
-    margin: 10px 0px 5px
-}
-
-.reportGrey {
     color: #333;
-    background-color: #f4f4f4;
-    border: 1px solid #d4d4d4
+    margin: 10px 0px 5px 0px;
+    background-color: #F4F4F4;
+    border: 1px solid #D4D4D4;
 }
 
 .country {
     height: 1.5em;
-    font-size: 15px
-}
-
-.country,
-.noRow {
-    text-align: center
+    font-size: 15px;
+    text-align: center;
 }
 
 .noRow {
     font-size: 13px;
+    text-align: center;
     padding: 10px;
-    color: gray
+    color: gray;
 }
 
 .addNewWrap {
     float: left;
-    margin-left: 15px
+    margin-left: 15px;
 }
 
 .closeItem {
     padding: 3px 5px 3px 21px;
-    background: #fff;
-    border: 1px solid #859db5;
+    background: #FFF;
+    border: 1px solid #859DB5;
     background-image: url(../images/close.gif);
     background-repeat: no-repeat;
     background-position: 3px;
     font-size: 12px;
     text-decoration: none;
-    color: #2b587a;
+    color: #2B587A;
     cursor: hand;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .checkboxall {
     float: right;
-    margin: 2px 10px
+    margin: 2px 10px;
 }
 
 .actionsmenutop {
+    background: #F0F0F0;
+    line-height: 18px;
     margin: 0 15px;
     padding-top: 1px;
-    border-bottom: #eaeaea 1px solid
-}
-
-.actionsmenutop,
-.actionsmenubottom {
-    background: #f0f0f0;
-    line-height: 18px
+    border-bottom: #EAEAEA 1px solid;
 }
 
 .actionsmenubottom {
+    background: #F0F0F0;
+    line-height: 18px;
     margin: 10px 15px 0;
-    border-top: #eaeaea 1px solid;
-    border-bottom: #bcc9d6 1px solid
+    border-top: #EAEAEA 1px solid;
+    border-bottom: #BCC9D6 1px solid;
 }
 
 #content {
-    padding-top: 0px
+    padding-top: 0px;
 }
 
 .buttons {
     height: 23px;
-    text-align: left
+    text-align: left;
 }
 
 .buttons img {
     position: relative;
     left: 10px;
     top: 8px;
-    display: none
+    display: none;
 }
 
 .buttonShadow {
-    border-bottom: 1px solid #d1d1d1;
+    border-bottom: 1px solid #D1D1D1;
     margin-top: 3px;
     margin-left: 5px;
-    float: right
+    float: right;
 }
 
 .blueButton {
-    border: 1px solid #3b6798
+    border: 1px solid #3B6798;
 }
 
 .greyButton {
-    border-color: #9f9f9f #b8b8b8 #b8b8b8;
+    border-color: #9F9F9F #B8B8B8 #B8B8B8;
     border-style: solid;
-    border-width: 1px
+    border-width: 1px;
 }
 
 .blueButtonBody,
-.blueButtonBodyOver,
 .greyButtonBody,
+.blueButtonBodyOver,
 .greyButtonBodyOver {
-    background-color: #6d8fb3;
-    border-color: #7e9cbc #5c82ab #5c82ab;
+    background-color: #6D8FB3;
+    border-color: #7E9CBC #5C82AB #5C82AB;
     border-style: solid;
     border-width: 1px;
-    color: #fff;
+    color: #FFF;
     cursor: pointer;
     padding: 2px 4px;
-    text-align: center
+    text-align: center;
 }
 
 .greyButtonBody,
 .greyButtonBodyOver {
-    background-color: #eaeaea;
-    border-color: #fff #f4f4f4 #dfdfdf;
-    color: #000
+    background-color: #EAEAEA;
+    border-color: #FFFFFF #F4F4F4 #DFDFDF;
+    color: #000;
 }
 
 .blueButtonBodyOver {
-    background-color: #84a1bf;
-    border-color: #92acc7 #7293b7 #7293b7
+    background-color: #84A1BF;
+    border-color: #92ACC7 #7293B7 #7293B7;
 }
 
 .greyButtonBodyOver {
-    background-color: #f7f7f7
+    background-color: #F7F7F7;
 }
 
 .country_row .delLink {
     float: right;
     position: relative;
-    top: 6px
+    top: 6px;
 }
 
 .country_row_link {
     float: left;
     width: 350px;
     position: relative;
-    top: 6px
+    top: 6px;
 }
 
 .ed_user_row_add_country {
-    margin-top: 5px
+    margin-top: 5px;
 }
 
 .ed_user_row_add_country .flat_button {
     margin-left: 5px;
-    float: right
+    float: right;
 }
 
 .enterID {
@@ -325,44 +318,44 @@ a.coolLink:hover {
     width: 55px;
     position: relative;
     top: 7px;
-    line-height: 16px
+    line-height: 16px;
 }
 
 div#enterID.enterID {
     width: 143px;
-    top: 3px
+    top: 3px;
 }
 
 #addProgress {
     float: right;
     display: none;
     position: relative;
-    top: 9px
+    top: 9px;
 }
 
 .country_row_link img {
     padding-right: 5px;
     position: relative;
-    top: 2px
+    top: 2px;
 }
 
 .country_row_link a:hover {
-    text-decoration: none
+    text-decoration: none;
 }
 
 .bitsCheck {
     float: left;
-    margin-right: 10px
+    margin-right: 10px;
 }
 
 .userRow {
-    padding: 10px 0px 0px
+    padding: 10px 0px 0px;
 }
 
 .userRow .content {
     padding: 5px;
-    border: 1px solid #dae2e8;
-    background-color: #fff
+    border: 1px solid #DAE2E8;
+    background-color: #fff;
 }
 
 .userRow .photo {
@@ -371,180 +364,181 @@ div#enterID.enterID {
     width: 50px;
     height: 50px;
     margin: 0px 10px 5px 0px;
-    border: 1px solid #dae2e8
+    border: 1px solid #DAE2E8;
 }
 
 .userRow_info {
-    margin: 5px 5px 5px 0
+    margin: 5px 5px 5px 0;
 }
 
 .userRow_info .country_row {
     padding-bottom: 0;
-    padding-top: 0
+    padding-top: 0;
 }
 
 .ed_user_row_add_country_btn {
-    float: right
+    float: right;
 }
 
 #editEditors {
     padding: 0px 10px 10px;
-    background-color: #f7f7f7
+    background-color: #f7f7f7;
 }
 
 #editEditorsAdd {
-    padding: 10px 0px
+    padding: 10px 0px;
 }
 
 #editEditorsAdd .box_panel {
-    background-color: #edeff1;
+    background-color: #EDEFF1;
     padding: 2px;
-    margin: 20px 50px
+    margin: 20px 50px;
 }
 
 #editEditorsAdd .box_panel_editor {
     background-color: #fff;
-    border: 1px solid #adbbca
+    border: 1px solid #ADBBCA;
 }
 
 #editEditorsAdd .box_panel_border {
-    border: 10px solid #dae2e8;
+    border: 10px solid #DAE2E8;
     padding: 20px;
-    text-align: center
+    text-align: center;
 }
 
 #editEditorsAdd input {
-    width: 150px
+    width: 150px;
 }
 
 #editEditorsAdd table.add {
-    margin: 15px 0px 0px 80px
+    margin: 15px 0px 0px 80px;
 }
 
 #editEditorsAdd ul.nNav {
-    margin-left: 150px
+    margin-left: 150px;
 }
 
 #editEditorsAdd tr.add {
     vertical-align: middle;
-    height: 30px
+    height: 30px;
 }
 
 #editEditorsAdd td.label {
     text-align: right;
-    font-weight: 700
+    font-weight: bold;
 }
 
 #editEditorsAdd td.labelField {
-    padding-left: 10px
+    padding-left: 10px;
 }
 
 #editEditorsAdd .buttons {
-    margin-top: 10px
+    margin-top: 10px;
 }
 
 #editEditors h4 {
-    font-weight: 700;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
     padding: 8px 0 2px;
     display: inline-block;
     font-size: 13px;
-    border-bottom: 1px solid #b9c4da
+    border-bottom: 1px solid #B9C4DA;
 }
 
 .ed_page {
-    padding-top: 12px
+    padding-top: 12px;
 }
 
 .ed_page>.clear_fix>.info_msg {
-    margin: 3px 15px 15px
+    margin: 3px 15px 15px;
 }
 
 .ed_row_removed {
-    opacity: 0.3
+    opacity: 0.3;
 }
 
 .ed_editors_search {
-    float: right
+    float: right;
 }
 
 .ed_editors_search .text {
-    width: 200px
+    width: 200px;
 }
 
 .userRow em {
-    background-color: #dae2e8;
-    font-weight: 700;
+    background-color: #DAE2E8;
+    font-weight: bold;
     font-style: normal;
-    color: #000
+    color: #000;
 }
 
 .ed_body #box_layer_bg {
-    opacity: 0.15!important
+    opacity: 0.15 !important;
 }
 
 .ed_body .popup_box_container {
-    box-shadow: 0 2px 15px rgba(0, 0, 0, .7)
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.7);
 }
 
 .ed_select_count {
     padding-left: 20px;
     color: #696029;
-    display: block
+    display: block;
 }
 
 .ed_select_count:empty {
-    display: none
+    display: none;
 }
 
 .page_block_header_refresh .page_block_header_inner {
-    outline: none
+    outline: none;
 }
 
 .ed_row {
-    padding: 10px 0
+    padding: 10px 0;
 }
 
 .ed_row_label {
     padding: 5px 0;
-    font-weight: 700;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.ed_row_input,
+.ed_row_input {
+    box-sizing: border-box;
+    width: 100%;
+}
+
 .ed_comment_textarea {
     box-sizing: border-box;
-    width: 100%
-}
-
-.ed_comment_textarea {
     height: 200px;
-    resize: vertical
+    width: 100%;
+    resize: vertical;
 }
 
 .ed_obj_search {
-    padding-right: 15px
+    padding-right: 15px;
 }
 
 .ed_obj_search_cell {
     float: right;
-    margin-left: 5px
+    margin-left: 5px;
 }
 
 .ed_obj_search_cell .text {
-    width: 100px
+    width: 100px;
 }
 
 .ed_obj_search_cell .text.ed_obj_search_text_long {
-    width: 150px
+    width: 150px;
 }
 
 .ed_obj_search_cell_head {
     float: right;
-    padding-top: 7px
+    padding-top: 7px;
 }
 
 .ed_obj_search_loading .ed_obj_search_cell_head {
@@ -553,7 +547,7 @@ div#enterID.enterID {
     width: 25px;
     background: url('/images/progress.gif') no-repeat 50%;
     color: transparent;
-    display: inline-block
+    display: inline-block;
 }
 
 .ed_pages_top {
@@ -561,69 +555,67 @@ div#enterID.enterID {
     margin-left: 15px;
     margin-right: 15px;
     top: 5px;
-    position: relative
+    position: relative;
 }
 
 .ed_head_actions {
     float: right;
-    font-weight: 400;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     font-size: 12px;
-    line-height: 15px
+    line-height: 15px;
 }
 
 .ed_textarea {
     height: 200px;
-    resize: vertical
-}
-
-.ed_textarea,
-.ed_form_table {
     width: 100%;
-    box-sizing: border-box
+    box-sizing: border-box;
+    resize: vertical;
 }
 
 .ed_form_table {
-    border-collapse: collapse
+    box-sizing: border-box;
+    border-collapse: collapse;
+    width: 100%;
 }
 
 .ed_form_table_hor .text {
     margin-right: 10px;
-    width: 300px
+    width: 300px;
 }
 
 .notify_pm_form {
-    padding: 35px 100px
+    padding: 35px 100px;
 }
 
 .notify_pm_form .text {
     box-sizing: border-box;
-    width: 100%
+    width: 100%;
 }
 
 .notify_pm_form_block {
-    margin: 0 0 15px
+    margin: 0 0 15px;
 }
 
 .notify_pm_form_block:last-child {
-    margin-bottom: 0
+    margin-bottom: 0;
 }
 
 .notify_pm_form_block .radiobtn {
-    margin-top: 4px
+    margin-top: 4px;
 }
 
 .notify_pm_form_block__label {
-    font-weight: 700;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin-bottom: 4px;
-    color: #42648b
+    color: #42648B;
 }
 
 .notify_pm_form_block__note {
     margin-top: 4px;
     color: #656565;
-    font-size: 12px
+    font-size: 12px;
 }

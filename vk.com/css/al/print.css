@@ -1,30 +1,30 @@
 #print_css {
-    display: none
+    display: none;
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 @font-face {
-    font-family: Myriad Pro;
+    font-family: "Myriad Pro";
     src: url(/images/fonts/myriadpro-regular.ttf) format("truetype");
-    font-weight: 400;
-    font-style: normal
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
-    font-family: Myriad Pro;
+    font-family: "Myriad Pro";
     src: url(/images/fonts/myriadpro-bold.ttf) format("truetype");
-    font-weight: 700;
-    font-style: normal
+    font-weight: bold;
+    font-style: normal;
 }
 
 .print_calc_el {
@@ -32,24 +32,24 @@
     visibility: none;
     top: -9999px;
     left: -9999px;
-    font-family: Myriad Pro
+    font-family: "Myriad Pro";
 }
 
 .wk_print_view .wk_wiki_content {
-    padding: 0
+    padding: 0;
 }
 
 .print_header {
     padding: 29px 30px 26px;
     line-height: 160%;
-    border-bottom: 1px solid #e7e8ec
+    border-bottom: 1px solid #e7e8ec;
 }
 
 .print_header .print_header_title {
     font-size: 24px;
-    font-weight: 400;
+    font-weight: normal;
     padding-bottom: 15px;
-    color: #222
+    color: #222;
 }
 
 .print_header .print_header_image {
@@ -59,108 +59,108 @@
     float: right;
     margin: 0;
     position: relative;
-    top: 1px
+    top: 1px;
 }
 
 .print_header .print_header_text {
     padding: 6px 230px 0 0;
-    line-height: 160%
+    line-height: 160%;
 }
 
 .print_content {
-    padding: 6px 30px 30px
+    padding: 6px 30px 30px;
 }
 
 .print_search_header {
-    color: #45688e;
+    color: #45688E;
     font-size: 13px;
-    font-weight: 700;
-    padding-bottom: 10px
+    font-weight: bold;
+    padding-bottom: 10px;
 }
 
 .print_search_header.offset_top {
-    margin-top: 20px
+    margin-top: 20px;
 }
 
 .print_dd_wrap {
-    width: 550px
+    width: 550px;
 }
 
 .wk_print_view .print_dd_wrap {
-    width: 412px
+    width: 412px;
 }
 
 #print_dd.disabled,
 #print_dd.disabled input[disabled] {
-    background: #fff
+    background: #fff;
 }
 
 table.print_table {
     width: 100%;
     table-layout: fixed;
-    background: #edeef0 url(/images/upload_1.5x.gif) no-repeat 50%
+    background: #edeef0 url(/images/upload_1.5x.gif) no-repeat 50%;
 }
 
 table.print_table.visible {
-    background: none!important
+    background: none !important;
 }
 
 table.print_table td.print_preview_td {
     padding: 30px 15px 26px;
     overflow: hidden;
     border-color: #edeef0;
-    border-style: dashed
+    border-style: dashed;
 }
 
 table.print_table.visible td.print_preview_td {
-    border-color: #d4d5d6
+    border-color: #d4d5d6;
 }
 
 table.print_table td.print_preview_vert {
     width: 40%;
     border-radius: 3px 0 0 3px;
-    border-width: 1px
+    border-width: 1px 1px 1px 1px;
 }
 
 table.print_table td.print_preview_horiz {
     width: 60%;
-    border-width: 0 1px 1px 0
+    border-width: 0 1px 1px 0;
 }
 
 table.print_table tr:first-child td.print_preview_horiz {
     border-radius: 0 3px 0 0;
-    border-width: 1px 1px 1px 0
+    border-width: 1px 1px 1px 0;
 }
 
 table.print_table tr:last-child td.print_preview_horiz {
-    border-radius: 0 0 3px 0
+    border-radius: 0 0 3px 0;
 }
 
 table.print_table.hidden {
-    visibility: hidden
+    visibility: hidden;
 }
 
 .print_table_wrap_rel {
     position: relative;
-    margin-top: 30px
+    margin-top: 30px;
 }
 
 .print_disabling_overlay {
     position: absolute;
     top: 0;
     z-index: 5;
-    background: #fff
+    background: #fff;
 }
 
 .print_loading_overlay {
     position: absolute;
     top: 0;
     z-index: 6;
-    background: #edeef0 url(/images/upload_1.5x.gif) no-repeat 50%
+    background: #edeef0 url(/images/upload_1.5x.gif) no-repeat 50%;
 }
 
 .print_loading_overlay.nospinner {
-    background-image: none!important
+    background-image: none !important;
 }
 
 .print_empty_overlay {
@@ -169,61 +169,61 @@ table.print_table.hidden {
     top: 0;
     z-index: 5;
     display: none;
-    opacity: 0
+    opacity: 0;
 }
 
 .print_empty_overlay .print_empty {
     padding: 0 25px;
     font-size: 13px;
-    color: gray;
+    color: #808080;
     line-height: 20px;
-    text-align: center
+    text-align: center;
 }
 
 .print_empty_overlay .print_empty_abs {
     position: absolute;
-    top: 50%
+    top: 50%;
 }
 
 .print_empty_overlay .print_empty .print_empty_for_admins {
     margin-top: 10px;
-    display: none
+    display: none;
 }
 
 .print_preview {
-    visibility: hidden
+    visibility: hidden;
 }
 
 table.print_table.visible .print_preview {
-    visibility: visible
+    visibility: visible;
 }
 
-.print_preview.qr,
-.print_preview.vk {
+.print_preview.vk,
+.print_preview.qr {
     width: 160px;
     height: 190px;
     margin: 0 auto;
-    position: relative
+    position: relative;
 }
 
-.print_preview.qr .print_preview_domain,
-.print_preview.vk .print_preview_domain {
+.print_preview.vk .print_preview_domain,
+.print_preview.qr .print_preview_domain {
     position: absolute;
     bottom: 0;
-    width: 160px
+    width: 160px;
 }
 
 .print_preview.vk {
-    background: url(/images/print_vk_preview.png?1) no-repeat
+    background: url(/images/print_vk_preview.png?1) no-repeat;
 }
 
 .print_preview.qr {
-    background: url(/images/print_qr_preview.png?4)
+    background: url(/images/print_qr_preview.png?4);
 }
 
 .print_preview.qr canvas {
     position: absolute;
-    bottom: 0
+    bottom: 0;
 }
 
 .print_preview.qr .print_qrcode {
@@ -232,13 +232,13 @@ table.print_table.visible .print_preview {
     position: absolute;
     top: 18px;
     left: 18px;
-    z-index: 5
+    z-index: 5;
 }
 
 .print_preview.logo canvas,
 .print_preview.simple_blue canvas,
 .print_preview.simple_white canvas {
-    float: left
+    float: left;
 }
 
 .print_preview.logo,
@@ -246,7 +246,7 @@ table.print_table.visible .print_preview {
 .print_preview.simple_white {
     display: inline-block;
     white-space: nowrap;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .print_preview.logo .print_preview_domain {
@@ -254,7 +254,7 @@ table.print_table.visible .print_preview {
     border-radius: 6px;
     padding: 0 10px;
     display: inline-block;
-    background-color: #4d75a3
+    background-color: #4d75a3;
 }
 
 .print_preview.logo .print_preview_logo_sq {
@@ -265,10 +265,10 @@ table.print_table.visible .print_preview {
     border-radius: 6px;
     background-color: #4d75a3;
     display: inline-block;
-    vertical-align: top
+    vertical-align: top;
 }
 
-.print_preview.logo .print_preview_logo_sq:before {
+.print_preview.logo .print_preview_logo_sq::before {
     display: block;
     content: '';
     position: absolute;
@@ -280,7 +280,7 @@ table.print_table.visible .print_preview {
     background: url(/images/svg_icons/logo.svg) no-repeat 50% 55%;
     background-size: contain;
     width: 28px;
-    height: 28px
+    height: 28px;
 }
 
 .print_preview.simple_blue .print_preview_domain,
@@ -288,12 +288,12 @@ table.print_table.visible .print_preview {
     display: inline-block;
     height: 32px;
     border-radius: 6px;
-    padding: 0 10px
+    padding: 0 10px;
 }
 
 .print_preview.simple_blue .print_preview_domain {
     background-color: #4d75a3;
-    color: #fff
+    color: #fff;
 }
 
 .print_preview.simple_white .print_preview_domain {
@@ -301,94 +301,94 @@ table.print_table.visible .print_preview {
     color: #4d75a3;
     height: 30px;
     line-height: 28px;
-    border: 1px #e5e5e5 solid
+    border: 1px #e5e5e5 solid;
 }
 
 .print_preview_old {
     display: none;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 .print_old .print_preview {
-    display: none
+    display: none;
 }
 
 .print_old .print_preview_old {
-    display: block
+    display: block;
 }
 
 .print_preview_old.qr {
     width: 160px;
     height: 190px;
-    background: url(/images/print_qr_preview_old.png?1)
+    background: url(/images/print_qr_preview_old.png?1);
 }
 
 .print_preview_old.logo {
     width: 178px;
     height: 40px;
-    background: url(/images/print_logo_preview_old.png?1)
+    background: url(/images/print_logo_preview_old.png?1);
 }
 
 .print_preview_old.simple_blue {
     width: 122px;
     height: 32px;
-    background: url(/images/print_simple_blue_preview_old.png?1)
+    background: url(/images/print_simple_blue_preview_old.png?1);
 }
 
 .print_preview_old.simple_white {
     width: 122px;
     height: 32px;
-    background: url(/images/print_simple_white_preview_old.png?1)
+    background: url(/images/print_simple_white_preview_old.png?1);
 }
 
 .print_old .print_loading_overlay {
-    display: none
+    display: none;
 }
 
 .print_preview_we {
-    margin-bottom: 2px
+    margin-bottom: 2px;
 }
 
 .print_links {
     text-align: center;
     margin-top: 10px;
     color: #656565;
-    visibility: hidden
+    visibility: hidden;
 }
 
 table.print_table.visible .print_links {
-    visibility: visible
+    visibility: visible;
 }
 
 .print_links .print_download_link {
     margin: 0 2px;
-    color: #42648b;
-    font-weight: 700;
+    color: #42648B;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .print_dl_all_wrap {
     padding-top: 30px;
-    text-align: center
+    text-align: center;
 }
 
 .print_dl_all_wrap_inner {
-    position: relative
+    position: relative;
 }
 
 .print_dl_button_wrap {
     opacity: 1;
-    visibility: visible
+    visibility: visible;
 }
 
-.print_dl_done_abs,
-.print_dl_progress_abs {
+.print_dl_progress_abs,
+.print_dl_done_abs {
     position: absolute;
     top: 0;
     width: 100%;
     opacity: 0;
-    visibility: hidden
+    visibility: hidden;
 }
 
 .print_dl_done_abs {
@@ -396,97 +396,97 @@ table.print_table.visible .print_links {
     text-align: center;
     display: none;
     color: #888;
-    font-size: 13px
+    font-size: 13px;
 }
 
 .print_dl_progress_wrap {
     margin: 0 auto;
-    padding-top: 6px
+    padding-top: 6px;
 }
 
 .print_dl_progress_text {
     margin-right: 6px;
     color: #777;
-    display: inline-block
+    display: inline-block;
 }
 
 .print_dl_progress {
     width: 200px;
     height: 14px;
-    background: #fff;
-    border: 1px solid #ccc;
+    background: #FFF;
+    border: 1px solid #CCC;
     display: inline-block;
-    margin-bottom: -4px
+    margin-bottom: -4px;
 }
 
 .print_dl_progress_fill {
     height: 14px;
-    background: #597da3 url(/images/progress_grad_flat.gif) repeat;
-    border: 1px solid #45688e;
+    background: #597DA3 url(/images/progress_grad_flat.gif) repeat;
+    border: 1px solid #45688E;
     margin: -1px;
-    width: 0%
+    width: 0%;
 }
 
 .print_preview canvas {
-    -webkit-font-smoothing: antialiased!important;
-    -moz-osx-font-smoothing: grayscale!important
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
 }
 
 .print_tt {
     max-width: 250px;
-    line-height: 140%
+    line-height: 140%;
 }
 
 .print_tt.print_wrap {
     width: 260px;
-    max-width: 260px
+    max-width: 260px;
 }
 
 .print_tt.print_wrap .tt_text {
     white-space: normal;
-    line-height: 15px
+    line-height: 15px;
 }
 
 .print_tt_normal {
-    font-weight: 400
+    font-weight: normal;
 }
 
 .print_recommendations_text {
     color: #000;
     font-size: 12px;
-    line-height: 160%
+    line-height: 160%;
 }
 
 .is_2x .print_header .print_header_image {
-    background: url(/images/print_intro_2x.png?2)!important;
-    background-size: 170px 170px!important
+    background: url(/images/print_intro_2x.png?2) !important;
+    background-size: 170px 170px !important;
 }
 
 .is_2x .print_preview.vk {
     background-image: url(/images/print_vk_preview_2x.png?1);
-    background-size: 160px 190px
+    background-size: 160px 190px;
 }
 
 .is_2x .print_preview.qr {
     background-image: url(/images/print_qr_preview_2x.png?4);
-    background-size: 160px 190px
+    background-size: 160px 190px;
 }
 
-.is_2x .print_loading_overlay,
-.is_2x table.print_table {
+.is_2x table.print_table,
+.is_2x .print_loading_overlay {
     background-image: url(/images/upload_3x.gif);
-    background-size: 48px 12px
+    background-size: 48px 12px;
 }
 
 .is_rtl1 .print_header .print_header_image {
-    float: left
+    float: left;
 }
 
 .print_domain_chooice_block {
     float: right;
-    display: none
+    display: none;
 }
 
 .print_domain_chooice_block .radiobtn_container table td.radiobtn {
-    padding-top: 2px
+    padding-top: 2px;
 }

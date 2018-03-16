@@ -1,40 +1,38 @@
 #pcaptcha_css {
-    display: none
+    display: none;
 }
 
 #pcpt_cont {
-    background: #f7f7f7;
-    padding: 20px
+    background: #F7F7F7;
+    padding: 20px;
 }
 
 #pcpt_wrap {
-    position: relative
-}
-
-#pcpt_wrap,
-.pcpt_cell,
-.pcpt_photo {
+    position: relative;
     width: 607px;
     height: 453px;
-    overflow: hidden
+    overflow: hidden;
 }
 
-.pcpt_cell,
-.pcpt_photo {
+.pcpt_photo,
+.pcpt_cell {
+    width: 607px;
+    height: 453px;
     vertical-align: middle;
     text-align: center;
-    cursor: pointer
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .pcpt_big_img {
     max-width: 604px;
     max-height: 453px;
-    vertical-align: middle
+    vertical-align: middle;
 }
 
 #pcpt_thumbs {
     margin-top: 20px;
-    margin-right: -5px
+    margin-right: -5px;
 }
 
 .pcpt_ph {
@@ -47,57 +45,57 @@
     margin-right: 1px;
     opacity: 0.5;
     -o-transition: opacity 100ms linear;
-    transition: opacity 100ms linear
+    transition: opacity 100ms linear;
 }
 
 .pcpt_ph:hover {
-    opacity: 0.75
+    opacity: 0.75;
 }
 
 .pcpt_sel,
 .pcpt_sel:hover {
-    opacity: 1
+    opacity: 1;
 }
 
 #pcpt_names {
-    margin: 5px -5px
+    margin: 5px -5px;
 }
 
 .pcpt_user {
     cursor: pointer;
     width: 103px;
     overflow: hidden;
-    margin: 5px;
+    margin: 5px 5px;
     padding: 5px;
-    color: #45688e;
+    color: #45688E;
     line-height: 160%;
     text-align: center;
-    font-weight: 700;
+    font-weight: bold;
     border-radius: 5px;
     -o-transition: all 100ms linear;
-    transition: all 100ms linear
+    transition: all 100ms linear;
 }
 
 .pcpt_user:hover {
-    background: #e1e7ed
+    background: #E1E7ED;
 }
 
 .pcpt_fn,
 .pcpt_ln {
-    font-size: 13px
+    font-size: 13px;
 }
 
 .pcpt_user_sel,
 .pcpt_user_sel:hover {
-    color: #fff;
-    background: #597ba5
+    color: #FFF;
+    background: #597BA5;
 }
 
 #pcpt_controls {
     padding-top: 10px;
-    text-align: center
+    text-align: center;
 }
 
 .pcpt_cancel {
-    margin: 0px 10px
+    margin: 0px 10px;
 }

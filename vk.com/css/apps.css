@@ -1,642 +1,642 @@
+.wrn,
 .err,
-.ntc,
-.wrn {
+.ntc {
     padding: 8px 11px;
     font-size: 11px;
     margin: 0 0 10px;
     line-height: 150%;
-    clear: both
+    clear: both;
 }
 
 .ntc {
-    background-color: #f6f7f9;
-    border: 1px solid #dbe0ea
+    background-color: #F6F7F9;
+    border: 1px solid #DBE0EA;
 }
 
 .wrn {
-    background-color: #f4ebbd;
-    border: 1px solid #d7cf9e
+    background-color: #F4EBBD;
+    border: 1px solid #D7CF9E;
 }
 
 .err {
-    background-color: #ffefe8;
-    border: 1px solid #e89b88
+    background-color: #FFEFE8;
+    border: 1px solid #E89B88;
 }
 
 .t_filter_area {
-    border-bottom: 1px solid #d8dfea;
+    border-bottom: 1px solid #D8DFEA;
     padding: 10px;
-    background-color: #f7f7f7;
-    _padding-bottom: 18px
+    background-color: #F7F7F7;
+    _padding-bottom: 18px;
 }
 
-:first-child+html .t_filter_area {
-    padding-bottom: 18px
+*:first-child+html .t_filter_area {
+    padding-bottom: 18px;
 }
 
 .t_filter_selected {
     float: left;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #FFFFFF;
     margin-right: 10px;
     margin-bottom: -1px;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .t_filter_selected .t_filter2 {
-    border: 1px solid #3b6798;
+    border: 1px solid #3B6798;
     border-top: 1px solid #395676;
-    border-bottom: 1px solid #4a73a0
+    border-bottom: 1px solid #4A73A0;
 }
 
 .t_filter_selected .t_filter3 {
-    border: 1px solid #5c82ab;
-    padding: 2px 5px 3px;
-    background-color: #6d8fb3;
-    color: #fff;
-    font-weight: 700
+    border: 1px solid #5C82AB;
+    padding: 2px 5px 3px 5px;
+    background-color: #6D8FB3;
+    color: #FFFFFF;
+    font-weight: bold;
 }
 
 .t_filter_off {
     cursor: pointer;
     padding: 4px 7px 5px;
-    color: #45688e;
-    font-weight: 700;
+    color: #45688E;
+    font-weight: bold;
     float: left;
     margin-right: 10px;
-    margin-bottom: -1px
+    margin-bottom: -1px;
 }
 
 #app_lookup {
-    width: 180px
+    width: 180px;
 }
 
 .app_subimage {
     height: 75px;
     width: 85px;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .app_icon {
     height: 16px;
     width: 20px;
     overflow: hidden;
-    padding: 2px
+    padding: 2px;
 }
 
 .appRow em {
-    background: #d8dfea;
-    color: #000;
+    background: #D8DFEA;
+    color: #000000;
     font-style: normal;
-    font-weight: 700;
-    text-decoration: inherit
+    font-weight: bold;
+    text-decoration: inherit;
 }
 
 h4,
 h5 {
-    color: #36638e;
+    color: #36638E;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: bold;
     text-align: left;
     padding: 0px 0px 2px;
-    margin: 10px auto 6px
+    margin: 10px auto 6px auto;
 }
 
 h4 {
-    margin: 5px 0px;
-    border-bottom: solid 1px #dae2e8
+    margin: 5px 0px 5px 0px;
+    border-bottom: solid 1px #DAE2E8;
 }
 
 h5 span {
-    color: #bbb
+    color: #bbb;
 }
 
 #content {
-    padding: 0px
+    padding: 0px;
 }
 
 #header #appNav {
-    color: #000
+    color: #000;
 }
 
-#error,
-.alertmsg,
 .msg,
-.notice {
-    margin: 0px 8px 12px
+.alertmsg,
+.notice,
+#error {
+    margin: 0px 8px 12px 8px;
 }
 
 #error {
-    font-size: 11px
+    font-size: 11px;
 }
 
 .notice {
-    background-color: #fff;
+    background-color: white;
     border: 1px solid #c0cbd5;
-    color: #000;
+    color: black;
     padding: 8px 11px;
-    line-height: 18px
+    line-height: 18px;
 }
 
 .summaryBar {
-    border-bottom: 1px solid #dae2e8;
+    border-bottom: 1px solid #DAE2E8;
     clear: both;
-    padding: 11px 10px 0;
-    color: #000;
-    font-weight: 400;
-    line-height: normal
+    padding: 11px 10px 0 10px;
+    color: black;
+    font-weight: normal;
+    line-height: normal;
 }
 
 .summaryBar .summary {
-    color: #45688e;
+    color: #45688E;
     float: left;
-    font-weight: 700;
+    font-weight: bold;
     padding-top: 3px;
-    padding-bottom: 4px
+    padding-bottom: 4px;
 }
 
 .summaryBar a {
-    font-weight: 400
+    font-weight: normal;
 }
 
 .searchResults {
     background: #f7f7f7;
-    padding: 10px 0px 5px
+    padding: 10px 0px 5px;
 }
 
 .tBar {
-    padding-top: 15px
+    padding-top: 15px;
 }
 
 .editBody {
-    background-color: #f7f7f7;
+    background-color: #F7F7F7;
     text-align: left;
     padding: 14px;
-    border-bottom: 0px solid #c0cad5
+    border-bottom: 0px solid #C0CAD5;
 }
 
 .editor {
-    margin-bottom: 10px
+    margin-bottom: 10px;
 }
 
 .editor td.label {
     padding-right: 15px;
     text-align: right;
-    width: 150px
+    width: 150px;
 }
 
 #editColRight .radiobtn_container table {
-    margin: 3px 0px 4px
+    margin: 3px 0px 4px 0px;
 }
 
 .appRow {
-    background-color: #fff;
-    border: 1px solid #dae2e8;
-    padding: 5px;
-    margin: 0px 10px 5px;
-    width: 595px
+    background-color: #FFF;
+    border: 1px solid #DAE2E8;
+    padding: 5px 5px 5px 5px;
+    margin: 0px 10px 5px 10px;
+    width: 595px;
 }
 
 .appRowFixed {
+    background-color: #FFF;
+    border: 1px solid #DAE2E8;
+    padding: 5px 0px 5px 5px;
     margin: 3px 7px 9px 10px;
     width: 440px;
-    overflow: hidden
-}
-
-.appRowFixed,
-.appBlock {
-    background-color: #fff;
-    border: 1px solid #dae2e8;
-    padding: 5px 0px 5px 5px
+    overflow: hidden;
 }
 
 .appBlock {
+    background-color: #FFF;
+    border: 1px solid #DAE2E8;
+    padding: 5px 0px 5px 5px;
     margin: 0px 0px 7px 7px;
     width: 213px;
     float: left;
-    display: inline
+    display: inline;
 }
 
 #appSponsored {
-    margin: 0px 0px 0px 3px
+    margin: 0px 0px 0px 3px;
 }
 
 #noApps {
     font-size: 12px;
     text-align: center;
-    margin: 20px 20px 28px;
+    margin: 20px 20px 28px 20px;
     padding: 50px 10px;
     color: gray;
     background: #fff;
-    border: solid 1px #ddd
+    border: solid 1px #ddd;
 }
 
 #appStats {
-    padding: 0px 15px 8px
+    padding: 0px 15px 8px 15px;
 }
 
 #apiFunctions {
     margin: 0px 10px;
-    padding: 0px 10px 40px
+    padding: 0px 10px 40px 10px;
 }
 
 #editFunction {
-    padding: 10px 20px 40px
+    padding: 10px 20px 40px 20px;
 }
 
 #deleteFunction {
-    padding: 12px 0px
+    padding: 12px 0px;
 }
 
 #app_container_outer {
     margin: 10px;
-    text-align: center
+    text-align: center;
 }
 
 #app_container_outer iframe {
     border: none;
-    overflow: hidden
+    overflow: hidden;
 }
 
 #flash_player_container {
     margin: auto;
     text-align: center;
-    width: 100%
+    width: 100%;
 }
 
 textarea.source {
     width: 350px;
     height: 170px;
     font-family: Courier New;
-    font-size: 11px
+    font-size: 11px;
 }
 
 .rightPane {
     width: 200px;
-    background: #fafafa;
-    border-left: 1px solid #dae1e8;
-    padding: 10px
-}
-
-.rightPane,
-.info {
-    vertical-align: top
+    background: #FAFAFA;
+    vertical-align: top;
+    border-left: 1px solid #DAE1E8;
+    padding: 10px;
 }
 
 .info {
+    vertical-align: top;
     width: 270px;
-    padding-left: 5px
+    padding-left: 5px;
 }
 
 .label {
     width: 90px;
     padding: 5px;
-    vertical-align: top
+    vertical-align: top;
 }
 
 .status {
     color: #000;
-    padding-bottom: 5px
+    padding-bottom: 5px;
 }
 
 .audience {
-    color: gray
+    color: #808080;
 }
 
 .infotable .dataWrap {
     width: 290px;
     overflow: hidden;
     font-size: 12px;
-    font-weight: 700
+    font-weight: bold;
 }
 
 .infotable .label {
-    color: #777
+    color: #777;
 }
 
 .appName {
-    padding: 3px 0px
+    padding: 3px 0px 3px 0px;
 }
 
 .appLink {
     font-size: 12px;
-    font-weight: 700;
-    line-height: 12px
+    font-weight: bold;
+    line-height: 12px;
 }
 
-.appImage,
-.setting_actions {
-    vertical-align: top
+.appImage {
+    vertical-align: top;
 }
 
 .setting_actions {
+    vertical-align: top;
     padding: 4px 5px;
-    width: 200px
+    width: 200px;
 }
 
 .actions {
     vertical-align: top;
-    padding: 0px 5px
+    padding: 0px 5px;
 }
 
 .actions .dld {
     padding: 8px;
     margin: 8px 4px;
     text-align: center;
-    font-weight: 400
+    font-weight: normal;
 }
 
 .divider {
     color: #777;
-    font-weight: 400;
-    padding: 0px 5px
+    font-weight: normal;
+    padding: 0px 5px;
 }
 
-#addApp,
+#addApp {
+    padding-top: 10px;
+    margin: 0px 10px 15px 10px;
+}
+
 #editApp {
     padding-top: 10px;
-    margin: 0px 10px 15px
+    margin: 0px 10px 15px 10px;
 }
 
 table.app_files {
     width: 100%;
     margin-top: 4px;
-    *margin-top: 8px
+    *margin-top: 8px;
 }
 
 table.app_files th {
-    border-bottom: 1px solid #d8dadb;
-    background: #eef0f1
+    border-bottom: 1px solid #D8DADB;
+    background: #EEF0F1;
 }
 
-table.app_files td,
-table.app_files th {
-    padding: 3px 4px
+table.app_files th,
+table.app_files td {
+    padding: 3px 4px;
 }
 
 blockquote.swf_url {
-    background-color: #f5f7f8;
-    border-bottom: 1px solid #ebeff2;
-    border-left: 6px solid #c9d8df;
+    background-color: #F5F7F8;
+    border-bottom: 1px solid #EBEFF2;
+    border-left: 6px solid #C9D8DF;
     margin: 10px 0 0;
-    padding: 8px
+    padding: 8px;
 }
 
 div.scrollList {
     color: #777;
     margin: 0px 0px 10px 10px;
-    height: 15px
+    height: 15px;
 }
 
 div.scrollList a {
-    border: 1px solid #fff;
+    border: 1px solid white;
     padding: 2px 5px;
-    font-size: 10px
+    font-size: 10px;
 }
 
 div.scrollList a:hover {
-    background: #ebeff2;
-    border-color: #dae2e8;
-    border: 1px solid #ebeff2;
+    background: #EBEFF2;
+    border-color: #DAE2E8;
+    border: 1px solid #EBEFF2;
     padding: 2px 5px;
     font-size: 10px;
-    text-decoration: none
+    text-decoration: none;
 }
 
 div.scrollList a.current,
 div.scrollList a:hover.current {
-    background-color: #dae1e8;
-    color: #45668e;
-    font-weight: 700;
-    border: 1px solid #dae1e8;
-    font-weight: 400
+    background-color: #DAE1E8;
+    color: #45668E;
+    font-weight: bold;
+    border: 1px solid #DAE1E8;
+    font-weight: normal;
 }
 
 #progrWrapTop {
     float: left;
-    margin-left: 5px
+    margin-left: 5px;
+    vertical-align: bottom;
 }
 
-#progrWrapTop,
 #progrWrap {
-    vertical-align: bottom
+    vertical-align: bottom;
 }
 
 #progr,
-#progrMid,
-#progrTop {
-    display: none
+#progrTop,
+#progrMid {
+    display: none;
 }
 
 #progrTop {
-    margin-top: 3px
+    margin-top: 3px;
 }
 
 .actions a small {
-    color: #45668e
+    color: #45668E;
 }
 
 .actions a:hover {
-    text-decoration: underline
+    text-decoration: underline;
 }
 
 #appch {
-    padding: 5px 0px 5px 10px
+    padding: 5px 0px 5px 10px;
 }
 
 #appCommHead {
-    color: #36638e;
+    color: #36638E;
     font-size: 11px;
-    margin: 0px 0px 5px;
-    font-weight: 700;
+    margin: 0px 0px 5px 0px;
+    font-weight: bold;
     text-align: left;
-    border: none
+    border: none;
 }
 
 .newcomm {
     padding: 0px;
     margin: 0px;
     float: left;
-    margin-bottom: 15px
+    margin-bottom: 15px;
 }
 
 .newcomm td {
     padding: 0px;
-    vertical-align: top
+    vertical-align: top;
 }
 
 .newcomm td.image {
     width: 55px;
     text-align: left;
     height: 70px;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .newcomm td.image img {
     width: 50px;
-    margin-right: 5px
+    margin-right: 5px;
 }
 
 .newcomm .info {
-    width: 100%
+    width: 100%;
 }
 
 .newcomm .info .header {
     line-height: 13px;
-    padding: 3px 5px;
+    padding: 3px 5px 3px;
     background: #f7f7f7;
-    border-bottom: solid 1px #dae2e8
+    border-bottom: solid 1px #DAE2E8;
 }
 
 .text {
-    padding: 10px 5px 5px 10px
+    padding: 10px 5px 5px 10px;
 }
 
 .options {
     width: 90px;
-    text-align: right
+    text-align: right;
 }
 
 .photo img {
     width: 75px;
-    margin-left: 5px
+    margin-left: 5px;
 }
 
 .commnav {
     list-style: none;
-    margin: 0 0 1.0em;
-    padding: 0
+    margin: 0 0 1.0em 0;
+    padding: 0;
 }
 
 .commnav li {
-    font-size: 1.0em
+    font-size: 1.0em;
 }
 
 .commnav li a {
     border: 0;
-    border-bottom: 1px solid #cad1d9;
+    border-bottom: 1px solid #CAD1D9;
     background: #eee;
-    background: #fff;
+    background: white;
     display: block;
-    padding: 4px 10px 4px 6px
+    padding: 4px 10px 4px 6px;
 }
 
 .commnav li a:hover {
-    border-bottom: 1px solid #cad1d9;
-    background: #dae1e8;
-    color: #36638e;
-    text-decoration: none
+    border-bottom: 1px solid #CAD1D9;
+    background: #DAE1E8;
+    color: #36638E;
+    text-decoration: none;
 }
 
 .addcomment {
     margin: 0px;
     padding: 10px 10px 10px 80px;
-    border-top: 1px solid #dae1e8
+    border-top: 1px solid #DAE1E8;
 }
 
 #bottomlinks {
     margin: 0px 15px 15px 0px;
-    text-align: right
+    text-align: right;
 }
 
 #apiHelp {
     line-height: 150%;
     padding: 10px;
-    margin: 5px 10px 10px;
-    background-color: #fff;
-    border: 1px solid #dae2e8
+    margin: 5px 10px 10px 10px;
+    background-color: #FFF;
+    border: 1px solid #DAE2E8;
 }
 
 #apiHelp h4 {
-    font-weight: 700;
-    color: #3c6287
+    font-weight: bold;
+    margin: 0px 0px 10px 0px;
+    color: #3C6287;
 }
 
-#apiHelp h4,
 #apiHelp p {
-    margin: 0px 0px 10px
+    margin: 0px 0px 10px 0px;
 }
 
 .apiSample {
     padding: 3px;
-    margin: 0px 0px 5px 20px
+    margin: 0px 0px 5px 20px;
 }
 
 .apiCode {
     padding: 10px;
-    border-left: 9px solid #c9d8df;
-    border-bottom: 2px solid #ebeff2;
-    background-color: #f5f7f8;
-    margin: 15px 0px
+    border-left: 9px solid #C9D8DF;
+    border-bottom: 2px solid #EBEFF2;
+    background-color: #F5F7F8;
+    margin: 15px 0px 15px 0px;
 }
 
 pre.fortSource {
     padding: 8px;
     margin: 0px;
-    border: 2px solid #ebeff2;
-    background-color: #fff
+    border: 2px solid #EBEFF2;
+    background-color: #FFFFFF;
 }
 
 .apiBox {
     padding: 10px;
     text-align: center;
-    background-color: #ebeff2
+    background-color: #EBEFF2;
 }
 
 .apiTable {
-    margin: 20px 0px 0px
+    margin: 20px 0px 0px 0px;
 }
 
 .apiTable th {
     vertical-align: top;
     padding: 10px;
-    font-weight: 400;
-    border-bottom: 1px solid #c9d8df;
-    background-color: #ebeff2
+    font-weight: normal;
+    border-bottom: 1px solid #C9D8DF;
+    background-color: #EBEFF2;
 }
 
 .apiTable tr {
-    background-color: #f5f7f8
+    background-color: #F5F7F8;
 }
 
 .apiTable td {
     vertical-align: top;
     padding: 10px;
-    border-bottom: 1px solid #dbe3e7;
-    border-top: 1px solid #fbfcfd
+    border-bottom: 1px solid #DBE3E7;
+    border-top: 1px solid #FBFCFD;
 }
 
 .statsTable {
-    margin: 20px 0px 10px
+    margin: 20px 0px 10px 0px;
 }
 
 .statsTable th {
     vertical-align: top;
     padding: 10px;
-    font-weight: 400;
-    border-bottom: 1px solid #c9d8df;
-    background-color: #ebeff2
+    font-weight: normal;
+    border-bottom: 1px solid #C9D8DF;
+    background-color: #EBEFF2;
 }
 
 .statsTable td {
     vertical-align: top;
-    padding: 10px 10px 0px
+    padding: 10px 10px 0px 10px;
 }
 
 .coinsPos {
-    scolor: #060;
-    sfont-weight: bold
+    scolor: #006600;
+    sfont-weight: bold;
 }
 
 .coinsNeg {
-    color: #900;
-    sfont-weight: bold
+    color: #990000;
+    sfont-weight: bold;
 }
 
 .timeLabel {
     float: left;
     display: inline;
     margin-top: 8px;
-    margin-bottom: 6px
+    margin-bottom: 6px;
 }
 
 .lArrow,
@@ -647,33 +647,33 @@ pre.fortSource {
     *margin-bottom: 3px;
     font-size: 14px;
     display: inline;
-    float: right
+    float: right;
 }
 
 .lArrow a,
 .rArrow a {
-    border: 1px solid #dae2e8;
-    border-width: 1px;
+    border: 1px solid #DAE2E8;
+    border-width: 1px 1px 1px 1px;
     background-color: #fff;
-    padding: 0px 5px 3px;
-    *line-height: 25px
+    padding: 0px 5px 3px 5px;
+    *line-height: 25px;
 }
 
 .lArrow a:hover,
 .rArrow a:hover {
     text-decoration: none;
-    border: 1px solid #45688e
+    border: 1px solid #45688E;
 }
 
-#adminFilter,
-#userFilter {
+#userFilter,
+#adminFilter {
     margin: 0px 40px 5px 0px;
-    width: 100px
+    width: 100px;
 }
 
 #paymentsTable {
     width: 519px;
-    margin: 0px 0px 6px 40px
+    margin: 0px 0px 6px 40px;
 }
 
 .noResults {
@@ -682,43 +682,47 @@ pre.fortSource {
     margin: 0px 0px 6px 40px;
     padding: 30px 0px;
     text-align: center;
-    border: 1px solid #dae2e8;
+    border: 1px solid #DAE2E8;
     color: #777;
     font-size: 13px;
-    line-height: 150%
+    line-height: 150%;
 }
 
 .commentsPages {
     list-style-type: none;
     padding-left: 0px;
-    height: 20px
+    height: 20px;
 }
 
 ul.commentsPages li {
     float: left;
     margin-right: 1px;
-    padding: 2px 6px
+    padding: 2px 6px;
 }
 
 ul.commentsPages li.current {
-    border: 1px solid #dae1e8;
-    background-color: #fff
+    border: 1px solid #DAE1E8;
+    background-color: #fff;
+}
+
+ul.commentsPages li.current {
+    border: 1px solid #DAE1E8;
 }
 
 #allcomments {
-    background-color: #fff
+    background-color: #fff;
 }
 
 #commentsBody {
     clear: both;
-    overflow: hidden
+    overflow: hidden;
 }
 
 div.comment {
     margin: 0;
     clear: right;
     position: relative;
-    background-color: #fff
+    background-color: #fff;
 }
 
 .comment a.userpic {
@@ -726,75 +730,75 @@ div.comment {
     display: block;
     width: 50px;
     height: 50px;
-    margin: 0px 5px 5px 0px
+    margin: 0px 5px 5px 0px;
 }
 
 .comment a.userpic img {
-    border: 0px
+    border: 0px;
 }
 
 .comment .appbody {
     width: 500px;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .comment .appbody .justComment {
     width: 445px;
-    margin-left: 55px
+    margin-left: 55px;
 }
 
 .comment .header {
-    background-color: #f7f7f7;
-    border-top: 1px solid #45688e;
-    border-bottom: 1px solid #dae2e8;
-    padding: 3px 5px
+    background-color: #F7F7F7;
+    border-top: 1px solid #45688E;
+    border-bottom: 1px solid #DAE2E8;
+    padding: 3px 5px;
 }
 
 .comment .header a {
-    font-weight: 700
+    font-weight: bold;
 }
 
 .comment .text {
     padding: 5px;
-    line-height: 14px
+    line-height: 14px;
 }
 
 .comment .photo {
     float: left;
-    margin-left: 5px
+    margin-left: 5px;
 }
 
 .comment .photo img {
-    width: 75px
+    width: 75px;
 }
 
 .comment .actions {
     width: auto;
-    border-bottom: 1px solid #dae2e8;
+    border-bottom: 1px solid #DAE2E8;
     padding: 2px 5px;
-    font-size: 10px
+    font-size: 10px;
 }
 
 .comment .actions span {
-    color: #adb8c3;
-    padding: 0px 4px 0px 3px
+    color: #ADB8C3;
+    padding: 0px 4px 0px 3px;
 }
 
 .comment .actions img {
     float: right;
     display: none;
     position: relative;
-    top: 3px
+    top: 3px;
 }
 
 .comment .msg {
-    margin: 0px 0px 10px;
-    padding: 10px 11px 9px
+    margin: 0px 0px 10px 0px;
+    padding: 10px 11px 9px;
 }
 
 .comment textarea {
     outline-style: none;
-    outline-width: 0
+    outline-width: 0;
 }
 
 .separator {
@@ -802,63 +806,63 @@ div.comment {
     height: 15px;
     background-color: #fff;
     position: relative;
-    z-index: 1
+    z-index: 1;
 }
 
 .commentResult div.dld {
     padding: 9px 12px 10px 10px;
     margin: 0px;
     position: relative;
-    font-weight: 400
+    font-weight: normal;
 }
 
 .notTable {
     border-collapse: collapse;
-    margin: 3px 0px 3px 10px
+    margin: 3px 0px 3px 10px;
 }
 
 .notTable td {
-    line-height: 120%
+    line-height: 120%;
 }
 
 .notDiv {
-    abackground-color: #fff;
-    aborder-bottom: 1px solid #fff
+    abackground-color: #FFF;
+    aborder-bottom: 1px solid #FFF;
 }
 
 .notDivOn {
-    abackground-color: #f0f0f0;
-    aborder-bottom: 1px solid #dae2e8
+    abackground-color: #F0F0F0;
+    aborder-bottom: 1px solid #DAE2E8;
 }
 
-.iconV,
-.iconVover,
 .iconX,
-.iconXover {
+.iconXover,
+.iconV,
+.iconVover {
     height: 21px;
     width: 21px;
     cursor: pointer;
-    background: transparent url(/images/icons/x_icon5.gif) no-repeat 0px -21px
+    background: transparent url(/images/icons/x_icon5.gif) no-repeat 0px -21px;
 }
 
 .iconXover {
-    background: transparent url(/images/icons/x_icon5.gif) no-repeat 0px 0px
+    background: transparent url(/images/icons/x_icon5.gif) no-repeat 0px 0px;
 }
 
 .notDay {
-    background: #f7f7f7 none repeat scroll 0 0;
-    aborder-bottom: 1px solid #d8dfea;
-    border-bottom: 1px solid #d8dfea;
-    color: #777;
+    background: #F7F7F7 none repeat scroll 0 0;
+    aborder-bottom: 1px solid #D8DFEA;
+    border-bottom: 1px solid #D8DFEA;
+    color: #777777;
     font-size: 10px;
-    font-weight: 700;
+    font-weight: bold;
     padding: 4px 4px 4px 12px;
-    text-align: left
+    text-align: left;
 }
 
 .wrapMsg {
-    background-color: #f7f7f7;
-    padding: 10px
+    background-color: #F7F7F7;
+    padding: 10px;
 }
 
 #tooltip {
@@ -867,14 +871,14 @@ div.comment {
     padding: 0px;
     z-index: 3000;
     position: absolute;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .tooltip_top {
-    background-color: #fff;
-    color: #2c587d;
-    border: 1px solid #96aabe;
-    padding: 2px 5px 3px
+    background-color: #FFF;
+    color: #2C587D;
+    border: 1px solid #96AABE;
+    padding: 2px 5px 3px 5px;
 }
 
 .tooltip_bottom {
@@ -884,95 +888,95 @@ div.comment {
     overflow: hidden;
     margin-top: -1px;
     *padding-top: 4px;
-    background: transparent url(/images/pics/tooltip_c7.gif) no-repeat 7px 0px
+    background: transparent url(/images/pics/tooltip_c7.gif) no-repeat 7px 0px;
 }
 
 .tooltip_line1 {
     z-index: 400;
-    opacity: 0.12;
-    filter: alpha(opacity=12)
-}
-
-.tooltip_line1,
-.tooltip_line2 {
     overflow: hidden;
     background: #000;
     height: 1px;
-    margin-top: 0px
+    margin-top: 0px;
+    opacity: 0.12;
+    filter: alpha(opacity=12);
 }
 
 .tooltip_line2 {
     z-index: 401;
+    overflow: hidden;
+    background: #000;
+    height: 1px;
+    margin-top: 0px;
     opacity: 0.05;
-    filter: alpha(opacity=5)
+    filter: alpha(opacity=5);
 }
 
 .appNav {
     list-style: none;
-    margin: 0 0 1.0em;
-    padding: 0
+    margin: 0 0 1.0em 0;
+    padding: 0;
 }
 
 .appNav li {
-    border-bottom: 1px solid #fff;
-    font-size: 1.0em
+    border-bottom: 1px solid #FFF;
+    font-size: 1.0em;
 }
 
 .appNav li a {
     border: 0;
     border-top: 1px solid #fff;
     background: #eee;
-    background: #fff;
+    background: white;
     display: block;
-    padding: 3px 3px 3px 6px
+    padding: 3px 3px 3px 6px;
 }
 
 .appNav li a:hover {
-    background: #dae1e8;
-    color: #36638e;
-    border-top: 1px solid #cad1d9;
-    text-decoration: none
+    background: #DAE1E8;
+    color: #36638E;
+    border-top: 1px solid #CAD1D9;
+    text-decoration: none;
 }
 
 .appNav {
-    vertical-align: top
+    vertical-align: top;
 }
 
 .appNav li {
-    white-space: nowrap
+    white-space: nowrap;
 }
 
 .appSettings .dd_menu_header div {
-    font-weight: 700
+    font-weight: bold;
 }
 
 #dropDownSettings {
-    outline: none
+    outline: none;
 }
 
 .appSettingsItem {
     padding: 4px 0px 4px 20px;
-    line-height: 140%
+    line-height: 140%;
 }
 
 .appAllow {
     height: 30px;
-    padding-top: 5px
+    padding-top: 5px;
 }
 
 .installDialog {
-    border: 1px solid #adbbca;
+    border: 1px solid #ADBBCA;
     margin: 0px auto;
     width: 540px;
-    background: #fff;
-    padding: 10px 18px
+    background: #FFFFFF;
+    padding: 10px 18px 10px 18px;
 }
 
 .installDialogShadow {
     width: 538px;
-    padding: 0px 18px;
-    border-top: 1px solid #ddd;
-    margin: 0px auto
+    padding: 0px 18px 0px 18px;
+    border-top: 1px solid #DDDDDD;
+    margin: 0px auto;
 }
 
 .appInfoBlock {
@@ -980,100 +984,103 @@ div.comment {
     text-align: center;
     padding-top: 15px;
     padding-bottom: 15px;
-    color: #666
+    color: #666666;
 }
 
 .installDialog .bottomPanel {
     clear: both;
-    border-top: 1px solid #dae2e8;
+    border-top: 1px solid #DAE2E8;
     padding-top: 14px;
     padding-bottom: 5px;
-    height: 30px
+    height: 30px;
 }
 
 .installDialog .accessBlock {
     width: 415px;
     padding-top: 14px;
-    padding-bottom: 2px
+    padding-bottom: 2px;
 }
 
 .installDialog .bottomButtons {
     width: 250px;
     position: absolute;
-    margin-left: 295px
+    margin-left: 295px;
 }
 
 .installDialog .bottomButtons div {
-    margin: 2px 5px
+    margin: 2px 5px;
 }
 
 .installDialog .extSetting {
     width: 340px;
     padding-top: 2px;
-    float: left
+    float: left;
 }
 
 .accessProperty {
     margin-top: 10px;
     margin-bottom: 10px;
     padding-left: 64px;
-    color: #666;
+    color: #666666;
     background-position: 0px 2px;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 .accessProperty b {
     display: block;
     padding-bottom: 2px;
-    color: #36638e
+    color: #36638E;
 }
 
 .accessBlock .access_profile {
-    background-image: url("/images/pics/access_profile.png")
+    background-image: url("/images/pics/access_profile.png");
 }
 
 .accessBlock .access_media {
-    background-image: url("/images/pics/access_media.png")
+    background-image: url("/images/pics/access_media.png");
 }
 
 .accessBlock .access_activity {
-    background-image: url("/images/pics/access_activity.png")
+    background-image: url("/images/pics/access_activity.png");
 }
 
 .accessBlock .access_wall {
-    background-image: url("/images/pics/access_wall.png")
+    background-image: url("/images/pics/access_wall.png");
 }
 
 .accessProperty .min-height {
     height: 50px;
-    width: 1px
+    width: 1px;
 }
 
-.settings_info.no_settings,
+.settings_info.no_settings {
+    display: none;
+}
+
 .accessBlock.no_settings {
-    display: none
+    display: none;
 }
 
 .appInfoBlock.no_settings {
-    width: 100%
+    width: 100%;
 }
 
 #install_app_form {
-    position: absolute
+    position: absolute;
 }
 
 #button_install_flash {
     text-align: center;
-    margin: 20px auto 0px
+    margin: 20px auto 0px;
 }
 
 #button_install_flash input {
     font-size: 12px;
     background-position: 0px -13px;
     padding: 6px 18px;
-    *padding-bottom: 5px
+    *padding-bottom: 5px;
 }
 
 #button_install_flash input:hover {
-    background-position: 0px -5px
+    background-position: 0px -5px;
 }

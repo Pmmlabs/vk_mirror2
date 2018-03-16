@@ -1,49 +1,49 @@
 #docs_css {
-    display: none
+    display: none;
 }
 
-.docs_action_icon,
-.docs_action_icon.docs_item_progress,
-.docs_choose_dropbox,
-.docs_choose_upload_area_label,
 .docs_item_icon,
 .docs_item_play,
+.docs_action_icon,
+.docs_action_icon.docs_item_progress,
+.docs_choose_upload_area_label,
+.docs_choose_dropbox,
 .docs_office_365_notice,
 .eltt.feature_intro_tt.docs_office_365_tt {
-    -ms-high-contrast-adjust: none
+    -ms-high-contrast-adjust: none;
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 .docs_wrap {
-    padding: 0 20px
+    padding: 0 20px;
 }
 
 .docs_title {
-    display: inline-block
+    display: inline-block;
 }
 
 .docs_add_box {
-    padding: 2px 25px
+    padding: 2px 25px;
 }
 
 .docs_add_box .error {
     display: none;
-    margin: 18px 0 -3px
+    margin: 18px 0 -3px;
 }
 
 .docs_type_info {
     display: none;
-    margin: 0 0 15px
+    margin: 0 0 15px;
 }
 
 .docs_add_restrictions {
@@ -51,49 +51,49 @@
     padding-left: 15px;
     line-height: 20px;
     margin: -6px 0 0;
-    font-size: 12.5px
+    font-size: 12.5px;
 }
 
 .docs_add_upload_btn {
     margin: 13px 0 23px;
-    text-align: center
+    text-align: center;
 }
 
 .docs_save_box {
-    padding: 20px 25px
+    padding: 20px 25px;
 }
 
 .docs_edit_text {
-    width: 100%
+    width: 100%;
 }
 
 .docs_edit_options {
-    padding-top: 12px
+    padding-top: 12px;
 }
 
 .docs_edit_options .radiobtn {
-    margin: 8px 0
+    margin: 8px 0;
 }
 
 .docs_tags_desc {
     color: #656565;
-    padding-top: 10px
+    padding-top: 10px;
 }
 
 .docs_options_info {
-    color: #939393
+    color: #939393;
 }
 
 .docs_item {
     display: block;
     padding: 15px 0;
     border-top: 1px solid #e7e8ec;
-    overflow: hidden
+    overflow: hidden;
 }
 
-.docs_item.docs_item_deleted .docs_item_cont,
 .docs_item.docs_item_deleted .docs_item_icon,
-.docs_item.docs_item_deleted .docs_item_thumb {
+.docs_item.docs_item_deleted .docs_item_thumb,
+.docs_item.docs_item_deleted .docs_item_cont {
     pointer-events: none;
     -ms-user-select: none;
     user-select: none;
@@ -102,44 +102,52 @@
     -khtml-user-select: none;
     -webkit-user-select: none;
     opacity: 0.5;
-    filter: alpha(opacity=50)
+    filter: alpha(opacity=50);
 }
 
 .docs_item.docs_item_deleted .docs_item_restore {
     display: block;
-    margin-top: 9px
+    margin-top: 9px;
 }
 
-.docs_item.docs_item_deleted .docs_action_icon,
+.docs_item.docs_item_deleted .docs_action_icon {
+    display: none;
+}
+
 .docs_item.docs_item_loading .docs_action_icon,
 .docs_item.docs_item_loading .docs_item_restore {
-    display: none
+    display: none;
 }
 
 .docs_item.docs_item_loading .docs_action_icon.docs_item_progress,
 .docs_item.docs_item_loading .docs_item_restore.docs_item_progress {
-    display: block
+    display: block;
 }
 
 .docs_item:hover {
-    text-decoration: none
+    text-decoration: none;
 }
 
 .docs_item:hover .docs_action_icon {
     opacity: 0.75;
-    filter: alpha(opacity=75)
+    filter: alpha(opacity=75);
 }
 
-.docs_item:hover .docs_action_icon:hover,
-.docs_item:hover .docs_choose_attach,
-.docs_item:hover .docs_item_thumb[ext=gif] .docs_item_play {
+.docs_item:hover .docs_action_icon:hover {
     opacity: 1;
     -webkit-filter: none;
-    filter: none
+    filter: none;
+}
+
+.docs_item:hover .docs_item_thumb[ext="gif"] .docs_item_play,
+.docs_item:hover .docs_choose_attach {
+    opacity: 1;
+    -webkit-filter: none;
+    filter: none;
 }
 
 .docs_item:first-child {
-    border-top: none
+    border-top: none;
 }
 
 .docs_item_icon {
@@ -153,7 +161,7 @@
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -161,46 +169,46 @@
 (min-resolution: 192dpi) {
     .docs_item_icon {
         background-image: url(/images/icons/doc_icons_2x.png);
-        background-size: 30px 210px
+        background-size: 30px 210px;
     }
 }
 
 .docs_item_icon:hover {
-    text-decoration: none
+    text-decoration: none;
 }
 
 .docs_item_icon.docs_icon_type1 {
-    background-position: left 0px
+    background-position: left 0px;
 }
 
 .docs_item_icon.docs_icon_type2 {
-    background-position: left -30px
+    background-position: left -30px;
 }
 
 .docs_item_icon.docs_icon_type4 {
-    background-position: left -60px
+    background-position: left -60px;
 }
 
 .docs_item_icon.docs_icon_type5 {
-    background-position: left -90px
+    background-position: left -90px;
 }
 
 .docs_item_icon.docs_icon_type6 {
-    background-position: left -120px
+    background-position: left -120px;
 }
 
 .docs_item_icon.docs_icon_type7 {
-    background-position: left -150px
+    background-position: left -150px;
 }
 
 .docs_item_icon.docs_icon_type8 {
-    background-position: left -180px
+    background-position: left -180px;
 }
 
 .docs_item_thumb_wrap {
     text-align: center;
     width: 200px;
-    margin-left: -83px
+    margin-left: -83px;
 }
 
 .docs_item_thumb {
@@ -210,13 +218,13 @@
     width: 34px;
     height: 34px;
     border-radius: 2px;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .docs_item_thumb_img {
     max-height: 34px;
     *height: 34px;
-    border-radius: 2px
+    border-radius: 2px;
 }
 
 .docs_item_play {
@@ -226,14 +234,14 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: #000;
-    background: rgba(0, 0, 0, .5) url(/images/icons/play_gif.png) 9px 7px no-repeat;
+    background: #000000;
+    background: rgba(0, 0, 0, 0.5) url(/images/icons/play_gif.png) 9px 7px no-repeat;
     margin: auto;
     width: 24px;
     height: 24px;
     border-radius: 50%;
     -o-transition: background-color 100ms linear, opacity 60ms ease;
-    transition: background-color 100ms linear, opacity 60ms ease
+    transition: background-color 100ms linear, opacity 60ms ease;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -241,12 +249,12 @@
 (min-resolution: 192dpi) {
     .docs_item_play {
         background-image: url(/images/icons/play_gif_2x.png);
-        background-size: 8px 10px
+        background-size: 8px 10px;
     }
 }
 
 .docs_item_play:hover {
-    background-color: rgba(0, 0, 0, .6)
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .docs_item_cont {
@@ -254,7 +262,7 @@
     font-size: 12.5px;
     line-height: 17px;
     overflow: hidden;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
 }
 
 .docs_item_cont .claim_hint {
@@ -263,29 +271,29 @@
     margin-right: 5px;
     vertical-align: middle;
     pointer-events: visiblePainted;
-    white-space: normal
+    white-space: normal;
 }
 
 .docs_item_cont .claim_hint svg {
     vertical-align: top;
     width: 15px;
-    height: 15px
+    height: 15px;
 }
 
 a.docs_item_name {
-    font-weight: 700;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #42648b;
-    white-space: nowrap
+    color: #42648B;
+    white-space: nowrap;
 }
 
 .docs_item_additional_info {
-    color: #939393
+    color: #939393;
 }
 
 .docs_item_actions {
-    float: right
+    float: right;
 }
 
 .docs_action_icon {
@@ -297,7 +305,7 @@ a.docs_item_name {
     opacity: 0;
     filter: alpha(opacity=0);
     cursor: pointer;
-    outline: none
+    outline: none;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -305,15 +313,15 @@ a.docs_item_name {
 (min-resolution: 192dpi) {
     .docs_action_icon {
         background-image: url(/images/icons/common_2x.png?6);
-        background-size: 32px 232px
+        background-size: 32px 232px;
     }
 }
 
 .docs_action_icon.docs_item_progress {
     background: url(/images/c_upload.gif) no-repeat 0 0;
-    opacity: 1!important;
-    -webkit-filter: none!important;
-    filter: none!important
+    opacity: 1 !important;
+    -webkit-filter: none !important;
+    filter: none !important;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -321,75 +329,75 @@ a.docs_item_name {
 (min-resolution: 192dpi) {
     .docs_action_icon.docs_item_progress {
         background-image: url(/images/c_upload_2x.gif);
-        background-size: 16px 16px
+        background-size: 16px 16px;
     }
 }
 
 .docs_delete_row {
-    background-position: 3px -27px
+    background-position: 3px -27px;
 }
 
 .docs_add_row {
     background-position: 2px 2px;
     -o-transition: background-position 200ms ease;
-    transition: background-position 200ms ease
+    transition: background-position 200ms ease;
 }
 
 .doc_added .docs_add_row {
-    background-position: 2px -13px
+    background-position: 2px -13px;
 }
 
-.docs_item_progress,
-.docs_item_restore {
-    display: none
+.docs_item_restore,
+.docs_item_progress {
+    display: none;
 }
 
 .docs_item_tags,
 .docs_links {
-    color: #2a5885
+    color: #2A5885;
 }
 
 .docs_more {
     margin-bottom: 15px;
-    display: inline-block
+    display: inline-block;
 }
 
 .docs_more.unshown {
-    display: none
+    display: none;
 }
 
-.docs_item_selected .docs_item_cont,
+.docs_item_selected .docs_item_thumb,
 .docs_item_selected .docs_item_icon,
-.docs_item_selected .docs_item_thumb {
+.docs_item_selected .docs_item_cont {
     opacity: 0.5;
-    filter: alpha(opacity=50)
+    filter: alpha(opacity=50);
 }
 
 .docs_tt {
     padding: 5px;
-    min-width: 25px
+    min-width: 25px;
 }
 
 .docs_tt_image {
     max-width: 300px;
-    max-height: 350px
+    max-height: 350px;
 }
 
 .docs_choose_rows {
-    padding: 0 25px
+    padding: 0 25px;
 }
 
 .docs_choose_rows .docs_item {
     cursor: pointer;
     border-bottom: 1px solid #e7e8ec;
-    margin-bottom: -1px
+    margin-bottom: -1px;
 }
 
 .docs_choose_rows .docs_item:last-child {
     border-bottom: none;
     margin-bottom: 0;
     padding-bottom: 20px;
-    border-radius: 0 0 4px 4px
+    border-radius: 0 0 4px 4px;
 }
 
 .docs_choose_rows .docs_item:hover {
@@ -397,11 +405,11 @@ a.docs_item_name {
     margin-left: -25px;
     margin-right: -25px;
     padding-left: 25px;
-    padding-right: 25px
+    padding-right: 25px;
 }
 
 .docs_choose_rows em.highlight {
-    font-style: normal
+    font-style: normal;
 }
 
 .docs_choose_attach {
@@ -411,30 +419,30 @@ a.docs_item_name {
     line-height: 34px;
     color: #929eb0;
     margin-left: 25px;
-    outline: none
+    outline: none;
 }
 
 .docs_choose_attach:hover {
-    text-decoration: none
+    text-decoration: none;
 }
 
 .docs_choose_upload_area {
     background-color: #f0f2f5;
     padding: 13px 25px 14px;
     text-align: center;
-    color: #2a5885;
-    display: block
+    color: #2A5885;
+    display: block;
 }
 
 .docs_choose_upload_area:hover {
     background-color: #e9ebf0;
-    text-decoration: none
+    text-decoration: none;
 }
 
 .docs_choose_upload_area_label {
     display: inline-block;
     padding-left: 29px;
-    background: url(/images/icons/upload_icon.png) no-repeat left 2px
+    background: url(/images/icons/upload_icon.png) no-repeat left 2px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -442,40 +450,40 @@ a.docs_item_name {
 (min-resolution: 192dpi) {
     .docs_choose_upload_area_label {
         background-image: url(/images/icons/upload_icon_2x.png);
-        background-size: 16px 16px
+        background-size: 16px 16px;
     }
 }
 
 .dropbox_over {
-    overflow: hidden!important
+    overflow: hidden !important;
 }
 
 .dropbox_over .docs_choose_upload_area {
-    background-color: #fff
+    background-color: #fff;
 }
 
-.dropbox_over #docs_choose_more,
-.dropbox_over .docs_choose_rows,
 .dropbox_over .docs_choose_search,
+.dropbox_over .docs_choose_rows,
+.dropbox_over #docs_choose_more,
 .dropbox_over .docs_choose_upload_area {
-    display: none!important
+    display: none !important;
 }
 
 .dropbox_over .docs_choose_upload_area_wrap {
-    padding: 20px
+    padding: 20px;
 }
 
 .dropbox_over .docs_choose_dropbox_wrap {
-    display: block
+    display: block;
 }
 
 .docs_choose_dropbox_wrap {
     display: none;
     position: relative;
-    border: 1px dashed #a9bbcf;
+    border: 1px dashed #A9BBCF;
     background-color: #f0f2f5;
     min-height: 300px;
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 
 .docs_choose_dropbox {
@@ -486,10 +494,10 @@ a.docs_item_name {
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    color: #7a92ae;
+    color: #7A92AE;
     font-size: 14px;
     padding-top: 87px;
-    background: url(/images/icons/attach_file.png) no-repeat center 0
+    background: url(/images/icons/attach_file.png) no-repeat center 0;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -497,12 +505,12 @@ a.docs_item_name {
 (min-resolution: 192dpi) {
     .docs_choose_dropbox {
         background-image: url(/images/icons/attach_file_2x.png);
-        background-size: 50px 62px
+        background-size: 50px 62px;
     }
 }
 
 #box_layer_wrap.box_layer_wrap--docs_upload {
-    z-index: 2000
+    z-index: 2000;
 }
 
 .docs_office_365_notice {
@@ -511,7 +519,7 @@ a.docs_item_name {
     margin: 20px 0 5px;
     padding: 11px 30px 11px 56px;
     line-height: 1.46;
-    background: #e7edf2 url(/images/icons/docs_notice_office365_logo.png) no-repeat 11px 11px
+    background: #e7edf2 url(/images/icons/docs_notice_office365_logo.png) no-repeat 11px 11px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -519,14 +527,14 @@ a.docs_item_name {
 (min-resolution: 192dpi) {
     .docs_office_365_notice {
         background-image: url(/images/icons/docs_notice_office365_logo_2x.png);
-        background-size: 34px 34px
+        background-size: 34px 34px;
     }
 }
 
 .docs_office_365_notice_more {
     font-weight: 600;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto
+    -moz-osx-font-smoothing: auto;
 }
 
 .docs_office_365_notice_hide {
@@ -538,11 +546,11 @@ a.docs_item_name {
     padding: 11px;
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%228%22%20height%3D%228%22%20viewBox%3D%22492%2010%208%208%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke%3D%22%23828A99%22%20stroke-width%3D%222%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M499%2011l-6%206M493%2011l6%206%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") no-repeat 50%;
     opacity: .7;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .docs_office_365_notice_hide:hover {
-    opacity: 1
+    opacity: 1;
 }
 
 .eltt.feature_intro_tt.docs_office_365_tt {
@@ -550,7 +558,7 @@ a.docs_item_name {
     padding-left: 104px;
     background: #fff url(/images/icons/docs_tooltip_office365_logo.png) no-repeat 16px 16px;
     font-size: 14px;
-    line-height: 1.285
+    line-height: 1.285;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -558,6 +566,6 @@ a.docs_item_name {
 (min-resolution: 192dpi) {
     .eltt.feature_intro_tt.docs_office_365_tt {
         background-image: url(/images/icons/docs_tooltip_office365_logo_2x.png);
-        background-size: 72px 72px
+        background-size: 72px 72px;
     }
 }

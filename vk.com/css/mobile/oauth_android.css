@@ -3,20 +3,20 @@
     font-size: 14px;
     font-family: Roboto, Sans-Serif, Verdana, Tahoma, Lucida Sans;
     -webkit-user-select: none;
-    background-color: #e3e4e6
+    background-color: #e3e4e6;
 }
 
 .oauth_sdk_wrap {
-    padding: 13px 0
+    padding: 13px 0;
 }
 
 .oauth_sdk_box {
     background-color: #fff;
-    box-shadow: 0 2px 1px #d3d3d3, 0 2px 0 #d3d3d3
+    box-shadow: 0 2px 1px #d3d3d3, 0 2px 0 #d3d3d3;
 }
 
 .oauth_sdk_header_wrap {
-    padding: 0 10px
+    padding: 0 10px;
 }
 
 .oauth_sdk_header {
@@ -24,11 +24,11 @@
     padding: 8px 0 10px;
     border-bottom: 1px solid #e8e8e8;
     color: #969696;
-    position: relative
+    position: relative;
 }
 
 .oauth_sdk_header .member {
-    color: #000
+    color: #000;
 }
 
 .oauth_sdk_header:after {
@@ -38,128 +38,128 @@
     left: 0;
     right: 0;
     top: 0;
-    bottom: 0
+    bottom: 0;
 }
 
 .oauth_sdk_app_title {
-    color: #1d1d1d
+    color: #1d1d1d;
 }
 
 .oauth_sdk_app_img {
     float: left;
     width: 40px;
     height: 40px;
-    margin: 2px 5px 0 0
+    margin: 2px 5px 0 0;
 }
 
 .oauth_sdk_user_img {
     float: right;
     width: 32px;
     height: 32px;
-    margin: 2px 0 0 5px
+    margin: 2px 0 0 5px;
 }
 
 .oauth_sdk_app_body {
     margin: 0 37px 0 45px;
     min-height: 42px;
-    word-wrap: break-word
+    word-wrap: break-word;
 }
 
 .oauth_sdk_app_title {
     white-space: nowrap;
     text-overflow: ellipsis;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .oauth_access_desc {
-    color: #969696
+    color: #969696;
 }
 
 .oauth_sdk_body {
-    padding: 10px
+    padding: 10px;
 }
 
 .oauth_sdk_access_wrap {
-    font-size: 1em
+    font-size: 1em;
 }
 
 .oauth_access_header,
 .oauth_access_items {
     width: 50%;
     vertical-align: top;
-    line-height: 1.45em
+    line-height: 1.45em;
 }
 
 .oauth_access_header {
-    font-weight: 700;
+    font-weight: bold;
     text-align: right;
     padding-right: 7px;
-    color: #222
+    color: #222;
 }
 
 .oauth_access_items {
     vertical-align: top;
     padding: 0 0 0 7px;
-    color: #7f7f7f
+    color: #7f7f7f;
 }
 
 .oauth_sdk_buttons {
-    padding: 10px 0 0
+    padding: 10px 0 0;
 }
 
 .oauth_sdk_allow_btn,
 .oauth_sdk_cancel_btn {
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: bold;
     padding: 10px 9px 8px;
     text-align: center;
     display: block;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .oauth_sdk_allow_btn {
     margin-left: 7px;
     background-color: #437bb0;
-    color: #fff
+    color: #fff;
 }
 
 ._hover .oauth_sdk_allow_btn:hover,
 ._touch .oauth_sdk_allow_btn.hover {
     text-decoration: none;
-    background-color: #3f6f9c
+    background-color: #3f6f9c;
 }
 
 .oauth_sdk_cancel_btn {
     margin-right: 7px;
     background-color: #e1e2e3;
-    color: #444
+    color: #444;
 }
 
 ._hover .oauth_sdk_cancel_btn:hover,
 ._touch .oauth_sdk_cancel_btn.hover {
     text-decoration: none;
-    background-color: #cacbcc
+    background-color: #cacbcc;
 }
 
 .oauth_sdk_requests .oauth_sdk_body {
-    padding-top: 8px
+    padding-top: 8px;
 }
 
 .oauth_sdk_requests .oauth_sdk_user_img {
     float: left;
-    margin: 2px 5px 0 0
+    margin: 2px 5px 0 0;
 }
 
 .oauth_sdk_requests .oauth_sdk_app_img {
     float: right;
-    margin: 2px 0 0 5px
+    margin: 2px 0 0 5px;
 }
 
 .oauth_requests_body {
     margin: 0 45px 0 37px;
     min-height: 42px;
     overflow: hidden;
-    line-height: 20px
+    line-height: 20px;
 }
 
 .oauth_requests_title {
@@ -168,151 +168,151 @@
     text-overflow: ellipsis;
     overflow: hidden;
     padding-top: 2px;
-    color: #1d1d1d
+    color: #1d1d1d;
 }
 
 .oauth_requests_text {
-    color: #8e8e8e
+    color: #8e8e8e;
 }
 
 @media screen and (max-width: 239px) {
     .oauth_access_header,
     .oauth_access_items {
         width: auto;
-        display: block
+        display: block;
     }
     .oauth_access_header {
         text-align: left;
-        padding: 0 0 4px
+        padding: 0 0 4px;
     }
     .oauth_access_header .oauth_access_text:after {
-        content: ':'
+        content: ':';
     }
     .oauth_access_items {
-        padding-left: 0
+        padding-left: 0;
     }
 }
 
 @media screen and (min-width: 240px) {
     .oauth_sdk_header_wrap {
-        padding: 0 12px
+        padding: 0 12px;
     }
     .oauth_sdk_header {
-        padding: 10px 0 12px
+        padding: 10px 0 12px;
     }
     .oauth_sdk_app_img {
         width: 40px;
         height: 40px;
-        margin-right: 7px
+        margin-right: 7px;
     }
     .oauth_sdk_user_img {
         width: 40px;
         height: 40px;
-        margin-left: 7px
+        margin-left: 7px;
     }
     .oauth_sdk_app_body {
-        margin: 0 47px;
-        min-height: 52px
+        margin: 0 47px 0 47px;
+        min-height: 52px;
     }
     .oauth_sdk_body {
-        padding: 12px
+        padding: 12px;
     }
     .oauth_sdk_buttons {
-        padding-top: 12px
+        padding-top: 12px;
     }
     .oauth_sdk_requests .oauth_sdk_header {
-        padding-bottom: 10px
+        padding-bottom: 10px;
     }
     .oauth_sdk_requests .oauth_sdk_body {
-        padding-top: 10px
+        padding-top: 10px;
     }
     .oauth_sdk_requests .oauth_sdk_user_img {
-        margin-right: 7px
+        margin-right: 7px;
     }
     .oauth_sdk_requests .oauth_sdk_app_img {
-        margin-left: 7px
+        margin-left: 7px;
     }
     .oauth_requests_body {
-        margin: 0 47px;
-        min-height: 42px
+        margin: 0 47px 0 47px;
+        min-height: 42px;
     }
 }
 
 @media screen and (min-width: 360px) {
     .oauth_sdk_header_wrap {
-        padding: 0 15px
+        padding: 0 15px;
     }
     .oauth_sdk_header {
         font-size: 1.14em;
-        padding: 13px 0 15px
+        padding: 13px 0 15px;
     }
     .oauth_sdk_app_img {
         width: 50px;
         height: 50px;
-        margin-right: 10px
+        margin-right: 10px;
     }
     .oauth_sdk_user_img {
         width: 50px;
         height: 50px;
-        margin-left: 10px
+        margin-left: 10px;
     }
     .oauth_sdk_app_body {
-        margin: 0 60px;
-        min-height: 52px
+        margin: 0 60px 0 60px;
+        min-height: 52px;
     }
-    .oauth_requests_body,
-    .oauth_sdk_access_wrap {
-        font-size: 1.08em
+    .oauth_sdk_access_wrap,
+    .oauth_requests_body {
+        font-size: 1.08em;
     }
     .oauth_sdk_body {
-        padding: 15px
+        padding: 15px;
     }
     .oauth_sdk_buttons {
-        padding-top: 15px
+        padding-top: 15px;
     }
     .oauth_sdk_requests .oauth_sdk_header {
-        padding-bottom: 10px
+        padding-bottom: 10px;
     }
     .oauth_sdk_requests .oauth_sdk_body {
-        padding-top: 12px
+        padding-top: 12px;
     }
     .oauth_sdk_requests .oauth_sdk_user_img {
-        margin-right: 10px
+        margin-right: 10px;
     }
     .oauth_sdk_requests .oauth_sdk_app_img {
-        margin-left: 10px
+        margin-left: 10px;
     }
     .oauth_requests_body {
-        margin: 0 60px;
-        min-height: 52px
+        margin: 0 60px 0 60px;
+        min-height: 52px;
     }
 }
 
-.oauth_sdk_vk #vk_wrap,
-body.oauth_sdk_vk {
-    height: 100%
+body.oauth_sdk_vk,
+.oauth_sdk_vk #vk_wrap {
+    height: 100%;
 }
 
 .oauth_sdk_vk .oauth_sdk_wrap {
-    padding: 13px
+    padding: 13px;
 }
 
 .oauth_sdk_vk #m {
     display: table;
     width: 100%;
-    height: 100%
+    height: 100%;
 }
 
 .oauth_sdk_vk #mcont {
     display: table-cell;
-    vertical-align: middle
+    vertical-align: middle;
 }
 
 .oauth_sdk_vk,
 .oauth_sdk_vk .mcont {
-    background: transparent
+    background: transparent;
 }
 
 .oauth_sdk_vk .oauth_sdk_box {
-    box-shadow: none
+    box-shadow: none;
 }

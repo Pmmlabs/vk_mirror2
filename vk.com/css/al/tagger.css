@@ -1,47 +1,45 @@
 #tagger_css {
-    display: none
+    display: none;
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 .tag_frame {
+    display: none;
+    position: absolute;
     overflow: hidden;
     text-align: left;
     direction: ltr;
-    border-radius: 2px
+    border-radius: 2px;
 }
 
-.tag_frame,
 .tag_faded {
     display: none;
-    position: absolute
-}
-
-.tag_faded {
+    position: absolute;
     background: #000;
     opacity: 0.7;
-    filter: alpha(opacity=70)
+    filter: alpha(opacity=70);
 }
 
 .tag_frame_handle {
     display: none;
     position: absolute;
-    background-color: #f2f2f2;
+    background-color: #F2F2F2;
     height: 10px;
     width: 10px;
     opacity: 0.5;
     filter: alpha(opacity=50);
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, .2);
-    overflow: hidden
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
 }
 
 .tag_frame_zone {
@@ -50,15 +48,15 @@
     background: #000;
     opacity: 0.2;
     filter: alpha(opacity=20);
-    display: none
+    display: none;
 }
 
 .tag_bg {
     z-index: 2000;
     left: 0;
     top: 0;
-    background-color: #fff;
+    background-color: #FFF;
     opacity: 0;
     filter: alpha(opacity=0);
-    display: none
+    display: none;
 }

@@ -1,13 +1,16 @@
-#postbox_css,
-#pb_choose_club,
-#pb_club_options {
-    display: none
+#postbox_css {
+    display: none;
 }
 
-#pb_add_media,
+#pb_choose_club,
+#pb_club_options {
+    display: none;
+}
+
+#pb_user_options,
 #pb_club_options,
-#pb_user_options {
-    padding-top: 6px
+#pb_add_media {
+    padding-top: 6px;
 }
 
 #pb_text {
@@ -15,97 +18,97 @@
     height: 80px;
     padding: 5px;
     vertical-align: top;
-    margin: 0px 0px 10px
+    margin: 0px 0px 10px;
 }
 
 #pb_choose_club_link {
     margin-top: 14px;
     line-height: normal;
-    padding: 6px 14px
+    padding: 6px 14px;
 }
 
-#pb_add_media,
-#pb_cancel_club {
-    line-height: normal
+#pb_add_media {
+    line-height: normal;
 }
 
 #pb_cancel_club {
     display: none;
-    margin: 14px 10px 0
+    line-height: normal;
+    margin: 14px 10px 0;
 }
 
 #pb_choose_club_label {
-    padding-top: 16px
+    padding-top: 16px;
 }
 
 #dark_box_ava.pb_ava {
     opacity: 1;
     margin-left: 0;
-    display: block
+    display: block;
 }
 
 .is_rtl1 #dark_box_ava.pb_ava {
-    margin-right: 0
+    margin-right: 0;
 }
 
 #dark_box_topic.pb_topic {
     opacity: 1;
-    margin-left: 26px
+    margin-left: 26px;
 }
 
 .is_rtl1 #dark_box_topic.pb_topic {
     margin-left: 0;
-    margin-right: 26px
+    margin-right: 26px;
 }
 
 #pb_send {
-    margin-top: 14px
+    margin-top: 14px;
 }
 
-#pb_facebook_export,
-#pb_status_export {
-    margin-right: 10px
+#pb_status_export,
+#pb_facebook_export {
+    margin-right: 10px;
 }
 
-.is_rtl1 #pb_facebook_export,
-.is_rtl1 #pb_status_export {
+.is_rtl1 #pb_status_export,
+.is_rtl1 #pb_facebook_export {
     margin-right: 0;
-    margin-left: 10px
+    margin-left: 10px;
 }
 
 #pb_error {
-    background: #f4ebbd;
-    border: 1px solid #f4ebbd;
+    background: #F4EBBD;
+    border: 1px solid #F4EBBD;
     padding: 10px 14px;
     margin-top: 14px;
-    display: none
+    display: none;
 }
 
 .wk_postbox_content .wk_wiki_content {
     padding: 0;
     font-size: 1em;
-    line-height: normal
+    line-height: normal;
 }
 
 .wk_postbox_content #wk_content {
-    width: 502px
+    width: 502px;
 }
 
 .wk_postbox_content #wk_close_link {
     padding: 17px 20px 18px;
-    color: #c7d7e9;
+    color: #C7D7E9;
     -o-transition: color 100ms linear;
-    transition: color 100ms linear
+    transition: color 100ms linear;
 }
 
 .wk_postbox_content #wk_close_link:hover {
-    color: #fff;
-    text-decoration: none
+    color: white;
+    text-decoration: none;
 }
 
 .wk_postbox_content #dark_box_topic_wrap {
     overflow: visible;
-    position: static
+    position: static;
 }
 
 #dark_box_topic.pb_topic {
@@ -113,16 +116,16 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    -o-text-overflow: ellipsis
+    -o-text-overflow: ellipsis;
 }
 
 #wk_box.wk_postbox_content {
-    overflow: visible
+    overflow: visible;
 }
 
 #pb_saved {
     padding: 15px 0 5px;
-    color: #aaa;
+    color: #AAA;
     display: none;
-    opacity: 0
+    opacity: 0;
 }

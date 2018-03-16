@@ -1,94 +1,94 @@
 #agents_css {
-    display: none
+    display: none;
 }
 
-.agent_profile_rate_listing .agent_profile_rate__icon,
-.agent_profile_rate_main .agent_profile_rate__icon {
-    -ms-high-contrast-adjust: none
+.agent_profile_rate_main .agent_profile_rate__icon,
+.agent_profile_rate_listing .agent_profile_rate__icon {
+    -ms-high-contrast-adjust: none;
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 .agent_profile {
-    padding: 25px 30px
+    padding: 25px 30px;
 }
 
 .agent_profile__name {
-    color: #000;
-    font-size: 22px
+    color: #000000;
+    font-size: 22px;
 }
 
 .agent_profile__agent_num {
     margin-top: 6px;
     position: relative;
     color: #656565;
-    font-size: 13px
+    font-size: 13px;
 }
 
 .agent_profile__agent_num b {
-    color: #000
+    color: #000000;
 }
 
 .agent_profile__roles {
     margin-top: 18px;
-    color: #000;
+    color: #000000;
     font-size: 14px;
-    line-height: 19px
+    line-height: 19px;
 }
 
 .agent_profile_icon {
     width: 120px;
     height: 120px;
     float: left;
-    position: relative
+    position: relative;
 }
 
 .agent_profile_ach .agent_profile_icon {
     width: 128px;
-    height: 128px
+    height: 128px;
 }
 
 .agent_profile_icon_img {
     border-radius: 50%;
-    max-width: 120px
+    max-width: 120px;
 }
 
 .agent_profile_ach .agent_profile_icon_img {
     border-radius: 0;
-    max-width: 128px
+    max-width: 128px;
 }
 
 .agent_profile_content {
     float: left;
     margin-left: 20px;
-    width: 340px
+    width: 340px;
 }
 
 .agent_profile_ach .agent_profile_content {
-    width: 566px
+    width: 566px;
 }
 
 .agent_profile_rates {
     float: left;
     margin-left: 20px;
-    width: 235px
+    width: 235px;
 }
 
 .agent_profile_rate {
-    margin-bottom: 15px
+    margin-bottom: 15px;
 }
 
 .agent_profile_rate:last-child {
-    margin-bottom: 0
+    margin-bottom: 0;
 }
 
 .agent_profile_rate__icon {
@@ -96,11 +96,11 @@
     width: 50px;
     height: 50px;
     margin-right: 15px;
-    display: block
+    display: block;
 }
 
 .agent_profile_rate_main .agent_profile_rate__icon {
-    background: url(/images/agents/rate-star.png) 0 0 no-repeat
+    background: url(/images/agents/rate-star.png) 0 0 no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -108,12 +108,12 @@
 (min-resolution: 192dpi) {
     .agent_profile_rate_main .agent_profile_rate__icon {
         background-image: url(/images/agents/rate-star_2x.png);
-        background-size: 50px 50px
+        background-size: 50px 50px;
     }
 }
 
 .agent_profile_rate_listing .agent_profile_rate__icon {
-    background: url(/images/agents/rate-listing.png) 0 0 no-repeat
+    background: url(/images/agents/rate-listing.png) 0 0 no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -121,47 +121,47 @@
 (min-resolution: 192dpi) {
     .agent_profile_rate_listing .agent_profile_rate__icon {
         background-image: url(/images/agents/rate-listing_2x.png);
-        background-size: 50px 50px
+        background-size: 50px 50px;
     }
 }
 
 .agent_profile_rate__nums {
-    color: #393e42;
-    font-size: 22px
+    color: #393E42;
+    font-size: 22px;
 }
 
 .agent_profile_rate__div {
-    color: #939393
+    color: #939393;
 }
 
 .agent_profile_rate__note {
     margin-top: 4px;
     color: #656565;
-    font-size: 13px
+    font-size: 13px;
 }
 
 .agent_profile_cards_wrap {
     margin-top: 8px;
-    display: inline-block
+    display: inline-block;
 }
 
 .agent_profile_cards {
-    margin-bottom: 6px
+    margin-bottom: 6px;
 }
 
 .agent_profile_cards:last-child {
-    margin-bottom: 0
+    margin-bottom: 0;
 }
 
 .agent_cards_wrap {
     cursor: pointer;
-    display: inline-block
+    display: inline-block;
 }
 
 .agent_card {
     border-radius: 3px;
     box-sizing: border-box;
-    font-weight: 700;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin-right: 3px;
@@ -173,70 +173,70 @@
     color: #fff;
     display: inline-block;
     line-height: 18px;
-    vertical-align: middle
+    vertical-align: middle;
 }
 
 .agent_card:last-child {
-    margin-right: 0
+    margin-right: 0;
 }
 
 .agent_cards_empty .agent_card {
-    background: #bccde0;
-    border-color: #5181b8
+    background: #BCCDE0;
+    border-color: #5181b8;
 }
 
 .agent_cards_negative .agent_card {
     background: #fcdf55;
     border-color: #ffbc01;
-    color: #555
+    color: #555;
 }
 
 .agent_cards_bad .agent_card {
-    background: #fae1e2;
-    border-color: #f05c44
+    background: #FAE1E2;
+    border-color: #F05C44;
 }
 
 .agent_cards_negative_spoiler {
     -o-transition: opacity 200ms linear;
     transition: opacity 200ms linear;
     line-height: 22px;
-    opacity: 0.5
+    opacity: 0.5;
 }
 
 .agent_cards_negative_spoiler:hover {
-    opacity: 1
+    opacity: 1;
 }
 
 .agents_cards_form_row {
-    margin-bottom: 4px
+    margin-bottom: 4px;
 }
 
 .agents_cards_form_row .text {
-    width: 100%
+    width: 100%;
 }
 
 .agents_cards_form_row .text.agents_cards_form_delta {
     float: left;
-    width: 102px
+    width: 102px;
 }
 
 .agents_cards_form_row__dd {
     float: right;
-    margin-left: 4px
+    margin-left: 4px;
 }
 
 .agent_company_info {
-    padding: 25px 30px
+    padding: 25px 30px;
 }
 
 .agents_cards_history_row {
     padding: 10px;
-    margin: 0 -10px
+    margin: 0 -10px;
 }
 
 .agents_cards_history_row_user {
     display: inline-block;
-    vertical-align: middle
+    vertical-align: middle;
 }
 
 .agents_cards_history_row_user__img {
@@ -246,7 +246,7 @@
     height: 35px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
 }
 
 .agents_cards_history_row_user__img:before {
@@ -257,7 +257,7 @@
     left: 0;
     width: 35px;
     height: 35px;
-    background-color: #fff
+    background-color: #FFF;
 }
 
 .agents_cards_history_row_user__img:after {
@@ -271,14 +271,14 @@
     left: 0;
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
-    background-size: cover
+    background-size: cover;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .agents_cards_history_row_user__img:after {
-        background-image: url(/images/camera_200.png)
+        background-image: url(/images/camera_200.png);
     }
 }
 
@@ -286,58 +286,58 @@
     color: #939393;
     display: inline-block;
     vertical-align: middle;
-    width: 590px
+    width: 590px;
 }
 
 .agents_cards_history_row_cards {
     margin: 0 3px;
     display: inline-block;
-    vertical-align: middle
+    vertical-align: middle;
 }
 
 .agents_cards_history_row_note {
     border-radius: 8px;
     padding: 6px 12px;
-    background: #e1e8ee;
+    background: #E1E8EE;
     color: #000;
     display: inline-block;
     font-size: 12px;
-    line-height: 15px
+    line-height: 15px;
 }
 
 .agents_cards_history_row_note.agents_cards_history_row_note_adm {
-    background: #e8f2e4
+    background: #E8F2E4;
 }
 
 .agents_cards_history_row_date {
     float: right;
     margin-left: 20px;
     color: #656565;
-    line-height: 35px
+    line-height: 35px;
 }
 
 .agent_reply_photo {
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
     border-radius: 50%;
     right: 2px;
     bottom: 2px;
-    background: #000;
-    background: rgba(0, 0, 0, .1);
+    background: #000000;
+    background: rgba(0, 0, 0, 0.1);
     -o-transition: all 200ms ease-in-out;
     transition: all 200ms ease-in-out;
     position: absolute;
-    width: 42px
+    width: 42px;
 }
 
 .agent_reply_photo.agent_reply_photo_editable {
-    cursor: pointer
+    cursor: pointer;
 }
 
 .agent_reply_photo.agent_reply_photo_editable:hover {
     -webkit-transform: scale(1.5);
     -ms-transform: scale(1.5);
     -o-transform: scale(1.5);
-    transform: scale(1.5)
+    transform: scale(1.5);
 }
 
 .agent_reply_photo_box_row {
@@ -347,21 +347,21 @@
     height: 84px;
     display: inline-block;
     overflow: hidden;
-    position: relative
+    position: relative;
 }
 
 .agent_reply_photo_box_row img {
     width: 84px;
-    height: 84px
+    height: 84px;
 }
 
 .agent_reply_photo_box_row.active .agents_reply_photo_active_block {
-    opacity: 1
+    opacity: 1;
 }
 
 .agents_reply_photo_active_block {
-    background-color: #000;
-    background-color: rgba(0, 0, 0, .5);
+    background-color: #000000;
+    background-color: rgba(0, 0, 0, 0.5);
     top: 0;
     left: 0;
     -o-transition: all 200ms ease-in-out;
@@ -373,60 +373,60 @@
     height: 100%;
     z-index: 999;
     position: absolute;
-    opacity: 0
+    opacity: 0;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .agents_reply_photo_active_block {
-        background-image: url(/images/icons/selected_thumb_2x.png)
+        background-image: url(/images/icons/selected_thumb_2x.png);
     }
 }
 
 .agents_reply_photos_list {
-    text-align: center
+    text-align: center;
 }
 
 .agents_join_date_calendar {
     margin: 0 auto;
-    width: 390px
+    width: 390px;
 }
 
 .agents_join_date_calendar .cal_table {
     border: 0;
     background: none;
     box-shadow: none;
-    width: 390px
+    width: 390px;
 }
 
-.agents_join_date_calendar .cal_table .daysofweek,
-.agents_join_date_calendar .cal_table .month {
-    height: 50px
+.agents_join_date_calendar .cal_table .month,
+.agents_join_date_calendar .cal_table .daysofweek {
+    height: 50px;
 }
 
 .agents_join_date_calendar .cal_table .day {
-    height: 45px
+    height: 45px;
 }
 
 .agents_join_date_calendar .cal_table_head {
     margin: 0;
-    width: 390px
+    width: 390px;
 }
 
 .agents_join_date_progress {
     margin-left: 10px;
-    display: inline-block
+    display: inline-block;
 }
 
 .agents_join_date_box .box_body {
     padding: 0;
     border: 0;
-    border-radius: 3px 3px 0 0
+    border-radius: 3px 3px 0 0;
 }
 
 .agents_edit_number_form {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     border-radius: 2px;
     background: #fafbfc;
     padding: 10px;
@@ -434,34 +434,34 @@
     z-index: 1;
     top: 0;
     position: absolute;
-    border: 1px solid #d3d9de;
-    width: 198px
+    border: 1px solid #D3D9DE;
+    width: 198px;
 }
 
 .agents_edit_number_form .agents_edit_number_form_error {
     margin-bottom: 8px;
     padding: 5px;
-    background: #ffefe9;
-    border: 1px solid #f2ab99;
-    display: none
+    background: #FFEFE9;
+    border: 1px solid #F2AB99;
+    display: none;
 }
 
 .agents_edit_number_form .agents_edit_number_form_input_parent {
-    position: relative
+    position: relative;
 }
 
 .agents_edit_number_form .agents_edit_number_form_input {
     padding-right: 30px;
-    width: 160px
+    width: 160px;
 }
 
 .agents_edit_number_form .agents_edit_number_form_progress {
     right: 20px;
     bottom: 20px;
-    position: absolute
+    position: absolute;
 }
 
 .agents_agent_number {
     color: #656565;
-    text-decoration: underline
+    text-decoration: underline;
 }

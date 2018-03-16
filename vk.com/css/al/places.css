@@ -1,62 +1,62 @@
 #places_css {
-    display: none
+    display: none;
 }
 
 .places_choose_map .places_set_current_position_button:before,
 .places_mapped_point {
-    -ms-high-contrast-adjust: none
+    -ms-high-contrast-adjust: none;
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 .places_choose_map .move_to_button {
     border-radius: 3px;
     box-sizing: border-box;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, .07);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.07);
     height: 28px;
     width: 28px;
     background-color: #fff;
     background: -o-linear-gradient(270deg, #fff, #eee);
     background: linear-gradient(180deg, #fff, #eee);
     border: 1px solid #333;
-    border: 1px solid rgba(51, 51, 51, .5);
+    border: 1px solid rgba(51, 51, 51, 0.5);
     bottom: 40px;
     cursor: pointer;
     left: 40px;
-    position: absolute
+    position: absolute;
 }
 
 .places_choose_map .move_to_button.processing {
-    pointer-events: none
+    pointer-events: none;
 }
 
 .places_choose_map .move_to_button.processing:before {
-    background: url('/images/upload_gray_mini.gif') no-repeat 50%
+    background: url('/images/upload_gray_mini.gif') no-repeat 50%;
 }
 
 .places_choose_map .move_to_button:hover {
     background-color: #fff;
     background: -o-linear-gradient(270deg, #fff, #f6f5f4);
-    background: linear-gradient(180deg, #fff, #f6f5f4)
+    background: linear-gradient(180deg, #fff, #f6f5f4);
 }
 
 .places_choose_map .move_to_button:active {
-    box-shadow: inset 0 2px 1px -1px rgba(0, 0, 0, .4), 0 1px 0 hsla(0, 0%, 100%, .2)
+    box-shadow: inset 0 2px 1px -1px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .places_choose_map .move_to_button:before {
     background-position: 50%;
     top: 4px;
-    left: 4px
+    left: 4px;
 }
 
 .places_choose_map .places_set_current_position_button:before {
@@ -64,7 +64,7 @@
     width: 18px;
     background: url(/images/map_target.png) no-repeat 0 0;
     content: "";
-    position: absolute
+    position: absolute;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -72,78 +72,83 @@
 (min-resolution: 192dpi) {
     .places_choose_map .places_set_current_position_button:before {
         background-image: url(/images/map_target_2x.png);
-        background-size: 18px 18px
+        background-size: 18px 18px;
     }
 }
 
 .places_choose_map_content {
     padding: 25px;
-    position: relative
+    position: relative;
 }
 
 .places_choose_map_content .msg {
-    margin: -5px 0 20px
+    margin: -5px 0 20px;
 }
 
 .places_set_current_position_tt {
     border-radius: 3px;
-    box-shadow: 1px 1px 5px -1px rgba(51, 51, 51, .2);
+    box-shadow: 1px 1px 5px -1px rgba(51, 51, 51, 0.2);
     -o-transition: left 200ms ease-out;
     transition: left 200ms ease-out;
     background: #fff;
-    border: 1px solid #bccad7;
+    border: 1px solid #BCCAD7;
     bottom: 40px;
     left: 83px;
     line-height: 16px;
     padding: 4px 12px 6px;
     position: absolute;
-    display: none
+    display: none;
 }
 
 .places_set_current_position_tt.places_set_current_position_tt_over {
-    left: 73px
+    left: 73px;
 }
 
 .places_set_current_position_tt:before {
-    border-right: 5px solid #bccad7;
-    left: -5px
-}
-
-.places_set_current_position_tt:before,
-.places_set_current_position_tt:after {
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
+    border-right: 5px solid #BCCAD7;
     content: "";
     display: block;
     position: absolute;
     width: 0px;
     height: 0px;
+    left: -5px;
     top: 50%;
-    margin-top: -5px
+    margin-top: -5px;
 }
 
 .places_set_current_position_tt:after {
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
     border-right: 5px solid #fff;
-    left: -4px
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    left: -4px;
+    top: 50%;
+    margin-top: -5px;
 }
 
 .place_map {
     width: 588px;
     height: 345px;
-    position: relative
+    position: relative;
 }
 
+#place_map_yandex,
 #place_map_google,
 #place_map_mapbox,
-#place_map_yandex,
 #place_map_yandex2 {
-    display: none
+    display: none;
 }
 
 #place_recent_checkins {
     display: none;
     height: 314px;
-    overflow: auto
+    overflow: auto;
 }
 
 .checkin_shadow {
@@ -154,143 +159,142 @@
     overflow: hidden;
     position: absolute;
     width: 478px;
-    z-index: 1550
+    z-index: 1550;
 }
 
 .checkin_table {
-    border-bottom: 1px solid #c0cad5
+    border-bottom: 1px solid #C0CAD5;
 }
 
 .checkin_table_last {
-    border-bottom: 0
+    border-bottom: 0;
 }
 
 .checkin_table td {
     vertical-align: top;
-    padding: 10px 0
+    padding: 10px 0;
 }
 
-.checkin_table .info,
-.checkin_image {
-    padding-left: 10px
+.checkin_table .info {
+    padding-left: 10px;
 }
 
 .checkin_image {
+    padding-left: 10px;
     height: 50px;
     overflow: hidden;
-    width: 55px
+    width: 55px;
 }
 
 .checkin_table .image {
-    width: 60px
+    width: 60px;
 }
 
 .checkin_table .name_link {
-    font-weight: 700;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .checkin_table .info_msg {
-    padding-top: 3px
+    padding-top: 3px;
 }
 
 .checkin_table .info_no_msg {
-    display: none
+    display: none;
 }
 
 .checkin_table .info_footer {
     font-size: 0.9em;
     padding-top: 3px;
-    color: gray
+    color: #808080;
 }
 
 .no_checkins {
-    background-color: #f6f7f9;
-    border: 1px solid #dbe0ea;
-    font-weight: 400;
+    background-color: #F6F7F9;
+    border: 1px solid #DBE0EA;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     line-height: 150%;
     margin: 10px;
-    padding: 8px 11px
+    padding: 8px 11px;
 }
 
 #checkins_load_more {
-    display: none
+    display: none;
 }
 
 .place_map_cont {
-    padding: 0px 14px 14px
+    padding: 0px 14px 14px;
 }
 
 .place_map_header {
-    padding: 16px 20px 10px
+    padding: 16px 20px 10px;
 }
 
 .place_map_header_f {
     font-size: 1.18em;
-    color: #45688e;
-    font-weight: 700;
+    color: #45688E;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .place_map_close {
-    padding: 16px 20px 0px
+    padding: 16px 20px 0px;
 }
 
 .place_map_photo {
     display: block;
     overflow: hidden;
+    width: 130px;
     height: 86px;
-    margin: 0px 4px 4px 0px
+    background: #F1F1F1;
+    margin: 0px 4px 4px 0px;
+    position: relative;
 }
 
-.place_map_photo,
 .place_add_map_photo {
     width: 130px;
-    background: #f1f1f1;
-    position: relative
-}
-
-.place_add_map_photo {
     height: 87px;
+    background: #F1F1F1;
     text-align: center;
-    margin: 2px
+    margin: 2px;
+    position: relative;
 }
 
 .place_map_photo_cont {
     height: 87px;
-    overflow: hidden
+    overflow: hidden;
 }
 
 #places_photo_progress {
     display: none;
-    margin-top: 3px
+    margin-top: 3px;
 }
 
 .places_photo_right_act {
-    padding-top: 4px
+    padding-top: 4px;
 }
 
 #place_map_edit {
     display: none;
-    padding: 4px
+    padding: 4px 4px 4px;
 }
 
 .places_photo_hint_cont {
     position: absolute;
-    background: rgba(0, 0, 0, .7);
+    background: rgba(0, 0, 0, 0.7);
     border-radius: 3px;
-    padding: 4px 7px;
-    color: #fff;
+    padding: 4px 7px 4px;
+    color: #FFFFFF;
     font-size: 1em;
-    font-weight: 700;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     z-index: 1000;
-    margin-top: 118px
+    margin-top: 118px;
 }
 
 #places_photo_pointer {
@@ -302,16 +306,16 @@
     margin-top: 4px;
     opacity: 0.7;
     filter: alpha(opacity=70);
-    background: url('/images/blacktip.gif') 0px -5px no-repeat
+    background: url('/images/blacktip.gif') 0px -5px no-repeat;
 }
 
 .place_photo_over {
-    display: none
+    display: none;
 }
 
 .places_photo_checked {
-    background: #fff;
-    border-color: #fff
+    background: #FFFFFF;
+    border-color: #FFFFFF;
 }
 
 .places_photo_checked .place_photo_over {
@@ -322,17 +326,17 @@
     background: url(/images/photo_selected.png) no-repeat;
     width: 154px;
     height: 111px;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .places_photos_act_btn {
-    margin-right: 20px
+    margin-right: 20px;
 }
 
 #places_photos_save_buttons {
     display: none;
     padding: 15px 25px;
-    width: 656px
+    width: 656px;
 }
 
 .places_buttons_panel_shadow {
@@ -345,16 +349,16 @@
     filter: alpha(opacity=12);
     margin-top: -18px;
     margin-left: -25px;
-    display: none
+    display: none;
 }
 
 .places_panel_fixed .places_buttons_panel_shadow {
-    display: block
+    display: block;
 }
 
 .places_panel_fixed {
-    background: #f1f1f1;
-    border-top: 1px solid #dae1e8
+    background: #F1F1F1;
+    border-top: 1px solid #DAE1E8;
 }
 
 #places_photo_upload_area {
@@ -365,37 +369,40 @@
     font-size: 1.18em;
     line-height: 16px;
     display: block;
-    margin: 0px 2px 5px
+    margin: 0px 2px 5px;
 }
 
 #places_photo_upload_area:hover {
-    text-decoration: none
+    text-decoration: none;
 }
 
-.places_photo_upload_area_drop,
+.places_photo_upload_area_drop {
+    display: none;
+}
+
 .places_photo_upload_area_enter .places_photo_upload_area_upload {
-    display: none
+    display: none;
 }
 
 #places_photo_upload_area_label {
     background: url('/images/camera.png') left 0px no-repeat;
-    padding: 3px 0px 3px 35px
+    padding: 3px 0px 3px 35px;
 }
 
 .places_photo_upload_area_enter .places_photo_upload_area_drop {
     display: block;
     padding: 13px;
-    border: 1px dashed #a3b6c9;
-    background: #fff
+    border: 1px dashed #A3B6C9;
+    background: #FFFFFF;
 }
 
 #places_add_p_line {
-    background: #fff;
+    background: white;
     border: 1px solid #c8d3dd;
     height: 11px;
     width: 175px;
     margin-left: 231px;
-    margin-top: 0px
+    margin-top: 0px;
 }
 
 #places_add_p_inner {
@@ -404,72 +411,74 @@
     height: 11px;
     width: 0px;
     margin: -1px 0px 0px -1px;
-    background: url('/images/photos_add_progress.gif?1') 0px 0px
+    background: url('/images/photos_add_progress.gif?1') 0px 0px;
 }
 
 #places_add_p_str {
-    margin-top: 6px
+    margin-top: 6px;
 }
 
 #places_ph_add_progress {
-    text-align: center
+    text-align: center;
 }
 
 .places_photo_add_line {
     display: block;
     margin: 18px 0px 0px;
-    background: #eff1f3;
+    background: #EFF1F3;
     padding: 10px;
     text-align: center;
-    color: #738392
+    color: #738392;
 }
 
 .places_photo_add_line:hover {
     text-decoration: none;
-    background: #e9edf1
+    background: #E9EDF1;
 }
 
 .places_add_lines {
     margin: 0px 0px 16px;
-    width: 646px
+    width: 646px;
 }
 
 .place_map_header_btn {
     width: 506px;
     text-align: center;
-    padding: 16px 100px 10px
+    padding: 16px 100px 10px;
 }
 
 .place_map_header_text {
-    padding: 20px 19px
-}
-
-.place_map_header_text,
-.place_map_header_both {
-    color: #45688e;
+    color: #45688E;
+    padding: 20px 19px;
     font-size: 1.21em;
-    font-weight: 700;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: left
+    text-align: left;
 }
 
 .place_map_header_both {
-    padding: 16px 19px 10px
+    color: #45688E;
+    padding: 16px 19px 10px;
+    font-size: 1.21em;
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: left;
 }
 
 .place_map_both_btn {
-    margin-left: 12px
+    margin-left: 12px;
 }
 
 .place_map_search_cont {
     background: #f7f7f7;
     padding: 10px 5px 10px 11px;
-    border-bottom: 1px solid #dae1e8
+    border-bottom: 1px solid #dae1e8;
 }
 
 .place_map_search_cont button {
-    width: 90px
+    width: 90px;
 }
 
 input.place_map_point_search {
@@ -479,7 +488,7 @@ input.place_map_point_search {
     width: 528px;
     height: 13px;
     line-height: 1.27em;
-    background: #fff url(/images/magglass.png) no-repeat 5px 6px
+    background: white url(/images/magglass.png) no-repeat 5px 6px;
 }
 
 .places_map_preview {
@@ -488,43 +497,43 @@ input.place_map_point_search {
     bottom: 14px;
     padding: 5px;
     background: #94acc6;
-    background: rgba(0, 0, 0, .15)
+    background: rgba(0, 0, 0, 0.15);
 }
 
 .places_map_preview_cont {
     width: 174px;
     overflow: hidden;
-    max-height: 130px
+    max-height: 130px;
 }
 
 .places_map_preview_img {
-    width: 174px
+    width: 174px;
 }
 
 #places_edit_header {
     z-index: 1000;
-    width: 706px
+    width: 706px;
 }
 
 .places_edit_header_cont {
-    height: 70px
+    height: 70px;
 }
 
 .places_edit_fixed {
     position: fixed;
-    top: 0
+    top: 0;
 }
 
 .places_mapped_point {
     z-index: 10;
     position: absolute;
-    background: #000;
-    background: rgba(0, 0, 0, .5) url(/images/icons/white_pin.png) no-repeat 50% 50%;
+    background: #000000;
+    background: rgba(0, 0, 0, 0.5) url(/images/icons/white_pin.png) no-repeat 50% 50%;
     width: 28px;
     height: 28px;
     border-radius: 2px;
     bottom: 8px;
-    right: 8px
+    right: 8px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -532,25 +541,25 @@ input.place_map_point_search {
 (min-resolution: 192dpi) {
     .places_mapped_point {
         background-image: url(/images/icons/white_pin_2x.png);
-        background-size: 10px 14px
+        background-size: 10px 14px;
     }
 }
 
 .places_photo_cont {
     display: block;
     cursor: pointer;
-    text-align: center
+    text-align: center;
 }
 
 .places_group_checkins {
     float: right;
-    padding-left: 10px
+    padding-left: 10px;
 }
 
 .places_checkins_header {
     color: #656565;
     padding-top: 2px;
-    text-align: right
+    text-align: right;
 }
 
 .places_checkin_row {
@@ -560,56 +569,56 @@ input.place_map_point_search {
     height: 34px;
     border-radius: 50%;
     background-size: 34px;
-    margin: 7px 0 0 7px
+    margin: 7px 0 0 7px;
 }
 
 .places_group_photos {
-    padding: 10px 0 16px
+    padding: 10px 0 16px;
 }
 
 .places_group_cont .page_group_share {
-    margin: 0
+    margin: 0;
 }
 
-.places_group_cont .page_group_image,
-.places_group_cont .page_group_photo {
+.places_group_cont .page_group_photo,
+.places_group_cont .page_group_image {
     width: 65px;
     height: 65px;
-    margin-right: 15px
+    margin-right: 15px;
 }
 
 .places_group_cont .page_group_info {
     font-size: 13px;
-    line-height: 19px
+    line-height: 19px;
 }
 
 .places_group_cont .page_group_title {
-    padding-top: 2px
+    padding-top: 2px;
 }
 
 .places_group_cont .page_group_desc {
     color: #000;
-    padding-top: 2px
+    padding-top: 2px;
 }
 
 .places_map_type {
-    font-size: 13px
+    font-size: 13px;
 }
 
 .places_box_cont {
-    padding: 20px 25px 25px
+    padding: 20px 25px 25px;
 }
 
 .places_box_cont>.places_map {
-    padding-top: 5px
+    padding-top: 5px;
 }
 
 .places_box_cont .ui_load_more_btn {
-    margin: 8px -25px -25px
+    margin: 8px -25px -25px;
 }
 
 .places_map {
-    height: 350px
+    height: 350px;
 }
 
 .places_summary {
@@ -617,13 +626,13 @@ input.place_map_point_search {
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    color: #656565
+    color: #656565;
 }
 
 .places_other_list {
-    padding-top: 14px
+    padding-top: 14px;
 }
 
 .places_map_other_list {
-    margin: -2.5px
+    margin: -2.5px;
 }

@@ -1,21 +1,21 @@
 #widget_subscribe_css {
-    display: none
+    display: none;
 }
 
 .wsubscribe_button .wsubscribe_do span:after,
 .wsubscribe_button.wsubscribe_no_name .wsubscribe_do span:before {
-    -ms-high-contrast-adjust: none
+    -ms-high-contrast-adjust: none;
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 .wsubscribe_content {
@@ -27,14 +27,14 @@
     font-weight: 400;
     letter-spacing: 0.1px;
     overflow: hidden;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
 }
 
 .wsubscribe_avatar {
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    margin-right: 10px
+    margin-right: 10px;
 }
 
 .wsubscribe_avatar img {
@@ -43,53 +43,56 @@
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
-    vertical-align: top
+    vertical-align: top;
 }
 
 .wsubscribe_avatar img:before {
-    background-color: #fff
-}
-
-.wsubscribe_avatar img:before,
-.wsubscribe_avatar img:after {
     content: " ";
     display: block;
     position: absolute;
     top: 0;
     left: 0;
     width: 22px;
-    height: 22px
+    height: 22px;
+    background-color: #FFF;
 }
 
 .wsubscribe_avatar img:after {
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
-    background-size: cover
+    background-size: cover;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .wsubscribe_avatar img:after {
-        background-image: url(/images/camera_200.png)
+        background-image: url(/images/camera_200.png);
     }
 }
 
 .wsubscribe_name {
-    font-weight: 700;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #42648b
+    color: #42648B;
+    margin: 0 10px 0 0;
 }
 
-.wsubscribe_name,
 .wsubscribe_button .wsubscribe_name {
-    margin: 0 10px 0 0
+    margin: 0 10px 0 0;
 }
 
 .wsubscribe_do .pr {
-    display: none
+    display: none;
 }
 
 .wsubscribe_button .wsubscribe_do {
@@ -104,19 +107,19 @@
     border-radius: 2px;
     padding: 0 7px;
     color: #fff;
-    background: #5181b8
+    background: #5181b8;
 }
 
 .wsubscribe_button .wsubscribe_do b {
-    color: #fff
+    color: #fff;
 }
 
 .wsubscribe_button .wsubscribe_do.wsubscribe_progress {
-    position: relative
+    position: relative;
 }
 
 .wsubscribe_button .wsubscribe_do.wsubscribe_progress span {
-    opacity: 0
+    opacity: 0;
 }
 
 .wsubscribe_button .wsubscribe_do.wsubscribe_progress .pr {
@@ -124,29 +127,29 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    margin: -2px 0 0 -8px
+    margin: -2px 0 0 -8px;
 }
 
 .wsubscribe_button .wsubscribe_do.wsubscribe_progress .pr_bt {
-    background-color: #e0e8f1
+    background-color: #E0E8F1;
 }
 
 .wsubscribe_button .wsubscribe_do:hover {
     text-decoration: none;
-    background: #5b88bd
+    background: #5b88bd;
 }
 
 .wsubscribe_button .wsubscribe_do:active {
-    background: #4872a3
+    background: #4872a3;
 }
 
 .wsubscribe_button .wsubscribe_do:active span {
     position: relative;
-    top: 1px
+    top: 1px;
 }
 
 .wsubscribe_button .wsubscribe_do span {
-    display: inline-block
+    display: inline-block;
 }
 
 .wsubscribe_button .wsubscribe_do span:after {
@@ -155,7 +158,7 @@
     width: 15px;
     height: 8px;
     margin-left: 7px;
-    background: url(/images/icons/like_widget.png) 0 0
+    background: url(/images/icons/like_widget.png) 0 0;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -163,12 +166,12 @@
 (min-resolution: 192dpi) {
     .wsubscribe_button .wsubscribe_do span:after {
         background-image: url(/images/icons/like_widget_2x.png);
-        background-size: 19px 59px
+        background-size: 19px 59px;
     }
 }
 
 .wsubscribe_button.wsubscribe_no_name .wsubscribe_do span:after {
-    display: none
+    display: none;
 }
 
 .wsubscribe_button.wsubscribe_no_name .wsubscribe_do span:before {
@@ -177,7 +180,7 @@
     width: 15px;
     height: 8px;
     margin-right: 7px;
-    background: url(/images/icons/like_widget.png) 0 0
+    background: url(/images/icons/like_widget.png) 0 0;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -185,6 +188,6 @@
 (min-resolution: 192dpi) {
     .wsubscribe_button.wsubscribe_no_name .wsubscribe_do span:before {
         background-image: url(/images/icons/like_widget_2x.png);
-        background-size: 19px 59px
+        background-size: 19px 59px;
     }
 }

@@ -11,8 +11,8 @@
     var s = {};
     return e.m = o, e.c = s, e.p = "", e(0)
 }([function(o, e, s) {
-    o.exports = s(1)
-}, function(o, e) {
+    o.exports = s(2)
+}, , function(o, e) {
     "use strict";
     window.WAllowMessagesFromCommunity = {
         init: function(o) {

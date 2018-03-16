@@ -1,24 +1,24 @@
 #invite_css {
-    display: none
+    display: none;
 }
 
 .invite_box_title_icon {
-    -ms-high-contrast-adjust: none
+    -ms-high-contrast-adjust: none;
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    margin: 0
+    margin: 0;
+    padding: 0;
 }
 
-.h4-text,
 .invite_box {
-    padding: 0
+    padding: 0;
 }
 
 .invite_box_title_icon {
@@ -29,7 +29,7 @@
     height: 34px;
     border-radius: 50%;
     background: url(/images/icons/import_contacts.png?7) no-repeat;
-    background-position: 0px -136px
+    background-position: 0px -136px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -37,12 +37,12 @@
 (min-resolution: 192dpi) {
     .invite_box_title_icon {
         background-image: url(/images/icons/import_contacts_2x.png?7);
-        background-size: 34px 170px
+        background-size: 34px 170px;
     }
 }
 
 .invite_box_title {
-    padding-left: 35px
+    padding-left: 35px;
 }
 
 .invite_box_text {
@@ -50,23 +50,23 @@
     line-height: 165%;
     font-size: 12.5px;
     border-bottom: 1px solid #e7e8ec;
-    color: #222
+    color: #222;
 }
 
 .invite_form {
-    margin: 25px
+    margin: 25px 25px;
 }
 
 .invite_block .error {
-    margin: 20px 0
+    margin: 20px 0;
 }
 
 .invite_box .row {
-    padding-bottom: 15px
+    padding-bottom: 15px;
 }
 
 .invite_box .row_controls {
-    padding-bottom: 0
+    padding-bottom: 0;
 }
 
 .invite_box .label {
@@ -74,182 +74,180 @@
     padding: 5px 12px 0 0;
     width: 170px;
     color: #656565;
-    text-align: right
+    text-align: right;
 }
 
 .invite_box .labeled {
-    float: left
+    float: left;
 }
 
-.invite_box .invite_selector,
-.invite_box .labeled .dark {
-    width: 280px
+.invite_box .labeled .dark,
+.invite_box .invite_selector {
+    width: 280px;
 }
 
 .invite_box .about_no {
     color: #656565;
     padding: 50px 10px;
     text-align: center;
-    line-height: 160%
+    line-height: 160%;
 }
 
 .invited_box {
     margin: 0 25px;
-    padding: 0 0 10px
+    padding: 0 0 10px 0;
 }
 
 .invited_invites_show {
     display: block;
     padding: 13px 0 13px 182px;
-    border-top: 1px solid #e7e8ec
+    border-top: 1px solid #e7e8ec;
 }
 
 .invited_invites_show.center {
     padding-left: 0;
-    text-align: center
+    text-align: center;
 }
 
 .invited_invites_show:hover {
     background-color: #f0f2f5;
-    text-decoration: none
+    text-decoration: none;
 }
 
 .invited_invites_sent_wrap,
 .invites_invites_wrap {
-    border-top: 1px solid #e7e8ec
+    border-top: 1px solid #e7e8ec;
 }
 
 .invited_box .summary_wrap {
-    padding: 20px 0 0;
-    font-size: 12.5px
+    padding: 20px 0 0 0;
+    font-size: 12.5px;
 }
 
 .invited_box .user {
     padding: 15px 0;
-    border-top: 0
+    border-top: 0;
 }
 
 .invited_box .user~.user {
-    border-top: 1px solid #e7e8ec
+    border-top: 1px solid #e7e8ec;
 }
 
 .invited_box .thumb {
     width: 50px;
     height: 50px;
-    border-radius: 50%
+    border-radius: 50%;
 }
 
 .invited_box .actions {
     float: right;
-    padding-top: 11px
+    padding-top: 11px;
 }
 
 .invited_box .info {
     padding: 0 12px;
     color: #939393;
-    font-size: 12.5px
-}
-
-.invited_box .info,
-.invited_box .name {
+    font-size: 12.5px;
     overflow: hidden;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
 }
 
 .invited_box .name {
     display: block;
-    padding: 5px 0 2px;
-    font-weight: 700;
+    padding: 5px 0 2px 0;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: 13px;
-    color: #42648b
+    color: #42648B;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .inv_about_resend {
-    line-height: 150%
+    line-height: 150%;
 }
 
 #invite_popup_box .invite_box_contest_top {
     margin-left: -25px;
     width: 560px;
     margin-bottom: 20px;
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 
 #invite_popup_box .invite_box_contest_top * {
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 
 #invite_popup_box .invite_box_contest_top .invite_box_contest_top_toggle {
-    color: #71869b;
-    background: #e9edf1;
+    color: #71869B;
+    background: #E9EDF1;
     cursor: pointer;
     padding: 12px 0;
-    text-align: center
+    text-align: center;
 }
 
 #invite_popup_box .invite_box_contest_top .invite_box_contest_top_toggle:hover {
-    background: #eef2f6
+    background: #EEF2F6;
 }
 
 #invite_popup_box .invite_box_contest_top #contest_top {
     max-height: 0px;
-    overflow: hidden
+    overflow: hidden;
 }
 
 #invite_popup_box .invite_box_contest_top .contest_top_body_wrap {
     padding: 17px 45px;
-    background-color: #f7f7f7
+    background-color: #F7F7F7;
 }
 
 #invite_popup_box .invite_box_contest_top .invite_box_contest_top_header {
-    color: #45668e;
+    color: #45668E;
     font-size: 1.05em;
-    font-weight: 700;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    margin: 0 0 15px
+    margin: 0 0 15px;
 }
 
 #invite_popup_box .invite_box_contest_top .invite_box_contest_top_header #participants {
-    display: inline-block
+    display: inline-block;
 }
 
 #invite_popup_box .invite_box_contest_top .invite_box_contest_top_header #regs {
     display: inline-block;
-    float: right
+    float: right;
 }
 
 #invite_popup_box .invite_box_contest_top .invite_box_contest_top_row {
-    padding: 3px 0
+    padding: 3px 0;
 }
 
 #invite_popup_box .invite_box_contest_top .invite_box_contest_top_row .mem {
-    display: inline-block
+    display: inline-block;
 }
 
 #invite_popup_box .invite_box_contest_top .invite_box_contest_top_row .mem_photo {
     display: inline-block;
     width: 35px;
-    border-radius: 2px
+    border-radius: 2px;
 }
 
 #invite_popup_box .invite_box_contest_top .invite_box_contest_top_row .mem_name {
     display: inline-block;
     vertical-align: top;
     margin-top: 11px;
-    margin-left: 5px
+    margin-left: 5px;
 }
 
 #invite_popup_box .invite_box_contest_top .invite_box_contest_top_row .mem_top_rating {
     color: #555;
-    margin: 0 5px
+    margin: 0 5px;
 }
 
 #invite_popup_box .invite_box_contest_top .invite_box_contest_top_row .mem_achievement {
     display: inline-block;
     vertical-align: top;
     margin-top: 11px;
-    float: right
+    float: right;
 }

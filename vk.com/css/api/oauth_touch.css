@@ -1,86 +1,86 @@
 body {
-    font-size: 12px
+    font-size: 12px;
 }
 
 #box h1 {
     margin: 0px;
-    color: #32557a;
-    font-weight: 700;
+    color: #32557A;
+    font-weight: bold;
     font-size: 14px;
-    padding: 20px 15px 14px;
+    padding: 20px 15px 14px 15px;
     text-align: left;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 .info_line {
-    padding: 0px 15px 6px
+    padding: 0px 15px 6px 15px;
 }
 
 .box_login {
-    background: #f4f4f4;
-    background: -moz-linear-gradient(top, #f4f4f4, #e4e4e4)
+    background: #F4F4F4;
+    background: -moz-linear-gradient(top, #F4F4F4, #E4E4E4);
 }
 
 .box_access {
-    background: #fff
+    background: #FFFFFF;
 }
 
 .auth_items {
     padding: 14px 100px 15px;
-    color: #e8eff7;
-    float: right
+    color: #E8EFF7;
+    float: right;
 }
 
 .auth_items a {
     height: 11px;
     margin: 0px;
     font-size: 11px;
-    color: #e8eff7;
-    text-shadow: 0px 1px 0px #416389
+    color: #E8EFF7;
+    text-shadow: 0px 1px 0px #416389;
 }
 
 .auth_items a.head_name {
     font-size: 11px;
-    color: #fff;
-    font-weight: 700
+    color: #FFFFFF;
+    font-weight: bold;
 }
 
 .oauth_label {
-    margin: 10px 0px 8px;
-    color: #646c77;
-    font-size: 12px
+    margin: 10px 0px 8px 0px;
+    color: #646C77;
+    font-size: 12px;
 }
 
 .filed {
-    border: 1px solid #b5b9c2;
+    border: 1px solid #B5B9C2;
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     padding: 4px 0px;
     width: 100%;
     font-size: 18px;
-    margin-bottom: 10px
+    margin-bottom: 10px;
 }
 
 .info {
-    padding: 0px 0px 4px;
-    margin: 0px 15px
+    padding: 0px 0px 4px 0px;
+    margin: 0px 15px;
 }
 
 .button {
-    float: left
+    float: left;
 }
 
 .touch_footer {
-    padding: 15px 5px
+    padding: 15px 5px;
 }
 
 b {
-    color: #36638e
+    color: #36638E;
 }
 
 .items {
-    padding: 10px 0px 0px
+    padding: 10px 0px 0px 0px;
 }
 
 .clear_fix:after {
@@ -88,52 +88,52 @@ b {
     display: block;
     height: 0;
     clear: both;
-    visibility: hidden
+    visibility: hidden;
 }
 
 * html .clear_fix {
-    height: 1%
+    height: 1%;
 }
 
 .clear_fix {
-    display: block
+    display: block;
 }
 
 .apps_access_height {
     height: 50px;
     width: 1px;
-    float: left
+    float: left;
 }
 
 .apps_access_profile {
-    background-image: url("/images/pics/access_profile.png")
+    background-image: url("/images/pics/access_profile.png");
 }
 
 .apps_access_media {
-    background-image: url("/images/pics/access_media.png")
+    background-image: url("/images/pics/access_media.png");
 }
 
 .apps_access_activity {
-    background-image: url("/images/pics/access_activity.png")
+    background-image: url("/images/pics/access_activity.png");
 }
 
 .apps_access_wall {
-    background-image: url("/images/pics/access_wall.png")
+    background-image: url("/images/pics/access_wall.png");
 }
 
 .apps_access_item {
     margin-top: 10px;
     margin-bottom: 22px;
     padding-left: 10px;
-    color: #666;
+    color: #666666;
     background-position: 0px 2px;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 .apps_access_item b {
     display: block;
     padding-bottom: 2px;
-    color: #36638e
+    color: #36638E;
 }
 
 .apps_access_icon {
@@ -141,78 +141,78 @@ b {
     height: 33px;
     width: 33px;
     margin-right: 15px;
-    background: url('/images/app_settings_icons.png?4') 0px 0px no-repeat
+    background: url('/images/app_settings_icons.png?4') 0px 0px no-repeat;
 }
 
 .apps_access_photos {
-    background-position: 0px -74px
+    background-position: 0px -74px;
 }
 
 .apps_access_media {
-    background-position: 0px -111px
+    background-position: 0px -111px;
 }
 
 .apps_access_docs {
-    background-position: 0px -185px
+    background-position: 0px -185px;
 }
 
 .apps_access_messages {
-    background-position: 0px -259px
+    background-position: 0px -259px;
 }
 
 .apps_access_wall {
-    background-position: 0px -222px
+    background-position: 0px -222px;
 }
 
 .apps_access_offline {
-    background-position: 0px -407px
+    background-position: 0px -407px;
 }
 
 .apps_access_ads {
-    background-position: 0px -333px
+    background-position: 0px -333px;
 }
 
 .apps_access_adsweb {
-    background-position: 0px -407px
+    background-position: 0px -407px;
 }
 
 .apps_access_friends {
-    background-position: 0px -148px
+    background-position: 0px -148px;
 }
 
 .apps_access_groups {
-    background-position: 0px -37px
+    background-position: 0px -37px;
 }
 
 .apps_access_stats {
-    background-position: 0px -296px
+    background-position: 0px -296px;
 }
 
 .apps_access_email {
-    background-position: 0px -518px
+    background-position: 0px -518px;
 }
 
 .apps_access_group_messages {
-    background-position: 0px -592px
+    background-position: 0px -592px;
 }
 
 .apps_access_market {
-    background-position: 0px -629px
+    background-position: 0px -629px;
 }
 
 .apps_access_notifications {
-    background-position: 0px -666px
+    background-position: 0px -666px;
 }
 
 .apps_sett_access_list {
-    padding: 5px 0px 15px
+    padding: 5px 0px 15px;
 }
 
 .apps_sett_line {
-    border-bottom: 1px solid #e8ebee;
-    margin: 0px 0px 14px
+    border-bottom: 1px solid #E8EBEE;
+    margin: 0px 0px 14px 0px;
 }
 
 .apps_access_item_info {
-    padding-left: 48px
+    padding-left: 48px;
 }

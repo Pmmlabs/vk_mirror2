@@ -1,36 +1,36 @@
 #landings_common_css {
-    display: none
+    display: none;
 }
 
 .landing .landing_button .landing_button_arrow {
-    -ms-high-contrast-adjust: none
+    -ms-high-contrast-adjust: none;
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 body.is_page {
-    background: #fff
+    background: #fff;
 }
 
 .landing_wk_wrap {
-    width: 900px
+    width: 900px;
 }
 
 .is_page #stl_left {
-    display: none!important
+    display: none !important;
 }
 
 .landing {
-    text-align: center
+    text-align: center;
 }
 
 .landing .landing_close_wrap {
@@ -39,7 +39,7 @@ body.is_page {
     top: 0px;
     right: 0px;
     position: absolute;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .landing .landing_close_wrap .landing_close {
@@ -51,11 +51,11 @@ body.is_page {
     right: 24px;
     opacity: 0.65;
     -o-transition: opacity 200ms ease;
-    transition: opacity 200ms ease
+    transition: opacity 200ms ease;
 }
 
 .landing .landing_close_wrap:hover .landing_close {
-    opacity: 1
+    opacity: 1;
 }
 
 .landing .landing_button {
@@ -65,31 +65,31 @@ body.is_page {
     padding: 11px 27px 12px;
     border-radius: 40px;
     line-height: 13px;
-    font-weight: 400;
+    font-weight: normal;
     cursor: pointer;
     border: 0px;
     outline: none;
     text-align: center;
-    margin-right: 10px
+    margin-right: 10px;
 }
 
 .landing .landing_button.landing_button_more {
     background: #ebf0f5;
     color: #42648b;
     margin-right: 0;
-    position: relative
+    position: relative;
 }
 
 .landing .landing_button.landing_button_more:hover {
-    background-color: #e1e7ed
+    background-color: #e1e7ed;
 }
 
 .landing .landing_button.landing_button_more.landing_button_with_arrow {
-    padding-right: 42px
+    padding-right: 42px;
 }
 
 .landing .landing_button.landing_button_more.landing_button_with_arrow:hover .landing_button_arrow {
-    right: 25px
+    right: 25px;
 }
 
 .landing .landing_button .landing_button_arrow {
@@ -101,7 +101,7 @@ body.is_page {
     top: 12px;
     right: 27px;
     -o-transition: right 100ms ease;
-    transition: right 100ms ease
+    transition: right 100ms ease;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -109,37 +109,37 @@ body.is_page {
 (min-resolution: 192dpi) {
     .landing .landing_button .landing_button_arrow {
         background-image: url(/images/pics/show_all_arrow_blue_2x.png);
-        background-size: 7px 12px
+        background-size: 7px 12px;
     }
 }
 
 .landing .landing_button:hover {
-    background-color: #6d8cb0
+    background-color: #6d8cb0;
 }
 
 .landing .landing_button:active {
-    padding: 12px 27px 11px
+    padding: 12px 27px 11px;
 }
 
 .landing .landing_button:active .landing_button_arrow {
-    top: 13px
+    top: 13px;
 }
 
 .landing .landing_section {
     padding-top: 64px;
-    border-bottom: 1px solid #e8e8e8
+    border-bottom: 1px solid #E8E8E8;
 }
 
 .landing .landing_section:last-child {
-    border-bottom: none
+    border-bottom: none;
 }
 
 .landing .landing_section.dark {
-    background-color: #f7f7f7
+    background-color: #F7F7F7;
 }
 
 .landing .landing_section .landing_page_title {
-    margin-top: 0
+    margin-top: 0;
 }
 
 .landing .landing_page_title {
@@ -149,7 +149,7 @@ body.is_page {
     font-weight: 300;
     margin-top: 55px;
     line-height: 41px;
-    text-align: center
+    text-align: center;
 }
 
 .landing .landing_page_text {
@@ -159,14 +159,14 @@ body.is_page {
     line-height: 28px;
     padding: 0 60px;
     margin: 40px auto;
-    max-width: 830px
+    max-width: 830px;
 }
 
 .is_2x .landing_wk_wrap .landing_close {
     background-image: url(/images/pics/cross_2x.png);
-    background-size: 14px 14px
+    background-size: 14px 14px;
 }
 
 .is_2x .landing_wk_wrap .landing_button .landing_button_arrow {
-    background-image: url(/images/pics/show_all_arrow_blue_2x.png)
+    background-image: url(/images/pics/show_all_arrow_blue_2x.png);
 }

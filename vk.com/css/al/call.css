@@ -1,36 +1,36 @@
 #call_css {
-    display: none
+    display: none;
 }
 
 .call_invitation_wrap {
     background: url('/images/mv_bg.png');
-    background: rgba(0, 0, 0, .8);
+    background: rgba(0, 0, 0, 0.8);
     padding: 15px 22px 9px;
     border-radius: 4px;
     text-align: center;
-    color: #fff;
-    cursor: pointer
+    color: #FFFFFF;
+    cursor: pointer;
 }
 
 .call_invitation_wrap .call_title {
     -moz-text-shadow: 0 1px 2px #111;
     -webkit-text-shadow: 0 1px 2px #111;
     text-shadow: 0 1px 2px #111;
-    padding: 0px 0px 6px;
+    padding: 0px 0px 6px 0px;
     font-size: 1.09em;
-    font-weight: 700
+    font-weight: bold;
 }
 
 .call_invitation_wrap .call_text a {
-    color: #fff;
-    font-weight: 700
+    color: #FFFFFF;
+    font-weight: bold;
 }
 
 .call_invitation_wrap .call_text {
     -moz-text-shadow: 0 1px 2px #111;
     -webkit-text-shadow: 0 1px 2px #111;
     text-shadow: 0 1px 2px #111;
-    padding: 0px 0px 16px
+    padding: 0px 0px 16px 0px;
 }
 
 .call_invitation_wrap .call_user_pic {
@@ -39,67 +39,67 @@
     line-height: 0;
     margin-bottom: 14px;
     max-height: 200px;
-    overflow-y: hidden
+    overflow-y: hidden;
 }
 
 .call_invitation_wrap .call_buttons {
-    margin: 1px
+    margin: 1px;
 }
 
 .calls_rb {
     border-radius: 3px;
-    box-shadow: 0 0px 3px rgba(0, 0, 0, .15);
-    overflow: hidden
+    box-shadow: 0 0px 3px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
 }
 
 .calls_rb #fc_ctabs_cont {
-    border: none
+    border: none;
 }
 
 .call_wrap {
-    background: #000
+    background: #000000;
 }
 
 .call_wrap .call_cancel {
     margin-top: 11px;
-    margin-bottom: 3px
+    margin-bottom: 3px;
 }
 
 .call_wrap .call_cancel .button_red {
-    margin: auto
+    margin: auto;
 }
 
 .call_wrap .flash_needed {
     text-align: center;
-    color: #fff
+    color: white;
 }
 
 .call_wrap .flash_needed a {
-    font-weight: 700;
-    color: #b1daff
+    font-weight: bold;
+    color: #B1DAFF;
 }
 
 .call_wrap .flash_needed .button_blue {
     margin: 15px auto 0px;
-    width: 150px
+    width: 150px;
 }
 
 .call_wrap .flash_needed .button_blue button {
-    width: 100%
+    width: 100%;
 }
 
 .button_green,
 .button_red {
     text-align: center;
     margin-top: 3px;
-    border: 3px solid rgba(0, 0, 0, .3);
+    border: 3px solid rgba(0, 0, 0, 0.3);
     border-radius: 6px;
     -moz-border-radius: 6px;
     -khtml-border-radius: 6px;
     -webkit-border-radius: 6px;
     position: relative;
     zoom: 1;
-    width: 192px
+    width: 192px;
 }
 
 .button_green button,
@@ -114,47 +114,47 @@
     outline: none;
     padding: 6px 14px 7px;
     *padding: 7px 15px 6px;
-    font-family: tahoma, verdana, arial, sans-serif;
-    font-weight: 700;
+    font-family: tahoma, verdana, arial, sans-serif, Lucida Sans;
+    font-weight: bold;
     overflow: visible;
     width: 192px;
-    color: #fff;
-    height: 28px
+    color: #FFF;
+    height: 28px;
 }
 
 @-moz-document url-prefix() {
     .button_green button,
     .button_red button {
-        height: 29px
+        height: 29px;
     }
 }
 
 .button_green button::-moz-focus-inner,
 .button_red button::-moz-focus-inner {
-    border: 0
+    border: 0;
 }
 
 .button_green button {
-    border-top-color: #84b164;
+    border-top-color: #84B164;
     border-bottom-color: #66984f;
     border-left-color: #79a75c;
     border-right-color: #77a65b;
     *border: 0;
     background: url(/images/button_calls.png?1) #67954c repeat-x top;
     background-position: 0px -26px;
-    *background-position: 0px -26px
+    *background-position: 0px -26px;
 }
 
-.button_green button.hover,
-.button_green button:hover {
-    background-position: 0px 0px
+.button_green button:hover,
+.button_green button.hover {
+    background-position: 0px 0px;
 }
 
-.button_green button.active,
-.button_green button:active {
+.button_green button:active,
+.button_green button.active {
     background: #5a8943;
     border: 1px solid #5a8943;
-    position: relative
+    position: relative;
 }
 
 .button_red button {
@@ -165,18 +165,18 @@
     *border: 0;
     background: url(/images/button_calls.png?1) #bc4548 repeat-x top;
     background-position: 0px -78px;
-    *background-position: 0px -78px
+    *background-position: 0px -78px;
 }
 
 .button_red button:hover {
-    background-position: 0px -52px
+    background-position: 0px -52px;
 }
 
-.button_red button.active,
-.button_red button:active {
+.button_red button:active,
+.button_red button.active {
     background: #a9373d;
     border: 1px solid #a9373d;
-    position: relative
+    position: relative;
 }
 
 .hover_button {
@@ -187,114 +187,113 @@
     -webkit-border-radius: 6px;
     background: none;
     font-size: 1em;
-    margin: 3px 0px 0px;
+    margin: 3px 0px 0px 0px;
     cursor: pointer;
     white-space: nowrap;
     outline: none;
     padding: 10px 0px 11px;
     *padding: 9px 0px 10px;
-    font-family: tahoma, verdana, arial, sans-serif;
+    font-family: tahoma, verdana, arial, sans-serif, Lucida Sans;
     text-shadow: 0 1px 0 #191919;
     overflow: visible;
     width: 198px;
-    color: #fff
+    color: #FFF;
 }
 
-.hover_button.active,
+.hover_button:hover,
 .hover_button:active,
-.hover_button:hover {
-    background-color: rgba(0, 0, 0, .3)
+.hover_button.active {
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .hover_button img {
-    margin: 0 10px -2px 0
+    margin: 0 10px -2px 0;
 }
 
 #chat_toggle_btn {
-    text-align: center
+    text-align: center;
 }
 
 .hover_button .call_chat_toggle_img {
-    margin: -6px 7px -1px 0px
+    margin: -6px 7px -1px 0px;
 }
 
 .call_open_chat {
     width: 100px;
-    margin: 11px 0px 0px;
+    margin: 11px 0px 0px 0px;
     *margin: 0px;
-    padding: 9px 14px
+    padding: 9px 14px 9px;
 }
 
 .call_only_icon #call_chat_toggle {
-    display: none
+    display: none;
 }
 
 #call_chat_toggle {
-    padding-top: 1px
-}
-
-#call_chat_toggle,
-.call_camera_btn {
     display: inline-block;
+    padding-top: 1px;
     *display: inline;
-    *zoom: 1
+    *zoom: 1;
 }
 
 .call_camera_btn {
     background: url('/images/icons/videocall_s.png') no-repeat 0px 0px;
     width: 18px;
     height: 10px;
-    margin: 0px 10px
+    margin: 0px 10px;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
 }
 
 .call_apps_header {
     width: 136px;
     padding-left: 10px;
-    text-align: left
+    text-align: left;
 }
 
 .call_apps_wrap {
     background: url('/images/mv_bg.png');
-    background: rgba(0, 0, 0, .8);
+    background: rgba(0, 0, 0, 0.8);
     padding: 12px 14px;
     border-radius: 4px;
     text-align: center;
-    color: #fff;
-    cursor: pointer
+    color: #FFFFFF;
+    cursor: pointer;
 }
 
 .call_apps_user_photo {
     border-radius: 2px;
-    box-shadow: 0 1px 2px #111
+    box-shadow: 0 1px 2px #111;
 }
 
 .call_apps_user_name {
-    padding-bottom: 5px
+    padding-bottom: 5px;
 }
 
 .call_apps_banner {
     padding-top: 10px;
-    padding-bottom: 0px
+    padding-bottom: 0px;
 }
 
 .call_apps_banner_img {
-    border-radius: 4px
+    border-radius: 4px;
 }
 
 .call_button_green {
     margin-top: 10px;
-    background: #47a857
+    background: #47A857;
 }
 
 .call_button_green:hover {
-    background: #5db66c
+    background: #5DB66C;
 }
 
 .call_button_red {
     margin-top: 10px;
-    background: #ea4c4f
+    background: #EA4C4F;
 }
 
 .call_button_red:hover {
-    background: #f0575a
+    background: #F0575A;
 }

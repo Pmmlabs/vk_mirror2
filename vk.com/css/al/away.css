@@ -1,20 +1,20 @@
 #away_css {
-    display: none
+    display: none;
 }
 
 .browser_icon {
-    -ms-high-contrast-adjust: none
+    -ms-high-contrast-adjust: none;
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 .away_wrap {
@@ -23,41 +23,41 @@
     right: 0;
     width: 780px;
     margin: 50px auto;
-    line-height: 160%
+    line-height: 160%;
 }
 
 .away_content {
     padding: 20px;
     text-overflow: ellipsis;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .away_content.away_image {
     background: url(/images/pics/spamfight.gif) no-repeat -8px 25px;
     padding-left: 210px;
-    min-height: 170px
+    min-height: 170px;
 }
 
 .away_content.bad_browser {
     text-align: center;
-    padding: 20px 20px 35px
+    padding: 20px 20px 35px;
 }
 
 .away_content.bad_browser h2 {
-    margin-top: 15px
+    margin-top: 15px;
 }
 
 .away_content h2 {
-    font-weight: 700;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    margin: 19px 0 7px
+    margin: 19px 0 7px;
 }
 
 .away_head {
     height: 54px;
     background-color: #4a76a8;
-    border-radius: 2px 2px 0 0
+    border-radius: 2px 2px 0 0;
 }
 
 .away_logo {
@@ -65,11 +65,11 @@
     background: url('/images/svg_icons/ic_head_logo.svg') no-repeat 50% / contain;
     height: 19px;
     width: 34px;
-    margin: 18px 0 0 25px
+    margin: 18px 0 0 25px;
 }
 
 .good_browsers {
-    padding: 20px 0 24px
+    padding: 20px 0 24px;
 }
 
 .good_browser {
@@ -80,19 +80,19 @@
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    font-size: 14px
+    font-size: 14px;
 }
 
 .good_browser:hover {
     background-color: #f0f2f5;
-    text-decoration: none
+    text-decoration: none;
 }
 
 .browser_icon {
     height: 80px;
     width: 80px;
     background: url(/images/browsers.png?1) no-repeat 0 0;
-    margin-bottom: 10px
+    margin-bottom: 10px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -100,26 +100,26 @@
 (min-resolution: 192dpi) {
     .browser_icon {
         background-image: url(/images/browsers_2x.png?1);
-        background-size: 79px 412px
+        background-size: 79px 412px;
     }
 }
 
 .browser_icon.firefox {
-    background-position: 0 -83px
+    background-position: 0 -83px;
 }
 
 .browser_icon.chrome {
-    background-position: 0 -165px
+    background-position: 0 -165px;
 }
 
 .browser_icon.opera {
-    background-position: 0 -249px
+    background-position: 0 -249px;
 }
 
 .browser_icon.yandex {
-    background-position: 0 -334px
+    background-position: 0 -334px;
 }
 
 .away_transition {
-    margin-top: 8px
+    margin-top: 8px;
 }

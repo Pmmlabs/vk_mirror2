@@ -1,148 +1,146 @@
 #cheatgroups_css {
-    display: none
+    display: none;
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
-    margin: 0;
-    padding: 0
-}
-
-.h4-text,
-.cheatgroups_title {
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0;
 }
 
 .cheatgroups_title {
     font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
     color: #828282;
-    line-height: 22px
+    line-height: 22px;
 }
 
 .cheatgroups_pages:empty {
-    display: none
+    display: none;
 }
 
 .cheatgroups_empty {
     padding: 50px 0;
     text-align: center;
-    color: #656565
+    color: #656565;
 }
 
 .cheatgroups {
-    padding: 15px 15px 10px
+    padding: 15px 15px 10px;
 }
 
 .cheatgroups_list {
-    padding-top: 10px
+    padding-top: 10px;
 }
 
 .cheatgroups_row {
     padding: 8px;
     margin: 0 0 10px;
-    background: #fff;
-    border: 1px solid #d9e1e7
+    background: white;
+    border: 1px solid #D9E1E7;
 }
 
 .cheatgroups_row_table {
     border-collapse: collapse;
-    width: 100%
+    width: 100%;
 }
 
 .cheatgroups_row_image {
     text-align: left;
     vertical-align: top;
-    width: 110px
+    width: 110px;
 }
 
 .cheatgroups_row_image img {
-    width: 100px
+    width: 100px;
 }
 
 .cheatgroups_row_info {
-    vertical-align: top
+    vertical-align: top;
 }
 
 .cheatgroups_row_info_table {
     border-collapse: collapse;
     line-height: 140%;
-    width: 100%
+    width: 100%;
 }
 
 .cheatgroups_row_info__label {
     padding-right: 5px;
     color: #656565;
     vertical-align: top;
-    width: 80px
+    width: 80px;
 }
 
 .cheatgroups_row_info__content {
-    overflow: hidden
+    overflow: hidden;
 }
 
 .cheatgroups_comment {
-    margin: 0 0 8px
+    margin: 0 0 8px;
 }
 
 .cheatgroups_comment:last-child {
-    margin-bottom: 0
+    margin-bottom: 0;
 }
 
-.cheatgroups_comment__info,
-.cheatgroups_row_date {
-    color: #939393
+.cheatgroups_row_date,
+.cheatgroups_comment__info {
+    color: #939393;
 }
 
 .cheatgroups_comment__text {
-    padding: 4px 0 0 4px
+    padding: 4px 0 0 4px;
 }
 
 .cheatgroups_row_options {
     padding-left: 10px;
     vertical-align: top;
-    width: 120px
+    width: 120px;
 }
 
 .cheatgroups_row_options_list {
     margin: 0;
     padding: 0;
-    list-style: none
+    list-style: none;
 }
 
 .cheatgroups_row_options_list>li {
-    margin-bottom: 6px
+    margin-bottom: 6px;
 }
 
 .cheatgroups_row_options_list>li:last-child {
-    margin-bottom: 0
+    margin-bottom: 0;
 }
 
 .cheatgroups_row_options_inv {
-    font-weight: 700;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
     padding: 8px 11px;
     text-align: center;
-    background-color: #f6f7f9;
-    border: 1px solid #dbe0ea;
-    font-size: 11px
+    background-color: #F6F7F9;
+    border: 1px solid #DBE0EA;
+    font-size: 11px;
 }
 
 .cheatgroups_row_options_inv:empty {
-    display: none
+    display: none;
 }
 
 .childgroups_process_error:empty {
     margin-bottom: 20px;
-    display: none
+    display: none;
 }
 
 .childgroups_process_text {
     box-sizing: border-box;
-    width: 100%
+    width: 100%;
 }

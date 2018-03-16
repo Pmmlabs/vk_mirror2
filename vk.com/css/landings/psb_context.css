@@ -1,10 +1,10 @@
 #landings_psb_context_css {
-    display: none
+    display: none;
 }
 
-body,
-html {
-    height: 100%
+html,
+body {
+    height: 100%;
 }
 
 .landing .header_wrapper {
@@ -16,28 +16,28 @@ html {
     padding-bottom: 32.5%;
     overflow: hidden;
     font: 0/0 a;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 .landing .header_wrapper:before {
     content: ' ';
     display: inline-block;
     vertical-align: middle;
-    height: 100%
+    height: 100%;
 }
 
 .landing .header_wrapper img {
-    display: inline-block
+    display: inline-block;
 }
 
 .landing .pos-top {
-    background-position: top
+    background-position: top;
 }
 
 .landing .landings_psb_find_clients {
-    background: #f4f3f4;
+    background: #F4F3F4;
     position: relative;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .landing .landings_psb_find_clients .blur_bg {
@@ -60,22 +60,22 @@ html {
     -webkit-transform: scaleY(-1);
     -ms-transform: scaleY(-1);
     transform: scaleY(-1);
-    opacity: 0.2
+    opacity: 0.2;
 }
 
 .landing .landing_psb_instruments {
-    overflow: hidden
+    overflow: hidden;
 }
 
 .landing .landing_psb_instruments .landing_psb_instrument {
     float: left;
     width: 50%;
     z-index: 50;
-    position: relative
+    position: relative;
 }
 
 .landing .landing_psb_instruments .landing_psb_instrument+.landing_psb_instrument {
-    padding-left: 50px
+    padding-left: 50px;
 }
 
 .landing .landing_psb_instruments .landing_psb_instrument .landing_psb_instrument__icon {
@@ -83,11 +83,11 @@ html {
     width: 82px;
     border-radius: 100%;
     background-color: #f7f8fa;
-    float: left
+    float: left;
 }
 
 .landing .landing_psb_instruments .landing_psb_instrument .landing_psb_instrument__text {
-    margin-left: 102px
+    margin-left: 102px;
 }
 
 .landing .landing_psb_instruments .landing_psb_instrument .landing_psb_instrument__text .title {
@@ -95,19 +95,19 @@ html {
     font-weight: 300;
     line-height: 1.32;
     color: #4a4a4a;
-    margin-bottom: 11px
+    margin-bottom: 11px;
 }
 
 .landing .landing_psb_instruments .landing_psb_instrument .landing_psb_instrument__text .comment {
     font-size: 20px;
     font-weight: 300;
     line-height: 1.45;
-    color: #7c7f82
+    color: #7c7f82;
 }
 
 .landing .max_size {
     max-width: 2560px;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 .landing .max_size .footer_wrapper {
@@ -121,7 +121,7 @@ html {
     background-position: 0 100%;
     background-repeat: no-repeat;
     margin-top: -20%;
-    z-index: 20
+    z-index: 20;
 }
 
 .landing .max_size .footer_wrapper .footer_fade {
@@ -130,11 +130,11 @@ html {
     position: absolute;
     left: -5%;
     top: -1px;
-    background: -o-linear-gradient(top, #fff 0%, #fff 40%, hsla(0, 0%, 100%, 0) 100%);
-    background: linear-gradient(180deg, #fff 0%, #fff 40%, hsla(0, 0%, 100%, 0));
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff', GradientType=0)
+    background: -o-linear-gradient(top, #ffffff 0%, #ffffff 40%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #ffffff 40%, rgba(255, 255, 255, 0));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff', GradientType=0);
 }
 
 .landing .landings_psb_coverage {
-    margin: 107px 0 97px
+    margin: 107px 0 97px 0;
 }

@@ -1,24 +1,24 @@
 #content {
-    padding: 0
+    padding: 0;
 }
 
 #getVotesProgress {
     float: right;
     position: relative;
-    top: 4px
+    top: 4px;
 }
 
 #votes_box_details .listing {
-    padding-left: 25px
+    padding-left: 25px;
 }
 
 .votes_transfer {
     padding: 20px 15px 10px;
-    line-height: 150%
+    line-height: 150%;
 }
 
 .votes_transfer .error {
-    margin: 0 0 10px
+    margin: 0 0 10px;
 }
 
 .votes_transfer .label {
@@ -27,7 +27,7 @@
     text-align: right;
     vertical-align: top;
     padding-right: 12px;
-    padding-top: 3px
+    padding-top: 3px;
 }
 
 .votes_transfer .input .small {
@@ -35,74 +35,74 @@
     font-size: 10px;
     display: block;
     line-height: 100%;
-    margin-bottom: 10px
+    margin-bottom: 10px;
 }
 
 .votes_transfer #transfer_to_not_found {
     display: none;
-    margin-top: 4px
+    margin-top: 4px;
 }
 
 .votes_transfer .input,
 .votes_transfer .input input,
 .votes_transfer .input textarea {
-    width: 236px
+    width: 236px;
 }
 
 .votes_transfer #formButtons li {
-    margin-left: 0
+    margin-left: 0;
 }
 
 .votes_transfer #recipientPhoto {
     padding-left: 20px;
-    vertical-align: top
+    vertical-align: top;
 }
 
 .votes_transfer #payments_transfer_message {
-    display: none
+    display: none;
 }
 
 .votes_transfer #transfer_description {
-    margin-bottom: 16px
+    margin-bottom: 16px;
 }
 
 .votes_transfer .title {
-    border-bottom: 1px solid #dae1e8;
-    color: #45688e;
+    border-bottom: 1px solid #DAE1E8;
+    color: #45688E;
     font-size: 12px;
-    font-weight: 700;
-    margin-bottom: 10px
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .votes_transfer .msg {
     margin: 0px 0px 10px;
-    font-weight: 700
+    font-weight: bold;
 }
 
 .votes_transfer .msg#need_mobile_act {
-    margin: 0
+    margin: 0;
 }
 
 .sms_cost {
     padding-top: 3px;
-    color: #777
+    color: #777777;
 }
 
 #votes_show_notes_link {
     margin: 8px 0;
-    color: #3c6993;
+    color: #3C6993;
     font-size: 10px;
-    cursor: pointer
+    cursor: pointer;
 }
 
 #votes_notes {
     display: none;
     font-size: 10px;
-    color: #666;
-    margin: 8px 0
+    color: #666666;
+    margin: 8px 0;
 }
 
 .sms_numbers div {
     line-height: 125%;
-    margin-bottom: 8px
+    margin-bottom: 8px;
 }

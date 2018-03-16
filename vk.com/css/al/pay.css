@@ -1,10 +1,10 @@
 #pay_css {
-    display: none
+    display: none;
 }
 
 .pay_not_enough_list {
     padding: 5px 20px 0px;
-    margin-bottom: 0px
+    margin-bottom: 0px;
 }
 
 .pay_item_thumb {
@@ -13,239 +13,244 @@
     width: 100px;
     height: 100px;
     overflow: hidden;
-    margin: 0px 5px
+    margin: 0px 5px;
 }
 
 .pay_item_row {
     clear: both;
     padding-top: 5px;
     margin: 0px -5px;
-    width: 500px
+    width: 500px;
 }
 
 .pay_item_about {
     padding-top: 5px;
     width: 380px;
-    margin: 0px 5px
+    margin: 0px 5px;
 }
 
 .pay_item_desc {
-    padding-top: 10px
+    padding-top: 10px;
 }
 
-#pay_box_error,
-#pay_error {
-    display: none
+#pay_error,
+#pay_box_error {
+    display: none;
 }
 
 #pay_shipping_types_sel {
-    padding: 20px 0px
+    padding: 20px 0px;
 }
 
 #pay_will_be_left {
     clear: both;
-    padding-top: 5px
+    padding-top: 5px;
 }
 
 #pay_agreement_wrap {
     font-size: 0.9em;
-    padding: 0px 5px
+    padding: 0px 5px;
 }
 
 #pay_agreement_check {
     margin-top: 20px;
-    display: none
+    display: none;
 }
 
 #pay_process_info {
     text-align: center;
-    padding: 40px 0px
+    padding: 40px 0px;
 }
 
 .pay_process_please {
-    font-weight: 700;
-    font-size: 1.09em
+    font-weight: bold;
+    font-size: 1.09em;
 }
 
 .pay_text_string {
-    line-height: 1.63em
+    line-height: 1.63em;
 }
 
 .pay_text_wrap {
     width: 430px;
-    padding-top: 8px
+    padding-top: 8px;
 }
 
 .pay_thumb_wrap {
     width: 60px;
     height: 50px;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .pay_top_data {
     width: 490px;
     font-size: 1em;
-    margin: 0px auto
+    margin: 0px auto;
 }
 
 #pay_top_page {
     height: 50px;
-    background-color: #f7f7f7;
+    background-color: #F7F7F7;
     padding: 10px;
-    border-bottom: 1px solid #dae2e8
+    border-bottom: 1px solid #DAE2E8;
 }
 
 .pay_container_test {
-    background: url(/images/test_mode.gif)
+    background: url(/images/test_mode.gif);
 }
 
 #pay_container {
     width: 490px;
-    margin: 0px auto
+    margin: 0px auto;
 }
 
 .pay_step_header {
-    border-bottom: 1px solid #dae1e8;
-    color: #45688e;
+    border-bottom: 1px solid #DAE1E8;
+    color: #45688E;
     font-size: 1.09em;
-    font-weight: 700;
+    font-weight: bold;
     width: 500px;
-    margin: 0px auto 10px
+    margin: 0px auto 10px;
 }
 
 #pay_you_will_msg,
 .pay_will_be_left_info {
     margin: 5px auto;
-    display: block
+    display: block;
 }
 
 #pay_error,
 #pay_you_will_msg,
 .pay_will_be_left_info {
     width: 468px;
-    line-height: 1.36em
+    line-height: 1.36em;
 }
 
 .pay_will_be_left_info {
     padding: 8px 11px;
-    background-color: #f6f7f9;
-    border: 1px solid #dbe0ea
+    background-color: #F6F7F9;
+    border: 1px solid #DBE0EA;
 }
 
 .pay_enter_code {
     height: 40px;
-    padding-top: 5px
+    padding-top: 5px;
 }
 
-.pay_enter_label,
+.pay_enter_label {
+    color: #777;
+    width: 130px;
+    padding: 4px 10px 0px;
+}
+
 .pay_label {
     color: #777;
     width: 130px;
-    padding: 4px 10px 0px
+    padding: 4px 10px 0px;
 }
 
 .pay_labeled {
-    width: 190px
+    width: 190px;
 }
 
 .pay_labeled .text {
-    width: 172px
+    width: 172px;
 }
 
 .pay_row {
     clear: both;
-    height: 26px
+    height: 26px;
 }
 
 .pay_please {
     width: 120px;
     font-size: 0.9em;
     color: #800;
-    display: none
+    display: none;
 }
 
 .pay_about_code {
-    color: gray
+    color: #808080;
 }
 
 #pay_confirm_code,
 #pay_confirm_phone {
-    width: 100px
+    width: 100px;
 }
 
 .pay_about_phone {
-    padding-top: 10px
+    padding-top: 10px;
 }
 
 #pay_why_only_mine {
-    display: none
+    display: none;
 }
 
-#pay_box_error,
-#pay_error {
-    margin-bottom: 10px
+#pay_error,
+#pay_box_error {
+    margin-bottom: 10px;
 }
 
 #pay_retry_msg {
-    margin-bottom: 5px
+    margin-bottom: 5px;
 }
 
-#pay_shipping_types .pay_pickup_type,
+#pay_shipping_types .pay_shipping_types_header,
 #pay_shipping_types .pay_shipping_type,
-#pay_shipping_types .pay_shipping_types_header {
+#pay_shipping_types .pay_pickup_type {
     padding: 8px 0px 7px;
-    border-bottom: 1px solid #fff;
-    border-top: 1px solid #fff;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
     clear: left;
-    background: #fff
+    background: #FFFFFF;
 }
 
 #pay_shipping_types .pay_shipping_type div {
-    margin: 0px 18px 0px 7px
+    margin: 0px 18px 0px 7px;
 }
 
 #pay_shipping_types .on {
-    background-color: #e1e8ed;
-    border-top-color: #ccd5dd;
-    border-bottom-color: #ccd5dd
+    background-color: #E1E8ED;
+    border-top-color: #CCD5DD;
+    border-bottom-color: #CCD5DD;
 }
 
 #pay_shipping_types.first .on {
-    border-top-color: #e1e8ed
+    border-top-color: #E1E8ED;
 }
 
 #pay_shipping_types .pay_shipping_types_header {
-    background-color: #eef0f1;
-    border-bottom-color: #ccd5dd;
+    background-color: #EEF0F1;
+    border-bottom-color: #CCD5DD;
     padding-left: 40px;
-    font-weight: 700
+    font-weight: bold;
 }
 
 #pay_shipping_types .pay_name {
     width: 270px;
     padding: 0px 10px;
-    display: block
+    display: block;
 }
 
 #pay_shipping_types .pay_price {
-    display: block
+    display: block;
 }
 
 #pay_shipping_types .pay_shiping_name {
     width: 270px;
-    padding: 0px 10px
+    padding: 0px 10px;
 }
 
 .pay_agreement_desc {
     display: block;
-    width: 450px
+    width: 450px;
 }
 
 #pay_shipping_addresses {
-    padding: 20px 0px
+    padding: 20px 0px 20px;
 }
 
 .pay_agree_email {
     font-size: 0.9em;
-    margin-top: 15px
+    margin-top: 15px;
 }

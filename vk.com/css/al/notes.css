@@ -1,26 +1,26 @@
 #notes_css {
-    display: none
+    display: none;
 }
 
 .notes {
-    padding-bottom: 10px
+    padding-bottom: 10px;
 }
 
 .notes_show_more_progress {
-    margin: 0px auto
+    margin: 0px auto;
 }
 
 .notes_more_link {
     margin: 0px auto;
-    text-align: center
+    text-align: center;
 }
 
 #notes_all_shown {
-    border-top: 1px solid #cad1d9;
+    border-top: 1px solid #CAD1D9;
     color: #777;
     display: block;
     padding: 10px 0px;
-    text-align: center
+    text-align: center;
 }
 
 #notes_blog_empty {
@@ -29,131 +29,131 @@
     font-size: 1.09em;
     line-height: 170%;
     padding: 50px;
-    text-align: center
+    text-align: center;
 }
 
 .notes_note {
-    padding: 20px 20px 35px
+    padding: 20px 20px 35px 20px;
 }
 
 .notes_profile_thumb {
     float: left;
     padding: 0px 10px 0px 0px;
-    width: 50px
+    width: 50px;
 }
 
 .notes_note_body {
     width: 525px;
-    float: left
+    float: left;
 }
 
 .notes_note_body_wide {
     width: 585px;
-    padding-bottom: 3px
+    padding-bottom: 3px;
 }
 
 .notes_note_content {
     width: 585px;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .notes_comment_body {
     width: 583px;
-    border-top: 1px solid #e9edf1;
-    padding: 10px 1px 0px
+    border-top: 1px solid #E9EDF1;
+    padding: 10px 1px 0px;
 }
 
 .notes_edit {
-    background: #f7f7f7;
-    padding: 10px 40px 20px
+    background: #F7F7F7;
+    padding: 10px 40px 20px;
 }
 
 .notes_edit_label {
     color: #666;
     display: block;
     padding: 6px 0px 3px 1px;
-    font-weight: 700
+    font-weight: bold;
 }
 
 .notes_edit_title_text {
-    font-size: 1.18em!important;
+    font-size: 1.18em !important;
     margin: 0px;
-    width: 540px
+    width: 540px;
 }
 
 .notes_edit_body_textarea {
     height: 220px;
     margin: 0px;
-    width: 540px
+    width: 540px;
 }
 
 #notes_blogcomment {
-    width: auto
+    width: auto;
 }
 
 #notes_blogcomment .notes_comment:first-child .notes_comment_body {
-    border-top: 0px
+    border-top: 0px;
 }
 
 .notes_box_msg {
-    margin: 10px
+    margin: 10px;
 }
 
 .notes_note_header {
-    background: #f7f7f7;
-    border-top: solid 1px #597da3;
-    padding: 6px
-}
-
-.notes_note_header,
-.notes_note_header_wide {
-    border-bottom: solid 1px #dae1e8;
-    line-height: 185%
+    background: #F7F7F7;
+    border-bottom: solid 1px #DAE1E8;
+    border-top: solid 1px #597DA3;
+    padding: 6px 6px 6px 6px;
+    line-height: 185%;
 }
 
 .notes_note_header_wide {
+    border-bottom: solid 1px #DAE1E8;
+    line-height: 185%;
     padding: 9px 5px 7px 20px;
     margin: 0px -22px 0px -20px;
-    background-color: #f7f7f7
+    background-color: #F7F7F7;
 }
 
 .notes_note_title {
-    color: #45688e;
+    color: #45688E;
     font-size: 1.18em;
-    font-weight: 700;
+    font-weight: bold;
     line-height: 1.36em;
     float: left;
     margin: 0px;
-    padding: 0px 0px 1px;
+    padding: 0px 0px 1px 0px;
     width: 500px;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .notes_note_title a {
-    color: #45688e!important
+    color: #45688E !important;
 }
 
 .notes_note_byline {
     clear: both;
     color: #333;
-    padding: 0px 0px 0px 1px
+    padding: 0px 0px 0px 1px;
 }
+
+.notes_note_byline_span {}
 
 .notes_note_content {
-    margin-left: 6px
-}
-
-.notes_note_content,
-.notes_note_content_wide {
     clear: both;
-    padding: 10px 0px 0px;
+    margin-left: 6px;
+    padding: 10px 0px 0px 0px;
     word-wrap: break-word;
-    line-height: 140%
+    line-height: 140%;
 }
 
 .notes_note_content_wide {
     width: 587px;
-    overflow: hidden
+    overflow: hidden;
+    clear: both;
+    padding: 10px 0px 0px 0px;
+    word-wrap: break-word;
+    line-height: 140%;
 }
 
 .notes_note_footer {
@@ -161,54 +161,54 @@
     clear: both;
     font-size: 1em;
     margin-top: 10px;
-    padding: 0px 2px 0px 6px
+    padding: 0px 2px 0px 6px;
 }
 
 .notes_note_footer_wide {
     clear: both;
     font-size: 1em;
-    margin-top: 11px
+    margin-top: 11px;
 }
 
 .notes_active_pad {
-    background-color: #eaeaea;
+    background-color: #EAEAEA;
     padding: 4px 4px 4px 12px;
-    font-weight: 700;
-    width: 140px
+    font-weight: bold;
+    width: 140px;
 }
 
 .notes_active_pad a,
 .notes_active_pad a:hover {
     color: #000;
-    text-decoration: none
+    text-decoration: none;
 }
 
 .notes_inactive_pad {
     padding: 4px 4px 4px 12px;
-    width: 140px
+    width: 140px;
 }
 
 .notes_note_wide {
-    padding: 0px 20px 18px
+    padding: 0px 20px 18px;
 }
 
 .notes_note_wide .notes_note_footer {
-    font-size: 1em
+    font-size: 1em;
 }
 
 .notes_comments_count {
-    padding: 5px 0px 0px
+    padding: 5px 0px 0px 0px;
 }
 
 .notes_comments_count_wide {
-    padding: 5px 0px 0px;
-    color: #777
+    padding: 5px 0px 0px 0px;
+    color: #777777;
 }
 
 .notes_comments_summary {
-    color: #45688e;
-    font-weight: 700;
-    padding-bottom: 5px
+    color: #45688E;
+    font-weight: bold;
+    padding-bottom: 5px;
 }
 
 .notes_comments_showmore {
@@ -217,51 +217,51 @@
     text-align: center;
     padding: 10px 7px;
     cursor: pointer;
-    color: #6a7989;
-    background: #e9edf1;
-    border-top: 1px solid #e9edf1
+    color: #6A7989;
+    background: #E9EDF1;
+    border-top: 1px solid #E9EDF1;
 }
 
 #notes_progr_wrap {
     float: left;
     margin-left: 5px;
-    vertical-align: bottom
+    vertical-align: bottom;
 }
 
 #notes_progr {
-    display: none
+    display: none;
 }
 
 #notes_blogaddcomment {
     float: left;
     clear: left;
     margin-top: 10px;
-    width: 100%
+    width: 100%;
 }
 
 .notes_blogaddcomment_h4 {
     border: none;
     margin-left: 0;
-    padding-bottom: 8px
+    padding-bottom: 8px;
 }
 
 #notes_commenterror {
     float: left;
     display: none;
     width: 405px;
-    margin: 0px
+    margin: 0px;
 }
 
 #notes_comments_body {
     clear: both;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .notes_comment {
     margin: 0;
     clear: right;
     position: relative;
-    background-color: #fff
+    background-color: #fff;
 }
 
 .notes_comment_userpic {
@@ -269,24 +269,24 @@
     display: block;
     width: 50px;
     height: 50px;
-    margin: 0px 6px 5px 0px
+    margin: 0px 6px 5px 0px;
 }
 
 .notes_comment_userpic_img {
-    border: 0px
+    border: 0px;
 }
 
 .notes_just_comment {
     width: 529px;
-    margin-left: 56px
+    margin-left: 56px;
 }
 
 .notes_comment_header {
-    padding-left: 5px
+    padding-left: 5px;
 }
 
 .notes_comment_header a {
-    font-weight: 700
+    font-weight: bold;
 }
 
 .notes_comment_text {
@@ -294,33 +294,33 @@
     padding-left: 6px;
     line-height: 140%;
     width: 480px;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .notes_comment_actions {
     padding: 0px 5px 11px;
-    color: #999
+    color: #999;
 }
 
 .notes_comment_actions_img {
     float: right;
     display: none;
     position: relative;
-    top: 3px
+    top: 3px;
 }
 
 .notes_comment_msg {
-    margin: 0px 0px 10px;
-    padding: 10px 11px 9px
+    margin: 0px 0px 10px 0px;
+    padding: 10px 11px 9px;
 }
 
 .notes_comment textarea {
     outline-style: none;
-    outline-width: 0
+    outline-width: 0;
 }
 
 #notes_comment_input {
-    width: 577px
+    width: 577px;
 }
 
 .notes_separator {
@@ -328,64 +328,64 @@
     height: 10px;
     background-color: #fff;
     position: relative;
-    z-index: 1
+    z-index: 1;
 }
 
 .notes_comment_result div.dld {
     padding: 9px 12px 10px 10px;
     margin: 0px;
     position: relative;
-    font-weight: 400
+    font-weight: normal;
 }
 
 .notes_comment_head {
-    float: left
+    float: left;
 }
 
 .notes_reply_name {
     float: left;
-    margin-left: 5px
+    margin-left: 5px;
 }
 
 .notes_add_button {
-    margin: 10px 0
+    margin: 10px 0;
 }
 
 .wikiText .more_link {
     display: none;
     padding: 8px 0px;
     text-align: center;
-    border-top: 1px solid #dae1e8;
-    margin-bottom: 10px
+    border-top: 1px solid #DAE1E8;
+    margin-bottom: 10px;
 }
 
 .wikiText div.audioRow {
-    width: 380px
+    width: 380px;
 }
 
 .wikiText div.playline {
-    width: 346px
+    width: 346px;
 }
 
 .wikiText ul.listing {
     margin: 0px;
     padding: 0px 0px 0px 8px;
-    list-style-image: none
+    list-style-image: none;
 }
 
 .wikiText ol.numbered {
     margin: 0px;
-    padding-left: 25px
+    padding-left: 25px;
 }
 
 .wikiText ul.listing ul.listing {
     margin-left: 20px;
-    margin-top: 4px
+    margin-top: 4px;
 }
 
 .wikiText ol.numbered ol.numbered {
     margin-left: 18px;
-    margin-top: 4px
+    margin-top: 4px;
 }
 
 .wikiText ul.listing li {
@@ -395,53 +395,53 @@
     background-image: url("/images/editor_marker.gif");
     background-repeat: no-repeat;
     background-position: left 6px;
-    margin-bottom: 2px
+    margin-bottom: 2px;
 }
 
 .wikiText ol.numbered li {
-    margin-bottom: 2px
+    margin-bottom: 2px;
 }
 
 .view_full_note {
     margin-top: 5px;
-    font-size: 0.9em
+    font-size: 0.9em;
 }
 
 .shared_content {
-    border-left: 6px solid #c9d8df;
-    padding-left: 10px
+    border-left: 6px solid #C9D8DF;
+    padding-left: 10px;
 }
 
 .shared_title {
-    padding-top: 5px
+    padding-top: 5px;
 }
 
 .shared_title a {
-    color: #36638e;
-    font-weight: 700
+    color: #36638E;
+    font-weight: bold;
 }
 
 .shared_text {
     color: #666;
-    padding-top: 5px
+    padding-top: 5px;
 }
 
 .shared_domain {
     color: #999;
-    padding-top: 5px
+    padding-top: 5px;
 }
 
 .shared_comment {
     padding-top: 5px;
-    clear: left
+    clear: left;
 }
 
 .shared_content a.wikiPhoto img {
-    margin-right: 10px
+    margin-right: 10px;
 }
 
 .shared_content a.wikiPhoto:hover img {
-    border-color: #45688e
+    border-color: #45688E;
 }
 
 .notes_checkbox {
@@ -449,26 +449,26 @@
     line-height: 1em;
     vertical-align: baseline;
     padding: 0px 0px 3px 20px;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .notes_checkbox:hover {
-    background-position: 0px -28px
+    background-position: 0px -28px;
 }
 
 .notes_checkbox.on {
-    background-position: 0px -14px
+    background-position: 0px -14px;
 }
 
 .notes_checkbox.on:hover {
-    background-position: 0px -42px
+    background-position: 0px -42px;
 }
 
 .notes_ul_nnav {
     font-size: 1em;
     list-style: none;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 .notes_ul_nnav_li {
@@ -477,72 +477,69 @@
     margin-left: 5px;
     text-align: center;
     width: expression(this.getElementsByTagName('a')[0].offsetWidth+16+'px');
-    border-bottom: 1px solid #eee
+    ;
+    border-bottom: 1px solid #eee;
 }
 
 .notes_ul_nnav_li a:hover {
-    color: #dae1e8;
-    text-decoration: none
+    color: #DAE1E8;
+    text-decoration: none;
 }
 
 .notes_ul_nnav_li a {
-    color: #fff;
+    color: #FFF;
     display: inline;
-    white-space: nowrap
+    white-space: nowrap;
 }
 
 .notes_btn_list_li {
-    margin: 0 5px 0 0
+    margin: 0 5px 0 0;
 }
 
 .notes_fl_r li {
-    margin: 0 0 0 5px
+    margin: 0 0 0 5px;
 }
 
 .notes_ncc {
-    padding: 3px 8px;
-    color: #fff
+    display: block;
+    background: #4D7196;
+    padding: 3px 8px 3px 8px;
+    color: #fff;
 }
 
-.notes_ncc,
 .notes_nc {
     display: block;
-    background: #4d7196
-}
-
-.notes_nc {
     height: 1px;
     font-size: .01em;
-    overflow: hidden
+    overflow: hidden;
+    background: #4D7196;
 }
 
 .notes_nc1 {
     margin-left: 1px;
     margin-right: 1px;
-    background: #517294
-}
-
-.notes_nc1,
-.notes_nc2 {
-    border-left: 1px solid #93a9bd;
-    border-right: 1px solid #93a9bd
+    border-left: 1px solid #93A9BD;
+    border-right: 1px solid #93A9BD;
+    background: #517294;
 }
 
 .notes_nc2 {
-    background: #55789b
+    border-left: 1px solid #93A9BD;
+    border-right: 1px solid #93A9BD;
+    background: #55789B;
 }
 
 .notes_inactive_tab:hover {
-    cursor: default
+    cursor: default;
 }
 
 .notes_like_wrap {
-    color: #2f5879;
-    cursor: pointer
+    color: #2F5879;
+    cursor: pointer;
 }
 
 .notes_my_like_link {
-    color: #777
+    color: #777777;
 }
 
 .notes_like_wrap div {
@@ -552,10 +549,10 @@
     opacity: 0.4;
     filter: alpha(opacity=40);
     width: 11px;
-    display: inline-block
+    display: inline-block;
 }
 
 .notes_like_wrap div.my_like {
     opacity: 1;
-    filter: alpha(opacity=100)
+    filter: alpha(opacity=100);
 }

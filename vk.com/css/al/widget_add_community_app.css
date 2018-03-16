@@ -1,61 +1,61 @@
 #widget_add_community_app_css {
-    display: none
+    display: none;
 }
 
 .add_community_app_success:before {
-    -ms-high-contrast-adjust: none
+    -ms-high-contrast-adjust: none;
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 .add_community_app_card {
     padding: 0 0 0 65px;
     min-height: 50px;
-    line-height: 18px
+    line-height: 18px;
 }
 
 .add_community_app_card .add_community_app_card_name {
     padding-top: 7px;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap
+    white-space: nowrap;
 }
 
 .add_community_app_card .add_community_app_card_size {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: #939393
+    color: #939393;
 }
 
 .add_community_app_card .add_community_app_card_photo {
     margin-left: -65px;
     width: 50px;
-    height: 50px
+    height: 50px;
 }
 
 .add_community_app_card .add_community_app_card_photo img {
     width: 50px;
     height: 50px;
     vertical-align: top;
-    border-radius: 4px
+    border-radius: 4px;
 }
 
 .apps_group_hint_icon_count_reached_tt {
-    width: 315px
+    width: 315px;
 }
 
 .add_community_app_groups {
-    margin: -7px 0 -12px
+    margin: -7px 0 -12px;
 }
 
 .add_community_app_groups.add_community_app_groups_multi .flist_item_hint_icon {
@@ -64,11 +64,11 @@
     float: right;
     margin: 6px 5px 0 0;
     width: 22px;
-    height: 22px
+    height: 22px;
 }
 
 .add_community_app_groups.add_community_app_groups_multi .flist_item_name {
-    width: 333px
+    width: 333px;
 }
 
 .add_community_app_groups.add_community_app_groups_multi .add_community_app_group_app,
@@ -76,25 +76,25 @@
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    margin-right: 16px
+    margin-right: 16px;
 }
 
 .add_community_app_groups.add_community_app_groups_multi .add_community_app_group_app_multi {
-    margin-right: 16px
+    margin-right: 16px;
 }
 
 .add_community_app_groups.add_community_app_groups_multi .add_community_app_group_app_multi .add_community_app_group_app,
 .add_community_app_groups.add_community_app_groups_multi .add_community_app_group_app_multi .add_community_app_group_app img {
-    margin-right: -8px
+    margin-right: -8px;
 }
 
 .add_community_app_groups.add_community_app_groups_multi .add_community_app_group_app_multi .add_community_app_group_app:last-child,
 .add_community_app_groups.add_community_app_groups_multi .add_community_app_group_app_multi .add_community_app_group_app img:last-child {
-    margin-right: 0
+    margin-right: 0;
 }
 
 .add_community_app_groups.add_community_app_groups_multi .add_community_app_group_app_multi .add_community_app_group_app img {
-    border: 2px solid #fff
+    border: 2px solid #fff;
 }
 
 .add_community_app_groups .add_community_app_group_app,
@@ -102,15 +102,15 @@
     vertical-align: top;
     width: 34px;
     height: 34px;
-    border-radius: 4px
+    border-radius: 4px;
 }
 
 .add_community_app_groups .add_community_app_group_app {
-    margin-right: 10px
+    margin-right: 10px;
 }
 
 .add_community_app_groups .flist_item_name {
-    width: 385px
+    width: 385px;
 }
 
 .add_community_app_success {
@@ -119,7 +119,7 @@
     max-width: 510px;
     margin: 0 auto;
     text-align: center;
-    word-wrap: break-word
+    word-wrap: break-word;
 }
 
 .add_community_app_success:before {
@@ -128,7 +128,7 @@
     content: '';
     width: 48px;
     height: 48px;
-    background: url(/images/widgets/widgets_msg_ok.png)
+    background: url(/images/widgets/widgets_msg_ok.png);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -136,6 +136,6 @@
 (min-resolution: 192dpi) {
     .add_community_app_success:before {
         background-image: url(/images/widgets/widgets_msg_ok_2x.png);
-        background-size: 48px 48px
+        background-size: 48px 48px;
     }
 }

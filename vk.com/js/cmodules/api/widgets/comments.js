@@ -11,8 +11,8 @@
     var a = {};
     return t.m = e, t.c = a, t.p = "", t(0)
 }([function(e, t, a) {
-    e.exports = a(4)
-}, , , , function(module, exports) {
+    e.exports = a(3)
+}, , , function(module, exports) {
     "use strict";
     var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
         return typeof e
@@ -1192,7 +1192,7 @@
                                             S = Page.addAudioPreview(clean(a), o), I = ' id="pam' + clean(h) + "_audio" + clean(a) + '"';
                                             break;
                                         case "audio_playlist":
-                                            if (k.audio_playlist || o.authorHref && !/^[/\w._-]+$/.test(o.authorHref) || o.id && !/^[\d_-]+$/.test(o.id)) return !1;
+                                            if (k.audio_playlist || o.authorHref && !/^[\/\w._-]+$/.test(o.authorHref) || o.id && !/^[\d_-]+$/.test(o.id)) return !1;
                                             var L = o.coverUrl ? "background-image:url(" + clean(unclean(o.coverUrl)) + "); background-size: cover;" : "",
                                                 B = (o.id.split("_"), "");
                                             B = o.authorHref ? '<a href="' + clean(unclean(o.authorHref)) + '">' + clean(unclean(o.authorName)) + "</a>" : clean(unclean(o.authorName));

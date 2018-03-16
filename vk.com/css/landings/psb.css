@@ -1,37 +1,17 @@
 #landings_psb_css {
-    display: none
+    display: none;
 }
 
-.adv_promo_icon--gallery,
-.adv_promo_icon--goods,
-.adv_promo_icon--picture,
-.adv_promo_icon--teaser,
-.adv_promo_icon--video,
-.adv_promo_nav__item--active .adv_promo_icon--gallery,
-.adv_promo_nav__item--active .adv_promo_icon--goods,
-.adv_promo_nav__item--active .adv_promo_icon--picture,
-.adv_promo_nav__item--active .adv_promo_icon--teaser,
-.adv_promo_nav__item--active .adv_promo_icon--video,
-.adv_promo_nav__item:hover .adv_promo_icon--gallery,
-.adv_promo_nav__item:hover .adv_promo_icon--goods,
-.adv_promo_nav__item:hover .adv_promo_icon--picture,
-.adv_promo_nav__item:hover .adv_promo_icon--teaser,
-.adv_promo_nav__item:hover .adv_promo_icon--video,
 .landing .landing_psb_popup .landing_psb_popup_controls .landing_psb_popup__arrow_left,
 .landing .landing_psb_popup .landing_psb_popup_controls .landing_psb_popup__arrow_right,
 .landing .landing_psb_popup .landing_psb_popup_controls .landing_psb_popup__cross,
-.landings_psb__image--budget,
-.landings_psb__image--click,
-.landings_psb__image--header1,
-.landings_psb__image--header2,
-.landings_psb__image--header3,
-.landings_psb__image--mic,
-.landings_psb__image--money,
-.landings_psb__image--newusers,
-.landings_psb__image--partners,
+.landings_psb__image--vklogo,
 .landings_psb__image--psblogo,
-.landings_psb__image--sad_spotty,
-.landings_psb__image--spotty,
+.landings_psb_advantage__image--cities,
+.landings_psb_advantage__image--demography,
+.landings_psb_advantage__image--interests,
+.landings_psb__image--mic,
+.landings_psb__image--newusers,
 .landings_psb__image--user1,
 .landings_psb__image--user2,
 .landings_psb__image--user3,
@@ -41,137 +21,158 @@
 .landings_psb__image--userbigava1,
 .landings_psb__image--userbigava2,
 .landings_psb__image--userbigava3,
-.landings_psb__image--vklogo,
-.landings_psb_advantage__image--cities,
-.landings_psb_advantage__image--demography,
-.landings_psb_advantage__image--interests {
-    -ms-high-contrast-adjust: none
+.adv_promo_icon--picture,
+.adv_promo_icon--gallery,
+.adv_promo_icon--video,
+.adv_promo_icon--goods,
+.adv_promo_icon--teaser,
+.adv_promo_nav__item--active .adv_promo_icon--picture,
+.adv_promo_nav__item:hover .adv_promo_icon--picture,
+.adv_promo_nav__item--active .adv_promo_icon--gallery,
+.adv_promo_nav__item:hover .adv_promo_icon--gallery,
+.adv_promo_nav__item--active .adv_promo_icon--video,
+.adv_promo_nav__item:hover .adv_promo_icon--video,
+.adv_promo_nav__item--active .adv_promo_icon--goods,
+.adv_promo_nav__item:hover .adv_promo_icon--goods,
+.adv_promo_nav__item--active .adv_promo_icon--teaser,
+.adv_promo_nav__item:hover .adv_promo_icon--teaser,
+.landings_psb__image--header1,
+.landings_psb__image--header2,
+.landings_psb__image--header3,
+.landings_psb__image--budget,
+.landings_psb__image--partners,
+.landings_psb__image--newusers,
+.landings_psb__image--click,
+.landings_psb__image--money,
+.landings_psb__image--spotty,
+.landings_psb__image--sad_spotty {
+    -ms-high-contrast-adjust: none;
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
-body,
-head {
+head,
+body {
     width: 100%;
     min-height: 100%;
     padding: 0;
-    margin: 0
+    margin: 0;
 }
 
 body {
-    background-color: #fff
+    background-color: #fff;
 }
 
 .common_text,
-.landing .adv_promo_section__desc,
-.landing .landings_psb_advantage .landings_psb_advantage__title,
-.landing .landings_psb_bonus,
-.landing .landings_psb_common_text,
 .landing .landings_psb_retargeting,
-.landing .landings_psb_text_block .landings_psb_text {
+.landing .landings_psb_common_text,
+.landing .landings_psb_bonus,
+.landing .landings_psb_text_block .landings_psb_text,
+.landing .adv_promo_section__desc,
+.landing .landings_psb_advantage .landings_psb_advantage__title {
     font-size: 22px;
     font-weight: 300;
-    line-height: 1.36
+    line-height: 1.36;
 }
 
 .notransition {
-    -o-transition: none!important;
-    transition: none!important
+    -o-transition: none !important;
+    transition: none !important;
 }
 
 #desktop_tiser {
-    display: none
+    display: none;
 }
 
-#desktop_content,
-#mobile_content {
+#mobile_content,
+#desktop_content {
     -webkit-transform: translateZ(0);
-    transform: translateZ(0)
+    transform: translateZ(0);
 }
 
 #stl_bg,
 #stl_left,
 .stl_active {
-    display: none!important;
-    visibility: hidden
+    display: none !important;
+    visibility: hidden;
 }
 
 .landing {
-    background: #fff;
+    background: #ffffff;
     margin: 0 auto;
     overflow: hidden;
-    min-width: 1020px
+    min-width: 1020px;
 }
 
 .landing .content {
-    max-width: 1020px
+    max-width: 1020px;
 }
 
 .landing .landings_frame {
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 .landing * {
     box-sizing: border-box;
     font-family: inherit;
-    vertical-align: top
+    vertical-align: top;
 }
 
 .landing #popup_background_handler {
-    width: 100%
+    width: 100%;
 }
 
 .landing .adv_promo_col {
     float: left;
-    width: 50%
+    width: 50%;
 }
 
 @media (max-width: 1280px) {
     .landing .adv_promo_col {
-        width: 40%
+        width: 40%;
     }
 }
 
 .landing .adb_promo_col__devices {
-    margin-left: 20px
+    margin-left: 20px;
 }
 
 @media (max-width: 1280px) {
     .landing .adb_promo_col__devices {
-        margin-left: 0
+        margin-left: 0;
     }
 }
 
 .landing .landings_psb_clear {
-    clear: both
+    clear: both;
 }
 
 .landing .landings_graybg {
     background: #f7f8fa;
-    padding: 80px 0 50px;
-    margin: 80px 0
+    padding: 80px 0 50px 0;
+    margin: 80px 0;
 }
 
 .landing .landings_graybg .landings_psv_advantages {
-    margin-bottom: 0
+    margin-bottom: 0;
 }
 
 .landing .adv_promo_section__title {
-    color: #2b2f33;
+    color: #2B2F33;
     font-size: 39px;
     font-weight: 300;
     line-height: 53px;
     letter-spacing: -0.11px;
-    margin-bottom: 16px
+    margin-bottom: 16px;
 }
 
 .landing .landings_divider {
@@ -179,52 +180,54 @@ body {
     margin: 80px 10%;
     height: 1px;
     background-color: #c6cedc;
-    clear: both
+    clear: both;
 }
 
 .landing .landings_psb_logos {
-    padding: 50px 0
+    padding: 50px 0;
 }
 
 .landing .landings_psb_logos .landings_psb_logo {
     box-sizing: content-box;
     display: inline-block;
     padding: 0 30px;
-    vertical-align: middle
+    vertical-align: middle;
 }
 
 .landing .landings_psb_retargeting {
     font-family: inherit;
     color: #7c7f82;
-    margin: 38px auto 34px;
-    width: 980px
+    margin: 38px auto 34px auto;
+    width: 980px;
 }
 
-.landing .landings_psb_common_text,
+.landing .landings_psb_common_text {
+    font-family: inherit;
+    text-align: center;
+    color: #1d1d1e;
+}
+
 .landing .landings_psb_bonus {
     font-family: inherit;
     text-align: center;
-    color: #1d1d1e
-}
-
-.landing .landings_psb_bonus {
-    margin-bottom: 52px
+    color: #1d1d1e;
+    margin-bottom: 52px;
 }
 
 .landing .landings_psb_activate {
-    margin-bottom: 20px
+    margin-bottom: 20px;
 }
 
 .landing .landings_psb_activate--main {
-    margin-bottom: 56px
+    margin-bottom: 56px;
 }
 
 .landing .landings_psb_header {
     font-size: 39px;
     font-weight: 300;
     letter-spacing: -0.1px;
-    color: #fff;
-    margin-bottom: 24px
+    color: #ffffff;
+    margin-bottom: 24px;
 }
 
 .landing .landings_psb_tools_wrapper {
@@ -232,28 +235,28 @@ body {
     position: relative;
     clear: both;
     width: 100%;
-    padding-bottom: 41.4583333%
+    padding-bottom: 41.4583333%;
 }
 
 .landing .landings_psb_tools_wrapper .content {
     margin: 0 auto;
-    position: relative
+    position: relative;
 }
 
 .landing .landings_psb_tools_wrapper.pixel {
     background-image: url('/images/landings/PSB/web_assets/box_2x.jpg');
-    background-size: cover
+    background-size: cover;
 }
 
 .landing .landings_psb_tools_wrapper.pixel .shadow {
     width: 841px;
     height: 448px;
-    background-image: url('/images/landings/PSB/web_assets/shadow1.png')
+    background-image: url('/images/landings/PSB/web_assets/shadow1.png');
 }
 
 .landing .landings_psb_tools_wrapper.contacts {
     background-image: url('/images/landings/PSB/web_assets/auto_2x.jpg');
-    background-size: cover
+    background-size: cover;
 }
 
 .landing .landings_psb_tools_wrapper.contacts .shadow {
@@ -261,12 +264,12 @@ body {
     height: 448px;
     background-image: url('/images/landings/PSB/web_assets/shadow2.png');
     position: absolute;
-    right: 0
+    right: 0;
 }
 
 .landing .landings_psb_tools_wrapper .shadow {
     position: absolute;
-    z-index: 50
+    z-index: 50;
 }
 
 .landing .landings_psb_fillboard_wrapper {
@@ -274,7 +277,7 @@ body {
     top: 0;
     bottom: 0;
     left: 0;
-    right: 0
+    right: 0;
 }
 
 .landing .landings_psb_text_block {
@@ -284,7 +287,7 @@ body {
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     -o-transform: translateY(-50%);
-    transform: translateY(-50%)
+    transform: translateY(-50%);
 }
 
 .landing .landings_psb_text_block .landings_psb_header {
@@ -293,28 +296,28 @@ body {
     font-size: 39px;
     font-weight: 300;
     letter-spacing: -0.1px;
-    color: #fff;
-    margim-bottom: 24px
+    color: #ffffff;
+    margim-bottom: 24px;
 }
 
 .landing .landings_psb_text_block .landings_psb_text {
     font-family: inherit;
     line-height: 1.45;
-    color: #fff;
-    font-size: 20px
+    color: #ffffff;
+    font-size: 20px;
 }
 
 .landing .landings_psb_text__pixel {
     margin-left: 50%;
     right: 50%;
     width: 533px;
-    -webkit-font-smoothing: antialiased
+    -webkit-font-smoothing: antialiased;
 }
 
 @media (max-width: 1142px) {
     .landing .landings_psb_text__pixel {
         right: auto;
-        margin-left: 30px
+        margin-left: 30px;
     }
 }
 
@@ -322,13 +325,13 @@ body {
     width: 533px;
     left: 50%;
     margin-right: 20px;
-    padding-left: 90px
+    padding-left: 90px;
 }
 
 @media (max-width: 1142px) {
     .landing .landings_psb_text__file {
         right: 30px;
-        left: auto
+        left: auto;
     }
 }
 
@@ -337,7 +340,7 @@ body {
     max-width: 1020px;
     padding: 0 15px;
     margin: 0 auto;
-    position: relative
+    position: relative;
 }
 
 .landing .adv_promo_section__desc {
@@ -346,17 +349,17 @@ body {
     color: #1d1d1e;
     width: 500px;
     max-width: 100%;
-    padding-right: 15px
+    padding-right: 15px;
 }
 
 .landing .adv_promo_gallery {
-    position: relative
+    position: relative;
 }
 
 .landing .adv_promo_frame {
     font-size: 0;
     line-height: 0;
-    position: relative
+    position: relative;
 }
 
 .landing .adv_promo_frame--mobile {
@@ -365,63 +368,63 @@ body {
     left: -10px;
     z-index: 4;
     -o-transition: all 1s ease;
-    transition: all 1s ease
+    transition: all 1s ease;
 }
 
 .landing .adv_promo_frame--mobile .adv_promo_frame__inner {
     top: 106px;
     right: 17px;
     left: 17px;
-    bottom: 62px
+    bottom: 62px;
 }
 
 .landing .adv_promo_slider_roll {
-    text-align: center
+    text-align: center;
 }
 
 .landing .adv_promo_slider_roll .adv_promo_slider_roll__list {
     -o-transition: all 1s ease;
-    transition: all 1s ease
+    transition: all 1s ease;
 }
 
 .landing .adv_promo_frame__inner {
     position: absolute;
     overflow: hidden;
-    z-index: 2
+    z-index: 2;
 }
 
 .landing .adv_promo_slider_roll__item {
-    max-width: 100%
+    max-width: 100%;
 }
 
 .landing .adv_promo_frame--desktop {
     margin: 10px 0 0 100px;
-    padding-bottom: 40px
+    padding-bottom: 40px;
 }
 
 .landing .adv_promo_frame--desktop .adv_promo_frame__inner {
     top: 80px;
     left: 8px;
     bottom: 52px;
-    width: 690px
+    width: 690px;
 }
 
 .landing .adv_promo_frame--desktop .adv_promo_slider_roll__item {
     width: 394px;
     padding: 23px 0 53px;
-    box-sizing: content-box
+    box-sizing: content-box;
 }
 
-.landing [class*=" adv_promo_icon--"],
-.landing [class^=adv_promo_icon--] {
-    font-family: icons!important;
+.landing [class^="adv_promo_icon--"],
+.landing [class*=" adv_promo_icon--"] {
+    font-family: 'icons' !important;
     font-style: normal;
-    font-weight: 400;
+    font-weight: normal;
     font-variant: normal;
     text-transform: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    margin-right: 8px
+    margin-right: 8px;
 }
 
 .landing .adv_promo_gallery__nav .adv_promo_nav__item .adv_promo_icon {
@@ -429,7 +432,7 @@ body {
     width: 16px;
     height: 14px;
     display: inline-block;
-    vertica-align: middle
+    vertica-align: middle;
 }
 
 .landing .adv_promo_gallery__nav {
@@ -437,67 +440,67 @@ body {
     margin: 46px 0;
     list-style: none;
     font-size: 16px;
-    font-weight: 600
+    font-weight: 600;
 }
 
 .landing .adv_promo_gallery__nav .adv_promo_nav__item {
     margin-bottom: 15px;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .landing .adv_promo_gallery__nav .adv_promo_nav__item button {
     cursor: pointer;
-    text-decoration: none!important;
-    color: #a5abb4!important;
+    text-decoration: none !important;
+    color: #A5ABB4 !important;
     border: 0;
     background: transparent;
-    outline: none!important;
+    outline: none !important;
     padding: 0;
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
     font-size: 16px;
-    font-weight: 500
+    font-weight: 500;
 }
 
 .landing .adv_promo_gallery__nav .adv_promo_nav__item--active button {
-    color: #4a6f97!important
+    color: #4A6F97 !important;
 }
 
 .landing .landins_psb_ads_type {
-    padding-top: 57px
+    padding-top: 57px;
 }
 
 .landing .landins_psb_ads_type .adv_promo_section__title {
-    white-space: nowrap
+    white-space: nowrap;
 }
 
 @media (max-width: 1280px) {
     .landing .landins_psb_ads_type .adv_promo_section__title {
-        white-space: normal!important
+        white-space: normal !important;
     }
 }
 
 .landing .landins_psb_ads_type__text {
     padding-top: 20px;
-    margin-left: -60px
+    margin-left: -60px;
 }
 
 @media (max-width: 1279px) {
     .landing .landins_psb_ads_type__text {
-        margin-left: 0
+        margin-left: 0;
     }
 }
 
 .landing .landings_psb_coverage {
     color: #93adc8;
-    margin: 137px 0 97px
+    margin: 137px 0 97px 0;
 }
 
 .landing .landings_psb_coverage .landings_psb_coverage__amount {
     font-family: inherit;
     font-size: 100px;
     font-weight: 200;
-    letter-spacing: -0.3px
+    letter-spacing: -0.3px;
 }
 
 .landing .landings_psb_coverage .landings_psb_coverage__comment {
@@ -505,21 +508,21 @@ body {
     font-weight: 300;
     letter-spacing: -0.1px;
     text-align: center;
-    margin-bottom: 97px
+    margin-bottom: 97px;
 }
 
 .landing .landings_psb_coverage .landings_psb_common_text {
-    padding: 0 64px
+    padding: 0 64px;
 }
 
 .landing .landings_psb_advantage {
     height: 275px;
     width: 33%;
-    display: inline-block
+    display: inline-block;
 }
 
 .landing .landings_psb_advantage:last-child {
-    width: 32%
+    width: 32%;
 }
 
 .landing .landings_psb_advantage .landings_psb_advantage__image {
@@ -527,20 +530,20 @@ body {
     line-height: 76px;
     text-align: center;
     vertical-align: middle;
-    margin-bottom: 43px
+    margin-bottom: 43px;
 }
 
 .landing .landings_psb_advantage .landings_psb_advantage__image>div {
     display: inline-block;
-    margin: auto;
-    vertical-align: middle
+    margin: auto auto;
+    vertical-align: middle;
 }
 
 .landing .landings_psb_advantage .landings_psb_advantage__title {
     line-height: 1.45;
     text-align: center;
     color: #1d1d1e;
-    margin-bottom: 7px
+    margin-bottom: 7px;
 }
 
 .landing .landings_psb_advantage .landings_psb_advantage__text {
@@ -550,26 +553,26 @@ body {
     text-align: center;
     color: #7c7f82;
     max-width: 320px;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 .landing .landings_psv_advantages {
     margin-bottom: 68px;
     z-index: 50;
-    position: relative
+    position: relative;
 }
 
 .landing .landings_psb_questions {
     background-color: #f7f8fa;
     height: 375px;
     position: relative;
-    margin-bottom: 60px
+    margin-bottom: 60px;
 }
 
 .landing .landings_psb_questions .controls_container {
     width: 1020px;
     position: relative;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 .landing .landings_psb_questions #_landings_psb_questions__questions_list {
@@ -577,14 +580,14 @@ body {
     transform: translateZ(0);
     -o-transition: all 0.4s ease;
     transition: all 0.4s ease;
-    width: 3060px
+    width: 3060px;
 }
 
 .landing .landings_psb_questions .landings_psb_questions__questions_list {
     width: 1020px;
     height: 260px;
     white-space: nowrap;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 .landing .landings_psb_questions .landings_psb_questions__questions_list .landings_psb_question {
@@ -594,17 +597,17 @@ body {
     width: 1020px;
     height: 100%;
     padding-top: 70px;
-    white-space: normal
+    white-space: normal;
 }
 
 .landing .landings_psb_questions .landings_psb_questions__questions_list .landings_psb_question .landings_psb_common_text {
     height: 128px;
-    padding: 0 20px
+    padding: 0 20px;
 }
 
 @media (max-width: 1080px) {
     .landing .landings_psb_questions .landings_psb_questions__questions_list .landings_psb_question .landings_psb_common_text {
-        padding: 0 70px
+        padding: 0 70px;
     }
 }
 
@@ -614,7 +617,7 @@ body {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
 }
 
 .landing .landings_psb_questions .landings_psb_questions__buttons .button {
@@ -627,12 +630,15 @@ body {
     margin: 7px;
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
-    cursor: pointer
+    cursor: pointer;
 }
 
-.landing .landings_psb_questions .landings_psb_questions__buttons .button.button--active,
+.landing .landings_psb_questions .landings_psb_questions__buttons .button.button--active {
+    opacity: 1;
+}
+
 .landing .landings_psb_questions .landings_psb_questions__buttons .button:hover {
-    opacity: 1
+    opacity: 1;
 }
 
 .landing .landings_psb_questions .landings_psb_questions__left_arrow,
@@ -647,56 +653,56 @@ body {
     position: absolute;
     top: 174px;
     -o-transition: all 0.2s ease;
-    transition: all 0.2s ease
+    transition: all 0.2s ease;
 }
 
 .landing .landings_psb_questions .landings_psb_questions__left_arrow:hover,
 .landing .landings_psb_questions .landings_psb_questions__right_arrow:hover {
-    top: 172px
+    top: 172px;
 }
 
 .landing .landings_psb_questions .landings_psb_questions__left_arrow {
     background: url('/images/landings/PSB/web_assets/left_row.png');
-    left: -60px
+    left: -60px;
 }
 
 @media (max-width: 1280px) {
     .landing .landings_psb_questions .landings_psb_questions__left_arrow {
-        left: 10px
+        left: 10px;
     }
 }
 
 @media (max-width: 1280px) and (max-width: 1280px) {
     .landing .landings_psb_questions .landings_psb_questions__left_arrow {
-        left: -10px
+        left: -10px;
     }
 }
 
 @media (max-width: 1280px) and (max-width: 1070px) {
     .landing .landings_psb_questions .landings_psb_questions__left_arrow {
-        left: 10px
+        left: 10px;
     }
 }
 
 .landing .landings_psb_questions .landings_psb_questions__right_arrow {
     background: url('/images/landings/PSB/web_assets/right_row.png');
-    right: -60px
+    right: -60px;
 }
 
 @media (max-width: 1280px) {
     .landing .landings_psb_questions .landings_psb_questions__right_arrow {
-        right: -10px
+        right: -10px;
     }
 }
 
 @media (max-width: 1070px) {
     .landing .landings_psb_questions .landings_psb_questions__right_arrow {
-        right: 10px
+        right: 10px;
     }
 }
 
 .landing .landings_psb_success .adv_promo_section__title {
-    margin-bottom: 72px
+    margin-bottom: 72px;
 }
 
 .landing .landings_psb_success .landings_psb_success__gallery .landings_psb_success_story {
@@ -705,23 +711,23 @@ body {
     height: 340px;
     display: inline-block;
     position: relative;
-    box-shadow: 0 1px 32px 0 rgba(0, 0, 0, .08);
+    box-shadow: 0 1px 32px 0 rgba(0, 0, 0, 0.08);
     -o-transition: box-shadow 0.2s ease;
     transition: box-shadow 0.2s ease;
-    padding-bottom: 20px
+    padding-bottom: 20px;
 }
 
 .landing .landings_psb_success .landings_psb_success__gallery .landings_psb_success_story:hover {
-    box-shadow: 0 1px 32px 0 rgba(0, 0, 0, .16)
+    box-shadow: 0 1px 32px 0 rgba(0, 0, 0, 0.16);
 }
 
 .landing .landings_psb_success .landings_psb_success__gallery .landings_psb_success_story+.landings_psb_success_story {
-    margin-left: 27px
+    margin-left: 27px;
 }
 
 @media (max-width: 1234px) {
     .landing .landings_psb_success .landings_psb_success__gallery .landings_psb_success_story+.landings_psb_success_story {
-        margin-left: 10px
+        margin-left: 10px;
     }
 }
 
@@ -730,13 +736,13 @@ body {
         width: 32%;
         max-width: 386px;
         margin-left: 0;
-        height: 360px
+        height: 360px;
     }
 }
 
 .landing .landings_psb_success .landings_psb_success__gallery .landings_psb_success_story .landings_psb_success_story__background {
     width: 100%;
-    height: 162px
+    height: 162px;
 }
 
 .landing .landings_psb_success .landings_psb_success__gallery .landings_psb_success_story .landings_psb_success_story__avatar {
@@ -744,7 +750,7 @@ body {
     height: 64px;
     position: absolute;
     top: 121px;
-    left: 11px
+    left: 11px;
 }
 
 .landing .landings_psb_success .landings_psb_success__gallery .landings_psb_success_story .landings_psb_success_story__name {
@@ -753,8 +759,8 @@ body {
     left: 83px;
     font-size: 16px;
     letter-spacing: 0px;
-    color: #fff;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, .5)
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .landing .landings_psb_success .landings_psb_success__gallery .landings_psb_success_story .landings_psb_success_story__text {
@@ -762,34 +768,34 @@ body {
     text-align: left;
     font-size: 14px;
     line-height: 1.29;
-    padding: 39px 19px 0 15px
+    padding: 39px 19px 0 15px;
 }
 
 .landing .landings_psb_brands {
     padding-top: 102px;
-    padding-bottom: 125px
+    padding-bottom: 125px;
 }
 
 .landing .landings_psb_brands .brand {
     display: inline-block;
-    margin: 68px 40px 0;
-    vertical-align: middle
+    margin: 68px 40px 0 40px;
+    vertical-align: middle;
 }
 
 @media (max-width: 1100px) {
     .landing .landings_psb_brands .brand {
-        margin: 68px 30px 0
+        margin: 68px 30px 0 30px;
     }
 }
 
 .landing .landings_psb_gift {
-    padding: 74px 64px 56px;
-    background: #f7f8fa
+    padding: 74px 64px 56px 64px;
+    background: #f7f8fa;
 }
 
 .landing .landings_psb_gift .adv_promo_section__title {
     margin: 0 auto;
-    margin-bottom: 58px
+    margin-bottom: 58px;
 }
 
 .landing .landings_psb_gift .landings_psb_gift__comment {
@@ -797,17 +803,17 @@ body {
     font-size: 22px;
     font-weight: 300;
     line-height: 1.32;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 .landing .landings_psb_gift a {
     clear: both;
-    margin-top: 53px
+    margin-top: 53px;
 }
 
 .landing .landings_psb_gift a.landings_psb_terms_button {
     display: block;
-    margin: 0
+    margin: 0;
 }
 
 .landing .landing_psb_popup__background {
@@ -817,8 +823,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, .8);
-    display: none
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
 }
 
 .landing .landing_psb_popup {
@@ -828,14 +834,14 @@ body {
     position: relative;
     width: 657px;
     margin-left: -328.5px;
-    left: 50%
+    left: 50%;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_controls {
     width: 100%;
     min-width: 1020px;
     position: fixed;
-    left: 0
+    left: 0;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_controls .landing_psb_popup__arrow_left {
@@ -844,7 +850,7 @@ body {
     -webkit-transform: translateX(-394px);
     -ms-transform: translateX(-394px);
     -o-transform: translateX(-394px);
-    transform: translateX(-394px)
+    transform: translateX(-394px);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -852,7 +858,7 @@ body {
 (min-resolution: 192dpi) {
     .landing .landing_psb_popup .landing_psb_popup_controls .landing_psb_popup__arrow_left {
         background-image: url(/images/landings/PSB/web_assets/left_row_2x.png);
-        background-size: 28px 39px
+        background-size: 28px 39px;
     }
 }
 
@@ -862,7 +868,7 @@ body {
     -webkit-transform: translateX(335px);
     -ms-transform: translateX(335px);
     -o-transform: translateX(335px);
-    transform: translateX(335px)
+    transform: translateX(335px);
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -870,7 +876,7 @@ body {
 (min-resolution: 192dpi) {
     .landing .landing_psb_popup .landing_psb_popup_controls .landing_psb_popup__arrow_right {
         background-image: url(/images/landings/PSB/web_assets/right_row_2x.png);
-        background-size: 28px 39px
+        background-size: 28px 39px;
     }
 }
 
@@ -893,12 +899,12 @@ body {
     border-radius: 1px;
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
-    opacity: 0.5
+    opacity: 0.5;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_controls .landing_psb_popup__arrow_left:hover,
 .landing .landing_psb_popup .landing_psb_popup_controls .landing_psb_popup__arrow_right:hover {
-    opacity: 1
+    opacity: 1;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_controls .landing_psb_popup__cross {
@@ -919,7 +925,7 @@ body {
     opacity: 0.5;
     background: url(/images/landings/PSB/web_assets/close.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -927,53 +933,53 @@ body {
 (min-resolution: 192dpi) {
     .landing .landing_psb_popup .landing_psb_popup_controls .landing_psb_popup__cross {
         background-image: url(/images/landings/PSB/web_assets/close_2x.png);
-        background-size: 19px 19px
+        background-size: 19px 19px;
     }
 }
 
 .landing .landing_psb_popup .landing_psb_popup_controls .landing_psb_popup__cross:hover {
-    opacity: 1
+    opacity: 1;
 }
 
 .landing .landing_psb_popup .popup_header_link:hover {
-    color: #fff;
-    text-decoration: none
+    color: #ffffff;
+    text-decoration: none;
 }
 
 .landing .landing_psb_popup .popup_header_link:hover .landing_psb_popup_frame__link {
-    text-decoration: underline
+    text-decoration: underline;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_frame {
     border-radius: 4px;
-    background-color: #fff;
+    background-color: #ffffff;
     width: 100%;
     margin-bottom: 20px;
-    display: none
+    display: none;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_frame.landing_psb_popup_frame--active {
-    display: block
+    display: block;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_frame .landing_psb_popup_frame__header {
     width: 657px;
     height: 296px;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_frame .landing_psb_popup_frame__header>* {
     -webkit-filter: none;
-    filter: none
+    filter: none;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_frame .landing_psb_popup_frame__header .landing_psb_popup_frame__avatar {
     width: 120px;
     height: 120px;
     border-radius: 60px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .3);
-    border: solid 4px #fff;
-    margin: 33px auto 24px
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+    border: solid 4px #ffffff;
+    margin: 33px auto 24px auto;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_frame .landing_psb_popup_frame__header .landing_psb_popup_frame__name {
@@ -981,47 +987,47 @@ body {
     font-weight: 500;
     letter-spacing: -0.1px;
     text-align: center;
-    color: #fff;
-    margin-bottom: 3px
+    color: #ffffff;
+    margin-bottom: 3px;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_frame .landing_psb_popup_frame__header .landing_psb_popup_frame__business {
     font-size: 18px;
     line-height: 1.67;
     text-align: center;
-    color: #fff
+    color: #ffffff;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_frame .landing_psb_popup_frame__header .landing_psb_popup_frame__link {
     font-size: 18px;
     line-height: 0.8;
     text-align: center;
-    color: #fff;
-    cursor: pointer
+    color: #ffffff;
+    cursor: pointer;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_frame .landing_psb_popup_frame__content {
-    padding: 42px 30px 32px;
+    padding: 42px 30px 32px 30px;
     font-size: 14px;
     line-height: 1.43;
-    color: #000
+    color: #000000;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_frame .landing_psb_popup_frame__content .title {
     font-size: 18px;
     font-weight: 500;
     line-height: 1.11;
-    margin: 20px 0
+    margin: 20px 0 20px 0;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_frame .landing_psb_popup_frame__content img {
-    margin: 35px 0 25px
+    margin: 35px 0 25px 0;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_frame .landing_psb_popup_frame__results {
     border-radius: 4px;
     background-color: #f7f8fa;
-    padding-top: 30px
+    padding-top: 30px;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_frame .landing_psb_popup_frame__results .title {
@@ -1029,17 +1035,17 @@ body {
     letter-spacing: -0.1px;
     text-align: center;
     color: #2b2f33;
-    margin-bottom: 40px
+    margin-bottom: 40px;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_frame .landing_psb_popup_frame__results .landing_psb_popup_frame__result {
     display: inline-block;
     width: 33%;
-    height: 227px
+    height: 227px;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_frame .landing_psb_popup_frame__results .landing_psb_popup_frame__result:last-child {
-    width: 32%
+    width: 32%;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_frame .landing_psb_popup_frame__results .landing_psb_popup_frame__result .landing_psb_popup_frame__result_icon {
@@ -1049,15 +1055,15 @@ body {
     border-radius: 100%;
     margin-bottom: 35px;
     margin-left: auto;
-    margin-right: auto
+    margin-right: auto;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_frame .landing_psb_popup_frame__results .landing_psb_popup_frame__result .landing_psb_popup_frame__result_title {
     font-size: 32px;
     font-weight: 300;
     text-align: center;
-    color: #000;
-    margin-bottom: 6px
+    color: #000000;
+    margin-bottom: 6px;
 }
 
 .landing .landing_psb_popup .landing_psb_popup_frame .landing_psb_popup_frame__results .landing_psb_popup_frame__result .landing_psb_popup_frame__result_comment {
@@ -1065,17 +1071,17 @@ body {
     font-weight: 300;
     line-height: 1.25;
     text-align: center;
-    color: #7c7f82
+    color: #7c7f82;
 }
 
 .landings_psb_terms {
     margin: 0;
-    padding: 0px 0 0px 20px
+    padding: 0px 0 0px 20px;
 }
 
 .landings_psb_terms li {
     margin: 0;
-    padding: 4px 0
+    padding: 4px 0;
 }
 
 .psb_dialog .psb_dialog__error {
@@ -1083,14 +1089,14 @@ body {
     margin: 0;
     margin-bottom: 20px;
     color: #2b2f33;
-    display: none
+    display: none;
 }
 
 .psb_dialog .psb_dialog__error .psb_dialog__error_title {
     font-size: 12px;
-    font-weight: 700;
+    font-weight: bold;
     text-align: left;
-    color: #3b4045
+    color: #3b4045;
 }
 
 .psb_dialog .psb_dialog__comment {
@@ -1098,17 +1104,17 @@ body {
     line-height: 1.38;
     letter-spacing: -0.1px;
     text-align: left;
-    color: #757c85
+    color: #757c85;
 }
 
 .psb_dialog .psb_dialog__field label {
     display: inline-block;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: bold;
     letter-spacing: -0.1px;
     text-align: left;
     color: #2b2f33;
-    margin: 20px 0
+    margin: 20px 0;
 }
 
 .psb_dialog .account {
@@ -1116,19 +1122,19 @@ body {
     width: 400px;
     padding: 2px 0 1px 9px;
     margin-bottom: 6px;
-    border: 1px solid #d3d9de;
+    border: 1px solid #D3D9DE;
     height: 30px;
     box-sizing: border-box;
-    background-color: #fff
+    background-color: #fff;
 }
 
 .psb_dialog .psb_dialog__activate {
-    margin: 20px 0 0
+    margin: 20px 0 0 0;
 }
 
 .psb_dialog .psb_dialog__sticker {
-    margin: 0 auto 20px;
-    text-align: center
+    margin: 0 auto 20px auto;
+    text-align: center;
 }
 
 .psb_dialog .psb_dialog__message {
@@ -1136,20 +1142,20 @@ body {
     line-height: 1.38;
     text-align: center;
     color: #2b2f33;
-    margin-bottom: 32px
+    margin-bottom: 32px;
 }
 
 .psb_dialog .psb_dialog__terms {
     display: block;
-    margin-top: 20px
+    margin-top: 20px;
 }
 
 .psb_dialog.psb_dialog--result {
-    text-align: center
+    text-align: center;
 }
 
 .psb_dialog .psb_dialog_buttons .flat_button {
-    margin-right: 10px
+    margin-right: 10px;
 }
 
 .landings_psb__image--vklogo {
@@ -1157,7 +1163,7 @@ body {
     height: 39px;
     background: url(/images/landings/PSB/web_assets/vk_logo.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1165,7 +1171,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--vklogo {
         background-image: url(/images/landings/PSB/web_assets/vk_logo_2x.png);
-        background-size: 65px 39px
+        background-size: 65px 39px;
     }
 }
 
@@ -1174,7 +1180,7 @@ body {
     height: 61px;
     background: url(/images/landings/PSB/web_assets/PSB_logo.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1182,7 +1188,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--psblogo {
         background-image: url(/images/landings/PSB/web_assets/PSB_logo_2x.png);
-        background-size: 117px 61px
+        background-size: 117px 61px;
     }
 }
 
@@ -1191,7 +1197,7 @@ body {
     width: 78px;
     background: url(/images/landings/PSB/web_assets/cities.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1199,7 +1205,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb_advantage__image--cities {
         background-image: url(/images/landings/PSB/web_assets/cities_2x.png);
-        background-size: 78px 78px
+        background-size: 78px 78px;
     }
 }
 
@@ -1208,7 +1214,7 @@ body {
     width: 82px;
     background: url(/images/landings/PSB/web_assets/demography.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1216,7 +1222,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb_advantage__image--demography {
         background-image: url(/images/landings/PSB/web_assets/demography_2x.png);
-        background-size: 82px 62px
+        background-size: 82px 62px;
     }
 }
 
@@ -1225,7 +1231,7 @@ body {
     width: 74px;
     background: url(/images/landings/PSB/web_assets/interests.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1233,7 +1239,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb_advantage__image--interests {
         background-image: url(/images/landings/PSB/web_assets/interests_2x.png);
-        background-size: 74px 51px
+        background-size: 74px 51px;
     }
 }
 
@@ -1242,7 +1248,7 @@ body {
     width: 82px;
     background: url(/images/landings/PSB/web_assets/mic.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1250,7 +1256,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--mic {
         background-image: url(/images/landings/PSB/web_assets/mic_2x.png);
-        background-size: 82px 82px
+        background-size: 82px 82px;
     }
 }
 
@@ -1259,7 +1265,7 @@ body {
     width: 82px;
     background: url(/images/landings/PSB/web_assets/newusers.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1267,7 +1273,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--newusers {
         background-image: url(/images/landings/PSB/web_assets/newusers_2x.png);
-        background-size: 82px 82px
+        background-size: 82px 82px;
     }
 }
 
@@ -1276,7 +1282,7 @@ body {
     width: 386px;
     background: url(/images/landings/PSB/web_assets/bg_user1.jpg);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1284,7 +1290,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--user1 {
         background-image: url(/images/landings/PSB/web_assets/bg_user1_2x.jpg);
-        background-size: 386px 162px
+        background-size: 386px 162px;
     }
 }
 
@@ -1293,7 +1299,7 @@ body {
     width: 386px;
     background: url(/images/landings/PSB/web_assets/bg_user2.jpg);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1301,7 +1307,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--user2 {
         background-image: url(/images/landings/PSB/web_assets/bg_user2_2x.jpg);
-        background-size: 386px 162px
+        background-size: 386px 162px;
     }
 }
 
@@ -1310,7 +1316,7 @@ body {
     width: 386px;
     background: url(/images/landings/PSB/web_assets/bg_user3.jpg);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1318,7 +1324,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--user3 {
         background-image: url(/images/landings/PSB/web_assets/bg_user3_2x.jpg);
-        background-size: 386px 162px
+        background-size: 386px 162px;
     }
 }
 
@@ -1327,7 +1333,7 @@ body {
     width: 64px;
     background: url(/images/landings/PSB/web_assets/user1.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1335,7 +1341,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--userava1 {
         background-image: url(/images/landings/PSB/web_assets/user1_2x.png);
-        background-size: 64px 64px
+        background-size: 64px 64px;
     }
 }
 
@@ -1344,7 +1350,7 @@ body {
     width: 64px;
     background: url(/images/landings/PSB/web_assets/user2.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1352,7 +1358,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--userava2 {
         background-image: url(/images/landings/PSB/web_assets/user2_2x.png);
-        background-size: 64px 64px
+        background-size: 64px 64px;
     }
 }
 
@@ -1361,7 +1367,7 @@ body {
     width: 64px;
     background: url(/images/landings/PSB/web_assets/user3.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1369,7 +1375,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--userava3 {
         background-image: url(/images/landings/PSB/web_assets/user3_2x.png);
-        background-size: 64px 64px
+        background-size: 64px 64px;
     }
 }
 
@@ -1378,7 +1384,7 @@ body {
     width: 64px;
     background: url(/images/landings/PSB/web_assets/user_big1.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1386,7 +1392,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--userbigava1 {
         background-image: url(/images/landings/PSB/web_assets/user_big1_2x.png);
-        background-size: 128px 128px
+        background-size: 128px 128px;
     }
 }
 
@@ -1395,7 +1401,7 @@ body {
     width: 64px;
     background: url(/images/landings/PSB/web_assets/user_big2.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1403,7 +1409,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--userbigava2 {
         background-image: url(/images/landings/PSB/web_assets/user_big2_2x.png);
-        background-size: 128px 128px
+        background-size: 128px 128px;
     }
 }
 
@@ -1412,7 +1418,7 @@ body {
     width: 64px;
     background: url(/images/landings/PSB/web_assets/user_big3.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1420,7 +1426,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--userbigava3 {
         background-image: url(/images/landings/PSB/web_assets/user_big3_2x.png);
-        background-size: 128px 128px
+        background-size: 128px 128px;
     }
 }
 
@@ -1429,7 +1435,7 @@ body {
     width: 15px;
     background: url(/images/landings/PSB/web_assets/image_1.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1437,7 +1443,7 @@ body {
 (min-resolution: 192dpi) {
     .adv_promo_icon--picture {
         background-image: url(/images/landings/PSB/web_assets/image_1_2x.png);
-        background-size: 14px 13px
+        background-size: 14px 13px;
     }
 }
 
@@ -1446,7 +1452,7 @@ body {
     width: 15px;
     background: url(/images/landings/PSB/web_assets/photo_1.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1454,7 +1460,7 @@ body {
 (min-resolution: 192dpi) {
     .adv_promo_icon--gallery {
         background-image: url(/images/landings/PSB/web_assets/photo_1_2x.png);
-        background-size: 16px 13px
+        background-size: 16px 13px;
     }
 }
 
@@ -1463,7 +1469,7 @@ body {
     width: 15px;
     background: url(/images/landings/PSB/web_assets/video_1.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1471,7 +1477,7 @@ body {
 (min-resolution: 192dpi) {
     .adv_promo_icon--video {
         background-image: url(/images/landings/PSB/web_assets/video_1_2x.png);
-        background-size: 13px 14px
+        background-size: 13px 14px;
     }
 }
 
@@ -1480,7 +1486,7 @@ body {
     width: 15px;
     background: url(/images/landings/PSB/web_assets/store_1.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1488,7 +1494,7 @@ body {
 (min-resolution: 192dpi) {
     .adv_promo_icon--goods {
         background-image: url(/images/landings/PSB/web_assets/store_1_2x.png);
-        background-size: 13px 16px
+        background-size: 13px 16px;
     }
 }
 
@@ -1497,7 +1503,7 @@ body {
     width: 15px;
     background: url(/images/landings/PSB/web_assets/tiser_1.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1505,13 +1511,13 @@ body {
 (min-resolution: 192dpi) {
     .adv_promo_icon--teaser {
         background-image: url(/images/landings/PSB/web_assets/tiser_1_2x.png);
-        background-size: 15px 14px
+        background-size: 15px 14px;
     }
 }
 
 .adv_promo_nav__item--active button,
 .adv_promo_nav__item:hover button {
-    color: #4a6f97!important
+    color: #4A6F97 !important;
 }
 
 .adv_promo_nav__item--active .adv_promo_icon--picture,
@@ -1520,7 +1526,7 @@ body {
     width: 15px;
     background: url(/images/landings/PSB/web_assets/image_2.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1529,7 +1535,7 @@ body {
     .adv_promo_nav__item--active .adv_promo_icon--picture,
     .adv_promo_nav__item:hover .adv_promo_icon--picture {
         background-image: url(/images/landings/PSB/web_assets/image_2_2x.png);
-        background-size: 14px 13px
+        background-size: 14px 13px;
     }
 }
 
@@ -1539,7 +1545,7 @@ body {
     width: 15px;
     background: url(/images/landings/PSB/web_assets/photo_2.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1548,7 +1554,7 @@ body {
     .adv_promo_nav__item--active .adv_promo_icon--gallery,
     .adv_promo_nav__item:hover .adv_promo_icon--gallery {
         background-image: url(/images/landings/PSB/web_assets/photo_2_2x.png);
-        background-size: 16px 13px
+        background-size: 16px 13px;
     }
 }
 
@@ -1558,7 +1564,7 @@ body {
     width: 15px;
     background: url(/images/landings/PSB/web_assets/video_2.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1567,7 +1573,7 @@ body {
     .adv_promo_nav__item--active .adv_promo_icon--video,
     .adv_promo_nav__item:hover .adv_promo_icon--video {
         background-image: url(/images/landings/PSB/web_assets/video_2_2x.png);
-        background-size: 13px 14px
+        background-size: 13px 14px;
     }
 }
 
@@ -1577,7 +1583,7 @@ body {
     width: 15px;
     background: url(/images/landings/PSB/web_assets/store_2.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1586,7 +1592,7 @@ body {
     .adv_promo_nav__item--active .adv_promo_icon--goods,
     .adv_promo_nav__item:hover .adv_promo_icon--goods {
         background-image: url(/images/landings/PSB/web_assets/store_2_2x.png);
-        background-size: 13px 16px
+        background-size: 13px 16px;
     }
 }
 
@@ -1596,7 +1602,7 @@ body {
     width: 15px;
     background: url(/images/landings/PSB/web_assets/tiser_2.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1605,7 +1611,7 @@ body {
     .adv_promo_nav__item--active .adv_promo_icon--teaser,
     .adv_promo_nav__item:hover .adv_promo_icon--teaser {
         background-image: url(/images/landings/PSB/web_assets/tiser_2_2x.png);
-        background-size: 15px 14px
+        background-size: 15px 14px;
     }
 }
 
@@ -1614,7 +1620,7 @@ body {
     height: 296px;
     background: url(/images/landings/PSB/web_assets/header1.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1622,7 +1628,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--header1 {
         background-image: url(/images/landings/PSB/web_assets/header1_2x.png);
-        background-size: 657px 296px
+        background-size: 657px 296px;
     }
 }
 
@@ -1631,7 +1637,7 @@ body {
     height: 296px;
     background: url(/images/landings/PSB/web_assets/header2.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1639,7 +1645,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--header2 {
         background-image: url(/images/landings/PSB/web_assets/header2_2x.png);
-        background-size: 657px 296px
+        background-size: 657px 296px;
     }
 }
 
@@ -1648,7 +1654,7 @@ body {
     height: 296px;
     background: url(/images/landings/PSB/web_assets/header3.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1656,7 +1662,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--header3 {
         background-image: url(/images/landings/PSB/web_assets/header3_2x.png);
-        background-size: 657px 296px
+        background-size: 657px 296px;
     }
 }
 
@@ -1665,7 +1671,7 @@ body {
     height: 826px;
     background: url(/images/landings/PSB/web_assets/budget.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1673,7 +1679,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--budget {
         background-image: url(/images/landings/PSB/web_assets/budget_2x.png);
-        background-size: 82px 82px
+        background-size: 82px 82px;
     }
 }
 
@@ -1682,7 +1688,7 @@ body {
     height: 826px;
     background: url(/images/landings/PSB/web_assets/partners.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1690,7 +1696,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--partners {
         background-image: url(/images/landings/PSB/web_assets/partners_2x.png);
-        background-size: 82px 82px
+        background-size: 82px 82px;
     }
 }
 
@@ -1699,7 +1705,7 @@ body {
     height: 826px;
     background: url(/images/landings/PSB/web_assets/newusers.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1707,7 +1713,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--newusers {
         background-image: url(/images/landings/PSB/web_assets/newusers_2x.png);
-        background-size: 82px 82px
+        background-size: 82px 82px;
     }
 }
 
@@ -1716,7 +1722,7 @@ body {
     height: 826px;
     background: url(/images/landings/PSB/web_assets/click.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1724,7 +1730,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--click {
         background-image: url(/images/landings/PSB/web_assets/click_2x.png);
-        background-size: 82px 82px
+        background-size: 82px 82px;
     }
 }
 
@@ -1733,7 +1739,7 @@ body {
     height: 826px;
     background: url(/images/landings/PSB/web_assets/money.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1741,7 +1747,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--money {
         background-image: url(/images/landings/PSB/web_assets/money_2x.png);
-        background-size: 82px 82px
+        background-size: 82px 82px;
     }
 }
 
@@ -1750,7 +1756,7 @@ body {
     height: 128px;
     background: url(/images/landings/PSB/web_assets/spotty.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1758,7 +1764,7 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--spotty {
         background-image: url(/images/landings/PSB/web_assets/spotty_2x.png);
-        background-size: 106px 128px
+        background-size: 106px 128px;
     }
 }
 
@@ -1767,7 +1773,7 @@ body {
     height: 128px;
     background: url(/images/landings/PSB/web_assets/sad_spotty.png);
     background-position: 50%;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1775,6 +1781,6 @@ body {
 (min-resolution: 192dpi) {
     .landings_psb__image--sad_spotty {
         background-image: url(/images/landings/PSB/web_assets/sad_spotty_2x.png);
-        background-size: 128px 128px
+        background-size: 128px 128px;
     }
 }

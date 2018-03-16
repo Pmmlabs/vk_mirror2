@@ -1,79 +1,79 @@
 #members_css {
-    display: none
+    display: none;
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 .section {
-    color: #36638e;
-    padding: 0px 0px 2px;
+    color: #36638E;
+    padding: 0px 0px 2px 0px;
     margin-bottom: 10px;
     margin-top: 10px;
     border-bottom: 1px solid #b9c4da;
-    font-weight: 700;
-    font-size: 13px
+    font-weight: bold;
+    font-size: 13px;
 }
 
 .hightlight_green {
-    color: #37702a;
-    font-weight: 100
+    color: #37702A;
+    font-weight: 100;
 }
 
 .hightlight_yellow {
     color: orange;
-    font-weight: 900
+    font-weight: 900;
 }
 
 .hightlight_red {
     color: red;
-    font-weight: 900
+    font-weight: 900;
 }
 
 .smscontent {
     padding: 10px 50px;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 .checklist {
     padding-left: 20px;
-    list-style-type: none
+    list-style-type: none;
 }
 
 .smscontent li {
-    padding: 5px 0px
+    padding: 5px 0px;
 }
 
 .wikiTable td {
-    padding: 3px
+    padding: 3px;
 }
 
 #stl_left.fixed,
 #stl_side.fixed {
     position: fixed;
-    top: 0
+    top: 0;
 }
 
 #stl_left {
     display: none;
     z-index: 3;
     left: 0px;
-    top: 0px
+    top: 0px;
 }
 
-#stl_left.over,
-#stl_left:hover {
+#stl_left:hover,
+#stl_left.over {
     text-decoration: none;
     opacity: 1;
-    filter: alpha(opacity=100)
+    filter: alpha(opacity=100);
 }
 
 #stl_text {
@@ -81,68 +81,68 @@
     display: block;
     padding: 0px 20px;
     margin: 0 31px 0 15px;
-    font-weight: 700;
-    color: #45688e;
-    background: url(/images/toplink.gif?3) no-repeat left 3px
+    font-weight: bold;
+    color: #45688E;
+    background: url(/images/toplink.gif?3) no-repeat left 3px;
 }
 
 #stl_left .down {
-    background-position: left -7px
+    background-position: left -7px;
 }
 
 #stl_left .back {
-    background-position: left -22px
+    background-position: left -22px;
 }
 
 .stl_active {
-    cursor: pointer
+    cursor: pointer;
 }
 
 #stl_bg {
     height: 100%;
     width: 100px;
-    padding: 13px 0;
+    padding: 13px 0 13px;
     opacity: 0.5;
     filter: alpha(opacity=50);
     -o-transition: background-color 200ms linear;
     transition: background-color 200ms linear;
     -o-transition: opacity 200ms linear;
-    transition: opacity 200ms linear
+    transition: opacity 200ms linear;
 }
 
-.stl_active.over #stl_bg,
-.stl_active:hover #stl_bg {
+.stl_active:hover #stl_bg,
+.stl_active.over #stl_bg {
     opacity: 1;
-    filter: alpha(opacity=100)
+    filter: alpha(opacity=100);
 }
 
 .stl_active.over_fast #stl_bg {
-    background-color: #e1e7ed
+    background-color: #E1E7ED;
 }
 
 #stl_side {
     z-index: 10;
-    display: none
+    display: none;
 }
 
 .members_history_table {
     margin: 5px 20px;
-    font-size: 12.5px
+    font-size: 12.5px;
 }
 
-.members_history_table>tbody>tr>td,
-.members_history_table>thead>tr>th {
-    padding: 6px 1px
+.members_history_table>thead>tr>th,
+.members_history_table>tbody>tr>td {
+    padding: 6px 1px;
 }
 
 .members_history_table__when {
-    width: 150px
+    width: 150px;
 }
 
 .members_history_table__who {
-    width: 200px
+    width: 200px;
 }
 
 .members_history_table__what {
-    width: 300px
+    width: 300px;
 }
