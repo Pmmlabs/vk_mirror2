@@ -1,136 +1,136 @@
 #snapster_style_css {
-    display: none;
+    display: none
 }
 
-.image_shadow,
 .chronicle_video,
-.is_2x .chronicle_video,
 .chronicle_video_play,
+.image_shadow,
+.is_2x .chronicle_video,
 .is_2x .chronicle_video_play,
-.sn_attach_photo_preloader_img,
 .is_2x .sn_attach_photo_preloader_img,
+.sn_attach_photo_preloader_img,
 .sn_mini_btn_loading {
-    -ms-high-contrast-adjust: none;
+    -ms-high-contrast-adjust: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 @font-face {
-    font-family: 'SnapsterIcon';
+    font-family: SnapsterIcon;
     src: url('/fonts/snapster.eot?fy14kx');
     src: url('/fonts/snapster.eot?fy14kx#iefix') format('embedded-opentype'), url('/fonts/snapster.ttf?fy14kx') format('truetype'), url('/fonts/snapster.woff?fy14kx') format('woff'), url('/fonts/snapster.svg?fy14kx#snapster') format('svg');
-    font-weight: normal;
-    font-style: normal;
+    font-weight: 400;
+    font-style: normal
 }
 
-[class^="icon-"],
-[class*=" icon-"] {
-    font-family: 'SnapsterIcon' !important;
+[class*=" icon-"],
+[class^=icon-] {
+    font-family: SnapsterIcon!important;
     speak: none;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 400;
     font-variant: normal;
     text-transform: none;
     line-height: 100%;
     -webkit-font-smoothing: antialiased;
-    -osx-font-smoothing: grayscale;
+    -osx-font-smoothing: grayscale
 }
 
 .icon-bell:before {
-    content: "\e909";
+    content: "\e909"
 }
 
 .icon-heart_outline:before {
-    content: "\48";
+    content: "\48"
 }
 
 .icon-search:before {
-    content: "\73";
+    content: "\73"
 }
 
 .icon-vk:before {
-    content: "\76";
+    content: "\76"
 }
 
 .icon-camera:before {
-    content: "\63";
+    content: "\63"
 }
 
 .icon-heart:before {
-    content: "\68";
+    content: "\68"
 }
 
 .icon-reply:before {
-    content: "\72";
+    content: "\72"
 }
 
 .icon-edit:before {
-    content: "\65";
+    content: "\65"
 }
 
 .icon-android:before {
-    content: "\61";
+    content: "\61"
 }
 
 .icon-ios:before {
-    content: "\69";
+    content: "\69"
 }
 
 .icon-verify:before {
-    content: "\e900";
+    content: "\e900"
 }
 
 .icon-ok:before {
-    content: "\6f";
+    content: "\6f"
 }
 
 .icon-actions:before {
-    content: "\41";
+    content: "\41"
 }
 
 .icon-app_store_en:before {
-    content: "\e903";
+    content: "\e903"
 }
 
 .icon-google_play_en:before {
-    content: "\e904";
+    content: "\e904"
 }
 
 .icon-arrow_down:before {
-    content: "\e905";
+    content: "\e905"
 }
 
 .icon-enter_ru:before {
-    content: "\e906";
+    content: "\e906"
 }
 
 .icon-enter_en:before {
-    content: "\e907";
+    content: "\e907"
 }
 
 .icon-google_play_ru:before {
-    content: "\e901";
+    content: "\e901"
 }
 
 .icon-app_store_ru:before {
-    content: "\e902";
+    content: "\e902"
 }
 
 .icon-logo:before {
-    content: "\6c";
+    content: "\6c"
 }
 
 .icon-text_logo:before {
-    content: "\e908";
+    content: "\e908"
 }
 
 body {
@@ -138,85 +138,79 @@ body {
     margin: 0px;
     overflow-x: hidden;
     line-height: 100%;
-    background: #F1F2F4;
+    background: #f1f2f4
 }
 
-body,
 #sn_pw_actions_list,
+body,
 textarea {
-    font-family: 'Helvetica Neue', sans-serif, Geneva, arial, Tahoma, verdana;
+    font-family: Helvetica Neue, sans-serif
 }
 
 a {
     color: #4d7fb3;
     text-decoration: none;
-    outline: none;
+    outline: none
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: underline
 }
 
 textarea {
     outline: none;
     padding: 10px;
     font-size: 13px;
-    line-height: 110%;
+    line-height: 110%
 }
 
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
-    color: #d8d8d8;
+    color: #d8d8d8
 }
 
 input::-moz-placeholder,
-textarea::-moz-placeholder {
-    color: #d8d8d8;
-}
-
+textarea::-moz-placeholder,
 input:-moz-placeholder,
 textarea:-moz-placeholder {
-    color: #d8d8d8;
+    color: #d8d8d8
 }
 
 input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
-    color: #d8d8d8;
+    color: #d8d8d8
 }
 
 input~.placeholder .ph_content,
 textarea~.placeholder .ph_content {
-    color: #d8d8d8;
+    color: #d8d8d8
 }
 
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
-    color: #d8d8d8;
+    color: #d8d8d8
 }
 
 input:-moz-placeholder,
-textarea:-moz-placeholder {
-    color: #d8d8d8;
-}
-
+textarea:-moz-placeholder,
 input::-moz-placeholder,
 textarea::-moz-placeholder {
-    color: #d8d8d8;
+    color: #d8d8d8
 }
 
 input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
-    color: #d8d8d8;
+    color: #d8d8d8
 }
 
 #wrap3 {
     position: relative;
     margin: 64px auto 0px;
-    min-height: 320px;
+    min-height: 320px
 }
 
 .scroll_fix {
-    width: 100% !important;
+    width: 100%!important
 }
 
 .head {
@@ -231,18 +225,18 @@ textarea:-ms-input-placeholder {
     line-height: 100%;
     -o-transition: box-shadow 200ms ease;
     transition: box-shadow 200ms ease;
-    background: #fff;
+    background: #fff
 }
 
 .head_border {
-    box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 1px 7px rgba(0, 0, 0, .1)
 }
 
 .head_cont {
     margin: 0px auto;
     width: 1030px;
     position: relative;
-    height: 54px;
+    height: 54px
 }
 
 .logo {
@@ -257,11 +251,11 @@ textarea:-ms-input-placeholder {
     line-height: 54px;
     letter-spacing: 1px;
     display: block;
-    height: 54px;
+    height: 54px
 }
 
 .logo:active {
-    line-height: 56px;
+    line-height: 56px
 }
 
 .head_user {
@@ -269,7 +263,7 @@ textarea:-ms-input-placeholder {
     z-index: 10;
     border-left: 1px solid transparent;
     margin-right: -10px;
-    position: relative;
+    position: relative
 }
 
 .head_user_name {
@@ -277,7 +271,7 @@ textarea:-ms-input-placeholder {
     font-size: 14px;
     position: relative;
     z-index: 2;
-    line-height: 100%;
+    line-height: 100%
 }
 
 .head_user_arrow,
@@ -286,15 +280,15 @@ textarea:-ms-input-placeholder {
     border-top-color: #b7bbc0;
     width: 0px;
     height: 0px;
-    margin: 4px 0px 0px 5px;
+    margin: 4px 0px 0px 5px
 }
 
 .head_user_arrow {
-    display: none;
+    display: none
 }
 
 .head_user.logged .head_user_arrow {
-    display: block;
+    display: block
 }
 
 .head_user_tools_wrap {
@@ -306,7 +300,7 @@ textarea:-ms-input-placeholder {
     z-index: 1;
     min-width: 200px;
     width: 100%;
-    padding-top: 2px;
+    padding-top: 2px
 }
 
 .head_user_tools {
@@ -314,15 +308,15 @@ textarea:-ms-input-placeholder {
     right: 0px;
     padding: 10px 0px;
     pointer-events: auto;
-    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, .04);
+    border: 1px solid rgba(0, 0, 0, .15);
     border-top: 0px;
-    border-radius: 0px 0px 3px 3px;
+    border-radius: 0px 0px 3px 3px
 }
 
 .head_user.logged:hover .head_user_tools_wrap,
 .head_user_tools_wrap:hover {
-    display: block;
+    display: block
 }
 
 .head_user_tools_item {
@@ -331,50 +325,50 @@ textarea:-ms-input-placeholder {
     text-align: right;
     padding: 10px 34px;
     margin-top: 3px;
-    display: block;
+    display: block
 }
 
 .head_user_tools_item:hover {
-    background: #edf1f5;
+    background: #edf1f5
 }
 
+#rooms_result,
 .sn_block,
-.sn_page_nav_cont,
-#rooms_result {
+.sn_page_nav_cont {
     background: #fff;
     border: 1px solid #e4e6eb;
     border-radius: 5px;
-    padding: 15px 14px;
+    padding: 15px 14px
 }
 
 .no_display {
-    display: none;
+    display: none
 }
 
 .bsbb {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
+    -moz-box-sizing: border-box
 }
 
 .no_line {
-    text-decoration: none !important;
+    text-decoration: none!important
 }
 
 .user_wrap {
     width: 500px;
     margin: 82px auto 0px;
-    text-align: center;
+    text-align: center
 }
 
 .user_wrap_name {
-    color: #48586C;
+    color: #48586c;
     font-size: 24px;
     margin-top: 15px;
     line-height: 130%;
     word-wrap: break-word;
     display: block;
-    text-decoration: none !important;
+    text-decoration: none!important
 }
 
 .user_wrap_status {
@@ -383,93 +377,95 @@ textarea:-ms-input-placeholder {
     margin-top: 11px;
     letter-spacing: 0.6px;
     line-height: 17px;
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 .user_wrap_status:empty {
-    display: none;
+    display: none
 }
 
 .user_info {
     width: 525px;
     margin: 0px auto 20px;
     padding: 15px 0px;
-    position: relative;
+    position: relative
 }
 
 #gp {
-    display: none !important;
+    display: none!important
 }
 
 .followers_num {
     font-size: 16px;
-    color: #3d93e3;
     margin-top: 2px;
     letter-spacing: 1.6px;
     text-align: center;
-    cursor: pointer;
     position: relative;
     z-index: 1;
     white-space: nowrap;
     margin-top: 17px;
-    line-height: 100%;
+    line-height: 100%
+}
+
+.followers_num,
+.follow_but {
+    color: #3d93e3;
+    cursor: pointer
 }
 
 .follow_but {
-    color: #3d93e3;
     font-size: 17px;
     padding: 13px 52px;
     letter-spacing: 1.3px;
-    cursor: pointer;
     -o-transition: all 150ms ease;
     transition: all 150ms ease;
     border-radius: 30px;
-    background: #fff;
+    background: #fff
 }
 
 .follow_but:active {
     padding-top: 14px;
-    padding-bottom: 12px;
+    padding-bottom: 12px
 }
 
 .no_display_follow.follow_but_wrap {
-    display: none !important;
+    display: none!important
 }
 
 .no_display_follow td {
-    vertical-align: top;
+    vertical-align: top
 }
 
 .no_display_follow td:first-child {
-    width: 100%;
+    width: 100%
 }
 
 .unfollowed_btn {
-    background: transparent !important;
+    background: transparent!important
 }
 
 .unfollowed_btn .follow_str {
-    color: #7C9DC1;
+    color: #7c9dc1
 }
 
 .follow_str {
     z-index: 30;
     position: relative;
-    pointer-events: none;
+    pointer-events: none
 }
 
 .follow_but_over {
     position: absolute;
-    background: #EBF3FB;
+    background: #ebf3fb;
     overflow: hidden;
     height: 0px;
     width: 0px;
     border-radius: 100%;
-    z-index: 1;
+    z-index: 1
 }
 
 .follow_but_over_wr {
-    opacity: 1;
+    opacity: 1
 }
 
 .follow_but_over_wrap {
@@ -478,7 +474,7 @@ textarea:-ms-input-placeholder {
     top: 0px;
     left: 0px;
     z-index: 3;
-    position: absolute;
+    position: absolute
 }
 
 .follow_but_over_str {
@@ -488,7 +484,7 @@ textarea:-ms-input-placeholder {
     text-align: center;
     z-index: 2;
     width: 100%;
-    opacity: 1;
+    opacity: 1
 }
 
 .follow_but_wrap {
@@ -498,52 +494,52 @@ textarea:-ms-input-placeholder {
     overflow: hidden;
     position: relative;
     margin-top: 17px;
-    margin-left: 30px;
+    margin-left: 30px
 }
 
 .photos_list_new {
     position: relative;
     margin-left: 0px;
-    margin-right: 0px;
+    margin-right: 0px
 }
 
 .sn_photo_item {
     position: absolute;
     top: 0px;
     left: 0px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .sn_photo_item_cont {
     position: relative;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .sn_photo_item_img_wr {
-    background: #F7F9FB;
+    background: #f7f9fb;
     position: absolute;
     top: 0px;
     left: 0px;
     width: 100%;
-    height: 100%;
+    height: 100%
 }
 
 .sn_photo_item_cont_img {
     vertical-align: top;
     width: 100%;
-    height: 100%;
+    height: 100%
 }
 
 .sn_no_loaded_img {
-    opacity: 0;
+    opacity: 0
 }
 
 .sn_photo_item_mob {
-    display: none;
+    display: none
 }
 
 .sn_photo_item_actions_wrap {
-    background: rgba(0, 0, 0, 0);
+    background: transparent;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -551,18 +547,18 @@ textarea:-ms-input-placeholder {
     height: 100%;
     -o-transition: background 200ms ease;
     transition: background 200ms ease;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .sn_photo_item_actions_items {
     position: absolute;
     bottom: 10px;
     left: 10px;
-    opacity: 0;
+    opacity: 0
 }
 
 .sn_photo_item:hover .sn_photo_item_actions_items {
-    opacity: 1;
+    opacity: 1
 }
 
 .sn_photo_item_actions_item {
@@ -570,12 +566,12 @@ textarea:-ms-input-placeholder {
     margin-right: 12px;
     cursor: pointer;
     font-size: 15px;
-    color: #fff;
+    color: #fff
 }
 
 .sn_photo_item_actions_icon {
     width: 22px;
-    height: 18px;
+    height: 18px
 }
 
 .sn_photo_item_actions_cnt {
@@ -583,20 +579,20 @@ textarea:-ms-input-placeholder {
     font-size: 12px;
     line-height: 100%;
     margin-left: 4px;
-    margin-top: 3px;
+    margin-top: 3px
 }
 
 .photos_list_item {
-    margin-bottom: 20px;
+    margin-bottom: 20px
 }
 
 .image_wr {
     position: relative;
-    margin-bottom: 40px;
+    margin-bottom: 40px
 }
 
 .photo_like_icon_active {
-    color: #ee5959;
+    color: #ee5959
 }
 
 .big_like {
@@ -607,30 +603,30 @@ textarea:-ms-input-placeholder {
     left: 50%;
     margin-left: -36px;
     margin-top: -36px;
-    pointer-events: none;
+    pointer-events: none
 }
 
 .bit_like_icon {
     position: absolute;
     margin-left: 17px;
-    margin-top: 20px;
+    margin-top: 20px
 }
 
 .photo_like_num {
-    color: rgba(255, 255, 255, 0.94);
+    color: hsla(0, 0%, 100%, .94);
     font-size: 17px;
     margin-left: 5px;
     margin-top: 2px;
     white-space: nowrap;
-    line-height: 110%;
+    line-height: 110%
 }
 
 .photo_like_num .counter_anim {
-    right: 0.5px;
+    right: 0.5px
 }
 
 .photo_like_num:empty {
-    display: none;
+    display: none
 }
 
 .author_ava_wr {
@@ -641,14 +637,14 @@ textarea:-ms-input-placeholder {
     position: absolute;
     bottom: -27px;
     left: 50%;
-    margin-left: -28px;
+    margin-left: -28px
 }
 
 .author_ava {
     width: 50px;
     height: 50px;
     border-radius: 30px;
-    border: 0px;
+    border: 0px
 }
 
 .image_shadow {
@@ -658,7 +654,7 @@ textarea:-ms-input-placeholder {
     width: 437px;
     height: 293px;
     background: url(/images/chronicle/shadow.png?1) repeat-x 0px 0px;
-    z-index: 1;
+    z-index: 1
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -666,13 +662,13 @@ textarea:-ms-input-placeholder {
 (min-resolution: 192dpi) {
     .image_shadow {
         background-image: url(/images/chronicle/shadow_2x.png?1);
-        background-size: 437px 293px;
+        background-size: 437px 293px
     }
 }
 
 .image_wr_picture {
     width: 100%;
-    vertical-align: middle;
+    vertical-align: middle
 }
 
 .photo_descr {
@@ -681,35 +677,35 @@ textarea:-ms-input-placeholder {
     color: #1f2021;
     text-align: center;
     line-height: 160%;
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
-.photo_descr .emoji,
-.photo_descr .emoji_css,
 .comment_text .emoji,
-.comment_text .emoji_css {
-    margin-top: 2px;
+.comment_text .emoji_css,
+.photo_descr .emoji,
+.photo_descr .emoji_css {
+    margin-top: 2px
 }
 
 .long_text {
-    text-align: left;
+    text-align: left
 }
 
 .photo_descr:empty {
-    display: none;
+    display: none
 }
 
 .show_all_comments {
     font-size: 16px;
     color: #d8d8d8;
     text-align: center;
-    margin-top: 16px;
+    margin-top: 16px
 }
 
 .show_all_comments_str {
     position: relative;
     padding-right: 19px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .show_all_comments_arrow {
@@ -717,26 +713,26 @@ textarea:-ms-input-placeholder {
     top: -4px;
     right: 0px;
     border-top-color: transparent;
-    border-bottom-color: #d8d8d8;
+    border-bottom-color: #d8d8d8
 }
 
 .comments {
     padding-top: 9px;
     overflow: hidden;
     max-width: 440px;
-    margin: 9px auto 0;
+    margin: 9px auto 0
 }
 
 .comment {
     padding: 10px 13px;
-    position: relative;
+    position: relative
 }
 
 .comment_date {
     color: #c5c5c5;
     font-size: 12px;
     margin-left: 10px;
-    position: relative;
+    position: relative
 }
 
 .sn_comment_delete.sn_modal_close {
@@ -746,56 +742,56 @@ textarea:-ms-input-placeholder {
     top: 0px;
     left: initial;
     right: 0px;
-    display: none;
+    display: none
 }
 
 .comment_owner:hover .sn_comment_delete {
-    display: block;
+    display: block
 }
 
 .sn_comment_delete .sn_modal_close_line {
     background: #777;
     width: 2px;
-    left: 5px !important;
+    left: 5px!important
 }
 
 .comment_owner:hover .comment_date_str {
-    opacity: 0;
+    opacity: 0
 }
 
 .comment_deleted_info {
     color: #777;
     font-size: 13px;
-    margin-top: 14px;
+    margin-top: 14px
 }
 
 .comments_off {
-    display: none;
+    display: none
 }
 
 .comment .audio .title_wrap {
-    width: 160px;
+    width: 160px
 }
 
 .comment_off_msg {
     color: #d8d8d8;
     padding: 15px 10px;
     display: none;
-    font-size: 14px;
+    font-size: 14px
 }
 
 .comments_off_visible {
-    display: block;
+    display: block
 }
 
 .c_author_ava {
     width: 35px;
     height: 35px;
-    border-radius: 25px;
+    border-radius: 25px
 }
 
 .comm_wrap {
-    margin-left: 45px;
+    margin-left: 45px
 }
 
 .author_name {
@@ -805,11 +801,11 @@ textarea:-ms-input-placeholder {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    line-height: 15px;
+    line-height: 15px
 }
 
 .comm_author {
-    height: 11px;
+    height: 11px
 }
 
 .comment_text {
@@ -822,21 +818,21 @@ textarea:-ms-input-placeholder {
     -ms-user-select: initial;
     user-select: initial;
     -webkit-user-select: initial;
-    -moz-user-select: initial;
+    -moz-user-select: initial
 }
 
 .comment_text:empty {
-    display: none;
+    display: none
 }
 
 .comment_form {
     padding: 10px 23px 10px 79px;
     margin-left: -25px;
-    margin-right: -25px;
+    margin-right: -25px
 }
 
 .sn_box_cont_active .comment_form {
-    box-shadow: 0px 0px 12px -5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 12px -5px rgba(0, 0, 0, .5)
 }
 
 .comment_form_inp {
@@ -847,11 +843,11 @@ textarea:-ms-input-placeholder {
     font-size: 14px;
     resize: none;
     height: 28px;
-    margin-bottom: 8px;
+    margin-bottom: 8px
 }
 
 .comment_area {
-    position: relative;
+    position: relative
 }
 
 .comment_area_line,
@@ -864,33 +860,33 @@ textarea:-ms-input-placeholder {
     z-index: 1;
     position: absolute;
     bottom: 0px;
-    left: 0px;
+    left: 0px
 }
 
 .comment_area_line2 {
     background: #3d93e3;
-    z-index: 2;
+    z-index: 2
 }
 
 .comment_area_line_active {
-    width: 100%;
+    width: 100%
 }
 
 .likes_users_bl {
     position: absolute;
     font-size: 12px;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, .8);
     color: #fff;
     border-radius: 6px;
     width: 166px;
     height: 65px;
     opacity: 0;
-    z-index: 120;
+    z-index: 120
 }
 
 .likes_users_bl .bottom_pointer,
 .likes_users_bl .top_pointer {
-    margin-left: 123px !important;
+    margin-left: 123px!important
 }
 
 .likes_users_wr {
@@ -898,131 +894,131 @@ textarea:-ms-input-placeholder {
     height: 27px;
     overflow: hidden;
     position: relative;
-    margin-top: 1px;
+    margin-top: 1px
 }
 
 .likes_users_bl_label {
     text-align: center;
     padding: 9px 0px;
-    width: 166px;
+    width: 166px
 }
 
 .liked_user_ava {
     width: 26px;
     height: 26px;
     border-radius: 20px;
-    margin-left: 6px;
+    margin-left: 6px
 }
 
 .likes_users_bl_res {
     margin-top: 2px;
     overflow: hidden;
     width: 192px;
-    height: 26px;
+    height: 26px
 }
 
 .author_tip {
-    text-align: center;
+    text-align: center
 }
 
 .tip_author_name {
-    font-size: 13px;
+    font-size: 13px
 }
 
 .tip_author_date {
     font-size: 11px;
-    color: rgba(255, 255, 255, 0.7);
-    margin-top: 3px;
+    color: hsla(0, 0%, 100%, .7);
+    margin-top: 3px
 }
 
 .stl_active {
-    display: none !important;
+    display: none!important
 }
 
 .sn_box {
     width: 635px;
     margin-left: -20px;
-    border: 1px solid transparent;
+    border: 1px solid transparent
 }
 
 .sn_box_inited {
-    border: 0px;
+    border: 0px
 }
 
 .sn_box_active {
-    position: relative;
+    position: relative
 }
 
 .sn_box_cont {
     width: 100%;
     overflow: hidden;
-    border: 1px solid transparent;
+    border: 1px solid transparent
 }
 
-.sn_box_cont_active,
 .search_result,
+.sn_box_cont_active,
 .vk_login_modal {
     position: absolute;
     left: 0px;
     bottom: 0px;
     border-color: #ebebeb;
     background: #fff;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.04);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .04);
     z-index: 130;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .sn_box_head {
-    position: relative;
     background: #fff;
     z-index: 100;
     display: none;
-    height: 58px;
+    height: 58px
 }
 
+.sn_box_head,
 .sn_modal_content {
-    position: relative;
+    position: relative
 }
 
 .sn_modal_content .moreBut {
     margin-top: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
 .sn_modal_box_alert {
     font-size: 14px;
     color: #777;
-    padding: 60px 20px;
+    padding: 60px 20px
 }
 
 .change_site_ver {
     font-size: 14px;
     padding-top: 30px;
-    padding-bottom: 14px;
+    padding-bottom: 14px
 }
 
 .sn_box_title {
     color: #fff;
-    background: #5084B5;
+    background: #5084b5;
     font-size: 16px;
     letter-spacing: 1.6px;
     padding: 19px 0px 15px;
     line-height: 100%;
     padding: 21px 20px;
     width: 100%;
-    box-shadow: border-box;
+    box-shadow: border-box
 }
 
 .sn_box_title_fix {
     position: fixed;
-    top: 0px;
+    top: 0px
 }
 
 .sn_box_close_str {
     position: absolute;
     top: 0px;
     right: 0px;
-    color: rgba(255, 255, 255, 0.5);
+    color: hsla(0, 0%, 100%, .5);
     font-size: 13px;
     height: 58px;
     padding: 0px 20px;
@@ -1030,42 +1026,42 @@ textarea:-ms-input-placeholder {
     cursor: pointer;
     -o-transition: color 200ms ease;
     transition: color 200ms ease;
-    z-index: 20;
+    z-index: 20
 }
 
 .sn_box_close_str:hover {
-    color: #fff;
+    color: #fff
 }
 
 .sn_box_close_str:active {
-    line-height: 59px;
+    line-height: 59px
 }
 
-.sn_box_close,
-.close_search_res {
+.close_search_res,
+.sn_box_close {
     color: #b7bbc0;
     font-size: 14px;
     position: absolute;
     top: 18px;
     right: 16px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .sn_box_cont_active .sn_box_result {
     position: absolute;
     bottom: 0px;
     left: 0px;
-    width: 100%;
+    width: 100%
 }
 
 .followers_table {
     position: relative;
     margin: auto;
-    height: 49px !important;
+    height: 49px!important
 }
 
 .sn_box_result {
-    padding: 0px 25px;
+    padding: 0px 25px
 }
 
 .scrollbar_cont {
@@ -1074,37 +1070,37 @@ textarea:-ms-input-placeholder {
     right: 0px;
     width: 9px;
     height: 100%;
-    background: rgba(200, 200, 200, 0);
+    background: hsla(0, 0%, 78%, 0);
     -o-transition: all 150ms linear;
     transition: all 150ms linear;
     z-index: 500;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .scrollbar_cont.scrollbar_c_overed {
-    background: rgba(235, 235, 245, 0.4);
-    width: 11px;
+    background: rgba(235, 235, 245, .4);
+    width: 11px
 }
 
 .scrollbar_inner {
-    background: #DAE1E8;
+    background: #dae1e8;
     width: 6px;
     height: 26px;
     margin-left: 1px;
     border-radius: 3px;
     cursor: pointer;
     -o-transition: width 150ms linear, background-color 200ms linear;
-    transition: width 150ms linear, background-color 200ms linear;
+    transition: width 150ms linear, background-color 200ms linear
 }
 
 .scrollbar_c_overed .scrollbar_inner {
     width: 8px;
-    border-radius: 4px;
+    border-radius: 4px
 }
 
-.scrollbar_inner:hover,
-.scrollbar_hovered {
-    background: #BEC8D3;
+.scrollbar_hovered,
+.scrollbar_inner:hover {
+    background: #bec8d3
 }
 
 .load_more_photos,
@@ -1118,33 +1114,33 @@ textarea:-ms-input-placeholder {
     width: 200px;
     cursor: pointer;
     margin: 15px auto 0px;
-    clear: both;
+    clear: both
 }
 
 .moreBut_loading,
 .sn_loader_wrap {
     border: 0px;
-    padding: 0px;
+    padding: 0px
 }
 
 .load_more_photos {
-    margin: 15px auto 0px;
+    margin: 15px auto 0px
 }
 
 .load_more_photos_loading {
-    padding: 0px !important;
-    border: 0px !important;
+    padding: 0px!important;
+    border: 0px!important
 }
 
 .moreBut_wrap {
-    text-align: center;
+    text-align: center
 }
 
 .moreBut_small {
     width: auto;
     display: inline-block;
     padding: 9px 15px;
-    font-size: 13px;
+    font-size: 13px
 }
 
 .sn_search_spliter {
@@ -1154,7 +1150,7 @@ textarea:-ms-input-placeholder {
     margin-top: -1px;
     background: #fff;
     padding: 32px 15px 15px;
-    color: #777;
+    color: #777
 }
 
 .search_wrap {
@@ -1162,7 +1158,7 @@ textarea:-ms-input-placeholder {
     cursor: pointer;
     margin-left: 240px;
     z-index: 11;
-    margin-right: 230px;
+    margin-right: 230px
 }
 
 .search_wrap_inp {
@@ -1170,71 +1166,61 @@ textarea:-ms-input-placeholder {
     font-size: 14px;
     width: 100%;
     border: 0px;
-    background: transparent !important;
+    background: transparent!important;
     font-weight: 200;
     line-height: 14px;
     color: #000;
     height: 54px;
-    padding: 20px 0px 20px 28px;
+    padding: 20px 0px 20px 28px
 }
 
 .search_wrap_inp::-webkit-input-placeholder {
     color: #b7bbc0;
     letter-spacing: 1px;
-    line-height: 14px;
+    line-height: 14px
 }
 
-.search_wrap_inp::-moz-placeholder {
-    color: #b7bbc0;
-    letter-spacing: 1px;
-    line-height: 14px;
-}
-
+.search_wrap_inp::-moz-placeholder,
 .search_wrap_inp:-moz-placeholder {
     color: #b7bbc0;
     letter-spacing: 1px;
-    line-height: 14px;
+    line-height: 14px
 }
 
 .search_wrap_inp:-ms-input-placeholder {
     color: #b7bbc0;
     letter-spacing: 1px;
-    line-height: 14px;
+    line-height: 14px
 }
 
 .search_wrap_inp~.placeholder .ph_content {
     color: #b7bbc0;
     letter-spacing: 1px;
-    line-height: 14px;
+    line-height: 14px
 }
 
 .search_wrap_inp::-webkit-input-placeholder {
     color: #b7bbc0;
     letter-spacing: 1px;
-    line-height: 14px;
+    line-height: 14px
 }
 
-.search_wrap_inp:-moz-placeholder {
-    color: #b7bbc0;
-    letter-spacing: 1px;
-    line-height: 14px;
-}
-
+.search_wrap_inp:-moz-placeholder,
 .search_wrap_inp::-moz-placeholder {
     color: #b7bbc0;
     letter-spacing: 1px;
-    line-height: 14px;
+    line-height: 14px
 }
 
 .search_wrap_inp:-ms-input-placeholder {
     color: #b7bbc0;
     letter-spacing: 1px;
-    line-height: 14px;
+    line-height: 14px
 }
 
 .search_chars_founded {
-    font-weight: bold;
-    background: orange;
+    font-weight: 700;
+    background: orange
 }
 
 .search_loupe {
@@ -1245,34 +1231,34 @@ textarea:-ms-input-placeholder {
     left: 0px;
     pointer-events: none;
     color: #b7bbc0;
-    font-size: 17px;
+    font-size: 17px
 }
 
 .close_search_res {
     top: 21px;
     right: 7px;
-    display: none;
+    display: none
 }
 
 .search_wrap_active .search_wrap_inp {
-    border-bottom: 1px solid #ebebeb;
+    border-bottom: 1px solid #ebebeb
 }
 
 .search_result_wrap {
     position: absolute;
     top: 50px;
     width: 550px;
-    bottom: initial;
+    bottom: initial
 }
 
 #search_preloader {
     position: absolute;
     top: 16px;
-    left: 0px;
+    left: 0px
 }
 
 #search_preloader:empty {
-    display: none;
+    display: none
 }
 
 .auth_error_msg {
@@ -1281,32 +1267,34 @@ textarea:-ms-input-placeholder {
     text-align: center;
     color: #777;
     margin-top: 100px;
-    padding: 100px 25px;
+    padding: 100px 25px
 }
 
 .auth_wrap {
     width: 100%;
     margin: 70px 0px;
     text-align: center;
-    padding: 0px 30px;
+    padding: 0px 30px
 }
 
 .auth_big_title {
-    font-family: Helvetica, Arial, sans-serif;
-    font-weight: 300;
     font-size: 46px;
-    color: #333333;
+    color: #333;
     padding-top: 50px;
-    line-height: 110%;
+    line-height: 110%
+}
+
+.auth_big_title,
+.auth_description {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 300
 }
 
 .auth_description {
-    font-family: Helvetica, Arial, sans-serif;
-    font-weight: 300;
     line-height: 150%;
     font-size: 17px;
-    color: #888888;
-    margin-top: 20px;
+    color: #888;
+    margin-top: 20px
 }
 
 .chronicle_video {
@@ -1319,7 +1307,7 @@ textarea:-ms-input-placeholder {
     *display: inline;
     zoom: 1;
     margin-top: 50px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1327,12 +1315,12 @@ textarea:-ms-input-placeholder {
 (min-resolution: 192dpi) {
     .chronicle_video {
         background-image: url(/images/chronicle/video_2x.gif?1);
-        background-size: 230px 129px;
+        background-size: 230px 129px
     }
 }
 
 .is_2x .chronicle_video {
-    background-image: url(/images/chronicle/video_2x.gif?1);
+    background-image: url(/images/chronicle/video_2x.gif?1)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1340,27 +1328,24 @@ textarea:-ms-input-placeholder {
 (min-resolution: 192dpi) {
     .is_2x .chronicle_video {
         background-image: url(/images/chronicle/video_2x_2x.gif?1);
-        background-size: 230px 129px;
+        background-size: 230px 129px
     }
 }
 
-.chronicle_video .video_box {
-    height: 100%;
-}
-
+.chronicle_video .video_box,
 .chronicle_video .video_box .wrap {
-    height: 100%;
+    height: 100%
 }
 
 .chronicle_video_play {
     border-radius: 3px;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, .3);
     background-image: url(/images/chronicle/play_video.png?1);
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: 52px 52px;
     width: 220px;
-    height: 123px;
+    height: 123px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1368,16 +1353,16 @@ textarea:-ms-input-placeholder {
 (min-resolution: 192dpi) {
     .chronicle_video_play {
         background-image: url(/images/chronicle/play_video_2x.png?1);
-        background-size: 52px 52px;
+        background-size: 52px 52px
     }
 }
 
 .chronicle_video:hover .chronicle_video_play {
-    background-color: rgba(0, 0, 0, 0);
+    background-color: transparent
 }
 
 .is_2x .chronicle_video_play {
-    background-image: url(/images/chronicle/play_video_2x.png?1);
+    background-image: url(/images/chronicle/play_video_2x.png?1)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1385,7 +1370,7 @@ textarea:-ms-input-placeholder {
 (min-resolution: 192dpi) {
     .is_2x .chronicle_video_play {
         background-image: url(/images/chronicle/play_video_2x_2x.png?1);
-        background-size: 52px 52px;
+        background-size: 52px 52px
     }
 }
 
@@ -1394,13 +1379,13 @@ textarea:-ms-input-placeholder {
     font-size: 14px;
     color: #fff;
     display: inline-block;
-    font-family: 'HelveticaNeue-Medium';
+    font-family: HelveticaNeue-Medium;
     padding: 16px 54px 14px 30px;
     border-radius: 30px;
     margin-top: 60px;
     line-height: 100%;
     cursor: pointer;
-    position: relative;
+    position: relative
 }
 
 .vk_auth_ic {
@@ -1410,22 +1395,22 @@ textarea:-ms-input-placeholder {
     top: 15px;
     right: 17px;
     color: #fff;
-    font-size: 16px;
+    font-size: 16px
 }
 
 .vk_login_modal {
     text-align: center;
     margin: 0px;
     width: 100%;
-    position: relative;
+    position: relative
 }
 
 .vk_login_modal_cont {
-    padding: 50px 0px;
+    padding: 50px 0px
 }
 
 .sn_attachments {
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 .sn_attach_photo {
@@ -1434,7 +1419,7 @@ textarea:-ms-input-placeholder {
     width: 100px;
     max-height: 90px;
     margin-right: 5px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .sn_attach_photo_preloader {
@@ -1445,7 +1430,7 @@ textarea:-ms-input-placeholder {
     height: 18px;
     top: 50%;
     margin-top: -9px;
-    display: none;
+    display: none
 }
 
 .sn_attach_photo_preloader_img {
@@ -1454,8 +1439,8 @@ textarea:-ms-input-placeholder {
     height: 18px;
     vertical-align: top;
     display: inline-block;
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 2px;
+    background-color: rgba(0, 0, 0, .6);
+    border-radius: 2px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1463,13 +1448,13 @@ textarea:-ms-input-placeholder {
 (min-resolution: 192dpi) {
     .sn_attach_photo_preloader_img {
         background-image: url(/images/upload_2x.gif);
-        background-size: 32px 8px;
+        background-size: 32px 8px
     }
 }
 
 .is_2x .sn_attach_photo_preloader_img {
     background-image: url(/images/upload_2x.gif);
-    background-size: 32px 8px;
+    background-size: 32px 8px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1477,12 +1462,12 @@ textarea:-ms-input-placeholder {
 (min-resolution: 192dpi) {
     .is_2x .sn_attach_photo_preloader_img {
         background-image: url(/images/upload_2x_2x.gif);
-        background-size: 32px 8px;
+        background-size: 32px 8px
     }
 }
 
 .sn_attach_video {
-    height: 73px;
+    height: 73px
 }
 
 .sn_attach_video_duration {
@@ -1490,25 +1475,25 @@ textarea:-ms-input-placeholder {
     right: 5px;
     bottom: 5px;
     padding: 2px 5px;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, .6);
     color: #fff;
     border-radius: 2px;
-    font-size: 11px;
+    font-size: 11px
 }
 
 .sn_attach_photo_img {
     width: 100%;
-    vertical-align: top;
+    vertical-align: top
 }
 
 .audio.over .duration {
     display: block;
-    color: #777;
+    color: #777
 }
 
 .sn_attachments {
     font-size: 11px;
-    font-family: tahoma, arial, verdana, sans-serif, Lucida Sans;
+    font-family: tahoma, arial, verdana, sans-serif
 }
 
 .sn_modal {
@@ -1523,13 +1508,13 @@ textarea:-ms-input-placeholder {
     -o-transition: background 100ms ease;
     transition: background 100ms ease;
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: hidden
 }
 
 .sn_modal_cont {
     width: 700px;
     margin: 0px auto;
-    background: #fff;
+    background: #fff
 }
 
 .sn_modal_close {
@@ -1541,7 +1526,7 @@ textarea:-ms-input-placeholder {
     cursor: pointer;
     opacity: 0.5;
     -o-transition: opacity 200ms ease;
-    transition: opacity 200ms ease;
+    transition: opacity 200ms ease
 }
 
 .sn_modal_close_line {
@@ -1552,26 +1537,24 @@ textarea:-ms-input-placeholder {
     top: 0px;
     left: 13px;
     -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
-    transform: rotate(45deg);
+    transform: rotate(45deg)
 }
 
 .sn_modal_close_line2 {
     -webkit-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
     -o-transform: rotate(-45deg);
-    transform: rotate(-45deg);
+    transform: rotate(-45deg)
 }
 
 .sn_modal_close:hover,
 .sn_modal_close_over {
-    opacity: 1;
+    opacity: 1
 }
 
 .sn_modal_nav {
     margin: -21px -20px;
-    position: relative;
+    position: relative
 }
 
 .sn_modal_nav_shadow {
@@ -1580,8 +1563,8 @@ textarea:-ms-input-placeholder {
     height: 4px;
     width: 100%;
     bottom: -4px;
-    background: -o-linear-gradient(top, rgba(0, 0, 0, 0.15), transparent);
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.15), transparent);
+    background: -o-linear-gradient(top, rgba(0, 0, 0, .15), transparent);
+    background: linear-gradient(180deg, rgba(0, 0, 0, .15), transparent)
 }
 
 .sn_modal_nav_title {
@@ -1590,7 +1573,7 @@ textarea:-ms-input-placeholder {
     line-height: 16px;
     text-align: left;
     padding: 21px;
-    padding-bottom: 12px;
+    padding-bottom: 12px
 }
 
 .sn_modal_item {
@@ -1598,37 +1581,37 @@ textarea:-ms-input-placeholder {
     float: left;
     padding: 14px 22px;
     border-bottom: 3px solid transparent;
-    color: rgba(255, 255, 255, 0.8);
+    color: hsla(0, 0%, 100%, .8);
     cursor: pointer;
-    line-height: 16px;
+    line-height: 16px
 }
 
 .sn_modal_item:hover {
-    border-color: rgba(255, 255, 255, 0.2);
+    border-color: hsla(0, 0%, 100%, .2)
 }
 
 .sn_modal_item_active {
-    border-color: #fff !important;
-    color: #fff;
+    border-color: #fff!important;
+    color: #fff
 }
 
 .sn_modal_item_disabled {
-    color: rgba(255, 255, 255, 0.2);
-    cursor: default;
+    color: hsla(0, 0%, 100%, .2);
+    cursor: default
 }
 
 .sn_modal_nav_loader {
     position: absolute;
     bottom: 16px;
-    right: 10px;
+    right: 10px
 }
 
 .sn_modal_nav_loader .sn_loader_path {
-    stroke: #fff;
+    stroke: #fff
 }
 
 .sn_modal_nav_moving_line .sn_modal_item {
-    border-color: transparent !important;
+    border-color: transparent!important
 }
 
 .sn_modal_nav_line_helper {
@@ -1636,22 +1619,22 @@ textarea:-ms-input-placeholder {
     bottom: 0px;
     display: none;
     height: 3px;
-    background: #fff;
+    background: #fff
 }
 
 .sn_view_photo {
-    width: 100%;
+    width: 100%
 }
 
 .sn_view_photo_cont {
-    background: transparent;
+    background: transparent
 }
 
 .material_avatar {
     border-radius: 50%;
     color: #fff;
     text-align: center;
-    display: inline-block;
+    display: inline-block
 }
 
 .user_wrap_img_material {
@@ -1660,7 +1643,7 @@ textarea:-ms-input-placeholder {
     font-size: 100px;
     padding-top: 23px;
     line-height: 100%;
-    padding-top: 19px;
+    padding-top: 19px
 }
 
 .search_material_ava {
@@ -1670,25 +1653,25 @@ textarea:-ms-input-placeholder {
     padding-top: 13px;
     display: block;
     margin-right: 12px;
-    line-height: 100%;
+    line-height: 100%
 }
 
 .search_material_ava_room {
-    margin-right: 0px;
+    margin-right: 0px
 }
 
 .sn_view_video {
-    position: relative;
+    position: relative
 }
 
-.video_box_wrap,
 #video_player,
-.page_video_inline_wrap {
+.page_video_inline_wrap,
+.video_box_wrap {
     top: 0px;
     left: 0px;
-    position: absolute !important;
-    width: 100% !important;
-    height: 100% !important;
+    position: absolute!important;
+    width: 100%!important;
+    height: 100%!important
 }
 
 .followers_list_wrap {
@@ -1702,36 +1685,36 @@ textarea:-ms-input-placeholder {
     left: -99999999px;
     overflow: hidden;
     opacity: 0;
-    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.04);
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, .04)
 }
 
 .followers_list_wrap .sn_box_head {
-    display: block;
+    display: block
 }
 
 .followers_list_cont {
-    position: relative;
+    position: relative
 }
 
 .followers_list_res {
     padding: 15px 0px;
-    max-height: 350px;
+    max-height: 350px
 }
 
 .follower_item {
     padding: 5px 15px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .follower_item:hover {
-    background: #edf1f5;
+    background: #edf1f5
 }
 
 .follower_item_ava {
     width: 50px;
     height: 50px;
     border-radius: 30px;
-    margin-right: 10px;
+    margin-right: 10px
 }
 
 .confirm_str {
@@ -1739,16 +1722,16 @@ textarea:-ms-input-placeholder {
     font-size: 15px;
     line-height: 160%;
     text-align: left;
-    padding: 20px 30px 0px;
+    padding: 20px 30px 0px
 }
 
 .confirm_modal {
-    overflow: hidden;
+    overflow: hidden
 }
 
 .confirm_buttons {
     text-align: center;
-    padding: 20px 0px;
+    padding: 20px 0px
 }
 
 .confirm_but {
@@ -1757,29 +1740,29 @@ textarea:-ms-input-placeholder {
     font-size: 15px;
     margin-left: 10px;
     display: inline-block;
-    color: #C73434;
+    color: #c73434;
     cursor: pointer;
     -o-transition: background 150ms ease;
     transition: background 150ms ease;
-    line-height: 100%;
+    line-height: 100%
 }
 
 .confirm_but_gray {
-    color: #777;
+    color: #777
 }
 
 .confirm_but_blue {
-    color: #3d93e3;
+    color: #3d93e3
 }
 
 .confirm_but:hover {
-    background: #edf1f5;
+    background: #edf1f5
 }
 
 .sn_mini_btn_loading {
     background: url(/images/upload.gif) no-repeat 50%;
     height: 15px;
-    width: 60px;
+    width: 60px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1787,7 +1770,7 @@ textarea:-ms-input-placeholder {
 (min-resolution: 192dpi) {
     .sn_mini_btn_loading {
         background-image: url(/images/upload_2x.gif);
-        background-size: 32px 8px;
+        background-size: 32px 8px
     }
 }
 
@@ -1801,13 +1784,13 @@ textarea:-ms-input-placeholder {
     opacity: 0;
     -o-transition: opacity 200ms ease;
     transition: opacity 200ms ease;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, .7)
 }
 
 .sn_box_shadow_active {
     width: 100%;
     height: 100%;
-    opacity: 1;
+    opacity: 1
 }
 
 .sn_drop_box {
@@ -1818,7 +1801,7 @@ textarea:-ms-input-placeholder {
     height: 100%;
     background: #fff;
     display: none;
-    z-index: 1000;
+    z-index: 1000
 }
 
 .sn_drop_cont {
@@ -1828,7 +1811,7 @@ textarea:-ms-input-placeholder {
     bottom: 50px;
     right: 50px;
     border: 3px dashed #3d93e3;
-    pointer-events: none;
+    pointer-events: none
 }
 
 .sn_drop_str {
@@ -1840,19 +1823,19 @@ textarea:-ms-input-placeholder {
     width: 100%;
     left: 0px;
     line-height: 100%;
-    margin-top: -13px;
+    margin-top: -13px
 }
 
 .sn_upload_modal_cont {
-    padding: 25px;
+    padding: 25px
 }
 
 .sn_upload_progress_wrap {
     position: relative;
     width: 400px;
     height: 30px;
-    background: #EDF1F5;
-    margin-bottom: 25px;
+    background: #edf1f5;
+    margin-bottom: 25px
 }
 
 .sn_upload_progress {
@@ -1862,7 +1845,7 @@ textarea:-ms-input-placeholder {
     background: #3d93e3;
     width: 0%;
     height: 100%;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .sn_upload_progress_persent {
@@ -1870,18 +1853,18 @@ textarea:-ms-input-placeholder {
     color: #3d93e3;
     font-size: 13px;
     text-align: center;
-    padding-top: 10px;
+    padding-top: 10px
 }
 
 .sn_upload_progress .sn_upload_progress_persent {
     width: 400px;
-    color: #fff;
+    color: #fff
 }
 
 .sn_upload_modal_error {
     font-size: 16px;
     color: #777;
-    line-height: 160%;
+    line-height: 160%
 }
 
 #sn_upload_save_info {
@@ -1889,13 +1872,13 @@ textarea:-ms-input-placeholder {
     line-height: 150%;
     color: #777;
     margin-top: 15px;
-    display: none;
+    display: none
 }
 
 .sn_edit_photo_descr_area {
     width: 100%;
     padding: 5px;
-    min-height: 80px;
+    min-height: 80px
 }
 
 .sn_upload_btn {
@@ -1908,7 +1891,7 @@ textarea:-ms-input-placeholder {
     right: 42px;
     display: none;
     cursor: pointer;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .sn_upload_icon {
@@ -1916,28 +1899,28 @@ textarea:-ms-input-placeholder {
     height: 23px;
     margin: 24px auto 0px;
     color: #fff;
-    font-size: 23px;
+    font-size: 23px
 }
 
 #room_upload_files {
     position: absolute;
     top: -150px;
-    right: -300px;
+    right: -300px
 }
 
 .sn_upload_descr_cont {
-    text-align: left;
+    text-align: left
 }
 
 .sn_upload_descr_label {
-    font-weight: bold;
+    font-weight: 700;
     font-size: 13px;
     color: #3d93e3;
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
 .sn_upload_descr_cont .confirm_buttons {
-    padding-bottom: 0px;
+    padding-bottom: 0px
 }
 
 .sn_room_info_wrap {
@@ -1946,7 +1929,7 @@ textarea:-ms-input-placeholder {
     position: fixed;
     padding-bottom: 20px;
     text-align: center;
-    padding: 0px 10px;
+    padding: 0px 10px
 }
 
 .user_wrap_img_wrap {
@@ -1954,64 +1937,64 @@ textarea:-ms-input-placeholder {
     height: 158px;
     border-radius: 80px;
     overflow: hidden;
-    margin: 0px auto;
+    margin: 0px auto
 }
 
 .user_wrap_img {
     width: 158px;
-    min-height: 158px;
+    min-height: 158px
 }
 
 .user_wrap_name {
-    font-size: 19px;
+    font-size: 19px
 }
 
 .sn_room_verified {
     color: #3d93e3;
-    margin-left: 5px;
+    margin-left: 5px
 }
 
 .sn_room_info_wrap .user_wrap_status {
-    font-size: 14px;
+    font-size: 14px
 }
 
 .sn_room_info_wrap .user_wrap {
     width: 100%;
-    margin-top: 0px;
+    margin-top: 0px
 }
 
 .sn_room_info_wrap .follow_but_wrap {
-    margin-left: 0px;
+    margin-left: 0px
 }
 
 .sn_room_info .photos_list {
     position: relative;
     margin-left: 260px;
-    left: 0px !important;
+    left: 0px!important;
     top: 0px;
-    padding-bottom: 134px;
+    padding-bottom: 134px
 }
 
 .sn_room_informs {
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 #photos_list_res {
-    position: relative;
+    position: relative
 }
 
 .sn_room_informs:empty {
-    display: none;
+    display: none
 }
 
 .photos_list_empty {
-    padding-bottom: 0px !important;
+    padding-bottom: 0px!important
 }
 
 .empty_room_feed {
     color: #777;
     font-size: 15px;
-    text-align: center;
+    text-align: center
 }
 
 .room_follow_btn {
@@ -2027,21 +2010,21 @@ textarea:-ms-input-placeholder {
     border: 1px solid transparent;
     -o-transition: color 200ms ease, border-color 200ms ease, background 200ms ease;
     transition: color 200ms ease, border-color 200ms ease, background 200ms ease;
-    max-width: 250px;
+    max-width: 250px
 }
 
 .room_follow_btn.no_display_follow {
-    display: none;
+    display: none
 }
 
 .room_follow_btn:active {
-    line-height: 38px;
+    line-height: 38px
 }
 
 .room_follow_btn.unfollowed_btn {
     border-color: #3d93e3;
     color: #3d93e3;
-    background: #fff;
+    background: #fff
 }
 
 .room_info_sep {
@@ -2049,7 +2032,7 @@ textarea:-ms-input-placeholder {
     width: 100%;
     background: #ebeef1;
     margin: 14px auto;
-    max-width: 250px;
+    max-width: 250px
 }
 
 .sn_romm_followers_num {
@@ -2058,7 +2041,7 @@ textarea:-ms-input-placeholder {
     text-align: center;
     line-height: 100%;
     cursor: pointer;
-    margin-top: 18px;
+    margin-top: 18px
 }
 
 .sn_romm_followers_str {
@@ -2066,18 +2049,18 @@ textarea:-ms-input-placeholder {
     font-size: 12px;
     text-align: center;
     margin-top: 5px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .sn_photo_view {
     width: 600px;
     height: 300px;
     overflow: hidden;
-    position: relative;
+    position: relative
 }
 
 #sn_modalphoto_view {
-    padding: 25px;
+    padding: 25px
 }
 
 .sn_photo_view_wide {
@@ -2087,11 +2070,11 @@ textarea:-ms-input-placeholder {
     margin: 100px auto 60px;
     vertical-align: top;
     min-height: 350px;
-    opacity: 0;
+    opacity: 0
 }
 
 .sn_pw_loader {
-    background: transparent;
+    background: transparent
 }
 
 .sn_pw_prev_wrap {
@@ -2099,14 +2082,14 @@ textarea:-ms-input-placeholder {
     top: 0px;
     left: 0px;
     height: 100%;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .sn_pw_next_wrap {
     width: 100px;
     height: 120px;
     top: 50%;
-    margin-top: -60px;
+    margin-top: -60px
 }
 
 .sn_pw_pagination_loader {
@@ -2115,20 +2098,20 @@ textarea:-ms-input-placeholder {
     right: 10px;
     width: 30px;
     height: 30px;
-    margin-top: -14px;
+    margin-top: -14px
 }
 
 .sn_pw_pagination_loader_next {
     right: initial;
-    left: 10px;
+    left: 10px
 }
 
 .sn_pw_wrap_disabled {
-    cursor: default;
+    cursor: default
 }
 
 .sn_pw_wrap_pending .sn_pw_prev_wrap_arrow {
-    display: none;
+    display: none
 }
 
 .sn_pw_prev_wrap_arrow {
@@ -2140,25 +2123,24 @@ textarea:-ms-input-placeholder {
     opacity: 0.3;
     -o-transition: opacity 300ms ease;
     transition: opacity 300ms ease;
-    margin-top: -19px;
+    margin-top: -19px
 }
 
 .sn_pw_next_wrap .sn_pw_prev_wrap_arrow {
-    -ms-transform: rotate(-180deg);
     -o-transform: rotate(-180deg);
     transform: rotate(-180deg);
     -webkit-transform: rotate(-180deg);
     -moz-transform: rotate(-180deg);
     left: 18px;
-    right: initial;
+    right: initial
 }
 
 .sn_pw_prev_wrap:hover .sn_pw_prev_wrap_arrow {
-    opacity: 1;
+    opacity: 1
 }
 
 .sn_pw_wrap_disabled .sn_pw_prev_wrap_arrow {
-    opacity: 0.05 !important;
+    opacity: 0.05!important
 }
 
 .sn_pw_prev_wrap_arrow_line {
@@ -2167,22 +2149,20 @@ textarea:-ms-input-placeholder {
     position: absolute;
     top: 0px;
     left: 9px;
-    -ms-transform: rotate(48deg);
     -o-transform: rotate(48deg);
     transform: rotate(48deg);
     -webkit-transform: rotate(48deg);
     -moz-transform: rotate(48deg);
     background: #fff;
-    border-radius: 10px;
+    border-radius: 10px
 }
 
 .sn_pw_prev_wrap_arrow_line:last-child {
-    -ms-transform: rotate(-48deg);
     -o-transform: rotate(-48deg);
     transform: rotate(-48deg);
     -webkit-transform: rotate(-48deg);
     -moz-transform: rotate(-48deg);
-    top: 16px;
+    top: 16px
 }
 
 .sn_photo_view_image_wr {
@@ -2190,18 +2170,18 @@ textarea:-ms-input-placeholder {
     left: 0px;
     top: 0px;
     background: #1e1e1e;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .sn_photo_view_wide .sn_photo_view_image_wr {
     position: relative;
     width: 100%;
     text-align: center;
-    cursor: default;
+    cursor: default
 }
 
 .photo_view_body_class {
-    background: #F9F9F9;
+    background: #f9f9f9
 }
 
 #sn_pw_image {
@@ -2215,16 +2195,13 @@ textarea:-ms-input-placeholder {
     bottom: 0px;
     margin: auto;
     -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+    backface-visibility: hidden
 }
 
 .sn_photo_view_wide #sn_pw_image {
     position: static;
     max-height: none;
-}
-
-.sn_photo_view_wide #sn_pw_image {
-    vertical-align: middle;
+    vertical-align: middle
 }
 
 .sn_photo_view_info {
@@ -2235,18 +2212,18 @@ textarea:-ms-input-placeholder {
     position: absolute;
     top: 0px;
     right: 0px;
-    padding: 13px;
+    padding: 13px
 }
 
 .sn_photo_view_info .scrollbar_cont {
-    z-index: 50;
+    z-index: 50
 }
 
 .sn_photo_view_wide .sn_photo_view_info {
     position: static;
     vertical-align: top;
     border: 1px solid #ebebeb;
-    border-left: 0px;
+    border-left: 0px
 }
 
 .sn_photo_view_info_ava_wr {
@@ -2254,12 +2231,12 @@ textarea:-ms-input-placeholder {
     height: 50px;
     border-radius: 25px;
     overflow: hidden;
-    margin-right: 10px;
+    margin-right: 10px
 }
 
 .sn_photo_view_info_ava {
     width: 100%;
-    height: 100%;
+    height: 100%
 }
 
 .sn_photo_view_info_name {
@@ -2270,20 +2247,20 @@ textarea:-ms-input-placeholder {
     display: inline-block;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis
 }
 
 .sn_photo_view_info_date {
     color: #9ea0a2;
     font-size: 12px;
-    margin-top: 6px;
+    margin-top: 6px
 }
 
 .sn_pw_head {
     background: #f6f6f6;
     margin: -13px -13px 0px;
     padding: 13px;
-    position: relative;
+    position: relative
 }
 
 .sn_photo_view_actions {
@@ -2296,7 +2273,7 @@ textarea:-ms-input-placeholder {
     text-align: center;
     height: 19px;
     line-height: 19px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 #sn_pw_actions_list {
@@ -2308,21 +2285,21 @@ textarea:-ms-input-placeholder {
     z-index: 30;
     color: #000;
     font-size: 12px;
-    font-weight: normal;
-    box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.1);
-    border: 1px solid #BCCAD7;
+    font-weight: 400;
+    box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, .1);
+    border: 1px solid #bccad7;
     opacity: 0;
     top: -9999999px;
     margin-top: 10px;
     -o-transition: opacity 150ms linear, margin-top 150ms linear;
-    transition: opacity 150ms linear, margin-top 150ms linear;
+    transition: opacity 150ms linear, margin-top 150ms linear
 }
 
 .sn_photo_view_actions:hover #sn_pw_actions_list {
     opacity: 1;
     top: 18px;
     margin-top: 0px;
-    visibility: visible;
+    visibility: visible
 }
 
 .sn_pw_actions_item {
@@ -2330,11 +2307,11 @@ textarea:-ms-input-placeholder {
     font-size: 12px;
     white-space: nowrap;
     cursor: pointer;
-    color: #2B587A;
+    color: #2b587a
 }
 
 .sn_pw_actions_item:hover {
-    background-color: #E4E8ED;
+    background-color: #e4e8ed
 }
 
 .sn_pw_photo_deleted {
@@ -2347,7 +2324,7 @@ textarea:-ms-input-placeholder {
     z-index: 100;
     font-size: 14px;
     color: #777;
-    text-align: center;
+    text-align: center
 }
 
 .sn_pw_photo_deleted_str {
@@ -2355,7 +2332,7 @@ textarea:-ms-input-placeholder {
     left: 0px;
     width: 100%;
     top: 50%;
-    margin-top: -7px;
+    margin-top: -7px
 }
 
 .sn_pw_descr {
@@ -2367,24 +2344,24 @@ textarea:-ms-input-placeholder {
     -ms-user-select: initial;
     user-select: initial;
     -webkit-user-select: initial;
-    -moz-user-select: initial;
+    -moz-user-select: initial
 }
 
 .sn_pw_descr:empty {
-    display: none;
+    display: none
 }
 
-.sn_pw_more_descr,
-.sn_pw_descr_hide {
+.sn_pw_descr_hide,
+.sn_pw_more_descr {
     color: #777;
     font-size: 13px;
     margin-left: 5px;
     cursor: pointer;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 .sn_pw_descr_cont {
-    display: none;
+    display: none
 }
 
 .sn_pw_descr_cont_shown {
@@ -2397,58 +2374,58 @@ textarea:-ms-input-placeholder {
     display: block;
     background: #fff;
     z-index: 10;
-    box-shadow: 0px 5px 9px -6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 5px 9px -6px rgba(0, 0, 0, .2);
     padding: 0px 13px 10px;
     z-index: 60;
     overflow: auto;
-    background: #f6f6f6;
+    background: #f6f6f6
 }
 
 .sn_pw_descr_hide {
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 #sn_pw_inf_wr {
-    padding-bottom: 5px;
+    padding-bottom: 5px
 }
 
 .sn_pw_comments_count {
     color: #9ea0a2;
     font-size: 13px;
     margin: 18px 0px 5px;
-    text-transform: uppercase;
+    text-transform: uppercase
 }
 
 .sn_pw_comments_count:empty {
-    display: none;
+    display: none
 }
 
 .sn_pw_comm_wr {
-    position: relative;
+    position: relative
 }
 
 .sn_pw_comm_wr .scrollbar_cont {
-    right: -10px;
+    right: -10px
 }
 
 .sn_pw_comments {
     position: relative;
-    margin: 0px -13px;
+    margin: 0px -13px
 }
 
 .sn_pw_comm_form {
     padding: 13px;
-    margin: 0px -13px;
+    margin: 0px -13px
 }
 
 .sn_pw_comm_form_ava {
     width: 35px;
     height: 35px;
-    border-radius: 18px;
+    border-radius: 18px
 }
 
 .sn_pw_comm_form_area_wr {
-    margin-left: 45px;
+    margin-left: 45px
 }
 
 .sn_pw_comm_form_area {
@@ -2457,23 +2434,20 @@ textarea:-ms-input-placeholder {
     border: 0px;
     height: 34px;
     resize: none;
-    border-radius: 8px;
+    border-radius: 8px
 }
 
 .sn_pw_comm_form_area::-webkit-input-placeholder {
-    color: #9ea0a2;
+    color: #9ea0a2
 }
 
-.sn_pw_comm_form_area::-moz-placeholder {
-    color: #9ea0a2;
-}
-
+.sn_pw_comm_form_area::-moz-placeholder,
 .sn_pw_comm_form_area:-moz-placeholder {
-    color: #9ea0a2;
+    color: #9ea0a2
 }
 
 .sn_pw_comm_form_area:-ms-input-placeholder {
-    color: #9ea0a2;
+    color: #9ea0a2
 }
 
 .sn_pw_heart_over_area {
@@ -2483,17 +2457,17 @@ textarea:-ms-input-placeholder {
     width: 100%;
     height: 40%;
     opacity: 0;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .sn_pw_heart_over_area:hover {
-    opacity: 1;
+    opacity: 1
 }
 
-.sn_pw_heart_over_area,
-.sn_pw_heart {
+.sn_pw_heart,
+.sn_pw_heart_over_area {
     -o-transition: opacity 250ms ease;
-    transition: opacity 250ms ease;
+    transition: opacity 250ms ease
 }
 
 .sn_pw_heart_wrap {
@@ -2503,7 +2477,7 @@ textarea:-ms-input-placeholder {
     top: 50px;
     left: 50%;
     margin-left: -38px;
-    line-height: 100%;
+    line-height: 100%
 }
 
 .sn_pw_heart {
@@ -2513,23 +2487,23 @@ textarea:-ms-input-placeholder {
     color: #fff;
     font-size: 34px;
     text-align: center;
-    padding-top: 3px;
+    padding-top: 3px
 }
 
 .sn_pw_heart_wrap:hover .sn_pw_heart {
     padding-top: 0px;
-    font-size: 40px;
+    font-size: 40px
 }
 
 .sn_pw_heart_anim .sn_pw_heart {
     -webkit-animation: like_bounce 0.5s;
     -o-animation: like_bounce 0.5s;
-    animation: like_bounce 0.5s;
+    animation: like_bounce 0.5s
 }
 
 .sn_pw_heart_liked {
     opacity: 1;
-    color: #ee5959;
+    color: #ee5959
 }
 
 #sn_comment_more {
@@ -2538,12 +2512,12 @@ textarea:-ms-input-placeholder {
     color: #a5a7aa;
     padding: 10px 0px;
     margin: 0px auto;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .sn_pw_likes_wr {
     margin-top: 15px;
-    padding-bottom: 4px;
+    padding-bottom: 4px
 }
 
 .sn_pw_like_ic,
@@ -2553,7 +2527,7 @@ textarea:-ms-input-placeholder {
     float: left;
     margin-right: 10px;
     cursor: pointer;
-    position: relative;
+    position: relative
 }
 
 .sn_pw_liked_ic {
@@ -2562,64 +2536,63 @@ textarea:-ms-input-placeholder {
     top: 0px;
     left: 0px;
     -webkit-transform: scale(1);
-    -ms-transform: scale(1);
     -o-transform: scale(1);
-    transform: scale(1);
+    transform: scale(1)
 }
 
 .sn_pw_liked_ic_anim .sn_pw_liked_ic {
     -webkit-animation: like_bounce 0.5s;
     -o-animation: like_bounce 0.5s;
-    animation: like_bounce 0.5s;
+    animation: like_bounce 0.5s
 }
 
 .sn_pw_liked_ic_anim {
-    color: #fff;
+    color: #fff
 }
 
 @-webkit-keyframes like_bounce {
     0% {
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     30% {
         -webkit-transform: scale(1.3);
-        transform: scale(1.3);
+        transform: scale(1.3)
     }
     60% {
         -webkit-transform: scale(0.8);
-        transform: scale(0.8);
+        transform: scale(0.8)
     }
     80% {
         -webkit-transform: scale(1.06);
-        transform: scale(1.06);
+        transform: scale(1.06)
     }
-    100% {
+    to {
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
 }
 
 @-o-keyframes like_bounce {
     0% {
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     30% {
         -o-transform: scale(1.3);
-        transform: scale(1.3);
+        transform: scale(1.3)
     }
     60% {
         -o-transform: scale(0.8);
-        transform: scale(0.8);
+        transform: scale(0.8)
     }
     80% {
         -o-transform: scale(1.06);
-        transform: scale(1.06);
+        transform: scale(1.06)
     }
-    100% {
+    to {
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
 }
 
@@ -2627,55 +2600,55 @@ textarea:-ms-input-placeholder {
     0% {
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     30% {
         -webkit-transform: scale(1.3);
         -o-transform: scale(1.3);
-        transform: scale(1.3);
+        transform: scale(1.3)
     }
     60% {
         -webkit-transform: scale(0.8);
         -o-transform: scale(0.8);
-        transform: scale(0.8);
+        transform: scale(0.8)
     }
     80% {
         -webkit-transform: scale(1.06);
         -o-transform: scale(1.06);
-        transform: scale(1.06);
+        transform: scale(1.06)
     }
-    100% {
+    to {
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
 }
 
 .sn_pw_like_active .sn_pw_liked_ic {
-    opacity: 1;
+    opacity: 1
 }
 
 .sn_pw_like_str {
     color: #484848;
     padding-top: 4px;
     font-size: 13px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .sn_pw_like_num {
-    font-weight: bold;
-    color: #4d7fb3;
+    font-weight: 700;
+    color: #4d7fb3
 }
 
 .sn_loader {
     position: relative;
-    margin: 0px auto;
+    margin: 0px auto
 }
 
 .sn_loader:before {
     content: '';
     display: block;
-    padding-top: 100%;
+    padding-top: 100%
 }
 
 .sn_loader_circular {
@@ -2684,7 +2657,6 @@ textarea:-ms-input-placeholder {
     animation: sn_loader_rotate 2s linear infinite;
     height: 100%;
     -webkit-transform-origin: center center;
-    -ms-transform-origin: center center;
     -o-transform-origin: center center;
     transform-origin: center center;
     width: 100%;
@@ -2693,7 +2665,7 @@ textarea:-ms-input-placeholder {
     bottom: 0;
     left: 0;
     right: 0;
-    margin: auto;
+    margin: auto
 }
 
 .sn_loader_path {
@@ -2703,124 +2675,130 @@ textarea:-ms-input-placeholder {
     -webkit-animation: sn_loader_dash 1.5s ease-in-out infinite;
     -o-animation: sn_loader_dash 1.5s ease-in-out infinite;
     animation: sn_loader_dash 1.5s ease-in-out infinite;
-    stroke-linecap: round;
+    stroke-linecap: round
 }
 
 @-webkit-keyframes sn_loader_rotate {
-    100% {
+    to {
         -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
+        transform: rotate(360deg)
     }
 }
 
 @-o-keyframes sn_loader_rotate {
-    100% {
+    to {
         -o-transform: rotate(360deg);
-        transform: rotate(360deg);
+        transform: rotate(360deg)
     }
 }
 
 @keyframes sn_loader_rotate {
-    100% {
+    to {
         -webkit-transform: rotate(360deg);
         -o-transform: rotate(360deg);
-        transform: rotate(360deg);
+        transform: rotate(360deg)
     }
 }
 
 @-webkit-keyframes sn_loader_dash {
     0% {
         stroke-dasharray: 1, 200;
-        stroke-dashoffset: 0;
+        stroke-dashoffset: 0
     }
     50% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -35px;
+        stroke-dashoffset: -35px
     }
-    100% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -124px;
+    50%,
+    to {
+        stroke-dasharray: 89, 200
+    }
+    to {
+        stroke-dashoffset: -124px
     }
 }
 
 @-o-keyframes sn_loader_dash {
     0% {
         stroke-dasharray: 1, 200;
-        stroke-dashoffset: 0;
+        stroke-dashoffset: 0
     }
     50% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -35px;
+        stroke-dashoffset: -35px
     }
-    100% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -124px;
+    50%,
+    to {
+        stroke-dasharray: 89, 200
+    }
+    to {
+        stroke-dashoffset: -124px
     }
 }
 
 @keyframes sn_loader_dash {
     0% {
         stroke-dasharray: 1, 200;
-        stroke-dashoffset: 0;
+        stroke-dashoffset: 0
     }
     50% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -35px;
+        stroke-dashoffset: -35px
     }
-    100% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -124px;
+    50%,
+    to {
+        stroke-dasharray: 89, 200
+    }
+    to {
+        stroke-dashoffset: -124px
     }
 }
 
 .sn_wrap_error {
     padding: 200px 30px 80px;
     text-align: center;
-    color: #777;
+    color: #777
 }
 
 .sn_error_title {
-    font-size: 21px;
+    font-size: 21px
 }
 
 .sm_error_msg {
     font-size: 13px;
     line-height: 160%;
-    margin-top: 25px;
+    margin-top: 25px
 }
 
 .sn_room_info_wrap_mob {
     float: none;
     width: 100%;
-    margin-left: 0px !important;
+    margin-left: 0px!important;
     position: static;
-    padding-top: 20px;
+    padding-top: 20px
 }
 
 .photos_list_mob .sn_photo_item_cont {
-    margin: 0px auto;
+    margin: 0px auto
 }
 
 .photos_list_mob {
-    margin-left: 0px !important;
+    margin-left: 0px!important
 }
 
 .rooms_wrap {
     width: 600px;
     margin: 0px auto;
-    padding-top: 0px;
+    padding-top: 0px
 }
 
 .sn_follower_item {
     text-align: center;
     padding: 10px;
-    width: 120px;
+    width: 120px
 }
 
 .sn_follower_item_ava {
     width: 100px;
     height: 100px;
-    border-radius: 50px;
+    border-radius: 50px
 }
 
 .follower_item_info {
@@ -2828,68 +2806,68 @@ textarea:-ms-input-placeholder {
     margin-top: 8px;
     color: #42648b;
     line-height: 100%;
-    font-size: 12px;
+    font-size: 12px
 }
 
-.follower_item_name,
-.follower_item_lname {
+.follower_item_lname,
+.follower_item_name {
     white-space: nowrap;
     max-width: 100%;
     text-overflow: ellipsis;
     overflow: hidden;
-    line-height: 120%;
+    line-height: 120%
 }
 
 .follower_item_name {
     font-weight: 600;
     margin-bottom: 4px;
-    font-size: 13px;
+    font-size: 13px
 }
 
 .sn_followers_box .sn_modal_content {
-    padding: 10px;
+    padding: 10px
 }
 
 .rooms_result_wrap {
-    margin-right: 230px;
+    margin-right: 230px
 }
 
 #rooms_result,
 #search_rooms_result {
     padding: 1px 0px 0px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .rooms_list_wrap {
     margin-left: 240px;
-    position: relative;
+    position: relative
 }
 
 .rooms_list_empty {
     font-size: 16px;
     color: #777;
     text-align: center;
-    padding: 150px 20px;
+    padding: 150px 20px
 }
 
 .rooms_wrap_with_info {
-    width: 100%;
+    width: 100%
 }
 
 .rooms_list_item {
     padding: 0px 20px;
     cursor: pointer;
     margin-top: -1px;
-    border-top: 1px solid transparent;
+    border-top: 1px solid transparent
 }
 
 .rooms_list_item_wrap {
     padding: 15px 0px;
-    border-bottom: 1px solid #ebeef1;
+    border-bottom: 1px solid #ebeef1
 }
 
 .rooms_list_item:hover .rooms_list_item_wrap {
-    border: 0px;
+    border: 0px
 }
 
 .rooms_list_item_cover_img {
@@ -2897,35 +2875,35 @@ textarea:-ms-input-placeholder {
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
-    height: 100%;
+    height: 100%
 }
 
 .rooms_list_item:hover {
-    background: #F7F7F7;
+    background: #f7f7f7;
     border: 1px solid #ebeef1;
-    border-width: 1px 0px;
+    border-width: 1px 0px
 }
 
 .rooms_list_item:first-child {
-    border-top: 0px !important;
+    border-top: 0px!important
 }
 
 .rooms_list_item:last-child .rooms_list_item_wrap {
-    border-bottom: 0px !important;
+    border-bottom: 0px!important
 }
 
 .search_item_over {
-    background: #F7F7F7;
+    background: #f7f7f7
 }
 
 .rooms_list_item:last-child {
-    border-bottom: 0px;
+    border-bottom: 0px
 }
 
 .rooms_list_item_cover {
     position: relative;
     width: 80px;
-    height: 80px;
+    height: 80px
 }
 
 .rooms_list_item_last_uploader {
@@ -2937,63 +2915,63 @@ textarea:-ms-input-placeholder {
     background: #fff;
     border-radius: 20px;
     overflow: hidden;
-    padding: 2px;
+    padding: 2px
 }
 
 .rooms_list_item_last_uploader:empty {
-    display: none;
+    display: none
 }
 
 .rooms_list_item_last_uploader_img {
     height: 100%;
     width: 100%;
-    border-radius: 18px;
+    border-radius: 18px
 }
 
 .rooms_list_actions {
     margin-top: 15px;
     color: #777;
-    font-size: 14px;
+    font-size: 14px
 }
 
-.rooms_list_item_cover .search_user_ava,
-.rooms_list_item_cover .search_material_ava {
+.rooms_list_item_cover .search_material_ava,
+.rooms_list_item_cover .search_user_ava {
     width: 80px;
-    height: 80px;
+    height: 80px
 }
 
 .rooms_list_item_cover .search_material_ava {
     border-radius: 0px;
     padding-top: 17px;
-    font-size: 47px;
+    font-size: 47px
 }
 
 .rooms_list_item_cover_img_wr {
     width: 80px;
     height: 80px;
     border-radius: 40px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .rooms_list_item_cont {
-    margin-left: 100px;
+    margin-left: 100px
 }
 
 .rooms_list_item_title {
     color: #48586c;
     font-weight: 700;
     font-size: 15px;
-    padding-top: 3px;
+    padding-top: 3px
 }
 
 .rooms_list_item_text {
     color: #777;
     font-size: 14px;
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 .rooms_list_item_text:empty {
-    display: none;
+    display: none
 }
 
 .rooms_list_item_text,
@@ -3001,29 +2979,29 @@ textarea:-ms-input-placeholder {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 19px;
+    line-height: 19px
 }
 
 .rooms_list_item_date {
     color: #aaadb0;
     font-size: 14px;
-    margin-top: 13px;
+    margin-top: 13px
 }
 
 .search_photo {
     width: 80px;
     height: 80px;
     overflow: hidden;
-    margin-left: 12px;
+    margin-left: 12px
 }
 
 .search_photo:first-child {
-    margin-left: 0px;
+    margin-left: 0px
 }
 
 .rooms_list_last_photo {
     position: relative;
-    padding-left: 10px;
+    padding-left: 10px
 }
 
 .rooms_list_item_badge {
@@ -3035,21 +3013,21 @@ textarea:-ms-input-placeholder {
     right: -13px;
     padding: 6px 7px;
     border-radius: 50%;
-    border: 2px solid #fff;
+    border: 2px solid #fff
 }
 
 .rooms_list_item_badge:empty {
-    display: none;
+    display: none
 }
 
 .sn_footer {
-    padding: 40px 0px 18px;
+    padding: 40px 0px 18px
 }
 
 #sn_footer_cont {
     margin: 0px auto;
     padding-left: 230px;
-    padding-right: 10px;
+    padding-right: 10px
 }
 
 .sn_footer_link {
@@ -3059,74 +3037,74 @@ textarea:-ms-input-placeholder {
     margin-bottom: 12px;
     line-height: 20px;
     float: left;
-    margin-right: 15px;
+    margin-right: 15px
 }
 
 .sn_download {
     margin-right: 15px;
-    color: #666666;
+    color: #666
 }
 
 .sn_download_icon {
-    font-size: 20px;
+    font-size: 20px
 }
 
 .sn_download_android {
-    color: #689f38;
+    color: #689f38
 }
 
 .sn_footer_copyright {
     font-size: 15px;
     line-height: 20px;
-    color: #aaadb0;
+    color: #aaadb0
 }
 
 .sn_edit_user {
     font-size: 15px;
-    text-align: left;
+    text-align: left
 }
 
 .sn_edit_user_head {
     color: #fff;
-    background: #5084B5;
+    background: #5084b5;
     padding: 22px 25px;
-    position: relative;
+    position: relative
 }
 
 .sn_edit_user_head_title {
-    padding: 0px;
+    padding: 0px
 }
 
 .sn_edit_user_info {
-    margin-top: 22px;
+    margin-top: 22px
 }
 
 .sn_edit_user_ava {
     width: 80px;
     height: 80px;
-    border-radius: 40px;
+    border-radius: 40px
 }
 
 .sn_edit_user_info_cont {
     margin-left: 100px;
-    padding-top: 18px;
+    padding-top: 18px
 }
 
 .sn_edit_user_name {
     font-size: 16px;
-    line-height: 19px;
+    line-height: 19px
 }
 
 .sn_edit_user_status {
     font-size: 13px;
     line-height: 16px;
     margin-top: 6px;
-    opacity: 0.7;
+    opacity: 0.7
 }
 
 .sn_edit_user_cont {
     padding: 25px;
-    color: #000;
+    color: #000
 }
 
 .sn_edit_profile_btn {
@@ -3138,11 +3116,11 @@ textarea:-ms-input-placeholder {
     display: inline-block;
     margin-top: 20px;
     cursor: pointer;
-    position: relative;
+    position: relative
 }
 
 .sn_edit_profile_btn.no_display {
-    display: none;
+    display: none
 }
 
 .sn_edit_profile_btn_icon {
@@ -3150,16 +3128,16 @@ textarea:-ms-input-placeholder {
     position: absolute;
     top: 9px;
     left: 15px;
-    font-size: 12px;
+    font-size: 12px
 }
 
 .sn_edit_profile_btn:active {
     padding-top: 11px;
-    padding-bottom: 9px;
+    padding-bottom: 9px
 }
 
 .sn_edit_profile_btn:active .sn_edit_profile_btn_icon {
-    top: 10px;
+    top: 10px
 }
 
 .sn_edit_user_descr {
@@ -3167,28 +3145,28 @@ textarea:-ms-input-placeholder {
     font-size: 12px;
     line-height: 17px;
     margin-bottom: 23px;
-    margin-top: -8px;
+    margin-top: -8px
 }
 
 .sn_edit_user_hide_msg {
     margin-top: 7px;
-    display: block;
+    display: block
 }
 
 .sn_edit_save_wrap {
-    margin-top: 40px;
+    margin-top: 40px
 }
 
 .sn_edit_save_loader {
     text-align: center;
     height: 37px;
-    width: 100%;
+    width: 100%
 }
 
 .sn_material_inp_wrap {
     position: relative;
     padding-top: 12px;
-    margin-bottom: 15px;
+    margin-bottom: 15px
 }
 
 .sn_material_inp_str {
@@ -3200,84 +3178,84 @@ textarea:-ms-input-placeholder {
     font-size: 15px;
     -o-transition: top 150ms ease, margin-top 150ms ease, font-size 150ms ease;
     transition: top 150ms ease, margin-top 150ms ease, font-size 150ms ease;
-    z-index: 1;
+    z-index: 1
 }
 
 .sn_material_inp {
     width: 100%;
     padding: 10px 0px;
     border: 0px;
-    border-bottom: 1px solid #DEE5EC;
+    border-bottom: 1px solid #dee5ec;
     outline: none;
     font-size: 15px;
     position: relative;
     z-index: 2;
     background: transparent;
     height: 38px;
-    resize: none;
+    resize: none
 }
 
 .material_inp_noanim .sn_material_inp_str {
     -o-transition: none;
-    transition: none;
+    transition: none
 }
 
 .sn_edit_user_cont {
     max-width: 320px;
-    margin: 0px auto;
+    margin: 0px auto
 }
 
 .material_inp_active .sn_material_inp_str {
     font-size: 13px;
     top: 0px;
     bottom: initial;
-    margin-top: 0px;
+    margin-top: 0px
 }
 
 .sn_material_inp:focus {
-    border-color: #4a90e2;
+    border-color: #4a90e2
 }
 
 .material_inp_focused .sn_material_inp_str {
-    color: #4a90e2;
+    color: #4a90e2
 }
 
 .sn_material_inp_wrap_disabled .sn_material_inp_str {
-    color: #ddd !important;
+    color: #ddd!important
 }
 
 .sn_material_inp_wrap_disabled .sn_material_inp {
-    border-color: #ddd !important;
-    color: #ddd !important;
+    border-color: #ddd!important;
+    color: #ddd!important
 }
 
 .material_inp_error .sn_material_inp {
-    border-color: #DE5151 !important;
+    border-color: #de5151!important
 }
 
 .material_inp_error .sn_material_inp_str {
-    color: #DE5151 !important;
+    color: #de5151!important
 }
 
 .sn_radio_wrap {
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 .sn_radio_item {
     cursor: pointer;
     margin-right: 50px;
     padding-left: 26px;
-    position: relative;
+    position: relative
 }
 
 .sn_radio_icon {
     width: 16px;
     height: 16px;
-    border: 2px solid #D8D8D8;
+    border: 2px solid #d8d8d8;
     border-radius: 13px;
     position: absolute;
     top: 0px;
-    left: 0px;
+    left: 0px
 }
 
 .sn_radio_icon:after {
@@ -3289,26 +3267,26 @@ textarea:-ms-input-placeholder {
     border-radius: 6px;
     background: #fff;
     display: block;
-    content: '';
+    content: ''
 }
 
 .sn_radio_item:hover .sn_radio_icon:after {
-    background: #f2f2f2;
+    background: #f2f2f2
 }
 
 .sn_radio_item_active .sn_radio_icon {
-    border-color: #4a90e2;
+    border-color: #4a90e2
 }
 
 .sn_radio_item_active .sn_radio_icon:after {
-    background: #4a90e2 !important;
+    background: #4a90e2!important
 }
 
 .sn_radio_item_str {
     font-size: 16px;
     line-height: 17px;
     color: #4d5765;
-    padding-top: 2px;
+    padding-top: 2px
 }
 
 .sn_edit_save_btn {
@@ -3323,30 +3301,30 @@ textarea:-ms-input-placeholder {
     margin: 0px auto;
     border-radius: 30px;
     -o-transition: background 150ms ease;
-    transition: background 150ms ease;
+    transition: background 150ms ease
 }
 
 .sn_edit_save_btn:hover {
-    background: #64AAEC;
+    background: #64aaec
 }
 
 .sn_edit_save_btn:active {
     padding-top: 14px;
-    padding-bottom: 12px;
+    padding-bottom: 12px
 }
 
-.sn_edit_save_saved_info,
-.sn_edit_save_error {
+.sn_edit_save_error,
+.sn_edit_save_saved_info {
     display: none;
     text-align: center;
     height: 37px;
     line-height: 37px;
     color: #777;
-    font-size: 14px;
+    font-size: 14px
 }
 
 .sn_edit_save_error {
-    color: #a94442;
+    color: #a94442
 }
 
 .sn_info_wrap {
@@ -3355,30 +3333,30 @@ textarea:-ms-input-placeholder {
     line-height: 17px;
     padding: 12px;
     background: #d9edf7;
-    margin-bottom: 15px;
+    margin-bottom: 15px
 }
 
 .sn_info_wrap_red {
     background: #f2dede;
-    color: #a94442;
+    color: #a94442
 }
 
 .sn_info_wrap_title {
-    font-weight: bold;
-    margin-bottom: 6px;
+    font-weight: 700;
+    margin-bottom: 6px
 }
 
 .sn_page_nav {
-    position: relative;
+    position: relative
 }
 
 .sn_page_nav,
 .sn_page_nav_cont {
-    width: 220px;
+    width: 220px
 }
 
 .sn_page_nav a {
-    text-decoration: none !important;
+    text-decoration: none!important
 }
 
 .sn_page_nav_item {
@@ -3388,43 +3366,43 @@ textarea:-ms-input-placeholder {
     padding: 9px 15px;
     border-radius: 20px;
     margin-bottom: 5px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .sn_page_nav_item:hover {
-    background: #F5F5F5;
+    background: #f5f5f5
 }
 
 .sn_page_nav_item_active {
-    background: #3d93e3 !important;
-    color: #fff !important;
+    background: #3d93e3!important;
+    color: #fff!important
 }
 
 .sn_page_nav_item_str {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 19px;
+    line-height: 19px
 }
 
 .sn_page_nav_item_count {
-    font-weight: bold;
-    padding-left: 10px;
+    font-weight: 700;
+    padding-left: 10px
 }
 
 .create_room_wrap {
-    padding: 30px;
+    padding: 30px
 }
 
 .create_room_cover_wr {
     width: 112px;
     height: 112px;
-    background: #EEF0F5;
+    background: #eef0f5;
     border-radius: 56px;
     position: relative;
     cursor: pointer;
     margin-bottom: 10px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .create_room_cover_str {
@@ -3436,27 +3414,27 @@ textarea:-ms-input-placeholder {
     width: 100%;
     top: 37px;
     color: #3d93e3;
-    z-index: 1;
+    z-index: 1
 }
 
 .create_room_info {
-    margin-left: 142px;
+    margin-left: 142px
 }
 
 .create_room_split {
     height: 10px;
     width: 100%;
-    background: #ebeef1;
+    background: #ebeef1
 }
 
 .create_room_save_btn {
-    margin-top: 30px;
+    margin-top: 30px
 }
 
 .create_room_search_form_wrap {
     position: relative;
     height: 43px;
-    width: 100%;
+    width: 100%
 }
 
 .create_room_search_form {
@@ -3466,13 +3444,13 @@ textarea:-ms-input-placeholder {
     position: absolute;
     top: 0px;
     width: 100%;
-    max-width: 530px;
+    max-width: 530px
 }
 
 .create_room_search_form_fix {
     position: fixed;
     top: 96px;
-    z-index: 93;
+    z-index: 93
 }
 
 .create_room_search_inp {
@@ -3481,7 +3459,7 @@ textarea:-ms-input-placeholder {
     width: 100%;
     border: 0px;
     font-size: 14px;
-    padding-left: 46px;
+    padding-left: 46px
 }
 
 .create_room_search_icon {
@@ -3489,13 +3467,13 @@ textarea:-ms-input-placeholder {
     top: 15px;
     left: 20px;
     font-size: 15px;
-    color: #DADADA;
+    color: #dadada
 }
 
 #create_room_search_loader {
     position: absolute;
     top: 12px;
-    right: 20px;
+    right: 20px
 }
 
 .create_room_users_bottom,
@@ -3503,14 +3481,14 @@ textarea:-ms-input-placeholder {
     height: 67px;
     width: 100%;
     position: relative;
-    max-width: 530px;
+    max-width: 530px
 }
 
 .create_room_users_bottom_fix {
     position: absolute;
     bottom: 0px;
     background: #fff;
-    padding-top: 15px;
+    padding-top: 15px
 }
 
 .create_room_users_bottom_shadow {
@@ -3519,54 +3497,54 @@ textarea:-ms-input-placeholder {
     position: absolute;
     top: -4px;
     left: 1px;
-    background: -o-linear-gradient(bottom, rgba(85, 85, 85, 0.12), transparent);
-    background: linear-gradient(0deg, rgba(85, 85, 85, 0.12), transparent);
+    background: -o-linear-gradient(bottom, rgba(85, 85, 85, .12), transparent);
+    background: linear-gradient(0deg, rgba(85, 85, 85, .12), transparent);
     opacity: 0;
     -o-transition: opacity 200ms ease;
-    transition: opacity 200ms ease;
+    transition: opacity 200ms ease
 }
 
 .create_room_users_bottom_fix.fixed {
-    position: fixed;
+    position: fixed
 }
 
 .create_room_users_bottom_fix.fixed .create_room_users_bottom_shadow {
-    opacity: 1;
+    opacity: 1
 }
 
 .create_room_user {
     padding: 0px 20px;
     cursor: pointer;
-    margin-top: -1px;
+    margin-top: -1px
 }
 
 .create_room_user_over {
-    background: #edf1f5;
+    background: #edf1f5
 }
 
 .create_room_user_cont {
     padding: 10px 0px;
     border-top: 1px solid #ebeef1;
-    position: relative;
+    position: relative
 }
 
 .create_room_user:first-child .create_room_user_cont,
 .create_room_user:hover .create_room_user_cont {
-    border-color: transparent;
+    border-color: transparent
 }
 
 .create_room_user_ava {
     width: 36px;
     height: 36px;
     border-radius: 18px;
-    margin-right: 15px;
+    margin-right: 15px
 }
 
 .create_room_user_name {
     font-size: 13px;
     color: #48586c;
     margin-top: 14px;
-    font-weight: bold;
+    font-weight: 700
 }
 
 .create_room_user_checkbox {
@@ -3576,15 +3554,15 @@ textarea:-ms-input-placeholder {
     position: absolute;
     top: 18px;
     right: 0px;
-    border: 1px solid #C6CDD4;
+    border: 1px solid #c6cdd4;
     background: #fff;
     -o-transition: all 200ms ease;
-    transition: all 200ms ease;
+    transition: all 200ms ease
 }
 
 .create_room_user_selected .create_room_user_checkbox {
     background: #3d93e3;
-    border-color: #3d93e3;
+    border-color: #3d93e3
 }
 
 .create_room_user_checkbox_ok {
@@ -3595,22 +3573,22 @@ textarea:-ms-input-placeholder {
     color: #fff;
     opacity: 0;
     -o-transition: opacity 200ms ease;
-    transition: opacity 200ms ease;
+    transition: opacity 200ms ease
 }
 
 .create_room_user_selected .create_room_user_checkbox_ok {
-    opacity: 1;
+    opacity: 1
 }
 
-.create_room_cover_progress_wrap,
-.create_room_cover_progress_persent_uploaded {
+.create_room_cover_progress_persent_uploaded,
+.create_room_cover_progress_wrap {
     position: absolute;
     bottom: 0px;
     left: 0px;
     width: 100%;
     height: 100%;
     z-index: 3;
-    background: #EEF0F5;
+    background: #eef0f5
 }
 
 .create_room_cover_progress_persent {
@@ -3622,24 +3600,24 @@ textarea:-ms-input-placeholder {
     left: 0px;
     bottom: 0px;
     height: 112px;
-    line-height: 112px;
+    line-height: 112px
 }
 
 .create_room_cover_progress_persent_uploaded {
     background: #3d93e3;
     height: 0px;
     z-index: 4;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .create_room_cover_progress_persent_uploaded .create_room_cover_progress_persent {
     color: #fff;
     width: 112px;
-    height: 112px;
+    height: 112px
 }
 
 #cover_upload_wrap {
-    display: none;
+    display: none
 }
 
 #room_cover_src {
@@ -3647,23 +3625,23 @@ textarea:-ms-input-placeholder {
     top: 0px;
     left: 0px;
     width: 100px;
-    z-index: 2;
+    z-index: 2
 }
 
 .sn_switch {
     padding: 15px 0px;
     font-size: 14px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .sn_switch_but {
     height: 14px;
     width: 35px;
     border-radius: 10px;
-    background: #E9EBEF;
+    background: #e9ebef;
     position: relative;
     -o-transition: background 150ms ease;
-    transition: background 150ms ease;
+    transition: background 150ms ease
 }
 
 .sn_switch_inner {
@@ -3676,76 +3654,76 @@ textarea:-ms-input-placeholder {
     left: 0px;
     -o-transition: all 150ms ease;
     transition: all 150ms ease;
-    box-shadow: 0px 0px 1px 0px rgba(15, 72, 119, 0.4);
+    box-shadow: 0px 0px 1px 0px rgba(15, 72, 119, .4)
 }
 
 .sn_switch_active .sn_switch_but {
-    background: #A9CBEA;
+    background: #a9cbea
 }
 
 .sn_switch_active .sn_switch_inner {
     left: 17px;
     background: #3d93e3;
-    box-shadow: none;
+    box-shadow: none
 }
 
 .snapster_invite_key_wrap {
     width: 300px;
     margin: 0px auto;
     text-align: center;
-    padding: 160px 0px;
+    padding: 160px 0px
 }
 
 .snapster_invite_key_title {
     font-weight: 300;
     font-size: 25px;
-    color: #333333;
-    line-height: 100%;
+    color: #333;
+    line-height: 100%
 }
 
 .snapster_invite_key_descr {
     font-weight: 300;
     line-height: 150%;
     font-size: 14px;
-    color: #888888;
-    margin-top: 20px;
+    color: #888;
+    margin-top: 20px
 }
 
 .snapster_invite_key_btn {
-    margin-top: 25px;
+    margin-top: 25px
 }
 
 @media (max-width: 400px) {
     .auth_big_title {
-        font-size: 36px;
+        font-size: 36px
     }
     .auth_description {
-        font-size: 14px;
+        font-size: 14px
     }
 }
 
 .landing_page {
-    overflow-y: hidden !important;
-    background: #F1F2F4;
+    overflow-y: hidden!important;
+    background: #f1f2f4
 }
 
 .landing_page_shown {
-    overflow-y: auto !important;
+    overflow-y: auto!important
 }
 
 .landing_page #wrap3 {
-    margin: 0px !important;
-    min-height: none !important;
-    width: 100% !important;
+    margin: 0px!important;
+    min-height: none!important;
+    width: 100%!important
 }
 
-.landing_page .scroll_fix,
-.landing_page #wrap3 {
-    width: 100% !important;
+.landing_page #wrap3,
+.landing_page .scroll_fix {
+    width: 100%!important
 }
 
 .landing_page .sn_footer {
-    display: none !important;
+    display: none!important
 }
 
 .landing_main {
@@ -3755,25 +3733,18 @@ textarea:-ms-input-placeholder {
     left: 0px;
     z-index: 1000;
     -webkit-transform: translateY(0px);
-    -ms-transform: translateY(0px);
     -o-transform: translateY(0px);
     transform: translateY(0px);
     overflow: hidden;
-    background: #000;
+    background: #000
 }
 
-.landing_main_anim {
-    transition: -webkit-transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95);
-    -o-transition: transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95), -o-transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95);
-    transition: transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95);
-    transition: transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95), -webkit-transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95), -o-transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95);
-}
-
+.landing_main_anim,
 .landing_main_anim_down {
     transition: -webkit-transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95);
     -o-transition: transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95), -o-transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95);
     transition: transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95);
-    transition: transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95), -webkit-transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95), -o-transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95);
+    transition: transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95), -webkit-transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95), -o-transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95)
 }
 
 #landing_main_pic {
@@ -3785,17 +3756,16 @@ textarea:-ms-input-placeholder {
     background: url(/images/chronicle/web_bg.jpg?1) no-repeat 50%;
     z-index: 1;
     -webkit-transform: scale(1);
-    -ms-transform: scale(1);
     -o-transform: scale(1);
     transform: scale(1);
-    background-size: cover;
+    background-size: cover
 }
 
 .landing_main_pic_anim {
     transition: -webkit-transform 8s cubic-bezier(0, 1.01, 0.26, 0.99);
     -o-transition: transform 8s cubic-bezier(0, 1.01, 0.26, 0.99), -o-transform 8s cubic-bezier(0, 1.01, 0.26, 0.99);
     transition: transform 8s cubic-bezier(0, 1.01, 0.26, 0.99);
-    transition: transform 8s cubic-bezier(0, 1.01, 0.26, 0.99), -webkit-transform 8s cubic-bezier(0, 1.01, 0.26, 0.99), -o-transform 8s cubic-bezier(0, 1.01, 0.26, 0.99);
+    transition: transform 8s cubic-bezier(0, 1.01, 0.26, 0.99), -webkit-transform 8s cubic-bezier(0, 1.01, 0.26, 0.99), -o-transform 8s cubic-bezier(0, 1.01, 0.26, 0.99)
 }
 
 .landing_logo {
@@ -3804,13 +3774,13 @@ textarea:-ms-input-placeholder {
     left: 32px;
     z-index: 2;
     color: #fff;
-    font-size: 48px;
+    font-size: 48px
 }
 
 .landing_sign_in {
     left: initial;
     right: 32px;
-    font-size: 44px;
+    font-size: 44px
 }
 
 .landing_main_dark {
@@ -3821,7 +3791,7 @@ textarea:-ms-input-placeholder {
     left: 0px;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: 1
 }
 
 .landing_main_info_wrap {
@@ -3833,34 +3803,34 @@ textarea:-ms-input-placeholder {
     text-align: center;
     left: 0px;
     z-index: 2;
-    color: #fff;
+    color: #fff
 }
 
 .landing_logo_str {
     font-size: 67px;
     line-height: 100%;
-    font-weight: 600;
+    font-weight: 600
 }
 
 .landing_logo_str_ver {
     text-shadow: none;
-    font-weight: 300;
+    font-weight: 300
 }
 
 .landing_descr {
     font-size: 18px;
     line-height: 28px;
     margin-top: 35px;
-    font-weight: 300;
+    font-weight: 300
 }
 
 .landing_apps {
     margin: 45px auto 0px;
-    width: 465px;
+    width: 465px
 }
 
 .landing_app {
-    font-size: 63px;
+    font-size: 63px
 }
 
 .landing_down_arrow {
@@ -3875,35 +3845,35 @@ textarea:-ms-input-placeholder {
     cursor: pointer;
     opacity: 0.7;
     -o-transition: opacity 200ms linear;
-    transition: opacity 200ms linear;
+    transition: opacity 200ms linear
 }
 
 .landing_down_arrow:hover {
-    opacity: 1;
+    opacity: 1
 }
 
+.landing_app,
 .landing_logo,
-.landing_sign_in,
-.landing_app {
+.landing_sign_in {
     -o-transition: color 200ms linear;
     transition: color 200ms linear;
     cursor: pointer;
-    color: #fff;
+    color: #fff
 }
 
+.landing_app:hover,
 .landing_logo:hover,
-.landing_sign_in:hover,
-.landing_app:hover {
-    color: #CCE9FF;
+.landing_sign_in:hover {
+    color: #cce9ff
 }
 
 .landing_page #search_result {
     width: 1248px;
-    margin: 64px auto 50px;
+    margin: 64px auto 50px
 }
 
 .landing_page #search_result:empty {
-    display: none;
+    display: none
 }
 
 .landing_cont_wrap {
@@ -3912,75 +3882,75 @@ textarea:-ms-input-placeholder {
     margin: 0px auto;
     opacity: 0;
     -o-transition: opacity 200ms ease;
-    transition: opacity 200ms ease;
+    transition: opacity 200ms ease
 }
 
 #landing_cont_scroll {
-    overflow-y: hidden;
+    overflow-y: hidden
 }
 
 .landing_page_shown #landing_cont_scroll {
-    height: auto !important;
+    height: auto!important
 }
 
 .landing_rooms_wrap {
     width: 50%;
-    margin-bottom: 70px;
+    margin-bottom: 70px
 }
 
 .landing_block_head {
-    padding: 18px 18px 13px;
+    padding: 18px 18px 13px
 }
 
 .landing_block_head_center {
-    text-align: center;
+    text-align: center
 }
 
 .landing_block_title {
     font-size: 20px;
     color: #23242a;
-    line-height: 23px;
+    line-height: 23px
 }
 
 .landing_block_descr {
     color: #9297a2;
     font-size: 16px;
     line-height: 100%;
-    margin-top: 11px;
+    margin-top: 11px
 }
 
 .landing_rooms_list {
-    padding-bottom: 18px;
+    padding-bottom: 18px
 }
 
 .landing_rooms_wrap:first-child .landing_rooms_list {
-    padding: 0px 18px 0px 48px;
+    padding: 0px 18px 0px 48px
 }
 
 .landing_room_item {
     padding: 0px 18px;
     border-radius: 4px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .landing_room_item:hover {
-    background: #FAFAFA;
+    background: #fafafa
 }
 
 .landing_room_item_cont {
-    padding: 7px 0px;
+    padding: 7px 0px
 }
 
 .landing_room_item:last-child .landing_room_item_cont {
-    border: 0px;
+    border: 0px
 }
 
 .rooms_list_item_info {
-    margin-left: 95px;
+    margin-left: 95px
 }
 
 .rooms_list_item_info .search_photo {
-    margin-left: 4px;
+    margin-left: 4px
 }
 
 .lading_list_item_title {
@@ -3991,7 +3961,7 @@ textarea:-ms-input-placeholder {
     text-overflow: ellipsis;
     overflow: hidden;
     line-height: 25px;
-    padding-top: 19px;
+    padding-top: 19px
 }
 
 .rooms_list_item_followers {
@@ -3999,24 +3969,21 @@ textarea:-ms-input-placeholder {
     font-size: 15px;
     line-height: 100%;
     margin-top: 6px;
-    font-weight: 400;
+    font-weight: 400
 }
 
 .landing_block_wrap {
     padding-left: 8px;
-}
-
-.landing_block_wrap {
-    margin-bottom: 16px;
+    margin-bottom: 16px
 }
 
 .landing_block_cont {
-    background: #fff;
+    background: #fff
 }
 
 .landing_photos_list {
     padding-left: 18px;
-    padding-right: 18px;
+    padding-right: 18px
 }
 
 .landing_photo_item {
@@ -4026,75 +3993,75 @@ textarea:-ms-input-placeholder {
     overflow: hidden;
     margin-left: 12px;
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat
 }
 
 .landing_photo_items_large {
-    background: none;
+    background: none
 }
 
 .landing_photo_item_large {
     background: #fff;
-    padding: 18px;
+    padding: 18px
 }
 
 .landing_photo_item_large_pic {
     background-size: cover;
     background-repeat: no-repeat;
     width: 240px;
-    height: 196px;
+    height: 196px
 }
 
 .landing_photo_items_large_c2 {
-    margin-left: 16px;
+    margin-left: 16px
 }
 
 .landing_photo_items_large_margin {
-    margin-bottom: 16px;
+    margin-bottom: 16px
 }
 
 .landing_photo_item_large_head {
-    margin-bottom: 12px;
+    margin-bottom: 12px
 }
 
 .landing_photo_large_author_ava {
     width: 32px;
     height: 32px;
-    border-radius: 16px;
+    border-radius: 16px
 }
 
 .landing_photo_large_author_name {
     margin-left: 42px;
     font-size: 16px;
-    padding-top: 11px;
+    padding-top: 11px
 }
 
 .landing_photo_item:first-child {
-    margin-left: 0px;
+    margin-left: 0px
 }
 
 .landing_block_start {
-    width: 50%;
+    width: 50%
 }
 
 .landing_block_start_full {
-    width: 100%;
+    width: 100%
 }
 
 .landing_block_start_c2 .landing_block_wrap {
     padding-right: 8px;
-    padding-left: 0px;
+    padding-left: 0px
 }
 
 .ladning_rooms {
-    padding-bottom: 17px;
+    padding-bottom: 17px
 }
 
 .landing_big_photo {
     width: 100%;
     height: 427px;
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat
 }
 
 .sn_top_nav {
@@ -4103,26 +4070,26 @@ textarea:-ms-input-placeholder {
     line-height: 51px;
     border-bottom: 1px solid #eef0f3;
     padding: 0px 15px;
-    color: #1D1D1E;
+    color: #1d1d1e;
     font-size: 15px;
     margin: -15px -14px 14px;
-    border-radius: 5px 5px 0px 0px;
+    border-radius: 5px 5px 0px 0px
 }
 
 .sn_top_nav_item {
     padding: 15px 3px;
-    text-decoration: none !important;
+    text-decoration: none!important
 }
 
 a.sn_top_nav_item {
-    color: #65686C;
+    color: #65686c
 }
 
 .sn_top_nav_item_sep {
     width: 10px;
     height: 10px;
     position: relative;
-    margin: 0px 7px;
+    margin: 0px 7px
 }
 
 .sn_top_nav_item_sep:after,
@@ -4134,184 +4101,182 @@ a.sn_top_nav_item {
     position: absolute;
     top: 5px;
     left: 0px;
-    background: #C3C4C7;
+    background: #c3c4c7;
     -webkit-transform: rotate(-49deg);
-    -ms-transform: rotate(-49deg);
     -o-transform: rotate(-49deg);
-    transform: rotate(-49deg);
+    transform: rotate(-49deg)
 }
 
 .sn_top_nav_item_sep:after {
     -webkit-transform: rotate(-132deg);
-    -ms-transform: rotate(-132deg);
     -o-transform: rotate(-132deg);
     transform: rotate(-132deg);
-    margin-top: 5px;
+    margin-top: 5px
 }
 
 .not_found {
     font-size: 14px;
     color: #777;
     text-align: center;
-    padding: 150px 30px;
+    padding: 150px 30px
 }
 
 .invite_link_page #sn_page_wrap,
 .invite_link_page #wrap3 {
-    width: 100% !important;
+    width: 100%!important
 }
 
 @media (max-width: 650px) {
     .landing_logo_str {
-        font-size: 29px;
+        font-size: 29px
     }
     .landing_sign_in {
-        font-size: 30px;
+        font-size: 30px
     }
     .landing_logo {
-        font-size: 32px;
+        font-size: 32px
     }
-    .landing_sign_in,
-    .landing_logo {
+    .landing_logo,
+    .landing_sign_in {
         top: 24px;
-        left: 24px;
+        left: 24px
     }
     .landing_sign_in {
         left: initial;
-        right: 20px;
+        right: 20px
     }
     .landing_descr {
         font-size: 15px;
         padding: 0px 25px;
         line-height: 24px;
-        margin-top: 12px;
+        margin-top: 12px
     }
     .landing_page {
-        overflow-y: auto !important;
+        overflow-y: auto!important
     }
     .landing_main {
-        padding: 30px 0px;
+        padding: 30px 0px
     }
     .landing_main_info_wrap {
         height: 222px;
-        margin-top: -111px;
+        margin-top: -111px
     }
 }
 
 @media (max-width: 450px) {
     .landing_apps {
         width: 100%;
-        text-align: center;
+        text-align: center
     }
     .landing_app {
         float: none;
         display: block;
         font-size: 50px;
         margin-bottom: 15px;
-        color: #fff !important;
+        color: #fff!important
     }
     .landing_main_info_wrap {
         height: 347px;
-        margin-top: -173px;
+        margin-top: -173px
     }
 }
 
 .sn_bom_info {
-    background: #F1F2F4;
-    padding: 10px 0px;
+    background: #f1f2f4;
+    padding: 10px 0px
 }
 
 .sn_bom_info_cont {
     background: #fff;
     padding: 15px 10px;
     font-size: 13px;
-    font-weight: bold;
+    font-weight: 700
 }
 
 .room_not_found .rooms_result_wrap {
-    margin-left: 240px;
+    margin-left: 240px
 }
 
 .room_not_found .rooms_list_wrap {
-    margin-left: 0px;
+    margin-left: 0px
 }
 
 .sn_room_moder_wrap {
-    margin-top: 15px;
+    margin-top: 15px
 }
 
 .sn_moder_room_id {
-    color: #777;
+    color: #777
 }
 
 .sn_moder_manage_link {
     display: block;
-    margin-top: 7px;
+    margin-top: 7px
 }
 
 .sn_manage_wrap {
-    padding: 0px 25px 10px;
+    padding: 0px 25px 10px
 }
 
 .notifications_wrap {
-    padding: 0px;
+    padding: 0px
 }
 
 .notification_item {
     padding: 10px;
-    border-bottom: 1px solid #ebebeb;
+    border-bottom: 1px solid #ebebeb
 }
 
 .notification_item:last-child {
-    border-bottom: 0px;
+    border-bottom: 0px
 }
 
 .notification_item_ava {
     width: 60px;
     height: 60px;
     background-size: cover;
-    border-radius: 30px;
+    border-radius: 30px
 }
 
 .notification_item_cont_wrap {
-    margin-left: 70px;
+    margin-left: 70px
 }
 
 .notification_item_name {
-    line-height: 160%;
+    line-height: 160%
 }
 
 .notification_item_name a {
     font-weight: 600;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .notification_item_after_name_info {
-    color: #777;
+    color: #777
 }
 
 .notification_item_msg {
     line-height: 150%;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .notification_item_msg:empty {
-    display: none;
+    display: none
 }
 
 .notification_item_date {
     color: #777;
-    margin-top: 3px;
+    margin-top: 3px
 }
 
 .notification_item_object {
     width: 60px;
-    margin-left: 10px;
+    margin-left: 10px
 }
 
 .notification_item_object:empty {
-    display: none;
+    display: none
 }
 
 .notification_object_pic {
@@ -4319,27 +4284,31 @@ a.sn_top_nav_item {
     height: 60px;
     background-size: cover;
     border-radius: 2px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .notification_object_pic_circle {
-    border-radius: 60px;
+    border-radius: 60px
 }
 
 .notification_empty {
     color: #777;
     text-align: center;
     padding: 150px 0px;
-    font-size: 14px;
+    font-size: 14px
 }
 
 .sn_notify_btn {
     height: 54px;
     width: 54px;
     position: relative;
+    cursor: pointer
+}
+
+.sn_notify_btn,
+.sn_notify_btn_ic {
     -o-transition: color 200ms ease;
-    transition: color 200ms ease;
-    cursor: pointer;
+    transition: color 200ms ease
 }
 
 .sn_notify_btn_ic {
@@ -4351,13 +4320,11 @@ a.sn_top_nav_item {
     font-size: 20px;
     line-height: 54px;
     text-align: center;
-    color: #b7bbc0;
-    -o-transition: color 200ms ease;
-    transition: color 200ms ease;
+    color: #b7bbc0
 }
 
 .sn_notify_btn_ic:hover {
-    color: #8B8C8E;
+    color: #8b8c8e
 }
 
 .sn_notify_btn.sn_notify_btn_unread:after {
@@ -4371,11 +4338,11 @@ a.sn_top_nav_item {
     right: 17.87px;
     position: absolute;
     border: 1px solid #fff;
-    pointer-events: none;
+    pointer-events: none
 }
 
 .sn_notify_btn_shown .sn_notify_btn_ic {
-    color: #3d93e3;
+    color: #3d93e3
 }
 
 .sn_notify_pad {
@@ -4392,20 +4359,20 @@ a.sn_top_nav_item {
     opacity: 0;
     -o-transition: opacity 100ms linear, margin-top 100ms linear, visibility 100ms linear;
     transition: opacity 100ms linear, margin-top 100ms linear, visibility 100ms linear;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
     border-radius: 0px 0px 4px 4px;
     -ms-user-select: none;
     user-select: none;
     -o-user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
-    -webkit-user-select: none;
+    -webkit-user-select: none
 }
 
 .sn_notify_btn_shown .sn_notify_pad {
     margin-top: 0px;
     opacity: 1;
-    visibility: visible;
+    visibility: visible
 }
 
 .sn_pad_arrow,
@@ -4417,28 +4384,28 @@ a.sn_top_nav_item {
     height: 0px;
     top: -16px;
     right: 152px;
-    pointer-events: none;
+    pointer-events: none
 }
 
 .sn_pad_arrow_bg {
     right: -7px;
     top: -6px;
     border-bottom-color: #fafbfc;
-    border-width: 7px;
+    border-width: 7px
 }
 
 .sn_pad_head {
     padding: 12px;
     border-bottom: 1px solid #e4e6eb;
     background: #fafbfc;
-    color: #48586C;
+    color: #48586c;
     font-weight: 600;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .sn_pad_cont_wrap {
-    position: relative;
+    position: relative
 }
 
 .sn_pad_cont {
@@ -4447,32 +4414,32 @@ a.sn_top_nav_item {
     -o-user-select: text;
     -moz-user-select: text;
     -khtml-user-select: text;
-    -webkit-user-select: text;
+    -webkit-user-select: text
 }
 
 .sn_pad_cont .notification_item_ava,
 .sn_pad_cont .notification_object_pic {
     width: 40px;
-    height: 40px;
+    height: 40px
 }
 
 .sn_pad_cont .notification_item_cont_wrap {
-    margin-left: 50px;
+    margin-left: 50px
 }
 
 .sn_pad_cont .notification_item_object {
-    width: 40px;
+    width: 40px
 }
 
 .sn_pad_cont .notification_empty {
-    padding: 49px 0px 48px;
+    padding: 49px 0px 48px
 }
 
 .sn_pad_cont_loader {
     width: 30px;
     height: 30px;
     margin: 0px auto;
-    padding: 40px 0px;
+    padding: 40px 0px
 }
 
 .sn_pad_bottom {
@@ -4481,9 +4448,9 @@ a.sn_top_nav_item {
     cursor: pointer;
     padding: 12px 0px;
     color: #3d93e3;
-    border-radius: 0px 0px 4px 4px;
+    border-radius: 0px 0px 4px 4px
 }
 
 .sn_pad_bottom:hover {
-    background: #f5f7fa;
+    background: #f5f7fa
 }

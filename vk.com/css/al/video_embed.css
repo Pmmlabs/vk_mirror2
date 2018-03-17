@@ -1,41 +1,41 @@
 #video_embed_css {
-    display: none;
+    display: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 #ve_hosts_content .b {
-    font-weight: bold;
+    font-weight: 700
 }
 
 .ve_host_tabs {
-    border-bottom: 1px solid #DAE1E8;
+    border-bottom: 1px solid #dae1e8;
     height: 24px;
     list-style-type: none;
     margin: 0pt;
     padding: 0px 7px;
-    vertical-align: bottom;
+    vertical-align: bottom
 }
 
 .ve_host_tab_active {
-    background-color: #FFFFFF;
-    border-color: #C3CAD2;
+    background-color: #fff;
+    border-color: #c3cad2;
     border-style: solid solid none;
     border-width: 1px 1px 0px;
     float: left;
     height: 24px;
     margin: 0px 3px -1px;
     text-align: center;
-    position: relative;
+    position: relative
 }
 
 .ve_host_tab_active a {
@@ -43,18 +43,18 @@
     height: 21px;
     line-height: 1.9em;
     padding: 0 10px;
-    text-decoration: none;
+    text-decoration: none
 }
 
 .ve_host_tab {
-    background-color: #F5F7FA;
-    border-color: #C3CAD2;
+    background-color: #f5f7fa;
+    border-color: #c3cad2;
     border-style: solid solid none;
     border-width: 1px 1px 0px;
     float: left;
     height: 23px;
     margin: 0px 3px;
-    text-align: center;
+    text-align: center
 }
 
 .ve_host_tab a {
@@ -63,16 +63,16 @@
     text-decoration: none;
     padding: 0 10px;
     height: 21px;
-    line-height: 1.9em;
+    line-height: 1.9em
 }
 
 .ve_host_tab a:hover {
-    background-color: #FFFFFF;
-    text-decoration: none;
+    background-color: #fff;
+    text-decoration: none
 }
 
-.ve_host_tab_active,
 .ve_host_tab,
+.ve_host_tab_active,
 .ve_host_tab a:hover {
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
@@ -81,437 +81,425 @@
     -khtml-border-top-right-radius: 4px;
     -khtml-border-top-left-radius: 4px;
     -webkit-border-top-right-radius: 4px;
-    -webkit-border-top-left-radius: 4px;
+    -webkit-border-top-left-radius: 4px
 }
 
-#ve_owners_wrap,
-#ve_hosts_wrap {
-    background-color: #FFF;
-    padding: 0px 10px 10px;
+#ve_hosts_wrap,
+#ve_owners_wrap {
+    background-color: #fff;
+    padding: 0px 10px 10px
 }
 
 #ve_hosts_tabs {
-    background-color: #F7F7F7;
-    padding-top: 12px;
+    background-color: #f7f7f7;
+    padding-top: 12px
 }
 
 #ve_hosts_wrap #summary {
-    border-bottom: 1px solid #E7EAED;
-    color: #47688D;
-    padding: 29px 0 4px;
+    border-bottom: 1px solid #e7eaed;
+    color: #47688d;
+    padding: 29px 0 4px
 }
 
-.ve_owners_summary,
-.ve_hosts_summary {
-    font-weight: bold;
+.ve_hosts_summary,
+.ve_owners_summary {
+    font-weight: 700
 }
 
-.ve_owners_summary_extra,
-.ve_hosts_summary_extra {
-    margin: -3px 0 -4px;
+.ve_hosts_summary_extra,
+.ve_owners_summary_extra {
+    margin: -3px 0 -4px
 }
 
-.ve_owners_pages_loading,
-.ve_hosts_pages_loading {
-    padding: 6px 5px 5px;
+.ve_hosts_pages_loading,
+.ve_owners_pages_loading {
+    padding: 6px 5px 5px
 }
 
-#pages_loading_top,
-#pages_loading_bottom {
-    display: none;
+#pages_loading_bottom,
+#pages_loading_top {
+    display: none
 }
 
-.ve_owners_row,
-.ve_hosts_row {
+.ve_hosts_row,
+.ve_owners_row {
     padding: 8px 0;
-    border-bottom: 1px solid #E7EAED;
+    border-bottom: 1px solid #e7eaed
 }
 
 .ve_hosts_details {
     padding: 10px;
-    border-bottom: 1px solid #E7EAED;
-    line-height: 1.54em;
+    border-bottom: 1px solid #e7eaed;
+    line-height: 1.54em
 }
 
-.ve_owners_middle,
-.ve_hosts_middle {
+.ve_hosts_middle,
+.ve_owners_middle {
     display: table-cell;
-    vertical-align: top;
+    vertical-align: top
 }
 
-.ve_owners_status_text,
-.ve_owners_inner_name,
-.ve_owners_inner,
-.ve_hosts_status_text,
+.ve_hosts_inner,
 .ve_hosts_inner_name,
-.ve_hosts_inner {
+.ve_hosts_status_text,
+.ve_owners_inner,
+.ve_owners_inner_name,
+.ve_owners_status_text {
     display: block;
     padding-left: 20px;
-    width: 130px;
+    width: 130px
 }
 
-.ve_owners_inner_name,
-.ve_hosts_inner_name {
+.ve_hosts_inner_name,
+.ve_owners_inner_name {
     width: 100px;
     color: #777;
-    padding-left: 0;
+    padding-left: 0
 }
 
-.ve_owners_status_text,
-.ve_hosts_status_text {
-    font-weight: bold;
+.ve_hosts_status_text,
+.ve_owners_status_text {
+    font-weight: 700
 }
 
-.ve_owners_row.status1,
-.ve_hosts_row.status1 {
-    background-color: #DEEBF7;
+.ve_hosts_row.status1,
+.ve_owners_row.status1 {
+    background-color: #deebf7
 }
 
-.ve_owners_row.status4,
-.ve_owners_row.status2,
+.ve_hosts_row.status2,
 .ve_hosts_row.status4,
-.ve_hosts_row.status2 {
-    background-color: #FEE0D2;
+.ve_owners_row.status2,
+.ve_owners_row.status4 {
+    background-color: #fee0d2
 }
 
-#ve_hosts .ve_hosts_row:hover {
-    background-color: #E1E7ED;
-}
-
+#ve_hosts .ve_hosts_row:hover,
 #ve_owners .ve_owners_row:hover {
-    background-color: #E1E7ED;
+    background-color: #e1e7ed
 }
 
-#ve_owners .ve_owners_row,
-#ve_hosts .ve_hosts_row {
-    cursor: pointer;
+#ve_hosts .ve_hosts_row,
+#ve_owners .ve_owners_row {
+    cursor: pointer
 }
 
-.ve_hosts_row_id,
-.ve_hosts_row_host,
 .ve_hosts_row_add_date,
-.ve_hosts_row_views,
 .ve_hosts_row_button_wrap,
+.ve_hosts_row_host,
+.ve_hosts_row_id,
+.ve_hosts_row_status,
+.ve_hosts_row_views,
 .ve_hosts_under_row,
-.ve_owners_under_row,
-.ve_hosts_row_status {
+.ve_owners_under_row {
     display: table;
-    height: 32px;
+    height: 32px
 }
 
-.ve_owner_table,
-.ve_host_table {
+.ve_host_table,
+.ve_owner_table {
     display: table;
-    width: 500px;
+    width: 500px
 }
 
-.ve_owner_data_row,
-.ve_host_data_row {
+.ve_host_data_row,
+.ve_owner_data_row {
     display: table-row;
     padding-bottom: 20px;
-    height: 25px;
+    height: 25px
 }
 
-.ve_hosts_details_possessor,
+.ve_hosts_details_content,
 .ve_hosts_details_links,
-.ve_hosts_details_content {
-    display: table;
+.ve_hosts_details_possessor {
+    display: table
 }
 
 .ve_hosts_row_id {
     width: 40px;
     padding: 0 5px;
-    text-align: center;
+    text-align: center
 }
 
 .ve_hosts_row_host {
     width: 170px;
     padding: 0 5px;
-    line-height: 1.54em;
+    line-height: 1.54em
 }
 
 .ve_hosts_row_from_sub {
-    color: #777;
+    color: #777
 }
 
-.ve_hosts_row_views {
-    width: 130px;
-}
-
+.ve_hosts_row_views,
 .ve_hosts_row_add_date {
-    width: 130px;
+    width: 130px
 }
 
 .ve_hosts_row_status {
-    width: 100px;
+    width: 100px
 }
 
 .ve_hosts_row_status_rows {
     width: 100px;
-    text-align: center;
+    text-align: center
 }
 
-.ve_owners_under_row,
-.ve_hosts_under_row {
+.ve_hosts_under_row,
+.ve_owners_under_row {
     width: 100%;
     padding-left: 15px;
-    padding-top: 5px;
+    padding-top: 5px
 }
 
-.ve_owners_row_button_wrap,
-.ve_hosts_row_button_wrap {
+.ve_hosts_row_button_wrap,
+.ve_owners_row_button_wrap {
     float: left;
     padding-left: 10px;
     padding-bottom: 10px;
-    padding-top: 10px;
+    padding-top: 10px
 }
 
-.ve_owners_middle_btn,
-.ve_hosts_middle_btn {
+.ve_hosts_middle_btn,
+.ve_owners_middle_btn {
     float: left;
     margin-right: 15px;
-    height: auto;
+    height: auto
 }
 
 #ve_hosts .ve_hosts_row_date {
-    color: #777;
+    color: #777
 }
 
 .ve_hosts_details_possessor {
-    width: 300px;
+    width: 300px
 }
 
-.ve_hosts_details_links {
-    width: 240px;
-}
-
+.ve_hosts_details_links,
 .ve_hosts_details_content {
-    width: 240px;
+    width: 240px
 }
 
-.details_loading,
 .details_hide,
+.details_loading,
 .ve_hosts_details {
-    display: none;
+    display: none
 }
 
 .details_loading {
-    margin: auto;
+    margin: auto
 }
 
-.content_row_ve_host,
-.content_row_type,
-.content_row_title,
+.content_row_blocked_by,
 .content_row_date,
 .content_row_owner,
-.content_row_blocked_by,
-.content_row_status {
+.content_row_status,
+.content_row_title,
+.content_row_type,
+.content_row_ve_host {
     display: table;
-    height: 16px;
+    height: 16px
 }
 
 .content_row_ve_host {
     width: 60px;
     padding: 0 5px;
-    text-align: center;
+    text-align: center
 }
 
 .content_row_type {
-    width: 70px;
+    width: 70px
 }
 
 .content_row_title {
-    width: 180px;
+    width: 180px
 }
 
-.content_row_owner {
-    width: 120px;
-}
-
+.content_row_owner,
 .content_row_blocked_by {
-    width: 120px;
+    width: 120px
 }
 
 .content_row_status {
-    width: 50px;
+    width: 50px
 }
 
 .content_row_date {
     width: 120px;
-    text-align: center;
+    text-align: center
 }
 
 #ve_hosts_header {
-    font-weight: bold;
+    font-weight: 700
 }
 
 #ve_hosts .content_row_date {
-    color: #777;
+    color: #777
 }
 
 .content_row {
     padding: 8px 0;
-    border-bottom: 1px solid #E7EAED;
+    border-bottom: 1px solid #e7eaed
 }
 
 .content_row.deleted {
-    background-color: #F7F7F7;
+    background-color: #f7f7f7
 }
 
-.objections_row_ve_host,
-.objections_row_from,
 .objections_row_content,
 .objections_row_date,
-.objections_row_status {
+.objections_row_from,
+.objections_row_status,
+.objections_row_ve_host {
     display: table;
-    height: 32px;
+    height: 32px
 }
 
 .objections_row_ve_host {
     width: 60px;
     padding: 0 5px;
-    text-align: center;
+    text-align: center
 }
 
 .objections_row_from {
-    width: 140px;
+    width: 140px
 }
 
 .objections_row_content {
-    width: 160px;
+    width: 160px
 }
 
 .objections_row_date {
     width: 120px;
-    text-align: center;
+    text-align: center
 }
 
 #ve_hosts .objections_row_date {
-    color: #777;
+    color: #777
 }
 
 .objections_row_status {
     width: 120px;
-    text-align: center;
+    text-align: center
 }
 
 .objection_details_objector {
-    width: 260px;
+    width: 260px
 }
 
 .objection_details_objections {
-    width: 290px;
+    width: 290px
 }
 
 .objection_details_document {
-    width: 210px;
+    width: 210px
 }
 
 .objections_row {
     padding: 8px 0;
-    border-bottom: 1px solid #E7EAED;
-    cursor: pointer;
+    border-bottom: 1px solid #e7eaed;
+    cursor: pointer
 }
 
 .objections_row.approved,
 .objections_row.declined {
-    background-color: #F7F7F7;
+    background-color: #f7f7f7
 }
 
 #ve_hosts .objections_row:hover {
-    background-color: #E1E7ED;
+    background-color: #e1e7ed
 }
 
 #ve_hosts .objections_row {
-    cursor: pointer;
+    cursor: pointer
 }
 
 .ve_host_view {
     padding: 12px 0;
-    background-color: #F7F7F7;
+    background-color: #f7f7f7
 }
 
 .ve_host_view_row {
-    padding: 5px 0;
+    padding: 5px 0
 }
 
 .ve_host_view_label {
     color: #555;
     width: 215px;
-    padding: 1px 10px 0 0;
+    padding: 1px 10px 0 0
 }
 
 .ve_host_view_field {
     padding: 1px 0px 3px;
-    width: 390px;
+    width: 390px
 }
 
 .ve_host_details_row {
-    padding: 5px 0;
+    padding: 5px 0
 }
 
 .ve_host_details_label {
     color: #777;
     width: 77px;
-    padding: 1px 5px 0 0;
+    padding: 1px 5px 0 0
 }
 
 .ve_host_details_field {
     width: 420px;
-    padding: 1px 0px 5px;
+    padding: 1px 0px 5px
 }
 
 .ve_host_details_hidden {
     width: 500px;
     padding: 0;
-    display: none;
+    display: none
 }
 
 #ve_hosts_decline_comment {
     width: 375px;
-    height: 70px;
+    height: 70px
 }
 
 .ve_host_section h2 {
-    margin: 0 80px 10px 80px;
-    font-weight: bold;
+    margin: 0 80px 10px;
+    font-weight: 700;
     font-size: 1.09em;
-    color: #36638E;
-    border-color: #B9C4DA;
+    color: #36638e;
+    border-color: #b9c4da
 }
 
 .ve_host_section {
-    margin-top: 20px;
+    margin-top: 20px
 }
 
 .ve_host_summary .button_blue {
-    margin-right: 10px;
+    margin-right: 10px
 }
 
 #ve_host_updated_msg {
     display: none;
     line-height: 160%;
-    background: #F4EBBD;
-    margin: 0 15px 15px 15px;
+    background: #f4ebbd;
+    margin: 0 15px 15px
 }
 
 #ve_host_search_wrap {
-    background: #F7F7F7;
-    border-bottom: 1px solid #DAE1E8;
+    background: #f7f7f7;
+    border-bottom: 1px solid #dae1e8;
     padding: 10px;
-    position: relative;
+    position: relative
 }
 
 #ve_host_search {
     padding: 5px 5px 5px 20px;
-    background: url(/images/magglass.png) no-repeat scroll 5px 6px white;
+    background: url(/images/magglass.png) no-repeat scroll 5px 6px #fff;
     height: 13px;
     outline: none;
-    width: 448px;
+    width: 448px
 }
 
 #ve_host_search_wrap button {
-    width: 120px;
+    width: 120px
 }
 
 #ve_host_clear_search {
@@ -526,54 +514,54 @@
     opacity: 0.6;
     filter: alpha(opacity=60);
     position: absolute;
-    z-index: 100;
+    z-index: 100
 }
 
 #ve_host_clear_search.shown {
-    display: block;
+    display: block
 }
 
 .ve_host_title_row {
-    border-top: 1px solid #DAE1E8;
+    border-top: 1px solid #dae1e8
 }
 
 .ve_host_title_row:first-child {
-    border-top: none;
+    border-top: none
 }
 
 .ve_host_title {
     width: 400px;
     padding: 7px 10px;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis
 }
 
 .ve_host_title_duration {
     width: 150px;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: 2px;
+    padding: 2px
 }
 
 .ve_host_title_dur {
     margin: 2px;
     zoom: 1;
-    padding: 4px !important;
+    padding: 4px!important;
     vertical-align: top;
-    color: #45688E;
-    background: #D5DDE5;
-    font-weight: bold;
-    font-style: normal !important;
+    color: #45688e;
+    background: #d5dde5;
+    font-weight: 700;
+    font-style: normal!important;
     font-size: 10px;
     line-height: 11px;
     border-radius: 2px;
     display: inline-block;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .ve_host_title_dur.add {
     width: 24px;
-    text-align: center;
+    text-align: center
 }
 
 .ve_host_title_row .ve_host_title_remove_wrap {
@@ -583,7 +571,7 @@
     filter: alpha(opacity=0);
     -o-transition: opacity 200ms linear, color 200ms linear;
     transition: opacity 200ms linear, color 200ms linear;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .ve_host_title_row .ve_host_title_remove {
@@ -591,17 +579,17 @@
     height: 13px;
     width: 13px;
     position: relative;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .ve_host_title_row.over .ve_host_title_remove_wrap {
     opacity: 0.4;
-    filter: alpha(opacity=40);
+    filter: alpha(opacity=40)
 }
 
 .ve_host_title_row.over .ve_host_title_remove_wrap.over {
     opacity: 1;
-    filter: alpha(opacity=100);
+    filter: alpha(opacity=100)
 }
 
 .ve_host_msg {
@@ -609,7 +597,7 @@
     color: #777;
     font-size: 1.09em;
     text-align: center;
-    padding: 100px;
+    padding: 100px
 }
 
 #ve_host_show_more {
@@ -617,54 +605,54 @@
     padding: 8px 0px;
     text-align: center;
     margin: 0px;
-    border-top: 1px solid #DAE1E8;
+    border-top: 1px solid #dae1e8
 }
 
 #ve_host_show_more.loading .ve_host_more {
-    display: none;
+    display: none
 }
 
 #ve_host_show_more.loading .ve_host_more_progress {
-    display: block;
+    display: block
 }
 
 #ve_host_show_more:hover {
     text-decoration: none;
-    background: #E9EDF1;
+    background: #e9edf1
 }
 
 #ve_host_show_more.search {
-    display: none;
+    display: none
 }
 
 .ve_host_titles_list.light div.ve_host_title span {
-    background-color: #FFF8CC;
-    border-bottom: 1px solid #FFE222;
+    background-color: #fff8cc;
+    border-bottom: 1px solid #ffe222
 }
 
 .ve_host_add_title {
     width: 80px;
     color: #555;
-    padding: 5px 10px 0;
+    padding: 5px 10px 0
 }
 
 .ve_host_add_value {
-    width: 305px;
+    width: 305px
 }
 
 .ve_host_add_value input {
     width: 301px;
     height: 13px;
-    padding: 5px !important;
+    padding: 5px!important
 }
 
 .ve_host_add_row {
-    padding: 3px;
+    padding: 3px
 }
 
 #ve_host_error {
     margin: 6px 6px 18px;
-    display: none;
+    display: none
 }
 
 .ve_host_choose_added {
@@ -674,12 +662,12 @@
     margin: 0px;
     padding: 0px 6px;
     color: #777;
-    max-width: 118px;
+    max-width: 118px
 }
 
 .ab_video {
     padding-right: 5px;
-    float: left;
+    float: left
 }
 
 .ab_video div.ab_duration {
@@ -687,25 +675,25 @@
     margin-top: 41px;
     position: absolute;
     font-size: 0.9em;
-    z-index: 10;
+    z-index: 10
 }
 
 .ab_video div.ab_duration span.bg {
     background: #000;
     color: #000;
     opacity: 0.6;
-    filter: alpha(opacity=60);
+    filter: alpha(opacity=60)
 }
 
 .ab_video div.ab_duration span {
-    color: #FFF;
-    padding: 0px 2px 0px;
+    color: #fff;
+    padding: 0px 2px
 }
 
 .ab_video img {
-    width: 77px;
+    width: 77px
 }
 
 .ab_video:hover {
-    text-decoration: none;
+    text-decoration: none
 }

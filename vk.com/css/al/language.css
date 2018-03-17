@@ -1,84 +1,84 @@
 #language_css {
-    display: none;
+    display: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .language_suggested {
-    background: #FFF8CC;
+    background: #fff8cc
 }
 
 .language_selected {
-    font-weight: bold;
-    color: #000;
+    font-weight: 700;
+    color: #000
 }
 
 .language_not_found_msg {
     padding: 1px;
-    display: none;
+    display: none
 }
 
 .language_name_hl {
     font-style: normal;
-    background: #e7edf2;
+    background: #e7edf2
 }
 
 .language_column a:hover {
-    text-decoration: none;
+    text-decoration: none
 }
 
 .language_column a:hover .language_title {
-    text-decoration: underline;
+    text-decoration: underline
 }
 
 .languages_list {
-    padding: 20px 0 20px 30px;
+    padding: 20px 0 20px 30px
 }
 
 .language_column {
     margin: 0 3px;
     float: left;
-    width: 160px;
+    width: 160px
 }
 
 .language_column a,
 .language_column b {
     padding: 3px 7px;
-    display: block;
+    display: block
 }
 
 .language_box_row {
     padding: 0 10px;
-    display: block;
+    display: block
 }
 
 .language_box_row:hover {
-    background-color: #EDF0F4;
-    text-decoration: none;
+    background-color: #edf0f4;
+    text-decoration: none
 }
 
 .language_box_row.language_box_row_selected .language_box_row_label {
-    color: #333333;
+    color: #333
 }
 
 .language_box_row.language_box_row_selected:hover {
-    background-color: transparent !important;
-    cursor: default;
+    background-color: transparent!important;
+    cursor: default
 }
 
 .language_box_row .language_box_row_label {
     background-position: 0;
     padding-left: 50px;
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     display: block;
@@ -86,5 +86,5 @@
     line-height: 42px;
     background-repeat: no-repeat;
     background-size: 34px 26px;
-    color: #426A87;
+    color: #426a87
 }

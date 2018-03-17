@@ -1,31 +1,31 @@
 #widget_recommended_css {
-    display: none;
+    display: none
 }
 
 .wrecommended_logo:before {
-    -ms-high-contrast-adjust: none;
+    -ms-high-contrast-adjust: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .wrecommended_page {
-    min-width: 150px;
+    min-width: 150px
 }
 
 .wrecommended_wrap {
-    background: #FFFFFF;
-    border: 1px solid #E1E4EB;
+    background: #fff;
+    border: 1px solid #e1e4eb;
     border-top: 0;
-    border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px
 }
 
 .wrecommended_head {
@@ -39,10 +39,10 @@
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    color: white;
+    color: #fff;
     white-space: nowrap;
     text-overflow: ellipsis;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .wrecommended_logo {
@@ -54,7 +54,7 @@
     float: right;
     width: 28px;
     height: 28px;
-    border-radius: 50%;
+    border-radius: 50%
 }
 
 .wrecommended_logo:before {
@@ -64,7 +64,7 @@
     background: url(/images/icons/comments_widget.png) 0 0;
     width: 20px;
     height: 12px;
-    margin: 8px 4px;
+    margin: 8px 4px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -72,16 +72,16 @@
 (min-resolution: 192dpi) {
     .wrecommended_logo:before {
         background-image: url(/images/icons/comments_widget_2x.png);
-        background-size: 21px 87px;
+        background-size: 21px 87px
     }
 }
 
 .wrecommended_wrap {
-    padding: 15px 15px;
+    padding: 15px
 }
 
 .wrecommended_wrap .no_rows {
-    padding: 75px 0 74px;
+    padding: 75px 0 74px
 }
 
 .wrecommended_more {
@@ -89,23 +89,23 @@
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis
 }
 
 .wrecommended_item {
     margin-top: 15px;
     line-height: 16px;
     word-wrap: break-word;
-    color: #939393;
+    color: #939393
 }
 
 .wrecommended_item:first-child {
-    margin-top: 0;
+    margin-top: 0
 }
 
 .wrecommended_title {
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #42648B;
+    color: #42648b
 }

@@ -1,21 +1,21 @@
 #thumbs_edit_css {
-    display: none;
+    display: none
 }
 
 .editable_thumbs .page_album_nocover .draggable_thumb,
 .editable_thumbs .thumb_market_album_wrap.page_album_nocover .draggable_thumb {
-    -ms-high-contrast-adjust: none;
+    -ms-high-contrast-adjust: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 div.editable_thumbs {
@@ -26,19 +26,19 @@ div.editable_thumbs {
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
-    overflow: visible !important;
+    overflow: visible!important
 }
 
 .editable_thumbs.wide .thumb_wrap {
-    margin: 0 6px 6px 0;
+    margin: 0 6px 6px 0
 }
 
 .editable_thumbs .thumb_wrap.last_row {
-    margin-bottom: 0;
+    margin-bottom: 0
 }
 
 .editable_thumbs .thumb_wrap.last_column {
-    margin-right: 0;
+    margin-right: 0
 }
 
 .editable_thumbs .thumb_wrap {
@@ -47,13 +47,13 @@ div.editable_thumbs {
     top: 0;
     left: 0;
     -o-transition: all 0.15s ease;
-    transition: all 0.15s ease;
+    transition: all 0.15s ease
 }
 
 .editable_thumbs .thumb_wrap .draggable_thumb {
     cursor: pointer;
     position: relative;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .editable_thumbs .thumb_wrap .draggable_thumb .overlay {
@@ -62,15 +62,15 @@ div.editable_thumbs {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.2);
-    display: none;
+    background: rgba(0, 0, 0, .2);
+    display: none
 }
 
 .editable_thumbs .thumb_wrap .draggable_thumb .preview {
     background-repeat: no-repeat;
     background-position: 50%;
     -o-object-fit: cover;
-    object-fit: cover;
+    object-fit: cover
 }
 
 .editable_thumbs .thumb_wrap .draggable_thumb .duration {
@@ -80,44 +80,44 @@ div.editable_thumbs {
     padding: 0 7px;
     margin: 8px;
     border-radius: 3px;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, .4);
     font-size: 12.5px;
     line-height: 23px;
     height: 23px;
     white-space: nowrap;
-    color: #fff;
+    color: #fff
 }
 
 .editable_thumbs .thumb_wrap .draggable_thumb.unsized {
     background: 50% 50% no-repeat;
     background-size: cover;
     position: relative;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .editable_thumbs .thumb_wrap .draggable_thumb.unsized_single {
-    background-size: contain;
+    background-size: contain
 }
 
 .editable_thumbs .thumb_wrap.break_next {
-    clear: right;
+    clear: right
 }
 
-.editable_thumbs .thumb_wrap .draggable_thumb.moving .ui_thumb_x_button,
-.editable_thumbs .thumb_wrap .draggable_thumb.changing .ui_thumb_x_button {
-    display: none;
+.editable_thumbs .thumb_wrap .draggable_thumb.changing .ui_thumb_x_button,
+.editable_thumbs .thumb_wrap .draggable_thumb.moving .ui_thumb_x_button {
+    display: none
 }
 
 .editable_thumbs .thumb_wrap .draggable_thumb.moving .page_album_title_text {
-    visibility: hidden;
+    visibility: hidden
 }
 
 .editable_thumbs .page_album_nocover {
-    background: none;
+    background: none
 }
 
 .editable_thumbs .page_album_nocover .draggable_thumb {
-    background: #ecf1f5 url(/images/camera_big.png?1) no-repeat 50% 45%;
+    background: #ecf1f5 url(/images/camera_big.png?1) no-repeat 50% 45%
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -125,20 +125,20 @@ div.editable_thumbs {
 (min-resolution: 192dpi) {
     .editable_thumbs .page_album_nocover .draggable_thumb {
         background-image: url(/images/camera_big_2x.png?1);
-        background-size: 60px 48px;
+        background-size: 60px 48px
     }
 }
 
 .editable_thumbs .page_album_nocover .draggable_thumb.moving {
-    background-size: 20px 16px !important;
+    background-size: 20px 16px!important
 }
 
 .editable_thumbs .page_album_nocover .draggable_thumb img.preview {
-    display: none !important;
+    display: none!important
 }
 
 .editable_thumbs .thumb_market_album_wrap.page_album_nocover .draggable_thumb {
-    background: #ecf1f5 url(/images/icons/mall_icon.png?2) no-repeat 50% 45%;
+    background: #ecf1f5 url(/images/icons/mall_icon.png?2) no-repeat 50% 45%
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -146,10 +146,10 @@ div.editable_thumbs {
 (min-resolution: 192dpi) {
     .editable_thumbs .thumb_market_album_wrap.page_album_nocover .draggable_thumb {
         background-image: url(/images/icons/mall_icon_2x.png?2);
-        background-size: 81px 82px;
+        background-size: 81px 82px
     }
 }
 
 .editable_thumbs .thumb_market_album_wrap.page_album_nocover .draggable_thumb.moving {
-    background-size: 22px 25px !important;
+    background-size: 22px 25px!important
 }

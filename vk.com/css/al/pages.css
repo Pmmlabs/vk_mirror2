@@ -1,59 +1,61 @@
 #pages_css {
-    display: none;
+    display: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .pages_cont,
 .pages_edit_wrap div[contenteditable=true].wke_cont,
 .pages_edit_wrap textarea.wke_textarea {
     padding: 40px 94px;
-    line-height: 160%;
+    line-height: 160%
 }
 
 .pages_edit_wrap .msg {
-    margin: 20px 25px 0;
+    margin: 20px 25px 0
 }
 
 .pages_edit_wrap .msg.error {
-    display: none;
+    display: none
 }
 
 .pages_edit_wrap .msg .flat_button {
     float: right;
-    margin: 8px 0 0 10px;
+    margin: 8px 0 0 10px
 }
 
 .pages_bottom_preview {
     display: none;
-    border-top: 1px solid #e7e8ec;
+    border-top: 1px solid #e7e8ec
 }
 
 .pages_access_tt {
-    width: 241px;
+    width: 241px
 }
 
 .pages_header_info {
-    background-color: #fafbfc;
     padding: 12px 30px;
-    border-bottom: 1px solid #e7e8ec;
-    color: #828282;
+    color: #828282
+}
+
+.pages_header_info,
+.pages_history_header_wrap {
+    background-color: #fafbfc;
+    border-bottom: 1px solid #e7e8ec
 }
 
 .pages_history_header_wrap {
-    background-color: #fafbfc;
     padding: 12px 20px;
-    border-bottom: 1px solid #e7e8ec;
-    font-size: 12.5px;
+    font-size: 12.5px
 }
 
 .pages_history_header {
@@ -61,111 +63,111 @@
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    padding: 0 10px;
+    padding: 0 10px
 }
 
 .pages_edit_history {
     padding: 10px 20px;
-    font-size: 12.5px;
+    font-size: 12.5px
 }
 
 .pages_history_row {
     padding: 11px 10px 12px;
-    border-bottom: 1px solid #e7e8ec;
+    border-bottom: 1px solid #e7e8ec
 }
 
 .pages_history_row:last-child {
-    border-bottom: 0;
+    border-bottom: 0
 }
 
 .pages_history_row.pages_compare {
-    background-color: #f0f2f5;
+    background-color: #f0f2f5
 }
 
 .pages_history_date {
     float: left;
-    width: 170px;
+    width: 170px
 }
 
 .pages_history_actions {
     float: right;
-    width: 170px;
+    width: 170px
 }
 
 .pages_history_length {
     float: right;
-    width: 150px;
+    width: 150px
 }
 
 .pages_history_compare {
     border-bottom: 1px solid #e7e8ec;
     padding-bottom: 15px;
     margin-bottom: 10px;
-    display: none;
+    display: none
 }
 
 .pages_history_select_version {
     background-color: #fff;
-    border: 1px solid #D6DCE1;
-    margin: 5px 0 12px;
+    border: 1px solid #d6dce1;
+    margin: 5px 0 12px
 }
 
 .pages_history_not_selected {
-    color: #828282;
+    color: #828282
 }
 
 .pages_msg_wrap {
-    overflow: hidden;
+    overflow: hidden
 }
 
 #pages_progress {
     margin: 9px 0px 0px 575px;
     position: absolute;
-    display: none;
+    display: none
 }
 
 .pages_actions {
-    padding: 2px 5px 0px 5px;
+    padding: 2px 5px 0px;
     font-size: 11px;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .pages_summary {
-    border-bottom: 1px solid #E7EAED;
-    color: #47688D;
+    border-bottom: 1px solid #e7eaed;
+    color: #47688d;
     padding: 14px 10px 4px;
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale
 }
 
 .pages_notifications {
-    padding: 0px 10px 10px 10px;
+    padding: 0px 10px 10px
 }
 
 .pages_notify_row {
-    border-top: 1px solid #DAE2E8;
-    padding: 20px 10px;
+    border-top: 1px solid #dae2e8;
+    padding: 20px 10px
 }
 
 .pages_notify_first {
     border-top: none;
-    margin-top: 5px;
+    margin-top: 5px
 }
 
 .pages_notify_unread {
-    background: #F5F9FB;
+    background: #f5f9fb
 }
 
 .pages_notify_unread.pages_notify_first {
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 .pages_notify_date {
-    color: #777777;
-    padding-top: 4px;
+    color: #777;
+    padding-top: 4px
 }
 
 .pages_delete_row {
@@ -176,55 +178,55 @@
     filter: alpha(opacity=0);
     cursor: pointer;
     height: 17px;
-    width: 17px;
+    width: 17px
 }
 
 .pages_notify_deleted {
-    color: #777777;
-    padding: 4px 0px;
+    color: #777;
+    padding: 4px 0px
 }
 
 .pages_notifications_empty {
     padding: 130px 10px;
-    background: #F7F7F7;
-    border: 1px solid #CCC;
+    background: #f7f7f7;
+    border: 1px solid #ccc;
     margin: 15px 5px;
     text-align: center;
     font-size: 1.09em;
-    color: #777;
+    color: #777
 }
 
 .pages_bl_row {
     padding: 10px;
     height: 25px;
     overflow: hidden;
-    border-bottom: 1px solid #DAE2E8;
+    border-bottom: 1px solid #dae2e8
 }
 
 img.pages_bl_photo {
     width: 25px;
-    height: 25px;
+    height: 25px
 }
 
 .pages_bl_name {
     padding: 5px 0 0 10px;
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale
 }
 
 .pages_bl_action {
-    padding-top: 5px;
+    padding-top: 5px
 }
 
 .pages_row_info {
-    padding: 5px 0px 0px 0px;
+    padding: 5px 0px 0px
 }
 
 .pages_user_form {
-    background: #F7F7F7;
+    background: #f7f7f7;
     padding: 10px;
-    border-bottom: 1px solid #DAE1E8;
+    border-bottom: 1px solid #dae1e8
 }
 
 input.pages_user_field {
@@ -233,24 +235,24 @@ input.pages_user_field {
     width: 402px;
     height: 14px;
     line-height: 1.27em;
-    background: #FFFFFF url('/images/magglass.png') no-repeat 5px 6px;
+    background: #fff url('/images/magglass.png') no-repeat 5px 6px
 }
 
 .pages_notify_diff {
-    border-left: 2px solid #C3D1E0;
+    border-left: 2px solid #c3d1e0;
     padding-left: 10px;
     margin: 8px 0px;
     max-height: 200px;
-    overflow-y: auto;
+    overflow-y: auto
 }
 
 .pages_notify_changes {
     color: #777;
-    margin-top: 6px;
+    margin-top: 6px
 }
 
 .pages_report_info {
-    padding: 10px 0px;
+    padding: 10px 0px
 }
 
 .pages_wiki_text {
@@ -259,10 +261,10 @@ input.pages_user_field {
     width: 607px;
     padding: 10px;
     border: none;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .pages_wiki_content {
     padding: 10px;
-    line-height: 160%;
+    line-height: 160%
 }

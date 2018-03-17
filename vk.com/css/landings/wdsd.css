@@ -1,52 +1,52 @@
 #landings_wdsd_css {
-    display: none;
+    display: none
 }
 
 .wdsd_tt_wrap .wdsd_image {
-    -ms-high-contrast-adjust: none;
+    -ms-high-contrast-adjust: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .landing_wk_wrap_wdsd {
-    width: 820px;
+    width: 820px
 }
 
 .wdsd_word {
     color: #2b587a;
-    border-bottom: 1px dashed;
+    border-bottom: 1px dashed
 }
 
 .wdsd_word:hover {
     border-bottom: none;
-    cursor: default;
+    cursor: default
 }
 
 .tt.wdsd_tt_wrap .tt_text {
     width: 380px;
     border-radius: 3px;
-    box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, .1);
     padding: 10px 13px 8px;
     border-color: #bccad7;
     color: #424242;
     min-height: 64px;
-    line-height: 16px;
+    line-height: 16px
 }
 
 .tt.wdsd_tt_wrap .bottom_pointer {
     margin-right: 0px;
     margin-left: 43px;
     display: block;
-    background: url(/images/tooltip_arrow_white.png) no-repeat;
+    background: url(/images/tooltip_arrow_white.png) no-repeat
 }
 
 .wdsd_tt_wrap .wdsd_image {
@@ -54,7 +54,7 @@
     width: 64px;
     background-size: 64px 49px;
     background-image: url(/images/landings_wdsd.png);
-    margin: 7px 16px 0 3px;
+    margin: 7px 16px 0 3px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -62,21 +62,21 @@
 (min-resolution: 192dpi) {
     .wdsd_tt_wrap .wdsd_image {
         background-image: url(/images/landings_wdsd_2x.png);
-        background-size: 64px 49px;
+        background-size: 64px 49px
     }
 }
 
 .wdsd_tt_wrap .wdsd_text {
-    width: 295px;
+    width: 295px
 }
 
 .wdsd_tt_wrap .wdsd_text .wikiVkLink {
     display: block;
-    margin-top: 3px;
+    margin-top: 3px
 }
 
 .landing_wdsd a {
-    text-decoration: none;
+    text-decoration: none
 }
 
 .landing_wdsd .landing_wdsd_top {
@@ -85,7 +85,7 @@
     background-position: top;
     background-size: 535px 90px;
     height: 90px;
-    margin: 0 auto 10px;
+    margin: 0 auto 10px
 }
 
 .landing_wdsd .landing_wdsd_title {
@@ -95,18 +95,18 @@
     font-weight: 300;
     margin-top: 46px;
     line-height: 41px;
-    text-align: center;
+    text-align: center
 }
 
 .landing_wdsd .landing_wdsd_text {
-    font-family: 'Helvetica Neue', sans-serif, Geneva, arial, Tahoma, verdana;
+    font-family: Helvetica Neue, sans-serif;
     text-align: left;
     font-weight: 300;
     font-size: 19px;
     line-height: 28px;
     padding: 0 60px;
     margin: 40px auto;
-    max-width: 830px;
+    max-width: 830px
 }
 
 .landing_wdsd .landing_wdsd_bottom {
@@ -115,17 +115,17 @@
     background-position: top;
     background-size: 535px 121px;
     height: 121px;
-    margin: 30px auto 0;
+    margin: 30px auto 0
 }
 
 .landing_wdsd .landing_actions {
-    text-align: center;
+    text-align: center
 }
 
 .is_2x .landing_wdsd .landing_wdsd_top {
-    background-image: url(/images/landings/wdsd_top_2x.png);
+    background-image: url(/images/landings/wdsd_top_2x.png)
 }
 
 .is_2x .landing_wdsd .landing_wdsd_bottom {
-    background-image: url(/images/landings/wdsd_bottom_2x.png);
+    background-image: url(/images/landings/wdsd_bottom_2x.png)
 }

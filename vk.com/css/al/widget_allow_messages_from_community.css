@@ -1,32 +1,32 @@
 #widget_allow_messages_from_community_css {
-    display: none;
+    display: none
 }
 
 .wallow_messages_from_community_icon {
-    -ms-high-contrast-adjust: none;
+    -ms-high-contrast-adjust: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .wallow_messages_from_community_content .flat_button {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: 400;
-    letter-spacing: 0.1px;
+    letter-spacing: 0.1px
 }
 
 .wallow_messages_from_community_icon {
     background: url(/images/icons/widget_allow_messages_from_community.png) no-repeat 0 -28px;
-    padding-left: 20px;
+    padding-left: 20px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -34,44 +34,44 @@
 (min-resolution: 192dpi) {
     .wallow_messages_from_community_icon {
         background-image: url(/images/icons/widget_allow_messages_from_community_2x.png);
-        background-size: 15px 54px;
+        background-size: 15px 54px
     }
 }
 
 .wallow_messages_from_community_deny .wallow_messages_from_community_icon {
-    background-position: 0 -42px !important;
+    background-position: 0 -42px!important
 }
 
 .wallow_messages_from_community_height22 {
     padding: 4px 7px;
-    height: 22px;
+    height: 22px
 }
 
 .wallow_messages_from_community_height22:before {
-    margin-right: 7px;
+    margin-right: 7px
 }
 
 .wallow_messages_from_community_height22:active {
-    padding: 6px 7px 4px;
+    padding: 6px 7px 4px
 }
 
 .wallow_messages_from_community_height22 .wallow_messages_from_community_icon {
-    background-position: 0 2px;
+    background-position: 0 2px
 }
 
 .wallow_messages_from_community_height24 {
     padding: 4px 9px;
-    height: 24px;
+    height: 24px
 }
 
 .wallow_messages_from_community_height24:before {
-    margin-right: 9px;
+    margin-right: 9px
 }
 
 .wallow_messages_from_community_height24:active {
-    padding: 7px 9px 5px;
+    padding: 7px 9px 5px
 }
 
 .wallow_messages_from_community_height24 .wallow_messages_from_community_icon {
-    background-position: 0 -12px;
+    background-position: 0 -12px
 }

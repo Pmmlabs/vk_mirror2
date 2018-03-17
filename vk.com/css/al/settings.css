@@ -1,8 +1,7 @@
 #settings_css {
-    display: none;
+    display: none
 }
 
-.settings_all_services,
 #privacy_l_item101 .privacy_item_icon,
 #privacy_l_item102 .privacy_item_icon,
 #privacy_l_item103 .privacy_item_icon,
@@ -16,72 +15,73 @@
 #privacy_l_item112 .privacy_item_icon,
 #privacy_l_item113 .privacy_item_icon,
 #privacy_l_item114 .privacy_item_icon,
-.settings_apps .apps_settings_row_wrap.loading .apps_settings_action_remove,
+.settings_all_services,
 .settings_apps .apps_settings_action_edit,
 .settings_apps .apps_settings_action_remove,
+.settings_apps .apps_settings_row_wrap.loading .apps_settings_action_remove,
 .settings_history_thumb,
-.settings_transfer_action,
-.settings_payments_subscriptions .settings_subscription_cancel,
+.settings_menu_rows .olist_item_menu .olist_item_photo,
 .settings_otp_box_pad,
 .settings_otp_box_step1,
-.settings_otp_box_step2,
-.settings_otp_box_step3,
 .settings_otp_box_step1_en,
+.settings_otp_box_step2,
 .settings_otp_box_step2_en,
+.settings_otp_box_step3,
 .settings_otp_box_step3_en,
-.settings_menu_rows .olist_item_menu .olist_item_photo {
-    -ms-high-contrast-adjust: none;
+.settings_payments_subscriptions .settings_subscription_cancel,
+.settings_transfer_action {
+    -ms-high-contrast-adjust: none
 }
 
 .settings_apps .apps_settings_action_edit,
 .settings_apps .apps_settings_action_remove,
 .settings_transfer_action {
     -o-transition: opacity 0.15s ease;
-    transition: opacity 0.15s ease;
+    transition: opacity 0.15s ease
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .settings_panel {
-    margin: 0 20px;
+    margin: 0 20px
 }
 
 .settings_section {
     margin: 25px 20px;
-    margin-top: 0;
+    margin-top: 0
 }
 
 .settings_section~.settings_section {
     border-top: 1px solid #e7e8ec;
-    margin: 25px 20px;
+    margin: 25px 20px
 }
 
 .settings_row {
     margin-bottom: 15px;
-    line-height: 16px;
+    line-height: 16px
 }
 
 .settings_line {
     margin: 0;
     padding: 14px 0 15px;
-    border-bottom: 1px solid #e7e8ec;
+    border-bottom: 1px solid #e7e8ec
 }
 
 .settings_panel .settings_line:last-child {
-    border-bottom: none;
+    border-bottom: none
 }
 
 .settings_line~.settings_line {
-    margin: 0;
+    margin: 0
 }
 
 .settings_label {
@@ -89,57 +89,57 @@
     width: 145px;
     padding: 5px 10px 6px 0;
     float: left;
-    line-height: 17px;
+    line-height: 17px
 }
 
 .settings_labeled {
-    margin-left: 155px;
+    margin-left: 155px
 }
 
 .settings_labeled.fl_l {
-    margin-left: 0;
+    margin-left: 0
 }
 
 .settings_labeled_text {
     padding-top: 6px;
-    margin: 0 0 8px 155px;
+    margin: 0 0 8px 155px
 }
 
 .settings_labeled_text .checkbox:first-child {
-    margin-top: 0;
+    margin-top: 0
 }
 
 .settings_row_button_wrap {
     padding-left: 155px;
-    margin: 15px 0 25px 0;
+    margin: 15px 0 25px
 }
 
 .settings_line .settings_row_button_wrap {
     padding-left: 155px;
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
 .settings_row_text {
-    padding-top: 12px;
+    padding-top: 12px
 }
 
 .settings_row_hint {
     padding-top: 6px;
     font-size: 12.5px;
-    color: #656565;
+    color: #656565
 }
 
 .settings_narrow_row {
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
 .settings_narrow_row .settings_label,
 .settings_narrow_row .settings_labeled_text {
-    padding-top: 0;
+    padding-top: 0
 }
 
 .settings_narrow_row label {
-    cursor: pointer;
+    cursor: pointer
 }
 
 .settings_narrow_row input[type=checkbox]+label:before {
@@ -149,11 +149,11 @@
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2215%22%20height%3D%2215%22%20viewBox%3D%220%200%2015%2015%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Crect%20id%3D%22a%22%20width%3D%2215%22%20height%3D%2215%22%20rx%3D%223%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cuse%20fill%3D%22%23FFF%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Crect%20width%3D%2214%22%20height%3D%2214%22%20x%3D%22.5%22%20y%3D%22.5%22%20stroke%3D%22%23C1C9D1%22%20rx%3D%223%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 0;
     margin: 0 7px 0 0;
     width: 15px;
-    height: 15px;
+    height: 15px
 }
 
 .settings_narrow_row input[type=checkbox]:checked+label:before {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2215%22%20height%3D%2215%22%20viewBox%3D%220%200%2015%2015%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2215%22%20height%3D%2215%22%20fill%3D%22%235181B8%22%20rx%3D%223%22%2F%3E%3Cpath%20stroke%3D%22%23FFF%22%20stroke-width%3D%221.7%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M4%207.5L6.5%2010%2011%204.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2215%22%20height%3D%2215%22%20viewBox%3D%220%200%2015%2015%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2215%22%20height%3D%2215%22%20fill%3D%22%235181B8%22%20rx%3D%223%22%2F%3E%3Cpath%20stroke%3D%22%23FFF%22%20stroke-width%3D%221.7%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M4%207.5L6.5%2010%2011%204.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .settings_block_footer {
@@ -161,47 +161,47 @@
     background: #fafbfc;
     line-height: 140%;
     padding: 15px 0 17px;
-    text-align: center;
+    text-align: center
 }
 
 .settings_panel .msg {
     margin: 15px 0;
-    font-size: 12.5px;
+    font-size: 12.5px
 }
 
 .settings_result .msg {
-    margin: 15px 20px 0;
+    margin: 15px 20px 0
 }
 
 .settings_empty {
     padding: 80px 20px;
     text-align: center;
     color: #656565;
-    line-height: 160%;
+    line-height: 160%
 }
 
 .settings_noempty {
-    min-height: 250px;
+    min-height: 250px
 }
 
-.settings_panel input.dark,
-.settings_panel textarea,
+.settings_dropdown,
 .settings_panel .prefix_input_wrap,
-.settings_dropdown {
-    width: 200px;
+.settings_panel input.dark,
+.settings_panel textarea {
+    width: 200px
 }
 
 .settings_tt {
-    width: 315px;
+    width: 315px
 }
 
 .settings_tt_place {
     width: 1px;
-    height: 1px;
+    height: 1px
 }
 
 .settings_bullet_link {
-    margin-left: 7px;
+    margin-left: 7px
 }
 
 .settings_bullet_link:before {
@@ -213,29 +213,29 @@
     display: inline-block;
     pointer-events: none;
     position: relative;
-    left: -3px;
+    left: -3px
 }
 
 .settings_right_control {
     float: right;
-    padding: 6px 0 0 0;
+    padding: 6px 0 0
 }
 
-.settings_tabindex_link,
-.settings_right_control {
-    outline: none;
+.settings_right_control,
+.settings_tabindex_link {
+    outline: none
 }
 
 .settings_change_block {
-    display: none;
+    display: none
 }
 
 .settings_line[onclick] {
-    cursor: pointer;
+    cursor: pointer
 }
 
 .settings_line[onclick]:hover .settings_right_control {
-    text-decoration: underline;
+    text-decoration: underline
 }
 
 .settings_line.unfolded {
@@ -244,36 +244,36 @@
     padding-left: 20px;
     padding-right: 20px;
     border-top: 1px solid #e7e8ec;
-    cursor: default;
+    cursor: default
 }
 
 .settings_line.unfolded .settings_info_block {
-    display: none;
+    display: none
 }
 
 .settings_line.unfolded .settings_change_block {
-    display: block;
+    display: block
 }
 
 .settings_line.unfolded:hover .settings_right_control {
-    text-decoration: none;
+    text-decoration: none
 }
 
 .settings_line.unfolded .settings_right_control:hover {
-    text-decoration: underline;
+    text-decoration: underline
 }
 
 .settings_info_block {
-    line-height: 16px;
+    line-height: 16px
 }
 
-.settings_info_block .msg,
-.settings_change_block .msg {
-    margin: 3px 0 15px;
+.settings_change_block .msg,
+.settings_info_block .msg {
+    margin: 3px 0 15px
 }
 
 .settings_text_grey {
-    color: #656565;
+    color: #656565
 }
 
 .settings_more {
@@ -283,35 +283,35 @@
     margin: 0 20px 15px;
     border-top: 1px solid #e7e8ec;
     border-radius: 4px;
-    line-height: 1.154;
+    line-height: 1.154
 }
 
 .settings_more:hover {
     text-decoration: none;
     background: #f0f2f5;
-    border-top: 1px solid #f0f2f5;
+    border-top: 1px solid #f0f2f5
 }
 
 .settings_more.loading .settings_more_label {
-    display: none;
+    display: none
 }
 
 .settings_more.loading .settings_more_progress {
-    display: block;
+    display: block
 }
 
 .settings_more_progress {
-    margin: 0 auto;
+    margin: 0 auto
 }
 
 .settings_link_row {
-    padding-top: 4px;
+    padding-top: 4px
 }
 
 .settings_all_services {
     background: url(/images/post_more.png?1) no-repeat;
     background-position: left 11px;
-    padding-left: 22px;
+    padding-left: 22px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -319,51 +319,51 @@
 (min-resolution: 192dpi) {
     .settings_all_services {
         background-image: url(/images/post_more_2x.png?1);
-        background-size: 18px 4px;
+        background-size: 18px 4px
     }
 }
 
 .settings_pwd_tt {
-    width: 340px;
+    width: 340px
 }
 
 .settings_toup_tt {
-    width: 280px;
+    width: 280px
 }
 
 .settings_password_hint {
     list-style: url(/images/bullet.gif) outside;
     padding: 0 0 0 15px;
-    margin: 0;
+    margin: 0
 }
 
 .settings_new_phone_list {
     margin: 0;
-    padding: 10px 0 0 25px;
+    padding: 10px 0 0 25px
 }
 
 .settings_labeled select {
-    margin-top: 6px;
+    margin-top: 6px
 }
 
 .settings_privacy {
     margin: 0;
-    padding: 6px 20px 5px;
+    padding: 6px 20px 5px
 }
 
 .settings_privacy_row {
     border: solid #e7e8ec;
     border-width: 1px 0;
     padding: 11px 0 14px;
-    margin: -1px 0 0;
+    margin: -1px 0 0
 }
 
 .settings_privacy_row:first-child {
-    border-top: none;
+    border-top: none
 }
 
 .settings_privacy_row:last-child {
-    border-bottom: none;
+    border-bottom: none
 }
 
 .settings_privacy_row.setting_row_selected {
@@ -371,37 +371,37 @@
     padding: 11px 20px 14px;
     background-color: #f2f4f7;
     -o-transition: background-color 0.2s ease, border-color 0.2s ease;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease
 }
 
 .settings_privacy_row.setting_row_selected.setting_row_animated {
-    background-color: #000000;
+    background-color: #000;
     background-color: transparent;
-    border-color: transparent;
+    border-color: transparent
 }
 
 .settings_privacy_row .settings_label {
     width: 245px;
     padding: 2px 10px 0 0;
     text-align: left;
-    line-height: 18px;
+    line-height: 18px
 }
 
 .settings_privacy_row .settings_label b {
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .settings_privacy_row .settings_labeled {
     margin-left: 255px;
-    line-height: 36px;
+    line-height: 36px
 }
 
 .settings_privacy_control {
     display: inline-block;
     vertical-align: middle;
-    line-height: 18px;
+    line-height: 18px
 }
 
 .settings_privacy_control .group1,
@@ -414,11 +414,11 @@
 .settings_privacy_control .group8,
 .settings_privacy_control .group9,
 .settings_privacy_control .group10 {
-    font-size: 12.5px;
+    font-size: 12.5px
 }
 
 .settings_privacy_disabled {
-    color: #939393;
+    color: #939393
 }
 
 #privacy_l_item101 .privacy_item_icon,
@@ -441,7 +441,7 @@
     width: 11px;
     height: 11px;
     margin-top: 1px;
-    *position: relative;
+    *position: relative
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -461,124 +461,124 @@
     #privacy_l_item113 .privacy_item_icon,
     #privacy_l_item114 .privacy_item_icon {
         background-image: url(/images/icons/mono_iconset_2x.png?4);
-        background-size: 12px 417px;
+        background-size: 12px 417px
     }
 }
 
 #privacy_l_item101 .privacy_item_icon {
-    background-position: 0 -30px;
+    background-position: 0 -30px
 }
 
 #privacy_l_item102 .privacy_item_icon {
-    background-position: 0 -75px;
+    background-position: 0 -75px
 }
 
 #privacy_l_item103 .privacy_item_icon {
-    background-position: 0 -148px;
+    background-position: 0 -148px
 }
 
 #privacy_l_item104 .privacy_item_icon {
-    background-position: 0 -192px;
+    background-position: 0 -192px
 }
 
 #privacy_l_item105 .privacy_item_icon {
-    background-position: 0 -15px;
+    background-position: 0 -15px
 }
 
 #privacy_l_item106 .privacy_item_icon {
-    background-position: 0 -88px;
+    background-position: 0 -88px
 }
 
 #privacy_l_item107 .privacy_item_icon {
-    background-position: 0 -164px;
+    background-position: 0 -164px
 }
 
 #privacy_l_item108 .privacy_item_icon {
-    background-position: 0 -264px;
+    background-position: 0 -264px
 }
 
 #privacy_l_item109 .privacy_item_icon {
-    background-position: 0 0px;
+    background-position: 0 0px
 }
 
 #privacy_l_item110 .privacy_item_icon {
-    background-position: 0 -222px;
+    background-position: 0 -222px
 }
 
 #privacy_l_item112 .privacy_item_icon {
-    background-position: 0 -294px;
+    background-position: 0 -294px
 }
 
 #privacy_l_item113 .privacy_item_icon {
-    background-position: 0 -179px;
+    background-position: 0 -179px
 }
 
 #privacy_l_item114 .privacy_item_icon {
-    background-position: 0 -406px;
+    background-position: 0 -406px
 }
 
 .settings_dropdown_time {
-    width: 75px;
+    width: 75px
 }
 
 #sms_options_msg {
-    margin: 15px 0 5px;
+    margin: 15px 0 5px
 }
 
 .settings_notify .checkbox {
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 .settings_notify .settings_label {
-    width: 170px;
+    width: 170px
 }
 
 .settings_notify .settings_labeled,
 .settings_notify .settings_labeled_text {
-    margin-left: 180px;
+    margin-left: 180px
 }
 
 .settings_notify .settings_row_button_wrap {
-    padding-left: 180px;
+    padding-left: 180px
 }
 
 .settings_inotify .checkbox:first-child {
-    margin-top: 0;
+    margin-top: 0
 }
 
 .settings_mobile {
-    margin: 5px 20px 0 20px;
-    padding-bottom: 5px;
+    margin: 5px 20px 0;
+    padding-bottom: 5px
 }
 
 .settings_table_row {
     margin: 0;
     padding: 8px 0 9px;
     border-bottom: 1px solid #e7e8ec;
-    line-height: 140%;
+    line-height: 140%
 }
 
 .settings_mobile .settings_table_row:last-child {
-    border-bottom: none;
+    border-bottom: none
 }
 
 .settings_table_row .settings_label {
     padding: 0 10px 0 0;
     width: 120px;
-    text-align: left;
+    text-align: left
 }
 
 .settings_table_row .settings_labeled_text {
     padding: 0;
     margin: 0;
     margin-left: 130px;
-    width: 350px;
+    width: 350px
 }
 
 .settings_table_row a.wikiExtLink {
     text-transform: capitalize;
     margin-left: 7px;
-    margin-left: 4px;
+    margin-left: 4px
 }
 
 .settings_table_row a.wikiExtLink:before {
@@ -590,121 +590,121 @@
     display: inline-block;
     pointer-events: none;
     position: relative;
-    left: -3px;
+    left: -3px
 }
 
 .settings_block_msg {
     padding: 13px 20px 15px;
     border-bottom: 1px solid #e7e8ec;
-    line-height: 150%;
+    line-height: 150%
 }
 
 .settings_block_msg b {
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 .settings_section_notice {
     line-height: 150%;
-    font-size: 12.5px;
+    font-size: 12.5px
 }
 
 .settings_list_row {
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
 .settings_list_row .settings_label,
 .settings_list_row .settings_labeled_text {
     padding-top: 2px;
-    line-height: 16px;
+    line-height: 16px
 }
 
 .settings_blacklist {
-    margin: 0;
+    margin: 0
 }
 
 .settings_bl_result .msg {
-    margin: 15px 20px 7px 20px;
-    font-size: 12.5px;
+    margin: 15px 20px 7px;
+    font-size: 12.5px
 }
 
 .settings_bl_list {
-    padding: 0 20px 10px;
+    padding: 0 20px 10px
 }
 
 .settings_bl_row {
     padding: 12px 0;
     height: 35px;
     overflow: hidden;
-    border-bottom: 1px solid #e7e8ec;
+    border-bottom: 1px solid #e7e8ec
 }
 
 .settings_bl_row:last-child {
-    border-bottom: 0;
+    border-bottom: 0
 }
 
 img.settings_bl_photo {
     width: 35px;
     height: 35px;
-    border-radius: 18px;
+    border-radius: 18px
 }
 
 .settings_bl_name {
     padding: 10px 11px;
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     max-width: 400px;
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis
 }
 
 .settings_bl_label {
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     color: #939393;
     padding-left: 4px;
-    display: none;
+    display: none
 }
 
 .settings_bl_action {
-    padding-top: 10px;
+    padding-top: 10px
 }
 
 .settings_bl_box .msg {
-    margin: 0 0 15px;
+    margin: 0 0 15px
 }
 
 .settings_bl_user {
     width: 100%;
-    float: left;
+    float: left
 }
 
 .settings_bl_user_progress {
     float: left;
     margin: 8px -42px 0;
-    display: none;
+    display: none
 }
 
 .settings_blb_rows {
     line-height: 100%;
-    padding: 0 25px;
+    padding: 0 25px
 }
 
 .settings_blb_rows .error {
     margin-left: 0;
-    margin-right: 0;
+    margin-right: 0
 }
 
 .settings_blb_row {
     border-bottom: 1px solid #e7e8ec;
     background-color: #fff;
-    padding: 15px 0;
+    padding: 15px 0
 }
 
 .settings_blb_row:last-child {
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #fff
 }
 
 .settings_blb_photo {
@@ -713,7 +713,7 @@ img.settings_bl_photo {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    margin-right: 12px;
+    margin-right: 12px
 }
 
 .settings_blb_photo_img {
@@ -726,39 +726,36 @@ img.settings_bl_photo {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .settings_blb_photo_img:before {
+    background-color: #fff
+}
+
+.settings_blb_photo_img:before,
+.settings_blb_photo_img:after {
     content: " ";
     display: block;
     position: absolute;
     top: 0;
     left: 0;
     width: 50px;
-    height: 50px;
-    background-color: #FFF;
+    height: 50px
 }
 
 .settings_blb_photo_img:after {
-    width: 50px;
-    height: 50px;
     border-radius: 50%;
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
-    background-size: cover;
+    background-size: cover
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .settings_blb_photo_img:after {
-        background-image: url(/images/camera_200.png);
+        background-image: url(/images/camera_200.png)
     }
 }
 
@@ -767,76 +764,76 @@ img.settings_bl_photo {
     padding: 7px 0 2px;
     text-overflow: ellipsis;
     font-size: 12.5px;
-    line-height: 14px;
+    line-height: 14px
 }
 
 a.settings_blb_title {
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #42648B;
+    color: #42648b
 }
 
 .settings_blb_position {
     padding-top: 7px;
-    color: #656565;
+    color: #656565
 }
 
 .settings_blb_position .group_link {
-    color: #656565;
+    color: #656565
 }
 
 .settings_blb_actions {
     float: right;
-    margin-top: 12px;
+    margin-top: 12px
 }
 
 .settings_deact_header {
     margin-bottom: 10px;
     color: #222;
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale
 }
 
 .settings_reason {
-    padding: 0 0 11px 0;
+    padding: 0 0 11px
 }
 
 .settings_reason_desc {
-    display: none;
+    display: none
 }
 
 .settings_reason_text {
     margin-top: 8px;
     width: 510px;
     height: 65px;
-    resize: none;
+    resize: none
 }
 
 .settings_restore_cont {
-    line-height: 160%;
+    line-height: 160%
 }
 
 .settings_apps {
-    margin: 0;
+    margin: 0
 }
 
 .settings_apps .settings_noempty {
-    padding: 0 20px 10px;
+    padding: 0 20px 10px
 }
 
 .settings_apps .apps_settings_row_wrap {
     border-top: none;
-    border-bottom: 1px solid #f0f3f6;
+    border-bottom: 1px solid #f0f3f6
 }
 
 .settings_apps .apps_settings_row_wrap:last-child {
-    border-bottom: none;
+    border-bottom: none
 }
 
 .settings_apps .apps_settings_row_wrap.loading .apps_settings_action_remove {
-    background: url(/images/c_upload.gif) no-repeat 50%;
+    background: url(/images/c_upload.gif) no-repeat 50%
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -844,24 +841,24 @@ a.settings_blb_title {
 (min-resolution: 192dpi) {
     .settings_apps .apps_settings_row_wrap.loading .apps_settings_action_remove {
         background-image: url(/images/c_upload_2x.gif);
-        background-size: 16px 16px;
+        background-size: 16px 16px
     }
 }
 
 .settings_apps .apps_settings_row_wrap.deleted {
-    position: relative;
+    position: relative
 }
 
 .settings_apps .apps_settings_row_wrap.deleted .app_settings_row {
     opacity: 0.5;
-    filter: alpha(opacity=50);
+    filter: alpha(opacity=50)
 }
 
 .settings_apps .apps_settings_row_wrap.deleted .apps_settings_action_edit,
 .settings_apps .apps_settings_row_wrap.deleted .apps_settings_action_remove {
     opacity: 0;
     filter: alpha(opacity=0);
-    pointer-events: none;
+    pointer-events: none
 }
 
 .settings_apps .apps_settings_row_wrap.deleted .dld {
@@ -872,11 +869,11 @@ a.settings_blb_title {
     right: 0;
     padding: 12px 0;
     text-align: right;
-    line-height: 34px;
+    line-height: 34px
 }
 
 .settings_apps .app_settings_row {
-    padding: 12px 0;
+    padding: 12px 0
 }
 
 .settings_apps .app_settings_image {
@@ -884,53 +881,54 @@ a.settings_blb_title {
     width: 34px;
     height: 34px;
     vertical-align: top;
-    padding-right: 10px;
+    padding-right: 10px
 }
 
 .settings_apps .app_settings_image img {
     border-radius: 3px;
     width: 34px;
-    height: 34px;
+    height: 34px
 }
 
 .settings_apps .app_settings_name {
-    font-weight: 500;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis
 }
 
+.settings_apps .app_settings_name,
 .settings_apps .app_settings_name a {
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
-    color: #2A5885;
+    -moz-osx-font-smoothing: auto
+}
+
+.settings_apps .app_settings_name a {
+    color: #2a5885
 }
 
 .settings_apps .app_settings_data .apps_settings_size {
-    padding-top: 5px;
+    padding-top: 5px
 }
 
 .settings_apps .app_settings_info {
     float: left;
-    line-height: 34px;
+    line-height: 34px
 }
 
 .settings_apps .app_settings_actions {
     float: right;
-    line-height: 34px;
+    line-height: 34px
 }
 
 .settings_apps .apps_settings_status {
     color: #78af7a;
     line-height: 40px;
-    padding: 0 15px;
+    padding: 0 15px
 }
 
 .settings_apps .apps_settings_status.disabled {
-    color: #828282;
+    color: #828282
 }
 
 .settings_apps .apps_settings_action_edit,
@@ -942,7 +940,7 @@ a.settings_blb_title {
     cursor: pointer;
     display: inline-block;
     opacity: 0.75;
-    filter: alpha(opacity=75);
+    filter: alpha(opacity=75)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -951,7 +949,7 @@ a.settings_blb_title {
     .settings_apps .apps_settings_action_edit,
     .settings_apps .apps_settings_action_remove {
         background-image: url(/images/icons/cog_cross_2x.png);
-        background-size: 14px 34px;
+        background-size: 14px 34px
     }
 }
 
@@ -959,69 +957,69 @@ a.settings_blb_title {
 .settings_apps .apps_settings_action_remove:hover {
     opacity: 1;
     -webkit-filter: none;
-    filter: none;
+    filter: none
 }
 
 .settings_apps .apps_settings_action_edit {
     border-left: 1px solid transparent;
     background-position: left 1px;
-    margin-left: 0;
+    margin-left: 0
 }
 
 .settings_apps .apps_settings_action_remove {
     border-left: 1px solid transparent;
-    background-position: left -21px;
+    background-position: left -21px
 }
 
 .settings_payments {
-    margin: 15px 20px 0;
+    margin: 15px 20px 0
 }
 
 .settings_payments .settings_list_row {
-    padding-left: 0;
+    padding-left: 0
 }
 
 .settings_payments .settings_row_button_wrap {
-    padding-left: 155px;
+    padding-left: 155px
 }
 
 .settings_payments_history {
-    margin: 5px 20px 0 20px;
+    margin: 5px 20px 0
 }
 
 .settings_money_balance {
-    color: #939393;
+    color: #939393
 }
 
 .settings_history_table {
     width: 100%;
-    font-size: 12.5px;
+    font-size: 12.5px
 }
 
 .settings_history_table tr td {
     padding: 12px 0;
-    border-bottom: 1px solid #e7e8ec;
+    border-bottom: 1px solid #e7e8ec
 }
 
 .settings_history_table tr:last-child td {
-    border-bottom: none;
+    border-bottom: none
 }
 
 .settings_history_photo {
-    width: 43px;
+    width: 43px
 }
 
 .settings_history_photo img {
     display: block;
     width: 35px;
     height: 35px;
-    border-radius: 18px;
+    border-radius: 18px
 }
 
 .settings_history_thumb {
     width: 35px;
     height: 35px;
-    background: url(/images/icons/payments_s.png) no-repeat 6px 7px;
+    background: url(/images/icons/payments_s.png) no-repeat 6px 7px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1029,38 +1027,38 @@ a.settings_blb_title {
 (min-resolution: 192dpi) {
     .settings_history_thumb {
         background-image: url(/images/icons/payments_s_2x.png);
-        background-size: 22px 226px;
+        background-size: 22px 226px
     }
 }
 
 .settings_history_thumb_cards {
-    background-position: 6px -26px !important;
+    background-position: 6px -26px!important
 }
 
 .settings_history_thumb_payment_system {
-    background-position: 6px -61px !important;
+    background-position: 6px -61px!important
 }
 
 .settings_history_thumb_terminal {
-    background-position: 6px -95px !important;
+    background-position: 6px -95px!important
 }
 
 .settings_history_thumb_gifts {
-    background-position: 6px -131px !important;
+    background-position: 6px -131px!important
 }
 
 .settings_history_thumb_offers {
-    background-position: 6px -163px !important;
+    background-position: 6px -163px!important
 }
 
 .settings_history_thumb_stickers {
-    background-position: 6px -197px !important;
+    background-position: 6px -197px!important
 }
 
 .settings_history_title {
     width: 240px;
-    padding-right: 10px !important;
-    line-height: 17px;
+    padding-right: 10px!important;
+    line-height: 17px
 }
 
 .settings_transfer_title_inner {
@@ -1069,64 +1067,64 @@ a.settings_blb_title {
     overflow: hidden;
     text-overflow: ellipsis;
     display: inline-block;
-    vertical-align: top;
+    vertical-align: top
 }
 
 .settings_history_amount {
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    color: #939393;
+    color: #939393
 }
 
 .settings_votes_income .settings_history_amount {
-    color: #222;
+    color: #222
 }
 
 .settings_history_date {
     text-align: right;
     color: #828282;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 .settings_history_actions {
     text-align: right;
-    font-size: 12.5px;
+    font-size: 12.5px
 }
 
 .settings_history_actions .settings_history_alt_row {
-    padding-top: 6px;
+    padding-top: 6px
 }
 
 .settings_history_alt_row {
     padding-top: 3px;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .settings_history_row_deleted {
     opacity: 0.4;
-    filter: alpha(opacity=40);
+    filter: alpha(opacity=40)
 }
 
 .settings_history_row_deleted .settings_history_actions {
-    display: none;
+    display: none
 }
 
 .settings_history_hint {
     border-bottom: 1px dashed #939393;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .settings_transfer_date,
 .settings_transfer_date a {
     color: #939393;
-    font-size: 12.5px;
+    font-size: 12.5px
 }
 
 .settings_transfer_decline_lnk {
-    color: #939393;
+    color: #939393
 }
 
 .settings_transfer_action {
@@ -1136,7 +1134,7 @@ a.settings_blb_title {
     filter: alpha(opacity=60);
     background: url(/images/icons/p2p_icons.png?2) no-repeat 0 0;
     width: 16px;
-    height: 16px;
+    height: 16px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1144,81 +1142,78 @@ a.settings_blb_title {
 (min-resolution: 192dpi) {
     .settings_transfer_action {
         background-image: url(/images/icons/p2p_icons_2x.png?2);
-        background-size: 14px 73px;
+        background-size: 14px 73px
     }
 }
 
 .settings_transfer_repeat {
-    background-position: right -18px;
+    background-position: right -18px
 }
 
 .settings_transfer_cancel {
-    background-position: right -58px;
+    background-position: right -58px
 }
 
 .settings_transfer_history .settings_history_title {
-    padding-right: 15px !important;
-    width: 220px;
+    padding-right: 15px!important;
+    width: 220px
 }
 
 .settings_transfer_history .simple_row .settings_history_title {
     padding-left: 10px;
-    width: 100%;
+    width: 100%
 }
 
 .settings_transfer_history .settings_history_actions {
-    width: 1px;
+    width: 1px
 }
 
 .settings_transfer_history tr:hover .settings_transfer_action {
-    visibility: visible;
+    visibility: visible
 }
 
 .settings_transfer_history tr:hover .settings_transfer_action:hover {
     opacity: 1;
     -webkit-filter: none;
-    filter: none;
+    filter: none
 }
 
-.settings_transfer_history .round_spinner {
-    display: none;
-}
-
+.settings_transfer_history .round_spinner,
 .settings_transfer_history .settings_history_row_progress .settings_transfer_action {
-    display: none;
+    display: none
 }
 
 .settings_transfer_history .settings_history_row_progress .round_spinner {
-    display: inline-block;
+    display: inline-block
 }
 
 .settings_transfer_status_complete {
-    color: #3D7334;
+    color: #3d7334
 }
 
 .settings_transfer_status_cancelled {
-    color: #A62308;
+    color: #a62308
 }
 
 .settings_payments_history .ui_load_more_btn {
-    margin: 0 -20px;
+    margin: 0 -20px
 }
 
 #settings_votes_history tr.settings_votes_history_last td {
-    border-bottom: none;
+    border-bottom: none
 }
 
 .settings_payments_method {
-    margin: 0 0 12px 0;
+    margin: 0 0 12px
 }
 
 .settings_payments_inactive_method {
-    color: #939393;
+    color: #939393
 }
 
 .settings_transfer_sandbox_status {
     margin-left: 7px;
-    font-style: italic;
+    font-style: italic
 }
 
 .settings_transfer_sandbox_status:before {
@@ -1230,83 +1225,83 @@ a.settings_blb_title {
     display: inline-block;
     pointer-events: none;
     position: relative;
-    left: -3px;
+    left: -3px
 }
 
 .settings_payments_subscriptions tr td {
     border-bottom: none;
     padding: 5px 0;
-    line-height: 19px;
+    line-height: 19px
 }
 
 .settings_payments_subscriptions .settings_history_gr_row td {
     border-top: 1px solid #e7e8ec;
-    padding-top: 12px;
+    padding-top: 12px
 }
 
 .settings_payments_subscriptions .settings_history_gr_row td:not(.settings_history_photo) {
-    padding-top: 20px;
+    padding-top: 20px
 }
 
 .settings_payments_subscriptions .settings_history_gr_row:first-child td {
-    border-top: none;
+    border-top: none
 }
 
 .settings_payments_subscriptions .settings_history_gr_row.settings_history_row_deleted {
     opacity: 1;
     -webkit-filter: none;
-    filter: none;
+    filter: none
 }
 
 .settings_payments_subscriptions .settings_history_gr_row.settings_history_row_deleted td:not(.settings_history_name):not(.settings_history_photo) {
     opacity: 0.4;
-    filter: alpha(opacity=40);
+    filter: alpha(opacity=40)
 }
 
 .settings_payments_subscriptions .settings_history_l_row td:not(.settings_history_photo) {
-    padding-bottom: 20px;
+    padding-bottom: 20px
 }
 
 .settings_payments_subscriptions .settings_history_photo {
-    vertical-align: top;
+    vertical-align: top
 }
 
 .settings_payments_subscriptions .settings_history_name {
-    padding-right: 10px !important;
+    padding-right: 10px!important;
     width: 120px;
-    vertical-align: top;
+    vertical-align: top
 }
 
 .settings_payments_subscriptions .settings_history_title {
-    padding-right: 10px !important;
-    width: 190px;
+    padding-right: 10px!important;
+    width: 190px
 }
 
 .settings_payments_subscriptions .settings_history_amount {
     padding-right: 10px;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     text-align: right;
     vertical-align: top;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 .settings_payments_subscriptions .settings_history_amount b {
-    color: #000;
+    color: #000
 }
 
 .settings_payments_subscriptions .settings_history_btn {
-    padding: 0 !important;
-    vertical-align: middle;
+    padding: 0!important;
+    vertical-align: middle
 }
 
 .settings_payments_subscriptions .settings_history_actions {
-    width: 1px;
+    width: 1px
 }
 
 .settings_payments_subscriptions .settings_subscription_cancel {
-    background: url(/images/cross.png) no-repeat 50% 50%;
+    background: url(/images/cross.png) no-repeat 50% 50%
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1314,72 +1309,69 @@ a.settings_blb_title {
 (min-resolution: 192dpi) {
     .settings_payments_subscriptions .settings_subscription_cancel {
         background-image: url(/images/cross_2x.png);
-        background-size: 10px 10px;
+        background-size: 10px 10px
     }
 }
 
 .settings_payments_subscriptions .settings_subscription_reactivate {
-    background-position: right -18px;
+    background-position: right -18px
 }
 
 .settings_payments_subscriptions tr:hover .settings_transfer_action {
-    visibility: visible;
+    visibility: visible
 }
 
 .settings_payments_subscriptions tr:hover .settings_transfer_action:hover {
     opacity: 1;
     -webkit-filter: none;
-    filter: none;
+    filter: none
 }
 
-.settings_payments_subscriptions .round_spinner {
-    display: none;
-}
-
+.settings_payments_subscriptions .round_spinner,
 .settings_payments_subscriptions .settings_history_row_progress .settings_transfer_action {
-    display: none;
+    display: none
 }
 
 .settings_payments_subscriptions .settings_history_row_progress .round_spinner {
-    display: inline-block;
+    display: inline-block
 }
 
 .settings_no_subscriptions,
 .settings_no_subscriptions:hover {
     color: inherit;
     cursor: text;
-    text-decoration: none;
+    text-decoration: none
 }
 
 #settings_last_activity_row {
-    width: 300px;
+    width: 300px
 }
 
 #settings_last_activity_wrap {
-    display: inline;
+    display: inline
 }
 
 .settings_security .settings_row_button_wrap {
-    padding-top: 5px;
+    padding-top: 5px
 }
 
 .settings_activity_history {
     padding: 14px 0 0;
     width: 100%;
     border: none;
-    font-size: 12.5px;
+    font-size: 12.5px
 }
 
 .settings_activity_history .settings_history_row {
-    margin: 6px 0 0 0;
+    margin: 6px 0 0;
     padding: 0 0 0 50px;
     height: 48px;
     line-height: 1.23;
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22%235C9CE6%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M13%2021a6%206%200%201%201%200%2012%206%206%200%200%201%200-12zm0%208a1%201%200%201%200%200%202%201%201%200%200%200%200-2zm0-1a.75.75%200%200%200%20.75-.75v-3a.75.75%200%201%200-1.5%200v3c0%20.414.336.75.75.75z%22%20fill%3D%22%235C9CE6%22%2F%3E%3Cpath%20d%3D%22M24%2029h2a1%201%200%200%200%201-1V11a1%201%200%200%200-1-1H16a1%201%200%200%200-1%201v6a1%201%200%200%201-2%200v-6.154c0-1.337.14-1.822.4-2.311A2.726%202.726%200%200%201%2014.536%207.4c.489-.262.974-.401%202.31-.401h8.31c1.336%200%201.821.14%202.31.4.49.262.873.646%201.134%201.135.262.489.401.974.401%202.31V28a3%203%200%200%201-3%203h-3a1%201%200%200%201%200-2h1z%22%20fill%3D%22%235C9CE6%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 0;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22%235C9CE6%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M13%2021a6%206%200%201%201%200%2012%206%206%200%200%201%200-12zm0%208a1%201%200%201%200%200%202%201%201%200%200%200%200-2zm0-1a.75.75%200%200%200%20.75-.75v-3a.75.75%200%201%200-1.5%200v3c0%20.414.336.75.75.75z%22%20fill%3D%22%235C9CE6%22%2F%3E%3Cpath%20d%3D%22M24%2029h2a1%201%200%200%200%201-1V11a1%201%200%200%200-1-1H16a1%201%200%200%200-1%201v6a1%201%200%200%201-2%200v-6.154c0-1.337.14-1.822.4-2.311A2.726%202.726%200%200%201%2014.536%207.4c.489-.262.974-.401%202.31-.401h8.31c1.336%200%201.821.14%202.31.4.49.262.873.646%201.134%201.135.262.489.401.974.401%202.31V28a3%203%200%200%201-3%203h-3a1%201%200%200%201%200-2h1z%22%20fill%3D%22%235C9CE6%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 0
 }
 
 .settings_activity_history .settings_history_row.settings_old_session {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22%23A5ABB8%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M13%2021a6%206%200%201%201%200%2012%206%206%200%200%201%200-12zm0%208a1%201%200%201%200%200%202%201%201%200%200%200%200-2zm0-1a.75.75%200%200%200%20.75-.75v-3a.75.75%200%201%200-1.5%200v3c0%20.414.336.75.75.75z%22%20fill%3D%22%23A5ABB8%22%2F%3E%3Cpath%20d%3D%22M24%2029h2a1%201%200%200%200%201-1V11a1%201%200%200%200-1-1H16a1%201%200%200%200-1%201v6a1%201%200%200%201-2%200v-6.154c0-1.337.14-1.822.4-2.311A2.726%202.726%200%200%201%2014.536%207.4c.489-.262.974-.401%202.31-.401h8.31c1.336%200%201.821.14%202.31.4.49.262.873.646%201.134%201.135.262.489.401.974.401%202.31V28a3%203%200%200%201-3%203h-3a1%201%200%200%201%200-2h1z%22%20fill%3D%22%23A5ABB8%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22%23A5ABB8%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M13%2021a6%206%200%201%201%200%2012%206%206%200%200%201%200-12zm0%208a1%201%200%201%200%200%202%201%201%200%200%200%200-2zm0-1a.75.75%200%200%200%20.75-.75v-3a.75.75%200%201%200-1.5%200v3c0%20.414.336.75.75.75z%22%20fill%3D%22%23A5ABB8%22%2F%3E%3Cpath%20d%3D%22M24%2029h2a1%201%200%200%200%201-1V11a1%201%200%200%200-1-1H16a1%201%200%200%200-1%201v6a1%201%200%200%201-2%200v-6.154c0-1.337.14-1.822.4-2.311A2.726%202.726%200%200%201%2014.536%207.4c.489-.262.974-.401%202.31-.401h8.31c1.336%200%201.821.14%202.31.4.49.262.873.646%201.134%201.135.262.489.401.974.401%202.31V28a3%203%200%200%201-3%203h-3a1%201%200%200%201%200-2h1z%22%20fill%3D%22%23A5ABB8%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .settings_activity_history .settings_history_main_info {
@@ -1387,11 +1379,11 @@ a.settings_blb_title {
     color: #222;
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .settings_activity_history .settings_history_main_info .settings_history_separated:before {
-    color: #222;
+    color: #222
 }
 
 .settings_activity_history .settings_history_add_info {
@@ -1399,11 +1391,11 @@ a.settings_blb_title {
     max-width: 450px;
     white-space: nowrap;
     text-overflow: ellipsis;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .settings_activity_history .settings_history_separated {
-    margin-left: 7px;
+    margin-left: 7px
 }
 
 .settings_activity_history .settings_history_separated:before {
@@ -1416,79 +1408,76 @@ a.settings_blb_title {
     pointer-events: none;
     position: relative;
     left: -3px;
-}
-
-.settings_activity_history .settings_history_separated:before {
-    vertical-align: initial;
+    vertical-align: initial
 }
 
 .settings_activity_history .settings_cur_session {
     float: right;
     height: 48px;
     line-height: 48px;
-    color: #4f8cd1;
+    color: #4f8cd1
 }
 
 .settings_activity_history .settings_old_session .settings_history_main_info,
 .settings_activity_history .settings_old_session .settings_history_separated:before {
-    color: #939393;
+    color: #939393
 }
 
 .settings_activity_history .settings_history_ios {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M16.605%2027.439c-.018-1.773%201.458-2.624%201.524-2.666-.83-1.203-2.121-1.368-2.582-1.387-1.1-.11-2.146.642-2.704.642-.557%200-1.418-.626-2.33-.61-1.2.018-2.304.692-2.922%201.756-1.245%202.142-.319%205.316.895%207.054.593.85%201.3%201.805%202.23%201.771.894-.035%201.232-.574%202.313-.574%201.081%200%201.385.574%202.332.557.962-.018%201.572-.867%202.16-1.72.682-.987.962-1.942.979-1.991-.021-.01-1.877-.715-1.895-2.832zm-1.778-5.203c.492-.593.825-1.416.734-2.236-.71.029-1.57.469-2.08%201.06-.457.525-.857%201.362-.75%202.166.793.062%201.602-.399%202.096-.99z%22%20fill%3D%22%235C9CE6%22%2F%3E%3Cpath%20d%3D%22M24%2029h2a1%201%200%200%200%201-1V11a1%201%200%200%200-1-1H16a1%201%200%200%200-1%201v5a1%201%200%200%201-2%200v-5.154c0-1.337.14-1.822.4-2.311A2.726%202.726%200%200%201%2014.536%207.4c.489-.262.974-.401%202.31-.401h8.31c1.336%200%201.821.14%202.31.4.49.262.873.646%201.134%201.135.262.489.401.974.401%202.31V28a3%203%200%200%201-3%203h-3a1%201%200%200%201%200-2h1z%22%20fill%3D%22%235C9CE6%22%2F%3E%3C%2Fsvg%3E") no-repeat 0;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M16.605%2027.439c-.018-1.773%201.458-2.624%201.524-2.666-.83-1.203-2.121-1.368-2.582-1.387-1.1-.11-2.146.642-2.704.642-.557%200-1.418-.626-2.33-.61-1.2.018-2.304.692-2.922%201.756-1.245%202.142-.319%205.316.895%207.054.593.85%201.3%201.805%202.23%201.771.894-.035%201.232-.574%202.313-.574%201.081%200%201.385.574%202.332.557.962-.018%201.572-.867%202.16-1.72.682-.987.962-1.942.979-1.991-.021-.01-1.877-.715-1.895-2.832zm-1.778-5.203c.492-.593.825-1.416.734-2.236-.71.029-1.57.469-2.08%201.06-.457.525-.857%201.362-.75%202.166.793.062%201.602-.399%202.096-.99z%22%20fill%3D%22%235C9CE6%22%2F%3E%3Cpath%20d%3D%22M24%2029h2a1%201%200%200%200%201-1V11a1%201%200%200%200-1-1H16a1%201%200%200%200-1%201v5a1%201%200%200%201-2%200v-5.154c0-1.337.14-1.822.4-2.311A2.726%202.726%200%200%201%2014.536%207.4c.489-.262.974-.401%202.31-.401h8.31c1.336%200%201.821.14%202.31.4.49.262.873.646%201.134%201.135.262.489.401.974.401%202.31V28a3%203%200%200%201-3%203h-3a1%201%200%200%201%200-2h1z%22%20fill%3D%22%235C9CE6%22%2F%3E%3C%2Fsvg%3E") no-repeat 0
 }
 
 .settings_activity_history .settings_history_ios.settings_old_session {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M16.605%2027.439c-.018-1.773%201.458-2.624%201.524-2.666-.83-1.203-2.121-1.368-2.582-1.387-1.1-.11-2.146.642-2.704.642-.557%200-1.418-.626-2.33-.61-1.2.018-2.304.692-2.922%201.756-1.245%202.142-.319%205.316.895%207.054.593.85%201.3%201.805%202.23%201.771.894-.035%201.232-.574%202.313-.574%201.081%200%201.385.574%202.332.557.962-.018%201.572-.867%202.16-1.72.682-.987.962-1.942.979-1.991-.021-.01-1.877-.715-1.895-2.832zm-1.778-5.203c.492-.593.825-1.416.734-2.236-.71.029-1.57.469-2.08%201.06-.457.525-.857%201.362-.75%202.166.793.062%201.602-.399%202.096-.99z%22%20fill%3D%22%23A5ABB8%22%2F%3E%3Cpath%20d%3D%22M24%2029h2a1%201%200%200%200%201-1V11a1%201%200%200%200-1-1H16a1%201%200%200%200-1%201v5a1%201%200%200%201-2%200v-5.154c0-1.337.14-1.822.4-2.311A2.726%202.726%200%200%201%2014.536%207.4c.489-.262.974-.401%202.31-.401h8.31c1.336%200%201.821.14%202.31.4.49.262.873.646%201.134%201.135.262.489.401.974.401%202.31V28a3%203%200%200%201-3%203h-3a1%201%200%200%201%200-2h1z%22%20fill%3D%22%23A5ABB8%22%2F%3E%3C%2Fsvg%3E");
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M16.605%2027.439c-.018-1.773%201.458-2.624%201.524-2.666-.83-1.203-2.121-1.368-2.582-1.387-1.1-.11-2.146.642-2.704.642-.557%200-1.418-.626-2.33-.61-1.2.018-2.304.692-2.922%201.756-1.245%202.142-.319%205.316.895%207.054.593.85%201.3%201.805%202.23%201.771.894-.035%201.232-.574%202.313-.574%201.081%200%201.385.574%202.332.557.962-.018%201.572-.867%202.16-1.72.682-.987.962-1.942.979-1.991-.021-.01-1.877-.715-1.895-2.832zm-1.778-5.203c.492-.593.825-1.416.734-2.236-.71.029-1.57.469-2.08%201.06-.457.525-.857%201.362-.75%202.166.793.062%201.602-.399%202.096-.99z%22%20fill%3D%22%23A5ABB8%22%2F%3E%3Cpath%20d%3D%22M24%2029h2a1%201%200%200%200%201-1V11a1%201%200%200%200-1-1H16a1%201%200%200%200-1%201v5a1%201%200%200%201-2%200v-5.154c0-1.337.14-1.822.4-2.311A2.726%202.726%200%200%201%2014.536%207.4c.489-.262.974-.401%202.31-.401h8.31c1.336%200%201.821.14%202.31.4.49.262.873.646%201.134%201.135.262.489.401.974.401%202.31V28a3%203%200%200%201-3%203h-3a1%201%200%200%201%200-2h1z%22%20fill%3D%22%23A5ABB8%22%2F%3E%3C%2Fsvg%3E")
 }
 
 .settings_activity_history .settings_history_android {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M12%2032v1.5a.5.5%200%201%201-1%200V32H9.5a.5.5%200%200%201-.5-.5V25h8v6.5a.5.5%200%200%201-.5.5H15v1.5a.5.5%200%201%201-1%200V32h-2zm2.844-10.55l.802-.804a.5.5%200%200%201%20.708.708l-.676.675c.574.518.997%201.2%201.196%201.971H9.126a3.999%203.999%200%200%201%201.196-1.971l-.676-.675a.5.5%200%200%201%20.708-.708l.802.803A3.983%203.983%200%200%201%2013%2021c.665%200%201.292.162%201.844.45zM18.5%2025a.5.5%200%200%201%20.5.5v4a.5.5%200%201%201-1%200v-4a.5.5%200%200%201%20.5-.5zm-11%200a.5.5%200%200%201%20.5.5v4a.5.5%200%201%201-1%200v-4a.5.5%200%200%201%20.5-.5z%22%20fill%3D%22%235C9CE6%22%2F%3E%3Cpath%20d%3D%22M24%2029h2a1%201%200%200%200%201-1V11a1%201%200%200%200-1-1H16a1%201%200%200%200-1%201v5a1%201%200%200%201-2%200v-5.154c0-1.337.14-1.822.4-2.311A2.726%202.726%200%200%201%2014.536%207.4c.489-.262.974-.401%202.31-.401h8.31c1.336%200%201.821.14%202.31.4.49.262.873.646%201.134%201.135.262.489.401.974.401%202.31V28a3%203%200%200%201-3%203h-2a1%201%200%200%201%200-2z%22%20fill%3D%22%235C9CE6%22%2F%3E%3C%2Fsvg%3E") no-repeat 0;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M12%2032v1.5a.5.5%200%201%201-1%200V32H9.5a.5.5%200%200%201-.5-.5V25h8v6.5a.5.5%200%200%201-.5.5H15v1.5a.5.5%200%201%201-1%200V32h-2zm2.844-10.55l.802-.804a.5.5%200%200%201%20.708.708l-.676.675c.574.518.997%201.2%201.196%201.971H9.126a3.999%203.999%200%200%201%201.196-1.971l-.676-.675a.5.5%200%200%201%20.708-.708l.802.803A3.983%203.983%200%200%201%2013%2021c.665%200%201.292.162%201.844.45zM18.5%2025a.5.5%200%200%201%20.5.5v4a.5.5%200%201%201-1%200v-4a.5.5%200%200%201%20.5-.5zm-11%200a.5.5%200%200%201%20.5.5v4a.5.5%200%201%201-1%200v-4a.5.5%200%200%201%20.5-.5z%22%20fill%3D%22%235C9CE6%22%2F%3E%3Cpath%20d%3D%22M24%2029h2a1%201%200%200%200%201-1V11a1%201%200%200%200-1-1H16a1%201%200%200%200-1%201v5a1%201%200%200%201-2%200v-5.154c0-1.337.14-1.822.4-2.311A2.726%202.726%200%200%201%2014.536%207.4c.489-.262.974-.401%202.31-.401h8.31c1.336%200%201.821.14%202.31.4.49.262.873.646%201.134%201.135.262.489.401.974.401%202.31V28a3%203%200%200%201-3%203h-2a1%201%200%200%201%200-2z%22%20fill%3D%22%235C9CE6%22%2F%3E%3C%2Fsvg%3E") no-repeat 0
 }
 
 .settings_activity_history .settings_history_android.settings_old_session {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M12%2032v1.5a.5.5%200%201%201-1%200V32H9.5a.5.5%200%200%201-.5-.5V25h8v6.5a.5.5%200%200%201-.5.5H15v1.5a.5.5%200%201%201-1%200V32h-2zm2.844-10.55l.802-.804a.5.5%200%200%201%20.708.708l-.676.675c.574.518.997%201.2%201.196%201.971H9.126a3.999%203.999%200%200%201%201.196-1.971l-.676-.675a.5.5%200%200%201%20.708-.708l.802.803A3.983%203.983%200%200%201%2013%2021c.665%200%201.292.162%201.844.45zM18.5%2025a.5.5%200%200%201%20.5.5v4a.5.5%200%201%201-1%200v-4a.5.5%200%200%201%20.5-.5zm-11%200a.5.5%200%200%201%20.5.5v4a.5.5%200%201%201-1%200v-4a.5.5%200%200%201%20.5-.5z%22%20fill%3D%22%23A5ABB8%22%2F%3E%3Cpath%20d%3D%22M24%2029h2a1%201%200%200%200%201-1V11a1%201%200%200%200-1-1H16a1%201%200%200%200-1%201v5a1%201%200%200%201-2%200v-5.154c0-1.337.14-1.822.4-2.311A2.726%202.726%200%200%201%2014.536%207.4c.489-.262.974-.401%202.31-.401h8.31c1.336%200%201.821.14%202.31.4.49.262.873.646%201.134%201.135.262.489.401.974.401%202.31V28a3%203%200%200%201-3%203h-2a1%201%200%200%201%200-2z%22%20fill%3D%22%23A5ABB8%22%2F%3E%3C%2Fsvg%3E");
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M12%2032v1.5a.5.5%200%201%201-1%200V32H9.5a.5.5%200%200%201-.5-.5V25h8v6.5a.5.5%200%200%201-.5.5H15v1.5a.5.5%200%201%201-1%200V32h-2zm2.844-10.55l.802-.804a.5.5%200%200%201%20.708.708l-.676.675c.574.518.997%201.2%201.196%201.971H9.126a3.999%203.999%200%200%201%201.196-1.971l-.676-.675a.5.5%200%200%201%20.708-.708l.802.803A3.983%203.983%200%200%201%2013%2021c.665%200%201.292.162%201.844.45zM18.5%2025a.5.5%200%200%201%20.5.5v4a.5.5%200%201%201-1%200v-4a.5.5%200%200%201%20.5-.5zm-11%200a.5.5%200%200%201%20.5.5v4a.5.5%200%201%201-1%200v-4a.5.5%200%200%201%20.5-.5z%22%20fill%3D%22%23A5ABB8%22%2F%3E%3Cpath%20d%3D%22M24%2029h2a1%201%200%200%200%201-1V11a1%201%200%200%200-1-1H16a1%201%200%200%200-1%201v5a1%201%200%200%201-2%200v-5.154c0-1.337.14-1.822.4-2.311A2.726%202.726%200%200%201%2014.536%207.4c.489-.262.974-.401%202.31-.401h8.31c1.336%200%201.821.14%202.31.4.49.262.873.646%201.134%201.135.262.489.401.974.401%202.31V28a3%203%200%200%201-3%203h-2a1%201%200%200%201%200-2z%22%20fill%3D%22%23A5ABB8%22%2F%3E%3C%2Fsvg%3E")
 }
 
 .settings_activity_history .settings_history_wphone {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M12.001%2022.917l6-.917v5h-6v-4.083zm-1%20.152V27H7v-3.32l4.001-.61zm1%209.015V28h6v5l-6-.916zm-1-.153L7%2031.32V28h4.001v3.931z%22%20fill%3D%22%235C9CE6%22%2F%3E%3Cpath%20d%3D%22M24%2029h2a1%201%200%200%200%201-1V11a1%201%200%200%200-1-1H16a1%201%200%200%200-1%201v6a1%201%200%200%201-2%200v-6.154c0-1.337.14-1.822.4-2.311A2.726%202.726%200%200%201%2014.536%207.4c.489-.262.974-.401%202.31-.401h8.31c1.336%200%201.821.14%202.31.4.49.262.873.646%201.134%201.135.262.489.401.974.401%202.31V28a3%203%200%200%201-3%203h-3a1%201%200%200%201%200-2h1z%22%20fill%3D%22%235C9CE6%22%2F%3E%3C%2Fsvg%3E") no-repeat 0;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M12.001%2022.917l6-.917v5h-6v-4.083zm-1%20.152V27H7v-3.32l4.001-.61zm1%209.015V28h6v5l-6-.916zm-1-.153L7%2031.32V28h4.001v3.931z%22%20fill%3D%22%235C9CE6%22%2F%3E%3Cpath%20d%3D%22M24%2029h2a1%201%200%200%200%201-1V11a1%201%200%200%200-1-1H16a1%201%200%200%200-1%201v6a1%201%200%200%201-2%200v-6.154c0-1.337.14-1.822.4-2.311A2.726%202.726%200%200%201%2014.536%207.4c.489-.262.974-.401%202.31-.401h8.31c1.336%200%201.821.14%202.31.4.49.262.873.646%201.134%201.135.262.489.401.974.401%202.31V28a3%203%200%200%201-3%203h-3a1%201%200%200%201%200-2h1z%22%20fill%3D%22%235C9CE6%22%2F%3E%3C%2Fsvg%3E") no-repeat 0
 }
 
 .settings_activity_history .settings_history_wphone.settings_old_session {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M12.001%2022.917l6-.917v5h-6v-4.083zm-1%20.152V27H7v-3.32l4.001-.61zm1%209.015V28h6v5l-6-.916zm-1-.153L7%2031.32V28h4.001v3.931z%22%20fill%3D%22%23A5ABB8%22%2F%3E%3Cpath%20d%3D%22M24%2029h2a1%201%200%200%200%201-1V11a1%201%200%200%200-1-1H16a1%201%200%200%200-1%201v6a1%201%200%200%201-2%200v-6.154c0-1.337.14-1.822.4-2.311A2.726%202.726%200%200%201%2014.536%207.4c.489-.262.974-.401%202.31-.401h8.31c1.336%200%201.821.14%202.31.4.49.262.873.646%201.134%201.135.262.489.401.974.401%202.31V28a3%203%200%200%201-3%203h-3a1%201%200%200%201%200-2h1z%22%20fill%3D%22%23A5ABB8%22%2F%3E%3C%2Fsvg%3E");
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M12.001%2022.917l6-.917v5h-6v-4.083zm-1%20.152V27H7v-3.32l4.001-.61zm1%209.015V28h6v5l-6-.916zm-1-.153L7%2031.32V28h4.001v3.931z%22%20fill%3D%22%23A5ABB8%22%2F%3E%3Cpath%20d%3D%22M24%2029h2a1%201%200%200%200%201-1V11a1%201%200%200%200-1-1H16a1%201%200%200%200-1%201v6a1%201%200%200%201-2%200v-6.154c0-1.337.14-1.822.4-2.311A2.726%202.726%200%200%201%2014.536%207.4c.489-.262.974-.401%202.31-.401h8.31c1.336%200%201.821.14%202.31.4.49.262.873.646%201.134%201.135.262.489.401.974.401%202.31V28a3%203%200%200%201-3%203h-3a1%201%200%200%201%200-2h1z%22%20fill%3D%22%23A5ABB8%22%2F%3E%3C%2Fsvg%3E")
 }
 
 .settings_activity_history .settings_history_laptop {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M34%2028h1a1%201%200%200%201%200%202H5a1%201%200%200%201%200-2h1V11.564c0-.892.093-1.215.267-1.54.174-.327.43-.583.756-.757.326-.174.65-.267%201.54-.267h22.873c.892%200%201.215.093%201.54.267.327.174.583.43.757.756.174.326.267.65.267%201.54V28zm-2%200V11.641c0-.223-.023-.304-.067-.385a.454.454%200%200%200-.189-.19c-.081-.043-.162-.066-.385-.066H8.641c-.223%200-.304.023-.385.067a.454.454%200%200%200-.19.189c-.043.081-.066.162-.066.385V28h24z%22%20fill%3D%22%235C9CE6%22%2F%3E%3C%2Fsvg%3E") no-repeat 0;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M34%2028h1a1%201%200%200%201%200%202H5a1%201%200%200%201%200-2h1V11.564c0-.892.093-1.215.267-1.54.174-.327.43-.583.756-.757.326-.174.65-.267%201.54-.267h22.873c.892%200%201.215.093%201.54.267.327.174.583.43.757.756.174.326.267.65.267%201.54V28zm-2%200V11.641c0-.223-.023-.304-.067-.385a.454.454%200%200%200-.189-.19c-.081-.043-.162-.066-.385-.066H8.641c-.223%200-.304.023-.385.067a.454.454%200%200%200-.19.189c-.043.081-.066.162-.066.385V28h24z%22%20fill%3D%22%235C9CE6%22%2F%3E%3C%2Fsvg%3E") no-repeat 0
 }
 
 .settings_activity_history .settings_history_laptop.settings_old_session {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M34%2028h1a1%201%200%200%201%200%202H5a1%201%200%200%201%200-2h1V11.564c0-.892.093-1.215.267-1.54.174-.327.43-.583.756-.757.326-.174.65-.267%201.54-.267h22.873c.892%200%201.215.093%201.54.267.327.174.583.43.757.756.174.326.267.65.267%201.54V28zm-2%200V11.641c0-.223-.023-.304-.067-.385a.454.454%200%200%200-.189-.19c-.081-.043-.162-.066-.385-.066H8.641c-.223%200-.304.023-.385.067a.454.454%200%200%200-.19.189c-.043.081-.066.162-.066.385V28h24z%22%20fill%3D%22%23A5ABB8%22%2F%3E%3C%2Fsvg%3E");
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M34%2028h1a1%201%200%200%201%200%202H5a1%201%200%200%201%200-2h1V11.564c0-.892.093-1.215.267-1.54.174-.327.43-.583.756-.757.326-.174.65-.267%201.54-.267h22.873c.892%200%201.215.093%201.54.267.327.174.583.43.757.756.174.326.267.65.267%201.54V28zm-2%200V11.641c0-.223-.023-.304-.067-.385a.454.454%200%200%200-.189-.19c-.081-.043-.162-.066-.385-.066H8.641c-.223%200-.304.023-.385.067a.454.454%200%200%200-.19.189c-.043.081-.066.162-.066.385V28h24z%22%20fill%3D%22%23A5ABB8%22%2F%3E%3C%2Fsvg%3E")
 }
 
 .settings_ip_tt {
-    cursor: pointer;
+    cursor: pointer
 }
 
 .settings_user_client_tt {
-    width: 300px;
+    width: 300px
 }
 
 .settings_set_otp_box .msg {
     margin-left: 0;
-    margin-right: 0;
+    margin-right: 0
 }
 
 .settings_otp_box_wrap {
-    padding: 30px 0 5px;
+    padding: 30px 0 5px
 }
 
 .settings_otp_box_pad {
-    padding: 167px 10px 0 10px;
+    padding: 167px 10px 0;
     width: 230px;
     text-align: center;
     font-size: 12.5px;
-    background: url(/images/pics/authcheck_1ru.png) no-repeat 50% 0;
+    background: url(/images/pics/authcheck_1ru.png) no-repeat 50% 0
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1496,12 +1485,12 @@ a.settings_blb_title {
 (min-resolution: 192dpi) {
     .settings_otp_box_pad {
         background-image: url(/images/pics/authcheck_1ru_2x.png);
-        background-size: 152px 152px;
+        background-size: 152px 152px
     }
 }
 
 .settings_otp_box_step1 {
-    background-image: url(/images/pics/authcheck_1ru.png);
+    background-image: url(/images/pics/authcheck_1ru.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1509,12 +1498,12 @@ a.settings_blb_title {
 (min-resolution: 192dpi) {
     .settings_otp_box_step1 {
         background-image: url(/images/pics/authcheck_1ru_2x.png);
-        background-size: 152px 152px;
+        background-size: 152px 152px
     }
 }
 
 .settings_otp_box_step2 {
-    background-image: url(/images/pics/authcheck_2ru.png);
+    background-image: url(/images/pics/authcheck_2ru.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1522,12 +1511,12 @@ a.settings_blb_title {
 (min-resolution: 192dpi) {
     .settings_otp_box_step2 {
         background-image: url(/images/pics/authcheck_2ru_2x.png);
-        background-size: 152px 152px;
+        background-size: 152px 152px
     }
 }
 
 .settings_otp_box_step3 {
-    background-image: url(/images/pics/authcheck_3ru.png);
+    background-image: url(/images/pics/authcheck_3ru.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1535,12 +1524,12 @@ a.settings_blb_title {
 (min-resolution: 192dpi) {
     .settings_otp_box_step3 {
         background-image: url(/images/pics/authcheck_3ru_2x.png);
-        background-size: 152px 152px;
+        background-size: 152px 152px
     }
 }
 
 .settings_otp_box_step1_en {
-    background-image: url(/images/pics/authcheck_1en.png);
+    background-image: url(/images/pics/authcheck_1en.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1548,12 +1537,12 @@ a.settings_blb_title {
 (min-resolution: 192dpi) {
     .settings_otp_box_step1_en {
         background-image: url(/images/pics/authcheck_1en_2x.png);
-        background-size: 152px 152px;
+        background-size: 152px 152px
     }
 }
 
 .settings_otp_box_step2_en {
-    background-image: url(/images/pics/authcheck_2en.png);
+    background-image: url(/images/pics/authcheck_2en.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1561,12 +1550,12 @@ a.settings_blb_title {
 (min-resolution: 192dpi) {
     .settings_otp_box_step2_en {
         background-image: url(/images/pics/authcheck_2en_2x.png);
-        background-size: 152px 152px;
+        background-size: 152px 152px
     }
 }
 
 .settings_otp_box_step3_en {
-    background-image: url(/images/pics/authcheck_3en.png);
+    background-image: url(/images/pics/authcheck_3en.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1574,142 +1563,142 @@ a.settings_blb_title {
 (min-resolution: 192dpi) {
     .settings_otp_box_step3_en {
         background-image: url(/images/pics/authcheck_3en_2x.png);
-        background-size: 152px 152px;
+        background-size: 152px 152px
     }
 }
 
 .settings_otp_app_wrap {
-    padding: 18px 0 15px 0;
+    padding: 18px 0 15px;
     margin-left: 185px;
-    width: 140px;
+    width: 140px
 }
 
 .settings_otp_auth_secret {
     margin-top: -7px;
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    width: 200px;
+    width: 200px
 }
 
 .settings_otp_auth_code {
-    width: 140px;
+    width: 140px
 }
 
 .settings_otp_auth_btn {
-    margin-top: 7px;
+    margin-top: 7px
 }
 
 #settings_set_otp_app_error .msg {
-    margin-bottom: 0;
+    margin-bottom: 0
 }
 
 .settings_otp_reserver_codes_wrap {
-    padding: 20px 0 20px 80px;
+    padding: 20px 0 20px 80px
 }
 
 .settings_otp_reserve_codes_col1 {
-    padding-right: 50px;
+    padding-right: 50px
 }
 
 .settings_otp_reserve_code {
     margin-bottom: 5px;
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale
 }
 
 .settings_otp_reserve_code span {
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     display: inline-block;
     width: 20px;
     text-align: right;
-    color: #939393;
+    color: #939393
 }
 
 .settings_otp_reserve_code_used,
 .settings_otp_reserve_code_used span {
     text-decoration: line-through;
-    color: #939393;
+    color: #939393
 }
 
 .settings_app_password_controls {
     margin: 0 -25px -20px;
     padding: 13px 25px 14px;
     background-color: #fafbfc;
-    border-top: 1px solid #e7e8ec;
+    border-top: 1px solid #e7e8ec
 }
 
 input.settings_app_password_name {
     float: left;
     margin-right: 12px;
-    width: 250px;
+    width: 250px
 }
 
 .settings_app_passwords_empty {
     margin: 45px 0;
     text-align: center;
-    color: #939393;
+    color: #939393
 }
 
 .settings_app_passwords_table {
-    margin-bottom: 17px;
+    margin-bottom: 17px
 }
 
 .settings_otp_app_disabled {
-    color: #656565;
+    color: #656565
 }
 
 .settings_labeled_notice {
-    color: #000;
+    color: #000
 }
 
 .settdbx_wrap {
-    font-size: 12px;
+    font-size: 12px
 }
 
 .settdbx_info_wrap {
-    padding: 20px 30px 0;
+    padding: 20px 30px 0
 }
 
 .settdbx_header {
     border: 0;
     padding: 0;
     margin-bottom: 15px;
-    font-size: 13px;
+    font-size: 13px
 }
 
 .settdbx_info {
-    line-height: 140%;
+    line-height: 140%
 }
 
 .settdbx_image {
     background: url(/images/join/address.png) no-repeat 0 0;
     width: 160px;
     height: 160px;
-    margin: 20px auto 15px;
+    margin: 20px auto 15px
 }
 
 .settdbx_edit {
-    background: #F2F2F2;
-    padding: 20px;
+    background: #f2f2f2;
+    padding: 20px
 }
 
 .settdbx_field_wrap {
     margin: 0 auto 10px;
-    width: 230px;
+    width: 230px
 }
 
 #settdbx_addr_table {
-    background: #FFF;
-    border: 1px solid #C0CAD5;
+    background: #fff;
+    border: 1px solid #c0cad5
 }
 
 .settdbx_edit_addr_label {
     color: #777;
-    padding: 4px 0px 3px 3px;
+    padding: 4px 0px 3px 3px
 }
 
 #settdbx_addr {
@@ -1717,11 +1706,11 @@ input.settings_app_password_name {
     padding: 3px 2px 3px 0;
     width: 142px;
     margin: 0px -1px;
-    outline: 0;
+    outline: 0
 }
 
 .settdbx_submit_wrap {
-    text-align: center;
+    text-align: center
 }
 
 .settdbx_side_addr_tt table .tt_text {
@@ -1729,61 +1718,61 @@ input.settings_app_password_name {
     color: #000;
     padding: 10px;
     width: 150px;
-    font-size: 12px;
+    font-size: 12px
 }
 
 .settdbx_side_addr_pointer {
-    top: 47px;
+    top: 47px
 }
 
 .settdbx_advices_header {
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    margin-bottom: 7px;
+    margin-bottom: 7px
 }
 
 #settdbx_advices {
-    margin: 0 auto;
+    margin: 0 auto
 }
 
 .settdbx_advices_wrap {
-    margin-top: 18px;
+    margin-top: 18px
 }
 
 #settdbx_advices .listing {
     margin: 0;
-    padding-left: 25px;
+    padding-left: 25px
 }
 
 .settings_menu_link {
-    padding-top: 7px;
+    padding-top: 7px
 }
 
 .settings_menu_link:first-child {
-    padding-top: 0;
+    padding-top: 0
 }
 
 .settings_menu_rows {
     min-height: 300px;
     max-height: 385px;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: auto
 }
 
 .settings_menu_rows .olist_item_photo {
     border-radius: 3px;
-    background-size: cover;
+    background-size: cover
 }
 
 .settings_menu_rows .olist_item_menu.disabled {
     pointer-events: none;
     opacity: 0.6;
-    filter: alpha(opacity=60);
+    filter: alpha(opacity=60)
 }
 
 .settings_menu_rows .olist_item_menu .olist_item_photo {
-    background: #e6edf4 url(/images/icons/menu_icon.png?7) no-repeat 8px -438px;
+    background: #e6edf4 url(/images/icons/menu_icon.png?7) no-repeat 8px -438px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1791,115 +1780,115 @@ input.settings_app_password_name {
 (min-resolution: 192dpi) {
     .settings_menu_rows .olist_item_menu .olist_item_photo {
         background-image: url(/images/icons/menu_icon_2x.png?7);
-        background-size: 18px 990px;
+        background-size: 18px 990px
     }
 }
 
 .settings_menu_rows .olist_item_menu.olist_item_profile .olist_item_photo {
-    background-position: 8px 9px;
+    background-position: 8px 9px
 }
 
 .settings_menu_rows .olist_item_menu.olist_item_news .olist_item_photo {
-    background-position: 8px -914px;
+    background-position: 8px -914px
 }
 
 .settings_menu_rows .olist_item_menu.olist_item_mail .olist_item_photo {
-    background-position: 8px -18px;
+    background-position: 8px -18px
 }
 
 .settings_menu_rows .olist_item_menu.olist_item_friends .olist_item_photo {
-    background-position: 8px -74px;
+    background-position: 8px -74px
 }
 
 .settings_menu_rows .olist_item_menu.olist_item_groups .olist_item_photo {
-    background-position: 8px -102px;
+    background-position: 8px -102px
 }
 
 .settings_menu_rows .olist_item_menu.olist_item_photos .olist_item_photo {
-    background-position: 8px -130px;
+    background-position: 8px -130px
 }
 
 .settings_menu_rows .olist_item_menu.olist_item_audio .olist_item_photo {
-    background-position: 8px -158px;
+    background-position: 8px -158px
 }
 
 .settings_menu_rows .olist_item_menu.olist_item_video .olist_item_photo {
-    background-position: 8px -186px;
+    background-position: 8px -186px
 }
 
 .settings_menu_rows .olist_item_menu.olist_item_no_apps .olist_item_photo,
 .settings_menu_rows .olist_item_menu.olist_item_no_apps_manage .olist_item_photo {
-    background-position: 8px -214px;
+    background-position: 8px -214px
 }
 
 .settings_menu_rows .olist_item_menu.olist_item_docs .olist_item_photo {
-    background-position: 8px -270px;
+    background-position: 8px -270px
 }
 
 .settings_menu_rows .olist_item_menu.olist_item_faves .olist_item_photo {
-    background-position: 8px -298px;
+    background-position: 8px -298px
 }
 
 .settings_menu_rows .olist_item_menu.olist_item_no_ads_link .olist_item_photo {
-    background-position: 8px -326px;
+    background-position: 8px -326px
 }
 
 .settings_menu_rows .olist_item_menu.olist_item_no_market .olist_item_photo {
     border: 5px solid #e6edf4;
     box-sizing: border-box;
-    background-position: 3px -945px;
+    background-position: 3px -945px
 }
 
 .settings_menu_rows .olist_item_menu.helpdesk .olist_item_photo {
-    background-position: 8px -354px;
+    background-position: 8px -354px
 }
 
 .settings_menu_rows .olist_item_menu.tlmd .olist_item_photo {
-    background-position: 8px -382px;
+    background-position: 8px -382px
 }
 
+.settings_menu_rows .olist_item_menu.health .olist_item_photo,
 .settings_menu_rows .olist_item_menu.stat .olist_item_photo,
 .settings_menu_rows .olist_item_menu.statlogs .olist_item_photo,
-.settings_menu_rows .olist_item_menu.health .olist_item_photo,
 .settings_menu_rows .olist_item_menu.stats .olist_item_photo {
-    background-position: 8px -410px;
+    background-position: 8px -410px
 }
 
 .settings_menu_rows .olist_item_menu.translate .olist_item_photo {
-    background-position: 8px -466px;
+    background-position: 8px -466px
 }
 
 .settings_menu_rows .olist_item_menu.bugtracker .olist_item_photo {
-    background-position: 8px -964px;
+    background-position: 8px -964px
 }
 
 .settings_menu_rows .settings_menu_rows_disabled .olist_item_wrap:not(.olist_item_wrap_on) {
-    pointer-events: none;
+    pointer-events: none
 }
 
 .settings_menu_rows .settings_menu_rows_disabled .olist_item_wrap:not(.olist_item_wrap_on) .olist_checkbox {
-    display: none;
+    display: none
 }
 
 .settings_menu_box_counter {
-    color: #828282;
+    color: #828282
 }
 
 .settings_menu_box .box_msg {
-    margin: -4px 0 -6px 0;
+    margin: -4px 0 -6px;
     position: relative;
-    z-index: 1;
+    z-index: 1
 }
 
 .settings_separated_row {
     position: relative;
     margin: 0 -20px;
     border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
+    border-right: 20px solid transparent
 }
 
 .settings_separated_row+.settings_separated_row {
-    border-top: 1px solid transparent;
+    border-top: 1px solid transparent
 }
 
 .settings_separated_row+.settings_separated_row:after {
@@ -1910,31 +1899,31 @@ input.settings_app_password_name {
     height: 1px;
     top: -1px;
     left: 0;
-    right: 0;
+    right: 0
 }
 
 .settings_separated_row.settings_separated_row_iconed:before {
     content: '';
-    display: block;
+    display: block
 }
 
 .settings_separated_row .settings_separated_row_icon {
-    vertical-align: top;
+    vertical-align: top
 }
 
-.settings_separated_row.settings_separated_row_iconed:before,
-.settings_separated_row .settings_separated_row_icon {
+.settings_separated_row .settings_separated_row_icon,
+.settings_separated_row.settings_separated_row_iconed:before {
     position: absolute;
     top: 14px;
     left: 0;
     width: 28px;
     height: 28px;
-    border-radius: 50%;
+    border-radius: 50%
 }
 
-.settings_separated_row.settings_separated_row_iconed .settings_separated_row_text,
-.settings_separated_row .settings_separated_row_icon+.settings_separated_row_text {
-    margin-left: 40px;
+.settings_separated_row .settings_separated_row_icon+.settings_separated_row_text,
+.settings_separated_row.settings_separated_row_iconed .settings_separated_row_text {
+    margin-left: 40px
 }
 
 .settings_separated_row .settings_separated_row_text {
@@ -1948,21 +1937,21 @@ input.settings_app_password_name {
     position: relative;
     top: -1px;
     padding: 14px 0;
-    min-height: 56px;
+    min-height: 56px
 }
 
 .settings_separated_row .settings_separated_row_text .settings_separated_row_text_inner {
-    max-width: 100%;
+    max-width: 100%
 }
 
 .settings_separated_row .settings_separated_row_text:before {
     content: '';
     height: 28px;
-    display: block;
+    display: block
 }
 
 .settings_separated_row.settings_separated_row_square_icon .settings_separated_row_icon {
-    border-radius: 3px;
+    border-radius: 3px
 }
 
 .settings_separated_row .settings_separated_row_extra {
@@ -1975,210 +1964,210 @@ input.settings_app_password_name {
     align-items: center;
     height: 56px;
     position: relative;
-    top: -1px;
+    top: -1px
 }
 
 .settings_separated_row .settings_separated_row_nowrap {
     white-space: nowrap;
     text-overflow: ellipsis;
     max-width: 100%;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .settings_separated_row .ui_toggler_wrap {
     min-height: 15px;
-    padding-right: 0;
+    padding-right: 0
 }
 
 .settings_separated_row .settings_separated_row_footer {
     clear: both;
-    padding-bottom: 14px;
+    padding-bottom: 14px
 }
 
 .settings_separated_row .settings_separated_row_footer .settings_row {
-    margin-bottom: 0;
+    margin-bottom: 0
 }
 
 .settings_separated_row .settings_separated_row_footer .settings_row+.settings_row {
-    margin-top: 25px;
+    margin-top: 25px
 }
 
+.settings_separated_row_iconed.icon_type_ads:before,
+.settings_separated_row_iconed.icon_type_birthday:before,
+.settings_separated_row_iconed.icon_type_clock:before,
+.settings_separated_row_iconed.icon_type_comment:before,
+.settings_separated_row_iconed.icon_type_email:before,
+.settings_separated_row_iconed.icon_type_event:before,
+.settings_separated_row_iconed.icon_type_follow:before,
+.settings_separated_row_iconed.icon_type_friend_found:before,
+.settings_separated_row_iconed.icon_type_gift:before,
 .settings_separated_row_iconed.icon_type_ienable:before,
+.settings_separated_row_iconed.icon_type_interesting:before,
+.settings_separated_row_iconed.icon_type_invite_app:before,
+.settings_separated_row_iconed.icon_type_invite_group:before,
 .settings_separated_row_iconed.icon_type_isounds:before,
 .settings_separated_row_iconed.icon_type_itexts:before,
 .settings_separated_row_iconed.icon_type_like:before,
-.settings_separated_row_iconed.icon_type_repost:before,
-.settings_separated_row_iconed.icon_type_comment:before,
-.settings_separated_row_iconed.icon_type_mention:before,
-.settings_separated_row_iconed.icon_type_wall:before,
-.settings_separated_row_iconed.icon_type_photo_tag:before,
-.settings_separated_row_iconed.icon_type_invite_app:before,
-.settings_separated_row_iconed.icon_type_follow:before,
-.settings_separated_row_iconed.icon_type_invite_group:before,
-.settings_separated_row_iconed.icon_type_birthday:before,
-.settings_separated_row_iconed.icon_type_ads:before,
-.settings_separated_row_iconed.icon_type_event:before,
 .settings_separated_row_iconed.icon_type_live:before,
-.settings_separated_row_iconed.icon_type_new_post:before,
-.settings_separated_row_iconed.icon_type_gift:before,
-.settings_separated_row_iconed.icon_type_email:before,
-.settings_separated_row_iconed.icon_type_clock:before,
+.settings_separated_row_iconed.icon_type_mention:before,
 .settings_separated_row_iconed.icon_type_message:before,
-.settings_separated_row_iconed.icon_type_interesting:before,
-.settings_separated_row_iconed.icon_type_story_reply:before,
+.settings_separated_row_iconed.icon_type_new_post:before,
+.settings_separated_row_iconed.icon_type_photo_tag:before,
 .settings_separated_row_iconed.icon_type_private_post:before,
 .settings_separated_row_iconed.icon_type_related_events:before,
-.settings_separated_row_iconed.icon_type_friend_found:before {
-    background: #A5ABB4 url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2228%22%20height%3D%22728%22%20viewBox%3D%220%200%2028%20728%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ctitle%3EnotificationsSettings%3C%2Ftitle%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M12.052%2019.676c-.408%201.608.192%201.938%201.34.744l5.045-5.258c1.143-1.19.746-2.366-.895-2.618l-2.31-.355a.228.228%200%200%201-.19-.29l.906-3.576c.408-1.608-.192-1.938-1.34-.744l-5.045%205.258c-1.143%201.19-.746%202.366.895%202.618l2.31.355c.14.022.227.15.19.29l-.906%203.576z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3Cg%20transform%3D%22translate(0%2028)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cg%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%3E%3Cpath%20d%3D%22M13.986%2019.117c-.023.905-.488%201.207-1.33.465-1.25-1.1-2.625-2.395-3.085-2.79-.46-.397-1.195-.466-2.234-.466-1.038%200-1.32-.465-1.32-.93%200-.466-.01-1.372-.01-1.5%200-.043.003-.065.01-.098.014-.072-.042-.73%200-1.194.062-.68.282-.93%201.32-.93%201.04%200%201.775-.07%202.235-.465.46-.397%201.836-1.69%203.086-2.792.842-.742%201.307-.44%201.33.465.03%201.205%200%202.888%200%205.012%200%202.122.03%204.017%200%205.222l-.002.001zM15.88%2012.12c.075.072.215.248.36.502.242.423.385.887.385%201.378%200%20.49-.143.955-.385%201.378-.145.254-.285.43-.36.503a.881.881%200%200%200%200%201.24c.343.34.897.34%201.24%200%20.175-.178.41-.47.64-.873.383-.67.615-1.425.615-2.247%200-.822-.232-1.576-.615-2.247a4.313%204.313%200%200%200-.64-.872.881.881%200%200%200-1.24%200%20.881.881%200%200%200%200%201.24v-.002zm3-2c.14.136.384.463.64.975.407.814.667%201.79.705%202.934a6.976%206.976%200%200%201-.705%202.875c-.256.512-.5.84-.64.976a.881.881%200%200%200%200%201.24c.343.34.897.34%201.24%200%20.262-.265.62-.74.965-1.433.517-1.033.843-2.255.89-3.658-.047-1.462-.373-2.684-.89-3.717-.346-.692-.703-1.168-.966-1.432a.881.881%200%200%200-1.24%200%20.881.881%200%200%200%200%201.24h.001z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%2056)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M9%209h10a1%201%200%200%201%200%202H9a1%201%200%200%201%200-2zm0%204h10a1%201%200%200%201%200%202H9a1%201%200%200%201%200-2zm0%204h6a1%201%200%200%201%200%202H9a1%201%200%200%201%200-2z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%2084)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M12.568%2018.665l-3.663-3.758a3.224%203.224%200%200%201%200-4.48%203.035%203.035%200%200%201%204.367%200c.337.346.58.75.728%201.182.15-.432.39-.837.728-1.182a3.033%203.033%200%200%201%204.367%200%203.224%203.224%200%200%201%200%204.48l-3.663%203.757a2%202%200%200%201-2.828.035c-.012-.01-.024-.023-.036-.035v.001z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M16%20122v-1.599a.75.75%200%200%201%201.166-.624l3.898%202.599a.75.75%200%200%201%200%201.248l-3.898%202.599a.75.75%200%200%201-1.166-.624V124h-5a1%201%200%200%200-1%201v4a1%201%200%200%200%201%201h4a1%201%200%200%201%200%202h-4a3%203%200%200%201-3-3v-4a3%203%200%200%201%203-3h5z%22%20fill%3D%22%23FFF%22%2F%3E%3Cg%20transform%3D%22translate(0%20140)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M15%2018l-2.745%202.708c-.278.29-1.177.588-1.255-.208V18H9c-.5%200-1-.5-1-1v-7c0-.5.5-1%201-1h10c.5%200%201%20.5%201%201v7c0%20.5-.5%201-1%201h-4z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M14.26%20179.63c-.347%200-.651.102-.912.305s-.482.46-.663.772a3.946%203.946%200%200%200-.413%201.032c-.094.377-.142.74-.142%201.087%200%20.174.019.359.055.554.036.196.108.377.217.544.109.167.25.304.424.413.174.109.406.163.696.163.391%200%20.724-.098%201-.293.275-.196.5-.443.674-.74.174-.297.3-.62.38-.967.08-.348.12-.667.12-.957%200-.231-.022-.46-.066-.684a1.86%201.86%200%200%200-.228-.609%201.311%201.311%200%200%200-.445-.446%201.304%201.304%200%200%200-.696-.174zm4.982%209.356a7.79%207.79%200%200%201-1.22.557c-1.174.42-2.413.63-3.718.63-1.246%200-2.38-.198-3.402-.597-1.022-.398-1.895-.953-2.62-1.663a7.374%207.374%200%200%201-1.684-2.554c-.399-.993-.598-2.076-.598-3.25%200-1.16.217-2.232.652-3.218a7.996%207.996%200%200%201%201.783-2.565%208.425%208.425%200%200%201%205.87-2.326c.985%200%201.941.145%202.869.435a7.39%207.39%200%200%201%202.467%201.304%206.36%206.36%200%200%201%201.718%202.174c.427.87.641%201.891.641%203.065%200%20.87-.12%201.638-.359%202.305-.239.666-.558%201.224-.956%201.674a3.915%203.915%200%200%201-2.99%201.347c-.58%200-1.043-.137-1.39-.413-.348-.275-.522-.623-.522-1.043h-.11c-.216.348-.55.677-1%20.989-.448.312-1%20.467-1.651.467-.986%200-1.747-.326-2.283-.978-.536-.652-.804-1.5-.804-2.543%200-.61.101-1.21.304-1.805a5.112%205.112%200%200%201%20.87-1.587%204.455%204.455%200%200%201%201.348-1.12%203.592%203.592%200%200%201%201.739-.423c.55%200%201.014.116%201.391.348.377.232.623.514.74.847l.195-.87h1.935l-.848%204.11a11.28%2011.28%200%200%201-.12.674c-.05.246-.076.478-.076.695%200%20.247.047.453.141.62.095.166.28.25.555.25.565%200%201.032-.305%201.402-.913.37-.609.554-1.428.554-2.457%200-.87-.145-1.641-.435-2.315a4.728%204.728%200%200%200-1.206-1.696%205.127%205.127%200%200%200-1.837-1.032%207.456%207.456%200%200%200-2.326-.348c-.913%200-1.75.163-2.511.489-.76.326-1.41.775-1.946%201.348a6.13%206.13%200%200%200-1.25%202.022%206.958%206.958%200%200%200-.445%202.51c0%20.957.155%201.82.467%202.587.312.769.75%201.424%201.315%201.968.566.543%201.24.96%202.022%201.25.783.29%201.645.435%202.587.435%201.174%200%202.185-.189%203.033-.566a8.07%208.07%200%200%200%20.92-.482l.789%201.664z%22%20fill%3D%22%23FFF%22%2F%3E%3Cg%20transform%3D%22translate(0%20196)%22%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2214%22%20r%3D%2214%22%2F%3E%3Cpath%20d%3D%22M14.988%209.977l3.035%203.035-5.54%205.539a5.722%205.722%200%200%201-2.375%201.426l-2.488.76a.286.286%200%200%201-.358-.358l.76-2.488a5.722%205.722%200%200%201%201.427-2.375l5.539-5.539zm.835-.834l1.516-1.516a1.286%201.286%200%200%201%201.818%200l1.216%201.216a1.286%201.286%200%200%201%200%201.818l-1.516%201.516-3.034-3.034z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%20224)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M15%2013V9a1%201%200%200%200-2%200v4H9a1%201%200%200%200%200%202h4v4a1%201%200%200%200%202%200v-4h4a1%201%200%200%200%200-2h-4z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M19.92%20262.016a.885.885%200%200%200-.206.067l-6.214%202.903-5.498-2.568A1.5%201.5%200%200%201%209.5%20261h9a1.5%201.5%200%200%201%201.42%201.016zm.08%202.038v5.446a1.5%201.5%200%200%201-1.5%201.5h-9a1.5%201.5%200%200%201-1.5-1.5v-4.98l5.129%202.397c.236.11.506.11.742%200L20%20264.054zM14%20290.902a3.301%203.301%200%200%200%200%206.6%203.301%203.301%200%200%200%200-6.6zm0-2.402h1.423c.414%200%20.656.12.894.4l.43.533c.219.269.663.567%201.071.567h.273c1.309%200%201.909.8%201.909%202.133v4.735c0%201.178-.977%202.133-2.182%202.133h-7.636c-1.205%200-2.182-.955-2.182-2.133v-4.735C8%20290.8%208.6%20290%209.91%20290h.272c.408%200%20.852-.298%201.07-.567l.431-.533c.238-.28.48-.4.894-.4H14zm-1.95%205.7a1.95%201.95%200%201%201%203.9%200%201.95%201.95%200%200%201-3.9%200z%22%20fill%3D%22%23FFF%22%2F%3E%3Cpath%20d%3D%22M14%20336c7.732%200%2014-6.268%2014-14s-6.268-14-14-14-14%206.268-14%2014%206.268%2014%2014%2014z%22%2F%3E%3Cpath%20opacity%3D%22.1%22%20d%3D%22M6%20314h16v16H6z%22%2F%3E%3Cpath%20d%3D%22M14.75%20328.499v-5.001l4.25-.002V322l-4.25.002V319h4.41c.74%200%201.34.6%201.34%201.34v.987c0%20.37-.3.67-.67.67H19l.063%204.805a1.675%201.675%200%200%201-1.675%201.697H14.75zm-1.5%200h-2.518a1.675%201.675%200%200%201-1.675-1.655l-.04-3.344%204.233-.002v5.001zM9%20322.004v-.007h-.83a.67.67%200%200%201-.67-.67v-.987c0-.74.6-1.34%201.34-1.34h4.41v3.002l-4.25.002zM14%20319c-3.333-.333-5-1.333-5-3%200-1.105%201-2%202-2%201.667%200%202.667%201.667%203%205zm-1.5-1.5c-.133-1.333-.533-2-1.2-2-.4%200-.8.358-.8.8%200%20.667.667%201.067%202%201.2zm3%200c1.333-.133%202-.533%202-1.2%200-.442-.4-.8-.8-.8-.667%200-1.067.667-1.2%202zM14%20319c.333-3.333%201.333-5%203-5%201%200%202%20.895%202%202%200%201.667-1.667%202.667-5%203z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3Cpath%20d%3D%22M16.058%20344a1.4%201.4%200%200%200-.058.4v1.2a1.4%201.4%200%200%200%201.4%201.4h.2a1.4%201.4%200%200%200%201.4-1.4v-1.2a1.4%201.4%200%200%200-.058-.4A2.1%202.1%200%200%201%2021%20346.1v8.8a2.1%202.1%200%200%201-2.1%202.1H9.1a2.1%202.1%200%200%201-2.1-2.1v-8.8a2.1%202.1%200%200%201%202.058-2.1%201.4%201.4%200%200%200-.058.4v1.2a1.4%201.4%200%200%200%201.4%201.4h.2a1.4%201.4%200%200%200%201.4-1.4v-1.2a1.4%201.4%200%200%200-.058-.4h4.116zM9.2%20349a.2.2%200%200%200-.2.2v5.6c0%20.11.09.2.2.2h9.6a.2.2%200%200%200%20.2-.2v-5.6a.2.2%200%200%200-.2-.2H9.2zm1-6h.6c.11%200%20.2.09.2.2v2.6a.2.2%200%200%201-.2.2h-.6a.2.2%200%200%201-.2-.2v-2.6c0-.11.09-.2.2-.2zm7%200h.6c.11%200%20.2.09.2.2v2.6a.2.2%200%200%201-.2.2h-.6a.2.2%200%200%201-.2-.2v-2.6c0-.11.09-.2.2-.2zM8.672%20428c.217.011.396.023.536.037%205.64.563%2010.133%205.023%2010.745%2010.648.018.165.033.38.046.642a.641.641%200%200%201-.64.673h-1.124a.641.641%200%200%201-.64-.606%208.896%208.896%200%200%200-.044-.547%209.622%209.622%200%200%200-8.633-8.422%207.566%207.566%200%200%200-.31-.022.641.641%200%200%201-.608-.64v-1.122a.641.641%200%200%201%20.672-.64zm.015%204.033c.304.022.472.035.504.04a8.022%208.022%200%200%201%206.698%206.498c.033.185.062.432.086.738a.641.641%200%200%201-.64.691H14.33a.641.641%200%200%201-.639-.587%204.574%204.574%200%200%200-.037-.324%205.73%205.73%200%200%200-4.74-4.741l-.323-.027a.641.641%200%200%201-.591-.639v-1.01a.641.641%200%200%201%20.687-.64zM11.302%20440h-2.66a.641.641%200%200%201-.642-.641v-2.664a.641.641%200%200%201%20.797-.623%204.013%204.013%200%200%201%203.097%202.976c.015.06.029.13.041.211a.641.641%200%200%201-.633.741z%22%20fill%3D%22%23FFF%22%2F%3E%3Cpath%20opacity%3D%22.1%22%20d%3D%22M6%20370h16v16H6z%22%2F%3E%3Cpath%20d%3D%22M16.75%20374.25a2.75%202.75%200%201%200-5.5%200%202.75%202.75%200%201%200%205.5%200zm-8.25%207.365v.715c0%20.37.3.67.67.67h9.66c.37%200%20.67-.3.67-.67v-.715c0-2.423-3.664-3.115-5.5-3.115-1.836%200-5.5.692-5.5%203.115z%22%20fill%3D%22%23FFF%22%2F%3E%3Cpath%20d%3D%22M14%20420c7.732%200%2014-6.268%2014-14s-6.268-14-14-14-14%206.268-14%2014%206.268%2014%2014%2014z%22%2F%3E%3Cpath%20opacity%3D%22.1%22%20d%3D%22M6%20398h16v16H6z%22%2F%3E%3Cpath%20d%3D%22M14.75%20412.499v-5.001l4.25-.002V406l-4.25.002V403h4.41c.74%200%201.34.6%201.34%201.34v.987c0%20.37-.3.67-.67.67H19l.063%204.805a1.675%201.675%200%200%201-1.675%201.697H14.75zm-1.5%200h-2.518a1.675%201.675%200%200%201-1.675-1.655l-.04-3.344%204.233-.002v5.001zM9%20406.004v-.007h-.83a.67.67%200%200%201-.67-.67v-.987c0-.74.6-1.34%201.34-1.34h4.41v3.002l-4.25.002zM14%20403c-3.333-.333-5-1.333-5-3%200-1.105%201-2%202-2%201.667%200%202.667%201.667%203%205zm-1.5-1.5c-.133-1.333-.533-2-1.2-2-.4%200-.8.358-.8.8%200%20.667.667%201.067%202%201.2zm3%200c1.333-.133%202-.533%202-1.2%200-.442-.4-.8-.8-.8-.667%200-1.067.667-1.2%202zM14%20403c.333-3.333%201.333-5%203-5%201%200%202%20.895%202%202%200%201.667-1.667%202.667-5%203z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3Cg%20transform%3D%22translate(0%20448)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M21.77%2014.686c.1.367.996%204.127-1.593%204.31-1.095.092-2.29-1.467-3.186-2.293-.796-.917-1.692-1.375-3.086-1.375-1.393%200-2.19.458-3.086%201.375-.896.826-2.09%202.385-3.087%202.293-2.488-.092-1.592-3.943-1.492-4.31C6.636%2012.668%208.03%209%2010.818%209c0%200%20.896.092%201.593.46%201.196.457%201.793.457%203.087%200C16.294%209.09%2017.09%209%2017.09%209c2.888%200%204.182%203.577%204.68%205.686zM16%2012a1%201%200%200%200%200%202h2a1%201%200%200%200%200-2h-2zm-6%200a1%201%200%201%200%200%202%201%201%200%200%200%200-2z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%20476)%22%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2214%22%20r%3D%2214%22%2F%3E%3Cpath%20d%3D%22M15.6%2010h-5.2A1.4%201.4%200%200%200%209%2011.4v5.2a1.4%201.4%200%200%200%201.4%201.4h5.2a1.4%201.4%200%200%200%201.4-1.4v-1.267l2.534%202.253a.28.28%200%200%200%20.466-.21v-6.752a.28.28%200%200%200-.466-.21L17%2012.667V11.4a1.4%201.4%200%200%200-1.4-1.4z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%20504)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M16%2016h-2v1h2.3c.11%200%20.2.09.2.2v1.6a.2.2%200%200%201-.2.2H14v1.8a.2.2%200%200%201-.2.2h-1.6a.2.2%200%200%201-.2-.2V19h-1.8a.2.2%200%200%201-.2-.2v-1.6c0-.11.09-.2.2-.2H12v-1h-1.8a.2.2%200%200%201-.2-.2v-1.6c0-.11.09-.2.2-.2H12V8.2c0-.11.09-.2.2-.2h3.55v.008A4%204%200%201%201%2016%2016zm-2-6v4h2a2%202%200%201%200%200-4h-2z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M14.26%20543.63c-.347%200-.651.102-.912.305s-.482.46-.663.772a3.946%203.946%200%200%200-.413%201.032c-.094.377-.142.74-.142%201.087%200%20.174.019.359.055.554.036.196.108.377.217.544.109.167.25.304.424.413.174.109.406.163.696.163.391%200%20.724-.098%201-.293.275-.196.5-.443.674-.74.174-.297.3-.62.38-.967.08-.348.12-.667.12-.957%200-.231-.022-.46-.066-.684a1.86%201.86%200%200%200-.228-.609%201.311%201.311%200%200%200-.445-.446%201.304%201.304%200%200%200-.696-.174zm4.982%209.356a7.79%207.79%200%200%201-1.22.557c-1.174.42-2.413.63-3.718.63-1.246%200-2.38-.198-3.402-.597-1.022-.398-1.895-.953-2.62-1.663a7.374%207.374%200%200%201-1.684-2.554c-.399-.993-.598-2.076-.598-3.25%200-1.16.217-2.232.652-3.218a7.996%207.996%200%200%201%201.783-2.565%208.425%208.425%200%200%201%205.87-2.326c.985%200%201.941.145%202.869.435a7.39%207.39%200%200%201%202.467%201.304%206.36%206.36%200%200%201%201.718%202.174c.427.87.641%201.891.641%203.065%200%20.87-.12%201.638-.359%202.305-.239.666-.558%201.224-.956%201.674a3.915%203.915%200%200%201-2.99%201.347c-.58%200-1.043-.137-1.39-.413-.348-.275-.522-.623-.522-1.043h-.11c-.216.348-.55.677-1%20.989-.448.312-1%20.467-1.651.467-.986%200-1.747-.326-2.283-.978-.536-.652-.804-1.5-.804-2.543%200-.61.101-1.21.304-1.805a5.112%205.112%200%200%201%20.87-1.587%204.455%204.455%200%200%201%201.348-1.12%203.592%203.592%200%200%201%201.739-.423c.55%200%201.014.116%201.391.348.377.232.623.514.74.847l.195-.87h1.935l-.848%204.11a11.28%2011.28%200%200%201-.12.674c-.05.246-.076.478-.076.695%200%20.247.047.453.141.62.095.166.28.25.555.25.565%200%201.032-.305%201.402-.913.37-.609.554-1.428.554-2.457%200-.87-.145-1.641-.435-2.315a4.728%204.728%200%200%200-1.206-1.696%205.127%205.127%200%200%200-1.837-1.032%207.456%207.456%200%200%200-2.326-.348c-.913%200-1.75.163-2.511.489-.76.326-1.41.775-1.946%201.348a6.13%206.13%200%200%200-1.25%202.022%206.958%206.958%200%200%200-.445%202.51c0%20.957.155%201.82.467%202.587.312.769.75%201.424%201.315%201.968.566.543%201.24.96%202.022%201.25.783.29%201.645.435%202.587.435%201.174%200%202.185-.189%203.033-.566a8.07%208.07%200%200%200%20.92-.482l.789%201.664z%22%20fill%3D%22%23FFF%22%2F%3E%3Cg%20transform%3D%22translate(0%20560)%22%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2214%22%20r%3D%2214%22%2F%3E%3Cpath%20d%3D%22M14%2022a8%208%200%201%201%200-16%208%208%200%200%201%200%2016zm1-11a1%201%200%200%200-2%200v3.5c0%20.304.138.59.375.78l2.5%202a1%201%200%201%200%201.251-1.561L15%2014.02V11z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%20588)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M13.974%2019c-.485%200-.793-.038-.847.058-.617%201.103-1.525%201.866-3.746%201.94-.047.002-.11.004-.188.005a.1.1%200%200%201-.084-.157c.03-.042.053-.078.07-.107.805-1.234%201.242-2.27.85-2.71C8.2%2017.038%207%2015.38%207%2013.5%207%2010.462%2010.134%208%2014%208s7%202.462%207%205.5-3.134%205.5-7%205.5h-.026zm-3.845-.917l-.1-.053.1.053z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%20616)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M16.415%2014c1.456-5.04-2.803-7-2.803-7-.291%202.52-1.747%203.045-3.276%204.375-2.549%202.205-2.33%204.375-2.33%204.375-.182%203.36%204.186%204.83%204.186%204.83-2.002-3.5.947-5.25.947-5.25-.11%204.515%203.604%205.67%203.604%205.67%206.08-3.185%201.784-9.835%201.784-9.835C18.38%2013.44%2016.415%2014%2016.415%2014z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%20644)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20opacity%3D%22.1%22%20d%3D%22M4%204h20v20H4z%22%2F%3E%3Cpath%20d%3D%22M11.577%2012.337c4.688-.336%207.56.7%209.317%204.216a1%201%200%200%201-1.788.894c-1.35-2.698-3.618-3.456-7.825-3.08l2.426%202.426a1%201%200%201%201-1.414%201.414L8.505%2014.42a1.3%201.3%200%200%201%200-1.838l3.788-3.788a1%201%200%200%201%201.414%201.414l-2.13%202.13z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%20672)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M8.015%2019.477l2.806-8.19a.75.75%200%200%201%20.466-.466l8.19-2.806a.4.4%200%200%201%20.508.508l-2.806%208.19a.75.75%200%200%201-.466.466l-8.19%202.806a.4.4%200%200%201-.508-.508zM14%2012.5a1.5%201.5%200%201%200%200%203%201.5%201.5%200%200%200%200-3z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%20700)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M14%2011a1%201%200%200%201%201%201v7a1%201%200%200%201-2%200v-7a1%201%200%200%201%201-1zm-4%202a1%201%200%200%201%201%201v5a1%201%200%200%201-2%200v-5a1%201%200%200%201%201-1zm8-5a1%201%200%200%201%201%201v10a1%201%200%200%201-2%200V9a1%201%200%200%201%201-1z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E") 0 0;
+.settings_separated_row_iconed.icon_type_repost:before,
+.settings_separated_row_iconed.icon_type_story_reply:before,
+.settings_separated_row_iconed.icon_type_wall:before {
+    background: #a5abb4 url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2228%22%20height%3D%22728%22%20viewBox%3D%220%200%2028%20728%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ctitle%3EnotificationsSettings%3C%2Ftitle%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M12.052%2019.676c-.408%201.608.192%201.938%201.34.744l5.045-5.258c1.143-1.19.746-2.366-.895-2.618l-2.31-.355a.228.228%200%200%201-.19-.29l.906-3.576c.408-1.608-.192-1.938-1.34-.744l-5.045%205.258c-1.143%201.19-.746%202.366.895%202.618l2.31.355c.14.022.227.15.19.29l-.906%203.576z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3Cg%20transform%3D%22translate(0%2028)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cg%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%3E%3Cpath%20d%3D%22M13.986%2019.117c-.023.905-.488%201.207-1.33.465-1.25-1.1-2.625-2.395-3.085-2.79-.46-.397-1.195-.466-2.234-.466-1.038%200-1.32-.465-1.32-.93%200-.466-.01-1.372-.01-1.5%200-.043.003-.065.01-.098.014-.072-.042-.73%200-1.194.062-.68.282-.93%201.32-.93%201.04%200%201.775-.07%202.235-.465.46-.397%201.836-1.69%203.086-2.792.842-.742%201.307-.44%201.33.465.03%201.205%200%202.888%200%205.012%200%202.122.03%204.017%200%205.222l-.002.001zM15.88%2012.12c.075.072.215.248.36.502.242.423.385.887.385%201.378%200%20.49-.143.955-.385%201.378-.145.254-.285.43-.36.503a.881.881%200%200%200%200%201.24c.343.34.897.34%201.24%200%20.175-.178.41-.47.64-.873.383-.67.615-1.425.615-2.247%200-.822-.232-1.576-.615-2.247a4.313%204.313%200%200%200-.64-.872.881.881%200%200%200-1.24%200%20.881.881%200%200%200%200%201.24v-.002zm3-2c.14.136.384.463.64.975.407.814.667%201.79.705%202.934a6.976%206.976%200%200%201-.705%202.875c-.256.512-.5.84-.64.976a.881.881%200%200%200%200%201.24c.343.34.897.34%201.24%200%20.262-.265.62-.74.965-1.433.517-1.033.843-2.255.89-3.658-.047-1.462-.373-2.684-.89-3.717-.346-.692-.703-1.168-.966-1.432a.881.881%200%200%200-1.24%200%20.881.881%200%200%200%200%201.24h.001z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%2056)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M9%209h10a1%201%200%200%201%200%202H9a1%201%200%200%201%200-2zm0%204h10a1%201%200%200%201%200%202H9a1%201%200%200%201%200-2zm0%204h6a1%201%200%200%201%200%202H9a1%201%200%200%201%200-2z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%2084)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M12.568%2018.665l-3.663-3.758a3.224%203.224%200%200%201%200-4.48%203.035%203.035%200%200%201%204.367%200c.337.346.58.75.728%201.182.15-.432.39-.837.728-1.182a3.033%203.033%200%200%201%204.367%200%203.224%203.224%200%200%201%200%204.48l-3.663%203.757a2%202%200%200%201-2.828.035c-.012-.01-.024-.023-.036-.035v.001z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M16%20122v-1.599a.75.75%200%200%201%201.166-.624l3.898%202.599a.75.75%200%200%201%200%201.248l-3.898%202.599a.75.75%200%200%201-1.166-.624V124h-5a1%201%200%200%200-1%201v4a1%201%200%200%200%201%201h4a1%201%200%200%201%200%202h-4a3%203%200%200%201-3-3v-4a3%203%200%200%201%203-3h5z%22%20fill%3D%22%23FFF%22%2F%3E%3Cg%20transform%3D%22translate(0%20140)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M15%2018l-2.745%202.708c-.278.29-1.177.588-1.255-.208V18H9c-.5%200-1-.5-1-1v-7c0-.5.5-1%201-1h10c.5%200%201%20.5%201%201v7c0%20.5-.5%201-1%201h-4z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M14.26%20179.63c-.347%200-.651.102-.912.305s-.482.46-.663.772a3.946%203.946%200%200%200-.413%201.032c-.094.377-.142.74-.142%201.087%200%20.174.019.359.055.554.036.196.108.377.217.544.109.167.25.304.424.413.174.109.406.163.696.163.391%200%20.724-.098%201-.293.275-.196.5-.443.674-.74.174-.297.3-.62.38-.967.08-.348.12-.667.12-.957%200-.231-.022-.46-.066-.684a1.86%201.86%200%200%200-.228-.609%201.311%201.311%200%200%200-.445-.446%201.304%201.304%200%200%200-.696-.174zm4.982%209.356a7.79%207.79%200%200%201-1.22.557c-1.174.42-2.413.63-3.718.63-1.246%200-2.38-.198-3.402-.597-1.022-.398-1.895-.953-2.62-1.663a7.374%207.374%200%200%201-1.684-2.554c-.399-.993-.598-2.076-.598-3.25%200-1.16.217-2.232.652-3.218a7.996%207.996%200%200%201%201.783-2.565%208.425%208.425%200%200%201%205.87-2.326c.985%200%201.941.145%202.869.435a7.39%207.39%200%200%201%202.467%201.304%206.36%206.36%200%200%201%201.718%202.174c.427.87.641%201.891.641%203.065%200%20.87-.12%201.638-.359%202.305-.239.666-.558%201.224-.956%201.674a3.915%203.915%200%200%201-2.99%201.347c-.58%200-1.043-.137-1.39-.413-.348-.275-.522-.623-.522-1.043h-.11c-.216.348-.55.677-1%20.989-.448.312-1%20.467-1.651.467-.986%200-1.747-.326-2.283-.978-.536-.652-.804-1.5-.804-2.543%200-.61.101-1.21.304-1.805a5.112%205.112%200%200%201%20.87-1.587%204.455%204.455%200%200%201%201.348-1.12%203.592%203.592%200%200%201%201.739-.423c.55%200%201.014.116%201.391.348.377.232.623.514.74.847l.195-.87h1.935l-.848%204.11a11.28%2011.28%200%200%201-.12.674c-.05.246-.076.478-.076.695%200%20.247.047.453.141.62.095.166.28.25.555.25.565%200%201.032-.305%201.402-.913.37-.609.554-1.428.554-2.457%200-.87-.145-1.641-.435-2.315a4.728%204.728%200%200%200-1.206-1.696%205.127%205.127%200%200%200-1.837-1.032%207.456%207.456%200%200%200-2.326-.348c-.913%200-1.75.163-2.511.489-.76.326-1.41.775-1.946%201.348a6.13%206.13%200%200%200-1.25%202.022%206.958%206.958%200%200%200-.445%202.51c0%20.957.155%201.82.467%202.587.312.769.75%201.424%201.315%201.968.566.543%201.24.96%202.022%201.25.783.29%201.645.435%202.587.435%201.174%200%202.185-.189%203.033-.566a8.07%208.07%200%200%200%20.92-.482l.789%201.664z%22%20fill%3D%22%23FFF%22%2F%3E%3Cg%20transform%3D%22translate(0%20196)%22%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2214%22%20r%3D%2214%22%2F%3E%3Cpath%20d%3D%22M14.988%209.977l3.035%203.035-5.54%205.539a5.722%205.722%200%200%201-2.375%201.426l-2.488.76a.286.286%200%200%201-.358-.358l.76-2.488a5.722%205.722%200%200%201%201.427-2.375l5.539-5.539zm.835-.834l1.516-1.516a1.286%201.286%200%200%201%201.818%200l1.216%201.216a1.286%201.286%200%200%201%200%201.818l-1.516%201.516-3.034-3.034z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%20224)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M15%2013V9a1%201%200%200%200-2%200v4H9a1%201%200%200%200%200%202h4v4a1%201%200%200%200%202%200v-4h4a1%201%200%200%200%200-2h-4z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M19.92%20262.016a.885.885%200%200%200-.206.067l-6.214%202.903-5.498-2.568A1.5%201.5%200%200%201%209.5%20261h9a1.5%201.5%200%200%201%201.42%201.016zm.08%202.038v5.446a1.5%201.5%200%200%201-1.5%201.5h-9a1.5%201.5%200%200%201-1.5-1.5v-4.98l5.129%202.397c.236.11.506.11.742%200L20%20264.054zM14%20290.902a3.301%203.301%200%200%200%200%206.6%203.301%203.301%200%200%200%200-6.6zm0-2.402h1.423c.414%200%20.656.12.894.4l.43.533c.219.269.663.567%201.071.567h.273c1.309%200%201.909.8%201.909%202.133v4.735c0%201.178-.977%202.133-2.182%202.133h-7.636c-1.205%200-2.182-.955-2.182-2.133v-4.735C8%20290.8%208.6%20290%209.91%20290h.272c.408%200%20.852-.298%201.07-.567l.431-.533c.238-.28.48-.4.894-.4H14zm-1.95%205.7a1.95%201.95%200%201%201%203.9%200%201.95%201.95%200%200%201-3.9%200z%22%20fill%3D%22%23FFF%22%2F%3E%3Cpath%20d%3D%22M14%20336c7.732%200%2014-6.268%2014-14s-6.268-14-14-14-14%206.268-14%2014%206.268%2014%2014%2014z%22%2F%3E%3Cpath%20opacity%3D%22.1%22%20d%3D%22M6%20314h16v16H6z%22%2F%3E%3Cpath%20d%3D%22M14.75%20328.499v-5.001l4.25-.002V322l-4.25.002V319h4.41c.74%200%201.34.6%201.34%201.34v.987c0%20.37-.3.67-.67.67H19l.063%204.805a1.675%201.675%200%200%201-1.675%201.697H14.75zm-1.5%200h-2.518a1.675%201.675%200%200%201-1.675-1.655l-.04-3.344%204.233-.002v5.001zM9%20322.004v-.007h-.83a.67.67%200%200%201-.67-.67v-.987c0-.74.6-1.34%201.34-1.34h4.41v3.002l-4.25.002zM14%20319c-3.333-.333-5-1.333-5-3%200-1.105%201-2%202-2%201.667%200%202.667%201.667%203%205zm-1.5-1.5c-.133-1.333-.533-2-1.2-2-.4%200-.8.358-.8.8%200%20.667.667%201.067%202%201.2zm3%200c1.333-.133%202-.533%202-1.2%200-.442-.4-.8-.8-.8-.667%200-1.067.667-1.2%202zM14%20319c.333-3.333%201.333-5%203-5%201%200%202%20.895%202%202%200%201.667-1.667%202.667-5%203z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3Cpath%20d%3D%22M16.058%20344a1.4%201.4%200%200%200-.058.4v1.2a1.4%201.4%200%200%200%201.4%201.4h.2a1.4%201.4%200%200%200%201.4-1.4v-1.2a1.4%201.4%200%200%200-.058-.4A2.1%202.1%200%200%201%2021%20346.1v8.8a2.1%202.1%200%200%201-2.1%202.1H9.1a2.1%202.1%200%200%201-2.1-2.1v-8.8a2.1%202.1%200%200%201%202.058-2.1%201.4%201.4%200%200%200-.058.4v1.2a1.4%201.4%200%200%200%201.4%201.4h.2a1.4%201.4%200%200%200%201.4-1.4v-1.2a1.4%201.4%200%200%200-.058-.4h4.116zM9.2%20349a.2.2%200%200%200-.2.2v5.6c0%20.11.09.2.2.2h9.6a.2.2%200%200%200%20.2-.2v-5.6a.2.2%200%200%200-.2-.2H9.2zm1-6h.6c.11%200%20.2.09.2.2v2.6a.2.2%200%200%201-.2.2h-.6a.2.2%200%200%201-.2-.2v-2.6c0-.11.09-.2.2-.2zm7%200h.6c.11%200%20.2.09.2.2v2.6a.2.2%200%200%201-.2.2h-.6a.2.2%200%200%201-.2-.2v-2.6c0-.11.09-.2.2-.2zM8.672%20428c.217.011.396.023.536.037%205.64.563%2010.133%205.023%2010.745%2010.648.018.165.033.38.046.642a.641.641%200%200%201-.64.673h-1.124a.641.641%200%200%201-.64-.606%208.896%208.896%200%200%200-.044-.547%209.622%209.622%200%200%200-8.633-8.422%207.566%207.566%200%200%200-.31-.022.641.641%200%200%201-.608-.64v-1.122a.641.641%200%200%201%20.672-.64zm.015%204.033c.304.022.472.035.504.04a8.022%208.022%200%200%201%206.698%206.498c.033.185.062.432.086.738a.641.641%200%200%201-.64.691H14.33a.641.641%200%200%201-.639-.587%204.574%204.574%200%200%200-.037-.324%205.73%205.73%200%200%200-4.74-4.741l-.323-.027a.641.641%200%200%201-.591-.639v-1.01a.641.641%200%200%201%20.687-.64zM11.302%20440h-2.66a.641.641%200%200%201-.642-.641v-2.664a.641.641%200%200%201%20.797-.623%204.013%204.013%200%200%201%203.097%202.976c.015.06.029.13.041.211a.641.641%200%200%201-.633.741z%22%20fill%3D%22%23FFF%22%2F%3E%3Cpath%20opacity%3D%22.1%22%20d%3D%22M6%20370h16v16H6z%22%2F%3E%3Cpath%20d%3D%22M16.75%20374.25a2.75%202.75%200%201%200-5.5%200%202.75%202.75%200%201%200%205.5%200zm-8.25%207.365v.715c0%20.37.3.67.67.67h9.66c.37%200%20.67-.3.67-.67v-.715c0-2.423-3.664-3.115-5.5-3.115-1.836%200-5.5.692-5.5%203.115z%22%20fill%3D%22%23FFF%22%2F%3E%3Cpath%20d%3D%22M14%20420c7.732%200%2014-6.268%2014-14s-6.268-14-14-14-14%206.268-14%2014%206.268%2014%2014%2014z%22%2F%3E%3Cpath%20opacity%3D%22.1%22%20d%3D%22M6%20398h16v16H6z%22%2F%3E%3Cpath%20d%3D%22M14.75%20412.499v-5.001l4.25-.002V406l-4.25.002V403h4.41c.74%200%201.34.6%201.34%201.34v.987c0%20.37-.3.67-.67.67H19l.063%204.805a1.675%201.675%200%200%201-1.675%201.697H14.75zm-1.5%200h-2.518a1.675%201.675%200%200%201-1.675-1.655l-.04-3.344%204.233-.002v5.001zM9%20406.004v-.007h-.83a.67.67%200%200%201-.67-.67v-.987c0-.74.6-1.34%201.34-1.34h4.41v3.002l-4.25.002zM14%20403c-3.333-.333-5-1.333-5-3%200-1.105%201-2%202-2%201.667%200%202.667%201.667%203%205zm-1.5-1.5c-.133-1.333-.533-2-1.2-2-.4%200-.8.358-.8.8%200%20.667.667%201.067%202%201.2zm3%200c1.333-.133%202-.533%202-1.2%200-.442-.4-.8-.8-.8-.667%200-1.067.667-1.2%202zM14%20403c.333-3.333%201.333-5%203-5%201%200%202%20.895%202%202%200%201.667-1.667%202.667-5%203z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3Cg%20transform%3D%22translate(0%20448)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M21.77%2014.686c.1.367.996%204.127-1.593%204.31-1.095.092-2.29-1.467-3.186-2.293-.796-.917-1.692-1.375-3.086-1.375-1.393%200-2.19.458-3.086%201.375-.896.826-2.09%202.385-3.087%202.293-2.488-.092-1.592-3.943-1.492-4.31C6.636%2012.668%208.03%209%2010.818%209c0%200%20.896.092%201.593.46%201.196.457%201.793.457%203.087%200C16.294%209.09%2017.09%209%2017.09%209c2.888%200%204.182%203.577%204.68%205.686zM16%2012a1%201%200%200%200%200%202h2a1%201%200%200%200%200-2h-2zm-6%200a1%201%200%201%200%200%202%201%201%200%200%200%200-2z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%20476)%22%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2214%22%20r%3D%2214%22%2F%3E%3Cpath%20d%3D%22M15.6%2010h-5.2A1.4%201.4%200%200%200%209%2011.4v5.2a1.4%201.4%200%200%200%201.4%201.4h5.2a1.4%201.4%200%200%200%201.4-1.4v-1.267l2.534%202.253a.28.28%200%200%200%20.466-.21v-6.752a.28.28%200%200%200-.466-.21L17%2012.667V11.4a1.4%201.4%200%200%200-1.4-1.4z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%20504)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M16%2016h-2v1h2.3c.11%200%20.2.09.2.2v1.6a.2.2%200%200%201-.2.2H14v1.8a.2.2%200%200%201-.2.2h-1.6a.2.2%200%200%201-.2-.2V19h-1.8a.2.2%200%200%201-.2-.2v-1.6c0-.11.09-.2.2-.2H12v-1h-1.8a.2.2%200%200%201-.2-.2v-1.6c0-.11.09-.2.2-.2H12V8.2c0-.11.09-.2.2-.2h3.55v.008A4%204%200%201%201%2016%2016zm-2-6v4h2a2%202%200%201%200%200-4h-2z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M14.26%20543.63c-.347%200-.651.102-.912.305s-.482.46-.663.772a3.946%203.946%200%200%200-.413%201.032c-.094.377-.142.74-.142%201.087%200%20.174.019.359.055.554.036.196.108.377.217.544.109.167.25.304.424.413.174.109.406.163.696.163.391%200%20.724-.098%201-.293.275-.196.5-.443.674-.74.174-.297.3-.62.38-.967.08-.348.12-.667.12-.957%200-.231-.022-.46-.066-.684a1.86%201.86%200%200%200-.228-.609%201.311%201.311%200%200%200-.445-.446%201.304%201.304%200%200%200-.696-.174zm4.982%209.356a7.79%207.79%200%200%201-1.22.557c-1.174.42-2.413.63-3.718.63-1.246%200-2.38-.198-3.402-.597-1.022-.398-1.895-.953-2.62-1.663a7.374%207.374%200%200%201-1.684-2.554c-.399-.993-.598-2.076-.598-3.25%200-1.16.217-2.232.652-3.218a7.996%207.996%200%200%201%201.783-2.565%208.425%208.425%200%200%201%205.87-2.326c.985%200%201.941.145%202.869.435a7.39%207.39%200%200%201%202.467%201.304%206.36%206.36%200%200%201%201.718%202.174c.427.87.641%201.891.641%203.065%200%20.87-.12%201.638-.359%202.305-.239.666-.558%201.224-.956%201.674a3.915%203.915%200%200%201-2.99%201.347c-.58%200-1.043-.137-1.39-.413-.348-.275-.522-.623-.522-1.043h-.11c-.216.348-.55.677-1%20.989-.448.312-1%20.467-1.651.467-.986%200-1.747-.326-2.283-.978-.536-.652-.804-1.5-.804-2.543%200-.61.101-1.21.304-1.805a5.112%205.112%200%200%201%20.87-1.587%204.455%204.455%200%200%201%201.348-1.12%203.592%203.592%200%200%201%201.739-.423c.55%200%201.014.116%201.391.348.377.232.623.514.74.847l.195-.87h1.935l-.848%204.11a11.28%2011.28%200%200%201-.12.674c-.05.246-.076.478-.076.695%200%20.247.047.453.141.62.095.166.28.25.555.25.565%200%201.032-.305%201.402-.913.37-.609.554-1.428.554-2.457%200-.87-.145-1.641-.435-2.315a4.728%204.728%200%200%200-1.206-1.696%205.127%205.127%200%200%200-1.837-1.032%207.456%207.456%200%200%200-2.326-.348c-.913%200-1.75.163-2.511.489-.76.326-1.41.775-1.946%201.348a6.13%206.13%200%200%200-1.25%202.022%206.958%206.958%200%200%200-.445%202.51c0%20.957.155%201.82.467%202.587.312.769.75%201.424%201.315%201.968.566.543%201.24.96%202.022%201.25.783.29%201.645.435%202.587.435%201.174%200%202.185-.189%203.033-.566a8.07%208.07%200%200%200%20.92-.482l.789%201.664z%22%20fill%3D%22%23FFF%22%2F%3E%3Cg%20transform%3D%22translate(0%20560)%22%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2214%22%20r%3D%2214%22%2F%3E%3Cpath%20d%3D%22M14%2022a8%208%200%201%201%200-16%208%208%200%200%201%200%2016zm1-11a1%201%200%200%200-2%200v3.5c0%20.304.138.59.375.78l2.5%202a1%201%200%201%200%201.251-1.561L15%2014.02V11z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%20588)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M13.974%2019c-.485%200-.793-.038-.847.058-.617%201.103-1.525%201.866-3.746%201.94-.047.002-.11.004-.188.005a.1.1%200%200%201-.084-.157c.03-.042.053-.078.07-.107.805-1.234%201.242-2.27.85-2.71C8.2%2017.038%207%2015.38%207%2013.5%207%2010.462%2010.134%208%2014%208s7%202.462%207%205.5-3.134%205.5-7%205.5h-.026zm-3.845-.917l-.1-.053.1.053z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%20616)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M16.415%2014c1.456-5.04-2.803-7-2.803-7-.291%202.52-1.747%203.045-3.276%204.375-2.549%202.205-2.33%204.375-2.33%204.375-.182%203.36%204.186%204.83%204.186%204.83-2.002-3.5.947-5.25.947-5.25-.11%204.515%203.604%205.67%203.604%205.67%206.08-3.185%201.784-9.835%201.784-9.835C18.38%2013.44%2016.415%2014%2016.415%2014z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%20644)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20opacity%3D%22.1%22%20d%3D%22M4%204h20v20H4z%22%2F%3E%3Cpath%20d%3D%22M11.577%2012.337c4.688-.336%207.56.7%209.317%204.216a1%201%200%200%201-1.788.894c-1.35-2.698-3.618-3.456-7.825-3.08l2.426%202.426a1%201%200%201%201-1.414%201.414L8.505%2014.42a1.3%201.3%200%200%201%200-1.838l3.788-3.788a1%201%200%200%201%201.414%201.414l-2.13%202.13z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%20672)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M8.015%2019.477l2.806-8.19a.75.75%200%200%201%20.466-.466l8.19-2.806a.4.4%200%200%201%20.508.508l-2.806%208.19a.75.75%200%200%201-.466.466l-8.19%202.806a.4.4%200%200%201-.508-.508zM14%2012.5a1.5%201.5%200%201%200%200%203%201.5%201.5%200%200%200%200-3z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%20700)%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%2214%22%2F%3E%3Cpath%20d%3D%22M14%2011a1%201%200%200%201%201%201v7a1%201%200%200%201-2%200v-7a1%201%200%200%201%201-1zm-4%202a1%201%200%200%201%201%201v5a1%201%200%200%201-2%200v-5a1%201%200%200%201%201-1zm8-5a1%201%200%200%201%201%201v10a1%201%200%200%201-2%200V9a1%201%200%200%201%201-1z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E") 0 0
 }
 
+.settings_separated_row_iconed.icon_type_clock:before,
+.settings_separated_row_iconed.icon_type_email:before,
 .settings_separated_row_iconed.icon_type_ienable:before,
 .settings_separated_row_iconed.icon_type_isounds:before,
-.settings_separated_row_iconed.icon_type_itexts:before,
-.settings_separated_row_iconed.icon_type_email:before,
-.settings_separated_row_iconed.icon_type_clock:before {
-    background-color: #A5ABB4;
+.settings_separated_row_iconed.icon_type_itexts:before {
+    background-color: #a5abb4
 }
 
-.settings_separated_row_iconed.icon_type_like:before,
-.settings_separated_row_iconed.icon_type_event:before,
-.settings_separated_row_iconed.icon_type_live:before,
 .settings_separated_row_iconed.icon_type_birthday:before,
-.settings_separated_row_iconed.icon_type_interesting:before {
-    background-color: #E64646;
+.settings_separated_row_iconed.icon_type_event:before,
+.settings_separated_row_iconed.icon_type_interesting:before,
+.settings_separated_row_iconed.icon_type_like:before,
+.settings_separated_row_iconed.icon_type_live:before {
+    background-color: #e64646
 }
 
-.settings_separated_row_iconed.icon_type_repost:before,
 .settings_separated_row_iconed.icon_type_comment:before,
-.settings_separated_row_iconed.icon_type_photo_tag:before,
 .settings_separated_row_iconed.icon_type_invite_app:before,
-.settings_separated_row_iconed.icon_type_message:before {
-    background-color: #4BB34B;
+.settings_separated_row_iconed.icon_type_message:before,
+.settings_separated_row_iconed.icon_type_photo_tag:before,
+.settings_separated_row_iconed.icon_type_repost:before {
+    background-color: #4bb34b
 }
 
-.settings_separated_row_iconed.icon_type_new_post:before,
-.settings_separated_row_iconed.icon_type_gift:before {
-    background-color: #FFA000;
+.settings_separated_row_iconed.icon_type_gift:before,
+.settings_separated_row_iconed.icon_type_new_post:before {
+    background-color: #ffa000
 }
 
-.settings_separated_row_iconed.icon_type_mention:before,
-.settings_separated_row_iconed.icon_type_wall:before,
 .settings_separated_row_iconed.icon_type_follow:before,
+.settings_separated_row_iconed.icon_type_friend_found:before,
 .settings_separated_row_iconed.icon_type_invite_group:before,
+.settings_separated_row_iconed.icon_type_mention:before,
 .settings_separated_row_iconed.icon_type_related_events:before,
-.settings_separated_row_iconed.icon_type_friend_found:before {
-    background-color: #5C9CE6;
+.settings_separated_row_iconed.icon_type_wall:before {
+    background-color: #5c9ce6
 }
 
 .settings_separated_row_iconed.icon_type_story_reply:before {
-    background-color: #AA65F0;
+    background-color: #aa65f0
 }
 
 .settings_separated_row_iconed.icon_type_private_post:before {
-    background-color: #444444;
+    background-color: #444
 }
 
 .settings_separated_row_iconed.icon_type_ads:before {
-    background-color: #63B9BA;
+    background-color: #63b9ba
 }
 
 .settings_separated_row_iconed.icon_type_isounds:before {
-    background-position: 0 -28px;
+    background-position: 0 -28px
 }
 
 .settings_separated_row_iconed.icon_type_itexts:before {
-    background-position: 0 -56px;
+    background-position: 0 -56px
 }
 
 .settings_separated_row_iconed.icon_type_like:before {
-    background-position: 0 -84px;
+    background-position: 0 -84px
 }
 
 .settings_separated_row_iconed.icon_type_repost:before {
-    background-position: 0 -112px;
+    background-position: 0 -112px
 }
 
 .settings_separated_row_iconed.icon_type_comment:before {
-    background-position: 0 -140px;
+    background-position: 0 -140px
 }
 
 .settings_separated_row_iconed.icon_type_email:before,
 .settings_separated_row_iconed.icon_type_mention:before {
-    background-position: 0 -168px;
+    background-position: 0 -168px
 }
 
 .settings_separated_row_iconed.icon_type_wall:before {
-    background-position: 0 -196px;
+    background-position: 0 -196px
 }
 
 .settings_separated_row_iconed.icon_type_photo_tag:before {
-    background-position: 0 -280px;
+    background-position: 0 -280px
 }
 
 .settings_separated_row_iconed.icon_type_invite_app:before {
-    background-position: 0 -448px;
+    background-position: 0 -448px
 }
 
 .settings_separated_row_iconed.icon_type_follow:before {
-    background-position: 0 -224px;
+    background-position: 0 -224px
 }
 
 .settings_separated_row_iconed.icon_type_invite_group:before {
-    background-position: 0 -252px;
+    background-position: 0 -252px
 }
 
 .settings_separated_row_iconed.icon_type_birthday:before {
-    background-position: 0 -308px;
+    background-position: 0 -308px
 }
 
 .settings_separated_row_iconed.icon_type_ads:before {
-    background-position: 0 -504px;
+    background-position: 0 -504px
 }
 
 .settings_separated_row_iconed.icon_type_event:before {
-    background-position: 0 -336px;
+    background-position: 0 -336px
 }
 
 .settings_separated_row_iconed.icon_type_live:before {
-    background-position: 0 -476px;
+    background-position: 0 -476px
 }
 
 .settings_separated_row_iconed.icon_type_new_post:before {
-    background-position: 0 -420px;
+    background-position: 0 -420px
 }
 
 .settings_separated_row_iconed.icon_type_gift:before {
-    background-position: 0 -392px;
+    background-position: 0 -392px
 }
 
 .settings_separated_row_iconed.icon_type_clock:before {
-    background-position: 0 -560px;
+    background-position: 0 -560px
 }
 
 .settings_separated_row_iconed.icon_type_message:before {
-    background-position: 0 -588px;
+    background-position: 0 -588px
 }
 
 .settings_separated_row_iconed.icon_type_interesting:before {
-    background-position: 0 -616px;
+    background-position: 0 -616px
 }
 
 .settings_separated_row_iconed.icon_type_story_reply:before {
-    background-position: 0 -644px;
+    background-position: 0 -644px
 }
 
 .settings_separated_row_iconed.icon_type_related_events:before {
-    background-position: 0 -672px;
+    background-position: 0 -672px
 }
 
 .settings_separated_row_iconed.icon_type_private_post:before {
-    background-position: 0 -420px;
+    background-position: 0 -420px
 }
 
 .settings_separated_row_iconed.icon_type_friend_found:before {
-    background-position: 0 -364px;
+    background-position: 0 -364px
 }
 
 .settings_site_notify .settings_separated_row {
-    cursor: pointer;
+    cursor: pointer
 }

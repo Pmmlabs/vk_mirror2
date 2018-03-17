@@ -1,44 +1,44 @@
 #widget_auth_css {
-    display: none;
+    display: none
 }
 
 .wauth_content_loading:before,
 .wauth_logo:before {
-    -ms-high-contrast-adjust: none;
+    -ms-high-contrast-adjust: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 #page_wrap {
-    background: #FFFFFF;
+    background: #fff;
     min-width: 200px;
     border-radius: 3px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .wauth_content {
     padding: 10px 9px 9px;
-    border: 1px solid #E1E4EB;
+    border: 1px solid #e1e4eb;
     border-top: 0;
-    border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px
 }
 
 .wauth_content_loading {
-    position: relative;
+    position: relative
 }
 
 .wauth_content_loading * {
     opacity: 0;
-    filter: alpha(opacity=0);
+    filter: alpha(opacity=0)
 }
 
 .wauth_content_loading:before {
@@ -67,7 +67,7 @@
     margin: -17px;
     opacity: 1;
     -webkit-filter: none;
-    filter: none;
+    filter: none
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -75,7 +75,7 @@
 (min-resolution: 192dpi) {
     .wauth_content_loading:before {
         background-image: url(/images/icons/round_spinner_big_2x.png);
-        background-size: 34px 34px;
+        background-size: 34px 34px
     }
 }
 
@@ -89,10 +89,10 @@
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    color: white;
+    color: #fff;
     white-space: nowrap;
     text-overflow: ellipsis;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .wauth_logo {
@@ -102,7 +102,7 @@
     float: right;
     width: 28px;
     height: 28px;
-    border-radius: 50%;
+    border-radius: 50%
 }
 
 .wauth_logo:before {
@@ -112,7 +112,7 @@
     background: url(/images/icons/comments_widget.png);
     width: 20px;
     height: 12px;
-    margin: 8px 4px;
+    margin: 8px 4px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -120,7 +120,7 @@
 (min-resolution: 192dpi) {
     .wauth_logo:before {
         background-image: url(/images/icons/comments_widget_2x.png);
-        background-size: 21px 87px;
+        background-size: 21px 87px
     }
 }
 
@@ -128,70 +128,65 @@
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
-.wauth_error,
-.wauth_empty {
+.wauth_empty,
+.wauth_error {
     word-wrap: break-word;
     text-align: center;
     color: #939393;
     font-size: 13px;
     line-height: 16px;
-    padding-bottom: 10px;
+    padding-bottom: 10px
 }
 
 .wauth_user_block {
     height: 34px;
     position: relative;
-    padding-bottom: 10px;
+    padding-bottom: 10px
 }
 
-.wauth_user_pic {
+.wauth_user_pic,
+.wauth_user_pic img {
     width: 34px;
     height: 34px;
-    border-radius: 50%;
+    border-radius: 50%
 }
 
 .wauth_user_pic img {
     vertical-align: top;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc;
+    background-color: #fafbfc
 }
 
 .wauth_user_pic img:before {
+    background-color: #fff
+}
+
+.wauth_user_pic img:before,
+.wauth_user_pic img:after {
     content: " ";
     display: block;
     position: absolute;
     top: 0;
     left: 0;
     width: 34px;
-    height: 34px;
-    background-color: #FFF;
+    height: 34px
 }
 
 .wauth_user_pic img:after {
-    width: 34px;
-    height: 34px;
     border-radius: 50%;
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
-    background-size: cover;
+    background-size: cover
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .wauth_user_pic img:after {
-        background-image: url(/images/camera_200.png);
+        background-image: url(/images/camera_200.png)
     }
 }
 
@@ -202,83 +197,78 @@
     left: 43px;
     right: 0;
     font-size: 13px;
-    line-height: 16px;
+    line-height: 16px
 }
 
 .wauth_user_name {
-    color: #42648B;
+    color: #42648b
 }
 
 .wauth_user_name a {
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale
 }
 
 .wauth_info_row {
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
-.wauth_info_row.wauth_grey_row {
-    color: #939393;
-}
-
-.wauth_info_row.wauth_grey_row b,
-.wauth_info_row.wauth_grey_row a {
-    color: #939393;
+.wauth_info_row.wauth_grey_row,
+.wauth_info_row.wauth_grey_row a,
+.wauth_info_row.wauth_grey_row b {
+    color: #939393
 }
 
 .wauth_friends_list {
-    padding-top: 10px;
+    padding-top: 10px
 }
 
 .wauth_friend {
+    display: inline-block
+}
+
+.wauth_friend,
+.wauth_friend img {
     width: 50%;
     height: 50%;
-    border-radius: 50%;
-    display: inline-block;
+    border-radius: 50%
 }
 
 .wauth_friend img {
     vertical-align: top;
-    width: 50%;
-    height: 50%;
-    border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc;
+    background-color: #fafbfc
 }
 
 .wauth_friend img:before {
+    background-color: #fff
+}
+
+.wauth_friend img:before,
+.wauth_friend img:after {
     content: " ";
     display: block;
     position: absolute;
     top: 0;
     left: 0;
     width: 50%;
-    height: 50%;
-    background-color: #FFF;
+    height: 50%
 }
 
 .wauth_friend img:after {
-    width: 50%;
-    height: 50%;
     border-radius: 50%;
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
-    background-size: cover;
+    background-size: cover
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .wauth_friend img:after {
-        background-image: url(/images/camera_200.png);
+        background-image: url(/images/camera_200.png)
     }
 }

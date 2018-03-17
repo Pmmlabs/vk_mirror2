@@ -1,34 +1,34 @@
 #public_css {
-    display: none;
+    display: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 #public_like_module .group_send_msg {
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
 .public_help_block {
     display: block;
     font-size: 12px;
     padding: 8px 0 8px 48px;
-    color: #000;
+    color: #000
 }
 
 .public_help_block:hover {
-    text-decoration: none;
+    text-decoration: none
 }
 
-.public_help_block::before {
+.public_help_block:before {
     display: block;
     content: '';
     position: absolute;
@@ -37,39 +37,39 @@
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    background: #648FC9 url('/images/svg_icons/groups/market.svg') no-repeat 50% 50%;
+    background: #648fc9 url('/images/svg_icons/groups/market.svg') no-repeat 50% 50%
 }
 
-.help_step_photo.public_help_block::before {
+.help_step_photo.public_help_block:before {
     background-image: url('/images/svg_icons/groups/photo.svg');
-    background-position: 50% calc(50% - 1px);
+    background-position: 50% calc(50% - 1px)
 }
 
-.help_step_contacts.public_help_block::before {
-    background-image: url('/images/svg_icons/groups/contacts.svg');
+.help_step_contacts.public_help_block:before {
+    background-image: url('/images/svg_icons/groups/contacts.svg')
 }
 
-.help_step_links.public_help_block::before {
-    background-image: url('/images/svg_icons/groups/links.svg');
+.help_step_links.public_help_block:before {
+    background-image: url('/images/svg_icons/groups/links.svg')
 }
 
-.help_step_ad.public_help_block::before {
-    background-image: url('/images/svg_icons/groups/ad.svg');
+.help_step_ad.public_help_block:before {
+    background-image: url('/images/svg_icons/groups/ad.svg')
 }
 
-.help_step_wall.public_help_block::before {
+.help_step_wall.public_help_block:before {
     background-image: url('/images/svg_icons/groups/wall.svg');
-    background-position: 50% calc(50% + 1px);
+    background-position: 50% calc(50% + 1px)
 }
 
-.help_step_desc.public_help_block::before {
+.help_step_desc.public_help_block:before {
     background-image: url('/images/svg_icons/groups/desc.svg');
-    background-position: calc(50% - 1px) calc(50% - 1px);
+    background-position: calc(50% - 1px) calc(50% - 1px)
 }
 
-.help_step_event.public_help_block::before {
+.help_step_event.public_help_block:before {
     background-image: url('/images/svg_icons/groups/event.svg');
-    background-position: 50% calc(50% + 1px);
+    background-position: 50% calc(50% + 1px)
 }
 
 .public_help_label {
@@ -77,5 +77,5 @@
     vertical-align: middle;
     height: 28px;
     line-height: 16px;
-    padding-right: 4px;
+    padding-right: 4px
 }

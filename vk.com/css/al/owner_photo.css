@@ -1,51 +1,51 @@
 #owner_photo_css {
-    display: none;
+    display: none
 }
 
-.owner_photo_rotate_right,
-.owner_photo_rotate_left {
-    -ms-high-contrast-adjust: none;
+.owner_photo_rotate_left,
+.owner_photo_rotate_right {
+    -ms-high-contrast-adjust: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .owner_photo_box {
-    padding-top: 2px;
+    padding-top: 2px
 }
 
 .owner_photo_box .error {
     display: none;
-    margin: 18px 25px 2px;
+    margin: 18px 25px 2px
 }
 
 .owner_photo_box .flat_button {
-    margin: 0 5px;
+    margin: 0 5px
 }
 
 .owner_photo_box .owner_photo_crop_img,
 .owner_photo_box .owner_photo_img,
 .owner_photo_box .tag_faded {
-    border-radius: 2px;
+    border-radius: 2px
 }
 
 .owner_photo_content {
-    padding: 20px 25px;
+    padding: 20px 25px
 }
 
 .owner_photo_desc {
     font-size: 14px;
     padding: 12px 0 15px;
     text-align: center;
-    line-height: 150%;
+    line-height: 150%
 }
 
 .owner_photo_additional {
@@ -53,55 +53,55 @@
     text-align: center;
     padding: 12px 25px 14px;
     background: #fafbfc;
-    color: #000000;
+    color: #000;
     border-top: 1px solid #e7e8ec;
-    border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px
 }
 
 .owner_photo_cover .owner_photo_additional {
-    display: none;
+    display: none
 }
 
 .owner_photo_input_wrap {
     margin: 20px auto;
-    text-align: center;
+    text-align: center
 }
 
 .owner_photo_input_wrap .flat_button {
-    min-width: 170px;
+    min-width: 170px
 }
 
 .owner_photo_remove {
-    margin: 10px 0 20px;
+    margin: 10px 0 20px
 }
 
 .owner_photo_crop_thumb {
-    padding: 20px 0;
+    padding: 20px 0
 }
 
 .owner_photo_thumb {
     position: relative;
-    margin: 20px auto;
+    margin: 20px auto
 }
 
 .owner_photo_controls {
     position: relative;
-    text-align: center;
+    text-align: center
 }
 
 .owner_photo_rotate_wrap {
     right: 0;
     bottom: 0;
     position: absolute;
-    z-index: 1900;
+    z-index: 1900
 }
 
 .no_rotate .owner_photo_rotate_wrap {
-    display: none;
+    display: none
 }
 
-.owner_photo_rotate_right,
-.owner_photo_rotate_left {
+.owner_photo_rotate_left,
+.owner_photo_rotate_right {
     background: url(/images/icons/rotate_white.png) no-repeat -2px 3px;
     display: inline-block;
     width: 20px;
@@ -111,61 +111,58 @@
     opacity: 0.65;
     filter: alpha(opacity=65);
     -o-transition: opacity 100ms linear;
-    transition: opacity 100ms linear;
+    transition: opacity 100ms linear
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
-    .owner_photo_rotate_right,
-    .owner_photo_rotate_left {
+    .owner_photo_rotate_left,
+    .owner_photo_rotate_right {
         background-image: url(/images/icons/rotate_white_2x.png);
-        background-size: 41px 19px;
+        background-size: 41px 19px
     }
 }
 
-.owner_photo_rotate_right:hover,
-.owner_photo_rotate_left:hover {
+.owner_photo_rotate_left:hover,
+.owner_photo_rotate_right:hover {
     opacity: 1;
     -webkit-filter: none;
-    filter: none;
+    filter: none
 }
 
 .owner_photo_rotate_right {
-    background-position: -22px 3px;
+    background-position: -22px 3px
 }
 
 .owner_photo_rotate1 {
     -webkit-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
     -o-transform: rotate(90deg);
-    transform: rotate(90deg);
+    transform: rotate(90deg)
 }
 
 .owner_photo_rotate2 {
     -webkit-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
     -o-transform: rotate(180deg);
-    transform: rotate(180deg);
+    transform: rotate(180deg)
 }
 
 .owner_photo_rotate3 {
     -webkit-transform: rotate(270deg);
-    -ms-transform: rotate(270deg);
     -o-transform: rotate(270deg);
-    transform: rotate(270deg);
+    transform: rotate(270deg)
 }
 
 .owner_photo_crop_wrap {
     width: 320px;
-    margin: 0 auto;
+    margin: 0 auto
 }
 
 .owner_photo_crop_wrap .tag_frame {
     overflow: visible;
     border-radius: 0;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-sizing: border-box;
+    border: 1px solid hsla(0, 0%, 100%, .3);
+    box-sizing: border-box
 }
 
 .owner_photo_crop_wrap .tag_frame_inner {
@@ -175,61 +172,61 @@
     left: 0;
     right: 0;
     border-radius: 50%;
-    overflow: hidden;
+    overflow: hidden
 }
 
-.owner_photo_preview100,
-.owner_photo_preview50 {
+.owner_photo_preview50,
+.owner_photo_preview100 {
     cursor: move;
     width: 100px;
     height: 100px;
     border-radius: 50%;
     margin-left: 20px;
     direction: ltr;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .owner_photo_preview50 {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    margin-top: 20px;
+    margin-top: 20px
 }
 
 .owner_photo_webcam_wrap {
     overflow: hidden;
-    height: 479px;
+    height: 479px
 }
 
 .owner_photo_webcam {
     position: relative;
     left: -1px;
-    z-index: 100;
+    z-index: 100
 }
 
 .owner_photo_cam_ctrls {
     margin-top: -49px;
     padding-top: 20px;
-    visibility: hidden;
+    visibility: hidden
 }
 
-.owner_photo_cover .tag_frame_handle.w,
-.owner_photo_cover .tag_frame_handle.n,
 .owner_photo_cover .tag_frame_handle.e,
-.owner_photo_cover .tag_frame_handle.s {
-    display: none !important;
+.owner_photo_cover .tag_frame_handle.n,
+.owner_photo_cover .tag_frame_handle.s,
+.owner_photo_cover .tag_frame_handle.w {
+    display: none!important
 }
 
 .owner_photo_cover .owner_photo_content {
-    padding-bottom: 25px;
+    padding-bottom: 25px
 }
 
 .owner_photo_cover .owner_photo_desc {
-    padding-bottom: 9px;
+    padding-bottom: 9px
 }
 
 .owner_photo_cover_image {
     height: 102px;
     margin: 44px 0 5px;
-    background: url(/images/svg_icons/groups/cover_advice.svg) no-repeat 50% 0;
+    background: url(/images/svg_icons/groups/cover_advice.svg) no-repeat 50% 0
 }

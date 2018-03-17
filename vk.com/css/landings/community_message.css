@@ -1,34 +1,34 @@
 #landings_community_message_css {
-    display: none;
+    display: none
 }
 
-.landing_community_message_app_web,
-.is_2x .landing_community_message_app_web,
-.landing_community_message_app_android,
 .is_2x .landing_community_message_app_android,
-.landing_community_message_app_iphone,
 .is_2x .landing_community_message_app_iphone,
-.landing_community_message_app_shadow,
 .is_2x .landing_community_message_app_shadow,
-.landing_community_message_cause_ic,
-.is_2x .landing_community_message_cause_ic {
-    -ms-high-contrast-adjust: none;
+.is_2x .landing_community_message_app_web,
+.is_2x .landing_community_message_cause_ic,
+.landing_community_message_app_android,
+.landing_community_message_app_iphone,
+.landing_community_message_app_shadow,
+.landing_community_message_app_web,
+.landing_community_message_cause_ic {
+    -ms-high-contrast-adjust: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .landing_community_message_top {
     background: #f7f9fa;
-    padding-top: 52px;
+    padding-top: 52px
 }
 
 .landing_community_message_title,
@@ -36,11 +36,11 @@
     font-size: 36px;
     letter-spacing: -0.1px;
     color: #2b2f33;
-    font-weight: 300;
+    font-weight: 300
 }
 
 .landing_community_message_title2 {
-    font-size: 28px;
+    font-size: 28px
 }
 
 .landing_community_message_descr {
@@ -49,7 +49,7 @@
     color: #65686c;
     width: 683px;
     margin: 28px auto 0px;
-    font-weight: 300;
+    font-weight: 300
 }
 
 .landing_community_message_apps_wrap {
@@ -57,7 +57,7 @@
     width: 747px;
     margin: 48px auto 0px;
     position: relative;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .landing_community_message_app,
@@ -68,26 +68,26 @@
     -o-transition: opacity 200ms linear, margin-top 300ms linear;
     transition: opacity 200ms linear, margin-top 300ms linear;
     margin-top: 15px;
-    opacity: 0.7;
+    opacity: 0.7
 }
 
 .landing_community_message_app_mobile {
     margin-top: 30px;
     height: 100%;
-    z-index: 55;
+    z-index: 55
 }
 
 .landing_community_message_wrap_shown .landing_community_message_app,
 .landing_community_message_wrap_shown .landing_community_message_app_mobile {
     margin-top: 0px;
-    opacity: 1;
+    opacity: 1
 }
 
 .landing_community_message_app_web {
     background: url(/images/pics/cm_macbook.png) no-repeat 0px 0px;
     width: 752px;
     height: 440px;
-    z-index: 1;
+    z-index: 1
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -95,13 +95,13 @@
 (min-resolution: 192dpi) {
     .landing_community_message_app_web {
         background-image: url(/images/pics/cm_macbook_2x.png);
-        background-size: 752px 440px;
+        background-size: 752px 440px
     }
 }
 
 .is_2x .landing_community_message_app_web {
     background-image: url(/images/pics/cm_macbook_2x.png);
-    background-size: 752px 440px;
+    background-size: 752px 440px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -109,7 +109,7 @@
 (min-resolution: 192dpi) {
     .is_2x .landing_community_message_app_web {
         background-image: url(/images/pics/cm_macbook_2x_2x.png);
-        background-size: 752px 440px;
+        background-size: 752px 440px
     }
 }
 
@@ -120,7 +120,7 @@
     left: 200px;
     z-index: 2;
     top: 103px;
-    margin-top: 0px;
+    margin-top: 0px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -128,13 +128,13 @@
 (min-resolution: 192dpi) {
     .landing_community_message_app_android {
         background-image: url(/images/pics/cm_android_2x.png);
-        background-size: 190px 391px;
+        background-size: 190px 391px
     }
 }
 
 .is_2x .landing_community_message_app_android {
     background-image: url(/images/pics/cm_android_2x.png);
-    background-size: 190px 391px;
+    background-size: 190px 391px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -142,7 +142,7 @@
 (min-resolution: 192dpi) {
     .is_2x .landing_community_message_app_android {
         background-image: url(/images/pics/cm_android_2x_2x.png);
-        background-size: 190px 391px;
+        background-size: 190px 391px
     }
 }
 
@@ -153,7 +153,7 @@
     top: 100px;
     z-index: 3;
     left: 47px;
-    margin-top: 0px;
+    margin-top: 0px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -161,13 +161,13 @@
 (min-resolution: 192dpi) {
     .landing_community_message_app_iphone {
         background-image: url(/images/pics/cm_iphone_2x.png?2);
-        background-size: 192px 397px;
+        background-size: 192px 397px
     }
 }
 
 .is_2x .landing_community_message_app_iphone {
     background-image: url(/images/pics/cm_iphone_2x.png?2);
-    background-size: 192px 397px;
+    background-size: 192px 397px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -175,7 +175,7 @@
 (min-resolution: 192dpi) {
     .is_2x .landing_community_message_app_iphone {
         background-image: url(/images/pics/cm_iphone_2x_2x.png?2);
-        background-size: 192px 397px;
+        background-size: 192px 397px
     }
 }
 
@@ -186,7 +186,7 @@
     width: 740px;
     height: 12px;
     background: url(/images/pics/cm_shadow.png) no-repeat 0px 0px;
-    z-index: 4;
+    z-index: 4
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -194,13 +194,13 @@
 (min-resolution: 192dpi) {
     .landing_community_message_app_shadow {
         background-image: url(/images/pics/cm_shadow_2x.png);
-        background-size: 740px 12px;
+        background-size: 740px 12px
     }
 }
 
 .is_2x .landing_community_message_app_shadow {
     background-image: url(/images/pics/cm_shadow_2x.png);
-    background-size: 740px 12px;
+    background-size: 740px 12px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -208,41 +208,41 @@
 (min-resolution: 192dpi) {
     .is_2x .landing_community_message_app_shadow {
         background-image: url(/images/pics/cm_shadow_2x_2x.png);
-        background-size: 740px 12px;
+        background-size: 740px 12px
     }
 }
 
 .landing_community_message_cont {
-    padding: 60px 0px;
+    padding: 60px 0px
 }
 
 .landing_community_message_causes {
     width: 780px;
     margin: 0px auto;
-    margin-top: 45px;
+    margin-top: 45px
 }
 
 .landing_community_message_cause {
     width: 240px;
-    margin-right: 30px;
+    margin-right: 30px
 }
 
 .landing_community_message_cause:last-child {
-    margin-right: 0px;
+    margin-right: 0px
 }
 
 .landing_community_message_cause_ic_wrap {
     width: 160px;
     height: 160px;
     margin: 0px auto;
-    position: relative;
+    position: relative
 }
 
 .landing_community_message_cause_ic {
     background: url(/images/pics/cm_icons.png) no-repeat 0px 0px;
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 50%
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -250,13 +250,13 @@
 (min-resolution: 192dpi) {
     .landing_community_message_cause_ic {
         background-image: url(/images/pics/cm_icons_2x.png);
-        background-size: 96px 293px;
+        background-size: 96px 293px
     }
 }
 
 .is_2x .landing_community_message_cause_ic {
     background-image: url(/images/pics/cm_icons_2x.png);
-    background-size: 96px 293px;
+    background-size: 96px 293px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -264,87 +264,87 @@
 (min-resolution: 192dpi) {
     .is_2x .landing_community_message_cause_ic {
         background-image: url(/images/pics/cm_icons_2x_2x.png);
-        background-size: 96px 293px;
+        background-size: 96px 293px
     }
 }
 
 .landing_community_message_cause_ic1 {
     width: 96px;
     height: 96px;
-    margin: -48px 0px 0px -48px;
+    margin: -48px 0px 0px -48px
 }
 
 .landing_community_message_cause_ic2 {
     width: 64px;
     height: 100px;
     margin: -50px 0px 0px -32px;
-    background-position: 0px -106px;
+    background-position: 0px -106px
 }
 
 .landing_community_message_cause_ic3 {
     width: 96px;
     height: 77px;
     background-position: 0px -216px;
-    margin: -39px 0px 0px -48px;
+    margin: -39px 0px 0px -48px
 }
 
 .landing_community_message_cause_title {
     letter-spacing: -0.1px;
-    color: #2B2F33;
+    color: #2b2f33;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 18px
 }
 
 .landing_community_message_cause_descr {
     font-size: 15px;
-    color: #65686C;
+    color: #65686c;
     font-weight: 300;
     line-height: 22px;
-    margin-top: 12px;
+    margin-top: 12px
 }
 
 .landing_community_message_footer {
     padding-bottom: 46px;
-    padding-top: 54px;
+    padding-top: 54px
 }
 
 .landing_community_message_companies {
     width: 800px;
-    margin: 12px auto 0px;
+    margin: 12px auto 0px
 }
 
 .landing_community_message_company {
     width: 160px;
     height: 160px;
-    margin-top: 36px;
+    margin-top: 36px
 }
 
 .landing_community_message_company_img {
     width: 110px;
     height: 110px;
     border-radius: 55px;
-    margin-bottom: 7px;
+    margin-bottom: 7px
 }
 
 .landing_community_message_company_name {
     font-size: 13px;
     margin-top: 5px;
-    font-weight: bold;
+    font-weight: 700;
     color: #42648b;
-    display: block;
+    display: block
 }
 
 .landing_community_message_company_cat {
     font-size: 13px;
     color: #939699;
-    margin-top: 5px;
+    margin-top: 5px
 }
 
-.landing_community_message_company_name,
-.landing_community_message_company_cat {
+.landing_community_message_company_cat,
+.landing_community_message_company_name {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 130px;
-    margin: 5px auto 0px;
+    margin: 5px auto 0px
 }

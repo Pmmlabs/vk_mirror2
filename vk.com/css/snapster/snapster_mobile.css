@@ -2,82 +2,82 @@
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .modal_shown_body {
-    overflow-y: auto !important;
+    overflow-y: auto!important
 }
 
+.modal_shown_body .site_cont,
 .modal_shown_body .site_header,
-.modal_shown_body .site_header_helper,
-.modal_shown_body .site_cont {
-    display: none;
+.modal_shown_body .site_header_helper {
+    display: none
 }
 
 .sn_bloc {
-    margin-top: 15px;
+    margin-top: 15px
 }
 
 .modal_layout {
     position: static;
     background: transparent;
     padding: 0px;
-    overflow: hidden;
+    overflow: hidden
 }
 
-.modal_cont {
-    width: 100% !important;
+.modal_cont,
+.modal_header {
+    width: 100%!important
 }
 
 .modal_header {
-    width: 100% !important;
     position: fixed;
     top: 0px;
     left: 0px;
-    z-index: 100;
+    z-index: 100
 }
 
 .site_cont {
-    width: 100%;
+    width: 100%
 }
 
 .sn_block {
     border-radius: 0px;
     border-width: 1px 0px;
-    padding: 10px;
+    padding: 10px
 }
 
 .about_apps {
-    text-align: center;
+    text-align: center
 }
 
 .about_apps .button {
     float: none;
-    margin-right: 0px;
+    margin-right: 0px
 }
 
 .about_apps .button:last-child {
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 .site_header_helper {
-    height: 143px;
+    height: 143px
 }
 
 .about_block {
     margin-bottom: 10px;
-    padding: 15px;
+    padding: 15px
 }
 
 .mob_site_logo {
     text-align: center;
     width: 100%;
-    padding: 0px;
+    padding: 0px
 }
 
 .head_menu_ic {
@@ -85,44 +85,43 @@
     top: 0px;
     right: 0px;
     padding: 20px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .head_menu_ic_lines {
     height: 14px;
     width: 20px;
-    position: relative;
+    position: relative
 }
 
 .head_menu_ic_line {
     width: 100%;
     height: 2px;
-    background-color: #48586C;
+    background-color: #48586c;
     margin-top: 4px;
     -o-transition: all 100ms linear;
     transition: all 100ms linear;
     -webkit-transform-origin: 50% 50%;
-    -ms-transform-origin: 50% 50%;
     -o-transform-origin: 50% 50%;
-    transform-origin: 50% 50%;
+    transform-origin: 50% 50%
 }
 
 .head_menu_ic_line:first-child {
-    margin-top: 0px;
+    margin-top: 0px
 }
 
 .head_user_over.head_menu_ic .head_menu_ic_line:first-child {
     -webkit-transform: translate3d(0, 6px, 0) rotate(43deg);
-    transform: translate3d(0, 6px, 0) rotate(43deg);
+    transform: translate3d(0, 6px, 0) rotate(43deg)
 }
 
 .head_user_over.head_menu_ic .head_menu_ic_line:last-child {
     -webkit-transform: translate3d(0, -6px, 0) rotate(-43deg);
-    transform: translate3d(0, -6px, 0) rotate(-43deg);
+    transform: translate3d(0, -6px, 0) rotate(-43deg)
 }
 
 .head_user_over.head_menu_ic .head_menu_ic_line:nth-child(2) {
-    opacity: 0;
+    opacity: 0
 }
 
 .mob_head_menu {
@@ -132,12 +131,12 @@
     left: 0px;
     padding: 0px 10px;
     box-sizing: border-box;
-    background-color: rgba(72, 88, 108, 0.98);
-    display: none;
+    background-color: rgba(72, 88, 108, .98);
+    display: none
 }
 
 .head_menu_ic.head_user_over~.mob_head_menu {
-    display: block;
+    display: block
 }
 
 .mob_head_menu_item {
@@ -145,138 +144,138 @@
     font-size: 16px;
     line-height: 22px;
     padding: 16px 0px 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid hsla(0, 0%, 100%, .12);
     text-align: center;
     display: block;
-    text-decoration: none !important;
+    text-decoration: none!important
 }
 
 .mob_head_menu_item:last-child {
-    border-bottom: 0px;
+    border-bottom: 0px
 }
 
 .footer {
-    padding: 10px 0px 20px;
+    padding: 10px 0px 20px
 }
 
 .mob_footer_links {
     margin-top: 10px;
     font-size: 14px;
-    text-align: center;
+    text-align: center
 }
 
 .mob_footer_links a {
     padding: 10px;
     display: block;
-    color: #91959B;
-    font-weight: normal;
+    color: #91959b;
+    font-weight: 400
 }
 
 .mob_footer_apps {
     width: 70px;
-    margin: 15px auto 0px;
+    margin: 15px auto 0px
 }
 
 .mob_footer_app {
-    font-size: 30px !important;
-    color: #689F38;
+    font-size: 30px!important;
+    color: #689f38;
     display: block;
-    margin-right: 0px !important;
-    text-decoration: none !important;
+    margin-right: 0px!important;
+    text-decoration: none!important
 }
 
 .mob_footer_app.icon-ios {
-    color: #666666;
+    color: #666
 }
 
 .mob_footer_copyright {
-    color: #91959B;
+    color: #91959b;
     font-size: 16px;
     text-align: center;
-    margin-top: 22px;
+    margin-top: 22px
 }
 
 .open_in_app_wrap {
     text-align: center;
-    padding: 50px 30px;
+    padding: 50px 30px
 }
 
 .open_in_app_title {
-    color: #48586C;
-    font-size: 20px;
+    color: #48586c;
+    font-size: 20px
 }
 
 .open_in_app_descr {
     color: #777;
     font-size: 14px;
     line-height: 150%;
-    margin-top: 20px;
+    margin-top: 20px
 }
 
 .open_in_app_btns {
-    margin-top: 25px;
+    margin-top: 25px
 }
 
 .open_in_app_btns .button_green {
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 .open_in_app_btns a {
-    display: inline-block;
+    display: inline-block
 }
 
 @media (max-width: 650px) {
     .landing_logo_str {
-        font-size: 29px;
+        font-size: 29px
     }
     .landing_sign_in {
-        font-size: 30px;
+        font-size: 30px
     }
     .landing_logo {
-        font-size: 32px;
+        font-size: 32px
     }
-    .landing_sign_in,
-    .landing_logo {
+    .landing_logo,
+    .landing_sign_in {
         top: 24px;
-        left: 24px;
+        left: 24px
     }
     .landing_sign_in {
         left: initial;
-        right: 20px;
+        right: 20px
     }
     .landing_descr {
         font-size: 15px;
         padding: 0px 25px;
         line-height: 24px;
-        margin-top: 12px;
+        margin-top: 12px
     }
     .landing_page {
-        overflow-y: auto !important;
+        overflow-y: auto!important
     }
     .landing_main {
-        padding: 30px 0px;
+        padding: 30px 0px
     }
     .landing_main_info_wrap {
         height: 222px;
-        margin-top: -111px;
+        margin-top: -111px
     }
 }
 
 @media (max-width: 450px) {
     .landing_apps {
         width: 100%;
-        text-align: center;
+        text-align: center
     }
     .landing_app {
         float: none;
         display: block;
         font-size: 50px;
         margin-bottom: 15px;
-        color: #fff !important;
+        color: #fff!important
     }
     .landing_main_info_wrap {
         height: 347px;
-        margin-top: -173px;
+        margin-top: -173px
     }
 }
 
@@ -287,7 +286,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
-    margin: 0px auto;
+    margin: 0px auto
 }
 
 .mob_room_panel_cover div {
@@ -298,95 +297,95 @@
     font-size: 25px;
     font-weight: 100;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .room_panel_title {
     font-size: 17px;
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 .room_panel_info {
-    text-align: center;
+    text-align: center
 }
 
 .room_panel_description {
-    font-size: 14px;
+    font-size: 14px
 }
 
 .room_panel_followers_num {
     margin-top: 10px;
-    font-size: 19px;
+    font-size: 19px
 }
 
 .room_panel_followers_num_str {
-    margin-top: 2px;
+    margin-top: 2px
 }
 
 .mob_room_view_photos_wrap {
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 .room_photos {
-    margin: 0px auto;
+    margin: 0px auto
 }
 
 .photo_view_wrap .modal_cont_result {
     background: #fff;
-    cursor: default;
+    cursor: default
 }
 
 .sn_pw_image_mob {
     width: 100%;
-    vertical-align: top;
+    vertical-align: top
 }
 
 .mob_pw_image_wrap {
     background: #000;
     text-align: center;
-    position: relative;
+    position: relative
 }
 
 .sn_pw_info {
-    width: 100%;
+    width: 100%
 }
 
 .sn_pw_descr_full_text {
     position: static;
-    margin-top: 12px;
+    margin-top: 12px
 }
 
 .sn_pw_descr_full_text .sn_pw_descr_text {
-    margin-top: 0px;
+    margin-top: 0px
 }
 
 .pw_video {
     position: static;
-    text-align: center;
+    text-align: center
 }
 
 .pw_video video {
     position: static;
-    max-width: 100%;
+    max-width: 100%
 }
 
 .pw_video_play_control {
-    opacity: 1;
+    opacity: 1
 }
 
 .mobile_info {
     margin-bottom: 10px;
     text-align: center;
-    padding: 10px;
+    padding: 10px
 }
 
 .mobile_info a {
-    text-decoration: none !important;
-    display: block;
+    text-decoration: none!important;
+    display: block
 }
 
 .mobile_info a:first-child {
-    margin-left: 10px;
+    margin-left: 10px
 }
 
 .mobile_info .button {
@@ -394,20 +393,20 @@
     display: block;
     height: 46px;
     line-height: 46px;
-    font-weight: bold;
-    padding: 0px 10px;
+    font-weight: 700;
+    padding: 0px 10px
 }
 
 .mobile_info .button:active {
-    line-height: 48px;
+    line-height: 48px
 }
 
 #rooms_list_result {
-    margin-top: 15px;
+    margin-top: 15px
 }
 
 .room_item {
-    margin-bottom: 15px;
+    margin-bottom: 15px
 }
 
 .mob_room_item_photo {
@@ -416,7 +415,7 @@
     margin-left: 10px;
     border-radius: 3px;
     background-size: cover;
-    position: relative;
+    position: relative
 }
 
 .room_item_badge {
@@ -424,16 +423,16 @@
     top: -4px;
     right: -5px;
     padding: 1px 4px;
-    font-size: 12px;
+    font-size: 12px
 }
 
 .snapster_death {
-    -webkit-flex-direction: column !important;
-    -ms-flex-direction: column !important;
-    flex-direction: column !important;
-    height: 80px;
+    -webkit-flex-direction: column!important;
+    -ms-flex-direction: column!important;
+    flex-direction: column!important;
+    height: 80px
 }
 
 .snapster_death .export_page_login_btn {
-    margin-top: 10px;
+    margin-top: 10px
 }

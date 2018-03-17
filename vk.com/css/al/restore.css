@@ -1,16 +1,16 @@
 #restore_css {
-    display: none;
+    display: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .restore_request_form,
@@ -18,20 +18,20 @@
     padding: 25px 0 35px;
     margin: 0 auto;
     line-height: 160%;
-    width: 635px;
+    width: 635px
 }
 
 .restore_request_result_declined {
-    margin-top: 25px;
+    margin-top: 25px
 }
 
 .restore_request_result_declined .info_msg {
-    margin: 0;
+    margin: 0
 }
 
 #request_result,
 #request_result_msg {
-    display: none;
+    display: none
 }
 
 .restore_form_comment {
@@ -39,7 +39,7 @@
     display: block;
     height: 55px;
     resize: vertical;
-    width: 100%;
+    width: 100%
 }
 
 .request_thumb {
@@ -47,104 +47,104 @@
     height: 50px;
     border-radius: 50%;
     float: left;
-    margin-right: 10px;
+    margin-right: 10px
 }
 
 .request_name {
     float: left;
-    width: 180px;
+    width: 180px
 }
 
 .request_name_wrap {
     padding: 8px 0 6px;
-    line-height: 1;
+    line-height: 1
 }
 
 .request_name_lnk {
     margin: 0;
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #42648B;
+    color: #42648b
 }
 
 .request_name_city {
     color: #939699;
     font-size: 12.5px;
-    line-height: 1.154;
+    line-height: 1.154
 }
 
 .request_section {
     padding: 10px 0px;
     clear: both;
     position: relative;
-    line-height: 100%;
+    line-height: 100%
 }
 
 .request_section_wrap {
-    width: 210px;
+    width: 210px
 }
 
+.request_name_info,
 .request_section_info,
-.request_section_info_s,
-.request_name_info {
-    margin: 0 0 10px 228px !important;
-    padding: 8px 11px !important;
+.request_section_info_s {
+    margin: 0 0 10px 228px!important;
+    padding: 8px 11px!important;
     width: 266px;
     clear: none;
     position: absolute;
     bottom: 0;
-    min-height: 56px;
+    min-height: 56px
 }
 
 .request_section_info_s {
-    min-height: 58px;
+    min-height: 58px
 }
 
 .request_name_info {
-    min-height: 32px;
+    min-height: 32px
 }
 
 .request_section h3,
 .restore_section h3 {
     margin: 10px 0 8px;
     padding: 0;
-    color: #3B4045;
+    color: #3b4045;
     font-size: 13px;
     font-weight: 500;
-    line-height: 13px;
+    line-height: 13px
 }
 
 .request_section h3.request_section_title_first,
 .restore_section h3.request_section_title_first {
-    margin-top: 0;
+    margin-top: 0
 }
 
 .request_section .info_msg {
-    margin: 0 0 10px 0;
-    padding: 8px 11px 10px 11px;
+    margin: 0 0 10px;
+    padding: 8px 11px 10px;
     text-align: left;
-    line-height: 160%;
+    line-height: 160%
 }
 
 .request_info.info_msg {
-    margin-top: 20px;
+    margin-top: 20px
 }
 
 .request_info__activate_btn {
     float: right;
-    padding-top: 4px;
+    padding-top: 4px
 }
 
 .request_section_wrap input,
 .request_section_wrap textarea {
-    width: 202px;
+    width: 202px
 }
 
 .request_section_wrap textarea {
     margin: 0;
     height: 66px;
-    display: block;
+    display: block
 }
 
 .request_section .file_button_gray,
@@ -152,89 +152,86 @@
     display: block;
     width: 150px;
     line-height: 100%;
-    float: left;
+    float: left
 }
 
 .request_section .button_blue,
 .restore_section .flat_button {
-    margin-top: 10px;
+    margin-top: 10px
 }
 
-.restore_section,
-.restore_button_row {
-    padding: 10px 0;
+.restore_button_row,
+.restore_section {
+    padding: 10px 0
 }
 
 .restore_section.restore_section_secondary {
-    padding-top: 0;
+    padding-top: 0
 }
 
 .restore_section.restore_section_last {
-    padding-bottom: 0;
+    padding-bottom: 0
 }
 
 .restore_submit_row {
     border-top: 1px solid #e7e8ec;
     margin-top: 25px;
     padding-top: 25px;
-    padding-bottom: 10px;
+    padding-bottom: 10px
 }
 
 .restore_check_page .restore_submit_row {
-    text-align: center;
+    text-align: center
 }
 
 .restore_section_wrap {
     float: left;
-    width: 255px;
+    width: 255px
 }
 
 .restore_section_wrap input {
     height: 22px;
-    width: 223px;
+    width: 223px
 }
 
 .info_msg.restore_section_info {
-    padding: 9px 11px;
+    padding: 9px 11px
 }
 
 .msg.restore_section_info.restore_section_info_dbl {
     padding-top: 9px;
-    padding-bottom: 10px;
+    padding-bottom: 10px
 }
 
-.restore_section_info.msg,
-.restore_name_info.msg {
+.restore_name_info.msg,
+.restore_section_info.msg {
     float: right;
     margin-bottom: 0;
-    width: 320px;
+    width: 320px
 }
 
 .restore_section_info {
     padding-bottom: 12px;
-    margin-top: 37px;
+    margin-top: 37px
 }
 
 .restore_section_info.restore_section_info_top {
-    margin-top: 9px;
+    margin-top: 9px
 }
 
 .restore_name_info {
-    margin-top: 0;
+    margin-top: 0
 }
 
+.restore_section #doc_photos,
 .restore_section #photo_photos,
-.restore_section #doc_photos {
-    margin-top: 10px;
-}
-
-.restore_section .file_button_gray,
-.restore_section .button_blue {
-    margin-top: 10px;
+.restore_section .button_blue,
+.restore_section .file_button_gray {
+    margin-top: 10px
 }
 
 .restore_fill_info {
-    padding: 20px 0;
+    padding: 20px 0
 }
 
 #doc_upload_frame,
@@ -242,122 +239,122 @@
     width: 10px;
     height: 10px;
     position: absolute;
-    top: -10000px;
+    top: -10000px
 }
 
 #doc_photos,
 #photo_photos {
     margin-bottom: 5px;
     display: none;
-    text-align: center;
+    text-align: center
 }
 
 .restore_uploaded_image {
     margin: 0 5px;
     display: inline-block;
-    text-align: center;
+    text-align: center
 }
 
 .restore_uploaded_image__img {
-    display: block;
+    display: block
 }
 
 .restore_uploaded_image__img_removed {
-    opacity: 0.3;
+    opacity: 0.3
 }
 
 .restore_uploaded_image__delete {
-    color: #2B587A;
+    color: #2b587a;
     cursor: pointer;
-    line-height: 200%;
+    line-height: 200%
 }
 
 .restore_uploaded_image__delete:hover {
-    text-decoration: underline;
+    text-decoration: underline
 }
 
 .restore_roll {
     margin: 0 -10px;
     padding: 0 10px;
     -o-transition: background 1000ms linear;
-    transition: background 1000ms linear;
+    transition: background 1000ms linear
 }
 
 .restore_roll.restore_roll_colored {
-    background: #DBE0EA;
+    background: #dbe0ea
 }
 
 .restore_roll.restore_roll_hidden .restore_roll_full {
-    display: none;
+    display: none
 }
 
 .restore_roll_used {
-    border-bottom: 1px solid #DBE0EA;
+    border-bottom: 1px solid #dbe0ea
 }
 
 #phone_confirm_box .msg {
     display: none;
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
 #phone_confirm_box .clear_fix {
-    padding: 10px 0;
+    padding: 10px 0
 }
 
 #phone_confirm_box .label {
     padding: 2px 10px 0;
     color: #777;
-    width: 150px;
+    width: 150px
 }
 
 #phone_confirm_box .labeled {
-    width: 200px;
+    width: 200px
 }
 
 #phone_confirm_box .labeled input {
-    width: 150px;
+    width: 150px
 }
 
 #phone_confirm_box .labeled small {
-    color: #777;
+    color: #777
 }
 
 #occupiedEmailForm li {
-    margin: 10px 0;
+    margin: 10px 0
 }
 
 #occupiedEmailForm input.text {
     margin: 5px 0;
-    width: 200px;
+    width: 200px
 }
 
-#request_result_wrap,
-#request_result_msg {
-    padding-bottom: 10px;
+#request_result_msg,
+#request_result_wrap {
+    padding-bottom: 10px
 }
 
 #request_result_msg {
-    line-height: 160%;
+    line-height: 160%
 }
 
 #request_result_wrap .info {
     padding-bottom: 0;
-    text-align: left;
+    text-align: left
 }
 
 #restore_cancel_button {
     margin: 20px auto 10px;
-    width: 200px;
+    width: 200px
 }
 
 .request_result_msg {
     margin: 0 0 10px;
     text-align: left;
-    display: none;
+    display: none
 }
 
 .restore_blocked_wrap {
-    padding: 30px;
+    padding: 30px
 }
 
 .restore_blocked_wrap .restore_blocked_centered {
@@ -367,13 +364,13 @@
     font-size: 1.09em;
     color: #111;
     line-height: 160%;
-    width: 500px;
+    width: 500px
 }
 
 .restore_blocked_wrap .restore_blocked_img {
     height: 160px;
     width: 225px;
-    margin-bottom: 15px;
+    margin-bottom: 15px
 }
 
 .restore_blocked_wrap .restore_blocked_bottom {
@@ -382,18 +379,18 @@
     font-size: 1.09em;
     color: #111;
     line-height: 160%;
-    width: 400px;
+    width: 400px
 }
 
 .restore_page_section.page_section {
     margin: 26px auto 0;
     padding: 0 0 35px;
-    width: 563px;
+    width: 563px
 }
 
 .page_section .error.restore_error {
     margin-top: 60px;
-    display: block;
+    display: block
 }
 
 .restore_extend_comment {
@@ -402,25 +399,25 @@
     width: 100%;
     resize: vertical;
     margin-top: 8px;
-    border: 1px solid #D3D9DE;
-    border-radius: 1px;
+    border: 1px solid #d3d9de;
+    border-radius: 1px
 }
 
 .restore_extend_submit_form {
     margin-top: 10px;
-    padding-top: 10px;
+    padding-top: 10px
 }
 
 .page_section .restore_delayed_msg.msg {
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
 .restore_msg_wide.msg {
-    margin-top: 5px;
+    margin-top: 5px
 }
 
 .msg.info_msg_doc {
-    padding-top: 12px;
+    padding-top: 12px
 }
 
 .restore_section .msg {
@@ -428,14 +425,14 @@
     margin-right: 0;
     padding: 7px 11px;
     border-radius: 3px;
-    background: rgba(159, 180, 201, 0.1);
-    border: 1px solid rgba(159, 180, 201, 0.2);
-    font-size: 12.5px;
+    background: rgba(159, 180, 201, .1);
+    border: 1px solid rgba(159, 180, 201, .2);
+    font-size: 12.5px
 }
 
 .restore_section_secondary .msg {
     margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 5px
 }
 
 .restore_section_doc {
@@ -444,78 +441,78 @@
     background: url('/images/restore/doc.png') no-repeat 100% 0;
     background-size: 130px;
     float: right;
-    margin: -12px 0 -10px 0;
+    margin: -12px 0 -10px
 }
 
 .restore_section_doc_text {
-    margin-top: 30px;
+    margin-top: 30px
 }
 
 .restore_section_faces {
-    text-align: center;
+    text-align: center
 }
 
 .restore_section_face__tablet {
-    background: url('/images/restore/w.png') no-repeat top;
+    background: url('/images/restore/w.png') no-repeat top
 }
 
 .restore_section_face__monitor {
-    background: url('/images/restore/m.png') no-repeat top;
+    background: url('/images/restore/m.png') no-repeat top
 }
 
-.restore_section_face__tablet,
-.restore_section_face__monitor {
+.restore_section_face__monitor,
+.restore_section_face__tablet {
     height: 180px;
     width: 190px;
     background-size: 180px;
-    display: inline-block;
+    display: inline-block
 }
 
 .restore_response_images {
     margin-top: 8px;
-    text-align: center;
+    text-align: center
 }
 
 .restore_response_image {
-    width: 38%;
+    width: 38%
 }
 
 .restore_response_image.restore_response_image_landscape {
-    width: 75%;
+    width: 75%
 }
 
 .restore_extended_new_phone {
     float: none;
     margin: 0 auto;
-    width: 210px;
+    width: 210px
 }
 
 .restore_extended_new_phone #new_phone {
-    width: 170px;
+    width: 170px
 }
 
 .restore_login_input {
-    width: 150px !important;
+    width: 150px!important
 }
 
 .restore_section_inline {
     padding: 0;
-    margin: 9px 20px;
+    margin: 9px 20px
 }
 
 .restore_section_inline .restore_section_wrap {
     padding: 10px;
-    width: 277px;
+    width: 277px
 }
 
 .restore_section_inline_submit_row {
-    margin-top: 45px;
+    margin-top: 45px
 }
 
 .restore_section_resend_sms_button {
     margin-left: 160px;
     margin-bottom: 10px;
-    width: 240px;
+    width: 240px
 }
 
 .resend_success_msg {
@@ -524,67 +521,64 @@
     height: 0;
     opacity: 0;
     visibility: hidden;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .resend_success_msg.active {
     height: 90px;
     opacity: 1;
-    visibility: visible;
+    visibility: visible
 }
 
 .restore_roll_back_link .request_result_msg {
-    margin: 10px 0 0 0;
+    margin: 10px 0 0;
     padding: 20px;
     display: block;
-    background: rgba(159, 180, 201, 0.1);
+    background: rgba(159, 180, 201, .1)
 }
 
 .restore_roll_back_link .request_result_msg .flat_button {
     float: left;
     margin-right: 10px;
-    margin-top: 20px;
+    margin-top: 20px
 }
 
 .restore_get_by_link .msg {
     padding: 8px;
     margin: 10px 0;
-    line-height: 160%;
+    line-height: 160%
 }
 
 .restore_close_button {
-    margin-left: 10px;
+    margin-left: 10px
 }
 
 .restore_info_section_title {
-    text-align: center;
+    text-align: center
 }
 
 .restore_info_section {
     margin: 15px auto 0;
     padding-left: 15px;
-    width: 510px;
+    width: 510px
 }
 
 .restore_info_error_big_text {
-    line-height: 20px;
+    line-height: 20px
 }
 
-.page_section .restore_info_error.error.msg {
-    display: none;
-}
-
+.page_section .restore_info_error.error.msg,
 .restore_roll_unshown {
-    display: none;
+    display: none
 }
 
 .restore_reset_password_button {
     float: left;
     margin-top: 20px;
     padding: 3px;
-    display: inline-block;
+    display: inline-block
 }
 
 .restore_not_actual_request_msg {
-    padding: 15px 10px;
+    padding: 15px 10px
 }

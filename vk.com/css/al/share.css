@@ -1,48 +1,48 @@
 #share_css {
-    display: none;
+    display: none
 }
 
-.share_head .share_logo,
 .share_field_wrap .share_field_edit,
+.share_head .share_logo,
 .summary_tab_x {
-    -ms-high-contrast-adjust: none;
+    -ms-high-contrast-adjust: none
 }
 
 .share_field_wrap .share_field_edit {
     -o-transition: opacity 0.15s ease;
-    transition: opacity 0.15s ease;
+    transition: opacity 0.15s ease
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .share_wrap {
     min-height: 100%;
-    background: #FFFFFF;
+    background: #fff
 }
 
 .share_head {
-    background-color: #5B88BD;
+    background-color: #5b88bd;
     padding: 0 25px;
     font-size: 12.5px;
     color: #fff;
     height: 54px;
-    line-height: 52px;
+    line-height: 52px
 }
 
 .share_head .share_logo {
     width: 40px;
     height: 23px;
     background: url(/images/logo_vk.png);
-    margin: 15px 0 0;
+    margin: 15px 0 0
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -50,7 +50,7 @@
 (min-resolution: 192dpi) {
     .share_head .share_logo {
         background-image: url(/images/logo_vk_2x.png);
-        background-size: 40px 23px;
+        background-size: 40px 23px
     }
 }
 
@@ -61,49 +61,49 @@
     max-width: 100%;
     box-sizing: border-box;
     margin-left: -65px;
-    padding-left: 65px;
+    padding-left: 65px
 }
 
 .share_head .share_user_link {
     color: #fff;
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale
 }
 
 .share_head .share_logout_link {
-    color: #d6e1ef;
+    color: #d6e1ef
 }
 
-html,
-body {
-    min-width: 560px;
+body,
+html {
+    min-width: 560px
 }
 
 .share_cont {
     position: relative;
     text-align: center;
-    padding: 20px 25px 78px;
+    padding: 20px 25px 78px
 }
 
 .share_form_wrap {
     width: 510px;
     display: inline-block;
     text-align: left;
-    position: relative;
+    position: relative
 }
 
 .share_form_wrap .share_form_row {
-    padding-top: 11px;
+    padding-top: 11px
 }
 
 .share_form_wrap .share_form_row:first-child {
-    padding-top: 0;
+    padding-top: 0
 }
 
 .share_form_wrap .share_form_about_select {
     padding: 10px 0 1px 21px;
-    display: none;
+    display: none
 }
 
 .share_form_wrap .share_form_text {
@@ -112,61 +112,61 @@ body {
     height: 71px;
     min-height: 71px;
     overflow: hidden;
-    resize: none;
+    resize: none
 }
 
 .share_form_wrap .share_form_sub .subheader {
-    margin: 18px 0 12px;
+    margin: 18px 0 12px
 }
 
 .share_form_wrap .share_form_radio .share_form_disabled {
     opacity: 0.4;
-    filter: alpha(opacity=40);
+    filter: alpha(opacity=40)
 }
 
 .share_form_wrap .share_form_radio .wdd_text {
-    width: 450px;
+    width: 450px
 }
 
 .share_form_wrap .share_form_radio div.disabled {
     opacity: 0.4;
     filter: alpha(opacity=40);
-    cursor: default;
+    cursor: default
 }
 
 .share_form_wrap .share_form_radio div.disabled:hover div {
-    background-position: 0 0;
+    background-position: 0 0
 }
 
 .share_form_wrap .share_form_radio div.disabled.on:hover div {
-    background-position: 0 -14px;
+    background-position: 0 -14px
 }
 
 .share_form_wrap .share_form_preview {
     line-height: 1.154;
-    padding: 18px 0 0;
+    padding: 18px 0 0
 }
 
 .share_form_wrap .medadd_c_linkimg_container {
-    z-index: 1;
+    z-index: 1
 }
 
 .share_form_wrap .checkbox_container {
-    width: auto !important;
+    width: auto!important
 }
 
 .share_form_wrap .checkbox_container table {
-    margin: 0;
+    margin: 0
 }
 
 .share_form_wrap .share_form_title {
-    width: 100%;
+    width: 100%
 }
 
 .share_field_wrap {
     min-height: 13px;
     max-height: none;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .share_field_wrap .share_field_edit {
@@ -178,7 +178,7 @@ body {
     top: 20%;
     display: block;
     opacity: 0;
-    filter: alpha(opacity=0);
+    filter: alpha(opacity=0)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -186,26 +186,26 @@ body {
 (min-resolution: 192dpi) {
     .share_field_wrap .share_field_edit {
         background-image: url(/images/post_icon_2x.png?10);
-        background-size: 20px 413px;
+        background-size: 20px 413px
     }
 }
 
 .share_field_wrap:hover .share_field_edit {
     opacity: 1;
     -webkit-filter: none;
-    filter: none;
+    filter: none
 }
 
 .share_field_wrap.share_desc_wrap .share_field_edit {
-    margin-top: 2px;
+    margin-top: 2px
 }
 
 .share_post_preview {
-    margin-top: 18px;
+    margin-top: 18px
 }
 
 .share_post_preview div:first-child:first-child {
-    padding-top: 0;
+    padding-top: 0
 }
 
 .share_bottom_wrap {
@@ -214,49 +214,49 @@ body {
     left: 0;
     right: 0;
     width: 100%;
-    z-index: 101;
+    z-index: 101
 }
 
 .summary_right {
-    padding: 8px 5px;
+    padding: 8px 5px
 }
 
 .summary_tabs {
     padding: 11px 16px;
-    border-bottom: 1px solid #e7e8ec;
+    border-bottom: 1px solid #e7e8ec
 }
 
 .summary_tab,
-.summary_tab_sel,
-.summary_tab_plain {
+.summary_tab_plain,
+.summary_tab_sel {
     font-size: 12.5px;
     padding: 4px;
-    position: relative;
+    position: relative
 }
 
 .summary_tab2 {
     border-radius: 2px;
     padding: 4px 5px 3px;
-    display: block;
+    display: block
 }
 
 .summary_tab2:hover {
-    background: #E5EBF1;
-    text-decoration: none;
+    background: #e5ebf1;
+    text-decoration: none
 }
 
 .summary_tab_plain .summary_tab2 {
-    background: none;
+    background: none
 }
 
 .summary_tab3 {
     max-width: 230px;
     height: 15px;
     overflow: hidden;
-    color: #2A5885;
+    color: #2a5885;
     text-overflow: ellipsis;
     line-height: 110%;
-    padding: 0 3px;
+    padding: 0 3px
 }
 
 .summary_tab_x {
@@ -268,7 +268,7 @@ body {
     filter: alpha(opacity=12);
     cursor: pointer;
     -o-transition: opacity 200ms linear;
-    transition: opacity 200ms linear;
+    transition: opacity 200ms linear
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -276,37 +276,37 @@ body {
 (min-resolution: 192dpi) {
     .summary_tab_x {
         background-image: url(/images/icons/common_2x.png?6);
-        background-size: 32px 232px;
+        background-size: 32px 232px
     }
 }
 
 .summary_tab_x:hover {
     opacity: 0.6;
-    filter: alpha(opacity=60);
+    filter: alpha(opacity=60)
 }
 
 .summary_tab_count {
     font-size: 11.5px;
-    padding-left: 6px;
+    padding-left: 6px
 }
 
 .summary_tab_sel .summary_tab2,
 .summary_tab_sel .summary_tab2:hover {
-    background: #5181b8;
+    background: #5181b8
 }
 
 .summary_tab_sel .summary_tab3 {
-    color: #fff;
+    color: #fff
 }
 
 .summary_tab_sel .summary_tab_x {
     background-position: 1px -160px;
     opacity: 0.45;
-    filter: alpha(opacity=45);
+    filter: alpha(opacity=45)
 }
 
 .summary_tab_sel .summary_tab_x:hover {
     opacity: 1;
     -webkit-filter: none;
-    filter: none;
+    filter: none
 }

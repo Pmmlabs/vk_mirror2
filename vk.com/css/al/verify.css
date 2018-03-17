@@ -1,104 +1,104 @@
 #verify_css {
-    display: none;
+    display: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 #verify_bar {
     border-bottom: 1px solid #e7e8ec;
     padding: 10px;
-    background: #F7F7F7;
+    background: #f7f7f7
 }
 
 #verify_search {
     margin-right: 8px;
-    width: 566px;
+    width: 566px
 }
 
 #verify_submit {
     width: 200px;
-    text-align: center;
+    text-align: center
 }
 
 .verify_audio_top #verify_search {
-    width: 438px;
+    width: 438px
 }
 
 .verify_genre_cont {
-    margin-right: 8px;
+    margin-right: 8px
 }
 
 #verify_list_wrap {
-    padding: 0 10px;
+    padding: 0 10px
 }
 
 #verify_result {
     padding: 15px 5px 5px;
-    display: none;
+    display: none
 }
 
 #verify_msg {
     line-height: 160%;
-    background: #F4EBBD;
+    background: #f4ebbd
 }
 
 .verify_row {
     border-bottom: 1px solid #e7e8ec;
     padding: 10px;
     height: 25px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .verify_row:last-child {
-    border-bottom: 0;
+    border-bottom: 0
 }
 
 img.verify_photo {
     width: 25px;
-    height: 25px;
+    height: 25px
 }
 
 .verify_name {
     padding: 5px 0 0 10px;
-    font-weight: bold;
+    font-weight: 700
 }
 
 .verify_label {
-    font-weight: normal;
+    font-weight: 400;
     color: #777;
     padding-left: 2px;
-    display: none;
+    display: none
 }
 
 .verify_action {
-    padding-top: 5px;
+    padding-top: 5px
 }
 
 #verify_noempty {
-    min-height: 256px;
+    min-height: 256px
 }
 
 #verify_empty {
     font-size: 1.09em;
     padding: 100px 30px;
     text-align: center;
-    color: #777;
+    color: #777
 }
 
 .verify_edit_new {
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 .verify_label_new {
-    color: #777777;
-    font-weight: normal;
+    color: #777;
+    font-weight: 400
 }

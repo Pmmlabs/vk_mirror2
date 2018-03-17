@@ -1,223 +1,221 @@
 #widgets_css {
-    display: none;
+    display: none
 }
 
-.like_wrap .like_icon,
-.like_counter_wrap .arrow {
-    -ms-high-contrast-adjust: none;
+.like_counter_wrap .arrow,
+.like_wrap .like_icon {
+    -ms-high-contrast-adjust: none
 }
 
 .like_wrap .like_icon {
     -o-transition: opacity 0.15s ease;
-    transition: opacity 0.15s ease;
+    transition: opacity 0.15s ease
 }
 
 .h4-text {
-    color: #000;
     border-bottom: none;
-    font-size: 1em;
-    font-weight: normal;
+    font-size: 1em
+}
+
+.h4-text,
+body {
+    color: #000;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 body {
     background: #edeef0;
-    color: #000;
-    margin: 0;
-    padding: 0;
     direction: ltr;
     font-size: 13px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif, Geneva, arial, Tahoma, verdana;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     line-height: 1.154;
-    letter-spacing: -0.1px;
-    font-weight: normal;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    letter-spacing: -0.1px
 }
 
 p {
-    font-family: tahoma, verdana, arial, sans-serif, Lucida Sans;
+    font-family: tahoma, verdana, arial, sans-serif;
     font-size: 11px;
     text-align: left;
     padding: 0px;
-    margin: 15px 0px;
+    margin: 15px 0px
 }
 
 a {
-    color: #2A5885;
+    color: #2a5885;
     text-decoration: none;
-    cursor: pointer;
+    cursor: pointer
 }
 
 a b {
-    color: #42648B;
+    color: #42648b
 }
 
-strong,
-b {
+b,
+strong {
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale
 }
 
 .pageBody a:hover {
-    text-decoration: underline;
+    text-decoration: underline
 }
 
 img {
-    border: 0;
+    border: 0
 }
 
 #membersRows {
-    padding: 10px 0px 5px 0px;
-    vertical-align: top;
+    padding: 10px 0px 5px;
+    vertical-align: top
 }
 
 #membersRows .mem_row {
-    background: #FFFFFF;
-    border: 1px solid #DAE2E8;
+    background: #fff;
+    border: 1px solid #dae2e8;
     margin: 0px 0 3px 0px;
-    padding: 8px 8px 6px 8px;
+    padding: 8px 8px 6px
 }
 
 #membersRows .mem_row table {
     border-collapse: collapse;
-    width: 100%;
+    width: 100%
 }
 
 #membersRows td {
     padding: 0px;
     vertical-align: top;
-    line-height: 120%;
+    line-height: 120%
 }
 
 #membersRows td.img {
-    width: 25px;
+    width: 25px
 }
 
 #membersRows td.img a {
     display: block;
     width: 25px;
     height: 25px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 #membersRows td.img img {
-    width: 25px;
+    width: 25px
 }
 
 #membersRows td.info {
-    padding-left: 10px;
+    padding-left: 10px
 }
 
 #membersRows td.details {
     text-align: right;
     font-size: 10px;
-    line-height: 130%;
+    line-height: 130%
 }
 
 #membersRows td.info .actions {
     font-size: 9px;
     height: 14px;
     display: block;
-    font-weight: bold;
+    font-weight: 700
 }
 
-#membersRows td.info .actions a,
-#membersRows td.info .actions .divide {
-    font-weight: normal;
+#membersRows td.info .actions .divide,
+#membersRows td.info .actions a {
+    font-weight: 400
 }
 
 #membersRows .alertmsg {
-    margin: 0 0 3px 0px;
+    margin: 0 0 3px 0px
 }
 
 #membersSections {
     padding: 10px;
     width: 150px;
-    vertical-align: top;
+    vertical-align: top
 }
 
 #noMembers {
-    background: #FFF;
-    border: 1px solid #DAE2E8;
-    color: #777777;
+    background: #fff;
+    border: 1px solid #dae2e8;
+    color: #777;
     font-size: 13px;
     padding: 80px 0;
     text-align: center;
-    margin: 0px 0px 3px 0px;
+    margin: 0px 0px 3px
 }
 
 .t_filter_area {
-    border-bottom: 1px solid #D8DFEA;
+    border-bottom: 1px solid #d8dfea;
     padding: 10px;
-    background-color: #F7F7F7;
-    _padding-bottom: 18px;
+    background-color: #f7f7f7;
+    _padding-bottom: 18px
 }
 
-*:first-child+html .t_filter_area {
-    padding-bottom: 18px;
+:first-child+html .t_filter_area {
+    padding-bottom: 18px
 }
 
 .t_filter_selected {
     float: left;
-    border-bottom: 1px solid #FFFFFF;
+    border-bottom: 1px solid #fff;
     margin-right: 10px;
     margin-bottom: -1px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .body_rtl .t_filter_selected {
     float: right;
-    margin: 0 0 -1px 10px;
+    margin: 0 0 -1px 10px
 }
 
 .t_filter_selected .t_filter2 {
-    border: 1px solid #3B6798;
+    border: 1px solid #3b6798;
     border-top: 1px solid #395676;
-    border-bottom: 1px solid #4A73A0;
+    border-bottom: 1px solid #4a73a0
 }
 
 .t_filter_selected .t_filter3 {
-    border: 1px solid #5C82AB;
-    padding: 2px 5px 3px 5px;
-    background-color: #6D8FB3;
-    color: #FFFFFF;
-    font-weight: bold;
+    border: 1px solid #5c82ab;
+    padding: 2px 5px 3px;
+    background-color: #6d8fb3;
+    color: #fff;
+    font-weight: 700
 }
 
 .t_filter_off {
     cursor: pointer;
     padding: 4px 7px 5px;
-    color: #45688E;
-    font-weight: bold;
+    color: #45688e;
+    font-weight: 700;
     float: left;
     margin-right: 10px;
-    margin-bottom: -1px;
+    margin-bottom: -1px
 }
 
 .body_rtl .t_filter_off {
     float: right;
-    margin: 0 0 -1px 10px;
+    margin: 0 0 -1px 10px
 }
 
 #mod_sections_loading {
     visibility: hidden;
-    margin-top: 5px;
+    margin-top: 5px
 }
 
 .t_filter_area a {
     margin-top: 5px;
-    margin-left: 5px;
+    margin-left: 5px
 }
 
 .squarePic {
     height: 50px;
     clear: both;
     overflow: hidden;
-    padding-bottom: 3px;
+    padding-bottom: 3px
 }
 
 .squareUser {
@@ -225,55 +223,55 @@ img {
     height: 68px;
     float: left;
     overflow: hidden;
-    text-align: center;
+    text-align: center
 }
 
 .squareUser a {
-    color: #808080;
-    font-size: 10px;
+    color: gray;
+    font-size: 10px
 }
 
 #main .squareUser a:hover {
-    text-decoration: none !important;
+    text-decoration: none!important
 }
 
 .groupInfo {
-    margin: 8px 8px 0px 8px;
+    margin: 8px 8px 0px
 }
 
 .groupName {
     color: #45688e;
-    font-weight: bold;
+    font-weight: 700;
     padding-left: 10px;
-    float: left;
+    float: left
 }
 
 .softHead {
-    padding: 8px 0px 1px 0px;
+    padding: 8px 0px 1px;
     margin: 0px 10px;
     border-bottom: 1px solid #d9e1e7;
     padding-bottom: 2px;
-    color: #45688e;
-    font-weight: normal;
+    color: #45688e
 }
 
+.softHead,
 .softHead a {
-    font-weight: normal;
+    font-weight: 400
 }
 
 .widgetBottom {
     background: #eef2f5;
-    color: #2f5879;
+    color: #2f5879
 }
 
 .widgetBottom .checkbox_container table {
-    margin: 3px 0px;
+    margin: 3px 0px
 }
 
 .statHolder {
-    background: #ECECEC;
+    background: #ececec;
     height: 1px;
-    margin-bottom: 20px;
+    margin-bottom: 20px
 }
 
 .statLine {
@@ -281,23 +279,23 @@ img {
     border-top: 1px solid #c0ccd9;
     background: #dae2e8;
     margin-top: 0px;
-    height: 15px;
+    height: 15px
 }
 
 .groupsMain {
-    border: 1px solid #BEC8D3;
-    border-bottom: none;
+    border: 1px solid #bec8d3;
+    border-bottom: none
 }
 
 #group_like .checkbox {
-    color: #2B587A;
+    color: #2b587a;
     cursor: pointer;
-    border-left: 1px solid #BEC8D3;
-    border-right: 1px solid #BEC8D3;
-    border-bottom: 1px solid #BEC8D3;
+    border-left: 1px solid #bec8d3;
+    border-right: 1px solid #bec8d3;
+    border-bottom: 1px solid #bec8d3;
     float: none;
     margin-right: 0;
-    *display: block;
+    *display: block
 }
 
 #group_like div.checkbox_inner {
@@ -307,45 +305,39 @@ img {
     padding-left: 7px;
     padding-bottom: 4px;
     border: 1px solid #eef2f5;
-    border-top: 1px solid #D9E1E7;
+    border-top: 1px solid #d9e1e7;
     padding-top: 4px;
-    *display: block;
+    *display: block
 }
 
-#group_like #join_group.checkbox {
-    *display: block;
-}
-
+#group_like #join_group.checkbox,
 #group_like .checkbox .checkbox_inner {
-    *display: block;
+    *display: block
 }
 
 #group_like .checked {
-    background-color: #36638E;
+    background-color: #36638e;
     font-size: 11px;
-    font-family: tahoma, tahoma, verdana, arial, sans-serif, Lucida Sans;
-    border: 1px solid #3B6798;
-    text-shadow: 0px 1px 0px #45688E;
-    padding: 0px;
+    font-family: tahoma, verdana, arial, sans-serif;
+    border: 1px solid #3b6798;
+    text-shadow: 0px 1px 0px #45688e;
+    padding: 0px
 }
 
 #group_like .checkbox.checked div.checkbox_inner {
     border-style: solid;
     border-width: 1px;
-    border-color: #7E9CBC #5C82AB #5C82AB;
-    background-color: #6D8FB3;
-    color: #FFF;
+    border-color: #7e9cbc #5c82ab #5c82ab;
+    background-color: #6d8fb3;
+    color: #fff;
     padding-top: 3px;
     float: none;
-    *display: block;
+    *display: block
 }
 
-#group_like .checked .check {
-    background: url("/images/like_s.gif?1") no-repeat scroll 0 -28px;
-}
-
+#group_like .checked .check,
 #group_like .checked-light .check {
-    background: url("/images/like_s.gif?1") no-repeat scroll 0 -28px;
+    background: url("/images/like_s.gif?1") no-repeat scroll 0 -28px
 }
 
 #group_like .check {
@@ -353,11 +345,11 @@ img {
     height: 14px;
     float: left;
     background: url("/images/like_s.gif?1") no-repeat scroll 0 -14px;
-    margin-right: 8px;
+    margin-right: 8px
 }
 
 #group_like #subscr_group.checked-light .check {
-    background: url("/images/icons/check.gif") no-repeat scroll 0 -14px;
+    background: url("/images/icons/check.gif") no-repeat scroll 0 -14px
 }
 
 #group_like #subscr_group .check {
@@ -365,20 +357,20 @@ img {
     height: 14px;
     float: left;
     background: url("/images/icons/check.gif") no-repeat scroll 0 0px;
-    margin-right: 8px;
+    margin-right: 8px
 }
 
 .group_users {
-    padding: 7px 0px 5px 5px;
+    padding: 7px 0px 5px 5px
 }
 
 .anim_row {
     overflow-x: hidden;
-    padding-bottom: 2px;
+    padding-bottom: 2px
 }
 
 .inline_row {
-    display: inline;
+    display: inline
 }
 
 .like_wrap {
@@ -398,41 +390,41 @@ img {
     white-space: nowrap;
     font-size: 0;
     -o-transition: background 200ms linear;
-    transition: background 200ms linear;
+    transition: background 200ms linear
 }
 
 .like_dived .like_wrap,
 .like_small .like_wrap {
-    float: left;
+    float: left
 }
 
 .like_small.like_small_vertical .like_wrap {
-    float: none;
+    float: none
 }
 
 .like_wrap:hover {
-    text-decoration: none;
+    text-decoration: none
 }
 
 .like_wrap .like_left,
 .like_wrap .like_right {
     position: relative;
     display: inline-block;
-    vertical-align: top;
+    vertical-align: top
 }
 
 .like_wrap .like_right {
-    color: #fff;
+    color: #fff
 }
 
 .like_dived .like_wrap .like_right,
 .like_dived_full .like_wrap .like_right {
-    padding-right: 8px;
+    padding-right: 8px
 }
 
 .like_small .like_wrap .like_right,
 .like_small_vertical .like_wrap .like_right {
-    margin-left: 1px;
+    margin-left: 1px
 }
 
 .like_small .like_wrap .like_right:before,
@@ -445,7 +437,7 @@ img {
     bottom: 0;
     left: -1px;
     width: 1px;
-    background: #fff;
+    background: #fff
 }
 
 .like_wrap .like_icon {
@@ -453,7 +445,7 @@ img {
     font-size: 0;
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 100%
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -461,33 +453,33 @@ img {
 (min-resolution: 192dpi) {
     .like_wrap .like_icon {
         background-image: url(/images/icons/like_widget_2x.png);
-        background-size: 19px 59px;
+        background-size: 19px 59px
     }
 }
 
 .like_wrap .icon_heart {
     opacity: 0.45;
-    filter: alpha(opacity=45);
+    filter: alpha(opacity=45)
 }
 
 .like_wrap .icon_v {
-    background-position: 0 0;
+    background-position: 0 0
 }
 
 .like_wrap.checked .icon_heart {
     opacity: 1;
     -webkit-filter: none;
-    filter: none;
+    filter: none
 }
 
-.like_small .like_wrap,
-.like_dived .like_wrap {
-    margin-right: 8px;
+.like_dived .like_wrap,
+.like_small .like_wrap {
+    margin-right: 8px
 }
 
 .like_small_vertical .like_wrap {
     margin-right: 0;
-    margin-top: 7px;
+    margin-top: 7px
 }
 
 .like_counter_wrap {
@@ -498,25 +490,25 @@ img {
     line-height: 12px;
     position: relative;
     display: block;
-    border: 1px solid #ADBDCC;
-    color: #55677D;
+    border: 1px solid #adbdcc;
+    color: #55677d;
     border-radius: 2px;
     cursor: pointer;
     padding: 0 5px;
-    background: #FFFFFF;
+    background: #fff
 }
 
 .like_dived .like_counter_wrap,
 .like_small .like_counter_wrap {
-    float: left;
+    float: left
 }
 
 .like_small.like_small_vertical .like_counter_wrap {
-    float: none;
+    float: none
 }
 
 .like_counter_wrap:hover {
-    text-decoration: none;
+    text-decoration: none
 }
 
 .like_counter_wrap .arrow {
@@ -529,7 +521,7 @@ img {
     height: 10px;
     background: url(/images/icons/like_widget.png);
     background-position: 0 -49px;
-    margin-top: -5px;
+    margin-top: -5px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -537,12 +529,12 @@ img {
 (min-resolution: 192dpi) {
     .like_counter_wrap .arrow {
         background-image: url(/images/icons/like_widget_2x.png);
-        background-size: 19px 59px;
+        background-size: 19px 59px
     }
 }
 
 .like_small_vertical .like_counter_wrap {
-    text-align: center;
+    text-align: center
 }
 
 .like_small_vertical .like_counter_wrap .arrow {
@@ -553,251 +545,244 @@ img {
     width: 10px;
     height: 5px;
     margin-top: 0;
-    background-position: right -49px;
+    background-position: right -49px
 }
 
 .like_auto_width {
     float: left;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
-.like_auto_width .like_wrap,
 .like_auto_width .like_counter_wrap,
+.like_auto_width .like_wrap,
 .like_auto_width nobr {
     float: none;
     display: inline-block;
-    vertical-align: top;
+    vertical-align: top
 }
 
 #like_table_left {
-    vertical-align: top;
+    vertical-align: top
 }
 
 #like_table_right {
     text-align: left;
-    vertical-align: middle;
+    vertical-align: middle
 }
 
 .stats_text {
     visibility: hidden;
-    font-size: 12px;
-    line-height: 14px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 400;
-    letter-spacing: 0.1px;
+    letter-spacing: 0.1px
 }
 
+.stats_text,
 #main .stats_text {
     font-size: 12px;
-    line-height: 14px;
+    line-height: 14px
 }
 
 #main .like_wrap {
     padding-top: 5px;
-    padding-bottom: 5px;
+    padding-bottom: 5px
 }
 
 #main .like_wrap:active {
     padding-top: 6px;
-    padding-bottom: 4px;
+    padding-bottom: 4px
 }
 
 #main .like_counter_wrap {
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-left: 6px;
-    padding-right: 6px;
+    padding: 4px 6px
 }
 
 #main.like_small_vertical .like_counter_wrap .arrow {
-    right: 7px;
+    right: 7px
 }
 
 #main.like_small .icon_heart {
-    background-position: 0 -35px;
+    background-position: 0 -35px
 }
 
 #main.like_small .like_left {
     height: 8px;
     width: 14px;
-    padding: 2px 6px;
+    padding: 2px 6px
 }
 
 #main.like_small .like_right {
     height: 10px;
     width: 11px;
-    padding: 1px 6px;
+    padding: 1px 6px
 }
 
 #main.like_dived .icon_heart {
-    background-position: 0 -23px;
+    background-position: 0 -23px
 }
 
 #main.like_dived .like_left {
     height: 8px;
     width: 9px;
-    padding: 2px 7px;
+    padding: 2px 7px
 }
 
 #main.like_dived .like_right {
     font-size: 12px;
     line-height: 12px;
-    padding-right: 7px;
+    padding-right: 7px
 }
 
 #main.like_wrap_h30 #stats_text {
     font-size: 12px;
-    line-height: 14px;
+    line-height: 14px
 }
 
 #main.like_wrap_h30 .like_wrap {
     padding-top: 9px;
-    padding-bottom: 9px;
+    padding-bottom: 9px
 }
 
 #main.like_wrap_h30 .like_wrap:active {
     padding-top: 10px;
-    padding-bottom: 8px;
+    padding-bottom: 8px
 }
 
 #main.like_wrap_h30 .like_counter_wrap {
-    padding: 8px;
+    padding: 8px
 }
 
 #main.like_wrap_h30.like_small_vertical .like_counter_wrap .arrow {
-    right: 11px;
+    right: 11px
 }
 
 #main.like_wrap_h30.like_small .icon_heart {
-    background-position: 0 -35px;
+    background-position: 0 -35px
 }
 
 #main.like_wrap_h30.like_small .like_left {
     height: 8px;
     width: 14px;
-    padding: 2px 10px;
+    padding: 2px 10px
 }
 
 #main.like_wrap_h30.like_small .like_right {
     height: 10px;
     width: 11px;
-    padding: 1px 10px;
+    padding: 1px 10px
 }
 
 #main.like_wrap_h30.like_dived .icon_heart {
-    background-position: 0 -35px;
+    background-position: 0 -35px
 }
 
 #main.like_wrap_h30.like_dived .like_left {
     height: 10px;
     width: 11px;
-    padding: 1px 12px;
+    padding: 1px 12px
 }
 
 #main.like_wrap_h30.like_dived .like_right {
     font-size: 12px;
     line-height: 12px;
-    padding-right: 12px;
+    padding-right: 12px
 }
 
 #main.like_wrap_h30.like_dived_full .like_left {
-    padding-left: 12px;
+    padding-left: 12px
 }
 
 #main.like_wrap_h30.like_dived_full .like_right {
-    padding-right: 12px;
+    padding-right: 12px
 }
 
 #main.like_wrap_h24 #stats_text {
     font-size: 12px;
-    line-height: 14px;
+    line-height: 14px
 }
 
 #main.like_wrap_h24 .like_wrap {
     padding-top: 6px;
-    padding-bottom: 6px;
+    padding-bottom: 6px
 }
 
 #main.like_wrap_h24 .like_wrap:active {
     padding-top: 7px;
-    padding-bottom: 5px;
+    padding-bottom: 5px
 }
 
 #main.like_wrap_h24 .like_counter_wrap {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 7px;
-    padding-right: 7px;
+    padding: 5px 7px
 }
 
 #main.like_wrap_h24.like_small_vertical .like_counter_wrap .arrow {
-    right: 8px;
+    right: 8px
 }
 
 #main.like_wrap_h24.like_small .icon_heart {
-    background-position: 0 -35px;
+    background-position: 0 -35px
 }
 
 #main.like_wrap_h24.like_small .like_left {
     height: 8px;
     width: 14px;
-    padding: 2px 7px;
+    padding: 2px 7px
 }
 
 #main.like_wrap_h24.like_small .like_right {
     height: 10px;
     width: 11px;
-    padding: 1px 7px;
+    padding: 1px 7px
 }
 
 #main.like_wrap_h24.like_dived .icon_heart {
-    background-position: 0 -35px;
+    background-position: 0 -35px
 }
 
 #main.like_wrap_h24.like_dived .like_left {
     height: 10px;
     width: 11px;
-    padding: 1px 9px;
+    padding: 1px 9px
 }
 
 #main.like_wrap_h24.like_dived .like_right {
     font-size: 12px;
     line-height: 12px;
-    padding-right: 9px;
+    padding-right: 9px
 }
 
 #main.like_wrap_h20 #stats_text {
     font-size: 12px;
-    line-height: 14px;
+    line-height: 14px
 }
 
 #main.like_wrap_h20 .like_wrap {
     padding-top: 4px;
-    padding-bottom: 4px;
+    padding-bottom: 4px
 }
 
 #main.like_wrap_h20 .like_wrap:active {
     padding-top: 5px;
-    padding-bottom: 3px;
+    padding-bottom: 3px
 }
 
 #main.like_wrap_h20 .like_counter_wrap {
     padding-top: 3px;
-    padding-bottom: 3px;
+    padding-bottom: 3px
 }
 
 #main.like_wrap_h20.like_small_vertical .like_counter_wrap .arrow {
-    right: 6px;
+    right: 6px
 }
 
 #main.like_wrap_h20.like_small .icon_heart {
-    background-position: 0 -23px;
+    background-position: 0 -23px
 }
 
 #main.like_wrap_h20.like_small .like_left {
     height: 8px;
     width: 14px;
-    padding: 2px 5px;
+    padding: 2px 5px
 }
 
 #main.like_wrap_h20.like_small .like_right {
@@ -805,57 +790,57 @@ img {
     width: 9px;
     padding: 1px 6px;
     margin-top: 1px;
-    margin-bottom: 1px;
+    margin-bottom: 1px
 }
 
 #main.like_wrap_h20.like_dived .icon_heart {
-    background-position: 0 -23px;
+    background-position: 0 -23px
 }
 
 #main.like_wrap_h20.like_dived .like_left {
     height: 8px;
     width: 9px;
-    padding: 2px 6px;
+    padding: 2px 6px
 }
 
 #main.like_wrap_h20.like_dived .like_right {
     font-size: 12px;
     line-height: 12px;
-    padding-right: 6px;
+    padding-right: 6px
 }
 
 #main.like_wrap_h18 #stats_text {
     font-size: 12px;
-    line-height: 12px;
+    line-height: 12px
 }
 
 #main.like_wrap_h18 .like_wrap {
     padding-top: 3px;
-    padding-bottom: 2px;
+    padding-bottom: 2px
 }
 
 #main.like_wrap_h18 .like_wrap:active {
     padding-top: 4px;
-    padding-bottom: 1px;
+    padding-bottom: 1px
 }
 
 #main.like_wrap_h18 .like_counter_wrap {
     padding-top: 2px;
-    padding-bottom: 2px;
+    padding-bottom: 2px
 }
 
 #main.like_wrap_h18.like_small_vertical .like_counter_wrap .arrow {
-    right: 5px;
+    right: 5px
 }
 
 #main.like_wrap_h18.like_small .icon_heart {
-    background-position: 0 -23px;
+    background-position: 0 -23px
 }
 
 #main.like_wrap_h18.like_small .like_left {
     height: 8px;
     width: 14px;
-    padding: 2px 4px;
+    padding: 2px 4px
 }
 
 #main.like_wrap_h18.like_small .like_right {
@@ -863,109 +848,109 @@ img {
     width: 9px;
     padding: 1px 5px;
     margin-top: 1px;
-    margin-bottom: 1px;
+    margin-bottom: 1px
 }
 
 #main.like_wrap_h18.like_dived .icon_heart {
-    background-position: 0 -12px;
+    background-position: 0 -12px
 }
 
 #main.like_wrap_h18.like_dived .like_left {
     height: 7px;
     width: 8px;
-    padding: 2px 6px 3px;
+    padding: 2px 6px 3px
 }
 
 #main.like_wrap_h18.like_dived .like_right {
     font-size: 12px;
     line-height: 13px;
-    padding-right: 6px;
+    padding-right: 6px
 }
 
 .like_recommend_box .post_header {
     padding-top: 0;
     padding-left: 0;
-    padding-right: 0;
+    padding-right: 0
 }
 
 .like_recommend_box .wall_text {
     padding-bottom: 0;
     padding-left: 0;
-    padding-right: 0;
+    padding-right: 0
 }
 
 #like_users_cont .no_rows {
-    margin: -25px -14px -5px;
+    margin: -25px -14px -5px
 }
 
 .pollMain {
-    border: 1px solid #BEC8D3;
+    border: 1px solid #bec8d3
 }
 
 .pollContent {
-    padding: 8px 7px;
+    padding: 8px 7px
 }
 
 .pollContent h1 {
     font-size: 11px;
-    font-weight: bold;
-    margin: 0 3px 5px 3px;
+    font-weight: 700;
+    margin: 0 3px 5px
 }
 
 .pollContent .radiobtn_container {
-    margin-left: 3px;
+    margin-left: 3px
 }
 
 .pollStats {
-    width: 100%;
+    width: 100%
 }
 
 .pollStatsText {
-    padding-top: 5px;
+    padding-top: 5px
 }
 
 .pollStatsBg {
     width: 95%;
-    background: #FAFAFA;
+    background: #fafafa
 }
 
 .pollStatsFg {
-    background: #DAE2E8;
-    border-top: 1px solid #CAD1D9;
+    background: #dae2e8;
+    border-top: 1px solid #cad1d9;
     font-size: 0;
     height: 14px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .pollStatsDesc {
     padding-left: 5px;
     width: 50px;
-    max-width: 100px;
+    max-width: 100px
 }
 
 .pollFooter {
-    background: #F2F2F2;
-    border-top: 1px solid #BEC8D3;
-    padding: 8px;
+    background: #f2f2f2;
+    border-top: 1px solid #bec8d3;
+    padding: 8px
 }
 
 .pollFooter textarea {
     width: 100%;
-    margin: 0;
+    margin: 0
 }
 
 .pollFooter .button_yes {
-    margin: 8px 0 0 0;
+    margin: 8px 0 0
 }
 
 .commHead a.pollUnvote {
-    color: #A9B8CB;
-    font-weight: bold;
+    color: #a9b8cb;
+    font-weight: 700
 }
 
 #pollMain #loading {
     margin: 5px 0 0 3px;
-    float: right;
+    float: right
 }
 
 .commHead {
@@ -973,43 +958,43 @@ img {
     border-bottom: 1px solid #ccd3da;
     height: 16px;
     color: #45688e;
-    font-weight: bold;
-    padding: 2px 8px 2px 8px;
+    font-weight: 700;
+    padding: 2px 8px;
     vertical-align: middle;
-    line-height: 20px;
+    line-height: 20px
 }
 
 .commHead a {
     line-height: 16px;
-    vertical-align: top;
+    vertical-align: top
 }
 
 .commHead .fl_r {
-    font-weight: normal;
+    font-weight: 400
 }
 
 .commHead span {
     line-height: 16px;
-    vertical-align: top;
+    vertical-align: top
 }
 
 .commHead span img {
     vertical-align: top;
     margin-top: 5px;
-    margin-left: 5px;
+    margin-left: 5px
 }
 
 .commHead .notYou {
-    font-weight: normal;
+    font-weight: 400
 }
 
 .commHead a.moderLink {
-    color: #A9B8CB !important;
-    margin-left: 5px;
+    color: #a9b8cb!important;
+    margin-left: 5px
 }
 
 .widgets_popup_box_close {
-    padding: 0;
+    padding: 0
 }
 
 .widgets_popup_box_close .box_body {
@@ -1020,7 +1005,7 @@ img {
     padding-bottom: 60px;
     font-size: 14px;
     text-align: center;
-    line-height: 22px;
+    line-height: 22px
 }
 
 .widgets_popup_box_close .box_body b {
@@ -1030,43 +1015,40 @@ img {
     overflow: hidden;
     text-overflow: ellipsis;
     display: inline-block;
-    vertical-align: top;
+    vertical-align: top
 }
 
-.widgets_popup_box_body {
-    background: #edeef0;
-}
-
-.widgets_popup_box_body #box_loader,
-.widgets_popup_box_body #box_layer_bg {
-    background: #edeef0;
+.widgets_popup_box_body,
+.widgets_popup_box_body #box_layer_bg,
+.widgets_popup_box_body #box_loader {
+    background: #edeef0
 }
 
 .widgets_popup_box_body .popup_box_container {
-    box-shadow: none;
+    box-shadow: none
 }
 
 .widgets_popup_box_body .popup_box_container .box_x_button {
-    display: none;
+    display: none
 }
 
 .widgets_popup_box_body .popup_box_container .box_layout {
-    box-shadow: 0 1px 0 0 #D7D8DB, 0 0 0 1px #E3E4E8;
-    vertical-align: initial;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    vertical-align: initial
 }
 
 .widgets_popup_box_body.widgets_popup_box_center #box_layer {
     display: table;
     margin: 0 auto;
     padding: 0;
-    height: 100%;
+    height: 100%
 }
 
 .widgets_popup_box_body.widgets_popup_box_center .popup_box_container {
     display: table-cell;
     vertical-align: middle;
-    margin: 0 !important;
-    padding: 0 !important;
+    margin: 0!important;
+    padding: 0!important
 }
 
 .inl_bl {
@@ -1074,27 +1056,27 @@ img {
     display: inline-block;
     _overflow: hidden;
     zoom: 1;
-    *display: inline;
+    *display: inline
 }
 
 .counter_anim_wrap {
     position: relative;
     height: 1em;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .counter_anim {
     position: absolute;
     right: 0;
-    text-align: right;
+    text-align: right
 }
 
 .counter_css_anim_wrap {
     -o-transition: width 100ms linear;
-    transition: width 100ms linear;
+    transition: width 100ms linear
 }
 
 .counter_css_anim_wrap .counter_anim {
     -o-transition: margin-top 300ms ease-out;
-    transition: margin-top 300ms ease-out;
+    transition: margin-top 300ms ease-out
 }

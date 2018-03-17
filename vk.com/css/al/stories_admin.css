@@ -1,27 +1,27 @@
 #stories_admin_css {
-    display: none;
+    display: none
 }
 
 #stories_admin .stories_publics__counters_icons .stories_publics__counter_icon {
-    -ms-high-contrast-adjust: none;
+    -ms-high-contrast-adjust: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 #stories_admin {
     min-height: 385px;
     background-color: #fff;
     color: #010101;
-    font-size: 13px;
+    font-size: 13px
 }
 
 #stories_admin .stories_publics {
@@ -35,14 +35,14 @@
     position: relative;
     z-index: 3;
     background: #fff;
-    border-right: 1px solid #e3e4e8;
+    border-right: 1px solid #e3e4e8
 }
 
 #stories_admin .stories_publics .stories_publics__title {
     padding: 0 15px;
     height: 46px;
     border-bottom: 1px solid #e3e4e8;
-    line-height: 50px;
+    line-height: 50px
 }
 
 #stories_admin .stories_publics .public {
@@ -52,18 +52,18 @@
     display: block;
     width: 100%;
     cursor: pointer;
-    overflow: hidden;
+    overflow: hidden
 }
 
 #stories_admin .stories_publics .public .stories_public__image {
     float: left;
-    padding: 12px 0 0 0;
-    width: 40px;
+    padding: 12px 0 0;
+    width: 40px
 }
 
 #stories_admin .stories_publics .public .stories_public__image>img {
     width: 100%;
-    border-radius: 50%;
+    border-radius: 50%
 }
 
 #stories_admin .stories_publics .public .stories_public__description {
@@ -74,7 +74,7 @@
     text-decoration: none;
     border-top: 1px solid #e3e4e8;
     box-sizing: border-box;
-    padding: 8px 15px 0 0;
+    padding: 8px 15px 0 0
 }
 
 #stories_admin .stories_publics .public .stories_public__description .stories_public__name {
@@ -85,7 +85,7 @@
     margin-top: 8px;
     width: 100%;
     position: relative;
-    color: #335d7b;
+    color: #335d7b
 }
 
 #stories_admin .stories_publics .public .stories_public__description .stories_public__subscribers {
@@ -96,44 +96,44 @@
     font-size: 12.5px;
     color: #656565;
     padding-bottom: 1px;
-    line-height: 16px;
+    line-height: 16px
 }
 
 #stories_admin .stories_publics .public:hover {
-    background-color: #f5f7fa;
+    background-color: #f5f7fa
 }
 
 #stories_admin .stories_publics .public:first-child .stories_public__description {
-    border: none;
+    border: none
 }
 
 #stories_admin .stories_publics .public--selected {
     background: #7293b6;
-    cursor: pointer;
+    cursor: pointer
 }
 
 #stories_admin .stories_publics .public--selected:hover {
-    background: #7293b6;
+    background: #7293b6
 }
 
 #stories_admin .stories_publics .public--selected .stories_public__description {
-    border: none;
+    border: none
 }
 
 #stories_admin .stories_publics .public--selected .stories_public__description .stories_public__name,
 #stories_admin .stories_publics .public--selected .stories_public__description .stories_public__subscribers {
-    color: #fff;
+    color: #fff
 }
 
 #stories_admin .stories_publics .public--selected+.public .stories_public__description {
     border: 0;
-    margin-top: 1px;
+    margin-top: 1px
 }
 
 #stories_admin .stories_block {
     min-height: 385px;
     margin-left: 250px;
-    position: relative;
+    position: relative
 }
 
 #stories_admin .no_stories_msg {
@@ -142,14 +142,13 @@
     width: 100%;
     top: 50%;
     -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
     -o-transform: translateY(-50%);
-    transform: translateY(-50%);
+    transform: translateY(-50%)
 }
 
 #stories_admin .stories_publics__counters_icons {
     display: inline-block;
-    float: right;
+    float: right
 }
 
 #stories_admin .stories_publics__counters_icons .stories_publics__counter_icon {
@@ -159,7 +158,7 @@
     height: 16px;
     background-repeat: no-repeat;
     margin-left: 40px;
-    margin-top: 15px;
+    margin-top: 15px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -167,82 +166,82 @@
 (min-resolution: 192dpi) {
     #stories_admin .stories_publics__counters_icons .stories_publics__counter_icon {
         background-image: url(/images/stories_admin_stats_2x.png);
-        background-size: 16px 80px;
+        background-size: 16px 80px
     }
 }
 
 #stories_admin .stories_publics__counters_icons .stories_counter_icon__story_views {
     background-position-y: 0px;
-    margin: 0 6px 0 70px;
+    margin: 0 6px 0 70px
 }
 
 #stories_admin .stories_publics__counters_icons .stories_counter_icon__story_shares {
-    background-position-y: -16px;
+    background-position-y: -16px
 }
 
 #stories_admin .stories_publics__counters_icons .stories_counter_icon__story_answers {
-    background-position-y: -32px;
+    background-position-y: -32px
 }
 
 #stories_admin .stories_publics__counters_icons .stories_counter_icon__story_conversion {
-    background-position-y: -48px;
+    background-position-y: -48px
 }
 
 #stories_admin .stories_publics__counters_icons .stories_counter_icon__story_hides {
-    background-position-y: -64px;
+    background-position-y: -64px
 }
 
 #stories_admin .admin_stories_list {
-    border-left: 1px solid #e3e4e8;
+    border-left: 1px solid #e3e4e8
 }
 
 #stories_admin .admin_stories_list .stories_list__title {
     padding: 0 15px;
     height: 46px;
     border-bottom: 1px solid #e3e4e8;
-    line-height: 50px;
+    line-height: 50px
 }
 
 #stories_admin .admin_stories_list .stories_list__section .stories_list__section_title {
     padding: 20px 15px 8px 0;
     margin-left: 15px;
-    border-bottom: 1px solid #e3e4e8;
+    border-bottom: 1px solid #e3e4e8
 }
 
 #stories_admin .admin_stories_list .stories_list__section .stories_list__section_title .counter {
     color: #939393;
-    display: inline-block;
+    display: inline-block
 }
 
 #stories_admin .admin_stories_list .stories_list__section .stories_list__section_title .hide {
     float: right;
-    display: inline-block;
+    display: inline-block
 }
 
 #stories_admin .admin_stories_list .stories_list__section .stories_list__section_title .show {
     float: right;
-    display: none;
+    display: none
 }
 
 #stories_admin .admin_stories_list .stories_list__section .stories_list__story {
     padding: 9px 12px 12px;
     padding-left: 0;
     margin-left: 15px;
-    border-bottom: 1px solid #e3e4e8;
+    border-bottom: 1px solid #e3e4e8
 }
 
 #stories_admin .admin_stories_list .stories_list__section .stories_list__story:last-of-type {
-    border-bottom: none;
+    border-bottom: none
 }
 
 #stories_admin .admin_stories_list .stories_list__section .stories_list__story * {
-    vertical-align: middle;
+    vertical-align: middle
 }
 
-#stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_image,
+#stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters,
 #stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_description,
-#stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters {
-    display: inline-block;
+#stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_image {
+    display: inline-block
 }
 
 #stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_description {
@@ -252,49 +251,46 @@
     width: 150px;
     font-size: 13px;
     line-height: 19px;
-    padding: 8px 6px 10px;
+    padding: 8px 6px 10px
 }
 
 #stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_description .stories_list__story_description_author,
-#stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_description .stories_list__story_description_date {
-    color: gray;
-}
-
+#stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_description .stories_list__story_description_date,
 #stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_description .stories_list__story_description_author a,
 #stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_description .stories_list__story_description_date a {
-    color: gray;
+    color: gray
 }
 
 #stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters {
     float: right;
     height: 70px;
     padding-top: 20px;
-    vertical-align: middle;
+    vertical-align: middle
 }
 
-#stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters .stories_list__story_views,
-#stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters .stories_list__story_shares,
 #stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters .stories_list__story_answers,
 #stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters .stories_list__story_conversion,
-#stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters .stories_list__story_hides {
-    display: inline-block;
+#stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters .stories_list__story_hides,
+#stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters .stories_list__story_shares,
+#stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters .stories_list__story_views {
+    display: inline-block
 }
 
+#stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters .stories_list__story_answers,
+#stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters .stories_list__story_conversion,
 #stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters .stories_list__story_description,
-#stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters .stories_list__story_views,
+#stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters .stories_list__story_hides,
 #stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters .stories_list__story_shares,
-#stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters .stories_list__story_answers,
-#stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters .stories_list__story_conversion,
-#stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters .stories_list__story_hides {
+#stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters .stories_list__story_views {
     box-sizing: border-box;
     padding: 10px 6px;
     width: 56px;
     text-align: right;
-    overflow: hidden;
+    overflow: hidden
 }
 
 #stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_counters .stories_list__story_views {
-    width: 80px;
+    width: 80px
 }
 
 #stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_image {
@@ -303,7 +299,7 @@
     border-radius: 2px;
     background-color: dimgray;
     cursor: pointer;
-    position: relative;
+    position: relative
 }
 
 #stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_image .delete_story {
@@ -314,39 +310,39 @@
     text-align: center;
     display: none;
     background-color: #fff;
-    border-radius: 2px;
+    border-radius: 2px
 }
 
 #stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_image:hover .delete_story {
-    display: block;
+    display: block
 }
 
 #stories_admin .admin_stories_list .stories_list__section .stories_list__story .stories_list__story_image.already_deleted:hover .delete_story {
-    display: none;
+    display: none
 }
 
 #stories_admin .admin_stories_list .stories_list__section .deleted_story_info {
     display: inline-block;
     vertical-align: top;
-    margin: 0 5px;
+    margin: 0 5px
 }
 
 #stories_admin .admin_stories_list .stories_list__section--hidden .stories_list_wrapper {
-    display: none;
+    display: none
 }
 
 #stories_admin .admin_stories_list .stories_list__section--hidden .stories_list__section_title .hide {
     float: right;
-    display: none;
+    display: none
 }
 
 #stories_admin .admin_stories_list .stories_list__section--hidden .stories_list__section_title .show {
     float: right;
-    display: inline-block;
+    display: inline-block
 }
 
 #stories_admin .stories--footer {
-    clear: both;
+    clear: both
 }
 
 #stories_admin__new_channel_form .input_label {
@@ -355,7 +351,7 @@
     margin: 0 0 8px;
     padding: 0;
     border-bottom: none;
-    font-size: inherit;
+    font-size: inherit
 }
 
 #stories_admin__new_channel_form .input input {
@@ -367,19 +363,19 @@
     height: 30px;
     padding: 5px 9px 7px;
     border-radius: 1px;
-    box-sizing: border-box;
+    box-sizing: border-box
 }
 
 #stories_admin__new_channel_form .new_channel__buttons {
-    text-align: right;
+    text-align: right
 }
 
 #stories_admin__new_channel_form .new_channel_form__unknown_channel {
-    margin: 10px 0;
+    margin: 10px 0
 }
 
 #stories_admin__new_channel_form .stories_admin__search_container {
-    position: relative;
+    position: relative
 }
 
 #stories_admin__new_channel_form .stories_admin__search_container .ui_search_progress {
@@ -393,11 +389,11 @@
     position: absolute;
     right: 6px;
     top: 7px;
-    box-sizing: border-box;
+    box-sizing: border-box
 }
 
 #stories_admin__new_channel_form .stories_admin__search_container.ui_search_loading .ui_search_progress {
-    display: block !important;
+    display: block!important
 }
 
 #stories_admin__new_channel_form .public {
@@ -406,19 +402,19 @@
     padding: 0 0 0 0px;
     display: block;
     width: 100%;
-    overflow: hidden;
+    overflow: hidden
 }
 
 #stories_admin__new_channel_form .public .stories_public__image {
     float: left;
     padding: 13px 7px 0 0;
     height: 50px;
-    width: 35px;
+    width: 35px
 }
 
 #stories_admin__new_channel_form .public .stories_public__image>img {
     border-radius: 50%;
-    width: 100%;
+    width: 100%
 }
 
 #stories_admin__new_channel_form .public .stories_public__description {
@@ -426,9 +422,9 @@
     position: relative;
     display: block;
     text-decoration: none;
-    padding: 8px 0 0 0;
+    padding: 8px 0 0;
     box-sizing: border-box;
-    padding-right: 15px;
+    padding-right: 15px
 }
 
 #stories_admin__new_channel_form .public .stories_public__description .stories_public__name {
@@ -438,7 +434,7 @@
     -moz-osx-font-smoothing: auto;
     margin-top: 6px;
     width: 100%;
-    position: relative;
+    position: relative
 }
 
 #stories_admin__new_channel_form .public .stories_public__description .stories_public__subscribers {
@@ -449,47 +445,47 @@
     color: #656565;
     padding-bottom: 1px;
     line-height: 16px;
-    font-size: 13px;
+    font-size: 13px
 }
 
 #stories_admin__new_channel_form .public a:hover {
-    text-decoration: none;
+    text-decoration: none
 }
 
 #stories_admin__new_channel_form .public a:hover .stories_public__name {
-    text-decoration: underline;
+    text-decoration: underline
 }
 
 #stories_admin__new_channel_form .new_channel_form__buttons {
-    text-align: right;
+    text-align: right
 }
 
 #stories_admin__new_story_form .new_story_channel_title,
-#stories_admin__new_story_form .new_story_story_title,
-#stories_admin__new_story_form .new_story_story_input {
+#stories_admin__new_story_form .new_story_story_input,
+#stories_admin__new_story_form .new_story_story_title {
     color: #222;
     font-weight: 500;
     margin: 0;
     padding: 0;
     border-bottom: none;
     font-size: inherit;
-    margin-bottom: 5px;
+    margin-bottom: 5px
 }
 
-#stories_admin__new_story_form .new_story_story_input input:not([type='checkbox']),
+#stories_admin__new_story_form .new_story_story_input input:not([type=checkbox]),
 #stories_admin__new_story_form .new_story_story_input select {
     width: 100%;
     color: #000;
     margin: 0;
-    border: 1px solid #D3D9DE;
+    border: 1px solid #d3d9de;
     padding: 5px 9px 7px;
     border-radius: 2px;
     box-sizing: border-box;
-    background-color: #fff;
+    background-color: #fff
 }
 
 #stories_admin__new_story_form .new_story_story_separator {
-    margin: 25px 0;
+    margin: 25px 0
 }
 
 #stories_admin__new_story_form .public {
@@ -498,19 +494,19 @@
     padding: 0;
     display: block;
     width: 100%;
-    overflow: hidden;
+    overflow: hidden
 }
 
 #stories_admin__new_story_form .public .stories_public__image {
     float: left;
     padding: 8px 7px 0 0;
     height: 50px;
-    width: 35px;
+    width: 35px
 }
 
 #stories_admin__new_story_form .public .stories_public__image>img {
     border-radius: 50%;
-    width: 100%;
+    width: 100%
 }
 
 #stories_admin__new_story_form .public .stories_public__description {
@@ -518,9 +514,9 @@
     position: relative;
     display: block;
     text-decoration: none;
-    padding: 8px 0 0 0;
+    padding: 8px 0 0;
     box-sizing: border-box;
-    padding-right: 15px;
+    padding-right: 15px
 }
 
 #stories_admin__new_story_form .public .stories_public__description .stories_public__name {
@@ -530,7 +526,7 @@
     -moz-osx-font-smoothing: auto;
     margin-top: 6px;
     width: 100%;
-    position: relative;
+    position: relative
 }
 
 #stories_admin__new_story_form .public .stories_public__description .stories_public__subscribers {
@@ -541,17 +537,17 @@
     color: #656565;
     padding-bottom: 1px;
     line-height: 16px;
-    font-size: 13px;
+    font-size: 13px
 }
 
 #stories_admin__new_story_form .public a:hover {
-    text-decoration: none;
+    text-decoration: none
 }
 
 #stories_admin__new_story_form .public a:hover .stories_public__name {
-    text-decoration: underline;
+    text-decoration: underline
 }
 
 #stories_admin__new_story_form .story_input {
-    display: none;
+    display: none
 }

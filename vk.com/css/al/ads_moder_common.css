@@ -1,70 +1,70 @@
 #ads_moder_common_css {
-    display: none;
+    display: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .ads_premoderation_request_link_domain {
-    text-align: left;
+    text-align: left
 }
 
 .ads_premoderation_request_link_domain.approved {
-    color: #008000;
+    color: green
 }
 
 .ads_premoderation_request_link_domain.approved.show_background {
-    background-color: #eeffee;
+    background-color: #efe
 }
 
 .ads_premoderation_request_link_domain.declined {
-    color: #800000;
+    color: maroon
 }
 
 .ads_premoderation_request_link_domain.declined.show_background {
-    background-color: #ffeeee;
+    background-color: #fee
 }
 
 .ads_premoderation_request_link_domain.warning {
-    color: #a86a30;
+    color: #a86a30
 }
 
 .ads_premoderation_request_link_domain.warning.show_background {
-    background-color: #fff89b;
+    background-color: #fff89b
 }
 
 .ads_moder_template_actions {
-    color: #2B587A;
+    color: #2b587a
 }
 
 span.ads_moder_template_inactive {
-    color: #999;
+    color: #999
 }
 
 .ads_premoderation_domain_info {
     margin-top: 5px;
     font-size: 0.9em;
-    color: #888;
+    color: #888
 }
 
 .ads_domain_comment_edit_wrap {
-    margin-right: 8px;
+    margin-right: 8px
 }
 
 #ads_domain_comment_edit,
 #ads_template_text_edit {
     width: 100%;
-    height: 100px;
+    height: 100px
 }
 
 .ads_moder_all_notes_domains {
-    margin-top: 10px;
+    margin-top: 10px
 }

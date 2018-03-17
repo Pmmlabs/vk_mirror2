@@ -1,38 +1,38 @@
 #landings_vk10_years_css {
-    display: none;
+    display: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
-.vk10_years_head,
 .vk10_years_caption_ic:after,
+.vk10_years_head,
 .vk10_years_photos_hide_btn,
 .vk10_years_share_btn:after,
-.vk_10_years_snippet_info,
-.vk_10_years_snippet_caption:after {
-    -ms-high-contrast-adjust: none;
+.vk_10_years_snippet_caption:after,
+.vk_10_years_snippet_info {
+    -ms-high-contrast-adjust: none
 }
 
 .landing_wk_wrap_vk10_years {
-    width: auto !important;
+    width: auto!important;
     text-align: center;
-    padding: 0px !important;
-    font-family: Roboto;
+    padding: 0px!important;
+    font-family: Roboto
 }
 
 .vk10_years_head {
     width: 100%;
     height: 200px;
-    background-image: url(/images/landings/vk10_years/vk10_layer_head.png);
+    background-image: url(/images/landings/vk10_years/vk10_layer_head.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -40,7 +40,7 @@
 (min-resolution: 192dpi) {
     .vk10_years_head {
         background-image: url(/images/landings/vk10_years/vk10_layer_head_2x.png);
-        background-size: 900px 200px;
+        background-size: 900px 200px
     }
 }
 
@@ -49,11 +49,11 @@
     line-height: 56px;
     letter-spacing: 0.3px;
     margin-top: 23px;
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 .vk10_years_hide {
-    display: none !important;
+    display: none!important
 }
 
 .vk10_years_caption {
@@ -63,12 +63,12 @@
     line-height: 24px;
     letter-spacing: 0.2px;
     display: inline-block;
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 .vk10_years_caption_ic {
     position: relative;
-    padding-left: 36px;
+    padding-left: 36px
 }
 
 .vk10_years_caption_ic:after {
@@ -79,7 +79,7 @@
     width: 24px;
     height: 24px;
     background-image: url(/images/landings/vk10_years/vk10_icons.png);
-    background-position: center 0px;
+    background-position: center 0px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -87,97 +87,97 @@
 (min-resolution: 192dpi) {
     .vk10_years_caption_ic:after {
         background-image: url(/images/landings/vk10_years/vk10_icons_2x.png);
-        background-size: 24px 283px;
+        background-size: 24px 283px
     }
 }
 
 .vk10_years_caption_ic_photos:after {
-    background-position: center -24px;
+    background-position: center -24px
 }
 
 .vk10_years_caption_ic_audios:after {
-    background-position: center -48px;
+    background-position: center -48px
 }
 
 .vk10_years_caption_ic_friends:after {
-    background-position: center -72px;
+    background-position: center -72px
 }
 
 .vk10_years_caption_ic_graffiti:after {
-    background-position: center -96px;
+    background-position: center -96px
 }
 
 .vk10_years_caption_ic_stats:after {
-    background-position: center -120px;
+    background-position: center -120px
 }
 
 .vk10_years_caption_ic_joined {
-    margin-top: 53px !important;
+    margin-top: 53px!important
 }
 
 .vk10_years_caption_ic_joined:after {
-    background-position: center -144px;
+    background-position: center -144px
 }
 
 .vk10_years_caption_ic_messages:after {
-    background-position: center -168px;
+    background-position: center -168px
 }
 
 .vk10_years_caption_ic_likes:after {
-    background-position: center -192px;
+    background-position: center -192px
 }
 
 .vk10_years_caption_ic_graph:after {
     background-position: center -214px;
-    top: -2px;
+    top: -2px
 }
 
 .vk10_years_sep {
     width: 800px;
     margin: 56px auto 0px;
-    background-image: -o-linear-gradient(right, #ffffff, #f3f3f3 5%, #e8e8e8 95%, #ffffff);
-    background-image: linear-gradient(270deg, #ffffff, #f3f3f3 5%, #e8e8e8 95%, #ffffff);
-    height: 1px;
+    background-image: -o-linear-gradient(right, #fff, #f3f3f3 5%, #e8e8e8 95%, #fff);
+    background-image: linear-gradient(270deg, #fff, #f3f3f3 5%, #e8e8e8 95%, #fff);
+    height: 1px
 }
 
 .vk10_years_main_wrap .vk10_years_caption {
-    margin-top: 12px;
+    margin-top: 12px
 }
 
 .vk10_years_status_wrap .vk10_years_title {
     margin-top: 29px;
-    padding: 0px 50px;
+    padding: 0px 50px
 }
 
 .vk10_years_photo {
     margin-top: 29px;
     text-align: center;
-    position: relative;
+    position: relative
 }
 
 .vk10_years_photo .page_post_sized_thumbs {
-    margin: 0px auto;
+    margin: 0px auto
 }
 
 .vk10_years_photo .page_post_thumb_unsized,
 .vk10_years_photo .page_post_thumb_wrap {
     margin: 0 8px 8px 0;
-    border-radius: 3px;
+    border-radius: 3px
 }
 
 .vk10_years_photo .page_post_thumb_last_column {
-    margin-right: 0px;
+    margin-right: 0px
 }
 
 .vk10_years_photos_wrap .vk10_years_caption {
-    margin-top: 0px !important;
+    margin-top: 0px!important
 }
 
 .vk10_years_photos_title {
     width: 676px;
     height: 24px;
     margin: 51px auto 0px;
-    position: relative;
+    position: relative
 }
 
 .vk10_years_photos_hide_btn {
@@ -192,7 +192,7 @@
     background-repeat: no-repeat;
     opacity: 0;
     -o-transition: opacity 200ms ease;
-    transition: opacity 200ms ease;
+    transition: opacity 200ms ease
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -200,30 +200,30 @@
 (min-resolution: 192dpi) {
     .vk10_years_photos_hide_btn {
         background-image: url(/images/landings/vk10_years/vk10_icons_2x.png);
-        background-size: 24px 283px;
+        background-size: 24px 283px
     }
 }
 
 .vk10_years_photos_wrap:hover .vk10_years_photos_hide_btn {
-    opacity: 0.5;
+    opacity: 0.5
 }
 
 .vk10_years_photos_hide_btn:hover {
-    opacity: 1 !important;
+    opacity: 1!important
 }
 
 .vk10_years_photos_hidden {
     font-size: 14px;
     color: #656565;
     padding: 56px 0px 0px;
-    display: none;
+    display: none
 }
 
 .vk10_years_photo_img {
     max-width: 500px;
     vertical-align: top;
     z-index: 2;
-    position: relative;
+    position: relative
 }
 
 .vk10_years_photo_shadow {
@@ -233,9 +233,9 @@
     bottom: 0px;
     left: 50%;
     margin-left: -156px;
-    box-shadow: 0 6px 24px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: 0 6px 24px 0 rgba(0, 0, 0, .4);
     border-radius: 4px;
-    z-index: 1;
+    z-index: 1
 }
 
 .vk10_years_photo_date {
@@ -243,20 +243,20 @@
     font-size: 15px;
     line-height: 20px;
     letter-spacing: 0.2px;
-    margin-top: 32px;
+    margin-top: 32px
 }
 
 .vk10_years_audios {
     width: 400px;
     margin: 29px auto 0px;
-    text-align: left;
+    text-align: left
 }
 
 .vk10_years_friends {
     position: relative;
     width: 256px;
     height: 144px;
-    margin: 21px auto 0px;
+    margin: 21px auto 0px
 }
 
 .vk10_years_friends_item {
@@ -264,11 +264,11 @@
     left: 0px;
     top: 28px;
     z-index: 1;
-    display: block;
+    display: block
 }
 
 .vk10_years_friends_item:last-child {
-    left: 176px;
+    left: 176px
 }
 
 .vk10_years_friends_item_img {
@@ -276,7 +276,7 @@
     height: 80px;
     border-radius: 40px;
     background-size: cover;
-    background-position: 50%;
+    background-position: 50%
 }
 
 .vk10_years_friends_item:nth-child(2) {
@@ -286,54 +286,54 @@
     background: #fff;
     z-index: 2;
     border-radius: 72px;
-    margin-left: -72px;
+    margin-left: -72px
 }
 
 .vk10_years_friends_item:nth-child(2) .vk10_years_friends_item_img {
     width: 128px;
     height: 128px;
-    border-radius: 64px;
+    border-radius: 64px
 }
 
 .vk10_years_caption_friends {
     color: #000;
     margin: 16px auto 0px;
-    max-width: 416px;
+    max-width: 416px
 }
 
 .vk10_years_graffiti {
     width: 100%;
     max-width: 510px;
     margin: 29px auto 0px;
-    display: block;
+    display: block
 }
 
 .vk10_years_caption_stats {
     color: #000;
-    margin-top: 56px;
+    margin-top: 56px
 }
 
 .vk10_years_graph_wrap {
     background: #4d71a9;
     width: 100%;
     margin-top: 80px;
-    padding-bottom: 48px;
+    padding-bottom: 48px
 }
 
 .vk10_years_graph_wrap .vk10_years_caption {
-    color: #fff;
+    color: #fff
 }
 
 .vk10_years_graph_body {
     position: relative;
     width: 900px;
-    height: 600px;
+    height: 600px
 }
 
 .vk10_years_graph_fg {
     position: absolute;
     top: 0px;
-    left: 0px;
+    left: 0px
 }
 
 .vk10_years_share_btn {
@@ -342,7 +342,7 @@
     line-height: 16px;
     letter-spacing: 0.1px;
     padding: 16px 30px 16px 55px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid hsla(0, 0%, 100%, .3);
     border-radius: 100px;
     display: inline-block;
     margin-top: 30px;
@@ -355,11 +355,11 @@
     -o-user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
-    -webkit-user-select: none;
+    -webkit-user-select: none
 }
 
 .vk10_years_share_btn:hover {
-    border-color: #fff;
+    border-color: #fff
 }
 
 .vk10_years_share_btn:after {
@@ -370,7 +370,7 @@
     height: 14px;
     width: 16px;
     background-image: url(/images/landings/vk10_years/vk10_icons.png);
-    background-position: -4px -246px;
+    background-position: -4px -246px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -378,40 +378,40 @@
 (min-resolution: 192dpi) {
     .vk10_years_share_btn:after {
         background-image: url(/images/landings/vk10_years/vk10_icons_2x.png);
-        background-size: 24px 283px;
+        background-size: 24px 283px
     }
 }
 
 .vk10_years_share_btn:active {
     padding-top: 17px;
-    padding-bottom: 15px;
+    padding-bottom: 15px
 }
 
 .vk10_years_share_btn:active:after {
-    top: 19px;
+    top: 19px
 }
 
 .vk10_years_share_lock {
-    padding: 16px 0px;
+    padding: 16px 0px
 }
 
 .vk10_years_share_lock:after {
-    display: none;
+    display: none
 }
 
 .vk10_years_share_lock .pr {
-    padding: 5px 0px;
+    padding: 5px 0px
 }
 
 .vk10_years_share_lock .pr_bt {
     background-color: #fff;
     width: 6px;
     height: 6px;
-    margin-right: 5px;
+    margin-right: 5px
 }
 
 .vk10_years_snippet .page_media_link_img {
-    cursor: pointer;
+    cursor: pointer
 }
 
 .vk_10_years_snippet_info {
@@ -420,7 +420,7 @@
     background-position: 50%;
     text-align: center;
     padding-top: 19px;
-    box-sizing: border-box;
+    box-sizing: border-box
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -428,7 +428,7 @@
 (min-resolution: 192dpi) {
     .vk_10_years_snippet_info {
         background-image: url(/images/landings/vk10_years/vk_10_snippet_2x.png);
-        background-size: 508px 80px;
+        background-size: 508px 80px
     }
 }
 
@@ -436,7 +436,7 @@
     font-size: 18px;
     line-height: 21px;
     letter-spacing: -0.4px;
-    color: #222;
+    color: #222
 }
 
 .vk_10_years_snippet_caption {
@@ -444,7 +444,7 @@
     letter-spacing: -0.1px;
     margin-top: 6px;
     font-size: 13px;
-    display: inline-block;
+    display: inline-block
 }
 
 .vk_10_years_snippet_caption:after {
@@ -458,7 +458,7 @@
     transition: -webkit-transform 70ms linear;
     -o-transition: transform 70ms linear, -o-transform 70ms linear;
     transition: transform 70ms linear;
-    transition: transform 70ms linear, -webkit-transform 70ms linear, -o-transform 70ms linear;
+    transition: transform 70ms linear, -webkit-transform 70ms linear, -o-transform 70ms linear
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -466,60 +466,59 @@
 (min-resolution: 192dpi) {
     .vk_10_years_snippet_caption:after {
         background-image: url(/images/icons/search_arrow_2x.png);
-        background-size: 6px 10px;
+        background-size: 6px 10px
     }
 }
 
 .vk_10_years_snippet_caption:hover:after {
     -webkit-transform: translateX(3px);
-    -ms-transform: translateX(3px);
     -o-transform: translateX(3px);
-    transform: translateX(3px);
+    transform: translateX(3px)
 }
 
 .page_media_vk10_years .page_media_link_title {
     line-height: 19px;
-    color: #000 !important;
+    color: #000!important;
     font-size: 16px;
-    font-weight: normal !important;
-    letter-spacing: -0.1px;
+    font-weight: 400!important;
+    letter-spacing: -0.1px
 }
 
 .page_media_vk10_years .page_media_link_desc {
-    letter-spacing: -0.1px;
+    letter-spacing: -0.1px
 }
 
 .page_media_vk10_years .flat_button {
-    margin-top: 23px;
+    margin-top: 23px
 }
 
 .page_media_vk10_years .page_media_link_desc_td {
-    padding-top: 18px;
+    padding-top: 18px
 }
 
 .vk10_years_snippet .page_post_sized_full_thumb,
 .vk10_years_snippet .page_post_sized_thumbs {
     margin: 0px;
-    padding: 0px;
+    padding: 0px
 }
 
 .vk10_years_snippet .page_post_sized_thumbs {
-    margin: 0px auto;
+    margin: 0px auto
 }
 
 .vk10_years_snippet .page_post_thumb_unsized,
 .vk10_years_snippet .page_post_thumb_wrap {
-    margin: 0 3px 3px 0;
+    margin: 0 3px 3px 0
 }
 
 .vk10_years_snippet .page_post_thumb_last_column {
-    margin-right: 0px;
+    margin-right: 0px
 }
 
 .vk10_years_snippet .page_media_link_photo {
-    margin: 0px;
+    margin: 0px
 }
 
 .vk10_years_snippet .vk_10_years_snippet_info {
-    border-top: 1px solid rgba(0, 20, 51, 0.12);
+    border-top: 1px solid rgba(0, 20, 51, .12)
 }

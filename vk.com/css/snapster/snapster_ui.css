@@ -2,11 +2,11 @@
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .dropdown {
@@ -14,7 +14,7 @@
     height: 13px;
     text-align: right;
     cursor: pointer;
-    z-index: 101;
+    z-index: 101
 }
 
 .dropdown_arrow {
@@ -22,13 +22,13 @@
     top: 5px;
     right: 0px;
     border: 6px solid transparent;
-    border-top-color: #00AEE2;
+    border-top-color: #00aee2
 }
 
 .dropdown_selected {
     padding-right: 20px;
-    color: #00AEE2;
-    z-index: 1;
+    color: #00aee2;
+    z-index: 1
 }
 
 .dropdown_options {
@@ -44,25 +44,25 @@
     border-radius: 3px;
     visibility: hidden;
     -o-transition: visibility 200ms linear, top 100ms linear;
-    transition: visibility 200ms linear, top 100ms linear;
+    transition: visibility 200ms linear, top 100ms linear
 }
 
 .dropdown:hover {
-    z-index: 103;
+    z-index: 103
 }
 
 .dropdown:hover .dropdown_options {
     visibility: visible;
-    z-index: 2;
+    z-index: 2
 }
 
 .dropdown:hover .dropdown_arrow {
-    z-index: 3;
+    z-index: 3
 }
 
 .dropdown_option {
     padding: 7px 34px 7px 15px;
-    color: #00AEE2;
+    color: #00aee2
 }
 
 .checkbox {
@@ -74,7 +74,7 @@
     -o-user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
-    -webkit-user-select: none;
+    -webkit-user-select: none
 }
 
 .checkbox:after {
@@ -82,35 +82,35 @@
     width: 17px;
     height: 17px;
     border-radius: 2px;
-    border: 1px solid #00AEE2;
+    border: 1px solid #00aee2;
     background: #fff;
     position: absolute;
     top: -3px;
     left: 0px;
     -o-transition: background 100ms linear;
     transition: background 100ms linear;
-    z-index: 1;
+    z-index: 1
 }
 
 .checkbox:before {
     content: "\e90a";
-    font-family: 'SnapsterIcon' !important;
+    font-family: SnapsterIcon!important;
     color: #fff;
     font-size: 8px;
     position: absolute;
     top: 0px;
     left: 4px;
-    z-index: 2;
+    z-index: 2
 }
 
 .checkbox.checkbox_active:after {
-    background: #00AEE2;
+    background: #00aee2
 }
 
 .checkbox.checkbox_single {
     padding-left: 0px;
     width: 17px;
-    height: 13px;
+    height: 13px
 }
 
 .sn_switch {
@@ -122,17 +122,17 @@
     -o-user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
-    -webkit-user-select: none;
+    -webkit-user-select: none
 }
 
 .sn_switch_but {
     height: 14px;
     width: 35px;
     border-radius: 10px;
-    background: #E9EBEF;
+    background: #e9ebef;
     position: relative;
     -o-transition: background 150ms ease;
-    transition: background 150ms ease;
+    transition: background 150ms ease
 }
 
 .sn_switch_inner {
@@ -145,24 +145,24 @@
     left: 0px;
     -o-transition: all 150ms ease;
     transition: all 150ms ease;
-    box-shadow: 0px 0px 1px 0px rgba(15, 72, 119, 0.4);
+    box-shadow: 0px 0px 1px 0px rgba(15, 72, 119, .4)
 }
 
 .sn_switch_active .sn_switch_but {
-    background: #A9CBEA;
+    background: #a9cbea
 }
 
 .sn_switch_active .sn_switch_inner {
     left: 17px;
-    background: #00AEE2;
-    box-shadow: none;
+    background: #00aee2;
+    box-shadow: none
 }
 
 .sn_radio_item {
     padding: 15px 10px 15px 40px;
     position: relative;
     font-size: 15px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .sn_radio_item:after,
@@ -175,7 +175,7 @@
     width: 16px;
     height: 16px;
     border-radius: 10px;
-    border: 2px solid #d8d8d8;
+    border: 2px solid #d8d8d8
 }
 
 .sn_radio_item:before {
@@ -183,39 +183,39 @@
     height: 10px;
     margin-top: -5px;
     left: 5px;
-    border: 0px;
+    border: 0px
 }
 
 .sn_radio_item:hover:before {
-    background: #f2f2f2;
+    background: #f2f2f2
 }
 
 .sn_radio_item_active:after {
-    border-color: #00AEE2;
+    border-color: #00aee2
 }
 
 .sn_radio_item_active:before {
-    background: #00AEE2 !important;
+    background: #00aee2!important
 }
 
 .sn_radio_caption {
-    color: #888B95;
+    color: #888b95;
     font-size: 13px;
-    margin-top: 8px;
+    margin-top: 8px
 }
 
 .listing {
-    color: #B9B9B9;
+    color: #b9b9b9
 }
 
 .listing span {
-    color: #000;
+    color: #000
 }
 
 .listing li {
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 .listing li:first-child {
-    margin-top: 0px;
+    margin-top: 0px
 }

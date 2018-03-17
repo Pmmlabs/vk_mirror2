@@ -45,6 +45,7 @@ if (!window.Emoji) {
             opts.emojiWrap && data(opts.emojiWrap, 'optId', optId);
             txt.emojiId = optId;
             opts.lastLoadedEmojiCategoriesIdxes = {};
+            opts.preventDoubleClick = vkNow();
             if (opts.forceTxt) {
                 opts.editable = 0;
                 // placeholderSetup(txt);
@@ -3292,6 +3293,12 @@ if (!window.Emoji) {
                 return
             }
 
+            if (opts.preventDoubleClick) {
+                if (vkNow() - opts.preventDoubleClick < Emoji.CLICK_DELAY) {
+                    return;
+                }
+            }
+            Emoji.opts[optId].preventDoubleClick = vkNow();
             var packId = parseInt(attr(obj, 'data-pack-id'));
 
             var addToRecent = true;

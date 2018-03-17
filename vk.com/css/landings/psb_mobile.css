@@ -1,69 +1,69 @@
 #landings_psb_mobile_css {
-    display: none;
+    display: none
 }
 
-.landing .landings_psb_tools_wrapper.pixel,
-.landing .landings_psb_tools_wrapper.file,
 .landing .landings_psb_tools .background_wrapper,
-.landings_psb__image--vklogo,
-.landings_psb__image--psblogo,
-.landings_psb_advantage__image--cities,
-.landings_psb_advantage__image--demography,
-.landings_psb_advantage__image--interests,
-.landings_psb__image--mic,
-.landings_psb__image--newusers,
-.landings_psb__image--click,
-.landings_psb__image--money,
-.landings_psb__image--partners,
+.landing .landings_psb_tools_wrapper.file,
+.landing .landings_psb_tools_wrapper.pixel,
 .landings_psb__image--budget,
+.landings_psb__image--click,
+.landings_psb__image--mic,
+.landings_psb__image--money,
+.landings_psb__image--newusers,
+.landings_psb__image--partners,
+.landings_psb__image--psblogo,
 .landings_psb__image--user1,
 .landings_psb__image--user2,
 .landings_psb__image--user3,
 .landings_psb__image--userava1,
 .landings_psb__image--userava2,
-.landings_psb__image--userava3 {
-    -ms-high-contrast-adjust: none;
+.landings_psb__image--userava3,
+.landings_psb__image--vklogo,
+.landings_psb_advantage__image--cities,
+.landings_psb_advantage__image--demography,
+.landings_psb_advantage__image--interests {
+    -ms-high-contrast-adjust: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
-html,
-body {
+body,
+html {
     height: 100%;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .common_text,
-.landing .landings_psb_retargeting,
+.landing .landings_psb_advantage .landings_psb_advantage__title,
 .landing .landings_psb_bonus,
-.landing .landings_psb_advantage .landings_psb_advantage__title {
+.landing .landings_psb_retargeting {
     font-size: 14px;
     line-height: 1.29;
     text-align: center;
-    color: #1d1d1e;
+    color: #1d1d1e
 }
 
 .landing {
     min-width: 320px;
     max-width: 882px;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-    background: #ffffff;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .3);
+    background: #fff;
     margin: 0 auto;
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     overflow: hidden;
     font-size: 14px;
-    font-weight: normal;
-    line-height: 1.29;
+    font-weight: 400;
+    line-height: 1.29
 }
 
 .landing .landings_divider {
@@ -71,21 +71,21 @@ body {
     margin: 32px 10%;
     height: 1px;
     background-color: #c6cedc;
-    clear: both;
+    clear: both
 }
 
 .landing * {
     box-sizing: border-box;
     font-family: inherit;
-    vertical-align: top;
+    vertical-align: top
 }
 
 .landing .landings_psb_clear {
-    clear: both;
+    clear: both
 }
 
 .landing .padding_container {
-    padding: 0 16px;
+    padding: 0 16px
 }
 
 .landing .adv_promo_section__title {
@@ -94,28 +94,28 @@ body {
     text-align: center;
     color: #2b2f33;
     margin-bottom: 24px;
-    padding: 0 34px;
+    padding: 0 34px
 }
 
 .landing .landings_psb_logos {
-    padding: 0 0 24px 0;
+    padding: 0 0 24px
 }
 
 .landing .landings_psb_logos .landings_psb_logo {
     box-sizing: content-box;
     display: inline-block;
     padding: 0 30px;
-    vertical-align: middle;
+    vertical-align: middle
 }
 
 .landing .landings_psb_activate {
-    font-weight: normal;
+    font-weight: 400
 }
 
 .landing .reflection_wrapper {
     position: relative;
     overflow: hidden;
-    background-color: #F7F8FA;
+    background-color: #f7f8fa
 }
 
 .landing .reflection_wrapper .reflection {
@@ -124,28 +124,28 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 1;
+    z-index: 1
 }
 
 .landing .reflection_wrapper .reflection img {
-    width: 100%;
+    width: 100%
 }
 
 .landing .reflection_wrapper .landings_frame {
     position: relative;
-    z-index: 10;
+    z-index: 10
 }
 
 .landing .landing_psb_find_clients {
     padding-top: 34px;
     padding-bottom: 34px;
-    position: relative;
+    position: relative
 }
 
 .landing .landings_psb_retargeting {
     font-family: inherit;
     color: #7c7f82;
-    margin: 24px auto 24px auto;
+    margin: 24px auto
 }
 
 .landing .landings_psb_tools_wrapper {
@@ -153,11 +153,11 @@ body {
     position: relative;
     padding-bottom: 59.9773243%;
     width: 100%;
-    display: block;
+    display: block
 }
 
 .landing .landings_psb_tools_wrapper.pixel {
-    background: url(/images/landings/PSB/mob_assets/imge2.jpg);
+    background: url(/images/landings/PSB/mob_assets/imge2.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -165,12 +165,12 @@ body {
 (min-resolution: 192dpi) {
     .landing .landings_psb_tools_wrapper.pixel {
         background-image: url(/images/landings/PSB/mob_assets/imge2_2x.jpg);
-        background-size: 882px 529px;
+        background-size: 882px 529px
     }
 }
 
 .landing .landings_psb_tools_wrapper.file {
-    background: url(/images/landings/PSB/mob_assets/imge1.jpg);
+    background: url(/images/landings/PSB/mob_assets/imge1.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -178,14 +178,14 @@ body {
 (min-resolution: 192dpi) {
     .landing .landings_psb_tools_wrapper.file {
         background-image: url(/images/landings/PSB/mob_assets/imge1_2x.jpg);
-        background-size: 882px 529px;
+        background-size: 882px 529px
     }
 }
 
-.landing .landings_psb_tools_wrapper.pixel,
-.landing .landings_psb_tools_wrapper.file {
+.landing .landings_psb_tools_wrapper.file,
+.landing .landings_psb_tools_wrapper.pixel {
     background-position: 50%;
-    background-size: cover;
+    background-size: cover
 }
 
 .landing .landings_psb_tools_wrapper .shadow1,
@@ -197,7 +197,7 @@ body {
     height: 100%;
     z-index: 1;
     background-size: cover;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, .5)
 }
 
 .landing .landings_psb_tools_wrapper .landings_psb_text_block {
@@ -207,7 +207,7 @@ body {
     transform: translate3d(-50%, -50%, 0);
     width: 100%;
     max-width: 500px;
-    margin-left: 50%;
+    margin-left: 50%
 }
 
 .landing .landings_psb_tools_wrapper .landings_psb_text_block .landings_psb_header {
@@ -216,9 +216,9 @@ body {
     font-family: inherit;
     font-size: 22px;
     text-align: center;
-    color: #ffffff;
+    color: #fff;
     padding-top: 31px;
-    font-weight: normal;
+    font-weight: 400
 }
 
 .landing .landings_psb_tools_wrapper .landings_psb_text_block .landings_psb_text {
@@ -227,24 +227,24 @@ body {
     font-size: 14px;
     line-height: 1.29;
     text-align: center;
-    color: #ffffff;
-    padding: 14px 9px;
+    color: #fff;
+    padding: 14px 9px
 }
 
 .landing .landings_psb_bonus {
     font-family: inherit;
     text-align: center;
     color: #1d1d1e;
-    margin-bottom: 52px;
+    margin-bottom: 52px
 }
 
 .landing .landins_psb_ads_type {
-    padding-top: 57px;
+    padding-top: 57px
 }
 
 .landing .adv_promo_gallery {
     height: auto;
-    position: relative;
+    position: relative
 }
 
 .landing .adv_promo_gallery .adv_promo_gallery__devices {
@@ -252,26 +252,26 @@ body {
     position: relative;
     width: 100%;
     height: 0;
-    padding-bottom: 106.451613%;
+    padding-bottom: 106.451613%
 }
 
 @media (min-width: 595px) {
     .landing .adv_promo_gallery .adv_promo_gallery__devices {
         padding: 0;
-        height: 652px;
+        height: 652px
     }
 }
 
 .landing .adv_promo_gallery .adv_promo_gallery__devices img {
     max-width: 596px;
     width: 100%;
-    height: auto;
+    height: auto
 }
 
 .landing .adv_promo_gallery .adv_promo_gallery__nav_wrapper {
     height: 45px;
     overflow: hidden;
-    margin-bottom: 15px;
+    margin-bottom: 15px
 }
 
 .landing .adv_promo_gallery .adv_promo_gallery__nav {
@@ -283,7 +283,7 @@ body {
     height: 60px;
     overflow-x: scroll;
     overflow-y: hidden;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 .landing .adv_promo_gallery .adv_promo_gallery__nav .adv_promo_nav__item {
@@ -291,14 +291,14 @@ body {
     margin: 0;
     margin-bottom: 15px;
     display: inline-block;
-    height: 45px;
+    height: 45px
 }
 
 @media (min-width: 420px) {
     .landing .adv_promo_gallery .adv_promo_gallery__nav .adv_promo_nav__item {
         min-width: 120px;
         width: 20%;
-        padding: 0;
+        padding: 0
     }
 }
 
@@ -306,35 +306,35 @@ body {
     display: block;
     width: 100%;
     height: 100%;
-    text-decoration: none !important;
-    color: #A5ABB4 !important;
+    text-decoration: none!important;
+    color: #a5abb4!important;
     border: 0;
     background: transparent;
-    outline: none !important;
+    outline: none!important;
     cursor: pointer;
     padding: 0;
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
     font-size: 12px;
     letter-spacing: 0.1px;
-    text-align: center;
+    text-align: center
 }
 
 .landing .adv_promo_gallery .adv_promo_gallery__nav .adv_promo_nav__item.adv_promo_nav__item--active button,
 .landing .adv_promo_gallery .adv_promo_gallery__nav .adv_promo_nav__item:hover button {
-    color: #4A6F97 !important;
+    color: #4a6f97!important
 }
 
 .landing .adv_promo_gallery .adv_promo_gallery__nav .adv_promo_nav__item.adv_promo_nav__item--active button {
-    border-bottom: 1px solid #6386ad;
+    border-bottom: 1px solid #6386ad
 }
 
 .landing .landings_psb_common_text {
-    padding: 0 14px;
+    padding: 0 14px
 }
 
 .landing .landings_psb_coverage .adv_promo_section__title {
-    padding: 0 15px;
+    padding: 0 15px
 }
 
 .landing .landings_psb_coverage .landings_psb_coverage__amount {
@@ -342,7 +342,7 @@ body {
     font-size: 32px;
     font-weight: 300;
     text-align: center;
-    color: #93adc8;
+    color: #93adc8
 }
 
 .landing .landings_psb_coverage .landings_psb_coverage__comment {
@@ -350,21 +350,21 @@ body {
     font-weight: 300;
     text-align: center;
     color: #93adc8;
-    margin-bottom: 24px;
+    margin-bottom: 24px
 }
 
 .landing .landings_psb_advantage {
     width: 100%;
     display: inline-block;
-    padding: 20px 0;
+    padding: 20px 0
 }
 
 .landing .landings_psb_advantage .landings_psb_advantage__image {
-    text-align: center;
+    text-align: center
 }
 
 .landing .landings_psb_advantage .landings_psb_advantage__image>div {
-    margin: 0 auto;
+    margin: 0 auto
 }
 
 .landing .landings_psb_advantage .landings_psb_advantage__title {
@@ -372,7 +372,7 @@ body {
     font-weight: 300;
     text-align: center;
     color: #2b2f33;
-    margin: 24px 0 14px 0;
+    margin: 24px 0 14px
 }
 
 .landing .landings_psb_advantage .landings_psb_advantage__text {
@@ -380,46 +380,45 @@ body {
     padding: 0 15px;
     line-height: 1.29;
     text-align: center;
-    color: #7c7f82;
+    color: #7c7f82
 }
 
 .landing .landings_psb_questions {
     background-color: #f7f8fa;
     position: relative;
     padding-bottom: 24px;
-    margin-bottom: 60px;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    margin-bottom: 60px
 }
 
+.landing .landings_psb_questions,
 body.mac .landing .landings_psb_questions {
     -webkit-transform: translateZ(0);
-    transform: translateZ(0);
+    transform: translateZ(0)
 }
 
 .landing .landings_psb_questions #_landings_psb_questions__questions_list {
     width: 100%;
-    position: relative;
+    position: relative
 }
 
 .landing .landings_psb_questions .landings_psb_questions__questions_list {
     white-space: nowrap;
-    padding-bottom: 24px;
+    padding-bottom: 24px
 }
 
 .landing .landings_psb_questions .landings_psb_questions__questions_list .landings_psb_question {
     display: inline-block;
     height: 100%;
     padding-top: 34px;
-    white-space: normal;
+    white-space: normal
 }
 
 .landing .landings_psb_questions .landings_psb_questions__questions_list .landings_psb_question .landings_psb_common_text {
-    padding: 0 25px;
+    padding: 0 25px
 }
 
 .landing .landings_psb_questions .landings_psb_questions__buttons {
-    margin: 0 auto;
+    margin: 0 auto
 }
 
 .landing .landings_psb_questions .landings_psb_questions__buttons .button {
@@ -432,15 +431,12 @@ body.mac .landing .landings_psb_questions {
     margin: 8px 4px;
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
-    cursor: pointer;
+    cursor: pointer
 }
 
-.landing .landings_psb_questions .landings_psb_questions__buttons .button.button--active {
-    opacity: 1;
-}
-
+.landing .landings_psb_questions .landings_psb_questions__buttons .button.button--active,
 .landing .landings_psb_questions .landings_psb_questions__buttons .button:hover {
-    opacity: 1;
+    opacity: 1
 }
 
 .landing .landings_psb_questions .landings_psb_questions__left_arrow,
@@ -449,27 +445,27 @@ body.mac .landing .landings_psb_questions {
     height: 27px;
     position: absolute;
     top: 174px;
-    background-color: #ffffff;
-    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.25);
+    background-color: #fff;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, .25)
 }
 
 .landing .landings_psb_questions .landings_psb_questions__left_arrow {
-    left: 60px;
+    left: 60px
 }
 
 .landing .landings_psb_questions .landings_psb_questions__right_arrow {
-    right: 60px;
+    right: 60px
 }
 
 .landing .landings_psb_success {
     max-width: 100%;
     overflow: hidden;
     position: relative;
-    height: 458px;
+    height: 458px
 }
 
 .landing .landings_psb_success a {
-    text-decoration: none !important;
+    text-decoration: none!important
 }
 
 .landing .landings_psb_success .landings_psb_success__gallery {
@@ -478,13 +474,13 @@ body.mac .landing .landings_psb_questions {
     white-space: nowrap;
     left: 50%;
     margin-left: -400px;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0)
 }
 
 @media (min-width: 800px) {
     .landing .landings_psb_success .landings_psb_success__gallery {
-        margin-left: -400px !important;
+        margin-left: -400px!important
     }
 }
 
@@ -494,36 +490,36 @@ body.mac .landing .landings_psb_questions {
     width: 260px;
     height: 340px;
     border-radius: 2px;
-    background-color: #ffffff;
-    box-shadow: 0 1px 32px 0 rgba(0, 0, 0, 0.08);
+    background-color: #fff;
+    box-shadow: 0 1px 32px 0 rgba(0, 0, 0, .08);
     position: relative;
     -o-transition: all 0.2s ease;
-    transition: all 0.2s ease;
+    transition: all 0.2s ease
 }
 
 .landing .landings_psb_success .landings_psb_success__gallery .landings_psb_success_story:hover {
-    box-shadow: 0 1px 32px 0 rgba(0, 0, 0, 0.16);
+    box-shadow: 0 1px 32px 0 rgba(0, 0, 0, .16)
 }
 
 .landing .landings_psb_success .landings_psb_success__gallery .landings_psb_success_story+.landings_psb_success_story {
-    margin-left: 10px;
+    margin-left: 10px
 }
 
 .landing .landings_psb_success .landings_psb_success__gallery .landings_psb_success_story .landings_psb_success_story__background {
     width: 260px;
     height: 120px;
     border-radius: 2px;
-    background-color: #638A78;
+    background-color: #638a78
 }
 
 .landing .landings_psb_success .landings_psb_success__gallery .landings_psb_success_story .landings_psb_success_story__avatar {
     width: 80px;
     height: 80px;
     border-radius: 100%;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .3);
     position: absolute;
     top: 70px;
-    left: 90px;
+    left: 90px
 }
 
 .landing .landings_psb_success .landings_psb_success__gallery .landings_psb_success_story .landings_psb_success_story__name {
@@ -531,7 +527,7 @@ body.mac .landing .landings_psb_questions {
     font-weight: 300;
     text-align: center;
     color: #2b2f33;
-    margin-top: 47px;
+    margin-top: 47px
 }
 
 .landing .landings_psb_success .landings_psb_success__gallery .landings_psb_success_story .landings_psb_success_story__text {
@@ -539,7 +535,7 @@ body.mac .landing .landings_psb_questions {
     line-height: 1.29;
     text-align: center;
     color: #1d1d1e;
-    padding: 0 11px;
+    padding: 0 11px
 }
 
 .landing .landings_psb_success .landings_psb_success__buttons {
@@ -548,12 +544,12 @@ body.mac .landing .landings_psb_questions {
     position: absolute;
     bottom: 14px;
     left: 50%;
-    margin-left: -27px;
+    margin-left: -27px
 }
 
 @media (min-width: 800px) {
     .landing .landings_psb_success .landings_psb_success__buttons {
-        display: none;
+        display: none
     }
 }
 
@@ -567,35 +563,32 @@ body.mac .landing .landings_psb_questions {
     margin: 8px 4px;
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
-    cursor: pointer;
+    cursor: pointer
 }
 
-.landing .landings_psb_success .landings_psb_success__buttons .button.button--active {
-    opacity: 1;
-}
-
+.landing .landings_psb_success .landings_psb_success__buttons .button.button--active,
 .landing .landings_psb_success .landings_psb_success__buttons .button:hover {
-    opacity: 1;
+    opacity: 1
 }
 
 .landing .landings_psb_brands {
-    padding-bottom: 18px;
+    padding-bottom: 18px
 }
 
 .landing .landings_psb_brands .brand {
     vertical-align: middle;
     display: inline-block;
-    margin: 18px;
+    margin: 18px
 }
 
 .landing .landings_psb_gift {
     background: #f7f8fa;
-    padding-bottom: 34px;
+    padding-bottom: 34px
 }
 
 .landing .landings_psb_gift .adv_promo_section__title {
     margin-bottom: 35px;
-    padding-top: 33px;
+    padding-top: 33px
 }
 
 .landing .landings_psb_gift .landings_psb_gift__comment {
@@ -603,21 +596,21 @@ body.mac .landing .landings_psb_questions {
     font-weight: 300;
     font-size: 14px;
     line-height: 1.29;
-    text-align: center;
+    text-align: center
 }
 
 .landing .landings_psb_gift a {
-    margin-top: 34px;
+    margin-top: 34px
 }
 
 .landing .landings_psb_tools {
     background-position: bottom;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat
 }
 
 .landing .landings_psb_tools .landings_psb_advantage {
     position: relative;
-    z-index: 200;
+    z-index: 200
 }
 
 .landing .landings_psb_tools .background_wrapper {
@@ -628,7 +621,7 @@ body.mac .landing .landings_psb_questions {
     margin-bottom: -45px;
     z-index: 1;
     padding-bottom: 42.1768707%;
-    width: 100%;
+    width: 100%
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -636,7 +629,7 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landing .landings_psb_tools .background_wrapper {
         background-image: url(/images/landings/PSB/mob_assets/image22_2x.jpg);
-        background-size: 882px 372px;
+        background-size: 882px 372px
     }
 }
 
@@ -646,9 +639,9 @@ body.mac .landing .landings_psb_questions {
     position: absolute;
     left: 0;
     display: block;
-    background: -o-linear-gradient(top, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
-    background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0));
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff', GradientType=0);
+    background: -o-linear-gradient(top, #fff 0%, hsla(0, 0%, 100%, 0) 100%);
+    background: linear-gradient(180deg, #fff 0%, hsla(0, 0%, 100%, 0));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff', GradientType=0)
 }
 
 .landings_psb__image--vklogo {
@@ -657,7 +650,7 @@ body.mac .landing .landings_psb_questions {
     background: url(/images/landings/PSB/web_assets/vk_logo.png);
     background-position: 50%;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: contain
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -665,7 +658,7 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--vklogo {
         background-image: url(/images/landings/PSB/web_assets/vk_logo_2x.png);
-        background-size: 65px 39px;
+        background-size: 65px 39px
     }
 }
 
@@ -675,7 +668,7 @@ body.mac .landing .landings_psb_questions {
     background: url(/images/landings/PSB/web_assets/PSB_logo.png);
     background-position: 50%;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: contain
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -683,14 +676,14 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--psblogo {
         background-image: url(/images/landings/PSB/web_assets/PSB_logo_2x.png);
-        background-size: 117px 61px;
+        background-size: 117px 61px
     }
 }
 
 .landings_psb_advantage__image--cities {
     height: 78px;
     width: 78px;
-    background: url(/images/landings/PSB/web_assets/cities.png);
+    background: url(/images/landings/PSB/web_assets/cities.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -698,14 +691,14 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb_advantage__image--cities {
         background-image: url(/images/landings/PSB/web_assets/cities_2x.png);
-        background-size: 78px 78px;
+        background-size: 78px 78px
     }
 }
 
 .landings_psb_advantage__image--demography {
     height: 62px;
     width: 82px;
-    background: url(/images/landings/PSB/web_assets/demography.png);
+    background: url(/images/landings/PSB/web_assets/demography.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -713,14 +706,14 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb_advantage__image--demography {
         background-image: url(/images/landings/PSB/web_assets/demography_2x.png);
-        background-size: 82px 62px;
+        background-size: 82px 62px
     }
 }
 
 .landings_psb_advantage__image--interests {
     height: 51px;
     width: 74px;
-    background: url(/images/landings/PSB/web_assets/interests.png);
+    background: url(/images/landings/PSB/web_assets/interests.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -728,14 +721,14 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb_advantage__image--interests {
         background-image: url(/images/landings/PSB/web_assets/interests_2x.png);
-        background-size: 74px 51px;
+        background-size: 74px 51px
     }
 }
 
 .landings_psb__image--mic {
     height: 82px;
     width: 82px;
-    background: url(/images/landings/PSB/web_assets/mic.png);
+    background: url(/images/landings/PSB/web_assets/mic.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -743,14 +736,14 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--mic {
         background-image: url(/images/landings/PSB/web_assets/mic_2x.png);
-        background-size: 82px 82px;
+        background-size: 82px 82px
     }
 }
 
 .landings_psb__image--newusers {
     height: 82px;
     width: 82px;
-    background: url(/images/landings/PSB/web_assets/newusers.png);
+    background: url(/images/landings/PSB/web_assets/newusers.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -758,7 +751,7 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--newusers {
         background-image: url(/images/landings/PSB/web_assets/newusers_2x.png);
-        background-size: 82px 82px;
+        background-size: 82px 82px
     }
 }
 
@@ -767,7 +760,7 @@ body.mac .landing .landings_psb_questions {
     width: 82px;
     background: url(/images/landings/PSB/web_assets/click.png);
     background-position: 50%;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -775,7 +768,7 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--click {
         background-image: url(/images/landings/PSB/web_assets/click_2x.png);
-        background-size: 82px 82px;
+        background-size: 82px 82px
     }
 }
 
@@ -784,7 +777,7 @@ body.mac .landing .landings_psb_questions {
     width: 82px;
     background: url(/images/landings/PSB/web_assets/money.png);
     background-position: 50%;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -792,7 +785,7 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--money {
         background-image: url(/images/landings/PSB/web_assets/money_2x.png);
-        background-size: 82px 82px;
+        background-size: 82px 82px
     }
 }
 
@@ -801,7 +794,7 @@ body.mac .landing .landings_psb_questions {
     height: 82px;
     background: url(/images/landings/PSB/web_assets/partners.png);
     background-position: 50%;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -809,7 +802,7 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--partners {
         background-image: url(/images/landings/PSB/web_assets/partners_2x.png);
-        background-size: 82px 82px;
+        background-size: 82px 82px
     }
 }
 
@@ -818,7 +811,7 @@ body.mac .landing .landings_psb_questions {
     height: 82px;
     background: url(/images/landings/PSB/web_assets/budget.png);
     background-position: 50%;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -826,14 +819,14 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--budget {
         background-image: url(/images/landings/PSB/web_assets/budget_2x.png);
-        background-size: 82px 82px;
+        background-size: 82px 82px
     }
 }
 
 .landings_psb__image--user1 {
     height: 162px;
     width: 386px;
-    background: url(/images/landings/PSB/mob_assets/bg_user1.jpg);
+    background: url(/images/landings/PSB/mob_assets/bg_user1.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -841,14 +834,14 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--user1 {
         background-image: url(/images/landings/PSB/mob_assets/bg_user1_2x.jpg);
-        background-size: 261px 120px;
+        background-size: 261px 120px
     }
 }
 
 .landings_psb__image--user2 {
     height: 162px;
     width: 386px;
-    background: url(/images/landings/PSB/mob_assets/bg_user2.jpg);
+    background: url(/images/landings/PSB/mob_assets/bg_user2.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -856,14 +849,14 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--user2 {
         background-image: url(/images/landings/PSB/mob_assets/bg_user2_2x.jpg);
-        background-size: 261px 120px;
+        background-size: 261px 120px
     }
 }
 
 .landings_psb__image--user3 {
     height: 162px;
     width: 386px;
-    background: url(/images/landings/PSB/mob_assets/bg_user3.jpg);
+    background: url(/images/landings/PSB/mob_assets/bg_user3.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -871,14 +864,14 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--user3 {
         background-image: url(/images/landings/PSB/mob_assets/bg_user3_2x.jpg);
-        background-size: 261px 120px;
+        background-size: 261px 120px
     }
 }
 
 .landings_psb__image--userava1 {
     height: 84px;
     width: 84px;
-    background: url(/images/landings/PSB/mob_assets/user1.png);
+    background: url(/images/landings/PSB/mob_assets/user1.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -886,14 +879,14 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--userava1 {
         background-image: url(/images/landings/PSB/mob_assets/user1_2x.png);
-        background-size: 84px 84px;
+        background-size: 84px 84px
     }
 }
 
 .landings_psb__image--userava2 {
     height: 84px;
     width: 84px;
-    background: url(/images/landings/PSB/mob_assets/user2.png);
+    background: url(/images/landings/PSB/mob_assets/user2.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -901,14 +894,14 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--userava2 {
         background-image: url(/images/landings/PSB/mob_assets/user2_2x.png);
-        background-size: 84px 84px;
+        background-size: 84px 84px
     }
 }
 
 .landings_psb__image--userava3 {
     height: 84px;
     width: 84px;
-    background: url(/images/landings/PSB/mob_assets/user3.png);
+    background: url(/images/landings/PSB/mob_assets/user3.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -916,6 +909,6 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--userava3 {
         background-image: url(/images/landings/PSB/mob_assets/user3_2x.png);
-        background-size: 84px 84px;
+        background-size: 84px 84px
     }
 }

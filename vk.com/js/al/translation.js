@@ -274,14 +274,19 @@
                     cur.addMedia[cur.addScreens.lnkId].showPhoto = showScreen;
                     var e = cur.addMedia[cur.addScreens.lnkId].unchooseMedia;
                     cur.addMedia[cur.addScreens.lnkId].unchooseMedia = function(t) {
-                        var a = this.chosenMedias[t];
-                        e(t);
-                        var n = !1;
-                        cur.translationsScreensList = cur.translationsScreensList.map(function(e) {
-                            return e && e[1] == a[1] ? !1 : e
-                        }), this.chosenMedias.map(function(e) {
-                            return 0 != e && (n = !0), e
-                        }), 0 == n && show("translations_box_no_screenshots")
+                        cur.showedAttachScreenBox = !0;
+                        var a = this,
+                            n = function() {
+                                var n = a.chosenMedias[t];
+                                e(t);
+                                var o = !1;
+                                cur.translationsScreensList = cur.translationsScreensList.map(function(e) {
+                                    return e && e[1] == n[1] ? !1 : e
+                                }), a.chosenMedias.map(function(e) {
+                                    return 0 != e && (o = !0), e
+                                }), 0 == o && show("translations_box_no_screenshots"), curBox().hide()
+                            };
+                        return showFastBox(getLang("global_warning"), getLang("tran_sure_want_delete_screen"), getLang("global_delete"), n, getLang("global_cancel"))
                     }
                 }
             }, 10)

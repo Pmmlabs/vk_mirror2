@@ -1,35 +1,35 @@
 #wall_css {
-    display: none;
+    display: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .wall_module .page_wall_posts .page_block,
 .wall_module .page_wall_posts .page_block.unshown+.page_block {
     margin-top: 0;
-    border-radius: 0 0 2px 2px;
+    border-radius: 0 0 2px 2px
 }
 
 .wall_module .page_wall_posts .page_block~.page_block {
     margin: 15px 0 0;
-    border-radius: 2px;
+    border-radius: 2px
 }
 
 .wall_more_comments_wrap {
-    padding: 0 20px;
+    padding: 0 20px
 }
 
 .wall_more_comments {
-    margin-bottom: 15px;
+    margin-bottom: 15px
 }
 
 .wall_comments_header {
@@ -37,26 +37,26 @@
     padding: 12px 16px 12px 20px;
     border-top: 1px solid #e7e8ec;
     background-color: #fafbfc;
-    color: #828282;
+    color: #828282
 }
 
 .wall_comments_header .pg_pages {
-    margin-top: -2px;
+    margin-top: -2px
 }
 
 .wall_comments_header .pg_in {
-    padding: 2px 5px 11px;
+    padding: 2px 5px 11px
 }
 
 .wall_comments_summary {
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    font-size: 12.5px;
+    font-size: 12.5px
 }
 
 .wall_view_note {
-    padding-top: 8px;
+    padding-top: 8px
 }
 
 .wall_note_type {
@@ -68,54 +68,54 @@
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    border-top: 1px solid #e7e8ec;
+    border-top: 1px solid #e7e8ec
 }
 
 .wall_preview_link {
-    padding: 6px 9px 0;
+    padding: 6px 9px 0
 }
 
 .wall_datesearch_wrap {
     z-index: 1;
-    position: relative;
+    position: relative
 }
 
 #wall_datesearch_datepicker_container {
-    display: inline;
+    display: inline
 }
 
 #wall_datesearch_datepicker_container .datepicker_control {
-    display: none;
+    display: none
 }
 
 #wall_datesearch_datepicker_container .cal_box {
-    margin: 33px 0 0 -172px;
+    margin: 33px 0 0 -172px
 }
 
 #wall_datesearch_datepicker_container .cal_table .day {
-    color: #939393;
+    color: #939393
 }
 
 #wall_datesearch_datepicker_container .cal_table .past_day,
 #wall_datesearch_datepicker_container .cal_table .today {
-    color: #000;
+    color: #000
 }
 
 .wall_cal_clear {
-    background: #EBF0F5;
+    background: #ebf0f5;
     height: 30px;
-    line-height: 30px;
+    line-height: 30px
 }
 
 #wall_cal_clear_lnk {
-    display: block;
+    display: block
 }
 
 .wall_graffiti_wrap {
     text-align: center;
-    padding: 45px;
+    padding: 45px
 }
 
 .wall_graffiti_author {
-    padding-top: 10px;
+    padding-top: 10px
 }

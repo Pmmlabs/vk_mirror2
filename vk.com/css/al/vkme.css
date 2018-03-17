@@ -1,54 +1,54 @@
 #vkme_css {
-    display: none;
+    display: none
 }
 
-.vkme_top_nav_wrap .vkme_head_home_logo,
-.vkme_page_wrap3 .installApp__label,
 .vkme_page_wrap3 .installApp__arrow,
-.vkme_page_wrap3 .vkme_page_about_wrap .vkme_about_msg_logo {
-    -ms-high-contrast-adjust: none;
+.vkme_page_wrap3 .installApp__label,
+.vkme_page_wrap3 .vkme_page_about_wrap .vkme_about_msg_logo,
+.vkme_top_nav_wrap .vkme_head_home_logo {
+    -ms-high-contrast-adjust: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
+.r .button,
+.r .small_button,
 .r .vk__page,
 .r input,
-.r textarea,
 .r select,
-.r .button,
-.r .small_button {
+.r textarea {
     -webkit-font-smoothing: subpixel-antialiased;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', 'Segoe WP', 'Helvetica Neue', 'Lucida Grande', Verdana, Tahoma, Arial, sans-serif !important;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Segoe UI, Segoe WP, Helvetica Neue, Lucida Grande, Verdana, Tahoma, Arial, sans-serif!important
 }
 
 .r .basis {
-    min-width: 180px;
+    min-width: 180px
 }
 
 .installApp {
-    background-color: #fff;
+    background-color: #fff
 }
 
 .installApp__link {
     color: #517094;
-    font-size: 15px;
+    font-size: 15px
 }
 
 .installApp__link:hover .installApp__arrow {
-    right: 10px;
+    right: 10px
 }
 
 .installApp__linkWrap {
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 .installApp__label {
@@ -56,32 +56,29 @@
     background-position: 0;
     background-repeat: no-repeat;
     background-size: 20px;
-    padding: 15px 25px 15px;
+    padding: 15px 25px;
     position: relative;
     margin-left: 12px;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis
 }
 
 .vk_2x .installApp__label {
-    background-image: url('/images/icons/mobile_new_2x.png');
+    background-image: url('/images/icons/mobile_new_2x.png')
 }
 
 @media (max-width: 319px) {
-    .vk_2x .installApp__label {
-        background-image: none;
-    }
-}
-
-@media (max-width: 319px) {
+    .vk_2x .installApp__label,
     .installApp__label {
-        background-image: none;
-        padding-left: 0;
+        background-image: none
+    }
+    .installApp__label {
+        padding-left: 0
     }
 }
 
 .installApp__label b {
-    font-weight: 500;
+    font-weight: 500
 }
 
 .installApp__arrow {
@@ -96,59 +93,56 @@
     width: 9px;
     height: 15px;
     -o-transition: right 100ms linear;
-    transition: right 100ms linear;
+    transition: right 100ms linear
 }
 
 .vk_2x .installApp__arrow {
-    background-image: url('/images/icons/blue_arrow_2x.png');
+    background-image: url('/images/icons/blue_arrow_2x.png')
 }
 
 body.vkme {
     background: #edeef0;
-    font-family: sans-serif, Geneva, arial, Tahoma, verdana;
-    color: #000000;
+    font-family: sans-serif;
+    color: #000
 }
 
 body.vkme .scroll_fix {
-    width: 100% !important;
-    overflow: hidden;
+    width: 100%!important;
+    overflow: hidden
 }
 
 body.vkme #stl_left,
 body.vkme #stl_side {
-    display: none !important;
+    display: none!important
 }
 
-body.vkme #page_header {
-    display: none;
-}
-
+body.vkme #page_header,
+body.vkme #page_header .content,
 body.vkme #page_header .left,
-body.vkme #page_header .right,
-body.vkme #page_header .content {
-    display: none;
+body.vkme #page_header .right {
+    display: none
 }
 
 body.vkme #page_header.p_head1 .back {
     height: 42px;
-    background: #507299;
+    background: #507299
 }
 
 body.vkme #page_layout {
-    padding: 0;
+    padding: 0
 }
 
 body.vkme #page_body {
-    margin-top: 0;
+    margin-top: 0
 }
 
 body.vkme #footer_wrap,
 body.vkme #reg_bar {
-    display: none;
+    display: none
 }
 
 .vkme .flat_button {
-    font-family: sans-serif, Geneva, arial, Tahoma, verdana;
+    font-family: sans-serif
 }
 
 .vkme .flat_button.button_big {
@@ -156,37 +150,37 @@ body.vkme #reg_bar {
     font-size: 13px;
     padding: 10px 25px 11px;
     border-radius: 3px;
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
-.vkme .flat_button.button_big:active,
-.vkme .flat_button.button_big.active {
-    padding: 11px 25px 10px;
+.vkme .flat_button.button_big.active,
+.vkme .flat_button.button_big:active {
+    padding: 11px 25px 10px
 }
 
-.vkme.vkme_mobile {
-    font-family: -apple-system sans-serif, Geneva, arial, Tahoma, verdana;
+.vkme.vkme_mobile,
+.vkme.vkme_mobile .flat_button {
+    font-family: -apple-system sans-serif, Geneva, arial, Tahoma, verdana
 }
 
 .vkme.vkme_mobile .flat_button {
-    font-family: -apple-system sans-serif, Geneva, arial, Tahoma, verdana;
-    font-weight: 500;
+    font-weight: 500
 }
 
 .vkme.vkme_mobile .flat_button.button_big {
     min-width: 208px;
     font-size: 14px;
-    padding: 12px 25px 13px;
+    padding: 12px 25px 13px
 }
 
-.vkme.vkme_mobile .flat_button.button_big:active,
-.vkme.vkme_mobile .flat_button.button_big.active {
-    padding: 13px 25px 12px;
+.vkme.vkme_mobile .flat_button.button_big.active,
+.vkme.vkme_mobile .flat_button.button_big:active {
+    padding: 13px 25px 12px
 }
 
 .vkme_top_nav_wrap {
     height: 42px;
-    background: #507299;
+    background: #507299
 }
 
 .vkme_top_nav_wrap .vkme_top_nav {
@@ -195,25 +189,25 @@ body.vkme #reg_bar {
     height: 42px;
     border-collapse: collapse;
     overflow: hidden;
-    display: table;
+    display: table
 }
 
 .vkme_top_nav_wrap .vkme_top_nav .vkme_top_nav_link:active {
     position: relative;
-    top: 1px;
+    top: 1px
 }
 
 .vkme_top_nav_wrap .vkme_top_nav a,
 .vkme_top_nav_wrap .vkme_top_nav a:hover,
 .vkme_top_nav_wrap .vkme_top_nav a:visited {
     color: #fff;
-    text-decoration: none;
+    text-decoration: none
 }
 
 .vkme_top_nav_wrap .vkme_top_nav .vkme_top_nav_item {
     display: table-cell;
     vertical-align: top;
-    white-space: normal;
+    white-space: normal
 }
 
 .vkme_top_nav_wrap .vkme_top_nav .vkme_top_nav_item.vkme_head_owner_name {
@@ -223,16 +217,16 @@ body.vkme #reg_bar {
     line-height: 18px;
     color: #fff;
     cursor: pointer;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 .vkme_top_nav_wrap .vkme_top_nav .vkme_top_nav_item.vkme_head_owner_name:active {
-    background: #4d7199;
+    background: #4d7199
 }
 
 .vkme_top_nav_wrap .vkme_top_nav .vkme_top_nav_item:first-child,
 .vkme_top_nav_wrap .vkme_top_nav .vkme_top_nav_item:last-child {
-    width: 51px;
+    width: 51px
 }
 
 .vkme_top_nav_wrap .vkme_head_home_logo {
@@ -241,7 +235,7 @@ body.vkme #reg_bar {
     height: 19px;
     width: 33px;
     display: inline-block;
-    margin: 11px 9px;
+    margin: 11px 9px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -249,25 +243,25 @@ body.vkme #reg_bar {
 (min-resolution: 192dpi) {
     .vkme_top_nav_wrap .vkme_head_home_logo {
         background-image: url(/images/vkme_logo_2x.png);
-        background-size: 33px 19px;
+        background-size: 33px 19px
     }
 }
 
 .vkme_page_wrap3 .installApp {
     display: none;
-    box-shadow: 0px 1px 2px 0px rgba(32, 35, 38, 0.2);
+    box-shadow: 0px 1px 2px 0px rgba(32, 35, 38, .2)
 }
 
 .vkme_mobile .vkme_page_wrap3 .installApp {
-    font-family: -apple-system sans-serif, Geneva, arial, Tahoma, verdana;
+    font-family: -apple-system sans-serif, Geneva, arial, Tahoma, verdana
 }
 
 .vkme_mobile .vkme_page_wrap3 .installApp__link:hover {
-    text-decoration: none;
+    text-decoration: none
 }
 
 .vkme_page_wrap3 .installApp__label {
-    background: url(/images/icons/mobile_new.png?1) no-repeat 0;
+    background: url(/images/icons/mobile_new.png?1) no-repeat 0
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -275,12 +269,12 @@ body.vkme #reg_bar {
 (min-resolution: 192dpi) {
     .vkme_page_wrap3 .installApp__label {
         background-image: url(/images/icons/mobile_new_2x.png?1);
-        background-size: 20px 20px;
+        background-size: 20px 20px
     }
 }
 
 .vkme_page_wrap3 .installApp__arrow {
-    background: url(/images/icons/blue_arrow.png) no-repeat 50%;
+    background: url(/images/icons/blue_arrow.png) no-repeat 50%
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -288,17 +282,17 @@ body.vkme #reg_bar {
 (min-resolution: 192dpi) {
     .vkme_page_wrap3 .installApp__arrow {
         background-image: url(/images/icons/blue_arrow_2x.png);
-        background-size: 9px 15px;
+        background-size: 9px 15px
     }
 }
 
 .vkme_page_wrap3 .vkme_page_about_wrap {
     text-align: center;
-    padding: 0 50px;
+    padding: 0 50px
 }
 
 .vkme_mobile .vkme_page_wrap3 .vkme_page_about_wrap {
-    padding: 0 30px;
+    padding: 0 30px
 }
 
 .vkme_page_wrap3 .vkme_page_about_wrap .vkme_about_msg_logo {
@@ -306,7 +300,7 @@ body.vkme #reg_bar {
     background-image: url(/images/vkme_msg_icon.png);
     height: 100px;
     width: 100px;
-    margin: 0 auto 25px;
+    margin: 0 auto 25px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -314,118 +308,115 @@ body.vkme #reg_bar {
 (min-resolution: 192dpi) {
     .vkme_page_wrap3 .vkme_page_about_wrap .vkme_about_msg_logo {
         background-image: url(/images/vkme_msg_icon_2x.png);
-        background-size: 100px 100px;
+        background-size: 100px 100px
     }
 }
 
 .vkme_page_wrap3 .vkme_page_about_wrap .vkme_about_title {
     font-size: 21px;
-    font-weight: normal;
+    font-weight: 400;
     text-overflow: ellipsis;
     overflow: hidden;
     margin: 0;
     padding: 0;
-    line-height: 25px;
+    line-height: 25px
 }
 
 .vkme_page_wrap3 .vkme_page_about_wrap .vkme_about_text {
     font-size: 14px;
     color: #656565;
     margin-top: 13px;
-    line-height: 20px;
+    line-height: 20px
 }
 
-.vkme_page_wrap3 .vkme_page_about_wrap .vkme_about_blog {
-    margin-top: 30px;
-}
-
+.vkme_page_wrap3 .vkme_page_about_wrap .vkme_about_blog,
 .vkme_mobile .vkme_page_wrap3 .vkme_page_about_wrap .vkme_about_blog {
-    margin-top: 30px;
+    margin-top: 30px
 }
 
 .vkme_page_wrap3 .vkme_page_about_wrap .vkme_about_blog .flat_button.button_big {
-    min-width: unset;
+    min-width: unset
 }
 
 .vkme_page_wrap2 {
-    padding: 142px 0 72px;
+    padding: 142px 0 72px
 }
 
 .vkme_owner_wrap {
-    text-align: center;
+    text-align: center
 }
 
 .vkme_owner_wrap .vkme_owner_photo {
     height: 100px;
     width: 100px;
-    margin: 0 auto;
+    margin: 0 auto
 }
 
 .vkme_owner_wrap .vkme_owner_photo .vkme_owner_photo_img {
     border-radius: 50%;
     height: 100px;
     width: 100px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .vkme_owner_wrap .vkme_owner_info {
-    padding: 27px 0 35px;
+    padding: 27px 0 35px
 }
 
 .vkme_owner_wrap .vkme_owner_info .vkme_owner_name {
     font-size: 21px;
-    font-weight: normal;
+    font-weight: 400;
     text-overflow: ellipsis;
     overflow: hidden;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .vkme_mobile .vkme_owner_wrap .vkme_owner_info .vkme_owner_name {
     line-height: 25px;
-    padding: 0 15px;
+    padding: 0 15px
 }
 
 .vkme_owner_wrap .vkme_owner_info .vkme_owner_description {
     font-size: 14px;
     color: #656565;
-    margin-top: 7px;
+    margin-top: 7px
 }
 
 @media only screen and (max-width: 768px) {
     .vkme_top_nav_wrap {
-        height: 43px;
+        height: 43px
     }
     .vkme_top_nav_wrap .vkme_head_home_logo {
-        margin: 12px 9px 0;
+        margin: 12px 9px 0
     }
     .vkme_top_nav_wrap .vkme_top_nav {
         width: 100%;
         height: 43px;
-        margin: 0;
+        margin: 0
     }
     .vkme_top_nav_wrap .vkme_top_nav .vkme_top_nav_item.vkme_head_owner_name {
         visibility: visible;
         padding-top: 12px;
         font-weight: 500;
-        min-width: 190px;
+        min-width: 190px
     }
     .vkme_page_wrap3 .error {
-        display: none;
+        display: none
     }
     .vkme_page_wrap3 .installApp {
-        display: block;
+        display: block
     }
     .vkme_page_wrap2 {
-        padding-top: 71px;
+        padding-top: 71px
     }
     .vkme_owner_wrap .vkme_owner_info {
-        padding-top: 33px;
+        padding-top: 33px
     }
 }
 
 @media only screen and (max-device-width: 374px) {
     .vkme_page_wrap2 {
-        padding-top: 32.33333333px;
+        padding-top: 32.33333333px
     }
 }

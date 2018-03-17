@@ -1,87 +1,84 @@
 #audioplayer_css {
-    display: none;
+    display: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .audio_vol {
     width: 40px;
     height: 6px;
-    position: relative;
+    position: relative
 }
 
 .audio_bar_wrap {
     overflow: hidden;
     padding: 5px;
-    margin-right: -5px;
+    margin-right: -5px
 }
 
 .audio_bar_wrap.vol {
-    float: right;
+    float: right
 }
 
 .audio_pr {
     position: relative;
-    height: 6px;
+    height: 6px
 }
 
 .audio_back_line,
 .audio_load_line,
 .audio_progress_line {
-    position: absolute;
-    top: 0;
     height: 2px;
     background-color: #5181b8;
-    cursor: pointer;
-    -ms-user-select: none;
-    user-select: none;
-    -o-user-select: none;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    border-radius: 1px;
+    border-radius: 1px
 }
 
+.audio_back_line,
+.audio_load_line,
+.audio_progress_line,
 .audio_white_line {
     position: absolute;
     top: 0;
-    width: 100%;
-    height: 11px;
     cursor: pointer;
     -ms-user-select: none;
     user-select: none;
     -o-user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
-    -webkit-user-select: none;
+    -webkit-user-select: none
+}
+
+.audio_white_line {
+    width: 100%;
+    height: 11px
 }
 
 .audio_back_line {
     width: 100%;
     opacity: 0.1;
-    filter: alpha(opacity=10);
+    filter: alpha(opacity=10)
 }
 
 .audio_load_line {
     width: 0;
     opacity: 0.25;
-    filter: alpha(opacity=25);
+    filter: alpha(opacity=25)
 }
 
 .audio_progress_line {
     width: 0;
     opacity: 1;
     -webkit-filter: none;
-    filter: none;
+    filter: none
 }
 
 .audio_slider {
@@ -99,22 +96,22 @@
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
-    cursor: pointer;
+    cursor: pointer
 }
 
-.audio_vol:hover .audio_slider,
+.audio_pr.down .audio_slider,
 .audio_pr:hover .audio_slider,
 .audio_vol.down .audio_slider,
-.audio_pr.down .audio_slider {
-    display: block;
+.audio_vol:hover .audio_slider {
+    display: block
 }
 
 .audio_vol .audio_load_line {
-    width: 100%;
+    width: 100%
 }
 
 .audio_vol .audio_progress_line {
-    width: 50%;
+    width: 50%
 }
 
 #audio_tip_wrap {
@@ -127,7 +124,7 @@
     padding: 2px 5px 3px;
     border-radius: 2px;
     cursor: pointer;
-    position: relative;
+    position: relative
 }
 
 #audio_tip_wrap:after {
@@ -141,28 +138,28 @@
     left: 50%;
     border-width: 4px;
     margin: 0 -4px;
-    border-top-color: #d6e0e9;
+    border-top-color: #d6e0e9
 }
 
 #gp {
     display: none;
     height: 36px;
     z-index: 200;
-    cursor: default;
+    cursor: default
 }
 
-#gp.fixed.abs,
-#gp.abs {
-    position: absolute;
+#gp.abs,
+#gp.fixed.abs {
+    position: absolute
 }
 
 #gp.z_index {
-    z-index: 0;
+    z-index: 0
 }
 
 #gp.reverse,
 #gp.z_index.reverse {
-    z-index: 200;
+    z-index: 200
 }
 
 #gp_back {
@@ -176,43 +173,40 @@
     opacity: 0.7;
     filter: alpha(opacity=70);
     -o-transition: opacity 200ms ease-out, background-color 200ms ease-out;
-    transition: opacity 200ms ease-out, background-color 200ms ease-out;
+    transition: opacity 200ms ease-out, background-color 200ms ease-out
 }
 
 body.dev #gp_back {
-    background-color: #d3dbe3;
+    background-color: #d3dbe3
 }
 
 #gp div.wrap {
     position: relative;
     width: 100%;
-    height: 34px;
+    height: 34px
 }
 
-#gp div.wrap.over #gp_back,
-#gp div.wrap.active #gp_back {
+#gp div.wrap.active #gp_back,
+#gp div.wrap.over #gp_back {
     opacity: 1;
     -webkit-filter: none;
-    filter: none;
+    filter: none
 }
 
 #gp div.wrap.active #gp_back {
-    background-color: #5F7FA2;
+    background-color: #5f7fa2
 }
 
 #gp.head div.wrap.active #gp_back {
     background-color: #d9e0e8;
-}
-
-#gp.head div.wrap.active #gp_back {
     opacity: 0.7;
-    filter: alpha(opacity=70);
+    filter: alpha(opacity=70)
 }
 
 #gp.head div.wrap.active.over #gp_back {
     opacity: 1;
     -webkit-filter: none;
-    filter: none;
+    filter: none
 }
 
 #gp_wrap {
@@ -224,25 +218,25 @@ body.dev #gp_back {
     z-index: 201;
     width: 100%;
     -o-transition: color 100ms ease-out;
-    transition: color 100ms ease-out;
+    transition: color 100ms ease-out
 }
 
 #gp div.wrap.over #gp_wrap {
-    color: #567392;
+    color: #567392
 }
 
 #gp div.wrap.active #gp_wrap {
     color: #fff;
     -o-transition: none;
-    transition: none;
+    transition: none
 }
 
 #gp.head div.wrap.active #gp_wrap {
-    color: #66819e;
+    color: #66819e
 }
 
 #gp.head div.wrap.active.over #gp_wrap {
-    color: #567392;
+    color: #567392
 }
 
 #gp .gp_play_wrap {
@@ -251,67 +245,67 @@ body.dev #gp_back {
     opacity: 0.8;
     filter: alpha(opacity=80);
     -o-transition: opacity 200ms ease-out;
-    transition: opacity 200ms ease-out;
+    transition: opacity 200ms ease-out
 }
 
-#gp div.wrap.over .gp_play_wrap,
-#gp div.wrap.active .gp_play_wrap {
+#gp div.wrap.active .gp_play_wrap,
+#gp div.wrap.over .gp_play_wrap {
     opacity: 1;
     -webkit-filter: none;
-    filter: none;
+    filter: none
 }
 
 #gp.head div.wrap.active .gp_play_wrap {
     opacity: 0.8;
-    filter: alpha(opacity=80);
+    filter: alpha(opacity=80)
 }
 
 #gp.head div.wrap.active.over .gp_play_wrap {
     opacity: 1;
     -webkit-filter: none;
-    filter: none;
+    filter: none
 }
 
 #gp_play {
     background: url("/images/icons/audio_icons.png?5") no-repeat scroll -225px -30px transparent;
     height: 12px;
-    width: 12px;
+    width: 12px
 }
 
 #gp div.wrap.active #gp_play {
-    background-position: -185px -30px;
+    background-position: -185px -30px
 }
 
 #gp.head div.wrap.active #gp_play {
-    background-position: -225px -30px;
+    background-position: -225px -30px
 }
 
 #gp_play.playing {
-    background-position: -245px -30px;
+    background-position: -245px -30px
 }
 
 #gp div.wrap.active #gp_play.playing {
-    background-position: -205px -30px;
+    background-position: -205px -30px
 }
 
 #gp.head div.wrap.active #gp_play.playing {
-    background-position: -245px -30px;
+    background-position: -245px -30px
 }
 
 #gp_info {
     padding: 3px 8px 5px 0px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 #gp_play_btn {
     position: relative;
-    padding: 9px 7px;
+    padding: 9px 7px
 }
 
 #gp_performer {
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale
 }
 
 #gp_performer,
@@ -320,69 +314,66 @@ body.dev #gp_back {
     width: 115px;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 .audio_status_wrap {
     padding: 0px 10px;
-    color: #000000;
+    color: #000;
     max-width: 220px;
     max-height: 232px;
     overflow: hidden;
     line-height: 160%;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis
 }
 
 .audio_status_wrap .hint_title {
-    color: #2A5779;
+    color: #2a5779;
     padding-top: 10px;
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    padding-bottom: 6px;
+    padding-bottom: 6px
 }
 
-.audio_status_wrap .hint_description {
-    padding-bottom: 6px;
-}
-
+.audio_status_wrap .hint_description,
 .audio_status_wrap .hint_clubs {
-    padding-bottom: 6px;
+    padding-bottom: 6px
 }
 
 .audio_share_cont {
     position: relative;
-    background: #F2F2F2;
+    background: #f2f2f2;
     margin: 0px -5px;
     padding: 5px 10px;
-    border-top: 1px solid #DAE1E8;
+    border-top: 1px solid #dae1e8
 }
 
 .audio_share_link {
     display: block;
-    padding: 5px 25px;
+    padding: 5px 25px
 }
 
 .audio_status_wrap .checkbox {
     padding: 5px 0px 4px;
     white-space: nowrap;
-    height: 13px;
+    height: 13px
 }
 
 .audio_status_tt.tt .tt_text {
     padding-top: 0px;
-    padding-bottom: 0px;
+    padding-bottom: 0px
 }
 
 .audio_status_tt .tail_wrap {
     position: absolute;
     top: -7px;
     left: 206px;
-    z-index: 2001;
+    z-index: 2001
 }
 
 .audio_status_tt .tail {
     width: 11px;
     height: 8px;
-    background: url(/images/ddtooltip.png) -3px 2px no-repeat;
+    background: url(/images/ddtooltip.png) -3px 2px no-repeat
 }

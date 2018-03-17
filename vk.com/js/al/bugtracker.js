@@ -211,7 +211,7 @@ var BugTracker = {
             showProgress: uiSearch.showProgress.pbind("bt_search"),
             hideProgress: uiSearch.hideProgress.pbind("bt_search"),
             onDone: function(e, t) {
-                removeClass("bt_reports", "bt_reports_reloading"), val("bt_page_content", e), BugTracker.checkSelectedReports(), cur.btUDate = t
+                removeClass("bt_reports", "bt_reports_reloading"), val("bt_page_content", e), BugTracker.checkSelectedReports(), BugTracker.updateSelectedCount(!0), cur.btUDate = t
             }
         })
     },
@@ -349,30 +349,50 @@ var BugTracker = {
             })
         }, getLang("global_cancel"))
     },
-    loadMore: function(e) {
-        var t = {
+    loadMoreReportsIfNeeded: function() {
+        var e = !1;
+        return function() {
+            if (!e && isVisible("load_more_reports_btn")) {
+                e = !0;
+                var t = window.innerHeight || document.documentElement.clientHeight || bodyNode.clientHeight,
+                    r = scrollGetY(),
+                    o = ge("load_more_reports_btn");
+                r + t + 1e3 > o.offsetTop ? BugTracker.loadMore(o, function() {
+                    e = !1
+                }) : e = !1
+            }
+        }
+    },
+    loadMore: function(e, t) {
+        var r = {
             load: 1
         };
-        nav.objLoc.rev ? (t.min_udate = cur.btUDate, cur.btLastId && (t.min_id = cur.btLastId)) : (t.max_udate = cur.btUDate, cur.btLastId && (t.max_id = cur.btLastId)), each(["act", "product", "device", "q", "mid", "vulnerability", "wishes", "unrated", "platform", "pversion", "status", "severity", "tag", "original", "rev"], function(e, r) {
-            nav.objLoc.hasOwnProperty(r) && (t[r] = nav.objLoc[r])
-        }), ajax.post("bugtracker", t, {
+        nav.objLoc.rev ? (r.min_udate = cur.btUDate, cur.btLastId && (r.min_id = cur.btLastId)) : (r.max_udate = cur.btUDate, cur.btLastId && (r.max_id = cur.btLastId)), each(["act", "product", "device", "q", "mid", "vulnerability", "wishes", "unrated", "platform", "pversion", "status", "severity", "tag", "original", "rev"], function(e, t) {
+            nav.objLoc.hasOwnProperty(t) && (r[t] = nav.objLoc[t])
+        }), ajax.post("bugtracker", r, {
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e),
-            onDone: function(t, r) {
-                cur.btUDate = r, r || re(e);
-                var o = sech(t),
-                    a = ge("bt_reports");
-                each(o, function(e, t) {
-                    ge(t.id) || a.appendChild(t)
-                }), BugTracker.checkSelectedReports()
-            }
+            onDone: function(r, o) {
+                cur.btUDate = o, o || re(e);
+                var a = sech(r),
+                    n = ge("bt_reports");
+                each(a, function(e, t) {
+                    ge(t.id) || n.appendChild(t)
+                }), BugTracker.checkSelectedReports(), t && t()
+            },
+            onFail: t
         })
     },
     initSelected: function() {
         cur.btSelected = {
-            count: 0,
-            reports: {}
-        }
+                count: 0,
+                reports: {}
+            },
+            function(e) {
+                addEvent(window, "scroll", e), cur.destroy.push(function() {
+                    removeEvent(window, "scroll", e)
+                })
+            }(BugTracker.loadMoreReportsIfNeeded())
     },
     selectAllRows: function(e) {
         checkbox(e);
@@ -391,9 +411,9 @@ var BugTracker = {
     selectReportRow: function(e, t) {
         checkbox(e), BugTracker.storeSelection(t, isChecked(e)), BugTracker.updateSelectedCount()
     },
-    updateSelectedCount: function() {
-        var e = ge("bt_search_selected");
-        !isVisible(e) && cur.btSelected.count > 0 ? slideDown(e, 200) : isVisible(e) && !cur.btSelected.count && slideUp(e, 100), val(geByClass1("_count", "bt_search_selected_count"), getLang("bugs_t_X_reports_selected", cur.btSelected.count))
+    updateSelectedCount: function(e) {
+        var t = ge("bt_search_selected");
+        !isVisible(t) && cur.btSelected.count > 0 ? (e ? show(t) : slideDown(t, 200), addClass("bt_page_content", "additional_bottom_margin")) : isVisible(t) && !cur.btSelected.count && (slideUp(t, 100), removeClass("bt_page_content", "additional_bottom_margin")), val(geByClass1("_count", "bt_search_selected_count"), getLang("bugs_t_X_reports_selected", cur.btSelected.count))
     },
     diselectAllReports: function() {
         BugTracker.initSelected();
@@ -627,18 +647,32 @@ var BugTracker = {
             onDone: window.open
         })
     },
-    saveRate: function() {
-        var e = ge("bt_report_set_rate_form__btn");
-        ajax.post("bugtracker", {
-            act: "a_save_rate",
-            id: cur.btReportId,
-            hash: cur.btReportRateHash,
-            rate: val("bt_report_set_rate_form__rate"),
+    saveRate: function(e, t, r) {
+        var o = ge("bt_report_set_rate_form__btn"),
+            a = val("bt_report_set_rate_form__rate");
+        ajax.post("bugtracker?act=a_save_rate", {
+            id: t || cur.btReportId,
+            hash: r || cur.btReportRateHash,
+            rate: a,
             note: val("bt_report_set_rate_form__note")
         }, {
-            showProgress: lockButton.pbind(e),
-            hideProgress: unlockButton.pbind(e)
+            showProgress: lockButton.pbind(o),
+            hideProgress: unlockButton.pbind(o),
+            onDone: function() {
+                e ? nav.reload() : val("bt_report_row_rate_custom_" + t, getLang("bugs_t_rate_X_scores", a))
+            }
         })
+    },
+    setRateBox: function(e, t, r) {
+        showFastBox({
+            title: getLang("bugs_t_report_set_rate_button"),
+            width: 250
+        }, getTemplate("bt_set_rate_box", {
+            rate: t,
+            note: ""
+        }), getLang("global_save"), function() {
+            BugTracker.saveRate(!1, e, r), curBox().hide()
+        }), autosizeSetup("bt_report_set_rate_form__note", {})
     },
     setDropdownData: function(e, t) {
         var r = t || [];
@@ -1048,7 +1082,8 @@ var BugTracker = {
         r.phone || (notaBene("bt_order_form__phone"), o = !0), 2 == r.delivery && (r = extend(r, {
             person: trim(val("bt_order_form__person")),
             address: trim(val("bt_order_form__address"))
-        }), r.address.length < 10 && (notaBene("bt_order_form__address"), o = !0), r.person.length < 4 && (notaBene("bt_order_form__person"), o = !0)), o || ajax.post("bugtracker", r, {
+        }), r.address.length < 10 && (notaBene("bt_order_form__address"),
+            o = !0), r.person.length < 4 && (notaBene("bt_order_form__person"), o = !0)), o || ajax.post("bugtracker", r, {
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e),
             onDone: function(e) {

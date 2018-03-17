@@ -1,7 +1,8 @@
 #ads_css {
-    display: none;
+    display: none
 }
 
+.ads_hero_unit,
 .ads_moder_comment_rules_icon.icon_age_16p,
 .ads_moder_comment_rules_icon.icon_age_18p,
 .ads_moder_comment_rules_icon.icon_astrologer,
@@ -16,311 +17,310 @@
 .ads_moder_comment_rules_icon.icon_low_res_img,
 .ads_moder_comment_rules_icon.icon_med,
 .ads_moder_comment_rules_icon.icon_misleading_ui,
-.ads_moder_comment_rules_icon.icon_person_warn,
 .ads_moder_comment_rules_icon.icon_person,
-.ads_moder_comment_rules_icon.icon_restricted_site,
+.ads_moder_comment_rules_icon.icon_person_warn,
 .ads_moder_comment_rules_icon.icon_restricted,
+.ads_moder_comment_rules_icon.icon_restricted_site,
 .ads_moder_comment_rules_icon.icon_spy,
 .ads_moder_comment_rules_icon.icon_vocabulary,
-.ads_hero_unit,
 .ads_retargeting_price_list_item_edit:after {
-    -ms-high-contrast-adjust: none;
+    -ms-high-contrast-adjust: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 ul.ads_listing {
     padding: 0 0 0 30px;
-    margin: 0 0 15px 0;
+    margin: 0 0 15px
 }
 
 ul.ads_listing li {
     list-style: square;
-    color: #758EAC;
-    line-height: 160%;
+    color: #758eac;
+    line-height: 160%
 }
 
 ul.ads_listing li span {
-    color: #000000;
+    color: #000
 }
 
 a .ads_sub_link:hover {
-    text-decoration: underline;
+    text-decoration: underline
 }
 
 .ads_gradient_progress_wrap {
     height: 18px;
     margin: 0 auto;
-    background: #FFFFFF;
-    border: 1px solid #CCCCCC;
+    background: #fff;
+    border: 1px solid #ccc
 }
 
 .ads_gradient_progress {
     height: 18px;
-    background: #597DA3 url(/images/progress_grad.gif) repeat;
-    border: 1px solid #45688E;
-    margin: -1px;
+    background: #597da3 url(/images/progress_grad.gif) repeat;
+    border: 1px solid #45688e;
+    margin: -1px
 }
 
 #ads_page h2 {
     margin-top: 0;
     margin-bottom: 20px;
-    border-bottom: 1px solid #E8EBEE;
-    padding-bottom: 12px;
+    border-bottom: 1px solid #e8ebee;
+    padding-bottom: 12px
 }
 
 #ads_hero_unit,
 #ads_page_wrap2 {
     width: 950px;
-    float: right;
+    float: right
 }
 
 #ads_page_wrap1 {
     width: 950px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 #ads_page {
     padding: 20px;
-    background-color: white;
+    background-color: #fff
 }
 
 #ads_page.ads_page_no_padding {
-    padding: 0;
+    padding: 0
 }
 
 #ads_page_top {
-    padding-top: 10px;
+    padding-top: 10px
 }
 
-.ads_page_extra_wide #ads_page_wrap2,
-.ads_page_extra_wide #ads_page_wrap1 {
-    width: auto;
+.ads_page_extra_wide #ads_page_wrap1,
+.ads_page_extra_wide #ads_page_wrap2 {
+    width: auto
 }
 
 .ads_page_extra_wide #ads_page_wrap2 {
-    float: none;
+    float: none
 }
 
 #ads_page_bottom_info {
-    border-top: 1px solid #DAE1E8;
-    background-color: #F7F7F7;
+    border-top: 1px solid #dae1e8;
+    background-color: #f7f7f7;
     text-align: center;
     padding: 6px 20px;
-    color: #777777;
+    color: #777
 }
 
 .ads_page_small {
-    padding: 0 60px;
+    padding: 0 60px
 }
 
 #ads_page_title h1 a {
-    color: #2B587A;
+    color: #2b587a
 }
 
 #ads_page_title_version {
-    color: #AAB7C5;
+    color: #aab7c5
 }
 
 .ads_page_extra_wide #ads_navigation {
-    display: none;
+    display: none
 }
 
 #ads_navigation {
     width: 230px;
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 #ads_navigation .edit_button_wrap {
-    padding-bottom: 10px;
+    padding-bottom: 10px
 }
 
 #ads_navigation.ads_nav .nav {
-    max-width: 128px;
+    max-width: 128px
 }
 
 #ads_navigation a:hover {
-    text-decoration: none;
+    text-decoration: none
 }
 
 #ads_navigation.ads_nav #ads_navigation_offices_menu.nav {
     padding-right: 2px;
     width: 137px;
-    max-width: 137px;
+    max-width: 137px
 }
 
 #ads_navigation.ads_nav #ads_navigation_offices_menu.nav .dd_link {
-    display: block;
+    display: block
 }
 
 #ads_navigation.ads_nav #ads_navigation_offices_menu.nav .dd_link #ads_navigation_offices_menu_text_wrap {
     display: block;
     overflow: hidden;
     white-space: nowrap;
-    font-size: 0;
+    font-size: 0
 }
 
 #ads_navigation.ads_nav #ads_navigation_offices_menu.nav .dd_link #ads_navigation_offices_menu_text {
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
-    font-size: 13px;
+    font-size: 13px
 }
 
 .dd_menu.ads_navigation_dd_menu_header_wrap {
-    margin: 4px 0 0 7px;
+    margin: 4px 0 0 7px
 }
 
 .dd_menu.ads_navigation_dd_menu_header_wrap .dd_menu_header {
-    width: 148px;
+    width: 148px
 }
 
 .dd_menu.ads_navigation_dd_menu_header_wrap .dd_menu_header div {
     background-position: right -11px;
-    *background-position: right -10px;
+    *background-position: right -10px
 }
 
 .dd_menu.ads_navigation_dd_menu_header_wrap .dd_menu_header div #ads_navigation_dd_menu_header_text {
     padding: 1px 0 1px 4px;
     display: block;
     overflow: hidden;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 .dd_menu.ads_navigation_dd_menu_header_wrap .dd_menu_body .ads_office_name_wrap {
     display: inline-block;
     overflow: hidden;
     max-width: 300px;
-    vertical-align: top;
+    vertical-align: top
 }
 
 .ads_naviagation_news {
-    padding: 20px 0 5px 11px;
+    padding: 20px 0 5px 11px
 }
 
 .ads_naviagation_news .news_title {
-    font-weight: bold;
-    color: #2B587A;
-    padding-bottom: 10px;
+    font-weight: 700;
+    color: #2b587a;
+    padding-bottom: 10px
 }
 
 .ads_naviagation_news ul {
     padding: 0;
     margin: 0;
     list-style-type: none;
-    color: #758EAC;
+    color: #758eac
 }
 
 .ads_naviagation_news li {
-    padding-bottom: 10px;
+    padding-bottom: 10px
 }
 
 .ads_naviagation_news span {
-    color: #666666;
-    font-size: 0.91em;
+    color: #666;
+    font-size: 0.91em
 }
 
 #ads_navigation .ads_naviagation_news a:hover {
-    text-decoration: underline;
+    text-decoration: underline
 }
 
 .ads_nav .nav {
-    padding: 6px 11px 7px 11px;
+    padding: 6px 11px 7px;
     display: block;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .ads_nav .nav:hover {
-    background-color: #E1E7ED;
-    text-decoration: none;
+    background-color: #e1e7ed;
+    text-decoration: none
 }
 
 .ads_nav .nav_selected,
 .ads_nav .nav_selected:hover {
-    background-color: #6186AD;
-    color: white;
+    background-color: #6186ad;
+    color: #fff
 }
 
 .ads_nav .nav_separator {
-    border-bottom: 1px solid #D3DBE1;
+    border-bottom: 1px solid #d3dbe1;
     height: 1px;
     overflow: hidden;
-    margin: 7px 0px 8px 0;
+    margin: 7px 0px 8px 0
 }
 
 .ads_nav .nav_wf {
     padding-top: 0!important;
-    padding-bottom: 0!important;
+    padding-bottom: 0!important
 }
 
 .ads_nav .nav_label {
-    padding: 6px 0 7px 0;
+    padding: 6px 0 7px
 }
 
 .ads_nav .nav_feature {
     margin: 3px -6px 0 0;
     padding: 3px 5px 4px;
-    background-color: #E1E7ED;
-    color: #65819E;
+    background-color: #e1e7ed;
+    color: #65819e;
     border-radius: 2px;
-    font-weight: bold;
-    vertical-align: top;
+    font-weight: 700;
+    vertical-align: top
 }
 
 .ads_round_tabs_all,
 .ads_tabs_filters {
-    background-color: #F7F7F7;
-    border-bottom: 1px solid #DAE1E8;
-    padding: 10px 10px 5px 10px;
-    overflow: hidden;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #dae1e8;
+    padding: 10px 10px 5px;
+    overflow: hidden
 }
 
 .ads_round_tabs_all {
-    padding-top: 0;
+    padding-top: 0
 }
 
 .ads_round_tabs_all.separate,
 .ads_tabs_filters.separate {
-    border-top: 1px solid #DAE1E8;
+    border-top: 1px solid #dae1e8
 }
 
 .ads_round_tabs_all.small_bottom,
 .ads_tabs_filters.small_bottom {
-    padding-bottom: 0;
+    padding-bottom: 0
 }
 
 .ads_round_tabs_block {
-    padding-top: 10px;
+    padding-top: 10px
 }
 
 .ads_round_tabs_separator {
-    border-bottom: 1px solid #DEE0E0;
+    border-bottom: 1px solid #dee0e0;
     margin: 0 8px;
-    padding-top: 5px;
+    padding-top: 5px
 }
 
 .ads_round_tab_wrap {
     padding: 0 5px 5px 0;
-    text-align: center;
+    text-align: center
 }
 
 .ads_round_tab_wrap .round_tab.disabled:hover,
 .ads_round_tab_wrap .round_tab.label:hover {
     background-color: transparent;
-    cursor: default;
+    cursor: default
 }
 
 .ads_round_tab_wrap .round_tab.label {
-    color: #555555;
+    color: #555
 }
 
 .ads_round_tab_wrap .round_tab .ads_round_tab_hider {
@@ -329,115 +329,115 @@ a .ads_sub_link:hover {
     height: 8px;
     background: url(/images/tabs_hider.png) no-repeat;
     background-size: 13px auto;
-    background-position: 0 -8px;
+    background-position: 0 -8px
 }
 
 .ads_round_tab_wrap .round_tab .ads_round_tab_hider.hide {
-    background-position: 0 0;
+    background-position: 0 0
 }
 
 .is_2x .ads_round_tab_wrap .round_tab .ads_round_tab_hider {
-    background-image: url(/images/tabs_hider_2x.png);
+    background-image: url(/images/tabs_hider_2x.png)
 }
 
 .ads_round_tabs_period_day .round_tab,
-.ads_round_tabs_period_week .round_tab,
-.ads_round_tabs_period_month .round_tab {
-    white-space: nowrap;
+.ads_round_tabs_period_month .round_tab,
+.ads_round_tabs_period_week .round_tab {
+    white-space: nowrap
 }
 
 .ads_round_tabs_period_day .round_tab {
-    min-width: 110px;
+    min-width: 110px
 }
 
 .ads_round_tabs_period_week .round_tab {
-    min-width: 180px;
+    min-width: 180px
 }
 
 .ads_round_tabs_period_month .round_tab {
-    min-width: 110px;
+    min-width: 110px
 }
 
 .ads_round_tabs_block .pg_in {
-    padding: 3px 5px;
+    padding: 3px 5px
 }
 
 .ads_table_value_2 {
-    color: #777777;
-    font-size: 0.9em;
+    color: #777;
+    font-size: 0.9em
 }
 
 .ads_table_value_3 {
-    color: #AAAAAA;
-    font-size: 0.9em;
+    color: #aaa;
+    font-size: 0.9em
 }
 
 .ads_table_value_fraud {
     color: red;
-    font-size: 0.9em;
+    font-size: 0.9em
 }
 
 .ads_intro_page,
 .ads_intro_section_title {
-    line-height: 1.462;
+    line-height: 1.462
 }
 
 .ads_intro_subsection_title {
-    color: #4d7199;
+    color: #4d7199
 }
 
 .ads_intro_title {
     font-size: 24px;
-    font-weight: normal;
+    font-weight: 400;
     padding-bottom: 15px;
-    color: #222;
+    color: #222
 }
 
 .ads_intro_section_title {
     font-size: 13px;
-    color: #4A6F97;
-    font-weight: bold;
+    color: #4a6f97;
+    font-weight: 700
 }
 
 .ads_intro_subsection_title {
     font-size: 14px;
-    font-weight: bold;
-    color: #4A6F97;
-    margin-bottom: 9px;
+    font-weight: 700;
+    color: #4a6f97;
+    margin-bottom: 9px
 }
 
 .ads_intro_news_title {
     padding: 0 12px;
     font-size: 14px;
-    color: #222;
+    color: #222
 }
 
 .ads_intro_news_title:hover {
-    text-decoration: none;
+    text-decoration: none
 }
 
 .ads_intro_subsection_text {
-    color: #65686C;
+    color: #65686c
 }
 
 .ads_intro_header {
-    padding: 22px 30px 26px 30px;
+    padding: 22px 30px 26px
 }
 
 .ads_intro_header_wrap2 {
-    height: 365px;
+    height: 365px
 }
 
 .ads_intro_header_wrap1 {
     height: 280px;
     background-color: #edf1f5;
     border-bottom: 1px solid #e1e6eb;
-    padding: 22px 40px 0 40px;
-    position: relative;
+    padding: 22px 40px 0;
+    position: relative
 }
 
 .ads_intro_text {
-    width: 510px;
+    width: 510px
 }
 
 .ads_intro_main_image {
@@ -447,11 +447,11 @@ a .ads_sub_link:hover {
     height: 130px;
     position: absolute;
     right: 40px;
-    top: 40px;
+    top: 40px
 }
 
 .is_2x .ads_intro_main_image {
-    background-image: url(/images/ads_intro_main_2x.png);
+    background-image: url(/images/ads_intro_main_2x.png)
 }
 
 .ads_intro_section_button {
@@ -462,20 +462,20 @@ a .ads_sub_link:hover {
     text-align: center;
     display: inline-block;
     position: relative;
-    top: 0;
+    top: 0
 }
 
 .ads_intro_section_button:hover {
-    text-decoration: none;
+    text-decoration: none
 }
 
 .ads_intro_section_button:hover .ads_intro_section_image {
-    top: -6px;
+    top: -6px
 }
 
 .ads_intro_section_button_first {
     border-left: 0;
-    border-top-left-radius: 2px;
+    border-top-left-radius: 2px
 }
 
 .ads_intro_section_image {
@@ -489,23 +489,23 @@ a .ads_sub_link:hover {
     margin-top: 30px;
     margin-bottom: 20px;
     -o-transition: all 200ms ease-out;
-    transition: all 200ms ease-out;
+    transition: all 200ms ease-out
 }
 
 .is_2x .ads_intro_section_image {
-    background-image: url(/images/ads_intro_icons_2x.png);
+    background-image: url(/images/ads_intro_icons_2x.png)
 }
 
 .ads_intro_section_button2 .ads_intro_section_image {
-    background-position: 0 -172px;
+    background-position: 0 -172px
 }
 
 .ads_intro_section_button3 .ads_intro_section_image {
-    background-position: 0 -258px;
+    background-position: 0 -258px
 }
 
 .ads_intro_section_button4 .ads_intro_section_image {
-    background-position: 0 -86px;
+    background-position: 0 -86px
 }
 
 .ads_intro_section_label {
@@ -514,163 +514,160 @@ a .ads_sub_link:hover {
     background-size: 60px auto;
     position: absolute;
     left: -2px;
-    top: -2px;
+    top: -2px
 }
 
 .ads_intro_section_label.label_ru {
-    background-image: url(/images/ads_intro_label_new_ru.png);
+    background-image: url(/images/ads_intro_label_new_ru.png)
 }
 
 .ads_intro_section_label.label_en {
-    background-image: url(/images/ads_intro_label_new_en.png);
+    background-image: url(/images/ads_intro_label_new_en.png)
 }
 
 .ads_intro_section_label.label_ua {
-    background-image: url(/images/ads_intro_label_new_ua.png);
+    background-image: url(/images/ads_intro_label_new_ua.png)
 }
 
 .page_block.ads_intro_subsections {
     margin-right: 15px;
     padding: 13px;
     display: inline-block;
-    vertical-align: top;
+    vertical-align: top
 }
 
 .ads_intro_subsection {
     padding: 13px 17px;
     display: block;
-    width: 390px;
+    width: 390px
 }
 
 .ads_intro_subsection:hover {
     text-decoration: none;
-    background: #F7F8FA;
-    color: #5C6673;
+    background: #f7f8fa;
+    color: #5c6673
 }
 
 .ads_intro_news {
     width: 314px;
-    padding: 16px 8px 0 8px;
-    display: inline-block;
+    padding: 16px 8px 0;
+    display: inline-block
 }
 
 .ads_intro_news_widget_wrap {
     padding-top: 8px;
     height: auto;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .ads_intro_news_all {
-    padding-right: 12px;
+    padding-right: 12px
 }
 
 .wk_ads_intro .wk_wiki_content {
     font-size: 1em;
-    line-height: 100%;
+    line-height: 100%
 }
 
 .wk_ads_intro #wk_content {
-    width: 564px;
+    width: 564px
 }
 
 .wk_ads_intro #wk_summary {
-    width: 400px;
+    width: 400px
 }
 
 .ads_intro_box h4 {
     margin-bottom: 10px;
-    margin-top: 20px;
+    margin-top: 20px
 }
 
 .ads_intro_box .listing {
-    margin-bottom: 30px;
+    margin-bottom: 30px
 }
 
 .ads_intro_box_center {
-    text-align: center;
+    text-align: center
 }
 
-.ads_intro_box_targeting_image,
-.ads_intro_box_promoted_posts_image,
+.ads_intro_box_offers_image,
 .ads_intro_box_posts_image,
-.ads_intro_box_offers_image {
+.ads_intro_box_promoted_posts_image,
+.ads_intro_box_targeting_image {
     background-size: 160px 160px;
     width: 160px;
     height: 160px;
     display: inline-block;
-    margin: 25px 0;
+    margin: 25px 0
 }
 
 .ads_intro_box_targeting_image {
     margin-top: 0;
-}
-
-.ads_intro_box_targeting_image {
-    background-image: url(/images/ads_intro_targeting.png);
+    background-image: url(/images/ads_intro_targeting.png)
 }
 
 .is_2x .ads_intro_box_targeting_image {
-    background-image: url(/images/ads_intro_targeting_2x.png);
+    background-image: url(/images/ads_intro_targeting_2x.png)
 }
 
 .ads_intro_box_promoted_posts_image {
-    background-image: url(/images/ads_intro_promoted_posts.png);
+    background-image: url(/images/ads_intro_promoted_posts.png)
 }
 
 .is_2x .ads_intro_box_promoted_posts_image {
-    background-image: url(/images/ads_intro_promoted_posts_2x.png);
+    background-image: url(/images/ads_intro_promoted_posts_2x.png)
 }
 
 .ads_intro_box_posts_image {
-    background-image: url(/images/join/ads_union.png);
+    background-image: url(/images/join/ads_union.png)
 }
 
 .is_2x .ads_intro_box_posts_image {
-    background-image: url(/images/join/ads_union_2x.png);
+    background-image: url(/images/join/ads_union_2x.png)
 }
 
 .ads_intro_box_offers_image {
-    background-image: url(/images/ads_intro_offers.png);
+    background-image: url(/images/ads_intro_offers.png)
 }
 
 .is_2x .ads_intro_box_offers_image {
-    background-image: url(/images/ads_intro_offers_2x.png);
+    background-image: url(/images/ads_intro_offers_2x.png)
 }
 
 .ads_intro_box_targeting_office {
     margin-top: 10px;
-    display: inline-block;
+    display: inline-block
 }
 
 .ads_intro_box_exchange {
     line-height: 19px;
-    padding-bottom: 20px;
+    padding-bottom: 20px
 }
 
 .ads_mobile_intro {
     background-color: #edf1f5;
-    padding: 22px 40px 0 40px;
+    padding: 22px 40px 0;
     border-bottom: 1px solid #e1e6eb;
-    max-height: 999999px;
+    max-height: 999999px
 }
 
 .ads_mobile_intro_title {
     font-size: 1.3em;
-    font-weight: bold;
+    font-weight: 700;
     padding-bottom: 14px;
-    color: #5c7b9b;
+    color: #5c7b9b
 }
 
 .ads_mobile_intro_subtitle {
     font-size: 1em;
-    font-weight: bold;
+    font-weight: 700;
     color: #5c7b9b;
-    margin-bottom: 5px;
+    margin-bottom: 5px
 }
 
 .ads_mobile_intro_announce {
     line-height: 160%;
-    margin-bottom: 12px;
+    margin-bottom: 12px
 }
 
 .ads_mobile_intro_phone_wrap {
@@ -680,110 +677,110 @@ a .ads_sub_link:hover {
     display: inline-block;
     margin-right: 30px;
     background: url(/images/ads_mobile_intro.png) no-repeat;
-    background-size: 195px auto;
+    background-size: 195px auto
 }
 
 .is_2x .ads_mobile_intro_phone_wrap {
-    background-image: url(/images/ads_mobile_intro_2x.png);
+    background-image: url(/images/ads_mobile_intro_2x.png)
 }
 
 .ads_mobile_intro_phone_box {
-    margin-top: 30px;
+    margin-top: 30px
 }
 
 .ads_mobile_intro_subscribe_box {
     height: 32px;
-    padding: 6px;
+    padding: 6px
 }
 
 .ads_mobile_intro_subscribe_box .button_blue {
-    vertical-align: middle;
+    vertical-align: middle
 }
 
 .ads_mobile_intro_subscribe_box input {
-    padding: 5px 7px 6px 7px;
+    padding: 5px 7px 6px;
     width: 220px;
     vertical-align: middle;
-    margin: 0 10px 0 0;
+    margin: 0 10px 0 0
 }
 
 .ads_mobile_intro .listing {
-    padding-left: 250px;
+    padding-left: 250px
 }
 
 .ads_mobile_intro_thankyou {
-    text-align: center;
+    text-align: center
 }
 
 #ads_mobile_intro_email {
-    outline: none;
+    outline: none
 }
 
 #ads_mobile_intro_email::-webkit-input-placeholder {
     opacity: 1;
     -o-transition: opacity 200ms ease-out;
-    transition: opacity 200ms ease-out;
+    transition: opacity 200ms ease-out
 }
 
 #ads_mobile_intro_email::-moz-placeholder {
-    opacity: 0.7;
+    opacity: 0.7
 }
 
 #ads_mobile_intro_email:focus::-webkit-input-placeholder {
-    opacity: 0.5;
+    opacity: 0.5
 }
 
 #ads_mobile_intro_email:focus::-moz-placeholder {
-    opacity: 0.3;
+    opacity: 0.3
 }
 
 .ads_create_button_office {
     float: right;
     position: relative;
-    width: 0;
+    width: 0
 }
 
 .ads_create_button_office .edit_button_wrap {
     position: absolute;
-    right: 0;
+    right: 0
 }
 
 .ads_general_info_criteria_price_list_retargeting_formula {
-    line-height: 160%;
+    line-height: 160%
 }
 
 .ads_general_info_criteria_price_list_retargeting_formula_operand {
     padding-bottom: 1px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #000
 }
 
 .ads_announcement_video_box .box_title_wrap {
     background: none;
     position: absolute;
     top: -40px;
-    width: 720px;
+    width: 720px
 }
 
 .ads_announcement_video_box .box_title {
     text-align: center;
     padding-left: 49px;
     height: 40px;
-    line-height: 40px;
+    line-height: 40px
 }
 
 .ads_announcement_video_box .box_title a {
-    color: #FFF;
+    color: #fff
 }
 
 .ads_announcement_video_box .box_x_button {
     position: relative;
     left: 49px;
-    top: 19px;
+    top: 19px
 }
 
 .ads_announcement_video_box .box_body {
     padding: 0;
-    line-height: 0;
+    line-height: 0
 }
 
 .ads_lite_cb {
@@ -792,478 +789,472 @@ a .ads_sub_link:hover {
     width: 15px;
     background: url(/images/icons/check_lt.gif) no-repeat scroll 0 0;
     vertical-align: middle;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .ads_lite_cb:hover {
     background-position: 0px -32px;
-    text-decoration: none;
+    text-decoration: none
 }
 
 .ads_lite_cb.on {
-    background-position: 0px -16px;
+    background-position: 0px -16px
 }
 
 .ads_lite_cb.on:hover {
-    background-position: 0px -48px;
+    background-position: 0px -48px
 }
 
 .paginated_table_header .ads_lite_cb {
-    margin: 0 7px 0 3px;
+    margin: 0 7px 0 3px
 }
 
 .paginated_table_row .ads_lite_cb {
-    margin: 0 7px 0 2px;
+    margin: 0 7px 0 2px
 }
 
 .ads_mass_act_container {
-    text-align: right;
+    text-align: right
 }
 
 .ads_mass_act_container div {
     margin-right: 8px;
-    margin-bottom: 5px;
+    margin-bottom: 5px
 }
 
 .ads_mass_act_container button {
     height: 21px;
     line-height: 0.9em;
-    padding: 4px 10px 4px;
+    padding: 4px 10px
 }
 
 .ads_search_cell {
-    width: 140px;
+    width: 140px
 }
 
 .ads_search_cell div.pt_search_container {
-    margin: 0px -3px 5px -3px;
+    margin: 0px -3px 5px
 }
 
 .ads_search_cell div.pt_search_container input.text {
     height: 16px;
-    width: 163px;
+    width: 163px
 }
 
 div.ads_selecting_subclasses {
-    margin-bottom: 4px;
+    margin-bottom: 4px
 }
 
 .dd_menu_header.ads_dd_wide.ads_dd_header_popup div {
-    background: url(/images/flydead.gif) no-repeat right 6px #FFFFFF;
+    background: url(/images/flydead.gif) no-repeat right 6px #fff;
     padding-right: 17px;
-    border: 1px solid #FFFFFF;
-    color: #2B587A;
-    font-weight: normal;
-    text-decoration: none;
+    border: 1px solid #fff;
+    color: #2b587a;
+    font-weight: 400;
+    text-decoration: none
 }
 
 .dd_menu_header.ads_dd_wide div {
     background: #5e82a8 url(/images/flydead.gif) no-repeat right -12px;
-    width: 106px;
+    width: 106px
 }
 
 .dd_menu_body.ads_dd_wide .dd_menu_rows a {
-    height: 20px;
+    height: 20px
 }
 
 .dd_menu_body.ads_dd_wide .dd_menu_rows a .ads_status_image_span {
-    margin: 4px 5px -2px -1px;
+    margin: 4px 5px -2px -1px
 }
 
 .dd_menu_header.ads_dd_wide div .ads_status_image_span {
-    margin: 4px 5px -1px -1px;
+    margin: 4px 5px -1px -1px
 }
 
 .dd_menu_header.ads_dd_wide div {
-    line-height: 1.45em;
+    line-height: 1.45em
 }
 
 td.paginated_table_cell.column_status_view {
-    padding-left: 10px;
+    padding-left: 10px
 }
 
 .ads_status_selector_box {
     display: block;
     margin: 0px auto;
     width: 20px;
-    height: 20px;
+    height: 20px
 }
 
 .ads_status_selector_box.pnt {
-    cursor: pointer;
+    cursor: pointer
 }
 
 .ads_status_selector_box.pnt:hover {
-    background-color: #E1E7ED;
+    background-color: #e1e7ed;
     border-radius: 3px;
-    -moz-border-radius: 3px;
+    -moz-border-radius: 3px
 }
 
 #ads_unions_content .table_label {
     min-width: 170px;
     max-width: 200px;
-    color: #666666;
+    color: #666;
     padding: 0 10px 7px 0;
     vertical-align: top;
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 #ads_unions_content .table_label.mobile {
-    max-width: 150px;
+    max-width: 150px
 }
 
-#ads_unions_content .table_label.with_redesign,
-#ads_unions_content .table_label.promoted_post {
+#ads_unions_content .table_label.promoted_post,
+#ads_unions_content .table_label.with_redesign {
     min-width: 180px;
-    max-width: 180px;
+    max-width: 180px
 }
 
 #ads_unions_content .table_label.big_app {
     min-width: 140px;
-    max-width: 140px;
+    max-width: 140px
 }
 
 #ads_unions_content .table_value {
-    padding: 0 0 7px 0;
+    padding: 0 0 7px;
     vertical-align: top;
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 #ads_unions_content .table_value.big_app {
     min-width: 150px;
-    max-width: 150px;
+    max-width: 150px
 }
 
 #ads_unions_content.ad_help {
-    padding: 0;
+    padding: 0
 }
 
 #ads_unions_content {
-    vertical-align: top;
+    vertical-align: top
 }
 
 #ads_union_children,
 #ads_unions_budget,
-#ads_unions_budget_posts,
-#ads_unions_budget_offers {
-    padding-top: 20px;
+#ads_unions_budget_offers,
+#ads_unions_budget_posts {
+    padding-top: 20px
 }
 
 #ads_union_children_graph {
-    padding: 30px 0 15px 0;
+    padding: 30px 0 15px
 }
 
 #ads_union_children .row_div.control_label {
-    padding-left: 0;
+    padding-left: 0
 }
 
 .ads_unions_box td.label {
     color: #777;
     padding: 5px 10px 5px 0px;
-    text-align: right;
+    text-align: right
 }
 
 .ads_unions_box td.labeled {
-    padding: 2px 0;
+    padding: 2px 0
 }
 
 .ads_unions_box td.labeled_info {
-    padding: 2px 0 2px 5px;
+    padding: 2px 0 2px 5px
 }
 
 .ads_unions_box input {
-    width: 150px;
+    width: 150px
 }
 
 .ads_unions_list table {
     border-collapse: collapse;
     border-left: 1px solid;
     border-right: 1px solid;
-    width: 100%;
+    width: 100%
 }
 
-.ads_unions_list th,
-.ads_unions_list td {
+.ads_unions_list td,
+.ads_unions_list th {
     height: 32px;
-    vertical-align: middle;
+    vertical-align: middle
 }
 
 .ads_unions_list .checkbox_container td {
-    height: 20px;
+    height: 20px
 }
 
 .ads_unions_list th {
     text-align: right;
     background-color: #e3e9ee;
     border: 1px solid;
-    padding: 0;
+    padding: 0
 }
 
 .ads_table_header th th,
 .ads_table_header th th * {
-    background-color: transparent !important;
+    background-color: transparent!important
 }
 
 .ads_unions_list th,
 .ads_unions_list th * {
-    color: #51677a;
+    color: #51677a
 }
 
 .ads_unions_list td {
-    text-align: right;
+    text-align: right
 }
 
-.ads_unions_list .column_date_view,
-.ads_unions_list .column_date_view *,
-.ads_unions_list .column_action_view,
-.ads_unions_list .column_action_view *,
 .ads_unions_list .column_access_view,
 .ads_unions_list .column_access_view *,
-.ads_unions_list .column_name_view,
-.ads_unions_list .column_name_view *,
+.ads_unions_list .column_action_view,
+.ads_unions_list .column_action_view *,
+.ads_unions_list .column_date_view,
+.ads_unions_list .column_date_view *,
 .ads_unions_list .column_name,
 .ads_unions_list .column_name *,
+.ads_unions_list .column_name_view,
+.ads_unions_list .column_name_view *,
 .ads_unions_list .column_status,
 .ads_unions_list .column_status * {
-    text-align: left;
+    text-align: left
 }
 
 .ads_unions_list td.column_name_view {
-    max-width: 160px;
+    max-width: 160px
 }
 
 .ads_unions_list .table_footer td {
     background-color: #f6f7f9;
     border-top: 1px solid #d3dbe1;
-    border-bottom: 1px solid #d3dbe1;
+    border-bottom: 1px solid #d3dbe1
 }
 
 .ads_unions_list table,
-.ads_unions_list th,
-.ads_unions_list td {
-    border-color: #d3dbe1;
+.ads_unions_list td,
+.ads_unions_list th {
+    border-color: #d3dbe1
 }
 
 .ads_unions_list th * {
     border: 0;
     padding: 0;
-    height: auto;
+    height: auto
 }
 
 .ads_unions_list th table {
     height: 100%;
-    border: 0;
+    border: 0
 }
 
 .ads_unions_list tr.ads_table_header th th {
     border-left: 1px solid #eff2f5;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 .ads_unions_list tr.ads_table_header th.first_table_header,
 .ads_unions_list tr.ads_table_header th.first_table_header * {
-    border-left: 0 none;
+    border-left: 0 none
 }
 
-.ads_unions_list th th,
-.ads_unions_list td {
-    padding: 0 8px;
+.ads_unions_list td,
+.ads_unions_list th th {
+    padding: 0 8px
 }
 
-.ads_unions_list th.first_table_header th,
-.ads_unions_list td.first_table_column {
-    padding-left: 10px;
+.ads_unions_list td.first_table_column,
+.ads_unions_list th.first_table_header th {
+    padding-left: 10px
 }
 
-.ads_unions_list th.last_table_header th,
-.ads_unions_list td.last_table_column {
-    padding-right: 10px;
+.ads_unions_list td.last_table_column,
+.ads_unions_list th.last_table_header th {
+    padding-right: 10px
 }
 
 .ads_unions_list td.even_row {
-    background-color: #F0F2F4;
+    background-color: #f0f2f4
 }
 
 .ads_unions_table {
     margin-top: 7px;
-    background-color: white;
+    background-color: #fff
 }
 
 .paginated_table .ads_unions_table {
-    margin-top: 0px;
+    margin-top: 0px
 }
 
 .paginated_table .ads_unions_table .paginated_table_row .paginated_table_cell {
-    height: 38px;
+    height: 38px
 }
 
 .paginated_table .ads_unions_table th.paginated_table_cell>div {
-    font-weight: normal;
-    padding-left: 6px;
+    font-weight: 400;
+    padding-left: 6px
 }
 
-.ads_unions_list td.column_day_limit_view a,
 .ads_unions_list td.column_all_limit_view a,
-.ads_unions_list td.column_cost_per_click_view a {
-    border-bottom: 1px dashed #2B587A;
-    text-decoration: none;
+.ads_unions_list td.column_cost_per_click_view a,
+.ads_unions_list td.column_day_limit_view a {
+    border-bottom: 1px dashed #2b587a;
+    text-decoration: none
 }
 
 tr.ads_union_empty_row td.ads_union_empty_cell {
     height: auto;
-}
-
-tr.ads_union_empty_row td.ads_union_empty_cell {
-    text-align: center !important;
-    color: #666666;
+    text-align: center!important;
+    color: #666;
     line-height: 150%;
-    background-color: #F7F7F7;
-    padding: 15px 0;
+    background-color: #f7f7f7;
+    padding: 15px 0
 }
 
 .ads_unions_list_p .paginated_table_cell {
-    text-align: right;
+    text-align: right
 }
 
 .ads_unions_list_p .paginated_table .paginated_table_cell.cb_cell,
 .ads_unions_list_p .paginated_table .paginated_table_cell.cb_cell *,
-.ads_unions_list_p .paginated_table .paginated_table_cell.column_date_view,
-.ads_unions_list_p .paginated_table .paginated_table_cell.column_date_view *,
-.ads_unions_list_p .paginated_table .paginated_table_cell.column_action_view,
-.ads_unions_list_p .paginated_table .paginated_table_cell.column_action_view *,
 .ads_unions_list_p .paginated_table .paginated_table_cell.column_access_view,
 .ads_unions_list_p .paginated_table .paginated_table_cell.column_access_view *,
-.ads_unions_list_p .paginated_table .paginated_table_cell.column_name_view,
-.ads_unions_list_p .paginated_table .paginated_table_cell.column_name_view *,
+.ads_unions_list_p .paginated_table .paginated_table_cell.column_action_view,
+.ads_unions_list_p .paginated_table .paginated_table_cell.column_action_view *,
+.ads_unions_list_p .paginated_table .paginated_table_cell.column_date_view,
+.ads_unions_list_p .paginated_table .paginated_table_cell.column_date_view *,
 .ads_unions_list_p .paginated_table .paginated_table_cell.column_name,
 .ads_unions_list_p .paginated_table .paginated_table_cell.column_name *,
+.ads_unions_list_p .paginated_table .paginated_table_cell.column_name_view,
+.ads_unions_list_p .paginated_table .paginated_table_cell.column_name_view *,
 .ads_unions_list_p .paginated_table .paginated_table_cell.column_status,
 .ads_unions_list_p .paginated_table .paginated_table_cell.column_status * {
-    text-align: left;
+    text-align: left
 }
 
-.ads_unions_list_p .paginated_table .paginated_table_cell.column_name_view,
-.ads_unions_list_p .paginated_table .paginated_table_cell.column_name_view *,
 .ads_unions_list_p .paginated_table .paginated_table_cell.column_name,
 .ads_unions_list_p .paginated_table .paginated_table_cell.column_name *,
-.paginated_table .paginated_table_cell.column_client_name,
-.paginated_table .paginated_table_cell.column_client_name *,
+.ads_unions_list_p .paginated_table .paginated_table_cell.column_name_view,
+.ads_unions_list_p .paginated_table .paginated_table_cell.column_name_view *,
 .paginated_table .paginated_table_cell.column_campaign_name,
-.paginated_table .paginated_table_cell.column_campaign_name * {
-    white-space: normal !important;
+.paginated_table .paginated_table_cell.column_campaign_name *,
+.paginated_table .paginated_table_cell.column_client_name,
+.paginated_table .paginated_table_cell.column_client_name * {
+    white-space: normal!important
 }
 
-.ads_unions_list_p td.paginated_table_cell.column_name_view,
-.ads_unions_list_p td.paginated_table_cell.column_name {
+.ads_unions_list_p td.paginated_table_cell.column_name,
+.ads_unions_list_p td.paginated_table_cell.column_name_view {
     max-width: 160px;
-    overflow: visible;
+    overflow: visible
 }
 
 .ads_unions_list_p td.paginated_table_cell.column_date_view {
-    min-width: 20%;
+    min-width: 20%
 }
 
-.ads_unions_list_p .paginated_table td.paginated_table_cell.column_day_limit_view a,
 .ads_unions_list_p .paginated_table td.paginated_table_cell.column_all_limit_view a,
-.ads_unions_list_p .paginated_table td.paginated_table_cell.column_cost_per_click_view a {
-    border-bottom: 1px dashed #2B587A;
-    text-decoration: none;
+.ads_unions_list_p .paginated_table td.paginated_table_cell.column_cost_per_click_view a,
+.ads_unions_list_p .paginated_table td.paginated_table_cell.column_day_limit_view a {
+    border-bottom: 1px dashed #2b587a;
+    text-decoration: none
 }
 
 .ads_unions_list_p .paginated_table td.column_video_views_count_view {
-    width: 1px;
+    width: 1px
 }
 
 tr.ads_union_empty_row td.ads_union_empty_cell {
     height: auto;
-}
-
-tr.ads_union_empty_row td.ads_union_empty_cell {
-    text-align: center !important;
-    color: #666666;
+    text-align: center!important;
+    color: #666;
     line-height: 150%;
-    background-color: #F7F7F7;
-    padding: 15px 0;
+    background-color: #f7f7f7;
+    padding: 15px 0
 }
 
-#ads_graph_navigation a.nav,
-#ads_demography_navigation a.nav {
+#ads_demography_navigation a.nav,
+#ads_graph_navigation a.nav {
     padding: 6px 6px 7px 11px;
     display: block;
-    overflow: hidden;
+    overflow: hidden
 }
 
-#ads_graph_navigation a.nav:hover,
-#ads_demography_navigation a.nav:hover {
-    background-color: #DAE1E8;
-    text-decoration: none;
+#ads_demography_navigation a.nav:hover,
+#ads_graph_navigation a.nav:hover {
+    background-color: #dae1e8;
+    text-decoration: none
 }
 
-#ads_graph_navigation a.nav_selected,
-#ads_graph_navigation a.nav_selected:hover,
 #ads_demography_navigation a.nav_selected,
-#ads_demography_navigation a.nav_selected:hover {
-    background-color: #6186AD;
-    color: white;
+#ads_demography_navigation a.nav_selected:hover,
+#ads_graph_navigation a.nav_selected,
+#ads_graph_navigation a.nav_selected:hover {
+    background-color: #6186ad;
+    color: #fff
 }
 
-a.ads_status_link,
-a.ads_inline_dropdown {
-    background: none !important;
-    border-bottom: 1px dashed #2B587A;
-    padding-right: 0 !important;
+a.ads_inline_dropdown,
+a.ads_status_link {
+    background: none!important;
+    border-bottom: 1px dashed #2b587a;
+    padding-right: 0!important
 }
 
 .ads_main_notice {
-    background-color: #F6F7F9;
-    border: 1px solid #D8DFEA;
+    background-color: #f6f7f9;
+    border: 1px solid #d8dfea;
     padding: 10px;
     margin-bottom: 15px;
-    line-height: 160%;
+    line-height: 160%
 }
 
 .ads_notice_important {
-    background-color: #FFEFE8;
-    border-color: #E89B88;
+    background-color: #ffefe8;
+    border-color: #e89b88
 }
 
 .ads_notice_moderation.new_design {
-    padding: 0;
+    padding: 0
 }
 
 .ads_notice_moderation.active_disapproved {
-    background-color: #FFEFE8;
-    border-color: #E89B88;
+    background-color: #ffefe8;
+    border-color: #e89b88
 }
 
 .ads_warning {
-    background-color: #F9F6E7;
-    border: 1px solid #D4BC4C;
+    background-color: #f9f6e7;
+    border: 1px solid #d4bc4c;
     padding: 8px 11px;
-    line-height: 160%;
+    line-height: 160%
 }
 
 .ads_warning_light {
-    background-color: #FFFFFF;
-    border: 1px solid #B9C4DA;
-    padding: 8px 11px;
+    background-color: #fff;
+    border: 1px solid #b9c4da;
+    padding: 8px 11px
 }
 
 .ads_small_info {
-    background: none repeat scroll 0 0 #F7F7F7;
-    border: 1px solid #DAE1E8;
+    background: none repeat scroll 0 0 #f7f7f7;
+    border: 1px solid #dae1e8;
     font-size: 0.91em;
     margin-top: 10px;
     padding: 5px 10px;
-    vertical-align: top;
+    vertical-align: top
 }
 
 #ads_change_budget_box .ads_warning {
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 #ads_change_budget_box td {
-    padding: 0px;
+    padding: 0px
 }
 
 .ads_union_status_image {
@@ -1276,31 +1267,31 @@ a.ads_inline_dropdown {
     display: inline-block;
     _overflow: hidden;
     *zoom: 1;
-    *display: inline;
+    *display: inline
 }
 
 .ads_union_status_image_on {
-    background-position: left 0;
+    background-position: left 0
 }
 
 .ads_union_status_image_off {
-    background-position: left -5px;
+    background-position: left -5px
 }
 
 .ads_union_status_image_part_on {
-    background-position: left -10px;
+    background-position: left -10px
 }
 
 .ads_union_status_image_part_off {
-    background-position: left -15px;
+    background-position: left -15px
 }
 
 .ads_union_status_image_disapproved {
-    background-position: left -20px;
+    background-position: left -20px
 }
 
 .ads_union_status_image_deleted {
-    background-position: left -25px;
+    background-position: left -25px
 }
 
 .ads_status_image_span {
@@ -1313,271 +1304,271 @@ a.ads_inline_dropdown {
     display: inline-block;
     _overflow: hidden;
     *zoom: 1;
-    *display: inline;
+    *display: inline
 }
 
-.dd_menu_header.ads_dd_header_popup .ads_status_image_span.status_on,
-.ads_status_image_span.status_on {
-    background-position: left 0px;
+.ads_status_image_span.status_on,
+.dd_menu_header.ads_dd_header_popup .ads_status_image_span.status_on {
+    background-position: left 0px
 }
 
-.dd_menu_header.ads_dd_header_popup .ads_status_image_span.status_off,
-.ads_status_image_span.status_off {
-    background-position: left -196px;
+.ads_status_image_span.status_off,
+.dd_menu_header.ads_dd_header_popup .ads_status_image_span.status_off {
+    background-position: left -196px
 }
 
-.dd_menu_header.ads_dd_header_popup .ads_status_image_span.status_paused,
-.ads_status_image_span.status_paused {
-    background-position: left -28px;
+.ads_status_image_span.status_paused,
+.dd_menu_header.ads_dd_header_popup .ads_status_image_span.status_paused {
+    background-position: left -28px
 }
 
-.dd_menu_header.ads_dd_header_popup .ads_status_image_span.status_pending,
-.ads_status_image_span.status_pending {
-    background-position: left -157px;
+.ads_status_image_span.status_pending,
+.dd_menu_header.ads_dd_header_popup .ads_status_image_span.status_pending {
+    background-position: left -157px
 }
 
-.dd_menu_header.ads_dd_header_popup .ads_status_image_span.status_off_red,
-.ads_status_image_span.status_off_red {
-    background-position: left -128px;
+.ads_status_image_span.status_off_red,
+.dd_menu_header.ads_dd_header_popup .ads_status_image_span.status_off_red {
+    background-position: left -128px
 }
 
-.dd_menu_header.ads_dd_header_popup .ads_status_image_span.status_deleted,
-.ads_status_image_span.status_deleted {
-    background-position: left -183px;
+.ads_status_image_span.status_deleted,
+.dd_menu_header.ads_dd_header_popup .ads_status_image_span.status_deleted {
+    background-position: left -183px
 }
 
-.dd_menu_header.ads_dd_header_popup .ads_status_image_span.status_cross,
-.ads_status_image_span.status_cross {
-    background-position: left -141px;
+.ads_status_image_span.status_cross,
+.dd_menu_header.ads_dd_header_popup .ads_status_image_span.status_cross {
+    background-position: left -141px
 }
 
 .dd_menu_header .ads_status_image_span.status_on {
-    background-position: left -16px;
+    background-position: left -16px
 }
 
 .dd_menu_header .ads_status_image_span.status_off {
-    background-position: left -208px;
+    background-position: left -208px
 }
 
 .dd_menu_header .ads_status_image_span.status_pending {
-    background-position: left -69px;
+    background-position: left -69px
 }
 
 .dd_menu_header .ads_status_image_span.status_off_red {
-    background-position: left -29px;
+    background-position: left -29px
 }
 
 .dd_menu_header .ads_status_image_span.status_deleted {
-    background-position: left -41px;
+    background-position: left -41px
 }
 
 .dd_menu_header .ads_status_image_span.status_cross {
-    background-position: left -55px;
+    background-position: left -55px
 }
 
 .dd_menu_body.ads_dd_wide .dd_menu_rows a .ads_status_image_span.status_on {
-    background-position: left -85px;
+    background-position: left -85px
 }
 
 .dd_menu_body.ads_dd_wide .dd_menu_rows a .ads_status_image_span.status_off {
-    background-position: left -196px;
+    background-position: left -196px
 }
 
 .dd_menu_body.ads_dd_wide .dd_menu_rows a .ads_status_image_span.status_deleted {
-    background-position: left -111px;
+    background-position: left -111px
 }
 
 .ads_unions_list tr.ads_table_header th.paginated_table td.paginated_table_cell.column_commit_date,
 .ads_unions_list tr.ads_table_header th.paginated_table td.paginated_table_cell.column_commit_date * {
-    border-left: 0 none;
+    border-left: 0 none
 }
 
 #ads_unions_budget * {
-    text-align: left;
+    text-align: left
 }
 
 #ads_general_info_status_selector {
-    border-bottom: 1px dashed #2B587A;
+    border-bottom: 1px dashed #2b587a
 }
 
 .ads_general_info_events_retargeting_groups {
     padding-left: 10px;
     color: #777;
-    margin-bottom: 3px;
+    margin-bottom: 3px
 }
 
 #general_info_row_view_retargeting_group_id .idd_menu_wrap_parent {
-    position: relative;
+    position: relative
 }
 
 #general_info_row_view_retargeting_group_id .idd_menu_wrap {
     position: absolute;
     left: -6px;
-    top: -4px;
+    top: -4px
 }
 
 table.ads_unions_content_label {
-    border-collapse: collapse;
+    border-collapse: collapse
 }
 
 #ads_unions_content .ads_export_prefs .ads_export_date_row .table_label {
-    padding-top: 4px;
+    padding-top: 4px
 }
 
 .ads_export_prefs .table_value {
-    width: 300px;
+    width: 300px
 }
 
 #ads_unions_content .export_prefs_web .summary td {
-    padding-top: 10px !important;
+    padding-top: 10px!important
 }
 
 .ads_export_stats .ads_unions_table th.paginated_table td.paginated_table_cell.column_checked {
-    width: 34px;
+    width: 34px
 }
 
 .ads_unions_list .checkbox_container table {
-    border: 0px;
+    border: 0px
 }
 
 .ads_unions_table .hovered_header,
 .ads_unions_table .hovered_header_hover {
-    cursor: pointer;
+    cursor: pointer
 }
 
 .ads_unions_table .hovered_header_hover {
-    background-color: #EFF2F5;
+    background-color: #eff2f5
 }
 
 .ads_inline_edit_remove_value {
     margin-left: 5px;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 .ads_inline_edit_table {
-    border-collapse: collapse;
+    border-collapse: collapse
 }
 
 table.ads_inline_edit_table td {
-    padding: 0;
+    padding: 0
 }
 
 .ads_inline_fast_error_row {
-    display: none;
+    display: none
 }
 
 .ads_inline_fast_error {
-    background-color: #F9F6E7;
-    border: 1px solid #D4BC4C;
+    background-color: #f9f6e7;
+    border: 1px solid #d4bc4c;
     padding: 8px 11px;
-    margin-top: 5px;
+    margin-top: 5px
 }
 
 .ads_inline_recommended_cost_text {
     font-size: 0.91em;
-    color: #777777;
-    display: none;
+    color: #777;
+    display: none
 }
 
 .ads_disapproved_message {
-    line-height: 135%;
+    line-height: 135%
 }
 
 .box_body .ads_disapproved_message {
-    line-height: 150%;
+    line-height: 150%
 }
 
 .ads_moder_comment_rules_wrap {
-    line-height: 20px;
+    line-height: 20px
 }
 
 .ads_moder_comment_rules_wrap ul {
     list-style: square outside none;
-    color: #758EAC;
-    margin: 11px 0 0 0;
+    color: #758eac;
+    margin: 11px 0 0
 }
 
-.ads_moder_comment_rules_wrap li>span,
-.ads_moder_comment_rules_wrap li>div {
-    color: black;
+.ads_moder_comment_rules_wrap li>div,
+.ads_moder_comment_rules_wrap li>span {
+    color: #000
 }
 
 .ads_moder_comment_rules_separator {
-    height: 11px;
+    height: 11px
 }
 
 .ads_moder_comment_rules_block {
     margin: 1em 0;
-    padding: 0 1em 0 0;
+    padding: 0 1em 0 0
 }
 
 .ads_moder_comment_rules_block:first-child {
-    margin-top: 1.5em;
+    margin-top: 1.5em
 }
 
 .ads_moder_comment_rules_block:last-child {
-    margin-bottom: 1.5em;
+    margin-bottom: 1.5em
 }
 
 .ads_moder_comment_rules_block p {
-    margin: 0 0 1em;
+    margin: 0 0 1em
 }
 
 .ads_moder_comment_rules_block .ads_moder_comment_rules_content p:last-child {
-    margin-bottom: 0;
+    margin-bottom: 0
 }
 
 .ads_moder_comment_rules_block ul {
     list-style: square outside none;
-    color: #758EAC;
-    margin: 1em 0 0 0;
-    padding-left: 1em;
+    color: #758eac;
+    margin: 1em 0 0;
+    padding-left: 1em
 }
 
 .ads_moder_comment_rules_block ul>li>div {
-    color: black;
+    color: #000
 }
 
 .ads_moder_comment_rules_block_header {
-    font-weight: bold;
-    margin-bottom: 1em;
+    font-weight: 700;
+    margin-bottom: 1em
 }
 
 .ads_moder_comment_rules_block_separator {
     display: block;
-    margin: 1em 1em;
-    border-top: 2px solid #EBEFF4;
+    margin: 1em;
+    border-top: 2px solid #ebeff4
 }
 
 .active_disapproved .ads_moder_comment_rules_block_separator {
-    border-top-color: #FAE0E0;
+    border-top-color: #fae0e0
 }
 
 .ads_moder_comment_rules_block_notes {
-    font-size: 90%;
+    font-size: 90%
 }
 
 .ads_moder_comment_rules_cols {
     position: relative;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .ads_moder_comment_rules_left_col {
     float: left;
     width: 100px;
-    text-align: center;
+    text-align: center
 }
 
 .ads_moder_comment_rules_content {
-    padding-left: 100px;
+    padding-left: 100px
 }
 
 .ads_moder_comment_rules_btn_w {
-    margin-top: 1em;
+    margin-top: 1em
 }
 
 .ads_moder_comment_rules_btn_w .button_link {
-    margin-right: 1em;
+    margin-right: 1em
 }
 
 .ads_moder_comment_rules_icon {
@@ -1585,16 +1576,16 @@ table.ads_inline_edit_table td {
     position: relative;
     width: 60px;
     height: 60px;
-    background: rgba(0, 0, 0, 0.11);
-    border-radius: 50%;
+    background: rgba(0, 0, 0, .11);
+    border-radius: 50%
 }
 
 .active_disapproved .ads_moder_comment_rules_icon {
-    background: #e9d2d2;
+    background: #e9d2d2
 }
 
 .ads_moder_comment_rules_icon.icon_age_16p {
-    background-image: url(/images/ads/moder_rules_icons/icon_age_16p.png);
+    background-image: url(/images/ads/moder_rules_icons/icon_age_16p.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1602,12 +1593,12 @@ table.ads_inline_edit_table td {
 (min-resolution: 192dpi) {
     .ads_moder_comment_rules_icon.icon_age_16p {
         background-image: url(/images/ads/moder_rules_icons/icon_age_16p_2x.png);
-        background-size: 60px 60px;
+        background-size: 60px 60px
     }
 }
 
 .ads_moder_comment_rules_icon.icon_age_18p {
-    background-image: url(/images/ads/moder_rules_icons/icon_age_18p.png);
+    background-image: url(/images/ads/moder_rules_icons/icon_age_18p.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1615,12 +1606,12 @@ table.ads_inline_edit_table td {
 (min-resolution: 192dpi) {
     .ads_moder_comment_rules_icon.icon_age_18p {
         background-image: url(/images/ads/moder_rules_icons/icon_age_18p_2x.png);
-        background-size: 60px 60px;
+        background-size: 60px 60px
     }
 }
 
 .ads_moder_comment_rules_icon.icon_astrologer {
-    background-image: url(/images/ads/moder_rules_icons/icon_astrologer.png);
+    background-image: url(/images/ads/moder_rules_icons/icon_astrologer.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1628,12 +1619,12 @@ table.ads_inline_edit_table td {
 (min-resolution: 192dpi) {
     .ads_moder_comment_rules_icon.icon_astrologer {
         background-image: url(/images/ads/moder_rules_icons/icon_astrologer_2x.png);
-        background-size: 60px 60px;
+        background-size: 60px 60px
     }
 }
 
 .ads_moder_comment_rules_icon.icon_book_music {
-    background-image: url(/images/ads/moder_rules_icons/icon_book_music.png);
+    background-image: url(/images/ads/moder_rules_icons/icon_book_music.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1641,12 +1632,12 @@ table.ads_inline_edit_table td {
 (min-resolution: 192dpi) {
     .ads_moder_comment_rules_icon.icon_book_music {
         background-image: url(/images/ads/moder_rules_icons/icon_book_music_2x.png);
-        background-size: 60px 60px;
+        background-size: 60px 60px
     }
 }
 
 .ads_moder_comment_rules_icon.icon_brick {
-    background-image: url(/images/ads/moder_rules_icons/icon_brick.png);
+    background-image: url(/images/ads/moder_rules_icons/icon_brick.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1654,12 +1645,12 @@ table.ads_inline_edit_table td {
 (min-resolution: 192dpi) {
     .ads_moder_comment_rules_icon.icon_brick {
         background-image: url(/images/ads/moder_rules_icons/icon_brick_2x.png);
-        background-size: 60px 60px;
+        background-size: 60px 60px
     }
 }
 
 .ads_moder_comment_rules_icon.icon_cup_1 {
-    background-image: url(/images/ads/moder_rules_icons/icon_cup_1.png);
+    background-image: url(/images/ads/moder_rules_icons/icon_cup_1.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1667,12 +1658,12 @@ table.ads_inline_edit_table td {
 (min-resolution: 192dpi) {
     .ads_moder_comment_rules_icon.icon_cup_1 {
         background-image: url(/images/ads/moder_rules_icons/icon_cup_1_2x.png);
-        background-size: 60px 60px;
+        background-size: 60px 60px
     }
 }
 
 .ads_moder_comment_rules_icon.icon_data {
-    background-image: url(/images/ads/moder_rules_icons/icon_data.png);
+    background-image: url(/images/ads/moder_rules_icons/icon_data.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1680,12 +1671,12 @@ table.ads_inline_edit_table td {
 (min-resolution: 192dpi) {
     .ads_moder_comment_rules_icon.icon_data {
         background-image: url(/images/ads/moder_rules_icons/icon_data_2x.png);
-        background-size: 60px 60px;
+        background-size: 60px 60px
     }
 }
 
 .ads_moder_comment_rules_icon.icon_dating {
-    background-image: url(/images/ads/moder_rules_icons/icon_dating.png);
+    background-image: url(/images/ads/moder_rules_icons/icon_dating.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1693,12 +1684,12 @@ table.ads_inline_edit_table td {
 (min-resolution: 192dpi) {
     .ads_moder_comment_rules_icon.icon_dating {
         background-image: url(/images/ads/moder_rules_icons/icon_dating_2x.png);
-        background-size: 60px 60px;
+        background-size: 60px 60px
     }
 }
 
 .ads_moder_comment_rules_icon.icon_docs {
-    background-image: url(/images/ads/moder_rules_icons/icon_docs.png);
+    background-image: url(/images/ads/moder_rules_icons/icon_docs.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1706,12 +1697,12 @@ table.ads_inline_edit_table td {
 (min-resolution: 192dpi) {
     .ads_moder_comment_rules_icon.icon_docs {
         background-image: url(/images/ads/moder_rules_icons/icon_docs_2x.png);
-        background-size: 60px 60px;
+        background-size: 60px 60px
     }
 }
 
 .ads_moder_comment_rules_icon.icon_grammar {
-    background-image: url(/images/ads/moder_rules_icons/icon_grammar.png);
+    background-image: url(/images/ads/moder_rules_icons/icon_grammar.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1719,12 +1710,12 @@ table.ads_inline_edit_table td {
 (min-resolution: 192dpi) {
     .ads_moder_comment_rules_icon.icon_grammar {
         background-image: url(/images/ads/moder_rules_icons/icon_grammar_2x.png);
-        background-size: 60px 60px;
+        background-size: 60px 60px
     }
 }
 
 .ads_moder_comment_rules_icon.icon_law {
-    background-image: url(/images/ads/moder_rules_icons/icon_law.png);
+    background-image: url(/images/ads/moder_rules_icons/icon_law.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1732,12 +1723,12 @@ table.ads_inline_edit_table td {
 (min-resolution: 192dpi) {
     .ads_moder_comment_rules_icon.icon_law {
         background-image: url(/images/ads/moder_rules_icons/icon_law_2x.png);
-        background-size: 60px 60px;
+        background-size: 60px 60px
     }
 }
 
 .ads_moder_comment_rules_icon.icon_low_res_img {
-    background-image: url(/images/ads/moder_rules_icons/icon_low_res_img.png);
+    background-image: url(/images/ads/moder_rules_icons/icon_low_res_img.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1745,12 +1736,12 @@ table.ads_inline_edit_table td {
 (min-resolution: 192dpi) {
     .ads_moder_comment_rules_icon.icon_low_res_img {
         background-image: url(/images/ads/moder_rules_icons/icon_low_res_img_2x.png);
-        background-size: 60px 60px;
+        background-size: 60px 60px
     }
 }
 
 .ads_moder_comment_rules_icon.icon_med {
-    background-image: url(/images/ads/moder_rules_icons/icon_med.png);
+    background-image: url(/images/ads/moder_rules_icons/icon_med.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1758,12 +1749,12 @@ table.ads_inline_edit_table td {
 (min-resolution: 192dpi) {
     .ads_moder_comment_rules_icon.icon_med {
         background-image: url(/images/ads/moder_rules_icons/icon_med_2x.png);
-        background-size: 60px 60px;
+        background-size: 60px 60px
     }
 }
 
 .ads_moder_comment_rules_icon.icon_misleading_ui {
-    background-image: url(/images/ads/moder_rules_icons/icon_misleading_ui.png);
+    background-image: url(/images/ads/moder_rules_icons/icon_misleading_ui.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1771,12 +1762,12 @@ table.ads_inline_edit_table td {
 (min-resolution: 192dpi) {
     .ads_moder_comment_rules_icon.icon_misleading_ui {
         background-image: url(/images/ads/moder_rules_icons/icon_misleading_ui_2x.png);
-        background-size: 60px 60px;
+        background-size: 60px 60px
     }
 }
 
 .ads_moder_comment_rules_icon.icon_person_warn {
-    background-image: url(/images/ads/moder_rules_icons/icon_person_warn.png);
+    background-image: url(/images/ads/moder_rules_icons/icon_person_warn.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1784,12 +1775,12 @@ table.ads_inline_edit_table td {
 (min-resolution: 192dpi) {
     .ads_moder_comment_rules_icon.icon_person_warn {
         background-image: url(/images/ads/moder_rules_icons/icon_person_warn_2x.png);
-        background-size: 60px 60px;
+        background-size: 60px 60px
     }
 }
 
 .ads_moder_comment_rules_icon.icon_person {
-    background-image: url(/images/ads/moder_rules_icons/icon_person.png);
+    background-image: url(/images/ads/moder_rules_icons/icon_person.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1797,12 +1788,12 @@ table.ads_inline_edit_table td {
 (min-resolution: 192dpi) {
     .ads_moder_comment_rules_icon.icon_person {
         background-image: url(/images/ads/moder_rules_icons/icon_person_2x.png);
-        background-size: 60px 60px;
+        background-size: 60px 60px
     }
 }
 
 .ads_moder_comment_rules_icon.icon_restricted_site {
-    background-image: url(/images/ads/moder_rules_icons/icon_restricted_site.png);
+    background-image: url(/images/ads/moder_rules_icons/icon_restricted_site.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1810,12 +1801,12 @@ table.ads_inline_edit_table td {
 (min-resolution: 192dpi) {
     .ads_moder_comment_rules_icon.icon_restricted_site {
         background-image: url(/images/ads/moder_rules_icons/icon_restricted_site_2x.png);
-        background-size: 60px 60px;
+        background-size: 60px 60px
     }
 }
 
 .ads_moder_comment_rules_icon.icon_restricted {
-    background-image: url(/images/ads/moder_rules_icons/icon_restricted.png);
+    background-image: url(/images/ads/moder_rules_icons/icon_restricted.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1823,12 +1814,12 @@ table.ads_inline_edit_table td {
 (min-resolution: 192dpi) {
     .ads_moder_comment_rules_icon.icon_restricted {
         background-image: url(/images/ads/moder_rules_icons/icon_restricted_2x.png);
-        background-size: 60px 60px;
+        background-size: 60px 60px
     }
 }
 
 .ads_moder_comment_rules_icon.icon_spy {
-    background-image: url(/images/ads/moder_rules_icons/icon_spy.png);
+    background-image: url(/images/ads/moder_rules_icons/icon_spy.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1836,12 +1827,12 @@ table.ads_inline_edit_table td {
 (min-resolution: 192dpi) {
     .ads_moder_comment_rules_icon.icon_spy {
         background-image: url(/images/ads/moder_rules_icons/icon_spy_2x.png);
-        background-size: 60px 60px;
+        background-size: 60px 60px
     }
 }
 
 .ads_moder_comment_rules_icon.icon_vocabulary {
-    background-image: url(/images/ads/moder_rules_icons/icon_vocabulary.png);
+    background-image: url(/images/ads/moder_rules_icons/icon_vocabulary.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1849,80 +1840,80 @@ table.ads_inline_edit_table td {
 (min-resolution: 192dpi) {
     .ads_moder_comment_rules_icon.icon_vocabulary {
         background-image: url(/images/ads/moder_rules_icons/icon_vocabulary_2x.png);
-        background-size: 60px 60px;
+        background-size: 60px 60px
     }
 }
 
 #ads_admin_box_wrapper a:hover {
-    text-decoration: underline;
+    text-decoration: underline
 }
 
 .ads_admin_table_cell {
-    border-bottom: 1px solid #DAE2E8;
+    border-bottom: 1px solid #dae2e8
 }
 
 .admin_table_cell_last {
-    border-bottom: none;
+    border-bottom: none
 }
 
 .ads_admin_box_label {
-    color: #777777;
+    color: #777;
     text-align: right;
     width: 125px;
-    padding-right: 10px;
+    padding-right: 10px
 }
 
 .ads_admin_box_labeled {
-    width: 270px;
+    width: 270px
 }
 
 .ads_general_info_hidden {
-    display: none;
+    display: none
 }
 
 .ads_general_info {
-    max-width: 505px;
+    max-width: 505px
 }
 
 .ads_general_info .table_large_text {
     width: 385px;
-    max-width: 385px;
+    max-width: 385px
 }
 
 .ads_general_info .table_large_text.mobile {
     width: 280px;
-    max-width: 280px;
+    max-width: 280px
 }
 
 .ads_general_info .table_large_text.promoted_post {
     width: 315px;
-    max-width: 315px;
+    max-width: 315px
 }
 
 .ads_general_info .table_large_text.big_app {
     width: 130px;
-    max-width: 130px;
+    max-width: 130px
 }
 
 .ads_general_info .table_large_text.with_redesign {
     width: 215px;
-    max-width: 215px;
+    max-width: 215px
 }
 
 .ads_union_promoted_post_stat {
     width: 505px;
     margin-top: 40px;
-    float: left;
+    float: left
 }
 
 .ads_union_promoted_post_stat_headline {
     margin-top: 20px;
-    line-height: 0;
+    line-height: 0
 }
 
 .ads_union_promoted_post_stat_headline_comment {
     color: #828282;
-    margin-top: 8px;
+    margin-top: 8px
 }
 
 .ads_union_promoted_post_stat_headline_item {
@@ -1932,39 +1923,39 @@ table.ads_inline_edit_table td {
     font-size: 20px;
     font-weight: 500;
     line-height: 1.5;
-    color: black;
+    color: #000;
     padding-left: 32px;
     background-repeat: no-repeat;
-    background-size: 24px auto;
+    background-size: 24px auto
 }
 
 .ads_union_promoted_post_stat_headline_item:first-child {
-    margin-left: 0;
+    margin-left: 0
 }
 
 .ads_union_promoted_post_stat_headline_item_total_reach {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2030%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2046.1%20(44463)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Epeople%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%2F%3E%0A%20%20%20%20%3Cg%20id%3D%22master%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22people%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rec%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2230%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M22.4313725%2C20.0100446%20C23.3723922%2C20.3247768%2023.9998431%2C21.0554888%2024%2C22%20C24%2C22.5215112%2023.5898039%2C23%2023.0588235%2C23%20L11%2C23%20L11%2C22.0558036%20C11%2C21.1116071%2011.4636863%2C20.3678951%2012.3921569%2C20.0100446%20C13.3206275%2C19.6521942%2015.0215708%2C19.3414981%2015.3847843%2C18.9084821%20C15.7479978%2C18.4754661%2015.8431373%2C17.9642857%2015.8431373%2C16.8627232%20C13.6470588%2C16.390625%2012.8627451%2C14.6595982%2012.8627451%2C14.6595982%20C12.8627451%2C14.6595982%2013.6767059%2C14.8531585%2014.1176471%2C13.6367188%20C14.4313725%2C12.7712054%2013.2900392%2C10.3430469%2014.5098039%2C8.83705357%20C15.5294118%2C7.578125%2016.9411765%2C8.20758929%2016.9411765%2C8.20758929%20C16.9411765%2C8.20758929%2017.7254902%2C7.79998779%2018.6661961%2C7.79998779%20C19.7647059%2C7.79998779%2021.0026667%2C8.51760045%2020.7843137%2C10.8828125%20C20.3921569%2C15.1316964%2021.9854118%2C14.6595982%2021.9730196%2C14.6595982%20C21.9607843%2C14.6595982%2021.3333333%2C16.390625%2018.9803922%2C16.8627232%20C18.9803922%2C17.9642857%2019.05%2C18.4757254%2019.4390588%2C18.9084821%20C19.8281176%2C19.3412388%2021.4901961%2C19.6953125%2022.4313725%2C20.0100446%20Z%20M10.9573022%2C18.7242582%20C10.1746378%2C19.1938234%209%2C20.3381398%209%2C21.7468354%20L9%2C23%20L0.939197335%2C23%20C0.42049297%2C23%206.35229641e-17%2C22.5186674%200%2C22%20C0.00563518401%2C19.3385043%201.09619982%2C18.7737565%202.03524063%2C18.3043478%20C2.97490756%2C17.8347826%204.85408489%2C17.3328174%205.7917169%2C16.5826087%20C6.31344102%2C16.1651652%206.52225589%2C15.6434783%206.41784846%2C15.0173913%20C5.7917169%2C14.7043478%205.47865112%2C14.1826609%205.47865112%2C13.4521739%20C4.85251957%2C13.4521739%204.3829209%2C12.6695652%204.3829209%2C11.7304348%20C4.3829209%2C11.3129913%204.64386122%2C11.0522261%205.16558534%2C10.9478261%20C4.74811213%2C10.8434261%204.53945379%2C10.1130957%204.53945379%2C8.75652174%20C4.53945379%2C7.38476522%205.32211823%2C7.19130435%206.10478268%2C7.19130435%20C5.47865112%2C6.56521739%204.53945379%2C5%208.45277602%2C5%20C12.0530325%2C5%2012.2095654%2C8.15813913%2012.2095654%2C9.22608696%20C12.2095654%2C9.95657391%2012.0530325%2C10.5303826%2011.7399667%2C10.9478261%20C12.1574399%2C11.0522261%2012.3660982%2C11.3129913%2012.3660982%2C11.7304348%20C12.3660982%2C12.6695652%2012.0535021%2C13.4521739%2011.4269009%2C13.4521739%20C11.4269009%2C14.1826609%2011.1138351%2C14.7043478%2010.4877036%2C15.0173913%20C10.3832961%2C15.6434783%2010.539829%2C16.1651652%2010.9573022%2C16.5826087%20C11.5133071%2C17.1385739%2012.6534717%2C17.5291415%2013.6264801%2C17.8534546%20C13.6248536%2C17.8534546%2011.7399667%2C18.254693%2010.9573022%2C18.7242582%20Z%22%20id%3D%22Shape%22%20fill%3D%22%23A5ABB4%22%20fill-rule%3D%22nonzero%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2030%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2046.1%20(44463)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Epeople%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%2F%3E%0A%20%20%20%20%3Cg%20id%3D%22master%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22people%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rec%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2230%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M22.4313725%2C20.0100446%20C23.3723922%2C20.3247768%2023.9998431%2C21.0554888%2024%2C22%20C24%2C22.5215112%2023.5898039%2C23%2023.0588235%2C23%20L11%2C23%20L11%2C22.0558036%20C11%2C21.1116071%2011.4636863%2C20.3678951%2012.3921569%2C20.0100446%20C13.3206275%2C19.6521942%2015.0215708%2C19.3414981%2015.3847843%2C18.9084821%20C15.7479978%2C18.4754661%2015.8431373%2C17.9642857%2015.8431373%2C16.8627232%20C13.6470588%2C16.390625%2012.8627451%2C14.6595982%2012.8627451%2C14.6595982%20C12.8627451%2C14.6595982%2013.6767059%2C14.8531585%2014.1176471%2C13.6367188%20C14.4313725%2C12.7712054%2013.2900392%2C10.3430469%2014.5098039%2C8.83705357%20C15.5294118%2C7.578125%2016.9411765%2C8.20758929%2016.9411765%2C8.20758929%20C16.9411765%2C8.20758929%2017.7254902%2C7.79998779%2018.6661961%2C7.79998779%20C19.7647059%2C7.79998779%2021.0026667%2C8.51760045%2020.7843137%2C10.8828125%20C20.3921569%2C15.1316964%2021.9854118%2C14.6595982%2021.9730196%2C14.6595982%20C21.9607843%2C14.6595982%2021.3333333%2C16.390625%2018.9803922%2C16.8627232%20C18.9803922%2C17.9642857%2019.05%2C18.4757254%2019.4390588%2C18.9084821%20C19.8281176%2C19.3412388%2021.4901961%2C19.6953125%2022.4313725%2C20.0100446%20Z%20M10.9573022%2C18.7242582%20C10.1746378%2C19.1938234%209%2C20.3381398%209%2C21.7468354%20L9%2C23%20L0.939197335%2C23%20C0.42049297%2C23%206.35229641e-17%2C22.5186674%200%2C22%20C0.00563518401%2C19.3385043%201.09619982%2C18.7737565%202.03524063%2C18.3043478%20C2.97490756%2C17.8347826%204.85408489%2C17.3328174%205.7917169%2C16.5826087%20C6.31344102%2C16.1651652%206.52225589%2C15.6434783%206.41784846%2C15.0173913%20C5.7917169%2C14.7043478%205.47865112%2C14.1826609%205.47865112%2C13.4521739%20C4.85251957%2C13.4521739%204.3829209%2C12.6695652%204.3829209%2C11.7304348%20C4.3829209%2C11.3129913%204.64386122%2C11.0522261%205.16558534%2C10.9478261%20C4.74811213%2C10.8434261%204.53945379%2C10.1130957%204.53945379%2C8.75652174%20C4.53945379%2C7.38476522%205.32211823%2C7.19130435%206.10478268%2C7.19130435%20C5.47865112%2C6.56521739%204.53945379%2C5%208.45277602%2C5%20C12.0530325%2C5%2012.2095654%2C8.15813913%2012.2095654%2C9.22608696%20C12.2095654%2C9.95657391%2012.0530325%2C10.5303826%2011.7399667%2C10.9478261%20C12.1574399%2C11.0522261%2012.3660982%2C11.3129913%2012.3660982%2C11.7304348%20C12.3660982%2C12.6695652%2012.0535021%2C13.4521739%2011.4269009%2C13.4521739%20C11.4269009%2C14.1826609%2011.1138351%2C14.7043478%2010.4877036%2C15.0173913%20C10.3832961%2C15.6434783%2010.539829%2C16.1651652%2010.9573022%2C16.5826087%20C11.5133071%2C17.1385739%2012.6534717%2C17.5291415%2013.6264801%2C17.8534546%20C13.6248536%2C17.8534546%2011.7399667%2C18.254693%2010.9573022%2C18.7242582%20Z%22%20id%3D%22Shape%22%20fill%3D%22%23A5ABB4%22%20fill-rule%3D%22nonzero%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
 }
 
 .ads_union_promoted_post_stat_headline_item_likes {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2030%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2046.1%20(44463)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Elike%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%2F%3E%0A%20%20%20%20%3Cg%20id%3D%22master%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22like%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle-8%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2230%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M12%2C10.4630864%20C11.2142857%2C5.61744859%205.40384262%2C4.88183138%202.88736112%2C7.46211754%20C0.370879625%2C10.0424037%200.370879625%2C14.2353687%202.88736112%2C16.8156549%20C3.67376159%2C17.6219943%2010.4368056%2C24.3952454%2010.4368056%2C24.3952454%20C11.2232061%2C25.2015849%2012.6387269%2C25.2015849%2013.4251274%2C24.3952454%20L20.9745719%2C16.8156549%20C23.6483335%2C14.2353687%2023.6483335%2C10.0424037%2021.131852%2C7.46211754%20C18.6153705%2C5.04309927%2012.7857143%2C5.61744859%2012%2C10.4630864%20Z%22%20fill%3D%22%23A5ABB4%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2030%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2046.1%20(44463)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Elike%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%2F%3E%0A%20%20%20%20%3Cg%20id%3D%22master%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22like%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle-8%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2230%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M12%2C10.4630864%20C11.2142857%2C5.61744859%205.40384262%2C4.88183138%202.88736112%2C7.46211754%20C0.370879625%2C10.0424037%200.370879625%2C14.2353687%202.88736112%2C16.8156549%20C3.67376159%2C17.6219943%2010.4368056%2C24.3952454%2010.4368056%2C24.3952454%20C11.2232061%2C25.2015849%2012.6387269%2C25.2015849%2013.4251274%2C24.3952454%20L20.9745719%2C16.8156549%20C23.6483335%2C14.2353687%2023.6483335%2C10.0424037%2021.131852%2C7.46211754%20C18.6153705%2C5.04309927%2012.7857143%2C5.61744859%2012%2C10.4630864%20Z%22%20fill%3D%22%23A5ABB4%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
 }
 
 .ads_union_promoted_post_stat_headline_item_copies {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2030%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2046.1%20(44463)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Eshare%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%2F%3E%0A%20%20%20%20%3Cg%20id%3D%22master%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22share%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rec%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2230%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M22%2C5%20L22%2C22%20L20.4555985%2C22%20C20.4555985%2C22%2018.7707968%2C20.8373626%2017.2263952%2C19.6769231%20C14.979993%2C18.0813187%2014.0603722%2C18%2013.4285714%2C18%20L6%2C18%20C3.5%2C18%202%2C16.4285714%202%2C14.2857143%20L2%2C12.8571429%20C2%2C10.7142857%203.5%2C9%206%2C9%20L13.4285714%2C9%20C14.0603722%2C9%2014.979993%2C9.06153846%2017.2263952%2C7.46593407%20C18.7707968%2C6.30549451%2020.4555985%2C5%2020.4555985%2C5%20L22%2C5%20Z%20M12.6000242%2C22.2%20C12.6000242%2C24.02%2012.4358137%2C25%209.31581382%2C25%20L7.40002441%2C18%20L10.957919%2C18%20L12.6000242%2C22.2%20Z%22%20fill%3D%22%23A5ABB4%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2030%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2046.1%20(44463)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Eshare%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%2F%3E%0A%20%20%20%20%3Cg%20id%3D%22master%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22share%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rec%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2230%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M22%2C5%20L22%2C22%20L20.4555985%2C22%20C20.4555985%2C22%2018.7707968%2C20.8373626%2017.2263952%2C19.6769231%20C14.979993%2C18.0813187%2014.0603722%2C18%2013.4285714%2C18%20L6%2C18%20C3.5%2C18%202%2C16.4285714%202%2C14.2857143%20L2%2C12.8571429%20C2%2C10.7142857%203.5%2C9%206%2C9%20L13.4285714%2C9%20C14.0603722%2C9%2014.979993%2C9.06153846%2017.2263952%2C7.46593407%20C18.7707968%2C6.30549451%2020.4555985%2C5%2020.4555985%2C5%20L22%2C5%20Z%20M12.6000242%2C22.2%20C12.6000242%2C24.02%2012.4358137%2C25%209.31581382%2C25%20L7.40002441%2C18%20L10.957919%2C18%20L12.6000242%2C22.2%20Z%22%20fill%3D%22%23A5ABB4%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
 }
 
 .ads_union_promoted_post_stat_headline_item_reply_count {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2030%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2046.1%20(44463)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Ecomment%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%2F%3E%0A%20%20%20%20%3Cg%20id%3D%22master%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22comment%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rec%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2230%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M2%2C6.99188419%20C2%2C5.89179693%202.89821238%2C5%203.99079514%2C5%20L20.0092049%2C5%20C21.1086907%2C5%2022%2C5.89339733%2022%2C6.99188419%20L22%2C18.0081158%20C22%2C19.1082031%2021.1017876%2C20%2020.0092049%2C20%20L3.99079514%2C20%20C2.89130934%2C20%202%2C19.1066027%202%2C18.0081158%20L2%2C6.99188419%20Z%20M7%2C20%20L13%2C20%20L7%2C26%20L7%2C20%20Z%22%20fill%3D%22%23A5ABB4%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2030%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2046.1%20(44463)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Ecomment%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%2F%3E%0A%20%20%20%20%3Cg%20id%3D%22master%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22comment%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rec%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2230%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M2%2C6.99188419%20C2%2C5.89179693%202.89821238%2C5%203.99079514%2C5%20L20.0092049%2C5%20C21.1086907%2C5%2022%2C5.89339733%2022%2C6.99188419%20L22%2C18.0081158%20C22%2C19.1082031%2021.1017876%2C20%2020.0092049%2C20%20L3.99079514%2C20%20C2.89130934%2C20%202%2C19.1066027%202%2C18.0081158%20L2%2C6.99188419%20Z%20M7%2C20%20L13%2C20%20L7%2C26%20L7%2C20%20Z%22%20fill%3D%22%23A5ABB4%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
 }
 
 .ads_union_promoted_post_stat_headline_item_views {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2030%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2046.1%20(44463)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Ereach%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%2F%3E%0A%20%20%20%20%3Cg%20id%3D%22master%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22reach%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rec%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2230%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M12%2C24%20C4.8%2C24%200%2C16.8%200%2C15%20C1.46957616e-16%2C13.2%204.8%2C6%2012%2C6%20C19.2%2C6%2024%2C13.2%2024%2C15%20C24%2C16.8%2019.2%2C24%2012%2C24%20Z%20M12%2C21%20C15.3137085%2C21%2018%2C18.3137085%2018%2C15%20C18%2C11.6862915%2015.3137085%2C9%2012%2C9%20C8.6862915%2C9%206%2C11.6862915%206%2C15%20C6%2C18.3137085%208.6862915%2C21%2012%2C21%20Z%20M12%2C18%20C10.3431458%2C18%209%2C16.6568542%209%2C15%20C9%2C13.3431458%2010.3431458%2C12%2012%2C12%20C13.6568542%2C12%2015%2C13.3431458%2015%2C15%20C15%2C16.6568542%2013.6568542%2C18%2012%2C18%20Z%22%20fill%3D%22%23A5ABB4%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2030%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2046.1%20(44463)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Ereach%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%2F%3E%0A%20%20%20%20%3Cg%20id%3D%22master%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22reach%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rec%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2230%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M12%2C24%20C4.8%2C24%200%2C16.8%200%2C15%20C1.46957616e-16%2C13.2%204.8%2C6%2012%2C6%20C19.2%2C6%2024%2C13.2%2024%2C15%20C24%2C16.8%2019.2%2C24%2012%2C24%20Z%20M12%2C21%20C15.3137085%2C21%2018%2C18.3137085%2018%2C15%20C18%2C11.6862915%2015.3137085%2C9%2012%2C9%20C8.6862915%2C9%206%2C11.6862915%206%2C15%20C6%2C18.3137085%208.6862915%2C21%2012%2C21%20Z%20M12%2C18%20C10.3431458%2C18%209%2C16.6568542%209%2C15%20C9%2C13.3431458%2010.3431458%2C12%2012%2C12%20C13.6568542%2C12%2015%2C13.3431458%2015%2C15%20C15%2C16.6568542%2013.6568542%2C18%2012%2C18%20Z%22%20fill%3D%22%23A5ABB4%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
 }
 
 .ads_union_promoted_post_stat_table {
     margin-top: 10px;
-    line-height: 0;
+    line-height: 0
 }
 
 .ads_union_promoted_post_stat_table_column {
@@ -1972,25 +1963,25 @@ table.ads_inline_edit_table td {
     display: inline-block;
     vertical-align: top;
     width: 220px;
-    margin-left: 20px;
+    margin-left: 20px
 }
 
 .ads_union_promoted_post_stat_table_column:first-child {
-    margin-left: 0;
+    margin-left: 0
 }
 
 .ads_union_promoted_post_stat_table_row_formatted {
     display: inline-block;
     width: 45px;
     text-align: right;
-    font-weight: bold;
+    font-weight: 700
 }
 
 .ads_union_promoted_post_stat_video {
     width: 100%;
     margin-top: 20px;
     margin-bottom: 30px;
-    border-top: 1px solid #eef0f3;
+    border-top: 1px solid #eef0f3
 }
 
 .ads_union_promoted_post_stat_video_graph {
@@ -1998,7 +1989,7 @@ table.ads_inline_edit_table td {
     margin-top: 50px;
     line-height: 80px;
     height: 80px;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 .ads_union_promoted_post_stat_video_graph_section {
@@ -2007,13 +1998,13 @@ table.ads_inline_edit_table td {
     border-left: 1px solid #cdd3d8;
     position: relative;
     line-height: 1.46;
-    padding-top: 4px;
+    padding-top: 4px
 }
 
 .ads_union_promoted_post_stat_video_graph_section:last-child {
     position: relative;
     left: -1px;
-    z-index: 2;
+    z-index: 2
 }
 
 .ads_union_promoted_post_stat_video_graph_section_value {
@@ -2022,24 +2013,24 @@ table.ads_inline_edit_table td {
     left: -28px;
     font-size: 13px;
     font-weight: 500;
-    color: black;
+    color: #000;
     width: 50px;
     text-align: center;
     z-index: 10;
     padding: 1px 3px;
-    background-color: rgba(255, 255, 255, 0.7);
-    border-radius: 2px;
+    background-color: hsla(0, 0%, 100%, .7);
+    border-radius: 2px
 }
 
 .ads_union_promoted_post_stat_video_graph_section:first-child .ads_union_promoted_post_stat_video_graph_section_value {
     text-align: left;
     left: -5px;
-    width: auto;
+    width: auto
 }
 
 .ads_union_promoted_post_stat_video_graph_section:last-child .ads_union_promoted_post_stat_video_graph_section_value {
     text-align: right;
-    left: -52px;
+    left: -52px
 }
 
 .ads_union_promoted_post_stat_video_graph_section_label {
@@ -2049,18 +2040,18 @@ table.ads_inline_edit_table td {
     width: 50px;
     text-align: center;
     z-index: 10;
-    left: -25px;
+    left: -25px
 }
 
 .ads_union_promoted_post_stat_video_graph_section:first-child .ads_union_promoted_post_stat_video_graph_section_label {
     text-align: left;
     left: -2px;
-    width: auto;
+    width: auto
 }
 
 .ads_union_promoted_post_stat_video_graph_section:last-child .ads_union_promoted_post_stat_video_graph_section_label {
     text-align: right;
-    left: -49px;
+    left: -49px
 }
 
 .ads_union_promoted_post_stat_video_graph_section_trend {
@@ -2068,10 +2059,10 @@ table.ads_inline_edit_table td {
     left: 0;
     top: 0;
     width: 0;
-    border-top: solid white;
+    border-top: solid #fff;
     border-left: none;
     border-right: none;
-    z-index: 1;
+    z-index: 1
 }
 
 .ads_union_promoted_post_stat_video_graph_section_trend_container {
@@ -2079,27 +2070,27 @@ table.ads_inline_edit_table td {
     width: 100%;
     overflow: hidden;
     position: relative;
-    background-color: #F0F2F5;
+    background-color: #f0f2f5
 }
 
 #ads_unions_content h4 span {
-    font-weight: normal;
+    font-weight: 400;
     color: #2b2f33;
-    font-size: 12px;
+    font-size: 12px
 }
 
 .ads_users_stats_dark {
-    background-color: #597DA3;
+    background-color: #597da3
 }
 
 .ads_users_stats_light {
-    background-color: #DAE1E8;
+    background-color: #dae1e8
 }
 
 .ads_users_stats_bars_title {
     padding-bottom: 16px;
-    color: #45688E;
-    font-weight: bold;
+    color: #45688e;
+    font-weight: 700
 }
 
 .ads_users_stats_bar_label {
@@ -2108,39 +2099,39 @@ table.ads_inline_edit_table td {
     padding-right: 16px;
     padding-top: 2px;
     vertical-align: top;
-    color: #45688E;
-    font-weight: bold;
+    color: #45688e;
+    font-weight: 700
 }
 
 .ads_users_stats_bar_wrap table {
     border: 0px;
-    border-collapse: collapse;
+    border-collapse: collapse
 }
 
 .ads_users_stats_bar_wrap table td {
-    padding: 0px;
+    padding: 0px
 }
 
 .ads_users_stats_bar_wrap {
     height: 30px;
-    vertical-align: top;
+    vertical-align: top
 }
 
 .ads_users_stats_bar_wrap table td.ads_users_stats_bar_value {
-    padding-left: 11px;
+    padding-left: 11px
 }
 
 .ads_users_stats_bar {
     border-radius: 0 3px 3px 0;
-    height: 17px;
+    height: 17px
 }
 
 #ads_demography_wrap .summary_right .summary_tab2 {
-    background-color: transparent;
+    background-color: transparent
 }
 
 .ads_views_times_container {
-    padding: 20px 10px 10px 0;
+    padding: 20px 10px 10px 0
 }
 
 .ads_dropdown_menu_scrollbar {
@@ -2153,95 +2144,92 @@ table.ads_inline_edit_table td {
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-    -khtml-border-radius: 3px;
+    -khtml-border-radius: 3px
 }
 
-.ads_dropdown_menu_scrollbar:hover,
-.ads_dropdown_menu_scrollbar.hovered {
+.ads_dropdown_menu_scrollbar.hovered,
+.ads_dropdown_menu_scrollbar:hover {
     opacity: 0.6;
     -moz-opacity: 0.6;
-    filter: alpha(opacity=60);
+    filter: alpha(opacity=60)
 }
 
 #ads_admin_box_wrapper h2 {
     padding: 0;
     margin: 0;
-    border: none;
+    border: none
 }
 
 #ads_reqs_edit td.ads_req_label {
-    color: #666666;
+    color: #666;
     text-align: right;
     vertical-align: top;
-    padding-top: 5px;
+    padding-top: 5px
 }
 
 #ads_reqs_edit td.ads_req_label.ads_req_label_input_ui {
-    padding-top: 6px;
+    padding-top: 6px
 }
 
 #ads_reqs_edit td.ads_req_right {
-    width: 100px;
+    width: 100px
 }
 
 #ads_reqs_edit_form input.ads_req_edit,
 #ads_reqs_edit_form textarea.ads_req_edit {
     margin: 0px;
-    width: 250px;
+    width: 250px
 }
 
 #ads_reqs_edit_form textarea.ads_req_edit {
-    height: 47px;
+    height: 47px
 }
 
 #ads_legal_info_box div {
     padding: 8px 11px;
-    border: 1px solid #C0CAD5;
+    border: 1px solid #c0cad5
 }
 
 .ads_help_section.section_wrap {
     padding: 20px 25px 25px 26px;
-    line-height: 140%;
+    line-height: 140%
 }
 
 .ads_help_section h4 {
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
 .ads_help_section .header {
     font-size: 1.09em;
     margin: 0px 0px 20px 1px;
     border: none;
-    color: #45688E;
-    font-weight: bold;
+    color: #45688e;
+    font-weight: 700
 }
 
 .ads_help_section .par_divider {
-    margin-bottom: 31px;
+    margin-bottom: 31px
 }
 
 .ads_help_section .emph_link {
-    margin-left: 26px;
+    margin-left: 26px
 }
 
 #unions_navigation {
     vertical-align: top;
-}
-
-#unions_navigation {
     width: 150px;
-    padding: 12px 12px 12px 0;
+    padding: 12px 12px 12px 0
 }
 
 #unions_navigation .edit_button_wrap {
-    padding-bottom: 10px;
+    padding-bottom: 10px
 }
 
 #unions_navigation .nav_separator {
     border-bottom: 1px solid #d3dbe1;
     height: 1px;
     overflow: hidden;
-    margin: 7px 0px 8px 0;
+    margin: 7px 0px 8px 0
 }
 
 #unions_navigation a.nav {
@@ -2249,44 +2237,44 @@ table.ads_inline_edit_table td {
     display: block;
     overflow: hidden;
     max-width: 133px;
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 #unions_navigation a.nav:hover {
-    background-color: #E1E7ED;
-    text-decoration: none;
+    background-color: #e1e7ed;
+    text-decoration: none
 }
 
 #unions_navigation a.nav_selected,
 #unions_navigation a.nav_selected:hover {
-    background-color: #6186AD;
-    color: white;
+    background-color: #6186ad;
+    color: #fff
 }
 
 #unions_navigation.ads_unions_navigation_about {
-    background-color: #F7F7F7;
-    border-left: 1px solid #DAE1E8;
-    padding: 14px 10px;
+    background-color: #f7f7f7;
+    border-left: 1px solid #dae1e8;
+    padding: 14px 10px
 }
 
 #unions_navigation.ads_unions_navigation_about .nav {
-    border-color: #F7F7F7;
+    border-color: #f7f7f7
 }
 
 #unions_navigation.ads_unions_navigation_about .nav_selected {
-    border-color: #517295;
+    border-color: #517295
 }
 
 .ads_unions_navigation_about .ad_box_preview {
-    border: 1px solid #DCE3E9;
+    border: 1px solid #dce3e9
 }
 
 #ads_contacts_form {
-    margin: 20px 0 0 0;
+    margin: 20px 0 0
 }
 
 #ads_contacts_form .label_slide {
-    vertical-align: top;
+    vertical-align: top
 }
 
 #ads_contacts_form .label {
@@ -2294,63 +2282,60 @@ table.ads_inline_edit_table td {
     color: #555;
     padding: 4px 10px 0 0;
     text-align: right;
-    vertical-align: top;
+    vertical-align: top
 }
 
 #ads_contacts_form .labeled {
-    padding-bottom: 10px;
+    padding-bottom: 10px
 }
 
 #ads_contacts_form .row_checkbox .labeled {
-    padding-bottom: 6px;
+    padding-bottom: 6px
 }
 
-#ads_contacts_form .row_checkbox_prev .labeled {
-    padding-bottom: 8px;
-}
-
+#ads_contacts_form .row_checkbox_prev .labeled,
 #ads_contacts_form .row_checkbox_last .labeled {
-    padding-bottom: 8px;
+    padding-bottom: 8px
 }
 
 #ads_contacts_form td.label_slide {
-    overflow: hidden;
+    overflow: hidden
 }
 
 #ads_contacts_form div.label_slide {
-    height: 0;
+    height: 0
 }
 
 #ads_contacts_form .checkbox_wrap {
-    margin: -5px 0;
+    margin: -5px 0
 }
 
 #ads_contacts_form input.txt {
-    width: 242px;
+    width: 242px
 }
 
 #ads_contacts_form textarea.txt {
     width: 242px;
-    height: 40px;
+    height: 40px
 }
 
 #ads_contacts_form textarea.txt#message {
-    height: 90px;
+    height: 90px
 }
 
 #ads_contacts_form .msg {
     background-color: #f9f6e7;
     border-color: #c3b988;
-    font-weight: normal;
+    font-weight: 400
 }
 
 .ads_contacts_nonresident_message {
-    padding: 7px 0 20px 0;
+    padding: 7px 0 20px
 }
 
 .wk_ads_intro #ads_contacts_form .label {
     width: 140px;
-    padding-top: 9px;
+    padding-top: 9px
 }
 
 .wk_ads_intro #ads_contacts_form input.txt,
@@ -2358,117 +2343,117 @@ table.ads_inline_edit_table td {
     width: 254px;
     height: 17px;
     line-height: 17px;
-    padding: 5px 6px 6px 10px;
+    padding: 5px 6px 6px 10px
 }
 
 @-moz-document url-prefix() {
     .wk_ads_intro #ads_contacts_form input.txt,
     .wk_ads_intro #ads_contacts_form textarea.txt {
         padding-left: 9px;
-        width: 255px;
+        width: 255px
     }
 }
 
 .wk_ads_intro #ads_contacts_form textarea.txt {
-    height: 52px;
+    height: 52px
 }
 
 .wk_ads_intro #ads_contacts_form textarea.txt#message {
-    height: 90px;
+    height: 90px
 }
 
 a.ads_dd_menu_multi_item {
-    padding-left: 22px !important;
-    background-image: none !important;
-    background-position: 4px 2px !important;
+    padding-left: 22px!important;
+    background-image: none!important;
+    background-position: 4px 2px!important
 }
 
 a.ads_dd_menu_multi_item.checkbox_on {
-    background-image: url(/images/dropdead_check.gif) !important;
+    background-image: url(/images/dropdead_check.gif)!important
 }
 
 a.ads_dd_menu_multi_item.label,
 a.ads_dd_menu_multi_item.label:hover {
-    background-color: #f6f7f9 !important;
+    background-color: #f6f7f9!important;
     cursor: default;
-    font-weight: bold;
+    font-weight: 700
 }
 
 .ads_dd_menu_item_number {
     display: inline-block;
     min-width: 40px;
-    font-weight: bold;
+    font-weight: 700
 }
 
 .ads_paginated_table_name {
     overflow: hidden;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 .ad_new_user td.label {
     text-align: right;
     padding: 6px 15px 6px 0;
     width: 120px;
-    color: gray;
+    color: gray
 }
 
 .ad_new_user td.labeled input {
-    width: 160px;
+    width: 160px
 }
 
 #ads_page_simple .ads_reg_row {
-    height: 30px;
+    height: 30px
 }
 
 #ads_page_simple .ads_reg_label {
     width: 231px;
     float: left;
     text-align: right;
-    color: #777777;
-    padding: 4px 10px 0 0;
+    color: #777;
+    padding: 4px 10px 0 0
 }
 
 #ads_page_simple .ads_reg_labeled {
-    float: left;
+    float: left
 }
 
 #ads_page_simple .ads_reg_labeled_input {
-    margin: 0;
+    margin: 0
 }
 
 #ads_page_simple .ads_reg_labeled input#first_name,
 #ads_page_simple .ads_reg_labeled input#last_name,
 #ads_page_simple .ads_reg_labeled input#regemail,
 #ads_page_simple .ads_reg_labeled input#regpass {
-    width: 217px;
+    width: 217px
 }
 
 .ads_wiki_wrap {
-    line-height: 160%;
+    line-height: 160%
 }
 
 .ads_wiki_bonus {
-    padding-bottom: 10px;
+    padding-bottom: 10px
 }
 
 #ads_bonus_activation_form .ads_unions_content_label td {
-    padding: 0 0 4px 0;
+    padding: 0 0 4px
 }
 
 #ads_unions_content .payments_systems_container {
-    padding: 7px 102px 0 50px;
+    padding: 7px 102px 0 50px
 }
 
 #ads_unions_content .payments_systems_container .ps_desc_short {
-    padding-right: 120px;
+    padding-right: 120px
 }
 
 #ads_unions_content .payments_systems_container .term_info {
-    min-height: 24px;
+    min-height: 24px
 }
 
 #ads_unions_content .payments_landing div {
-    margin-bottom: 20px;
+    margin-bottom: 20px
 }
 
 .ads_hero_unit {
@@ -2478,9 +2463,9 @@ a.ads_dd_menu_multi_item.label:hover {
     background: url(/images/ads/ads_spotty.png);
     background-position: 20px 20px;
     background-repeat: no-repeat;
-    background-color: white;
+    background-color: #fff;
     background-size: 100px auto;
-    min-height: 140px;
+    min-height: 140px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -2488,228 +2473,225 @@ a.ads_dd_menu_multi_item.label:hover {
 (min-resolution: 192dpi) {
     .ads_hero_unit {
         background-image: url(/images/ads/ads_spotty_2x.png);
-        background-size: 100px 100px;
+        background-size: 100px 100px
     }
 }
 
 .ads_hero_footer {
     margin-top: 20px;
-    text-align: left;
+    text-align: left
 }
 
 .ads_hero_footer a {
-    vertical-align: baseline;
+    vertical-align: baseline
 }
 
 .ads_hero_footer .flat_button.unshown+a.as_button {
-    margin-left: -16px;
+    margin-left: -16px
 }
 
 .ads_hero_unit p {
     margin-top: 5px;
     margin-bottom: 0;
-    line-height: 1.46;
+    line-height: 1.46
 }
 
 .ads_hero_title {
     text-align: left;
     margin-bottom: 5px;
     margin-top: 0;
-    font-size: 19px;
+    font-size: 19px
 }
 
 .ads_retargeting_expiration_wrap {
-    margin-top: 12px;
+    margin-top: 12px
 }
 
 .ads_retargeting_pixel_status_working {
-    color: #417505;
+    color: #417505
 }
 
 .ads_retargeting_pixel_status_working_errors {
-    color: #FFA000;
+    color: #ffa000
 }
 
 .ads_retargeting_pixel_errors_column {
-    position: relative;
+    position: relative
 }
 
 .ads_retargeting_group_actions_link {
     padding-right: 13px;
     background: url(/images/icons/profile_arrow_2x.png) no-repeat;
     background-size: 9px 6px;
-    background-position: right 6px;
+    background-position: right 6px
 }
 
 .ads_retargeting_group_actions_link_disabled {
-    color: #65686C;
+    color: #65686c
 }
 
 .ads_retargeting_group_wip .pr {
     opacity: 1;
     display: inline-block;
-    padding: 8px 6px 8px 0;
+    padding: 8px 6px 8px 0
 }
 
 .ads_retargeting_group_wip_badge {
     border-radius: 10px;
     background-color: #5181b8;
-    color: white;
+    color: #fff;
     padding: 1px 6px 1px 5.5px;
     margin-left: 5px;
     font-size: 12.5px;
-    cursor: default;
+    cursor: default
 }
 
 .ads_retargeting_group_wip_wrapper {
-    pointer-events: none;
+    pointer-events: none
 }
 
 #ads_retargeting_name {
-    width: 100%;
+    width: 100%
 }
 
 #ads_retargeting_groups_table .ui_search_custom_ctrl {
-    right: 0;
+    right: 0
 }
 
 #ads_retargeting_groups_table .column_action_view {
     width: 100px;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 #ads_retargeting_groups_table .tt_text {
-    font-weight: normal;
+    font-weight: 400;
     white-space: normal;
-    text-align: left;
+    text-align: left
 }
 
 #ads_retargeting_groups .ui_tabs {
-    padding-left: 2px;
+    padding-left: 2px
 }
 
 #ads_retargeting_groups .ui_table_filters .idd_wrap .idd_arrow {
     padding-right: 13px;
     background: url(/images/icons/profile_arrow_2x.png) no-repeat;
     background-size: 9px 6px;
-    background-position: right 50%;
+    background-position: right 50%
 }
 
 #ads_retargeting_groups h2 {
     padding-bottom: 0;
-    margin-bottom: -1px;
+    margin-bottom: -1px
 }
 
 #ads_retargeting_groups .ui_table_filter.ui_search {
-    border-top: 0;
+    border-top: 0
 }
 
 .ads_retargeting_group_list_item {
-    margin-top: 8px;
+    margin-top: 8px
 }
 
 .ads_retargeting_group_list_item:first-child {
-    margin-top: 0;
+    margin-top: 0
 }
 
-.ads_retargeting_smart_pixel_groups_list {
-    margin-top: 18px;
-}
-
+.ads_retargeting_smart_pixel_groups_list,
 .ads_retargeting_box_margin_top {
-    margin-top: 18px;
+    margin-top: 18px
 }
 
 .ads_retargeting_check_link {
     display: table;
-    width: 100%;
+    width: 100%
 }
 
 #ads_retargeting_check_link_input {
     width: 100%;
-    display: table-cell;
+    display: table-cell
 }
 
 #ads_retargeting_check_link_button {
     display: table-cell;
-    width: 1px;
+    width: 1px
 }
 
 .ads_retargeting_check_link_spacer {
     width: 14px;
-    display: table-cell;
+    display: table-cell
 }
 
 #ads_retargeting_check_link_results {
-    margin-top: 18px;
+    margin-top: 18px
 }
 
 .ads_retargeting_box {
-    padding: 21px 25px;
+    padding: 21px 25px
 }
 
 .ads_retargeting_box_label {
     margin-bottom: 10px;
-    color: #45668E;
+    color: #45668e;
     font-size: 1.18em;
-    font-weight: bold;
+    font-weight: 700
 }
 
 .ads_retargeting_box_label_hint {
-    color: #98A9B7;
-    cursor: pointer;
+    color: #98a9b7;
+    cursor: pointer
 }
 
 .ads_retargeting_box_text {
     margin-top: 10px;
-    color: #777;
+    color: #777
 }
 
 .ads_retargeting_box_text_top {
     margin-top: 0;
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
 .ads_retargeting_box_row {
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 .ads_retargeting_box_row_big {
-    margin-top: 20px;
+    margin-top: 20px
 }
 
 .ads_retargeting_box input {
-    width: 100%;
+    width: 100%
 }
 
 #ads_retargeting_box_error {
-    margin: 0 0 18px 0;
-    display: none;
+    margin: 0 0 18px;
+    display: none
 }
 
 .ads_retargeting_box .box_msg {
     margin-bottom: 10px;
-    font-weight: normal;
+    font-weight: 400
 }
 
 .ads_retargeting_box_notice {
     font-size: 0.91em;
-    color: #777;
+    color: #777
 }
 
 .ads_retargeting_box_button {
-    margin-top: 20px;
+    margin-top: 20px
 }
 
 .ads_retargeting_box_block {
     margin-bottom: 25px;
-    padding-bottom: 25px;
+    padding-bottom: 25px
 }
 
 .ads_retargeting_box_block:last-child {
     margin: 0;
     padding: 0;
-    border-bottom: 0;
+    border-bottom: 0
 }
 
 .ads_retargeting_box_block_title_process {
@@ -2719,105 +2701,105 @@ a.ads_dd_menu_multi_item.label:hover {
     border-bottom: 1px solid #e8ebee;
     font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .ads_retargeting_box_block_title {
-    margin: 10px 0;
+    margin: 10px 0
 }
 
 .ads_retargeting_box_block_title:first-child {
-    margin-top: 0;
+    margin-top: 0
 }
 
 .ads_retargeting_box_block_title:last-child {
-    margin-bottom: 0;
+    margin-bottom: 0
 }
 
 .ads_retargeting_box_block_title_bold {
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale
 }
 
 .ads_retargeting_box_block_example {
-    margin: 0;
+    margin: 0
 }
 
 .ads_retargeting_box_block_example_title {
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale
 }
 
 .ads_retargeting_box_block_example_italic {
-    font-style: italic;
+    font-style: italic
 }
 
 #ads_reatargeting_upload_notice {
     margin-top: 20px;
     text-align: center;
-    color: #777;
+    color: #777
 }
 
 #ads_retargeting_request_lookalike_notice {
-    margin-top: 20px;
+    margin-top: 20px
 }
 
 #ads_retargeting_type {
-    margin: 13px 0;
+    margin: 13px 0
 }
 
 #ads_retargeting_type .radiobtn {
     margin-right: 22px;
     width: auto;
-    display: inline-block;
+    display: inline-block
 }
 
 .ads_retargeting_edit_rule_parameter_wrap {
     position: relative;
     margin-top: 12px;
-    line-height: 0;
+    line-height: 0
 }
 
 .ads_retargeting_rule_argument_wrapper {
     margin-left: 12px;
     vertical-align: top;
     display: inline-block;
-    width: 278px;
+    width: 278px
 }
 
 .ads_retargeting_rule_type_wrapper {
-    display: inline-block;
+    display: inline-block
 }
 
 #ads_retargeting_add_parameter_link {
     margin-top: 12px;
-    display: inline-block;
+    display: inline-block
 }
 
 #ads_retargeting_edit_rule {
-    margin-top: 18px;
+    margin-top: 18px
 }
 
 #ads_retargeting_edit_rule .radiobtn {
     margin-right: 22px;
     width: auto;
-    display: inline-block;
+    display: inline-block
 }
 
 h4.subheader.ads_retargeting_subheader,
 h4.subheader.ads_retargeting_subheader_top {
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
 h4.subheader.ads_retargeting_subheader_top {
-    margin-top: 0;
+    margin-top: 0
 }
 
 h4.subheader.ads_retargeting_subheader_bordered {
     border-top: 1px solid #eee;
-    padding-top: 18px;
+    padding-top: 18px
 }
 
 .ads_retargeting_rule_delete {
@@ -2831,24 +2813,24 @@ h4.subheader.ads_retargeting_subheader_bordered {
     opacity: 0.6;
     -o-transition: opacity 0.2s ease;
     transition: opacity 0.2s ease;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .ads_retargeting_rule_delete:hover {
-    opacity: 1;
+    opacity: 1
 }
 
 .is_2x .ads_retargeting_rule_delete {
-    background-image: url(/images/icons/tag_cross_2x.png);
+    background-image: url(/images/icons/tag_cross_2x.png)
 }
 
 #ads_retargeting_upload_doc {
-    padding: 2px 0;
+    padding: 2px 0
 }
 
 #ads_retargeting_upload_doc .upload_selected {
     max-width: 280px;
-    word-break: break-all;
+    word-break: break-all
 }
 
 #ads_retargeting_upload_doc .button_blue button {
@@ -2857,136 +2839,136 @@ h4.subheader.ads_retargeting_subheader_bordered {
     color: #627485;
     border: none;
     text-shadow: none;
-    padding-bottom: 7px;
+    padding-bottom: 7px
 }
 
 #ads_retargeting_upload_doc .button_blue button:hover {
     background-color: #d8dfe8;
-    color: #607282;
+    color: #607282
 }
 
 #ads_retargeting_upload_doc form {
-    text-align: left!important;
+    text-align: left!important
 }
 
 #retargeting_group_pixel {
     padding: 5px 8px 6px;
-    background-color: #FFF;
+    background-color: #fff;
     height: 80px;
     width: 412px;
-    line-height: 140%;
+    line-height: 140%
 }
 
 .ads_retargeting_box .input_back_content {
-    padding: 0;
+    padding: 0
 }
 
 .ads_retargeting_box input:focus,
 .ads_retargeting_box textarea:focus {
-    outline: 0;
+    outline: 0
 }
 
 #ads_retargeting_domain_text {
-    font-weight: bold;
+    font-weight: 700
 }
 
 #ads_retargeting_domain {
     margin-right: 5px;
-    width: 200px;
+    width: 200px
 }
 
 #ads_retargeting_domain_link {
-    padding: 6px 0 7px 0;
+    padding: 6px 0 7px
 }
 
 @-moz-document url-prefix() {
     #ads_retargeting_domain_link {
-        padding: 7px 0;
+        padding: 7px 0
     }
     #ads_retargeting_upload_doc {
-        padding: 3px 0;
+        padding: 3px 0
     }
 }
 
 .ads_retargeting_text {
-    line-height: 150%;
+    line-height: 150%
 }
 
 #ads_retargeting_processing_msg {
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
 .ads_retargeting_param_saved {
     padding-left: 10px;
     color: #777;
-    opacity: 0;
+    opacity: 0
 }
 
 .ads_upload_progress_wrap {
     width: 200px;
     height: 18px;
-    background: #FFF;
-    border: 1px solid #CCC;
+    background: #fff;
+    border: 1px solid #ccc
 }
 
 .ads_upload_progress {
     height: 18px;
-    background: #597DA3 url(/images/progress_grad.gif) repeat;
-    border: 1px solid #45688E;
-    margin: -1px;
+    background: #597da3 url(/images/progress_grad.gif) repeat;
+    border: 1px solid #45688e;
+    margin: -1px
 }
 
 .ads_retargeting_usage_table {
     border-spacing: 0;
-    margin-top: 5px;
+    margin-top: 5px
 }
 
 .ads_retargeting_usage_table td {
-    vertical-align: top;
+    vertical-align: top
 }
 
 .ads_retargeting_usage_table .ads_retargeting_usage_table_flag {
     padding-left: 15px;
     padding-bottom: 6px;
-    color: #777;
+    color: #777
 }
 
 .ads_retargeting_usage_table .ads_retargeting_usage_table_union {
     width: 180px;
-    padding-bottom: 6px;
+    padding-bottom: 6px
 }
 
 .ads_retargeting_box input.ads_retargeting_group_share_target {
-    width: 316px;
+    width: 316px
 }
 
 .ads_retargeting_group_share_button {
-    width: 110px;
+    width: 110px
 }
 
 .ads_retargeting_group_share_history {
     margin-top: 10px;
     max-height: 118px;
-    overflow: scroll;
+    overflow: scroll
 }
 
 .ads_retargeting_group_share_history_row {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    margin-top: 2px;
+    margin-top: 2px
 }
 
 .ads_retargeting_group_share_history_row_time {
     white-space: nowrap;
-    font-weight: bold;
+    font-weight: 700;
     display: inline-block;
     margin-right: 10px;
     vertical-align: top;
     -webkit-flex: 0;
     -ms-flex: 0;
     flex: 0;
-    min-width: 105px;
+    min-width: 105px
 }
 
 .ads_retargeting_group_share_history_row_text {
@@ -2994,7 +2976,7 @@ h4.subheader.ads_retargeting_subheader_bordered {
     vertical-align: top;
     -webkit-flex: 1;
     -ms-flex: 1;
-    flex: 1;
+    flex: 1
 }
 
 .ads_retargeting_price_list {
@@ -3004,13 +2986,13 @@ h4.subheader.ads_retargeting_subheader_bordered {
     line-height: 20px;
     font-size: 14px;
     background: #fff;
-    border-spacing: 0;
+    border-spacing: 0
 }
 
 .ads_retargeting_price_list_unavailable {
     margin: 20px 0 0;
     color: #828282;
-    text-align: center;
+    text-align: center
 }
 
 .ads_retargeting_price_list_empty {
@@ -3020,11 +3002,11 @@ h4.subheader.ads_retargeting_subheader_bordered {
     text-align: center;
     background-color: #f7f7f7;
     border: 1px solid #e4e9ed;
-    border-top: 0;
+    border-top: 0
 }
 
 .ads_retargeting_price_list_empty_text {
-    margin: 0;
+    margin: 0
 }
 
 .ads_retargeting_price_list_errors {
@@ -3032,7 +3014,7 @@ h4.subheader.ads_retargeting_subheader_bordered {
     margin: 0;
     padding: 15px 0 15px 24px;
     line-height: 18px;
-    border-bottom: 1px solid #edeef2;
+    border-bottom: 1px solid #edeef2
 }
 
 .ads_retargeting_price_list_errors:after {
@@ -3043,16 +3025,16 @@ h4.subheader.ads_retargeting_subheader_bordered {
     left: 0;
     width: 16px;
     height: 16px;
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h16v16H0z%22%2F%3E%3Cpath%20d%3D%22M8.857%201.007l6.97%2011.474A1%201%200%200%201%2014.973%2014H1.028a1%201%200%200%201-.854-1.52L7.148%201.007a1%201%200%200%201%201.71%200zM7.9%2012h.2a.9.9%200%200%200%20.9-.9v-.2a.9.9%200%200%200-.9-.9h-.2a.9.9%200%200%200-.9.9v.2a.9.9%200%200%200%20.9.9zm0-8a.9.9%200%200%200-.9.9v3.2a.9.9%200%200%200%20.9.9h.2a.9.9%200%200%200%20.9-.9V4.9a.9.9%200%200%200-.9-.9h-.2z%22%20fill%3D%22%23FFA000%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 0 0 no-repeat;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h16v16H0z%22%2F%3E%3Cpath%20d%3D%22M8.857%201.007l6.97%2011.474A1%201%200%200%201%2014.973%2014H1.028a1%201%200%200%201-.854-1.52L7.148%201.007a1%201%200%200%201%201.71%200zM7.9%2012h.2a.9.9%200%200%200%20.9-.9v-.2a.9.9%200%200%200-.9-.9h-.2a.9.9%200%200%200-.9.9v.2a.9.9%200%200%200%20.9.9zm0-8a.9.9%200%200%200-.9.9v3.2a.9.9%200%200%200%20.9.9h.2a.9.9%200%200%200%20.9-.9V4.9a.9.9%200%200%200-.9-.9h-.2z%22%20fill%3D%22%23FFA000%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 0 0 no-repeat
 }
 
 .ads_retargeting_box .ads_retargeting_price_list_errors {
     padding-top: 0;
-    border-bottom: 0;
+    border-bottom: 0
 }
 
 .ads_retargeting_box .ads_retargeting_price_list_errors:after {
-    top: 2px;
+    top: 2px
 }
 
 .ads_retargeting_price_list_item_cell {
@@ -3060,44 +3042,44 @@ h4.subheader.ads_retargeting_subheader_bordered {
     width: 100px;
     text-align: right;
     vertical-align: middle;
-    border-bottom: 1px solid #edeef2;
+    border-bottom: 1px solid #edeef2
 }
 
 .ads_retargeting_price_list_item_last .ads_retargeting_price_list_item_cell,
 .ads_retargeting_price_list_item_opened .ads_retargeting_price_list_item_cell {
-    border-bottom: 0;
+    border-bottom: 0
 }
 
 .ads_retargeting_price_list_item_last .ads_retargeting_price_list_item_cell {
-    padding-bottom: 0;
+    padding-bottom: 0
 }
 
 .ads_retargeting_price_list_item_cell_general {
     padding-left: 10px;
     width: 372px;
-    text-align: left;
+    text-align: left
 }
 
 .ads_retargeting_price_list_item_cell_name {
     margin: 0;
     width: 330px;
-    color: #222222;
-    word-break: break-all;
+    color: #222;
+    word-break: break-all
 }
 
 .ads_retargeting_price_list_item_info_show,
 .ads_retargeting_price_list_item_opened .ads_retargeting_price_list_item_info_hide {
-    display: inline;
+    display: inline
 }
 
-.ads_retargeting_price_list_item_opened .ads_retargeting_price_list_item_info_show,
-.ads_retargeting_price_list_item_info_hide {
-    display: none;
+.ads_retargeting_price_list_item_info_hide,
+.ads_retargeting_price_list_item_opened .ads_retargeting_price_list_item_info_show {
+    display: none
 }
 
 .ads_retargeting_price_list_item_edit {
     position: relative;
-    padding-left: 20px;
+    padding-left: 20px
 }
 
 .ads_retargeting_price_list_item_edit:after {
@@ -3112,7 +3094,7 @@ h4.subheader.ads_retargeting_subheader_bordered {
     filter: alpha(opacity=50);
     background: url(/images/post_icon.png?10) no-repeat 0px -40px;
     -o-transition: opacity 100ms ease;
-    transition: opacity 100ms ease;
+    transition: opacity 100ms ease
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -3120,19 +3102,19 @@ h4.subheader.ads_retargeting_subheader_bordered {
 (min-resolution: 192dpi) {
     .ads_retargeting_price_list_item_edit:after {
         background-image: url(/images/post_icon_2x.png?10);
-        background-size: 20px 413px;
+        background-size: 20px 413px
     }
 }
 
 .ads_retargeting_price_list_item_edit:hover:after {
     opacity: 1;
     -webkit-filter: none;
-    filter: none;
+    filter: none
 }
 
 .ads_retargeting_price_list_item_get_process_info {
     position: relative;
-    padding-left: 10px;
+    padding-left: 10px
 }
 
 .ads_retargeting_price_list_item_get_process_info:after {
@@ -3142,76 +3124,76 @@ h4.subheader.ads_retargeting_subheader_bordered {
     opacity: 0.5;
     filter: alpha(opacity=50);
     -o-transition: opacity 100ms ease;
-    transition: opacity 100ms ease;
+    transition: opacity 100ms ease
 }
 
 .ads_retargeting_price_list_item_get_process_info:hover:after {
     opacity: 1;
     -webkit-filter: none;
-    filter: none;
+    filter: none
 }
 
 .ads_retargeting_price_list_item_cell_status {
     color: #828282;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 .ads_retargeting_price_list_item_status_work {
-    color: #59ac5c;
+    color: #59ac5c
 }
 
 .ads_retargeting_price_list_item_status_error {
     color: #c95959;
-    cursor: default;
+    cursor: default
 }
 
 .ads_retargeting_price_list_item_cell_status_link {
     position: relative;
-    font-size: 13px;
+    font-size: 13px
 }
 
 .ads_retargeting_price_list_item_cell_value {
     margin: 0;
-    color: #222222;
+    color: #222;
     font-weight: 500;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale
 }
 
 .ads_retargeting_price_list_item_cell_desc {
     margin: 0;
     line-height: 18px;
     font-size: 13px;
-    color: #828282;
+    color: #828282
 }
 
 .ads_retargeting_price_list_item_cell_products_desc:first-letter {
-    text-transform: uppercase;
+    text-transform: uppercase
 }
 
 .ads_retargeting_price_list_item_cell_update {
     padding-right: 0;
-    width: 28px;
+    width: 28px
 }
 
 .ads_retargeting_price_list_item_cell_update_link {
     position: relative;
     display: block;
     width: 18px;
-    height: 14px;
+    height: 14px
 }
 
-.ads_retargeting_price_list_item_cell_update_tt.tt_default.tt_down:before,
-.ads_retargeting_price_list_item_cell_update_tt.tt_default.tt_up:before,
 .ads_retargeting_price_list_item_cell_update_tt.tt_default.tt_down:after,
-.ads_retargeting_price_list_item_cell_update_tt.tt_default.tt_up:after {
+.ads_retargeting_price_list_item_cell_update_tt.tt_default.tt_down:before,
+.ads_retargeting_price_list_item_cell_update_tt.tt_default.tt_up:after,
+.ads_retargeting_price_list_item_cell_update_tt.tt_default.tt_up:before {
     left: auto;
-    right: 30px;
+    right: 30px
 }
 
 .ads_retargeting_price_list_item_cell_update_link_disabled {
     opacity: 0.44;
-    cursor: default;
+    cursor: default
 }
 
 .ads_retargeting_price_list_item_cell_update_link:after {
@@ -3222,47 +3204,47 @@ h4.subheader.ads_retargeting_subheader_bordered {
     display: block;
     width: 18px;
     height: 14px;
-    background: url('/images/ads/refresh.svg') 50% no-repeat;
+    background: url('/images/ads/refresh.svg') 50% no-repeat
 }
 
 .ads_retargeting_price_list_item_cell_update_link.ads_retargeting_price_list_item_cell_update_link_waiting:after {
     -webkit-animation: 700ms linear infinite round_spinner;
     -o-animation: 700ms linear infinite round_spinner;
-    animation: 700ms linear infinite round_spinner;
+    animation: 700ms linear infinite round_spinner
 }
 
 .ads_retargeting_price_list_tooltip {
     font-size: 13px;
-    line-height: 17px;
+    line-height: 17px
 }
 
 .ads_retargeting_price_list_actions_wrapper,
 .ads_retargeting_price_list_url {
-    display: none;
+    display: none
 }
 
 .ads_retargeting_price_list_actions_opened .ads_retargeting_price_list_url {
-    display: block;
+    display: block
 }
 
 .ads_retargeting_price_list_actions_last .ads_retargeting_price_list_url {
-    margin-bottom: 0;
+    margin-bottom: 0
 }
 
 .ads_retargeting_price_list_actions_opened .ads_retargeting_price_list_actions_wrapper {
-    display: block;
+    display: block
 }
 
 .ads_retargeting_price_list_actions_last .ads_retargeting_price_list_actions_table {
-    margin-top: 18px;
+    margin-top: 18px
 }
 
 .ads_retargeting_price_list_actions_cell {
-    padding: 0;
+    padding: 0
 }
 
 .ads_retargeting_price_list_actions_last .ads_retargeting_price_list_actions_cell {
-    border-bottom: 0;
+    border-bottom: 0
 }
 
 .ads_retargeting_price_list_actions_error {
@@ -3271,21 +3253,21 @@ h4.subheader.ads_retargeting_subheader_bordered {
     font-size: 13px;
     color: #c95959;
     text-align: center;
-    height: 32px;
+    height: 32px
 }
 
 .ads_retargeting_price_list_actions_error_shown {
-    display: block;
+    display: block
 }
 
 .ads_retargeting_price_list_actions_loading {
     display: none;
     padding-top: 12px;
-    height: 20px;
+    height: 20px
 }
 
 .ads_retargeting_price_list_actions_loading_progress {
-    text-align: center;
+    text-align: center
 }
 
 .ads_retargeting_price_list_actions_table {
@@ -3298,84 +3280,78 @@ h4.subheader.ads_retargeting_subheader_bordered {
     border-bottom: 0;
     border-spacing: 0;
     border-collapse: collapse;
-    box-sizing: border-box;
+    box-sizing: border-box
 }
 
 .ads_retargeting_price_list_url {
     margin: 12px 0;
     font-size: 13px;
     line-height: 18px;
-    color: #828282;
+    color: #828282
 }
 
 .ads_retargeting_box_price_list_http_auth_wrap,
-.ads_retargeting_box_price_list_url_extra_params_wrap {
-    margin-top: 18px;
-}
-
+.ads_retargeting_box_price_list_url_extra_params_wrap,
 .ads_retargeting_box_price_list_group {
-    margin-top: 18px;
+    margin-top: 18px
 }
 
 .ads_retargeting_box_price_list_group:first-child {
-    margin-top: 0;
+    margin-top: 0
 }
 
 .ads_retargeting_box_price_list_label {
     display: block;
     margin-bottom: 9px;
-    color: #222222;
+    color: #222;
     font-weight: 500;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale
 }
 
 .ads_retargeting_box_price_list_input {
-    width: 100%;
+    width: 100%
 }
 
 .ads_retargeting_box_price_list_description {
     margin: 10px 0 20px;
-    color: #656565;
+    color: #656565
 }
 
 .ads_retargeting_box_price_list_description:last-child {
-    margin-bottom: 0;
+    margin-bottom: 0
 }
 
 .ads_retargeting_box_error_description,
 ads_retargeting_box_price_list_error_description {
     margin: 10px 0;
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale
 }
 
-.ads_retargeting_box_price_list_error_opened .ads_retargeting_box_price_list_error_link {
-    display: none;
-}
-
+.ads_retargeting_box_price_list_error_opened .ads_retargeting_box_price_list_error_link,
 .ads_retargeting_box_price_list_error_block {
-    display: none;
+    display: none
 }
 
 .ads_retargeting_box_price_list_error_opened .ads_retargeting_box_price_list_error_block {
-    display: block;
+    display: block
 }
 
 .ads_retargeting_box_error_block_text,
 .ads_retargeting_box_price_list_error_block_text {
-    margin: 0;
+    margin: 0
 }
 
 .ads_retargeting_box_error_block_type {
     padding-bottom: 15px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #eee
 }
 
 .ads_retargeting_box_error_block_type:last-child {
     padding-bottom: 0;
-    border-bottom: 0;
+    border-bottom: 0
 }
 
 .ads_retargeting_box_error_block_code,
@@ -3385,214 +3361,214 @@ ads_retargeting_box_price_list_error_description {
     line-height: 22px;
     background-color: #f0f2f5;
     border-left: 3px solid #93adc8;
-    overflow-wrap: break-word;
+    overflow-wrap: break-word
 }
 
 .ads_retargeting_box_price_list_error_block_code {
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+    font-family: Monaco, Menlo, Ubuntu Mono, Consolas, source-code-pro, monospace
 }
 
 .ads_retargeting_box_error_block_code_text {
     margin: 0 0 5px;
-    line-height: 18px;
+    line-height: 18px
 }
 
 .ads_retargeting_box_error_block_code_text:last-child {
-    margin-bottom: 0;
+    margin-bottom: 0
 }
 
 .ads_retargeting_box_error_block_code_text_title {
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale
 }
 
 .ads_retargeting_box_error_block_code_text_desc_empty {
-    font-style: italic;
+    font-style: italic
 }
 
 .ads_settings_notifacations {
     margin: 10px 0 0 10px;
-    border-collapse: collapse;
+    border-collapse: collapse
 }
 
-.ads_settings_notifacations th,
-.ads_settings_notifacations td {
+.ads_settings_notifacations td,
+.ads_settings_notifacations th {
     padding: 0 5px;
-    text-align: center;
+    text-align: center
 }
 
 td.ads_settings_notifacations_label {
     padding: 0 30px 0 0;
-    text-align: left;
+    text-align: left
 }
 
 .ads_settings_notifacations .checkbox_container {
-    margin: 0 auto;
+    margin: 0 auto
 }
 
 #ad_preview_top {
     float: right;
-    margin: 5px 0 0 0;
-    text-align: right;
+    margin: 5px 0 0;
+    text-align: right
 }
 
 #ad_preview_top.promoted_post {
-    margin-top: -24px;
+    margin-top: -24px
 }
 
 #ad_preview_top.no_border .ads_ad_box_border.app_in_news,
 #ad_preview_top.no_border .ads_ad_box_border.apps_only,
+#ad_preview_top.no_border .ads_ad_box_border.big_app,
 #ad_preview_top.no_border .ads_ad_box_border.groups_only,
 #ad_preview_top.no_border .ads_ad_box_border.mobile,
-#ad_preview_top.no_border .ads_ad_box_border.big_app,
 #ad_preview_top.no_border .ads_ad_box_border.promoted_post {
-    border-style: none;
+    border-style: none
 }
 
 #ad_preview_top .ads_ad_box.app_in_news,
-#ad_preview_top .ads_ad_box.groups_only,
-#ad_preview_top .ads_ad_box.apps_only {
-    padding-bottom: 5px;
+#ad_preview_top .ads_ad_box.apps_only,
+#ad_preview_top .ads_ad_box.groups_only {
+    padding-bottom: 5px
 }
 
-#ad_preview_top .ads_ad_box.mobile,
-#ad_preview_top .ads_ad_box.big_app {
-    padding-bottom: 10px;
+#ad_preview_top .ads_ad_box.big_app,
+#ad_preview_top .ads_ad_box.mobile {
+    padding-bottom: 10px
 }
 
 #ad_preview_top .ads_ad_box_border.promoted_post {
     left: auto;
-    width: 385px;
+    width: 385px
 }
 
 .ads_ad_with_redesign_preview p {
     font-size: 11px;
     letter-spacing: initial;
-    margin: 0 0 1em;
+    margin: 0 0 1em
 }
 
 .ads_ad_current_preview {
-    float: left;
+    float: left
 }
 
 .ads_ad_current_preview>p {
-    text-align: center;
+    text-align: center
 }
 
 .ads_ad_current_preview .ads_ad_box {
-    margin: 0 auto;
+    margin: 0 auto
 }
 
 .ads_ad_current_preview .ads_ad_box2.ver.repeat_ver.size_site {
-    padding-top: 0;
+    padding-top: 0
 }
 
 .ads_ad_current_preview .ads_ad_box_border.repeat_ver {
-    border-bottom-width: 0;
+    border-bottom-width: 0
 }
 
 .ads_ad_current_preview .ads_ad_box_border.repeat_ver.first {
-    border-top-width: 0;
+    border-top-width: 0
 }
 
 .ads_ad_redesign_preview {
     float: left;
-    padding-left: 15px;
+    padding-left: 15px
 }
 
 .ads_ad_redesign_preview>p {
-    text-align: center;
+    text-align: center
 }
 
 .ads_ad_redesign_preview .ads_ad_box.redesign {
-    margin: 0 auto;
+    margin: 0 auto
 }
 
 .ads_ad_redesign_preview .ads_ad_box.redesign .ads_ad_box2.ver.repeat_ver.size_site {
-    padding-top: 0;
+    padding-top: 0
 }
 
 .ads_ad_redesign_preview .ads_ad_box_border.repeat_ver {
-    border-bottom-width: 0;
+    border-bottom-width: 0
 }
 
 .ads_ad_redesign_hint {
     color: #9cabb8;
     font-size: 0.91em;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .ads_ad_redesign_hint_tt table .tt_text {
     color: #000;
     line-height: 150%;
     padding: 10px;
-    width: 250px;
+    width: 250px
 }
 
 .ads_ad_redesign_hint_tt table .bottom_pointer {
     margin-right: 0px;
     margin-left: 130px;
     display: block;
-    background: url(/images/tooltip_arrow_white.gif) no-repeat;
+    background: url(/images/tooltip_arrow_white.gif) no-repeat
 }
 
 .ads_ad_no_redesign_preview_error_wrapper {
     width: 145px;
     padding: 0 14px;
-    text-align: left;
+    text-align: left
 }
 
 .ads_ad_no_redesign_preview_error_wrapper .info_msg {
-    background: #F6F7F9;
-    border: 1px solid #DBE0EA;
+    background: #f6f7f9;
+    border: 1px solid #dbe0ea;
     padding: 8px 11px;
     margin: 0;
     line-height: 150%;
-    letter-spacing: initial;
+    letter-spacing: initial
 }
 
 #ad_preview_top.promoted_post .ad_preview_top_buttons {
     display: inline-block;
-    width: 385px;
+    width: 385px
 }
 
 .ads_alt_table {
     border-collapse: collapse;
-    width: 100%;
+    width: 100%
 }
 
 .ads_alt_table th {
     padding: 9px 8px 11px 5px;
     background-color: #e9edf0;
     color: #587183;
-    font-weight: bold;
+    font-weight: 700;
     white-space: nowrap;
     height: auto;
     border: none;
     text-align: left;
-    font-size: 1.09em;
+    font-size: 1.09em
 }
 
 .ads_alt_table th:first-child {
-    padding-left: 10px;
+    padding-left: 10px
 }
 
 .ads_alt_table tr {
     border-left: 1px solid #e9edf0;
-    border-right: 1px solid #e9edf0;
+    border-right: 1px solid #e9edf0
 }
 
 .ads_alt_table td.even_row {
-    background-color: #f5f7f7;
+    background-color: #f5f7f7
 }
 
 .ads_alt_table tr:first-child {
-    border-top: 1px solid #e9edf0;
+    border-top: 1px solid #e9edf0
 }
 
 .ads_alt_table tr:last-child {
-    border-bottom: 1px solid #e9edf0;
+    border-bottom: 1px solid #e9edf0
 }
 
 .ads_alt_table td {
@@ -3600,77 +3576,77 @@ td.ads_settings_notifacations_label {
     text-align: left;
     vertical-align: top;
     line-height: 160%;
-    height: auto;
+    height: auto
 }
 
 .ads_alt_table td:first-child {
-    padding-left: 10px !important;
+    padding-left: 10px!important
 }
 
 .ads_alt_table td:last-child {
-    padding-right: 10px;
+    padding-right: 10px
 }
 
 .ads_alt_table td.not_found {
-    padding: 0px !important;
+    padding: 0px!important
 }
 
 .ads_alt_table .grey {
-    color: #666666;
+    color: #666;
     display: inline-block;
     min-width: 40px;
-    margin-right: 5px;
+    margin-right: 5px
 }
 
 .ads_retargeting_menu a.ads_retargeting_menu_header,
 .ads_retargeting_menu a.ads_retargeting_menu_header:hover {
-    background-color: #EDF1F5;
-    color: #2B587A;
+    background-color: #edf1f5;
+    color: #2b587a
 }
 
 .ads_retargeting_menu .dd_menu_body {
     border-radius: 2px;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.35);
-    border: 1px solid #B2BDCA;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, .35);
+    border: 1px solid #b2bdca
 }
 
 .ads_retargeting_menu .dd_menu_header {
-    border: none;
+    border: none
 }
 
 .ads_retargeting_menu .dd_menu_header div {
-    display: none;
+    display: none
 }
 
 .ads_retargeting_menu .dd_menu_rows {
-    border: none;
+    border: none
 }
 
 .ads_retargeting_menu .dd_menu_rows a {
-    padding: 7px 8px 2px 8px;
+    padding: 7px 8px 2px
 }
 
+.ads_retargeting_menu .dd_menu_shad_b,
+.ads_retargeting_menu .dd_menu_shad_b2,
 .ads_retargeting_menu .dd_menu_shad_l,
 .ads_retargeting_menu .dd_menu_shad_r,
 .ads_retargeting_menu .dd_menu_shad_t,
-.ads_retargeting_menu .dd_menu_shad_t2,
-.ads_retargeting_menu .dd_menu_shad_b,
-.ads_retargeting_menu .dd_menu_shad_b2 {
-    display: none;
+.ads_retargeting_menu .dd_menu_shad_t2 {
+    display: none
 }
 
 .ads_retargeting_tt table .tt_text {
     color: #000;
     line-height: 150%;
     padding: 10px;
-    width: 295px;
+    width: 295px
 }
 
 .ads_retargeting_tt table.toup1 .bottom_pointer {
     margin-right: 0px;
     margin-left: 34px;
     display: block;
-    background: url(/images/tooltip_arrow_white.gif) no-repeat;
+    background: url(/images/tooltip_arrow_white.gif) no-repeat
 }
 
 .ads_retargeting_tt table.toup .top_pointer {
@@ -3678,62 +3654,62 @@ td.ads_settings_notifacations_label {
     margin-left: 34px;
     display: block;
     bottom: -2px;
-    background: url(/images/tooltip_arrow_up.gif) no-repeat;
+    background: url(/images/tooltip_arrow_up.gif) no-repeat
 }
 
 .ads_edit_tt_pointer.ads_edit_tt_pointer_domain {
-    top: 38px;
+    top: 38px
 }
 
 .ads_edit_tt_pointer.ads_edit_tt_pointer_expiration {
-    top: 32px;
+    top: 32px
 }
 
 .ads_adblock_notice {
     position: relative;
     margin-bottom: 20px;
-    display: none;
+    display: none
 }
 
 .ads_lookalike_slider_desc {
-    color: #777;
+    color: #777
 }
 
 .ads_lookalike_wider {
-    float: right;
+    float: right
 }
 
 .ads_lookalike_audience_description {
     text-align: center;
-    font-size: 1.29em;
+    font-size: 1.29em
 }
 
 .ads_lookalike_export_source_description {
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 15px
 }
 
 .ads_lookalike_no_slider {
     margin-top: 15px;
-    display: none;
+    display: none
 }
 
 .ads_lookalike_status_in_progress {
-    color: #FFA000;
+    color: #ffa000
 }
 
 .ads_lookalike_status_fail {
-    color: #D0021B;
+    color: #d0021b
 }
 
 .ads_lookalike_status_done {
-    color: #417505;
+    color: #417505
 }
 
 #ads_lookalike_box_error {
-    margin: 0 0 18px 0;
+    margin: 0 0 18px;
     display: none;
-    line-height: 140%;
+    line-height: 140%
 }
 
 .ads_relevance_score {
@@ -3742,23 +3718,23 @@ td.ads_settings_notifacations_label {
     text-align: left;
     border: 1px solid #e0e3e7;
     border-radius: 2px;
-    cursor: default;
+    cursor: default
 }
 
 .ads_relevance_score_top {
     padding: 13px 13px 10px 15px;
     line-height: 19px;
-    border-bottom: 1px solid #E7E8EC;
+    border-bottom: 1px solid #e7e8ec
 }
 
 .ads_relevance_score_top.ads_relevance_score_top_noborder {
-    border-bottom: 0;
+    border-bottom: 0
 }
 
 .ads_relevance_score_top_title {
     position: relative;
     margin: 0;
-    padding: 1px 22px 2px 0;
+    padding: 1px 22px 2px 0
 }
 
 .ads_relevance_score_top_title_beta {
@@ -3769,19 +3745,19 @@ td.ads_settings_notifacations_label {
     height: 16px;
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Ctitle%3Ebeta%3C%2Ftitle%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20stroke%3D%22%23B4BFCC%22%20x%3D%22.5%22%20y%3D%22.5%22%20width%3D%2215%22%20height%3D%2215%22%20rx%3D%227.5%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M7.243%209.674c.105.208.258.37.456.486.199.115.433.173.703.173.235%200%20.441-.05.62-.151.18-.101.319-.244.418-.428.1-.184.149-.4.149-.647%200-.4-.122-.716-.366-.947-.244-.231-.598-.358-1.06-.38a.632.632%200%200%201-.337-.137.37.37%200%200%201-.112-.289c0-.224.146-.364.44-.42.35-.012.613-.11.785-.292.173-.183.26-.435.26-.757%200-.303-.093-.547-.277-.733-.184-.185-.43-.278-.74-.278-.374%200-.65.125-.83.374-.178.249-.302.607-.302%201.076v2.622c0%20.277.087.52.193.728zm-.679-5.095C6.94%204.193%207.474%204%208.168%204c.43%200%20.797.072%201.103.217.306.145.54.351.701.618.161.267.242.58.242.937%200%20.342-.08.643-.24.901a1.55%201.55%200%200%201-.668.594v.039c.452.107.796.317%201.03.63.234.312.351.719.351%201.22%200%20.4-.08.758-.244%201.072-.162.314-.398.56-.705.735-.308.176-.67.264-1.087.264-.351%200-.66-.074-.925-.22-.265-.147-.54-.358-.676-.635v.934c0%20.195-.015.344-.112.446a.527.527%200%200%201-.4.154.512.512%200%200%201-.394-.154C6.048%2011.65%206%2011.501%206%2011.306v-5.02c0-.753.188-1.322.564-1.707z%22%20fill%3D%22%23828A99%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
     background-position: 50%;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat
 }
 
 .ads_relevance_score_top_description {
     margin: 0;
-    color: #828282;
+    color: #828282
 }
 
 .ads_relevance_score_top_tabs {
     display: block;
     margin: 0;
     padding: 0;
-    list-style: none;
+    list-style: none
 }
 
 .ads_relevance_score_top_tabs_item {
@@ -3792,34 +3768,34 @@ td.ads_settings_notifacations_label {
     color: #2b587a;
     text-transform: lowercase;
     cursor: pointer;
-    border-radius: 2px;
+    border-radius: 2px
 }
 
 .ads_relevance_score_top_tabs_item:hover {
-    background-color: #E1E7ED;
+    background-color: #e1e7ed
 }
 
 .ads_relevance_score_top_tabs_item:last-child {
-    margin-right: 0;
+    margin-right: 0
 }
 
 .ads_relevance_score_top_tabs_item.ads_relevance_score_top_tabs_item_active {
     color: #fff;
     cursor: default;
-    background: #5181b8;
+    background: #5181b8
 }
 
 .ads_relevance_score_switcher_item {
-    display: none;
+    display: none
 }
 
 .ads_relevance_score_switcher_item.ads_relevance_score_switcher_item_active {
-    display: block;
+    display: block
 }
 
 .ads_relevance_score_info {
     position: relative;
-    box-sizing: border-box;
+    box-sizing: border-box
 }
 
 .ads_relevance_score_info.ads_relevance_score_info_empty {
@@ -3832,85 +3808,85 @@ td.ads_settings_notifacations_label {
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
-    height: 128px;
+    height: 128px
 }
 
 .ads_relevance_score_info_empty .hint_icon {
-    margin-left: 5px;
+    margin-left: 5px
 }
 
 .ads_relevance_score_info_value {
     padding: 22px 0;
     text-align: center;
     color: #828282;
-    box-sizing: border-box;
+    box-sizing: border-box
 }
 
 .ads_relevance_score_info_value_inner {
-    padding: 18px 16px 18px;
+    padding: 18px 16px;
     width: 173px;
-    border-right: 1px solid #EEF0F3;
-    box-sizing: border-box;
+    border-right: 1px solid #eef0f3;
+    box-sizing: border-box
 }
 
 .ads_relevance_score_info_value_score {
     position: relative;
-    margin: 0;
+    margin: 0
 }
 
 .ads_relevance_score_info_value_score_estimated {
     font-size: 40px;
-    font-weight: bold;
+    font-weight: 700;
     line-height: 48px;
-    color: #222222;
+    color: #222
 }
 
 .ads_relevance_score_info_value_score_emoji {
-    margin-left: 5px;
+    margin-left: 5px
 }
 
 .ads_relevance_score_info_value_text {
     margin: 2px 0 0;
-    line-height: 20px;
+    line-height: 20px
 }
 
 .ads_relevance_score_info_description {
     padding: 20px 24px;
     text-align: left;
-    box-sizing: border-box;
+    box-sizing: border-box
 }
 
-.ads_relevance_score_info_description_tt.tt_default.tt_down:before,
-.ads_relevance_score_info_description_tt.tt_default.tt_up:before,
 .ads_relevance_score_info_description_tt.tt_default.tt_down:after,
-.ads_relevance_score_info_description_tt.tt_default.tt_up:after {
+.ads_relevance_score_info_description_tt.tt_default.tt_down:before,
+.ads_relevance_score_info_description_tt.tt_default.tt_up:after,
+.ads_relevance_score_info_description_tt.tt_default.tt_up:before {
     left: 45px;
-    right: auto;
+    right: auto
 }
 
 .ads_relevance_score_info_description_reaction {
     margin-bottom: 8px;
-    line-height: 20px;
+    line-height: 20px
 }
 
 .ads_relevance_score_info_description_reaction:last-child {
-    margin-bottom: 0;
+    margin-bottom: 0
 }
 
 .ads_relevance_score_info_description_reaction_name {
-    margin: 0;
+    margin: 0
 }
 
 .ads_relevance_score_info_description_reaction_value {
     margin: 0;
-    font-weight: bold;
-    color: #222222;
+    font-weight: 700;
+    color: #222
 }
 
 .ads_relevance_score_footer {
     padding: 15px 20px;
     text-align: center;
-    border-top: 1px solid #EEF0F3;
+    border-top: 1px solid #eef0f3
 }
 
 .ads_relevance_score_footer_link:after {
@@ -3926,22 +3902,21 @@ td.ads_settings_notifacations_label {
     transition: -webkit-transform 150ms ease-in-out;
     -o-transition: transform 150ms ease-in-out, -o-transform 150ms ease-in-out;
     transition: transform 150ms ease-in-out;
-    transition: transform 150ms ease-in-out, -webkit-transform 150ms ease-in-out, -o-transform 150ms ease-in-out;
+    transition: transform 150ms ease-in-out, -webkit-transform 150ms ease-in-out, -o-transform 150ms ease-in-out
 }
 
 .ads_relevance_score_footer_link:hover:after {
     -webkit-transform: translateX(2px);
-    -ms-transform: translateX(2px);
     -o-transform: translateX(2px);
-    transform: translateX(2px);
+    transform: translateX(2px)
 }
 
 .ads_retargeting_hint {
-    cursor: pointer;
+    cursor: pointer
 }
 
-.ads_retargeting_hint_tt.tt_default.tt_down:before,
-.ads_retargeting_hint_tt.tt_default.tt_down:after {
+.ads_retargeting_hint_tt.tt_default.tt_down:after,
+.ads_retargeting_hint_tt.tt_default.tt_down:before {
     right: 30px;
-    left: auto;
+    left: auto
 }

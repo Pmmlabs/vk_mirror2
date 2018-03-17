@@ -2,160 +2,160 @@
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 @font-face {
-    font-family: 'SnapsterIcon';
+    font-family: SnapsterIcon;
     src: url('/fonts/snapster.eot?@8d8q0q');
     src: url('/fonts/snapster.eot?8d8q0q#iefix') format('embedded-opentype'), url('/fonts/snapster.ttf?8d8q0q') format('truetype'), url('/fonts/snapster.woff?8d8q0q') format('woff'), url('/fonts/snapster.svg?8d8q0q#snapster') format('svg');
-    font-weight: normal;
-    font-style: normal;
+    font-weight: 400;
+    font-style: normal
 }
 
-[class^="icon-"],
-[class*=" icon-"] {
-    font-family: 'SnapsterIcon' !important;
+[class*=" icon-"],
+[class^=icon-] {
+    font-family: SnapsterIcon!important;
     speak: none;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 400;
     font-variant: normal;
     text-transform: none;
     line-height: 100%;
     -webkit-font-smoothing: antialiased;
-    -osx-font-smoothing: grayscale;
+    -osx-font-smoothing: grayscale
 }
 
 .icon-views:before {
-    content: "\e90f";
+    content: "\e90f"
 }
 
 .icon-private:before {
-    content: "\e90d";
+    content: "\e90d"
 }
 
 .icon-settings:before {
-    content: "\e910";
+    content: "\e910"
 }
 
 .icon-user_plus:before {
-    content: "\e90c";
+    content: "\e90c"
 }
 
 .icon-close:before {
-    content: "\e90e";
+    content: "\e90e"
 }
 
 .icon-plus:before {
-    content: "\e90b";
+    content: "\e90b"
 }
 
 .icon-ok_narrow:before {
-    content: "\e90a";
+    content: "\e90a"
 }
 
 .icon-bell:before {
-    content: "\e909";
+    content: "\e909"
 }
 
 .icon-text_logo:before {
-    content: "\e908";
+    content: "\e908"
 }
 
 .icon-enter_en:before {
-    content: "\e907";
+    content: "\e907"
 }
 
 .icon-app_store_en:before {
-    content: "\e903";
+    content: "\e903"
 }
 
 .icon-google_play_en:before {
-    content: "\e904";
+    content: "\e904"
 }
 
 .icon-arrow_down:before {
-    content: "\e905";
+    content: "\e905"
 }
 
 .icon-enter_ru:before {
-    content: "\e906";
+    content: "\e906"
 }
 
 .icon-logo:before {
-    content: "\6c";
+    content: "\6c"
 }
 
 .icon-google_play_ru:before {
-    content: "\e901";
+    content: "\e901"
 }
 
 .icon-app_store_ru:before {
-    content: "\e902";
+    content: "\e902"
 }
 
 .icon-actions:before {
-    content: "\41";
+    content: "\41"
 }
 
 .icon-verify:before {
-    content: "\e900";
+    content: "\e900"
 }
 
 .icon-edit:before {
-    content: "\65";
+    content: "\65"
 }
 
 .icon-android:before {
-    content: "\61";
+    content: "\61"
 }
 
 .icon-ios:before {
-    content: "\69";
+    content: "\69"
 }
 
 .icon-heart_outline:before {
-    content: "\48";
+    content: "\48"
 }
 
 .icon-reply:before {
-    content: "\72";
+    content: "\72"
 }
 
 .icon-search:before {
-    content: "\73";
+    content: "\73"
 }
 
 .icon-vk:before {
-    content: "\76";
+    content: "\76"
 }
 
 .icon-camera:before {
-    content: "\63";
+    content: "\63"
 }
 
 .icon-heart:before {
-    content: "\68";
+    content: "\68"
 }
 
 .icon-pause:before {
-    content: "\e911";
+    content: "\e911"
 }
 
 .icon-play:before {
-    content: "\e912";
+    content: "\e912"
 }
 
 .icon-sound:before {
-    content: "\e913";
+    content: "\e913"
 }
 
 .icon-no_sound:before {
-    content: "\e914";
+    content: "\e914"
 }
 
 body {
@@ -163,24 +163,24 @@ body {
     margin: 0px;
     overflow-x: hidden;
     line-height: 100%;
-    background: #f1f2f4;
+    background: #f1f2f4
 }
 
 .modal_shown_body {
-    overflow-y: hidden;
+    overflow-y: hidden
 }
 
 body,
 input,
 textarea {
-    font-family: 'Helvetica Neue', sans-serif, Geneva, arial, Tahoma, verdana;
+    font-family: Helvetica Neue, sans-serif;
     font-size: 13px;
-    line-height: 100%;
+    line-height: 100%
 }
 
 input,
 textarea {
-    border: 1px solid #D2DADF;
+    border: 1px solid #d2dadf;
     padding: 10px;
     border-radius: 3px;
     outline: none;
@@ -188,62 +188,64 @@ textarea {
     font-size: 13px;
     font-weight: 300;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 input.error,
 textarea.error {
-    border-color: #DE5151;
+    border-color: #de5151
 }
 
 a {
-    color: #208FB3;
+    color: #208fb3;
     text-decoration: none;
     outline: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: underline
 }
 
 .icon-verify {
-    color: #00AEE2;
+    color: #00aee2
+}
+
+.icon-verify,
+.icon-private {
     margin-left: 5px;
-    display: inline-block;
+    display: inline-block
 }
 
 .icon-private {
-    margin-left: 5px;
-    color: #C0C3CB;
-    font-size: 13px;
-    display: inline-block;
+    color: #c0c3cb;
+    font-size: 13px
 }
 
 .room_panel_title .icon-private {
-    font-size: 15px;
+    font-size: 15px
 }
 
 .sn_link {
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 .fl_l {
-    float: left;
+    float: left
 }
 
 .fl_r {
-    float: right;
+    float: right
 }
 
 .clear {
-    clear: both;
+    clear: both
 }
 
 .clear_fix:after {
     content: '';
     display: block;
-    clear: both;
+    clear: both
 }
 
 .no_select {
@@ -252,19 +254,19 @@ a:hover {
     -o-user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
-    -webkit-user-select: none;
+    -webkit-user-select: none
 }
 
 .fixed {
-    position: fixed;
+    position: fixed
 }
 
 .no_display {
-    display: none;
+    display: none
 }
 
 .bsbb {
-    box-sizing: border-box;
+    box-sizing: border-box
 }
 
 .emoji {
@@ -272,19 +274,19 @@ a:hover {
     width: 16px;
     height: 16px;
     margin: 2px 3px 0px;
-    border: 0px;
+    border: 0px
 }
 
 .box_anim {
     transition: opacity 100ms linear, visibility 100ms linear, -webkit-transform 80ms linear;
     -o-transition: transform 80ms linear, opacity 100ms linear, visibility 100ms linear, -o-transform 80ms linear;
     transition: transform 80ms linear, opacity 100ms linear, visibility 100ms linear;
-    transition: transform 80ms linear, opacity 100ms linear, visibility 100ms linear, -webkit-transform 80ms linear, -o-transform 80ms linear;
+    transition: transform 80ms linear, opacity 100ms linear, visibility 100ms linear, -webkit-transform 80ms linear, -o-transform 80ms linear
 }
 
 .button {
-    border: 1px solid #00AEE2;
-    color: #00AEE2;
+    border: 1px solid #00aee2;
+    color: #00aee2;
     border-radius: 30px;
     text-align: center;
     display: inline-block;
@@ -305,92 +307,92 @@ a:hover {
     transition: color 100ms linear, background 100ms linear;
     overflow: hidden;
     vertical-align: top;
-    text-decoration: none !important;
+    text-decoration: none!important
 }
 
 .button.button_full {
-    display: block;
+    display: block
 }
 
 .button.button_fill {
     color: #fff;
-    background: #00AEE2;
+    background: #00aee2
 }
 
 .button.button_fill:hover {
-    background: #09BCF2;
-    border-color: #09BCF2;
+    background: #09bcf2;
+    border-color: #09bcf2
 }
 
 .button.button_fill:active {
-    background: #03A1D1;
-    border-color: #03A1D1;
+    background: #03a1d1;
+    border-color: #03a1d1
 }
 
 .button.button_fill.button_disabled {
-    background: #EEE !important;
-    border-color: #EEE !important;
-    color: #D5D7DB !important;
-    cursor: default;
+    background: #eee!important;
+    border-color: #eee!important;
+    color: #d5d7db!important;
+    cursor: default
 }
 
 .button.button_green {
-    background: #00C162;
-    border-color: #00C162;
+    background: #00c162;
+    border-color: #00c162
 }
 
 .button.button_green:hover {
-    background: #06CD6B;
-    border-color: #06CD6B;
+    background: #06cd6b;
+    border-color: #06cd6b
 }
 
 .button.button_green:active {
-    background: #01AC58;
-    border-color: #01AC58;
+    background: #01ac58;
+    border-color: #01ac58
 }
 
 .button:active {
-    line-height: 36px;
+    line-height: 36px
 }
 
 .button.button_inline {
     border: 0px;
-    line-height: 36px;
+    line-height: 36px
 }
 
 .button.button_inline:hover {
-    background: #F6F6F6;
+    background: #f6f6f6
 }
 
 .button.button_inline:active {
-    line-height: 38px;
+    line-height: 38px
 }
 
 .button.button_loading {
-    background: transparent !important;
-    border: 0px !important;
-    color: transparent !important;
+    background: transparent!important;
+    border: 0px!important;
+    color: transparent!important
 }
 
 .button.no_display {
-    display: none;
+    display: none
 }
 
 .follow_btn {
-    border: 1px solid #00AEE2;
+    border: 1px solid #00aee2;
     height: 23px;
     width: 33px;
     border-radius: 15px;
     display: inline-block;
     position: relative;
-    color: #00AEE2;
+    color: #00aee2;
     -o-transition: all 200ms linear;
-    transition: all 200ms linear;
+    transition: all 200ms linear
 }
 
 .follow_btn:after {
     pointer-events: none;
-    font-family: 'SnapsterIcon' !important;
+    font-family: SnapsterIcon!important;
     content: "\e90b";
     position: absolute;
     font-size: 10px;
@@ -399,37 +401,37 @@ a:hover {
     text-align: center;
     width: 100%;
     height: 23px;
-    line-height: 25px;
+    line-height: 25px
 }
 
 .follow_btn.follow_btn_active {
-    background: #00AEE2;
-    color: #fff;
+    background: #00aee2;
+    color: #fff
 }
 
 .follow_btn.follow_btn_active:after {
-    content: "\e90a";
+    content: "\e90a"
 }
 
 .follow_btn.button_loading {
-    -o-transition: none !important;
-    transition: none !important;
-    border: 0px !important;
-    color: #fff !important;
-    background: #fff !important;
+    -o-transition: none!important;
+    transition: none!important;
+    border: 0px!important;
+    color: #fff!important;
+    background: #fff!important
 }
 
 .global_loader_line {
     position: fixed;
     z-index: 110;
     width: 0px;
-    background: #00AEE2;
-    opacity: 0;
+    background: #00aee2;
+    opacity: 0
 }
 
 .global_loader_line_anim {
     -o-transition: all 200ms linear;
-    transition: all 200ms linear;
+    transition: all 200ms linear
 }
 
 .global_box_loader {
@@ -438,29 +440,29 @@ a:hover {
     left: 50%;
     margin: -25px 0px 0px -25px;
     width: 50px;
-    height: 50px;
+    height: 50px
 }
 
 .site_header {
     height: 54px;
     background: #fff;
-    border-bottom: 1px solid #DFE3E9;
+    border-bottom: 1px solid #dfe3e9;
     box-sizing: border-box;
     position: fixed;
     z-index: 100;
     width: 100%;
     top: 0px;
-    left: 0px;
+    left: 0px
 }
 
 .site_header_helper {
     height: 122px;
-    width: 100%;
+    width: 100%
 }
 
 .site_cont {
     width: 1060px;
-    margin: 0px auto;
+    margin: 0px auto
 }
 
 .site_logo {
@@ -468,52 +470,52 @@ a:hover {
     color: #444656;
     font-size: 21px;
     width: 220px;
-    line-height: 53px;
     letter-spacing: 1px;
-    height: 53px;
     padding-left: 15px;
     box-sizing: border-box;
-    display: block;
-    text-decoration: none !important;
+    text-decoration: none!important
+}
+
+.site_logo,
+.head_user_no_logged {
+    line-height: 53px;
+    height: 53px;
+    display: block
 }
 
 .head_user_no_logged {
-    height: 53px;
-    line-height: 53px;
     color: #b7bbc0;
     font-size: 14px;
-    padding: 0px 15px;
-    display: block;
+    padding: 0px 15px
 }
 
 .head_user {
     height: 53px;
-    position: relative;
+    position: relative
 }
 
 .head_user_dd {
     opacity: 0;
     visibility: hidden;
     -webkit-transform: scale(0.98);
-    -ms-transform: scale(0.98);
     -o-transform: scale(0.98);
     transform: scale(0.98);
     top: 68px;
     right: -30px;
     position: absolute;
     background: #fff;
-    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, .15);
     padding: 10px 0px;
     min-width: 160px;
     transition: opacity 100ms linear, visibility 100ms linear, -webkit-transform 80ms linear;
     -o-transition: transform 80ms linear, opacity 100ms linear, visibility 100ms linear, -o-transform 80ms linear;
     transition: transform 80ms linear, opacity 100ms linear, visibility 100ms linear;
     transition: transform 80ms linear, opacity 100ms linear, visibility 100ms linear, -webkit-transform 80ms linear, -o-transform 80ms linear;
-    z-index: 50;
+    z-index: 50
 }
 
 .head_user_dd a {
-    text-decoration: none !important;
+    text-decoration: none!important
 }
 
 .head_user_dd_item {
@@ -523,28 +525,28 @@ a:hover {
     font-weight: 300;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    color: #208FB3;
-    cursor: pointer;
+    color: #208fb3;
+    cursor: pointer
 }
 
 .head_user_dd_item:hover {
-    background: #F6F6F6;
+    background: #f6f6f6
 }
 
 .head_user_dd_item_spec {
-    color: #00C162;
+    color: #00c162
 }
 
 .head_user_dd_arrow_wrap {
-    top: -16px !important;
-    right: 37px !important;
-    border-width: 8px !important;
+    top: -16px!important;
+    right: 37px!important;
+    border-width: 8px!important
 }
 
 .head_user_dd_arrow {
-    border-width: 9px !important;
-    top: -8px !important;
-    right: -9px !important;
+    border-width: 9px!important;
+    top: -8px!important;
+    right: -9px!important
 }
 
 .head_user_over .head_user_dd,
@@ -552,77 +554,75 @@ a:hover {
     opacity: 1;
     visibility: visible;
     -webkit-transform: scale(1);
-    -ms-transform: scale(1);
     -o-transform: scale(1);
-    transform: scale(1);
+    transform: scale(1)
 }
 
 .head_user_ava {
     height: 29px;
     width: 29px;
     border-radius: 14.5px;
-    margin: 12px 0px;
+    margin: 12px 0px
 }
 
 .page_cont_wrap {
-    margin-left: 245px;
+    margin-left: 245px
 }
 
-.top_nav_wrap,
-.right_block {
+.right_block,
+.top_nav_wrap {
     padding: 6px 0px 0px;
     box-sizing: border-box;
-    height: 55px;
+    height: 55px
 }
 
 .top_nav_item {
     padding: 15px 15px 21px;
     text-transform: uppercase;
-    color: #9D9D9E;
-    cursor: pointer;
+    color: #9d9d9e;
+    cursor: pointer
 }
 
 .top_nav_item_active {
-    color: #1B1B1B;
+    color: #1b1b1b;
     font-weight: 600;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .top_nav_item_badge {
     color: #fff;
-    background: #00AEE2;
-    font-weight: bold;
+    background: #00aee2;
+    font-weight: 700;
     padding: 1px 6px;
     margin-left: 5px;
-    border-radius: 20px;
+    border-radius: 20px
 }
 
 .top_nav_item_badge:empty {
-    display: none;
+    display: none
 }
 
 .top_nav_item_back_icon {
     font-size: 6px;
     -webkit-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
     -o-transform: rotate(90deg);
     transform: rotate(90deg);
     display: inline-block;
-    height: 5px;
+    height: 5px
 }
 
 .sn_block {
     background: #fff;
-    border: 1px solid #DFE3E9;
+    border: 1px solid #dfe3e9;
     border-radius: 4px;
     padding: 15px 14px;
-    box-sizing: border-box;
+    box-sizing: border-box
 }
 
 .left_block {
     width: 220px;
-    height: 100px;
+    height: 100px
 }
 
 .left_block_cont,
@@ -630,46 +630,48 @@ a:hover {
     position: fixed;
     top: 121px;
     width: 220px;
-    z-index: 10;
+    z-index: 10
 }
 
 .right_block_cont {
-    width: 220px;
+    width: 220px
 }
 
 .right_block_wrap {
     width: 220px;
-    min-width: 30px;
+    min-width: 30px
 }
 
 .right_block_title {
     margin-bottom: 6px;
-    color: #1B1B1B;
+    color: #1b1b1b;
     padding: 15px 0px;
     font-weight: 500;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    cursor: pointer;
+    cursor: pointer
+}
+
+.right_block_title,
+.right_block_title_num {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }
 
 .right_block_title_num {
-    color: #9D9D9E;
-    font-weight: 300;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    color: #9d9d9e;
+    font-weight: 300
 }
 
 .sn_loader {
     position: relative;
-    margin: 0px auto;
+    margin: 0px auto
 }
 
 .sn_loader:before {
     content: '';
     display: block;
-    padding-top: 100%;
+    padding-top: 100%
 }
 
 .sn_loader_circular {
@@ -678,7 +680,6 @@ a:hover {
     animation: sn_loader_rotate 2s linear infinite;
     height: 100%;
     -webkit-transform-origin: center center;
-    -ms-transform-origin: center center;
     -o-transform-origin: center center;
     transform-origin: center center;
     width: 100%;
@@ -687,100 +688,106 @@ a:hover {
     bottom: 0;
     left: 0;
     right: 0;
-    margin: auto;
+    margin: auto
 }
 
 .sn_loader_path {
-    stroke: #00AEE2;
+    stroke: #00aee2;
     stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;
     -webkit-animation: sn_loader_dash 1.5s ease-in-out infinite;
     -o-animation: sn_loader_dash 1.5s ease-in-out infinite;
     animation: sn_loader_dash 1.5s ease-in-out infinite;
-    stroke-linecap: round;
+    stroke-linecap: round
 }
 
 @-webkit-keyframes sn_loader_rotate {
-    100% {
+    to {
         -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
+        transform: rotate(360deg)
     }
 }
 
 @-o-keyframes sn_loader_rotate {
-    100% {
+    to {
         -o-transform: rotate(360deg);
-        transform: rotate(360deg);
+        transform: rotate(360deg)
     }
 }
 
 @keyframes sn_loader_rotate {
-    100% {
+    to {
         -webkit-transform: rotate(360deg);
         -o-transform: rotate(360deg);
-        transform: rotate(360deg);
+        transform: rotate(360deg)
     }
 }
 
 @-webkit-keyframes sn_loader_dash {
     0% {
         stroke-dasharray: 1, 200;
-        stroke-dashoffset: 0;
+        stroke-dashoffset: 0
     }
     50% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -35px;
+        stroke-dashoffset: -35px
     }
-    100% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -124px;
+    50%,
+    to {
+        stroke-dasharray: 89, 200
+    }
+    to {
+        stroke-dashoffset: -124px
     }
 }
 
 @-o-keyframes sn_loader_dash {
     0% {
         stroke-dasharray: 1, 200;
-        stroke-dashoffset: 0;
+        stroke-dashoffset: 0
     }
     50% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -35px;
+        stroke-dashoffset: -35px
     }
-    100% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -124px;
+    50%,
+    to {
+        stroke-dasharray: 89, 200
+    }
+    to {
+        stroke-dashoffset: -124px
     }
 }
 
 @keyframes sn_loader_dash {
     0% {
         stroke-dasharray: 1, 200;
-        stroke-dashoffset: 0;
+        stroke-dashoffset: 0
     }
     50% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -35px;
+        stroke-dashoffset: -35px
     }
-    100% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -124px;
+    50%,
+    to {
+        stroke-dasharray: 89, 200
+    }
+    to {
+        stroke-dashoffset: -124px
     }
 }
 
 .room_panel_wrap {
     width: 220px;
     min-height: 20px;
-    float: left;
+    float: left
 }
 
 .room_panel_cont {
     padding-top: 55px;
-    top: 121px;
+    top: 121px
 }
 
 .room_panel {
     position: relative;
-    padding-top: 55px;
+    padding-top: 55px
 }
 
 .room_panel_cover {
@@ -792,107 +799,109 @@ a:hover {
     position: relative;
     top: -55px;
     left: 55px;
-    position: absolute;
+    position: absolute
 }
 
 .room_panel_cover div {
     height: 110px;
     line-height: 110px;
-    text-align: center;
     color: #fff;
     font-size: 55px;
-    font-weight: 100;
+    font-weight: 100
+}
+
+.room_panel_cover div,
+.room_panel_title {
+    text-align: center;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .room_panel_title {
     color: #444656;
     font-size: 19px;
-    text-align: center;
     margin-top: 15px;
+    text-decoration: none!important;
+    display: block
+}
+
+.room_panel_title,
+.room_panel_description {
     line-height: 140%;
-    font-weight: normal;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
-    word-wrap: break-word;
-    text-decoration: none !important;
-    display: block;
+    font-weight: 400;
+    word-wrap: break-word
 }
 
 .room_panel_description {
     color: #777;
-    line-height: 140%;
     text-align: center;
     font-size: 15px;
-    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    word-wrap: break-word;
-    margin-top: 7px;
+    margin-top: 7px
 }
 
 .room_panel_description:empty {
-    display: none;
+    display: none
 }
 
 .room_panel_followers {
-    border-top: 1px solid #DFE3E9;
+    border-top: 1px solid #dfe3e9;
     text-align: center;
     padding-top: 15px;
-    margin: 14px -15px 0px;
+    margin: 14px -15px 0px
 }
 
 .room_panel_followers_num {
-    color: #00AEE2;
+    color: #00aee2;
     font-size: 23px;
     line-height: 23px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .room_panel_followers_num_str {
     color: #8d96a2;
     font-size: 12px;
     margin-top: 5px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .room_panel_upload_button {
     margin-top: 15px;
-    width: 100%;
+    width: 100%
 }
 
 .room_panel_upload_button span {
-    margin-right: 7px;
+    margin-right: 7px
 }
 
 .room_panel_follow_btn {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 .room_panel_edit_button {
     font-size: 15px;
     text-align: center;
     padding: 15px 0px;
-    color: #888B95;
+    color: #888b95;
     margin: 10px -14px -15px;
-    border-top: 1px solid #EEEFF1;
+    border-top: 1px solid #eeeff1;
     font-weight: 300;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .room_panel_edit_button:hover {
-    background: #F9FBFE;
+    background: #f9fbfe
 }
 
 .room_panel_edit_button:active {
-    padding: 16px 0px 14px;
+    padding: 16px 0px 14px
 }
 
 .room_panel_edit_button .icon-edit {
     margin-right: 8px;
-    font-size: 13px;
+    font-size: 13px
 }
 
 .room_panel_suggest_btn {
@@ -902,36 +911,36 @@ a:hover {
     font-weight: 300;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .room_panel_suggest_btn span {
-    color: #00C162;
-    font-weight: bold;
+    color: #00c162;
+    font-weight: 700
 }
 
 .room_panel_invite_info {
     font-size: 14px;
     line-height: 150%;
-    cursor: default;
+    cursor: default
 }
 
 .room_panel_invite_info a {
-    font-weight: normal;
+    font-weight: 400
 }
 
 .rooms_list_wrap {
-    width: 570px;
+    width: 570px
 }
 
 .room_item {
     margin-bottom: 15px;
     display: block;
-    text-decoration: none !important;
+    text-decoration: none!important
 }
 
 .room_item:hover {
-    background: #F6F6F6;
+    background: #f6f6f6
 }
 
 .room_item_cover {
@@ -940,7 +949,7 @@ a:hover {
     border-radius: 25px;
     background-size: cover;
     background-repeat: no-repeat;
-    position: relative;
+    position: relative
 }
 
 .room_item_cover div {
@@ -951,11 +960,11 @@ a:hover {
     font-size: 25px;
     font-weight: 100;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .room_item_info {
-    margin-left: 65px;
+    margin-left: 65px
 }
 
 .room_item_title {
@@ -964,17 +973,17 @@ a:hover {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    line-height: 19px;
+    line-height: 19px
 }
 
 .room_item_title span:hover {
-    text-decoration: underline;
+    text-decoration: underline
 }
 
 .room_item_date {
-    color: #9D9D9E;
+    color: #9d9d9e;
     margin-top: 7px;
-    font-size: 14px;
+    font-size: 14px
 }
 
 .room_item_photos {
@@ -982,11 +991,11 @@ a:hover {
     padding: 4px 9px;
     margin: 16px -8px 0px;
     white-space: nowrap;
-    height: 132px;
+    height: 132px
 }
 
 .room_item_photos:empty {
-    display: none;
+    display: none
 }
 
 .room_item_photo {
@@ -999,25 +1008,25 @@ a:hover {
     position: relative;
     display: inline-block;
     float: none;
-    border-radius: 3px;
+    border-radius: 3px
 }
 
 .room_item_photo:first-child {
-    margin-left: 0px;
+    margin-left: 0px
 }
 
 .room_item_photo_anim {
     -o-transition: margin-left 200ms ease;
     transition: margin-left 200ms ease;
-    margin-left: -128.25px !important;
+    margin-left: -128.25px!important
 }
 
 .room_item_photo_anim_run {
-    margin-left: 0px !important;
+    margin-left: 0px!important
 }
 
 .room_item_photo_new {
-    border: 2px solid #fff;
+    border: 2px solid #fff
 }
 
 .room_item_photo_new:after {
@@ -1027,35 +1036,35 @@ a:hover {
     left: -4px;
     width: 128.25px;
     height: 128.25px;
-    border: 2px solid #00AEE2;
+    border: 2px solid #00aee2;
     border-radius: 3px;
-    z-index: 1;
+    z-index: 1
 }
 
 .room_item_badge {
     position: absolute;
-    background: #00AEE2;
+    background: #00aee2;
     color: #fff;
     font-weight: 600;
     padding: 3px 6px;
     border-radius: 10px;
     bottom: -10px;
     right: -9px;
-    z-index: 2;
+    z-index: 2
 }
 
 .room_item_badge:empty {
-    display: none;
+    display: none
 }
 
 .rooms_list_preloader {
     margin: 15px 0px;
-    width: 100%;
+    width: 100%
 }
 
 .right_block_rows {
-    border-bottom: 1px solid #EEEFF1;
-    padding-bottom: 5px;
+    border-bottom: 1px solid #eeeff1;
+    padding-bottom: 5px
 }
 
 .room_item_small {
@@ -1063,11 +1072,11 @@ a:hover {
     margin: 0px -5px;
     border-radius: 5px;
     display: block;
-    text-decoration: none !important;
+    text-decoration: none!important
 }
 
 .room_item_small:hover {
-    background: #E9ECF2;
+    background: #e9ecf2
 }
 
 .room_item_small_cover {
@@ -1076,7 +1085,7 @@ a:hover {
     border-radius: 20px;
     background-size: cover;
     background-repeat: no-repeat;
-    position: relative;
+    position: relative
 }
 
 .room_item_small_cover div {
@@ -1087,42 +1096,43 @@ a:hover {
     font-size: 20px;
     font-weight: 100;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .room_item_small_cont {
-    margin-left: 50px;
+    margin-left: 50px
 }
 
 .room_item_small_title {
-    font-weight: 300;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
-    color: #2576A9;
+    color: #2576a9;
     font-size: 14px;
     letter-spacing: 0.3px;
     line-height: 16px;
-    padding-top: 2px;
+    padding-top: 2px
+}
+
+.room_item_small_title,
+.room_item_small_followers {
+    font-weight: 300;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }
 
 .room_item_small_followers {
-    color: #9D9D9E;
-    margin-top: 6px;
-    font-weight: 300;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    color: #9d9d9e;
+    margin-top: 6px
 }
 
 .rooms_list_publish_wrap {
-    margin: -10px -20px 0px;
+    margin: -10px -20px 0px
 }
 
 .rooms_list_publish_wrap a {
-    text-decoration: none !important;
+    text-decoration: none!important
 }
 
 .room_photos {
-    position: relative;
+    position: relative
 }
 
 .room_view_photo {
@@ -1133,48 +1143,47 @@ a:hover {
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 3px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .room_publishers_wrap {
-    margin-top: 5px;
+    margin-top: 5px
 }
 
 .room_publishers_wrap:empty {
-    display: none;
+    display: none
 }
 
-.room_view_not_photos,
-.page_wrap_message {
+.page_wrap_message,
+.room_view_not_photos {
     font-size: 14px;
     text-align: center;
-    color: #777;
+    color: #777
 }
 
 .page_wrap_message {
-    padding: 150px 30px !important;
+    padding: 150px 30px!important
 }
 
 .room_view_resort_ic {
     font-size: 7px;
-    color: #1B1B1B;
+    color: #1b1b1b;
     margin-left: 9px;
     position: absolute;
     top: 3px;
-    right: 0px;
+    right: 0px
 }
 
 .room_view_asc_sorting {
     -webkit-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
     -o-transform: rotate(180deg);
-    transform: rotate(180deg);
+    transform: rotate(180deg)
 }
 
 .room_view_sort_btn {
     position: relative;
     padding-right: 20px;
-    display: inline-block;
+    display: inline-block
 }
 
 .modal_layout {
@@ -1186,81 +1195,81 @@ a:hover {
     bottom: 0px;
     right: 0px;
     z-index: 150;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, .7);
     overflow-y: auto;
     padding: 0px 30px 50px;
-    box-sizing: border-box;
+    box-sizing: border-box
 }
 
 .box_loading {
-    opacity: 0;
+    opacity: 0
 }
 
 .modal_cont {
     background: #fff;
     width: 800px;
     margin: 0px auto;
-    position: relative;
+    position: relative
 }
 
 .modal_header {
     min-height: 56px;
     background: #fff;
-    border-bottom: 2px solid #C8D4DD;
-    box-sizing: border-box;
+    border-bottom: 2px solid #c8d4dd;
+    box-sizing: border-box
 }
 
 .modal_header.fixed {
     top: 0px;
-    z-index: 102;
+    z-index: 102
 }
 
 .modal_header_helper {
     width: 100%;
-    height: 56px;
+    height: 56px
 }
 
 .modal_header_title,
 .modal_tab {
-    color: #00AEE2;
+    color: #00aee2;
     font-size: 14px;
     box-sizing: border-box;
+    height: 58px;
+    border-bottom: 2px solid #00aee2;
+    margin-bottom: -2px
+}
+
+.modal_header_title,
+.modal_tab,
+.modal_header_close {
     padding: 0px 20px;
     line-height: 58px;
-    height: 58px;
-    border-bottom: 2px solid #00AEE2;
-    margin-bottom: -2px;
     text-transform: uppercase;
     overflow: hidden;
-    position: relative;
+    position: relative
 }
 
 .modal_header_close {
-    line-height: 58px;
     height: 56px;
-    padding: 0px 20px;
     cursor: pointer;
-    color: #B7BEC2;
-    text-transform: uppercase;
-    position: relative;
-    overflow: hidden;
+    color: #b7bec2
 }
 
 .modal_header_close:hover {
-    color: #9AA9B2;
+    color: #9aa9b2
 }
 
 .modal_header_close:active {
-    line-height: 60px;
+    line-height: 60px
 }
 
 .modal_tabs_wrap {
-    margin-bottom: -2px;
+    margin-bottom: -2px
 }
 
 .modal_tabs {
     height: 56px;
-    position: relative;
+    position: relative
 }
 
 .modal_tabs_line {
@@ -1269,38 +1278,38 @@ a:hover {
     left: 0px;
     height: 2px;
     width: 50px;
-    background-color: #00AEE2;
+    background-color: #00aee2;
     -o-transition: left 200ms ease, width 200ms ease;
-    transition: left 200ms ease, width 200ms ease;
+    transition: left 200ms ease, width 200ms ease
 }
 
 .modal_tab {
     border-color: transparent;
     cursor: pointer;
-    color: #97A1A7;
+    color: #97a1a7;
     -o-transition: color 200ms ease;
-    transition: color 200ms ease;
+    transition: color 200ms ease
 }
 
 .modal_tab.modal_tab_active {
-    color: #00AEE2;
+    color: #00aee2
 }
 
 .modal_cont_result {
-    padding: 20px;
+    padding: 20px
 }
 
 .modal_error {
     font-size: 14px;
     color: #777;
     padding: 35px 20px 30px;
-    line-height: 150%;
+    line-height: 150%
 }
 
 .modal_warning_result {
     font-size: 14px;
     padding: 20px;
-    line-height: 150%;
+    line-height: 150%
 }
 
 .modal_footer {
@@ -1309,28 +1318,28 @@ a:hover {
     position: absolute;
     bottom: 0px;
     background: #fff;
-    z-index: 102;
+    z-index: 102
 }
 
 .modal_footer:empty {
-    display: none;
+    display: none
 }
 
 .modal_footer .button {
-    margin-left: 10px;
+    margin-left: 10px
 }
 
 .footer_fix {
     position: fixed;
-    box-shadow: 0px 0px 5px 2px rgba(151, 161, 167, 0.19);
+    box-shadow: 0px 0px 5px 2px hsla(203, 8%, 62%, .19)
 }
 
 .modal_footer_helper {
-    width: 100%;
+    width: 100%
 }
 
 .modal_footer_right {
-    text-align: right;
+    text-align: right
 }
 
 .room_follower {
@@ -1339,7 +1348,7 @@ a:hover {
     width: 120px;
     box-sizing: border-box;
     display: block;
-    text-decoration: none !important;
+    text-decoration: none!important
 }
 
 .room_follower_cover {
@@ -1348,7 +1357,7 @@ a:hover {
     border-radius: 50px;
     background-size: cover;
     background-repeat: no-repeat;
-    position: relative;
+    position: relative
 }
 
 .room_follower_cover div {
@@ -1359,48 +1368,48 @@ a:hover {
     font-size: 50px;
     font-weight: 100;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .room_follower_name {
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale
 }
 
-.room_follower_name,
-.room_follower_lname {
+.room_follower_lname,
+.room_follower_name {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     margin-top: 10px;
-    line-height: 15px;
+    line-height: 15px
 }
 
 .room_follower_lname {
-    margin-top: 5px;
+    margin-top: 5px
 }
 
 .modal_loader .sn_loader {
-    padding: 100px 0px;
+    padding: 100px 0px
 }
 
 .photo_view_wrap {
     padding: 0px 60px;
     box-sizing: border-box;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .photo_view_wrap .modal_cont_result {
     padding: 0px;
-    background: #1e1e1e;
+    background: #1e1e1e
 }
 
 .sn_photo_view_image_wr {
     cursor: pointer;
     width: 100%;
     height: 100%;
-    position: relative;
+    position: relative
 }
 
 #sn_pw_image {
@@ -1408,11 +1417,11 @@ a:hover {
     margin: 0px auto;
     display: block;
     position: relative;
-    z-index: 1;
+    z-index: 1
 }
 
 #sn_pw_image.no_display {
-    display: none;
+    display: none
 }
 
 .sn_pw_deleted {
@@ -1421,40 +1430,39 @@ a:hover {
     left: 0px;
     width: 100%;
     text-align: center;
-    color: #A6A6A6;
+    color: #a6a6a6;
     margin-top: -7px;
-    font-size: 14px;
+    font-size: 14px
 }
 
 .sn_pw_info {
     width: 330px;
     background-color: #fff;
     cursor: default;
-    position: relative;
+    position: relative
 }
 
 .sn_pw_edit_tools {
     position: absolute;
     top: 15px;
     right: 10px;
-    color: #A6A6A6;
-    font-size: 4px;
-    padding: 7px;
+    padding: 7px
 }
 
+.sn_pw_edit_tools,
 .sn_pw_edit_tools .icon-actions {
-    color: #A6A6A6;
-    font-size: 4px;
+    color: #a6a6a6;
+    font-size: 4px
 }
 
 .sn_pw_edit_tools .head_user_dd {
     top: 30px;
-    right: -31px;
+    right: -31px
 }
 
 .sn_pw_info_head {
     background-color: #f6f6f6;
-    padding: 13px;
+    padding: 13px
 }
 
 .sn_pw_info_author_cover {
@@ -1463,7 +1471,7 @@ a:hover {
     border-radius: 25px;
     background-size: cover;
     background-repeat: no-repeat;
-    position: relative;
+    position: relative
 }
 
 .sn_pw_info_author_cover div {
@@ -1474,36 +1482,36 @@ a:hover {
     font-size: 25px;
     font-weight: 100;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .sn_pw_author_info {
     margin-left: 60px;
-    padding-top: 9px;
+    padding-top: 9px
 }
 
 .sn_pw_author_info_name {
-    font-size: 14px;
+    font-size: 14px
 }
 
 .sn_pw_date {
     color: #777;
-    margin-top: 7px;
+    margin-top: 7px
 }
 
 .sn_pw_descr_wrap {
-    position: relative;
+    position: relative
 }
 
 .sn_pw_descr_text {
     font-size: 14px;
     line-height: 160%;
     word-wrap: break-word;
-    margin-top: 12px;
+    margin-top: 12px
 }
 
 .sn_pw_descr_text:empty {
-    display: none;
+    display: none
 }
 
 .sn_pw_descr_full_text {
@@ -1514,23 +1522,23 @@ a:hover {
     background: #f6f6f6;
     z-index: 50;
     padding: 0px 13px 13px;
-    margin: -12px -13px 0px;
+    margin: -12px -13px 0px
 }
 
 .sn_pw_descr_full_text:empty {
-    display: none;
+    display: none
 }
 
 .line_spliter {
     height: 6px;
-    width: 100%;
+    width: 100%
 }
 
 .sn_pw_descr_expand {
     color: #777;
     margin: 5px 0px -5px;
     padding: 5px 0px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .sn_pw_heart_over_area {
@@ -1541,17 +1549,17 @@ a:hover {
     height: 40%;
     opacity: 0;
     cursor: pointer;
-    z-index: 3;
+    z-index: 3
 }
 
 .sn_pw_heart_over_area:hover {
-    opacity: 1;
+    opacity: 1
 }
 
-.sn_pw_heart_over_area,
-.sn_pw_heart {
+.sn_pw_heart,
+.sn_pw_heart_over_area {
     -o-transition: opacity 250ms ease;
-    transition: opacity 250ms ease;
+    transition: opacity 250ms ease
 }
 
 .sn_pw_heart_wrap {
@@ -1561,7 +1569,7 @@ a:hover {
     top: 50px;
     left: 50%;
     margin-left: -38px;
-    line-height: 100%;
+    line-height: 100%
 }
 
 .sn_pw_heart {
@@ -1571,35 +1579,33 @@ a:hover {
     text-align: center;
     padding-top: 3px;
     -webkit-transform: scale(1);
-    -ms-transform: scale(1);
     -o-transform: scale(1);
     transform: scale(1);
     transition: -webkit-transform 200ms ease;
     -o-transition: transform 200ms ease, -o-transform 200ms ease;
     transition: transform 200ms ease;
-    transition: transform 200ms ease, -webkit-transform 200ms ease, -o-transform 200ms ease;
+    transition: transform 200ms ease, -webkit-transform 200ms ease, -o-transform 200ms ease
 }
 
 .sn_pw_heart_wrap:hover .sn_pw_heart {
     -webkit-transform: scale(1.3);
-    -ms-transform: scale(1.3);
     -o-transform: scale(1.3);
-    transform: scale(1.3);
+    transform: scale(1.3)
 }
 
 .sn_pw_heart_anim .sn_pw_heart {
     -webkit-animation: like_bounce 0.5s;
     -o-animation: like_bounce 0.5s;
-    animation: like_bounce 0.5s;
+    animation: like_bounce 0.5s
 }
 
 .sn_pw_heart_liked {
     opacity: 1;
-    color: #ee5959;
+    color: #ee5959
 }
 
 .sn_pw_likes_wrap {
-    padding: 13px;
+    padding: 13px
 }
 
 .sn_pw_like_ic,
@@ -1609,7 +1615,7 @@ a:hover {
     float: left;
     margin-right: 10px;
     cursor: pointer;
-    position: relative;
+    position: relative
 }
 
 .sn_pw_liked_ic {
@@ -1618,64 +1624,63 @@ a:hover {
     top: 0px;
     left: 0px;
     -webkit-transform: scale(1);
-    -ms-transform: scale(1);
     -o-transform: scale(1);
-    transform: scale(1);
+    transform: scale(1)
 }
 
 .sn_pw_liked_ic_anim .sn_pw_liked_ic {
     -webkit-animation: like_bounce 0.5s;
     -o-animation: like_bounce 0.5s;
-    animation: like_bounce 0.5s;
+    animation: like_bounce 0.5s
 }
 
 .sn_pw_liked_ic_anim {
-    color: #fff;
+    color: #fff
 }
 
 @-webkit-keyframes like_bounce {
     0% {
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     30% {
         -webkit-transform: scale(1.3);
-        transform: scale(1.3);
+        transform: scale(1.3)
     }
     60% {
         -webkit-transform: scale(0.8);
-        transform: scale(0.8);
+        transform: scale(0.8)
     }
     80% {
         -webkit-transform: scale(1.06);
-        transform: scale(1.06);
+        transform: scale(1.06)
     }
-    100% {
+    to {
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
 }
 
 @-o-keyframes like_bounce {
     0% {
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     30% {
         -o-transform: scale(1.3);
-        transform: scale(1.3);
+        transform: scale(1.3)
     }
     60% {
         -o-transform: scale(0.8);
-        transform: scale(0.8);
+        transform: scale(0.8)
     }
     80% {
         -o-transform: scale(1.06);
-        transform: scale(1.06);
+        transform: scale(1.06)
     }
-    100% {
+    to {
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
 }
 
@@ -1683,63 +1688,63 @@ a:hover {
     0% {
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     30% {
         -webkit-transform: scale(1.3);
         -o-transform: scale(1.3);
-        transform: scale(1.3);
+        transform: scale(1.3)
     }
     60% {
         -webkit-transform: scale(0.8);
         -o-transform: scale(0.8);
-        transform: scale(0.8);
+        transform: scale(0.8)
     }
     80% {
         -webkit-transform: scale(1.06);
         -o-transform: scale(1.06);
-        transform: scale(1.06);
+        transform: scale(1.06)
     }
-    100% {
+    to {
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
 }
 
 .sn_pw_like_active .sn_pw_liked_ic {
-    opacity: 1;
+    opacity: 1
 }
 
 .sn_pw_likes_str {
     margin-top: 3px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .sn_pw_likes_str a {
-    font-weight: bold;
+    font-weight: 700
 }
 
 .sn_pw_views {
-    color: #A6A6A6;
-    margin: 18px 13px 0px 0px;
+    color: #a6a6a6;
+    margin: 18px 13px 0px 0px
 }
 
 .sn_pw_views .icon-views {
     margin-right: 4px;
-    font-size: 12px;
+    font-size: 12px
 }
 
 .sn_pw_loader {
-    background: transparent;
+    background: transparent
 }
 
 .box_preloader {
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 .box_preloader:empty {
-    display: none;
+    display: none
 }
 
 .sn_pw_prev_wrap {
@@ -1747,14 +1752,14 @@ a:hover {
     top: 0px;
     left: 0px;
     height: 100%;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .sn_pw_next_wrap {
     width: 100px;
     height: 120px;
     top: 50%;
-    margin-top: -60px;
+    margin-top: -60px
 }
 
 .sn_pw_pagination_loader {
@@ -1763,20 +1768,20 @@ a:hover {
     right: 10px;
     width: 30px;
     height: 30px;
-    margin-top: -14px;
+    margin-top: -14px
 }
 
 .sn_pw_pagination_loader_next {
     right: initial;
-    left: 10px;
+    left: 10px
 }
 
 .sn_pw_wrap_disabled {
-    cursor: default;
+    cursor: default
 }
 
 .sn_pw_wrap_pending .sn_pw_prev_wrap_arrow {
-    display: none;
+    display: none
 }
 
 .sn_pw_prev_wrap_arrow {
@@ -1788,25 +1793,24 @@ a:hover {
     opacity: 0.3;
     -o-transition: opacity 300ms ease;
     transition: opacity 300ms ease;
-    margin-top: -19px;
+    margin-top: -19px
 }
 
 .sn_pw_next_wrap .sn_pw_prev_wrap_arrow {
-    -ms-transform: rotate(-180deg);
     -o-transform: rotate(-180deg);
     transform: rotate(-180deg);
     -webkit-transform: rotate(-180deg);
     -moz-transform: rotate(-180deg);
     left: 18px;
-    right: initial;
+    right: initial
 }
 
 .sn_pw_prev_wrap:hover .sn_pw_prev_wrap_arrow {
-    opacity: 1;
+    opacity: 1
 }
 
 .sn_pw_wrap_disabled .sn_pw_prev_wrap_arrow {
-    opacity: 0.05 !important;
+    opacity: 0.05!important
 }
 
 .sn_pw_prev_wrap_arrow_line {
@@ -1815,22 +1819,20 @@ a:hover {
     position: absolute;
     top: 0px;
     left: 9px;
-    -ms-transform: rotate(48deg);
     -o-transform: rotate(48deg);
     transform: rotate(48deg);
     -webkit-transform: rotate(48deg);
     -moz-transform: rotate(48deg);
     background: #fff;
-    border-radius: 10px;
+    border-radius: 10px
 }
 
 .sn_pw_prev_wrap_arrow_line:last-child {
-    -ms-transform: rotate(-48deg);
     -o-transform: rotate(-48deg);
     transform: rotate(-48deg);
     -webkit-transform: rotate(-48deg);
     -moz-transform: rotate(-48deg);
-    top: 16px;
+    top: 16px
 }
 
 .sn_pw_close {
@@ -1844,7 +1846,7 @@ a:hover {
     -o-transition: opacity 200ms ease;
     transition: opacity 200ms ease;
     pointer-events: none;
-    opacity: 1;
+    opacity: 1
 }
 
 .sn_pw_close .sn_pw_close_line {
@@ -1855,40 +1857,38 @@ a:hover {
     top: 0px;
     left: 13px;
     -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
-    transform: rotate(45deg);
+    transform: rotate(45deg)
 }
 
 .sn_pw_close .sn_pw_close_line2 {
     -webkit-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
     -o-transform: rotate(-45deg);
-    transform: rotate(-45deg);
+    transform: rotate(-45deg)
 }
 
 .photo_view_wrap .modal_cont_result:hover .sn_pw_close {
-    opacity: 0.7;
+    opacity: 0.7
 }
 
 .pw_comment_num {
     color: #9ea0a2;
     font-size: 13px;
     padding: 18px 13px 5px;
-    text-transform: uppercase;
+    text-transform: uppercase
 }
 
 .pw_comments_wrap {
-    position: relative;
+    position: relative
 }
 
 .pw_comments_wrap .sn_scroll_slider_wrap {
-    right: 4px;
+    right: 4px
 }
 
 .comment {
     padding: 10px 13px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .comment_author_cover {
@@ -1897,7 +1897,7 @@ a:hover {
     border-radius: 17.5px;
     background-size: cover;
     background-repeat: no-repeat;
-    position: relative;
+    position: relative
 }
 
 .comment_author_cover div {
@@ -1908,36 +1908,36 @@ a:hover {
     font-size: 17.5px;
     font-weight: 100;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .comment_cont {
     margin-left: 10px;
-    width: 259px;
+    width: 259px
 }
 
 .comment_cont:empty {
-    display: none;
+    display: none
 }
 
 .comment_author_name {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    line-height: 15px;
+    line-height: 15px
 }
 
 .comment_text {
     line-height: 150%;
-    margin-top: 3px;
+    margin-top: 3px
 }
 
 .comment_date_wrap {
-    position: relative;
+    position: relative
 }
 
 .comment_date {
-    color: #c5c5c5;
+    color: #c5c5c5
 }
 
 .comment_delete {
@@ -1945,44 +1945,44 @@ a:hover {
     height: 12px;
     cursor: pointer;
     position: static;
-    pointer-events: auto;
+    pointer-events: auto
 }
 
 .comment_delete .sn_pw_close_line {
     background: #777;
     width: 2px;
-    left: 5px;
+    left: 5px
 }
 
 .comment_own {
-    cursor: default;
+    cursor: default
 }
 
 .comment_own:hover .comment_date {
-    display: none;
+    display: none
 }
 
 .comment_own:hover .comment_delete {
-    display: block;
+    display: block
 }
 
 .deleted_wrap {
     padding: 11px 0px;
     color: #777;
-    display: none;
+    display: none
 }
 
 .comment_deleted .comment_cont_result {
-    display: none;
+    display: none
 }
 
 .comment_deleted .deleted_wrap {
-    display: block;
+    display: block
 }
 
 .pw_preloader {
     text-align: center;
-    padding: 10px 0px;
+    padding: 10px 0px
 }
 
 .pw_comment_form {
@@ -1991,13 +1991,13 @@ a:hover {
     padding-top: 24px;
     position: absolute;
     bottom: 0px;
-    left: 0px;
+    left: 0px
 }
 
 .comment_form_cover {
-    position: absolute !important;
+    position: absolute!important;
     top: 13px;
-    left: 13px;
+    left: 13px
 }
 
 .comment_form_area_placeholder {
@@ -2008,7 +2008,7 @@ a:hover {
     display: none;
     pointer-events: none;
     -o-transition: color 200ms ease;
-    transition: color 200ms ease;
+    transition: color 200ms ease
 }
 
 .comment_form_area {
@@ -2018,47 +2018,43 @@ a:hover {
     width: 100%;
     overflow-y: auto;
     line-height: 140%;
-    overflow-x: hidden;
+    overflow-x: hidden
 }
 
 .comment_form_area:empty~.comment_form_area_placeholder {
-    display: block;
+    display: block
 }
 
 .comment_form_area:focus~.comment_form_area_placeholder {
-    color: #B3B9C4;
+    color: #b3b9c4
 }
 
-.comment_form_area_placeholder,
-.comment_form_area {
-    padding-left: 45px;
+.comment_form_area,
+.comment_form_area_placeholder {
+    padding-left: 45px
 }
 
 .pw_video {
-    position: absolute;
-    top: 0px;
-    left: 0px;
     width: 100%;
     height: 100%;
     z-index: 2;
-    background: #1e1e1e;
+    background: #1e1e1e
 }
 
-.pw_video video {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-}
-
+.pw_video,
+.pw_video video,
 .pw_video_play_control {
     position: absolute;
     top: 0px;
-    left: 0px;
+    left: 0px
+}
+
+.pw_video_play_control {
     width: 80px;
     height: 80px;
     z-index: 4;
     opacity: 0;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .pw_video_play_control div {
@@ -2068,32 +2064,32 @@ a:hover {
     top: 15px;
     left: 15px;
     opacity: .7;
-    pointer-events: none;
+    pointer-events: none
 }
 
 .pw_video_play_control,
 .pw_video_play_control div {
     -o-transition: opacity 200ms ease;
-    transition: opacity 200ms ease;
+    transition: opacity 200ms ease
 }
 
 .pw_video_play_control:hover div {
-    opacity: 1;
+    opacity: 1
 }
 
 .pw_video_play_control.sound {
     left: initial;
-    right: 0px;
+    right: 0px
 }
 
 .pw_video_play_control.sound div {
     left: initial;
     right: 15px;
-    font-size: 24px;
+    font-size: 24px
 }
 
 .sn_photo_view_image_wr:hover .pw_video_play_control {
-    opacity: 1;
+    opacity: 1
 }
 
 .sn_scroll_slider_wrap {
@@ -2105,11 +2101,11 @@ a:hover {
     z-index: 51;
     -o-transition: background 200ms ease;
     transition: background 200ms ease;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .sn_scroll_wrap:hover .sn_scroll_slider_wrap {
-    background: rgba(235, 235, 245, 0.4);
+    background: rgba(235, 235, 245, .4)
 }
 
 .sn_scroll_slider {
@@ -2118,82 +2114,74 @@ a:hover {
     left: 1px;
     width: 6px;
     height: 0px;
-    background: #DAE1E8;
-    border-radius: 10px;
+    background: #dae1e8;
+    border-radius: 10px
 }
 
 .sn_hide_scroll .sn_scroll_slider_wrap {
-    display: none;
+    display: none
 }
 
 .search_wrap {
     position: relative;
-    margin-left: 25px;
+    margin-left: 25px
 }
 
 .search_input {
     border: 0px;
     border-radius: 20px;
     width: 210px;
-    background: #F1F2F4;
+    background: #f1f2f4;
     padding: 10px 20px 10px 35px;
     margin-top: 10px;
     outline: none;
-    border: 1px solid #F7F8F9;
+    border: 1px solid #f7f8f9;
     -o-transition: all 200ms ease;
     transition: all 200ms ease;
     height: 32px;
-    line-height: 13px;
+    line-height: 13px
 }
 
 .search_input::-webkit-input-placeholder {
-    color: #9C9FA4;
-    padding-top: 3px;
+    color: #9c9fa4;
+    padding-top: 3px
 }
 
-.search_input::-moz-placeholder {
-    color: #9C9FA4;
-    padding-top: 3px;
-}
-
+.search_input::-moz-placeholder,
 .search_input:-moz-placeholder {
-    color: #9C9FA4;
-    padding-top: 3px;
+    color: #9c9fa4;
+    padding-top: 3px
 }
 
 .search_input:-ms-input-placeholder {
-    color: #9C9FA4;
-    padding-top: 3px;
+    color: #9c9fa4;
+    padding-top: 3px
 }
 
 .search_input~.placeholder .ph_content {
-    color: #9C9FA4;
-    padding-top: 3px;
+    color: #9c9fa4;
+    padding-top: 3px
 }
 
 .search_input::-webkit-input-placeholder {
-    color: #9C9FA4;
-    padding-top: 3px;
+    color: #9c9fa4;
+    padding-top: 3px
 }
 
-.search_input:-moz-placeholder {
-    color: #9C9FA4;
-    padding-top: 3px;
-}
-
+.search_input:-moz-placeholder,
 .search_input::-moz-placeholder {
-    color: #9C9FA4;
-    padding-top: 3px;
+    color: #9c9fa4;
+    padding-top: 3px
 }
 
 .search_input:-ms-input-placeholder {
-    color: #9C9FA4;
-    padding-top: 3px;
+    color: #9c9fa4;
+    padding-top: 3px
 }
 
 .search_input:focus {
-    border-color: #CACACA;
-    background: #fff;
+    border-color: #cacaca;
+    background: #fff
 }
 
 .search_loupe {
@@ -2201,8 +2189,8 @@ a:hover {
     top: 21px;
     left: 15px;
     pointer-events: none;
-    color: #888B95;
-    font-size: 12px;
+    color: #888b95;
+    font-size: 12px
 }
 
 .search_result_wrap {
@@ -2212,42 +2200,40 @@ a:hover {
     position: absolute;
     top: 63px;
     left: 0px;
-    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, .15);
     padding-bottom: 7px;
     opacity: 0;
     visibility: hidden;
     -webkit-transform: scale(0.98);
-    -ms-transform: scale(0.98);
     -o-transform: scale(0.98);
-    transform: scale(0.98);
+    transform: scale(0.98)
 }
 
 .search_result_wrap_shown {
     opacity: 1;
     visibility: visible;
     -webkit-transform: scale(1);
-    -ms-transform: scale(1);
     -o-transform: scale(1);
-    transform: scale(1);
+    transform: scale(1)
 }
 
 .search_result_title {
-    color: #A6A6A6;
+    color: #a6a6a6;
     font-size: 14px;
     font-weight: 300;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    padding: 22px 20px 7px;
+    padding: 22px 20px 7px
 }
 
 .search_item {
     padding: 10px 20px;
     display: block;
-    text-decoration: none !important;
+    text-decoration: none!important
 }
 
 .search_item:hover {
-    background: #F6F6F6;
+    background: #f6f6f6
 }
 
 .search_item_cover {
@@ -2256,7 +2242,7 @@ a:hover {
     border-radius: 20px;
     background-size: cover;
     background-repeat: no-repeat;
-    position: relative;
+    position: relative
 }
 
 .search_item_cover div {
@@ -2267,11 +2253,11 @@ a:hover {
     font-size: 20px;
     font-weight: 100;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .search_item_cont {
-    margin-left: 50px;
+    margin-left: 50px
 }
 
 .search_item_title {
@@ -2280,25 +2266,25 @@ a:hover {
     text-overflow: ellipsis;
     white-space: nowrap;
     line-height: 16px;
-    padding-top: 4px;
+    padding-top: 4px
 }
 
 .search_item_followers {
-    color: #A6A6A6;
+    color: #a6a6a6;
     font-weight: 300;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    margin-top: 5px;
+    margin-top: 5px
 }
 
 .search_follow_btn_wrap {
     width: 50px;
     height: 40px;
-    text-align: right;
+    text-align: right
 }
 
 .search_follow_btn_wrap .follow_btn {
-    margin-top: 9px;
+    margin-top: 9px
 }
 
 .search_close_wrap {
@@ -2307,7 +2293,7 @@ a:hover {
     right: 0px;
     height: 30px;
     width: 30px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .search_close {
@@ -2316,25 +2302,25 @@ a:hover {
     right: 20px;
     width: 12px;
     height: 12px;
-    pointer-events: auto;
+    pointer-events: auto
 }
 
 .search_close .sn_pw_close_line {
-    background: #888B95;
-    width: 2px;
+    background: #888b95;
+    width: 2px
 }
 
 .search_empty {
     font-weight: 300;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    color: #A6A6A6;
+    color: #a6a6a6;
     text-align: center;
-    padding: 30px 10px;
+    padding: 30px 10px
 }
 
 .search_extended_item {
-    padding: 10px;
+    padding: 10px
 }
 
 .search_extended_item_cover {
@@ -2343,7 +2329,7 @@ a:hover {
     border-radius: 50px;
     background-size: cover;
     background-repeat: no-repeat;
-    position: relative;
+    position: relative
 }
 
 .search_extended_item_cover div {
@@ -2354,26 +2340,26 @@ a:hover {
     font-size: 50px;
     font-weight: 100;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .search_extended_item_cont {
-    margin-left: 115px;
+    margin-left: 115px
 }
 
 .search_extended_item_title {
     font-size: 17px;
     padding-top: 7px;
-    line-height: 20px;
+    line-height: 20px
 }
 
 .search_extended_item_followers {
     font-size: 15px;
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 .search_extended_follow_btn {
-    margin-top: 14px;
+    margin-top: 14px
 }
 
 .search_extended_photo {
@@ -2382,91 +2368,88 @@ a:hover {
     background-size: cover;
     border-radius: 3px;
     margin-left: 7px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .upload_box {
-    border-radius: 2px;
+    border-radius: 2px
 }
 
 .upload_preview {
     width: 290px;
     height: 300px;
-    background: #F1F6F9;
+    background: #f1f6f9;
     border-radius: 3px;
-    background-color: #F1F6F9;
-    background-size: cover;
+    background-color: #f1f6f9;
+    background-size: cover
 }
 
 .upload_info {
-    width: 355px;
+    width: 355px
 }
 
 .upload_progress {
-    background: #F1F6F9;
+    background: #f1f6f9;
     height: 40px;
     width: 100%;
     border-radius: 3px;
     position: relative;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .upload_progress_line {
-    background: #CCE2EC;
+    background: #cce2ec;
     width: 0%;
     height: 100%;
     top: 0px;
     left: 0px;
     position: absolute;
-    z-index: 1;
+    z-index: 1
 }
 
 .upload_progress_str {
-    color: #55A1BE;
-    font-size: 14px;
+    color: #55a1be;
     text-transform: uppercase;
     text-align: center;
-    font-weight: 600;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
     height: 40px;
     line-height: 41px;
     letter-spacing: .5px;
     z-index: 2;
-    position: relative;
+    position: relative
+}
+
+.upload_progress_str,
+.upload_label {
+    font-size: 14px;
+    font-weight: 600;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }
 
 .upload_label {
-    color: #00AEE2;
-    font-weight: 600;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
-    font-size: 14px;
-    padding: 20px 0px 15px;
+    color: #00aee2;
+    padding: 20px 0px 15px
 }
 
 .upload_descr {
     height: 111px;
     width: 100%;
     font-size: 14px;
-    resize: none;
+    resize: none
 }
 
 .upload_export_wrap {
-    padding: 20px 0px;
+    padding: 20px 0px
 }
 
-.upload_export_wrap .dropdown {
-    font-size: 14px;
-}
-
+.upload_export_wrap .dropdown,
 .upload_export_wrap .checkbox {
-    font-size: 14px;
+    font-size: 14px
 }
 
 .upload_buttons_wrap {
     text-align: right;
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 .upload_input_file {
@@ -2477,21 +2460,25 @@ a:hover {
     position: absolute;
     top: 0px;
     left: 0px;
-    background: red;
+    background: red
 }
 
 #upload_save_btn {
-    margin-left: 7px;
+    margin-left: 7px
 }
 
 .sn_notify_btn {
     height: 53px;
     width: 53px;
     position: relative;
-    -o-transition: color 200ms ease;
-    transition: color 200ms ease;
     cursor: pointer;
-    z-index: 100;
+    z-index: 100
+}
+
+.sn_notify_btn,
+.sn_notify_btn_ic {
+    -o-transition: color 200ms ease;
+    transition: color 200ms ease
 }
 
 .sn_notify_btn_ic {
@@ -2503,13 +2490,11 @@ a:hover {
     font-size: 17px;
     line-height: 53px;
     text-align: center;
-    color: #b7bbc0;
-    -o-transition: color 200ms ease;
-    transition: color 200ms ease;
+    color: #b7bbc0
 }
 
 .sn_notify_btn_ic:hover {
-    color: #8B8C8E;
+    color: #8b8c8e
 }
 
 .sn_notify_btn.sn_notify_btn_unread:after {
@@ -2523,11 +2508,11 @@ a:hover {
     right: 18.5895px;
     position: absolute;
     border: 1px solid #fff;
-    pointer-events: none;
+    pointer-events: none
 }
 
 .sn_notify_btn_shown .sn_notify_btn_ic {
-    color: #00AEE2;
+    color: #00aee2
 }
 
 .notify_pad {
@@ -2536,73 +2521,71 @@ a:hover {
     background: #fff;
     width: 420px;
     right: -89px;
-    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, .15);
     opacity: 0;
     cursor: default;
     -webkit-transform: scale(0.98);
-    -ms-transform: scale(0.98);
     -o-transform: scale(0.98);
     transform: scale(0.98);
-    visibility: hidden;
+    visibility: hidden
 }
 
 .notify_pad.notify_pad_shown {
     opacity: 1;
     -webkit-transform: scale(1);
-    -ms-transform: scale(1);
     -o-transform: scale(1);
     transform: scale(1);
-    visibility: visible;
+    visibility: visible
 }
 
 .notify_pad_cont {
-    position: relative;
+    position: relative
 }
 
 .notify_pad_cont .sn_scroll_slider_wrap {
     right: 5px;
     opacity: 0;
     -o-transition: opacity 100ms linear;
-    transition: opacity 100ms linear;
+    transition: opacity 100ms linear
 }
 
 .notify_pad_cont:hover .sn_scroll_slider_wrap {
-    opacity: 1;
+    opacity: 1
 }
 
-.notify_pad_arrow_wrap,
-.notify_pad_arrow {
+.notify_pad_arrow,
+.notify_pad_arrow_wrap {
     width: 0px;
     height: 0px;
     position: absolute;
     top: -20px;
     right: 104px;
     border: 10px solid transparent;
-    border-bottom-color: #E8E9EA;
+    border-bottom-color: #e8e9ea
 }
 
 .notify_pad_arrow {
     border-bottom-color: #fff;
     border-width: 9px;
     top: -8px;
-    right: -9px;
+    right: -9px
 }
 
 .notfiy_pad_scroll {
-    max-height: 390px;
+    max-height: 390px
 }
 
 .notfiy_pad_loader {
-    padding: 50px 0px;
+    padding: 50px 0px
 }
 
 .notfiy_pad_item_wrap {
-    padding: 0px 15px;
+    padding: 0px 15px
 }
 
 .notfiy_pad_item {
     padding: 13px 0px;
-    border-bottom: 1px solid #EEF0F1;
+    border-bottom: 1px solid #eef0f1
 }
 
 .notfiy_pad_cover {
@@ -2611,7 +2594,7 @@ a:hover {
     border-radius: 23px;
     background-size: cover;
     background-repeat: no-repeat;
-    position: relative;
+    position: relative
 }
 
 .notfiy_pad_cover div {
@@ -2622,11 +2605,11 @@ a:hover {
     font-size: 23px;
     font-weight: 100;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .notfiy_pad_item_cont {
-    margin-left: 56px;
+    margin-left: 56px
 }
 
 .notfiy_pad_item_text {
@@ -2635,21 +2618,23 @@ a:hover {
     word-wrap: break-word;
     margin-right: 56px;
     line-height: 150%;
-    color: #A6A6A6;
+    color: #a6a6a6;
     font-weight: 300;
+    letter-spacing: 0.3px
+}
+
+.notfiy_pad_item_text,
+.notfiy_pad_item_text a {
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
-    letter-spacing: 0.3px;
+    -moz-osx-font-smoothing: auto
 }
 
 .notfiy_pad_item_text a {
-    font-weight: 600;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    font-weight: 600
 }
 
 .notify_link {
-    color: #A6A6A6;
+    color: #a6a6a6
 }
 
 .notfiy_pad_photo {
@@ -2657,46 +2642,46 @@ a:hover {
     height: 46px;
     border-radius: 3px;
     background-size: cover;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .notify_pad .search_follow_btn_wrap {
     width: 40px;
-    margin-top: 1px;
+    margin-top: 1px
 }
 
 .create_room_button {
     font-size: 14px;
     font-weight: 600;
     padding: 15px;
-    color: #888B95;
+    color: #888b95;
     margin: 5px -5px 0px;
     cursor: pointer;
     padding-left: 42px;
     position: relative;
     border-radius: 3px;
-    letter-spacing: 0.4px;
+    letter-spacing: 0.4px
 }
 
 .create_room_button:hover {
-    background: #E9ECF2;
+    background: #e9ecf2
 }
 
 .create_room_button_ic {
     position: absolute;
     top: 15px;
     left: 15px;
-    font-size: 14px;
+    font-size: 14px
 }
 
 .create_room_cover {
     width: 120px;
     height: 120px;
     border-radius: 60px;
-    background: #F1F6F9;
+    background: #f1f6f9;
     position: relative;
     cursor: pointer;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .create_room_cover_camera {
@@ -2706,13 +2691,13 @@ a:hover {
     width: 100%;
     text-align: center;
     line-height: 120px;
-    color: #9DC4D5;
+    color: #9dc4d5;
     font-size: 43px;
-    z-index: 1;
+    z-index: 1
 }
 
-.create_room_cover_inp,
 .create_room_cover_img,
+.create_room_cover_inp,
 .upload_cover_progress_line {
     position: absolute;
     top: 0px;
@@ -2720,7 +2705,7 @@ a:hover {
     width: 100%;
     height: 100%;
     opacity: 0;
-    z-index: 3;
+    z-index: 3
 }
 
 .upload_cover_progress_line {
@@ -2729,112 +2714,112 @@ a:hover {
     height: 0px;
     left: 0px;
     width: 100%;
-    background: rgba(37, 103, 160, 0.5);
+    background: rgba(37, 103, 160, .5);
     z-index: 4;
-    opacity: 1;
+    opacity: 1
 }
 
 .create_room_cover_img {
     z-index: 2;
     opacity: 1;
-    background-size: cover;
+    background-size: cover
 }
 
 .create_room_info_wrap {
-    margin-left: 145px;
+    margin-left: 145px
 }
 
 .create_room_label {
-    padding-top: 5px;
+    padding-top: 5px
 }
 
 .create_room_inp {
-    height: auto;
+    height: auto
 }
 
 .create_room_descr {
     height: 80px;
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
 .create_room_wrap {
-    padding-bottom: 0px;
+    padding-bottom: 0px
 }
 
 .create_room_search {
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
 .create_room_invite_wrap {
     margin: 0px -20px;
-    min-height: 204px;
+    min-height: 204px
 }
 
 .create_room_loader {
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 .create_room_loader:empty {
-    display: none;
+    display: none
 }
 
 .create_room_invite_item {
     padding: 10px 20px;
     cursor: pointer;
-    position: relative;
+    position: relative
 }
 
 .create_room_invite_item:hover {
-    background: #F1F6F9;
+    background: #f1f6f9
 }
 
 .create_room_invite_item.create_room_invite_item_disabled {
-    cursor: default;
+    cursor: default
 }
 
 .create_room_invite_item.create_room_invite_item_disabled .create_room_invite_disabled_info {
     display: block;
-    color: #A6A6A6;
+    color: #a6a6a6
 }
 
 .create_room_invite_item.create_room_invite_item_disabled .create_room_invite_title {
-    color: #A6A6A6 !important;
+    color: #a6a6a6!important
 }
 
 .create_room_invite_item.create_room_invite_item_with_caption .create_room_invite_title {
-    padding-top: 4px;
+    padding-top: 4px
 }
 
 .create_room_invite_button_ic {
     font-size: 13px;
-    color: #66ABC5;
-    background: #F1F6F9;
+    color: #66abc5;
+    background: #f1f6f9;
     padding: 14px 11px;
-    border-radius: 30px;
+    border-radius: 30px
 }
 
 .create_room_invite_button_str {
-    color: #00AEE2;
+    color: #00aee2;
     font-size: 15px;
-    padding-top: 15px;
+    padding-top: 15px
 }
 
 .create_room_invite_ic {
     position: absolute;
     font-size: 20px;
-    color: #CCD1D4;
+    color: #ccd1d4;
     top: 20px;
     right: 20px;
-    display: none;
+    display: none
 }
 
 .create_room_invite_ic.icon-close {
     font-size: 16px;
-    top: 23px;
+    top: 23px
 }
 
 .create_room_invite_item:hover .create_room_invite_ic {
-    display: block;
+    display: block
 }
 
 .create_room_invite_item_cover {
@@ -2843,7 +2828,7 @@ a:hover {
     border-radius: 20px;
     background-size: cover;
     background-repeat: no-repeat;
-    position: relative;
+    position: relative
 }
 
 .create_room_invite_item_cover div {
@@ -2854,71 +2839,71 @@ a:hover {
     font-size: 20px;
     font-weight: 100;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .create_room_invite_cont {
-    margin-left: 55px;
+    margin-left: 55px
 }
 
 .create_room_invite_title {
-    color: #00AEE2;
+    color: #00aee2;
     font-size: 14px;
     padding-top: 11px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    line-height: 17px;
+    line-height: 17px
 }
 
 .create_room_invite_tools {
-    padding-top: 14px;
+    padding-top: 14px
 }
 
 .create_room_invite_dd {
-    margin-right: 20px;
+    margin-right: 20px
 }
 
 .create_room_invite_caption {
-    color: #A6A6A6;
+    color: #a6a6a6;
     margin-top: 5px;
     text-transform: lowercase;
     font-weight: 300;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .create_room_invite_caption:empty {
-    display: none;
+    display: none
 }
 
 .create_room_search_wrap {
-    position: relative;
+    position: relative
 }
 
 .create_room_search {
-    padding-left: 35px;
+    padding-left: 35px
 }
 
 .create_room_search_loupe {
     position: absolute;
     top: 13px;
     left: 12px;
-    color: #BABFC4;
-    font-size: 15px;
+    color: #babfc4;
+    font-size: 15px
 }
 
 .create_room_search_empty {
     font-size: 15px;
-    padding: 70px 10px 60px;
+    padding: 70px 10px 60px
 }
 
 .suggest_item {
-    margin-top: 15px;
+    margin-top: 15px
 }
 
 .suggest_item:first-child {
-    margin-top: 0px;
+    margin-top: 0px
 }
 
 .suggest_item_cover {
@@ -2927,7 +2912,7 @@ a:hover {
     border-radius: 20px;
     background-size: cover;
     background-repeat: no-repeat;
-    position: relative;
+    position: relative
 }
 
 .suggest_item_cover div {
@@ -2938,66 +2923,66 @@ a:hover {
     font-size: 20px;
     font-weight: 100;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .suggest_item_cont {
-    margin-left: 50px;
+    margin-left: 50px
 }
 
 .suggest_item_author {
     font-size: 14px;
-    padding-top: 5px;
+    padding-top: 5px
 }
 
 .suggest_item_date {
-    color: #A6A6A6;
+    color: #a6a6a6;
     margin-top: 8px;
     font-weight: 300;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .suggest_item_cancel {
-    border: 1px solid #C8D4DD !important;
+    border: 1px solid #c8d4dd!important;
     border-radius: 50%;
     padding: 0px;
     width: 36px;
     height: 36px;
     position: relative;
-    margin-right: 10px;
+    margin-right: 10px
 }
 
 .suggest_item_cancel .icon-close {
-    color: #C8D4DD;
+    color: #c8d4dd;
     font-size: 14px;
     position: absolute;
     top: 50%;
     left: 50%;
-    margin: -7px 0px 0px -7px;
+    margin: -7px 0px 0px -7px
 }
 
 .suggest_item_cancel:active .icon-close {
-    margin-top: -6px;
+    margin-top: -6px
 }
 
 .suggest_item_photo {
     width: 100%;
     margin-top: 15px;
     border-radius: 2px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .invitations_item {
-    padding: 10px 0px;
+    padding: 10px 0px
 }
 
 .invitations_item_cover_wrap {
-    position: relative;
+    position: relative
 }
 
 .invitations_item_cover_wrap a {
-    text-decoration: none !important;
+    text-decoration: none!important
 }
 
 .invitations_item_cover {
@@ -3006,7 +2991,7 @@ a:hover {
     border-radius: 45px;
     background-size: cover;
     background-repeat: no-repeat;
-    position: relative;
+    position: relative
 }
 
 .invitations_item_cover div {
@@ -3017,7 +3002,7 @@ a:hover {
     font-size: 45px;
     font-weight: 100;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .invitations_item_cover_inviter {
@@ -3031,7 +3016,7 @@ a:hover {
     bottom: -3px;
     right: -3px;
     border: 2px solid #fff;
-    border-radius: 25px;
+    border-radius: 25px
 }
 
 .invitations_item_cover_inviter div {
@@ -3042,68 +3027,70 @@ a:hover {
     font-size: 20px;
     font-weight: 100;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .invitations_item_cont {
-    margin-left: 105px;
+    margin-left: 105px
 }
 
 .invitations_item_title {
     font-size: 16px;
     padding-top: 3px;
     font-weight: 300;
+    color: #a6a6a6;
+    line-height: 160%
+}
+
+.invitations_item_title,
+.invitations_item_title a {
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
-    color: #A6A6A6;
-    line-height: 160%;
+    -moz-osx-font-smoothing: auto
 }
 
 .invitations_item_title a {
-    font-weight: 600;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    font-weight: 600
 }
 
 .invitations_item_title a:last-child {
-    color: #747474;
+    color: #747474
 }
 
 .invitations_item_buttons {
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 .invitations_item_buttons .button_inline {
-    margin-left: 5px;
+    margin-left: 5px
 }
 
 .invitation_accepted {
-    color: #A6A6A6;
-    font-size: 15px;
+    color: #a6a6a6;
+    font-size: 15px
 }
 
 .landing_page {
-    overflow-y: hidden !important;
-    background: #F1F2F4;
+    overflow-y: hidden!important;
+    background: #f1f2f4
 }
 
 .landing_page_shown {
-    overflow-y: auto !important;
+    overflow-y: auto!important
 }
 
 .landing_page #wrap3 {
-    margin: 0px !important;
-    min-height: none !important;
-    width: 100% !important;
+    margin: 0px!important;
+    min-height: none!important;
+    width: 100%!important
 }
 
-.landing_page .scroll_fix,
-.landing_page #wrap3 {
-    width: 100% !important;
+.landing_page #wrap3,
+.landing_page .scroll_fix {
+    width: 100%!important
 }
 
 .landing_page .sn_footer {
-    display: none !important;
+    display: none!important
 }
 
 .landing_main {
@@ -3114,25 +3101,18 @@ a:hover {
     left: 0px;
     z-index: 1000;
     -webkit-transform: translateY(0px);
-    -ms-transform: translateY(0px);
     -o-transform: translateY(0px);
     transform: translateY(0px);
     overflow: hidden;
-    background: #000;
+    background: #000
 }
 
-.landing_main_anim {
-    transition: -webkit-transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95);
-    -o-transition: transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95), -o-transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95);
-    transition: transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95);
-    transition: transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95), -webkit-transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95), -o-transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95);
-}
-
+.landing_main_anim,
 .landing_main_anim_down {
     transition: -webkit-transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95);
     -o-transition: transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95), -o-transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95);
     transition: transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95);
-    transition: transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95), -webkit-transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95), -o-transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95);
+    transition: transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95), -webkit-transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95), -o-transform 0.7s cubic-bezier(0.28, 0.32, 0.24, 0.95)
 }
 
 #landing_main_pic {
@@ -3144,17 +3124,16 @@ a:hover {
     background: url(/images/chronicle/web_bg.jpg?1) no-repeat 50%;
     z-index: 1;
     -webkit-transform: scale(1);
-    -ms-transform: scale(1);
     -o-transform: scale(1);
     transform: scale(1);
-    background-size: cover;
+    background-size: cover
 }
 
 .landing_main_pic_anim {
     transition: -webkit-transform 8s cubic-bezier(0, 1.01, 0.26, 0.99);
     -o-transition: transform 8s cubic-bezier(0, 1.01, 0.26, 0.99), -o-transform 8s cubic-bezier(0, 1.01, 0.26, 0.99);
     transition: transform 8s cubic-bezier(0, 1.01, 0.26, 0.99);
-    transition: transform 8s cubic-bezier(0, 1.01, 0.26, 0.99), -webkit-transform 8s cubic-bezier(0, 1.01, 0.26, 0.99), -o-transform 8s cubic-bezier(0, 1.01, 0.26, 0.99);
+    transition: transform 8s cubic-bezier(0, 1.01, 0.26, 0.99), -webkit-transform 8s cubic-bezier(0, 1.01, 0.26, 0.99), -o-transform 8s cubic-bezier(0, 1.01, 0.26, 0.99)
 }
 
 .landing_logo {
@@ -3163,13 +3142,13 @@ a:hover {
     left: 32px;
     z-index: 2;
     color: #fff;
-    font-size: 48px;
+    font-size: 48px
 }
 
 .landing_sign_in {
     left: initial;
     right: 32px;
-    font-size: 44px;
+    font-size: 44px
 }
 
 .landing_main_dark {
@@ -3180,7 +3159,7 @@ a:hover {
     left: 0px;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: 1
 }
 
 .landing_main_info_wrap {
@@ -3192,34 +3171,34 @@ a:hover {
     text-align: center;
     left: 0px;
     z-index: 2;
-    color: #fff;
+    color: #fff
 }
 
 .landing_logo_str {
     font-size: 67px;
     line-height: 100%;
-    font-weight: 600;
+    font-weight: 600
 }
 
 .landing_logo_str_ver {
     text-shadow: none;
-    font-weight: 300;
+    font-weight: 300
 }
 
 .landing_descr {
     font-size: 18px;
     line-height: 28px;
     margin-top: 35px;
-    font-weight: 300;
+    font-weight: 300
 }
 
 .landing_apps {
     margin: 45px auto 0px;
-    width: 465px;
+    width: 465px
 }
 
 .landing_app {
-    font-size: 63px;
+    font-size: 63px
 }
 
 .landing_down_arrow {
@@ -3234,35 +3213,35 @@ a:hover {
     cursor: pointer;
     opacity: 0.7;
     -o-transition: opacity 200ms linear;
-    transition: opacity 200ms linear;
+    transition: opacity 200ms linear
 }
 
 .landing_down_arrow:hover {
-    opacity: 1;
+    opacity: 1
 }
 
+.landing_app,
 .landing_logo,
-.landing_sign_in,
-.landing_app {
+.landing_sign_in {
     -o-transition: color 200ms linear;
     transition: color 200ms linear;
     cursor: pointer;
-    color: #fff;
+    color: #fff
 }
 
+.landing_app:hover,
 .landing_logo:hover,
-.landing_sign_in:hover,
-.landing_app:hover {
-    color: #CCE9FF;
+.landing_sign_in:hover {
+    color: #cce9ff
 }
 
 .vk_auth_loader_wrap {
-    padding: 150px 0px;
+    padding: 150px 0px
 }
 
 .footer {
     box-sizing: border-box;
-    padding: 10px 0px 25px 245px;
+    padding: 10px 0px 25px 245px
 }
 
 .footer a {
@@ -3270,30 +3249,30 @@ a:hover {
     font-weight: 300;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    margin-right: 15px;
+    margin-right: 15px
 }
 
 .footer_links {
-    width: 570px;
+    width: 570px
 }
 
 .footer_app_icon {
     font-size: 20px;
-    color: #00C162;
+    color: #00c162;
     margin-top: -4px;
-    margin-left: 15px;
+    margin-left: 15px
 }
 
 .footer_app_icon.icon-ios {
-    color: #888B95;
+    color: #888b95
 }
 
 .footer_apps_links a {
-    margin-right: 0px;
+    margin-right: 0px
 }
 
 .footer_apps_links a:last-child {
-    margin-right: 10px;
+    margin-right: 10px
 }
 
 .footer_copyright {
@@ -3301,55 +3280,55 @@ a:hover {
     font-weight: 300;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    color: #A6A6A6;
+    color: #a6a6a6
 }
 
 .photo_admin_tools_btn {
-    color: #00AEE2;
+    color: #00aee2;
     margin-top: 10px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .about_block {
     padding: 25px;
-    margin-bottom: 15px;
+    margin-bottom: 15px
 }
 
 .about_block b {
-    color: #2576A9;
-    font-weight: normal;
+    color: #2576a9;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .about_big_title {
     font-size: 20px;
-    color: #2576A9;
-    line-height: 25px;
+    color: #2576a9;
+    line-height: 25px
 }
 
 .about_block_title {
-    color: #2576A9;
+    color: #2576a9;
     font-size: 19px;
-    margin-bottom: 20px;
+    margin-bottom: 20px
 }
 
 .about_block_title:empty {
-    display: none;
+    display: none
 }
 
 .about_text {
     font-size: 15px;
     margin-top: 20px;
     line-height: 160%;
-    color: #383838;
     font-weight: 300;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
+.about_text,
 .about_text .listing span {
-    color: #383838;
+    color: #383838
 }
 
 .about_app_ic {
@@ -3358,69 +3337,69 @@ a:hover {
     left: 20px;
     line-height: 34px;
     font-size: 18px;
-    height: 34px;
+    height: 34px
 }
 
 .about_app_ic.icon-ios {
-    line-height: 32px;
+    line-height: 32px
 }
 
 .about_apps {
-    margin-top: 20px;
+    margin-top: 20px
 }
 
 .about_apps .button {
     margin-right: 10px;
     position: relative;
-    padding-left: 45px;
+    padding-left: 45px
 }
 
 .about_apps .button:active .about_app_ic {
-    line-height: 36px;
+    line-height: 36px
 }
 
 .about_apps .button:active .about_app_ic.icon-ios {
-    line-height: 34px;
+    line-height: 34px
 }
 
 .about_vk_login_ic {
-    margin-right: 8px;
+    margin-right: 8px
 }
 
 .terms_block {
-    margin-top: 0px;
+    margin-top: 0px
 }
 
 .room_view_followed_block {
     margin-bottom: 15px;
-    padding: 20px;
+    padding: 20px
 }
 
 .room_view_followed_block_title {
-    color: #A6A6A6;
+    color: #a6a6a6;
     font-size: 14px;
     font-weight: 300;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .room_view_followed_block_all {
-    font-size: 14px;
+    font-size: 14px
 }
 
 .room_view_followed_items {
-    margin-top: 25px;
+    margin-top: 25px
 }
 
 .room_view_followed_item {
     margin-left: 20px;
     width: 93px;
     display: block;
-    text-decoration: none !important;
+    text-decoration: none!important
 }
 
 .room_view_followed_item:first-child {
-    margin-left: 0px;
+    margin-left: 0px
 }
 
 .room_view_followed_item_cover {
@@ -3429,43 +3408,41 @@ a:hover {
     border-radius: 46.5px;
     background-size: cover;
     background-repeat: no-repeat;
-    position: relative;
+    position: relative
 }
 
 .room_view_followed_item_cover div {
     height: 93px;
     line-height: 93px;
-    text-align: center;
     color: #fff;
     font-size: 46.5px;
-    font-weight: 100;
+    font-weight: 100
+}
+
+.room_view_followed_item_cover div,
+.room_view_followed_item_title {
+    text-align: center;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .room_view_followed_item_title {
-    text-align: center;
     font-weight: 600;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
     margin-top: 10px;
     color: #383838;
     font-size: 14px;
     word-break: break-all;
-    line-height: 140%;
+    line-height: 140%
 }
 
-.explore_block {
-    margin-bottom: 15px;
-}
-
+.explore_block,
 .explore_block_head {
-    margin-bottom: 15px;
+    margin-bottom: 15px
 }
 
 .explore_block_head_title {
     font-size: 15px;
-    color: #00AEE2;
+    color: #00aee2
 }
 
 .explore_photo_item {
@@ -3473,11 +3450,11 @@ a:hover {
     height: 130px;
     background-size: cover;
     border-radius: 3px;
-    margin-left: 10px;
+    margin-left: 10px
 }
 
 .explore_photo_item:first-child {
-    margin-left: 0px;
+    margin-left: 0px
 }
 
 .explore_big_photo {
@@ -3486,7 +3463,7 @@ a:hover {
     background-size: cover;
     background-position: 50%;
     position: relative;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .explore_big_photo_room {
@@ -3497,8 +3474,8 @@ a:hover {
     color: #fff;
     box-sizing: border-box;
     padding: 15px;
-    background: -o-linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.5));
-    background: linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.5));
+    background: -o-linear-gradient(transparent 20%, rgba(0, 0, 0, .5));
+    background: linear-gradient(transparent 20%, rgba(0, 0, 0, .5))
 }
 
 .explore_big_photo_room_cover {
@@ -3509,7 +3486,7 @@ a:hover {
     background-repeat: no-repeat;
     position: relative;
     border: 3px solid #fff;
-    border-radius: 24px;
+    border-radius: 24px
 }
 
 .explore_big_photo_room_cover div {
@@ -3520,11 +3497,11 @@ a:hover {
     font-size: 20px;
     font-weight: 100;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .explore_big_photo_room_info {
-    margin-left: 60px;
+    margin-left: 60px
 }
 
 .explore_big_photo_room_title {
@@ -3535,11 +3512,11 @@ a:hover {
     line-height: 17px;
     padding-top: 7px;
     display: inline-block;
-    color: #fff;
+    color: #fff
 }
 
 .explore_big_photo_room_title .icon-verify {
-    color: #fff;
+    color: #fff
 }
 
 .explore_big_photo_room_time {
@@ -3548,12 +3525,12 @@ a:hover {
     -moz-osx-font-smoothing: auto;
     margin-top: 4px;
     opacity: 0.75;
-    filter: alpha(opacity=75);
+    filter: alpha(opacity=75)
 }
 
 .explore_rooms_wrap {
     width: 90%;
-    margin: 0px auto;
+    margin: 0px auto
 }
 
 .explore_room_item {
@@ -3561,11 +3538,11 @@ a:hover {
     width: 33.3%;
     text-align: center;
     box-sizing: border-box;
-    padding: 0px 10px;
+    padding: 0px 10px
 }
 
 .explore_room_item .button {
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 .explore_room_item_cover {
@@ -3575,7 +3552,7 @@ a:hover {
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
-    margin: 0px auto;
+    margin: 0px auto
 }
 
 .explore_room_item_cover div {
@@ -3584,41 +3561,43 @@ a:hover {
     text-align: center;
     color: #fff;
     font-size: 50px;
-    font-weight: 100;
+    font-weight: 100
+}
+
+.explore_room_item_cover div,
+.explore_room_item_title {
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .explore_room_item_title {
     font-size: 14px;
     margin-top: 15px;
     font-weight: 600;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 16px;
+    line-height: 16px
 }
 
 .export {
-    background: #272A39;
+    background: #272a39
 }
 
-.export .site_header,
 .export .footer,
+.export .site_header,
 .export .site_header_helper {
-    display: none !important;
+    display: none!important
 }
 
 .export .site_cont {
-    margin-left: 0 !important;
-    width: 100% !important;
+    margin-left: 0!important;
+    width: 100%!important
 }
 
 .export_page {
     width: 100%;
-    background: #272A39;
+    background: #272a39;
     z-index: 10000;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -3631,7 +3610,7 @@ a:hover {
     align-items: center;
     padding: 32px 16px;
     box-sizing: border-box;
-    min-height: 100vh;
+    min-height: 100vh
 }
 
 .export_page_logo {
@@ -3641,7 +3620,7 @@ a:hover {
     -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
-    margin: 0 auto;
+    margin: 0 auto
 }
 
 .export_page_caption {
@@ -3649,31 +3628,29 @@ a:hover {
     line-height: 22px;
     color: #fff;
     margin-top: 22px;
-    text-align: center;
+    text-align: center
 }
 
 .export_page_rooms {
     margin-top: 28px;
     width: 100%;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
+    flex-direction: column
 }
 
+.export_page_rooms,
 .export_page_room {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    padding: 16px 86px 16px 76px;
     -webkit-align-items: center;
     -ms-flex-align: center;
-    align-items: center;
+    align-items: center
+}
+
+.export_page_room {
+    padding: 16px 86px 16px 76px;
     background: #fff;
     border-radius: 4px;
     width: 480px;
@@ -3681,11 +3658,11 @@ a:hover {
     box-sizing: border-box;
     position: relative;
     min-height: 80px;
-    text-align: left;
+    text-align: left
 }
 
 .export_page_room_cover {
-    position: absolute !important;
+    position: absolute!important;
     top: 16px;
     left: 18px;
     width: 48px;
@@ -3694,7 +3671,7 @@ a:hover {
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
-    min-width: 48px;
+    min-width: 48px
 }
 
 .export_page_room_cover div {
@@ -3705,29 +3682,29 @@ a:hover {
     font-size: 24px;
     font-weight: 100;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .export_page_room_cont {
     line-height: 22px;
-    max-width: 100%;
+    max-width: 100%
 }
 
-.export_page_room_title,
-.export_page_room_caption {
+.export_page_room_caption,
+.export_page_room_title {
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis
 }
 
 .export_page_room_title {
     font-size: 16px;
-    color: #272a3a;
+    color: #272a3a
 }
 
 .export_page_room_caption {
     color: #9297a2;
-    font-size: 14px;
+    font-size: 14px
 }
 
 .export_page_room_download {
@@ -3744,7 +3721,7 @@ a:hover {
     position: absolute;
     top: 0;
     right: 18px;
-    height: 100%;
+    height: 100%
 }
 
 .export_page_room_download_btn {
@@ -3756,12 +3733,12 @@ a:hover {
     border: 2px solid #339cd8;
     background: #339cd8 url('/images/chronicle/export_download.svg') no-repeat 50%;
     -o-transition: all 150ms ease-in-out;
-    transition: all 150ms ease-in-out;
+    transition: all 150ms ease-in-out
 }
 
 .export_page_room_download_btn.done {
     background-color: transparent;
-    background-image: url('/images/chronicle/export_done.svg');
+    background-image: url('/images/chronicle/export_done.svg')
 }
 
 .export_page_login {
@@ -3771,7 +3748,7 @@ a:hover {
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
-    padding: 0 44px;
+    padding: 0 44px
 }
 
 .export_page_login_btn {
@@ -3793,24 +3770,22 @@ a:hover {
     -ms-user-select: none;
     user-select: none;
     cursor: pointer;
-    text-decoration: none !important;
+    text-decoration: none!important
 }
 
 .export_page_login_btn:hover {
     opacity: 0.9;
-    filter: alpha(opacity=90);
+    filter: alpha(opacity=90)
 }
 
 .export_page_login_btn:active {
-    padding: 13px 20px 12px;
+    padding: 13px 20px 12px
 }
 
 @media (max-width: 520px) {
-    .export_page_room {
-        width: 100%;
-    }
+    .export_page_room,
     .export_page_login {
-        width: 100%;
+        width: 100%
     }
 }
 
@@ -3832,7 +3807,7 @@ a:hover {
     -ms-flex-align: center;
     align-items: center;
     font-size: 16px;
-    line-height: 19px;
+    line-height: 19px
 }
 
 .snapster_death .export_page_login_btn {
@@ -3842,9 +3817,9 @@ a:hover {
     padding: 7px 20px;
     width: auto;
     margin-left: 20px;
-    margin-top: 0;
+    margin-top: 0
 }
 
 .snapster_death .export_page_login_btn:active {
-    padding: 8px 20px 6px;
+    padding: 8px 20px 6px
 }

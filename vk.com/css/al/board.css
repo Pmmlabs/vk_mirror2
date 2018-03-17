@@ -1,34 +1,34 @@
 #board_css {
-    display: none;
+    display: none
 }
 
 .blst_closed,
 .blst_fixed,
 .bp_action,
 .bp_action.bp_loading {
-    -ms-high-contrast-adjust: none;
+    -ms-high-contrast-adjust: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .blst_row {
     padding: 7px 0;
     margin: 0 20px;
     border-bottom: 1px solid #e7e8ec;
-    font-size: 12.5px;
+    font-size: 12.5px
 }
 
 .blst_row:last-child {
-    border-bottom: 0;
+    border-bottom: 0
 }
 
 .blst_last {
@@ -36,61 +36,65 @@
     width: 200px;
     padding: 8px 12px;
     border-radius: 2px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .blst_last:hover {
     text-decoration: none;
-    background-color: #f0f2f5;
+    background-color: #f0f2f5
 }
 
 .blst_thumb {
     margin-right: 10px;
-    width: 40px;
-    height: 40px;
     overflow: hidden;
-    float: left;
+    float: left
+}
+
+.blst_thumb,
+.blst_img {
+    width: 40px;
+    height: 40px
 }
 
 .blst_img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    border-radius: 50%
 }
 
 .blst_mem {
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #42648B;
-    overflow: hidden;
+    color: #42648b;
     line-height: 16px;
-    padding-top: 3px;
     white-space: nowrap;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis
+}
+
+.blst_mem,
+.blst_date {
+    overflow: hidden;
+    padding-top: 3px
 }
 
 .blst_date {
-    color: #939393;
-    padding-top: 3px;
-    overflow: hidden;
+    color: #939393
 }
 
 .blst_info {
     padding: 11px 15px 0 0;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .blst_title_wrap {
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 .blst_title {
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 16px;
-    color: #42648B;
+    color: #42648b
 }
 
 .blst_closed,
@@ -100,7 +104,7 @@
     width: 12px;
     height: 12px;
     background: url(/images/icons/pin_lock.png) no-repeat;
-    cursor: pointer;
+    cursor: pointer
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -109,22 +113,22 @@
     .blst_closed,
     .blst_fixed {
         background-image: url(/images/icons/pin_lock_2x.png);
-        background-size: 12px 23px;
+        background-size: 12px 23px
     }
 }
 
 .blst_closed {
-    background-position: 0 -12px;
+    background-position: 0 -12px
 }
 
 .blst_other {
     padding-top: 3px;
     margin-bottom: 6px;
-    color: #656565;
+    color: #656565
 }
 
 .blst_page {
-    padding: 0 3px;
+    padding: 0 3px
 }
 
 .blst_load_more {
@@ -132,143 +136,143 @@
     display: block;
     padding: 10px;
     border-top: 1px solid #e7e8ec;
-    text-align: center;
+    text-align: center
 }
 
 .blst_load_more:hover {
     text-decoration: none;
-    background: #f0f2f5;
+    background: #f0f2f5
 }
 
 .blst_load_more .progress {
-    margin: 0 auto;
+    margin: 0 auto
 }
 
 .bnt_wrap {
-    padding: 9px 50px 30px;
+    padding: 9px 50px 30px
 }
 
-.bnt_title,
-.bnt_text,
 .bnt_poll_question,
+.bnt_text,
+.bnt_title,
 input.bnt_poll_answer {
-    width: 100%;
+    width: 100%
 }
 
 .bnt_text {
     height: 230px;
-    display: block;
+    display: block
 }
 
 #bnt_warn {
     display: none;
-    color: #656565;
+    color: #656565
 }
 
 .bnt_controls,
 .bnt_warn {
-    margin-top: 15px;
+    margin-top: 15px
 }
 
 .bnt_subm {
-    float: right;
+    float: right
 }
 
 .bnt_checkbox {
     float: right;
     white-space: nowrap;
-    margin: 6px 22px 0 0;
+    margin: 6px 22px 0 0
 }
 
 .bnt_attach {
     float: left;
-    margin: 3px 0 0 -3px;
+    margin: 3px 0 0 -3px
 }
 
 .bnt_media_preview .medadd_c_pollh,
 .bnt_media_preview .medadd_h_poll {
-    color: #222;
+    color: #222
 }
 
 .bnt_media_preview .page_preview_poll_wrap {
-    padding-top: 8px;
+    padding-top: 8px
 }
 
 .bnt_media_preview .medadd_c_pollh {
-    margin-top: 18px;
+    margin-top: 18px
 }
 
 .bnt_media_preview .medadd_c_pollcb {
-    display: none;
+    display: none
 }
 
 .bnt_media_preview .medadd_c_polladd_wr {
-    margin-bottom: 0;
+    margin-bottom: 0
 }
 
 .bet_wrap {
-    padding: 5px 25px 22px;
+    padding: 5px 25px 22px
 }
 
 .bet_wrap .subheader:first-child {
-    margin-top: 13px;
+    margin-top: 13px
 }
 
 .bet_wrap .checkbox {
-    margin: -1px 0 12px;
+    margin: -1px 0 12px
 }
 
 .bet_wrap .media_selector>.ms_item {
     width: auto;
     margin: 10px 0 -1px -4px;
     padding-left: 25px;
-    line-height: 26px;
+    line-height: 26px
 }
 
 .bet_wrap .page_preview_poll_wrap .page_media_x_wrap {
-    margin-top: 4px;
+    margin-top: 4px
 }
 
 .bet_wrap .bnt_media_preview {
     border-top: 1px solid #e7e8ec;
-    margin-bottom: 0;
+    margin-bottom: 0
 }
 
 .bet_wrap .bnt_media_preview.media_preview_has_medias {
-    border-bottom: 0;
+    border-bottom: 0
 }
 
 .bet_wrap .bnt_media_preview.bet_no_settings {
-    border-top: 0;
+    border-top: 0
 }
 
 .bet_wrap .bnt_media_preview .page_docs_preview {
-    margin-bottom: -2px;
+    margin-bottom: -2px
 }
 
 .bet_settings {
-    padding-bottom: 3px;
+    padding-bottom: 3px
 }
 
 .bet_poll_settings {
-    margin-bottom: -15px;
+    margin-bottom: -15px
 }
 
 .bt_header {
     border-bottom: 1px solid #e7e8ec;
-    margin: 0 20px;
+    margin: 0 20px
 }
 
 .bt_header .bt_pages_wrap {
     float: right;
     display: table;
     margin-top: 1px;
-    height: 52px;
+    height: 52px
 }
 
 .bt_header .bt_pages {
     display: table-cell;
-    vertical-align: bottom;
+    vertical-align: bottom
 }
 
 .bt_title {
@@ -278,30 +282,30 @@ input.bnt_poll_answer {
     line-height: 52px;
     height: 52px;
     padding-right: 10px;
-    font-size: 15px;
+    font-size: 15px
 }
 
 .bt_rows {
-    padding: 0 20px;
+    padding: 0 20px
 }
 
 .bt_more_wrap {
-    margin: 0 20px;
+    margin: 0 20px
 }
 
 .bt_load_more {
-    margin: 0 0 20px;
+    margin: 0 0 20px
 }
 
 .bt_msg {
-    margin-bottom: 5px;
+    margin-bottom: 5px
 }
 
 .bp_post {
     padding: 15px 0;
     margin-top: -1px;
     border: solid #e7e8ec;
-    border-width: 1px 0;
+    border-width: 1px 0
 }
 
 .bp_post.bp_selected {
@@ -309,39 +313,36 @@ input.bnt_poll_answer {
     padding: 15px 20px;
     background-color: #fafbfc;
     -o-transition: background-color 5000ms linear, border-color 5000ms linear;
-    transition: background-color 5000ms linear, border-color 5000ms linear;
+    transition: background-color 5000ms linear, border-color 5000ms linear
 }
 
 .bp_post.bp_selected.bp_animated {
-    background-color: #000000;
+    background-color: #000;
     background-color: transparent;
-    border-color: transparent;
+    border-color: transparent
 }
 
 .bp_post.bp_deleted .bp_deleted_text {
-    display: block;
+    display: block
 }
 
+.bp_post.bp_deleted .bp_info,
 .bp_post.bp_deleted .bp_thumb,
-.bp_post.bp_deleted .bp_info {
-    display: none;
-}
-
 .bp_post.bp_editing .bp_actions {
-    display: none;
+    display: none
 }
 
 .bp_post:first-child {
     margin-top: 0;
-    border-top: 0;
+    border-top: 0
 }
 
 .bp_post:last-child {
-    border-bottom: 0;
+    border-bottom: 0
 }
 
 .bp_post .like_wrap {
-    float: right;
+    float: right
 }
 
 .bp_post .no_likes .like_icon {
@@ -349,120 +350,122 @@ input.bnt_poll_answer {
     opacity: 0;
     filter: alpha(opacity=0);
     -o-transition: visibility 100ms ease, opacity 100ms ease;
-    transition: visibility 100ms ease, opacity 100ms ease;
+    transition: visibility 100ms ease, opacity 100ms ease
 }
 
 .bp_post .no_likes .like_count {
-    margin-left: 0;
+    margin-left: 0
 }
 
 .bp_post .my_like .like_icon {
     opacity: 1;
     -webkit-filter: none;
-    filter: none;
+    filter: none
 }
 
 .bp_post:hover .bp_action {
     visibility: visible;
     opacity: 0.6;
-    filter: alpha(opacity=60);
+    filter: alpha(opacity=60)
 }
 
 .bp_post:hover .no_likes .like_icon {
     visibility: visible;
     opacity: 0.35;
-    filter: alpha(opacity=35);
+    filter: alpha(opacity=35)
 }
 
 .bp_post .bp_action:hover {
     opacity: 1;
     -webkit-filter: none;
-    filter: none;
+    filter: none
 }
 
 .bp_thumb {
-    float: left;
+    float: left
+}
+
+.bp_thumb,
+.bp_img {
     width: 50px;
-    height: 50px;
+    height: 50px
 }
 
 .bp_img {
-    width: 50px;
-    height: 50px;
     border-radius: 50%;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .bp_info {
-    margin-left: 62px;
+    margin-left: 62px
 }
 
 .bp_deleted_text {
     margin-left: 62px;
     color: #939393;
-    display: none;
+    display: none
 }
 
 .bp_deleted_actions {
-    padding-top: 6px;
+    padding-top: 6px
 }
 
 .bp_author_wrap {
     line-height: 16px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis
 }
 
 .bp_author {
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #42648B;
+    color: #42648b
 }
 
 a.bp_date {
-    color: #939393;
+    color: #939393
 }
 
 .bp_date {
-    color: #656565;
+    color: #656565
 }
 
 .bp_content {
     line-height: 19px;
-    padding-top: 3px;
+    padding-top: 3px
 }
 
 .bp_text {
     overflow: hidden;
     text-overflow: ellipsis;
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 .bp_edited_by {
     line-height: 19px;
     margin-top: 5px;
-    color: #939393;
+    color: #939393
 }
 
 .bp_bottom {
     margin-top: 6px;
     line-height: 14px;
-    font-size: 12.5px;
+    font-size: 12.5px
 }
 
 .bp_bottom .counter_anim_wrap {
     line-height: 14px;
-    height: 14px;
+    height: 14px
 }
 
 .bp_reply {
-    float: left;
+    float: left
 }
 
 .bp_actions {
-    float: right;
+    float: right
 }
 
 .bp_action {
@@ -474,7 +477,7 @@ a.bp_date {
     margin-left: 7px;
     -o-transition: visibility 100ms ease, opacity 100ms ease;
     transition: visibility 100ms ease, opacity 100ms ease;
-    background: url(/images/post_icon.png?10) no-repeat 1px -52px;
+    background: url(/images/post_icon.png?10) no-repeat 1px -52px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -482,16 +485,16 @@ a.bp_date {
 (min-resolution: 192dpi) {
     .bp_action {
         background-image: url(/images/post_icon_2x.png?10);
-        background-size: 20px 413px;
+        background-size: 20px 413px
     }
 }
 
 .bp_action.bp_edit_button {
-    background-position: 0 -40px;
+    background-position: 0 -40px
 }
 
 .bp_action.bp_loading {
-    background: url(/images/action_upload.gif) no-repeat 0 0;
+    background: url(/images/action_upload.gif) no-repeat 0 0
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -499,128 +502,128 @@ a.bp_date {
 (min-resolution: 192dpi) {
     .bp_action.bp_loading {
         background-image: url(/images/action_upload_2x.gif);
-        background-size: 13px 13px;
+        background-size: 13px 13px
     }
 }
 
 .bp_tt {
     padding: 0 15px;
-    max-width: 500px;
+    max-width: 500px
 }
 
 .tt_w.board_tt {
-    font-size: 13px;
+    font-size: 13px
 }
 
-.tt_default.tt_down.board_tt:before,
-.tt_default.tt_up.board_tt:before,
 .tt_default.tt_down.board_tt:after,
-.tt_default.tt_up.board_tt:after {
-    left: 89px;
+.tt_default.tt_down.board_tt:before,
+.tt_default.tt_up.board_tt:after,
+.tt_default.tt_up.board_tt:before {
+    left: 89px
 }
 
 .board_search_only {
     color: #656565;
     padding: 15px;
-    text-align: center;
+    text-align: center
 }
 
 .bpe_wrap {
     margin-top: 10px;
-    display: none;
+    display: none
 }
 
 .bpe_text {
     display: block;
     height: 30px;
-    width: 100%;
+    width: 100%
 }
 
 .bpe_button {
     float: right;
-    margin-left: 10px;
+    margin-left: 10px
 }
 
 .bpe_auth {
-    color: #939393;
     line-height: 19px;
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
+.bpe_auth,
 .bpe_auth_lnk {
-    color: #939393;
+    color: #939393
 }
 
-.bpe_media_preview {
-    margin-top: 10px;
+.bpe_media_preview,
+.bpe_warn {
+    margin-top: 10px
 }
 
 .bpe_warn {
-    margin-top: 10px;
     color: #656565;
-    display: none;
+    display: none
 }
 
 .bpe_add_media {
     float: left;
-    margin: 3px 0 0 -3px;
+    margin: 3px 0 0 -3px
 }
 
 .bt_reply_cancel_button {
-    margin-right: 10px;
+    margin-right: 10px
 }
 
 .bt_reply_form_wrap .reply_box_inner_wrap {
-    bottom: 0;
+    bottom: 0
 }
 
 .wall_module .bt_reply_form_wrap .reply_box_open .submit_post_field {
     max-height: 300px;
-    overflow: auto;
+    overflow: auto
 }
 
 .bt_reply_form_wrap .composer_wdd {
     top: 0;
     left: 48px;
-    right: 0;
+    right: 0
 }
 
 .bt_reply_form_wrap .composer_wdd .wdd_list {
-    margin: 0 -1px;
+    margin: 0 -1px
 }
 
 .bv_title {
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #42648B;
+    color: #42648b;
     padding: 15px 0 0;
     font-size: 12.5px;
     line-height: 16px;
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 .bv_wrap {
-    margin: 0 20px;
+    margin: 0 20px
 }
 
 .bv_wrap .bt_pages_wrap {
     border-bottom: 1px solid #e7e8ec;
-    padding-top: 20px;
+    padding-top: 20px
 }
 
 .bv_wrap .bt_pages {
     float: right;
-    margin-bottom: -1px;
+    margin-bottom: -1px
 }
 
 .bv_radio {
     padding: 13px 0 0;
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 .bv_actions {
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }

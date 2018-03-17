@@ -1,38 +1,38 @@
 #blank_css {
-    display: none;
+    display: none
 }
 
 .groups_blocked .groups_blocked_about .groups_blocked_spamfight_img {
-    -ms-high-contrast-adjust: none;
+    -ms-high-contrast-adjust: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .groups_blocked {
     font-size: 14px;
-    text-align: center;
+    text-align: center
 }
 
 .groups_blocked .groups_blocked_about {
     margin: 0 auto;
     padding-top: 48px;
-    width: 595px;
+    width: 595px
 }
 
 .groups_blocked .groups_blocked_about .groups_blocked_spamfight_img {
     margin: 0 auto;
     background: url(/images/spamfight_brown.png);
     width: 160px;
-    height: 160px;
+    height: 160px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -40,66 +40,66 @@
 (min-resolution: 192dpi) {
     .groups_blocked .groups_blocked_about .groups_blocked_spamfight_img {
         background-image: url(/images/spamfight_brown_2x.png);
-        background-size: 160px 160px;
+        background-size: 160px 160px
     }
 }
 
 .groups_blocked .groups_blocked_text {
     padding: 30px 0;
     line-height: 160%;
-    text-align: center;
+    text-align: center
 }
 
-.groups_blocked .group_blocked_till_date,
-.groups_blocked .group_blocked_moder_comment {
-    margin-top: 6px;
+.groups_blocked .group_blocked_moder_comment,
+.groups_blocked .group_blocked_till_date {
+    margin-top: 6px
 }
 
 .groups_blocked .groups_blocked_acts {
     border-top: 1px solid #e7e8ec;
     padding: 18px 0;
     margin: 0 auto;
-    width: 755px;
+    width: 755px
 }
 
 .groups_blocked .group_blocked_links {
     width: 595px;
     margin: 0 auto;
     padding: 25px 0;
-    line-height: 22px;
+    line-height: 22px
 }
 
 .groups_blocked .group_blocked_admin_rules {
     margin-bottom: 6px;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 .group_blocked_no_image .groups_blocked .groups_blocked_about {
-    padding: 0;
+    padding: 0
 }
 
 .group_blocked_no_image .groups_blocked .groups_blocked_spamfight_img {
-    display: none;
+    display: none
 }
 
 .groups_blocked .group_blocked_unblock .groups_blocked_cb_cont {
     font-size: 13px;
     display: inline-block;
     vertical-align: top;
-    max-width: 360px;
+    max-width: 360px
 }
 
 .groups_blocked .group_blocked_unblock .groups_blocked_cb_cont .checkbox {
     margin-left: 23px;
-    text-align: left;
+    text-align: left
 }
 
-.groups_blocked .group_blocked_unblock .groups_blocked_cb_cont .checkbox::before {
-    margin-left: -23px;
+.groups_blocked .group_blocked_unblock .groups_blocked_cb_cont .checkbox:before {
+    margin-left: -23px
 }
 
 .groups_blocked .group_blocked_unblock .groups_blocked_cb_cont .groups_blocked_cb {
-    margin-top: -1px;
+    margin-top: -1px
 }
 
 .groups_blocked .group_blocked_unblock .groups_blocked_unblock_btn {
@@ -107,9 +107,9 @@
     vertical-align: top;
     width: 200px;
     padding-top: 2px;
-    padding-left: 45px;
+    padding-left: 45px
 }
 
 .groups_block_act {
-    margin-left: 10px;
+    margin-left: 10px
 }

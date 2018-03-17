@@ -1,21 +1,21 @@
 #datepicker_css {
-    display: none;
+    display: none
 }
 
 .cal_table .month_arr .arr,
 .datepicker_text {
-    -ms-high-contrast-adjust: none;
+    -ms-high-contrast-adjust: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .cal_table {
@@ -25,45 +25,44 @@
     border: 1px solid #c5d0db;
     border-radius: 3px;
     font-size: 12.5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
     background-color: #fff;
     -ms-user-select: none;
     user-select: none;
     -o-user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
-    -webkit-user-select: none;
+    -webkit-user-select: none
 }
 
 .cal_table_head {
     width: 212px;
     margin: -1px -1px 0;
     border-radius: 3px 3px 0 0;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .cal_table .month {
-    text-align: center;
-    background-color: #5181b8;
     height: 32px;
     line-height: 32px;
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     color: #fff;
-    width: 100%;
+    width: 100%
 }
 
+.cal_table .month,
 .cal_table .month_arr {
     text-align: center;
-    background-color: #5181b8;
+    background-color: #5181b8
 }
 
 .cal_table .month_arr .arr {
     display: block;
     width: 32px;
     height: 32px;
-    background: url(/images/icons/back_fwd.gif?1) no-repeat;
+    background: url(/images/icons/back_fwd.gif?1) no-repeat
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -71,65 +70,65 @@
 (min-resolution: 192dpi) {
     .cal_table .month_arr .arr {
         background-image: url(/images/icons/back_fwd_2x.gif?1);
-        background-size: 15px 67px;
+        background-size: 15px 67px
     }
 }
 
 .cal_table .month_arr .arr.left {
-    background-position: 6px -27px;
+    background-position: 6px -27px
 }
 
 .cal_table .month_arr .arr.right {
-    background-position: 11px -47px;
+    background-position: 11px -47px
 }
 
 .cal_table .daysofweek {
     text-align: center;
-    background-color: #EBF0F5;
-    color: #8996A3;
+    background-color: #ebf0f5;
+    color: #8996a3
 }
 
-.cal_table .daysofweek,
-.cal_table .day {
+.cal_table .day,
+.cal_table .daysofweek {
     height: 30px;
     line-height: 30px;
     width: 30px;
-    box-sizing: border-box;
+    box-sizing: border-box
 }
 
 .cal_table .day {
-    cursor: pointer;
+    cursor: pointer
 }
 
 .cal_table .day.hover {
-    background-color: #edf0f5;
+    background-color: #edf0f5
 }
 
 .cal_table .day.sel,
 .cal_table .day.sel.hover {
     background-color: #f2f6fa;
-    border: 1px solid #98B0CD;
-    line-height: 28px;
+    border: 1px solid #98b0cd;
+    line-height: 28px
 }
 
 .cal_table.disabled .day {
-    cursor: auto;
+    cursor: auto
 }
 
 .cal_table .today {
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale
 }
 
 .cal_table .past_day {
-    color: #939393;
+    color: #939393
 }
 
 .datepicker_control {
-    border: 1px solid #D3D9DE;
+    border: 1px solid #d3d9de;
     border-radius: 2px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .datepicker_text {
@@ -143,7 +142,7 @@
     background-position: right 6px;
     box-sizing: border-box;
     cursor: pointer;
-    height: 28px;
+    height: 28px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -151,44 +150,46 @@
 (min-resolution: 192dpi) {
     .datepicker_text {
         background-image: url(/images/icons/calendar_2x.png?2);
-        background-size: 15px 15px;
+        background-size: 15px 15px
     }
 }
 
 .datepicker_control.disabled,
 .datepicker_control.disabled .datepicker_text {
     color: #828282;
-    background-color: #F2F4F7;
-    cursor: auto;
+    background-color: #f2f4f7;
+    cursor: auto
 }
 
 .cal_box {
+    padding-top: 6px
+}
+
+.cal_box,
+.cal_frame {
     display: none;
-    position: absolute;
-    padding-top: 6px;
+    position: absolute
 }
 
 .cal_frame {
     z-index: 1;
-    border: 0;
-    position: absolute;
-    display: none;
+    border: 0
 }
 
 .cal_div {
     z-index: 100;
-    position: absolute;
+    position: absolute
 }
 
 .cal_month_sel {
-    color: #fff;
+    color: #fff
 }
 
 .cal_month_sel:hover {
-    text-decoration: none;
+    text-decoration: none
 }
 
 .timepicker_dots {
     float: left;
-    padding: 7px 4px 8px;
+    padding: 7px 4px 8px
 }

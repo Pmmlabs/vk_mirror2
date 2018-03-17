@@ -1,27 +1,27 @@
 #top_logo_css {
-    display: none;
+    display: none
 }
 
 .top_home_link.top_home_urk_logo .top_home_logo {
-    -ms-high-contrast-adjust: none;
+    -ms-high-contrast-adjust: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .top_home_link.top_home_urk_logo .top_home_logo {
     background: url(/images/hat_logo_ua.png) no-repeat;
     height: 24px;
     width: 46px;
-    margin: 6px 10px 0 0;
+    margin: 6px 10px 0 0
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -29,6 +29,6 @@
 (min-resolution: 192dpi) {
     .top_home_link.top_home_urk_logo .top_home_logo {
         background-image: url(/images/hat_logo_ua_2x.png);
-        background-size: 46px 24px;
+        background-size: 46px 24px
     }
 }

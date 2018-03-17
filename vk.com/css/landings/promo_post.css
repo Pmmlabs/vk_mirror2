@@ -1,63 +1,63 @@
 #landings_promo_post_css {
-    display: none;
+    display: none
 }
 
-.landing_promo_post_next_screen,
-.landing_promo_post_media_list div:before,
-.landing_promo_post_media_list div.landing_promo_post_media_icon:before,
-.desktop_frame,
-.iphone_frame,
-.desktop_media_screen.picture,
-.desktop_media_screen.photos,
-.desktop_media_screen.video,
-.desktop_media_screen.poll,
-.desktop_media_screen.map,
-.desktop_media_screen.product,
-.desktop_media_screen.group,
-.desktop_media_screen.site,
-.desktop_media_screen.call,
-.iphone_media_screen.picture,
-.iphone_media_screen.photos,
-.iphone_media_screen.video,
-.iphone_media_screen.poll,
-.iphone_media_screen.map,
-.iphone_media_screen.product,
-.iphone_media_screen.group,
-.iphone_media_screen.site,
-.iphone_media_screen.call,
-.landing_promo_post_feed_first,
-.landing_promo_post_club,
-.landing_promo_post_cursor,
-.landing_promo_post_target_icon,
-.landing_promo_post_target_icon.demography,
-.landing_promo_post_target_icon.cities,
-.landing_promo_post_target_icon.interests,
-.landing_promo_post_create_community,
-.landing_promo_post_settings_page,
-.landing_promo_post_settings_play,
-.landing_promo_post_settings_pause,
-.landing_promo_post_settings_dd_action,
-.landing_promo_post_settings_popup,
-.landing_promo_post_settings_popup2,
-.landing_promo_post_settings_popup3,
-.landing_promo_post_cont_arrow_next:after,
-.landing_promo_post_cont_arrow_prev:after,
 #story1 .landing_promo_post_story_author_ava,
 #story2 .landing_promo_post_story_author_ava,
 #story3 .landing_promo_post_story_author_ava,
-#story4 .landing_promo_post_story_author_ava {
-    -ms-high-contrast-adjust: none;
+#story4 .landing_promo_post_story_author_ava,
+.desktop_frame,
+.desktop_media_screen.call,
+.desktop_media_screen.group,
+.desktop_media_screen.map,
+.desktop_media_screen.photos,
+.desktop_media_screen.picture,
+.desktop_media_screen.poll,
+.desktop_media_screen.product,
+.desktop_media_screen.site,
+.desktop_media_screen.video,
+.iphone_frame,
+.iphone_media_screen.call,
+.iphone_media_screen.group,
+.iphone_media_screen.map,
+.iphone_media_screen.photos,
+.iphone_media_screen.picture,
+.iphone_media_screen.poll,
+.iphone_media_screen.product,
+.iphone_media_screen.site,
+.iphone_media_screen.video,
+.landing_promo_post_club,
+.landing_promo_post_cont_arrow_next:after,
+.landing_promo_post_cont_arrow_prev:after,
+.landing_promo_post_create_community,
+.landing_promo_post_cursor,
+.landing_promo_post_feed_first,
+.landing_promo_post_media_list div.landing_promo_post_media_icon:before,
+.landing_promo_post_media_list div:before,
+.landing_promo_post_next_screen,
+.landing_promo_post_settings_dd_action,
+.landing_promo_post_settings_page,
+.landing_promo_post_settings_pause,
+.landing_promo_post_settings_play,
+.landing_promo_post_settings_popup,
+.landing_promo_post_settings_popup2,
+.landing_promo_post_settings_popup3,
+.landing_promo_post_target_icon,
+.landing_promo_post_target_icon.cities,
+.landing_promo_post_target_icon.demography,
+.landing_promo_post_target_icon.interests {
+    -ms-high-contrast-adjust: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .landing_promo_post_container {
@@ -67,7 +67,7 @@
     right: 0px;
     bottom: 0px;
     overflow: hidden;
-    opacity: 0;
+    opacity: 0
 }
 
 .landing_promo_post_screen {
@@ -78,65 +78,66 @@
     background-position: 50%;
     position: relative;
     overflow: hidden;
-    height: 100%;
+    height: 100%
 }
 
 .landing_promo_post_screen.screen_1 {
-    background-image: url('/images/landings/promo_post/background.jpg');
+    background-image: url('/images/landings/promo_post/background.jpg')
 }
 
 .landing_promo_post_screen.screen_1 .landing_promo_post_button {
-    margin-top: 28px;
+    margin-top: 28px
 }
 
 .landing_promo_post_screen.screen_2,
 .landing_promo_post_screen.screen_4,
-.landing_promo_post_screen.screen_settings,
-.landing_promo_post_screen.screen_7 {
-    background: #f7f8fa;
+.landing_promo_post_screen.screen_7,
+.landing_promo_post_screen.screen_settings {
+    background: #f7f8fa
 }
 
 .landing_promo_post_screen_disabled {
-    display: none;
+    display: none
 }
 
 .landing_promo_post_screen_helper {
     display: table-cell;
     vertical-align: middle;
     padding: 30px 0px;
-    box-sizing: border-box;
+    box-sizing: border-box
 }
 
 .landing_promo_post_screens {
     transition: -webkit-transform 700ms ease-in-out;
     -o-transition: transform 700ms ease-in-out, -o-transform 700ms ease-in-out;
     transition: transform 700ms ease-in-out;
-    transition: transform 700ms ease-in-out, -webkit-transform 700ms ease-in-out, -o-transform 700ms ease-in-out;
+    transition: transform 700ms ease-in-out, -webkit-transform 700ms ease-in-out, -o-transform 700ms ease-in-out
 }
 
 .landing_promo_post_screens.no_anim {
     -o-transition: none;
-    transition: none;
+    transition: none
 }
 
 .landing_promo_post_big_title {
     font-size: 39px;
     letter-spacing: -0.1px;
-    color: #000000;
+    color: #000;
+    line-height: 46px
+}
+
+.landing_promo_post_big_title,
+.landing_promo_post_big_descr {
     font-weight: 300;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
-    line-height: 46px;
+    -moz-osx-font-smoothing: auto
 }
 
 .landing_promo_post_big_descr {
     line-height: 32px;
     color: #1d1d1e;
     font-size: 22px;
-    font-weight: 300;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
-    margin-top: 21px;
+    margin-top: 21px
 }
 
 .landing_promo_post_button {
@@ -146,11 +147,11 @@
     padding: 13px 25px 12px;
     font-weight: 600;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .landing_promo_post_button:active {
-    padding: 14px 25px 11px;
+    padding: 14px 25px 11px
 }
 
 .landing_promo_post_next_screen {
@@ -166,7 +167,7 @@
     border-radius: 20px;
     cursor: pointer;
     -o-transition: opacity 300ms linear;
-    transition: opacity 300ms linear;
+    transition: opacity 300ms linear
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -174,29 +175,29 @@
 (min-resolution: 192dpi) {
     .landing_promo_post_next_screen {
         background-image: url(/images/landings/promo_post/next_button_2x.png);
-        background-size: 40px 40px;
+        background-size: 40px 40px
     }
 }
 
 .landing_promo_post_next_screen.hide {
-    opacity: 0;
+    opacity: 0
 }
 
 .landing_promo_post_cont_wrap {
     max-width: 1180px;
     width: 100%;
     margin: 0px auto;
-    position: relative;
+    position: relative
 }
 
 .landing_promo_post_screen1_shadow {
-    background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0), #ffffff);
-    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0), #ffffff);
+    background-image: -o-linear-gradient(top, hsla(0, 0%, 100%, 0), #fff);
+    background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0), #fff);
     height: 550px;
     width: 100%;
     position: absolute;
     bottom: 0px;
-    left: 0px;
+    left: 0px
 }
 
 .landing_promo_post_screen1_info {
@@ -204,22 +205,22 @@
     bottom: 73px;
     left: 0px;
     width: 100%;
-    text-align: center;
+    text-align: center
 }
 
 .landing_promo_post_screen.screen_2 .info_block {
     width: 580px;
     position: relative;
-    height: 615px;
+    height: 615px
 }
 
 .landing_promo_post_screen.screen_2 .landing_promo_post_big_title {
-    margin-top: 30px;
+    margin-top: 30px
 }
 
 .landing_promo_post_screen.screen_2 .landing_promo_post_big_descr {
     margin-top: 19px;
-    max-width: 498px;
+    max-width: 498px
 }
 
 .landing_promo_post_media_list {
@@ -233,7 +234,7 @@
     -o-user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
-    -webkit-user-select: none;
+    -webkit-user-select: none
 }
 
 .landing_promo_post_media_list div {
@@ -243,7 +244,7 @@
     line-height: 18px;
     cursor: pointer;
     -o-transition: color 200ms ease;
-    transition: color 200ms ease;
+    transition: color 200ms ease
 }
 
 .landing_promo_post_media_list div:before {
@@ -254,7 +255,7 @@
     top: 2.5px;
     left: 0px;
     background-image: url(/images/landings/promo_post/icon.png);
-    background-position: -2px -1px;
+    background-position: -2px -1px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -262,7 +263,7 @@
 (min-resolution: 192dpi) {
     .landing_promo_post_media_list div:before {
         background-image: url(/images/landings/promo_post/icon_2x.png);
-        background-size: 18px 278px;
+        background-size: 18px 278px
     }
 }
 
@@ -271,7 +272,7 @@
     height: 18px;
     background-image: url(/images/landings/promo_post/icon2.png);
     background-position: 0 0;
-    top: -1.5px;
+    top: -1.5px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -279,115 +280,115 @@
 (min-resolution: 192dpi) {
     .landing_promo_post_media_list div.landing_promo_post_media_icon:before {
         background-image: url(/images/landings/promo_post/icon2_2x.png);
-        background-size: 18px 350px;
+        background-size: 18px 350px
     }
 }
 
 .landing_promo_post_media_list div.active {
-    color: #4a6f97;
+    color: #4a6f97
 }
 
 .landing_promo_post_media_list div.active:before {
-    background-position: -2px -143px;
+    background-position: -2px -143px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_photos:before {
-    background-position: -2px -25px;
+    background-position: -2px -25px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_photos.active:before {
-    background-position: -2px -167px;
+    background-position: -2px -167px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_video:before {
-    background-position: -2px -48px;
+    background-position: -2px -48px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_video.active:before {
-    background-position: -2px -190px;
+    background-position: -2px -190px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_poll:before {
-    background-position: -2px -72px;
+    background-position: -2px -72px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_poll.active:before {
-    background-position: -2px -214px;
+    background-position: -2px -214px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_map:before {
-    background-position: -2px -94px;
+    background-position: -2px -94px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_map.active:before {
-    background-position: -2px -236px;
+    background-position: -2px -236px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_product:before {
     background-position: -2px -118px;
     height: 16px;
-    top: 0px;
+    top: 0px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_product.active:before {
-    background-position: -2px -260px;
+    background-position: -2px -260px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_icon.landing_promo_post_media_i_group:before {
     background-position: 0px -32px;
-    top: 1px;
+    top: 1px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_icon.landing_promo_post_media_i_group.active:before {
-    background-position: 0px -205px;
+    background-position: 0px -205px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_icon.landing_promo_post_media_i_site:before {
-    background-position: 0px -5px;
+    background-position: 0px -5px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_icon.landing_promo_post_media_i_site.active:before {
-    background-position: 0px -178px;
+    background-position: 0px -178px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_icon.landing_promo_post_media_i_call:before {
-    background-position: 0px -58px;
+    background-position: 0px -58px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_icon.landing_promo_post_media_i_call.active:before {
-    background-position: 0px -231px;
+    background-position: 0px -231px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_icon.landing_promo_post_media_i_picture:before {
-    background-position: 0px -82px;
+    background-position: 0px -82px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_icon.landing_promo_post_media_i_picture.active:before {
-    background-position: 0px -255px;
+    background-position: 0px -255px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_icon.landing_promo_post_media_i_photos:before {
-    background-position: 0px -105px;
+    background-position: 0px -105px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_icon.landing_promo_post_media_i_photos.active:before {
-    background-position: 0px -278px;
+    background-position: 0px -278px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_icon.landing_promo_post_media_i_video:before {
-    background-position: 0px -128px;
+    background-position: 0px -128px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_icon.landing_promo_post_media_i_video.active:before {
-    background-position: 0px -301px;
+    background-position: 0px -301px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_icon.landing_promo_post_media_i_product:before {
-    background-position: 0px -153px;
+    background-position: 0px -153px
 }
 
 .landing_promo_post_media_list .landing_promo_post_media_icon.landing_promo_post_media_i_product.active:before {
-    background-position: 0px -326px;
+    background-position: 0px -326px
 }
 
 .frames {
@@ -395,7 +396,7 @@
     height: 600px;
     position: absolute;
     left: 580px;
-    top: 24px;
+    top: 24px
 }
 
 .desktop_frame {
@@ -404,7 +405,7 @@
     background-image: url(/images/landings/promo_post/frame-desktop.png);
     position: absolute;
     top: 0px;
-    left: 123px;
+    left: 123px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -412,7 +413,7 @@
 (min-resolution: 192dpi) {
     .desktop_frame {
         background-image: url(/images/landings/promo_post/frame-desktop_2x.png);
-        background-size: 705px 556px;
+        background-size: 705px 556px
     }
 }
 
@@ -422,7 +423,7 @@
     left: 0px;
     width: 244px;
     height: 501px;
-    background-image: url(/images/landings/promo_post/frame-mobile.png);
+    background-image: url(/images/landings/promo_post/frame-mobile.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -430,7 +431,7 @@
 (min-resolution: 192dpi) {
     .iphone_frame {
         background-image: url(/images/landings/promo_post/frame-mobile_2x.png);
-        background-size: 244px 501px;
+        background-size: 244px 501px
     }
 }
 
@@ -441,19 +442,19 @@
     top: 80px;
     left: 0px;
     bottom: 11px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .desktop_media_screens {
     width: 390px;
-    padding-left: 135px;
+    padding-left: 135px
 }
 
 .desktop_media_screens_helper {
     transition: -webkit-transform 500ms ease-in-out;
     -o-transition: transform 500ms ease-in-out, -o-transform 500ms ease-in-out;
     transition: transform 500ms ease-in-out;
-    transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out, -o-transform 500ms ease-in-out;
+    transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out, -o-transform 500ms ease-in-out
 }
 
 .desktop_media_screen {
@@ -461,11 +462,11 @@
     height: 392px;
     padding: 23px 0 53px;
     background-position: 50%;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat
 }
 
 .desktop_media_screen.picture {
-    background-image: url(/images/landings/promo_post/screen2/1.jpg);
+    background-image: url(/images/landings/promo_post/screen2/1.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -473,12 +474,12 @@
 (min-resolution: 192dpi) {
     .desktop_media_screen.picture {
         background-image: url(/images/landings/promo_post/screen2/1_2x.jpg);
-        background-size: 394px 392px;
+        background-size: 394px 392px
     }
 }
 
 .desktop_media_screen.photos {
-    background-image: url(/images/landings/promo_post/screen2/2.jpg);
+    background-image: url(/images/landings/promo_post/screen2/2.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -486,12 +487,12 @@
 (min-resolution: 192dpi) {
     .desktop_media_screen.photos {
         background-image: url(/images/landings/promo_post/screen2/2_2x.jpg);
-        background-size: 394px 392px;
+        background-size: 394px 392px
     }
 }
 
 .desktop_media_screen.video {
-    background-image: url(/images/landings/promo_post/screen2/3.jpg);
+    background-image: url(/images/landings/promo_post/screen2/3.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -499,12 +500,12 @@
 (min-resolution: 192dpi) {
     .desktop_media_screen.video {
         background-image: url(/images/landings/promo_post/screen2/3_2x.jpg);
-        background-size: 394px 392px;
+        background-size: 394px 392px
     }
 }
 
 .desktop_media_screen.poll {
-    background-image: url(/images/landings/promo_post/screen2/4.jpg);
+    background-image: url(/images/landings/promo_post/screen2/4.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -512,12 +513,12 @@
 (min-resolution: 192dpi) {
     .desktop_media_screen.poll {
         background-image: url(/images/landings/promo_post/screen2/4_2x.jpg);
-        background-size: 394px 392px;
+        background-size: 394px 392px
     }
 }
 
 .desktop_media_screen.map {
-    background-image: url(/images/landings/promo_post/screen2/5.jpg);
+    background-image: url(/images/landings/promo_post/screen2/5.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -525,12 +526,12 @@
 (min-resolution: 192dpi) {
     .desktop_media_screen.map {
         background-image: url(/images/landings/promo_post/screen2/5_2x.jpg);
-        background-size: 394px 392px;
+        background-size: 394px 392px
     }
 }
 
 .desktop_media_screen.product {
-    background-image: url(/images/landings/promo_post/screen2/6.jpg);
+    background-image: url(/images/landings/promo_post/screen2/6.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -538,12 +539,12 @@
 (min-resolution: 192dpi) {
     .desktop_media_screen.product {
         background-image: url(/images/landings/promo_post/screen2/6_2x.jpg);
-        background-size: 394px 392px;
+        background-size: 394px 392px
     }
 }
 
 .desktop_media_screen.group {
-    background-image: url(/images/landings/promo_post/screen2/7.jpg);
+    background-image: url(/images/landings/promo_post/screen2/7.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -551,12 +552,12 @@
 (min-resolution: 192dpi) {
     .desktop_media_screen.group {
         background-image: url(/images/landings/promo_post/screen2/7_2x.jpg);
-        background-size: 394px 374px;
+        background-size: 394px 374px
     }
 }
 
 .desktop_media_screen.site {
-    background-image: url(/images/landings/promo_post/screen2/8.jpg);
+    background-image: url(/images/landings/promo_post/screen2/8.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -564,12 +565,12 @@
 (min-resolution: 192dpi) {
     .desktop_media_screen.site {
         background-image: url(/images/landings/promo_post/screen2/8_2x.jpg);
-        background-size: 394px 374px;
+        background-size: 394px 374px
     }
 }
 
 .desktop_media_screen.call {
-    background-image: url(/images/landings/promo_post/screen2/9.jpg);
+    background-image: url(/images/landings/promo_post/screen2/9.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -577,30 +578,30 @@
 (min-resolution: 192dpi) {
     .desktop_media_screen.call {
         background-image: url(/images/landings/promo_post/screen2/9_2x.jpg);
-        background-size: 394px 374px;
+        background-size: 394px 374px
     }
 }
 
 .iphone_media_screens {
     top: 106px;
     bottom: 62px;
-    left: 17px;
+    left: 17px
 }
 
 .iphone_media_screens_helper {
     transition: -webkit-transform 500ms ease-in-out;
     -o-transition: transform 500ms ease-in-out, -o-transform 500ms ease-in-out;
     transition: transform 500ms ease-in-out;
-    transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out, -o-transform 500ms ease-in-out;
+    transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out, -o-transform 500ms ease-in-out
 }
 
 .iphone_media_screen {
     width: 210px;
-    height: 333px;
+    height: 333px
 }
 
 .iphone_media_screen.picture {
-    background-image: url(/images/landings/promo_post/screen2/1m.jpg);
+    background-image: url(/images/landings/promo_post/screen2/1m.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -608,12 +609,12 @@
 (min-resolution: 192dpi) {
     .iphone_media_screen.picture {
         background-image: url(/images/landings/promo_post/screen2/1m_2x.jpg);
-        background-size: 210px 333px;
+        background-size: 210px 333px
     }
 }
 
 .iphone_media_screen.photos {
-    background-image: url(/images/landings/promo_post/screen2/2m.jpg);
+    background-image: url(/images/landings/promo_post/screen2/2m.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -621,12 +622,12 @@
 (min-resolution: 192dpi) {
     .iphone_media_screen.photos {
         background-image: url(/images/landings/promo_post/screen2/2m_2x.jpg);
-        background-size: 210px 333px;
+        background-size: 210px 333px
     }
 }
 
 .iphone_media_screen.video {
-    background-image: url(/images/landings/promo_post/screen2/3m.jpg);
+    background-image: url(/images/landings/promo_post/screen2/3m.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -634,12 +635,12 @@
 (min-resolution: 192dpi) {
     .iphone_media_screen.video {
         background-image: url(/images/landings/promo_post/screen2/3m_2x.jpg);
-        background-size: 210px 333px;
+        background-size: 210px 333px
     }
 }
 
 .iphone_media_screen.poll {
-    background-image: url(/images/landings/promo_post/screen2/4m.jpg);
+    background-image: url(/images/landings/promo_post/screen2/4m.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -647,12 +648,12 @@
 (min-resolution: 192dpi) {
     .iphone_media_screen.poll {
         background-image: url(/images/landings/promo_post/screen2/4m_2x.jpg);
-        background-size: 210px 333px;
+        background-size: 210px 333px
     }
 }
 
 .iphone_media_screen.map {
-    background-image: url(/images/landings/promo_post/screen2/5m.jpg);
+    background-image: url(/images/landings/promo_post/screen2/5m.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -660,12 +661,12 @@
 (min-resolution: 192dpi) {
     .iphone_media_screen.map {
         background-image: url(/images/landings/promo_post/screen2/5m_2x.jpg);
-        background-size: 210px 333px;
+        background-size: 210px 333px
     }
 }
 
 .iphone_media_screen.product {
-    background-image: url(/images/landings/promo_post/screen2/6m.jpg);
+    background-image: url(/images/landings/promo_post/screen2/6m.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -673,12 +674,12 @@
 (min-resolution: 192dpi) {
     .iphone_media_screen.product {
         background-image: url(/images/landings/promo_post/screen2/6m_2x.jpg);
-        background-size: 210px 333px;
+        background-size: 210px 333px
     }
 }
 
 .iphone_media_screen.group {
-    background-image: url(/images/landings/promo_post/screen2/7m.jpg);
+    background-image: url(/images/landings/promo_post/screen2/7m.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -686,12 +687,12 @@
 (min-resolution: 192dpi) {
     .iphone_media_screen.group {
         background-image: url(/images/landings/promo_post/screen2/7m_2x.jpg);
-        background-size: 210px 333px;
+        background-size: 210px 333px
     }
 }
 
 .iphone_media_screen.site {
-    background-image: url(/images/landings/promo_post/screen2/8m.jpg);
+    background-image: url(/images/landings/promo_post/screen2/8m.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -699,12 +700,12 @@
 (min-resolution: 192dpi) {
     .iphone_media_screen.site {
         background-image: url(/images/landings/promo_post/screen2/8m_2x.jpg);
-        background-size: 211px 333px;
+        background-size: 211px 333px
     }
 }
 
 .iphone_media_screen.call {
-    background-image: url(/images/landings/promo_post/screen2/9m.jpg);
+    background-image: url(/images/landings/promo_post/screen2/9m.jpg)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -712,41 +713,39 @@
 (min-resolution: 192dpi) {
     .iphone_media_screen.call {
         background-image: url(/images/landings/promo_post/screen2/9m_2x.jpg);
-        background-size: 211px 333px;
+        background-size: 211px 333px
     }
 }
 
 .landing_promo_post_screen.screen_3 {
-    text-align: center;
+    text-align: center
 }
 
 .landing_promo_post_screen.screen_3 .landing_promo_post_big_descr {
     max-width: 960px;
-    margin: 21px auto 0px;
+    margin: 21px auto 0px
 }
 
 @media (max-height: 900px) {
-    .landing_promo_post_screen.screen_3 {
-        display: block;
-    }
+    .landing_promo_post_screen.screen_3,
     .landing_promo_post_screen.screen_3 .landing_promo_post_screen_helper {
-        display: block;
+        display: block
     }
 }
 
 .landing_promo_post_feed {
     width: 530px;
     height: 663px;
-    margin: 30px auto 0px;
+    margin: 30px auto 0px
 }
 
-.landing_promo_post_feed_first_helper,
-.landing_promo_post_feed_first {
-    height: 168px;
+.landing_promo_post_feed_first,
+.landing_promo_post_feed_first_helper {
+    height: 168px
 }
 
 .landing_promo_post_feed_first {
-    background: url(/images/landings/promo_post/post1.png);
+    background: url(/images/landings/promo_post/post1.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -754,72 +753,69 @@
 (min-resolution: 192dpi) {
     .landing_promo_post_feed_first {
         background-image: url(/images/landings/promo_post/post1_2x.png);
-        background-size: 528px 168px;
+        background-size: 528px 168px
     }
 }
 
 .landing_promo_post_feed_featured_helper {
     height: 0px;
     -o-transition: height 700ms ease-in-out;
-    transition: height 700ms ease-in-out;
+    transition: height 700ms ease-in-out
 }
 
 .landing_promo_post_feed_featured,
 .landing_promo_post_feed_featured_helper.shown {
-    height: 304px;
+    height: 304px
 }
 
 .landing_promo_post_feed_featured {
     background: url('/images/landings/promo_post/post2_2x.png');
-    background-size: 528px 304px;
+    background-size: 528px 304px
 }
 
-.landing_promo_post_feed_last_helper,
-.landing_promo_post_feed_last {
-    height: 161px;
+.landing_promo_post_feed_last,
+.landing_promo_post_feed_last_helper {
+    height: 161px
 }
 
 .landing_promo_post_feed_last {
     background: url('/images/landings/promo_post/post3_2x.png');
-    background-size: 528px 161px;
+    background-size: 528px 161px
 }
 
-.landing_promo_post_feed_first_helper,
 .landing_promo_post_feed_featured_helper,
+.landing_promo_post_feed_first_helper,
 .landing_promo_post_feed_last_helper {
     position: relative;
-    margin-bottom: 3px;
+    margin-bottom: 3px
 }
 
-.landing_promo_post_feed_first,
 .landing_promo_post_feed_featured,
+.landing_promo_post_feed_first,
 .landing_promo_post_feed_last {
     opacity: 0;
     position: absolute;
     -webkit-transform: translateY(150px);
-    -ms-transform: translateY(150px);
     -o-transform: translateY(150px);
     transform: translateY(150px);
     -o-transition: all 700ms ease-in-out;
     transition: all 700ms ease-in-out;
-    width: 100%;
+    width: 100%
 }
 
-.landing_promo_post_feed_first.shown,
 .landing_promo_post_feed_featured.shown,
+.landing_promo_post_feed_first.shown,
 .landing_promo_post_feed_last.shown {
     -webkit-transform: translateY(0px);
-    -ms-transform: translateY(0px);
     -o-transform: translateY(0px);
     transform: translateY(0px);
-    opacity: 1;
+    opacity: 1
 }
 
 .landing_promo_post_feed_featured {
     -webkit-transform: translateX(-1060px);
-    -ms-transform: translateX(-1060px);
     -o-transform: translateX(-1060px);
-    transform: translateX(-1060px);
+    transform: translateX(-1060px)
 }
 
 .landing_promo_post_feed_shadow {
@@ -828,28 +824,28 @@
     left: 0px;
     width: 100%;
     height: 104px;
-    background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0), #ffffff);
-    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0), #ffffff);
-    z-index: 100;
+    background-image: -o-linear-gradient(top, hsla(0, 0%, 100%, 0), #fff);
+    background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0), #fff);
+    z-index: 100
 }
 
 .landing_promo_post_screen.screen_4 {
-    text-align: center;
+    text-align: center
 }
 
 .landing_promo_post_screen.screen_4 .landing_promo_post_big_descr {
     max-width: 1090px;
-    margin: 19px auto 0px;
+    margin: 19px auto 0px
 }
 
 .landing_promo_post_club {
     background-image: url(/images/landings/promo_post/screen4/club.png);
-    background-size: 100% !important;
+    background-size: 100%!important;
     width: 705px;
     height: 489px;
     margin: 31px auto 0px;
     margin-bottom: 20px;
-    position: relative;
+    position: relative
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -857,7 +853,7 @@
 (min-resolution: 192dpi) {
     .landing_promo_post_club {
         background-image: url(/images/landings/promo_post/screen4/club_2x.png);
-        background-size: 705px 489px;
+        background-size: 705px 489px
     }
 }
 
@@ -872,10 +868,9 @@
     right: 212px;
     display: none;
     z-index: 2;
-    -webkit-transform: translate(0px, 108px);
-    -ms-transform: translate(0px, 108px);
-    -o-transform: translate(0px, 108px);
-    transform: translate(0px, 108px);
+    -webkit-transform: translateY(108px);
+    -o-transform: translateY(108px);
+    transform: translateY(108px)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -883,39 +878,39 @@
 (min-resolution: 192dpi) {
     .landing_promo_post_cursor {
         background-image: url(/images/landings/promo_post/cursor_pointer_2x.png);
-        background-size: 42px 48px;
+        background-size: 42px 48px
     }
 }
 
-.landing_promo_post_screen.screen_6 .landing_promo_post_big_title,
-.landing_promo_post_screen.screen_6 .landing_promo_post_big_descr {
-    text-align: center;
+.landing_promo_post_screen.screen_6 .landing_promo_post_big_descr,
+.landing_promo_post_screen.screen_6 .landing_promo_post_big_title {
+    text-align: center
 }
 
 .landing_promo_post_screen.screen_6 .landing_promo_post_big_descr {
     margin: 19px auto 0px;
-    max-width: 1000px;
+    max-width: 1000px
 }
 
 .landing_promo_post_targets {
     width: 1020px;
-    margin: 53px auto 0px;
+    margin: 53px auto 0px
 }
 
 .landing_promo_post_target {
     width: 50%;
     display: table;
-    box-sizing: border-box;
+    box-sizing: border-box
 }
 
 .landing_promo_post_target:nth-child(3),
 .landing_promo_post_target:nth-child(4) {
-    margin-top: 80px;
+    margin-top: 80px
 }
 
 .landing_promo_post_target:nth-child(2),
 .landing_promo_post_target:nth-child(4) {
-    padding-left: 65px;
+    padding-left: 65px
 }
 
 .landing_promo_post_target_icon {
@@ -923,7 +918,7 @@
     height: 164px;
     display: table-cell;
     background-size: 164px 164px;
-    background-image: url(/images/landings/promo_post/screen6/pic1.png);
+    background-image: url(/images/landings/promo_post/screen6/pic1.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -931,12 +926,12 @@
 (min-resolution: 192dpi) {
     .landing_promo_post_target_icon {
         background-image: url(/images/landings/promo_post/screen6/pic1_2x.png);
-        background-size: 164px 164px;
+        background-size: 164px 164px
     }
 }
 
 .landing_promo_post_target_icon.demography {
-    background-image: url(/images/landings/promo_post/screen6/pic2.png);
+    background-image: url(/images/landings/promo_post/screen6/pic2.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -944,12 +939,12 @@
 (min-resolution: 192dpi) {
     .landing_promo_post_target_icon.demography {
         background-image: url(/images/landings/promo_post/screen6/pic2_2x.png);
-        background-size: 164px 164px;
+        background-size: 164px 164px
     }
 }
 
 .landing_promo_post_target_icon.cities {
-    background-image: url(/images/landings/promo_post/screen6/pic3.png);
+    background-image: url(/images/landings/promo_post/screen6/pic3.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -957,12 +952,12 @@
 (min-resolution: 192dpi) {
     .landing_promo_post_target_icon.cities {
         background-image: url(/images/landings/promo_post/screen6/pic3_2x.png);
-        background-size: 164px 164px;
+        background-size: 164px 164px
     }
 }
 
 .landing_promo_post_target_icon.interests {
-    background-image: url(/images/landings/promo_post/screen6/pic4.png);
+    background-image: url(/images/landings/promo_post/screen6/pic4.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -970,22 +965,22 @@
 (min-resolution: 192dpi) {
     .landing_promo_post_target_icon.interests {
         background-image: url(/images/landings/promo_post/screen6/pic4_2x.png);
-        background-size: 164px 164px;
+        background-size: 164px 164px
     }
 }
 
 .landing_promo_post_target_cont {
     padding-left: 36px;
     display: table-cell;
-    vertical-align: middle;
+    vertical-align: middle
 }
 
 .landing_promo_post_target_title {
-    color: #000000;
+    color: #000;
     font-size: 19px;
     letter-spacing: -0.1px;
     line-height: 23px;
-    font-weight: 600;
+    font-weight: 600
 }
 
 .landing_promo_post_target_descr {
@@ -994,26 +989,26 @@
     line-height: 21px;
     letter-spacing: -0.1px;
     margin-top: 8px;
-    max-width: 222px;
+    max-width: 222px
 }
 
-.landing_promo_post_screen.screen_6 .landing_promo_post_big_title,
-.landing_promo_post_screen.screen_6 .landing_promo_post_big_descr {
-    text-align: center;
+.landing_promo_post_screen.screen_6 .landing_promo_post_big_descr,
+.landing_promo_post_screen.screen_6 .landing_promo_post_big_title {
+    text-align: center
 }
 
 .landing_promo_post_screen.screen_6 .landing_promo_post_big_descr {
     margin: 19px auto 0px;
-    max-width: 1125px;
+    max-width: 1125px
 }
 
-.landing_promo_post_screen.screen_7 .landing_promo_post_big_title,
-.landing_promo_post_screen.screen_7 .landing_promo_post_big_descr {
-    text-align: center;
+.landing_promo_post_screen.screen_7 .landing_promo_post_big_descr,
+.landing_promo_post_screen.screen_7 .landing_promo_post_big_title {
+    text-align: center
 }
 
 .landing_promo_post_screen.screen_7 .landing_promo_post_big_descr {
-    margin: 19px auto 0px;
+    margin: 19px auto 0px
 }
 
 .landing_promo_post_create_community {
@@ -1021,7 +1016,7 @@
     width: 566px;
     height: 596px;
     margin: 46px auto 0px;
-    position: relative;
+    position: relative
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1029,7 +1024,7 @@
 (min-resolution: 192dpi) {
     .landing_promo_post_create_community {
         background-image: url(/images/landings/promo_post/screen7/fitness_group_2x.png);
-        background-size: 566px 596px;
+        background-size: 566px 596px
     }
 }
 
@@ -1037,130 +1032,130 @@
     position: absolute;
     opacity: 1;
     top: 87px;
-    left: 158px;
+    left: 158px
 }
 
 .landing_promo_post_tt {
-    color: #757c85 !important;
+    color: #757c85!important;
     letter-spacing: -0.1px;
-    font-size: 12px !important;
+    font-size: 12px!important;
     line-height: 17px;
     opacity: 0;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
+.create_group_cursor,
 .landing_promo_post_tt1,
 .landing_promo_post_tt2,
 .landing_promo_post_tt3,
 .landing_promo_post_tt4,
-.landing_promo_post_tt5,
-.create_group_cursor {
-    display: none;
+.landing_promo_post_tt5 {
+    display: none
 }
 
+.screen7_animate .create_group_cursor,
 .screen7_animate .landing_promo_post_tt1,
 .screen7_animate .landing_promo_post_tt2,
 .screen7_animate .landing_promo_post_tt3,
 .screen7_animate .landing_promo_post_tt4,
-.screen7_animate .landing_promo_post_tt5,
-.screen7_animate .create_group_cursor {
-    display: block;
+.screen7_animate .landing_promo_post_tt5 {
+    display: block
 }
 
 .screen7_animate .create_group_cursor {
     -webkit-animation: create_community_anim 18s infinite ease-in-out 0.2s;
     -o-animation: create_community_anim 18s infinite ease-in-out 0.2s;
-    animation: create_community_anim 18s infinite ease-in-out 0.2s;
+    animation: create_community_anim 18s infinite ease-in-out 0.2s
 }
 
 .screen7_animate .landing_promo_post_tt1 {
     -webkit-animation: create_community_anim1 18s infinite linear 50ms;
     -o-animation: create_community_anim1 18s infinite linear 50ms;
-    animation: create_community_anim1 18s infinite linear 50ms;
+    animation: create_community_anim1 18s infinite linear 50ms
 }
 
 .screen7_animate .landing_promo_post_tt2 {
     -webkit-animation: create_community_anim2 18s infinite linear 50ms;
     -o-animation: create_community_anim2 18s infinite linear 50ms;
-    animation: create_community_anim2 18s infinite linear 50ms;
+    animation: create_community_anim2 18s infinite linear 50ms
 }
 
 .screen7_animate .landing_promo_post_tt3 {
     -webkit-animation: create_community_anim3 18s infinite linear 50ms;
     -o-animation: create_community_anim3 18s infinite linear 50ms;
-    animation: create_community_anim3 18s infinite linear 50ms;
+    animation: create_community_anim3 18s infinite linear 50ms
 }
 
 .screen7_animate .landing_promo_post_tt4 {
     -webkit-animation: create_community_anim4 18s infinite linear 50ms;
     -o-animation: create_community_anim4 18s infinite linear 50ms;
-    animation: create_community_anim4 18s infinite linear 50ms;
+    animation: create_community_anim4 18s infinite linear 50ms
 }
 
 .screen7_animate .landing_promo_post_tt5 {
     -webkit-animation: create_community_anim5 18s infinite linear 50ms;
     -o-animation: create_community_anim5 18s infinite linear 50ms;
-    animation: create_community_anim5 18s infinite linear 50ms;
+    animation: create_community_anim5 18s infinite linear 50ms
 }
 
 .landing_promo_post_create_community_step {
     position: absolute;
     width: 10px;
-    height: 5px;
+    height: 5px
 }
 
 .landing_promo_post_create_community_step.step1 {
     top: 55px;
-    left: 168px;
+    left: 168px
 }
 
 .landing_promo_post_create_community_step.step2 {
     top: 180px;
-    left: 147px;
+    left: 147px
 }
 
 .landing_promo_post_create_community_step.step3 {
     top: 381px;
-    left: 92px;
+    left: 92px
 }
 
 .landing_promo_post_create_community_step.step4 {
     top: 5px;
-    left: 475px;
+    left: 475px
 }
 
 .landing_promo_post_create_community_step.step5 {
     top: 330px;
-    left: 475px;
+    left: 475px
 }
 
 @-webkit-keyframes create_community_anim {
     0%,
     7.5%,
     92.5%,
-    100% {
-        -webkit-transform: translate(0px, 0px);
-        transform: translate(0px, 0px);
+    to {
+        -webkit-transform: translate(0px);
+        transform: translate(0px)
     }
     12.5%,
     27.5% {
         -webkit-transform: translate(-25px, 136px);
-        transform: translate(-25px, 136px);
+        transform: translate(-25px, 136px)
     }
     32.5%,
     47.5% {
         -webkit-transform: translate(-80px, 344px);
-        transform: translate(-80px, 344px);
+        transform: translate(-80px, 344px)
     }
     52.5%,
     67.5% {
         -webkit-transform: translate(307px, 61px);
-        transform: translate(307px, 61px);
+        transform: translate(307px, 61px)
     }
     72.5%,
     87.5% {
         -webkit-transform: translate(307px, 329px);
-        transform: translate(307px, 329px);
+        transform: translate(307px, 329px)
     }
 }
 
@@ -1168,29 +1163,29 @@
     0%,
     7.5%,
     92.5%,
-    100% {
-        -o-transform: translate(0px, 0px);
-        transform: translate(0px, 0px);
+    to {
+        -o-transform: translate(0px);
+        transform: translate(0px)
     }
     12.5%,
     27.5% {
         -o-transform: translate(-25px, 136px);
-        transform: translate(-25px, 136px);
+        transform: translate(-25px, 136px)
     }
     32.5%,
     47.5% {
         -o-transform: translate(-80px, 344px);
-        transform: translate(-80px, 344px);
+        transform: translate(-80px, 344px)
     }
     52.5%,
     67.5% {
         -o-transform: translate(307px, 61px);
-        transform: translate(307px, 61px);
+        transform: translate(307px, 61px)
     }
     72.5%,
     87.5% {
         -o-transform: translate(307px, 329px);
-        transform: translate(307px, 329px);
+        transform: translate(307px, 329px)
     }
 }
 
@@ -1198,34 +1193,34 @@
     0%,
     7.5%,
     92.5%,
-    100% {
-        -webkit-transform: translate(0px, 0px);
-        -o-transform: translate(0px, 0px);
-        transform: translate(0px, 0px);
+    to {
+        -webkit-transform: translate(0px);
+        -o-transform: translate(0px);
+        transform: translate(0px)
     }
     12.5%,
     27.5% {
         -webkit-transform: translate(-25px, 136px);
         -o-transform: translate(-25px, 136px);
-        transform: translate(-25px, 136px);
+        transform: translate(-25px, 136px)
     }
     32.5%,
     47.5% {
         -webkit-transform: translate(-80px, 344px);
         -o-transform: translate(-80px, 344px);
-        transform: translate(-80px, 344px);
+        transform: translate(-80px, 344px)
     }
     52.5%,
     67.5% {
         -webkit-transform: translate(307px, 61px);
         -o-transform: translate(307px, 61px);
-        transform: translate(307px, 61px);
+        transform: translate(307px, 61px)
     }
     72.5%,
     87.5% {
         -webkit-transform: translate(307px, 329px);
         -o-transform: translate(307px, 329px);
-        transform: translate(307px, 329px);
+        transform: translate(307px, 329px)
     }
 }
 
@@ -1233,12 +1228,12 @@
     0%,
     7.4%,
     92.6%,
-    100% {
-        opacity: 1;
+    to {
+        opacity: 1
     }
     9%,
     90% {
-        opacity: 0;
+        opacity: 0
     }
 }
 
@@ -1246,12 +1241,12 @@
     0%,
     7.4%,
     92.6%,
-    100% {
-        opacity: 1;
+    to {
+        opacity: 1
     }
     9%,
     90% {
-        opacity: 0;
+        opacity: 0
     }
 }
 
@@ -1259,187 +1254,187 @@
     0%,
     7.4%,
     92.6%,
-    100% {
-        opacity: 1;
+    to {
+        opacity: 1
     }
     9%,
     90% {
-        opacity: 0;
+        opacity: 0
     }
 }
 
 @-webkit-keyframes create_community_anim2 {
     12.5%,
     27.5% {
-        opacity: 1;
+        opacity: 1
     }
     0%,
     11%,
     29%,
-    100% {
-        opacity: 0;
+    to {
+        opacity: 0
     }
 }
 
 @-o-keyframes create_community_anim2 {
     12.5%,
     27.5% {
-        opacity: 1;
+        opacity: 1
     }
     0%,
     11%,
     29%,
-    100% {
-        opacity: 0;
+    to {
+        opacity: 0
     }
 }
 
 @keyframes create_community_anim2 {
     12.5%,
     27.5% {
-        opacity: 1;
+        opacity: 1
     }
     0%,
     11%,
     29%,
-    100% {
-        opacity: 0;
+    to {
+        opacity: 0
     }
 }
 
 @-webkit-keyframes create_community_anim3 {
     32.5%,
     47.5% {
-        opacity: 1;
+        opacity: 1
     }
     0%,
     30%,
     49%,
-    100% {
-        opacity: 0;
+    to {
+        opacity: 0
     }
 }
 
 @-o-keyframes create_community_anim3 {
     32.5%,
     47.5% {
-        opacity: 1;
+        opacity: 1
     }
     0%,
     30%,
     49%,
-    100% {
-        opacity: 0;
+    to {
+        opacity: 0
     }
 }
 
 @keyframes create_community_anim3 {
     32.5%,
     47.5% {
-        opacity: 1;
+        opacity: 1
     }
     0%,
     30%,
     49%,
-    100% {
-        opacity: 0;
+    to {
+        opacity: 0
     }
 }
 
 @-webkit-keyframes create_community_anim4 {
     52.5%,
     67.5% {
-        opacity: 1;
+        opacity: 1
     }
     0%,
     50%,
     69%,
-    100% {
-        opacity: 0;
+    to {
+        opacity: 0
     }
 }
 
 @-o-keyframes create_community_anim4 {
     52.5%,
     67.5% {
-        opacity: 1;
+        opacity: 1
     }
     0%,
     50%,
     69%,
-    100% {
-        opacity: 0;
+    to {
+        opacity: 0
     }
 }
 
 @keyframes create_community_anim4 {
     52.5%,
     67.5% {
-        opacity: 1;
+        opacity: 1
     }
     0%,
     50%,
     69%,
-    100% {
-        opacity: 0;
+    to {
+        opacity: 0
     }
 }
 
 @-webkit-keyframes create_community_anim5 {
     72.5%,
     87.5% {
-        opacity: 1;
+        opacity: 1
     }
     0%,
     70%,
     89%,
-    100% {
-        opacity: 0;
+    to {
+        opacity: 0
     }
 }
 
 @-o-keyframes create_community_anim5 {
     72.5%,
     87.5% {
-        opacity: 1;
+        opacity: 1
     }
     0%,
     70%,
     89%,
-    100% {
-        opacity: 0;
+    to {
+        opacity: 0
     }
 }
 
 @keyframes create_community_anim5 {
     72.5%,
     87.5% {
-        opacity: 1;
+        opacity: 1
     }
     0%,
     70%,
     89%,
-    100% {
-        opacity: 0;
+    to {
+        opacity: 0
     }
 }
 
 .landing_promo_post_screen.screen_settings {
-    text-align: center;
+    text-align: center
 }
 
 .landing_promo_post_screen.screen_settings .landing_promo_post_big_descr {
-    margin-top: 16px;
+    margin-top: 16px
 }
 
 .landing_promo_post_settings_wrap {
     position: relative;
-    margin: 72px auto 0px;
+    margin: 72px auto 0px
 }
 
-.landing_promo_post_settings_wrap,
-.landing_promo_post_settings_page {
-    width: 950px;
+.landing_promo_post_settings_page,
+.landing_promo_post_settings_wrap {
+    width: 950px
 }
 
 .landing_promo_post_settings_page {
@@ -1447,7 +1442,7 @@
     background-size: cover;
     height: 422px;
     position: relative;
-    z-index: 1;
+    z-index: 1
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1455,46 +1450,46 @@
 (min-resolution: 192dpi) {
     .landing_promo_post_settings_page {
         background-image: url(/images/landings/promo_post/settings/page_2x.png);
-        background-size: 1053px 472px;
+        background-size: 1053px 472px
     }
 }
 
-.landing_promo_post_settings_page_helper,
-.landing_promo_post_settings_gradient {
+.landing_promo_post_settings_gradient,
+.landing_promo_post_settings_page_helper {
     position: absolute;
     top: 0px;
     left: 0px;
     width: 100%;
-    height: 100%;
+    height: 100%
 }
 
 .landing_promo_post_settings_gradient {
     z-index: 2;
-    background-image: -o-linear-gradient(top, #f7f8fa, rgba(247, 248, 250, 0.8));
-    background-image: linear-gradient(180deg, #f7f8fa, rgba(247, 248, 250, 0.8));
-    opacity: 0.8;
+    background-image: -o-linear-gradient(top, #f7f8fa, rgba(247, 248, 250, .8));
+    background-image: linear-gradient(180deg, #f7f8fa, rgba(247, 248, 250, .8));
+    opacity: 0.8
 }
 
 .landing_promo_post_settings_page_helper {
-    z-index: 3;
+    z-index: 3
 }
 
-.landing_promo_post_settings_play,
-.landing_promo_post_settings_pause {
+.landing_promo_post_settings_pause,
+.landing_promo_post_settings_play {
     position: absolute;
     top: 251px;
     left: 328px;
     width: 10px;
-    background-image: url(/images/landings/promo_post/settings/controls.png);
+    background-image: url(/images/landings/promo_post/settings/controls.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
-    .landing_promo_post_settings_play,
-    .landing_promo_post_settings_pause {
+    .landing_promo_post_settings_pause,
+    .landing_promo_post_settings_play {
         background-image: url(/images/landings/promo_post/settings/controls_2x.png);
-        background-size: 40px 148px;
+        background-size: 40px 148px
     }
 }
 
@@ -1502,17 +1497,17 @@
     height: 13px;
     background-position: -13px 52px;
     display: none;
-    z-index: 1;
+    z-index: 1
 }
 
 .landing_promo_post_settings_play {
     height: 12px;
-    background-position: -13px 24px;
+    background-position: -13px 24px
 }
 
 .ad_settings_cursor {
     z-index: 100;
-    display: block;
+    display: block
 }
 
 .landing_promo_post_settings_dd_action {
@@ -1523,7 +1518,7 @@
     top: 241px;
     left: 314px;
     z-index: 2;
-    display: none;
+    display: none
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1531,7 +1526,7 @@
 (min-resolution: 192dpi) {
     .landing_promo_post_settings_dd_action {
         background-image: url(/images/landings/promo_post/settings/dropdown_action_2x.png);
-        background-size: 131px 93px;
+        background-size: 131px 93px
     }
 }
 
@@ -1542,7 +1537,7 @@
     left: 358px;
     width: 326px;
     height: 91px;
-    display: none;
+    display: none
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1550,7 +1545,7 @@
 (min-resolution: 192dpi) {
     .landing_promo_post_settings_popup {
         background-image: url(/images/landings/promo_post/settings/popup_action_2x.png);
-        background-size: 326px 91px;
+        background-size: 326px 91px
     }
 }
 
@@ -1561,7 +1556,7 @@
     width: 327px;
     height: 91px;
     background-image: url(/images/landings/promo_post/settings/popup_action_2.png);
-    display: none;
+    display: none
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1569,7 +1564,7 @@
 (min-resolution: 192dpi) {
     .landing_promo_post_settings_popup2 {
         background-image: url(/images/landings/promo_post/settings/popup_action_2_2x.png);
-        background-size: 327px 91px;
+        background-size: 327px 91px
     }
 }
 
@@ -1580,7 +1575,7 @@
     width: 219px;
     height: 249px;
     background-image: url(/images/landings/promo_post/settings/calendar_action.png);
-    display: none;
+    display: none
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1588,60 +1583,60 @@
 (min-resolution: 192dpi) {
     .landing_promo_post_settings_popup3 {
         background-image: url(/images/landings/promo_post/settings/calendar_action_2x.png);
-        background-size: 219px 249px;
+        background-size: 219px 249px
     }
 }
 
 .landing_promo_post_settings_tt_el {
     position: absolute;
     width: 10px;
-    height: 5px;
+    height: 5px
 }
 
 #group_settings_tt1 {
     top: 222px;
-    left: 520px;
+    left: 520px
 }
 
 #group_settings_tt2 {
     top: 222px;
-    left: 644px;
+    left: 644px
 }
 
 #group_settings_tt3 {
     top: 214px;
-    left: 682px;
+    left: 682px
 }
 
 .landing_promo_post_settings_tt1 {
-    top: 142px !important;
-    left: 364px !important;
+    top: 142px!important;
+    left: 364px!important
 }
 
 .landing_promo_post_settings_tt2 {
-    top: 157px !important;
-    left: 488px !important;
+    top: 157px!important;
+    left: 488px!important
 }
 
 .landing_promo_post_settings_tt3 {
-    top: 175px !important;
-    left: 436px !important;
+    top: 175px!important;
+    left: 436px!important
 }
 
 .landing_promo_post_settings_tt4 {
-    top: 173px !important;
-    left: 219px !important;
+    top: 173px!important;
+    left: 219px!important
 }
 
 .landing_promo_post_settings_tt {
     visibility: hidden;
     max-width: 320px;
     white-space: normal;
-    text-align: left;
+    text-align: left
 }
 
 .landing_promo_post_settings_tt3 {
-    max-width: 245px;
+    max-width: 245px
 }
 
 .settings_screen_anim_step1 .ad_settings_cursor,
@@ -1649,10 +1644,9 @@
 .settings_screen_anim_step3 .ad_settings_cursor,
 .settings_screen_anim_step4 .ad_settings_cursor {
     opacity: 1;
-    -webkit-transform: translate(0px, 0px);
-    -ms-transform: translate(0px, 0px);
-    -o-transform: translate(0px, 0px);
-    transform: translate(0px, 0px);
+    -webkit-transform: translate(0px);
+    -o-transform: translate(0px);
+    transform: translate(0px)
 }
 
 .settings_screen_anim_step1 .ad_settings_cursor {
@@ -1663,7 +1657,7 @@
     -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
     top: 214px;
-    right: 67px;
+    right: 67px
 }
 
 .settings_screen_anim_step1 .landing_promo_post_settings_dd_action {
@@ -1673,15 +1667,15 @@
     -webkit-animation-fill-mode: forwards;
     -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
-    display: block;
+    display: block
 }
 
 .settings_screen_anim_step1 .landing_promo_post_settings_play {
-    display: none;
+    display: none
 }
 
 .settings_screen_anim_step1 .landing_promo_post_settings_pause {
-    display: block;
+    display: block
 }
 
 .settings_screen_anim_step1 .landing_promo_post_settings_tt4 {
@@ -1690,7 +1684,7 @@
     animation: ad_settings_cursor_anim_tt_step2 10s ease-in-out 0.2s;
     -webkit-animation-fill-mode: forwards;
     -o-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
+    animation-fill-mode: forwards
 }
 
 .settings_screen_anim_step2 .ad_settings_cursor {
@@ -1701,7 +1695,7 @@
     -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
     top: 282px;
-    right: 502px;
+    right: 502px
 }
 
 .settings_screen_anim_step2 .landing_promo_post_settings_tt1 {
@@ -1710,7 +1704,7 @@
     animation: ad_settings_cursor_anim_tt_step2 10s ease-in-out 0.2s;
     -webkit-animation-fill-mode: forwards;
     -o-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
+    animation-fill-mode: forwards
 }
 
 .settings_screen_anim_step2 .landing_promo_post_settings_popup {
@@ -1720,7 +1714,7 @@
     -webkit-animation-fill-mode: forwards;
     -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
-    display: block;
+    display: block
 }
 
 .settings_screen_anim_step3 .ad_settings_cursor {
@@ -1731,7 +1725,7 @@
     -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
     top: 257px;
-    right: 320px;
+    right: 320px
 }
 
 .settings_screen_anim_step3 .landing_promo_post_settings_tt2 {
@@ -1740,7 +1734,7 @@
     animation: ad_settings_cursor_anim_tt_step2 10s ease-in-out 0.2s;
     -webkit-animation-fill-mode: forwards;
     -o-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
+    animation-fill-mode: forwards
 }
 
 .settings_screen_anim_step3 .landing_promo_post_settings_popup2 {
@@ -1750,7 +1744,7 @@
     -webkit-animation-fill-mode: forwards;
     -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
-    display: block;
+    display: block
 }
 
 .settings_screen_anim_step4 .ad_settings_cursor {
@@ -1761,7 +1755,7 @@
     -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
     top: 256px;
-    right: 275px;
+    right: 275px
 }
 
 .settings_screen_anim_step4 .landing_promo_post_settings_tt3 {
@@ -1770,7 +1764,7 @@
     animation: ad_settings_cursor_anim_tt_step4 10s ease-in-out 0.2s;
     -webkit-animation-fill-mode: forwards;
     -o-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
+    animation-fill-mode: forwards
 }
 
 .settings_screen_anim_step4 .landing_promo_post_settings_popup3 {
@@ -1780,368 +1774,368 @@
     -webkit-animation-fill-mode: forwards;
     -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
-    display: block;
+    display: block
 }
 
 @-webkit-keyframes ad_settings_cursor_anim_step1 {
     0% {
         top: 214px;
-        right: 67px;
+        right: 67px
     }
     5%,
     30% {
         top: 254px;
-        right: 594px;
+        right: 594px
     }
     15% {
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     17% {
         -webkit-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     19% {
         -webkit-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     21% {
         -webkit-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     23% {
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     38%,
-    100% {
+    to {
         top: 282px;
-        right: 502px;
+        right: 502px
     }
     40% {
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     42% {
         -webkit-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     44% {
         -webkit-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     46% {
         -webkit-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     48% {
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
 }
 
 @-o-keyframes ad_settings_cursor_anim_step1 {
     0% {
         top: 214px;
-        right: 67px;
+        right: 67px
     }
     5%,
     30% {
         top: 254px;
-        right: 594px;
+        right: 594px
     }
     15% {
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     17% {
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     19% {
         -o-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     21% {
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     23% {
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     38%,
-    100% {
+    to {
         top: 282px;
-        right: 502px;
+        right: 502px
     }
     40% {
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     42% {
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     44% {
         -o-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     46% {
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     48% {
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
 }
 
 @keyframes ad_settings_cursor_anim_step1 {
     0% {
         top: 214px;
-        right: 67px;
+        right: 67px
     }
     5%,
     30% {
         top: 254px;
-        right: 594px;
+        right: 594px
     }
     15% {
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     17% {
         -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     19% {
         -webkit-transform: scale(0.9);
         -o-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     21% {
         -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     23% {
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     38%,
-    100% {
+    to {
         top: 282px;
-        right: 502px;
+        right: 502px
     }
     40% {
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     42% {
         -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     44% {
         -webkit-transform: scale(0.9);
         -o-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     46% {
         -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     48% {
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
 }
 
 @-webkit-keyframes ad_settings_cursor_anim_step2 {
     0% {
         top: 282px;
-        right: 502px;
+        right: 502px
     }
     5%,
     30% {
         top: 258px;
-        right: 528px;
+        right: 528px
     }
     15% {
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     17% {
         -webkit-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     19% {
         -webkit-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     21% {
         -webkit-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     23% {
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     38%,
-    100% {
+    to {
         top: 257px;
-        right: 320px;
+        right: 320px
     }
     40% {
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     42% {
         -webkit-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     44% {
         -webkit-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     46% {
         -webkit-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     48% {
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
 }
 
 @-o-keyframes ad_settings_cursor_anim_step2 {
     0% {
         top: 282px;
-        right: 502px;
+        right: 502px
     }
     5%,
     30% {
         top: 258px;
-        right: 528px;
+        right: 528px
     }
     15% {
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     17% {
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     19% {
         -o-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     21% {
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     23% {
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     38%,
-    100% {
+    to {
         top: 257px;
-        right: 320px;
+        right: 320px
     }
     40% {
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     42% {
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     44% {
         -o-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     46% {
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     48% {
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
 }
 
 @keyframes ad_settings_cursor_anim_step2 {
     0% {
         top: 282px;
-        right: 502px;
+        right: 502px
     }
     5%,
     30% {
         top: 258px;
-        right: 528px;
+        right: 528px
     }
     15% {
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     17% {
         -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     19% {
         -webkit-transform: scale(0.9);
         -o-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     21% {
         -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     23% {
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     38%,
-    100% {
+    to {
         top: 257px;
-        right: 320px;
+        right: 320px
     }
     40% {
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     42% {
         -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     44% {
         -webkit-transform: scale(0.9);
         -o-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     46% {
         -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     48% {
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
 }
 
@@ -2150,13 +2144,13 @@
     21% {
         visibility: hidden;
         -webkit-transform: translateY(-15px);
-        transform: translateY(-15px);
+        transform: translateY(-15px)
     }
     23%,
-    100% {
+    to {
         visibility: visible;
         -webkit-transform: translateY(0px);
-        transform: translateY(0px);
+        transform: translateY(0px)
     }
 }
 
@@ -2165,13 +2159,13 @@
     21% {
         visibility: hidden;
         -o-transform: translateY(-15px);
-        transform: translateY(-15px);
+        transform: translateY(-15px)
     }
     23%,
-    100% {
+    to {
         visibility: visible;
         -o-transform: translateY(0px);
-        transform: translateY(0px);
+        transform: translateY(0px)
     }
 }
 
@@ -2181,35 +2175,35 @@
         visibility: hidden;
         -webkit-transform: translateY(-15px);
         -o-transform: translateY(-15px);
-        transform: translateY(-15px);
+        transform: translateY(-15px)
     }
     23%,
-    100% {
+    to {
         visibility: visible;
         -webkit-transform: translateY(0px);
         -o-transform: translateY(0px);
-        transform: translateY(0px);
+        transform: translateY(0px)
     }
 }
 
 @-webkit-keyframes ad_settings_cursor_anim_popup_step2_first_part {
     0%,
-    100% {
-        opacity: 0;
+    to {
+        opacity: 0
     }
 }
 
 @-o-keyframes ad_settings_cursor_anim_popup_step2_first_part {
     0%,
-    100% {
-        opacity: 0;
+    to {
+        opacity: 0
     }
 }
 
 @keyframes ad_settings_cursor_anim_popup_step2_first_part {
     0%,
-    100% {
-        opacity: 0;
+    to {
+        opacity: 0
     }
 }
 
@@ -2217,23 +2211,23 @@
     0% {
         opacity: 1;
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     2% {
         -webkit-transform: scale(1.05);
-        transform: scale(1.05);
+        transform: scale(1.05)
     }
     4% {
         -webkit-transform: scale(0.95);
-        transform: scale(0.95);
+        transform: scale(0.95)
     }
     6% {
         -webkit-transform: scale(1.05);
-        transform: scale(1.05);
+        transform: scale(1.05)
     }
     8% {
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
 }
 
@@ -2241,23 +2235,23 @@
     0% {
         opacity: 1;
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     2% {
         -o-transform: scale(1.05);
-        transform: scale(1.05);
+        transform: scale(1.05)
     }
     4% {
         -o-transform: scale(0.95);
-        transform: scale(0.95);
+        transform: scale(0.95)
     }
     6% {
         -o-transform: scale(1.05);
-        transform: scale(1.05);
+        transform: scale(1.05)
     }
     8% {
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
 }
 
@@ -2266,389 +2260,389 @@
         opacity: 1;
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     2% {
         -webkit-transform: scale(1.05);
         -o-transform: scale(1.05);
-        transform: scale(1.05);
+        transform: scale(1.05)
     }
     4% {
         -webkit-transform: scale(0.95);
         -o-transform: scale(0.95);
-        transform: scale(0.95);
+        transform: scale(0.95)
     }
     6% {
         -webkit-transform: scale(1.05);
         -o-transform: scale(1.05);
-        transform: scale(1.05);
+        transform: scale(1.05)
     }
     8% {
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
 }
 
 @-webkit-keyframes ad_settings_cursor_anim_step3 {
     0% {
         top: 257px;
-        right: 320px;
+        right: 320px
     }
     5%,
     30% {
         top: 256px;
-        right: 414px;
+        right: 414px
     }
     15% {
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     17% {
         -webkit-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     19% {
         -webkit-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     21% {
         -webkit-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     23% {
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     38%,
-    100% {
+    to {
         top: 256px;
-        right: 275px;
+        right: 275px
     }
     40% {
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     42% {
         -webkit-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     44% {
         -webkit-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     46% {
         -webkit-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     48% {
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
 }
 
 @-o-keyframes ad_settings_cursor_anim_step3 {
     0% {
         top: 257px;
-        right: 320px;
+        right: 320px
     }
     5%,
     30% {
         top: 256px;
-        right: 414px;
+        right: 414px
     }
     15% {
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     17% {
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     19% {
         -o-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     21% {
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     23% {
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     38%,
-    100% {
+    to {
         top: 256px;
-        right: 275px;
+        right: 275px
     }
     40% {
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     42% {
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     44% {
         -o-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     46% {
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     48% {
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
 }
 
 @keyframes ad_settings_cursor_anim_step3 {
     0% {
         top: 257px;
-        right: 320px;
+        right: 320px
     }
     5%,
     30% {
         top: 256px;
-        right: 414px;
+        right: 414px
     }
     15% {
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     17% {
         -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     19% {
         -webkit-transform: scale(0.9);
         -o-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     21% {
         -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     23% {
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     38%,
-    100% {
+    to {
         top: 256px;
-        right: 275px;
+        right: 275px
     }
     40% {
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     42% {
         -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     44% {
         -webkit-transform: scale(0.9);
         -o-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     46% {
         -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     48% {
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
 }
 
 @-webkit-keyframes ad_settings_cursor_anim_step4 {
     0% {
         top: 256px;
-        right: 275px;
+        right: 275px
     }
     5%,
     30% {
         top: 91px;
-        right: 200px;
+        right: 200px
     }
     15% {
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     17% {
         -webkit-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     19% {
         -webkit-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     21% {
         -webkit-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     23% {
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     38%,
-    100% {
+    to {
         top: 214px;
-        right: 67px;
+        right: 67px
     }
     40% {
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     42% {
         -webkit-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     44% {
         -webkit-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     46% {
         -webkit-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     48% {
         -webkit-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
 }
 
 @-o-keyframes ad_settings_cursor_anim_step4 {
     0% {
         top: 256px;
-        right: 275px;
+        right: 275px
     }
     5%,
     30% {
         top: 91px;
-        right: 200px;
+        right: 200px
     }
     15% {
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     17% {
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     19% {
         -o-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     21% {
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     23% {
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     38%,
-    100% {
+    to {
         top: 214px;
-        right: 67px;
+        right: 67px
     }
     40% {
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     42% {
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     44% {
         -o-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     46% {
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     48% {
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
 }
 
 @keyframes ad_settings_cursor_anim_step4 {
     0% {
         top: 256px;
-        right: 275px;
+        right: 275px
     }
     5%,
     30% {
         top: 91px;
-        right: 200px;
+        right: 200px
     }
     15% {
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     17% {
         -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     19% {
         -webkit-transform: scale(0.9);
         -o-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     21% {
         -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     23% {
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     38%,
-    100% {
+    to {
         top: 214px;
-        right: 67px;
+        right: 67px
     }
     40% {
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
     42% {
         -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     44% {
         -webkit-transform: scale(0.9);
         -o-transform: scale(0.9);
-        transform: scale(0.9);
+        transform: scale(0.9)
     }
     46% {
         -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
-        transform: scale(1.1);
+        transform: scale(1.1)
     }
     48% {
         -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1);
+        transform: scale(1)
     }
 }
 
@@ -2657,13 +2651,13 @@
     21% {
         visibility: hidden;
         -webkit-transform: translateX(-15px);
-        transform: translateX(-15px);
+        transform: translateX(-15px)
     }
     23%,
-    100% {
+    to {
         visibility: visible;
         -webkit-transform: translateX(0px);
-        transform: translateX(0px);
+        transform: translateX(0px)
     }
 }
 
@@ -2672,13 +2666,13 @@
     21% {
         visibility: hidden;
         -o-transform: translateX(-15px);
-        transform: translateX(-15px);
+        transform: translateX(-15px)
     }
     23%,
-    100% {
+    to {
         visibility: visible;
         -o-transform: translateX(0px);
-        transform: translateX(0px);
+        transform: translateX(0px)
     }
 }
 
@@ -2688,27 +2682,27 @@
         visibility: hidden;
         -webkit-transform: translateX(-15px);
         -o-transform: translateX(-15px);
-        transform: translateX(-15px);
+        transform: translateX(-15px)
     }
     23%,
-    100% {
+    to {
         visibility: visible;
         -webkit-transform: translateX(0px);
         -o-transform: translateX(0px);
-        transform: translateX(0px);
+        transform: translateX(0px)
     }
 }
 
 .landing_promo_post_settings_controls {
     margin: 30px auto 0px;
-    width: 90px;
+    width: 90px
 }
 
 .landing_promo_post_settings_control {
     position: relative;
     cursor: pointer;
     width: 22.4px;
-    height: 22.4px;
+    height: 22.4px
 }
 
 .landing_promo_post_settings_control:after {
@@ -2723,15 +2717,15 @@
     border-radius: 4px;
     -o-transition: opacity 200ms ease;
     transition: opacity 200ms ease;
-    opacity: 0.4;
+    opacity: 0.4
 }
 
 .landing_promo_post_settings_control:fist-child {
-    margin-left: 0px;
+    margin-left: 0px
 }
 
 .landing_promo_post_settings_control.active:after {
-    opacity: 1;
+    opacity: 1
 }
 
 .landing_promo_post_cont_arrow_next,
@@ -2748,7 +2742,7 @@
     -moz-user-select: no-select;
     -khtml-user-select: no-select;
     -webkit-user-select: no-select;
-    z-index: 20;
+    z-index: 20
 }
 
 .landing_promo_post_cont_arrow_next:after,
@@ -2761,7 +2755,7 @@
     top: 50%;
     left: 50%;
     background-position: -6px -9px;
-    margin: -16px 0px 0px -12px;
+    margin: -16px 0px 0px -12px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -2770,20 +2764,20 @@
     .landing_promo_post_cont_arrow_next:after,
     .landing_promo_post_cont_arrow_prev:after {
         background-image: url(/images/landings/promo_post/settings/controls_2x.png);
-        background-size: 40px 148px;
+        background-size: 40px 148px
     }
 }
 
 .landing_promo_post_cont_arrow_prev {
-    right: 950px;
+    right: 950px
 }
 
 .landing_promo_post_cont_arrow_prev:after {
-    background-position: -6px -52px;
+    background-position: -6px -52px
 }
 
 .landing_promo_post_screen.screen_stories {
-    text-align: center;
+    text-align: center
 }
 
 .landing_promo_post_screen.screen_stories .landing_promo_post_big_descr {
@@ -2791,15 +2785,15 @@
     width: 1030px;
     font-weight: 300;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto
 }
 
 .landing_promo_post_screen.screen_stories .landing_promo_post_settings_controls {
-    margin-top: 45px;
+    margin-top: 45px
 }
 
 .landing_promo_post_screen.screen_stories .landing_promo_post_cont_wrap {
-    max-width: 1280px;
+    max-width: 1280px
 }
 
 .landing_promo_post_story_item {
@@ -2814,30 +2808,28 @@
     -o-transition: all 400ms ease;
     transition: all 400ms ease;
     -webkit-transform: scale(0.95);
-    -ms-transform: scale(0.95);
     -o-transform: scale(0.95);
     transform: scale(0.95);
-    visibility: hidden;
+    visibility: hidden
 }
 
 .landing_promo_post_story_item.active {
     opacity: 1;
     -webkit-transform: scale(1);
-    -ms-transform: scale(1);
     -o-transform: scale(1);
     transform: scale(1);
-    visibility: visible;
+    visibility: visible
 }
 
 .landing_promo_post_story_item .landing_promo_post_cont_arrow_prev {
-    right: 100%;
+    right: 100%
 }
 
 .landing_promo_post_story_author_ava {
     width: 128px;
     height: 128px;
     margin: 49px auto 0px;
-    display: inline-block;
+    display: inline-block
 }
 
 .landing_promo_post_story_author_name {
@@ -2847,26 +2839,26 @@
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    margin-top: 24px;
+    margin-top: 24px
 }
 
 .landing_promo_post_story_author_name a {
-    color: #000;
+    color: #000
 }
 
 .landing_promo_post_story_author_pos {
     color: #757c85;
     line-height: 30px;
     font-size: 18px;
-    margin-top: 9px;
+    margin-top: 9px
 }
 
 #story1 {
-    background-image: url('/images/landings/promo_post/stories/bg1.jpg');
+    background-image: url('/images/landings/promo_post/stories/bg1.jpg')
 }
 
 #story1 .landing_promo_post_story_author_ava {
-    background-image: url(/images/landings/promo_post/stories/user1.png);
+    background-image: url(/images/landings/promo_post/stories/user1.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -2874,16 +2866,16 @@
 (min-resolution: 192dpi) {
     #story1 .landing_promo_post_story_author_ava {
         background-image: url(/images/landings/promo_post/stories/user1_2x.png);
-        background-size: 128px 128px;
+        background-size: 128px 128px
     }
 }
 
 #story2 {
-    background-image: url('/images/landings/promo_post/stories/bg2.jpg');
+    background-image: url('/images/landings/promo_post/stories/bg2.jpg')
 }
 
 #story2 .landing_promo_post_story_author_ava {
-    background-image: url(/images/landings/promo_post/stories/user2.png);
+    background-image: url(/images/landings/promo_post/stories/user2.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -2891,16 +2883,16 @@
 (min-resolution: 192dpi) {
     #story2 .landing_promo_post_story_author_ava {
         background-image: url(/images/landings/promo_post/stories/user2_2x.png);
-        background-size: 128px 128px;
+        background-size: 128px 128px
     }
 }
 
 #story3 {
-    background-image: url('/images/landings/promo_post/stories/bg3.jpg');
+    background-image: url('/images/landings/promo_post/stories/bg3.jpg')
 }
 
 #story3 .landing_promo_post_story_author_ava {
-    background-image: url(/images/landings/promo_post/stories/user3.png);
+    background-image: url(/images/landings/promo_post/stories/user3.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -2908,16 +2900,16 @@
 (min-resolution: 192dpi) {
     #story3 .landing_promo_post_story_author_ava {
         background-image: url(/images/landings/promo_post/stories/user3_2x.png);
-        background-size: 128px 128px;
+        background-size: 128px 128px
     }
 }
 
 #story4 {
-    background-image: url('/images/landings/promo_post/stories/bg4.jpg');
+    background-image: url('/images/landings/promo_post/stories/bg4.jpg')
 }
 
 #story4 .landing_promo_post_story_author_ava {
-    background-image: url(/images/landings/promo_post/stories/user4.png);
+    background-image: url(/images/landings/promo_post/stories/user4.png)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -2925,143 +2917,143 @@
 (min-resolution: 192dpi) {
     #story4 .landing_promo_post_story_author_ava {
         background-image: url(/images/landings/promo_post/stories/user4_2x.png);
-        background-size: 128px 128px;
+        background-size: 128px 128px
     }
 }
 
 .landing_promo_post_story_counters {
     margin: 49px auto 0px;
-    width: 825px;
+    width: 825px
 }
 
 .landing_promo_post_story_counter {
-    width: 33.3%;
+    width: 33.3%
 }
 
 .landing_promo_post_story_counter_num {
     font-size: 39px;
     letter-spacing: -0.1px;
     line-height: 46px;
-    color: #000000;
-    font-weight: 300;
+    color: #000;
+    font-weight: 300
 }
 
 .landing_promo_post_story_counter_caption {
     font-size: 22px;
     line-height: 20px;
     color: #7c7f82;
-    margin-top: 11px;
+    margin-top: 11px
 }
 
 .landing_promo_post_story_counters_two {
-    width: 460px;
+    width: 460px
 }
 
 .landing_promo_post_story_counters_two .landing_promo_post_story_counter {
-    width: 50%;
+    width: 50%
 }
 
 .landing_promo_post_story_counters_two .landing_promo_post_story_counter:nth-child(2) {
-    display: none;
+    display: none
 }
 
 .landing_promo_post_story {
     position: relative;
     max-width: 1048px;
     width: 100%;
-    margin: 0px auto;
+    margin: 0px auto
 }
 
-.landing_promo_post_screen.screen_price .landing_promo_post_big_title,
-.landing_promo_post_screen.screen_price .landing_promo_post_big_descr {
-    text-align: center;
+.landing_promo_post_screen.screen_price .landing_promo_post_big_descr,
+.landing_promo_post_screen.screen_price .landing_promo_post_big_title {
+    text-align: center
 }
 
 .landing_promo_post_screen.screen_price .landing_promo_post_big_descr {
     width: 845px;
-    margin: 19px auto 0px;
+    margin: 19px auto 0px
 }
 
 .landing_promo_post_price_wrap {
     width: 785px;
-    margin: 40px auto 0px;
+    margin: 40px auto 0px
 }
 
 .landing_promo_post_price_params {
-    width: 380px;
+    width: 380px
 }
 
 .landing_promo_post_price_param {
-    margin-bottom: 20px;
+    margin-bottom: 20px
 }
 
 .landing_promo_post_price_param .landing_promo_post_price_label {
-    margin-bottom: 8px;
+    margin-bottom: 8px
 }
 
 .landing_promo_post_price_param td.selector {
-    padding-top: 4px !important;
-    padding-left: 4px !important;
+    padding-top: 4px!important;
+    padding-left: 4px!important
 }
 
 .landing_promo_post_price_param_age .selector_container {
     float: left;
-    margin-left: 10px;
+    margin-left: 10px
 }
 
 .landing_promo_post_price_param_age .selector_container:first-child {
-    margin-left: 0px;
+    margin-left: 0px
 }
 
 .landing_promo_post_price_res {
-    margin-left: 84px;
+    margin-left: 84px
 }
 
 .landing_promo_post_price_label,
 .landing_promo_post_price_num {
     color: #2b2f33;
-    letter-spacing: -0.1px;
+    letter-spacing: -0.1px
 }
 
 .landing_promo_post_price_label {
     font-size: 13px;
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    line-height: 15px;
+    line-height: 15px
 }
 
 .landing_promo_post_price_num {
     font-size: 22px;
     line-height: 26px;
     margin-top: 8px;
-    margin-bottom: 27px;
+    margin-bottom: 27px
 }
 
 .landing_promo_post_price_buttons {
-    text-align: center;
+    text-align: center
 }
 
 .landing_promo_post_price_buttons .landing_promo_post_button {
-    margin-top: 40px;
+    margin-top: 40px
 }
 
 .landing_promo_post_price_help_link {
     font-size: 13px;
     letter-spacing: -0.1px;
     line-height: 15px;
-    color: #42648B;
+    color: #42648b;
     margin-top: 22px;
-    display: inline-block;
+    display: inline-block
 }
 
 @media (max-height: 767px) {
-    .landing_promo_post_screen_helper,
-    .landing_promo_post_screen {
-        display: block;
+    .landing_promo_post_screen,
+    .landing_promo_post_screen_helper {
+        display: block
     }
     .landing_promo_post_settings_wrap {
-        margin-top: 20px;
+        margin-top: 20px
     }
 }
 
@@ -3069,32 +3061,32 @@
     .landing_promo_post_cont_wrap {
         padding-left: 20px;
         padding-right: 20px;
-        box-sizing: border-box;
+        box-sizing: border-box
     }
     .landing_promo_post_big_descr {
-        width: 100% !important;
+        width: 100%!important
     }
     .landing_promo_post_story_item .landing_promo_post_cont_arrow_next {
-        right: 0px !important;
+        right: 0px!important
     }
     .landing_promo_post_story_item .landing_promo_post_cont_arrow_prev {
-        right: inherit !important;
-        left: 0px;
+        right: inherit!important;
+        left: 0px
     }
 }
 
 @media (max-width: 1040px) {
     .landing_promo_post_target {
-        padding-left: 0px !important;
+        padding-left: 0px!important
     }
 }
 
 @media (max-width: 1100px) {
     .landing_promo_post_cont_arrow_next {
-        right: 0px !important;
+        right: 0px!important
     }
     .landing_promo_post_cont_arrow_prev {
-        right: inherit !important;
-        left: 0px;
+        right: inherit!important;
+        left: 0px
     }
 }

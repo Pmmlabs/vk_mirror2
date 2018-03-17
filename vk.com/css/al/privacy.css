@@ -1,26 +1,26 @@
 #privacy_css {
-    display: none;
+    display: none
 }
 
-.privacy_locked,
-.privacy_locked .privacy_dropdown .header .header_label,
 .flist_sel_list .flist_item_action,
 .privacy_dropdown .header .header_label:after,
 .privacy_dropdown .item_sel_plus:after,
 .privacy_dropdown .l_header:after,
-.privacy_dropdown .l_item_sel {
-    -ms-high-contrast-adjust: none;
+.privacy_dropdown .l_item_sel,
+.privacy_locked,
+.privacy_locked .privacy_dropdown .header .header_label {
+    -ms-high-contrast-adjust: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .privacy_edit_wrap {
@@ -32,7 +32,7 @@
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
-    line-height: 1.154;
+    line-height: 1.154
 }
 
 .privacy_edit_wrap a {
@@ -41,12 +41,12 @@
     -o-user-select: text;
     -moz-user-select: text;
     -khtml-user-select: text;
-    -webkit-user-select: text;
+    -webkit-user-select: text
 }
 
 .privacy_locked {
     padding-left: 16px;
-    background: url(/images/icons/lock_icons.png) no-repeat 0 2px;
+    background: url(/images/icons/lock_icons.png) no-repeat 0 2px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -54,13 +54,13 @@
 (min-resolution: 192dpi) {
     .privacy_locked {
         background-image: url(/images/icons/lock_icons_2x.png);
-        background-size: 10px 101px;
+        background-size: 10px 101px
     }
 }
 
 .privacy_locked .privacy_dropdown .header .header_label {
     padding-left: 28px;
-    background: url(/images/icons/lock_icons.png) no-repeat 12px -52px;
+    background: url(/images/icons/lock_icons.png) no-repeat 12px -52px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -68,7 +68,7 @@
 (min-resolution: 192dpi) {
     .privacy_locked .privacy_dropdown .header .header_label {
         background-image: url(/images/icons/lock_icons_2x.png);
-        background-size: 10px 101px;
+        background-size: 10px 101px
     }
 }
 
@@ -85,124 +85,124 @@
     margin: 0;
     padding: 1px 3px;
     line-height: 160%;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 .group1 {
-    background-color: #F5E9E2;
-    color: #8B4C23;
+    background-color: #f5e9e2;
+    color: #8b4c23
 }
 
 .group2 {
-    background-color: #FAEAD8;
-    color: #764F14;
+    background-color: #faead8;
+    color: #764f14
 }
 
 .group3 {
-    background-color: #FAF3D8;
-    color: #817945;
+    background-color: #faf3d8;
+    color: #817945
 }
 
 .group4 {
-    background-color: #E8F2DC;
-    color: #37702A;
+    background-color: #e8f2dc;
+    color: #37702a
 }
 
 .group5 {
-    background-color: #E0ECEA;
-    color: #4C7171;
+    background-color: #e0ecea;
+    color: #4c7171
 }
 
 .group6 {
-    background-color: #E4EBF1;
-    color: #0B5588;
+    background-color: #e4ebf1;
+    color: #0b5588
 }
 
 .group7 {
-    background-color: #E4E7F2;
-    color: #2F54AA;
+    background-color: #e4e7f2;
+    color: #2f54aa
 }
 
 .group8 {
-    background-color: #EDE5F0;
-    color: #80478F;
+    background-color: #ede5f0;
+    color: #80478f
 }
 
 .group9 {
-    background-color: #F5E9E2;
-    color: #8B4C23;
+    background-color: #f5e9e2;
+    color: #8b4c23
 }
 
 .group10 {
-    background-color: #FAEAD8;
-    color: #764F14;
+    background-color: #faead8;
+    color: #764f14
 }
 
 .flist_empty {
     margin: 100px 20px;
     color: #656565;
     font-size: 14px;
-    text-align: center;
+    text-align: center
 }
 
 .privacy_control {
     line-height: 175%;
-    width: 250px;
+    width: 250px
 }
 
 .flist_cont {
-    position: relative;
+    position: relative
 }
 
 .flist_sel {
     background-color: #fafbfc;
     padding: 15px 25px;
-    border-bottom: 1px solid #e7e8ec;
+    border-bottom: 1px solid #e7e8ec
 }
 
 #box_layer .privacy_friends {
     overflow: auto;
     overflow-y: scroll;
-    overflow-x: hidden;
+    overflow-x: hidden
 }
 
 .flist_scroll_wrap {
     overflow: hidden;
-    height: 420px;
+    height: 420px
 }
 
 .flist_scrolled .ui_search {
-    box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 3px -1px rgba(0, 0, 0, .12)
 }
 
 .flist_list_name {
-    display: none;
+    display: none
 }
 
 .flist_cont .clear {
-    height: 0;
+    height: 0
 }
 
 .flist_summary {
     float: left;
-    padding: 2px 0 1px 0;
+    padding: 2px 0 1px;
     color: #222;
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 12.5px;
+    font-size: 12.5px
 }
 
 .flist_summary_sep .clear {
     border-bottom: 1px solid #e7e8ec;
-    padding-top: 15px;
+    padding-top: 15px
 }
 
 .flist_list_name {
     float: left;
-    margin: -3px 0 0 10px !important;
+    margin: -3px 0 0 10px!important;
     display: block;
-    width: 200px;
+    width: 200px
 }
 
 .flist_item_wrap {
@@ -214,52 +214,52 @@
     -o-user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
-    -webkit-user-select: none;
+    -webkit-user-select: none
 }
 
 .flist_item_wrap:last-child {
-    border-bottom: none;
+    border-bottom: none
 }
 
 .flist_item_wrap:hover {
-    margin: -1px 0 0 0;
+    margin: -1px 0 0;
     padding: 0 25px;
     border-top: 1px solid #e7e8ec;
-    background-color: #fafbfc;
+    background-color: #fafbfc
 }
 
 .flist_item {
     height: 34px;
     padding: 12px 0;
-    outline: none;
+    outline: none
 }
 
 .flist_item_img {
     float: left;
     height: 34px;
-    width: 34px;
+    width: 34px
 }
 
 .flist_item_thumb {
     width: 34px;
     height: 34px;
-    border-radius: 50%;
+    border-radius: 50%
 }
 
 .flist_item_name {
     margin: 0 10px;
     float: left;
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: 12.5px;
-    color: #42648B;
+    color: #42648b;
     width: 170px;
     overflow: hidden;
     height: 34px;
     line-height: 34px;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 .flist_item_action {
@@ -267,21 +267,21 @@
     margin: 6px 5px 0 0;
     width: 22px;
     height: 22px;
-    background: #FFFFFF;
-    box-shadow: 0 0 0 1px #C4CCD4 inset;
-    border-radius: 100%;
+    background: #fff;
+    box-shadow: 0 0 0 1px #c4ccd4 inset;
+    border-radius: 100%
 }
 
 .flist_item_checked .flist_item_action,
 .flist_list_nomargin .flist_item_wrap.flist_item_checked:hover .flist_item_action {
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2222%22%20height%3D%2222%22%20viewBox%3D%220%200%2022%2022%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2222%22%20height%3D%2222%22%20fill%3D%22%235181B8%22%20rx%3D%2211%22%2F%3E%3Cpath%20stroke%3D%22%23FFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M6%2012l3%203%207-7%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 0;
-    box-shadow: none;
+    box-shadow: none
 }
 
 .flist_list_radio .flist_item_wrap.flist_item_checked .flist_item_action,
 .flist_list_radio .flist_item_wrap:hover.flist_item_checked .flist_item_action {
-    background: #FFFFFF;
-    box-shadow: 0 0 0 1px #C4CCD4 inset;
+    background: #fff;
+    box-shadow: 0 0 0 1px #c4ccd4 inset
 }
 
 .flist_list_radio .flist_item_wrap.flist_item_checked .flist_item_action:before,
@@ -292,67 +292,65 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    margin: 5px 5px;
+    margin: 5px
 }
 
 .flist_list_nomargin .flist_item_wrap {
     margin-left: 0;
     margin-right: 0;
     padding-left: 0;
-    padding-right: 0;
+    padding-right: 0
 }
 
 .flist_list_nomargin .flist_item_wrap:hover {
-    background: none;
+    background: none
 }
 
 .flist_list_nomargin .flist_item_wrap:hover .flist_item_action {
-    background: #EBEDF2;
+    background: #ebedf2
 }
 
 .flist_list_nomargin .flist_item_wrap:first-child {
     border-top: 0;
-    margin-top: 0;
+    margin-top: 0
 }
 
 .flist_sel_list .flist_item_wrap {
     float: left;
-    margin: 15px 13px 0 0;
-    padding: 0;
-    position: relative;
-    border: none;
+    position: relative
 }
 
+.flist_sel_list .flist_item_wrap,
 .flist_sel_list .flist_item_wrap:hover {
     margin: 15px 13px 0 0;
     padding: 0;
-    border: none;
+    border: none
 }
 
 .flist_sel_list .flist_item_wrap:hover .flist_item_action {
     display: block;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, .5)
 }
 
 .flist_sel_list .flist_item {
     height: auto;
-    padding: 0;
+    padding: 0
 }
 
 .flist_sel_list .flist_item_img {
     height: 45px;
     width: 45px;
-    float: none;
+    float: none
 }
 
 .flist_sel_list .flist_item_thumb {
     width: 45px;
     height: 45px;
-    border-radius: 50%;
+    border-radius: 50%
 }
 
 .flist_sel_list .flist_item_name {
-    display: none;
+    display: none
 }
 
 .flist_sel_list .flist_item_action {
@@ -366,7 +364,7 @@
     border-radius: 50%;
     background: url(/images/icons/hide_item.png) no-repeat 50% 50%;
     top: 0;
-    left: 0;
+    left: 0
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -374,7 +372,7 @@
 (min-resolution: 192dpi) {
     .flist_sel_list .flist_item_action {
         background-image: url(/images/icons/hide_item_2x.png);
-        background-size: 16px 16px;
+        background-size: 16px 16px
     }
 }
 
@@ -387,7 +385,7 @@
     border: 2px solid #5181b8;
     color: #5181b8;
     font-size: 12.5px;
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
@@ -396,20 +394,20 @@
     text-overflow: ellipsis;
     cursor: pointer;
     opacity: 0.65;
-    filter: alpha(opacity=65);
+    filter: alpha(opacity=65)
 }
 
 .flist_sel_show_all:hover {
     opacity: 0.9;
-    filter: alpha(opacity=90);
+    filter: alpha(opacity=90)
 }
 
 .flist_sel_showed_all {
-    color: #FFF;
+    color: #fff;
     background-color: #5181b8;
     opacity: 1;
     -webkit-filter: none;
-    filter: none;
+    filter: none
 }
 
 .flist_sel_showed_all:hover {
@@ -417,49 +415,49 @@
     -webkit-filter: none;
     filter: none;
     background-color: #5b88bd;
-    border-color: #5b88bd;
+    border-color: #5b88bd
 }
 
 .flist_full .flist_item_wrap {
-    cursor: default;
+    cursor: default
 }
 
 .flist_full .flist_item_wrap:hover {
-    background: #FFFFFF;
+    background: #fff;
     margin: 0 25px;
     padding: 0;
-    border-top: none;
+    border-top: none
 }
 
 .flist_info {
     padding: 8px 0 7px;
     height: 45px;
-    line-height: 45px;
+    line-height: 45px
 }
 
 .flist_info_text {
     display: inline-block;
     vertical-align: middle;
-    line-height: 150%;
+    line-height: 150%
 }
 
 .flist_max_size_tt {
-    width: 200px;
+    width: 200px
 }
 
 .flist_info_tt b {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 8px
 }
 
 .flist_search_toggler_wrap {
     padding: 13px 5px;
     float: right;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .flist_search_toggler_wrap .ui_toggler {
-    float: left;
+    float: left
 }
 
 .flist_search_toggler_label {
@@ -471,11 +469,11 @@
     -o-user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
-    -webkit-user-select: none;
+    -webkit-user-select: none
 }
 
 .flist_search_cont input.ui_search_field {
-    padding-right: 210px;
+    padding-right: 210px
 }
 
 .privacy_dropdown {
@@ -483,7 +481,7 @@
     cursor: pointer;
     border: 1px solid #c5d0db;
     border-radius: 2px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
     z-index: 100;
     line-height: 1.154;
     -ms-user-select: none;
@@ -493,28 +491,28 @@
     -khtml-user-select: none;
     -webkit-user-select: none;
     top: -7px;
-    left: -13px;
+    left: -13px
 }
 
 .privacy_dropdown.pdd_ralign {
     left: auto;
-    right: -11px;
+    right: -11px
 }
 
 .privacy_dropdown .rows {
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 .privacy_dropdown .header {
     border: 1px solid #c5d0db;
     border-width: 0 0 1px;
-    color: #5D6D80;
-    background-color: #dce1e6;
+    color: #5d6d80;
+    background-color: #dce1e6
 }
 
 .privacy_dropdown .header .header_label {
     padding: 6px 26px 7px 12px;
-    position: relative;
+    position: relative
 }
 
 .privacy_dropdown .header .header_label:after {
@@ -525,7 +523,7 @@
     width: 9px;
     height: 5px;
     background: url(/images/icons/multidd.png?2) no-repeat;
-    background-position: left -38px;
+    background-position: left -38px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -533,30 +531,30 @@
 (min-resolution: 192dpi) {
     .privacy_dropdown .header .header_label:after {
         background-image: url(/images/icons/multidd_2x.png?2);
-        background-size: 10px 53px;
+        background-size: 10px 53px
     }
 }
 
 .privacy_dropdown .body {
-    background: #fff;
+    background: #fff
 }
 
 .privacy_dropdown .item,
 .privacy_dropdown .item_sel,
 .privacy_dropdown .item_sel_plus {
     padding: 6px 26px 7px 12px;
-    color: #2A5885;
-    overflow: hidden;
+    color: #2a5885;
+    overflow: hidden
 }
 
 .privacy_dropdown .item_sel,
 .privacy_dropdown .item_sel_plus {
     background-color: #e7edf2;
-    color: #2A5885;
+    color: #2a5885
 }
 
 .privacy_dropdown .item_sel_plus {
-    position: relative;
+    position: relative
 }
 
 .privacy_dropdown .item_sel_plus:after {
@@ -567,7 +565,7 @@
     width: 10px;
     height: 10px;
     background: url(/images/icons/multidd.png?2) no-repeat;
-    background-position: left -21px;
+    background-position: left -21px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -575,25 +573,25 @@
 (min-resolution: 192dpi) {
     .privacy_dropdown .item_sel_plus:after {
         background-image: url(/images/icons/multidd_2x.png?2);
-        background-size: 10px 53px;
+        background-size: 10px 53px
     }
 }
 
 .privacy_dropdown .privacy_lists {
-    position: relative;
+    position: relative
 }
 
 .privacy_dropdown .l_header {
     margin: -28px 0 0;
     overflow: hidden;
-    background-color: #e7edf2;
+    background-color: #e7edf2
 }
 
 .privacy_dropdown .l_header .l_header_label {
     padding: 6px 6px 7px 12px;
     background-color: #e7edf2;
-    color: #2A5885;
-    float: left;
+    color: #2a5885;
+    float: left
 }
 
 .privacy_dropdown .l_header:after {
@@ -603,7 +601,7 @@
     width: 9px;
     height: 5px;
     background: url(/images/icons/multidd.png?2) no-repeat;
-    background-position: left -38px;
+    background-position: left -38px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -611,7 +609,7 @@
 (min-resolution: 192dpi) {
     .privacy_dropdown .l_header:after {
         background-image: url(/images/icons/multidd_2x.png?2);
-        background-size: 10px 53px;
+        background-size: 10px 53px
     }
 }
 
@@ -619,8 +617,8 @@
 .privacy_dropdown .l_item_sel {
     padding: 6px 6px 7px 24px;
     background: #fff;
-    color: #2A5885;
-    clear: both;
+    color: #2a5885;
+    clear: both
 }
 
 .privacy_dropdown .l_item_sel {
@@ -628,7 +626,7 @@
     padding-left: 18px;
     border-left: 6px solid transparent;
     background-position: left 9px;
-    background-color: #fff;
+    background-color: #fff
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -636,59 +634,59 @@
 (min-resolution: 192dpi) {
     .privacy_dropdown .l_item_sel {
         background-image: url(/images/icons/dropdown_check_2x.png?2);
-        background-size: 14px 10px;
+        background-size: 14px 10px
     }
 }
 
 .privacy_dropdown .l_item:hover,
 .privacy_dropdown .l_item_sel:hover {
     background-color: #f0f2f5;
-    color: #2A5885;
+    color: #2a5885
 }
 
 .privacy_dropdown.pdd_to_up {
     top: auto;
-    bottom: -8px;
+    bottom: -8px
 }
 
 .privacy_dropdown.pdd_to_up .header {
-    border-width: 1px 0 0;
+    border-width: 1px 0 0
 }
 
 .privacy_dropdown.pdd_to_up .header_label:after {
-    background-position: left -48px;
+    background-position: left -48px
 }
 
 .privacy_dropdown.pdd_to_up .body {
-    border-width: 1px 1px 0px;
+    border-width: 1px 1px 0px
 }
 
 .privacy_dropdown.pdd_to_up .l_header {
-    margin: 0 0 -28px;
+    margin: 0 0 -28px
 }
 
 .privacy_dropdown.pdd_to_up .l_header:after {
-    background-position: left -48px;
+    background-position: left -48px
 }
 
 .privacy_custom_box .show_to {
-    padding: 3px 0px;
+    padding: 3px 0px
 }
 
 .privacy_custom_box .plus_friends {
     border-bottom: 1px solid #e7e8ec;
     padding-bottom: 20px;
-    margin-bottom: 17px;
+    margin-bottom: 17px
 }
 
 .privacy_custom_box .minus_friends {
-    padding-bottom: 5px;
+    padding-bottom: 5px
 }
 
 .privacy_custom_box .cp_friend_list {
-    width: 400px;
+    width: 400px
 }
 
 .privacy_custom_box .cp_plus_friends_type {
-    color: #2A5885;
+    color: #2a5885
 }

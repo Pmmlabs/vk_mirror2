@@ -12,9 +12,9 @@
     return t.m = e, t.c = n, t.p = "", t(0)
 }({
     0: function(e, t, n) {
-        e.exports = n(479)
+        e.exports = n(62)
     },
-    46: function(e, t, n) {
+    45: function(e, t, n) {
         "use strict";
 
         function a(e) {
@@ -27,12 +27,12 @@
             if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
         }
 
-        function s(e, t) {
+        function o(e, t) {
             if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
             return !t || "object" != typeof t && "function" != typeof t ? e : t
         }
 
-        function o(e, t) {
+        function s(e, t) {
             if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);
             e.prototype = Object.create(t && t.prototype, {
                 constructor: {
@@ -46,13 +46,13 @@
         Object.defineProperty(t, "__esModule", {
             value: !0
         });
-        var r = n(183),
+        var r = n(153),
             l = a(r),
             d = function(e) {
                 function t() {
-                    return i(this, t), s(this, e.apply(this, arguments))
+                    return i(this, t), o(this, e.apply(this, arguments))
                 }
-                return o(t, e), t.prototype._onInited = function() {
+                return s(t, e), t.prototype._onInited = function() {
                     e.prototype._onChangeSlide.apply(this, arguments), this.delay = intval(this.opts.delay) || 1e4, this.start()
                 }, t.prototype._onChangeSlide = function() {
                     e.prototype._onChangeSlide.apply(this, arguments), this.stop(), this.start()
@@ -67,7 +67,7 @@
             }(l["default"]);
         t["default"] = d
     },
-    113: function(e, t, n) {
+    62: function(e, t, n) {
         "use strict";
 
         function a(e) {
@@ -75,346 +75,11 @@
                 "default": e
             }
         }
-
-        function i(e, t) {
-            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
-        }
-
-        function s(e, t) {
-            if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-            return !t || "object" != typeof t && "function" != typeof t ? e : t
-        }
-
-        function o(e, t) {
-            if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);
-            e.prototype = Object.create(t && t.prototype, {
-                constructor: {
-                    value: e,
-                    enumerable: !1,
-                    writable: !0,
-                    configurable: !0
-                }
-            }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t)
-        }
-        Object.defineProperty(t, "__esModule", {
-            value: !0
-        });
-        var r = n(183),
-            l = a(r),
-            d = function(e) {
-                function t(n, a) {
-                    return i(this, t), a.wrapClass = "landing_ads_examples_slider", s(this, e.call(this, n, a))
-                }
-                return o(t, e), t.prototype._getSlideCont = function(e, t) {
-                    return '\n<a class="landing_ads_examples_row" href="' + t.link + '">\n  <div class="landing_ads_examples_row_icon ' + t.slug + '"></div>\n  <div class="landing_ads_examples_row_title">' + t.title + '</div>\n  <div class="landing_ads_examples_row_subtitle">' + (t.subtitle ? t.subtitle : "") + '</div>\n  <div class="landing_ads_examples_row_caption">' + t.caption + "</div>\n</a>"
-                }, t.prototype._initSlider = function() {
-                    e.prototype._initSlider.call(this);
-                    var t = this._getPosition();
-                    this._setPosition(t + 1)
-                }, t.prototype._getSlidesLimit = function() {
-                    return 5
-                }, t
-            }(l["default"]);
-        t["default"] = d
-    },
-    183: function(e, t, n) {
-        "use strict";
-
-        function a(e) {
-            return e && e.__esModule ? e : {
-                "default": e
-            }
-        }
-
-        function i(e, t) {
-            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
-        }
-
-        function s(e, t) {
-            if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-            return !t || "object" != typeof t && "function" != typeof t ? e : t
-        }
-
-        function o(e, t) {
-            if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);
-            e.prototype = Object.create(t && t.prototype, {
-                constructor: {
-                    value: e,
-                    enumerable: !1,
-                    writable: !0,
-                    configurable: !0
-                }
-            }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t)
-        }
-        Object.defineProperty(t, "__esModule", {
-            value: !0
-        });
-        var r = n(346),
-            l = a(r),
-            d = 1e8,
-            c = function(e) {
-                function t() {
-                    return i(this, t), s(this, e.apply(this, arguments))
-                }
-                return o(t, e), t.prototype._initSlider = function() {
-                    this._setPosition(d / 2)
-                }, t.prototype._getSize = function() {
-                    return d
-                }, t.prototype._getSlideData = function(e) {
-                    return this.slides[e % this.slides.length]
-                }, t
-            }(l["default"]);
-        t["default"] = c
-    },
-    323: function(e, t, n) {
-        "use strict";
-
-        function a(e) {
-            return e && e.__esModule ? e : {
-                "default": e
-            }
-        }
-
-        function i(e, t) {
-            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
-        }
-
-        function s(e, t) {
-            if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-            return !t || "object" != typeof t && "function" != typeof t ? e : t
-        }
-
-        function o(e, t) {
-            if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);
-            e.prototype = Object.create(t && t.prototype, {
-                constructor: {
-                    value: e,
-                    enumerable: !1,
-                    writable: !0,
-                    configurable: !0
-                }
-            }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t)
-        }
-        Object.defineProperty(t, "__esModule", {
-            value: !0
-        });
-        var r = n(46),
-            l = a(r),
-            d = function(e) {
-                function t() {
-                    i(this, t);
-                    for (var n = arguments.length, a = Array(n), o = 0; n > o; o++) a[o] = arguments[o];
-                    var r = s(this, e.call.apply(e, [this].concat(a)));
-                    return r.coversWrap = geByClass1("landing_main_slider_covers_wrap"), r
-                }
-                return o(t, e), t.prototype._onChangeSlide = function() {
-                    for (var t, n = arguments.length, a = Array(n), i = 0; n > i; i++) a[i] = arguments[i];
-                    (t = e.prototype._onChangeSlide).call.apply(t, [this].concat(a)), removeClass(geByClass1("selected", this.coversWrap), "selected");
-                    var s = this._getPosition() % this.slides.length;
-                    addClass("landing_ads_cover_" + s, "selected")
-                }, t.prototype._makeButtons = function(e) {
-                    for (var t = "", n = 0; n < e.length; n++) {
-                        var a = e[n];
-                        t += '<a href="' + a.href + '" class="landings_main_slider_button ' + a.style + '" onclick="' + (a.onClick ? a.onClick : "") + '">' + a.text + "</a>"
-                    }
-                    return '<div class="landings_main_slider_buttons">' + t + "</div>"
-                }, t.prototype._getSlideCont = function(e, t) {
-                    var n = this._makeButtons(t.buttons ? t.buttons : ""),
-                        a = t.href ? '<a href="' + t.href + '" class="landings_main_slider_slide_title">' + t.title + "</a>" : '<div class="landings_main_slider_slide_title">' + t.title + "</div>";
-                    return '\n<div class="landings_main_slider_slide_cont_wrap">\n  <div class="landings_main_slider_slide_cont">\n    ' + a + '\n    <div class="landings_main_slider_slide_caption">' + t.caption + "</div>\n    " + n + "\n  </div>\n</div>\n"
-                }, t.prototype._getAnimationDuration = function() {
-                    return 700
-                }, t
-            }(l["default"]);
-        t["default"] = d
-    },
-    346: function(e, t) {
-        "use strict";
-
-        function n(e, t) {
-            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
-        }
-        Object.defineProperty(t, "__esModule", {
-            value: !0
-        });
-        var a = t.DEFAULT_ANIMATION_DURATION = 400,
-            i = function() {
-                function e(t, a) {
-                    n(this, e), this.opts = a, this.wrap = ge(t), this.slides = a.slides, this._initWrap(), this._renderNavArrow(), this._initSlider(), this._updateSlidesPosition(), this._onInited()
-                }
-                return e.prototype._onInited = function() {}, e.prototype._onChangeSlide = function(e) {}, e.prototype._initWrap = function() {
-                    var e = '\n<div class="landings_base_slider_wrap ' + this.opts.wrapClass + '">\n  <div class="landings_base_slider_slides_container"></div>\n</div>\n';
-                    val(this.wrap, e), this.container = geByClass1("landings_base_slider_slides_container", this.wrap), this.slidesWrap = geByClass1("landings_base_slider_wrap", this.wrap)
-                }, e.prototype._initSlider = function() {
-                    this._setPosition(0)
-                }, e.prototype._renderSlides = function() {
-                    for (var e = this._getOneSideSlidesLimit(), t = this._getPosition(), n = t - e; t + e >= n; n++)
-                        if (!this._getSlideWrap(n)) {
-                            var a = this._getSlideData(n);
-                            if (a) {
-                                var i = this._getSlideCont(n, a);
-                                if (i) {
-                                    var s = ce("div", {
-                                        className: "landings_base_slider_slide_wrap _landings_slide_" + n
-                                    }, {
-                                        transition: this._getTransition()
-                                    });
-                                    "string" == typeof i ? s.innerHTML = i : s.appendChild(i), attr(s, "data-position", n), this.container.appendChild(s)
-                                }
-                            }
-                        }
-                }, e.prototype._getTransition = function() {
-                    return "transition: opacity " + this._getAnimationDuration() + "ms ease-in-out"
-                }, e.prototype._getSlidesFromDOM = function() {
-                    return geByClass("landings_base_slider_slide_wrap", this.container)
-                }, e.prototype._destroySlides = function() {
-                    for (var e = this._getSlidesFromDOM(), t = this._getPosition(), n = this._getOneSideSlidesLimit(), a = t - n, i = t + n, s = 0; s < e.length; s++) {
-                        var o = e[s],
-                            r = parseInt(attr(o, "data-position"));
-                        (a > r || r > i) && this._destroySlide(o)
-                    }
-                }, e.prototype._destroySlide = function(e) {
-                    removeEvent(e, "click"), re(e)
-                }, e.prototype._getSlideData = function(e) {
-                    return this.slides[e]
-                }, e.prototype._getSlideCont = function(e, t) {
-                    return '<img class="landings_base_slider_slide" src="' + t.imageSrc + '" />'
-                }, e.prototype._getSize = function() {
-                    return this.slides.length
-                }, e.prototype._getPosition = function() {
-                    return this.position
-                }, e.prototype._setPosition = function(e) {
-                    this.lastDirection = e > this.position ? "next" : "prev", this.position = e, this._onChangeSlide(this._getSlideData(e))
-                }, e.prototype._getSlidesLimit = function() {
-                    return 3
-                }, e.prototype._getOneSideSlidesLimit = function() {
-                    return (this._getSlidesLimit() - 1) / 2
-                }, e.prototype._getSlideWrap = function(e) {
-                    return geByClass1("_landings_slide_" + e, this.container)
-                }, e.prototype._updateSlidesPosition = function() {
-                    var e = this;
-                    this.lock = !0, this._renderSlides();
-                    for (var t = this._getSlidesFromDOM(), n = this._getOneSideSlidesLimit(), a = this._getPosition(), i = 0; i < t.length; i++) {
-                        var s = t[i],
-                            o = parseInt(attr(s, "data-position")),
-                            r = Math.min(n, Math.max(o - a, -n));
-                        this._updateSlide(s, r)
-                    }
-                    setTimeout(function() {
-                        e._destroySlides(), e.lock = !1
-                    }, this._getAnimationDuration())
-                }, e.prototype._getAnimationDuration = function() {
-                    return a
-                }, e.prototype._updateSlide = function(e, t) {
-                    setStyle(e, "transform", "translateX(" + 100 * t + "%)")
-                }, e.prototype._renderNavArrow = function() {
-                    var e = ce("div", {
-                        className: "landings_slider_base_arrow left"
-                    });
-                    addEvent(e, "click", this.prevSlide.bind(this)), this.slidesWrap.appendChild(e);
-                    var t = ce("div", {
-                        className: "landings_slider_base_arrow right"
-                    });
-                    addEvent(t, "click", this.nextSlide.bind(this)), this.slidesWrap.appendChild(t)
-                }, e.prototype._isLocked = function() {
-                    return this.lock || this.disabled
-                }, e.prototype.nextSlide = function() {
-                    return this._isLocked() ? !1 : void this._changeSlide(Math.min(this._getPosition() + 1, this._getSize() - 1))
-                }, e.prototype.prevSlide = function() {
-                    return this._isLocked() ? !1 : void this._changeSlide(Math.max(this._getPosition() - 1, 0))
-                }, e.prototype._changeSlide = function(e) {
-                    e != this._getPosition() && (this._setPosition(e), this._updateSlidesPosition())
-                }, e.prototype.setDisabled = function(e) {
-                    this.disabled = e, e ? addClass(this.wrap, "landings_base_slider_disabled") : removeClass(this.wrap, "landings_base_slider_disabled")
-                }, e
-            }();
-        t["default"] = i
-    },
-    395: function(e, t, n) {
-        "use strict";
-
-        function a(e) {
-            return e && e.__esModule ? e : {
-                "default": e
-            }
-        }
-
-        function i(e, t) {
-            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
-        }
-
-        function s(e, t) {
-            if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-            return !t || "object" != typeof t && "function" != typeof t ? e : t
-        }
-
-        function o(e, t) {
-            if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);
-            e.prototype = Object.create(t && t.prototype, {
-                constructor: {
-                    value: e,
-                    enumerable: !1,
-                    writable: !0,
-                    configurable: !0
-                }
-            }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t)
-        }
-        Object.defineProperty(t, "__esModule", {
-            value: !0
-        });
-        var r = n(183),
-            l = a(r),
-            d = 400,
-            c = function(e) {
-                function t(n, a) {
-                    return i(this, t), a.wrapClass = "landing_ads_games_integration_slider", s(this, e.call(this, n, a))
-                }
-                return o(t, e), t.prototype._getSlideCont = function(e, t) {
-                    var n = this,
-                        a = ce("div", {
-                            className: "landing_ads_games_integration_slide"
-                        }, {
-                            "background-image": "url(" + t.src + ")"
-                        });
-                    return addEvent(a, "click", function() {
-                        n._changeSlide(e)
-                    }), a
-                }, t.prototype._getSlidesLimit = function() {
-                    return 5
-                }, t.prototype._updateSlide = function(e, t) {
-                    var n = "translateX(" + 100 * t + "%)",
-                        a = {
-                            transform: n,
-                            transition: "transform " + d + "ms ease-in-out"
-                        };
-                    "next" == this.lastDirection && -1 == t || "prev" == this.lastDirection && 1 == t ? a.zIndex = 3 : 0 == t ? a.zIndex = 2 : a.zIndex = 1, setStyle(e, a);
-                    var i = geByClass1("landing_ads_games_integration_slide", e);
-                    0 == t ? setStyle(i, {
-                        transform: "scale(1.26)",
-                        "transition-delay": Math.round(d / 4) + "ms"
-                    }) : setStyle(i, {
-                        transform: "scale(1)",
-                        "transition-delay": "0ms"
-                    }), 3 == a.zIndex && (clearTimeout(this.resetZIndexTimer), this.resetZIndexTimer = setTimeout(function() {
-                        setStyle(e, "z-index", 1)
-                    }, d / 2))
-                }, t
-            }(l["default"]);
-        t["default"] = c
-    },
-    479: function(e, t, n) {
-        "use strict";
-
-        function a(e) {
-            return e && e.__esModule ? e : {
-                "default": e
-            }
-        }
-        var i = n(323),
-            s = a(i),
-            o = n(113),
-            r = a(o),
-            l = n(395),
+        var i = n(171),
+            o = a(i),
+            s = n(194),
+            r = a(s),
+            l = n(158),
             d = a(l);
         window.LandingAds = {
             init: function(e, t) {
@@ -461,10 +126,10 @@
                     });
                     var a = e.getElementsByTagName("script")[0],
                         i = e.createElement("script"),
-                        s = function() {
+                        o = function() {
                             a.parentNode.insertBefore(i, a)
                         };
-                    i.type = "text/javascript", i.async = !0, i.src = "https://mc.yandex.ru/metrika/watch.js", "[object Opera]" == t.opera ? e.addEventListener("DOMContentLoaded", s, !1) : s()
+                    i.type = "text/javascript", i.async = !0, i.src = "https://mc.yandex.ru/metrika/watch.js", "[object Opera]" == t.opera ? e.addEventListener("DOMContentLoaded", o, !1) : o()
                 }(document, window, "yandex_metrika_callbacks"), utilsNode.appendChild(ce("img", {
                     src: "https://mc.yandex.ru/watch/44101674"
                 })))
@@ -516,8 +181,8 @@
                     n && domQuery1("input", t).focus()
                 }, n);
                 for (var a = domQuery("#adv_agency_already_advertise > .radiobtn"), i = 0; i < a.length; i++) {
-                    var s = a[i];
-                    s.addEventListener("click", function(e) {
+                    var o = a[i];
+                    o.addEventListener("click", function(e) {
                         var t = radioval("adv_agency_already_advertise"),
                             n = ge("adv_agency_offices_field");
                         1 === t ? removeClass(n, "hidden") : addClass(n, "hidden")
@@ -529,7 +194,7 @@
                 })
             },
             initMainSlider: function(e, t) {
-                cur.mainSlider = new s["default"]("ads_main_slider", {
+                cur.mainSlider = new o["default"]("ads_main_slider", {
                     slides: t
                 }), "intro" !== e && cur.mainSlider.setDisabled(!0)
             },
@@ -552,6 +217,11 @@
                     act: "create_box"
                 })
             },
+            showCreateGroupBoxNew: function(e) {
+                return cancelEvent(e), !showWiki({
+                    w: "groups_create"
+                })
+            },
             initFeedScrolling: function() {
                 var e = geByClass1("landing_ads_company_page_posts");
                 cur.scrollingWrap = e, cur.scrollingContainer = geByClass1("landing_ads_company_page_post_container", e), cur.scrollingContainerHeight = getSize(cur.scrollingContainer)[1], cur.scrollingLastTop = 0, addEvent(window, "scroll", this._onCompanyPageOnScroll)
@@ -559,14 +229,14 @@
             _makeDynamicField: function(e, t) {
                 function n() {
                     var n = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : !1,
-                        o = s.cloneNode(!0),
+                        s = o.cloneNode(!0),
                         r = domQuery(e + " > *").length + 1;
-                    domQuery1(e).appendChild(o), a && a(r, o, n), i && r >= i && domQuery1(t).classList.add("hidden")
+                    domQuery1(e).appendChild(s), a && a(r, s, n), i && r >= i && domQuery1(t).classList.add("hidden")
                 }
                 var a = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : null,
                     i = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : null,
-                    s = domQuery1(e + " > *:first-child");
-                s.parentNode.removeChild(s), n(), domQuery1(t).addEventListener("click", function(e) {
+                    o = domQuery1(e + " > *:first-child");
+                o.parentNode.removeChild(o), n(), domQuery1(t).addEventListener("click", function(e) {
                     e.preventDefault(), n(!0)
                 })
             },
@@ -686,8 +356,8 @@
                     return -1 !== e.indexOf("@") && -1 === e.indexOf(" ")
                 }
                 var i = parseInt(cur.countryDD.val()),
-                    s = trim(val("adv_agency_form_city")),
-                    o = trim(val("adv_agency_form_site")),
+                    o = trim(val("adv_agency_form_city")),
+                    s = trim(val("adv_agency_form_site")),
                     r = trim(val("adv_agency_form_company")),
                     l = trim(val("adv_agency_form_inn")),
                     d = trim(val("adv_agency_form_starting_budget")),
@@ -698,8 +368,8 @@
                     g = trim(val("adv_agency_form_email")),
                     f = trim(val("adv_agency_form_message"));
                 if (!i) return cur.countryDD.focus(), void notaBene(cur.countryDD.container);
-                if (!s) return void notaBene("adv_agency_form_city");
-                if (!o || !n(o)) return void notaBene("adv_agency_form_site");
+                if (!o) return void notaBene("adv_agency_form_city");
+                if (!s || !n(s)) return void notaBene("adv_agency_form_site");
                 if (!r) return void notaBene("adv_agency_form_company");
                 if (!l || !/^\d+$/.test(l)) return void notaBene("adv_agency_form_inn");
                 for (var v = [], h = geByClass("on", "adv_agency_business_direction_wrap"), y = 0; y < h.length; y++) {
@@ -737,8 +407,8 @@
                             var I = {
                                     act: "adv_agency_send_request",
                                     country: i,
-                                    city: s,
-                                    site: o,
+                                    city: o,
+                                    site: s,
                                     company: r,
                                     inn: l,
                                     starting_budget: d,
@@ -761,9 +431,9 @@
                                     for (var t = geByClass("on", "adv_agency_products_wrap"), n = 0; n < t.length; n++) removeClass(t[n], "on");
                                     for (var a = geByClass("on", "adv_agency_business_direction_wrap"), i = 0; i < a.length; i++) removeClass(a[i], "on");
                                     addClass(ge("adv_agency_business_direction_other"), "hidden"), radiobtn(domQuery1('#adv_agency_already_advertise > .radiobtn[data-value="0"]'), 0, "adv_agency_already_advertise");
-                                    for (var s = domQuery("#adv_agency_offices > input"), o = 0; o < s.length; o++) {
-                                        var r = s[o];
-                                        0 === o ? val(r, "") : r.parentNode.removeChild(r)
+                                    for (var o = domQuery("#adv_agency_offices > input"), s = 0; s < o.length; s++) {
+                                        var r = o[s];
+                                        0 === s ? val(r, "") : r.parentNode.removeChild(r)
                                     }
                                     removeClass(geByClass1("js-adv-agency-offices-add"), "hidden"), addClass(ge("adv_agency_offices_field"), "hidden");
                                     for (var l = domQuery("#adv_agency_clients_wrap > div"), d = 0; d < l.length; d++) {
@@ -804,5 +474,340 @@
         try {
             stManager.done("landing_aes.js")
         } catch (c) {}
+    },
+    153: function(e, t, n) {
+        "use strict";
+
+        function a(e) {
+            return e && e.__esModule ? e : {
+                "default": e
+            }
+        }
+
+        function i(e, t) {
+            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
+        }
+
+        function o(e, t) {
+            if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+            return !t || "object" != typeof t && "function" != typeof t ? e : t
+        }
+
+        function s(e, t) {
+            if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);
+            e.prototype = Object.create(t && t.prototype, {
+                constructor: {
+                    value: e,
+                    enumerable: !1,
+                    writable: !0,
+                    configurable: !0
+                }
+            }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t)
+        }
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        });
+        var r = n(195),
+            l = a(r),
+            d = 1e8,
+            c = function(e) {
+                function t() {
+                    return i(this, t), o(this, e.apply(this, arguments))
+                }
+                return s(t, e), t.prototype._initSlider = function() {
+                    this._setPosition(d / 2)
+                }, t.prototype._getSize = function() {
+                    return d
+                }, t.prototype._getSlideData = function(e) {
+                    return this.slides[e % this.slides.length]
+                }, t
+            }(l["default"]);
+        t["default"] = c
+    },
+    158: function(e, t, n) {
+        "use strict";
+
+        function a(e) {
+            return e && e.__esModule ? e : {
+                "default": e
+            }
+        }
+
+        function i(e, t) {
+            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
+        }
+
+        function o(e, t) {
+            if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+            return !t || "object" != typeof t && "function" != typeof t ? e : t
+        }
+
+        function s(e, t) {
+            if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);
+            e.prototype = Object.create(t && t.prototype, {
+                constructor: {
+                    value: e,
+                    enumerable: !1,
+                    writable: !0,
+                    configurable: !0
+                }
+            }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t)
+        }
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        });
+        var r = n(153),
+            l = a(r),
+            d = 400,
+            c = function(e) {
+                function t(n, a) {
+                    return i(this, t), a.wrapClass = "landing_ads_games_integration_slider", o(this, e.call(this, n, a))
+                }
+                return s(t, e), t.prototype._getSlideCont = function(e, t) {
+                    var n = this,
+                        a = ce("div", {
+                            className: "landing_ads_games_integration_slide"
+                        }, {
+                            "background-image": "url(" + t.src + ")"
+                        });
+                    return addEvent(a, "click", function() {
+                        n._changeSlide(e)
+                    }), a
+                }, t.prototype._getSlidesLimit = function() {
+                    return 5
+                }, t.prototype._updateSlide = function(e, t) {
+                    var n = "translateX(" + 100 * t + "%)",
+                        a = {
+                            transform: n,
+                            transition: "transform " + d + "ms ease-in-out"
+                        };
+                    "next" == this.lastDirection && -1 == t || "prev" == this.lastDirection && 1 == t ? a.zIndex = 3 : 0 == t ? a.zIndex = 2 : a.zIndex = 1, setStyle(e, a);
+                    var i = geByClass1("landing_ads_games_integration_slide", e);
+                    0 == t ? setStyle(i, {
+                        transform: "scale(1.26)",
+                        "transition-delay": Math.round(d / 4) + "ms"
+                    }) : setStyle(i, {
+                        transform: "scale(1)",
+                        "transition-delay": "0ms"
+                    }), 3 == a.zIndex && (clearTimeout(this.resetZIndexTimer), this.resetZIndexTimer = setTimeout(function() {
+                        setStyle(e, "z-index", 1)
+                    }, d / 2))
+                }, t
+            }(l["default"]);
+        t["default"] = c
+    },
+    171: function(e, t, n) {
+        "use strict";
+
+        function a(e) {
+            return e && e.__esModule ? e : {
+                "default": e
+            }
+        }
+
+        function i(e, t) {
+            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
+        }
+
+        function o(e, t) {
+            if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+            return !t || "object" != typeof t && "function" != typeof t ? e : t
+        }
+
+        function s(e, t) {
+            if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);
+            e.prototype = Object.create(t && t.prototype, {
+                constructor: {
+                    value: e,
+                    enumerable: !1,
+                    writable: !0,
+                    configurable: !0
+                }
+            }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t)
+        }
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        });
+        var r = n(45),
+            l = a(r),
+            d = function(e) {
+                function t() {
+                    i(this, t);
+                    for (var n = arguments.length, a = Array(n), s = 0; n > s; s++) a[s] = arguments[s];
+                    var r = o(this, e.call.apply(e, [this].concat(a)));
+                    return r.coversWrap = geByClass1("landing_main_slider_covers_wrap"), r
+                }
+                return s(t, e), t.prototype._onChangeSlide = function() {
+                    for (var t, n = arguments.length, a = Array(n), i = 0; n > i; i++) a[i] = arguments[i];
+                    (t = e.prototype._onChangeSlide).call.apply(t, [this].concat(a)), removeClass(geByClass1("selected", this.coversWrap), "selected");
+                    var o = this._getPosition() % this.slides.length;
+                    addClass("landing_ads_cover_" + o, "selected")
+                }, t.prototype._makeButtons = function(e) {
+                    for (var t = "", n = 0; n < e.length; n++) {
+                        var a = e[n];
+                        t += '<a href="' + a.href + '" class="landings_main_slider_button ' + a.style + '" onclick="' + (a.onClick ? a.onClick : "") + '">' + a.text + "</a>"
+                    }
+                    return '<div class="landings_main_slider_buttons">' + t + "</div>"
+                }, t.prototype._getSlideCont = function(e, t) {
+                    var n = this._makeButtons(t.buttons ? t.buttons : ""),
+                        a = t.href ? '<a href="' + t.href + '" class="landings_main_slider_slide_title">' + t.title + "</a>" : '<div class="landings_main_slider_slide_title">' + t.title + "</div>";
+                    return '\n<div class="landings_main_slider_slide_cont_wrap">\n  <div class="landings_main_slider_slide_cont">\n    ' + a + '\n    <div class="landings_main_slider_slide_caption">' + t.caption + "</div>\n    " + n + "\n  </div>\n</div>\n"
+                }, t.prototype._getAnimationDuration = function() {
+                    return 700
+                }, t
+            }(l["default"]);
+        t["default"] = d
+    },
+    194: function(e, t, n) {
+        "use strict";
+
+        function a(e) {
+            return e && e.__esModule ? e : {
+                "default": e
+            }
+        }
+
+        function i(e, t) {
+            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
+        }
+
+        function o(e, t) {
+            if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+            return !t || "object" != typeof t && "function" != typeof t ? e : t
+        }
+
+        function s(e, t) {
+            if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);
+            e.prototype = Object.create(t && t.prototype, {
+                constructor: {
+                    value: e,
+                    enumerable: !1,
+                    writable: !0,
+                    configurable: !0
+                }
+            }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t)
+        }
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        });
+        var r = n(153),
+            l = a(r),
+            d = function(e) {
+                function t(n, a) {
+                    return i(this, t), a.wrapClass = "landing_ads_examples_slider", o(this, e.call(this, n, a))
+                }
+                return s(t, e), t.prototype._getSlideCont = function(e, t) {
+                    return '\n<a class="landing_ads_examples_row" href="' + t.link + '">\n  <div class="landing_ads_examples_row_icon ' + t.slug + '"></div>\n  <div class="landing_ads_examples_row_title">' + t.title + '</div>\n  <div class="landing_ads_examples_row_subtitle">' + (t.subtitle ? t.subtitle : "") + '</div>\n  <div class="landing_ads_examples_row_caption">' + t.caption + "</div>\n</a>"
+                }, t.prototype._initSlider = function() {
+                    e.prototype._initSlider.call(this);
+                    var t = this._getPosition();
+                    this._setPosition(t + 1)
+                }, t.prototype._getSlidesLimit = function() {
+                    return 5
+                }, t
+            }(l["default"]);
+        t["default"] = d
+    },
+    195: function(e, t) {
+        "use strict";
+
+        function n(e, t) {
+            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
+        }
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        });
+        var a = t.DEFAULT_ANIMATION_DURATION = 400,
+            i = function() {
+                function e(t, a) {
+                    n(this, e), this.opts = a, this.wrap = ge(t), this.slides = a.slides, this._initWrap(), this._renderNavArrow(), this._initSlider(), this._updateSlidesPosition(), this._onInited()
+                }
+                return e.prototype._onInited = function() {}, e.prototype._onChangeSlide = function(e) {}, e.prototype._initWrap = function() {
+                    var e = '\n<div class="landings_base_slider_wrap ' + this.opts.wrapClass + '">\n  <div class="landings_base_slider_slides_container"></div>\n</div>\n';
+                    val(this.wrap, e), this.container = geByClass1("landings_base_slider_slides_container", this.wrap), this.slidesWrap = geByClass1("landings_base_slider_wrap", this.wrap)
+                }, e.prototype._initSlider = function() {
+                    this._setPosition(0)
+                }, e.prototype._renderSlides = function() {
+                    for (var e = this._getOneSideSlidesLimit(), t = this._getPosition(), n = t - e; t + e >= n; n++)
+                        if (!this._getSlideWrap(n)) {
+                            var a = this._getSlideData(n);
+                            if (a) {
+                                var i = this._getSlideCont(n, a);
+                                if (i) {
+                                    var o = ce("div", {
+                                        className: "landings_base_slider_slide_wrap _landings_slide_" + n
+                                    }, {
+                                        transition: this._getTransition()
+                                    });
+                                    "string" == typeof i ? o.innerHTML = i : o.appendChild(i), attr(o, "data-position", n), this.container.appendChild(o)
+                                }
+                            }
+                        }
+                }, e.prototype._getTransition = function() {
+                    return "transition: opacity " + this._getAnimationDuration() + "ms ease-in-out"
+                }, e.prototype._getSlidesFromDOM = function() {
+                    return geByClass("landings_base_slider_slide_wrap", this.container)
+                }, e.prototype._destroySlides = function() {
+                    for (var e = this._getSlidesFromDOM(), t = this._getPosition(), n = this._getOneSideSlidesLimit(), a = t - n, i = t + n, o = 0; o < e.length; o++) {
+                        var s = e[o],
+                            r = parseInt(attr(s, "data-position"));
+                        (a > r || r > i) && this._destroySlide(s)
+                    }
+                }, e.prototype._destroySlide = function(e) {
+                    removeEvent(e, "click"), re(e)
+                }, e.prototype._getSlideData = function(e) {
+                    return this.slides[e]
+                }, e.prototype._getSlideCont = function(e, t) {
+                    return '<img class="landings_base_slider_slide" src="' + t.imageSrc + '" />'
+                }, e.prototype._getSize = function() {
+                    return this.slides.length
+                }, e.prototype._getPosition = function() {
+                    return this.position
+                }, e.prototype._setPosition = function(e) {
+                    this.lastDirection = e > this.position ? "next" : "prev", this.position = e, this._onChangeSlide(this._getSlideData(e))
+                }, e.prototype._getSlidesLimit = function() {
+                    return 3
+                }, e.prototype._getOneSideSlidesLimit = function() {
+                    return (this._getSlidesLimit() - 1) / 2
+                }, e.prototype._getSlideWrap = function(e) {
+                    return geByClass1("_landings_slide_" + e, this.container)
+                }, e.prototype._updateSlidesPosition = function() {
+                    var e = this;
+                    this.lock = !0, this._renderSlides();
+                    for (var t = this._getSlidesFromDOM(), n = this._getOneSideSlidesLimit(), a = this._getPosition(), i = 0; i < t.length; i++) {
+                        var o = t[i],
+                            s = parseInt(attr(o, "data-position")),
+                            r = Math.min(n, Math.max(s - a, -n));
+                        this._updateSlide(o, r)
+                    }
+                    setTimeout(function() {
+                        e._destroySlides(), e.lock = !1
+                    }, this._getAnimationDuration())
+                }, e.prototype._getAnimationDuration = function() {
+                    return a
+                }, e.prototype._updateSlide = function(e, t) {
+                    setStyle(e, "transform", "translateX(" + 100 * t + "%)")
+                }, e.prototype._renderNavArrow = function() {
+                    var e = ce("div", {
+                        className: "landings_slider_base_arrow left"
+                    });
+                    addEvent(e, "click", this.prevSlide.bind(this)), this.slidesWrap.appendChild(e);
+                    var t = ce("div", {
+                        className: "landings_slider_base_arrow right"
+                    });
+                    addEvent(t, "click", this.nextSlide.bind(this)), this.slidesWrap.appendChild(t)
+                }, e.prototype._isLocked = function() {
+                    return this.lock || this.disabled
+                }, e.prototype.nextSlide = function() {
+                    return this._isLocked() ? !1 : void this._changeSlide(Math.min(this._getPosition() + 1, this._getSize() - 1))
+                }, e.prototype.prevSlide = function() {
+                    return this._isLocked() ? !1 : void this._changeSlide(Math.max(this._getPosition() - 1, 0))
+                }, e.prototype._changeSlide = function(e) {
+                    e != this._getPosition() && (this._setPosition(e), this._updateSlidesPosition())
+                }, e.prototype.setDisabled = function(e) {
+                    this.disabled = e, e ? addClass(this.wrap, "landings_base_slider_disabled") : removeClass(this.wrap, "landings_base_slider_disabled")
+                }, e
+            }();
+        t["default"] = i
     }
 });

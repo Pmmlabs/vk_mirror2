@@ -1,52 +1,52 @@
 #intro_css {
-    display: none;
+    display: none
 }
 
 .intr_hide,
-.intr_settings_m,
-.intr_notify_m {
-    -ms-high-contrast-adjust: none;
+.intr_notify_m,
+.intr_settings_m {
+    -ms-high-contrast-adjust: none
 }
 
 .intr_hide_wrap {
     -o-transition: opacity 0.15s ease;
-    transition: opacity 0.15s ease;
+    transition: opacity 0.15s ease
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .intr_tt {
     width: 230px;
     box-sizing: border-box;
-    padding: 0 14px 13px;
+    padding: 0 14px 13px
 }
 
 .intr_tt .subheader {
-    margin-top: 13px;
+    margin-top: 13px
 }
 
-.tt_default.profile_intro_side_tt.tt_right:after,
 .tt_default.profile_intro_side_tt.tt_left:after,
-.tt_default.profile_intro_side_tt.tt_right:before,
-.tt_default.profile_intro_side_tt.tt_left:before {
-    top: 19px;
+.tt_default.profile_intro_side_tt.tt_left:before,
+.tt_default.profile_intro_side_tt.tt_right:after,
+.tt_default.profile_intro_side_tt.tt_right:before {
+    top: 19px
 }
 
 .intr_text {
-    line-height: 150%;
+    line-height: 150%
 }
 
 .intr_button {
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 .intr_hide_wrap {
@@ -55,19 +55,19 @@
     padding: 6px;
     margin: -4px -5px;
     opacity: 0.6;
-    filter: alpha(opacity=60);
+    filter: alpha(opacity=60)
 }
 
 .intr_hide_wrap:hover {
     opacity: 1;
     -webkit-filter: none;
-    filter: none;
+    filter: none
 }
 
 .intr_hide {
     width: 9px;
     height: 9px;
-    background: url(/images/attach_icons.png?4) 0 0 no-repeat;
+    background: url(/images/attach_icons.png?4) 0 0 no-repeat
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -75,83 +75,83 @@
 (min-resolution: 192dpi) {
     .intr_hide {
         background-image: url(/images/attach_icons_2x.png?4);
-        background-size: 32px 254px;
+        background-size: 32px 254px
     }
 }
 
 .intr_square {
     width: 160px;
     height: 160px;
-    margin: 18px auto;
+    margin: 18px auto
 }
 
-.intr_img_m,
-.intr_img_f {
-    background: url(/images/join/photo_f.gif?2) 0 0 no-repeat;
+.intr_img_f,
+.intr_img_m {
+    background: url(/images/join/photo_f.gif?2) 0 0 no-repeat
 }
 
 .intr_friends_m {
-    background: url(/images/join/search_f.gif) 0 0 no-repeat;
+    background: url(/images/join/search_f.gif) 0 0 no-repeat
 }
 
 .intr_places_m {
-    background: url(/images/join/places_f.gif) 0 0 no-repeat;
+    background: url(/images/join/places_f.gif) 0 0 no-repeat
 }
 
 .intr_age_m {
-    background: url(/images/join/weigth_f.gif) 0 0 no-repeat;
+    background: url(/images/join/weigth_f.gif) 0 0 no-repeat
 }
 
 .intr_edit_m {
-    background: url(/images/join/edit_f.gif) 0 0 no-repeat;
+    background: url(/images/join/edit_f.gif) 0 0 no-repeat
 }
 
 .intr_back_m {
-    background: url(/images/join/back_f.gif?2) 0 0 no-repeat;
+    background: url(/images/join/back_f.gif?2) 0 0 no-repeat
 }
 
 .intr_add_friend_m {
-    background: url(/images/join/friend_f.gif?2) 0 0 no-repeat;
+    background: url(/images/join/friend_f.gif?2) 0 0 no-repeat
 }
 
 .intr_message_friend_m {
-    background: url(/images/join/message_f.gif?2) 0 0 no-repeat;
+    background: url(/images/join/message_f.gif?2) 0 0 no-repeat
 }
 
 .intr_photos_m {
-    background: url(/images/join/photo_album_f.gif) 0 0 no-repeat;
+    background: url(/images/join/photo_album_f.gif) 0 0 no-repeat
 }
 
 .intr_photo_upload_m {
-    background: url(/images/join/photo_upload_f.gif) 0 0 no-repeat;
+    background: url(/images/join/photo_upload_f.gif) 0 0 no-repeat
 }
 
 .intr_photo_uploaded_m {
-    background: url(/images/join/photo_uploaded_f.gif) 0 0 no-repeat;
+    background: url(/images/join/photo_uploaded_f.gif) 0 0 no-repeat
 }
 
 .intr_wall_m {
-    background: url(/images/join/wall_f.gif) 0 0 no-repeat;
+    background: url(/images/join/wall_f.gif) 0 0 no-repeat
 }
 
 .intr_wall_en {
-    background: url(/images/join/wall_en.gif) 0 0 no-repeat;
+    background: url(/images/join/wall_en.gif) 0 0 no-repeat
 }
 
 .intr_like_m {
-    background: url(/images/join/like_f.gif) 0 0 no-repeat;
+    background: url(/images/join/like_f.gif) 0 0 no-repeat
 }
 
 .intr_profile_m {
-    background: url(/images/join/profile_f.gif) 0 0 no-repeat;
+    background: url(/images/join/profile_f.gif) 0 0 no-repeat
 }
 
 .intr_news_m {
-    background: url(/images/join/news_f.gif) 0 0 no-repeat;
+    background: url(/images/join/news_f.gif) 0 0 no-repeat
 }
 
 .intr_settings_m {
-    background: url(/images/join/settings_f.png) no-repeat 0 0;
+    background: url(/images/join/settings_f.png) no-repeat 0 0
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -159,12 +159,12 @@
 (min-resolution: 192dpi) {
     .intr_settings_m {
         background-image: url(/images/join/settings_f_2x.png);
-        background-size: 160px 160px;
+        background-size: 160px 160px
     }
 }
 
 .intr_notify_m {
-    background: url(/images/join/notify_f.png) no-repeat 0 0;
+    background: url(/images/join/notify_f.png) no-repeat 0 0
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -172,11 +172,11 @@
 (min-resolution: 192dpi) {
     .intr_notify_m {
         background-image: url(/images/join/notify_f_2x.png);
-        background-size: 160px 160px;
+        background-size: 160px 160px
     }
 }
 
-.tt.profile_intro_side_tt,
-.profile_intro_side_tt {
-    z-index: 10;
+.profile_intro_side_tt,
+.tt.profile_intro_side_tt {
+    z-index: 10
 }

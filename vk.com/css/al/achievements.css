@@ -1,53 +1,53 @@
 #achievements_css {
-    display: none;
+    display: none
 }
 
 .achievements_none {
-    -ms-high-contrast-adjust: none;
+    -ms-high-contrast-adjust: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .ach_page_block {
-    padding: 20px;
+    padding: 20px
 }
 
 .ach_subtabs {
-    background: #fafbfc;
+    background: #fafbfc
 }
 
 .achievements_top_notify_wrap {
-    margin: 0 0 10px;
+    margin: 0 0 10px
 }
 
 .achievements_new_wrap {
     padding: 20px;
-    background: #e7edf2;
+    background: #e7edf2
 }
 
 .achievements_new_head {
     margin-bottom: 20px;
-    font-size: 15px;
+    font-size: 15px
 }
 
 .achievements_unlocked_wrap {
     padding: 20px;
-    background: #FAF0DD;
-    position: relative;
+    background: #faf0dd;
+    position: relative
 }
 
 .achievements_unlocked_head {
     margin-bottom: 20px;
-    font-size: 15px;
+    font-size: 15px
 }
 
 .achievements_unlocked_hide {
@@ -55,35 +55,32 @@
     top: 20px;
     -o-transition: opacity 200ms linear;
     transition: opacity 200ms linear;
-    color: #7F7660;
+    color: #7f7660;
     cursor: pointer;
     font-size: 15px;
     opacity: 0.3;
-    position: absolute;
+    position: absolute
 }
 
 .achievements_unlocked_hide:before {
-    content: '\2715';
+    content: '\2715'
 }
 
 .achievements_unlocked_hide:hover {
-    opacity: 1;
+    opacity: 1
 }
 
 .achievements {
-    padding: 25px 30px;
+    padding: 25px 30px
 }
 
 .ach_page_block .achievements {
-    padding: 5px 10px;
+    padding: 5px 10px
 }
 
-.ach_page_block .achievements_new_wrap .achievements {
-    padding: 0;
-}
-
+.ach_page_block .achievements_new_wrap .achievements,
 .ach_page_block .achievements_unlocked_wrap .achievements {
-    padding: 0;
+    padding: 0
 }
 
 .achievements_none {
@@ -91,7 +88,7 @@
     padding: 100px 0 10px;
     text-align: center;
     color: #929eb0;
-    font-size: 14px;
+    font-size: 14px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -99,7 +96,7 @@
 (min-resolution: 192dpi) {
     .achievements_none {
         background-image: url(/images/agents/sad_2x.png);
-        background-size: 70px 70px;
+        background-size: 70px 70px
     }
 }
 
@@ -111,35 +108,35 @@
     height: 155px;
     width: 145px;
     line-height: 155px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .achievements_opacity .achievement {
-    opacity: 0.1;
+    opacity: 0.1
 }
 
 .achievements_opacity .achievement.achievement_marked {
-    opacity: 1;
+    opacity: 1
 }
 
 .achievement_transparent {
     -o-transition: opacity 200ms linear;
     transition: opacity 200ms linear;
-    opacity: 0.4;
+    opacity: 0.4
 }
 
 .achievement_transparent:hover {
-    opacity: 0.75;
+    opacity: 0.75
 }
 
 .achievement_blur {
-    pointer-events: none;
+    pointer-events: none
 }
 
 .achievement_img {
     width: 128px;
     height: 128px;
-    vertical-align: middle;
+    vertical-align: middle
 }
 
 .achievement_blur .achievement_img,
@@ -149,104 +146,104 @@
     height: 100px;
     -webkit-filter: blur(10px) grayscale(75%);
     filter: blur(10px) grayscale(75%);
-    opacity: 0.8;
+    opacity: 0.8
 }
 
 .achievement_blur_only .achievement_img:hover {
     width: 128px;
     height: 128px;
     -webkit-filter: blur(0) grayscale(0%);
-    filter: blur(0) grayscale(0%);
+    filter: blur(0) grayscale(0%)
 }
 
 .achievement_row {
     padding: 10px;
     transition: filter 600ms linear, -webkit-filter 600ms linear;
     display: block;
-    text-decoration: none;
+    text-decoration: none
 }
 
 .achievements_new_wrap .achievement_row:hover {
-    background: #E0E8F1;
-    text-decoration: none;
+    background: #e0e8f1;
+    text-decoration: none
 }
 
 .achievements_unlocked_wrap .achievement_row:hover {
-    background: #F2E7CE;
-    text-decoration: none;
+    background: #f2e7ce;
+    text-decoration: none
 }
 
 .achievement_row.achievement_row_faded {
     -webkit-filter: blur(10px) grayscale(75%);
-    filter: blur(10px) grayscale(75%);
+    filter: blur(10px) grayscale(75%)
 }
 
 .achievement_row__img {
     float: left;
     width: 96px;
     height: 96px;
-    margin-right: 15px;
+    margin-right: 15px
 }
 
 .achievement_row_content {
     padding-top: 10px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .achievement_row__title {
-    font-size: 16px;
+    font-size: 16px
 }
 
 .achievement_row__descr {
     margin-top: 6px;
-    color: #000000;
+    color: #000;
     font-size: 13px;
-    line-height: 19px;
+    line-height: 19px
 }
 
 .ach_form_row__label {
     margin-bottom: 4px;
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #42648B;
+    color: #42648b
 }
 
 .ach_form_row__input .text {
     box-sizing: border-box;
     resize: vertical;
-    width: 100%;
+    width: 100%
 }
 
 .ach_form_row__input.ach_form_row__input_photo .text {
     float: left;
-    width: 310px;
+    width: 310px
 }
 
 .ach_form_row__input.ach_form_row__input_photo .flat_button {
-    float: right;
+    float: right
 }
 
 .ach_form_row {
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
 .ach_form_submit_row {
-    margin-top: 15px;
+    margin-top: 15px
 }
 
 .ach_divider.divider {
-    margin-left: 14px;
+    margin-left: 14px
 }
 
 .ach_divider.divider:before {
     padding-right: 4px;
-    font-size: 10px;
+    font-size: 10px
 }
 
 .ach_block__requirements {
     margin-top: 12px;
-    color: #656565;
+    color: #656565
 }
 
 .ach_block_requirement {
@@ -254,17 +251,17 @@
     padding-left: 20px;
     background: url('/images/icons/msg_error.png') no-repeat 0;
     background-size: 16px 16px;
-    line-height: 18px;
+    line-height: 18px
 }
 
 .ach_block_requirement.ach_block_requirement_done {
     background: url('/images/icons/msg_ok.png') no-repeat 0;
-    background-size: 16px 16px;
+    background-size: 16px 16px
 }
 
 .ach_block_requirement.ach_block_requirement_info {
     background: url('/images/icons/msg_info.png') no-repeat 0;
-    background-size: 16px 16px;
+    background-size: 16px 16px
 }
 
 .ach_block_requirement_progress {
@@ -272,27 +269,27 @@
     margin-left: 4px;
     height: 8px;
     width: 100px;
-    background: #CED7E0;
+    background: #ced7e0;
     display: inline-block;
-    vertical-align: baseline;
+    vertical-align: baseline
 }
 
 .ach_block_request {
-    margin-top: 12px;
+    margin-top: 12px
 }
 
 .ach_block_request .flat_button {
-    vertical-align: middle;
+    vertical-align: middle
 }
 
 .ach_block_request .flat_button:empty {
-    display: none;
+    display: none
 }
 
 .ach_block_requirement_progress__bar {
     border-radius: 4px;
     background: #5181b8;
-    height: 8px;
+    height: 8px
 }
 
 .achievement_owner {
@@ -303,7 +300,7 @@
     display: inline-block;
     overflow: hidden;
     vertical-align: top;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis
 }
 
 .achievement_owner_img_wrap {
@@ -314,39 +311,36 @@
     background-color: #fafbfc;
     margin: 0 auto 6px;
     overflow: hidden;
-    position: relative;
+    position: relative
 }
 
 .achievement_owner_img_wrap:before {
+    background-color: #fff
+}
+
+.achievement_owner_img_wrap:before,
+.achievement_owner_img_wrap:after {
     content: " ";
     display: block;
     position: absolute;
     top: 0;
     left: 0;
     width: 100px;
-    height: 100px;
-    background-color: #FFF;
+    height: 100px
 }
 
 .achievement_owner_img_wrap:after {
-    width: 100px;
-    height: 100px;
     border-radius: 50%;
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
-    background-size: cover;
+    background-size: cover
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .achievement_owner_img_wrap:after {
-        background-image: url(/images/camera_200.png);
+        background-image: url(/images/camera_200.png)
     }
 }
 
@@ -354,205 +348,205 @@
     z-index: 1;
     position: relative;
     vertical-align: middle;
-    width: 100px;
+    width: 100px
 }
 
 .achievement_owner_name {
-    line-height: 140%;
+    line-height: 140%
 }
 
 .ach_search_form {
-    margin: -20px -20px 20px;
+    margin: -20px -20px 20px
 }
 
 .ach_search_form_add_button {
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 .ach_list_row {
     border-bottom: 1px solid #e7e8ec;
-    padding: 10px;
+    padding: 10px
 }
 
-.ach_list_row:last-child,
-.ach_list_row.ach_list_row_last_visible {
-    border-bottom: 0px none;
+.ach_list_row.ach_list_row_last_visible,
+.ach_list_row:last-child {
+    border-bottom: 0px none
 }
 
 .ach_list_row:hover {
-    background: #f0f2f5;
+    background: #f0f2f5
 }
 
 .ach_list_row.ach_list_row_removed {
-    opacity: 0.6;
+    opacity: 0.6
 }
 
 .ach_list_row.ach_list_row_child {
-    margin-left: 128px;
+    margin-left: 128px
 }
 
 .ach_list_row_id {
     float: right;
     margin-bottom: 20px;
-    font-size: 14px;
+    font-size: 14px
 }
 
 .ach_list_row_img_wrap {
     float: left;
-    width: 128px;
+    width: 128px
 }
 
 .ach_list_row_child .ach_list_row_img_wrap {
-    width: 100px;
+    width: 100px
 }
 
 .ach_list_row_img {
     max-height: 128px;
-    max-width: 128px;
+    max-width: 128px
 }
 
 .ach_list_row_child .ach_list_row_img {
     max-height: 100px;
-    max-width: 100px;
+    max-width: 100px
 }
 
 .ach_list_row_img_stub {
     width: 128px;
     height: 128px;
     border-radius: 50%;
-    background: #f2f4f7;
+    background: #f2f4f7
 }
 
 .ach_list_row_child .ach_list_row_img_stub {
     width: 100px;
-    height: 100px;
+    height: 100px
 }
 
 .ach_list_row_content {
-    margin-left: 143px;
+    margin-left: 143px
 }
 
 .ach_list_row_child .ach_list_row_content {
-    margin-left: 115px;
+    margin-left: 115px
 }
 
 .ach_list_row__title {
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin-bottom: 4px;
-    font-size: 14px;
+    font-size: 14px
 }
 
 .ach_list_row__descr {
-    margin-bottom: 12px;
+    margin-bottom: 12px
 }
 
 .ach_list_row__parent {
     margin-bottom: 4px;
-    color: #939393;
+    color: #939393
 }
 
 .ach_list_row__actions>b {
-    font-size: 12px;
+    font-size: 12px
 }
 
 .ach_list_row_hidden {
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #656565;
-    font-size: 12.5px;
+    font-size: 12.5px
 }
 
 .ach_list_row__weight {
     margin-bottom: 4px;
-    color: #656565;
+    color: #656565
 }
 
 .ach_list_row_parent_id {
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #000;
+    color: #000
 }
 
 .ach_list_row_parent_title {
-    color: #656565;
+    color: #656565
 }
 
 .ach_request_form_achievement {
-    overflow: hidden;
+    overflow: hidden
 }
 
 .ach_request_form_achievement_img {
     float: right;
     margin-left: 15px;
     width: 64px;
-    height: 64px;
+    height: 64px
 }
 
 .ach_request_form_achievement__title {
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin-bottom: 4px;
-    padding-top: 4px;
+    padding-top: 4px
 }
 
 .ach_edit_form {
     float: left;
-    width: 400px;
+    width: 400px
 }
 
 .ach_form_image {
     float: left;
-    margin-left: 40px;
+    margin-left: 40px
 }
 
 .ach_form_image>img {
-    max-width: 128px;
+    max-width: 128px
 }
 
 .ach_choose_photo_cell {
     float: left;
     padding: 15px 10px;
     cursor: pointer;
-    width: 128px;
+    width: 128px
 }
 
 .ach_choose_photo_cell.ach_choose_photo_cell_selected {
-    background: #D7E0E7;
+    background: #d7e0e7
 }
 
 .ach_choose_photo_cell:hover {
-    background: #e7edf2;
+    background: #e7edf2
 }
 
 .ach_choose_photo_cell__img {
     width: 128px;
-    height: 128px;
+    height: 128px
 }
 
 .ach_links_form {
-    width: 400px;
+    width: 400px
 }
 
 .ach_links_list_row {
     padding: 10px 0;
-    border-top: 1px solid #e7e8ec;
+    border-top: 1px solid #e7e8ec
 }
 
 .ach_links_list_row:first-child {
     margin-top: 15px;
-    border-top: 1px solid #e7e8ec;
+    border-top: 1px solid #e7e8ec
 }
 
 .ach_links_list_row_img_wrap {
     float: left;
     width: 60px;
     height: 60px;
-    position: relative;
+    position: relative
 }
 
 .ach_links_list_row_img {
@@ -560,149 +554,146 @@
     height: 60px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc;
+    background-color: #fafbfc
 }
 
 .ach_links_list_row_img:before {
+    background-color: #fff
+}
+
+.ach_links_list_row_img:before,
+.ach_links_list_row_img:after {
     content: " ";
     display: block;
     position: absolute;
     top: 0;
     left: 0;
     width: 60px;
-    height: 60px;
-    background-color: #FFF;
+    height: 60px
 }
 
 .ach_links_list_row_img:after {
-    width: 60px;
-    height: 60px;
     border-radius: 50%;
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
-    background-size: cover;
+    background-size: cover
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .ach_links_list_row_img:after {
-        background-image: url(/images/camera_200.png);
+        background-image: url(/images/camera_200.png)
     }
 }
 
 .ach_links_list_row_content {
-    margin-left: 75px;
+    margin-left: 75px
 }
 
 .ach_links_list__user {
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin-bottom: 4px;
-    font-size: 14px;
+    font-size: 14px
 }
 
 .ach_links_list__user .mem_link {
-    color: #42648B;
+    color: #42648b
 }
 
 .ach_links_list__info {
     margin-bottom: 8px;
-    color: #939393;
+    color: #939393
 }
 
 .ach_links_list__note {
     border-radius: 8px;
     padding: 6px 12px;
-    background: #E1E8EE;
+    background: #e1e8ee;
     color: #000;
     display: inline-block;
     font-size: 12px;
     line-height: 15px;
-    margin-bottom: 8px;
+    margin-bottom: 8px
 }
 
 .ach_links_list__note:empty {
-    display: none;
+    display: none
 }
 
 .ach_history_filters {
     border-bottom: 1px solid #e7e8ec;
     margin: 0 0 15px;
-    padding: 0 0 15px;
+    padding: 0 0 15px
 }
 
 .ach_history_filters.ach_history_filters_form {
     padding: 15px 20px;
     margin: 0;
-    background-color: #fafbfc;
+    background-color: #fafbfc
 }
 
 .ach_history_filter {
     float: left;
-    margin-right: 11px;
+    margin-right: 11px
 }
 
 .ach_history_filter:last-child {
-    margin-right: 0;
+    margin-right: 0
 }
 
 .ach_history_filter__label {
     float: left;
     margin-right: 5px;
     color: #656565;
-    line-height: 28px;
+    line-height: 28px
 }
 
 .ach_history_filter__input {
-    float: left;
+    float: left
 }
 
 .ach_history_row {
-    padding: 10px 0;
+    padding: 10px 0
 }
 
 .ach_history_row_note_wrap {
-    margin-top: 4px;
+    margin-top: 4px
 }
 
 .ach_history_row_note {
     border-radius: 8px;
     padding: 6px 12px;
-    background: #E1E8EE;
+    background: #e1e8ee;
     color: #000;
     display: inline-block;
     font-size: 12px;
-    line-height: 15px;
+    line-height: 15px
 }
 
 .ach_history_row_note.ach_history_row_note_adm {
-    background: #E8F2E4;
+    background: #e8f2e4
 }
 
 .ach_history_row__date {
     float: right;
     margin-left: 20px;
     color: #656565;
-    line-height: 35px;
+    line-height: 35px
 }
 
 .ach_history_row_img_wrap {
     width: 35px;
     height: 35px;
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: middle
 }
 
 .ach_history_row_img {
     width: 35px;
-    height: 35px;
+    height: 35px
 }
 
 .ach_history_row_img_circle {
@@ -710,39 +701,36 @@
     height: 35px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc;
+    background-color: #fafbfc
 }
 
 .ach_history_row_img_circle:before {
+    background-color: #fff
+}
+
+.ach_history_row_img_circle:before,
+.ach_history_row_img_circle:after {
     content: " ";
     display: block;
     position: absolute;
     top: 0;
     left: 0;
     width: 35px;
-    height: 35px;
-    background-color: #FFF;
+    height: 35px
 }
 
 .ach_history_row_img_circle:after {
-    width: 35px;
-    height: 35px;
     border-radius: 50%;
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
-    background-size: cover;
+    background-size: cover
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .ach_history_row_img_circle:after {
-        background-image: url(/images/camera_200.png);
+        background-image: url(/images/camera_200.png)
     }
 }
 
@@ -752,15 +740,15 @@
     font-size: 20px;
     line-height: 35px;
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: middle
 }
 
 .ach_history_row_img_sep.red {
-    color: #BB5555;
+    color: #b55
 }
 
 .ach_history_row_img_sep.green {
-    color: #55AA55;
+    color: #5a5
 }
 
 .ach_history_row__text {
@@ -768,39 +756,39 @@
     color: #939393;
     display: inline-block;
     max-width: 520px;
-    vertical-align: middle;
+    vertical-align: middle
 }
 
 .ach_tt {
-    width: 238px;
+    width: 238px
 }
 
 .ach_tt__title {
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin-bottom: 4px;
-    color: #000000;
-    font-size: 14px;
+    color: #000;
+    font-size: 14px
 }
 
 .ach_tt__descr {
-    color: #656565;
+    color: #656565
 }
 
 .ach_tt__actions {
-    margin-top: 12px;
+    margin-top: 12px
 }
 
 .ach_tt__actions:empty {
-    display: none;
+    display: none
 }
 
 .achievements_achieved_box_icon {
     float: left;
     text-align: center;
     width: 128px;
-    height: 128px;
+    height: 128px
 }
 
 .achievements_achieved_box_icon_img {
@@ -810,7 +798,7 @@
     -webkit-filter: blur(10px) grayscale(75%);
     filter: blur(10px) grayscale(75%);
     opacity: 0.8;
-    vertical-align: middle;
+    vertical-align: middle
 }
 
 .achievements_achieved_box_visible .achievements_achieved_box_icon_img {
@@ -818,65 +806,65 @@
     height: 128px;
     -webkit-filter: blur(0) grayscale(0%);
     filter: blur(0) grayscale(0%);
-    opacity: 1;
+    opacity: 1
 }
 
 .achievements_achieved_box_content {
     transition: opacity 600ms ease-in, width 600ms ease-in, height 600ms ease-in, filter 600ms ease-in, -webkit-filter 600ms ease-in;
     margin-left: 142px;
     padding-top: 15px;
-    opacity: 0.2;
+    opacity: 0.2
 }
 
 .achievements_achieved_box_visible .achievements_achieved_box_content {
-    opacity: 1;
+    opacity: 1
 }
 
 .achievements_achieved_box__title {
-    font-weight: bold;
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin-bottom: 14px;
-    color: #42648B;
+    color: #42648b;
     display: inline-block;
-    font-size: 14px;
+    font-size: 14px
 }
 
 .achievements_achieved_box__descr {
-    color: #656565;
+    color: #656565
 }
 
 .ach_request_rows:empty {
-    display: none;
+    display: none
 }
 
 .ach_request_rows_empty {
     text-align: center;
     color: #656565;
-    font-size: 14px;
+    font-size: 14px
 }
 
 .ach_request_rows_closed {
-    border-top: 1px solid #D3D9DE;
+    border-top: 1px solid #d3d9de;
     padding-top: 25px;
-    margin-top: 15px;
+    margin-top: 15px
 }
 
 .ach_request_row {
     border-bottom: 1px solid #e7e8ec;
-    padding: 10px;
+    padding: 10px
 }
 
 .ach_request_row:last-child {
-    border-bottom: 0 none;
+    border-bottom: 0 none
 }
 
 .ach_request_row_agent_num {
-    color: #656565;
+    color: #656565
 }
 
 .ach_request_row_text {
-    color: #939393;
+    color: #939393
 }
 
 .ach_request_row_actions {
@@ -884,16 +872,16 @@
     text-align: right;
     display: inline-block;
     vertical-align: middle;
-    width: 180px;
+    width: 180px
 }
 
 .ach_request_row_actions:empty {
-    display: none;
+    display: none
 }
 
 .ach_request_row_fulfilled .ach_request_row_actions {
     padding-right: 5px;
-    color: #55AA55;
+    color: #5a5
 }
 
 .ach_request_row_img_wrap {
@@ -901,12 +889,12 @@
     height: 35px;
     display: inline-block;
     position: relative;
-    vertical-align: middle;
+    vertical-align: middle
 }
 
 .ach_request_row_img {
     width: 35px;
-    height: 35px;
+    height: 35px
 }
 
 .ach_request_row_img_circle {
@@ -914,72 +902,69 @@
     height: 35px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc;
+    background-color: #fafbfc
 }
 
 .ach_request_row_img_circle:before {
+    background-color: #fff
+}
+
+.ach_request_row_img_circle:before,
+.ach_request_row_img_circle:after {
     content: " ";
     display: block;
     position: absolute;
     top: 0;
     left: 0;
     width: 35px;
-    height: 35px;
-    background-color: #FFF;
+    height: 35px
 }
 
 .ach_request_row_img_circle:after {
-    width: 35px;
-    height: 35px;
     border-radius: 50%;
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
-    background-size: cover;
+    background-size: cover
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .ach_request_row_img_circle:after {
-        background-image: url(/images/camera_200.png);
+        background-image: url(/images/camera_200.png)
     }
 }
 
 .ach_request_row_img_sep {
     padding: 0 7px;
-    color: #45688E;
+    color: #45688e;
     font-family: monospace;
     font-size: 20px;
     line-height: 35px;
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: middle
 }
 
 .ach_request_row_content {
     margin-left: 9px;
     display: inline-block;
     vertical-align: middle;
-    width: 435px;
+    width: 435px
 }
 
 .ach_request_row_note {
     margin-top: 4px;
     border-radius: 8px;
     padding: 6px 12px;
-    background: #E1E8EE;
+    background: #e1e8ee;
     color: #000;
     display: inline-block;
     font-size: 12px;
-    line-height: 15px;
+    line-height: 15px
 }
 
 .ach_request_row_note:empty {
-    display: none;
+    display: none
 }
 
 .ach_leaders_row {
@@ -989,24 +974,24 @@
     display: block;
     font-size: 13px;
     line-height: 40px;
-    text-decoration: none;
+    text-decoration: none
 }
 
 .ach_leaders_row:hover {
     background: #e7edf2;
-    text-decoration: none;
+    text-decoration: none
 }
 
 .ach_leaders_row.ach_leaders_row_bordered {
-    border-top: 1px solid #e7e8ec;
+    border-top: 1px solid #e7e8ec
 }
 
 .ach_leaders_row__position {
     text-align: center;
-    color: #42648B;
+    color: #42648b;
     display: inline-block;
     font-size: 14px;
-    width: 50px;
+    width: 50px
 }
 
 .ach_leaders_row__img {
@@ -1014,7 +999,7 @@
     height: 40px;
     margin-right: 10px;
     position: relative;
-    vertical-align: top;
+    vertical-align: top
 }
 
 .ach_leaders_people .ach_leaders_row__img {
@@ -1022,7 +1007,7 @@
     height: 40px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc;
+    background-color: #fafbfc
 }
 
 .ach_leaders_people .ach_leaders_row__img:before {
@@ -1033,7 +1018,7 @@
     left: 0;
     width: 40px;
     height: 40px;
-    background-color: #FFF;
+    background-color: #fff
 }
 
 .ach_leaders_people .ach_leaders_row__img:after {
@@ -1047,43 +1032,44 @@
     left: 0;
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
-    background-size: cover;
+    background-size: cover
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .ach_leaders_people .ach_leaders_row__img:after {
-        background-image: url(/images/camera_200.png);
+        background-image: url(/images/camera_200.png)
     }
 }
 
 .ach_leaders_row__name {
-    color: #2A5885;
-    display: inline-block;
+    color: #2a5885;
+    display: inline-block
 }
 
 .ach_leaders_row_my .ach_leaders_row__name {
-    font-weight: bold;
+    color: #42648b
+}
+
+.ach_leaders_row_my .ach_leaders_row__name,
+.ach_leaders_row__name_note {
+    font-weight: 700;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #42648B;
+    -moz-osx-font-smoothing: grayscale
 }
 
 .ach_leaders_row__name_note {
     margin-left: 6px;
-    font-weight: bold;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     color: #656565;
-    font-size: 12.5px;
+    font-size: 12.5px
 }
 
 .ach_leaders_row__count {
     float: right;
-    color: #939393;
+    color: #939393
 }
 
 .ach_leaders_cards .ach_leaders_row__count {
-    color: #009345;
+    color: #009345
 }

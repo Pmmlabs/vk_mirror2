@@ -1,142 +1,142 @@
 #ui_css {
-    display: none;
+    display: none
 }
 
 .h4-text {
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 .ui_table {
-    border-collapse: collapse;
+    border-collapse: collapse
 }
 
 .ui_table.wide {
-    width: 100%;
+    width: 100%
 }
 
 .ui_table.small_font {
-    font-size: 12px;
+    font-size: 12px
 }
 
 .ui_table tr.ui_table_row {
-    border-left: 1px solid #E4E9ED;
-    border-right: 1px solid #E4E9ED;
-    background-color: white;
+    border-left: 1px solid #e4e9ed;
+    border-right: 1px solid #e4e9ed;
+    background-color: #fff
 }
 
 .ui_table tr.ui_table_row.header {
-    border: 1px solid #E4E9ED;
-    background-color: #E9EDF0;
+    border: 1px solid #e4e9ed;
+    background-color: #e9edf0
 }
 
 .ui_table tr.ui_table_row.even {
-    background-color: #F5F7F7;
+    background-color: #f5f7f7
 }
 
 .ui_table tr.ui_table_row.even.wide {
-    border-top: 1px solid #F5F7F7;
-    background-color: white;
+    border-top: 1px solid #f5f7f7;
+    background-color: #fff
 }
 
-.ui_table tr.ui_table_row.shower,
+.ui_table tr.ui_table_row.pages,
 .ui_table tr.ui_table_row.result,
-.ui_table tr.ui_table_row.pages {
-    border-top: 1px solid #E4E9ED;
+.ui_table tr.ui_table_row.shower {
+    border-top: 1px solid #e4e9ed
 }
 
 .ui_table tr.ui_table_row.empty {
-    border-bottom: 1px solid #E4E9ED;
+    border-bottom: 1px solid #e4e9ed
 }
 
 .ui_table tr.ui_table_row.result,
 .ui_table tr.ui_table_row.result:hover {
-    background-color: #F0F3F5;
+    background-color: #f0f3f5
 }
 
 .ui_table tr.ui_table_row.pages {
     border-left-color: transparent;
-    border-right-color: transparent;
+    border-right-color: transparent
 }
 
 .ui_table tr.ui_table_row.pages:hover {
-    background-color: transparent;
+    background-color: transparent
 }
 
 .ui_table tr.ui_table_row:hover {
-    background-color: #E9EDF0;
+    background-color: #e9edf0
 }
 
 .ui_table tr.ui_table_row.wide:hover {
-    background-color: white;
+    background-color: #fff
 }
 
 .ui_table th.ui_table_cell {
     color: #587183;
-    font-weight: bold;
+    font-weight: 700
 }
 
-.ui_table th.ui_table_cell,
-.ui_table td.ui_table_cell {
+.ui_table td.ui_table_cell,
+.ui_table th.ui_table_cell {
     height: 28px;
     padding: 2px 8px;
-    vertical-align: middle;
+    vertical-align: middle
 }
 
-.ui_table.small th.ui_table_cell,
-.ui_table.small td.ui_table_cell {
+.ui_table.small td.ui_table_cell,
+.ui_table.small th.ui_table_cell {
     height: 14px;
     padding-top: 1px;
-    padding-bottom: 1px;
+    padding-bottom: 1px
 }
 
-.ui_table th.ui_table_cell,
-.ui_table td.ui_table_cell.pre {
-    white-space: pre;
+.ui_table td.ui_table_cell.pre,
+.ui_table th.ui_table_cell {
+    white-space: pre
 }
 
-.ui_table th.ui_table_cell.first,
-.ui_table td.ui_table_cell.first {
-    padding-left: 10px;
+.ui_table td.ui_table_cell.first,
+.ui_table th.ui_table_cell.first {
+    padding-left: 10px
 }
 
-.ui_table th.ui_table_cell.last,
-.ui_table td.ui_table_cell.last {
-    padding-right: 10px;
+.ui_table td.ui_table_cell.last,
+.ui_table th.ui_table_cell.last {
+    padding-right: 10px
 }
 
-.ui_table.wide th.ui_table_cell.left_wide,
-.ui_table.wide td.ui_table_cell.left_wide {
-    padding-left: 2px;
+.ui_table.wide td.ui_table_cell.left_wide,
+.ui_table.wide th.ui_table_cell.left_wide {
+    padding-left: 2px
 }
 
-.ui_table.wide th.ui_table_cell.right_wide,
-.ui_table.wide td.ui_table_cell.right_wide {
-    padding-right: 2px;
+.ui_table.wide td.ui_table_cell.right_wide,
+.ui_table.wide th.ui_table_cell.right_wide {
+    padding-right: 2px
 }
 
 .ui_table th.ui_table_cell.sortable:hover {
-    background-color: #F2F4F5;
-    cursor: pointer;
+    background-color: #f2f4f5;
+    cursor: pointer
 }
 
 .ui_table th.ui_table_cell.sortable .ui_table_header_name {
     display: inline-block;
-    position: relative;
+    position: relative
 }
 
 .ui_table th.ui_table_cell.sortable.sort.ta_r .ui_table_header_name {
-    padding-left: 16px;
+    padding-left: 16px
 }
 
 .ui_table th.ui_table_cell.sortable.sort.ta_l .ui_table_header_name {
-    padding-right: 16px;
+    padding-right: 16px
 }
 
 .ui_table th.ui_table_cell.sortable .ui_table_header_sort {
@@ -147,65 +147,65 @@
     top: 50%;
     margin-top: -5px;
     background-image: url(/images/flydead.gif);
-    background-position: 0 -78px;
+    background-position: 0 -78px
 }
 
 .ui_table th.ui_table_cell.sortable.sort .ui_table_header_sort {
-    display: block;
+    display: block
 }
 
 .ui_table th.ui_table_cell.sortable.reverse .ui_table_header_sort {
-    background-position: 0 0;
+    background-position: 0 0
 }
 
 .ui_table th.ui_table_cell.sortable.ta_r .ui_table_header_sort {
-    left: 0;
+    left: 0
 }
 
 .ui_table th.ui_table_cell.sortable.ta_l .ui_table_header_sort {
-    right: 0;
+    right: 0
 }
 
 .ui_table td.ui_table_cell.shower {
     color: #587183;
-    font-weight: bold;
+    font-weight: 700;
     cursor: pointer;
     text-align: center;
-    border-top: 1px solid #E4E9ED;
+    border-top: 1px solid #e4e9ed
 }
 
 .ui_table td.ui_table_cell.shower:hover {
-    background-color: #E1E7EB;
+    background-color: #e1e7eb
 }
 
 .ui_table td.ui_table_cell.pages {
     height: auto;
     padding: 0;
-    vertical-align: top;
+    vertical-align: top
 }
 
 .ui_table td.ui_table_cell_empty {
     line-height: 170%;
     text-align: center;
-    background-color: #F7F7F7;
-    color: #777777;
-    padding: 20px 50px;
+    background-color: #f7f7f7;
+    color: #777;
+    padding: 20px 50px
 }
 
 .ui_table.small td.ui_table_cell_empty {
-    padding: 5px 10px;
+    padding: 5px 10px
 }
 
 .ui_table .ui_table_pages_per_page {
     margin-top: -1px;
     margin-left: -1px;
-    float: left;
+    float: left
 }
 
 .ui_table .ui_table_pages_numbers {
     margin-top: -1px;
     margin-right: -1px;
-    float: right;
+    float: right
 }
 
 .ui_table .ui_table_page {
@@ -213,56 +213,56 @@
     min-width: 14px;
     padding: 2px 6px;
     border-top: 4px solid transparent;
-    color: #45688E;
+    color: #45688e;
     float: left;
-    text-align: center;
+    text-align: center
 }
 
 .ui_table .ui_table_pages_per_page .ui_table_page {
-    padding: 2px 10px;
+    padding: 2px 10px
 }
 
 .ui_table .ui_table_page.selected,
 .ui_table .ui_table_page.selected:hover {
-    border-color: #597DA3;
-    color: #45688E;
-    font-weight: bold;
+    border-color: #597da3;
+    color: #45688e;
+    font-weight: 700
 }
 
 .ui_table .ui_table_page:hover {
-    border-color: #DAE1E8;
-    text-decoration: none;
+    border-color: #dae1e8;
+    text-decoration: none
 }
 
 .ui_table_filter.ui_search {
-    border: 1px solid #EEF0F3;
-    border-bottom-width: 0;
+    border: 1px solid #eef0f3;
+    border-bottom-width: 0
 }
 
 .ui_table_filter .ui_search_field {
     border-left-width: 10px;
-    padding: 10px 44px 10px 28px;
+    padding: 10px 44px 10px 28px
 }
 
 .ui_table_filter .ui_search_reset {
-    right: -4px;
+    right: -4px
 }
 
 .ui_table_filters {
     padding: 10px 18px;
-    line-height: 18px;
+    line-height: 18px
 }
 
 .ui_table_filter_dropdown {
-    color: #2A5885;
-    margin-left: 18px;
+    color: #2a5885;
+    margin-left: 18px
 }
 
 .ui_table_filter_dropdown:first-child {
-    margin-left: 0;
+    margin-left: 0
 }
 
 .ui_table_filter_labeled {
     margin-left: 10px;
-    color: #777777;
+    color: #777
 }
