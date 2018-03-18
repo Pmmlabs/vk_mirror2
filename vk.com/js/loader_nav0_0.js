@@ -559,8 +559,8 @@ var stVersions = {
     'surveys.css': 25555103190,
     'surveys.js': 3079369917,
     'landings/author_guide.css': 25713801571,
-    'internal/restore2.css': 16561149060,
-    'internal/restore2.js': 827955008,
+    'internal/restore2.css': 19897072781,
+    'internal/restore2.js': 1233966494,
     'language.js': 3551638980,
     'language.css': 19023275451,
     'internal/admins.js': 2810460581,
@@ -646,4 +646,4 @@ var stTypes = {
         'groups_edit_stories.js': 1
     }
 };
-var _rnd = 6396;
+var _rnd = 4835;
