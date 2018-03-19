@@ -1286,16 +1286,28 @@ div.own_reply_tt .content {
 }
 
 .ban_reason_tt {
-    max-width: 550px;
-    word-break: break-all
+    max-width: 600px;
+    word-break: normal
 }
 
 .ban_reason_tt .tt_text {
-    padding: 15px 20px 20px
+    padding: 15px 20px
 }
 
 .ban_reason_tt .page_top {
     border-bottom: 0
+}
+
+.ban_reason_tt .page_top .page_name {
+    font-size: 19px;
+    line-height: 25px;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: -1px 0 -1px -1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 1px
 }
 
 .ban_reason_tt .login_blocked_text {
@@ -1305,6 +1317,15 @@ div.own_reply_tt .content {
 .ban_reason_tt .login_blocked_reason_text,
 .ban_reason_tt .login_blocked_reasons {
     margin-bottom: 0
+}
+
+.ban_reason_tt .login_blocked_description,
+.ban_reason_tt .login_blocked_description .login_blocked_reason_activity {
+    margin-top: 8px
+}
+
+.ban_reason_tt .login_blocked_description .extra_info {
+    margin-top: 16px
 }
 
 .wall_tt .wall_module .wall_text .page_media_thumbed_link:last-child {

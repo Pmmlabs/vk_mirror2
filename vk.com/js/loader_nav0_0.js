@@ -166,7 +166,7 @@ var stVersions = {
     'box.js': 590267265,
     'rate.css': 1431298744,
     'tooltips.js': 2193293583,
-    'tooltips.css': 21930658876,
+    'tooltips.css': 22806450692,
     'sorter.js': 1976440538,
     'qsorter.js': 4013122173,
     'usorter.js': 362016183,
@@ -355,7 +355,7 @@ var stVersions = {
     'bugs.css': 16611822570,
     'bugtracker.js': 3853235449,
     'bugtracker.css': 25109315739,
-    'login.css': 23336284738,
+    'login.css': 22764635009,
     'cmodules/web/login.js': 3104457483,
     'upload.js': 16891470,
     'upload_photo_transform.js': 1497838791,
@@ -539,7 +539,7 @@ var stVersions = {
     'cmodules/web/speech_worker_opus.js': 2818771805,
     'stories.js': 47412672524,
     'stories.css': 18984839740,
-    'internal/nospam.css': 20203811401,
+    'internal/nospam.css': 22003392410,
     'internal/away_linksban.css': 16524977373,
     'internal/ui_manual.js': 1761369792,
     'internal/patterns_info.css': 19432306380,
@@ -646,4 +646,4 @@ var stTypes = {
         'groups_edit_stories.js': 1
     }
 };
-var _rnd = 6209;
+var _rnd = 2814;
