@@ -3322,7 +3322,13 @@ if (!window.Emoji) {
                         Emoji.stickers[-1].stickers.splice(i, 1);
                     }
                 }
-                Emoji.stickers[-1].stickers.unshift([stickerNum, width, stickerUrl]);
+                var animationPath = attr(obj, 'data-animation-path');
+                if (!animationPath) {
+                    animationPath = '';
+                }
+                var dataFav = attr(obj, 'data-fav');
+                var dataFavHash = attr(obj, 'data-fav-hash');
+                Emoji.stickers[-1].stickers.unshift([stickerNum, width, stickerUrl, animationPath, dataFav, dataFavHash]);
                 ls.set('recent_stickers', Emoji.stickers[-1]);
                 Emoji.updateRecentStickers(optId);
             }

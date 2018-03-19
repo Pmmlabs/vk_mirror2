@@ -13,6 +13,7 @@
         _popups: [],
         _gens: [],
         _base_domain: '',
+        _maxCommentLength: 4096,
         _ge: function(id) {
             return document.getElementById(id);
         },
@@ -24,6 +25,10 @@
             if (!gen.url) gen.url = VK.Share._loc;
             gen.url = (gen.url || '').replace(/"/g, '');
 
+            gen.comment = (gen.comment || '');
+            if (gen.comment.length > this._maxCommentLength) {
+                gen.comment = gen.comment.substr(0, this._maxCommentLength - 3).trim() + '...';
+            }
             if (!but) but = {
                 type: 'round'
             };
@@ -144,7 +149,7 @@
             details.noparse = details.noparse ? 1 : 0;
 
             var params = {},
-                fields = ['title', 'description', 'image', 'noparse'];
+                fields = ['title', 'description', 'image', 'noparse', 'comment'];
 
             for (var i = 0; i < fields.length; ++i) {
                 if (details[fields[i]]) {
