@@ -221,7 +221,7 @@ var stVersions = {
     'module.css': 20966655239,
     'owner_photo.js': 3401070266,
     'owner_photo.css': 22242630865,
-    'page.js': 833131001,
+    'page.js': 731674709,
     'page.css': 33368719656,
     'page_help.css': 24794954352,
     'public.css': 29699231097,
@@ -255,9 +255,9 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 183632548816,
-    'imn.js': 224235920253,
+    'imn.js': 222415072426,
     'im.js': 1322065005,
-    'emoji.js': 2670685592,
+    'emoji.js': 3662543633,
     'wide_dd.css': 19339534177,
     'wide_dd.js': 452755344,
     'writebox.css': 19766133152,
@@ -266,7 +266,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 2007506749,
+    'feed.js': 1135941790,
     'feed.css': 23349920067,
     'privacy.js': 3620108221,
     'privacy.css': 17013349528,
@@ -560,7 +560,7 @@ var stVersions = {
     'surveys.js': 3079369917,
     'landings/author_guide.css': 25713801571,
     'internal/restore2.css': 19897072781,
-    'internal/restore2.js': 1233966494,
+    'internal/restore2.js': 516824927,
     'language.js': 3551638980,
     'language.css': 19023275451,
     'internal/admins.js': 2810460581,
@@ -646,4 +646,4 @@ var stTypes = {
         'groups_edit_stories.js': 1
     }
 };
-var _rnd = 8292;
+var _rnd = 9760;

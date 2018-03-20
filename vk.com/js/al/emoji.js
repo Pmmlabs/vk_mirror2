@@ -2278,7 +2278,7 @@ if (!window.Emoji) {
                 }
                 Emoji.favorite.updateFavClass(optId, stickerId, 'off');
             },
-            deleteFavStickerContentId(optId, stickerId) {
+            deleteFavStickerContentId: function(optId, stickerId) {
                 re('emoji_sticker_item' + optId + '_' + Emoji.TAB_FAVORITE_STICKERS + '_' + stickerId);
             },
             updateFavClass: function(optId, stickerId, status) {

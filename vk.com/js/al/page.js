@@ -770,6 +770,10 @@ var Page = {
                     return 'rp';
                 case 'feed_photos_top':
                     return 'tp';
+                case 'feed_list_recent':
+                    return 'rl';
+                case 'feed_list_top':
+                    return 'tl';
                 case 'groups_ads_promoted_post':
                     return 'ag';
                 case 'public_ads_promoted_post':
@@ -4583,7 +4587,7 @@ var Wall = {
                     ref = 'feed_' + (cur.subsection ? cur.subsection : cur.section)
                 } else if (cur.section == 'recommended') {
                     ref = 'feed_recommended' + (cur.subsection != 'recent' ? ('_' + cur.subsection) : '')
-                } else if (cur.section == 'friends' || cur.section == 'groups' || cur.section == 'videos' || cur.section == 'photos') {
+                } else if (['friends', 'groups', 'videos', 'photos', 'list'].indexOf(cur.section) !== -1) {
                     ref = 'feed_' + cur.section + (cur.subsection ? '_' + cur.subsection : '');
                 } else {
                     ref = 'feed_' + cur.section
