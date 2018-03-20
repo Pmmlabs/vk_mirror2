@@ -167,6 +167,10 @@
     padding-top: 0
 }
 
+.bt_page_content.no_top_padding .no_rows {
+    margin-top: 15px
+}
+
 .bt_page_content.additional_bottom_margin {
     margin-bottom: 30px
 }
@@ -638,11 +642,7 @@
     height: 12px;
     display: inline-block;
     margin-right: 10px;
-    opacity: 0.75;
-    filter: alpha(opacity=75);
     cursor: pointer;
-    -o-transition: opacity 0.2s;
-    transition: opacity 0.2s;
     position: relative
 }
 
@@ -651,10 +651,8 @@
     top: 0
 }
 
-.bt_report_additional_actions:hover {
-    opacity: 1;
-    -webkit-filter: none;
-    filter: none
+.bt_report_additional_actions:hover:before {
+    opacity: 1
 }
 
 .bt_report_additional_actions:before {
@@ -668,7 +666,8 @@
     transform: scale(0.75);
     position: absolute;
     left: -2px;
-    top: -2px
+    top: -2px;
+    opacity: 0.75
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -874,7 +873,7 @@
 
 .bt_report_title {
     margin-bottom: 8px;
-    padding-right: 18px;
+    padding-right: 33px;
     overflow: hidden;
     text-overflow: ellipsis
 }
@@ -1969,8 +1968,9 @@
 }
 
 .bt_reporter_product_nreports.bt_reporter_product_nreports_no,
+.bt_reporter_product_unavailable .bt_reporter_product_nreports,
 .bt_reporter_product_unavailable .bt_reporter_product_title,
-.bt_reporter_product_unavailable .bt_reporter_product_nreports {
+.bt_reporter_product_unavailable a {
     color: #939393
 }
 

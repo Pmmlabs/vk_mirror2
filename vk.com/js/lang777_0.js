@@ -386,7 +386,7 @@ video_live_stream_create_unexpected_error = 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï
 
 notes_cancel = 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 notes_livejournal_delete = 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ <b>LiveJournal</b>.';
-notes_done = 'Done';
+notes_done = 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 // section = 7; version = 2;
 
 admin_added_items_digit_search = 'ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½';

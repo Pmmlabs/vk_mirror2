@@ -1747,36 +1747,42 @@ var BugTracker = {
             }
         })
     },
-    productsSearch: function(e, t) {
-        function r(e) {
-            e = e ? e.toLowerCase() : "", a = e, toggle("products_search_results", !!e);
-            var r = "#" == e[0];
-            for (var n in t) {
-                var i = t[n],
-                    s = !1;
-                "" != e && (r || -1 === i[0].indexOf(e) && -1 === i[1].indexOf(e)) && -1 === i[2].indexOf(e) || (s = !0), s ? ge("bt_product_" + n).style.display = null : hide("bt_product_" + n)
+    productsSearch: function(e, t, r) {
+        function o(e) {
+            e = e ? e.toLowerCase() : "", n = e, toggle("products_search_results", !!e), each(geByClass("bt_reporter_product_unavailable"), function(t, r) {
+                toggle(r, !e)
+            }), hide("products_search_no_results");
+            var o = !0,
+                i = "#" == e[0];
+            for (var s in t) {
+                var c = t[s],
+                    d = !1;
+                "" != e && (i || -1 === c[0].indexOf(e) && -1 === c[1].indexOf(e)) && -1 === c[2].indexOf(e) || (d = !0), d ? (ge("bt_product_" + s).style.display = null, o = !1) : hide("bt_product_" + s)
             }
-            o && (clearTimeout(o), o = 0), "" == e ? (delete nav.objLoc.q, nav.setLoc(nav.objLoc)) : o = setTimeout(function() {
+            a && (clearTimeout(a), a = 0), "" == e ? (delete nav.objLoc.q, nav.setLoc(nav.objLoc)) : a = setTimeout(function() {
                 nav.setLoc(extend(nav.objLoc, {
                     q: e
                 })), ajax.post("bugtracker?act=a_products_search", {
-                    q: e
+                    q: e,
+                    uid: r
                 }, {
-                    onDone: function(t) {
-                        if (a == e) {
-                            for (var r = [], o = 0, n = t.length; n > o; o++) {
-                                var s = ge("bt_product_" + t[o]);
-                                s ? s.style.display = null : r.push(t[o])
+                    onDone: function(a) {
+                        if (n == e) {
+                            for (var i = [], s = 0, c = a.length; c > s; s++) {
+                                o = !1;
+                                var d = ge("bt_product_" + a[s]);
+                                d ? d.style.display = null : i.push(a[s])
                             }
-                            r.length && ajax.post("bugtracker?act=a_get_products_cards", {
-                                products: r.join(",")
+                            toggle("products_search_no_results", o), i.length && ajax.post("bugtracker?act=a_get_products_cards", {
+                                products: i.join(","),
+                                uid: r
                             }, {
-                                onDone: function(e, t) {
-                                    var r = sech(e),
-                                        o = ge("products_search_results");
-                                    each(r, function(e, t) {
-                                        o.appendChild(t)
-                                    }), i = extend(i, t)
+                                onDone: function(e, r) {
+                                    var o = sech(e),
+                                        a = ge("products_search_results");
+                                    each(o, function(e, t) {
+                                        a.appendChild(t)
+                                    }), t = extend(t, r)
                                 }
                             })
                         }
@@ -1784,9 +1790,9 @@ var BugTracker = {
                 })
             }, 500)
         }
-        var o = 0,
-            a = "";
-        return r(val("bt_member_search")), r
+        var a = 0,
+            n = "";
+        return o(val("bt_member_search")), o
     },
     _eof: 1
 };

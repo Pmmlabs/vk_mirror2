@@ -2817,6 +2817,10 @@
     border-bottom: 0 none
 }
 
+.market_tr_row small {
+    font-size: 11px
+}
+
 .market_tr_row__date {
     float: left;
     color: #777e8c;
@@ -2884,7 +2888,7 @@
 
 .market_tr_row__note.market_tr_row__note_short {
     padding-left: 0;
-    width: 210px
+    width: 190px
 }
 
 .market_orders {

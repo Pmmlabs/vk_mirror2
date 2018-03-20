@@ -203,7 +203,7 @@ var stVersions = {
     'video_upload.js': 2270908085,
     'video_youtube.js': 458412745,
     'video_youtube.css': 16230178406,
-    'videoplayer.js': 67864629340,
+    'videoplayer.js': 69400339880,
     'videoplayer.css': 40097930332,
     'translation.js': 1810201107,
     'translation.css': 18486764993,
@@ -222,7 +222,7 @@ var stVersions = {
     'owner_photo.js': 3401070266,
     'owner_photo.css': 22242630865,
     'page.js': 833131001,
-    'page.css': 36447841938,
+    'page.css': 33368719656,
     'page_help.css': 24794954352,
     'public.css': 29699231097,
     'public.js': 1804234624,
@@ -257,7 +257,7 @@ var stVersions = {
     'im.css': 183632548816,
     'imn.js': 224235920253,
     'im.js': 1322065005,
-    'emoji.js': 3338169704,
+    'emoji.js': 2670685592,
     'wide_dd.css': 19339534177,
     'wide_dd.js': 452755344,
     'writebox.css': 19766133152,
@@ -337,7 +337,7 @@ var stVersions = {
     'internal/tasks.js': 3155934960,
     'internal/tasks.css': 16837947693,
     'helpdesk.js': 1934543051,
-    'helpdesk.css': 21466755821,
+    'helpdesk.css': 23819089179,
     'tickets.js': 1561089313,
     'tickets.css': 25868380085,
     'internal/faq.js': 2622161233,
@@ -353,8 +353,8 @@ var stVersions = {
     'groupinfo.css': 25608789394,
     'bugs.js': 3874995669,
     'bugs.css': 16611822570,
-    'bugtracker.js': 3853235449,
-    'bugtracker.css': 25109315739,
+    'bugtracker.js': 908067739,
+    'bugtracker.css': 25118361395,
     'login.css': 22764635009,
     'cmodules/web/login.js': 3104457483,
     'upload.js': 16891470,
@@ -451,7 +451,7 @@ var stVersions = {
     'landings/landings.css': 21518365825,
     'landings/vk10_years.css': 17872271945,
     'chronicle.css': 18616462884,
-    'market.css': 28679966479,
+    'market.css': 30747854747,
     'market.js': 1753735791,
     'market_adm.css': 20086253786,
     'market_adm.js': 2677502581,
@@ -646,4 +646,4 @@ var stTypes = {
         'groups_edit_stories.js': 1
     }
 };
-var _rnd = 4803;
+var _rnd = 8292;
