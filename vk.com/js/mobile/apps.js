@@ -2916,7 +2916,7 @@ if (!window.Apps) window.Apps = {
     searchUpdate: function(query) {
         if (this.isDelayedOnSilentLoad('searchUpdate', this.searchUpdate.bind(this, query))) return;
 
-        query = this.searchValFix(query);
+        query = query || '';
 
         // add query minimum size
         if (query.length < 2) query = '';
@@ -3072,7 +3072,7 @@ if (!window.Apps) window.Apps = {
     },
 
     searchCatalog: function(query, offset) {
-        query = this.searchValFix(query);
+        query = query || '';
         ajax.post(this.address, {
             act: !query && this.isSection('list') ? cur.list : 'search',
             q: query,
@@ -3085,7 +3085,7 @@ if (!window.Apps) window.Apps = {
             cache: query ? 0 : 1,
 
             onDone: this.withFastBackCheck(function(html, preload, options) {
-                if (query != this.searchValFix(cur.searchStr)) return;
+                if (query != cur.searchStr) return;
 
                 if (this.isSection('catalog', 'list')) {
                     cur.searchStr && this.sliderStop();
@@ -3129,7 +3129,7 @@ if (!window.Apps) window.Apps = {
 
     searchLoadFromAddressBar: function() {
         setTimeout(function() {
-            cur.searchStr = this.searchValFix(nav.objLoc.q || '');
+            cur.searchStr = nav.objLoc.q || '';
         }.bind(this), 0);
     },
 
@@ -3137,14 +3137,6 @@ if (!window.Apps) window.Apps = {
         nav.setLoc(extend(nav.objLoc, {
             q: cur.searchStr ? cur.searchStr : null
         }));
-    },
-
-    searchValFix: function(val) {
-        if (!val) return '';
-        if (val[val.length - 1] == ' ') {
-            val[val.length - 1] = '_';
-        }
-        return val;
     },
 
     searchProgress: function(param) {

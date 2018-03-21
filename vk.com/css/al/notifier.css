@@ -5279,7 +5279,8 @@ div.chat_tab_img {
     background: #fff url(/images/icons/stickers_hints_arrow.png) no-repeat 50% 50%;
     border-left: 1px solid #e4e6e9;
     border-radius: 0 2px 2px 0;
-    cursor: pointer
+    cursor: pointer;
+    z-index: 1
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),

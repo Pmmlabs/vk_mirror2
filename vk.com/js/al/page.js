@@ -4076,6 +4076,7 @@ var Wall = {
         if (txt.emojiInited) {
             return false;
         }
+
         txt.emojiInited = true;
         stManager.add(['emoji.js', 'notifier.css'], function() {
             var optId = Emoji.init(txt, {
@@ -4091,7 +4092,13 @@ var Wall = {
                     return Wall.customCur().wallTpl.reply_multiline || Wall.composerListShown(txt);
                 },
                 //sharedTT: cur.sharedIm,
-                checkEditable: Wall.checkTextLen.pbind(txt, 'reply_warn' + post),
+                checkEditable: function() {
+                    if (cur.onReplyChanged) {
+                        cur.onReplyChanged(txt, post);
+                    }
+
+                    Wall.checkTextLen(txt, 'reply_warn' + post);
+                },
                 onStickerSend: function(stNum, sticker_referrer) {
                     Wall.sendReply(post, false, {
                         stickerId: stNum,
@@ -4157,6 +4164,7 @@ var Wall = {
         if (cur.wallMyOpened) {
             cur.wallMyOpened[post] = cur.wallMyOpened[post] || false;
         }
+
         if (cur.editing === post) {
             Emoji.editableFocus(rf, false, true);
             return false;
@@ -4530,6 +4538,10 @@ var Wall = {
                 attach1: options.stickerId,
                 sticker_referrer: options.sticker_referrer
             };
+        } else if (options.suggest) {
+            var params = {
+                message: options.suggest
+            };
         } else {
             var params = composer ? Composer.getSendParams(composer, Wall.sendReply.pbind(post)) : {
                 message: trim(Emoji.editableVal(rf))
@@ -4632,6 +4644,10 @@ var Wall = {
             showProgress: lockButton.pbind(ge('reply_button' + post)),
             hideProgress: unlockButton.pbind(ge('reply_button' + post))
         });
+
+        if (window.cur.onPostReply) {
+            window.cur.onPostReply(post);
+        }
 
         if (params.from_oid || !params.message) return;
 
@@ -6897,6 +6913,10 @@ var Wall = {
         if (hasClass(post, '_ads_promoted_post_data_w')) {
             Wall.triggerAdPostStat(post, 'load');
         }
+
+        if (cur.onPostLoaded) {
+            cur.onPostLoaded(post);
+        }
     },
 
     init: function(opts) {
@@ -7441,6 +7461,11 @@ var Wall = {
         });
         var count = stripHTML(val(countEl)).replace(/(\s|,)/g, '');
         Wall.likeUpdate(el, post_id, !my, intval(count) + (my ? -1 : 1));
+
+        if (like_type == 'wall' && window.cur.onPostLike) {
+            window.cur.onPostLike(el, post_id, my);
+        }
+
         if (cur.onWallLike) {
             cur.onWallLike();
         }
@@ -7450,6 +7475,10 @@ var Wall = {
         return false;
     },
     likesShow: function(el, post_id, opts) {
+        if (el.postDontShowLikes) {
+            return;
+        }
+
         opts = opts || {};
         var p = wall.parsePostId(post_id),
             like_type = p.type,

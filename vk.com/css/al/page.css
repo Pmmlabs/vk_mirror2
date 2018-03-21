@@ -44,6 +44,7 @@
 .page_wall_search .wall_search,
 .post_header_subscribe_button ._subscribe_text:before,
 .post_header_subscribe_button ._subscribed_text:before,
+.post_suggestions__arrow,
 .post_top_info_wall_mention_icon,
 .replies_side,
 .vk2017_snippet_bottom_image_left:after,
@@ -5306,13 +5307,15 @@ div.submit_post_field[contenteditable=true]>p {
 
 .post_full_like_wrap .post_like,
 .post_full_like_wrap .post_reply,
-.post_full_like_wrap .post_share {
+.post_full_like_wrap .post_share,
+.post_full_like_wrap .wrap_like_stickers {
     float: left
 }
 
 .post_full_like_wrap .post_like:first-child,
 .post_full_like_wrap .post_reply:first-child,
-.post_full_like_wrap .post_share:first-child {
+.post_full_like_wrap .post_share:first-child,
+.post_full_like_wrap .wrap_like_stickers:first-child {
     margin-left: -6px
 }
 
@@ -9523,4 +9526,95 @@ button.wall_block_app_btn {
 
 .eltt.hot_feature_tooltip {
     width: 255px
+}
+
+.post_suggestions {
+    display: none;
+    position: relative;
+    margin-top: -1px;
+    margin-bottom: -10px;
+    border-top: 1px solid #e7e8ec;
+    background-color: #fff
+}
+
+.post_suggestions_show {
+    display: block
+}
+
+.post_suggestions__inner {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 20px;
+    white-space: nowrap;
+    overflow: hidden
+}
+
+.post_suggestions__arrow {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    opacity: .8;
+    background: #fff url(/images/icons/stickers_hints_arrow.png) no-repeat 50% 50%
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .post_suggestions__arrow {
+        background-image: url(/images/icons/stickers_hints_arrow_2x.png);
+        background-size: 8px 14px
+    }
+}
+
+.post_suggestions__arrow:hover {
+    opacity: 1;
+    cursor: pointer
+}
+
+.post_suggestions__arrow_left {
+    left: 0;
+    -webkit-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1)
+}
+
+.post_suggestions__arrow_right {
+    right: 0
+}
+
+.post_suggestions .post_suggest_word {
+    padding: 2px 12px 3px;
+    margin-right: 7px;
+    display: inline-block;
+    border-radius: 15px;
+    background-color: #e6edf4;
+    cursor: pointer;
+    color: #2a5885;
+    line-height: 19px
+}
+
+.post_suggestions .post_suggest_word:last-child {
+    margin-right: 0
+}
+
+.wall_module .post_suggestions_show+.reply_box,
+.wall_module .post_suggestions_show+.reply_fakebox_wrap,
+.wall_module .wl_reply_form_fixed .post_suggestions_show+.reply_box,
+.wall_module .wl_reply_form_fixed .post_suggestions_show+.reply_fakebox_wrap {
+    border-top: none
+}
+
+.wrap_like_stickers .sticker_hints_tt {
+    margin-top: -26px
+}
+
+.wrap_like_stickers .like_stickers_title {
+    color: #939393;
+    padding: 10px 7px 2px
+}
+
+.wrap_like_stickers .sticker_hints_left_pad .like_stickers_title {
+    margin-left: 30px
 }
