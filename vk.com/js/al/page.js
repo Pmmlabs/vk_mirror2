@@ -204,14 +204,15 @@ var Page = {
             });
             cancelEvent(ev);
         },
-        toggleSubscription: function(btn, hash, ev, oid, onDone) {
+        toggleSubscription: function(btn, hash, ev, oid, source, onDone) {
             var act = parseInt(domData(btn, 'act')) ? 1 : 0;
 
             ajax.post('al_wall.php', {
                 act: 'a_toggle_posts_subscription',
                 subscribe: act ? 1 : 0,
                 oid: oid ? oid : cur.oid,
-                hash: hash
+                hash: hash,
+                source: source
             }, {
                 onDone: function(text) {
                     if (onDone) {

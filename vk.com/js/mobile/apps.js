@@ -645,6 +645,12 @@ var vkApp = function(cont, options, params, onInit) {
 
         closeApp: function() {
             cur.app.callNativeClientMethod('close');
+        },
+
+        openQRReader: function() {
+            if (cur.app.isNativeClientWebView()) {
+                cur.app.callNativeClientMethod('VKWebAppOpenQR');
+            }
         }
     };
 
@@ -702,6 +708,13 @@ vkApp.prototype.onAppReady = function() {
      }, 3000);*/
 }
 
+/**
+ * Run client app callback.
+ * Client apps use "addCallback" method for subscribe to callbackEvent.
+ *
+ * arg1: callback event name,
+ * args: callback args
+ */
 vkApp.prototype.runCallback = function() {
     var args = Array.prototype.slice.call(arguments);
     var method = args[0];
@@ -925,6 +938,10 @@ vkApp.prototype.callNativeClientMethod = function(method, params) {
     }
 };
 
+// --------------------------------
+// Native clients web view methods
+// --------------------------------
+
 vkApp.prototype.isNativeClientWebView = function() {
     return this.isNativeIosWebView() || this.isNativeAndroidWebView();
 };
@@ -937,16 +954,43 @@ vkApp.prototype.isNativeAndroidWebView = function() {
     return window.AndroidBridge;
 };
 
+/**
+ * Listener for getting callbacks from native client webview.
+ */
 vkApp.prototype.initNativeClientCallbackListener = function() {
     this._nativeClientCallbackListener = function(vkEvent) {
         var eventData = vkEvent.detail || {};
-        if (eventData.type === 'appRunCallback') {
-            this.runCallback(eventData.event, eventData.data);
+        if (this[eventData.type]) {
+            this[eventData.type].call(this, eventData);
         }
+
     }.bind(this);
 
     addEvent(window, 'VKWebAppEvent', this._nativeClientCallbackListener);
 };
+
+//---------------------------------
+// Native clients callback methods
+//---------------------------------
+
+vkApp.prototype.appRunCallback = function(eventData) {
+    this.runCallback(eventData.event, eventData.params);
+};
+
+/**
+ * Called when the reading of qr is was successfully completed
+ */
+vkApp.prototype.VKWebAppQRDone = function(eventData) {
+    this.runCallback('onQRReaderDone', eventData.data);
+};
+
+/**
+ * Called when the reading of qr was completed with an error or canceled
+ */
+vkApp.prototype.VKWebAppQRClosed = function(eventData) {
+    this.runCallback('onQRReadeClosed', eventData.data);
+};
+
 
 if (!window.Apps) window.Apps = {
     optionHiddenClass: 'apps_hidden',

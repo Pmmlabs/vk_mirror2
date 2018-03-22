@@ -1818,8 +1818,8 @@ var Helpdesk = {
             height: e[1]
         })
     },
-    takeRest: function(e, t) {
-        buttonLocked(e) || (cur.helpdeskRestBox = showFastBox(getLang("global_warning"), getLang("helpdesk_need_a_rest"), getLang("helpdesk_take_rest"), function() {
+    takeRest: function(e, t, s) {
+        buttonLocked(e) || (cur.helpdeskRestBox = showFastBox(getLang("global_warning"), getLang(s ? "helpdesk_need_a_rest_leave" : "helpdesk_need_a_rest"), getLang("helpdesk_take_rest"), function() {
             ajax.post("helpdesk?act=a_take_rest", {
                 hash: t
             }, {

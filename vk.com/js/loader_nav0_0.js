@@ -221,7 +221,7 @@ var stVersions = {
     'module.css': 20966655239,
     'owner_photo.js': 3401070266,
     'owner_photo.css': 22242630865,
-    'page.js': 4129026155,
+    'page.js': 2754292002,
     'page.css': 35388400547,
     'page_help.css': 24794954352,
     'public.css': 29699231097,
@@ -255,7 +255,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 183632548816,
-    'imn.js': 225537693508,
+    'imn.js': 223535191134,
     'im.js': 1322065005,
     'emoji.js': 503827752,
     'wide_dd.css': 19339534177,
@@ -266,7 +266,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 2393238084,
+    'feed.js': 808104710,
     'feed.css': 23349920067,
     'privacy.js': 3620108221,
     'privacy.css': 17013349528,
@@ -336,7 +336,7 @@ var stVersions = {
     'tags_dd.css': 18642142555,
     'internal/tasks.js': 3155934960,
     'internal/tasks.css': 16837947693,
-    'helpdesk.js': 1934543051,
+    'helpdesk.js': 1831879312,
     'helpdesk.css': 23819089179,
     'tickets.js': 1561089313,
     'tickets.css': 25868380085,
@@ -647,4 +647,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 1842;
+var _rnd = 1914;

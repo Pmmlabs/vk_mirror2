@@ -1685,9 +1685,9 @@ var Feed = {
         re(e);
         for (var t = geByClass("hide", e.parentNode), o = 0; o < t.length; o++) removeClass(t[o], "hide")
     },
-    toggleSubscription: function(e, t, o, s) {
-        var r = domClosest("_ui_menu_wrap", e);
-        r && uiActionsMenu.toggle(r, !hasClass(r, "shown")), Page.toggleSubscription(e, t, o, s, function(e, t) {
+    toggleSubscription: function(e, t, o, s, r) {
+        var i = domClosest("_ui_menu_wrap", e);
+        i && uiActionsMenu.toggle(i, !hasClass(i, "shown")), Page.toggleSubscription(e, t, o, s, r, function(e, t) {
             geByClass("post", cur.rowsCont).forEach(function(o) {
                 var r = o.id.split("_"),
                     i = +r[r.length - 2].replace("post", "");
