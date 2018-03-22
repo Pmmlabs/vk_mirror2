@@ -145,7 +145,7 @@ var stVersions = {
     'filebutton.css': 1044306797,
     'filebutton.js': 2454165044,
     'lite.js': 2497728057,
-    'lite.css': 44410957711,
+    'lite.css': 44382325074,
     'rtl.css': 17330834928,
     'pagination.js': 1027022568,
     'blog.css': 18106110894,
@@ -196,8 +196,8 @@ var stVersions = {
     'video.css': 26445688655,
     'videocat.js': 3590298689,
     'videocat.css': 24687962206,
-    'videoview.js': 15579340590,
-    'videoview.css': 28655708665,
+    'videoview.js': 17970665596,
+    'videoview.css': 26157734535,
     'video_edit.js': 2135196486,
     'video_edit.css': 24382633834,
     'video_upload.js': 2270908085,
@@ -255,7 +255,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 183632548816,
-    'imn.js': 222415072426,
+    'imn.js': 225537693508,
     'im.js': 1322065005,
     'emoji.js': 503827752,
     'wide_dd.css': 19339534177,
@@ -266,7 +266,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 1135941790,
+    'feed.js': 2393238084,
     'feed.css': 23349920067,
     'privacy.js': 3620108221,
     'privacy.css': 17013349528,
@@ -353,9 +353,9 @@ var stVersions = {
     'groupinfo.css': 25608789394,
     'bugs.js': 3874995669,
     'bugs.css': 16611822570,
-    'bugtracker.js': 908067739,
+    'bugtracker.js': 4255245879,
     'bugtracker.css': 25118361395,
-    'login.css': 22764635009,
+    'login.css': 20987262365,
     'cmodules/web/login.js': 3104457483,
     'upload.js': 16891470,
     'upload_photo_transform.js': 1497838791,
@@ -574,7 +574,7 @@ var stVersions = {
     'time_spent.js': 732637085,
     'cmodules/web/app_info.js': 2375115030,
     'internal/stream_quiz.css': 1680646468,
-    'lang': 6885
+    'lang': 6887
 };
 var stTypes = {
     fromLib: {
@@ -647,4 +647,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 2673;
+var _rnd = 1842;

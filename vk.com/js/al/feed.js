@@ -1317,32 +1317,21 @@ var Feed = {
                 l = scrollGetY(),
                 d = 0,
                 u = [];
-            cur.isFeedLoading || cur.disableAutoMore || (r = ge("show_more_link"), isVisible(r) && l + c + 1e3 > r.offsetTop && feed.showMore()), (domPN(cur.topRow) != cur.rowsCont || "feed_rows_next" == (cur.topRow || {}).id) && (cur.topRow = domFC(cur.rowsCont));
-            var f = {
-                news: !0,
-                recommended: !0,
-                search: !0,
-                friends: !0,
-                groups: !0,
-                list: !0,
-                1917: !0,
-                cc2017: !0
-            };
-            if (vk.id && cur.topRow && "feed_rows_next" != cur.topRow.id && f[cur.section] && (!((window.curNotifier || {}).idle_manager || {}).is_idle || "init" == e.type)) {
-                var p = [];
-                for (r = domPS(cur.topRow); r; r = domPS(r)) cur.topRow.offsetTop > l && (cur.topRow = r), r.unseen || (r.unseen = !0, p.push(Feed.postsGetRaws(r)));
-                for (Page.postsUnseen(p), r = cur.topRow; r && (t = d ? d : r.offsetTop, !(t >= l + c)); r = i)
+            if (cur.isFeedLoading || cur.disableAutoMore || (r = ge("show_more_link"), isVisible(r) && l + c + 1e3 > r.offsetTop && feed.showMore()), (domPN(cur.topRow) != cur.rowsCont || "feed_rows_next" == (cur.topRow || {}).id) && (cur.topRow = domFC(cur.rowsCont)), vk.id && cur.topRow && "feed_rows_next" != cur.topRow.id && (!((window.curNotifier || {}).idle_manager || {}).is_idle || "init" == e.type)) {
+                var f = [];
+                for (r = domPS(cur.topRow); r; r = domPS(r)) cur.topRow.offsetTop > l && (cur.topRow = r), r.unseen || (r.unseen = !0, f.push(Feed.postsGetRaws(r)));
+                for (Page.postsUnseen(f), r = cur.topRow; r && (t = d ? d : r.offsetTop, !(t >= l + c)); r = i)
                     if (i = domNS(r), "feed_rows_next" == (i || {}).id && (i = null), d = i ? i.offsetTop : t + r.offsetHeight, l > d && i && (cur.topRow = i), LongView && LongView.register(r, "feed"), !a.registerElement(r) && (n = r.bits || 0, !(n >= 3) && (cur.feedSeenPostHeight > 0 ? (cur.feedPostHeaderHeight = cur.feedPostHeaderHeight || getH(geByClass1("post_header", r)), o = t + cur.feedPostHeaderHeight, s = o + cur.feedSeenPostHeight, r.postBottom || (r.postBottom = o + getH(geByClass1("wall_text", r))), s = Math.min(s, r.postBottom), n |= (o >= l && l + c > o ? 1 : 0) | (s >= l && l + c > s ? 2 : 0)) : n |= (t >= l && l + c > t ? 1 : 0) | (d >= l && l + c > d ? 2 : 0), n && (r.bits = n, 3 == n)))) {
-                        var _ = feed.postsGetRaws(r);
-                        u.push(_), hasClass(r, "feed_to_recomm") && statlogsValueEvent("promo_button_view_blocks", _.index, _.module)
+                        var p = feed.postsGetRaws(r);
+                        u.push(p), hasClass(r, "feed_to_recomm") && statlogsValueEvent("promo_button_view_blocks", p.index, p.module)
                     }
                 u = u.concat(a.process(l, c)), LongView && LongView.onScroll(l, c), Page.postsSeen(u);
-                var h = ge("show_more_link"),
-                    g = h.offsetTop;
-                if (!h.seen && g >= l && l + c > g) {
-                    h.seen = Date.now();
-                    var w = cur.section + (cur.subsection ? "_" + cur.subsection : "");
-                    statlogsValueEvent("feed_load_more_seen", isButtonLocked(h), w)
+                var _ = ge("show_more_link"),
+                    h = _.offsetTop;
+                if (!_.seen && h >= l && l + c > h) {
+                    _.seen = Date.now();
+                    var g = cur.section + (cur.subsection ? "_" + cur.subsection : "");
+                    statlogsValueEvent("feed_load_more_seen", isButtonLocked(_), g)
                 }
             }
         }

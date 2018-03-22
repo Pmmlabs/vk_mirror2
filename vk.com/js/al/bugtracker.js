@@ -637,7 +637,7 @@ var BugTracker = {
     "export": function(e, t, r) {
         var o = ge("bt_report_export");
         ajax.post("bugtracker", {
-            act: "a_export",
+            act: "a_export_report",
             id: e,
             project_id: t,
             hash: r

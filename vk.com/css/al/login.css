@@ -417,6 +417,10 @@
     color: #939393
 }
 
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_market_item {
+    text-align: center
+}
+
 .login_blocked_wrap .login_blocked_about .about_bottom {
     margin-top: 24px
 }

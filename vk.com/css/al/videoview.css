@@ -135,7 +135,16 @@ body.mobfixed #mv_layer_wrap {
 #mv_container {
     position: relative;
     display: table;
-    margin: 60px auto 85px
+    margin: 60px auto 85px;
+    margin-top: 72px
+}
+
+.mv_minimized #mv_container {
+    max-width: none;
+    min-width: auto;
+    width: auto;
+    padding: 0px;
+    margin: 0px
 }
 
 #mv_box {
@@ -217,7 +226,7 @@ body.mobfixed #mv_layer_wrap {
 }
 
 .mv_title_block {
-    margin: 15px 20px
+    padding: 15px 20px
 }
 
 .mv_author_block,
@@ -232,7 +241,7 @@ body.mobfixed #mv_layer_wrap {
 }
 
 .mv_description_block {
-    margin: 0 20px 15px
+    padding: 0 20px 15px
 }
 
 .mv_live_gifts_block {
@@ -552,9 +561,11 @@ textarea.dark.mv_live_gift_popup_comment_input {
 }
 
 .mv_actions_private_panel {
+    box-sizing: border-box;
     margin: 0;
     padding: 20px;
-    border: 0
+    border: 0;
+    width: 100%
 }
 
 .mv_actions_private_panel .mv_share_button {
@@ -954,67 +965,22 @@ textarea.dark.mv_live_gift_popup_comment_input {
 }
 
 .mv_info_wide_column {
-    width: 719px;
-    border-right: 1px solid #e7e8ec
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    position: relative
 }
 
-#mv_box._has_playlist .mv_info_wide_column {
-    width: 719px
-}
-
-#mv_box._has_chat .mv_info_wide_column,
-#mv_box._has_preparation .mv_info_wide_column {
-    width: 639px
-}
-
-@media (min-width: 1168px) {
-    #mv_box._has_chat .mv_info_wide_column,
-    #mv_box._has_preparation .mv_info_wide_column {
-        width: 703px
-    }
-}
-
-@media (min-width: 1280px) {
-    #mv_box._has_chat .mv_info_wide_column,
-    #mv_box._has_preparation .mv_info_wide_column {
-        width: 831px
-    }
-}
-
-@media (min-width: 1440px) {
-    #mv_box._has_chat .mv_info_wide_column,
-    #mv_box._has_preparation .mv_info_wide_column {
-        width: 959px
-    }
-}
-
-@media (min-width: 1680px) {
-    #mv_box._has_chat .mv_info_wide_column,
-    #mv_box._has_preparation .mv_info_wide_column {
-        width: 1119px
-    }
-}
-
-@media (min-width: 1920px) {
-    #mv_box._has_chat .mv_info_wide_column,
-    #mv_box._has_preparation .mv_info_wide_column {
-        width: 1359px
-    }
+.mv_info_wrapper {
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 720px
 }
 
 .mv_info_narrow_column {
     border-left: 1px solid #e7e8ec;
-    margin-left: -1px;
-    width: 240px
-}
-
-#mv_box._has_playlist .mv_info_narrow_column {
-    width: 240px
-}
-
-#mv_box._has_chat .mv_info_narrow_column,
-#mv_box._has_preparation .mv_info_narrow_column {
-    width: 320px
+    width: 320px;
+    z-index: 100
 }
 
 .mv_min_header {
@@ -1093,11 +1059,6 @@ textarea.dark.mv_live_gift_popup_comment_input {
     }
 }
 
-.mv_minimized #mv_container {
-    padding: 0px;
-    margin: 0px
-}
-
 #mv_box .video_box_wrap {
     background-color: #000
 }
@@ -1159,55 +1120,39 @@ textarea.dark.mv_live_gift_popup_comment_input {
     color: #000
 }
 
-#mv_reply_form,
-#mv_box._has_playlist #mv_reply_form {
-    width: 719px
+#mv_reply_form {
+    display: block
 }
 
-#mv_box._has_chat #mv_reply_form,
-#mv_box._has_preparation #mv_reply_form {
-    width: 639px
+#mv_reply_form:after {
+    content: '.';
+    display: block;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    clear: both;
+    visibility: hidden
 }
 
-@media (min-width: 1168px) {
-    #mv_box._has_chat #mv_reply_form,
-    #mv_box._has_preparation #mv_reply_form {
-        width: 703px
-    }
-}
-
-@media (min-width: 1280px) {
-    #mv_box._has_chat #mv_reply_form,
-    #mv_box._has_preparation #mv_reply_form {
-        width: 831px
-    }
-}
-
-@media (min-width: 1440px) {
-    #mv_box._has_chat #mv_reply_form,
-    #mv_box._has_preparation #mv_reply_form {
-        width: 959px
-    }
-}
-
-@media (min-width: 1680px) {
-    #mv_box._has_chat #mv_reply_form,
-    #mv_box._has_preparation #mv_reply_form {
-        width: 1119px
-    }
-}
-
-@media (min-width: 1920px) {
-    #mv_box._has_chat #mv_reply_form,
-    #mv_box._has_preparation #mv_reply_form {
-        width: 1359px
-    }
+* html #mv_reply_form {
+    height: 1%
 }
 
 #mv_reply_form.mv_reply_form_fixed {
     position: fixed;
     z-index: 100;
     box-shadow: 0 -1px 3px rgba(0, 0, 0, .06)
+}
+
+#mv_reply_form .reply_text_wrapper,
+#mv_reply_form .submit_reply_wrapper {
+    margin: 0 auto;
+    position: relative;
+    width: 720px
+}
+
+#mv_reply_form .submit_reply_wrapper {
+    width: calc(680px)
 }
 
 .mv_reply_cancel_button {
@@ -1317,6 +1262,10 @@ textarea.dark.mv_live_gift_popup_comment_input {
     background-color: hsla(0, 0%, 100%, .2)
 }
 
+#mv_player_box {
+    display: none
+}
+
 #mv_progress_box {
     position: relative;
     margin: 0 auto
@@ -1352,126 +1301,21 @@ textarea.dark.mv_live_gift_popup_comment_input {
     margin-top: -20px
 }
 
-#mv_player_box {
-    display: none
-}
-
-#mv_player_box,
-#mv_progress_box {
-    height: 540px;
-    width: 960px
-}
-
-#mv_box._has_playlist:not(._hide_playlist) #mv_player_box,
-#mv_box._has_playlist:not(._hide_playlist) #mv_progress_box {
-    height: 405px;
-    width: 720px;
-    padding-right: 240px
-}
-
 #mv_box._has_chat:not(._hide_chat) #mv_player_box,
 #mv_box._has_chat:not(._hide_chat) #mv_progress_box,
+#mv_box._has_playlist:not(._hide_playlist) #mv_player_box,
+#mv_box._has_playlist:not(._hide_playlist) #mv_progress_box,
 #mv_box._has_preparation #mv_player_box,
 #mv_box._has_preparation #mv_progress_box {
-    height: 360px;
-    width: 640px;
     padding-right: 320px
 }
 
-@media (min-width: 1168px) {
-    #mv_box._has_chat:not(._hide_chat) #mv_player_box,
-    #mv_box._has_chat:not(._hide_chat) #mv_progress_box,
-    #mv_box._has_preparation #mv_player_box,
-    #mv_box._has_preparation #mv_progress_box {
-        height: 396px;
-        width: 704px
-    }
-}
-
-@media (min-width: 1280px) {
-    #mv_box._has_chat:not(._hide_chat) #mv_player_box,
-    #mv_box._has_chat:not(._hide_chat) #mv_progress_box,
-    #mv_box._has_preparation #mv_player_box,
-    #mv_box._has_preparation #mv_progress_box {
-        height: 468px;
-        width: 832px
-    }
-}
-
-@media (min-width: 1440px) {
-    #mv_box._has_chat:not(._hide_chat) #mv_player_box,
-    #mv_box._has_chat:not(._hide_chat) #mv_progress_box,
-    #mv_box._has_preparation #mv_player_box,
-    #mv_box._has_preparation #mv_progress_box {
-        height: 540px;
-        width: 960px
-    }
-}
-
-@media (min-width: 1680px) {
-    #mv_box._has_chat:not(._hide_chat) #mv_player_box,
-    #mv_box._has_chat:not(._hide_chat) #mv_progress_box,
-    #mv_box._has_preparation #mv_player_box,
-    #mv_box._has_preparation #mv_progress_box {
-        height: 630px;
-        width: 1120px
-    }
-}
-
-@media (min-width: 1920px) {
-    #mv_box._has_chat:not(._hide_chat) #mv_player_box,
-    #mv_box._has_chat:not(._hide_chat) #mv_progress_box,
-    #mv_box._has_preparation #mv_player_box,
-    #mv_box._has_preparation #mv_progress_box {
-        height: 765px;
-        width: 1360px
-    }
-}
-
-#mv_box._has_chat._hide_chat #mv_player_box,
-#mv_box._has_chat._hide_chat #mv_progress_box {
+.mv_minimized #mv_player_box,
+.mv_minimized #mv_progress_box {
+    min-height: auto;
+    max-height: none;
     height: 540px;
     width: 960px
-}
-
-@media (min-width: 1168px) {
-    #mv_box._has_chat._hide_chat #mv_player_box,
-    #mv_box._has_chat._hide_chat #mv_progress_box {
-        height: 576px;
-        width: 1024px
-    }
-}
-
-@media (min-width: 1280px) {
-    #mv_box._has_chat._hide_chat #mv_player_box,
-    #mv_box._has_chat._hide_chat #mv_progress_box {
-        height: 648px;
-        width: 1152px
-    }
-}
-
-@media (min-width: 1440px) {
-    #mv_box._has_chat._hide_chat #mv_player_box,
-    #mv_box._has_chat._hide_chat #mv_progress_box {
-        height: 720px;
-        width: 1280px
-    }
-}
-
-@media (min-width: 1680px) {
-    #mv_box._has_chat._hide_chat #mv_player_box,
-    #mv_box._has_chat._hide_chat #mv_progress_box {
-        height: 810px;
-        width: 1440px
-    }
-}
-
-@media (min-width: 1920px) {
-    #mv_box._has_chat._hide_chat #mv_player_box,
-    #mv_box._has_chat._hide_chat #mv_progress_box {
-        height: 945px;
-        width: 1680px
-    }
 }
 
 .mv_minimized #mv_box {
@@ -1485,24 +1329,16 @@ textarea.dark.mv_live_gift_popup_comment_input {
 }
 
 .mv_info {
-    display: block;
-    min-height: 70px;
     background: #fff;
-    position: relative
-}
-
-.mv_info:after {
-    content: '.';
-    display: block;
-    height: 0;
-    font-size: 0;
-    line-height: 0;
-    clear: both;
-    visibility: hidden
-}
-
-* html .mv_info {
-    height: 1%
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    min-height: 70px;
+    position: relative;
+    z-index: 10
 }
 
 .mv_info:before {
@@ -1732,9 +1568,9 @@ textarea.dark.mv_live_gift_popup_comment_input {
 }
 
 .mv_playlist_controls {
+    padding: 0 22px;
     display: none;
     position: absolute;
-    padding: 187.5px 22px;
     opacity: 0.3;
     filter: alpha(opacity=30);
     cursor: pointer;
@@ -1754,6 +1590,7 @@ textarea.dark.mv_live_gift_popup_comment_input {
 }
 
 .mv_playlist_controls .mv_playlist_controls_icon {
+    margin-top: -15px;
     height: 30px;
     width: 20px;
     background: url(/images/icons/layer_controls.png) no-repeat
@@ -1774,10 +1611,6 @@ textarea.dark.mv_live_gift_popup_comment_input {
 
 .mv_playlist_controls#mv_pl_next .mv_playlist_controls_icon {
     background-position: 0 -55px
-}
-
-#mv_box._hide_playlist .mv_playlist_controls {
-    padding: 255px 22px
 }
 
 .video_no_flash_wrap {
@@ -1804,8 +1637,8 @@ textarea.dark.mv_live_gift_popup_comment_input {
 }
 
 .mv_comments_restricted_msg {
-    margin: 20px;
-    padding: 20px 60px 0;
+    margin: 20px 20px 0;
+    padding: 20px 60px;
     border-top: 1px solid #e7e8ec;
     font-size: 13px
 }
@@ -1815,7 +1648,7 @@ textarea.dark.mv_live_gift_popup_comment_input {
 }
 
 #mv_comments_wrap:last-child {
-    margin-bottom: 10px
+    padding-bottom: 10px
 }
 
 .mv_embed_privacy {
@@ -1836,11 +1669,6 @@ textarea.dark.mv_live_gift_popup_comment_input {
 
 .mv_recom_item {
     padding: 8px 0;
-    font-size: 12px
-}
-
-#mv_box._has_chat .mv_recom_item,
-#mv_box._has_preparation .mv_recom_item {
     font-size: 12.5px
 }
 
@@ -1848,19 +1676,13 @@ textarea.dark.mv_live_gift_popup_comment_input {
     display: block;
     float: left;
     position: relative;
-    height: 55px;
-    width: 100px;
+    height: 72px;
+    width: 128px;
     border-radius: 2px;
     overflow: hidden;
     background-color: #fafbfc;
     background-size: cover;
     background-position: 50%
-}
-
-#mv_box._has_chat .mv_recom_item_thumb,
-#mv_box._has_preparation .mv_recom_item_thumb {
-    height: 72px;
-    width: 128px
 }
 
 .mv_recom_item_duration {
@@ -1886,11 +1708,6 @@ textarea.dark.mv_live_gift_popup_comment_input {
 }
 
 .mv_recom_item_info {
-    margin-left: 108px
-}
-
-#mv_box._has_chat .mv_recom_item_info,
-#mv_box._has_preparation .mv_recom_item_info {
     margin-left: 138px
 }
 
@@ -2093,16 +1910,23 @@ textarea.dark.mv_live_gift_popup_comment_input {
 
 .mv_claimed,
 .mv_is_in_progress {
-    color: #6b3d2e;
     background-color: #f6dfd8;
+    box-sizing: border-box;
+    color: #6b3d2e;
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    -webkit-flex-shrink: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    width: 100%;
     padding: 20px 10px;
     text-align: center
 }
 
 .mv_is_in_progress {
     color: #2c2e2f;
-    background-color: #f7f8f8;
-    padding: 13px 10px
+    background-color: #f7f8f8
 }
 
 #mv_external_finish {
@@ -2654,7 +2478,7 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     top: 0;
     right: 0;
     height: 100%;
-    width: 240px;
+    width: 320px;
     background-color: #1e1e1e
 }
 
@@ -2774,8 +2598,8 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
 
 .mv_playlist .mv_playlist_item_thumb {
     float: left;
-    height: 55px;
-    width: 100px;
+    height: 72px;
+    width: 128px;
     border-radius: 2px;
     background-color: #222;
     background-size: cover;
@@ -2784,7 +2608,7 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
 }
 
 .mv_playlist .mv_playlist_item_info {
-    margin-left: 108px;
+    margin-left: 138px;
     white-space: normal
 }
 
