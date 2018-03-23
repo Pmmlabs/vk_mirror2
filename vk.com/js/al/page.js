@@ -2181,7 +2181,7 @@ var Wall = {
 
     },
     switchTabContent: function(tab) {
-        hide('page_wall_posts', 'page_postponed_posts', 'page_suggested_posts', 'page_search_posts');
+        hide('page_wall_posts', 'page_postponed_posts', 'page_suggested_posts', 'page_search_posts', 'page_top_posts');
         switch (tab) {
             case 'own':
             case 'all':
@@ -2197,35 +2197,56 @@ var Wall = {
             case 'search':
                 show('page_search_posts');
                 break;
+            case 'top':
+                show('page_top_posts');
+                break;
         }
         // checkPageBlocks();
     },
     switchWall: function(el, ev, type) {
         if (ev && checkEvent(ev)) return true;
-        var cnts = {
-                all: 0,
-                own: 0
-            },
-            sw = ge('page_wall_switch');
-        if (ge('page_wall_count_all')) cnts.all = intval(ge('page_wall_count_all').value);
-        if (ge('page_wall_count_own')) cnts.own = intval(ge('page_wall_count_own').value);
+
         if (!type) {
             type = (cur.wallType == 'own') ? 'all' : 'own';
         }
-        if (ev && ev.type == 'click' && ev.clientX && ev.offsetX && cur.wallTab == type && cur.wallType == type) {
+
+        if (ev && ev.type == 'click' && ev.clientX && ev.offsetX && cur.wallTab == type && cur.wallType == type && type !== 'top') {
             return nav.go(el, ev);
         }
+
         if (cur.wallTab == 'postponed') {
             wall.checkPostponedCount();
         }
-        replaceClass('page_wall_posts', cur.wallType, type);
+
+        if (type !== 'top') {
+            replaceClass('page_wall_posts', cur.wallType, type);
+        }
+
         cur.wallType = type;
-        Wall.update();
+        cur.wallTab = type;
+
         uiTabs.switchTab(el);
         uiTabs.hideProgress(el);
-        wall.switchTabContent(type);
-        cur.wallTab = type;
+
+        if (Wall.hasPosts()) {
+            Wall.update();
+            Wall.showWall();
+        } else {
+            cur.wallNextFrom = 0;
+            cur.wallTopNextFrom = 0;
+
+            if (type === 'top') {
+                delete cur.wallTopFinished;
+            }
+
+            Wall.showMore(0);
+        }
+
         return cancelEvent(ev);
+    },
+    hasPosts: function(type) {
+        type = type || cur.wallType;
+        return !!(geByClass1('post', (type === 'top' ? 'page_top_posts' : 'page_wall_posts')));
     },
     showSuggested: function(el, ev, rows, notAll) {
         if (ev && checkEvent(ev)) return true;
@@ -2575,18 +2596,37 @@ var Wall = {
         }
         return 0;
     },
-    receive: function(rows, names) {
+    receive: function(rows, names, type) {
+        type = type || cur.wallType;
+
+        var isTop = (type === 'top');
         var n = ce('div', {
                 innerHTML: rows
             }),
-            posts = ge('page_wall_posts'),
             revert = !!cur.options.revert;
+        var posts = (isTop ? ge('page_top_posts') : ge('page_wall_posts'));
+        var cleanBlock = (isTop ? ge('page_wall_posts') : ge('page_top_posts'));
         var current = (revert ? posts.firstChild : posts.lastChild),
             added = 0;
         var adsPosts = [];
         var prevPostEl;
         var prevCurrent;
         var insertPositionEl;
+        var el, node;
+
+        // Clean up other posts container
+        if (cleanBlock) {
+            el = domFC(cleanBlock);
+
+            while (el) {
+                node = el;
+                el = domNS(el);
+
+                if (!node.tagName || node.tagName.toLowerCase() !== 'input') {
+                    re(node);
+                }
+            }
+        }
 
         function getPostId(postEl) {
             if (!postEl || !postEl.tagName || postEl.tagName.toLowerCase() !== 'div' || !postEl.id || postEl.id.substr(0, 4) !== 'post') {
@@ -2600,11 +2640,13 @@ var Wall = {
                 var old = ge(el.id);
                 if (old) {
                     posts.replaceChild(el, old);
+                } else {
+                    (posts.firstChild ? domInsertBefore(el, posts.firstChild) : posts.appendChild(el));
                 }
                 continue;
             }
 
-            if (hasClass(el, 'post_fixed')) {
+            if (hasClass(el, 'post_fixed') && ge(el.id)) {
                 continue;
             }
             if (hasClass(el, '_ads_promoted_post')) {
@@ -2624,7 +2666,7 @@ var Wall = {
                 current.tagName.toLowerCase() == 'div' &&
                 !hasClass(current, 'post_fixed') // ???
                 &&
-                (hasClass(current, '_ads_promoted_post') || Wall.cmp(current.id, el.id) < 0)
+                (hasClass(current, '_ads_promoted_post') || (!isTop && Wall.cmp(current.id, el.id) < 0))
             ) {
                 current = (revert ? current.nextSibling : current.previousSibling);
             }
@@ -2699,23 +2741,37 @@ var Wall = {
             }
         }
 
-        if (cur.wallType == 'full_own' || cur.wallType == 'full_all') {
+        if (isTop && !added) {
+            cur.wallTopFinished = cur.oid;
+        }
+
+        if (type == 'full_own' || type == 'full_all') {
             Pagination.recache(added);
             FullWall.updateSummary(cur.pgCount);
         }
         Wall.update();
         extend(cur.options.reply_names, names);
         Wall.updateMentionsIndex();
+
+        if (added) {
+            getAudioPlayer().updateCurrentPlaying();
+        }
     },
     showMore: function(offset) {
         if (cur.viewAsBox) return cur.viewAsBox();
         if (cur.wallLayer) return;
         if (cur.wallTab == 'suggested') return Wall.suggestMore();
+        if (cur.wallTypeLoading && cur.wallTypeLoading[cur.wallType]) return;
+        if (cur.wallType === 'top' && cur.wallTopFinished === cur.oid) return;
 
         var type = cur.wallType,
             more = ge('wall_more_link'),
-            wallNextFrom = cur.wallNextFrom || '',
+            wallNextFrom = (offset !== 0 ? (type === 'top' ? cur.wallTopNextFrom : cur.wallNextFrom) : '') || '',
             tmp = cur.wallLoading = cur.oid;
+
+        cur.wallTypeLoading = cur.wallTypeLoading || {};
+        cur.wallTypeLoading[type] = true;
+
         ajax.post('al_wall.php', {
             act: 'get_wall',
             owner_id: cur.oid,
@@ -2725,9 +2781,10 @@ var Wall = {
             wall_start_from: wallNextFrom
         }, {
             onDone: function(rows, names, videos, newNextFrom) {
-                if (tmp !== cur.oid) return;
-                delete(cur.wallLoading);
-                setTimeout(Wall.receive.pbind(rows, names), 0);
+                if (tmp !== cur.oid) {
+                    return;
+                }
+
                 if (cur.wallVideos) {
                     each(videos, function(playlistId, playlist) {
                         if (cur.wallVideos[playlistId]) {
@@ -2735,12 +2792,39 @@ var Wall = {
                         }
                     });
                 }
-                cur.wallNextFrom = newNextFrom;
+
+                if (type === 'top') {
+                    cur.wallTopNextFrom = newNextFrom;
+                } else {
+                    cur.wallNextFrom = newNextFrom;
+                }
+
+                setTimeout(function() {
+                    Wall.receive(rows, names, type);
+
+                    if (!offset && type === cur.wallType) {
+                        Wall.showWall();
+                    }
+
+                    delete(cur.wallLoading);
+                    delete cur.wallTypeLoading[type];
+                }, 0);
             },
             showProgress: lockButton.pbind(more),
             hideProgress: unlockButton.pbind(more)
         });
     },
+
+    showWall: function() {
+        wall.switchTabContent(cur.wallType);
+
+        var wallY = getXY(domClosest('wall_module', ge('page_wall_posts')))[1];
+
+        if (wallY < scrollGetY()) {
+            scrollToY(wallY - 15);
+        }
+    },
+
     checkTextLen: function(inp, warn, force) {
         var val = trim(Emoji.editableVal(inp).replace(/\n\n\n+/g, '\n\n'));
         //var val = trim(inp.value).replace(/\n\n\n+/g, '\n\n');
@@ -3384,8 +3468,13 @@ var Wall = {
             isAnon = Wall.isAnonPost(),
             sendBtn = ge('send_post');
 
-        var pType = cur.options.suggesting ? 'suggest' : cur.wallType,
-            params = {
+        var pType = cur.options.suggesting ? 'suggest' : cur.wallType;
+
+        if (pType === 'top') {
+            pType = 'all';
+        }
+
+        var params = {
                 act: 'post',
                 message: msg,
                 to_id: cur.postTo,
@@ -4605,6 +4694,8 @@ var Wall = {
                 } else {
                     ref = 'feed_' + cur.section
                 }
+            } else if (cur.wallType == 'top') {
+                ref = 'wall_top';
             } else {
                 ref = 'wall_' + (cur.onepost ? 'one' : (!(cur.wallType || '').indexOf('full_') ? 'full' : 'page'))
             }
@@ -5545,6 +5636,8 @@ var Wall = {
         if (cur.wallType) {
             if (cur.wallType == 'feed') {
                 ref = 'feed_' + ((cur.section == 'news' && cur.subsection) ? cur.subsection : cur.section)
+            } else if (cur.wallType == 'top') {
+                ref = 'wall_top';
             } else {
                 ref = 'wall_' + (cur.onepost ? 'one' : (!(cur.wallType || '').indexOf('full_') ? 'full' : 'page'))
             }
@@ -5572,7 +5665,9 @@ var Wall = {
             el = ge('like_share_' + like_obj),
             was = isChecked(el),
             ref = cur.wallType ? (cur.wallType == 'feed' ? 'feed_' + cur.section : ('wall_' + (cur.onepost ? 'one' : (!(cur.wallType || '').indexOf('full_') ? 'full' : 'page')))) : cur.module;
-
+        if (cur.wallType == 'top') {
+            ref = 'wall_top';
+        }
         checkbox(el);
         ajax.post('like.php', {
             act: 'a_do_' + (was ? 'un' : '') + 'publish',
@@ -5773,7 +5868,15 @@ var Wall = {
         }
         Wall.repliesSideUpdate(st);
         if (cur.wallPage) {
-            var rowsCont = (cur.wallTab == 'suggested') ? ge('page_suggested_posts') : ge('page_wall_posts');
+            var rowsCont;
+
+            if (cur.wallTab == 'suggested') {
+                rowsCont = ge('page_suggested_posts');
+            } else if (cur.wallTab == 'top') {
+                rowsCont = ge('page_top_posts');
+            } else {
+                rowsCont = ge('page_wall_posts');
+            }
 
             if (
                 domPN(cur.topRow) != rowsCont ||
@@ -5938,37 +6041,70 @@ var Wall = {
             WkView.wallUpdateReplies();
             return;
         }
-        if (cur.wallType != 'all' && cur.wallType != 'own' || cur.wallTab != 'all' && cur.wallTab != 'own') return;
-        var cnts = {
-            all: intval(val('page_wall_count_all')),
-            own: intval(val('page_wall_count_own'))
-        };
-        var cnt = cnts[cur.wallType];
-        if (cur.oid < 0 && cur.options['fixed_post_id']) {
-            cnt -= 1;
+
+        var isTopWall = (cur.wallType === 'top');
+
+        if (
+            (cur.wallType !== 'all' && cur.wallType !== 'own' && !isTopWall) ||
+            (cur.wallTab !== 'all' && cur.wallTab !== 'own' && cur.wallTab !== 'top')
+        ) {
+            return;
         }
-        if (cur.wallTab != 'suggested') {
-            val('page_wall_posts_count', cnt ? langNumeric(cnt, cur.options.wall_counts) : cur.options.wall_no);
+
+        var postType = (isTopWall ? 'own' : cur.wallType);
+
+        var morelnk = ge('wall_more_link');
+        var posts = (isTopWall ? ge('page_top_posts') : ge('page_wall_posts'));
+
+        var del = intval(cur.deletedCnts[postType]);
+        var count = geByClass(postType, posts).length - del;
+        var needHideMore = false;
+
+        if (isTopWall && (isVisible(geByClass1('no_posts', posts)) || cur.wallTopFinished === cur.oid)) {
+            needHideMore = true;
+        } else {
+            var cnts = {
+                all: intval(val('page_wall_count_all')),
+                own: intval(val('page_wall_count_own')),
+                top: intval(val('page_wall_count_top')),
+            };
+
+            var maxCount = cnts[(isTopWall ? 'top' : postType)];
+
+            if (cur.wallTab != 'suggested') {
+                var cnt = maxCount;
+
+                if (cur.oid < 0 && cur.options['fixed_post_id']) {
+                    cnt -= 1;
+                }
+
+                val('page_wall_posts_count', cnt ? langNumeric(cnt, cur.options.wall_counts) : cur.options.wall_no);
+            }
+
+            var checkCount = count;
+
+            if (!isTopWall && cur.options['fixed_post_id'] && cur.options['wall_oid'] < 0) {
+                checkCount += 1;
+            }
+
+            needHideMore = (checkCount >= maxCount - del);
         }
-        var morelnk = ge('wall_more_link'),
-            del = intval(cur.deletedCnts[cur.wallType]),
-            count = geByClass(cur.wallType, ge('page_wall_posts')).length - del;
-        var checkCount = count;
-        if (cur.options['fixed_post_id'] && cur.options['wall_oid'] < 0) {
-            checkCount += 1;
-        }
-        if (checkCount >= cnts[cur.wallType] - del) {
+
+        if (needHideMore) {
             hide(morelnk);
         } else {
             show(morelnk);
             morelnk.onclick = Wall.showMore.pbind(count);
         }
-        shortCurrency();
-        if (cur.gifAutoplayScrollHandler) {
-            cur.gifAutoplayScrollHandler();
-        }
-        if (cur.videoAutoplayScrollHandler) {
-            cur.videoAutoplayScrollHandler();
+
+        if (cur.wallTab == cur.wallType) {
+            shortCurrency();
+            if (cur.gifAutoplayScrollHandler) {
+                cur.gifAutoplayScrollHandler();
+            }
+            if (cur.videoAutoplayScrollHandler) {
+                cur.videoAutoplayScrollHandler();
+            }
         }
     },
     getAbsDate: function(ts, cur) {
@@ -6405,6 +6541,10 @@ var Wall = {
                             if (window.curNotifier && curNotifier.idle_manager.is_idle) {
                                 Wall.clearInput();
                             }
+                        }
+
+                        if (cur.wallType !== 'own' && cur.wallType !== 'all' && !Wall.hasPosts('own')) {
+                            break;
                         }
 
                         var cont = ge('page_wall_posts'),
@@ -7441,6 +7581,8 @@ var Wall = {
                 } else {
                     ref = 'feed_' + cur.section;
                 }
+            } else if (cur.wallType == 'top') {
+                ref = 'wall_top';
             } else {
                 ref = 'wall_' + (cur.onepost ? 'one' : (!(cur.wallType || '').indexOf('full_') ? 'full' : 'page'));
             }

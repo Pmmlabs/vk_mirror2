@@ -221,7 +221,7 @@ var stVersions = {
     'module.css': 20966655239,
     'owner_photo.js': 3401070266,
     'owner_photo.css': 22242630865,
-    'page.js': 2754292002,
+    'page.js': 3162750072,
     'page.css': 35388400547,
     'page_help.css': 24794954352,
     'public.css': 29699231097,
@@ -647,4 +647,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 8555;
+var _rnd = 9906;
