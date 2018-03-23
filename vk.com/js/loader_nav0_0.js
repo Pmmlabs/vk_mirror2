@@ -255,7 +255,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 183632548816,
-    'imn.js': 223535191134,
+    'imn.js': 221178449700,
     'im.js': 1322065005,
     'emoji.js': 503827752,
     'wide_dd.css': 19339534177,
@@ -349,7 +349,7 @@ var stVersions = {
     'achievements.css': 17355561222,
     'sf.css': 21790928938,
     'members.css': 18564795246,
-    'meminfo.css': 26422035106,
+    'meminfo.css': 25716947173,
     'groupinfo.css': 25608789394,
     'bugs.js': 3874995669,
     'bugs.css': 16611822570,
@@ -537,7 +537,7 @@ var stVersions = {
     'voice_message_player.js': 18549969583,
     'cmodules/web/speech_worker_mp3.js': 1074082218,
     'cmodules/web/speech_worker_opus.js': 2818771805,
-    'stories.js': 44810917092,
+    'stories.js': 52917983302,
     'stories.css': 22422450945,
     'internal/nospam.css': 22003392410,
     'internal/away_linksban.css': 16524977373,
@@ -647,4 +647,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 1914;
+var _rnd = 8555;

@@ -17738,10 +17738,8 @@ body.article_body.article_dark {
     margin-bottom: 24px
 }
 
-.pageAttachMoneyAbout br+b,
-.pageAttachMoneyAbout ul+b {
-    display: block;
-    margin-bottom: 10px
+.pageAttachMoneyAbout ul {
+    margin-top: 10px
 }
 
 .pageAttachMoneyAbout li {
@@ -20193,7 +20191,7 @@ a.feedBlocks__article:hover {
     content: '';
     width: 22px;
     height: 22px;
-    background-image: url('/images/mobile/icons/info.png');
+    background-image: url('/images/mobile/icons/info.png?2');
     background-repeat: no-repeat;
     background-size: 100%
 }
@@ -20214,7 +20212,7 @@ a.feedBlocks__article:hover {
 }
 
 .vk_2x .sendMoneyForm__infoLink:before {
-    background-image: url('/images/mobile/icons/info_2x.png')
+    background-image: url('/images/mobile/icons/info_2x.png?2')
 }
 
 .sendMoneyForm__input {
