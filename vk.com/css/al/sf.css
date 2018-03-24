@@ -177,6 +177,14 @@
     background-color: rgba(0, 0, 0, .6)
 }
 
+.box_layout .reports_flow_settings .setting_header {
+    margin-bottom: 8px
+}
+
+.box_layout .reports_flow_settings .box_body {
+    border-radius: 0px 0px 4px 4px
+}
+
 body.sf .mention_tt_actions {
     display: none
 }

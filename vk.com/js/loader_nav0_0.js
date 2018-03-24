@@ -203,8 +203,8 @@ var stVersions = {
     'video_upload.js': 2270908085,
     'video_youtube.js': 458412745,
     'video_youtube.css': 16230178406,
-    'videoplayer.js': 69400339880,
-    'videoplayer.css': 40097930332,
+    'videoplayer.js': 70104148845,
+    'videoplayer.css': 39589651070,
     'translation.js': 1810201107,
     'translation.css': 18486764993,
     'reg.css': 887926110,
@@ -347,7 +347,7 @@ var stVersions = {
     'agents.css': 18825031972,
     'achievements.js': 897703126,
     'achievements.css': 17355561222,
-    'sf.css': 21790928938,
+    'sf.css': 24355615522,
     'members.css': 18564795246,
     'meminfo.css': 25716947173,
     'groupinfo.css': 25608789394,
@@ -363,7 +363,7 @@ var stVersions = {
     'graffiti.css': 404471482,
     'graffiti_new.js': 67279821,
     'graffiti_new.css': 21938487094,
-    'abuse.js': 2562479185,
+    'abuse.js': 1806162634,
     'abuse.css': 1179531957,
     'verify.css': 16074477334,
     'away.css': 21456360407,
@@ -559,8 +559,8 @@ var stVersions = {
     'surveys.css': 25555103190,
     'surveys.js': 3079369917,
     'landings/author_guide.css': 25713801571,
-    'internal/restore2.css': 19897072781,
-    'internal/restore2.js': 516824927,
+    'internal/restore2.css': 20140481655,
+    'internal/restore2.js': 721207397,
     'language.js': 3551638980,
     'language.css': 19023275451,
     'internal/admins.js': 2810460581,
@@ -647,4 +647,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 9906;
+var _rnd = 7335;

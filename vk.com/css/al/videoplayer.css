@@ -324,6 +324,11 @@
     transition: opacity 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955)
 }
 
+.videoplayer_ui.no_transition .videoplayer_controls:before {
+    -o-transition: none;
+    transition: none
+}
+
 .videoplayer_ui._fullscreen .videoplayer_controls:before {
     height: 145px
 }
