@@ -568,7 +568,7 @@ var stVersions = {
     'cmodules/web/stickers.js': 8507637060,
     'cmodules/web/stickers_office.js': 8692564268,
     'cmodules/web/bodymovin.js': 1520167629,
-    'lead_forms_app.js': 12114734990,
+    'lead_forms_app.js': 12050261391,
     'lead_forms_app.css': 21937812316,
     'internal/stories_admin_panel.css': 16675413931,
     'time_spent.js': 732637085,
@@ -647,4 +647,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 7335;
+var _rnd = 9213;
