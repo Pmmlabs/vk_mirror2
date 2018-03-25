@@ -58,6 +58,7 @@ var navMap = {
     'login($|/)': ['al_login.php', ['login.css']],
     'tasks($|/)': ['tasks.php', ['internal/tasks.css', 'internal/tasks.js']],
     'abuse($|/)': ['abuse.php', []],
+    'abuse2($|/)': ['abuse.php', []],
     'restore2($|/)': ['restore2.php', ['internal/restore2.css', 'internal/restore2.js', 'internal/restore2_autoanswers.js', 'sorter.js']],
     'datababes($|/)': ['datababes.php', []],
     '(support($|/)|faq\\d+)': ['al_tickets.php', ['tickets.css', 'tickets.js']],
@@ -645,4 +646,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 2038;
+var _rnd = 6483;
