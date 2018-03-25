@@ -57,8 +57,7 @@ var navMap = {
     'docs-?\\d+$': ['docs.php', ['docs.css', 'docs.js', 'indexer.js']],
     'login($|/)': ['al_login.php', ['login.css']],
     'tasks($|/)': ['tasks.php', ['internal/tasks.css', 'internal/tasks.js']],
-    'abuse($|/)': ['abuse.php', ['abuse.css', 'abuse.js']],
-    'abuse2($|/)': ['abuse2.php', []],
+    'abuse($|/)': ['abuse.php', []],
     'restore2($|/)': ['restore2.php', ['internal/restore2.css', 'internal/restore2.js', 'internal/restore2_autoanswers.js', 'sorter.js']],
     'datababes($|/)': ['datababes.php', []],
     '(support($|/)|faq\\d+)': ['al_tickets.php', ['tickets.css', 'tickets.js']],
@@ -337,7 +336,7 @@ var stVersions = {
     'internal/tasks.js': 3155934960,
     'internal/tasks.css': 16837947693,
     'helpdesk.js': 1831879312,
-    'helpdesk.css': 23819089179,
+    'helpdesk.css': 23431746767,
     'tickets.js': 1561089313,
     'tickets.css': 25868380085,
     'internal/faq.js': 2622161233,
@@ -363,8 +362,7 @@ var stVersions = {
     'graffiti.css': 404471482,
     'graffiti_new.js': 67279821,
     'graffiti_new.css': 21938487094,
-    'abuse.js': 1806162634,
-    'abuse.css': 1179531957,
+    'abuse.css': 17290889719,
     'verify.css': 16074477334,
     'away.css': 21456360407,
     'stats.css': 18819548809,
@@ -573,7 +571,7 @@ var stVersions = {
     'internal/stories_admin_panel.css': 16675413931,
     'time_spent.js': 732637085,
     'cmodules/web/app_info.js': 2375115030,
-    'internal/stream_quiz.css': 1680646468,
+    'internal/stream_quiz.css': 2864818969,
     'lang': 6887
 };
 var stTypes = {
@@ -647,4 +645,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 9213;
+var _rnd = 2038;
