@@ -177,12 +177,21 @@
     background-color: rgba(0, 0, 0, .6)
 }
 
-.box_layout .reports_flow_settings .setting_header {
-    margin-bottom: 8px
-}
-
 .box_layout .reports_flow_settings .box_body {
     border-radius: 0px 0px 4px 4px
+}
+
+.box_layout .reports_flow_settings .box_body .setting.important .slider_amount,
+.box_layout .reports_flow_settings .box_body .setting.important .slider_handler {
+    background-color: #f05c44
+}
+
+.box_layout .reports_flow_settings .box_body .setting:not(:first-child) {
+    margin-top: 24px
+}
+
+.box_layout .reports_flow_settings .box_body .setting .setting_header {
+    margin-bottom: 8px
 }
 
 body.sf .mention_tt_actions {

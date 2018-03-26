@@ -16144,7 +16144,7 @@ input:checked+.adultConfirm__checkboxIcon:after {
 }
 
 .article>cite {
-    padding: 31px 0;
+    padding: 31px 30px;
     text-align: center;
     display: block;
     font-style: normal;
@@ -16222,11 +16222,11 @@ input:checked+.adultConfirm__checkboxIcon:after {
 .article code {
     background-color: #eee;
     border-radius: 3px;
-    font-family: Menlo, Monaco, Courier New, Courier, monospace;
+    font-family: Menlo, Monaco, Consolas, Courier New, Courier, monospace;
     margin: 0 2px;
     font-size: 16px;
     line-height: 19px;
-    padding: 2px 4px 1px;
+    padding: 1px 4px 2px;
     -o-transition: background-color 450ms ease-in-out;
     transition: background-color 450ms ease-in-out;
     word-break: break-word;
@@ -16235,6 +16235,7 @@ input:checked+.adultConfirm__checkboxIcon:after {
 }
 
 .article>pre {
+    font-size: 13px;
     padding: 15px;
     margin-right: 0;
     margin-left: 0
@@ -16830,6 +16831,10 @@ input:checked+.adultConfirm__checkboxIcon:after {
     border-left: 3px solid #000
 }
 
+.article.article_mobile>cite {
+    padding: 30px 10px
+}
+
 .article.article_mobile>figure {
     margin-right: -16px;
     margin-left: -16px
@@ -16867,7 +16872,8 @@ input:checked+.adultConfirm__checkboxIcon:after {
 .blog_entry_text_wrap .article,
 .blog_post_text .article {
     margin-top: 20px;
-    line-height: 1.25em
+    line-height: 1.25em;
+    -webkit-font-smoothing: subpixel-antialiased!important
 }
 
 .blog_entry_text .article>*,

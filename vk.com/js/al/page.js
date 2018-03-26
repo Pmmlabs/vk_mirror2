@@ -2254,6 +2254,7 @@ var Wall = {
 
         uiTabs.switchTab(el);
         cur.wallTab = 'suggested';
+        delete cur.suggestedDeletedCount;
 
         if (rows !== undefined) {
             wall.suggestLoaded(rows, notAll);
