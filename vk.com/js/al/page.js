@@ -3378,6 +3378,12 @@ var Wall = {
         Wall.hideEditPost(true);
         if (cur.wallAddMedia) cur.wallAddMedia.unchooseMedia();
         checkbox('export_status', false);
+
+        var composer = data(rf, 'composer')
+        if (composer) {
+            re(composer.articleConvertEl)
+            composer.articleConvertEl = false
+        }
     },
     fixPostParams: function(params) {
         var newParams = clone(params);
@@ -4332,7 +4338,8 @@ var Wall = {
                 toup: toup,
                 wddClass: 'reply_composer_dd',
                 width: getSize(rf.parentNode)[0],
-                media: media
+                media: media,
+                isReply: true,
             });
         }
         triggerEvent(window, 'scroll');
@@ -8154,6 +8161,20 @@ Composer = {
         composer.inited = true;
         Composer.updateAutoComplete(composer);
 
+        composer.edit = options.edit
+        composer.isReply = options.isReply
+
+        Composer.updateArticleConvertSuggest(composer)
+
+        var prevOnMediaChanged = cur.onMediaChanged
+        cur.onMediaChanged = function() {
+            Composer.updateArticleConvertSuggest(composer)
+
+            if (prevOnMediaChanged) {
+                prevOnMediaChanged()
+            }
+        }
+
         return composer;
     },
     initEvents: function(composer) {
@@ -8167,6 +8188,9 @@ Composer = {
         composer.inited = false;
         if (composer.addMedia) composer.addMedia.destroy();
         data(composer.input, 'composer', null);
+
+        re(composer.articleConvertEl)
+        composer.articleConvertEl = false
     },
 
     onKeyEvent: function(composer, event) {
@@ -8220,6 +8244,88 @@ Composer = {
         }
         if (event.type == 'keyup' && (!controlEvent || event.keyCode == KEY.RETURN)) {
             Composer.updateAutoComplete(composer, event);
+        }
+
+        Composer.updateArticleConvertSuggest(composer)
+    },
+    isArticleConvertSuggestAvailable: function(composer) {
+        if (composer.edit || composer.isReply) {
+            return false
+        }
+
+        var mediaTypes = cur.wallAddMedia ? cur.wallAddMedia.types : false
+        var canCreateArticle = false
+        if (mediaTypes) {
+            for (var i = 0; i < mediaTypes.length; i++) {
+                if (mediaTypes[i][0] == 'article') {
+                    canCreateArticle = true
+                    break
+                }
+            }
+        }
+
+        if (!canCreateArticle || !isArticleEditorAvailable() || !cur.options.articleConvertExpGroup) {
+            return false
+        }
+
+        var supportedMedias = true
+        each((cur.wallAddMedia.getMedias() || []), function(index, media) {
+            if (!inArray(media[0], ['photo', 'video', 'postpone', 'mark_as_ads'])) {
+                supportedMedias = false
+                return false
+            }
+        })
+        if (!supportedMedias) {
+            return false
+        }
+
+        var isEnoughSymbols = cur.options.articleConvertThreshold > 0 && composer.curValue.length >= cur.options.articleConvertThreshold
+        if (!isEnoughSymbols) {
+            return false
+        }
+
+        return true
+    },
+    updateArticleConvertSuggest: function(composer) {
+        if (Composer.isArticleConvertSuggestAvailable(composer)) {
+            if (!composer.articleConvertEl) {
+                var inputWrapEl = gpeByClass('post_field_wrap', composer.input)
+                var btnClass = 'article_post_convert_toggle'
+                var btnText = getLang('profile_convert_to_article')
+
+                if (cur.options.articleConvertExpGroup == 2) {
+                    btnClass = 'round_button'
+                    btnText = getLang('profile_convert_to_article_short')
+                } else if (cur.options.articleConvertExpGroup == 3) {
+                    btnClass = 'flat_button secondary'
+                    btnText = getLang('profile_convert_to_article_short')
+                }
+
+                composer.articleConvertEl = se('<button class="article_post_convert ' + btnClass + '">' + btnText + '</button>')
+                inputWrapEl.appendChild(composer.articleConvertEl)
+
+                removeEvent(composer.articleConvertEl)
+                addEvent(composer.articleConvertEl, 'click', function() {
+                    cur.postComposer = composer
+
+                    var medias = []
+                    each((cur.wallAddMedia.getMedias() || []), function(index, media) {
+                        if (inArray(media[0], ['photo', 'video'])) {
+                            medias.push(media[0] + '_' + media[1])
+                        }
+                    })
+
+                    openArticleEditor(cur.oid, 0, {
+                        text: composer.curValue,
+                        medias: medias,
+                    })
+                })
+            }
+
+            show(composer.articleConvertEl)
+        } else {
+            re(composer.articleConvertEl)
+            delete composer.articleConvertEl
         }
     },
     onMouseEvent: function(composer, event) {
@@ -8618,6 +8724,8 @@ Composer = {
             media.unchooseMedia();
             media.urlsCancelled = [];
         }
+
+        re(composer.articleConvertEl)
 
         return state;
     },

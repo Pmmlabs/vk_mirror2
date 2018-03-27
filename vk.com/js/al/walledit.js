@@ -103,7 +103,8 @@ var WallEdit = {
                     })
                 }.pbind(c)), cur.wallEditComposer = Composer.init(p, {
                     lang: g,
-                    media: t
+                    media: t,
+                    edit: !0
                 }), t) {
                 cur.wallEditMedia = cur.dropboxAddMedia = cur.wallEditComposer.addMedia, WallUpload.attachToEl(d);
                 for (var u = 0, v = i.length; v > u; ++u) cur.wallEditMedia.chooseMedia.apply(cur.wallEditMedia, i[u]), "postpone" == i[u][0] && cur.editingPost.push(i[u][1])

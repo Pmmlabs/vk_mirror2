@@ -3441,6 +3441,76 @@ img.im_photo_thumb {
     margin-top: 15px
 }
 
+.im-sick {
+    position: relative;
+    min-height: 400px;
+    text-align: center
+}
+
+.im-sick--main {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 80px;
+    left: 0;
+    font-size: 0
+}
+
+.im-sick--main:before {
+    width: 0;
+    height: 100%;
+    content: '';
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.im-sick--main:before,
+.im-sick--main-in {
+    display: inline-block;
+    vertical-align: middle
+}
+
+.im-sick--main-in {
+    width: 300px;
+    margin: auto
+}
+
+.im-sick--picture {
+    vertical-align: top;
+    width: 58px;
+    height: 56px;
+    margin-right: -5px
+}
+
+.im-sick--title {
+    margin: 12px 0 5px;
+    font-size: 16px;
+    color: #222
+}
+
+.im-sick--description {
+    font-size: 14px;
+    line-height: 20px;
+    color: #939393
+}
+
+.im-sick--footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 20px 0
+}
+
+.im-sick--info,
+.im-sick--reload {
+    font-size: 13px;
+    line-height: 19px;
+    color: #939393
+}
+
 .im-page_classic.im-page {
     width: 550px;
     min-height: 500px;

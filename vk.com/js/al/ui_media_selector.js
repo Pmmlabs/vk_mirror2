@@ -435,7 +435,7 @@ function MediaSelector(e, a, t, i) {
                             S = i.nocl ? "" : " onclick=\"return showVideo('" + t + "', '" + o.list_id + "', {queue:1,autoplay:1});\"", A = "<div" + S + ' class="fl_l page_preview_video"><img class="page_preview_video" src="' + o.thumb + '" /></div>', T = 1, B = g, P = o.list_id;
                             break;
                         case "article":
-                            if (x.article || x.share || x.page || x.pretty_cards) return !1;
+                            if (x.article || x.share || x.page || x.pretty_cards || !o) return !1;
                             A = '<div class="medadd_h medadd_h_pretty_cards inl_bl">' + getLang("global_article") + "</div>", M = o.snippet_html, t = o.url, B = f;
                             break;
                         case "audio":
@@ -628,37 +628,37 @@ function MediaSelector(e, a, t, i) {
                     return ie && "click" == ie.type && (ie.ctrlKey || ie.metaKey || ie.shiftKey) && s.attachCount() + 1 <= n && (d = !0), cur.fileApiUploadStarted && void 0 !== o.upload_ind || cur.preventBoxHide || d === !0 || inArray(a, ["poll", "share", "page", "postpone", "mark_as_ads", "pretty_cards"]) || boxQueue.hideLast(), cur.lastPostMsg = !1, i.onMediaAdd && i.onMediaAdd(), getAudioPlayer().updateCurrentPlaying(), cur.onMediaChanged && cur.onMediaChanged(s.chosenMedias), void 0 !== o.upload_ind && delete o.upload_ind, !1
                 }
             },
-            unchooseMedia: function(a) {
+            unchooseMedia: function(a, t) {
                 if (s.onChange && s.onChange(!1, a) === !1) return !1;
                 if (l) {
                     if (void 0 === a) {
                         if (window.ThumbsEdit && ThumbsEdit.removeAll("thumbs_edit" + u), each(s.chosenMedias, function(e, a) {
-                                a && void 0 !== e && s.unchooseMedia(e)
+                                a && void 0 !== e && (t ? inArray(a[0], t) : !0) && s.unchooseMedia(e)
                             }), s.urlsCancelled = [], i.onChangedSize) {
                             i.onChangedSize();
-                            var t = setInterval(i.onChangedSize, 50);
-                            setTimeout(clearTimeout.bind(null, t), 500)
+                            var o = setInterval(i.onChangedSize, 50);
+                            setTimeout(clearTimeout.bind(null, o), 500)
                         }
                         return
                     }
-                    var o, r = s.chosenMedias;
-                    if (r[a]) {
-                        switch (r[a][2] ? ((o = geByClass1("page_media_x_wrap", r[a][2], "div")) && o.tt && o.tt.el && o.tt.destroy(), domPN(r[a][2]) == w && w.sorter ? (each(w.sorter.elems, function() {
+                    var r, d = s.chosenMedias;
+                    if (d[a]) {
+                        switch (d[a][2] ? ((r = geByClass1("page_media_x_wrap", d[a][2], "div")) && r.tt && r.tt.el && r.tt.destroy(), domPN(d[a][2]) == w && w.sorter ? (each(w.sorter.elems, function() {
                             setStyle(this, {
                                 top: "auto",
                                 left: "auto",
                                 cursor: "auto"
                             })
-                        }), w.sorter.destroy(), re(r[a][2]), w.childNodes.length > 1 && sorter.init(w, {
+                        }), w.sorter.destroy(), re(d[a][2]), w.childNodes.length > 1 && sorter.init(w, {
                             onReorder: i.onAddMediaChange
-                        })) : domPN(r[a][2]) == v && v.qsorter ? (each(v.qsorter.elems, function() {
+                        })) : domPN(d[a][2]) == v && v.qsorter ? (each(v.qsorter.elems, function() {
                             setStyle(domFC(this), {
                                 top: "auto",
                                 left: "auto"
                             }), setStyle(this, {
                                 cursor: "auto"
                             })
-                        }), v.qsorter.destroy(), re(r[a][2]), v.childNodes.length > 1 && qsorter.init(v, s.qsorterOpts())) : re(r[a][2])) : ("photo" == r[a][0] || "video" == r[a][0] || "album" == r[a][0]) && window.ThumbsEdit && ThumbsEdit.removeById("thumbs_edit" + u, r[a][0] + r[a][1]), r[a][0]) {
+                        }), v.qsorter.destroy(), re(d[a][2]), v.childNodes.length > 1 && qsorter.init(v, s.qsorterOpts())) : re(d[a][2])) : ("photo" == d[a][0] || "video" == d[a][0] || "album" == d[a][0]) && window.ThumbsEdit && ThumbsEdit.removeById("thumbs_edit" + u, d[a][0] + d[a][1]), d[a][0]) {
                             case "page":
                             case "share":
                                 s.shareData = {}, re(s.sharePreview), hide("medadd_c_linkimg_loader"), clearTimeout(cur.showLoaderTimeout), clearInterval(cur.shareImgInterval), clearTimeout(cur.shareImgInterval2), clearTimeout(cur.imgLoadTimeout), delete s.sharePreview, show(domByClass(h.menuNode, "_type_share")), show(e), show(geByClass1("signed_wrap", domPN(m)));
@@ -681,57 +681,57 @@ function MediaSelector(e, a, t, i) {
                                 show(e);
                                 break;
                             case "postpone":
-                                var d = geByClass1("medadd_c_timersett", s.postponePreview);
-                                cur.editingPost && d ? re(domFC(s.postponePreview)) : re(s.postponePreview), s.postponePreview = !1, removeClass("official", "disabled"), cur.editingPost ? ge("wpe_save").innerHTML = getLang("wall_publish_now") : ge("send_post").innerHTML = getLang("wall_send"), show(domByClass(h.menuNode, "_type_postpone"));
+                                var _ = geByClass1("medadd_c_timersett", s.postponePreview);
+                                cur.editingPost && _ ? re(domFC(s.postponePreview)) : re(s.postponePreview), s.postponePreview = !1, removeClass("official", "disabled"), cur.editingPost ? ge("wpe_save").innerHTML = getLang("wall_publish_now") : ge("send_post").innerHTML = getLang("wall_send"), show(domByClass(h.menuNode, "_type_postpone"));
                                 break;
                             case "mark_as_ads":
                                 show(domByClass(h.menuNode, "_type_mark_as_ads")), s.markAsAds = !1
                         }
-                        r[a] = !1
+                        d[a] = !1
                     }
                     i.toggleLnk && toggle(e, s.attachCount() < n), toggle(g, !!(c ? geByClass1("thumb_wrap", g) : domFC(g))), toggle(v, !!domFC(v)), toggle(w, !!domFC(w)), toggle(b, !!domFC(b)), toggle(f, !!domFC(f)), toggle(k, !!domFC(k)), toggle(y, !!domFC(y)), toggle(p, !!domFC(p))
                 } else {
-                    var _, o;
-                    if (void 0 == a && (a = 0), (o = geByClass("page_media_x_wrap", m, "div")[a]) && o.tt && o.tt.el && o.tt.destroy(), 1 == a && s.postponePreview) {
+                    var C, r;
+                    if (void 0 == a && (a = 0), (r = geByClass("page_media_x_wrap", m, "div")[a]) && r.tt && r.tt.el && r.tt.destroy(), 1 == a && s.postponePreview) {
                         show(geByClass1("add_media_type_" + u + "_postpone", h.menuNode, "a"));
-                        var C = domPN(s.postponePreview);
-                        window.tooltips && tooltips.destroyAll(C), re(C), s.postponePreview = !1;
-                        var x = h.lastTypes;
+                        var x = domPN(s.postponePreview);
+                        window.tooltips && tooltips.destroyAll(x), re(x), s.postponePreview = !1;
+                        var S = h.lastTypes;
                         each(h.types, function(e, a) {
-                            "postpone" === a[0] && x.push(a)
-                        }), h.setItems(x)
+                            "postpone" === a[0] && S.push(a)
+                        }), h.setItems(S)
                     } else if (2 == a && s.markAsAds) {
                         s.markAsAds = !1;
-                        var S = geByClass1("page_preview_mark_as_ads_wrap", m);
-                        window.tooltips && S && tooltips.destroyAll(S), re(S);
-                        var x = h.lastTypes;
+                        var P = geByClass1("page_preview_mark_as_ads_wrap", m);
+                        window.tooltips && P && tooltips.destroyAll(P), re(P);
+                        var S = h.lastTypes;
                         each(h.types, function(e, a) {
-                            "mark_as_ads" === a[0] && x.push(a)
-                        }), h.setItems(x)
+                            "mark_as_ads" === a[0] && S.push(a)
+                        }), h.setItems(S)
                     } else {
                         if (s.postponePreview || s.markAsAds) {
-                            for (var C = s.postponePreview && domPN(s.postponePreview), S = s.markAsAds && domPN(geByClass1("page_preview_mark_as_ads_wrap", m)), P = [], A = 0; A < m.childNodes.length; A++) {
-                                var M = m.childNodes[A];
-                                "DIV" == M.nodeName && M != C && M != S && P.push(M)
+                            for (var x = s.postponePreview && domPN(s.postponePreview), P = s.markAsAds && domPN(geByClass1("page_preview_mark_as_ads_wrap", m)), A = [], M = 0; M < m.childNodes.length; M++) {
+                                var I = m.childNodes[M];
+                                "DIV" == I.nodeName && I != x && I != P && A.push(I)
                             }
-                            each(P, function(e, a) {
+                            each(A, function(e, a) {
                                 re(a)
                             });
-                            var x = [];
+                            var S = [];
                             each(h.types, function(e, a) {
-                                "postpone" === a[0] && s.postponePreview || "mark_as_ads" === a[0] && s.markAsAds || x.push(a)
-                            }), h.setItems(x)
+                                "postpone" === a[0] && s.postponePreview || "mark_as_ads" === a[0] && s.markAsAds || S.push(a)
+                            }), h.setItems(S)
                         } else val(m, ""), addClass(m, "med_no_attach"), h.setItems(h.types);
-                        s.chosenMedia && (s.chosenMedia = !1, s.chosenMediaData = !1), (_ = s.shareData) && (_.url && s.urlsCancelled.push(_.url), _.initialPattern && s.urlsCancelled.push(_.initialPattern), s.shareData = {}), each([s.sharePreview, s.pollPreview], function() {
+                        s.chosenMedia && (s.chosenMedia = !1, s.chosenMediaData = !1), (C = s.shareData) && (C.url && s.urlsCancelled.push(C.url), C.initialPattern && s.urlsCancelled.push(C.initialPattern), s.shareData = {}), each([s.sharePreview, s.pollPreview], function() {
                             re(this)
                         }), s.sharePreview = s.pollPreview = !1
                     }
                     i.toggleLnk && show(e)
                 }
-                if (toggleClass(m, "media_preview_has_medias", s.hasVisibleRows() && (isVisible(e) || isVisible(geByClass1("signed_wrap", domPN(m))))), cur.onMediaChanged && cur.onMediaChanged(r), cur.lastPostMsg = !1, s.onChange && s.onChange(!1), i.onChangedSize) {
+                if (toggleClass(m, "media_preview_has_medias", s.hasVisibleRows() && (isVisible(e) || isVisible(geByClass1("signed_wrap", domPN(m))))), cur.onMediaChanged && cur.onMediaChanged(d), cur.lastPostMsg = !1, s.onChange && s.onChange(!1), i.onChangedSize) {
                     i.onChangedSize();
-                    var t = setInterval(i.onChangedSize, 50);
-                    setTimeout(clearTimeout.bind(null, t), 500)
+                    var o = setInterval(i.onChangedSize, 50);
+                    setTimeout(clearTimeout.bind(null, o), 500)
                 }
             },
             singleAdded: function(a, t) {

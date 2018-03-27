@@ -1464,6 +1464,10 @@ if (!window.Emoji) {
                 if (editable.check) editable.check();
                 setTimeout(Emoji.correctCaret.pbind(editable), 5);
                 Emoji.onChange(opts);
+                var composer = data(editable, 'composer')
+                if (composer && window.Composer) {
+                    Composer.updateAutoComplete(composer)
+                }
             } else {
                 var textArea = opts.txt;
                 var val = textArea.value;

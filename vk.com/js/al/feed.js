@@ -1464,13 +1464,7 @@ var Feed = {
         return setTimeout(feed.onFeedSearch.pbind(cur.feedEls.search), 0), !1
     },
     init: function(e) {
-        cur.caf = function() {
-            ajax.post("al_index.php", {
-                act: "hide_feature_tt",
-                type: "articles_web",
-                clear: 1
-            })
-        }, setTimeout(function() {
+        setTimeout(function() {
             each(geByTag("textarea", cur.rowsCont), function() {
                 placeholderSetup(this)
             })

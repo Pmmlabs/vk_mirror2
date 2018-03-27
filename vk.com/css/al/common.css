@@ -8469,3 +8469,29 @@ button.ui_load_more_btn {
 .cache_static_page #page_wrap {
     background: #edeef0
 }
+
+.article_post_convert {
+    margin-left: 6px;
+    margin-bottom: 15px
+}
+
+.article_post_convert.round_button {
+    background-color: transparent;
+    color: #2a5885;
+    border: 1px solid #d3dce6
+}
+
+.article_post_convert.round_button:hover {
+    background-color: #f5f7fa
+}
+
+.article_post_convert_toggle {
+    color: #2a5885;
+    background-color: transparent;
+    border: none;
+    cursor: pointer
+}
+
+.article_post_convert_toggle:hover {
+    text-decoration: underline
+}
