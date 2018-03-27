@@ -2782,7 +2782,9 @@ var Wall = {
             wall_start_from: wallNextFrom
         }, {
             onDone: function(rows, names, videos, newNextFrom) {
-                if (tmp !== cur.oid) {
+                if (tmp !== cur.oid || type !== cur.wallType) {
+                    delete(cur.wallLoading);
+                    delete cur.wallTypeLoading[type];
                     return;
                 }
 

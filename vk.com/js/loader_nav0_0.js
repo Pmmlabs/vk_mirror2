@@ -143,7 +143,6 @@ var stVersions = {
     'uncommon.js': 1640247993,
     'uncommon.css': 16533801999,
     'filebutton.css': 1044306797,
-    'filebutton.js': 2454165044,
     'lite.js': 2497728057,
     'lite.css': 44382325074,
     'rtl.css': 17330834928,
@@ -196,7 +195,7 @@ var stVersions = {
     'video.css': 26445688655,
     'videocat.js': 3590298689,
     'videocat.css': 24687962206,
-    'videoview.js': 17970665596,
+    'videoview.js': 17683260862,
     'videoview.css': 26157734535,
     'video_edit.js': 2135196486,
     'video_edit.css': 24382633834,
@@ -221,7 +220,7 @@ var stVersions = {
     'module.css': 20966655239,
     'owner_photo.js': 3401070266,
     'owner_photo.css': 22242630865,
-    'page.js': 706528468,
+    'page.js': 709271138,
     'page.css': 35388400547,
     'page_help.css': 24794954352,
     'public.css': 29699231097,
@@ -328,8 +327,8 @@ var stVersions = {
     'cmodules/sw/sw.js': 4889939668,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
-    'restore.js': 3799506757,
-    'restore.css': 19768774384,
+    'restore.js': 4102685181,
+    'restore.css': 20254379240,
     'docs.js': 995211544,
     'docs.css': 25755679520,
     'tags_dd.js': 3735969205,
@@ -391,7 +390,7 @@ var stVersions = {
     'ads_web.js': 4274163593,
     'mrtarg.js': 1146267795,
     'mrtarg.css': 3142794554,
-    'cmodules/web/ads_edit_easy.js': 3062656793,
+    'cmodules/web/ads_edit_easy.js': 2869794635,
     'health.css': 2251304991,
     'health.js': 2993570139,
     'pinbar.js': 284788792,
@@ -646,4 +645,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 6667;
+var _rnd = 5190;

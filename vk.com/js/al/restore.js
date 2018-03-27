@@ -143,35 +143,35 @@ var Restore = {
     },
     screenshootCheck: function(e, o) {
         if (!o) {
-            if (1 == e) var t = val("photo_input");
-            else var t = val("doc_input");
+            var t, r;
+            t = 1 == e ? val("photo_input") : val("doc_input");
             try {
-                var r = new RegExp(cur.screenshot_regex, "gi");
-                if (r.test(t)) {
-                    var s = new MessageBox({
+                var s = new RegExp(cur.screenshot_regex, "gi");
+                if (s.test(t)) {
+                    var n = new MessageBox({
                         title: getLang("global_action_confirmation")
                     }).addButton(getLang("restore_no_other_photo"));
-                    return void s.addButton(getLang("box_yes"), function() {
-                        Restore.screenshootCheck(e, !0), s.hide()
+                    return void n.addButton(getLang("box_yes"), function() {
+                        Restore.screenshootCheck(e, !0), n.hide()
                     }, "gray").content(getLang("restore_screenshoot_confirm_box_text")).show()
                 }
-            } catch (n) {}
+            } catch (a) {}
         }
-        if (1 == e) var a = ge("photo_file_button");
-        else var a = ge("doc_file_button");
-        lockButton(a), setTimeout(function() {
-            a.innerHTML = a.innerHTML
-        }, 0);
+        r = 1 == e ? ge("photo_file_button") : ge("doc_file_button"), lockButton(r);
         var i = 1 == e ? "photo_upload_ids" : "doc_upload_ids";
-        val(i, Restore.getUploadedPhotosIds(!0).join(",")), 1 == e ? document.photo_upload.submit() : document.doc_upload.submit()
+        val(i, Restore.getUploadedPhotosIds(!0).join(",")), lockButton("restore_extend_request_button"), cur.restoreTTLTimeout && clearTimeout(cur.restoreTTLTimeout), 1 == e ? document.photo_upload.submit() : document.doc_upload.submit()
     },
     uploadError: function(e, o) {
+        unlockButton("restore_extend_request_button"), cur.regenerateHash && cur.regenerateHash();
         var t = "",
             r = 4e3;
-        e ? 1 == e || 4 == e ? t = getLang("restore_not_uploaded") : 2 == e ? t = getLang("restore_bad_format") : 5 == e ? t = getLang("restore_bad_size") : 7 == e ? (t = getLang("restore_too_small_image"), r = 8e3) : 8 == e ? (t = getLang("restore_photo_already_attached"), r = 8e3) : 9 == e && (t = getLang("restore_photo_incorrect"), r = 8e3) : t = getLang("global_unknown_error"), setTimeout(showFastBox({
+        e ? 1 == e || 4 == e ? t = getLang("restore_not_uploaded") : 2 == e ? t = getLang("restore_bad_format") : 5 == e ? t = getLang("restore_bad_size") : 7 == e ? (t = getLang("restore_too_small_image"), r = 8e3) : 8 == e ? (t = getLang("restore_photo_already_attached"), r = 8e3) : 9 == e ? (t = getLang("restore_photo_incorrect"), r = 8e3) : 10 == e && (t = getLang("support_mobile_restore_no_face_found"), r = 0) : t = getLang("global_unknown_error"), r ? setTimeout(showFastBox({
             title: getLang("global_error"),
             width: 470
-        }, t).hide, r);
+        }, t).hide, r) : showFastBox({
+            title: getLang("global_error"),
+            width: 470
+        }, t);
         var s = o ? "photo_" : "doc_",
             n = ge(s + "file_button");
         unlockButton(n)
@@ -179,21 +179,22 @@ var Restore = {
     uploadComplete: function(e, o, t, r, s, n) {
         var a = r ? "photo" : "doc",
             i = a + "_",
-            u = ge(i + "file_button");
+            u = ge(i + "file_button") || ge("restore_extend_request_button");
         unlockButton(u);
-        var l = cur.images.length,
-            c = !0;
+        var c = cur.images.length,
+            l = !0;
         each(cur.images, function(e, o) {
-            return o.type == r && o.deleted ? (l = e, c = !1, !1) : void 0
-        }), cur.images[l] = {
+            return o.type == r && o.deleted ? (c = e, l = !1, !1) : void 0
+        }), cur.images[c] = {
             id: o,
             hash: t,
             type: r
         }, ++cur.images_count[r];
-        var _ = 2 == n ? Restore.maxPhotosWithType : Restore.maxPhotos;
-        ge(i + "input").disabled = cur.images_count[r] >= _, ge(i + "input").disabled && hide(i + "upload"), show(i + "photos"), s = s.split("%index%").join(l).split("%type%").join(r);
-        var h = se(s);
-        return c ? ge(i + "photos").appendChild(h) : domReplaceEl(ge("photo" + l), h), hide("simple_request_incorrect"), Restore.changeFullRequestButton(!0)
+        var _ = 2 == n || 3 == n ? Restore.maxPhotosWithType : Restore.maxPhotos;
+        ge(i + "input").disabled = cur.images_count[r] >= _, ge(i + "input").disabled && 3 != n && hide(i + "upload"), show(i + "photos"), s = s.split("%index%").join(c).split("%type%").join(r);
+        var h = se(s),
+            d = ge(i + "photos");
+        d && (l ? d.appendChild(h) : domReplaceEl(d, h)), hide("simple_request_incorrect"), 3 == n ? Restore.extendRequest(ge("restore_extend_request_button")) : Restore.changeFullRequestButton(!0)
     },
     deleteImage: function(e, o, t) {
         var r = e ? "photo" : "doc",
@@ -201,9 +202,9 @@ var Restore = {
         if (cur.images[o].deleted) {
             if (cur.images_count[e] >= 2) return;
             cur.images[o].deleted = !1, removeClass("photo_img" + o, "restore_uploaded_image__img_removed");
-            var n = 2 == t ? Restore.maxPhotosWithType : Restore.maxPhotos;
-            ++cur.images_count[e] >= n && (ge(s + "input").disabled = !0, hide(s + "upload")), ge("del_link" + o).innerHTML = getLang("global_delete"), show("restore_roll_button_" + r)
-        } else cur.images[o].deleted = !0, addClass("photo_img" + o, "restore_uploaded_image__img_removed"), --cur.images_count[e], ge(s + "input").disabled = !1, show(s + "upload"), ge("del_link" + o).innerHTML = getLang("global_dont_delete"), cur.images_count[e] || hide("restore_roll_button_" + r)
+            var n = 2 == t || 3 == t ? Restore.maxPhotosWithType : Restore.maxPhotos;
+            ++cur.images_count[e] >= n && (ge(s + "input").disabled = !0, hide(s + "upload")), val("del_link" + o, getLang("global_delete")), show("restore_roll_button_" + r)
+        } else cur.images[o].deleted = !0, addClass("photo_img" + o, "restore_uploaded_image__img_removed"), --cur.images_count[e], ge(s + "input").disabled = !1, show(s + "upload"), val("del_link" + o, getLang("global_dont_delete")), cur.images_count[e] || hide("restore_roll_button_" + r)
     },
     checkedPasswordStatus: function() {
         if (cur.restorePasswordChecked) {
@@ -231,8 +232,7 @@ var Restore = {
     submitPageLink: function() {
         var e = ge("submitBtn"),
             o = val("link");
-        return o ? (hide("error"), void ajax.post("al_restore.php", {
-            act: "a_profile_link",
+        return o ? (hide("error"), void ajax.post("al_restore.php?act=a_profile_link", {
             link: o
         }, {
             onDone: function(e) {
@@ -282,7 +282,6 @@ var Restore = {
     },
     extendRequest: function(e, o) {
         var t = {
-            act: "a_extend",
             rid: cur.options.request_id,
             hash: cur.options.phash,
             comment: val("comment"),
@@ -290,21 +289,26 @@ var Restore = {
         };
         o === !0 && (t.force = 1);
         for (var r = 0; r < cur.images.length; ++r) cur.images[r].deleted || t.images.push(cur.images[r].hash);
-        if (!trim(t.comment).length && !t.images.length) return void elfocus("comment");
-        if (!t.images.length && cur.restorePhotosRequested && !o) {
+        if (!trim(t.comment).length && ge("comment") && !t.images.length) return void elfocus("comment");
+        if (cur.restoreTTLTimeout && clearTimeout(cur.restoreTTLTimeout), !t.images.length && cur.restorePhotosRequested && !o) {
             var s = {
                 title: getLang("global_warning"),
                 width: 620
             };
-            return void(cur.restoreConfirmNoPhotos = showFastBox(s, getLang("restore_extend_no_photos_are_you_sure"), getLang("restore_extend"), null, getLang("restore_dont_extend_with_photos"), function() {
+            return void(cur.restoreConfirmNoPhotos = showFastBox(s, getLang("restore_extend_no_photos_are_you_sure"), getLang("restore_extend"), function() {
+                cur.regenerateHash && cur.regenerateHash(), cur.restoreConfirmNoPhotos.hide()
+            }, getLang("restore_dont_extend_with_photos"), function() {
                 cur.restoreConfirmNoPhotos.hide(), Restore.extendRequest(e, !0)
             }))
         }
-        ajax.post("al_restore.php", t, {
+        cur.selfieHash && Restore.deleteImage(1, 0, 3), ajax.post("al_restore.php?act=a_extend", t, {
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e),
             onDone: function(e, o) {
                 0 == e ? Restore.showMsgBox(o, getLang("global_error")) : 1 == e ? (val("request_result_msg", o), hide("request_result_wrap"), show("request_result_msg")) : 2 == e && notaBene("comment")
+            },
+            onFail: function() {
+                cur.regenerateHash && cur.regenerateHash()
             }
         })
     },
@@ -541,8 +545,7 @@ var Restore = {
         toggle("restore_roll_button", e), o && val("restore_submit_full_request", o)
     },
     activate: function(e, o, t) {
-        isButtonLocked(e) || ajax.post("restore", {
-            act: "a_activate",
+        isButtonLocked(e) || ajax.post("restore?act=a_activate", {
             id: o,
             hash: t
         }, {

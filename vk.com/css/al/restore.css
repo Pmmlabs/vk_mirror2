@@ -184,6 +184,11 @@
     text-align: center
 }
 
+.restore_submit_row.restore_extend_submit_form_notop {
+    border-top: 0;
+    padding-top: 0
+}
+
 .restore_section_wrap {
     float: left;
     width: 255px
@@ -394,13 +399,13 @@
 }
 
 .restore_extend_comment {
+    border: 1px solid #d3d9de;
+    border-radius: 1px;
     box-sizing: border-box;
+    margin-top: 8px;
     height: 55px;
     width: 100%;
-    resize: vertical;
-    margin-top: 8px;
-    border: 1px solid #d3d9de;
-    border-radius: 1px
+    display: block
 }
 
 .restore_extend_submit_form {
@@ -408,8 +413,49 @@
     padding-top: 10px
 }
 
+.restore_extend_submit_form>.flat_button,
+.restore_extend_submit_form>.restore_flat_button_form,
+.restore_extend_submit_form_notop>.flat_button,
+.restore_extend_submit_form_notop>.restore_flat_button_form {
+    float: left
+}
+
+.restore_extend_submit_form>.flat_button:first-child,
+.restore_extend_submit_form_notop>.flat_button:first-child,
+.restore_flat_button_form {
+    margin-right: 10px
+}
+
+.restore_flat_button_form__file {
+    position: absolute;
+    visibility: hidden
+}
+
 .page_section .restore_delayed_msg.msg {
     margin-bottom: 10px
+}
+
+.restore_extend_form_selfie {
+    border: 1px solid #d3d9de;
+    margin: 20px 0;
+    padding: 15px;
+    text-align: center;
+    font-size: 32px
+}
+
+.restore_extend_form_selfie_progress {
+    opacity: 0.5;
+    filter: alpha(opacity=50)
+}
+
+.restore_extend_form_selfie_code {
+    letter-spacing: 8px
+}
+
+.restore_extend_form_selfie_ttl {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
 }
 
 .restore_msg_wide.msg {
@@ -547,10 +593,6 @@
     padding: 8px;
     margin: 10px 0;
     line-height: 160%
-}
-
-.restore_close_button {
-    margin-left: 10px
 }
 
 .restore_info_section_title {

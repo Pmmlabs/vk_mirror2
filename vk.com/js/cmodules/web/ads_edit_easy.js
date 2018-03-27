@@ -12,9 +12,9 @@
     return t.m = e, t.c = s, t.p = "", t(0)
 }({
     0: function(e, t, s) {
-        e.exports = s(108)
+        e.exports = s(8)
     },
-    108: function(e, t) {
+    8: function(e, t) {
         "use strict";
 
         function s(e, t) {
@@ -495,14 +495,18 @@
                     })
                 })
             }, e.prototype.createAd = function(e) {
-                var t = extend({}, this.getUpdateTargetParams(), this.options.save_params, {
-                    client_id: this.options.selected_union_id,
-                    day_limit: this.dailyLimitDropdown.val(),
-                    duration: this.durationDropdown.val(),
-                    all_limit: this.options.totalBudget,
-                    criteria_preset_id: this.audienceDropdown.val()
-                });
-                ajax.post("/adsedit?act=save_ad", t, {
+                var t = this.getUpdateTargetParams(),
+                    s = extend({}, t, this.options.save_params, {
+                        client_id: this.options.selected_union_id,
+                        day_limit: this.dailyLimitDropdown.val(),
+                        duration: this.durationDropdown.val(),
+                        all_limit: this.options.totalBudget,
+                        criteria_preset_id: this.audienceDropdown.val(),
+                        planner_reach: this.options.expected_reach.value,
+                        total_reach: this.options.expected_reach.limit,
+                        suggested_criteria: this.isSuggestedCriteria(t)
+                    });
+                ajax.post("/adsedit?act=save_ad", s, {
                     onDone: this.onCreateAdDone.bind(this, !0),
                     onFail: this.onCreateAdDone.bind(this, !1),
                     showProgress: lockButton.pbind(e),
@@ -846,6 +850,14 @@
                     a[1], this.editCriteriaPreset(o, 0, t, 0)
                 }
                 return this.isEditingAudienceName = !1, !1
+            }, e.prototype.isSuggestedCriteria = function(e) {
+                if (!this.options.suggested_criteria) return !1;
+                for (var t = ["sex", "age_from", "age_to", "cities", "country"], s = 0; s < t.length; s++) {
+                    var n = t[s],
+                        i = this.options.suggested_criteria[n];
+                    if (i || (i = "0"), i != e[n]) return !1
+                }
+                return !0
             }, e
         }();
         try {
