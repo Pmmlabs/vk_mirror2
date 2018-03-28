@@ -842,25 +842,25 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
     }
 }
 
-.video_thumb_actions #edit .icon {
+.video_thumb_actions .video_thumb_action_edit .icon {
     background-position: 0px -65px
 }
 
-.video_thumb_actions #delete .icon {
+.video_thumb_actions .video_thumb_action_delete .icon {
     background-position: 0px -32px
 }
 
-.video_thumb_actions #move .icon {
+.video_thumb_actions .video_thumb_action_move .icon {
     background-position: 1px -16px
 }
 
-.video_thumb_actions #add .icon_add {
+.video_thumb_actions .video_thumb_action_add .icon_add {
     background-position: 0px -85px;
     -o-transition: background-position 210ms linear, opacity 210ms linear;
     transition: background-position 210ms linear, opacity 210ms linear
 }
 
-.video_thumb_actions #add .icon_added {
+.video_thumb_actions .video_thumb_action_add .icon_added {
     background-position: 0px -131px;
     position: absolute;
     opacity: 0;
@@ -870,19 +870,21 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
     transition: background-position 210ms linear, opacity 210ms linear
 }
 
-.video_added #add .icon_add {
+.video_added .video_thumb_action_add .icon_add {
     background-position: 0px -83px;
     opacity: 0;
     filter: alpha(opacity=0);
     pointer-events: none
 }
 
-.video_added #add .icon_added {
+.video_added .video_thumb_action_add .icon_added {
     background-position: 0px -126px;
+    opacity: 1;
+    -webkit-filter: none;
+    filter: none;
     pointer-events: all
 }
 
-.video_added #add .icon_added,
 .video_item:hover .video_thumb_actions,
 .video_item:hover .video_thumb_play {
     opacity: 1;
@@ -891,13 +893,12 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
 }
 
 .action_btn_visible,
-.video_item.video_can_edit #edit,
-.video_item.video_can_edit #move,
-.video_item.video_can_edit #delete,
-.video_item.video_can_delete #move,
-.video_item.video_can_delete #delete,
-.video_item.video_can_add #add,
-.video_item.video_can_add #added {
+.video_item.video_can_edit .video_thumb_action_edit,
+.video_item.video_can_edit .video_thumb_action_delete,
+.video_item.video_can_edit_albums .video_thumb_action_move,
+.video_item.video_can_delete .video_thumb_action_delete,
+.video_item.video_can_add .video_thumb_action_add,
+.video_item.video_can_add .video_thumb_action_added {
     display: inline-block
 }
 

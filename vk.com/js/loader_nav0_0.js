@@ -191,21 +191,21 @@ var stVersions = {
     'wkview.css': 27437266161,
     'single_pv.css': 1445030012,
     'single_pv.js': 2438273057,
-    'video.js': 1924568890,
-    'video.css': 26445688655,
+    'video.js': 1291995561,
+    'video.css': 29428515967,
     'videocat.js': 3590298689,
     'videocat.css': 24687962206,
-    'videoview.js': 17683260862,
+    'videoview.js': 14603126868,
     'videoview.css': 26157734535,
     'video_edit.js': 2135196486,
     'video_edit.css': 24382633834,
     'video_upload.js': 2270908085,
     'video_youtube.js': 458412745,
     'video_youtube.css': 16230178406,
-    'videoplayer.js': 70104148845,
+    'videoplayer.js': 68984669907,
     'videoplayer.css': 39589651070,
-    'translation.js': 1810201107,
-    'translation.css': 18486764993,
+    'translation.js': 1370143200,
+    'translation.css': 19702472524,
     'reg.css': 887926110,
     'reg.js': 1336565657,
     'invite.css': 20112904869,
@@ -535,7 +535,7 @@ var stVersions = {
     'voice_message_player.js': 18549969583,
     'cmodules/web/speech_worker_mp3.js': 1074082218,
     'cmodules/web/speech_worker_opus.js': 2818771805,
-    'stories.js': 55457704063,
+    'stories.js': 56746877523,
     'stories.css': 21120100107,
     'internal/nospam.css': 22003392410,
     'internal/away_linksban.css': 16524977373,
@@ -645,4 +645,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 7914;
+var _rnd = 5943;

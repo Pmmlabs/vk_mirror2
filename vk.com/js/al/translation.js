@@ -69,18 +69,20 @@
         ajax.post(TR_ADDRESS, o, {
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e),
-            onDone: function(e, t, s) {
+            onDone: function(e, t, s, r) {
                 if (s) {
                     each(s[0], function(e, t) {
                         var a = ge("tr_section_counter_" + e);
                         a && (t[0] ? a.innerHTML = "+" + t[0] : a.innerHTML = "")
                     });
-                    var r = ge("tr_section_counter_total");
-                    s[1] ? r.innerHTML = "+" + s[1] : r.innerHTML = ""
+                    var i = ge("tr_section_counter_total");
+                    s[1] ? i.innerHTML = "+" + s[1] : i.innerHTML = ""
                 }
-                if (e && o.key) {
-                    var i = document.querySelector(".tr_key[data-key=" + o.key + "]");
-                    i && (removeClass(i, "tr_untranslated"), geByClass1("_tr_key_inner", i).innerHTML = e), n && (n.innerHTML = t, n.className = "translated")
+                if (r && each(r, function(e, t) {
+                        toggle("translation_" + o.key + "_" + e, t)
+                    }), e && o.key) {
+                    var l = document.querySelector(".tr_key[data-key=" + o.key + "]");
+                    l && (removeClass(l, "tr_untranslated"), geByClass1("_tr_key_inner", l).innerHTML = e), n && (n.innerHTML = t, n.className = "translated")
                 } else nav.reload();
                 boxQueue.hideAll(), a && a(e), o.mark_untranslated && nav.reload()
             }
@@ -352,9 +354,16 @@
     }
 
     function showScreen(e, t, a) {
-        cur.showedScreen = 1, cur.translationBoxParams && (_box_backupValues(), a.onHide = function() {
-            delete cur.showedScreen, openKey(cur.translationBoxParams[0], cur.translationBoxParams[1], cur.translationBoxParams[2])
-        }), showPhoto(e, t, a)
+        if (cur.showedScreen = 1, cur.translationBoxParams && (_box_backupValues(), a.onHide = function() {
+                delete cur.showedScreen, openKey(cur.translationBoxParams[0], cur.translationBoxParams[1], cur.translationBoxParams[2])
+            }), cur.addScreens) {
+            var n = cur.addScreens.getMedias(),
+                o = [];
+            each(n, function(e, t) {
+                t && "photo" == t[0] && o.push(t[1] + "/" + (cur.addScreens.phLists[t[1]] || ""))
+            }), a.additional || (a.additional = {}), a.additional.draft_photos = o.join(";")
+        }
+        showPhoto(e, t, a)
     }
 
     function openKey(e, t, a) {
