@@ -220,6 +220,48 @@ var AppsEdit = {
             }
         })
     },
+    saveAdsOptions: function(e, t) {
+        function a(e) {
+            var t = ge("apps_ads_settings_error");
+            t.innerHTML = e, show("apps_ads_settings_error_wrap"), scrollToY(getXY(ge("apps_edit_ads_web_settings"))[1], 200)
+        }
+
+        function s(e) {
+            var t = ge("apps_ads_settings_save_info");
+            t.innerHTML = e, show(t), scrollToY(getXY(ge("apps_edit_ads_web_settings"))[1], 200)
+        }
+        var i = {
+            act: "save_ads_web_settings",
+            app_id: e,
+            hash: t
+        };
+        i.ads_web_fb_interval = val("app_ads_web_fb_interval");
+        var n = ge("app_ads_save_btn");
+        lockButton(n);
+        var r = function() {
+            unlockButton(n)
+        };
+        hide("apps_ads_settings_error_wrap"), hide("apps_ads_settings_save_info"), ajax.post("editapp", i, {
+            onDone: function(e) {
+                if (r(), e.ok) e.message && s(e.message);
+                else {
+                    if (e.field) {
+                        var t = ge("app_" + e.field + "_wrap") || ge("app_" + e.field);
+                        elfocus(t), setStyle(t, "backgroundColor", "#FAEAEA"), setTimeout(animate.pbind(t, {
+                            backgroundColor: "#FFFFFF"
+                        }, 300), 400)
+                    }
+                    e.error && a(e.error)
+                }
+            },
+            onFail: function(e) {
+                r(), a(e)
+            }
+        })
+    },
+    onAppAdsWebFBIntervalSliderChange: function(e) {
+        ge("apps_edit_ads_web_fb_interval_slider_selected_val").innerHTML = e
+    },
     loadCheckHistory: function(e, t) {
         if (isVisible("apps_check_history")) hide("apps_check_history");
         else {
@@ -1203,8 +1245,7 @@ var AppsEdit = {
                 } return a
     },
     putVersionCode: function(e, t) {
-        var a = AppsEdit.getFuncVersionCode(e, t); - 1 == t ? ge("func_remove_btn" + e).innerHTML = cur.lang.developers_func_remove : ge("func_remove_btn" + e).innerHTML = cur.lang.developers_remove_func_version,
-            cur.funcsVersion[e] = parseInt(t);
+        var a = AppsEdit.getFuncVersionCode(e, t); - 1 == t ? ge("func_remove_btn" + e).innerHTML = cur.lang.developers_func_remove : ge("func_remove_btn" + e).innerHTML = cur.lang.developers_remove_func_version, cur.funcsVersion[e] = parseInt(t);
         var s = geByClass("apps_edit_editor", ge("func_row_" + e))[0].ace;
         s.setValue(a), delete cur.editedFuncs[e], delete cur.funcsSaveCallbacks[e], cur.funcsVersionsDD[e].val(t)
     },

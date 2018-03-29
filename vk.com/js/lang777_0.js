@@ -461,7 +461,7 @@ help_ccobjection_need_rules = 'ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿
 // section = 18; version = 16;
 
 login_wrong_email_pwd = 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.';
-login_enter = 'Log in';
+login_enter = 'ï¿½ï¿½ï¿½ï¿½ï¿½';
 // section = 21; version = 1;
 
 mail_added_article = 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';

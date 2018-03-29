@@ -195,14 +195,14 @@ var stVersions = {
     'video.css': 29428515967,
     'videocat.js': 3590298689,
     'videocat.css': 24687962206,
-    'videoview.js': 14603126868,
+    'videoview.js': 14550992212,
     'videoview.css': 26157734535,
     'video_edit.js': 2135196486,
     'video_edit.css': 24382633834,
     'video_upload.js': 2270908085,
     'video_youtube.js': 458412745,
     'video_youtube.css': 16230178406,
-    'videoplayer.js': 68984669907,
+    'videoplayer.js': 71134081809,
     'videoplayer.css': 39589651070,
     'translation.js': 1370143200,
     'translation.css': 19702472524,
@@ -271,8 +271,8 @@ var stVersions = {
     'privacy.css': 17013349528,
     'apps.css': 39179839672,
     'apps.js': 2015583894,
-    'apps_edit.js': 3461738785,
-    'apps_edit.css': 33895299551,
+    'apps_edit.js': 3545115796,
+    'apps_edit.css': 35938995487,
     'apps_check.js': 3204387834,
     'apps_check.css': 29250183985,
     'settings.js': 1424293533,
@@ -645,4 +645,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 803;
+var _rnd = 7733;

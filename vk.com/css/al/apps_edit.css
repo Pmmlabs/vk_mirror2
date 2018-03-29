@@ -226,6 +226,7 @@
 }
 
 #app_edit_error,
+.apps_edit_error,
 .app_edit_warning {
     border: 1px solid #e89b88;
     background-color: #ffefe8;
@@ -257,7 +258,8 @@
     padding: 8px 11px
 }
 
-#app_edit_error_wrap {
+#app_edit_error_wrap,
+.apps_edit_error_wrap {
     padding: 0px 0px 20px;
     display: none
 }
@@ -332,6 +334,15 @@ td.apps_edit_wide {
     height: 70px;
     resize: vertical;
     padding: 5px 9px 7px
+}
+
+.apps_edit_ads_web_fb_interval_slider_bottom_label {
+    color: #777
+}
+
+.apps_edit_ads_web_fb_interval_slider_selected_val_wrap {
+    text-align: center;
+    font-weight: 700
 }
 
 .app_edit_admins {
