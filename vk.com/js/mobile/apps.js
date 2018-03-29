@@ -651,6 +651,27 @@ var vkApp = function(cont, options, params, onInit) {
             if (cur.app.isNativeClientWebView()) {
                 cur.app.callNativeClientMethod('VKWebAppOpenQR');
             }
+        },
+
+        sendStats: function(stats) {
+            if (isObject(stats) || isArray(stats)) {
+                stats = JSON.stringify(stats);
+            }
+
+            ajax.post('/apps.php', {
+                act: 'save_stats',
+                data: stats,
+                hash: cur.app.params.stats_hash,
+                app_id: cur.aid
+            }, {
+                onDone: function() {
+                    cur.app.runCallback('onSendStatsDone');
+                },
+                onFail: function() {
+                    cur.app.runCallback('onSendStatsFail');
+                    return true;
+                }
+            });
         }
     };
 

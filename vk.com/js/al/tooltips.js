@@ -108,7 +108,7 @@ var tooltips = {
             if (n[0] || n[1]) {
                 var l = getSize(i),
                     r = e.needLeft || e.black && lastWindowWidth && lastWindowWidth - (s[0] + l[0]) < 1,
-                    d = hasClass(i.firstChild, "toup1"),
+                    d = hasClass(i.firstChild, "toup1") || e.toup,
                     a = e.shift,
                     p = vk.rtl && !e.asrtl || e.asrtl && !vk.rtl;
                 isFunction(a) && (a = a());

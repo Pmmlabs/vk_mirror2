@@ -977,8 +977,15 @@ textarea.dark.mv_live_gift_popup_comment_input {
     width: 720px
 }
 
+@media (max-width: 1200px) {
+    .mv_info_wrapper {
+        width: 640px
+    }
+}
+
 .mv_info_narrow_column {
     border-left: 1px solid #e7e8ec;
+    box-sizing: border-box;
     width: 320px;
     z-index: 100
 }

@@ -1544,7 +1544,9 @@ body.article_body .article_layer {
     background-color: #fff;
     padding: 11px 0;
     margin-bottom: 30px;
-    margin-top: 30px
+    margin-top: 30px;
+    -o-transition: background-color 450ms ease-in-out;
+    transition: background-color 450ms ease-in-out
 }
 
 .article_layer .article_layer__footer.article_layer__footer--trans {

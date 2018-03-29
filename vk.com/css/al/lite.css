@@ -5002,11 +5002,7 @@ div.top_result_baloon a {
 }
 
 .audio_pl_snippet_play:before {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%229%22%20height%3D%2212%22%20viewBox%3D%2216%209%209%2012%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M16.83%2020.85c-.46.32-.83.1-.83-.44V9.6c0-.57.37-.77.83-.45l7.93%205.45c.32.22.32.58%200%20.8l-7.93%205.45z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E")
-}
-
-.audio_pl_snippet_play:before,
-.audio_pl__playing .audio_pl_snippet_play:before {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%229%22%20height%3D%2212%22%20viewBox%3D%2216%209%209%2012%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M16.83%2020.85c-.46.32-.83.1-.83-.44V9.6c0-.57.37-.77.83-.45l7.93%205.45c.32.22.32.58%200%20.8l-7.93%205.45z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E");
     width: 9px;
     height: 12px;
     content: ' ';
@@ -5016,9 +5012,33 @@ div.top_result_baloon a {
     top: 9px
 }
 
+.audio_pl_snippet_play.round_button_large_white {
+    padding-left: 45px;
+    text-transform: uppercase
+}
+
+.audio_pl_snippet_play.round_button_large_white:before {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%229%22%20height%3D%2212%22%20viewBox%3D%2216%209%209%2012%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M16.83%2020.85c-.46.32-.83.1-.83-.44V9.6c0-.57.37-.77.83-.45l7.93%205.45c.32.22.32.58%200%20.8l-7.93%205.45z%22%20fill%3D%22%23000%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E");
+    left: 20px;
+    top: 13px
+}
+
 .audio_pl__playing .audio_pl_snippet_play:before {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%228%22%20height%3D%2212%22%20viewBox%3D%2216%209%208%2012%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M16%209.5c0-.28.22-.5.5-.5h2c.28%200%20.5.23.5.5v11c0%20.28-.22.5-.5.5h-2c-.28%200-.5-.23-.5-.5v-11zm5%200c0-.28.22-.5.5-.5h2c.28%200%20.5.23.5.5v11c0%20.28-.22.5-.5.5h-2c-.28%200-.5-.23-.5-.5v-11z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E");
+    width: 9px;
+    height: 12px;
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 15px;
+    top: 9px;
     background-repeat: no-repeat
+}
+
+.audio_pl__playing .audio_pl_snippet_play.round_button_large_white:before {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%228%22%20height%3D%2212%22%20viewBox%3D%2216%209%208%2012%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M16%209.5c0-.28.22-.5.5-.5h2c.28%200%20.5.23.5.5v11c0%20.28-.22.5-.5.5h-2c-.28%200-.5-.23-.5-.5v-11zm5%200c0-.28.22-.5.5-.5h2c.28%200%20.5.23.5.5v11c0%20.28-.22.5-.5.5h-2c-.28%200-.5-.23-.5-.5v-11z%22%20fill%3D%22%23000%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E");
+    left: 20px;
+    top: 13px
 }
 
 .audio_pl_snippet_play_small {

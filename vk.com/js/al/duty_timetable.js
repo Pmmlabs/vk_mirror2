@@ -38,22 +38,21 @@ var DTT = {
     },
     shiftEditorBlur: function(t, e, o) {
         var a = domPN(o),
-            n = data(a, "old_val");
-        hasClass(a, "_saving") || n != val(o) || DTT.cancelShiftEdit(a)
+            s = data(a, "old_val");
+        hasClass(a, "_saving") || s != val(o) || DTT.cancelShiftEdit(a)
     },
     cancelShiftEdit: function(t) {
         return hasClass(t, "_saving") ? !1 : (val(t, data(t, "old_val")), removeClass(t, "_editing"), removeClass(t, "dtt_day_h_editing"), !0)
     },
     saveShiftEditor: function(t, e, o) {
         var a = domPN(o),
-            n = cur.shiftEditorUser.val();
-        return e || n ? void ajax.post("duty_timetable.php", {
-            act: "a_edit",
+            s = cur.shiftEditorUser ? cur.shiftEditorUser.val() : cur.shiftUser;
+        return e || s ? void ajax.post("duty_timetable.php?act=a_edit", {
             id: e,
             dept: t,
             val: val(o),
             ts: nav.objLoc.ts,
-            uid: n
+            uid: s
         }, {
             showProgress: function() {
                 attr(o, "readonly", "readonly"), addClass(a, "_saving")
@@ -61,10 +60,10 @@ var DTT = {
             hideProgress: function() {
                 o.removeAttribute("readonly"), removeClass(a, "_saving")
             },
-            onDone: function(t, e, o, s) {
-                DTT.showDoneBox(s);
+            onDone: function(t, e, o, n) {
+                DTT.showDoneBox(n);
                 var d = [],
-                    l = n;
+                    l = s;
                 removeClass(a, "_editing"), removeClass(a, "dtt_day_h_editing"), each(geByClass("_editing", "dtt_day"), function(t, e) {
                     d.push([e.id, val(e), val(domFC(e)), data(e, "old_val")])
                 }), domReplaceEl(ge("dtt_day_filling"), se(e)), domReplaceEl(ge("dtt_day"), se(o)), each(d, function(t, e) {
@@ -79,7 +78,7 @@ var DTT = {
             onFail: function() {
                 notaBene(o)
             }
-        }) : void notaBene(cur.shiftEditorUser.container)
+        }) : void(cur.shiftEditorUser && notaBene(cur.shiftEditorUser.container))
     },
     removeShift: function(t, e, o) {
         var a = ge("dtt_editor_" + e);
@@ -193,15 +192,15 @@ var DTT = {
                 },
                 a = 0;
             each(e, function(t, e) {
-                each(o, function(t, n) {
-                    var s = parseInt(attr(e, t));
-                    o[t][1] += s, a += s
+                each(o, function(t, s) {
+                    var n = parseInt(attr(e, t));
+                    o[t][1] += n, a += n
                 })
             });
-            var n = [];
+            var s = [];
             each(o, function(t, e) {
-                e[1] > 0 && n.push(e[0].replace("%s", e[1]))
-            }), val("dtt_month_actions_hours_details", n.join("<br>")), val("dtt_month_actions_hours_total", getLang("timetable_total_hours").replace("%s", a))
+                e[1] > 0 && s.push(e[0].replace("%s", e[1]))
+            }), val("dtt_month_actions_hours_details", s.join("<br>")), val("dtt_month_actions_hours_total", getLang("timetable_total_hours").replace("%s", a))
         }
     },
     openDayBox: function(t) {

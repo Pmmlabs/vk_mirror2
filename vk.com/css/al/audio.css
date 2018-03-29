@@ -689,16 +689,8 @@
     margin-left: -30px
 }
 
-.audio_page_layout .audio_section_search__communities {
-    padding: 10px 20px
-}
-
-.audio_page_layout .audio_section_search__communities>h2 {
-    margin-top: 12px
-}
-
-.audio_page_layout .audio_section_search__communities .audio_community_items_list {
-    margin: 20px 0 7px;
+.audio_page_layout .audio_community_items_list {
+    margin-bottom: 10px;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
@@ -990,6 +982,10 @@
 
 .audio_page_layout .audio_recoms_block h2 {
     margin-top: 0
+}
+
+.audio_page_layout .audio_recoms_block.artist {
+    padding: 20px
 }
 
 .audio_page_layout .audio_owner_avatar {
@@ -2116,7 +2112,18 @@
 .audio_page_layout .audio_section__recoms .audio_recoms_audios_block_col_left,
 .audio_page_layout .audio_section__recoms .audio_recoms_audios_block_col_right {
     width: 50%;
-    float: left
+    float: left;
+    box-sizing: border-box
+}
+
+.audio_page_layout .audio_recoms_blocks .audio_recoms_audios_block_col_left,
+.audio_page_layout .audio_section__recoms .audio_recoms_audios_block_col_left {
+    padding-right: 2px
+}
+
+.audio_page_layout .audio_recoms_blocks .audio_recoms_audios_block_col_right,
+.audio_page_layout .audio_section__recoms .audio_recoms_audios_block_col_right {
+    padding-left: 2px
 }
 
 .audio_atp_list {
@@ -2576,4 +2583,79 @@
     left: -10px;
     right: -10px;
     position: absolute
+}
+
+.audio_artist_block {
+    position: relative;
+    background: 50%;
+    background-size: cover;
+    border-radius: 4px;
+    overflow: hidden
+}
+
+.audio_artist_block+._audio_page_titled_block {
+    margin-top: 20px
+}
+
+.audio_artist_block:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(0, 20, 51, .4)
+}
+
+.audio_artist_block .audio_artist_block__link {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
+}
+
+.audio_artist_block .audio_artist_block__content {
+    position: relative;
+    z-index: 3;
+    min-height: 172px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 30px
+}
+
+.audio_artist_block .audio_artist_block__info {
+    color: #fff;
+    padding-bottom: 4px
+}
+
+.audio_artist_block .audio_artist_block__title {
+    font-size: 32px;
+    font-weight: 800;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.audio_artist_block .audio_artist_block__subtitle {
+    margin-top: 10px;
+    font-size: 16px;
+    color: hsla(0, 0%, 100%, .6)
+}
+
+.audio_artist_block .audio_artist_block__subtitle:empty {
+    display: none
+}
+
+.audio_artist_inner_block {
+    margin-top: 20px
 }
