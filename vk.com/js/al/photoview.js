@@ -75,10 +75,10 @@ var Photoview = {
                                     n = cur.addMedia[v],
                                     c = p[s].previews || [],
                                     u = !1,
-                                    l = 0;
-                                for (var d in c) {
-                                    if ("photo" == c[d].type && c[d].photo.id == "photo" + o.id) {
-                                        var h = c[d].photo;
+                                    d = 0;
+                                for (var l in c) {
+                                    if ("photo" == c[l].type && c[l].photo.id == "photo" + o.id) {
+                                        var h = c[l].photo;
                                         if (i) {
                                             h.id = e.id, h.pid = e.id.split("_")[1];
                                             var g = ({
@@ -93,9 +93,9 @@ var Photoview = {
                                                 return "photo" == this[0] && this[1] == o.id ? (this[1] = e.id, !1) : void 0
                                             })
                                         }
-                                        c[d].click = n.showPhoto.pbind(e.id, e.list, parseJSON(a)), h.sizes = r, u = !0
+                                        c[l].click = n.showPhoto.pbind(e.id, e.list, parseJSON(a)), h.sizes = r, u = !0
                                     }
-                                    l++
+                                    d++
                                 }
                                 u && (ThumbsEdit.refresh(s), n.onChange && n.onChange())
                             }
@@ -210,14 +210,14 @@ var Photoview = {
                 c = cur.pvAlbumShown ? "" : r,
                 u = cur.pvVideoTagsShown ? "" : r;
             cur.pvPhotoTagShown && (i = cur.pvPhotoTagData[cur.pvPhotoTagShown].html, c = ""), ge("pv_comments") && (cur.pvBackupComments = ge("pv_comments"), domPN(ge("pv_comments")).removeChild(ge("pv_comments")));
-            var l = '<div style="' + v + '" class="box_title_wrap box_grey"><div class="box_x_button" onclick="Photoview.hide(0)"></div><div class="box_title_controls"></div><div class="box_title"></div></div>',
-                d = '       <div class="pv_nav_btn" id="pv_nav_btn_left" onmousedown="cur.pvClicked = true; Photoview.show(false, cur.pvIndex - 1, event);">         <div class="pv_nav_btn_icon"></div>       </div>       <div class="pv_nav_btn" id="pv_nav_btn_right" onmousedown="cur.pvClicked = true; Photoview.show(false, cur.pvIndex + 1, event);"><div class="pv_nav_btn_icon"></div></div>     ',
+            var d = '<div style="' + v + '" class="box_title_wrap box_grey"><div class="box_x_button" onclick="Photoview.hide(0)"></div><div class="box_title_controls"></div><div class="box_title"></div></div>',
+                l = '       <div class="pv_nav_btn" id="pv_nav_btn_left" onmousedown="cur.pvClicked = true; Photoview.show(false, cur.pvIndex - 1, event);">         <div class="pv_nav_btn_icon"></div>       </div>       <div class="pv_nav_btn" id="pv_nav_btn_right" onmousedown="cur.pvClicked = true; Photoview.show(false, cur.pvIndex + 1, event);"><div class="pv_nav_btn_icon"></div></div>     ',
                 h = cur.pvIsLightMode ? "" : '      <div class="pv_fs_wrap">         <div class="pv_fs_btn" onmousedown="return Photoview.fullscreen(event);"><div></div></div>       </div>     ',
                 g = '      <div class="pv_bottom_info clear_fix">         <div>           <div class="pv_bottom_info_left"><span class="pv_album_name" onmouseover="setTitle(this)"></span><span class="pv_counter"></span></div>           ' + (cur.pvShowBottomActions ? '<div class="pv_bottom_actions"></div>' : "") + "         </div>       </div>",
                 _ = cur.pvIsLightMode ? "" : '      <div class="pv_narrow_column_wrap">        <div class="pv_narrow_column_cont wall_module">          <div class="narrow_column" id="pv_narrow"></div>        </div>      </div>',
                 m = getProgressHtml("pv_image_progress"),
                 w = "pv_mouse_out_layer";
-            layer.innerHTML = '    <div class="pv_cont">      <div id="pv_box" class="_scroll_node pv_box" tabindex="0" onclick="cur.pvClicked = true;" onmouseenter="removeClass(layerWrap, \'' + w + "')\" onmouseleave=\"addClass(layerWrap, '" + w + "')\">         " + l + '        <div class="clear_fix pv_photo_wrap" style="' + s + '">           <div class="pv_close_btn" onclick="Photoview.hide(0)"></div>           <div class="no_select pv_left_wrap">                      <div class="no_select pv_image_wrap">              <div id="pv_tag_info" class="clear_fix">                 <div class="pv_tag_info_buttons_wrap"></div>                 <div class="pv_tag_info_text" onmouseover="setTitle(this)"></div>               </div>              <div id="pv_tag_frame"></div>              <div id="pv_tag_faded"></div>              <div id="pv_tag_person" onmouseout="Photoview.hideTag()"></div>              <div class="pv_photo_tags" id="pv_photo_tags"></div>              <div class="pv_img_area_wrap pv_init_hover" onmouseleave="return Photoview.onImageWrapMouseLeave(event)" onmousedown="return Photoview.onImageWrapMouseDown(event)" onmousemove="Photoview.onImageWrapMouseMove(event)">                 <div class="pv_img_progress_wrap">' + m + '</div>                 <a onselectstart="return cancelEvent(event);" onclick="return checkEvent(event)" href="" id="pv_photo"></a>                 ' + d + '                 <div class="pv_like_fs_wrap">                 ' + h + "                </div>               </div>             </div>             " + g + "          </div>" + _ + '        </div>        <div id="pv_albums_wrap" class="pv_white_bg photos_container_albums" style="' + n + '">' + a + '</div>        <div id="pv_album_wrap" class="pv_white_bg" style="' + c + '">' + i + '</div>        <div id="pv_vtagged_wrap" class="pv_white_bg" style="' + u + '">' + p + "</div>      </div>        </div>", cur.pvYourComment && domPN(ge("pv_your_comment")).replaceChild(cur.pvYourComment, ge("pv_your_comment")), extend(cur, {
+            layer.innerHTML = '    <div class="pv_cont">      <div id="pv_box" class="_scroll_node pv_box" tabindex="0" onclick="cur.pvClicked = true;" onmouseenter="removeClass(layerWrap, \'' + w + "')\" onmouseleave=\"addClass(layerWrap, '" + w + "')\">         " + d + '        <div class="clear_fix pv_photo_wrap" style="' + s + '">           <div class="pv_close_btn" onclick="Photoview.hide(0)"></div>           <div class="no_select pv_left_wrap">                      <div class="no_select pv_image_wrap">              <div id="pv_tag_info" class="clear_fix">                 <div class="pv_tag_info_buttons_wrap"></div>                 <div class="pv_tag_info_text" onmouseover="setTitle(this)"></div>               </div>              <div id="pv_tag_frame"></div>              <div id="pv_tag_faded"></div>              <div id="pv_tag_person" onmouseout="Photoview.hideTag()"></div>              <div class="pv_photo_tags" id="pv_photo_tags"></div>              <div class="pv_img_area_wrap pv_init_hover" onmouseleave="return Photoview.onImageWrapMouseLeave(event)" onmousedown="return Photoview.onImageWrapMouseDown(event)" onmousemove="Photoview.onImageWrapMouseMove(event)">                 <div class="pv_img_progress_wrap">' + m + '</div>                 <a onselectstart="return cancelEvent(event);" onclick="return checkEvent(event)" href="" id="pv_photo"></a>                 ' + l + '                 <div class="pv_like_fs_wrap">                 ' + h + "                </div>               </div>             </div>             " + g + "          </div>" + _ + '        </div>        <div id="pv_albums_wrap" class="pv_white_bg photos_container_albums" style="' + n + '">' + a + '</div>        <div id="pv_album_wrap" class="pv_white_bg" style="' + c + '">' + i + '</div>        <div id="pv_vtagged_wrap" class="pv_white_bg" style="' + u + '">' + p + "</div>      </div>        </div>", cur.pvYourComment && domPN(ge("pv_your_comment")).replaceChild(cur.pvYourComment, ge("pv_your_comment")), extend(cur, {
                 pvCont: domFC(layer),
                 pvBox: ge("pv_box"),
                 pvImageAreaWrap: geByClass1("pv_img_area_wrap"),
@@ -546,14 +546,14 @@ var Photoview = {
                     c += '<div class="pv_author_block clear_fix">';
                     var u = "";
                     "NA" != p.author && (u = p.author), u && (p.author_href && (c += '<a class="pv_author_img fl_l" href="' + p.author_href + '">'), c += '<div class="ow_ava ow_ava_comm" style="background-image: url(\'' + p.author_photo + "');\"></div>", p.author_href && (c += "</a>")), c += '        <div class="pv_author_info">           <div id="pv_author_name">' + u + '</div>           <div class="pv_date_info_wrap">             <span id="pv_date_info">' + p.date + "</span>           </div>         </div>       </div>", c += getProgressHtml("pv_progress");
-                    var l = p.liked ? "pv_liked" : "",
-                        d = cur.pvCommsLikes[p.id],
-                        h = d[0],
-                        g = d[1];
-                    c += '<div id="pv_like" class="pv_like _like_wrap ' + l + '" onmouseover="Photoview.likeOver(this)" onclick="Photoview.like();">         <i class="pv_like_icon _icon"></i>         <span class="pv_like_link _link">' + getLang("photos_i_like") + '</span>         <span class="pv_like_count _count">' + (g || "") + '</span>         <span class="blind_label" tabindex="0" role="link" onclick="Photoview.likesShowList(this)">' + getLang("photos_show_likes_list") + "</span>       </div>";
+                    var d = p.liked ? "pv_liked" : "",
+                        l = cur.pvCommsLikes[p.id],
+                        h = l[0],
+                        g = l[1];
+                    c += '<div id="pv_like" class="pv_like _like_wrap ' + d + '" onmouseover="Photoview.likeOver(this)" onclick="Photoview.like();">         <i class="pv_like_icon _icon"></i>         <span class="pv_like_link _link">' + getLang("photos_i_like") + '</span>         <span class="pv_like_count _count">' + (g || "") + '</span>         <span class="blind_label" tabindex="0" role="link" onclick="Photoview.likesShowList(this)">' + getLang("photos_show_likes_list") + "</span>       </div>";
                     var _ = 1 & p.actions.edit || p.desc;
                     if (_) var m = (p.desc, "<div" + (1 & p.actions.edit ? ' class="pv_can_edit pv_desc_cont" onclick="Photoview.editInline(event)"' + (p.desc ? ' onmouseover=""' : "") : ' class="pv_cant_edit pv_desc_cont"') + ">" + (p.desc || '<span class="pv_desc_edit">' + getLang("photos_edit_desc") + "</span>") + "</div>");
-                    c += '<div id="pv_desc" class="pv_right_block" style="' + (_ ? "" : "display: none") + '">' + m + "</div>", c += '<div id="pv_microdata">' + (p.microdata_html ? p.microdata_html : "") + (p.microdata_preview_button ? p.microdata_preview_button : "") + "</div>", p.microdata_html && shortCurrency();
+                    c += p.was_edited ? '<div id="pv_edit_info" class="pv_right_block">' + getLang("photos_was_edited") + "</div>" : "", c += '<div id="pv_desc" class="pv_right_block" style="' + (_ ? "" : "display: none") + '">' + m + "</div>", c += '<div id="pv_microdata">' + (p.microdata_html ? p.microdata_html : "") + (p.microdata_preview_button ? p.microdata_preview_button : "") + "</div>", p.microdata_html && shortCurrency();
                     var w = p.tagshtml ? "" : ' style="display: none"';
                     c += '<div id="pv_tags"' + w + ' class="pv_right_block">' + getLang("photos_onthisphoto") + ": " + p.tagshtml + "</div>";
                     var f = p.place ? '<span class="pv_place_label"></span> <a class="pv_place_a" id="pv_place_a" onclick="Photoview.showPlace()">' + p.place + "</a>" : "";
@@ -624,8 +624,8 @@ var Photoview = {
                     pvTags: ge("pv_tags"),
                     pvEditing: !1,
                     pvProgress: ge("pv_progress")
-                }), p.deleted || !p.author ? (cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"), isArray(p.deleted) && Photoview.toggleTopInfoPanel(p.deleted[0], p.deleted[1]),
-                    n || Photoview.toggleDeletedState(!0)) : p.taginfo ? (cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"), Photoview.toggleTopInfoPanel(p.taginfo, '        <button class="flat_button" id="pv_confirm_tag" onclick="Photoview.confirmTag(' + p.tagid + ', this)">' + getLang("photos_confirm_tag") + '</button>         <button class="flat_button secondary black" id="pv_delete_tag" onclick="Photoview.deleteTag(' + p.tagid + ', this)">' + getLang("photos_delete_tag") + "</button>       </div>"), show(cur.pvCommentsData)) : (Photoview.toggleTopInfoPanel(!1), Photoview.toggleDeletedState(!1)), (cur.pvOptions || {}).scroll && cur.pvNarrowScrollbar && cur.pvNarrowScrollbar.scrollTop(cur.pvOptions.scroll), cur.pvBodyScrollTop = bodyNode.scrollTop, setTimeout(function() {
+                }), p.deleted || !p.author ? (cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"),
+                    isArray(p.deleted) && Photoview.toggleTopInfoPanel(p.deleted[0], p.deleted[1]), n || Photoview.toggleDeletedState(!0)) : p.taginfo ? (cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"), Photoview.toggleTopInfoPanel(p.taginfo, '        <button class="flat_button" id="pv_confirm_tag" onclick="Photoview.confirmTag(' + p.tagid + ', this)">' + getLang("photos_confirm_tag") + '</button>         <button class="flat_button secondary black" id="pv_delete_tag" onclick="Photoview.deleteTag(' + p.tagid + ', this)">' + getLang("photos_delete_tag") + "</button>       </div>"), show(cur.pvCommentsData)) : (Photoview.toggleTopInfoPanel(!1), Photoview.toggleDeletedState(!1)), (cur.pvOptions || {}).scroll && cur.pvNarrowScrollbar && cur.pvNarrowScrollbar.scrollTop(cur.pvOptions.scroll), cur.pvBodyScrollTop = bodyNode.scrollTop, setTimeout(function() {
                     void 0 !== cur.pvBodyScrollTop && (bodyNode.scrollTop = cur.pvBodyScrollTop, delete cur.pvBodyScrollTop)
                 }, 0), Photoview.updateVerticalPosition();
                 var F = domFC(cur.pvPhoto);
@@ -883,8 +883,8 @@ var Photoview = {
                     for (; 0 > c;) c += r;
                     var u = cur.pvData[t][c];
                     if (u)
-                        for (var l = 0, d = v.length; d > l; ++l) {
-                            var h = v[l];
+                        for (var d = 0, l = v.length; l > d; ++d) {
+                            var h = v[d];
                             u[h] && u[h].src && (u[h].src = Photoview.blank, delete u[h])
                         }
                 }
@@ -948,9 +948,9 @@ var Photoview = {
                 cur.pvOptions.onHide = !1, c && c()
             }
             if (layerQueue.pop(), Photoview.destroyPeriod(), o.pvPreloaded && o === cur) {
-                for (var u = geByClass1("photos_container"), l = ce("div", {
+                for (var u = geByClass1("photos_container"), d = ce("div", {
                         innerHTML: o.pvPreloaded
-                    }); l.firstChild;) u.appendChild(l.firstChild);
+                    }); d.firstChild;) u.appendChild(d.firstChild);
                 u.qsorter && setTimeout(qsorter.added.pbind(u), 0), o.pvPreloaded = !1
             }
             uiScrollBox.hide(), Photoview.toggleFastChats(!0), delete cur.pvEditorMode, delete cur.pvEditorModeDimensionsUpdated, cur.shownAs1AprilEditor && (delete cur.shownAs1AprilEditor, delete cur.pvData), cur.pvPhotoTags && (cur.pvPhotoTags.unMount(), delete cur.pvPhotoTags)
@@ -1127,13 +1127,13 @@ var Photoview = {
                 if (!u.attach1_type && (!u.message || v && !v.indexOf(u.message))) return void Emoji.editableFocus(p, !1, !0)
             }
             hide("reply_warn" + o);
-            var l = Photoview.getReplyAsGroupEl();
+            var d = Photoview.getReplyAsGroupEl();
             ajax.post("al_photos.php", Wall.fixPostParams(extend(u, {
                 act: "post_comment",
                 photo: i.id,
                 hash: i.hash,
                 fromview: 1,
-                from_group: l && domData(domClosest("_submit_post_box", ge(l)), "from-oid") < 0 ? 1 : "",
+                from_group: d && domData(domClosest("_submit_post_box", ge(d)), "from-oid") < 0 ? 1 : "",
                 reply_to: (cur.reply_to || {})[1]
             })), {
                 onDone: function(t, v) {
@@ -1297,34 +1297,34 @@ var Photoview = {
                 });
                 c.width = c.width || e, c.height = c.height || t;
                 var u = c.width / c.height,
-                    l = Math.min(v, c.width),
-                    d = l / u;
-                d = Math.min(n, d), l = Math.ceil(d * u);
+                    d = Math.min(v, c.width),
+                    l = d / u;
+                l = Math.min(n, l), d = Math.ceil(l * u);
                 var h = getXY(cur.pvBottomLeft)[0] + getSize(cur.pvBottomLeft)[0] > getXY(cur.pvBottomActions)[0] - 20;
                 toggleClass(cur.pvBottomInfo, "pv_with_line_break", h), o && (cur.prevPhotoWidth = cur.prevPhotoHeight = 0);
-                var g = cur.prevPhotoWidth = Math.max(l, e, cur.prevPhotoWidth || 0),
-                    _ = cur.prevPhotoHeight = Math.max(d, t, (cur.prevPhotoHeight || 0) - a),
-                    m = Math.max(0, _ / 2 - d / 2);
+                var g = cur.prevPhotoWidth = Math.max(d, e, cur.prevPhotoWidth || 0),
+                    _ = cur.prevPhotoHeight = Math.max(l, t, (cur.prevPhotoHeight || 0) - a),
+                    m = Math.max(0, _ / 2 - l / 2);
                 if (m > 0 && !r) {
                     var w = getSize(cur.pvPhoto)[1] + s,
-                        f = w / 2 - d / 2;
+                        f = w / 2 - l / 2;
                     f > s && (m = f)
                 }
                 setStyle(cur.pvPhoto, {
                     width: g,
                     height: _
                 }), setStyle(domFC(cur.pvPhoto), {
-                    width: l,
-                    height: d,
+                    width: d,
+                    height: l,
                     marginTop: m
                 }), setStyle(cur.pvTagInfo, {
                     width: g
-                }), cur.pvTagFrame && Photoview.updateTagFrameDimensions(l, d, m), cur.pvPhotoTagsContainer && Photoview.updatePhotoTagsContainerDimensions(l), setStyle(cur.pvImgProgress, "marginTop", m + d / 2);
+                }), cur.pvTagFrame && Photoview.updateTagFrameDimensions(d, l, m), cur.pvPhotoTagsContainer && Photoview.updatePhotoTagsContainerDimensions(d), setStyle(cur.pvImgProgress, "marginTop", m + l / 2);
                 var P = (cur.pvIsLightMode ? 0 : Photoview.SIDE_COLUMN_WIDTH) + g;
                 setStyle(cur.pvCont, {
                     width: P,
                     paddingLeft: sbWidth()
-                }), Photoview.updateRightBlock(), Photoview.updateVerticalPosition(), cur.pvPhWidth = l, cur.pvPhHeight = d, Photoview.updateNavBtnsLeftThreshold();
+                }), Photoview.updateRightBlock(), Photoview.updateVerticalPosition(), cur.pvPhWidth = d, cur.pvPhHeight = l, Photoview.updateNavBtnsLeftThreshold();
                 var T = getXY(cur.pvCont),
                     b = getSize(cur.pvCont),
                     L = T[1] + b[1],
@@ -1498,7 +1498,7 @@ var Photoview = {
                     angle: o.angle,
                     rot1: o.rot1,
                     rot3: o.rot3
-                }), t == cur.pvListId && r == cur.pvIndex && Photoview.show(t, r), cur.pvPhotoTags && cur.pvPhotoTags.reload();
+                }), t == cur.pvListId && r == cur.pvIndex && Photoview.show(t, r), cur.pvPhotoTags && cur.pvPhotoTags.reload()
             }
         },
         likeUpdate: function(o, e, t) {

@@ -2787,7 +2787,7 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     position: absolute;
     top: 0;
     right: 0;
-    z-index: 100;
+    z-index: 10;
     width: 320px;
     height: 100%;
     background: #1e1e1e;

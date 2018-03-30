@@ -524,7 +524,8 @@ a.ui_box_header_link {
     display: block
 }
 
-.ui_tabs_loading .flat_button {
+.ui_tabs_loading .flat_button,
+.ui_tabs_loading.ui_tabs_with_progress .ui_tab_search_wrap {
     display: none
 }
 

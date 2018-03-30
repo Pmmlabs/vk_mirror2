@@ -1539,6 +1539,11 @@ body[data-useragent=safari] .friends_dropdown__list_content {
     padding: 0 1px
 }
 
+#pv_edit_info {
+    color: #939699;
+    margin-top: 3px
+}
+
 .pv_date_info_wrap {
     margin-top: 4px
 }
