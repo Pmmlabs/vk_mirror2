@@ -318,12 +318,14 @@
     display: none
 }
 
+.post_top_info_wall_guide,
 .post_top_info_wall_mention,
 .post_top_info_wall_reply {
     padding: 13px 15px 14px;
     box-shadow: 0 0 0 1px #e3e4e8, 0 1px 0 0 #e7e8ec
 }
 
+.post_top_info_wall_guide:empty,
 .post_top_info_wall_mention:empty,
 .post_top_info_wall_reply:empty {
     display: none
@@ -382,6 +384,13 @@
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cg%20fill%3D%22none%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%228%22%20cy%3D%228%22%20r%3D%228%22%20fill%3D%22%23A5ABB4%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M8.8%209L7.2%209%207%204.5C7%204.2%207.2%204%207.5%204L8.5%204C8.8%204%209%204.2%209%204.5L8.8%209ZM7%2011C7%2010.7%207.1%2010.4%207.3%2010.3%207.4%2010.1%207.7%2010%208%2010%208.3%2010%208.6%2010.1%208.7%2010.3%208.9%2010.4%209%2010.7%209%2011%209%2011.3%208.9%2011.6%208.7%2011.7%208.6%2011.9%208.3%2012%208%2012%207.7%2012%207.4%2011.9%207.3%2011.7%207.1%2011.6%207%2011.3%207%2011Z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%0A%3C%2Fsvg%3E")
 }
 
+.post_top_info_wall_guide_icon {
+    margin: 0px 10px 0px 0px;
+    width: 10px;
+    height: 14px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2214%22%20viewBox%3D%220%200%2010%2014%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22translate(-2)%22%3E%3Cpath%20d%3D%22M0%200H14V14H0z%22%2F%3E%3Cpath%20fill%3D%22%23ACB3BF%22%20fill-rule%3D%22nonzero%22%20d%3D%22M2%204.9c0%201.603.787%203.018%201.998%203.914V10a1%201%200%200%200%201%201H9a1%201%200%200%200%201-.999l.002-1.187C11.213%207.917%2012%206.503%2012%204.9%2012%202.194%209.761%200%207%200S2%202.194%202%204.9zM7%2014a2%202%200%200%200%202-2H5a2%202%200%200%200%202%202z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+}
+
 .post_top_info_wall_reply_text {
     margin-left: 21px;
     line-height: 15px;
@@ -403,6 +412,12 @@
 .post_top_info_sherlock_spoiler_text {
     margin-left: 24px;
     line-height: 18px;
+    color: #656565
+}
+
+.post_top_info_wall_guide_text {
+    margin-left: 16px;
+    line-height: 15px;
     color: #656565
 }
 
