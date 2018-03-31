@@ -877,3 +877,29 @@ div.med_no_attach {
     position: relative;
     margin: 0 5px 5px 0
 }
+
+.post_inline_ban_user {
+    line-height: 15px;
+    display: block
+}
+
+.post_inline_ban_user .divide {
+    height: 15px
+}
+
+.post_inline_action_padded {
+    padding-top: 1em
+}
+
+.post_inline_action_more_padded {
+    padding-top: 1.5em
+}
+
+.post_inline_progress {
+    vertical-align: 2px;
+    display: inline-block
+}
+
+.post_inline_progress+* {
+    visibility: hidden
+}

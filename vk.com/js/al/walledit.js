@@ -48,6 +48,7 @@ var WallEdit = {
                     rPointer: !0,
                     controlsCont: e.parentNode,
                     shouldFocus: !0,
+                    ref: "post",
                     onChange: n.check_sign && !n.no_sign && WallEdit.editPostDisableSign.pbind(n),
                     onSend: function() {
                         WallEdit.savePost()

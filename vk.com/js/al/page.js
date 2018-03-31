@@ -731,6 +731,8 @@ var Page = {
                     return 'p';
                 case 'wall':
                     return 'w';
+                case 'wall_top':
+                    return 'tw';
                 case 'feed_search':
                     return 's';
                 case 'feed_news_recent':
@@ -1091,6 +1093,7 @@ var Page = {
                     controlsCont: domPN(txt),
                     noStickers: true,
                     forceEnterSend: true,
+                    ref: 'status',
                     onSend: Page.infoSave,
                     checkEditable: function() {
                         var msg = Emoji.editableVal(txt),
@@ -2020,7 +2023,7 @@ var Wall = {
         }, {
             onDone: function(text) {
                 if (bl) {
-                    domPN(el).insertBefore(ce('div', {
+                    domPN(el).insertBefore(ce('span', {
                         innerHTML: text
                     }), el);
                     hide(el);
@@ -2030,15 +2033,10 @@ var Wall = {
                 }
             },
             showProgress: function() {
-                hide(el);
-                var prg = showProgress(domPN(el));
-                if (!bl) setStyle(prg, {
-                    display: 'inline-block'
-                });
+                showProgress(el, 'post_inline_progress', 'post_inline_progress', true);
             },
             hideProgress: function() {
-                show(el);
-                hideProgress(domPN(el));
+                re('post_inline_progress');
             }
         });
     },
@@ -2227,6 +2225,14 @@ var Wall = {
 
         uiTabs.switchTab(el);
         uiTabs.hideProgress(el);
+
+        if (type === 'top') {
+            cur.baseWallModule = cur.module;
+            cur.module = 'wall_top';
+        } else if (cur.baseWallModule) {
+            cur.module = cur.baseWallModule;
+            delete cur.baseWallModule;
+        }
 
         if (Wall.hasPosts()) {
             Wall.update();
@@ -3221,6 +3227,7 @@ var Wall = {
                 noStickers: true,
                 onSend: Wall.sendPost,
                 noEnterSend: true,
+                ref: 'post',
                 checkEditable: Wall.postChanged,
                 initUploadForImagePasteCallback: function(txt, addMedia, blob) {
                     if (window.Upload) {
@@ -4187,6 +4194,7 @@ var Wall = {
                 rPointer: true,
                 controlsCont: cont,
                 shouldFocus: true,
+                ref: 'reply',
                 onSend: function() {
                     Wall.sendReply(post);
                     txt.blur();
@@ -7717,6 +7725,7 @@ var Wall = {
                         left: floatval(getStyle(cont, 'left')) + getXY(iconEl)[0] - icon_left
                     });
                 }, 10);
+                statlogsValueEvent('likes_show', domData(el, 'shown'));
             },
             typeClass: 'like_tt',
             className: opts.cl || ''

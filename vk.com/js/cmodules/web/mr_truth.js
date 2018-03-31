@@ -1,20 +1,20 @@
 ﻿! function(t) {
-    function e(r) {
-        if (a[r]) return a[r].exports;
-        var o = a[r] = {
+    function e(a) {
+        if (r[a]) return r[a].exports;
+        var o = r[a] = {
             exports: {},
-            id: r,
+            id: a,
             loaded: !1
         };
-        return t[r].call(o.exports, o, o.exports, e), o.loaded = !0, o.exports
+        return t[a].call(o.exports, o, o.exports, e), o.loaded = !0, o.exports
     }
-    var a = {};
-    return e.m = t, e.c = a, e.p = "", e(0)
+    var r = {};
+    return e.m = t, e.c = r, e.p = "", e(0)
 }({
-    0: function(t, e, a) {
-        t.exports = a(454)
+    0: function(t, e, r) {
+        t.exports = r(35)
     },
-    454: function(t, e) {
+    35: function(t, e) {
         "use strict";
         window.MrTruth = {
             init: function() {
@@ -28,7 +28,8 @@
                     controlsCont: geByClass1("mr_truth_send_form"),
                     onKeyAction: this.formOnKeyUp,
                     onStickerSend: this._onStickerSend,
-                    global: !0
+                    global: !0,
+                    ref: "mr_truth"
                 }), FastChat.getSettings(), MrTruth._initUpload()
             },
             formOnKeyUp: function() {
@@ -45,8 +46,8 @@
                 removeClass(geByClass1("mr_truth_page_shown"), "mr_truth_page_shown"), addClass(e + "_page", "mr_truth_page_shown"), removeClass(geByClass1("mr_truth_header_button_active"), "mr_truth_header_button_active"), addClass(t, "mr_truth_header_button_active")
             },
             toggle: function(t, e) {
-                var a = geByClass1("_ui_toggler", t);
-                hasClass(a, "on") ? (removeClass(a, "on"), this.confirmHide(), this.action("off", e), re("chat_" + e), intval(e) === intval(cur.selectedChat) && (val(geByClass1("mr_truth_selected_chat_name"), getLang("communityApps_mr_truth_chat_placeholder")), val(geByClass1("mr_truth_selected_chat_count"), ""), removeClass(geByClass1("mr_truth_selected_chat"), "selected"), val(geByClass1("mr_truth_selected_chat_img"), ""), delete cur.selectedChat)) : (cur.chatId = e, this.confirmShow())
+                var r = geByClass1("_ui_toggler", t);
+                hasClass(r, "on") ? (removeClass(r, "on"), this.confirmHide(), this.action("off", e), re("chat_" + e), intval(e) === intval(cur.selectedChat) && (val(geByClass1("mr_truth_selected_chat_name"), getLang("communityApps_mr_truth_chat_placeholder")), val(geByClass1("mr_truth_selected_chat_count"), ""), removeClass(geByClass1("mr_truth_selected_chat"), "selected"), val(geByClass1("mr_truth_selected_chat_img"), ""), delete cur.selectedChat)) : (cur.chatId = e, this.confirmShow())
             },
             action: function(t, e) {
                 ajax.post("mr_truth.php", {
@@ -57,10 +58,10 @@
                     access_token: cur.access_token
                 }, {
                     onDone: function() {
-                        var a = geByClass1("_ui_toggler", "chat_settings_" + e);
-                        if (toggleClass(a, "on", "on" === t), MrTruth.confirmHide(), "on" === t) {
-                            var r = ge("chat_settings_" + e),
-                                o = cur.mr_truth_chat_tpl.replace(/\{id\}/g, e).replace("{name}", val(geByClass1("mr_truth_chats_list_item_name", r))).replace("{photo}", val(geByClass1("mr_truth_chats_list_item_photo", r))).replace("{count}", attr(r, "data-count")).replace("{hash}", attr(r, "data-hash")),
+                        var r = geByClass1("_ui_toggler", "chat_settings_" + e);
+                        if (toggleClass(r, "on", "on" === t), MrTruth.confirmHide(), "on" === t) {
+                            var a = ge("chat_settings_" + e),
+                                o = cur.mr_truth_chat_tpl.replace(/\{id\}/g, e).replace("{name}", val(geByClass1("mr_truth_chats_list_item_name", a))).replace("{photo}", val(geByClass1("mr_truth_chats_list_item_photo", a))).replace("{count}", attr(a, "data-count")).replace("{hash}", attr(a, "data-hash")),
                                 s = se(o),
                                 n = ge("chats");
                             n.insertBefore(s, n.firstChild), re(geByClass1("mr_truth_no_chats_msg", "chats"))
@@ -84,8 +85,8 @@
                 this.action("on", cur.chatId)
             },
             _getMedia: function(t) {
-                for (var e = [], a = geByClass1("mr_truth_attach_wrap").children, r = 0; r < a.length; r++) {
-                    var o = a[r];
+                for (var e = [], r = geByClass1("mr_truth_attach_wrap").children, a = 0; a < r.length; a++) {
+                    var o = r[a];
                     (attr(o, "data-uploaded") && !attr(o, "data-canceled") || t) && e.push("photo:" + attr(o, "data-photo"))
                 }
                 return e
@@ -95,14 +96,14 @@
                     cur.sending = !0;
                     var e = [];
                     t.stickerId ? e.push("sticker:" + t.stickerId) : e = MrTruth._getMedia();
-                    var a = trim(MrTruth.formGetText());
-                    if (a || e.length) {
-                        var r = geByClass1("mt_trust_send_button");
+                    var r = trim(MrTruth.formGetText());
+                    if (r || e.length) {
+                        var a = geByClass1("mt_trust_send_button");
                         ajax.post("mr_truth.php", {
                             act: "send",
                             chat_id: cur.selectedChat,
                             hash: cur.selecteChatHash,
-                            msg: a,
+                            msg: r,
                             media: e.join(","),
                             access_token: cur.access_token
                         }, {
@@ -113,10 +114,10 @@
                                 return showDoneBox(getLang("global_unknown_error")), !0
                             },
                             showProgress: function() {
-                                lockButton(r)
+                                lockButton(a)
                             },
                             hideProgress: function() {
-                                unlockButton(r), cur.sending = !1
+                                unlockButton(a), cur.sending = !1
                             }
                         })
                     }
@@ -152,25 +153,25 @@
                     onUploadStart: function(t, e) {
                         geByClass1("mr_truth_attach_wrap").appendChild(se('\n          <div class="mr_truth_attach_photo" title="' + e + '" id="attach_photo_' + t.ind + '">\n            <div class="mr_truth_attach_photo_cancel" onclick="MrTruth.cancelUpload(this)"></div>\n            <div class="mr_truth_attach_photo_loader">\n              <svg class="mr_truth_attach_photo_loader_circular" viewBox="25 25 50 50">\n                <circle class="mr_truth_attach_photo_loader_path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" stroke-dasharray="0,124"/>\n              </svg>\n            </div>\n          </div>\n        ')), MrTruth.updateUploadPhotoButton()
                     },
-                    onUploadProgress: function(t, e, a) {
-                        var r = e / a,
+                    onUploadProgress: function(t, e, r) {
+                        var a = e / r,
                             o = geByClass1("mr_truth_attach_photo_loader_path", "attach_photo_" + t),
                             s = o.getTotalLength();
-                        attr(o, "stroke-dasharray", s * r + "," + s)
+                        attr(o, "stroke-dasharray", s * a + "," + s)
                     },
                     onUploadComplete: function(t, e) {
-                        var a = ge("attach_photo_" + t);
-                        if (attr(a, "data-canceled")) return re(a);
-                        var r = parseJSON(e) || {
+                        var r = ge("attach_photo_" + t);
+                        if (attr(r, "data-canceled")) return re(r);
+                        var a = parseJSON(e) || {
                             error: "ERR_CLIENT_BAD_RESPONSE: bad request response"
                         };
-                        if (r.error || !r.photos) {
+                        if (a.error || !a.photos) {
                             var o = void 0;
-                            return o = "ERR_UPLOAD_BAD_IMAGE_SIZE" === r.error || r.error.indexOf('result "1"') > -1 ? getLang("global_error_occured") : r.error, re("attach_photo_" + t), MrTruth.updateUploadPhotoButton(), void topError(o, {
+                            return o = "ERR_UPLOAD_BAD_IMAGE_SIZE" === a.error || a.error.indexOf('result "1"') > -1 ? getLang("global_error_occured") : a.error, re("attach_photo_" + t), MrTruth.updateUploadPhotoButton(), void topError(o, {
                                 dt: 3
                             })
                         }
-                        MrTruth._saveUploadedPhoto(r, t), MrTruth.updateUploadPhotoButton()
+                        MrTruth._saveUploadedPhoto(a, t), MrTruth.updateUploadPhotoButton()
                     },
                     onUploadError: function(t) {
                         re("attach_photo_" + t), MrTruth.updateUploadPhotoButton()
@@ -185,9 +186,9 @@
                 t.photos = JSON.stringify(t.photos), t.access_token = cur.access_token, ajax.post("mr_truth.php", extend({
                     act: "save_photo"
                 }, t), {
-                    onDone: function(t, a) {
-                        var r = ge("attach_photo_" + e);
-                        re(geByClass1("mr_truth_attach_photo_loader", r)), attr(r, "data-photo", t), setStyle(r, "background-image", "url(" + a + ")"), attr(r, "id", ""), attr(r, "data-uploaded", 1), attr(r, "data-canceled") && re(r), MrTruth.formOnKeyUp(), MrTruth.updateUploadPhotoButton()
+                    onDone: function(t, r) {
+                        var a = ge("attach_photo_" + e);
+                        re(geByClass1("mr_truth_attach_photo_loader", a)), attr(a, "data-photo", t), setStyle(a, "background-image", "url(" + r + ")"), attr(a, "id", ""), attr(a, "data-uploaded", 1), attr(a, "data-canceled") && re(a), MrTruth.formOnKeyUp(), MrTruth.updateUploadPhotoButton()
                     },
                     onFail: function() {
                         re("attach_photo_" + e), MrTruth.updateUploadPhotoButton()

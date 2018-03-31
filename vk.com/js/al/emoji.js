@@ -3405,6 +3405,8 @@ if (!window.Emoji) {
                 opts.onStickerSend(stickerNum, sticker_referrer, 'animation');
             }
 
+            statlogsValueEvent('stickers_usage', opts.ref, stickerNum, sticker_referrer);
+
             Emoji.ttHide(optId, false, false, true);
             opts.recentSticker = stickerNum;
         },

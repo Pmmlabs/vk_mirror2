@@ -12414,14 +12414,16 @@ a.Pad__corner {
     white-space: nowrap
 }
 
-.ArtistCover,
-.ArtistCover__image {
+.ArtistCover {
     height: 180px;
-    width: 100%
+    width: 100%;
+    background: #001433
 }
 
 .ArtistCover__image {
     display: table;
+    height: 180px;
+    width: 100%;
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover
@@ -14352,10 +14354,11 @@ a.Pad__corner {
     background: #5181b8;
     display: inline-block;
     vertical-align: top;
-    padding: 9px 12px;
-    border-radius: 36px;
+    padding: 9px;
+    border-radius: 4px;
     position: relative;
-    white-space: nowrap
+    white-space: nowrap;
+    text-transform: uppercase
 }
 
 @media (max-width: 319px) {
@@ -14368,7 +14371,7 @@ a.Pad__corner {
 
 @media (min-width: 375px) {
     .audioPlaylistSnippet__play {
-        padding: 9px 17px
+        padding: 9px 13px 9px 16px
     }
 }
 
@@ -14529,7 +14532,7 @@ a.Pad__corner {
 
 @media (min-width: 375px) {
     .audioPlaylistSnippet .audioPlaylist__add {
-        margin: 0 12px 0 0
+        margin: 0 4px
     }
 }
 

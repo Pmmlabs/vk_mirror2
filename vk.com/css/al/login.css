@@ -280,10 +280,19 @@
 .login_blocked_wrap .page_block .footer {
     border-top: 1px solid #e7e8ec;
     margin-top: 25px;
-    padding-top: 20px
+    padding-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 22px
 }
 
-.login_blocked_wrap .page_block .footer,
+.login_blocked_wrap .page_block .footer_without_border {
+    margin-top: 22px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 22px
+}
+
 .login_blocked_wrap .page_block .footer_plug {
     text-align: center;
     font-size: 14px;
@@ -576,6 +585,29 @@
 
 .login_blocked_wrap .login_blocked_reason_wout_msg .login_blocked_reason_label {
     margin-top: 6px
+}
+
+.settings_deact_page .settings_deact_header {
+    margin-bottom: 10px;
+    color: #222;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.settings_deact_page .settings_reason {
+    padding: 0 0 11px
+}
+
+.settings_deact_page .settings_reason .settings_reason_desc {
+    display: none
+}
+
+.settings_deact_page .settings_reason_text {
+    margin-top: 8px;
+    width: 510px;
+    height: 65px;
+    resize: none
 }
 
 #login_blocked_wrap h2 {

@@ -360,6 +360,7 @@ window.Stories = {
                 rPointer: !0,
                 onSend: Stories.onAnswerSend,
                 forceUp: !0,
+                ref: "stories",
                 controlsCont: e
             }), wkcur.formAnimTimer = setTimeout(function() {
                 wkcur.formAnimTimer = 0, removeClass(e, "story_view_row_form_anim"), Emoji.editableFocus(i, !1, 1)

@@ -84,6 +84,7 @@ var ShareBox = {
                                     act: "a_send_box",
                                     from: "box",
                                     to_ids: [],
+                                    entrypoint: "share",
                                     chas: cur.sbMailHash,
                                     ajax: 1,
                                     title: isVisible("like_share_title_wrap") && val("like_share_title") || "",
