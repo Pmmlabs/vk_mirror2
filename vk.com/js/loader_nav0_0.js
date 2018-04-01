@@ -503,6 +503,7 @@ var stVersions = {
     'api/xdm.js': 1449919642,
     'hls.min.js': 1200179027,
     'candy.min.js': 1892723665,
+    'grip.min.js': 2716386299,
     'q_frame.php': 7,
     '/swf/api_wrapper.swf': 7,
     '/swf/api_external.swf': 8,
@@ -573,6 +574,7 @@ var stVersions = {
     'time_spent.js': 732637085,
     'cmodules/web/app_info.js': 2375115030,
     'internal/stream_quiz.css': 4294695086,
+    'cmodules/web/grip_web.js': 2605850012,
     'lang': 6887
 };
 var stTypes = {
@@ -584,7 +586,8 @@ var stTypes = {
         'selects.js': 1,
         'maps.js': 1,
         'hls.min.js': 1,
-        'candy.min.js': 1
+        'candy.min.js': 1,
+        'grip.min.js': 1
     },
     fromRoot: {
         'api/share.js': 1,
@@ -646,4 +649,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 3621;
+var _rnd = 6884;

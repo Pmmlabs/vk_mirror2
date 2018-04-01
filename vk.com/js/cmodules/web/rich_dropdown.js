@@ -12,9 +12,15 @@
     return e.m = t, e.c = r, e.p = "", e(0)
 }({
     0: function(t, e, r) {
-        t.exports = r(19)
+        t.exports = r(33)
     },
-    19: function(t, e, r) {
+    1: function(t, e) {
+        "use strict";
+        Object.defineProperty(e, "__esModule", {
+            value: !0
+        }), e.SPACE = " ", e.ITEM_CLASS = "rich_dropdown_item", e.TYPE_ITEM = "item", e.TYPE_OPERATOR = "operator", e.TYPE_BRACKET = "bracket", e.TYPE_OPEN_BRACKET = "open_bracket", e.TYPE_CLOSE_BRACKET = "close_bracket", e.TYPE_SECTION = "section", e.TYPE_OPERAND = "operand", e.TYPE_COLON = "colon", e.TYPE_COMMA = "comma"
+    },
+    33: function(t, e, r) {
         "use strict";
 
         function i(t) {
@@ -22,112 +28,14 @@
                 "default": t
             }
         }
-        var s = r(346),
+        var s = r(319),
             a = i(s);
         window.RichDropDown = a["default"];
         try {
             stManager.done("rich_dropdown.js")
         } catch (o) {}
     },
-    70: function(t, e, r) {
-        "use strict";
-
-        function i(t) {
-            if (t && t.__esModule) return t;
-            var e = {};
-            if (null != t)
-                for (var r in t) Object.prototype.hasOwnProperty.call(t, r) && (e[r] = t[r]);
-            return e["default"] = t, e
-        }
-
-        function s(t) {
-            return stripHTML(String(t)).replace(/\&nbsp\;/g, c.SPACE)
-        }
-
-        function a(t) {
-            for (var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "", r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : !1, i = {}, s = 0; s < t.length; s++) {
-                var o = t[s],
-                    n = [r ? o.key : o.label];
-                e && n.unshift(e);
-                var l = n.join(".").toLowerCase();
-                i[l] = o, o.options && (i = extend(i, a(o.options, l, r)))
-            }
-            return i
-        }
-
-        function o(t) {
-            return String(t).split(/(\u0028|\u0029|\u003A|\s+)/g).filter(function(t) {
-                return t
-            })
-        }
-
-        function n(t, e) {
-            var r = e || {},
-                i = r.color;
-            setStyle(t, {
-                color: i
-            })
-        }
-
-        function l(t, e) {
-            var r = ce("div", {
-                className: "rich_dropdown_textarea",
-                innerHTML: (clean(e) || " ") + '<div class="rich_dropdown_cursor"></div>'
-            }, {
-                opacity: 0,
-                position: "absolute"
-            });
-            t.appendChild(r);
-            var i = geByClass1("rich_dropdown_cursor", r),
-                s = {
-                    left: i.offsetLeft,
-                    top: i.offsetTop
-                };
-            return re(r), s
-        }
-
-        function p(t, e) {
-            for (var r = o(e), i = t, s = 0; s < r.length; s++) {
-                var a = trim(r[s]).toLowerCase();
-                a && (i[a] || (i[a] = {}), i = i[a])
-            }
-        }
-
-        function u(t, e, r) {
-            return r.map(function(r) {
-                return h(t, e, r)
-            }).join(" ")
-        }
-
-        function h(t, e, r) {
-            var i = r.type,
-                s = r.key,
-                a = r.values;
-            switch (i) {
-                case c.TYPE_SECTION:
-                    return "( " + u(t, e, a) + " )";
-                case c.TYPE_OPERATOR:
-                    var o = t[s];
-                    return isObject(o) ? o.label : "Failed (" + s + ")";
-                case c.TYPE_OPERAND:
-                    var n = e[s];
-                    return isObject(n) ? n.label : "Failed (" + s + ")"
-            }
-            return "Bad type (" + i + ")"
-        }
-        Object.defineProperty(e, "__esModule", {
-            value: !0
-        }), e.convertText = s, e.genOptionsObject = a, e.splitTextToWords = o, e.setStyles = n, e.getCursorPosition = l, e.prefixesThreeGen = p, e.itemsToString = u;
-        var d = r(73),
-            c = i(d)
-    },
-    73: function(t, e) {
-        "use strict";
-        Object.defineProperty(e, "__esModule", {
-            value: !0
-        }), e.SPACE = " ", e.ITEM_CLASS = "rich_dropdown_item", e.TYPE_ITEM = "item", e.TYPE_OPERATOR = "operator", e.TYPE_BRACKET = "bracket", e.TYPE_OPEN_BRACKET = "open_bracket", e.TYPE_CLOSE_BRACKET = "close_bracket", e.TYPE_SECTION = "section", e.TYPE_OPERAND = "operand", e.TYPE_COLON = "colon", e.TYPE_COMMA = "comma"
-    },
-    267: function(t, e, r) {
+    62: function(t, e, r) {
         "use strict";
 
         function i(t) {
@@ -144,7 +52,7 @@
         Object.defineProperty(e, "__esModule", {
             value: !0
         });
-        var a = r(70),
+        var a = r(215),
             o = i(a),
             n = function() {
                 function t(e, r) {
@@ -315,84 +223,99 @@
             }();
         e["default"] = n
     },
-    346: function(t, e, r) {
+    215: function(t, e, r) {
         "use strict";
 
         function i(t) {
-            return t && t.__esModule ? t : {
-                "default": t
+            if (t && t.__esModule) return t;
+            var e = {};
+            if (null != t)
+                for (var r in t) Object.prototype.hasOwnProperty.call(t, r) && (e[r] = t[r]);
+            return e["default"] = t, e
+        }
+
+        function s(t) {
+            return stripHTML(String(t)).replace(/\&nbsp\;/g, c.SPACE)
+        }
+
+        function a(t) {
+            for (var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "", r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : !1, i = {}, s = 0; s < t.length; s++) {
+                var o = t[s],
+                    n = [r ? o.key : o.label];
+                e && n.unshift(e);
+                var l = n.join(".").toLowerCase();
+                i[l] = o, o.options && (i = extend(i, a(o.options, l, r)))
+            }
+            return i
+        }
+
+        function o(t) {
+            return String(t).split(/(\u0028|\u0029|\u003A|\s+)/g).filter(function(t) {
+                return t
+            })
+        }
+
+        function n(t, e) {
+            var r = e || {},
+                i = r.color;
+            setStyle(t, {
+                color: i
+            })
+        }
+
+        function l(t, e) {
+            var r = ce("div", {
+                className: "rich_dropdown_textarea",
+                innerHTML: (clean(e) || " ") + '<div class="rich_dropdown_cursor"></div>'
+            }, {
+                opacity: 0,
+                position: "absolute"
+            });
+            t.appendChild(r);
+            var i = geByClass1("rich_dropdown_cursor", r),
+                s = {
+                    left: i.offsetLeft,
+                    top: i.offsetTop
+                };
+            return re(r), s
+        }
+
+        function p(t, e) {
+            for (var r = o(e), i = t, s = 0; s < r.length; s++) {
+                var a = trim(r[s]).toLowerCase();
+                a && (i[a] || (i[a] = {}), i = i[a])
             }
         }
 
-        function s(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        function u(t, e, r) {
+            return r.map(function(r) {
+                return h(t, e, r)
+            }).join(" ")
+        }
+
+        function h(t, e, r) {
+            var i = r.type,
+                s = r.key,
+                a = r.values;
+            switch (i) {
+                case c.TYPE_SECTION:
+                    return "( " + u(t, e, a) + " )";
+                case c.TYPE_OPERATOR:
+                    var o = t[s];
+                    return isObject(o) ? o.label : "Failed (" + s + ")";
+                case c.TYPE_OPERAND:
+                    var n = e[s];
+                    return isObject(n) ? n.label : "Failed (" + s + ")"
+            }
+            return "Bad type (" + i + ")"
         }
         Object.defineProperty(e, "__esModule", {
             value: !0
-        });
-        var a = r(507),
-            o = i(a),
-            n = function() {
-                function t(e) {
-                    var r = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-                    return s(this, t), r.items = r.items || [], e = ge(e), addClass(e, "rich_dropdown_wrap"), this.input = new o["default"](e, r.items), this.input.renderByInitialData(r.initialData), this.setOptions(r), this
-                }
-                return t.prototype.destroy = function() {
-                    this.input.destroy(), delete this.input
-                }, t.prototype.getValue = function() {
-                    return this.input.getValue()
-                }, t.prototype.getStringValue = function() {
-                    return this.input.getStringValue()
-                }, t.prototype.onChange = function(t) {
-                    return this.input.setOptions({
-                        onChange: t
-                    }), this
-                }, t.prototype.setOptions = function() {
-                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
-                    for (var e in t) {
-                        var r = t[e];
-                        switch (e) {
-                            case "placeholder":
-                                this.input.setPlaceholder(r);
-                                break;
-                            case "operators":
-                                this.input.autoComplete.setOperators(r), this.input.updateOptionsObj();
-                                break;
-                            case "disabledText":
-                                this.input.setDisabledText(r);
-                                break;
-                            case "autoCompleteMaxWidth":
-                                this.input.setAutoCompleteMaxWidth(r);
-                                break;
-                            case "width":
-                                this.input.setWidth(r);
-                                break;
-                            case "items":
-                                this.input.autoComplete.setOptions(r), this.input.updateOptionsObj();
-                                break;
-                            case "value":
-                                this.setValue(r);
-                                break;
-                            case "onChange":
-                                this.onChange(r)
-                        }
-                    }
-                    return this
-                }, t.prototype.disable = function() {
-                    this.input.disable()
-                }, t.prototype.enable = function() {
-                    this.input.enable()
-                }, t.prototype.toggleDisable = function() {
-                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : void 0;
-                    this.input.disabled && t !== !0 || t === !1 ? this.input.enable() : this.input.disable()
-                }, t.prototype.setValue = function() {
-                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
-                    this.input.setValue(t)
-                }, t
-            }();
-        e["default"] = n
+        }), e.convertText = s, e.genOptionsObject = a, e.splitTextToWords = o, e.setStyles = n, e.getCursorPosition = l, e.prefixesThreeGen = p, e.itemsToString = u;
+        var d = r(1),
+            c = i(d)
     },
-    507: function(t, e, r) {
+    263: function(t, e, r) {
         "use strict";
 
         function i(t) {
@@ -445,11 +368,11 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }(),
-            l = r(70),
+            l = r(215),
             p = s(l),
-            u = r(73),
+            u = r(1),
             h = s(u),
-            d = r(267),
+            d = r(62),
             c = i(d),
             f = function() {
                 function t(e, r) {
@@ -775,5 +698,82 @@
                 }, t
             }();
         e["default"] = f
+    },
+    319: function(t, e, r) {
+        "use strict";
+
+        function i(t) {
+            return t && t.__esModule ? t : {
+                "default": t
+            }
+        }
+
+        function s(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        }
+        Object.defineProperty(e, "__esModule", {
+            value: !0
+        });
+        var a = r(263),
+            o = i(a),
+            n = function() {
+                function t(e) {
+                    var r = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
+                    return s(this, t), r.items = r.items || [], e = ge(e), addClass(e, "rich_dropdown_wrap"), this.input = new o["default"](e, r.items), this.input.renderByInitialData(r.initialData), this.setOptions(r), this
+                }
+                return t.prototype.destroy = function() {
+                    this.input.destroy(), delete this.input
+                }, t.prototype.getValue = function() {
+                    return this.input.getValue()
+                }, t.prototype.getStringValue = function() {
+                    return this.input.getStringValue()
+                }, t.prototype.onChange = function(t) {
+                    return this.input.setOptions({
+                        onChange: t
+                    }), this
+                }, t.prototype.setOptions = function() {
+                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+                    for (var e in t) {
+                        var r = t[e];
+                        switch (e) {
+                            case "placeholder":
+                                this.input.setPlaceholder(r);
+                                break;
+                            case "operators":
+                                this.input.autoComplete.setOperators(r), this.input.updateOptionsObj();
+                                break;
+                            case "disabledText":
+                                this.input.setDisabledText(r);
+                                break;
+                            case "autoCompleteMaxWidth":
+                                this.input.setAutoCompleteMaxWidth(r);
+                                break;
+                            case "width":
+                                this.input.setWidth(r);
+                                break;
+                            case "items":
+                                this.input.autoComplete.setOptions(r), this.input.updateOptionsObj();
+                                break;
+                            case "value":
+                                this.setValue(r);
+                                break;
+                            case "onChange":
+                                this.onChange(r)
+                        }
+                    }
+                    return this
+                }, t.prototype.disable = function() {
+                    this.input.disable()
+                }, t.prototype.enable = function() {
+                    this.input.enable()
+                }, t.prototype.toggleDisable = function() {
+                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : void 0;
+                    this.input.disabled && t !== !0 || t === !1 ? this.input.enable() : this.input.disable()
+                }, t.prototype.setValue = function() {
+                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
+                    this.input.setValue(t)
+                }, t
+            }();
+        e["default"] = n
     }
 });
