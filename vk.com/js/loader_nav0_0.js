@@ -574,7 +574,7 @@ var stVersions = {
     'time_spent.js': 732637085,
     'cmodules/web/app_info.js': 2375115030,
     'internal/stream_quiz.css': 4294695086,
-    'cmodules/web/grip_web.js': 2605850012,
+    'cmodules/web/grip_web.js': 5188144050,
     'lang': 6887
 };
 var stTypes = {
@@ -649,4 +649,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 4056;
+var _rnd = 1597;
