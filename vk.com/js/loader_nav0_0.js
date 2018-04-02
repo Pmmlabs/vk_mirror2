@@ -219,7 +219,7 @@ var stVersions = {
     'intro.css': 19316827523,
     'post.css': 25097687370,
     'module.css': 23234946874,
-    'owner_photo.js': 3401070266,
+    'owner_photo.js': 351589227,
     'owner_photo.css': 21870252532,
     'page.js': 2080329741,
     'page.css': 38026907201,
@@ -347,7 +347,7 @@ var stVersions = {
     'agents.css': 18452653639,
     'achievements.js': 897703126,
     'achievements.css': 16983182889,
-    'sf.css': 22018792173,
+    'sf.css': 24592231631,
     'members.css': 18192416913,
     'meminfo.css': 24933113514,
     'groupinfo.css': 24824955735,
@@ -450,7 +450,7 @@ var stVersions = {
     'landings/landings.css': 21145987492,
     'landings/vk10_years.css': 17499893612,
     'chronicle.css': 18244084551,
-    'market.css': 33016146382,
+    'market.css': 31715807432,
     'market.js': 1753735791,
     'market_adm.css': 19713875453,
     'market_adm.js': 2677502581,
@@ -537,8 +537,8 @@ var stVersions = {
     'voice_message_player.js': 18549969583,
     'cmodules/web/speech_worker_mp3.js': 1074082218,
     'cmodules/web/speech_worker_opus.js': 2818771805,
-    'stories.js': 57469590407,
-    'stories.css': 20747721774,
+    'stories.js': 60948405203,
+    'stories.css': 22308965598,
     'internal/nospam.css': 20852020599,
     'internal/away_linksban.css': 16152599040,
     'internal/ui_manual.js': 1761369792,
@@ -649,4 +649,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 1597;
+var _rnd = 7919;

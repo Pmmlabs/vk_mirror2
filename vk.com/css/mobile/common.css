@@ -13890,6 +13890,7 @@ a.Pad__corner {
     max-width: 110px
 }
 
+.audioPlaylists__itemAuthor,
 .audioPlaylists__itemSubtitle {
     display: block;
     font-size: 13px;
@@ -13897,6 +13898,7 @@ a.Pad__corner {
     margin: 2px 0 0
 }
 
+.audioPlaylists__itemAuthor,
 .audioPlaylists__itemSubtitle,
 .audioPlaylists__itemTitle {
     line-height: 16px;
@@ -13906,7 +13908,6 @@ a.Pad__corner {
     max-width: 110px
 }
 
-.audioPlaylists__itemAuthor,
 .audioPlaylists__itemStats {
     display: none
 }

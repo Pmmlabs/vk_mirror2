@@ -2883,7 +2883,9 @@
     float: left;
     padding-left: 10px;
     color: #222;
-    width: 340px
+    width: 340px;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word
 }
 
 .market_tr_row__note.market_tr_row__note_short {

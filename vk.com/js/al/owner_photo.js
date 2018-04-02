@@ -177,9 +177,10 @@ var OwnerPhoto = {
                     var i = o.wide ? "wide" : o.cover ? "cover" : "photo";
                     OwnerPhoto.showError(1, a.error + (t || ""), i)
                 } else if (a.x_src && a.x_size && a.size) {
-                    var n = Upload.options[cur.ownerPhotoUploadId].base_url + "upload.php?act=" + (o.cover ? "owner_cover_crop" : "owner_photo_edit") + "&_query=" + encodeURIComponent(r) + "&_origin=" + encodeURIComponent(locProtocol + "//" + locHost);
-                    removeClass("owner_photo_upload_return", "unshown"), OwnerPhoto.edit({
-                        thumb: Upload.options[cur.ownerPhotoUploadId].static_url + a.x_src,
+                    var n = Upload.options[cur.ownerPhotoUploadId].base_url + "upload.php?act=" + (o.cover ? "owner_cover_crop" : "owner_photo_edit") + "&_query=" + encodeURIComponent(r) + "&_origin=" + encodeURIComponent(locProtocol + "//" + locHost),
+                        h = a.x_src;
+                    a.x_src.startsWith("http") || (h = Upload.options[cur.ownerPhotoUploadId].static_url + h), removeClass("owner_photo_upload_return", "unshown"), OwnerPhoto.edit({
+                        thumb: h,
                         thumbSize: a.x_size,
                         size: a.size,
                         uploadUrl: n,
@@ -189,8 +190,8 @@ var OwnerPhoto = {
                         cover: o.cover
                     })
                 } else {
-                    var h = r === !1 ? "[FALSE]" : null === r ? "[NULL]" : void 0 === r ? "[UNDEFINED]" : "&laquo;" + clean(r.toString().substr(0, 1024)) + "&raquo;";
-                    OwnerPhoto.showError(1, "ERR_CLIENT_BAD_RESPONSE: bad upload owner photo response, recv " + h)
+                    var c = r === !1 ? "[FALSE]" : null === r ? "[NULL]" : void 0 === r ? "[UNDEFINED]" : "&laquo;" + clean(r.toString().substr(0, 1024)) + "&raquo;";
+                    OwnerPhoto.showError(1, "ERR_CLIENT_BAD_RESPONSE: bad upload owner photo response, recv " + c)
                 }
             },
             onUploadProgress: function(o, e, r) {
