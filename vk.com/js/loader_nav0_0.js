@@ -340,7 +340,7 @@ var stVersions = {
     'helpdesk.css': 23059368434,
     'tickets.js': 1561089313,
     'tickets.css': 28136671720,
-    'internal/faq.js': 2622161233,
+    'internal/faq.js': 3776713641,
     'faq.css': 19348891998,
     'talmud.js': 1641838680,
     'agents.js': 2426697933,
@@ -503,7 +503,6 @@ var stVersions = {
     'api/xdm.js': 1449919642,
     'hls.min.js': 1200179027,
     'candy.min.js': 1892723665,
-    'grip.min.js': 2716386299,
     'q_frame.php': 7,
     '/swf/api_wrapper.swf': 7,
     '/swf/api_external.swf': 8,
@@ -568,13 +567,13 @@ var stVersions = {
     'cmodules/web/stickers.js': 8507637060,
     'cmodules/web/stickers_office.js': 8692564268,
     'cmodules/web/bodymovin.js': 1520167629,
-    'lead_forms_app.js': 12050261391,
+    'lead_forms_app.js': 10628779946,
     'lead_forms_app.css': 21565433983,
     'internal/stories_admin_panel.css': 16303035598,
     'time_spent.js': 732637085,
     'cmodules/web/app_info.js': 2375115030,
     'internal/stream_quiz.css': 4294695086,
-    'cmodules/web/grip_web.js': 5188144050,
+    'cmodules/web/grip.js': 2888075722,
     'lang': 6887
 };
 var stTypes = {
@@ -586,8 +585,7 @@ var stTypes = {
         'selects.js': 1,
         'maps.js': 1,
         'hls.min.js': 1,
-        'candy.min.js': 1,
-        'grip.min.js': 1
+        'candy.min.js': 1
     },
     fromRoot: {
         'api/share.js': 1,
@@ -649,4 +647,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 7919;
+var _rnd = 3360;

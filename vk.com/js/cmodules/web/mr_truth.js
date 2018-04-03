@@ -12,9 +12,9 @@
     return e.m = t, e.c = r, e.p = "", e(0)
 }({
     0: function(t, e, r) {
-        t.exports = r(35)
+        t.exports = r(372)
     },
-    35: function(t, e) {
+    372: function(t, e) {
         "use strict";
         window.MrTruth = {
             init: function() {
