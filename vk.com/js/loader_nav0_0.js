@@ -131,7 +131,7 @@ var navMap = {
     'survey(-[0-9]+)_([0-9]+)$': ['al_surveys.php', ['surveys.css', 'surveys.js']],
     'imnumberx$': ['imnumberx.php', ['imnumberx.css']],
     'push_notifier': ['al_pushNotifier.php', []],
-    'artist': ['al_artist.php', []],
+    'artist$': ['al_artist.php', []],
     'cleveradmin': ['stream_quiz.php', ['internal/stream_quiz.css', 'cmodules/internal/stream_quiz.js']]
 };
 var stVersions = {
@@ -254,8 +254,8 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 187927083508,
-    'imn.js': 215868703843,
+    'im.css': 188972375710,
+    'imn.js': 226099682588,
     'im.js': 1322065005,
     'emoji.js': 4268500095,
     'wide_dd.css': 18967155844,
@@ -323,7 +323,7 @@ var stVersions = {
     'widgets.css': 35523163192,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 82343375591,
+    'notifier.js': 82524076480,
     'notifier.css': 28182574771,
     'cmodules/sw/sw.js': 4889939668,
     'earthday.js': 2276669993,
@@ -367,7 +367,7 @@ var stVersions = {
     'verify.css': 15702099001,
     'away.css': 21083982074,
     'stats.css': 18447170476,
-    'payments.css': 29932852266,
+    'payments.css': 29933129955,
     'payments.js': 301538576,
     'offers.css': 978996883,
     'offers.js': 2030679272,
@@ -567,13 +567,13 @@ var stVersions = {
     'cmodules/web/stickers.js': 8507637060,
     'cmodules/web/stickers_office.js': 8692564268,
     'cmodules/web/bodymovin.js': 1520167629,
-    'lead_forms_app.js': 10628779946,
+    'lead_forms_app.js': 10774763048,
     'lead_forms_app.css': 21565433983,
     'internal/stories_admin_panel.css': 16303035598,
     'time_spent.js': 732637085,
     'cmodules/web/app_info.js': 2375115030,
     'internal/stream_quiz.css': 4294695086,
-    'cmodules/web/grip.js': 2888075722,
+    'cmodules/web/grip.js': 4164501492,
     'lang': 6887
 };
 var stTypes = {
@@ -647,4 +647,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 9146;
+var _rnd = 6670;

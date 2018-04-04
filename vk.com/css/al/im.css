@@ -4329,6 +4329,18 @@ img.im_photo_thumb {
     top: 117px
 }
 
+.im-page .im-page--hisory_search-open .im-page--chat-header.im-page--chat-header_top-banner .im-page--top-date-bar-wrap {
+    top: 54px
+}
+
+.im-page .im-page--chat-header.im-page--chat-header_top-banner .im-page--top-date-bar-wrap {
+    top: 107px
+}
+
+.im-page .im-page--chat-header.im-page--chat-header_top-banner.im-page--chat-header_pinned .im-page--pinned {
+    display: none
+}
+
 .im-page .im-page--top-date-bar_visible .im-page--top-date-bar {
     opacity: 1
 }
@@ -5613,8 +5625,16 @@ img.im_photo_thumb {
     content: ''
 }
 
+.im-page--hisory_search-open .im-page--chat-header.im-page--chat-header_top-banner {
+    height: 48px
+}
+
 .im-page--chat-header.im-page--chat-header_pinned {
     height: 100px
+}
+
+.im-page--chat-header.im-page--chat-header_top-banner {
+    height: 101px
 }
 
 .im-page--chat-header:not(.im-page--chat-header_pinned) .im-page--pinned {
@@ -11815,6 +11835,101 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .im-money-request-snippet__button {
     float: right
+}
+
+.im-top-banner {
+    height: 52px;
+    background: #fff;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 12px;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background: #fafbfc
+}
+
+.im-top-banner--text {
+    min-width: 150px;
+    white-space: normal;
+    margin-left: 6px;
+    max-height: 36px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    -webkit-flex-shrink: 2;
+    -ms-flex-negative: 2;
+    flex-shrink: 2
+}
+
+.im-top-banner--icon {
+    width: 36px;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    height: 36px;
+    margin: 7px 4px 7px 0;
+    border-radius: 50%;
+    overflow: hidden
+}
+
+.im-top-banner--icon img {
+    max-width: 100%;
+    max-height: 100%
+}
+
+.im-top-banner--button {
+    margin-left: 8px;
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.im-page_classic.im-page .im-top-banner--button {
+    max-width: 145px
+}
+
+.im-page--chat-header_show-top-banner .im-top-banner {
+    display: block
+}
+
+.im-page--hisory_search-open .im-page--chat-header_top-banner {
+    height: 48px
+}
+
+.im-page--hisory_search-open .im-page--chat-header_top-banner .im-top-banner {
+    display: none
+}
+
+.im-top-banner--button_hide {
+    border: none;
+    width: 24px;
+    height: 24px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%2010%2010%22%3E%3Cpath%20fill%3D%22%23828A99%22%20d%3D%22M6.4%205l3.3-3.3c.4-.4.4-1%200-1.4s-1-.4-1.4%200l-3.3%203.3-3.3-3.3c-.4-.4-1-.4-1.4%200s-.4%201%200%201.4l3.3%203.3-3.3%203.3c-.4.4-.4%201%200%201.4.2.2.4.3.7.3s.5-.1.7-.3l3.3-3.3%203.3%203.3c.2.2.4.3.7.3s.5-.1.7-.3c.4-.4.4-1%200-1.4l-3.3-3.3z%22%2F%3E%3C%2Fsvg%3E") 50% no-repeat;
+    margin-top: 4px;
+    opacity: 0.7;
+    cursor: pointer;
+    margin-right: 8px
+}
+
+.im-top-banner--button_hide:hover {
+    opacity: 1
+}
+
+.im-top-banner--buttons {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -webkit-flex-grow: 2;
+    -ms-flex-positive: 2;
+    flex-grow: 2;
+    padding-right: 15px
 }
 
 .im_rc_emojibtn {
