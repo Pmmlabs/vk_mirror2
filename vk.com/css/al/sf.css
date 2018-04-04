@@ -433,7 +433,7 @@ body.sf .mention_tt_actions {
     margin: 5px;
     display: inline-block;
     border-radius: 3px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     vertical-align: middle;
     cursor: pointer;
@@ -446,9 +446,19 @@ body.sf .mention_tt_actions {
     padding: 27px 0px
 }
 
-.sf_button_spam {
+.sf_button_spam,
+.sf_button_spam_forever {
     background: #698aad;
     color: #fff
+}
+
+.sf_button_spam_forever.sf_accepted {
+    background: #ad6a6a;
+    cursor: default
+}
+
+.sf_button_spam_forever.sf_declined_other {
+    background: #adadad
 }
 
 .sf_button_porno {

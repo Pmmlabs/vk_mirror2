@@ -138,7 +138,7 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 5181750877,
     'common.js': 1161,
-    'common.css': 42427128615,
+    'common.css': 41182203596,
     'cmodules/web/common_web.js': 2,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
@@ -148,7 +148,7 @@ var stVersions = {
     'lite.css': 46342854137,
     'rtl.css': 16958456595,
     'pagination.js': 1027022568,
-    'blog.css': 17733732561,
+    'blog.css': 17712933257,
     'blog.js': 1358605934,
     'html5audio.js': 976782859,
     'audioplayer.js': 6821771792,
@@ -255,7 +255,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 187927083508,
-    'imn.js': 217117333858,
+    'imn.js': 215868703843,
     'im.js': 1322065005,
     'emoji.js': 4268500095,
     'wide_dd.css': 18967155844,
@@ -323,7 +323,7 @@ var stVersions = {
     'widgets.css': 35523163192,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 83281919512,
+    'notifier.js': 82343375591,
     'notifier.css': 28182574771,
     'cmodules/sw/sw.js': 4889939668,
     'earthday.js': 2276669993,
@@ -347,7 +347,7 @@ var stVersions = {
     'agents.css': 18452653639,
     'achievements.js': 897703126,
     'achievements.css': 16983182889,
-    'sf.css': 24592231631,
+    'sf.css': 24855176470,
     'members.css': 18192416913,
     'meminfo.css': 24933113514,
     'groupinfo.css': 24824955735,
@@ -563,7 +563,7 @@ var stVersions = {
     'language.js': 3551638980,
     'language.css': 18650897118,
     'internal/admins.js': 2810460581,
-    'internal/admins.css': 17620177768,
+    'internal/admins.css': 16864677626,
     'cmodules/web/stickers.js': 8507637060,
     'cmodules/web/stickers_office.js': 8692564268,
     'cmodules/web/bodymovin.js': 1520167629,
@@ -647,4 +647,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 4629;
+var _rnd = 9146;

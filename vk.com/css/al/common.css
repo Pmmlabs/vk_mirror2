@@ -5757,7 +5757,7 @@ a.page_block_header:hover .header_side_link {
 }
 
 .narrow_column.fixed {
-    z-index: 2
+    z-index: 3
 }
 
 body.mac .narrow_column.fixed {
