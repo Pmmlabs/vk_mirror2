@@ -2,45 +2,64 @@
     function e(o) {
         if (i[o]) return i[o].exports;
         var a = i[o] = {
-            exports: {},
-            id: o,
-            loaded: !1
+            i: o,
+            l: !1,
+            exports: {}
         };
-        return t[o].call(a.exports, a, a.exports, e), a.loaded = !0, a.exports
+        return t[o].call(a.exports, a, a.exports, e), a.l = !0, a.exports
     }
     var i = {};
-    return e.m = t, e.c = i, e.p = "", e(0)
+    return e.m = t, e.c = i, e.d = function(t, i, o) {
+        e.o(t, i) || Object.defineProperty(t, i, {
+            configurable: !1,
+            enumerable: !0,
+            get: o
+        })
+    }, e.r = function(t) {
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        })
+    }, e.n = function(t) {
+        var i = t && t.__esModule ? function() {
+            return t["default"]
+        } : function() {
+            return t
+        };
+        return e.d(i, "a", i), i
+    }, e.o = function(t, e) {
+        return Object.prototype.hasOwnProperty.call(t, e)
+    }, e.p = "", e(e.s = 0)
 }([function(t, e, i) {
-    t.exports = i(4)
-}, function(t, e) {
+    t.exports = i(3)
+}, function(t, e, i) {
     "use strict";
 
-    function i() {
+    function o() {
         return window.wbopen && ~(window.open + "").indexOf("wbopen")
     }
 
-    function o(t) {
-        if (!i() && ~t.indexOf("audio_api_unavailable")) {
+    function a(t) {
+        if (!o() && ~t.indexOf("audio_api_unavailable")) {
             var e = t.split("?extra=")[1].split("#"),
-                o = "" === e[1] ? "" : a(e[1]);
-            if (e = a(e[0]), "string" != typeof o || !e) return t;
-            o = o ? o.split(String.fromCharCode(9)) : [];
-            for (var s, r, n = o.length; n--;) {
-                if (r = o[n].split(String.fromCharCode(11)), s = r.splice(0, 1, e)[0], !l[s]) return t;
-                e = l[s].apply(null, r)
+                i = "" === e[1] ? "" : s(e[1]);
+            if (e = s(e[0]), "string" != typeof i || !e) return t;
+            i = i ? i.split(String.fromCharCode(9)) : [];
+            for (var a, r, l = i.length; l--;) {
+                if (r = i[l].split(String.fromCharCode(11)), a = r.splice(0, 1, e)[0], !n[a]) return t;
+                e = n[a].apply(null, r)
             }
             if (e && "http" === e.substr(0, 4)) return e
         }
         return t
     }
 
-    function a(t) {
+    function s(t) {
         if (!t || t.length % 4 == 1) return !1;
-        for (var e, i, o = 0, a = 0, s = ""; i = t.charAt(a++);) i = r.indexOf(i), ~i && (e = o % 4 ? 64 * e + i : i, o++ % 4) && (s += String.fromCharCode(255 & e >> (-2 * o & 6)));
+        for (var e, i, o = 0, a = 0, s = ""; i = t.charAt(a++);) i = l.indexOf(i), ~i && (e = o % 4 ? 64 * e + i : i, o++ % 4) && (s += String.fromCharCode(255 & e >> (-2 * o & 6)));
         return s
     }
 
-    function s(t, e) {
+    function r(t, e) {
         var i = t.length,
             o = [];
         if (i) {
@@ -51,21 +70,21 @@
     }
     Object.defineProperty(e, "__esModule", {
         value: !0
-    }), e.audioUnmaskSource = o;
-    var r = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN0PQRSTUVWXYZO123456789+/=",
-        l = {
+    }), e.audioUnmaskSource = a;
+    var l = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN0PQRSTUVWXYZO123456789+/=",
+        n = {
             v: function(t) {
                 return t.split("").reverse().join("")
             },
             r: function(t, e) {
                 t = t.split("");
-                for (var i, o = r + r, a = t.length; a--;) i = o.indexOf(t[a]), ~i && (t[a] = o.substr(i - e, 1));
+                for (var i, o = l + l, a = t.length; a--;) i = o.indexOf(t[a]), ~i && (t[a] = o.substr(i - e, 1));
                 return t.join("")
             },
             s: function(t, e) {
                 var i = t.length;
                 if (i) {
-                    var o = s(t, e),
+                    var o = r(t, e),
                         a = 0;
                     for (t = t.split(""); ++a < i;) t[a] = t.splice(o[i - 1 - a], 1, t[a])[0];
                     t = t.join("")
@@ -73,7 +92,7 @@
                 return t
             },
             i: function(t, e) {
-                return l.s(t, e ^ vk.id)
+                return n.s(t, e ^ vk.id)
             },
             x: function(t, e) {
                 var i = [];
@@ -82,7 +101,7 @@
                 }), i.join("")
             }
         }
-}, function(module, exports) {
+}, function(module, exports, __webpack_require__) {
     "use strict";
 
     function _classCallCheck(t, e) {
@@ -169,7 +188,7 @@
         }, AudioLayer
     }();
     exports["default"] = AudioLayer
-}, , function(module, exports, __webpack_require__) {
+}, function(module, exports, __webpack_require__) {
     "use strict";
 
     function _interopRequireDefault(t) {
@@ -1547,6 +1566,8 @@
         return this.getSelf()._wallType
     }, AudioPlaylist.prototype.getCommunititesBlock = function() {
         return this.getSelf()._communitiesBlock
+    }, AudioPlaylist.prototype.getArtistsBlock = function() {
+        return this.getSelf()._artistsBlock
     }, AudioPlaylist.prototype.getPlaylistsBlock = function() {
         return this.getSelf()._playlistsBlock
     }, AudioPlaylist.prototype.getNextAudio = function(t, e) {
@@ -1675,7 +1696,7 @@
                     for (var a = 0, s = t.items.length; s > a; a++) this._items.push(t.items[a])
                 }
                 var r = this;
-                each("gridCovers communitiesBlock playlistsBlock addClasses nextOffset hasMore followHash accessHash isFollowed rawId title authorLine authorHref authorName infoLine1 infoLine2 isOfficial rawDescription description lastUpdated listens feedFrom feedOffset live searchParams totalCount totalCountHash postId wallQuery wallType originalList shuffle isAdsAllowed editHash coverUrl searchQid".split(" "), function(e, i) {
+                each("gridCovers artistsBlock communitiesBlock playlistsBlock addClasses nextOffset hasMore followHash accessHash isFollowed rawId title authorLine authorHref authorName infoLine1 infoLine2 isOfficial rawDescription description lastUpdated listens feedFrom feedOffset live searchParams totalCount totalCountHash postId wallQuery wallType originalList shuffle isAdsAllowed editHash coverUrl searchQid".split(" "), function(e, i) {
                     void 0 !== t[i] && (r["_" + i] = t[i])
                 })
             }
@@ -1799,8 +1820,8 @@
                     }
                 };
             AudioUtils.debugLog("Implementation init"), AudioUtils.debugLog("param browser.flash", browser.flash), AudioUtils.debugLog("param force HTML5", !!t), browser.safari && parseInt(browser.version) >= 11 ? this._impl = new AudioPlayerHTML5Simple(s) : t ? this._impl = new AudioPlayerHTML5(s) : AudioPlayerHTML5WebAudio.isSupported() ? (this._impl = new AudioPlayerHTML5WebAudio(s), this._impl.failed && (this._impl = new AudioPlayerHTML5(s))) : AudioPlayerHTML5.isSupported() ? this._impl = new AudioPlayerHTML5(s) : browser.flash && (this._impl = new AudioPlayerFlash(s)), this._implSetVolume(0)
-        }, AudioPlayer.EVENT_CURRENT_CHANGED = "curr", AudioPlayer.EVENT_PLAY = "start", AudioPlayer.EVENT_PAUSE = "pause", AudioPlayer.EVENT_STOP = "stop", AudioPlayer.EVENT_UPDATE = "update", AudioPlayer.EVENT_LOADED = "loaded", AudioPlayer.EVENT_ENDED = "ended", AudioPlayer.EVENT_FAILED = "failed", AudioPlayer.EVENT_BUFFERED = "buffered", AudioPlayer.EVENT_PROGRESS = "progress", AudioPlayer.EVENT_VOLUME = "volume", AudioPlayer.EVENT_PLAYLIST_CHANGED = "plchange", AudioPlayer.EVENT_ADDED = "added", AudioPlayer.EVENT_REMOVED = "removed", AudioPlayer.EVENT_FREQ_UPDATE = "freq", AudioPlayer.EVENT_AD_READY = "ad_ready", AudioPlayer.EVENT_AD_DEINITED = "ad_deinit", AudioPlayer.EVENT_AD_STARTED = "ad_started", AudioPlayer.EVENT_AD_COMPLETED = "ad_completed", AudioPlayer.EVENT_START_LOADING = "start_load", AudioPlayer.EVENT_CAN_PLAY = "actual_start", AudioPlayer.LS_VER = "v20", AudioPlayer.LS_KEY_PREFIX = "audio",
-        AudioPlayer.LS_PREFIX = AudioPlayer.LS_KEY_PREFIX + "_" + AudioPlayer.LS_VER + "_", AudioPlayer.LS_VOLUME = "vol", AudioPlayer.LS_PL = "pl", AudioPlayer.LS_TRACK = "track", AudioPlayer.LS_SAVED = "saved", AudioPlayer.LS_PROGRESS = "progress", AudioPlayer.LS_DURATION_TYPE = "dur_type", AudioPlayer.LS_ADS_CURRENT_DELAY = "ads_current_delay_v4", AudioPlayer.DEFAULT_VOLUME = .8, AudioPlayer.AD_TYPE = "preroll", window.audioIconSuffix = window.devicePixelRatio >= 2 ? "_2x" : "", AudioPlayer.tabIcons = {
+        }, AudioPlayer.EVENT_CURRENT_CHANGED = "curr", AudioPlayer.EVENT_PLAY = "start", AudioPlayer.EVENT_PAUSE = "pause", AudioPlayer.EVENT_STOP = "stop", AudioPlayer.EVENT_UPDATE = "update", AudioPlayer.EVENT_LOADED = "loaded", AudioPlayer.EVENT_ENDED = "ended", AudioPlayer.EVENT_FAILED = "failed", AudioPlayer.EVENT_BUFFERED = "buffered", AudioPlayer.EVENT_PROGRESS = "progress", AudioPlayer.EVENT_VOLUME = "volume", AudioPlayer.EVENT_PLAYLIST_CHANGED = "plchange",
+        AudioPlayer.EVENT_ADDED = "added", AudioPlayer.EVENT_REMOVED = "removed", AudioPlayer.EVENT_FREQ_UPDATE = "freq", AudioPlayer.EVENT_AD_READY = "ad_ready", AudioPlayer.EVENT_AD_DEINITED = "ad_deinit", AudioPlayer.EVENT_AD_STARTED = "ad_started", AudioPlayer.EVENT_AD_COMPLETED = "ad_completed", AudioPlayer.EVENT_START_LOADING = "start_load", AudioPlayer.EVENT_CAN_PLAY = "actual_start", AudioPlayer.LS_VER = "v20", AudioPlayer.LS_KEY_PREFIX = "audio", AudioPlayer.LS_PREFIX = AudioPlayer.LS_KEY_PREFIX + "_" + AudioPlayer.LS_VER + "_", AudioPlayer.LS_VOLUME = "vol", AudioPlayer.LS_PL = "pl", AudioPlayer.LS_TRACK = "track", AudioPlayer.LS_SAVED = "saved", AudioPlayer.LS_PROGRESS = "progress", AudioPlayer.LS_DURATION_TYPE = "dur_type", AudioPlayer.LS_ADS_CURRENT_DELAY = "ads_current_delay_v4", AudioPlayer.DEFAULT_VOLUME = .8, AudioPlayer.AD_TYPE = "preroll", window.audioIconSuffix = window.devicePixelRatio >= 2 ? "_2x" : "", AudioPlayer.tabIcons = {
             def: "/images/icons/favicons/fav_logo" + audioIconSuffix + ".ico",
             play: "/images/icons/favicons/fav_play" + audioIconSuffix + ".ico",
             pause: "/images/icons/favicons/fav_pause" + audioIconSuffix + ".ico"
@@ -3039,7 +3060,7 @@
         }, AudioPlayerHTML5.prototype._setFadeVolumeInterval = function(t) {
             if (t) {
                 if (!this._fadeVolumeWorker && window.Worker && window.Blob) {
-                    var e = new Blob(["           var interval;           onmessage = function(e) {             clearInterval(interval);             if (e.data == 'start') {               interval = setInterval(function() { postMessage({}); }, 20);             }           }         "]);
+                    var e = new Blob(["         var interval;         onmessage = function(e) {           clearInterval(interval);           if (e.data == 'start') {             interval = setInterval(function() { postMessage({}); }, 20);           }         }       "]);
                     try {
                         this._fadeVolumeWorker = new Worker(window.URL.createObjectURL(e))
                     } catch (i) {

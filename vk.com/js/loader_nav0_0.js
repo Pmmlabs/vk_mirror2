@@ -131,7 +131,7 @@ var navMap = {
     'survey(-[0-9]+)_([0-9]+)$': ['al_surveys.php', ['surveys.css', 'surveys.js']],
     'imnumberx$': ['imnumberx.php', ['imnumberx.css']],
     'push_notifier': ['al_pushNotifier.php', []],
-    'artist$': ['al_artist.php', []],
+    'artist($|/)': ['al_artist.php', []],
     'cleveradmin': ['stream_quiz.php', ['internal/stream_quiz.css', 'cmodules/internal/stream_quiz.js']]
 };
 var stVersions = {
@@ -151,11 +151,11 @@ var stVersions = {
     'blog.css': 20399833417,
     'blog.js': 1358605934,
     'html5audio.js': 976782859,
-    'audioplayer.js': 6821771792,
+    'audioplayer.js': 7699906019,
     'audioplayer.css': 22610833421,
     'audio_html5.js': 287741914,
-    'audio.js': 3202340255,
-    'audio.css': 28151025757,
+    'audio.js': 3942405244,
+    'audio.css': 28492266796,
     'gifts.css': 24547791112,
     'gifts.js': 338252255,
     'cc.js': 1644397126,
@@ -255,7 +255,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 191659275870,
-    'imn.js': 226099682588,
+    'imn.js': 229664731396,
     'im.js': 1322065005,
     'emoji.js': 4268500095,
     'wide_dd.css': 21654056004,
@@ -542,9 +542,9 @@ var stVersions = {
     'internal/away_linksban.css': 18839499200,
     'internal/ui_manual.js': 1761369792,
     'internal/patterns_info.css': 21746828207,
-    'article.css': 38684855809,
-    'article_editor.css': 41665993749,
-    'cmodules/web/article.js': 32359103773,
+    'article.css': 38153539115,
+    'article_editor.css': 38771779855,
+    'cmodules/web/article.js': 29071079143,
     'cmodules/web/article_layer.js': 18343716294,
     'article_view.js': 13295616384,
     'internal/cvkmobile.css': 20586909297,
@@ -647,4 +647,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 729;
+var _rnd = 1215;

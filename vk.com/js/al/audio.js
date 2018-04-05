@@ -19,6 +19,7 @@ function AudioPage(e, t) {
         searchNoLocalResults: geByClass1("_audio_local_no_results", e),
         searchGlobalCommunitiesPlace: geByClass1("_audio_section_global_search__communities_place", e),
         searchGlobalPlaylistsPlace: geByClass1("_audio_section_global_search__playlists_place", e),
+        searchGlobalArtistsPlace: geByClass1("_audio_section_global_search__artists_place", e),
         searchGlobalAudiosBlock: geByClass1("_audio_section_global_search__audios_block", e),
         searchGlobalAudiosBlockHeader: geByClass1("_audio_section_global_search__audios_header", e),
         searchGlobalAudiosList: geByClass1("_audio_section_global_search__audios_list", e),
@@ -235,13 +236,14 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                 onNeedRows: function(e, a, s, r, n) {
                     this._toggleSearchProgress(!0), l.load(a, function() {
                         if (this._toggleSearchProgress(!1), !n.isDone()) {
-                            if (0 == a && (t.length ? (show(this._els.searchSectionAudiosHeader), show(this._els.searchSectionAudios), o = this._ownerId == vk.id ? i.langs.audio_found_your_local : this._ownerId > 0 ? i.langs.audio_found_user_local : i.langs.audio_found_group_local, this._els.searchSectionAudiosHeader.innerHTML = langNumeric(t.length, o), toggleClass(this._els.searchSectionAudios, "audio_owner_list_canedit", !!this._data.canEdit)) : (hide(this._els.searchSectionAudiosHeader), hide(this._els.searchSectionAudios)), hide(this._els.searchGlobalCommunitiesPlace), hide(this._els.searchGlobalPlaylistsPlace)), a == t.length) {
+                            if (0 == a && (t.length ? (show(this._els.searchSectionAudiosHeader), show(this._els.searchSectionAudios), o = this._ownerId == vk.id ? i.langs.audio_found_your_local : this._ownerId > 0 ? i.langs.audio_found_user_local : i.langs.audio_found_group_local, this._els.searchSectionAudiosHeader.innerHTML = langNumeric(t.length, o), toggleClass(this._els.searchSectionAudios, "audio_owner_list_canedit", !!this._data.canEdit)) : (hide(this._els.searchSectionAudiosHeader), hide(this._els.searchSectionAudios)), hide(this._els.searchGlobalCommunitiesPlace), hide(this._els.searchGlobalPlaylistsPlace), hide(this._els.searchGlobalArtistsPlace)), a == t.length) {
                                 var s = l.getCommunititesBlock(),
-                                    r = l.getPlaylistsBlock();
-                                toggle(this._els.searchGlobalCommunitiesPlace, !!s), toggle(this._els.searchGlobalPlaylistsPlace, !!r), this._els.searchGlobalCommunitiesPlace.innerHTML = s || "", this._els.searchGlobalPlaylistsPlace.innerHTML = r || "", this._els.searchGlobalAudiosList.innerHTML = "", l.getAudiosCount() > t.length ? (show(this._els.searchGlobalAudiosBlock), n.setListEl(this._els.searchGlobalAudiosList), this._els.searchGlobalAudiosBlockHeader.innerHTML = langNumeric(l.getTotalCount(), i.langs.audio_global_search_found, !0)) : hide(this._els.searchGlobalAudiosBlock)
+                                    r = l.getPlaylistsBlock(),
+                                    d = l.getArtistsBlock();
+                                toggle(this._els.searchGlobalCommunitiesPlace, !!s), toggle(this._els.searchGlobalPlaylistsPlace, !!r), toggle(this._els.searchGlobalArtistsPlace, !!d), this._els.searchGlobalCommunitiesPlace && (this._els.searchGlobalCommunitiesPlace.innerHTML = s || ""), this._els.searchGlobalPlaylistsPlace && (this._els.searchGlobalPlaylistsPlace.innerHTML = r || ""), this._els.searchGlobalArtistsPlace && (this._els.searchGlobalArtistsPlace.innerHTML = d || ""), this._els.searchGlobalAudiosList.innerHTML = "", l.getAudiosCount() > t.length ? (show(this._els.searchGlobalAudiosBlock), n.setListEl(this._els.searchGlobalAudiosList), this._els.searchGlobalAudiosBlockHeader.innerHTML = langNumeric(l.getTotalCount(), i.langs.audio_global_search_found, !0)) : hide(this._els.searchGlobalAudiosBlock)
                             }
-                            for (var d = [], u = l.getAudiosList(), _ = a, c = a < t.length ? Math.min(t.length, a + 30) : a + 30, h = _; c > h && u[h]; h++) d.push(AudioUtils.drawAudio(u[h]));
-                            e(d)
+                            for (var u = [], _ = l.getAudiosList(), c = a, h = a < t.length ? Math.min(t.length, a + 30) : a + 30, g = c; h > g && _[g]; g++) u.push(AudioUtils.drawAudio(_[g]));
+                            e(u)
                         }
                     }.bind(this))
                 }.bind(this)
@@ -329,7 +331,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     if (a) {
         each(geByClass("_audio_section", this._els.pageContainer), function() {
             hide(this)
-        }), hide(this._els.searchGlobalCommunitiesPlace), hide(this._els.searchGlobalPlaylistsPlace), hide(this._els.searchGlobalAudiosBlock), toggle(this._els.recomsBlocks, "recoms" == e && !this.isLayer()), show(a), this._onSectionOut(), delete cur._back;
+        }), hide(this._els.searchGlobalCommunitiesPlace), hide(this._els.searchGlobalPlaylistsPlace), hide(this._els.searchGlobalArtistsPlace), hide(this._els.searchGlobalAudiosBlock), toggle(this._els.recomsBlocks, "recoms" == e && !this.isLayer()), show(a), this._onSectionOut(), delete cur._back;
         var o = this._data.sectionData[e];
         switch (e) {
             case "current":

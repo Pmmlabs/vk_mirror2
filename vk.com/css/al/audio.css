@@ -689,7 +689,7 @@
     margin-left: -30px
 }
 
-.audio_page_layout .audio_community_items_list {
+.audio_page_layout .audio_block_small_items_list {
     margin-bottom: 10px;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -699,7 +699,7 @@
     justify-content: space-between
 }
 
-.audio_page_layout .audio_community_item {
+.audio_page_layout .audio_block_small_item {
     -webkit-flex-grow: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
@@ -710,22 +710,22 @@
     margin-left: 20px
 }
 
-.audio_layer_container .audio_page_layout .audio_community_item {
+.audio_layer_container .audio_page_layout .audio_block_small_item {
     margin-left: 15px
 }
 
-.audio_page_layout .audio_community_item:first-child {
+.audio_page_layout .audio_block_small_item:first-child {
     margin-left: 0
 }
 
-.audio_page_layout .audio_community_item .audio_community_item__avatar {
+.audio_page_layout .audio_block_small_item .audio_block_small_item__avatar {
     width: 40px;
     height: 40px;
     float: left;
     margin-right: 10px
 }
 
-.audio_page_layout .audio_community_item .audio_community_item__img {
+.audio_page_layout .audio_block_small_item .audio_block_small_item__img {
     display: block;
     width: 100%;
     height: 100%;
@@ -733,7 +733,7 @@
     background-size: cover
 }
 
-.audio_page_layout .audio_community_item .audio_community_item__info {
+.audio_page_layout .audio_block_small_item .audio_block_small_item__info {
     height: 40px;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -749,14 +749,14 @@
     white-space: nowrap
 }
 
-.audio_page_layout .audio_community_item .audio_community_item__title {
+.audio_page_layout .audio_block_small_item .audio_block_small_item__title {
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     color: #2a5885
 }
 
-.audio_page_layout .audio_community_item .audio_community_item__title .group_link {
+.audio_page_layout .audio_block_small_item .audio_block_small_item__title .group_link {
     box-sizing: border-box;
     max-width: 100%;
     display: inline-block;
@@ -767,12 +767,12 @@
     padding-right: 18px
 }
 
-.audio_page_layout .audio_community_item .audio_community_item__title .page_verified {
+.audio_page_layout .audio_block_small_item .audio_block_small_item__title .page_verified {
     left: -21px;
     vertical-align: middle
 }
 
-.audio_page_layout .audio_community_item .audio_community_item__subscribers {
+.audio_page_layout .audio_block_small_item .audio_block_small_item__subscribers {
     color: #939393
 }
 
