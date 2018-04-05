@@ -1093,7 +1093,10 @@ var Market = {
                 hash: r
             }, {
                 showProgress: lockButton.pbind(e),
-                hideProgress: unlockButton.pbind(e)
+                hideProgress: unlockButton.pbind(e),
+                onDone: function(e) {
+                    val("market_cart_wrap", e), scrollToY(0)
+                }
             })
         },
         _updateItemCount: function(e, t) {
@@ -1847,7 +1850,7 @@ var Market = {
                 });
                 this.cont.appendChild(o), this.resultList = geByClass("result_list", o)[0], this.resultListShadow = geByClass("result_list_shadow", o)[0], hide(this.resultList, this.resultListShadow), browser.chrome ? this.resultList.style.opacity = 1 : browser.safari || setStyle(this.resultListShadow, "top", browser.mozilla ? 0 : browser.msie && browser.version < 8 ? 0 : -1), this.resultList.style.width = this.resultListShadow.style.width = o.style.width = getSize(e)[0] + "px", this.onShowCallback = t ? t.onShow : !1, this.initSelect(t), cur.indexTags = new vkIndexer(cur.tagsList, function(e) {
                     return e[1]
-                }), addEvent(e, "keyup click mouseup", r.inputUpHandler), addEvent(document, "click", r.documentClick), addEvent(e, "keypress keydown", r.inputDownHandler)
+                }), addEvent(e, "keyup click mouseup", r.inputUpHandler), addEvent(document, "click", r.documentClick), addEvent(e, "keypress keydown", r.inputDownHandler);
             }
         },
         inputUpHandler: function(e) {

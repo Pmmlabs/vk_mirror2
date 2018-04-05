@@ -786,6 +786,9 @@ extend(UiControl.prototype, {
         } else t = n ? n : this.currenDataItems ? this.currenDataItems.length * getSize(this.container)[1] : o;
         return t > o && (t = o), i + s + t - e > a && i - t - e > 0 && i - t > 40
     },
+    isClassEnabled: function(t, e) {
+        return new RegExp("\\b" + e + "\\b").test(t)
+    },
     setSelectContent: function(t, e, i) {
         e = isArray(e) && e.length ? e : [];
         var s = [];
@@ -805,7 +808,7 @@ extend(UiControl.prototype, {
                 var r = a.options.formatResult(l);
                 if (i && (r = a.options.highlight(r, i)) && --n, r) {
                     var h = [l[0], r];
-                    h.push("1" === l[5]), "label" === l[3] && h.push(1), s.push(h)
+                    h.push("1" === l[5]), mask = 0, mask |= this.isClassEnabled(l[3], "label"), mask |= this.isClassEnabled(l[3], "sectioned") << 1, mask |= this.isClassEnabled(l[3], "section") << 2, h.push(mask), s.push(h)
                 }
             }
         }
@@ -994,7 +997,9 @@ extend(UiControl.prototype, {
         LAST: "last",
         ACTIVE: "active",
         SCROLLABLE: "result_list_scrollable",
-        LABEL: "label"
+        LABEL: "label",
+        SECTIONED: "sectioned",
+        SECTION: "section"
     },
     controlName: "SelectList",
     initOptions: function(t, e) {
@@ -1115,10 +1120,10 @@ extend(UiControl.prototype, {
         this.maxHeight < this.list.offsetHeight ? (this.container.style.height = this.maxHeight + "px", addClass(this.container, this.CSS.SCROLLABLE)) : (removeClass(this.container, this.CSS.SCROLLABLE), this.container.style.height = "auto")
     },
     content: function(t) {
-        var e, i, s, o, n, a, l, r, h, d = [],
-            c = t.length;
-        for (e = 0; c > e; ++e) i = t[e], s = i[0], o = i[1], n = i[2], a = i[3], l = this.uid + ", " + e, h = this._getOptionId(e), s = void 0 === s || null === s ? "" : s.toString(), o = (void 0 === o || null === o ? "" : o.toString()) || s, r = 1 === a, d.push("<li ", n ? 'dis="1"' : 'onmousemove="Select.itemMouseMove(' + l + ', this)" onmousedown="Select.itemMouseDown(' + l + ', this)" onclick="Select.itemMouseDown(' + l + ', this)"', ' val="', s.replace(/&/g, "&amp;").replace(/"/g, "&quot;"), '" class="', r ? this.CSS.LABEL + " " : "", n ? "disabled " : "", e == c - 1 ? this.CSS.LAST + " " : "", (e ? "" : this.CSS.FIRST) + '" role="option" aria-selected="false" tabindex="-1" id="' + h + '">', o, "</li>");
-        return this.list.innerHTML = d.join(""), this.updateContainer(), !0
+        var e, i, s, o, n, a, l, r, h, d, c, u = [],
+            p = t.length;
+        for (e = 0; p > e; ++e) i = t[e], s = i[0], o = i[1], n = i[2], a = i[3], l = this.uid + ", " + e, c = this._getOptionId(e), s = void 0 === s || null === s ? "" : s.toString(), o = (void 0 === o || null === o ? "" : o.toString()) || s, a = parseInt(a, 10), r = Boolean(1 & a), h = Boolean(2 & a), d = Boolean(4 & a), u.push("<li ", n ? 'dis="1"' : 'onmousemove="Select.itemMouseMove(' + l + ', this)" onmousedown="Select.itemMouseDown(' + l + ', this)" onclick="Select.itemMouseDown(' + l + ', this)"', ' val="', s.replace(/&/g, "&amp;").replace(/"/g, "&quot;"), '" class="', r ? this.CSS.LABEL + " " : "", h ? this.CSS.SECTIONED + " " : "", d ? this.CSS.SECTION + " " : "", n ? "disabled " : "", e == p - 1 ? this.CSS.LAST + " " : "", (e ? "" : this.CSS.FIRST) + '" role="option" aria-selected="false" tabindex="-1" id="' + c + '">', o, "</li>");
+        return this.list.innerHTML = u.join(""), this.updateContainer(), !0
     },
     _getOptionId: function(t) {
         return "option_" + this.getListContainerId() + "_" + (t + 1)
@@ -1536,27 +1541,27 @@ extend(UiControl.prototype, {
         }), t.h && (e.href = t.h);
         var s = this;
         addEvent(e, "click", function(e) {
-            s.value = e.data.item.i;
-            var i = !0;
-            if (isFunction(t.onClick) && t.onClick(e) === !1 && (i = !1), s.options.onSelect(e) === !1 && (i = !1), t.h) return !0;
-            if (i ? s.hide() : cancelEvent(e), s.options.updateTarget && i) {
-                var o = s.options.updateHeader(e.target.index, e.target.innerHTML);
-                s.header.innerHTML = "<div>" + o + "</div>", s.options.target && (s.options.target.innerHTML = o.replace(/\s+/g, "&nbsp;"))
-            }
-        }, !1, {
-            item: t
-        }), isFunction(t.onMouseOver) && addEvent(e, "mouseover", t.onMouseOver), isFunction(t.onMouseOut) && addEvent(e, "mouseout", t.onMouseOut), browser.msie && (e.onmouseover = function() {
-            addClass(e, "dd_a_hover")
-        }, e.onmouseout = function() {
-            removeClass(e, "dd_a_hover")
-        }), this.items[t.i] = e, this.rows.appendChild(e), "left" == this.options.align && this.alignBody()
+                s.value = e.data.item.i;
+                var i = !0;
+                if (isFunction(t.onClick) && t.onClick(e) === !1 && (i = !1), s.options.onSelect(e) === !1 && (i = !1), t.h) return !0;
+                if (i ? s.hide() : cancelEvent(e), s.options.updateTarget && i) {
+                    var o = s.options.updateHeader(e.target.index, e.target.innerHTML);
+                    s.header.innerHTML = "<div>" + o + "</div>", s.options.target && (s.options.target.innerHTML = o.replace(/\s+/g, "&nbsp;"))
+                }
+            }, !1, {
+                item: t
+            }), isFunction(t.onMouseOver) && addEvent(e, "mouseover", t.onMouseOver), isFunction(t.onMouseOut) && addEvent(e, "mouseout", t.onMouseOut), browser.msie && (e.onmouseover = function() {
+                addClass(e, "dd_a_hover")
+            }, e.onmouseout = function() {
+                removeClass(e, "dd_a_hover")
+            }), this.items[t.i] = e,
+            this.rows.appendChild(e), "left" == this.options.align && this.alignBody()
     },
     getRows: function() {
         return this.rows
     },
     setOptions: function(t) {
-        extend(this.options, t), this.options.title && (this.header.innerHTML = "<div>" + this.options.title + "</div>"), "undefined" != typeof this.options.hideOnClick && (this.header.onclick = this.options.hideOnClick ? this.toggle.bind(this) : this.show.bind(this)),
-            "left" == this.options.align && this.alignBody()
+        extend(this.options, t), this.options.title && (this.header.innerHTML = "<div>" + this.options.title + "</div>"), "undefined" != typeof this.options.hideOnClick && (this.header.onclick = this.options.hideOnClick ? this.toggle.bind(this) : this.show.bind(this)), "left" == this.options.align && this.alignBody()
     },
     onHide: function(t) {
         this.visible = !1, t || !this.options.showHover ? hide(this.header) : addClass(this.header, "dd_header_hover"), hide(this.body), this.options.onHide && this.options.onHide()
@@ -1680,7 +1685,7 @@ extend(UiControl.prototype, {
     },
     createIndex: function() {
         this.storage.data.length && (this.storage.index = {}, debug("createIndex start, " + this.storage.data.length + " items"), this.lastLabel = null, each(this.storage.data, function(t, e) {
-            "label" === e[3] && this.options.includeLabelsOnMatch && (this.lastLabel = t), this.indexItem(t, e, this.lastLabel)
+            Selector.prototype.isClassEnabled(e[3], "label") && this.options.includeLabelsOnMatch && (this.lastLabel = t), this.indexItem(t, e, this.lastLabel)
         }.bind(this)), debug("createIndex ended"))
     },
     indexItem: function(t, e, i) {
@@ -1716,7 +1721,7 @@ extend(UiControl.prototype, {
             var o, l = e.storage.data[s],
                 r = !1,
                 h = "";
-            for ("label" === l[3] && (a = s), o = 0; o < e.options.indexkeys.length; o++) l[e.options.indexkeys[o]] && (h += " " + l[e.options.indexkeys[o]].replace(e.options.delimeter, " ").replace(/<[^>]*>/, "").replace(/[\u00AB\u00BB]/g, ""));
+            for (Selector.prototype.isClassEnabled(l[3], "label") && (a = s), o = 0; o < e.options.indexkeys.length; o++) l[e.options.indexkeys[o]] && (h += " " + l[e.options.indexkeys[o]].replace(e.options.delimeter, " ").replace(/<[^>]*>/, "").replace(/[\u00AB\u00BB]/g, ""));
             for (h += (parseLatin(h) || "") + (parseCyr(h) || ""), h = winToUtf(h).toLowerCase(), o = 0; o < t.length; o++)
                 if (-1 == h.indexOf(" " + t[o])) {
                     r = !0;

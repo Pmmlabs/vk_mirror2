@@ -752,7 +752,7 @@
                         n = t[0],
                         a = t[1],
                         i = t[2];
-                    if (!r.loading) return r.props.virtualized || r.props.hasMore ? void(a - n - i <= r.props.threshold && (r.loading = !0, r.props.loadMore().then(function() {
+                    return r.loading ? void 0 : r.props.virtualized || r.props.hasMore ? void(a - n - i <= r.props.threshold && (r.loading = !0, r.props.loadMore().then(function() {
                         r.loading = !1
                     }))) : r.detachListeners()
                 }, 34), r.onScroll = function(e) {
@@ -1215,14 +1215,12 @@
         if (t && "border-box" === le(e, "boxSizing") && (t = !1), e == document) i = [Math.max(o.clientWidth, bodyNode.scrollWidth, o.scrollWidth, bodyNode.offsetWidth, o.offsetWidth), Math.max(o.clientHeight, bodyNode.scrollHeight, o.scrollHeight, bodyNode.offsetHeight, o.offsetHeight)];
         else if (e) {
             var s = function() {
-                if (i = K(e) && (a = Y(e, n)) && void 0 !== a.width ? [a.width, a.height] : [e.offsetWidth, e.offsetHeight], t) {
-                    each(i, function(t, n) {
-                        var r = t ? ["Top", "Bottom"] : ["Left", "Right"];
-                        each(r, function() {
-                            i[t] -= parseFloat(le(e, "padding" + this)) || 0, i[t] -= parseFloat(le(e, "border" + this + "Width")) || 0
-                        })
+                i = K(e) && (a = Y(e, n)) && void 0 !== a.width ? [a.width, a.height] : [e.offsetWidth, e.offsetHeight], t && each(i, function(t, n) {
+                    var r = t ? ["Top", "Bottom"] : ["Left", "Right"];
+                    each(r, function() {
+                        i[t] -= parseFloat(le(e, "padding" + this)) || 0, i[t] -= parseFloat(le(e, "border" + this + "Width")) || 0
                     })
-                }
+                })
             };
             if (G(e)) s();
             else {
@@ -2272,8 +2270,7 @@
                 a = r[0],
                 i = r[1],
                 o = r[2];
-            r[3], r[4];
-            t.allShown = t.allShown || o, t.history = c(t.history) + a, t.historyToAppend = a;
+            r[3], r[4], t.allShown = t.allShown || o, t.history = c(t.history) + a, t.historyToAppend = a;
             var s = Object.keys(i).length;
             return t.skipped -= s, t.offset += s, t.msgs = extend(t.msgs, i), e
         })
@@ -2892,8 +2889,7 @@
             });
             return ct(a, !0, n), t.then(function(t) {
                 var a = Ht(t, 2);
-                a[0], a[1];
-                return delete n.blockedFlagUpdates[e], r.msgs = null, r.history = null, r.unread = 0, r.lastmsg = !1, r.lastmsg_meta = null, n
+                return a[0], a[1], delete n.blockedFlagUpdates[e], r.msgs = null, r.history = null, r.unread = 0, r.lastmsg = !1, r.lastmsg_meta = null, n
             })
         }
     }
@@ -3654,8 +3650,7 @@
             share_url: t.share_url
         }, an).then(function(e) {
             var t = Ht(e, 1);
-            t[0];
-            return n
+            return t[0], n
         })
     }), t.searchTopConv = ie(function(e) {
         return e.topConvTree
@@ -4727,8 +4722,7 @@
     "use strict";
     Object.defineProperty(t, "__esModule", {
         value: !0
-    });
-    t.screenfull = function() {
+    }), t.screenfull = function() {
         var e = "undefined" != typeof Element && "ALLOW_KEYBOARD_INPUT" in Element,
             t = function() {
                 for (var e = void 0, t = void 0, n = [

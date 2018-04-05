@@ -817,7 +817,7 @@ var Settings = {
                 })
             },
             onFail: function(e) {
-                return unlockButton(t), Settings.showError(e, "mail"), !0
+                return unlockButton(t), isUndefined(e) || Settings.showError(e, "mail"), !0
             }
         }), !1
     },

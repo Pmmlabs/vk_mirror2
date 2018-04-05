@@ -1673,7 +1673,7 @@ var Feed = {
         }))
     },
     expandJoinedGroups: function(e, t) {
-        cancelEvent(t), show(geByClass1("feed_groups_hidden_list", e.parentNode)), re(e)
+        return cancelEvent(t), show(geByClass1("feed_groups_hidden_list", e.parentNode)), re(e), !1
     },
     showAllFilters: function(e) {
         re(e);

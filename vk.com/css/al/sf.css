@@ -446,7 +446,68 @@ body.sf .mention_tt_actions {
     padding: 27px 0px
 }
 
-.sf_button_spam,
+.sf_button_bad,
+.sf_button_spam {
+    background: #698aad;
+    color: #fff;
+    position: relative;
+    -o-transition-property: color;
+    transition-property: color;
+    -o-transition-duration: 0.2s;
+    transition-duration: 0.2s
+}
+
+.sf_button_bad:before,
+.sf_button_spam:before {
+    content: "FOREVER";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #f05c44;
+    -webkit-transform: scaleY(0);
+    -o-transform: scaleY(0);
+    transform: scaleY(0);
+    -webkit-transform-origin: 50% 0;
+    -o-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    transition-property: -webkit-transform;
+    -o-transition-property: transform, -o-transform;
+    transition-property: transform;
+    transition-property: transform, -webkit-transform, -o-transform;
+    -o-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -o-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 75px;
+    display: inline-block;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 700;
+    vertical-align: middle;
+    cursor: pointer;
+    text-align: center;
+    padding: 28px 0px
+}
+
+.sf_button_bad.holding,
+.sf_button_spam.holding {
+    color: #fff
+}
+
+.sf_button_bad.holding:before,
+.sf_button_spam.holding:before {
+    -webkit-transform: scaleY(1);
+    -o-transform: scaleY(1);
+    transform: scaleY(1);
+    -o-transition-timing-function: ease-out;
+    transition-timing-function: ease-out
+}
+
 .sf_button_spam_forever {
     background: #698aad;
     color: #fff
@@ -493,6 +554,7 @@ body.sf .mention_tt_actions {
     color: #45688e
 }
 
+.sf_button_bad.sf_accepted,
 .sf_button_spam.sf_accepted {
     background: #ad6a6a;
     cursor: default
@@ -504,6 +566,8 @@ body.sf .mention_tt_actions {
     cursor: default
 }
 
+.sf_button_bad.sf_declined,
+.sf_button_bad.sf_declined_other,
 .sf_button_spam.sf_declined,
 .sf_button_spam.sf_declined_other {
     background: #adadad

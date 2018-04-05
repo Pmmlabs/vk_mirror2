@@ -501,6 +501,22 @@
     background: none
 }
 
+.result_list ul li.sectioned {
+    padding-left: 15px!important
+}
+
+.result_list ul li.sectioned.section {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    border-top: 1px solid #eee;
+    padding-left: 9px!important
+}
+
+.result_list ul li.sectioned.disabled {
+    background: none
+}
+
 .result_list_scrollable ul li.last {
     border-bottom: 0
 }

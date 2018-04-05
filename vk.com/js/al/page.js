@@ -2774,9 +2774,11 @@ var Wall = {
         if (cur.wallType === 'top' && cur.wallTopFinished === cur.oid) return;
 
         var type = cur.wallType,
+            isTop = (type === 'top'),
             more = ge('wall_more_link'),
-            wallNextFrom = (offset !== 0 ? (type === 'top' ? cur.wallTopNextFrom : cur.wallNextFrom) : '') || '',
-            tmp = cur.wallLoading = cur.oid;
+            wallNextFrom = (offset !== 0 ? (isTop ? cur.wallTopNextFrom : cur.wallNextFrom) : '') || '',
+            tmp = cur.wallLoading = cur.oid,
+            onlyCache = (isTop && !!cur.wallTopOnlyCache);
 
         cur.wallTypeLoading = cur.wallTypeLoading || {};
         cur.wallTypeLoading[type] = true;
@@ -2787,16 +2789,38 @@ var Wall = {
             offset: offset,
             type: type,
             fixed: cur.options.fixed_post_id || '',
-            wall_start_from: wallNextFrom
+            wall_start_from: wallNextFrom,
+            onlyCache: onlyCache
         }, {
-            onDone: function(rows, names, videos, newNextFrom) {
+            onDone: function(data, names, videos, newNextFrom) {
                 tabEl && uiTabs.hideProgress(tabEl);
-
                 if (tmp !== cur.oid || type !== cur.wallType) {
-                    delete(cur.wallLoading);
+                    delete cur.wallLoading;
                     delete cur.wallTypeLoading[type];
                     return;
                 }
+
+                // Wait a bit while build a smart wall
+                if (isTop && isObject(data) && data.wait) {
+                    cur.wallTopLoadingDelay = (cur.wallTopLoadingDelay ? cur.wallTopLoadingDelay * 2 : 500);
+
+                    if (cur.wallTopLoadingDelay < 2000) {
+                        setTimeout(function() {
+                            delete cur.wallLoading;
+                            delete cur.wallTypeLoading[type];
+                            Wall.showMore(offset);
+                        }, cur.wallTopLoadingDelay);
+                    } else {
+                        delete cur.wallLoading;
+                        delete cur.wallTypeLoading[type];
+                        cur.wallTopOnlyCache = false;
+                        Wall.showMore(offset);
+                    }
+
+                    return;
+                }
+
+                delete cur.wallTopLoadingDelay;
 
                 if (cur.wallVideos) {
                     each(videos, function(playlistId, playlist) {
@@ -2806,20 +2830,20 @@ var Wall = {
                     });
                 }
 
-                if (type === 'top') {
+                if (isTop) {
                     cur.wallTopNextFrom = newNextFrom;
                 } else {
                     cur.wallNextFrom = newNextFrom;
                 }
 
                 setTimeout(function() {
-                    Wall.receive(rows, names, type);
+                    Wall.receive(data, names, type);
 
                     if (!offset && type === cur.wallType) {
                         Wall.showWall();
                     }
 
-                    delete(cur.wallLoading);
+                    delete cur.wallLoading;
                     delete cur.wallTypeLoading[type];
                 }, 0);
             },

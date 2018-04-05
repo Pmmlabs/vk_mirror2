@@ -1190,14 +1190,12 @@
             if (t && "border-box" === ce(e, "boxSizing") && (t = !1), e == document) n = [Math.max(o.clientWidth, bodyNode.scrollWidth, o.scrollWidth, bodyNode.offsetWidth, o.offsetWidth), Math.max(o.clientHeight, bodyNode.scrollHeight, o.scrollHeight, bodyNode.offsetHeight, o.offsetHeight)];
             else if (e) {
                 var s = function() {
-                    if (n = K(e) && (r = Y(e, i)) && void 0 !== r.width ? [r.width, r.height] : [e.offsetWidth, e.offsetHeight], t) {
-                        each(n, function(t, i) {
-                            var a = t ? ["Top", "Bottom"] : ["Left", "Right"];
-                            each(a, function() {
-                                n[t] -= parseFloat(ce(e, "padding" + this)) || 0, n[t] -= parseFloat(ce(e, "border" + this + "Width")) || 0
-                            })
+                    n = K(e) && (r = Y(e, i)) && void 0 !== r.width ? [r.width, r.height] : [e.offsetWidth, e.offsetHeight], t && each(n, function(t, i) {
+                        var a = t ? ["Top", "Bottom"] : ["Left", "Right"];
+                        each(a, function() {
+                            n[t] -= parseFloat(ce(e, "padding" + this)) || 0, n[t] -= parseFloat(ce(e, "border" + this + "Width")) || 0
                         })
-                    }
+                    })
                 };
                 if (U(e)) s();
                 else {
@@ -3856,10 +3854,7 @@
                 var o, d, f;
                 curFastChat.clistCache = {};
                 for (a in curFastChat.friends)
-                    for (o = curFastChat.friends[a][0], a = intval(a), d = 0;;) {
-                        if (f = " " + o.charAt(d).toLowerCase(), curFastChat.clistCache[f] || (curFastChat.clistCache[f] = {}), curFastChat.clistCache[f][a] = 1, d = o.indexOf(" ", d + 1), -1 == d) break;
-                        ++d
-                    }
+                    for (o = curFastChat.friends[a][0], a = intval(a), d = 0; f = " " + o.charAt(d).toLowerCase(), curFastChat.clistCache[f] || (curFastChat.clistCache[f] = {}), curFastChat.clistCache[f][a] = 1, d = o.indexOf(" ", d + 1), -1 != d;) ++d
             },
             clistShowMore: function() {
                 if (curFastChat.clHasMore) {
@@ -5360,8 +5355,7 @@
                     r = a[0],
                     n = a[1],
                     o = a[2];
-                a[3], a[4];
-                t.allShown = t.allShown || o, t.history = l(t.history) + r, t.historyToAppend = r;
+                a[3], a[4], t.allShown = t.allShown || o, t.history = l(t.history) + r, t.historyToAppend = r;
                 var s = Object.keys(n).length;
                 return t.skipped -= s, t.offset += s, t.msgs = extend(t.msgs, n), e
             })
@@ -5980,8 +5974,7 @@
                 });
                 return lt(r, !0, i), t.then(function(t) {
                     var r = jt(t, 2);
-                    r[0], r[1];
-                    return delete i.blockedFlagUpdates[e], a.msgs = null, a.history = null, a.unread = 0, a.lastmsg = !1, a.lastmsg_meta = null, i
+                    return r[0], r[1], delete i.blockedFlagUpdates[e], a.msgs = null, a.history = null, a.unread = 0, a.lastmsg = !1, a.lastmsg_meta = null, i
                 })
             }
         }
@@ -6742,8 +6735,7 @@
                 share_url: t.share_url
             }, ri).then(function(e) {
                 var t = jt(e, 1);
-                t[0];
-                return i
+                return t[0], i
             })
         }), t.searchTopConv = ne(function(e) {
             return e.topConvTree
@@ -9529,9 +9521,7 @@
     89: function(e, t, i) {
         "use strict";
 
-        function a(e, t) {
-            return
-        }
+        function a(e, t) {}
 
         function r() {
             return window.lpBufferFc || (window.lpBufferFc = []), window.lpBufferFc
@@ -10016,29 +10006,27 @@
                     e = e.originalEvent || e || window.event;
                     var btn = e.which,
                         nohide = !1;
-                    1 == btn && (e.ctrlKey || browser.mac && e.metaKey) && (btn = 2, browser.mac && (nohide = !0)); {
-                        if ("A" != (e.target || e.srcElement).tagName) {
-                            switch (btn) {
-                                case 1:
-                                    eval(ev.onclick), Notifier.hideEvent(ev);
-                                    break;
-                                case 2:
-                                    var wnd = window.open(ev.link, "_blank");
-                                    try {
-                                        wnd.blur(), window.focus()
-                                    } catch (e) {}
-                                    nohide || Notifier.hideEvent(ev);
-                                    break;
-                                case 3:
-                                    if (browser.mozilla) return
-                            }
-                            return cancelEvent(e)
-                        }
+                    if (1 == btn && (e.ctrlKey || browser.mac && e.metaKey) && (btn = 2, browser.mac && (nohide = !0)), "A" != (e.target || e.srcElement).tagName) {
                         switch (btn) {
                             case 1:
+                                eval(ev.onclick), Notifier.hideEvent(ev);
+                                break;
+                            case 2:
+                                var wnd = window.open(ev.link, "_blank");
+                                try {
+                                    wnd.blur(), window.focus()
+                                } catch (e) {}
+                                nohide || Notifier.hideEvent(ev);
                                 break;
                             case 3:
+                                if (browser.mozilla) return
                         }
+                        return cancelEvent(e)
+                    }
+                    switch (btn) {
+                        case 1:
+                            break;
+                        case 3:
                     }
                 }), addEvent(ev.baloonEl, "contextmenu", function(e) {
                     return setTimeout(function() {

@@ -393,16 +393,27 @@ var Groups = {
         var a = ge("page_upload_photos_input");
         return a || (a = se('<input id="page_upload_photos_input" class="file page_upload_photos_input" type="file" onchange="cur.onPhotoInputChange(this.files);" multiple="true" accept="image/jpeg,image/png,image/gif" name="photo" />')), a.click(o), !1
     },
+    getFlattenedCategories: function(e, o) {
+        var t = o[0][e],
+            a = o[1];
+        if (void 0 === a) return t;
+        for (var s = [], n = 0; n < t.length; n++) {
+            var r = t[n];
+            r[3] = "section", s = s.concat([r]), a[r[0]] && (r[5] = "1", s = s.concat(a[r[0]]))
+        }
+        for (var n = 0; n < s.length; n++) s[n][3] += " sectioned";
+        return s
+    },
     initCategories: function(e) {
         e.prefix = e.prefix || "group_category_", e.groupClass = e.groupClass || 0, cur.groupCategoriesDD = cur.groupCategoriesDD || {}, cur.groupCategoriesDD[e.prefix] = cur.groupCategoriesDD[e.prefix] || {};
-        for (var o = e.categories[e.groupClass], t = 0; 3 > t; ++t) {
+        for (var o = e.categories[e.groupClass], t = 0; 2 > t; ++t) {
             var a = [],
                 s = cur.groupCategoriesDD[e.prefix],
                 n = s[t];
             if (0 == t) a = o[t][0];
             else if (t > 0) {
                 var r = s[t - 1].val();
-                "" != r && o[t] && (a = o[t][r] || [])
+                "" != r && o[t] && (a = this.getFlattenedCategories(r, o.slice(1)) || [])
             }
             n && n.container && n.container.compareDocumentPosition && n.container.compareDocumentPosition(bodyNode) & Node.DOCUMENT_POSITION_DISCONNECTED && (n.destroy(), n = null), n ? (n.setData(a), n.currenDataItems = a, n.setOptions({
                 defaultItems: a
@@ -418,24 +429,41 @@ var Groups = {
                 noResult: "",
                 placeholder: getLang("groups_choose_subject"),
                 onChange: function(t, a) {
-                    if (2 > t) {
-                        var n = o[t + 1] && o[t + 1][a] || [];
+                    if (0 == t && a) {
+                        var n = Groups.getFlattenedCategories(a, o.slice(1)) || [];
                         s[t + 1].setData(n), s[t + 1].currenDataItems = n, s[t + 1].setOptions({
                             defaultItems: n
                         });
-                        for (var r = t + 1; 3 > r; ++r) s[r].clear(), s[r].disable(r > t + 1 || !n.length), toggle(ge(e.prefix + "wrap_" + r), !(r > t + 1 || !n.length))
+                        for (var r = t + 1; 2 > r; ++r) s[r].clear(), s[r].disable(r > t + 1 || !n.length), toggle(ge(e.prefix + "wrap_" + r), !(r > t + 1 || !n.length))
                     }
                 }.pbind(t)
-            }), e.selected[t] && -1 != e.selected[t] ? n.val(e.selected[t]) : t > 0 && (-1 == e.selected[t - 1] || !a.length) && (n.disable(!0), hide(ge(e.prefix + "wrap_" + t))), cur.groupCategoriesDD[e.prefix][t] = n
+            }), e.selected[t] && -1 != e.selected[t] ? 1 == t && e.selected[2] ? n.val(e.selected[2]) : n.val(e.selected[t]) : t > 0 && (-1 == e.selected[t - 1] || !a.length) && (n.disable(!0), hide(ge(e.prefix + "wrap_" + t))), cur.groupCategoriesDD[e.prefix][t] = n
         }
     },
     categoriesGetDropdown: function(e, o) {
         return o = o || "group_category_", cur.groupCategoriesDD && cur.groupCategoriesDD[o] && cur.groupCategoriesDD[o][e]
     },
+    getDetailedCategories: function(e, o) {
+        for (var t = -1, a = 0; a < e.length; a++)
+            if (e[a][0] == o) {
+                t = a;
+                break
+            }
+        for (var s = -1, a = t; a >= 0; a--)
+            if (Number(e[a][0]) < 3e3) {
+                s = a;
+                break
+            }
+        return -1 == t || -1 == s ? [0, 0] : s == t ? [e[t][0], 0] : [e[s][0], e[t][0]]
+    },
     categoriesValue: function(e) {
-        for (var o = [], t = 0; 3 > t; ++t) {
+        for (var o = [], t = 0; 2 > t; ++t) {
             var a = this.categoriesGetDropdown(t, e);
-            o.push(a ? intval(a.val()) : 0)
+            if (0 == t) o.push(a ? intval(a.val()) : 0);
+            else {
+                var s = a ? intval(a.val()) : 0;
+                o = o.concat(this.getDetailedCategories(a.dataItems, s))
+            }
         }
         return o
     },
