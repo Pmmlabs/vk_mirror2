@@ -1986,6 +1986,19 @@ textarea.EditableLabel__textarea {
     word-wrap: break-word
 }
 
+.ChatSettingsInfo__title-service:before {
+    position: absolute;
+    top: 50px;
+    right: -5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    background: #f05c44;
+    padding: 0px 12px 1px;
+    border-radius: 15px;
+    content: "☯ Service"
+}
+
 .ChatSettingsInfo__meta {
     font-size: 13px;
     color: #656565;

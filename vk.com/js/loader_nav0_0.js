@@ -203,7 +203,7 @@ var stVersions = {
     'video_upload.js': 2270908085,
     'video_youtube.js': 458412745,
     'video_youtube.css': 18544700233,
-    'videoplayer.js': 70533779729,
+    'videoplayer.js': 69559386245,
     'videoplayer.css': 41904172897,
     'translation.js': 1370143200,
     'translation.css': 22016994351,
@@ -254,10 +254,10 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 191659275870,
-    'imn.js': 229664731396,
+    'im.css': 191758831493,
+    'imn.js': 230749052380,
     'im.js': 1322065005,
-    'emoji.js': 4268500095,
+    'emoji.js': 928907071,
     'wide_dd.css': 21654056004,
     'wide_dd.js': 452755344,
     'writebox.css': 22080654979,
@@ -323,7 +323,7 @@ var stVersions = {
     'widgets.css': 38210063352,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 82524076480,
+    'notifier.js': 82662510655,
     'notifier.css': 30869474931,
     'cmodules/sw/sw.js': 4889939668,
     'earthday.js': 2276669993,
@@ -347,7 +347,7 @@ var stVersions = {
     'agents.css': 21139553799,
     'achievements.js': 897703126,
     'achievements.css': 19670083049,
-    'sf.css': 26440681172,
+    'sf.css': 26964490557,
     'members.css': 20879317073,
     'meminfo.css': 27620013674,
     'groupinfo.css': 27511855895,
@@ -544,7 +544,7 @@ var stVersions = {
     'internal/patterns_info.css': 21746828207,
     'article.css': 38153539115,
     'article_editor.css': 38771779855,
-    'cmodules/web/article.js': 29071079143,
+    'cmodules/web/article.js': 30516627744,
     'cmodules/web/article_layer.js': 18343716294,
     'article_view.js': 13295616384,
     'internal/cvkmobile.css': 20586909297,
@@ -572,7 +572,7 @@ var stVersions = {
     'internal/stories_admin_panel.css': 18989935758,
     'time_spent.js': 732637085,
     'cmodules/web/app_info.js': 2375115030,
-    'internal/stream_quiz.css': 4294695086,
+    'internal/stream_quiz.css': 2034065362,
     'cmodules/web/grip.js': 4164501492,
     'lang': 6887
 };
@@ -647,4 +647,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 1215;
+var _rnd = 4914;

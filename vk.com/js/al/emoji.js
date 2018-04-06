@@ -2741,8 +2741,11 @@ if (!window.Emoji) {
                         top: endPos,
                         bottom: endPos + vh,
                     };
-
-                var el = geByClass1('emoji_scroll_stickers', opts.tt).firstChild,
+                var stickersWrap = geByClass1('emoji_scroll_stickers', opts.tt);
+                if (!isVisible(stickersWrap)) {
+                    return;
+                }
+                var el = stickersWrap.firstChild,
                     needLoad = [];
                 while (el) {
                     if (hasClass(el, 'emoji_sticker_item') && !hasClass(el, '__loaded')) {

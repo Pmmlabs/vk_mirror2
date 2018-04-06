@@ -28,83 +28,9 @@
         return t.d(r, "a", r), r
     }, t.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, t.p = "", t(t.s = 93)
+    }, t.p = "", t(t.s = 86)
 }({
-    117: function(e, t, r) {
-        "use strict";
-
-        function o(e) {
-            var t = i.get(e.currentTarget);
-            if (t) {
-                var r = t[e.type];
-                if (r)
-                    for (var o = void 0, a = 0; a < r.length; a++) {
-                        var n = s(r[a], 2),
-                            l = n[0],
-                            _ = n[1],
-                            d = void 0;
-                        if (hasClass(e.target, l) ? d = _(e, e.target) : (o = gpeByClass(l, e.target, e.currentTarget)) && (d = _(e, o)), d === !1) break
-                    }
-            }
-        }
-
-        function a(e, t, r, a) {
-            var n = i.get(e);
-            n || (i.set(e, {}), n = i.get(e));
-            for (var s = t.split(" "), l = 0; l < s.length; l++) {
-                var _ = s[l];
-                n[_] || (n[_] = [], addEvent(e, _, o)), n[_].push([r, a])
-            }
-        }
-
-        function n(e, t, r, a) {
-            var n = i.get(e);
-            if (n) {
-                t.split(" ").forEach(function(t) {
-                    n[t] && (n[t] = n[t].filter(function(e) {
-                        return e[0] !== r || e[1] !== a
-                    }), 0 === n[t].length && removeEvent(e, t, o))
-                });
-                var s = Object.keys(n).map(function(e) {
-                    return n[e].length
-                }).reduce(function(e, t) {
-                    return e + t
-                });
-                0 === s && i["delete"](e)
-            }
-        }
-        Object.defineProperty(t, "__esModule", {
-            value: !0
-        });
-        var s = function() {
-            function e(e, t) {
-                var r = [],
-                    o = !0,
-                    a = !1,
-                    n = void 0;
-                try {
-                    for (var s, i = e[Symbol.iterator](); !(o = (s = i.next()).done) && (r.push(s.value), !t || r.length !== t); o = !0);
-                } catch (l) {
-                    a = !0, n = l
-                } finally {
-                    try {
-                        !o && i["return"] && i["return"]()
-                    } finally {
-                        if (a) throw n
-                    }
-                }
-                return r
-            }
-            return function(t, r) {
-                if (Array.isArray(t)) return t;
-                if (Symbol.iterator in Object(t)) return e(t, r);
-                throw new TypeError("Invalid attempt to destructure non-iterable instance")
-            }
-        }();
-        t.addDelegateEvent = a, t.removeDelegateEvent = n;
-        var i = new window.Map
-    },
-    161: function(e, t, r) {
+    106: function(e, t, r) {
         "use strict";
 
         function o(e) {
@@ -137,7 +63,7 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }(),
-            n = r(212),
+            n = r(135),
             s = o(n);
         window.LeadFormsApp = {
             showGeneratorBox: function(e) {
@@ -599,52 +525,7 @@
             stManager.done("lead_forms_app.js")
         } catch (i) {}
     },
-    190: function(e, t, r) {
-        "use strict";
-
-        function o(e) {
-            return {
-                callMutations: function() {
-                    if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
-                    return e
-                },
-                bindMutations: function() {
-                    if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
-                    return e = e.apply(void 0, arguments)
-                }
-            }
-        }
-
-        function a(e, t, r, o) {
-            d(t, r, o), e._registeredHandlers.push(["bind", t, r, o])
-        }
-
-        function n(e, t, r, o, a) {
-            (0, l.addDelegateEvent)(t, r, o, a), e._registeredHandlers.push(["delegate", t, r, o, a])
-        }
-
-        function s(e) {
-            var t = {
-                _registeredHandlers: []
-            };
-            return e.handlers(a.bind(null, t), n.bind(null, t)), t
-        }
-
-        function i(e) {
-            e._registeredHandlers.forEach(function(e) {
-                var t = e.slice(1);
-                "delegate" === e[0] ? l.removeDelegateEvent.apply(void 0, t) : u.apply(void 0, t)
-            }), e._registeredHandlers = []
-        }
-        Object.defineProperty(t, "__esModule", {
-            value: !0
-        }), t.createMutations = o, t.createModule = s, t.destroyModule = i;
-        var l = r(117),
-            _ = window,
-            d = _.addEvent,
-            u = _.removeEvent
-    },
-    212: function(e, t, r) {
+    135: function(e, t, r) {
         "use strict";
 
         function o(e) {
@@ -732,12 +613,12 @@
         Object.defineProperty(t, "__esModule", {
             value: !0
         }), t["default"] = n;
-        var s = r(190),
-            i = r(34),
+        var s = r(198),
+            i = r(163),
             l = o(i),
             _ = 5
     },
-    34: function(e, t, r) {
+    163: function(e, t, r) {
         "use strict";
 
         function o(e, t, r) {
@@ -879,12 +760,131 @@
             }
         }();
         t["default"] = i;
-        var _ = r(190),
+        var _ = r(198),
             d = 200,
             u = 60,
             p = 15
     },
-    93: function(e, t, r) {
-        e.exports = r(161)
+    198: function(e, t, r) {
+        "use strict";
+
+        function o(e) {
+            return {
+                callMutations: function() {
+                    if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
+                    return e
+                },
+                bindMutations: function() {
+                    if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
+                    return e = e.apply(void 0, arguments)
+                }
+            }
+        }
+
+        function a(e, t, r, o) {
+            d(t, r, o), e._registeredHandlers.push(["bind", t, r, o])
+        }
+
+        function n(e, t, r, o, a) {
+            (0, l.addDelegateEvent)(t, r, o, a), e._registeredHandlers.push(["delegate", t, r, o, a])
+        }
+
+        function s(e) {
+            var t = {
+                _registeredHandlers: []
+            };
+            return e.handlers(a.bind(null, t), n.bind(null, t)), t
+        }
+
+        function i(e) {
+            e._registeredHandlers.forEach(function(e) {
+                var t = e.slice(1);
+                "delegate" === e[0] ? l.removeDelegateEvent.apply(void 0, t) : u.apply(void 0, t)
+            }), e._registeredHandlers = []
+        }
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }), t.createMutations = o, t.createModule = s, t.destroyModule = i;
+        var l = r(67),
+            _ = window,
+            d = _.addEvent,
+            u = _.removeEvent
+    },
+    67: function(e, t, r) {
+        "use strict";
+
+        function o(e) {
+            var t = i.get(e.currentTarget);
+            if (t) {
+                var r = t[e.type];
+                if (r)
+                    for (var o = void 0, a = 0; a < r.length; a++) {
+                        var n = s(r[a], 2),
+                            l = n[0],
+                            _ = n[1],
+                            d = void 0;
+                        if (hasClass(e.target, l) ? d = _(e, e.target) : (o = gpeByClass(l, e.target, e.currentTarget)) && (d = _(e, o)), d === !1) break
+                    }
+            }
+        }
+
+        function a(e, t, r, a) {
+            var n = i.get(e);
+            n || (i.set(e, {}), n = i.get(e));
+            for (var s = t.split(" "), l = 0; l < s.length; l++) {
+                var _ = s[l];
+                n[_] || (n[_] = [], addEvent(e, _, o)), n[_].push([r, a])
+            }
+        }
+
+        function n(e, t, r, a) {
+            var n = i.get(e);
+            if (n) {
+                t.split(" ").forEach(function(t) {
+                    n[t] && (n[t] = n[t].filter(function(e) {
+                        return e[0] !== r || e[1] !== a
+                    }), 0 === n[t].length && removeEvent(e, t, o))
+                });
+                var s = Object.keys(n).map(function(e) {
+                    return n[e].length
+                }).reduce(function(e, t) {
+                    return e + t
+                });
+                0 === s && i["delete"](e)
+            }
+        }
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        });
+        var s = function() {
+            function e(e, t) {
+                var r = [],
+                    o = !0,
+                    a = !1,
+                    n = void 0;
+                try {
+                    for (var s, i = e[Symbol.iterator](); !(o = (s = i.next()).done) && (r.push(s.value), !t || r.length !== t); o = !0);
+                } catch (l) {
+                    a = !0, n = l
+                } finally {
+                    try {
+                        !o && i["return"] && i["return"]()
+                    } finally {
+                        if (a) throw n
+                    }
+                }
+                return r
+            }
+            return function(t, r) {
+                if (Array.isArray(t)) return t;
+                if (Symbol.iterator in Object(t)) return e(t, r);
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }
+        }();
+        t.addDelegateEvent = a, t.removeDelegateEvent = n;
+        var i = new window.Map
+    },
+    86: function(e, t, r) {
+        e.exports = r(106)
     }
 });

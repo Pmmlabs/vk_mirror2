@@ -508,20 +508,6 @@ body.sf .mention_tt_actions {
     transition-timing-function: ease-out
 }
 
-.sf_button_spam_forever {
-    background: #698aad;
-    color: #fff
-}
-
-.sf_button_spam_forever.sf_accepted {
-    background: #ad6a6a;
-    cursor: default
-}
-
-.sf_button_spam_forever.sf_declined_other {
-    background: #adadad
-}
-
 .sf_button_porno {
     background: #ffa7f5;
     color: #fff
