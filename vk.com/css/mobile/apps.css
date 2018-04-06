@@ -10713,3 +10713,81 @@ img[src^="/images/mobile/places/"] {
 .apps_unverifiedAppWarning__btn_active {
     display: block
 }
+
+.apps_wallPostBoxHeader {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 10px 12px;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background: #ebedf0
+}
+
+.apps_wallPostBoxHeader__avatar {
+    float: left;
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    border-radius: 50%
+}
+
+.apps_wallPostBoxHeader__text {
+    float: left;
+    width: 75%;
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    margin-top: 5px;
+    color: #71757a;
+    font-size: 14px;
+    line-height: 1.29
+}
+
+.apps_wallPostBoxHeader:after {
+    content: '';
+    clear: both;
+    display: block
+}
+
+.apps_wallPostBoxFooterDivider {
+    height: 64px
+}
+
+.apps_wallPostBoxFooter {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 12px;
+    z-index: 3;
+    background: hsla(0, 0%, 100%, .65)
+}
+
+.apps_wallPostBoxFooter button {
+    z-index: 4
+}
+
+.apps_wallPostBoxWrapper {
+    position: relative
+}
+
+.apps_wallPostBoxWrapper .audio_item {
+    padding: 4px 0;
+    margin: 0 12px
+}
+
+.apps_wallPostBoxWrapper:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2
+}

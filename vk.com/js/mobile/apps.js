@@ -672,7 +672,62 @@ var vkApp = function(cont, options, params, onInit) {
                     return true;
                 }
             });
-        }
+        },
+
+        /**
+         * Show box with post preview.
+         *
+         * @param params see wall.post params
+         */
+        showWallPostBox: function(params) {
+            if (cur.wallPostBoxSubmit) { // preview called box is active
+                return;
+            }
+
+            params = params || {};
+            params.attachments = cur.app.getValidPostAttachments(params.attachments || params.attachment);
+
+            if (!params.message && (!params.attachments || !isArray(params.attachments) || !params.attachments.length)) {
+                var error = {
+                    error_code: 100,
+                    error_msg: 'One of the parameters specified was missing or invalid'
+                };
+                cur.app.runCallback('onShowWallPostBoxCancel', error);
+                cur.wallPostBoxCallback && cur.wallPostBoxCallback({
+                    error: error
+                });
+                return;
+            }
+
+            if (cur.app.isNativeClientWebView() && cur.app.nativeClientHasMethod('showWallPostBox')) {
+                params = cur.app.isNativeAndroidWebView() ? obj2qs(params) : params;
+                cur.app.callNativeClientMethod('showWallPostBox', params);
+                return;
+            }
+
+            params.app_id = cur.aid;
+            params.act = 'show_wall_post_box';
+
+            cur.showWallPostBoxErrorHandler = function(error) { // Called when server return error.
+                cur.app.runCallback('onShowWallPostBoxCancel', error);
+                cur.wallPostBoxCallback && cur.wallPostBoxCallback({
+                    error: error
+                });
+                hideAppsBox();
+            };
+
+            ajax.post('/apps.php', params, {
+                onDone: function(html, js) {
+                    showAppsBox(html, js);
+                },
+                onFail: function() {
+                    cur.showWallPostBoxErrorHandler({
+                        error_code: 1,
+                        error_message: 'Unknown network error occurred'
+                    });
+                }
+            });
+        },
     };
 
     if (self.options.no_init) {
@@ -728,6 +783,84 @@ vkApp.prototype.onAppReady = function() {
      cur.app.runCallback('onStageResize', 627, 230);
      }, 3000);*/
 }
+
+vkApp.prototype.initWallPostBox = function(params) {
+    var backBtn = geByClass1('appHeader__back'),
+        onBackBtnClick,
+        originalBackOnclick,
+        hideBox,
+        hideBoxOnPopState;
+
+    params = params || {};
+
+    hideBox = function(needRunCallback) {
+        hideAppsBox();
+        needRunCallback && this.runCallback('onShowWallPostBoxCancel');
+        cur.wallPostBoxSubmit = null;
+        hideBoxOnPopState && removeEvent(window, 'popstate', hideBoxOnPopState);
+        if (backBtn && onBackBtnClick && originalBackOnclick) {
+            backBtn.onclick = originalBackOnclick;
+        }
+    }.bind(this);
+
+    if (window.history) {
+        window.history.pushState({}, '', '');
+        hideBoxOnPopState = hideBox.bind(this, true);
+        addEvent(window, 'popstate', hideBoxOnPopState);
+    }
+
+    if (backBtn) {
+        onBackBtnClick = function(event) {
+            cancelEvent(event);
+            hideBox(true);
+            return false;
+        }.bind(this);
+
+        originalBackOnclick = backBtn.onclick;
+        backBtn.onclick = onBackBtnClick;
+    }
+
+    cur.wallPostBoxSubmit = function(hash, btnOptions) {
+        var method = 'wall.post';
+        delete params.act;
+
+        Btn.setLoading(btnOptions.$btn, true);
+
+        this.api(method, extend(params, {
+            method_access: hash
+        }), function(response) {
+            cur.wallPostBoxCallback && cur.wallPostBoxCallback(response);
+            if (response.error) {
+                this.runCallback('onShowWallPostBoxCancel', response.error);
+            } else {
+                this.runCallback('onShowWallPostBoxDone', response.response.post_id);
+            }
+            hideBox();
+        }.bind(this));
+
+    }.bind(this);
+};
+
+vkApp.prototype.submitWallPostBox = function(hash, btnOptions) {
+    cur.wallPostBoxSubmit && cur.wallPostBoxSubmit(hash, btnOptions);
+};
+
+vkApp.prototype.getValidPostAttachments = function(attachments) {
+    var validAttacheRegexp = /(^https?:\/\/)|(^(poll|album|photo|video|doc|audio|page|note)-?\d+_-?\d+)$/,
+        validAttachments = [];
+
+    if (isString(attachments)) {
+        attachments = attachments.split(',');
+    }
+
+    each(attachments, function() {
+        var attach = this.trim();
+        if (validAttacheRegexp.test(attach)) {
+            validAttachments.push(attach);
+        }
+    });
+    return validAttachments.length ? validAttachments : '';
+};
 
 /**
  * Run client app callback.
@@ -814,7 +947,15 @@ vkApp.prototype.balanceUpdated = function(money) {
 }
 
 vkApp.prototype.checkMethod = function(method, params, callback) {
+
     var m = method.toLowerCase();
+
+    if (m === 'wall.post') {
+        cur.wallPostBoxCallback = callback;
+        this.funcs.showWallPostBox(params);
+        return false;
+    }
+
     return true;
 }
 
@@ -942,7 +1083,15 @@ vkApp.prototype.api = function(method, inputParams, callback, captcha) {
         }
     };
     var fail = function() {
-        //debugLog('Ajax fail');
+        if (callback) {
+
+            callback({
+                error: {
+                    error_code: 1,
+                    error_message: 'Unknown network error occurred'
+                }
+            });
+        }
     };
     ajax.plainpost(self.params['api_script'], params, done, fail);
 }
@@ -965,6 +1114,15 @@ vkApp.prototype.callNativeClientMethod = function(method, params) {
 
 vkApp.prototype.isNativeClientWebView = function() {
     return this.isNativeIosWebView() || this.isNativeAndroidWebView();
+};
+
+vkApp.prototype.nativeClientHasMethod = function(methodName) {
+    // Can check method only for ios.
+    if (this.isNativeIosWebView()) {
+        return !!window.webkit.messageHandlers[methodName];
+    }
+
+    return true;
 };
 
 vkApp.prototype.isNativeIosWebView = function() {
@@ -1010,6 +1168,26 @@ vkApp.prototype.VKWebAppQRDone = function(eventData) {
  */
 vkApp.prototype.VKWebAppQRClosed = function(eventData) {
     this.runCallback('onQRReadeClosed', eventData.data);
+};
+
+vkApp.prototype.VKWebAppShowWallPostBoxDone = function(eventData) {
+    this.runCallback('onShowWallPostBoxDone', eventData.data);
+    if (cur.wallPostBoxCallback) {
+        cur.wallPostBoxCallback({
+            response: {
+                post_id: eventData.data
+            }
+        });
+    }
+};
+
+vkApp.prototype.VKWebAppShowWallPostBoxCancel = function(eventData) {
+    this.runCallback('onShowWallPostBoxCancel', eventData.data);
+    if (cur.wallPostBoxCallback) {
+        cur.wallPostBoxCallback({
+            error: eventData.data
+        });
+    }
 };
 
 

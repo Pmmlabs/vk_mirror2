@@ -780,14 +780,38 @@ if (!VK.xdConnectionCallbacks) {
 
             checkMethod: function(method, params, cb, queryTry) {
                 var m = method.toLowerCase();
+
                 if (m == 'wall.post' || m == 'activity.set') {
-                    var text = (m == 'activity.set') ? params.text : params.message;
+                    var text = (m == 'activity.set') ? params.text : params.message,
+                        validAttacheRegexp = /(^https?:\/\/)|(^(poll|album|photo|video|doc|audio|page|note)-?\d+_-?\d+)$/,
+                        attachments = [],
+                        validAttachments = [];
+
                     if (!text) {
                         text = '';
                     }
+
+                    if (!params.v) {
+                        params.v = '3.0';
+                    }
+
+                    if (params.attachments) {
+                        attachments = params.attachments;
+                    } else if (params.attachment) {
+                        attachments = [params.attachment];
+                    }
+
+                    for (var i = 0; i < attachments.length; i++) {
+                        if (validAttacheRegexp.test(attachments[i])) {
+                            validAttachments.push(attachments[i]);
+                        }
+                    }
+
+                    params.attachments = validAttachments.length ? validAttachments : '';
+
                     var query = VK._protocol + '//vk.com/al_apps.php?act=wall_post_box&widget=4&method=' + m + '&aid=' + parseInt(VK._apiId, 10) + '&text=' + encodeURIComponent(text);
                     if (m == 'wall.post') {
-                        query += '&owner_id=' + parseInt(params.owner_id || 0, 10) + '&attachments=' + (params.attachments || params.attachment || '') + '&publish_date=' + (params.publish_date || '');
+                        query += '&owner_id=' + parseInt(params.owner_id || 0, 10) + '&attachments=' + params.attachments + '&publish_date=' + (params.publish_date || '');
                     }
                     var method_access = '_' + (Math.random()).toString(16).substr(2);
                     query += '&method_access=' + method_access;

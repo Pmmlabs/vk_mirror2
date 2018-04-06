@@ -2751,7 +2751,7 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 (min-resolution: 192dpi) {
     .tickets_suggest__icon:after {
         background-image: url(/images/support/faq_icons_2x.png);
-        background-size: 28px 392px
+        background-size: 28px 588px
     }
 }
 
@@ -2803,6 +2803,34 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 
 .tickets_suggest__icon.tickets_icon12:after {
     background-position: 0 -280px
+}
+
+.tickets_suggest__icon.tickets_icon15:after {
+    background-position: 0 -420px
+}
+
+.tickets_suggest__icon.tickets_icon16:after {
+    background-position: 0 -448px
+}
+
+.tickets_suggest__icon.tickets_icon17:after {
+    background-position: 0 -476px
+}
+
+.tickets_suggest__icon.tickets_icon18:after {
+    background-position: 0 -504px
+}
+
+.tickets_suggest__icon.tickets_icon19:after {
+    background-position: 0 -392px
+}
+
+.tickets_suggest__icon.tickets_icon20:after {
+    background-position: 0 -532px
+}
+
+.tickets_suggest__icon.tickets_icon21:after {
+    background-position: 0 -560px
 }
 
 .tickets_suggest__icon.tickets_icon100:after,
@@ -3023,7 +3051,7 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 (min-resolution: 192dpi) {
     .help_tile__title:after {
         background-image: url(/images/support/faq_icons_2x.png);
-        background-size: 28px 392px
+        background-size: 28px 588px
     }
 }
 
@@ -3075,6 +3103,34 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 
 .help_tile__title.tickets_icon12:after {
     background-position: 0 -280px
+}
+
+.help_tile__title.tickets_icon15:after {
+    background-position: 0 -420px
+}
+
+.help_tile__title.tickets_icon16:after {
+    background-position: 0 -448px
+}
+
+.help_tile__title.tickets_icon17:after {
+    background-position: 0 -476px
+}
+
+.help_tile__title.tickets_icon18:after {
+    background-position: 0 -504px
+}
+
+.help_tile__title.tickets_icon19:after {
+    background-position: 0 -392px
+}
+
+.help_tile__title.tickets_icon20:after {
+    background-position: 0 -532px
+}
+
+.help_tile__title.tickets_icon21:after {
+    background-position: 0 -560px
 }
 
 .help_tile__title.tickets_icon100:after,
@@ -3199,7 +3255,7 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 (min-resolution: 192dpi) {
     .help_table_questions__title:after {
         background-image: url(/images/support/faq_icons_2x.png);
-        background-size: 28px 392px
+        background-size: 28px 588px
     }
 }
 
@@ -3251,6 +3307,34 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 
 .help_table_questions__title.tickets_icon12:after {
     background-position: 0 -280px
+}
+
+.help_table_questions__title.tickets_icon15:after {
+    background-position: 0 -420px
+}
+
+.help_table_questions__title.tickets_icon16:after {
+    background-position: 0 -448px
+}
+
+.help_table_questions__title.tickets_icon17:after {
+    background-position: 0 -476px
+}
+
+.help_table_questions__title.tickets_icon18:after {
+    background-position: 0 -504px
+}
+
+.help_table_questions__title.tickets_icon19:after {
+    background-position: 0 -392px
+}
+
+.help_table_questions__title.tickets_icon20:after {
+    background-position: 0 -532px
+}
+
+.help_table_questions__title.tickets_icon21:after {
+    background-position: 0 -560px
 }
 
 .help_table_questions__title.tickets_icon100:after,
