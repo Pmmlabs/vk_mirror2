@@ -271,7 +271,7 @@ var stVersions = {
     'privacy.js': 3620108221,
     'privacy.css': 19327871355,
     'apps.css': 44135031467,
-    'apps.js': 3753770904,
+    'apps.js': 3761348783,
     'apps_edit.js': 3545115796,
     'apps_edit.css': 40894187282,
     'apps_check.js': 3204387834,
@@ -363,7 +363,7 @@ var stVersions = {
     'graffiti.css': 404471482,
     'graffiti_new.js': 67279821,
     'graffiti_new.css': 26893678889,
-    'abuse.css': 19605411546,
+    'abuse.css': 19839524643,
     'verify.css': 18388999161,
     'away.css': 23770882234,
     'stats.css': 21134070636,
@@ -544,7 +544,7 @@ var stVersions = {
     'internal/patterns_info.css': 21746828207,
     'article.css': 38153539115,
     'article_editor.css': 38771779855,
-    'cmodules/web/article.js': 31412223104,
+    'cmodules/web/article.js': 31268148908,
     'cmodules/web/article_layer.js': 18343716294,
     'article_view.js': 13295616384,
     'internal/cvkmobile.css': 20586909297,
@@ -647,4 +647,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 1829;
+var _rnd = 1146;

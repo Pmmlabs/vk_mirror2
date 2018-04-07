@@ -765,7 +765,8 @@
 .moderator_incentive_profile .moderator_profile_info {
     display: inline-block;
     margin-left: 20px;
-    width: 250px
+    width: 250px;
+    vertical-align: top
 }
 
 .moderator_incentive_profile .moderator_profile_info .moderator_profile_name {
@@ -784,30 +785,31 @@
     color: #000
 }
 
-.moderator_incentive_profile .moderator_profile_info .moderator_profile_cards {
+.moderator_incentive_profile .moderator_profile_info .moderator_profile_bottom_row {
+    margin-top: 44px
+}
+
+.moderator_incentive_profile .moderator_profile_info .moderator_profile_bottom_row .moderator_profile_cards {
     cursor: default;
-    margin-top: 48px
+    display: inline-block;
+    vertical-align: middle
 }
 
-.moderator_incentive_profile .moderator_profile_info .moderator_profile_cards:last-child {
-    margin-bottom: 0
-}
-
-.moderator_incentive_profile .moderator_profile_info .moderator_profile_cards .card_count {
+.moderator_incentive_profile .moderator_profile_info .moderator_profile_bottom_row .moderator_profile_cards .card_count {
     display: inline-block;
     margin-right: 10px;
     margin-top: 1px;
     margin-bottom: 1px
 }
 
-.moderator_incentive_profile .moderator_profile_info .moderator_profile_cards .card_count .card_count_label {
+.moderator_incentive_profile .moderator_profile_info .moderator_profile_bottom_row .moderator_profile_cards .card_count .card_count_label {
     margin-left: 2px;
     display: inline-block;
     vertical-align: middle;
     font-size: 20px
 }
 
-.moderator_incentive_profile .moderator_profile_info .moderator_profile_cards .card_count .incentive_card {
+.moderator_incentive_profile .moderator_profile_info .moderator_profile_bottom_row .moderator_profile_cards .card_count .incentive_card {
     border-radius: 3px;
     box-sizing: border-box;
     font-weight: 700;
@@ -823,19 +825,24 @@
     border: 2px solid
 }
 
-.moderator_incentive_profile .moderator_profile_info .moderator_profile_cards .card_count .incentive_card.incentive_card_green {
+.moderator_incentive_profile .moderator_profile_info .moderator_profile_bottom_row .moderator_profile_cards .card_count .incentive_card.incentive_card_green {
     background: #64bb46;
     border-color: #009345
 }
 
-.moderator_incentive_profile .moderator_profile_info .moderator_profile_cards .card_count .incentive_card.incentive_card_red {
+.moderator_incentive_profile .moderator_profile_info .moderator_profile_bottom_row .moderator_profile_cards .card_count .incentive_card.incentive_card_red {
     background: #e07c6b;
     border-color: #934500
 }
 
-.moderator_incentive_profile .moderator_profile_info .moderator_profile_cards .card_count .incentive_card.incentive_card_grey {
+.moderator_incentive_profile .moderator_profile_info .moderator_profile_bottom_row .moderator_profile_cards .card_count .incentive_card.incentive_card_grey {
     background: #aaa;
     border-color: #555
+}
+
+.moderator_incentive_profile .moderator_profile_info .moderator_profile_bottom_row .moderator_profile_mode {
+    display: inline-block;
+    vertical-align: middle
 }
 
 .moderator_incentive_profile .moderator_profile_stats {
@@ -852,7 +859,7 @@
 }
 
 .moderator_incentive_profile .moderator_profile_stats .moderator_profile_stats_block .moderator_stat {
-    margin-bottom: 15px
+    margin-bottom: 24px
 }
 
 .moderator_incentive_profile .moderator_profile_stats .moderator_profile_stats_block .moderator_stat:last-child {
@@ -861,7 +868,7 @@
 
 .moderator_incentive_profile .moderator_profile_stats .moderator_profile_stats_block .moderator_stat .moderator_stat_value {
     color: #393e42;
-    font-size: 22px
+    font-size: 24px
 }
 
 .moderator_incentive_profile .moderator_profile_stats .moderator_profile_stats_block .moderator_stat .moderator_stat_label {

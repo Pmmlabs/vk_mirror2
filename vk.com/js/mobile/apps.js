@@ -849,6 +849,8 @@ vkApp.prototype.getValidPostAttachments = function(attachments) {
     var validAttacheRegexp = /(^https?:\/\/)|(^(poll|album|photo|video|doc|audio|page|note)-?\d+_-?\d+)$/,
         validAttachments = [];
 
+    attachments = attachments || [];
+
     if (isString(attachments)) {
         attachments = attachments.split(',');
     }
