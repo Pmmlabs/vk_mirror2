@@ -2802,9 +2802,9 @@ var Wall = {
 
                 // Wait a bit while build a smart wall
                 if (isTop && isObject(data) && data.wait) {
-                    cur.wallTopLoadingDelay = (cur.wallTopLoadingDelay ? cur.wallTopLoadingDelay * 2 : 500);
+                    cur.wallTopLoadingDelay = (cur.wallTopLoadingDelay ? cur.wallTopLoadingDelay + 100 : 200);
 
-                    if (cur.wallTopLoadingDelay < 2000) {
+                    if (cur.wallTopLoadingDelay < 500) {
                         setTimeout(function() {
                             delete cur.wallLoading;
                             delete cur.wallTypeLoading[type];
