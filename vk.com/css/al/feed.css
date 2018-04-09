@@ -2555,6 +2555,10 @@ div.feed_recom {
     padding-top: 14px
 }
 
+.feedback_vkpay_row .feedback_rphoto {
+    padding-bottom: 14px
+}
+
 .feed_added_friends_wrap .feedback_group_photo {
     margin-bottom: 3px
 }

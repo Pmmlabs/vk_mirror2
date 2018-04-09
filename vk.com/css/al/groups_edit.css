@@ -1565,7 +1565,8 @@ a.group_ad_post_link.deleted.deleted:hover {
 
 .group_api_url_input_text {
     padding-top: 6px;
-    padding-bottom: 8px
+    padding-bottom: 8px;
+    line-height: 16px
 }
 
 .group_api_server_hint_confirmed:after {

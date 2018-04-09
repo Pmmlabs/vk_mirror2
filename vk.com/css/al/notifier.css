@@ -5730,6 +5730,10 @@ div.chat_tab_img {
     z-index: 10
 }
 
+.top_notify_cont .feedback_vkpay_row .feedback_rphoto {
+    padding-bottom: 14px
+}
+
 .top_notify_cont ._notify_unread .feed_row:first-child .feedback_row_wrap {
     box-shadow: 0px -1px 0 0 #e7e8ec
 }
