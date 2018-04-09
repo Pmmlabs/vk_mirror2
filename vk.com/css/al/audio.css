@@ -730,7 +730,14 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
+    background: no-repeat 50%;
     background-size: cover
+}
+
+.audio_page_layout .audio_block_small_item.artist_no_image .audio_block_small_item__img {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ctitle%3Eartist_24%3C%2Ftitle%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20opacity%3D%22.1%22%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20d%3D%22M15.133%2014.124c-2.056.516-3.383%202.23-3.383%204.251%200%20.59.088%201.134.248%201.625H4a1%201%200%200%201-1-1v-1c0-3.5%205.333-4.5%208.004-4.5%201.109%200%202.675.172%204.13.624zM15.006%208a4%204%200%200%201-4.002%204%204%204%200%201%201%200-8%204%204%200%200%201%204.002%204zm4.498%208.643c0%202.788-.746%203.458-2.835%203.82-1.11.193-2.419-.355-2.419-2.088%200-.846.535-1.65%201.642-1.86.846-.16-.316.04%201.597-.312.464-.086.517-.25.517-.6%200-.176-.004-.319-.01-1.375v-2.851s-.003-1.36%200-2.04c.005-.812.625-1.111%201.949-1.376%200%200%201.514-.247%202.623-.446.245-.044.433.046.433.325v2.557c0%20.275-.113.4-.394.449-1.122.197-2.743.477-2.743.477-.25.061-.363.235-.363.485l.003%204.835z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-color: #5c9ce6;
+    background-size: 25px
 }
 
 .audio_page_layout .audio_block_small_item .audio_block_small_item__info {
@@ -827,6 +834,11 @@
     -o-transition: filter 50ms linear;
     transition: filter 50ms linear;
     transition: filter 50ms linear, -webkit-filter 50ms linear
+}
+
+.audio_page_layout .audio_owner_item.artist_no_image .audio_owner_item__img {
+    background: #5c9ce6 url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ctitle%3Eartist_24%3C%2Ftitle%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20opacity%3D%22.1%22%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20d%3D%22M15.133%2014.124c-2.056.516-3.383%202.23-3.383%204.251%200%20.59.088%201.134.248%201.625H4a1%201%200%200%201-1-1v-1c0-3.5%205.333-4.5%208.004-4.5%201.109%200%202.675.172%204.13.624zM15.006%208a4%204%200%200%201-4.002%204%204%204%200%201%201%200-8%204%204%200%200%201%204.002%204zm4.498%208.643c0%202.788-.746%203.458-2.835%203.82-1.11.193-2.419-.355-2.419-2.088%200-.846.535-1.65%201.642-1.86.846-.16-.316.04%201.597-.312.464-.086.517-.25.517-.6%200-.176-.004-.319-.01-1.375v-2.851s-.003-1.36%200-2.04c.005-.812.625-1.111%201.949-1.376%200%200%201.514-.247%202.623-.446.245-.044.433.046.433.325v2.557c0%20.275-.113.4-.394.449-1.122.197-2.743.477-2.743.477-.25.061-.363.235-.363.485l.003%204.835z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 50%;
+    background-size: 75px
 }
 
 .audio_page_layout .audio_owner_item .audio_owner_item__info {
