@@ -133,21 +133,35 @@ var Board = {
             d = geByClass1("_bet_fixed", o.bodyNode),
             i = geByClass1("_bet_poll_closed", o.bodyNode),
             a = geByClass1("_bet_poll_fixed", o.bodyNode),
-            s = trim(val(t));
-        return s ? (e || (e = geByClass("flat_button", domNS(curBox().bodyNode))[1]), poll = cur.boardEditMedia.pollData(), poll && (poll.question = poll.media, delete poll.media, delete poll.anonymous), void ajax.post("/al_board.php", extend({
+            s = !1,
+            n = trim(val(t)),
+            c = cur.boardEditMedia.getMedias() || {};
+        for (var l in c)
+            if (c.hasOwnProperty(l) && "poll" === c[l][0]) {
+                s = !0;
+                break
+            }
+        if (!n) return notaBene(t), elfocus(t);
+        e || (e = geByClass("flat_button", domNS(curBox().bodyNode))[1]);
+        var u = {};
+        if (s) {
+            if (u = cur.boardEditMedia.pollData(), !u) return !1;
+            u.question = u.media, delete u.media, delete u.anonymous
+        }
+        ajax.post("/al_board.php", extend({
             act: "save_topic_info",
             topic: cur.topic,
             hash: cur.hash,
             offset: nav.objLoc.offset,
-            title: s,
+            title: n,
             closed: isChecked(r) ? 1 : 0,
             fixed: isChecked(d) ? 1 : 0,
             poll_closed: isChecked(i) ? 1 : 0,
             poll_fixed: isChecked(a) ? 1 : 0
-        }, poll || {}), {
+        }, u || {}), {
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e)
-        })) : (notaBene(t), elfocus(t))
+        })
     },
     checkDeleteTopic: function() {
         return showFastBox(getLang("board_edit_topic"), getLang("board_sure_delete_topic"), getLang("global_delete"), Board.deleteTopic, getLang("global_cancel"))

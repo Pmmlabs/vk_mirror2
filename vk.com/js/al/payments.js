@@ -423,6 +423,17 @@ Payments.validateEmail = function(email) {
 var MoneyTransfer = {
     init: function() {
         var box = curBox();
+        if (ge('payments_box') != geByClass1('payments_money_transfer_box', box.bodyNode) && _message_boxes.length > 1) {
+            var fl = true;
+            _message_boxes.forEach(function(b, k) {
+                if (fl && ge('payments_box') == geByClass1('payments_money_transfer_box', b.bodyNode)) {
+                    boxLayer.removeChild(gpeByClass('popup_box_container', b.bodyNode));
+                    delete _message_boxes[k];
+                    fl = false;
+                }
+            });
+        }
+
         box.setOptions({
             grey: true
         });
@@ -796,7 +807,8 @@ var MoneyTransfer = {
                     }
                     var loc = nav.objLoc;
                     if (!chkData.accept && loc[0] === 'settings' && loc.act === 'payments' && loc.section === 'transfer') {
-                        cur.historyOffset = 0;
+                        if (!cur.historyOffset) cur.historyOffset = {};
+                        cur.historyOffset.transfer = 0;
                         Settings.showNextPaymentsHistory(false, loc.section);
                     }
 

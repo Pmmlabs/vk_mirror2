@@ -118,8 +118,8 @@ var WkPoll = {
     },
     graphUpdate: function(criteria, callback) {
         var cont = ge("wk_poll_graph");
-        ajax.post("widget_poll.php", extend({
-            act: "show_graph"
+        ajax.post("wkview.php", extend({
+            act: "voting_common_graph"
         }, cur.wkPollOpts, criteria || {}), {
             onDone: function(html, js, options) {
                 var size = getSize(cont);
@@ -184,8 +184,8 @@ var WkPoll = {
                     c += cur.wkPollParams.lang.wall_X_people_voted_from.replace("%s", w)
                 }
                 if (o.age) {
-                    var p = WkPoll.getDdLabel(cur.wkPollFilters.age.types, o.age);
-                    p && (c += cur.wkPollParams.lang.wall_X_people_voted_by_age.replace("%s", p))
+                    var u = WkPoll.getDdLabel(cur.wkPollFilters.age.types, o.age);
+                    u && (c += cur.wkPollParams.lang.wall_X_people_voted_by_age.replace("%s", u))
                 }
                 o.gender && (c += " " + cur.wkPollParams.lang["wall_voted_gender_" + intval(o.gender)]), t = t.replace(/%s|{criteria}/, c)
             } else var t = cur.wkPollParams.lang.wall_X_people_voted_empty;
@@ -197,8 +197,8 @@ var WkPoll = {
                 }, 100)
             }), l && l()
         };
-        cur.wkPollGraph ? WkPoll.graphUpdate(o, e) : ajax.post("al_wall.php", extend({
-            act: "poll_demography"
+        cur.wkPollGraph ? WkPoll.graphUpdate(o, e) : ajax.post("wkview.php", extend({
+            act: "voting_common_demography"
         }, cur.wkPollOpts, o), {
             onDone: e
         })
@@ -240,8 +240,8 @@ var WkPoll = {
         })
     },
     exportBox: function() {
-        showBox("al_wall.php", extend({
-            act: "poll_export_box"
+        showBox("al_voting.php", extend({
+            act: "export_box"
         }, cur.wkPollOpts)), boxLayerWrap.scrollTop = 0
     },
     backToBox: function() {

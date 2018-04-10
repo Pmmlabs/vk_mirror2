@@ -692,6 +692,17 @@ if (!VK.xdConnectionCallbacks) {
         };
     }
 
+    function obj2qs(obj) {
+        if (!obj) return '';
+        var qs = [];
+        for (var k in obj) {
+            if (obj.hasOwnProperty(k)) {
+                qs.push(encodeURIComponent(k) + '=' + encodeURIComponent(obj[k].toString() || ''));
+            }
+        }
+        return qs.length ? '?' + qs.join('&') : '';
+    }
+
     if (!VK.Api) {
         VK.Api = {
             _headId: null,
@@ -781,58 +792,46 @@ if (!VK.xdConnectionCallbacks) {
             checkMethod: function(method, params, cb, queryTry) {
                 var m = method.toLowerCase();
 
-                if (m == 'wall.post' || m == 'activity.set') {
-                    var text = (m == 'activity.set') ? params.text : params.message,
-                        validAttacheRegexp = /(^https?:\/\/)|(^(poll|album|photo|video|doc|audio|page|note)-?\d+_-?\d+)$/,
-                        attachments = [],
-                        validAttachments = [];
-
-                    if (!text) {
-                        text = '';
-                    }
+                if (m === 'wall.post') {
+                    var validAttacheRegexp = /(^https?:\/\/)|(^(poll|album|photo|video|doc|audio|page|note)-?\d+_-?\d+)$/,
+                        validAttachments = [],
+                        methodAccess,
+                        queryParams,
+                        query,
+                        timer;
 
                     if (!params.v) {
                         params.v = '3.0';
                     }
 
-                    if (params.attachments) {
-                        attachments = params.attachments;
-                    } else if (params.attachment) {
-                        attachments = [params.attachment];
+                    params.attachments = params.attachments || params.attachment || [];
+                    if (typeof params.attachments === 'string') {
+                        params.attachments = params.attachments.split(',')
                     }
 
-                    for (var i = 0; i < attachments.length; i++) {
-                        if (validAttacheRegexp.test(attachments[i])) {
-                            validAttachments.push(attachments[i]);
+                    for (var i = 0; i < params.attachments.length; i++) {
+                        var attach = params.attachments[i].trim();
+                        if (validAttacheRegexp.test(attach)) {
+                            validAttachments.push(attach);
                         }
                     }
 
                     params.attachments = validAttachments.length ? validAttachments : '';
+                    methodAccess = '_' + (Math.random()).toString(16).substr(2);
+                    queryParams = {
+                        act: 'wall_post_box',
+                        method: m,
+                        widget: 4,
+                        aid: parseInt(VK._apiId, 10),
+                        text: params.message || '',
+                        method_access: methodAccess
+                    };
 
-                    var query = VK._protocol + '//vk.com/al_apps.php?act=wall_post_box&widget=4&method=' + m + '&aid=' + parseInt(VK._apiId, 10) + '&text=' + encodeURIComponent(text);
-                    if (m == 'wall.post') {
-                        query += '&owner_id=' + parseInt(params.owner_id || 0, 10) + '&attachments=' + params.attachments + '&publish_date=' + (params.publish_date || '');
-                    }
-                    var method_access = '_' + (Math.random()).toString(16).substr(2);
-                    query += '&method_access=' + method_access;
-                    var popup = VK.UI.popup({
-                        url: query,
-                        width: 560,
-                        height: 304
-                    });
-                    var timer = setInterval(function() {
-                        if (VK.UI.active.closed) {
-                            clearInterval(timer);
-                            params.method_access = method_access;
-                            VK.Api.call(method, params, cb, queryTry);
-                        }
-                    }, 500);
-                    return false;
-                }
-
-                if (m == 'messages.allowmessagesfromgroup') {
-                    var method_access = '_' + (Math.random()).toString(16).substr(2);
-                    var query = VK._protocol + '//vk.com/widget_allow_messages_from_community.php?act=allow_box&group_id=' + parseInt(params.group_id, 10) + '&app_id=' + parseInt(VK._apiId, 10) + '&method_access=' + method_access;
+                    queryParams = VK.extend(queryParams, params);
+                    queryParams.owner_id = parseInt(params.owner_id || 0, 10);
+                    queryParams.publish_date = params.publish_date || '';
+                    query = VK._protocol + '//vk.com/al_apps.php';
+                    query += obj2qs(queryParams);
 
                     VK.UI.popup({
                         url: query,
@@ -840,10 +839,30 @@ if (!VK.xdConnectionCallbacks) {
                         height: 304
                     });
 
-                    var timer = setInterval(function() {
+                    timer = setInterval(function() {
                         if (VK.UI.active.closed) {
                             clearInterval(timer);
-                            params.method_access = method_access;
+                            params.method_access = methodAccess;
+                            VK.Api.call(method, params, cb, queryTry);
+                        }
+                    }, 500);
+                    return false;
+                }
+
+                if (m == 'messages.allowmessagesfromgroup') {
+                    methodAccess = '_' + (Math.random()).toString(16).substr(2);
+                    query = VK._protocol + '//vk.com/widget_allow_messages_from_community.php?act=allow_box&group_id=' + parseInt(params.group_id, 10) + '&app_id=' + parseInt(VK._apiId, 10) + '&method_access=' + methodAccess;
+
+                    VK.UI.popup({
+                        url: query,
+                        width: 560,
+                        height: 304
+                    });
+
+                    timer = setInterval(function() {
+                        if (VK.UI.active.closed) {
+                            clearInterval(timer);
+                            params.method_access = methodAccess;
                             VK.Api.call(method, params, cb, queryTry);
                         }
                     }, 500);

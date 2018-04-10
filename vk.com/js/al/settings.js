@@ -1115,27 +1115,27 @@ var Settings = {
     },
     showNextPaymentsHistory: function(t, e) {
         if (!buttonLocked(t)) {
-            lockButton(t);
-            var s, o;
+            lockButton(t), e || (e = "votes"), void 0 === cur.historyOffset[e] && (cur.historyOffset[e] = 5);
+            var s, o, n = cur.historyOffset[e];
             return "transfer" === e ? (s = {
                 act: "a_transfer_history",
-                offset: cur.historyOffset
+                offset: n
             }, o = "settings_transfer_history") : "subscriptions" === e ? (s = {
                 act: "a_payments_subsciptions",
-                offset: cur.historyOffset
+                offset: n
             }, o = "settings_payments_subscriptions") : (s = {
                 act: "a_votes_history",
-                offset: cur.historyOffset
+                offset: n
             }, o = "settings_votes_history"), ajax.post("al_settings.php", s, {
-                onDone: function(e, s) {
-                    var n = ge(o).tBodies[0];
-                    if (e)
-                        if (unlockButton(t), cur.historyOffset ? cur.historyOffset += 100 : (n.innerHTML = "", cur.historyOffset = 5), browser.msie) {
-                            var a = se("<table>" + e + "</table>"),
-                                r = geByTag("tr", a);
-                            for (i in r) 1 == r[i].nodeType && n.appendChild(r[i])
-                        } else n.insertAdjacentHTML("beforeEnd", e);
-                    (!e || s) && (addClass(n.lastChild, "settings_votes_history_last"), hide(t))
+                onDone: function(s, n) {
+                    var a = ge(o).tBodies[0];
+                    if (s)
+                        if (unlockButton(t), cur.historyOffset[e] ? cur.historyOffset[e] += 100 : (a.innerHTML = "", cur.historyOffset[e] = 5), browser.msie) {
+                            var r = se("<table>" + s + "</table>"),
+                                c = geByTag("tr", r);
+                            for (i in c) 1 == c[i].nodeType && a.appendChild(c[i])
+                        } else a.insertAdjacentHTML("beforeEnd", s);
+                    (!s || n) && (addClass(a.lastChild, "settings_votes_history_last"), hide(t))
                 }
             }), !1
         }

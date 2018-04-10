@@ -11510,9 +11510,9 @@ img[src^="/images/mobile/places/"] {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
+    -webkit-align-items: baseline;
+    -ms-flex-align: baseline;
+    align-items: baseline;
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
     justify-content: space-between;
@@ -22628,6 +22628,22 @@ a.feedBlocks__article:hover {
     }
 }
 
+@media (max-width: 319px) {
+    .header__title {
+        position: relative;
+        top: -3px
+    }
+    .header__unfold {
+        position: relative;
+        top: -12px
+    }
+    .mhb_back[onclick^="TopMenu.onHeaderClick"] {
+        position: relative;
+        left: 0!important;
+        top: 3px
+    }
+}
+
 .Audio,
 .r .audio_item {
     padding: 4px 0;
@@ -25209,6 +25225,10 @@ a.feedBlocks__article:hover {
 .vk_flex_no .Bell__counter {
     float: left;
     line-height: 44px
+}
+
+.groupCover-vk_animationStep .Bell {
+    background: transparent!important
 }
 
 .typing {
