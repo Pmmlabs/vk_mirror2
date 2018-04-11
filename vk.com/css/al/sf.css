@@ -186,6 +186,11 @@
     background-color: #f05c44
 }
 
+.box_layout .reports_flow_settings .box_body .setting.amount .slider_amount,
+.box_layout .reports_flow_settings .box_body .setting.amount .slider_handler {
+    background-color: #65bf63
+}
+
 .box_layout .reports_flow_settings .box_body .setting:not(:first-child) {
     margin-top: 24px
 }
