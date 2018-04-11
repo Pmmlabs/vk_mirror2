@@ -308,6 +308,8 @@ var Join = {
         cur.uiPhoneCountry = new Dropdown(ge('join_phone_country'), cur.countries, {
             selectedItems: country,
             big_text: true,
+            disablePlaceholder: true,
+            liteEventsBind: true,
             autocomplete: true,
             multiselect: false,
             onChange: function(v) {
@@ -433,7 +435,7 @@ var Join = {
                 nav.reload();
             }
         };
-        onLoginDone = nav.go.pbind('join.php?act=done')
+        onLoginDone = nav.go.pbind('join?act=done')
         if (cur.fbSign && (cur.fbValid || fbLoginTo === true)) {
             var login = cur.fbEmail;
             cur.joinParams['fb_id'] = cur.fbId;
@@ -621,7 +623,209 @@ var Join = {
             showProgress: lockButton.pbind(obj),
             hideProgress: unlockButton.pbind(obj)
         });
-    }
+    },
+
+    initContacts: function() {
+        selectsData.setCountries(cur.selData.countries);
+        selectsData.setCities(cur.selData.country, cur.selData.cities);
+
+        cur.selData.city_val = cur.selData.city_val || ['', ''];
+        cur.selData.country_val = cur.selData.country_val || ['', ''];
+
+        cur.uiCity = new CitySelect(ge('pedit_city'), ge('pedit_city_row'), {
+            progressBar: ge('pedit_progress'),
+            city: cur.selData.city_val,
+            country: cur.selData.country,
+            maxItemsShown: function(query_length) {
+                return (query_length > 6) ? 500 : 350;
+            },
+            dark: 1,
+            width: 280
+        });
+
+        cur.uiCountry = new CountrySelect(ge('pedit_country'), ge('pedit_country_row'), {
+            progressBar: ge('pedit_progress'),
+            country: cur.selData.country_val,
+            citySelect: cur.uiCity,
+            onChange: Join.checkSave,
+            dark: 1,
+            width: 280
+        });
+
+        Join.checkSave(ge('pedit_country').value);
+    },
+
+    submitContacts: function() {
+        var params = {
+            act: 'check_contacts',
+            hash: cur.saveHash,
+            country: ge('pedit_country').value,
+            city: ge('pedit_city').value
+        };
+
+        if (!params.country) {
+            statlogsValueEvent('join_progress', 'contacts', 'error', 'empty contacts');
+            Join.showMsg('join_submit_result', getLang('join_need_contacts'));
+            return true;
+        }
+
+        var btn = ge('join_save');
+
+        ajax.post('join.php', params, {
+            onDone: function() {
+                nav.go('/join?act=education');
+            },
+            onFail: function(errorMessage) {
+                Join.showMsg('join_submit_result', errorMessage);
+                return true;
+            },
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn)
+        });
+    },
+
+    initEducation: function() {
+        selectsData.setCountries(cur.selData.countries);
+        selectsData.setCities(cur.selData.country, cur.selData.cities);
+
+        cur.selData.city_val = cur.selData.city_val || ['', ''];
+        cur.selData.country_val = cur.selData.country_val || ['', ''];
+
+        var container = ge('edu');
+        var id = 0;
+        var params = {
+            id: id,
+            width: 280,
+            city: cur.selData.city,
+            city_val: cur.selData.city_val,
+            country: cur.selData.country,
+            country_val: cur.selData.country_val
+        };
+
+        if (cur.isSchool) {
+            container.appendChild(ProfileEditorEdu.genSchoolRow(id));
+            ProfileEditorEdu.initSchoolRow(params, null, Join.checkSave);
+            Join.checkSave(ge('s_school0').value);
+
+            addEvent(ge('s_spec0_custom'), 'keydown', function(ev) {
+                if (ev.keyCode == 10 || ev.keyCode == 13) {
+                    Join.submitEducation();
+                }
+            });
+        } else {
+            container.appendChild(ProfileEditorEdu.genUniRow(id));
+            ProfileEditorEdu.initUniRow(params, null, Join.checkSave);
+            Join.checkSave(ge('u_university0').value);
+        }
+    },
+
+    submitEducation: function() {
+        var error;
+        var params;
+
+        if (cur.isSchool) {
+            params = {
+                act: 'a_save_education_school'
+            };
+            params = ProfileEditorEdu.addSchoolParams(params, {
+                id: 0
+            }, 'school0');
+
+            if (!params['school0school']) {
+                error = getLang('join_need_school');
+            }
+
+            params.school0id = -1;
+
+        } else {
+            params = {
+                act: 'a_save_education_uni'
+            };
+            params = ProfileEditorEdu.addUniParams(params, {
+                id: 0
+            }, 'primary_uni');
+
+            if (!params['primary_uniuniversity']) {
+                error = getLang('join_need_uni');
+            }
+
+            params.primary_uniid = cur.uniId || -1;
+        }
+
+        if (error) {
+            statlogsValueEvent('join_progress', 'education', 'error', (cur.isSchool ? 'empty school' : 'empty university'));
+            Join.showMsg('join_submit_result', error);
+            return true;
+        }
+
+        var btn = ge('join_save');
+
+        params.hash = cur.saveHash;
+
+        ajax.post('al_profileEdit.php', params, {
+            onDone: function() {
+                statlogsValueEvent('join_progress', 'education', 'success');
+                nav.go('/join?act=email');
+            },
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn)
+        });
+    },
+
+    initEmail: function() {
+        var email = ge('pedit_email');
+
+        addEvent(email, 'keydown change', function(ev) {
+            if (ev.keyCode == 10 || ev.keyCode == 13) {
+                Join.submitEmail();
+            } else {
+                Join.checkSave(email.value);
+            }
+        });
+
+        Join.checkSave();
+    },
+
+    submitEmail: function() {
+        var params = {
+            act: 'a_bind_mail',
+            email: ge('pedit_email').value,
+            is_new: 1,
+            hash: cur.saveHash
+        };
+
+        if (!params.email) {
+            statlogsValueEvent('join_progress', 'email', 'error', 'empty email');
+            Join.showMsg('join_submit_result', getLang('join_need_email'));
+            return true;
+        }
+
+        var btn = ge('join_save');
+
+        params.hash = cur.saveHash;
+
+        ajax.post('al_settings.php', params, {
+            onDone: function() {
+                statlogsValueEvent('join_progress', 'email', 'success');
+                // Need force load
+                location.href = '/feed';
+            },
+            onFail: function(errorMessage) {
+                if (!isUndefined(errorMessage)) {
+                    statlogsValueEvent('join_progress', 'email', 'error', errorMessage);
+                    Join.showMsg('join_submit_result', errorMessage);
+                }
+
+                return true;
+            },
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn)
+        });
+    },
+
+    checkSave: function(value) {
+        disableButton(ge('join_save'), !value);
+    },
 };
 
 try {

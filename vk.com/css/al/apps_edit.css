@@ -1294,7 +1294,8 @@ td.apps_edit_label {
     color: #666;
     width: 180px;
     padding: 11px 10px 0 0;
-    white-space: nowrap
+    white-space: nowrap;
+    text-align: right
 }
 
 #apps_edit_upload_small {
@@ -3279,4 +3280,8 @@ input.execute_field_input {
 
 .apps_edit_table #app_short_desc {
     height: 25px
+}
+
+.apps_mobile_iframe_secure_tt {
+    width: 188px
 }

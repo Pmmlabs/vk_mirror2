@@ -29,21 +29,23 @@ var ProfileEditorEdu = {
         }
         return !1
     },
-    initUniRow: function(i, t) {
-        var e = t ? function(i) {
+    initUniRow: function(i, t, e) {
+        var o = t ? function(i) {
             return ProfileEditorEdu.get_by_id(t, i)
         } : ge;
-        return i.uiEducationForm = new EducationFormSelect(e("u_edu_form" + i.id), e("row_u_edu_form" + i.id), {
+        return i.uiEducationForm = new EducationFormSelect(o("u_edu_form" + i.id), o("row_u_edu_form" + i.id), {
             country: i.country,
             university: i.university,
             edu_form: i.edu_form,
-            dark: 1
-        }), i.uiEducationStatus = new EducationStatusSelect(e("u_edu_status" + i.id), e("row_u_edu_status" + i.id), {
+            dark: 1,
+            width: i.width
+        }), i.uiEducationStatus = new EducationStatusSelect(o("u_edu_status" + i.id), o("row_u_edu_status" + i.id), {
             country: i.country,
             university: i.university,
             edu_status: i.edu_status,
-            dark: 1
-        }), i.uiGraduation = new Dropdown(e("u_graduation" + i.id), cur.selData.graduations, {
+            dark: 1,
+            width: i.width
+        }), i.uiGraduation = new Dropdown(o("u_graduation" + i.id), cur.selData.graduations, {
             autocomplete: !0,
             placeholder: getLang("select_year_not_selected"),
             noResult: getLang("select_year_not_found"),
@@ -51,8 +53,9 @@ var ProfileEditorEdu = {
             onChange: function(t) {
                 intval(t) || i.uiGraduation.clear()
             },
-            dark: 1
-        }), i.uiChair = new ChairSelect(e("u_chair" + i.id), e("row_u_chair" + i.id), {
+            dark: 1,
+            width: i.width
+        }), i.uiChair = new ChairSelect(o("u_chair" + i.id), o("row_u_chair" + i.id), {
             progressBar: "u_progress" + i.id,
             faculty: i.faculty,
             chair: i.chair,
@@ -65,8 +68,9 @@ var ProfileEditorEdu = {
             onChange: function(t) {
                 intval(t) ? hide("u_add_chair_to_db" + i.id) : i.showAddChair && show("u_add_chair_to_db" + i.id)
             },
-            dark: 1
-        }), i.uiFaculty = new FacultySelect(e("u_faculty" + i.id), e("row_u_faculty" + i.id), {
+            dark: 1,
+            width: i.width
+        }), i.uiFaculty = new FacultySelect(o("u_faculty" + i.id), o("row_u_faculty" + i.id), {
             progressBar: "u_progress" + i.id,
             university: i.university,
             faculty: i.faculty,
@@ -80,8 +84,9 @@ var ProfileEditorEdu = {
             onChange: function(t) {
                 intval(t) ? hide("u_add_fac_to_db" + i.id) : i.showAddFaculty && show("u_add_fac_to_db" + i.id)
             },
-            dark: 1
-        }), i.uiUniversity = new UniversitySelect(e("u_university" + i.id), e("row_u_university" + i.id), {
+            dark: 1,
+            width: i.width
+        }), i.uiUniversity = new UniversitySelect(o("u_university" + i.id), o("row_u_university" + i.id), {
             progressBar: "u_progress" + i.id,
             city: i.city,
             university: i.university,
@@ -95,10 +100,11 @@ var ProfileEditorEdu = {
                 (i.showAddUni = !t && ProfileEditorEdu.isCountryOpenForNewObjects(e)) && !intval(o) ? show("u_add_uni_to_db" + i.id) : hide("u_add_uni_to_db" + i.id)
             },
             onChange: function(t) {
-                intval(t) ? (show("u_details" + i.id), hide("u_add_uni_to_db" + i.id)) : (hide("u_details" + i.id), i.showAddUni && show("u_add_uni_to_db" + i.id)), i.uiEducationForm.clear(), i.uiEducationStatus.clear(), i.uiGraduation.clear()
+                intval(t) ? (show("u_details" + i.id), hide("u_add_uni_to_db" + i.id)) : (hide("u_details" + i.id), i.showAddUni && show("u_add_uni_to_db" + i.id)), i.uiEducationForm.clear(), i.uiEducationStatus.clear(), i.uiGraduation.clear(), e && e(t)
             },
-            dark: 1
-        }), i.uiCity = new CitySelect(e("u_city" + i.id), e("row_u_city" + i.id), {
+            dark: 1,
+            width: i.width
+        }), i.uiCity = new CitySelect(o("u_city" + i.id), o("row_u_city" + i.id), {
             progressBar: "u_progress" + i.id,
             country: i.country,
             city: i.city_val,
@@ -106,16 +112,18 @@ var ProfileEditorEdu = {
             maxItemsShown: function(i) {
                 return i > 6 ? 500 : 350
             },
-            dark: 1
-        }), i.uiCountry = new CountrySelect(e("u_country" + i.id), e("row_u_country" + i.id), {
+            dark: 1,
+            width: i.width
+        }), i.uiCountry = new CountrySelect(o("u_country" + i.id), o("row_u_country" + i.id), {
             progressBar: "u_progress" + i.id,
             country: i.country_val,
             eduFormSelect: i.uiEducationForm,
             eduStatusSelect: i.uiEducationStatus,
             citySelect: i.uiCity,
             onChange: function(i) {},
-            dark: 1
-        }), e("uni" + i.id).style.display = "block", i.university && (e("u_details" + i.id).style.display = "block"), i
+            dark: 1,
+            width: i.width
+        }), o("uni" + i.id).style.display = "block", i.university && (o("u_details" + i.id).style.display = "block"), i
     },
     genOneSchoolRow: function(i) {
         var t = "s_school" + i;
@@ -130,30 +138,32 @@ var ProfileEditorEdu = {
             display: "none"
         })
     },
-    initSchoolRow: function(i, t) {
-        var e = t ? function(i) {
+    initSchoolRow: function(i, t, e) {
+        var o = t ? function(i) {
             return ProfileEditorEdu.get_by_id(t, i)
         } : ge;
-        i.uiClass = new ClassSelect(e("s_class" + i.id), e("row_s_class" + i.id), {
+        i.uiClass = new ClassSelect(o("s_class" + i.id), o("row_s_class" + i.id), {
             country: i.country,
             school: i.school,
             school_class: i.school_class,
-            dark: 1
+            dark: 1,
+            width: i.width
         });
-        var o = function(i, t, o) {
-            var n = new Dropdown(e(i), t, {
+        var n = function(t, e, n) {
+            var u = new Dropdown(o(t), e, {
                 autocomplete: !0,
                 placeholder: getLang("select_graduation_not_selected"),
                 noResult: getLang("select_year_not_found"),
-                selectedItems: o,
+                selectedItems: n,
                 onChange: function(i) {
-                    intval(i) || n.clear()
+                    intval(i) || u.clear()
                 },
-                dark: 1
+                dark: 1,
+                width: i.width
             });
-            return n
+            return u
         };
-        return i.uiStart = o("s_start" + i.id, cur.selData.start_years, i.start), i.uiFinish = o("s_finish" + i.id, cur.selData.finish_years, i.finish), i.uiGraduation = o("s_graduation" + i.id, cur.selData.finish_years, i.graduation), i.spec || (i.spec = ""), e("s_spec" + i.id + "_custom").value = i.spec, i.uiSchool = new SchoolHintSelect(e("s_school" + i.id), e("row_s_school" + i.id), {
+        return i.uiStart = n("s_start" + i.id, cur.selData.start_years, i.start), i.uiFinish = n("s_finish" + i.id, cur.selData.finish_years, i.finish), i.uiGraduation = n("s_graduation" + i.id, cur.selData.finish_years, i.graduation), i.spec || (i.spec = ""), o("s_spec" + i.id + "_custom").value = i.spec, i.uiSchool = new SchoolHintSelect(o("s_school" + i.id), o("row_s_school" + i.id), {
             progressBar: "s_progress" + i.id,
             city: i.city,
             school: i.school,
@@ -165,10 +175,11 @@ var ProfileEditorEdu = {
                 (i.showAddSchool = !t && ProfileEditorEdu.isCountryOpenForNewObjects(e)) && !intval(o) ? show("s_add_school_to_db" + i.id) : hide("s_add_school_to_db" + i.id)
             },
             onChange: function(t) {
-                intval(t) ? (show("s_details" + i.id), hide("s_add_school_to_db" + i.id)) : (hide("s_details" + i.id), i.showAddSchool && show("s_add_school_to_db" + i.id)), i.uiClass.clear(), i.uiStart.clear(), i.uiFinish.clear(), i.uiGraduation.clear(), ge("s_spec" + i.id + "_custom").value = ""
+                intval(t) ? (show("s_details" + i.id), hide("s_add_school_to_db" + i.id)) : (hide("s_details" + i.id), i.showAddSchool && show("s_add_school_to_db" + i.id)), i.uiClass.clear(), i.uiStart.clear(), i.uiFinish.clear(), i.uiGraduation.clear(), ge("s_spec" + i.id + "_custom").value = "", e && e(t)
             },
-            dark: 1
-        }), i.uiCity = new CitySelect(e("s_city" + i.id), e("row_s_city" + i.id), {
+            dark: 1,
+            width: i.width
+        }), i.uiCity = new CitySelect(o("s_city" + i.id), o("row_s_city" + i.id), {
             progressBar: "s_progress" + i.id,
             country: i.country,
             city: i.city_val,
@@ -176,15 +187,17 @@ var ProfileEditorEdu = {
             maxItemsShown: function(i) {
                 return i > 6 ? 500 : 350
             },
-            dark: 1
-        }), i.uiCountry = new CountrySelect(e("s_country" + i.id), e("row_s_country" + i.id), {
+            dark: 1,
+            width: i.width
+        }), i.uiCountry = new CountrySelect(o("s_country" + i.id), o("row_s_country" + i.id), {
             progressBar: "s_progress" + i.id,
             country: i.country_val,
             classSelect: i.uiClass,
             citySelect: i.uiCity,
             onChange: function(i) {},
-            dark: 1
-        }), e("school" + i.id).style.display = "block", i.school && (e("s_details" + i.id).style.display = "block"), i
+            dark: 1,
+            width: i.width
+        }), o("school" + i.id).style.display = "block", i.school && (o("s_details" + i.id).style.display = "block"), i
     },
     genAddRow: function(i, t, e) {
         return e || (e = ""), '<div class="pedit_edu_row" id="row_' + i + '"><div class="label fl_l ta_r">' + t + '</div><div class="labeled fl_l"><input id="' + i + '" name="' + i + '" /></div>' + e + "</div>"

@@ -169,6 +169,14 @@ var AppsEdit = {
             shift: [1.5 * -s[1], .45 * -s[1]]
         })
     },
+    showMobileFrameTooltip: function(e) {
+        return AppsEdit.urlFocus(e, null, {
+            noSetUrl: !0,
+            noForceDown: !0,
+            cls: "apps_mobile_iframe_secure_tt",
+            slideX: 0
+        }), !1
+    },
     saveOptions: function(e, t) {
         var a = this.getParams("app_edit_cont");
         if (a.act = e || "save_options", a.help = Privacy.getValue("help"), "save_info" != e) {
@@ -188,7 +196,7 @@ var AppsEdit = {
         };
         ajax.post("editapp", a, {
             onDone: function(t, a, s) {
-                if (r(), hide("apps_options_saved"), ge("apps_edit_error_text") && hide("apps_edit_error_text"), "confirm" == t) showFastBox(a, s, getLang("global_continue"), function() {
+                if (r(), hide("apps_options_saved"), ge("apps_edit_error_text") && hide("apps_edit_error_text"), AppsEdit.hideError(), "confirm" == t) showFastBox(a, s, getLang("global_continue"), function() {
                     curBox().hide(), AppsEdit.saveOptions(e, !0)
                 }, getLang("global_cancel"));
                 else if ("error" == t)
@@ -704,16 +712,21 @@ var AppsEdit = {
             }
         })
     },
-    urlFocus: function(e, t) {
-        val(e) || val(e, "http://"), t && showTooltip(e, {
-            text: '<div class="apps_edit_side_tt_pointer"></div>' + cur[t],
-            className: "apps_edit_tt",
-            slideX: 15,
-            forcetodown: 1,
-            shift: [-291, 0, -60],
+    urlFocus: function(e, t, a) {
+        a = a || {}, t = t ? cur[t] : domData(e, "hint");
+        var s = !a.noforceDown,
+            i = void 0 !== a.slideX ? a.slideX : 15,
+            n = a.shift || [-291, 0, -60],
+            r = a.cls || "apps_edit_tt";
+        val(e) || a.noSetUrl || val(e, "http://"), t && showTooltip(e, {
+            text: '<div class="apps_edit_side_tt_pointer"></div>' + t,
+            className: r,
+            slideX: i,
+            forcetodown: s,
+            shift: n,
             hasover: 1,
             onCreate: function() {
-                removeEvent(e, "mouseout")
+                removeEvent(e, "mouseout"), addEvent(e, "blur", AppsEdit.urlBlur.pbind(e))
             }
         })
     },

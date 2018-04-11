@@ -266,7 +266,7 @@ extend(UiControl.prototype, {
         }, !isArray(this.options.selectedItems) && isEmpty(this.options.selectedItems) && (this.options.selectedItems = []), t.value && !this.options.selectedItems.length && (this.options.selectedItems = t.value), this.options.width = parseInt(this.options.width) > 0 ? parseInt(this.options.width) : this.defaultOptions.width, this.options.height = parseInt(this.options.height) > 0 ? parseInt(this.options.height) : this.defaultOptions.height, this.options.resultListWidth = parseInt(this.options.resultListWidth) > 0 ? parseInt(this.options.resultListWidth) : this.options.width, this.options.imageId && (this.options.imageId = ge(this.options.imageId))
     },
     init: function(t, e) {
-        this.disableSomeFeatures = 0 === location.pathname.indexOf("/join"), this.dataURL = "string" == typeof e ? e : null, this.dataItems = isArray(e) ? e : [], this.currentList = this.dataItems, this.dataURL ? this.cache = new Cache(this.options) : this.indexer = new Indexer(this.dataItems, {
+        this.dataURL = "string" == typeof e ? e : null, this.dataItems = isArray(e) ? e : [], this.currentList = this.dataItems, this.dataURL ? this.cache = new Cache(this.options) : this.indexer = new Indexer(this.dataItems, {
             indexkeys: this.options.indexkeys,
             includeLabelsOnMatch: this.options.includeLabelsOnMatch,
             preventDuplicates: this.options.preventDuplicates
@@ -351,7 +351,7 @@ extend(UiControl.prototype, {
                 e && (i.select.hide(), i.deselectTokens())
             }
             t.type == s && i.handleKeyboardEventOutside(t), t.type == o && i.select.handleKeyEvent(t), "keypress" == t.type && i.select._doQuickSearch(t)
-        }, this.disableSomeFeatures ? addEvent(this.input, "paste keypress keydown focus blur", this.handleKeyboardEvent, !1, {
+        }, this.options.liteEventsBind ? addEvent(this.input, "paste keypress keydown focus blur", this.handleKeyboardEvent, !1, {
             self: this
         }) : addEvent(this.input, "keydown keypress change paste cut drop input focus blur", this.handleKeyboardEvent, !1, {
             self: this
@@ -477,7 +477,7 @@ extend(UiControl.prototype, {
         this.updatePlaceholder()
     },
     updatePlaceholder: function() {
-        if (!this.disableSomeFeatures) {
+        if (!this.options.disablePlaceholder) {
             var t = "0" == this.resultField.value && this.options.zeroPlaceholder,
                 e = this.disabled && this.options.disabledText ? this.options.disabledText : this.options.placeholder,
                 i = this.hasFocus ? this.options.placeholderColorBack : this.options.placeholderColor,
@@ -741,7 +741,7 @@ extend(UiControl.prototype, {
         this.curTerm = t;
         var e, i = isFunction(this.options.customSearch) && this.options.customSearch(t);
         return i ? void this.receiveData(t, i) : void(this.dataURL ? (e = this.cache.getData(t), null === e ? this.requestTimeout = setTimeout(function() {
-            this.request(this.receiveData.bind(this), this.showNoDataList.bind(this))
+            this.request(this.receiveData.bind(this), this.showNoDataList.bind(this));
         }.bind(this), 300) : e && e.length ? this.receiveData(t, e) : this.showNoDataList()) : (e = this.indexer.search(t), e && e.length ? this.receiveData(t, e) : this.showNoDataList()))
     },
     showNoDataList: function() {
@@ -1541,21 +1541,20 @@ extend(UiControl.prototype, {
         }), t.h && (e.href = t.h);
         var s = this;
         addEvent(e, "click", function(e) {
-                s.value = e.data.item.i;
-                var i = !0;
-                if (isFunction(t.onClick) && t.onClick(e) === !1 && (i = !1), s.options.onSelect(e) === !1 && (i = !1), t.h) return !0;
-                if (i ? s.hide() : cancelEvent(e), s.options.updateTarget && i) {
-                    var o = s.options.updateHeader(e.target.index, e.target.innerHTML);
-                    s.header.innerHTML = "<div>" + o + "</div>", s.options.target && (s.options.target.innerHTML = o.replace(/\s+/g, "&nbsp;"))
-                }
-            }, !1, {
-                item: t
-            }), isFunction(t.onMouseOver) && addEvent(e, "mouseover", t.onMouseOver), isFunction(t.onMouseOut) && addEvent(e, "mouseout", t.onMouseOut), browser.msie && (e.onmouseover = function() {
-                addClass(e, "dd_a_hover")
-            }, e.onmouseout = function() {
-                removeClass(e, "dd_a_hover")
-            }), this.items[t.i] = e,
-            this.rows.appendChild(e), "left" == this.options.align && this.alignBody()
+            s.value = e.data.item.i;
+            var i = !0;
+            if (isFunction(t.onClick) && t.onClick(e) === !1 && (i = !1), s.options.onSelect(e) === !1 && (i = !1), t.h) return !0;
+            if (i ? s.hide() : cancelEvent(e), s.options.updateTarget && i) {
+                var o = s.options.updateHeader(e.target.index, e.target.innerHTML);
+                s.header.innerHTML = "<div>" + o + "</div>", s.options.target && (s.options.target.innerHTML = o.replace(/\s+/g, "&nbsp;"))
+            }
+        }, !1, {
+            item: t
+        }), isFunction(t.onMouseOver) && addEvent(e, "mouseover", t.onMouseOver), isFunction(t.onMouseOut) && addEvent(e, "mouseout", t.onMouseOut), browser.msie && (e.onmouseover = function() {
+            addClass(e, "dd_a_hover")
+        }, e.onmouseout = function() {
+            removeClass(e, "dd_a_hover")
+        }), this.items[t.i] = e, this.rows.appendChild(e), "left" == this.options.align && this.alignBody();
     },
     getRows: function() {
         return this.rows

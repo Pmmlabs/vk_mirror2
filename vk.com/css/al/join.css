@@ -595,3 +595,76 @@ body.mac .join_next.fixed {
     -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
+
+.join_done_icon {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2272%22%20height%3D%2272%22%20viewBox%3D%220%200%2072%2072%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ctitle%3Eicon_done%3C%2Ftitle%3E%3Cpath%20d%3D%22M36%2072C16.118%2072%200%2055.882%200%2036S16.118%200%2036%200s36%2016.118%2036%2036-16.118%2036-36%2036zm14.586-46.414L32%2044.172l-8.086-8.086a2%202%200%200%200-2.828%202.828l9.5%209.5a2%202%200%200%200%202.828%200l20-20a2%202%200%200%200-2.828-2.828z%22%20fill%3D%22%234BB34B%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E") no-repeat 50%;
+    height: 72px;
+    margin: 7px 0 24px
+}
+
+.join_control_wrap,
+.join_fields .pedit_row {
+    position: relative;
+    width: 280px;
+    margin: 15px auto 0
+}
+
+.join_control_wrap {
+    text-align: center
+}
+
+.join_control_wrap .flat_button {
+    border-radius: 4px
+}
+
+.join_continue_button {
+    text-decoration: none!important
+}
+
+.join_skip_link {
+    display: inline-block;
+    margin: 5px 0 17px
+}
+
+.join_done_info {
+    padding: 7px 0 12px
+}
+
+.join_done_continue {
+    margin-top: 17px
+}
+
+.join_done_skip {
+    margin-top: 13px
+}
+
+.join_fields .pedit_progress {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: -40px
+}
+
+.join_fields .pedit_label {
+    color: #222;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 18px 0 12px;
+    padding: 0
+}
+
+.join_fields .pedit_labeled .selector {
+    padding: 6px 0 2px 3px!important
+}
+
+.join_fields .add_item_link,
+.join_fields .deleted {
+    display: none!important
+}
+
+.join_fields .dark {
+    width: 280px;
+    height: 35px;
+    padding: 7px 10px 8px
+}
