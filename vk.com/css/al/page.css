@@ -9633,3 +9633,51 @@ button.wall_block_app_btn {
 .wrap_like_stickers .sticker_hints_left_pad .like_stickers_title {
     margin-left: 30px
 }
+
+.td_typo {
+    background: #ffd9d6;
+    border-bottom: 1px dotted #d81f26;
+    position: relative
+}
+
+.mem_link .td_typo {
+    background: none;
+    border-bottom: none
+}
+
+.td_typo_tt {
+    padding: 13px 15px;
+    width: 296px;
+    box-sizing: border-box;
+    z-index: 2000!important
+}
+
+.td_typo_tt_correct {
+    background: #f0f2f5;
+    font-size: 15px;
+    line-height: 18px;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center
+}
+
+.td_typo_tt_caption {
+    margin-top: 15px;
+    line-height: 17px
+}
+
+.td_typo_tt_caption>b,
+.td_typo_tt_caption>span {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.td_typo_tt_caption>span>b {
+    color: #d0021b
+}
+
+.td_typo_tt_more {
+    margin-top: 7px;
+    display: inline-block
+}

@@ -4648,6 +4648,15 @@ var Wall = {
             });
         }
     },
+    getReplyFromId: function(post) {
+        var fromGroupEl = ge('reply_as_group' + post);
+
+        if (fromGroupEl && isVisible(fromGroupEl.parentNode)) {
+            return domData(domClosest('_submit_post_box', fromGroupEl), 'from-oid');
+        }
+
+        return false;
+    },
     sendReply: function(post, ev, options) {
         options = extend({}, options);
 
@@ -4709,7 +4718,6 @@ var Wall = {
         cur.wallMyReplied[post] = 1;
         cur.wallMyOpened[post] = 1;
         var post_hash = ge('post_hash' + post) ? ge('post_hash' + post).value : cur.options.post_hash,
-            fromGroupEl = ge('reply_as_group' + post),
             newEl = null;
 
         extend(params, {
@@ -4725,8 +4733,10 @@ var Wall = {
         if (cur.reverse) {
             params.rev = 1;
         }
-        if (fromGroupEl && isVisible(fromGroupEl.parentNode)) {
-            params.from_oid = domData(domClosest('_submit_post_box', fromGroupEl), 'from-oid');
+
+        var fromOid = wall.getReplyFromId(post);
+        if (fromOid) {
+            params.from_oid = fromOid;
         }
 
         if (cur.wallType) {
@@ -6242,10 +6252,6 @@ var Wall = {
             online_class: (oid > 0) ? ' online' : ''
         };
 
-        if (window.ny2018ReplaceText) {
-            repls.text = ny2018ReplaceText(repls.text);
-        }
-
         extendCb && extend(repls, extendCb(repls, ev));
 
         if (isEditor && cur.wallTpl.author_data) {
@@ -6253,6 +6259,10 @@ var Wall = {
                 date: repls.date,
                 post_id: post_id
             });
+        }
+
+        if (window.replaceTDTypos && intval(ev[9]) > 0) {
+            repls.text = replaceTDTypos(repls.text);
         }
 
         return rs(rs(cur.wallTpl.post, repls), repls);
@@ -6325,11 +6335,12 @@ var Wall = {
             reply_uid: ev[4] || 'false'
         };
 
-        if (window.ny2018ReplaceText) {
-            repls.text = ny2018ReplaceText(repls.text);
+        extendCb && extend(repls, extendCb(repls));
+
+        if (window.replaceTDTypos && intval(ev[4]) > 0) {
+            repls.text = replaceTDTypos(repls.text);
         }
 
-        extendCb && extend(repls, extendCb(repls));
         return rs(cur.wallTpl.reply, repls);
     },
     updatePostImages: function(html) {
@@ -6647,13 +6658,14 @@ var Wall = {
                         var text = psr(rs(ev[3], {
                             poll_hash: cur.wallTpl.poll_hash
                         }));
-                        if (window.ny2018ReplaceText) {
-                            text = ny2018ReplaceText(text);
-                        }
 
                         // only for VK videos
                         var isPlayerLoaded = (cur.videoInlinePlayer && isAncestor(window._videoLastInlined[0], editEl));
                         var isVideoPlaying = isPlayerLoaded && cur.videoInlinePlayer.getState() == 'playing';
+
+                        if (window.replaceTDTypos && intval(ev[5]) > 0) {
+                            text = replaceTDTypos(text);
+                        }
 
                         val(editEl, text);
 
@@ -6692,11 +6704,14 @@ var Wall = {
                         var wasExpanded = geByClass1('wall_reply_more', editEl);
                         if (wasExpanded) wasExpanded = isVisible(domNS(wasExpanded));
 
+                        var text = psr(ev[4]);
+                        if (window.replaceTDTypos) {
+                            text = replaceTDTypos(text);
+                        }
+                        val(editEl, text);
+
                         updH = -editEl.offsetHeight;
                         updY = getXY(editEl, fixed)[1];
-                        if (window.ny2018ReplaceText) {
-                            val(editEl, ny2018ReplaceText(psr(ev[4])));
-                        }
                         if (wasExpanded) {
                             wasExpanded = geByClass1('wall_reply_more', editEl);
                             if (wasExpanded) wasExpanded.onclick();
@@ -7315,6 +7330,8 @@ var Wall = {
         if (el.id == 'official') {
             Wall.postChanged(true);
         }
+
+        triggerEvent(geByClass1('submit_post_field', wrap), 'td_update');
 
         return false;
     },
@@ -8243,6 +8260,32 @@ Composer = {
             if (prevOnMediaChanged) {
                 prevOnMediaChanged()
             }
+        }
+
+        if (window.resetInputTDTypos && composer.input.id.match(/^(post_field|reply_field)/) && (gpeByClass('wide_column', composer.input) || gpeByClass('post', composer.input))) {
+            var fieldId = 'post';
+            if (composer.input.id !== 'post_field') {
+                fieldId = 'reply' + composer.input.id.substr(11);
+            }
+            addEvent(composer.input, 'keypress mouseup focus', function(event) {
+                resetInputTDTypos(fieldId, composer.input);
+            });
+            addEvent(composer.input, 'blur td_update', function() {
+                if (fieldId === 'post') {
+                    if (cur.group_id && (domData(domClosest('_submit_post_box', ge('official')), 'from-oid') == cur.postTo)) {
+                        return resetInputTDTypos(fieldId, composer.input);
+                    }
+                    markTDTypos(fieldId, composer.input)
+                } else {
+                    var post = composer.input.id.substr(11);
+                    var fromId = wall.getReplyFromId(post);
+                    if (!fromId || intval(fromId) > 0) {
+                        markTDTypos(fieldId, composer.input)
+                    } else {
+                        resetInputTDTypos(fieldId, composer.input);
+                    }
+                }
+            });
         }
 
         return composer;
