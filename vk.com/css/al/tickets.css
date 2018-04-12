@@ -2190,12 +2190,6 @@ a.tickets_question_row_tt_unread {
     opacity: 1
 }
 
-.tickets_vader {
-    background: url("/images/lord_vader.png") no-repeat 3px 50%;
-    width: 60px;
-    height: 51px
-}
-
 #privacy_dropdown.privacy_dropdown_tickets_actions .header div {
     padding: 3px 21px 5px 4px
 }
@@ -2477,10 +2471,6 @@ a.tickets_question_row_tt_unread {
 .tickets_dmca_log_in_btn {
     padding-bottom: 25px;
     text-align: center
-}
-
-.tickets_late_info {
-    width: 500px
 }
 
 .tickets_box_title_wrap {

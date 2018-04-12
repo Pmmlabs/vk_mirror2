@@ -542,6 +542,16 @@ body.body_helpdesk_small_sb .left_menu_nav {
     width: 130px
 }
 
+.helpdesk_vader {
+    height: 51px;
+    width: 60px;
+    background: url("/images/lord_vader.png") no-repeat 3px 50%
+}
+
+.helpdesk_late_info {
+    width: 500px
+}
+
 .helpdesk_ui_tabs {
     background: #f7f7f7
 }

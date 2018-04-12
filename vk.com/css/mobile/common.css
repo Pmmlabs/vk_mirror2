@@ -5122,7 +5122,7 @@ input.wide_button {
 }
 
 .audio_item .i_play {
-    background: url(/images/mobile/audio_icons.png?7) no-repeat 0 0;
+    background: url(/images/mobile/audio_icons.png?8) no-repeat 0 0;
     float: left;
     width: 24px;
     height: 24px
@@ -11319,7 +11319,7 @@ img[src^="/images/mobile/places/"] {
     width: 24px;
     height: 24px;
     float: left;
-    background: url(/images/mobile/audio_icons.png?7) no-repeat 0 0
+    background: url(/images/mobile/audio_icons.png?8) no-repeat 0 0
 }
 
 .audio-msg-track.audio-msg-track_playing .audio-msg-track--btn {
@@ -23029,7 +23029,7 @@ a.feedBlocks__article:hover {
 .audioPlaylistSnippet__play:before,
 .r .ai_menu_toggle_button,
 .r .audioPlaylist .wi_actions_btn .i_icon {
-    background-image: url('/images/mobile/icons/audio_icons.png?1');
+    background-image: url('/images/mobile/icons/audio_icons.png?8');
     background-repeat: no-repeat;
     background-size: 100%
 }
@@ -23044,7 +23044,7 @@ a.feedBlocks__article:hover {
 .vk_2x .audioPlaylistSnippet__link:before,
 .vk_2x .audioPlaylistSnippet__play:before,
 .vk_2x.r .ai_menu_toggle_button {
-    background-image: url('/images/mobile/icons/audio_icons_2x.png?1')
+    background-image: url('/images/mobile/icons/audio_icons_2x.png?8')
 }
 
 .Audio__menuContainer,
@@ -25151,6 +25151,39 @@ a.feedBlocks__article:hover {
 
 .vk_2x .Icon_infinity:before {
     background-image: url('/images/mobile/skins/icon/infinity_56_2x.png')
+}
+
+.Icon_audio_pauseWhite,
+.Icon_audio_playWhite,
+.Icon_audio_search {
+    width: 24px;
+    height: 24px
+}
+
+.Icon_audio_pauseWhite:before,
+.Icon_audio_playWhite:before,
+.Icon_audio_search:before {
+    width: 24px;
+    height: 24px;
+    background-image: url('/images/mobile/icons/audio_icons.png?8')
+}
+
+.vk_2x .Icon_audio_pauseWhite:before,
+.vk_2x .Icon_audio_playWhite:before,
+.vk_2x .Icon_audio_search:before {
+    background-image: url('/images/mobile/icons/audio_icons_2x.png?8')
+}
+
+.Icon_audio_playWhite:before {
+    background-position: 0 0
+}
+
+.Icon_audio_pauseWhite:before {
+    background-position: 0 -216px
+}
+
+.Icon_audio_search:before {
+    background-position: 0 -264px
 }
 
 .Spinner {

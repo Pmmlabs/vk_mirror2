@@ -427,6 +427,8 @@ var Join = {
             });
         }
         onLoginFailed = function(code, opts) {
+            statlogsValueEvent('join_progress', 'finish', 'error', 'password error');
+
             if (code === -1) {
                 location.href = location.href.replace(/^http:/, 'https:');
             } else if (code === 4) {

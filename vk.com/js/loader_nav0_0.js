@@ -215,7 +215,7 @@ var stVersions = {
     'index.css': 19303733413,
     'index.js': 356147149,
     'join.css': 20839497213,
-    'join.js': 1614302636,
+    'join.js': 886358184,
     'intro.css': 22003727683,
     'post.css': 24302193535,
     'module.css': 22439453039,
@@ -337,9 +337,9 @@ var stVersions = {
     'internal/tasks.js': 3155934960,
     'internal/tasks.css': 19152469520,
     'helpdesk.js': 1831879312,
-    'helpdesk.css': 26126760924,
+    'helpdesk.css': 24158813131,
     'tickets.js': 1561089313,
-    'tickets.css': 24179293583,
+    'tickets.css': 26538658221,
     'internal/faq.js': 3267523673,
     'faq.css': 25655831470,
     'talmud.js': 1641838680,
@@ -536,7 +536,7 @@ var stVersions = {
     'voice_message_player.js': 18549969583,
     'cmodules/web/speech_worker_mp3.js': 4084020816,
     'cmodules/web/speech_worker_opus.js': 2818771805,
-    'stories.js': 60072812431,
+    'stories.js': 62331971113,
     'stories.css': 24995865758,
     'internal/nospam.css': 23538920759,
     'internal/away_linksban.css': 18839499200,
@@ -647,4 +647,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 2948;
+var _rnd = 8058;
