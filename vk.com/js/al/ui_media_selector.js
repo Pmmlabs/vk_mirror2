@@ -986,6 +986,7 @@ function MediaSelector(e, a, t, i) {
             },
             shareImgUrl: function(e) {
                 var a = s.shareData;
+                if (isArray(a.preview_images) && a.preview_images[e]) return a.preview_images[e];
                 if (a.images_proxy && a.images_proxy[e]) return a.images_proxy_url + a.images_proxy[e];
                 if (a.images) {
                     var t = a.images[e];

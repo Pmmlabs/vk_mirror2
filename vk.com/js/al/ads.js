@@ -5240,6 +5240,8 @@ Ads.showNewFeatureTooltip = function(ttp, el, opts) {
     };
 }
 
+var AdsSupportChat;
+
 try {
     stManager.done('ads.js');
 } catch (e) {}

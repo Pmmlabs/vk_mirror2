@@ -310,3 +310,7 @@ html {
     -webkit-filter: none;
     filter: none
 }
+
+.share_form_preview.hidden {
+    display: none
+}
