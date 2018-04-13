@@ -4838,8 +4838,12 @@ input.wide_button {
     word-wrap: break-word
 }
 
-.mi_service_a {
-    font-weight: 700;
+.mi_service_a,
+.mi_service a,
+.msg_service a {
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
     color: gray
 }
 
@@ -12268,6 +12272,7 @@ a.Pad__corner {
 
 .vk_flex_no .ColumnSlider__column {
     display: table-cell;
+    vertical-align: top;
     max-width: 234px
 }
 
@@ -12612,13 +12617,29 @@ a.Pad__corner {
     background: #001433
 }
 
-.ArtistCover__image {
+.ArtistCover__container {
     display: table;
+    width: 100%;
+    height: 180px;
+    position: relative
+}
+
+.ArtistCover__image {
     height: 180px;
     width: 100%;
     background-position: 50%;
     background-repeat: no-repeat;
-    background-size: cover
+    background-size: cover;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0
+}
+
+.ArtistCover_blur .ArtistCover__image {
+    -webkit-filter: blur(50px);
+    filter: blur(50px)
 }
 
 .ArtistCover__content {
@@ -12629,7 +12650,8 @@ a.Pad__corner {
     color: #fff;
     height: 180px;
     padding: 24px 0 0;
-    box-sizing: border-box
+    box-sizing: border-box;
+    position: relative
 }
 
 @media (min-width: 882px) {
@@ -12662,14 +12684,22 @@ a.Pad__corner {
     background-color: #fff;
     display: inline-block;
     vertical-align: top;
-    line-height: 36px;
-    height: 36px;
+    margin: 16px 0;
+    position: relative;
+    height: 34px;
     color: #000;
     cursor: pointer;
     text-transform: uppercase;
-    padding: 0 12px 0 40px;
-    margin: 16px 0;
-    position: relative
+    padding: 2px 12px 0px 40px;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column
 }
 
 .ArtistCover__playAll:after {
@@ -12683,6 +12713,18 @@ a.Pad__corner {
     top: 0;
     bottom: 0;
     background-position: 0 -168px
+}
+
+.ArtistCover__playAllText {
+    line-height: 35px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.ArtistCover__playAll.playing:after {
+    background-position: 0 -240px
 }
 
 .ArtistCover__dimmer,
@@ -12701,6 +12743,10 @@ a.Pad__corner {
 
 .ArtistBlock_playlists {
     padding: 4px 0 9px
+}
+
+.ArtistBlock_single_playlist {
+    overflow: hidden
 }
 
 .ArtistBlock_owner_pages {
@@ -13690,7 +13736,7 @@ a.Pad__corner {
     height: 24px;
     vertical-align: top;
     background-position: 0 0px;
-    margin: -2px 2px -4px -10px
+    margin: -3px 3px -3px -10px
 }
 
 @media (min-width: 375px) {
@@ -13698,6 +13744,10 @@ a.Pad__corner {
         content: "";
         display: inline-block
     }
+}
+
+.audioPlaylist__play.playing:before {
+    background-position: 0 -216px
 }
 
 ._hover .audioPlaylist__play:hover,
@@ -15059,6 +15109,16 @@ a.Pad__corner {
     padding: 0
 }
 
+.AudioSinglePlaylistSlider {
+    position: relative;
+    z-index: 1;
+    margin: -4px -27px -5px 0
+}
+
+.AudioSinglePlaylistSlider .audioPlaylistsPage__item_removed .audioPlaylistsPage__itemLink {
+    opacity: 1
+}
+
 .articleSnippet__block {
     padding-bottom: 56%;
     position: relative;
@@ -15627,6 +15687,9 @@ input:checked+.adultConfirm__checkboxIcon:after {
     .groupCover-vk_animationYes.groupCover-vk_animationStep .mhead {
         background: transparent!important
     }
+    .groupCover-vk_animationYes.groupCover-vk_animationStep .header__back {
+        background-color: transparent!important
+    }
     .groupCover-vk_animationYes.groupCover-vk_animationStep .head_search {
         background: #5d80a6
     }
@@ -15634,8 +15697,11 @@ input:checked+.adultConfirm__checkboxIcon:after {
         background: #5181b8!important
     }
     .groupCover-vk_animationYes.groupCover-vk_animationStep ._hover a.hb_wrap:hover,
+    .groupCover-vk_animationYes.groupCover-vk_animationStep ._hover a.header__back:hover,
     .groupCover-vk_animationYes.groupCover-vk_animationStep ._touch a.hb_wrap.active,
-    .groupCover-vk_animationYes.groupCover-vk_animationStep ._touch a.hb_wrap.hover {
+    .groupCover-vk_animationYes.groupCover-vk_animationStep ._touch a.hb_wrap.hover,
+    .groupCover-vk_animationYes.groupCover-vk_animationStep ._touch a.header__back.active,
+    .groupCover-vk_animationYes.groupCover-vk_animationStep ._touch a.header__back.hover {
         background-color: transparent!important
     }
     .groupCover-vk_animationYes .basis__header .mh_header {
@@ -23558,6 +23624,7 @@ a.feedBlocks__article:hover {
     right: 0
 }
 
+.ArtistPage .audio_item_disabled,
 .Audio_hidden,
 .r #au_search_items .audio_item_disabled {
     padding: 0;
@@ -28310,6 +28377,15 @@ a.feedBlocks__article:hover {
     padding: 0
 }
 
+.selected_all .filter_peer_wrap {
+    display: block
+}
+
+.selected_all .inline_item:not(.inline_item_selected) {
+    pointer-events: none
+}
+
+.selected_all .inline_item:not(.inline_item_selected) .ii_body:before,
 .load_before_closed {
     display: none
 }

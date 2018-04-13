@@ -4835,8 +4835,12 @@ input.wide_button {
     word-wrap: break-word
 }
 
-.mi_service_a {
-    font-weight: 700;
+.mi_service_a,
+.mi_service a,
+.msg_service a {
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
     color: gray
 }
 

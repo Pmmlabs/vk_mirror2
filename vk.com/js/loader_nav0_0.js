@@ -277,7 +277,7 @@ var stVersions = {
     'apps_check.js': 3204387834,
     'apps_check.css': 30722981785,
     'settings.js': 32955858,
-    'settings.css': 28215073451,
+    'settings.css': 29590470984,
     'profile_edit.js': 2157979570,
     'profile_edit.css': 20963355423,
     'profile_edit_edu.js': 872687230,
@@ -478,6 +478,7 @@ var stVersions = {
     'landings/vkmasks.js': 1193444147,
     'landings/vkvalentine.css': 20874162445,
     'landings/vkvalentine.js': 3463861529,
+    'landings/vk_calls.js': 3473407146,
     'landings/ads.css': 22431522901,
     'landing_aes.js': 17167906988,
     'landings/donors_day.css': 22513593448,
@@ -647,4 +648,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 5614;
+var _rnd = 2163;
