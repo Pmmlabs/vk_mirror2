@@ -4267,8 +4267,7 @@
                 i = r[0],
                 a = r[1],
                 o = r[2];
-            r[3], r[4];
-            t.allShown = t.allShown || o, t.history = u(t.history) + i, t.historyToAppend = i;
+            r[3], r[4], t.allShown = t.allShown || o, t.history = u(t.history) + i, t.historyToAppend = i;
             var s = Object.keys(a).length;
             return t.skipped -= s, t.offset += s, t.msgs = extend(t.msgs, a), e
         })
@@ -4839,8 +4838,7 @@
             });
             return ot(i, !0, n), t.then(function(t) {
                 var i = Kt(t, 2);
-                i[0], i[1];
-                return delete n.blockedFlagUpdates[e], r.msgs = null, r.history = null, r.unread = 0, r.lastmsg = !1, r.lastmsg_meta = null, n
+                return i[0], i[1], delete n.blockedFlagUpdates[e], r.msgs = null, r.history = null, r.unread = 0, r.lastmsg = !1, r.lastmsg_meta = null, n
             })
         }
     }
@@ -5831,8 +5829,7 @@
                 share_url: t.share_url
             }, Yt).then(function(e) {
                 var t = Kt(e, 1);
-                t[0];
-                return n
+                return t[0], n
             })
         }),
         on = ie(function(e) {
@@ -16039,14 +16036,12 @@
         if (t && "border-box" === ce(e, "boxSizing") && (t = !1), e == document) a = [Math.max(o.clientWidth, bodyNode.scrollWidth, o.scrollWidth, bodyNode.offsetWidth, o.offsetWidth), Math.max(o.clientHeight, bodyNode.scrollHeight, o.scrollHeight, bodyNode.offsetHeight, o.offsetHeight)];
         else if (e) {
             var s = function() {
-                if (a = K(e) && (i = Q(e, n)) && void 0 !== i.width ? [i.width, i.height] : [e.offsetWidth, e.offsetHeight], t) {
-                    each(a, function(t, n) {
-                        var r = t ? ["Top", "Bottom"] : ["Left", "Right"];
-                        each(r, function() {
-                            a[t] -= parseFloat(ce(e, "padding" + this)) || 0, a[t] -= parseFloat(ce(e, "border" + this + "Width")) || 0
-                        })
+                a = K(e) && (i = Q(e, n)) && void 0 !== i.width ? [i.width, i.height] : [e.offsetWidth, e.offsetHeight], t && each(a, function(t, n) {
+                    var r = t ? ["Top", "Bottom"] : ["Left", "Right"];
+                    each(r, function() {
+                        a[t] -= parseFloat(ce(e, "padding" + this)) || 0, a[t] -= parseFloat(ce(e, "border" + this + "Width")) || 0
                     })
-                }
+                })
             };
             if (G(e)) s();
             else {
@@ -20454,7 +20449,7 @@
                         n = t[0],
                         r = t[1],
                         i = t[2];
-                    if (!a.loading) return a.props.virtualized || a.props.hasMore ? void(r - n - i <= a.props.threshold && (a.loading = !0, a.props.loadMore().then(function() {
+                    return a.loading ? void 0 : a.props.virtualized || a.props.hasMore ? void(r - n - i <= a.props.threshold && (a.loading = !0, a.props.loadMore().then(function() {
                         a.loading = !1
                     }))) : a.detachListeners()
                 }, 34), a.onScroll = function(e) {
