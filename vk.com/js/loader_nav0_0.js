@@ -203,7 +203,7 @@ var stVersions = {
     'video_upload.js': 2270908085,
     'video_youtube.js': 458412745,
     'video_youtube.css': 14865234988,
-    'videoplayer.js': 73475747344,
+    'videoplayer.js': 70679933121,
     'videoplayer.css': 38224707652,
     'translation.js': 1370143200,
     'translation.css': 18337529106,
@@ -234,7 +234,7 @@ var stVersions = {
     'groups_create.css': 17874096822,
     'cmodules/web/groups_list.js': 5109346988,
     'groups_edit.css': 33966999577,
-    'groups_edit.js': 3825210905,
+    'groups_edit.js': 883964215,
     'profile.css': 19063140822,
     'profile.js': 610604261,
     'calendar.css': 20137705639,
@@ -254,8 +254,8 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 184596972253,
-    'imn.js': 246900316986,
+    'im.css': 184905988681,
+    'imn.js': 245965101826,
     'im.js': 1322065005,
     'emoji.js': 928907071,
     'wide_dd.css': 17974590759,
@@ -323,7 +323,7 @@ var stVersions = {
     'widgets.css': 31048204112,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 77262169476,
+    'notifier.js': 74093364700,
     'notifier.css': 22808415111,
     'cmodules/sw/sw.js': 4889939668,
     'earthday.js': 2276669993,
@@ -648,4 +648,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 4186;
+var _rnd = 8942;

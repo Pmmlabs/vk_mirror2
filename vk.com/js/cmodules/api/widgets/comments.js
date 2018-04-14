@@ -323,8 +323,7 @@
             }), !0) : !0
         },
         lpGetKey: function() {
-            vkNow();
-            ajax.post("al_widget_comments.php", {
+            vkNow(), ajax.post("al_widget_comments.php", {
                 act: "a_get_key",
                 id: curNotifier.uid,
                 app: cur.options.app,
@@ -852,12 +851,9 @@
                         _repliesLoaded: function(e, t, a, i) {
                             var o = ge("replies" + e);
                             if (o) {
-                                if (t) {
-                                    browser.msie6 ? pageNode : browser.chrome || browser.safari ? bodyNode : htmlNode, o.offsetHeight;
-                                    cur.options.fixed_height && cur.scrollbar ? cur.scrollbar.updateAbove(function() {
-                                        o.innerHTML = a
-                                    }) : o.innerHTML = a, setTimeout(Wall.scrollHighlightReply.pbind("post" + t), 0)
-                                } else o.innerHTML = a;
+                                t ? (browser.msie6 ? pageNode : browser.chrome || browser.safari ? bodyNode : htmlNode, o.offsetHeight, cur.options.fixed_height && cur.scrollbar ? cur.scrollbar.updateAbove(function() {
+                                    o.innerHTML = a
+                                }) : o.innerHTML = a, setTimeout(Wall.scrollHighlightReply.pbind("post" + t), 0)) : o.innerHTML = a;
                                 var s = o.nextSibling;
                                 s && "replies_open" == s.className && re(s), extend(cur.options.reply_names || {}, i), Wall.updateMentionsIndex()
                             }
@@ -1039,13 +1035,10 @@
                             }), n
                         }
                         var s, r = [];
-                        i = i || {};
-                        i.mediaHandlers || {};
-                        each(a || [], function(e, t) {
+                        i = i || {}, i.mediaHandlers || {}, each(a || [], function(e, t) {
                             var a = t[0],
                                 o = t[1];
-                            t[2];
-                            if (o) {
+                            if (t[2], o) {
                                 var n = !1,
                                     l = {
                                         to_id: cur.postTo,
@@ -1484,8 +1477,7 @@
                                 createPoll: function(e) {
                                     var t, a = e.question ? "" : "1px",
                                         i = [];
-                                    e[22] ? "disabled" : "", e[8] ? "" : "disabled";
-                                    s.pollPreview = w.appendChild(ce("div", {
+                                    e[22] ? "disabled" : "", e[8] ? "" : "disabled", s.pollPreview = w.appendChild(ce("div", {
                                         className: "medadd_c medadd_c_poll",
                                         innerHTML: '                <input onkeydown="cur.addMedia[' + _ + '].keyPoll(this, event)" class="text dark medadd_c_pollq" id="create_poll_question' + _ + '" value="' + (e.question || "") + '" />                <div class="medadd_c_pollh">' + e.lang.a + '</div>                <div class="medadd_c_pollans" id="create_poll_answers' + _ + '"></div>                <div class="medadd_c_polladd_wr" id="create_poll_add' + _ + '">                  <div class="medadd_c_polladd fakeinput dark" onclick="cur.addMedia[' + _ + '].incPoll()">' + e.lang.i + "</div>                </div>" + (e.edit ? "" : '<div class="checkbox medadd_c_pollcb' + (e.anon ? " on" : "") + '" id="create_poll_anonymous' + _ + '" onclick="checkbox(this);cur.addMedia[' + _ + '].changedPoll();">' + e.lang.c + "</div>") + (e.pollSettings || "")
                                     })), e.answers || (e.answers = [
@@ -1653,8 +1645,7 @@
                                     }
                                     if (e) cur.preventShareAnim && (cur.preventShareAnim.stop(), clearInterval(cur.animateUpdateInterval)), val(domFC(n), l), domFC(n).style.height = "auto", shortCurrency();
                                     else {
-                                        !isVisible(f);
-                                        show(f);
+                                        !isVisible(f), show(f);
                                         var S = ge(t).appendChild(ce("div", {
                                                 innerHTML: '<div class="medadd_c_linkcon ' + o + '">' + l + "</div>"
                                             }, {
@@ -1729,8 +1720,7 @@
                                                     s.bigLink = s.bigLink || l, t > 150 && (a = 150 * a / t, t = 150);
                                                     var d = Math.round(a / 2),
                                                         c = Math.round(t / 2);
-                                                    l && a > 150 ? -Math.round(33.5) : -d, t > 150 ? -Math.round(75) : -c;
-                                                    i = "width: " + t + "px; height: " + a + "px;", l && (i = "width: 100%;")
+                                                    l && a > 150 ? -Math.round(33.5) : -d, t > 150 ? -Math.round(75) : -c, i = "width: " + t + "px; height: " + a + "px;", l && (i = "width: 100%;")
                                                 }
                                                 e.images.length > 1 && (o = ""), e.imagesStyles[cur.shareShowImg] = 'style="' + i + '"' + o, s.showPreview(r), r = !0
                                             }

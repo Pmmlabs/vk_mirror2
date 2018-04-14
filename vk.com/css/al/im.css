@@ -6802,6 +6802,10 @@ img.im_photo_thumb {
     padding-bottom: 0
 }
 
+.im-mess .im-mess--text .im_srv_lnk_light {
+    color: #828282
+}
+
 .im-mess .im-mess--text .im_srv_lnk,
 .im-mess .im-mess--text .im_srv_mess_link {
     font-weight: 700;

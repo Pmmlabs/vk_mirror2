@@ -12574,6 +12574,21 @@ a.Pad__corner {
     height: 250px
 }
 
+.AudioSerp__noFound {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    text-align: center
+}
+
+.AudioSerp__noFoundText {
+    color: #909499
+}
+
+.AudioSerp__noFoundLink {
+    display: block;
+    margin-top: 8px
+}
+
 .AudioSerp__found,
 .AudioSerp__foundGlobal,
 .AudioSerp__foundOwned,
@@ -12583,8 +12598,8 @@ a.Pad__corner {
     display: none
 }
 
-.AudioSerp_tab_global .AudioSerp__foundOwned,
-.AudioSerp_tab_owned .AudioSerp__foundGlobal,
+.AudioSerp_tab_global .AudioSerp__foundGlobal,
+.AudioSerp_tab_owned .AudioSerp__foundOwned,
 .AudioSerp_view_found .AudioSerp__found,
 .AudioSerp_view_found .AudioSerp__tabs,
 .AudioSerp_view_owned .AudioSerp__owned,
@@ -12595,8 +12610,8 @@ a.Pad__corner {
     display: block
 }
 
-._ios .AudioSerp_tab_global .AudioSerp__foundOwned,
-._ios .AudioSerp_tab_owned .AudioSerp__foundGlobal {
+._ios .AudioSerp_tab_global .AudioSerp__foundGlobal,
+._ios .AudioSerp_tab_owned .AudioSerp__foundOwned {
     position: fixed;
     visibility: hidden;
     width: 1px

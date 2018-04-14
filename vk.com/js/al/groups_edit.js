@@ -1831,7 +1831,19 @@ var GroupsEdit = {
             }
         })
     },
+    showSettingSavedLabel: function() {
+        var e = ge("group_api_settings_saved");
+        setStyle(e, "opacity", 1), clearTimeout(cur.groupeditTimeout), cur.groupeditTimeout = setTimeout(setStyle.pbind(e, "opacity", 0), 1e3)
+    },
     longpoll: {
+        setApiVersion: function(e, t, o) {
+            GroupsEdit.showSettingSavedLabel(), ajax.post("groupsedit.php", {
+                act: "longpoll_set_api_version",
+                group_id: e,
+                version: t,
+                hash: o
+            })
+        },
         setEnabled: function(e, t, o) {
             ajax.post("groupsedit.php", {
                 act: "longpoll_set_enabled",
@@ -1843,8 +1855,7 @@ var GroupsEdit = {
             })
         },
         saveSetting: function(e, t, o) {
-            var r = ge("group_api_settings_saved");
-            setStyle(r, "opacity", 1), clearTimeout(cur.groupeditTimeout), cur.groupeditTimeout = setTimeout(setStyle.pbind(r, "opacity", 0), 1e3), ajax.post("groupsedit.php", {
+            GroupsEdit.showSettingSavedLabel(), ajax.post("groupsedit.php", {
                 act: "longpoll_save_event_setting",
                 group_id: e,
                 name: t,
@@ -1854,6 +1865,15 @@ var GroupsEdit = {
         }
     },
     callback: {
+        setApiVersion: function(e, t, o, r) {
+            GroupsEdit.showSettingSavedLabel(), ajax.post("groupsedit.php", {
+                act: "callback_set_api_version",
+                owner_id: e,
+                server_id: t,
+                version: o,
+                hash: r
+            })
+        },
         addServer: function(e, t, o) {
             hide(geByClass1("page_actions_cont", ge("content"))), hide(ge("add_server_button")), show(geByClass1("ui_tabs_progress", ge("content"))), ajax.post("groupsedit.php", {
                 act: "callback_add_server",
@@ -2112,21 +2132,21 @@ var GroupsEdit = {
                 title: getLang("groups_servers_delete_confirm_box_title"),
                 dark: 1
             }, getLang("groups_tokens_servers_delete_confirm_description").replace("{serverName}", r), getLang("groups_servers_delete_confirm_box_btn"), function() {
-                a.hide(), show(geByClass1("ui_tabs_progress", ge("content"))), hide(geByClass1("page_actions_cont", ge("content"))), ajax.post("groupsedit.php", {
-                    act: "callback_delete_server",
-                    id: t,
-                    server: o,
-                    hash: s
-                }, {
-                    onDone: function(t, o) {
-                        "ok" === t ? (nav.objLoc.server = o, nav.go(nav.objLoc)) : (unlockButton(e), GroupsEdit.callback.showError(o), hide(geByClass1("ui_tabs_progress", ge("content"))), show(geByClass1("page_actions_cont", ge("content"))))
-                    }
-                })
+                a.hide(), show(geByClass1("ui_tabs_progress", ge("content"))), hide(geByClass1("page_actions_cont", ge("content"))),
+                    ajax.post("groupsedit.php", {
+                        act: "callback_delete_server",
+                        id: t,
+                        server: o,
+                        hash: s
+                    }, {
+                        onDone: function(t, o) {
+                            "ok" === t ? (nav.objLoc.server = o, nav.go(nav.objLoc)) : (unlockButton(e), GroupsEdit.callback.showError(o), hide(geByClass1("ui_tabs_progress", ge("content"))), show(geByClass1("page_actions_cont", ge("content"))))
+                        }
+                    })
             }, getLang("global_cancel"))
         },
         clearServerId: function() {
-            delete nav.objLoc.server,
-                nav.setLoc(nav.objLoc)
+            delete nav.objLoc.server, nav.setLoc(nav.objLoc)
         },
         showOk: function() {
             hide("group_api_error"), show("group_api_ok"), show("group_api_settings"), hide("group_api_secret_error"), hide("group_api_secret_ok"), show("groups_edit_delete_url")
