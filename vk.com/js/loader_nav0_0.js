@@ -573,7 +573,7 @@ var stVersions = {
     'internal/stories_admin_panel.css': 15310470513,
     'time_spent.js': 732637085,
     'cmodules/web/app_info.js': 2375115030,
-    'internal/stream_quiz.css': 2591292545,
+    'internal/stream_quiz.css': 4253369557,
     'cmodules/web/grip.js': 4164501492,
     'lang': 6887
 };
@@ -648,4 +648,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 8730;
+var _rnd = 7138;
