@@ -2,25 +2,45 @@
     function t(n) {
         if (s[n]) return s[n].exports;
         var i = s[n] = {
-            exports: {},
-            id: n,
-            loaded: !1
+            i: n,
+            l: !1,
+            exports: {}
         };
-        return e[n].call(i.exports, i, i.exports, t), i.loaded = !0, i.exports
+        return e[n].call(i.exports, i, i.exports, t), i.l = !0, i.exports
     }
     var s = {};
-    return t.m = e, t.c = s, t.p = "", t(0)
+    return t.m = e, t.c = s, t.d = function(e, s, n) {
+        t.o(e, s) || Object.defineProperty(e, s, {
+            configurable: !1,
+            enumerable: !0,
+            get: n
+        })
+    }, t.r = function(e) {
+        Object.defineProperty(e, "__esModule", {
+            value: !0
+        })
+    }, t.n = function(e) {
+        var s = e && e.__esModule ? function() {
+            return e["default"]
+        } : function() {
+            return e
+        };
+        return t.d(s, "a", s), s
+    }, t.o = function(e, t) {
+        return Object.prototype.hasOwnProperty.call(e, t)
+    }, t.p = "", t(t.s = 480)
 }({
-    0: function(e, t, s) {
-        e.exports = s(275)
+    480: function(e, t, s) {
+        e.exports = s(620)
     },
-    275: function(e, t) {
+    620: function(e, t, s) {
         "use strict";
 
-        function s(e, t) {
+        function n(e, t) {
             if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
         }
-        var n = function() {
+        s.r(t);
+        var i = function() {
             function e(e, t) {
                 var s = [],
                     n = !0,
@@ -28,8 +48,8 @@
                     a = void 0;
                 try {
                     for (var o, r = e[Symbol.iterator](); !(n = (o = r.next()).done) && (s.push(o.value), !t || s.length !== t); n = !0);
-                } catch (d) {
-                    i = !0, a = d
+                } catch (c) {
+                    i = !0, a = c
                 } finally {
                     try {
                         !n && r["return"] && r["return"]()
@@ -46,16 +66,16 @@
             }
         }();
         window.AdsEditEasyPromote = function() {
-            function e(t, n) {
+            function e(t, s) {
                 var i = this;
-                if (s(this, e), t && n) {
+                if (n(this, e), t && s) {
                     this.box = t, this.boxBodyNode = t.bodyNode, this.boxControlsTextNode = t.controlsTextNode, this.imageElement = geByClass1(this.classname("image"), this.boxBodyNode), this.screensContainerElement = geByClass1(this.classname("screens-container"), this.boxBodyNode), this.headerElement = geByClass1(this.classname("header"), this.boxBodyNode), this.acceptTermsCheckboxInput = geByClass1(this.classname("accept-terms"), this.boxControlsTextNode), this.imageLayer1Element = geByClass1(this.classname("image-layer_1"), this.imageElement), this.imageLayer2Element = geByClass1(this.classname("image-layer_2"), this.imageElement), this.screensWrapperElement = geByClass1(this.classname("screens-wrapper"), this.screensContainerElement), this.introScreenElement = geByClass1(this.classname("screen_intro"), this.screensWrapperElement), this.settingsScreenElement = geByClass1(this.classname("screen_settings"), this.screensWrapperElement), this.paymentScreenElement = geByClass1(this.classname("screen_payment"), this.screensWrapperElement), this.cardPaymentScreenElement = geByClass1(this.classname("screen_card-payment"), this.screensWrapperElement), this.paymentResultScreenElement = geByClass1(this.classname("screen_payment-result"), this.screensWrapperElement), this.moreSettingsScreenElement = geByClass1(this.classname("screen_more-settings"), this.screensWrapperElement), this.totalBudgetElement = geByClass1(this.classname("row-content_total-budget"), this.settingsScreenElement), this.expectedReachValueElement = geByClass1(this.classname("expected-reach-value"), this.settingsScreenElement), this.expectedReachLimitElement = geByClass1(this.classname("expected-reach-limit"), this.settingsScreenElement), this.expectedReachBarValueElement = geByClass1(this.classname("expected-reach-bar-value"), this.settingsScreenElement), this.expectedReachHintElement = geByClass1(this.classname("expected-reach-hint"), this.settingsScreenElement), this.audienceSettingsElement = geByClass1(this.classname("audience-settings"), this.settingsScreenElement), this.editAudienceLinkWrapperElement = geByClass1(this.classname("edit-audience-link"), this.settingsScreenElement), this.editAudienceNameLinksWrapperElement = geByClass1(this.classname("edit-audience-name-links"), this.settingsScreenElement), this.budgetTitleRowElement = geByClass1(this.classname("row_budget-title"), this.settingsScreenElement), this.geoContainerPointsElement = geByClass1(this.classname("geo-container_points"), this.settingsScreenElement), this.geoContainerRegionsElement = geByClass1(this.classname("geo-container_regions"), this.settingsScreenElement), this.expectedReachRowElement = geByClass1(this.classname("row_expected-reach"), this.settingsScreenElement), this.updateTargetParamsProgressElement = geByClass1(this.classname("update-progress"), this.settingsScreenElement), this.audienceMenuDotsElement = geByClass1(this.classname("audience-menu-dots"), this.settingsScreenElement), this.audienceMenuSaveElement = geByClass1(this.classname("audience-menu-item_save"), this.audienceMenuDotsElement), this.audienceMenuSaveNewElement = geByClass1(this.classname("audience-menu-item_save_new"), this.audienceMenuDotsElement), this.audienceMenuDeleteElement = geByClass1(this.classname("audience-menu-item_delete"), this.audienceMenuDotsElement), this.audienceProgressElement = geByClass1(this.classname("audience-menu-progress"), this.settingsScreenElement), this.audienceNameInput = geByClass1(this.classname("audience-name-input"), this.settingsScreenElement), this.settingsErrorElement = geByClass1(this.classname("settings-error"), this.settingsScreenElement), this.paymentTotalBudgetElement = geByClass1(this.classname("payments-total-budget"), this.paymentScreenElement), this.paymentUnionBudgetElement = geByClass1(this.classname("payments-union-budget"), this.paymentScreenElement), this.paymentTotalBudgetInput = geByClass1(this.classname("payments-input-amount"), this.paymentScreenElement), this.paymentAmountCurrencyElement = geByClass1(this.classname("payments-amount-currency"), this.paymentScreenElement), this.paymentSystemsElement = geByClass1(this.classname("payments-systems"), this.paymentScreenElement), this.paymentContinueElement = geByClass1(this.classname("payments-continue"), this.paymentScreenElement), this.paymentErrorElement = geByClass1(this.classname("payments-error"), this.paymentScreenElement), this.paymentIntroElement = geByClass1(this.classname("payments-intro"), this.paymentScreenElement), this.cardPaymentIframeContainerElement = geByClass1(this.classname("card-payment-iframe-container"), this.cardPaymentScreenElement), this.paymentSystemsFormElement = geByClass1(this.classname("card-payment-form"), this.cardPaymentScreenElement), this.paymentResultElement = geByClass1(this.classname("payment-result"), this.paymentResultScreenElement), this.paymentResultTitleElement = geByClass1(this.classname("payment-result-title"), this.paymentResultScreenElement), this.paymentResultSubtitleElement = geByClass1(this.classname("payment-result-subtitle"), this.paymentResultScreenElement), this.paymentResultIconContainerElement = geByClass1(this.classname("payment-result-icon-container"), this.paymentResultScreenElement), this.paymentResultButtonContainerElement = geByClass1(this.classname("payment-result-button-container"), this.paymentResultScreenElement), this.paymentResultButtonElement = geByClass1(this.classname("payment-result-button"), this.paymentResultScreenElement), this.moreSettingsOfficeSwitcherRowElement = geByClass1(this.classname("row_office-switcher"), this.moreSettingsScreenElement), this.moreSettingsCategoryIdRowElement = geByClass1(this.classname("row_category-id"), this.moreSettingsScreenElement), this.moreSettingsSubtitleElement = geByClass1(this.classname("more-settings-subtitle"), this.moreSettingsScreenElement), this.moreSettingsOfficeLabelElement = geByClass1(this.classname("more-settings-office-label"), this.moreSettingsScreenElement), this.moreSettingsCategoryLabelElement = geByClass1(this.classname("more-settings-category-label"), this.moreSettingsScreenElement);
                     var a = this.box.getOptions();
                     a && a.lang && (cur.lang = extend(cur.lang || {}, a.lang)), t.setOptions({
                         onDestroy: function() {
                             Radiobutton.destroy("ads_targeting_criterion_geo_type"), Radiobutton.destroy("ads_targeting_criterion_sex")
                         }
-                    }), this.options = n, this.currentScreen = this.introScreenElement, this.options.already_promoted_ad_id ? (this.setPaymentResultScreen(getLang("ads_edit_easy_promote_already_promoted_title"), getLang("ads_edit_easy_promote_already_promoted_description"), "success"), this.setPaymentResultScreenButton(getLang("ads_edit_easy_promote_go_to_ad"), "https://vk.com/ads?act=office&union_id=" + this.options.already_promoted_ad_id), this.setBoxOptions({
+                    }), this.options = s, this.currentScreen = this.introScreenElement, this.options.already_promoted_ad_id ? (this.setPaymentResultScreen(getLang("ads_edit_easy_promote_already_promoted_title"), getLang("ads_edit_easy_promote_already_promoted_description"), "success"), this.setPaymentResultScreenButton(getLang("ads_edit_easy_promote_go_to_ad"), "https://vk.com/ads?act=office&union_id=" + this.options.already_promoted_ad_id), this.setBoxOptions({
                         showBackButton: !1,
                         noBottomControls: !0,
                         noRefreshCoords: !1
@@ -179,8 +199,8 @@
                             var o = '<form action="' + this.paymentSystemsFormElement.action + '" method="' + this.paymentSystemsFormElement.method + '" id="popup_payment_form" accept-charset="UTF-8">' + this.paymentSystemsFormElement.innerHTML + "</form>",
                                 r = getLang("payment_redirect").replace("%s", t.paymentSystemData.title);
                             cur._popup_text = cur.paymentsPopupHtml(r, o, "document.getElementById('popup_payment_form').submit()");
-                            var d = "scrollbars=1, resizable=1, menubar=1, left=0, top=0, toolbar=1, status=1";
-                            a = window.open("", "_blank", d), cur.paymentsPopupWrite(a)
+                            var c = "scrollbars=1, resizable=1, menubar=1, left=0, top=0, toolbar=1, status=1";
+                            a = window.open("", "_blank", c), cur.paymentsPopupWrite(a)
                         }
                         setTimeout(this.waitForPaymentResult.bind(this, extend(t, {
                             paymentPopup: t.paymentPopup || a,
@@ -216,14 +236,14 @@
                 var t = e.target;
                 if (!hasClass(t, this.classname("audience-menu-item"))) return !1;
                 var s = this.audienceDropdown.val(),
-                    i = s.split("_"),
-                    a = n(i, 2),
+                    n = s.split("_"),
+                    a = i(n, 2),
                     o = a[0],
                     r = a[1];
                 r = intval(r);
-                var d = t.getAttribute("data-action");
+                var c = t.getAttribute("data-action");
                 if (hasClass(t, "ui_actions_menu_item_disabled")) return !1;
-                switch (d) {
+                switch (c) {
                     case "save-to-current":
                         if (0 == s) return !1;
                         if (0 >= r) return !1;
@@ -430,17 +450,17 @@
             }, e.prototype.showGroupsDropdown = function() {
                 return hide(this.groupShowerLink), show(this.groupsDropdown.container), removeClass(gpeByClass(this.classname("row-content"), this.groupsDropdown.container), this.classname("row-content_simple")), this.groupsDropdown.updateInput(), !1
             }, e.prototype.showInterestsDropdown = function() {
-                return hide(this.interestsShowerLink), show(this.interestsDropdown.container), removeClass(gpeByClass(this.classname("row-content"), this.interestsDropdown.container), this.classname("row-content_simple")), this.interestsDropdown.updateInput(), !1
+                return hide(this.interestsShowerLink), show(this.interestsDropdown.container), removeClass(gpeByClass(this.classname("row-content"), this.interestsDropdown.container), this.classname("row-content_simple")),
+                    this.interestsDropdown.updateInput(), !1
             }, e.prototype.editCriteriaPreset = function(e, t, s, n) {
                 var i = this;
                 if (e = intval(e) || this.options.selected_union_id, !e) return !1;
                 var a = this.getUpdateTargetParams();
                 if (!t && !n) {
                     var o = e + "_" + -a.request_id;
-                    this.options.audiences[o] = [o, clean(s), getLang("ads_edit_easy_promote_audience_saving")],
-                        this.audienceDropdown.setOptions({
-                            defaultItems: Object.values(this.options.audiences)
-                        }), this.audienceDropdown.selectItem(o)
+                    this.options.audiences[o] = [o, clean(s), getLang("ads_edit_easy_promote_audience_saving")], this.audienceDropdown.setOptions({
+                        defaultItems: Object.values(this.options.audiences)
+                    }), this.audienceDropdown.selectItem(o)
                 }
                 ajax.post("/adsedit?act=a_edit_criteria_preset", extend({}, a, {
                     client_id: e,
@@ -460,14 +480,14 @@
                                 }
                             } else {
                                 var r = e + "_" + -a.request_id,
-                                    d = e + "_" + s.criteria_preset_id;
-                                i.options.audiences[d] = i.options.audiences[r], i.options.audiences[d][0] = d, "description" in s && (i.options.audiences[d][2] = s.description), delete i.options.audiences[r], i.audienceDropdown.setOptions({
+                                    c = e + "_" + s.criteria_preset_id;
+                                i.options.audiences[c] = i.options.audiences[r], i.options.audiences[c][0] = c, "description" in s && (i.options.audiences[c][2] = s.description), delete i.options.audiences[r], i.audienceDropdown.setOptions({
                                     defaultItems: Object.values(i.options.audiences)
-                                }), i.audienceDropdown.selectItem(d)
+                                }), i.audienceDropdown.selectItem(c)
                             }
                         if (n) {
-                            var c = e + "_" + t;
-                            delete i.options.audiences[c], i.audienceDropdown.setOptions({
+                            var d = e + "_" + t;
+                            delete i.options.audiences[d], i.audienceDropdown.setOptions({
                                 defaultItems: Object.values(i.options.audiences)
                             }), i.audienceDropdown.selectItem(0)
                         }
@@ -844,8 +864,8 @@
                 if (e && !t) return notaBene(this.audienceNameInput), elfocus(this.audienceNameInput), !1;
                 if (hide(this.audienceNameInput), show(this.audienceDropdown.container), show(this.audienceMenuDotsElement), hide(this.editAudienceNameLinksWrapperElement), this.editingAudience || show(this.editAudienceLinkWrapperElement), e) {
                     var s = this.audienceDropdown.val(),
-                        i = s.split("_"),
-                        a = n(i, 2),
+                        n = s.split("_"),
+                        a = i(n, 2),
                         o = a[0];
                     a[1], this.editCriteriaPreset(o, 0, t, 0)
                 }
@@ -862,6 +882,6 @@
         }();
         try {
             stManager.done(jsc("web/ads_edit_easy.js"))
-        } catch (i) {}
+        } catch (a) {}
     }
 });

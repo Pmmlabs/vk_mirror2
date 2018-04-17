@@ -2,21 +2,40 @@
     function e(a) {
         if (r[a]) return r[a].exports;
         var o = r[a] = {
-            exports: {},
-            id: a,
-            loaded: !1
+            i: a,
+            l: !1,
+            exports: {}
         };
-        return t[a].call(o.exports, o, o.exports, e), o.loaded = !0, o.exports
+        return t[a].call(o.exports, o, o.exports, e), o.l = !0, o.exports
     }
     var r = {};
-    return e.m = t, e.c = r, e.p = "", e(0)
+    return e.m = t, e.c = r, e.d = function(t, r, a) {
+        e.o(t, r) || Object.defineProperty(t, r, {
+            configurable: !1,
+            enumerable: !0,
+            get: a
+        })
+    }, e.r = function(t) {
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        })
+    }, e.n = function(t) {
+        var r = t && t.__esModule ? function() {
+            return t["default"]
+        } : function() {
+            return t
+        };
+        return e.d(r, "a", r), r
+    }, e.o = function(t, e) {
+        return Object.prototype.hasOwnProperty.call(t, e)
+    }, e.p = "", e(e.s = 138)
 }({
-    0: function(t, e, r) {
-        t.exports = r(35)
+    138: function(t, e, r) {
+        t.exports = r(71)
     },
-    35: function(t, e) {
+    71: function(t, e, r) {
         "use strict";
-        window.MrTruth = {
+        r.r(e), window.MrTruth = {
             init: function() {
                 var t = geByClass1("mr_truth_send_form_text");
                 Emoji.init(t, {
@@ -62,9 +81,9 @@
                         if (toggleClass(r, "on", "on" === t), MrTruth.confirmHide(), "on" === t) {
                             var a = ge("chat_settings_" + e),
                                 o = cur.mr_truth_chat_tpl.replace(/\{id\}/g, e).replace("{name}", val(geByClass1("mr_truth_chats_list_item_name", a))).replace("{photo}", val(geByClass1("mr_truth_chats_list_item_photo", a))).replace("{count}", attr(a, "data-count")).replace("{hash}", attr(a, "data-hash")),
-                                s = se(o),
-                                n = ge("chats");
-                            n.insertBefore(s, n.firstChild), re(geByClass1("mr_truth_no_chats_msg", "chats"))
+                                n = se(o),
+                                s = ge("chats");
+                            s.insertBefore(n, s.firstChild), re(geByClass1("mr_truth_no_chats_msg", "chats"))
                         }
                     },
                     showProgress: function() {
@@ -156,8 +175,8 @@
                     onUploadProgress: function(t, e, r) {
                         var a = e / r,
                             o = geByClass1("mr_truth_attach_photo_loader_path", "attach_photo_" + t),
-                            s = o.getTotalLength();
-                        attr(o, "stroke-dasharray", s * a + "," + s)
+                            n = o.getTotalLength();
+                        attr(o, "stroke-dasharray", n * a + "," + n)
                     },
                     onUploadComplete: function(t, e) {
                         var r = ge("attach_photo_" + t);

@@ -1,386 +1,380 @@
-.pointer,
-.i_pointer {
-    height: 6px;
+.i_pointer,
+.pointer {
+    height: 6px
 }
 
-.pm_pointer,
 .pem_pointer,
+.pm_pointer,
 .pointer_wrap {
-    margin-top: -7px;
+    margin-top: -7px
 }
 
 .pp_pointer .i_pointer {
-    left: 19px;
+    left: 19px
 }
 
-.pm_pointer .i_pointer {
-    left: 16px;
-}
-
+.pm_pointer .i_pointer,
 .pem_pointer .i_pointer {
-    left: 16px;
+    left: 16px
 }
 
 .nobr {
-    white-space: normal;
+    white-space: normal
 }
 
 .mhi_index_logo {
-    background-position: 0;
+    background-position: 0
 }
 
 .mm_item {
-    padding: 5px 7px;
+    padding: 5px 7px
 }
 
 .mm_counter {
-    padding: 2px 4px;
+    padding: 2px 4px
 }
 
-.mm_item .i_icon,
-.lfm_item .i_icon {
-    margin: 0 6px 0 0;
+.lfm_item .i_icon,
+.mm_item .i_icon {
+    margin: 0 6px 0 0
 }
 
 .left_footer_menu {
-    padding: 4px 0;
+    padding: 4px 0
 }
 
 .lfm_item {
-    padding: 3px 7px;
+    padding: 3px 7px
 }
 
 .notify_panel {
-    padding: 7px 7px 0;
+    padding: 7px 7px 0
 }
 
 .ni_cont {
-    margin-left: 0;
+    margin-left: 0
 }
 
 .ni_top .i_gift {
     margin-left: 0;
-    margin-right: 5px;
+    margin-right: 5px
 }
 
 .ni_bottom .i_gift {
     margin-left: 1px;
-    margin-right: 10px;
+    margin-right: 10px
 }
 
 .ni_bottom .ni_body,
 .ni_bottom .ni_close {
-    padding: 5px;
+    padding: 5px
 }
 
 .ni_bottom .ni_cont {
-    margin-left: 0;
+    margin-left: 0
 }
 
 .ni_birth_pics {
-    max-height: 25px;
+    max-height: 25px
 }
 
 .ni_birth_img {
     width: 25px;
-    height: 25px;
+    height: 25px
 }
 
 .ni_app .ni_body {
-    padding: 5px;
+    padding: 5px
 }
 
 .ni_app_img {
     width: 26px;
     height: 26px;
-    margin-right: 5px;
+    margin-right: 5px
 }
 
 .fit_box .text_panel {
-    padding: 7px;
+    padding: 7px
 }
 
 .fit_box .form_item {
-    padding: 0 7px 10px;
+    padding: 0 7px 10px
 }
 
 .fit_box .fi_row {
-    padding: 7px 0 0;
+    padding: 7px 0 0
 }
 
 .fit_box .fi_subrow {
-    padding: 4px 0 0;
+    padding: 4px 0 0
 }
 
-.fit_box .fi_label,
-.fit_box .fi_blabel {
-    padding: 0 0 4px;
+.fit_box .fi_blabel,
+.fit_box .fi_label {
+    padding: 0 0 4px
 }
 
-.fit_box .fi_sublabel {
-    padding: 4px 0;
-}
-
+.fit_box .fi_sublabel,
 .fit_box .fi_row .option_row {
-    padding: 4px 0;
+    padding: 4px 0
 }
 
 .fit_box .fi_row_new {
-    padding: 14px 0 0;
+    padding: 14px 0 0
 }
 
 .fit_box .fi_one_row {
-    padding: 7px;
+    padding: 7px
 }
 
 .fit_box .fi_wide .fiw_row {
     padding-left: 7px;
-    padding-right: 7px;
+    padding-right: 7px
 }
 
-.fit_box .sub_header,
-.fit_box .slim_header {
-    padding-left: 7px;
+.fit_box .slim_header,
+.fit_box .sub_header {
+    padding-left: 7px
 }
 
 .fit_box .sel_row {
-    padding: 7px;
+    padding: 7px
 }
 
 .fit_box .sel_sample_item .sel_row {
-    padding: 12px 7px;
+    padding: 12px 7px
 }
 
 .fit_box .pm_item,
 .fit_box .profile_photo_upload {
-    padding: 7px;
+    padding: 7px
 }
 
 .pm_item .i_icon {
-    display: none;
+    display: none
 }
 
 .fit_box .cm_item {
-    padding: 5px 7px;
+    padding: 5px 7px
 }
 
 .fit_box .pinfo_row {
-    margin: 4px 7px;
+    margin: 4px 7px
 }
 
-.notify_item .i_gift,
+.lfm_item .i_icon,
 .mm_item .i_icon,
-.lfm_item .i_icon {
-    display: none;
+.notify_item .i_gift {
+    display: none
 }
 
 .owner_panel {
-    padding-top: 5px;
+    padding-top: 5px
 }
 
 .op_img,
 .op_iwrap {
     width: 32px;
     height: 32px;
-    margin-top: 2px;
+    margin-top: 2px
 }
 
 .op_cont {
     margin-left: 39px;
-    min-height: 34px;
+    min-height: 34px
 }
 
 .op_info {
-    padding-top: 0;
+    padding-top: 0
 }
 
 .pp_img,
 .pp_iwrap {
     width: 40px;
     height: 40px;
-    margin: 0 7px 0 0;
+    margin: 0 7px 0 0
 }
 
 .pp_cont {
     margin-left: 47px;
-    min-height: 40px;
+    min-height: 40px
 }
 
 .op_fimg {
     width: 32px;
     height: 32px;
-    margin: 2px 7px 0 0;
+    margin: 2px 7px 0 0
 }
 
 .op_fcont {
     margin-left: 39px;
-    min-height: 34px;
+    min-height: 34px
 }
 
 .fit_box .owner_panel {
-    padding: 5px 7px 7px;
+    padding: 5px 7px 7px
 }
 
 .fit_box .op_block {
-    padding: 7px 0 0;
+    padding: 7px 0 0
 }
 
 .profile_photos_block {
-    margin: 4px 4px 8px;
+    margin: 4px 4px 8px
 }
 
-.inline_fit_item,
-.ii_btn {
-    padding: 7px;
+.ii_btn,
+.inline_fit_item {
+    padding: 7px
 }
 
 .ii_with_btn .ii_body {
-    margin-right: 29px;
+    margin-right: 29px
 }
 
 .fit_box .radio_items {
-    padding: 5px 0;
+    padding: 5px 0
 }
 
 .fit_box .radio_item {
-    padding: 2px 7px;
+    padding: 2px 7px
 }
 
 .fit_box .ri_radio {
-    margin-right: 4px;
+    margin-right: 4px
 }
 
 .simple_fit_item .si_img,
 .simple_fit_item .si_iwrap {
     width: 32px;
-    height: 32px;
+    height: 32px
 }
 
 .simple_fit_item .si_thumb {
-    width: 32px;
+    width: 32px
 }
 
 .simple_fit_item .si_body {
     margin-left: 39px;
-    min-height: 34px;
+    min-height: 34px
 }
 
 .simple_fit_item .si_links {
-    padding: 2px 0 0;
+    padding: 2px 0 0
 }
 
 .pi_img,
 .pi_iwrap {
     width: 25px;
-    height: 25px;
+    height: 25px
 }
 
 .pi_cont {
     margin-left: 0;
-    min-height: 27px;
+    min-height: 27px
 }
 
 .pi_head {
-    margin-left: 32px;
+    margin-left: 32px
 }
 
 .pi_body {
-    clear: left;
+    clear: left
 }
 
 .pi_last_replies .pi_img,
 .pi_last_replies .pi_iwrap {
-    display: none;
+    display: none
 }
 
 .pi_last_replies .pi_cont {
-    margin-left: 0;
+    margin-left: 0
 }
 
 .pi_medias_owners .ii_img {
     width: 25px;
-    height: 25px;
+    height: 25px
 }
 
 .pi_medias_owners .ii_body {
     min-height: 0;
-    white-space: normal;
+    white-space: normal
 }
 
 .pic_img {
-    display: none;
+    display: none
 }
 
 .pic_cont {
     margin-left: 0;
-    min-height: 0;
+    min-height: 0
 }
 
 .pi_last_replies,
 .pic_body_full,
 .pic_copyof {
-    padding-left: 7px;
+    padding-left: 7px
 }
 
 .comment_item .pi_img,
 .comment_item .pi_iwrap {
     width: 25px;
-    height: 25px;
+    height: 25px
 }
 
 .comment_item .pi_cont {
     margin-left: 0;
-    min-height: 27px;
+    min-height: 27px
 }
 
 .pai_img,
 .pai_right_img {
     width: 32px;
-    height: 32px;
+    height: 32px
 }
 
 .pai_head {
     margin-left: 39px;
-    min-height: 32px;
+    min-height: 32px
 }
 
 .pai_right_img {
-    display: none;
+    display: none
 }
 
 .pai_has_thumb .pai_head {
-    margin-right: 0;
+    margin-right: 0
 }
 
 .wi_img {
     width: 32px;
-    height: 32px;
+    height: 32px
 }
 
 .wi_cont {
     margin-left: 39px;
     margin-right: 0;
-    min-height: 32px;
+    min-height: 32px
 }
 
 .wi_author,
 .wi_info {
     white-space: normal;
-    padding: 0;
+    padding: 0
 }
 
 .wall_item {
-    position: static;
+    position: static
 }
 
-.wi_actions_wrap,
-.wi_actions {
+.wi_actions,
+.wi_actions_wrap {
     position: static;
-    width: auto;
+    width: auto
 }
 
 .wi_actions_wrap .pointer {
-    display: none;
+    display: none
 }
 
 .wi_actions {
@@ -388,33 +382,33 @@
     background-color: transparent;
     border: none;
     border-radius: 0;
-    box-shadow: none;
+    box-shadow: none
 }
 
 .wia_item {
     padding: 5px 7px;
-    white-space: normal;
+    white-space: normal
 }
 
 .wi_actions_btn {
     position: static;
     padding: 5px 7px;
-    margin: 4px 0 0 6px;
+    margin: 4px 0 0 6px
 }
 
 .wi_actions_btn .i_icon {
     display: inline;
     background-position: -84px;
     padding: 0 18px 0 0;
-    height: auto;
+    height: auto
 }
 
 .wi_actions_opened .wi_actions_btn .i_icon {
-    background-position: -102px;
+    background-position: -102px
 }
 
 .wi_buttons {
-    padding-top: 3px;
+    padding-top: 3px
 }
 
 .wi_buttons .item_like,
@@ -422,36 +416,36 @@
 .wi_buttons_ex .item_btn {
     float: left;
     margin-left: 0;
-    margin-right: 6px;
+    margin-right: 6px
 }
 
 .wi_buttons_ex .item_info {
-    display: none;
+    display: none
 }
 
 .wi_buttons_ex .wi_actions_btn {
-    padding: 7px;
+    padding: 7px
 }
 
 .wi_body {
-    padding-top: 0;
+    padding-top: 0
 }
 
 .wi_body.wi_no_text {
-    margin-top: -7px;
+    margin-top: -7px
 }
 
 .wall_item .pi_medias {
-    padding: 2px 0;
+    padding: 2px 0
 }
 
 .wall_item .medias_row {
-    padding-top: 4px;
+    padding-top: 4px
 }
 
 .wall_item .medias_link {
     display: inline;
-    margin-top: 4px;
+    margin-top: 4px
 }
 
 .wall_item .medias_link_icon {
@@ -459,7 +453,7 @@
     display: inline;
     float: none;
     margin: 0;
-    border-radius: 0;
+    border-radius: 0
 }
 
 .wall_item .medias_row .i_icon {
@@ -468,117 +462,117 @@
     width: auto;
     height: auto;
     margin: 0 2px 0 0;
-    padding: 0 14px 0 0;
+    padding: 0 14px 0 0
 }
 
-.wall_item .medias_link_title,
-.wall_item .medias_link_desc {
-    display: none;
+.wall_item .medias_link_desc,
+.wall_item .medias_link_title {
+    display: none
 }
 
-.wall_item .medias_link_label,
-.wall_item .medias_link_labeled,
 .wall_item .medias_audio_artist,
-.wall_item .medias_audio_title {
+.wall_item .medias_audio_title,
+.wall_item .medias_link_label,
+.wall_item .medias_link_labeled {
     display: inline;
     padding-top: 0;
-    white-space: normal;
+    white-space: normal
 }
 
 .wall_item .medias_link_label .medias_link:hover {
-    text-decoration: underline;
+    text-decoration: underline
 }
 
 .wall_item .medias_link_labeled {
-    color: #4C6B8F;
+    color: #4c6b8f
 }
 
 .wall_item .medias_link_desc {
-    font-size: 1em;
+    font-size: 1em
 }
 
 .wall_item .medias_audio_dur {
     float: none;
-    display: none;
+    display: none
 }
 
 .wall_item .medias_audio_title .medias_audio_dur {
-    display: inline;
+    display: inline
 }
 
 .mlt_title,
 .wall_item .medias_link_btn {
-    display: block;
+    display: block
 }
 
 .wall_item .medias_audio .divider {
-    display: inline;
+    display: inline
 }
 
 ._hover .wall_item .medias_link:hover .medias_link_labeled {
-    text-decoration: underline;
+    text-decoration: underline
 }
 
 .medias_share .sh_img {
     padding-top: 2px;
     width: 32px;
-    height: 32px;
+    height: 32px
 }
 
 .msh_cont {
-    min-height: 34px;
+    min-height: 34px
 }
 
 .msh_head {
-    margin-left: 39px;
+    margin-left: 39px
 }
 
 .mlt_thumb {
-    display: none;
+    display: none
 }
 
 .mlt_cont {
-    min-height: 0;
+    min-height: 0
 }
 
 .mi_img,
 .mi_iwrap {
     width: 25px;
-    height: 25px;
+    height: 25px
 }
 
 .mi_cont {
     margin-left: 0;
-    min-height: 0;
+    min-height: 0
 }
 
 .mi_head {
-    margin-left: 32px;
+    margin-left: 32px
 }
 
 .mi_body {
-    clear: left;
+    clear: left
 }
 
 .di_img,
 .di_iwrap {
     width: 32px;
-    height: 32px;
+    height: 32px
 }
 
 .di_cont {
     margin-left: 39px;
-    min-height: 34px;
+    min-height: 34px
 }
 
 .di_date,
 .di_head {
-    padding: 0;
+    padding: 0
 }
 
 .di_unread_outbox .di_body {
     padding: 0 5px;
-    margin-top: 3px;
+    margin-top: 3px
 }
 
 .di_unread_cnt {
@@ -587,328 +581,325 @@
     clear: none;
     margin-top: 0;
     padding: 1px 3px;
-    line-height: normal;
+    line-height: normal
 }
 
 .dmi_l {
-    padding-right: 0;
+    padding-right: 0
 }
 
 .dmi_r {
-    padding-left: 0;
+    padding-left: 0
 }
 
 .dmi_lt,
 .dmi_rt {
-    padding-bottom: 0;
+    padding-bottom: 0
 }
 
 .dmi_lb,
 .dmi_rb {
-    padding-top: 0;
+    padding-top: 0
 }
 
 .head_actions .cm_item {
-    padding: 5px 7px;
+    padding: 5px 7px
 }
 
 .album_items {
-    padding: 0;
+    padding: 0
 }
 
 .album_item {
     display: block;
     border-bottom: 1px solid #efefef;
-    padding: 7px;
+    padding: 7px
 }
 
 .album_thumb_wrap {
     position: static;
-    padding-top: 0;
+    padding-top: 0
 }
 
 .album_item .album_thumb {
     position: static;
     background: none;
     overflow: hidden;
-    max-height: 150px;
+    max-height: 150px
 }
 
 .album_item .album_name {
-    color: #4C6B8F;
+    color: #4c6b8f;
     padding: 7px 0 0;
     position: static;
     overflow: visible;
     background: none;
-    white-space: normal;
+    white-space: normal
 }
 
-.album_item .album_desc,
-.album_item .album_count {
-    display: block;
+.album_item .album_count,
+.album_item .album_desc {
+    display: block
 }
 
 .album_item .album_cnt {
-    display: none;
+    display: none
 }
 
-.stickers_list,
-.sticker_item {
-    padding: 4px;
+.sticker_item,
+.stickers_list {
+    padding: 4px
 }
 
 .sticker_thumb {
     width: 32px;
-    height: 32px;
+    height: 32px
 }
 
 .sticker_thumb .th_img {
-    height: 32px;
+    height: 32px
 }
 
 .stickers_thumb {
     width: 35px;
-    height: 35px;
+    height: 35px
 }
 
 .stickers_body {
     margin-left: 42px;
-    min-height: 35px;
+    min-height: 35px
 }
 
 .stickers_name {
-    padding-top: 0;
+    padding-top: 0
 }
 
 .stickers_author {
-    padding-top: 2px;
+    padding-top: 2px
 }
 
 .stickers_price {
-    padding: 4px 0 2px;
+    padding: 4px 0 2px
 }
 
 .sp_str {
-    padding: 2px 5px;
+    padding: 2px 5px
 }
 
 .stickers_my .stickers_thumb {
     width: 32px;
-    height: 32px;
+    height: 32px
 }
 
 .stickers_my .stickers_body {
     margin-left: 37px;
-    min-height: 32px;
+    min-height: 32px
 }
 
 .app_item .th_img {
     width: 35px;
     height: 35px;
-    border-radius: 3px;
+    border-radius: 3px
 }
 
 .app_body {
     margin-left: 42px;
-    min-height: 37px;
+    min-height: 37px
 }
 
 .app_name {
-    padding-top: 3px;
+    padding-top: 3px
 }
 
 .app_genre,
 .app_label {
-    padding-top: 2px;
+    padding-top: 2px
 }
 
 .app_friends {
     padding-top: 4px;
     height: 22px;
-    display: none;
+    display: none
 }
 
 .app_friends .ph_img {
     width: 22px;
     height: 22px;
-    border-radius: 2px;
+    border-radius: 2px
 }
 
 .video_thumb,
 .video_thumb .th_img {
     width: 50px;
-    height: 37px;
+    height: 37px
 }
 
 .vi_body {
     margin-left: 57px;
-    min-height: 37px;
+    min-height: 37px
 }
 
 .market_thumb,
 .market_thumb .th_img {
     width: 50px;
-    height: 50px;
+    height: 50px
 }
 
 .mk_body {
     margin-left: 57px;
-    min-height: 50px;
+    min-height: 50px
 }
 
 .pp_edit_status .i_pointer {
-    left: 9px;
+    left: 9px
 }
 
 .create_post .pi_img,
 .create_post .pi_iwrap {
-    display: none;
+    display: none
 }
 
 .create_post .pi_cont .textfield {
-    height: 2.4em;
+    height: 2.4em
 }
 
 .answers_item,
 .apps_feed_item {
-    position: static;
+    position: static
 }
 
 .answers_item .has_row_photo,
 .apps_feed_item .has_app_photo {
-    padding-right: 0;
+    padding-right: 0
 }
 
 .answers_item .medias_thumb .grouped_img {
     width: 25px;
-    height: 25px;
+    height: 25px
 }
 
 .apps_feed_item {
-    min-height: 0;
+    min-height: 0
 }
 
 .answers_item .row_photo,
 .apps_feed_item .app_photo {
     position: static;
     margin: 4px 0 2px;
-    max-height: none;
+    max-height: none
 }
 
-.answers_item .row_photo .th_img,
-.answers_item .row_photo .img0_thumb {
-    max-width: 130px;
+.answers_item .row_photo .img0_thumb,
+.answers_item .row_photo .th_img {
+    max-width: 130px
 }
 
-.apps_feed_item .app_photo {
-    display: none;
-}
-
+.apps_feed_item .app_photo,
 .answers_item .pi_iwrap .i_icon {
-    display: none;
+    display: none
 }
 
 .answer_reply {
-    padding-left: 7px;
+    padding-left: 7px
 }
 
 .answer_reply .pi_img,
 .answer_reply .pi_iwrap {
-    display: none;
+    display: none
 }
 
 .answer_reply .pi_cont {
-    margin-left: 0;
+    margin-left: 0
 }
 
 .answers_item .pointer {
-    margin-top: 4px;
+    margin-top: 4px
 }
 
 .answers_item .i_pointer {
-    left: 7px;
+    left: 7px
 }
 
 .app_inline_item .th_img {
     width: 25px;
     height: 25px;
-    display: none;
+    display: none
 }
 
 .app_inline_item .aii_cont {
-    min-height: 0;
+    min-height: 0
 }
 
 .app_inline_item .app_name {
     margin-left: 0;
-    padding-top: 0;
+    padding-top: 0
 }
 
 .privacy_item {
-    padding: 5px 7px;
+    padding: 5px 7px
 }
 
 .search_item .si_img,
 .search_item .si_iwrap {
     width: 32px;
-    height: 32px;
+    height: 32px
 }
 
 .search_item .si_body {
     margin-left: 39px;
-    min-height: 34px;
+    min-height: 34px
 }
 
 .fit_box .wiki_content {
-    padding: 10px 7px;
+    padding: 10px 7px
 }
 
 .away_bottom {
-    padding: 0 7px 7px;
+    padding: 0 7px 7px
 }
 
 .away_bottom .i_like,
 .away_bottom .i_repost {
-    display: none;
+    display: none
 }
 
 .poll_block .medias_poll_title {
     padding: 7px 2px 3px;
-    margin: 0px 5px;
+    margin: 0px 5px
 }
 
 .poll_block .medias_poll_body {
     padding: 2px 2px 7px;
-    margin: 0px 5px;
+    margin: 0px 5px
 }
 
 .payments_help {
-    padding: 12px 0 0;
+    padding: 12px 0 0
 }
 
 .payment_opt .ii_icon {
-    display: none;
+    display: none
 }
 
 .payment_opt .ii_body {
-    min-height: 0;
+    min-height: 0
 }
 
 .fit_box .faq_fat {
     padding-left: 7px;
-    padding-right: 7px;
+    padding-right: 7px
 }
 
 .faq_cat_item .body_icon,
 .faq_item .faq_title {
     padding-top: 3px;
-    padding-bottom: 3px;
+    padding-bottom: 3px
 }
 
 .apps_access_icon {
-    display: none;
+    display: none
 }
 
 .apps_access_item_info {
-    padding-left: 0;
+    padding-left: 0
 }

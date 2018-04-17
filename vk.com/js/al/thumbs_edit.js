@@ -510,7 +510,7 @@ var ThumbsEdit = {
             var i = e.id,
                 a = !1,
                 n = ThumbsEdit.cache()[i];
-            if (n)
+            if (n) {
                 for (var s = n.previews, o = 0; o < s.length; o++) {
                     var r = s[o];
                     if (r[r.type].id == t) {
@@ -518,7 +518,8 @@ var ThumbsEdit = {
                         break
                     }
                 }
-            return a
+                return a
+            }
         }
     },
     addMedia: function(e, t) {
@@ -530,6 +531,23 @@ var ThumbsEdit = {
                 var s = clone(n.opts),
                     o = clone(n.previews);
                 i.hasMedia(e, t[t.type].id) || 10 != o.length && (o[o.length] = t, i.cache()[a] = null, i.init(a, o, s))
+            }
+        }
+    },
+    updateMedia: function(e, t, i, a) {
+        if ((e = ge(e)) && t && i && a) {
+            var n = e.id,
+                s = ThumbsEdit.cache()[n];
+            if (s) {
+                for (var o = clone(s.opts), r = clone(s.previews), d = !1, l = t + i, h = 0; h < r.length; h++) {
+                    var u = r[h];
+                    if (u[u.type].id == l) {
+                        var c = ThumbsEdit.convert(t, i, a.editable);
+                        r[h] = c, d = !0;
+                        break
+                    }
+                }
+                d && (ThumbsEdit.cache()[n] = null, ThumbsEdit.init(n, r, o))
             }
         }
     },

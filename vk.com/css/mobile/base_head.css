@@ -1,195 +1,185 @@
 .button {
-    padding: 6px 12px;
+    padding: 6px 12px
 }
 
 .near_btn {
-    padding: 6px 10px;
+    padding: 6px 10px
 }
 
-.small_button {
-    padding: 4px 7px;
-}
-
+.small_button,
 .small_near_btn {
-    padding: 4px 7px;
+    padding: 4px 7px
 }
 
 .hb_btn {
-    padding: 8px 0;
+    padding: 8px 0
 }
 
 .mhb_home {
-    width: 35px;
+    width: 35px
 }
 
-.mhi_home {
-    background-image: url(/images/mobile/logo/logo.png);
-}
-
+.mhi_home,
 .mhi_vkhome {
-    background-image: url(/images/mobile/logo/logo.png);
+    background-image: url(/images/mobile/logo/logo.png)
 }
 
 .mhb_notify {
     padding-left: 6px;
     padding-right: 6px;
-    max-height: 2.701em;
+    max-height: 2.701em
 }
 
 .mh_notify_counter {
-    padding-left: 5px;
+    padding-left: 5px
 }
 
 .mhi_notify {
     background-image: url(/images/mobile/s_notify.png?4);
-    padding-left: 15px;
+    padding-left: 15px
 }
 
 .mhb_back {
     padding-left: 5px;
-    padding-right: 5px;
+    padding-right: 5px
 }
 
 .mhi_back {
     background-image: url(/images/mobile/s_back.png?1);
-    padding-left: 14px;
+    padding-left: 14px
 }
 
 .mhb_logo {
     padding-left: 9px;
-    padding-right: 5px;
+    padding-right: 5px
 }
 
 .mhi_logo {
-    background-image: url(/images/mobile/logo/s_logo.png);
+    background-image: url(/images/mobile/logo/s_logo.png)
 }
 
 .mhi_search {
-    background-image: url(/images/mobile/s_search_icon.png?4);
+    background-image: url(/images/mobile/s_search_icon.png?4)
 }
-
-._hover .mhb_search:hover .mhi_search,
-._touch .mhb_search.hover .mhi_search,
-._touch .mhb_search.active .mhi_search {}
 
 .mhu_img,
 .mhu_iwrap {
     width: 24px;
-    height: 24px;
+    height: 24px
 }
 
 ._lm .mhi_home {
-    background-image: url(/images/mobile/s_menu.png?1);
+    background-image: url(/images/mobile/s_menu.png?1)
 }
 
 ._lm .mhb_home {
-    width: 35px;
+    width: 35px
 }
 
 .head_search {
-    padding: 5px;
+    padding: 5px
 }
 
 .head_search .row_table_last_column {
-    padding-left: 5px;
+    padding-left: 5px
 }
 
 .head_search .textfield {
-    padding: 5px 20px 5px 24px;
+    padding: 5px 20px 5px 24px
 }
 
 .head_search .iwrap {
-    margin: 0 44px 0 0;
+    margin: 0 44px 0 0
 }
 
 .head_search .i_search {
     background-image: url(/images/mobile/s_search_icons.png?2);
     background-position: 6px;
-    width: 25px;
+    width: 25px
 }
 
 .head_search .button {
-    padding: 5px 5px 5px !important;
+    padding: 5px!important
 }
 
 .qsearch .clear_btn {
     background-image: url(/images/mobile/s_search_icons.png?2);
-    width: 26px;
+    width: 26px
 }
 
 .cp_icon_btn .i_icon {
     background-image: url(/images/mobile/attach_icons_s.png?4);
     width: 26px;
-    height: 26px;
+    height: 26px
 }
 
 .cp_geo_waiting .i_icon_loading {
     margin: 4px 5px;
-    height: 18px;
+    height: 18px
 }
 
 .cp_attach_btn .i_icon {
-    background-position: -182px;
+    background-position: -182px
 }
 
 .cp_attach_btn_sel .i_icon {
-    background-position: -208px;
+    background-position: -208px
 }
 
 .cp_inline_attach_btn .i_icon {
-    background-position: 0;
+    background-position: 0
 }
 
 .cp_geo_btn .i_icon {
-    background-position: -52px;
+    background-position: -52px
 }
 
 .cp_geo_btn_sel .i_icon {
-    background-position: -78px;
+    background-position: -78px
 }
 
 .cp_options_btn .i_icon {
     background-image: url(/images/mobile/attach_icons_s.png?4);
     background-position: -109px;
-    padding: 3px 8px;
+    padding: 3px 8px
 }
 
 .cp_options_btn_sel .i_icon {
-    background-position: -135px;
+    background-position: -135px
 }
 
 .cp_sticker_btn .i_icon {
-    background-position: -234px;
+    background-position: -234px
 }
 
 .cp_sticker_btn_sel .i_icon {
-    background-position: -260px;
+    background-position: -260px
 }
 
 .away_bottom .item_like,
 .away_bottom .item_repost {
     padding-left: 10px;
-    padding-right: 10px;
+    padding-right: 10px
 }
 
 .qsearch .button {
-    padding: 6px 7px;
+    padding: 6px 7px
 }
 
 #l {
-    margin-right: 36px;
+    margin-right: 36px
 }
 
 .lm_opened #m {
-    margin-left: -36px;
+    margin-left: -36px
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
 only screen and (min-device-pixel-ratio: 2) {
     .near_btn {
-        padding-top: 5px;
+        padding-top: 5px
     }
     .small_near_btn {
-        padding-top: 3px;
+        padding-top: 3px
     }
 }

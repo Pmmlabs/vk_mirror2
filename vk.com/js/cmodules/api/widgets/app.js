@@ -1,36 +1,53 @@
 ﻿! function(e) {
-    function t(i) {
-        if (r[i]) return r[i].exports;
-        var n = r[i] = {
-            exports: {},
-            id: i,
-            loaded: !1
+    function t(n) {
+        if (r[n]) return r[n].exports;
+        var o = r[n] = {
+            i: n,
+            l: !1,
+            exports: {}
         };
-        return e[i].call(n.exports, n, n.exports, t), n.loaded = !0, n.exports
+        return e[n].call(o.exports, o, o.exports, t), o.l = !0, o.exports
     }
     var r = {};
-    return t.m = e, t.c = r, t.p = "", t(0)
+    return t.m = e, t.c = r, t.d = function(e, r, n) {
+        t.o(e, r) || Object.defineProperty(e, r, {
+            configurable: !1,
+            enumerable: !0,
+            get: n
+        })
+    }, t.r = function(e) {
+        Object.defineProperty(e, "__esModule", {
+            value: !0
+        })
+    }, t.n = function(e) {
+        var r = e && e.__esModule ? function() {
+            return e["default"]
+        } : function() {
+            return e
+        };
+        return t.d(r, "a", r), r
+    }, t.o = function(e, t) {
+        return Object.prototype.hasOwnProperty.call(e, t)
+    }, t.p = "", t(t.s = 23)
 }({
-    0: function(e, t, r) {
-        e.exports = r(116)
-    },
-    116: function(e, t) {
+    18: function(e, t, r) {
         "use strict";
-        var r = function() {
+        r.r(t);
+        var n = function() {
             function e(e, t) {
                 var r = [],
-                    i = !0,
-                    n = !1,
-                    o = void 0;
+                    n = !0,
+                    o = !1,
+                    i = void 0;
                 try {
-                    for (var a, c = e[Symbol.iterator](); !(i = (a = c.next()).done) && (r.push(a.value), !t || r.length !== t); i = !0);
-                } catch (s) {
-                    n = !0, o = s
+                    for (var c, u = e[Symbol.iterator](); !(n = (c = u.next()).done) && (r.push(c.value), !t || r.length !== t); n = !0);
+                } catch (a) {
+                    o = !0, i = a
                 } finally {
                     try {
-                        !i && c["return"] && c["return"]()
+                        !n && u["return"] && u["return"]()
                     } finally {
-                        if (n) throw o
+                        if (o) throw i
                     }
                 }
                 return r
@@ -63,9 +80,9 @@
             onresize: function() {
                 if (cur.height_el && cur.Rpc) {
                     var e = getSize(cur.height_el),
-                        t = r(e, 2),
-                        i = t[1];
-                    cur.Rpc.callMethod("resize", i)
+                        t = n(e, 2),
+                        r = t[1];
+                    cur.Rpc.callMethod("resize", r)
                 }
             },
             override: function(e, t) {
@@ -80,6 +97,9 @@
         };
         try {
             stManager.done(jsc("api/widgets/app.js"))
-        } catch (i) {}
+        } catch (o) {}
+    },
+    23: function(e, t, r) {
+        e.exports = r(18)
     }
 });

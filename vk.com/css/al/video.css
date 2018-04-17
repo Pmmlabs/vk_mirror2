@@ -4,6 +4,7 @@
 .media-video-play,
 .media-video-thumb-background,
 .media-video-thumb-wrap-background,
+.video_choose_upload_area_label,
 .video_desktop_live_intro_wrap,
 .video_empty_placeholder.no_rows,
 .video_item .video_item_thumb,
@@ -678,7 +679,6 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
 
 #video_choose_box,
 #video_review_box {
-    line-height: 13px;
     overflow: hidden
 }
 
@@ -1188,4 +1188,96 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
 .video_desktop_live_intro_btn {
     float: left;
     margin-right: 10px
+}
+
+.video_choose_upload_area_cont {
+    top: 0;
+    z-index: 10
+}
+
+.video_choose_upload_area_cont.fixed {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .2)
+}
+
+.video_choose_upload_area {
+    background: #f0f2f5;
+    padding: 8.5px 10px;
+    text-align: center;
+    color: #2a5885;
+    display: block;
+    float: left;
+    width: 100%;
+    box-sizing: border-box
+}
+
+.video_choose_upload_area:hover {
+    background: #e9ebf0;
+    text-decoration: none
+}
+
+.video_choose_upload_area_enter .video_choose_upload_area {
+    width: 100%;
+    height: 100%
+}
+
+.video_choose_upload_area_enter #video_choose_upl,
+.video_choose_upload_area_enter .video_choose_upload_area_cont {
+    height: 100%
+}
+
+.video_choose_upload_area_enter .video_choose_upload_area {
+    background-color: #fff;
+    padding: 20px
+}
+
+#video_choose_upl {
+    box-sizing: border-box
+}
+
+.video_choose_upload_area_drop {
+    display: none
+}
+
+.video_choose_upload_area_enter .video_choose_upload_area_drop {
+    display: block;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px dashed #a9bbcf;
+    background-color: #f0f2f5
+}
+
+.video_choose_upload_area_enter .video_choose_upload_area_drop_label {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2272%22%20height%3D%2272%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.7%22%3E%3Cpath%20d%3D%22M0%200h72v72H0z%22%20opacity%3D%22.4%22%2F%3E%3Cpath%20fill%3D%22%2393A3BB%22%20d%3D%22M23.537%208h24.926c4.011%200%205.466.418%206.933%201.202a8.178%208.178%200%200%201%203.402%203.402C59.582%2014.071%2060%2015.526%2060%2019.537v32.926c0%204.011-.418%205.466-1.202%206.933a8.178%208.178%200%200%201-3.402%203.402C53.929%2063.582%2052.474%2064%2048.463%2064H23.537c-4.011%200-5.466-.418-6.933-1.202a8.178%208.178%200%200%201-3.402-3.402C12.418%2057.929%2012%2056.474%2012%2052.463V19.537c0-4.011.418-5.466%201.202-6.933a8.178%208.178%200%200%201%203.402-3.402C18.071%208.418%2019.526%208%2023.537%208zM23%2016a3%203%200%200%200-3%203v2a3%203%200%200%200%203%203h2a3%203%200%200%200%203-3v-2a3%203%200%200%200-3-3h-2zm0%2032a3%203%200%200%200-3%203v2a3%203%200%200%200%203%203h2a3%203%200%200%200%203-3v-2a3%203%200%200%200-3-3h-2zm0-16a3%203%200%200%200-3%203v2a3%203%200%200%200%203%203h2a3%203%200%200%200%203-3v-2a3%203%200%200%200-3-3h-2zm24-16a3%203%200%200%200-3%203v2a3%203%200%200%200%203%203h2a3%203%200%200%200%203-3v-2a3%203%200%200%200-3-3h-2zm0%2032a3%203%200%200%200-3%203v2a3%203%200%200%200%203%203h2a3%203%200%200%200%203-3v-2a3%203%200%200%200-3-3h-2zm0-16a3%203%200%200%200-3%203v2a3%203%200%200%200%203%203h2a3%203%200%200%200%203-3v-2a3%203%200%200%200-3-3h-2z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: center 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: #7a92ae;
+    font-size: 14px;
+    padding-top: 80px
+}
+
+.video_choose_upload_area_label {
+    background-image: url(/images/icons/upload_icon.png);
+    background-position: left 6px;
+    background-repeat: no-repeat;
+    padding: 5px 5px 5px 30px;
+    display: inline-block
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .video_choose_upload_area_label {
+        background-image: url(/images/icons/upload_icon_2x.png);
+        background-size: 16px 16px
+    }
+}
+
+.video_choose_upload_area_enter .video_choose_upload_area_upload {
+    display: none
 }

@@ -1,30 +1,50 @@
-﻿! function(t) {
-    function e(r) {
+﻿! function(e) {
+    function t(r) {
         if (n[r]) return n[r].exports;
-        var s = n[r] = {
-            exports: {},
-            id: r,
-            loaded: !1
+        var o = n[r] = {
+            i: r,
+            l: !1,
+            exports: {}
         };
-        return t[r].call(s.exports, s, s.exports, e), s.loaded = !0, s.exports
+        return e[r].call(o.exports, o, o.exports, t), o.l = !0, o.exports
     }
     var n = {};
-    return e.m = t, e.c = n, e.p = "", e(0)
+    return t.m = e, t.c = n, t.d = function(e, n, r) {
+        t.o(e, n) || Object.defineProperty(e, n, {
+            configurable: !1,
+            enumerable: !0,
+            get: r
+        })
+    }, t.r = function(e) {
+        Object.defineProperty(e, "__esModule", {
+            value: !0
+        })
+    }, t.n = function(e) {
+        var n = e && e.__esModule ? function() {
+            return e["default"]
+        } : function() {
+            return e
+        };
+        return t.d(n, "a", n), n
+    }, t.o = function(e, t) {
+        return Object.prototype.hasOwnProperty.call(e, t)
+    }, t.p = "", t(t.s = 227)
 }({
-    0: function(t, e, n) {
-        t.exports = n(348)
+    227: function(e, t, n) {
+        e.exports = n(582)
     },
-    348: function(t, e) {
+    582: function(e, t, n) {
         "use strict";
-        var n = {
-            initEmbedPost: function(t, e, n) {
+        n.r(t);
+        var r = {
+            initEmbedPost: function(e, t, n) {
                 var r = ge("trending_results_embed");
-                r && t && e && n && VK && VK.Widgets && VK.Widgets.Post && VK.Widgets.Post("trending_results_embed", t, e, n)
+                r && e && t && n && VK && VK.Widgets && VK.Widgets.Post && VK.Widgets.Post("trending_results_embed", e, t, n)
             }
         };
-        window.LandingTrendingStats = window.LandingTrendingStats || n;
+        window.LandingTrendingStats = window.LandingTrendingStats || r;
         try {
             stManager.done(jsc("web/trending_results.js"))
-        } catch (r) {}
+        } catch (o) {}
     }
 });

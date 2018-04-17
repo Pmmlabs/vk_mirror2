@@ -30,7 +30,6 @@ if (!window.Upload) {
             if (options.clear) {
                 cur.destroy.push(Upload.deinit.pbind(iUpload));
             }
-
             this.uploadUrls[iUpload] = uploadUrl;
             if (options.flash_lite && !browser.flash && !this.checkFileApi()) {
                 this.obj[iUpload] = ge(options.fieldEl) || this.obj[iUpload].parentNode.firstChild;
@@ -794,6 +793,40 @@ if (!window.Upload) {
             return valid;
         },
 
+        checkFilesSizes: function(iUpload, files) {
+            var options = this.options[iUpload];
+
+            if (options['file_size_limit']) {
+                for (var index in files) {
+                    var file = files[index];
+                    if (file.size && file.size > options['file_size_limit']) {
+                        var fileSizeErrorText = options.lang.filesize_error;
+                        if (fileSizeErrorText && fileSizeErrorText.indexOf('{count}') >= 0) {
+                            fileSizeErrorText = fileSizeErrorText.replace('{count}', intval(options['file_size_limit'] / (1024 * 1024)));
+                        }
+
+                        if (fileSizeErrorText) {
+                            showFastBox({
+                                    title: getLang('global_error'),
+                                    width: 430,
+                                    dark: 1,
+                                    bodyStyle: 'padding: 20px; line-height: 160%;',
+                                    onHide: function() {
+                                        Upload.embed(iUpload);
+                                        delete cur.notStarted;
+                                    }
+                                },
+                                fileSizeErrorText,
+                                getLang('global_cancel'));
+                        }
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        },
+
         onFileApiSend: function(iUpload, files, force) {
             if (!files || !files.length) return;
 
@@ -826,40 +859,8 @@ if (!window.Upload) {
                 files = [files[0]]
             }
 
-            if (options['file_size_limit']) {
-                for (var index in files) {
-                    var file = files[index];
-                    if (file.size && file.size > options['file_size_limit']) {
-                        var fileSizeErrorText = options.lang.filesize_error;
-                        if (fileSizeErrorText && fileSizeErrorText.indexOf('{count}') >= 0) {
-                            fileSizeErrorText = fileSizeErrorText.replace('{count}', intval(options['file_size_limit'] / (1024 * 1024)));
-                        }
-
-                        if (fileSizeErrorText) {
-                            showFastBox({
-                                    title: getLang('global_error'),
-                                    width: 430,
-                                    dark: 1,
-                                    bodyStyle: 'padding: 20px; line-height: 160%;',
-                                    onHide: function() {
-                                        Upload.embed(iUpload);
-                                        delete cur.notStarted;
-                                    }
-                                },
-                                fileSizeErrorText,
-                                getLang('global_continue'),
-                                function() {
-                                    Upload.uploadFiles(iUpload, files, max_files);
-                                    if (options.filesize_hide_last) {
-                                        curBox().hide();
-                                    } else {
-                                        boxQueue.hideAll();
-                                    }
-                                }, getLang('global_cancel'));
-                        }
-                        return;
-                    }
-                }
+            if (!this.checkFilesSizes(iUpload, files)) {
+                return;
             }
 
             if (options.photoBox && !force) {
@@ -1062,7 +1063,6 @@ if (!window.Upload) {
                 vars = options.signed ? this.vars[iUpload] : extend(this.vars[iUpload], {
                     ajx: 1
                 }),
-                params = [],
                 totalSize = 0,
                 totalCount = 0,
                 loadedSize = 0,
@@ -1079,15 +1079,10 @@ if (!window.Upload) {
             }
 
             if (options.file_match) re = new RegExp(options.file_match, "i");
-            for (var j in vars) {
-                params.push(j + "=" + vars[j]);
-            }
-            var uploadUrl = this.uploadUrls[iUpload] + (this.uploadUrls[iUpload].match(/\?/) ? '&' : '?') + params.join('&'),
-                fileName;
 
             var errors = false;
             for (var j = 0; j < max_files; j++) {
-                fileName = (files[j].fileName || files[j].name || '').replace(/[&<>"']/g, '');
+                var fileName = (files[j].fileName || files[j].name || '').replace(/[&<>"']/g, '');
                 if (options.file_match) {
                     if (!fileName.match(re)) {
                         errors = true;
@@ -1123,6 +1118,8 @@ if (!window.Upload) {
                     if (!cur.nextQueues) cur.nextQueues = [];
                     cur.nextQueues.push(iUpload);
                 } else {
+                    var params = ajx2q(vars);
+                    var uploadUrl = this.uploadUrls[iUpload] ? this.uploadUrls[iUpload] + (this.uploadUrls[iUpload].match(/\?/) ? '&' : '?') + params : '';
                     this.uploadFile(iUpload, filesQueue.pop(), uploadUrl);
                     if (options.multi_progress) cur.multiProgressIndex = iUpload;
                 }
@@ -1278,6 +1275,9 @@ if (!window.Upload) {
                 xhr.open('POST', url, true);
 
                 xhr.upload.onprogress = function(e) {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        return;
+                    }
                     if (e.lengthComputable) {
                         curUpload.requestsProgress[pointerStart] = e.loaded;
                     }
@@ -1301,17 +1301,24 @@ if (!window.Upload) {
                             ls.set(curUpload.storageKey, curUpload.state);
                             _startUpload();
                         }
+                        delete curUpload.requestsProgress[pointerStart];
+                        _onProgress();
                     } else if (e.target.status == 200 && !curUpload.chunksLeft) {
                         ls.remove(curUpload.storageKey);
                         _onUploadComplete(e.target.responseText);
-                    } else {
+                    } else { // 500 (copyright) or ...
                         ls.remove(curUpload.storageKey);
                         curUpload.abort();
                         Upload.onUploadError(info);
+
+                        if (!Upload.options[iUpload].filesQueue.length) {
+                            Upload.startNextQueue(iUpload);
+                            Upload.onUploadCompleteAll(info, e.target.responseText);
+                            options.uploading = false;
+                        }
+
                         _logChunkError(e.target.status, e.target.responseText, pointerStart + '-' + pointerEnd);
                     }
-                    delete curUpload.requestsProgress[pointerStart];
-                    _onProgress();
                 };
 
                 xhr.onerror = function(e) {
@@ -1396,8 +1403,36 @@ if (!window.Upload) {
             Upload.uploadFileChunked(iUpload, curUpload.file, curUpload.state.url);
         },
 
-        uploadFile: function(iUpload, file, url) {
+        isNeedRequestUrl: function(iUpload) {
             var options = this.options[iUpload];
+            return options.requestOptionsForFile && options.type === 'video';
+        },
+
+        getUploadOptions: function(iUpload, file) {
+            Upload.options[iUpload].uploadOptionsXhr = ajax.post('al_video.php?act=get_upload_options', {
+                gid: cur.gid || 0
+            }, {
+                onDone: function(videoOpts) {
+                    var params = ajx2q(videoOpts.params);
+                    var uploadUrl = videoOpts.url + (videoOpts.url.match(/\?/) ? '&' : '?') + params;
+
+                    extend(Upload.options[iUpload], videoOpts.options);
+                    extend(Upload.vars[iUpload], videoOpts.params);
+                    Upload.uploadUrls[iUpload] = uploadUrl;
+                    Upload.check(iUpload);
+
+                    Upload.uploadFile(iUpload, file, uploadUrl, true);
+                }
+            });
+        },
+
+        uploadFile: function(iUpload, file, url, urlIsNew) {
+            var options = this.options[iUpload];
+
+            if (Upload.isNeedRequestUrl(iUpload) && !urlIsNew) {
+                Upload.getUploadOptions(iUpload, file);
+                return;
+            }
 
             if (options.chunked && Upload.supportsChunkedUpload() && file.size > 4 * 1024 * 1024) {
                 Upload.uploadFileChunked.apply(Upload, arguments);
@@ -1462,8 +1497,7 @@ if (!window.Upload) {
                     }
                 };
                 xhr.upload.onprogress = function(e) {
-
-                    if (xhr.readyState === 4) {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
                         return;
                     }
 
@@ -1571,7 +1605,7 @@ if (!window.Upload) {
             try {
                 var vars = Upload.vars[iUpload],
                     options = Upload.options[iUpload],
-                    params = [],
+                    params = ajx2q(vars),
                     queue = options.filesQueue;
                 inQueue = false,
                     info = options.multi_progress ? {
@@ -1580,9 +1614,6 @@ if (!window.Upload) {
                     } : iUpload,
                     ind = name ? iUpload + '_' + name : iUpload;
 
-                for (var j in vars) {
-                    params.push(j + "=" + vars[j]);
-                }
                 for (var j in queue) {
                     if (name == (queue[j].fileName || queue[j].name || '').replace(/[&<>"']/g, '')) {
                         queue.splice(j, 1);
@@ -1590,12 +1621,12 @@ if (!window.Upload) {
                         break;
                     }
                 }
-                if (el && el.tt) el.tt.destroy();
+                if (el && el.tt && el.tt.destroy) el.tt.destroy();
                 re('upload' + ind + '_progress_wrap');
                 Upload.onUploadComplete(info, '{"error":"ERR_UPLOAD_TERMINATED: upload request was terminated"}');
                 if (!inQueue && options.xhr) options.xhr.abort();
                 if (!inQueue && options.chunkedUpload) options.chunkedUpload.abort();
-                var url = this.uploadUrls[iUpload] + (this.uploadUrls[iUpload].match(/\?/) ? '&' : '?') + params.join('&');
+                var url = this.uploadUrls[iUpload] + (this.uploadUrls[iUpload].match(/\?/) ? '&' : '?') + params;
                 if (!inQueue) {
                     if (queue.length > 0) {
                         Upload.uploadFile(iUpload, queue.pop(), url);
@@ -1630,11 +1661,8 @@ if (!window.Upload) {
                 }
                 if (queue.length > 0) {
                     var vars = Upload.vars[next],
-                        params = [];
-                    for (var j in vars) {
-                        params.push(j + "=" + vars[j]);
-                    }
-                    var url = Upload.uploadUrls[next] + (Upload.uploadUrls[next].match(/\?/) ? '&' : '?') + params.join('&');
+                        params = ajx2q(vars);
+                    var url = Upload.uploadUrls[next] + (Upload.uploadUrls[next].match(/\?/) ? '&' : '?') + params;
                     Upload.uploadFile(next, queue.pop(), url);
                     cur.multiProgressIndex = next;
                 } else {
@@ -1745,6 +1773,29 @@ if (!window.Upload) {
                 if (el == Upload.dropbox[iUpload]) return true;
                 el = el.parentNode;
             }
+            return false;
+        },
+
+        isSomethingUploading: function(iUpload) {
+            var options = Upload.options[iUpload];
+
+
+            if (options.filesQueue && options.filesQueue.length) {
+                return true;
+            }
+
+            if (options.xhr && options.xhr.readyState !== 4 && options.xhr.readyState !== 0) {
+                return true;
+            }
+
+            if (options.uploadOptionsXhr && options.uploadOptionsXhr.readyState !== 4 && options.uploadOptionsXhr.readyState !== 0) {
+                return true;
+            }
+
+            if (options.chunked && options.chunkedUpload && options.chunkedUpload.activeRequests.length) {
+                return true;
+            }
+
             return false;
         },
 

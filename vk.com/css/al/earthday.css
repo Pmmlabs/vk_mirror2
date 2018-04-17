@@ -1,32 +1,32 @@
 #earthday_css {
-    display: none;
+    display: none
 }
 
 a.earthday_btn_light {
     width: 160px;
     text-align: center;
-    color: #FFFFFF;
-    border: #888888 solid 1px;
+    color: #fff;
+    border: #888 solid 1px;
     border-radius: 2px;
     padding: 6px;
-    display: block;
+    display: block
 }
 
 a.earthday_btn_light:hover {
-    border: #AAAAAA solid 1px;
-    text-decoration: none;
+    border: #aaa solid 1px;
+    text-decoration: none
 }
 
 a.earthday_btn_close {
     width: 100px;
     text-align: center;
-    color: #FFFFFF;
+    color: #fff;
     padding: 7px;
-    display: block;
+    display: block
 }
 
 .earthday_buttons_cont {
-    padding-top: 20px;
+    padding-top: 20px
 }
 
 .earthday_lamp_cont {
@@ -36,17 +36,17 @@ a.earthday_btn_close {
     left: -76px;
     position: absolute;
     cursor: pointer;
-    opacity: 0;
+    opacity: 0
 }
 
 .dev .earthday_lamp_cont {
-    display: none !important;
+    display: none!important
 }
 
 .im_fixed_nav .earthday_lamp_cont {
     position: fixed;
     margin-left: -76px;
-    left: auto;
+    left: auto
 }
 
 .earthday_bg {
@@ -54,11 +54,11 @@ a.earthday_btn_close {
     top: 0px;
     left: 0px;
     opacity: 0.8;
-    background: #000000;
-    background: rgba(29, 29, 29, 0.96);
+    background: #000;
+    background: rgba(29, 29, 29, .96);
     width: 100%;
     height: 100%;
-    z-index: 20000;
+    z-index: 20000
 }
 
 #eathday_info {
@@ -68,12 +68,12 @@ a.earthday_btn_close {
     position: absolute;
     margin-top: 140px;
     line-height: 200%;
-    padding-bottom: 100px;
+    padding-bottom: 100px
 }
 
 .earthday_text a {
     color: #f2f2f5;
-    text-decoration: underline;
+    text-decoration: underline
 }
 
 .earthday_block {
@@ -81,20 +81,20 @@ a.earthday_btn_close {
     color: #f2f2f5;
     font-size: 12px;
     padding-top: 28px;
-    padding-right: 20px;
+    padding-right: 20px
 }
 
 #earthday_lamp {
     position: absolute;
     margin-left: -50px;
     margin-top: -10px;
-    pointer-events: none;
+    pointer-events: none
 }
 
 #earthday_chain {
     position: absolute;
     margin-top: -160px;
-    margin-left: 36px;
+    margin-left: 36px
 }
 
 .earthday_close {
@@ -103,23 +103,23 @@ a.earthday_btn_close {
     top: 0px;
     padding: 30px;
     opacity: 0.6;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .earthday_close:hover {
-    opacity: 1;
+    opacity: 1
 }
 
 .earthday_bg_lighter {
     pointer-events: none;
-    background: radial-gradient(200px 200px, circle contain, rgba(0, 0, 0, 0), rgba(29, 29, 29, 0.96)) 50%;
-    background: -o-radial-gradient(200px 200px, circle contain, rgba(0, 0, 0, 0), rgba(29, 29, 29, 0.96)) 50%;
+    background: radial-gradient(200px 200px, circle contain, transparent, rgba(29, 29, 29, .96)) 50%;
+    background: -o-radial-gradient(200px 200px, circle contain, transparent, rgba(29, 29, 29, .96)) 50%
 }
 
 .earthday_bg_lighter .earthday_close {
-    display: none;
+    display: none
 }
 
 .earthday_close_grey {
-    z-index: 30000;
+    z-index: 30000
 }

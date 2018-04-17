@@ -1,561 +1,561 @@
 .i_pointer {
     background-image: url(/images/mobile/pointer_2x.gif?1);
-    background-size: 90px 8px !important;
+    background-size: 90px 8px!important
 }
 
 .al_loading,
 .wait_loading {
     background-image: url(/images/mobile/oupload_2x.gif?1);
-    background-size: 29px 7px !important;
+    background-size: 29px 7px!important
 }
 
-.input_loading,
-.i_loading,
-.mva_item_loading .mva_label,
 .cm_item_loading .cm_label,
-.cp_geo_waiting .i_icon_loading {
+.cp_geo_waiting .i_icon_loading,
+.i_loading,
+.input_loading,
+.mva_item_loading .mva_label {
     background-image: url(/images/mobile/mupload_2x.gif?1);
-    background-size: 27px 4px;
+    background-size: 27px 4px
 }
 
 .head_search .input_loading {
     background-image: none;
-    background-size: auto;
+    background-size: auto
 }
 
 .button_locked {
     background-image: url(/images/mobile/wupload_2x.gif?1);
-    background-size: 32px 8px !important;
+    background-size: 32px 8px!important
 }
 
 .lvi {
     background-image: url(/images/mobile/profile_icons_2x.png?5);
-    background-size: 40px 12px !important;
+    background-size: 40px 12px!important
 }
 
-.qsearch .clear_btn,
-.head_search .i_search {
-    background-image: url(/images/mobile/search_icons_2x.png?6) !important;
-    background-size: 40px 20px !important;
+.head_search .i_search,
+.qsearch .clear_btn {
+    background-image: url(/images/mobile/search_icons_2x.png?6)!important;
+    background-size: 40px 20px!important
 }
 
 .mhi_home,
 .mhi_logo {
-    background-image: url(/images/mobile/logo/logo_2x.png) !important;
-    background-size: 31px 18px !important;
+    background-image: url(/images/mobile/logo/logo_2x.png)!important
+}
+
+.mhi_home,
+.mhi_logo,
+.mhi_vkhome {
+    background-size: 31px 18px!important
 }
 
 .mhi_vkhome {
-    background-image: url(/images/mobile/logo/logo_2x.png?3) !important;
-    background-size: 31px 18px !important;
+    background-image: url(/images/mobile/logo/logo_2x.png?3)!important
 }
 
 .mhi_notify {
-    background-image: url(/images/mobile/notify_2x.png?5) !important;
-    background-size: 18px 16px !important;
+    background-image: url(/images/mobile/notify_2x.png?5)!important;
+    background-size: 18px 16px!important
 }
 
 .mhi_back {
-    background-image: url(/images/mobile/back_2x.png?3) !important;
-    background-size: 10px 16px !important;
+    background-image: url(/images/mobile/back_2x.png?3)!important;
+    background-size: 10px 16px!important
 }
 
 .mhi_search {
-    background-image: url(/images/mobile/search_icon_2x.png?4) !important;
-    background-size: 18px 18px !important;
+    background-image: url(/images/mobile/search_icon_2x.png?4)!important;
+    background-size: 18px 18px!important
 }
-
-._hover .mhb_search:hover .mhi_search,
-._touch .mhb_search.hover .mhi_search,
-._touch .mhb_search.active .mhi_search {}
 
 ._lm .mhi_home {
-    background-image: url(/images/mobile/menu_2x.png?2) !important;
-    background-size: 20px 18px !important;
+    background-image: url(/images/mobile/menu_2x.png?2)!important;
+    background-size: 20px 18px!important
 }
 
+.faq_cat_item .faq_body,
+.inline_item_blank .ii_body,
 .ip_user_link .i_arr,
 .op_inline_user_link,
-.inline_item_blank .ii_body,
-.faq_cat_item .faq_body,
 .payment_opt_label {
     background-image: url(/images/mobile/profile_arrow_2x.png?1);
-    background-size: 9px 13px !important;
+    background-size: 9px 13px!important
 }
 
-.mm_item .i_icon,
-.lfm_item .i_icon {
+.lfm_item .i_icon,
+.mm_item .i_icon {
     background-image: url(/images/mobile/menu_icons_2x.png?11);
-    background-size: 25px 391px !important;
+    background-size: 25px 391px!important
 }
 
-.notify_item .i_gift,
-.answers_item .pi_img .i_icon {
+.answers_item .pi_img .i_icon,
+.notify_item .i_gift {
     background-image: url(/images/mobile/feedback_2x.png?8);
-    background-size: 135px 16px !important;
+    background-size: 135px 16px!important
 }
 
-.ni_close,
-.inline_item_reset .ii_btn,
-.inline_item_reset .ii_body,
 .edit_partner_reset,
-.sel_reset_btn,
-.poll_del_btn {
+.inline_item_reset .ii_body,
+.inline_item_reset .ii_btn,
+.ni_close,
+.poll_del_btn,
+.sel_reset_btn {
     background-image: url(/images/mobile/close_2x.png?2);
-    background-size: 15px 11px !important;
+    background-size: 15px 11px!important
 }
 
 .show_more_loading .i_loading {
     background-image: url(/images/mobile/gupload_2x.gif?2);
-    background-size: 32px 8px !important;
+    background-size: 32px 8px!important
 }
 
 .di_current_peer .multichat_count {
     background-image: url(/images/mobile/multichat_icon_2x.png);
-    background-size: 19px 13px !important;
+    background-size: 19px 13px!important
 }
 
-.tabs_block_hideable.tabs_block_closed .tabs_dd,
-._js .tabs_block_hideable.tabs_block_closed {
-    background: url(/images/mobile/arrow_right_2x.png?2) no-repeat 100% 100%;
+._js .tabs_block_hideable.tabs_block_closed,
+.tabs_block_hideable.tabs_block_closed .tabs_dd {
+    background: url(/images/mobile/arrow_right_2x.png?2) no-repeat 100% 100%
 }
 
-.tabs_block_hideable.tabs_block_opened .tabs_dd,
-._js .tabs_block_hideable.tabs_block_opened {
-    background: url(/images/mobile/arrow_left_2x.png?2) no-repeat 100% 100%;
+._js .tabs_block_hideable.tabs_block_opened,
+.tabs_block_hideable.tabs_block_opened .tabs_dd {
+    background: url(/images/mobile/arrow_left_2x.png?2) no-repeat 100% 100%
 }
 
-.tabs_block_closed .tabs_dd,
 ._js .tabs_block_closed,
-.tabs_block_opened .tabs_dd,
-._js .tabs_block_opened {
-    background-size: 23px 23px !important;
+._js .tabs_block_opened,
+.tabs_block_closed .tabs_dd,
+.tabs_block_opened .tabs_dd {
+    background-size: 23px 23px!important
 }
 
 .inline_item_selected .ii_body {
     background-image: url(/images/mobile/selected_2x.png?2);
-    background-size: 15px 15px !important;
+    background-size: 15px 15px!important
 }
 
 .medias_row .i_icon {
     background-image: url(/images/mobile/media_icons_2x.png?1);
-    background-size: 168px 17px !important;
+    background-size: 168px 17px!important
 }
 
 @media screen and (min-width: 320px) {
     .wall_item .medias_row .i_icon {
-        background-image: url(/images/mobile/media_thumbs_2x.png?1) !important;
-        background-size: 168px 24px !important;
+        background-image: url(/images/mobile/media_thumbs_2x.png?1)!important;
+        background-size: 168px 24px!important
     }
 }
 
-.pic_from .i_copy,
-.pi_signed .i_signed,
-.pi_signed .i_ads_mark,
-.medias_row .i_timer,
+.head_actions_wrap .i_actions,
 .medias_row .i_marked_as_ads,
+.medias_row .i_timer,
 .pi_acts_link .i_icon,
 .pi_fronly,
-.head_actions_wrap .i_actions {
+.pi_signed .i_ads_mark,
+.pi_signed .i_signed,
+.pic_from .i_copy {
     background-image: url(/images/mobile/post_icons_2x.png?7);
-    background-size: 144px 17px !important;
+    background-size: 144px 17px!important
 }
 
 .pic_skipped .pic_img {
-    background-image: url(/images/mobile/skipped_reposts_2x.png);
+    background-image: url(/images/mobile/skipped_reposts_2x.png)
 }
 
 .pic_copyof_btn .pic_cont {
-    background-image: url(/images/mobile/more_reposts_2x.png);
+    background-image: url(/images/mobile/more_reposts_2x.png)
 }
 
-.pic_skipped .pic_img,
-.pic_copyof_btn .pic_cont {
-    background-size: 16px 4px !important;
+.pic_copyof_btn .pic_cont,
+.pic_skipped .pic_img {
+    background-size: 16px 4px!important
 }
 
 .mt_loading {
     background-image: url(/images/mobile/wgupload_2x.gif?2);
-    background-size: 32px 8px !important;
+    background-size: 32px 8px!important
 }
 
 .item_like .i_like,
-.item_shares .i_share,
 .item_replies .i_replies,
 .item_repost .i_repost,
+.item_shares .i_share,
 .item_views .i_views {
     background-image: url(/images/mobile/like_2x.png?5);
-    background-size: 95px 14px !important;
+    background-size: 95px 14px!important
 }
 
 .wall_item .item_like .i_like,
-.wall_item .item_share .i_share,
 .wall_item .item_replies .i_replies,
+.wall_item .item_share .i_share,
 .wi_actions_btn .i_icon,
 .wi_actions_wrap .i_pointer {
     background-image: url(/images/mobile/post_buttons_2x.png);
-    background-size: 188px 14px !important;
+    background-size: 188px 14px!important
 }
 
 .wi_buttons_ex .i_star {
     background-image: url(/images/mobile/stars_2x.png?1);
-    background-size: 36px 12px !important;
+    background-size: 36px 12px!important
 }
 
 .fb_button .i_fb {
     background-image: url(/images/mobile/fb_icon_2x.png?1);
-    background-size: 8px 15px !important;
+    background-size: 8px 15px!important
 }
 
 .pm_item .i_icon {
     background-image: url(/images/mobile/profile_2x.png?6);
-    background-size: 128px 16px !important;
+    background-size: 128px 16px!important
 }
 
 .vv_video_icon {
-    background-size: 46px 46px !important;
+    background-size: 46px 46px!important
 }
 
+.cp_attached_wrap .medias_map_close .i_close,
 .cp_icon_btn .i_icon,
-.cp_options_btn .i_icon,
-.cp_attached_wrap .medias_map_close .i_close {
-    background-image: url(/images/mobile/attach_icons_2x.png?4) !important;
-    background-size: 352px 22px !important;
+.cp_options_btn .i_icon {
+    background-image: url(/images/mobile/attach_icons_2x.png?4)!important;
+    background-size: 352px 22px!important
 }
 
 .nc_reply_name {
-    background-image: url(/images/mobile/reset_2x.gif?3) !important;
-    background-size: 10px 10px !important;
+    background-image: url(/images/mobile/reset_2x.gif?3)!important;
+    background-size: 10px 10px!important
 }
 
 .sp_icon {
-    background-image: url(/images/mobile/stickers_icons_2x.png?3) !important;
-    background-size: 120px 30px !important;
+    background-image: url(/images/mobile/stickers_icons_2x.png?3)!important;
+    background-size: 120px 30px!important
 }
 
 .di_typing .i_typing {
     background-image: url(/images/mobile/typing_2x.gif);
-    background-size: 15px 11px !important;
+    background-size: 15px 11px!important
 }
 
 .selected_users_opened .peers_selected_dd {
-    background-image: url(/images/mobile/up_arrow_2x.png?2);
+    background-image: url(/images/mobile/up_arrow_2x.png?2)
 }
 
 .selected_users_closed .peers_selected_dd {
-    background-image: url(/images/mobile/down_arrow_2x.png?2);
+    background-image: url(/images/mobile/down_arrow_2x.png?2)
 }
 
-.selected_users_opened .peers_selected_dd,
-.selected_users_closed .peers_selected_dd {
-    background-size: 15px 10px !important;
+.selected_users_closed .peers_selected_dd,
+.selected_users_opened .peers_selected_dd {
+    background-size: 15px 10px!important
 }
 
-.search_summary .i_filter,
 .fp_filter_reset .i_reset,
-.mk_filter_selector .i_filter {
+.mk_filter_selector .i_filter,
+.search_summary .i_filter {
     background-image: url(/images/mobile/filter_icons_2x.png);
-    background-size: 29px 11px !important;
+    background-size: 29px 11px!important
 }
 
 .login_btn_with_arr {
     background-image: url(/images/mobile/backlink_2x.gif);
-    background-size: 20px 150px !important;
+    background-size: 20px 150px!important
 }
 
 .apps_access_icon {
     background-image: url(/images/mobile/app_settings_icons_2x.png?3);
-    background-size: 33px 588px !important;
+    background-size: 33px 588px!important
 }
 
 a.wk_ext_link {
     background-image: url(/images/mobile/wikiextarr_2x.gif);
-    background-size: 7px 7px !important;
+    background-size: 7px 7px!important
 }
 
 .pv_icon .i_icon {
     background-image: url(/images/mobile/pv_touch_icons_2x.png);
-    background-size: 44px 20px !important;
+    background-size: 44px 20px!important
 }
 
-.zpv_ti_loading,
 #zpv_center.zpv_ti_loading .zpv_img,
-.zpv_crop_saving .zpv_crop_loading {
+.zpv_crop_saving .zpv_crop_loading,
+.zpv_ti_loading {
     background-image: url(/images/mobile/zpv_upload_2x.gif?1);
-    background-size: 24px 24px !important;
+    background-size: 24px 24px!important
 }
 
+.zpv_bottom .item_button .i_icon,
 .zpv_close_icon,
-.zpv_zb_wrap .i_icon,
-.zpv_bottom .item_button .i_icon {
+.zpv_zb_wrap .i_icon {
     background-image: url(/images/mobile/zpv_icons_2x.png?2);
-    background-size: 198px 19px !important;
+    background-size: 198px 19px!important
 }
 
 .zpv_close_msg {
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQhJREFUeNqklcsKgzAQRaOudOM3F1rortY+llVbKC79tELdtJt0BiKENDOZxAsXxInnQHwprXUFnaAf6BVaQFViC8P4GmalzIGde6IEr3k4rAkHs/7PECnxwTFvHG61P1IJBcdscEEGPSRKCrOlviBTLQtTJCF4ZgsWSUNc0DsSEdwVSCViuE8gkQxSOCVYJEctT+ODc4IYCQkPCSQSFo7NFR+c18y8NmvoBF6iXrBFHfcyroUvuVESCt4RILwfbYwkFp6ZnqSSWLj9dHGS3BVw8JZ4FPHcOSRJhYslivnuhOASSUP9MqXwkGTG4bgSbksuDmvEQQl94g8aukuE25I99GWY5U+AAQAP5WY//M13WQAAAABJRU5ErkJggg==);
-    background-size: 14px 15px !important;
+    background-size: 14px 15px!important
 }
 
 .zpv_close_move_down {
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAeCAYAAAA/xX6fAAABe0lEQVRIDe1WO04DMRD1IhGJcAlKbsEhOAESPeHfINHybzkAEhQgKCkoAlwCUSEQQtRcYHlv5SSz9nhtZxHVjvTimec383anSGLKsjQZ2IX2B2Dw3ABy+k3Bhox4g3ZB6F+RL4o6ms5EFXWBq5+rX8crd0C8o6WiM2y5QL+9W6m/k5ZMt9KWC/TbudIC2Ac+gXNgFviL6GPINfABDMYD8eW9B8i4QdEDtF+BdylEzlrT9cEPARmrKAzFL5K1ecg0xZBmj8rMB3CGK70Yv+4kWUZ6BfQmVFLGNd4DS4r6suLoCpwpT0TqFpDrbXrDeWif2KTEDrhq9dWHLU4VISlpGjJMMqOPNGQeM9UMm8y2aSJRK+zFCU4t7kB+ORffqJ8dblRuIfHme4QVHY+6pjxVM84OGZKf1nSTg0MIXtiGI5w5Ef3bGDPk/WGiY9QMcxpXKh8mZrrOYSlIEtlBBzi1GIBMnpMstENd0ywzzsg1pH4NGAIrQHZ/wab/jF9bM6N+s+G2GAAAAABJRU5ErkJggg==);
-    background-size: 14px 15px !important;
+    background-size: 14px 15px!important
 }
 
 .zpv_close_move_up {
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAeCAYAAAA/xX6fAAABYUlEQVRIDe2UP05CQRDGVwsK9QxwHm5gY8IRVKCwo8M/2IsHoCAG6KngEPQYY+jVmFjw/ObFMZtxd2cnIcTibfKxM/O+nd++5WVdURTOqHP4F9CZcV3JscL6gPDYIiC4qYfFfM0kMZugucAYjNnZ0BzgDXdV5gs8V/tphlwY7+VSg6aAt9zFOCehMeCdESLtbRSCvUPFGGyGJq+i8wb5UtQ47SD4018WBuwWM8Fq0FrUKT+BsqE+MAaboiHByBsCUv0YyoIy8B4LQmOCIsNSQIbSlRcaXRRLFv1chRyoSZgG1KAtgpJpFQCGYDnAFHROwEPn3AjyxwTJKfTlFw3xB7xNaCnWjMsc1AOoB71AD5D/n9GOfcU+Gt/D8RHWPkHU9/faI5jYSDJd42ndczwjbni5GtKR7nVUwJ0fd3Wk1ZGaT+DffzRb8UqfIldT6xsO0fH9p+sb5keVIAzWy1sst6fffgmvdQPnrpwAAAAASUVORK5CYII=);
-    background-size: 14px 15px !important;
+    background-size: 14px 15px!important
 }
 
 .map_pointer {
     background-image: url(/images/mobile/map_point_2x.png);
-    background-size: 180px 70px !important;
+    background-size: 180px 70px!important
 }
 
 .checkins_cnt .i_icon,
 .place_address .i_icon,
 .place_checkins .i_icon {
     background-image: url(/images/mobile/place_icons_2x.png);
-    background-size: 45px 15px !important;
+    background-size: 45px 15px!important
 }
 
 .album_cnt,
 .mt_photo_count {
     background-image: url(/images/mobile/camera_white_2x.png);
-    background-size: 11px 9px !important;
+    background-size: 11px 9px!important
 }
 
-.prv_body,
-.mk_more_arrow {
+.mk_more_arrow,
+.prv_body {
     background-image: url(/images/mobile/prv_arrow_2x.png);
-    background-size: 8px 14px !important;
+    background-size: 8px 14px!important
 }
 
 .prv_private {
     background-image: url(/images/mobile/prv_private_2x.png);
-    background-size: 9px 12px !important;
+    background-size: 9px 12px!important
 }
 
 .payment_opt .ii_icon {
     background-image: url(/images/mobile/payments_2x.png?3);
-    background-size: 164px 41px !important;
+    background-size: 164px 41px!important
 }
 
 .faq_cat_item .body_icon,
 .faq_item .i_icon {
     background-image: url(/images/mobile/faq_icons_2x.png?1);
-    background-size: 35px 16px !important;
+    background-size: 35px 16px!important
 }
 
-.ri_radio,
-._copts .radio+.option_label:before {
-    background-image: url(/images/mobile/radio_2x.png?3);
-}
-
-._copts .checkbox+.option_label:before {
-    background-image: url(/images/mobile/checkbox_2x.png?2);
-}
-
-.ri_radio,
 ._copts .radio+.option_label:before,
+.ri_radio {
+    background-image: url(/images/mobile/radio_2x.png?3)
+}
+
 ._copts .checkbox+.option_label:before {
-    background-size: 102px 17px !important;
+    background-image: url(/images/mobile/checkbox_2x.png?2)
+}
+
+._copts .checkbox+.option_label:before,
+._copts .radio+.option_label:before,
+.ri_radio {
+    background-size: 102px 17px!important
 }
 
 .tu_img,
 .zpv_thumb_uploading {
     background-image: url(/images/mobile/uploading_2x.gif);
-    background-size: 16px 16px !important;
+    background-size: 16px 16px!important
 }
 
 .tu_cancel {
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAINJREFUeNqsk0sOwCAIBUnvVa8kG3rReh8qiabWgNC0L2HhZyZGBZg51Tpr5VoQrNyYXQaF71AApmF/kQnkZygIS7AvHAHJDAsD44aVRIVngSUxYU2gSUzYElgS9XI30MMQTeC2l6fwYPKe2IPdJ47AS8kvX/lzM6UmwRftjL2dLwEGACiuMpJJM2BNAAAAAElFTkSuQmCC);
-    background-size: 8px 8px !important;
+    background-size: 8px 8px!important
 }
 
 .emoji_css {
     background-image: url('/images/mobile/im_emoji_2x.png?6');
-    background-size: 16px 544px !important;
+    background-size: 16px 544px!important
 }
 
+.wk_medal_bronze,
 .wk_medal_gold,
-.wk_medal_silver,
-.wk_medal_bronze {
+.wk_medal_silver {
     background-image: url(/images/mobile/medals_2x.png);
-    background-size: 48px 16px !important;
+    background-size: 48px 16px!important
 }
 
 .mi_chronicle_icon {
     background-image: url(/images/mobile/chronicle/snap_app_2x.png);
-    background-size: 22px 22px;
+    background-size: 22px 22px
 }
 
 .blog_about_link_ic {
     background-image: url('/images/blog/m_about_icons_2x.png');
-    background-size: 28px 200px !important;
+    background-size: 28px 200px!important
 }
 
 .blog_about_cover {
-    background-image: url('/images/blog/m_about_cover_2x.jpg');
+    background-image: url('/images/blog/m_about_cover_2x.jpg')
 }
 
 .blog_about_cover_products {
-    background-image: url(/images/blog/m_products_cover_2x.jpg?1);
+    background-image: url(/images/blog/m_products_cover_2x.jpg?1)
 }
 
 .blog_about_cover_products_en {
-    background-image: url(/images/blog/m_products_cover_en_2x.jpg?1);
+    background-image: url(/images/blog/m_products_cover_en_2x.jpg?1)
 }
 
 .blog_about_cover_jobs {
-    background-image: url(/images/blog/m_jobs_cover_2x.jpg);
+    background-image: url(/images/blog/m_jobs_cover_2x.jpg)
 }
 
 .blog_about_job_ic {
     background-image: url(/images/blog/m_jobs_icons_2x.png);
-    background-size: 48px 563px !important;
+    background-size: 48px 563px!important
 }
 
 .blog_about_header_logo {
     background-image: url(/images/blog/m_about_logo_2x.png);
-    background-size: 32px 19px !important;
+    background-size: 32px 19px!important
 }
 
 .blog_post_repost_ic {
     background-image: url(/images/blog/m_like_share_2x.png);
-    background-size: 20px 81px !important;
+    background-size: 20px 81px!important
 }
 
 .blog_view_job_back_ic {
     background-image: url(/images/blog/m_vacancy_back_2x.png);
-    background-size: 10px 15px !important;
+    background-size: 10px 15px!important
 }
 
 .landing_pp_header {
-    background-image: url('/images/landings/promo_post/mob/header_2x.jpg') !important;
+    background-image: url('/images/landings/promo_post/mob/header_2x.jpg')!important
 }
 
 .landing_pp_example_picture {
-    background-image: url('/images/landings/promo_post/mob/iphone_browser1_2x.jpg') !important;
-    background-size: 320px 293px;
+    background-image: url('/images/landings/promo_post/mob/iphone_browser1_2x.jpg')!important;
+    background-size: 320px 293px
 }
 
 .landing_pp_example_photos {
-    background-image: url('/images/landings/promo_post/mob/iphone_browser2_2x.jpg') !important;
-    background-size: 320px 293px;
+    background-image: url('/images/landings/promo_post/mob/iphone_browser2_2x.jpg')!important;
+    background-size: 320px 293px
 }
 
 .landing_pp_example_video {
-    background-image: url('/images/landings/promo_post/mob/iphone_browser3_2x.jpg') !important;
-    background-size: 320px 293px;
+    background-image: url('/images/landings/promo_post/mob/iphone_browser3_2x.jpg')!important;
+    background-size: 320px 293px
 }
 
 .landing_pp_example_poll {
-    background-image: url('/images/landings/promo_post/mob/iphone_browser4_2x.jpg') !important;
-    background-size: 320px 293px;
+    background-image: url('/images/landings/promo_post/mob/iphone_browser4_2x.jpg')!important;
+    background-size: 320px 293px
 }
 
 .landing_pp_example_map {
-    background-image: url('/images/landings/promo_post/mob/iphone_browser5_2x.jpg') !important;
-    background-size: 320px 293px;
+    background-image: url('/images/landings/promo_post/mob/iphone_browser5_2x.jpg')!important;
+    background-size: 320px 293px
 }
 
 .landing_pp_example_market {
-    background-image: url('/images/landings/promo_post/mob/iphone_browser6_2x.jpg?1') !important;
-    background-size: 320px 293px;
+    background-image: url('/images/landings/promo_post/mob/iphone_browser6_2x.jpg?1')!important;
+    background-size: 320px 293px
 }
 
 .landing_pp_example_group {
-    background-image: url('/images/landings/promo_post/mob/iphone_browser7_2x.jpg') !important;
-    background-size: 320px 293px;
+    background-image: url('/images/landings/promo_post/mob/iphone_browser7_2x.jpg')!important;
+    background-size: 320px 293px
 }
 
 .landing_pp_example_site {
-    background-image: url('/images/landings/promo_post/mob/iphone_browser8_2x.jpg') !important;
-    background-size: 320px 293px;
+    background-image: url('/images/landings/promo_post/mob/iphone_browser8_2x.jpg')!important;
+    background-size: 320px 293px
 }
 
 .landing_pp_example_call {
-    background-image: url('/images/landings/promo_post/mob/iphone_browser9_2x.jpg') !important;
-    background-size: 320px 293px;
+    background-image: url('/images/landings/promo_post/mob/iphone_browser9_2x.jpg')!important;
+    background-size: 320px 293px
 }
 
 .landing_pp_feed_pic {
-    background-image: url('/images/landings/promo_post/mob/adv_example_2x.jpg') !important;
-    background-size: 304px 365px;
+    background-image: url('/images/landings/promo_post/mob/adv_example_2x.jpg')!important;
+    background-size: 304px 365px
 }
 
 .landing_pp_big_adcreate_pic {
-    background-image: url('/images/landings/promo_post/mob/browser_2x.png') !important;
-    background-size: 307px 213px;
+    background-image: url('/images/landings/promo_post/mob/browser_2x.png')!important;
+    background-size: 307px 213px
 }
 
 .landing_pp_big_group_create_pic {
-    background-image: url('/images/landings/promo_post/mob/fit_2x.png') !important;
-    background-size: 303px 319px;
+    background-image: url('/images/landings/promo_post/mob/fit_2x.png')!important;
+    background-size: 303px 319px
 }
 
 .landing_pp_target_ic {
-    background-image: url('/images/landings/promo_post/screen6/pic1_2x.png') !important;
-    background-size: 164px 164px;
+    background-image: url('/images/landings/promo_post/screen6/pic1_2x.png')!important;
+    background-size: 164px 164px
 }
 
 .landing_pp_target_ic_cities {
-    background-image: url('/images/landings/promo_post/screen6/pic2_2x.png') !important;
-    background-size: 164px 164px;
+    background-image: url('/images/landings/promo_post/screen6/pic2_2x.png')!important;
+    background-size: 164px 164px
 }
 
 .landing_pp_target_ic_demography {
-    background-image: url('/images/landings/promo_post/screen6/pic3_2x.png') !important;
-    background-size: 164px 164px;
+    background-image: url('/images/landings/promo_post/screen6/pic3_2x.png')!important;
+    background-size: 164px 164px
 }
 
 .landing_pp_target_ic_interests {
-    background-image: url('/images/landings/promo_post/screen6/pic4_2x.png') !important;
-    background-size: 164px 164px;
+    background-image: url('/images/landings/promo_post/screen6/pic4_2x.png')!important;
+    background-size: 164px 164px
 }
 
 .landing_pp_story {
-    background-image: url('/images/landings/promo_post/mob/bg1_2x.jpg') !important;
-    background-size: 882px 1000px;
+    background-image: url('/images/landings/promo_post/mob/bg1_2x.jpg')!important;
+    background-size: 882px 1000px
 }
 
 .landing_pp_story_2 {
-    background-image: url('/images/landings/promo_post/mob/bg2_2x.jpg') !important;
-    background-size: 882px 1000px;
+    background-image: url('/images/landings/promo_post/mob/bg2_2x.jpg')!important;
+    background-size: 882px 1000px
 }
 
 .landing_pp_story_3 {
-    background-image: url('/images/landings/promo_post/mob/bg3_2x.jpg') !important;
-    background-size: 882px 1000px;
+    background-image: url('/images/landings/promo_post/mob/bg3_2x.jpg')!important;
+    background-size: 882px 1000px
 }
 
 .landing_pp_story_4 {
-    background-image: url('/images/landings/promo_post/mob/bg4_2x.jpg') !important;
-    background-size: 882px 1000px;
+    background-image: url('/images/landings/promo_post/mob/bg4_2x.jpg')!important;
+    background-size: 882px 1000px
 }
 
 .landing_pp_story_ava {
-    background-image: url('/images/landings/promo_post/stories/user1_2x.png') !important;
-    background-size: 128px 128px;
+    background-image: url('/images/landings/promo_post/stories/user1_2x.png')!important;
+    background-size: 128px 128px
 }
 
 .landing_pp_story_ava_2 {
-    background-image: url('/images/landings/promo_post/stories/user2_2x.png') !important;
-    background-size: 128px 128px;
+    background-image: url('/images/landings/promo_post/stories/user2_2x.png')!important;
+    background-size: 128px 128px
 }
 
 .landing_pp_story_ava_3 {
-    background-image: url('/images/landings/promo_post/stories/user3_2x.png') !important;
-    background-size: 128px 128px;
+    background-image: url('/images/landings/promo_post/stories/user3_2x.png')!important;
+    background-size: 128px 128px
 }
 
 .landing_pp_story_ava_4 {
-    background-image: url('/images/landings/promo_post/stories/user4_2x.png') !important;
-    background-size: 128px 128px;
+    background-image: url('/images/landings/promo_post/stories/user4_2x.png')!important;
+    background-size: 128px 128px
 }
 
 .audio-msg-track .audio-msg-track--btn {
     background: url(/images/mobile/audio_icons_2x.png?7) no-repeat 0 0;
-    background-size: 200px 40px !important;
+    background-size: 200px 40px!important
 }

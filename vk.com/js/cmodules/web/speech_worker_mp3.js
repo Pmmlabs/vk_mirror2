@@ -28,707 +28,678 @@
         return t.d(a, "a", a), a
     }, t.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, t.p = "", t(t.s = 239)
+    }, t.p = "", t(t.s = 99)
 }({
-    122: function(e, t, a) {
-        function r() {
-            this.thm = new n, this.en = new n
-        }
-        var n = a(225);
-        e.exports = r
-    },
-    128: function(e, t, a) {
-        function r() {
-            this.tt = [
-                [null, null],
-                [null, null]
-            ], this.main_data_begin = 0, this.private_bits = 0, this.resvDrain_pre = 0, this.resvDrain_post = 0, this.scfsi = [s(4), s(4)];
-            for (var e = 0; 2 > e; e++)
-                for (var t = 0; 2 > t; t++) this.tt[e][t] = new i
-        }
-        var n = a(15),
-            s = (n.System, n.VbrMode, n.Float, n.ShortBlock, n.Util, n.Arrays, n.new_array_n, n.new_byte, n.new_double, n.new_float, n.new_float_n, n.new_int),
-            i = (n.new_int_n, n.assert, a(301));
-        e.exports = r
-    },
-    15: function(e, t) {
-        function a(e) {
-            return new Int8Array(e)
-        }
-
-        function r(e) {
-            return new Int16Array(e)
-        }
-
-        function n(e) {
-            return new Int32Array(e)
-        }
-
-        function s(e) {
-            return new Float32Array(e)
-        }
-
-        function i(e) {
-            return new Float64Array(e)
-        }
-
-        function o(e) {
-            if (1 == e.length) return s(e[0]);
-            var t = e[0];
-            e = e.slice(1);
-            for (var a = [], r = 0; t > r; r++) a.push(o(e));
-            return a
-        }
-
-        function _(e) {
-            if (1 == e.length) return n(e[0]);
-            var t = e[0];
-            e = e.slice(1);
-            for (var a = [], r = 0; t > r; r++) a.push(_(e));
-            return a
-        }
-
-        function l(e) {
-            if (1 == e.length) return r(e[0]);
-            var t = e[0];
-            e = e.slice(1);
-            for (var a = [], n = 0; t > n; n++) a.push(l(e));
-            return a
-        }
-
-        function f(e) {
-            if (1 == e.length) return new Array(e[0]);
-            var t = e[0];
-            e = e.slice(1);
-            for (var a = [], r = 0; t > r; r++) a.push(f(e));
-            return a
-        }
-
-        function u(e) {
-            this.ordinal = e
-        }
-
-        function h(e) {
-            this.ordinal = e
-        }
-        var c = {};
-        c.fill = function(e, t, a, r) {
-            if (2 == arguments.length)
-                for (var n = 0; n < e.length; n++) e[n] = arguments[1];
-            else
-                for (var n = t; a > n; n++) e[n] = r
-        };
-        var p = {};
-        p.arraycopy = function(e, t, a, r, n) {
-            for (var s = t + n; s > t;) a[r++] = e[t++]
-        };
-        var b = {};
-        b.SQRT2 = 1.4142135623730951, b.FAST_LOG10 = function(e) {
-            return Math.log10(e)
-        }, b.FAST_LOG10_X = function(e, t) {
-            return Math.log10(e) * t
-        }, u.short_block_allowed = new u(0), u.short_block_coupled = new u(1), u.short_block_dispensed = new u(2), u.short_block_forced = new u(3);
-        var m = {};
-        m.MAX_VALUE = 3.4028235e38, h.vbr_off = new h(0), h.vbr_mt = new h(1), h.vbr_rh = new h(2), h.vbr_abr = new h(3), h.vbr_mtrh = new h(4), h.vbr_default = h.vbr_mtrh;
-        var v = function(e) {};
-        e.exports = {
-            System: p,
-            VbrMode: h,
-            Float: m,
-            ShortBlock: u,
-            Util: b,
-            Arrays: c,
-            new_array_n: f,
-            new_byte: a,
-            new_double: i,
-            new_float: s,
-            new_float_n: o,
-            new_int: n,
-            new_int_n: _,
-            new_short: r,
-            new_short_n: l,
-            assert: v
-        }
-    },
-    152: function(e, t) {
-        function a(e, t, a, r) {
-            this.xlen = e, this.linmax = t, this.table = a, this.hlen = r
-        }
-        var r = {};
-        r.t1HB = [1, 1, 1, 0], r.t2HB = [1, 2, 1, 3, 1, 1, 3, 2, 0], r.t3HB = [3, 2, 1, 1, 1, 1, 3, 2, 0], r.t5HB = [1, 2, 6, 5, 3, 1, 4, 4, 7, 5, 7, 1, 6, 1, 1, 0], r.t6HB = [7, 3, 5, 1, 6, 2, 3, 2, 5, 4, 4, 1, 3, 3, 2, 0], r.t7HB = [1, 2, 10, 19, 16, 10, 3, 3, 7, 10, 5, 3, 11, 4, 13, 17, 8, 4, 12, 11, 18, 15, 11, 2, 7, 6, 9, 14, 3, 1, 6, 4, 5, 3, 2, 0], r.t8HB = [3, 4, 6, 18, 12, 5, 5, 1, 2, 16, 9, 3, 7, 3, 5, 14, 7, 3, 19, 17, 15, 13, 10, 4, 13, 5, 8, 11, 5, 1, 12, 4, 4, 1, 1, 0], r.t9HB = [7, 5, 9, 14, 15, 7, 6, 4, 5, 5, 6, 7, 7, 6, 8, 8, 8, 5, 15, 6, 9, 10, 5, 1, 11, 7, 9, 6, 4, 1, 14, 4, 6, 2, 6, 0], r.t10HB = [1, 2, 10, 23, 35, 30, 12, 17, 3, 3, 8, 12, 18, 21, 12, 7, 11, 9, 15, 21, 32, 40, 19, 6, 14, 13, 22, 34, 46, 23, 18, 7, 20, 19, 33, 47, 27, 22, 9, 3, 31, 22, 41, 26, 21, 20, 5, 3, 14, 13, 10, 11, 16, 6, 5, 1, 9, 8, 7, 8, 4, 4, 2, 0], r.t11HB = [3, 4, 10, 24, 34, 33, 21, 15, 5, 3, 4, 10, 32, 17, 11, 10, 11, 7, 13, 18, 30, 31, 20, 5, 25, 11, 19, 59, 27, 18, 12, 5, 35, 33, 31, 58, 30, 16, 7, 5, 28, 26, 32, 19, 17, 15, 8, 14, 14, 12, 9, 13, 14, 9, 4, 1, 11, 4, 6, 6, 6, 3, 2, 0], r.t12HB = [9, 6, 16, 33, 41, 39, 38, 26, 7, 5, 6, 9, 23, 16, 26, 11, 17, 7, 11, 14, 21, 30, 10, 7, 17, 10, 15, 12, 18, 28, 14, 5, 32, 13, 22, 19, 18, 16, 9, 5, 40, 17, 31, 29, 17, 13, 4, 2, 27, 12, 11, 15, 10, 7, 4, 1, 27, 12, 8, 12, 6, 3, 1, 0], r.t13HB = [1, 5, 14, 21, 34, 51, 46, 71, 42, 52, 68, 52, 67, 44, 43, 19, 3, 4, 12, 19, 31, 26, 44, 33, 31, 24, 32, 24, 31, 35, 22, 14, 15, 13, 23, 36, 59, 49, 77, 65, 29, 40, 30, 40, 27, 33, 42, 16, 22, 20, 37, 61, 56, 79, 73, 64, 43, 76, 56, 37, 26, 31, 25, 14, 35, 16, 60, 57, 97, 75, 114, 91, 54, 73, 55, 41, 48, 53, 23, 24, 58, 27, 50, 96, 76, 70, 93, 84, 77, 58, 79, 29, 74, 49, 41, 17, 47, 45, 78, 74, 115, 94, 90, 79, 69, 83, 71, 50, 59, 38, 36, 15, 72, 34, 56, 95, 92, 85, 91, 90, 86, 73, 77, 65, 51, 44, 43, 42, 43, 20, 30, 44, 55, 78, 72, 87, 78, 61, 46, 54, 37, 30, 20, 16, 53, 25, 41, 37, 44, 59, 54, 81, 66, 76, 57, 54, 37, 18, 39, 11, 35, 33, 31, 57, 42, 82, 72, 80, 47, 58, 55, 21, 22, 26, 38, 22, 53, 25, 23, 38, 70, 60, 51, 36, 55, 26, 34, 23, 27, 14, 9, 7, 34, 32, 28, 39, 49, 75, 30, 52, 48, 40, 52, 28, 18, 17, 9, 5, 45, 21, 34, 64, 56, 50, 49, 45, 31, 19, 12, 15, 10, 7, 6, 3, 48, 23, 20, 39, 36, 35, 53, 21, 16, 23, 13, 10, 6, 1, 4, 2, 16, 15, 17, 27, 25, 20, 29, 11, 17, 12, 16, 8, 1, 1, 0, 1], r.t15HB = [7, 12, 18, 53, 47, 76, 124, 108, 89, 123, 108, 119, 107, 81, 122, 63, 13, 5, 16, 27, 46, 36, 61, 51, 42, 70, 52, 83, 65, 41, 59, 36, 19, 17, 15, 24, 41, 34, 59, 48, 40, 64, 50, 78, 62, 80, 56, 33, 29, 28, 25, 43, 39, 63, 55, 93, 76, 59, 93, 72, 54, 75, 50, 29, 52, 22, 42, 40, 67, 57, 95, 79, 72, 57, 89, 69, 49, 66, 46, 27, 77, 37, 35, 66, 58, 52, 91, 74, 62, 48, 79, 63, 90, 62, 40, 38, 125, 32, 60, 56, 50, 92, 78, 65, 55, 87, 71, 51, 73, 51, 70, 30, 109, 53, 49, 94, 88, 75, 66, 122, 91, 73, 56, 42, 64, 44, 21, 25, 90, 43, 41, 77, 73, 63, 56, 92, 77, 66, 47, 67, 48, 53, 36, 20, 71, 34, 67, 60, 58, 49, 88, 76, 67, 106, 71, 54, 38, 39, 23, 15, 109, 53, 51, 47, 90, 82, 58, 57, 48, 72, 57, 41, 23, 27, 62, 9, 86, 42, 40, 37, 70, 64, 52, 43, 70, 55, 42, 25, 29, 18, 11, 11, 118, 68, 30, 55, 50, 46, 74, 65, 49, 39, 24, 16, 22, 13, 14, 7, 91, 44, 39, 38, 34, 63, 52, 45, 31, 52, 28, 19, 14, 8, 9, 3, 123, 60, 58, 53, 47, 43, 32, 22, 37, 24, 17, 12, 15, 10, 2, 1, 71, 37, 34, 30, 28, 20, 17, 26, 21, 16, 10, 6, 8, 6, 2, 0], r.t16HB = [1, 5, 14, 44, 74, 63, 110, 93, 172, 149, 138, 242, 225, 195, 376, 17, 3, 4, 12, 20, 35, 62, 53, 47, 83, 75, 68, 119, 201, 107, 207, 9, 15, 13, 23, 38, 67, 58, 103, 90, 161, 72, 127, 117, 110, 209, 206, 16, 45, 21, 39, 69, 64, 114, 99, 87, 158, 140, 252, 212, 199, 387, 365, 26, 75, 36, 68, 65, 115, 101, 179, 164, 155, 264, 246, 226, 395, 382, 362, 9, 66, 30, 59, 56, 102, 185, 173, 265, 142, 253, 232, 400, 388, 378, 445, 16, 111, 54, 52, 100, 184, 178, 160, 133, 257, 244, 228, 217, 385, 366, 715, 10, 98, 48, 91, 88, 165, 157, 148, 261, 248, 407, 397, 372, 380, 889, 884, 8, 85, 84, 81, 159, 156, 143, 260, 249, 427, 401, 392, 383, 727, 713, 708, 7, 154, 76, 73, 141, 131, 256, 245, 426, 406, 394, 384, 735, 359, 710, 352, 11, 139, 129, 67, 125, 247, 233, 229, 219, 393, 743, 737, 720, 885, 882, 439, 4, 243, 120, 118, 115, 227, 223, 396, 746, 742, 736, 721, 712, 706, 223, 436, 6, 202, 224, 222, 218, 216, 389, 386, 381, 364, 888, 443, 707, 440, 437, 1728, 4, 747, 211, 210, 208, 370, 379, 734, 723, 714, 1735, 883, 877, 876, 3459, 865, 2, 377, 369, 102, 187, 726, 722, 358, 711, 709, 866, 1734, 871, 3458, 870, 434, 0, 12, 10, 7, 11, 10, 17, 11, 9, 13, 12, 10, 7, 5, 3, 1, 3], r.t24HB = [15, 13, 46, 80, 146, 262, 248, 434, 426, 669, 653, 649, 621, 517, 1032, 88, 14, 12, 21, 38, 71, 130, 122, 216, 209, 198, 327, 345, 319, 297, 279, 42, 47, 22, 41, 74, 68, 128, 120, 221, 207, 194, 182, 340, 315, 295, 541, 18, 81, 39, 75, 70, 134, 125, 116, 220, 204, 190, 178, 325, 311, 293, 271, 16, 147, 72, 69, 135, 127, 118, 112, 210, 200, 188, 352, 323, 306, 285, 540, 14, 263, 66, 129, 126, 119, 114, 214, 202, 192, 180, 341, 317, 301, 281, 262, 12, 249, 123, 121, 117, 113, 215, 206, 195, 185, 347, 330, 308, 291, 272, 520, 10, 435, 115, 111, 109, 211, 203, 196, 187, 353, 332, 313, 298, 283, 531, 381, 17, 427, 212, 208, 205, 201, 193, 186, 177, 169, 320, 303, 286, 268, 514, 377, 16, 335, 199, 197, 191, 189, 181, 174, 333, 321, 305, 289, 275, 521, 379, 371, 11, 668, 184, 183, 179, 175, 344, 331, 314, 304, 290, 277, 530, 383, 373, 366, 10, 652, 346, 171, 168, 164, 318, 309, 299, 287, 276, 263, 513, 375, 368, 362, 6, 648, 322, 316, 312, 307, 302, 292, 284, 269, 261, 512, 376, 370, 364, 359, 4, 620, 300, 296, 294, 288, 282, 273, 266, 515, 380, 374, 369, 365, 361, 357, 2, 1033, 280, 278, 274, 267, 264, 259, 382, 378, 372, 367, 363, 360, 358, 356, 0, 43, 20, 19, 17, 15, 13, 11, 9, 7, 6, 4, 7, 5, 3, 1, 3], r.t32HB = [1, 10, 8, 20, 12, 20, 16, 32, 14, 12, 24, 0, 28, 16, 24, 16], r.t33HB = [15, 28, 26, 48, 22, 40, 36, 64, 14, 24, 20, 32, 12, 16, 8, 0], r.t1l = [1, 4, 3, 5], r.t2l = [1, 4, 7, 4, 5, 7, 6, 7, 8], r.t3l = [2, 3, 7, 4, 4, 7, 6, 7, 8], r.t5l = [1, 4, 7, 8, 4, 5, 8, 9, 7, 8, 9, 10, 8, 8, 9, 10], r.t6l = [3, 4, 6, 8, 4, 4, 6, 7, 5, 6, 7, 8, 7, 7, 8, 9], r.t7l = [1, 4, 7, 9, 9, 10, 4, 6, 8, 9, 9, 10, 7, 7, 9, 10, 10, 11, 8, 9, 10, 11, 11, 11, 8, 9, 10, 11, 11, 12, 9, 10, 11, 12, 12, 12], r.t8l = [2, 4, 7, 9, 9, 10, 4, 4, 6, 10, 10, 10, 7, 6, 8, 10, 10, 11, 9, 10, 10, 11, 11, 12, 9, 9, 10, 11, 12, 12, 10, 10, 11, 11, 13, 13], r.t9l = [3, 4, 6, 7, 9, 10, 4, 5, 6, 7, 8, 10, 5, 6, 7, 8, 9, 10, 7, 7, 8, 9, 9, 10, 8, 8, 9, 9, 10, 11, 9, 9, 10, 10, 11, 11], r.t10l = [1, 4, 7, 9, 10, 10, 10, 11, 4, 6, 8, 9, 10, 11, 10, 10, 7, 8, 9, 10, 11, 12, 11, 11, 8, 9, 10, 11, 12, 12, 11, 12, 9, 10, 11, 12, 12, 12, 12, 12, 10, 11, 12, 12, 13, 13, 12, 13, 9, 10, 11, 12, 12, 12, 13, 13, 10, 10, 11, 12, 12, 13, 13, 13], r.t11l = [2, 4, 6, 8, 9, 10, 9, 10, 4, 5, 6, 8, 10, 10, 9, 10, 6, 7, 8, 9, 10, 11, 10, 10, 8, 8, 9, 11, 10, 12, 10, 11, 9, 10, 10, 11, 11, 12, 11, 12, 9, 10, 11, 12, 12, 13, 12, 13, 9, 9, 9, 10, 11, 12, 12, 12, 9, 9, 10, 11, 12, 12, 12, 12], r.t12l = [4, 4, 6, 8, 9, 10, 10, 10, 4, 5, 6, 7, 9, 9, 10, 10, 6, 6, 7, 8, 9, 10, 9, 10, 7, 7, 8, 8, 9, 10, 10, 10, 8, 8, 9, 9, 10, 10, 10, 11, 9, 9, 10, 10, 10, 11, 10, 11, 9, 9, 9, 10, 10, 11, 11, 12, 10, 10, 10, 11, 11, 11, 11, 12], r.t13l = [1, 5, 7, 8, 9, 10, 10, 11, 10, 11, 12, 12, 13, 13, 14, 14, 4, 6, 8, 9, 10, 10, 11, 11, 11, 11, 12, 12, 13, 14, 14, 14, 7, 8, 9, 10, 11, 11, 12, 12, 11, 12, 12, 13, 13, 14, 15, 15, 8, 9, 10, 11, 11, 12, 12, 12, 12, 13, 13, 13, 13, 14, 15, 15, 9, 9, 11, 11, 12, 12, 13, 13, 12, 13, 13, 14, 14, 15, 15, 16, 10, 10, 11, 12, 12, 12, 13, 13, 13, 13, 14, 13, 15, 15, 16, 16, 10, 11, 12, 12, 13, 13, 13, 13, 13, 14, 14, 14, 15, 15, 16, 16, 11, 11, 12, 13, 13, 13, 14, 14, 14, 14, 15, 15, 15, 16, 18, 18, 10, 10, 11, 12, 12, 13, 13, 14, 14, 14, 14, 15, 15, 16, 17, 17, 11, 11, 12, 12, 13, 13, 13, 15, 14, 15, 15, 16, 16, 16, 18, 17, 11, 12, 12, 13, 13, 14, 14, 15, 14, 15, 16, 15, 16, 17, 18, 19, 12, 12, 12, 13, 14, 14, 14, 14, 15, 15, 15, 16, 17, 17, 17, 18, 12, 13, 13, 14, 14, 15, 14, 15, 16, 16, 17, 17, 17, 18, 18, 18, 13, 13, 14, 15, 15, 15, 16, 16, 16, 16, 16, 17, 18, 17, 18, 18, 14, 14, 14, 15, 15, 15, 17, 16, 16, 19, 17, 17, 17, 19, 18, 18, 13, 14, 15, 16, 16, 16, 17, 16, 17, 17, 18, 18, 21, 20, 21, 18], r.t15l = [3, 5, 6, 8, 8, 9, 10, 10, 10, 11, 11, 12, 12, 12, 13, 14, 5, 5, 7, 8, 9, 9, 10, 10, 10, 11, 11, 12, 12, 12, 13, 13, 6, 7, 7, 8, 9, 9, 10, 10, 10, 11, 11, 12, 12, 13, 13, 13, 7, 8, 8, 9, 9, 10, 10, 11, 11, 11, 12, 12, 12, 13, 13, 13, 8, 8, 9, 9, 10, 10, 11, 11, 11, 11, 12, 12, 12, 13, 13, 13, 9, 9, 9, 10, 10, 10, 11, 11, 11, 11, 12, 12, 13, 13, 13, 14, 10, 9, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 13, 13, 14, 14, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 12, 13, 13, 13, 14, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 13, 13, 14, 14, 14, 10, 10, 11, 11, 11, 11, 12, 12, 12, 13, 13, 13, 13, 14, 14, 14, 11, 11, 11, 11, 12, 12, 12, 12, 12, 13, 13, 13, 13, 14, 15, 14, 11, 11, 11, 11, 12, 12, 12, 12, 13, 13, 13, 13, 14, 14, 14, 15, 12, 12, 11, 12, 12, 12, 13, 13, 13, 13, 13, 13, 14, 14, 15, 15, 12, 12, 12, 12, 12, 13, 13, 13, 13, 14, 14, 14, 14, 14, 15, 15, 13, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 15, 15, 14, 15, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 15, 15, 15, 15], r.t16_5l = [1, 5, 7, 9, 10, 10, 11, 11, 12, 12, 12, 13, 13, 13, 14, 11, 4, 6, 8, 9, 10, 11, 11, 11, 12, 12, 12, 13, 14, 13, 14, 11, 7, 8, 9, 10, 11, 11, 12, 12, 13, 12, 13, 13, 13, 14, 14, 12, 9, 9, 10, 11, 11, 12, 12, 12, 13, 13, 14, 14, 14, 15, 15, 13, 10, 10, 11, 11, 12, 12, 13, 13, 13, 14, 14, 14, 15, 15, 15, 12, 10, 10, 11, 11, 12, 13, 13, 14, 13, 14, 14, 15, 15, 15, 16, 13, 11, 11, 11, 12, 13, 13, 13, 13, 14, 14, 14, 14, 15, 15, 16, 13, 11, 11, 12, 12, 13, 13, 13, 14, 14, 15, 15, 15, 15, 17, 17, 13, 11, 12, 12, 13, 13, 13, 14, 14, 15, 15, 15, 15, 16, 16, 16, 13, 12, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15, 16, 15, 16, 15, 14, 12, 13, 12, 13, 14, 14, 14, 14, 15, 16, 16, 16, 17, 17, 16, 13, 13, 13, 13, 13, 14, 14, 15, 16, 16, 16, 16, 16, 16, 15, 16, 14, 13, 14, 14, 14, 14, 15, 15, 15, 15, 17, 16, 16, 16, 16, 18, 14, 15, 14, 14, 14, 15, 15, 16, 16, 16, 18, 17, 17, 17, 19, 17, 14, 14, 15, 13, 14, 16, 16, 15, 16, 16, 17, 18, 17, 19, 17, 16, 14, 11, 11, 11, 12, 12, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 12], r.t16l = [1, 5, 7, 9, 10, 10, 11, 11, 12, 12, 12, 13, 13, 13, 14, 10, 4, 6, 8, 9, 10, 11, 11, 11, 12, 12, 12, 13, 14, 13, 14, 10, 7, 8, 9, 10, 11, 11, 12, 12, 13, 12, 13, 13, 13, 14, 14, 11, 9, 9, 10, 11, 11, 12, 12, 12, 13, 13, 14, 14, 14, 15, 15, 12, 10, 10, 11, 11, 12, 12, 13, 13, 13, 14, 14, 14, 15, 15, 15, 11, 10, 10, 11, 11, 12, 13, 13, 14, 13, 14, 14, 15, 15, 15, 16, 12, 11, 11, 11, 12, 13, 13, 13, 13, 14, 14, 14, 14, 15, 15, 16, 12, 11, 11, 12, 12, 13, 13, 13, 14, 14, 15, 15, 15, 15, 17, 17, 12, 11, 12, 12, 13, 13, 13, 14, 14, 15, 15, 15, 15, 16, 16, 16, 12, 12, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15, 16, 15, 16, 15, 13, 12, 13, 12, 13, 14, 14, 14, 14, 15, 16, 16, 16, 17, 17, 16, 12, 13, 13, 13, 13, 14, 14, 15, 16, 16, 16, 16, 16, 16, 15, 16, 13, 13, 14, 14, 14, 14, 15, 15, 15, 15, 17, 16, 16, 16, 16, 18, 13, 15, 14, 14, 14, 15, 15, 16, 16, 16, 18, 17, 17, 17, 19, 17, 13, 14, 15, 13, 14, 16, 16, 15, 16, 16, 17, 18, 17, 19, 17, 16, 13, 10, 10, 10, 11, 11, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 10], r.t24l = [4, 5, 7, 8, 9, 10, 10, 11, 11, 12, 12, 12, 12, 12, 13, 10, 5, 6, 7, 8, 9, 10, 10, 11, 11, 11, 12, 12, 12, 12, 12, 10, 7, 7, 8, 9, 9, 10, 10, 11, 11, 11, 11, 12, 12, 12, 13, 9, 8, 8, 9, 9, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 9, 9, 9, 9, 10, 10, 10, 10, 11, 11, 11, 12, 12, 12, 12, 13, 9, 10, 9, 10, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 12, 9, 10, 10, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 12, 13, 9, 11, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 12, 13, 13, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 13, 13, 10, 11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 13, 13, 13, 10, 12, 11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 10, 12, 12, 11, 11, 11, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 10, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 10, 12, 12, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 10, 13, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 13, 10, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 10, 10, 10, 6], r.t32l = [1, 5, 5, 7, 5, 8, 7, 9, 5, 7, 7, 9, 7, 9, 9, 10], r.t33l = [4, 5, 5, 6, 5, 6, 6, 7, 5, 6, 6, 7, 6, 7, 7, 8], r.ht = [new a(0, 0, null, null), new a(2, 0, r.t1HB, r.t1l), new a(3, 0, r.t2HB, r.t2l), new a(3, 0, r.t3HB, r.t3l), new a(0, 0, null, null), new a(4, 0, r.t5HB, r.t5l), new a(4, 0, r.t6HB, r.t6l), new a(6, 0, r.t7HB, r.t7l), new a(6, 0, r.t8HB, r.t8l), new a(6, 0, r.t9HB, r.t9l), new a(8, 0, r.t10HB, r.t10l), new a(8, 0, r.t11HB, r.t11l), new a(8, 0, r.t12HB, r.t12l), new a(16, 0, r.t13HB, r.t13l), new a(0, 0, null, r.t16_5l), new a(16, 0, r.t15HB, r.t15l), new a(1, 1, r.t16HB, r.t16l), new a(2, 3, r.t16HB, r.t16l), new a(3, 7, r.t16HB, r.t16l), new a(4, 15, r.t16HB, r.t16l), new a(6, 63, r.t16HB, r.t16l), new a(8, 255, r.t16HB, r.t16l), new a(10, 1023, r.t16HB, r.t16l), new a(13, 8191, r.t16HB, r.t16l), new a(4, 15, r.t24HB, r.t24l), new a(5, 31, r.t24HB, r.t24l), new a(6, 63, r.t24HB, r.t24l), new a(7, 127, r.t24HB, r.t24l), new a(8, 255, r.t24HB, r.t24l), new a(9, 511, r.t24HB, r.t24l), new a(11, 2047, r.t24HB, r.t24l), new a(13, 8191, r.t24HB, r.t24l), new a(0, 0, r.t32HB, r.t32l), new a(0, 0, r.t33HB, r.t33l)], r.largetbl = [65540, 327685, 458759, 589832, 655369, 655370, 720906, 720907, 786443, 786444, 786444, 851980, 851980, 851980, 917517, 655370, 262149, 393222, 524295, 589832, 655369, 720906, 720906, 720907, 786443, 786443, 786444, 851980, 917516, 851980, 917516, 655370, 458759, 524295, 589832, 655369, 720905, 720906, 786442, 786443, 851979, 786443, 851979, 851980, 851980, 917516, 917517, 720905, 589832, 589832, 655369, 720905, 720906, 786442, 786442, 786443, 851979, 851979, 917515, 917516, 917516, 983052, 983052, 786441, 655369, 655369, 720905, 720906, 786442, 786442, 851978, 851979, 851979, 917515, 917516, 917516, 983052, 983052, 983053, 720905, 655370, 655369, 720906, 720906, 786442, 851978, 851979, 917515, 851979, 917515, 917516, 983052, 983052, 983052, 1048588, 786441, 720906, 720906, 720906, 786442, 851978, 851979, 851979, 851979, 917515, 917516, 917516, 917516, 983052, 983052, 1048589, 786441, 720907, 720906, 786442, 786442, 851979, 851979, 851979, 917515, 917516, 983052, 983052, 983052, 983052, 1114125, 1114125, 786442, 720907, 786443, 786443, 851979, 851979, 851979, 917515, 917515, 983051, 983052, 983052, 983052, 1048588, 1048589, 1048589, 786442, 786443, 786443, 786443, 851979, 851979, 917515, 917515, 983052, 983052, 983052, 983052, 1048588, 983053, 1048589, 983053, 851978, 786444, 851979, 786443, 851979, 917515, 917516, 917516, 917516, 983052, 1048588, 1048588, 1048589, 1114125, 1114125, 1048589, 786442, 851980, 851980, 851979, 851979, 917515, 917516, 983052, 1048588, 1048588, 1048588, 1048588, 1048589, 1048589, 983053, 1048589, 851978, 851980, 917516, 917516, 917516, 917516, 983052, 983052, 983052, 983052, 1114124, 1048589, 1048589, 1048589, 1048589, 1179661, 851978, 983052, 917516, 917516, 917516, 983052, 983052, 1048588, 1048588, 1048589, 1179661, 1114125, 1114125, 1114125, 1245197, 1114125, 851978, 917517, 983052, 851980, 917516, 1048588, 1048588, 983052, 1048589, 1048589, 1114125, 1179661, 1114125, 1245197, 1114125, 1048589, 851978, 655369, 655369, 655369, 720905, 720905, 786441, 786441, 786441, 851977, 851977, 851977, 851978, 851978, 851978, 851978, 655366], r.table23 = [65538, 262147, 458759, 262148, 327684, 458759, 393222, 458759, 524296], r.table56 = [65539, 262148, 458758, 524296, 262148, 327684, 524294, 589831, 458757, 524294, 589831, 655368, 524295, 524295, 589832, 655369], r.bitrate_table = [
-            [0, 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, -1],
-            [0, 32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, -1],
-            [0, 8, 16, 24, 32, 40, 48, 56, 64, -1, -1, -1, -1, -1, -1, -1]
-        ], r.samplerate_table = [
-            [22050, 24e3, 16e3, -1],
-            [44100, 48e3, 32e3, -1],
-            [11025, 12e3, 8e3, -1]
-        ], r.scfsi_band = [0, 6, 11, 16, 21], e.exports = r
-    },
-    155: function(e, t, a) {
-        (function(t) {
-            function r() {
-                var e, t;
-                this.setModules = function(a, r) {
-                    e = a, t = r
-                }
-            }
-
-            function n() {
-                var e, t, a;
-                this.setModules = function(r, n, s) {
-                    e = r, t = n, a = s
-                }
-            }
-
-            function s() {}
-
-            function i() {
-                var e, t;
-                this.setModules = function(a, r) {
-                    e = a, t = r
-                }
-            }
-
-            function o(e, t, a) {
-                3 != arguments.length && (console.error("WARN: Mp3Encoder(channels, samplerate, kbps) not specified"), e = 1, t = 44100, a = 128);
-                var o = new Lame,
-                    _ = new r,
-                    l = new GainAnalysis,
-                    f = new BitStream,
-                    b = new Presets,
-                    m = new QuantizePVT,
-                    v = new Quantize,
-                    d = new p,
-                    g = new c,
-                    w = new i,
-                    S = new Reservoir,
-                    A = new Takehiro,
-                    R = new n,
-                    M = new s;
-                o.setModules(l, f, b, m, v, d, g, w, M), f.setModules(l, M, g, d), w.setModules(f, g), b.setModules(o), v.setModules(f, S, m, A), m.setModules(A, S, o.enc.psy), S.setModules(f), A.setModules(m), d.setModules(o, f, g), _.setModules(R, M), R.setModules(g, w, b);
-                var y = o.lame_init();
-                y.num_channels = e, y.in_samplerate = t, y.brate = a, y.mode = MPEGMode.STEREO, y.quality = 3, y.bWriteVbrTag = !1, y.disable_reservoir = !0, y.write_id3tag_automatic = !1;
-                var B = o.lame_init_params(y);
-                h(0 == B);
-                var E = 1152,
-                    T = 0 | 1.25 * E + 7200,
-                    k = u(T);
-                this.encodeBuffer = function(t, a) {
-                    1 == e && (a = t), h(t.length == a.length), t.length > E && (E = t.length, T = 0 | 1.25 * E + 7200, k = u(T));
-                    var r = o.lame_encode_buffer(y, t, a, t.length, k, 0, T);
-                    return new Int8Array(k.subarray(0, r))
-                }, this.flush = function() {
-                    var e = o.lame_encode_flush(y, k, 0, T);
-                    return new Int8Array(k.subarray(0, e))
-                }
-            }
-
-            function _() {
-                this.dataOffset = 0, this.dataLen = 0, this.channels = 0, this.sampleRate = 0
-            }
-
-            function l(e) {
-                return e.charCodeAt(0) << 24 | e.charCodeAt(1) << 16 | e.charCodeAt(2) << 8 | e.charCodeAt(3)
-            }
-            a(255), fs = a(255);
-            var f = a(15),
-                u = (f.System, f.VbrMode, f.Float, f.ShortBlock, f.Util, f.Arrays, f.new_array_n, f.new_byte),
-                h = (f.new_double, f.new_float, f.new_float_n, f.new_int, f.new_int_n, f.assert);
-            Lame = a(173), Presets = a(347), GainAnalysis = a(61), QuantizePVT = a(87), Quantize = a(17), Takehiro = a(269), Reservoir = a(16), MPEGMode = a(212), BitStream = a(346);
-            var c = (a(67), a(355)),
-                p = a(45);
-            _.RIFF = l("RIFF"), _.WAVE = l("WAVE"), _.fmt_ = l("fmt "), _.data = l("data"), _.readHeader = function(e) {
-                var t = new _,
-                    a = e.getUint32(0, !1);
-                if (_.RIFF == a && (e.getUint32(4, !0), _.WAVE == e.getUint32(8, !1) && _.fmt_ == e.getUint32(12, !1))) {
-                    var r = e.getUint32(16, !0),
-                        n = 20;
-                    switch (r) {
-                        case 16:
-                        case 18:
-                            t.channels = e.getUint16(n + 2, !0), t.sampleRate = e.getUint32(n + 4, !0);
-                            break;
-                        default:
-                            throw "extended fmt chunk not implemented"
-                    }
-                    n += r;
-                    for (var s = _.data, i = 0; s != a && (a = e.getUint32(n, !1), i = e.getUint32(n + 4, !0), s != a);) n += i + 8;
-                    return t.dataLen = i, t.dataOffset = n + 8, t
-                }
-            }, e.exports.Mp3Encoder = o, e.exports.WavHeader = _
-        }).call(this, a(327).Buffer)
-    },
-    157: function(e, t, a) {
+    1: function(e, t, a) {
         function r() {
             this.last_en_subshort = i([4, 9]), this.lastAttacks = o(4), this.pefirbuf = s(19), this.longfact = s(_.SBMAX_l), this.shortfact = s(_.SBMAX_s), this.attackthre = 0, this.attackthre_s = 0
         }
-        var n = a(15),
+        var n = a(536),
             s = (n.System, n.VbrMode, n.Float, n.ShortBlock, n.Util, n.Arrays, n.new_array_n, n.new_byte, n.new_double, n.new_float),
             i = n.new_float_n,
             o = n.new_int,
-            _ = (n.new_int_n, n.assert, a(67));
+            _ = (n.new_int_n, n.assert, a(574));
         e.exports = r
     },
-    16: function(e, t, a) {
+    105: function(e, t, a) {
+        function r(e, t, a, r) {
+            this.l = i(1 + o.SBMAX_l), this.s = i(1 + o.SBMAX_s), this.psfb21 = i(1 + o.PSFB21), this.psfb12 = i(1 + o.PSFB12);
+            var n = this.l,
+                _ = this.s;
+            4 == arguments.length && (this.arrL = arguments[0], this.arrS = arguments[1], this.arr21 = arguments[2], this.arr12 = arguments[3], s.arraycopy(this.arrL, 0, n, 0, Math.min(this.arrL.length, this.l.length)), s.arraycopy(this.arrS, 0, _, 0, Math.min(this.arrS.length, this.s.length)), s.arraycopy(this.arr21, 0, this.psfb21, 0, Math.min(this.arr21.length, this.psfb21.length)), s.arraycopy(this.arr12, 0, this.psfb12, 0, Math.min(this.arr12.length, this.psfb12.length)))
+        }
+        var n = a(536),
+            s = n.System,
+            i = (n.VbrMode, n.Float, n.ShortBlock, n.Util, n.Arrays, n.new_array_n, n.new_byte, n.new_double, n.new_float, n.new_float_n, n.new_int),
+            o = (n.new_int_n, n.assert, a(574));
+        e.exports = r
+    },
+    114: function(e, t, a) {
         function r() {
-            var e;
-            this.setModules = function(t) {
-                e = t
-            }, this.ResvFrameBegin = function(t, a) {
-                var r, n = t.internal_flags,
-                    i = n.l3_side,
-                    o = e.getframebits(t);
-                a.bits = (o - 8 * n.sideinfo_len) / n.mode_gr;
-                var _ = 2048 * n.mode_gr - 8;
-                t.brate > 320 ? r = 8 * int(1e3 * t.brate / (t.out_samplerate / 1152) / 8 + .5) : (r = 11520, t.strict_ISO && (r = 8 * int(32e4 / (t.out_samplerate / 1152) / 8 + .5))), n.ResvMax = r - o, n.ResvMax > _ && (n.ResvMax = _), (n.ResvMax < 0 || t.disable_reservoir) && (n.ResvMax = 0);
-                var l = a.bits * n.mode_gr + Math.min(n.ResvSize, n.ResvMax);
-                return l > r && (l = r), s(0 == n.ResvMax % 8), s(n.ResvMax >= 0), i.resvDrain_pre = 0, null != n.pinfo && (n.pinfo.mean_bits = a.bits / 2, n.pinfo.resvsize = n.ResvSize), l
-            }, this.ResvMaxBits = function(e, t, a, r) {
-                var n, s = e.internal_flags,
-                    i = s.ResvSize,
-                    o = s.ResvMax;
-                0 != r && (i += t), 0 != (1 & s.substep_shaping) && (o *= .9), a.bits = t, 10 * i > 9 * o ? (n = i - 9 * o / 10, a.bits += n, s.substep_shaping |= 128) : (n = 0, s.substep_shaping &= 127, e.disable_reservoir || 0 != (1 & s.substep_shaping) || (a.bits -= .1 * t));
-                var _ = i < 6 * s.ResvMax / 10 ? i : 6 * s.ResvMax / 10;
-                return _ -= n, 0 > _ && (_ = 0), _
-            }, this.ResvAdjust = function(e, t) {
-                e.ResvSize -= t.part2_3_length + t.part2_length
-            }, this.ResvFrameEnd = function(e, t) {
-                var a, r = e.l3_side;
-                e.ResvSize += t * e.mode_gr;
-                var n = 0;
-                r.resvDrain_post = 0, r.resvDrain_pre = 0, 0 != (a = e.ResvSize % 8) && (n += a), a = e.ResvSize - n - e.ResvMax, a > 0 && (s(0 == a % 8), s(a >= 0), n += a);
-                var i = Math.min(8 * r.main_data_begin, n) / 8;
-                r.resvDrain_pre += 8 * i, n -= 8 * i, e.ResvSize -= 8 * i, r.main_data_begin -= i, r.resvDrain_post += n, e.ResvSize -= n
+            this.global_gain = 0, this.sfb_count1 = 0, this.step = i(39), this.noise = s(39), this.noise_log = s(39)
+        }
+        var n = a(536),
+            s = n.new_float,
+            i = n.new_int;
+        n.assert, e.exports = r
+    },
+    116: function(e, t, a) {
+        "use strict";
+
+        function r(e, t) {
+            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
+        }
+        a.r(t);
+        var n = a(663),
+            s = n.Mp3Encoder;
+        self.onmessage = function(e) {
+            switch (e.data.command) {
+                case "encode":
+                    i && i.encode(e.data.buffers);
+                    break;
+                case "done":
+                    i && i.encodeFinalFrame();
+                    break;
+                case "init":
+                    i = new _(e.data)
+            }
+        };
+        var i = void 0,
+            o = 128,
+            _ = function() {
+                function e(t) {
+                    r(this, e), this.numberOfChannels = t.numberOfChannels || 1, this.originalSampleRate = t.originalSampleRate, this.bitRate = t.bitRate || o, this._codec = new s(this.numberOfChannels, this.originalSampleRate, this.bitRate)
+                }
+                return e.prototype._convertBuffer = function(e) {
+                    for (var t = new Int16Array(e[0].length), a = 0; a < t.length; a++) {
+                        var r = e[0][a] / 1.2 * 32767;
+                        t[a] = 0 > r ? Math.max(r, -32768) : Math.min(r, 32767)
+                    }
+                    return t
+                }, e.prototype.encode = function(e) {
+                    var t = this._convertBuffer(e),
+                        a = this._codec.encodeBuffer(t);
+                    self.postMessage({
+                        type: "data",
+                        buffer: new Int8Array(a)
+                    })
+                }, e.prototype.encodeFinalFrame = function() {
+                    var e = this._codec.flush();
+                    self.postMessage({
+                        type: "finish",
+                        buffer: new Int8Array(e)
+                    }), self.close()
+                }, e
+            }()
+    },
+    119: function(e, t, a) {
+        var r = a(574),
+            n = {};
+        n.SFBMAX = 3 * r.SBMAX_s, e.exports = n
+    },
+    128: function(e, t) {
+        function a(e) {
+            var t = e;
+            this.ordinal = function() {
+                return t
             }
         }
-        var n = a(15),
-            s = n.assert;
+        a.STEREO = new a(0), a.JOINT_STEREO = new a(1), a.DUAL_CHANNEL = new a(2), a.MONO = new a(3), a.NOT_SET = new a(4), e.exports = a
+    },
+    143: function(e, t, a) {
+        function r() {
+            function e(e, t, a, r, n, s, i, o, _, l, f, u, h, c, p) {
+                this.vbr_q = e, this.quant_comp = t, this.quant_comp_s = a, this.expY = r, this.st_lrm = n, this.st_s = s, this.masking_adj = i, this.masking_adj_short = o, this.ath_lower = _, this.ath_curve = l, this.ath_sensitivity = f, this.interch = u, this.safejoint = h, this.sfb21mod = c, this.msfix = p
+            }
+
+            function t(e, t, a, r, n, s, i, o, _, l, f, u, h, c) {
+                this.quant_comp = t, this.quant_comp_s = a, this.safejoint = r, this.nsmsfix = n, this.st_lrm = s, this.st_s = i, this.nsbass = o, this.scale = _, this.masking_adj = l, this.ath_lower = f, this.ath_curve = u, this.interch = h, this.sfscale = c
+            }
+
+            function a(e, t, a) {
+                var r = e.VBR == s.vbr_rh ? o : _,
+                    i = e.VBR_q_frac,
+                    l = r[t],
+                    f = r[t + 1],
+                    u = l;
+                l.st_lrm = l.st_lrm + i * (f.st_lrm - l.st_lrm), l.st_s = l.st_s + i * (f.st_s - l.st_s), l.masking_adj = l.masking_adj + i * (f.masking_adj - l.masking_adj), l.masking_adj_short = l.masking_adj_short + i * (f.masking_adj_short - l.masking_adj_short), l.ath_lower = l.ath_lower + i * (f.ath_lower - l.ath_lower), l.ath_curve = l.ath_curve + i * (f.ath_curve - l.ath_curve), l.ath_sensitivity = l.ath_sensitivity + i * (f.ath_sensitivity - l.ath_sensitivity), l.interch = l.interch + i * (f.interch - l.interch), l.msfix = l.msfix + i * (f.msfix - l.msfix), n(e, u.vbr_q), 0 != a ? e.quant_comp = u.quant_comp : Math.abs(e.quant_comp - -1) > 0 || (e.quant_comp = u.quant_comp), 0 != a ? e.quant_comp_short = u.quant_comp_s : Math.abs(e.quant_comp_short - -1) > 0 || (e.quant_comp_short = u.quant_comp_s), 0 != u.expY && (e.experimentalY = 0 != u.expY), 0 != a ? e.internal_flags.nsPsy.attackthre = u.st_lrm : Math.abs(e.internal_flags.nsPsy.attackthre - -1) > 0 || (e.internal_flags.nsPsy.attackthre = u.st_lrm), 0 != a ? e.internal_flags.nsPsy.attackthre_s = u.st_s : Math.abs(e.internal_flags.nsPsy.attackthre_s - -1) > 0 || (e.internal_flags.nsPsy.attackthre_s = u.st_s), 0 != a ? e.maskingadjust = u.masking_adj : Math.abs(e.maskingadjust - 0) > 0 || (e.maskingadjust = u.masking_adj), 0 != a ? e.maskingadjust_short = u.masking_adj_short : Math.abs(e.maskingadjust_short - 0) > 0 || (e.maskingadjust_short = u.masking_adj_short), 0 != a ? e.ATHlower = -u.ath_lower / 10 : Math.abs(10 * -e.ATHlower - 0) > 0 || (e.ATHlower = -u.ath_lower / 10), 0 != a ? e.ATHcurve = u.ath_curve : Math.abs(e.ATHcurve - -1) > 0 || (e.ATHcurve = u.ath_curve), 0 != a ? e.athaa_sensitivity = u.ath_sensitivity : Math.abs(e.athaa_sensitivity - -1) > 0 || (e.athaa_sensitivity = u.ath_sensitivity), u.interch > 0 && (0 != a ? e.interChRatio = u.interch : Math.abs(e.interChRatio - -1) > 0 || (e.interChRatio = u.interch)), u.safejoint > 0 && (e.exp_nspsytune = e.exp_nspsytune | u.safejoint), u.sfb21mod > 0 && (e.exp_nspsytune = e.exp_nspsytune | u.sfb21mod << 20), 0 != a ? e.msfix = u.msfix : Math.abs(e.msfix - -1) > 0 || (e.msfix = u.msfix), 0 == a && (e.VBR_q = t, e.VBR_q_frac = i)
+            }
+
+            function r(e, t, a) {
+                var r = t,
+                    n = i.nearestBitrateFullIndex(t);
+                if (e.VBR = s.vbr_abr, e.VBR_mean_bitrate_kbps = r, e.VBR_mean_bitrate_kbps = Math.min(e.VBR_mean_bitrate_kbps, 320), e.VBR_mean_bitrate_kbps = Math.max(e.VBR_mean_bitrate_kbps, 8), e.brate = e.VBR_mean_bitrate_kbps, e.VBR_mean_bitrate_kbps > 320 && (e.disable_reservoir = !0), l[n].safejoint > 0 && (e.exp_nspsytune = 2 | e.exp_nspsytune), l[n].sfscale > 0 && (e.internal_flags.noise_shaping = 2), Math.abs(l[n].nsbass) > 0) {
+                    var o = int(4 * l[n].nsbass);
+                    0 > o && (o += 64), e.exp_nspsytune = e.exp_nspsytune | o << 2
+                }
+                return 0 != a ? e.quant_comp = l[n].quant_comp : Math.abs(e.quant_comp - -1) > 0 || (e.quant_comp = l[n].quant_comp), 0 != a ? e.quant_comp_short = l[n].quant_comp_s : Math.abs(e.quant_comp_short - -1) > 0 || (e.quant_comp_short = l[n].quant_comp_s), 0 != a ? e.msfix = l[n].nsmsfix : Math.abs(e.msfix - -1) > 0 || (e.msfix = l[n].nsmsfix), 0 != a ? e.internal_flags.nsPsy.attackthre = l[n].st_lrm : Math.abs(e.internal_flags.nsPsy.attackthre - -1) > 0 || (e.internal_flags.nsPsy.attackthre = l[n].st_lrm), 0 != a ? e.internal_flags.nsPsy.attackthre_s = l[n].st_s : Math.abs(e.internal_flags.nsPsy.attackthre_s - -1) > 0 || (e.internal_flags.nsPsy.attackthre_s = l[n].st_s), 0 != a ? e.scale = l[n].scale : Math.abs(e.scale - -1) > 0 || (e.scale = l[n].scale), 0 != a ? e.maskingadjust = l[n].masking_adj : Math.abs(e.maskingadjust - 0) > 0 || (e.maskingadjust = l[n].masking_adj), l[n].masking_adj > 0 ? 0 != a ? e.maskingadjust_short = .9 * l[n].masking_adj : Math.abs(e.maskingadjust_short - 0) > 0 || (e.maskingadjust_short = .9 * l[n].masking_adj) : 0 != a ? e.maskingadjust_short = 1.1 * l[n].masking_adj : Math.abs(e.maskingadjust_short - 0) > 0 || (e.maskingadjust_short = 1.1 * l[n].masking_adj), 0 != a ? e.ATHlower = -l[n].ath_lower / 10 : Math.abs(10 * -e.ATHlower - 0) > 0 || (e.ATHlower = -l[n].ath_lower / 10), 0 != a ? e.ATHcurve = l[n].ath_curve : Math.abs(e.ATHcurve - -1) > 0 || (e.ATHcurve = l[n].ath_curve), 0 != a ? e.interChRatio = l[n].interch : Math.abs(e.interChRatio - -1) > 0 || (e.interChRatio = l[n].interch), t
+            }
+
+            function n(e, t) {
+                var a = 0;
+                return 0 > t && (a = -1, t = 0), t > 9 && (a = -1, t = 9), e.VBR_q = t, e.VBR_q_frac = 0, a
+            }
+            var i;
+            this.setModules = function(e) {
+                i = e
+            };
+            var o = [new e(0, 9, 9, 0, 5.2, 125, -4.2, -6.3, 4.8, 1, 0, 0, 2, 21, .97), new e(1, 9, 9, 0, 5.3, 125, -3.6, -5.6, 4.5, 1.5, 0, 0, 2, 21, 1.35), new e(2, 9, 9, 0, 5.6, 125, -2.2, -3.5, 2.8, 2, 0, 0, 2, 21, 1.49), new e(3, 9, 9, 1, 5.8, 130, -1.8, -2.8, 2.6, 3, -4, 0, 2, 20, 1.64), new e(4, 9, 9, 1, 6, 135, -.7, -1.1, 1.1, 3.5, -8, 0, 2, 0, 1.79), new e(5, 9, 9, 1, 6.4, 140, .5, .4, -7.5, 4, -12, 2e-4, 0, 0, 1.95), new e(6, 9, 9, 1, 6.6, 145, .67, .65, -14.7, 6.5, -19, 4e-4, 0, 0, 2.3), new e(7, 9, 9, 1, 6.6, 145, .8, .75, -19.7, 8, -22, 6e-4, 0, 0, 2.7), new e(8, 9, 9, 1, 6.6, 145, 1.2, 1.15, -27.5, 10, -23, 7e-4, 0, 0, 0), new e(9, 9, 9, 1, 6.6, 145, 1.6, 1.6, -36, 11, -25, 8e-4, 0, 0, 0), new e(10, 9, 9, 1, 6.6, 145, 2, 2, -36, 12, -25, 8e-4, 0, 0, 0)],
+                _ = [new e(0, 9, 9, 0, 4.2, 25, -7, -4, 7.5, 1, 0, 0, 2, 26, .97), new e(1, 9, 9, 0, 4.2, 25, -5.6, -3.6, 4.5, 1.5, 0, 0, 2, 21, 1.35), new e(2, 9, 9, 0, 4.2, 25, -4.4, -1.8, 2, 2, 0, 0, 2, 18, 1.49), new e(3, 9, 9, 1, 4.2, 25, -3.4, -1.25, 1.1, 3, -4, 0, 2, 15, 1.64), new e(4, 9, 9, 1, 4.2, 25, -2.2, .1, 0, 3.5, -8, 0, 2, 0, 1.79), new e(5, 9, 9, 1, 4.2, 25, -1, 1.65, -7.7, 4, -12, 2e-4, 0, 0, 1.95), new e(6, 9, 9, 1, 4.2, 25, -0, 2.47, -7.7, 6.5, -19, 4e-4, 0, 0, 2), new e(7, 9, 9, 1, 4.2, 25, .5, 2, -14.5, 8, -22, 6e-4, 0, 0, 2), new e(8, 9, 9, 1, 4.2, 25, 1, 2.4, -22, 10, -23, 7e-4, 0, 0, 2), new e(9, 9, 9, 1, 4.2, 25, 1.5, 2.95, -30, 11, -25, 8e-4, 0, 0, 2), new e(10, 9, 9, 1, 4.2, 25, 2, 2.95, -36, 12, -30, 8e-4, 0, 0, 2)],
+                l = [new t(8, 9, 9, 0, 0, 6.6, 145, 0, .95, 0, -30, 11, .0012, 1), new t(16, 9, 9, 0, 0, 6.6, 145, 0, .95, 0, -25, 11, .001, 1), new t(24, 9, 9, 0, 0, 6.6, 145, 0, .95, 0, -20, 11, .001, 1), new t(32, 9, 9, 0, 0, 6.6, 145, 0, .95, 0, -15, 11, .001, 1), new t(40, 9, 9, 0, 0, 6.6, 145, 0, .95, 0, -10, 11, 9e-4, 1), new t(48, 9, 9, 0, 0, 6.6, 145, 0, .95, 0, -10, 11, 9e-4, 1), new t(56, 9, 9, 0, 0, 6.6, 145, 0, .95, 0, -6, 11, 8e-4, 1), new t(64, 9, 9, 0, 0, 6.6, 145, 0, .95, 0, -2, 11, 8e-4, 1), new t(80, 9, 9, 0, 0, 6.6, 145, 0, .95, 0, 0, 8, 7e-4, 1), new t(96, 9, 9, 0, 2.5, 6.6, 145, 0, .95, 0, 1, 5.5, 6e-4, 1), new t(112, 9, 9, 0, 2.25, 6.6, 145, 0, .95, 0, 2, 4.5, 5e-4, 1), new t(128, 9, 9, 0, 1.95, 6.4, 140, 0, .95, 0, 3, 4, 2e-4, 1), new t(160, 9, 9, 1, 1.79, 6, 135, 0, .95, -2, 5, 3.5, 0, 1), new t(192, 9, 9, 1, 1.49, 5.6, 125, 0, .97, -4, 7, 3, 0, 0), new t(224, 9, 9, 1, 1.25, 5.2, 125, 0, .98, -6, 9, 2, 0, 0), new t(256, 9, 9, 1, .97, 5.2, 125, 0, 1, -8, 10, 1, 0, 0), new t(320, 9, 9, 1, .9, 5.2, 125, 0, 1, -10, 12, 0, 0, 0)];
+            this.apply_preset = function(e, t, n) {
+                switch (t) {
+                    case Lame.R3MIX:
+                        t = Lame.V3, e.VBR = s.vbr_mtrh;
+                        break;
+                    case Lame.MEDIUM:
+                        t = Lame.V4, e.VBR = s.vbr_rh;
+                        break;
+                    case Lame.MEDIUM_FAST:
+                        t = Lame.V4, e.VBR = s.vbr_mtrh;
+                        break;
+                    case Lame.STANDARD:
+                        t = Lame.V2, e.VBR = s.vbr_rh;
+                        break;
+                    case Lame.STANDARD_FAST:
+                        t = Lame.V2, e.VBR = s.vbr_mtrh;
+                        break;
+                    case Lame.EXTREME:
+                        t = Lame.V0, e.VBR = s.vbr_rh;
+                        break;
+                    case Lame.EXTREME_FAST:
+                        t = Lame.V0, e.VBR = s.vbr_mtrh;
+                        break;
+                    case Lame.INSANE:
+                        return t = 320, e.preset = t, r(e, t, n), e.VBR = s.vbr_off, t
+                }
+                switch (e.preset = t, t) {
+                    case Lame.V9:
+                        return a(e, 9, n), t;
+                    case Lame.V8:
+                        return a(e, 8, n), t;
+                    case Lame.V7:
+                        return a(e, 7, n), t;
+                    case Lame.V6:
+                        return a(e, 6, n), t;
+                    case Lame.V5:
+                        return a(e, 5, n), t;
+                    case Lame.V4:
+                        return a(e, 4, n), t;
+                    case Lame.V3:
+                        return a(e, 3, n), t;
+                    case Lame.V2:
+                        return a(e, 2, n), t;
+                    case Lame.V1:
+                        return a(e, 1, n), t;
+                    case Lame.V0:
+                        return a(e, 0, n), t
+                }
+                return t >= 8 && 320 >= t ? r(e, t, n) : (e.preset = 0, t)
+            }
+        }
+        var n = a(536),
+            s = (n.System, n.VbrMode);
+        n.Float, n.ShortBlock, n.Util, n.Arrays, n.new_array_n, n.new_byte, n.new_double, n.new_float, n.new_float_n, n.new_int, n.new_int_n, n.assert, e.exports = r
+    },
+    147: function(e, t, a) {
+        function r(e) {
+            var t = e;
+            this.quantize = t, this.iteration_loop = function(e, t, a, r) {
+                var n, h = e.internal_flags,
+                    c = s(f.SFBMAX),
+                    p = s(576),
+                    b = i(2),
+                    m = 0,
+                    v = h.l3_side,
+                    d = new _(m);
+                this.quantize.rv.ResvFrameBegin(e, d), m = d.bits;
+                for (var g = 0; g < h.mode_gr; g++) {
+                    n = this.quantize.qupvt.on_pe(e, t, b, m, g, g), h.mode_ext == l.MPG_MD_MS_LR && (this.quantize.ms_convert(h.l3_side, g), this.quantize.qupvt.reduce_side(b, a[g], m, n));
+                    for (var w = 0; w < h.channels_out; w++) {
+                        var S, A, R = v.tt[g][w];
+                        R.block_type != l.SHORT_TYPE ? (S = 0, A = h.PSY.mask_adjust - S) : (S = 0, A = h.PSY.mask_adjust_short - S), h.masking_lower = Math.pow(10, .1 * A), this.quantize.init_outer_loop(h, R), this.quantize.init_xrpow(h, R, p) && (this.quantize.qupvt.calc_xmin(e, r[g][w], R, c), this.quantize.outer_loop(e, R, c, p, w, b[w])), this.quantize.iteration_finish_one(h, g, w), o(R.part2_3_length <= u.MAX_BITS_PER_CHANNEL), o(R.part2_3_length <= b[w])
+                    }
+                }
+                this.quantize.rv.ResvFrameEnd(h, m)
+            }
+        }
+        var n = a(536),
+            s = (n.System, n.VbrMode, n.Float, n.ShortBlock, n.Util, n.Arrays, n.new_array_n, n.new_byte, n.new_double, n.new_float),
+            i = (n.new_float_n, n.new_int),
+            o = (n.new_int_n, n.assert),
+            _ = a(369),
+            l = a(574),
+            f = a(119),
+            u = a(51);
         e.exports = r
     },
-    17: function(e, t, a) {
+    152: function(e, t, a) {
         function r() {
-            function e(e, t, a, r) {
-                r = 0;
-                for (var n = 0; a >= n; ++n) {
-                    var s = Math.abs(e.xr[n]);
-                    r += s, t[n] = Math.sqrt(s * Math.sqrt(s)), t[n] > e.xrpow_max && (e.xrpow_max = t[n])
-                }
-                return r
+            function e(e) {
+                return u(0 <= e + r.Q_MAX2 && e < r.Q_MAX), y[e + r.Q_MAX2]
             }
 
             function t(e, t) {
-                var a = e.ATH,
-                    r = t.xr;
-                if (t.block_type != p.SHORT_TYPE)
-                    for (var n = !1, s = p.PSFB21 - 1; s >= 0 && !n; s--) {
-                        var i = e.scalefac_band.psfb21[s],
-                            o = e.scalefac_band.psfb21[s + 1],
-                            _ = B.athAdjust(a.adjust, a.psfb21[s], a.floor);
-                        e.nsPsy.longfact[21] > 1e-12 && (_ *= e.nsPsy.longfact[21]);
-                        for (var l = o - 1; l >= i; l--) {
-                            if (!(Math.abs(r[l]) < _)) {
-                                n = !0;
-                                break
-                            }
-                            r[l] = 0
-                        }
-                    } else
-                        for (var f = 0; 3 > f; f++)
-                            for (var n = !1, s = p.PSFB12 - 1; s >= 0 && !n; s--) {
-                                var i = 3 * e.scalefac_band.s[12] + (e.scalefac_band.s[13] - e.scalefac_band.s[12]) * f + (e.scalefac_band.psfb12[s] - e.scalefac_band.psfb12[0]),
-                                    o = i + (e.scalefac_band.psfb12[s + 1] - e.scalefac_band.psfb12[s]),
-                                    u = B.athAdjust(a.adjust, a.psfb12[s], a.floor);
-                                e.nsPsy.shortfact[12] > 1e-12 && (u *= e.nsPsy.shortfact[12]);
-                                for (var l = o - 1; l >= i; l--) {
-                                    if (!(Math.abs(r[l]) < u)) {
-                                        n = !0;
-                                        break
-                                    }
-                                    r[l] = 0
-                                }
-                            }
+                var a = v.ATHformula(t, e);
+                return a -= R, a = Math.pow(10, a / 10 + e.ATHlower)
             }
 
             function a(e) {
-                this.ordinal = e
+                for (var a = e.internal_flags.ATH.l, r = e.internal_flags.ATH.psfb21, n = e.internal_flags.ATH.s, s = e.internal_flags.ATH.psfb12, i = e.internal_flags, _ = e.out_samplerate, l = 0; l < h.SBMAX_l; l++) {
+                    var f = i.scalefac_band.l[l],
+                        u = i.scalefac_band.l[l + 1];
+                    a[l] = o.MAX_VALUE;
+                    for (var c = f; u > c; c++) {
+                        var p = c * _ / 1152,
+                            b = t(e, p);
+                        a[l] = Math.min(a[l], b)
+                    }
+                }
+                for (var l = 0; l < h.PSFB21; l++) {
+                    var f = i.scalefac_band.psfb21[l],
+                        u = i.scalefac_band.psfb21[l + 1];
+                    r[l] = o.MAX_VALUE;
+                    for (var c = f; u > c; c++) {
+                        var p = c * _ / 1152,
+                            b = t(e, p);
+                        r[l] = Math.min(r[l], b)
+                    }
+                }
+                for (var l = 0; l < h.SBMAX_s; l++) {
+                    var f = i.scalefac_band.s[l],
+                        u = i.scalefac_band.s[l + 1];
+                    n[l] = o.MAX_VALUE;
+                    for (var c = f; u > c; c++) {
+                        var p = c * _ / 384,
+                            b = t(e, p);
+                        n[l] = Math.min(n[l], b)
+                    }
+                    n[l] *= i.scalefac_band.s[l + 1] - i.scalefac_band.s[l]
+                }
+                for (var l = 0; l < h.PSFB12; l++) {
+                    var f = i.scalefac_band.psfb12[l],
+                        u = i.scalefac_band.psfb12[l + 1];
+                    s[l] = o.MAX_VALUE;
+                    for (var c = f; u > c; c++) {
+                        var p = c * _ / 384,
+                            b = t(e, p);
+                        s[l] = Math.min(s[l], b)
+                    }
+                    s[l] *= i.scalefac_band.s[13] - i.scalefac_band.s[12]
+                }
+                if (e.noATH) {
+                    for (var l = 0; l < h.SBMAX_l; l++) a[l] = 1e-20;
+                    for (var l = 0; l < h.PSFB21; l++) r[l] = 1e-20;
+                    for (var l = 0; l < h.SBMAX_s; l++) n[l] = 1e-20;
+                    for (var l = 0; l < h.PSFB12; l++) s[l] = 1e-20
+                }
+                i.ATH.floor = 10 * Math.log10(t(e, -1))
             }
 
-            function r(e, t, r, n, s) {
-                var i, o = e.CurrentStep[n],
-                    _ = !1,
-                    l = e.OldValue[n],
-                    u = a.BINSEARCH_NONE;
-                for (t.global_gain = l, r -= t.part2_length, f(0 != o);;) {
-                    var h;
-                    if (i = E.count_bits(e, s, t, null), 1 == o || i == r) break;
-                    i > r ? (u == a.BINSEARCH_DOWN && (_ = !0), _ && (o /= 2), u = a.BINSEARCH_UP, h = o) : (u == a.BINSEARCH_UP && (_ = !0), _ && (o /= 2), u = a.BINSEARCH_DOWN, h = -o), t.global_gain += h, t.global_gain < 0 && (t.global_gain = 0, _ = !0), t.global_gain > 255 && (t.global_gain = 255, _ = !0)
+            function s(e) {
+                this.s = e
+            }
+            var b = null,
+                m = null,
+                v = null;
+            this.setModules = function(e, t, a) {
+                b = e, m = t, v = a
+            }, this.IPOW20 = function(e) {
+                return u(e >= 0 && e < r.Q_MAX), B[e]
+            };
+            var d = 2.220446049250313e-16,
+                g = r.IXMAX_VAL,
+                w = g + 2,
+                S = r.Q_MAX,
+                A = r.Q_MAX2,
+                R = (r.LARGE_BITS, 100);
+            this.nr_of_sfb_block = [
+                [
+                    [6, 5, 5, 5],
+                    [9, 9, 9, 9],
+                    [6, 9, 9, 9]
+                ],
+                [
+                    [6, 5, 7, 3],
+                    [9, 9, 12, 6],
+                    [6, 9, 12, 6]
+                ],
+                [
+                    [11, 10, 0, 0],
+                    [18, 18, 0, 0],
+                    [15, 18, 0, 0]
+                ],
+                [
+                    [7, 7, 7, 0],
+                    [12, 12, 12, 0],
+                    [6, 15, 12, 0]
+                ],
+                [
+                    [6, 6, 6, 3],
+                    [12, 9, 9, 6],
+                    [6, 12, 9, 6]
+                ],
+                [
+                    [8, 8, 5, 0],
+                    [15, 12, 9, 0],
+                    [6, 18, 9, 0]
+                ]
+            ];
+            var M = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 3, 3, 3, 2, 0];
+            this.pretab = M, this.sfBandIndex = [new n([0, 6, 12, 18, 24, 30, 36, 44, 54, 66, 80, 96, 116, 140, 168, 200, 238, 284, 336, 396, 464, 522, 576], [0, 4, 8, 12, 18, 24, 32, 42, 56, 74, 100, 132, 174, 192], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]), new n([0, 6, 12, 18, 24, 30, 36, 44, 54, 66, 80, 96, 114, 136, 162, 194, 232, 278, 332, 394, 464, 540, 576], [0, 4, 8, 12, 18, 26, 36, 48, 62, 80, 104, 136, 180, 192], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]), new n([0, 6, 12, 18, 24, 30, 36, 44, 54, 66, 80, 96, 116, 140, 168, 200, 238, 284, 336, 396, 464, 522, 576], [0, 4, 8, 12, 18, 26, 36, 48, 62, 80, 104, 134, 174, 192], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]), new n([0, 4, 8, 12, 16, 20, 24, 30, 36, 44, 52, 62, 74, 90, 110, 134, 162, 196, 238, 288, 342, 418, 576], [0, 4, 8, 12, 16, 22, 30, 40, 52, 66, 84, 106, 136, 192], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]), new n([0, 4, 8, 12, 16, 20, 24, 30, 36, 42, 50, 60, 72, 88, 106, 128, 156, 190, 230, 276, 330, 384, 576], [0, 4, 8, 12, 16, 22, 28, 38, 50, 64, 80, 100, 126, 192], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]), new n([0, 4, 8, 12, 16, 20, 24, 30, 36, 44, 54, 66, 82, 102, 126, 156, 194, 240, 296, 364, 448, 550, 576], [0, 4, 8, 12, 16, 22, 30, 42, 58, 78, 104, 138, 180, 192], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]), new n([0, 6, 12, 18, 24, 30, 36, 44, 54, 66, 80, 96, 116, 140, 168, 200, 238, 284, 336, 396, 464, 522, 576], [0, 4, 8, 12, 18, 26, 36, 48, 62, 80, 104, 134, 174, 192], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]), new n([0, 6, 12, 18, 24, 30, 36, 44, 54, 66, 80, 96, 116, 140, 168, 200, 238, 284, 336, 396, 464, 522, 576], [0, 4, 8, 12, 18, 26, 36, 48, 62, 80, 104, 134, 174, 192], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]), new n([0, 12, 24, 36, 48, 60, 72, 88, 108, 132, 160, 192, 232, 280, 336, 400, 476, 566, 568, 570, 572, 574, 576], [0, 8, 16, 24, 36, 52, 72, 96, 124, 160, 162, 164, 166, 192], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0])];
+            var y = l(S + A + 1),
+                B = l(S),
+                E = l(w),
+                T = l(w);
+            this.adj43 = T, this.iteration_init = function(e) {
+                var t, r = e.internal_flags,
+                    n = r.l3_side;
+                if (0 == r.iteration_init_init) {
+                    for (r.iteration_init_init = 1, n.main_data_begin = 0, a(e), E[0] = 0, t = 1; w > t; t++) E[t] = Math.pow(t, 4 / 3);
+                    for (t = 0; w - 1 > t; t++) T[t] = t + 1 - Math.pow(.5 * (E[t] + E[t + 1]), .75);
+                    for (T[t] = .5, t = 0; S > t; t++) B[t] = Math.pow(2, (t - 210) * -.1875);
+                    for (t = 0; S + A >= t; t++) y[t] = Math.pow(2, .25 * (t - 210 - A));
+                    b.huffman_init(r);
+                    var s, i, o, _;
+                    for (t = e.exp_nspsytune >> 2 & 63, t >= 32 && (t -= 64), s = Math.pow(10, t / 4 / 10), t = e.exp_nspsytune >> 8 & 63, t >= 32 && (t -= 64), i = Math.pow(10, t / 4 / 10), t = e.exp_nspsytune >> 14 & 63, t >= 32 && (t -= 64), o = Math.pow(10, t / 4 / 10), t = e.exp_nspsytune >> 20 & 63, t >= 32 && (t -= 64), _ = o * Math.pow(10, t / 4 / 10), t = 0; t < h.SBMAX_l; t++) {
+                        var l;
+                        l = 6 >= t ? s : 13 >= t ? i : 20 >= t ? o : _, r.nsPsy.longfact[t] = l
+                    }
+                    for (t = 0; t < h.SBMAX_s; t++) {
+                        var l;
+                        l = 5 >= t ? s : 10 >= t ? i : 11 >= t ? o : _, r.nsPsy.shortfact[t] = l
+                    }
                 }
-                for (f(t.global_gain >= 0), f(t.global_gain < 256); i > r && t.global_gain < 255;) t.global_gain++, i = E.count_bits(e, s, t, null);
-                return e.CurrentStep[n] = l - t.global_gain >= 4 ? 4 : 2, e.OldValue[n] = t.global_gain, t.part2_3_length = i, i
+            }, this.on_pe = function(e, t, a, r, n, s) {
+                var i, o, _ = e.internal_flags,
+                    l = 0,
+                    h = f(2),
+                    b = new c(l),
+                    v = m.ResvMaxBits(e, r, b, s);
+                l = b.bits;
+                var d = l + v;
+                for (d > p.MAX_BITS_PER_GRANULE && (d = p.MAX_BITS_PER_GRANULE), i = 0, o = 0; o < _.channels_out; ++o) a[o] = Math.min(p.MAX_BITS_PER_CHANNEL, l / _.channels_out), h[o] = 0 | a[o] * t[n][o] / 700 - a[o], h[o] > 3 * r / 4 && (h[o] = 3 * r / 4), h[o] < 0 && (h[o] = 0), h[o] + a[o] > p.MAX_BITS_PER_CHANNEL && (h[o] = Math.max(0, p.MAX_BITS_PER_CHANNEL - a[o])), i += h[o];
+                if (i > v)
+                    for (o = 0; o < _.channels_out; ++o) h[o] = v * h[o] / i;
+                for (o = 0; o < _.channels_out; ++o) a[o] += h[o], v -= h[o];
+                for (i = 0, o = 0; o < _.channels_out; ++o) i += a[o];
+                if (i > p.MAX_BITS_PER_GRANULE) {
+                    var g = 0;
+                    for (o = 0; o < _.channels_out; ++o) a[o] *= p.MAX_BITS_PER_GRANULE, a[o] /= i, g += a[o];
+                    u(g <= p.MAX_BITS_PER_GRANULE)
+                }
+                return d
+            }, this.reduce_side = function(e, t, a, r) {
+                u(r <= p.MAX_BITS_PER_GRANULE), u(e[0] + e[1] <= p.MAX_BITS_PER_GRANULE);
+                var n = .33 * (.5 - t) / .5;
+                0 > n && (n = 0), n > .5 && (n = .5);
+                var s = 0 | .5 * n * (e[0] + e[1]);
+                s > p.MAX_BITS_PER_CHANNEL - e[0] && (s = p.MAX_BITS_PER_CHANNEL - e[0]), 0 > s && (s = 0), e[1] >= 125 && (e[1] - s > 125 ? (e[0] < a && (e[0] += s), e[1] -= s) : (e[0] += e[1] - 125, e[1] = 125)), s = e[0] + e[1], s > r && (e[0] = r * e[0] / s, e[1] = r * e[1] / s), u(e[0] <= p.MAX_BITS_PER_CHANNEL), u(e[1] <= p.MAX_BITS_PER_CHANNEL), u(e[0] + e[1] <= p.MAX_BITS_PER_GRANULE)
+            }, this.athAdjust = function(e, t, a) {
+                var r = 90.30873362,
+                    n = 94.82444863,
+                    s = _.FAST_LOG10_X(t, 10),
+                    i = e * e,
+                    o = 0;
+                return s -= a, i > 1e-20 && (o = 1 + _.FAST_LOG10_X(i, 10 / r)), 0 > o && (o = 0), s *= o, s += a + r - n, Math.pow(10, .1 * s)
+            }, this.calc_xmin = function(e, t, a, r) {
+                var n, s = 0,
+                    o = e.internal_flags,
+                    _ = 0,
+                    l = 0,
+                    f = o.ATH,
+                    u = a.xr,
+                    c = e.VBR == i.vbr_mtrh ? 1 : 0,
+                    p = o.masking_lower;
+                for ((e.VBR == i.vbr_mtrh || e.VBR == i.vbr_mt) && (p = 1), n = 0; n < a.psy_lmax; n++) {
+                    var b, m, v, g, w, S;
+                    m = e.VBR == i.vbr_rh || e.VBR == i.vbr_mtrh ? athAdjust(f.adjust, f.l[n], f.floor) : f.adjust * f.l[n], w = a.width[n], v = m / w, g = d, S = w >> 1, b = 0;
+                    do {
+                        var A, R;
+                        A = u[_] * u[_], b += A, g += v > A ? A : v, _++, R = u[_] * u[_], b += R, g += v > R ? R : v, _++
+                    } while (--S > 0);
+                    if (b > m && l++, n == h.SBPSY_l) {
+                        var M = m * o.nsPsy.longfact[n];
+                        M > g && (g = M)
+                    }
+                    if (0 != c && (m = g), !e.ATHonly) {
+                        var y = t.en.l[n];
+                        if (y > 0) {
+                            var M;
+                            M = b * t.thm.l[n] * p / y, 0 != c && (M *= o.nsPsy.longfact[n]), M > m && (m = M)
+                        }
+                    }
+                    0 != c ? r[s++] = m : r[s++] = m * o.nsPsy.longfact[n]
+                }
+                var B = 575;
+                if (a.block_type != h.SHORT_TYPE)
+                    for (var E = 576; 0 != E-- && BitStream.EQ(u[E], 0);) B = E;
+                a.max_nonzero_coeff = B;
+                for (var T = a.sfb_smin; n < a.psymax; T++, n += 3) {
+                    var w, k, x;
+                    for (x = e.VBR == i.vbr_rh || e.VBR == i.vbr_mtrh ? athAdjust(f.adjust, f.s[T], f.floor) : f.adjust * f.s[T], w = a.width[n], k = 0; 3 > k; k++) {
+                        var m, v, g, b = 0,
+                            S = w >> 1;
+                        v = x / w, g = d;
+                        do {
+                            var A, R;
+                            A = u[_] * u[_], b += A, g += v > A ? A : v, _++, R = u[_] * u[_], b += R, g += v > R ? R : v, _++
+                        } while (--S > 0);
+                        if (b > x && l++, T == h.SBPSY_s) {
+                            var M = x * o.nsPsy.shortfact[T];
+                            M > g && (g = M)
+                        }
+                        if (m = 0 != c ? g : x, !e.ATHonly && !e.ATHshort) {
+                            var y = t.en.s[T][k];
+                            if (y > 0) {
+                                var M;
+                                M = b * t.thm.s[T][k] * p / y, 0 != c && (M *= o.nsPsy.shortfact[T]), M > m && (m = M)
+                            }
+                        }
+                        0 != c ? r[s++] = m : r[s++] = m * o.nsPsy.shortfact[T]
+                    }
+                    e.useTemporal && (r[s - 3] > r[s - 3 + 1] && (r[s - 3 + 1] += (r[s - 3] - r[s - 3 + 1]) * o.decay), r[s - 3 + 1] > r[s - 3 + 2] && (r[s - 3 + 2] += (r[s - 3 + 1] - r[s - 3 + 2]) * o.decay))
+                }
+                return l
+            }, this.calc_noise_core = function(e, t, a, r) {
+                var n = 0,
+                    s = t.s,
+                    i = e.l3_enc;
+                if (s > e.count1)
+                    for (; 0 != a--;) {
+                        var o;
+                        o = e.xr[s], s++, n += o * o, o = e.xr[s], s++, n += o * o
+                    } else if (s > e.big_values) {
+                        var _ = l(2);
+                        for (_[0] = 0, _[1] = r; 0 != a--;) {
+                            var o;
+                            o = Math.abs(e.xr[s]) - _[i[s]], s++, n += o * o, o = Math.abs(e.xr[s]) - _[i[s]], s++, n += o * o
+                        }
+                    } else
+                        for (; 0 != a--;) {
+                            var o;
+                            o = Math.abs(e.xr[s]) - E[i[s]] * r, s++, n += o * o, o = Math.abs(e.xr[s]) - E[i[s]] * r, s++, n += o * o
+                        }
+                return t.s = s, n
+            }, this.calc_noise = function(t, a, r, n, i) {
+                var o, l, f = 0,
+                    u = 0,
+                    h = 0,
+                    c = 0,
+                    p = 0,
+                    b = -20,
+                    m = 0,
+                    v = t.scalefac,
+                    d = 0;
+                for (n.over_SSD = 0, o = 0; o < t.psymax; o++) {
+                    var g = t.global_gain - (v[d++] + (0 != t.preflag ? M[o] : 0) << t.scalefac_scale + 1) - 8 * t.subblock_gain[t.window[o]],
+                        w = 0;
+                    if (null != i && i.step[o] == g) w = i.noise[o], m += t.width[o], r[f++] = w / a[u++], w = i.noise_log[o];
+                    else {
+                        var S = e(g);
+                        if (l = t.width[o] >> 1, m + t.width[o] > t.max_nonzero_coeff) {
+                            var A;
+                            A = t.max_nonzero_coeff - m + 1, l = A > 0 ? A >> 1 : 0
+                        }
+                        var R = new s(m);
+                        w = this.calc_noise_core(t, R, l, S), m = R.s, null != i && (i.step[o] = g, i.noise[o] = w), w = r[f++] = w / a[u++], w = _.FAST_LOG10(Math.max(w, 1e-20)), null != i && (i.noise_log[o] = w)
+                    }
+                    if (null != i && (i.global_gain = t.global_gain), p += w, w > 0) {
+                        var y;
+                        y = Math.max(0 | 10 * w + .5, 1), n.over_SSD += y * y, h++, c += w
+                    }
+                    b = Math.max(b, w)
+                }
+                return n.over_count = h, n.tot_noise = p, n.over_noise = c, n.max_noise = b, h
+            }, this.set_pinfo = function(e, t, a, r, n) {
+                var s, i, o, _, f, c = e.internal_flags,
+                    p = 0 == t.scalefac_scale ? .5 : 1,
+                    b = t.scalefac,
+                    m = l(L3Side.SFBMAX),
+                    v = l(L3Side.SFBMAX),
+                    d = new CalcNoiseResult;
+                calc_xmin(e, a, t, m), calc_noise(t, m, v, d, null);
+                var g = 0;
+                for (i = t.sfb_lmax, t.block_type != h.SHORT_TYPE && 0 == t.mixed_block_flag && (i = 22), s = 0; i > s; s++) {
+                    var w = c.scalefac_band.l[s],
+                        S = c.scalefac_band.l[s + 1],
+                        A = S - w;
+                    for (_ = 0; S > g; g++) _ += t.xr[g] * t.xr[g];
+                    _ /= A, f = 1e15, c.pinfo.en[r][n][s] = f * _, c.pinfo.xfsf[r][n][s] = f * m[s] * v[s] / A, a.en.l[s] > 0 && !e.ATHonly ? _ /= a.en.l[s] : _ = 0, c.pinfo.thr[r][n][s] = f * Math.max(_ * a.thm.l[s], c.ATH.l[s]), c.pinfo.LAMEsfb[r][n][s] = 0, 0 != t.preflag && s >= 11 && (c.pinfo.LAMEsfb[r][n][s] = -p * M[s]), s < h.SBPSY_l && (u(b[s] >= 0), c.pinfo.LAMEsfb[r][n][s] -= p * b[s])
+                }
+                if (t.block_type == h.SHORT_TYPE)
+                    for (i = s, s = t.sfb_smin; s < h.SBMAX_s; s++)
+                        for (var w = c.scalefac_band.s[s], S = c.scalefac_band.s[s + 1], A = S - w, R = 0; 3 > R; R++) {
+                            for (_ = 0, o = w; S > o; o++) _ += t.xr[g] * t.xr[g], g++;
+                            _ = Math.max(_ / A, 1e-20), f = 1e15, c.pinfo.en_s[r][n][3 * s + R] = f * _, c.pinfo.xfsf_s[r][n][3 * s + R] = f * m[i] * v[i] / A, a.en.s[s][R] > 0 ? _ /= a.en.s[s][R] : _ = 0, (e.ATHonly || e.ATHshort) && (_ = 0), c.pinfo.thr_s[r][n][3 * s + R] = f * Math.max(_ * a.thm.s[s][R], c.ATH.s[s]), c.pinfo.LAMEsfb_s[r][n][3 * s + R] = -2 * t.subblock_gain[R], s < h.SBPSY_s && (c.pinfo.LAMEsfb_s[r][n][3 * s + R] -= p * b[i]), i++
+                        }
+                c.pinfo.LAMEqss[r][n] = t.global_gain, c.pinfo.LAMEmainbits[r][n] = t.part2_3_length + t.part2_length, c.pinfo.LAMEsfbits[r][n] = t.part2_length, c.pinfo.over[r][n] = d.over_count, c.pinfo.max_noise[r][n] = 10 * d.max_noise, c.pinfo.over_noise[r][n] = 10 * d.over_noise, c.pinfo.tot_noise[r][n] = 10 * d.tot_noise, c.pinfo.over_SSD[r][n] = d.over_SSD
+            }
+        }
+        var n = a(105),
+            s = a(536),
+            i = (s.System, s.VbrMode),
+            o = s.Float,
+            _ = (s.ShortBlock, s.Util),
+            l = (s.Arrays, s.new_array_n, s.new_byte, s.new_double, s.new_float),
+            f = (s.new_float_n, s.new_int),
+            u = (s.new_int_n, s.assert),
+            h = a(574),
+            c = a(369),
+            p = a(51);
+        r.Q_MAX = 257, r.Q_MAX2 = 116, r.LARGE_BITS = 1e5, r.IXMAX_VAL = 8206, e.exports = r
+    },
+    159: function(e, t, a) {
+        function r() {
+            function e(e, t, a, r, n, s) {
+                for (; 0 != n--;) a[r] = 1e-10 + e[t + 0] * s[0] - a[r - 1] * s[1] + e[t - 1] * s[2] - a[r - 2] * s[3] + e[t - 2] * s[4] - a[r - 3] * s[5] + e[t - 3] * s[6] - a[r - 4] * s[7] + e[t - 4] * s[8] - a[r - 5] * s[9] + e[t - 5] * s[10] - a[r - 6] * s[11] + e[t - 6] * s[12] - a[r - 7] * s[13] + e[t - 7] * s[14] - a[r - 8] * s[15] + e[t - 8] * s[16] - a[r - 9] * s[17] + e[t - 9] * s[18] - a[r - 10] * s[19] + e[t - 10] * s[20], ++r, ++t
+            }
+
+            function t(e, t, a, r, n, s) {
+                for (; 0 != n--;) a[r] = e[t + 0] * s[0] - a[r - 1] * s[1] + e[t - 1] * s[2] - a[r - 2] * s[3] + e[t - 2] * s[4], ++r, ++t
+            }
+
+            function a(e, t) {
+                for (var a = 0; a < MAX_ORDER; a++) e.linprebuf[a] = e.lstepbuf[a] = e.loutbuf[a] = e.rinprebuf[a] = e.rstepbuf[a] = e.routbuf[a] = 0;
+                switch (0 | t) {
+                    case 48e3:
+                        e.reqindex = 0;
+                        break;
+                    case 44100:
+                        e.reqindex = 1;
+                        break;
+                    case 32e3:
+                        e.reqindex = 2;
+                        break;
+                    case 24e3:
+                        e.reqindex = 3;
+                        break;
+                    case 22050:
+                        e.reqindex = 4;
+                        break;
+                    case 16e3:
+                        e.reqindex = 5;
+                        break;
+                    case 12e3:
+                        e.reqindex = 6;
+                        break;
+                    case 11025:
+                        e.reqindex = 7;
+                        break;
+                    case 8e3:
+                        e.reqindex = 8;
+                        break;
+                    default:
+                        return INIT_GAIN_ANALYSIS_ERROR
+                }
+                return e.sampleWindow = 0 | (t * f + u - 1) / u, e.lsum = 0, e.rsum = 0, e.totsamp = 0, i.ill(e.A, 0), INIT_GAIN_ANALYSIS_OK
             }
 
             function n(e) {
-                for (var t = 0; t < e.sfbmax; t++)
-                    if (e.scalefac[t] + e.subblock_gain[e.window[t]] == 0) return !1;
-                return !0
+                return e * e
             }
 
-            function v(e) {
-                return o.FAST_LOG10(.368 + .632 * e * e * e)
+            function o(e, t) {
+                var a, n = 0;
+                for (a = 0; t > a; a++) n += e[a];
+                if (0 == n) return GAIN_NOT_ENOUGH_SAMPLES;
+                var s = 0 | Math.ceil(n * (1 - l));
+                for (a = t; a-- > 0 && !((s -= e[a]) <= 0););
+                return _ - a / r.STEPS_per_dB
             }
-
-            function d(e, t) {
-                for (var a = 1e-37, r = 0; r < t.psymax; r++) a += v(e[r]);
-                return Math.max(1e-20, a)
-            }
-
-            function g(e, t, a, r, n) {
-                var s;
-                switch (e) {
-                    default:
-                        case 9:
-                        t.over_count > 0 ? (s = a.over_SSD <= t.over_SSD, a.over_SSD == t.over_SSD && (s = a.bits < t.bits)) : s = a.max_noise < 0 && 10 * a.max_noise + a.bits <= 10 * t.max_noise + t.bits;
-                    break;
-                    case 0:
-                            s = a.over_count < t.over_count || a.over_count == t.over_count && a.over_noise < t.over_noise || a.over_count == t.over_count && BitStream.EQ(a.over_noise, t.over_noise) && a.tot_noise < t.tot_noise;
-                        break;
-                    case 8:
-                            a.max_noise = d(n, r);
+            var _ = 64.82,
+                l = (r.YULE_ORDER, .95),
+                f = (r.MAX_SAMP_FREQ, r.RMS_WINDOW_TIME_NUMERATOR),
+                u = r.RMS_WINDOW_TIME_DENOMINATOR,
+                h = (r.MAX_SAMPLES_PER_WINDOW, [
+                    [.038575994352, -3.84664617118067, -.02160367184185, 7.81501653005538, -.00123395316851, -11.34170355132042, -9291677959e-14, 13.05504219327545, -.01655260341619, -12.28759895145294, .02161526843274, 9.4829380631979, -.02074045215285, -5.87257861775999, .00594298065125, 2.75465861874613, .00306428023191, -.86984376593551, .00012025322027, .13919314567432, .00288463683916],
+                    [.0541865640643, -3.47845948550071, -.02911007808948, 6.36317777566148, -.00848709379851, -8.54751527471874, -.00851165645469, 9.4769360780128, -.00834990904936, -8.81498681370155, .02245293253339, 6.85401540936998, -.02596338512915, -4.39470996079559, .01624864962975, 2.19611684890774, -.00240879051584, -.75104302451432, .00674613682247, .13149317958808, -.00187763777362],
+                    [.15457299681924, -2.37898834973084, -.09331049056315, 2.84868151156327, -.06247880153653, -2.64577170229825, .02163541888798, 2.23697657451713, -.05588393329856, -1.67148153367602, .04781476674921, 1.00595954808547, .00222312597743, -.45953458054983, .03174092540049, .16378164858596, -.01390589421898, -.05032077717131, .00651420667831, .0234789740702, -.00881362733839],
+                    [.30296907319327, -1.61273165137247, -.22613988682123, 1.0797749225997, -.08587323730772, -.2565625775407, .03282930172664, -.1627671912044, -.00915702933434, -.22638893773906, -.02364141202522, .39120800788284, -.00584456039913, -.22138138954925, .06276101321749, .04500235387352, -828086748e-14, .02005851806501, .00205861885564, .00302439095741, -.02950134983287],
+                    [.33642304856132, -1.49858979367799, -.2557224142557, .87350271418188, -.11828570177555, .12205022308084, .11921148675203, -.80774944671438, -.07834489609479, .47854794562326, -.0046997791438, -.12453458140019, -.0058950022444, -.04067510197014, .05724228140351, .08333755284107, .00832043980773, -.04237348025746, -.0163538138454, .02977207319925, -.0176017656815],
+                    [.4491525660845, -.62820619233671, -.14351757464547, .29661783706366, -.22784394429749, -.372563729424, -.01419140100551, .00213767857124, .04078262797139, -.42029820170918, -.12398163381748, .22199650564824, .04097565135648, .00613424350682, .10478503600251, .06747620744683, -.01863887810927, .05784820375801, -.03193428438915, .03222754072173, .00541907748707],
+                    [.56619470757641, -1.04800335126349, -.75464456939302, .29156311971249, .1624213774223, -.26806001042947, .16744243493672, .00819999645858, -.18901604199609, .45054734505008, .3093178284183, -.33032403314006, -.27562961986224, .0673936833311, .00647310677246, -.04784254229033, .08647503780351, .01639907836189, -.0378898455484, .01807364323573, -.00588215443421],
+                    [.58100494960553, -.51035327095184, -.53174909058578, -.31863563325245, -.14289799034253, -.20256413484477, .17520704835522, .1472815413433, .02377945217615, .38952639978999, .15558449135573, -.23313271880868, -.25344790059353, -.05246019024463, .01628462406333, -.02505961724053, .06920467763959, .02442357316099, -.03721611395801, .01818801111503, -.00749618797172],
+                    [.53648789255105, -.2504987195602, -.42163034350696, -.43193942311114, -.00275953611929, -.03424681017675, .04267842219415, -.04678328784242, -.10214864179676, .26408300200955, .14590772289388, .15113130533216, -.02459864859345, -.17556493366449, -.11202315195388, -.18823009262115, -.04060034127, .05477720428674, .0478866554818, .0470440968812, -.02217936801134]
+                ]),
+                c = [
+                    [.98621192462708, -1.97223372919527, -1.97242384925416, .97261396931306, .98621192462708],
+                    [.98500175787242, -1.96977855582618, -1.97000351574484, .9702284756635, .98500175787242],
+                    [.97938932735214, -1.95835380975398, -1.95877865470428, .95920349965459, .97938932735214],
+                    [.97531843204928, -1.95002759149878, -1.95063686409857, .95124613669835, .97531843204928],
+                    [.97316523498161, -1.94561023566527, -1.94633046996323, .94705070426118, .97316523498161],
+                    [.96454515552826, -1.92783286977036, -1.92909031105652, .93034775234268, .96454515552826],
+                    [.96009142950541, -1.91858953033784, -1.92018285901082, .92177618768381, .96009142950541],
+                    [.95856916599601, -1.9154210807478, -1.91713833199203, .91885558323625, .95856916599601],
+                    [.94597685600279, -1.88903307939452, -1.89195371200558, .89487434461664, .94597685600279]
+                ];
+            this.InitGainAnalysis = function(e, t) {
+                return a(e, t) != INIT_GAIN_ANALYSIS_OK ? INIT_GAIN_ANALYSIS_ERROR : (e.linpre = MAX_ORDER, e.rinpre = MAX_ORDER, e.lstep = MAX_ORDER, e.rstep = MAX_ORDER, e.lout = MAX_ORDER, e.rout = MAX_ORDER, i.fill(e.B, 0), INIT_GAIN_ANALYSIS_OK)
+            }, this.AnalyzeSamples = function(a, i, o, _, l, f, u) {
+                var p, b, m, v, d, g, w;
+                if (0 == f) return GAIN_ANALYSIS_OK;
+                switch (w = 0, d = f, u) {
                     case 1:
-                            s = a.max_noise < t.max_noise;
+                        _ = i, l = o;
                         break;
                     case 2:
-                            s = a.tot_noise < t.tot_noise;
                         break;
-                    case 3:
-                            s = a.tot_noise < t.tot_noise && a.max_noise < t.max_noise;
-                        break;
-                    case 4:
-                            s = a.max_noise <= 0 && t.max_noise > .2 || a.max_noise <= 0 && t.max_noise < 0 && t.max_noise > a.max_noise - .2 && a.tot_noise < t.tot_noise || a.max_noise <= 0 && t.max_noise > 0 && t.max_noise > a.max_noise - .2 && a.tot_noise < t.tot_noise + t.over_noise || a.max_noise > 0 && t.max_noise > -.05 && t.max_noise > a.max_noise - .1 && a.tot_noise + a.over_noise < t.tot_noise + t.over_noise || a.max_noise > 0 && t.max_noise > -.1 && t.max_noise > a.max_noise - .15 && a.tot_noise + a.over_noise + a.over_noise < t.tot_noise + t.over_noise + t.over_noise;
-                        break;
-                    case 5:
-                            s = a.over_noise < t.over_noise || BitStream.EQ(a.over_noise, t.over_noise) && a.tot_noise < t.tot_noise;
-                        break;
-                    case 6:
-                            s = a.over_noise < t.over_noise || BitStream.EQ(a.over_noise, t.over_noise) && (a.max_noise < t.max_noise || BitStream.EQ(a.max_noise, t.max_noise) && a.tot_noise <= t.tot_noise);
-                        break;
-                    case 7:
-                            s = a.over_count < t.over_count || a.over_noise < t.over_noise
-                }
-                return 0 == t.over_count && (s = s && a.bits < t.bits), s
-            }
-
-            function w(e, t, a, r, n) {
-                var s, i = e.internal_flags;
-                s = 0 == t.scalefac_scale ? 1.2968395546510096 : 1.6817928305074292;
-                for (var o = 0, _ = 0; _ < t.sfbmax; _++) o < a[_] && (o = a[_]);
-                var l = i.noise_shaping_amp;
-                switch (3 == l && (l = n ? 2 : 1), l) {
-                    case 2:
-                        break;
-                    case 1:
-                        o > 1 ? o = Math.pow(o, .5) : o *= .95;
-                        break;
-                    case 0:
                     default:
-                        o > 1 ? o = 1 : o *= .95
+                        return GAIN_ANALYSIS_ERROR
                 }
-                for (var f = 0, _ = 0; _ < t.sfbmax; _++) {
-                    var u, h = t.width[_];
-                    if (f += h, !(a[_] < o)) {
-                        if (0 != (2 & i.substep_shaping) && (i.pseudohalf[_] = 0 == i.pseudohalf[_] ? 1 : 0, 0 == i.pseudohalf[_] && 2 == i.noise_shaping_amp)) return;
-                        for (t.scalefac[_]++, u = -h; 0 > u; u++) r[f + u] *= s, r[f + u] > t.xrpow_max && (t.xrpow_max = r[f + u]);
-                        if (2 == i.noise_shaping_amp) return
+                for (f < MAX_ORDER ? (s.arraycopy(i, o, a.linprebuf, MAX_ORDER, f), s.arraycopy(_, l, a.rinprebuf, MAX_ORDER, f)) : (s.arraycopy(i, o, a.linprebuf, MAX_ORDER, MAX_ORDER), s.arraycopy(_, l, a.rinprebuf, MAX_ORDER, MAX_ORDER)); d > 0;) {
+                    g = d > a.sampleWindow - a.totsamp ? a.sampleWindow - a.totsamp : d, w < MAX_ORDER ? (p = a.linpre + w, b = a.linprebuf, m = a.rinpre + w, v = a.rinprebuf, g > MAX_ORDER - w && (g = MAX_ORDER - w)) : (p = o + w, b = i, m = l + w, v = _), e(b, p, a.lstepbuf, a.lstep + a.totsamp, g, h[a.reqindex]), e(v, m, a.rstepbuf, a.rstep + a.totsamp, g, h[a.reqindex]), t(a.lstepbuf, a.lstep + a.totsamp, a.loutbuf, a.lout + a.totsamp, g, c[a.reqindex]), t(a.rstepbuf, a.rstep + a.totsamp, a.routbuf, a.rout + a.totsamp, g, c[a.reqindex]), p = a.lout + a.totsamp, b = a.loutbuf, m = a.rout + a.totsamp, v = a.routbuf;
+                    for (var S = g % 8; 0 != S--;) a.lsum += n(b[p++]), a.rsum += n(v[m++]);
+                    for (S = g / 8; 0 != S--;) a.lsum += n(b[p + 0]) + n(b[p + 1]) + n(b[p + 2]) + n(b[p + 3]) + n(b[p + 4]) + n(b[p + 5]) + n(b[p + 6]) + n(b[p + 7]), p += 8, a.rsum += n(v[m + 0]) + n(v[m + 1]) + n(v[m + 2]) + n(v[m + 3]) + n(v[m + 4]) + n(v[m + 5]) + n(v[m + 6]) + n(v[m + 7]), m += 8;
+                    if (d -= g, w += g, a.totsamp += g, a.totsamp == a.sampleWindow) {
+                        var A = 10 * r.STEPS_per_dB * Math.log10((a.lsum + a.rsum) / a.totsamp * .5 + 1e-37),
+                            R = 0 >= A ? 0 : 0 | A;
+                        R >= a.A.length && (R = a.A.length - 1), a.A[R]++, a.lsum = a.rsum = 0, s.arraycopy(a.loutbuf, a.totsamp, a.loutbuf, 0, MAX_ORDER), s.arraycopy(a.routbuf, a.totsamp, a.routbuf, 0, MAX_ORDER), s.arraycopy(a.lstepbuf, a.totsamp, a.lstepbuf, 0, MAX_ORDER), s.arraycopy(a.rstepbuf, a.totsamp, a.rstepbuf, 0, MAX_ORDER), a.totsamp = 0
                     }
+                    if (a.totsamp > a.sampleWindow) return GAIN_ANALYSIS_ERROR
                 }
-            }
-
-            function S(e, t) {
-                for (var a = 1.2968395546510096, r = 0, n = 0; n < e.sfbmax; n++) {
-                    var s = e.width[n],
-                        i = e.scalefac[n];
-                    if (0 != e.preflag && (i += B.pretab[n]), r += s, 0 != (1 & i)) {
-                        i++;
-                        for (var o = -s; 0 > o; o++) t[r + o] *= a, t[r + o] > e.xrpow_max && (e.xrpow_max = t[r + o])
-                    }
-                    e.scalefac[n] = i >> 1
-                }
-                e.preflag = 0, e.scalefac_scale = 1
-            }
-
-            function A(e, t, a) {
-                var r, n = t.scalefac;
-                for (r = 0; r < t.sfb_lmax; r++)
-                    if (n[r] >= 16) return !0;
-                for (var s = 0; 3 > s; s++) {
-                    var i = 0,
-                        o = 0;
-                    for (r = t.sfb_lmax + s; r < t.sfbdivide; r += 3) i < n[r] && (i = n[r]);
-                    for (; r < t.sfbmax; r += 3) o < n[r] && (o = n[r]);
-                    if (!(16 > i && 8 > o)) {
-                        if (t.subblock_gain[s] >= 7) return !0;
-                        t.subblock_gain[s]++;
-                        var _ = e.scalefac_band.l[t.sfb_lmax];
-                        for (r = t.sfb_lmax + s; r < t.sfbmax; r += 3) {
-                            var l, u = t.width[r],
-                                h = n[r];
-                            if (f(h >= 0), h -= 4 >> t.scalefac_scale, h >= 0) n[r] = h, _ += 3 * u;
-                            else {
-                                n[r] = 0;
-                                var c = 210 + (h << t.scalefac_scale + 1);
-                                l = B.IPOW20(c), _ += u * (s + 1);
-                                for (var p = -u; 0 > p; p++) a[_ + p] *= l, a[_ + p] > t.xrpow_max && (t.xrpow_max = a[_ + p]);
-                                _ += u * (3 - s - 1)
-                            }
-                        }
-                        var l = B.IPOW20(202);
-                        _ += t.width[r] * (s + 1);
-                        for (var p = -t.width[r]; 0 > p; p++) a[_ + p] *= l, a[_ + p] > t.xrpow_max && (t.xrpow_max = a[_ + p])
-                    }
-                }
-                return !1
-            }
-
-            function R(e, t, a, r, s) {
-                var i = e.internal_flags;
-                w(e, t, a, r, s);
-                var o = n(t);
-                return o ? !1 : (o = 2 == i.mode_gr ? E.scale_bitcount(t) : E.scale_bitcount_lsf(i, t)) ? (i.noise_shaping > 1 && (_.fill(i.pseudohalf, 0), 0 == t.scalefac_scale ? (S(t, r), o = !1) : t.block_type == p.SHORT_TYPE && i.subblock_gain > 0 && (o = A(i, t, r) || n(t))), o || (o = 2 == i.mode_gr ? E.scale_bitcount(t) : E.scale_bitcount_lsf(i, t)), !o) : !0
-            }
-            var M;
-            this.rv = null;
-            var y;
-            this.qupvt = null;
-            var B, E, T = new u;
-            this.setModules = function(e, t, a, r) {
-                M = e, y = t, this.rv = t, B = a, this.qupvt = a, E = r, T.setModules(B, E)
-            }, this.ms_convert = function(e, t) {
-                for (var a = 0; 576 > a; ++a) {
-                    var r = e.tt[t][0].xr[a],
-                        n = e.tt[t][1].xr[a];
-                    e.tt[t][0].xr[a] = (r + n) * (.5 * o.SQRT2), e.tt[t][1].xr[a] = (r - n) * (.5 * o.SQRT2)
-                }
-            }, this.init_xrpow = function(t, a, r) {
-                var n = 0,
-                    s = 0 | a.max_nonzero_coeff;
-                if (f(null != r), a.xrpow_max = 0, f(s >= 0 && 575 >= s), _.fill(r, s, 576, 0), n = e(a, r, s, n), n > 1e-20) {
-                    var i = 0;
-                    0 != (2 & t.substep_shaping) && (i = 1);
-                    for (var o = 0; o < a.psymax; o++) t.pseudohalf[o] = i;
-                    return !0
-                }
-                return _.fill(a.l3_enc, 0, 576, 0), !1
-            }, this.init_outer_loop = function(e, a) {
-                a.part2_3_length = 0, a.big_values = 0, a.count1 = 0, a.global_gain = 210, a.scalefac_compress = 0, a.table_select[0] = 0, a.table_select[1] = 0, a.table_select[2] = 0, a.subblock_gain[0] = 0, a.subblock_gain[1] = 0, a.subblock_gain[2] = 0, a.subblock_gain[3] = 0, a.region0_count = 0, a.region1_count = 0, a.preflag = 0, a.scalefac_scale = 0, a.count1table_select = 0, a.part2_length = 0, a.sfb_lmax = p.SBPSY_l, a.sfb_smin = p.SBPSY_s, a.psy_lmax = e.sfb21_extra ? p.SBMAX_l : p.SBPSY_l, a.psymax = a.psy_lmax, a.sfbmax = a.sfb_lmax, a.sfbdivide = 11;
-                for (var r = 0; r < p.SBMAX_l; r++) a.width[r] = e.scalefac_band.l[r + 1] - e.scalefac_band.l[r], a.window[r] = 3;
-                if (a.block_type == p.SHORT_TYPE) {
-                    var n = l(576);
-                    a.sfb_smin = 0, a.sfb_lmax = 0, 0 != a.mixed_block_flag && (a.sfb_smin = 3, a.sfb_lmax = 2 * e.mode_gr + 4), a.psymax = a.sfb_lmax + 3 * ((e.sfb21_extra ? p.SBMAX_s : p.SBPSY_s) - a.sfb_smin), a.sfbmax = a.sfb_lmax + 3 * (p.SBPSY_s - a.sfb_smin), a.sfbdivide = a.sfbmax - 18, a.psy_lmax = a.sfb_lmax;
-                    var i = e.scalefac_band.l[a.sfb_lmax];
-                    s.arraycopy(a.xr, 0, n, 0, 576);
-                    for (var r = a.sfb_smin; r < p.SBMAX_s; r++)
-                        for (var o = e.scalefac_band.s[r], f = e.scalefac_band.s[r + 1], u = 0; 3 > u; u++)
-                            for (var h = o; f > h; h++) a.xr[i++] = n[3 * h + u];
-                    for (var c = a.sfb_lmax, r = a.sfb_smin; r < p.SBMAX_s; r++) a.width[c] = a.width[c + 1] = a.width[c + 2] = e.scalefac_band.s[r + 1] - e.scalefac_band.s[r], a.window[c] = 0, a.window[c + 1] = 1, a.window[c + 2] = 2, c += 3
-                }
-                a.count1bits = 0, a.sfb_partition_table = B.nr_of_sfb_block[0][0], a.slen[0] = 0, a.slen[1] = 0, a.slen[2] = 0, a.slen[3] = 0, a.max_nonzero_coeff = 575, _.fill(a.scalefac, 0), t(e, a)
-            }, a.BINSEARCH_NONE = new a(0), a.BINSEARCH_UP = new a(1), a.BINSEARCH_DOWN = new a(2), this.trancate_smallspectrums = function(e, t, a, r) {
-                var n = l(m.SFBMAX);
-                if ((0 != (4 & e.substep_shaping) || t.block_type != p.SHORT_TYPE) && 0 == (128 & e.substep_shaping)) {
-                    B.calc_noise(t, a, n, new h, null);
-                    for (var s = 0; 576 > s; s++) {
-                        var i = 0;
-                        0 != t.l3_enc[s] && (i = Math.abs(t.xr[s])), r[s] = i
-                    }
-                    var s = 0,
-                        o = 8;
-                    t.block_type == p.SHORT_TYPE && (o = 6);
-                    do {
-                        var f, u, c, b, v = t.width[o];
-                        if (s += v, !(n[o] >= 1 || (_.sort(r, s - v, v), BitStream.EQ(r[s - 1], 0)))) {
-                            f = (1 - n[o]) * a[o], u = 0, b = 0;
-                            do {
-                                var d;
-                                for (c = 1; v > b + c && !BitStream.NEQ(r[b + s - v], r[b + s + c - v]); c++);
-                                if (d = r[b + s - v] * r[b + s - v] * c, d > f) {
-                                    0 != b && (u = r[b + s - v - 1]);
-                                    break
-                                }
-                                f -= d, b += c
-                            } while (v > b);
-                            if (!BitStream.EQ(u, 0))
-                                do Math.abs(t.xr[s - v]) <= u && (t.l3_enc[s - v] = 0); while (--v > 0)
-                        }
-                    } while (++o < t.psymax);
-                    t.part2_3_length = E.noquant_count_bits(e, t, null)
-                }
-            }, this.outer_loop = function(e, t, a, n, o, _) {
-                var u, v = e.internal_flags,
-                    d = new b,
-                    w = l(576),
-                    S = l(m.SFBMAX),
-                    A = new h,
-                    M = new c,
-                    y = 9999999,
-                    T = !1,
-                    k = !1,
-                    x = 0;
-                if (r(v, t, _, o, n), 0 == v.noise_shaping) return 100;
-                B.calc_noise(t, a, S, A, M), A.bits = t.part2_3_length, d.assign(t);
-                var P = 0;
-                for (s.arraycopy(n, 0, w, 0, 576); !T;) {
-                    do {
-                        var I, L = new h,
-                            O = 255;
-                        if (I = 0 != (2 & v.substep_shaping) ? 20 : 3, v.sfb21_extra) {
-                            if (S[d.sfbmax] > 1) break;
-                            if (d.block_type == p.SHORT_TYPE && (S[d.sfbmax + 1] > 1 || S[d.sfbmax + 2] > 1)) break
-                        }
-                        if (!R(e, d, S, n, k)) break;
-                        0 != d.scalefac_scale && (O = 254);
-                        var V = _ - d.part2_length;
-                        if (0 >= V) break;
-                        for (;
-                            (d.part2_3_length = E.count_bits(v, n, d, M)) > V && d.global_gain <= O;) d.global_gain++;
-                        if (d.global_gain > O) break;
-                        if (0 == A.over_count) {
-                            for (;
-                                (d.part2_3_length = E.count_bits(v, n, d, M)) > y && d.global_gain <= O;) d.global_gain++;
-                            if (d.global_gain > O) break
-                        }
-                        if (B.calc_noise(d, a, S, L, M), L.bits = d.part2_3_length, u = t.block_type != p.SHORT_TYPE ? e.quant_comp : e.quant_comp_short, u = g(u, A, L, d, S) ? 1 : 0, 0 != u) y = t.part2_3_length, A = L, t.assign(d), P = 0, s.arraycopy(n, 0, w, 0, 576);
-                        else if (0 == v.full_outer_loop) {
-                            if (++P > I && 0 == A.over_count) break;
-                            if (3 == v.noise_shaping_amp && k && P > 30) break;
-                            if (3 == v.noise_shaping_amp && k && d.global_gain - x > 15) break
-                        }
-                    } while (d.global_gain + d.scalefac_scale < 255);
-                    3 == v.noise_shaping_amp ? k ? T = !0 : (d.assign(t), s.arraycopy(w, 0, n, 0, 576), P = 0, x = d.global_gain, k = !0) : T = !0
-                }
-                return f(t.global_gain + t.scalefac_scale <= 255), e.VBR == i.vbr_rh || e.VBR == i.vbr_mtrh ? s.arraycopy(w, 0, n, 0, 576) : 0 != (1 & v.substep_shaping) && trancate_smallspectrums(v, t, a, n), A.over_count
-            }, this.iteration_finish_one = function(e, t, a) {
-                var r = e.l3_side,
-                    n = r.tt[t][a];
-                E.best_scalefac_store(e, t, a, r), 1 == e.use_best_huffman && E.best_huffman_divide(e, n), y.ResvAdjust(e, n)
-            }, this.VBR_encode_granule = function(e, t, a, r, n, i, o) {
-                var u, h, c = e.internal_flags,
-                    p = new b,
-                    m = l(576),
-                    v = o,
-                    d = o + 1,
-                    g = (o + i) / 2,
-                    w = 0,
-                    S = c.sfb21_extra;
-                f(v <= LameInternalFlags.MAX_BITS_PER_CHANNEL), _.fill(p.l3_enc, 0);
-                do f(g >= i), f(o >= g), f(o >= i), g > v - 42 ? c.sfb21_extra = !1 : c.sfb21_extra = S, h = outer_loop(e, t, a, r, n, g), 0 >= h ? (w = 1, d = t.part2_3_length, p.assign(t), s.arraycopy(r, 0, m, 0, 576), o = d - 32, u = o - i, g = (o + i) / 2) : (i = g + 32, u = o - i, g = (o + i) / 2, 0 != w && (w = 2, t.assign(p), s.arraycopy(m, 0, r, 0, 576))); while (u > 12);
-                c.sfb21_extra = S, 2 == w && s.arraycopy(p.l3_enc, 0, t.l3_enc, 0, 576), f(t.part2_3_length <= v)
-            }, this.get_framebits = function(e, t) {
-                var a = e.internal_flags;
-                a.bitrate_index = a.VBR_min_bitrate;
-                var r = M.getframebits(e);
-                a.bitrate_index = 1, r = M.getframebits(e);
-                for (var n = 1; n <= a.VBR_max_bitrate; n++) {
-                    a.bitrate_index = n;
-                    var s = new MeanBits(r);
-                    t[n] = y.ResvFrameBegin(e, s), r = s.bits
-                }
-            }, this.VBR_old_prepare = function(e, t, a, r, n, s, i, o, _) {
-                var l, f = e.internal_flags,
-                    u = 0,
-                    h = 1,
-                    c = 0;
-                f.bitrate_index = f.VBR_max_bitrate;
-                var b = y.ResvFrameBegin(e, new MeanBits(0)) / f.mode_gr;
-                get_framebits(e, s);
-                for (var m = 0; m < f.mode_gr; m++) {
-                    var v = B.on_pe(e, t, o[m], b, m, 0);
-                    f.mode_ext == p.MPG_MD_MS_LR && (ms_convert(f.l3_side, m), B.reduce_side(o[m], a[m], b, v));
-                    for (var d = 0; d < f.channels_out; ++d) {
-                        var g = f.l3_side.tt[m][d];
-                        g.block_type != p.SHORT_TYPE ? (u = 1.28 / (1 + Math.exp(3.5 - t[m][d] / 300)) - .05, l = f.PSY.mask_adjust - u) : (u = 2.56 / (1 + Math.exp(3.5 - t[m][d] / 300)) - .14, l = f.PSY.mask_adjust_short - u), f.masking_lower = Math.pow(10, .1 * l), init_outer_loop(f, g), _[m][d] = B.calc_xmin(e, r[m][d], g, n[m][d]), 0 != _[m][d] && (h = 0), i[m][d] = 126, c += o[m][d]
-                    }
-                }
-                for (var m = 0; m < f.mode_gr; m++)
-                    for (var d = 0; d < f.channels_out; d++) c > s[f.VBR_max_bitrate] && (o[m][d] *= s[f.VBR_max_bitrate], o[m][d] /= c), i[m][d] > o[m][d] && (i[m][d] = o[m][d]);
-                return h
-            }, this.bitpressure_strategy = function(e, t, a, r) {
-                for (var n = 0; n < e.mode_gr; n++)
-                    for (var s = 0; s < e.channels_out; s++) {
-                        for (var i = e.l3_side.tt[n][s], o = t[n][s], _ = 0, l = 0; l < i.psy_lmax; l++) o[_++] *= 1 + .029 * l * l / p.SBMAX_l / p.SBMAX_l;
-                        if (i.block_type == p.SHORT_TYPE)
-                            for (var l = i.sfb_smin; l < p.SBMAX_s; l++) o[_++] *= 1 + .029 * l * l / p.SBMAX_s / p.SBMAX_s, o[_++] *= 1 + .029 * l * l / p.SBMAX_s / p.SBMAX_s, o[_++] *= 1 + .029 * l * l / p.SBMAX_s / p.SBMAX_s;
-                        r[n][s] = 0 | Math.max(a[n][s], .9 * r[n][s])
-                    }
-            }, this.VBR_new_prepare = function(e, t, a, r, n, s) {
-                var i, o = e.internal_flags,
-                    _ = 1,
-                    l = 0,
-                    f = 0;
-                if (e.free_format) {
-                    o.bitrate_index = 0;
-                    var u = new MeanBits(l);
-                    i = y.ResvFrameBegin(e, u), l = u.bits, n[0] = i
-                } else {
-                    o.bitrate_index = o.VBR_max_bitrate;
-                    var u = new MeanBits(l);
-                    y.ResvFrameBegin(e, u), l = u.bits, get_framebits(e, n), i = n[o.VBR_max_bitrate]
-                }
-                for (var h = 0; h < o.mode_gr; h++) {
-                    B.on_pe(e, t, s[h], l, h, 0), o.mode_ext == p.MPG_MD_MS_LR && ms_convert(o.l3_side, h);
-                    for (var c = 0; c < o.channels_out; ++c) {
-                        var b = o.l3_side.tt[h][c];
-                        o.masking_lower = Math.pow(10, .1 * o.PSY.mask_adjust), init_outer_loop(o, b), 0 != B.calc_xmin(e, a[h][c], b, r[h][c]) && (_ = 0),
-                            f += s[h][c]
-                    }
-                }
-                for (var h = 0; h < o.mode_gr; h++)
-                    for (var c = 0; c < o.channels_out; c++) f > i && (s[h][c] *= i, s[h][c] /= f);
-                return _
-            }, this.calc_target_bits = function(e, t, a, r, n, s) {
-                var i, o, _, l, f = e.internal_flags,
-                    u = f.l3_side,
-                    h = 0;
-                f.bitrate_index = f.VBR_max_bitrate;
-                var c = new MeanBits(h);
-                for (s[0] = y.ResvFrameBegin(e, c), h = c.bits, f.bitrate_index = 1, h = M.getframebits(e) - 8 * f.sideinfo_len, n[0] = h / (f.mode_gr * f.channels_out), h = e.VBR_mean_bitrate_kbps * e.framesize * 1e3, 0 != (1 & f.substep_shaping) && (h *= 1.09), h /= e.out_samplerate, h -= 8 * f.sideinfo_len, h /= f.mode_gr * f.channels_out, i = .93 + .07 * (11 - e.compression_ratio) / 5.5, .9 > i && (i = .9), i > 1 && (i = 1), o = 0; o < f.mode_gr; o++) {
-                    var b = 0;
-                    for (_ = 0; _ < f.channels_out; _++) {
-                        if (r[o][_] = int(i * h), t[o][_] > 700) {
-                            var m = int((t[o][_] - 700) / 1.4),
-                                v = u.tt[o][_];
-                            r[o][_] = int(i * h), v.block_type == p.SHORT_TYPE && h / 2 > m && (m = h / 2), m > 3 * h / 2 ? m = 3 * h / 2 : 0 > m && (m = 0), r[o][_] += m
-                        }
-                        r[o][_] > LameInternalFlags.MAX_BITS_PER_CHANNEL && (r[o][_] = LameInternalFlags.MAX_BITS_PER_CHANNEL), b += r[o][_]
-                    }
-                    if (b > LameInternalFlags.MAX_BITS_PER_GRANULE)
-                        for (_ = 0; _ < f.channels_out; ++_) r[o][_] *= LameInternalFlags.MAX_BITS_PER_GRANULE, r[o][_] /= b
-                }
-                if (f.mode_ext == p.MPG_MD_MS_LR)
-                    for (o = 0; o < f.mode_gr; o++) B.reduce_side(r[o], a[o], h * f.channels_out, LameInternalFlags.MAX_BITS_PER_GRANULE);
-                for (l = 0, o = 0; o < f.mode_gr; o++)
-                    for (_ = 0; _ < f.channels_out; _++) r[o][_] > LameInternalFlags.MAX_BITS_PER_CHANNEL && (r[o][_] = LameInternalFlags.MAX_BITS_PER_CHANNEL), l += r[o][_];
-                if (l > s[0])
-                    for (o = 0; o < f.mode_gr; o++)
-                        for (_ = 0; _ < f.channels_out; _++) r[o][_] *= s[0], r[o][_] /= l
+                return f < MAX_ORDER ? (s.arraycopy(a.linprebuf, f, a.linprebuf, 0, MAX_ORDER - f), s.arraycopy(a.rinprebuf, f, a.rinprebuf, 0, MAX_ORDER - f), s.arraycopy(i, o, a.linprebuf, MAX_ORDER - f, f), s.arraycopy(_, l, a.rinprebuf, MAX_ORDER - f, f)) : (s.arraycopy(i, o + f - MAX_ORDER, a.linprebuf, 0, MAX_ORDER), s.arraycopy(_, l + f - MAX_ORDER, a.rinprebuf, 0, MAX_ORDER)), GAIN_ANALYSIS_OK
+            }, this.GetTitleGain = function(e) {
+                for (var t = o(e.A, e.A.length), a = 0; a < e.A.length; a++) e.B[a] += e.A[a], e.A[a] = 0;
+                for (var a = 0; a < MAX_ORDER; a++) e.linprebuf[a] = e.lstepbuf[a] = e.loutbuf[a] = e.rinprebuf[a] = e.rstepbuf[a] = e.routbuf[a] = 0;
+                return e.totsamp = 0, e.lsum = e.rsum = 0, t
             }
         }
-        var n = a(15),
+        var n = a(536),
             s = n.System,
-            i = n.VbrMode,
-            o = (n.Float, n.ShortBlock, n.Util),
-            _ = n.Arrays,
-            l = (n.new_array_n, n.new_byte, n.new_double, n.new_float),
-            f = (n.new_float_n, n.new_int, n.new_int_n, n.assert),
-            u = a(287),
-            h = a(47),
-            c = a(339),
-            p = a(67),
-            b = a(301),
-            m = a(82);
+            i = (n.VbrMode, n.Float, n.ShortBlock, n.Util, n.Arrays);
+        n.new_array_n, n.new_byte, n.new_double, n.new_float, n.new_float_n, n.new_int, n.new_int_n, n.assert, r.STEPS_per_dB = 100, r.MAX_dB = 120, r.GAIN_NOT_ENOUGH_SAMPLES = -24601, r.GAIN_ANALYSIS_ERROR = 0, r.GAIN_ANALYSIS_OK = 1, r.INIT_GAIN_ANALYSIS_ERROR = 0, r.INIT_GAIN_ANALYSIS_OK = 1, r.YULE_ORDER = 10, r.MAX_ORDER = r.YULE_ORDER, r.MAX_SAMP_FREQ = 48e3, r.RMS_WINDOW_TIME_NUMERATOR = 1, r.RMS_WINDOW_TIME_DENOMINATOR = 20, r.MAX_SAMPLES_PER_WINDOW = r.MAX_SAMP_FREQ * r.RMS_WINDOW_TIME_NUMERATOR / r.RMS_WINDOW_TIME_DENOMINATOR + 1, e.exports = r
+    },
+    187: function(e, t, a) {
+        function r() {
+            this.useAdjust = 0, this.aaSensitivityP = 0, this.adjust = 0, this.adjustLimit = 0, this.decay = 0, this.floor = 0, this.l = s(i.SBMAX_l), this.s = s(i.SBMAX_s), this.psfb21 = s(i.PSFB21), this.psfb12 = s(i.PSFB12), this.cb_l = s(i.CBANDS), this.cb_s = s(i.CBANDS), this.eql_w = s(i.BLKSIZE / 2)
+        }
+        var n = a(536),
+            s = (n.System, n.VbrMode, n.Float, n.ShortBlock, n.Util, n.Arrays, n.new_array_n, n.new_byte, n.new_double, n.new_float),
+            i = (n.new_float_n, n.new_int, n.new_int_n, n.assert, a(574));
         e.exports = r
     },
-    173: function(e, t, a) {
+    191: function(e, t, a) {
         function r() {
             function e() {
                 this.mask_adjust = 0, this.mask_adjust_short = 0, this.bo_l_weight = _(w.SBMAX_l), this.bo_s_weight = _(w.SBMAX_s)
@@ -744,7 +715,8 @@
 
             function n(e) {
                 var t;
-                return e.class_id = $, t = e.internal_flags = new p, e.mode = MPEGMode.NOT_SET, e.original = 1, e.in_samplerate = 44100, e.num_channels = 2, e.num_samples = -1, e.bWriteVbrTag = !0, e.quality = -1, e.short_blocks = null, t.subblock_gain = -1, e.lowpassfreq = 0, e.highpassfreq = 0, e.lowpasswidth = -1, e.highpasswidth = -1, e.VBR = i.vbr_off, e.VBR_q = 4, e.ATHcurve = -1, e.VBR_mean_bitrate_kbps = 128, e.VBR_min_bitrate_kbps = 0, e.VBR_max_bitrate_kbps = 0, e.VBR_hard_min = 0, t.VBR_min_bitrate = 1, t.VBR_max_bitrate = 13, e.quant_comp = -1, e.quant_comp_short = -1, e.msfix = -1, t.resample_ratio = 1, t.OldValue[0] = 180, t.OldValue[1] = 180, t.CurrentStep[0] = 4, t.CurrentStep[1] = 4, t.masking_lower = 1, t.nsPsy.attackthre = -1, t.nsPsy.attackthre_s = -1, e.scale = -1, e.athaa_type = -1, e.ATHtype = -1, e.athaa_loudapprox = -1, e.athaa_sensitivity = 0, e.useTemporal = null, e.interChRatio = -1, t.mf_samples_to_encode = w.ENCDELAY + w.POSTDELAY, e.encoder_padding = 0, t.mf_size = w.ENCDELAY - w.MDCTDELAY, e.findReplayGain = !1, e.decode_on_the_fly = !1, t.decode_on_the_fly = !1, t.findReplayGain = !1, t.findPeakSample = !1, t.RadioGain = 0, t.AudiophileGain = 0, t.noclipGainChange = 0, t.noclipScale = -1, e.preset = 0, e.write_id3tag_automatic = !0, 0
+                return e.class_id = $, t = e.internal_flags = new p, e.mode = MPEGMode.NOT_SET, e.original = 1, e.in_samplerate = 44100, e.num_channels = 2, e.num_samples = -1, e.bWriteVbrTag = !0, e.quality = -1, e.short_blocks = null, t.subblock_gain = -1, e.lowpassfreq = 0, e.highpassfreq = 0, e.lowpasswidth = -1, e.highpasswidth = -1, e.VBR = i.vbr_off, e.VBR_q = 4, e.ATHcurve = -1, e.VBR_mean_bitrate_kbps = 128, e.VBR_min_bitrate_kbps = 0, e.VBR_max_bitrate_kbps = 0, e.VBR_hard_min = 0, t.VBR_min_bitrate = 1, t.VBR_max_bitrate = 13, e.quant_comp = -1, e.quant_comp_short = -1, e.msfix = -1, t.resample_ratio = 1, t.OldValue[0] = 180, t.OldValue[1] = 180, t.CurrentStep[0] = 4, t.CurrentStep[1] = 4, t.masking_lower = 1, t.nsPsy.attackthre = -1, t.nsPsy.attackthre_s = -1, e.scale = -1, e.athaa_type = -1, e.ATHtype = -1, e.athaa_loudapprox = -1, e.athaa_sensitivity = 0, e.useTemporal = null, e.interChRatio = -1, t.mf_samples_to_encode = w.ENCDELAY + w.POSTDELAY, e.encoder_padding = 0, t.mf_size = w.ENCDELAY - w.MDCTDELAY, e.findReplayGain = !1, e.decode_on_the_fly = !1, t.decode_on_the_fly = !1, t.findReplayGain = !1, t.findPeakSample = !1, t.RadioGain = 0, t.AudiophileGain = 0, t.noclipGainChange = 0, t.noclipScale = -1, e.preset = 0, e.write_id3tag_automatic = !0,
+                    0
             }
 
             function S(e) {
@@ -1187,7 +1159,7 @@
                 return I(e, _[0], _[1], r, n, s, i)
             }
         }
-        var n = a(15),
+        var n = a(536),
             s = n.System,
             i = n.VbrMode,
             o = (n.Float, n.ShortBlock),
@@ -1195,1541 +1167,18 @@
             l = (n.new_float_n, n.new_int, n.new_int_n),
             f = n.new_short_n,
             u = n.assert,
-            h = a(338),
-            c = a(271),
-            p = a(227),
-            b = a(197),
-            m = a(18),
-            v = a(27),
-            d = a(346),
-            g = a(152),
-            w = a(67);
+            h = a(203),
+            c = a(694),
+            p = a(51),
+            b = a(187),
+            m = a(654),
+            v = a(147),
+            d = a(406),
+            g = a(705),
+            w = a(574);
         e.exports = r
     },
-    176: function(e, t) {
-        var a;
-        a = function() {
-            return this
-        }();
-        try {
-            a = a || Function("return this")() || (1, eval)("this")
-        } catch (r) {
-            "object" == typeof window && (a = window)
-        }
-        e.exports = a
-    },
-    18: function(e, t, a) {
-        function r() {
-            this.linprebuf = s(2 * o.MAX_ORDER), this.linpre = 0, this.lstepbuf = s(o.MAX_SAMPLES_PER_WINDOW + o.MAX_ORDER), this.lstep = 0, this.loutbuf = s(o.MAX_SAMPLES_PER_WINDOW + o.MAX_ORDER), this.lout = 0, this.rinprebuf = s(2 * o.MAX_ORDER), this.rinpre = 0, this.rstepbuf = s(o.MAX_SAMPLES_PER_WINDOW + o.MAX_ORDER), this.rstep = 0, this.routbuf = s(o.MAX_SAMPLES_PER_WINDOW + o.MAX_ORDER), this.rout = 0, this.sampleWindow = 0, this.totsamp = 0, this.lsum = 0, this.rsum = 0, this.freqindex = 0, this.first = 0, this.A = i(0 | o.STEPS_per_dB * o.MAX_dB), this.B = i(0 | o.STEPS_per_dB * o.MAX_dB)
-        }
-        var n = a(15),
-            s = (n.System, n.VbrMode, n.Float, n.ShortBlock, n.Util, n.Arrays, n.new_array_n, n.new_byte, n.new_double, n.new_float),
-            i = (n.new_float_n, n.new_int),
-            o = (n.new_int_n, n.assert, a(61));
-        e.exports = r
-    },
-    181: function(e, t, a) {
-        function r() {
-            function e(e, t, a) {
-                var n, i, o, _ = 0;
-                a <<= 1;
-                var l = t + a;
-                n = 4;
-                do {
-                    var f, u, h, c, p, b, m;
-                    m = n >> 1, c = n, p = n << 1, b = p + c, n = p << 1, i = t, o = i + m;
-                    do {
-                        var v, d, g, w;
-                        d = e[i + 0] - e[i + c], v = e[i + 0] + e[i + c], w = e[i + p] - e[i + b], g = e[i + p] + e[i + b], e[i + p] = v - g, e[i + 0] = v + g, e[i + b] = d - w, e[i + c] = d + w, d = e[o + 0] - e[o + c], v = e[o + 0] + e[o + c], w = s.SQRT2 * e[o + b], g = s.SQRT2 * e[o + p], e[o + p] = v - g, e[o + 0] = v + g, e[o + b] = d - w, e[o + c] = d + w, o += n, i += n
-                    } while (l > i);
-                    for (u = r[_ + 0], f = r[_ + 1], h = 1; m > h; h++) {
-                        var S, A;
-                        S = 1 - 2 * f * f, A = 2 * f * u, i = t + h, o = t + c - h;
-                        do {
-                            var R, M, y, v, d, B, g, E, w, T;
-                            M = A * e[i + c] - S * e[o + c], R = S * e[i + c] + A * e[o + c], d = e[i + 0] - R, v = e[i + 0] + R, B = e[o + 0] - M, y = e[o + 0] + M, M = A * e[i + b] - S * e[o + b], R = S * e[i + b] + A * e[o + b], w = e[i + p] - R, g = e[i + p] + R, T = e[o + p] - M, E = e[o + p] + M, M = f * g - u * T, R = u * g + f * T, e[i + p] = v - R, e[i + 0] = v + R, e[o + b] = B - M, e[o + c] = B + M, M = u * E - f * w, R = f * E + u * w, e[o + p] = y - R, e[o + 0] = y + R, e[i + b] = d - M, e[i + c] = d + M, o += n, i += n
-                        } while (l > i);
-                        S = u, u = S * r[_ + 0] - f * r[_ + 1], f = S * r[_ + 1] + f * r[_ + 0]
-                    }
-                    _ += 2
-                } while (a > n)
-            }
-            var t = i(o.BLKSIZE),
-                a = i(o.BLKSIZE_s / 2),
-                r = [.9238795325112867, .3826834323650898, .9951847266721969, .0980171403295606, .9996988186962042, .02454122852291229, .9999811752826011, .006135884649154475],
-                n = [0, 128, 64, 192, 32, 160, 96, 224, 16, 144, 80, 208, 48, 176, 112, 240, 8, 136, 72, 200, 40, 168, 104, 232, 24, 152, 88, 216, 56, 184, 120, 248, 4, 132, 68, 196, 36, 164, 100, 228, 20, 148, 84, 212, 52, 180, 116, 244, 12, 140, 76, 204, 44, 172, 108, 236, 28, 156, 92, 220, 60, 188, 124, 252, 2, 130, 66, 194, 34, 162, 98, 226, 18, 146, 82, 210, 50, 178, 114, 242, 10, 138, 74, 202, 42, 170, 106, 234, 26, 154, 90, 218, 58, 186, 122, 250, 6, 134, 70, 198, 38, 166, 102, 230, 22, 150, 86, 214, 54, 182, 118, 246, 14, 142, 78, 206, 46, 174, 110, 238, 30, 158, 94, 222, 62, 190, 126, 254];
-            this.fft_short = function(t, r, s, i, _) {
-                for (var l = 0; 3 > l; l++) {
-                    var f = o.BLKSIZE_s / 2,
-                        u = 65535 & 192 * (l + 1),
-                        h = o.BLKSIZE_s / 8 - 1;
-                    do {
-                        var c, p, b, m, v, d = 255 & n[h << 2];
-                        c = a[d] * i[s][_ + d + u], v = a[127 - d] * i[s][_ + d + u + 128], p = c - v, c += v, b = a[d + 64] * i[s][_ + d + u + 64], v = a[63 - d] * i[s][_ + d + u + 192], m = b - v, b += v, f -= 4, r[l][f + 0] = c + b, r[l][f + 2] = c - b, r[l][f + 1] = p + m, r[l][f + 3] = p - m, c = a[d + 1] * i[s][_ + d + u + 1], v = a[126 - d] * i[s][_ + d + u + 129], p = c - v, c += v, b = a[d + 65] * i[s][_ + d + u + 65], v = a[62 - d] * i[s][_ + d + u + 193], m = b - v, b += v, r[l][f + o.BLKSIZE_s / 2 + 0] = c + b, r[l][f + o.BLKSIZE_s / 2 + 2] = c - b, r[l][f + o.BLKSIZE_s / 2 + 1] = p + m, r[l][f + o.BLKSIZE_s / 2 + 3] = p - m
-                    } while (--h >= 0);
-                    e(r[l], f, o.BLKSIZE_s / 2)
-                }
-            }, this.fft_long = function(a, r, s, i, _) {
-                var l = o.BLKSIZE / 8 - 1,
-                    f = o.BLKSIZE / 2;
-                do {
-                    var u, h, c, p, b, m = 255 & n[l];
-                    u = t[m] * i[s][_ + m], b = t[m + 512] * i[s][_ + m + 512], h = u - b, u += b, c = t[m + 256] * i[s][_ + m + 256], b = t[m + 768] * i[s][_ + m + 768], p = c - b, c += b, f -= 4, r[f + 0] = u + c, r[f + 2] = u - c, r[f + 1] = h + p, r[f + 3] = h - p, u = t[m + 1] * i[s][_ + m + 1], b = t[m + 513] * i[s][_ + m + 513], h = u - b, u += b, c = t[m + 257] * i[s][_ + m + 257], b = t[m + 769] * i[s][_ + m + 769], p = c - b, c += b, r[f + o.BLKSIZE / 2 + 0] = u + c, r[f + o.BLKSIZE / 2 + 2] = u - c, r[f + o.BLKSIZE / 2 + 1] = h + p, r[f + o.BLKSIZE / 2 + 3] = h - p
-                } while (--l >= 0);
-                e(r, f, o.BLKSIZE / 2)
-            }, this.init_fft = function(e) {
-                for (var r = 0; r < o.BLKSIZE; r++) t[r] = .42 - .5 * Math.cos(2 * Math.PI * (r + .5) / o.BLKSIZE) + .08 * Math.cos(4 * Math.PI * (r + .5) / o.BLKSIZE);
-                for (var r = 0; r < o.BLKSIZE_s / 2; r++) a[r] = .5 * (1 - Math.cos(2 * Math.PI * (r + .5) / o.BLKSIZE_s))
-            }
-        }
-        var n = a(15),
-            s = (n.System, n.VbrMode, n.Float, n.ShortBlock, n.Util),
-            i = (n.Arrays, n.new_array_n, n.new_byte, n.new_double, n.new_float),
-            o = (n.new_float_n, n.new_int, n.new_int_n, n.assert, a(67));
-        e.exports = r
-    },
-    193: function(e, t) {
-        var a = {}.toString;
-        e.exports = Array.isArray || function(e) {
-            return "[object Array]" == a.call(e)
-        }
-    },
-    197: function(e, t, a) {
-        function r() {
-            this.useAdjust = 0, this.aaSensitivityP = 0, this.adjust = 0, this.adjustLimit = 0, this.decay = 0, this.floor = 0, this.l = s(i.SBMAX_l), this.s = s(i.SBMAX_s), this.psfb21 = s(i.PSFB21), this.psfb12 = s(i.PSFB12), this.cb_l = s(i.CBANDS), this.cb_s = s(i.CBANDS), this.eql_w = s(i.BLKSIZE / 2)
-        }
-        var n = a(15),
-            s = (n.System, n.VbrMode, n.Float, n.ShortBlock, n.Util, n.Arrays, n.new_array_n, n.new_byte, n.new_double, n.new_float),
-            i = (n.new_float_n, n.new_int, n.new_int_n, n.assert, a(67));
-        e.exports = r
-    },
-    204: function(e, t, a) {
-        function r() {
-            function e(e, t, a) {
-                for (var n = 10, s = t + 238 - 14 - 286, o = -15; 0 > o; o++) {
-                    var _, l, f;
-                    _ = r[n + -10], l = e[s + -224] * _, f = e[t + 224] * _, _ = r[n + -9], l += e[s + -160] * _, f += e[t + 160] * _, _ = r[n + -8], l += e[s + -96] * _, f += e[t + 96] * _, _ = r[n + -7], l += e[s + -32] * _, f += e[t + 32] * _, _ = r[n + -6], l += e[s + 32] * _, f += e[t + -32] * _, _ = r[n + -5], l += e[s + 96] * _, f += e[t + -96] * _, _ = r[n + -4], l += e[s + 160] * _, f += e[t + -160] * _, _ = r[n + -3], l += e[s + 224] * _, f += e[t + -224] * _, _ = r[n + -2], l += e[t + -256] * _, f -= e[s + 256] * _, _ = r[n + -1], l += e[t + -192] * _, f -= e[s + 192] * _, _ = r[n + 0], l += e[t + -128] * _, f -= e[s + 128] * _, _ = r[n + 1], l += e[t + -64] * _, f -= e[s + 64] * _, _ = r[n + 2], l += e[t + 0] * _, f -= e[s + 0] * _, _ = r[n + 3], l += e[t + 64] * _, f -= e[s + -64] * _, _ = r[n + 4], l += e[t + 128] * _, f -= e[s + -128] * _, _ = r[n + 5], l += e[t + 192] * _, f -= e[s + -192] * _, l *= r[n + 6], _ = f - l, a[30 + 2 * o] = f + l, a[31 + 2 * o] = r[n + 7] * _, n += 18, t--, s++
-                }
-                var l, f, u, h;
-                f = e[t + -16] * r[n + -10], l = e[t + -32] * r[n + -2], f += (e[t + -48] - e[t + 16]) * r[n + -9], l += e[t + -96] * r[n + -1], f += (e[t + -80] + e[t + 48]) * r[n + -8], l += e[t + -160] * r[n + 0], f += (e[t + -112] - e[t + 80]) * r[n + -7], l += e[t + -224] * r[n + 1], f += (e[t + -144] + e[t + 112]) * r[n + -6], l -= e[t + 32] * r[n + 2], f += (e[t + -176] - e[t + 144]) * r[n + -5], l -= e[t + 96] * r[n + 3], f += (e[t + -208] + e[t + 176]) * r[n + -4], l -= e[t + 160] * r[n + 4], f += (e[t + -240] - e[t + 208]) * r[n + -3], l -= e[t + 224], u = l - f, h = l + f, f = a[14], l = a[15] - f, a[31] = h + f, a[30] = u + l, a[15] = u - l, a[14] = h - f;
-                var c;
-                c = a[28] - a[0], a[0] += a[28], a[28] = c * r[n + -36 + 7], c = a[29] - a[1], a[1] += a[29], a[29] = c * r[n + -36 + 7], c = a[26] - a[2], a[2] += a[26], a[26] = c * r[n + -72 + 7], c = a[27] - a[3], a[3] += a[27], a[27] = c * r[n + -72 + 7], c = a[24] - a[4], a[4] += a[24], a[24] = c * r[n + -108 + 7], c = a[25] - a[5], a[5] += a[25], a[25] = c * r[n + -108 + 7], c = a[22] - a[6], a[6] += a[22], a[22] = c * i.SQRT2, c = a[23] - a[7], a[7] += a[23], a[23] = c * i.SQRT2 - a[7], a[7] -= a[6], a[22] -= a[7], a[23] -= a[22], c = a[6], a[6] = a[31] - c, a[31] = a[31] + c, c = a[7], a[7] = a[30] - c, a[30] = a[30] + c, c = a[22], a[22] = a[15] - c, a[15] = a[15] + c, c = a[23], a[23] = a[14] - c, a[14] = a[14] + c, c = a[20] - a[8], a[8] += a[20], a[20] = c * r[n + -180 + 7], c = a[21] - a[9], a[9] += a[21], a[21] = c * r[n + -180 + 7], c = a[18] - a[10], a[10] += a[18], a[18] = c * r[n + -216 + 7], c = a[19] - a[11], a[11] += a[19], a[19] = c * r[n + -216 + 7], c = a[16] - a[12], a[12] += a[16], a[16] = c * r[n + -252 + 7], c = a[17] - a[13], a[13] += a[17], a[17] = c * r[n + -252 + 7], c = -a[20] + a[24], a[20] += a[24], a[24] = c * r[n + -216 + 7], c = -a[21] + a[25], a[21] += a[25], a[25] = c * r[n + -216 + 7], c = a[4] - a[8], a[4] += a[8], a[8] = c * r[n + -216 + 7], c = a[5] - a[9], a[5] += a[9], a[9] = c * r[n + -216 + 7], c = a[0] - a[12], a[0] += a[12], a[12] = c * r[n + -72 + 7], c = a[1] - a[13], a[1] += a[13], a[13] = c * r[n + -72 + 7], c = a[16] - a[28], a[16] += a[28], a[28] = c * r[n + -72 + 7], c = -a[17] + a[29], a[17] += a[29], a[29] = c * r[n + -72 + 7], c = i.SQRT2 * (a[2] - a[10]), a[2] += a[10], a[10] = c, c = i.SQRT2 * (a[3] - a[11]), a[3] += a[11], a[11] = c, c = i.SQRT2 * (-a[18] + a[26]), a[18] += a[26], a[26] = c - a[18], c = i.SQRT2 * (-a[19] + a[27]), a[19] += a[27], a[27] = c - a[19], c = a[2], a[19] -= a[3], a[3] -= c, a[2] = a[31] - c, a[31] += c, c = a[3], a[11] -= a[19], a[18] -= c, a[3] = a[30] - c, a[30] += c, c = a[18], a[27] -= a[11], a[19] -= c, a[18] = a[15] - c, a[15] += c, c = a[19], a[10] -= c, a[19] = a[14] - c, a[14] += c, c = a[10], a[11] -= c, a[10] = a[23] - c, a[23] += c, c = a[11], a[26] -= c, a[11] = a[22] - c, a[22] += c, c = a[26], a[27] -= c, a[26] = a[7] - c, a[7] += c, c = a[27], a[27] = a[6] - c, a[6] += c, c = i.SQRT2 * (a[0] - a[4]), a[0] += a[4], a[4] = c, c = i.SQRT2 * (a[1] - a[5]), a[1] += a[5], a[5] = c, c = i.SQRT2 * (a[16] - a[20]), a[16] += a[20], a[20] = c, c = i.SQRT2 * (a[17] - a[21]), a[17] += a[21], a[21] = c, c = -i.SQRT2 * (a[8] - a[12]), a[8] += a[12], a[12] = c - a[8], c = -i.SQRT2 * (a[9] - a[13]), a[9] += a[13], a[13] = c - a[9], c = -i.SQRT2 * (a[25] - a[29]), a[25] += a[29], a[29] = c - a[25], c = -i.SQRT2 * (a[24] + a[28]), a[24] -= a[28], a[28] = c - a[24], c = a[24] - a[16], a[24] = c, c = a[20] - c, a[20] = c, c = a[28] - c, a[28] = c, c = a[25] - a[17], a[25] = c, c = a[21] - c, a[21] = c, c = a[29] - c, a[29] = c, c = a[17] - a[1], a[17] = c, c = a[9] - c, a[9] = c, c = a[25] - c, a[25] = c, c = a[5] - c, a[5] = c, c = a[21] - c, a[21] = c, c = a[13] - c, a[13] = c, c = a[29] - c, a[29] = c, c = a[1] - a[0], a[1] = c, c = a[16] - c, a[16] = c, c = a[17] - c, a[17] = c, c = a[8] - c, a[8] = c, c = a[9] - c, a[9] = c, c = a[24] - c, a[24] = c, c = a[25] - c, a[25] = c, c = a[4] - c, a[4] = c, c = a[5] - c, a[5] = c, c = a[20] - c, a[20] = c, c = a[21] - c, a[21] = c, c = a[12] - c, a[12] = c, c = a[13] - c, a[13] = c, c = a[28] - c, a[28] = c, c = a[29] - c, a[29] = c, c = a[0], a[0] += a[31], a[31] -= c, c = a[1], a[1] += a[30], a[30] -= c, c = a[16], a[16] += a[15], a[15] -= c, c = a[17], a[17] += a[14], a[14] -= c, c = a[8], a[8] += a[23], a[23] -= c, c = a[9], a[9] += a[22], a[22] -= c, c = a[24], a[24] += a[7], a[7] -= c, c = a[25], a[25] += a[6], a[6] -= c, c = a[4], a[4] += a[27], a[27] -= c, c = a[5], a[5] += a[26], a[26] -= c, c = a[20], a[20] += a[11], a[11] -= c, c = a[21], a[21] += a[10], a[10] -= c, c = a[12], a[12] += a[19], a[19] -= c, c = a[13], a[13] += a[18], a[18] -= c, c = a[28], a[28] += a[3], a[3] -= c, c = a[29], a[29] += a[2], a[2] -= c
-            }
-
-            function t(e, t) {
-                for (var a = 0; 3 > a; a++) {
-                    var r, n, s, i, o, _;
-                    i = e[t + 6] * u[l.SHORT_TYPE][0] - e[t + 15], r = e[t + 0] * u[l.SHORT_TYPE][2] - e[t + 9], n = i + r, s = i - r, i = e[t + 15] * u[l.SHORT_TYPE][0] + e[t + 6], r = e[t + 9] * u[l.SHORT_TYPE][2] + e[t + 0], o = i + r, _ = -i + r, r = 2.069978111953089e-11 * (e[t + 3] * u[l.SHORT_TYPE][1] - e[t + 12]), i = 2.069978111953089e-11 * (e[t + 12] * u[l.SHORT_TYPE][1] + e[t + 3]), e[t + 0] = 1.90752519173728e-11 * n + r, e[t + 15] = 1.90752519173728e-11 * -o + i, s = .8660254037844387 * s * 1.907525191737281e-11, o = .5 * o * 1.907525191737281e-11 + i, e[t + 3] = s - o, e[t + 6] = s + o, n = .5 * n * 1.907525191737281e-11 - r, _ = .8660254037844387 * _ * 1.907525191737281e-11, e[t + 9] = n + _, e[t + 12] = n - _, t++
-                }
-            }
-
-            function a(e, t, a) {
-                var r, n, s, i, o, _, l, f, u, h;
-                s = a[17] - a[9], o = a[15] - a[11], _ = a[14] - a[12], l = a[0] + a[8], f = a[1] + a[7], u = a[2] + a[6], h = a[3] + a[5], e[t + 17] = l + u - h - (f - a[4]), n = (l + u - h) * c[19] + (f - a[4]), r = (s - o - _) * c[18], e[t + 5] = r + n, e[t + 6] = r - n, i = (a[16] - a[10]) * c[18], f = f * c[19] + a[4], r = s * c[12] + i + o * c[13] + _ * c[14], n = -l * c[16] + f - u * c[17] + h * c[15], e[t + 1] = r + n, e[t + 2] = r - n, r = s * c[13] - i - o * c[14] + _ * c[12], n = -l * c[17] + f - u * c[15] + h * c[16], e[t + 9] = r + n, e[t + 10] = r - n, r = s * c[14] - i + o * c[12] - _ * c[13], n = l * c[15] - f + u * c[16] - h * c[17], e[t + 13] = r + n, e[t + 14] = r - n;
-                var p, b, m, v, d, g, w, S;
-                p = a[8] - a[0], m = a[6] - a[2], v = a[5] - a[3], d = a[17] + a[9], g = a[16] + a[10], w = a[15] + a[11], S = a[14] + a[12], e[t + 0] = d + w + S + (g + a[13]), r = (d + w + S) * c[19] - (g + a[13]), n = (p - m + v) * c[18], e[t + 11] = r + n, e[t + 12] = r - n, b = (a[7] - a[1]) * c[18], g = a[13] - g * c[19], r = d * c[15] - g + w * c[16] + S * c[17], n = p * c[14] + b + m * c[12] + v * c[13], e[t + 3] = r + n, e[t + 4] = r - n, r = -d * c[17] + g - w * c[15] - S * c[16], n = p * c[13] + b - m * c[14] - v * c[12], e[t + 7] = r + n, e[t + 8] = r - n, r = -d * c[16] + g - w * c[17] - S * c[15], n = p * c[12] - b + m * c[13] - v * c[14], e[t + 15] = r + n, e[t + 16] = r - n
-            }
-            var r = [-.1482523854003001, 32.308141959636465, 296.40344946382766, 883.1344870032432, 11113.947376231741, 1057.2713659324597, 305.7402417275812, 30.825928907280012, 3.8533188138216365, 59.42900443849514, 709.5899960123345, 5281.91112291017, -5829.66483675846, -817.6293103748613, -76.91656988279972, -4.594269939176596, .9063471690191471, .1960342806591213, -.15466694054279598, 34.324387823855965, 301.8067566458425, 817.599602898885, 11573.795901679885, 1181.2520595540152, 321.59731579894424, 31.232021761053772, 3.7107095756221318, 53.650946155329365, 684.167428119626, 5224.56624370173, -6366.391851890084, -908.9766368219582, -89.83068876699639, -5.411397422890401, .8206787908286602, .3901806440322567, -.16070888947830023, 36.147034243915876, 304.11815768187864, 732.7429163887613, 11989.60988270091, 1300.012278487897, 335.28490093152146, 31.48816102859945, 3.373875931311736, 47.232241542899175, 652.7371796173471, 5132.414255594984, -6909.087078780055, -1001.9990371107289, -103.62185754286375, -6.104916304710272, .7416505462720353, .5805693545089249, -.16636367662261495, 37.751650073343995, 303.01103387567713, 627.9747488785183, 12358.763425278165, 1412.2779918482834, 346.7496836825721, 31.598286663170416, 3.1598635433980946, 40.57878626349686, 616.1671130880391, 5007.833007176154, -7454.040671756168, -1095.7960341867115, -118.24411666465777, -6.818469345853504, .6681786379192989, .7653668647301797, -.1716176790982088, 39.11551877123304, 298.3413246578966, 503.5259106886539, 12679.589408408976, 1516.5821921214542, 355.9850766329023, 31.395241710249053, 2.9164211881972335, 33.79716964664243, 574.8943997801362, 4853.234992253242, -7997.57021486075, -1189.7624067269965, -133.6444792601766, -7.7202770609839915, .5993769336819237, .9427934736519954, -.17645823955292173, 40.21879108166477, 289.9982036694474, 359.3226160751053, 12950.259102786438, 1612.1013903507662, 362.85067106591504, 31.045922092242872, 2.822222032597987, 26.988862316190684, 529.8996541764288, 4671.371946949588, -8535.899136645805, -1282.5898586244496, -149.58553632943463, -8.643494270763135, .5345111359507916, 1.111140466039205, -.36174739330527045, 41.04429910497807, 277.5463268268618, 195.6386023135583, 13169.43812144731, 1697.6433561479398, 367.40983966190305, 30.557037410382826, 2.531473372857427, 20.070154905927314, 481.50208566532336, 4464.970341588308, -9065.36882077239, -1373.62841526722, -166.1660487028118, -9.58289321133207, .4729647758913199, 1.268786568327291, -.36970682634889585, 41.393213350082036, 261.2935935556502, 12.935476055240873, 13336.131683328815, 1772.508612059496, 369.76534388639965, 29.751323653701338, 2.4023193045459172, 13.304795348228817, 430.5615775526625, 4237.0568611071185, -9581.931701634761, -1461.6913552409758, -183.12733958476446, -10.718010163869403, .41421356237309503, 1.414213562373095, -.37677560326535325, 41.619486213528496, 241.05423794991074, -187.94665032361226, 13450.063605744153, 1836.153896465782, 369.4908799925761, 29.001847876923147, 2.0714759319987186, 6.779591200894186, 377.7767837205709, 3990.386575512536, -10081.709459700915, -1545.947424837898, -200.3762958015653, -11.864482073055006, .3578057213145241, 1.546020906725474, -.3829366947518991, 41.1516456456653, 216.47684307105183, -406.1569483347166, 13511.136535077321, 1887.8076599260432, 367.3025214564151, 28.136213436723654, 1.913880671464418, .3829366947518991, 323.85365704338597, 3728.1472257487526, -10561.233882199509, -1625.2025997821418, -217.62525175416, -13.015432208941645, .3033466836073424, 1.66293922460509, -.5822628872992417, 40.35639251440489, 188.20071124269245, -640.2706748618148, 13519.21490106562, 1927.6022433578062, 362.8197642637487, 26.968821921868447, 1.7463817695935329, -5.62650678237171, 269.3016715297017, 3453.386536448852, -11016.145278780888, -1698.6569643425091, -234.7658734267683, -14.16351421663124, .2504869601913055, 1.76384252869671, -.5887180101749253, 39.23429103868072, 155.76096234403798, -889.2492977967378, 13475.470561874661, 1955.0535223723712, 356.4450994756727, 25.894952980042156, 1.5695032905781554, -11.181939564328772, 214.80884394039484, 3169.1640829158237, -11443.321309975563, -1765.1588461316153, -251.68908574481912, -15.49755935939164, .198912367379658, 1.847759065022573, -.7912582233652842, 37.39369355329111, 119.699486012458, -1151.0956593239027, 13380.446257078214, 1970.3952110853447, 348.01959814116185, 24.731487364283044, 1.3850130831637748, -16.421408865300393, 161.05030052864092, 2878.3322807850063, -11838.991423510031, -1823.985884688674, -268.2854986386903, -16.81724543849939, .1483359875383474, 1.913880671464418, -.7960642926861912, 35.2322109610459, 80.01928065061526, -1424.0212633405113, 13235.794061869668, 1973.804052543835, 337.9908651258184, 23.289159354463873, 1.3934255946442087, -21.099669467133474, 108.48348407242611, 2583.700758091299, -12199.726194855148, -1874.2780658979746, -284.2467154529415, -18.11369784385905, .09849140335716425, 1.961570560806461, -.998795456205172, 32.56307803611191, 36.958364584370486, -1706.075448829146, 13043.287458812016, 1965.3831106103316, 326.43182772364605, 22.175018750622293, 1.198638339011324, -25.371248002043963, 57.53505923036915, 2288.41886619975, -12522.674544337233, -1914.8400385312243, -299.26241273417224, -19.37805630698734, .04912684976946725, 1.990369453344394, .035780907 * i.SQRT2 * .5 / 2384e-9, .017876148 * i.SQRT2 * .5 / 2384e-9, .003134727 * i.SQRT2 * .5 / 2384e-9, .002457142 * i.SQRT2 * .5 / 2384e-9, 971317e-9 * i.SQRT2 * .5 / 2384e-9, 218868e-9 * i.SQRT2 * .5 / 2384e-9, 101566e-9 * i.SQRT2 * .5 / 2384e-9, 13828e-9 * i.SQRT2 * .5 / 2384e-9, 12804.797818791945, 1945.5515939597317, 313.4244966442953, 49591e-9 / 2384e-9, 1995.1556208053692, 21458e-9 / 2384e-9, -69618e-9 / 2384e-9],
-                n = 12,
-                f = 36,
-                u = [
-                    [2.382191739347913e-13, 6.423305872147834e-13, 9.400849094049688e-13, 1.122435026096556e-12, 1.183840321267481e-12, 1.122435026096556e-12, 9.40084909404969e-13, 6.423305872147839e-13, 2.382191739347918e-13, 5.456116108943412e-12, 4.878985199565852e-12, 4.240448995017367e-12, 3.559909094758252e-12, 2.858043359288075e-12, 2.156177623817898e-12, 1.475637723558783e-12, 8.371015190102974e-13, 2.599706096327376e-13, -5.456116108943412e-12, -4.878985199565852e-12, -4.240448995017367e-12, -3.559909094758252e-12, -2.858043359288076e-12, -2.156177623817898e-12, -1.475637723558783e-12, -8.371015190102975e-13, -2.599706096327376e-13, -2.382191739347923e-13, -6.423305872147843e-13, -9.400849094049696e-13, -1.122435026096556e-12, -1.183840321267481e-12, -1.122435026096556e-12, -9.400849094049694e-13, -6.42330587214784e-13, -2.382191739347918e-13],
-                    [2.382191739347913e-13, 6.423305872147834e-13, 9.400849094049688e-13, 1.122435026096556e-12, 1.183840321267481e-12, 1.122435026096556e-12, 9.400849094049688e-13, 6.423305872147841e-13, 2.382191739347918e-13, 5.456116108943413e-12, 4.878985199565852e-12, 4.240448995017367e-12, 3.559909094758253e-12, 2.858043359288075e-12, 2.156177623817898e-12, 1.475637723558782e-12, 8.371015190102975e-13, 2.599706096327376e-13, -5.461314069809755e-12, -4.921085770524055e-12, -4.343405037091838e-12, -3.732668368707687e-12, -3.093523840190885e-12, -2.430835727329465e-12, -1.734679010007751e-12, -9.74825365660928e-13, -2.797435120168326e-13, 0, 0, 0, 0, 0, 0, -2.283748241799531e-13, -4.037858874020686e-13, -2.146547464825323e-13],
-                    [.1316524975873958, .414213562373095, .7673269879789602, 1.091308501069271, 1.303225372841206, 1.56968557711749, 1.920982126971166, 2.414213562373094, 3.171594802363212, 4.510708503662055, 7.595754112725146, 22.90376554843115, .984807753012208, .6427876096865394, .3420201433256688, .9396926207859084, -.1736481776669303, -.7660444431189779, .8660254037844387, .5, -.5144957554275265, -.4717319685649723, -.3133774542039019, -.1819131996109812, -.09457419252642064, -.04096558288530405, -.01419856857247115, -.003699974673760037, .8574929257125442, .8817419973177052, .9496286491027329, .9833145924917901, .9955178160675857, .9991605581781475, .999899195244447, .9999931550702802],
-                    [0, 0, 0, 0, 0, 0, 2.283748241799531e-13, 4.037858874020686e-13, 2.146547464825323e-13, 5.461314069809755e-12, 4.921085770524055e-12, 4.343405037091838e-12, 3.732668368707687e-12, 3.093523840190885e-12, 2.430835727329466e-12, 1.734679010007751e-12, 9.74825365660928e-13, 2.797435120168326e-13, -5.456116108943413e-12, -4.878985199565852e-12, -4.240448995017367e-12, -3.559909094758253e-12, -2.858043359288075e-12, -2.156177623817898e-12, -1.475637723558782e-12, -8.371015190102975e-13, -2.599706096327376e-13, -2.382191739347913e-13, -6.423305872147834e-13, -9.400849094049688e-13, -1.122435026096556e-12, -1.183840321267481e-12, -1.122435026096556e-12, -9.400849094049688e-13, -6.423305872147841e-13, -2.382191739347918e-13]
-                ],
-                h = u[l.SHORT_TYPE],
-                c = u[l.SHORT_TYPE],
-                p = u[l.SHORT_TYPE],
-                b = u[l.SHORT_TYPE],
-                m = [0, 1, 16, 17, 8, 9, 24, 25, 4, 5, 20, 21, 12, 13, 28, 29, 2, 3, 18, 19, 10, 11, 26, 27, 6, 7, 22, 23, 14, 15, 30, 31];
-            this.mdct_sub48 = function(r, i, c) {
-                for (var v = i, d = 286, g = 0; g < r.channels_out; g++) {
-                    for (var w = 0; w < r.mode_gr; w++) {
-                        for (var S, A = r.l3_side.tt[w][g], R = A.xr, M = 0, y = r.sb_sample[g][1 - w], B = 0, E = 0; 9 > E; E++)
-                            for (e(v, d, y[B]), e(v, d + 32, y[B + 1]), B += 2, d += 64, S = 1; 32 > S; S += 2) y[B - 1][S] *= -1;
-                        for (S = 0; 32 > S; S++, M += 18) {
-                            var T = A.block_type,
-                                k = r.sb_sample[g][w],
-                                x = r.sb_sample[g][1 - w];
-                            if (0 != A.mixed_block_flag && 2 > S && (T = 0), r.amp_filter[S] < 1e-12) o.fill(R, M + 0, M + 18, 0);
-                            else {
-                                if (r.amp_filter[S] < 1)
-                                    for (var E = 0; 18 > E; E++) x[E][m[S]] *= r.amp_filter[S];
-                                if (T == l.SHORT_TYPE) {
-                                    for (var E = -n / 4; 0 > E; E++) {
-                                        var P = u[l.SHORT_TYPE][E + 3];
-                                        R[M + 3 * E + 9] = k[9 + E][m[S]] * P - k[8 - E][m[S]], R[M + 3 * E + 18] = k[14 - E][m[S]] * P + k[15 + E][m[S]], R[M + 3 * E + 10] = k[15 + E][m[S]] * P - k[14 - E][m[S]], R[M + 3 * E + 19] = x[2 - E][m[S]] * P + x[3 + E][m[S]], R[M + 3 * E + 11] = x[3 + E][m[S]] * P - x[2 - E][m[S]], R[M + 3 * E + 20] = x[8 - E][m[S]] * P + x[9 + E][m[S]]
-                                    }
-                                    t(R, M)
-                                } else {
-                                    for (var I = _(18), E = -f / 4; 0 > E; E++) {
-                                        var L, O;
-                                        L = u[T][E + 27] * x[E + 9][m[S]] + u[T][E + 36] * x[8 - E][m[S]], O = u[T][E + 9] * k[E + 9][m[S]] - u[T][E + 18] * k[8 - E][m[S]], I[E + 9] = L - O * h[3 + E + 9], I[E + 18] = L * h[3 + E + 9] + O
-                                    }
-                                    a(R, M, I)
-                                }
-                            }
-                            if (T != l.SHORT_TYPE && 0 != S)
-                                for (var E = 7; E >= 0; --E) {
-                                    var V, N;
-                                    V = R[M + E] * p[20 + E] + R[M + -1 - E] * b[28 + E], N = R[M + E] * b[28 + E] - R[M + -1 - E] * p[20 + E], R[M + -1 - E] = V, R[M + E] = N
-                                }
-                        }
-                    }
-                    if (v = c, d = 286, 1 == r.mode_gr)
-                        for (var H = 0; 18 > H; H++) s.arraycopy(r.sb_sample[g][1][H], 0, r.sb_sample[g][0][H], 0, 32)
-                }
-            }
-        }
-        var n = a(15),
-            s = n.System,
-            i = (n.VbrMode, n.Float, n.ShortBlock, n.Util),
-            o = n.Arrays,
-            _ = (n.new_array_n, n.new_byte, n.new_double, n.new_float),
-            l = (n.new_float_n, n.new_int, n.new_int_n, n.assert, a(67));
-        e.exports = r
-    },
-    212: function(e, t) {
-        function a(e) {
-            var t = e;
-            this.ordinal = function() {
-                return t
-            }
-        }
-        a.STEREO = new a(0), a.JOINT_STEREO = new a(1), a.DUAL_CHANNEL = new a(2), a.MONO = new a(3), a.NOT_SET = new a(4), e.exports = a
-    },
-    225: function(e, t, a) {
-        function r() {
-            this.l = o(n.SBMAX_l), this.s = _([n.SBMAX_s, 3]);
-            var e = this;
-            this.assign = function(t) {
-                i.arraycopy(t.l, 0, e.l, 0, n.SBMAX_l);
-                for (var a = 0; a < n.SBMAX_s; a++)
-                    for (var r = 0; 3 > r; r++) e.s[a][r] = t.s[a][r]
-            }
-        }
-        var n = a(67),
-            s = a(15),
-            i = s.System,
-            o = (s.VbrMode, s.Float, s.ShortBlock, s.Util, s.Arrays, s.new_array_n, s.new_byte, s.new_double, s.new_float),
-            _ = s.new_float_n;
-        s.new_int, s.new_int_n, s.assert, e.exports = r
-    },
-    227: function(e, t, a) {
-        function r() {
-            function e() {
-                this.write_timing = 0, this.ptr = 0, this.buf = s(t)
-            }
-            var t = 40;
-            this.Class_ID = 0, this.lame_encode_frame_init = 0, this.iteration_init_init = 0, this.fill_buffer_resample_init = 0, this.mfbuf = _([2, r.MFSIZE]), this.mode_gr = 0, this.channels_in = 0, this.channels_out = 0, this.resample_ratio = 0, this.mf_samples_to_encode = 0, this.mf_size = 0, this.VBR_min_bitrate = 0, this.VBR_max_bitrate = 0, this.bitrate_index = 0, this.samplerate_index = 0, this.mode_ext = 0, this.lowpass1 = 0, this.lowpass2 = 0, this.highpass1 = 0, this.highpass2 = 0, this.noise_shaping = 0, this.noise_shaping_amp = 0, this.substep_shaping = 0, this.psymodel = 0, this.noise_shaping_stop = 0, this.subblock_gain = 0, this.use_best_huffman = 0, this.full_outer_loop = 0, this.l3_side = new u, this.ms_ratio = o(2), this.padding = 0, this.frac_SpF = 0, this.slot_lag = 0, this.tag_spec = null, this.nMusicCRC = 0, this.OldValue = l(2), this.CurrentStep = l(2), this.masking_lower = 0, this.bv_scf = l(576), this.pseudohalf = l(v.SFBMAX), this.sfb21_extra = !1, this.inbuf_old = new Array(2), this.blackfilt = new Array(2 * r.BPC + 1), this.itime = i(2), this.sideinfo_len = 0, this.sb_sample = _([2, 2, 18, m.SBLIMIT]), this.amp_filter = o(32), this.header = new Array(r.MAX_HEADER_BUF), this.h_ptr = 0, this.w_ptr = 0, this.ancillary_flag = 0, this.ResvSize = 0, this.ResvMax = 0, this.scalefac_band = new h, this.minval_l = o(m.CBANDS), this.minval_s = o(m.CBANDS), this.nb_1 = _([4, m.CBANDS]), this.nb_2 = _([4, m.CBANDS]), this.nb_s1 = _([4, m.CBANDS]), this.nb_s2 = _([4, m.CBANDS]), this.s3_ss = null, this.s3_ll = null, this.decay = 0, this.thm = new Array(4), this.en = new Array(4), this.tot_ener = o(4), this.loudness_sq = _([2, 2]), this.loudness_sq_save = o(2), this.mld_l = o(m.SBMAX_l), this.mld_s = o(m.SBMAX_s), this.bm_l = l(m.SBMAX_l), this.bo_l = l(m.SBMAX_l), this.bm_s = l(m.SBMAX_s), this.bo_s = l(m.SBMAX_s), this.npart_l = 0, this.npart_s = 0, this.s3ind = f([m.CBANDS, 2]), this.s3ind_s = f([m.CBANDS, 2]), this.numlines_s = l(m.CBANDS), this.numlines_l = l(m.CBANDS), this.rnumlines_l = o(m.CBANDS), this.mld_cb_l = o(m.CBANDS), this.mld_cb_s = o(m.CBANDS), this.numlines_s_num1 = 0, this.numlines_l_num1 = 0, this.pe = o(4), this.ms_ratio_s_old = 0, this.ms_ratio_l_old = 0, this.ms_ener_ratio_old = 0, this.blocktype_old = l(2), this.nsPsy = new c, this.VBR_seek_table = new p, this.ATH = null, this.PSY = null, this.nogap_total = 0, this.nogap_current = 0, this.decode_on_the_fly = !0, this.findReplayGain = !0, this.findPeakSample = !0, this.PeakSample = 0, this.RadioGain = 0, this.AudiophileGain = 0, this.rgdata = null, this.noclipGainChange = 0, this.noclipScale = 0, this.bitrate_stereoMode_Hist = f([16, 5]), this.bitrate_blockType_Hist = f([16, 6]), this.pinfo = null, this.hip = null, this.in_buffer_nsamples = 0, this.in_buffer_0 = null, this.in_buffer_1 = null, this.iteration_loop = null;
-            for (var a = 0; a < this.en.length; a++) this.en[a] = new b;
-            for (var a = 0; a < this.thm.length; a++) this.thm[a] = new b;
-            for (var a = 0; a < this.header.length; a++) this.header[a] = new e
-        }
-        var n = a(15),
-            s = (n.System, n.VbrMode, n.Float, n.ShortBlock, n.Util, n.Arrays, n.new_array_n, n.new_byte),
-            i = n.new_double,
-            o = n.new_float,
-            _ = n.new_float_n,
-            l = n.new_int,
-            f = n.new_int_n,
-            u = (n.assert, a(128)),
-            h = a(311),
-            c = a(157),
-            p = a(292),
-            b = a(225),
-            m = a(67),
-            v = a(82);
-        r.MFSIZE = 3456 + m.ENCDELAY - m.MDCTDELAY, r.MAX_HEADER_BUF = 256, r.MAX_BITS_PER_CHANNEL = 4095, r.MAX_BITS_PER_GRANULE = 7680, r.BPC = 320, e.exports = r
-    },
-    230: function(e, t, a) {
-        "use strict";
-
-        function r(e) {
-            var t = e.length;
-            if (t % 4 > 0) throw new Error("Invalid string. Length must be a multiple of 4");
-            return "=" === e[t - 2] ? 2 : "=" === e[t - 1] ? 1 : 0
-        }
-
-        function n(e) {
-            return 3 * e.length / 4 - r(e)
-        }
-
-        function s(e) {
-            var t, a, n, s, i, o = e.length;
-            s = r(e), i = new u(3 * o / 4 - s), a = s > 0 ? o - 4 : o;
-            var _ = 0;
-            for (t = 0; a > t; t += 4) n = f[e.charCodeAt(t)] << 18 | f[e.charCodeAt(t + 1)] << 12 | f[e.charCodeAt(t + 2)] << 6 | f[e.charCodeAt(t + 3)], i[_++] = n >> 16 & 255, i[_++] = n >> 8 & 255, i[_++] = 255 & n;
-            return 2 === s ? (n = f[e.charCodeAt(t)] << 2 | f[e.charCodeAt(t + 1)] >> 4, i[_++] = 255 & n) : 1 === s && (n = f[e.charCodeAt(t)] << 10 | f[e.charCodeAt(t + 1)] << 4 | f[e.charCodeAt(t + 2)] >> 2, i[_++] = n >> 8 & 255, i[_++] = 255 & n), i
-        }
-
-        function i(e) {
-            return l[e >> 18 & 63] + l[e >> 12 & 63] + l[e >> 6 & 63] + l[63 & e]
-        }
-
-        function o(e, t, a) {
-            for (var r, n = [], s = t; a > s; s += 3) r = (e[s] << 16 & 16711680) + (e[s + 1] << 8 & 65280) + (255 & e[s + 2]), n.push(i(r));
-            return n.join("")
-        }
-
-        function _(e) {
-            for (var t, a = e.length, r = a % 3, n = "", s = [], i = 16383, _ = 0, f = a - r; f > _; _ += i) s.push(o(e, _, _ + i > f ? f : _ + i));
-            return 1 === r ? (t = e[a - 1], n += l[t >> 2], n += l[t << 4 & 63], n += "==") : 2 === r && (t = (e[a - 2] << 8) + e[a - 1], n += l[t >> 10], n += l[t >> 4 & 63], n += l[t << 2 & 63], n += "="), s.push(n), s.join("")
-        }
-        t.byteLength = n, t.toByteArray = s, t.fromByteArray = _;
-        for (var l = [], f = [], u = "undefined" != typeof Uint8Array ? Uint8Array : Array, h = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", c = 0, p = h.length; p > c; ++c) l[c] = h[c], f[h.charCodeAt(c)] = c;
-        f["-".charCodeAt(0)] = 62, f["_".charCodeAt(0)] = 63
-    },
-    239: function(e, t, a) {
-        e.exports = a(65)
-    },
-    255: function(e, t, a) {
-        "use strict";
-        a.r(t), module.exports = null
-    },
-    269: function(e, t, a) {
-        function r() {
-            function e(e) {
-                this.bits = 0 | e
-            }
-
-            function t(e, t, a, r, n, s) {
-                var i = .5946 / t;
-                for (_(e > 0), e >>= 1; 0 != e--;) n[s++] = i > a[r++] ? 0 : 1, n[s++] = i > a[r++] ? 0 : 1
-            }
-
-            function a(e, t, a, r, n, s) {
-                _(e > 0), e >>= 1;
-                var i = e % 2;
-                for (e >>= 1; 0 != e--;) {
-                    var o, l, f, u, h, c, p, b;
-                    o = a[r++] * t, l = a[r++] * t, h = 0 | o, f = a[r++] * t, c = 0 | l, u = a[r++] * t, p = 0 | f, o += R.adj43[h], b = 0 | u, l += R.adj43[c], n[s++] = 0 | o, f += R.adj43[p], n[s++] = 0 | l, u += R.adj43[b], n[s++] = 0 | f, n[s++] = 0 | u
-                }
-                if (0 != i) {
-                    var o, l, h, c;
-                    o = a[r++] * t, l = a[r++] * t, h = 0 | o, c = 0 | l, o += R.adj43[h], l += R.adj43[c], n[s++] = 0 | o, n[s++] = 0 | l
-                }
-            }
-
-            function n(e, r, n, s, o) {
-                var f, u, h, c = 0,
-                    p = 0,
-                    b = 0,
-                    m = 0,
-                    v = r,
-                    d = 0,
-                    g = v,
-                    w = 0,
-                    S = e,
-                    A = 0;
-                for (h = null != o && s.global_gain == o.global_gain, u = s.block_type == l.SHORT_TYPE ? 38 : 21, f = 0; u >= f; f++) {
-                    var M = -1;
-                    if ((h || s.block_type == l.NORM_TYPE) && (M = s.global_gain - (s.scalefac[f] + (0 != s.preflag ? R.pretab[f] : 0) << s.scalefac_scale + 1) - 8 * s.subblock_gain[s.window[f]]), _(s.width[f] >= 0), h && o.step[f] == M) 0 != p && (a(p, n, S, A, g, w), p = 0), 0 != b && (t(b, n, S, A, g, w), b = 0);
-                    else {
-                        var y = s.width[f];
-                        if (c + s.width[f] > s.max_nonzero_coeff) {
-                            var B;
-                            B = s.max_nonzero_coeff - c + 1, i.fill(r, s.max_nonzero_coeff, 576, 0), y = B, 0 > y && (y = 0), f = u + 1
-                        }
-                        if (0 == p && 0 == b && (g = v, w = d, S = e, A = m), null != o && o.sfb_count1 > 0 && f >= o.sfb_count1 && o.step[f] > 0 && M >= o.step[f] ? (0 != p && (a(p, n, S, A, g, w), p = 0, g = v, w = d, S = e, A = m), b += y) : (0 != b && (t(b, n, S, A, g, w), b = 0, g = v, w = d, S = e, A = m), p += y), 0 >= y) {
-                            0 != b && (t(b, n, S, A, g, w), b = 0), 0 != p && (a(p, n, S, A, g, w), p = 0);
-                            break
-                        }
-                    }
-                    u >= f && (d += s.width[f], m += s.width[f], c += s.width[f])
-                }
-                0 != p && (a(p, n, S, A, g, w), p = 0), 0 != b && (t(b, n, S, A, g, w), b = 0)
-            }
-
-            function c(e, t, a) {
-                var r = 0,
-                    n = 0;
-                do {
-                    var s = e[t++],
-                        i = e[t++];
-                    s > r && (r = s), i > n && (n = i)
-                } while (a > t);
-                return n > r && (r = n), r
-            }
-
-            function p(e, t, a, r, n, s) {
-                var i, o = 65536 * f.ht[r].xlen + f.ht[n].xlen,
-                    _ = 0;
-                do {
-                    var l = e[t++],
-                        u = e[t++];
-                    0 != l && (l > 14 && (l = 15, _ += o), l *= 16), 0 != u && (u > 14 && (u = 15, _ += o), l += u), _ += f.largetbl[l]
-                } while (a > t);
-                return i = 65535 & _, _ >>= 16, _ > i && (_ = i, r = n), s.bits += _, r
-            }
-
-            function b(e, t, a, r) {
-                var n = 0,
-                    s = f.ht[1].hlen;
-                do {
-                    var i = 2 * e[t + 0] + e[t + 1];
-                    t += 2, n += s[i]
-                } while (a > t);
-                return r.bits += n, 1
-            }
-
-            function m(e, t, a, r, n) {
-                var s, i, o = 0,
-                    _ = f.ht[r].xlen;
-                i = 2 == r ? f.table23 : f.table56;
-                do {
-                    var l = e[t + 0] * _ + e[t + 1];
-                    t += 2, o += i[l]
-                } while (a > t);
-                return s = 65535 & o, o >>= 16, o > s && (o = s, r++), n.bits += o, r
-            }
-
-            function v(e, t, a, r, n) {
-                var s = 0,
-                    i = 0,
-                    o = 0,
-                    _ = f.ht[r].xlen,
-                    l = f.ht[r].hlen,
-                    u = f.ht[r + 1].hlen,
-                    h = f.ht[r + 2].hlen;
-                do {
-                    var c = e[t + 0] * _ + e[t + 1];
-                    t += 2, s += l[c], i += u[c], o += h[c]
-                } while (a > t);
-                var p = r;
-                return s > i && (s = i, p++), s > o && (s = o, p = r + 2), n.bits += s, p
-            }
-
-            function d(e, t, a, r) {
-                var n = c(e, t, a);
-                switch (n) {
-                    case 0:
-                        return n;
-                    case 1:
-                        return b(e, t, a, r);
-                    case 2:
-                    case 3:
-                        return m(e, t, a, y[n - 1], r);
-                    case 4:
-                    case 5:
-                    case 6:
-                    case 7:
-                    case 8:
-                    case 9:
-                    case 10:
-                    case 11:
-                    case 12:
-                    case 13:
-                    case 14:
-                    case 15:
-                        return v(e, t, a, y[n - 1], r);
-                    default:
-                        if (n > h.IXMAX_VAL) return r.bits = h.LARGE_BITS, -1;
-                        n -= 15;
-                        var s;
-                        for (s = 24; 32 > s && !(f.ht[s].linmax >= n); s++);
-                        var i;
-                        for (i = s - 8; 24 > i && !(f.ht[i].linmax >= n); i++);
-                        return p(e, t, a, i, s, r)
-                }
-            }
-
-            function g(t, a, r, n, s, i, o) {
-                for (var _ = a.big_values, l = 0; 22 >= l; l++) n[l] = h.LARGE_BITS;
-                for (var l = 0; 16 > l; l++) {
-                    var f = t.scalefac_band.l[l + 1];
-                    if (f >= _) break;
-                    var u = 0,
-                        c = new e(u),
-                        p = d(r, 0, f, c);
-                    u = c.bits;
-                    for (var b = 0; 8 > b; b++) {
-                        var m = t.scalefac_band.l[l + b + 2];
-                        if (m >= _) break;
-                        var v = u;
-                        c = new e(v);
-                        var g = d(r, f, m, c);
-                        v = c.bits, n[l + b] > v && (n[l + b] = v, s[l + b] = l, i[l + b] = p, o[l + b] = g)
-                    }
-                }
-            }
-
-            function w(t, a, r, n, s, i, o, _) {
-                for (var f = a.big_values, u = 2; u < l.SBMAX_l + 1; u++) {
-                    var h = t.scalefac_band.l[u];
-                    if (h >= f) break;
-                    var c = s[u - 2] + a.count1bits;
-                    if (r.part2_3_length <= c) break;
-                    var p = new e(c),
-                        b = d(n, h, f, p);
-                    c = p.bits, r.part2_3_length <= c || (r.assign(a), r.part2_3_length = c, r.region0_count = i[u - 2], r.region1_count = u - 2 - i[u - 2], r.table_select[0] = o[u - 2], r.table_select[1] = _[u - 2], r.table_select[2] = b)
-                }
-            }
-
-            function S(e, t) {
-                for (var a, r = t.tt[1][e], n = t.tt[0][e], s = 0; s < f.scfsi_band.length - 1; s++) {
-                    for (a = f.scfsi_band[s]; a < f.scfsi_band[s + 1] && !(n.scalefac[a] != r.scalefac[a] && r.scalefac[a] >= 0); a++);
-                    if (a == f.scfsi_band[s + 1]) {
-                        for (a = f.scfsi_band[s]; a < f.scfsi_band[s + 1]; a++) r.scalefac[a] = -1;
-                        t.scfsi[e][s] = 1
-                    }
-                }
-                var i = 0,
-                    o = 0;
-                for (a = 0; 11 > a; a++) - 1 != r.scalefac[a] && (o++, i < r.scalefac[a] && (i = r.scalefac[a]));
-                for (var _ = 0, u = 0; a < l.SBPSY_l; a++) - 1 != r.scalefac[a] && (u++, _ < r.scalefac[a] && (_ = r.scalefac[a]));
-                for (var s = 0; 16 > s; s++)
-                    if (i < B[s] && _ < E[s]) {
-                        var h = T[s] * o + k[s] * u;
-                        r.part2_length > h && (r.part2_length = h, r.scalefac_compress = s)
-                    }
-            }
-
-            function A(e, t) {
-                for (var a = 0; t > a; ++a)
-                    if (e[a] < 0) return !1;
-                return !0
-            }
-            var R = null;
-            this.qupvt = null, this.setModules = function(e) {
-                this.qupvt = e, R = e
-            };
-            var M = [
-                    [0, 0],
-                    [0, 0],
-                    [0, 0],
-                    [0, 0],
-                    [0, 0],
-                    [0, 1],
-                    [1, 1],
-                    [1, 1],
-                    [1, 2],
-                    [2, 2],
-                    [2, 3],
-                    [2, 3],
-                    [3, 4],
-                    [3, 4],
-                    [3, 4],
-                    [4, 5],
-                    [4, 5],
-                    [4, 6],
-                    [5, 6],
-                    [5, 6],
-                    [5, 7],
-                    [6, 7],
-                    [6, 7]
-                ],
-                y = [1, 2, 5, 7, 7, 10, 10, 13, 13, 13, 13, 13, 13, 13, 13];
-            this.noquant_count_bits = function(t, a, r) {
-                var n = a.l3_enc,
-                    s = Math.min(576, a.max_nonzero_coeff + 2 >> 1 << 1);
-                for (null != r && (r.sfb_count1 = 0); s > 1 && 0 == (n[s - 1] | n[s - 2]); s -= 2);
-                a.count1 = s;
-                for (var i = 0, o = 0; s > 3; s -= 4) {
-                    var u;
-                    if ((2147483647 & (n[s - 1] | n[s - 2] | n[s - 3] | n[s - 4])) > 1) break;
-                    u = 2 * (2 * (2 * n[s - 4] + n[s - 3]) + n[s - 2]) + n[s - 1], i += f.t32l[u], o += f.t33l[u]
-                }
-                var h = i;
-                if (a.count1table_select = 0, i > o && (h = o, a.count1table_select = 1), a.count1bits = h, a.big_values = s, 0 == s) return h;
-                if (a.block_type == l.SHORT_TYPE) i = 3 * t.scalefac_band.s[3], i > a.big_values && (i = a.big_values), o = a.big_values;
-                else if (a.block_type == l.NORM_TYPE) {
-                    if (_(576 >= s), i = a.region0_count = t.bv_scf[s - 2], o = a.region1_count = t.bv_scf[s - 1], _(i + o + 2 < l.SBPSY_l), o = t.scalefac_band.l[i + o + 2], i = t.scalefac_band.l[i + 1], s > o) {
-                        var c = new e(h);
-                        a.table_select[2] = d(n, o, s, c), h = c.bits
-                    }
-                } else a.region0_count = 7, a.region1_count = l.SBMAX_l - 1 - 7 - 1, i = t.scalefac_band.l[8], o = s, i > o && (i = o);
-                if (i = Math.min(i, s), o = Math.min(o, s), _(i >= 0), _(o >= 0), i > 0) {
-                    var c = new e(h);
-                    a.table_select[0] = d(n, 0, i, c), h = c.bits
-                }
-                if (o > i) {
-                    var c = new e(h);
-                    a.table_select[1] = d(n, i, o, c), h = c.bits
-                }
-                if (2 == t.use_best_huffman && (a.part2_3_length = h, best_huffman_divide(t, a), h = a.part2_3_length), null != r && a.block_type == l.NORM_TYPE) {
-                    for (var p = 0; t.scalefac_band.l[p] < a.big_values;) p++;
-                    r.sfb_count1 = p
-                }
-                return h
-            }, this.count_bits = function(e, t, a, r) {
-                var s = a.l3_enc,
-                    i = h.IXMAX_VAL / R.IPOW20(a.global_gain);
-                if (a.xrpow_max > i) return h.LARGE_BITS;
-                if (n(t, s, R.IPOW20(a.global_gain), a, r), 0 != (2 & e.substep_shaping))
-                    for (var o = 0, l = a.global_gain + a.scalefac_scale, f = .634521682242439 / R.IPOW20(l), u = 0; u < a.sfbmax; u++) {
-                        var c = a.width[u];
-                        if (_(c >= 0), 0 == e.pseudohalf[u]) o += c;
-                        else {
-                            var p;
-                            for (p = o, o += c; o > p; ++p) s[p] = t[p] >= f ? s[p] : 0
-                        }
-                    }
-                return this.noquant_count_bits(e, a, r)
-            }, this.best_huffman_divide = function(t, a) {
-                var r = new u,
-                    n = a.l3_enc,
-                    s = o(23),
-                    i = o(23),
-                    h = o(23),
-                    c = o(23);
-                if (a.block_type != l.SHORT_TYPE || 1 != t.mode_gr) {
-                    r.assign(a), a.block_type == l.NORM_TYPE && (g(t, a, n, s, i, h, c), w(t, r, a, n, s, i, h, c));
-                    var p = r.big_values;
-                    if (!(0 == p || (n[p - 2] | n[p - 1]) > 1 || (p = a.count1 + 2, p > 576))) {
-                        r.assign(a), r.count1 = p;
-                        var b = 0,
-                            m = 0;
-                        for (_(576 >= p); p > r.big_values; p -= 4) {
-                            var v = 2 * (2 * (2 * n[p - 4] + n[p - 3]) + n[p - 2]) + n[p - 1];
-                            b += f.t32l[v], m += f.t33l[v]
-                        }
-                        if (r.big_values = p, r.count1table_select = 0, b > m && (b = m, r.count1table_select = 1), r.count1bits = b, r.block_type == l.NORM_TYPE) w(t, r, a, n, s, i, h, c);
-                        else {
-                            if (r.part2_3_length = b, b = t.scalefac_band.l[8], b > p && (b = p), b > 0) {
-                                var S = new e(r.part2_3_length);
-                                r.table_select[0] = d(n, 0, b, S), r.part2_3_length = S.bits
-                            }
-                            if (p > b) {
-                                var S = new e(r.part2_3_length);
-                                r.table_select[1] = d(n, b, p, S), r.part2_3_length = S.bits
-                            }
-                            a.part2_3_length > r.part2_3_length && a.assign(r)
-                        }
-                    }
-                }
-            };
-            var B = [1, 1, 1, 1, 8, 2, 2, 2, 4, 4, 4, 8, 8, 8, 16, 16],
-                E = [1, 2, 4, 8, 1, 2, 4, 8, 2, 4, 8, 2, 4, 8, 4, 8],
-                T = [0, 0, 0, 0, 3, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4],
-                k = [0, 1, 2, 3, 0, 1, 2, 3, 1, 2, 3, 1, 2, 3, 2, 3];
-            r.slen1_tab = T, r.slen2_tab = k, this.best_scalefac_store = function(e, t, a, r) {
-                var n, s, i, o, f = r.tt[t][a],
-                    u = 0;
-                for (i = 0, n = 0; n < f.sfbmax; n++) {
-                    var h = f.width[n];
-                    for (_(h >= 0), i += h, o = -h; 0 > o && 0 == f.l3_enc[o + i]; o++);
-                    0 == o && (f.scalefac[n] = u = -2)
-                }
-                if (0 == f.scalefac_scale && 0 == f.preflag) {
-                    var c = 0;
-                    for (n = 0; n < f.sfbmax; n++) f.scalefac[n] > 0 && (c |= f.scalefac[n]);
-                    if (0 == (1 & c) && 0 != c) {
-                        for (n = 0; n < f.sfbmax; n++) f.scalefac[n] > 0 && (f.scalefac[n] >>= 1);
-                        f.scalefac_scale = u = 1
-                    }
-                }
-                if (0 == f.preflag && f.block_type != l.SHORT_TYPE && 2 == e.mode_gr) {
-                    for (n = 11; n < l.SBPSY_l && !(f.scalefac[n] < R.pretab[n] && -2 != f.scalefac[n]); n++);
-                    if (n == l.SBPSY_l) {
-                        for (n = 11; n < l.SBPSY_l; n++) f.scalefac[n] > 0 && (f.scalefac[n] -= R.pretab[n]);
-                        f.preflag = u = 1
-                    }
-                }
-                for (s = 0; 4 > s; s++) r.scfsi[a][s] = 0;
-                for (2 == e.mode_gr && 1 == t && r.tt[0][a].block_type != l.SHORT_TYPE && r.tt[1][a].block_type != l.SHORT_TYPE && (S(a, r), u = 0), n = 0; n < f.sfbmax; n++) - 2 == f.scalefac[n] && (f.scalefac[n] = 0);
-                0 != u && (2 == e.mode_gr ? this.scale_bitcount(f) : this.scale_bitcount_lsf(e, f))
-            };
-            var x = [0, 18, 36, 54, 54, 36, 54, 72, 54, 72, 90, 72, 90, 108, 108, 126],
-                P = [0, 18, 36, 54, 51, 35, 53, 71, 52, 70, 88, 69, 87, 105, 104, 122],
-                I = [0, 10, 20, 30, 33, 21, 31, 41, 32, 42, 52, 43, 53, 63, 64, 74];
-            this.scale_bitcount = function(e) {
-                var t, a, r, n = 0,
-                    s = 0,
-                    i = e.scalefac;
-                if (_(A(i, e.sfbmax)), e.block_type == l.SHORT_TYPE) r = x, 0 != e.mixed_block_flag && (r = P);
-                else if (r = I, 0 == e.preflag) {
-                    for (a = 11; a < l.SBPSY_l && !(i[a] < R.pretab[a]); a++);
-                    if (a == l.SBPSY_l)
-                        for (e.preflag = 1, a = 11; a < l.SBPSY_l; a++) i[a] -= R.pretab[a]
-                }
-                for (a = 0; a < e.sfbdivide; a++) n < i[a] && (n = i[a]);
-                for (; a < e.sfbmax; a++) s < i[a] && (s = i[a]);
-                for (e.part2_length = h.LARGE_BITS, t = 0; 16 > t; t++) n < B[t] && s < E[t] && e.part2_length > r[t] && (e.part2_length = r[t], e.scalefac_compress = t);
-                return e.part2_length == h.LARGE_BITS
-            };
-            var L = [
-                [15, 15, 7, 7],
-                [15, 15, 7, 0],
-                [7, 3, 0, 0],
-                [15, 31, 31, 0],
-                [7, 7, 7, 0],
-                [3, 3, 0, 0]
-            ];
-            this.scale_bitcount_lsf = function(e, t) {
-                var a, r, n, i, f, u, h, c, p = o(4),
-                    b = t.scalefac;
-                for (a = 0 != t.preflag ? 2 : 0, h = 0; 4 > h; h++) p[h] = 0;
-                if (t.block_type == l.SHORT_TYPE) {
-                    r = 1;
-                    var m = R.nr_of_sfb_block[a][r];
-                    for (c = 0, n = 0; 4 > n; n++)
-                        for (i = m[n] / 3, h = 0; i > h; h++, c++)
-                            for (f = 0; 3 > f; f++) b[3 * c + f] > p[n] && (p[n] = b[3 * c + f])
-                } else {
-                    r = 0;
-                    var m = R.nr_of_sfb_block[a][r];
-                    for (c = 0, n = 0; 4 > n; n++)
-                        for (i = m[n], h = 0; i > h; h++, c++) b[c] > p[n] && (p[n] = b[c])
-                }
-                for (u = !1, n = 0; 4 > n; n++) p[n] > L[a][n] && (u = !0);
-                if (!u) {
-                    var v, d, g, w;
-                    for (t.sfb_partition_table = R.nr_of_sfb_block[a][r], n = 0; 4 > n; n++) t.slen[n] = O[p[n]];
-                    switch (v = t.slen[0], d = t.slen[1], g = t.slen[2], w = t.slen[3], a) {
-                        case 0:
-                            t.scalefac_compress = (5 * v + d << 4) + (g << 2) + w;
-                            break;
-                        case 1:
-                            t.scalefac_compress = 400 + (5 * v + d << 2) + g;
-                            break;
-                        case 2:
-                            t.scalefac_compress = 500 + 3 * v + d;
-                            break;
-                        default:
-                            s.err.printf("intensity stereo not implemented yet\n")
-                    }
-                }
-                if (!u)
-                    for (_(null != t.sfb_partition_table), t.part2_length = 0, n = 0; 4 > n; n++) t.part2_length += t.slen[n] * t.sfb_partition_table[n];
-                return u
-            };
-            var O = [0, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4];
-            this.huffman_init = function(e) {
-                for (var t = 2; 576 >= t; t += 2) {
-                    for (var a, r = 0; e.scalefac_band.l[++r] < t;);
-                    for (a = M[r][0]; e.scalefac_band.l[a + 1] > t;) a--;
-                    for (0 > a && (a = M[r][0]), e.bv_scf[t - 2] = a, a = M[r][1]; e.scalefac_band.l[a + e.bv_scf[t - 2] + 2] > t;) a--;
-                    0 > a && (a = M[r][1]), e.bv_scf[t - 1] = a
-                }
-            }
-        }
-        var n = a(15),
-            s = n.System,
-            i = (n.VbrMode, n.Float, n.ShortBlock, n.Util, n.Arrays),
-            o = (n.new_array_n, n.new_byte, n.new_double, n.new_float, n.new_float_n, n.new_int),
-            _ = (n.new_int_n, n.assert),
-            l = a(67),
-            f = a(152),
-            u = a(301),
-            h = a(87);
-        e.exports = r
-    },
-    27: function(e, t, a) {
-        function r(e) {
-            var t = e;
-            this.quantize = t, this.iteration_loop = function(e, t, a, r) {
-                var n, h = e.internal_flags,
-                    c = s(f.SFBMAX),
-                    p = s(576),
-                    b = i(2),
-                    m = 0,
-                    v = h.l3_side,
-                    d = new _(m);
-                this.quantize.rv.ResvFrameBegin(e, d), m = d.bits;
-                for (var g = 0; g < h.mode_gr; g++) {
-                    n = this.quantize.qupvt.on_pe(e, t, b, m, g, g), h.mode_ext == l.MPG_MD_MS_LR && (this.quantize.ms_convert(h.l3_side, g), this.quantize.qupvt.reduce_side(b, a[g], m, n));
-                    for (var w = 0; w < h.channels_out; w++) {
-                        var S, A, R = v.tt[g][w];
-                        R.block_type != l.SHORT_TYPE ? (S = 0, A = h.PSY.mask_adjust - S) : (S = 0, A = h.PSY.mask_adjust_short - S), h.masking_lower = Math.pow(10, .1 * A), this.quantize.init_outer_loop(h, R), this.quantize.init_xrpow(h, R, p) && (this.quantize.qupvt.calc_xmin(e, r[g][w], R, c), this.quantize.outer_loop(e, R, c, p, w, b[w])), this.quantize.iteration_finish_one(h, g, w), o(R.part2_3_length <= u.MAX_BITS_PER_CHANNEL), o(R.part2_3_length <= b[w])
-                    }
-                }
-                this.quantize.rv.ResvFrameEnd(h, m)
-            }
-        }
-        var n = a(15),
-            s = (n.System, n.VbrMode, n.Float, n.ShortBlock, n.Util, n.Arrays, n.new_array_n, n.new_byte, n.new_double, n.new_float),
-            i = (n.new_float_n, n.new_int),
-            o = (n.new_int_n, n.assert),
-            _ = a(290),
-            l = a(67),
-            f = a(82),
-            u = a(227);
-        e.exports = r
-    },
-    271: function(e, t, a) {
-        function r() {
-            this.class_id = 0, this.num_samples = 0, this.num_channels = 0, this.in_samplerate = 0, this.out_samplerate = 0, this.scale = 0, this.scale_left = 0, this.scale_right = 0, this.analysis = !1, this.bWriteVbrTag = !1, this.decode_only = !1, this.quality = 0, this.mode = n.STEREO, this.force_ms = !1, this.free_format = !1, this.findReplayGain = !1, this.decode_on_the_fly = !1, this.write_id3tag_automatic = !1, this.brate = 0, this.compression_ratio = 0, this.copyright = 0, this.original = 0, this.extension = 0, this.emphasis = 0, this.error_protection = 0, this.strict_ISO = !1, this.disable_reservoir = !1, this.quant_comp = 0, this.quant_comp_short = 0, this.experimentalY = !1, this.experimentalZ = 0, this.exp_nspsytune = 0, this.preset = 0, this.VBR = null, this.VBR_q_frac = 0, this.VBR_q = 0, this.VBR_mean_bitrate_kbps = 0, this.VBR_min_bitrate_kbps = 0, this.VBR_max_bitrate_kbps = 0, this.VBR_hard_min = 0, this.lowpassfreq = 0, this.highpassfreq = 0, this.lowpasswidth = 0, this.highpasswidth = 0, this.maskingadjust = 0, this.maskingadjust_short = 0, this.ATHonly = !1, this.ATHshort = !1, this.noATH = !1, this.ATHtype = 0, this.ATHcurve = 0, this.ATHlower = 0, this.athaa_type = 0, this.athaa_loudapprox = 0, this.athaa_sensitivity = 0, this.short_blocks = null, this.useTemporal = !1, this.interChRatio = 0, this.msfix = 0, this.tune = !1, this.tune_value_a = 0, this.version = 0, this.encoder_delay = 0, this.encoder_padding = 0, this.framesize = 0, this.frameNum = 0, this.lame_allocated_gfp = 0, this.internal_flags = null
-        }
-        var n = a(212);
-        e.exports = r
-    },
-    287: function(e, t) {
-        function a() {
-            var e, t;
-            this.setModules = function(a, r) {
-                e = a, t = r
-            }
-        }
-        e.exports = a
-    },
-    290: function(e, t) {
-        function a(e) {
-            this.bits = e
-        }
-        e.exports = a
-    },
-    292: function(e, t) {
-        function a() {
-            this.sum = 0, this.seen = 0, this.want = 0, this.pos = 0, this.size = 0, this.bag = null, this.nVbrNumFrames = 0, this.nBytesWritten = 0, this.TotalFrameSize = 0
-        }
-        e.exports = a
-    },
-    301: function(e, t, a) {
-        function r() {
-            function e(e) {
-                return new Int32Array(e)
-            }
-
-            function t(e) {
-                return new Float32Array(e)
-            }
-            this.xr = s(576), this.l3_enc = i(576), this.scalefac = i(o.SFBMAX), this.xrpow_max = 0, this.part2_3_length = 0, this.big_values = 0, this.count1 = 0, this.global_gain = 0, this.scalefac_compress = 0, this.block_type = 0, this.mixed_block_flag = 0, this.table_select = i(3), this.subblock_gain = i(4), this.region0_count = 0, this.region1_count = 0, this.preflag = 0, this.scalefac_scale = 0, this.count1table_select = 0, this.part2_length = 0, this.sfb_lmax = 0, this.sfb_smin = 0, this.psy_lmax = 0, this.sfbmax = 0, this.psymax = 0, this.sfbdivide = 0, this.width = i(o.SFBMAX), this.window = i(o.SFBMAX), this.count1bits = 0, this.sfb_partition_table = null, this.slen = i(4), this.max_nonzero_coeff = 0;
-            var a = this;
-            this.assign = function(r) {
-                a.xr = t(r.xr), a.l3_enc = e(r.l3_enc), a.scalefac = e(r.scalefac), a.xrpow_max = r.xrpow_max, a.part2_3_length = r.part2_3_length, a.big_values = r.big_values, a.count1 = r.count1, a.global_gain = r.global_gain, a.scalefac_compress = r.scalefac_compress, a.block_type = r.block_type, a.mixed_block_flag = r.mixed_block_flag, a.table_select = e(r.table_select), a.subblock_gain = e(r.subblock_gain), a.region0_count = r.region0_count, a.region1_count = r.region1_count, a.preflag = r.preflag, a.scalefac_scale = r.scalefac_scale, a.count1table_select = r.count1table_select, a.part2_length = r.part2_length, a.sfb_lmax = r.sfb_lmax, a.sfb_smin = r.sfb_smin, a.psy_lmax = r.psy_lmax, a.sfbmax = r.sfbmax, a.psymax = r.psymax, a.sfbdivide = r.sfbdivide, a.width = e(r.width), a.window = e(r.window), a.count1bits = r.count1bits, a.sfb_partition_table = r.sfb_partition_table.slice(0), a.slen = e(r.slen), a.max_nonzero_coeff = r.max_nonzero_coeff
-            }
-        }
-        var n = a(15),
-            s = (n.System, n.VbrMode, n.Float, n.ShortBlock, n.Util, n.Arrays, n.new_array_n, n.new_byte, n.new_double, n.new_float),
-            i = (n.new_float_n, n.new_int),
-            o = (n.new_int_n, n.assert, a(82));
-        e.exports = r
-    },
-    311: function(e, t, a) {
-        function r(e, t, a, r) {
-            this.l = i(1 + o.SBMAX_l), this.s = i(1 + o.SBMAX_s), this.psfb21 = i(1 + o.PSFB21), this.psfb12 = i(1 + o.PSFB12);
-            var n = this.l,
-                _ = this.s;
-            4 == arguments.length && (this.arrL = arguments[0], this.arrS = arguments[1], this.arr21 = arguments[2], this.arr12 = arguments[3], s.arraycopy(this.arrL, 0, n, 0, Math.min(this.arrL.length, this.l.length)), s.arraycopy(this.arrS, 0, _, 0, Math.min(this.arrS.length, this.s.length)), s.arraycopy(this.arr21, 0, this.psfb21, 0, Math.min(this.arr21.length, this.psfb21.length)), s.arraycopy(this.arr12, 0, this.psfb12, 0, Math.min(this.arr12.length, this.psfb12.length)))
-        }
-        var n = a(15),
-            s = n.System,
-            i = (n.VbrMode, n.Float, n.ShortBlock, n.Util, n.Arrays, n.new_array_n, n.new_byte, n.new_double, n.new_float, n.new_float_n, n.new_int),
-            o = (n.new_int_n, n.assert, a(67));
-        e.exports = r
-    },
-    327: function(e, t, a) {
-        "use strict";
-        (function(e) {
-            function r() {
-                try {
-                    var e = new Uint8Array(1);
-                    return e.__proto__ = {
-                        __proto__: Uint8Array.prototype,
-                        foo: function() {
-                            return 42
-                        }
-                    }, 42 === e.foo() && "function" == typeof e.subarray && 0 === e.subarray(1, 1).byteLength
-                } catch (t) {
-                    return !1
-                }
-            }
-
-            function n() {
-                return i.TYPED_ARRAY_SUPPORT ? 2147483647 : 1073741823
-            }
-
-            function s(e, t) {
-                if (n() < t) throw new RangeError("Invalid typed array length");
-                return i.TYPED_ARRAY_SUPPORT ? (e = new Uint8Array(t), e.__proto__ = i.prototype) : (null === e && (e = new i(t)), e.length = t), e
-            }
-
-            function i(e, t, a) {
-                if (!(i.TYPED_ARRAY_SUPPORT || this instanceof i)) return new i(e, t, a);
-                if ("number" == typeof e) {
-                    if ("string" == typeof t) throw new Error("If encoding is specified then the first argument must be a string");
-                    return f(this, e)
-                }
-                return o(this, e, t, a)
-            }
-
-            function o(e, t, a, r) {
-                if ("number" == typeof t) throw new TypeError('"value" argument must not be a number');
-                return "undefined" != typeof ArrayBuffer && t instanceof ArrayBuffer ? c(e, t, a, r) : "string" == typeof t ? u(e, t, a) : p(e, t)
-            }
-
-            function _(e) {
-                if ("number" != typeof e) throw new TypeError('"size" argument must be a number');
-                if (0 > e) throw new RangeError('"size" argument must not be negative')
-            }
-
-            function l(e, t, a, r) {
-                return _(t), 0 >= t ? s(e, t) : void 0 !== a ? "string" == typeof r ? s(e, t).fill(a, r) : s(e, t).fill(a) : s(e, t)
-            }
-
-            function f(e, t) {
-                if (_(t), e = s(e, 0 > t ? 0 : 0 | b(t)), !i.TYPED_ARRAY_SUPPORT)
-                    for (var a = 0; t > a; ++a) e[a] = 0;
-                return e
-            }
-
-            function u(e, t, a) {
-                if (("string" != typeof a || "" === a) && (a = "utf8"), !i.isEncoding(a)) throw new TypeError('"encoding" must be a valid string encoding');
-                var r = 0 | v(t, a);
-                e = s(e, r);
-                var n = e.write(t, a);
-                return n !== r && (e = e.slice(0, n)), e
-            }
-
-            function h(e, t) {
-                var a = t.length < 0 ? 0 : 0 | b(t.length);
-                e = s(e, a);
-                for (var r = 0; a > r; r += 1) e[r] = 255 & t[r];
-                return e
-            }
-
-            function c(e, t, a, r) {
-                if (t.byteLength, 0 > a || t.byteLength < a) throw new RangeError("'offset' is out of bounds");
-                if (t.byteLength < a + (r || 0)) throw new RangeError("'length' is out of bounds");
-                return t = void 0 === a && void 0 === r ? new Uint8Array(t) : void 0 === r ? new Uint8Array(t, a) : new Uint8Array(t, a, r), i.TYPED_ARRAY_SUPPORT ? (e = t, e.__proto__ = i.prototype) : e = h(e, t), e
-            }
-
-            function p(e, t) {
-                if (i.isBuffer(t)) {
-                    var a = 0 | b(t.length);
-                    return e = s(e, a), 0 === e.length ? e : (t.copy(e, 0, 0, a), e)
-                }
-                if (t) {
-                    if ("undefined" != typeof ArrayBuffer && t.buffer instanceof ArrayBuffer || "length" in t) return "number" != typeof t.length || Q(t.length) ? s(e, 0) : h(e, t);
-                    if ("Buffer" === t.type && $(t.data)) return h(e, t.data)
-                }
-                throw new TypeError("First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.")
-            }
-
-            function b(e) {
-                if (e >= n()) throw new RangeError("Attempt to allocate Buffer larger than maximum size: 0x" + n().toString(16) + " bytes");
-                return 0 | e
-            }
-
-            function m(e) {
-                return +e != e && (e = 0), i.alloc(+e)
-            }
-
-            function v(e, t) {
-                if (i.isBuffer(e)) return e.length;
-                if ("undefined" != typeof ArrayBuffer && "function" == typeof ArrayBuffer.isView && (ArrayBuffer.isView(e) || e instanceof ArrayBuffer)) return e.byteLength;
-                "string" != typeof e && (e = "" + e);
-                var a = e.length;
-                if (0 === a) return 0;
-                for (var r = !1;;) switch (t) {
-                    case "ascii":
-                    case "latin1":
-                    case "binary":
-                        return a;
-                    case "utf8":
-                    case "utf-8":
-                    case void 0:
-                        return j(e).length;
-                    case "ucs2":
-                    case "ucs-2":
-                    case "utf16le":
-                    case "utf-16le":
-                        return 2 * a;
-                    case "hex":
-                        return a >>> 1;
-                    case "base64":
-                        return K(e).length;
-                    default:
-                        if (r) return j(e).length;
-                        t = ("" + t).toLowerCase(), r = !0
-                }
-            }
-
-            function d(e, t, a) {
-                var r = !1;
-                if ((void 0 === t || 0 > t) && (t = 0), t > this.length) return "";
-                if ((void 0 === a || a > this.length) && (a = this.length), 0 >= a) return "";
-                if (a >>>= 0, t >>>= 0, t >= a) return "";
-                for (e || (e = "utf8");;) switch (e) {
-                    case "hex":
-                        return L(this, t, a);
-                    case "utf8":
-                    case "utf-8":
-                        return k(this, t, a);
-                    case "ascii":
-                        return P(this, t, a);
-                    case "latin1":
-                    case "binary":
-                        return I(this, t, a);
-                    case "base64":
-                        return T(this, t, a);
-                    case "ucs2":
-                    case "ucs-2":
-                    case "utf16le":
-                    case "utf-16le":
-                        return O(this, t, a);
-                    default:
-                        if (r) throw new TypeError("Unknown encoding: " + e);
-                        e = (e + "").toLowerCase(), r = !0
-                }
-            }
-
-            function g(e, t, a) {
-                var r = e[t];
-                e[t] = e[a], e[a] = r
-            }
-
-            function w(e, t, a, r, n) {
-                if (0 === e.length) return -1;
-                if ("string" == typeof a ? (r = a, a = 0) : a > 2147483647 ? a = 2147483647 : -2147483648 > a && (a = -2147483648), a = +a, isNaN(a) && (a = n ? 0 : e.length - 1), 0 > a && (a = e.length + a), a >= e.length) {
-                    if (n) return -1;
-                    a = e.length - 1
-                } else if (0 > a) {
-                    if (!n) return -1;
-                    a = 0
-                }
-                if ("string" == typeof t && (t = i.from(t, r)), i.isBuffer(t)) return 0 === t.length ? -1 : S(e, t, a, r, n);
-                if ("number" == typeof t) return t = 255 & t, i.TYPED_ARRAY_SUPPORT && "function" == typeof Uint8Array.prototype.indexOf ? n ? Uint8Array.prototype.indexOf.call(e, t, a) : Uint8Array.prototype.lastIndexOf.call(e, t, a) : S(e, [t], a, r, n);
-                throw new TypeError("val must be string, number or Buffer")
-            }
-
-            function S(e, t, a, r, n) {
-                function s(e, t) {
-                    return 1 === i ? e[t] : e.readUInt16BE(t * i)
-                }
-                var i = 1,
-                    o = e.length,
-                    _ = t.length;
-                if (void 0 !== r && (r = String(r).toLowerCase(), "ucs2" === r || "ucs-2" === r || "utf16le" === r || "utf-16le" === r)) {
-                    if (e.length < 2 || t.length < 2) return -1;
-                    i = 2, o /= 2, _ /= 2, a /= 2
-                }
-                var l;
-                if (n) {
-                    var f = -1;
-                    for (l = a; o > l; l++)
-                        if (s(e, l) === s(t, -1 === f ? 0 : l - f)) {
-                            if (-1 === f && (f = l), l - f + 1 === _) return f * i
-                        } else -1 !== f && (l -= l - f), f = -1
-                } else
-                    for (a + _ > o && (a = o - _), l = a; l >= 0; l--) {
-                        for (var u = !0, h = 0; _ > h; h++)
-                            if (s(e, l + h) !== s(t, h)) {
-                                u = !1;
-                                break
-                            }
-                        if (u) return l
-                    }
-                return -1
-            }
-
-            function A(e, t, a, r) {
-                a = Number(a) || 0;
-                var n = e.length - a;
-                r ? (r = Number(r), r > n && (r = n)) : r = n;
-                var s = t.length;
-                if (s % 2 !== 0) throw new TypeError("Invalid hex string");
-                r > s / 2 && (r = s / 2);
-                for (var i = 0; r > i; ++i) {
-                    var o = parseInt(t.substr(2 * i, 2), 16);
-                    if (isNaN(o)) return i;
-                    e[a + i] = o
-                }
-                return i
-            }
-
-            function R(e, t, a, r) {
-                return Z(j(t, e.length - a), e, a, r)
-            }
-
-            function M(e, t, a, r) {
-                return Z(G(t), e, a, r)
-            }
-
-            function y(e, t, a, r) {
-                return M(e, t, a, r)
-            }
-
-            function B(e, t, a, r) {
-                return Z(K(t), e, a, r)
-            }
-
-            function E(e, t, a, r) {
-                return Z(z(t, e.length - a), e, a, r)
-            }
-
-            function T(e, t, a) {
-                return 0 === t && a === e.length ? W.fromByteArray(e) : W.fromByteArray(e.slice(t, a))
-            }
-
-            function k(e, t, a) {
-                a = Math.min(e.length, a);
-                for (var r = [], n = t; a > n;) {
-                    var s = e[n],
-                        i = null,
-                        o = s > 239 ? 4 : s > 223 ? 3 : s > 191 ? 2 : 1;
-                    if (a >= n + o) {
-                        var _, l, f, u;
-                        switch (o) {
-                            case 1:
-                                128 > s && (i = s);
-                                break;
-                            case 2:
-                                _ = e[n + 1], 128 === (192 & _) && (u = (31 & s) << 6 | 63 & _, u > 127 && (i = u));
-                                break;
-                            case 3:
-                                _ = e[n + 1], l = e[n + 2], 128 === (192 & _) && 128 === (192 & l) && (u = (15 & s) << 12 | (63 & _) << 6 | 63 & l, u > 2047 && (55296 > u || u > 57343) && (i = u));
-                                break;
-                            case 4:
-                                _ = e[n + 1], l = e[n + 2], f = e[n + 3], 128 === (192 & _) && 128 === (192 & l) && 128 === (192 & f) && (u = (15 & s) << 18 | (63 & _) << 12 | (63 & l) << 6 | 63 & f, u > 65535 && 1114112 > u && (i = u))
-                        }
-                    }
-                    null === i ? (i = 65533, o = 1) : i > 65535 && (i -= 65536, r.push(i >>> 10 & 1023 | 55296), i = 56320 | 1023 & i), r.push(i), n += o
-                }
-                return x(r)
-            }
-
-            function x(e) {
-                var t = e.length;
-                if (ee >= t) return String.fromCharCode.apply(String, e);
-                for (var a = "", r = 0; t > r;) a += String.fromCharCode.apply(String, e.slice(r, r += ee));
-                return a
-            }
-
-            function P(e, t, a) {
-                var r = "";
-                a = Math.min(e.length, a);
-                for (var n = t; a > n; ++n) r += String.fromCharCode(127 & e[n]);
-                return r
-            }
-
-            function I(e, t, a) {
-                var r = "";
-                a = Math.min(e.length, a);
-                for (var n = t; a > n; ++n) r += String.fromCharCode(e[n]);
-                return r
-            }
-
-            function L(e, t, a) {
-                var r = e.length;
-                (!t || 0 > t) && (t = 0), (!a || 0 > a || a > r) && (a = r);
-                for (var n = "", s = t; a > s; ++s) n += U(e[s]);
-                return n
-            }
-
-            function O(e, t, a) {
-                for (var r = e.slice(t, a), n = "", s = 0; s < r.length; s += 2) n += String.fromCharCode(r[s] + 256 * r[s + 1]);
-                return n
-            }
-
-            function V(e, t, a) {
-                if (e % 1 !== 0 || 0 > e) throw new RangeError("offset is not uint");
-                if (e + t > a) throw new RangeError("Trying to access beyond buffer length")
-            }
-
-            function N(e, t, a, r, n, s) {
-                if (!i.isBuffer(e)) throw new TypeError('"buffer" argument must be a Buffer instance');
-                if (t > n || s > t) throw new RangeError('"value" argument is out of bounds');
-                if (a + r > e.length) throw new RangeError("Index out of range")
-            }
-
-            function H(e, t, a, r) {
-                0 > t && (t = 65535 + t + 1);
-                for (var n = 0, s = Math.min(e.length - a, 2); s > n; ++n) e[a + n] = (t & 255 << 8 * (r ? n : 1 - n)) >>> 8 * (r ? n : 1 - n)
-            }
-
-            function D(e, t, a, r) {
-                0 > t && (t = 4294967295 + t + 1);
-                for (var n = 0, s = Math.min(e.length - a, 4); s > n; ++n) e[a + n] = t >>> 8 * (r ? n : 3 - n) & 255
-            }
-
-            function Y(e, t, a, r, n, s) {
-                if (a + r > e.length) throw new RangeError("Index out of range");
-                if (0 > a) throw new RangeError("Index out of range")
-            }
-
-            function X(e, t, a, r, n) {
-                return n || Y(e, t, a, 4, 3.4028234663852886e38, -3.4028234663852886e38), J.write(e, t, a, r, 23, 4), a + 4
-            }
-
-            function F(e, t, a, r, n) {
-                return n || Y(e, t, a, 8, 1.7976931348623157e308, -1.7976931348623157e308), J.write(e, t, a, r, 52, 8), a + 8
-            }
-
-            function C(e) {
-                if (e = q(e).replace(te, ""), e.length < 2) return "";
-                for (; e.length % 4 !== 0;) e += "=";
-                return e
-            }
-
-            function q(e) {
-                return e.trim ? e.trim() : e.replace(/^\s+|\s+$/g, "")
-            }
-
-            function U(e) {
-                return 16 > e ? "0" + e.toString(16) : e.toString(16)
-            }
-
-            function j(e, t) {
-                t = t || 1 / 0;
-                for (var a, r = e.length, n = null, s = [], i = 0; r > i; ++i) {
-                    if (a = e.charCodeAt(i), a > 55295 && 57344 > a) {
-                        if (!n) {
-                            if (a > 56319) {
-                                (t -= 3) > -1 && s.push(239, 191, 189);
-                                continue
-                            }
-                            if (i + 1 === r) {
-                                (t -= 3) > -1 && s.push(239, 191, 189);
-                                continue
-                            }
-                            n = a;
-                            continue
-                        }
-                        if (56320 > a) {
-                            (t -= 3) > -1 && s.push(239, 191, 189), n = a;
-                            continue
-                        }
-                        a = (n - 55296 << 10 | a - 56320) + 65536
-                    } else n && (t -= 3) > -1 && s.push(239, 191, 189);
-                    if (n = null, 128 > a) {
-                        if ((t -= 1) < 0) break;
-                        s.push(a)
-                    } else if (2048 > a) {
-                        if ((t -= 2) < 0) break;
-                        s.push(a >> 6 | 192, 63 & a | 128)
-                    } else if (65536 > a) {
-                        if ((t -= 3) < 0) break;
-                        s.push(a >> 12 | 224, a >> 6 & 63 | 128, 63 & a | 128)
-                    } else {
-                        if (!(1114112 > a)) throw new Error("Invalid code point");
-                        if ((t -= 4) < 0) break;
-                        s.push(a >> 18 | 240, a >> 12 & 63 | 128, a >> 6 & 63 | 128, 63 & a | 128)
-                    }
-                }
-                return s
-            }
-
-            function G(e) {
-                for (var t = [], a = 0; a < e.length; ++a) t.push(255 & e.charCodeAt(a));
-                return t
-            }
-
-            function z(e, t) {
-                for (var a, r, n, s = [], i = 0; i < e.length && !((t -= 2) < 0); ++i) a = e.charCodeAt(i), r = a >> 8, n = a % 256, s.push(n), s.push(r);
-                return s
-            }
-
-            function K(e) {
-                return W.toByteArray(C(e))
-            }
-
-            function Z(e, t, a, r) {
-                for (var n = 0; r > n && !(n + a >= t.length || n >= e.length); ++n) t[n + a] = e[n];
-                return n
-            }
-
-            function Q(e) {
-                return e !== e
-            }
-            var W = a(230),
-                J = a(359),
-                $ = a(193);
-            t.Buffer = i, t.SlowBuffer = m, t.INSPECT_MAX_BYTES = 50, i.TYPED_ARRAY_SUPPORT = void 0 !== e.TYPED_ARRAY_SUPPORT ? e.TYPED_ARRAY_SUPPORT : r(), t.kMaxLength = n(), i.poolSize = 8192, i._augment = function(e) {
-                return e.__proto__ = i.prototype, e
-            }, i.from = function(e, t, a) {
-                return o(null, e, t, a)
-            }, i.TYPED_ARRAY_SUPPORT && (i.prototype.__proto__ = Uint8Array.prototype, i.__proto__ = Uint8Array, "undefined" != typeof Symbol && Symbol.species && i[Symbol.species] === i && Object.defineProperty(i, Symbol.species, {
-                value: null,
-                configurable: !0
-            })), i.alloc = function(e, t, a) {
-                return l(null, e, t, a)
-            }, i.allocUnsafe = function(e) {
-                return f(null, e)
-            }, i.allocUnsafeSlow = function(e) {
-                return f(null, e)
-            }, i.isBuffer = function(e) {
-                return !(null == e || !e._isBuffer);
-            }, i.compare = function(e, t) {
-                if (!i.isBuffer(e) || !i.isBuffer(t)) throw new TypeError("Arguments must be Buffers");
-                if (e === t) return 0;
-                for (var a = e.length, r = t.length, n = 0, s = Math.min(a, r); s > n; ++n)
-                    if (e[n] !== t[n]) {
-                        a = e[n], r = t[n];
-                        break
-                    }
-                return r > a ? -1 : a > r ? 1 : 0
-            }, i.isEncoding = function(e) {
-                switch (String(e).toLowerCase()) {
-                    case "hex":
-                    case "utf8":
-                    case "utf-8":
-                    case "ascii":
-                    case "latin1":
-                    case "binary":
-                    case "base64":
-                    case "ucs2":
-                    case "ucs-2":
-                    case "utf16le":
-                    case "utf-16le":
-                        return !0;
-                    default:
-                        return !1
-                }
-            }, i.concat = function(e, t) {
-                if (!$(e)) throw new TypeError('"list" argument must be an Array of Buffers');
-                if (0 === e.length) return i.alloc(0);
-                var a;
-                if (void 0 === t)
-                    for (t = 0, a = 0; a < e.length; ++a) t += e[a].length;
-                var r = i.allocUnsafe(t),
-                    n = 0;
-                for (a = 0; a < e.length; ++a) {
-                    var s = e[a];
-                    if (!i.isBuffer(s)) throw new TypeError('"list" argument must be an Array of Buffers');
-                    s.copy(r, n), n += s.length
-                }
-                return r
-            }, i.byteLength = v, i.prototype._isBuffer = !0, i.prototype.swap16 = function() {
-                var e = this.length;
-                if (e % 2 !== 0) throw new RangeError("Buffer size must be a multiple of 16-bits");
-                for (var t = 0; e > t; t += 2) g(this, t, t + 1);
-                return this
-            }, i.prototype.swap32 = function() {
-                var e = this.length;
-                if (e % 4 !== 0) throw new RangeError("Buffer size must be a multiple of 32-bits");
-                for (var t = 0; e > t; t += 4) g(this, t, t + 3), g(this, t + 1, t + 2);
-                return this
-            }, i.prototype.swap64 = function() {
-                var e = this.length;
-                if (e % 8 !== 0) throw new RangeError("Buffer size must be a multiple of 64-bits");
-                for (var t = 0; e > t; t += 8) g(this, t, t + 7), g(this, t + 1, t + 6), g(this, t + 2, t + 5), g(this, t + 3, t + 4);
-                return this
-            }, i.prototype.toString = function() {
-                var e = 0 | this.length;
-                return 0 === e ? "" : 0 === arguments.length ? k(this, 0, e) : d.apply(this, arguments)
-            }, i.prototype.equals = function(e) {
-                if (!i.isBuffer(e)) throw new TypeError("Argument must be a Buffer");
-                return this === e ? !0 : 0 === i.compare(this, e)
-            }, i.prototype.inspect = function() {
-                var e = "",
-                    a = t.INSPECT_MAX_BYTES;
-                return this.length > 0 && (e = this.toString("hex", 0, a).match(/.{2}/g).join(" "), this.length > a && (e += " ... ")), "<Buffer " + e + ">"
-            }, i.prototype.compare = function(e, t, a, r, n) {
-                if (!i.isBuffer(e)) throw new TypeError("Argument must be a Buffer");
-                if (void 0 === t && (t = 0), void 0 === a && (a = e ? e.length : 0), void 0 === r && (r = 0), void 0 === n && (n = this.length), 0 > t || a > e.length || 0 > r || n > this.length) throw new RangeError("out of range index");
-                if (r >= n && t >= a) return 0;
-                if (r >= n) return -1;
-                if (t >= a) return 1;
-                if (t >>>= 0, a >>>= 0, r >>>= 0, n >>>= 0, this === e) return 0;
-                for (var s = n - r, o = a - t, _ = Math.min(s, o), l = this.slice(r, n), f = e.slice(t, a), u = 0; _ > u; ++u)
-                    if (l[u] !== f[u]) {
-                        s = l[u], o = f[u];
-                        break
-                    }
-                return o > s ? -1 : s > o ? 1 : 0
-            }, i.prototype.includes = function(e, t, a) {
-                return -1 !== this.indexOf(e, t, a)
-            }, i.prototype.indexOf = function(e, t, a) {
-                return w(this, e, t, a, !0)
-            }, i.prototype.lastIndexOf = function(e, t, a) {
-                return w(this, e, t, a, !1)
-            }, i.prototype.write = function(e, t, a, r) {
-                if (void 0 === t) r = "utf8", a = this.length, t = 0;
-                else if (void 0 === a && "string" == typeof t) r = t, a = this.length, t = 0;
-                else {
-                    if (!isFinite(t)) throw new Error("Buffer.write(string, encoding, offset[, length]) is no longer supported");
-                    t = 0 | t, isFinite(a) ? (a = 0 | a, void 0 === r && (r = "utf8")) : (r = a, a = void 0)
-                }
-                var n = this.length - t;
-                if ((void 0 === a || a > n) && (a = n), e.length > 0 && (0 > a || 0 > t) || t > this.length) throw new RangeError("Attempt to write outside buffer bounds");
-                r || (r = "utf8");
-                for (var s = !1;;) switch (r) {
-                    case "hex":
-                        return A(this, e, t, a);
-                    case "utf8":
-                    case "utf-8":
-                        return R(this, e, t, a);
-                    case "ascii":
-                        return M(this, e, t, a);
-                    case "latin1":
-                    case "binary":
-                        return y(this, e, t, a);
-                    case "base64":
-                        return B(this, e, t, a);
-                    case "ucs2":
-                    case "ucs-2":
-                    case "utf16le":
-                    case "utf-16le":
-                        return E(this, e, t, a);
-                    default:
-                        if (s) throw new TypeError("Unknown encoding: " + r);
-                        r = ("" + r).toLowerCase(), s = !0
-                }
-            }, i.prototype.toJSON = function() {
-                return {
-                    type: "Buffer",
-                    data: Array.prototype.slice.call(this._arr || this, 0)
-                }
-            };
-            var ee = 4096;
-            i.prototype.slice = function(e, t) {
-                var a = this.length;
-                e = ~~e, t = void 0 === t ? a : ~~t, 0 > e ? (e += a, 0 > e && (e = 0)) : e > a && (e = a), 0 > t ? (t += a, 0 > t && (t = 0)) : t > a && (t = a), e > t && (t = e);
-                var r;
-                if (i.TYPED_ARRAY_SUPPORT) r = this.subarray(e, t), r.__proto__ = i.prototype;
-                else {
-                    var n = t - e;
-                    r = new i(n, void 0);
-                    for (var s = 0; n > s; ++s) r[s] = this[s + e]
-                }
-                return r
-            }, i.prototype.readUIntLE = function(e, t, a) {
-                e = 0 | e, t = 0 | t, a || V(e, t, this.length);
-                for (var r = this[e], n = 1, s = 0; ++s < t && (n *= 256);) r += this[e + s] * n;
-                return r
-            }, i.prototype.readUIntBE = function(e, t, a) {
-                e = 0 | e, t = 0 | t, a || V(e, t, this.length);
-                for (var r = this[e + --t], n = 1; t > 0 && (n *= 256);) r += this[e + --t] * n;
-                return r
-            }, i.prototype.readUInt8 = function(e, t) {
-                return t || V(e, 1, this.length), this[e]
-            }, i.prototype.readUInt16LE = function(e, t) {
-                return t || V(e, 2, this.length), this[e] | this[e + 1] << 8
-            }, i.prototype.readUInt16BE = function(e, t) {
-                return t || V(e, 2, this.length), this[e] << 8 | this[e + 1]
-            }, i.prototype.readUInt32LE = function(e, t) {
-                return t || V(e, 4, this.length), (this[e] | this[e + 1] << 8 | this[e + 2] << 16) + 16777216 * this[e + 3]
-            }, i.prototype.readUInt32BE = function(e, t) {
-                return t || V(e, 4, this.length), 16777216 * this[e] + (this[e + 1] << 16 | this[e + 2] << 8 | this[e + 3])
-            }, i.prototype.readIntLE = function(e, t, a) {
-                e = 0 | e, t = 0 | t, a || V(e, t, this.length);
-                for (var r = this[e], n = 1, s = 0; ++s < t && (n *= 256);) r += this[e + s] * n;
-                return n *= 128, r >= n && (r -= Math.pow(2, 8 * t)), r
-            }, i.prototype.readIntBE = function(e, t, a) {
-                e = 0 | e, t = 0 | t, a || V(e, t, this.length);
-                for (var r = t, n = 1, s = this[e + --r]; r > 0 && (n *= 256);) s += this[e + --r] * n;
-                return n *= 128, s >= n && (s -= Math.pow(2, 8 * t)), s
-            }, i.prototype.readInt8 = function(e, t) {
-                return t || V(e, 1, this.length), 128 & this[e] ? -1 * (255 - this[e] + 1) : this[e]
-            }, i.prototype.readInt16LE = function(e, t) {
-                t || V(e, 2, this.length);
-                var a = this[e] | this[e + 1] << 8;
-                return 32768 & a ? 4294901760 | a : a
-            }, i.prototype.readInt16BE = function(e, t) {
-                t || V(e, 2, this.length);
-                var a = this[e + 1] | this[e] << 8;
-                return 32768 & a ? 4294901760 | a : a
-            }, i.prototype.readInt32LE = function(e, t) {
-                return t || V(e, 4, this.length), this[e] | this[e + 1] << 8 | this[e + 2] << 16 | this[e + 3] << 24
-            }, i.prototype.readInt32BE = function(e, t) {
-                return t || V(e, 4, this.length), this[e] << 24 | this[e + 1] << 16 | this[e + 2] << 8 | this[e + 3]
-            }, i.prototype.readFloatLE = function(e, t) {
-                return t || V(e, 4, this.length), J.read(this, e, !0, 23, 4)
-            }, i.prototype.readFloatBE = function(e, t) {
-                return t || V(e, 4, this.length), J.read(this, e, !1, 23, 4)
-            }, i.prototype.readDoubleLE = function(e, t) {
-                return t || V(e, 8, this.length), J.read(this, e, !0, 52, 8)
-            }, i.prototype.readDoubleBE = function(e, t) {
-                return t || V(e, 8, this.length), J.read(this, e, !1, 52, 8)
-            }, i.prototype.writeUIntLE = function(e, t, a, r) {
-                if (e = +e, t = 0 | t, a = 0 | a, !r) {
-                    var n = Math.pow(2, 8 * a) - 1;
-                    N(this, e, t, a, n, 0)
-                }
-                var s = 1,
-                    i = 0;
-                for (this[t] = 255 & e; ++i < a && (s *= 256);) this[t + i] = e / s & 255;
-                return t + a
-            }, i.prototype.writeUIntBE = function(e, t, a, r) {
-                if (e = +e, t = 0 | t, a = 0 | a, !r) {
-                    var n = Math.pow(2, 8 * a) - 1;
-                    N(this, e, t, a, n, 0)
-                }
-                var s = a - 1,
-                    i = 1;
-                for (this[t + s] = 255 & e; --s >= 0 && (i *= 256);) this[t + s] = e / i & 255;
-                return t + a
-            }, i.prototype.writeUInt8 = function(e, t, a) {
-                return e = +e, t = 0 | t, a || N(this, e, t, 1, 255, 0), i.TYPED_ARRAY_SUPPORT || (e = Math.floor(e)), this[t] = 255 & e, t + 1
-            }, i.prototype.writeUInt16LE = function(e, t, a) {
-                return e = +e, t = 0 | t, a || N(this, e, t, 2, 65535, 0), i.TYPED_ARRAY_SUPPORT ? (this[t] = 255 & e, this[t + 1] = e >>> 8) : H(this, e, t, !0), t + 2
-            }, i.prototype.writeUInt16BE = function(e, t, a) {
-                return e = +e, t = 0 | t, a || N(this, e, t, 2, 65535, 0), i.TYPED_ARRAY_SUPPORT ? (this[t] = e >>> 8, this[t + 1] = 255 & e) : H(this, e, t, !1), t + 2
-            }, i.prototype.writeUInt32LE = function(e, t, a) {
-                return e = +e, t = 0 | t, a || N(this, e, t, 4, 4294967295, 0), i.TYPED_ARRAY_SUPPORT ? (this[t + 3] = e >>> 24, this[t + 2] = e >>> 16, this[t + 1] = e >>> 8, this[t] = 255 & e) : D(this, e, t, !0), t + 4
-            }, i.prototype.writeUInt32BE = function(e, t, a) {
-                return e = +e, t = 0 | t, a || N(this, e, t, 4, 4294967295, 0), i.TYPED_ARRAY_SUPPORT ? (this[t] = e >>> 24, this[t + 1] = e >>> 16, this[t + 2] = e >>> 8, this[t + 3] = 255 & e) : D(this, e, t, !1), t + 4
-            }, i.prototype.writeIntLE = function(e, t, a, r) {
-                if (e = +e, t = 0 | t, !r) {
-                    var n = Math.pow(2, 8 * a - 1);
-                    N(this, e, t, a, n - 1, -n)
-                }
-                var s = 0,
-                    i = 1,
-                    o = 0;
-                for (this[t] = 255 & e; ++s < a && (i *= 256);) 0 > e && 0 === o && 0 !== this[t + s - 1] && (o = 1), this[t + s] = (e / i >> 0) - o & 255;
-                return t + a
-            }, i.prototype.writeIntBE = function(e, t, a, r) {
-                if (e = +e, t = 0 | t, !r) {
-                    var n = Math.pow(2, 8 * a - 1);
-                    N(this, e, t, a, n - 1, -n)
-                }
-                var s = a - 1,
-                    i = 1,
-                    o = 0;
-                for (this[t + s] = 255 & e; --s >= 0 && (i *= 256);) 0 > e && 0 === o && 0 !== this[t + s + 1] && (o = 1), this[t + s] = (e / i >> 0) - o & 255;
-                return t + a
-            }, i.prototype.writeInt8 = function(e, t, a) {
-                return e = +e, t = 0 | t, a || N(this, e, t, 1, 127, -128), i.TYPED_ARRAY_SUPPORT || (e = Math.floor(e)), 0 > e && (e = 255 + e + 1), this[t] = 255 & e, t + 1
-            }, i.prototype.writeInt16LE = function(e, t, a) {
-                return e = +e, t = 0 | t, a || N(this, e, t, 2, 32767, -32768), i.TYPED_ARRAY_SUPPORT ? (this[t] = 255 & e, this[t + 1] = e >>> 8) : H(this, e, t, !0), t + 2
-            }, i.prototype.writeInt16BE = function(e, t, a) {
-                return e = +e, t = 0 | t, a || N(this, e, t, 2, 32767, -32768), i.TYPED_ARRAY_SUPPORT ? (this[t] = e >>> 8, this[t + 1] = 255 & e) : H(this, e, t, !1), t + 2
-            }, i.prototype.writeInt32LE = function(e, t, a) {
-                return e = +e, t = 0 | t, a || N(this, e, t, 4, 2147483647, -2147483648), i.TYPED_ARRAY_SUPPORT ? (this[t] = 255 & e, this[t + 1] = e >>> 8, this[t + 2] = e >>> 16, this[t + 3] = e >>> 24) : D(this, e, t, !0), t + 4
-            }, i.prototype.writeInt32BE = function(e, t, a) {
-                return e = +e, t = 0 | t, a || N(this, e, t, 4, 2147483647, -2147483648), 0 > e && (e = 4294967295 + e + 1), i.TYPED_ARRAY_SUPPORT ? (this[t] = e >>> 24, this[t + 1] = e >>> 16, this[t + 2] = e >>> 8, this[t + 3] = 255 & e) : D(this, e, t, !1), t + 4
-            }, i.prototype.writeFloatLE = function(e, t, a) {
-                return X(this, e, t, !0, a)
-            }, i.prototype.writeFloatBE = function(e, t, a) {
-                return X(this, e, t, !1, a)
-            }, i.prototype.writeDoubleLE = function(e, t, a) {
-                return F(this, e, t, !0, a)
-            }, i.prototype.writeDoubleBE = function(e, t, a) {
-                return F(this, e, t, !1, a)
-            }, i.prototype.copy = function(e, t, a, r) {
-                if (a || (a = 0), r || 0 === r || (r = this.length), t >= e.length && (t = e.length), t || (t = 0), r > 0 && a > r && (r = a), r === a) return 0;
-                if (0 === e.length || 0 === this.length) return 0;
-                if (0 > t) throw new RangeError("targetStart out of bounds");
-                if (0 > a || a >= this.length) throw new RangeError("sourceStart out of bounds");
-                if (0 > r) throw new RangeError("sourceEnd out of bounds");
-                r > this.length && (r = this.length), e.length - t < r - a && (r = e.length - t + a);
-                var n, s = r - a;
-                if (this === e && t > a && r > t)
-                    for (n = s - 1; n >= 0; --n) e[n + t] = this[n + a];
-                else if (1e3 > s || !i.TYPED_ARRAY_SUPPORT)
-                    for (n = 0; s > n; ++n) e[n + t] = this[n + a];
-                else Uint8Array.prototype.set.call(e, this.subarray(a, a + s), t);
-                return s
-            }, i.prototype.fill = function(e, t, a, r) {
-                if ("string" == typeof e) {
-                    if ("string" == typeof t ? (r = t, t = 0, a = this.length) : "string" == typeof a && (r = a, a = this.length), 1 === e.length) {
-                        var n = e.charCodeAt(0);
-                        256 > n && (e = n)
-                    }
-                    if (void 0 !== r && "string" != typeof r) throw new TypeError("encoding must be a string");
-                    if ("string" == typeof r && !i.isEncoding(r)) throw new TypeError("Unknown encoding: " + r)
-                } else "number" == typeof e && (e = 255 & e);
-                if (0 > t || this.length < t || this.length < a) throw new RangeError("Out of range index");
-                if (t >= a) return this;
-                t >>>= 0, a = void 0 === a ? this.length : a >>> 0, e || (e = 0);
-                var s;
-                if ("number" == typeof e)
-                    for (s = t; a > s; ++s) this[s] = e;
-                else {
-                    var o = i.isBuffer(e) ? e : j(new i(e, r).toString()),
-                        _ = o.length;
-                    for (s = 0; a - t > s; ++s) this[s + t] = o[s % _]
-                }
-                return this
-            };
-            var te = /[^+\/0-9A-Za-z-_]/g
-        }).call(this, a(176))
-    },
-    338: function(e, t, a) {
+    203: function(e, t, a) {
         function r() {
             function e(e) {
                 return e
@@ -3636,7 +2085,7 @@
                 return a
             }
         }
-        var n = a(15),
+        var n = a(536),
             s = (n.System, n.VbrMode),
             i = n.Float,
             o = n.ShortBlock,
@@ -3646,20 +2095,602 @@
             u = n.new_float_n,
             h = n.new_int,
             c = (n.new_int_n, n.assert),
-            p = a(181),
-            b = a(67);
+            p = a(376),
+            b = a(574);
         e.exports = r
     },
-    339: function(e, t, a) {
+    244: function(e, t, a) {
         function r() {
-            this.global_gain = 0, this.sfb_count1 = 0, this.step = i(39), this.noise = s(39), this.noise_log = s(39)
+            function e(e, t, a, r) {
+                r = 0;
+                for (var n = 0; a >= n; ++n) {
+                    var s = Math.abs(e.xr[n]);
+                    r += s, t[n] = Math.sqrt(s * Math.sqrt(s)), t[n] > e.xrpow_max && (e.xrpow_max = t[n])
+                }
+                return r
+            }
+
+            function t(e, t) {
+                var a = e.ATH,
+                    r = t.xr;
+                if (t.block_type != p.SHORT_TYPE)
+                    for (var n = !1, s = p.PSFB21 - 1; s >= 0 && !n; s--) {
+                        var i = e.scalefac_band.psfb21[s],
+                            o = e.scalefac_band.psfb21[s + 1],
+                            _ = B.athAdjust(a.adjust, a.psfb21[s], a.floor);
+                        e.nsPsy.longfact[21] > 1e-12 && (_ *= e.nsPsy.longfact[21]);
+                        for (var l = o - 1; l >= i; l--) {
+                            if (!(Math.abs(r[l]) < _)) {
+                                n = !0;
+                                break
+                            }
+                            r[l] = 0
+                        }
+                    } else
+                        for (var f = 0; 3 > f; f++)
+                            for (var n = !1, s = p.PSFB12 - 1; s >= 0 && !n; s--) {
+                                var i = 3 * e.scalefac_band.s[12] + (e.scalefac_band.s[13] - e.scalefac_band.s[12]) * f + (e.scalefac_band.psfb12[s] - e.scalefac_band.psfb12[0]),
+                                    o = i + (e.scalefac_band.psfb12[s + 1] - e.scalefac_band.psfb12[s]),
+                                    u = B.athAdjust(a.adjust, a.psfb12[s], a.floor);
+                                e.nsPsy.shortfact[12] > 1e-12 && (u *= e.nsPsy.shortfact[12]);
+                                for (var l = o - 1; l >= i; l--) {
+                                    if (!(Math.abs(r[l]) < u)) {
+                                        n = !0;
+                                        break
+                                    }
+                                    r[l] = 0
+                                }
+                            }
+            }
+
+            function a(e) {
+                this.ordinal = e
+            }
+
+            function r(e, t, r, n, s) {
+                var i, o = e.CurrentStep[n],
+                    _ = !1,
+                    l = e.OldValue[n],
+                    u = a.BINSEARCH_NONE;
+                for (t.global_gain = l, r -= t.part2_length, f(0 != o);;) {
+                    var h;
+                    if (i = E.count_bits(e, s, t, null), 1 == o || i == r) break;
+                    i > r ? (u == a.BINSEARCH_DOWN && (_ = !0), _ && (o /= 2), u = a.BINSEARCH_UP, h = o) : (u == a.BINSEARCH_UP && (_ = !0), _ && (o /= 2), u = a.BINSEARCH_DOWN, h = -o), t.global_gain += h, t.global_gain < 0 && (t.global_gain = 0, _ = !0), t.global_gain > 255 && (t.global_gain = 255, _ = !0)
+                }
+                for (f(t.global_gain >= 0), f(t.global_gain < 256); i > r && t.global_gain < 255;) t.global_gain++, i = E.count_bits(e, s, t, null);
+                return e.CurrentStep[n] = l - t.global_gain >= 4 ? 4 : 2, e.OldValue[n] = t.global_gain, t.part2_3_length = i, i
+            }
+
+            function n(e) {
+                for (var t = 0; t < e.sfbmax; t++)
+                    if (e.scalefac[t] + e.subblock_gain[e.window[t]] == 0) return !1;
+                return !0
+            }
+
+            function v(e) {
+                return o.FAST_LOG10(.368 + .632 * e * e * e)
+            }
+
+            function d(e, t) {
+                for (var a = 1e-37, r = 0; r < t.psymax; r++) a += v(e[r]);
+                return Math.max(1e-20, a)
+            }
+
+            function g(e, t, a, r, n) {
+                var s;
+                switch (e) {
+                    default:
+                        case 9:
+                        t.over_count > 0 ? (s = a.over_SSD <= t.over_SSD, a.over_SSD == t.over_SSD && (s = a.bits < t.bits)) : s = a.max_noise < 0 && 10 * a.max_noise + a.bits <= 10 * t.max_noise + t.bits;
+                    break;
+                    case 0:
+                            s = a.over_count < t.over_count || a.over_count == t.over_count && a.over_noise < t.over_noise || a.over_count == t.over_count && BitStream.EQ(a.over_noise, t.over_noise) && a.tot_noise < t.tot_noise;
+                        break;
+                    case 8:
+                            a.max_noise = d(n, r);
+                    case 1:
+                            s = a.max_noise < t.max_noise;
+                        break;
+                    case 2:
+                            s = a.tot_noise < t.tot_noise;
+                        break;
+                    case 3:
+                            s = a.tot_noise < t.tot_noise && a.max_noise < t.max_noise;
+                        break;
+                    case 4:
+                            s = a.max_noise <= 0 && t.max_noise > .2 || a.max_noise <= 0 && t.max_noise < 0 && t.max_noise > a.max_noise - .2 && a.tot_noise < t.tot_noise || a.max_noise <= 0 && t.max_noise > 0 && t.max_noise > a.max_noise - .2 && a.tot_noise < t.tot_noise + t.over_noise || a.max_noise > 0 && t.max_noise > -.05 && t.max_noise > a.max_noise - .1 && a.tot_noise + a.over_noise < t.tot_noise + t.over_noise || a.max_noise > 0 && t.max_noise > -.1 && t.max_noise > a.max_noise - .15 && a.tot_noise + a.over_noise + a.over_noise < t.tot_noise + t.over_noise + t.over_noise;
+                        break;
+                    case 5:
+                            s = a.over_noise < t.over_noise || BitStream.EQ(a.over_noise, t.over_noise) && a.tot_noise < t.tot_noise;
+                        break;
+                    case 6:
+                            s = a.over_noise < t.over_noise || BitStream.EQ(a.over_noise, t.over_noise) && (a.max_noise < t.max_noise || BitStream.EQ(a.max_noise, t.max_noise) && a.tot_noise <= t.tot_noise);
+                        break;
+                    case 7:
+                            s = a.over_count < t.over_count || a.over_noise < t.over_noise
+                }
+                return 0 == t.over_count && (s = s && a.bits < t.bits), s
+            }
+
+            function w(e, t, a, r, n) {
+                var s, i = e.internal_flags;
+                s = 0 == t.scalefac_scale ? 1.2968395546510096 : 1.6817928305074292;
+                for (var o = 0, _ = 0; _ < t.sfbmax; _++) o < a[_] && (o = a[_]);
+                var l = i.noise_shaping_amp;
+                switch (3 == l && (l = n ? 2 : 1), l) {
+                    case 2:
+                        break;
+                    case 1:
+                        o > 1 ? o = Math.pow(o, .5) : o *= .95;
+                        break;
+                    case 0:
+                    default:
+                        o > 1 ? o = 1 : o *= .95
+                }
+                for (var f = 0, _ = 0; _ < t.sfbmax; _++) {
+                    var u, h = t.width[_];
+                    if (f += h, !(a[_] < o)) {
+                        if (0 != (2 & i.substep_shaping) && (i.pseudohalf[_] = 0 == i.pseudohalf[_] ? 1 : 0, 0 == i.pseudohalf[_] && 2 == i.noise_shaping_amp)) return;
+                        for (t.scalefac[_]++, u = -h; 0 > u; u++) r[f + u] *= s, r[f + u] > t.xrpow_max && (t.xrpow_max = r[f + u]);
+                        if (2 == i.noise_shaping_amp) return
+                    }
+                }
+            }
+
+            function S(e, t) {
+                for (var a = 1.2968395546510096, r = 0, n = 0; n < e.sfbmax; n++) {
+                    var s = e.width[n],
+                        i = e.scalefac[n];
+                    if (0 != e.preflag && (i += B.pretab[n]), r += s, 0 != (1 & i)) {
+                        i++;
+                        for (var o = -s; 0 > o; o++) t[r + o] *= a, t[r + o] > e.xrpow_max && (e.xrpow_max = t[r + o])
+                    }
+                    e.scalefac[n] = i >> 1
+                }
+                e.preflag = 0, e.scalefac_scale = 1
+            }
+
+            function A(e, t, a) {
+                var r, n = t.scalefac;
+                for (r = 0; r < t.sfb_lmax; r++)
+                    if (n[r] >= 16) return !0;
+                for (var s = 0; 3 > s; s++) {
+                    var i = 0,
+                        o = 0;
+                    for (r = t.sfb_lmax + s; r < t.sfbdivide; r += 3) i < n[r] && (i = n[r]);
+                    for (; r < t.sfbmax; r += 3) o < n[r] && (o = n[r]);
+                    if (!(16 > i && 8 > o)) {
+                        if (t.subblock_gain[s] >= 7) return !0;
+                        t.subblock_gain[s]++;
+                        var _ = e.scalefac_band.l[t.sfb_lmax];
+                        for (r = t.sfb_lmax + s; r < t.sfbmax; r += 3) {
+                            var l, u = t.width[r],
+                                h = n[r];
+                            if (f(h >= 0), h -= 4 >> t.scalefac_scale, h >= 0) n[r] = h, _ += 3 * u;
+                            else {
+                                n[r] = 0;
+                                var c = 210 + (h << t.scalefac_scale + 1);
+                                l = B.IPOW20(c), _ += u * (s + 1);
+                                for (var p = -u; 0 > p; p++) a[_ + p] *= l, a[_ + p] > t.xrpow_max && (t.xrpow_max = a[_ + p]);
+                                _ += u * (3 - s - 1)
+                            }
+                        }
+                        var l = B.IPOW20(202);
+                        _ += t.width[r] * (s + 1);
+                        for (var p = -t.width[r]; 0 > p; p++) a[_ + p] *= l, a[_ + p] > t.xrpow_max && (t.xrpow_max = a[_ + p])
+                    }
+                }
+                return !1
+            }
+
+            function R(e, t, a, r, s) {
+                var i = e.internal_flags;
+                w(e, t, a, r, s);
+                var o = n(t);
+                return o ? !1 : (o = 2 == i.mode_gr ? E.scale_bitcount(t) : E.scale_bitcount_lsf(i, t)) ? (i.noise_shaping > 1 && (_.fill(i.pseudohalf, 0), 0 == t.scalefac_scale ? (S(t, r), o = !1) : t.block_type == p.SHORT_TYPE && i.subblock_gain > 0 && (o = A(i, t, r) || n(t))), o || (o = 2 == i.mode_gr ? E.scale_bitcount(t) : E.scale_bitcount_lsf(i, t)), !o) : !0
+            }
+            var M;
+            this.rv = null;
+            var y;
+            this.qupvt = null;
+            var B, E, T = new u;
+            this.setModules = function(e, t, a, r) {
+                M = e, y = t, this.rv = t, B = a, this.qupvt = a, E = r, T.setModules(B, E)
+            }, this.ms_convert = function(e, t) {
+                for (var a = 0; 576 > a; ++a) {
+                    var r = e.tt[t][0].xr[a],
+                        n = e.tt[t][1].xr[a];
+                    e.tt[t][0].xr[a] = (r + n) * (.5 * o.SQRT2), e.tt[t][1].xr[a] = (r - n) * (.5 * o.SQRT2)
+                }
+            }, this.init_xrpow = function(t, a, r) {
+                var n = 0,
+                    s = 0 | a.max_nonzero_coeff;
+                if (f(null != r), a.xrpow_max = 0, f(s >= 0 && 575 >= s), _.fill(r, s, 576, 0), n = e(a, r, s, n), n > 1e-20) {
+                    var i = 0;
+                    0 != (2 & t.substep_shaping) && (i = 1);
+                    for (var o = 0; o < a.psymax; o++) t.pseudohalf[o] = i;
+                    return !0
+                }
+                return _.fill(a.l3_enc, 0, 576, 0), !1
+            }, this.init_outer_loop = function(e, a) {
+                a.part2_3_length = 0, a.big_values = 0, a.count1 = 0, a.global_gain = 210, a.scalefac_compress = 0, a.table_select[0] = 0, a.table_select[1] = 0, a.table_select[2] = 0, a.subblock_gain[0] = 0, a.subblock_gain[1] = 0, a.subblock_gain[2] = 0, a.subblock_gain[3] = 0, a.region0_count = 0, a.region1_count = 0, a.preflag = 0, a.scalefac_scale = 0, a.count1table_select = 0, a.part2_length = 0, a.sfb_lmax = p.SBPSY_l, a.sfb_smin = p.SBPSY_s, a.psy_lmax = e.sfb21_extra ? p.SBMAX_l : p.SBPSY_l, a.psymax = a.psy_lmax, a.sfbmax = a.sfb_lmax, a.sfbdivide = 11;
+                for (var r = 0; r < p.SBMAX_l; r++) a.width[r] = e.scalefac_band.l[r + 1] - e.scalefac_band.l[r], a.window[r] = 3;
+                if (a.block_type == p.SHORT_TYPE) {
+                    var n = l(576);
+                    a.sfb_smin = 0, a.sfb_lmax = 0, 0 != a.mixed_block_flag && (a.sfb_smin = 3, a.sfb_lmax = 2 * e.mode_gr + 4), a.psymax = a.sfb_lmax + 3 * ((e.sfb21_extra ? p.SBMAX_s : p.SBPSY_s) - a.sfb_smin), a.sfbmax = a.sfb_lmax + 3 * (p.SBPSY_s - a.sfb_smin), a.sfbdivide = a.sfbmax - 18, a.psy_lmax = a.sfb_lmax;
+                    var i = e.scalefac_band.l[a.sfb_lmax];
+                    s.arraycopy(a.xr, 0, n, 0, 576);
+                    for (var r = a.sfb_smin; r < p.SBMAX_s; r++)
+                        for (var o = e.scalefac_band.s[r], f = e.scalefac_band.s[r + 1], u = 0; 3 > u; u++)
+                            for (var h = o; f > h; h++) a.xr[i++] = n[3 * h + u];
+                    for (var c = a.sfb_lmax, r = a.sfb_smin; r < p.SBMAX_s; r++) a.width[c] = a.width[c + 1] = a.width[c + 2] = e.scalefac_band.s[r + 1] - e.scalefac_band.s[r], a.window[c] = 0, a.window[c + 1] = 1, a.window[c + 2] = 2, c += 3
+                }
+                a.count1bits = 0, a.sfb_partition_table = B.nr_of_sfb_block[0][0], a.slen[0] = 0, a.slen[1] = 0, a.slen[2] = 0, a.slen[3] = 0, a.max_nonzero_coeff = 575, _.fill(a.scalefac, 0), t(e, a)
+            }, a.BINSEARCH_NONE = new a(0), a.BINSEARCH_UP = new a(1), a.BINSEARCH_DOWN = new a(2), this.trancate_smallspectrums = function(e, t, a, r) {
+                var n = l(m.SFBMAX);
+                if ((0 != (4 & e.substep_shaping) || t.block_type != p.SHORT_TYPE) && 0 == (128 & e.substep_shaping)) {
+                    B.calc_noise(t, a, n, new h, null);
+                    for (var s = 0; 576 > s; s++) {
+                        var i = 0;
+                        0 != t.l3_enc[s] && (i = Math.abs(t.xr[s])), r[s] = i
+                    }
+                    var s = 0,
+                        o = 8;
+                    t.block_type == p.SHORT_TYPE && (o = 6);
+                    do {
+                        var f, u, c, b, v = t.width[o];
+                        if (s += v, !(n[o] >= 1 || (_.sort(r, s - v, v), BitStream.EQ(r[s - 1], 0)))) {
+                            f = (1 - n[o]) * a[o], u = 0, b = 0;
+                            do {
+                                var d;
+                                for (c = 1; v > b + c && !BitStream.NEQ(r[b + s - v], r[b + s + c - v]); c++);
+                                if (d = r[b + s - v] * r[b + s - v] * c, d > f) {
+                                    0 != b && (u = r[b + s - v - 1]);
+                                    break
+                                }
+                                f -= d, b += c
+                            } while (v > b);
+                            if (!BitStream.EQ(u, 0))
+                                do Math.abs(t.xr[s - v]) <= u && (t.l3_enc[s - v] = 0); while (--v > 0)
+                        }
+                    } while (++o < t.psymax);
+                    t.part2_3_length = E.noquant_count_bits(e, t, null)
+                }
+            }, this.outer_loop = function(e, t, a, n, o, _) {
+                var u, v = e.internal_flags,
+                    d = new b,
+                    w = l(576),
+                    S = l(m.SFBMAX),
+                    A = new h,
+                    M = new c,
+                    y = 9999999,
+                    T = !1,
+                    k = !1,
+                    x = 0;
+                if (r(v, t, _, o, n), 0 == v.noise_shaping) return 100;
+                B.calc_noise(t, a, S, A, M), A.bits = t.part2_3_length, d.assign(t);
+                var P = 0;
+                for (s.arraycopy(n, 0, w, 0, 576); !T;) {
+                    do {
+                        var I, L = new h,
+                            O = 255;
+                        if (I = 0 != (2 & v.substep_shaping) ? 20 : 3, v.sfb21_extra) {
+                            if (S[d.sfbmax] > 1) break;
+                            if (d.block_type == p.SHORT_TYPE && (S[d.sfbmax + 1] > 1 || S[d.sfbmax + 2] > 1)) break
+                        }
+                        if (!R(e, d, S, n, k)) break;
+                        0 != d.scalefac_scale && (O = 254);
+                        var V = _ - d.part2_length;
+                        if (0 >= V) break;
+                        for (;
+                            (d.part2_3_length = E.count_bits(v, n, d, M)) > V && d.global_gain <= O;) d.global_gain++;
+                        if (d.global_gain > O) break;
+                        if (0 == A.over_count) {
+                            for (;
+                                (d.part2_3_length = E.count_bits(v, n, d, M)) > y && d.global_gain <= O;) d.global_gain++;
+                            if (d.global_gain > O) break
+                        }
+                        if (B.calc_noise(d, a, S, L, M), L.bits = d.part2_3_length, u = t.block_type != p.SHORT_TYPE ? e.quant_comp : e.quant_comp_short, u = g(u, A, L, d, S) ? 1 : 0, 0 != u) y = t.part2_3_length, A = L, t.assign(d), P = 0, s.arraycopy(n, 0, w, 0, 576);
+                        else if (0 == v.full_outer_loop) {
+                            if (++P > I && 0 == A.over_count) break;
+                            if (3 == v.noise_shaping_amp && k && P > 30) break;
+                            if (3 == v.noise_shaping_amp && k && d.global_gain - x > 15) break
+                        }
+                    } while (d.global_gain + d.scalefac_scale < 255);
+                    3 == v.noise_shaping_amp ? k ? T = !0 : (d.assign(t), s.arraycopy(w, 0, n, 0, 576), P = 0, x = d.global_gain, k = !0) : T = !0
+                }
+                return f(t.global_gain + t.scalefac_scale <= 255), e.VBR == i.vbr_rh || e.VBR == i.vbr_mtrh ? s.arraycopy(w, 0, n, 0, 576) : 0 != (1 & v.substep_shaping) && trancate_smallspectrums(v, t, a, n), A.over_count
+            }, this.iteration_finish_one = function(e, t, a) {
+                var r = e.l3_side,
+                    n = r.tt[t][a];
+                E.best_scalefac_store(e, t, a, r), 1 == e.use_best_huffman && E.best_huffman_divide(e, n), y.ResvAdjust(e, n)
+            }, this.VBR_encode_granule = function(e, t, a, r, n, i, o) {
+                var u, h, c = e.internal_flags,
+                    p = new b,
+                    m = l(576),
+                    v = o,
+                    d = o + 1,
+                    g = (o + i) / 2,
+                    w = 0,
+                    S = c.sfb21_extra;
+                f(v <= LameInternalFlags.MAX_BITS_PER_CHANNEL), _.fill(p.l3_enc, 0);
+                do f(g >= i), f(o >= g), f(o >= i), g > v - 42 ? c.sfb21_extra = !1 : c.sfb21_extra = S, h = outer_loop(e, t, a, r, n, g), 0 >= h ? (w = 1, d = t.part2_3_length, p.assign(t), s.arraycopy(r, 0, m, 0, 576), o = d - 32, u = o - i, g = (o + i) / 2) : (i = g + 32, u = o - i, g = (o + i) / 2, 0 != w && (w = 2, t.assign(p), s.arraycopy(m, 0, r, 0, 576))); while (u > 12);
+                c.sfb21_extra = S, 2 == w && s.arraycopy(p.l3_enc, 0, t.l3_enc, 0, 576), f(t.part2_3_length <= v)
+            }, this.get_framebits = function(e, t) {
+                var a = e.internal_flags;
+                a.bitrate_index = a.VBR_min_bitrate;
+                var r = M.getframebits(e);
+                a.bitrate_index = 1, r = M.getframebits(e);
+                for (var n = 1; n <= a.VBR_max_bitrate; n++) {
+                    a.bitrate_index = n;
+                    var s = new MeanBits(r);
+                    t[n] = y.ResvFrameBegin(e, s), r = s.bits
+                }
+            }, this.VBR_old_prepare = function(e, t, a, r, n, s, i, o, _) {
+                var l, f = e.internal_flags,
+                    u = 0,
+                    h = 1,
+                    c = 0;
+                f.bitrate_index = f.VBR_max_bitrate;
+                var b = y.ResvFrameBegin(e, new MeanBits(0)) / f.mode_gr;
+                get_framebits(e, s);
+                for (var m = 0; m < f.mode_gr; m++) {
+                    var v = B.on_pe(e, t, o[m], b, m, 0);
+                    f.mode_ext == p.MPG_MD_MS_LR && (ms_convert(f.l3_side, m), B.reduce_side(o[m], a[m], b, v));
+                    for (var d = 0; d < f.channels_out; ++d) {
+                        var g = f.l3_side.tt[m][d];
+                        g.block_type != p.SHORT_TYPE ? (u = 1.28 / (1 + Math.exp(3.5 - t[m][d] / 300)) - .05, l = f.PSY.mask_adjust - u) : (u = 2.56 / (1 + Math.exp(3.5 - t[m][d] / 300)) - .14, l = f.PSY.mask_adjust_short - u), f.masking_lower = Math.pow(10, .1 * l), init_outer_loop(f, g), _[m][d] = B.calc_xmin(e, r[m][d], g, n[m][d]), 0 != _[m][d] && (h = 0), i[m][d] = 126, c += o[m][d]
+                    }
+                }
+                for (var m = 0; m < f.mode_gr; m++)
+                    for (var d = 0; d < f.channels_out; d++) c > s[f.VBR_max_bitrate] && (o[m][d] *= s[f.VBR_max_bitrate], o[m][d] /= c), i[m][d] > o[m][d] && (i[m][d] = o[m][d]);
+                return h
+            }, this.bitpressure_strategy = function(e, t, a, r) {
+                for (var n = 0; n < e.mode_gr; n++)
+                    for (var s = 0; s < e.channels_out; s++) {
+                        for (var i = e.l3_side.tt[n][s], o = t[n][s], _ = 0, l = 0; l < i.psy_lmax; l++) o[_++] *= 1 + .029 * l * l / p.SBMAX_l / p.SBMAX_l;
+                        if (i.block_type == p.SHORT_TYPE)
+                            for (var l = i.sfb_smin; l < p.SBMAX_s; l++) o[_++] *= 1 + .029 * l * l / p.SBMAX_s / p.SBMAX_s, o[_++] *= 1 + .029 * l * l / p.SBMAX_s / p.SBMAX_s, o[_++] *= 1 + .029 * l * l / p.SBMAX_s / p.SBMAX_s;
+                        r[n][s] = 0 | Math.max(a[n][s], .9 * r[n][s])
+                    }
+            }, this.VBR_new_prepare = function(e, t, a, r, n, s) {
+                var i, o = e.internal_flags,
+                    _ = 1,
+                    l = 0,
+                    f = 0;
+                if (e.free_format) {
+                    o.bitrate_index = 0;
+                    var u = new MeanBits(l);
+                    i = y.ResvFrameBegin(e, u), l = u.bits, n[0] = i
+                } else {
+                    o.bitrate_index = o.VBR_max_bitrate;
+                    var u = new MeanBits(l);
+                    y.ResvFrameBegin(e, u), l = u.bits, get_framebits(e, n), i = n[o.VBR_max_bitrate]
+                }
+                for (var h = 0; h < o.mode_gr; h++) {
+                    B.on_pe(e, t, s[h], l, h, 0), o.mode_ext == p.MPG_MD_MS_LR && ms_convert(o.l3_side, h);
+                    for (var c = 0; c < o.channels_out; ++c) {
+                        var b = o.l3_side.tt[h][c];
+                        o.masking_lower = Math.pow(10, .1 * o.PSY.mask_adjust), init_outer_loop(o, b), 0 != B.calc_xmin(e, a[h][c], b, r[h][c]) && (_ = 0), f += s[h][c]
+                    }
+                }
+                for (var h = 0; h < o.mode_gr; h++)
+                    for (var c = 0; c < o.channels_out; c++) f > i && (s[h][c] *= i, s[h][c] /= f);
+                return _
+            }, this.calc_target_bits = function(e, t, a, r, n, s) {
+                var i, o, _, l, f = e.internal_flags,
+                    u = f.l3_side,
+                    h = 0;
+                f.bitrate_index = f.VBR_max_bitrate;
+                var c = new MeanBits(h);
+                for (s[0] = y.ResvFrameBegin(e, c), h = c.bits, f.bitrate_index = 1, h = M.getframebits(e) - 8 * f.sideinfo_len, n[0] = h / (f.mode_gr * f.channels_out), h = e.VBR_mean_bitrate_kbps * e.framesize * 1e3, 0 != (1 & f.substep_shaping) && (h *= 1.09), h /= e.out_samplerate, h -= 8 * f.sideinfo_len, h /= f.mode_gr * f.channels_out, i = .93 + .07 * (11 - e.compression_ratio) / 5.5, .9 > i && (i = .9), i > 1 && (i = 1), o = 0; o < f.mode_gr; o++) {
+                    var b = 0;
+                    for (_ = 0; _ < f.channels_out; _++) {
+                        if (r[o][_] = int(i * h), t[o][_] > 700) {
+                            var m = int((t[o][_] - 700) / 1.4),
+                                v = u.tt[o][_];
+                            r[o][_] = int(i * h), v.block_type == p.SHORT_TYPE && h / 2 > m && (m = h / 2), m > 3 * h / 2 ? m = 3 * h / 2 : 0 > m && (m = 0), r[o][_] += m
+                        }
+                        r[o][_] > LameInternalFlags.MAX_BITS_PER_CHANNEL && (r[o][_] = LameInternalFlags.MAX_BITS_PER_CHANNEL), b += r[o][_]
+                    }
+                    if (b > LameInternalFlags.MAX_BITS_PER_GRANULE)
+                        for (_ = 0; _ < f.channels_out; ++_) r[o][_] *= LameInternalFlags.MAX_BITS_PER_GRANULE, r[o][_] /= b
+                }
+                if (f.mode_ext == p.MPG_MD_MS_LR)
+                    for (o = 0; o < f.mode_gr; o++) B.reduce_side(r[o], a[o], h * f.channels_out, LameInternalFlags.MAX_BITS_PER_GRANULE);
+                for (l = 0, o = 0; o < f.mode_gr; o++)
+                    for (_ = 0; _ < f.channels_out; _++) r[o][_] > LameInternalFlags.MAX_BITS_PER_CHANNEL && (r[o][_] = LameInternalFlags.MAX_BITS_PER_CHANNEL), l += r[o][_];
+                if (l > s[0])
+                    for (o = 0; o < f.mode_gr; o++)
+                        for (_ = 0; _ < f.channels_out; _++) r[o][_] *= s[0], r[o][_] /= l
+            }
         }
-        var n = a(15),
-            s = n.new_float,
-            i = n.new_int;
-        n.assert, e.exports = r
+        var n = a(536),
+            s = n.System,
+            i = n.VbrMode,
+            o = (n.Float, n.ShortBlock, n.Util),
+            _ = n.Arrays,
+            l = (n.new_array_n, n.new_byte, n.new_double, n.new_float),
+            f = (n.new_float_n, n.new_int, n.new_int_n, n.assert),
+            u = a(93),
+            h = a(672),
+            c = a(114),
+            p = a(574),
+            b = a(555),
+            m = a(119);
+        e.exports = r
     },
-    346: function(e, t, a) {
+    275: function(e, t) {
+        function a() {
+            var e = "http://www.mp3dev.org/",
+                t = 3,
+                a = 98,
+                r = 4,
+                n = 0,
+                s = 93;
+            this.getLameVersion = function() {
+                return t + "." + a + "." + r
+            }, this.getLameShortVersion = function() {
+                return t + "." + a + "." + r
+            }, this.getLameVeryShortVersion = function() {
+                return "LAME" + t + "." + a + "r"
+            }, this.getPsyVersion = function() {
+                return n + "." + s
+            }, this.getLameUrl = function() {
+                return e
+            }, this.getLameOsBitness = function() {
+                return "32bits"
+            }
+        }
+        e.exports = a
+    },
+    342: function(e, t, a) {
+        function r() {
+            this.tt = [
+                [null, null],
+                [null, null]
+            ], this.main_data_begin = 0, this.private_bits = 0, this.resvDrain_pre = 0, this.resvDrain_post = 0, this.scfsi = [s(4), s(4)];
+            for (var e = 0; 2 > e; e++)
+                for (var t = 0; 2 > t; t++) this.tt[e][t] = new i
+        }
+        var n = a(536),
+            s = (n.System, n.VbrMode, n.Float, n.ShortBlock, n.Util, n.Arrays, n.new_array_n, n.new_byte, n.new_double, n.new_float, n.new_float_n, n.new_int),
+            i = (n.new_int_n, n.assert, a(555));
+        e.exports = r
+    },
+    369: function(e, t) {
+        function a(e) {
+            this.bits = e
+        }
+        e.exports = a
+    },
+    376: function(e, t, a) {
+        function r() {
+            function e(e, t, a) {
+                var n, i, o, _ = 0;
+                a <<= 1;
+                var l = t + a;
+                n = 4;
+                do {
+                    var f, u, h, c, p, b, m;
+                    m = n >> 1, c = n, p = n << 1, b = p + c, n = p << 1, i = t, o = i + m;
+                    do {
+                        var v, d, g, w;
+                        d = e[i + 0] - e[i + c], v = e[i + 0] + e[i + c], w = e[i + p] - e[i + b], g = e[i + p] + e[i + b], e[i + p] = v - g, e[i + 0] = v + g, e[i + b] = d - w, e[i + c] = d + w, d = e[o + 0] - e[o + c], v = e[o + 0] + e[o + c], w = s.SQRT2 * e[o + b], g = s.SQRT2 * e[o + p], e[o + p] = v - g, e[o + 0] = v + g, e[o + b] = d - w, e[o + c] = d + w, o += n, i += n
+                    } while (l > i);
+                    for (u = r[_ + 0], f = r[_ + 1], h = 1; m > h; h++) {
+                        var S, A;
+                        S = 1 - 2 * f * f, A = 2 * f * u, i = t + h, o = t + c - h;
+                        do {
+                            var R, M, y, v, d, B, g, E, w, T;
+                            M = A * e[i + c] - S * e[o + c], R = S * e[i + c] + A * e[o + c], d = e[i + 0] - R, v = e[i + 0] + R, B = e[o + 0] - M, y = e[o + 0] + M, M = A * e[i + b] - S * e[o + b], R = S * e[i + b] + A * e[o + b], w = e[i + p] - R, g = e[i + p] + R, T = e[o + p] - M, E = e[o + p] + M, M = f * g - u * T, R = u * g + f * T, e[i + p] = v - R, e[i + 0] = v + R, e[o + b] = B - M, e[o + c] = B + M, M = u * E - f * w, R = f * E + u * w, e[o + p] = y - R, e[o + 0] = y + R, e[i + b] = d - M, e[i + c] = d + M, o += n, i += n
+                        } while (l > i);
+                        S = u, u = S * r[_ + 0] - f * r[_ + 1], f = S * r[_ + 1] + f * r[_ + 0]
+                    }
+                    _ += 2
+                } while (a > n)
+            }
+            var t = i(o.BLKSIZE),
+                a = i(o.BLKSIZE_s / 2),
+                r = [.9238795325112867, .3826834323650898, .9951847266721969, .0980171403295606, .9996988186962042, .02454122852291229, .9999811752826011, .006135884649154475],
+                n = [0, 128, 64, 192, 32, 160, 96, 224, 16, 144, 80, 208, 48, 176, 112, 240, 8, 136, 72, 200, 40, 168, 104, 232, 24, 152, 88, 216, 56, 184, 120, 248, 4, 132, 68, 196, 36, 164, 100, 228, 20, 148, 84, 212, 52, 180, 116, 244, 12, 140, 76, 204, 44, 172, 108, 236, 28, 156, 92, 220, 60, 188, 124, 252, 2, 130, 66, 194, 34, 162, 98, 226, 18, 146, 82, 210, 50, 178, 114, 242, 10, 138, 74, 202, 42, 170, 106, 234, 26, 154, 90, 218, 58, 186, 122, 250, 6, 134, 70, 198, 38, 166, 102, 230, 22, 150, 86, 214, 54, 182, 118, 246, 14, 142, 78, 206, 46, 174, 110, 238, 30, 158, 94, 222, 62, 190, 126, 254];
+            this.fft_short = function(t, r, s, i, _) {
+                for (var l = 0; 3 > l; l++) {
+                    var f = o.BLKSIZE_s / 2,
+                        u = 65535 & 192 * (l + 1),
+                        h = o.BLKSIZE_s / 8 - 1;
+                    do {
+                        var c, p, b, m, v, d = 255 & n[h << 2];
+                        c = a[d] * i[s][_ + d + u], v = a[127 - d] * i[s][_ + d + u + 128], p = c - v, c += v, b = a[d + 64] * i[s][_ + d + u + 64], v = a[63 - d] * i[s][_ + d + u + 192], m = b - v, b += v, f -= 4, r[l][f + 0] = c + b, r[l][f + 2] = c - b, r[l][f + 1] = p + m, r[l][f + 3] = p - m, c = a[d + 1] * i[s][_ + d + u + 1], v = a[126 - d] * i[s][_ + d + u + 129], p = c - v, c += v, b = a[d + 65] * i[s][_ + d + u + 65], v = a[62 - d] * i[s][_ + d + u + 193], m = b - v, b += v, r[l][f + o.BLKSIZE_s / 2 + 0] = c + b, r[l][f + o.BLKSIZE_s / 2 + 2] = c - b, r[l][f + o.BLKSIZE_s / 2 + 1] = p + m, r[l][f + o.BLKSIZE_s / 2 + 3] = p - m
+                    } while (--h >= 0);
+                    e(r[l], f, o.BLKSIZE_s / 2)
+                }
+            }, this.fft_long = function(a, r, s, i, _) {
+                var l = o.BLKSIZE / 8 - 1,
+                    f = o.BLKSIZE / 2;
+                do {
+                    var u, h, c, p, b, m = 255 & n[l];
+                    u = t[m] * i[s][_ + m], b = t[m + 512] * i[s][_ + m + 512], h = u - b, u += b, c = t[m + 256] * i[s][_ + m + 256], b = t[m + 768] * i[s][_ + m + 768], p = c - b, c += b, f -= 4, r[f + 0] = u + c, r[f + 2] = u - c, r[f + 1] = h + p, r[f + 3] = h - p, u = t[m + 1] * i[s][_ + m + 1], b = t[m + 513] * i[s][_ + m + 513], h = u - b, u += b, c = t[m + 257] * i[s][_ + m + 257], b = t[m + 769] * i[s][_ + m + 769], p = c - b, c += b, r[f + o.BLKSIZE / 2 + 0] = u + c, r[f + o.BLKSIZE / 2 + 2] = u - c, r[f + o.BLKSIZE / 2 + 1] = h + p, r[f + o.BLKSIZE / 2 + 3] = h - p
+                } while (--l >= 0);
+                e(r, f, o.BLKSIZE / 2)
+            }, this.init_fft = function(e) {
+                for (var r = 0; r < o.BLKSIZE; r++) t[r] = .42 - .5 * Math.cos(2 * Math.PI * (r + .5) / o.BLKSIZE) + .08 * Math.cos(4 * Math.PI * (r + .5) / o.BLKSIZE);
+                for (var r = 0; r < o.BLKSIZE_s / 2; r++) a[r] = .5 * (1 - Math.cos(2 * Math.PI * (r + .5) / o.BLKSIZE_s))
+            }
+        }
+        var n = a(536),
+            s = (n.System, n.VbrMode, n.Float, n.ShortBlock, n.Util),
+            i = (n.Arrays, n.new_array_n, n.new_byte, n.new_double, n.new_float),
+            o = (n.new_float_n, n.new_int, n.new_int_n, n.assert, a(574));
+        e.exports = r
+    },
+    381: function(e, t, a) {
+        function r() {
+            var e;
+            this.setModules = function(t) {
+                e = t
+            }, this.ResvFrameBegin = function(t, a) {
+                var r, n = t.internal_flags,
+                    i = n.l3_side,
+                    o = e.getframebits(t);
+                a.bits = (o - 8 * n.sideinfo_len) / n.mode_gr;
+                var _ = 2048 * n.mode_gr - 8;
+                t.brate > 320 ? r = 8 * int(1e3 * t.brate / (t.out_samplerate / 1152) / 8 + .5) : (r = 11520, t.strict_ISO && (r = 8 * int(32e4 / (t.out_samplerate / 1152) / 8 + .5))), n.ResvMax = r - o, n.ResvMax > _ && (n.ResvMax = _), (n.ResvMax < 0 || t.disable_reservoir) && (n.ResvMax = 0);
+                var l = a.bits * n.mode_gr + Math.min(n.ResvSize, n.ResvMax);
+                return l > r && (l = r), s(0 == n.ResvMax % 8), s(n.ResvMax >= 0), i.resvDrain_pre = 0, null != n.pinfo && (n.pinfo.mean_bits = a.bits / 2, n.pinfo.resvsize = n.ResvSize), l
+            }, this.ResvMaxBits = function(e, t, a, r) {
+                var n, s = e.internal_flags,
+                    i = s.ResvSize,
+                    o = s.ResvMax;
+                0 != r && (i += t), 0 != (1 & s.substep_shaping) && (o *= .9), a.bits = t, 10 * i > 9 * o ? (n = i - 9 * o / 10, a.bits += n, s.substep_shaping |= 128) : (n = 0, s.substep_shaping &= 127, e.disable_reservoir || 0 != (1 & s.substep_shaping) || (a.bits -= .1 * t));
+                var _ = i < 6 * s.ResvMax / 10 ? i : 6 * s.ResvMax / 10;
+                return _ -= n, 0 > _ && (_ = 0), _
+            }, this.ResvAdjust = function(e, t) {
+                e.ResvSize -= t.part2_3_length + t.part2_length
+            }, this.ResvFrameEnd = function(e, t) {
+                var a, r = e.l3_side;
+                e.ResvSize += t * e.mode_gr;
+                var n = 0;
+                r.resvDrain_post = 0, r.resvDrain_pre = 0, 0 != (a = e.ResvSize % 8) && (n += a), a = e.ResvSize - n - e.ResvMax, a > 0 && (s(0 == a % 8), s(a >= 0), n += a);
+                var i = Math.min(8 * r.main_data_begin, n) / 8;
+                r.resvDrain_pre += 8 * i, n -= 8 * i, e.ResvSize -= 8 * i, r.main_data_begin -= i, r.resvDrain_post += n, e.ResvSize -= n
+            }
+        }
+        var n = a(536),
+            s = n.assert;
+        e.exports = r
+    },
+    390: function(e, t) {
+        t.read = function(e, t, a, r, n) {
+            var s, i, o = 8 * n - r - 1,
+                _ = (1 << o) - 1,
+                l = _ >> 1,
+                f = -7,
+                u = a ? n - 1 : 0,
+                h = a ? -1 : 1,
+                c = e[t + u];
+            for (u += h, s = c & (1 << -f) - 1, c >>= -f, f += o; f > 0; s = 256 * s + e[t + u], u += h, f -= 8);
+            for (i = s & (1 << -f) - 1, s >>= -f, f += r; f > 0; i = 256 * i + e[t + u], u += h, f -= 8);
+            if (0 === s) s = 1 - l;
+            else {
+                if (s === _) return i ? NaN : (c ? -1 : 1) * (1 / 0);
+                i += Math.pow(2, r), s -= l
+            }
+            return (c ? -1 : 1) * i * Math.pow(2, s - r)
+        }, t.write = function(e, t, a, r, n, s) {
+            var i, o, _, l = 8 * s - n - 1,
+                f = (1 << l) - 1,
+                u = f >> 1,
+                h = 23 === n ? Math.pow(2, -24) - Math.pow(2, -77) : 0,
+                c = r ? 0 : s - 1,
+                p = r ? 1 : -1,
+                b = 0 > t || 0 === t && 0 > 1 / t ? 1 : 0;
+            for (t = Math.abs(t), isNaN(t) || t === 1 / 0 ? (o = isNaN(t) ? 1 : 0, i = f) : (i = Math.floor(Math.log(t) / Math.LN2), t * (_ = Math.pow(2, -i)) < 1 && (i--, _ *= 2), t += i + u >= 1 ? h / _ : h * Math.pow(2, 1 - u), t * _ >= 2 && (i++, _ /= 2), i + u >= f ? (o = 0, i = f) : i + u >= 1 ? (o = (t * _ - 1) * Math.pow(2, n), i += u) : (o = t * Math.pow(2, u - 1) * Math.pow(2, n), i = 0)); n >= 8; e[a + c] = 255 & o, c += p, o /= 256, n -= 8);
+            for (i = i << n | o, l += n; l > 0; e[a + c] = 255 & i, c += p, i /= 256, l -= 8);
+            e[a + c - p] |= 128 * b
+        }
+    },
+    406: function(e, t, a) {
         function r() {
             function e(e) {
                 s.arraycopy(e.header[e.w_ptr].buf, 0, P, L, e.sideinfo_len), L += e.sideinfo_len, I += 8 * e.sideinfo_len, e.w_ptr = e.w_ptr + 1 & p.MAX_HEADER_BUF - 1
@@ -3897,173 +2928,1289 @@
                 P = o(Lame.LAME_MAXMP3BUFFER), e.h_ptr = e.w_ptr = 0, e.header[e.h_ptr].write_timing = 0, L = -1, O = 0, I = 0
             }
         }
-        var n = a(15),
+        var n = a(536),
             s = n.System,
             i = (n.VbrMode, n.Float, n.ShortBlock, n.Util, n.Arrays),
             o = (n.new_array_n, n.new_byte),
             _ = (n.new_double, n.new_float, n.new_float_n),
             l = n.new_int,
             f = (n.new_int_n, n.assert),
-            u = a(269),
-            h = a(152),
-            c = a(67),
-            p = a(227);
+            u = a(703),
+            h = a(705),
+            c = a(574),
+            p = a(51);
         r.EQ = function(e, t) {
             return Math.abs(e) > Math.abs(t) ? Math.abs(e - t) <= 1e-6 * Math.abs(e) : Math.abs(e - t) <= 1e-6 * Math.abs(t)
         }, r.NEQ = function(e, t) {
             return !r.EQ(e, t)
         }, e.exports = r
     },
-    347: function(e, t, a) {
+    419: function(e, t, a) {
         function r() {
-            function e(e, t, a, r, n, s, i, o, _, l, f, u, h, c, p) {
-                this.vbr_q = e, this.quant_comp = t, this.quant_comp_s = a, this.expY = r, this.st_lrm = n, this.st_s = s, this.masking_adj = i, this.masking_adj_short = o, this.ath_lower = _, this.ath_curve = l, this.ath_sensitivity = f, this.interch = u, this.safejoint = h, this.sfb21mod = c, this.msfix = p
+            this.thm = new n, this.en = new n
+        }
+        var n = a(79);
+        e.exports = r
+    },
+    427: function(e, t, a) {
+        "use strict";
+        a.r(t), module.exports = null
+    },
+    483: function(e, t, a) {
+        function r() {
+            function e(e, t, a) {
+                for (var n = 10, s = t + 238 - 14 - 286, o = -15; 0 > o; o++) {
+                    var _, l, f;
+                    _ = r[n + -10], l = e[s + -224] * _, f = e[t + 224] * _, _ = r[n + -9], l += e[s + -160] * _, f += e[t + 160] * _, _ = r[n + -8], l += e[s + -96] * _, f += e[t + 96] * _, _ = r[n + -7], l += e[s + -32] * _, f += e[t + 32] * _, _ = r[n + -6], l += e[s + 32] * _, f += e[t + -32] * _, _ = r[n + -5], l += e[s + 96] * _, f += e[t + -96] * _, _ = r[n + -4], l += e[s + 160] * _, f += e[t + -160] * _, _ = r[n + -3], l += e[s + 224] * _, f += e[t + -224] * _, _ = r[n + -2], l += e[t + -256] * _, f -= e[s + 256] * _, _ = r[n + -1], l += e[t + -192] * _, f -= e[s + 192] * _, _ = r[n + 0], l += e[t + -128] * _, f -= e[s + 128] * _, _ = r[n + 1], l += e[t + -64] * _, f -= e[s + 64] * _, _ = r[n + 2], l += e[t + 0] * _, f -= e[s + 0] * _, _ = r[n + 3], l += e[t + 64] * _, f -= e[s + -64] * _, _ = r[n + 4], l += e[t + 128] * _, f -= e[s + -128] * _, _ = r[n + 5], l += e[t + 192] * _, f -= e[s + -192] * _, l *= r[n + 6], _ = f - l, a[30 + 2 * o] = f + l, a[31 + 2 * o] = r[n + 7] * _, n += 18, t--, s++
+                }
+                var l, f, u, h;
+                f = e[t + -16] * r[n + -10], l = e[t + -32] * r[n + -2], f += (e[t + -48] - e[t + 16]) * r[n + -9], l += e[t + -96] * r[n + -1], f += (e[t + -80] + e[t + 48]) * r[n + -8], l += e[t + -160] * r[n + 0], f += (e[t + -112] - e[t + 80]) * r[n + -7], l += e[t + -224] * r[n + 1], f += (e[t + -144] + e[t + 112]) * r[n + -6], l -= e[t + 32] * r[n + 2], f += (e[t + -176] - e[t + 144]) * r[n + -5], l -= e[t + 96] * r[n + 3], f += (e[t + -208] + e[t + 176]) * r[n + -4], l -= e[t + 160] * r[n + 4], f += (e[t + -240] - e[t + 208]) * r[n + -3], l -= e[t + 224], u = l - f, h = l + f, f = a[14], l = a[15] - f, a[31] = h + f, a[30] = u + l, a[15] = u - l, a[14] = h - f;
+                var c;
+                c = a[28] - a[0], a[0] += a[28], a[28] = c * r[n + -36 + 7], c = a[29] - a[1], a[1] += a[29], a[29] = c * r[n + -36 + 7], c = a[26] - a[2], a[2] += a[26], a[26] = c * r[n + -72 + 7], c = a[27] - a[3], a[3] += a[27], a[27] = c * r[n + -72 + 7], c = a[24] - a[4], a[4] += a[24], a[24] = c * r[n + -108 + 7], c = a[25] - a[5], a[5] += a[25], a[25] = c * r[n + -108 + 7], c = a[22] - a[6], a[6] += a[22], a[22] = c * i.SQRT2, c = a[23] - a[7], a[7] += a[23], a[23] = c * i.SQRT2 - a[7], a[7] -= a[6], a[22] -= a[7], a[23] -= a[22], c = a[6], a[6] = a[31] - c, a[31] = a[31] + c, c = a[7], a[7] = a[30] - c, a[30] = a[30] + c, c = a[22], a[22] = a[15] - c, a[15] = a[15] + c, c = a[23], a[23] = a[14] - c, a[14] = a[14] + c, c = a[20] - a[8], a[8] += a[20], a[20] = c * r[n + -180 + 7], c = a[21] - a[9], a[9] += a[21], a[21] = c * r[n + -180 + 7], c = a[18] - a[10], a[10] += a[18], a[18] = c * r[n + -216 + 7], c = a[19] - a[11], a[11] += a[19], a[19] = c * r[n + -216 + 7], c = a[16] - a[12], a[12] += a[16], a[16] = c * r[n + -252 + 7], c = a[17] - a[13], a[13] += a[17], a[17] = c * r[n + -252 + 7], c = -a[20] + a[24], a[20] += a[24], a[24] = c * r[n + -216 + 7], c = -a[21] + a[25], a[21] += a[25], a[25] = c * r[n + -216 + 7], c = a[4] - a[8], a[4] += a[8], a[8] = c * r[n + -216 + 7], c = a[5] - a[9], a[5] += a[9], a[9] = c * r[n + -216 + 7], c = a[0] - a[12], a[0] += a[12], a[12] = c * r[n + -72 + 7], c = a[1] - a[13], a[1] += a[13], a[13] = c * r[n + -72 + 7], c = a[16] - a[28], a[16] += a[28], a[28] = c * r[n + -72 + 7], c = -a[17] + a[29], a[17] += a[29], a[29] = c * r[n + -72 + 7], c = i.SQRT2 * (a[2] - a[10]), a[2] += a[10], a[10] = c, c = i.SQRT2 * (a[3] - a[11]), a[3] += a[11], a[11] = c, c = i.SQRT2 * (-a[18] + a[26]), a[18] += a[26], a[26] = c - a[18], c = i.SQRT2 * (-a[19] + a[27]), a[19] += a[27], a[27] = c - a[19], c = a[2], a[19] -= a[3], a[3] -= c, a[2] = a[31] - c, a[31] += c, c = a[3], a[11] -= a[19], a[18] -= c, a[3] = a[30] - c, a[30] += c, c = a[18], a[27] -= a[11], a[19] -= c, a[18] = a[15] - c, a[15] += c, c = a[19], a[10] -= c, a[19] = a[14] - c, a[14] += c, c = a[10], a[11] -= c, a[10] = a[23] - c, a[23] += c, c = a[11], a[26] -= c, a[11] = a[22] - c, a[22] += c, c = a[26], a[27] -= c, a[26] = a[7] - c, a[7] += c, c = a[27], a[27] = a[6] - c, a[6] += c, c = i.SQRT2 * (a[0] - a[4]), a[0] += a[4], a[4] = c, c = i.SQRT2 * (a[1] - a[5]), a[1] += a[5], a[5] = c, c = i.SQRT2 * (a[16] - a[20]), a[16] += a[20], a[20] = c, c = i.SQRT2 * (a[17] - a[21]), a[17] += a[21], a[21] = c, c = -i.SQRT2 * (a[8] - a[12]), a[8] += a[12], a[12] = c - a[8], c = -i.SQRT2 * (a[9] - a[13]), a[9] += a[13], a[13] = c - a[9], c = -i.SQRT2 * (a[25] - a[29]), a[25] += a[29], a[29] = c - a[25], c = -i.SQRT2 * (a[24] + a[28]), a[24] -= a[28], a[28] = c - a[24], c = a[24] - a[16], a[24] = c, c = a[20] - c, a[20] = c, c = a[28] - c, a[28] = c, c = a[25] - a[17], a[25] = c, c = a[21] - c, a[21] = c, c = a[29] - c, a[29] = c, c = a[17] - a[1], a[17] = c, c = a[9] - c, a[9] = c, c = a[25] - c, a[25] = c, c = a[5] - c, a[5] = c, c = a[21] - c, a[21] = c, c = a[13] - c, a[13] = c, c = a[29] - c, a[29] = c, c = a[1] - a[0], a[1] = c, c = a[16] - c, a[16] = c, c = a[17] - c, a[17] = c, c = a[8] - c, a[8] = c, c = a[9] - c, a[9] = c, c = a[24] - c, a[24] = c, c = a[25] - c, a[25] = c, c = a[4] - c, a[4] = c, c = a[5] - c, a[5] = c, c = a[20] - c, a[20] = c, c = a[21] - c, a[21] = c, c = a[12] - c, a[12] = c, c = a[13] - c, a[13] = c, c = a[28] - c, a[28] = c, c = a[29] - c, a[29] = c, c = a[0], a[0] += a[31], a[31] -= c, c = a[1], a[1] += a[30], a[30] -= c, c = a[16], a[16] += a[15], a[15] -= c, c = a[17], a[17] += a[14], a[14] -= c, c = a[8], a[8] += a[23], a[23] -= c, c = a[9], a[9] += a[22], a[22] -= c, c = a[24], a[24] += a[7], a[7] -= c, c = a[25], a[25] += a[6], a[6] -= c, c = a[4], a[4] += a[27], a[27] -= c, c = a[5], a[5] += a[26], a[26] -= c, c = a[20], a[20] += a[11], a[11] -= c, c = a[21], a[21] += a[10], a[10] -= c, c = a[12], a[12] += a[19], a[19] -= c, c = a[13], a[13] += a[18], a[18] -= c, c = a[28], a[28] += a[3], a[3] -= c, c = a[29], a[29] += a[2], a[2] -= c
             }
 
-            function t(e, t, a, r, n, s, i, o, _, l, f, u, h, c) {
-                this.quant_comp = t, this.quant_comp_s = a, this.safejoint = r, this.nsmsfix = n, this.st_lrm = s, this.st_s = i, this.nsbass = o, this.scale = _, this.masking_adj = l, this.ath_lower = f, this.ath_curve = u, this.interch = h, this.sfscale = c
+            function t(e, t) {
+                for (var a = 0; 3 > a; a++) {
+                    var r, n, s, i, o, _;
+                    i = e[t + 6] * u[l.SHORT_TYPE][0] - e[t + 15], r = e[t + 0] * u[l.SHORT_TYPE][2] - e[t + 9], n = i + r, s = i - r, i = e[t + 15] * u[l.SHORT_TYPE][0] + e[t + 6], r = e[t + 9] * u[l.SHORT_TYPE][2] + e[t + 0], o = i + r, _ = -i + r, r = 2.069978111953089e-11 * (e[t + 3] * u[l.SHORT_TYPE][1] - e[t + 12]), i = 2.069978111953089e-11 * (e[t + 12] * u[l.SHORT_TYPE][1] + e[t + 3]), e[t + 0] = 1.90752519173728e-11 * n + r, e[t + 15] = 1.90752519173728e-11 * -o + i, s = .8660254037844387 * s * 1.907525191737281e-11, o = .5 * o * 1.907525191737281e-11 + i, e[t + 3] = s - o, e[t + 6] = s + o, n = .5 * n * 1.907525191737281e-11 - r, _ = .8660254037844387 * _ * 1.907525191737281e-11, e[t + 9] = n + _, e[t + 12] = n - _, t++
+                }
             }
 
             function a(e, t, a) {
-                var r = e.VBR == s.vbr_rh ? o : _,
-                    i = e.VBR_q_frac,
-                    l = r[t],
-                    f = r[t + 1],
-                    u = l;
-                l.st_lrm = l.st_lrm + i * (f.st_lrm - l.st_lrm), l.st_s = l.st_s + i * (f.st_s - l.st_s), l.masking_adj = l.masking_adj + i * (f.masking_adj - l.masking_adj), l.masking_adj_short = l.masking_adj_short + i * (f.masking_adj_short - l.masking_adj_short), l.ath_lower = l.ath_lower + i * (f.ath_lower - l.ath_lower), l.ath_curve = l.ath_curve + i * (f.ath_curve - l.ath_curve), l.ath_sensitivity = l.ath_sensitivity + i * (f.ath_sensitivity - l.ath_sensitivity), l.interch = l.interch + i * (f.interch - l.interch), l.msfix = l.msfix + i * (f.msfix - l.msfix), n(e, u.vbr_q), 0 != a ? e.quant_comp = u.quant_comp : Math.abs(e.quant_comp - -1) > 0 || (e.quant_comp = u.quant_comp), 0 != a ? e.quant_comp_short = u.quant_comp_s : Math.abs(e.quant_comp_short - -1) > 0 || (e.quant_comp_short = u.quant_comp_s), 0 != u.expY && (e.experimentalY = 0 != u.expY), 0 != a ? e.internal_flags.nsPsy.attackthre = u.st_lrm : Math.abs(e.internal_flags.nsPsy.attackthre - -1) > 0 || (e.internal_flags.nsPsy.attackthre = u.st_lrm), 0 != a ? e.internal_flags.nsPsy.attackthre_s = u.st_s : Math.abs(e.internal_flags.nsPsy.attackthre_s - -1) > 0 || (e.internal_flags.nsPsy.attackthre_s = u.st_s), 0 != a ? e.maskingadjust = u.masking_adj : Math.abs(e.maskingadjust - 0) > 0 || (e.maskingadjust = u.masking_adj), 0 != a ? e.maskingadjust_short = u.masking_adj_short : Math.abs(e.maskingadjust_short - 0) > 0 || (e.maskingadjust_short = u.masking_adj_short), 0 != a ? e.ATHlower = -u.ath_lower / 10 : Math.abs(10 * -e.ATHlower - 0) > 0 || (e.ATHlower = -u.ath_lower / 10), 0 != a ? e.ATHcurve = u.ath_curve : Math.abs(e.ATHcurve - -1) > 0 || (e.ATHcurve = u.ath_curve), 0 != a ? e.athaa_sensitivity = u.ath_sensitivity : Math.abs(e.athaa_sensitivity - -1) > 0 || (e.athaa_sensitivity = u.ath_sensitivity), u.interch > 0 && (0 != a ? e.interChRatio = u.interch : Math.abs(e.interChRatio - -1) > 0 || (e.interChRatio = u.interch)), u.safejoint > 0 && (e.exp_nspsytune = e.exp_nspsytune | u.safejoint), u.sfb21mod > 0 && (e.exp_nspsytune = e.exp_nspsytune | u.sfb21mod << 20), 0 != a ? e.msfix = u.msfix : Math.abs(e.msfix - -1) > 0 || (e.msfix = u.msfix), 0 == a && (e.VBR_q = t, e.VBR_q_frac = i)
+                var r, n, s, i, o, _, l, f, u, h;
+                s = a[17] - a[9], o = a[15] - a[11], _ = a[14] - a[12], l = a[0] + a[8], f = a[1] + a[7], u = a[2] + a[6], h = a[3] + a[5], e[t + 17] = l + u - h - (f - a[4]), n = (l + u - h) * c[19] + (f - a[4]), r = (s - o - _) * c[18], e[t + 5] = r + n, e[t + 6] = r - n, i = (a[16] - a[10]) * c[18], f = f * c[19] + a[4], r = s * c[12] + i + o * c[13] + _ * c[14], n = -l * c[16] + f - u * c[17] + h * c[15], e[t + 1] = r + n, e[t + 2] = r - n, r = s * c[13] - i - o * c[14] + _ * c[12], n = -l * c[17] + f - u * c[15] + h * c[16], e[t + 9] = r + n, e[t + 10] = r - n, r = s * c[14] - i + o * c[12] - _ * c[13], n = l * c[15] - f + u * c[16] - h * c[17], e[t + 13] = r + n, e[t + 14] = r - n;
+                var p, b, m, v, d, g, w, S;
+                p = a[8] - a[0], m = a[6] - a[2], v = a[5] - a[3], d = a[17] + a[9], g = a[16] + a[10], w = a[15] + a[11], S = a[14] + a[12], e[t + 0] = d + w + S + (g + a[13]), r = (d + w + S) * c[19] - (g + a[13]), n = (p - m + v) * c[18], e[t + 11] = r + n, e[t + 12] = r - n, b = (a[7] - a[1]) * c[18], g = a[13] - g * c[19], r = d * c[15] - g + w * c[16] + S * c[17], n = p * c[14] + b + m * c[12] + v * c[13], e[t + 3] = r + n, e[t + 4] = r - n, r = -d * c[17] + g - w * c[15] - S * c[16], n = p * c[13] + b - m * c[14] - v * c[12], e[t + 7] = r + n, e[t + 8] = r - n, r = -d * c[16] + g - w * c[17] - S * c[15], n = p * c[12] - b + m * c[13] - v * c[14], e[t + 15] = r + n, e[t + 16] = r - n
+            }
+            var r = [-.1482523854003001, 32.308141959636465, 296.40344946382766, 883.1344870032432, 11113.947376231741, 1057.2713659324597, 305.7402417275812, 30.825928907280012, 3.8533188138216365, 59.42900443849514, 709.5899960123345, 5281.91112291017, -5829.66483675846, -817.6293103748613, -76.91656988279972, -4.594269939176596, .9063471690191471, .1960342806591213, -.15466694054279598, 34.324387823855965, 301.8067566458425, 817.599602898885, 11573.795901679885, 1181.2520595540152, 321.59731579894424, 31.232021761053772, 3.7107095756221318, 53.650946155329365, 684.167428119626, 5224.56624370173, -6366.391851890084, -908.9766368219582, -89.83068876699639, -5.411397422890401, .8206787908286602, .3901806440322567, -.16070888947830023, 36.147034243915876, 304.11815768187864, 732.7429163887613, 11989.60988270091, 1300.012278487897, 335.28490093152146, 31.48816102859945, 3.373875931311736, 47.232241542899175, 652.7371796173471, 5132.414255594984, -6909.087078780055, -1001.9990371107289, -103.62185754286375, -6.104916304710272, .7416505462720353, .5805693545089249, -.16636367662261495, 37.751650073343995, 303.01103387567713, 627.9747488785183, 12358.763425278165, 1412.2779918482834, 346.7496836825721, 31.598286663170416, 3.1598635433980946, 40.57878626349686, 616.1671130880391, 5007.833007176154, -7454.040671756168, -1095.7960341867115, -118.24411666465777, -6.818469345853504, .6681786379192989, .7653668647301797, -.1716176790982088, 39.11551877123304, 298.3413246578966, 503.5259106886539, 12679.589408408976, 1516.5821921214542, 355.9850766329023, 31.395241710249053, 2.9164211881972335, 33.79716964664243, 574.8943997801362, 4853.234992253242, -7997.57021486075, -1189.7624067269965, -133.6444792601766, -7.7202770609839915, .5993769336819237, .9427934736519954, -.17645823955292173, 40.21879108166477, 289.9982036694474, 359.3226160751053, 12950.259102786438, 1612.1013903507662, 362.85067106591504, 31.045922092242872, 2.822222032597987, 26.988862316190684, 529.8996541764288, 4671.371946949588, -8535.899136645805, -1282.5898586244496, -149.58553632943463, -8.643494270763135, .5345111359507916, 1.111140466039205, -.36174739330527045, 41.04429910497807, 277.5463268268618, 195.6386023135583, 13169.43812144731, 1697.6433561479398, 367.40983966190305, 30.557037410382826, 2.531473372857427, 20.070154905927314, 481.50208566532336, 4464.970341588308, -9065.36882077239, -1373.62841526722, -166.1660487028118, -9.58289321133207, .4729647758913199, 1.268786568327291, -.36970682634889585, 41.393213350082036, 261.2935935556502, 12.935476055240873, 13336.131683328815, 1772.508612059496, 369.76534388639965, 29.751323653701338, 2.4023193045459172, 13.304795348228817, 430.5615775526625, 4237.0568611071185, -9581.931701634761, -1461.6913552409758, -183.12733958476446, -10.718010163869403, .41421356237309503, 1.414213562373095, -.37677560326535325, 41.619486213528496, 241.05423794991074, -187.94665032361226, 13450.063605744153, 1836.153896465782, 369.4908799925761, 29.001847876923147, 2.0714759319987186, 6.779591200894186, 377.7767837205709, 3990.386575512536, -10081.709459700915, -1545.947424837898, -200.3762958015653, -11.864482073055006, .3578057213145241, 1.546020906725474, -.3829366947518991, 41.1516456456653, 216.47684307105183, -406.1569483347166, 13511.136535077321, 1887.8076599260432, 367.3025214564151, 28.136213436723654, 1.913880671464418, .3829366947518991, 323.85365704338597, 3728.1472257487526, -10561.233882199509, -1625.2025997821418, -217.62525175416, -13.015432208941645, .3033466836073424, 1.66293922460509, -.5822628872992417, 40.35639251440489, 188.20071124269245, -640.2706748618148, 13519.21490106562, 1927.6022433578062, 362.8197642637487, 26.968821921868447, 1.7463817695935329, -5.62650678237171, 269.3016715297017, 3453.386536448852, -11016.145278780888, -1698.6569643425091, -234.7658734267683, -14.16351421663124, .2504869601913055, 1.76384252869671, -.5887180101749253, 39.23429103868072, 155.76096234403798, -889.2492977967378, 13475.470561874661, 1955.0535223723712, 356.4450994756727, 25.894952980042156, 1.5695032905781554, -11.181939564328772, 214.80884394039484, 3169.1640829158237, -11443.321309975563, -1765.1588461316153, -251.68908574481912, -15.49755935939164, .198912367379658, 1.847759065022573, -.7912582233652842, 37.39369355329111, 119.699486012458, -1151.0956593239027, 13380.446257078214, 1970.3952110853447, 348.01959814116185, 24.731487364283044, 1.3850130831637748, -16.421408865300393, 161.05030052864092, 2878.3322807850063, -11838.991423510031, -1823.985884688674, -268.2854986386903, -16.81724543849939, .1483359875383474, 1.913880671464418, -.7960642926861912, 35.2322109610459, 80.01928065061526, -1424.0212633405113, 13235.794061869668, 1973.804052543835, 337.9908651258184, 23.289159354463873, 1.3934255946442087, -21.099669467133474, 108.48348407242611, 2583.700758091299, -12199.726194855148, -1874.2780658979746, -284.2467154529415, -18.11369784385905, .09849140335716425, 1.961570560806461, -.998795456205172, 32.56307803611191, 36.958364584370486, -1706.075448829146, 13043.287458812016, 1965.3831106103316, 326.43182772364605, 22.175018750622293, 1.198638339011324, -25.371248002043963, 57.53505923036915, 2288.41886619975, -12522.674544337233, -1914.8400385312243, -299.26241273417224, -19.37805630698734, .04912684976946725, 1.990369453344394, .035780907 * i.SQRT2 * .5 / 2384e-9, .017876148 * i.SQRT2 * .5 / 2384e-9, .003134727 * i.SQRT2 * .5 / 2384e-9, .002457142 * i.SQRT2 * .5 / 2384e-9, 971317e-9 * i.SQRT2 * .5 / 2384e-9, 218868e-9 * i.SQRT2 * .5 / 2384e-9, 101566e-9 * i.SQRT2 * .5 / 2384e-9, 13828e-9 * i.SQRT2 * .5 / 2384e-9, 12804.797818791945, 1945.5515939597317, 313.4244966442953, 49591e-9 / 2384e-9, 1995.1556208053692, 21458e-9 / 2384e-9, -69618e-9 / 2384e-9],
+                n = 12,
+                f = 36,
+                u = [
+                    [2.382191739347913e-13, 6.423305872147834e-13, 9.400849094049688e-13, 1.122435026096556e-12, 1.183840321267481e-12, 1.122435026096556e-12, 9.40084909404969e-13, 6.423305872147839e-13, 2.382191739347918e-13, 5.456116108943412e-12, 4.878985199565852e-12, 4.240448995017367e-12, 3.559909094758252e-12, 2.858043359288075e-12, 2.156177623817898e-12, 1.475637723558783e-12, 8.371015190102974e-13, 2.599706096327376e-13, -5.456116108943412e-12, -4.878985199565852e-12, -4.240448995017367e-12, -3.559909094758252e-12, -2.858043359288076e-12, -2.156177623817898e-12, -1.475637723558783e-12, -8.371015190102975e-13, -2.599706096327376e-13, -2.382191739347923e-13, -6.423305872147843e-13, -9.400849094049696e-13, -1.122435026096556e-12, -1.183840321267481e-12, -1.122435026096556e-12, -9.400849094049694e-13, -6.42330587214784e-13, -2.382191739347918e-13],
+                    [2.382191739347913e-13, 6.423305872147834e-13, 9.400849094049688e-13, 1.122435026096556e-12, 1.183840321267481e-12, 1.122435026096556e-12, 9.400849094049688e-13, 6.423305872147841e-13, 2.382191739347918e-13, 5.456116108943413e-12, 4.878985199565852e-12, 4.240448995017367e-12, 3.559909094758253e-12, 2.858043359288075e-12, 2.156177623817898e-12, 1.475637723558782e-12, 8.371015190102975e-13, 2.599706096327376e-13, -5.461314069809755e-12, -4.921085770524055e-12, -4.343405037091838e-12, -3.732668368707687e-12, -3.093523840190885e-12, -2.430835727329465e-12, -1.734679010007751e-12, -9.74825365660928e-13, -2.797435120168326e-13, 0, 0, 0, 0, 0, 0, -2.283748241799531e-13, -4.037858874020686e-13, -2.146547464825323e-13],
+                    [.1316524975873958, .414213562373095, .7673269879789602, 1.091308501069271, 1.303225372841206, 1.56968557711749, 1.920982126971166, 2.414213562373094, 3.171594802363212, 4.510708503662055, 7.595754112725146, 22.90376554843115, .984807753012208, .6427876096865394, .3420201433256688, .9396926207859084, -.1736481776669303, -.7660444431189779, .8660254037844387, .5, -.5144957554275265, -.4717319685649723, -.3133774542039019, -.1819131996109812, -.09457419252642064, -.04096558288530405, -.01419856857247115, -.003699974673760037, .8574929257125442, .8817419973177052, .9496286491027329, .9833145924917901, .9955178160675857, .9991605581781475, .999899195244447, .9999931550702802],
+                    [0, 0, 0, 0, 0, 0, 2.283748241799531e-13, 4.037858874020686e-13, 2.146547464825323e-13, 5.461314069809755e-12, 4.921085770524055e-12, 4.343405037091838e-12, 3.732668368707687e-12, 3.093523840190885e-12, 2.430835727329466e-12, 1.734679010007751e-12, 9.74825365660928e-13, 2.797435120168326e-13, -5.456116108943413e-12, -4.878985199565852e-12, -4.240448995017367e-12, -3.559909094758253e-12, -2.858043359288075e-12, -2.156177623817898e-12, -1.475637723558782e-12, -8.371015190102975e-13, -2.599706096327376e-13, -2.382191739347913e-13, -6.423305872147834e-13, -9.400849094049688e-13, -1.122435026096556e-12, -1.183840321267481e-12, -1.122435026096556e-12, -9.400849094049688e-13, -6.423305872147841e-13, -2.382191739347918e-13]
+                ],
+                h = u[l.SHORT_TYPE],
+                c = u[l.SHORT_TYPE],
+                p = u[l.SHORT_TYPE],
+                b = u[l.SHORT_TYPE],
+                m = [0, 1, 16, 17, 8, 9, 24, 25, 4, 5, 20, 21, 12, 13, 28, 29, 2, 3, 18, 19, 10, 11, 26, 27, 6, 7, 22, 23, 14, 15, 30, 31];
+            this.mdct_sub48 = function(r, i, c) {
+                for (var v = i, d = 286, g = 0; g < r.channels_out; g++) {
+                    for (var w = 0; w < r.mode_gr; w++) {
+                        for (var S, A = r.l3_side.tt[w][g], R = A.xr, M = 0, y = r.sb_sample[g][1 - w], B = 0, E = 0; 9 > E; E++)
+                            for (e(v, d, y[B]), e(v, d + 32, y[B + 1]), B += 2, d += 64, S = 1; 32 > S; S += 2) y[B - 1][S] *= -1;
+                        for (S = 0; 32 > S; S++, M += 18) {
+                            var T = A.block_type,
+                                k = r.sb_sample[g][w],
+                                x = r.sb_sample[g][1 - w];
+                            if (0 != A.mixed_block_flag && 2 > S && (T = 0), r.amp_filter[S] < 1e-12) o.fill(R, M + 0, M + 18, 0);
+                            else {
+                                if (r.amp_filter[S] < 1)
+                                    for (var E = 0; 18 > E; E++) x[E][m[S]] *= r.amp_filter[S];
+                                if (T == l.SHORT_TYPE) {
+                                    for (var E = -n / 4; 0 > E; E++) {
+                                        var P = u[l.SHORT_TYPE][E + 3];
+                                        R[M + 3 * E + 9] = k[9 + E][m[S]] * P - k[8 - E][m[S]], R[M + 3 * E + 18] = k[14 - E][m[S]] * P + k[15 + E][m[S]], R[M + 3 * E + 10] = k[15 + E][m[S]] * P - k[14 - E][m[S]], R[M + 3 * E + 19] = x[2 - E][m[S]] * P + x[3 + E][m[S]], R[M + 3 * E + 11] = x[3 + E][m[S]] * P - x[2 - E][m[S]], R[M + 3 * E + 20] = x[8 - E][m[S]] * P + x[9 + E][m[S]]
+                                    }
+                                    t(R, M)
+                                } else {
+                                    for (var I = _(18), E = -f / 4; 0 > E; E++) {
+                                        var L, O;
+                                        L = u[T][E + 27] * x[E + 9][m[S]] + u[T][E + 36] * x[8 - E][m[S]], O = u[T][E + 9] * k[E + 9][m[S]] - u[T][E + 18] * k[8 - E][m[S]], I[E + 9] = L - O * h[3 + E + 9], I[E + 18] = L * h[3 + E + 9] + O
+                                    }
+                                    a(R, M, I)
+                                }
+                            }
+                            if (T != l.SHORT_TYPE && 0 != S)
+                                for (var E = 7; E >= 0; --E) {
+                                    var V, N;
+                                    V = R[M + E] * p[20 + E] + R[M + -1 - E] * b[28 + E], N = R[M + E] * b[28 + E] - R[M + -1 - E] * p[20 + E], R[M + -1 - E] = V, R[M + E] = N
+                                }
+                        }
+                    }
+                    if (v = c, d = 286, 1 == r.mode_gr)
+                        for (var H = 0; 18 > H; H++) s.arraycopy(r.sb_sample[g][1][H], 0, r.sb_sample[g][0][H], 0, 32)
+                }
+            }
+        }
+        var n = a(536),
+            s = n.System,
+            i = (n.VbrMode, n.Float, n.ShortBlock, n.Util),
+            o = n.Arrays,
+            _ = (n.new_array_n, n.new_byte, n.new_double, n.new_float),
+            l = (n.new_float_n, n.new_int, n.new_int_n, n.assert, a(574));
+        e.exports = r
+    },
+    494: function(e, t) {
+        var a = {}.toString;
+        e.exports = Array.isArray || function(e) {
+            return "[object Array]" == a.call(e)
+        }
+    },
+    51: function(e, t, a) {
+        function r() {
+            function e() {
+                this.write_timing = 0, this.ptr = 0, this.buf = s(t)
+            }
+            var t = 40;
+            this.Class_ID = 0, this.lame_encode_frame_init = 0, this.iteration_init_init = 0, this.fill_buffer_resample_init = 0, this.mfbuf = _([2, r.MFSIZE]), this.mode_gr = 0, this.channels_in = 0, this.channels_out = 0, this.resample_ratio = 0, this.mf_samples_to_encode = 0, this.mf_size = 0, this.VBR_min_bitrate = 0, this.VBR_max_bitrate = 0, this.bitrate_index = 0, this.samplerate_index = 0, this.mode_ext = 0, this.lowpass1 = 0, this.lowpass2 = 0, this.highpass1 = 0, this.highpass2 = 0, this.noise_shaping = 0, this.noise_shaping_amp = 0, this.substep_shaping = 0, this.psymodel = 0, this.noise_shaping_stop = 0, this.subblock_gain = 0, this.use_best_huffman = 0, this.full_outer_loop = 0, this.l3_side = new u, this.ms_ratio = o(2), this.padding = 0, this.frac_SpF = 0, this.slot_lag = 0, this.tag_spec = null, this.nMusicCRC = 0, this.OldValue = l(2), this.CurrentStep = l(2), this.masking_lower = 0, this.bv_scf = l(576), this.pseudohalf = l(v.SFBMAX), this.sfb21_extra = !1, this.inbuf_old = new Array(2), this.blackfilt = new Array(2 * r.BPC + 1), this.itime = i(2), this.sideinfo_len = 0, this.sb_sample = _([2, 2, 18, m.SBLIMIT]), this.amp_filter = o(32), this.header = new Array(r.MAX_HEADER_BUF), this.h_ptr = 0, this.w_ptr = 0, this.ancillary_flag = 0, this.ResvSize = 0, this.ResvMax = 0, this.scalefac_band = new h, this.minval_l = o(m.CBANDS), this.minval_s = o(m.CBANDS), this.nb_1 = _([4, m.CBANDS]), this.nb_2 = _([4, m.CBANDS]), this.nb_s1 = _([4, m.CBANDS]), this.nb_s2 = _([4, m.CBANDS]), this.s3_ss = null, this.s3_ll = null, this.decay = 0, this.thm = new Array(4), this.en = new Array(4), this.tot_ener = o(4), this.loudness_sq = _([2, 2]), this.loudness_sq_save = o(2), this.mld_l = o(m.SBMAX_l), this.mld_s = o(m.SBMAX_s), this.bm_l = l(m.SBMAX_l), this.bo_l = l(m.SBMAX_l), this.bm_s = l(m.SBMAX_s), this.bo_s = l(m.SBMAX_s), this.npart_l = 0, this.npart_s = 0, this.s3ind = f([m.CBANDS, 2]), this.s3ind_s = f([m.CBANDS, 2]), this.numlines_s = l(m.CBANDS), this.numlines_l = l(m.CBANDS), this.rnumlines_l = o(m.CBANDS), this.mld_cb_l = o(m.CBANDS), this.mld_cb_s = o(m.CBANDS), this.numlines_s_num1 = 0, this.numlines_l_num1 = 0, this.pe = o(4), this.ms_ratio_s_old = 0, this.ms_ratio_l_old = 0, this.ms_ener_ratio_old = 0, this.blocktype_old = l(2), this.nsPsy = new c, this.VBR_seek_table = new p, this.ATH = null, this.PSY = null, this.nogap_total = 0, this.nogap_current = 0, this.decode_on_the_fly = !0, this.findReplayGain = !0, this.findPeakSample = !0, this.PeakSample = 0, this.RadioGain = 0, this.AudiophileGain = 0, this.rgdata = null, this.noclipGainChange = 0, this.noclipScale = 0, this.bitrate_stereoMode_Hist = f([16, 5]), this.bitrate_blockType_Hist = f([16, 6]), this.pinfo = null, this.hip = null, this.in_buffer_nsamples = 0, this.in_buffer_0 = null, this.in_buffer_1 = null, this.iteration_loop = null;
+            for (var a = 0; a < this.en.length; a++) this.en[a] = new b;
+            for (var a = 0; a < this.thm.length; a++) this.thm[a] = new b;
+            for (var a = 0; a < this.header.length; a++) this.header[a] = new e
+        }
+        var n = a(536),
+            s = (n.System, n.VbrMode, n.Float, n.ShortBlock, n.Util, n.Arrays, n.new_array_n, n.new_byte),
+            i = n.new_double,
+            o = n.new_float,
+            _ = n.new_float_n,
+            l = n.new_int,
+            f = n.new_int_n,
+            u = (n.assert, a(342)),
+            h = a(105),
+            c = a(1),
+            p = a(646),
+            b = a(79),
+            m = a(574),
+            v = a(119);
+        r.MFSIZE = 3456 + m.ENCDELAY - m.MDCTDELAY, r.MAX_HEADER_BUF = 256, r.MAX_BITS_PER_CHANNEL = 4095, r.MAX_BITS_PER_GRANULE = 7680, r.BPC = 320, e.exports = r
+    },
+    518: function(e, t, a) {
+        "use strict";
+        (function(e) {
+            function r() {
+                try {
+                    var e = new Uint8Array(1);
+                    return e.__proto__ = {
+                        __proto__: Uint8Array.prototype,
+                        foo: function() {
+                            return 42
+                        }
+                    }, 42 === e.foo() && "function" == typeof e.subarray && 0 === e.subarray(1, 1).byteLength
+                } catch (t) {
+                    return !1
+                }
             }
 
-            function r(e, t, a) {
-                var r = t,
-                    n = i.nearestBitrateFullIndex(t);
-                if (e.VBR = s.vbr_abr, e.VBR_mean_bitrate_kbps = r, e.VBR_mean_bitrate_kbps = Math.min(e.VBR_mean_bitrate_kbps, 320), e.VBR_mean_bitrate_kbps = Math.max(e.VBR_mean_bitrate_kbps, 8), e.brate = e.VBR_mean_bitrate_kbps, e.VBR_mean_bitrate_kbps > 320 && (e.disable_reservoir = !0), l[n].safejoint > 0 && (e.exp_nspsytune = 2 | e.exp_nspsytune), l[n].sfscale > 0 && (e.internal_flags.noise_shaping = 2), Math.abs(l[n].nsbass) > 0) {
-                    var o = int(4 * l[n].nsbass);
-                    0 > o && (o += 64), e.exp_nspsytune = e.exp_nspsytune | o << 2
+            function n() {
+                return i.TYPED_ARRAY_SUPPORT ? 2147483647 : 1073741823
+            }
+
+            function s(e, t) {
+                if (n() < t) throw new RangeError("Invalid typed array length");
+                return i.TYPED_ARRAY_SUPPORT ? (e = new Uint8Array(t), e.__proto__ = i.prototype) : (null === e && (e = new i(t)), e.length = t), e
+            }
+
+            function i(e, t, a) {
+                if (!(i.TYPED_ARRAY_SUPPORT || this instanceof i)) return new i(e, t, a);
+                if ("number" == typeof e) {
+                    if ("string" == typeof t) throw new Error("If encoding is specified then the first argument must be a string");
+                    return f(this, e)
                 }
-                return 0 != a ? e.quant_comp = l[n].quant_comp : Math.abs(e.quant_comp - -1) > 0 || (e.quant_comp = l[n].quant_comp), 0 != a ? e.quant_comp_short = l[n].quant_comp_s : Math.abs(e.quant_comp_short - -1) > 0 || (e.quant_comp_short = l[n].quant_comp_s), 0 != a ? e.msfix = l[n].nsmsfix : Math.abs(e.msfix - -1) > 0 || (e.msfix = l[n].nsmsfix), 0 != a ? e.internal_flags.nsPsy.attackthre = l[n].st_lrm : Math.abs(e.internal_flags.nsPsy.attackthre - -1) > 0 || (e.internal_flags.nsPsy.attackthre = l[n].st_lrm), 0 != a ? e.internal_flags.nsPsy.attackthre_s = l[n].st_s : Math.abs(e.internal_flags.nsPsy.attackthre_s - -1) > 0 || (e.internal_flags.nsPsy.attackthre_s = l[n].st_s), 0 != a ? e.scale = l[n].scale : Math.abs(e.scale - -1) > 0 || (e.scale = l[n].scale), 0 != a ? e.maskingadjust = l[n].masking_adj : Math.abs(e.maskingadjust - 0) > 0 || (e.maskingadjust = l[n].masking_adj), l[n].masking_adj > 0 ? 0 != a ? e.maskingadjust_short = .9 * l[n].masking_adj : Math.abs(e.maskingadjust_short - 0) > 0 || (e.maskingadjust_short = .9 * l[n].masking_adj) : 0 != a ? e.maskingadjust_short = 1.1 * l[n].masking_adj : Math.abs(e.maskingadjust_short - 0) > 0 || (e.maskingadjust_short = 1.1 * l[n].masking_adj), 0 != a ? e.ATHlower = -l[n].ath_lower / 10 : Math.abs(10 * -e.ATHlower - 0) > 0 || (e.ATHlower = -l[n].ath_lower / 10), 0 != a ? e.ATHcurve = l[n].ath_curve : Math.abs(e.ATHcurve - -1) > 0 || (e.ATHcurve = l[n].ath_curve), 0 != a ? e.interChRatio = l[n].interch : Math.abs(e.interChRatio - -1) > 0 || (e.interChRatio = l[n].interch), t
+                return o(this, e, t, a)
+            }
+
+            function o(e, t, a, r) {
+                if ("number" == typeof t) throw new TypeError('"value" argument must not be a number');
+                return "undefined" != typeof ArrayBuffer && t instanceof ArrayBuffer ? c(e, t, a, r) : "string" == typeof t ? u(e, t, a) : p(e, t)
+            }
+
+            function _(e) {
+                if ("number" != typeof e) throw new TypeError('"size" argument must be a number');
+                if (0 > e) throw new RangeError('"size" argument must not be negative')
+            }
+
+            function l(e, t, a, r) {
+                return _(t), 0 >= t ? s(e, t) : void 0 !== a ? "string" == typeof r ? s(e, t).fill(a, r) : s(e, t).fill(a) : s(e, t)
+            }
+
+            function f(e, t) {
+                if (_(t), e = s(e, 0 > t ? 0 : 0 | b(t)), !i.TYPED_ARRAY_SUPPORT)
+                    for (var a = 0; t > a; ++a) e[a] = 0;
+                return e
+            }
+
+            function u(e, t, a) {
+                if (("string" != typeof a || "" === a) && (a = "utf8"), !i.isEncoding(a)) throw new TypeError('"encoding" must be a valid string encoding');
+                var r = 0 | v(t, a);
+                e = s(e, r);
+                var n = e.write(t, a);
+                return n !== r && (e = e.slice(0, n)), e
+            }
+
+            function h(e, t) {
+                var a = t.length < 0 ? 0 : 0 | b(t.length);
+                e = s(e, a);
+                for (var r = 0; a > r; r += 1) e[r] = 255 & t[r];
+                return e
+            }
+
+            function c(e, t, a, r) {
+                if (t.byteLength, 0 > a || t.byteLength < a) throw new RangeError("'offset' is out of bounds");
+                if (t.byteLength < a + (r || 0)) throw new RangeError("'length' is out of bounds");
+                return t = void 0 === a && void 0 === r ? new Uint8Array(t) : void 0 === r ? new Uint8Array(t, a) : new Uint8Array(t, a, r), i.TYPED_ARRAY_SUPPORT ? (e = t, e.__proto__ = i.prototype) : e = h(e, t), e
+            }
+
+            function p(e, t) {
+                if (i.isBuffer(t)) {
+                    var a = 0 | b(t.length);
+                    return e = s(e, a), 0 === e.length ? e : (t.copy(e, 0, 0, a), e)
+                }
+                if (t) {
+                    if ("undefined" != typeof ArrayBuffer && t.buffer instanceof ArrayBuffer || "length" in t) return "number" != typeof t.length || Q(t.length) ? s(e, 0) : h(e, t);
+                    if ("Buffer" === t.type && $(t.data)) return h(e, t.data)
+                }
+                throw new TypeError("First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.")
+            }
+
+            function b(e) {
+                if (e >= n()) throw new RangeError("Attempt to allocate Buffer larger than maximum size: 0x" + n().toString(16) + " bytes");
+                return 0 | e
+            }
+
+            function m(e) {
+                return +e != e && (e = 0), i.alloc(+e)
+            }
+
+            function v(e, t) {
+                if (i.isBuffer(e)) return e.length;
+                if ("undefined" != typeof ArrayBuffer && "function" == typeof ArrayBuffer.isView && (ArrayBuffer.isView(e) || e instanceof ArrayBuffer)) return e.byteLength;
+                "string" != typeof e && (e = "" + e);
+                var a = e.length;
+                if (0 === a) return 0;
+                for (var r = !1;;) switch (t) {
+                    case "ascii":
+                    case "latin1":
+                    case "binary":
+                        return a;
+                    case "utf8":
+                    case "utf-8":
+                    case void 0:
+                        return j(e).length;
+                    case "ucs2":
+                    case "ucs-2":
+                    case "utf16le":
+                    case "utf-16le":
+                        return 2 * a;
+                    case "hex":
+                        return a >>> 1;
+                    case "base64":
+                        return K(e).length;
+                    default:
+                        if (r) return j(e).length;
+                        t = ("" + t).toLowerCase(), r = !0
+                }
+            }
+
+            function d(e, t, a) {
+                var r = !1;
+                if ((void 0 === t || 0 > t) && (t = 0), t > this.length) return "";
+                if ((void 0 === a || a > this.length) && (a = this.length), 0 >= a) return "";
+                if (a >>>= 0, t >>>= 0, t >= a) return "";
+                for (e || (e = "utf8");;) switch (e) {
+                    case "hex":
+                        return L(this, t, a);
+                    case "utf8":
+                    case "utf-8":
+                        return k(this, t, a);
+                    case "ascii":
+                        return P(this, t, a);
+                    case "latin1":
+                    case "binary":
+                        return I(this, t, a);
+                    case "base64":
+                        return T(this, t, a);
+                    case "ucs2":
+                    case "ucs-2":
+                    case "utf16le":
+                    case "utf-16le":
+                        return O(this, t, a);
+                    default:
+                        if (r) throw new TypeError("Unknown encoding: " + e);
+                        e = (e + "").toLowerCase(), r = !0
+                }
+            }
+
+            function g(e, t, a) {
+                var r = e[t];
+                e[t] = e[a], e[a] = r
+            }
+
+            function w(e, t, a, r, n) {
+                if (0 === e.length) return -1;
+                if ("string" == typeof a ? (r = a, a = 0) : a > 2147483647 ? a = 2147483647 : -2147483648 > a && (a = -2147483648), a = +a, isNaN(a) && (a = n ? 0 : e.length - 1), 0 > a && (a = e.length + a), a >= e.length) {
+                    if (n) return -1;
+                    a = e.length - 1
+                } else if (0 > a) {
+                    if (!n) return -1;
+                    a = 0
+                }
+                if ("string" == typeof t && (t = i.from(t, r)), i.isBuffer(t)) return 0 === t.length ? -1 : S(e, t, a, r, n);
+                if ("number" == typeof t) return t = 255 & t, i.TYPED_ARRAY_SUPPORT && "function" == typeof Uint8Array.prototype.indexOf ? n ? Uint8Array.prototype.indexOf.call(e, t, a) : Uint8Array.prototype.lastIndexOf.call(e, t, a) : S(e, [t], a, r, n);
+                throw new TypeError("val must be string, number or Buffer")
+            }
+
+            function S(e, t, a, r, n) {
+                function s(e, t) {
+                    return 1 === i ? e[t] : e.readUInt16BE(t * i)
+                }
+                var i = 1,
+                    o = e.length,
+                    _ = t.length;
+                if (void 0 !== r && (r = String(r).toLowerCase(), "ucs2" === r || "ucs-2" === r || "utf16le" === r || "utf-16le" === r)) {
+                    if (e.length < 2 || t.length < 2) return -1;
+                    i = 2, o /= 2, _ /= 2, a /= 2
+                }
+                var l;
+                if (n) {
+                    var f = -1;
+                    for (l = a; o > l; l++)
+                        if (s(e, l) === s(t, -1 === f ? 0 : l - f)) {
+                            if (-1 === f && (f = l), l - f + 1 === _) return f * i
+                        } else -1 !== f && (l -= l - f), f = -1
+                } else
+                    for (a + _ > o && (a = o - _), l = a; l >= 0; l--) {
+                        for (var u = !0, h = 0; _ > h; h++)
+                            if (s(e, l + h) !== s(t, h)) {
+                                u = !1;
+                                break
+                            }
+                        if (u) return l
+                    }
+                return -1
+            }
+
+            function A(e, t, a, r) {
+                a = Number(a) || 0;
+                var n = e.length - a;
+                r ? (r = Number(r), r > n && (r = n)) : r = n;
+                var s = t.length;
+                if (s % 2 !== 0) throw new TypeError("Invalid hex string");
+                r > s / 2 && (r = s / 2);
+                for (var i = 0; r > i; ++i) {
+                    var o = parseInt(t.substr(2 * i, 2), 16);
+                    if (isNaN(o)) return i;
+                    e[a + i] = o
+                }
+                return i
+            }
+
+            function R(e, t, a, r) {
+                return Z(j(t, e.length - a), e, a, r)
+            }
+
+            function M(e, t, a, r) {
+                return Z(G(t), e, a, r)
+            }
+
+            function y(e, t, a, r) {
+                return M(e, t, a, r)
+            }
+
+            function B(e, t, a, r) {
+                return Z(K(t), e, a, r)
+            }
+
+            function E(e, t, a, r) {
+                return Z(z(t, e.length - a), e, a, r)
+            }
+
+            function T(e, t, a) {
+                return 0 === t && a === e.length ? W.fromByteArray(e) : W.fromByteArray(e.slice(t, a))
+            }
+
+            function k(e, t, a) {
+                a = Math.min(e.length, a);
+                for (var r = [], n = t; a > n;) {
+                    var s = e[n],
+                        i = null,
+                        o = s > 239 ? 4 : s > 223 ? 3 : s > 191 ? 2 : 1;
+                    if (a >= n + o) {
+                        var _, l, f, u;
+                        switch (o) {
+                            case 1:
+                                128 > s && (i = s);
+                                break;
+                            case 2:
+                                _ = e[n + 1], 128 === (192 & _) && (u = (31 & s) << 6 | 63 & _, u > 127 && (i = u));
+                                break;
+                            case 3:
+                                _ = e[n + 1], l = e[n + 2], 128 === (192 & _) && 128 === (192 & l) && (u = (15 & s) << 12 | (63 & _) << 6 | 63 & l, u > 2047 && (55296 > u || u > 57343) && (i = u));
+                                break;
+                            case 4:
+                                _ = e[n + 1], l = e[n + 2], f = e[n + 3], 128 === (192 & _) && 128 === (192 & l) && 128 === (192 & f) && (u = (15 & s) << 18 | (63 & _) << 12 | (63 & l) << 6 | 63 & f, u > 65535 && 1114112 > u && (i = u))
+                        }
+                    }
+                    null === i ? (i = 65533, o = 1) : i > 65535 && (i -= 65536, r.push(i >>> 10 & 1023 | 55296), i = 56320 | 1023 & i), r.push(i), n += o
+                }
+                return x(r)
+            }
+
+            function x(e) {
+                var t = e.length;
+                if (ee >= t) return String.fromCharCode.apply(String, e);
+                for (var a = "", r = 0; t > r;) a += String.fromCharCode.apply(String, e.slice(r, r += ee));
+                return a
+            }
+
+            function P(e, t, a) {
+                var r = "";
+                a = Math.min(e.length, a);
+                for (var n = t; a > n; ++n) r += String.fromCharCode(127 & e[n]);
+                return r
+            }
+
+            function I(e, t, a) {
+                var r = "";
+                a = Math.min(e.length, a);
+                for (var n = t; a > n; ++n) r += String.fromCharCode(e[n]);
+                return r
+            }
+
+            function L(e, t, a) {
+                var r = e.length;
+                (!t || 0 > t) && (t = 0), (!a || 0 > a || a > r) && (a = r);
+                for (var n = "", s = t; a > s; ++s) n += U(e[s]);
+                return n
+            }
+
+            function O(e, t, a) {
+                for (var r = e.slice(t, a), n = "", s = 0; s < r.length; s += 2) n += String.fromCharCode(r[s] + 256 * r[s + 1]);
+                return n
+            }
+
+            function V(e, t, a) {
+                if (e % 1 !== 0 || 0 > e) throw new RangeError("offset is not uint");
+                if (e + t > a) throw new RangeError("Trying to access beyond buffer length")
+            }
+
+            function N(e, t, a, r, n, s) {
+                if (!i.isBuffer(e)) throw new TypeError('"buffer" argument must be a Buffer instance');
+                if (t > n || s > t) throw new RangeError('"value" argument is out of bounds');
+                if (a + r > e.length) throw new RangeError("Index out of range")
+            }
+
+            function H(e, t, a, r) {
+                0 > t && (t = 65535 + t + 1);
+                for (var n = 0, s = Math.min(e.length - a, 2); s > n; ++n) e[a + n] = (t & 255 << 8 * (r ? n : 1 - n)) >>> 8 * (r ? n : 1 - n)
+            }
+
+            function D(e, t, a, r) {
+                0 > t && (t = 4294967295 + t + 1);
+                for (var n = 0, s = Math.min(e.length - a, 4); s > n; ++n) e[a + n] = t >>> 8 * (r ? n : 3 - n) & 255
+            }
+
+            function Y(e, t, a, r, n, s) {
+                if (a + r > e.length) throw new RangeError("Index out of range");
+                if (0 > a) throw new RangeError("Index out of range")
+            }
+
+            function X(e, t, a, r, n) {
+                return n || Y(e, t, a, 4, 3.4028234663852886e38, -3.4028234663852886e38), J.write(e, t, a, r, 23, 4), a + 4
+            }
+
+            function F(e, t, a, r, n) {
+                return n || Y(e, t, a, 8, 1.7976931348623157e308, -1.7976931348623157e308), J.write(e, t, a, r, 52, 8), a + 8
+            }
+
+            function C(e) {
+                if (e = q(e).replace(te, ""), e.length < 2) return "";
+                for (; e.length % 4 !== 0;) e += "=";
+                return e
+            }
+
+            function q(e) {
+                return e.trim ? e.trim() : e.replace(/^\s+|\s+$/g, "")
+            }
+
+            function U(e) {
+                return 16 > e ? "0" + e.toString(16) : e.toString(16)
+            }
+
+            function j(e, t) {
+                t = t || 1 / 0;
+                for (var a, r = e.length, n = null, s = [], i = 0; r > i; ++i) {
+                    if (a = e.charCodeAt(i), a > 55295 && 57344 > a) {
+                        if (!n) {
+                            if (a > 56319) {
+                                (t -= 3) > -1 && s.push(239, 191, 189);
+                                continue
+                            }
+                            if (i + 1 === r) {
+                                (t -= 3) > -1 && s.push(239, 191, 189);
+                                continue
+                            }
+                            n = a;
+                            continue
+                        }
+                        if (56320 > a) {
+                            (t -= 3) > -1 && s.push(239, 191, 189), n = a;
+                            continue
+                        }
+                        a = (n - 55296 << 10 | a - 56320) + 65536
+                    } else n && (t -= 3) > -1 && s.push(239, 191, 189);
+                    if (n = null, 128 > a) {
+                        if ((t -= 1) < 0) break;
+                        s.push(a)
+                    } else if (2048 > a) {
+                        if ((t -= 2) < 0) break;
+                        s.push(a >> 6 | 192, 63 & a | 128)
+                    } else if (65536 > a) {
+                        if ((t -= 3) < 0) break;
+                        s.push(a >> 12 | 224, a >> 6 & 63 | 128, 63 & a | 128)
+                    } else {
+                        if (!(1114112 > a)) throw new Error("Invalid code point");
+                        if ((t -= 4) < 0) break;
+                        s.push(a >> 18 | 240, a >> 12 & 63 | 128, a >> 6 & 63 | 128, 63 & a | 128)
+                    }
+                }
+                return s
+            }
+
+            function G(e) {
+                for (var t = [], a = 0; a < e.length; ++a) t.push(255 & e.charCodeAt(a));
+                return t
+            }
+
+            function z(e, t) {
+                for (var a, r, n, s = [], i = 0; i < e.length && !((t -= 2) < 0); ++i) a = e.charCodeAt(i), r = a >> 8, n = a % 256, s.push(n), s.push(r);
+                return s
+            }
+
+            function K(e) {
+                return W.toByteArray(C(e))
+            }
+
+            function Z(e, t, a, r) {
+                for (var n = 0; r > n && !(n + a >= t.length || n >= e.length); ++n) t[n + a] = e[n];
+                return n
+            }
+
+            function Q(e) {
+                return e !== e
+            }
+            var W = a(631),
+                J = a(390),
+                $ = a(494);
+            t.Buffer = i, t.SlowBuffer = m, t.INSPECT_MAX_BYTES = 50, i.TYPED_ARRAY_SUPPORT = void 0 !== e.TYPED_ARRAY_SUPPORT ? e.TYPED_ARRAY_SUPPORT : r(), t.kMaxLength = n(), i.poolSize = 8192, i._augment = function(e) {
+                return e.__proto__ = i.prototype, e
+            }, i.from = function(e, t, a) {
+                return o(null, e, t, a)
+            }, i.TYPED_ARRAY_SUPPORT && (i.prototype.__proto__ = Uint8Array.prototype, i.__proto__ = Uint8Array, "undefined" != typeof Symbol && Symbol.species && i[Symbol.species] === i && Object.defineProperty(i, Symbol.species, {
+                value: null,
+                configurable: !0
+            })), i.alloc = function(e, t, a) {
+                return l(null, e, t, a)
+            }, i.allocUnsafe = function(e) {
+                return f(null, e)
+            }, i.allocUnsafeSlow = function(e) {
+                return f(null, e)
+            }, i.isBuffer = function(e) {
+                return !(null == e || !e._isBuffer)
+            }, i.compare = function(e, t) {
+                if (!i.isBuffer(e) || !i.isBuffer(t)) throw new TypeError("Arguments must be Buffers");
+                if (e === t) return 0;
+                for (var a = e.length, r = t.length, n = 0, s = Math.min(a, r); s > n; ++n)
+                    if (e[n] !== t[n]) {
+                        a = e[n], r = t[n];
+                        break
+                    }
+                return r > a ? -1 : a > r ? 1 : 0
+            }, i.isEncoding = function(e) {
+                switch (String(e).toLowerCase()) {
+                    case "hex":
+                    case "utf8":
+                    case "utf-8":
+                    case "ascii":
+                    case "latin1":
+                    case "binary":
+                    case "base64":
+                    case "ucs2":
+                    case "ucs-2":
+                    case "utf16le":
+                    case "utf-16le":
+                        return !0;
+                    default:
+                        return !1
+                }
+            }, i.concat = function(e, t) {
+                if (!$(e)) throw new TypeError('"list" argument must be an Array of Buffers');
+                if (0 === e.length) return i.alloc(0);
+                var a;
+                if (void 0 === t)
+                    for (t = 0, a = 0; a < e.length; ++a) t += e[a].length;
+                var r = i.allocUnsafe(t),
+                    n = 0;
+                for (a = 0; a < e.length; ++a) {
+                    var s = e[a];
+                    if (!i.isBuffer(s)) throw new TypeError('"list" argument must be an Array of Buffers');
+                    s.copy(r, n), n += s.length
+                }
+                return r
+            }, i.byteLength = v, i.prototype._isBuffer = !0, i.prototype.swap16 = function() {
+                var e = this.length;
+                if (e % 2 !== 0) throw new RangeError("Buffer size must be a multiple of 16-bits");
+                for (var t = 0; e > t; t += 2) g(this, t, t + 1);
+                return this
+            }, i.prototype.swap32 = function() {
+                var e = this.length;
+                if (e % 4 !== 0) throw new RangeError("Buffer size must be a multiple of 32-bits");
+                for (var t = 0; e > t; t += 4) g(this, t, t + 3), g(this, t + 1, t + 2);
+                return this
+            }, i.prototype.swap64 = function() {
+                var e = this.length;
+                if (e % 8 !== 0) throw new RangeError("Buffer size must be a multiple of 64-bits");
+                for (var t = 0; e > t; t += 8) g(this, t, t + 7), g(this, t + 1, t + 6), g(this, t + 2, t + 5), g(this, t + 3, t + 4);
+                return this
+            }, i.prototype.toString = function() {
+                var e = 0 | this.length;
+                return 0 === e ? "" : 0 === arguments.length ? k(this, 0, e) : d.apply(this, arguments)
+            }, i.prototype.equals = function(e) {
+                if (!i.isBuffer(e)) throw new TypeError("Argument must be a Buffer");
+                return this === e ? !0 : 0 === i.compare(this, e)
+            }, i.prototype.inspect = function() {
+                var e = "",
+                    a = t.INSPECT_MAX_BYTES;
+                return this.length > 0 && (e = this.toString("hex", 0, a).match(/.{2}/g).join(" "), this.length > a && (e += " ... ")), "<Buffer " + e + ">"
+            }, i.prototype.compare = function(e, t, a, r, n) {
+                if (!i.isBuffer(e)) throw new TypeError("Argument must be a Buffer");
+                if (void 0 === t && (t = 0), void 0 === a && (a = e ? e.length : 0), void 0 === r && (r = 0), void 0 === n && (n = this.length), 0 > t || a > e.length || 0 > r || n > this.length) throw new RangeError("out of range index");
+                if (r >= n && t >= a) return 0;
+                if (r >= n) return -1;
+                if (t >= a) return 1;
+                if (t >>>= 0, a >>>= 0, r >>>= 0, n >>>= 0, this === e) return 0;
+                for (var s = n - r, o = a - t, _ = Math.min(s, o), l = this.slice(r, n), f = e.slice(t, a), u = 0; _ > u; ++u)
+                    if (l[u] !== f[u]) {
+                        s = l[u], o = f[u];
+                        break
+                    }
+                return o > s ? -1 : s > o ? 1 : 0
+            }, i.prototype.includes = function(e, t, a) {
+                return -1 !== this.indexOf(e, t, a)
+            }, i.prototype.indexOf = function(e, t, a) {
+                return w(this, e, t, a, !0)
+            }, i.prototype.lastIndexOf = function(e, t, a) {
+                return w(this, e, t, a, !1)
+            }, i.prototype.write = function(e, t, a, r) {
+                if (void 0 === t) r = "utf8", a = this.length, t = 0;
+                else if (void 0 === a && "string" == typeof t) r = t, a = this.length, t = 0;
+                else {
+                    if (!isFinite(t)) throw new Error("Buffer.write(string, encoding, offset[, length]) is no longer supported");
+                    t = 0 | t, isFinite(a) ? (a = 0 | a, void 0 === r && (r = "utf8")) : (r = a, a = void 0)
+                }
+                var n = this.length - t;
+                if ((void 0 === a || a > n) && (a = n), e.length > 0 && (0 > a || 0 > t) || t > this.length) throw new RangeError("Attempt to write outside buffer bounds");
+                r || (r = "utf8");
+                for (var s = !1;;) switch (r) {
+                    case "hex":
+                        return A(this, e, t, a);
+                    case "utf8":
+                    case "utf-8":
+                        return R(this, e, t, a);
+                    case "ascii":
+                        return M(this, e, t, a);
+                    case "latin1":
+                    case "binary":
+                        return y(this, e, t, a);
+                    case "base64":
+                        return B(this, e, t, a);
+                    case "ucs2":
+                    case "ucs-2":
+                    case "utf16le":
+                    case "utf-16le":
+                        return E(this, e, t, a);
+                    default:
+                        if (s) throw new TypeError("Unknown encoding: " + r);
+                        r = ("" + r).toLowerCase(), s = !0
+                }
+            }, i.prototype.toJSON = function() {
+                return {
+                    type: "Buffer",
+                    data: Array.prototype.slice.call(this._arr || this, 0)
+                }
+            };
+            var ee = 4096;
+            i.prototype.slice = function(e, t) {
+                var a = this.length;
+                e = ~~e, t = void 0 === t ? a : ~~t, 0 > e ? (e += a, 0 > e && (e = 0)) : e > a && (e = a), 0 > t ? (t += a, 0 > t && (t = 0)) : t > a && (t = a), e > t && (t = e);
+                var r;
+                if (i.TYPED_ARRAY_SUPPORT) r = this.subarray(e, t), r.__proto__ = i.prototype;
+                else {
+                    var n = t - e;
+                    r = new i(n, void 0);
+                    for (var s = 0; n > s; ++s) r[s] = this[s + e]
+                }
+                return r
+            }, i.prototype.readUIntLE = function(e, t, a) {
+                e = 0 | e, t = 0 | t, a || V(e, t, this.length);
+                for (var r = this[e], n = 1, s = 0; ++s < t && (n *= 256);) r += this[e + s] * n;
+                return r
+            }, i.prototype.readUIntBE = function(e, t, a) {
+                e = 0 | e, t = 0 | t, a || V(e, t, this.length);
+                for (var r = this[e + --t], n = 1; t > 0 && (n *= 256);) r += this[e + --t] * n;
+                return r
+            }, i.prototype.readUInt8 = function(e, t) {
+                return t || V(e, 1, this.length), this[e]
+            }, i.prototype.readUInt16LE = function(e, t) {
+                return t || V(e, 2, this.length), this[e] | this[e + 1] << 8
+            }, i.prototype.readUInt16BE = function(e, t) {
+                return t || V(e, 2, this.length), this[e] << 8 | this[e + 1]
+            }, i.prototype.readUInt32LE = function(e, t) {
+                return t || V(e, 4, this.length), (this[e] | this[e + 1] << 8 | this[e + 2] << 16) + 16777216 * this[e + 3]
+            }, i.prototype.readUInt32BE = function(e, t) {
+                return t || V(e, 4, this.length), 16777216 * this[e] + (this[e + 1] << 16 | this[e + 2] << 8 | this[e + 3])
+            }, i.prototype.readIntLE = function(e, t, a) {
+                e = 0 | e, t = 0 | t, a || V(e, t, this.length);
+                for (var r = this[e], n = 1, s = 0; ++s < t && (n *= 256);) r += this[e + s] * n;
+                return n *= 128, r >= n && (r -= Math.pow(2, 8 * t)), r
+            }, i.prototype.readIntBE = function(e, t, a) {
+                e = 0 | e, t = 0 | t, a || V(e, t, this.length);
+                for (var r = t, n = 1, s = this[e + --r]; r > 0 && (n *= 256);) s += this[e + --r] * n;
+                return n *= 128, s >= n && (s -= Math.pow(2, 8 * t)), s
+            }, i.prototype.readInt8 = function(e, t) {
+                return t || V(e, 1, this.length), 128 & this[e] ? -1 * (255 - this[e] + 1) : this[e]
+            }, i.prototype.readInt16LE = function(e, t) {
+                t || V(e, 2, this.length);
+                var a = this[e] | this[e + 1] << 8;
+                return 32768 & a ? 4294901760 | a : a
+            }, i.prototype.readInt16BE = function(e, t) {
+                t || V(e, 2, this.length);
+                var a = this[e + 1] | this[e] << 8;
+                return 32768 & a ? 4294901760 | a : a
+            }, i.prototype.readInt32LE = function(e, t) {
+                return t || V(e, 4, this.length), this[e] | this[e + 1] << 8 | this[e + 2] << 16 | this[e + 3] << 24
+            }, i.prototype.readInt32BE = function(e, t) {
+                return t || V(e, 4, this.length), this[e] << 24 | this[e + 1] << 16 | this[e + 2] << 8 | this[e + 3]
+            }, i.prototype.readFloatLE = function(e, t) {
+                return t || V(e, 4, this.length), J.read(this, e, !0, 23, 4)
+            }, i.prototype.readFloatBE = function(e, t) {
+                return t || V(e, 4, this.length), J.read(this, e, !1, 23, 4)
+            }, i.prototype.readDoubleLE = function(e, t) {
+                return t || V(e, 8, this.length), J.read(this, e, !0, 52, 8)
+            }, i.prototype.readDoubleBE = function(e, t) {
+                return t || V(e, 8, this.length), J.read(this, e, !1, 52, 8)
+            }, i.prototype.writeUIntLE = function(e, t, a, r) {
+                if (e = +e, t = 0 | t, a = 0 | a, !r) {
+                    var n = Math.pow(2, 8 * a) - 1;
+                    N(this, e, t, a, n, 0)
+                }
+                var s = 1,
+                    i = 0;
+                for (this[t] = 255 & e; ++i < a && (s *= 256);) this[t + i] = e / s & 255;
+                return t + a
+            }, i.prototype.writeUIntBE = function(e, t, a, r) {
+                if (e = +e, t = 0 | t, a = 0 | a, !r) {
+                    var n = Math.pow(2, 8 * a) - 1;
+                    N(this, e, t, a, n, 0)
+                }
+                var s = a - 1,
+                    i = 1;
+                for (this[t + s] = 255 & e; --s >= 0 && (i *= 256);) this[t + s] = e / i & 255;
+                return t + a
+            }, i.prototype.writeUInt8 = function(e, t, a) {
+                return e = +e, t = 0 | t, a || N(this, e, t, 1, 255, 0), i.TYPED_ARRAY_SUPPORT || (e = Math.floor(e)), this[t] = 255 & e, t + 1
+            }, i.prototype.writeUInt16LE = function(e, t, a) {
+                return e = +e, t = 0 | t, a || N(this, e, t, 2, 65535, 0), i.TYPED_ARRAY_SUPPORT ? (this[t] = 255 & e, this[t + 1] = e >>> 8) : H(this, e, t, !0), t + 2
+            }, i.prototype.writeUInt16BE = function(e, t, a) {
+                return e = +e, t = 0 | t, a || N(this, e, t, 2, 65535, 0), i.TYPED_ARRAY_SUPPORT ? (this[t] = e >>> 8, this[t + 1] = 255 & e) : H(this, e, t, !1), t + 2
+            }, i.prototype.writeUInt32LE = function(e, t, a) {
+                return e = +e, t = 0 | t, a || N(this, e, t, 4, 4294967295, 0), i.TYPED_ARRAY_SUPPORT ? (this[t + 3] = e >>> 24, this[t + 2] = e >>> 16, this[t + 1] = e >>> 8, this[t] = 255 & e) : D(this, e, t, !0), t + 4
+            }, i.prototype.writeUInt32BE = function(e, t, a) {
+                return e = +e, t = 0 | t, a || N(this, e, t, 4, 4294967295, 0), i.TYPED_ARRAY_SUPPORT ? (this[t] = e >>> 24, this[t + 1] = e >>> 16, this[t + 2] = e >>> 8, this[t + 3] = 255 & e) : D(this, e, t, !1), t + 4
+            }, i.prototype.writeIntLE = function(e, t, a, r) {
+                if (e = +e, t = 0 | t, !r) {
+                    var n = Math.pow(2, 8 * a - 1);
+                    N(this, e, t, a, n - 1, -n)
+                }
+                var s = 0,
+                    i = 1,
+                    o = 0;
+                for (this[t] = 255 & e; ++s < a && (i *= 256);) 0 > e && 0 === o && 0 !== this[t + s - 1] && (o = 1), this[t + s] = (e / i >> 0) - o & 255;
+                return t + a
+            }, i.prototype.writeIntBE = function(e, t, a, r) {
+                if (e = +e, t = 0 | t, !r) {
+                    var n = Math.pow(2, 8 * a - 1);
+                    N(this, e, t, a, n - 1, -n)
+                }
+                var s = a - 1,
+                    i = 1,
+                    o = 0;
+                for (this[t + s] = 255 & e; --s >= 0 && (i *= 256);) 0 > e && 0 === o && 0 !== this[t + s + 1] && (o = 1), this[t + s] = (e / i >> 0) - o & 255;
+                return t + a
+            }, i.prototype.writeInt8 = function(e, t, a) {
+                return e = +e, t = 0 | t, a || N(this, e, t, 1, 127, -128), i.TYPED_ARRAY_SUPPORT || (e = Math.floor(e)), 0 > e && (e = 255 + e + 1), this[t] = 255 & e, t + 1
+            }, i.prototype.writeInt16LE = function(e, t, a) {
+                return e = +e, t = 0 | t, a || N(this, e, t, 2, 32767, -32768), i.TYPED_ARRAY_SUPPORT ? (this[t] = 255 & e, this[t + 1] = e >>> 8) : H(this, e, t, !0), t + 2
+            }, i.prototype.writeInt16BE = function(e, t, a) {
+                return e = +e, t = 0 | t, a || N(this, e, t, 2, 32767, -32768), i.TYPED_ARRAY_SUPPORT ? (this[t] = e >>> 8, this[t + 1] = 255 & e) : H(this, e, t, !1), t + 2
+            }, i.prototype.writeInt32LE = function(e, t, a) {
+                return e = +e, t = 0 | t, a || N(this, e, t, 4, 2147483647, -2147483648), i.TYPED_ARRAY_SUPPORT ? (this[t] = 255 & e, this[t + 1] = e >>> 8, this[t + 2] = e >>> 16, this[t + 3] = e >>> 24) : D(this, e, t, !0), t + 4
+            }, i.prototype.writeInt32BE = function(e, t, a) {
+                return e = +e, t = 0 | t, a || N(this, e, t, 4, 2147483647, -2147483648), 0 > e && (e = 4294967295 + e + 1), i.TYPED_ARRAY_SUPPORT ? (this[t] = e >>> 24, this[t + 1] = e >>> 16, this[t + 2] = e >>> 8, this[t + 3] = 255 & e) : D(this, e, t, !1), t + 4
+            }, i.prototype.writeFloatLE = function(e, t, a) {
+                return X(this, e, t, !0, a)
+            }, i.prototype.writeFloatBE = function(e, t, a) {
+                return X(this, e, t, !1, a)
+            }, i.prototype.writeDoubleLE = function(e, t, a) {
+                return F(this, e, t, !0, a)
+            }, i.prototype.writeDoubleBE = function(e, t, a) {
+                return F(this, e, t, !1, a)
+            }, i.prototype.copy = function(e, t, a, r) {
+                if (a || (a = 0), r || 0 === r || (r = this.length), t >= e.length && (t = e.length), t || (t = 0), r > 0 && a > r && (r = a), r === a) return 0;
+                if (0 === e.length || 0 === this.length) return 0;
+                if (0 > t) throw new RangeError("targetStart out of bounds");
+                if (0 > a || a >= this.length) throw new RangeError("sourceStart out of bounds");
+                if (0 > r) throw new RangeError("sourceEnd out of bounds");
+                r > this.length && (r = this.length), e.length - t < r - a && (r = e.length - t + a);
+                var n, s = r - a;
+                if (this === e && t > a && r > t)
+                    for (n = s - 1; n >= 0; --n) e[n + t] = this[n + a];
+                else if (1e3 > s || !i.TYPED_ARRAY_SUPPORT)
+                    for (n = 0; s > n; ++n) e[n + t] = this[n + a];
+                else Uint8Array.prototype.set.call(e, this.subarray(a, a + s), t);
+                return s
+            }, i.prototype.fill = function(e, t, a, r) {
+                if ("string" == typeof e) {
+                    if ("string" == typeof t ? (r = t, t = 0, a = this.length) : "string" == typeof a && (r = a, a = this.length), 1 === e.length) {
+                        var n = e.charCodeAt(0);
+                        256 > n && (e = n)
+                    }
+                    if (void 0 !== r && "string" != typeof r) throw new TypeError("encoding must be a string");
+                    if ("string" == typeof r && !i.isEncoding(r)) throw new TypeError("Unknown encoding: " + r)
+                } else "number" == typeof e && (e = 255 & e);
+                if (0 > t || this.length < t || this.length < a) throw new RangeError("Out of range index");
+                if (t >= a) return this;
+                t >>>= 0, a = void 0 === a ? this.length : a >>> 0, e || (e = 0);
+                var s;
+                if ("number" == typeof e)
+                    for (s = t; a > s; ++s) this[s] = e;
+                else {
+                    var o = i.isBuffer(e) ? e : j(new i(e, r).toString()),
+                        _ = o.length;
+                    for (s = 0; a - t > s; ++s) this[s + t] = o[s % _]
+                }
+                return this
+            };
+            var te = /[^+\/0-9A-Za-z-_]/g
+        }).call(this, a(577))
+    },
+    536: function(e, t) {
+        function a(e) {
+            return new Int8Array(e)
+        }
+
+        function r(e) {
+            return new Int16Array(e)
+        }
+
+        function n(e) {
+            return new Int32Array(e)
+        }
+
+        function s(e) {
+            return new Float32Array(e)
+        }
+
+        function i(e) {
+            return new Float64Array(e)
+        }
+
+        function o(e) {
+            if (1 == e.length) return s(e[0]);
+            var t = e[0];
+            e = e.slice(1);
+            for (var a = [], r = 0; t > r; r++) a.push(o(e));
+            return a
+        }
+
+        function _(e) {
+            if (1 == e.length) return n(e[0]);
+            var t = e[0];
+            e = e.slice(1);
+            for (var a = [], r = 0; t > r; r++) a.push(_(e));
+            return a
+        }
+
+        function l(e) {
+            if (1 == e.length) return r(e[0]);
+            var t = e[0];
+            e = e.slice(1);
+            for (var a = [], n = 0; t > n; n++) a.push(l(e));
+            return a
+        }
+
+        function f(e) {
+            if (1 == e.length) return new Array(e[0]);
+            var t = e[0];
+            e = e.slice(1);
+            for (var a = [], r = 0; t > r; r++) a.push(f(e));
+            return a
+        }
+
+        function u(e) {
+            this.ordinal = e
+        }
+
+        function h(e) {
+            this.ordinal = e
+        }
+        var c = {};
+        c.fill = function(e, t, a, r) {
+            if (2 == arguments.length)
+                for (var n = 0; n < e.length; n++) e[n] = arguments[1];
+            else
+                for (var n = t; a > n; n++) e[n] = r
+        };
+        var p = {};
+        p.arraycopy = function(e, t, a, r, n) {
+            for (var s = t + n; s > t;) a[r++] = e[t++]
+        };
+        var b = {};
+        b.SQRT2 = 1.4142135623730951, b.FAST_LOG10 = function(e) {
+            return Math.log10(e)
+        }, b.FAST_LOG10_X = function(e, t) {
+            return Math.log10(e) * t
+        }, u.short_block_allowed = new u(0), u.short_block_coupled = new u(1), u.short_block_dispensed = new u(2), u.short_block_forced = new u(3);
+        var m = {};
+        m.MAX_VALUE = 3.4028235e38, h.vbr_off = new h(0), h.vbr_mt = new h(1), h.vbr_rh = new h(2), h.vbr_abr = new h(3), h.vbr_mtrh = new h(4), h.vbr_default = h.vbr_mtrh;
+        var v = function(e) {};
+        e.exports = {
+            System: p,
+            VbrMode: h,
+            Float: m,
+            ShortBlock: u,
+            Util: b,
+            Arrays: c,
+            new_array_n: f,
+            new_byte: a,
+            new_double: i,
+            new_float: s,
+            new_float_n: o,
+            new_int: n,
+            new_int_n: _,
+            new_short: r,
+            new_short_n: l,
+            assert: v
+        }
+    },
+    555: function(e, t, a) {
+        function r() {
+            function e(e) {
+                return new Int32Array(e)
+            }
+
+            function t(e) {
+                return new Float32Array(e)
+            }
+            this.xr = s(576), this.l3_enc = i(576), this.scalefac = i(o.SFBMAX), this.xrpow_max = 0, this.part2_3_length = 0, this.big_values = 0, this.count1 = 0, this.global_gain = 0, this.scalefac_compress = 0, this.block_type = 0, this.mixed_block_flag = 0, this.table_select = i(3), this.subblock_gain = i(4), this.region0_count = 0, this.region1_count = 0, this.preflag = 0, this.scalefac_scale = 0, this.count1table_select = 0, this.part2_length = 0, this.sfb_lmax = 0, this.sfb_smin = 0, this.psy_lmax = 0, this.sfbmax = 0, this.psymax = 0, this.sfbdivide = 0, this.width = i(o.SFBMAX), this.window = i(o.SFBMAX), this.count1bits = 0, this.sfb_partition_table = null, this.slen = i(4), this.max_nonzero_coeff = 0;
+            var a = this;
+            this.assign = function(r) {
+                a.xr = t(r.xr), a.l3_enc = e(r.l3_enc), a.scalefac = e(r.scalefac), a.xrpow_max = r.xrpow_max, a.part2_3_length = r.part2_3_length, a.big_values = r.big_values, a.count1 = r.count1, a.global_gain = r.global_gain, a.scalefac_compress = r.scalefac_compress, a.block_type = r.block_type, a.mixed_block_flag = r.mixed_block_flag, a.table_select = e(r.table_select), a.subblock_gain = e(r.subblock_gain), a.region0_count = r.region0_count, a.region1_count = r.region1_count, a.preflag = r.preflag, a.scalefac_scale = r.scalefac_scale, a.count1table_select = r.count1table_select, a.part2_length = r.part2_length, a.sfb_lmax = r.sfb_lmax, a.sfb_smin = r.sfb_smin, a.psy_lmax = r.psy_lmax, a.sfbmax = r.sfbmax, a.psymax = r.psymax, a.sfbdivide = r.sfbdivide, a.width = e(r.width), a.window = e(r.window), a.count1bits = r.count1bits, a.sfb_partition_table = r.sfb_partition_table.slice(0), a.slen = e(r.slen), a.max_nonzero_coeff = r.max_nonzero_coeff
+            }
+        }
+        var n = a(536),
+            s = (n.System, n.VbrMode, n.Float, n.ShortBlock, n.Util, n.Arrays, n.new_array_n, n.new_byte, n.new_double, n.new_float),
+            i = (n.new_float_n, n.new_int),
+            o = (n.new_int_n, n.assert, a(119));
+        e.exports = r
+    },
+    574: function(e, t, a) {
+        function r() {
+            function e(e) {
+                var t, a;
+                if (0 == e.ATH.useAdjust) return void(e.ATH.adjust = 1);
+                if (a = e.loudness_sq[0][0], t = e.loudness_sq[1][0], 2 == e.channels_out ? (a += e.loudness_sq[0][1], t += e.loudness_sq[1][1]) : (a += a, t += t), 2 == e.mode_gr && (a = Math.max(a, t)), a *= .5, a *= e.ATH.aaSensitivityP, a > .03125) e.ATH.adjust >= 1 ? e.ATH.adjust = 1 : e.ATH.adjust < e.ATH.adjustLimit && (e.ATH.adjust = e.ATH.adjustLimit), e.ATH.adjustLimit = 1;
+                else {
+                    var r = 31.98 * a + 625e-6;
+                    e.ATH.adjust >= r ? (e.ATH.adjust *= .075 * r + .925, e.ATH.adjust < r && (e.ATH.adjust = r)) : e.ATH.adjustLimit >= r ? e.ATH.adjust = r : e.ATH.adjust < e.ATH.adjustLimit && (e.ATH.adjust = e.ATH.adjustLimit), e.ATH.adjustLimit = r
+                }
+            }
+
+            function t(e) {
+                var t, a;
+                for (u(0 <= e.bitrate_index && e.bitrate_index < 16), u(0 <= e.mode_ext && e.mode_ext < 4), e.bitrate_stereoMode_Hist[e.bitrate_index][4]++, e.bitrate_stereoMode_Hist[15][4]++, 2 == e.channels_out && (e.bitrate_stereoMode_Hist[e.bitrate_index][e.mode_ext]++, e.bitrate_stereoMode_Hist[15][e.mode_ext]++), t = 0; t < e.mode_gr; ++t)
+                    for (a = 0; a < e.channels_out; ++a) {
+                        var r = 0 | e.l3_side.tt[t][a].block_type;
+                        0 != e.l3_side.tt[t][a].mixed_block_flag && (r = 4), e.bitrate_blockType_Hist[e.bitrate_index][r]++, e.bitrate_blockType_Hist[e.bitrate_index][5]++, e.bitrate_blockType_Hist[15][r]++, e.bitrate_blockType_Hist[15][5]++
+                    }
             }
 
             function n(e, t) {
-                var a = 0;
-                return 0 > t && (a = -1, t = 0), t > 9 && (a = -1, t = 9), e.VBR_q = t, e.VBR_q_frac = 0, a
+                var a, n, s = e.internal_flags;
+                if (0 == s.lame_encode_frame_init) {
+                    var i, o, l = _(2014),
+                        f = _(2014);
+                    for (s.lame_encode_frame_init = 1, i = 0, o = 0; i < 286 + 576 * (1 + s.mode_gr); ++i) i < 576 * s.mode_gr ? (l[i] = 0, 2 == s.channels_out && (f[i] = 0)) : (l[i] = t[0][o], 2 == s.channels_out && (f[i] = t[1][o]), ++o);
+                    for (n = 0; n < s.mode_gr; n++)
+                        for (a = 0; a < s.channels_out; a++) s.l3_side.tt[n][a].block_type = r.SHORT_TYPE;
+                    w.mdct_sub48(s, l, f), u(576 >= r.FFTOFFSET), u(s.mf_size >= r.BLKSIZE + e.framesize - r.FFTOFFSET), u(s.mf_size >= 512 + e.framesize - 32)
+                }
             }
-            var i;
-            this.setModules = function(e) {
-                i = e
+            var h = a(483),
+                c = a(419),
+                p = r.FFTOFFSET,
+                b = r.MPG_MD_MS_LR,
+                m = null;
+            this.psy = null;
+            var v = null,
+                d = null,
+                g = null;
+            this.setModules = function(e, t, a, r) {
+                m = e, this.psy = t, v = t, d = r, g = a
             };
-            var o = [new e(0, 9, 9, 0, 5.2, 125, -4.2, -6.3, 4.8, 1, 0, 0, 2, 21, .97), new e(1, 9, 9, 0, 5.3, 125, -3.6, -5.6, 4.5, 1.5, 0, 0, 2, 21, 1.35), new e(2, 9, 9, 0, 5.6, 125, -2.2, -3.5, 2.8, 2, 0, 0, 2, 21, 1.49), new e(3, 9, 9, 1, 5.8, 130, -1.8, -2.8, 2.6, 3, -4, 0, 2, 20, 1.64), new e(4, 9, 9, 1, 6, 135, -.7, -1.1, 1.1, 3.5, -8, 0, 2, 0, 1.79), new e(5, 9, 9, 1, 6.4, 140, .5, .4, -7.5, 4, -12, 2e-4, 0, 0, 1.95), new e(6, 9, 9, 1, 6.6, 145, .67, .65, -14.7, 6.5, -19, 4e-4, 0, 0, 2.3), new e(7, 9, 9, 1, 6.6, 145, .8, .75, -19.7, 8, -22, 6e-4, 0, 0, 2.7), new e(8, 9, 9, 1, 6.6, 145, 1.2, 1.15, -27.5, 10, -23, 7e-4, 0, 0, 0), new e(9, 9, 9, 1, 6.6, 145, 1.6, 1.6, -36, 11, -25, 8e-4, 0, 0, 0), new e(10, 9, 9, 1, 6.6, 145, 2, 2, -36, 12, -25, 8e-4, 0, 0, 0)],
-                _ = [new e(0, 9, 9, 0, 4.2, 25, -7, -4, 7.5, 1, 0, 0, 2, 26, .97), new e(1, 9, 9, 0, 4.2, 25, -5.6, -3.6, 4.5, 1.5, 0, 0, 2, 21, 1.35), new e(2, 9, 9, 0, 4.2, 25, -4.4, -1.8, 2, 2, 0, 0, 2, 18, 1.49), new e(3, 9, 9, 1, 4.2, 25, -3.4, -1.25, 1.1, 3, -4, 0, 2, 15, 1.64), new e(4, 9, 9, 1, 4.2, 25, -2.2, .1, 0, 3.5, -8, 0, 2, 0, 1.79), new e(5, 9, 9, 1, 4.2, 25, -1, 1.65, -7.7, 4, -12, 2e-4, 0, 0, 1.95), new e(6, 9, 9, 1, 4.2, 25, -0, 2.47, -7.7, 6.5, -19, 4e-4, 0, 0, 2), new e(7, 9, 9, 1, 4.2, 25, .5, 2, -14.5, 8, -22, 6e-4, 0, 0, 2), new e(8, 9, 9, 1, 4.2, 25, 1, 2.4, -22, 10, -23, 7e-4, 0, 0, 2), new e(9, 9, 9, 1, 4.2, 25, 1.5, 2.95, -30, 11, -25, 8e-4, 0, 0, 2), new e(10, 9, 9, 1, 4.2, 25, 2, 2.95, -36, 12, -30, 8e-4, 0, 0, 2)],
-                l = [new t(8, 9, 9, 0, 0, 6.6, 145, 0, .95, 0, -30, 11, .0012, 1), new t(16, 9, 9, 0, 0, 6.6, 145, 0, .95, 0, -25, 11, .001, 1), new t(24, 9, 9, 0, 0, 6.6, 145, 0, .95, 0, -20, 11, .001, 1), new t(32, 9, 9, 0, 0, 6.6, 145, 0, .95, 0, -15, 11, .001, 1), new t(40, 9, 9, 0, 0, 6.6, 145, 0, .95, 0, -10, 11, 9e-4, 1), new t(48, 9, 9, 0, 0, 6.6, 145, 0, .95, 0, -10, 11, 9e-4, 1), new t(56, 9, 9, 0, 0, 6.6, 145, 0, .95, 0, -6, 11, 8e-4, 1), new t(64, 9, 9, 0, 0, 6.6, 145, 0, .95, 0, -2, 11, 8e-4, 1), new t(80, 9, 9, 0, 0, 6.6, 145, 0, .95, 0, 0, 8, 7e-4, 1), new t(96, 9, 9, 0, 2.5, 6.6, 145, 0, .95, 0, 1, 5.5, 6e-4, 1), new t(112, 9, 9, 0, 2.25, 6.6, 145, 0, .95, 0, 2, 4.5, 5e-4, 1), new t(128, 9, 9, 0, 1.95, 6.4, 140, 0, .95, 0, 3, 4, 2e-4, 1), new t(160, 9, 9, 1, 1.79, 6, 135, 0, .95, -2, 5, 3.5, 0, 1), new t(192, 9, 9, 1, 1.49, 5.6, 125, 0, .97, -4, 7, 3, 0, 0), new t(224, 9, 9, 1, 1.25, 5.2, 125, 0, .98, -6, 9, 2, 0, 0), new t(256, 9, 9, 1, .97, 5.2, 125, 0, 1, -8, 10, 1, 0, 0), new t(320, 9, 9, 1, .9, 5.2, 125, 0, 1, -10, 12, 0, 0, 0)];
-            this.apply_preset = function(e, t, n) {
-                switch (t) {
-                    case Lame.R3MIX:
-                        t = Lame.V3, e.VBR = s.vbr_mtrh;
-                        break;
-                    case Lame.MEDIUM:
-                        t = Lame.V4, e.VBR = s.vbr_rh;
-                        break;
-                    case Lame.MEDIUM_FAST:
-                        t = Lame.V4, e.VBR = s.vbr_mtrh;
-                        break;
-                    case Lame.STANDARD:
-                        t = Lame.V2, e.VBR = s.vbr_rh;
-                        break;
-                    case Lame.STANDARD_FAST:
-                        t = Lame.V2, e.VBR = s.vbr_mtrh;
-                        break;
-                    case Lame.EXTREME:
-                        t = Lame.V0, e.VBR = s.vbr_rh;
-                        break;
-                    case Lame.EXTREME_FAST:
-                        t = Lame.V0, e.VBR = s.vbr_mtrh;
-                        break;
-                    case Lame.INSANE:
-                        return t = 320, e.preset = t, r(e, t, n), e.VBR = s.vbr_off, t
+            var w = new h;
+            this.lame_encode_mp3_frame = function(a, _, u, h, S, A) {
+                var R, M = o([2, 2]);
+                M[0][0] = new c, M[0][1] = new c, M[1][0] = new c, M[1][1] = new c;
+                var y = o([2, 2]);
+                y[0][0] = new c, y[0][1] = new c, y[1][0] = new c, y[1][1] = new c;
+                var B, E, T, k, x = [null, null],
+                    P = a.internal_flags,
+                    I = l([2, 4]),
+                    L = [.5, .5],
+                    O = [
+                        [0, 0],
+                        [0, 0]
+                    ],
+                    V = [
+                        [0, 0],
+                        [0, 0]
+                    ];
+                if (x[0] = _, x[1] = u, 0 == P.lame_encode_frame_init && n(a, x), P.padding = 0, (P.slot_lag -= P.frac_SpF) < 0 && (P.slot_lag += a.out_samplerate, P.padding = 1), 0 != P.psymodel) {
+                    var N, H = [null, null],
+                        D = 0,
+                        Y = f(2);
+                    for (k = 0; k < P.mode_gr; k++) {
+                        for (T = 0; T < P.channels_out; T++) H[T] = x[T], D = 576 + 576 * k - r.FFTOFFSET;
+                        if (N = a.VBR == i.vbr_mtrh || a.VBR == i.vbr_mt ? v.L3psycho_anal_vbr(a, H, D, k, M, y, O[k], V[k], I[k], Y) : v.L3psycho_anal_ns(a, H, D, k, M, y, O[k], V[k], I[k], Y), 0 != N) return -4;
+                        for (a.mode == MPEGMode.JOINT_STEREO && (L[k] = I[k][2] + I[k][3], L[k] > 0 && (L[k] = I[k][3] / L[k])), T = 0; T < P.channels_out; T++) {
+                            var X = P.l3_side.tt[k][T];
+                            X.block_type = Y[T], X.mixed_block_flag = 0
+                        }
+                    }
+                } else
+                    for (k = 0; k < P.mode_gr; k++)
+                        for (T = 0; T < P.channels_out; T++) P.l3_side.tt[k][T].block_type = r.NORM_TYPE, P.l3_side.tt[k][T].mixed_block_flag = 0, V[k][T] = O[k][T] = 700;
+                if (e(P), w.mdct_sub48(P, x[0], x[1]), P.mode_ext = r.MPG_MD_LR_LR, a.force_ms) P.mode_ext = r.MPG_MD_MS_LR;
+                else if (a.mode == MPEGMode.JOINT_STEREO) {
+                    var F = 0,
+                        C = 0;
+                    for (k = 0; k < P.mode_gr; k++)
+                        for (T = 0; T < P.channels_out; T++) F += V[k][T], C += O[k][T];
+                    if (1 * C >= F) {
+                        var q = P.l3_side.tt[0],
+                            U = P.l3_side.tt[P.mode_gr - 1];
+                        q[0].block_type == q[1].block_type && U[0].block_type == U[1].block_type && (P.mode_ext = r.MPG_MD_MS_LR)
+                    }
                 }
-                switch (e.preset = t, t) {
-                    case Lame.V9:
-                        return a(e, 9, n), t;
-                    case Lame.V8:
-                        return a(e, 8, n), t;
-                    case Lame.V7:
-                        return a(e, 7, n), t;
-                    case Lame.V6:
-                        return a(e, 6, n), t;
-                    case Lame.V5:
-                        return a(e, 5, n), t;
-                    case Lame.V4:
-                        return a(e, 4, n), t;
-                    case Lame.V3:
-                        return a(e, 3, n), t;
-                    case Lame.V2:
-                        return a(e, 2, n), t;
-                    case Lame.V1:
-                        return a(e, 1, n), t;
-                    case Lame.V0:
-                        return a(e, 0, n), t
+                if (P.mode_ext == b ? (B = y, E = V) : (B = M, E = O), a.analysis && null != P.pinfo)
+                    for (k = 0; k < P.mode_gr; k++)
+                        for (T = 0; T < P.channels_out; T++) P.pinfo.ms_ratio[k] = P.ms_ratio[k], P.pinfo.ms_ener_ratio[k] = L[k], P.pinfo.blocktype[k][T] = P.l3_side.tt[k][T].block_type, P.pinfo.pe[k][T] = E[k][T], s.arraycopy(P.l3_side.tt[k][T].xr, 0, P.pinfo.xr[k][T], 0, 576), P.mode_ext == b && (P.pinfo.ers[k][T] = P.pinfo.ers[k][T + 2], s.arraycopy(P.pinfo.energy[k][T + 2], 0, P.pinfo.energy[k][T], 0, P.pinfo.energy[k][T].length));
+                if (a.VBR == i.vbr_off || a.VBR == i.vbr_abr) {
+                    var j, G;
+                    for (j = 0; 18 > j; j++) P.nsPsy.pefirbuf[j] = P.nsPsy.pefirbuf[j + 1];
+                    for (G = 0, k = 0; k < P.mode_gr; k++)
+                        for (T = 0; T < P.channels_out; T++) G += E[k][T];
+                    for (P.nsPsy.pefirbuf[18] = G, G = P.nsPsy.pefirbuf[9], j = 0; 9 > j; j++) G += (P.nsPsy.pefirbuf[j] + P.nsPsy.pefirbuf[18 - j]) * r.fircoef[j];
+                    for (G = 3350 * P.mode_gr * P.channels_out / G, k = 0; k < P.mode_gr; k++)
+                        for (T = 0; T < P.channels_out; T++) E[k][T] *= G
                 }
-                return t >= 8 && 320 >= t ? r(e, t, n) : (e.preset = 0, t)
+                if (P.iteration_loop.iteration_loop(a, E, L, B), m.format_bitstream(a), R = m.copy_buffer(P, h, S, A, 1), a.bWriteVbrTag && d.addVbrFrame(a), a.analysis && null != P.pinfo) {
+                    for (T = 0; T < P.channels_out; T++) {
+                        var z;
+                        for (z = 0; p > z; z++) P.pinfo.pcmdata[T][z] = P.pinfo.pcmdata[T][z + a.framesize];
+                        for (z = p; 1600 > z; z++) P.pinfo.pcmdata[T][z] = x[T][z - p]
+                    }
+                    g.set_frame_pinfo(a, B)
+                }
+                return t(P), R
             }
         }
-        var n = a(15),
-            s = (n.System, n.VbrMode);
-        n.Float, n.ShortBlock, n.Util, n.Arrays, n.new_array_n, n.new_byte, n.new_double, n.new_float, n.new_float_n, n.new_int, n.new_int_n, n.assert, e.exports = r
+        var n = a(536),
+            s = n.System,
+            i = n.VbrMode,
+            o = (n.Float, n.ShortBlock, n.Util, n.Arrays, n.new_array_n),
+            _ = (n.new_byte, n.new_double, n.new_float),
+            l = n.new_float_n,
+            f = n.new_int,
+            u = (n.new_int_n, n.assert);
+        r.ENCDELAY = 576, r.POSTDELAY = 1152, r.MDCTDELAY = 48, r.FFTOFFSET = 224 + r.MDCTDELAY, r.DECDELAY = 528, r.SBLIMIT = 32, r.CBANDS = 64, r.SBPSY_l = 21, r.SBPSY_s = 12, r.SBMAX_l = 22, r.SBMAX_s = 13, r.PSFB21 = 6, r.PSFB12 = 6, r.BLKSIZE = 1024, r.HBLKSIZE = r.BLKSIZE / 2 + 1, r.BLKSIZE_s = 256, r.HBLKSIZE_s = r.BLKSIZE_s / 2 + 1, r.NORM_TYPE = 0, r.START_TYPE = 1, r.SHORT_TYPE = 2, r.STOP_TYPE = 3, r.MPG_MD_LR_LR = 0, r.MPG_MD_LR_I = 1, r.MPG_MD_MS_LR = 2, r.MPG_MD_MS_I = 3, r.fircoef = [-.1039435, -.1892065, 5 * -.0432472, -.155915, 3.898045e-17, .0467745 * 5, .50455, .756825, .187098 * 5], e.exports = r
     },
-    355: function(e, t) {
-        function a() {
-            var e = "http://www.mp3dev.org/",
-                t = 3,
-                a = 98,
-                r = 4,
-                n = 0,
-                s = 93;
-            this.getLameVersion = function() {
-                return t + "." + a + "." + r
-            }, this.getLameShortVersion = function() {
-                return t + "." + a + "." + r
-            }, this.getLameVeryShortVersion = function() {
-                return "LAME" + t + "." + a + "r"
-            }, this.getPsyVersion = function() {
-                return n + "." + s
-            }, this.getLameUrl = function() {
-                return e
-            }, this.getLameOsBitness = function() {
-                return "32bits"
-            }
+    577: function(e, t) {
+        var a;
+        a = function() {
+            return this
+        }();
+        try {
+            a = a || Function("return this")() || (1, eval)("this")
+        } catch (r) {
+            "object" == typeof window && (a = window)
         }
         e.exports = a
     },
-    359: function(e, t) {
-        t.read = function(e, t, a, r, n) {
-            var s, i, o = 8 * n - r - 1,
-                _ = (1 << o) - 1,
-                l = _ >> 1,
-                f = -7,
-                u = a ? n - 1 : 0,
-                h = a ? -1 : 1,
-                c = e[t + u];
-            for (u += h, s = c & (1 << -f) - 1, c >>= -f, f += o; f > 0; s = 256 * s + e[t + u], u += h, f -= 8);
-            for (i = s & (1 << -f) - 1, s >>= -f, f += r; f > 0; i = 256 * i + e[t + u], u += h, f -= 8);
-            if (0 === s) s = 1 - l;
-            else {
-                if (s === _) return i ? NaN : (c ? -1 : 1) * (1 / 0);
-                i += Math.pow(2, r), s -= l
-            }
-            return (c ? -1 : 1) * i * Math.pow(2, s - r)
-        }, t.write = function(e, t, a, r, n, s) {
-            var i, o, _, l = 8 * s - n - 1,
-                f = (1 << l) - 1,
-                u = f >> 1,
-                h = 23 === n ? Math.pow(2, -24) - Math.pow(2, -77) : 0,
-                c = r ? 0 : s - 1,
-                p = r ? 1 : -1,
-                b = 0 > t || 0 === t && 0 > 1 / t ? 1 : 0;
-            for (t = Math.abs(t), isNaN(t) || t === 1 / 0 ? (o = isNaN(t) ? 1 : 0, i = f) : (i = Math.floor(Math.log(t) / Math.LN2), t * (_ = Math.pow(2, -i)) < 1 && (i--, _ *= 2), t += i + u >= 1 ? h / _ : h * Math.pow(2, 1 - u), t * _ >= 2 && (i++, _ /= 2), i + u >= f ? (o = 0, i = f) : i + u >= 1 ? (o = (t * _ - 1) * Math.pow(2, n), i += u) : (o = t * Math.pow(2, u - 1) * Math.pow(2, n), i = 0)); n >= 8; e[a + c] = 255 & o, c += p, o /= 256, n -= 8);
-            for (i = i << n | o, l += n; l > 0; e[a + c] = 255 & i, c += p, i /= 256, l -= 8);
-            e[a + c - p] |= 128 * b
+    631: function(e, t, a) {
+        "use strict";
+
+        function r(e) {
+            var t = e.length;
+            if (t % 4 > 0) throw new Error("Invalid string. Length must be a multiple of 4");
+            return "=" === e[t - 2] ? 2 : "=" === e[t - 1] ? 1 : 0
         }
+
+        function n(e) {
+            return 3 * e.length / 4 - r(e)
+        }
+
+        function s(e) {
+            var t, a, n, s, i, o = e.length;
+            s = r(e), i = new u(3 * o / 4 - s), a = s > 0 ? o - 4 : o;
+            var _ = 0;
+            for (t = 0; a > t; t += 4) n = f[e.charCodeAt(t)] << 18 | f[e.charCodeAt(t + 1)] << 12 | f[e.charCodeAt(t + 2)] << 6 | f[e.charCodeAt(t + 3)], i[_++] = n >> 16 & 255, i[_++] = n >> 8 & 255, i[_++] = 255 & n;
+            return 2 === s ? (n = f[e.charCodeAt(t)] << 2 | f[e.charCodeAt(t + 1)] >> 4, i[_++] = 255 & n) : 1 === s && (n = f[e.charCodeAt(t)] << 10 | f[e.charCodeAt(t + 1)] << 4 | f[e.charCodeAt(t + 2)] >> 2, i[_++] = n >> 8 & 255, i[_++] = 255 & n), i
+        }
+
+        function i(e) {
+            return l[e >> 18 & 63] + l[e >> 12 & 63] + l[e >> 6 & 63] + l[63 & e]
+        }
+
+        function o(e, t, a) {
+            for (var r, n = [], s = t; a > s; s += 3) r = (e[s] << 16 & 16711680) + (e[s + 1] << 8 & 65280) + (255 & e[s + 2]), n.push(i(r));
+            return n.join("")
+        }
+
+        function _(e) {
+            for (var t, a = e.length, r = a % 3, n = "", s = [], i = 16383, _ = 0, f = a - r; f > _; _ += i) s.push(o(e, _, _ + i > f ? f : _ + i));
+            return 1 === r ? (t = e[a - 1], n += l[t >> 2], n += l[t << 4 & 63], n += "==") : 2 === r && (t = (e[a - 2] << 8) + e[a - 1], n += l[t >> 10], n += l[t >> 4 & 63], n += l[t << 2 & 63], n += "="), s.push(n), s.join("")
+        }
+        t.byteLength = n, t.toByteArray = s, t.fromByteArray = _;
+        for (var l = [], f = [], u = "undefined" != typeof Uint8Array ? Uint8Array : Array, h = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", c = 0, p = h.length; p > c; ++c) l[c] = h[c], f[h.charCodeAt(c)] = c;
+        f["-".charCodeAt(0)] = 62, f["_".charCodeAt(0)] = 63
     },
-    45: function(e, t, a) {
+    646: function(e, t) {
+        function a() {
+            this.sum = 0, this.seen = 0, this.want = 0, this.pos = 0, this.size = 0, this.bag = null, this.nVbrNumFrames = 0, this.nBytesWritten = 0, this.TotalFrameSize = 0
+        }
+        e.exports = a
+    },
+    654: function(e, t, a) {
+        function r() {
+            this.linprebuf = s(2 * o.MAX_ORDER), this.linpre = 0, this.lstepbuf = s(o.MAX_SAMPLES_PER_WINDOW + o.MAX_ORDER), this.lstep = 0, this.loutbuf = s(o.MAX_SAMPLES_PER_WINDOW + o.MAX_ORDER), this.lout = 0, this.rinprebuf = s(2 * o.MAX_ORDER), this.rinpre = 0, this.rstepbuf = s(o.MAX_SAMPLES_PER_WINDOW + o.MAX_ORDER), this.rstep = 0, this.routbuf = s(o.MAX_SAMPLES_PER_WINDOW + o.MAX_ORDER), this.rout = 0, this.sampleWindow = 0, this.totsamp = 0, this.lsum = 0, this.rsum = 0, this.freqindex = 0, this.first = 0, this.A = i(0 | o.STEPS_per_dB * o.MAX_dB), this.B = i(0 | o.STEPS_per_dB * o.MAX_dB)
+        }
+        var n = a(536),
+            s = (n.System, n.VbrMode, n.Float, n.ShortBlock, n.Util, n.Arrays, n.new_array_n, n.new_byte, n.new_double, n.new_float),
+            i = (n.new_float_n, n.new_int),
+            o = (n.new_int_n, n.assert, a(159));
+        e.exports = r
+    },
+    663: function(e, t, a) {
+        (function(t) {
+            function r() {
+                var e, t;
+                this.setModules = function(a, r) {
+                    e = a, t = r
+                }
+            }
+
+            function n() {
+                var e, t, a;
+                this.setModules = function(r, n, s) {
+                    e = r, t = n, a = s
+                }
+            }
+
+            function s() {}
+
+            function i() {
+                var e, t;
+                this.setModules = function(a, r) {
+                    e = a, t = r
+                }
+            }
+
+            function o(e, t, a) {
+                3 != arguments.length && (console.error("WARN: Mp3Encoder(channels, samplerate, kbps) not specified"), e = 1, t = 44100, a = 128);
+                var o = new Lame,
+                    _ = new r,
+                    l = new GainAnalysis,
+                    f = new BitStream,
+                    b = new Presets,
+                    m = new QuantizePVT,
+                    v = new Quantize,
+                    d = new p,
+                    g = new c,
+                    w = new i,
+                    S = new Reservoir,
+                    A = new Takehiro,
+                    R = new n,
+                    M = new s;
+                o.setModules(l, f, b, m, v, d, g, w, M), f.setModules(l, M, g, d), w.setModules(f, g), b.setModules(o), v.setModules(f, S, m, A), m.setModules(A, S, o.enc.psy), S.setModules(f), A.setModules(m), d.setModules(o, f, g), _.setModules(R, M), R.setModules(g, w, b);
+                var y = o.lame_init();
+                y.num_channels = e, y.in_samplerate = t, y.brate = a, y.mode = MPEGMode.STEREO, y.quality = 3, y.bWriteVbrTag = !1, y.disable_reservoir = !0, y.write_id3tag_automatic = !1;
+                var B = o.lame_init_params(y);
+                h(0 == B);
+                var E = 1152,
+                    T = 0 | 1.25 * E + 7200,
+                    k = u(T);
+                this.encodeBuffer = function(t, a) {
+                    1 == e && (a = t), h(t.length == a.length), t.length > E && (E = t.length, T = 0 | 1.25 * E + 7200, k = u(T));
+                    var r = o.lame_encode_buffer(y, t, a, t.length, k, 0, T);
+                    return new Int8Array(k.subarray(0, r))
+                }, this.flush = function() {
+                    var e = o.lame_encode_flush(y, k, 0, T);
+                    return new Int8Array(k.subarray(0, e))
+                }
+            }
+
+            function _() {
+                this.dataOffset = 0, this.dataLen = 0, this.channels = 0, this.sampleRate = 0
+            }
+
+            function l(e) {
+                return e.charCodeAt(0) << 24 | e.charCodeAt(1) << 16 | e.charCodeAt(2) << 8 | e.charCodeAt(3)
+            }
+            a(427), fs = a(427);
+            var f = a(536),
+                u = (f.System, f.VbrMode, f.Float, f.ShortBlock, f.Util, f.Arrays, f.new_array_n, f.new_byte),
+                h = (f.new_double, f.new_float, f.new_float_n, f.new_int, f.new_int_n, f.assert);
+            Lame = a(191), Presets = a(143), GainAnalysis = a(159), QuantizePVT = a(152), Quantize = a(244), Takehiro = a(703), Reservoir = a(381), MPEGMode = a(128), BitStream = a(406);
+            var c = (a(574), a(275)),
+                p = a(701);
+            _.RIFF = l("RIFF"), _.WAVE = l("WAVE"), _.fmt_ = l("fmt "), _.data = l("data"), _.readHeader = function(e) {
+                var t = new _,
+                    a = e.getUint32(0, !1);
+                if (_.RIFF == a && (e.getUint32(4, !0), _.WAVE == e.getUint32(8, !1) && _.fmt_ == e.getUint32(12, !1))) {
+                    var r = e.getUint32(16, !0),
+                        n = 20;
+                    switch (r) {
+                        case 16:
+                        case 18:
+                            t.channels = e.getUint16(n + 2, !0), t.sampleRate = e.getUint32(n + 4, !0);
+                            break;
+                        default:
+                            throw "extended fmt chunk not implemented"
+                    }
+                    n += r;
+                    for (var s = _.data, i = 0; s != a && (a = e.getUint32(n, !1), i = e.getUint32(n + 4, !0), s != a);) n += i + 8;
+                    return t.dataLen = i, t.dataOffset = n + 8, t
+                }
+            }, e.exports.Mp3Encoder = o, e.exports.WavHeader = _
+        }).call(this, a(518).Buffer)
+    },
+    672: function(e, t) {
+        function a() {
+            this.over_noise = 0, this.tot_noise = 0, this.max_noise = 0, this.over_count = 0, this.over_SSD = 0, this.bits = 0
+        }
+        e.exports = a
+    },
+    694: function(e, t, a) {
+        function r() {
+            this.class_id = 0, this.num_samples = 0, this.num_channels = 0, this.in_samplerate = 0, this.out_samplerate = 0, this.scale = 0, this.scale_left = 0, this.scale_right = 0, this.analysis = !1, this.bWriteVbrTag = !1, this.decode_only = !1, this.quality = 0, this.mode = n.STEREO, this.force_ms = !1, this.free_format = !1, this.findReplayGain = !1, this.decode_on_the_fly = !1, this.write_id3tag_automatic = !1, this.brate = 0, this.compression_ratio = 0, this.copyright = 0, this.original = 0, this.extension = 0, this.emphasis = 0, this.error_protection = 0, this.strict_ISO = !1, this.disable_reservoir = !1, this.quant_comp = 0, this.quant_comp_short = 0, this.experimentalY = !1, this.experimentalZ = 0, this.exp_nspsytune = 0, this.preset = 0, this.VBR = null, this.VBR_q_frac = 0, this.VBR_q = 0, this.VBR_mean_bitrate_kbps = 0, this.VBR_min_bitrate_kbps = 0, this.VBR_max_bitrate_kbps = 0, this.VBR_hard_min = 0, this.lowpassfreq = 0, this.highpassfreq = 0, this.lowpasswidth = 0, this.highpasswidth = 0, this.maskingadjust = 0, this.maskingadjust_short = 0, this.ATHonly = !1, this.ATHshort = !1, this.noATH = !1, this.ATHtype = 0, this.ATHcurve = 0, this.ATHlower = 0, this.athaa_type = 0, this.athaa_loudapprox = 0, this.athaa_sensitivity = 0, this.short_blocks = null, this.useTemporal = !1, this.interChRatio = 0, this.msfix = 0, this.tune = !1, this.tune_value_a = 0, this.version = 0, this.encoder_delay = 0, this.encoder_padding = 0, this.framesize = 0, this.frameNum = 0, this.lame_allocated_gfp = 0, this.internal_flags = null
+        }
+        var n = a(128);
+        e.exports = r
+    },
+    701: function(e, t, a) {
         function r() {
             function e(e, t) {
                 if (e.nVbrNumFrames++, e.sum += t, e.seen++, !(e.seen < e.want) && (e.pos < e.size && (e.bag[e.pos] = e.sum, e.pos++, e.seen = 0), e.pos == e.size)) {
@@ -4270,633 +4417,486 @@
                 return s > n.length ? -1 : 1 > s ? 0 : (t.write(n, 0, s), 0)
             }
         }
-        var n = a(15),
+        var n = a(536),
             s = n.System,
             i = n.VbrMode,
-            o = (n.Float,
-                n.ShortBlock),
+            o = (n.Float, n.ShortBlock),
             _ = (n.Util, n.Arrays),
             l = (n.new_array_n, n.new_byte),
             f = (n.new_double, n.new_float, n.new_float_n, n.new_int, n.new_int_n, n.assert);
         r.NUMTOCENTRIES = 100, r.MAXFRAMESIZE = 2880, e.exports = r
     },
-    47: function(e, t) {
-        function a() {
-            this.over_noise = 0, this.tot_noise = 0, this.max_noise = 0, this.over_count = 0, this.over_SSD = 0, this.bits = 0
-        }
-        e.exports = a
-    },
-    61: function(e, t, a) {
+    703: function(e, t, a) {
         function r() {
-            function e(e, t, a, r, n, s) {
-                for (; 0 != n--;) a[r] = 1e-10 + e[t + 0] * s[0] - a[r - 1] * s[1] + e[t - 1] * s[2] - a[r - 2] * s[3] + e[t - 2] * s[4] - a[r - 3] * s[5] + e[t - 3] * s[6] - a[r - 4] * s[7] + e[t - 4] * s[8] - a[r - 5] * s[9] + e[t - 5] * s[10] - a[r - 6] * s[11] + e[t - 6] * s[12] - a[r - 7] * s[13] + e[t - 7] * s[14] - a[r - 8] * s[15] + e[t - 8] * s[16] - a[r - 9] * s[17] + e[t - 9] * s[18] - a[r - 10] * s[19] + e[t - 10] * s[20], ++r, ++t
+            function e(e) {
+                this.bits = 0 | e
             }
 
             function t(e, t, a, r, n, s) {
-                for (; 0 != n--;) a[r] = e[t + 0] * s[0] - a[r - 1] * s[1] + e[t - 1] * s[2] - a[r - 2] * s[3] + e[t - 2] * s[4], ++r, ++t
+                var i = .5946 / t;
+                for (_(e > 0), e >>= 1; 0 != e--;) n[s++] = i > a[r++] ? 0 : 1, n[s++] = i > a[r++] ? 0 : 1
             }
 
-            function a(e, t) {
-                for (var a = 0; a < MAX_ORDER; a++) e.linprebuf[a] = e.lstepbuf[a] = e.loutbuf[a] = e.rinprebuf[a] = e.rstepbuf[a] = e.routbuf[a] = 0;
-                switch (0 | t) {
-                    case 48e3:
-                        e.reqindex = 0;
-                        break;
-                    case 44100:
-                        e.reqindex = 1;
-                        break;
-                    case 32e3:
-                        e.reqindex = 2;
-                        break;
-                    case 24e3:
-                        e.reqindex = 3;
-                        break;
-                    case 22050:
-                        e.reqindex = 4;
-                        break;
-                    case 16e3:
-                        e.reqindex = 5;
-                        break;
-                    case 12e3:
-                        e.reqindex = 6;
-                        break;
-                    case 11025:
-                        e.reqindex = 7;
-                        break;
-                    case 8e3:
-                        e.reqindex = 8;
-                        break;
-                    default:
-                        return INIT_GAIN_ANALYSIS_ERROR
+            function a(e, t, a, r, n, s) {
+                _(e > 0), e >>= 1;
+                var i = e % 2;
+                for (e >>= 1; 0 != e--;) {
+                    var o, l, f, u, h, c, p, b;
+                    o = a[r++] * t, l = a[r++] * t, h = 0 | o, f = a[r++] * t, c = 0 | l, u = a[r++] * t, p = 0 | f, o += R.adj43[h], b = 0 | u, l += R.adj43[c], n[s++] = 0 | o, f += R.adj43[p], n[s++] = 0 | l, u += R.adj43[b], n[s++] = 0 | f, n[s++] = 0 | u
                 }
-                return e.sampleWindow = 0 | (t * f + u - 1) / u, e.lsum = 0, e.rsum = 0, e.totsamp = 0, i.ill(e.A, 0), INIT_GAIN_ANALYSIS_OK
-            }
-
-            function n(e) {
-                return e * e
-            }
-
-            function o(e, t) {
-                var a, n = 0;
-                for (a = 0; t > a; a++) n += e[a];
-                if (0 == n) return GAIN_NOT_ENOUGH_SAMPLES;
-                var s = 0 | Math.ceil(n * (1 - l));
-                for (a = t; a-- > 0 && !((s -= e[a]) <= 0););
-                return _ - a / r.STEPS_per_dB
-            }
-            var _ = 64.82,
-                l = (r.YULE_ORDER, .95),
-                f = (r.MAX_SAMP_FREQ, r.RMS_WINDOW_TIME_NUMERATOR),
-                u = r.RMS_WINDOW_TIME_DENOMINATOR,
-                h = (r.MAX_SAMPLES_PER_WINDOW, [
-                    [.038575994352, -3.84664617118067, -.02160367184185, 7.81501653005538, -.00123395316851, -11.34170355132042, -9291677959e-14, 13.05504219327545, -.01655260341619, -12.28759895145294, .02161526843274, 9.4829380631979, -.02074045215285, -5.87257861775999, .00594298065125, 2.75465861874613, .00306428023191, -.86984376593551, .00012025322027, .13919314567432, .00288463683916],
-                    [.0541865640643, -3.47845948550071, -.02911007808948, 6.36317777566148, -.00848709379851, -8.54751527471874, -.00851165645469, 9.4769360780128, -.00834990904936, -8.81498681370155, .02245293253339, 6.85401540936998, -.02596338512915, -4.39470996079559, .01624864962975, 2.19611684890774, -.00240879051584, -.75104302451432, .00674613682247, .13149317958808, -.00187763777362],
-                    [.15457299681924, -2.37898834973084, -.09331049056315, 2.84868151156327, -.06247880153653, -2.64577170229825, .02163541888798, 2.23697657451713, -.05588393329856, -1.67148153367602, .04781476674921, 1.00595954808547, .00222312597743, -.45953458054983, .03174092540049, .16378164858596, -.01390589421898, -.05032077717131, .00651420667831, .0234789740702, -.00881362733839],
-                    [.30296907319327, -1.61273165137247, -.22613988682123, 1.0797749225997, -.08587323730772, -.2565625775407, .03282930172664, -.1627671912044, -.00915702933434, -.22638893773906, -.02364141202522, .39120800788284, -.00584456039913, -.22138138954925, .06276101321749, .04500235387352, -828086748e-14, .02005851806501, .00205861885564, .00302439095741, -.02950134983287],
-                    [.33642304856132, -1.49858979367799, -.2557224142557, .87350271418188, -.11828570177555, .12205022308084, .11921148675203, -.80774944671438, -.07834489609479, .47854794562326, -.0046997791438, -.12453458140019, -.0058950022444, -.04067510197014, .05724228140351, .08333755284107, .00832043980773, -.04237348025746, -.0163538138454, .02977207319925, -.0176017656815],
-                    [.4491525660845, -.62820619233671, -.14351757464547, .29661783706366, -.22784394429749, -.372563729424, -.01419140100551, .00213767857124, .04078262797139, -.42029820170918, -.12398163381748, .22199650564824, .04097565135648, .00613424350682, .10478503600251, .06747620744683, -.01863887810927, .05784820375801, -.03193428438915, .03222754072173, .00541907748707],
-                    [.56619470757641, -1.04800335126349, -.75464456939302, .29156311971249, .1624213774223, -.26806001042947, .16744243493672, .00819999645858, -.18901604199609, .45054734505008, .3093178284183, -.33032403314006, -.27562961986224, .0673936833311, .00647310677246, -.04784254229033, .08647503780351, .01639907836189, -.0378898455484, .01807364323573, -.00588215443421],
-                    [.58100494960553, -.51035327095184, -.53174909058578, -.31863563325245, -.14289799034253, -.20256413484477, .17520704835522, .1472815413433, .02377945217615, .38952639978999, .15558449135573, -.23313271880868, -.25344790059353, -.05246019024463, .01628462406333, -.02505961724053, .06920467763959, .02442357316099, -.03721611395801, .01818801111503, -.00749618797172],
-                    [.53648789255105, -.2504987195602, -.42163034350696, -.43193942311114, -.00275953611929, -.03424681017675, .04267842219415, -.04678328784242, -.10214864179676, .26408300200955, .14590772289388, .15113130533216, -.02459864859345, -.17556493366449, -.11202315195388, -.18823009262115, -.04060034127, .05477720428674, .0478866554818, .0470440968812, -.02217936801134]
-                ]),
-                c = [
-                    [.98621192462708, -1.97223372919527, -1.97242384925416, .97261396931306, .98621192462708],
-                    [.98500175787242, -1.96977855582618, -1.97000351574484, .9702284756635, .98500175787242],
-                    [.97938932735214, -1.95835380975398, -1.95877865470428, .95920349965459, .97938932735214],
-                    [.97531843204928, -1.95002759149878, -1.95063686409857, .95124613669835, .97531843204928],
-                    [.97316523498161, -1.94561023566527, -1.94633046996323, .94705070426118, .97316523498161],
-                    [.96454515552826, -1.92783286977036, -1.92909031105652, .93034775234268, .96454515552826],
-                    [.96009142950541, -1.91858953033784, -1.92018285901082, .92177618768381, .96009142950541],
-                    [.95856916599601, -1.9154210807478, -1.91713833199203, .91885558323625, .95856916599601],
-                    [.94597685600279, -1.88903307939452, -1.89195371200558, .89487434461664, .94597685600279]
-                ];
-            this.InitGainAnalysis = function(e, t) {
-                return a(e, t) != INIT_GAIN_ANALYSIS_OK ? INIT_GAIN_ANALYSIS_ERROR : (e.linpre = MAX_ORDER, e.rinpre = MAX_ORDER, e.lstep = MAX_ORDER, e.rstep = MAX_ORDER, e.lout = MAX_ORDER, e.rout = MAX_ORDER, i.fill(e.B, 0), INIT_GAIN_ANALYSIS_OK)
-            }, this.AnalyzeSamples = function(a, i, o, _, l, f, u) {
-                var p, b, m, v, d, g, w;
-                if (0 == f) return GAIN_ANALYSIS_OK;
-                switch (w = 0, d = f, u) {
-                    case 1:
-                        _ = i, l = o;
-                        break;
-                    case 2:
-                        break;
-                    default:
-                        return GAIN_ANALYSIS_ERROR
-                }
-                for (f < MAX_ORDER ? (s.arraycopy(i, o, a.linprebuf, MAX_ORDER, f), s.arraycopy(_, l, a.rinprebuf, MAX_ORDER, f)) : (s.arraycopy(i, o, a.linprebuf, MAX_ORDER, MAX_ORDER), s.arraycopy(_, l, a.rinprebuf, MAX_ORDER, MAX_ORDER)); d > 0;) {
-                    g = d > a.sampleWindow - a.totsamp ? a.sampleWindow - a.totsamp : d, w < MAX_ORDER ? (p = a.linpre + w, b = a.linprebuf, m = a.rinpre + w, v = a.rinprebuf, g > MAX_ORDER - w && (g = MAX_ORDER - w)) : (p = o + w, b = i, m = l + w, v = _), e(b, p, a.lstepbuf, a.lstep + a.totsamp, g, h[a.reqindex]), e(v, m, a.rstepbuf, a.rstep + a.totsamp, g, h[a.reqindex]), t(a.lstepbuf, a.lstep + a.totsamp, a.loutbuf, a.lout + a.totsamp, g, c[a.reqindex]), t(a.rstepbuf, a.rstep + a.totsamp, a.routbuf, a.rout + a.totsamp, g, c[a.reqindex]), p = a.lout + a.totsamp, b = a.loutbuf, m = a.rout + a.totsamp, v = a.routbuf;
-                    for (var S = g % 8; 0 != S--;) a.lsum += n(b[p++]), a.rsum += n(v[m++]);
-                    for (S = g / 8; 0 != S--;) a.lsum += n(b[p + 0]) + n(b[p + 1]) + n(b[p + 2]) + n(b[p + 3]) + n(b[p + 4]) + n(b[p + 5]) + n(b[p + 6]) + n(b[p + 7]), p += 8, a.rsum += n(v[m + 0]) + n(v[m + 1]) + n(v[m + 2]) + n(v[m + 3]) + n(v[m + 4]) + n(v[m + 5]) + n(v[m + 6]) + n(v[m + 7]), m += 8;
-                    if (d -= g, w += g, a.totsamp += g, a.totsamp == a.sampleWindow) {
-                        var A = 10 * r.STEPS_per_dB * Math.log10((a.lsum + a.rsum) / a.totsamp * .5 + 1e-37),
-                            R = 0 >= A ? 0 : 0 | A;
-                        R >= a.A.length && (R = a.A.length - 1), a.A[R]++, a.lsum = a.rsum = 0, s.arraycopy(a.loutbuf, a.totsamp, a.loutbuf, 0, MAX_ORDER), s.arraycopy(a.routbuf, a.totsamp, a.routbuf, 0, MAX_ORDER), s.arraycopy(a.lstepbuf, a.totsamp, a.lstepbuf, 0, MAX_ORDER), s.arraycopy(a.rstepbuf, a.totsamp, a.rstepbuf, 0, MAX_ORDER), a.totsamp = 0
-                    }
-                    if (a.totsamp > a.sampleWindow) return GAIN_ANALYSIS_ERROR
-                }
-                return f < MAX_ORDER ? (s.arraycopy(a.linprebuf, f, a.linprebuf, 0, MAX_ORDER - f), s.arraycopy(a.rinprebuf, f, a.rinprebuf, 0, MAX_ORDER - f), s.arraycopy(i, o, a.linprebuf, MAX_ORDER - f, f), s.arraycopy(_, l, a.rinprebuf, MAX_ORDER - f, f)) : (s.arraycopy(i, o + f - MAX_ORDER, a.linprebuf, 0, MAX_ORDER), s.arraycopy(_, l + f - MAX_ORDER, a.rinprebuf, 0, MAX_ORDER)), GAIN_ANALYSIS_OK
-            }, this.GetTitleGain = function(e) {
-                for (var t = o(e.A, e.A.length), a = 0; a < e.A.length; a++) e.B[a] += e.A[a], e.A[a] = 0;
-                for (var a = 0; a < MAX_ORDER; a++) e.linprebuf[a] = e.lstepbuf[a] = e.loutbuf[a] = e.rinprebuf[a] = e.rstepbuf[a] = e.routbuf[a] = 0;
-                return e.totsamp = 0, e.lsum = e.rsum = 0, t
-            }
-        }
-        var n = a(15),
-            s = n.System,
-            i = (n.VbrMode, n.Float, n.ShortBlock, n.Util, n.Arrays);
-        n.new_array_n, n.new_byte, n.new_double, n.new_float, n.new_float_n, n.new_int, n.new_int_n, n.assert, r.STEPS_per_dB = 100, r.MAX_dB = 120, r.GAIN_NOT_ENOUGH_SAMPLES = -24601, r.GAIN_ANALYSIS_ERROR = 0, r.GAIN_ANALYSIS_OK = 1, r.INIT_GAIN_ANALYSIS_ERROR = 0, r.INIT_GAIN_ANALYSIS_OK = 1, r.YULE_ORDER = 10, r.MAX_ORDER = r.YULE_ORDER, r.MAX_SAMP_FREQ = 48e3, r.RMS_WINDOW_TIME_NUMERATOR = 1, r.RMS_WINDOW_TIME_DENOMINATOR = 20, r.MAX_SAMPLES_PER_WINDOW = r.MAX_SAMP_FREQ * r.RMS_WINDOW_TIME_NUMERATOR / r.RMS_WINDOW_TIME_DENOMINATOR + 1, e.exports = r
-    },
-    65: function(e, t, a) {
-        "use strict";
-
-        function r(e, t) {
-            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
-        }
-        a.r(t);
-        var n = a(155),
-            s = n.Mp3Encoder;
-        self.onmessage = function(e) {
-            switch (e.data.command) {
-                case "encode":
-                    i && i.encode(e.data.buffers);
-                    break;
-                case "done":
-                    i && i.encodeFinalFrame();
-                    break;
-                case "init":
-                    i = new _(e.data)
-            }
-        };
-        var i = void 0,
-            o = 128,
-            _ = function() {
-                function e(t) {
-                    r(this, e), this.numberOfChannels = t.numberOfChannels || 1, this.originalSampleRate = t.originalSampleRate, this.bitRate = t.bitRate || o, this._codec = new s(this.numberOfChannels, this.originalSampleRate, this.bitRate)
-                }
-                return e.prototype._convertBuffer = function(e) {
-                    for (var t = new Int16Array(e[0].length), a = 0; a < t.length; a++) {
-                        var r = e[0][a] / 1.2 * 32767;
-                        t[a] = 0 > r ? Math.max(r, -32768) : Math.min(r, 32767)
-                    }
-                    return t
-                }, e.prototype.encode = function(e) {
-                    var t = this._convertBuffer(e),
-                        a = this._codec.encodeBuffer(t);
-                    self.postMessage({
-                        type: "data",
-                        buffer: new Int8Array(a)
-                    })
-                }, e.prototype.encodeFinalFrame = function() {
-                    var e = this._codec.flush();
-                    self.postMessage({
-                        type: "finish",
-                        buffer: new Int8Array(e)
-                    }), self.close()
-                }, e
-            }()
-    },
-    67: function(e, t, a) {
-        function r() {
-            function e(e) {
-                var t, a;
-                if (0 == e.ATH.useAdjust) return void(e.ATH.adjust = 1);
-                if (a = e.loudness_sq[0][0], t = e.loudness_sq[1][0], 2 == e.channels_out ? (a += e.loudness_sq[0][1], t += e.loudness_sq[1][1]) : (a += a, t += t), 2 == e.mode_gr && (a = Math.max(a, t)), a *= .5, a *= e.ATH.aaSensitivityP, a > .03125) e.ATH.adjust >= 1 ? e.ATH.adjust = 1 : e.ATH.adjust < e.ATH.adjustLimit && (e.ATH.adjust = e.ATH.adjustLimit), e.ATH.adjustLimit = 1;
-                else {
-                    var r = 31.98 * a + 625e-6;
-                    e.ATH.adjust >= r ? (e.ATH.adjust *= .075 * r + .925, e.ATH.adjust < r && (e.ATH.adjust = r)) : e.ATH.adjustLimit >= r ? e.ATH.adjust = r : e.ATH.adjust < e.ATH.adjustLimit && (e.ATH.adjust = e.ATH.adjustLimit), e.ATH.adjustLimit = r
+                if (0 != i) {
+                    var o, l, h, c;
+                    o = a[r++] * t, l = a[r++] * t, h = 0 | o, c = 0 | l, o += R.adj43[h], l += R.adj43[c], n[s++] = 0 | o, n[s++] = 0 | l
                 }
             }
 
-            function t(e) {
-                var t, a;
-                for (u(0 <= e.bitrate_index && e.bitrate_index < 16), u(0 <= e.mode_ext && e.mode_ext < 4), e.bitrate_stereoMode_Hist[e.bitrate_index][4]++, e.bitrate_stereoMode_Hist[15][4]++, 2 == e.channels_out && (e.bitrate_stereoMode_Hist[e.bitrate_index][e.mode_ext]++, e.bitrate_stereoMode_Hist[15][e.mode_ext]++), t = 0; t < e.mode_gr; ++t)
-                    for (a = 0; a < e.channels_out; ++a) {
-                        var r = 0 | e.l3_side.tt[t][a].block_type;
-                        0 != e.l3_side.tt[t][a].mixed_block_flag && (r = 4), e.bitrate_blockType_Hist[e.bitrate_index][r]++, e.bitrate_blockType_Hist[e.bitrate_index][5]++, e.bitrate_blockType_Hist[15][r]++, e.bitrate_blockType_Hist[15][5]++
-                    }
-            }
-
-            function n(e, t) {
-                var a, n, s = e.internal_flags;
-                if (0 == s.lame_encode_frame_init) {
-                    var i, o, l = _(2014),
-                        f = _(2014);
-                    for (s.lame_encode_frame_init = 1, i = 0, o = 0; i < 286 + 576 * (1 + s.mode_gr); ++i) i < 576 * s.mode_gr ? (l[i] = 0, 2 == s.channels_out && (f[i] = 0)) : (l[i] = t[0][o], 2 == s.channels_out && (f[i] = t[1][o]), ++o);
-                    for (n = 0; n < s.mode_gr; n++)
-                        for (a = 0; a < s.channels_out; a++) s.l3_side.tt[n][a].block_type = r.SHORT_TYPE;
-                    w.mdct_sub48(s, l, f), u(576 >= r.FFTOFFSET), u(s.mf_size >= r.BLKSIZE + e.framesize - r.FFTOFFSET), u(s.mf_size >= 512 + e.framesize - 32)
-                }
-            }
-            var h = a(204),
-                c = a(122),
-                p = r.FFTOFFSET,
-                b = r.MPG_MD_MS_LR,
-                m = null;
-            this.psy = null;
-            var v = null,
-                d = null,
-                g = null;
-            this.setModules = function(e, t, a, r) {
-                m = e, this.psy = t, v = t, d = r, g = a
-            };
-            var w = new h;
-            this.lame_encode_mp3_frame = function(a, _, u, h, S, A) {
-                var R, M = o([2, 2]);
-                M[0][0] = new c, M[0][1] = new c, M[1][0] = new c, M[1][1] = new c;
-                var y = o([2, 2]);
-                y[0][0] = new c, y[0][1] = new c, y[1][0] = new c, y[1][1] = new c;
-                var B, E, T, k, x = [null, null],
-                    P = a.internal_flags,
-                    I = l([2, 4]),
-                    L = [.5, .5],
-                    O = [
-                        [0, 0],
-                        [0, 0]
-                    ],
-                    V = [
-                        [0, 0],
-                        [0, 0]
-                    ];
-                if (x[0] = _, x[1] = u, 0 == P.lame_encode_frame_init && n(a, x), P.padding = 0, (P.slot_lag -= P.frac_SpF) < 0 && (P.slot_lag += a.out_samplerate, P.padding = 1), 0 != P.psymodel) {
-                    var N, H = [null, null],
-                        D = 0,
-                        Y = f(2);
-                    for (k = 0; k < P.mode_gr; k++) {
-                        for (T = 0; T < P.channels_out; T++) H[T] = x[T], D = 576 + 576 * k - r.FFTOFFSET;
-                        if (N = a.VBR == i.vbr_mtrh || a.VBR == i.vbr_mt ? v.L3psycho_anal_vbr(a, H, D, k, M, y, O[k], V[k], I[k], Y) : v.L3psycho_anal_ns(a, H, D, k, M, y, O[k], V[k], I[k], Y), 0 != N) return -4;
-                        for (a.mode == MPEGMode.JOINT_STEREO && (L[k] = I[k][2] + I[k][3], L[k] > 0 && (L[k] = I[k][3] / L[k])), T = 0; T < P.channels_out; T++) {
-                            var X = P.l3_side.tt[k][T];
-                            X.block_type = Y[T], X.mixed_block_flag = 0
-                        }
-                    }
-                } else
-                    for (k = 0; k < P.mode_gr; k++)
-                        for (T = 0; T < P.channels_out; T++) P.l3_side.tt[k][T].block_type = r.NORM_TYPE, P.l3_side.tt[k][T].mixed_block_flag = 0, V[k][T] = O[k][T] = 700;
-                if (e(P), w.mdct_sub48(P, x[0], x[1]), P.mode_ext = r.MPG_MD_LR_LR, a.force_ms) P.mode_ext = r.MPG_MD_MS_LR;
-                else if (a.mode == MPEGMode.JOINT_STEREO) {
-                    var F = 0,
-                        C = 0;
-                    for (k = 0; k < P.mode_gr; k++)
-                        for (T = 0; T < P.channels_out; T++) F += V[k][T], C += O[k][T];
-                    if (1 * C >= F) {
-                        var q = P.l3_side.tt[0],
-                            U = P.l3_side.tt[P.mode_gr - 1];
-                        q[0].block_type == q[1].block_type && U[0].block_type == U[1].block_type && (P.mode_ext = r.MPG_MD_MS_LR)
-                    }
-                }
-                if (P.mode_ext == b ? (B = y, E = V) : (B = M, E = O), a.analysis && null != P.pinfo)
-                    for (k = 0; k < P.mode_gr; k++)
-                        for (T = 0; T < P.channels_out; T++) P.pinfo.ms_ratio[k] = P.ms_ratio[k], P.pinfo.ms_ener_ratio[k] = L[k], P.pinfo.blocktype[k][T] = P.l3_side.tt[k][T].block_type, P.pinfo.pe[k][T] = E[k][T], s.arraycopy(P.l3_side.tt[k][T].xr, 0, P.pinfo.xr[k][T], 0, 576), P.mode_ext == b && (P.pinfo.ers[k][T] = P.pinfo.ers[k][T + 2], s.arraycopy(P.pinfo.energy[k][T + 2], 0, P.pinfo.energy[k][T], 0, P.pinfo.energy[k][T].length));
-                if (a.VBR == i.vbr_off || a.VBR == i.vbr_abr) {
-                    var j, G;
-                    for (j = 0; 18 > j; j++) P.nsPsy.pefirbuf[j] = P.nsPsy.pefirbuf[j + 1];
-                    for (G = 0, k = 0; k < P.mode_gr; k++)
-                        for (T = 0; T < P.channels_out; T++) G += E[k][T];
-                    for (P.nsPsy.pefirbuf[18] = G, G = P.nsPsy.pefirbuf[9], j = 0; 9 > j; j++) G += (P.nsPsy.pefirbuf[j] + P.nsPsy.pefirbuf[18 - j]) * r.fircoef[j];
-                    for (G = 3350 * P.mode_gr * P.channels_out / G, k = 0; k < P.mode_gr; k++)
-                        for (T = 0; T < P.channels_out; T++) E[k][T] *= G
-                }
-                if (P.iteration_loop.iteration_loop(a, E, L, B), m.format_bitstream(a), R = m.copy_buffer(P, h, S, A, 1), a.bWriteVbrTag && d.addVbrFrame(a), a.analysis && null != P.pinfo) {
-                    for (T = 0; T < P.channels_out; T++) {
-                        var z;
-                        for (z = 0; p > z; z++) P.pinfo.pcmdata[T][z] = P.pinfo.pcmdata[T][z + a.framesize];
-                        for (z = p; 1600 > z; z++) P.pinfo.pcmdata[T][z] = x[T][z - p]
-                    }
-                    g.set_frame_pinfo(a, B)
-                }
-                return t(P), R
-            }
-        }
-        var n = a(15),
-            s = n.System,
-            i = n.VbrMode,
-            o = (n.Float, n.ShortBlock, n.Util, n.Arrays, n.new_array_n),
-            _ = (n.new_byte, n.new_double, n.new_float),
-            l = n.new_float_n,
-            f = n.new_int,
-            u = (n.new_int_n, n.assert);
-        r.ENCDELAY = 576, r.POSTDELAY = 1152, r.MDCTDELAY = 48, r.FFTOFFSET = 224 + r.MDCTDELAY, r.DECDELAY = 528, r.SBLIMIT = 32, r.CBANDS = 64, r.SBPSY_l = 21, r.SBPSY_s = 12, r.SBMAX_l = 22, r.SBMAX_s = 13, r.PSFB21 = 6, r.PSFB12 = 6, r.BLKSIZE = 1024, r.HBLKSIZE = r.BLKSIZE / 2 + 1, r.BLKSIZE_s = 256, r.HBLKSIZE_s = r.BLKSIZE_s / 2 + 1, r.NORM_TYPE = 0, r.START_TYPE = 1, r.SHORT_TYPE = 2, r.STOP_TYPE = 3, r.MPG_MD_LR_LR = 0, r.MPG_MD_LR_I = 1, r.MPG_MD_MS_LR = 2, r.MPG_MD_MS_I = 3, r.fircoef = [-.1039435, -.1892065, 5 * -.0432472, -.155915, 3.898045e-17, .0467745 * 5, .50455, .756825, .187098 * 5], e.exports = r
-    },
-    82: function(e, t, a) {
-        var r = a(67),
-            n = {};
-        n.SFBMAX = 3 * r.SBMAX_s, e.exports = n
-    },
-    87: function(e, t, a) {
-        function r() {
-            function e(e) {
-                return u(0 <= e + r.Q_MAX2 && e < r.Q_MAX), y[e + r.Q_MAX2]
-            }
-
-            function t(e, t) {
-                var a = v.ATHformula(t, e);
-                return a -= R, a = Math.pow(10, a / 10 + e.ATHlower)
-            }
-
-            function a(e) {
-                for (var a = e.internal_flags.ATH.l, r = e.internal_flags.ATH.psfb21, n = e.internal_flags.ATH.s, s = e.internal_flags.ATH.psfb12, i = e.internal_flags, _ = e.out_samplerate, l = 0; l < h.SBMAX_l; l++) {
-                    var f = i.scalefac_band.l[l],
-                        u = i.scalefac_band.l[l + 1];
-                    a[l] = o.MAX_VALUE;
-                    for (var c = f; u > c; c++) {
-                        var p = c * _ / 1152,
-                            b = t(e, p);
-                        a[l] = Math.min(a[l], b)
-                    }
-                }
-                for (var l = 0; l < h.PSFB21; l++) {
-                    var f = i.scalefac_band.psfb21[l],
-                        u = i.scalefac_band.psfb21[l + 1];
-                    r[l] = o.MAX_VALUE;
-                    for (var c = f; u > c; c++) {
-                        var p = c * _ / 1152,
-                            b = t(e, p);
-                        r[l] = Math.min(r[l], b)
-                    }
-                }
-                for (var l = 0; l < h.SBMAX_s; l++) {
-                    var f = i.scalefac_band.s[l],
-                        u = i.scalefac_band.s[l + 1];
-                    n[l] = o.MAX_VALUE;
-                    for (var c = f; u > c; c++) {
-                        var p = c * _ / 384,
-                            b = t(e, p);
-                        n[l] = Math.min(n[l], b)
-                    }
-                    n[l] *= i.scalefac_band.s[l + 1] - i.scalefac_band.s[l]
-                }
-                for (var l = 0; l < h.PSFB12; l++) {
-                    var f = i.scalefac_band.psfb12[l],
-                        u = i.scalefac_band.psfb12[l + 1];
-                    s[l] = o.MAX_VALUE;
-                    for (var c = f; u > c; c++) {
-                        var p = c * _ / 384,
-                            b = t(e, p);
-                        s[l] = Math.min(s[l], b)
-                    }
-                    s[l] *= i.scalefac_band.s[13] - i.scalefac_band.s[12]
-                }
-                if (e.noATH) {
-                    for (var l = 0; l < h.SBMAX_l; l++) a[l] = 1e-20;
-                    for (var l = 0; l < h.PSFB21; l++) r[l] = 1e-20;
-                    for (var l = 0; l < h.SBMAX_s; l++) n[l] = 1e-20;
-                    for (var l = 0; l < h.PSFB12; l++) s[l] = 1e-20
-                }
-                i.ATH.floor = 10 * Math.log10(t(e, -1))
-            }
-
-            function s(e) {
-                this.s = e
-            }
-            var b = null,
-                m = null,
-                v = null;
-            this.setModules = function(e, t, a) {
-                b = e, m = t, v = a
-            }, this.IPOW20 = function(e) {
-                return u(e >= 0 && e < r.Q_MAX), B[e]
-            };
-            var d = 2.220446049250313e-16,
-                g = r.IXMAX_VAL,
-                w = g + 2,
-                S = r.Q_MAX,
-                A = r.Q_MAX2,
-                R = (r.LARGE_BITS, 100);
-            this.nr_of_sfb_block = [
-                [
-                    [6, 5, 5, 5],
-                    [9, 9, 9, 9],
-                    [6, 9, 9, 9]
-                ],
-                [
-                    [6, 5, 7, 3],
-                    [9, 9, 12, 6],
-                    [6, 9, 12, 6]
-                ],
-                [
-                    [11, 10, 0, 0],
-                    [18, 18, 0, 0],
-                    [15, 18, 0, 0]
-                ],
-                [
-                    [7, 7, 7, 0],
-                    [12, 12, 12, 0],
-                    [6, 15, 12, 0]
-                ],
-                [
-                    [6, 6, 6, 3],
-                    [12, 9, 9, 6],
-                    [6, 12, 9, 6]
-                ],
-                [
-                    [8, 8, 5, 0],
-                    [15, 12, 9, 0],
-                    [6, 18, 9, 0]
-                ]
-            ];
-            var M = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 3, 3, 3, 2, 0];
-            this.pretab = M, this.sfBandIndex = [new n([0, 6, 12, 18, 24, 30, 36, 44, 54, 66, 80, 96, 116, 140, 168, 200, 238, 284, 336, 396, 464, 522, 576], [0, 4, 8, 12, 18, 24, 32, 42, 56, 74, 100, 132, 174, 192], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]), new n([0, 6, 12, 18, 24, 30, 36, 44, 54, 66, 80, 96, 114, 136, 162, 194, 232, 278, 332, 394, 464, 540, 576], [0, 4, 8, 12, 18, 26, 36, 48, 62, 80, 104, 136, 180, 192], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]), new n([0, 6, 12, 18, 24, 30, 36, 44, 54, 66, 80, 96, 116, 140, 168, 200, 238, 284, 336, 396, 464, 522, 576], [0, 4, 8, 12, 18, 26, 36, 48, 62, 80, 104, 134, 174, 192], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]), new n([0, 4, 8, 12, 16, 20, 24, 30, 36, 44, 52, 62, 74, 90, 110, 134, 162, 196, 238, 288, 342, 418, 576], [0, 4, 8, 12, 16, 22, 30, 40, 52, 66, 84, 106, 136, 192], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]), new n([0, 4, 8, 12, 16, 20, 24, 30, 36, 42, 50, 60, 72, 88, 106, 128, 156, 190, 230, 276, 330, 384, 576], [0, 4, 8, 12, 16, 22, 28, 38, 50, 64, 80, 100, 126, 192], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]), new n([0, 4, 8, 12, 16, 20, 24, 30, 36, 44, 54, 66, 82, 102, 126, 156, 194, 240, 296, 364, 448, 550, 576], [0, 4, 8, 12, 16, 22, 30, 42, 58, 78, 104, 138, 180, 192], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]), new n([0, 6, 12, 18, 24, 30, 36, 44, 54, 66, 80, 96, 116, 140, 168, 200, 238, 284, 336, 396, 464, 522, 576], [0, 4, 8, 12, 18, 26, 36, 48, 62, 80, 104, 134, 174, 192], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]), new n([0, 6, 12, 18, 24, 30, 36, 44, 54, 66, 80, 96, 116, 140, 168, 200, 238, 284, 336, 396, 464, 522, 576], [0, 4, 8, 12, 18, 26, 36, 48, 62, 80, 104, 134, 174, 192], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]), new n([0, 12, 24, 36, 48, 60, 72, 88, 108, 132, 160, 192, 232, 280, 336, 400, 476, 566, 568, 570, 572, 574, 576], [0, 8, 16, 24, 36, 52, 72, 96, 124, 160, 162, 164, 166, 192], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0])];
-            var y = l(S + A + 1),
-                B = l(S),
-                E = l(w),
-                T = l(w);
-            this.adj43 = T, this.iteration_init = function(e) {
-                var t, r = e.internal_flags,
-                    n = r.l3_side;
-                if (0 == r.iteration_init_init) {
-                    for (r.iteration_init_init = 1, n.main_data_begin = 0, a(e), E[0] = 0, t = 1; w > t; t++) E[t] = Math.pow(t, 4 / 3);
-                    for (t = 0; w - 1 > t; t++) T[t] = t + 1 - Math.pow(.5 * (E[t] + E[t + 1]), .75);
-                    for (T[t] = .5, t = 0; S > t; t++) B[t] = Math.pow(2, (t - 210) * -.1875);
-                    for (t = 0; S + A >= t; t++) y[t] = Math.pow(2, .25 * (t - 210 - A));
-                    b.huffman_init(r);
-                    var s, i, o, _;
-                    for (t = e.exp_nspsytune >> 2 & 63, t >= 32 && (t -= 64), s = Math.pow(10, t / 4 / 10), t = e.exp_nspsytune >> 8 & 63, t >= 32 && (t -= 64), i = Math.pow(10, t / 4 / 10), t = e.exp_nspsytune >> 14 & 63, t >= 32 && (t -= 64), o = Math.pow(10, t / 4 / 10), t = e.exp_nspsytune >> 20 & 63, t >= 32 && (t -= 64), _ = o * Math.pow(10, t / 4 / 10), t = 0; t < h.SBMAX_l; t++) {
-                        var l;
-                        l = 6 >= t ? s : 13 >= t ? i : 20 >= t ? o : _, r.nsPsy.longfact[t] = l
-                    }
-                    for (t = 0; t < h.SBMAX_s; t++) {
-                        var l;
-                        l = 5 >= t ? s : 10 >= t ? i : 11 >= t ? o : _, r.nsPsy.shortfact[t] = l
-                    }
-                }
-            }, this.on_pe = function(e, t, a, r, n, s) {
-                var i, o, _ = e.internal_flags,
-                    l = 0,
-                    h = f(2),
-                    b = new c(l),
-                    v = m.ResvMaxBits(e, r, b, s);
-                l = b.bits;
-                var d = l + v;
-                for (d > p.MAX_BITS_PER_GRANULE && (d = p.MAX_BITS_PER_GRANULE), i = 0, o = 0; o < _.channels_out; ++o) a[o] = Math.min(p.MAX_BITS_PER_CHANNEL, l / _.channels_out), h[o] = 0 | a[o] * t[n][o] / 700 - a[o], h[o] > 3 * r / 4 && (h[o] = 3 * r / 4), h[o] < 0 && (h[o] = 0), h[o] + a[o] > p.MAX_BITS_PER_CHANNEL && (h[o] = Math.max(0, p.MAX_BITS_PER_CHANNEL - a[o])), i += h[o];
-                if (i > v)
-                    for (o = 0; o < _.channels_out; ++o) h[o] = v * h[o] / i;
-                for (o = 0; o < _.channels_out; ++o) a[o] += h[o], v -= h[o];
-                for (i = 0, o = 0; o < _.channels_out; ++o) i += a[o];
-                if (i > p.MAX_BITS_PER_GRANULE) {
-                    var g = 0;
-                    for (o = 0; o < _.channels_out; ++o) a[o] *= p.MAX_BITS_PER_GRANULE, a[o] /= i, g += a[o];
-                    u(g <= p.MAX_BITS_PER_GRANULE)
-                }
-                return d
-            }, this.reduce_side = function(e, t, a, r) {
-                u(r <= p.MAX_BITS_PER_GRANULE), u(e[0] + e[1] <= p.MAX_BITS_PER_GRANULE);
-                var n = .33 * (.5 - t) / .5;
-                0 > n && (n = 0), n > .5 && (n = .5);
-                var s = 0 | .5 * n * (e[0] + e[1]);
-                s > p.MAX_BITS_PER_CHANNEL - e[0] && (s = p.MAX_BITS_PER_CHANNEL - e[0]), 0 > s && (s = 0), e[1] >= 125 && (e[1] - s > 125 ? (e[0] < a && (e[0] += s), e[1] -= s) : (e[0] += e[1] - 125, e[1] = 125)), s = e[0] + e[1], s > r && (e[0] = r * e[0] / s, e[1] = r * e[1] / s), u(e[0] <= p.MAX_BITS_PER_CHANNEL), u(e[1] <= p.MAX_BITS_PER_CHANNEL), u(e[0] + e[1] <= p.MAX_BITS_PER_GRANULE)
-            }, this.athAdjust = function(e, t, a) {
-                var r = 90.30873362,
-                    n = 94.82444863,
-                    s = _.FAST_LOG10_X(t, 10),
-                    i = e * e,
-                    o = 0;
-                return s -= a, i > 1e-20 && (o = 1 + _.FAST_LOG10_X(i, 10 / r)), 0 > o && (o = 0), s *= o, s += a + r - n, Math.pow(10, .1 * s)
-            }, this.calc_xmin = function(e, t, a, r) {
-                var n, s = 0,
-                    o = e.internal_flags,
-                    _ = 0,
-                    l = 0,
-                    f = o.ATH,
-                    u = a.xr,
-                    c = e.VBR == i.vbr_mtrh ? 1 : 0,
-                    p = o.masking_lower;
-                for ((e.VBR == i.vbr_mtrh || e.VBR == i.vbr_mt) && (p = 1), n = 0; n < a.psy_lmax; n++) {
-                    var b, m, v, g, w, S;
-                    m = e.VBR == i.vbr_rh || e.VBR == i.vbr_mtrh ? athAdjust(f.adjust, f.l[n], f.floor) : f.adjust * f.l[n], w = a.width[n], v = m / w, g = d, S = w >> 1, b = 0;
-                    do {
-                        var A, R;
-                        A = u[_] * u[_], b += A, g += v > A ? A : v, _++, R = u[_] * u[_], b += R, g += v > R ? R : v, _++
-                    } while (--S > 0);
-                    if (b > m && l++, n == h.SBPSY_l) {
-                        var M = m * o.nsPsy.longfact[n];
-                        M > g && (g = M)
-                    }
-                    if (0 != c && (m = g), !e.ATHonly) {
-                        var y = t.en.l[n];
-                        if (y > 0) {
-                            var M;
-                            M = b * t.thm.l[n] * p / y, 0 != c && (M *= o.nsPsy.longfact[n]), M > m && (m = M)
-                        }
-                    }
-                    0 != c ? r[s++] = m : r[s++] = m * o.nsPsy.longfact[n]
-                }
-                var B = 575;
-                if (a.block_type != h.SHORT_TYPE)
-                    for (var E = 576; 0 != E-- && BitStream.EQ(u[E], 0);) B = E;
-                a.max_nonzero_coeff = B;
-                for (var T = a.sfb_smin; n < a.psymax; T++, n += 3) {
-                    var w, k, x;
-                    for (x = e.VBR == i.vbr_rh || e.VBR == i.vbr_mtrh ? athAdjust(f.adjust, f.s[T], f.floor) : f.adjust * f.s[T], w = a.width[n], k = 0; 3 > k; k++) {
-                        var m, v, g, b = 0,
-                            S = w >> 1;
-                        v = x / w, g = d;
-                        do {
-                            var A, R;
-                            A = u[_] * u[_], b += A, g += v > A ? A : v, _++, R = u[_] * u[_], b += R, g += v > R ? R : v, _++
-                        } while (--S > 0);
-                        if (b > x && l++, T == h.SBPSY_s) {
-                            var M = x * o.nsPsy.shortfact[T];
-                            M > g && (g = M)
-                        }
-                        if (m = 0 != c ? g : x, !e.ATHonly && !e.ATHshort) {
-                            var y = t.en.s[T][k];
-                            if (y > 0) {
-                                var M;
-                                M = b * t.thm.s[T][k] * p / y, 0 != c && (M *= o.nsPsy.shortfact[T]), M > m && (m = M)
-                            }
-                        }
-                        0 != c ? r[s++] = m : r[s++] = m * o.nsPsy.shortfact[T]
-                    }
-                    e.useTemporal && (r[s - 3] > r[s - 3 + 1] && (r[s - 3 + 1] += (r[s - 3] - r[s - 3 + 1]) * o.decay), r[s - 3 + 1] > r[s - 3 + 2] && (r[s - 3 + 2] += (r[s - 3 + 1] - r[s - 3 + 2]) * o.decay))
-                }
-                return l
-            }, this.calc_noise_core = function(e, t, a, r) {
-                var n = 0,
-                    s = t.s,
-                    i = e.l3_enc;
-                if (s > e.count1)
-                    for (; 0 != a--;) {
-                        var o;
-                        o = e.xr[s], s++, n += o * o, o = e.xr[s], s++, n += o * o
-                    } else if (s > e.big_values) {
-                        var _ = l(2);
-                        for (_[0] = 0, _[1] = r; 0 != a--;) {
-                            var o;
-                            o = Math.abs(e.xr[s]) - _[i[s]], s++, n += o * o, o = Math.abs(e.xr[s]) - _[i[s]], s++, n += o * o
-                        }
-                    } else
-                        for (; 0 != a--;) {
-                            var o;
-                            o = Math.abs(e.xr[s]) - E[i[s]] * r, s++, n += o * o, o = Math.abs(e.xr[s]) - E[i[s]] * r, s++, n += o * o
-                        }
-                return t.s = s, n
-            }, this.calc_noise = function(t, a, r, n, i) {
-                var o, l, f = 0,
-                    u = 0,
-                    h = 0,
-                    c = 0,
+            function n(e, r, n, s, o) {
+                var f, u, h, c = 0,
                     p = 0,
-                    b = -20,
+                    b = 0,
                     m = 0,
-                    v = t.scalefac,
-                    d = 0;
-                for (n.over_SSD = 0, o = 0; o < t.psymax; o++) {
-                    var g = t.global_gain - (v[d++] + (0 != t.preflag ? M[o] : 0) << t.scalefac_scale + 1) - 8 * t.subblock_gain[t.window[o]],
-                        w = 0;
-                    if (null != i && i.step[o] == g) w = i.noise[o], m += t.width[o], r[f++] = w / a[u++], w = i.noise_log[o];
+                    v = r,
+                    d = 0,
+                    g = v,
+                    w = 0,
+                    S = e,
+                    A = 0;
+                for (h = null != o && s.global_gain == o.global_gain, u = s.block_type == l.SHORT_TYPE ? 38 : 21, f = 0; u >= f; f++) {
+                    var M = -1;
+                    if ((h || s.block_type == l.NORM_TYPE) && (M = s.global_gain - (s.scalefac[f] + (0 != s.preflag ? R.pretab[f] : 0) << s.scalefac_scale + 1) - 8 * s.subblock_gain[s.window[f]]), _(s.width[f] >= 0), h && o.step[f] == M) 0 != p && (a(p, n, S, A, g, w), p = 0), 0 != b && (t(b, n, S, A, g, w), b = 0);
                     else {
-                        var S = e(g);
-                        if (l = t.width[o] >> 1, m + t.width[o] > t.max_nonzero_coeff) {
-                            var A;
-                            A = t.max_nonzero_coeff - m + 1, l = A > 0 ? A >> 1 : 0
+                        var y = s.width[f];
+                        if (c + s.width[f] > s.max_nonzero_coeff) {
+                            var B;
+                            B = s.max_nonzero_coeff - c + 1, i.fill(r, s.max_nonzero_coeff, 576, 0), y = B, 0 > y && (y = 0), f = u + 1
                         }
-                        var R = new s(m);
-                        w = this.calc_noise_core(t, R, l, S), m = R.s, null != i && (i.step[o] = g, i.noise[o] = w), w = r[f++] = w / a[u++], w = _.FAST_LOG10(Math.max(w, 1e-20)), null != i && (i.noise_log[o] = w)
-                    }
-                    if (null != i && (i.global_gain = t.global_gain), p += w, w > 0) {
-                        var y;
-                        y = Math.max(0 | 10 * w + .5, 1), n.over_SSD += y * y, h++, c += w
-                    }
-                    b = Math.max(b, w)
-                }
-                return n.over_count = h, n.tot_noise = p, n.over_noise = c, n.max_noise = b, h
-            }, this.set_pinfo = function(e, t, a, r, n) {
-                var s, i, o, _, f, c = e.internal_flags,
-                    p = 0 == t.scalefac_scale ? .5 : 1,
-                    b = t.scalefac,
-                    m = l(L3Side.SFBMAX),
-                    v = l(L3Side.SFBMAX),
-                    d = new CalcNoiseResult;
-                calc_xmin(e, a, t, m), calc_noise(t, m, v, d, null);
-                var g = 0;
-                for (i = t.sfb_lmax, t.block_type != h.SHORT_TYPE && 0 == t.mixed_block_flag && (i = 22), s = 0; i > s; s++) {
-                    var w = c.scalefac_band.l[s],
-                        S = c.scalefac_band.l[s + 1],
-                        A = S - w;
-                    for (_ = 0; S > g; g++) _ += t.xr[g] * t.xr[g];
-                    _ /= A, f = 1e15, c.pinfo.en[r][n][s] = f * _, c.pinfo.xfsf[r][n][s] = f * m[s] * v[s] / A, a.en.l[s] > 0 && !e.ATHonly ? _ /= a.en.l[s] : _ = 0, c.pinfo.thr[r][n][s] = f * Math.max(_ * a.thm.l[s], c.ATH.l[s]), c.pinfo.LAMEsfb[r][n][s] = 0, 0 != t.preflag && s >= 11 && (c.pinfo.LAMEsfb[r][n][s] = -p * M[s]), s < h.SBPSY_l && (u(b[s] >= 0), c.pinfo.LAMEsfb[r][n][s] -= p * b[s])
-                }
-                if (t.block_type == h.SHORT_TYPE)
-                    for (i = s, s = t.sfb_smin; s < h.SBMAX_s; s++)
-                        for (var w = c.scalefac_band.s[s], S = c.scalefac_band.s[s + 1], A = S - w, R = 0; 3 > R; R++) {
-                            for (_ = 0, o = w; S > o; o++) _ += t.xr[g] * t.xr[g], g++;
-                            _ = Math.max(_ / A, 1e-20), f = 1e15, c.pinfo.en_s[r][n][3 * s + R] = f * _, c.pinfo.xfsf_s[r][n][3 * s + R] = f * m[i] * v[i] / A, a.en.s[s][R] > 0 ? _ /= a.en.s[s][R] : _ = 0, (e.ATHonly || e.ATHshort) && (_ = 0), c.pinfo.thr_s[r][n][3 * s + R] = f * Math.max(_ * a.thm.s[s][R], c.ATH.s[s]), c.pinfo.LAMEsfb_s[r][n][3 * s + R] = -2 * t.subblock_gain[R], s < h.SBPSY_s && (c.pinfo.LAMEsfb_s[r][n][3 * s + R] -= p * b[i]), i++
+                        if (0 == p && 0 == b && (g = v, w = d, S = e, A = m), null != o && o.sfb_count1 > 0 && f >= o.sfb_count1 && o.step[f] > 0 && M >= o.step[f] ? (0 != p && (a(p, n, S, A, g, w), p = 0, g = v, w = d, S = e, A = m), b += y) : (0 != b && (t(b, n, S, A, g, w), b = 0, g = v, w = d, S = e, A = m), p += y), 0 >= y) {
+                            0 != b && (t(b, n, S, A, g, w), b = 0), 0 != p && (a(p, n, S, A, g, w), p = 0);
+                            break
                         }
-                c.pinfo.LAMEqss[r][n] = t.global_gain, c.pinfo.LAMEmainbits[r][n] = t.part2_3_length + t.part2_length, c.pinfo.LAMEsfbits[r][n] = t.part2_length, c.pinfo.over[r][n] = d.over_count, c.pinfo.max_noise[r][n] = 10 * d.max_noise, c.pinfo.over_noise[r][n] = 10 * d.over_noise, c.pinfo.tot_noise[r][n] = 10 * d.tot_noise, c.pinfo.over_SSD[r][n] = d.over_SSD
+                    }
+                    u >= f && (d += s.width[f], m += s.width[f], c += s.width[f])
+                }
+                0 != p && (a(p, n, S, A, g, w), p = 0), 0 != b && (t(b, n, S, A, g, w), b = 0)
+            }
+
+            function c(e, t, a) {
+                var r = 0,
+                    n = 0;
+                do {
+                    var s = e[t++],
+                        i = e[t++];
+                    s > r && (r = s), i > n && (n = i)
+                } while (a > t);
+                return n > r && (r = n), r
+            }
+
+            function p(e, t, a, r, n, s) {
+                var i, o = 65536 * f.ht[r].xlen + f.ht[n].xlen,
+                    _ = 0;
+                do {
+                    var l = e[t++],
+                        u = e[t++];
+                    0 != l && (l > 14 && (l = 15, _ += o), l *= 16), 0 != u && (u > 14 && (u = 15, _ += o), l += u), _ += f.largetbl[l]
+                } while (a > t);
+                return i = 65535 & _, _ >>= 16, _ > i && (_ = i, r = n), s.bits += _, r
+            }
+
+            function b(e, t, a, r) {
+                var n = 0,
+                    s = f.ht[1].hlen;
+                do {
+                    var i = 2 * e[t + 0] + e[t + 1];
+                    t += 2, n += s[i]
+                } while (a > t);
+                return r.bits += n, 1
+            }
+
+            function m(e, t, a, r, n) {
+                var s, i, o = 0,
+                    _ = f.ht[r].xlen;
+                i = 2 == r ? f.table23 : f.table56;
+                do {
+                    var l = e[t + 0] * _ + e[t + 1];
+                    t += 2, o += i[l]
+                } while (a > t);
+                return s = 65535 & o, o >>= 16, o > s && (o = s, r++), n.bits += o, r
+            }
+
+            function v(e, t, a, r, n) {
+                var s = 0,
+                    i = 0,
+                    o = 0,
+                    _ = f.ht[r].xlen,
+                    l = f.ht[r].hlen,
+                    u = f.ht[r + 1].hlen,
+                    h = f.ht[r + 2].hlen;
+                do {
+                    var c = e[t + 0] * _ + e[t + 1];
+                    t += 2, s += l[c], i += u[c], o += h[c]
+                } while (a > t);
+                var p = r;
+                return s > i && (s = i, p++), s > o && (s = o, p = r + 2), n.bits += s, p
+            }
+
+            function d(e, t, a, r) {
+                var n = c(e, t, a);
+                switch (n) {
+                    case 0:
+                        return n;
+                    case 1:
+                        return b(e, t, a, r);
+                    case 2:
+                    case 3:
+                        return m(e, t, a, y[n - 1], r);
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                    case 8:
+                    case 9:
+                    case 10:
+                    case 11:
+                    case 12:
+                    case 13:
+                    case 14:
+                    case 15:
+                        return v(e, t, a, y[n - 1], r);
+                    default:
+                        if (n > h.IXMAX_VAL) return r.bits = h.LARGE_BITS, -1;
+                        n -= 15;
+                        var s;
+                        for (s = 24; 32 > s && !(f.ht[s].linmax >= n); s++);
+                        var i;
+                        for (i = s - 8; 24 > i && !(f.ht[i].linmax >= n); i++);
+                        return p(e, t, a, i, s, r)
+                }
+            }
+
+            function g(t, a, r, n, s, i, o) {
+                for (var _ = a.big_values, l = 0; 22 >= l; l++) n[l] = h.LARGE_BITS;
+                for (var l = 0; 16 > l; l++) {
+                    var f = t.scalefac_band.l[l + 1];
+                    if (f >= _) break;
+                    var u = 0,
+                        c = new e(u),
+                        p = d(r, 0, f, c);
+                    u = c.bits;
+                    for (var b = 0; 8 > b; b++) {
+                        var m = t.scalefac_band.l[l + b + 2];
+                        if (m >= _) break;
+                        var v = u;
+                        c = new e(v);
+                        var g = d(r, f, m, c);
+                        v = c.bits, n[l + b] > v && (n[l + b] = v, s[l + b] = l, i[l + b] = p, o[l + b] = g)
+                    }
+                }
+            }
+
+            function w(t, a, r, n, s, i, o, _) {
+                for (var f = a.big_values, u = 2; u < l.SBMAX_l + 1; u++) {
+                    var h = t.scalefac_band.l[u];
+                    if (h >= f) break;
+                    var c = s[u - 2] + a.count1bits;
+                    if (r.part2_3_length <= c) break;
+                    var p = new e(c),
+                        b = d(n, h, f, p);
+                    c = p.bits, r.part2_3_length <= c || (r.assign(a), r.part2_3_length = c, r.region0_count = i[u - 2], r.region1_count = u - 2 - i[u - 2], r.table_select[0] = o[u - 2], r.table_select[1] = _[u - 2], r.table_select[2] = b)
+                }
+            }
+
+            function S(e, t) {
+                for (var a, r = t.tt[1][e], n = t.tt[0][e], s = 0; s < f.scfsi_band.length - 1; s++) {
+                    for (a = f.scfsi_band[s]; a < f.scfsi_band[s + 1] && !(n.scalefac[a] != r.scalefac[a] && r.scalefac[a] >= 0); a++);
+                    if (a == f.scfsi_band[s + 1]) {
+                        for (a = f.scfsi_band[s]; a < f.scfsi_band[s + 1]; a++) r.scalefac[a] = -1;
+                        t.scfsi[e][s] = 1
+                    }
+                }
+                var i = 0,
+                    o = 0;
+                for (a = 0; 11 > a; a++) - 1 != r.scalefac[a] && (o++, i < r.scalefac[a] && (i = r.scalefac[a]));
+                for (var _ = 0, u = 0; a < l.SBPSY_l; a++) - 1 != r.scalefac[a] && (u++, _ < r.scalefac[a] && (_ = r.scalefac[a]));
+                for (var s = 0; 16 > s; s++)
+                    if (i < B[s] && _ < E[s]) {
+                        var h = T[s] * o + k[s] * u;
+                        r.part2_length > h && (r.part2_length = h, r.scalefac_compress = s)
+                    }
+            }
+
+            function A(e, t) {
+                for (var a = 0; t > a; ++a)
+                    if (e[a] < 0) return !1;
+                return !0
+            }
+            var R = null;
+            this.qupvt = null, this.setModules = function(e) {
+                this.qupvt = e, R = e
+            };
+            var M = [
+                    [0, 0],
+                    [0, 0],
+                    [0, 0],
+                    [0, 0],
+                    [0, 0],
+                    [0, 1],
+                    [1, 1],
+                    [1, 1],
+                    [1, 2],
+                    [2, 2],
+                    [2, 3],
+                    [2, 3],
+                    [3, 4],
+                    [3, 4],
+                    [3, 4],
+                    [4, 5],
+                    [4, 5],
+                    [4, 6],
+                    [5, 6],
+                    [5, 6],
+                    [5, 7],
+                    [6, 7],
+                    [6, 7]
+                ],
+                y = [1, 2, 5, 7, 7, 10, 10, 13, 13, 13, 13, 13, 13, 13, 13];
+            this.noquant_count_bits = function(t, a, r) {
+                var n = a.l3_enc,
+                    s = Math.min(576, a.max_nonzero_coeff + 2 >> 1 << 1);
+                for (null != r && (r.sfb_count1 = 0); s > 1 && 0 == (n[s - 1] | n[s - 2]); s -= 2);
+                a.count1 = s;
+                for (var i = 0, o = 0; s > 3; s -= 4) {
+                    var u;
+                    if ((2147483647 & (n[s - 1] | n[s - 2] | n[s - 3] | n[s - 4])) > 1) break;
+                    u = 2 * (2 * (2 * n[s - 4] + n[s - 3]) + n[s - 2]) + n[s - 1], i += f.t32l[u], o += f.t33l[u]
+                }
+                var h = i;
+                if (a.count1table_select = 0, i > o && (h = o, a.count1table_select = 1), a.count1bits = h, a.big_values = s, 0 == s) return h;
+                if (a.block_type == l.SHORT_TYPE) i = 3 * t.scalefac_band.s[3], i > a.big_values && (i = a.big_values), o = a.big_values;
+                else if (a.block_type == l.NORM_TYPE) {
+                    if (_(576 >= s), i = a.region0_count = t.bv_scf[s - 2], o = a.region1_count = t.bv_scf[s - 1], _(i + o + 2 < l.SBPSY_l), o = t.scalefac_band.l[i + o + 2], i = t.scalefac_band.l[i + 1], s > o) {
+                        var c = new e(h);
+                        a.table_select[2] = d(n, o, s, c), h = c.bits
+                    }
+                } else a.region0_count = 7, a.region1_count = l.SBMAX_l - 1 - 7 - 1, i = t.scalefac_band.l[8], o = s, i > o && (i = o);
+                if (i = Math.min(i, s), o = Math.min(o, s), _(i >= 0), _(o >= 0), i > 0) {
+                    var c = new e(h);
+                    a.table_select[0] = d(n, 0, i, c), h = c.bits
+                }
+                if (o > i) {
+                    var c = new e(h);
+                    a.table_select[1] = d(n, i, o, c), h = c.bits
+                }
+                if (2 == t.use_best_huffman && (a.part2_3_length = h, best_huffman_divide(t, a), h = a.part2_3_length), null != r && a.block_type == l.NORM_TYPE) {
+                    for (var p = 0; t.scalefac_band.l[p] < a.big_values;) p++;
+                    r.sfb_count1 = p
+                }
+                return h
+            }, this.count_bits = function(e, t, a, r) {
+                var s = a.l3_enc,
+                    i = h.IXMAX_VAL / R.IPOW20(a.global_gain);
+                if (a.xrpow_max > i) return h.LARGE_BITS;
+                if (n(t, s, R.IPOW20(a.global_gain), a, r), 0 != (2 & e.substep_shaping))
+                    for (var o = 0, l = a.global_gain + a.scalefac_scale, f = .634521682242439 / R.IPOW20(l), u = 0; u < a.sfbmax; u++) {
+                        var c = a.width[u];
+                        if (_(c >= 0), 0 == e.pseudohalf[u]) o += c;
+                        else {
+                            var p;
+                            for (p = o, o += c; o > p; ++p) s[p] = t[p] >= f ? s[p] : 0
+                        }
+                    }
+                return this.noquant_count_bits(e, a, r)
+            }, this.best_huffman_divide = function(t, a) {
+                var r = new u,
+                    n = a.l3_enc,
+                    s = o(23),
+                    i = o(23),
+                    h = o(23),
+                    c = o(23);
+                if (a.block_type != l.SHORT_TYPE || 1 != t.mode_gr) {
+                    r.assign(a), a.block_type == l.NORM_TYPE && (g(t, a, n, s, i, h, c), w(t, r, a, n, s, i, h, c));
+                    var p = r.big_values;
+                    if (!(0 == p || (n[p - 2] | n[p - 1]) > 1 || (p = a.count1 + 2, p > 576))) {
+                        r.assign(a), r.count1 = p;
+                        var b = 0,
+                            m = 0;
+                        for (_(576 >= p); p > r.big_values; p -= 4) {
+                            var v = 2 * (2 * (2 * n[p - 4] + n[p - 3]) + n[p - 2]) + n[p - 1];
+                            b += f.t32l[v], m += f.t33l[v]
+                        }
+                        if (r.big_values = p, r.count1table_select = 0, b > m && (b = m, r.count1table_select = 1), r.count1bits = b, r.block_type == l.NORM_TYPE) w(t, r, a, n, s, i, h, c);
+                        else {
+                            if (r.part2_3_length = b, b = t.scalefac_band.l[8], b > p && (b = p), b > 0) {
+                                var S = new e(r.part2_3_length);
+                                r.table_select[0] = d(n, 0, b, S), r.part2_3_length = S.bits
+                            }
+                            if (p > b) {
+                                var S = new e(r.part2_3_length);
+                                r.table_select[1] = d(n, b, p, S), r.part2_3_length = S.bits
+                            }
+                            a.part2_3_length > r.part2_3_length && a.assign(r)
+                        }
+                    }
+                }
+            };
+            var B = [1, 1, 1, 1, 8, 2, 2, 2, 4, 4, 4, 8, 8, 8, 16, 16],
+                E = [1, 2, 4, 8, 1, 2, 4, 8, 2, 4, 8, 2, 4, 8, 4, 8],
+                T = [0, 0, 0, 0, 3, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4],
+                k = [0, 1, 2, 3, 0, 1, 2, 3, 1, 2, 3, 1, 2, 3, 2, 3];
+            r.slen1_tab = T, r.slen2_tab = k, this.best_scalefac_store = function(e, t, a, r) {
+                var n, s, i, o, f = r.tt[t][a],
+                    u = 0;
+                for (i = 0, n = 0; n < f.sfbmax; n++) {
+                    var h = f.width[n];
+                    for (_(h >= 0), i += h, o = -h; 0 > o && 0 == f.l3_enc[o + i]; o++);
+                    0 == o && (f.scalefac[n] = u = -2)
+                }
+                if (0 == f.scalefac_scale && 0 == f.preflag) {
+                    var c = 0;
+                    for (n = 0; n < f.sfbmax; n++) f.scalefac[n] > 0 && (c |= f.scalefac[n]);
+                    if (0 == (1 & c) && 0 != c) {
+                        for (n = 0; n < f.sfbmax; n++) f.scalefac[n] > 0 && (f.scalefac[n] >>= 1);
+                        f.scalefac_scale = u = 1
+                    }
+                }
+                if (0 == f.preflag && f.block_type != l.SHORT_TYPE && 2 == e.mode_gr) {
+                    for (n = 11; n < l.SBPSY_l && !(f.scalefac[n] < R.pretab[n] && -2 != f.scalefac[n]); n++);
+                    if (n == l.SBPSY_l) {
+                        for (n = 11; n < l.SBPSY_l; n++) f.scalefac[n] > 0 && (f.scalefac[n] -= R.pretab[n]);
+                        f.preflag = u = 1
+                    }
+                }
+                for (s = 0; 4 > s; s++) r.scfsi[a][s] = 0;
+                for (2 == e.mode_gr && 1 == t && r.tt[0][a].block_type != l.SHORT_TYPE && r.tt[1][a].block_type != l.SHORT_TYPE && (S(a, r), u = 0), n = 0; n < f.sfbmax; n++) - 2 == f.scalefac[n] && (f.scalefac[n] = 0);
+                0 != u && (2 == e.mode_gr ? this.scale_bitcount(f) : this.scale_bitcount_lsf(e, f))
+            };
+            var x = [0, 18, 36, 54, 54, 36, 54, 72, 54, 72, 90, 72, 90, 108, 108, 126],
+                P = [0, 18, 36, 54, 51, 35, 53, 71, 52, 70, 88, 69, 87, 105, 104, 122],
+                I = [0, 10, 20, 30, 33, 21, 31, 41, 32, 42, 52, 43, 53, 63, 64, 74];
+            this.scale_bitcount = function(e) {
+                var t, a, r, n = 0,
+                    s = 0,
+                    i = e.scalefac;
+                if (_(A(i, e.sfbmax)), e.block_type == l.SHORT_TYPE) r = x, 0 != e.mixed_block_flag && (r = P);
+                else if (r = I, 0 == e.preflag) {
+                    for (a = 11; a < l.SBPSY_l && !(i[a] < R.pretab[a]); a++);
+                    if (a == l.SBPSY_l)
+                        for (e.preflag = 1, a = 11; a < l.SBPSY_l; a++) i[a] -= R.pretab[a]
+                }
+                for (a = 0; a < e.sfbdivide; a++) n < i[a] && (n = i[a]);
+                for (; a < e.sfbmax; a++) s < i[a] && (s = i[a]);
+                for (e.part2_length = h.LARGE_BITS, t = 0; 16 > t; t++) n < B[t] && s < E[t] && e.part2_length > r[t] && (e.part2_length = r[t], e.scalefac_compress = t);
+                return e.part2_length == h.LARGE_BITS
+            };
+            var L = [
+                [15, 15, 7, 7],
+                [15, 15, 7, 0],
+                [7, 3, 0, 0],
+                [15, 31, 31, 0],
+                [7, 7, 7, 0],
+                [3, 3, 0, 0]
+            ];
+            this.scale_bitcount_lsf = function(e, t) {
+                var a, r, n, i, f, u, h, c, p = o(4),
+                    b = t.scalefac;
+                for (a = 0 != t.preflag ? 2 : 0, h = 0; 4 > h; h++) p[h] = 0;
+                if (t.block_type == l.SHORT_TYPE) {
+                    r = 1;
+                    var m = R.nr_of_sfb_block[a][r];
+                    for (c = 0, n = 0; 4 > n; n++)
+                        for (i = m[n] / 3, h = 0; i > h; h++, c++)
+                            for (f = 0; 3 > f; f++) b[3 * c + f] > p[n] && (p[n] = b[3 * c + f])
+                } else {
+                    r = 0;
+                    var m = R.nr_of_sfb_block[a][r];
+                    for (c = 0, n = 0; 4 > n; n++)
+                        for (i = m[n], h = 0; i > h; h++, c++) b[c] > p[n] && (p[n] = b[c])
+                }
+                for (u = !1, n = 0; 4 > n; n++) p[n] > L[a][n] && (u = !0);
+                if (!u) {
+                    var v, d, g, w;
+                    for (t.sfb_partition_table = R.nr_of_sfb_block[a][r], n = 0; 4 > n; n++) t.slen[n] = O[p[n]];
+                    switch (v = t.slen[0], d = t.slen[1], g = t.slen[2], w = t.slen[3], a) {
+                        case 0:
+                            t.scalefac_compress = (5 * v + d << 4) + (g << 2) + w;
+                            break;
+                        case 1:
+                            t.scalefac_compress = 400 + (5 * v + d << 2) + g;
+                            break;
+                        case 2:
+                            t.scalefac_compress = 500 + 3 * v + d;
+                            break;
+                        default:
+                            s.err.printf("intensity stereo not implemented yet\n")
+                    }
+                }
+                if (!u)
+                    for (_(null != t.sfb_partition_table), t.part2_length = 0, n = 0; 4 > n; n++) t.part2_length += t.slen[n] * t.sfb_partition_table[n];
+                return u
+            };
+            var O = [0, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4];
+            this.huffman_init = function(e) {
+                for (var t = 2; 576 >= t; t += 2) {
+                    for (var a, r = 0; e.scalefac_band.l[++r] < t;);
+                    for (a = M[r][0]; e.scalefac_band.l[a + 1] > t;) a--;
+                    for (0 > a && (a = M[r][0]), e.bv_scf[t - 2] = a, a = M[r][1]; e.scalefac_band.l[a + e.bv_scf[t - 2] + 2] > t;) a--;
+                    0 > a && (a = M[r][1]), e.bv_scf[t - 1] = a
+                }
             }
         }
-        var n = a(311),
-            s = a(15),
-            i = (s.System, s.VbrMode),
-            o = s.Float,
-            _ = (s.ShortBlock, s.Util),
-            l = (s.Arrays, s.new_array_n, s.new_byte, s.new_double, s.new_float),
-            f = (s.new_float_n, s.new_int),
-            u = (s.new_int_n, s.assert),
-            h = a(67),
-            c = a(290),
-            p = a(227);
-        r.Q_MAX = 257, r.Q_MAX2 = 116, r.LARGE_BITS = 1e5, r.IXMAX_VAL = 8206, e.exports = r
+        var n = a(536),
+            s = n.System,
+            i = (n.VbrMode, n.Float, n.ShortBlock, n.Util, n.Arrays),
+            o = (n.new_array_n, n.new_byte, n.new_double, n.new_float, n.new_float_n, n.new_int),
+            _ = (n.new_int_n, n.assert),
+            l = a(574),
+            f = a(705),
+            u = a(555),
+            h = a(152);
+        e.exports = r
+    },
+    705: function(e, t) {
+        function a(e, t, a, r) {
+            this.xlen = e, this.linmax = t, this.table = a, this.hlen = r
+        }
+        var r = {};
+        r.t1HB = [1, 1, 1, 0], r.t2HB = [1, 2, 1, 3, 1, 1, 3, 2, 0], r.t3HB = [3, 2, 1, 1, 1, 1, 3, 2, 0], r.t5HB = [1, 2, 6, 5, 3, 1, 4, 4, 7, 5, 7, 1, 6, 1, 1, 0], r.t6HB = [7, 3, 5, 1, 6, 2, 3, 2, 5, 4, 4, 1, 3, 3, 2, 0], r.t7HB = [1, 2, 10, 19, 16, 10, 3, 3, 7, 10, 5, 3, 11, 4, 13, 17, 8, 4, 12, 11, 18, 15, 11, 2, 7, 6, 9, 14, 3, 1, 6, 4, 5, 3, 2, 0], r.t8HB = [3, 4, 6, 18, 12, 5, 5, 1, 2, 16, 9, 3, 7, 3, 5, 14, 7, 3, 19, 17, 15, 13, 10, 4, 13, 5, 8, 11, 5, 1, 12, 4, 4, 1, 1, 0], r.t9HB = [7, 5, 9, 14, 15, 7, 6, 4, 5, 5, 6, 7, 7, 6, 8, 8, 8, 5, 15, 6, 9, 10, 5, 1, 11, 7, 9, 6, 4, 1, 14, 4, 6, 2, 6, 0], r.t10HB = [1, 2, 10, 23, 35, 30, 12, 17, 3, 3, 8, 12, 18, 21, 12, 7, 11, 9, 15, 21, 32, 40, 19, 6, 14, 13, 22, 34, 46, 23, 18, 7, 20, 19, 33, 47, 27, 22, 9, 3, 31, 22, 41, 26, 21, 20, 5, 3, 14, 13, 10, 11, 16, 6, 5, 1, 9, 8, 7, 8, 4, 4, 2, 0], r.t11HB = [3, 4, 10, 24, 34, 33, 21, 15, 5, 3, 4, 10, 32, 17, 11, 10, 11, 7, 13, 18, 30, 31, 20, 5, 25, 11, 19, 59, 27, 18, 12, 5, 35, 33, 31, 58, 30, 16, 7, 5, 28, 26, 32, 19, 17, 15, 8, 14, 14, 12, 9, 13, 14, 9, 4, 1, 11, 4, 6, 6, 6, 3, 2, 0], r.t12HB = [9, 6, 16, 33, 41, 39, 38, 26, 7, 5, 6, 9, 23, 16, 26, 11, 17, 7, 11, 14, 21, 30, 10, 7, 17, 10, 15, 12, 18, 28, 14, 5, 32, 13, 22, 19, 18, 16, 9, 5, 40, 17, 31, 29, 17, 13, 4, 2, 27, 12, 11, 15, 10, 7, 4, 1, 27, 12, 8, 12, 6, 3, 1, 0], r.t13HB = [1, 5, 14, 21, 34, 51, 46, 71, 42, 52, 68, 52, 67, 44, 43, 19, 3, 4, 12, 19, 31, 26, 44, 33, 31, 24, 32, 24, 31, 35, 22, 14, 15, 13, 23, 36, 59, 49, 77, 65, 29, 40, 30, 40, 27, 33, 42, 16, 22, 20, 37, 61, 56, 79, 73, 64, 43, 76, 56, 37, 26, 31, 25, 14, 35, 16, 60, 57, 97, 75, 114, 91, 54, 73, 55, 41, 48, 53, 23, 24, 58, 27, 50, 96, 76, 70, 93, 84, 77, 58, 79, 29, 74, 49, 41, 17, 47, 45, 78, 74, 115, 94, 90, 79, 69, 83, 71, 50, 59, 38, 36, 15, 72, 34, 56, 95, 92, 85, 91, 90, 86, 73, 77, 65, 51, 44, 43, 42, 43, 20, 30, 44, 55, 78, 72, 87, 78, 61, 46, 54, 37, 30, 20, 16, 53, 25, 41, 37, 44, 59, 54, 81, 66, 76, 57, 54, 37, 18, 39, 11, 35, 33, 31, 57, 42, 82, 72, 80, 47, 58, 55, 21, 22, 26, 38, 22, 53, 25, 23, 38, 70, 60, 51, 36, 55, 26, 34, 23, 27, 14, 9, 7, 34, 32, 28, 39, 49, 75, 30, 52, 48, 40, 52, 28, 18, 17, 9, 5, 45, 21, 34, 64, 56, 50, 49, 45, 31, 19, 12, 15, 10, 7, 6, 3, 48, 23, 20, 39, 36, 35, 53, 21, 16, 23, 13, 10, 6, 1, 4, 2, 16, 15, 17, 27, 25, 20, 29, 11, 17, 12, 16, 8, 1, 1, 0, 1], r.t15HB = [7, 12, 18, 53, 47, 76, 124, 108, 89, 123, 108, 119, 107, 81, 122, 63, 13, 5, 16, 27, 46, 36, 61, 51, 42, 70, 52, 83, 65, 41, 59, 36, 19, 17, 15, 24, 41, 34, 59, 48, 40, 64, 50, 78, 62, 80, 56, 33, 29, 28, 25, 43, 39, 63, 55, 93, 76, 59, 93, 72, 54, 75, 50, 29, 52, 22, 42, 40, 67, 57, 95, 79, 72, 57, 89, 69, 49, 66, 46, 27, 77, 37, 35, 66, 58, 52, 91, 74, 62, 48, 79, 63, 90, 62, 40, 38, 125, 32, 60, 56, 50, 92, 78, 65, 55, 87, 71, 51, 73, 51, 70, 30, 109, 53, 49, 94, 88, 75, 66, 122, 91, 73, 56, 42, 64, 44, 21, 25, 90, 43, 41, 77, 73, 63, 56, 92, 77, 66, 47, 67, 48, 53, 36, 20, 71, 34, 67, 60, 58, 49, 88, 76, 67, 106, 71, 54, 38, 39, 23, 15, 109, 53, 51, 47, 90, 82, 58, 57, 48, 72, 57, 41, 23, 27, 62, 9, 86, 42, 40, 37, 70, 64, 52, 43, 70, 55, 42, 25, 29, 18, 11, 11, 118, 68, 30, 55, 50, 46, 74, 65, 49, 39, 24, 16, 22, 13, 14, 7, 91, 44, 39, 38, 34, 63, 52, 45, 31, 52, 28, 19, 14, 8, 9, 3, 123, 60, 58, 53, 47, 43, 32, 22, 37, 24, 17, 12, 15, 10, 2, 1, 71, 37, 34, 30, 28, 20, 17, 26, 21, 16, 10, 6, 8, 6, 2, 0], r.t16HB = [1, 5, 14, 44, 74, 63, 110, 93, 172, 149, 138, 242, 225, 195, 376, 17, 3, 4, 12, 20, 35, 62, 53, 47, 83, 75, 68, 119, 201, 107, 207, 9, 15, 13, 23, 38, 67, 58, 103, 90, 161, 72, 127, 117, 110, 209, 206, 16, 45, 21, 39, 69, 64, 114, 99, 87, 158, 140, 252, 212, 199, 387, 365, 26, 75, 36, 68, 65, 115, 101, 179, 164, 155, 264, 246, 226, 395, 382, 362, 9, 66, 30, 59, 56, 102, 185, 173, 265, 142, 253, 232, 400, 388, 378, 445, 16, 111, 54, 52, 100, 184, 178, 160, 133, 257, 244, 228, 217, 385, 366, 715, 10, 98, 48, 91, 88, 165, 157, 148, 261, 248, 407, 397, 372, 380, 889, 884, 8, 85, 84, 81, 159, 156, 143, 260, 249, 427, 401, 392, 383, 727, 713, 708, 7, 154, 76, 73, 141, 131, 256, 245, 426, 406, 394, 384, 735, 359, 710, 352, 11, 139, 129, 67, 125, 247, 233, 229, 219, 393, 743, 737, 720, 885, 882, 439, 4, 243, 120, 118, 115, 227, 223, 396, 746, 742, 736, 721, 712, 706, 223, 436, 6, 202, 224, 222, 218, 216, 389, 386, 381, 364, 888, 443, 707, 440, 437, 1728, 4, 747, 211, 210, 208, 370, 379, 734, 723, 714, 1735, 883, 877, 876, 3459, 865, 2, 377, 369, 102, 187, 726, 722, 358, 711, 709, 866, 1734, 871, 3458, 870, 434, 0, 12, 10, 7, 11, 10, 17, 11, 9, 13, 12, 10, 7, 5, 3, 1, 3], r.t24HB = [15, 13, 46, 80, 146, 262, 248, 434, 426, 669, 653, 649, 621, 517, 1032, 88, 14, 12, 21, 38, 71, 130, 122, 216, 209, 198, 327, 345, 319, 297, 279, 42, 47, 22, 41, 74, 68, 128, 120, 221, 207, 194, 182, 340, 315, 295, 541, 18, 81, 39, 75, 70, 134, 125, 116, 220, 204, 190, 178, 325, 311, 293, 271, 16, 147, 72, 69, 135, 127, 118, 112, 210, 200, 188, 352, 323, 306, 285, 540, 14, 263, 66, 129, 126, 119, 114, 214, 202, 192, 180, 341, 317, 301, 281, 262, 12, 249, 123, 121, 117, 113, 215, 206, 195, 185, 347, 330, 308, 291, 272, 520, 10, 435, 115, 111, 109, 211, 203, 196, 187, 353, 332, 313, 298, 283, 531, 381, 17, 427, 212, 208, 205, 201, 193, 186, 177, 169, 320, 303, 286, 268, 514, 377, 16, 335, 199, 197, 191, 189, 181, 174, 333, 321, 305, 289, 275, 521, 379, 371, 11, 668, 184, 183, 179, 175, 344, 331, 314, 304, 290, 277, 530, 383, 373, 366, 10, 652, 346, 171, 168, 164, 318, 309, 299, 287, 276, 263, 513, 375, 368, 362, 6, 648, 322, 316, 312, 307, 302, 292, 284, 269, 261, 512, 376, 370, 364, 359, 4, 620, 300, 296, 294, 288, 282, 273, 266, 515, 380, 374, 369, 365, 361, 357, 2, 1033, 280, 278, 274, 267, 264, 259, 382, 378, 372, 367, 363, 360, 358, 356, 0, 43, 20, 19, 17, 15, 13, 11, 9, 7, 6, 4, 7, 5, 3, 1, 3], r.t32HB = [1, 10, 8, 20, 12, 20, 16, 32, 14, 12, 24, 0, 28, 16, 24, 16], r.t33HB = [15, 28, 26, 48, 22, 40, 36, 64, 14, 24, 20, 32, 12, 16, 8, 0], r.t1l = [1, 4, 3, 5], r.t2l = [1, 4, 7, 4, 5, 7, 6, 7, 8], r.t3l = [2, 3, 7, 4, 4, 7, 6, 7, 8], r.t5l = [1, 4, 7, 8, 4, 5, 8, 9, 7, 8, 9, 10, 8, 8, 9, 10], r.t6l = [3, 4, 6, 8, 4, 4, 6, 7, 5, 6, 7, 8, 7, 7, 8, 9], r.t7l = [1, 4, 7, 9, 9, 10, 4, 6, 8, 9, 9, 10, 7, 7, 9, 10, 10, 11, 8, 9, 10, 11, 11, 11, 8, 9, 10, 11, 11, 12, 9, 10, 11, 12, 12, 12], r.t8l = [2, 4, 7, 9, 9, 10, 4, 4, 6, 10, 10, 10, 7, 6, 8, 10, 10, 11, 9, 10, 10, 11, 11, 12, 9, 9, 10, 11, 12, 12, 10, 10, 11, 11, 13, 13], r.t9l = [3, 4, 6, 7, 9, 10, 4, 5, 6, 7, 8, 10, 5, 6, 7, 8, 9, 10, 7, 7, 8, 9, 9, 10, 8, 8, 9, 9, 10, 11, 9, 9, 10, 10, 11, 11], r.t10l = [1, 4, 7, 9, 10, 10, 10, 11, 4, 6, 8, 9, 10, 11, 10, 10, 7, 8, 9, 10, 11, 12, 11, 11, 8, 9, 10, 11, 12, 12, 11, 12, 9, 10, 11, 12, 12, 12, 12, 12, 10, 11, 12, 12, 13, 13, 12, 13, 9, 10, 11, 12, 12, 12, 13, 13, 10, 10, 11, 12, 12, 13, 13, 13], r.t11l = [2, 4, 6, 8, 9, 10, 9, 10, 4, 5, 6, 8, 10, 10, 9, 10, 6, 7, 8, 9, 10, 11, 10, 10, 8, 8, 9, 11, 10, 12, 10, 11, 9, 10, 10, 11, 11, 12, 11, 12, 9, 10, 11, 12, 12, 13, 12, 13, 9, 9, 9, 10, 11, 12, 12, 12, 9, 9, 10, 11, 12, 12, 12, 12], r.t12l = [4, 4, 6, 8, 9, 10, 10, 10, 4, 5, 6, 7, 9, 9, 10, 10, 6, 6, 7, 8, 9, 10, 9, 10, 7, 7, 8, 8, 9, 10, 10, 10, 8, 8, 9, 9, 10, 10, 10, 11, 9, 9, 10, 10, 10, 11, 10, 11, 9, 9, 9, 10, 10, 11, 11, 12, 10, 10, 10, 11, 11, 11, 11, 12], r.t13l = [1, 5, 7, 8, 9, 10, 10, 11, 10, 11, 12, 12, 13, 13, 14, 14, 4, 6, 8, 9, 10, 10, 11, 11, 11, 11, 12, 12, 13, 14, 14, 14, 7, 8, 9, 10, 11, 11, 12, 12, 11, 12, 12, 13, 13, 14, 15, 15, 8, 9, 10, 11, 11, 12, 12, 12, 12, 13, 13, 13, 13, 14, 15, 15, 9, 9, 11, 11, 12, 12, 13, 13, 12, 13, 13, 14, 14, 15, 15, 16, 10, 10, 11, 12, 12, 12, 13, 13, 13, 13, 14, 13, 15, 15, 16, 16, 10, 11, 12, 12, 13, 13, 13, 13, 13, 14, 14, 14, 15, 15, 16, 16, 11, 11, 12, 13, 13, 13, 14, 14, 14, 14, 15, 15, 15, 16, 18, 18, 10, 10, 11, 12, 12, 13, 13, 14, 14, 14, 14, 15, 15, 16, 17, 17, 11, 11, 12, 12, 13, 13, 13, 15, 14, 15, 15, 16, 16, 16, 18, 17, 11, 12, 12, 13, 13, 14, 14, 15, 14, 15, 16, 15, 16, 17, 18, 19, 12, 12, 12, 13, 14, 14, 14, 14, 15, 15, 15, 16, 17, 17, 17, 18, 12, 13, 13, 14, 14, 15, 14, 15, 16, 16, 17, 17, 17, 18, 18, 18, 13, 13, 14, 15, 15, 15, 16, 16, 16, 16, 16, 17, 18, 17, 18, 18, 14, 14, 14, 15, 15, 15, 17, 16, 16, 19, 17, 17, 17, 19, 18, 18, 13, 14, 15, 16, 16, 16, 17, 16, 17, 17, 18, 18, 21, 20, 21, 18], r.t15l = [3, 5, 6, 8, 8, 9, 10, 10, 10, 11, 11, 12, 12, 12, 13, 14, 5, 5, 7, 8, 9, 9, 10, 10, 10, 11, 11, 12, 12, 12, 13, 13, 6, 7, 7, 8, 9, 9, 10, 10, 10, 11, 11, 12, 12, 13, 13, 13, 7, 8, 8, 9, 9, 10, 10, 11, 11, 11, 12, 12, 12, 13, 13, 13, 8, 8, 9, 9, 10, 10, 11, 11, 11, 11, 12, 12, 12, 13, 13, 13, 9, 9, 9, 10, 10, 10, 11, 11, 11, 11, 12, 12, 13, 13, 13, 14, 10, 9, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 13, 13, 14, 14, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 12, 13, 13, 13, 14, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 13, 13, 14, 14, 14, 10, 10, 11, 11, 11, 11, 12, 12, 12, 13, 13, 13, 13, 14, 14, 14, 11, 11, 11, 11, 12, 12, 12, 12, 12, 13, 13, 13, 13, 14, 15, 14, 11, 11, 11, 11, 12, 12, 12, 12, 13, 13, 13, 13, 14, 14, 14, 15, 12, 12, 11, 12, 12, 12, 13, 13, 13, 13, 13, 13, 14, 14, 15, 15, 12, 12, 12, 12, 12, 13, 13, 13, 13, 14, 14, 14, 14, 14, 15, 15, 13, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 15, 15, 14, 15, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 15, 15, 15, 15], r.t16_5l = [1, 5, 7, 9, 10, 10, 11, 11, 12, 12, 12, 13, 13, 13, 14, 11, 4, 6, 8, 9, 10, 11, 11, 11, 12, 12, 12, 13, 14, 13, 14, 11, 7, 8, 9, 10, 11, 11, 12, 12, 13, 12, 13, 13, 13, 14, 14, 12, 9, 9, 10, 11, 11, 12, 12, 12, 13, 13, 14, 14, 14, 15, 15, 13, 10, 10, 11, 11, 12, 12, 13, 13, 13, 14, 14, 14, 15, 15, 15, 12, 10, 10, 11, 11, 12, 13, 13, 14, 13, 14, 14, 15, 15, 15, 16, 13, 11, 11, 11, 12, 13, 13, 13, 13, 14, 14, 14, 14, 15, 15, 16, 13, 11, 11, 12, 12, 13, 13, 13, 14, 14, 15, 15, 15, 15, 17, 17, 13, 11, 12, 12, 13, 13, 13, 14, 14, 15, 15, 15, 15, 16, 16, 16, 13, 12, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15, 16, 15, 16, 15, 14, 12, 13, 12, 13, 14, 14, 14, 14, 15, 16, 16, 16, 17, 17, 16, 13, 13, 13, 13, 13, 14, 14, 15, 16, 16, 16, 16, 16, 16, 15, 16, 14, 13, 14, 14, 14, 14, 15, 15, 15, 15, 17, 16, 16, 16, 16, 18, 14, 15, 14, 14, 14, 15, 15, 16, 16, 16, 18, 17, 17, 17, 19, 17, 14, 14, 15, 13, 14, 16, 16, 15, 16, 16, 17, 18, 17, 19, 17, 16, 14, 11, 11, 11, 12, 12, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 12], r.t16l = [1, 5, 7, 9, 10, 10, 11, 11, 12, 12, 12, 13, 13, 13, 14, 10, 4, 6, 8, 9, 10, 11, 11, 11, 12, 12, 12, 13, 14, 13, 14, 10, 7, 8, 9, 10, 11, 11, 12, 12, 13, 12, 13, 13, 13, 14, 14, 11, 9, 9, 10, 11, 11, 12, 12, 12, 13, 13, 14, 14, 14, 15, 15, 12, 10, 10, 11, 11, 12, 12, 13, 13, 13, 14, 14, 14, 15, 15, 15, 11, 10, 10, 11, 11, 12, 13, 13, 14, 13, 14, 14, 15, 15, 15, 16, 12, 11, 11, 11, 12, 13, 13, 13, 13, 14, 14, 14, 14, 15, 15, 16, 12, 11, 11, 12, 12, 13, 13, 13, 14, 14, 15, 15, 15, 15, 17, 17, 12, 11, 12, 12, 13, 13, 13, 14, 14, 15, 15, 15, 15, 16, 16, 16, 12, 12, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15, 16, 15, 16, 15, 13, 12, 13, 12, 13, 14, 14, 14, 14, 15, 16, 16, 16, 17, 17, 16, 12, 13, 13, 13, 13, 14, 14, 15, 16, 16, 16, 16, 16, 16, 15, 16, 13, 13, 14, 14, 14, 14, 15, 15, 15, 15, 17, 16, 16, 16, 16, 18, 13, 15, 14, 14, 14, 15, 15, 16, 16, 16, 18, 17, 17, 17, 19, 17, 13, 14, 15, 13, 14, 16, 16, 15, 16, 16, 17, 18, 17, 19, 17, 16, 13, 10, 10, 10, 11, 11, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 10], r.t24l = [4, 5, 7, 8, 9, 10, 10, 11, 11, 12, 12, 12, 12, 12, 13, 10, 5, 6, 7, 8, 9, 10, 10, 11, 11, 11, 12, 12, 12, 12, 12, 10, 7, 7, 8, 9, 9, 10, 10, 11, 11, 11, 11, 12, 12, 12, 13, 9, 8, 8, 9, 9, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 9, 9, 9, 9, 10, 10, 10, 10, 11, 11, 11, 12, 12, 12, 12, 13, 9, 10, 9, 10, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 12, 9, 10, 10, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 12, 13, 9, 11, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 12, 13, 13, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 13, 13, 10, 11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 13, 13, 13, 10, 12, 11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 10, 12, 12, 11, 11, 11, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 10, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 10, 12, 12, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 10, 13, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 13, 10, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 10, 10, 10, 6], r.t32l = [1, 5, 5, 7, 5, 8, 7, 9, 5, 7, 7, 9, 7, 9, 9, 10], r.t33l = [4, 5, 5, 6, 5, 6, 6, 7, 5, 6, 6, 7, 6, 7, 7, 8], r.ht = [new a(0, 0, null, null), new a(2, 0, r.t1HB, r.t1l), new a(3, 0, r.t2HB, r.t2l), new a(3, 0, r.t3HB, r.t3l), new a(0, 0, null, null), new a(4, 0, r.t5HB, r.t5l), new a(4, 0, r.t6HB, r.t6l), new a(6, 0, r.t7HB, r.t7l), new a(6, 0, r.t8HB, r.t8l), new a(6, 0, r.t9HB, r.t9l), new a(8, 0, r.t10HB, r.t10l), new a(8, 0, r.t11HB, r.t11l), new a(8, 0, r.t12HB, r.t12l), new a(16, 0, r.t13HB, r.t13l), new a(0, 0, null, r.t16_5l), new a(16, 0, r.t15HB, r.t15l), new a(1, 1, r.t16HB, r.t16l), new a(2, 3, r.t16HB, r.t16l), new a(3, 7, r.t16HB, r.t16l), new a(4, 15, r.t16HB, r.t16l), new a(6, 63, r.t16HB, r.t16l), new a(8, 255, r.t16HB, r.t16l), new a(10, 1023, r.t16HB, r.t16l), new a(13, 8191, r.t16HB, r.t16l), new a(4, 15, r.t24HB, r.t24l), new a(5, 31, r.t24HB, r.t24l), new a(6, 63, r.t24HB, r.t24l), new a(7, 127, r.t24HB, r.t24l), new a(8, 255, r.t24HB, r.t24l), new a(9, 511, r.t24HB, r.t24l), new a(11, 2047, r.t24HB, r.t24l), new a(13, 8191, r.t24HB, r.t24l), new a(0, 0, r.t32HB, r.t32l), new a(0, 0, r.t33HB, r.t33l)], r.largetbl = [65540, 327685, 458759, 589832, 655369, 655370, 720906, 720907, 786443, 786444, 786444, 851980, 851980, 851980, 917517, 655370, 262149, 393222, 524295, 589832, 655369, 720906, 720906, 720907, 786443, 786443, 786444, 851980, 917516, 851980, 917516, 655370, 458759, 524295, 589832, 655369, 720905, 720906, 786442, 786443, 851979, 786443, 851979, 851980, 851980, 917516, 917517, 720905, 589832, 589832, 655369, 720905, 720906, 786442, 786442, 786443, 851979, 851979, 917515, 917516, 917516, 983052, 983052, 786441, 655369, 655369, 720905, 720906, 786442, 786442, 851978, 851979, 851979, 917515, 917516, 917516, 983052, 983052, 983053, 720905, 655370, 655369, 720906, 720906, 786442, 851978, 851979, 917515, 851979, 917515, 917516, 983052, 983052, 983052, 1048588, 786441, 720906, 720906, 720906, 786442, 851978, 851979, 851979, 851979, 917515, 917516, 917516, 917516, 983052, 983052, 1048589, 786441, 720907, 720906, 786442, 786442, 851979, 851979, 851979, 917515, 917516, 983052, 983052, 983052, 983052, 1114125, 1114125, 786442, 720907, 786443, 786443, 851979, 851979, 851979, 917515, 917515, 983051, 983052, 983052, 983052, 1048588, 1048589, 1048589, 786442, 786443, 786443, 786443, 851979, 851979, 917515, 917515, 983052, 983052, 983052, 983052, 1048588, 983053, 1048589, 983053, 851978, 786444, 851979, 786443, 851979, 917515, 917516, 917516, 917516, 983052, 1048588, 1048588, 1048589, 1114125, 1114125, 1048589, 786442, 851980, 851980, 851979, 851979, 917515, 917516, 983052, 1048588, 1048588, 1048588, 1048588, 1048589, 1048589, 983053, 1048589, 851978, 851980, 917516, 917516, 917516, 917516, 983052, 983052, 983052, 983052, 1114124, 1048589, 1048589, 1048589, 1048589, 1179661, 851978, 983052, 917516, 917516, 917516, 983052, 983052, 1048588, 1048588, 1048589, 1179661, 1114125, 1114125, 1114125, 1245197, 1114125, 851978, 917517, 983052, 851980, 917516, 1048588, 1048588, 983052, 1048589, 1048589, 1114125, 1179661, 1114125, 1245197, 1114125, 1048589, 851978, 655369, 655369, 655369, 720905, 720905, 786441, 786441, 786441, 851977, 851977, 851977, 851978, 851978, 851978, 851978, 655366],
+            r.table23 = [65538, 262147, 458759, 262148, 327684, 458759, 393222, 458759, 524296], r.table56 = [65539, 262148, 458758, 524296, 262148, 327684, 524294, 589831, 458757, 524294, 589831, 655368, 524295, 524295, 589832, 655369], r.bitrate_table = [
+                [0, 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, -1],
+                [0, 32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, -1],
+                [0, 8, 16, 24, 32, 40, 48, 56, 64, -1, -1, -1, -1, -1, -1, -1]
+            ], r.samplerate_table = [
+                [22050, 24e3, 16e3, -1],
+                [44100, 48e3, 32e3, -1],
+                [11025, 12e3, 8e3, -1]
+            ], r.scfsi_band = [0, 6, 11, 16, 21], e.exports = r
+    },
+    79: function(e, t, a) {
+        function r() {
+            this.l = o(n.SBMAX_l), this.s = _([n.SBMAX_s, 3]);
+            var e = this;
+            this.assign = function(t) {
+                i.arraycopy(t.l, 0, e.l, 0, n.SBMAX_l);
+                for (var a = 0; a < n.SBMAX_s; a++)
+                    for (var r = 0; 3 > r; r++) e.s[a][r] = t.s[a][r]
+            }
+        }
+        var n = a(574),
+            s = a(536),
+            i = s.System,
+            o = (s.VbrMode, s.Float, s.ShortBlock, s.Util, s.Arrays, s.new_array_n, s.new_byte, s.new_double, s.new_float),
+            _ = s.new_float_n;
+        s.new_int, s.new_int_n, s.assert, e.exports = r
+    },
+    93: function(e, t) {
+        function a() {
+            var e, t;
+            this.setModules = function(a, r) {
+                e = a, t = r
+            }
+        }
+        e.exports = a
+    },
+    99: function(e, t, a) {
+        e.exports = a(116)
     }
 });

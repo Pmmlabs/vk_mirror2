@@ -1,171 +1,171 @@
 #rate_css {
-    display: none;
+    display: none
 }
 
 .rate_table {
     border: 0;
     padding: 0;
-    margin: 20px auto 10px auto;
+    margin: 20px auto 10px;
     border-collapse: collapse;
-    width: 280px;
+    width: 280px
 }
 
 .rate_table td {
     border: 0px;
     vertical-align: top;
-    padding: 6px 10px 0px 10px;
-    margin: 0;
+    padding: 6px 10px 0px;
+    margin: 0
 }
 
 .rate_table td img {
-    margin-bottom: 1px;
+    margin-bottom: 1px
 }
 
 .rate_table tr.odd td {
-    background-color: #F0F3F5;
-    border-bottom: 1px solid #DEE4E8;
-    border-top: 1px solid #DEE4E8;
+    background-color: #f0f3f5;
+    border-bottom: 1px solid #dee4e8;
+    border-top: 1px solid #dee4e8
 }
 
 .rate_info {
-    background-color: #F6F7F9;
-    border: 1px solid #DBE0EA;
+    background-color: #f6f7f9;
+    border: 1px solid #dbe0ea;
     padding: 8px 11px;
     margin: 10px;
-    font-weight: normal;
-    line-height: 150%;
+    font-weight: 400;
+    line-height: 150%
 }
 
 .box_rate_info {
-    padding-left: 65px;
+    padding-left: 65px
 }
 
 .box_rate_message_head {
-    background-color: #F7F7F7;
-    border-bottom: 1px solid #DAE2E8;
-    border-top: 1px solid #45688E;
-    padding: 3px 5px;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #dae2e8;
+    border-top: 1px solid #45688e;
+    padding: 3px 5px
 }
 
 .box_rate_message {
-    padding: 5px;
+    padding: 5px
 }
 
 .box_rate_rows {
     clear: both;
-    margin-bottom: 5px;
+    margin-bottom: 5px
 }
 
 .box_body .rate_box_progress {
     float: right;
-    padding: 3px 6px 3px 3px;
+    padding: 3px 6px 3px 3px
 }
 
 #rate_vote_box {
-    padding: 10px;
+    padding: 10px
 }
 
 #rate_vote_box h4 {
     font-size: 1.18em;
     margin: 0px 0px 10px;
     border: none;
-    padding: 0px;
+    padding: 0px
 }
 
 #rate_vote_box .rate_message {
-    padding-bottom: 10px;
+    padding-bottom: 10px
 }
 
 #rate_vote_box .rate_vote_count {
     border: 1px solid;
-    background-color: #FAF3D8;
-    border-color: #C4BB98;
-    color: #C4BB98;
+    background-color: #faf3d8;
+    border-color: #c4bb98;
+    color: #c4bb98;
     font-size: 1.81em;
     width: 48px;
-    font-weight: bold;
+    font-weight: 700;
     height: 106px;
-    padding: 3px;
+    padding: 3px
 }
 
 #rate_vote_box .rate_vote_count_wrap {
     position: absolute;
-    margin: 42px 0px 0px 12px;
+    margin: 42px 0px 0px 12px
 }
 
 #rate_vote_box #rate_vote_input {
     display: none;
-    border: 1px solid #8AA6BD;
-    color: #8AA6BD;
-    background: #FFFFFF;
+    border: 1px solid #8aa6bd;
+    color: #8aa6bd;
+    background: #fff;
     font-size: 3.63em;
-    font-weight: bold;
+    font-weight: 700;
     margin: 0px 0px 0px 3px;
     padding: 3px;
-    width: 72px;
+    width: 72px
 }
 
 #rate_vote_box #vote_text {
     height: 106px;
     width: 389px;
-    padding: 3px;
+    padding: 3px
 }
 
 #rate_vote_box .about_msg {
-    padding-top: 10px;
+    padding-top: 10px
 }
 
 #rate_vote_box.votes3 .rate_vote_count {
-    background-color: #BED8A1;
-    border-color: #8DBF56;
-    color: #8DBF56;
+    background-color: #bed8a1;
+    border-color: #8dbf56;
+    color: #8dbf56;
     font-size: 2.72em;
-    width: 65px;
+    width: 65px
 }
 
 #rate_vote_box.votes3 #vote_text {
-    width: 372px;
+    width: 372px
 }
 
 #rate_vote_box.votes3 .rate_vote_count_wrap {
     position: absolute;
-    margin: 35px 0px 0px 13px;
+    margin: 35px 0px 0px 13px
 }
 
 #rate_vote_box.votes8 .rate_vote_count {
-    background-color: #DCBBA8;
-    border-color: #BF7F56;
-    color: #BF7F56;
+    background-color: #dcbba8;
+    border-color: #bf7f56;
+    color: #bf7f56;
     font-size: 3.63em;
-    width: 80px;
+    width: 80px
 }
 
 #rate_vote_box.votes8 #vote_text {
-    width: 357px;
+    width: 357px
 }
 
 #rate_vote_box.votes8 .rate_vote_count_wrap {
     position: absolute;
-    margin: 30px 0px 0px 15px;
+    margin: 30px 0px 0px 15px
 }
 
 #rate_vote_box.votes0 .rate_vote_count {
-    background-color: #C5DBE9;
-    border-color: #8AA6BD;
-    color: #8AA6BD;
+    background-color: #c5dbe9;
+    border-color: #8aa6bd;
+    color: #8aa6bd;
     width: 125px;
-    font-size: 3.63em;
+    font-size: 3.63em
 }
 
 #rate_vote_box.votes0 #vote_text {
-    width: 313px;
+    width: 313px
 }
 
 #rate_vote_box.votes0 .rate_vote_count_wrap {
     position: absolute;
-    margin: 25px 0px 0px 8px;
+    margin: 25px 0px 0px 8px
 }
 
 #rate_vote_box.votes0 #rate_vote_input {
-    display: inline;
+    display: inline
 }

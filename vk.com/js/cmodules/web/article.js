@@ -28,253 +28,9 @@
         return t.d(r, "a", r), r
     }, t.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, t.p = "", t(t.s = 198)
+    }, t.p = "", t(t.s = 346)
 }({
-    111: function(e, t, r) {
-        "use strict";
-
-        function n() {
-            return window.devicePixelRatio >= 2
-        }
-
-        function i() {
-            var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {},
-                t = arguments[1];
-            for (var r in e)
-                if (Object.prototype.hasOwnProperty.call(e, r) && t.call(e[r], r, e[r]) === !1) break;
-            return e
-        }
-
-        function a(e, t, r) {
-            var a = [];
-            if (i(e, function(e, t) {
-                    r && -1 == ["w", "z", "y", "x", "m", "s"].indexOf(e) || a.push(t)
-                }), !a.length) return [!1];
-            a.sort(function(e, t) {
-                return e[1] - t[1]
-            }), t *= n() ? 2 : 1;
-            var o = a[a.length - 1];
-            return i(a, function(e, r) {
-                return r[1] >= t ? (o = r, !1) : void 0
-            }), o
-        }
-
-        function o(e, t) {
-            if (l[e] === !0) return t && t(), !0;
-            if (isArray(l[e])) return l[e].push(t), !1;
-            l[e] = [t];
-            var r = new Image;
-            return r.onload = function() {
-                var t = l[e];
-                l[e] = !0, i(t, function(e, t) {
-                    t && t()
-                })
-            }, r.src = e, !1
-        }
-
-        function s(e, t) {
-            if (isObject(t) && !isEmpty(t)) {
-                var r = "https://vk-callback.go.mail.ru/longread_pxl?action=" + e;
-                i(t, function(e, t) {
-                    r += "&" + e + "=" + t
-                });
-                var n = new Image;
-                n.src = r
-            }
-        }
-        r.r(t), r.d(t, "ParagraphType", function() {
-            return c
-        }), r.d(t, "getAppropriateImage", function() {
-            return a
-        }), r.d(t, "preloadImage", function() {
-            return o
-        }), r.d(t, "mailruStatsPixel", function() {
-            return s
-        });
-        var c = {
-                Text: 1,
-                Header1: 2,
-                Header2: 3,
-                Header3: 4,
-                Code: 5,
-                NumericList: 6,
-                BulletList: 7,
-                Quote: 8,
-                Quote2: 9,
-                ObjectAudioPlaylist: 100,
-                ObjectPhoto: 101,
-                ObjectVideo: 102,
-                ObjectGIF: 103
-            },
-            l = {}
-    },
-    138: function(e, t, r) {
-        "use strict";
-
-        function n(e, t) {
-            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
-        }
-        r.r(t);
-        var i = r(256),
-            a = (r(111), function() {
-                function e(e, t) {
-                    var r = [],
-                        n = !0,
-                        i = !1,
-                        a = void 0;
-                    try {
-                        for (var o, s = e[Symbol.iterator](); !(n = (o = s.next()).done) && (r.push(o.value), !t || r.length !== t); n = !0);
-                    } catch (c) {
-                        i = !0, a = c
-                    } finally {
-                        try {
-                            !n && s["return"] && s["return"]()
-                        } finally {
-                            if (i) throw a
-                        }
-                    }
-                    return r
-                }
-                return function(t, r) {
-                    if (Array.isArray(t)) return t;
-                    if (Symbol.iterator in Object(t)) return e(t, r);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }()),
-            o = window.browser && (browser.mozilla || browser.safari),
-            s = void 0,
-            c = function() {
-                function e(t, r, i) {
-                    n(this, e), this._mediaId = t, this._editor = r, this._highlighted = !1, this._isCaptioned = !!i, s = this.getEditor().getOptions().multiMediasSeparator
-                }
-                return e.prototype.getEditor = function() {
-                    return this._editor
-                }, e.prototype.getMediaIdsCount = function() {
-                    var e = this._mediaId.split(s);
-                    return e.length
-                }, e.prototype.getMediaId = function(e) {
-                    if (void 0 !== e) {
-                        var t = this._mediaId.split(s);
-                        return t[e]
-                    }
-                    return this._mediaId
-                }, e.prototype.setMediaId = function(e) {
-                    this._mediaId = e
-                }, e.prototype.highlight = function() {
-                    var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : !1,
-                        t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : !1;
-                    if (e != this._highlighted) {
-                        this._highlighted = e;
-                        var r = this.el();
-                        if (e) {
-                            var n = getSize(r),
-                                a = se('<div class="article_ed__object_highlight _article_ed__object_highlight"></div>'),
-                                o = 0;
-                            setStyle(a, {
-                                width: n[0] + o,
-                                height: n[1] + o
-                            }), addClass(r, "article_ed__object_highlighted")
-                        } else re(geByClass1("_article_ed__object_highlight", r)), removeClass(r, "article_ed__object_highlighted");
-                        if (this._isCaptioned)
-                            if (e) this._toggleCaption(!0), this._toggleCaptionPlaceholder(this.isEmptyCaption()), t || Object(i.focusEl)(this._getCaptionEl());
-                            else {
-                                var s = this.isEmptyCaption();
-                                this._toggleCaptionPlaceholder(s), this._toggleCaption(!s)
-                            }
-                    }
-                }, e.prototype.render = function() {}, e.prototype.el = function() {
-                    var e = this;
-                    if (!this._objectEl) {
-                        var t = this.render();
-                        addClass(t, "article_object_el"), t.setAttribute("contenteditable", "false");
-                        var r = browser.mozilla ? 'contenteditable="true"' : 'contenteditable="false"';
-                        this._objectEl = se("<figure " + r + "></figure>"), this._objectEl.appendChild(t);
-                        var n = this.renderExtraControlsEl();
-                        n && (n.setAttribute("contenteditable", "false"), addClass(n, "article_ed__extra_controls"), this._objectEl.appendChild(n)), this._isCaptioned && (this._captionEl = se('<figcaption class="article_ed__figcaption" contenteditable="false">\n          <div class="article_ed__figcaption_edit" contenteditable="true"></div>\n          <div class="article_ed__caption_placeholder" contenteditable="false">' + getLang("pages_article_figure_placeholder") + "</div>\n        </figcaption>"), this._objectEl.appendChild(this._captionEl)), o && t.addEventListener("click", function() {
-                            e.highlight(!0), Object(i.focusEl)(t)
-                        })
-                    }
-                    return this._setLoadingEl(), this._objectEl
-                }, e.prototype.renderExtraControlsEl = function() {
-                    return !1
-                }, e.prototype.setLoadingState = function() {
-                    var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : !1,
-                        t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : !1;
-                    !!this._isLoading != !!e && (this._isLoading = e, this._setLoadingEl(t), toggleClass(this._objectEl, "article_ed__object_loading", e), e || this.getEditor().onObjectStateLoaded(this))
-                }, e.prototype._setLoadingEl = function() {
-                    var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : !1;
-                    if (this._objectEl) {
-                        if (re(geByClass1("article_ed___object_loading_placeholder", this._objectEl)), this._isLoading) {
-                            var t = se('<div class="article_ed___object_loading_placeholder"></div>');
-                            toggleClass(t, "article_ed__object_loading_white", e), domInsertBefore(t, this._objectEl.firstChild)
-                        }
-                        toggleClass(this._objectEl, "article_ed___object_loading", !!this._isLoading)
-                    }
-                }, e.prototype.getCaptionEl = function() {
-                    return this._isCaptioned ? this._getCaptionEl() : !1
-                }, e.prototype.isCaptionFocused = function() {
-                    return this._isCaptioned ? this._isFocusInCaption() : !1
-                }, e.prototype.setCaptionElHtml = function(e) {
-                    if (this._isCaptioned) {
-                        e = e.trim();
-                        var t = this._getCaptionEl();
-                        t != e && (t.innerHTML = e), this._toggleCaptionPlaceholder(!e), this._toggleCaption(!!e)
-                    }
-                }, e.prototype.isEmptyCaption = function() {
-                    return !this._getCaptionEl().textContent.trim()
-                }, e.prototype._getCaptionEl = function() {
-                    return geByClass1("article_ed__figcaption_edit", this._captionEl)
-                }, e.prototype._toggleCaption = function(e) {
-                    toggleClass(this._captionEl, "article_ed__figcaption_visible", e)
-                }, e.prototype._toggleCaptionPlaceholder = function(e) {
-                    (void 0 === this._captionPlaceholderShown || this._captionPlaceholderShown !== e) && (this._captionPlaceholderShown = toggle(geByClass1("article_ed__caption_placeholder", this._captionEl), e))
-                }, e.prototype._isFocusInCaption = function() {
-                    var e = this,
-                        t = Object(i.getRange)(),
-                        r = a(t, 2),
-                        n = r[0],
-                        o = r[1],
-                        s = function(t) {
-                            return !!traverseParent(t, function(t) {
-                                return t == e._captionEl
-                            }, 10)
-                        };
-                    if (o) return s(n.startContainer);
-                    var c = s(n.startContainer),
-                        l = s(n.endContainer);
-                    return c && l
-                }, e
-            }();
-        t["default"] = c
-    },
-    17: function(e, t, r) {
-        "use strict";
-
-        function n(e) {
-            o = e
-        }
-
-        function i(e) {
-            var t = [];
-            e.length > o.maxParagraphs && t.push(getLang("pages_article_ed_limit_paragraphs").replace("{count}", e.length).replace("{limit}", o.maxParagraphs));
-            var r = 0,
-                n = 0;
-            return e.forEach(function(e) {
-                var i = 0;
-                e.lines.forEach(function(e) {
-                    r += e.text.length, i += e.text.length
-                }), Object(a.isObjectParagraph)(e) && n++, i > o.maxSymbolsPerParagraph && t.push(getLang("pages_article_ed_limit_symbols_per_par").replace("{count}", i).replace("{limit}", o.maxSymbolsPerParagraph))
-            }), r > o.maxSymbols && t.push(getLang("pages_article_ed_limit_symbols").replace("{count}", r).replace("{limit}", o.maxSymbols)), n > o.maxObjects && t.push(getLang("pages_article_ed_limit_objects").replace("{count}", n).replace("{limit}", o.maxObjects)), t.length && t.push(getLang("pages_article_ed_limit")), t.join("<br>")
-        }
-        r.r(t), r.d(t, "initLimits", function() {
-            return n
-        }), r.d(t, "checkLimits", function() {
-            return i
-        });
-        var a = r(256),
-            o = void 0
-    },
-    18: function(e, t, r) {
+    184: function(e, t, r) {
         "use strict";
 
         function n(e, t) {
@@ -298,9 +54,9 @@
             }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t)
         }
         r.r(t);
-        var o = r(138),
-            s = r(111),
-            c = r(239),
+        var o = r(337),
+            s = r(384),
+            c = r(20),
             l = function(e) {
                 function t(r, a) {
                     return n(this, t), i(this, e.call(this, r, a, !0))
@@ -331,424 +87,7 @@
             }(o["default"]);
         t["default"] = l
     },
-    198: function(e, t, r) {
-        e.exports = r(99)
-    },
-    202: function(e, t, r) {
-        "use strict";
-
-        function n(e, t) {
-            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
-        }
-
-        function i(e, t) {
-            if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-            return !t || "object" != typeof t && "function" != typeof t ? e : t
-        }
-
-        function a(e, t) {
-            if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);
-            e.prototype = Object.create(t && t.prototype, {
-                constructor: {
-                    value: e,
-                    enumerable: !1,
-                    writable: !0,
-                    configurable: !0
-                }
-            }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t)
-        }
-        r.r(t);
-        var o = r(138),
-            s = r(239),
-            c = function(e) {
-                function t(r, a) {
-                    return n(this, t), i(this, e.call(this, r, a, !0))
-                }
-                return a(t, e), t.prototype.render = function() {
-                    var e = this;
-                    this._el = se("\n      <div></div>\n    ");
-                    var t = s["default"].get(this.getMediaId());
-                    if (t)
-                        if (t.video) {
-                            if (this._videoEl = ce("video", {
-                                    autoplay: !0,
-                                    loop: "loop",
-                                    muted: !0,
-                                    src: t.video + "&mp4=1"
-                                }), t.size) {
-                                var r = t.size[0] < t.size[1],
-                                    n = t.size[0] <= this.getEditor().getOptions().minGifWidthExpand;
-                                (r || n) && setStyle(this._videoEl, {
-                                    width: t.size[0]
-                                })
-                            }
-                            this._el.appendChild(this._videoEl), this._el.appendChild(se('<span class="article_ed__select_dummy">&nbsp;</span>'))
-                        } else if (t.href) {
-                        var i = t.href + "&wnd=1&module=" + cur.module;
-                        this._imgEl = ce("img"), this._imgEl.addEventListener("error", function() {
-                            showFastBox(getLang("pages_article_error_box_title"), getLang("pages_article_error_box_text")), e._editor.removeObject(e)
-                        }), this._imgEl.src = i, this._el.appendChild(this._imgEl)
-                    }
-                    return this._el
-                }, t.prototype.onViewport = function(e) {
-                    this._imgEl ? setStyle(this._imgEl, "visibility", e ? "visible" : "hidden") : e ? this._videoEl.play() : this._videoEl.pause()
-                }, t.prototype.onRender = function() {
-                    var e = this;
-                    setTimeout(function() {
-                        if (e._videoEl && e._videoEl.play(), browser.msie && e._videoEl) {
-                            var t = e._videoEl.src;
-                            e._videoEl.src = "", e._videoEl.src = t
-                        }
-                    })
-                }, t
-            }(o["default"]);
-        t["default"] = c
-    },
-    21: function(e, t, r) {
-        "use strict";
-
-        function n(e, t, r) {
-            var n = [];
-            return e.forEach(function(e, i) {
-                if (!r || Object(o.isObjectParagraph)(e) || !Object(o.isParagraphEmpty)(e) || 0 == i || e.type == a.ParagraphType.Code) {
-                    var s = {};
-                    for (var c in e) {
-                        if (!e.hasOwnProperty(c)) return;
-                        if (!c.startsWith("_") || "_uuid" === c && t) {
-                            var l = e[c];
-                            s[c] = isObject(l) || isArray(l) ? clone(l, !0) : l
-                        }
-                    }
-                    Object(o.isObjectParagraph)(e) && e._object && (s.mediaId = e._object.getMediaId()), e.sep && (s.sep = 1), s.type == a.ParagraphType.Text && delete s.type, s.lines.forEach(function(e) {
-                        if (void 0 !== e.decorations) {
-                            var t = !0;
-                            each(e.decorations, function(r, n) {
-                                0 == n.length ? delete e.decorations[r] : t = !1
-                            }), t && delete e.decorations
-                        }
-                        e.brs && 0 == e.brs.length && delete e.brs
-                    }), n.push(s)
-                }
-            }), JSON.parse(JSON.stringify(n))
-        }
-
-        function i(e) {
-            return e.forEach(function(e) {
-                e.type = e.type || a.ParagraphType.Text, e.lines.forEach(function(e) {
-                    e.brs = e.brs || [], e.decorations = e.decorations || {}
-                })
-            }), e
-        }
-        r.r(t), r.d(t, "getCleanedState", function() {
-            return n
-        }), r.d(t, "expandParagraphFields", function() {
-            return i
-        });
-        var a = r(111),
-            o = r(256)
-    },
-    232: function(e, t, r) {
-        "use strict";
-
-        function n(e) {
-            var t = PageID;
-            return function() {
-                t == PageID && e.apply(this, arguments)
-            }
-        }
-
-        function i(e, t) {
-            return setTimeout(n(e), t)
-        }
-
-        function a(e, t) {
-            return Math.random() * (t - e + 1) + e
-        }
-
-        function o(e, t) {
-            return Math.floor(a(e, t))
-        }
-
-        function s(e) {
-            return "undefined" == typeof e
-        }
-
-        function c(e) {
-            return e && "[object Function]" === Object.prototype.toString.call(e)
-        }
-
-        function l(e) {
-            return "[object Array]" === Object.prototype.toString.call(e)
-        }
-
-        function d(e) {
-            return "string" == typeof e
-        }
-
-        function u(e) {
-            return "[object Object]" === Object.prototype.toString.call(e)
-        }
-
-        function p(e) {
-            if ("[object Object]" !== Object.prototype.toString.call(e)) return !1;
-            for (var t in e)
-                if (e.hasOwnProperty(t)) return !1;
-            return !0
-        }
-
-        function h() {
-            return +new Date
-        }
-
-        function f() {
-            return window.Image ? new Image : ce("img")
-        }
-
-        function _(e) {
-            return (e || "").replace(/^\s+|\s+$/g, "")
-        }
-
-        function g(e) {
-            return e ? e.replace(/<(?:.|\s)*?>/g, "") : ""
-        }
-
-        function v(e) {
-            return e ? e.replace(/([.*+?^${}()|[\]\/\\])/g, "\\$1") : ""
-        }
-
-        function m(e) {
-            return e === !0 ? 1 : parseInt(e) || 0
-        }
-
-        function y(e) {
-            return e === !0 ? 1 : parseFloat(e) || 0
-        }
-
-        function b(e) {
-            return e = m(e), 0 > e ? 0 : e
-        }
-
-        function w(e) {
-            return !isNaN(e)
-        }
-
-        function C(e) {
-            return e.replace(/&#(\d\d+);/g, function(e, t) {
-                return t = m(t), t >= 32 ? String.fromCharCode(t) : e
-            }).replace(/&quot;/gi, '"').replace(/&lt;/gi, "<").replace(/&gt;/gi, ">").replace(/&amp;/gi, "&")
-        }
-
-        function E(e) {
-            return se("<textarea>" + (e || "").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;") + "</textarea>").value
-        }
-
-        function P(e) {
-            return e ? e.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;") : ""
-        }
-
-        function O(e) {
-            return E(e.replace(/\t/g, "\n"))
-        }
-
-        function T(e, t) {
-            if (u(e) || "undefined" == typeof e.length) {
-                for (var r in e)
-                    if (Object.prototype.hasOwnProperty.call(e, r) && t.call(e[r], r, e[r]) === !1) break
-            } else
-                for (var n = 0, i = e.length; i > n; n++) {
-                    var a = e[n];
-                    if (t.call(a, n, a) === !1) break
-                }
-            return e
-        }
-
-        function j(e, t, r) {
-            for (var n = r || 0, i = (e || []).length; i > n; n++)
-                if (e[n] == t) return n;
-            return -1
-        }
-
-        function x(e, t) {
-            return -1 != j(t, e)
-        }
-
-        function S(e, t) {
-            var r = u(e) || "undefined" == typeof e.length ? {} : [];
-            for (var n in e)(!/webkit/i.test(_ua) || "layerX" != n && "layerY" != n && "webkitMovementX" != n && "webkitMovementY" != n) && (t && "object" === R(e[n]) && "prototype" !== n && null !== e[n] ? r[n] = S(e[n]) : r[n] = e[n]);
-            return r
-        }
-
-        function k(e) {
-            var t, r, n = {},
-                i = 1,
-                a = arguments.length,
-                o = arguments;
-            for (t in e) {
-                for (r = !1, i = 1; a > i; i++) o[i][t] && o[i][t] == e[t] && (r = !0);
-                r || (n[t] = e[t])
-            }
-            return n
-        }
-
-        function I() {
-            var e, t = arguments,
-                r = t[0] || {},
-                n = 1,
-                i = t.length,
-                a = !1;
-            for ("boolean" == typeof r && (a = r, r = t[1] || {}, n = 2), "object" === ("undefined" == typeof r ? "undefined" : R(r)) || c(r) || (r = {}); i > n; ++n)
-                if (null != (e = t[n]))
-                    for (var o in e) {
-                        var s = r[o],
-                            l = e[o];
-                        r !== l && (a && l && "object" === ("undefined" == typeof l ? "undefined" : R(l)) && !l.nodeType ? r[o] = I(a, s || (null != l.length ? [] : {}), l) : void 0 !== l && (r[o] = l))
-                    }
-            return r
-        }
-
-        function L(e) {
-            window.templates = window.templates || {}, I(window.templates, e)
-        }
-
-        function N(e, t) {
-            var r = window.templates = window.templates || {},
-                n = r[e];
-            return "function" == typeof n && (n = n()), n && t ? rs(n, t) : n || ""
-        }
-
-        function A(e) {
-            if ("object" != ("undefined" == typeof e ? "undefined" : R(e))) return !1;
-            var t = {},
-                r = function(t) {
-                    return geByTag(t, e)
-                },
-                n = function(r, n) {
-                    if (n.name)
-                        if ("text" != n.type && n.type)
-                            if (n.getAttribute("bool")) {
-                                var i = val(n);
-                                if (!i || "0" === i) return;
-                                t[n.name] = 1
-                            } else t[n.name] = browser.msie && !n.value && e[n.name] ? e[n.name].value : n.value;
-                    else t[n.name] = val(n)
-                };
-            return T(r("input"), function(e, t) {
-                return "radio" != t.type && "checkbox" != t.type || t.checked ? n(e, t) : void 0
-            }), T(r("select"), n), T(r("textarea"), n), t
-        }
-
-        function D(e, t) {
-            for (var r, n = t ? U : H, i = []; e && (r = e.match(n));) {
-                e = e.substr(r.index + r[0].length);
-                var a = 0;
-                r[4] || (a = 7), i.push({
-                    url: r[2 + a],
-                    query: r[5 + a] || "",
-                    domain: r[4 + a]
-                })
-            }
-            return i
-        }
-
-        function M() {
-            return window.devicePixelRatio >= 2
-        }
-
-        function B(e) {
-            var t = 0,
-                r = 0,
-                n = e.ownerDocument || e.document,
-                i = n.defaultView || n.parentWindow,
-                a = i.getSelection();
-            if (a.rangeCount > 0) {
-                var o = i.getSelection().getRangeAt(0),
-                    s = o.cloneRange();
-                s.selectNodeContents(e), s.setEnd(o.startContainer, o.startOffset), t = s.toString().length, s.setEnd(o.endContainer, o.endOffset), r = s.toString().length
-            }
-            return [t, r]
-        }
-        r.r(t), r.d(t, "vkLocal", function() {
-            return n
-        }), r.d(t, "lTimeout", function() {
-            return i
-        }), r.d(t, "rand", function() {
-            return a
-        }), r.d(t, "irand", function() {
-            return o
-        }), r.d(t, "isUndefined", function() {
-            return s
-        }), r.d(t, "isFunction", function() {
-            return c
-        }), r.d(t, "isArray", function() {
-            return l
-        }), r.d(t, "isString", function() {
-            return d
-        }), r.d(t, "isObject", function() {
-            return u
-        }), r.d(t, "isEmpty", function() {
-            return p
-        }), r.d(t, "vkNow", function() {
-            return h
-        }), r.d(t, "vkImage", function() {
-            return f
-        }), r.d(t, "trim", function() {
-            return _
-        }), r.d(t, "stripHTML", function() {
-            return g
-        }), r.d(t, "escapeRE", function() {
-            return v
-        }), r.d(t, "intval", function() {
-            return m
-        }), r.d(t, "floatval", function() {
-            return y
-        }), r.d(t, "positive", function() {
-            return b
-        }), r.d(t, "isNumeric", function() {
-            return w
-        }), r.d(t, "winToUtf", function() {
-            return C
-        }), r.d(t, "replaceEntities", function() {
-            return E
-        }), r.d(t, "clean", function() {
-            return P
-        }), r.d(t, "unclean", function() {
-            return O
-        }), r.d(t, "each", function() {
-            return T
-        }), r.d(t, "indexOf", function() {
-            return j
-        }), r.d(t, "inArray", function() {
-            return x
-        }), r.d(t, "clone", function() {
-            return S
-        }), r.d(t, "arrayKeyDiff", function() {
-            return k
-        }), r.d(t, "extend", function() {
-            return I
-        }), r.d(t, "addTemplates", function() {
-            return L
-        }), r.d(t, "getTemplate", function() {
-            return N
-        }), r.d(t, "serializeForm", function() {
-            return A
-        }), r.d(t, "extractUrls", function() {
-            return D
-        }), r.d(t, "isRetina", function() {
-            return M
-        }), r.d(t, "getCaretCharacterOffsetWithin", function() {
-            return B
-        });
-        var R = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
-            return typeof e
-        } : function(e) {
-            return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
-        };
-        window.PageID = window.PageID || 1;
-        var H = /(?:([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+(?:[a-z]{2,9}|xn--p1ai|xn--j1amh|xn--80asehdb|xn--80aswg))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)]*(&nbsp;|[ \t\r\n \u00A0]))|([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9а-яєґї_\-]+\.)+(?:рф|укр|онлайн|сайт|срб))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)]*(&nbsp;|[ \t\r\n \u00A0])))/i,
-            U = /(?:([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+(?:[a-z]{2,9}|xn--p1ai|xn--j1amh|xn--80asehdb|xn--80aswg))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)&]*(&nbsp;|[ \t\r\n \u00A0]|$))|([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9а-яєґї_\-]+\.)+(?:рф|укр|онлайн|сайт|срб))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)&]*(&nbsp;|[ \t\r\n \u00A0]|$)))/i;
-        window.isRetina = M, window.extractUrls = D, window.serializeForm = A, window.addTemplates = L, window.getTemplate = N, window.rand = a, window.irand = o, window.isUndefined = s, window.isFunction = c, window.isArray = l, window.isString = d, window.isObject = u, window.isEmpty = p, window.vkNow = h, window.vkImage = f, window.trim = _, window.stripHTML = g, window.escapeRE = v, window.intval = m, window.floatval = y, window.positive = b, window.isNumeric = w, window.winToUtf = C, window.replaceEntities = E, window.clean = P, window.unclean = O, window.each = T, window.indexOf = j, window.inArray = x, window.clone = S, window.arrayKeyDiff = k, window.extend = I, window.vkLocal = n, window.lTimeout = i, window.getCaretCharacterOffsetWithin = B
-    },
-    239: function(e, t, r) {
+    20: function(e, t, r) {
         "use strict";
 
         function n(e, t) {
@@ -768,7 +107,7 @@
             }();
         t["default"] = a
     },
-    248: function(e, t, r) {
+    240: function(e, t, r) {
         "use strict";
 
         function n(e, t) {
@@ -779,9 +118,9 @@
             return e ? '<div class="article_ed__caredit_item article_ed__caredit_item_photo" data-media-id="' + t + '">\n      <div class="article_ed__caredit_photo" style="background-image: url(' + e + ')"></div>\n      <div class="article_ed__caredit_remove"><div class="article_ed__caredit_remove_icon"></div></div>\n    </div>' : '<button class="article_ed__caredit_item article_ed__caredit_item_add" nodrag="1">\n      <div class="article_ed__caredit_add"></div>\n      <div class="article_ed__caredit_item_text">' + getLang("pages_article_ed_carousel_add") + "</div>\n    </button>"
         }
         r.r(t);
-        var a = r(239),
-            o = r(111),
-            s = r(256),
+        var a = r(20),
+            o = r(384),
+            s = r(272),
             c = function() {
                 function e(e, t) {
                     var r = [],
@@ -887,7 +226,7 @@
             }();
         t["default"] = l
     },
-    256: function(e, t, r) {
+    272: function(e, t, r) {
         "use strict";
 
         function n(e) {
@@ -1429,7 +768,7 @@
         }), r.d(t, "hasBlockElements", function() {
             return ae
         });
-        var oe = r(111),
+        var oe = r(384),
             ce = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
                 return typeof e
             } : function(e) {
@@ -1506,7 +845,763 @@
             we = "div p footer form h1 h2 h3 h4 h5 h6 header hgroup hr main nav output pre section table tfoot address article aside blockquote canvas dd dl dt fieldset figcaption figure",
             Ce = we.toUpperCase().split(" ")
     },
-    257: function(e, t, r) {
+    308: function(e, t, r) {
+        "use strict";
+
+        function n(e, t) {
+            var r = domQuery1("[data-sizes]", e),
+                n = JSON.parse(domData(r, "sizes")),
+                o = (domData(r, "media-links") || "").split(",");
+            if (!(n.length <= 1 || domData(e, "carousel-inited")))
+                if (domData(e, "carousel-inited", 1), t.mobile) i(n, e);
+                else {
+                    var s = a(n, e, t, o);
+                    data(e, "changePhotoFunction", s)
+                }
+        }
+
+        function i(e, t) {
+            var r = geByClass1("article_photo_carousel__controls", t),
+                n = geByClass1("article_photo_carousel__counter", t),
+                i = domData(n, "counter-lang") || getLang("global_article_carousel_counter"),
+                a = getSize(geByClass1("article_figure_content", t)),
+                c = domPN(geByTag1("img", t)),
+                l = 0,
+                d = void 0,
+                u = 0,
+                p = void 0,
+                h = void 0,
+                f = 0,
+                _ = !1,
+                g = !1,
+                v = !1;
+            r.addEventListener("touchstart", function(e) {
+                h = e.touches[0].pageX, p = e.touches[0].pageY
+            });
+            var m = !1,
+                y = void 0;
+            r.addEventListener("touchmove", function(r) {
+                if (!g && (Math.abs(r.touches[0].pageY - p) > 5 || _)) return void(_ = !0);
+                if (!v && (u = r.touches[0].pageX - h, !(Math.abs(u) < 10) || m)) {
+                    g || window.addEventListener("touchmove", y = function(e) {
+                        return cancelEvent(e)
+                    }, {
+                        passive: !1
+                    }), g = !0, m = !0;
+                    var n = Math.min(e.length - 1, Math.max(0, l + (0 > u ? 1 : -1))),
+                        i = 0 === n && 0 === l,
+                        b = n === e.length - 1 && l === e.length - 1;
+                    if (f !== n)
+                        if (f = n, re(d), i || b) d = !1;
+                        else {
+                            var w = Object(o.getAppropriateImage)(e[n], a[0], !0),
+                                C = s(w, 1),
+                                E = C[0];
+                            d = ce("div", {
+                                innerHTML: '<img src="' + E + '">'
+                            }), setStyle(domFC(d), {
+                                "max-width": a[0],
+                                "max-height": a[1],
+                                width: "initial"
+                            }), setStyle(d, {
+                                transform: "scale(1.05)",
+                                opacity: 0
+                            }), domInsertBefore(d, domPN(geByTag1("img", t)))
+                        }
+                    var P = Math.abs(u),
+                        O = 0;
+                    O = i || b ? .2 * u : u, setStyle(c, {
+                        transform: "translateX(" + O + "px)"
+                    }), d && setStyle(d, {
+                        transform: "scale(" + Math.max(1, 1.05 - 5e-4 * P) + ")",
+                        opacity: Math.min(1, .01 * P)
+                    })
+                }
+            }), r.addEventListener("touchend", function() {
+                m = !1, _ = !1, v = !0, g = !1, y && window.removeEventListener("touchmove", y);
+                var t = 0 > u,
+                    r = Math.abs(u) < 50 || !d;
+                if (!r) {
+                    l = f;
+                    for (var p = l; p < Math.min(l + 3, e.length); p++) {
+                        var h = Object(o.getAppropriateImage)(e[p], a[0], !0),
+                            b = s(h, 1),
+                            w = b[0];
+                        Object(o.preloadImage)(w)
+                    }
+                }
+                n.innerHTML = i.replace("{counter}", l + 1).replace("{total}", e.length), addClass(c, "with_transition"), addClass(d, "with_transition"), setTimeout(function() {
+                    r ? (setStyle(c, {
+                        transform: "translateX(0px)",
+                        opacity: 1
+                    }), setStyle(d, {
+                        transform: "scale(1.05)",
+                        opacity: 0
+                    })) : (setStyle(c, {
+                        transform: "translateX(" + (t ? "-500px" : "500px") + ")"
+                    }), setStyle(d, {
+                        transform: "scale(1)",
+                        opacity: 1
+                    }))
+                }), setTimeout(function() {
+                    v = !1, f = !1, removeClass(c, "with_transition"), removeClass(d, "with_transition"), r ? re(d) : (re(c), c = d), d = !1
+                }, 150)
+            })
+        }
+
+        function a(e, t, r, n) {
+            function i(i) {
+                c += i, c = Math.min(e.length - 1, Math.max(0, c));
+                var a = Object(o.getAppropriateImage)(e[c], p[0], !0),
+                    l = s(a, 1),
+                    g = l[0],
+                    v = "";
+                if (r.moderDeletePhoto) {
+                    var m = n[c];
+                    v = '<a href="' + m + '" target="_blank" class="flat_button article_photo_moder_open">Открыть</a>'
+                }
+                var y = 0 > i ? "fading_in_left" : "fading_in_right",
+                    b = se('<div class="' + y + '"><img src="' + g + '">' + v + "</div>");
+                setStyle(domFC(b), {
+                    "max-width": p[0],
+                    "max-height": p[1],
+                    width: "initial"
+                }), domInsertAfter(b, domPN(geByTag1("img", t)));
+                var w = h;
+                setTimeout(function() {
+                    removeClass(b, "fading_in_left"), removeClass(b, "fading_in_right"), addClass(w, "fading_out")
+                }), setTimeout(function() {
+                    re(w)
+                }, 150);
+                for (var C = c; C < Math.min(c + 3, e.length); C++) {
+                    var E = Object(o.getAppropriateImage)(e[C], p[0], !0),
+                        P = s(E, 1),
+                        O = P[0];
+                    Object(o.preloadImage)(O)
+                }
+                h = b, d.innerHTML = u.replace("{counter}", c + 1).replace("{total}", e.length), toggle(f, c > 0), toggle(_, c < e.length - 1), domData(t, "photo-carousel-index", c)
+            }
+
+            function a(e) {
+                clearTimeout(g), toggleClass(l, "article_photo_carousel__mouse_idle", e)
+            }
+            var c = 0,
+                l = geByClass1("article_photo_carousel__controls", t),
+                d = geByClass1("article_photo_carousel__counter", t),
+                u = domData(d, "counter-lang") || getLang("global_article_carousel_counter"),
+                p = getSize(geByClass1("article_figure_content", t)),
+                h = domPN(geByTag1("img", t)),
+                f = geByClass1("article_photo_carousel__left", t),
+                _ = geByClass1("article_photo_carousel__right", t),
+                g = void 0,
+                v = browser.msie && intval(browser.version) <= 11;
+            return _.addEventListener("click", function(e) {
+                return i(1), v || t.dispatchEvent(new Event("mousemove")), cancelEvent(e)
+            }), f.addEventListener("click", function(e) {
+                return i(-1), v || t.dispatchEvent(new Event("mousemove")), cancelEvent(e)
+            }), t.addEventListener("mousemove", function() {
+                a(!1), addClass(l, "article_photo_carousel__mouse_over"), clearTimeout(g), g = setTimeout(function() {
+                    a(!0)
+                }, 1e3)
+            }), t.addEventListener("mouseleave", function() {
+                clearTimeout(g), removeClass(l, "article_photo_carousel__mouse_over"), removeClass(l, "article_photo_carousel__mouse_idle")
+            }), i
+        }
+        r.r(t), r.d(t, "initPhotoCarousel", function() {
+            return n
+        });
+        var o = r(384),
+            s = function() {
+                function e(e, t) {
+                    var r = [],
+                        n = !0,
+                        i = !1,
+                        a = void 0;
+                    try {
+                        for (var o, s = e[Symbol.iterator](); !(n = (o = s.next()).done) && (r.push(o.value), !t || r.length !== t); n = !0);
+                    } catch (c) {
+                        i = !0, a = c
+                    } finally {
+                        try {
+                            !n && s["return"] && s["return"]()
+                        } finally {
+                            if (i) throw a
+                        }
+                    }
+                    return r
+                }
+                return function(t, r) {
+                    if (Array.isArray(t)) return t;
+                    if (Symbol.iterator in Object(t)) return e(t, r);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }()
+    },
+    328: function(e, t, r) {
+        "use strict";
+
+        function n(e, t) {
+            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
+        }
+        r.r(t);
+        var i = function() {
+            function e() {
+                n(this, e)
+            }
+            return e._saveChunk = function(e, t, r, n, i) {
+                ajax.post("al_articles.php", {
+                    act: "save_text_chunk",
+                    article_owner_id: e,
+                    hash: n,
+                    chunk_index: r,
+                    Article_text: JSON.stringify(t)
+                }, {
+                    onDone: function(e) {
+                        i(e)
+                    },
+                    onError: function() {
+                        i(!0)
+                    }
+                })
+            }, e._saveFinally = function(e, t, r, n, i, a, o, s, c, l) {
+                c = c ? JSON.stringify(c) : "", ajax.post("al_articles.php", extend({
+                    act: "save",
+                    article_owner_id: e,
+                    article_id: t,
+                    cover_photo_id: i,
+                    name: n,
+                    is_published: intval(r),
+                    chunks_count: s,
+                    Article_text: c,
+                    hash: o
+                }, a || {}), {
+                    onDone: l,
+                    onFail: function(e) {
+                        return e ? (showFastBox(getLang("global_error"), e), l(!0), !0) : void 0
+                    }
+                })
+            }, e.save = function(t, r, n, i, a, o, s, c, l, d) {
+                var u = [],
+                    p = [],
+                    h = 0;
+                if (n.forEach(function(e) {
+                        var t = 0;
+                        e.lines.forEach(function(e) {
+                            t += e.text.length, e.decorations && e.decorations.link && e.decorations.link.forEach(function(e) {
+                                t += (e[2] || "").length
+                            })
+                        }), h += t, h >= c && (u.push(p), h = t, p = []), p.push(e)
+                    }), p.length && u.push(p), u.length > 1) {
+                    var f = new callHub(function() {
+                        e._saveFinally(t, r, i, a, o, l, s, u.length, !1, d)
+                    }, u.length);
+                    u.forEach(function(r, n) {
+                        e._saveChunk(t, r, n, s, function(e) {
+                            e ? showFastBox(getLang("global_error"), getLang("pages_articles_save_fail")) : f.done()
+                        })
+                    })
+                } else e._saveFinally(t, r, i, a, o, l, s, 0, n, d)
+            }, e
+        }();
+        t["default"] = i
+    },
+    337: function(e, t, r) {
+        "use strict";
+
+        function n(e, t) {
+            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
+        }
+        r.r(t);
+        var i = r(272),
+            a = (r(384), function() {
+                function e(e, t) {
+                    var r = [],
+                        n = !0,
+                        i = !1,
+                        a = void 0;
+                    try {
+                        for (var o, s = e[Symbol.iterator](); !(n = (o = s.next()).done) && (r.push(o.value), !t || r.length !== t); n = !0);
+                    } catch (c) {
+                        i = !0, a = c
+                    } finally {
+                        try {
+                            !n && s["return"] && s["return"]()
+                        } finally {
+                            if (i) throw a
+                        }
+                    }
+                    return r
+                }
+                return function(t, r) {
+                    if (Array.isArray(t)) return t;
+                    if (Symbol.iterator in Object(t)) return e(t, r);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }()),
+            o = window.browser && (browser.mozilla || browser.safari),
+            s = void 0,
+            c = function() {
+                function e(t, r, i) {
+                    n(this, e), this._mediaId = t, this._editor = r, this._highlighted = !1, this._isCaptioned = !!i, s = this.getEditor().getOptions().multiMediasSeparator
+                }
+                return e.prototype.getEditor = function() {
+                    return this._editor
+                }, e.prototype.getMediaIdsCount = function() {
+                    var e = this._mediaId.split(s);
+                    return e.length
+                }, e.prototype.getMediaId = function(e) {
+                    if (void 0 !== e) {
+                        var t = this._mediaId.split(s);
+                        return t[e]
+                    }
+                    return this._mediaId
+                }, e.prototype.setMediaId = function(e) {
+                    this._mediaId = e
+                }, e.prototype.highlight = function() {
+                    var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : !1,
+                        t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : !1;
+                    if (e != this._highlighted) {
+                        this._highlighted = e;
+                        var r = this.el();
+                        if (e) {
+                            var n = getSize(r),
+                                a = se('<div class="article_ed__object_highlight _article_ed__object_highlight"></div>'),
+                                o = 0;
+                            setStyle(a, {
+                                width: n[0] + o,
+                                height: n[1] + o
+                            }), addClass(r, "article_ed__object_highlighted")
+                        } else re(geByClass1("_article_ed__object_highlight", r)), removeClass(r, "article_ed__object_highlighted");
+                        if (this._isCaptioned)
+                            if (e) this._toggleCaption(!0), this._toggleCaptionPlaceholder(this.isEmptyCaption()), t || Object(i.focusEl)(this._getCaptionEl());
+                            else {
+                                var s = this.isEmptyCaption();
+                                this._toggleCaptionPlaceholder(s), this._toggleCaption(!s)
+                            }
+                    }
+                }, e.prototype.render = function() {}, e.prototype.el = function() {
+                    var e = this;
+                    if (!this._objectEl) {
+                        var t = this.render();
+                        addClass(t, "article_object_el"), t.setAttribute("contenteditable", "false");
+                        var r = browser.mozilla ? 'contenteditable="true"' : 'contenteditable="false"';
+                        this._objectEl = se("<figure " + r + "></figure>"), this._objectEl.appendChild(t);
+                        var n = this.renderExtraControlsEl();
+                        n && (n.setAttribute("contenteditable", "false"), addClass(n, "article_ed__extra_controls"), this._objectEl.appendChild(n)), this._isCaptioned && (this._captionEl = se('<figcaption class="article_ed__figcaption" contenteditable="false">\n          <div class="article_ed__figcaption_edit" contenteditable="true"></div>\n          <div class="article_ed__caption_placeholder" contenteditable="false">' + getLang("pages_article_figure_placeholder") + "</div>\n        </figcaption>"), this._objectEl.appendChild(this._captionEl)), o && t.addEventListener("click", function() {
+                            e.highlight(!0), Object(i.focusEl)(t)
+                        })
+                    }
+                    return this._setLoadingEl(), this._objectEl
+                }, e.prototype.renderExtraControlsEl = function() {
+                    return !1
+                }, e.prototype.setLoadingState = function() {
+                    var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : !1,
+                        t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : !1;
+                    !!this._isLoading != !!e && (this._isLoading = e, this._setLoadingEl(t), toggleClass(this._objectEl, "article_ed__object_loading", e), e || this.getEditor().onObjectStateLoaded(this))
+                }, e.prototype._setLoadingEl = function() {
+                    var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : !1;
+                    if (this._objectEl) {
+                        if (re(geByClass1("article_ed___object_loading_placeholder", this._objectEl)), this._isLoading) {
+                            var t = se('<div class="article_ed___object_loading_placeholder"></div>');
+                            toggleClass(t, "article_ed__object_loading_white", e), domInsertBefore(t, this._objectEl.firstChild)
+                        }
+                        toggleClass(this._objectEl, "article_ed___object_loading", !!this._isLoading)
+                    }
+                }, e.prototype.getCaptionEl = function() {
+                    return this._isCaptioned ? this._getCaptionEl() : !1
+                }, e.prototype.isCaptionFocused = function() {
+                    return this._isCaptioned ? this._isFocusInCaption() : !1
+                }, e.prototype.setCaptionElHtml = function(e) {
+                    if (this._isCaptioned) {
+                        e = e.trim();
+                        var t = this._getCaptionEl();
+                        t != e && (t.innerHTML = e), this._toggleCaptionPlaceholder(!e), this._toggleCaption(!!e)
+                    }
+                }, e.prototype.isEmptyCaption = function() {
+                    return !this._getCaptionEl().textContent.trim()
+                }, e.prototype._getCaptionEl = function() {
+                    return geByClass1("article_ed__figcaption_edit", this._captionEl)
+                }, e.prototype._toggleCaption = function(e) {
+                    toggleClass(this._captionEl, "article_ed__figcaption_visible", e)
+                }, e.prototype._toggleCaptionPlaceholder = function(e) {
+                    (void 0 === this._captionPlaceholderShown || this._captionPlaceholderShown !== e) && (this._captionPlaceholderShown = toggle(geByClass1("article_ed__caption_placeholder", this._captionEl), e))
+                }, e.prototype._isFocusInCaption = function() {
+                    var e = this,
+                        t = Object(i.getRange)(),
+                        r = a(t, 2),
+                        n = r[0],
+                        o = r[1],
+                        s = function(t) {
+                            return !!traverseParent(t, function(t) {
+                                return t == e._captionEl
+                            }, 10)
+                        };
+                    if (o) return s(n.startContainer);
+                    var c = s(n.startContainer),
+                        l = s(n.endContainer);
+                    return c && l
+                }, e
+            }();
+        t["default"] = c
+    },
+    346: function(e, t, r) {
+        e.exports = r(400)
+    },
+    351: function(e, t, r) {
+        "use strict";
+        r.r(t), r.d(t, "Sequences", function() {
+            return n
+        });
+        var n = [{
+            pattern: /\s-\s$/,
+            substitution: " — "
+        }, {
+            pattern: /^-\s$/,
+            substitution: "— "
+        }, {
+            pattern: /--\s$/,
+            substitution: "— "
+        }, {
+            pattern: /\s"$/,
+            substitution: " “",
+            noUndo: !0,
+            cyrillic: !1
+        }, {
+            pattern: /(\S)"$/,
+            substitution: "$1”",
+            noUndo: !0,
+            cyrillic: !1
+        }, {
+            pattern: /^"$/,
+            substitution: "“",
+            noUndo: !0,
+            cyrillic: !1
+        }, {
+            pattern: /\s"$/,
+            substitution: " «",
+            noUndo: !0,
+            cyrillic: !0
+        }, {
+            pattern: /(\S)"$/,
+            substitution: "$1»",
+            noUndo: !0,
+            cyrillic: !0
+        }, {
+            pattern: /^"$/,
+            substitution: "«",
+            noUndo: !0,
+            cyrillic: !0
+        }, {
+            pattern: "+/-",
+            substitution: "±"
+        }, {
+            pattern: "+-",
+            substitution: "±"
+        }, {
+            pattern: "^2",
+            substitution: "²"
+        }, {
+            pattern: "^3",
+            substitution: "³"
+        }, {
+            pattern: "<<",
+            substitution: "«"
+        }, {
+            pattern: ">>",
+            substitution: "»"
+        }, {
+            pattern: "(c)",
+            substitution: "©"
+        }, {
+            pattern: "(C)",
+            substitution: "©"
+        }, {
+            pattern: "(r)",
+            substitution: "®"
+        }, {
+            pattern: "(R)",
+            substitution: "®"
+        }, {
+            pattern: "1/2",
+            substitution: "½"
+        }, {
+            pattern: "1/4",
+            substitution: "¼"
+        }, {
+            pattern: "3/4",
+            substitution: "¾"
+        }, {
+            pattern: "...",
+            substitution: "…"
+        }, {
+            pattern: "->",
+            substitution: "→"
+        }, {
+            pattern: "<-",
+            substitution: "←"
+        }, {
+            pattern: "!=",
+            substitution: "≠"
+        }, {
+            pattern: "<=",
+            substitution: "≤"
+        }, {
+            pattern: ">=",
+            substitution: "≥"
+        }]
+    },
+    372: function(e, t, r) {
+        "use strict";
+
+        function n(e, t) {
+            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
+        }
+
+        function i(e, t) {
+            if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+            return !t || "object" != typeof t && "function" != typeof t ? e : t
+        }
+
+        function a(e, t) {
+            if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);
+            e.prototype = Object.create(t && t.prototype, {
+                constructor: {
+                    value: e,
+                    enumerable: !1,
+                    writable: !0,
+                    configurable: !0
+                }
+            }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t)
+        }
+        r.r(t);
+        var o = r(337),
+            s = r(384),
+            c = r(20),
+            l = r(240),
+            d = function() {
+                function e(e, t) {
+                    var r = [],
+                        n = !0,
+                        i = !1,
+                        a = void 0;
+                    try {
+                        for (var o, s = e[Symbol.iterator](); !(n = (o = s.next()).done) && (r.push(o.value), !t || r.length !== t); n = !0);
+                    } catch (c) {
+                        i = !0, a = c
+                    } finally {
+                        try {
+                            !n && s["return"] && s["return"]()
+                        } finally {
+                            if (i) throw a
+                        }
+                    }
+                    return r
+                }
+                return function(t, r) {
+                    if (Array.isArray(t)) return t;
+                    if (Symbol.iterator in Object(t)) return e(t, r);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }(),
+            u = void 0,
+            p = function(e) {
+                function t(r, a) {
+                    n(this, t);
+                    var o = i(this, e.call(this, r, a, !0));
+                    return o._currentImageIndex = 0, o
+                }
+                return a(t, e), t.prototype.cancelCarouselEditor = function() {
+                    this._carouselEditor && this._carouselEditor.cancel()
+                }, t.prototype.renderExtraControlsEl = function() {
+                    var e = this;
+                    if (!this.getEditor().getOptions().carouselEnabled) return !1;
+                    var t = se('\n        <div>\n          <div class="article_ed__carousel_nav_btn">\n            <div class="article_ed__carousel_nav_btn_left"></div>\n            <div class="article_ed__carousel_nav_btn_right"></div>\n          </div>\n          <div class="article_ed__carousel_btns">\n            <button class="article_ed__carousel_btn article_ed__carousel_btn_edit">' + getLang("pages_article_ed_create_carousel") + '</button>\n            <div class="article_ed__carousel_btn article_ed__carousel_counter"></div>\n          </div>\n        </div>\n    '),
+                        r = geByClass1("article_ed__carousel_btn_edit", t),
+                        n = geByClass1("article_ed__carousel_nav_btn_left", t),
+                        i = geByClass1("article_ed__carousel_nav_btn_right", t),
+                        a = function() {
+                            var t = e.getMediaIdsCount() > 1;
+                            r.innerHTML = t ? getLang("pages_article_ed_edit_carousel") : getLang("pages_article_ed_create_carousel")
+                        };
+                    return a(), r.addEventListener("click", function(r) {
+                        return e.getEditor().closeAllCarouselEditors(), addClass(e._el, "article_ed__carousel_edit_open"), e._carouselEditor = new l["default"](t, e, function(r) {
+                            return r ? (delete e._fixedImageSize, e.setMediaId(r), e._rerender(), e.getEditor().saveUndoSateAndDraft(), a(), e._setImageIndex(0, t), removeClass(e._el, "article_ed__carousel_edit_open"), void delete e._carouselEditor) : void e.getEditor().removeObject(e)
+                        }, e.getEditor().getLimits().maxCarouselItems), cancelEvent(r)
+                    }), n.addEventListener("click", function() {
+                        e._setImageIndex(e._getImageIndex() - 1, t)
+                    }), i.addEventListener("click", function() {
+                        e._setImageIndex(e._getImageIndex() + 1, t)
+                    }), this._setImageIndex(0, t), t
+                }, t.prototype._getImageIndex = function() {
+                    return this._currentImageIndex
+                }, t.prototype._setImageIndex = function(e, t) {
+                    this._currentImageIndex = Math.min(Math.max(0, e), this.getMediaIdsCount());
+                    var r = geByClass1("article_ed__carousel_nav_btn", t);
+                    toggleClass(r, "no_left", 0 == this._currentImageIndex), toggleClass(r, "no_right", this._currentImageIndex == this.getMediaIdsCount() - 1), toggleClass(this._el, "article_ed__carousel", this._isCarousel());
+                    var n = geByClass1("article_ed__carousel_counter", t);
+                    this._isCarousel() ? (setStyle(n, "display", "inline-block"), n.innerHTML = getLang("pages_article_ed_carousel_counter").replace("{counter}", this._currentImageIndex + 1).replace("{total}", this.getMediaIdsCount())) : hide(n), this._drawImage()
+                }, t.prototype._rerender = function() {
+                    var e = this._el,
+                        t = this.render();
+                    domReplaceEl(e, t)
+                }, t.prototype.render = function() {
+                    this._el = se('\n      <div class="article_ed__img_wrap">\n        <img contenteditable="false" class="article_ed__img"/>\n      </div>\n    ');
+                    var e = c["default"].get(this.getMediaId(), 0);
+                    return e && e.sizes ? (this.setLoadingState(!1), this._drawImage()) : this.setLoadingState(!0), this._el
+                }, t.prototype._initUpload = function() {
+                    var e = this;
+                    if (void 0 === this._upload) {
+                        var t = this.getEditor().getPhotoUploadOptions();
+                        this._upload = Upload.init(this.getEditor().getPhotoUploadEl(), t.url, t.params, {
+                            file_name: "photo",
+                            file_size_limit: 15728640,
+                            file_types_description: "Image files (*.jpg, *.jpeg, *.png, *.gif)",
+                            file_types: "*.jpg;*.JPG;*.jpeg;*.JPEG;*.png;*.PNG;*.gif;*.GIF",
+                            file_input: null,
+                            accept: "image/jpeg,image/png,image/gif",
+                            wiki_editor: 0,
+                            noCheck: !0,
+                            customShowProgress: function() {},
+                            onUploadStart: function(e, t) {},
+                            onUploadComplete: function(t, r) {
+                                return r = JSON.parse(r), isEmpty(r) ? void(e._onUploadCallback && e._onUploadCallback()) : void ajax.post("al_photos.php", extend({
+                                    act: "choose_uploaded"
+                                }, r), {
+                                    onDone: function(t, r) {
+                                        e._mediaId = t, c["default"].add(t, r.editable), e._drawImage(), e._onUploadCallback && e._onUploadCallback()
+                                    }
+                                })
+                            },
+                            onUploadProgress: function() {},
+                            onCheckServerFailed: function() {},
+                            onUploadCompleteAll: function() {},
+                            noFlash: 1,
+                            max_files: 20,
+                            chooseBox: 1,
+                            clear: 1,
+                            type: "photo",
+                            max_attempts: 3,
+                            server: t.opts.server,
+                            error: t.opts.default_error,
+                            error_hash: t.opts.error_hash
+                        })
+                    }
+                }, t.prototype._getImageEl = function() {
+                    return geByTag1("img", this._el)
+                }, t.prototype.setBLOB = function(e, t) {
+                    var r = this;
+                    this._onUploadCallback = t;
+                    var n = new FileReader;
+                    n.onload = function() {
+                        r._initUpload(), Upload.onFileApiSend(r._upload, [e])
+                    }, n.readAsDataURL(e)
+                }, t.prototype._updateSize = function() {}, t.prototype._drawImage = function() {
+                    var e = this,
+                        t = c["default"].get(this.getMediaId(), this._currentImageIndex);
+                    if (t) {
+                        var r = Object(s.getAppropriateImage)(t.sizes, this.getEditor().getWidth(!0)),
+                            n = d(r, 1),
+                            i = n[0],
+                            a = this._getImageEl(),
+                            o = !1;
+                        a.onload = function() {
+                            clearTimeout(u), o = !0, setStyle(a, "visibility", "visible"), show(a), e.setLoadingState(!1), e._fixSize()
+                        }, a.src = i, clearTimeout(u), o || (u = setTimeout(function() {
+                            o || (setStyle(a, "visibility", "hidden"), e.setLoadingState(!0, e._isCarousel()))
+                        }, 10)), this._updateSize()
+                    }
+                }, t.prototype._isCarousel = function() {
+                    return this.getMediaIdsCount() > 1
+                }, t.prototype._fixSize = function() {
+                    this._fixedImageSize = this._fixedImageSize || getSize(this._el), this._fixedImageSize[0] = Math.ceil(this._fixedImageSize[0]), this._fixedImageSize[1] = Math.ceil(this._fixedImageSize[1]), setStyle(this._el, {
+                        height: this._fixedImageSize[1] + "px"
+                    }), setStyle(this._getImageEl(), {
+                        "max-width": this._fixedImageSize[0],
+                        "max-height": this._fixedImageSize[1]
+                    })
+                }, t
+            }(o["default"]);
+        t["default"] = p
+    },
+    384: function(e, t, r) {
+        "use strict";
+
+        function n() {
+            return window.devicePixelRatio >= 2
+        }
+
+        function i() {
+            var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {},
+                t = arguments[1];
+            for (var r in e)
+                if (Object.prototype.hasOwnProperty.call(e, r) && t.call(e[r], r, e[r]) === !1) break;
+            return e
+        }
+
+        function a(e, t, r) {
+            var a = [];
+            if (i(e, function(e, t) {
+                    r && -1 == ["w", "z", "y", "x", "m", "s"].indexOf(e) || a.push(t)
+                }), !a.length) return [!1];
+            a.sort(function(e, t) {
+                return e[1] - t[1]
+            }), t *= n() ? 2 : 1;
+            var o = a[a.length - 1];
+            return i(a, function(e, r) {
+                return r[1] >= t ? (o = r, !1) : void 0
+            }), o
+        }
+
+        function o(e, t) {
+            if (l[e] === !0) return t && t(), !0;
+            if (isArray(l[e])) return l[e].push(t), !1;
+            l[e] = [t];
+            var r = new Image;
+            return r.onload = function() {
+                var t = l[e];
+                l[e] = !0, i(t, function(e, t) {
+                    t && t()
+                })
+            }, r.src = e, !1
+        }
+
+        function s(e, t) {
+            if (isObject(t) && !isEmpty(t)) {
+                var r = "https://vk-callback.go.mail.ru/longread_pxl?action=" + e;
+                i(t, function(e, t) {
+                    r += "&" + e + "=" + t
+                });
+                var n = new Image;
+                n.src = r
+            }
+        }
+        r.r(t), r.d(t, "ParagraphType", function() {
+            return c
+        }), r.d(t, "getAppropriateImage", function() {
+            return a
+        }), r.d(t, "preloadImage", function() {
+            return o
+        }), r.d(t, "mailruStatsPixel", function() {
+            return s
+        });
+        var c = {
+                Text: 1,
+                Header1: 2,
+                Header2: 3,
+                Header3: 4,
+                Code: 5,
+                NumericList: 6,
+                BulletList: 7,
+                Quote: 8,
+                Quote2: 9,
+                ObjectAudioPlaylist: 100,
+                ObjectPhoto: 101,
+                ObjectVideo: 102,
+                ObjectGIF: 103
+            },
+            l = {}
+    },
+    393: function(e, t, r) {
         "use strict";
 
         function n(e, t) {
@@ -1517,18 +1612,18 @@
             return re++ + "-" + Date.now() % 1e6 + "-" + X(0, 99999)
         }
         r.r(t);
-        var a = r(260),
-            o = r(18),
-            s = r(202),
-            c = r(266),
-            l = r(256),
-            d = r(111),
-            u = r(21),
-            p = r(17),
-            h = r(9),
-            f = r(239),
-            _ = r(232),
-            g = r(85),
+        var a = r(372),
+            o = r(184),
+            s = r(505),
+            c = r(351),
+            l = r(272),
+            d = r(384),
+            u = r(465),
+            p = r(664),
+            h = r(328),
+            f = r(20),
+            _ = r(76),
+            g = r(538),
             v = function() {
                 function e(e, t) {
                     var r = [],
@@ -2325,7 +2420,8 @@
                                     a = t.close.link && 1 == Object.keys(t.close).length;
                                 r > 0 && (i = Object(l.prepareLineText)(u, f, r, n.brs, e.type == d.ParagraphType.Code), a || g.push(i));
                                 var o = 0;
-                                a && (i && i.endsWith("<br/>") && (o++, i = i.replace(/<br\/>$/, "")), i && i.endsWith("<br/>") && (o++, i = i.replace(/<br\/>$/, "")), i !== !1 && g.push(i)), w(J, function(e, r) {
+                                a && (i && i.endsWith("<br/>") && (o++, i = i.replace(/<br\/>$/, "")), i && i.endsWith("<br/>") && (o++,
+                                    i = i.replace(/<br\/>$/, "")), i !== !1 && g.push(i)), w(J, function(e, r) {
                                     var n = t.close[r.type];
                                     void 0 !== n && g.push("</" + r.tag + ">")
                                 }), g.push("<br/>".repeat(o)), w(G, function(e, r) {
@@ -2410,8 +2506,7 @@
                         if (a != this._els.canvas) {
                             var d = this._getContainingParagraphEl(a)[1],
                                 u = void 0;
-                            e(a, o, l.CURSOR_MARKER_START), i || (u = this._getContainingParagraphEl(s)[1],
-                                u == d && s.textContent.includes(l.CURSOR_MARKER_START) && (c += 1), e(s, c, l.CURSOR_MARKER_END)), this._markerCursorSet = !0
+                            e(a, o, l.CURSOR_MARKER_START), i || (u = this._getContainingParagraphEl(s)[1], u == d && s.textContent.includes(l.CURSOR_MARKER_START) && (c += 1), e(s, c, l.CURSOR_MARKER_END)), this._markerCursorSet = !0
                         }
                     }
                 }, e.prototype._restoreCursorFromMarker = function() {
@@ -3251,7 +3346,8 @@
                                     var u = o.type;
                                     if (u != d.ParagraphType.Code) {
                                         var f = !!(Object(g.gpeByTag)("code", i.startContainer) || i.startContainer.nodeType == Node.ELEMENT_NODE && "CODE" == i.startContainer.tagName);
-                                        if (!f && (h = h || p > 0, a && i)) {
+                                        if (!f && (h = h || p > 0,
+                                                a && i)) {
                                             var _ = i.startContainer;
                                             if (_.nodeType == Node.TEXT_NODE && i.startOffset > 0)
                                                 for (var m = _.textContent.substring(i.startOffset - 5, i.startOffset), y = 0, b = c.Sequences.length; b > y; y++) {
@@ -3403,7 +3499,59 @@
             }();
         t["default"] = ne
     },
-    260: function(e, t, r) {
+    400: function(e, t, r) {
+        "use strict";
+        r.r(t);
+        var n = r(393),
+            i = r(673);
+        window.ArticleEditor = n["default"], window.ArticleView = {
+            initArticle: i.initArticle
+        }, stManager.done(jsc("web/article.js"))
+    },
+    465: function(e, t, r) {
+        "use strict";
+
+        function n(e, t, r) {
+            var n = [];
+            return e.forEach(function(e, i) {
+                if (!r || Object(o.isObjectParagraph)(e) || !Object(o.isParagraphEmpty)(e) || 0 == i || e.type == a.ParagraphType.Code) {
+                    var s = {};
+                    for (var c in e) {
+                        if (!e.hasOwnProperty(c)) return;
+                        if (!c.startsWith("_") || "_uuid" === c && t) {
+                            var l = e[c];
+                            s[c] = isObject(l) || isArray(l) ? clone(l, !0) : l
+                        }
+                    }
+                    Object(o.isObjectParagraph)(e) && e._object && (s.mediaId = e._object.getMediaId()), e.sep && (s.sep = 1), s.type == a.ParagraphType.Text && delete s.type, s.lines.forEach(function(e) {
+                        if (void 0 !== e.decorations) {
+                            var t = !0;
+                            each(e.decorations, function(r, n) {
+                                0 == n.length ? delete e.decorations[r] : t = !1
+                            }), t && delete e.decorations
+                        }
+                        e.brs && 0 == e.brs.length && delete e.brs
+                    }), n.push(s)
+                }
+            }), JSON.parse(JSON.stringify(n))
+        }
+
+        function i(e) {
+            return e.forEach(function(e) {
+                e.type = e.type || a.ParagraphType.Text, e.lines.forEach(function(e) {
+                    e.brs = e.brs || [], e.decorations = e.decorations || {}
+                })
+            }), e
+        }
+        r.r(t), r.d(t, "getCleanedState", function() {
+            return n
+        }), r.d(t, "expandParagraphFields", function() {
+            return i
+        });
+        var a = r(384),
+            o = r(272)
+    },
+    505: function(e, t, r) {
         "use strict";
 
         function n(e, t) {
@@ -3427,745 +3575,53 @@
             }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t)
         }
         r.r(t);
-        var o = r(138),
-            s = r(111),
-            c = r(239),
-            l = r(248),
-            d = function() {
-                function e(e, t) {
-                    var r = [],
-                        n = !0,
-                        i = !1,
-                        a = void 0;
-                    try {
-                        for (var o, s = e[Symbol.iterator](); !(n = (o = s.next()).done) && (r.push(o.value), !t || r.length !== t); n = !0);
-                    } catch (c) {
-                        i = !0, a = c
-                    } finally {
-                        try {
-                            !n && s["return"] && s["return"]()
-                        } finally {
-                            if (i) throw a
-                        }
-                    }
-                    return r
-                }
-                return function(t, r) {
-                    if (Array.isArray(t)) return t;
-                    if (Symbol.iterator in Object(t)) return e(t, r);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }(),
-            u = void 0,
-            p = function(e) {
+        var o = r(337),
+            s = r(20),
+            c = function(e) {
                 function t(r, a) {
-                    n(this, t);
-                    var o = i(this, e.call(this, r, a, !0));
-                    return o._currentImageIndex = 0, o
+                    return n(this, t), i(this, e.call(this, r, a, !0))
                 }
-                return a(t, e), t.prototype.cancelCarouselEditor = function() {
-                    this._carouselEditor && this._carouselEditor.cancel()
-                }, t.prototype.renderExtraControlsEl = function() {
+                return a(t, e), t.prototype.render = function() {
                     var e = this;
-                    if (!this.getEditor().getOptions().carouselEnabled) return !1;
-                    var t = se('\n        <div>\n          <div class="article_ed__carousel_nav_btn">\n            <div class="article_ed__carousel_nav_btn_left"></div>\n            <div class="article_ed__carousel_nav_btn_right"></div>\n          </div>\n          <div class="article_ed__carousel_btns">\n            <button class="article_ed__carousel_btn article_ed__carousel_btn_edit">' + getLang("pages_article_ed_create_carousel") + '</button>\n            <div class="article_ed__carousel_btn article_ed__carousel_counter"></div>\n          </div>\n        </div>\n    '),
-                        r = geByClass1("article_ed__carousel_btn_edit", t),
-                        n = geByClass1("article_ed__carousel_nav_btn_left", t),
-                        i = geByClass1("article_ed__carousel_nav_btn_right", t),
-                        a = function() {
-                            var t = e.getMediaIdsCount() > 1;
-                            r.innerHTML = t ? getLang("pages_article_ed_edit_carousel") : getLang("pages_article_ed_create_carousel")
-                        };
-                    return a(), r.addEventListener("click", function(r) {
-                        return e.getEditor().closeAllCarouselEditors(), addClass(e._el, "article_ed__carousel_edit_open"), e._carouselEditor = new l["default"](t, e, function(r) {
-                            return r ? (delete e._fixedImageSize, e.setMediaId(r), e._rerender(), e.getEditor().saveUndoSateAndDraft(), a(), e._setImageIndex(0, t), removeClass(e._el, "article_ed__carousel_edit_open"), void delete e._carouselEditor) : void e.getEditor().removeObject(e)
-                        }, e.getEditor().getLimits().maxCarouselItems), cancelEvent(r)
-                    }), n.addEventListener("click", function() {
-                        e._setImageIndex(e._getImageIndex() - 1, t)
-                    }), i.addEventListener("click", function() {
-                        e._setImageIndex(e._getImageIndex() + 1, t)
-                    }), this._setImageIndex(0, t), t
-                }, t.prototype._getImageIndex = function() {
-                    return this._currentImageIndex
-                }, t.prototype._setImageIndex = function(e, t) {
-                    this._currentImageIndex = Math.min(Math.max(0, e), this.getMediaIdsCount());
-                    var r = geByClass1("article_ed__carousel_nav_btn", t);
-                    toggleClass(r, "no_left", 0 == this._currentImageIndex), toggleClass(r, "no_right", this._currentImageIndex == this.getMediaIdsCount() - 1), toggleClass(this._el, "article_ed__carousel", this._isCarousel());
-                    var n = geByClass1("article_ed__carousel_counter", t);
-                    this._isCarousel() ? (setStyle(n, "display", "inline-block"), n.innerHTML = getLang("pages_article_ed_carousel_counter").replace("{counter}", this._currentImageIndex + 1).replace("{total}", this.getMediaIdsCount())) : hide(n), this._drawImage()
-                }, t.prototype._rerender = function() {
-                    var e = this._el,
-                        t = this.render();
-                    domReplaceEl(e, t)
-                }, t.prototype.render = function() {
-                    this._el = se('\n      <div class="article_ed__img_wrap">\n        <img contenteditable="false" class="article_ed__img"/>\n      </div>\n    ');
-                    var e = c["default"].get(this.getMediaId(), 0);
-                    return e && e.sizes ? (this.setLoadingState(!1), this._drawImage()) : this.setLoadingState(!0), this._el
-                }, t.prototype._initUpload = function() {
-                    var e = this;
-                    if (void 0 === this._upload) {
-                        var t = this.getEditor().getPhotoUploadOptions();
-                        this._upload = Upload.init(this.getEditor().getPhotoUploadEl(), t.url, t.params, {
-                            file_name: "photo",
-                            file_size_limit: 15728640,
-                            file_types_description: "Image files (*.jpg, *.jpeg, *.png, *.gif)",
-                            file_types: "*.jpg;*.JPG;*.jpeg;*.JPEG;*.png;*.PNG;*.gif;*.GIF",
-                            file_input: null,
-                            accept: "image/jpeg,image/png,image/gif",
-                            wiki_editor: 0,
-                            noCheck: !0,
-                            customShowProgress: function() {},
-                            onUploadStart: function(e, t) {},
-                            onUploadComplete: function(t, r) {
-                                return r = JSON.parse(r), isEmpty(r) ? void(e._onUploadCallback && e._onUploadCallback()) : void ajax.post("al_photos.php", extend({
-                                    act: "choose_uploaded"
-                                }, r), {
-                                    onDone: function(t, r) {
-                                        e._mediaId = t, c["default"].add(t, r.editable), e._drawImage(), e._onUploadCallback && e._onUploadCallback()
-                                    }
+                    this._el = se("\n      <div></div>\n    ");
+                    var t = s["default"].get(this.getMediaId());
+                    if (t)
+                        if (t.video) {
+                            if (this._videoEl = ce("video", {
+                                    autoplay: !0,
+                                    loop: "loop",
+                                    muted: !0,
+                                    src: t.video + "&mp4=1"
+                                }), t.size) {
+                                var r = t.size[0] < t.size[1],
+                                    n = t.size[0] <= this.getEditor().getOptions().minGifWidthExpand;
+                                (r || n) && setStyle(this._videoEl, {
+                                    width: t.size[0]
                                 })
-                            },
-                            onUploadProgress: function() {},
-                            onCheckServerFailed: function() {},
-                            onUploadCompleteAll: function() {},
-                            noFlash: 1,
-                            max_files: 20,
-                            chooseBox: 1,
-                            clear: 1,
-                            type: "photo",
-                            max_attempts: 3,
-                            server: t.opts.server,
-                            error: t.opts.default_error,
-                            error_hash: t.opts.error_hash
-                        })
+                            }
+                            this._el.appendChild(this._videoEl), this._el.appendChild(se('<span class="article_ed__select_dummy">&nbsp;</span>'))
+                        } else if (t.href) {
+                        var i = t.href + "&wnd=1&module=" + cur.module;
+                        this._imgEl = ce("img"), this._imgEl.addEventListener("error", function() {
+                            showFastBox(getLang("pages_article_error_box_title"), getLang("pages_article_error_box_text")), e._editor.removeObject(e)
+                        }), this._imgEl.src = i, this._el.appendChild(this._imgEl)
                     }
-                }, t.prototype._getImageEl = function() {
-                    return geByTag1("img", this._el)
-                }, t.prototype.setBLOB = function(e, t) {
-                    var r = this;
-                    this._onUploadCallback = t;
-                    var n = new FileReader;
-                    n.onload = function() {
-                        r._initUpload(), Upload.onFileApiSend(r._upload, [e])
-                    }, n.readAsDataURL(e)
-                }, t.prototype._updateSize = function() {}, t.prototype._drawImage = function() {
-                    var e = this,
-                        t = c["default"].get(this.getMediaId(), this._currentImageIndex);
-                    if (t) {
-                        var r = Object(s.getAppropriateImage)(t.sizes, this.getEditor().getWidth(!0)),
-                            n = d(r, 1),
-                            i = n[0],
-                            a = this._getImageEl(),
-                            o = !1;
-                        a.onload = function() {
-                            clearTimeout(u), o = !0, setStyle(a, "visibility", "visible"), show(a), e.setLoadingState(!1), e._fixSize()
-                        }, a.src = i, clearTimeout(u), o || (u = setTimeout(function() {
-                            o || (setStyle(a, "visibility", "hidden"), e.setLoadingState(!0, e._isCarousel()))
-                        }, 10)), this._updateSize()
-                    }
-                }, t.prototype._isCarousel = function() {
-                    return this.getMediaIdsCount() > 1
-                }, t.prototype._fixSize = function() {
-                    this._fixedImageSize = this._fixedImageSize || getSize(this._el), this._fixedImageSize[0] = Math.ceil(this._fixedImageSize[0]), this._fixedImageSize[1] = Math.ceil(this._fixedImageSize[1]), setStyle(this._el, {
-                        height: this._fixedImageSize[1] + "px"
-                    }), setStyle(this._getImageEl(), {
-                        "max-width": this._fixedImageSize[0],
-                        "max-height": this._fixedImageSize[1]
+                    return this._el
+                }, t.prototype.onViewport = function(e) {
+                    this._imgEl ? setStyle(this._imgEl, "visibility", e ? "visible" : "hidden") : e ? this._videoEl.play() : this._videoEl.pause()
+                }, t.prototype.onRender = function() {
+                    var e = this;
+                    setTimeout(function() {
+                        if (e._videoEl && e._videoEl.play(), browser.msie && e._videoEl) {
+                            var t = e._videoEl.src;
+                            e._videoEl.src = "", e._videoEl.src = t
+                        }
                     })
                 }, t
             }(o["default"]);
-        t["default"] = p
+        t["default"] = c
     },
-    266: function(e, t, r) {
-        "use strict";
-        r.r(t), r.d(t, "Sequences", function() {
-            return n
-        });
-        var n = [{
-            pattern: /\s-\s$/,
-            substitution: " — "
-        }, {
-            pattern: /^-\s$/,
-            substitution: "— "
-        }, {
-            pattern: /--\s$/,
-            substitution: "— "
-        }, {
-            pattern: /\s"$/,
-            substitution: " “",
-            noUndo: !0,
-            cyrillic: !1
-        }, {
-            pattern: /(\S)"$/,
-            substitution: "$1”",
-            noUndo: !0,
-            cyrillic: !1
-        }, {
-            pattern: /^"$/,
-            substitution: "“",
-            noUndo: !0,
-            cyrillic: !1
-        }, {
-            pattern: /\s"$/,
-            substitution: " «",
-            noUndo: !0,
-            cyrillic: !0
-        }, {
-            pattern: /(\S)"$/,
-            substitution: "$1»",
-            noUndo: !0,
-            cyrillic: !0
-        }, {
-            pattern: /^"$/,
-            substitution: "«",
-            noUndo: !0,
-            cyrillic: !0
-        }, {
-            pattern: "+/-",
-            substitution: "±"
-        }, {
-            pattern: "+-",
-            substitution: "±"
-        }, {
-            pattern: "^2",
-            substitution: "²"
-        }, {
-            pattern: "^3",
-            substitution: "³"
-        }, {
-            pattern: "<<",
-            substitution: "«"
-        }, {
-            pattern: ">>",
-            substitution: "»"
-        }, {
-            pattern: "(c)",
-            substitution: "©"
-        }, {
-            pattern: "(C)",
-            substitution: "©"
-        }, {
-            pattern: "(r)",
-            substitution: "®"
-        }, {
-            pattern: "(R)",
-            substitution: "®"
-        }, {
-            pattern: "1/2",
-            substitution: "½"
-        }, {
-            pattern: "1/4",
-            substitution: "¼"
-        }, {
-            pattern: "3/4",
-            substitution: "¾"
-        }, {
-            pattern: "...",
-            substitution: "…"
-        }, {
-            pattern: "->",
-            substitution: "→"
-        }, {
-            pattern: "<-",
-            substitution: "←"
-        }, {
-            pattern: "!=",
-            substitution: "≠"
-        }, {
-            pattern: "<=",
-            substitution: "≤"
-        }, {
-            pattern: ">=",
-            substitution: "≥"
-        }]
-    },
-    271: function(e, t, r) {
-        "use strict";
-
-        function n(e, t) {
-            w = t || {}, P = e, w.moderDeletePhoto = P.moderDeletePhoto, y = ge("article_view_" + e.owner_id + "_" + e.id), b = w.scrollNode || window, C = w.getScrollTop || function() {
-                var e = document.scrollingElement || window.scrollNode || document.body;
-                return e.scrollTop
-            }, m = gpeByClass("article_body", y) || gpeByClass("_article_layer", y), s(), o(), f(), setTimeout(function() {
-                b.click && b.click(), b.focus()
-            }, 10), window.onBodyResize = window.onBodyResize || function() {}, window.cur && cur.destroy.push(function() {
-                a()
-            })
-        }
-
-        function i() {
-            w.notFull = !1, o(), f(), c()
-        }
-
-        function a() {
-            O && (b.removeEventListener("scroll", O), O = !1), T && (b.removeEventListener("scroll", T), T = !1), clearTimeout(j)
-        }
-
-        function o() {
-            each(geByClass("_article_unmute_button"), function(e, t) {
-                t.addEventListener("click", function() {
-                    var e = t.parentNode,
-                        r = geByTag1("video", e);
-                    r.muted = !r.muted, toggleClass(e, "article_object_unmuted", !r.muted)
-                })
-            }), each(geByTag("figure", y), function(e, t) {
-                var r = parseInt(domData(t, "type"));
-                r == _.ParagraphType.ObjectPhoto && Object(g.initPhotoCarousel)(t, w), w.isWebView || r != _.ParagraphType.ObjectPhoto || d(t)
-            })
-        }
-
-        function s() {
-            b.addEventListener("scroll", O = function() {
-                c()
-            }, {
-                passive: !0
-            }), c()
-        }
-
-        function c() {
-            var e = {
-                    101: -2e3
-                },
-                t = C(),
-                r = window.innerHeight,
-                n = getXY(y)[1];
-            each(geByTag("figure", y), function(i, a) {
-                var o = intval(domData(a, "done"));
-                if (!o) {
-                    var s = getH(a),
-                        c = getXY(a)[1] - n,
-                        d = intval(domData(a, "type")),
-                        u = void 0 !== e[d] ? e[d] : 60,
-                        p = t + r - u >= c && c + s - u >= t;
-                    o = l(p, d, a), o && domData(a, "done", 1)
-                }
-            })
-        }
-
-        function l(e, t, r) {
-            var n = !1;
-            switch (t) {
-                case _.ParagraphType.ObjectPhoto:
-                    if (e) {
-                        var i = geByTag1("img", r),
-                            a = domQuery1("[data-sizes]", r),
-                            o = JSON.parse(domData(a, "sizes"));
-                        o.forEach(function(e, t) {
-                            if (!(t > 3)) {
-                                var r = Object(_.getAppropriateImage)(o[t], getW(i) || w.width, !0),
-                                    n = v(r, 1),
-                                    a = n[0];
-                                Object(_.preloadImage)(a, function() {
-                                    0 == t && (removeClass(i, "article_object_photo__image_blur"), i.src = a)
-                                })
-                            }
-                        }), n = !0
-                    }
-                    break;
-                case _.ParagraphType.ObjectGIF:
-                    if (!w.mobile) {
-                        var s = geByTag1("video", r);
-                        s ? e ? s.hasAttribute("autoplay") && s.play() : s.pause() : n = !0
-                    }
-            }
-            return n
-        }
-
-        function d(e) {
-            if (!w.noImageOpen) {
-                var t = geByTag1("img", e),
-                    r = domQuery1("[data-sizes]", e),
-                    n = JSON.parse(domData(r, "sizes")),
-                    i = Object(_.getAppropriateImage)(n[0], window.innerWidth, !0),
-                    a = v(i, 3),
-                    o = a[0],
-                    s = a[1],
-                    c = a[2],
-                    l = h({
-                        width: s,
-                        height: c
-                    }, {
-                        width: window.innerWidth,
-                        height: window.innerHeight
-                    }),
-                    d = getW(e) < l.width && getH(e) < l.height;
-                if (o && d) {
-                    var f = geByClass1("article_photo_carousel__controls", e) || t;
-                    addClass(f, "article_image_full_viewable");
-                    var g = data(e, "changePhotoFunction");
-                    f.addEventListener("click", function() {
-                        var t = intval(domData(e, "photo-carousel-index"));
-                        addClass(m, "article_no_scroll");
-                        var r = geByTag1("figcaption", e),
-                            i = se('<div class="article_full_view"><img class="article_full_view__image"></div>');
-                        r && r.innerHTML && i.appendChild(se('<div class="article_full_view__caption"><div class="article_full_view__caption_inner">' + r.innerHTML + "</div></div>")), n.length > 1 && (toggleClass(k, "article_full_view__carousel", n.length > 1), x = se('<div class="article_full_view__right"></div>'), i.appendChild(x), S = se('<div class="article_full_view__left"></div>'), i.appendChild(S), x.addEventListener("click", function(e) {
-                            return t = Math.min(n.length - 1, Math.max(0, t + 1)), u(a, n, t), g && g(1), cancelEvent(e)
-                        }), S.addEventListener("click", function(e) {
-                            return t = Math.min(n.length - 1, Math.max(0, t - 1)), u(a, n, t), g && g(-1), cancelEvent(e)
-                        })), k = se('<div class="article_full_view__counter"><div class="article_full_view__counter_text"></div><div class="article_full_view__close"></div></div>'), i.appendChild(k), n.length > 1 && toggleClass(k, "article_full_view__carousel", n.length > 1), y.appendChild(i), i.addEventListener("click", function(e) {
-                            domClosest("article_full_view__caption_inner", e.target) || p()
-                        }), i.addEventListener("mousewheel", p), E = i;
-                        var a = geByTag1("img", i);
-                        u(a, n, t)
-                    })
-                }
-            }
-        }
-
-        function u(e, t, r) {
-            if (toggleClass(S, "article_full_view__nav_hidden", 0 == r), toggleClass(x, "article_full_view__nav_hidden", r == t.length - 1), t.length > 1) {
-                var n = geByClass1("article_full_view__counter_text", k);
-                n.innerHTML = getLang("global_article_carousel_counter").replace("{counter}", r + 1).replace("{total}", t.length)
-            }
-            I = r;
-            var i = Object(_.getAppropriateImage)(t[r], window.innerWidth, !0),
-                a = v(i, 3),
-                o = a[0],
-                s = a[1],
-                c = a[2],
-                l = h({
-                    width: s,
-                    height: c
-                }, {
-                    width: window.innerWidth,
-                    height: window.innerHeight
-                }),
-                d = !1,
-                u = Object(_.preloadImage)(o, function() {
-                    if (I === r) {
-                        d = !0, l.width && isNumeric(l.width) ? setStyle(e, {
-                            width: l.width,
-                            height: l.height
-                        }) : setStyle(e, {
-                            width: null,
-                            height: null
-                        }), e.src = o, removeClass(e, "article_full_view__image_blurred");
-                        for (var n = r; n < Math.min(r + 3, t.length); n++) {
-                            var i = Object(_.getAppropriateImage)(t[n], window.innerWidth, !0),
-                                a = v(i, 1),
-                                s = a[0];
-                            Object(_.preloadImage)(s)
-                        }
-                    }
-                });
-            if (u) removeClass(e, "article_full_view__image_blurred");
-            else {
-                var p = Object(_.getAppropriateImage)(t[r], 200, !0),
-                    f = v(p, 1),
-                    g = f[0];
-                Object(_.preloadImage)(g, function() {
-                    I === r && (d || (setStyle(e, {
-                        width: l.width,
-                        height: l.height
-                    }), e.src = g))
-                }), addClass(e, "article_full_view__image_blurred")
-            }
-        }
-
-        function p() {
-            return E ? (re(E), m && removeClass(m, "article_no_scroll"), E = !1, !0) : !1
-        }
-
-        function h(e, t) {
-            var r = e.width / e.height,
-                n = t.width / t.height,
-                i = {};
-            return r > n ? (i.width = Math.min(t.width, e.width), i.height = e.height * (i.width / e.width)) : (i.height = Math.min(t.height, e.height), i.width = i.height * r), i
-        }
-
-        function f() {
-            function e() {
-                return Math.round((Date.now() - o) / 1e3)
-            }
-
-            function t(t) {
-                if (!(s >= t) && (s = t, l.push(t), clearTimeout(c), c = setTimeout(r, 100), 3 == t && P.ttr)) {
-                    var n = P.ttr - e();
-                    n > 0 && (j = setTimeout(function() {
-                        document.hidden || (s = 4, l = [s], r())
-                    }, 1e3 * n))
-                }
-            }
-
-            function r() {
-                l.length && (ajax.post(window.isMVK ? "article.php" : "al_articles.php", {
-                    act: "stats",
-                    scroll: l.join(","),
-                    spent: e(),
-                    hash: P.access_hash,
-                    article_owner_id: P.owner_id,
-                    article_id: P.id,
-                    is_web_view: w.isWebView ? 1 : 0,
-                    post_id: w.postId,
-                    ref: window.cur ? window.cur.module : ""
-                }), l.forEach(function(e) {
-                    Object(_.mailruStatsPixel)("scroll_" + e, P.mailruStatsData)
-                }), l = [])
-            }
-            if (!w.notFull) {
-                var n = getH(y),
-                    i = getXY(y)[1] - scrollGetY(),
-                    a = window.innerHeight,
-                    o = Date.now(),
-                    s = -1,
-                    c = void 0,
-                    l = [];
-                t(0), b.addEventListener("scroll", T = function() {
-                    var e = C();
-                    e > 0 && t(1);
-                    for (var r = 1; 4 > r; r++) e + 3 * a / 4 > i + n * r / 3 && t(r + 1);
-                    e + a > n - 20 && t(4)
-                }, {
-                    passive: !0
-                })
-            }
-        }
-        r.r(t), r.d(t, "initArticle", function() {
-            return n
-        }), r.d(t, "updateArticle", function() {
-            return i
-        }), r.d(t, "deinitArticle", function() {
-            return a
-        });
-        var _ = r(111),
-            g = r(38),
-            v = function() {
-                function e(e, t) {
-                    var r = [],
-                        n = !0,
-                        i = !1,
-                        a = void 0;
-                    try {
-                        for (var o, s = e[Symbol.iterator](); !(n = (o = s.next()).done) && (r.push(o.value), !t || r.length !== t); n = !0);
-                    } catch (c) {
-                        i = !0, a = c
-                    } finally {
-                        try {
-                            !n && s["return"] && s["return"]()
-                        } finally {
-                            if (i) throw a
-                        }
-                    }
-                    return r
-                }
-                return function(t, r) {
-                    if (Array.isArray(t)) return t;
-                    if (Symbol.iterator in Object(t)) return e(t, r);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }(),
-            m = void 0,
-            y = void 0,
-            b = void 0,
-            w = void 0,
-            C = void 0,
-            E = void 0,
-            P = void 0,
-            O = void 0,
-            T = void 0,
-            j = void 0,
-            x = void 0,
-            S = void 0,
-            k = void 0,
-            I = void 0;
-        ({
-            php: new RegExp("\\b(array|as|break|case|class|const|continue|default|do|else|elseif|for|foreach|function|global|if|return|static|switch|while|try|catch|throw)\\b", "g"),
-            js: new RegExp("\\b(break|case|class|const|continue|default|do|else|for|function|if|return|static|switch|while|try|catch|throw|let)\\b", "g")
-        }), window.initArticle = n, window.deinitArticle = a, window.updateArticle = i, window.articleCloseImageFullSize = p
-    },
-    38: function(e, t, r) {
-        "use strict";
-
-        function n(e, t) {
-            var r = domQuery1("[data-sizes]", e),
-                n = JSON.parse(domData(r, "sizes")),
-                o = (domData(r, "media-links") || "").split(",");
-            if (!(n.length <= 1 || domData(e, "carousel-inited")))
-                if (domData(e, "carousel-inited", 1), t.mobile) i(n, e);
-                else {
-                    var s = a(n, e, t, o);
-                    data(e, "changePhotoFunction", s)
-                }
-        }
-
-        function i(e, t) {
-            var r = geByClass1("article_photo_carousel__controls", t),
-                n = geByClass1("article_photo_carousel__counter", t),
-                i = domData(n, "counter-lang") || getLang("global_article_carousel_counter"),
-                a = getSize(geByClass1("article_figure_content", t)),
-                c = domPN(geByTag1("img", t)),
-                l = 0,
-                d = void 0,
-                u = 0,
-                p = void 0,
-                h = void 0,
-                f = 0,
-                _ = !1,
-                g = !1,
-                v = !1;
-            r.addEventListener("touchstart", function(e) {
-                h = e.touches[0].pageX, p = e.touches[0].pageY
-            });
-            var m = !1,
-                y = void 0;
-            r.addEventListener("touchmove", function(r) {
-                if (!g && (Math.abs(r.touches[0].pageY - p) > 5 || _)) return void(_ = !0);
-                if (!v && (u = r.touches[0].pageX - h, !(Math.abs(u) < 10) || m)) {
-                    g || window.addEventListener("touchmove", y = function(e) {
-                        return cancelEvent(e)
-                    }, {
-                        passive: !1
-                    }), g = !0, m = !0;
-                    var n = Math.min(e.length - 1, Math.max(0, l + (0 > u ? 1 : -1))),
-                        i = 0 === n && 0 === l,
-                        b = n === e.length - 1 && l === e.length - 1;
-                    if (f !== n)
-                        if (f = n, re(d), i || b) d = !1;
-                        else {
-                            var w = Object(o.getAppropriateImage)(e[n], a[0], !0),
-                                C = s(w, 1),
-                                E = C[0];
-                            d = ce("div", {
-                                innerHTML: '<img src="' + E + '">'
-                            }), setStyle(domFC(d), {
-                                "max-width": a[0],
-                                "max-height": a[1],
-                                width: "initial"
-                            }), setStyle(d, {
-                                transform: "scale(1.05)",
-                                opacity: 0
-                            }), domInsertBefore(d, domPN(geByTag1("img", t)))
-                        }
-                    var P = Math.abs(u),
-                        O = 0;
-                    O = i || b ? .2 * u : u, setStyle(c, {
-                        transform: "translateX(" + O + "px)"
-                    }), d && setStyle(d, {
-                        transform: "scale(" + Math.max(1, 1.05 - 5e-4 * P) + ")",
-                        opacity: Math.min(1, .01 * P)
-                    })
-                }
-            }), r.addEventListener("touchend", function() {
-                m = !1, _ = !1, v = !0, g = !1, y && window.removeEventListener("touchmove", y);
-                var t = 0 > u,
-                    r = Math.abs(u) < 50 || !d;
-                if (!r) {
-                    l = f;
-                    for (var p = l; p < Math.min(l + 3, e.length); p++) {
-                        var h = Object(o.getAppropriateImage)(e[p], a[0], !0),
-                            b = s(h, 1),
-                            w = b[0];
-                        Object(o.preloadImage)(w)
-                    }
-                }
-                n.innerHTML = i.replace("{counter}", l + 1).replace("{total}", e.length), addClass(c, "with_transition"), addClass(d, "with_transition"), setTimeout(function() {
-                    r ? (setStyle(c, {
-                        transform: "translateX(0px)",
-                        opacity: 1
-                    }), setStyle(d, {
-                        transform: "scale(1.05)",
-                        opacity: 0
-                    })) : (setStyle(c, {
-                        transform: "translateX(" + (t ? "-500px" : "500px") + ")"
-                    }), setStyle(d, {
-                        transform: "scale(1)",
-                        opacity: 1
-                    }))
-                }), setTimeout(function() {
-                    v = !1, f = !1, removeClass(c, "with_transition"), removeClass(d, "with_transition"), r ? re(d) : (re(c), c = d), d = !1
-                }, 150)
-            })
-        }
-
-        function a(e, t, r, n) {
-            function i(i) {
-                c += i, c = Math.min(e.length - 1, Math.max(0, c));
-                var a = Object(o.getAppropriateImage)(e[c], p[0], !0),
-                    l = s(a, 1),
-                    g = l[0],
-                    v = "";
-                if (r.moderDeletePhoto) {
-                    var m = n[c];
-                    v = '<a href="' + m + '" target="_blank" class="flat_button article_photo_moder_open">Открыть</a>'
-                }
-                var y = 0 > i ? "fading_in_left" : "fading_in_right",
-                    b = se('<div class="' + y + '"><img src="' + g + '">' + v + "</div>");
-                setStyle(domFC(b), {
-                    "max-width": p[0],
-                    "max-height": p[1],
-                    width: "initial"
-                }), domInsertAfter(b, domPN(geByTag1("img", t)));
-                var w = h;
-                setTimeout(function() {
-                    removeClass(b, "fading_in_left"), removeClass(b, "fading_in_right"), addClass(w, "fading_out")
-                }), setTimeout(function() {
-                    re(w)
-                }, 150);
-                for (var C = c; C < Math.min(c + 3, e.length); C++) {
-                    var E = Object(o.getAppropriateImage)(e[C], p[0], !0),
-                        P = s(E, 1),
-                        O = P[0];
-                    Object(o.preloadImage)(O)
-                }
-                h = b, d.innerHTML = u.replace("{counter}", c + 1).replace("{total}", e.length), toggle(f, c > 0), toggle(_, c < e.length - 1), domData(t, "photo-carousel-index", c)
-            }
-
-            function a(e) {
-                clearTimeout(g), toggleClass(l, "article_photo_carousel__mouse_idle", e)
-            }
-            var c = 0,
-                l = geByClass1("article_photo_carousel__controls", t),
-                d = geByClass1("article_photo_carousel__counter", t),
-                u = domData(d, "counter-lang") || getLang("global_article_carousel_counter"),
-                p = getSize(geByClass1("article_figure_content", t)),
-                h = domPN(geByTag1("img", t)),
-                f = geByClass1("article_photo_carousel__left", t),
-                _ = geByClass1("article_photo_carousel__right", t),
-                g = void 0,
-                v = browser.msie && intval(browser.version) <= 11;
-            return _.addEventListener("click", function(e) {
-                return i(1), v || t.dispatchEvent(new Event("mousemove")), cancelEvent(e)
-            }), f.addEventListener("click", function(e) {
-                return i(-1), v || t.dispatchEvent(new Event("mousemove")), cancelEvent(e)
-            }), t.addEventListener("mousemove", function() {
-                a(!1), addClass(l, "article_photo_carousel__mouse_over"), clearTimeout(g), g = setTimeout(function() {
-                    a(!0)
-                }, 1e3)
-            }), t.addEventListener("mouseleave", function() {
-                clearTimeout(g), removeClass(l, "article_photo_carousel__mouse_over"), removeClass(l, "article_photo_carousel__mouse_idle")
-            }), i
-        }
-        r.r(t), r.d(t, "initPhotoCarousel", function() {
-            return n
-        });
-        var o = r(111),
-            s = function() {
-                function e(e, t) {
-                    var r = [],
-                        n = !0,
-                        i = !1,
-                        a = void 0;
-                    try {
-                        for (var o, s = e[Symbol.iterator](); !(n = (o = s.next()).done) && (r.push(o.value), !t || r.length !== t); n = !0);
-                    } catch (c) {
-                        i = !0, a = c
-                    } finally {
-                        try {
-                            !n && s["return"] && s["return"]()
-                        } finally {
-                            if (i) throw a
-                        }
-                    }
-                    return r
-                }
-                return function(t, r) {
-                    if (Array.isArray(t)) return t;
-                    if (Symbol.iterator in Object(t)) return e(t, r);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }()
-    },
-    85: function(e, t, r) {
+    538: function(e, t, r) {
         "use strict";
 
         function n(e) {
@@ -4620,7 +4076,7 @@
                     delete e[n]
                 } catch (i) {
                     try {
-                        e.removeAttribute(n);
+                        e.removeAttribute(n)
                     } catch (i) {}
                 }
             }
@@ -4865,7 +4321,7 @@
         }), r.d(t, "lockDocumentTitle", function() {
             return Ee
         });
-        var Pe = r(232),
+        var Pe = r(76),
             Oe = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
                 return typeof e
             } : function(e) {
@@ -4895,81 +4351,626 @@
         var Te = !1;
         window.ge = n, window.geByTag = i, window.geByTag1 = a, window.geByClass = o, window.geByClass1 = s, window.gpeByClass = c, window.domQuery = l, window.domQuery1 = d, window.domClosest = u, window.ce = f, window.re = _, window.se = g, window.sech = v, window.rs = m, window.psr = y, window.domReplaceEl = b, window.domEL = w, window.domNS = C, window.domPS = E, window.domFC = P, window.domLC = O, window.domPN = T, window.domChildren = j, window.domInsertBefore = x, window.domInsertAfter = S, window.domByClass = k, window.domData = I, window.domChildIndex = L, window.domCA = N, window.domClosestSibling = A, window.matchesSelector = D, window.isHover = M, window.isAncestor = B, window.getScroll = R, window.domClosestPositioned = H, window.domClosestOverflowHidden = U, window.show = F, window.hide = z, window.isVisible = W, window.clientHeight = K, window.getClientRectOffsetY = $, window.toggle = Y, window.boundingRectEnabled = Q, window.getXYRect = X, window.getXY = q, window.isWindow = V, window.getSize = G, window.hasClass = ee, window.addClass = te, window.addClassDelayed = re, window.removeClass = ne, window.removeClassDelayed = ie, window.toggleClass = ae, window.toggleClassDelayed = oe, window.replaceClass = se, window.getStyle = ce, window.setStyle = le, window.setStyleDelayed = de, window.setPseudoStyle = ue, window.data = pe, window.attr = he, window.removeAttr = fe, window.removeData = _e, window.cleanElems = ge, window.setTitle = ve, window.getZoom = me, window.val = ye, window.elfocus = be, window.traverseParent = we, window.getH = Z, window.getW = J, window.domClosestByTag = p, window.setDocumentTitle = Ce, window.lockDocumentTitle = Ee
     },
-    9: function(e, t, r) {
+    664: function(e, t, r) {
+        "use strict";
+
+        function n(e) {
+            o = e
+        }
+
+        function i(e) {
+            var t = [];
+            e.length > o.maxParagraphs && t.push(getLang("pages_article_ed_limit_paragraphs").replace("{count}", e.length).replace("{limit}", o.maxParagraphs));
+            var r = 0,
+                n = 0;
+            return e.forEach(function(e) {
+                var i = 0;
+                e.lines.forEach(function(e) {
+                    r += e.text.length, i += e.text.length
+                }), Object(a.isObjectParagraph)(e) && n++, i > o.maxSymbolsPerParagraph && t.push(getLang("pages_article_ed_limit_symbols_per_par").replace("{count}", i).replace("{limit}", o.maxSymbolsPerParagraph))
+            }), r > o.maxSymbols && t.push(getLang("pages_article_ed_limit_symbols").replace("{count}", r).replace("{limit}", o.maxSymbols)), n > o.maxObjects && t.push(getLang("pages_article_ed_limit_objects").replace("{count}", n).replace("{limit}", o.maxObjects)), t.length && t.push(getLang("pages_article_ed_limit")), t.join("<br>")
+        }
+        r.r(t), r.d(t, "initLimits", function() {
+            return n
+        }), r.d(t, "checkLimits", function() {
+            return i
+        });
+        var a = r(272),
+            o = void 0
+    },
+    673: function(e, t, r) {
         "use strict";
 
         function n(e, t) {
-            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
+            w = t || {}, P = e, w.moderDeletePhoto = P.moderDeletePhoto, y = ge("article_view_" + e.owner_id + "_" + e.id), b = w.scrollNode || window, C = w.getScrollTop || function() {
+                var e = document.scrollingElement || window.scrollNode || document.body;
+                return e.scrollTop
+            }, m = gpeByClass("article_body", y) || gpeByClass("_article_layer", y), s(), o(), f(), setTimeout(function() {
+                b.click && b.click(), b.focus()
+            }, 10), window.onBodyResize = window.onBodyResize || function() {}, window.cur && cur.destroy.push(function() {
+                a()
+            })
         }
-        r.r(t);
-        var i = function() {
-            function e() {
-                n(this, e)
+
+        function i() {
+            w.notFull = !1, o(), f(), c()
+        }
+
+        function a() {
+            O && (b.removeEventListener("scroll", O), O = !1), T && (b.removeEventListener("scroll", T), T = !1), clearTimeout(j)
+        }
+
+        function o() {
+            each(geByClass("_article_unmute_button"), function(e, t) {
+                t.addEventListener("click", function() {
+                    var e = t.parentNode,
+                        r = geByTag1("video", e);
+                    r.muted = !r.muted, toggleClass(e, "article_object_unmuted", !r.muted)
+                })
+            }), each(geByTag("figure", y), function(e, t) {
+                var r = parseInt(domData(t, "type"));
+                r == _.ParagraphType.ObjectPhoto && Object(g.initPhotoCarousel)(t, w), w.isWebView || r != _.ParagraphType.ObjectPhoto || d(t)
+            })
+        }
+
+        function s() {
+            b.addEventListener("scroll", O = function() {
+                c()
+            }, {
+                passive: !0
+            }), c()
+        }
+
+        function c() {
+            var e = {
+                    101: -2e3
+                },
+                t = C(),
+                r = window.innerHeight,
+                n = getXY(y)[1];
+            each(geByTag("figure", y), function(i, a) {
+                var o = intval(domData(a, "done"));
+                if (!o) {
+                    var s = getH(a),
+                        c = getXY(a)[1] - n,
+                        d = intval(domData(a, "type")),
+                        u = void 0 !== e[d] ? e[d] : 60,
+                        p = t + r - u >= c && c + s - u >= t;
+                    o = l(p, d, a), o && domData(a, "done", 1)
+                }
+            })
+        }
+
+        function l(e, t, r) {
+            var n = !1;
+            switch (t) {
+                case _.ParagraphType.ObjectPhoto:
+                    if (e) {
+                        var i = geByTag1("img", r),
+                            a = domQuery1("[data-sizes]", r),
+                            o = JSON.parse(domData(a, "sizes"));
+                        o.forEach(function(e, t) {
+                            if (!(t > 3)) {
+                                var r = Object(_.getAppropriateImage)(o[t], getW(i) || w.width, !0),
+                                    n = v(r, 1),
+                                    a = n[0];
+                                Object(_.preloadImage)(a, function() {
+                                    0 == t && (removeClass(i, "article_object_photo__image_blur"), i.src = a)
+                                })
+                            }
+                        }), n = !0
+                    }
+                    break;
+                case _.ParagraphType.ObjectGIF:
+                    if (!w.mobile) {
+                        var s = geByTag1("video", r);
+                        s ? e ? s.hasAttribute("autoplay") && s.play() : s.pause() : n = !0
+                    }
             }
-            return e._saveChunk = function(e, t, r, n, i) {
-                ajax.post("al_articles.php", {
-                    act: "save_text_chunk",
-                    article_owner_id: e,
-                    hash: n,
-                    chunk_index: r,
-                    Article_text: JSON.stringify(t)
-                }, {
-                    onDone: function(e) {
-                        i(e)
-                    },
-                    onError: function() {
-                        i(!0)
-                    }
-                })
-            }, e._saveFinally = function(e, t, r, n, i, a, o, s, c, l) {
-                c = c ? JSON.stringify(c) : "", ajax.post("al_articles.php", extend({
-                    act: "save",
-                    article_owner_id: e,
-                    article_id: t,
-                    cover_photo_id: i,
-                    name: n,
-                    is_published: intval(r),
-                    chunks_count: s,
-                    Article_text: c,
-                    hash: o
-                }, a || {}), {
-                    onDone: l,
-                    onFail: function(e) {
-                        return e ? (showFastBox(getLang("global_error"), e), l(!0), !0) : void 0
-                    }
-                })
-            }, e.save = function(t, r, n, i, a, o, s, c, l, d) {
-                var u = [],
-                    p = [],
-                    h = 0;
-                if (n.forEach(function(e) {
-                        var t = 0;
-                        e.lines.forEach(function(e) {
-                            t += e.text.length, e.decorations && e.decorations.link && e.decorations.link.forEach(function(e) {
-                                t += (e[2] || "").length
-                            })
-                        }), h += t, h >= c && (u.push(p), h = t, p = []), p.push(e)
-                    }), p.length && u.push(p), u.length > 1) {
-                    var f = new callHub(function() {
-                        e._saveFinally(t, r, i, a, o, l, s, u.length, !1, d)
-                    }, u.length);
-                    u.forEach(function(r, n) {
-                        e._saveChunk(t, r, n, s, function(e) {
-                            e ? showFastBox(getLang("global_error"), getLang("pages_articles_save_fail")) : f.done()
-                        })
+            return n
+        }
+
+        function d(e) {
+            if (!w.noImageOpen) {
+                var t = geByTag1("img", e),
+                    r = domQuery1("[data-sizes]", e),
+                    n = JSON.parse(domData(r, "sizes")),
+                    i = Object(_.getAppropriateImage)(n[0], window.innerWidth, !0),
+                    a = v(i, 3),
+                    o = a[0],
+                    s = a[1],
+                    c = a[2],
+                    l = h({
+                        width: s,
+                        height: c
+                    }, {
+                        width: window.innerWidth,
+                        height: window.innerHeight
+                    }),
+                    d = getW(e) < l.width && getH(e) < l.height;
+                if (o && d) {
+                    var f = geByClass1("article_photo_carousel__controls", e) || t;
+                    addClass(f, "article_image_full_viewable");
+                    var g = data(e, "changePhotoFunction");
+                    f.addEventListener("click", function() {
+                        var t = intval(domData(e, "photo-carousel-index"));
+                        addClass(m, "article_no_scroll");
+                        var r = geByTag1("figcaption", e),
+                            i = se('<div class="article_full_view"><img class="article_full_view__image"></div>');
+                        r && r.innerHTML && i.appendChild(se('<div class="article_full_view__caption"><div class="article_full_view__caption_inner">' + r.innerHTML + "</div></div>")), n.length > 1 && (toggleClass(k, "article_full_view__carousel", n.length > 1), x = se('<div class="article_full_view__right"></div>'), i.appendChild(x), S = se('<div class="article_full_view__left"></div>'), i.appendChild(S), x.addEventListener("click", function(e) {
+                            return t = Math.min(n.length - 1, Math.max(0, t + 1)), u(a, n, t), g && g(1), cancelEvent(e)
+                        }), S.addEventListener("click", function(e) {
+                            return t = Math.min(n.length - 1, Math.max(0, t - 1)), u(a, n, t), g && g(-1), cancelEvent(e)
+                        })), k = se('<div class="article_full_view__counter"><div class="article_full_view__counter_text"></div><div class="article_full_view__close"></div></div>'), i.appendChild(k), n.length > 1 && toggleClass(k, "article_full_view__carousel", n.length > 1), y.appendChild(i), i.addEventListener("click", function(e) {
+                            domClosest("article_full_view__caption_inner", e.target) || p()
+                        }), i.addEventListener("mousewheel", p), E = i;
+                        var a = geByTag1("img", i);
+                        u(a, n, t)
                     })
-                } else e._saveFinally(t, r, i, a, o, l, s, 0, n, d)
-            }, e
-        }();
-        t["default"] = i
+                }
+            }
+        }
+
+        function u(e, t, r) {
+            if (toggleClass(S, "article_full_view__nav_hidden", 0 == r), toggleClass(x, "article_full_view__nav_hidden", r == t.length - 1), t.length > 1) {
+                var n = geByClass1("article_full_view__counter_text", k);
+                n.innerHTML = getLang("global_article_carousel_counter").replace("{counter}", r + 1).replace("{total}", t.length)
+            }
+            I = r;
+            var i = Object(_.getAppropriateImage)(t[r], window.innerWidth, !0),
+                a = v(i, 3),
+                o = a[0],
+                s = a[1],
+                c = a[2],
+                l = h({
+                    width: s,
+                    height: c
+                }, {
+                    width: window.innerWidth,
+                    height: window.innerHeight
+                }),
+                d = !1,
+                u = Object(_.preloadImage)(o, function() {
+                    if (I === r) {
+                        d = !0, l.width && isNumeric(l.width) ? setStyle(e, {
+                            width: l.width,
+                            height: l.height
+                        }) : setStyle(e, {
+                            width: null,
+                            height: null
+                        }), e.src = o, removeClass(e, "article_full_view__image_blurred");
+                        for (var n = r; n < Math.min(r + 3, t.length); n++) {
+                            var i = Object(_.getAppropriateImage)(t[n], window.innerWidth, !0),
+                                a = v(i, 1),
+                                s = a[0];
+                            Object(_.preloadImage)(s)
+                        }
+                    }
+                });
+            if (u) removeClass(e, "article_full_view__image_blurred");
+            else {
+                var p = Object(_.getAppropriateImage)(t[r], 200, !0),
+                    f = v(p, 1),
+                    g = f[0];
+                Object(_.preloadImage)(g, function() {
+                    I === r && (d || (setStyle(e, {
+                        width: l.width,
+                        height: l.height
+                    }), e.src = g))
+                }), addClass(e, "article_full_view__image_blurred")
+            }
+        }
+
+        function p() {
+            return E ? (re(E), m && removeClass(m, "article_no_scroll"), E = !1, !0) : !1
+        }
+
+        function h(e, t) {
+            var r = e.width / e.height,
+                n = t.width / t.height,
+                i = {};
+            return r > n ? (i.width = Math.min(t.width, e.width), i.height = e.height * (i.width / e.width)) : (i.height = Math.min(t.height, e.height), i.width = i.height * r), i
+        }
+
+        function f() {
+            function e() {
+                return Math.round((Date.now() - o) / 1e3);
+            }
+
+            function t(t) {
+                if (!(s >= t) && (s = t, l.push(t), clearTimeout(c), c = setTimeout(r, 100), 3 == t && P.ttr)) {
+                    var n = P.ttr - e();
+                    n > 0 && (j = setTimeout(function() {
+                        document.hidden || (s = 4, l = [s], r())
+                    }, 1e3 * n))
+                }
+            }
+
+            function r() {
+                l.length && (ajax.post(window.isMVK ? "article.php" : "al_articles.php", {
+                    act: "stats",
+                    scroll: l.join(","),
+                    spent: e(),
+                    hash: P.access_hash,
+                    article_owner_id: P.owner_id,
+                    article_id: P.id,
+                    is_web_view: w.isWebView ? 1 : 0,
+                    post_id: w.postId,
+                    ref: window.cur ? window.cur.module : ""
+                }), l.forEach(function(e) {
+                    Object(_.mailruStatsPixel)("scroll_" + e, P.mailruStatsData)
+                }), l = [])
+            }
+            if (!w.notFull) {
+                var n = getH(y),
+                    i = getXY(y)[1] - scrollGetY(),
+                    a = window.innerHeight,
+                    o = Date.now(),
+                    s = -1,
+                    c = void 0,
+                    l = [];
+                t(0), b.addEventListener("scroll", T = function() {
+                    var e = C();
+                    e > 0 && t(1);
+                    for (var r = 1; 4 > r; r++) e + 3 * a / 4 > i + n * r / 3 && t(r + 1);
+                    e + a > n - 20 && t(4)
+                }, {
+                    passive: !0
+                })
+            }
+        }
+        r.r(t), r.d(t, "initArticle", function() {
+            return n
+        }), r.d(t, "updateArticle", function() {
+            return i
+        }), r.d(t, "deinitArticle", function() {
+            return a
+        });
+        var _ = r(384),
+            g = r(308),
+            v = function() {
+                function e(e, t) {
+                    var r = [],
+                        n = !0,
+                        i = !1,
+                        a = void 0;
+                    try {
+                        for (var o, s = e[Symbol.iterator](); !(n = (o = s.next()).done) && (r.push(o.value), !t || r.length !== t); n = !0);
+                    } catch (c) {
+                        i = !0, a = c
+                    } finally {
+                        try {
+                            !n && s["return"] && s["return"]()
+                        } finally {
+                            if (i) throw a
+                        }
+                    }
+                    return r
+                }
+                return function(t, r) {
+                    if (Array.isArray(t)) return t;
+                    if (Symbol.iterator in Object(t)) return e(t, r);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }(),
+            m = void 0,
+            y = void 0,
+            b = void 0,
+            w = void 0,
+            C = void 0,
+            E = void 0,
+            P = void 0,
+            O = void 0,
+            T = void 0,
+            j = void 0,
+            x = void 0,
+            S = void 0,
+            k = void 0,
+            I = void 0;
+        ({
+            php: new RegExp("\\b(array|as|break|case|class|const|continue|default|do|else|elseif|for|foreach|function|global|if|return|static|switch|while|try|catch|throw)\\b", "g"),
+            js: new RegExp("\\b(break|case|class|const|continue|default|do|else|for|function|if|return|static|switch|while|try|catch|throw|let)\\b", "g")
+        }), window.initArticle = n, window.deinitArticle = a, window.updateArticle = i, window.articleCloseImageFullSize = p
     },
-    99: function(e, t, r) {
+    76: function(e, t, r) {
         "use strict";
-        r.r(t);
-        var n = r(257),
-            i = r(271);
-        window.ArticleEditor = n["default"], window.ArticleView = {
-            initArticle: i.initArticle
-        }, stManager.done(jsc("web/article.js"))
+
+        function n(e) {
+            var t = PageID;
+            return function() {
+                t == PageID && e.apply(this, arguments)
+            }
+        }
+
+        function i(e, t) {
+            return setTimeout(n(e), t)
+        }
+
+        function a(e, t) {
+            return Math.random() * (t - e + 1) + e
+        }
+
+        function o(e, t) {
+            return Math.floor(a(e, t))
+        }
+
+        function s(e) {
+            return "undefined" == typeof e
+        }
+
+        function c(e) {
+            return e && "[object Function]" === Object.prototype.toString.call(e)
+        }
+
+        function l(e) {
+            return "[object Array]" === Object.prototype.toString.call(e)
+        }
+
+        function d(e) {
+            return "string" == typeof e
+        }
+
+        function u(e) {
+            return "[object Object]" === Object.prototype.toString.call(e)
+        }
+
+        function p(e) {
+            if ("[object Object]" !== Object.prototype.toString.call(e)) return !1;
+            for (var t in e)
+                if (e.hasOwnProperty(t)) return !1;
+            return !0
+        }
+
+        function h() {
+            return +new Date
+        }
+
+        function f() {
+            return window.Image ? new Image : ce("img")
+        }
+
+        function _(e) {
+            return (e || "").replace(/^\s+|\s+$/g, "")
+        }
+
+        function g(e) {
+            return e ? e.replace(/<(?:.|\s)*?>/g, "") : ""
+        }
+
+        function v(e) {
+            return e ? e.replace(/([.*+?^${}()|[\]\/\\])/g, "\\$1") : ""
+        }
+
+        function m(e) {
+            return e === !0 ? 1 : parseInt(e) || 0
+        }
+
+        function y(e) {
+            return e === !0 ? 1 : parseFloat(e) || 0
+        }
+
+        function b(e) {
+            return e = m(e), 0 > e ? 0 : e
+        }
+
+        function w(e) {
+            return !isNaN(e)
+        }
+
+        function C(e) {
+            return e.replace(/&#(\d\d+);/g, function(e, t) {
+                return t = m(t), t >= 32 ? String.fromCharCode(t) : e
+            }).replace(/&quot;/gi, '"').replace(/&lt;/gi, "<").replace(/&gt;/gi, ">").replace(/&amp;/gi, "&")
+        }
+
+        function E(e) {
+            return se("<textarea>" + (e || "").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;") + "</textarea>").value
+        }
+
+        function P(e) {
+            return e ? e.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;") : ""
+        }
+
+        function O(e) {
+            return E(e.replace(/\t/g, "\n"))
+        }
+
+        function T(e, t) {
+            if (u(e) || "undefined" == typeof e.length) {
+                for (var r in e)
+                    if (Object.prototype.hasOwnProperty.call(e, r) && t.call(e[r], r, e[r]) === !1) break
+            } else
+                for (var n = 0, i = e.length; i > n; n++) {
+                    var a = e[n];
+                    if (t.call(a, n, a) === !1) break
+                }
+            return e
+        }
+
+        function j(e, t, r) {
+            for (var n = r || 0, i = (e || []).length; i > n; n++)
+                if (e[n] == t) return n;
+            return -1
+        }
+
+        function x(e, t) {
+            return -1 != j(t, e)
+        }
+
+        function S(e, t) {
+            var r = u(e) || "undefined" == typeof e.length ? {} : [];
+            for (var n in e)(!/webkit/i.test(_ua) || "layerX" != n && "layerY" != n && "webkitMovementX" != n && "webkitMovementY" != n) && (t && "object" === R(e[n]) && "prototype" !== n && null !== e[n] ? r[n] = S(e[n]) : r[n] = e[n]);
+            return r
+        }
+
+        function k(e) {
+            var t, r, n = {},
+                i = 1,
+                a = arguments.length,
+                o = arguments;
+            for (t in e) {
+                for (r = !1, i = 1; a > i; i++) o[i][t] && o[i][t] == e[t] && (r = !0);
+                r || (n[t] = e[t])
+            }
+            return n
+        }
+
+        function I() {
+            var e, t = arguments,
+                r = t[0] || {},
+                n = 1,
+                i = t.length,
+                a = !1;
+            for ("boolean" == typeof r && (a = r, r = t[1] || {}, n = 2), "object" === ("undefined" == typeof r ? "undefined" : R(r)) || c(r) || (r = {}); i > n; ++n)
+                if (null != (e = t[n]))
+                    for (var o in e) {
+                        var s = r[o],
+                            l = e[o];
+                        r !== l && (a && l && "object" === ("undefined" == typeof l ? "undefined" : R(l)) && !l.nodeType ? r[o] = I(a, s || (null != l.length ? [] : {}), l) : void 0 !== l && (r[o] = l))
+                    }
+            return r
+        }
+
+        function L(e) {
+            window.templates = window.templates || {}, I(window.templates, e)
+        }
+
+        function N(e, t) {
+            var r = window.templates = window.templates || {},
+                n = r[e];
+            return "function" == typeof n && (n = n()), n && t ? rs(n, t) : n || ""
+        }
+
+        function A(e) {
+            if ("object" != ("undefined" == typeof e ? "undefined" : R(e))) return !1;
+            var t = {},
+                r = function(t) {
+                    return geByTag(t, e)
+                },
+                n = function(r, n) {
+                    if (n.name)
+                        if ("text" != n.type && n.type)
+                            if (n.getAttribute("bool")) {
+                                var i = val(n);
+                                if (!i || "0" === i) return;
+                                t[n.name] = 1
+                            } else t[n.name] = browser.msie && !n.value && e[n.name] ? e[n.name].value : n.value;
+                    else t[n.name] = val(n)
+                };
+            return T(r("input"), function(e, t) {
+                return "radio" != t.type && "checkbox" != t.type || t.checked ? n(e, t) : void 0
+            }), T(r("select"), n), T(r("textarea"), n), t
+        }
+
+        function D(e, t) {
+            for (var r, n = t ? U : H, i = []; e && (r = e.match(n));) {
+                e = e.substr(r.index + r[0].length);
+                var a = 0;
+                r[4] || (a = 7), i.push({
+                    url: r[2 + a],
+                    query: r[5 + a] || "",
+                    domain: r[4 + a]
+                })
+            }
+            return i
+        }
+
+        function M() {
+            return window.devicePixelRatio >= 2
+        }
+
+        function B(e) {
+            var t = 0,
+                r = 0,
+                n = e.ownerDocument || e.document,
+                i = n.defaultView || n.parentWindow,
+                a = i.getSelection();
+            if (a.rangeCount > 0) {
+                var o = i.getSelection().getRangeAt(0),
+                    s = o.cloneRange();
+                s.selectNodeContents(e), s.setEnd(o.startContainer, o.startOffset), t = s.toString().length, s.setEnd(o.endContainer, o.endOffset), r = s.toString().length
+            }
+            return [t, r]
+        }
+        r.r(t), r.d(t, "vkLocal", function() {
+            return n
+        }), r.d(t, "lTimeout", function() {
+            return i
+        }), r.d(t, "rand", function() {
+            return a
+        }), r.d(t, "irand", function() {
+            return o
+        }), r.d(t, "isUndefined", function() {
+            return s
+        }), r.d(t, "isFunction", function() {
+            return c
+        }), r.d(t, "isArray", function() {
+            return l
+        }), r.d(t, "isString", function() {
+            return d
+        }), r.d(t, "isObject", function() {
+            return u
+        }), r.d(t, "isEmpty", function() {
+            return p
+        }), r.d(t, "vkNow", function() {
+            return h
+        }), r.d(t, "vkImage", function() {
+            return f
+        }), r.d(t, "trim", function() {
+            return _
+        }), r.d(t, "stripHTML", function() {
+            return g
+        }), r.d(t, "escapeRE", function() {
+            return v
+        }), r.d(t, "intval", function() {
+            return m
+        }), r.d(t, "floatval", function() {
+            return y
+        }), r.d(t, "positive", function() {
+            return b
+        }), r.d(t, "isNumeric", function() {
+            return w
+        }), r.d(t, "winToUtf", function() {
+            return C
+        }), r.d(t, "replaceEntities", function() {
+            return E
+        }), r.d(t, "clean", function() {
+            return P
+        }), r.d(t, "unclean", function() {
+            return O
+        }), r.d(t, "each", function() {
+            return T
+        }), r.d(t, "indexOf", function() {
+            return j
+        }), r.d(t, "inArray", function() {
+            return x
+        }), r.d(t, "clone", function() {
+            return S
+        }), r.d(t, "arrayKeyDiff", function() {
+            return k
+        }), r.d(t, "extend", function() {
+            return I
+        }), r.d(t, "addTemplates", function() {
+            return L
+        }), r.d(t, "getTemplate", function() {
+            return N
+        }), r.d(t, "serializeForm", function() {
+            return A
+        }), r.d(t, "extractUrls", function() {
+            return D
+        }), r.d(t, "isRetina", function() {
+            return M
+        }), r.d(t, "getCaretCharacterOffsetWithin", function() {
+            return B
+        });
+        var R = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
+            return typeof e
+        } : function(e) {
+            return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
+        };
+        window.PageID = window.PageID || 1;
+        var H = /(?:([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+(?:[a-z]{2,9}|xn--p1ai|xn--j1amh|xn--80asehdb|xn--80aswg))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)]*(&nbsp;|[ \t\r\n \u00A0]))|([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9а-яєґї_\-]+\.)+(?:рф|укр|онлайн|сайт|срб))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)]*(&nbsp;|[ \t\r\n \u00A0])))/i,
+            U = /(?:([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+(?:[a-z]{2,9}|xn--p1ai|xn--j1amh|xn--80asehdb|xn--80aswg))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)&]*(&nbsp;|[ \t\r\n \u00A0]|$))|([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9а-яєґї_\-]+\.)+(?:рф|укр|онлайн|сайт|срб))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)&]*(&nbsp;|[ \t\r\n \u00A0]|$)))/i;
+        window.isRetina = M, window.extractUrls = D, window.serializeForm = A, window.addTemplates = L, window.getTemplate = N, window.rand = a, window.irand = o, window.isUndefined = s, window.isFunction = c, window.isArray = l, window.isString = d, window.isObject = u, window.isEmpty = p, window.vkNow = h, window.vkImage = f, window.trim = _, window.stripHTML = g, window.escapeRE = v, window.intval = m, window.floatval = y, window.positive = b, window.isNumeric = w, window.winToUtf = C, window.replaceEntities = E, window.clean = P, window.unclean = O, window.each = T, window.indexOf = j, window.inArray = x, window.clone = S, window.arrayKeyDiff = k, window.extend = I, window.vkLocal = n, window.lTimeout = i, window.getCaretCharacterOffsetWithin = B
     }
 });

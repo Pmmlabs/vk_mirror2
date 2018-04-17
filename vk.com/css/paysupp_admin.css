@@ -1,6 +1,6 @@
 .rate_shadow {
     right: 11px;
-    width: 476px;
+    width: 476px
 }
 
 .paysuppFriendListItem {
@@ -8,7 +8,7 @@
     width: 200px;
     height: 60px;
     margin-right: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
 .paysuppFriendListItemPhoto {
@@ -17,70 +17,70 @@
     width: 50px;
     overflow: hidden;
     padding: 1px;
-    border: 1px solid #D1D1D1;
+    border: 1px solid #d1d1d1
 }
 
 .paysuppFriendListItemPhoto a {
-    margin: 0 !important;
-    padding: 0 !important;
-    text-decoration: none;
+    margin: 0!important;
+    padding: 0!important;
+    text-decoration: none
 }
 
 .paysuppFriendListItemPhoto img {
     margin: 0;
     padding: 0;
     text-decoration: none;
-    border: none;
+    border: none
 }
 
 .paysuppFriendListItemDescr {
     float: left;
-    margin-left: 10px;
+    margin-left: 10px
 }
 
 .paysuppFriendListItemDescr small {
     color: #666;
-    margin-top: 5px;
+    margin-top: 5px
 }
 
 .td_title small {
-    display: inline !important;
+    display: inline!important
 }
 
 .td_title small a {
-    color: #666;
+    color: #666
 }
 
 .appRows .user_photo {
     min-height: 50px;
     max-height: 120px;
     overflow: hidden;
-    margin-top: 5px;
+    margin-top: 5px
 }
 
 .appRows .adminNav li {
     margin-left: 0;
-    margin-right: 10px;
+    margin-right: 10px
 }
 
 .appRow .td_label {
     color: #666;
     padding: 3px 5px 3px 0;
-    width: 50px;
+    width: 50px
 }
 
 .appRow .td_label a {
-    color: #666;
+    color: #666
 }
 
 .appRow .td_title {
     font-weight: 900;
-    color: #2B587A;
-    padding-left: 0;
+    color: #2b587a;
+    padding-left: 0
 }
 
 .appRow .msg {
-    margin: 0 !important;
+    margin: 0!important
 }
 
 .appRow small {
@@ -89,51 +89,51 @@
     text-align: center;
     color: #666;
     margin-right: 20px;
-    font-size: 9px;
+    font-size: 9px
 }
 
 .paysuppReason textarea {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 #content {
-    padding-top: 0 !important;
+    padding-top: 0!important
 }
 
 #reason_error {
     display: none;
-    color: #990000;
-    padding-top: 4px;
+    color: #900;
+    padding-top: 4px
 }
 
 .user_friends_list {
     padding: 7px 10px 10px;
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 590px;
+    height: 590px
 }
 
 .user_friends_list a {
     display: block;
-    padding: 3px 0 3px 0;
+    padding: 3px 0
 }
 
 .user_groups_list {
     padding: 7px 10px 10px;
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 590px;
+    height: 590px
 }
 
 .user_groups_list a {
     display: block;
-    padding: 3px 0 3px 0;
-    border-bottom: 1px dashed #d1d1d1;
+    padding: 3px 0;
+    border-bottom: 1px dashed #d1d1d1
 }
 
 .user_groups_list .wikiTable {
-    width: 100%;
+    width: 100%
 }
 
 .fallbackBig {
@@ -144,149 +144,141 @@
     line-height: 16px;
     margin: 0px 10px 5px;
     padding: 60px 20px;
-    text-align: center;
+    text-align: center
 }
 
 #noRows {
     display: none;
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
 .appRowContainer {
-    overflow: hidden;
+    overflow: hidden
 }
 
 .tip-red {
-    color: #DD3333;
-    font-weight: 900;
+    color: #d33;
+    font-weight: 900
 }
 
 .tip-yellow {
     color: #707040;
-    font-weight: 900;
+    font-weight: 900
 }
 
-.tip-green {}
-
-.tip-red span {
-    font-weight: 100;
-}
-
-.tip-yellow span {
-    font-weight: 100;
-}
-
+.tip-red span,
+.tip-yellow span,
 .tip-green span {
-    font-weight: 100;
+    font-weight: 100
 }
 
 .message_row .delete_link {
     margin-right: 10px;
-    display: none;
+    display: none
 }
 
 .message_row:hover .delete_link {
     margin-right: 10px;
-    display: inline;
+    display: inline
 }
 
 #search_results .wikiTable {
-    width: 100% !important;
+    width: 100%!important
 }
 
 .t_filter_area {
-    border-bottom: 1px solid #D8DFEA;
+    border-bottom: 1px solid #d8dfea;
     padding: 6px 10px;
-    background-color: #F7F7F7;
-    _padding-bottom: 18px;
+    background-color: #f7f7f7;
+    _padding-bottom: 18px
 }
 
-*:first-child+html .t_filter_area {
-    padding-bottom: 18px;
+:first-child+html .t_filter_area {
+    padding-bottom: 18px
 }
 
 .t_filter_selected {
     float: left;
-    border-bottom: 1px solid #FFFFFF;
+    border-bottom: 1px solid #fff;
     margin-right: 10px;
     margin-bottom: -1px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .t_filter_selected .t_filter2 {
-    border: 1px solid #3B6798;
+    border: 1px solid #3b6798;
     border-top: 1px solid #395676;
-    border-bottom: 1px solid #4A73A0;
+    border-bottom: 1px solid #4a73a0
 }
 
 .t_filter_selected .t_filter3 {
-    border: 1px solid #5C82AB;
-    padding: 2px 5px 3px 5px;
-    background-color: #6D8FB3;
-    color: #FFFFFF;
-    font-weight: bold;
+    border: 1px solid #5c82ab;
+    padding: 2px 5px 3px;
+    background-color: #6d8fb3;
+    color: #fff;
+    font-weight: 700
 }
 
 .t_filter_off {
     cursor: pointer;
     padding: 4px 7px 5px;
-    color: #45688E;
-    font-weight: bold;
+    color: #45688e;
+    font-weight: 700;
     float: left;
     margin-right: 10px;
-    margin-bottom: -1px;
+    margin-bottom: -1px
 }
 
 .hidden_message {
-    color: #D7CF9E !important;
+    color: #d7cf9e!important
 }
 
 .transfer-form td {
-    vertical-align: top;
+    vertical-align: top
 }
 
 .transfer-form .mphoto {
     width: 50px;
     max-height: 50px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .transfer-form .mid {
-    color: #808080;
+    color: gray;
     font-size: 9px;
-    margin: 4px 0;
+    margin: 4px 0
 }
 
 .transfer-form .mbalance {
-    margin: 4px 0 0 0;
+    margin: 4px 0 0
 }
 
 .warnArrow {
-    color: #36638E;
+    color: #36638e;
     font-size: 30px;
-    text-align: center;
     width: 100px;
-    vertical-align: middle !important;
+    vertical-align: middle!important
 }
 
+.warnArrow,
 .form_transfer {
-    text-align: center;
+    text-align: center
 }
 
 .form_transfer ul,
 li {
-    margin: 0 auto;
+    margin: 0 auto
 }
 
 .form_transfer input {
     width: 60px;
-    margin-bottom: 4px;
+    margin-bottom: 4px
 }
 
 .transfer-form-container {
     padding: 10px;
     border: 1px solid #dee4e8;
-    background-color: #f5f5f5;
+    background-color: #f5f5f5
 }
 
 .transfer-form .td_label {
@@ -294,91 +286,91 @@ li {
     color: #606060;
     padding-top: 4px;
     padding-right: 8px;
-    text-align: right;
+    text-align: right
 }
 
 .transfer-form .td_input input {
     width: 235px;
-    border: 1px solid #C0CAD5;
+    border: 1px solid #c0cad5
 }
 
 .transfer-form .td_input textarea {
-    width: 229px;
+    width: 229px
 }
 
 .transfer-form .amount {
-    color: #36638E;
+    color: #36638e;
     font-size: 11px;
-    font-weight: 900;
+    font-weight: 900
 }
 
 .ban_form .td_label {
     color: #606060;
     padding-right: 8px;
-    text-align: right;
+    text-align: right
 }
 
 .ban_form .td_input input {
     width: 235px;
-    border: 1px solid #C0CAD5;
+    border: 1px solid #c0cad5
 }
 
 .ban_form .td_input textarea {
-    width: 229px;
+    width: 229px
 }
 
 .stat_table {
     border-collapse: collapse;
-    margin: 0 20px;
+    margin: 0 20px
 }
 
 .stat_table td,
 .stat_table th {
     border: 1px solid #d0d0d0;
-    padding: 8px;
+    padding: 8px
 }
 
 .hightlight_green {
-    color: #37702A;
-    font-weight: 100;
+    color: #37702a;
+    font-weight: 100
 }
 
 .hightlight_yellow {
     color: orange;
-    font-weight: 900;
+    font-weight: 900
 }
 
 .hightlight_red {
     color: red;
-    font-weight: 900;
+    font-weight: 900
 }
 
 .hightlight_blue {
-    color: #45688E;
-    font-weight: 900;
+    color: #45688e;
+    font-weight: 900
 }
 
 .section {
-    color: #36638E;
-    padding: 0px 0px 2px 0px;
+    color: #36638e;
+    padding: 0px 0px 2px;
     margin-bottom: 10px;
     margin-top: 10px;
     border-bottom: 1px solid #b9c4da;
-    font-weight: bold;
-    font-size: 13px;
+    font-weight: 700;
+    font-size: 13px
 }
 
 .payments_table a {
-    padding: 3px 3px 2px 3px;
+    padding: 3px 3px 2px;
     text-decoration: none;
-    border: none;
+    border: none
 }
 
 #new_message .button_blue button,
 #new_message .button_gray button {
-    padding: 4px 8px;
+    padding: 4px 8px
 }
 
 #new_message .button_gray {
-    margin-left: 5px;
+    margin-left: 5px
 }

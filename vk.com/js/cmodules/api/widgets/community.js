@@ -2,21 +2,37 @@
     function e(i) {
         if (o[i]) return o[i].exports;
         var n = o[i] = {
-            exports: {},
-            id: i,
-            loaded: !1
+            i: i,
+            l: !1,
+            exports: {}
         };
-        return t[i].call(n.exports, n, n.exports, e), n.loaded = !0, n.exports
+        return t[i].call(n.exports, n, n.exports, e), n.l = !0, n.exports
     }
     var o = {};
-    return e.m = t, e.c = o, e.p = "", e(0)
+    return e.m = t, e.c = o, e.d = function(t, o, i) {
+        e.o(t, o) || Object.defineProperty(t, o, {
+            configurable: !1,
+            enumerable: !0,
+            get: i
+        })
+    }, e.r = function(t) {
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        })
+    }, e.n = function(t) {
+        var o = t && t.__esModule ? function() {
+            return t["default"]
+        } : function() {
+            return t
+        };
+        return e.d(o, "a", o), o
+    }, e.o = function(t, e) {
+        return Object.prototype.hasOwnProperty.call(t, e)
+    }, e.p = "", e(e.s = 395)
 }({
-    0: function(t, e, o) {
-        t.exports = o(75)
-    },
-    75: function(t, e) {
+    273: function(t, e, o) {
         "use strict";
-        window.Community = {
+        o.r(e), window.Community = {
             init: function() {
                 var t = this;
                 if (cur.wallMyDeleted = {}, this.override("lite.js"), this.override("page.js"), stManager.emitter.addListener("update", this.override.bind(this)), 2 == cur.mode || 4 == cur.mode) {
@@ -241,13 +257,13 @@
                                 var i = hasClass(t, "post_like"),
                                     n = Wall.parsePostId(e),
                                     c = n.type,
-                                    a = n.id,
-                                    s = c + a,
-                                    u = t && gpeByClass("_post_content", t) || Wall.domPost(a),
+                                    u = n.id,
+                                    a = c + u,
+                                    s = t && gpeByClass("_post_content", t) || Wall.domPost(u),
                                     r = o.share ? "_share_wrap" : "_like_wrap",
-                                    l = domByClass(u, r),
+                                    l = domByClass(s, r),
                                     d = domByClass(l, "_icon"),
-                                    h = u && domByClass(u, "_share_wrap");
+                                    h = s && domByClass(s, "_share_wrap");
                                 if (d && !cur.viewAsBox) {
                                     var p = i ? 14 : 58,
                                         g = getXY(l)[0],
@@ -258,7 +274,7 @@
                                         url: "/like.php",
                                         params: extend({
                                             act: "a_get_stats",
-                                            object: s,
+                                            object: a,
                                             has_share: h ? 1 : ""
                                         }, o.share ? {
                                             published: 1
@@ -300,6 +316,9 @@
         };
         try {
             stManager.done(jsc("api/widgets/community.js"))
-        } catch (o) {}
+        } catch (i) {}
+    },
+    395: function(t, e, o) {
+        t.exports = o(273)
     }
 });

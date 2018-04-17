@@ -1,187 +1,187 @@
 #widgets_css {
-    display: none;
+    display: none
 }
 
 body {
     background: #fff;
-    text-align: left;
     margin: 0px;
+    overflow: hidden
+}
+
+body,
+p {
+    text-align: left;
     padding: 0px;
-    font-family: tahoma, verdana, arial, sans-serif, Lucida Sans;
-    font-size: 11px;
-    overflow: hidden;
+    font-family: tahoma, verdana, arial, sans-serif;
+    font-size: 11px
 }
 
 p {
-    font-family: tahoma, verdana, arial, sans-serif, Lucida Sans;
-    font-size: 11px;
-    text-align: left;
-    padding: 0px;
-    margin: 15px 0px;
+    margin: 15px 0px
 }
 
 a {
-    color: #2B587A;
+    color: #2b587a;
     text-decoration: none;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .pageBody a:hover {
-    text-decoration: underline;
+    text-decoration: underline
 }
 
 img {
-    border: 0;
+    border: 0
 }
 
 #membersRows {
-    padding: 10px 0px 5px 0px;
-    vertical-align: top;
+    padding: 10px 0px 5px;
+    vertical-align: top
 }
 
 #membersRows .mem_row {
-    background: #FFFFFF;
-    border: 1px solid #DAE2E8;
+    background: #fff;
+    border: 1px solid #dae2e8;
     margin: 0px 0 3px 0px;
-    padding: 8px 8px 6px 8px;
+    padding: 8px 8px 6px
 }
 
 #membersRows .mem_row table {
     border-collapse: collapse;
-    width: 100%;
+    width: 100%
 }
 
 #membersRows td {
     padding: 0px;
     vertical-align: top;
-    line-height: 120%;
+    line-height: 120%
 }
 
 #membersRows td.img {
-    width: 25px;
+    width: 25px
 }
 
 #membersRows td.img a {
     display: block;
     width: 25px;
     height: 25px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 #membersRows td.img img {
-    width: 25px;
+    width: 25px
 }
 
 #membersRows td.info {
-    padding-left: 10px;
+    padding-left: 10px
 }
 
 #membersRows td.details {
     text-align: right;
     font-size: 10px;
-    line-height: 130%;
+    line-height: 130%
 }
 
 #membersRows td.info .actions {
     font-size: 9px;
     height: 14px;
     display: block;
-    font-weight: bold;
+    font-weight: 700
 }
 
-#membersRows td.info .actions a,
-#membersRows td.info .actions .divide {
-    font-weight: normal;
+#membersRows td.info .actions .divide,
+#membersRows td.info .actions a {
+    font-weight: 400
 }
 
 #membersRows .alertmsg {
-    margin: 0 0 3px 0px;
+    margin: 0 0 3px 0px
 }
 
 #membersSections {
     padding: 10px;
     width: 150px;
-    vertical-align: top;
+    vertical-align: top
 }
 
 #noMembers {
-    background: #FFF;
-    border: 1px solid #DAE2E8;
-    color: #777777;
+    background: #fff;
+    border: 1px solid #dae2e8;
+    color: #777;
     font-size: 13px;
     padding: 80px 0;
     text-align: center;
-    margin: 0px 0px 3px 0px;
+    margin: 0px 0px 3px
 }
 
 .t_filter_area {
-    border-bottom: 1px solid #D8DFEA;
+    border-bottom: 1px solid #d8dfea;
     padding: 10px;
-    background-color: #F7F7F7;
-    _padding-bottom: 18px;
+    background-color: #f7f7f7;
+    _padding-bottom: 18px
 }
 
-*:first-child+html .t_filter_area {
-    padding-bottom: 18px;
+:first-child+html .t_filter_area {
+    padding-bottom: 18px
 }
 
 .t_filter_selected {
     float: left;
-    border-bottom: 1px solid #FFFFFF;
+    border-bottom: 1px solid #fff;
     margin-right: 10px;
     margin-bottom: -1px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .body_rtl .t_filter_selected {
     float: right;
-    margin: 0 0 -1px 10px;
+    margin: 0 0 -1px 10px
 }
 
 .t_filter_selected .t_filter2 {
-    border: 1px solid #3B6798;
+    border: 1px solid #3b6798;
     border-top: 1px solid #395676;
-    border-bottom: 1px solid #4A73A0;
+    border-bottom: 1px solid #4a73a0
 }
 
 .t_filter_selected .t_filter3 {
-    border: 1px solid #5C82AB;
-    padding: 2px 5px 3px 5px;
-    background-color: #6D8FB3;
-    color: #FFFFFF;
-    font-weight: bold;
+    border: 1px solid #5c82ab;
+    padding: 2px 5px 3px;
+    background-color: #6d8fb3;
+    color: #fff;
+    font-weight: 700
 }
 
 .t_filter_off {
     cursor: pointer;
     padding: 4px 7px 5px;
-    color: #45688E;
-    font-weight: bold;
+    color: #45688e;
+    font-weight: 700;
     float: left;
     margin-right: 10px;
-    margin-bottom: -1px;
+    margin-bottom: -1px
 }
 
 .body_rtl .t_filter_off {
     float: right;
-    margin: 0 0 -1px 10px;
+    margin: 0 0 -1px 10px
 }
 
 #mod_sections_loading {
     visibility: hidden;
-    margin-top: 5px;
+    margin-top: 5px
 }
 
 .t_filter_area a {
     margin-top: 5px;
-    margin-left: 5px;
+    margin-left: 5px
 }
 
 .squarePic {
     height: 50px;
     clear: both;
     overflow: hidden;
-    padding-bottom: 3px;
+    padding-bottom: 3px
 }
 
 .squareUser {
@@ -189,55 +189,55 @@ img {
     height: 68px;
     float: left;
     overflow: hidden;
-    text-align: center;
+    text-align: center
 }
 
 .squareUser a {
-    color: #808080;
-    font-size: 10px;
+    color: gray;
+    font-size: 10px
 }
 
 #main .squareUser a:hover {
-    text-decoration: none !important;
+    text-decoration: none!important
 }
 
 .groupInfo {
-    margin: 8px 8px 0px 8px;
+    margin: 8px 8px 0px
 }
 
 .groupName {
     color: #45688e;
-    font-weight: bold;
+    font-weight: 700;
     padding-left: 10px;
-    float: left;
+    float: left
 }
 
 .softHead {
-    padding: 8px 0px 1px 0px;
+    padding: 8px 0px 1px;
     margin: 0px 10px;
     border-bottom: 1px solid #d9e1e7;
     padding-bottom: 2px;
-    color: #45688e;
-    font-weight: normal;
+    color: #45688e
 }
 
+.softHead,
 .softHead a {
-    font-weight: normal;
+    font-weight: 400
 }
 
 .widgetBottom {
     background: #eef2f5;
-    color: #2f5879;
+    color: #2f5879
 }
 
 .widgetBottom .checkbox_container table {
-    margin: 3px 0px;
+    margin: 3px 0px
 }
 
 .statHolder {
-    background: #ECECEC;
+    background: #ececec;
     height: 1px;
-    margin-bottom: 20px;
+    margin-bottom: 20px
 }
 
 .statLine {
@@ -245,23 +245,23 @@ img {
     border-top: 1px solid #c0ccd9;
     background: #dae2e8;
     margin-top: 0px;
-    height: 15px;
+    height: 15px
 }
 
 .groupsMain {
-    border: 1px solid #BEC8D3;
-    border-bottom: none;
+    border: 1px solid #bec8d3;
+    border-bottom: none
 }
 
 #group_like .checkbox {
-    color: #2B587A;
+    color: #2b587a;
     cursor: pointer;
-    border-left: 1px solid #BEC8D3;
-    border-right: 1px solid #BEC8D3;
-    border-bottom: 1px solid #BEC8D3;
+    border-left: 1px solid #bec8d3;
+    border-right: 1px solid #bec8d3;
+    border-bottom: 1px solid #bec8d3;
     float: none;
     margin-right: 0;
-    *display: block;
+    *display: block
 }
 
 #group_like div.checkbox_inner {
@@ -271,45 +271,39 @@ img {
     padding-left: 7px;
     padding-bottom: 4px;
     border: 1px solid #eef2f5;
-    border-top: 1px solid #D9E1E7;
+    border-top: 1px solid #d9e1e7;
     padding-top: 4px;
-    *display: block;
+    *display: block
 }
 
-#group_like #join_group.checkbox {
-    *display: block;
-}
-
+#group_like #join_group.checkbox,
 #group_like .checkbox .checkbox_inner {
-    *display: block;
+    *display: block
 }
 
 #group_like .checked {
-    background-color: #36638E;
+    background-color: #36638e;
     font-size: 11px;
-    font-family: tahoma, tahoma, verdana, arial, sans-serif, Lucida Sans;
-    border: 1px solid #3B6798;
-    text-shadow: 0px 1px 0px #45688E;
-    padding: 0px;
+    font-family: tahoma, verdana, arial, sans-serif;
+    border: 1px solid #3b6798;
+    text-shadow: 0px 1px 0px #45688e;
+    padding: 0px
 }
 
 #group_like .checkbox.checked div.checkbox_inner {
     border-style: solid;
     border-width: 1px;
-    border-color: #7E9CBC #5C82AB #5C82AB;
-    background-color: #6D8FB3;
-    color: #FFF;
+    border-color: #7e9cbc #5c82ab #5c82ab;
+    background-color: #6d8fb3;
+    color: #fff;
     padding-top: 3px;
     float: none;
-    *display: block;
+    *display: block
 }
 
-#group_like .checked .check {
-    background: url("/images/like_s.gif?1") no-repeat scroll 0 -28px;
-}
-
+#group_like .checked .check,
 #group_like .checked-light .check {
-    background: url("/images/like_s.gif?1") no-repeat scroll 0 -28px;
+    background: url("/images/like_s.gif?1") no-repeat scroll 0 -28px
 }
 
 #group_like .check {
@@ -317,11 +311,11 @@ img {
     height: 14px;
     float: left;
     background: url("/images/like_s.gif?1") no-repeat scroll 0 -14px;
-    margin-right: 8px;
+    margin-right: 8px
 }
 
 #group_like #subscr_group.checked-light .check {
-    background: url("/images/icons/check.gif") no-repeat scroll 0 -14px;
+    background: url("/images/icons/check.gif") no-repeat scroll 0 -14px
 }
 
 #group_like #subscr_group .check {
@@ -329,38 +323,38 @@ img {
     height: 14px;
     float: left;
     background: url("/images/icons/check.gif") no-repeat scroll 0 0px;
-    margin-right: 8px;
+    margin-right: 8px
 }
 
 .group_users {
-    padding: 7px 0px 5px 5px;
+    padding: 7px 0px 5px 5px
 }
 
 .anim_row {
     overflow-x: hidden;
-    padding-bottom: 2px;
+    padding-bottom: 2px
 }
 
 .inline_row {
-    display: inline;
+    display: inline
 }
 
 #like_body {
-    background: transparent;
+    background: transparent
 }
 
 .like_dived .like_wrap {
     margin-right: 8px;
     cursor: pointer;
-    position: relative;
+    position: relative
 }
 
 .like_dived .like_inline .like_wrap {
-    margin: 0;
+    margin: 0
 }
 
 .like_dived .like_wrap .like_left {
-    border: 1px solid #3E6797;
+    border: 1px solid #3e6797;
     -webkit-border-top-left-radius: 2px;
     -webkit-border-bottom-left-radius: 2px;
     -moz-border-radius-topleft: 2px;
@@ -371,12 +365,12 @@ img {
     padding: 0;
     float: left;
     z-index: 1000;
-    position: relative;
+    position: relative
 }
 
 .like_dived .like_wrap .like_left .like_left_border {
     border: 1px solid;
-    border-color: #7D9ABB #3E6797 #5C81AA #5C81AA;
+    border-color: #7d9abb #3e6797 #5c81aa #5c81aa;
     -webkit-border-top-left-radius: 1px;
     -webkit-border-bottom-left-radius: 1px;
     -moz-border-radius-topleft: 1px;
@@ -384,14 +378,14 @@ img {
     border-top-left-radius: 1px;
     border-bottom-left-radius: 1px;
     padding: 5px 5px 3px 4px;
-    background: #6D8EB2;
+    background: #6d8eb2;
     position: relative;
     height: 10px;
-    width: 10px;
+    width: 10px
 }
 
 .like_dived .like_wrap .like_right {
-    border: 1px solid #ADBCCB;
+    border: 1px solid #adbccb;
     border-left: 0;
     -webkit-border-top-right-radius: 2px;
     -webkit-border-bottom-right-radius: 2px;
@@ -403,44 +397,41 @@ img {
     float: left;
     z-index: 100;
     position: relative;
-    height: 20px;
+    height: 20px
 }
 
 .like_dived .like_wrap .like_right .like_right_border {
     border-width: 1px;
     border-style: solid;
-    border-color: #FFFFFF #EDF2F6 #EDF2F6 #EDF2F6;
+    border-color: #fff #edf2f6 #edf2f6;
     -webkit-border-top-right-radius: 1px;
     -webkit-border-bottom-right-radius: 1px;
     -moz-border-radius-topright: 1px;
     -moz-border-radius-bottomright: 1px;
     border-top-right-radius: 1px;
     border-bottom-right-radius: 1px;
-    background: #EDF2F6;
+    background: #edf2f6;
     padding: 2px 4px;
-    text-shadow: 0px 1px 0px #FFFFFF;
-    color: #2F5879;
+    text-shadow: 0px 1px 0px #fff;
+    color: #2f5879;
     line-height: 14px;
     height: 14px;
     -webkit-user-select: none;
-    -moz-user-select: none;
+    -moz-user-select: none
 }
 
 #like_body .like_dived_full .checked .like_left,
-#like_body .like_dived_full .checked .like_right {
-    border-radius: 0;
-}
-
+#like_body .like_dived_full .checked .like_right,
 #like_body .like_dived_full .checked .like_left_border,
 #like_body .like_dived_full .checked .like_right_border {
-    border-radius: 0;
+    border-radius: 0
 }
 
 .like_dived .like_wrap .icon {
     width: 10px;
     height: 10px;
     background: url(/images/icons/like_widget.gif?2) 0 0 no-repeat;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .like_dived .like_wrap .like_left .iconV {
@@ -448,7 +439,7 @@ img {
     position: absolute;
     margin: 0 1px 1px 2px;
     width: 7px;
-    height: 9px;
+    height: 9px
 }
 
 .like_dived .like_wrap .like_left .iconHeart {
@@ -456,7 +447,7 @@ img {
     position: absolute;
     opacity: 0;
     filter: alpha(opacity=0);
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
 }
 
 .like_dived .like_wrap .like_bottom_shadow {
@@ -464,66 +455,66 @@ img {
     opacity: 0.08;
     filter: alpha(opacity=8);
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=8)";
-    background: black;
-    *display: none;
+    background: #000;
+    *display: none
 }
 
 .like_dived .checkbox_pressed .like_left_border {
-    background-color: #6688AD;
-    border-color: #51769E #51779F #7495B8;
+    background-color: #6688ad;
+    border-color: #51769e #51779f #7495b8
 }
 
 .like_dived .heart .checked .like_left .icon {
     background-position: 0 -29px;
     margin: 0;
     width: 10px;
-    height: 10px;
+    height: 10px
 }
 
 .like_dived .checkbox_over .like_right {
-    border-color: #8596A9;
+    border-color: #8596a9
 }
 
 .like_dived .checkbox_over .like_right .like_right_border {
-    background: #E3EAF1;
-    border-color: #fff #E3EAF1 #E3EAF1 #E3EAF1;
+    background: #e3eaf1;
+    border-color: #fff #e3eaf1 #e3eaf1;
     -webkit-user-select: none;
-    -moz-user-select: none;
+    -moz-user-select: none
 }
 
 .like_dived .checked .like_left {
-    border-right: 1px solid #3E6797;
+    border-right: 1px solid #3e6797
 }
 
 .like_dived .checked .like_left .like_left_border {
-    border-right: 0;
+    border-right: 0
 }
 
 .like_dived .checked .like_left_border .iconV {
     opacity: 0;
     filter: alpha(opacity=0);
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
 }
 
 .like_dived .checked .like_left_border .iconHeart {
     opacity: 1;
     filter: alpha(opacity=100);
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"
 }
 
 .like_dived .checked .like_right {
-    border-color: #3E6797;
+    border-color: #3e6797
 }
 
 .like_dived .checked .like_right .like_right_border {
-    border-color: #7C98BA #5C80A9 #5C80A9 #7C98BA;
-    background: #6D8DB1;
-    text-shadow: 0px 1px 0px #4B688B;
-    color: #fff;
+    border-color: #7c98ba #5c80a9 #5c80a9 #7c98ba;
+    background: #6d8db1;
+    text-shadow: 0px 1px 0px #4b688b;
+    color: #fff
 }
 
 .like_tabled_lite td.like_right .like_right_border {
-    padding: 4px 3px 2px;
+    padding: 4px 3px 2px
 }
 
 .like_tabled_lite td.like_right .icon {
@@ -532,113 +523,108 @@ img {
     background: url(/images/icons/like_widget.gif?2) 0 -29px no-repeat;
     opacity: 0.7;
     filter: alpha(opacity=70);
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)"
 }
 
-.like_tabled_lite .checkbox_over td.like_right .icon {
-    opacity: 1;
-    filter: alpha(opacity=100);
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-}
-
+.like_tabled_lite .checkbox_over td.like_right .icon,
 .like_tabled_lite .checked td.like_right .icon {
     opacity: 1;
     filter: alpha(opacity=100);
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"
 }
 
 .like_tabled_lite_vertical .arrow {
     width: 11px;
     height: 6px;
     background: url(/images/icons/like_widget.gif?2) 0 -53px no-repeat;
-    margin: -1px 0 2px 27px;
+    margin: -1px 0 2px 27px
 }
 
 .like_tabled_lite_vertical .like_wrap1 {
-    float: none;
+    float: none
 }
 
 .like_tabled_lite_vertical .like_wrap {
-    margin: 0;
+    margin: 0
 }
 
 .like_tabled_lite_vertical td.like_right .like_right_border {
-    padding: 4px 4px 2px;
+    padding: 4px 4px 2px
 }
 
 .like_tabled .like_wrap {
-    border: 1px solid #3B6798;
+    border: 1px solid #3b6798;
     border-radius: 2px;
     margin-right: 10px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .like_tabled .like_wrap1 {
     float: left;
-    background-color: #6D8FB3;
-    border: 1px solid #5C82AB;
-    border-top-color: #7E9CBC;
+    background-color: #6d8fb3;
+    border: 1px solid #5c82ab;
+    border-top-color: #7e9cbc;
     border-radius: 1px;
     padding: 1px;
-    text-shadow: 0px 1px 0px #45688E;
-    color: #fff;
+    text-shadow: 0px 1px 0px #45688e;
+    color: #fff
 }
 
 .like_tabled .checkbox_over .like_wrap1 {
-    background-color: #7997b7;
+    background-color: #7997b7
 }
 
 .like_tabled .like_wrap table {
     border-collapse: collapse;
     border: 0;
-    padding: 0;
+    padding: 0
 }
 
 .like_tabled .like_wrap td.like_left {
-    padding: 2px 3px;
+    padding: 2px 3px
 }
 
 .like_tabled .like_wrap td.like_right {
-    border-left: 1px solid #6587AC;
-    padding: 0;
+    border-left: 1px solid #6587ac;
+    padding: 0
 }
 
 .like_tabled .like_wrap td.like_right .like_right_border {
     line-height: 14px;
     height: 14px;
-    border-left: 1px solid #7E9CBC;
-    padding: 1px 4px;
+    border-left: 1px solid #7e9cbc;
+    padding: 1px 4px
 }
 
 .like_tabled .like_wrap .icon {
     width: 10px;
     height: 10px;
     background: url(/images/icons/like_widget.gif?2) 0 0 no-repeat;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .like_tabled .like_wrap .like_left .icon {
     background-position: 0 -18px;
     margin: 2px 2px 1px 1px;
     width: 7px;
-    height: 9px;
+    height: 9px
 }
 
 .like_tabled .checkbox_pressed .like_wrap1 {
-    background-color: #6688AD;
-    border-color: #51769E #51779F #7495B8;
+    background-color: #6688ad;
+    border-color: #51769e #51779f #7495b8
 }
 
 .like_tabled_full .checked td.like_left .icon {
     background-position: 0 -29px;
-    margin: 2px 0 0 0;
+    margin: 2px 0 0;
     width: 10px;
-    height: 10px;
+    height: 10px
 }
 
 .like_tabled_lite .like_wrap td.like_right .like_right_border {
     padding: 4px 3px 2px;
-    height: 10px;
+    height: 10px
 }
 
 .like_tabled_lite td.like_right .icon {
@@ -647,56 +633,51 @@ img {
     background: url(/images/icons/like_widget.gif?2) 0 -29px no-repeat;
     opacity: 0.7;
     filter: alpha(opacity=70);
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)"
 }
 
-.like_tabled_lite .checkbox_over td.like_right .icon {
-    opacity: 1;
-    filter: alpha(opacity=100);
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-}
-
+.like_tabled_lite .checkbox_over td.like_right .icon,
 .like_tabled_lite .checked td.like_right .icon {
     opacity: 1;
     filter: alpha(opacity=100);
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"
 }
 
 .like_tabled_lite_vertical .like_wrap1 {
-    float: none;
+    float: none
 }
 
 .like_tabled_lite_vertical .like_wrap {
-    margin: 0;
+    margin: 0
 }
 
 .like_tabled_lite_vertical td.like_right .like_right_border {
-    padding: 4px 4px 2px;
+    padding: 4px 4px 2px
 }
 
 .like_counter_wrap {
     display: block;
-    border: 1px solid #ADBCCB;
+    border: 1px solid #adbccb;
     border-radius: 2px;
     cursor: pointer;
-    margin-left: 1px;
+    margin-left: 1px
 }
 
 .like_counter {
     border-top: 1px solid #fff;
-    background: #EDF2F6;
+    background: #edf2f6;
     padding: 2px 5px 4px;
-    font-weight: bold;
-    color: #2B587A;
+    font-weight: 700;
+    color: #2b587a;
     text-shadow: 0 1px 0px #fff;
     font-size: 11px;
     line-height: 13px;
-    text-align: center;
+    text-align: center
 }
 
-.like_counter_wrap:hover .like_counter,
-.like_counter_link:hover .like_counter {
-    background: #FFF;
+.like_counter_link:hover .like_counter,
+.like_counter_wrap:hover .like_counter {
+    background: #fff
 }
 
 .like_counter_wrap .arrow {
@@ -706,11 +687,11 @@ img {
     background: url(/images/icons/like_widget.gif?2) 0 -61px no-repeat;
     overflow: hidden;
     margin-left: -10px;
-    margin-top: 3px;
+    margin-top: 3px
 }
 
 .like_counter_wrap:hover .arrow {
-    background-position: 0 -100px;
+    background-position: 0 -100px
 }
 
 .like_tabled_lite_vertical .arrow {
@@ -718,38 +699,38 @@ img {
     height: 6px;
     background: url(/images/icons/like_widget.gif?2) 0 -53px no-repeat;
     overflow: hidden;
-    margin: -1px 0 2px 27px;
+    margin: -1px 0 2px 27px
 }
 
 .like_counter_link {
-    display: block;
+    display: block
 }
 
 .like_tabled_lite_vertical .like_counter_link:hover .arrow {
-    background-position: 0 -92px;
+    background-position: 0 -92px
 }
 
 .like_tabled_lite_vertical .like_counter_wrap {
-    margin: 0;
+    margin: 0
 }
 
 .like_tabled_lite_vertical .like_counter {
-    font-size: 12px;
+    font-size: 12px
 }
 
 #stats_text {
     line-height: 11px;
-    margin-top: 5px;
+    margin-top: 5px
 }
 
 #like_table_left {
-    vertical-align: top;
+    vertical-align: top
 }
 
 #like_table_right {
     padding-left: 10px;
     text-align: left;
-    vertical-align: middle;
+    vertical-align: middle
 }
 
 .like_dived_full #checkbox {
@@ -757,225 +738,225 @@ img {
     overflow: hidden;
     margin: 0;
     height: 23px;
-    width: 200px;
+    width: 200px
 }
 
 .like_dived_full .checked {
-    width: 20px;
+    width: 20px
 }
 
 .like_dived_full .like_wrap .like_left {
     position: absolute;
     left: 0;
     z-index: 100;
-    height: 20px;
+    height: 20px
 }
 
 .like_dived_full .like_wrap .like_right {
     position: absolute;
     right: 0;
     z-index: 90;
-    height: 20px;
+    height: 20px
 }
 
 .like_dived_full .like_bottom_shadow {
-    margin-top: 22px;
+    margin-top: 22px
 }
 
 .like_dived_full #stats_text {
-    margin: 0;
+    margin: 0
 }
 
 #like_body .like_dived_full.like_wrap_h24 #checkbox {
-    height: 25px;
+    height: 25px
 }
 
 #like_body .like_dived_full.like_wrap_h24 .like_left {
-    height: 22px;
+    height: 22px
 }
 
 #like_body .like_dived.like_wrap_h24 .like_left_border {
-    padding: 6px 6px 4px 5px;
+    padding: 6px 6px 4px 5px
 }
 
 #like_body .like_dived.like_wrap_h24 .like_right_border {
-    padding: 3px 5px;
+    padding: 3px 5px
 }
 
 #like_body .like_dived.like_wrap_h24 .like_right {
-    height: 22px;
+    height: 22px
 }
 
 #like_body .like_wrap_h24 .like_counter {
-    padding: 3px 6px 5px;
+    padding: 3px 6px 5px
 }
 
 #like_body .like_wrap_h24 .like_counter_wrap .arrow {
-    margin-left: -11px;
+    margin-left: -11px
 }
 
 #like_body .like_tabled.like_wrap_h24 .like_left {
-    padding: 3px 4px;
+    padding: 3px 4px
 }
 
 #like_body .like_tabled.like_wrap_h24 .like_right_border {
-    padding: 5px 4px 3px;
+    padding: 5px 4px 3px
 }
 
 #like_body .like_dived_full.like_wrap_h24 .like_bottom_shadow {
-    margin-top: 24px;
+    margin-top: 24px
 }
 
 #like_body .like_dived_full.like_wrap_h20 #checkbox {
-    height: 21px;
+    height: 21px
 }
 
 #like_body .like_dived_full.like_wrap_h20 .like_left {
-    height: 18px;
+    height: 18px
 }
 
 #like_body .like_dived.like_wrap_h20 .like_left_border {
     padding-top: 4px;
-    padding-bottom: 2px;
+    padding-bottom: 2px
 }
 
 #like_body .like_dived.like_wrap_h20 .like_right_border {
     padding-top: 1px;
-    padding-bottom: 1px;
+    padding-bottom: 1px
 }
 
 #like_body .like_dived.like_wrap_h20 .like_right {
-    height: 18px;
+    height: 18px
 }
 
 #like_body .like_wrap_h20 .like_counter {
     padding-top: 1px;
-    padding-bottom: 3px;
+    padding-bottom: 3px
 }
 
 #like_body .like_tabled.like_wrap_h20 .like_left {
     padding-top: 1px;
-    padding-bottom: 1px;
+    padding-bottom: 1px
 }
 
 #like_body .like_tabled.like_wrap_h20 .like_right_border {
     padding-top: 3px;
-    padding-bottom: 1px;
+    padding-bottom: 1px
 }
 
 #like_body .like_dived_full.like_wrap_h20 .like_bottom_shadow {
-    margin-top: 20px;
+    margin-top: 20px
 }
 
 #like_body .like_dived_full.like_wrap_h18 #checkbox {
-    height: 19px;
+    height: 19px
 }
 
 #like_body .like_dived_full.like_wrap_h18 .like_left {
-    height: 16px;
+    height: 16px
 }
 
 #like_body .like_dived.like_wrap_h18 .like_left_border {
     padding-top: 3px;
-    padding-bottom: 1px;
+    padding-bottom: 1px
 }
 
 #like_body .like_dived.like_wrap_h18 .like_right_border {
     padding-top: 0;
-    padding-bottom: 0;
+    padding-bottom: 0
 }
 
 #like_body .like_dived.like_wrap_h18 .like_right {
-    height: 16px;
+    height: 16px
 }
 
 #like_body .like_wrap_h18 .like_counter {
     padding-top: 0;
-    padding-bottom: 2px;
+    padding-bottom: 2px
 }
 
 #like_body .like_tabled.like_wrap_h18 .like_left {
     padding-top: 0;
-    padding-bottom: 0;
+    padding-bottom: 0
 }
 
 #like_body .like_tabled.like_wrap_h18 .like_right_border {
     padding-top: 2px;
-    padding-bottom: 0;
+    padding-bottom: 0
 }
 
 #like_body .like_dived_full.like_wrap_h18 .like_bottom_shadow {
-    margin-top: 18px;
+    margin-top: 18px
 }
 
 .pollMain {
-    border: 1px solid #BEC8D3;
+    border: 1px solid #bec8d3
 }
 
 .pollContent {
-    padding: 8px 7px;
+    padding: 8px 7px
 }
 
 .pollContent h1 {
     font-size: 11px;
-    font-weight: bold;
-    margin: 0 3px 5px 3px;
+    font-weight: 700;
+    margin: 0 3px 5px
 }
 
 .pollContent .radiobtn_container {
-    margin-left: 3px;
+    margin-left: 3px
 }
 
 .pollStats {
-    width: 100%;
+    width: 100%
 }
 
 .pollStatsText {
-    padding-top: 5px;
+    padding-top: 5px
 }
 
 .pollStatsBg {
     width: 95%;
-    background: #FAFAFA;
+    background: #fafafa
 }
 
 .pollStatsFg {
-    background: #DAE2E8;
-    border-top: 1px solid #CAD1D9;
+    background: #dae2e8;
+    border-top: 1px solid #cad1d9;
     font-size: 0;
     height: 14px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .pollStatsDesc {
     padding-left: 5px;
     width: 50px;
-    max-width: 100px;
+    max-width: 100px
 }
 
 .pollFooter {
-    background: #F2F2F2;
-    border-top: 1px solid #BEC8D3;
-    padding: 8px;
+    background: #f2f2f2;
+    border-top: 1px solid #bec8d3;
+    padding: 8px
 }
 
 .pollFooter textarea {
     width: 100%;
-    margin: 0;
+    margin: 0
 }
 
 .pollFooter .button_yes {
-    margin: 8px 0 0 0;
+    margin: 8px 0 0
 }
 
 .commHead a.pollUnvote {
-    color: #A9B8CB;
-    font-weight: bold;
+    color: #a9b8cb;
+    font-weight: 700
 }
 
 #pollMain #loading {
     margin: 5px 0 0 3px;
-    float: right;
+    float: right
 }
 
 .commHead {
@@ -983,39 +964,39 @@ img {
     border-bottom: 1px solid #ccd3da;
     height: 16px;
     color: #45688e;
-    font-weight: bold;
-    padding: 2px 8px 2px 8px;
+    font-weight: 700;
+    padding: 2px 8px;
     vertical-align: middle;
-    line-height: 20px;
+    line-height: 20px
 }
 
 .commHead a {
     line-height: 16px;
-    vertical-align: top;
+    vertical-align: top
 }
 
 .commHead .fl_r {
-    font-weight: normal;
+    font-weight: 400
 }
 
 .commHead span {
     line-height: 16px;
-    vertical-align: top;
+    vertical-align: top
 }
 
 .commHead span img {
     vertical-align: top;
     margin-top: 5px;
-    margin-left: 5px;
+    margin-left: 5px
 }
 
 .commHead .notYou {
-    font-weight: normal;
+    font-weight: 400
 }
 
 .commHead a.moderLink {
-    color: #A9B8CB !important;
-    margin-left: 5px;
+    color: #a9b8cb!important;
+    margin-left: 5px
 }
 
 .inl_bl {
@@ -1023,27 +1004,27 @@ img {
     display: inline-block;
     _overflow: hidden;
     zoom: 1;
-    *display: inline;
+    *display: inline
 }
 
 .counter_anim_wrap {
     position: relative;
     height: 1em;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .counter_anim {
     position: absolute;
     right: 0;
-    text-align: right;
+    text-align: right
 }
 
 .counter_css_anim_wrap {
     -o-transition: width 100ms linear;
-    transition: width 100ms linear;
+    transition: width 100ms linear
 }
 
 .counter_css_anim_wrap .counter_anim {
     -o-transition: margin-top 300ms ease-out;
-    transition: margin-top 300ms ease-out;
+    transition: margin-top 300ms ease-out
 }

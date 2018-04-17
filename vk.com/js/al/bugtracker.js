@@ -367,7 +367,7 @@ var BugTracker = {
         var r = {
             load: 1
         };
-        nav.objLoc.rev ? (r.min_udate = cur.btUDate, cur.btLastId && (r.min_id = cur.btLastId)) : (r.max_udate = cur.btUDate, cur.btLastId && (r.max_id = cur.btLastId)), each(["act", "product", "device", "q", "mid", "vulnerability", "wishes", "unrated", "platform", "pversion", "status", "severity", "tag", "original", "rev"], function(e, t) {
+        nav.objLoc.rev ? (r.min_udate = cur.btUDate, cur.btLastId && (r.min_id = cur.btLastId)) : (r.max_udate = cur.btUDate, cur.btLastId && (r.max_id = cur.btLastId)), each(["act", "product", "device", "q", "mid", "vulnerability", "wishes", "unrated", "platform", "pversion", "status", "severity", "tag", "original", "rev", "version"], function(e, t) {
             nav.objLoc.hasOwnProperty(t) && (r[t] = nav.objLoc[t])
         }), ajax.post("bugtracker", r, {
             showProgress: lockButton.pbind(e),

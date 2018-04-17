@@ -1,1470 +1,1439 @@
 .body_rtl .mailSearch {
-    float: left;
+    float: left
 }
 
 .body_rtl .mailSelector {
     float: right;
-    padding: 4px 0px 0px 6px;
+    padding: 4px 0px 0px 6px
 }
 
 .body_rtl .summaryBar .summary {
-    float: right;
+    float: right
 }
 
 .body_rtl .mailbox table.inbox .messageStatus {
-    padding: 0px 6px 0px 3px;
+    padding: 0px 6px 0px 3px
 }
 
 .body_rtl .mailbox table.inbox .messageActions {
-    padding: 0 0 0 10px;
+    padding: 0 0 0 10px
 }
 
 .body_rtl .mailbox table th {
-    text-align: right;
+    text-align: right
 }
 
 .body_rtl .mailbox table .messageChooser {
     width: 22px;
-    padding: 0 0 0 4px;
+    padding: 0 0 0 4px
 }
 
 .body_rtl .formTable td.label {
-    padding: 3px 1px 3px 10px;
+    padding: 3px 1px 3px 10px
 }
 
 .body_rtl .writeTab {
-    float: left;
+    float: left
 }
 
 .body_rtl .sendButtons {
-    float: right;
+    float: right
 }
 
 .body_rtl .sendButtons li {
-    margin: 0 0 0 5px;
+    margin: 0 0 0 5px
 }
 
 .body_rtl #sending_progress {
     margin: 5px 10px 0px 0px;
-    float: right;
+    float: right
 }
 
 .body_rtl .messageText {
-    padding: 0 0 0 20px;
+    padding: 0 0 0 20px
 }
 
 .body_rtl #messageHistory table tr td.new_td_del {
-    padding: 10px 0 0 20px;
+    padding: 10px 0 0 20px
 }
 
 .body_rtl .topTime {
-    padding: 0 10px 0 0;
+    padding: 0 10px 0 0
 }
 
 .body_rtl .replyButtons {
     float: left;
     text-align: left;
-    padding: 0px 11px 6px 12px;
+    padding: 0px 11px 6px 12px
 }
 
 .body_rtl .replyExtraButtons {
     float: left;
     text-align: left;
-    padding: 3px 11px 0px 12px;
+    padding: 3px 11px 0px 12px
 }
 
-.body_rtl #notesBar .column {
-    float: right;
-}
-
+.body_rtl #notesBar .column,
 .body_rtl .note .note_title {
-    float: right;
+    float: right
 }
 
 .body_rtl .note_content {
-    margin: 0 6px 0 0;
+    margin: 0 6px 0 0
 }
 
 .body_rtl .comment a.userpic {
     float: right;
-    margin: 0px 0px 5px 5px;
+    margin: 0px 0px 5px 5px
 }
 
 .body_rtl .comment .notebody .justComment {
-    margin: 0 55px 0 0;
+    margin: 0 55px 0 0
 }
 
 .body_rtl .note {
-    padding: 10px 10px 35px;
+    padding: 10px 10px 35px
 }
 
 .body_rtl .note .profile_thumb {
     float: right;
-    padding: 0px 0px 0px 10px;
+    padding: 0px 0px 0px 10px
 }
 
 .body_rtl .note .note_body {
-    float: right;
+    float: right
 }
 
 .body_rtl .wide_note {
-    padding: 10px 20px 25px 10px;
+    padding: 10px 20px 25px 10px
 }
 
 .body_rtl .commentHead {
-    float: right;
+    float: right
 }
 
 .body_rtl .replyName {
     float: right;
-    margin: 0 5px 0 0;
+    margin: 0 5px 0 0
 }
 
 .body_rtl .addButton {
-    float: right;
+    float: right
 }
 
 .body_rtl .result_list {
     right: 0;
-    left: auto;
+    left: auto
 }
 
 .body_rtl .selector_container td.selector_dropdown {
     border-left: 0;
-    border-right: 1px solid #FFF;
+    border-right: 1px solid #fff
 }
 
 .body_rtl .selector_focused.selector_container td.selector_dropdown {
     border-left: 0;
-    border-right: 1px solid #D2DBE0;
+    border-right: 1px solid #d2dbe0
 }
 
 .body_rtl .selector_container .result_list ul li {
     padding: 3px 10px 3px 0px;
-    text-align: right;
+    text-align: right
 }
 
 .body_rtl .checkbox_container table td.checkbox_label,
 .body_rtl .radiobtn_container table td.radiobtn_label {
     padding: 0px 3px 0px 0px;
-    text-align: right;
+    text-align: right
 }
 
 .body_rtl .checkbox_container table td.checkbox_label {
-    padding-top: 1px;
+    padding-top: 1px
 }
 
 .body_rtl .selector_container td.selector .token {
-    padding: 2px 4px 3px 2px !important;
+    padding: 2px 4px 3px 2px!important;
     padding: 1px 4px 2px 2px;
-    *padding: 1px 4px 2px 2px !important;
+    *padding: 1px 4px 2px 2px!important;
     float: right;
-    border-width: 0px 0px 2px 2px;
+    border-width: 0px 0px 2px 2px
 }
 
 .body_rtl .selector_container td.selector input {
     float: right;
-    padding: 1px 3px 1px 0px !important;
-    padding: 2px 4px 0px 0px;
+    padding: 1px 3px 1px 0px!important;
+    padding: 2px 4px 0px 0px
 }
 
 .body_rtl .selector_container td.selector .token span.x,
 .body_rtl .selector_container td.selector .token span.x_hover {
-    margin: 2px 2px 0px 0px !important;
-    *margin-top: 3px !important;
-    margin: 0px;
+    margin: 2px 2px 0px 0px!important;
+    *margin-top: 3px!important;
+    margin: 0px
 }
 
 .body_rtl .selector_container td.selector {
-    padding: 2px 2px 0px 0px;
+    padding: 2px 2px 0px 0px
 }
 
 .body_rtl .msgOld {
-    margin: 10px 70px 0 0;
+    margin: 10px 70px 0 0
 }
 
 .body_rtl .msgOld em span {
-    text-align: right;
+    text-align: right
 }
 
 .body_rtl .msgOld em {
     padding: 0 17px 0 0;
-    background: url(../images/start_quote.gif) 100% 0 no-repeat;
+    background: url(../images/start_quote.gif) 100% 0 no-repeat
 }
 
 .body_rtl .msgOld em b {
     background: url(../images/end_quote.gif) 0 100% no-repeat;
-    padding: 0 12px 0 0;
+    padding: 0 12px 0 0
 }
 
 .body_rtl .groupslist {
-    float: right;
+    float: right
 }
 
 .body_rtl .groupslist .tunaimage {
-    text-align: right;
+    text-align: right
 }
 
 .body_rtl #findagroup {
     float: right;
-    padding: 10px 20px 10px 0px;
+    padding: 10px 20px 10px 0px
 }
 
 .body_rtl #startagroup {
     float: right;
-    text-align: right;
+    text-align: right
 }
 
 .body_rtl #findagroup #gSearch {
     float: right;
-    margin: 4px 0px 0px 5px;
+    margin: 4px 0px 0px 5px
 }
 
 .body_rtl #group.profile .right {
-    padding: 0 11px 0 0;
+    padding: 0 11px 0 0
 }
 
 .body_rtl #group.profile {
-    background-position: 209px top;
+    background-position: 209px top
 }
 
 .body_rtl .profile .actionspro li a {
-    padding: 3px 6px 3px 3px;
+    padding: 3px 6px 3px 3px
 }
 
 .body_rtl .profile .actionspro {
-    margin: 20px 1px 10px 0;
+    margin: 20px 1px 10px 0
 }
 
 .body_rtl .hLeft {
-    float: right;
+    float: right
 }
 
-.body_rtl .hRight {
-    float: left;
-}
-
+.body_rtl .hRight,
 .body_rtl #photoactions,
 .body_rtl #photoactions_container {
-    float: left;
+    float: left
 }
 
-.body_rtl #phototags,
-.body_rtl #photocaptionleft {
-    text-align: right;
+.body_rtl #photocaptionleft,
+.body_rtl #phototags {
+    text-align: right
 }
 
-.body_rtl #photodate,
+.body_rtl #photoaddcomment,
 .body_rtl #photocomment,
-.body_rtl #photoaddcomment {
-    float: right;
+.body_rtl #photodate {
+    float: right
 }
 
 .body_rtl #photoaddcomment {
-    clear: right;
+    clear: right
 }
 
-.body_rtl .comment .body .justComment,
-.body_rtl .comment .bigbody .justComment {
-    margin: 0 55px 0 0;
+.body_rtl .comment .bigbody .justComment,
+.body_rtl .comment .body .justComment {
+    margin: 0 55px 0 0
 }
 
 .body_rtl .comment .photo {
     float: left;
-    text-align: left;
+    text-align: left
 }
 
 .body_rtl #photoLocation {
     float: left;
     padding: 0 10px 0 0;
-    border-right: 1px solid #CCCCCC;
-    border-left: 0;
+    border-right: 1px solid #ccc;
+    border-left: 0
 }
 
 .body_rtl a#maximize,
 .body_rtl a#rotateleft_new,
 .body_rtl a#rotateright_new {
     padding-left: 0;
-    padding-right: 28px;
+    padding-right: 28px
 }
 
 .body_rtl a#maximize {
-    background-position: 134px 0;
+    background-position: 134px 0
 }
 
 .body_rtl a#maximize:hover {
-    background-position: 134px -25px;
+    background-position: 134px -25px
 }
 
 .body_rtl a#rotateleft_new {
-    background-position: 134px -100px;
+    background-position: 134px -100px
 }
 
 .body_rtl a#rotateleft_new:hover {
-    background-position: 134px -125px;
+    background-position: 134px -125px
 }
 
 .body_rtl a#rotateright_new {
-    background-position: 134px -50px;
+    background-position: 134px -50px
 }
 
 .body_rtl a#rotateright_new:hover {
-    background-position: 134px -75px;
+    background-position: 134px -75px
 }
 
 .body_rtl #pv_vk_logo {
     right: 10px;
-    left: auto;
+    left: auto
 }
 
 .body_rtl #pv_vk_close {
     left: 13px;
-    right: auto;
+    right: auto
 }
 
 .body_rtl #pv_vk_close_tip {
     left: 9px;
     right: auto;
-    padding: 0 8px 0 25px;
+    padding: 0 8px 0 25px
 }
 
 .body_rtl #pv_bottom_ctrl_wrap {
     left: 0;
-    right: auto;
+    right: auto
 }
 
 .body_rtl .notTable {
-    margin: 3px 10px 3px 0;
+    margin: 3px 10px 3px 0
 }
 
 .body_rtl .notDay {
     padding: 4px 12px 4px 4px;
-    text-align: right;
+    text-align: right
 }
 
 .body_rtl .appRow .info {
-    padding: 1px 5px 1px 1px;
+    padding: 1px 5px 1px 1px
 }
 
 .body_rtl #bottomlinks {
     margin: 0 0 15px 15px;
-    text-align: left;
+    text-align: left
 }
 
 .body_rtl .accessProperty {
     padding-left: 0px;
     padding-right: 64px;
-    background-position: right 2px;
+    background-position: right 2px
 }
 
 .body_rtl .installDialog .bottomButtons {
     margin-left: 0px;
-    margin-right: 295px;
+    margin-right: 295px
 }
 
 .body_rtl .wallpost {
-    float: right;
+    float: right
 }
 
 .body_rtl .wallpost td.image {
-    text-align: right;
+    text-align: right
 }
 
 .body_rtl .wallOnline {
-    margin: 4px 10px 0px 0px;
+    margin: 4px 10px 0px 0px
 }
 
 .body_rtl .wallWriteForm {
-    padding: 0 10px 0 0;
+    padding: 0 10px 0 0
 }
 
 .body_rtl .wallWriteButtons {
     text-align: left;
-    margin-left: 21px;
+    margin-left: 21px
 }
 
 .body_rtl .wallWriteButtons .nNav {
-    float: left;
+    float: left
 }
 
 .body_rtl .wallWriteButtons .nNav li {
-    margin: 0 0 0 5px;
+    margin: 0 0 0 5px
 }
 
 .body_rtl .wallWriteButtons #posting_progress {
     margin: 5px 0 0px 10px;
-    float: left;
+    float: left
 }
 
 .body_rtl .statHead {
-    text-align: right;
+    text-align: right
 }
 
 .body_rtl #searchContent td#results {
-    border-left: 1px solid #F7F7F7;
-    border-right: 0;
+    border-left: 1px solid #f7f7f7;
+    border-right: 0
 }
 
 .body_rtl #searchContent td#results .result {
-    margin: 8px 8px 0px 0px;
+    margin: 8px 8px 0px 0px
 }
 
 .body_rtl #searchContent .result .info,
-.body_rtl #searchContent .result .info dt,
-.body_rtl #searchContent .result .info dd {
-    float: right;
+.body_rtl #searchContent .result .info dd,
+.body_rtl #searchContent .result .info dt {
+    float: right
 }
 
+.body_rtl .adsResults #results,
 .body_rtl .audioResults #results,
 .body_rtl .notesResults #results,
-.body_rtl .topicsResults #results,
-.body_rtl .questionsResults #results,
 .body_rtl .pagesResults #results,
-.body_rtl .adsResults #results {
-    padding: 10px 10px 10px 3px;
+.body_rtl .questionsResults #results,
+.body_rtl .topicsResults #results {
+    padding: 10px 10px 10px 3px
 }
 
 .body_rtl .filterOpen {
-    background-position: 138px 8px;
+    background-position: 138px 8px
 }
 
 .body_rtl .filterShut {
-    background-position: 139px 6px;
+    background-position: 139px 6px
 }
 
 .body_rtl .filterOpen,
 .body_rtl .filterShut {
     padding: 4px 21px 4px 4px;
-    margin: 8px 8px 0px 6px;
+    margin: 8px 8px 0px 6px
 }
 
 .body_rtl .divider2px {
-    margin: 0px 8px 0px 6px;
+    margin: 0px 8px 0px 6px
 }
 
 .body_rtl .inner_filter {
-    padding: 3px 8px 0px 0px;
+    padding: 3px 8px 0px 0px
 }
 
 .body_rtl #searchContent .pageList {
-    float: left;
+    float: left
 }
 
-.body_rtl #searchContent .pageList li {
-    float: right;
-}
-
+.body_rtl #searchContent .pageList li,
 .body_rtl .range_from,
-.body_rtl .range_to,
-.body_rtl .range_sep {
-    float: right;
+.body_rtl .range_sep,
+.body_rtl .range_to {
+    float: right
 }
 
 .body_rtl .cReligion input {
-    padding: 3px 5px 3px 3px;
+    padding: 3px 5px 3px 3px
 }
 
 .body_rtl #searchContent #noResults {
-    margin: 8px 8px 8px 0;
+    margin: 8px 8px 8px 0
 }
 
 .body_rtl #searchContent #noResultsWhite {
-    margin: 0 0 0 8px;
+    margin: 0 0 0 8px
 }
 
 .body_rtl .videoInfo {
-    padding: 5px 10px 0 0;
+    padding: 5px 10px 0 0
 }
 
 .body_rtl .sponsored .sponsored_header {
-    text-align: left;
+    text-align: left
 }
 
 .body_rtl .marketItem .thumb {
     float: right;
-    margin: 0 0 0 14px;
+    margin: 0 0 0 14px
 }
 
 .body_rtl .marketItem .info {
-    float: right;
+    float: right
 }
 
 .body_rtl .noteRow .note_footer {
-    padding: 0 6px 0 2px;
+    padding: 0 6px 0 2px
 }
 
 .body_rtl .noteRow .profile_thumb {
     float: right;
-    padding: 0 0 0 10px;
+    padding: 0 0 0 10px
 }
 
 .body_rtl #filters table.price .inputText {
-    margin: 0 3px 0 0;
+    margin: 0 3px 0 0
 }
 
 .priceGap {
-    padding: 5px 3px 0px 0px;
+    padding: 5px 3px 0px 0px
 }
 
 .body_rtl .activationProgress {
     float: left;
-    margin: -18px 0px 0px 10px;
+    margin: -18px 0px 0px 10px
 }
 
 .body_rtl .activationBoxContent {
-    text-align: right;
+    text-align: right
 }
 
 .body_rtl .activationEnterCode {
-    padding: 3px 0px 0px 15px;
+    padding: 3px 0px 0px 15px
 }
 
 .body_rtl .activationBottomInfo {
-    padding: 0 20px 0 0;
+    padding: 0 20px 0 0
 }
 
 .body_rtl #rateBar .column {
-    float: right;
+    float: right
 }
 
 .body_rtl .rateSideTitle {
-    margin: 6px 7px 5px 5px;
+    margin: 6px 7px 5px 5px
 }
 
 .body_rtl #rateBar {
-    background: #F7F7F7;
+    background: #f7f7f7
 }
 
 .body_rtl #rateBar .mainPanel {
-    background: #FAFAFA;
-    border-left: 1px solid #CCCCCC;
+    background: #fafafa;
+    border-left: 1px solid #ccc
 }
 
 .body_rtl #rateBar .sidePanel {
-    border-right: 1px solid #CCCCCC;
-    margin-right: -1px;
+    border-right: 1px solid #ccc;
+    margin-right: -1px
 }
 
 .body_rtl .rateInvited ul {
-    padding: 0 15px 0 0;
+    padding: 0 15px 0 0
 }
 
 .body_rtl .rateProfileLine {
-    padding: 3px 18px 0 0;
+    padding: 3px 18px 0 0
 }
 
 .body_rtl .rateInvitedLine {
-    padding: 3px 15px 0 0;
+    padding: 3px 15px 0 0
 }
 
+.body_rtl #rrBlue .ratePlus,
 .body_rtl #rrGreen .ratePlus,
-.body_rtl #rrRed .ratePlus,
-.body_rtl #rrBlue .ratePlus {
-    margin: 5px 5px 0px 0px;
+.body_rtl #rrRed .ratePlus {
+    margin: 5px 5px 0px 0px
 }
 
 .body_rtl .rateRowThird div {
     margin: 0 0 0 10px;
-    padding: 0 3px 4px 10px;
+    padding: 0 3px 4px 10px
 }
 
 .body_rtl .rateVoteMSG {
     margin: 0 0 0 11px;
     padding: 8px 3px 4px 10px;
-    text-align: right;
+    text-align: right
 }
 
 .body_rtl .rateVoteBack {
     padding: 0 0 0 5px;
-    text-align: left;
+    text-align: left
 }
 
 .body_rtl .rateRowFirst {
-    background-position: 0 0;
+    background-position: 0 0
 }
 
 .body_rtl .qArea {
-    margin: 15px 0px 6px 10px;
+    margin: 15px 0px 6px 10px
 }
 
 .body_rtl .qText {
     background-position: 452px 5px;
-    padding: 2px 20px 5px 5px;
+    padding: 2px 20px 5px 5px
 }
 
 .body_rtl .qEdit {
-    padding: 5px 0px 6px 10px;
+    padding: 5px 0px 6px 10px
 }
 
 .body_rtl .qDate {
-    text-align: left;
+    text-align: left
 }
 
 .body_rtl .qArea1 {
-    padding: 15px 0px 6px 10px;
+    padding: 15px 0px 6px 10px
 }
 
 .body_rtl .qPhoto {
-    padding: 0 0 0 10px;
+    padding: 0 0 0 10px
 }
 
 .body_rtl .qAddQuestion {
-    margin: 0 160px 0 0;
+    margin: 0 160px 0 0
 }
 
 .body_rtl .qAddButtons li,
-.body_rtl .qEdit .nNav li,
+.body_rtl .qAddCommButtons .nNav li,
 .body_rtl .qDelButtons .nNav li,
-.body_rtl .qAddCommButtons .nNav li {
-    margin: 0 0 0 5px;
+.body_rtl .qEdit .nNav li {
+    margin: 0 0 0 5px
 }
 
 .body_rtl .qAddQuestion h4,
 .body_rtl .qAddQuestion h5 {
-    text-align: right;
+    text-align: right
 }
 
 .body_rtl .questionDel {
-    float: left;
+    float: left
 }
 
 .body_rtl .qEdit .nNav {
-    margin: 8px 0px 0px 10px;
+    margin: 8px 0px 0px 10px
 }
 
 .body_rtl .qDelButtons {
     float: left;
-    margin: 10px 0px 0px 5px;
+    margin: 10px 0px 0px 5px
 }
 
 .body_rtl .newcomm td.image {
-    text-align: right;
+    text-align: right
 }
 
 .body_rtl .newcomm .text {
-    padding: 10px 10px 5px 5px;
+    padding: 10px 10px 5px 5px
 }
 
 .body_rtl .commnav li a {
-    padding: 4px 6px 4px 10px;
+    padding: 4px 6px 4px 10px
 }
 
 .body_rtl ul.ratePages li {
     float: right;
-    margin-left: 1px;
+    margin-left: 1px
 }
 
 .body_rtl #addcomment #appCommHead {
-    float: right;
+    float: right
 }
 
 .body_rtl #addcomment {
-    padding: 10px 80px 10px 10px;
+    padding: 10px 80px 10px 10px
 }
 
 .body_rtl .newcomm td.image img {
-    margin: 0 0 0 5px;
+    margin: 0 0 0 5px
 }
 
 .body_rtl #dialog p {
-    text-align: right;
+    text-align: right
 }
 
 .body_rtl #getVotesProgress {
-    float: left;
+    float: left
 }
 
 .body_rtl #votes_box_details .listing {
-    padding: 0 25px 0 0;
+    padding: 0 25px 0 0
 }
 
 .body_rtl .flatTab,
 .body_rtl .flatTabOn {
-    float: right;
+    float: right
 }
 
 .body_rtl .pageBody .flatTabs {
-    padding: 10px 7px 0 0;
+    padding: 10px 7px 0 0
 }
 
 .body_rtl #paymentForm .labeled {
     float: right;
     padding: 4px 0 0 10px;
-    text-align: left;
+    text-align: left
 }
 
 .body_rtl .cardsButtons {
-    padding: 6px 230px 0 0;
+    padding: 6px 230px 0 0
 }
 
 .body_rtl .infotable .label {
-    padding: 0 0 0 5px;
+    padding: 0 0 0 5px
 }
 
 .body_rtl .confirmButtons {
-    margin: 10px 70px 0px 10px;
+    margin: 10px 70px 0px 10px
 }
 
 .body_rtl .dayCell,
 .body_rtl .dayCellLeft {
-    border-left: 1px solid #B6CBE7;
+    border-left: 1px solid #b6cbe7;
     border-right: 0;
-    text-align: right;
+    text-align: right
 }
 
 .body_rtl .dayCellLeft {
-    border-right: 1px solid #B6CBE7;
+    border-right: 1px solid #b6cbe7
 }
 
 .body_rtl .dayNum {
-    border-left: 1px solid #B6CBE7;
-    border-right: 0;
+    border-left: 1px solid #b6cbe7;
+    border-right: 0
 }
 
 .body_rtl .dayHeadFirst {
-    border-right-width: 1px;
+    border-right-width: 1px
 }
 
 .body_rtl .dayHeadLast {
-    border-left-width: 1px;
+    border-left-width: 1px
 }
 
 .body_rtl #group.profile .admins li {
-    margin: 0px 16px 0 0;
+    margin: 0px 16px 0 0
 }
 
 .body_rtl .profile .info_table caption {
-    text-align: right;
+    text-align: right
 }
 
 .body_rtl .boardTopic .topicInfo {
     float: right;
-    padding: 0 0 0 10px;
+    padding: 0 0 0 10px
 }
 
 .body_rtl .profile .info_table td {
-    padding: 1px 0;
+    padding: 1px 0
 }
 
-.body_rtl table.editor td.labelHigh,
-.body_rtl .editor td.label {
+.body_rtl .editor td.label,
+.body_rtl table.editor td.labelHigh {
     padding: 10px 0 0 10px;
-    text-align: left;
+    text-align: left
 }
 
 .body_rtl .labelFieldInfo {
-    margin: 4px 285px 0 0;
+    margin: 4px 285px 0 0
 }
 
 .body_rtl #editInfo .labelHigh {
-    text-align: left;
+    text-align: left
 }
 
 .body_rtl .birthdayInfo {
     border-left: 0;
-    border-right: 1px solid #E7E7E7;
-    padding: 5px 10px 5px 5px;
+    border-right: 1px solid #e7e7e7;
+    padding: 5px 10px 5px 5px
 }
 
 .body_rtl .calPic {
-    margin: -8px 5px 4px 0;
+    margin: -8px 5px 4px 0
 }
 
 .body_rtl .dayMore {
-    margin: 1px 1px 0 0;
+    margin: 1px 1px 0 0
 }
 
 .body_rtl #groupMembers #membersRows {
-    padding: 10px 10px 5px 0;
+    padding: 10px 10px 5px 0
 }
 
 .body_rtl #groupMembers #membersRows .info {
-    padding: 0 10px 0 0;
+    padding: 0 10px 0 0
 }
 
 .body_rtl .calImg {
-    margin: 0 0 0 -7px;
+    margin: 0 0 0 -7px
 }
 
 .body_rtl .calImg img {
-    margin: 3px -18px 3px 6px;
+    margin: 3px -18px 3px 6px
 }
 
 .body_rtl .day,
 .body_rtl .dayLeft,
 .body_rtl .dayOn {
-    border-left: 1px solid #DAE2E8;
-    border-right: 0;
+    border-left: 1px solid #dae2e8;
+    border-right: 0
 }
 
 .body_rtl .dayLeft {
-    border-right: 1px solid #DAE2E8;
+    border-right: 1px solid #dae2e8
 }
 
 .body_rtl #votingDiv {
-    padding: 0 0 0 10px;
+    padding: 0 0 0 10px
 }
 
 .body_rtl .voting_options_div {
     background-position: 100% 0;
-    padding-left: 0 20px 0 0;
+    padding-left: 0 20px 0 0
 }
 
 .body_rtl .voting_result_text {
-    padding: 0 5px 0 0;
+    padding: 0 5px 0 0
 }
 
 .body_rtl .voting_links {
-    text-align: left;
+    text-align: left
 }
 
 .body_rtl .videoWallLink,
 .body_rtl .videoWallLinkHover {
-    float: right;
+    float: right
 }
 
 .body_rtl .durationText div {
-    float: left;
+    float: left
 }
 
 .body_rtl .videoWallIcon {
-    padding: 1px 0 0 5px;
+    padding: 1px 0 0 5px
 }
 
 .body_rtl .profileNetworks {
-    float: left;
+    float: left
 }
 
 .body_rtl .editor {
-    margin: 3px 30px 7px 0;
+    margin: 3px 30px 7px 0
 }
 
 .body_rtl .editor .photo {
-    margin: 0 0 0 20px;
+    margin: 0 0 0 20px
 }
 
 .body_rtl #currinfo_editor {
-    margin: -24px -13px 0 0;
+    margin: -24px -13px 0 0
 }
 
 .body_rtl #currinfo_editor .editor {
-    margin: 0;
+    margin: 0
 }
 
 .body_rtl #goSearch #gSearch {
     margin: 4px 0px 0px 10px;
-    float: right;
+    float: right
 }
 
 .body_rtl .mPanel .mOff .mName {
-    float: right;
+    float: right
 }
 
 .body_rtl .mPanel .mOff .mOption {
-    float: left;
+    float: left
 }
 
 .body_rtl .topicOption {
     float: left;
-    padding: 10px 0px 0px 5px;
+    padding: 10px 0px 0px 5px
 }
 
 .body_rtl #loading_pages_up {
-    float: left;
+    float: left
 }
 
 .body_rtl #post_answer_progress {
     margin: 5px 10px 0px 0px;
-    float: right;
+    float: right
 }
 
 .body_rtl .topicBar {
-    padding: 0 10px 10px 5px;
+    padding: 0 10px 10px 5px
 }
 
 .body_rtl .topicBar h2 {
-    text-align: right;
+    text-align: right
 }
 
 .body_rtl #rows_content .post .info {
-    float: right;
+    float: right
 }
 
 .body_rtl #rows_content .post .postBody {
     float: right;
-    margin: 0 0 0 10px;
+    margin: 0 0 0 10px
 }
 
 .body_rtl #rows_content .post .postMessage {
-    padding: 10px 4px 4px 40px;
+    padding: 10px 4px 4px 40px
 }
 
 .body_rtl #rows_content .postOptions {
-    float: left;
+    float: left
 }
 
 .body_rtl .voting_options_div {
     background-position: 100% 0;
-    padding: 0 20px 0 0;
+    padding: 0 20px 0 0
 }
 
 .body_rtl .boardOrder {
     float: right;
-    padding: 4px 0px 0px 5px;
+    padding: 4px 0px 0px 5px
 }
 
 .body_rtl .boardOption {
     float: left;
-    padding: 14px 0px 0px 5px;
+    padding: 14px 0px 0px 5px
 }
 
 .body_rtl .pollEditButtons {
-    margin: 0 153px 0 0;
+    margin: 0 153px 0 0
 }
 
 .body_rtl .opinionDel {
-    float: left;
+    float: left
 }
 
 .body_rtl blockquote,
 .body_rtl blockquote.wikiQuote {
     border-left: 0;
-    border-right: 9px solid #C9D8DF;
+    border-right: 9px solid #c9d8df
 }
 
 .body_rtl #leftColumn {
     float: right;
-    margin: 0px 0px 0px 10px;
+    margin: 0px 0px 0px 10px
 }
 
 .body_rtl #rightColumn {
-    float: left;
+    float: left
 }
 
 .body_rtl #fave {
-    background-position: 209px top;
+    background-position: 209px top
 }
 
 .body_rtl a#addItem {
-    float: left;
+    float: left
 }
 
 .body_rtl #categoriesList h3 {
-    margin: 0 0 16px 10px;
+    margin: 0 0 16px 10px
 }
 
 .body_rtl #categoriesList table td {
-    padding: 0 18px 15px 0;
+    padding: 0 18px 15px 0
 }
 
 .body_rtl #itemsList .itemCount {
-    margin: 7px 10px 3px 0;
+    margin: 7px 10px 3px 0
 }
 
 .body_rtl ul#sections li {
     float: right;
-    margin: 0 0 0 8px;
+    margin: 0 0 0 8px
 }
 
 .body_rtl #tabs_panel ul.tabs {
-    float: right;
+    float: right
 }
 
 .body_rtl #itemForm .labelFieldInfo {
-    margin: 4px 300px 0px 0px;
+    margin: 4px 300px 0px 0px
 }
 
 .body_rtl #itemForm .label {
-    padding: 5px 0px 5px 15px;
+    padding: 5px 0px 5px 15px
 }
 
 .body_rtl #selProgress {
     float: left;
-    margin: 0 0 0 160px;
+    margin: 0 0 0 160px
 }
 
 .body_rtl td.labelField input#price {
-    float: right;
+    float: right
 }
 
 .body_rtl #editorPanel td.buttons ul.nNav {
-    margin: 0 177px 0 0;
+    margin: 0 177px 0 0
 }
 
 .body_rtl #editorPanel div.imageThumb {
     float: right;
-    margin: 0 0 10px 10px;
+    margin: 0 0 10px 10px
 }
 
-.body_rtl .albumsSummaryBar .summary {
-    float: right;
-}
-
+.body_rtl .albumsSummaryBar .summary,
 .body_rtl .photo_container {
-    float: right;
+    float: right
 }
 
 .body_rtl #checkboxFeedWrap {
     float: left;
-    margin: 0 2px 2px 0;
+    margin: 0 2px 2px 0
 }
 
 .body_rtl #checkboxFeed {
-    padding: 20px 10px 10px 20px;
+    padding: 20px 10px 10px 20px
 }
 
 .body_rtl .side_filter_selected {
     background-position: 96px -29px;
-    padding: 4px 30px 4px 5px;
+    padding: 4px 30px 4px 5px
 }
 
 .body_rtl .side_filter,
 .body_rtl .side_filter_over {
     background-position: 96px 3px;
-    padding: 4px 30px 4px 5px;
+    padding: 4px 30px 4px 5px
 }
 
-.checkbox_on,
-.checkbox_off {
-    background-position: right -14px;
+.checkbox_off,
+.checkbox_on {
+    background-position: right -14px
 }
 
 .checkbox_off_over {
-    background-position: right -28px;
+    background-position: right -28px
 }
 
 .checkbox_on_over {
-    background-position: right -42px;
+    background-position: right -42px
 }
 
 .body_rtl .feedDayWrap {
-    clear: right;
+    clear: right
 }
 
 .body_rtl .feedDay {
     text-align: right;
-    padding: 4px 8px 4px 4px;
+    padding: 4px 8px 4px 4px
 }
 
 .body_rtl .feedIcon {
-    margin: 0 0 0 5px;
+    margin: 0 0 0 5px
 }
 
 .body_rtl .feedFriend,
 .body_rtl .feedGift {
     float: right;
-    padding: 5px 0 5px 5px;
+    padding: 5px 0 5px 5px
 }
 
 .body_rtl .feedPhotos a img {
-    margin: 3px 0 3px 6px;
+    margin: 3px 0 3px 6px
 }
 
 .body_rtl .feedTime {
-    text-align: left;
+    text-align: left
 }
 
 .body_rtl .feedVideos a img {
-    margin: 3px 0 3px 6px;
+    margin: 3px 0 3px 6px
 }
 
 .body_rtl #mainFeed .fakeThumb img,
 .body_rtl #mainFeed .thumb img {
-    margin: -3px 0 0 4px;
+    margin: -3px 0 0 4px
 }
 
-.body_rtl #mainFeed .unsubscribe,
 #mainFeed .showall,
-#mainFeed .thumb {
+#mainFeed .thumb,
+.body_rtl #mainFeed .unsubscribe {
     float: left;
-    padding: 5px 5px 5px 0;
+    padding: 5px 5px 5px 0
 }
 
 .body_rtl #mainFeed .feedTable table.commentItem .userpic {
-    margin: 0 0 0 5px;
+    margin: 0 0 0 5px
 }
 
 #mainFeed .unsubscribe {
-    padding: 2px 0 0 2px;
+    padding: 2px 0 0 2px
 }
 
 .body_rtl .wide_status td.img a {
     margin-left: 10px;
-    margin-right: 0;
+    margin-right: 0
 }
 
 .body_rtl .feedCheckin .checkin_icon {
-    background-position: 100% 0;
+    background-position: 100% 0
 }
 
-.body_rtl #filterstatuses,
+.body_rtl #filtercomments,
 .body_rtl #filtermentions,
-.body_rtl #filtercomments {
+.body_rtl #filterstatuses {
     padding-left: 5px;
-    padding-right: 9px;
+    padding-right: 9px
 }
 
 .body_rtl #filters_block input.inputText {
-    background: #FFF url(/images/magglassRTL.png) no-repeat right 4px;
+    background: #fff url(/images/magglassRTL.png) no-repeat right 4px;
     padding-left: 3px;
-    padding-right: 19px;
+    padding-right: 19px
 }
 
 .body_rtl .pv_cont .right_column {
     border-left: 0;
     margin-left: 0;
     padding-left: 0;
-    border-right: 1px solid #CCC;
+    border-right: 1px solid #ccc;
     margin-right: 20px;
-    padding-right: 20px;
+    padding-right: 20px
 }
 
 .body_rtl #userProfile #leftColumn {
     float: right;
-    margin: 0 0 0 10px;
+    margin: 0 0 0 10px
 }
 
 .body_rtl #userProfile #rightColumn {
-    float: left;
+    float: left
 }
 
-.body_rtl #userProfile .bOpen .flexHeader,
-.body_rtl #group .bOpen .flexHeader {
+.body_rtl #group .bOpen .flexHeader,
+.body_rtl #userProfile .bOpen .flexHeader {
     background-image: url('../images/flex_arrow_openRTL.gif');
-    background-position: 100%;
+    background-position: 100%
 }
 
-.body_rtl #userProfile .bShut .flexHeader,
-.body_rtl #group .bShut .flexHeader {
+.body_rtl #group .bShut .flexHeader,
+.body_rtl #userProfile .bShut .flexHeader {
     background-image: url('../images/flex_arrow_shutRTL.gif');
-    background-position: 100%;
+    background-position: 100%
 }
 
-.body_rtl #userProfile .flexHeader,
-.body_rtl #group .flexHeader {
-    padding: 3px 23px 3px 8px;
+.body_rtl #group .flexHeader,
+.body_rtl #userProfile .flexHeader {
+    padding: 3px 23px 3px 8px
 }
 
-.body_rtl #userProfile .flexHeader div,
-.body_rtl #group .flexHeader div {
-    float: right;
+.body_rtl #group .flexHeader div,
+.body_rtl #userProfile .flexHeader div {
+    float: right
 }
 
-.body_rtl #userProfile .flexHeader .flexEdit,
-.body_rtl #group .flexHeader .flexEdit {
-    float: left;
+.body_rtl #group .flexHeader .flexEdit,
+.body_rtl #userProfile .flexHeader .flexEdit {
+    float: left
 }
 
-.body_rtl #userProfile .whenOpen .flexHeader,
-.body_rtl #userProfile .whenShut .flexHeader,
 .body_rtl #group .whenOpen .flexHeader,
-.body_rtl #group .whenShut .flexHeader {
-    background-position: 100%;
+.body_rtl #group .whenShut .flexHeader,
+.body_rtl #userProfile .whenOpen .flexHeader,
+.body_rtl #userProfile .whenShut .flexHeader {
+    background-position: 100%
 }
 
 .body_rtl #userProfile {
-    background-position: 208px;
+    background-position: 208px
 }
 
 .body_rtl .profileName {
     float: right;
-    padding: 2px 0px 0px 5px;
+    padding: 2px 0px 0px 5px
 }
 
 .body_rtl .fSub .fDetails {
-    float: right;
+    float: right
 }
 
 .body_rtl .fSub .fSeeAll {
     float: right;
-    text-align: left;
+    text-align: left
 }
 
 .body_rtl .fSub_right {
-    float: left;
+    float: left
 }
 
 .body_rtl .fSub_left {
-    float: right;
+    float: right
 }
 
 .body_rtl .wallpost td.image {
-    text-align: right;
+    text-align: right
 }
 
 .body_rtl .wallpost td.image img {
-    margin: 0 0 0 5px;
+    margin: 0 0 0 5px
 }
 
 .body_rtl .add img {
-    margin: 0 0 0 6px;
+    margin: 0 0 0 6px
 }
 
 .body_rtl .added {
-    margin: 0px -6px 10px 10px;
+    margin: 0px -6px 10px 10px
 }
 
-.body_rtl .notes_titles li.written {
-    background-position: right 1px;
-    padding: 0px 22px 6px 0px;
-}
-
+.body_rtl .notes_titles li.written,
 .body_rtl .notes_titles li.question {
     background-position: right 1px;
-    padding: 0px 22px 6px 0px;
+    padding: 0px 22px 6px 0px
 }
 
-.body_rtl .upArrow,
-.body_rtl .dArrow {
+.body_rtl .dArrow,
+.body_rtl .upArrow {
     float: left;
-    margin: 0px 0px 0px 5px;
+    margin: 0px 0px 0px 5px
 }
 
 .body_rtl .t_filter_selected {
     float: right;
-    margin: 0 0 -1px 10px;
+    margin: 0 0 -1px 10px
 }
 
 .body_rtl .t_filter_off {
-    float: right;
+    float: right
 }
 
 .body_rtl #friend_lookup {
-    float: left;
+    float: left
 }
 
 .body_rtl .friendsPage #noResults {
     float: left;
-    margin: 8px 8px 8px 0px;
+    margin: 8px 8px 8px 0px
 }
 
-.body_rtl .friendsPage #progressTop,
-.body_rtl .friendsPage #progressBottom {
+.body_rtl .friendsPage #progressBottom,
+.body_rtl .friendsPage #progressTop {
     float: left;
-    margin: 3px 0px 0px 3px;
+    margin: 3px 0px 0px 3px
 }
 
-.body_rtl .friendsPage .result .info {
-    float: right;
-}
-
+.body_rtl .friendsPage .result .info,
 .body_rtl .friendsPage .result .info dd,
 .body_rtl .friendsPage .result .info dt {
-    float: right;
+    float: right
 }
 
 .body_rtl .friendsPage .side_filters {
-    padding: 8px 0px 8px 8px;
+    padding: 8px 0px 8px 8px
 }
 
 .body_rtl .friendsPage .side_filter_selected {
-    padding: 4px 10px 4px 5px;
+    padding: 4px 10px 4px 5px
 }
 
 .body_rtl #flist_edit_wrap {
-    padding: 8px 8px 0px 0px;
+    padding: 8px 8px 0px 0px
 }
 
 .body_rtl #flist_wrap {
-    padding: 8px 0px 0px 8px;
+    padding: 8px 0px 0px 8px
 }
 
-.body_rtl .friendsPage .request_declined,
-.body_rtl .friendsPage .request_accepted {
-    float: right;
+.body_rtl .friendsPage .request_accepted,
+.body_rtl .friendsPage .request_declined {
+    float: right
 }
 
 .body_rtl .friendsPage .friendRows {
-    padding: 0 8px 0 0;
+    padding: 0 8px 0 0
 }
 
 .body_rtl .friendRowBtns {
-    margin: 5px 67px 0px 0px;
+    margin: 5px 67px 0px 0px
 }
 
 .body_rtl .friendRowBtn {
     float: right;
-    margin: 0 0 0 7px;
+    margin: 0 0 0 7px
 }
 
 .body_rtl .friendsPage .label {
     float: right;
     text-align: left;
-    padding: 9px 50px 0px 15px;
+    padding: 9px 50px 0px 15px
 }
 
 .body_rtl .friendsPage .labeled {
     float: right;
-    text-align: right;
+    text-align: right
 }
 
 .body_rtl .friendsPage .buttons {
-    margin: 0 255px 0 0;
+    margin: 0 255px 0 0
 }
 
 .body_rtl .friendsPage .listProgress {
-    padding: 130px 160px 90px 0px;
+    padding: 130px 160px 90px 0px
 }
 
-.body_rtl .alienName {
-    float: right;
-}
-
+.body_rtl .alienName,
 .body_rtl .alienMail {
-    float: right;
+    float: right
 }
 
 .body_rtl .mine .side_filters {
     width: 134px;
-    padding: 8px 0 8px 8px;
+    padding: 8px 0 8px 8px
 }
 
 .body_rtl .friendsPage .side_filter,
-.body_rtl .friendsPage .side_filter_over,
-.body_rtl .friendsPage .side_filter_elected {
-    padding: 4px 10px 4px 5px;
+.body_rtl .friendsPage .side_filter_elected,
+.body_rtl .friendsPage .side_filter_over {
+    padding: 4px 10px 4px 5px
 }
 
 .body_rtl .pollEdit {
-    float: left;
+    float: left
 }
 
 .body_rtl .matchInfo {
-    border-right: 1px solid #E7E7E7;
+    border-right: 1px solid #e7e7e7;
     border-left: 0;
-    padding: 15px 10px 5px 5px;
+    padding: 15px 10px 5px 5px
 }
 
 .body_rtl .qOnline {
     float: left;
-    margin: 0 0 0 5px;
+    margin: 0 0 0 5px
 }
 
 .body_rtl .matchEditLabel {
     text-align: left;
-    padding: 7px 70px 10px 0px;
+    padding: 7px 70px 10px 0px
 }
 
 .body_rtl #oneMatch {
-    float: right;
+    float: right
 }
 
 .body_rtl .oneMatch {
-    border-right: 1px solid #E7E7E7;
+    border-right: 1px solid #e7e7e7;
     border-left: 0;
-    padding: 1px 10px 1px 1px;
+    padding: 1px 10px 1px 1px
 }
 
 .body_rtl .matchSentInfo {
-    padding: 15px 10px 5px 5px;
+    padding: 15px 10px 5px 5px
 }
 
 .body_rtl .profileEditor .row .label {
-    padding: 4px 0 0 10px;
+    padding: 4px 0 0 10px
 }
 
-.body_rtl .row #bday_vis_detail {
-    float: right;
-}
-
+.body_rtl .row #bday_vis_detail,
 .body_rtl #general .bday,
+.body_rtl #general .bmonth,
 .body_rtl #general .byear,
-.body_rtl #general .bmonth {
-    float: right;
-}
-
 .body_rtl .educationEdit .school_row,
 .body_rtl .educationEdit .school_type_row {
-    float: right;
+    float: right
 }
 
-.body_rtl .profileEditor .header,
-.body_rtl #add_uni_link,
+.body_rtl #add_military_link,
 .body_rtl #add_school_link,
+.body_rtl #add_uni_link,
 .body_rtl #add_work_link,
-.body_rtl #add_military_link {
-    margin: 0 240px 0 0;
+.body_rtl .profileEditor .header {
+    margin: 0 240px 0 0
 }
 
 .body_rtl .profileEditor #buttons {
-    margin: 10px 240px 0 0;
+    margin: 10px 240px 0 0
 }
 
 .body_rtl #general #buttons {
     float: left;
-    padding: 0 0 0 227px;
+    padding: 0 0 0 227px
 }
 
 .body_rtl #educationFilter .filter,
 .body_rtl #educationFilter .filter_on,
 .body_rtl #educationFilter .filter_over {
-    float: right;
+    float: right
 }
 
 .body_rtl #contacts #buttons {
-    margin: 10px 230px 0 0;
+    margin: 10px 230px 0 0
 }
 
 .body_rtl .nick_place {
     float: right;
-    text-align: right;
+    text-align: right
 }
 
 .body_rtl .nick_at {
     float: right;
-    padding: 4px 0 0 10px;
+    padding: 4px 0 0 10px
 }
 
 .body_rtl #forums a {
-    float: left;
+    float: left
 }
 
-.body_rtl .placeCategory .header,
-.body_rtl .placeCategory .addresses {
+.body_rtl .placeCategory .addresses,
+.body_rtl .placeCategory .header {
     margin: 0;
-    padding: 0 140px 0 0;
+    padding: 0 140px 0 0
 }
 
 .body_rtl .placeCategory div.actions {
     float: left;
     padding: 0 0 0 10px;
-    text-align: left;
+    text-align: left
 }
 
-.body_rtl .placeCategory .row div.typeName {
-    float: right;
-}
-
+.body_rtl .placeCategory .row div.typeName,
 .body_rtl .placeCategory .row div.lines {
-    float: right;
+    float: right
 }
 
 .body_rtl #add_address_link {
-    margin: 0 270px 0 0;
+    margin: 0 270px 0 0
 }
 
 .body_rtl #addAudio {
-    text-align: right;
+    text-align: right
 }
 
 .body_rtl #addAudio ul.listing {
-    padding-right: 20px;
+    padding-right: 20px
 }
 
 .body_rtl #standardUpload ul.nNav {
-    margin: 0 130px 0 0;
+    margin: 0 130px 0 0
 }
 
 .body_rtl #audioBar .mainPanel {
-    border-left: 1px solid #DAE1E8;
-    border-right: 0;
+    border-left: 1px solid #dae1e8;
+    border-right: 0
 }
 
 .body_rtl .audioEditRow .audioTitle b,
 .body_rtl .audioEditRow .audioTitle span,
 .body_rtl .audioRow .audioTitle b,
 .body_rtl .audioRow .audioTitle span {
-    float: right;
+    float: right
 }
 
 .body_rtl .audioEditRow .editTitle b,
@@ -1472,100 +1441,100 @@
 .body_rtl .audioRow .editTitle b,
 .body_rtl .audioRow .editTitle span {
     float: right;
-    padding-left: 3px;
+    padding-left: 3px
 }
 
 .body_rtl .editActions,
 .body_rtl .playerClass {
-    clear: both;
+    clear: both
 }
 
 .body_rtl .audioAddText {
     text-align: left;
-    margin: 4px 0px 0px 25px;
+    margin: 4px 0px 0px 25px
 }
 
 .body_rtl .audioEditTable .editLabel {
     padding: 10px 0px 0px 10px;
-    text-align: left;
+    text-align: left
 }
 
 .body_rtl .audioRow .duration {
     float: left;
-    padding: 4px 0 0 7px;
+    padding: 4px 0 0 7px
 }
 
 .body_rtl .audioRow .audioTitle {
-    float: right;
+    float: right
 }
 
 .body_rtl #langRows .listing {
-    padding: 0 20px 0 0;
+    padding: 0 20px 0 0
 }
 
-.body_rtl .dpItem div,
 .body_rtl .dpItemChecked div,
-.body_rtl .dpItemOn div,
-.body_rtl .dpItemCheckedOn div {
-    padding: 3px 22px 3px 3px;
+.body_rtl .dpItemCheckedOn div,
+.body_rtl .dpItem div,
+.body_rtl .dpItemOn div {
+    padding: 3px 22px 3px 3px
 }
 
-.body_rtl .ppItemOverPlus,
-.body_rtl .ppItemOverBottom {
-    background-position: 5px -32px;
+.body_rtl .ppItemOverBottom,
+.body_rtl .ppItemOverPlus {
+    background-position: 5px -32px
 }
 
 .body_rtl .dpItemChecked,
 .body_rtl .dpItemCheckedOn {
     background-image: url(/images/dropdead_checkRTL.gif);
-    background-position: right 2px;
+    background-position: right 2px
 }
 
 .body_rtl .dpChooseTop {
-    background-position: left -16px;
     padding: 0 4px 3px 16px;
-    text-align: right;
+    text-align: right
 }
 
+.body_rtl .dpChooseTop,
 .body_rtl #dp-1 div {
-    background-position: left -16px;
+    background-position: left -16px
 }
 
 .body_rtl #dp-2 div {
-    background-position: left 4px;
+    background-position: left 4px
 }
 
 .body_rtl #dp-3 div {
-    background-position: left -36px;
+    background-position: left -36px
 }
 
 .body_rtl #dp-4 div {
-    background-position: left -56px;
+    background-position: left -56px
 }
 
 .body_rtl .friend_list_top {
-    padding: 8px 8px 8px 10px;
+    padding: 8px 8px 8px 10px
 }
 
 .body_rtl .voteCountBox0,
 .body_rtl .voteCountBox1,
 .body_rtl .voteCountBox3,
 .body_rtl .voteCountBox8 {
-    float: left;
+    float: left
 }
 
 .body_rtl #selectGift a {
-    float: right;
+    float: right
 }
 
 .body_rtl #selectGift div {
-    margin: 0 -2px 0 0;
+    margin: 0 -2px 0 0
 }
 
 .body_rtl .bigRow a {
-    margin: 3px 0 0 10px;
+    margin: 3px 0 0 10px
 }
 
 .body_rtl .since_until {
-    padding: 5px 0 0 5px;
+    padding: 5px 0 0 5px
 }

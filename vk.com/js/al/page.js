@@ -6261,10 +6261,6 @@ var Wall = {
             });
         }
 
-        if (window.replaceTDTypos && intval(ev[9]) > 0) {
-            repls.text = replaceTDTypos(repls.text);
-        }
-
         return rs(rs(cur.wallTpl.post, repls), repls);
     },
     updateAnonNewPost: function(ev, el) {
@@ -6336,10 +6332,6 @@ var Wall = {
         };
 
         extendCb && extend(repls, extendCb(repls));
-
-        if (window.replaceTDTypos && intval(ev[4]) > 0) {
-            repls.text = replaceTDTypos(repls.text);
-        }
 
         return rs(cur.wallTpl.reply, repls);
     },
@@ -6663,10 +6655,6 @@ var Wall = {
                         var isPlayerLoaded = (cur.videoInlinePlayer && isAncestor(window._videoLastInlined[0], editEl));
                         var isVideoPlaying = isPlayerLoaded && cur.videoInlinePlayer.getState() == 'playing';
 
-                        if (window.replaceTDTypos && intval(ev[5]) > 0) {
-                            text = replaceTDTypos(text);
-                        }
-
                         val(editEl, text);
 
                         if (isPlayerLoaded) {
@@ -6705,9 +6693,6 @@ var Wall = {
                         if (wasExpanded) wasExpanded = isVisible(domNS(wasExpanded));
 
                         var text = psr(ev[4]);
-                        if (window.replaceTDTypos) {
-                            text = replaceTDTypos(text);
-                        }
                         val(editEl, text);
 
                         updH = -editEl.offsetHeight;
@@ -8260,32 +8245,6 @@ Composer = {
             if (prevOnMediaChanged) {
                 prevOnMediaChanged()
             }
-        }
-
-        if (window.resetInputTDTypos && composer.input.id.match(/^(post_field|reply_field)/) && (gpeByClass('wide_column', composer.input) || gpeByClass('post', composer.input))) {
-            var fieldId = 'post';
-            if (composer.input.id !== 'post_field') {
-                fieldId = 'reply' + composer.input.id.substr(11);
-            }
-            addEvent(composer.input, 'keypress mouseup focus', function(event) {
-                resetInputTDTypos(fieldId, composer.input);
-            });
-            addEvent(composer.input, 'blur td_update', function() {
-                if (fieldId === 'post') {
-                    if (cur.group_id && (domData(domClosest('_submit_post_box', ge('official')), 'from-oid') == cur.postTo)) {
-                        return resetInputTDTypos(fieldId, composer.input);
-                    }
-                    markTDTypos(fieldId, composer.input)
-                } else {
-                    var post = composer.input.id.substr(11);
-                    var fromId = wall.getReplyFromId(post);
-                    if (!fromId || intval(fromId) > 0) {
-                        markTDTypos(fieldId, composer.input)
-                    } else {
-                        resetInputTDTypos(fieldId, composer.input);
-                    }
-                }
-            });
         }
 
         return composer;

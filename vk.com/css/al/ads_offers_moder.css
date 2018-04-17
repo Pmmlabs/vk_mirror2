@@ -1,167 +1,167 @@
 #ads_offers_moder_css {
-    display: none;
+    display: none
 }
 
 .offers_moder_tabs {
-    padding-top: 0;
+    padding-top: 0
 }
 
 .offers_moder_tabs ul.t0 {
-    width: auto;
+    width: auto
 }
 
 #ads_page.offers_moder_page {
-    padding: 0;
+    padding: 0
 }
 
 #offers_moder_premoderation_wrap {
     padding: 15px 10px;
-    background-color: #F7F7F7;
+    background-color: #f7f7f7
 }
 
 .offers_moder_summary {
     margin-bottom: 15px;
     padding: 8px 10px;
-    border: 1px solid #D3DBE1;
-    background-color: #FFF;
-    line-height: 160%;
+    border: 1px solid #d3dbe1;
+    background-color: #fff;
+    line-height: 160%
 }
 
 #offers_moder_requests_button_wrap {
     padding: 20px 0;
-    text-align: center;
+    text-align: center
 }
 
 #offers_moder_premoderation_empty {
     margin: 100px 0;
     text-align: center;
-    font-size: 1.18em;
+    font-size: 1.18em
 }
 
 .offers_moder_request {
     margin-bottom: 15px;
     padding: 8px 11px;
-    border: 1px solid #D3DBE1;
-    background-color: #FFF;
+    border: 1px solid #d3dbe1;
+    background-color: #fff
 }
 
 .offers_moder_request_info_wrap {
     padding: 10px;
-    background-color: #F7F7F7;
-    border: 1px solid #D3DBE1;
+    background-color: #f7f7f7;
+    border: 1px solid #d3dbe1
 }
 
 .offers_moder_request_info {
-    width: 442px;
+    width: 442px
 }
 
 .offers_moder_request_info_row {
-    padding-bottom: 7px;
+    padding-bottom: 7px
 }
 
 .offers_moder_request_info_row .label {
     width: 100px;
-    color: #000;
+    color: #000
 }
 
 .offers_moder_request_info_row .value {
-    margin-left: 100px;
+    margin-left: 100px
 }
 
 .offers_moder_request_info_box .label {
-    color: #707070;
+    color: #707070
 }
 
 .offers_moder_request_preview_wrap {
-    padding-top: 10px;
+    padding-top: 10px
 }
 
 .offers_moder_preview_cur {
-    position: relative;
+    position: relative
 }
 
 .offers_moder_preview_last {
     margin-right: 10px;
-    position: relative;
+    position: relative
 }
 
 .offers_moder_preview_single .offers_moder_preview_last {
-    display: none;
+    display: none
 }
 
 .offers_moder_preview_single .offers_moder_preview_cur {
     margin-left: 230px;
-    float: none;
+    float: none
 }
 
 .offers_preview {
     padding: 12px 10px;
     cursor: pointer;
-    border: 1px solid #D3DBE1;
+    border: 1px solid #d3dbe1;
     width: 426px;
-    line-height: 180%;
+    line-height: 180%
 }
 
 .offers_preview_img {
     width: 100px;
-    text-align: center;
+    text-align: center
 }
 
 .offers_preview_img img {
-    display: block;
+    display: block
 }
 
 .offers_preview_info {
     margin: -3px 0 0 100px;
     padding-left: 15px;
-    width: 311px;
+    width: 311px
 }
 
 .offers_preview_votes {
     margin-top: -3px;
     color: #666;
-    font-weight: bold;
+    font-weight: 700
 }
 
 .offers_preview_title {
     padding-bottom: 4px;
-    color: #45688E;
+    color: #45688e;
     font-size: 1.09em;
-    font-weight: bold;
-    width: 258px;
+    font-weight: 700;
+    width: 258px
 }
 
 .offers_preview_short_desc {
     color: #606060;
-    width: 258px;
+    width: 258px
 }
 
 .offers_preview_desc {
-    padding-top: 4px;
+    padding-top: 4px
 }
 
 .offers_preview_man {
     background: #eff4fb;
     border: 1px solid #b7c5db;
     padding: 10px;
-    margin-top: 18px;
+    margin-top: 18px
 }
 
 .offers_preview_man .numbered {
     padding-left: 16px;
     margin-top: 3px;
-    margin-bottom: 2px;
+    margin-bottom: 2px
 }
 
 .offers_preview_man .numbered li {
-    padding-top: 3px;
+    padding-top: 3px
 }
 
 .offers_moder_marker_wrap {
     position: absolute;
     top: 1px;
     left: 1px;
-    z-index: 10;
+    z-index: 10
 }
 
 .offers_moder_marker {
@@ -169,22 +169,22 @@
     width: 5px;
     height: 5px;
     margin-right: 2px;
-    border-radius: 1px;
+    border-radius: 1px
 }
 
 .offers_moder_preview_cur:hover .offers_moder_marker,
 .offers_moder_preview_last:hover .offers_moder_marker {
     width: 7px;
     height: 7px;
-    border-radius: 2px;
+    border-radius: 2px
 }
 
 .offers_moder_marker_approved {
-    background-color: #0000dd;
+    background-color: #00d
 }
 
 .offers_moder_marker_disapproved {
-    background-color: #aa0000;
+    background-color: #a00
 }
 
 .offers_moder_info_marker {
@@ -192,7 +192,7 @@
     z-index: 20;
     top: 2px;
     right: 2px;
-    background-color: #D5DDE5;
+    background-color: #d5dde5;
     border-radius: 3px;
     text-align: center;
     width: 20px;
@@ -200,26 +200,26 @@
     line-height: 20px;
     font-size: 1px;
     opacity: 0.5;
-    display: none;
+    display: none
 }
 
 .offers_moder_preview_last:hover .offers_moder_info_marker {
     display: block;
-    text-decoration: none;
+    text-decoration: none
 }
 
 .offers_moder_preview_last .offers_moder_info_marker:hover {
     font-size: 11px;
-    opacity: 1;
+    opacity: 1
 }
 
 .offers_moder_request_controls {
     padding-left: 230px;
-    width: 448px;
+    width: 448px
 }
 
 .offers_moder_request_offer_link {
-    padding-top: 8px;
+    padding-top: 8px
 }
 
 .offers_moder_request_comment {
@@ -227,47 +227,47 @@
     width: 426px;
     height: 40px;
     overflow: hidden;
-    resize: none;
+    resize: none
 }
 
 .offers_moder_request_buttons {
-    padding-top: 10px;
+    padding-top: 10px
 }
 
 .offers_moder_request_buttons .button_blue {
-    margin-right: 10px;
+    margin-right: 10px
 }
 
 .offer_moder_request_reasons_wrap {
-    padding: 7px 0 0 20px;
+    padding: 7px 0 0 20px
 }
 
 .offers_moder_request_result {
-    margin: 10px 0;
+    margin: 10px 0
 }
 
 .offers_moder_request_result span {
-    color: #808080;
+    color: gray
 }
 
 .offers_moder_request_result_success {
-    color: #37702a;
+    color: #37702a
 }
 
 .offers_moder_request_result_error {
-    color: #aa3333;
+    color: #a33
 }
 
-#ads_premoderation_stat .ads_unions_list th.column_moder *,
 #ads_premoderation_stat .ads_unions_list td.column_moder,
-#ads_premoderation_stat .ads_unions_list th.column_period *,
-#ads_premoderation_stat .ads_unions_list td.column_period {
-    text-align: left;
+#ads_premoderation_stat .ads_unions_list td.column_period,
+#ads_premoderation_stat .ads_unions_list th.column_moder *,
+#ads_premoderation_stat .ads_unions_list th.column_period * {
+    text-align: left
 }
 
 .ads_premoderation_stat_moder_name_wrap {
     visibility: hidden;
-    position: relative;
+    position: relative
 }
 
 .ads_premoderation_stat_moder_name {
@@ -275,63 +275,63 @@
     position: absolute;
     left: 0;
     top: 0;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 .ads_premoderation_stat_value_hint,
 .ads_premoderation_stat_value_hint a {
-    color: gray;
+    color: gray
 }
 
 .offers_moder_info_row .label {
     padding: 8px 10px 0 0;
     width: 190px;
     text-align: right;
-    color: #666666;
-    vertical-align: top;
+    color: #666;
+    vertical-align: top
 }
 
 .offers_moder_info_row .value {
-    padding: 0 0 10px 0;
-    vertical-align: top;
+    padding: 0 0 10px;
+    vertical-align: top
 }
 
 #offers_moder_users_ids {
     height: 90px;
-    width: 280px;
+    width: 280px
 }
 
 .offers_moder_table_result {
-    border-collapse: collapse;
+    border-collapse: collapse
 }
 
 .offers_moder_table_result .green {
-    color: #37702a;
+    color: #37702a
 }
 
 .offers_moder_table_result .red {
-    color: #aa3333;
+    color: #a33
 }
 
 .offers_moder_compensation_table .table_value {
-    padding-left: 10px;
+    padding-left: 10px
 }
 
 .offers_moder_compensation_table textarea {
     width: 250px;
-    height: 50px;
+    height: 50px
 }
 
 .offers_all_navigation_page {
     display: block;
     float: left;
-    text-decoration: none !important;
+    text-decoration: none!important;
     padding: 5px;
     margin: 0 3px 3px 0;
-    border: 1px solid #DAE1E8;
-    min-width: 45px;
+    border: 1px solid #dae1e8;
+    min-width: 45px
 }
 
 .offers_all_navigation_page.current {
-    font-weight: bold;
+    font-weight: 700
 }

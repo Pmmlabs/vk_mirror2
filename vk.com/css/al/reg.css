@@ -1,14 +1,14 @@
 #reg_css {
-    display: none;
+    display: none
 }
 
 .cm_page {
-    padding: 30px;
+    padding: 30px
 }
 
 .cm_row {
     clear: both;
-    padding: 15px 30px 0px;
+    padding: 15px 30px 0px
 }
 
 .cm_label,
@@ -17,29 +17,29 @@
     text-align: right;
     width: 200px;
     color: #777;
-    padding: 4px 10px 0px 0px;
+    padding: 4px 10px 0px 0px
 }
 
 .cm_labeled,
 .s_labeled {
-    float: left;
+    float: left
 }
 
 .s_labeled {
-    padding-right: 5px;
+    padding-right: 5px
 }
 
 .cm_labeled {
-    width: 168px;
+    width: 168px
 }
 
 .s_labeled .text {
-    width: 192px;
+    width: 192px
 }
 
 .s_labeled input#fname,
 .s_labeled input#lname {
-    width: 217px;
+    width: 217px
 }
 
 .cm_info {
@@ -47,54 +47,54 @@
     width: 120px;
     font-size: 0.9em;
     color: #800;
-    padding-top: 4px;
+    padding-top: 4px
 }
 
 #reg_steps,
 #reg_steps_c {
-    background-color: #F7F7F7;
+    background-color: #f7f7f7;
     border: solid #dae2e8;
     border-width: 1px 0px;
-    width: 632px;
+    width: 632px
 }
 
 #reg_steps {
-    height: 48px;
+    height: 48px
 }
 
 .reg_step {
-    border-left: 1px solid #FFF;
+    border-left: 1px solid #fff;
     float: left;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .reg_step div {
-    border-left: 1px solid #EAEAEA;
+    border-left: 1px solid #eaeaea;
     padding: 7px 0px 0px 20px;
     width: 93px;
     height: 41px;
-    float: left;
+    float: left
 }
 
 .reg_step.passed {
-    color: #777;
+    color: #777
 }
 
 .reg_step.first,
 .reg_step.first div {
-    border-color: #F7F7F7;
+    border-color: #f7f7f7
 }
 
 .reg_step b {
     display: block;
-    padding: 0px 0px 7px;
+    padding: 0px 0px 7px
 }
 
 #reg_steps_s {
     position: absolute;
     margin-top: -1px;
     margin-left: 50px;
-    border: 1px solid #517295;
+    border: 1px solid #517295
 }
 
 #reg_steps_s .borders {
@@ -104,174 +104,174 @@
     height: 48px;
     background-color: #5e82a8;
     width: 113px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 #reg_steps_s .content {
     margin-left: -52px;
     position: absolute;
     width: 632px;
-    height: 48px;
+    height: 48px
 }
 
 #reg_steps_s .reg_step,
 #reg_steps_s .reg_step div {
     border-color: #5e82a8;
-    color: #FFF;
+    color: #fff
 }
 
 #reg_point {
-    background: #FFF url(/images/regpoint.gif?2) 0 0 no-repeat;
+    background: #fff url(/images/regpoint.gif?2) 0 0 no-repeat;
     position: absolute;
     width: 23px;
     height: 13px;
     margin: 4px 0px 0px 89px;
-    z-index: 1;
+    z-index: 1
 }
 
 #reg_steps_out {
-    padding-top: 16px;
+    padding-top: 16px
 }
 
 #reg_steps_c {
-    position: relative;
+    position: relative
 }
 
 #reg_steps_c .content {
     position: relative;
-    width: 5000px;
+    width: 5000px
 }
 
 .reg_step_c {
     float: left;
     width: 632px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .reg_step_c .borders {
-    padding: 16px;
+    padding: 16px
 }
 
 .reg_step_c .info {
-    background-color: #FFF;
+    background-color: #fff;
     border: 1px solid #c0cbd5;
     margin-bottom: 16px;
     padding: 8px 11px;
-    line-height: 1.63em;
+    line-height: 1.63em
 }
 
 .s_row {
     height: 30px;
-    clear: both;
+    clear: both
 }
 
 .s_label {
-    width: 230px;
+    width: 230px
 }
 
 .s_labeled .button_blue {
-    margin: 0px;
+    margin: 0px
 }
 
 .s_row .s_btn {
-    width: 230px;
+    width: 230px
 }
 
 .s_btn img {
     float: left;
     padding: 8px 0px 0px 10px;
-    display: none;
+    display: none
 }
 
 .reg_step_c h2 img {
     float: right;
     padding-top: 5px;
-    display: none;
+    display: none
 }
 
 #reg_photo {
     width: 200px;
     text-align: center;
-    float: left;
+    float: left
 }
 
 .sample_img_cont {
     border: 1px solid #e9e9e9;
-    border-top: 0px;
+    border-top: 0px
 }
 
 .sample_img {
     height: 150px;
     border-bottom: 1px solid #e7d878;
-    background: #fff8cc url(/images/question_y.gif) 50% 50% no-repeat;
+    background: #fff8cc url(/images/question_y.gif) 50% 50% no-repeat
 }
 
 .reg_step2_content {
-    padding: 20px 15px 0px;
+    padding: 20px 15px 0px
 }
 
 #file_div img {
     float: left;
     display: none;
-    padding: 6px 0px 0px 10px;
+    padding: 6px 0px 0px 10px
 }
 
 .reg_step_c #file_div {
-    height: 30px;
+    height: 30px
 }
 
 .reg_step_c #photo_file {
-    float: left;
+    float: left
 }
 
 .reg_step_c #file_div input {
     font-size: 1em;
-    margin: 0px;
+    margin: 0px
 }
 
 .reg_step_c .error {
     margin-top: 10px;
-    display: none;
+    display: none
 }
 
 iframe#inviter {
     position: absolute;
     left: -10000px;
-    top: -10000px;
+    top: -10000px
 }
 
 .reg_friends_found {
-    padding: 15px 15px 0px;
+    padding: 15px 15px 0px
 }
 
 .reg_friend {
-    background-color: #FFF;
-    border: 1px solid #DAE2E8;
+    background-color: #fff;
+    border: 1px solid #dae2e8;
     padding: 5px 4px 4px;
-    margin-bottom: 8px;
+    margin-bottom: 8px
 }
 
 .reg_friend table {
     width: 100%;
-    border: 0px;
+    border: 0px
 }
 
 .reg_friend .friend_photo {
     height: 50px;
     width: 60px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .reg_friend .friend_info {
     width: 350px;
     float: left;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .reg_friend dl {
     width: 350px;
     margin: 0px;
-    line-height: 1.36em;
+    line-height: 1.36em
 }
 
 .reg_friend dt {
@@ -279,191 +279,191 @@ iframe#inviter {
     color: gray;
     float: left;
     padding: 0px;
-    width: 100px;
+    width: 100px
 }
 
 .reg_friend dd {
     display: inline;
     float: left;
     padding: 0px;
-    width: 137px;
+    width: 137px
 }
 
 .reg_friend .add_friend {
     vertical-align: top;
     text-align: right;
     padding: 0px;
-    margin: 0px;
+    margin: 0px
 }
 
 .reg_friend .add_friend li {
-    float: right;
+    float: right
 }
 
 .reg_friend .add_friend li a {
-    padding: 3px 6px;
+    padding: 3px 6px
 }
 
 .nav {
     list-style: none;
-    margin: 0 0 1.0em 0;
-    padding: 0;
+    margin: 0 0 1.0em;
+    padding: 0
 }
 
 .nav li {
-    border-bottom: 1px solid #FFF;
-    font-size: 1.0em;
+    border-bottom: 1px solid #fff;
+    font-size: 1.0em
 }
 
 .nav li a {
     border: 0;
     border-top: 1px solid #fff;
     background: #eee;
-    background: white;
+    background: #fff;
     display: block;
-    padding: 3px 3px 3px 6px;
+    padding: 3px 3px 3px 6px
 }
 
 .nav li a:hover {
-    background: #DAE1E8;
-    color: #36638E;
-    border-top: 1px solid #CAD1D9;
-    text-decoration: none;
+    background: #dae1e8;
+    color: #36638e;
+    border-top: 1px solid #cad1d9;
+    text-decoration: none
 }
 
 .reg_rules_accepted {
     padding: 30px 0px 20px;
-    font-size: 0.9em;
+    font-size: 0.9em
 }
 
 #index {
-    line-height: 150%;
+    line-height: 150%
 }
 
 #index ul.listing li {
-    padding: 2px 0px;
+    padding: 2px 0px
 }
 
 #index p {
-    margin: 15px 0px;
+    margin: 15px 0px
 }
 
 #index .content {
-    padding: 5px 30px 10px;
+    padding: 5px 30px 10px
 }
 
 #index .reg {
-    padding: 0px 0px 20px;
+    padding: 0px 0px 20px
 }
 
 #index .reg h2 {
-    margin: 0px 30px 10px;
+    margin: 0px 30px 10px
 }
 
 #index_log_after_reg {
     position: absolute;
     left: -50;
     width: 20px;
-    overflow: hidden;
+    overflow: hidden
 }
 
 #index .reg_row {
-    padding-top: 6px;
+    padding-top: 6px
 }
 
 #index .label {
     width: 174px;
     padding-top: 4px;
     color: #666;
-    padding: 4px 16px 0;
+    padding: 4px 16px 0
 }
 
 #index .labeled input.text {
     margin: 0px;
-    width: 192px;
+    width: 192px
 }
 
 #index .details {
     color: #777;
     font-size: 0.9em;
     margin: 0 10px;
-    width: 190px;
+    width: 190px
 }
 
 #index_reg_wrap {
     margin: 0px 196px;
-    padding: 10px;
+    padding: 10px
 }
 
 #index_reg_wrap .progress {
-    margin: 6px 10px 0px;
+    margin: 6px 10px 0px
 }
 
 #index .terms_accepted {
     color: #777;
     font-size: 0.9em;
-    text-align: center;
+    text-align: center
 }
 
 .index_terms {
     line-height: 170%;
-    padding: 10px 20px 20px;
+    padding: 10px 20px 20px
 }
 
 .index_terms .wikiSubHeader {
-    border-bottom: 1px solid #DAE1E8;
-    color: #45688E;
+    border-bottom: 1px solid #dae1e8;
+    color: #45688e;
     font-size: 1.09em;
-    font-weight: bold;
-    margin-bottom: 5px;
+    font-weight: 700;
+    margin-bottom: 5px
 }
 
 #box_layer .reg p {
     padding: 0px 10px 10px;
-    margin: 0px;
+    margin: 0px
 }
 
 #box_layer .reg .reg_row {
-    padding-top: 6px;
+    padding-top: 6px
 }
 
 #box_layer .reg .label {
     width: 128px;
     padding-top: 4px;
     color: #666;
-    padding: 4px 16px 0;
+    padding: 4px 16px 0
 }
 
 #box_layer .reg .labeled input.text {
     margin: 0px;
-    width: 152px;
+    width: 152px
 }
 
 #box_layer .reg .details {
     color: #777;
     font-size: 0.9em;
     margin: 0 10px;
-    width: 140px;
+    width: 140px
 }
 
 #box_layer .reg .terms_accepted {
     color: #777;
     font-size: 0.9em;
     padding-top: 15px;
-    text-align: center;
+    text-align: center
 }
 
-#index_reg_wrap,
-#box_reg_wrap {
-    padding-top: 20px;
+#box_reg_wrap,
+#index_reg_wrap {
+    padding-top: 20px
 }
 
 .reg_about_inv {
     padding: 15px 15px 0px;
-    font-size: 0.9em;
+    font-size: 0.9em
 }
 
 .reg .msg {
     line-height: 150%;
-    margin-bottom: 15px;
+    margin-bottom: 15px
 }

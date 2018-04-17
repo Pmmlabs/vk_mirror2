@@ -1,41 +1,41 @@
 #snapster_mobile_css {
-    display: none;
+    display: none
 }
 
 @media (max-width: 750px) {
+    #site_head,
     #sn_page_wrap,
     #wrap3,
-    .head_cont,
-    #site_head {
-        width: 100% !important;
+    .head_cont {
+        width: 100%!important
     }
     #sn_footer_cont {
-        padding-left: 0px;
+        padding-left: 0px
     }
     #wrap3 {
-        margin: 54px auto 0px;
+        margin: 54px auto 0px
     }
     .logo {
         width: auto;
         position: inherit;
         text-align: center;
         font-size: 20px;
-        margin: 0px 60px;
+        margin: 0px 60px
     }
     .sn_upload_btn {
-        display: none !important;
+        display: none!important
     }
     .head_user,
     .logo {
         padding-left: 20px;
-        padding-right: 20px;
+        padding-right: 20px
     }
     .head_user {
-        margin-right: 0px;
+        margin-right: 0px
     }
-    .logged .head_user_name,
-    .head_user_arrow {
-        display: none !important;
+    .head_user_arrow,
+    .logged .head_user_name {
+        display: none!important
     }
     .head_user_name_link {
         position: absolute;
@@ -44,24 +44,24 @@
         height: 54px;
         width: 60px;
         cursor: pointer;
-        padding-top: 20px;
+        padding-top: 20px
     }
     .logged .head_user_mobile_wrap {
-        display: block !important;
+        display: block!important
     }
     .head_user_mobile_wrap {
         height: 54px;
         width: 54px;
         top: 0px;
         right: 0px;
-        position: absolute;
+        position: absolute
     }
     .head_user_mobile_tools {
         width: 16px;
         height: 14px;
         right: 20px;
         top: 20px;
-        position: absolute;
+        position: absolute
     }
     .head_user_mobile_tools_line {
         position: absolute;
@@ -73,31 +73,29 @@
         transition: top 100ms linear, -webkit-transform 100ms linear;
         -o-transition: transform 100ms linear, top 100ms linear, -o-transform 100ms linear;
         transition: transform 100ms linear, top 100ms linear;
-        transition: transform 100ms linear, top 100ms linear, -webkit-transform 100ms linear, -o-transform 100ms linear;
+        transition: transform 100ms linear, top 100ms linear, -webkit-transform 100ms linear, -o-transform 100ms linear
     }
     .head_user_mobile_tools_line:nth-child(2) {
-        top: 6px;
+        top: 6px
     }
     .head_user_mobile_tools_line:nth-child(3) {
         top: initial;
-        bottom: 0px;
+        bottom: 0px
     }
     .head_user_tools_shown .head_user_mobile_tools_line:first-child {
         -webkit-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
         -o-transform: rotate(45deg);
         transform: rotate(45deg);
-        top: 6px;
+        top: 6px
     }
     .head_user_tools_shown .head_user_mobile_tools_line:last-child {
         -webkit-transform: rotate(-45deg);
-        -ms-transform: rotate(-45deg);
         -o-transform: rotate(-45deg);
         transform: rotate(-45deg);
-        bottom: 6px;
+        bottom: 6px
     }
     .head_user_tools_shown .head_user_mobile_tools_line:nth-child(2) {
-        display: none;
+        display: none
     }
     .search_wrap {
         position: absolute;
@@ -105,29 +103,29 @@
         left: 0px;
         height: 53px;
         width: 60px;
-        margin: 0px;
+        margin: 0px
     }
-    .search_loupe,
-    #search_preloader {
+    #search_preloader,
+    .search_loupe {
         top: 19px;
-        left: 19px;
+        left: 19px
     }
     .search_wrap_inp {
-        display: none;
+        display: none
     }
     .head_search_shown .search_wrap {
         width: 100%;
-        background: #fff;
+        background: #fff
     }
     .head_search_shown .search_wrap_inp {
         display: block;
-        padding: 21px 60px 17px 48px;
+        padding: 21px 60px 17px 48px
     }
     .search_mob_close {
         position: absolute;
         height: 17px;
         width: 17px;
-        opacity: 1;
+        opacity: 1
     }
     .head_search_shown .search_mob_close_wrap {
         display: block;
@@ -136,22 +134,22 @@
         top: 0px;
         right: 0px;
         height: 54px;
-        width: 60px;
+        width: 60px
     }
     .search_mob_close .sn_modal_close_line {
         background: #48586c;
         width: 2px;
-        left: 8px;
+        left: 8px
     }
     .close_search_res {
-        display: none !important;
+        display: none!important
     }
     .head_user_tools_wrap {
         position: fixed;
         top: 0px;
         left: 0px;
-        display: none !important;
-        z-index: 51;
+        display: none!important;
+        z-index: 51
     }
     .head_user_tools_close_wrap {
         left: 0px;
@@ -160,51 +158,51 @@
         position: fixed;
         width: 100%;
         height: 100%;
-        display: none;
+        display: none
     }
-    .head_user_tools_shown .head_user_tools_wrap,
-    .head_user_tools_shown .head_user_tools_close_wrap {
-        display: block !important;
+    .head_user_tools_shown .head_user_tools_close_wrap,
+    .head_user_tools_shown .head_user_tools_wrap {
+        display: block!important
     }
     .head_user_tools {
         box-shadow: none;
         border: 0px;
         background: #48586c;
         padding: 0px 15px;
-        border-radius: 0px;
+        border-radius: 0px
     }
     .head_user_tools_item {
         color: #fff;
         text-align: center;
         line-height: 22px;
         padding: 15px 0px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 1px solid hsla(0, 0%, 100%, .1);
         margin-top: 0px;
-        background: none !important;
+        background: none!important
     }
     .head_user_tools_item:first-child {
-        border-top: 0px;
+        border-top: 0px
     }
-    .sn_room_info_wrap,
-    .sn_page_nav_cont {
+    .sn_page_nav_cont,
+    .sn_room_info_wrap {
         margin: 0px;
         position: static;
         padding: 10px 0px;
-        width: 100%;
+        width: 100%
     }
     .sn_room_info_wrap .sn_block {
         border-width: 1px 0px;
         border-radius: 0px;
         padding: 16px;
-        position: relative;
+        position: relative
     }
     .user_wrap_img_wrap {
         width: 50px;
         height: 50px;
-        margin: 0px;
+        margin: 0px
     }
     .user_wrap {
-        text-align: left;
+        text-align: left
     }
     .user_wrap_name {
         top: 3px;
@@ -214,15 +212,15 @@
         overflow: hidden;
         text-overflow: ellipsis;
         right: 0px;
-        padding-right: 16px;
+        padding-right: 16px
     }
-    .user_wrap_name,
-    .room_followers_wrap {
+    .room_followers_wrap,
+    .user_wrap_name {
         left: 78px;
-        position: absolute;
+        position: absolute
     }
     .room_followers_wrap {
-        top: 42px;
+        top: 42px
     }
     .sn_romm_followers_num,
     .sn_romm_followers_str {
@@ -230,205 +228,201 @@
         font-size: 14px;
         margin-top: 0px;
         text-align: left;
-        display: inline;
+        display: inline
     }
     .sn_edit_profile_btn {
-        display: none;
+        display: none
     }
     .user_wrap_status {
         color: #272a3a;
         font-size: 16px;
         line-height: 22px;
-        margin-top: 12px;
+        margin-top: 12px
     }
     .sn_page_nav {
-        display: none;
+        display: none
     }
     .rooms_list_wrap {
-        margin: 0px !important;
+        margin: 0px!important
     }
     .sn_page_nav {
         float: none;
-        width: 100%;
+        width: 100%
     }
     .sn_page_nav_cont {
-        position: inherit !important;
+        position: inherit!important;
         width: 100%;
         text-align: center;
         max-width: 300px;
-        margin: 0px auto;
+        margin: 0px auto
     }
     .rooms_result_wrap {
-        margin: 0px;
+        margin: 0px
     }
     #rooms_result {
         border-width: 1px 0px;
-        border-radius: 0px;
+        border-radius: 0px
     }
     .rooms_list_item_cover,
     .rooms_list_item_cover_img_wr,
     .search_photo {
         width: 60px;
-        height: 60px;
+        height: 60px
     }
     .rooms_list_item_last_uploader {
         width: 30px;
-        height: 30px;
+        height: 30px
     }
     .rooms_list_item_wrap {
-        padding: 10px 0px;
+        padding: 10px 0px
     }
     .rooms_list_item {
-        padding: 0px 10px;
+        padding: 0px 10px
     }
     .rooms_list_item_title {
-        font-size: 13px;
+        font-size: 13px
     }
     .rooms_list_item_text,
     .rooms_list_item_title {
-        line-height: 14px;
+        line-height: 14px
     }
     .rooms_list_item_text {
-        font-size: 12px;
+        font-size: 12px
     }
     .rooms_list_item_date {
         margin-top: 10px;
-        font-size: 12px;
+        font-size: 12px
     }
     .rooms_list_item_cont {
-        margin-left: 80px;
+        margin-left: 80px
     }
     .search_material_ava {
-        width: 60px !important;
-        height: 60px !important;
-        font-size: 33px !important;
-        padding-top: 14px !important;
+        width: 60px!important;
+        height: 60px!important;
+        font-size: 33px!important;
+        padding-top: 14px!important
     }
     .user_wrap_img_material {
         width: 50px;
         height: 50px;
         font-size: 32px;
-        padding-top: 9px;
+        padding-top: 9px
     }
     .photos_list {
         margin-top: -1px;
         padding: 10px 0px;
         border-radius: 0px;
-        border: 0px;
+        border: 0px
     }
     .sn_photo_item,
     .sn_photo_item_cont {
-        width: 100% !important;
-        height: auto !important;
+        width: 100%!important;
+        height: auto!important;
         position: inherit;
-        top: 0px !important;
-        left: 0px !important;
+        top: 0px!important;
+        left: 0px!important
     }
     .sn_photo_item {
-        margin-bottom: 15px;
+        margin-bottom: 15px
     }
     .sn_photo_item_img_wr {
-        position: inherit;
+        position: inherit
     }
-    .sn_top_nav {
-        display: none;
-    }
+    .sn_top_nav,
     .sn_pw_prev_wrap {
-        display: none;
+        display: none
     }
     .sn_photo_view_image_wr {
         position: static;
         text-align: center;
-        height: auto !important;
-        width: 100% !important;
+        height: auto!important;
+        width: 100%!important
     }
     #sn_pw_image {
         position: static;
-        max-height: none;
+        max-height: none
     }
     .sn_photo_view_info {
         position: static;
         width: 100%;
-        height: auto;
+        height: auto
     }
     .sn_pw_comments {
-        height: auto !important;
-        pointer-events: none;
+        pointer-events: none
     }
+    .sn_pw_comments,
     .sn_photo_view {
-        height: auto !important;
+        height: auto!important
     }
     #sn_modalphoto_view {
-        padding: 0px;
+        padding: 0px
     }
-    .modal_shown .head,
     .modal_shown #wrap3,
+    .modal_shown .head,
     .modal_shown .sn_footer {
-        display: none !important;
+        display: none!important
     }
     .sn_modal_def {
         position: static;
         overflow: hidden;
-        background: #fff !important;
-        padding: 0px;
+        background: #fff!important;
+        padding: 0px
     }
     .sn_modal_def .sn_modal_cont {
-        margin: 0px !important;
-        width: 100% !important;
+        margin: 0px!important;
+        width: 100%!important
     }
     .sn_box_title {
         position: fixed;
         top: 0px;
         left: 0px;
-        width: 100%;
+        width: 100%
     }
     .sn_modal_def .sn_box_title {
-        width: 100% !important;
+        width: 100%!important
     }
     .sn_modal_def .sn_modal_close {
-        right: 15px !important;
-        top: 15px !important;
-        left: initial !important;
+        right: 15px!important;
+        top: 15px!important;
+        left: initial!important;
         z-index: 1000;
-        position: fixed;
+        position: fixed
     }
-    .sn_footer_links {
+    .sn_footer_links,
+    .sn_footer_link {
         width: 100%;
         text-align: center;
-        float: none;
+        float: none
     }
     .sn_footer_link {
-        float: none;
-        width: 100%;
-        text-align: center;
-        margin-bottom: 10px;
+        margin-bottom: 10px
     }
     .sn_footer_apps {
         margin: 15px auto 5px;
         width: 120px;
-        float: none;
+        float: none
     }
     .sn_download {
         margin-bottom: 10px;
-        margin-left: 15px;
+        margin-left: 15px
     }
     .sn_download_icon {
-        font-size: 35px;
+        font-size: 35px
     }
     #sn_footer_cont {
-        width: 100% !important;
-        padding-left: 0px !important;
+        width: 100%!important;
+        padding-left: 0px!important
     }
     .sn_footer_copyright {
         width: 100%;
-        text-align: center;
+        text-align: center
     }
     .sn_notify_btn {
-        display: none;
+        display: none
     }
     .head_user {
         position: absolute;
         top: 0px;
-        right: 0px;
+        right: 0px
     }
 }

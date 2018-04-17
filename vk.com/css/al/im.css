@@ -10432,25 +10432,64 @@ body.sf .nim-dialog .nim-dialog--unread {
     top: 40%
 }
 
-.im-dropbox[data-mode=photo] .im-dropbox--rect--doc {
+.im-dropbox[data-mode=photo] .im-dropbox--msg_videodoc,
+.im-dropbox[data-mode=photo] .im-dropbox--rect--video {
+    display: none!important
+}
+
+.im-dropbox[data-mode=video] .im-dropbox--rect--video {
+    top: 40%
+}
+
+.im-dropbox[data-mode=video] .im-dropbox--msg_photodoc,
+.im-dropbox[data-mode=video] .im-dropbox--rect--photo {
+    display: none!important
+}
+
+.im-dropbox[data-mode=photo] .im-dropbox--rect--doc,
+.im-dropbox[data-mode=video] .im-dropbox--rect--doc {
     height: calc(40% - 22px);
     bottom: auto
 }
 
-.im-dropbox[data-mode=photo] .im-dropbox--msg_doc {
+.im-dropbox[data-mode=photo] .im-dropbox--msg_doc,
+.im-dropbox[data-mode=video] .im-dropbox--msg_doc {
     display: none
 }
 
-.im-dropbox[data-mode=doc] .im-dropbox--rect--photo {
+.im-dropbox[data-mode=media] .im-dropbox--rect--doc {
+    height: calc(33% - 22px);
+    bottom: auto
+}
+
+.im-dropbox[data-mode=media] .im-dropbox--rect--photo {
+    top: 33%;
+    height: calc(33% - 12px)
+}
+
+.im-dropbox[data-mode=media] .im-dropbox--rect--video {
+    top: 66%;
+    height: calc(33%)
+}
+
+.im-dropbox[data-mode=media] .im-dropbox--msg_photodoc,
+.im-dropbox[data-mode=media] .im-dropbox--msg_videodoc {
+    display: none
+}
+
+.im-dropbox[data-mode=doc] .im-dropbox--rect--photo,
+.im-dropbox[data-mode=doc] .im-dropbox--rect--video {
     display: none!important
 }
 
-.im-dropbox[data-mode=doc] .im-dropbox--msg_photodoc {
+.im-dropbox[data-mode=doc] .im-dropbox--msg_photodoc,
+.im-dropbox[data-mode=doc] .im-dropbox--msg_videodoc {
     display: none
 }
 
 .im-dropbox--icon-doc,
-.im-dropbox--icon-photo {
+.im-dropbox--icon-photo,
+.im-dropbox--icon-video {
     background-size: 72px 72px;
     display: block;
     width: 72px;
@@ -10460,6 +10499,10 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .im-dropbox--icon-photo {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2272%22%20height%3D%2272%22%20viewBox%3D%220%200%2072%2072%22%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.7%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2272%22%20height%3D%2272%22%20opacity%3D%22.4%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20fill%3D%22%2393A3BB%22%20d%3D%22M43%2C10%20C45.0694355%2C10%2046.3955046%2C11.1023749%2047.5840277%2C12.498735%20C47.6450425%2C12.5704195%2048.6471354%2C13.8165216%2049.7382098%2C15.1632748%20C50.8292841%2C16.5100281%2053.0511974%2C18%2055.0909091%2C18%20L56.4545455%2C18%20C63%2C18%2066%2C22%2066%2C28.6666667%20L66%2C49.3333333%20C66%2C55.2243707%2061.1158336%2C60%2055.0909091%2C60%20L36%2C60%20L16.9090909%2C60%20C10.8841664%2C60%206%2C55.2243707%206%2C49.3333333%20L6%2C28.6666667%20C6%2C22%209%2C18%2015.5454545%2C18%20L16.9090909%2C18%20C18.9488026%2C18%2021.1707159%2C16.5100281%2022.2617902%2C15.1632748%20C23.3528646%2C13.8165216%2024.3549575%2C12.5704195%2024.4159723%2C12.498735%20C25.6044954%2C11.1023749%2026.9305645%2C10%2029%2C10%20L43%2C10%20Z%20M21%2C37%20C21%2C45.28%2027.72%2C52%2036%2C52%20C44.28%2C52%2051%2C45.28%2051%2C37%20C51%2C28.72%2044.28%2C22%2036%2C22%20C27.72%2C22%2021%2C28.72%2021%2C37%20Z%20M26%2C37%20C26%2C31.4765625%2030.4765625%2C27%2036%2C27%20C41.5234375%2C27%2046%2C31.4765625%2046%2C37%20C46%2C42.5234375%2041.5234375%2C47%2036%2C47%20C30.4765625%2C47%2026%2C42.5234375%2026%2C37%20Z%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
+}
+
+.im-dropbox--icon-video {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2272%22%20height%3D%2272%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.7%22%3E%3Cpath%20d%3D%22M0%200h72v72H0z%22%20opacity%3D%22.4%22%2F%3E%3Cpath%20fill%3D%22%2393A3BB%22%20d%3D%22M23.537%208h24.926c4.011%200%205.466.418%206.933%201.202a8.178%208.178%200%200%201%203.402%203.402C59.582%2014.071%2060%2015.526%2060%2019.537v32.926c0%204.011-.418%205.466-1.202%206.933a8.178%208.178%200%200%201-3.402%203.402C53.929%2063.582%2052.474%2064%2048.463%2064H23.537c-4.011%200-5.466-.418-6.933-1.202a8.178%208.178%200%200%201-3.402-3.402C12.418%2057.929%2012%2056.474%2012%2052.463V19.537c0-4.011.418-5.466%201.202-6.933a8.178%208.178%200%200%201%203.402-3.402C18.071%208.418%2019.526%208%2023.537%208zM23%2016a3%203%200%200%200-3%203v2a3%203%200%200%200%203%203h2a3%203%200%200%200%203-3v-2a3%203%200%200%200-3-3h-2zm0%2032a3%203%200%200%200-3%203v2a3%203%200%200%200%203%203h2a3%203%200%200%200%203-3v-2a3%203%200%200%200-3-3h-2zm0-16a3%203%200%200%200-3%203v2a3%203%200%200%200%203%203h2a3%203%200%200%200%203-3v-2a3%203%200%200%200-3-3h-2zm24-16a3%203%200%200%200-3%203v2a3%203%200%200%200%203%203h2a3%203%200%200%200%203-3v-2a3%203%200%200%200-3-3h-2zm0%2032a3%203%200%200%200-3%203v2a3%203%200%200%200%203%203h2a3%203%200%200%200%203-3v-2a3%203%200%200%200-3-3h-2zm0-16a3%203%200%200%200-3%203v2a3%203%200%200%200%203%203h2a3%203%200%200%200%203-3v-2a3%203%200%200%200-3-3h-2z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .im-dropbox--icon-doc {

@@ -1,62 +1,62 @@
 #addFriend {
     margin: 2px 0px 10px 10px;
-    padding: 0px;
+    padding: 0px
 }
 
 #friend {
     padding: 0px;
     margin: 0px;
-    border: 0px;
+    border: 0px
 }
 
 .msgOld {
-    margin: 10px 0px 0px 70px;
+    margin: 10px 0px 0px 70px
 }
 
 .msgOld em {
     margin: 0px;
     padding-left: 17px;
-    background: url(../images/start_quote.gif) 0 0 no-repeat;
+    background: url(../images/start_quote.gif) 0 0 no-repeat
 }
 
 .msgOld em span {
     font-size: 11px;
     text-align: left;
     font-style: normal;
-    color: #666;
+    color: #666
 }
 
 .msgOld em b {
     background: url(../images/end_quote.gif) 100% 100% no-repeat;
-    padding-left: 12px;
+    padding-left: 12px
 }
 
 #friendFilter {
     color: #777;
-    font-weight: bold;
-    width: 300px;
+    font-weight: 700;
+    width: 300px
 }
 
 #friendSelect {
     margin-left: 7px;
-    font-weight: normal;
-    width: 200px;
+    font-weight: 400;
+    width: 200px
 }
 
 #friend .suggest {
-    color: #000000;
-    font-weight: bold;
-    background: #D8DFEA;
-    text-decoration: inherit;
+    color: #000;
+    font-weight: 700;
+    background: #d8dfea;
+    text-decoration: inherit
 }
 
 .friendsLookup {
     float: right;
-    margin-down: 10px;
+    margin-down: 10px
 }
 
 #noFriendSubstr {
     padding-top: 30px;
     padding-bottom: 30px;
-    text-align: center;
+    text-align: center
 }

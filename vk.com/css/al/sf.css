@@ -553,7 +553,7 @@ body.sf .mention_tt_actions {
 
 .sf_button_no.sf_accepted {
     background: #d4e5d3;
-    color: #4a8e45;
+    color: #65bf63;
     cursor: default
 }
 
@@ -1203,6 +1203,10 @@ body.sf .mention_tt_actions {
 
 .sf_entry_lvl_subtitle .guy_fawkes_real_author {
     color: #950013
+}
+
+.sf_entry_lvl_subtitle .pattern_comment .text {
+    color: #65bf63
 }
 
 .sf_photo_author {

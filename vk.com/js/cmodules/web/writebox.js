@@ -28,311 +28,92 @@
         return t.d(a, "a", a), a
     }, t.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, t.p = "", t(t.s = 275)
+    }, t.p = "", t(t.s = 83)
 }({
-    134: function(e, t, a) {
+    266: function(e, t, a) {
         "use strict";
 
-        function r(e) {
-            var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [],
-                a = e.split("_"),
-                r = g(a, 2),
-                n = r[0],
-                i = r[1];
-            return [n, i, t]
+        function r(e, t, a) {
+            return t && (t.im_v = c), new Promise(function(r, n) {
+                ajax.post(e, t, {
+                    timeout: a,
+                    onDone: function() {
+                        r.apply(null, [
+                            [].concat(Array.prototype.slice.call(arguments))
+                        ])
+                    },
+                    onFail: function() {
+                        return n.apply(null, arguments), !0
+                    }
+                })
+            })
         }
 
         function n(e, t) {
-            var a = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 0,
-                i = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 0;
-            if (i > 50) return [
-                [], e.length
-            ];
-            for (var o = [], c = ""; a < e.length;) {
-                var s = e[a];
-                if ("id" === s) c = t[a];
-                else if ("," === s && c) o.push(r(c)), c = "";
-                else if ("(" === s) {
-                    var u = n(e, t, a + 1, i + 1),
-                        l = g(u, 2),
-                        d = l[0],
-                        m = l[1];
-                    a = m, o.push(r(c, d)), c = ""
-                } else if (")" === s) return "" !== c && o.push(r(c)), [o, a];
-                a++
-            }
-            return c && o.push(r(c)), [o, a]
-        }
-
-        function i(e) {
-            if (x[e]) return x[e];
-            for (var t = e ? e.length : 0, a = [], r = [], i = "", o = 0; t > o; o++) {
-                var c = e[o],
-                    s = c.charCodeAt(0);
-                s >= 48 && 57 >= s || "_" === c || "-" === c ? i += c : ("(" === c || ")" === c || ":" === c || "," === c) && ("" !== i && (r.push(i), a.push("id"), i = ""), r.push(c), a.push(c))
-            }
-            i.length > 0 && (r.push(i), a.push("id"));
-            var u = n(a, r),
-                l = g(u, 1),
-                d = l[0];
-            return Object.keys(x).length > 300 && (x = {}), x[e] = d, d
-        }
-
-        function o(e, t) {
-            for (var a = void 0, r = 0, n = e; null !== (a = p.MESSAGE_REGEXP.exec(e));) {
-                a = u(a);
-                var i = a[0].length,
-                    o = a.index + i,
-                    c = e[a.index - 1],
-                    s = e[o - 1],
-                    d = void 0 !== c && /([\w\$А-Яа-яёЁєЄҐґЇїІіЈј\—\-\_@;.])/i.test(c),
-                    m = void 0 !== s && /([:;$])/i.test(s);
-                if (!d && !m) {
-                    var b = l(a),
-                        h = b.domain;
-                    if (h.length <= p.MAX_DOMAIN_LENGTH && -1 !== p.TOP_DOMAINS.indexOf(h)) {
-                        var f = t(b);
-                        n = n.slice(0, a.index + r) + f + n.slice(o + r), r += f.length - i
-                    }
-                }
-            }
+            var a = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
+                r = i(e, t, a),
+                n = r.request;
             return n
         }
 
-        function c(e, t) {
-            return e.replace(p.EMAIL, t || function(e) {
-                return '<a href="mailto:' + e + '">' + e + "</a>"
-            })
-        }
-
-        function s(e, t) {
-            return e.replace(p.MENTION, t || function(e, t, a, r, n) {
-                return '<a href="/' + (t + a) + '" class="mem_link" mention="' + k(r || "") + '" mention_id="' + k(t + a) + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)">' + n + "</a>"
-            })
-        }
-
-        function u(e) {
-            if (!e[0] || !e[6]) return e;
-            var t = e[0].length - 1,
-                a = e[6].length - 1;
-            return "." === e[0][t] && "." === e[6][a] && (e[0] = e[0].slice(0, t), e[6] = e[6].slice(0, a)), e
-        }
-
-        function l(e) {
+        function i(e, t) {
+            function a() {
+                n.abort()
+            }
+            var r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
+                n = void 0;
+            n = window.XDomainRequest ? new XDomainRequest : ajax._getreq();
+            var i = new Promise(function(a, i) {
+                var o = void 0,
+                    c = Date.now(),
+                    s = r.timeout || 60,
+                    u = ajx2q(t);
+                if (window.XDomainRequest) n.open("get", e + "?" + u), n.ontimeout = function() {
+                    i(["", {}])
+                }, n.onerror = function() {
+                    i(["", {}])
+                }, n.onload = function() {
+                    a([n.responseText, {}])
+                }, setTimeout(function() {
+                    n.send()
+                }, 0);
+                else {
+                    n.onreadystatechange = function() {
+                        4 == n.readyState && (clearInterval(o), n.status >= 200 && n.status < 300 ? a([n.responseText, n]) : i([n.responseText, n]))
+                    };
+                    try {
+                        n.open("GET", e + "?" + u, !0)
+                    } catch (l) {
+                        return i([l, n])
+                    }
+                    n.send()
+                }
+                o = setInterval(function() {
+                    Date.now() - c > 1e3 * s && (i(["", {}]), clearInterval(o))
+                }, 1e3)
+            });
             return {
-                full: e[0],
-                protocol: e[1] || "http://",
-                url: e[2],
-                domain: e[4],
-                query: e[6] || ""
+                request: i,
+                cancel: a
             }
         }
-
-        function d() {
-            return v || (v = new RegExp(p.RE_HASHTAG_EXTRACTION_PATTERN, "ig")), v
-        }
-
-        function m(e, t) {
-            return e.replace(d(), function(e, a, r, n, i, o) {
-                return (a || "") + t(r + (i || ""))
-            })
-        }
-
-        function b(e) {
-            _("ttl_message_confirm_delivery", e)
-        }
-
-        function h(e, t) {
-            var a = t.protocol,
-                r = t.url,
-                n = t.query,
-                i = t.domain,
-                o = t.full;
-            try {
-                o = decodeURIComponent(o)
-            } catch (c) {}
-            if (o.length > 55 && (o = o.substr(0, 53) + ".."), o = k(o).replace(/&amp;/g, "&"), !e && i.match(p.OUR_DOMAINS)) {
-                r = w(r).replace(p.ENTITIES, encodeURIComponent);
-                var s = r,
-                    u = r.indexOf("#/"),
-                    l = "",
-                    d = void 0;
-                return u >= 0 ? s = r.substr(u + 1) : (u = r.indexOf("#!"), u >= 0 && (s = "/" + r.substr(u + 2).replace(/^\//, ""))), d = s.match(p.VK_DOMAIN), d && d[1].length < 32 && (l = ' mention_id="' + d[1] + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)"'), '<a href="' + f(a + r + n) + '" target="_blank"' + l + ">" + o + "</a>"
-            }
-            var m = "away.php?utf=1&to=" + encodeURIComponent(a + w(r + n)),
-                b = k((a + r + n).replace(/'/g, "\\'")),
-                h = "return goAway('" + b + "', {}, event);";
-            return '<a href="' + m + '" target="_blank" onclick="' + h + '">' + o + "</a>"
-        }
-
-        function f(e) {
-            return e.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-        }
-        a.r(t), a.d(t, "parseFwd", function() {
-            return i
-        }), a.d(t, "replaceHyperLinks", function() {
+        a.r(t), a.d(t, "CONTROLLER", function() {
             return o
-        }), a.d(t, "replaceEmailLinks", function() {
-            return c
-        }), a.d(t, "replaceMentions", function() {
-            return s
-        }), a.d(t, "replaceHashtags", function() {
-            return m
-        }), a.d(t, "confirmDelivery", function() {
-            return b
-        }), a.d(t, "linksReplacer", function() {
-            return h
+        }), a.d(t, "post", function() {
+            return r
+        }), a.d(t, "plainget", function() {
+            return n
+        }), a.d(t, "plaingetCancelable", function() {
+            return i
         });
-        var p = a(6),
-            g = function() {
-                function e(e, t) {
-                    var a = [],
-                        r = !0,
-                        n = !1,
-                        i = void 0;
-                    try {
-                        for (var o, c = e[Symbol.iterator](); !(r = (o = c.next()).done) && (a.push(o.value), !t || a.length !== t); r = !0);
-                    } catch (s) {
-                        n = !0, i = s
-                    } finally {
-                        try {
-                            !r && c["return"] && c["return"]()
-                        } finally {
-                            if (n) throw i
-                        }
-                    }
-                    return a
-                }
-                return function(t, a) {
-                    if (Array.isArray(t)) return t;
-                    if (Symbol.iterator in Object(t)) return e(t, a);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }(),
-            v = void 0,
-            y = window,
-            k = y.clean,
-            w = y.replaceEntities,
-            _ = y.statlogsValueEvent,
-            x = {}
+        var o = "al_im.php",
+            c = 2
     },
-    189: function(e, t, a) {
-        "use strict";
-
-        function r(e) {
-            return "im_store_" + e
-        }
-
-        function n(e) {
-            return ls.get(r(e)) || {}
-        }
-
-        function i(e, t, a) {
-            if (ls.checkVersion()) {
-                var n = JSON.stringify(t);
-                rand(0, 1e5) <= 1 && statlogsValueEvent("im_local_store_size", n.length), a(r(e), n)
-            }
-        }
-
-        function o(e, t, a) {
-            return t === m ? e[t] || [] : t === b ? e[t] && e[t][a] : e[t] ? extend(!0, {}, e[t][a]) : null
-        }
-
-        function c(e, t, a) {
-            switch (e[t] || (e[t] = {}), t) {
-                case m:
-                    var r = a;
-                    r && r.length > 0 ? e[t] = r : delete e[t];
-                    break;
-                case b:
-                    var n = d(a, 2),
-                        i = n[0],
-                        o = n[1];
-                    o ? e[t][i] = +o : delete e[t][i]
-            }
-            return e
-        }
-
-        function s(e, t) {
-            for (var a = ["fwd", "draft", "bind_attach"], r = n(e), o = !1, c = a.length; c--;) a[c] in r && (delete r[a[c]], o = !0);
-            o && i(e, r, t)
-        }
-
-        function u(e, t, a) {
-            a.key === r(e) && (t.db = JSON.parse(a.newValue), t.checkTime = Date.now())
-        }
-
-        function l(e) {
-            var t = debounce(function(e, t) {
-                localStorage.setItem(e, t)
-            }, 300);
-            ls.checkVersion() && s(e, t);
-            var a = {
-                    db: n(e),
-                    checkTime: Date.now()
-                },
-                r = u.bind(null, e, a);
-            return window.addEventListener("storage", r, !1), {
-                select: function(t, r) {
-                    return Date.now() - a.checkTime > 1e3 && (a.db = n(e)), o(a.db, t, r)
-                },
-                selectByKey: function(t) {
-                    return Date.now() - a.checkTime > 1e3 && (a.db = n(e)), a.db[t]
-                },
-                update: function(r, n) {
-                    var o = c(a.db, r, n);
-                    return a.db = o, a.checkTime = Date.now(), i(e, o, t)
-                },
-                updateByKey: function(r, n) {
-                    return a.db[r] = n, a.checkTime = Date.now(), i(e, a.db, t)
-                },
-                unmount: function() {
-                    window.removeEventListener("storage", r, !1)
-                }
-            }
-        }
-        a.r(t), a.d(t, "RECENT_SEARCH_OP", function() {
-            return m
-        }), a.d(t, "PIN_HIDDEN_ID_OP", function() {
-            return b
-        }), a.d(t, "deleteOldStoredFormat", function() {
-            return s
-        }), a.d(t, "mount", function() {
-            return l
-        });
-        var d = function() {
-                function e(e, t) {
-                    var a = [],
-                        r = !0,
-                        n = !1,
-                        i = void 0;
-                    try {
-                        for (var o, c = e[Symbol.iterator](); !(r = (o = c.next()).done) && (a.push(o.value), !t || a.length !== t); r = !0);
-                    } catch (s) {
-                        n = !0, i = s
-                    } finally {
-                        try {
-                            !r && c["return"] && c["return"]()
-                        } finally {
-                            if (n) throw i
-                        }
-                    }
-                    return a
-                }
-                return function(t, a) {
-                    if (Array.isArray(t)) return t;
-                    if (Symbol.iterator in Object(t)) return e(t, a);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }(),
-            m = "recent_search",
-            b = "pin_hide"
-    },
-    253: function(e, t, a) {
+    287: function(e, t, a) {
         "use strict";
         a.r(t);
-        var r = a(189),
-            n = a(75),
+        var r = a(306),
+            n = a(380),
             i = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
                 return typeof e
             } : function(e) {
@@ -592,89 +373,305 @@
             stManager.done("writebox.js")
         } catch (c) {}
     },
-    275: function(e, t, a) {
-        e.exports = a(253)
-    },
-    337: function(e, t, a) {
+    306: function(e, t, a) {
         "use strict";
 
-        function r(e, t, a) {
-            return t && (t.im_v = c), new Promise(function(r, n) {
-                ajax.post(e, t, {
-                    timeout: a,
-                    onDone: function() {
-                        r.apply(null, [
-                            [].concat(Array.prototype.slice.call(arguments))
-                        ])
-                    },
-                    onFail: function() {
-                        return n.apply(null, arguments), !0
+        function r(e) {
+            return "im_store_" + e
+        }
+
+        function n(e) {
+            return ls.get(r(e)) || {}
+        }
+
+        function i(e, t, a) {
+            if (ls.checkVersion()) {
+                var n = JSON.stringify(t);
+                rand(0, 1e5) <= 1 && statlogsValueEvent("im_local_store_size", n.length), a(r(e), n)
+            }
+        }
+
+        function o(e, t, a) {
+            return t === m ? e[t] || [] : t === b ? e[t] && e[t][a] : e[t] ? extend(!0, {}, e[t][a]) : null
+        }
+
+        function c(e, t, a) {
+            switch (e[t] || (e[t] = {}), t) {
+                case m:
+                    var r = a;
+                    r && r.length > 0 ? e[t] = r : delete e[t];
+                    break;
+                case b:
+                    var n = d(a, 2),
+                        i = n[0],
+                        o = n[1];
+                    o ? e[t][i] = +o : delete e[t][i]
+            }
+            return e
+        }
+
+        function s(e, t) {
+            for (var a = ["fwd", "draft", "bind_attach"], r = n(e), o = !1, c = a.length; c--;) a[c] in r && (delete r[a[c]], o = !0);
+            o && i(e, r, t)
+        }
+
+        function u(e, t, a) {
+            a.key === r(e) && (t.db = JSON.parse(a.newValue), t.checkTime = Date.now())
+        }
+
+        function l(e) {
+            var t = debounce(function(e, t) {
+                localStorage.setItem(e, t)
+            }, 300);
+            ls.checkVersion() && s(e, t);
+            var a = {
+                    db: n(e),
+                    checkTime: Date.now()
+                },
+                r = u.bind(null, e, a);
+            return window.addEventListener("storage", r, !1), {
+                select: function(t, r) {
+                    return Date.now() - a.checkTime > 1e3 && (a.db = n(e)), o(a.db, t, r)
+                },
+                selectByKey: function(t) {
+                    return Date.now() - a.checkTime > 1e3 && (a.db = n(e)), a.db[t]
+                },
+                update: function(r, n) {
+                    var o = c(a.db, r, n);
+                    return a.db = o, a.checkTime = Date.now(), i(e, o, t)
+                },
+                updateByKey: function(r, n) {
+                    return a.db[r] = n, a.checkTime = Date.now(), i(e, a.db, t)
+                },
+                unmount: function() {
+                    window.removeEventListener("storage", r, !1)
+                }
+            }
+        }
+        a.r(t), a.d(t, "RECENT_SEARCH_OP", function() {
+            return m
+        }), a.d(t, "PIN_HIDDEN_ID_OP", function() {
+            return b
+        }), a.d(t, "deleteOldStoredFormat", function() {
+            return s
+        }), a.d(t, "mount", function() {
+            return l
+        });
+        var d = function() {
+                function e(e, t) {
+                    var a = [],
+                        r = !0,
+                        n = !1,
+                        i = void 0;
+                    try {
+                        for (var o, c = e[Symbol.iterator](); !(r = (o = c.next()).done) && (a.push(o.value), !t || a.length !== t); r = !0);
+                    } catch (s) {
+                        n = !0, i = s
+                    } finally {
+                        try {
+                            !r && c["return"] && c["return"]()
+                        } finally {
+                            if (n) throw i
+                        }
                     }
-                })
-            })
+                    return a
+                }
+                return function(t, a) {
+                    if (Array.isArray(t)) return t;
+                    if (Symbol.iterator in Object(t)) return e(t, a);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }(),
+            m = "recent_search",
+            b = "pin_hide"
+    },
+    338: function(e, t, a) {
+        "use strict";
+
+        function r(e) {
+            var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [],
+                a = e.split("_"),
+                r = g(a, 2),
+                n = r[0],
+                i = r[1];
+            return [n, i, t]
         }
 
         function n(e, t) {
-            var a = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
-                r = i(e, t, a),
-                n = r.request;
+            var a = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 0,
+                i = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 0;
+            if (i > 50) return [
+                [], e.length
+            ];
+            for (var o = [], c = ""; a < e.length;) {
+                var s = e[a];
+                if ("id" === s) c = t[a];
+                else if ("," === s && c) o.push(r(c)), c = "";
+                else if ("(" === s) {
+                    var u = n(e, t, a + 1, i + 1),
+                        l = g(u, 2),
+                        d = l[0],
+                        m = l[1];
+                    a = m, o.push(r(c, d)), c = ""
+                } else if (")" === s) return "" !== c && o.push(r(c)), [o, a];
+                a++
+            }
+            return c && o.push(r(c)), [o, a]
+        }
+
+        function i(e) {
+            if (x[e]) return x[e];
+            for (var t = e ? e.length : 0, a = [], r = [], i = "", o = 0; t > o; o++) {
+                var c = e[o],
+                    s = c.charCodeAt(0);
+                s >= 48 && 57 >= s || "_" === c || "-" === c ? i += c : ("(" === c || ")" === c || ":" === c || "," === c) && ("" !== i && (r.push(i), a.push("id"), i = ""), r.push(c), a.push(c))
+            }
+            i.length > 0 && (r.push(i), a.push("id"));
+            var u = n(a, r),
+                l = g(u, 1),
+                d = l[0];
+            return Object.keys(x).length > 300 && (x = {}), x[e] = d, d
+        }
+
+        function o(e, t) {
+            for (var a = void 0, r = 0, n = e; null !== (a = p.MESSAGE_REGEXP.exec(e));) {
+                a = u(a);
+                var i = a[0].length,
+                    o = a.index + i,
+                    c = e[a.index - 1],
+                    s = e[o - 1],
+                    d = void 0 !== c && /([\w\$А-Яа-яёЁєЄҐґЇїІіЈј\—\-\_@;.])/i.test(c),
+                    m = void 0 !== s && /([:;$])/i.test(s);
+                if (!d && !m) {
+                    var b = l(a),
+                        h = b.domain;
+                    if (h.length <= p.MAX_DOMAIN_LENGTH && -1 !== p.TOP_DOMAINS.indexOf(h)) {
+                        var f = t(b);
+                        n = n.slice(0, a.index + r) + f + n.slice(o + r), r += f.length - i
+                    }
+                }
+            }
             return n
         }
 
-        function i(e, t) {
-            function a() {
-                n.abort()
-            }
-            var r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
-                n = void 0;
-            n = window.XDomainRequest ? new XDomainRequest : ajax._getreq();
-            var i = new Promise(function(a, i) {
-                var o = void 0,
-                    c = Date.now(),
-                    s = r.timeout || 60,
-                    u = ajx2q(t);
-                if (window.XDomainRequest) n.open("get", e + "?" + u), n.ontimeout = function() {
-                    i(["", {}])
-                }, n.onerror = function() {
-                    i(["", {}])
-                }, n.onload = function() {
-                    a([n.responseText, {}])
-                }, setTimeout(function() {
-                    n.send()
-                }, 0);
-                else {
-                    n.onreadystatechange = function() {
-                        4 == n.readyState && (clearInterval(o), n.status >= 200 && n.status < 300 ? a([n.responseText, n]) : i([n.responseText, n]))
-                    };
-                    try {
-                        n.open("GET", e + "?" + u, !0)
-                    } catch (l) {
-                        return i([l, n])
-                    }
-                    n.send()
-                }
-                o = setInterval(function() {
-                    Date.now() - c > 1e3 * s && (i(["", {}]), clearInterval(o))
-                }, 1e3)
-            });
+        function c(e, t) {
+            return e.replace(p.EMAIL, t || function(e) {
+                return '<a href="mailto:' + e + '">' + e + "</a>"
+            })
+        }
+
+        function s(e, t) {
+            return e.replace(p.MENTION, t || function(e, t, a, r, n) {
+                return '<a href="/' + (t + a) + '" class="mem_link" mention="' + k(r || "") + '" mention_id="' + k(t + a) + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)">' + n + "</a>"
+            })
+        }
+
+        function u(e) {
+            if (!e[0] || !e[6]) return e;
+            var t = e[0].length - 1,
+                a = e[6].length - 1;
+            return "." === e[0][t] && "." === e[6][a] && (e[0] = e[0].slice(0, t), e[6] = e[6].slice(0, a)), e
+        }
+
+        function l(e) {
             return {
-                request: i,
-                cancel: a
+                full: e[0],
+                protocol: e[1] || "http://",
+                url: e[2],
+                domain: e[4],
+                query: e[6] || ""
             }
         }
-        a.r(t), a.d(t, "CONTROLLER", function() {
-            return o
-        }), a.d(t, "post", function() {
-            return r
-        }), a.d(t, "plainget", function() {
-            return n
-        }), a.d(t, "plaingetCancelable", function() {
+
+        function d() {
+            return v || (v = new RegExp(p.RE_HASHTAG_EXTRACTION_PATTERN, "ig")), v
+        }
+
+        function m(e, t) {
+            return e.replace(d(), function(e, a, r, n, i, o) {
+                return (a || "") + t(r + (i || ""))
+            })
+        }
+
+        function b(e) {
+            _("ttl_message_confirm_delivery", e)
+        }
+
+        function h(e, t) {
+            var a = t.protocol,
+                r = t.url,
+                n = t.query,
+                i = t.domain,
+                o = t.full;
+            try {
+                o = decodeURIComponent(o)
+            } catch (c) {}
+            if (o.length > 55 && (o = o.substr(0, 53) + ".."), o = k(o).replace(/&amp;/g, "&"), !e && i.match(p.OUR_DOMAINS)) {
+                r = w(r).replace(p.ENTITIES, encodeURIComponent);
+                var s = r,
+                    u = r.indexOf("#/"),
+                    l = "",
+                    d = void 0;
+                return u >= 0 ? s = r.substr(u + 1) : (u = r.indexOf("#!"), u >= 0 && (s = "/" + r.substr(u + 2).replace(/^\//, ""))), d = s.match(p.VK_DOMAIN), d && d[1].length < 32 && (l = ' mention_id="' + d[1] + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)"'), '<a href="' + f(a + r + n) + '" target="_blank"' + l + ">" + o + "</a>"
+            }
+            var m = "away.php?utf=1&to=" + encodeURIComponent(a + w(r + n)),
+                b = k((a + r + n).replace(/'/g, "\\'")),
+                h = "return goAway('" + b + "', {}, event);";
+            return '<a href="' + m + '" target="_blank" onclick="' + h + '">' + o + "</a>"
+        }
+
+        function f(e) {
+            return e.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        }
+        a.r(t), a.d(t, "parseFwd", function() {
             return i
+        }), a.d(t, "replaceHyperLinks", function() {
+            return o
+        }), a.d(t, "replaceEmailLinks", function() {
+            return c
+        }), a.d(t, "replaceMentions", function() {
+            return s
+        }), a.d(t, "replaceHashtags", function() {
+            return m
+        }), a.d(t, "confirmDelivery", function() {
+            return b
+        }), a.d(t, "linksReplacer", function() {
+            return h
         });
-        var o = "al_im.php",
-            c = 2
+        var p = a(339),
+            g = function() {
+                function e(e, t) {
+                    var a = [],
+                        r = !0,
+                        n = !1,
+                        i = void 0;
+                    try {
+                        for (var o, c = e[Symbol.iterator](); !(r = (o = c.next()).done) && (a.push(o.value), !t || a.length !== t); r = !0);
+                    } catch (s) {
+                        n = !0, i = s
+                    } finally {
+                        try {
+                            !r && c["return"] && c["return"]()
+                        } finally {
+                            if (n) throw i
+                        }
+                    }
+                    return a
+                }
+                return function(t, a) {
+                    if (Array.isArray(t)) return t;
+                    if (Symbol.iterator in Object(t)) return e(t, a);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }(),
+            v = void 0,
+            y = window,
+            k = y.clean,
+            w = y.replaceEntities,
+            _ = y.statlogsValueEvent,
+            x = {}
     },
-    6: function(e, t, a) {
+    339: function(e, t, a) {
         "use strict";
 
         function r(e, t, a) {
@@ -797,7 +794,7 @@
             te = "((?:[a-z0-9_]*[a-z0-9])?(?:(?:.[a-z](?:[a-z0-9_]+[a-z0-9])?)*.[a-z][a-z0-9_]{2,40}[a-z0-9])?)",
             ae = "(^|[s.,:'\";>)(]?)(" + ee + ")(@" + te + ")?(?=$|[s.,:'\"&;?<)(]?)"
     },
-    75: function(e, t, a) {
+    380: function(e, t, a) {
         "use strict";
 
         function r() {
@@ -881,8 +878,8 @@
         }), a.d(t, "loadDraftForPeer", function() {
             return u
         });
-        var l = a(337),
-            d = a(134),
+        var l = a(266),
+            d = a(338),
             m = function() {
                 function e(e, t) {
                     var a = [],
@@ -920,15 +917,18 @@
         }, n.prototype.setText = function(e) {
             this.dData.txt = trim(e), this.dump()
         }, n.prototype.addAttach = function(e, t, a) {
-            ("share" === e || "mail" === e) && this.removeAttachByType(e);
-            var r = this.dData.attaches.find(function(a) {
+            if (("share" === e || "mail" === e) && this.removeAttachByType(e), !e || !t) return !1;
+            var r = this.dData.attaches.findIndex(function(a) {
                 return a.type === e && a.id === t
-            });
-            !r && e && t && (this.dData.attaches.push({
+            }); - 1 === r ? (this.dData.attaches.push({
                 type: e,
                 id: t,
                 object: a
-            }), this.dump())
+            }), this.dump()) : "video" === e && (this.dData.attaches[r] = {
+                type: e,
+                id: t,
+                object: a
+            }, this.dump())
         }, n.prototype.syncWithSelector = function(e) {
             var t = this,
                 a = this.getFwdRaw();
@@ -1000,5 +1000,8 @@
             var e = this.getFwdRaw();
             return e ? e.id < 0 ? e.object.fwd_count : e.id.split(";").length : 0
         }
+    },
+    83: function(e, t, a) {
+        e.exports = a(287)
     }
 });

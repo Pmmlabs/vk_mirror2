@@ -1,5 +1,5 @@
 #graffiti_css {
-    display: none;
+    display: none
 }
 
 #graffiti_wrapper {
@@ -7,16 +7,16 @@
     margin-left: auto;
     margin-right: auto;
     overflow: hidden;
-    background: #F7F7F7;
-    z-index: 500;
+    background: #f7f7f7;
+    z-index: 500
 }
 
 #graffiti_wrapper.graffiti_fullscreen {
-    position: fixed;
+    position: fixed
 }
 
 #graffiti_height {
-    height: 435px;
+    height: 435px
 }
 
 #graffiti_topbar {
@@ -27,9 +27,9 @@
     background-color: #fff;
     text-align: left;
     overflow: hidden;
-    padding: 15px 20px 0px 20px;
+    padding: 15px 20px 0px;
     z-index: 10003;
-    border-bottom: 1px solid #DEDFE1;
+    border-bottom: 1px solid #dedfe1
 }
 
 #graffiti_gwrap {
@@ -39,12 +39,12 @@
     background-color: #f7f7f7;
     padding-top: 18px;
     padding-bottom: 5px;
-    z-index: 10003;
+    z-index: 10003
 }
 
 .graffiti_fullscreen #graffiti_gwrap {
     position: absolute;
-    top: 50%;
+    top: 50%
 }
 
 #graffiti_aligner {
@@ -54,53 +54,51 @@
     overflow: hidden;
     width: 586px;
     height: 293px;
-    border: 1px solid #CCC;
+    border: 1px solid #ccc;
     background-color: #fff;
-    z-index: 10003;
+    z-index: 10003
 }
-
-.graffiti_fullscreen #graffiti_aligner {}
 
 #graffiti_overlay {
     position: relative;
     top: -293px;
     z-index: 10012;
     display: block;
-    -ms-touch-action: none;
+    -ms-touch-action: none
 }
 
 #graffiti_common {
     display: block;
-    z-index: 10010;
+    z-index: 10010
 }
 
 #graffiti_helper {
     display: block;
     position: relative;
     top: -586px;
-    z-index: 10011;
+    z-index: 10011
 }
 
 #graffiti_bottombar {
-    border-top: 1px solid #DEDFE1;
+    border-top: 1px solid #dedfe1;
     display: block;
     width: 100%;
     height: 68px;
     margin: 0 auto;
     z-index: 10003;
-    background: #FFFFFF;
-    text-align: center;
+    background: #fff;
+    text-align: center
 }
 
 .graffiti_fullscreen #graffiti_bottombar {
     position: absolute;
-    bottom: 0px;
+    bottom: 0px
 }
 
 #graffiti_controls {
     width: 586px;
     margin: 0 auto;
-    -ms-touch-action: none;
+    -ms-touch-action: none
 }
 
 #graffiti_cpwrap {
@@ -110,17 +108,14 @@
     position: relative;
     top: -210px;
     left: 62px;
-    padding-top: 7px;
-    padding-bottom: 6px;
-    padding-left: 7px;
-    padding-right: 7px;
+    padding: 7px 7px 6px;
     width: 253px;
     overflow: hidden;
-    background-color: #E5E5E5;
+    background-color: #e5e5e5;
     z-index: 10013;
-    box-shadow: 0 0 3px rgba(214, 214, 214, 0.6);
-    -moz-box-shadow: 0 0 3px rgba(214, 214, 214, 0.6);
-    -webkit-box-shadow: 0 0 3px rgba(214, 214, 214, 0.6);
+    box-shadow: 0 0 3px hsla(0, 0%, 84%, .6);
+    -moz-box-shadow: 0 0 3px hsla(0, 0%, 84%, .6);
+    -webkit-box-shadow: 0 0 3px hsla(0, 0%, 84%, .6)
 }
 
 #graffiti_rewrap {
@@ -128,23 +123,23 @@
     height: 0;
     display: block;
     margin: 0 auto;
-    overflow: visible;
+    overflow: visible
 }
 
 .graffiti_fullscreen #graffiti_rewrap {
     position: absolute;
     bottom: 0px;
-    left: 50%;
+    left: 50%
 }
 
 .graffiti_fullscreen #graffiti_cpwrap {
-    left: -230px;
+    left: -230px
 }
 
 #graffiti_hist_helper {
     position: absolute;
     top: -7777px;
-    left: -7777px;
+    left: -7777px
 }
 
 #graffiti_resizer {
@@ -152,11 +147,11 @@
     padding: 0;
     height: 15px;
     background: url('/images/pics/graffiti_resizer.gif') no-repeat center 1px;
-    cursor: s-resize;
+    cursor: s-resize
 }
 
 .graffiti_fullscreen #graffiti_resizer {
-    display: none;
+    display: none
 }
 
 #graffiti_save {
@@ -164,5 +159,5 @@
     height: 1px;
     position: absolute;
     opacity: 0;
-    filter: alpha(opacity=0);
+    filter: alpha(opacity=0)
 }

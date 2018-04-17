@@ -28,9 +28,9 @@
         return t.d(r, "a", r), r
     }, t.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, t.p = "", t(t.s = 93)
+    }, t.p = "", t(t.s = 628)
 }({
-    117: function(e, t, r) {
+    298: function(e, t, r) {
         "use strict";
 
         function o(e) {
@@ -73,46 +73,12 @@
                 0 === s && i["delete"](e)
             }
         }
-        Object.defineProperty(t, "__esModule", {
-            value: !0
+        r.r(t), r.d(t, "addDelegateEvent", function() {
+            return a
+        }), r.d(t, "removeDelegateEvent", function() {
+            return n
         });
         var s = function() {
-            function e(e, t) {
-                var r = [],
-                    o = !0,
-                    a = !1,
-                    n = void 0;
-                try {
-                    for (var s, i = e[Symbol.iterator](); !(o = (s = i.next()).done) && (r.push(s.value), !t || r.length !== t); o = !0);
-                } catch (l) {
-                    a = !0, n = l
-                } finally {
-                    try {
-                        !o && i["return"] && i["return"]()
-                    } finally {
-                        if (a) throw n
-                    }
-                }
-                return r
-            }
-            return function(t, r) {
-                if (Array.isArray(t)) return t;
-                if (Symbol.iterator in Object(t)) return e(t, r);
-                throw new TypeError("Invalid attempt to destructure non-iterable instance")
-            }
-        }();
-        t.addDelegateEvent = a, t.removeDelegateEvent = n;
-        var i = new window.Map
-    },
-    161: function(e, t, r) {
-        "use strict";
-
-        function o(e) {
-            return e && e.__esModule ? e : {
-                "default": e
-            }
-        }
-        var a = function() {
                 function e(e, t) {
                     var r = [],
                         o = !0,
@@ -137,8 +103,235 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }(),
-            n = r(212),
-            s = o(n);
+            i = new window.Map
+    },
+    39: function(e, t, r) {
+        "use strict";
+
+        function o(e) {
+            return {
+                callMutations: function() {
+                    if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
+                    return e
+                },
+                bindMutations: function() {
+                    if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
+                    return e = e.apply(void 0, arguments)
+                }
+            }
+        }
+
+        function a(e, t, r, o) {
+            d(t, r, o), e._registeredHandlers.push(["bind", t, r, o])
+        }
+
+        function n(e, t, r, o, a) {
+            Object(l.addDelegateEvent)(t, r, o, a), e._registeredHandlers.push(["delegate", t, r, o, a])
+        }
+
+        function s(e) {
+            var t = {
+                _registeredHandlers: []
+            };
+            return e.handlers(a.bind(null, t), n.bind(null, t)), t
+        }
+
+        function i(e) {
+            e._registeredHandlers.forEach(function(e) {
+                var t = e.slice(1);
+                "delegate" === e[0] ? l.removeDelegateEvent.apply(void 0, t) : u.apply(void 0, t)
+            }), e._registeredHandlers = []
+        }
+        r.r(t), r.d(t, "createMutations", function() {
+            return o
+        }), r.d(t, "createModule", function() {
+            return s
+        }), r.d(t, "destroyModule", function() {
+            return i
+        });
+        var l = r(298),
+            _ = window,
+            d = _.addEvent,
+            u = _.removeEvent
+    },
+    399: function(e, t, r) {
+        "use strict";
+
+        function o(e, t, r) {
+            var o = vkNow(),
+                s = n(o, a(e), "", t.label ? t.label : "", d),
+                i = cur.leadFormsTpls.dropDown.replace("{input_id}", o).replace("{label}", getLang("communityApps_lead_forms_custom_question_answer_type")),
+                l = se(cur.leadFormsTpls.customQuestionWrap.replace("{question}", s).replace("{answer_type}", i)),
+                _ = geByClass1("lead_forms_app_labeled_row_cont", l).appendChild(ce("div", {
+                    className: "lead_forms_app_custom_question_row_remove"
+                }));
+            return addEvent(_, "click", function() {
+                re(domClosest("lead_forms_app_custom_question_row", _)), r()
+            }), ge("lead_forms_app_custom_questions").appendChild(l), ge("lead_forms_generator_input_" + o).focus(), [l, o]
+        }
+
+        function a(e) {
+            return getLang("communityApps_lead_forms_custom_question_label").replace("%s", e)
+        }
+
+        function n(e, t, r, o, a) {
+            return cur.leadFormsTpls.inputRow.replace(/\{input\_id\}/g, e).replace("{label}", t).replace("{placeholder}", r).replace("{value}", o).replace(/\{max\_length\}/g, a)
+        }
+
+        function s(e, t, r) {
+            return {
+                setText: function(e) {},
+                onTypeChanged: function(e, o) {
+                    var a = geByClass1("_lead_forms_app_custom_question_row_extra", r.questionEl);
+                    if (removeEvent(geByClass1("lead_forms_app_custom_question_row_extra_add_input", a), "click"), val(a, ""), !inArray(e, ["input", "textarea"])) {
+                        var n = o.options ? o.options.length : 2;
+                        "select" !== e || o.options || (n = 1), val(a, cur.leadFormsTpls.customQuestionExtra.replace("{inputs}", ""));
+                        for (var s = 0; n > s; s++) {
+                            var i = o.options ? o.options[s] : "";
+                            t().addInput(i)
+                        }
+                    }
+                    addEvent(geByClass1("lead_forms_app_custom_question_row_extra_add_input", a), "click", function(e) {
+                        cancelEvent(e), t().addInput()
+                    }), LeadFormsApp.step2Changed()
+                },
+                addInput: function(e) {
+                    var o = geByClass1("_lead_forms_app_custom_question_row_extra_inputs", r.questionEl),
+                        a = getLang("communityApps_lead_forms_custom_question_answer_placeholder").replace("%s", o.children.length + 1),
+                        s = o.appendChild(se(n(vkNow(), "", a, e || "", u))),
+                        i = geByClass1("lead_forms_app_labeled_row_cont", s).appendChild(ce("div", {
+                            className: "lead_forms_app_custom_question_row_remove"
+                        }));
+                    addEvent(i, "click", function() {
+                        t().removeInput(i)
+                    });
+                    var l = domCA(geByClass1("lead_forms_app_custom_question_row_extra_add_input", r.questionEl), ".lead_forms_app_labeled_row");
+                    o.children.length >= p ? hide(l) : show(l), LeadFormsApp.step2Changed()
+                },
+                removeInput: function(e) {
+                    re(domClosest("lead_forms_app_labeled_row", e));
+                    for (var t = geByClass("lead_forms_app_generator_input", geByClass1("_lead_forms_app_custom_question_row_extra_inputs", r.questionEl)), o = 0; o < t.length; o++) attr(t[o], "placeholder", getLang("communityApps_lead_forms_custom_question_answer_placeholder").replace("%s", o + 1))
+                },
+                getData: function() {
+                    for (var e = {
+                            label: trim(val("lead_forms_generator_input_" + r.ident)),
+                            type: r.answerTypeDD.val(),
+                            options: []
+                        }, t = geByClass("lead_forms_app_generator_input", geByClass1("_lead_forms_app_custom_question_row_extra_inputs", r.questionEl)), o = 0; o < t.length; o++) {
+                        var a = trim(val(t[o]));
+                        a && e.options.push(trim(val(t[o])))
+                    }
+                    return e
+                },
+                getNum: function() {
+                    return r.questionNum
+                },
+                setNum: function(e) {
+                    r.questionNum = e, val(geByClass1("lead_forms_app_labeled_row_label", r.questionEl), a(e))
+                },
+                unmount: function() {
+                    Object(l.destroyModule)(e)
+                }
+            }
+        }
+
+        function i(e, t, r) {
+            t = t || {};
+            var a = o(e, t, function() {
+                    r.onRemove(c().getNum())
+                }),
+                n = _(a, 2),
+                i = n[0],
+                d = n[1],
+                u = {
+                    questionNum: e,
+                    ident: d,
+                    questionEl: i,
+                    callbacks: r
+                },
+                p = Object(l.createMutations)(s),
+                c = p.callMutations,
+                m = p.bindMutations;
+            u.answerTypeDD = new Dropdown(ge("lead_forms_generator_dd_" + d), cur.leadFormsData.customQuestionAnswerTypes, {
+                width: 300,
+                big: 1,
+                onChange: function(e) {
+                    c().onTypeChanged(e, {})
+                },
+                selectedItem: t.type ? t.type : void 0
+            }), t.type && setTimeout(function() {
+                c().onTypeChanged(t.type, t)
+            });
+            var f = Object(l.createModule)({
+                handlers: function(e, t) {}
+            });
+            return m(f, c, u)
+        }
+        r.r(t), r.d(t, "default", function() {
+            return i
+        });
+        var l = r(39),
+            _ = function() {
+                function e(e, t) {
+                    var r = [],
+                        o = !0,
+                        a = !1,
+                        n = void 0;
+                    try {
+                        for (var s, i = e[Symbol.iterator](); !(o = (s = i.next()).done) && (r.push(s.value), !t || r.length !== t); o = !0);
+                    } catch (l) {
+                        a = !0, n = l
+                    } finally {
+                        try {
+                            !o && i["return"] && i["return"]()
+                        } finally {
+                            if (a) throw n
+                        }
+                    }
+                    return r
+                }
+                return function(t, r) {
+                    if (Array.isArray(t)) return t;
+                    if (Symbol.iterator in Object(t)) return e(t, r);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }(),
+            d = 200,
+            u = 60,
+            p = 15
+    },
+    628: function(e, t, r) {
+        e.exports = r(637)
+    },
+    637: function(e, t, r) {
+        "use strict";
+        r.r(t);
+        var o = r(65),
+            a = function() {
+                function e(e, t) {
+                    var r = [],
+                        o = !0,
+                        a = !1,
+                        n = void 0;
+                    try {
+                        for (var s, i = e[Symbol.iterator](); !(o = (s = i.next()).done) && (r.push(s.value), !t || r.length !== t); o = !0);
+                    } catch (l) {
+                        a = !0, n = l
+                    } finally {
+                        try {
+                            !o && i["return"] && i["return"]()
+                        } finally {
+                            if (a) throw n
+                        }
+                    }
+                    return r
+                }
+                return function(t, r) {
+                    if (Array.isArray(t)) return t;
+                    if (Symbol.iterator in Object(t)) return e(t, r);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }();
         window.LeadFormsApp = {
             showGeneratorBox: function(e) {
                 showBox("lead_forms_app.php", {
@@ -166,7 +359,7 @@
                     width: 1e3
                 }), cur.leadFormsData = e, cur.leadFormsTpls = e.tpl;
                 var t = geByClass1("lead_forms_app_generator_sections");
-                cur.leadFromGenerator = (0, s["default"])(t), cur.leadFromGenerator.renderConfData(), this.initUpload(e.upload_info), cur.leadFormsStep = cur.leadFormConf.step1.on ? 1 : 2, this.updatePreview()
+                cur.leadFromGenerator = Object(o["default"])(t), cur.leadFromGenerator.renderConfData(), this.initUpload(e.upload_info), cur.leadFormsStep = cur.leadFormConf.step1.on ? 1 : 2, this.updatePreview()
             },
             welcomeScreenToggle: function(e, t) {
                 cancelEvent(t), toggleClass(geByClass1("_ui_toggler", e), "on"), this.step1Changed(), removeClass("lead_forms_step_section_1", "section_error"), removeClass("lead_forms_generator_input_title", "input_error"), removeClass("lead_forms_generator_input_description", "input_error"), removeClass("lead_forms_generator_input_button", "input_error"), removeClass(geByClass1("upload_btn", "lead_form_upload_wrap"), "button_error")
@@ -597,66 +790,15 @@
         };
         try {
             stManager.done("lead_forms_app.js")
-        } catch (i) {}
+        } catch (n) {}
     },
-    190: function(e, t, r) {
+    65: function(e, t, r) {
         "use strict";
 
-        function o(e) {
-            return {
-                callMutations: function() {
-                    if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
-                    return e
-                },
-                bindMutations: function() {
-                    if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
-                    return e = e.apply(void 0, arguments)
-                }
-            }
-        }
-
-        function a(e, t, r, o) {
-            d(t, r, o), e._registeredHandlers.push(["bind", t, r, o])
-        }
-
-        function n(e, t, r, o, a) {
-            (0, l.addDelegateEvent)(t, r, o, a), e._registeredHandlers.push(["delegate", t, r, o, a])
-        }
-
-        function s(e) {
-            var t = {
-                _registeredHandlers: []
-            };
-            return e.handlers(a.bind(null, t), n.bind(null, t)), t
-        }
-
-        function i(e) {
-            e._registeredHandlers.forEach(function(e) {
-                var t = e.slice(1);
-                "delegate" === e[0] ? l.removeDelegateEvent.apply(void 0, t) : u.apply(void 0, t)
-            }), e._registeredHandlers = []
-        }
-        Object.defineProperty(t, "__esModule", {
-            value: !0
-        }), t.createMutations = o, t.createModule = s, t.destroyModule = i;
-        var l = r(117),
-            _ = window,
-            d = _.addEvent,
-            u = _.removeEvent
-    },
-    212: function(e, t, r) {
-        "use strict";
-
-        function o(e) {
-            return e && e.__esModule ? e : {
-                "default": e
-            }
-        }
-
-        function a(e, t, r, o) {
+        function o(e, t, r, o) {
             return {
                 addCustomQuestion: function(e) {
-                    r.length < _ && (r.push((0, l["default"])(r.length + 1, e, {
+                    r.length < i && (r.push(Object(s["default"])(r.length + 1, e, {
                         onRemove: function(e) {
                             r.splice(e - 1, 1);
                             for (var o = 0; o < r.length; o++) r[o].setNum(o + 1);
@@ -668,7 +810,7 @@
                     var e = r.length,
                         t = ge("lead_forms_app_add_question_button"),
                         o = geByTag1("span", t);
-                    toggle(t, _ > e), e > 0 ? val(o, " (" + cur.lang.communityApps_lead_forms_custom_questions_limit_pref.replace("%s", _ - e) + ")") : val(o, "")
+                    toggle(t, i > e), e > 0 ? val(o, " (" + cur.lang.communityApps_lead_forms_custom_questions_limit_pref.replace("%s", i - e) + ")") : val(o, "")
                 },
                 getCustomQuestionsData: function() {
                     for (var e = [], t = 0; t < r.length; t++) e.push(r[t].getData());
@@ -692,22 +834,22 @@
                     for (var e = cur.leadFormConf, r = e.step2.custom_questions, o = 0; o < r.length; o++) t().addCustomQuestion(r[o])
                 },
                 unmount: function() {
-                    (0, s.destroyModule)(e)
+                    Object(n.destroyModule)(e)
                 }
             }
         }
 
-        function n(e) {
+        function a(e) {
             var t = [],
                 r = {},
-                o = cur.leadFormConf,
-                n = (0, s.createMutations)(a),
-                i = n.callMutations,
-                l = n.bindMutations;
+                a = cur.leadFormConf,
+                s = Object(n.createMutations)(o),
+                i = s.callMutations,
+                l = s.bindMutations;
             r.adminsDD = new Dropdown(ge("lead_forms_generator_dd_settings_admins"), cur.leadFormsAdmins, {
                 width: 300,
                 big: 1,
-                selectedItem: o.step5 ? o.step5.admins : void 0,
+                selectedItem: a.step5 ? a.step5.admins : void 0,
                 multiselect: !0,
                 autocomplete: !0,
                 placeholder: getLang("communityApps_lead_form_settings_admins_placeholder"),
@@ -724,167 +866,16 @@
                 onChange: LeadFormsApp.checkboxNotificationsChanged,
                 customSearch: LeadFormsApp.checkboxNotificationsChanged
             }), r.scroll = new uiScroll(e);
-            var _ = (0, s.createModule)({
+            var _ = Object(n.createModule)({
                 handlers: function(e, t) {}
             });
             return l(_, i, t, r)
         }
-        Object.defineProperty(t, "__esModule", {
-            value: !0
-        }), t["default"] = n;
-        var s = r(190),
-            i = r(34),
-            l = o(i),
-            _ = 5
-    },
-    34: function(e, t, r) {
-        "use strict";
-
-        function o(e, t, r) {
-            var o = vkNow(),
-                s = n(o, a(e), "", t.label ? t.label : "", d),
-                i = cur.leadFormsTpls.dropDown.replace("{input_id}", o).replace("{label}", getLang("communityApps_lead_forms_custom_question_answer_type")),
-                l = se(cur.leadFormsTpls.customQuestionWrap.replace("{question}", s).replace("{answer_type}", i)),
-                _ = geByClass1("lead_forms_app_labeled_row_cont", l).appendChild(ce("div", {
-                    className: "lead_forms_app_custom_question_row_remove"
-                }));
-            return addEvent(_, "click", function() {
-                re(domClosest("lead_forms_app_custom_question_row", _)), r()
-            }), ge("lead_forms_app_custom_questions").appendChild(l), ge("lead_forms_generator_input_" + o).focus(), [l, o]
-        }
-
-        function a(e) {
-            return getLang("communityApps_lead_forms_custom_question_label").replace("%s", e)
-        }
-
-        function n(e, t, r, o, a) {
-            return cur.leadFormsTpls.inputRow.replace(/\{input\_id\}/g, e).replace("{label}", t).replace("{placeholder}", r).replace("{value}", o).replace(/\{max\_length\}/g, a)
-        }
-
-        function s(e, t, r) {
-            return {
-                setText: function(e) {},
-                onTypeChanged: function(e, o) {
-                    var a = geByClass1("_lead_forms_app_custom_question_row_extra", r.questionEl);
-                    if (removeEvent(geByClass1("lead_forms_app_custom_question_row_extra_add_input", a), "click"), val(a, ""), !inArray(e, ["input", "textarea"])) {
-                        var n = o.options ? o.options.length : 2;
-                        "select" !== e || o.options || (n = 1), val(a, cur.leadFormsTpls.customQuestionExtra.replace("{inputs}", ""));
-                        for (var s = 0; n > s; s++) {
-                            var i = o.options ? o.options[s] : "";
-                            t().addInput(i)
-                        }
-                    }
-                    addEvent(geByClass1("lead_forms_app_custom_question_row_extra_add_input", a), "click", function(e) {
-                        cancelEvent(e), t().addInput()
-                    }), LeadFormsApp.step2Changed()
-                },
-                addInput: function(e) {
-                    var o = geByClass1("_lead_forms_app_custom_question_row_extra_inputs", r.questionEl),
-                        a = getLang("communityApps_lead_forms_custom_question_answer_placeholder").replace("%s", o.children.length + 1),
-                        s = o.appendChild(se(n(vkNow(), "", a, e || "", u))),
-                        i = geByClass1("lead_forms_app_labeled_row_cont", s).appendChild(ce("div", {
-                            className: "lead_forms_app_custom_question_row_remove"
-                        }));
-                    addEvent(i, "click", function() {
-                        t().removeInput(i)
-                    });
-                    var l = domCA(geByClass1("lead_forms_app_custom_question_row_extra_add_input", r.questionEl), ".lead_forms_app_labeled_row");
-                    o.children.length >= p ? hide(l) : show(l), LeadFormsApp.step2Changed()
-                },
-                removeInput: function(e) {
-                    re(domClosest("lead_forms_app_labeled_row", e));
-                    for (var t = geByClass("lead_forms_app_generator_input", geByClass1("_lead_forms_app_custom_question_row_extra_inputs", r.questionEl)), o = 0; o < t.length; o++) attr(t[o], "placeholder", getLang("communityApps_lead_forms_custom_question_answer_placeholder").replace("%s", o + 1))
-                },
-                getData: function() {
-                    for (var e = {
-                            label: trim(val("lead_forms_generator_input_" + r.ident)),
-                            type: r.answerTypeDD.val(),
-                            options: []
-                        }, t = geByClass("lead_forms_app_generator_input", geByClass1("_lead_forms_app_custom_question_row_extra_inputs", r.questionEl)), o = 0; o < t.length; o++) {
-                        var a = trim(val(t[o]));
-                        a && e.options.push(trim(val(t[o])))
-                    }
-                    return e
-                },
-                getNum: function() {
-                    return r.questionNum
-                },
-                setNum: function(e) {
-                    r.questionNum = e, val(geByClass1("lead_forms_app_labeled_row_label", r.questionEl), a(e))
-                },
-                unmount: function() {
-                    (0, _.destroyModule)(e)
-                }
-            }
-        }
-
-        function i(e, t, r) {
-            t = t || {};
-            var a = o(e, t, function() {
-                    r.onRemove(c().getNum())
-                }),
-                n = l(a, 2),
-                i = n[0],
-                d = n[1],
-                u = {
-                    questionNum: e,
-                    ident: d,
-                    questionEl: i,
-                    callbacks: r
-                },
-                p = (0, _.createMutations)(s),
-                c = p.callMutations,
-                m = p.bindMutations;
-            u.answerTypeDD = new Dropdown(ge("lead_forms_generator_dd_" + d), cur.leadFormsData.customQuestionAnswerTypes, {
-                width: 300,
-                big: 1,
-                onChange: function(e) {
-                    c().onTypeChanged(e, {})
-                },
-                selectedItem: t.type ? t.type : void 0
-            }), t.type && setTimeout(function() {
-                c().onTypeChanged(t.type, t)
-            });
-            var f = (0, _.createModule)({
-                handlers: function(e, t) {}
-            });
-            return m(f, c, u)
-        }
-        Object.defineProperty(t, "__esModule", {
-            value: !0
+        r.r(t), r.d(t, "default", function() {
+            return a
         });
-        var l = function() {
-            function e(e, t) {
-                var r = [],
-                    o = !0,
-                    a = !1,
-                    n = void 0;
-                try {
-                    for (var s, i = e[Symbol.iterator](); !(o = (s = i.next()).done) && (r.push(s.value), !t || r.length !== t); o = !0);
-                } catch (l) {
-                    a = !0, n = l
-                } finally {
-                    try {
-                        !o && i["return"] && i["return"]()
-                    } finally {
-                        if (a) throw n
-                    }
-                }
-                return r
-            }
-            return function(t, r) {
-                if (Array.isArray(t)) return t;
-                if (Symbol.iterator in Object(t)) return e(t, r);
-                throw new TypeError("Invalid attempt to destructure non-iterable instance")
-            }
-        }();
-        t["default"] = i;
-        var _ = r(190),
-            d = 200,
-            u = 60,
-            p = 15
-    },
-    93: function(e, t, r) {
-        e.exports = r(161)
+        var n = r(39),
+            s = r(399),
+            i = 5
     }
 });
