@@ -12548,6 +12548,14 @@ a.Pad__corner {
     display: inline-block
 }
 
+.AudioBlock {
+    border: 0
+}
+
+.AudioBlock.Pad {
+    border: none!important
+}
+
 .AudioSerp {
     background: #fff
 }
