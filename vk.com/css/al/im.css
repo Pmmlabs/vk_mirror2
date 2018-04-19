@@ -5574,6 +5574,21 @@ img.im_photo_thumb {
     display: none
 }
 
+.im-chat-input.im-chat-input_error.is-f-vkcomgroup {
+    padding-left: 0;
+    text-align: center
+}
+
+.im-chat-input.im-chat-input_error.is-f-vkcomgroup .im-chat-input--error {
+    padding-left: 0;
+    padding-right: 0;
+    height: 60px
+}
+
+.im-chat-input.im-chat-input_error.is-f-vkcomgroup .im-chat-input--error:before {
+    display: none
+}
+
 .im-chat-input.im-chat-input_classic {
     padding-left: 26px;
     padding-right: 0px;
@@ -6098,6 +6113,10 @@ img.im_photo_thumb {
     cursor: pointer;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto
+}
+
+.im-page--members--nohover {
+    pointer-events: none
 }
 
 .im-page--members:hover {
@@ -9401,6 +9420,16 @@ body.sf .nim-dialog .nim-dialog--unread {
     filter: none
 }
 
+.ui_actions_menu_item.im-action.nohover {
+    display: inline;
+    padding: 0
+}
+
+.ui_actions_menu_item.im-action.nohover:hover {
+    background: none;
+    text-decoration: underline
+}
+
 .im-members {
     padding: 10px 25px;
     min-height: 270px;
@@ -9817,6 +9846,12 @@ body.sf .nim-dialog .nim-dialog--unread {
 .im-page--mess-actions_important .im-page-action_star {
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2217%22%20viewBox%3D%220%200%2016%2017%22%3E%3Cpath%20fill%3D%22%236590c7%22%20d%3D%22M15.3%206.4l-4.7-.5-2.1-4.9c-.3-.7-.8-.7-1%200l-2.1%204.9-4.7.5c-.7.1-.9.5-.3%201l3.8%203.2-1.4%205.2c-.2.7.1.9.7.5l4.5-3.3%204.5%203.3c.6.4.9.2.7-.5l-1.4-5.2%203.8-3.2c.6-.5.5-.9-.3-1z%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat;
     opacity: 1
+}
+
+.im-page--mess-actions_vkcomgroup .im-page-action[data-action=respond],
+.im-page--mess-actions_vkcomgroup .im-page-action_delete,
+.im-page--mess-actions_vkcomgroup .im-page-action_pin {
+    display: none
 }
 
 .im-page--chat-header_chat .im-page-action_pin {
@@ -11480,9 +11515,13 @@ body.sf .nim-dialog .nim-dialog--unread {
     max-width: 485px;
     overflow: hidden;
     margin: auto;
-    margin-bottom: 2px;
     text-overflow: ellipsis;
     margin-bottom: 40px
+}
+
+.im-invitation .im-invitation--name.is-vkcomgroup,
+.im-invitation .im-invitation--name.is-vkcomgroup+.im-invitation--users {
+    margin-bottom: 20px
 }
 
 .im-invitation .im-invitation--user {

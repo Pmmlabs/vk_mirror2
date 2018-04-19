@@ -23060,10 +23060,6 @@ a.feedBlocks__article:hover {
         position: relative;
         display: block
     }
-    .header__unfold {
-        position: relative;
-        top: -12px
-    }
     .mhb_back[onclick^="TopMenu.onHeaderClick"] {
         position: relative;
         left: 0!important;
@@ -28383,8 +28379,16 @@ a.feedBlocks__article:hover {
     overflow: visible!important
 }
 
+.header__center.is_unfold {
+    padding-top: 0!important;
+    padding-bottom: 0!important
+}
+
+.header__center.is_unfold .mh_header {
+    overflow: visible!important
+}
+
 .mh_header:not(#zpv_summary) {
-    overflow: hidden!important;
     min-width: 0;
     text-align: left
 }
