@@ -2217,7 +2217,10 @@ var Wall = {
         }
 
         if (type !== 'top') {
-            replaceClass('page_wall_posts', cur.wallType, type);
+            var wallEl = ge('page_wall_posts');
+            removeClass(wallEl, 'own');
+            removeClass(wallEl, 'all');
+            addClass(wallEl, type);
         }
 
         cur.wallType = type;
@@ -2256,9 +2259,21 @@ var Wall = {
         type = type || cur.wallType;
         return !!(geByClass1('post', (type === 'top' ? 'page_top_posts' : 'page_wall_posts')));
     },
-    showSuggested: function(el, ev, rows, notAll) {
+    showSuggested: function(ev, rows, notAll) {
         if (ev && checkEvent(ev)) return true;
         if (!cur.oid) return false;
+
+        var el = ge('page_wall_suggest');
+
+        if (hasClass(el, 'unshown')) {
+            el = domQuery1('#page_wall_suggest_more .ui_tab_group_item');
+        } else {
+            el = geByClass1('ui_tab', el);
+        }
+
+        if (!el) {
+            return false;
+        }
 
         uiTabs.switchTab(el);
         cur.wallTab = 'suggested';
@@ -2280,7 +2295,7 @@ var Wall = {
                     }
                     cur.suggestedLoading = false;
                     uiTabs.hideProgress(el);
-                    wall.suggestUpdateCounter(count);
+                    Wall.updateTabCounter('page_wall_suggested_cnt', count);
                     if (cur_oid !== cur.oid) return;
                     if (cur.wallTab != 'suggested') return;
                     wall.suggestLoaded.apply(window, arguments);
@@ -2328,7 +2343,7 @@ var Wall = {
                             }
                             nav.reload();
                         } else {
-                            Wall.showSuggested(geByClass1('ui_tab', ge('page_wall_suggest')));
+                            Wall.showSuggested();
                         }
                         box.hide();
                     },
@@ -2338,9 +2353,6 @@ var Wall = {
             },
             getLang('global_cancel')
         );
-    },
-    suggestUpdateCounter: function(count) {
-        val('page_wall_suggested_cnt', count ? langNumeric(count, '%s', true) : '');
     },
     suggestLoaded: function(rows, notAll) {
         val('page_suggested_posts', rows);
@@ -2383,7 +2395,7 @@ var Wall = {
             if (delta === -1 || delta === 1) {
                 val(c, v += delta);
             }
-            wall.suggestUpdateCounter(v);
+            Wall.updateTabCounter('page_wall_suggested_cnt', v);
         }
     },
     suggestPublished: function(post, text, postponed) {
@@ -2413,7 +2425,7 @@ var Wall = {
                 hide(geByClass1('_wall_menu_suggested', wallMenu));
             } else if (ge('wall_tabs')) {
                 geByClass1('ui_tab', ge('wall_tabs')).click();
-                hide('page_wall_suggest');
+                wall.updateTabVisibility('page_wall_suggest', false);
             }
         } else {
             re('post' + post);
@@ -2433,9 +2445,21 @@ var Wall = {
         val(cont, rows);
         FullWall.updateSummary(geByClass('post', cont).length);
     },
-    showPostponed: function(el, ev, rows) {
+    showPostponed: function(ev, rows) {
         if (ev && checkEvent(ev)) return true;
         if (!cur.oid) return false;
+
+        var el = ge('page_wall_postponed');
+
+        if (hasClass(el, 'unshown')) {
+            el = domQuery1('#page_wall_postponed_more .ui_tab_group_item')
+        } else {
+            el = geByClass1('ui_tab', el);
+        }
+
+        if (!el) {
+            return false;
+        }
 
         uiTabs.switchTab(el);
         cur.wallTab = 'postponed';
@@ -2468,11 +2492,13 @@ var Wall = {
     },
     postponeUpdateCount: function() {
         var wrapEl = ge('page_postponed_posts'),
-            countEl = ge('page_wall_postponed_cnt'),
             count = wrapEl && (geByClass('post', wrapEl).length - geByClass('dld', wrapEl).length) || 0;
-        if (!wrapEl || !countEl) return;
 
-        val(countEl, count ? langNumeric(count, '%s', true) : '');
+        if (!wrapEl) {
+            return;
+        }
+
+        Wall.updateTabCounter('page_wall_postponed_cnt', count);
     },
     checkPostponedCount: function() {
         var posts = geByClass('post', 'page_postponed_posts'),
@@ -2484,7 +2510,139 @@ var Wall = {
             }
         });
         if (!postponedCnt) {
-            hide('page_wall_postponed');
+            wall.updateTabVisibility('page_wall_postponed', false);
+        }
+    },
+    updateTabCounter: function(name, count) {
+        count = count ? langNumeric(count, '%s', true) : '';
+
+        geByClass(name).forEach(function(el) {
+            val(el, count);
+
+            var tab = domPN(el);
+
+            if (hasClass(tab, 'ui_tab_group_item')) {
+                domData(tab, 'default-label', tab.innerHTML);
+            }
+        });
+    },
+    updateTabVisibility: function(tabName, visible) {
+        var moreTab = ge('page_wall_more_tab');
+        var tabsCount;
+        var tabs;
+        var tab;
+        var shown;
+
+        if (moreTab) {
+            if (isVisible(moreTab)) {
+                if (!visible) {
+                    tab = ge(tabName);
+
+                    // Hide regular tab
+                    if (!hasClass(tab, 'unshown')) {
+                        addClass(tab, 'unshown');
+
+                        tabs = geByClass('ui_tab', ge('wall_tabs')).filter(function(tabEl) {
+                            tabEl = domPN(tabEl);
+                            return tabEl !== moreTab && !hasClass(tabEl, 'unshown');
+                        });
+
+                        tabsCount = (cur.wallTabsLimit - 1) - tabs.length;
+
+                        // Check rest visible and show extra from more if needed
+                        if (tabsCount > 0) {
+                            cur.wallTabsMorePriority.forEach(function(id) {
+                                if (tabsCount <= 0) {
+                                    return;
+                                }
+
+                                var tabEl = ge(id + '_more');
+
+                                if (tabEl && !hasClass(tabEl, 'unshown')) {
+                                    removeClass(ge(id), 'unshown');
+                                    addClass(tabEl, 'unshown');
+                                    tabsCount--;
+                                }
+                            });
+                        }
+
+                        // Hide tab in more
+                    } else {
+                        addClass(ge(tabName + '_more'), 'unshown');
+                    }
+
+                    tabs = geByClass('ui_tab_group_item', moreTab);
+
+                    // Check tabs in more and expand in only one
+                    if (tabs.length - geByClass('unshown', moreTab).length <= 1) {
+                        tabs.forEach(function(tabEl) {
+                            tabEl = domPN(tabEl);
+
+                            if (!hasClass(tabEl, 'unshown')) {
+                                removeClass(ge(tabEl.id.replace(/_more$/, '')), 'unshown');
+                                addClass(tabEl, 'unshown');
+                            }
+                        });
+
+                        addClass(moreTab, 'unshown');
+                    }
+                } else if (hasClass(tabName, 'unshown') && hasClass(tabName + '_more', 'unshown')) {
+                    shown = false;
+
+                    // Check visible extra tabs and if any with less priority swap it
+                    cur.wallTabsMorePriority.forEach(function(id) {
+                        if (!shown && !hasClass(id, 'unshown')) {
+                            addClass(id, 'unshown');
+                            removeClass(id + '_more', 'unshown');
+                            removeClass(tabName, 'unshown');
+                            shown = true;
+                        }
+                    });
+
+                    // Or show in more
+                    if (!shown) {
+                        removeClass(tabName + '_more', 'unshown');
+                    }
+                }
+
+            } else {
+                toggleClass(ge(tabName), 'unshown', !visible);
+
+                tabs = geByClass('ui_tab', ge('wall_tabs')).filter(function(tabEl) {
+                    tabEl = domPN(tabEl);
+                    return tabEl !== moreTab && !hasClass(tabEl, 'unshown');
+                });
+
+                // Collapse extra visible tabs
+                if (tabs.length > cur.wallTabsLimit) {
+                    tabsCount = tabs.length - (cur.wallTabsLimit - 1);
+
+                    geByClass('ui_tab_group_item', moreTab).forEach(function(tabEl) {
+                        addClass(tabEl, 'unshown');
+                    });
+
+                    cur.wallTabsMorePriority.forEach(function(id) {
+                        if (tabsCount <= 0) {
+                            return;
+                        }
+
+                        var tabEl = ge(id);
+
+                        if (tabEl && !hasClass(tabEl, 'unshown')) {
+                            addClass(tabEl, 'unshown');
+                            removeClass(ge(id + '_more'), 'unshown');
+                            tabsCount--;
+                        }
+                    });
+
+                    removeClass(moreTab, 'unshown');
+
+                    statlogsValueEvent('wall_more_tab_shown', cur.oid);
+                }
+            }
+
+        } else {
+            toggleClass(ge(tabName), 'unshown', !visible);
         }
     },
     postponedPublished: function(post, text) {
@@ -2508,7 +2666,7 @@ var Wall = {
                 hide(geByClass1('_wall_menu_postponed', wallMenu));
             } else if (ge('wall_tabs')) {
                 geByClass1('ui_tab', ge('wall_tabs')).click();
-                hide('page_wall_postponed');
+                wall.updateTabVisibility('page_wall_postponed', false);
             }
         } else {
             re(curPost);
@@ -3780,8 +3938,9 @@ var Wall = {
                         } else if (pType == 'full_own' || pType == 'full_all') {
                             return Wall.showPostponedFull(rows);
                         }
-                        show('page_wall_postponed');
-                        Wall.showPostponed(geByClass1('ui_tab', 'page_wall_postponed'), false, rows);
+                        wall.updateTabVisibility('page_wall_postponed', true);
+                        Wall.showPostponed(false, rows);
+
                         if (ge('wall_tabs')) {
                             removeClass(ge('wall_tabs'), 'page_tabs_hidden');
                         }
@@ -3805,11 +3964,12 @@ var Wall = {
                         return cur.wallPostCb();
                     }
                     if (pType == 'suggest') {
-                        show('page_wall_suggest');
-                        Wall.showSuggested(geByClass1('ui_tab', 'page_wall_suggest'), false, rows, names);
+                        wall.updateTabVisibility('page_wall_suggest', true);
+                        Wall.showSuggested(false, rows, names);
+
                         return Wall.suggestUpdate();
                     } else if (cur.wallTab == 'suggested') {
-                        Wall.showSuggested(geByClass1('ui_tab', ge('page_wall_suggest')));
+                        Wall.showSuggested();
                     } else if (ge('wall_tabs')) {
                         removeClass(ge('wall_tabs'), 'page_tabs_hidden');
                         geByClass1('ui_tab', ge('wall_tabs')).click();

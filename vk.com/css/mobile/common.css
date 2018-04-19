@@ -23053,9 +23053,12 @@ a.feedBlocks__article:hover {
 }
 
 @media (max-width: 319px) {
+    .header__center {
+        right: 48px!important
+    }
     .header__title {
         position: relative;
-        top: -3px
+        display: block
     }
     .header__unfold {
         position: relative;
@@ -28381,7 +28384,7 @@ a.feedBlocks__article:hover {
 }
 
 .mh_header:not(#zpv_summary) {
-    overflow: visible!important;
+    overflow: hidden!important;
     min-width: 0;
     text-align: left
 }

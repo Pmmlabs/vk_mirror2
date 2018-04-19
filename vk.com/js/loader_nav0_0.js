@@ -199,11 +199,11 @@ var stVersions = {
     'videoview.js': 10044490243,
     'videoview.css': 23052268422,
     'video_edit.js': 2135196486,
-    'video_edit.css': 25413485602,
+    'video_edit.css': 23110969937,
     'video_upload.js': 5055644383,
     'video_youtube.js': 458412745,
     'video_youtube.css': 14865234988,
-    'videoplayer.js': 72439075181,
+    'videoplayer.js': 71183215923,
     'videoplayer.css': 38224707652,
     'translation.js': 1370143200,
     'translation.css': 18337529106,
@@ -221,7 +221,7 @@ var stVersions = {
     'module.css': 18759987794,
     'owner_photo.js': 351589227,
     'owner_photo.css': 20877687447,
-    'page.js': 3179771121,
+    'page.js': 4082361682,
     'page.css': 31772374598,
     'page_help.css': 22588286907,
     'public.css': 27492563652,
@@ -255,7 +255,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 185756978924,
-    'imn.js': 246623622877,
+    'imn.js': 248006729197,
     'im.js': 1322065005,
     'emoji.js': 928907071,
     'wide_dd.css': 17974590759,
@@ -323,7 +323,7 @@ var stVersions = {
     'widgets.css': 31048204112,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 74625904001,
+    'notifier.js': 76009010321,
     'notifier.css': 22808415111,
     'cmodules/sw/sw.js': 4889939668,
     'earthday.js': 2276669993,
@@ -346,7 +346,7 @@ var stVersions = {
     'achievements.css': 15990617804,
     'sf.css': 19796885887,
     'members.css': 17199851828,
-    'meminfo.css': 23940548430,
+    'meminfo.css': 23940548431,
     'groupinfo.css': 23832390650,
     'bugs.js': 3874995669,
     'bugs.css': 15246879152,
@@ -634,4 +634,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 1429;
+var _rnd = 6222;
