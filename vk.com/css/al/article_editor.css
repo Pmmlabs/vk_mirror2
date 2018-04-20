@@ -1960,6 +1960,10 @@
     padding: 7px 12px 8px
 }
 
+.article_ed__lock_shown .article_ed__carousel_btns {
+    display: none!important
+}
+
 .article_ed__extra_controls:hover .article_ed__carousel_btn_edit {
     opacity: 1
 }
@@ -2131,6 +2135,30 @@
     padding: 0;
     margin: 0;
     border: none
+}
+
+.article_editor .article_ed__lock_info {
+    background-color: #fdf0d7;
+    border-radius: 4px;
+    color: #765c30;
+    font-size: 14px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20d%3D%22M1.354%2019.382C.54%2020.828%201.218%2022%202.877%2022h18.246c1.655%200%202.337-1.173%201.523-2.618L13.474%203.088c-.814-1.446-2.134-1.445-2.948%200L1.354%2019.382z%22%20fill%3D%22%23FFAE38%22%2F%3E%3Cpath%20d%3D%22M12.675%2015.5h-1.35L11.25%208h1.5l-.075%207.5zm-.675%203a.75.75%200%201%201%200-1.5.75.75%200%200%201%200%201.5z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    padding: 14px 15px 13px 52px;
+    background-position: 15px;
+    position: absolute;
+    top: 0;
+    box-sizing: border-box;
+    width: 100%
+}
+
+.article_editor.article_ed__lock_shown .article_ed__text_placeholders {
+    top: 80px
+}
+
+.article_editor.article_ed__lock_shown .article_editor_canvas {
+    top: 80px;
+    position: relative
 }
 
 .article_editor .article_ed__text_placeholders {
