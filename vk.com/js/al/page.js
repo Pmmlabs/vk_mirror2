@@ -7256,7 +7256,6 @@ var Wall = {
         if (!post || !hasClass(post, '_post')) {
             return;
         }
-        //console.log('Post loaded', post.id);
         if (hasClass(post, '_ads_promoted_post_data_w')) {
             Wall.triggerAdPostStat(post, 'load');
         }

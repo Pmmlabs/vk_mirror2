@@ -686,6 +686,14 @@ if (!window.Upload) {
             if (Upload.types[iUpload] == 'form') {
                 Upload.onUploadCompleteAll(info, result);
             }
+
+            if (options.type === 'video') {
+                statlogsValueEvent('upload_video_fails', 1, options.server, 'success');
+            } else if (options.type === 'photo') {
+                statlogsValueEvent('upload_photo_fails', 1, options.server, 'success');
+            } else if (options.type === 'doc') {
+                statlogsValueEvent('upload_doc_fails', 1, options.server, 'success');
+            }
         },
 
         onUploadCompleteAll: function(info, result, extra_info) {
@@ -796,13 +804,13 @@ if (!window.Upload) {
         checkFilesSizes: function(iUpload, files) {
             var options = this.options[iUpload];
 
-            if (options['file_size_limit']) {
+            if (options.file_size_limit) {
                 for (var index in files) {
                     var file = files[index];
-                    if (file.size && file.size > options['file_size_limit']) {
+                    if (file.size && file.size > options.file_size_limit) {
                         var fileSizeErrorText = options.lang.filesize_error;
                         if (fileSizeErrorText && fileSizeErrorText.indexOf('{count}') >= 0) {
-                            fileSizeErrorText = fileSizeErrorText.replace('{count}', intval(options['file_size_limit'] / (1024 * 1024)));
+                            fileSizeErrorText = fileSizeErrorText.replace('{count}', intval(options.file_size_limit / (1024 * 1024)));
                         }
 
                         if (fileSizeErrorText) {
@@ -1409,15 +1417,15 @@ if (!window.Upload) {
         },
 
         getUploadOptions: function(iUpload, file) {
-            Upload.options[iUpload].uploadOptionsXhr = ajax.post('al_video.php?act=get_upload_options', {
+            Upload.options[iUpload].uploadOptionsXhr = ajax.post('al_video.php?act=get_upload_params', {
                 gid: cur.gid || 0
             }, {
-                onDone: function(videoOpts) {
-                    var params = ajx2q(videoOpts.params);
-                    var uploadUrl = videoOpts.url + (videoOpts.url.match(/\?/) ? '&' : '?') + params;
+                onDone: function(videoParams) {
+                    var vars = ajx2q(videoParams.vars);
+                    var uploadUrl = videoParams.options.url + (videoParams.options.url.match(/\?/) ? '&' : '?') + vars;
 
-                    extend(Upload.options[iUpload], videoOpts.options);
-                    extend(Upload.vars[iUpload], videoOpts.params);
+                    extend(Upload.options[iUpload], videoParams.options);
+                    extend(Upload.vars[iUpload], videoParams.vars);
                     Upload.uploadUrls[iUpload] = uploadUrl;
                     Upload.check(iUpload);
 

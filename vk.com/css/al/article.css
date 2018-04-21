@@ -515,12 +515,6 @@
     border-radius: 2px
 }
 
-.article figure[data-type="102"] .vv_inline_video,
-.article figure[data-type="102"] video {
-    max-width: 100%;
-    display: block
-}
-
 .article figure[data-type="102"] .vv_inline_video {
     height: 100%;
     max-height: 100%
@@ -597,14 +591,7 @@
 .article_view>figure[data-type="102"] .vv_inline_video,
 .article_view>figure[data-type="102"] video {
     max-width: 100%;
-    display: block;
-    -o-object-fit: cover;
-    object-fit: cover
-}
-
-.article_view>figure[data-type="102"] .vv_inline_video {
-    height: 100%;
-    max-height: 100%
+    display: block
 }
 
 .article_view>figure[data-type="101"] img {

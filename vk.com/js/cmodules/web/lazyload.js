@@ -28,12 +28,24 @@
         return e.d(n, "a", n), n
     }, e.o = function(t, e) {
         return Object.prototype.hasOwnProperty.call(t, e)
-    }, e.p = "", e(e.s = 11)
+    }, e.p = "", e(e.s = 253)
 }({
-    11: function(t, e, n) {
-        t.exports = n(589)
+    238: function(t, e) {
+        var n;
+        n = function() {
+            return this
+        }();
+        try {
+            n = n || Function("return this")() || (1, eval)("this")
+        } catch (r) {
+            "object" == typeof window && (n = window)
+        }
+        t.exports = n
     },
-    160: function(t, e, n) {
+    253: function(t, e, n) {
+        t.exports = n(463)
+    },
+    271: function(t, e, n) {
         (function(r, o) {
             var i;
             (function() {
@@ -104,7 +116,7 @@
 
                 function h() {
                     try {
-                        var t = n(367);
+                        var t = n(660);
                         return q = t.runOnLoop || t.runOnContext, d()
                     } catch (e) {
                         return p()
@@ -373,103 +385,65 @@
                     return gt
                 }.call(e, n, e, t), !(void 0 !== i && (t.exports = i)), yt()
             }).call(this)
-        }).call(this, n(177), n(577))
+        }).call(this, n(665), n(238))
     },
-    177: function(t, e) {
-        function n() {
-            throw new Error("setTimeout has not been defined")
-        }
+    293: function(t, e, n) {
+        "use strict";
 
         function r() {
-            throw new Error("clearTimeout has not been defined")
+            o(window)
         }
 
         function o(t) {
-            if (l === setTimeout) return setTimeout(t, 0);
-            if ((l === n || !l) && setTimeout) return l = setTimeout, setTimeout(t, 0);
-            try {
-                return l(t, 0)
-            } catch (e) {
-                try {
-                    return l.call(null, t, 0)
-                } catch (e) {
-                    return l.call(this, t, 0)
-                }
-            }
+            addEvent(t, "scroll", i.pbind(t))
         }
 
         function i(t) {
-            if (d === clearTimeout) return clearTimeout(t);
-            if ((d === r || !d) && clearTimeout) return d = clearTimeout, clearTimeout(t);
-            try {
-                return d(t)
-            } catch (e) {
-                try {
-                    return d.call(null, t)
-                } catch (e) {
-                    return d.call(this, t)
-                }
-            }
+            var e = a.getObjects(),
+                n = window.innerHeight,
+                r = 0,
+                o = !0;
+            t === document || t === window ? r = w() : t ? (r = t.scrollTop, o = !1) : window.wkcur && window.wkcur.shown ? (r = window.wkLayerWrap.scrollTop, o = !1) : f() ? (r = window.boxLayerWrap.scrollTop, o = !1) : r = w(), !o && t && (n = t.offsetHeight);
+            for (var i = function(t) {
+                    var i = e[t],
+                        c = i.elem,
+                        a = i.y,
+                        d = i.height,
+                        f = i.from;
+                    if ("window" !== f && o) return "continue";
+                    if (a > r - 1.5 * n && r + 1.5 * n > a - d) {
+                        Object(l.removeClass)(c, "lazyload_need_load"), e.splice(t, 1), t--;
+                        var w = Object(l.attr)(c, "data-lazyload-src");
+                        Object(s.loadImage)(w).then(function(t) {
+                            10 > t && Object(l.addClass)(c, "lazyload_no_animation"), "IMG" === c.tagName ? Object(l.attr)(c, "src", w) : Object(l.setStyle)(c, "background-image", "url(" + w + ")"), Object(l.addClass)(c, "lazyload_loaded"), Object(l.re)(Object(l.geByClass1)("lazyload_preview", c))
+                        })
+                    }
+                    u = t
+                }, u = 0; u < e.length; u++) i(u)
         }
 
-        function u() {
-            m && w && (m = !1, w.length ? p = w.concat(p) : h = -1, p.length && c())
+        function u(t) {
+            i(t)
         }
 
         function c() {
-            if (!m) {
-                var t = o(u);
-                m = !0;
-                for (var e = p.length; e;) {
-                    for (w = p, p = []; ++h < e;) w && w[h].run();
-                    h = -1, e = p.length
-                }
-                w = null, m = !1, i(t)
-            }
+            r(), u()
         }
-
-        function a(t, e) {
-            this.fun = t, this.array = e
-        }
-
-        function s() {}
-        var l, d, f = t.exports = {};
-        ! function() {
-            try {
-                l = "function" == typeof setTimeout ? setTimeout : n
-            } catch (t) {
-                l = n
-            }
-            try {
-                d = "function" == typeof clearTimeout ? clearTimeout : r
-            } catch (t) {
-                d = r
-            }
-        }();
-        var w, p = [],
-            m = !1,
-            h = -1;
-        f.nextTick = function(t) {
-            var e = new Array(arguments.length - 1);
-            if (arguments.length > 1)
-                for (var n = 1; n < arguments.length; n++) e[n - 1] = arguments[n];
-            p.push(new a(t, e)), 1 !== p.length || m || o(c)
-        }, a.prototype.run = function() {
-            this.fun.apply(null, this.array)
-        }, f.title = "browser", f.browser = !0, f.env = {}, f.argv = [], f.version = "", f.versions = {}, f.on = s, f.addListener = s, f.once = s, f.off = s, f.removeListener = s, f.removeAllListeners = s, f.emit = s, f.prependListener = s, f.prependOnceListener = s, f.listeners = function(t) {
-            return []
-        }, f.binding = function(t) {
-            throw new Error("process.binding is not supported")
-        }, f.cwd = function() {
-            return "/"
-        }, f.chdir = function(t) {
-            throw new Error("process.chdir is not supported")
-        }, f.umask = function() {
-            return 0
-        }
+        n.r(e), n.d(e, "watch", function() {
+            return o
+        }), n.d(e, "update", function() {
+            return u
+        }), n.d(e, "default", function() {
+            return c
+        });
+        var a = n(37),
+            s = n(584),
+            l = n(514),
+            d = window,
+            f = d.curBox,
+            w = d.scrollGetY
     },
-    367: function(t, e) {},
-    475: function(t, e, n) {
+    37: function(t, e, n) {
         "use strict";
 
         function r(t) {
@@ -519,8 +493,8 @@
         n.r(e), n.d(e, "getObjects", function() {
             return i
         });
-        var u = n(89),
-            c = n(538),
+        var u = n(293),
+            c = n(514),
             a = function() {
                 function t(t, e) {
                     var n = [],
@@ -551,7 +525,37 @@
             o(), Object(u.update)()
         }
     },
-    538: function(t, e, n) {
+    463: function(t, e, n) {
+        "use strict";
+
+        function r() {
+            c || (window.LazyLoadInited = c = !0, Element.prototype.closest && (Object(u["default"])(), Object(i["default"])()))
+        }
+
+        function o(t) {
+            c && (Object(u["default"])(), Object(i.update)(t))
+        }
+        n.r(e);
+        var i = n(293),
+            u = n(37),
+            c = window.LazyLoadInited;
+        window.LazyLoad = {
+            init: r,
+            scan: o,
+            scanDelayed: function(t) {
+                return setTimeout(function() {
+                    return o(t)
+                }, 20)
+            },
+            watch: function() {
+                c && Object(i.watch)()
+            }
+        };
+        try {
+            stManager.done("lazyload.js")
+        } catch (a) {}
+    },
+    514: function(t, e, n) {
         "use strict";
 
         function r(t) {
@@ -1251,7 +1255,7 @@
         }), n.d(e, "lockDocumentTitle", function() {
             return Tt
         });
-        var St = n(76),
+        var St = n(71),
             xt = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
                 return typeof t
             } : function(t) {
@@ -1281,49 +1285,7 @@
         var kt = !1;
         window.ge = r, window.geByTag = o, window.geByTag1 = i, window.geByClass = u, window.geByClass1 = c, window.gpeByClass = a, window.domQuery = s, window.domQuery1 = l, window.domClosest = d, window.ce = p, window.re = m, window.se = h, window.sech = y, window.rs = g, window.psr = v, window.domReplaceEl = b, window.domEL = _, window.domNS = C, window.domPS = T, window.domFC = S, window.domLC = x, window.domPN = k, window.domChildren = A, window.domInsertBefore = E, window.domInsertAfter = O, window.domByClass = j, window.domData = N, window.domChildIndex = L, window.domCA = D, window.domClosestSibling = R, window.matchesSelector = z, window.isHover = M, window.isAncestor = P, window.getScroll = B, window.domClosestPositioned = H, window.domClosestOverflowHidden = I, window.show = W, window.hide = U, window.isVisible = F, window.clientHeight = Y, window.getClientRectOffsetY = $, window.toggle = q, window.boundingRectEnabled = X, window.getXYRect = V, window.getXY = K, window.isWindow = Q, window.getSize = Z, window.hasClass = tt, window.addClass = et, window.addClassDelayed = nt, window.removeClass = rt, window.removeClassDelayed = ot, window.toggleClass = it, window.toggleClassDelayed = ut, window.replaceClass = ct, window.getStyle = at, window.setStyle = st, window.setStyleDelayed = lt, window.setPseudoStyle = dt, window.data = ft, window.attr = wt, window.removeAttr = pt, window.removeData = mt, window.cleanElems = ht, window.setTitle = yt, window.getZoom = gt, window.val = vt, window.elfocus = bt, window.traverseParent = _t, window.getH = J, window.getW = G, window.domClosestByTag = f, window.setDocumentTitle = Ct, window.lockDocumentTitle = Tt
     },
-    577: function(t, e) {
-        var n;
-        n = function() {
-            return this
-        }();
-        try {
-            n = n || Function("return this")() || (1, eval)("this")
-        } catch (r) {
-            "object" == typeof window && (n = window)
-        }
-        t.exports = n
-    },
-    589: function(t, e, n) {
-        "use strict";
-
-        function r() {
-            c || (window.LazyLoadInited = c = !0, Element.prototype.closest && (Object(u["default"])(), Object(i["default"])()))
-        }
-
-        function o(t) {
-            c && (Object(u["default"])(), Object(i.update)(t))
-        }
-        n.r(e);
-        var i = n(89),
-            u = n(475),
-            c = window.LazyLoadInited;
-        window.LazyLoad = {
-            init: r,
-            scan: o,
-            scanDelayed: function(t) {
-                return setTimeout(function() {
-                    return o(t)
-                }, 20)
-            },
-            watch: function() {
-                c && Object(i.watch)()
-            }
-        };
-        try {
-            stManager.done("lazyload.js")
-        } catch (a) {}
-    },
-    647: function(t, e, n) {
+    584: function(t, e, n) {
         "use strict";
 
         function r(t) {
@@ -1338,11 +1300,105 @@
         n.r(e), n.d(e, "loadImage", function() {
             return r
         });
-        var o = n(160),
-            i = n(76),
+        var o = n(271),
+            i = n(71),
             u = o.Promise
     },
-    76: function(t, e, n) {
+    660: function(t, e) {},
+    665: function(t, e) {
+        function n() {
+            throw new Error("setTimeout has not been defined")
+        }
+
+        function r() {
+            throw new Error("clearTimeout has not been defined")
+        }
+
+        function o(t) {
+            if (l === setTimeout) return setTimeout(t, 0);
+            if ((l === n || !l) && setTimeout) return l = setTimeout, setTimeout(t, 0);
+            try {
+                return l(t, 0)
+            } catch (e) {
+                try {
+                    return l.call(null, t, 0)
+                } catch (e) {
+                    return l.call(this, t, 0)
+                }
+            }
+        }
+
+        function i(t) {
+            if (d === clearTimeout) return clearTimeout(t);
+            if ((d === r || !d) && clearTimeout) return d = clearTimeout, clearTimeout(t);
+            try {
+                return d(t)
+            } catch (e) {
+                try {
+                    return d.call(null, t)
+                } catch (e) {
+                    return d.call(this, t)
+                }
+            }
+        }
+
+        function u() {
+            m && w && (m = !1, w.length ? p = w.concat(p) : h = -1, p.length && c())
+        }
+
+        function c() {
+            if (!m) {
+                var t = o(u);
+                m = !0;
+                for (var e = p.length; e;) {
+                    for (w = p, p = []; ++h < e;) w && w[h].run();
+                    h = -1, e = p.length
+                }
+                w = null, m = !1, i(t)
+            }
+        }
+
+        function a(t, e) {
+            this.fun = t, this.array = e
+        }
+
+        function s() {}
+        var l, d, f = t.exports = {};
+        ! function() {
+            try {
+                l = "function" == typeof setTimeout ? setTimeout : n
+            } catch (t) {
+                l = n
+            }
+            try {
+                d = "function" == typeof clearTimeout ? clearTimeout : r
+            } catch (t) {
+                d = r
+            }
+        }();
+        var w, p = [],
+            m = !1,
+            h = -1;
+        f.nextTick = function(t) {
+            var e = new Array(arguments.length - 1);
+            if (arguments.length > 1)
+                for (var n = 1; n < arguments.length; n++) e[n - 1] = arguments[n];
+            p.push(new a(t, e)), 1 !== p.length || m || o(c)
+        }, a.prototype.run = function() {
+            this.fun.apply(null, this.array)
+        }, f.title = "browser", f.browser = !0, f.env = {}, f.argv = [], f.version = "", f.versions = {}, f.on = s, f.addListener = s, f.once = s, f.off = s, f.removeListener = s, f.removeAllListeners = s, f.emit = s, f.prependListener = s, f.prependOnceListener = s, f.listeners = function(t) {
+            return []
+        }, f.binding = function(t) {
+            throw new Error("process.binding is not supported")
+        }, f.cwd = function() {
+            return "/"
+        }, f.chdir = function(t) {
+            throw new Error("process.chdir is not supported")
+        }, f.umask = function() {
+            return 0
+        }
+    },
+    71: function(t, e, n) {
         "use strict";
 
         function r(t) {
@@ -1642,61 +1698,5 @@
         var H = /(?:([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+(?:[a-z]{2,9}|xn--p1ai|xn--j1amh|xn--80asehdb|xn--80aswg))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)]*(&nbsp;|[ \t\r\n \u00A0]))|([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9а-яєґї_\-]+\.)+(?:рф|укр|онлайн|сайт|срб))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)]*(&nbsp;|[ \t\r\n \u00A0])))/i,
             I = /(?:([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+(?:[a-z]{2,9}|xn--p1ai|xn--j1amh|xn--80asehdb|xn--80aswg))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)&]*(&nbsp;|[ \t\r\n \u00A0]|$))|([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9а-яєґї_\-]+\.)+(?:рф|укр|онлайн|сайт|срб))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)&]*(&nbsp;|[ \t\r\n \u00A0]|$)))/i;
         window.isRetina = M, window.extractUrls = z, window.serializeForm = R, window.addTemplates = L, window.getTemplate = D, window.rand = i, window.irand = u, window.isUndefined = c, window.isFunction = a, window.isArray = s, window.isString = l, window.isObject = d, window.isEmpty = f, window.vkNow = w, window.vkImage = p, window.trim = m, window.stripHTML = h, window.escapeRE = y, window.intval = g, window.floatval = v, window.positive = b, window.isNumeric = _, window.winToUtf = C, window.replaceEntities = T, window.clean = S, window.unclean = x, window.each = k, window.indexOf = A, window.inArray = E, window.clone = O, window.arrayKeyDiff = j, window.extend = N, window.vkLocal = r, window.lTimeout = o, window.getCaretCharacterOffsetWithin = P
-    },
-    89: function(t, e, n) {
-        "use strict";
-
-        function r() {
-            o(window)
-        }
-
-        function o(t) {
-            addEvent(t, "scroll", i.pbind(t))
-        }
-
-        function i(t) {
-            var e = a.getObjects(),
-                n = window.innerHeight,
-                r = 0,
-                o = !0;
-            t === document || t === window ? r = w() : t ? (r = t.scrollTop, o = !1) : window.wkcur && window.wkcur.shown ? (r = window.wkLayerWrap.scrollTop, o = !1) : f() ? (r = window.boxLayerWrap.scrollTop, o = !1) : r = w(), !o && t && (n = t.offsetHeight);
-            for (var i = function(t) {
-                    var i = e[t],
-                        c = i.elem,
-                        a = i.y,
-                        d = i.height,
-                        f = i.from;
-                    if ("window" !== f && o) return "continue";
-                    if (a > r - 1.5 * n && r + 1.5 * n > a - d) {
-                        Object(l.removeClass)(c, "lazyload_need_load"), e.splice(t, 1), t--;
-                        var w = Object(l.attr)(c, "data-lazyload-src");
-                        Object(s.loadImage)(w).then(function(t) {
-                            10 > t && Object(l.addClass)(c, "lazyload_no_animation"), "IMG" === c.tagName ? Object(l.attr)(c, "src", w) : Object(l.setStyle)(c, "background-image", "url(" + w + ")"), Object(l.addClass)(c, "lazyload_loaded"), Object(l.re)(Object(l.geByClass1)("lazyload_preview", c))
-                        })
-                    }
-                    u = t
-                }, u = 0; u < e.length; u++) i(u)
-        }
-
-        function u(t) {
-            i(t)
-        }
-
-        function c() {
-            r(), u()
-        }
-        n.r(e), n.d(e, "watch", function() {
-            return o
-        }), n.d(e, "update", function() {
-            return u
-        }), n.d(e, "default", function() {
-            return c
-        });
-        var a = n(475),
-            s = n(647),
-            l = n(538),
-            d = window,
-            f = d.curBox,
-            w = d.scrollGetY
     }
 });
