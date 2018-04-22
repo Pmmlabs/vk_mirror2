@@ -28,9 +28,9 @@
         return e.d(i, "a", i), i
     }, e.o = function(t, e) {
         return Object.prototype.hasOwnProperty.call(t, e)
-    }, e.p = "", e(e.s = 679)
+    }, e.p = "", e(e.s = 370)
 }({
-    206: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+    182: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
         "use strict";
 
         function _loadAllPlaylistAudios(playlist, onDone) {
@@ -94,8 +94,8 @@
             }
         }
         __webpack_require__.r(__webpack_exports__);
-        var _audioplayer_audio_unmask_source__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(268),
-            _audioplayer_audio_layer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(625),
+        var _audioplayer_audio_unmask_source__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(410),
+            _audioplayer_audio_layer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(414),
             _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
                 return typeof t
             } : function(t) {
@@ -2942,7 +2942,10 @@
             stManager.done("audioplayer.js")
         } catch (e) {}
     },
-    268: function(t, e, i) {
+    370: function(t, e, i) {
+        t.exports = i(182)
+    },
+    410: function(t, e, i) {
         "use strict";
 
         function o() {
@@ -3013,7 +3016,7 @@
                 }
             }
     },
-    625: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+    414: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
         "use strict";
 
         function _classCallCheck(t, e) {
@@ -3098,8 +3101,5 @@
             }, AudioLayer
         }();
         __webpack_exports__["default"] = AudioLayer
-    },
-    679: function(t, e, i) {
-        t.exports = i(206)
     }
 });
