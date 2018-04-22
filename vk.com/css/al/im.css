@@ -527,7 +527,10 @@
 .EditableLabel--editing:after,
 .EditableLabel:hover:after {
     position: absolute;
-    top: 4px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
     right: 4px;
     width: 24px;
     height: 24px;
@@ -569,7 +572,10 @@ textarea.EditableLabel__textarea {
 
 .EditableLabel__save {
     position: absolute;
-    top: 4px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
     right: 4px;
     width: 24px;
     height: 24px;

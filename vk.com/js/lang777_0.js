@@ -103,7 +103,7 @@ global_X_people = ['', '%s ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', '%s ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï
 global_year_label = 'ï¿½ï¿½ï¿½:';
 graph_day_fullmon_year_hour = '{day} {dayMonth} {year}, {hour}:00';
 graph_day_fullmon_year_hour_min = '{day} {dayMonth} {year}, {hour}:{min}';
-guest_password = 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½:';
+guest_password = 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½';
 Higher_education = 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 head_fr_online_tip = 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½';
 head_search_results = 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
@@ -232,7 +232,7 @@ votes_flex = ['', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿
 Work_place = 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:';
 yesterday = 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 global_article_carousel_counter = '{counter} ï¿½ï¿½ {total}';
-// section = 0; version = 265;
+// section = 0; version = 266;
 
 friends_no_user_selected = 'ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.';
 // section = 2; version = 9;
