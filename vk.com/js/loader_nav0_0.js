@@ -256,7 +256,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 188196047550,
-    'imn.js': 241434614921,
+    'imn.js': 241275834905,
     'im.js': 1322065005,
     'emoji.js': 928907071,
     'wide_dd.css': 17974590759,
@@ -269,7 +269,7 @@ var stVersions = {
     'postbox.js': 760473537,
     'feed.js': 1741344053,
     'feed.css': 22476371684,
-    'privacy.js': 3620108221,
+    'privacy.js': 835833828,
     'privacy.css': 15648406110,
     'apps.css': 36973172227,
     'apps.js': 3761348783,
@@ -278,7 +278,7 @@ var stVersions = {
     'apps_check.js': 3204387834,
     'apps_check.css': 27043516540,
     'settings.js': 32955858,
-    'settings.css': 25911005739,
+    'settings.css': 23833993085,
     'profile_edit.js': 2157979570,
     'profile_edit.css': 17283890178,
     'profile_edit_edu.js': 872687230,
@@ -315,7 +315,7 @@ var stVersions = {
     'cmodules/api/widgets/allow_messages_from_community.js': 618639651,
     'cmodules/api/widgets/app.js': 3131808422,
     'cmodules/api/widgets/auth.js': 2163782307,
-    'api/widgets/al_add_community_app.js': 552092634,
+    'api/widgets/al_add_community_app.js': 807582258,
     'widget_add_community_app.css': 29796796129,
     'api/widgets/community_messages.js': 909574838,
     'widget_community_messages.css': 32691848301,
@@ -355,7 +355,7 @@ var stVersions = {
     'bugtracker.css': 22911693950,
     'login.css': 18453189579,
     'cmodules/web/login.js': 3491120396,
-    'upload.js': 2312304200,
+    'upload.js': 3788345205,
     'upload_photo_transform.js': 1497838791,
     'graffiti.js': 1826105362,
     'graffiti.css': 404471482,
@@ -498,7 +498,7 @@ var stVersions = {
     'paginated_table.js': 1750088857,
     'paginated_table.css': 17207848191,
     'api/share.js': 2262994046,
-    'api/openapi.js': 3699219117,
+    'api/openapi.js': 1178022527,
     'api/xdm.js': 1449919642,
     'hls.min.js': 1200179027,
     'candy.min.js': 1892723665,
@@ -635,4 +635,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 5467;
+var _rnd = 1110;

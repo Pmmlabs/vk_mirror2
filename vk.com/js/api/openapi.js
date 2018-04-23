@@ -1206,6 +1206,7 @@ if (!VK.xdConnectionCallbacks) {
     if (!VK.App) {
         VK.App = {
             _appOpened: false,
+            _addToGroupPopup: null,
 
             open: function(url, params) {
                 if (VK.App._appOpened || !VK._apiId) {
@@ -1262,6 +1263,38 @@ if (!VK.xdConnectionCallbacks) {
                 box.show();
                 VK.App._appOpened = true;
             },
+
+            addToGroup: function(appId) {
+                if (this._addToGroupPopup && !this._addToGroupPopup.closed) {
+                    return;
+                }
+                var baseUrl = VK._protocol + '//vk.com';
+
+                if (this._onAddToGroupDone) {
+                    VK.Util.removeEvent('message', this._onAddToGroupDone, window);
+                }
+
+                this._onAddToGroupDone = function(event) {
+                    if (event.origin === baseUrl && event.data.method === 'app.addToGroup') {
+                        VK.Observer.publish('app.addToGroupDone', {
+                            app_id: event.data.app_id,
+                            group_ids: event.data.group_ids
+                        });
+                        VK.Util.removeEvent('message', this._onAddToGroupDone, window);
+                        this._onAddToGroupDone = null;
+                    }
+                }.bind(this);
+
+                if (window.postMessage) {
+                    VK.Util.addEvent('message', this._onAddToGroupDone, window);
+                }
+
+                this._addToGroupPopup = VK.UI.popup({
+                    url: baseUrl + '/add_community_app.php?aid=' + appId,
+                    width: 560,
+                    height: 650
+                });
+            }
         }
     }
 
@@ -1298,6 +1331,7 @@ if (!VK.UI) {
                     ',top=' + top
                 );
             this.active = window.open(options.url, 'vk_openapi', features);
+            return this.active;
         },
         button: function(el, handler) {
             var html = '';
@@ -2999,19 +3033,21 @@ if (!VK.Util) {
             }
         },
 
-        addEvent: function(type, func) {
-            if (window.document.addEventListener) {
-                window.document.addEventListener(type, func, false);
-            } else if (window.document.attachEvent) {
-                window.document.attachEvent('on' + type, func);
+        addEvent: function(type, func, target) {
+            target = target || window.document;
+            if (target.addEventListener) {
+                target.addEventListener(type, func, false);
+            } else if (target.attachEvent) {
+                target.attachEvent('on' + type, func);
             }
         },
 
-        removeEvent: function(type, func) {
-            if (window.document.removeEventListener) {
-                window.document.removeEventListener(type, func, false);
-            } else if (window.document.detachEvent) {
-                window.document.detachEvent('on' + type, func);
+        removeEvent: function(type, func, target) {
+            target = target || window.document;
+            if (target.removeEventListener) {
+                target.removeEventListener(type, func, false);
+            } else if (target.detachEvent) {
+                target.detachEvent('on' + type, func);
             }
         },
 

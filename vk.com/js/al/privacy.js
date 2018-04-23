@@ -305,8 +305,7 @@ var Privacy = {
                 minus: n.join(","),
                 opt: o
             }), {
-                stat: ["ui_controls.js", "ui_controls.css"],
-                dark: 1
+                stat: ["ui_controls.js", "ui_controls.css"]
             })
         }
         if (e == Privacy.someType) {

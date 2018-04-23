@@ -69,16 +69,21 @@ window.WAddCommunityApp = {
             ajax.post('add_community_app.php', {
                 act: 'a_add_app',
                 aid: cur.aid,
-                redirect_uri: cur.popupRedirectUri,
                 hash: cur.popupHash,
                 gids: gids.join(',')
             }, {
-                onDone: function(html, img) {
+                onDone: function(html) {
                     val(cur.popupContentEl, html);
                     hide(cur.popupSubmitBtnEl);
                     hide(cur.popupCancelBtnEl);
-                    window.opener && show(cur.popupCloseBtnEl);
-                    img && cur.popupContentEl.appendChild(cf(img));
+                    if (window.opener) { // Callback for openapi widget.
+                        show(cur.popupCloseBtnEl);
+                        window.postMessage && window.opener.postMessage({
+                            method: 'app.addToGroup',
+                            group_ids: gids,
+                            app_id: cur.aid
+                        }, '*');
+                    }
                 },
                 showProgress: lockButton.pbind(cur.popupSubmitBtnEl),
                 hideProgress: unlockButton.pbind(cur.popupSubmitBtnEl)

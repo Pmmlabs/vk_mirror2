@@ -2174,6 +2174,11 @@ input.settings_app_password_name {
     background-position: 0 -364px
 }
 
-.settings_site_notify .settings_separated_row {
+.settings_site_notify .settings_separated_row,
+.settings_bugtracker_notify .settings_separated_row {
     cursor: pointer
+}
+
+.settings_section_notify .settings_separated_row {
+    cursor: default
 }

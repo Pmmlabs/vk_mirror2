@@ -1430,6 +1430,9 @@ if (!window.Upload) {
                     Upload.check(iUpload);
 
                     Upload.uploadFile(iUpload, file, uploadUrl, true);
+                },
+                onFail: function() {
+                    Upload.terminateUpload(iUpload, file.name);
                 }
             });
         },
