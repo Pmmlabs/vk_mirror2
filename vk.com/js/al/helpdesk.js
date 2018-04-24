@@ -22,6 +22,15 @@ var Helpdesk = {
             }
         })
     },
+    agentsProcessedTicketsBox: function(e) {
+        showBox("helpdesk?act=processed_log_box", {
+            id: e
+        }, {
+            params: {
+                width: 650
+            }
+        })
+    },
     _show: function(content, script) {
         content && val("tickets_content", content), Helpdesk.onTicketScroll(), script && eval(script)
     },
@@ -1086,7 +1095,8 @@ var Helpdesk = {
         })), !1)
     },
     doToggleSimilarRow: function(e, t) {
-        toggle(geByClass1("_tickets_similar_short_text", e), !t), toggle(geByClass1("_tickets_similar_full_text", e), t), toggleClass(e, "detailed", t)
+        toggle(geByClass1("_tickets_similar_short_text", e), !t),
+            toggle(geByClass1("_tickets_similar_full_text", e), t), toggleClass(e, "detailed", t)
     },
     onSubmitSettingsChanged: function(e) {
         ajax.post("helpdesk", {

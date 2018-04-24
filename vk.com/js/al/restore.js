@@ -352,7 +352,7 @@ var Restore = {
         if (-2 == a) {
             var i, u;
             return n ? (i = ge("restore_submit_full_request"), u = Restore.submitFullRequest) : (i = ge("submitBtn"), u = Restore.submitSimpleRequest), lockButton(i), setTimeout(u, 1e3)
-        } - 3 == a ? ("login" == s && (o += "<br>" + getLang("restore_need_email_or_phone_desc")), Restore.showResult(t, o, r)) : Restore.showResult("request_phone_res", o, r)
+        } - 3 == a ? ("login" == s && (o += "<br>" + getLang("restore_need_email_or_phone_desc")), Restore.showResult(t, o, r)) : (isVisible("simple_request_incorrect") && hide("simple_request_incorrect"), Restore.showResult("request_phone_res", o, r))
     },
     toFullRequest: function(e, o) {
         if (isVisible("new_phone_wrap")) var t = val("new_phone").replace(/[^0-9]/g, "");

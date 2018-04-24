@@ -229,7 +229,7 @@ var stVersions = {
     'public.js': 1804234624,
     'pages.css': 24201285077,
     'pages.js': 1162259210,
-    'groups.css': 26967596491,
+    'groups.css': 26412397208,
     'groups.js': 608843959,
     'cmodules/web/groups_create.js': 2554367098,
     'groups_create.css': 17874096822,
@@ -256,7 +256,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 188196047550,
-    'imn.js': 241275834905,
+    'imn.js': 241635800083,
     'im.js': 1322065005,
     'emoji.js': 928907071,
     'wide_dd.css': 17974590759,
@@ -324,19 +324,19 @@ var stVersions = {
     'widgets.css': 31048204112,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 75304862593,
-    'notifier.css': 22808415111,
+    'notifier.js': 78242740695,
+    'notifier.css': 23610687766,
     'cmodules/sw/sw.js': 4889939668,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
-    'restore.js': 4102685181,
+    'restore.js': 3293230696,
     'restore.css': 18428616656,
     'docs.js': 995211544,
     'docs.css': 23549012075,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 17277199137,
-    'helpdesk.js': 1831879312,
-    'helpdesk.css': 20479347886,
+    'helpdesk.js': 1877762876,
+    'helpdesk.css': 21195153928,
     'tickets.js': 1561089313,
     'tickets.css': 22591514026,
     'faq.css': 21976366225,
@@ -635,4 +635,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 1110;
+var _rnd = 7015;

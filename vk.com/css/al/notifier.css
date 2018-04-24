@@ -3615,7 +3615,8 @@ div.fc_editable:focus~.placeholder .ph_content {
     color: #c0c8d0
 }
 
-.fc_srv_msg {
+.fc_srv_msg,
+.fc_srv_msg a {
     color: #939393
 }
 

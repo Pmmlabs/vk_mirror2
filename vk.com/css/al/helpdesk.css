@@ -572,6 +572,10 @@ body.body_helpdesk_small_sb .left_menu_nav {
     margin: 5px 0 20px
 }
 
+.helpdesk_stats_bl {
+    color: #000
+}
+
 .tickets_favorites_groups {
     margin-bottom: 8px;
     color: #2a5885;
@@ -1938,4 +1942,49 @@ body.body_helpdesk_small_sb .left_menu_nav {
     background-size: 22px;
     display: inline-block;
     vertical-align: text-bottom
+}
+
+.helpdesk_processed_log_separator {
+    border-bottom: 1px solid #e7e8ec;
+    margin: 10px 0 0;
+    padding-bottom: 10px;
+    text-align: center;
+    color: #656565;
+    font-size: 14px
+}
+
+.helpdesk_processed_log_separator:first-child {
+    margin-top: 0
+}
+
+.helpdesk_processed_log_row {
+    border-bottom: 1px solid #e7e8ec;
+    padding: 10px 0
+}
+
+.helpdesk_processed_log_row:first-child {
+    padding-top: 0
+}
+
+.helpdesk_processed_log_row:last-child {
+    border-bottom: 0 none;
+    padding-bottom: 0
+}
+
+.helpdesk_processed_log_row__title,
+.helpdesk_processed_log_row__queue {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.helpdesk_processed_log_row__queue {
+    color: #656565;
+    font-size: 12px
+}
+
+.helpdesk_processed_log_row__date {
+    float: right;
+    margin-left: 10px;
+    color: #939393
 }

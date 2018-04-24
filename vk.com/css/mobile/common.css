@@ -25884,6 +25884,34 @@ a.feedBlocks__article:hover {
     }
 }
 
+._LockScreen__page {
+    background: #ebedf0
+}
+
+._LockScreen__page .basis__content {
+    background: #ebedf0!important;
+    border: none!important
+}
+
+.LockScreen {
+    background: #fff
+}
+
+@media (min-width: 680px) {
+    .LockScreen {
+        margin-top: 12px;
+        margin-bottom: 40px;
+        border-radius: 4px;
+        border: 1px solid #dfe3e8
+    }
+}
+
+@media (max-width: 680px) {
+    ._LockScreen__page .layout__body {
+        max-width: 100%!important
+    }
+}
+
 .SettingsMenu__item {
     display: -webkit-flex;
     display: -ms-flexbox;
