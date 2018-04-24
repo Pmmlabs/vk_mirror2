@@ -3301,8 +3301,11 @@ var Wall = {
                         params = extend(params, poll);
                         break;
                     case 'share':
-                        if (share.failed || !share.url ||
-                            !share.title && (!share.images || !share.images.length) && !share.photo_url) {
+                        if (
+                            share.failed ||
+                            !share.url ||
+                            !share.title && (!share.images || !share.images.length) && !share.photo_url && !share.video
+                        ) {
                             if (cur.shareLastParseSubmitted && vkNow() - cur.shareLastParseSubmitted < 2000) {
                                 params.delayed = true;
                                 return false;
@@ -3310,7 +3313,12 @@ var Wall = {
                                 return;
                             }
                         }
-                        attachVal = (share.user_id && share.photo_id && !share.noPhoto) ? share.user_id + '_' + share.photo_id : '';
+                        if (share.video) {
+                            attachVal = share.video_owner_id + '_' + share.video_id;
+                            params.snippet_video = 1;
+                        } else {
+                            attachVal = (share.user_id && share.photo_id && !share.noPhoto) ? share.user_id + '_' + share.photo_id : '';
+                        }
                         if (share.initialPattern && (trim(msg) == share.initialPattern)) {
                             params.message = '';
                         }
@@ -3323,7 +3331,7 @@ var Wall = {
                             button_action: share.button_action,
                             extra: share.extra,
                             extra_data: share.extraData,
-                            photo_url: replaceEntities(share.photo_url),
+                            photo_url: share.video ? '' : replaceEntities(share.photo_url),
                             open_graph_data: (share.openGraph || {}).data,
                             open_graph_hash: (share.openGraph || {}).hash
                         });
@@ -3736,8 +3744,11 @@ var Wall = {
                         params = extend(params, poll);
                         break;
                     case 'share':
-                        if (share.failed || !share.url ||
-                            !share.title && (!share.images || !share.images.length) && !share.photo_url) {
+                        if (
+                            share.failed ||
+                            !share.url ||
+                            !share.title && (!share.images || !share.images.length) && !share.photo_url && !share.video
+                        ) {
                             if (cur.shareLastParseSubmitted && vkNow() - cur.shareLastParseSubmitted < 2000) {
                                 ret = true;
                                 return false;
@@ -3796,7 +3807,12 @@ var Wall = {
                             return false;
                         }
 
-                        attachVal = (share.user_id && share.photo_id && !share.noPhoto) ? share.user_id + '_' + share.photo_id : '';
+                        if (share.video) {
+                            attachVal = share.video_owner_id + '_' + share.video_id;
+                            params.snippet_video = 1;
+                        } else {
+                            attachVal = (share.user_id && share.photo_id && !share.noPhoto) ? share.user_id + '_' + share.photo_id : '';
+                        }
                         if (share.share_upload_failed && !attachVal) {
                             share.share_upload_failed = 0;
                             return;
@@ -3805,7 +3821,8 @@ var Wall = {
                             !isArray(share.images[cur.shareShowImg]) &&
                             !attachVal &&
                             !share.noPhoto &&
-                            !share.share_own_image;
+                            !share.share_own_image &&
+                            !share.video;
                         if (needUploadShare) {
                             lockButton(sendBtn);
                             addmedia.uploadShare(function() {
@@ -3831,7 +3848,7 @@ var Wall = {
                             button_action: share.button_action,
                             extra: share.extra,
                             extra_data: share.extraData,
-                            photo_url: share.noPhoto ? '' : replaceEntities(share.photo_url),
+                            photo_url: share.noPhoto || share.video ? '' : replaceEntities(share.photo_url),
                             open_graph_data: (share.openGraph || {}).data,
                             open_graph_hash: (share.openGraph || {}).hash
                         });
@@ -8778,8 +8795,11 @@ Composer = {
                         break;
 
                     case 'share':
-                        if (share.failed || !share.url ||
-                            !share.title && (!share.images || !share.images.length) && !share.photo_url) {
+                        if (
+                            share.failed ||
+                            !share.url ||
+                            !share.title && (!share.images || !share.images.length) && !share.photo_url && !share.video
+                        ) {
                             if (cur.shareLastParseSubmitted && vkNow() - cur.shareLastParseSubmitted < 2000) {
                                 params.delayed = true;
                                 return false;
@@ -8838,7 +8858,12 @@ Composer = {
                             return false;
                         }
 
-                        attachVal = (share.user_id && share.photo_id && !share.noPhoto) ? (share.user_id + '_' + share.photo_id) : '';
+                        if (share.video) {
+                            attachVal = share.video_owner_id + '_' + share.video_id;
+                            params.snippet_video = 1;
+                        } else {
+                            attachVal = (share.user_id && share.photo_id && !share.noPhoto) ? (share.user_id + '_' + share.photo_id) : '';
+                        }
                         if (share.share_upload_failed && !attachVal) {
                             share.share_upload_failed = 0;
                             params.delayed = true;
@@ -8848,7 +8873,8 @@ Composer = {
                             !isArray(share.images[cur.shareShowImg]) &&
                             !silentCheck &&
                             !attachVal &&
-                            !share.noPhoto;
+                            !share.noPhoto &&
+                            !share.video;
                         if (needUploadShare) {
                             addMedia.uploadShare(delayedCallback);
                             params.delayed = true;
@@ -8871,7 +8897,7 @@ Composer = {
                             button_action: share.button_action,
                             extra: share.extra,
                             extra_data: share.extraData,
-                            photo_url: replaceEntities(share.photo_url),
+                            photo_url: share.video ? '' : replaceEntities(share.photo_url),
                             placeholder_inserted: share.placeholder_inserted,
                             open_graph_data: (share.openGraph || {}).data,
                             open_graph_hash: (share.openGraph || {}).hash

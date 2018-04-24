@@ -968,7 +968,8 @@ textarea.dark.mv_live_gift_popup_comment_input {
     -webkit-flex-grow: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
-    position: relative
+    position: relative;
+    z-index: 110
 }
 
 .mv_info_wrapper {

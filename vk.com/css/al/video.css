@@ -749,6 +749,10 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
     display: block
 }
 
+#video_choose_box .no_video_select_btn .media_check_btn_wrap {
+    display: none
+}
+
 #video_choose_box .video_playlist_item_counter {
     width: 55px
 }

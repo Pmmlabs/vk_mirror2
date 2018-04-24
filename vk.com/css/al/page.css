@@ -2310,6 +2310,20 @@ a.page_media_link_desc {
     max-height: 185px
 }
 
+.page_media_link_video {
+    margin: -1px -1px 0;
+    border-radius: 2px 2px 0 0;
+    display: block;
+    overflow: hidden;
+    position: relative
+}
+
+.page_media_link_video_wrap {
+    display: block;
+    line-height: 0;
+    position: relative
+}
+
 .page_media_link_url {
     max-width: 300px;
     text-overflow: ellipsis;
@@ -7322,16 +7336,25 @@ div.medadd_c_linkprg {
     display: inline-block
 }
 
-.medadd_c_linkimg_button {
+.medadd_c_linkimg_button,
+.medadd_c_linkvideo_button {
     position: absolute;
     text-align: center;
     width: 100%;
-    top: 145px;
     left: 0;
     z-index: 1
 }
 
-.medadd_c_linkimg_container_wide .medadd_c_linkimg_button {
+.medadd_c_linkimg_button {
+    top: 145px
+}
+
+.medadd_c_linkvideo_button {
+    top: 180px
+}
+
+.medadd_c_linkimg_container_wide .medadd_c_linkimg_button,
+.medadd_c_linkimg_container_wide .medadd_c_linkvideo_button {
     top: 160px
 }
 

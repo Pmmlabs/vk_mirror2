@@ -307,49 +307,51 @@ var Video = {
     loadSilent: function(e) {
         e = e || "all";
         var o = cur.getOwnerId(),
-            i = Video.isInAlbum(e);
+            i = Video.isInAlbum(e),
+            t = !!cur.isSnippetVideoSelection;
         if ((i || this._isGeneralSection(e)) && "albums" != e) {
             cur.silentLoaded = cur.silentLoaded || {}, cur.silentLoaded[o] = cur.silentLoaded[o] || {}, cur.silentLoadingProgress = cur.silentLoadingProgress || {}, cur.silentLoadingProgress[o] = cur.silentLoadingProgress[o] || {};
-            var t = cur.silentLoadingProgress[o][e];
-            if (t !== !0 && cur.pageVideosList && cur.pageVideosList[o]) return t === !1 ? void Video._callPendingAction(e) : void("undefined" == typeof t && (cur.silentLoadingProgress[o][e] = !0, function(e) {
-                function t(i, t) {
+            var r = cur.silentLoadingProgress[o][e];
+            if (r !== !0 && cur.pageVideosList && cur.pageVideosList[o]) return r === !1 ? void Video._callPendingAction(e) : void("undefined" == typeof r && (cur.silentLoadingProgress[o][e] = !0, function(e) {
+                function r(i, t) {
                     cur.silentLoadingProgress && cur.silentLoadingProgress[o] && (cur.silentLoadingProgress[o][e] = !1, i && (i.length && (cur.indexIndex = i[0].length), Video._reindex(i), cur.silentLoaded[o][e] = i), t && (cur.albumsPreload[o] = !1, cur.silentLoaded[o].albums = t), Video.indexItems(function() {
                         cur.silentLoadingProgress && (Video._callPendingAction(e), t && Video._callPendingAction("albums"), Video.showMore(e))
                     }))
                 }
 
-                function r() {
-                    var e = [].concat.apply([], _);
-                    t(e, v)
+                function d() {
+                    var e = [].concat.apply([], v);
+                    r(e, h)
                 }
-                var d = cur.pageVideosList[o][e],
-                    a = d ? cur.videosCount[o][e] <= d.list.length : !1,
-                    n = i ? !0 : cur.albumsPreload && cur.playlistsCount <= cur.albumsPreload[o].length;
-                if (n && (cur.silentLoaded[o].albums = cur.albumsPreload[o]), a && n) t(cur.pageVideosList[o][e].list, cur.albumsPreload[o]);
-                else if (cur.noVideos) t([], []);
+                var a = cur.pageVideosList[o][e],
+                    n = a ? cur.videosCount[o][e] <= a.list.length : !1,
+                    c = i ? !0 : cur.albumsPreload && cur.playlistsCount <= cur.albumsPreload[o].length;
+                if (c && (cur.silentLoaded[o].albums = cur.albumsPreload[o]), n && c) r(cur.pageVideosList[o][e].list, cur.albumsPreload[o]);
+                else if (cur.noVideos) r([], []);
                 else {
-                    if (!cur.videosCount || !cur.videosCount[o]) return t([], []);
-                    var c = cur.VIDEO_SILENT_VIDEOS_CHUNK_SIZE,
-                        s = cur.videosCount[o][e],
-                        l = Math.ceil(s / c),
-                        u = new callHub(r, l),
-                        _ = new Array(l),
-                        v = [];
-                    if (0 == l) return t([], []);
-                    for (var h = 0; l > h; h++) ! function(i) {
+                    if (!cur.videosCount || !cur.videosCount[o]) return r([], []);
+                    var s = cur.VIDEO_SILENT_VIDEOS_CHUNK_SIZE,
+                        l = cur.videosCount[o][e],
+                        u = Math.ceil(l / s),
+                        _ = new callHub(d, u),
+                        v = new Array(u),
+                        h = [];
+                    if (0 == u) return r([], []);
+                    for (var g = 0; u > g; g++) ! function(i) {
                         ajax.post("/al_video.php", {
                             act: "load_videos_silent",
                             oid: o,
                             section: e,
                             rowlen: Video.VIDEOS_PER_ROW,
-                            offset: i * c,
-                            need_albums: intval(!n && "all" == e && intval(0 == i))
+                            offset: i * s,
+                            snippet_video: t ? 1 : 0,
+                            need_albums: intval(!c && "all" == e && intval(0 == i))
                         }, {
                             onDone: function(o, t) {
-                                o && o[e] && o[e].list ? _[i] = o[e].list : _[i] = [], 0 == i && (v = t), u.done()
+                                o && o[e] && o[e].list ? v[i] = o[e].list : v[i] = [], 0 == i && (h = t), _.done()
                             }
                         })
-                    }(h)
+                    }(g)
                 }
             }(e)))
         }
@@ -417,38 +419,44 @@ var Video = {
             var i = o > 0;
             cur.globalSearchResults = cur.globalSearchResults || {};
             var t = e + Video._buildFiltersSearchStr();
-            return !i && cur.globalSearchResults[t] ? void Video._showGlobalSearchResults(e) : void(cur.globalSearchInProgress != e && (cur.globalSearchInProgress = e, !i && Video._toggleSearchProgress(!0), ajax.post("/al_video.php", extend({
-                act: "search_video",
-                q: e,
-                offset: o || 0
-            }, cur.videoSearchFilters), {
-                onDone: function(o, r, d, a, n, c) {
-                    cur.globalSearchInProgress = !1, !i && Video._toggleSearchProgress(!1), curBox() && (n = !1), cur.globalSearchResults[t] = cur.globalSearchResults[t] || {
-                        count: 0,
-                        countHash: r,
-                        list: [],
-                        realOffset: 0,
-                        promoPlaylists: n
+            if (!i && cur.globalSearchResults[t]) return void Video._showGlobalSearchResults(e);
+            if (cur.globalSearchInProgress != e) {
+                cur.globalSearchInProgress = e, !i && Video._toggleSearchProgress(!0);
+                var r = !!cur.isSnippetVideoSelection,
+                    d = {
+                        act: "search_video",
+                        q: e,
+                        offset: o || 0
                     };
-                    var s = cur.globalSearchResults[t];
-                    s.done = s.done || !d.list || 0 == d.list.length;
-                    var l = s.list.length;
-                    if (!s.done) {
-                        for (var u = d.list[0], _ = 0, v = s.list.length - 1; v >= 0; v--) {
-                            var h = s.list.length - v;
-                            if (h > 20) break;
-                            var g = s.list[v];
-                            if (u[0] == g[0] && u[1] == g[1]) {
-                                _ = h;
-                                break
+                r && (d.snippet_video = 1), ajax.post("/al_video.php", extend(d, cur.videoSearchFilters), {
+                    onDone: function(o, r, d, a, n, c) {
+                        cur.globalSearchInProgress = !1, !i && Video._toggleSearchProgress(!1), curBox() && (n = !1), cur.globalSearchResults[t] = cur.globalSearchResults[t] || {
+                            count: 0,
+                            countHash: r,
+                            list: [],
+                            realOffset: 0,
+                            promoPlaylists: n
+                        };
+                        var s = cur.globalSearchResults[t];
+                        s.done = s.done || !d.list || 0 == d.list.length;
+                        var l = s.list.length;
+                        if (!s.done) {
+                            for (var u = d.list[0], _ = 0, v = s.list.length - 1; v >= 0; v--) {
+                                var h = s.list.length - v;
+                                if (h > 20) break;
+                                var g = s.list[v];
+                                if (u[0] == g[0] && u[1] == g[1]) {
+                                    _ = h;
+                                    break
+                                }
                             }
-                        }
-                        s.count = parseInt(o), Array.prototype.push.apply(s.list, d.list.slice(_));
-                        var V = s.list.length % Video.VIDEOS_PER_ROW;
-                        o > Video.VIDEOS_PER_PAGE && V && s.list.length < s.count && (s.list.splice(-V, Video.VIDEOS_PER_ROW), c -= V), s.realOffset = c
-                    }(a || !s.done && s.list.length == l) && (s.done = !0), Video._showGlobalSearchResults(e, i)
-                }
-            })))
+                            s.count = parseInt(o), Array.prototype.push.apply(s.list, d.list.slice(_));
+                            var V = s.list.length % Video.VIDEOS_PER_ROW;
+                            o > Video.VIDEOS_PER_PAGE && V && s.list.length < s.count && (s.list.splice(-V, Video.VIDEOS_PER_ROW), c -= V), s.realOffset = c
+                        }(a || !s.done && s.list.length == l) && (s.done = !0), Video._showGlobalSearchResults(e, i)
+                    }
+                })
+            }
         }
     },
     _toggleEmptySearchPlaceholder: function(e, o, i) {
@@ -552,7 +560,7 @@ var Video = {
         var t = e[VideoConstants.VIDEO_ITEM_INDEX_FLAGS];
         return each(i, function(e, i) {
             t & e && (o += i + " ")
-        }), e[VideoConstants.VIDEO_ITEM_INDEX_PLATFORM] || e[VideoConstants.VIDEO_ITEM_INDEX_DURATION] || t & VideoConstants.VIDEO_ITEM_FLAG_ACTIVE_LIVE || (o += " video_no_duration"), t & VideoConstants.VIDEO_ITEM_FLAG_CAN_EDIT || t & VideoConstants.VIDEO_ITEM_FLAG_CAN_DELETE || t & VideoConstants.VIDEO_ITEM_FLAG_CAN_ADD || (o += " video_no_actions"), cur.videoCanAddAlbums && (o += " video_can_edit_albums"), t & VideoConstants.VIDEO_ITEM_FLAG_NEED_SIGN_IN && (attrs += ' rel="nofollow"'), [o, attrs]
+        }), e[VideoConstants.VIDEO_ITEM_INDEX_PLATFORM] || e[VideoConstants.VIDEO_ITEM_INDEX_DURATION] || t & VideoConstants.VIDEO_ITEM_FLAG_ACTIVE_LIVE || (o += " video_no_duration"), t & VideoConstants.VIDEO_ITEM_FLAG_CAN_EDIT || t & VideoConstants.VIDEO_ITEM_FLAG_CAN_DELETE || t & VideoConstants.VIDEO_ITEM_FLAG_CAN_ADD || (o += " video_no_actions"), cur.videoCanAddAlbums && (o += " video_can_edit_albums"), cur.isSnippetVideoSelection && (o += " no_video_select_btn"), t & VideoConstants.VIDEO_ITEM_FLAG_NEED_SIGN_IN && (attrs += ' rel="nofollow"'), [o, attrs]
     },
     buildVideoEl: function(e) {
         var o = trim(cur.videoItemTpl);
@@ -827,8 +835,7 @@ var Video = {
             hash: r
         }, {
             onDone: function() {
-                removeClass(d, "video_deleted"),
-                    re(n)
+                removeClass(d, "video_deleted"), re(n)
             }
         }), delete cur.videoRecentlyRemoved[i]
     },
@@ -849,21 +856,20 @@ var Video = {
     },
     switchChooserToOwner: function(e) {
         function o() {
-            showBox("al_video.php", extend({
-                to_id: e,
-                switched: 1
-            }, {
+            showBox("al_video.php", extend(r, {
                 act: "a_choose_video_box"
             }), {
                 cache: 1,
                 dark: 1
             })
         }
-        var i = curBox();
-        showBox("al_video.php", extend({
-            to_id: e,
-            switched: 1
-        }, {
+        var i = curBox(),
+            t = !!cur.isSnippetVideoSelection,
+            r = {
+                to_id: e,
+                switched: 1
+            };
+        t && (r.snippet_video = 1), showBox("al_video.php", extend(r, {
             act: "a_choose_video_box"
         }), {
             showProgress: i.showCloseProgress.bind(i),
@@ -878,70 +884,70 @@ var Video = {
     chooseBoxBack: function() {
         cur.videoChoosePrevSection = cur.videoChoosePrevSection || "all", 0 == cur.videoChoosePrevSection.indexOf("album_") && (cur.videoChoosePrevSection = "albums"), nav.go("/videos?section=" + cur.videoChoosePrevSection)
     },
-    initChooseBox: function(e, o, i, t, r, d) {
-        function a() {}
+    initChooseBox: function(e, o, i, t, r, d, a) {
+        function n() {}
 
-        function n() {
-            _.setOptions({
+        function c() {
+            v.setOptions({
                 width: 631,
                 bodyStyle: "padding: 0",
                 hideButtons: !0
-            }), a(), ge("box_layer_wrap").scrollTop = 0
+            }), n(), ge("box_layer_wrap").scrollTop = 0
         }
 
-        function c() {
+        function s() {
             each(Video.AVAILABLE_TABS, function(e, o) {
                 hide("video_subtab_pane_" + o)
             }), hide(geByClass1("video_subtab_pane_album"))
         }
 
-        function s() {
-            _.setOptions({
+        function l() {
+            v.setOptions({
                 title: '<div class="back" onclick="Video.chooseBoxBack();">' + getLang("video_choose_box_back_to_videos") + "</div>",
                 bodyStyle: "padding: 0",
                 noRefreshCoords: 1
-            }), a()
-        }
-
-        function l() {
-            var e = r;
-            if (!d && !o && cur.videoSwitchOwnerId) {
-                var i = t == vk.id ? getLang("video_choose_wall_to_group_videos") : getLang("video_choose_wall_to_my_videos"),
-                    n = t == vk.id ? cur.videoSwitchOwnerId : vk.id;
-                e += '<span class="divider">|</span><a class="toggle" onclick="Video.switchChooserToOwner(' + n + ')">' + i + "</a>"
-            }
-            _.getOptions().defaultTitle && (e = _.getOptions().defaultTitle), _.setOptions({
-                title: e,
-                grey: o
-            }), a()
+            }), n()
         }
 
         function u() {
+            var e = r;
+            if (!d && !o && cur.videoSwitchOwnerId) {
+                var i = t == vk.id ? getLang("video_choose_wall_to_group_videos") : getLang("video_choose_wall_to_my_videos"),
+                    a = t == vk.id ? cur.videoSwitchOwnerId : vk.id;
+                e += '<span class="divider">|</span><a class="toggle" onclick="Video.switchChooserToOwner(' + a + ')">' + i + "</a>"
+            }
+            v.getOptions().defaultTitle && (e = v.getOptions().defaultTitle), v.setOptions({
+                title: e,
+                grey: o
+            }), n()
+        }
+
+        function _() {
             curBox() && each(geByClass("video_item", curBox().bodyNode), function() {
                 var e = geByClass1("media_check_btn_wrap", this),
                     o = this.getAttribute("data-id");
                 toggleClass(e, "checked", -1 != cur.chosenVideos.indexOf(o))
             })
         }
-        cur.found = {}, cur.currentSortings = {}, cur._preloadedPages = {}, cur.videoSearchFilters = {}, cur.chosenVideos = [], cur.albumsShowingAll = {}, cur.isNoteEdit = e, cur.videoShowWindow = {};
-        var _ = curBox(),
-            v = cur.getOwnerId;
+        cur.found = {}, cur.currentSortings = {}, cur._preloadedPages = {}, cur.videoSearchFilters = {}, cur.chosenVideos = [], cur.albumsShowingAll = {}, cur.isNoteEdit = e, cur.videoShowWindow = {}, cur.isSnippetVideoSelection = a;
+        var v = curBox(),
+            h = cur.getOwnerId;
         cur.getOwnerId = function() {
             return t
-        }, _.setOptions({
+        }, v.setOptions({
             onHideAttempt: function() {
-                return cur.getOwnerId = v, !0
+                return cur.getOwnerId = h, !0
             }
         }), cur.nav.push(function(e, o, i, t) {
             if (!t.filtersChanged && 1 == Object.keys(i).length && i[0] && 0 != i[0].indexOf("video") && !t.fromSearch) return !0;
             if (e[0] && !e.section && i[0] != "videos" + cur.getOwnerId()) return !0;
             hide("global_prg");
-            var r = geByClass1("video_default_tabs", _.bodyNode),
-                d = geByClass1("video_subtab_pane_album", _.bodyNode),
+            var r = geByClass1("video_default_tabs", v.bodyNode),
+                d = geByClass1("video_subtab_pane_album", v.bodyNode),
                 a = e.section ? e.section : "all";
             Video._prepareSearchFilters(i);
-            var v = e.section ? "" : i.q || val(cur.searchInputEl);
-            if (v ? (trim(val(cur.searchInputEl)) != trim(v), a = "search", t.fromSearch || t.globalQuery || (t.globalQuery = v), Video.doSearch(v, t.globalQuery), s(), Video._updateChooseFixedBottom()) : (Video.inputVal(cur.searchInputEl, ""), Video.doSearch("")), cur.videoForcedSection = a, -1 != Video.AVAILABLE_TABS.indexOf(a)) c(), show("video_subtab_pane_" + a), show(r), hide("albumPane"), l(), n(), cur.videoChoosePrevSection = a, "albums" != a && Video.loadSilent(a), Video.updateEmptyPlaceholder(a);
+            var n = e.section ? "" : i.q || val(cur.searchInputEl);
+            if (n ? (trim(val(cur.searchInputEl)) != trim(n), a = "search", t.fromSearch || t.globalQuery || (t.globalQuery = n), Video.doSearch(n, t.globalQuery), l(), Video._updateChooseFixedBottom()) : (Video.inputVal(cur.searchInputEl, ""), Video.doSearch("")), cur.videoForcedSection = a, -1 != Video.AVAILABLE_TABS.indexOf(a)) s(), show("video_subtab_pane_" + a), show(r), hide("albumPane"), u(), c(), cur.videoChoosePrevSection = a, "albums" != a && Video.loadSilent(a), Video.updateEmptyPlaceholder(a);
             else if (a && 0 == a.indexOf("album_")) {
                 var h = a.split("_")[1];
                 showGlobalPrg(ge("video_playlist_item_" + h), {
@@ -951,17 +957,17 @@ var Video = {
                     shift: [0, -22],
                     zIndex: 1e3
                 }), Video._addPendingAction(a, function() {
-                    s(), c(), hide("global_prg"), hide(r), d.id = "video_subtab_pane_" + a;
+                    l(), s(), hide("global_prg"), hide(r), d.id = "video_subtab_pane_" + a;
                     var e = geByClass1("video_items_list", d);
                     e.id = "video_" + a + "_list", addClass(e, "_video_" + a + "_list"), e.innerHTML = "", show(d);
                     var o = cur.getOwnerId();
-                    cur.videoShowWindow = cur.videoShowWindow || {}, cur.videoShowWindow[o] = cur.videoShowWindow[o] || {}, cur.videoShowWindow[o][a] = !1, Video.showMore(a, geByClass1("ui_load_more_btn", ge("video_subtab_pane_album"))), n(), u(), Video._updateChooseFixedBottom()
+                    cur.videoShowWindow = cur.videoShowWindow || {}, cur.videoShowWindow[o] = cur.videoShowWindow[o] || {}, cur.videoShowWindow[o][a] = !1, Video.showMore(a, geByClass1("ui_load_more_btn", ge("video_subtab_pane_album"))), c(), _(), Video._updateChooseFixedBottom()
                 }), cur.videoChoosePrevSection = a, Video.loadSilent(a)
             }
-            return u(), !1
-        }), cur.chooseVideoToMail = i, cur.isCurrentVideoLayer = !0, Video.loadSilent(), n(), addEvent(ge("box_layer_wrap"), "scroll", Video.onScroll);
-        var h = boxLayerWrap.scrollTop;
-        elfocus(geByClass1("_scroll_node", _.bodyNode)), boxLayerWrap.scrollTop = h, Video.initSearch(), l(), o || (cur.chooseVideoMedia = function(e, o, i) {
+            return _(), !1
+        }), cur.chooseVideoToMail = i, cur.isCurrentVideoLayer = !0, Video.loadSilent(), c(), addEvent(ge("box_layer_wrap"), "scroll", Video.onScroll);
+        var g = boxLayerWrap.scrollTop;
+        elfocus(geByClass1("_scroll_node", v.bodyNode)), boxLayerWrap.scrollTop = g, Video.initSearch(), u(), o || (cur.chooseVideoMedia = function(e, o, i) {
             var t = e;
             hasClass(t, "media_check_btn_wrap") ? cur.cancelClick = !0 : t = geByClass1("media_check_btn_wrap", t), toggleClass(t, "checked");
             var r = 0;
@@ -982,7 +988,7 @@ var Video = {
             onHide: function() {
                 hide("global_prg"), cur.nav.pop(), removeEvent(ge("box_layer_wrap"), "scroll", Video.onScroll), cur.isCurrentVideoLayer = !1
             }
-        }), a()
+        }), n()
     },
     doAttachSelectedVideos: function(e) {
         return hasClass(e, "flat_button") ? lockButton(e) : showGlobalPrg(geByClass1("video_item_thumb_wrap", e) || e, {
@@ -996,7 +1002,9 @@ var Video = {
             videos: cur.chosenVideos.join(",")
         }, {
             onDone: function(o) {
-                hasClass(e, "flat_button") && unlockButton(e), hide("global_prg");
+                if (hasClass(e, "flat_button") && unlockButton(e), hide("global_prg"), cur.isSnippetVideoSelection && cur.chooseSnippetVideo) return each(o, function(e, o) {
+                    return cur.chooseSnippetVideo(e, o), !1
+                }), void(curBox() && curBox().hide());
                 var i = 0;
                 each(o, function(e, o) {
                     cur.isNoteEdit && window.editorChooseVideo ? editorChooseVideo(o.thumb, o.name, o.duration, "/video" + e, e) : cur.chooseMedia("video", e, o, i, cur.chosenVideos.length > 1), i++
@@ -1110,11 +1118,11 @@ var Video = {
                 cur.videoSearchPos = parseInt(V.getAttribute("data-search-pos")), cur.videoSearchPos > cur.videoSearchStats.lastSeenIndex && (cur.videoSearchStats.lastSeenElement = V, cur.videoSearchStats.lastSeenIndex = cur.videoSearchPos), cur.videoSearchStats.positions[cur.videoSearchPos] = extend({
                     clicked: 0
                 }, cur.videoSearchStats.positions[cur.videoSearchPos]), cur.videoSearchStats.positions[cur.videoSearchPos].clicked++;
-                var S = ++cur.videoSearchStats.clickNum,
-                    p = (new Date).getTime() - cur.videoSearchStats.lastActionTime;
+                var p = ++cur.videoSearchStats.clickNum,
+                    S = (new Date).getTime() - cur.videoSearchStats.lastActionTime;
                 a.addParams = extend(a.addParams || {}, {
-                    click_num: S,
-                    click_time: p
+                    click_num: p,
+                    click_time: S
                 })
             }
         }

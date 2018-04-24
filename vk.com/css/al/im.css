@@ -8595,7 +8595,8 @@ body.sf .nim-dialog .nim-dialog--unread {
     display: block
 }
 
-.nim-dialog:not(.nim-dialog_deleted):hover .nim-dialog--date {
+.nim-dialog:not(.nim-dialog_deleted):hover .nim-dialog--date,
+.nim-dialog.nim-dialog_deny-remove:hover .nim-dialog--close {
     display: none
 }
 
