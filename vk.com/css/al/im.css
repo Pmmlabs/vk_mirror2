@@ -102,7 +102,7 @@
 }
 
 .BlinkText {
-    color: #656565;
+    color: #939393;
     vertical-align: middle;
     display: inline-block;
     padding: 5px;
@@ -659,17 +659,14 @@ textarea.EditableLabel__textarea {
 
 .Entity__title {
     font-weight: 500;
-    margin: 0 0 4px;
+    margin: 0;
     color: #2a5885
-}
-
-.Entity__title:last-child {
-    margin: 0 0 1px
 }
 
 .Entity__description {
     color: #939393;
-    cursor: default
+    cursor: default;
+    margin-top: 4px
 }
 
 .File {
@@ -829,7 +826,7 @@ textarea.EditableLabel__textarea {
 
 .ListItem--selectable:hover {
     border-color: #e7e8ec;
-    background: #fafbfc
+    background: #f5f7fa
 }
 
 .ListItem--border.ListItem--selectable:first-child:hover {
@@ -1906,6 +1903,10 @@ textarea.EditableLabel__textarea {
     margin: 0 auto 12px
 }
 
+.ChatSettingsInfo--editable .ChatSettingsInfo__photo {
+    cursor: pointer
+}
+
 .ChatSettingsInfo__attach {
     position: relative;
     border-radius: 50%;
@@ -2272,9 +2273,9 @@ textarea.EditableLabel__textarea {
 .ChatSettingsMenu__invite {
     position: relative;
     display: inline-block;
-    vertical-align: top;
     font: inherit;
-    margin: 0 0 0 16px
+    margin: 0 0 0 16px;
+    line-height: 15px
 }
 
 .ChatSettingsMenu__invite:before {
@@ -2305,7 +2306,9 @@ textarea.EditableLabel__textarea {
     position: absolute;
     top: 0;
     left: 0;
-    pointer-events: none
+    pointer-events: none;
+    padding: 0;
+    line-height: 15px
 }
 
 .ChatSettingsMenu__hidden {
@@ -2322,10 +2325,6 @@ textarea.EditableLabel__textarea {
 
 .ChatSettingsOptions__longselect.Select--opened {
     width: 230px
-}
-
-.ChatSettingsOptions__saved {
-    float: left
 }
 
 .ChatSettingsResetInvitationLink__text {
