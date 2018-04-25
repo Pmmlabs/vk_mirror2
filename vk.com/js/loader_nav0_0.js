@@ -256,7 +256,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 190737001934,
-    'imn.js': 237579463972,
+    'imn.js': 239664373837,
     'im.js': 1322065005,
     'emoji.js': 928907071,
     'wide_dd.css': 17974590759,
@@ -352,7 +352,7 @@ var stVersions = {
     'bugs.js': 3874995669,
     'bugs.css': 15246879152,
     'bugtracker.js': 4292966271,
-    'bugtracker.css': 22911693950,
+    'bugtracker.css': 27168281745,
     'login.css': 18453189579,
     'cmodules/web/login.js': 3491120396,
     'upload.js': 3788345205,
@@ -426,7 +426,7 @@ var stVersions = {
     'contests.css': 2752582154,
     'ui.css': 16191894133,
     'ui.js': 3953380422,
-    'ui_common.js': 2390090717,
+    'ui_common.js': 1002072981,
     'ui_common.css': 18744261307,
     'ui_media_selector.js': 3424404875,
     'ui_media_selector.css': 20530268624,
@@ -549,7 +549,7 @@ var stVersions = {
     'cmodules/web/page_layout.js': 1172409392,
     'landings/ads_cases.css': 26868447318,
     'surveys.css': 23348435745,
-    'surveys.js': 3079369917,
+    'surveys.js': 3963089861,
     'landings/author_guide.css': 24348858153,
     'language.js': 3551638980,
     'language.css': 17658332033,
@@ -635,4 +635,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 305;
+var _rnd = 992;

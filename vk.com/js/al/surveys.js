@@ -27,47 +27,47 @@ Survey.prototype.stateChanged = function() {
                 };
                 var u = "survey_edit_" + o + "_" + a;
                 if (t.inputs.indexOf(u) >= 0) {
-                    var l = ge(u);
-                    if (i[e].text = val(l), l.getAttribute("required") && (!i[e].text || i[e].text.trim().length < 2)) return r.push({
-                        elementToScroll: l,
+                    var c = ge(u);
+                    if (i[e].text = val(c), c.getAttribute("required") && (!i[e].text || i[e].text.trim().length < 2)) return r.push({
+                        elementToScroll: c,
                         id: e
                     }), !0
                 }
             } else if ("checkbox" === t.type) {
-                var c = geByClass("survey_select_" + o);
-                if (!c.length || !c[0].offsetParent) return !0;
+                var l = geByClass("survey_select_" + o);
+                if (!l.length || !l[0].offsetParent) return !0;
                 i[e] = {
                     answer: []
                 };
-                for (var h = 0, v = c.length; v > h; h++)
-                    if (isChecked(c[h])) {
-                        var a = c[h].getAttribute("data-id");
+                for (var h = 0, v = l.length; v > h; h++)
+                    if (isChecked(l[h])) {
+                        var a = l[h].getAttribute("data-id");
                         i[e].answer.push(a);
                         var u = "survey_edit_" + o + "_" + a;
                         if (t.inputs.indexOf(u) >= 0) {
-                            var l = ge(u);
-                            if (i[e].text = val(l), l.getAttribute("required") && (!i[e].text || i[e].text.trim().length < 5)) return r.push({
-                                elementToScroll: l,
+                            var c = ge(u);
+                            if (i[e].text = val(c), c.getAttribute("required") && (!i[e].text || i[e].text.trim().length < 5)) return r.push({
+                                elementToScroll: c,
                                 id: e
                             }), !0
                         }
                     }
                 if (0 === i[e].answer.length) return r.push({
-                    elementToScroll: c[0],
+                    elementToScroll: l[0],
                     id: e
                 }), !0
             } else if ("textfield" == t.type || "textarea" == t.type) {
                 var u = "survey_" + t.type + "_" + o,
-                    l = ge(u);
+                    c = ge(u);
                 if (i[e] = {
-                        text: val(l)
+                        text: val(c)
                     }, !i[e].text || i[e].text.trim().length < 2) return t.required && (s = !0, r.push({
-                    elementToScroll: l,
+                    elementToScroll: c,
                     id: e
                 })), !0
             }
         }.bind(this)), r.length && (s || !this.limit || n - r.length < this.limit)) {
-        var o = lement = r.find(function(e) {
+        var o = r.find(function(e) {
             return e.elementToScroll
         });
         return o.elementToScroll.scrollIntoView({

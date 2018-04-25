@@ -296,7 +296,7 @@ var uiTabs = {
             var e = geByClass1("ui_rmenu_loading_item", t);
             e && removeClass(e, "ui_rmenu_loading_item");
             var i = geByClass1("ui_rmenu_item_sel", t);
-            hideProgress(t), showProgress(domFC(i), "", "", !0), addClass(t, "ui_rmenu_loading"), addClass(i, "ui_rmenu_loading_item")
+            hideProgress(t), showProgress(domFC(i).parentNode, "", "", !1), addClass(t, "ui_rmenu_loading"), addClass(i, "ui_rmenu_loading_item")
         },
         hideProgress: function(t) {
             hasClass(t, "ui_rmenu") || (t = gpeByClass("ui_rmenu", t)), hideProgress(t);
