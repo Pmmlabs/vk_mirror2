@@ -449,6 +449,10 @@ i i.untranslated {
     z-index: 1
 }
 
+.tr_box_edit_key .tr_extra_params {
+    max-width: 320px
+}
+
 .tr_box_edit_key .tr_extra_params .checkbox {
     margin-top: 8px
 }
@@ -1022,4 +1026,8 @@ i i.untranslated {
 .translation_box_screen .translations_box_no_screenshots {
     float: left;
     color: #777e8c
+}
+
+.tr_box_extra_param_tooltip {
+    width: 400px
 }

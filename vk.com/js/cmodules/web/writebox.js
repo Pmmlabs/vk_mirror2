@@ -28,92 +28,13 @@
         return t.d(a, "a", a), a
     }, t.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, t.p = "", t(t.s = 83)
+    }, t.p = "", t(t.s = 79)
 }({
-    266: function(e, t, a) {
-        "use strict";
-
-        function r(e, t, a) {
-            return t && (t.im_v = c), new Promise(function(r, n) {
-                ajax.post(e, t, {
-                    timeout: a,
-                    onDone: function() {
-                        r.apply(null, [
-                            [].concat(Array.prototype.slice.call(arguments))
-                        ])
-                    },
-                    onFail: function() {
-                        return n.apply(null, arguments), !0
-                    }
-                })
-            })
-        }
-
-        function n(e, t) {
-            var a = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
-                r = i(e, t, a),
-                n = r.request;
-            return n
-        }
-
-        function i(e, t) {
-            function a() {
-                n.abort()
-            }
-            var r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
-                n = void 0;
-            n = window.XDomainRequest ? new XDomainRequest : ajax._getreq();
-            var i = new Promise(function(a, i) {
-                var o = void 0,
-                    c = Date.now(),
-                    s = r.timeout || 60,
-                    u = ajx2q(t);
-                if (window.XDomainRequest) n.open("get", e + "?" + u), n.ontimeout = function() {
-                    i(["", {}])
-                }, n.onerror = function() {
-                    i(["", {}])
-                }, n.onload = function() {
-                    a([n.responseText, {}])
-                }, setTimeout(function() {
-                    n.send()
-                }, 0);
-                else {
-                    n.onreadystatechange = function() {
-                        4 == n.readyState && (clearInterval(o), n.status >= 200 && n.status < 300 ? a([n.responseText, n]) : i([n.responseText, n]))
-                    };
-                    try {
-                        n.open("GET", e + "?" + u, !0)
-                    } catch (l) {
-                        return i([l, n])
-                    }
-                    n.send()
-                }
-                o = setInterval(function() {
-                    Date.now() - c > 1e3 * s && (i(["", {}]), clearInterval(o))
-                }, 1e3)
-            });
-            return {
-                request: i,
-                cancel: a
-            }
-        }
-        a.r(t), a.d(t, "CONTROLLER", function() {
-            return o
-        }), a.d(t, "post", function() {
-            return r
-        }), a.d(t, "plainget", function() {
-            return n
-        }), a.d(t, "plaingetCancelable", function() {
-            return i
-        });
-        var o = "al_im.php",
-            c = 2
-    },
-    287: function(e, t, a) {
+    139: function(e, t, a) {
         "use strict";
         a.r(t);
-        var r = a(306),
-            n = a(380),
+        var r = a(207),
+            n = a(166),
             i = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
                 return typeof e
             } : function(e) {
@@ -373,119 +294,7 @@
             stManager.done("writebox.js")
         } catch (c) {}
     },
-    306: function(e, t, a) {
-        "use strict";
-
-        function r(e) {
-            return "im_store_" + e
-        }
-
-        function n(e) {
-            return ls.get(r(e)) || {}
-        }
-
-        function i(e, t, a) {
-            if (ls.checkVersion()) {
-                var n = JSON.stringify(t);
-                rand(0, 1e5) <= 1 && statlogsValueEvent("im_local_store_size", n.length), a(r(e), n)
-            }
-        }
-
-        function o(e, t, a) {
-            return t === m ? e[t] || [] : t === b ? e[t] && e[t][a] : e[t] ? extend(!0, {}, e[t][a]) : null
-        }
-
-        function c(e, t, a) {
-            switch (e[t] || (e[t] = {}), t) {
-                case m:
-                    var r = a;
-                    r && r.length > 0 ? e[t] = r : delete e[t];
-                    break;
-                case b:
-                    var n = d(a, 2),
-                        i = n[0],
-                        o = n[1];
-                    o ? e[t][i] = +o : delete e[t][i]
-            }
-            return e
-        }
-
-        function s(e, t) {
-            for (var a = ["fwd", "draft", "bind_attach"], r = n(e), o = !1, c = a.length; c--;) a[c] in r && (delete r[a[c]], o = !0);
-            o && i(e, r, t)
-        }
-
-        function u(e, t, a) {
-            a.key === r(e) && (t.db = JSON.parse(a.newValue), t.checkTime = Date.now())
-        }
-
-        function l(e) {
-            var t = debounce(function(e, t) {
-                localStorage.setItem(e, t)
-            }, 300);
-            ls.checkVersion() && s(e, t);
-            var a = {
-                    db: n(e),
-                    checkTime: Date.now()
-                },
-                r = u.bind(null, e, a);
-            return window.addEventListener("storage", r, !1), {
-                select: function(t, r) {
-                    return Date.now() - a.checkTime > 1e3 && (a.db = n(e)), o(a.db, t, r)
-                },
-                selectByKey: function(t) {
-                    return Date.now() - a.checkTime > 1e3 && (a.db = n(e)), a.db[t]
-                },
-                update: function(r, n) {
-                    var o = c(a.db, r, n);
-                    return a.db = o, a.checkTime = Date.now(), i(e, o, t)
-                },
-                updateByKey: function(r, n) {
-                    return a.db[r] = n, a.checkTime = Date.now(), i(e, a.db, t)
-                },
-                unmount: function() {
-                    window.removeEventListener("storage", r, !1)
-                }
-            }
-        }
-        a.r(t), a.d(t, "RECENT_SEARCH_OP", function() {
-            return m
-        }), a.d(t, "PIN_HIDDEN_ID_OP", function() {
-            return b
-        }), a.d(t, "deleteOldStoredFormat", function() {
-            return s
-        }), a.d(t, "mount", function() {
-            return l
-        });
-        var d = function() {
-                function e(e, t) {
-                    var a = [],
-                        r = !0,
-                        n = !1,
-                        i = void 0;
-                    try {
-                        for (var o, c = e[Symbol.iterator](); !(r = (o = c.next()).done) && (a.push(o.value), !t || a.length !== t); r = !0);
-                    } catch (s) {
-                        n = !0, i = s
-                    } finally {
-                        try {
-                            !r && c["return"] && c["return"]()
-                        } finally {
-                            if (n) throw i
-                        }
-                    }
-                    return a
-                }
-                return function(t, a) {
-                    if (Array.isArray(t)) return t;
-                    if (Symbol.iterator in Object(t)) return e(t, a);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }(),
-            m = "recent_search",
-            b = "pin_hide"
-    },
-    338: function(e, t, a) {
+    162: function(e, t, a) {
         "use strict";
 
         function r(e) {
@@ -638,7 +447,7 @@
         }), a.d(t, "linksReplacer", function() {
             return h
         });
-        var p = a(339),
+        var p = a(51),
             g = function() {
                 function e(e, t) {
                     var a = [],
@@ -671,7 +480,326 @@
             _ = y.statlogsValueEvent,
             x = {}
     },
-    339: function(e, t, a) {
+    166: function(e, t, a) {
+        "use strict";
+
+        function r() {
+            return {
+                txt: "",
+                attaches: [],
+                urlBinds: []
+            }
+        }
+
+        function n(e, t) {
+            this._db = e, this._key = t, this.dData = r(), this.load()
+        }
+
+        function i(e) {
+            switch (e.type) {
+                case "mail":
+                    return e.id < 0 && 1 == e.object.fwd_count;
+                default:
+                    return !e.object
+            }
+        }
+
+        function o(e) {
+            return {
+                txt: e.txt,
+                attaches: e.attaches.length ? e.attaches : void 0,
+                urlBinds: e.urlBinds.length ? e.urlBinds : void 0
+            }
+        }
+
+        function c(e) {
+            return {
+                txt: e.txt,
+                attaches: e.attaches || [],
+                urlBinds: e.urlBinds || []
+            }
+        }
+
+        function s(e, t) {
+            var a = [];
+            e.fwd_count ? a.push({
+                type: "mail",
+                id: -t,
+                object: {
+                    fwd_count: e.fwd_count
+                }
+            }) : e.fwd && a.push({
+                type: "mail",
+                id: -t,
+                object: {
+                    fwd_count: Object(d.parseFwd)(e.fwd).length
+                }
+            });
+            for (var r = 1; e["attach" + r + "_type"]; ++r) "call" === e["attach" + r + "_type"] ? a.push({
+                type: e["attach" + r + "_type"],
+                id: e["attach" + r],
+                initiatorId: intval(e["attach" + r + "_call_initiator_id"]),
+                state: e["attach" + r + "_call_state"],
+                duration: intval(e["attach" + r + "_call_duration"]),
+                receiverId: intval(e["attach" + r + "_call_receiver_id"])
+            }) : a.push({
+                type: e["attach" + r + "_type"],
+                id: e["attach" + r],
+                kind: e["attach" + r + "_kind"],
+                productId: e["attach" + r + "_product_id"]
+            });
+            return e.geo && a.push({
+                type: "geo",
+                id: e.geo
+            }), a
+        }
+
+        function u(e, t) {
+            return new n(e, "draft_" + t)
+        }
+        a.r(t), a.d(t, "ImDraft", function() {
+            return n
+        }), a.d(t, "convertKludgesToAttaches", function() {
+            return s
+        }), a.d(t, "loadDraftForPeer", function() {
+            return u
+        });
+        var l = a(81),
+            d = a(162),
+            m = function() {
+                function e(e, t) {
+                    var a = [],
+                        r = !0,
+                        n = !1,
+                        i = void 0;
+                    try {
+                        for (var o, c = e[Symbol.iterator](); !(r = (o = c.next()).done) && (a.push(o.value), !t || a.length !== t); r = !0);
+                    } catch (s) {
+                        n = !0, i = s
+                    } finally {
+                        try {
+                            !r && c["return"] && c["return"]()
+                        } finally {
+                            if (n) throw i
+                        }
+                    }
+                    return a
+                }
+                return function(t, a) {
+                    if (Array.isArray(t)) return t;
+                    if (Symbol.iterator in Object(t)) return e(t, a);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }();
+        n.prototype.dump = function() {
+            this._key && this._db.updateByKey(this._key, o(this.dData))
+        }, n.prototype.load = function() {
+            if (this._key) {
+                var e = this._db.selectByKey(this._key);
+                e && (this.dData = c(e))
+            }
+        }, n.prototype.clear = function() {
+            this.dData = r(), this.dump()
+        }, n.prototype.setText = function(e) {
+            this.dData.txt = trim(e), this.dump()
+        }, n.prototype.addAttach = function(e, t, a) {
+            if (("share" === e || "mail" === e) && this.removeAttachByType(e), !e || !t) return !1;
+            var r = this.dData.attaches.findIndex(function(a) {
+                return a.type === e && a.id === t
+            }); - 1 === r ? (this.dData.attaches.push({
+                type: e,
+                id: t,
+                object: a
+            }), this.dump()) : "video" === e && (this.dData.attaches[r] = {
+                type: e,
+                id: t,
+                object: a
+            }, this.dump())
+        }, n.prototype.syncWithSelector = function(e) {
+            var t = this,
+                a = this.getFwdRaw();
+            this.dData.attaches = (a ? [a] : []).concat(e.getMedias().map(function(e) {
+                var a = m(e, 2),
+                    r = a[0],
+                    n = a[1],
+                    i = t.dData.attaches.find(function(e) {
+                        return e.type == r && e.id == n
+                    });
+                return i || {
+                    type: r,
+                    id: n
+                }
+            })), this.dump()
+        }, n.prototype.removeAttachByType = function(e) {
+            for (var t = this.dData.attaches.length; t--;) this.dData.attaches[t].type === e && this.dData.attaches.splice(t, 1);
+            this.dump()
+        }, n.prototype.removeAllAttaches = function() {
+            this.dData.attaches = [], this.dump()
+        }, n.prototype.addBindUrl = function(e, t, a) {
+            this.getBoundAttach(e) || (this.dData.urlBinds.push({
+                url: e,
+                type: t,
+                id: a
+            }), this.dump())
+        }, n.prototype.getBoundAttach = function(e) {
+            var t = this.dData.urlBinds.find(function(t) {
+                return t.url === e
+            });
+            return t ? this.dData.attaches.find(function(e) {
+                return e.type === t.type && e.id === t.id
+            }) || null : null
+        }, n.prototype.getShareUrl = function() {
+            var e = this.dData.attaches.find(function(e) {
+                return "share" === e.type
+            });
+            return e && e.object ? e.object.url : void 0
+        }, n.prototype.hasAttaches = function() {
+            return this.dData.attaches.length > 0
+        }, n.prototype.destroy = function() {
+            this.dData = {}, this._key = this._db = null
+        }, n.prototype.prepareObjects = function(e, t) {
+            var a = this,
+                r = this.dData.attaches.find(i);
+            return r ? Object(l.post)(l.CONTROLLER, {
+                act: "draft_medias",
+                gid: e,
+                messageId: t || 0,
+                media: t ? void 0 : this.dData.attaches.map(function(e) {
+                    return [e.type, e.id]
+                }).join("*")
+            }).then(function(e) {
+                var t = m(e, 1),
+                    r = t[0];
+                a.dData.attaches = r.map(function(e) {
+                    return {
+                        type: e[0],
+                        id: e[1],
+                        object: e[2]
+                    }
+                })
+            }) : Promise.resolve()
+        }, n.prototype.getFwdRaw = function() {
+            return this.dData.attaches.find(function(e) {
+                return "mail" === e.type
+            })
+        }, n.prototype.getFwdCount = function() {
+            var e = this.getFwdRaw();
+            return e ? e.id < 0 ? e.object.fwd_count : e.id.split(";").length : 0
+        }
+    },
+    207: function(e, t, a) {
+        "use strict";
+
+        function r(e) {
+            return "im_store_" + e
+        }
+
+        function n(e) {
+            return ls.get(r(e)) || {}
+        }
+
+        function i(e, t, a) {
+            if (ls.checkVersion()) {
+                var n = JSON.stringify(t);
+                rand(0, 1e5) <= 1 && statlogsValueEvent("im_local_store_size", n.length), a(r(e), n)
+            }
+        }
+
+        function o(e, t, a) {
+            return t === m ? e[t] || [] : t === b ? e[t] && e[t][a] : e[t] ? extend(!0, {}, e[t][a]) : null
+        }
+
+        function c(e, t, a) {
+            switch (e[t] || (e[t] = {}), t) {
+                case m:
+                    var r = a;
+                    r && r.length > 0 ? e[t] = r : delete e[t];
+                    break;
+                case b:
+                    var n = d(a, 2),
+                        i = n[0],
+                        o = n[1];
+                    o ? e[t][i] = +o : delete e[t][i]
+            }
+            return e
+        }
+
+        function s(e, t) {
+            for (var a = ["fwd", "draft", "bind_attach"], r = n(e), o = !1, c = a.length; c--;) a[c] in r && (delete r[a[c]], o = !0);
+            o && i(e, r, t)
+        }
+
+        function u(e, t, a) {
+            a.key === r(e) && (t.db = JSON.parse(a.newValue), t.checkTime = Date.now())
+        }
+
+        function l(e) {
+            var t = debounce(function(e, t) {
+                localStorage.setItem(e, t)
+            }, 300);
+            ls.checkVersion() && s(e, t);
+            var a = {
+                    db: n(e),
+                    checkTime: Date.now()
+                },
+                r = u.bind(null, e, a);
+            return window.addEventListener("storage", r, !1), {
+                select: function(t, r) {
+                    return Date.now() - a.checkTime > 1e3 && (a.db = n(e)), o(a.db, t, r)
+                },
+                selectByKey: function(t) {
+                    return Date.now() - a.checkTime > 1e3 && (a.db = n(e)), a.db[t]
+                },
+                update: function(r, n) {
+                    var o = c(a.db, r, n);
+                    return a.db = o, a.checkTime = Date.now(), i(e, o, t)
+                },
+                updateByKey: function(r, n) {
+                    return a.db[r] = n, a.checkTime = Date.now(), i(e, a.db, t)
+                },
+                unmount: function() {
+                    window.removeEventListener("storage", r, !1)
+                }
+            }
+        }
+        a.r(t), a.d(t, "RECENT_SEARCH_OP", function() {
+            return m
+        }), a.d(t, "PIN_HIDDEN_ID_OP", function() {
+            return b
+        }), a.d(t, "deleteOldStoredFormat", function() {
+            return s
+        }), a.d(t, "mount", function() {
+            return l
+        });
+        var d = function() {
+                function e(e, t) {
+                    var a = [],
+                        r = !0,
+                        n = !1,
+                        i = void 0;
+                    try {
+                        for (var o, c = e[Symbol.iterator](); !(r = (o = c.next()).done) && (a.push(o.value), !t || a.length !== t); r = !0);
+                    } catch (s) {
+                        n = !0, i = s
+                    } finally {
+                        try {
+                            !r && c["return"] && c["return"]()
+                        } finally {
+                            if (n) throw i
+                        }
+                    }
+                    return a
+                }
+                return function(t, a) {
+                    if (Array.isArray(t)) return t;
+                    if (Symbol.iterator in Object(t)) return e(t, a);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }(),
+            m = "recent_search",
+            b = "pin_hide"
+    },
+    51: function(e, t, a) {
         "use strict";
 
         function r(e, t, a) {
@@ -794,214 +922,86 @@
             te = "((?:[a-z0-9_]*[a-z0-9])?(?:(?:.[a-z](?:[a-z0-9_]+[a-z0-9])?)*.[a-z][a-z0-9_]{2,40}[a-z0-9])?)",
             ae = "(^|[s.,:'\";>)(]?)(" + ee + ")(@" + te + ")?(?=$|[s.,:'\"&;?<)(]?)"
     },
-    380: function(e, t, a) {
+    79: function(e, t, a) {
+        e.exports = a(139)
+    },
+    81: function(e, t, a) {
         "use strict";
 
-        function r() {
-            return {
-                txt: "",
-                attaches: [],
-                urlBinds: []
-            }
+        function r(e, t, a) {
+            return t && (t.im_v = c), new Promise(function(r, n) {
+                ajax.post(e, t, {
+                    timeout: a,
+                    onDone: function() {
+                        r.apply(null, [
+                            [].concat(Array.prototype.slice.call(arguments))
+                        ])
+                    },
+                    onFail: function() {
+                        return n.apply(null, arguments), !0
+                    }
+                })
+            })
         }
 
         function n(e, t) {
-            this._db = e, this._key = t, this.dData = r(), this.load()
-        }
-
-        function i(e) {
-            switch (e.type) {
-                case "mail":
-                    return e.id < 0 && 1 == e.object.fwd_count;
-                default:
-                    return !e.object
-            }
-        }
-
-        function o(e) {
-            return {
-                txt: e.txt,
-                attaches: e.attaches.length ? e.attaches : void 0,
-                urlBinds: e.urlBinds.length ? e.urlBinds : void 0
-            }
-        }
-
-        function c(e) {
-            return {
-                txt: e.txt,
-                attaches: e.attaches || [],
-                urlBinds: e.urlBinds || []
-            }
-        }
-
-        function s(e, t) {
-            var a = [];
-            e.fwd_count ? a.push({
-                type: "mail",
-                id: -t,
-                object: {
-                    fwd_count: e.fwd_count
-                }
-            }) : e.fwd && a.push({
-                type: "mail",
-                id: -t,
-                object: {
-                    fwd_count: Object(d.parseFwd)(e.fwd).length
-                }
-            });
-            for (var r = 1; e["attach" + r + "_type"]; ++r) "call" === e["attach" + r + "_type"] ? a.push({
-                type: e["attach" + r + "_type"],
-                id: e["attach" + r],
-                initiatorId: intval(e["attach" + r + "_call_initiator_id"]),
-                state: e["attach" + r + "_call_state"],
-                duration: intval(e["attach" + r + "_call_duration"]),
-                receiverId: intval(e["attach" + r + "_call_receiver_id"])
-            }) : a.push({
-                type: e["attach" + r + "_type"],
-                id: e["attach" + r],
-                kind: e["attach" + r + "_kind"],
-                productId: e["attach" + r + "_product_id"]
-            });
-            return e.geo && a.push({
-                type: "geo",
-                id: e.geo
-            }), a
-        }
-
-        function u(e, t) {
-            return new n(e, "draft_" + t)
-        }
-        a.r(t), a.d(t, "ImDraft", function() {
+            var a = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
+                r = i(e, t, a),
+                n = r.request;
             return n
-        }), a.d(t, "convertKludgesToAttaches", function() {
-            return s
-        }), a.d(t, "loadDraftForPeer", function() {
-            return u
-        });
-        var l = a(266),
-            d = a(338),
-            m = function() {
-                function e(e, t) {
-                    var a = [],
-                        r = !0,
-                        n = !1,
-                        i = void 0;
-                    try {
-                        for (var o, c = e[Symbol.iterator](); !(r = (o = c.next()).done) && (a.push(o.value), !t || a.length !== t); r = !0);
-                    } catch (s) {
-                        n = !0, i = s
-                    } finally {
-                        try {
-                            !r && c["return"] && c["return"]()
-                        } finally {
-                            if (n) throw i
-                        }
-                    }
-                    return a
-                }
-                return function(t, a) {
-                    if (Array.isArray(t)) return t;
-                    if (Symbol.iterator in Object(t)) return e(t, a);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }();
-        n.prototype.dump = function() {
-            this._key && this._db.updateByKey(this._key, o(this.dData))
-        }, n.prototype.load = function() {
-            if (this._key) {
-                var e = this._db.selectByKey(this._key);
-                e && (this.dData = c(e))
-            }
-        }, n.prototype.clear = function() {
-            this.dData = r(), this.dump()
-        }, n.prototype.setText = function(e) {
-            this.dData.txt = trim(e), this.dump()
-        }, n.prototype.addAttach = function(e, t, a) {
-            if (("share" === e || "mail" === e) && this.removeAttachByType(e), !e || !t) return !1;
-            var r = this.dData.attaches.findIndex(function(a) {
-                return a.type === e && a.id === t
-            }); - 1 === r ? (this.dData.attaches.push({
-                type: e,
-                id: t,
-                object: a
-            }), this.dump()) : "video" === e && (this.dData.attaches[r] = {
-                type: e,
-                id: t,
-                object: a
-            }, this.dump())
-        }, n.prototype.syncWithSelector = function(e) {
-            var t = this,
-                a = this.getFwdRaw();
-            this.dData.attaches = (a ? [a] : []).concat(e.getMedias().map(function(e) {
-                var a = m(e, 2),
-                    r = a[0],
-                    n = a[1],
-                    i = t.dData.attaches.find(function(e) {
-                        return e.type == r && e.id == n
-                    });
-                return i || {
-                    type: r,
-                    id: n
-                }
-            })), this.dump()
-        }, n.prototype.removeAttachByType = function(e) {
-            for (var t = this.dData.attaches.length; t--;) this.dData.attaches[t].type === e && this.dData.attaches.splice(t, 1);
-            this.dump()
-        }, n.prototype.removeAllAttaches = function() {
-            this.dData.attaches = [], this.dump()
-        }, n.prototype.addBindUrl = function(e, t, a) {
-            this.getBoundAttach(e) || (this.dData.urlBinds.push({
-                url: e,
-                type: t,
-                id: a
-            }), this.dump())
-        }, n.prototype.getBoundAttach = function(e) {
-            var t = this.dData.urlBinds.find(function(t) {
-                return t.url === e
-            });
-            return t ? this.dData.attaches.find(function(e) {
-                return e.type === t.type && e.id === t.id
-            }) || null : null
-        }, n.prototype.getShareUrl = function() {
-            var e = this.dData.attaches.find(function(e) {
-                return "share" === e.type
-            });
-            return e && e.object ? e.object.url : void 0
-        }, n.prototype.hasAttaches = function() {
-            return this.dData.attaches.length > 0
-        }, n.prototype.destroy = function() {
-            this.dData = {}, this._key = this._db = null
-        }, n.prototype.prepareObjects = function(e, t) {
-            var a = this,
-                r = this.dData.attaches.find(i);
-            return r ? Object(l.post)(l.CONTROLLER, {
-                act: "draft_medias",
-                gid: e,
-                messageId: t || 0,
-                media: t ? void 0 : this.dData.attaches.map(function(e) {
-                    return [e.type, e.id]
-                }).join("*")
-            }).then(function(e) {
-                var t = m(e, 1),
-                    r = t[0];
-                a.dData.attaches = r.map(function(e) {
-                    return {
-                        type: e[0],
-                        id: e[1],
-                        object: e[2]
-                    }
-                })
-            }) : Promise.resolve()
-        }, n.prototype.getFwdRaw = function() {
-            return this.dData.attaches.find(function(e) {
-                return "mail" === e.type
-            })
-        }, n.prototype.getFwdCount = function() {
-            var e = this.getFwdRaw();
-            return e ? e.id < 0 ? e.object.fwd_count : e.id.split(";").length : 0
         }
-    },
-    83: function(e, t, a) {
-        e.exports = a(287)
+
+        function i(e, t) {
+            function a() {
+                n.abort()
+            }
+            var r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
+                n = void 0;
+            n = window.XDomainRequest ? new XDomainRequest : ajax._getreq();
+            var i = new Promise(function(a, i) {
+                var o = void 0,
+                    c = Date.now(),
+                    s = r.timeout || 60,
+                    u = ajx2q(t);
+                if (window.XDomainRequest) n.open("get", e + "?" + u), n.ontimeout = function() {
+                    i(["", {}])
+                }, n.onerror = function() {
+                    i(["", {}])
+                }, n.onload = function() {
+                    a([n.responseText, {}])
+                }, setTimeout(function() {
+                    n.send()
+                }, 0);
+                else {
+                    n.onreadystatechange = function() {
+                        4 == n.readyState && (clearInterval(o), n.status >= 200 && n.status < 300 ? a([n.responseText, n]) : i([n.responseText, n]))
+                    };
+                    try {
+                        n.open("GET", e + "?" + u, !0)
+                    } catch (l) {
+                        return i([l, n])
+                    }
+                    n.send()
+                }
+                o = setInterval(function() {
+                    Date.now() - c > 1e3 * s && (i(["", {}]), clearInterval(o))
+                }, 1e3)
+            });
+            return {
+                request: i,
+                cancel: a
+            }
+        }
+        a.r(t), a.d(t, "CONTROLLER", function() {
+            return o
+        }), a.d(t, "post", function() {
+            return r
+        }), a.d(t, "plainget", function() {
+            return n
+        }), a.d(t, "plaingetCancelable", function() {
+            return i
+        });
+        var o = "al_im.php",
+            c = 2
     }
 });

@@ -28,9 +28,9 @@
         return e.d(r, "a", r), r
     }, e.o = function(t, e) {
         return Object.prototype.hasOwnProperty.call(t, e)
-    }, e.p = "", e(e.s = 259)
+    }, e.p = "", e(e.s = 408)
 }({
-    188: function(t, e, r) {
+    254: function(t, e, r) {
         "use strict";
 
         function o(t, e) {
@@ -469,7 +469,7 @@
             stManager.done(jsc("web/pretty_cards.js"))
         } catch (s) {}
     },
-    259: function(t, e, r) {
-        t.exports = r(188)
+    408: function(t, e, r) {
+        t.exports = r(254)
     }
 });

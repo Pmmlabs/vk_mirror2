@@ -1051,12 +1051,10 @@ var BugTracker = {
         };
         if (cur.btFilterProductDD) {
             var t = cur.btFilterProductDD.val();
-            if (t && (e.product = t), cur.btProductsManage[t]) {
-                var r = radioval("sort");
-                "" != r && (e.sort = r)
-            }
+            t && (e.product = t)
         }
-        nav.go(e)
+        var r = radioval("sort");
+        "" != r && (e.sort = r), nav.go(e)
     },
     clearCart: function(e, t) {
         cur.btClearCartCallback && cur.btClearCartCallback(), slideUp("bt_shop_cart_info", 300), ajax.post("bugtracker", {

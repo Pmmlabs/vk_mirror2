@@ -557,15 +557,19 @@ body.body_helpdesk_small_sb .left_menu_nav {
 }
 
 .helpdesk_ui_subtabs {
-    font-size: 12px
+    font-size: 11.5px
 }
 
 .helpdesk_ui_subtabs .ui_tab,
 .helpdesk_ui_subtabs .ui_tab_plain {
-    padding-left: 4px;
-    padding-right: 4px;
+    padding: 12px 2px 11px;
     margin-left: 2px;
     margin-right: 2px
+}
+
+.helpdesk_ui_subtabs.ui_tabs .ui_tab:hover,
+.helpdesk_ui_subtabs.ui_tabs .ui_tab_sel {
+    padding-bottom: 9px
 }
 
 .helpdesk_admin_moderators .msg {

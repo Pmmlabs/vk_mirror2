@@ -963,6 +963,23 @@
             }
         })
     }
+
+    function showDescriptionTooltip(e, t) {
+        switch (t) {
+            case "export":
+                var a = getLang("tran_export_js_tooltip_msg");
+                break;
+            default:
+                return !1
+        }
+        showTooltip(e, {
+            text: a,
+            slide: 15,
+            dir: "top",
+            shift: [24, 10, 10],
+            className: "tr_box_extra_param_tooltip"
+        })
+    }
     var TR_ADDRESS = "translation",
         _caseDropdown, _caseTokenDropdown, _functionTypeDropdown, _keysLangSelectorDropdown, _translatorsDateSelector, _languagesSortDropdown, _translatorsSortDropdown, COOKIE_KEY = "remixinline_trans";
     exports.TR = {
@@ -997,7 +1014,8 @@
         switchBoxType: switchBoxType,
         showScreen: showScreen,
         chooseScreen: chooseScreen,
-        chooseUplaodedScreen: chooseUplaodedScreen
+        chooseUplaodedScreen: chooseUplaodedScreen,
+        showDescriptionTooltip: showDescriptionTooltip
     }
 }(window);
 try {

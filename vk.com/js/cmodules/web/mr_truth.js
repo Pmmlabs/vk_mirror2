@@ -28,12 +28,9 @@
         return e.d(r, "a", r), r
     }, e.o = function(t, e) {
         return Object.prototype.hasOwnProperty.call(t, e)
-    }, e.p = "", e(e.s = 138)
+    }, e.p = "", e(e.s = 671)
 }({
-    138: function(t, e, r) {
-        t.exports = r(71)
-    },
-    71: function(t, e, r) {
+    59: function(t, e, r) {
         "use strict";
         r.r(e), window.MrTruth = {
             init: function() {
@@ -218,5 +215,8 @@
                 t = domPN(t), attr(t, "data-uploaded") ? re(t) : (attr(t, "data-canceled", 1), hide(t)), MrTruth.updateUploadPhotoButton()
             }
         }
+    },
+    671: function(t, e, r) {
+        t.exports = r(59)
     }
 });

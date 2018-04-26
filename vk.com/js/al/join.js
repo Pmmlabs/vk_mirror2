@@ -294,7 +294,9 @@ var Join = {
 <form method="POST" action="' + vk.loginscheme + '://login.vk.com/?act=check_code&_origin=' + locProtocol + '//' + locHost + '" id="join_code_form" name="join_code_form" target="join_code_frame">\
   <input type="hidden" name="email" id="join_code_phone" />\
   <input type="hidden" name="code" id="join_code_code" />\
-  <input type="hidden" name="recaptcha" id="join_code_sid" />\
+  <input type="hidden" name="recaptcha" id="join_code_recaptcha" />\
+  <input type="hidden" name="captcha_sid" id="join_code_sid" />\
+  <input type="hidden" name="captcha_key" id="join_code_key" />\
 </form>\
 <iframe id="join_code_frame" name="join_code_frame"></iframe>\
 '
@@ -375,18 +377,31 @@ var Join = {
         slideDown('join_pass_row', 150, elfocus.pbind('join_pass'));
         val('join_submit_result', '');
     },
-    askCaptcha: function(sid, lang) {
+    askCaptcha: function(sid, dif, lang) {
         if (!cur.codeForm) return;
         unlockButton('join_send_code');
-        window.badCodeBox = showReCaptchaBox(sid, lang, window.badCodeBox, {
-            onSubmit: function(sid, key) {
-                val('join_code_sid', sid);
-                cur.codeForm.submit();
-            },
-            onHide: function() {
-                window.badCodeBox = false;
-            }
-        });
+        if (dif == 2) {
+            window.badCodeBox = showReCaptchaBox(sid, lang, window.badCodeBox, {
+                onSubmit: function(sid, key) {
+                    val('join_code_recaptcha', sid);
+                    cur.codeForm.submit();
+                },
+                onHide: function() {
+                    window.badCodeBox = false;
+                }
+            });
+        } else {
+            window.badCodeBox = showCaptchaBox(sid, lang, window.badCodeBox, {
+                onSubmit: function(sid, key) {
+                    val('join_code_sid', sid);
+                    val('join_code_key', key);
+                    cur.codeForm.submit();
+                },
+                onHide: function() {
+                    window.badCodeBox = false;
+                }
+            });
+        }
     },
     submitPasswordSure: function() {
         showFastBox(getLang('join_new_page_sure_title'), getLang('join_new_page_sure'), getLang('join_new_page_sure_submit'), Join.submitPassword.pbind(-1), getLang('global_cancel'));

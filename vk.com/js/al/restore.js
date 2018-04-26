@@ -136,12 +136,12 @@ var Restore = {
         }), o
     },
     submitDocPhoto: function() {
-        return Restore.screenshootCheck(0)
+        return Restore.checkFile(0)
     },
     submitPersonalPhoto: function() {
-        return Restore.screenshootCheck(1)
+        return Restore.checkFile(1)
     },
-    screenshootCheck: function(e, o) {
+    checkFile: function(e, o) {
         if (!o) {
             var t, r;
             t = 1 == e ? val("photo_input") : val("doc_input");
@@ -152,9 +152,11 @@ var Restore = {
                         title: getLang("global_action_confirmation")
                     }).addButton(getLang("restore_no_other_photo"));
                     return void n.addButton(getLang("box_yes"), function() {
-                        Restore.screenshootCheck(e, !0), n.hide()
+                        Restore.checkFile(e, !0), n.hide()
                     }, "gray").content(getLang("restore_screenshoot_confirm_box_text")).show()
                 }
+                var s = new RegExp(cur.scan_regex, "gi");
+                if (s.test(t)) return Restore.showResult("request_photo_res", getLang("restore_scan_error_msg"))
             } catch (a) {}
         }
         r = 1 == e ? ge("photo_file_button") : ge("doc_file_button"), lockButton(r);
