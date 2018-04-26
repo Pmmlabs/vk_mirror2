@@ -255,8 +255,8 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 195102204642,
-    'imn.js': 248982933324,
+    'im.css': 193585308533,
+    'imn.js': 250137873615,
     'im.js': 1322065005,
     'emoji.js': 928907071,
     'wide_dd.css': 17974590759,
@@ -329,13 +329,13 @@ var stVersions = {
     'cmodules/sw/sw.js': 4889939668,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
-    'restore.js': 1571481596,
+    'restore.js': 2094974701,
     'restore.css': 18428616656,
     'docs.js': 995211544,
     'docs.css': 23549012075,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 17277199137,
-    'helpdesk.js': 1877762876,
+    'helpdesk.js': 1858562149,
     'helpdesk.css': 20865048607,
     'tickets.js': 1561089313,
     'tickets.css': 22591514026,
@@ -427,7 +427,7 @@ var stVersions = {
     'ui.css': 16191894133,
     'ui.js': 3953380422,
     'ui_common.js': 1002072981,
-    'ui_common.css': 18744261307,
+    'ui_common.css': 16401238888,
     'ui_media_selector.js': 3424404875,
     'ui_media_selector.css': 20530268624,
     'ui_manual.css': 16443466010,
@@ -636,4 +636,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 4823;
+var _rnd = 3174;

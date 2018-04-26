@@ -2982,6 +2982,14 @@ a.ui_search_custom_link {
     color: #939393
 }
 
+.right_list_field__link_padded .right_list_field__link {
+    padding-left: 48px
+}
+
+.right_list_field__link_padded .right_list_field__common_text {
+    min-height: 40px
+}
+
 .right_list_controls {
     float: right;
     visibility: hidden;

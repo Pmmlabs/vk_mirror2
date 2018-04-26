@@ -156,7 +156,7 @@ var Restore = {
                     }, "gray").content(getLang("restore_screenshoot_confirm_box_text")).show()
                 }
                 var s = new RegExp(cur.scan_regex, "gi");
-                if (s.test(t)) return Restore.showResult("request_photo_res", getLang("restore_scan_error_msg"))
+                if (s.test(t)) return Restore.showMsgBox(getLang("restore_scan_error_msg"), getLang("global_error"))
             } catch (a) {}
         }
         r = 1 == e ? ge("photo_file_button") : ge("doc_file_button"), lockButton(r);
@@ -183,20 +183,20 @@ var Restore = {
             i = a + "_",
             u = ge(i + "file_button") || ge("restore_extend_request_button");
         unlockButton(u);
-        var c = cur.images.length,
-            l = !0;
+        var l = cur.images.length,
+            c = !0;
         each(cur.images, function(e, o) {
-            return o.type == r && o.deleted ? (c = e, l = !1, !1) : void 0
-        }), cur.images[c] = {
+            return o.type == r && o.deleted ? (l = e, c = !1, !1) : void 0
+        }), cur.images[l] = {
             id: o,
             hash: t,
             type: r
         }, ++cur.images_count[r];
         var _ = 2 == n || 3 == n ? Restore.maxPhotosWithType : Restore.maxPhotos;
-        ge(i + "input").disabled = cur.images_count[r] >= _, ge(i + "input").disabled && 3 != n && hide(i + "upload"), show(i + "photos"), s = s.split("%index%").join(c).split("%type%").join(r);
+        ge(i + "input").disabled = cur.images_count[r] >= _, ge(i + "input").disabled && 3 != n && hide(i + "upload"), show(i + "photos"), s = s.split("%index%").join(l).split("%type%").join(r);
         var h = se(s),
             d = ge(i + "photos");
-        d && (l ? d.appendChild(h) : domReplaceEl(d, h)), hide("simple_request_incorrect"), 3 == n ? Restore.extendRequest(ge("restore_extend_request_button")) : Restore.changeFullRequestButton(!0)
+        d && (c ? d.appendChild(h) : domReplaceEl(d, h)), hide("simple_request_incorrect"), 3 == n ? Restore.extendRequest(ge("restore_extend_request_button")) : Restore.changeFullRequestButton(!0)
     },
     deleteImage: function(e, o, t) {
         var r = e ? "photo" : "doc",

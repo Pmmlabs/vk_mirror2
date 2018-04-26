@@ -9263,7 +9263,8 @@ body.sf .nim-dialog .nim-dialog--unread {
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #42648b
+    color: #42648b;
+    line-height: 15px
 }
 
 .im-fwd .im-fwd--title-name {
@@ -9282,7 +9283,9 @@ body.sf .nim-dialog .nim-dialog--unread {
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     font-size: 12px;
-    opacity: 0.7
+    opacity: 0.7;
+    vertical-align: top;
+    display: inline-block
 }
 
 .im-fwd .im-fwd--close {
