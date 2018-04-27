@@ -2576,28 +2576,56 @@
 }
 
 .bt_member_activity {
-    padding: 10px 20px 15px
+    padding: 10px 0 15px;
+    text-align: center;
+    font-size: 0
+}
+
+.bt_member_activity #hint_container {
+    white-space: 'nowrap';
+    position: absolute;
+    left: 0
+}
+
+.bt_member_activity_chart {
+    white-space: nowrap;
+    display: inline-block;
+    font-size: 0
 }
 
 .bt_member_activity_months {
     color: #656565;
     margin-bottom: 10px;
-    height: 1em
+    height: 1em;
+    text-align: left;
+    font-size: 13px
+}
+
+.bt_member_activity_months span {
+    margin-right: 0!important
 }
 
 .bt_member_activity_day_of_weak {
-    width: 25px;
-    display: inline-block;
     color: #656565;
-    height: 0;
-    line-height: 1em;
-    margin: -1em 5px 0;
-    position: relative;
-    top: -1px
+    height: 12px;
+    line-height: 12px
+}
+
+.bt_member_activity_days_of_weak_block {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 10px;
+    float: left;
+    margin-top: 1em;
+    padding-top: 10px;
+    text-align: center;
+    font-size: 13px
 }
 
 .bt_member_activity_lines {
-    line-height: 0
+    font-size: 0;
+    display: inline-block;
+    text-align: left
 }
 
 .bt_member_activity_lines.selection .bt_member_activity_item {
@@ -2703,7 +2731,9 @@
 .bt_member_activity_reports {
     margin-top: 10px;
     text-align: center;
-    line-height: 1.3em
+    line-height: 1.3em;
+    padding: 0 20px;
+    font-size: 13px
 }
 
 .bt_member_activity_reports:first-line {
