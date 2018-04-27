@@ -445,10 +445,11 @@ var Helpdesk = {
             hideProgress: removeClass.pbind(s, "tickets_delegate_btn_process")
         }), !1
     },
-    showCommentReplies: function(e) {
+    showCommentReplies: function(e, t) {
         return showBox("helpdesk", {
             act: "replies_box",
-            reply_id: e
+            ticket_id: e,
+            reply_id: t
         }, {
             params: {
                 width: "727px",
@@ -457,16 +458,17 @@ var Helpdesk = {
             }
         }), !1
     },
-    recountReplyComments: function(e) {
-        var t = ge("helpdesk_reply_cmt" + e);
-        t && ajax.post("helpdesk", {
+    recountReplyComments: function(e, t) {
+        var s = ge("helpdesk_reply_cmt" + e + "_" + t);
+        s && ajax.post("helpdesk", {
             act: "a_recount_reply_comments",
-            rid: e
+            rid: t,
+            ticket_id: e
         }, {
             onDone: function(e) {
                 if (e) {
-                    var s = se(e);
-                    s && domReplaceEl(t, s)
+                    var t = se(e);
+                    t && domReplaceEl(s, t)
                 }
             }
         })
@@ -1095,8 +1097,7 @@ var Helpdesk = {
         })), !1)
     },
     doToggleSimilarRow: function(e, t) {
-        toggle(geByClass1("_tickets_similar_short_text", e), !t),
-            toggle(geByClass1("_tickets_similar_full_text", e), t), toggleClass(e, "detailed", t)
+        toggle(geByClass1("_tickets_similar_short_text", e), !t), toggle(geByClass1("_tickets_similar_full_text", e), t), toggleClass(e, "detailed", t)
     },
     onSubmitSettingsChanged: function(e) {
         ajax.post("helpdesk", {

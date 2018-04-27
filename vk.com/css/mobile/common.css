@@ -10011,6 +10011,12 @@ only screen and (min-device-pixel-ratio: 2) {
     padding-bottom: 15px
 }
 
+.informer.informer.informer {
+    padding-top: 0!important;
+    padding-left: 0!important;
+    padding-right: 0!important
+}
+
 .informer_view_0,
 .informer_view_1 {
     text-align: center
@@ -10054,8 +10060,8 @@ only screen and (min-device-pixel-ratio: 2) {
 
 .informer_close {
     position: absolute;
-    top: 15px;
-    right: 10px;
+    top: 12px;
+    right: 12px;
     padding: 5px;
     margin: -5px;
     width: 22px;
@@ -10063,8 +10069,8 @@ only screen and (min-device-pixel-ratio: 2) {
     cursor: pointer
 }
 
-.informer_view_1 .informer_close {
-    top: 25px
+.informer_content {
+    margin-top: 14px
 }
 
 .informer_title {

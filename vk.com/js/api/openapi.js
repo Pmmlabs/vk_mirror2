@@ -1324,12 +1324,14 @@ if (!VK.UI) {
                 height = options.height,
                 left = parseInt(screenX + ((outerWidth - width) / 2), 10),
                 top = parseInt(screenY + ((outerHeight - height) / 2.5), 10),
-                features = (
-                    'width=' + width +
-                    ',height=' + height +
-                    ',left=' + left +
-                    ',top=' + top
-                );
+                features;
+            left = window.screen && window.screenX && screen.left && screen.left > 1000 ? 0 : left; // FF with 2 monitors fix
+            features = (
+                'width=' + width +
+                ',height=' + height +
+                ',left=' + left +
+                ',top=' + top
+            );
             this.active = window.open(options.url, 'vk_openapi', features);
             return this.active;
         },

@@ -6336,3 +6336,27 @@ td.apps_cat_new_h {
 .apps_unverifiedAppWarning__btn_active {
     display: block
 }
+
+.apps_vkPayPageBlock {
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0
+}
+
+.apps_vkPayPageBlock .apps_main {
+    top: -1px;
+    left: -1px;
+    background: transparent
+}
+
+.vkPayOpenApiBox .box_title_wrap {
+    display: none!important
+}
+
+.vkPayOpenApiBox .box_controls_wrap {
+    display: none
+}
+
+.vkPayOpenApiBox .box_body {
+    padding: 0
+}

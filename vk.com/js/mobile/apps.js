@@ -570,32 +570,83 @@ var vkApp = function(cont, options, params, onInit) {
         debug: function() {
             debugLog((arguments.length == 1) ? arguments[0] : arguments);
         },
+
         openExternalApp: function(url, params) {
             if (!url) {
                 return;
             }
-            var query = '';
-            var req = [];
-            if (params) {
-                params['aid'] = options.aid;
-                for (var arg in params) {
+
+            var isNativeClient = self.isNativeClientWebView(),
+                payToUserAction = 'pay-to-user',
+                payToServiceAction = 'pay-to-service',
+                payToGroupAction = 'pay-to-group',
+                transferToUserAction = 'transfer-to-user',
+                transferToGroupAction = 'transfer-to-group',
+                validActions = [
+                    payToUserAction,
+                    payToServiceAction,
+                    payToGroupAction,
+                    transferToUserAction,
+                    transferToGroupAction
+                ],
+                needUserIdActions = [
+                    payToUserAction,
+                    transferToUserAction
+                ],
+                needGroupIdActions = [
+                    payToGroupAction,
+                    transferToUserAction
+                ],
+                query = '',
+                req = [];
+
+            if (!params || !(~validActions.indexOf(params.action))) {
+                self.runCallback('onExternalAppFail', {
+                    error_msg: 'Invalid action',
+                    error_code: 100
+                });
+                return;
+            }
+
+            if (~needUserIdActions.indexOf(params.action) && !params.user_id) {
+                self.runCallback('onExternalAppFail', {
+                    error_msg: 'Missing required param user_id',
+                    error_code: 100
+                });
+                return;
+            }
+
+            if (~needGroupIdActions.indexOf(params.action) && !params.group_id) {
+                self.runCallback('onExternalAppFail', {
+                    error_msg: 'Missing required param group_id',
+                    error_code: 100
+                });
+                return;
+            }
+
+            params.aid = options.aid;
+
+            for (var arg in params) {
+                if (params.hasOwnProperty(arg) && !(isNativeClient && arg === 'action')) {
                     var val = '';
                     if (params[arg] !== undefined) {
                         val = encodeURIComponent(params[arg]);
                     }
                     req.push(encodeURIComponent(arg) + '=' + val);
                 }
-                query = url + '?' + req.join('&');
-            }
-            if (!query) {
-                return;
             }
 
-            if (cur.app.isNativeClientWebView()) { // IOS and Android
-                if (cur.app.isNativeIosWebView() && !/^https?:\/\//.test(query)) {
-                    query = 'https://' + query;
+            if (isNativeClient) {
+                url += '/' + params.action;
+                if (self.isNativeIosWebView() && !/^https?:\/\//.test(query)) {
+                    url = 'https://' + url;
                 }
-                cur.app.callNativeClientMethod('openExternalUrl', query);
+            }
+
+            query = url + '?' + req.join('&');
+
+            if (isNativeClient) { // IOS and Android
+                self.callNativeClientMethod('openExternalUrl', query);
                 return;
             }
 
@@ -608,26 +659,47 @@ var vkApp = function(cont, options, params, onInit) {
             var externalAppWin = window.open('', '_blank');
 
             ajax.post('/apps.php', queryParams, {
-                onDone: function(redirectLink) {
+                onDone: function(response) {
+                    try {
+                        response = parseJSON(response);
+                    } catch (e) {
+                        response = {
+                            error: {
+                                error_code: 1,
+                                error_msg: 'Unknown error'
+                            }
+                        };
+                    }
+                    if (response.error || !response.url) {
+                        self.runCallback('onExternalAppFail', response.error);
+                        externalAppWin.close();
+                        return;
+                    }
                     cur.onExternalAppDone = function(params) {
                         this.runCallback('onExternalAppDone', params);
-                    }.bind(cur.app);
+                    }.bind(self);
 
-                    cur.onExternalAppDoneListener = function(event) {
-                        if (event.origin === 'https://vk.com' && event.isTrusted && cur.onExternalAppDone) {
-                            if (event.data.method === 'externalAppDone') {
+                    cur.onExternalAppListener = function(event) {
+                        var validOrigin = /https:\/\/(m|0)\.vk\.com/;
+                        if (validOrigin.test(event.origin) && event.isTrusted && cur.onExternalAppDone) {
+                            if (event.data.method === 'externalAppDone' || event.data.method === 'externalAppFail') {
                                 window.focus();
-                                cur.onExternalAppDone(event.data.params);
+
+                                if (event.data.method === 'externalAppDone') {
+                                    cur.onExternalAppDone(event.data.params);
+                                } else {
+                                    self.runCallback('onExternalAppFail', event.data.error);
+                                }
 
                                 cur.onExternalAppDone = null;
-                                window.removeEventListener('message', cur.onExternalAppDoneListener);
-                                cur.onExternalAppDoneListener = null;
+                                window.removeEventListener('message', cur.onExternalAppListener);
+                                cur.onExternalAppListener = null;
                             }
                         }
                     };
 
-                    window.addEventListener('message', cur.onExternalAppDoneListener);
-                    externalAppWin.location.href = redirectLink;
+                    window.addEventListener('message', cur.onExternalAppListener);
+                    externalAppWin.location.href = response.url;
                 }
             });
         },
@@ -638,7 +710,32 @@ var vkApp = function(cont, options, params, onInit) {
                     method: 'externalAppDone',
                     params: params
                 };
-                window.opener.postMessage(data, 'https://vk.com');
+                window.opener.postMessage(data, location.origin);
+                window.close();
+            }
+        },
+
+        externalAppFail: function(rejection) {
+            if (!isObject(rejection)) {
+                try {
+                    rejection = parseJSON(rejection);
+                } catch (e) {
+                    rejection = {
+                        error_msg: 'Unknown error',
+                        error_code: 1
+                    };
+                }
+            }
+            if (self.isNativeAndroidWebView()) {
+                self.callNativeClientMethod('externalAppFail', rejection);
+                return;
+            }
+            if (window.opener) {
+                var data = {
+                    method: 'externalAppFail',
+                    error: rejection
+                };
+                window.opener.postMessage(data, location.origin);
                 window.close();
             }
         },
