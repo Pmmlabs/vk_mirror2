@@ -220,9 +220,9 @@ var stVersions = {
     'intro.css': 18324262438,
     'post.css': 20622728290,
     'module.css': 18759987794,
-    'owner_photo.js': 351589227,
+    'owner_photo.js': 1308202247,
     'owner_photo.css': 20877687447,
-    'page.js': 3434283667,
+    'page.js': 200617665,
     'page.css': 35720746210,
     'page_help.css': 22588286907,
     'public.css': 27492563652,
@@ -256,7 +256,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 195828379892,
-    'imn.js': 249999864009,
+    'imn.js': 252345510040,
     'im.js': 1322065005,
     'emoji.js': 928907071,
     'wide_dd.css': 17974590759,
@@ -324,7 +324,7 @@ var stVersions = {
     'widgets.css': 32723740536,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 79672210434,
+    'notifier.js': 78426900893,
     'notifier.css': 23610687766,
     'cmodules/sw/sw.js': 4889939668,
     'earthday.js': 2276669993,
@@ -352,7 +352,7 @@ var stVersions = {
     'bugs.js': 3874995669,
     'bugs.css': 15246879152,
     'bugtracker.js': 4044853995,
-    'bugtracker.css': 29106856262,
+    'bugtracker.css': 26482981636,
     'login.css': 18453189579,
     'cmodules/web/login.js': 3491120396,
     'upload.js': 3788345205,
@@ -636,4 +636,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 1346;
+var _rnd = 5673;

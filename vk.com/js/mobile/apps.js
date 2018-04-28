@@ -5,6 +5,14 @@
     var onEnvLoad = [];
     var env = {};
 
+    // Always redirect `/vkpay` to full version.
+    // Client-side redirect, because we want to keep url's #hash.
+    // @see https://youtrack.mvk.com/issue/MVK-757
+    if (location.pathname === '/vkpay' || location.pathname === '/app6217559') {
+        location.href = location.href.replace('.m.', '.');
+        return;
+    }
+
     // Key generation
     function genKey() {
         var key = '';

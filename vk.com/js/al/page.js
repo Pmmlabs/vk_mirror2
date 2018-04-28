@@ -329,10 +329,14 @@ var Page = {
             }));
             inp.click();
         },
-        ownerPhoto: function(oid) {
+        ownerPhoto: function(oid, opts) {
+            if (!opts) {
+                opts = {};
+            }
             showBox('al_page.php', {
                 act: 'owner_photo_box',
-                oid: oid || cur.oid
+                oid: oid || cur.oid,
+                gid: opts.gid
             }, {
                 stat: ['owner_photo.css', 'owner_photo.js']
             });

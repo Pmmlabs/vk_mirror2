@@ -7442,7 +7442,12 @@ input.wide_button {
 .gift_informer.informer {
     border-bottom: 1px solid #efefef;
     padding: 10px 7px 0;
-    margin: 0 -7px 10px
+    margin: 0 -7px 10px;
+    text-align: left
+}
+
+.stickers_items .gift_informer {
+    margin-left: 0
 }
 
 .stickers_list {
@@ -10008,7 +10013,7 @@ only screen and (min-device-pixel-ratio: 2) {
     padding-bottom: 15px
 }
 
-.informer.informer.informer {
+.informer.informer.informer:not(.gift_informer) {
     padding-top: 0!important;
     padding-left: 0!important;
     padding-right: 0!important
@@ -10066,7 +10071,7 @@ only screen and (min-device-pixel-ratio: 2) {
     cursor: pointer
 }
 
-.informer_content {
+.informer:not(.gift_informer) .informer_content {
     margin-top: 14px
 }
 
