@@ -16155,7 +16155,9 @@ input:checked+.adultConfirm__checkboxIcon:after {
 .snippet__subtitle {
     color: #888;
     margin-bottom: 11px;
-    white-space: nowrap
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
 }
 
 .snippet_type_mask .snippet__subtitle {

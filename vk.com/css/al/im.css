@@ -4591,7 +4591,8 @@ img.im_photo_thumb {
     display: block
 }
 
-.im-page .im-page--hisory_search-open .im-page--toolsw {
+.im-page .im-page--hisory_search-open .im-page--toolsw,
+.im-page .im-page--history_vkcomgroup .emoji_tabs .emoji_shop {
     display: none
 }
 
