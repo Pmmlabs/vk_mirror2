@@ -256,7 +256,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 194928707501,
-    'imn.js': 243825455607,
+    'imn.js': 243532290328,
     'im.js': 1322065005,
     'emoji.js': 928907071,
     'wide_dd.css': 17974590759,
@@ -373,7 +373,7 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 25814788442,
     'aes_light.js': 1484013701,
-    'ads.css': 25454052563,
+    'ads.css': 25043795935,
     'ads_bonus.css': 1294533291,
     'ads.js': 1045907730,
     'ads_payments.js': 2205910694,
@@ -636,4 +636,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 1293;
+var _rnd = 7236;
