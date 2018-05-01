@@ -352,7 +352,7 @@ var stVersions = {
     'bugs.js': 3874995669,
     'bugs.css': 15246879152,
     'bugtracker.js': 4044853995,
-    'bugtracker.css': 26482981636,
+    'bugtracker.css': 25356430003,
     'login.css': 18453189579,
     'cmodules/web/login.js': 3491120396,
     'upload.js': 3788345205,
@@ -636,4 +636,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 4153;
+var _rnd = 3126;
