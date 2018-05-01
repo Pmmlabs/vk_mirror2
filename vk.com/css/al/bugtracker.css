@@ -3807,8 +3807,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     opacity: 1;
-    position: relative;
-    top: -1px;
     transition: opacity 100ms linear 300ms, -webkit-transform 100ms linear 300ms;
     -o-transition: transform 100ms linear 300ms, opacity 100ms linear 300ms, -o-transform 100ms linear 300ms;
     transition: transform 100ms linear 300ms, opacity 100ms linear 300ms;

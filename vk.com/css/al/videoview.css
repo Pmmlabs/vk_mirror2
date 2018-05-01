@@ -1159,8 +1159,21 @@ textarea.dark.mv_live_gift_popup_comment_input {
     width: 720px
 }
 
+@media (max-width: 1200px) {
+    #mv_reply_form .reply_text_wrapper,
+    #mv_reply_form .submit_reply_wrapper {
+        width: 640px
+    }
+}
+
 #mv_reply_form .submit_reply_wrapper {
     width: calc(680px)
+}
+
+@media (max-width: 1200px) {
+    #mv_reply_form .submit_reply_wrapper {
+        width: calc(600px)
+    }
 }
 
 .mv_reply_cancel_button {
