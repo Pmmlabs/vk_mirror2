@@ -714,7 +714,9 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    overflow: hidden
+    overflow: hidden;
+    background-size: cover;
+    background-position: 50%
 }
 
 .page_list_module .cell_img {
@@ -724,7 +726,6 @@
     margin: auto;
     width: 40px;
     max-height: 40px;
-    border-radius: 50%;
     display: block
 }
 

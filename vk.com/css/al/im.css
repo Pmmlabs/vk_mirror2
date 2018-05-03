@@ -3297,8 +3297,13 @@ img.im_photo_thumb {
     padding: 12px
 }
 
-.im_stickerpack_preview.disallowed_sticker img {
+.im_stickerpack_preview.disallowed_sticker .sticker_animation,
+.im_stickerpack_preview.disallowed_sticker .sticker_img {
     opacity: 0.3
+}
+
+.im_stickerpack_preview.disallowed_sticker .sticker_animation .sticker_img {
+    opacity: 1
 }
 
 .im_stickers_act_gift:before {

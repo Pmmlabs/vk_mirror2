@@ -1229,10 +1229,10 @@ var GroupsEdit = {
         }), !1
     },
     updateImgs: function() {
-        cur.lnkImages.length > 1 && (ge("group_al_thumb_img").parentNode.style.cursor = "pointer")
+        cur.lnkImages.length > 1 && (ge("group_al_thumb_img").style.cursor = "pointer")
     },
     rotateImgs: function() {
-        if (!(cur.lnkImages.length < 2)) {
+        if (cur.lnkImages && !(cur.lnkImages.length < 2)) {
             var e = ((cur.lnkIndex || 0) + 1) % cur.lnkImages.length;
             ge("group_al_thumb_img").src = cur.lnkImages[e], cur.lnkIndex = e
         }
@@ -1400,7 +1400,7 @@ var GroupsEdit = {
                     hash: cur.hash
                 };
             cur.editing ? (n.act = "do_edit_link", a = function(e, o, r, s) {
-                t.hide(), GroupsEdit.invalidateBack(), o !== !1 && (ge("group_l_photo" + e).src = o), r !== !1 && (ge("group_l_title" + e).innerHTML = r), s !== !1 && (ge("group_l_position" + e).innerHTML = s)
+                t.hide(), GroupsEdit.invalidateBack(), o !== !1 && (ge("group_l_photo" + e).style.backgroundImage = "url(" + o + ")"), r !== !1 && (ge("group_l_title" + e).innerHTML = r), s !== !1 && (ge("group_l_position" + e).innerHTML = s)
             }) : (n.act = "add_link", a = function(e, o, r) {
                 t.hide(), GroupsEdit.invalidateBack(), GroupsEdit.showMessage(o);
                 var s = ge("group_l_rows"),
@@ -2132,8 +2132,8 @@ var GroupsEdit = {
                 title: getLang("groups_servers_delete_confirm_box_title"),
                 dark: 1
             }, getLang("groups_tokens_servers_delete_confirm_description").replace("{serverName}", r), getLang("groups_servers_delete_confirm_box_btn"), function() {
-                a.hide(), show(geByClass1("ui_tabs_progress", ge("content"))), hide(geByClass1("page_actions_cont", ge("content"))),
-                    ajax.post("groupsedit.php", {
+                a.hide(), show(geByClass1("ui_tabs_progress", ge("content"))),
+                    hide(geByClass1("page_actions_cont", ge("content"))), ajax.post("groupsedit.php", {
                         act: "callback_delete_server",
                         id: t,
                         server: o,

@@ -24,6 +24,7 @@ var Achievements = {
             hash: a,
             title: trim(val("ach_title")),
             descr: trim(val("ach_descr")),
+            lore: trim(val("ach_lore")),
             photo_id: trim(val("ach_photo_id")),
             parent_id: cur.achParentDD.val(),
             weight: val("ach_weight"),

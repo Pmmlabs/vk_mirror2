@@ -615,14 +615,12 @@ a.group_blb_user_name,
 .group_l_photo {
     position: relative;
     float: left;
-    margin-right: 12px
-}
-
-.group_l_photo,
-.group_l_photo_img {
     width: 50px;
     height: 50px;
-    border-radius: 50%
+    border-radius: 50%;
+    margin-right: 12px;
+    background-size: cover;
+    background-position: 50%
 }
 
 .group_l_photo_img {
@@ -694,7 +692,9 @@ a.group_u_title {
     height: 80px;
     border-radius: 50%;
     margin-right: 12px;
-    overflow: hidden
+    overflow: hidden;
+    background-position: 50%;
+    background-size: cover
 }
 
 .group_al_thumb_img {

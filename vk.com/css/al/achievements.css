@@ -528,6 +528,25 @@
     height: 128px
 }
 
+.ach_choose_photo_panel {
+    padding-top: 20px;
+    border-top: 1px solid #e7e8ec;
+    margin-bottom: 4px
+}
+
+.ach_choose_photo_panel .ach_choose_photo_panel_name {
+    font-size: 32px;
+    color: #939393;
+    line-height: 32px;
+    margin-bottom: 12px
+}
+
+.ach_choose_photo_panel:first-child {
+    padding-top: 0;
+    border-top: 0;
+    margin-bottom: 0
+}
+
 .ach_links_form {
     width: 400px
 }
