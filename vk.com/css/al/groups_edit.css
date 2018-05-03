@@ -868,6 +868,11 @@ input.group_ad_cost {
     margin: 8px 0 5px
 }
 
+.group_subject_change_pending_info {
+    margin-top: 6px;
+    color: #656565
+}
+
 .group_ad_requests_table_wrap .pages_bottom,
 .group_ad_withdrawal_table .pages_bottom {
     float: right;
