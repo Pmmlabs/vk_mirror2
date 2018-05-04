@@ -1411,6 +1411,10 @@ table.ads_unions_content_label {
     border-collapse: collapse
 }
 
+#ads_unions_content .ads_export_prefs .ads_export_date_row .table_label {
+    padding-top: 4px
+}
+
 .ads_export_prefs .table_value {
     width: 300px
 }
@@ -3915,30 +3919,4 @@ td.ads_settings_notifacations_label {
 .ads_retargeting_hint_tt.tt_default.tt_down:before {
     right: 30px;
     left: auto
-}
-
-.ads_dd_offset_fix .dd_header_hover {
-    margin: -1px 0px
-}
-
-.ads_dd_offset_fix .dd_header_hover div {
-    background: #dae1e8 url(/images/flydead.gif) no-repeat right 6px
-}
-
-.firefox .ads_dd_offset_fix .dd_header_hover {
-    margin: 0px
-}
-
-#ads_unions_content .ads_export_prefs #getting_campaigns_progress {
-    padding: 13px 0px
-}
-
-#ads_unions_content .ads_export_prefs .table_value {
-    padding: 8px 0;
-    width: 340px
-}
-
-#ads_unions_content .ads_export_prefs .table_label {
-    padding: 8px 10px 8px 0;
-    vertical-align: middle
 }

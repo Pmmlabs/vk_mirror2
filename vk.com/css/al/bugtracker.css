@@ -31,7 +31,7 @@
     display: initial!important
 }
 
-.bt_add_report_btn {
+.bt_add_report_btn.button_small {
     margin-top: 6px;
     margin-right: -12px;
     padding: 4px 12px 5px;
@@ -39,11 +39,11 @@
     border-radius: 3px
 }
 
-.bt_add_report_btn:active {
+.bt_add_report_btn.button_small:active {
     padding: 5px 12px 4px
 }
 
-.bt_add_report_btn.ui_actions_menu_icons {
+.bt_add_report_btn.button_small.ui_actions_menu_icons {
     margin: 0;
     padding: 0;
     top: 8.5px;
@@ -51,8 +51,19 @@
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%3E%3Cpath%20fill%3D%22%2391A8C4%22%20d%3D%22M8%206v-6h-2v6h-6v2h6v6h2v-6h6v-2h-6z%22%2F%3E%3C%2Fsvg%3E") 50% no-repeat
 }
 
-.bt_add_report_btn.ui_actions_menu_icons:active {
+.bt_add_report_btn.button_small.ui_actions_menu_icons:active {
     padding: 0
+}
+
+.bt_add_report_btn:not(.button_small) {
+    margin: 15px 0 0;
+    border-radius: 3px;
+    width: 100%;
+    font-weight: 600;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    font-size: 13px;
+    border: none
 }
 
 .bt_msg.info_msg,
