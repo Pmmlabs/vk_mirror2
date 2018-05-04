@@ -890,7 +890,7 @@ Ads.createStaticDatePicker = function(elem, bindingId, classid, defaultDate, mod
         day: defaultDate.day,
         month: defaultDate.month,
         year: defaultDate.year,
-        width: 124,
+        width: 155,
         pastActive: true,
         onUpdate: function(d, m) {
             if (m == 'h') {
@@ -955,11 +955,11 @@ Ads.openInnerTable = function(id, bindingId) {
             tab.tableObj.setOptions(newOptions);
             tab.tableObj.setContent(newContent);
             tab.tableObj.applyData();
-            hide('getting_campaigns_upload');
+            hideProgress('getting_campaigns_progress');
         }
 
         function onFail() {
-            hide('getting_campaigns_upload');
+            hideProgress('getting_campaigns_progress');
             return true;
         };
         var ads_types_elem = geByClass1('ads_types_' + bindingId);
@@ -979,7 +979,7 @@ Ads.openInnerTable = function(id, bindingId) {
             dataReq.group_ads_promoted = grouping_ads_promoted_elem.getIndex();
         }
 
-        show('getting_campaigns_upload');
+        showProgress('getting_campaigns_progress');
         ajax.post('/ads?act=a_get_client_children', dataReq, {
             onDone: onDone,
             onFail: onFail
@@ -988,51 +988,23 @@ Ads.openInnerTable = function(id, bindingId) {
 }
 
 Ads.createStaticDropdownMenuAds = function(elem, bindingId, values, params) {
-    elem = ge(elem);
-
-    if (params.classname) elem.className = params.classname + '_' + bindingId;
-    elem.className = elem.className + ' dd_link';
-
-    elem.valueList = values;
-    elem.getValue = function() {
-        return elem.value;
-    }
-    elem.getIndex = function() {
-        if (elem.index !== undefined) return elem.index;
-
-        for (var i = 0; i < elem.valueList.length; i++) {
-            if (elem.valueList[i][1] == elem.value) {
-                return elem.valueList[i][0];
-            }
-        }
-        return -1;
-    }
-
     if (params.classname == 'client_choose') {
         onDomReady(function() {
             hide(geByClass('client_choose_row_' + bindingId)[0]);
         });
     }
-    params.updateHeader = function(i, t) {
-        if (!i) i = 'aca';
-        Ads.openInnerTable(i, bindingId);
-        elem.index = i;
-        elem.value = t;
-        return t;
-    }
-    params.onSelect = function(value) {
-        if (value === undefined) value = uiDropdown.val();
-        elem.value = value;
-        elem.innerHTML = value;
-    };
-    params.target = elem;
-    params.showHover = true;
-    //params.alwaysMenuToUp = true;
 
-    params.onSelect(values[0][1]);
-
-    elem.uiDropdown = new DropdownMenu(values, params);
-    Ads.makeDDScrollable(elem.uiDropdown);
+    new Dropdown(elem, values, {
+        big: 1,
+        autocomplete: 1,
+        multiselect: 0,
+        selectedItems: 0,
+        onChange: function(value) {
+            var i = value;
+            if (!i) i = 'aca';
+            Ads.openInnerTable(i, bindingId);
+        }
+    });
 }
 
 // threshold is height of container
@@ -1304,14 +1276,7 @@ Ads.createStaticDropdown = function(elem, bindingId, values, params) {
                     label_el.innerHTML = getLang('ads_export_stat_data_title_clients');
                     break;
                 case 2:
-                    chser = geByClass('client_choose_' + bindingId)[0];
-                    dd = chser.uiDropdown;
-
-                    text = dd.options.updateHeader(0, chser.valueList[0][1]);
-                    dd.header.innerHTML = '<div>' + text + '</div>';
-                    if (dd.options.target) dd.options.target.innerHTML = text;
-
-                    show(geByClass('client_choose_row_' + bindingId)[0]);
+                    show(geByClass1('client_choose_row_' + bindingId));
                     Ads.openInnerTable('aca', bindingId);
 
                     label_el = ge('unions_table_label_' + bindingId);

@@ -2083,13 +2083,18 @@ textarea.EditableLabel__textarea {
     opacity: .5;
     width: 10px;
     height: 10px;
-    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%2010%2010%22%3E%3Cpath%20fill%3D%22%23828A99%22%20d%3D%22M6.4%205l3.3-3.3c.4-.4.4-1%200-1.4s-1-.4-1.4%200l-3.3%203.3-3.3-3.3c-.4-.4-1-.4-1.4%200s-.4%201%200%201.4l3.3%203.3-3.3%203.3c-.4.4-.4%201%200%201.4.2.2.4.3.7.3s.5-.1.7-.3l3.3-3.3%203.3%203.3c.2.2.4.3.7.3s.5-.1.7-.3c.4-.4.4-1%200-1.4l-3.3-3.3z%22%2F%3E%3C%2Fsvg%3E');
+    padding: 2px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%2010%2010%22%3E%3Cpath%20fill%3D%22%23828A99%22%20d%3D%22M6.4%205l3.3-3.3c.4-.4.4-1%200-1.4s-1-.4-1.4%200l-3.3%203.3-3.3-3.3c-.4-.4-1-.4-1.4%200s-.4%201%200%201.4l3.3%203.3-3.3%203.3c-.4.4-.4%201%200%201.4.2.2.4.3.7.3s.5-.1.7-.3l3.3-3.3%203.3%203.3c.2.2.4.3.7.3s.5-.1.7-.3c.4-.4.4-1%200-1.4l-3.3-3.3z%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat;
     cursor: pointer
 }
 
 .ChatSettingsMembersEdit__kick:active,
 .ChatSettingsMembersEdit__kick:hover {
     opacity: .7
+}
+
+.ChatSettingsMembersEdit__role+.ChatSettingsMembersEdit__kick {
+    margin: 0 0 14px 12px
 }
 
 .ChatSettingsMembers {
@@ -6264,7 +6269,10 @@ img.im_photo_thumb {
 }
 
 .im-page-pinned--meta {
-    margin: 0 0 1px
+    margin: 0 0 1px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex
 }
 
 .im-page-pinned--name {
@@ -6272,13 +6280,22 @@ img.im_photo_thumb {
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #42648b
+    color: #42648b;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block
 }
 
 .im-page-pinned--date {
     font-size: 12.5px;
-    margin-left: 2px;
-    color: hsla(220, 8%, 51%, .6)
+    margin-left: 5px;
+    color: hsla(220, 8%, 51%, .6);
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto
 }
 
 .im-page-pinned--content {
