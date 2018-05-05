@@ -181,7 +181,8 @@ input.bnt_poll_answer {
 .bnt_checkbox {
     float: right;
     white-space: nowrap;
-    margin: 6px 22px 0 0
+    margin: 8px 22px 0 0;
+    line-height: 1em
 }
 
 .bnt_attach {

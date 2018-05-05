@@ -28,9 +28,9 @@
         return e.d(t, "a", t), t
     }, e.o = function(o, e) {
         return Object.prototype.hasOwnProperty.call(o, e)
-    }, e.p = "", e(e.s = 559)
+    }, e.p = "", e(e.s = 6)
 }({
-    103: function(o, e, t) {
+    211: function(o, e, t) {
         "use strict";
         t.r(e), window.WAllowMessagesFromCommunity = {
             init: function(o) {
@@ -110,7 +110,7 @@
             stManager.done(jsc("api/widgets/allow_messages_from_community.js"))
         } catch (n) {}
     },
-    559: function(o, e, t) {
-        o.exports = t(103)
+    6: function(o, e, t) {
+        o.exports = t(211)
     }
 });

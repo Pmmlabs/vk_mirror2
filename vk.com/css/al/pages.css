@@ -20,6 +20,10 @@
     line-height: 160%
 }
 
+.pages_cont.wk_text {
+    word-wrap: break-word
+}
+
 .pages_edit_wrap .msg {
     margin: 20px 25px 0
 }

@@ -403,8 +403,12 @@ a.wk_inline_video img {
     background: #fef
 }
 
+.wk_text,
 .wk_text blockquote {
-    word-wrap: break-word;
+    word-wrap: break-word
+}
+
+.wk_text blockquote {
     padding: 10px;
     background-color: #f0f2f5;
     border-left: 3px solid #93adc8;

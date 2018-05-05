@@ -1,4 +1,5 @@
 var ProfileEditor = {
+    controller: "al_profileEdit.php",
     go: function(e, i) {
         return ProfileEditor.checkChanges(1) === !1 ? (cur.onContinueCb = ProfileEditor.go.pbind(e, i), !1) : uiRightMenu.go(e, i)
     },
@@ -51,7 +52,7 @@ var ProfileEditor = {
                     if (7 == a) {
                         var r = val("pedit_partner_custom");
                         if (r == e.partners[0][1]) return void t(0);
-                        ajax.post("al_profileEdit.php", {
+                        ajax.post(ProfileEditor.controller, {
                             act: "a_get_custom_partner",
                             query: r
                         }, {
@@ -288,7 +289,7 @@ var ProfileEditor = {
         cur.uiBday.val() > ProfileEditor.getLastDay(e, i) && cur.uiBday.clear(), cur.uiBday.setData(ProfileEditor.generateDays(e, i).slice(intval(cur.options.bday) ? 1 : 0)), cur.onUpdateDays && cur.onUpdateDays(e, i)
     },
     updateFriendsList: function(e) {
-        cur.friendsFull ? (ProfileEditor.doUpdateFriendsList(), e()) : ajax.post("al_profileEdit.php", {
+        cur.friendsFull ? (ProfileEditor.doUpdateFriendsList(), e()) : ajax.post(ProfileEditor.controller, {
             act: "a_relations_friends"
         }, {
             onDone: function(i) {
@@ -381,21 +382,21 @@ var ProfileEditor = {
             for (var p = u; p <= (new Date).getFullYear(); p++) d.push([p, p]);
             var _ = function() {
                     var e = 0,
-                        i = intval(h.val()),
+                        i = intval(g.val()),
                         t = intval(m.val()),
-                        a = intval(g.val());
-                    if (i > ProfileEditor.getLastDay(t, a) && (h.val(1), i = 1), h.setData(ProfileEditor.generateDays(t, a)), t) {
+                        a = intval(h.val());
+                    if (i > ProfileEditor.getLastDay(t, a) && (g.val(1), i = 1), g.setData(ProfileEditor.generateDays(t, a)), t) {
                         var r = new Date(t, Math.max(a - 1, 0), Math.max(i, 1));
                         e = Math.floor(r.getTime() / 1e3)
                     }
                     ge(o + "_date").value = e
                 },
-                h = new Dropdown(ge(o + "_day"), ProfileEditor.generateDays(c.getFullYear(), c.getMonth() + 1), {
+                g = new Dropdown(ge(o + "_day"), ProfileEditor.generateDays(c.getFullYear(), c.getMonth() + 1), {
                     selectedItems: l ? c.getDate() : 0,
                     onChange: _,
                     dark: 1
                 }),
-                g = new Dropdown(ge(o + "_month"), t.bmonths, {
+                h = new Dropdown(ge(o + "_month"), t.bmonths, {
                     selectedItems: l ? c.getMonth() + 1 : 0,
                     onChange: _,
                     dark: 1
@@ -445,7 +446,7 @@ var ProfileEditor = {
         }))
     },
     showLoversBox: function() {
-        cur.lovers_box = showBox("al_profileEdit.php", {
+        cur.lovers_box = showBox(ProfileEditor.controller, {
             act: "show_lovers_box"
         }, {
             params: {
@@ -456,7 +457,7 @@ var ProfileEditor = {
     },
     getLoversPage: function(e) {
         var i = cur.lovers_box;
-        ajax.post("al_profileEdit.php", {
+        ajax.post(ProfileEditor.controller, {
             act: "show_lovers_box",
             offset: e
         }, {
@@ -537,7 +538,7 @@ var ProfileEditor = {
                 params["grandchildren_custom[" + i + "]"] = cleanName(t[0] || "", t[1] || "").join(" ")
             }
             i++
-        })), cur.onProfileEditSave && cur.onProfileEditSave(), ajax.post("al_profileEdit.php", params, {
+        })), cur.onProfileEditSave && cur.onProfileEditSave(), ajax.post(ProfileEditor.controller, params, {
             onDone: function(response, introScript) {
                 if (response.only_name) return void ProfileEditor.showMsg(response.name_response);
                 var peditData = cur.options;
@@ -557,7 +558,7 @@ var ProfileEditor = {
         }, {
             display: "block"
         });
-        ajax.post("al_profileEdit.php", {
+        ajax.post(ProfileEditor.controller, {
             act: "a_cancel_name",
             request_id: i,
             hash: t
@@ -577,7 +578,7 @@ var ProfileEditor = {
         })
     },
     nameChangeCancel: function(e, i) {
-        cur.nameChangeCancelText || (cur.nameChangeCancelText = e.innerHTML, e.innerHTML = '<div style="padding-top: 8px;"><img src="/images/upload.gif" /></div>', ajax.post("al_profileEdit.php", {
+        cur.nameChangeCancelText || (cur.nameChangeCancelText = e.innerHTML, e.innerHTML = '<div style="padding-top: 8px;"><img src="/images/upload.gif" /></div>', ajax.post(ProfileEditor.controller, {
             act: "a_change_cancel",
             hash: i
         }, {
@@ -595,7 +596,7 @@ var ProfileEditor = {
         for (var a in t) i[t[a]] = ge("pedit_" + t[a]).value;
         t = ["email", "mobile", "home"];
         for (var a in t) i["privacy_" + t[a]] = Privacy.getValue(t[a]);
-        ajax.post("al_profileEdit.php", i, {
+        ajax.post(ProfileEditor.controller, i, {
             onDone: function(e, i) {
                 if (e) {
                     for (var t in e) cur.options[t] = e[t], ge("pedit_" + t).value = e[t] || "";
@@ -611,7 +612,7 @@ var ProfileEditor = {
         hide("pedit_show_social"), show("pedit_social_options")
     },
     setUpTwitter: function() {
-        showBox("al_profileEdit.php", {
+        showBox(ProfileEditor.controller, {
             act: "twitter_settings_box"
         }, {
             dark: 1,
@@ -621,7 +622,7 @@ var ProfileEditor = {
         })
     },
     setUpFacebook: function(e, i, t, a) {
-        if (t && !cur.disableFbExport) return showBox("al_profileEdit.php", {
+        if (t && !cur.disableFbExport) return showBox(ProfileEditor.controller, {
             act: "facebook_settings_box"
         });
         var r = "https://graph.facebook.com/v2.7/oauth/authorize?client_id=" + e + "&redirect_uri=" + i + "&scope=email,user_birthday,publish_actions&display=popup&state=" + a,
@@ -651,7 +652,7 @@ var ProfileEditor = {
         }, 1e3)
     },
     setUpLiveJournal: function() {
-        showBox("al_profileEdit.php", {
+        showBox(ProfileEditor.controller, {
             act: "lj_settings_box"
         })
     },
@@ -664,7 +665,7 @@ var ProfileEditor = {
             r.focus()
         } catch (n) {}
         window.socialCallback = function(e) {
-            showBox("al_profileEdit.php", {
+            showBox(ProfileEditor.controller, {
                 act: "instagram_settings_box"
             }, {
                 dark: !0,
@@ -739,7 +740,7 @@ var ProfileEditor = {
         };
         return each(["activities", "interests", "music", "movies", "tv", "books", "games", "quotes", "about"], function(e, t) {
             i[t] = val("pedit_interests_" + t)
-        }), ajax.post("al_profileEdit.php", i, {
+        }), ajax.post(ProfileEditor.controller, i, {
             onDone: function(e) {
                 each(["activities", "interests", "music", "movies", "tv", "books", "games", "quotes", "about"], function(i, t) {
                     var a = ge("pedit_interests_" + t);
@@ -856,7 +857,7 @@ var ProfileEditor = {
                 alcohol: cur.uiAlcohol.val(),
                 inspired_by: val("pedit_inspired_by")
             };
-        return extend(i, t), ajax.post("al_profileEdit.php", i, {
+        return extend(i, t), ajax.post(ProfileEditor.controller, i, {
             onDone: function(e) {
                 cur.options.religion_id = t.religion, cur.options.religion = cur.uiReligion.val_full()[0] < 0 ? t.religion_custom : cur.uiReligion.val_full()[1], delete t.religion_custom, delete t.religion, extend(cur.options, t), each(["inspired_by"], function(i, t) {
                     val("pedit_" + t, cur.options[t] = winToUtf(e[t] || ""))
@@ -873,11 +874,12 @@ var ProfileEditor = {
         })
     },
     addItemBox: function(e, i) {
-        return cur.addItemBox = showBox("al_admin.php", {
-            act: "add_item_box",
+        var t = {
+            act: "show_suggest_geodb_object_box",
             add_item: e || "",
             obj_id: i || ""
-        }, {
+        };
+        return cur.addItemBox = showBox(ProfileEditor.controller, t, {
             params: {
                 width: 560,
                 hideButtons: !0,
@@ -888,4 +890,6 @@ var ProfileEditor = {
 };
 try {
     stManager.done("profile_edit.js")
-} catch (e) {}
+} catch (e) {
+    debugLog("Exception", e)
+}

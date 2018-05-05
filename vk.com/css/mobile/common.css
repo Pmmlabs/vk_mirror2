@@ -10016,7 +10016,7 @@ only screen and (min-device-pixel-ratio: 2) {
     padding-bottom: 15px
 }
 
-.informer.informer.informer:not(.gift_informer) {
+.informer.informer_view_1:not(.gift_informer) {
     padding-top: 0!important;
     padding-left: 0!important;
     padding-right: 0!important
@@ -10074,7 +10074,7 @@ only screen and (min-device-pixel-ratio: 2) {
     cursor: pointer
 }
 
-.informer:not(.gift_informer) .informer_content {
+.informer.informer_view_1:not(.gift_informer) .informer_content {
     margin-top: 14px
 }
 

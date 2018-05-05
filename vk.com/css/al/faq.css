@@ -1130,7 +1130,7 @@
 (min-resolution: 192dpi) {
     .faq_category_icon .faq_category_icon_desktop {
         background-image: url(/images/support/faq_icons_2x.png);
-        background-size: 28px 588px
+        background-size: 28px 616px
     }
 }
 
@@ -1222,6 +1222,10 @@
     background-position: 0 -560px
 }
 
+.faq_category_icon .faq_category_icon_desktop_22 {
+    background-position: 0 -588px
+}
+
 .faq_category_icon .faq_category_icon_mobile {
     background: url(/images/support/mobile_faq_icons.png);
     margin: -4px;
@@ -1237,7 +1241,7 @@
 (min-resolution: 192dpi) {
     .faq_category_icon .faq_category_icon_mobile {
         background-image: url(/images/support/mobile_faq_icons_2x.png);
-        background-size: 102px 864px
+        background-size: 102px 910px
     }
 }
 
@@ -1303,6 +1307,10 @@
 
 .faq_category_icon .faq_category_icon_mobile_34 {
     background-position: 0 -826px
+}
+
+.faq_category_icon .faq_category_icon_mobile_35 {
+    background-position: 0 -872px
 }
 
 .faq_category_icon .faq_category_icon_mobile_popular {

@@ -28,80 +28,12 @@
         return e.d(r, "a", r), r
     }, e.o = function(t, e) {
         return Object.prototype.hasOwnProperty.call(t, e)
-    }, e.p = "", e(e.s = 140)
+    }, e.p = "", e(e.s = 129)
 }({
-    140: function(t, e, r) {
-        t.exports = r(44)
+    129: function(t, e, r) {
+        t.exports = r(259)
     },
-    154: function(t, e, r) {
-        "use strict";
-
-        function i(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-        r.r(e);
-        var n = r(63),
-            s = function() {
-                function t(e) {
-                    var r = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-                    return i(this, t), r.items = r.items || [], e = ge(e), addClass(e, "rich_dropdown_wrap"), this.input = new n["default"](e, r.items), this.input.renderByInitialData(r.initialData), this.setOptions(r), this
-                }
-                return t.prototype.destroy = function() {
-                    this.input.destroy(), delete this.input
-                }, t.prototype.getValue = function() {
-                    return this.input.getValue()
-                }, t.prototype.getStringValue = function() {
-                    return this.input.getStringValue()
-                }, t.prototype.onChange = function(t) {
-                    return this.input.setOptions({
-                        onChange: t
-                    }), this
-                }, t.prototype.setOptions = function() {
-                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
-                    for (var e in t) {
-                        var r = t[e];
-                        switch (e) {
-                            case "placeholder":
-                                this.input.setPlaceholder(r);
-                                break;
-                            case "operators":
-                                this.input.autoComplete.setOperators(r), this.input.updateOptionsObj();
-                                break;
-                            case "disabledText":
-                                this.input.setDisabledText(r);
-                                break;
-                            case "autoCompleteMaxWidth":
-                                this.input.setAutoCompleteMaxWidth(r);
-                                break;
-                            case "width":
-                                this.input.setWidth(r);
-                                break;
-                            case "items":
-                                this.input.autoComplete.setOptions(r), this.input.updateOptionsObj();
-                                break;
-                            case "value":
-                                this.setValue(r);
-                                break;
-                            case "onChange":
-                                this.onChange(r)
-                        }
-                    }
-                    return this
-                }, t.prototype.disable = function() {
-                    this.input.disable()
-                }, t.prototype.enable = function() {
-                    this.input.enable()
-                }, t.prototype.toggleDisable = function() {
-                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : void 0;
-                    this.input.disabled && t !== !0 || t === !1 ? this.input.enable() : this.input.disable()
-                }, t.prototype.setValue = function() {
-                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
-                    this.input.setValue(t)
-                }, t
-            }();
-        e["default"] = s
-    },
-    218: function(t, e, r) {
+    130: function(t, e, r) {
         "use strict";
         r.r(e), r.d(e, "SPACE", function() {
             return i
@@ -138,23 +70,23 @@
             d = "colon",
             c = "comma"
     },
-    44: function(t, e, r) {
+    259: function(t, e, r) {
         "use strict";
         r.r(e);
-        var i = r(154);
+        var i = r(91);
         window.RichDropDown = i["default"];
         try {
             stManager.done("rich_dropdown.js")
         } catch (n) {}
     },
-    463: function(t, e, r) {
+    634: function(t, e, r) {
         "use strict";
 
         function i(t, e) {
             if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
         }
         r.r(e);
-        var n = r(545),
+        var n = r(640),
             s = function() {
                 function t(e, r) {
                     var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {};
@@ -324,7 +256,7 @@
             }();
         e["default"] = s
     },
-    545: function(t, e, r) {
+    640: function(t, e, r) {
         "use strict";
 
         function i(t) {
@@ -417,18 +349,18 @@
         }), r.d(e, "itemsToString", function() {
             return p
         });
-        var h = r(218)
+        var h = r(130)
     },
-    63: function(t, e, r) {
+    674: function(t, e, r) {
         "use strict";
 
         function i(t, e) {
             if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
         }
         r.r(e);
-        var n = r(545),
-            s = r(218),
-            o = r(463),
+        var n = r(640),
+            s = r(130),
+            o = r(634),
             a = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
                 return typeof t
             } : function(t) {
@@ -783,5 +715,73 @@
                 }, t
             }();
         e["default"] = p
+    },
+    91: function(t, e, r) {
+        "use strict";
+
+        function i(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        }
+        r.r(e);
+        var n = r(674),
+            s = function() {
+                function t(e) {
+                    var r = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
+                    return i(this, t), r.items = r.items || [], e = ge(e), addClass(e, "rich_dropdown_wrap"), this.input = new n["default"](e, r.items), this.input.renderByInitialData(r.initialData), this.setOptions(r), this
+                }
+                return t.prototype.destroy = function() {
+                    this.input.destroy(), delete this.input
+                }, t.prototype.getValue = function() {
+                    return this.input.getValue()
+                }, t.prototype.getStringValue = function() {
+                    return this.input.getStringValue()
+                }, t.prototype.onChange = function(t) {
+                    return this.input.setOptions({
+                        onChange: t
+                    }), this
+                }, t.prototype.setOptions = function() {
+                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+                    for (var e in t) {
+                        var r = t[e];
+                        switch (e) {
+                            case "placeholder":
+                                this.input.setPlaceholder(r);
+                                break;
+                            case "operators":
+                                this.input.autoComplete.setOperators(r), this.input.updateOptionsObj();
+                                break;
+                            case "disabledText":
+                                this.input.setDisabledText(r);
+                                break;
+                            case "autoCompleteMaxWidth":
+                                this.input.setAutoCompleteMaxWidth(r);
+                                break;
+                            case "width":
+                                this.input.setWidth(r);
+                                break;
+                            case "items":
+                                this.input.autoComplete.setOptions(r), this.input.updateOptionsObj();
+                                break;
+                            case "value":
+                                this.setValue(r);
+                                break;
+                            case "onChange":
+                                this.onChange(r)
+                        }
+                    }
+                    return this
+                }, t.prototype.disable = function() {
+                    this.input.disable()
+                }, t.prototype.enable = function() {
+                    this.input.enable()
+                }, t.prototype.toggleDisable = function() {
+                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : void 0;
+                    this.input.disabled && t !== !0 || t === !1 ? this.input.enable() : this.input.disable()
+                }, t.prototype.setValue = function() {
+                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
+                    this.input.setValue(t)
+                }, t
+            }();
+        e["default"] = s
     }
 });

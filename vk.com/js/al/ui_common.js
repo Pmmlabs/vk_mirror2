@@ -1031,7 +1031,7 @@ var uiTabs = {
                     h.style.width = t + "px", h.style.height = s + "px", l.scrollLeft = t, l.scrollTop = s, a.scrollLeft = t, a.scrollTop = s, u !== (u = t + " " + s) && i()
                 }]
             }
-        }, t
+        }, t.scrollEventDelta = t.prototype.scrollEventDelta, t
     }(),
     UiScroll = uiScroll;
 window.Scrollbar = window.Scrollbar || function() {
@@ -1443,8 +1443,8 @@ Slider.prototype.toggleAdState = function(t) {
 }, Slider.prototype._onMouseMove = function(t) {
     var e = this._getPos(),
         i = Math.max(t.pageX, e[0]);
-    i = Math.min(i, e[0] + this._width), i -= e[0], this.setValue(i / this._width, !0, !0),
-        this._onValueChangeDebounced ? this._onValueChangeDebounced() : this._onValueChange(), this._toggleHint(!0), this._updateHint(t, !0), cancelEvent(t)
+    i = Math.min(i, e[0] + this._width),
+        i -= e[0], this.setValue(i / this._width, !0, !0), this._onValueChangeDebounced ? this._onValueChangeDebounced() : this._onValueChange(), this._toggleHint(!0), this._updateHint(t, !0), cancelEvent(t)
 }, Slider.prototype._getPos = function() {
     return this._slidePos = getXY(this._slideEl)
 }, Slider.LOGFBASE = 35, Slider.prototype._logf = function(t) {
