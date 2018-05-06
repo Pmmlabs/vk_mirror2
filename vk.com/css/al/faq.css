@@ -1120,7 +1120,7 @@
 }
 
 .faq_category_icon .faq_category_icon_desktop {
-    background: url(/images/support/faq_icons.png);
+    background: url(/images/support/faq_icons.png?1);
     width: 28px;
     height: 28px
 }
@@ -1129,7 +1129,7 @@
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .faq_category_icon .faq_category_icon_desktop {
-        background-image: url(/images/support/faq_icons_2x.png);
+        background-image: url(/images/support/faq_icons_2x.png?1);
         background-size: 28px 616px
     }
 }

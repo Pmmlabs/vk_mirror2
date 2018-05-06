@@ -512,7 +512,7 @@
     float: left;
     padding: 15px 10px;
     cursor: pointer;
-    width: 128px
+    width: 105px
 }
 
 .ach_choose_photo_cell.ach_choose_photo_cell_selected {
@@ -524,8 +524,8 @@
 }
 
 .ach_choose_photo_cell__img {
-    width: 128px;
-    height: 128px
+    width: 105px;
+    height: 105px
 }
 
 .ach_choose_photo_panel {

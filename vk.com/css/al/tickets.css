@@ -2734,7 +2734,7 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     border-radius: 3px;
     height: 28px;
     width: 28px;
-    background: url(/images/support/faq_icons.png) no-repeat 0 0;
+    background: url(/images/support/faq_icons.png?1) no-repeat 0 0;
     content: "";
     position: absolute;
     top: 0
@@ -2744,8 +2744,8 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .tickets_suggest__icon:after {
-        background-image: url(/images/support/faq_icons_2x.png);
-        background-size: 28px 588px
+        background-image: url(/images/support/faq_icons_2x.png?1);
+        background-size: 28px 616px
     }
 }
 
@@ -3034,7 +3034,7 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     border-radius: 3px;
     height: 28px;
     width: 28px;
-    background: url(/images/support/faq_icons.png) no-repeat 0 0;
+    background: url(/images/support/faq_icons.png?1) no-repeat 0 0;
     content: "";
     position: absolute;
     top: 0
@@ -3044,8 +3044,8 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .help_tile__title:after {
-        background-image: url(/images/support/faq_icons_2x.png);
-        background-size: 28px 588px
+        background-image: url(/images/support/faq_icons_2x.png?1);
+        background-size: 28px 616px
     }
 }
 
@@ -3238,7 +3238,7 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     border-radius: 3px;
     height: 28px;
     width: 28px;
-    background: url(/images/support/faq_icons.png) no-repeat 0 0;
+    background: url(/images/support/faq_icons.png?1) no-repeat 0 0;
     content: "";
     position: absolute;
     top: 0
@@ -3248,8 +3248,8 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .help_table_questions__title:after {
-        background-image: url(/images/support/faq_icons_2x.png);
-        background-size: 28px 588px
+        background-image: url(/images/support/faq_icons_2x.png?1);
+        background-size: 28px 616px
     }
 }
 
