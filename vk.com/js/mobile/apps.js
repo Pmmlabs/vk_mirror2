@@ -789,6 +789,9 @@ var vkApp = function(cont, options, params, onInit) {
                 return;
             }
 
+            var sber9thMayAppId = 6463155,
+                noCallNative = !!cur.app.isNativeIosWebView() && cur.aid === sber9thMayAppId;
+
             params = params || {};
             params.attachments = cur.app.getValidPostAttachments(params.attachments || params.attachment);
 
@@ -804,7 +807,7 @@ var vkApp = function(cont, options, params, onInit) {
                 return;
             }
 
-            if (cur.app.isNativeClientWebView() && cur.app.nativeClientHasMethod('showWallPostBox')) {
+            if (cur.app.isNativeClientWebView() && cur.app.nativeClientHasMethod('showWallPostBox') && !noCallNative) {
                 params = cur.app.isNativeAndroidWebView() ? obj2qs(params) : params;
                 cur.app.callNativeClientMethod('showWallPostBox', params);
                 return;
@@ -812,6 +815,7 @@ var vkApp = function(cont, options, params, onInit) {
 
             params.app_id = cur.aid;
             params.act = 'show_wall_post_box';
+            params.api_hash = cur.api_hash;
 
             cur.showWallPostBoxErrorHandler = function(error) { // Called when server return error.
                 cur.app.runCallback('onShowWallPostBoxCancel', error);
