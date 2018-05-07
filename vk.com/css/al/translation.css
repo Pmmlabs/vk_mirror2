@@ -217,6 +217,17 @@ i i.untranslated {
     margin-bottom: 5px
 }
 
+.tr_box_edit_key .tr_value_row .tr_value_row_special_code {
+    -ms-user-select: none;
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    background-color: #8ac176;
+    cursor: pointer
+}
+
 .tr_box_edit_key h4.subheader {
     padding-top: 10px;
     padding-bottom: 8px

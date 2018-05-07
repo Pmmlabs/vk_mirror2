@@ -926,7 +926,11 @@ function MediaSelector(e, a, i, t) {
                             p = d;
                         if (d.match(/^https?:\/\//) || (d = "http://" + d), !inArray(d, s.urlsCancelled) && !inArray(p, s.urlsCancelled)) {
                             var u = !0;
-                            if (h.match(/(^|\.|\/\/)(vkontakte\.ru|vk\.com)/i) && (u = _.match(/(#photo|^\/(photo|video|album|page|audio|doc|mask)|z=(album|photo|video|audio_playlist)|w=(page|product))(-?\d+_)?\d+|app\d+(?:_-\d+)?|\.(jpg|png|gif)$|market-?\d+\?section=album_\d+|^\/stickers\/.+$|\?w\=story(\d+)_(\d+)$|stor(y|ies)(\d+)_(\d+)$|^(\/dev)?\/blog\/.+$|^\/jobs\?w=job\d+$|^\/landings\/.+$|\?w\=vk10\_years(\d+)$|^\/messenger$|^\/bestgames2016$|^\/bestgames2017$|^\/ads(\/([a-zA-Z0-9\_]+))?$|^http:\/\/instagram\.com\/p\/.+/) ? !0 : !1, u = u || _.match(/^\/@[._a-zA-Z0-9-]+$/), !u && _.match(/[a-zA-Z0-9_\.-]{2,32}/))) return void s.checkURLDomain(_, p, i);
+                            if (h.match(/(^|\.|\/\/)(vkontakte\.ru|vk\.com)/i)) {
+                                u = _.match(/(#photo|^\/(photo|video|album|page|audio|doc|mask)|z=(album|photo|video|audio_playlist)|w=(page|product))(-?\d+_)?\d+|app\d+(?:_-\d+)?|\.(jpg|png|gif)$|market-?\d+\?section=album_\d+|^\/stickers\/.+$|\?w\=story(\d+)_(\d+)$|stor(y|ies)(\d+)_(\d+)$|^(\/dev)?\/blog\/.+$|^\/jobs\?w=job\d+$|^\/landings\/.+$|\?w\=vk10\_years(\d+)$|^\/messenger$|^\/bestgames2016$|^\/bestgames2017$|^\/ads(\/([a-zA-Z0-9\_]+))?$|^http:\/\/instagram\.com\/p\/.+/) ? !0 : !1;
+                                var m = _.match(/^(\/@[._a-zA-Z0-9-]+)(\?rev=[_a-z0-9]+)?$/);
+                                if (m && (p = "vk.com" + m[1], u = !0), !u && _.match(/[a-zA-Z0-9_\.-]{2,32}/)) return void s.checkURLDomain(_, p, i)
+                            }
                             if (u) return void s.checkURL(p, i)
                         }
                     }

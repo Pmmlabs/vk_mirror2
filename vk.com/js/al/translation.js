@@ -390,7 +390,7 @@
                         tab: null
                     })), a && setTimeout(function() {
                         ge("box_layer_wrap").scrollTop = cur.translatorsLogBoxOffset, delete cur.translatorsLogBoxOffset
-                    }, 150), cur.onBoxKeyDownEvent && removeEvent(window, "keydown", cur.onBoxKeyDownEvent), delete cur.keySectionsDD, delete cur.keyBoxValueHeight, cur.showedScreen || (delete cur.translationBoxParams, delete cur.translationsScreensList, delete ajaxCache["/" + TR_ADDRESS + "#" + ajx2q(o)], delete cur.translationBoxType, delete cur.translationsScreensListAll), delete cur.translationBoxOpened)
+                    }, 150), cur.onBoxKeyDownEvent && removeEvent(window, "keydown", cur.onBoxKeyDownEvent), delete cur.keySectionsDD, delete cur.keyBoxValueHeight, cur.showedScreen || (delete cur.translationBoxParams, delete cur.translationsScreensList, delete ajaxCache["/" + TR_ADDRESS + "#" + ajx2q(o)], delete cur.translationBoxType, delete cur.translationsScreensListAll), delete cur.translationBoxOpened, delete cur.translationBoxFocusedForm)
                 },
                 onShow: function() {
                     cur.translationBoxParams = [e, t, a], cur.translationsScreensList || (cur.translationsScreensList = []), delete cur.showedAttachScreenBox
@@ -980,6 +980,28 @@
             className: "tr_box_extra_param_tooltip"
         })
     }
+
+    function insertSpecSymbol(e, t) {
+        if (cancelEvent(t), !cur.translationBoxFocusedForm) return !1;
+        var a = replaceEntities(val(e)),
+            n = cur.translationBoxFocusedForm,
+            o = n.selectionStart,
+            s = n.selectionEnd,
+            r = val(n),
+            i = r.substring(0, o),
+            l = r.substring(s, r.length);
+        val(n, i + a + l), n.selectionStart = n.selectionEnd = o + a.length, n.focus(), n.timeout && clearTimeout(n.timeout)
+    }
+
+    function removeFocusedForm(e) {
+        e.timeout && (clearTimeout(e.timeout), delete e.timeout), e.timeout = setTimeout(function() {
+            delete cur.translationBoxFocusedForm
+        }, 200)
+    }
+
+    function setFocusedForm(e) {
+        cur.translationBoxFocusedForm = e
+    }
     var TR_ADDRESS = "translation",
         _caseDropdown, _caseTokenDropdown, _functionTypeDropdown, _keysLangSelectorDropdown, _translatorsDateSelector, _languagesSortDropdown, _translatorsSortDropdown, COOKIE_KEY = "remixinline_trans";
     exports.TR = {
@@ -1015,7 +1037,10 @@
         showScreen: showScreen,
         chooseScreen: chooseScreen,
         chooseUplaodedScreen: chooseUplaodedScreen,
-        showDescriptionTooltip: showDescriptionTooltip
+        showDescriptionTooltip: showDescriptionTooltip,
+        insertSpecSymbol: insertSpecSymbol,
+        removeFocusedForm: removeFocusedForm,
+        setFocusedForm: setFocusedForm
     }
 }(window);
 try {
