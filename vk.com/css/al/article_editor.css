@@ -1947,7 +1947,7 @@
     padding: 7px 12px 8px
 }
 
-.article_ed__lock_shown .article_ed__carousel_btns {
+.article_ed__warn_shown .article_ed__carousel_btns {
     display: none!important
 }
 
@@ -2124,7 +2124,7 @@
     border: none
 }
 
-.article_editor .article_ed__lock_info {
+.article_editor .article_ed__warn_info {
     background-color: #fdf0d7;
     border-radius: 4px;
     color: #765c30;
@@ -2139,11 +2139,11 @@
     width: 100%
 }
 
-.article_editor.article_ed__lock_shown .article_ed__text_placeholders {
+.article_editor.article_ed__warn_shown .article_ed__text_placeholders {
     top: 80px
 }
 
-.article_editor.article_ed__lock_shown .article_editor_canvas {
+.article_editor.article_ed__warn_shown .article_editor_canvas {
     top: 80px;
     position: relative
 }

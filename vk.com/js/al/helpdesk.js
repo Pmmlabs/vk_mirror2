@@ -1232,8 +1232,7 @@ var Helpdesk = {
         })
     },
     trollAutoReply: function(e) {
-        return ajax.post("helpdesk", {
-            act: "troll_auto_reply",
+        return ajax.post("helpdesk?act=troll_auto_reply", {
             ticket_id: cur.ticket_id,
             hash: e
         }, {
@@ -1243,8 +1242,7 @@ var Helpdesk = {
         }), !1
     },
     autoReplyPass: function(e, t) {
-        ajax.post("helpdesk", {
-            act: "auto_reply_pass",
+        ajax.post("helpdesk?act=auto_reply_pass", {
             pass: e,
             ticket_id: cur.ticket_id,
             hash: t

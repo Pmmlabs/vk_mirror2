@@ -335,11 +335,11 @@ var stVersions = {
     'docs.css': 20480576624,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 14208763686,
-    'helpdesk.js': 596744289,
+    'helpdesk.js': 1167281994,
     'helpdesk.css': 17796613156,
     'tickets.js': 2918658001,
     'tickets.css': 19523078575,
-    'faq.css': 18892041411,
+    'faq.css': 17720694566,
     'talmud.js': 1641838680,
     'agents.js': 2426697933,
     'agents.css': 14391653103,
@@ -635,4 +635,4 @@ var stTypes = {
         'apps.js': 1
     }
 };
-var _rnd = 1282;
+var _rnd = 6499;

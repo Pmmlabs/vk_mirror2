@@ -142,6 +142,11 @@
     padding: 6px 0 4px
 }
 
+.faq_optional_row_checkboxes .checkbox {
+    float: left;
+    margin-right: 18px
+}
+
 .faq_optional_extra_fields {
     width: 490px
 }
@@ -316,6 +321,17 @@
 
 .faq_ed_block_slidable.faq_ed_block_unslided .faq_question:after {
     content: "\2193"
+}
+
+.faq_shortcut {
+    border-bottom: 1px dotted #656565;
+    cursor: pointer;
+    color: #656565;
+    display: inline-block
+}
+
+.faq_shortcut:hover {
+    border-bottom: 0 none
 }
 
 .faq_question__info {

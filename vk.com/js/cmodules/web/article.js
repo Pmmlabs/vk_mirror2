@@ -1253,9 +1253,7 @@
                                                 i.setBLOB(r, n)
                                             }
                                         })
-                                    }; i = n.shift();) {
-                                    a()
-                                }
+                                    }; i = n.shift();) a()
                 }, e.prototype._flattenAlienParagraphs = function() {
                     var e = this;
                     if (this._fromPasteEvent) {
@@ -1272,9 +1270,7 @@
                                 Object(l.isQuoteEl)(r) && !Object(l.isAlienParagraphEl)(r) && (a = r.firstChild);
                                 var o = !1;
                                 t.call(e, a, !0), o && L(r)
-                            }; r = t.shift();) {
-                            d()
-                        }
+                            }; r = t.shift();) d();
                         this._setAllParagraphsDirty()
                     }
                 }, e.prototype._correctCaptionSelection = function() {
@@ -1429,12 +1425,10 @@
                         n = r[0],
                         i = this._getParagraph(n),
                         a = Object(l.hasSeparator)(i);
-                    delete i.sep;
-                    showBox("al_video.php", {
+                    delete i.sep, showBox("al_video.php", {
                         act: "a_choose_video_box",
                         to_id: this.getArticleOwnerId()
-                    });
-                    m.chooseMedia = function(t, r, i, o, s) {
+                    }), m.chooseMedia = function(t, r, i, o, s) {
                         var c = Object(d.getAppropriateImage)(i.editable.sizes, e.getWidth()),
                             u = g(c, 1),
                             p = u[0],
@@ -3033,8 +3027,7 @@
         ({
             php: new RegExp("\\b(array|as|break|case|class|const|continue|default|do|else|elseif|for|foreach|function|global|if|return|static|switch|while|try|catch|throw)\\b", "g"),
             js: new RegExp("\\b(break|case|class|const|continue|default|do|else|for|function|if|return|static|switch|while|try|catch|throw|let)\\b", "g")
-        });
-        window.initArticle = n, window.deinitArticle = a, window.updateArticle = i, window.articleCloseImageFullSize = p
+        }), window.initArticle = n, window.deinitArticle = a, window.updateArticle = i, window.articleCloseImageFullSize = p
     },
     31: function(e, t, r) {
         "use strict";
@@ -3173,9 +3166,7 @@
                     }
                 });
                 var s = e.substring(o);
-                a.push(i ? s : E(s));
-                "" == a[a.length - 1];
-                return a.join("")
+                return a.push(i ? s : E(s)), "" == a[a.length - 1], a.join("")
             }
             return i ? e : E(e)
         }
@@ -4058,14 +4049,12 @@
             if (t && "border-box" === ce(e, "boxSizing") && (t = !1), e == document) a = [Math.max(o.clientWidth, bodyNode.scrollWidth, o.scrollWidth, bodyNode.offsetWidth, o.offsetWidth), Math.max(o.clientHeight, bodyNode.scrollHeight, o.scrollHeight, bodyNode.offsetHeight, o.offsetHeight)];
             else if (e) {
                 var s = function() {
-                    if (a = q(e) && (i = Q(e, r)) && void 0 !== i.width ? [i.width, i.height] : [e.offsetWidth, e.offsetHeight], t) {
-                        each(a, function(t, r) {
-                            var n = t ? ["Top", "Bottom"] : ["Left", "Right"];
-                            each(n, function() {
-                                a[t] -= parseFloat(ce(e, "padding" + this)) || 0, a[t] -= parseFloat(ce(e, "border" + this + "Width")) || 0
-                            })
+                    a = q(e) && (i = Q(e, r)) && void 0 !== i.width ? [i.width, i.height] : [e.offsetWidth, e.offsetHeight], t && each(a, function(t, r) {
+                        var n = t ? ["Top", "Bottom"] : ["Left", "Right"];
+                        each(n, function() {
+                            a[t] -= parseFloat(ce(e, "padding" + this)) || 0, a[t] -= parseFloat(ce(e, "border" + this + "Width")) || 0
                         })
-                    }
+                    })
                 };
                 if (W(e)) s();
                 else {
@@ -4557,8 +4546,7 @@
                         }, {
                             cache: 1,
                             stat: ["photos.js", "photos.css", "upload.js"]
-                        });
-                        cur.chooseMedia = d.onPhotoAdd.bind(d), cur.showMediaProgress = function() {
+                        }), cur.chooseMedia = d.onPhotoAdd.bind(d), cur.showMediaProgress = function() {
                             show(d._els.loading), r.getEditor().setMediaUploadMode(!0)
                         }, cur.choosePhotoUploadedAll = function() {
                             hide(d._els.loading), r.getEditor().setMediaUploadMode(!1)
