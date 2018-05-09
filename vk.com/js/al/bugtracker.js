@@ -1137,7 +1137,7 @@ var BugTracker = {
             o = !0;
         "" != r.login_tf && -1 == r.login_tf.indexOf("@") && (notaBene("bt_settings__login_tf"), o = !1), "" != r.login_ha && -1 == r.login_ha.indexOf("@") && (notaBene("bt_settings__login_ha"), o = !1), o && (each(geByClass("on", "bt_settings_platforms"), function(e, t) {
             r.platforms.push(attr(t, "platform-id"))
-        }), ajax.post("bugtracker", r, {
+        }), r.moder_name = val("bt_settings__moder_name"), ajax.post("bugtracker", r, {
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e),
             onDone: function(e) {

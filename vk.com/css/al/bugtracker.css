@@ -1209,7 +1209,7 @@
 
 .bt_report_one_info_row_value {
     float: left;
-    max-width: 400px
+    max-width: 350px
 }
 
 .bt_report_one_info_row_value a {
@@ -1625,6 +1625,10 @@
     margin-top: 4px;
     font-size: 12px;
     color: #939393
+}
+
+.bt_report_cmt_info.inline {
+    display: inline-block
 }
 
 .bt_report_cmt_date {
@@ -3324,7 +3328,7 @@
 }
 
 .bt_settings .bt_hform_label {
-    width: 185px
+    width: 290px
 }
 
 .bt_settings .bt_hform_label:after {
@@ -3340,7 +3344,12 @@
 }
 
 .bt_settings .bt_hform_submit_block .bt_hform_control {
-    padding-left: 180px
+    width: auto;
+    margin-left: 50%
+}
+
+.bt_settings .bt_hform_submit_block .bt_hform_control .flat_button {
+    margin-left: -50%
 }
 
 .bt_reports_reverse_button {
