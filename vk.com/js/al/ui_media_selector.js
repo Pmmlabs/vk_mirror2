@@ -447,7 +447,7 @@ function MediaSelector(e, a, i, t) {
                             break;
                         case "article":
                             if (S.article || S.share || S.page || S.pretty_cards || !o) return !1;
-                            A = '<div class="medadd_h medadd_h_pretty_cards inl_bl">' + getLang("global_article") + "</div>", I = o.snippet_html, i = o.url, B = f;
+                            A = '<div class="medadd_h medadd_h_pretty_cards inl_bl">' + getLang("global_article") + "</div>", I = o.snippet_html, i = o.url, o.rev && (i += "?rev=" + o.rev), B = f;
                             break;
                         case "audio":
                             A = Page.addAudioPreview(i, o), D = ' id="pam' + u + "_audio" + i + '"';
@@ -783,8 +783,8 @@ function MediaSelector(e, a, i, t) {
                     d = [];
                 return each(r, function(e, a) {
                         a && "photo" == a[0] && d.push(a[1] + "/" + (s.phLists[a[1]] || ""))
-                    }), i.additional = {}, i.additional.open_pe = intval(cur.openEditor), cur.openEditor || (i.additional.draft_photos = d.join(";")),
-                    delete cur.openEditor, showPhoto(e, a, extend(i, {
+                    }), i.additional = {}, i.additional.open_pe = intval(cur.openEditor),
+                    cur.openEditor || (i.additional.draft_photos = d.join(";")), delete cur.openEditor, showPhoto(e, a, extend(i, {
                         queue: 1
                     }), t)
             },

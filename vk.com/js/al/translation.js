@@ -61,10 +61,13 @@
                 each(geByClass("_tr_text_value", this), function() {
                     t.push(val(this))
                 }), t = t.length > 1 ? "@@" + t.join("@") : t[0], o["Value_" + e] = t, o.lang_ids.push(e)
-            }), o.lang_ids = o.lang_ids.join(","), cur.isSuperTranslator && (o.description = val("tr_description_edit"), o.description_english = val("tr_description_edit_english"), o.extended_wiki = intval(hasClass("tr_extra_wiki", "on")), o.disable_inline = intval(hasClass("tr_extra_disable_inline", "on")), o["export"] = intval(hasClass("tr_extra_export_to_js", "on")), o.has_case = intval(hasClass("tr_extra_case", "on")), o.mark_untranslated = intval(hasClass("tr_extra_mark_as_untranslated", "on")), o.screens = _box_getScreens(), o.has_case)) {
-            o["case"] = _caseDropdown.selectedItems()[0][0];
-            var s = _caseTokenDropdown.selectedItems();
-            s.length && (o.case_token = _caseTokenDropdown.selectedItems()[0][1])
+            }), o.lang_ids = o.lang_ids.join(","), cur.isSuperTranslator) {
+            if (o.description = val("tr_description_edit"), o.description_english = val("tr_description_edit_english"), o.extended_wiki = intval(hasClass("tr_extra_wiki", "on")), o.disable_inline = intval(hasClass("tr_extra_disable_inline", "on")), o["export"] = intval(hasClass("tr_extra_export_to_js", "on")), o.has_case = intval(hasClass("tr_extra_case", "on")), o.mark_untranslated = intval(hasClass("tr_extra_mark_as_untranslated", "on")), o.screens = _box_getScreens(), o.has_case) {
+                o["case"] = _caseDropdown.selectedItems()[0][0];
+                var s = _caseTokenDropdown.selectedItems();
+                s.length && (o.case_token = _caseTokenDropdown.selectedItems()[0][1])
+            }
+            if (o.key_status = radioval("tr_key_settings_status"), o.key_status === _KEY_SETTINGS_STATUS_TRANSLATE_CUSTOM_LANGUAGES && (o.selected_languages = cur.translationKeyLanguagesDD.val(), !o.selected_languages)) return notaBene(cur.translationKeyLanguagesDD.input)
         }
         ajax.post(TR_ADDRESS, o, {
             showProgress: lockButton.pbind(e),
@@ -151,15 +154,19 @@
                 addClass("translations_box_edit_key", "tr_box_edit_key_simple"), _box_hideFormsTabs();
                 var a = 540,
                     n = 238,
-                    o = 120
+                    o = 120,
+                    s = 500
             } else if (2 == t) {
                 removeClass("translations_box_edit_key", "tr_box_edit_key_simple");
                 var a = 940,
-                    n = 438;
+                    n = 438,
+                    s = 900;
                 _box_showFormsTabs(t)
             }
             cur.keySectionsDD && cur.keySectionsDD.setOptions({
                 width: n
+            }), cur.translationKeyLanguagesDD && cur.translationKeyLanguagesDD.setOptions({
+                width: s
             }), each(geByClass("_tr_translation_box_icon", "translation_box_types"), function(e, t) {
                 removeClass(t, "active")
             }), addClass(e, "active"), curBox().setOptions({
@@ -390,7 +397,7 @@
                         tab: null
                     })), a && setTimeout(function() {
                         ge("box_layer_wrap").scrollTop = cur.translatorsLogBoxOffset, delete cur.translatorsLogBoxOffset
-                    }, 150), cur.onBoxKeyDownEvent && removeEvent(window, "keydown", cur.onBoxKeyDownEvent), delete cur.keySectionsDD, delete cur.keyBoxValueHeight, cur.showedScreen || (delete cur.translationBoxParams, delete cur.translationsScreensList, delete ajaxCache["/" + TR_ADDRESS + "#" + ajx2q(o)], delete cur.translationBoxType, delete cur.translationsScreensListAll), delete cur.translationBoxOpened, delete cur.translationBoxFocusedForm)
+                    }, 150), cur.onBoxKeyDownEvent && removeEvent(window, "keydown", cur.onBoxKeyDownEvent), delete cur.keySectionsDD, delete cur.keyBoxValueHeight, cur.showedScreen || (delete cur.translationBoxParams, delete cur.translationsScreensList, delete ajaxCache["/" + TR_ADDRESS + "#" + ajx2q(o)], delete cur.translationBoxType, delete cur.translationsScreensListAll), delete cur.translationBoxOpened, delete cur.translationBoxFocusedForm, delete cur.translationBoxKeySelectedLang)
                 },
                 onShow: function() {
                     cur.translationBoxParams = [e, t, a], cur.translationsScreensList || (cur.translationsScreensList = []), delete cur.showedAttachScreenBox
@@ -403,7 +410,7 @@
                     var s = ge("translation_box_type_" + cur.translationBoxType);
                     s && setTimeout(switchBoxType.pbind(s, cur.translationBoxType), 1)
                 }
-                if (extend(cur, n.cur), _box_initAutosizeTexts(), e || _box_initValuesChangeEvents(), cur.translationsScreensList || (cur.translationsScreensList = []), cur.translationsScreensList.length || (cur.translationsScreensList = cur.translationsScreensListAll), _box_initScreens(n.isDeleted), _box_initExtendedForms(n.boxType), _box_restoreValues(), e) {
+                if (extend(cur, n.cur), _box_initAutosizeTexts(), e || _box_initValuesChangeEvents(), cur.isSuperTranslator && _box_initOptionsLanguages(), cur.translationsScreensList || (cur.translationsScreensList = []), cur.translationsScreensList.length || (cur.translationsScreensList = cur.translationsScreensListAll), _box_initScreens(n.isDeleted), _box_initExtendedForms(n.boxType), _box_restoreValues(), e) {
                     isVisible("translations_key_param_tab_history") && _box_initScrollHeight("translation_history_block");
                     var r;
                     hasClass("translations_box_edit_key", "tr_box_edit_key_simple") && (r = 120), _box_initOtherLangsScroll(r), _box_setValueSize(0)
@@ -944,7 +951,7 @@
             autocomplete: !0,
             selectedItems: cur.selectedLangs,
             indexkeys: [1, 2],
-            placeholder: getLang("tran_other_languages_placheloder"),
+            placeholder: getLang("tran_other_languages_placeholder"),
             dark: 1,
             width: 200
         })
@@ -1002,8 +1009,35 @@
     function setFocusedForm(e) {
         cur.translationBoxFocusedForm = e
     }
+
+    function updateKeySettingsOptions(e) {
+        var t = domData(e, "status"),
+            a = isVisible("translations_settings_languages_wrap");
+        t == _KEY_SETTINGS_STATUS_TRANSLATE_CUSTOM_LANGUAGES ? a || show("translations_settings_languages_wrap") : a && hide("translations_settings_languages_wrap")
+    }
+
+    function _box_initOptionsLanguages() {
+        var e = [],
+            t = domData(ge("translation_box_types"), "boxType");
+        each(cur.languagesList, function(t, a) {
+            e.push([a[0], replaceEntities(a[1]), a[2]])
+        }), cur.translationKeyLanguagesDD = new Dropdown(ge("translations_settings_languages_list"), e, {
+            multiselect: !0,
+            autocomplete: !0,
+            selectedItems: cur.translationBoxKeySelectedLang,
+            indexkeys: [1, 2],
+            placeholder: getLang("tran_other_languages_placeholder"),
+            dark: 1,
+            width: 1 == t ? 500 : 900
+        }), radioval("tr_key_settings_status") === _KEY_SETTINGS_STATUS_TRANSLATE_CUSTOM_LANGUAGES && show("translations_settings_languages_wrap")
+    }
     var TR_ADDRESS = "translation",
-        _caseDropdown, _caseTokenDropdown, _functionTypeDropdown, _keysLangSelectorDropdown, _translatorsDateSelector, _languagesSortDropdown, _translatorsSortDropdown, COOKIE_KEY = "remixinline_trans";
+        _caseDropdown, _caseTokenDropdown, _functionTypeDropdown, _keysLangSelectorDropdown, _translatorsDateSelector, _languagesSortDropdown, _translatorsSortDropdown, _KEY_SETTINGS_STATUS_TRANSLATE_TO_ALL = 0,
+        _KEY_SETTINGS_STATUS_DONT_TRANSLATE = 1,
+        _KEY_SETTINGS_STATUS_TRANSLATE_CUSTOM_LANGUAGES = 2,
+        _KEY_SETTINGS_STATUS_TRANSLATE_ONLY_CIS = 3,
+        _KEY_SETTINGS_STATUS_ONLY_MAIN_LANGUAGES = 4,
+        COOKIE_KEY = "remixinline_trans";
     exports.TR = {
         toggleExportWarning: toggleExportWarning,
         showTranslatorTranslations: showTranslatorTranslations,
@@ -1040,7 +1074,8 @@
         showDescriptionTooltip: showDescriptionTooltip,
         insertSpecSymbol: insertSpecSymbol,
         removeFocusedForm: removeFocusedForm,
-        setFocusedForm: setFocusedForm
+        setFocusedForm: setFocusedForm,
+        updateKeySettingsOptions: updateKeySettingsOptions
     }
 }(window);
 try {

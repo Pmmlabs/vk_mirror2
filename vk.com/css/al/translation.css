@@ -542,6 +542,15 @@ i i.untranslated {
     right: 20px
 }
 
+.tr_box_edit_key .tr_key_settings_option {
+    margin-right: 8px;
+    float: left
+}
+
+.tr_box_edit_key .tr_key_settings_languages_list {
+    margin-top: 10px
+}
+
 .tr_export_warning {
     line-height: 18px;
     margin-bottom: 30px

@@ -5083,7 +5083,8 @@ div.submit_post_field[contenteditable=true]>p {
 
 .detected_tags_container {
     margin-top: 15px;
-    line-height: 19px
+    line-height: 19px;
+    overflow: hidden
 }
 
 .detected_tag {
@@ -5150,6 +5151,10 @@ div.submit_post_field[contenteditable=true]>p {
     width: 18px;
     height: 7px;
     display: inline-block
+}
+
+.originality_post_link {
+    float: right
 }
 
 .page_info_score {
