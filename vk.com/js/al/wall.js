@@ -183,7 +183,9 @@ var FullWall = {
     },
     repliesSummary: function(e) {
         var o = ge("fw_summary");
-        o && (o.innerHTML = e ? getLang("wall_n_replies", e) : getLang("wall_no_replies"), show(o.parentNode))
+        o && (o.innerHTML = e ? getLang("wall_n_replies", e) : getLang("wall_no_replies"), show(o.parentNode), Likes.update("wall" + cur.oid + "_" + cur.pid, {
+            comment_num: e
+        }))
     },
     addTetaTet: function(e, o) {
         var l = {

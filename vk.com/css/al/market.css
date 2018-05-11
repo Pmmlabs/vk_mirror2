@@ -1179,13 +1179,12 @@
 }
 
 .market_item_footer {
-    margin: 13px auto 0;
+    margin: 0 auto;
     width: 670px
 }
 
 .market_item_footer_info {
-    padding: 0 0 12px;
-    margin: 0 0 11px;
+    margin: 0 0 13px;
     border-bottom: 1px solid #e7e8ec
 }
 
@@ -3001,4 +3000,12 @@
 .page_block_header .flat_button.market_shop_balance_info {
     margin-top: 12px;
     line-height: 15px
+}
+
+.market_item_footer_info .like_wrap {
+    padding: 0
+}
+
+.market_item_footer_info .like_cont {
+    border: 0
 }

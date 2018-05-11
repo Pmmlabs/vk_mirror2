@@ -377,7 +377,9 @@ var Feed = {
                         onclick: wall.openNewComments.pbind(r)
                     }), j.parentNode.insertBefore(q, j.nextSibling)), q.innerHTML = getLang("wall_x_new_replies_more", Math.min(100, I)), q.newCnt = I
                 } else re("reply_link" + r), show(A, j), V = !0;
-                r.split("_")[0] == vk.id && cur.feedUnreadCount++, f || (f = se(D)), j.appendChild(f), feed.needScrollPost(t, V ? f : q) && (c += i.offsetHeight - F), V && nodeUpdated(f), Wall.repliesSideSetup(r), Wall.updateMentionsIndex();
+                r.split("_")[0] == vk.id && cur.feedUnreadCount++, f || (f = se(D)), j.appendChild(f), feed.needScrollPost(t, V ? f : q) && (c += i.offsetHeight - F), V && nodeUpdated(f), Wall.repliesSideSetup(r), Wall.updateMentionsIndex(), Likes.update("wall" + r, {
+                    comment_num: e[13]
+                });
                 break;
             case "del_reply":
                 if (!cur.wallMyDeleted[r] && i) {
@@ -387,12 +389,14 @@ var Feed = {
                 }
                 break;
             case "view_post":
-                Wall.likeUpdate(!1, r, 0, Wall.formatCount(intval(e[3])), void 0, void 0, 1);
+                Likes.update("wall" + r, {
+                    views_num: Wall.formatCount(intval(e[3]))
+                });
                 break;
             case "like_post":
             case "like_reply":
                 if (!i) break;
-                var z = "like_reply" == s ? r.replace("_", "_wall_reply") : r,
+                var z = "like_reply" == s ? "wall_reply" + r : r,
                     G = i && domByClass(i, "_like_wrap"),
                     K = i && domByClass(i, "_share_wrap");
                 wall.likeFullUpdate(G, z, {

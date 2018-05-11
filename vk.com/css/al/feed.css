@@ -983,16 +983,6 @@
     overflow: hidden
 }
 
-.feedback_footer .like_wrap {
-    position: absolute;
-    right: 20px;
-    visibility: hidden
-}
-
-.feedback_footer .like_count {
-    display: none
-}
-
 .feedback_date {
     color: #939393;
     padding-right: 20px;

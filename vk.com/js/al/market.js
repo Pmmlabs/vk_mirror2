@@ -703,27 +703,7 @@ var Market = {
             for (var r = 1; r < cur.mkOptions.photos.length && 5 >= r; r++) vkImage().src = cur.mkOptions.photos[r].thumb_x;
             wkcur._hide.push(function() {
                 removeEvent(domPN(ge("market_item_photo")), "click")
-            }), geByClass1("wall_post_more", "market_item_description") && setStyle("market_item_description", "cursor", "pointer"), cur.mkOptions.ddActions && (cur.mkActionsDD = new InlineDropdown("market_item_actions", {
-                items: cur.mkOptions.ddActions,
-                withArrow: !0,
-                keepTitle: !0,
-                autoShow: !0,
-                autoHide: 300,
-                sublists: vk.id != cur.mkOptions.itemOwnerId ? {
-                    _onReport: {
-                        items: cur.mkOptions.reportReasons,
-                        onSelect: function(e) {
-                            return Market.reportFromDD(cur.mkOptions.reportHash, e), !0
-                        }
-                    }
-                } : {},
-                onSelect: function(e) {
-                    Market[e]()
-                }
-            }), isArray(cur.mkOptions.ddObjects) && (cur.marketObjDD = new Dropdown(ge("market_shop_add_to_cart_obj"), cur.mkOptions.ddObjects, {
-                big: 1,
-                width: 270
-            }))), WkView.updateSize()
+            }), geByClass1("wall_post_more", "market_item_description") && setStyle("market_item_description", "cursor", "pointer"), WkView.updateSize()
         },
         switchPhoto: function(e, t) {
             if (Market.outPhotoThumb(), void 0 === e || e === !1) e = cur.mkOptions.photoIndex + 1, e >= cur.mkOptions.photos.length && (e = 0);
@@ -934,8 +914,7 @@ var Market = {
                 for (ge("market_reply_form") && addClass(c, "reply_replieable"); current && WkView.cmp(current.id, c.id) > 0;) current = domPS(current);
                 current && !WkView.cmp(current.id, c.id) ? (i.replaceChild(c, current), current = c) : (current && domNS(current) ? (i.insertBefore(c, domNS(current)), ++cur.mkOptions.commCount) : !current && domFC(i) ? r === !0 ? (--cur.mkOptions.commShown, a.removeChild(c)) : i.insertBefore(c, domFC(i)) : i.appendChild(c), ++cur.mkOptions.commShown)
             }
-            o && s && (wkLayerWrap.scrollTop += getXY(s, !0)[1] - n), extend(cur.mkOptions.reply_names, t),
-                window.updateWndVScroll && updateWndVScroll(), Market.updateComms()
+            o && s && (wkLayerWrap.scrollTop += getXY(s, !0)[1] - n), extend(cur.mkOptions.reply_names, t), window.updateWndVScroll && updateWndVScroll(), Market.updateComms()
         },
         commSaved: function(e) {
             var t = ge("market_comments_wrap"),
@@ -1850,7 +1829,7 @@ var Market = {
                 });
                 this.cont.appendChild(o), this.resultList = geByClass("result_list", o)[0], this.resultListShadow = geByClass("result_list_shadow", o)[0], hide(this.resultList, this.resultListShadow), browser.chrome ? this.resultList.style.opacity = 1 : browser.safari || setStyle(this.resultListShadow, "top", browser.mozilla ? 0 : browser.msie && browser.version < 8 ? 0 : -1), this.resultList.style.width = this.resultListShadow.style.width = o.style.width = getSize(e)[0] + "px", this.onShowCallback = t ? t.onShow : !1, this.initSelect(t), cur.indexTags = new vkIndexer(cur.tagsList, function(e) {
                     return e[1]
-                }), addEvent(e, "keyup click mouseup", r.inputUpHandler), addEvent(document, "click", r.documentClick), addEvent(e, "keypress keydown", r.inputDownHandler);
+                }), addEvent(e, "keyup click mouseup", r.inputUpHandler), addEvent(document, "click", r.documentClick), addEvent(e, "keypress keydown", r.inputDownHandler)
             }
         },
         inputUpHandler: function(e) {

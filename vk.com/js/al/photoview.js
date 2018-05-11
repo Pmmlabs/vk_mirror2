@@ -546,71 +546,79 @@ var Photoview = {
                     c += '<div class="pv_author_block clear_fix">';
                     var u = "";
                     "NA" != p.author && (u = p.author), u && (p.author_href && (c += '<a class="pv_author_img fl_l" href="' + p.author_href + '">'), c += '<div class="ow_ava ow_ava_comm" style="background-image: url(\'' + p.author_photo + "');\"></div>", p.author_href && (c += "</a>")), c += '        <div class="pv_author_info">           <div id="pv_author_name">' + u + '</div>           <div class="pv_date_info_wrap">             <span id="pv_date_info">' + p.date + "</span>           </div>         </div>       </div>", c += getProgressHtml("pv_progress");
-                    var d = p.liked ? "pv_liked" : "",
-                        l = cur.pvCommsLikes[p.id],
-                        h = l[0],
-                        g = l[1];
-                    c += '<div id="pv_like" class="pv_like _like_wrap ' + d + '" onmouseover="Photoview.likeOver(this)" onclick="Photoview.like();">         <i class="pv_like_icon _icon"></i>         <span class="pv_like_link _link">' + getLang("photos_i_like") + '</span>         <span class="pv_like_count _count">' + (g || "") + '</span>         <span class="blind_label" tabindex="0" role="link" onclick="Photoview.likesShowList(this)">' + getLang("photos_show_likes_list") + "</span>       </div>";
-                    var _ = 1 & p.actions.edit || p.desc;
-                    if (_) var m = (p.desc, "<div" + (1 & p.actions.edit ? ' class="pv_can_edit pv_desc_cont" onclick="Photoview.editInline(event)"' + (p.desc ? ' onmouseover=""' : "") : ' class="pv_cant_edit pv_desc_cont"') + ">" + (p.desc || '<span class="pv_desc_edit">' + getLang("photos_edit_desc") + "</span>") + "</div>");
-                    c += p.was_edited ? '<div id="pv_edit_info" class="pv_right_block">' + getLang("photos_was_edited") + "</div>" : "", c += '<div id="pv_desc" class="pv_right_block" style="' + (_ ? "" : "display: none") + '">' + m + "</div>", c += '<div id="pv_microdata">' + (p.microdata_html ? p.microdata_html : "") + (p.microdata_preview_button ? p.microdata_preview_button : "") + "</div>", p.microdata_html && shortCurrency();
-                    var w = p.tagshtml ? "" : ' style="display: none"';
-                    c += '<div id="pv_tags"' + w + ' class="pv_right_block">' + getLang("photos_onthisphoto") + ": " + p.tagshtml + "</div>";
-                    var f = p.place ? '<span class="pv_place_label"></span> <a class="pv_place_a" id="pv_place_a" onclick="Photoview.showPlace()">' + p.place + "</a>" : "";
-                    c += '<div id="pv_place" class="pv_right_block">' + f + "</div>", c += h.tagName ? '<div id="pv_comments_place"></div>' : trim(h), cur.pvReplyForm && re(cur.pvReplyForm), cur.pvReplyForm = null, c += '<div id="pv_rotate"><form method="POST" target="pv_rotate_frame" name="pv_rotate_form" id="pv_rotate_form"></form></div></div>', cur.pvNarrow.innerHTML = "", Photoview.updateRightBlock(), cur.pvNarrow.innerHTML = c;
-                    var P = geByClass1("pv_closed_commments_placeholder");
-                    if (s || !p.actions.comm ? removeClass(P, "unshown") : p.reply_form && (addClass(P, "unshown"), p.replyFormEl = cur.pvReplyForm = p.replyFormEl || se(p.reply_form), cur.pvNarrowColumn.appendChild(cur.pvReplyForm), cur.onReplyFormSizeUpdate = cur.onMediaChanged = function(o) {
+                    var d = cur.pvCommsLikes[p.id],
+                        l = d[0],
+                        h = d[1];
+                    c += Likes.makeTemplate(p.likes_tpl, {
+                        object_raw: p.id,
+                        likes_count: h || "",
+                        liked: p.liked,
+                        share_count: p.shares || "",
+                        share_opts: {
+                            list: cur.pvListId,
+                            to: "mail"
+                        }
+                    });
+                    var g = 1 & p.actions.edit || p.desc;
+                    if (g) var _ = (p.desc, "<div" + (1 & p.actions.edit ? ' class="pv_can_edit pv_desc_cont" onclick="Photoview.editInline(event)"' + (p.desc ? ' onmouseover=""' : "") : ' class="pv_cant_edit pv_desc_cont"') + ">" + (p.desc || '<span class="pv_desc_edit">' + getLang("photos_edit_desc") + "</span>") + "</div>");
+                    c += p.was_edited ? '<div id="pv_edit_info" class="pv_right_block">' + getLang("photos_was_edited") + "</div>" : "", c += '<div id="pv_desc" class="pv_right_block" style="' + (g ? "" : "display: none") + '">' + _ + "</div>", c += '<div id="pv_microdata">' + (p.microdata_html ? p.microdata_html : "") + (p.microdata_preview_button ? p.microdata_preview_button : "") + "</div>", p.microdata_html && shortCurrency();
+                    var m = p.tagshtml ? "" : ' style="display: none"';
+                    c += '<div id="pv_tags"' + m + ' class="pv_right_block">' + getLang("photos_onthisphoto") + ": " + p.tagshtml + "</div>";
+                    var w = p.place ? '<span class="pv_place_label"></span> <a class="pv_place_a" id="pv_place_a" onclick="Photoview.showPlace()">' + p.place + "</a>" : "";
+                    c += '<div id="pv_place" class="pv_right_block">' + w + "</div>", c += l.tagName ? '<div id="pv_comments_place"></div>' : trim(l), cur.pvReplyForm && re(cur.pvReplyForm), cur.pvReplyForm = null, c += '<div id="pv_rotate"><form method="POST" target="pv_rotate_frame" name="pv_rotate_form" id="pv_rotate_form"></form></div></div>', cur.pvNarrow.innerHTML = "", Photoview.updateRightBlock(), cur.pvNarrow.innerHTML = c;
+                    var f = geByClass1("pv_closed_commments_placeholder");
+                    if (s || !p.actions.comm ? removeClass(f, "unshown") : p.reply_form && (addClass(f, "unshown"), p.replyFormEl = cur.pvReplyForm = p.replyFormEl || se(p.reply_form), cur.pvNarrowColumn.appendChild(cur.pvReplyForm), cur.onReplyFormSizeUpdate = cur.onMediaChanged = function(o) {
                             cur.pvShown && Photoview.updateRightBlock()
                         }, cur.onReplyFormFocus = function() {
                             Photoview.updateRightBlock(!0), cur.pvNarrowScrollbar.scrollBottom(0, !0)
-                        }), h.tagName) {
-                        each(geByClass("page_gif_loading", h), function() {
+                        }), l.tagName) {
+                        each(geByClass("page_gif_loading", l), function() {
                             Page.hideGif(this, !1)
                         });
-                        var T = ge("pv_comments_place");
-                        domPN(T).replaceChild(h, T)
+                        var P = ge("pv_comments_place");
+                        domPN(P).replaceChild(l, P)
                     }
                     if (cur.pvNarrowScrollbar = new uiScroll(cur.pvNarrow, {
                             global: !0
                         }), p.reply_form) {
-                        var b = geByClass1("reply_field", cur.pvNarrowColumn);
-                        data(b, "send", Photoview.sendComment), placeholderInit(b, {
+                        var T = geByClass1("reply_field", cur.pvNarrowColumn);
+                        data(T, "send", Photoview.sendComment), placeholderInit(T, {
                             editable: 1
                         })
                     }
                     cur.editing = !1, Photoview.updateRightBlock()
                 }
                 v = v || "", cur.pvAlbumName.innerHTML = v, toggle(cur.pvBottomInfo, !cur.pvIsLightMode || cur.pvShowBottomActions || v);
-                var L = [];
-                if (vk.id && L.push('<a id="pv_share" onclick="Photoview.sendPhoto()">' + getLang("photos_share_from_view") + "</a>"), !p.taginfo && p.actions.tag && p.tags[0] < cur.pvMaxTags && L.push("<a id=\"pv_tag_link\" onclick=\"stManager.add(['photo_tagger_mode.js', 'tagger.css', 'tagger.js'], function() { Phototag.startTag(); })\">" + getLang("photos_tagperson") + "</a>"), p.actions.del && L.push('<a id="pv_delete" onclick="Photoview.deletePhoto()">' + getLang("photos_pv_act_delete") + "</a>"), p.actions.save && L.push('<a id="pv_save_to_me" onclick="Photoview.savePhoto()">' + getLang("photos_pv_act_save") + "</a>"), cur.pvShowBottomActions && !n) {
+                var b = [];
+                if (!p.taginfo && p.actions.tag && p.tags[0] < cur.pvMaxTags && b.push("<a id=\"pv_tag_link\" onclick=\"stManager.add(['photo_tagger_mode.js', 'tagger.css', 'tagger.js'], function() { Phototag.startTag(); })\">" + getLang("photos_tagperson") + "</a>"), p.actions.del && b.push('<a id="pv_delete" onclick="Photoview.deletePhoto()">' + getLang("photos_pv_act_delete") + "</a>"), p.actions.save && b.push('<a id="pv_save_to_me" onclick="Photoview.savePhoto()">' + getLang("photos_pv_act_save") + "</a>"), cur.pvShowBottomActions && !n) {
                     var C = [],
-                        y = [];
-                    if (p.actions.spam && (C.push(["spam", getLang("photos_report"), "", "Photoview.showSpamActions()"]), C.push("sep"), y = cur.pvReasons), p.actions.forbid) {
-                        var S = Photoview._getViewedPhotoFullId().split("_"),
-                            x = S[0],
-                            I = S[1],
-                            k = 1;
-                        C.push(["atfr", getLang("reports_atfr"), "sfof(" + x + ", " + I + ", " + k + ")"])
+                        L = [];
+                    if (p.actions.spam && (C.push(["spam", getLang("photos_report"), "", "Photoview.showSpamActions()"]), C.push("sep"), L = cur.pvReasons), p.actions.forbid) {
+                        var y = Photoview._getViewedPhotoFullId().split("_"),
+                            S = y[0],
+                            x = y[1],
+                            I = 1;
+                        C.push(["atfr", getLang("reports_atfr"), "sfof(" + S + ", " + x + ", " + I + ")"])
                     }
                     if (p.actions.edit && (p.pe_type & Photoview.PE_V1 || p.pe_type & Photoview.PE_V2) && C.push(["pe", getLang("photos_pv_act_photoeditor"), "Photoview.openEditor()"]), vk.id && p.pe_type & Photoview.PE_V3 && isPhotoeditor3Available() && !inArray(nav.objLoc[0], ["support", "helpdesk"]) && C.push(["spe", getLang("global_pe_edit"), "Photoview.openStickersEditor()"]), p.actions.rot && (C.push(["rotate_ccw", getLang("photos_pv_act_rotate_ccw"), "Photoview.rotatePhoto(-1)"]), C.push(["rotate_cw", getLang("photos_pv_act_rotate_cw"), "Photoview.rotatePhoto(1)"]), C.push("sep")), p.actions.place && C.push(["place", getLang("photos_edit_add_place"), "Photoview.editPlace()"]), p.actions.prof && C.push(["to_profile", getLang("photos_pv_act_to_avatar"), "showBox('al_page.php', {act: 'owner_photo_edit', photo: '" + p.id + "'}, {stat: ['owner_photo.css', 'owner_photo.js', 'tagger.css', 'tagger.js']})"]), p.actions.dialog && C.push(["to_dialog", getLang("photos_load_to_dialog"), "showBox('al_page.php', {act: 'owner_photo_edit', photo: '" + p.id + "', oid: " + p.actions.dialog + ", list: '" + cur.pvListId + "'}, {stat: ['owner_photo.css', 'owner_photo.js', 'tagger.css', 'tagger.js']});"]), p.actions.move) {
                         var D = p.id.split("_")[0];
                         C.push(["move_to", getLang("photos_pv_act_move_to_album"), "showBox('al_photos.php', {act: 'a_move_to_album_box', photo_id: '" + p.id + "', owner_id: " + D + "}, {stat: ['page.js', 'page.css', 'wide_dd.js', 'wide_dd.css']})"]), p.actions.cover && C.push(["as_title", getLang("photos_album_to_cover"), "ajax.post('al_photos.php', {act: 'a_set_as_album_title', photo: '" + p.id + "', hash: '" + p.hash + "'}, {onDone: showDoneBox})"])
                     }
                     var A = "";
-                    each(y, function(o, e) {
+                    each(L, function(o, e) {
                         var t = "Photoview.report('" + p.hash + "', '" + e[0] + "')";
                         A += '<div onclick="' + t + '" class="pv_more_act_item pv_more_spam_act_item" id="pv_more_spam_act_' + e[0] + '">' + e[1] + "</div>"
                     }), A = A ? '<div class="pv_more_acts_hidden">' + A + "</div>" : "";
-                    var B = "";
+                    var k = "";
                     each(C, function(o, e) {
-                        B += "sep" == e ? '<div class="pv_more_act_item_sep"></div>' : '<div class="pv_more_act_item" onmouseover="' + (e[3] || "") + '" onclick="' + (e[2] || "") + '" id="pv_more_act_' + e[0] + '">' + e[1] + "</div>"
-                    }), B += '<a class="pv_more_act_item" id="pv_more_act_download" target="_blank" href="' + Photoview.genData(p, "w").src + '">' + getLang("photos_pv_act_open_original") + "</a>", B = '<div class="pv_more_acts">' + B + "</div>", C.length ? (C = JSON.stringify(C), C = C.replace(/\"/g, "&quot;"), L.push('<a class="pv_actions_more" data-items="' + C + '">' + getLang("photos_actions_more") + "</a>")) : inArray(nav.objLoc[0], ["support", "helpdesk"]) && L.push('<a id="pv_more_act_download" target="_blank" href="' + Photoview.genData(p, "w").src + '">' + getLang("photos_pv_act_open_original") + "</a>"), L = L.join('<span class="divider"></span>'), cur.pvIsLightMode && (L += '<div id="pv_rotate" style="display:none;"><form method="POST" target="pv_rotate_frame" name="pv_rotate_form" id="pv_rotate_form"></form></div></div>'), cur.pvBottomActions.innerHTML = L;
-                    var E = geByClass1("pv_actions_more");
-                    E && (cur.pvMoreActionsTooltip = new ElementTooltip(E, {
+                        k += "sep" == e ? '<div class="pv_more_act_item_sep"></div>' : '<div class="pv_more_act_item" onmouseover="' + (e[3] || "") + '" onclick="' + (e[2] || "") + '" id="pv_more_act_' + e[0] + '">' + e[1] + "</div>"
+                    }), k += '<a class="pv_more_act_item" id="pv_more_act_download" target="_blank" href="' + Photoview.genData(p, "w").src + '">' + getLang("photos_pv_act_open_original") + "</a>", k = '<div class="pv_more_acts">' + k + "</div>", C.length ? (C = JSON.stringify(C), C = C.replace(/\"/g, "&quot;"), b.push('<a class="pv_actions_more" data-items="' + C + '">' + getLang("photos_actions_more") + "</a>")) : inArray(nav.objLoc[0], ["support", "helpdesk"]) && b.push('<a id="pv_more_act_download" target="_blank" href="' + Photoview.genData(p, "w").src + '">' + getLang("photos_pv_act_open_original") + "</a>"), b = b.join('<span class="divider"></span>'), cur.pvIsLightMode && (b += '<div id="pv_rotate" style="display:none;"><form method="POST" target="pv_rotate_frame" name="pv_rotate_form" id="pv_rotate_form"></form></div></div>'), cur.pvBottomActions.innerHTML = b;
+                    var B = geByClass1("pv_actions_more");
+                    B && (cur.pvMoreActionsTooltip = new ElementTooltip(B, {
                         id: "pv_more_acts_tt",
                         forceSide: "top",
                         elClassWhenShown: "pv_more_shown",
-                        content: A + B,
+                        content: A + k,
                         offset: [0, -5],
                         autoShow: !0,
                         noHideOnClick: !0
@@ -624,12 +632,12 @@ var Photoview = {
                     pvTags: ge("pv_tags"),
                     pvEditing: !1,
                     pvProgress: ge("pv_progress")
-                }), p.deleted || !p.author ? (cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"),
-                    isArray(p.deleted) && Photoview.toggleTopInfoPanel(p.deleted[0], p.deleted[1]), n || Photoview.toggleDeletedState(!0)) : p.taginfo ? (cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"), Photoview.toggleTopInfoPanel(p.taginfo, '        <button class="flat_button" id="pv_confirm_tag" onclick="Photoview.confirmTag(' + p.tagid + ', this)">' + getLang("photos_confirm_tag") + '</button>         <button class="flat_button secondary black" id="pv_delete_tag" onclick="Photoview.deleteTag(' + p.tagid + ', this)">' + getLang("photos_delete_tag") + "</button>       </div>"), show(cur.pvCommentsData)) : (Photoview.toggleTopInfoPanel(!1), Photoview.toggleDeletedState(!1)), (cur.pvOptions || {}).scroll && cur.pvNarrowScrollbar && cur.pvNarrowScrollbar.scrollTop(cur.pvOptions.scroll), cur.pvBodyScrollTop = bodyNode.scrollTop, setTimeout(function() {
+                }), p.deleted || !p.author ? (cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"), isArray(p.deleted) && Photoview.toggleTopInfoPanel(p.deleted[0], p.deleted[1]), n || Photoview.toggleDeletedState(!0)) : p.taginfo ? (cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"), Photoview.toggleTopInfoPanel(p.taginfo, '        <button class="flat_button" id="pv_confirm_tag" onclick="Photoview.confirmTag(' + p.tagid + ', this)">' + getLang("photos_confirm_tag") + '</button>         <button class="flat_button secondary black" id="pv_delete_tag" onclick="Photoview.deleteTag(' + p.tagid + ', this)">' + getLang("photos_delete_tag") + "</button>       </div>"),
+                    show(cur.pvCommentsData)) : (Photoview.toggleTopInfoPanel(!1), Photoview.toggleDeletedState(!1)), (cur.pvOptions || {}).scroll && cur.pvNarrowScrollbar && cur.pvNarrowScrollbar.scrollTop(cur.pvOptions.scroll), cur.pvBodyScrollTop = bodyNode.scrollTop, setTimeout(function() {
                     void 0 !== cur.pvBodyScrollTop && (bodyNode.scrollTop = cur.pvBodyScrollTop, delete cur.pvBodyScrollTop)
                 }, 0), Photoview.updateVerticalPosition();
-                var F = domFC(cur.pvPhoto);
-                cur.pvPhotoTags ? cur.pvPhotoTags.reload(F) : vk.id && (cur.pvPhotoTags = new PhotoTags(F, cur.pvPhotoTagsContainer)), setTimeout(Photoview.afterShow, 2)
+                var E = domFC(cur.pvPhoto);
+                cur.pvPhotoTags ? cur.pvPhotoTags.reload(E) : vk.id && (cur.pvPhotoTags = new PhotoTags(E, cur.pvPhotoTagsContainer)), setTimeout(Photoview.afterShow, 2)
             }
         },
         toggleTopInfoPanel: function(o, e) {
@@ -1327,11 +1335,11 @@ var Photoview = {
                 }), Photoview.updateRightBlock(), Photoview.updateVerticalPosition(), cur.pvPhWidth = d, cur.pvPhHeight = l, Photoview.updateNavBtnsLeftThreshold();
                 var T = getXY(cur.pvCont),
                     b = getSize(cur.pvCont),
-                    L = T[1] + b[1],
-                    C = T[0] + b[0],
+                    C = T[1] + b[1],
+                    L = T[0] + b[0],
                     y = 60,
                     S = 85,
-                    x = S > i - C || y > p - L;
+                    x = S > i - L || y > p - C;
                 Photoview.toggleFastChats(!x)
             }
         },
@@ -1513,100 +1521,10 @@ var Photoview = {
                     n = domByClass(s.container, "_value"),
                     c = domByClass(s.container, "_content"),
                     u = domByClass(s.container, "_title");
-                t && u && val(u, t), s && (s.likeInvalidated = !0), n && (n.value = e), animateCount(p, e), toggleClass(i, "pv_liked", o), toggleClass(i, "no_likes", !e), toggleClass(c, "me_hidden", !o), e ? !s.el || isVisible(s.container) || t || tooltips.show(s.el, extend(v, {
-                    showdt: 0
-                })) : s.el && s.hide()
-            }
-        },
-        like: function() {
-            if (vk.id) {
-                var o = cur.pvListId,
-                    e = cur.pvIndex,
-                    t = cur.pvData[o][e];
-                if (cur.pvLikeInProgress = cur.pvLikeInProgress || {}, !cur.pvLikeInProgress[t.id]) {
-                    cur.pvLikeInProgress[t.id] = !0;
-                    var r = t.liked = !t.liked;
-                    cur.pvCommsLikes[t.id][1] += r ? 1 : -1, ajax.post("like.php", {
-                        act: "a_do_" + (r ? "" : "un") + "like",
-                        object: "photo" + t.id,
-                        hash: t.hash,
-                        from: "photo_viewer"
-                    }, {
-                        onDone: function(a, i) {
-                            return cur.pvLikeInProgress[t.id] -= 1, cur.pvListId == o && cur.pvIndex == e ? Photoview.likeUpdate(r, a, i) : (cur.pvCommsLikes[t.id][1] = a, void(t.liked = r))
-                        }
-                    }), Photoview.likeUpdate(r, cur.pvCommsLikes[t.id][1])
-                }
-            }
-        },
-        likeShare: function(o) {
-            if (vk.id) {
-                var e = cur.pvListId,
-                    t = cur.pvIndex,
-                    r = cur.pvData[e][t],
-                    a = ge("like_share_photo" + r.id),
-                    i = isChecked(a);
-                checkbox(a), ajax.post("like.php", {
-                    act: "a_do_" + (i ? "un" : "") + "publish",
-                    object: "photo" + r.id,
-                    list: e,
-                    hash: o,
-                    from: "photo_viewer"
-                }, {
-                    onDone: function(o, a) {
-                        return cur.pvListId == e && cur.pvIndex == t ? Photoview.likeUpdate(!0, o, a) : (cur.pvCommsLikes[r.id][1] = o, void(r.liked = !0))
-                    }
-                }), Photoview.likeUpdate(!0, cur.pvCommsLikes[r.id][1] + (r.liked ? 0 : 1))
-            }
-        },
-        likeOver: function(o) {
-            var e = cur.pvListId,
-                t = cur.pvIndex,
-                r = cur.pvData[e][t],
-                a = domByClass(o, "_icon");
-            if (a && !cur.viewAsBox) {
-                var i = 41,
-                    p = getXY(o)[0],
-                    s = getXY(a)[0],
-                    v = getSize(a, !0)[0],
-                    n = s + v / 2 - p - i;
-                showTooltip(o, {
-                    url: "like.php",
-                    params: {
-                        act: "a_get_stats",
-                        object: "photo" + r.id,
-                        list: e
-                    },
-                    slide: 15,
-                    shift: [-n, 6],
-                    ajaxdt: 100,
-                    showdt: 400,
-                    hidedt: 200,
-                    typeClass: "like_tt",
-                    className: "pv_like_tt",
-                    dir: "auto"
-                })
-            }
-        },
-        likeOut: function() {
-            var o = cur.pvListId,
-                e = cur.pvIndex,
-                t = cur.pvData[o][e];
-            t.liked || setTimeout(animate.pbind(cur.pvLikeIcon, {
-                opacity: .4
-            }, 200, !1), 1)
-        },
-        likesShowList: function(o) {
-            var e = domPN(o),
-                t = domByClass(e, "_icon"),
-                r = cur.pvCurPhoto;
-            if (t && !cur.viewAsBox && r) {
-                var a = "photo" + r.id;
-                showWiki({
-                    w: "likes/" + clean(a)
-                }, !1, !1, {
-                    queue: 1
-                })
+                t && u && val(u, t), s && (s.likeInvalidated = !0), n && (n.value = e), animateCount(p, e), toggleClass(i, "pv_liked", o), toggleClass(i, "no_likes", !e), toggleClass(c, "me_hidden", !o),
+                    e ? !s.el || isVisible(s.container) || t || tooltips.show(s.el, extend(v, {
+                        showdt: 0
+                    })) : s.el && s.hide()
             }
         },
         tagOver: function(o) {

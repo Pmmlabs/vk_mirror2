@@ -28,203 +28,12 @@
         return e.d(n, "a", n), n
     }, e.o = function(t, e) {
         return Object.prototype.hasOwnProperty.call(t, e)
-    }, e.p = "", e(e.s = 176)
+    }, e.p = "", e(e.s = 10)
 }({
-    118: function(t, e, n) {
-        "use strict";
-
-        function i(t, e, n, i) {
-            if (c[t]) {
-                if (e instanceof HTMLMediaElement) {
-                    var r = new AudioContext;
-                    e = r.createMediaElementSource(e), e.connect(r.destination)
-                }
-                return new c[t](e, n, i)
-            }
-        }
-        n.r(e), n.d(e, "createVisualization", function() {
-            return i
-        });
-        var r = n(269),
-            o = n(521),
-            s = n(594),
-            a = n(336),
-            c = {
-                wave: r.Wave,
-                frequency: o.Frequency,
-                time: s.Time,
-                pulse: a.Pulse
-            }
+    10: function(t, e, n) {
+        t.exports = n(189)
     },
-    126: function(t, e, n) {
-        "use strict";
-        n.r(e);
-        var i = n(271),
-            r = n(296),
-            o = n(198),
-            s = n(118),
-            a = i.Promise,
-            c = {
-                isSupport: function() {
-                    return !(!window.AudioContext || !(navigator.getUserMedia || navigator.mediaDevices && navigator.mediaDevices.getUserMedia))
-                },
-                getAvailableMicrophones: function() {
-                    return r.AudioRecorder.isSupport() ? r.AudioRecorder.getAvailableMicrophones() : a.resolve([])
-                },
-                newRecorder: function() {
-                    return window.Promise || (window.Promise = a), new r.AudioRecorder
-                },
-                resample: function(t, e, n) {
-                    return Object(o.fastResample)(t, e, n)
-                },
-                createVisualization: s.createVisualization
-            };
-        window.Speech = c;
-        try {
-            stManager.done("speech.js")
-        } catch (u) {}
-    },
-    176: function(t, e, n) {
-        t.exports = n(126)
-    },
-    191: function(t, e, n) {
-        "use strict";
-
-        function i(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-        n.r(e), n.d(e, "PeakAlgorithm", function() {
-            return r
-        });
-        var r = function() {
-            function t() {
-                i(this, t), this.clear()
-            }
-            return t.prototype.push = function(t) {
-                this._max = Math.max(this._max, Math.abs(t))
-            }, t.prototype.get = function() {
-                return this._max
-            }, t.prototype.clear = function() {
-                this._max = 0
-            }, t
-        }()
-    },
-    198: function(t, e, n) {
-        "use strict";
-
-        function i(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-
-        function r(t, e) {
-            var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : "peak";
-            return new u({
-                srcSampleRate: t.length,
-                dstSampleRate: e,
-                normalizeAlgorithm: n,
-                truncateTo: 0
-            }).push(t)
-        }
-        n.r(e), n.d(e, "Resampler", function() {
-            return u
-        }), n.d(e, "fastResample", function() {
-            return r
-        });
-        var o = n(577),
-            s = n(191),
-            a = n(299),
-            c = {
-                avg: o.AverageAlgorithm,
-                peak: s.PeakAlgorithm,
-                quad: a.QuadAlgorithm
-            },
-            u = function() {
-                function t(e) {
-                    i(this, t), this._normalizeAlgorithm = !1, c[e.normalizeAlgorithm] && (this._normalizeAlgorithm = new c[e.normalizeAlgorithm]), this._srcSampleRate = parseInt(e.srcSampleRate || 0), this._dstSampleRate = parseInt(e.dstSampleRate || 0), this._truncateTo = 1, "undefined" != typeof e.truncateTo && (this._truncateTo = e.truncateTo), this._dstSampleRate > 0 ? this._sampleRate = this._srcSampleRate / this._dstSampleRate : this._sampleRate = 0, c[e.algorithm] || (e.algorithm = "peak"), this._algorithm = new c[e.algorithm], this._sampleCount = 0, this._data = []
-                }
-                return t.prototype.push = function(t) {
-                    if (this._sampleRate <= 0) return [];
-                    for (var e = [], n = void 0, i = 0; i < t.length; i++)
-                        if (this._truncateTo > 0 && (t[i] = Math.min(this._truncateTo, Math.abs(t[i]))), this._sampleCount += 1, this._sampleCount >= this._sampleRate)
-                            for (; this._sampleCount >= this._sampleRate;) this._sampleCount -= this._sampleRate, this._sampleCount <= .8 && this._algorithm.push(t[i]), n = this._algorithm.get(), e.push(n), this._normalizeAlgorithm && this._normalizeAlgorithm.push(n), this._algorithm.clear(), this._sampleCount > .2 && this._algorithm.push(t[i]);
-                        else this._algorithm.push(t[i]);
-                    if (this._normalizeAlgorithm) {
-                        var r = this._normalizeAlgorithm.get();
-                        if (this._normalizeAlgorithm.clear(), r > 0)
-                            for (var o = 0; o < e.length; o++) e[o] = e[o] / r, this._truncateTo > 0 && (e[o] = Math.min(this._truncateTo, Math.abs(e[o])))
-                    }
-                    return e
-                }, t
-            }()
-    },
-    238: function(t, e) {
-        var n;
-        n = function() {
-            return this
-        }();
-        try {
-            n = n || Function("return this")() || (1, eval)("this")
-        } catch (i) {
-            "object" == typeof window && (n = window)
-        }
-        t.exports = n
-    },
-    269: function(t, e, n) {
-        "use strict";
-
-        function i(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-        n.r(e), n.d(e, "Wave", function() {
-            return s
-        });
-        var r = n(445),
-            o = {
-                blockWidth: 2,
-                spacing: 1,
-                visTime: 8,
-                color: "#fff"
-            },
-            s = function() {
-                function t(e, n, o) {
-                    i(this, t), this._accum = 0, this._source = e, this._canvas = n;
-                    var s = n.getBoundingClientRect();
-                    n.width = s.right - s.left, n.height = s.bottom - s.top, this._width = n.width, this._height = n.height, this._ratio = Object(r.canvasGetRatio)(n), this._ctx = n.getContext("2d"), this._options = o || {}, this._accumNode = this._createWaveNode(e)
-                }
-                return t.prototype._getOption = function(t) {
-                    return this._options[t] || o[t]
-                }, t.prototype._createWaveNode = function(t) {
-                    var e = this,
-                        n = parseInt(this._width / (this._getOption("blockWidth") + this._getOption("spacing"))),
-                        i = this._getOption("visTime") / n,
-                        r = 0,
-                        o = t.context.createScriptProcessor(2048, 1, 1);
-                    return o.onaudioprocess = function(t) {
-                        for (var n = t.inputBuffer.getChannelData(0), o = t.inputBuffer.duration / n.length, s = 0; s < n.length; s++) r += o, e._accum = Math.min(1, Math.max(e._accum, Math.abs(n[s]))), r > i && (++e.timeAccumIndex > e.timeAccumItems.length - 1 && (e.timeAccumIndex = 0), e.timeAccumItems[e.timeAccumIndex] = e._accum, e._accum = 0, r = 0)
-                    }, this.timeAccumItems = new Array(n), this.timeAccumIndex = 0, t.connect(o), o.connect(t.context.destination), o
-                }, t.prototype.destroy = function() {
-                    this.stop(), this._accumNode.disconnect(), this._source.connect(this._source.context.destination), this._node = null, this._canvas = null, this._source = null, this._ctx = null
-                }, t.prototype.start = function() {
-                    this._stopped = !1, this._draw()
-                }, t.prototype._draw = function() {
-                    var t = this;
-                    if (!this._stopped) {
-                        var e = this.timeAccumIndex + 1,
-                            n = 0,
-                            i = void 0,
-                            r = void 0;
-                        this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height), this._ctx.fillStyle = this._getOption("color");
-                        for (var o = 0; o < this.timeAccumItems.length; o++, e++) e >= this.timeAccumItems.length && (e = 0), n = this.timeAccumItems[e] * (this._height - 2) + 2, i = o * (this._getOption("blockWidth") + this._getOption("spacing")), r = (this._height - n) / 2, this._ctx.fillRect(i * this._ratio, r * this._ratio, this._getOption("blockWidth") * this._ratio, n * this._ratio);
-                        window.requestAnimationFrame(function() {
-                            t._draw()
-                        })
-                    }
-                }, t.prototype.stop = function() {
-                    this._stopped = !0
-                }, t
-            }()
-    },
-    271: function(t, e, n) {
+    160: function(t, e, n) {
         (function(i, r) {
             var o;
             (function() {
@@ -295,7 +104,7 @@
 
                 function _() {
                     try {
-                        var t = n(660);
+                        var t = n(367);
                         return V = t.runOnLoop || t.runOnContext, p()
                     } catch (e) {
                         return d()
@@ -564,9 +373,204 @@
                     return gt
                 }.call(e, n, e, t), !(void 0 !== o && (t.exports = o)), vt()
             }).call(this)
-        }).call(this, n(665), n(238))
+        }).call(this, n(177), n(577))
     },
-    296: function(t, e, n) {
+    177: function(t, e) {
+        function n() {
+            throw new Error("setTimeout has not been defined")
+        }
+
+        function i() {
+            throw new Error("clearTimeout has not been defined")
+        }
+
+        function r(t) {
+            if (h === setTimeout) return setTimeout(t, 0);
+            if ((h === n || !h) && setTimeout) return h = setTimeout, setTimeout(t, 0);
+            try {
+                return h(t, 0)
+            } catch (e) {
+                try {
+                    return h.call(null, t, 0)
+                } catch (e) {
+                    return h.call(this, t, 0)
+                }
+            }
+        }
+
+        function o(t) {
+            if (p === clearTimeout) return clearTimeout(t);
+            if ((p === i || !p) && clearTimeout) return p = clearTimeout, clearTimeout(t);
+            try {
+                return p(t)
+            } catch (e) {
+                try {
+                    return p.call(null, t)
+                } catch (e) {
+                    return p.call(this, t)
+                }
+            }
+        }
+
+        function s() {
+            m && l && (m = !1, l.length ? d = l.concat(d) : _ = -1, d.length && a())
+        }
+
+        function a() {
+            if (!m) {
+                var t = r(s);
+                m = !0;
+                for (var e = d.length; e;) {
+                    for (l = d, d = []; ++_ < e;) l && l[_].run();
+                    _ = -1, e = d.length
+                }
+                l = null, m = !1, o(t)
+            }
+        }
+
+        function c(t, e) {
+            this.fun = t, this.array = e
+        }
+
+        function u() {}
+        var h, p, f = t.exports = {};
+        ! function() {
+            try {
+                h = "function" == typeof setTimeout ? setTimeout : n
+            } catch (t) {
+                h = n
+            }
+            try {
+                p = "function" == typeof clearTimeout ? clearTimeout : i
+            } catch (t) {
+                p = i
+            }
+        }();
+        var l, d = [],
+            m = !1,
+            _ = -1;
+        f.nextTick = function(t) {
+            var e = new Array(arguments.length - 1);
+            if (arguments.length > 1)
+                for (var n = 1; n < arguments.length; n++) e[n - 1] = arguments[n];
+            d.push(new c(t, e)), 1 !== d.length || m || r(a)
+        }, c.prototype.run = function() {
+            this.fun.apply(null, this.array)
+        }, f.title = "browser", f.browser = !0, f.env = {}, f.argv = [], f.version = "", f.versions = {}, f.on = u, f.addListener = u, f.once = u, f.off = u, f.removeListener = u, f.removeAllListeners = u, f.emit = u, f.prependListener = u, f.prependOnceListener = u, f.listeners = function(t) {
+            return []
+        }, f.binding = function(t) {
+            throw new Error("process.binding is not supported")
+        }, f.cwd = function() {
+            return "/"
+        }, f.chdir = function(t) {
+            throw new Error("process.chdir is not supported")
+        }, f.umask = function() {
+            return 0
+        }
+    },
+    179: function(t, e, n) {
+        "use strict";
+
+        function i(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        }
+        n.r(e), n.d(e, "Frequency", function() {
+            return o
+        });
+        var r = {
+                blockWidth: 3,
+                spacing: 2,
+                color: "#6287AE"
+            },
+            o = function() {
+                function t(e, n, r) {
+                    i(this, t), this._source = e, this._canvas = n, this._ctx = n.getContext("2d"), this._options = r || {}, this._node = this._createNode(e)
+                }
+                return t.prototype._getOption = function(t) {
+                    return this._options[t] || r[t]
+                }, t.prototype._createNode = function(t) {
+                    var e = t.context.createAnalyser();
+                    return e.fftSize = 1024, t.connect(e), e
+                }, t.prototype.destroy = function() {
+                    this.stop(), this._source.disconnect(), this._node.disconnect(), this._node = null
+                }, t.prototype.start = function() {
+                    this._stopped = !1, this._draw()
+                }, t.prototype._draw = function() {
+                    var t = this,
+                        e = this._getOption("spacing"),
+                        n = this._getOption("blockWidth"),
+                        i = this._canvas.getBoundingClientRect(),
+                        r = i.right - i.left,
+                        o = i.bottom - i.top,
+                        s = Math.round(r / e),
+                        a = new Uint8Array(this._node.frequencyBinCount);
+                    this._node.getByteFrequencyData(a), this._ctx.clearRect(0, 0, r, o), this._ctx.fillStyle = "#F6D565", this._ctx.lineCap = "round";
+                    var c = this._node.frequencyBinCount / s,
+                        u = this._getOption("color");
+                    "HSL" !== u && (this._ctx.fillStyle = u);
+                    for (var h = 0; s > h; ++h) {
+                        for (var p = 0, f = Math.floor(h * c), l = 0; c > l; l++) p += a[f + l] / 256;
+                        p /= Math.ceil(c), "HSL" == u && (this._ctx.fillStyle = "hsl( " + Math.round(360 * h / s) + ", " + (50 + 50 * p) + "%, 50%)"), this._ctx.fillRect(h * (e + n), o, n, -p * o)
+                    }
+                    this._stopped || window.requestAnimationFrame(function() {
+                        t._draw()
+                    })
+                }, t.prototype.stop = function() {
+                    this._stopped = !0
+                }, t
+            }()
+    },
+    189: function(t, e, n) {
+        "use strict";
+        n.r(e);
+        var i = n(160),
+            r = n(363),
+            o = n(534),
+            s = n(592),
+            a = i.Promise,
+            c = {
+                isSupport: function() {
+                    return !(!window.AudioContext || !(navigator.getUserMedia || navigator.mediaDevices && navigator.mediaDevices.getUserMedia))
+                },
+                getAvailableMicrophones: function() {
+                    return r.AudioRecorder.isSupport() ? r.AudioRecorder.getAvailableMicrophones() : a.resolve([])
+                },
+                newRecorder: function() {
+                    return window.Promise || (window.Promise = a), new r.AudioRecorder
+                },
+                resample: function(t, e, n) {
+                    return Object(o.fastResample)(t, e, n)
+                },
+                createVisualization: s.createVisualization
+            };
+        window.Speech = c;
+        try {
+            stManager.done("speech.js")
+        } catch (u) {}
+    },
+    245: function(t, e, n) {
+        "use strict";
+
+        function i(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        }
+        n.r(e), n.d(e, "AverageAlgorithm", function() {
+            return r
+        });
+        var r = function() {
+            function t() {
+                i(this, t), this.clear()
+            }
+            return t.prototype.push = function(t) {
+                this._count++, this._accum += t
+            }, t.prototype.get = function() {
+                return this._accum / this._count
+            }, t.prototype.clear = function() {
+                this._count = 0, this._accum = 0
+            }, t
+        }()
+    },
+    363: function(t, e, n) {
         "use strict";
 
         function i(t, e) {
@@ -575,10 +579,10 @@
         n.r(e), n.d(e, "AudioRecorder", function() {
             return u
         });
-        var r = n(5),
-            o = n(528),
-            s = n(380),
-            a = n(198),
+        var r = n(398),
+            o = n(609),
+            s = n(4),
+            a = n(534),
             c = function() {
                 function t(t, e) {
                     for (var n = 0; n < e.length; n++) {
@@ -678,116 +682,8 @@
             }]), t
         }()
     },
-    299: function(t, e, n) {
-        "use strict";
-
-        function i(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-        n.r(e), n.d(e, "QuadAlgorithm", function() {
-            return r
-        });
-        var r = function() {
-            function t() {
-                i(this, t), this.clear()
-            }
-            return t.prototype.push = function(t) {
-                this._count++, this._accum += t, this._accum_q += t * t
-            }, t.prototype.get = function() {
-                return 1 == this._count ? this._accum : Math.sqrt((this._accum_q - this._accum * this._accum / this._count) / this._count)
-            }, t.prototype.clear = function() {
-                this._count = 0, this._accum = 0, this._accum_q = 0
-            }, t
-        }()
-    },
-    336: function(t, e, n) {
-        "use strict";
-
-        function i(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-        n.r(e), n.d(e, "Pulse", function() {
-            return o
-        });
-        var r = {
-                pulseRate: 20
-            },
-            o = function() {
-                function t(e, n, r) {
-                    i(this, t), this._accum = 0, this._source = e, this._options = r || {}, this._node = this._createWaveNode(e)
-                }
-                return t.prototype._getOption = function(t) {
-                    return this._options[t] || r[t]
-                }, t.prototype._createWaveNode = function(t) {
-                    var e = this,
-                        n = 1 / this._getOption("pulseRate"),
-                        i = 0,
-                        r = t.context.createScriptProcessor(2048, 1, 1);
-                    return r.onaudioprocess = function(t) {
-                        for (var r = t.inputBuffer.getChannelData(0), o = t.inputBuffer.duration / r.length, s = 0; s < r.length; s++) i += o, e._accum = Math.min(1, Math.max(e._accum, Math.abs(r[s]))), i > n && (i -= n, e._stopped ? setStyle(e._getOption("el"), {
-                            transform: "scale(0.8)"
-                        }) : setStyle(e._getOption("el"), {
-                            transform: "scale(" + (.8 + .95 * Math.sqrt(e._accum)) + ")"
-                        }), e._accum = 0, i = 0)
-                    }, t.connect(r), r.connect(t.context.destination), r
-                }, t.prototype.destroy = function() {
-                    this.stop(), this._source.disconnect(), this._node.disconnect(), this._node = null
-                }, t.prototype.start = function() {
-                    this._stopped = !1
-                }, t.prototype.stop = function() {
-                    this._stopped = !0
-                }, t
-            }()
-    },
-    380: function(t, e, n) {
-        "use strict";
-
-        function i(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-
-        function r(t, e) {
-            if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-            return !e || "object" != typeof e && "function" != typeof e ? t : e
-        }
-
-        function o(t, e) {
-            if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-            t.prototype = Object.create(e && e.prototype, {
-                constructor: {
-                    value: t,
-                    enumerable: !1,
-                    writable: !0,
-                    configurable: !0
-                }
-            }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-        }
-        n.r(e), n.d(e, "Mp3Recorder", function() {
-            return a
-        });
-        var s = n(552),
-            a = function(t) {
-                function e() {
-                    return i(this, e), r(this, t.apply(this, arguments))
-                }
-                return o(e, t), e.prototype._createWorker = function() {
-                    var t = this,
-                        e = {
-                            command: "init",
-                            numberOfChannels: 1,
-                            originalSampleRate: this._ctx.sampleRate
-                        },
-                        n = new Worker("/js/" + jsc("web/speech_worker_mp3.js"));
-                    return n.addEventListener("message", function(e) {
-                        var n = e.data;
-                        n.buffer && t.eventTarget.dispatchEvent(new CustomEvent("dataavailable", {
-                            detail: n.buffer
-                        })), "finish" == n.type && t.eventTarget.dispatchEvent(new Event("stop"))
-                    }), n.postMessage(e), n
-                }, e
-            }(s.BaseRecorder)
-    },
-    445: function(t, e, n) {
+    367: function(t, e) {},
+    371: function(t, e, n) {
         "use strict";
 
         function i(t) {
@@ -800,7 +696,7 @@
             return i
         })
     },
-    5: function(t, e, n) {
+    398: function(t, e, n) {
         "use strict";
 
         function i() {
@@ -837,59 +733,7 @@
             return i
         })
     },
-    521: function(t, e, n) {
-        "use strict";
-
-        function i(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-        n.r(e), n.d(e, "Frequency", function() {
-            return o
-        });
-        var r = {
-                blockWidth: 3,
-                spacing: 2,
-                color: "#6287AE"
-            },
-            o = function() {
-                function t(e, n, r) {
-                    i(this, t), this._source = e, this._canvas = n, this._ctx = n.getContext("2d"), this._options = r || {}, this._node = this._createNode(e)
-                }
-                return t.prototype._getOption = function(t) {
-                    return this._options[t] || r[t]
-                }, t.prototype._createNode = function(t) {
-                    var e = t.context.createAnalyser();
-                    return e.fftSize = 1024, t.connect(e), e
-                }, t.prototype.destroy = function() {
-                    this.stop(), this._source.disconnect(), this._node.disconnect(), this._node = null
-                }, t.prototype.start = function() {
-                    this._stopped = !1, this._draw()
-                }, t.prototype._draw = function() {
-                    var t = this,
-                        e = this._getOption("spacing"),
-                        n = this._getOption("blockWidth"),
-                        i = this._canvas.getBoundingClientRect(),
-                        r = i.right - i.left,
-                        o = i.bottom - i.top,
-                        s = Math.round(r / e),
-                        a = new Uint8Array(this._node.frequencyBinCount);
-                    this._node.getByteFrequencyData(a), this._ctx.clearRect(0, 0, r, o), this._ctx.fillStyle = "#F6D565", this._ctx.lineCap = "round";
-                    var c = this._node.frequencyBinCount / s,
-                        u = this._getOption("color");
-                    "HSL" !== u && (this._ctx.fillStyle = u);
-                    for (var h = 0; s > h; ++h) {
-                        for (var p = 0, f = Math.floor(h * c), l = 0; c > l; l++) p += a[f + l] / 256;
-                        p /= Math.ceil(c), "HSL" == u && (this._ctx.fillStyle = "hsl( " + Math.round(360 * h / s) + ", " + (50 + 50 * p) + "%, 50%)"), this._ctx.fillRect(h * (e + n), o, n, -p * o)
-                    }
-                    this._stopped || window.requestAnimationFrame(function() {
-                        t._draw()
-                    })
-                }, t.prototype.stop = function() {
-                    this._stopped = !0
-                }, t
-            }()
-    },
-    528: function(t, e, n) {
+    4: function(t, e, n) {
         "use strict";
 
         function i(t, e) {
@@ -912,34 +756,54 @@
                 }
             }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
         }
-        n.r(e), n.d(e, "OpusRecorder", function() {
+        n.r(e), n.d(e, "Mp3Recorder", function() {
             return a
         });
-        var s = n(552),
+        var s = n(444),
             a = function(t) {
                 function e() {
                     return i(this, e), r(this, t.apply(this, arguments))
                 }
-                return o(e, t), e.prototype._createWorker = function(t) {
-                    var e = this,
-                        n = {
+                return o(e, t), e.prototype._createWorker = function() {
+                    var t = this,
+                        e = {
                             command: "init",
                             numberOfChannels: 1,
-                            originalSampleRate: this._ctx.sampleRate,
-                            encoderSampleRate: this._options.bitsPerSecond,
-                            maxBuffersPerPage: 10,
-                            encoderApplication: 2048
+                            originalSampleRate: this._ctx.sampleRate
                         },
-                        i = new Worker("/js/" + jsc("web/speech_worker_opus.js"));
-                    return i.addEventListener("message", function(t) {
-                        e.eventTarget.dispatchEvent(new CustomEvent("dataavailable", {
-                            detail: t.data
-                        })), 4 & t.data[5] && e.eventTarget.dispatchEvent(new Event("stop"))
-                    }), i.postMessage(n), i
+                        n = new Worker("/js/" + jsc("web/speech_worker_mp3.js"));
+                    return n.addEventListener("message", function(e) {
+                        var n = e.data;
+                        n.buffer && t.eventTarget.dispatchEvent(new CustomEvent("dataavailable", {
+                            detail: n.buffer
+                        })), "finish" == n.type && t.eventTarget.dispatchEvent(new Event("stop"))
+                    }), n.postMessage(e), n
                 }, e
             }(s.BaseRecorder)
     },
-    552: function(t, e, n) {
+    424: function(t, e, n) {
+        "use strict";
+
+        function i(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        }
+        n.r(e), n.d(e, "PeakAlgorithm", function() {
+            return r
+        });
+        var r = function() {
+            function t() {
+                i(this, t), this.clear()
+            }
+            return t.prototype.push = function(t) {
+                this._max = Math.max(this._max, Math.abs(t))
+            }, t.prototype.get = function() {
+                return this._max
+            }, t.prototype.clear = function() {
+                this._max = 0
+            }, t
+        }()
+    },
+    444: function(t, e, n) {
         "use strict";
 
         function i(t, e) {
@@ -991,29 +855,7 @@
                 }, t
             }()
     },
-    577: function(t, e, n) {
-        "use strict";
-
-        function i(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-        n.r(e), n.d(e, "AverageAlgorithm", function() {
-            return r
-        });
-        var r = function() {
-            function t() {
-                i(this, t), this.clear()
-            }
-            return t.prototype.push = function(t) {
-                this._count++, this._accum += t
-            }, t.prototype.get = function() {
-                return this._accum / this._count
-            }, t.prototype.clear = function() {
-                this._count = 0, this._accum = 0
-            }, t
-        }()
-    },
-    594: function(t, e, n) {
+    48: function(t, e, n) {
         "use strict";
 
         function i(t, e) {
@@ -1062,98 +904,256 @@
                 }, t
             }()
     },
-    660: function(t, e) {},
-    665: function(t, e) {
-        function n() {
-            throw new Error("setTimeout has not been defined")
-        }
+    489: function(t, e, n) {
+        "use strict";
 
-        function i() {
-            throw new Error("clearTimeout has not been defined")
+        function i(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
         }
-
-        function r(t) {
-            if (h === setTimeout) return setTimeout(t, 0);
-            if ((h === n || !h) && setTimeout) return h = setTimeout, setTimeout(t, 0);
-            try {
-                return h(t, 0)
-            } catch (e) {
-                try {
-                    return h.call(null, t, 0)
-                } catch (e) {
-                    return h.call(this, t, 0)
+        n.r(e), n.d(e, "Pulse", function() {
+            return o
+        });
+        var r = {
+                pulseRate: 20
+            },
+            o = function() {
+                function t(e, n, r) {
+                    i(this, t), this._accum = 0, this._source = e, this._options = r || {}, this._node = this._createWaveNode(e)
                 }
-            }
+                return t.prototype._getOption = function(t) {
+                    return this._options[t] || r[t]
+                }, t.prototype._createWaveNode = function(t) {
+                    var e = this,
+                        n = 1 / this._getOption("pulseRate"),
+                        i = 0,
+                        r = t.context.createScriptProcessor(2048, 1, 1);
+                    return r.onaudioprocess = function(t) {
+                        for (var r = t.inputBuffer.getChannelData(0), o = t.inputBuffer.duration / r.length, s = 0; s < r.length; s++) i += o, e._accum = Math.min(1, Math.max(e._accum, Math.abs(r[s]))), i > n && (i -= n, e._stopped ? setStyle(e._getOption("el"), {
+                            transform: "scale(0.8)"
+                        }) : setStyle(e._getOption("el"), {
+                            transform: "scale(" + (.8 + .95 * Math.sqrt(e._accum)) + ")"
+                        }), e._accum = 0, i = 0)
+                    }, t.connect(r), r.connect(t.context.destination), r
+                }, t.prototype.destroy = function() {
+                    this.stop(), this._source.disconnect(), this._node.disconnect(), this._node = null
+                }, t.prototype.start = function() {
+                    this._stopped = !1
+                }, t.prototype.stop = function() {
+                    this._stopped = !0
+                }, t
+            }()
+    },
+    534: function(t, e, n) {
+        "use strict";
+
+        function i(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
         }
 
-        function o(t) {
-            if (p === clearTimeout) return clearTimeout(t);
-            if ((p === i || !p) && clearTimeout) return p = clearTimeout, clearTimeout(t);
-            try {
-                return p(t)
-            } catch (e) {
-                try {
-                    return p.call(null, t)
-                } catch (e) {
-                    return p.call(this, t)
+        function r(t, e) {
+            var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : "peak";
+            return new u({
+                srcSampleRate: t.length,
+                dstSampleRate: e,
+                normalizeAlgorithm: n,
+                truncateTo: 0
+            }).push(t)
+        }
+        n.r(e), n.d(e, "Resampler", function() {
+            return u
+        }), n.d(e, "fastResample", function() {
+            return r
+        });
+        var o = n(245),
+            s = n(424),
+            a = n(563),
+            c = {
+                avg: o.AverageAlgorithm,
+                peak: s.PeakAlgorithm,
+                quad: a.QuadAlgorithm
+            },
+            u = function() {
+                function t(e) {
+                    i(this, t), this._normalizeAlgorithm = !1, c[e.normalizeAlgorithm] && (this._normalizeAlgorithm = new c[e.normalizeAlgorithm]), this._srcSampleRate = parseInt(e.srcSampleRate || 0), this._dstSampleRate = parseInt(e.dstSampleRate || 0), this._truncateTo = 1, "undefined" != typeof e.truncateTo && (this._truncateTo = e.truncateTo), this._dstSampleRate > 0 ? this._sampleRate = this._srcSampleRate / this._dstSampleRate : this._sampleRate = 0, c[e.algorithm] || (e.algorithm = "peak"), this._algorithm = new c[e.algorithm], this._sampleCount = 0, this._data = []
                 }
+                return t.prototype.push = function(t) {
+                    if (this._sampleRate <= 0) return [];
+                    for (var e = [], n = void 0, i = 0; i < t.length; i++)
+                        if (this._truncateTo > 0 && (t[i] = Math.min(this._truncateTo, Math.abs(t[i]))), this._sampleCount += 1, this._sampleCount >= this._sampleRate)
+                            for (; this._sampleCount >= this._sampleRate;) this._sampleCount -= this._sampleRate, this._sampleCount <= .8 && this._algorithm.push(t[i]), n = this._algorithm.get(), e.push(n), this._normalizeAlgorithm && this._normalizeAlgorithm.push(n), this._algorithm.clear(), this._sampleCount > .2 && this._algorithm.push(t[i]);
+                        else this._algorithm.push(t[i]);
+                    if (this._normalizeAlgorithm) {
+                        var r = this._normalizeAlgorithm.get();
+                        if (this._normalizeAlgorithm.clear(), r > 0)
+                            for (var o = 0; o < e.length; o++) e[o] = e[o] / r, this._truncateTo > 0 && (e[o] = Math.min(this._truncateTo, Math.abs(e[o])))
+                    }
+                    return e
+                }, t
+            }()
+    },
+    563: function(t, e, n) {
+        "use strict";
+
+        function i(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        }
+        n.r(e), n.d(e, "QuadAlgorithm", function() {
+            return r
+        });
+        var r = function() {
+            function t() {
+                i(this, t), this.clear()
             }
-        }
+            return t.prototype.push = function(t) {
+                this._count++, this._accum += t, this._accum_q += t * t
+            }, t.prototype.get = function() {
+                return 1 == this._count ? this._accum : Math.sqrt((this._accum_q - this._accum * this._accum / this._count) / this._count)
+            }, t.prototype.clear = function() {
+                this._count = 0, this._accum = 0, this._accum_q = 0
+            }, t
+        }()
+    },
+    575: function(t, e, n) {
+        "use strict";
 
-        function s() {
-            m && l && (m = !1, l.length ? d = l.concat(d) : _ = -1, d.length && a())
+        function i(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
         }
-
-        function a() {
-            if (!m) {
-                var t = r(s);
-                m = !0;
-                for (var e = d.length; e;) {
-                    for (l = d, d = []; ++_ < e;) l && l[_].run();
-                    _ = -1, e = d.length
+        n.r(e), n.d(e, "Wave", function() {
+            return s
+        });
+        var r = n(371),
+            o = {
+                blockWidth: 2,
+                spacing: 1,
+                visTime: 8,
+                color: "#fff"
+            },
+            s = function() {
+                function t(e, n, o) {
+                    i(this, t), this._accum = 0, this._source = e, this._canvas = n;
+                    var s = n.getBoundingClientRect();
+                    n.width = s.right - s.left, n.height = s.bottom - s.top, this._width = n.width, this._height = n.height, this._ratio = Object(r.canvasGetRatio)(n), this._ctx = n.getContext("2d"), this._options = o || {}, this._accumNode = this._createWaveNode(e)
                 }
-                l = null, m = !1, o(t)
-            }
-        }
-
-        function c(t, e) {
-            this.fun = t, this.array = e
-        }
-
-        function u() {}
-        var h, p, f = t.exports = {};
-        ! function() {
-            try {
-                h = "function" == typeof setTimeout ? setTimeout : n
-            } catch (t) {
-                h = n
-            }
-            try {
-                p = "function" == typeof clearTimeout ? clearTimeout : i
-            } catch (t) {
-                p = i
-            }
+                return t.prototype._getOption = function(t) {
+                    return this._options[t] || o[t]
+                }, t.prototype._createWaveNode = function(t) {
+                    var e = this,
+                        n = parseInt(this._width / (this._getOption("blockWidth") + this._getOption("spacing"))),
+                        i = this._getOption("visTime") / n,
+                        r = 0,
+                        o = t.context.createScriptProcessor(2048, 1, 1);
+                    return o.onaudioprocess = function(t) {
+                        for (var n = t.inputBuffer.getChannelData(0), o = t.inputBuffer.duration / n.length, s = 0; s < n.length; s++) r += o, e._accum = Math.min(1, Math.max(e._accum, Math.abs(n[s]))), r > i && (++e.timeAccumIndex > e.timeAccumItems.length - 1 && (e.timeAccumIndex = 0), e.timeAccumItems[e.timeAccumIndex] = e._accum, e._accum = 0, r = 0)
+                    }, this.timeAccumItems = new Array(n), this.timeAccumIndex = 0, t.connect(o), o.connect(t.context.destination), o
+                }, t.prototype.destroy = function() {
+                    this.stop(), this._accumNode.disconnect(), this._source.connect(this._source.context.destination), this._node = null, this._canvas = null, this._source = null, this._ctx = null
+                }, t.prototype.start = function() {
+                    this._stopped = !1, this._draw()
+                }, t.prototype._draw = function() {
+                    var t = this;
+                    if (!this._stopped) {
+                        var e = this.timeAccumIndex + 1,
+                            n = 0,
+                            i = void 0,
+                            r = void 0;
+                        this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height), this._ctx.fillStyle = this._getOption("color");
+                        for (var o = 0; o < this.timeAccumItems.length; o++, e++) e >= this.timeAccumItems.length && (e = 0), n = this.timeAccumItems[e] * (this._height - 2) + 2, i = o * (this._getOption("blockWidth") + this._getOption("spacing")), r = (this._height - n) / 2, this._ctx.fillRect(i * this._ratio, r * this._ratio, this._getOption("blockWidth") * this._ratio, n * this._ratio);
+                        window.requestAnimationFrame(function() {
+                            t._draw()
+                        })
+                    }
+                }, t.prototype.stop = function() {
+                    this._stopped = !0
+                }, t
+            }()
+    },
+    577: function(t, e) {
+        var n;
+        n = function() {
+            return this
         }();
-        var l, d = [],
-            m = !1,
-            _ = -1;
-        f.nextTick = function(t) {
-            var e = new Array(arguments.length - 1);
-            if (arguments.length > 1)
-                for (var n = 1; n < arguments.length; n++) e[n - 1] = arguments[n];
-            d.push(new c(t, e)), 1 !== d.length || m || r(a)
-        }, c.prototype.run = function() {
-            this.fun.apply(null, this.array)
-        }, f.title = "browser", f.browser = !0, f.env = {}, f.argv = [], f.version = "", f.versions = {}, f.on = u, f.addListener = u, f.once = u, f.off = u, f.removeListener = u, f.removeAllListeners = u, f.emit = u, f.prependListener = u, f.prependOnceListener = u, f.listeners = function(t) {
-            return []
-        }, f.binding = function(t) {
-            throw new Error("process.binding is not supported")
-        }, f.cwd = function() {
-            return "/"
-        }, f.chdir = function(t) {
-            throw new Error("process.chdir is not supported")
-        }, f.umask = function() {
-            return 0
+        try {
+            n = n || Function("return this")() || (1, eval)("this")
+        } catch (i) {
+            "object" == typeof window && (n = window)
         }
+        t.exports = n
+    },
+    592: function(t, e, n) {
+        "use strict";
+
+        function i(t, e, n, i) {
+            if (c[t]) {
+                if (e instanceof HTMLMediaElement) {
+                    var r = new AudioContext;
+                    e = r.createMediaElementSource(e), e.connect(r.destination)
+                }
+                return new c[t](e, n, i)
+            }
+        }
+        n.r(e), n.d(e, "createVisualization", function() {
+            return i
+        });
+        var r = n(575),
+            o = n(179),
+            s = n(48),
+            a = n(489),
+            c = {
+                wave: r.Wave,
+                frequency: o.Frequency,
+                time: s.Time,
+                pulse: a.Pulse
+            }
+    },
+    609: function(t, e, n) {
+        "use strict";
+
+        function i(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        }
+
+        function r(t, e) {
+            if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+            return !e || "object" != typeof e && "function" != typeof e ? t : e
+        }
+
+        function o(t, e) {
+            if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
+            t.prototype = Object.create(e && e.prototype, {
+                constructor: {
+                    value: t,
+                    enumerable: !1,
+                    writable: !0,
+                    configurable: !0
+                }
+            }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
+        }
+        n.r(e), n.d(e, "OpusRecorder", function() {
+            return a
+        });
+        var s = n(444),
+            a = function(t) {
+                function e() {
+                    return i(this, e), r(this, t.apply(this, arguments))
+                }
+                return o(e, t), e.prototype._createWorker = function(t) {
+                    var e = this,
+                        n = {
+                            command: "init",
+                            numberOfChannels: 1,
+                            originalSampleRate: this._ctx.sampleRate,
+                            encoderSampleRate: this._options.bitsPerSecond,
+                            maxBuffersPerPage: 10,
+                            encoderApplication: 2048
+                        },
+                        i = new Worker("/js/" + jsc("web/speech_worker_opus.js"));
+                    return i.addEventListener("message", function(t) {
+                        e.eventTarget.dispatchEvent(new CustomEvent("dataavailable", {
+                            detail: t.data
+                        })), 4 & t.data[5] && e.eventTarget.dispatchEvent(new Event("stop"))
+                    }), i.postMessage(n), i
+                }, e
+            }(s.BaseRecorder)
     }
 });

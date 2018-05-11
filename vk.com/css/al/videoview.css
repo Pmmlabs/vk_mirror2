@@ -1,7 +1,6 @@
 #mv_external_finish .mv_finish_icon,
 #mv_pl_tt .mv_tt_add_playlist .mv_tt_plus_icon,
 #mv_pl_tt .mv_tt_playlist_private_icon,
-.mv_add_button .mv_add_icon,
 .mv_chat_first_message_intro,
 .mv_chat_like:before,
 .mv_chat_message_del_icon,
@@ -235,7 +234,6 @@ body.mobfixed #mv_layer_wrap {
 }
 
 .mv_actions_block {
-    padding-bottom: 15px;
     border-bottom: 1px solid #e7e8ec;
     line-height: 1.5
 }
@@ -812,7 +810,6 @@ textarea.dark.mv_live_gift_popup_comment_input {
     left: 26px
 }
 
-.mv_add_button,
 .mv_delete_button,
 .mv_edit_button,
 .mv_share_button {
@@ -823,7 +820,6 @@ textarea.dark.mv_live_gift_popup_comment_input {
     padding-right: 8px
 }
 
-.mv_add_button.flat_button.secondary,
 .mv_delete_button.flat_button.secondary,
 .mv_edit_button.flat_button.secondary,
 .mv_share_button.flat_button.secondary {
@@ -884,50 +880,6 @@ textarea.dark.mv_live_gift_popup_comment_input {
         background-image: url(/images/icons/video_actions_2x.png?8);
         background-size: 19px 199px
     }
-}
-
-.mv_add_button .mv_add_icon {
-    background: url(/images/icons/video_actions.png?8) no-repeat 0 -15px;
-    height: 12px;
-    width: 12px;
-    margin-bottom: -2px;
-    display: inline-block;
-    position: absolute;
-    top: 0px;
-    opacity: 0;
-    filter: alpha(opacity=0);
-    -o-transition: all 200ms ease;
-    transition: all 200ms ease
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .mv_add_button .mv_add_icon {
-        background-image: url(/images/icons/video_actions_2x.png?8);
-        background-size: 19px 199px
-    }
-}
-
-.mv_add_button .mv_added_icon {
-    background-position: 0px -29px;
-    height: 11px;
-    width: 12px;
-    opacity: 0;
-    filter: alpha(opacity=0)
-}
-
-.mv_add_button .mv_add_icon_curr {
-    top: 8px;
-    opacity: 1;
-    -webkit-filter: none;
-    filter: none
-}
-
-.mv_add_button .mv_add_icon_down {
-    top: 12px;
-    opacity: 0;
-    filter: alpha(opacity=0)
 }
 
 .mv_add_text {
@@ -1793,7 +1745,8 @@ textarea.dark.mv_live_gift_popup_comment_input {
     border-top: 1px solid #e7e8ec;
     padding: 8px 10px;
     text-align: left;
-    cursor: pointer
+    cursor: pointer;
+    white-space: nowrap
 }
 
 #mv_pl_tt .mv_tt_add_playlist .mv_tt_plus_icon {
@@ -3500,4 +3453,66 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
 .video_live_blacklist_wrap .olist_item_wrap_on .olist_item_name,
 .video_live_blacklist_wrap .olist_item_wrap_on .olist_item_photo_wrap {
     opacity: .5
+}
+
+.mv_actions_block .like_wrap,
+.mv_actions_private_panel .like_wrap {
+    padding: 0;
+    border: 0
+}
+
+.mv_actions_block .like_cont,
+.mv_actions_private_panel .like_cont {
+    height: 48px;
+    box-sizing: border-box;
+    border: 0
+}
+
+.mv_actions_block .like_btn.mv_add_button,
+.mv_actions_private_panel .like_btn.mv_add_button {
+    position: relative;
+    padding-left: 24px;
+    height: 24px
+}
+
+.mv_actions_block .like_btn.mv_add_button .like_button_icon,
+.mv_actions_private_panel .like_btn.mv_add_button .like_button_icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 200ms ease-in-out, -webkit-transform 200ms ease-in-out;
+    -o-transition: transform 200ms ease-in-out, opacity 200ms ease-in-out, -o-transform 200ms ease-in-out;
+    transition: transform 200ms ease-in-out, opacity 200ms ease-in-out;
+    transition: transform 200ms ease-in-out, opacity 200ms ease-in-out, -webkit-transform 200ms ease-in-out, -o-transform 200ms ease-in-out
+}
+
+.mv_actions_block .like_btn.mv_add_button .like_button_icon.mv_plus_icon,
+.mv_actions_private_panel .like_btn.mv_add_button .like_button_icon.mv_plus_icon {
+    background-image: url('/images/svg_icons/add_outline_24.svg');
+    -webkit-transform: translateY(8px);
+    -o-transform: translateY(8px);
+    transform: translateY(8px);
+    opacity: 0!important
+}
+
+.mv_actions_block .like_btn.mv_add_button .like_button_icon.mv_added_icon,
+.mv_actions_private_panel .like_btn.mv_add_button .like_button_icon.mv_added_icon {
+    opacity: 0!important;
+    -webkit-transform: translateY(-8px);
+    -o-transform: translateY(-8px);
+    transform: translateY(-8px);
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%2F%3E%3Cpath%20d%3D%22m4%2012.5%204.9999939%205%2011.5000061-11.5%22%20stroke%3D%22%23828a99%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.8%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+}
+
+.mv_actions_block .like_btn.mv_add_button .like_button_icon.mv_add_icon_curr,
+.mv_actions_private_panel .like_btn.mv_add_button .like_button_icon.mv_add_icon_curr {
+    -webkit-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 0.7!important
+}
+
+.mv_actions_block .like_btn.mv_add_button:hover .like_button_icon.mv_add_icon_curr,
+.mv_actions_private_panel .like_btn.mv_add_button:hover .like_button_icon.mv_add_icon_curr {
+    opacity: 1!important
 }

@@ -285,13 +285,6 @@ a.wk_ext_link {
     background-size: 24px 24px!important
 }
 
-.zpv_bottom .item_button .i_icon,
-.zpv_close_icon,
-.zpv_zb_wrap .i_icon {
-    background-image: url(/images/mobile/zpv_icons_2x.png?2);
-    background-size: 198px 19px!important
-}
-
 .zpv_close_msg {
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQhJREFUeNqklcsKgzAQRaOudOM3F1rortY+llVbKC79tELdtJt0BiKENDOZxAsXxInnQHwprXUFnaAf6BVaQFViC8P4GmalzIGde6IEr3k4rAkHs/7PECnxwTFvHG61P1IJBcdscEEGPSRKCrOlviBTLQtTJCF4ZgsWSUNc0DsSEdwVSCViuE8gkQxSOCVYJEctT+ODc4IYCQkPCSQSFo7NFR+c18y8NmvoBF6iXrBFHfcyroUvuVESCt4RILwfbYwkFp6ZnqSSWLj9dHGS3BVw8JZ4FPHcOSRJhYslivnuhOASSUP9MqXwkGTG4bgSbksuDmvEQQl94g8aukuE25I99GWY5U+AAQAP5WY//M13WQAAAABJRU5ErkJggg==);
     background-size: 14px 15px!important

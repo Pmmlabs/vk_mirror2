@@ -2985,6 +2985,10 @@ function isAncestor(el, ancestor) {
     return false;
 }
 
+function domQuery(selectors, parent) {
+    return (parent || document).querySelectorAll(selectors);
+}
+
 function domClosestPositioned(el, opts) {
     opts = opts || {};
     var parent = opts.fromEl || domPN(el),
@@ -4412,7 +4416,7 @@ function animateCount(el, newCount, opts) {
         newCount = positive(newCount);
     }
     if (!el) return;
-    if (browser.msie6 || browser.mobile && !browser.safari_mobile && !browser.android) {
+    if (browser.mobile && !browser.safari_mobile && !browser.android) {
         val(el, newCount || '');
         return;
     }
@@ -4485,7 +4489,7 @@ function animateCount(el, newCount, opts) {
     constPart = constPart.join('').replace(/\s$/, '&nbsp;');
     constEndPart = constEndPart.join('').replace(/^\s/, '&nbsp;');
 
-    if (!trim(val(el))) {
+    if (!trim(val(el)) && !opts.noSpaceIfEmpty) {
         val(el, '&nbsp;');
     }
     var h = el.clientHeight || el.offsetHeight;
@@ -4537,9 +4541,11 @@ function animateCount(el, newCount, opts) {
         }));
     }
 
-    setStyle(wrapEl, {
-        width: (constEl1 && getSize(constEl1)[0] || 0) + (constEl2 && getSize(constEl2)[0] || 0) + bigW + 0
-    })
+    if (!opts.noWrapWidth) {
+        setStyle(wrapEl, {
+            width: (constEl1 && getSize(constEl1)[0] || 0) + (constEl2 && getSize(constEl2)[0] || 0) + bigW + 0
+        })
+    }
 
     if (browser.csstransitions === undefined) {
         var b = browser,
@@ -4558,7 +4564,7 @@ function animateCount(el, newCount, opts) {
     });
 
     var onDone = function() {
-            val(el, newCount || ' ');
+            val(el, newCount || (opts.noSpaceIfEmpty ? '' : ' '));
             var next = data(el, 'nextCount');
             data(el, 'curCount', false);
             data(el, 'nextCount', false);
@@ -7854,6 +7860,28 @@ function updateMoney(balance, balanceEx) {
     if (balanceEx !== undefined && balanceEx !== false && balanceEx !== true) {
         updateMoney(balanceEx, true);
     }
+}
+
+function formatCount(count, opts) {
+    opts = opts || {};
+    var kLimit = opts.kLimit || 1000;
+    var mLimit = opts.mLimit || 1000000;
+
+    if (count >= mLimit && !opts.noCheck) {
+        count = intval(count / 100000);
+        count = (count > 1000) ? intval(count / 10) : count / 10;
+        return formatCount(count, extend(opts, {
+            noCheck: true
+        }), true) + 'M';
+    } else if (count >= kLimit && !opts.noCheck) {
+        count = intval(count / 100);
+        count = (count > 100) ? intval(count / 10) : count / 10;
+        return formatCount(count, extend(opts, {
+            noCheck: true
+        }), true) + 'K';
+    }
+
+    return langNumeric(count, '%s', true).replace(/,/g, '\.');
 }
 
 addEvent(window, 'DOMContentLoaded load', function() {

@@ -4069,6 +4069,10 @@ var Wall = {
         setTimeout(function() {
             getAudioPlayer().updateCurrentPlaying();
         }, 10);
+
+        if (data) {
+            Likes.updateComments('wall' + post, data.count);
+        }
     },
     repliesSideSetup: function(post) {
         if (cur.wallLayer == post) {
@@ -5716,30 +5720,13 @@ var Wall = {
     },
     formatCount: function(count, opts) {
         opts = opts || {};
-        var kLimit = opts.kLimit || 1000,
-            mLimit = opts.mLimit || 1000000;
-        if (count >= mLimit && !opts.noCheck) {
-            count = intval(count / 100000);
-            count = (count > 1000) ? intval(count / 10) : count / 10;
-            return this.formatCount(count, extend(opts, {
-                noCheck: true
-            }), true) + 'M';
-        } else if (count >= kLimit && !opts.noCheck) {
-            count = intval(count / 100);
-            count = (count > 100) ? intval(count / 10) : count / 10;
-            return this.formatCount(count, extend(opts, {
-                noCheck: true
-            }), true) + 'K';
-        }
-
-        return langNumeric(count, '%s', true).replace(/,/g, '\.');
+        return formatCount(count, opts);
     },
     likeFullUpdate: function(el, like_obj, likeData) {
         var matches = like_obj.match(/^(wall|photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(-?\d+_)(\d+)/),
             post = matches ? (matches[2] + (matches[1] == 'wall' ? '' : matches[1]) + matches[3]) : like_obj;
 
-        Wall.likeUpdate(el, post, likeData.like_my, likeData.like_num, likeData.like_title);
-        Wall.likeShareUpdate(el, post, likeData.share_my, likeData.share_num, likeData.share_title);
+        Likes.update(matches ? (matches[1] || 'wall') + matches[2] + matches[3] : like_obj, likeData);
     },
     likeUpdate: function(el, post_id, my, count, title, share, views) {
         if (!views) {
@@ -6430,7 +6417,10 @@ var Wall = {
             owner_photo: canReplyAsGroup ? psr(thumbs[1] || thumbs[0]) : '',
             owner_href: canReplyAsGroup ? ev[5] : '',
             owner_name: canReplyAsGroup ? ownerName : '',
-            online_class: (oid > 0) ? ' online' : ''
+            online_class: (oid > 0) ? ' online' : '',
+            likes: Likes.makeTemplate(cur.wallTpl.post_likes, {
+                object_raw: ev[2]
+            })
         };
 
         extendCb && extend(repls, extendCb(repls, ev));
@@ -6509,7 +6499,10 @@ var Wall = {
             reply_id: ev[3],
             like_id: ev[3].replace('_', '_wall_reply'),
             reply_msg_id: ev[3].split('_')[1],
-            reply_uid: ev[4] || 'false'
+            reply_uid: ev[4] || 'false',
+            likes: Likes.makeTemplate(cur.wallTpl.reply_likes, {
+                object_raw: ev[3]
+            })
         };
 
         extendCb && extend(repls, extendCb(repls));
@@ -6629,8 +6622,7 @@ var Wall = {
         if (total > shown) {
             if (shown < 100) {
                 if (total > 100) {
-                    headerText = getLang('wall_show_n_of_m_last', 100);
-                    headerText = headerText.replace('{count}', total);
+                    headerText = getLang('wall_show_n_last_replies', 100);
                 } else {
                     headerText = getLang('wall_show_all_n_replies', total);
                 }
@@ -7012,6 +7004,9 @@ var Wall = {
                             Wall.repliesSideSetup(post_id);
                         }
                         Wall.updateMentionsIndex();
+                        Likes.update('wall' + post_id, {
+                            comment_num: ev[13]
+                        });
                         break;
                     }
                 case 'del_reply':
@@ -7047,7 +7042,7 @@ var Wall = {
                 case 'like_reply':
                     {
                         if (!el) break;
-                        var likePost = (ev_type == 'like_reply' ? post_id.replace('_', '_wall_reply') : post_id),
+                        var likePost = (ev_type == 'like_reply' ? 'wall_reply' + post_id : post_id),
                             likeWrap = el && domByClass(el, '_like_wrap'),
                             shareWrap = el && domByClass(el, '_share_wrap');
 

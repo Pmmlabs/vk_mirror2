@@ -50,18 +50,18 @@ var tooltips = {
                     var x;
                     x = isNewTT ? !inArray(opts.dir, ["left", "right"]) || opts.forcetoup || opts.forcetodown ? i ? e[1] - (d[1] + l[1]) : e[1] + o[1] + l[2] : e[1] - Math.floor(d[1] / 2) - l[1] : e[1] + (i ? -(d[1] + l[1]) : o[1] + l[2]);
                     var y = x + intval(opts.slide) * (i ? -1 : 1),
-                        b = e[0] + (s ? l[0] + o[0] - d[0] : i ? -l[0] : -(l[3] || l[0]));
-                    v && (b -= (d[0] - (opts.reverseOffset || 39)) * (s ? -1 : 1)), opts.center && (addClass(t, "tocenter"), d[0] != o[0] && (b -= s ? 0 : (d[0] - o[0]) / 2));
-                    var C = b + (s ? -1 : 1) * intval(opts.slideX);
-                    if (opts.showIfFit && (b + w[0] < 0 || b + w[0] + d[0] > lastWindowWidth || x + w[1] < 0 || x + w[1] + d[1] > lastWindowHeight)) return hide(el.tt.container);
+                        C = e[0] + (s ? l[0] + o[0] - d[0] : i ? -l[0] : -(l[3] || l[0]));
+                    v && (C -= (d[0] - (opts.reverseOffset || 39)) * (s ? -1 : 1)), opts.center && (addClass(t, "tocenter"), d[0] != o[0] && (C -= s ? 0 : (d[0] - o[0]) / 2));
+                    var b = C + (s ? -1 : 1) * intval(opts.slideX);
+                    if (opts.showIfFit && (C + w[0] < 0 || C + w[0] + d[0] > lastWindowWidth || x + w[1] < 0 || x + w[1] + d[1] > lastWindowHeight)) return hide(el.tt.container);
                     el.tt.showing = !0, setStyle(t, {
                         top: y,
-                        left: C
+                        left: b
                     });
                     var T = {
                         opacity: 1
                     };
-                    C != b && (T.left = b), y != x && (T.top = x), animate(t, T, void 0 !== opts.showsp ? opts.showsp : 200, function() {
+                    b != C && (T.left = C), y != x && (T.top = x), animate(t, T, void 0 !== opts.showsp ? opts.showsp : 200, function() {
                         el.tt && el.tt.showing && (el.tt.showing = !1), opts.onShowEnd && opts.onShowEnd(), el.tt && (el.tt.shown = !0)
                     }), opts.onShowStart && opts.onShowStart(el.tt)
                 }
@@ -108,7 +108,7 @@ var tooltips = {
             if (n[0] || n[1]) {
                 var l = getSize(i),
                     r = e.needLeft || e.black && lastWindowWidth && lastWindowWidth - (s[0] + l[0]) < 1,
-                    d = hasClass(i.firstChild, "toup1") || e.toup,
+                    d = hasClass(i.firstChild, "toup1") || e.toup || hasClass(i, "tt_down"),
                     a = e.shift,
                     p = vk.rtl && !e.asrtl || e.asrtl && !vk.rtl;
                 isFunction(a) && (a = a());

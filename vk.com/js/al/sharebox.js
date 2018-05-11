@@ -59,7 +59,8 @@ var ShareBox = {
                                     hash: cur.sbShareHash,
                                     object: cur.sbObj,
                                     list: cur.sbList,
-                                    ref: cur.section
+                                    ref: cur.section,
+                                    ret_data: 1
                                 })), ShareBox.options()), cur.shareAction = "publish"
                             }, Widgets.popupBoxOpen("like.php", {
                                 act: "a_allow_publish_box",
@@ -75,7 +76,8 @@ var ShareBox = {
                                 hash: cur.sbShareHash,
                                 object: cur.sbObj,
                                 list: cur.sbList,
-                                ref: cur.section
+                                ref: cur.section,
+                                ret_data: 1
                             })), ShareBox.options()), cur.shareAction = "publish");
                             break;
                         case 2:
@@ -88,7 +90,8 @@ var ShareBox = {
                                     chas: cur.sbMailHash,
                                     ajax: 1,
                                     title: isVisible("like_share_title_wrap") && val("like_share_title") || "",
-                                    media: cur.sbObj + (cur.sbList ? "/" + cur.sbList : "")
+                                    media: cur.sbObj + (cur.sbList ? "/" + cur.sbList : ""),
+                                    ret_data: 1
                                 });
                             if (!d || !d.selCount) return elfocus("like_mail_inp");
                             for (var r in d.selected) s.to_ids.push(r.replace(/_$/, ""));
@@ -233,18 +236,18 @@ var ShareBox = {
         if (i !== !0) switch (a) {
             case 0:
                 if (!cur.sbHidden) {
-                    var n = Fx.Transitions.easeOutCubic,
-                        t = 150,
+                    var t = Fx.Transitions.easeOutCubic,
+                        n = 150,
                         l = "ease-out";
                     cssAnim(cur.sbAva, extend({
                         opacity: 0
                     }, ShareBox.mrg(-26)), {
-                        duration: t,
-                        transition: n,
+                        duration: n,
+                        transition: t,
                         func: l
                     }, hide.pbind(cur.sbAva)), cssAnim(ge("dark_box_topic"), ShareBox.mrg(0), {
-                        duration: t,
-                        transition: n,
+                        duration: n,
+                        transition: t,
                         func: l
                     }), cur.sbHidden = !0
                 }
@@ -261,7 +264,7 @@ var ShareBox = {
             showProgress: lockButton.pbind("like_share_send"),
             hideProgress: unlockButton.pbind("like_share_send"),
             onDone: function(e, a) {
-                cur.likeData = a, curBox().hide(), showDoneBox(e), window.Wall && isObject(a) && Wall.likeFullUpdate(!1, cur.sbObj, a), window.Videoview && /^video\-?\d+_\d+$/.test(cur.sbObj) && Videoview.onVideoShared(cur.shareAction, cur.sbObj, cur.sbList), delete cur.shareAction
+                cur.likeData = a, curBox().hide(), showDoneBox(e), isObject(a) && Likes.update(cur.sbObj, a), window.Videoview && /^video\-?\d+_\d+$/.test(cur.sbObj) && Videoview.onVideoShared(cur.shareAction, cur.sbObj, cur.sbList), delete cur.shareAction
             },
             onFail: function(e) {
                 return ge("like_share_error").innerHTML = '<div class="msg_text">' + e + "</div>", show("like_share_error"), !0

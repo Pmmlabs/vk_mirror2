@@ -651,3 +651,16 @@ body.mac .wcommunity_show_more button .pr {
 .wcommunity_nano .eltt.post_author_data .eltt_arrow_back {
     left: 65px!important
 }
+
+.wcommunity_wall_posts .like_wrap {
+    padding: 0
+}
+
+.wcommunity_wall_posts .like_cont {
+    padding: 8px 0;
+    border-top: 0
+}
+
+.likes_tt_like:after {
+    left: 20px!important
+}

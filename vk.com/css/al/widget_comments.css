@@ -874,6 +874,18 @@
     padding: 3px 0 0
 }
 
+#page_wrap .wcomments_post_footer .like_wrap {
+    padding: 0
+}
+
+#page_wrap .wcomments_post_footer .like_cont {
+    border-top: 0;
+    padding: 0;
+    -webkit-flex-direction: row-reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse
+}
+
 .wpe_wrap #page_wrap .wcomments_post_footer {
     display: none
 }
@@ -1093,4 +1105,8 @@
     top: 0;
     background: #5181b8;
     border-radius: 3px
+}
+
+.likes_tt_like:after {
+    right: 22px!important
 }

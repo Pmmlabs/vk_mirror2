@@ -93,9 +93,9 @@
 
 .videoplayer_share_actions.hidden {
     visibility: hidden;
-    -webkit-transform: translateY(-47px);
-    -o-transform: translateY(-47px);
-    transform: translateY(-47px);
+    -webkit-transform: translateY(-50px);
+    -o-transform: translateY(-50px);
+    transform: translateY(-50px);
     opacity: 0
 }
 
@@ -106,25 +106,49 @@
     position: relative;
     overflow: hidden;
     float: left;
-    width: 37px;
-    height: 37px;
+    width: 40px;
+    height: 40px;
     margin-left: 8px;
-    border-radius: 3px;
-    background: #000;
-    background: rgba(0, 0, 0, .6);
-    line-height: 37px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, .4);
+    background-size: 24px;
+    line-height: 40px;
     color: hsla(0, 0%, 100%, .75);
     font-size: 13px;
     cursor: pointer
+}
+
+.videoplayer_share_actions ._add:after,
+.videoplayer_share_actions ._donate:after,
+.videoplayer_share_actions ._like:after,
+.videoplayer_share_actions ._share:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    background: no-repeat 50%;
+    opacity: 0.8;
+    -o-transition: 150ms ease-in-out;
+    transition: 150ms ease-in-out
 }
 
 .videoplayer_share_actions ._add:hover,
 .videoplayer_share_actions ._donate:hover,
 .videoplayer_share_actions ._like:hover,
 .videoplayer_share_actions ._share:hover {
-    background: #222;
-    background: rgba(34, 34, 34, .6);
-    color: #fff
+    background-color: rgba(34, 34, 34, .6)
+}
+
+.videoplayer_share_actions ._add:hover:after,
+.videoplayer_share_actions ._donate:hover:after,
+.videoplayer_share_actions ._like:hover:after,
+.videoplayer_share_actions ._share:hover:after {
+    opacity: 1
 }
 
 .videoplayer_ui._fullscreen .videoplayer_share_actions ._add,
@@ -141,8 +165,8 @@
 .videoplayer_ui._fullscreen[data-state=ended] .videoplayer_share_actions ._donate,
 .videoplayer_ui._fullscreen[data-state=ended] .videoplayer_share_actions ._like,
 .videoplayer_ui._fullscreen[data-state=ended] .videoplayer_share_actions ._share {
-    background: #707070;
-    background: hsla(0, 0%, 44%, .65)
+    background: #000;
+    background: rgba(0, 0, 0, .4)
 }
 
 .videoplayer_ui._fullscreen[data-state=ended] .videoplayer_share_actions ._add:hover,
@@ -153,140 +177,28 @@
     background: hsla(0, 0%, 44%, .9)
 }
 
-.videoplayer_share_actions ._add_icon,
-.videoplayer_share_actions ._donate_icon,
-.videoplayer_share_actions ._like_icon,
-.videoplayer_share_actions ._share_icon {
-    position: absolute
+.videoplayer_share_actions ._like:after {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20height%3D%22100%25%22%20width%3D%22100%25%22%3E%3Ctitle%3Elike_outline_white_24%3C%2Ftitle%3E%3Cpath%20d%3D%22M0%2C0H24V24H0Z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M17%2C2.9A6.43%2C6.43%2C0%2C0%2C1%2C23.4%2C9.33c0%2C3.57-1.43%2C5.36-7.45%2C10l-2.78%2C2.16a1.9%2C1.9%2C0%2C0%2C1-2.33%2C0L8.05%2C19.37C2%2C14.69.6%2C12.9.6%2C9.33A6.43%2C6.43%2C0%2C0%2C1%2C7%2C2.9a6.46%2C6.46%2C0%2C0%2C1%2C5%2C2.54A6.46%2C6.46%2C0%2C0%2C1%2C17%2C2.9ZM7%2C4.7A4.63%2C4.63%2C0%2C0%2C0%2C2.4%2C9.33c0%2C2.82%2C1.15%2C4.26%2C6.76%2C8.63l2.78%2C2.16a.1.1%2C0%2C0%2C0%2C.12%2C0L14.84%2C18c5.61-4.36%2C6.76-5.8%2C6.76-8.63A4.63%2C4.63%2C0%2C0%2C0%2C17%2C4.7c-1.56%2C0-3%2C.88-4.23%2C2.73L12%2C8.5l-.74-1.07C10%2C5.58%2C8.58%2C4.7%2C7%2C4.7Z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E")
 }
 
-.videoplayer_share_actions ._add_icon>path,
-.videoplayer_share_actions ._donate_icon>path,
-.videoplayer_share_actions ._like_icon>path,
-.videoplayer_share_actions ._share_icon>path {
-    fill-opacity: 0.75;
-    stroke-opacity: 0.75;
-    -webkit-transform-origin: 50%;
-    -o-transform-origin: 50%;
-    transform-origin: 50%;
-    transition: fill .2s, -webkit-transform .2s;
-    -o-transition: fill .2s, transform .2s, -o-transform .2s;
-    transition: fill .2s, transform .2s;
-    transition: fill .2s, transform .2s, -webkit-transform .2s, -o-transform .2s
+.videoplayer_share_actions ._like._liked:after {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20height%3D%22100%25%22%20width%3D%22100%25%22%3E%3Ctitle%3Elike_active_24%3C%2Ftitle%3E%3Cpath%20d%3D%22M0%2C0H24V24H0Z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M17%2C2.9A6.43%2C6.43%2C0%2C0%2C1%2C23.4%2C9.33c0%2C3.57-1.43%2C5.36-7.45%2C10l-2.78%2C2.16a1.9%2C1.9%2C0%2C0%2C1-2.33%2C0L8.05%2C19.37C2%2C14.69.6%2C12.9.6%2C9.33A6.43%2C6.43%2C0%2C0%2C1%2C7%2C2.9%2C5.7%2C5.7%2C0%2C0%2C1%2C12%2C6%2C5.7%2C5.7%2C0%2C0%2C1%2C17%2C2.9Z%22%20fill%3D%22%23ff3347%22%2F%3E%3C%2Fsvg%3E")
 }
 
-.videoplayer_ui[data-state=ended] .videoplayer_share_actions ._add_icon>path,
-.videoplayer_ui[data-state=ended] .videoplayer_share_actions ._donate_icon>path,
-.videoplayer_ui[data-state=ended] .videoplayer_share_actions ._like_icon>path,
-.videoplayer_ui[data-state=ended] .videoplayer_share_actions ._share_icon>path {
-    fill-opacity: 1!important;
-    stroke-opacity: 1!important
+.videoplayer_share_actions ._share:after {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20height%3D%22100%25%22%20width%3D%22100%25%22%3E%3Ctitle%3Eshare_outline_white_24%3C%2Ftitle%3E%3Cpath%20d%3D%22M0%2C0H24V24H0Z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M12.1%2C7.87V4.4a1.32%2C1.32%2C0%2C0%2C1%2C2.17-1L23.21%2C11a1.32%2C1.32%2C0%2C0%2C1%2C.15%2C1.86l-.15.15-8.94%2C7.6a1.32%2C1.32%2C0%2C0%2C1-2.17-1V16.16c-4.68.11-8%2C1.09-9.89%2C2.87a1.15%2C1.15%2C0%2C0%2C1-1.9-1.11C1.84%2C11.56%2C5.82%2C8.16%2C12.1%2C7.87Zm1.8-2.42v4.2H13c-5.3%2C0-8.72%2C2.25-10.39%2C6.86C5.06%2C15.06%2C8.53%2C14.35%2C13%2C14.35h.9v4.2L21.61%2C12Z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E")
 }
 
-.videoplayer_share_actions ._like_icon {
-    height: 15px;
-    width: 17px;
-    left: 10px;
-    top: 11px
+.videoplayer_share_actions ._add:after {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20height%3D%22100%25%22%20width%3D%22100%25%22%3E%3Ctitle%3Eadd_outline_white_24%3C%2Ftitle%3E%3Cpath%20d%3D%22M0%2C0H24V24H0Z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M13%2C11h7a1%2C1%2C0%2C0%2C1%2C0%2C2H13v7a1%2C1%2C0%2C0%2C1-2%2C0V13H4a1%2C1%2C0%2C0%2C1%2C0-2h7V4a1%2C1%2C0%2C0%2C1%2C2%2C0Z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E")
 }
 
-.videoplayer_ui._fullscreen .videoplayer_share_actions ._like_icon {
-    height: 19px;
-    width: 22px;
-    left: 13px;
-    top: 15px
+.videoplayer_share_actions ._add._added:after {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%2F%3E%3Cpath%20d%3D%22m4%2012.5%204.9999939%205%2011.5000061-11.5%22%20stroke%3D%22%23fff%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.8%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
-.videoplayer_share_actions ._like._liked ._like_icon path {
-    fill: #a2d5fe
-}
-
-.videoplayer_share_actions ._share_icon {
-    height: 15px;
-    width: 14px;
-    left: 11px;
-    top: 11px
-}
-
-.videoplayer_ui._fullscreen .videoplayer_share_actions ._share_icon {
-    height: 19px;
-    width: 17px;
-    left: 15px;
-    top: 15px
-}
-
-.videoplayer_share_actions ._add_icon {
-    height: 17px;
-    width: 17px;
-    left: 10px;
-    top: 10px
-}
-
-.videoplayer_ui._fullscreen .videoplayer_share_actions ._add_icon {
-    height: 22px;
-    width: 22px;
-    left: 13px;
-    top: 13px
-}
-
-.videoplayer_share_actions ._add_icon ._plus {
-    visibility: visible;
-    stroke-opacity: 0.75;
-    -webkit-transform: scale(1);
-    -o-transform: scale(1);
-    transform: scale(1)
-}
-
-.videoplayer_share_actions ._add_icon ._mark {
-    visibility: hidden;
-    stroke-opacity: 0;
-    -webkit-transform: scale(0);
-    -o-transform: scale(0);
-    transform: scale(0)
-}
-
-.videoplayer_share_actions ._add._added ._add_icon ._plus {
-    visibility: hidden;
-    fill-opacity: 0;
-    -webkit-transform: scale(0);
-    -o-transform: scale(0);
-    transform: scale(0)
-}
-
-.videoplayer_share_actions ._add._added ._add_icon ._mark {
-    visibility: visible;
-    stroke-opacity: 0.75;
-    -webkit-transform: scale(1);
-    -o-transform: scale(1);
-    transform: scale(1)
-}
-
-.videoplayer_share_actions ._donate_icon {
-    height: 22px;
-    width: 26px;
-    left: 6px;
-    top: 8px
-}
-
-.videoplayer_ui._fullscreen .videoplayer_share_actions ._donate_icon {
-    left: 11px;
-    top: 13px
-}
-
-.videoplayer_share_actions ._add:hover>._add_icon ._mark,
-.videoplayer_share_actions ._add:hover>._add_icon path,
-.videoplayer_share_actions ._donate:hover>._donate_icon ._mark,
-.videoplayer_share_actions ._donate:hover>._donate_icon path,
-.videoplayer_share_actions ._like:hover>._like_icon ._mark,
-.videoplayer_share_actions ._like:hover>._like_icon path,
-.videoplayer_share_actions ._share:hover>._share_icon ._mark,
-.videoplayer_share_actions ._share:hover>._share_icon path {
-    fill-opacity: 1;
-    stroke-opacity: 1
-}
-
-.videoplayer_share_actions ._like._liked>._like_icon path {
-    fill-opacity: 1
+.videoplayer_share_actions ._donate:after {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ctitle%3Egift_outline_24%3C%2Ftitle%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200L24%200%2024%2024%200%2024z%22%2F%3E%3Cpath%20d%3D%22M6.292%207.1C5.106%206.526%204.35%205.73%204.35%204.747c0-2.135%202.621-4.041%204.685-3.354%201.018.34%201.889%201.44%202.715%203.317.826-1.877%201.697-2.977%202.715-3.317%202.064-.687%204.685%201.22%204.685%203.354%200%20.982-.756%201.779-1.942%202.353h.667a3.775%203.775%200%200%201%203.775%203.775v.875a2.901%202.901%200%200%201-2%202.758v2.742a4.9%204.9%200%200%201-4.9%204.9h-6a4.9%204.9%200%200%201-4.9-4.9v-2.742a2.901%202.901%200%200%201-2-2.758v-.875A3.775%203.775%200%200%201%205.625%207.1h.667zm11.558%207.5H12.6v5.75h2.15a3.1%203.1%200%200%200%203.1-3.1V14.6zM19%2012.821a1.1%201.1%200%200%200%20.85-1.071v-.875c0-1.09-.884-1.975-1.975-1.975H12.6v3.9H19v.021zM5.65%2014.6v2.65a3.1%203.1%200%200%200%203.1%203.1h2.05V14.6H5.65zm-1.229-1.8H10.8V8.9H5.625c-1.09%200-1.975.884-1.975%201.975v.875c0%20.493.324.91.771%201.05zm4.044-9.699c-.894-.298-2.315.736-2.315%201.646%200%20.536%201.973%201.31%204.299%201.536-.75-1.94-1.46-3.008-1.984-3.182zm8.885%201.646c0-.91-1.421-1.944-2.315-1.646-.524.174-1.233%201.242-1.984%203.182%202.326-.227%204.299-1%204.299-1.536z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .videoplayer_controls {
@@ -1128,8 +1040,8 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     display: inline-block;
     vertical-align: middle;
     border-radius: 1.5px;
-    background: #707070;
-    background: hsla(0, 0%, 44%, .65);
+    background: #000;
+    background: rgba(0, 0, 0, .4);
     cursor: pointer
 }
 
@@ -1166,72 +1078,6 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     font-size: 0
 }
 
-.videoplayer_end_actions ._like_icon {
-    position: absolute;
-    left: 15px;
-    top: 17px;
-    height: 17px;
-    width: 20px
-}
-
-.videoplayer_end_actions ._like_icon path {
-    -o-transition: fill .2s;
-    transition: fill .2s
-}
-
-.videoplayer_end_actions ._like._liked ._like_icon path {
-    fill: #a2d5fe
-}
-
-.videoplayer_end_actions ._share_icon {
-    position: absolute;
-    left: 16px;
-    top: 16px;
-    height: 20px;
-    width: 18px
-}
-
-.videoplayer_end_actions ._add_icon {
-    position: absolute;
-    left: 14px;
-    top: 14px;
-    height: 22px;
-    width: 22px
-}
-
-.videoplayer_end_actions ._add_icon ._mark,
-.videoplayer_end_actions ._add_icon ._plus {
-    -webkit-transform-origin: 50%;
-    -o-transform-origin: 50%;
-    transform-origin: 50%;
-    -o-transition: .2s;
-    transition: .2s
-}
-
-.videoplayer_end_actions ._add_icon ._mark {
-    visibility: hidden;
-    -webkit-transform: scale(0);
-    -o-transform: scale(0);
-    transform: scale(0);
-    opacity: 0
-}
-
-.videoplayer_end_actions ._add._added ._add_icon ._mark {
-    visibility: visible;
-    -webkit-transform: scale(1);
-    -o-transform: scale(1);
-    transform: scale(1);
-    opacity: 1
-}
-
-.videoplayer_end_actions ._add._added ._add_icon ._plus {
-    visibility: hidden;
-    -webkit-transform: scale(0);
-    -o-transform: scale(0);
-    transform: scale(0);
-    opacity: 0
-}
-
 .videoplayer_end_actions ._add,
 .videoplayer_end_actions ._like,
 .videoplayer_end_actions ._share {
@@ -1240,9 +1086,24 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     width: 50px;
     height: 50px;
     margin-left: 15px;
-    background: hsla(0, 0%, 44%, .65);
+    background: rgba(0, 0, 0, .4);
     border-radius: 5px;
     cursor: pointer
+}
+
+.videoplayer_end_actions ._add:after,
+.videoplayer_end_actions ._like:after,
+.videoplayer_end_actions ._share:after {
+    content: '';
+    position: absolute;
+    top: 13px;
+    left: 13px;
+    width: 24px;
+    height: 24px;
+    background: no-repeat 50%;
+    opacity: 0.8;
+    -o-transition: 150ms ease-in-out;
+    transition: 150ms ease-in-out
 }
 
 .videoplayer_end_actions ._add:first-child,
@@ -1255,6 +1116,32 @@ body[data-useragent=safari] .videoplayer_live_app_link {
 .videoplayer_end_actions ._like:hover,
 .videoplayer_end_actions ._share:hover {
     background: hsla(0, 0%, 44%, .9)
+}
+
+.videoplayer_end_actions ._add:hover:after,
+.videoplayer_end_actions ._like:hover:after,
+.videoplayer_end_actions ._share:hover:after {
+    opacity: 1
+}
+
+.videoplayer_end_actions ._like:after {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20height%3D%22100%25%22%20width%3D%22100%25%22%3E%3Ctitle%3Elike_outline_white_24%3C%2Ftitle%3E%3Cpath%20d%3D%22M0%2C0H24V24H0Z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M17%2C2.9A6.43%2C6.43%2C0%2C0%2C1%2C23.4%2C9.33c0%2C3.57-1.43%2C5.36-7.45%2C10l-2.78%2C2.16a1.9%2C1.9%2C0%2C0%2C1-2.33%2C0L8.05%2C19.37C2%2C14.69.6%2C12.9.6%2C9.33A6.43%2C6.43%2C0%2C0%2C1%2C7%2C2.9a6.46%2C6.46%2C0%2C0%2C1%2C5%2C2.54A6.46%2C6.46%2C0%2C0%2C1%2C17%2C2.9ZM7%2C4.7A4.63%2C4.63%2C0%2C0%2C0%2C2.4%2C9.33c0%2C2.82%2C1.15%2C4.26%2C6.76%2C8.63l2.78%2C2.16a.1.1%2C0%2C0%2C0%2C.12%2C0L14.84%2C18c5.61-4.36%2C6.76-5.8%2C6.76-8.63A4.63%2C4.63%2C0%2C0%2C0%2C17%2C4.7c-1.56%2C0-3%2C.88-4.23%2C2.73L12%2C8.5l-.74-1.07C10%2C5.58%2C8.58%2C4.7%2C7%2C4.7Z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E")
+}
+
+.videoplayer_end_actions ._like._liked:after {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20height%3D%22100%25%22%20width%3D%22100%25%22%3E%3Ctitle%3Elike_active_24%3C%2Ftitle%3E%3Cpath%20d%3D%22M0%2C0H24V24H0Z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M17%2C2.9A6.43%2C6.43%2C0%2C0%2C1%2C23.4%2C9.33c0%2C3.57-1.43%2C5.36-7.45%2C10l-2.78%2C2.16a1.9%2C1.9%2C0%2C0%2C1-2.33%2C0L8.05%2C19.37C2%2C14.69.6%2C12.9.6%2C9.33A6.43%2C6.43%2C0%2C0%2C1%2C7%2C2.9%2C5.7%2C5.7%2C0%2C0%2C1%2C12%2C6%2C5.7%2C5.7%2C0%2C0%2C1%2C17%2C2.9Z%22%20fill%3D%22%23ff3347%22%2F%3E%3C%2Fsvg%3E")
+}
+
+.videoplayer_end_actions ._share:after {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20height%3D%22100%25%22%20width%3D%22100%25%22%3E%3Ctitle%3Eshare_outline_white_24%3C%2Ftitle%3E%3Cpath%20d%3D%22M0%2C0H24V24H0Z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M12.1%2C7.87V4.4a1.32%2C1.32%2C0%2C0%2C1%2C2.17-1L23.21%2C11a1.32%2C1.32%2C0%2C0%2C1%2C.15%2C1.86l-.15.15-8.94%2C7.6a1.32%2C1.32%2C0%2C0%2C1-2.17-1V16.16c-4.68.11-8%2C1.09-9.89%2C2.87a1.15%2C1.15%2C0%2C0%2C1-1.9-1.11C1.84%2C11.56%2C5.82%2C8.16%2C12.1%2C7.87Zm1.8-2.42v4.2H13c-5.3%2C0-8.72%2C2.25-10.39%2C6.86C5.06%2C15.06%2C8.53%2C14.35%2C13%2C14.35h.9v4.2L21.61%2C12Z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E")
+}
+
+.videoplayer_end_actions ._add:after {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20height%3D%22100%25%22%20width%3D%22100%25%22%3E%3Ctitle%3Eadd_outline_white_24%3C%2Ftitle%3E%3Cpath%20d%3D%22M0%2C0H24V24H0Z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M13%2C11h7a1%2C1%2C0%2C0%2C1%2C0%2C2H13v7a1%2C1%2C0%2C0%2C1-2%2C0V13H4a1%2C1%2C0%2C0%2C1%2C0-2h7V4a1%2C1%2C0%2C0%2C1%2C2%2C0Z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E")
+}
+
+.videoplayer_end_actions ._add._added:after {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%2F%3E%3Cpath%20d%3D%22m4%2012.5%204.9999939%205%2011.5000061-11.5%22%20stroke%3D%22%23fff%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.8%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .videoplayer_end_actions._no_add ._add {
@@ -2059,12 +1946,12 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     position: absolute;
     left: 10px;
     top: 10px;
-    border-radius: 3px;
-    line-height: 37px;
+    border-radius: 4px;
+    line-height: 40px;
     white-space: nowrap;
     padding: 0 20px;
     background: #000;
-    background: rgba(0, 0, 0, .6);
+    background: rgba(0, 0, 0, .4);
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
@@ -2707,12 +2594,12 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     position: absolute;
     right: 0;
     bottom: 0;
-    line-height: 37px;
+    line-height: 40px;
     white-space: nowrap;
     padding: 0 20px;
-    border-radius: 3px;
+    border-radius: 4px;
     background: #000;
-    background: rgba(0, 0, 0, .6);
+    background: rgba(0, 0, 0, .4);
     color: #fff;
     color: hsla(0, 0%, 100%, .75);
     font-size: 13px;

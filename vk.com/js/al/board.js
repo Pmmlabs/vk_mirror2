@@ -291,7 +291,9 @@ var Board = {
                             })), (vk.id != a.post_uid || cur.updates.admin_level > 1) && (a.reply_link = rs(s.reply_link, {
                                 post_id: a.post_id,
                                 post_uid: a.post_uid
-                            }))), a.actions = n, cur.names[a.post_uid] = e[12];
+                            })), a.likes = Likes.makeTemplate(s.likes, {
+                                object_raw: d
+                            })), a.actions = n, cur.names[a.post_uid] = e[12];
                             var c = se(rs(s.post, a));
                             ge("bt_rows").appendChild(c), setTimeout(addClass.pbind(c, "bp_animated"), 0), setTimeout(removeClass.pbind(c, "bp_selected"), 5e3), cur.pgOffset++, cur.pgCount++, window.curNotifier && curNotifier.idle_manager && curNotifier.idle_manager.is_idle && cur.updates.unread++;
                             break;

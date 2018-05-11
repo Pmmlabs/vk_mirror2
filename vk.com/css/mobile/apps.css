@@ -9622,11 +9622,9 @@ only screen and (min-device-pixel-ratio: 2) {
 
 .zpv_header {
     background: #666!important;
-    background: rgba(81, 81, 81, .75)!important;
-    background: -o-linear-gradient(rgba(81, 81, 81, .75), rgba(74, 74, 74, .75))!important;
-    border-bottom: 1px solid #111;
-    border-bottom: 1px solid rgba(67, 67, 67, .85);
-    height: 43px!important
+    background: rgba(29, 29, 29, .88)!important;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08), 0 0 2px 0 rgba(0, 0, 0, .06);
+    height: 48px!important
 }
 
 .zpv_header .hb_wrap {
@@ -9635,9 +9633,10 @@ only screen and (min-device-pixel-ratio: 2) {
 
 .zpv_header .mh_header {
     text-align: left;
+    line-height: 20px;
+    font-size: 17px;
     padding: 12px 14px;
-    text-shadow: 0 -1px #000;
-    text-shadow: 0 -1px rgba(0, 0, 0, .5)
+    font-weight: 600
 }
 
 .zpv_close_btn {
@@ -9647,7 +9646,7 @@ only screen and (min-device-pixel-ratio: 2) {
     cursor: pointer;
     font-weight: 700;
     float: right;
-    padding: 13px 12px 12px 13px
+    padding: 12px
 }
 
 ._hover .zpv_close_btn:hover,
@@ -9666,8 +9665,8 @@ only screen and (min-device-pixel-ratio: 2) {
     overflow: hidden;
     zoom: 1;
     background: #666;
-    background: rgba(61, 61, 61, .75);
-    background: -o-linear-gradient(rgba(61, 61, 61, .75), rgba(64, 64, 64, .75));
+    background-color: rgba(29, 29, 29, .88);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08), 0 0 2px 0 rgba(0, 0, 0, .06);
     z-index: 1
 }
 
@@ -9702,7 +9701,8 @@ only screen and (min-device-pixel-ratio: 2) {
 
 .zpv_bottom .item_button {
     color: #fff;
-    padding: 13px 10px;
+    padding: 12px;
+    height: 24px;
     display: block;
     text-align: center;
     margin: 0;
@@ -9716,8 +9716,7 @@ only screen and (min-device-pixel-ratio: 2) {
 ._touch .zpv_bottom .item_button.hover {
     text-decoration: none;
     background: #999;
-    background: hsla(0, 0%, 100%, .3);
-    box-shadow: 0 0 0 1px hsla(0, 0%, 100%, .3);
+    background: hsla(0, 0%, 100%, .08);
     text-shadow: none
 }
 
@@ -9730,47 +9729,63 @@ only screen and (min-device-pixel-ratio: 2) {
 }
 
 .zpv_values {
-    border-top: 1px solid #999;
-    border-top: 1px solid rgba(59, 59, 59, .45)
+    width: auto;
+    height: 48px;
+    padding: 0 4px
 }
 
 .zpv_values .row_table_column {
-    padding: 0;
-    border-right: 1px solid #efefef;
-    border-right: 1px solid hsla(0, 0%, 100%, .15)
-}
-
-.zpv_values .row_table_last_column {
-    border-right: none
+    padding: 0
 }
 
 .zpv_bottom .item_button .i_icon,
 .zpv_close_icon,
 .zpv_zb_wrap .i_icon {
-    background: url(/images/mobile/zpv_icons.png?2) no-repeat;
-    padding: 2px 18px 2px 0;
+    background: url(/images/mobile/icons/photo_icons_24.png?1) no-repeat;
+    background-size: 24px!important;
+    padding: 0;
     margin: 0;
-    font-weight: 700
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    opacity: 0.4
+}
+
+.vk_2x .zpv_bottom .item_button .i_icon,
+.vk_2x .zpv_close_icon,
+.vk_2x .zpv_zb_wrap .i_icon {
+    background-image: url(/images/mobile/icons/photo_icons_24_2x.png?1)
+}
+
+.zpv_close_icon {
+    display: block;
+    opacity: 1;
+    background: url('/images/mobile/skins/icon/header.png') no-repeat -10px -316px;
+    background-size: 44px
+}
+
+.vk_2x .zpv_close_icon {
+    background-image: url('/images/mobile/skins/icon/header_2x.png')
 }
 
 .zpv_bottom .item_like .i_like {
-    background-position: 0
+    background-position: 0px 0px
 }
 
 .zpv_bottom .item_likes_me .i_like {
-    background-position: -18px
+    background-position: center -24px
 }
 
 .zpv_bottom .item_replies .i_replies {
-    background-position: -36px
+    background-position: center -48px
 }
 
 .zpv_bottom .item_tags .i_tags {
-    background-position: -72px
+    background-position: center -144px
 }
 
 .zpv_bottom .item_tags_me .i_tags {
-    background-position: -90px
+    background-position: -144px
 }
 
 .zpv_bottom .item_button .i_save {
@@ -9782,12 +9797,22 @@ only screen and (min-device-pixel-ratio: 2) {
 }
 
 .zpv_bottom .item_button .v_value {
-    margin: 0 0 0 7px
+    margin: 0 0 0 4px;
+    vertical-align: top;
+    line-height: 24px;
+    font-weight: 500;
+    opacity: 0.7
+}
+
+.zpv_bottom .item_likes_me .i_like,
+.zpv_bottom .item_tags_me .i_tags {
+    opacity: 1
 }
 
 .zpv_bottom .item_likes_me .v_like,
 .zpv_bottom .item_tags_me .v_tags {
-    color: #86c8fb
+    color: #e62e40;
+    opacity: 1
 }
 
 .zpv_bottom .item_disabled {
@@ -9796,18 +9821,17 @@ only screen and (min-device-pixel-ratio: 2) {
 
 .zpv_zoom_btns {
     left: auto;
-    margin: auto 10px;
-    height: 77px;
+    margin: auto 12px;
+    height: 72px;
     background: #333;
-    background: rgba(0, 0, 0, .65);
+    background: rgba(0, 0, 0, .75);
     border-radius: 4px;
-    box-shadow: 0 0 1px #fff;
     overflow: hidden;
-    z-index: 3
+    z-index: 3;
+    border: 1px solid hsla(0, 0%, 100%, .15)
 }
 
 .zpv_zoom_btn {
-    padding: 0 4px;
     display: block;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
 }
@@ -9816,29 +9840,20 @@ only screen and (min-device-pixel-ratio: 2) {
 ._touch .zpv_zoom_btn.active,
 ._touch .zpv_zoom_btn.hover {
     background: #999;
-    background: hsla(0, 0%, 100%, .3)
-}
-
-._hover .zpv_zoomout:hover,
-._touch .zpv_zoomout.active,
-._touch .zpv_zoomout.hover {
-    box-shadow: 0 -1px 0 hsla(0, 0%, 100%, .3)
-}
-
-.zpv_zoomin .zpv_zb_wrap {
-    border-bottom: 1px solid hsla(0, 0%, 100%, .4)
+    background: hsla(0, 0%, 100%, .08)
 }
 
 .zpv_zb_wrap {
     display: block;
-    padding: 10px 6px
+    padding: 6px 8px
 }
 
 .zpv_zb_wrap .i_icon {
     display: block;
     padding: 0;
-    width: 18px;
-    height: 18px
+    width: 24px;
+    height: 24px;
+    opacity: 1
 }
 
 .zpv_zb_disabled {
@@ -9847,16 +9862,12 @@ only screen and (min-device-pixel-ratio: 2) {
     box-shadow: none!important
 }
 
-.zpv_close_icon {
-    background-position: -108px
-}
-
 .zpv_zoomout .i_icon {
-    background-position: -144px 0
+    background-position: 0 -120px
 }
 
 .zpv_zoomin .i_icon {
-    background-position: -126px 0
+    background-position: 0 -96px
 }
 
 .zpv_close_msg_wrap {
