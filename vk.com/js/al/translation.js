@@ -354,7 +354,7 @@
                 each(a, function(e, t) {
                     var a = cur.translationsBoxBackupedExtra[e],
                         n = attr(t, "id");
-                    a ? addClass(t, "on") : removeClass(t, "on"), "tr_extra_export_to_js" == n ? TR.toggleExportWarning(a) : "tr_extra_case" == n && TR.hasCaseChanged(a)
+                    a ? addClass(t, "on") : removeClass(t, "on"), "tr_extra_case" == n && TR.hasCaseChanged(a)
                 }), delete cur.translationsBoxBackupedExtra
             }
         }
@@ -831,10 +831,6 @@
         })
     }
 
-    function toggleExportWarning(e) {
-        toggle("tr_export_warning", e)
-    }
-
     function recalcCounters(e) {
         lockButton(e), ajax.post("translation", {
             act: "recalc_counters",
@@ -1039,7 +1035,6 @@
         _KEY_SETTINGS_STATUS_ONLY_MAIN_LANGUAGES = 4,
         COOKIE_KEY = "remixinline_trans";
     exports.TR = {
-        toggleExportWarning: toggleExportWarning,
         showTranslatorTranslations: showTranslatorTranslations,
         openKey: openKey,
         newKey: newKey,

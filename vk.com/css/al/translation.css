@@ -551,11 +551,6 @@ i i.untranslated {
     margin-top: 10px
 }
 
-.tr_export_warning {
-    line-height: 18px;
-    margin-bottom: 30px
-}
-
 .tr_clone_box .selector_container {
     display: inline-block;
     vertical-align: top

@@ -209,8 +209,9 @@
 }
 
 .like_wrap.lite .like_button_icon {
+    margin-top: -0.5px;
     width: 12px;
-    height: 12px
+    height: 10px
 }
 
 .like_wrap.lite .like_btn.like .like_button_icon {
@@ -323,8 +324,8 @@
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    height: 10px;
-    line-height: 10px;
+    height: 14px;
+    line-height: 14px;
     color: #909399;
     overflow: hidden;
     white-space: nowrap
@@ -334,8 +335,8 @@
     content: '';
     display: block;
     width: 14px;
-    height: 10px;
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2210%22%20viewBox%3D%221%202%2014%2010%22%20style%3D%22fill%3A%23828a99%3B%22%3E%3Cpath%20d%3D%22M8%2012C3.8%2012%201%208%201%207%201%206%203.8%202%208%202%2012.2%202%2015%206%2015%207%2015%208%2012.2%2012%208%2012ZM8%2010.5C9.9%2010.5%2011.5%208.9%2011.5%207%2011.5%205.1%209.9%203.5%208%203.5%206.1%203.5%204.5%205.1%204.5%207%204.5%208.9%206.1%2010.5%208%2010.5ZM8%208.6C7.1%208.6%206.4%207.9%206.4%207%206.4%206.1%207.1%205.4%208%205.4%208.9%205.4%209.6%206.1%209.6%207%209.6%207.9%208.9%208.6%208%208.6Z%22%2F%3E%3C%2Fsvg%3E") no-repeat 0 0;
+    height: 14px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2210%22%20viewBox%3D%221%202%2014%2010%22%20style%3D%22fill%3A%23828a99%3B%22%3E%3Cpath%20d%3D%22M8%2012C3.8%2012%201%208%201%207%201%206%203.8%202%208%202%2012.2%202%2015%206%2015%207%2015%208%2012.2%2012%208%2012ZM8%2010.5C9.9%2010.5%2011.5%208.9%2011.5%207%2011.5%205.1%209.9%203.5%208%203.5%206.1%203.5%204.5%205.1%204.5%207%204.5%208.9%206.1%2010.5%208%2010.5ZM8%208.6C7.1%208.6%206.4%207.9%206.4%207%206.4%206.1%207.1%205.4%208%205.4%208.9%205.4%209.6%206.1%209.6%207%209.6%207.9%208.9%208.6%208%208.6Z%22%2F%3E%3C%2Fsvg%3E") no-repeat 50% / contain;
     margin-right: 6px;
     opacity: 0.5
 }
@@ -345,8 +346,8 @@
 }
 
 .like_views .counter_anim_wrap {
-    height: 10px;
-    line-height: 9px
+    height: 14px;
+    line-height: 13px
 }
 
 .like_views .counter_anim_wrap,

@@ -9160,34 +9160,6 @@ only screen and (min-device-pixel-ratio: 2) {
     display: inline
 }
 
-.free_terms_box {
-    font-size: small;
-    text-align: center;
-    background-color: #f7f7f7
-}
-
-.free_terms_header {
-    display: block;
-    color: #777;
-    padding: 7px
-}
-
-._hover .free_terms_header:hover {
-    text-decoration: none
-}
-
-.free_terms_desc {
-    padding: 7px 0;
-    margin: 0 7px;
-    border-top: 1px solid #ccc;
-    color: #777;
-    line-height: 1.4em
-}
-
-.free_terms_hide {
-    white-space: nowrap
-}
-
 .emoji,
 .emoji_css {
     width: 16px;

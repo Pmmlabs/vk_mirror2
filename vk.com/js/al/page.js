@@ -6951,7 +6951,9 @@ var Wall = {
                                 if (!openEl || openEl.className != 'replies_open') {
                                     openEl = ce('div', {
                                         className: 'replies_open',
-                                        onclick: Wall.openNewComments.pbind(post_id)
+                                        onclick: Wall.openNewComments.pbind(post_id),
+                                        role: 'button',
+                                        tabIndex: 0
                                     });
                                     repliesEl.parentNode.insertBefore(openEl, repliesEl.nextSibling);
                                 }

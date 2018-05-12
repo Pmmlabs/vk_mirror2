@@ -174,7 +174,9 @@ var Feed = {
                                     h = geByClass("new_reply", u, "div").length;
                                 f && "replies_open" == f.className || (f = ce("div", {
                                     className: "replies_open",
-                                    onclick: wall.openNewComments.pbind(n)
+                                    onclick: wall.openNewComments.pbind(n),
+                                    role: "button",
+                                    tabIndex: 0
                                 }), u.parentNode.insertBefore(f, u.nextSibling)), f.innerHTML = getLang("wall_x_new_replies_more", Math.min(100, h)), f.newCnt = h;
                                 var g = scrollGetY(),
                                     w = window.innerHeight || document.documentElement.clientHeight || bodyNode.clientHeight,
@@ -374,7 +376,9 @@ var Feed = {
                         }), j.firstChild), wall.updateRepliesHeader(r, O, U, W))
                     } else D = wall.updatePostImages(D), f = se(D), addClass(f, "new_reply"), q && "replies_open" == q.className || (q = ce("div", {
                         className: "replies_open",
-                        onclick: wall.openNewComments.pbind(r)
+                        onclick: wall.openNewComments.pbind(r),
+                        role: "button",
+                        tabIndex: 0
                     }), j.parentNode.insertBefore(q, j.nextSibling)), q.innerHTML = getLang("wall_x_new_replies_more", Math.min(100, I)), q.newCnt = I
                 } else re("reply_link" + r), show(A, j), V = !0;
                 r.split("_")[0] == vk.id && cur.feedUnreadCount++, f || (f = se(D)), j.appendChild(f), feed.needScrollPost(t, V ? f : q) && (c += i.offsetHeight - F), V && nodeUpdated(f), Wall.repliesSideSetup(r), Wall.updateMentionsIndex(), Likes.update("wall" + r, {

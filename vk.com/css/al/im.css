@@ -2304,6 +2304,10 @@ textarea.EditableLabel__textarea {
     margin: 0 0 12px
 }
 
+.List.ChatSettingsMenu:last-child {
+    margin: 0
+}
+
 .ChatSettingsMenu__invite {
     position: relative;
     display: inline-block;
