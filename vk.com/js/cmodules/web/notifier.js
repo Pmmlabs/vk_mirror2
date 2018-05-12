@@ -704,27 +704,29 @@
                     e = e.originalEvent || e || window.event;
                     var btn = e.which,
                         nohide = !1;
-                    if (1 == btn && (e.ctrlKey || browser.mac && e.metaKey) && (btn = 2, browser.mac && (nohide = !0)), "A" != (e.target || e.srcElement).tagName) {
+                    1 == btn && (e.ctrlKey || browser.mac && e.metaKey) && (btn = 2, browser.mac && (nohide = !0)); {
+                        if ("A" != (e.target || e.srcElement).tagName) {
+                            switch (btn) {
+                                case 1:
+                                    eval(ev.onclick), Notifier.hideEvent(ev);
+                                    break;
+                                case 2:
+                                    var wnd = window.open(ev.link, "_blank");
+                                    try {
+                                        wnd.blur(), window.focus()
+                                    } catch (e) {}
+                                    nohide || Notifier.hideEvent(ev);
+                                    break;
+                                case 3:
+                                    if (browser.mozilla) return
+                            }
+                            return cancelEvent(e)
+                        }
                         switch (btn) {
                             case 1:
-                                eval(ev.onclick), Notifier.hideEvent(ev);
-                                break;
-                            case 2:
-                                var wnd = window.open(ev.link, "_blank");
-                                try {
-                                    wnd.blur(), window.focus()
-                                } catch (e) {}
-                                nohide || Notifier.hideEvent(ev);
                                 break;
                             case 3:
-                                if (browser.mozilla) return
                         }
-                        return cancelEvent(e)
-                    }
-                    switch (btn) {
-                        case 1:
-                            break;
-                        case 3:
                     }
                 }), addEvent(ev.baloonEl, "contextmenu", function(e) {
                     return setTimeout(function() {
@@ -1410,12 +1412,14 @@
             if (t && "border-box" === ce(e, "boxSizing") && (t = !1), e == document) a = [Math.max(o.clientWidth, bodyNode.scrollWidth, o.scrollWidth, bodyNode.offsetWidth, o.offsetWidth), Math.max(o.clientHeight, bodyNode.scrollHeight, o.scrollHeight, bodyNode.offsetHeight, o.offsetHeight)];
             else if (e) {
                 var s = function() {
-                    a = K(e) && (i = Q(e, n)) && void 0 !== i.width ? [i.width, i.height] : [e.offsetWidth, e.offsetHeight], t && each(a, function(t, n) {
-                        var r = t ? ["Top", "Bottom"] : ["Left", "Right"];
-                        each(r, function() {
-                            a[t] -= parseFloat(ce(e, "padding" + this)) || 0, a[t] -= parseFloat(ce(e, "border" + this + "Width")) || 0
+                    if (a = K(e) && (i = Q(e, n)) && void 0 !== i.width ? [i.width, i.height] : [e.offsetWidth, e.offsetHeight], t) {
+                        each(a, function(t, n) {
+                            var r = t ? ["Top", "Bottom"] : ["Left", "Right"];
+                            each(r, function() {
+                                a[t] -= parseFloat(ce(e, "padding" + this)) || 0, a[t] -= parseFloat(ce(e, "border" + this + "Width")) || 0
+                            })
                         })
-                    })
+                    }
                 };
                 if (W(e)) s();
                 else {
@@ -3863,7 +3867,10 @@
                 var o, l, f;
                 curFastChat.clistCache = {};
                 for (r in curFastChat.friends)
-                    for (o = curFastChat.friends[r][0], r = intval(r), l = 0; f = " " + o.charAt(l).toLowerCase(), curFastChat.clistCache[f] || (curFastChat.clistCache[f] = {}), curFastChat.clistCache[f][r] = 1, l = o.indexOf(" ", l + 1), -1 != l;) ++l
+                    for (o = curFastChat.friends[r][0], r = intval(r), l = 0;;) {
+                        if (f = " " + o.charAt(l).toLowerCase(), curFastChat.clistCache[f] || (curFastChat.clistCache[f] = {}), curFastChat.clistCache[f][r] = 1, l = o.indexOf(" ", l + 1), -1 == l) break;
+                        ++l
+                    }
             },
             clistShowMore: function() {
                 if (curFastChat.clHasMore) {
@@ -5213,7 +5220,8 @@
                     i = r[0],
                     a = r[1],
                     o = r[2];
-                r[3], r[4], t.allShown = t.allShown || o, t.history = d(t.history) + i, t.historyToAppend = i;
+                r[3], r[4];
+                t.allShown = t.allShown || o, t.history = d(t.history) + i, t.historyToAppend = i;
                 var s = Object.keys(a).length;
                 return t.skipped -= s, t.offset += s, t.msgs = extend(t.msgs, a), e
             })
@@ -5782,7 +5790,8 @@
                 });
                 return st(i, !0, n), t.then(function(t) {
                     var i = Qt(t, 2);
-                    return i[0], i[1], delete n.blockedFlagUpdates[e], r.msgs = null, r.history = null, r.unread = 0, r.lastmsg = !1, r.lastmsg_meta = null, n
+                    i[0], i[1];
+                    return delete n.blockedFlagUpdates[e], r.msgs = null, r.history = null, r.unread = 0, r.lastmsg = !1, r.lastmsg_meta = null, n
                 })
             }
         }
@@ -6776,7 +6785,8 @@
                     cancelled_shares: t.cancelled_shares
                 }, $t).then(function(e) {
                     var t = Qt(e, 1);
-                    return t[0], n
+                    t[0];
+                    return n
                 })
             }),
             sn = oe(function(e) {
@@ -7915,7 +7925,9 @@
                 }
             }), o
         }
-        n.r(t), n(8), n(204), n(149), n(11), n(163), n(144), n(206), window.getWndInner = r, window.lastWndScroll = [!1, !1], window.updateWndVScroll = i, window.defBox = a;
+        n.r(t);
+        n(8), n(204), n(149), n(11), n(163), n(144), n(206);
+        window.getWndInner = r, window.lastWndScroll = [!1, !1], window.updateWndVScroll = i, window.defBox = a;
         try {
             stManager.done("notifier.js")
         } catch (o) {}

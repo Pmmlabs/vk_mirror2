@@ -11048,12 +11048,14 @@
         if (t && "border-box" === ce(e, "boxSizing") && (t = !1), e == document) a = [Math.max(o.clientWidth, bodyNode.scrollWidth, o.scrollWidth, bodyNode.offsetWidth, o.offsetWidth), Math.max(o.clientHeight, bodyNode.scrollHeight, o.scrollHeight, bodyNode.offsetHeight, o.offsetHeight)];
         else if (e) {
             var s = function() {
-                a = K(e) && (i = Q(e, n)) && void 0 !== i.width ? [i.width, i.height] : [e.offsetWidth, e.offsetHeight], t && each(a, function(t, n) {
-                    var r = t ? ["Top", "Bottom"] : ["Left", "Right"];
-                    each(r, function() {
-                        a[t] -= parseFloat(ce(e, "padding" + this)) || 0, a[t] -= parseFloat(ce(e, "border" + this + "Width")) || 0
+                if (a = K(e) && (i = Q(e, n)) && void 0 !== i.width ? [i.width, i.height] : [e.offsetWidth, e.offsetHeight], t) {
+                    each(a, function(t, n) {
+                        var r = t ? ["Top", "Bottom"] : ["Left", "Right"];
+                        each(r, function() {
+                            a[t] -= parseFloat(ce(e, "padding" + this)) || 0, a[t] -= parseFloat(ce(e, "border" + this + "Width")) || 0
+                        })
                     })
-                })
+                }
             };
             if (G(e)) s();
             else {
@@ -11613,7 +11615,7 @@
                         n = t[0],
                         r = t[1],
                         i = t[2];
-                    return a.loading ? void 0 : a.props.virtualized || a.props.hasMore ? void(r - n - i <= a.props.threshold && (a.loading = !0, a.props.loadMore().then(function() {
+                    if (!a.loading) return a.props.virtualized || a.props.hasMore ? void(r - n - i <= a.props.threshold && (a.loading = !0, a.props.loadMore().then(function() {
                         a.loading = !1
                     }))) : a.detachListeners()
                 }, 34), a.onScroll = function(e) {
@@ -18004,7 +18006,7 @@
                 n = function(e) {
                     t();
                     var n = e.dataTransfer.files;
-                    return n.length && Upload.checkFilesSizes(window.videoInlineUploader, e.dataTransfer.files) ? (window.Upload && Upload.checked && Upload.checked[window.videoInlineUploader] && Upload.onFileApiSend(window.videoInlineUploader, e.dataTransfer.files), cancelEvent(e)) : void 0
+                    if (n.length && Upload.checkFilesSizes(window.videoInlineUploader, e.dataTransfer.files)) return window.Upload && Upload.checked && Upload.checked[window.videoInlineUploader] && Upload.onFileApiSend(window.videoInlineUploader, e.dataTransfer.files), cancelEvent(e)
                 },
                 r = function() {
                     addEvent(boxLayerWrap, "dragenter dragover", e), addEvent(boxLayerWrap, "dragleave", t), addEvent(boxLayerWrap, "drop", n)
@@ -18100,86 +18102,87 @@
                 r(this, t);
                 var a = i(this, e.call(this, n));
                 return a.showInvitationLink = function() {
-                    var e = a.props.store,
-                        t = e.get(),
-                        n = t.peer;
-                    return a.setState({
-                        invitationLoading: !0
-                    }), Object(c.getInviteLink)(n - 2e9, t).then(function(e) {
-                        var t = y(e, 1),
-                            n = t[0];
+                        var e = a.props.store,
+                            t = e.get(),
+                            n = t.peer;
+                        return a.setState({
+                            invitationLoading: !0
+                        }), Object(c.getInviteLink)(n - 2e9, t).then(function(e) {
+                            var t = y(e, 1),
+                                n = t[0];
+                            a.setState({
+                                section: C,
+                                invitationLoading: !1,
+                                invitationLink: n
+                            })
+                        })
+                    }, a.onUpdateFlags = function(e) {
+                        var t = a.props.store,
+                            n = t.get(),
+                            r = n.peer;
+                        return Object(c.updateFlags)(r, e, n)
+                    }, a.afterUpdateFlags = function() {
+                        a.go(w, function() {
+                            return a.setBlinkStatus({
+                                flagsUpdated: !0
+                            })
+                        })
+                    }, a.afterMembersAdded = function(e) {
+                        a.go(w, function() {
+                            return a.setBlinkStatus({
+                                membersAdded: !0,
+                                membersCount: e
+                            })
+                        })
+                    }, a.setBlinkStatus = function(e) {
+                        a.timers.push(setTimeout(function() {
+                            return a.setState(e)
+                        }, j))
+                    },
+                    a.onHideStatus = function() {
                         a.setState({
-                            section: C,
-                            invitationLoading: !1,
-                            invitationLink: n
+                            membersAdded: !1,
+                            flagsUpdated: !1
                         })
-                    })
-                }, a.onUpdateFlags = function(e) {
-                    var t = a.props.store,
-                        n = t.get(),
-                        r = n.peer;
-                    return Object(c.updateFlags)(r, e, n)
-                }, a.afterUpdateFlags = function() {
-                    a.go(w, function() {
-                        return a.setBlinkStatus({
-                            flagsUpdated: !0
+                    }, a.onLeave = function() {
+                        var e = a.props,
+                            t = e.store,
+                            n = e.closePopup,
+                            r = t.get(),
+                            i = r.peer,
+                            o = Object(s.isFvkcomgroup)(t, i),
+                            d = showFastBox({
+                                title: o ? Object(l.lang)("mail_vkcomgroup_leave_title") : Object(l.lang)("mail_chat_leave_title"),
+                                dark: 1
+                            }, o ? Object(l.lang)("mail_vkcomgroup_leave_confirm") : Object(l.lang)("mail_chat_leave_confirm"), o ? Object(l.lang)("mail_leave_vkcomgroup") : Object(l.lang)("mail_leave_chat"), function() {
+                                t.set(c.unpinMessageOptimistic.bind(null, i)), t.set(c.leaveChat.bind(null, i)), d.hide(), n(), t.get().longpoll.push([Object(u.resetPeer)()])
+                            }, Object(l.lang)("global_cancel"), function() {
+                                d.hide()
+                            })
+                    }, a.onResetLink = function() {
+                        var e = a.props.store,
+                            t = e.get(),
+                            n = t.peer;
+                        return Object(c.resetInviteLink)(n, t).then(function(e) {
+                            var t = y(e, 1),
+                                n = t[0];
+                            a.setState({
+                                invitationLink: n,
+                                invitationLinkReseted: !0
+                            })
                         })
-                    })
-                }, a.afterMembersAdded = function(e) {
-                    a.go(w, function() {
-                        return a.setBlinkStatus({
-                            membersAdded: !0,
-                            membersCount: e
-                        })
-                    })
-                }, a.setBlinkStatus = function(e) {
-                    a.timers.push(setTimeout(function() {
-                        return a.setState(e);
-                    }, j))
-                }, a.onHideStatus = function() {
-                    a.setState({
+                    }, a.onShowAttachments = function() {
+                        var e = a.props.store.get().peer;
+                        window.showWiki({
+                            w: "history" + Object(s.convertPeerToUrl)(e) + "_photo"
+                        }, null, {})
+                    }, a.state = {
+                        section: w,
+                        invitationLink: null,
+                        invitationLinkReseted: !1,
                         membersAdded: !1,
                         flagsUpdated: !1
-                    })
-                }, a.onLeave = function() {
-                    var e = a.props,
-                        t = e.store,
-                        n = e.closePopup,
-                        r = t.get(),
-                        i = r.peer,
-                        o = Object(s.isFvkcomgroup)(t, i),
-                        d = showFastBox({
-                            title: o ? Object(l.lang)("mail_vkcomgroup_leave_title") : Object(l.lang)("mail_chat_leave_title"),
-                            dark: 1
-                        }, o ? Object(l.lang)("mail_vkcomgroup_leave_confirm") : Object(l.lang)("mail_chat_leave_confirm"), o ? Object(l.lang)("mail_leave_vkcomgroup") : Object(l.lang)("mail_leave_chat"), function() {
-                            t.set(c.unpinMessageOptimistic.bind(null, i)), t.set(c.leaveChat.bind(null, i)), d.hide(), n(), t.get().longpoll.push([Object(u.resetPeer)()])
-                        }, Object(l.lang)("global_cancel"), function() {
-                            d.hide()
-                        })
-                }, a.onResetLink = function() {
-                    var e = a.props.store,
-                        t = e.get(),
-                        n = t.peer;
-                    return Object(c.resetInviteLink)(n, t).then(function(e) {
-                        var t = y(e, 1),
-                            n = t[0];
-                        a.setState({
-                            invitationLink: n,
-                            invitationLinkReseted: !0
-                        })
-                    })
-                }, a.onShowAttachments = function() {
-                    var e = a.props.store.get().peer;
-                    window.showWiki({
-                        w: "history" + Object(s.convertPeerToUrl)(e) + "_photo"
-                    }, null, {})
-                }, a.state = {
-                    section: w,
-                    invitationLink: null,
-                    invitationLinkReseted: !1,
-                    membersAdded: !1,
-                    flagsUpdated: !1
-                }, a.timers = [], a
+                    }, a.timers = [], a
             }
             return a(t, e), t.prototype.go = function(e, t) {
                 var n = this;
@@ -19381,8 +19384,8 @@
                             s.act && "create" === s.act ? k(I, [], y, i, t, n, a) : E(I, [], y, a);
                             break;
                         case "st":
-                            s.st && s.sel ? (curBox() && curBox().hide(),
-                                I.mutate(ie.setInplaceSearch.bind(null, unescape(s.st), s.sel)), n.startSearch(I)) : (I.mutate(ie.cancelSearch.bind(null, r.sel)), n.cancelSearch(I, !0));
+                            s.st && s.sel ? (curBox() && curBox().hide(), I.mutate(ie.setInplaceSearch.bind(null, unescape(s.st), s.sel)),
+                                n.startSearch(I)) : (I.mutate(ie.cancelSearch.bind(null, r.sel)), n.cancelSearch(I, !0));
                             break;
                         case "q":
                             s.q ? (curBox() && curBox().hide(), i.setSearch(I, s.q, !0)) : i.clearSearch(I);
@@ -20319,7 +20322,8 @@
                 i = r[0],
                 a = r[1],
                 o = r[2];
-            r[3], r[4], t.allShown = t.allShown || o, t.history = l(t.history) + i, t.historyToAppend = i;
+            r[3], r[4];
+            t.allShown = t.allShown || o, t.history = l(t.history) + i, t.historyToAppend = i;
             var s = Object.keys(a).length;
             return t.skipped -= s, t.offset += s, t.msgs = extend(t.msgs, a), e
         })
@@ -20888,7 +20892,8 @@
             });
             return st(i, !0, n), t.then(function(t) {
                 var i = Qt(t, 2);
-                return i[0], i[1], delete n.blockedFlagUpdates[e], r.msgs = null, r.history = null, r.unread = 0, r.lastmsg = !1, r.lastmsg_meta = null, n
+                i[0], i[1];
+                return delete n.blockedFlagUpdates[e], r.msgs = null, r.history = null, r.unread = 0, r.lastmsg = !1, r.lastmsg_meta = null, n
             })
         }
     }
@@ -21882,7 +21887,8 @@
                 cancelled_shares: t.cancelled_shares
             }, $t).then(function(e) {
                 var t = Qt(e, 1);
-                return t[0], n
+                t[0];
+                return n
             })
         }),
         sn = oe(function(e) {
@@ -22087,16 +22093,15 @@
             var n = Ht.FOLDER_MASKS[Ht.FOLDER_IMPORTANT],
                 r = t.tabs[e].folders & n,
                 i = r ? Nt.resetDirectoriesEvent : Nt.setDirectoriesEvent;
-            return t.longpoll.push([i([0, e, n, !0])]),
-                Object(Pt.post)(Pt.CONTROLLER, {
-                    act: "a_dialog_star",
-                    val: r ? 0 : 1,
-                    peer: e,
-                    hash: t.tabs[e].hash,
-                    gid: t.gid
-                }).then(function() {
-                    return t
-                })
+            return t.longpoll.push([i([0, e, n, !0])]), Object(Pt.post)(Pt.CONTROLLER, {
+                act: "a_dialog_star",
+                val: r ? 0 : 1,
+                peer: e,
+                hash: t.tabs[e].hash,
+                gid: t.gid
+            }).then(function() {
+                return t
+            })
         }),
         kn = c(function(e, t, n) {
             var r = Ht.FOLDER_MASKS[Ht.FOLDER_UNRESPOND];
