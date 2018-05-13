@@ -28,61 +28,381 @@
         return e.d(n, "a", n), n
     }, e.o = function(t, e) {
         return Object.prototype.hasOwnProperty.call(t, e)
-    }, e.p = "", e(e.s = 336)
+    }, e.p = "", e(e.s = 205)
 }({
     103: function(t, e, n) {
         "use strict";
 
         function r(t) {
-            var e = Object(c.getXY)(t),
-                n = a(e, 2),
-                r = n[1],
-                o = t.closest(".ui_scroll_outer, #wk_layer_wrap, #box_layer_wrap, body"),
-                i = !1;
-            if ("BODY" !== o.tagName && o) {
-                i = !0;
-                var u = Object(c.getXY)(o),
-                    s = a(u, 2),
-                    l = s[1];
-                r -= l, r += o.scrollTop
+            var e = Object(i.vkNow)();
+            return new u(function(n, r) {
+                var o = Object(i.vkImage)();
+                o.onload = function() {
+                    return n(Object(i.vkNow)() - e)
+                }, o.error = r, o.src = t
+            })
+        }
+        n.r(e), n.d(e, "loadImage", function() {
+            return r
+        });
+        var o = n(244),
+            i = n(221),
+            u = o.Promise
+    },
+    132: function(t, e, n) {
+        "use strict";
+
+        function r() {
+            c || (window.LazyLoadInited = c = !0, Element.prototype.closest && (Object(u["default"])(), Object(i["default"])()))
+        }
+
+        function o(t) {
+            c && (Object(u["default"])(), Object(i.update)(t))
+        }
+        n.r(e);
+        var i = n(307),
+            u = n(55),
+            c = window.LazyLoadInited;
+        window.LazyLoad = {
+            init: r,
+            scan: o,
+            scanDelayed: function(t) {
+                return setTimeout(function() {
+                    return o(t)
+                }, 20)
+            },
+            watch: function() {
+                c && Object(i.watch)()
             }
-            return {
-                y: r,
-                from: i ? "custom_scroll" : "window"
+        };
+        try {
+            stManager.done("lazyload.js")
+        } catch (a) {}
+    },
+    184: function(t, e) {
+        var n;
+        n = function() {
+            return this
+        }();
+        try {
+            n = n || Function("return this")() || (1, eval)("this")
+        } catch (r) {
+            "object" == typeof window && (n = window)
+        }
+        t.exports = n
+    },
+    205: function(t, e, n) {
+        t.exports = n(132)
+    },
+    221: function(t, e, n) {
+        "use strict";
+
+        function r(t) {
+            var e = PageID;
+            return function() {
+                e == PageID && t.apply(this, arguments)
             }
         }
 
-        function o() {
-            s = [];
-            for (var t = Object(c.geByClass)("lazyload_need_load"), e = 0; e < t.length; e++) {
-                var n = t[e],
-                    o = r(n),
-                    i = o.y,
-                    u = o.from,
-                    l = Object(c.getSize)(n),
-                    d = a(l, 2),
-                    f = d[0],
-                    w = d[1];
-                s.push({
-                    elem: n,
-                    y: i,
-                    from: u,
-                    width: f,
-                    height: w
+        function o(t, e) {
+            return setTimeout(r(t), e)
+        }
+
+        function i(t, e) {
+            return Math.random() * (e - t + 1) + t
+        }
+
+        function u(t, e) {
+            return Math.floor(i(t, e))
+        }
+
+        function c(t) {
+            return "undefined" == typeof t
+        }
+
+        function a(t) {
+            return t && "[object Function]" === Object.prototype.toString.call(t)
+        }
+
+        function s(t) {
+            return "[object Array]" === Object.prototype.toString.call(t)
+        }
+
+        function l(t) {
+            return "string" == typeof t
+        }
+
+        function d(t) {
+            return "[object Object]" === Object.prototype.toString.call(t)
+        }
+
+        function f(t) {
+            if ("[object Object]" !== Object.prototype.toString.call(t)) return !1;
+            for (var e in t)
+                if (t.hasOwnProperty(e)) return !1;
+            return !0
+        }
+
+        function w() {
+            return +new Date
+        }
+
+        function p() {
+            return window.Image ? new Image : ce("img")
+        }
+
+        function m(t) {
+            return (t || "").replace(/^\s+|\s+$/g, "")
+        }
+
+        function h(t) {
+            return t ? t.replace(/<(?:.|\s)*?>/g, "") : ""
+        }
+
+        function g(t) {
+            return t ? t.replace(/([.*+?^${}()|[\]\/\\])/g, "\\$1") : ""
+        }
+
+        function y(t) {
+            return t === !0 ? 1 : parseInt(t) || 0
+        }
+
+        function v(t) {
+            return t === !0 ? 1 : parseFloat(t) || 0
+        }
+
+        function b(t) {
+            return t = y(t), 0 > t ? 0 : t
+        }
+
+        function C(t) {
+            return !isNaN(t)
+        }
+
+        function _(t) {
+            return t.replace(/&#(\d\d+);/g, function(t, e) {
+                return e = y(e), e >= 32 ? String.fromCharCode(e) : t
+            }).replace(/&quot;/gi, '"').replace(/&lt;/gi, "<").replace(/&gt;/gi, ">").replace(/&amp;/gi, "&")
+        }
+
+        function T(t) {
+            return se("<textarea>" + (t || "").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;") + "</textarea>").value
+        }
+
+        function S(t) {
+            return t ? t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;") : ""
+        }
+
+        function x(t) {
+            return T(t.replace(/\t/g, "\n"))
+        }
+
+        function k(t, e) {
+            if (d(t) || "undefined" == typeof t.length) {
+                for (var n in t)
+                    if (Object.prototype.hasOwnProperty.call(t, n) && e.call(t[n], n, t[n]) === !1) break
+            } else
+                for (var r = 0, o = t.length; o > r; r++) {
+                    var i = t[r];
+                    if (e.call(i, r, i) === !1) break
+                }
+            return t
+        }
+
+        function A(t, e, n) {
+            for (var r = n || 0, o = (t || []).length; o > r; r++)
+                if (t[r] == e) return r;
+            return -1
+        }
+
+        function E(t, e) {
+            return -1 != A(e, t)
+        }
+
+        function O(t, e) {
+            var n = d(t) || "undefined" == typeof t.length ? {} : [];
+            for (var r in t)(!/webkit/i.test(_ua) || "layerX" != r && "layerY" != r && "webkitMovementX" != r && "webkitMovementY" != r) && (e && "object" === I(t[r]) && "prototype" !== r && null !== t[r] ? n[r] = O(t[r]) : n[r] = t[r]);
+            return n
+        }
+
+        function j(t) {
+            var e, n, r = {},
+                o = 1,
+                i = arguments.length,
+                u = arguments;
+            for (e in t) {
+                for (n = !1, o = 1; i > o; o++) u[o][e] && u[o][e] == t[e] && (n = !0);
+                n || (r[e] = t[e])
+            }
+            return r
+        }
+
+        function N() {
+            var t, e = arguments,
+                n = e[0] || {},
+                r = 1,
+                o = e.length,
+                i = !1;
+            for ("boolean" == typeof n && (i = n, n = e[1] || {}, r = 2), "object" === ("undefined" == typeof n ? "undefined" : I(n)) || a(n) || (n = {}); o > r; ++r)
+                if (null != (t = e[r]))
+                    for (var u in t) {
+                        var c = n[u],
+                            s = t[u];
+                        n !== s && (i && s && "object" === ("undefined" == typeof s ? "undefined" : I(s)) && !s.nodeType ? n[u] = N(i, c || (null != s.length ? [] : {}), s) : void 0 !== s && (n[u] = s))
+                    }
+            return n
+        }
+
+        function L(t) {
+            window.templates = window.templates || {}, N(window.templates, t)
+        }
+
+        function D(t, e) {
+            var n = window.templates = window.templates || {},
+                r = n[t];
+            return "function" == typeof r && (r = r()), r && e ? rs(r, e) : r || ""
+        }
+
+        function H(t) {
+            if ("object" != ("undefined" == typeof t ? "undefined" : I(t))) return !1;
+            var e = {},
+                n = function(e) {
+                    return geByTag(e, t)
+                },
+                r = function(n, r) {
+                    if (r.name)
+                        if ("text" != r.type && r.type)
+                            if (r.getAttribute("bool")) {
+                                var o = val(r);
+                                if (!o || "0" === o) return;
+                                e[r.name] = 1
+                            } else e[r.name] = browser.msie && !r.value && t[r.name] ? t[r.name].value : r.value;
+                    else e[r.name] = val(r)
+                };
+            return k(n("input"), function(t, e) {
+                return "radio" != e.type && "checkbox" != e.type || e.checked ? r(t, e) : void 0
+            }), k(n("select"), r), k(n("textarea"), r), e
+        }
+
+        function M(t, e) {
+            for (var n, r = e ? U : W, o = []; t && (n = t.match(r));) {
+                t = t.substr(n.index + n[0].length);
+                var i = 0;
+                n[4] || (i = 7), o.push({
+                    url: n[2 + i],
+                    query: n[5 + i] || "",
+                    domain: n[4 + i]
                 })
             }
-            cur.objects = s
+            return o
         }
 
-        function i() {
-            return s
+        function R() {
+            return window.devicePixelRatio >= 2
         }
-        n.r(e), n.d(e, "getObjects", function() {
+
+        function z(t) {
+            var e = 0,
+                n = 0,
+                r = t.ownerDocument || t.document,
+                o = r.defaultView || r.parentWindow,
+                i = o.getSelection();
+            if (i.rangeCount > 0) {
+                var u = o.getSelection().getRangeAt(0),
+                    c = u.cloneRange();
+                c.selectNodeContents(t), c.setEnd(u.startContainer, u.startOffset), e = c.toString().length, c.setEnd(u.endContainer, u.endOffset), n = c.toString().length
+            }
+            return [e, n]
+        }
+
+        function P(t) {
+            var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {},
+                n = e.kLimit || 1e3,
+                r = e.mLimit || 1e6;
+            return t >= r && !e.noCheck ? (t = y(t / 1e5), t = t > 1e3 ? y(t / 10) : t / 10, P(t, N(e, {
+                noCheck: !0
+            }), !0) + "M") : t >= n && !e.noCheck ? (t = y(t / 100), t = t > 100 ? y(t / 10) : t / 10, P(t, N(e, {
+                noCheck: !0
+            }), !0) + "K") : langNumeric(t, "%s", !0).replace(/,/g, ".")
+        }
+        n.r(e), n.d(e, "vkLocal", function() {
+            return r
+        }), n.d(e, "lTimeout", function() {
+            return o
+        }), n.d(e, "rand", function() {
             return i
+        }), n.d(e, "irand", function() {
+            return u
+        }), n.d(e, "isUndefined", function() {
+            return c
+        }), n.d(e, "isFunction", function() {
+            return a
+        }), n.d(e, "isArray", function() {
+            return s
+        }), n.d(e, "isString", function() {
+            return l
+        }), n.d(e, "isObject", function() {
+            return d
+        }), n.d(e, "isEmpty", function() {
+            return f
+        }), n.d(e, "vkNow", function() {
+            return w
+        }), n.d(e, "vkImage", function() {
+            return p
+        }), n.d(e, "trim", function() {
+            return m
+        }), n.d(e, "stripHTML", function() {
+            return h
+        }), n.d(e, "escapeRE", function() {
+            return g
+        }), n.d(e, "intval", function() {
+            return y
+        }), n.d(e, "floatval", function() {
+            return v
+        }), n.d(e, "positive", function() {
+            return b
+        }), n.d(e, "isNumeric", function() {
+            return C
+        }), n.d(e, "winToUtf", function() {
+            return _
+        }), n.d(e, "replaceEntities", function() {
+            return T
+        }), n.d(e, "clean", function() {
+            return S
+        }), n.d(e, "unclean", function() {
+            return x
+        }), n.d(e, "each", function() {
+            return k
+        }), n.d(e, "indexOf", function() {
+            return A
+        }), n.d(e, "inArray", function() {
+            return E
+        }), n.d(e, "clone", function() {
+            return O
+        }), n.d(e, "arrayKeyDiff", function() {
+            return j
+        }), n.d(e, "extend", function() {
+            return N
+        }), n.d(e, "addTemplates", function() {
+            return L
+        }), n.d(e, "getTemplate", function() {
+            return D
+        }), n.d(e, "serializeForm", function() {
+            return H
+        }), n.d(e, "extractUrls", function() {
+            return M
+        }), n.d(e, "isRetina", function() {
+            return R
+        }), n.d(e, "getCaretCharacterOffsetWithin", function() {
+            return z
+        }), n.d(e, "formatCount", function() {
+            return P
+        }), n.d(e, "encodeHtml", function() {
+            return $
+        }), n.d(e, "decodeHtml", function() {
+            return q
         });
-        var u = n(416),
-            c = n(110),
-            a = function() {
+        var B = function() {
                 function t(t, e) {
                     var n = [],
                         r = !0,
@@ -107,12 +427,28 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }(),
-            s = [];
-        e["default"] = function() {
-            o(), Object(u.update)()
-        }
+            I = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
+                return typeof t
+            } : function(t) {
+                return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t
+            };
+        window.PageID = window.PageID || 1;
+        var W = /(?:([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+(?:[a-z]{2,9}|xn--p1ai|xn--j1amh|xn--80asehdb|xn--80aswg))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)]*(&nbsp;|[ \t\r\n \u00A0]))|([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9а-яєґї_\-]+\.)+(?:рф|укр|онлайн|сайт|срб))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)]*(&nbsp;|[ \t\r\n \u00A0])))/i,
+            U = /(?:([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+(?:[a-z]{2,9}|xn--p1ai|xn--j1amh|xn--80asehdb|xn--80aswg))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)&]*(&nbsp;|[ \t\r\n \u00A0]|$))|([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9а-яєґї_\-]+\.)+(?:рф|укр|онлайн|сайт|срб))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)&]*(&nbsp;|[ \t\r\n \u00A0]|$)))/i,
+            F = function() {
+                var t = null;
+                return [function(e) {
+                    return t || (t = se("<span> </span>")), t.innerText = e, t.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;")
+                }, function(e) {
+                    return t || (t = se("<span> </span>")), t.innerHTML = e, t.innerText
+                }]
+            }(),
+            Y = B(F, 2),
+            $ = Y[0],
+            q = Y[1];
+        window.isRetina = R, window.extractUrls = M, window.serializeForm = H, window.addTemplates = L, window.getTemplate = D, window.rand = i, window.irand = u, window.isUndefined = c, window.isFunction = a, window.isArray = s, window.isString = l, window.isObject = d, window.isEmpty = f, window.vkNow = w, window.vkImage = p, window.trim = m, window.stripHTML = h, window.escapeRE = g, window.intval = y, window.floatval = v, window.positive = b, window.isNumeric = C, window.winToUtf = _, window.replaceEntities = T, window.clean = S, window.unclean = x, window.each = k, window.indexOf = A, window.inArray = E, window.clone = O, window.arrayKeyDiff = j, window.extend = N, window.vkLocal = r, window.lTimeout = o, window.getCaretCharacterOffsetWithin = z, window.formatCount = P, window.encodeHtml = $, window.decodeHtml = q
     },
-    110: function(t, e, n) {
+    23: function(t, e, n) {
         "use strict";
 
         function r(t) {
@@ -812,7 +1148,7 @@
         }), n.d(e, "lockDocumentTitle", function() {
             return Tt
         });
-        var St = n(362),
+        var St = n(221),
             xt = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
                 return typeof t
             } : function(t) {
@@ -842,20 +1178,7 @@
         var kt = !1;
         window.ge = r, window.geByTag = o, window.geByTag1 = i, window.geByClass = u, window.geByClass1 = c, window.gpeByClass = a, window.domQuery = s, window.domQuery1 = l, window.domClosest = d, window.ce = p, window.re = m, window.se = h, window.sech = g, window.rs = y, window.psr = v, window.domReplaceEl = b, window.domEL = C, window.domNS = _, window.domPS = T, window.domFC = S, window.domLC = x, window.domPN = k, window.domChildren = A, window.domInsertBefore = E, window.domInsertAfter = O, window.domByClass = j, window.domData = N, window.domChildIndex = L, window.domCA = D, window.domClosestSibling = H, window.matchesSelector = M, window.isHover = R, window.isAncestor = z, window.getScroll = P, window.domClosestPositioned = B, window.domClosestOverflowHidden = I, window.show = W, window.hide = U, window.isVisible = F, window.clientHeight = Y, window.getClientRectOffsetY = $, window.toggle = q, window.boundingRectEnabled = X, window.getXYRect = V, window.getXY = K, window.isWindow = Q, window.getSize = Z, window.hasClass = tt, window.addClass = et, window.addClassDelayed = nt, window.removeClass = rt, window.removeClassDelayed = ot, window.toggleClass = it, window.toggleClassDelayed = ut, window.replaceClass = ct, window.getStyle = at, window.setStyle = st, window.setStyleDelayed = lt, window.setPseudoStyle = dt, window.data = ft, window.attr = wt, window.removeAttr = pt, window.removeData = mt, window.cleanElems = ht, window.setTitle = gt, window.getZoom = yt, window.val = vt, window.elfocus = bt, window.traverseParent = Ct, window.getH = J, window.getW = G, window.domClosestByTag = f, window.setDocumentTitle = _t, window.lockDocumentTitle = Tt
     },
-    128: function(t, e) {
-        var n;
-        n = function() {
-            return this
-        }();
-        try {
-            n = n || Function("return this")() || (1, eval)("this")
-        } catch (r) {
-            "object" == typeof window && (n = window)
-        }
-        t.exports = n
-    },
-    20: function(t, e) {},
-    214: function(t, e, n) {
+    244: function(t, e, n) {
         (function(r, o) {
             var i;
             (function() {
@@ -926,7 +1249,7 @@
 
                 function h() {
                     try {
-                        var t = n(20);
+                        var t = n(280);
                         return q = t.runOnLoop || t.runOnContext, d()
                     } catch (e) {
                         return p()
@@ -1128,7 +1451,8 @@
                 var q, X, V, K = $,
                     Q = 0,
                     Z = function(t, e) {
-                        rt[Q] = t, rt[Q + 1] = e, Q += 2, 2 === Q && (X ? X(m) : V())
+                        rt[Q] = t, rt[Q + 1] = e,
+                            Q += 2, 2 === Q && (X ? X(m) : V())
                     },
                     G = "undefined" != typeof window ? window : void 0,
                     J = G || {},
@@ -1195,9 +1519,66 @@
                     return yt
                 }.call(e, n, e, t), !(void 0 !== i && (t.exports = i)), gt()
             }).call(this)
-        }).call(this, n(314), n(128))
+        }).call(this, n(362), n(184))
     },
-    314: function(t, e) {
+    280: function(t, e) {},
+    307: function(t, e, n) {
+        "use strict";
+
+        function r() {
+            o(window)
+        }
+
+        function o(t) {
+            addEvent(t, "scroll", i.pbind(t))
+        }
+
+        function i(t) {
+            var e = a.getObjects(),
+                n = window.innerHeight,
+                r = 0,
+                o = !0;
+            t === document || t === window ? r = w() : t ? (r = t.scrollTop, o = !1) : window.wkcur && window.wkcur.shown ? (r = window.wkLayerWrap.scrollTop, o = !1) : f() ? (r = window.boxLayerWrap.scrollTop, o = !1) : r = w(), !o && t && (n = t.offsetHeight);
+            for (var i = function(t) {
+                    var i = e[t],
+                        c = i.elem,
+                        a = i.y,
+                        d = i.height,
+                        f = i.from;
+                    if ("window" !== f && o) return "continue";
+                    if (a > r - 1.5 * n && r + 1.5 * n > a - d) {
+                        Object(l.removeClass)(c, "lazyload_need_load"), e.splice(t, 1), t--;
+                        var w = Object(l.attr)(c, "data-lazyload-src");
+                        Object(s.loadImage)(w).then(function(t) {
+                            10 > t && Object(l.addClass)(c, "lazyload_no_animation"), "IMG" === c.tagName ? Object(l.attr)(c, "src", w) : Object(l.setStyle)(c, "background-image", "url(" + w + ")"), Object(l.addClass)(c, "lazyload_loaded"), Object(l.re)(Object(l.geByClass1)("lazyload_preview", c))
+                        })
+                    }
+                    u = t
+                }, u = 0; u < e.length; u++) i(u)
+        }
+
+        function u(t) {
+            i(t)
+        }
+
+        function c() {
+            r(), u()
+        }
+        n.r(e), n.d(e, "watch", function() {
+            return o
+        }), n.d(e, "update", function() {
+            return u
+        }), n.d(e, "default", function() {
+            return c
+        });
+        var a = n(55),
+            s = n(103),
+            l = n(23),
+            d = window,
+            f = d.curBox,
+            w = d.scrollGetY
+    },
+    362: function(t, e) {
         function n() {
             throw new Error("setTimeout has not been defined")
         }
@@ -1290,338 +1671,59 @@
             return 0
         }
     },
-    336: function(t, e, n) {
-        t.exports = n(394)
-    },
-    36: function(t, e, n) {
+    55: function(t, e, n) {
         "use strict";
 
         function r(t) {
-            var e = Object(i.vkNow)();
-            return new u(function(n, r) {
-                var o = Object(i.vkImage)();
-                o.onload = function() {
-                    return n(Object(i.vkNow)() - e)
-                }, o.error = r, o.src = t
-            })
-        }
-        n.r(e), n.d(e, "loadImage", function() {
-            return r
-        });
-        var o = n(214),
-            i = n(362),
-            u = o.Promise
-    },
-    362: function(t, e, n) {
-        "use strict";
-
-        function r(t) {
-            var e = PageID;
-            return function() {
-                e == PageID && t.apply(this, arguments)
-            }
-        }
-
-        function o(t, e) {
-            return setTimeout(r(t), e)
-        }
-
-        function i(t, e) {
-            return Math.random() * (e - t + 1) + t
-        }
-
-        function u(t, e) {
-            return Math.floor(i(t, e))
-        }
-
-        function c(t) {
-            return "undefined" == typeof t
-        }
-
-        function a(t) {
-            return t && "[object Function]" === Object.prototype.toString.call(t)
-        }
-
-        function s(t) {
-            return "[object Array]" === Object.prototype.toString.call(t)
-        }
-
-        function l(t) {
-            return "string" == typeof t
-        }
-
-        function d(t) {
-            return "[object Object]" === Object.prototype.toString.call(t)
-        }
-
-        function f(t) {
-            if ("[object Object]" !== Object.prototype.toString.call(t)) return !1;
-            for (var e in t)
-                if (t.hasOwnProperty(e)) return !1;
-            return !0
-        }
-
-        function w() {
-            return +new Date
-        }
-
-        function p() {
-            return window.Image ? new Image : ce("img")
-        }
-
-        function m(t) {
-            return (t || "").replace(/^\s+|\s+$/g, "")
-        }
-
-        function h(t) {
-            return t ? t.replace(/<(?:.|\s)*?>/g, "") : ""
-        }
-
-        function g(t) {
-            return t ? t.replace(/([.*+?^${}()|[\]\/\\])/g, "\\$1") : ""
-        }
-
-        function y(t) {
-            return t === !0 ? 1 : parseInt(t) || 0
-        }
-
-        function v(t) {
-            return t === !0 ? 1 : parseFloat(t) || 0
-        }
-
-        function b(t) {
-            return t = y(t), 0 > t ? 0 : t
-        }
-
-        function C(t) {
-            return !isNaN(t)
-        }
-
-        function _(t) {
-            return t.replace(/&#(\d\d+);/g, function(t, e) {
-                return e = y(e), e >= 32 ? String.fromCharCode(e) : t
-            }).replace(/&quot;/gi, '"').replace(/&lt;/gi, "<").replace(/&gt;/gi, ">").replace(/&amp;/gi, "&")
-        }
-
-        function T(t) {
-            return se("<textarea>" + (t || "").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;") + "</textarea>").value
-        }
-
-        function S(t) {
-            return t ? t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;") : ""
-        }
-
-        function x(t) {
-            return T(t.replace(/\t/g, "\n"))
-        }
-
-        function k(t, e) {
-            if (d(t) || "undefined" == typeof t.length) {
-                for (var n in t)
-                    if (Object.prototype.hasOwnProperty.call(t, n) && e.call(t[n], n, t[n]) === !1) break
-            } else
-                for (var r = 0, o = t.length; o > r; r++) {
-                    var i = t[r];
-                    if (e.call(i, r, i) === !1) break
-                }
-            return t
-        }
-
-        function A(t, e, n) {
-            for (var r = n || 0, o = (t || []).length; o > r; r++)
-                if (t[r] == e) return r;
-            return -1
-        }
-
-        function E(t, e) {
-            return -1 != A(e, t)
-        }
-
-        function O(t, e) {
-            var n = d(t) || "undefined" == typeof t.length ? {} : [];
-            for (var r in t)(!/webkit/i.test(_ua) || "layerX" != r && "layerY" != r && "webkitMovementX" != r && "webkitMovementY" != r) && (e && "object" === I(t[r]) && "prototype" !== r && null !== t[r] ? n[r] = O(t[r]) : n[r] = t[r]);
-            return n
-        }
-
-        function j(t) {
-            var e, n, r = {},
-                o = 1,
-                i = arguments.length,
-                u = arguments;
-            for (e in t) {
-                for (n = !1, o = 1; i > o; o++) u[o][e] && u[o][e] == t[e] && (n = !0);
-                n || (r[e] = t[e])
-            }
-            return r
-        }
-
-        function N() {
-            var t, e = arguments,
-                n = e[0] || {},
-                r = 1,
-                o = e.length,
+            var e = Object(c.getXY)(t),
+                n = a(e, 2),
+                r = n[1],
+                o = t.closest(".ui_scroll_outer, #wk_layer_wrap, #box_layer_wrap, body"),
                 i = !1;
-            for ("boolean" == typeof n && (i = n, n = e[1] || {}, r = 2), "object" === ("undefined" == typeof n ? "undefined" : I(n)) || a(n) || (n = {}); o > r; ++r)
-                if (null != (t = e[r]))
-                    for (var u in t) {
-                        var c = n[u],
-                            s = t[u];
-                        n !== s && (i && s && "object" === ("undefined" == typeof s ? "undefined" : I(s)) && !s.nodeType ? n[u] = N(i, c || (null != s.length ? [] : {}), s) : void 0 !== s && (n[u] = s))
-                    }
-            return n
+            if ("BODY" !== o.tagName && o) {
+                i = !0;
+                var u = Object(c.getXY)(o),
+                    s = a(u, 2),
+                    l = s[1];
+                r -= l, r += o.scrollTop
+            }
+            return {
+                y: r,
+                from: i ? "custom_scroll" : "window"
+            }
         }
 
-        function L(t) {
-            window.templates = window.templates || {}, N(window.templates, t)
-        }
-
-        function D(t, e) {
-            var n = window.templates = window.templates || {},
-                r = n[t];
-            return "function" == typeof r && (r = r()), r && e ? rs(r, e) : r || ""
-        }
-
-        function H(t) {
-            if ("object" != ("undefined" == typeof t ? "undefined" : I(t))) return !1;
-            var e = {},
-                n = function(e) {
-                    return geByTag(e, t)
-                },
-                r = function(n, r) {
-                    if (r.name)
-                        if ("text" != r.type && r.type)
-                            if (r.getAttribute("bool")) {
-                                var o = val(r);
-                                if (!o || "0" === o) return;
-                                e[r.name] = 1
-                            } else e[r.name] = browser.msie && !r.value && t[r.name] ? t[r.name].value : r.value;
-                    else e[r.name] = val(r)
-                };
-            return k(n("input"), function(t, e) {
-                return "radio" != e.type && "checkbox" != e.type || e.checked ? r(t, e) : void 0
-            }), k(n("select"), r), k(n("textarea"), r), e
-        }
-
-        function M(t, e) {
-            for (var n, r = e ? U : W, o = []; t && (n = t.match(r));) {
-                t = t.substr(n.index + n[0].length);
-                var i = 0;
-                n[4] || (i = 7), o.push({
-                    url: n[2 + i],
-                    query: n[5 + i] || "",
-                    domain: n[4 + i]
+        function o() {
+            s = [];
+            for (var t = Object(c.geByClass)("lazyload_need_load"), e = 0; e < t.length; e++) {
+                var n = t[e],
+                    o = r(n),
+                    i = o.y,
+                    u = o.from,
+                    l = Object(c.getSize)(n),
+                    d = a(l, 2),
+                    f = d[0],
+                    w = d[1];
+                s.push({
+                    elem: n,
+                    y: i,
+                    from: u,
+                    width: f,
+                    height: w
                 })
             }
-            return o
+            cur.objects = s
         }
 
-        function R() {
-            return window.devicePixelRatio >= 2
-        }
-
-        function z(t) {
-            var e = 0,
-                n = 0,
-                r = t.ownerDocument || t.document,
-                o = r.defaultView || r.parentWindow,
-                i = o.getSelection();
-            if (i.rangeCount > 0) {
-                var u = o.getSelection().getRangeAt(0),
-                    c = u.cloneRange();
-                c.selectNodeContents(t), c.setEnd(u.startContainer, u.startOffset), e = c.toString().length, c.setEnd(u.endContainer, u.endOffset), n = c.toString().length
-            }
-            return [e, n]
-        }
-
-        function P(t) {
-            var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {},
-                n = e.kLimit || 1e3,
-                r = e.mLimit || 1e6;
-            return t >= r && !e.noCheck ? (t = y(t / 1e5), t = t > 1e3 ? y(t / 10) : t / 10, P(t, N(e, {
-                noCheck: !0
-            }), !0) + "M") : t >= n && !e.noCheck ? (t = y(t / 100),
-                t = t > 100 ? y(t / 10) : t / 10, P(t, N(e, {
-                    noCheck: !0
-                }), !0) + "K") : langNumeric(t, "%s", !0).replace(/,/g, ".")
-        }
-        n.r(e), n.d(e, "vkLocal", function() {
-            return r
-        }), n.d(e, "lTimeout", function() {
-            return o
-        }), n.d(e, "rand", function() {
-            return i
-        }), n.d(e, "irand", function() {
-            return u
-        }), n.d(e, "isUndefined", function() {
-            return c
-        }), n.d(e, "isFunction", function() {
-            return a
-        }), n.d(e, "isArray", function() {
+        function i() {
             return s
-        }), n.d(e, "isString", function() {
-            return l
-        }), n.d(e, "isObject", function() {
-            return d
-        }), n.d(e, "isEmpty", function() {
-            return f
-        }), n.d(e, "vkNow", function() {
-            return w
-        }), n.d(e, "vkImage", function() {
-            return p
-        }), n.d(e, "trim", function() {
-            return m
-        }), n.d(e, "stripHTML", function() {
-            return h
-        }), n.d(e, "escapeRE", function() {
-            return g
-        }), n.d(e, "intval", function() {
-            return y
-        }), n.d(e, "floatval", function() {
-            return v
-        }), n.d(e, "positive", function() {
-            return b
-        }), n.d(e, "isNumeric", function() {
-            return C
-        }), n.d(e, "winToUtf", function() {
-            return _
-        }), n.d(e, "replaceEntities", function() {
-            return T
-        }), n.d(e, "clean", function() {
-            return S
-        }), n.d(e, "unclean", function() {
-            return x
-        }), n.d(e, "each", function() {
-            return k
-        }), n.d(e, "indexOf", function() {
-            return A
-        }), n.d(e, "inArray", function() {
-            return E
-        }), n.d(e, "clone", function() {
-            return O
-        }), n.d(e, "arrayKeyDiff", function() {
-            return j
-        }), n.d(e, "extend", function() {
-            return N
-        }), n.d(e, "addTemplates", function() {
-            return L
-        }), n.d(e, "getTemplate", function() {
-            return D
-        }), n.d(e, "serializeForm", function() {
-            return H
-        }), n.d(e, "extractUrls", function() {
-            return M
-        }), n.d(e, "isRetina", function() {
-            return R
-        }), n.d(e, "getCaretCharacterOffsetWithin", function() {
-            return z
-        }), n.d(e, "formatCount", function() {
-            return P
-        }), n.d(e, "encodeHtml", function() {
-            return $
-        }), n.d(e, "decodeHtml", function() {
-            return q
+        }
+        n.r(e), n.d(e, "getObjects", function() {
+            return i
         });
-        var B = function() {
+        var u = n(307),
+            c = n(23),
+            a = function() {
                 function t(t, e) {
                     var n = [],
                         r = !0,
@@ -1646,111 +1748,9 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }(),
-            I = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
-                return typeof t
-            } : function(t) {
-                return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t
-            };
-        window.PageID = window.PageID || 1;
-        var W = /(?:([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+(?:[a-z]{2,9}|xn--p1ai|xn--j1amh|xn--80asehdb|xn--80aswg))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)]*(&nbsp;|[ \t\r\n \u00A0]))|([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9а-яєґї_\-]+\.)+(?:рф|укр|онлайн|сайт|срб))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)]*(&nbsp;|[ \t\r\n \u00A0])))/i,
-            U = /(?:([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+(?:[a-z]{2,9}|xn--p1ai|xn--j1amh|xn--80asehdb|xn--80aswg))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)&]*(&nbsp;|[ \t\r\n \u00A0]|$))|([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9а-яєґї_\-]+\.)+(?:рф|укр|онлайн|сайт|срб))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)&]*(&nbsp;|[ \t\r\n \u00A0]|$)))/i,
-            F = function() {
-                var t = null;
-                return [function(e) {
-                    return t || (t = se("<span> </span>")), t.innerText = e, t.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;")
-                }, function(e) {
-                    return t || (t = se("<span> </span>")), t.innerHTML = e, t.innerText
-                }]
-            }(),
-            Y = B(F, 2),
-            $ = Y[0],
-            q = Y[1];
-        window.isRetina = R, window.extractUrls = M, window.serializeForm = H, window.addTemplates = L, window.getTemplate = D, window.rand = i, window.irand = u, window.isUndefined = c, window.isFunction = a, window.isArray = s, window.isString = l, window.isObject = d, window.isEmpty = f, window.vkNow = w, window.vkImage = p, window.trim = m, window.stripHTML = h, window.escapeRE = g, window.intval = y, window.floatval = v, window.positive = b, window.isNumeric = C, window.winToUtf = _, window.replaceEntities = T, window.clean = S, window.unclean = x, window.each = k, window.indexOf = A, window.inArray = E, window.clone = O, window.arrayKeyDiff = j, window.extend = N, window.vkLocal = r, window.lTimeout = o, window.getCaretCharacterOffsetWithin = z, window.formatCount = P, window.encodeHtml = $, window.decodeHtml = q
-    },
-    394: function(t, e, n) {
-        "use strict";
-
-        function r() {
-            c || (window.LazyLoadInited = c = !0, Element.prototype.closest && (Object(u["default"])(), Object(i["default"])()))
+            s = [];
+        e["default"] = function() {
+            o(), Object(u.update)()
         }
-
-        function o(t) {
-            c && (Object(u["default"])(), Object(i.update)(t))
-        }
-        n.r(e);
-        var i = n(416),
-            u = n(103),
-            c = window.LazyLoadInited;
-        window.LazyLoad = {
-            init: r,
-            scan: o,
-            scanDelayed: function(t) {
-                return setTimeout(function() {
-                    return o(t)
-                }, 20)
-            },
-            watch: function() {
-                c && Object(i.watch)()
-            }
-        };
-        try {
-            stManager.done("lazyload.js")
-        } catch (a) {}
-    },
-    416: function(t, e, n) {
-        "use strict";
-
-        function r() {
-            o(window)
-        }
-
-        function o(t) {
-            addEvent(t, "scroll", i.pbind(t))
-        }
-
-        function i(t) {
-            var e = a.getObjects(),
-                n = window.innerHeight,
-                r = 0,
-                o = !0;
-            t === document || t === window ? r = w() : t ? (r = t.scrollTop, o = !1) : window.wkcur && window.wkcur.shown ? (r = window.wkLayerWrap.scrollTop, o = !1) : f() ? (r = window.boxLayerWrap.scrollTop, o = !1) : r = w(), !o && t && (n = t.offsetHeight);
-            for (var i = function(t) {
-                    var i = e[t],
-                        c = i.elem,
-                        a = i.y,
-                        d = i.height,
-                        f = i.from;
-                    if ("window" !== f && o) return "continue";
-                    if (a > r - 1.5 * n && r + 1.5 * n > a - d) {
-                        Object(l.removeClass)(c, "lazyload_need_load"), e.splice(t, 1), t--;
-                        var w = Object(l.attr)(c, "data-lazyload-src");
-                        Object(s.loadImage)(w).then(function(t) {
-                            10 > t && Object(l.addClass)(c, "lazyload_no_animation"), "IMG" === c.tagName ? Object(l.attr)(c, "src", w) : Object(l.setStyle)(c, "background-image", "url(" + w + ")"), Object(l.addClass)(c, "lazyload_loaded"), Object(l.re)(Object(l.geByClass1)("lazyload_preview", c))
-                        })
-                    }
-                    u = t
-                }, u = 0; u < e.length; u++) i(u)
-        }
-
-        function u(t) {
-            i(t)
-        }
-
-        function c() {
-            r(), u()
-        }
-        n.r(e), n.d(e, "watch", function() {
-            return o
-        }), n.d(e, "update", function() {
-            return u
-        }), n.d(e, "default", function() {
-            return c
-        });
-        var a = n(103),
-            s = n(36),
-            l = n(110),
-            d = window,
-            f = d.curBox,
-            w = d.scrollGetY
     }
 });
