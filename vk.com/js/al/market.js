@@ -703,7 +703,10 @@ var Market = {
             for (var r = 1; r < cur.mkOptions.photos.length && 5 >= r; r++) vkImage().src = cur.mkOptions.photos[r].thumb_x;
             wkcur._hide.push(function() {
                 removeEvent(domPN(ge("market_item_photo")), "click")
-            }), geByClass1("wall_post_more", "market_item_description") && setStyle("market_item_description", "cursor", "pointer"), WkView.updateSize()
+            }), geByClass1("wall_post_more", "market_item_description") && setStyle("market_item_description", "cursor", "pointer"), cur.mkOptions.ddObjects && isArray(cur.mkOptions.ddObjects) && (cur.marketObjDD = new Dropdown(ge("market_shop_add_to_cart_obj"), cur.mkOptions.ddObjects, {
+                big: 1,
+                width: 270
+            })), WkView.updateSize()
         },
         switchPhoto: function(e, t) {
             if (Market.outPhotoThumb(), void 0 === e || e === !1) e = cur.mkOptions.photoIndex + 1, e >= cur.mkOptions.photos.length && (e = 0);
