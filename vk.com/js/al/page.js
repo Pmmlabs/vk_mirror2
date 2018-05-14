@@ -8097,8 +8097,12 @@ var Wall = {
 
         var topWallTab = ge('page_wall_top');
 
-        if (topWallTab) {
-            cur.topWallFeatureTT = new ElementTooltip(geByClass1('ui_tab', topWallTab), {
+        if (!topWallTab || !isVisible(topWallTab)) {
+            topWallTab = ge('page_wall_top_more');
+        }
+
+        if (topWallTab && isVisible(topWallTab)) {
+            cur.topWallFeatureTT = new ElementTooltip(geByClass1('ui_tab', topWallTab) || gpeByClass('ui_tab', topWallTab), {
                 content: '<div class="feature_tooltip__close" onclick="cur.topWallFeatureTT.hide();"></div>' + getLang('wall_top_feature_text'),
                 forceSide: 'top',
                 cls: 'feature_intro_tt feature_info_tooltip',

@@ -222,8 +222,8 @@ var stVersions = {
     'module.css': 20122379849,
     'owner_photo.js': 1308202247,
     'owner_photo.css': 21037007025,
-    'page.js': 1026976720,
-    'page.css': 39851299836,
+    'page.js': 2445262506,
+    'page.css': 38005416291,
     'page_help.css': 22747606485,
     'public.css': 27651883230,
     'public.js': 1804234624,
@@ -303,7 +303,7 @@ var stVersions = {
     'widget_auth.css': 27651949389,
     'widget_community.css': 27632536996,
     'widget_contactus.css': 32449061009,
-    'widget_post.css': 31613570014,
+    'widget_post.css': 30525719645,
     'widget_allow_messages_from_community.css': 30768402235,
     'api/widgets/al_poll.js': 790017760,
     'api/widgets/al_contactus.js': 3360514866,
@@ -636,4 +636,4 @@ var stTypes = {
         'likes.js': 1
     }
 };
-var _rnd = 373;
+var _rnd = 5144;

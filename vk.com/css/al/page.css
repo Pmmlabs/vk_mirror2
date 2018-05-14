@@ -1363,6 +1363,10 @@ html:not([lang=ru]) .wall_marked_as_ads {
     z-index: 1
 }
 
+.wall_module .ui_tabs .ui_tab_group_sel {
+    color: #000
+}
+
 .wall_module td {
     vertical-align: top
 }
