@@ -4634,9 +4634,13 @@ img.im_photo_thumb {
     display: block
 }
 
-.im-page .im-page--hisory_search-open .im-page--toolsw,
-.im-page .im-page--history_vkcomgroup .emoji_tabs .emoji_shop {
+.im-page .im-page--hisory_search-open .im-page--toolsw {
     display: none
+}
+
+.im-page .im-page--history_vkcomgroup .emoji_tabs .emoji_shop,
+.im-page .im-page--history_vkcomgroup .media_selector .ms_item_money {
+    display: none!important
 }
 
 .im-page .im-page--history_search .im-page--chat-body-abs>.ui_scroll_overflow>.ui_scroll_outer {

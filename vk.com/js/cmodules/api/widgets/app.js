@@ -28,9 +28,9 @@
         return t.d(r, "a", r), r
     }, t.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, t.p = "", t(t.s = 208)
+    }, t.p = "", t(t.s = 23)
 }({
-    20: function(e, t, r) {
+    18: function(e, t, r) {
         "use strict";
         r.r(t);
         var n = function() {
@@ -99,7 +99,7 @@
             stManager.done(jsc("api/widgets/app.js"))
         } catch (o) {}
     },
-    208: function(e, t, r) {
-        e.exports = r(20)
+    23: function(e, t, r) {
+        e.exports = r(18)
     }
 });
