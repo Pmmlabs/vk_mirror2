@@ -9596,7 +9596,6 @@ only screen and (min-device-pixel-ratio: 2) {
 }
 
 .zpv_header {
-    background: #666!important;
     background: rgba(29, 29, 29, .88)!important;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08), 0 0 2px 0 rgba(0, 0, 0, .06);
     height: 48px!important
@@ -9736,7 +9735,7 @@ only screen and (min-device-pixel-ratio: 2) {
     display: block;
     opacity: 1;
     background: url('/images/mobile/skins/icon/header.png') no-repeat -10px -316px;
-    background-size: 44px
+    background-size: 44px!important
 }
 
 .vk_2x .zpv_close_icon {

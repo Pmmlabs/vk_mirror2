@@ -166,9 +166,8 @@ var WkPoll = {
             isChecked("wk_poll_extra_" + e) && (o[e] = cur["wkPoll" + e + "DD"].val())
         });
         var e = function(e) {
-            var r = 0;
-            if (each(e, function(l, o) {
-                    r += parseInt(o.countRaw || o.count);
+            var r = e.total;
+            if (each(e.options, function(l, o) {
                     var e = ge("wk_poll_row" + l);
                     setStyle(geByClass1("page_poll_percent", e), {
                         width: o.width + "%"

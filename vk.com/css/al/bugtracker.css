@@ -27,10 +27,6 @@
     padding: 0
 }
 
-.bt_menu_do_not_hide_extra .ui_rmenu_extra_label {
-    display: initial!important
-}
-
 .bt_add_report_btn.button_small {
     margin-top: 6px;
     margin-right: -12px;

@@ -163,10 +163,10 @@ var WPoll = {
         });
     },
 
-    resetPollVote: function(option_id) {
+    resetPollVote: function(voting_id) {
         this.switchSection('form', {
             act: 'a_unvote',
-            option_id: option_id,
+            voting_id: voting_id,
             hash: cur.options.vote_hash
         }, function(success) {
             toggleClass(bodyNode, 'wpoll_my_vote', !success);
