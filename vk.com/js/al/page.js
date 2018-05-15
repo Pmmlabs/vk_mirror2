@@ -2236,6 +2236,11 @@ var Wall = {
         if (type === 'top') {
             cur.baseWallModule = cur.module;
             cur.module = 'wall_top';
+
+            if (cur.topWallFeatureTT) {
+                cur.topWallFeatureTT.hide();
+            }
+
         } else if (cur.baseWallModule) {
             cur.module = cur.baseWallModule;
             delete cur.baseWallModule;

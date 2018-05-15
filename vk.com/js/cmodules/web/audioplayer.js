@@ -28,78 +28,8 @@
         return e.d(i, "a", i), i
     }, e.o = function(t, e) {
         return Object.prototype.hasOwnProperty.call(t, e)
-    }, e.p = "", e(e.s = 3)
-}([function(t, e, i) {
-    "use strict";
-
-    function o() {
-        return window.wbopen && ~(window.open + "").indexOf("wbopen")
-    }
-
-    function a(t) {
-        if (!o() && ~t.indexOf("audio_api_unavailable")) {
-            var e = t.split("?extra=")[1].split("#"),
-                i = "" === e[1] ? "" : s(e[1]);
-            if (e = s(e[0]), "string" != typeof i || !e) return t;
-            i = i ? i.split(String.fromCharCode(9)) : [];
-            for (var a, r, l = i.length; l--;) {
-                if (r = i[l].split(String.fromCharCode(11)), a = r.splice(0, 1, e)[0], !n[a]) return t;
-                e = n[a].apply(null, r)
-            }
-            if (e && "http" === e.substr(0, 4)) return e
-        }
-        return t
-    }
-
-    function s(t) {
-        if (!t || t.length % 4 == 1) return !1;
-        for (var e, i, o = 0, a = 0, s = ""; i = t.charAt(a++);) i = l.indexOf(i), ~i && (e = o % 4 ? 64 * e + i : i, o++ % 4) && (s += String.fromCharCode(255 & e >> (-2 * o & 6)));
-        return s
-    }
-
-    function r(t, e) {
-        var i = t.length,
-            o = [];
-        if (i) {
-            var a = i;
-            for (e = Math.abs(e); a--;) e = (i * (a + 1) ^ e + a) % i, o[a] = e
-        }
-        return o
-    }
-    i.r(e), i.d(e, "audioUnmaskSource", function() {
-        return a
-    });
-    var l = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN0PQRSTUVWXYZO123456789+/=",
-        n = {
-            v: function(t) {
-                return t.split("").reverse().join("")
-            },
-            r: function(t, e) {
-                t = t.split("");
-                for (var i, o = l + l, a = t.length; a--;) i = o.indexOf(t[a]), ~i && (t[a] = o.substr(i - e, 1));
-                return t.join("")
-            },
-            s: function(t, e) {
-                var i = t.length;
-                if (i) {
-                    var o = r(t, e),
-                        a = 0;
-                    for (t = t.split(""); ++a < i;) t[a] = t.splice(o[i - 1 - a], 1, t[a])[0];
-                    t = t.join("")
-                }
-                return t
-            },
-            i: function(t, e) {
-                return n.s(t, e ^ vk.id)
-            },
-            x: function(t, e) {
-                var i = [];
-                return e = e.charCodeAt(0), each(t.split(""), function(t, o) {
-                    i.push(String.fromCharCode(o.charCodeAt(0) ^ e))
-                }), i.join("")
-            }
-        }
-}, function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+    }, e.p = "", e(e.s = 1)
+}([function(__webpack_module__, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     function _loadAllPlaylistAudios(playlist, onDone) {
@@ -163,8 +93,8 @@
         }
     }
     __webpack_require__.r(__webpack_exports__);
-    var _audioplayer_audio_unmask_source__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0),
-        _audioplayer_audio_layer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2),
+    var _audioplayer_audio_unmask_source__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2),
+        _audioplayer_audio_layer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3),
         _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
             return typeof t
         } : function(t) {
@@ -210,12 +140,17 @@
         AUDIO_ITEM_INDEX_EXTRA: 12,
         AUDIO_ITEM_INDEX_HASHES: 13,
         AUDIO_ITEM_INDEX_COVER_URL: 14,
-        AUDIO_ITEM_INDEX_TRACK_GENRE: 15,
+        AUDIO_ITEM_INDEX_ADS: 15,
+        AUDIO_ITEM_INDEX_SUBTITLE: 16,
+        AUDIO_ITEM_INDEX_MAIN_ARTISTS: 17,
+        AUDIO_ITEM_INDEX_FEAT_ARTISTS: 18,
         AUDIO_ITEM_CAN_ADD_BIT: 2,
         AUDIO_ITEM_CLAIMED_BIT: 4,
+        AUDIO_ITEM_HQ_BIT: 16,
         AUDIO_ITEM_LONG_PERFORMER_BIT: 32,
         AUDIO_ITEM_UMA_BIT: 128,
         AUDIO_ITEM_REPLACEABLE: 512,
+        AUDIO_ITEM_EXPLICIT_BIT: 1024,
         AUDIO_ENOUGH_LOCAL_SEARCH_RESULTS: 500,
         AUDIO_RECOMS_TYPE_LISTENED: "recoms6",
         AUDIO_PLAYING_CLS: "audio_row__playing",
@@ -232,7 +167,7 @@
             var o = window.AudioPage ? currentAudioPage(t) : !1,
                 a = window.AudioPage && currentAudioPage(t) || cur.audioPage;
             layers.fullhide && layers.fullhide(!0), setTimeout(function() {
-                a ? (e = unclean(e).replace(/<em>|<\/em>/g, ""), nav.change({
+                o && a ? (e = unclean(e).replace(/<em>|<\/em>/g, ""), nav.change({
                     q: e,
                     performer: 1
                 }, i, {
@@ -610,14 +545,14 @@
                 c = trim(t).toLowerCase(), s()
             }, 200);
             var h = {},
-                y = {};
+                A = {};
             addEvent(n, "click", function(t) {
                 var e = domClosest("_ape_pl_item", t.target),
                     i = domData(e, "id"),
                     o = toggleClass(e, "ape_selected");
-                o ? (y[i] = !0, delete h[i]) : (h[i] = !0, delete y[i])
+                o ? (A[i] = !0, delete h[i]) : (h[i] = !0, delete A[i])
             }), r.removeButtons(), r.addButton(getLang("global_save"), function(o) {
-                var s = Object.keys(y),
+                var s = Object.keys(A),
                     l = Object.keys(h);
                 ajax.post("al_audio.php", {
                     act: "save_audio_in_playlists",
@@ -799,6 +734,7 @@
                     var c = r.getAudiosList().length,
                         p = getTemplate("audio_playlist_snippet", {
                             title: r.getTitle(),
+                            subTitle: r.getSubtitle(),
                             description: r.getDescription(),
                             coverStyle: r.getCoverUrl() ? "background-image:url('" + r.getCoverUrl() + "'); background-size: cover;" : "",
                             authorLine: r.getAuthorLine(),
@@ -1019,6 +955,25 @@
             }
             return cancelEvent(i)
         },
+        getAudioArtistsString: function(t, e) {
+            var i = "";
+            return t.forEach(function(o, a) {
+                var s = "/audio?performer=1&q=" + encodeURIComponent(o.name);
+                o.id && (s = "/artist/" + o.id), i += e ? '<a href="' + s + '">' + o.name + "</a>" : o.name, a < t.length - 1 && (i += ", ")
+            }), i
+        },
+        getAudioPerformers: function(t) {
+            var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : !0,
+                i = "";
+            if (isArray(t[AudioUtils.AUDIO_ITEM_INDEX_MAIN_ARTISTS]) && (i = AudioUtils.getAudioArtistsString(t[AudioUtils.AUDIO_ITEM_INDEX_MAIN_ARTISTS], e)), isArray(t[AudioUtils.AUDIO_ITEM_INDEX_FEAT_ARTISTS]) && (i += " feat. ", i += AudioUtils.getAudioArtistsString(t[AudioUtils.AUDIO_ITEM_INDEX_FEAT_ARTISTS], e)), !i) {
+                var o = t[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER].replace(/<\/?em>/g, "");
+                if (e) {
+                    var a = "/audio?performer=1&q=" + encodeURIComponent(o);
+                    i = '<a data-performer="' + o + '" href="' + a + '">' + o + "</a>"
+                } else i = o
+            }
+            return i
+        },
         drawAudio: function(t, e) {
             for (var i = JSON.parse(getTemplate("audio_bits_to_cls")), o = t[AudioUtils.AUDIO_ITEM_INDEX_FLAGS], a = [], s = 0; 32 > s; s++) {
                 var r = 1 << s;
@@ -1030,17 +985,17 @@
                 var n = t[AudioUtils.AUDIO_ITEM_INDEX_COVER_URL].split(",");
                 l = "background-image: url(" + n[0] + ")"
             }
-            var d = formatTime(t[AudioUtils.AUDIO_ITEM_INDEX_DURATION]),
-                u = t[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER].replace(/<\/?em>/g, ""),
+            var d = AudioUtils.getAudioPerformers(t),
+                u = formatTime(t[AudioUtils.AUDIO_ITEM_INDEX_DURATION]),
                 _ = clean(JSON.stringify(t)).split("$").join("$$"),
                 c = getTemplate("audio_row", t);
-            return c = c.replace(/%cls%/, a.join(" ")), c = c.replace(/%duration%/, d), c = c.replace(/%serialized%/, _), c = c.replace(/%cover_style%/, l), c = c.replace(/%search_href%/, "/search?c[q]=" + encodeURIComponent(u) + "&c[section]=audio&c[performer]=1")
+            return c = c.replace(/%cls%/, a.join(" ")), c = c.replace(/%duration%/, u), c = c.replace(/%serialized%/, _), c = c.replace(/%cover_style%/, l), c = c.replace(/%performers%/, d)
         },
         isClaimedAudio: function(t) {
             return t = AudioUtils.asObject(t), t.flags & AudioUtils.AUDIO_ITEM_CLAIMED_BIT
         },
         getAudioExtra: function(t) {
-            return t = AudioUtils.asObject(t), "object" === _typeof(t.extra) ? t.extra : JSON.parse(t.extra || "{}")
+            return t = AudioUtils.asObject(t), "object" === _typeof(t.extra) ? t.extra : JSON.parse(t.extra || "{}");
         },
         getAudioFromEl: function(t, e) {
             t = domClosest("_audio_row", t);
@@ -1054,14 +1009,16 @@
                 id: t
             };
             var e = (t[AudioUtils.AUDIO_ITEM_INDEX_HASHES] || "").split("/"),
-                i = (t[AudioUtils.AUDIO_ITEM_INDEX_COVER_URL] || "").split(",");
+                i = (t[AudioUtils.AUDIO_ITEM_INDEX_COVER_URL] || "").split(","),
+                o = AudioUtils.getAudioPerformers(t, !1);
             return {
                 id: intval(t[AudioUtils.AUDIO_ITEM_INDEX_ID]),
                 owner_id: intval(t[AudioUtils.AUDIO_ITEM_INDEX_OWNER_ID]),
                 ownerId: t[AudioUtils.AUDIO_ITEM_INDEX_OWNER_ID],
                 fullId: t[AudioUtils.AUDIO_ITEM_INDEX_OWNER_ID] + "_" + t[AudioUtils.AUDIO_ITEM_INDEX_ID],
                 title: t[AudioUtils.AUDIO_ITEM_INDEX_TITLE],
-                performer: t[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER],
+                subTitle: t[AudioUtils.AUDIO_ITEM_INDEX_SUBTITLE],
+                performer: o,
                 duration: intval(t[AudioUtils.AUDIO_ITEM_INDEX_DURATION]),
                 lyrics: intval(t[AudioUtils.AUDIO_ITEM_INDEX_LYRICS]),
                 url: t[AudioUtils.AUDIO_ITEM_INDEX_URL],
@@ -1080,9 +1037,10 @@
                 coverUrl_s: i[0],
                 coverUrl_p: i[1],
                 isClaimed: !!(t[AudioUtils.AUDIO_ITEM_INDEX_FLAGS] & AudioUtils.AUDIO_ITEM_CLAIMED_BIT),
+                isExplicit: !!(t[AudioUtils.AUDIO_ITEM_INDEX_FLAGS] & AudioUtils.AUDIO_ITEM_EXPLICIT_BIT),
                 isUMA: !!(t[AudioUtils.AUDIO_ITEM_INDEX_FLAGS] & AudioUtils.AUDIO_ITEM_UMA_BIT),
                 isReplaceable: !!(t[AudioUtils.AUDIO_ITEM_INDEX_FLAGS] & AudioUtils.AUDIO_ITEM_REPLACEABLE),
-                trackGenre: t[AudioUtils.AUDIO_ITEM_INDEX_TRACK_GENRE]
+                ads: t[AudioUtils.AUDIO_ITEM_INDEX_ADS]
             }
         },
         initDomPlaylist: function(t, e) {
@@ -1108,8 +1066,8 @@
                 c = vk.id,
                 p = {},
                 h = [],
-                y = t,
-                A = window.AudioPage && currentAudioPage(t),
+                A = t,
+                y = window.AudioPage && currentAudioPage(t),
                 f = window.traverseParent || function(t, e) {
                     for (t = ge(t); t && !e(t) && (t = domPN(t), t != document););
                     return null
@@ -1134,11 +1092,11 @@
                 var L = domData(m, "access-hash") || "";
                 for (L && u.mergeWith({
                         accessHash: L
-                    }), A && A.getPageCurrentPlaylist() == u && A.getSortedList() ? u.initSortedList(A.getSortedList()) : s.isFromCurrentPlaylist || (u.removeSortedList(), u.shuffle(0)); y = domPN(y);) h.push((y.id ? "#" + y.id : "") + (y.className ? "." + y.className : ""));
+                    }), y && y.getPageCurrentPlaylist() == u && y.getSortedList() ? u.initSortedList(y.getSortedList()) : s.isFromCurrentPlaylist || (u.removeSortedList(), u.shuffle(0)); A = domPN(A);) h.push((A.id ? "#" + A.id : "") + (A.className ? "." + A.className : ""));
                 h = h.slice(0, 30), h = h.filter(function(t) {
                     return !!trim(t)
                 }), h = h.reverse().join(" / "), h = document.location.href + " : " + h
-            } else if (A && A.getPageCurrentPlaylist()) u = A.getPageCurrentPlaylist();
+            } else if (y && y.getPageCurrentPlaylist()) u = y.getPageCurrentPlaylist();
             else if ("module" == E) {
                 var w = v;
                 u = a.getPlaylist(AudioPlaylist.TYPE_PLAYLIST, w || cur.oid || vk.id, AudioPlaylist.DEFAULT_PLAYLIST_ID), l = [r]
@@ -1168,7 +1126,7 @@
                 var O = 0 === s.context.indexOf("reply");
                 O && (l = i([gpeByClass("_replies_list", t)]), o = "reply" + o), l = l.concat(i([r]))
             } else {
-                for (; y = domPN(y);) h.push((y.id ? "#" + y.id : "") + (y.className ? "." + y.className : ""));
+                for (; A = domPN(A);) h.push((A.id ? "#" + A.id : "") + (A.className ? "." + A.className : ""));
                 h = h.slice(0, 30), h = h.filter(function(t) {
                     return !!trim(t)
                 }), h = h.reverse().join(" / "), h = document.location.href + " : " + h
@@ -1347,6 +1305,8 @@
         return this.getSelf()._gridCovers || ""
     }, AudioPlaylist.prototype.getTitle = function() {
         return this.getSelf()._title || ""
+    }, AudioPlaylist.prototype.getSubtitle = function() {
+        return this.getSelf()._subTitle || ""
     }, AudioPlaylist.prototype.getDescription = function() {
         return this.getSelf()._description || ""
     }, AudioPlaylist.prototype.getRawDescription = function() {
@@ -1601,7 +1561,7 @@
                 for (var a = 0, s = t.items.length; s > a; a++) this._items.push(t.items[a])
             }
             var r = this;
-            each("gridCovers artistsBlock communitiesBlock playlistsBlock addClasses nextOffset hasMore followHash accessHash isFollowed rawId title authorLine authorHref authorName infoLine1 infoLine2 isOfficial rawDescription description lastUpdated listens feedFrom feedOffset live searchParams totalCount totalCountHash postId wallQuery wallType originalList shuffle isAdsAllowed editHash coverUrl searchQid".split(" "), function(e, i) {
+            each("gridCovers artistsBlock communitiesBlock playlistsBlock addClasses nextOffset hasMore followHash accessHash isFollowed rawId title subTitle authorLine authorHref authorName infoLine1 infoLine2 isOfficial rawDescription description lastUpdated listens feedFrom feedOffset live searchParams totalCount totalCountHash postId wallQuery wallType originalList shuffle isAdsAllowed editHash coverUrl searchQid".split(" "), function(e, i) {
                 void 0 !== t[i] && (r["_" + i] = t[i])
             })
         }
@@ -1774,8 +1734,7 @@
             o.getId() == t.getId() && o.mergeWith(e)
         }) : t
     }, AudioPlayer.prototype.deleteCurrentPlaylist = function() {
-        this.stop(), delete this._currentAudio,
-            delete this._currentPlaylist, this.notify(AudioPlayer.EVENT_UPDATE), this.notify(AudioPlayer.EVENT_PLAYLIST_CHANGED), this.updateCurrentPlaying()
+        this.stop(), delete this._currentAudio, delete this._currentPlaylist, this.notify(AudioPlayer.EVENT_UPDATE), this.notify(AudioPlayer.EVENT_PLAYLIST_CHANGED), this.updateCurrentPlaying()
     }, AudioPlayer.prototype.updateCurrentPlaying = function(t) {
         t = !!t;
         var e = AudioUtils.asObject(this.getCurrentAudio()),
@@ -2318,7 +2277,7 @@
                     getAudioPlayer().setStatusExportInfo(a), n._listenedHash = s, each(i, function(e, i) {
                         i = AudioUtils.asObject(i);
                         var a = {};
-                        a[AudioUtils.AUDIO_ITEM_INDEX_URL] = i.url, a[AudioUtils.AUDIO_ITEM_INDEX_TRACK_GENRE] = i.trackGenre, n.updateAudio(i.fullId, a), o.fullId == i.fullId && (t[AudioUtils.AUDIO_ITEM_INDEX_URL] = i.url, t[AudioUtils.AUDIO_ITEM_INDEX_TRACK_GENRE] = i.trackGenre), n.currentAudio && AudtioUtils.asObject(n.currentAudio).fullId == i.fullId && (n.currentAudio[AudioUtils.AUDIO_ITEM_INDEX_URL] = i.url, n.currentAudio[AudioUtils.AUDIO_ITEM_INDEX_TRACK_GENRE] = i.trackGenre), delete n._currentUrlEnsure[i.fullId]
+                        a[AudioUtils.AUDIO_ITEM_INDEX_URL] = i.url, a[AudioUtils.AUDIO_ITEM_INDEX_ADS] = i.ads, n.updateAudio(i.fullId, a), o.fullId == i.fullId && (t[AudioUtils.AUDIO_ITEM_INDEX_URL] = i.url, t[AudioUtils.AUDIO_ITEM_INDEX_ADS] = i.ads), n.currentAudio && AudtioUtils.asObject(n.currentAudio).fullId == i.fullId && (n.currentAudio[AudioUtils.AUDIO_ITEM_INDEX_URL] = i.url, n.currentAudio[AudioUtils.AUDIO_ITEM_INDEX_ADS] = i.ads), delete n._currentUrlEnsure[i.fullId]
                     }), e && e(t)
                 }
             })
@@ -2336,18 +2295,22 @@
             navigateToUploader: !0
         }), cancelEvent(e);
         if (hasClass(e.target, "_audio_row__title_inner") && o.lyrics && !o.isInAttach) return AudioUtils.toggleAudioLyrics(i, o), cancelEvent(e);
-        if (hasClass(e.target, "audio_row__performer")) return checkEvent(e) || vk.widget ? !0 : (AudioUtils.audioSearchPerformer(e.target, o.performer, e), cancelEvent(e));
-        var s = cur.cancelClick || e && (hasClass(e.target, "audio_lyrics") || domClosest("_audio_duration_wrap", e.target) || domClosest("_audio_inline_player", e.target) || domClosest("audio_performer", e.target));
-        if (cur._sliderMouseUpNowEl && cur._sliderMouseUpNowEl == geByClass1("audio_inline_player_progress", i) && (s = !0), delete cur.cancelClick, delete cur._sliderMouseUpNowEl, s) return !0;
+        if (hasClass(e.target.parentNode, "audio_row__performers")) {
+            if (checkEvent(e) || vk.widget) return !0;
+            var s = domData(e.target, "performer");
+            return s ? (AudioUtils.audioSearchPerformer(e.target, s, e), cancelEvent(e)) : !0
+        }
+        var r = cur.cancelClick || e && (hasClass(e.target, "audio_lyrics") || domClosest("_audio_duration_wrap", e.target) || domClosest("_audio_inline_player", e.target) || domClosest("audio_performer", e.target));
+        if (cur._sliderMouseUpNowEl && cur._sliderMouseUpNowEl == geByClass1("audio_inline_player_progress", i) && (r = !0), delete cur.cancelClick, delete cur._sliderMouseUpNowEl, r) return !0;
         if (AudioUtils.isClaimedAudio(o) || o.isReplaceable) {
-            var r = AudioUtils.getAudioExtra(o),
-                l = r.claim;
-            if (l) return void(hasClass(i, "no_actions") || o.isInEditBox || showAudioClaimWarning(o, l, AudioUtils.replaceWithOriginal.bind(AudioUtils, i, o)))
+            var l = AudioUtils.getAudioExtra(o),
+                n = l.claim;
+            if (n) return void(hasClass(i, "no_actions") || o.isInEditBox || showAudioClaimWarning(o, n, AudioUtils.replaceWithOriginal.bind(AudioUtils, i, o)))
         }
         if (o.isPlaying) this.pause();
         else {
-            var n = AudioUtils.getContextPlaylist(i);
-            this.play(o.fullId, n.playlist, o.context || n.context), cur.audioPage && cur.audioPage.onUserAction(o, n.playlist)
+            var d = AudioUtils.getContextPlaylist(i);
+            this.play(o.fullId, d.playlist, o.context || d.context), cur.audioPage && cur.audioPage.onUserAction(o, d.playlist)
         }
         AudioUtils.onRowOver(i, !1, !0)
     }, AudioPlayer.prototype._onFailedUrl = function(t) {
@@ -2532,10 +2495,9 @@
                 vk_id: vk.id,
                 duration: t.duration,
                 content_id: a(t.ownerId, t.id),
-                vk_catid: s[e] || s.other,
-                puid22: t.trackGenre
+                vk_catid: s[e] || s.other
             };
-            nav.objLoc.preview && (r.preview = intval(nav.objLoc.preview)), cur.adsPreview && (r.preview = 1), this._adman.setDebug(!!r.preview), this._adman.onError(function() {
+            extend(r, t.ads || {}), nav.objLoc.preview && (r.preview = intval(nav.objLoc.preview)), cur.adsPreview && (r.preview = 1), this._adman.setDebug(!!r.preview), this._adman.onError(function() {
                 o && o()
             }), this._adman.onReady(function() {
                 if (this._adman) {
@@ -2575,8 +2537,7 @@
     }, AudioPlayerFlash.prototype.fadeVolume = function(t, e) {
         return this.setVolume(t), e()
     }, AudioPlayerFlash.prototype._stopFrequencyAnalise = function() {
-        this._stopFrequencyAnaliseCallback && this._stopFrequencyAnaliseCallback(), delete this._stopFrequencyAnaliseCallback, clearInterval(this._freqUpdateInterval),
-            this.opts.onFrequency([0, 0, 0, 0])
+        this._stopFrequencyAnaliseCallback && this._stopFrequencyAnaliseCallback(), delete this._stopFrequencyAnaliseCallback, clearInterval(this._freqUpdateInterval), this.opts.onFrequency([0, 0, 0, 0])
     }, AudioPlayerFlash.prototype._startFrequencyAnalise = function() {
         function t(t, e, i, o) {
             var a = i - e;
@@ -3030,6 +2991,78 @@
     try {
         stManager.done("audioplayer.js")
     } catch (e) {}
+}, function(t, e, i) {
+    t.exports = i(0)
+}, function(t, e, i) {
+    "use strict";
+
+    function o() {
+        return window.wbopen && ~(window.open + "").indexOf("wbopen")
+    }
+
+    function a(t) {
+        if (!o() && ~t.indexOf("audio_api_unavailable")) {
+            var e = t.split("?extra=")[1].split("#"),
+                i = "" === e[1] ? "" : s(e[1]);
+            if (e = s(e[0]), "string" != typeof i || !e) return t;
+            i = i ? i.split(String.fromCharCode(9)) : [];
+            for (var a, r, l = i.length; l--;) {
+                if (r = i[l].split(String.fromCharCode(11)), a = r.splice(0, 1, e)[0], !n[a]) return t;
+                e = n[a].apply(null, r)
+            }
+            if (e && "http" === e.substr(0, 4)) return e
+        }
+        return t
+    }
+
+    function s(t) {
+        if (!t || t.length % 4 == 1) return !1;
+        for (var e, i, o = 0, a = 0, s = ""; i = t.charAt(a++);) i = l.indexOf(i), ~i && (e = o % 4 ? 64 * e + i : i, o++ % 4) && (s += String.fromCharCode(255 & e >> (-2 * o & 6)));
+        return s
+    }
+
+    function r(t, e) {
+        var i = t.length,
+            o = [];
+        if (i) {
+            var a = i;
+            for (e = Math.abs(e); a--;) e = (i * (a + 1) ^ e + a) % i, o[a] = e
+        }
+        return o
+    }
+    i.r(e), i.d(e, "audioUnmaskSource", function() {
+        return a
+    });
+    var l = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN0PQRSTUVWXYZO123456789+/=",
+        n = {
+            v: function(t) {
+                return t.split("").reverse().join("")
+            },
+            r: function(t, e) {
+                t = t.split("");
+                for (var i, o = l + l, a = t.length; a--;) i = o.indexOf(t[a]), ~i && (t[a] = o.substr(i - e, 1));
+                return t.join("")
+            },
+            s: function(t, e) {
+                var i = t.length;
+                if (i) {
+                    var o = r(t, e),
+                        a = 0;
+                    for (t = t.split(""); ++a < i;) t[a] = t.splice(o[i - 1 - a], 1, t[a])[0];
+                    t = t.join("")
+                }
+                return t
+            },
+            i: function(t, e) {
+                return n.s(t, e ^ vk.id)
+            },
+            x: function(t, e) {
+                var i = [];
+                return e = e.charCodeAt(0), each(t.split(""), function(t, o) {
+                    i.push(String.fromCharCode(o.charCodeAt(0) ^ e))
+                }), i.join("")
+            }
+        }
 }, function(__webpack_module__, __webpack_exports__, __webpack_require__) {
     "use strict";
 
@@ -3115,6 +3148,4 @@
         }, AudioLayer
     }();
     __webpack_exports__["default"] = AudioLayer
-}, function(t, e, i) {
-    t.exports = i(1)
 }]);

@@ -123,6 +123,15 @@
     opacity: 1
 }
 
+input.BlockSearchInput {
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid #e3e4e8;
+    height: 49px;
+    padding: 17px 16px 16px 50px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%3E%3Cpath%20d%3D%22M10.9%209.5l2.8%202.8c.4.4.4%201%200%201.4-.4.4-1%20.4-1.4%200l-2.8-2.8c-1%20.7-2.2%201.1-3.5%201.1-3.3%200-6-2.7-6-6s2.7-6%206-6%206%202.7%206%206c0%201.3-.4%202.5-1.1%203.5zm-4.9.5c2.2%200%204-1.8%204-4s-1.8-4-4-4-4%201.8-4%204%201.8%204%204%204z%22%20fill%3D%22%2393A3BC%22%2F%3E%3C%2Fsvg%3E') 27px 18px no-repeat
+}
+
 .Button {
     margin: 0;
     padding: 0;
@@ -625,6 +634,7 @@ textarea.EditableLabel__textarea {
 }
 
 .Entity__photo {
+    display: block;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -697,7 +707,12 @@ textarea.EditableLabel__textarea {
 .InfiniteScroll {
     overflow-y: scroll;
     -webkit-transform: translateZ(0);
-    transform: translateZ(0)
+    transform: translateZ(0);
+    -ms-overflow-style: none
+}
+
+.InfiniteScroll::-webkit-scrollbar {
+    width: 0
 }
 
 .InfiniteScroll__loader {
@@ -833,10 +848,6 @@ textarea.EditableLabel__textarea {
     border-top-color: transparent
 }
 
-.ListItem--border.ListItem--selectable:last-child:hover {
-    border-bottom-color: transparent
-}
-
 .ListItem--border:before {
     position: absolute;
     bottom: -1px;
@@ -865,6 +876,7 @@ textarea.EditableLabel__textarea {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     overflow: hidden;
+    max-width: calc(100% - 25px);
     text-overflow: ellipsis
 }
 
@@ -887,6 +899,69 @@ textarea.EditableLabel__textarea {
 
 .ListItem--chevron:hover:after {
     opacity: .8
+}
+
+.MembersGrid {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0)
+}
+
+.MembersGrid__i {
+    float: left;
+    width: 50%;
+    height: 50%;
+    background-size: cover;
+    background-position: 50%;
+    background-color: #e1e7ed;
+    overflow: hidden
+}
+
+.MembersGrid--2 .MembersGrid__i,
+.MembersGrid--3 .MembersGrid__i:first-child {
+    height: 100%
+}
+
+.MembersGrid__i:first-child:last-child {
+    width: 100%;
+    height: 100%
+}
+
+.MembersGrid__i:nth-child(2) {
+    -webkit-transform: translate3d(1px, 0, 0);
+    transform: translate3d(1px, 0, 0)
+}
+
+.MembersGrid--4 .MembersGrid__i:nth-child(3) {
+    -webkit-transform: translate3d(0, 1px, 0);
+    transform: translate3d(0, 1px, 0)
+}
+
+.MembersGrid--3 .MembersGrid__i:nth-child(3),
+.MembersGrid--4 .MembersGrid__i:nth-child(4) {
+    -webkit-transform: translate3d(1px, 1px, 0);
+    transform: translate3d(1px, 1px, 0)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .MembersGrid__i:nth-child(2) {
+        -webkit-transform: translate3d(0.5px, 0, 0);
+        transform: translate3d(0.5px, 0, 0)
+    }
+    .MembersGrid--4 .MembersGrid__i:nth-child(3) {
+        -webkit-transform: translate3d(0, 0.5px, 0);
+        transform: translate3d(0, 0.5px, 0)
+    }
+    .MembersGrid--3 .MembersGrid__i:nth-child(3),
+    .MembersGrid--4 .MembersGrid__i:nth-child(4) {
+        -webkit-transform: translate3d(0.5px, 0.5px, 0);
+        transform: translate3d(0.5px, 0.5px, 0)
+    }
 }
 
 .MultiSelect {
@@ -1022,6 +1097,24 @@ textarea.EditableLabel__textarea {
     -webkit-flex: 1 1 auto;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto
+}
+
+.Stub {
+    height: 100%;
+    min-height: 60px;
+    color: #939393;
+    font-size: 13px;
+    line-height: 18px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
 }
 
 .Progress {
@@ -2440,6 +2533,137 @@ textarea.EditableLabel__textarea {
 
 .ChatSettings__leave {
     color: #cb4f4f
+}
+
+.MessageForward {
+    border-radius: 4px;
+    overflow: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0)
+}
+
+.MessageForward__title:not(:last-child):after {
+    margin: 0 4px;
+    text-decoration: none;
+    content: '·'
+}
+
+.MessageForward__switch {
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    cursor: pointer;
+    opacity: .7
+}
+
+.MessageForward__switch:hover {
+    text-decoration: underline
+}
+
+.MessageForward__content {
+    background: #fff
+}
+
+.MessageForward__results {
+    height: 392px
+}
+
+.MessageForward--form .MessageForward__results {
+    height: 329px
+}
+
+.MessageForward__stub {
+    height: 343px
+}
+
+.MessageForward__footer {
+    padding: 12px 0 12px 25px;
+    background: #fafbfc;
+    border-top: 1px solid #e7e8ec;
+    display: none
+}
+
+.MessageForward--form .MessageForward__footer {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.MessageForward__form {
+    position: relative;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    max-width: calc(100% - 60px)
+}
+
+div.MessageForward__input {
+    border: 1px solid #d3d9de;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 13px;
+    line-height: 17px;
+    padding: 10px 42px 9px 12px;
+    height: 100%;
+    word-break: break-all
+}
+
+div.MessageForward__input~.placeholder .ph_input {
+    padding: 10px 12px 9px
+}
+
+.MessageForward__emoji .emoji_smile {
+    padding: 7px 15px 7px 5px
+}
+
+.MessageForward__emoji .emoji_expanded {
+    right: 10px;
+    bottom: 46px
+}
+
+.MessageForward__send,
+.MessageForward__send-spinner {
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: 60px;
+    height: 62px;
+    margin: -12px 0;
+    padding: 0
+}
+
+.MessageForward__send {
+    border: 0;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23828A99%22%20d%3D%22M4.7%2015.8c-.7%201.9-1.1%203.2-1.3%203.9-.6%202.4-1%202.9%201.1%201.8%202.1-1.1%2012-6.7%2014.3-7.9%202.9-1.6%202.9-1.5-.2-3.2-2.3-1.4-12.2-6.8-14-7.9s-1.7-.6-1.2%201.8c.2.8.6%202.1%201.3%203.9.5%201.3%201.6%202.3%203%202.5l5.8%201.1c.1%200%20.1.1.1.1s0%20.1-.1.1l-5.8%201.1c-1.3.4-2.5%201.3-3%202.7z%22%2F%3E%3C%2Fsvg%3E') 16px 19px no-repeat;
+    cursor: pointer;
+    opacity: .7;
+    -o-transition: opacity .15s ease;
+    transition: opacity .15s ease
+}
+
+.MessageForward__send:hover {
+    opacity: 1
+}
+
+.MessageForward__radio {
+    position: relative;
+    margin-top: 3px;
+    display: inline-block;
+    vertical-align: top;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #c1c9d1;
+    border-radius: 50%;
+    background: #fff
+}
+
+.MessageForward__radio--selected:after {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 12px;
+    height: 12px;
+    background: #5181b8;
+    border-radius: 50%;
+    content: ''
 }
 
 .im_dialog_respond i {
