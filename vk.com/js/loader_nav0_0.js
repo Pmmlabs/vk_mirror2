@@ -223,7 +223,7 @@ var stVersions = {
     'owner_photo.js': 1308202247,
     'owner_photo.css': 21037007025,
     'page.js': 3054843480,
-    'page.css': 41535434403,
+    'page.css': 40360171602,
     'page_help.css': 23649973833,
     'public.css': 28554250578,
     'public.js': 1804234624,
@@ -339,7 +339,7 @@ var stVersions = {
     'helpdesk.css': 21024368185,
     'tickets.js': 2918658001,
     'tickets.css': 23653200952,
-    'faq.css': 20948449595,
+    'faq.css': 22622837541,
     'talmud.js': 1641838680,
     'agents.js': 2426697933,
     'agents.css': 17619408132,
@@ -537,11 +537,11 @@ var stVersions = {
     'cmodules/web/speech_worker_opus.js': 2818771805,
     'stories.js': 62618461012,
     'stories.css': 21475720091,
-    'article.css': 36469504439,
-    'article_editor.css': 35663341921,
-    'cmodules/web/article.js': 29391087542,
-    'cmodules/web/article_layer.js': 16537707457,
-    'article_view.js': 11489607547,
+    'article.css': 35856287281,
+    'article_editor.css': 34361659925,
+    'cmodules/web/article.js': 32374654391,
+    'cmodules/web/article_layer.js': 19831011023,
+    'article_view.js': 14782911113,
     'shortener.js': 16413120,
     'cmodules/web/pretty_cards.js': 124004037,
     'cmodules/web/landing_ads_case.js': 3936066274,
@@ -637,4 +637,4 @@ var stTypes = {
         'likes.js': 1
     }
 };
-var _rnd = 6943;
+var _rnd = 6626;

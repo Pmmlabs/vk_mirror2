@@ -929,6 +929,15 @@
     top: 10px
 }
 
+.faq_sort_editor_question_after {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-left: 6px;
+    font-size: 11px;
+    color: #656565
+}
+
 .faq_sort_editor_question_moved {
     background: #f2f4f6
 }

@@ -1696,6 +1696,89 @@ body.article_body .article_layer {
     margin-top: 10px
 }
 
+.article_layer .article_layer_prev_next {
+    margin-top: 50px;
+    margin-bottom: 30px
+}
+
+.article_layer .article_layer_next {
+    line-height: 72px;
+    position: relative
+}
+
+.article_layer .article_layer_next_thumb {
+    width: 96px;
+    height: 72px;
+    background-size: cover;
+    background-position: 50%;
+    border-radius: 4px
+}
+
+.article_layer .article_layer_next_title {
+    vertical-align: middle;
+    display: inline-block;
+    max-width: 220px;
+    line-height: 1.4em;
+    margin-left: 16px;
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.article_layer .article_layer_next.no_thumb .article_layer_next_thumb {
+    display: none
+}
+
+.article_layer .article_layer_prev_next .next,
+.article_layer .article_layer_prev_next .next .article_layer_next_thumb {
+    float: left
+}
+
+.article_layer .article_layer_prev_next .prev,
+.article_layer .article_layer_prev_next .prev .article_layer_next_thumb {
+    float: right
+}
+
+.article_layer .article_layer_prev_next .prev .article_layer_next_title {
+    text-align: right;
+    margin-left: 0;
+    margin-right: 16px
+}
+
+.article_layer .article_layer_next:hover .article_layer_next_title {
+    text-decoration: underline
+}
+
+.article_layer .article_layer_next.next:before,
+.article_layer .article_layer_next.prev:after {
+    content: '';
+    display: block;
+    width: 42px;
+    height: 38px;
+    position: absolute;
+    top: 18px;
+    left: -38px;
+    -o-transition: left 60ms linear, right 60ms linear;
+    transition: left 60ms linear, right 60ms linear;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20d%3D%22M15%2018l-6-6%206-6%22%20stroke%3D%22%235181b8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%222%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: 50%
+}
+
+.article_layer .article_layer_next.prev:after {
+    left: inherit;
+    right: -38px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M24%200H0v24h24z%22%2F%3E%3Cpath%20d%3D%22M9%2018l6-6-6-6%22%20stroke%3D%22%235181b8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%222%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+}
+
+.article_layer .article_layer_next:hover.next:before {
+    left: -41px
+}
+
+.article_layer .article_layer_next:hover.prev:after {
+    right: -41px
+}
+
 .article_full_view {
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
@@ -1931,6 +2014,18 @@ body.article_body .article_layer {
 
 .article_dark .article_stat__funnel_part_median#funnel_part_4 {
     fill: #7a7a7a!important
+}
+
+.article_dark .article_layer_next.next:before {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20d%3D%22M15%2018l-6-6%206-6%22%20stroke%3D%22%23a3a3a3%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%222%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+}
+
+.article_dark .article_layer_next.prev:after {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M24%200H0v24h24z%22%2F%3E%3Cpath%20d%3D%22M9%2018l6-6-6-6%22%20stroke%3D%22%23a3a3a3%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%222%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+}
+
+.article_dark .article_layer_next_title {
+    color: #a3a3a3
 }
 
 .article_layer__subscribe_btn {

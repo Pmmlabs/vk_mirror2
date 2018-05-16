@@ -1108,6 +1108,10 @@
     line-height: 1.462
 }
 
+.wall_module .reply .dld_inner .wall_reasons_result {
+    width: 400px
+}
+
 .page_upload_photos_input {
     position: absolute;
     visibility: hidden
