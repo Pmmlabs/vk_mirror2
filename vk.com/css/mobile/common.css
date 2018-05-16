@@ -19248,6 +19248,10 @@ body.article_body.article_dark {
     border-top: solid 1px rgba(0, 0, 0, .08)
 }
 
+.MailInviteLink__reset:empty {
+    display: none
+}
+
 .MailInviteLink__copied {
     margin-left: 12px;
     font-size: 14px;
@@ -27793,7 +27797,11 @@ a.feedBlocks__article:hover {
 .mailActs:not(.mailActs_canImportant) .mailActs__chevronListItem_type_important,
 .mailActs:not(.mailActs_canImportant) .mailActs__icon_type_important,
 .mailActs:not(.mailActs_canPin) .mailActs__chevronListItem_type_pin,
-.mailActs:not(.mailActs_canPin) .mailActs__icon_type_pin {
+.mailActs:not(.mailActs_canPin) .mailActs__icon_type_pin,
+.mailActs_isVkcomgroup .mailActs__button_type_reply,
+.mailActs_isVkcomgroup .mailActs__chevronListItem_type_pin,
+.mailActs_isVkcomgroup .mailActs__icon_type_pin,
+.mailActs_isVkcomgroup .mailActs__icon_type_remove {
     display: none
 }
 

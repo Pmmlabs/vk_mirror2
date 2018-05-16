@@ -235,7 +235,7 @@ var stVersions = {
     'groups_create.css': 18033416400,
     'cmodules/web/groups_list.js': 5109346988,
     'groups_edit.css': 37905224339,
-    'groups_edit.js': 2233431086,
+    'groups_edit.js': 793185273,
     'profile.css': 20124827748,
     'profile.js': 610604261,
     'calendar.css': 20297025217,
@@ -256,9 +256,9 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 203008986797,
-    'imn.js': 260888723749,
+    'imn.js': 256845815079,
     'im.js': 1322065005,
-    'emoji.js': 928907071,
+    'emoji.js': 104617691,
     'wide_dd.css': 18133910337,
     'wide_dd.js': 452755344,
     'writebox.css': 18560509312,
@@ -637,4 +637,4 @@ var stTypes = {
         'likes.js': 1
     }
 };
-var _rnd = 7855;
+var _rnd = 6943;

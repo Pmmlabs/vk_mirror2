@@ -1775,6 +1775,11 @@ if (!window.Emoji) {
                     opts.onHide();
                 }
             } else {
+                if (opts.needUpdateRecentStickers) {
+                    Emoji.updateRecentStickers(optId);
+                    opts.needUpdateRecentStickers = false;
+                }
+
                 opts.openedByTabKey = !!tabKey;
                 Emoji.showTt(tt);
                 Emoji.repositionEmoji(optId, obj, tt);
@@ -2192,12 +2197,14 @@ if (!window.Emoji) {
             }
             val(recentWrap, '');
             var stickers = Emoji.stickers[Emoji.TAB_RECENT_STICKERS].stickers;
+            var stickersFragment = cf();
             for (var i = 0; i < stickers.length; i++) {
                 var stickerEl = Emoji.render.sticker(optId, Emoji.TAB_RECENT_STICKERS, stickers[i]);
-                recentWrap.appendChild(stickerEl);
+                stickersFragment.appendChild(stickerEl);
                 var top = Math.ceil((i + 1) / 4) * 68;
                 opts.needLoadStickers.unshift([optId + '_' + Emoji.TAB_RECENT_STICKERS + '_' + stickers[i][0], top]);
             }
+            recentWrap.appendChild(stickersFragment);
         },
 
         tabs: {
@@ -3402,7 +3409,8 @@ if (!window.Emoji) {
                 var dataFavHash = attr(obj, 'data-fav-hash');
                 Emoji.stickers[-1].stickers.unshift([stickerNum, width, stickerUrl, animationPath, dataFav, dataFavHash]);
                 ls.set('recent_stickers', Emoji.stickers[-1]);
-                Emoji.updateRecentStickers(optId);
+
+                opts.needUpdateRecentStickers = true;
             }
             if (opts.onStickerSend) {
                 opts.onStickerSend(stickerNum, sticker_referrer, 'animation');

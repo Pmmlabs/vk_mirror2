@@ -367,7 +367,19 @@ var GroupsEdit = {
                                     _ = !0, "admins" == l && (o[6] > 0 && g[c][6] <= 0 ? ++cur.opts.counts[l] : o[6] <= 0 && g[c][6] > 0 && --cur.opts.counts[l]), cur.opts.data[l][c] = o;
                                     break
                                 }
-                        "admins" == l && !_ && r ? (cur.opts.data[l].unshift(o), ++cur.opts.counts.admins, val(cur.searchInp, ""), cur.qShown = !1, GroupsEdit.uIndex(l, cur.opts.data[l])) : ((p = ge("group_u_" + l + e)) && domPN(p).replaceChild(se(GroupsEdit.uGenRow(l, o)), p), _ || (ajaxCache = {})), GroupsEdit.uUpdateSummary()
+                        if ("admins" === l && !_ && r) {
+                            cur.opts.data[l].unshift(o), ++cur.opts.counts.admins, val(cur.searchInp, ""), cur.qShown = !1, GroupsEdit.uIndex(l, cur.opts.data[l]);
+                            var h = cur.opts.data[l][cur.opts.data[l].length - 1],
+                                p = ge("group_u_" + l + h[0]);
+                            p && domPN(p).insertBefore(se(GroupsEdit.uGenRow(l, o)), p)
+                        } else if ("admins" === l && _ && !r) {
+                            var p = ge("group_u_" + l + e);
+                            p && domPN(p).removeChild(p)
+                        } else {
+                            var p = ge("group_u_" + l + e);
+                            p && domPN(p).replaceChild(se(GroupsEdit.uGenRow(l, o)), p), _ || (ajaxCache = {})
+                        }
+                        GroupsEdit.uUpdateSummary()
                     }
                     n && GroupsEdit.uAction(!1, n[0], n[1], n[2])
                 }
@@ -914,8 +926,7 @@ var GroupsEdit = {
             autocomplete: !1,
             selectedItems: e.marketButtonType,
             onChange: function(e) {
-                0 === intval(e) ? (show("market_button_type_im"), hide("market_button_type_link")) : 1 === intval(e) && (hide("market_button_type_im"),
-                    show("market_button_type_link"))
+                0 === intval(e) ? (show("market_button_type_im"), hide("market_button_type_link")) : 1 === intval(e) && (hide("market_button_type_im"), show("market_button_type_link"))
             }
         })), e.wideSections && (extend(cur, {
             wideSections: e.wideSections,
@@ -2132,17 +2143,16 @@ var GroupsEdit = {
                 title: getLang("groups_servers_delete_confirm_box_title"),
                 dark: 1
             }, getLang("groups_tokens_servers_delete_confirm_description").replace("{serverName}", r), getLang("groups_servers_delete_confirm_box_btn"), function() {
-                a.hide(), show(geByClass1("ui_tabs_progress", ge("content"))),
-                    hide(geByClass1("page_actions_cont", ge("content"))), ajax.post("groupsedit.php", {
-                        act: "callback_delete_server",
-                        id: t,
-                        server: o,
-                        hash: s
-                    }, {
-                        onDone: function(t, o) {
-                            "ok" === t ? (nav.objLoc.server = o, nav.go(nav.objLoc)) : (unlockButton(e), GroupsEdit.callback.showError(o), hide(geByClass1("ui_tabs_progress", ge("content"))), show(geByClass1("page_actions_cont", ge("content"))))
-                        }
-                    })
+                a.hide(), show(geByClass1("ui_tabs_progress", ge("content"))), hide(geByClass1("page_actions_cont", ge("content"))), ajax.post("groupsedit.php", {
+                    act: "callback_delete_server",
+                    id: t,
+                    server: o,
+                    hash: s
+                }, {
+                    onDone: function(t, o) {
+                        "ok" === t ? (nav.objLoc.server = o, nav.go(nav.objLoc)) : (unlockButton(e), GroupsEdit.callback.showError(o), hide(geByClass1("ui_tabs_progress", ge("content"))), show(geByClass1("page_actions_cont", ge("content"))))
+                    }
+                })
             }, getLang("global_cancel"))
         },
         clearServerId: function() {
