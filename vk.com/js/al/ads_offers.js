@@ -1367,11 +1367,7 @@ var Offers = {
             link_url: val('offers_param_link_url'),
         };
         if (cur.photo) {
-            params = extend(params, {
-                photo_server: cur.photo.server,
-                photo: cur.photo.photo,
-                photo_hash: cur.photo.hash
-            });
+            params.photo = cur.photo;
         }
         return params;
     },

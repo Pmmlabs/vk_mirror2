@@ -118,7 +118,8 @@
     align-items: center;
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
-    justify-content: space-between
+    justify-content: space-between;
+    position: relative
 }
 
 .like_wrap.lite .like_cont {
@@ -151,6 +152,7 @@
     white-space: nowrap
 }
 
+.like_btn.like,
 .like_btn:first-child {
     margin-left: -3px
 }
@@ -9496,7 +9498,7 @@ button.wall_block_app_btn {
 }
 
 .wrap_like_stickers .sticker_hints_tt {
-    margin-top: -26px
+    margin-top: -29px
 }
 
 .wrap_like_stickers .like_stickers_title {

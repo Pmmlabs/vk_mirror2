@@ -390,14 +390,14 @@
                 bodyStyle: "padding: 20px 0 0; overflow: hidden;",
                 width: 550,
                 onHide: function() {
-                    cur.showedAttachScreenBox || (t || cur.showedScreen || nav.setLoc(extend({}, nav.objLoc, {
+                    cur.showedAttachScreenBox || (cur.isSuperTranslator && (cur.translationBoxSelectedStatus = radioval("tr_key_settings_status"), cur.translationBoxSelectedStatus == _KEY_SETTINGS_STATUS_TRANSLATE_CUSTOM_LANGUAGES && cur.translationKeyLanguagesDD && (cur.translationBoxKeySelectedLang = cur.translationKeyLanguagesDD.val())), t || cur.showedScreen || nav.setLoc(extend({}, nav.objLoc, {
                         key: null,
                         key_tr_id: null,
                         key_lang_id: null,
                         tab: null
                     })), a && setTimeout(function() {
                         ge("box_layer_wrap").scrollTop = cur.translatorsLogBoxOffset, delete cur.translatorsLogBoxOffset
-                    }, 150), cur.onBoxKeyDownEvent && removeEvent(window, "keydown", cur.onBoxKeyDownEvent), delete cur.keySectionsDD, delete cur.keyBoxValueHeight, cur.showedScreen || (delete cur.translationBoxParams, delete cur.translationsScreensList, delete ajaxCache["/" + TR_ADDRESS + "#" + ajx2q(o)], delete cur.translationBoxType, delete cur.translationsScreensListAll), delete cur.translationBoxOpened, delete cur.translationBoxFocusedForm, delete cur.translationBoxKeySelectedLang)
+                    }, 150), cur.onBoxKeyDownEvent && removeEvent(window, "keydown", cur.onBoxKeyDownEvent), delete cur.keySectionsDD, delete cur.keyBoxValueHeight, cur.showedScreen || (delete cur.translationBoxParams, delete cur.translationsScreensList, delete ajaxCache["/" + TR_ADDRESS + "#" + ajx2q(o)], delete cur.translationBoxType, delete cur.translationsScreensListAll, delete cur.translationBoxKeySelectedLang, delete cur.translationBoxKeySelectedLangList, delete cur.translationBoxSelectedStatus), delete cur.translationBoxOpened, delete cur.translationBoxFocusedForm)
                 },
                 onShow: function() {
                     cur.translationBoxParams = [e, t, a], cur.translationsScreensList || (cur.translationsScreensList = []), delete cur.showedAttachScreenBox
@@ -410,23 +410,27 @@
                     var s = ge("translation_box_type_" + cur.translationBoxType);
                     s && setTimeout(switchBoxType.pbind(s, cur.translationBoxType), 1)
                 }
-                if (extend(cur, n.cur), _box_initAutosizeTexts(), e || _box_initValuesChangeEvents(), cur.isSuperTranslator && _box_initOptionsLanguages(), cur.translationsScreensList || (cur.translationsScreensList = []), cur.translationsScreensList.length || (cur.translationsScreensList = cur.translationsScreensListAll), _box_initScreens(n.isDeleted), _box_initExtendedForms(n.boxType), _box_restoreValues(), e) {
-                    isVisible("translations_key_param_tab_history") && _box_initScrollHeight("translation_history_block");
-                    var r;
-                    hasClass("translations_box_edit_key", "tr_box_edit_key_simple") && (r = 120), _box_initOtherLangsScroll(r), _box_setValueSize(0)
+                if (extend(cur, n.cur), _box_initAutosizeTexts(), e || _box_initValuesChangeEvents(), cur.isSuperTranslator && (cur.translationBoxKeySelectedLang || (cur.translationBoxKeySelectedLang = []), cur.translationBoxKeySelectedLang.length || (cur.translationBoxKeySelectedLang = cur.translationBoxKeySelectedLangList), _box_initOptionsLanguages(), "undefined" != typeof cur.translationBoxSelectedStatus && ge("tr_key_settings_options"))) {
+                    var r = ge("translation_key_status_" + e + "_" + cur.translationBoxSelectedStatus);
+                    r && (radiobtn(r, cur.translationBoxSelectedStatus, "tr_key_settings_status"), TR.updateKeySettingsOptions(r))
                 }
-                var i = geByClass("_tr_text_value", geByClass("_tr_key_edit_wrap")[0]),
-                    l = "",
-                    c = !1;
-                each(i, function(e) {
+                if (cur.translationsScreensList || (cur.translationsScreensList = []), cur.translationsScreensList.length || (cur.translationsScreensList = cur.translationsScreensListAll), _box_initScreens(n.isDeleted), _box_initExtendedForms(n.boxType), _box_restoreValues(), e) {
+                    isVisible("translations_key_param_tab_history") && _box_initScrollHeight("translation_history_block");
+                    var i;
+                    hasClass("translations_box_edit_key", "tr_box_edit_key_simple") && (i = 120), _box_initOtherLangsScroll(i), _box_setValueSize(0)
+                }
+                var l = geByClass("_tr_text_value", geByClass("_tr_key_edit_wrap")[0]),
+                    c = "",
+                    _ = !1;
+                each(l, function(e) {
                     addEvent(this, "input change", function(e) {
-                        if (l != val(i[0])) {
-                            l = val(i[0]);
-                            var t = l.match(/(\{[a-zA-Z_]+\})/g) || [],
+                        if (c != val(l[0])) {
+                            c = val(l[0]);
+                            var t = c.match(/(\{[a-zA-Z_]+\})/g) || [],
                                 a = [];
                             each(t, function(e, t) {
                                 a.push([e, t])
-                            }), clearTimeout(c), c = setTimeout(function() {
+                            }), clearTimeout(_), _ = setTimeout(function() {
                                 _caseTokenDropdown.setData(_caseTokenDropdown._selectedItems = a)
                             }, 100)
                         }
@@ -435,8 +439,8 @@
                     withArrow: !0,
                     onSelect: _box_changeKeyFunctionType
                 }));
-                var _ = ge("tr_section_chooser");
-                _ && (cur.keySectionsDD = new Dropdown(_, n.sections, {
+                var d = ge("tr_section_chooser");
+                d && (cur.keySectionsDD = new Dropdown(d, n.sections, {
                     big: !0,
                     selectedItems: intval(nav.objLoc.section),
                     onChange: function(e, t) {
@@ -445,48 +449,48 @@
                         val(a, t[3] + "_" + n)
                     }
                 })), _box_initCases();
-                var d = ge("tr_new_key"),
-                    u = ge("tr_new_key_error");
-                if (d) {
-                    var g = "";
-                    addEvent(d, "change input", function() {
-                        var e = val(d);
+                var u = ge("tr_new_key"),
+                    g = ge("tr_new_key_error");
+                if (u) {
+                    var h = "";
+                    addEvent(u, "change input", function() {
+                        var e = val(u);
                         each(n.sections, function(t, a) {
                             0 === e.indexOf(a[3]) && cur.keySectionsDD.selectItem(a[0])
                         })
-                    }), addEvent(d, "change input", debounce(function() {
-                        var e = trim(val(d));
-                        g != e && (g = e, e && ajax.post(TR_ADDRESS, {
+                    }), addEvent(u, "change input", debounce(function() {
+                        var e = trim(val(u));
+                        h != e && (h = e, e && ajax.post(TR_ADDRESS, {
                             act: "check_new_key",
                             key: e
                         }, {
                             onDone: function(e) {
-                                toggle(u, !!e)
+                                toggle(g, !!e)
                             }
                         }))
                     }, 200))
                 }
-                if (d) elfocus(d);
+                if (u) elfocus(u);
                 else {
-                    var h = geByClass1("_tr_text_value");
+                    var v = geByClass1("_tr_text_value");
                     setTimeout(function() {
-                        h && (elfocus(h), h.select())
+                        v && (elfocus(v), v.select())
                     })
                 }
                 if (n.isDeleted) a.addButton(getLang("box_restore"), function(t) {
                     restoreKey(t, e, n.editHash)
                 }, "yes");
                 else {
-                    var v = a.addButton(e ? getLang("global_save") : getLang("tran_create_key"), function(e) {
+                    var p = a.addButton(e ? getLang("global_save") : getLang("tran_create_key"), function(e) {
                         saveKey(e, n.editHash, !1, t)
                     }, "yes", !0);
                     if (e && cur.isSuperTranslator) {
                         cur.sections = n.sections;
-                        var p = "<a onclick=\"TR.deleteKey('" + e + "', '" + n.editHash + "')\">" + getLang("tran_delete_key") + '</a><span class="divider">|</span><a onclick="TR.cloneKey(\'' + e + "', '" + n.editHash + "')\">" + getLang("tran_copy_key") + "</a>";
-                        a.setControlsText(p)
+                        var y = "<a onclick=\"TR.deleteKey('" + e + "', '" + n.editHash + "')\">" + getLang("tran_delete_key") + '</a><span class="divider">|</span><a onclick="TR.cloneKey(\'' + e + "', '" + n.editHash + "')\">" + getLang("tran_copy_key") + "</a>";
+                        a.setControlsText(y)
                     }
                     addEvent(window, "keydown", cur.onBoxKeyDownEvent = function(a) {
-                        a.ctrlKey && a.keyCode == KEY.ENTER && saveKey(v, n.editHash, function() {
+                        a.ctrlKey && a.keyCode == KEY.ENTER && saveKey(p, n.editHash, function() {
                             boxQueue.hideAll(), openNextKey(e)
                         }, t)
                     })

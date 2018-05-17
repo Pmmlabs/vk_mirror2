@@ -92,7 +92,7 @@ var ExchangeModer = {
                 removeClass(resultArea, 'exchange_moder_request_result_error');
                 addClass(resultArea, 'exchange_moder_request_result_success');
             }
-            if (!response.tmp_error && nav.objLoc.requests) {
+            if (!isError && !response.tmp_error && nav.objLoc.requests) {
                 fadeOut('exchange_moder_request' + requestKey, 500);
             }
             if (isFunction(onCompleteExternal)) {

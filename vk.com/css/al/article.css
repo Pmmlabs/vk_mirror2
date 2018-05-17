@@ -1711,7 +1711,8 @@ body.article_body .article_layer {
     height: 72px;
     background-size: cover;
     background-position: 50%;
-    border-radius: 4px
+    border-radius: 4px;
+    background-color: #eaeaea
 }
 
 .article_layer .article_layer_next_title {
