@@ -539,9 +539,9 @@ var stVersions = {
     'stories.css': 21475720091,
     'article.css': 32605570514,
     'article_editor.css': 34361659925,
-    'cmodules/web/article.js': 32374654391,
-    'cmodules/web/article_layer.js': 19831011023,
-    'article_view.js': 14782911113,
+    'cmodules/web/article.js': 33350332118,
+    'cmodules/web/article_layer.js': 20806688750,
+    'article_view.js': 15758588840,
     'shortener.js': 16413120,
     'cmodules/web/pretty_cards.js': 124004037,
     'cmodules/web/landing_ads_case.js': 3936066274,
@@ -637,4 +637,4 @@ var stTypes = {
         'likes.js': 1
     }
 };
-var _rnd = 1466;
+var _rnd = 4072;
