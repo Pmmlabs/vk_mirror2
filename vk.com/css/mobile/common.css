@@ -785,6 +785,11 @@ select {
     cursor: pointer
 }
 
+.button:disabled {
+    pointer-events: none;
+    opacity: 0.7
+}
+
 .near_btn {
     padding: 6px 10px
 }
@@ -1421,8 +1426,7 @@ input.wide_button {
     float: right;
     border-right: none;
     padding-left: 6px;
-    padding-right: 6px;
-    max-height: 2.701em
+    padding-right: 6px
 }
 
 .mh_btn_label,
@@ -11594,6 +11598,10 @@ a.Pad__corner {
     display: none
 }
 
+.Input_error {
+    border-color: #f2ab99
+}
+
 .Input__native,
 .vk__page_redesign .basis .fi_row .textfield {
     font-family: inherit;
@@ -11627,7 +11635,15 @@ a.Pad__corner {
     font-size: 15px;
     float: left;
     padding: 9px 0 9px 10px;
+    line-height: 20px
+}
+
+.Input__prefix_gray {
     color: #909499
+}
+
+.Input__prefix_rightPadding {
+    padding-right: 3px
 }
 
 .Input__nativeWrap {
@@ -11695,7 +11711,14 @@ a.Pad__corner {
     text-align: center;
     -webkit-appearance: none;
     box-sizing: border-box;
-    font-family: inherit
+    font-family: inherit;
+    -o-transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease
+}
+
+.Btn:disabled {
+    pointer-events: none;
+    opacity: 0.7
 }
 
 .Btn__loader {
@@ -11867,7 +11890,7 @@ a.Pad__corner {
 }
 
 .Control {
-    display: block!important;
+    display: block;
     position: relative!important;
     left: auto!important;
     cursor: pointer;
@@ -11885,9 +11908,9 @@ a.Pad__corner {
 
 .Control__icon {
     display: table-cell;
-    vertical-align: middle;
     position: relative;
-    left: -2px
+    left: -2px;
+    top: 1px
 }
 
 .Control__icon:before {
@@ -12047,7 +12070,7 @@ a.Pad__corner {
     cursor: pointer;
     background: #fff;
     margin: 0;
-    padding: 10px 12px;
+    padding: 10px 34px 10px 12px;
     font-family: inherit;
     font-size: 15px;
     line-height: 18px;
@@ -12061,7 +12084,28 @@ a.Pad__corner {
     right: 12px;
     top: 50%;
     margin-top: -6px;
-    pointer-events: none
+    pointer-events: none;
+    z-index: 1
+}
+
+@supports ((background: -o-linear-gradient(transparent,
+#fff)) or (background: linear-gradient(transparent,
+#fff))) {
+    .Select__native {
+        padding: 10px 12px
+    }
+    .Select:after {
+        content: '';
+        position: absolute;
+        display: block;
+        top: 2px;
+        right: 2px;
+        bottom: 2px;
+        width: 53px;
+        pointer-events: none;
+        background: -o-linear-gradient(left, hsla(0, 0%, 100%, 0), #fff, #fff);
+        background: linear-gradient(90deg, hsla(0, 0%, 100%, 0), #fff, #fff)
+    }
 }
 
 .LoadMore {
@@ -22626,6 +22670,18 @@ a.feedBlocks__article:hover {
     z-index: 100
 }
 
+.Join .Join__accept_eu_yes {
+    display: none
+}
+
+.Join_eu .Join__accept_eu_yes {
+    display: block
+}
+
+.Join_eu .Join__accept_eu_no {
+    display: none
+}
+
 .vk__page_login,
 .vk__page_login .basis__content {
     background-color: #ebedf0!important
@@ -22785,7 +22841,7 @@ a.feedBlocks__article:hover {
     background-image: none!important
 }
 
-.h .mhi_home:not(.mhi_vkhome):before {
+.h .mhi_home:not(.mhi_vkhome):not(.mhb_vkhome):before {
     content: '';
     display: block;
     width: 44px;
@@ -22796,7 +22852,7 @@ a.feedBlocks__article:hover {
     background-image: url('/images/mobile/skins/icon/header.png')
 }
 
-.vk_2x.h .mhi_home:not(.mhi_vkhome):before {
+.vk_2x.h .mhi_home:not(.mhi_vkhome):not(.mhb_vkhome):before {
     background-image: url('/images/mobile/skins/icon/header_2x.png')
 }
 
@@ -26002,6 +26058,42 @@ a.feedBlocks__article:hover {
     }
 }
 
+._LockScreen__page_privacyPolicy .LockScreen {
+    margin-top: 12px
+}
+
+._LockScreen__page_privacyPolicy .basis__header {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+._LockScreen__page_privacyPolicy .header__center {
+    display: none
+}
+
+.PrivacyPolicy__title {
+    padding-top: 16px;
+    padding-bottom: 8px;
+    font-size: 16px;
+    line-height: 1.25;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.PrivacyPolicy__description {
+    padding-top: 0;
+    padding-bottom: 4px
+}
+
+.PrivacyPolicy__buttonRow {
+    padding-top: 8px
+}
+
 .SettingsMenu__item {
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -28170,6 +28262,26 @@ a.feedBlocks__article:hover {
 .m .vk__page_notifications .basis__header .Unfold {
     margin-left: -8px;
     padding-top: 2px
+}
+
+
+/*!
+ * Some hacks for site policy page (`/terms` and `/privacy`)
+ * opened from "accept policy" checkbox
+ */
+
+.vk__page_fromAcceptPolicy .mhb_notify,
+.vk__page_fromAcceptPolicy .mhi_vkhome {
+    display: none
+}
+
+@media (min-width: 882px) {
+    .vk__page_fromAcceptPolicy .mhi_vkhome {
+        display: block
+    }
+    .vk__page_fromAcceptPolicy .header__left {
+        display: none
+    }
 }
 
 

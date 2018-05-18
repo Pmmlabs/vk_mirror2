@@ -785,6 +785,11 @@ select {
     cursor: pointer
 }
 
+.button:disabled {
+    pointer-events: none;
+    opacity: 0.7
+}
+
 .near_btn {
     padding: 6px 10px
 }
@@ -1418,8 +1423,7 @@ input.wide_button {
     float: right;
     border-right: none;
     padding-left: 6px;
-    padding-right: 6px;
-    max-height: 2.701em
+    padding-right: 6px
 }
 
 .mh_btn_label,

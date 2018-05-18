@@ -28,9 +28,80 @@
         return e.d(i, "a", i), i
     }, e.o = function(t, e) {
         return Object.prototype.hasOwnProperty.call(t, e)
-    }, e.p = "", e(e.s = 252)
+    }, e.p = "", e(e.s = 63)
 }({
-    124: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+    43: function(t, e, i) {
+        "use strict";
+
+        function o() {
+            return window.wbopen && ~(window.open + "").indexOf("wbopen")
+        }
+
+        function a(t) {
+            if (!o() && ~t.indexOf("audio_api_unavailable")) {
+                var e = t.split("?extra=")[1].split("#"),
+                    i = "" === e[1] ? "" : s(e[1]);
+                if (e = s(e[0]), "string" != typeof i || !e) return t;
+                i = i ? i.split(String.fromCharCode(9)) : [];
+                for (var a, r, l = i.length; l--;) {
+                    if (r = i[l].split(String.fromCharCode(11)), a = r.splice(0, 1, e)[0], !n[a]) return t;
+                    e = n[a].apply(null, r)
+                }
+                if (e && "http" === e.substr(0, 4)) return e
+            }
+            return t
+        }
+
+        function s(t) {
+            if (!t || t.length % 4 == 1) return !1;
+            for (var e, i, o = 0, a = 0, s = ""; i = t.charAt(a++);) i = l.indexOf(i), ~i && (e = o % 4 ? 64 * e + i : i, o++ % 4) && (s += String.fromCharCode(255 & e >> (-2 * o & 6)));
+            return s
+        }
+
+        function r(t, e) {
+            var i = t.length,
+                o = [];
+            if (i) {
+                var a = i;
+                for (e = Math.abs(e); a--;) e = (i * (a + 1) ^ e + a) % i, o[a] = e
+            }
+            return o
+        }
+        i.r(e), i.d(e, "audioUnmaskSource", function() {
+            return a
+        });
+        var l = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN0PQRSTUVWXYZO123456789+/=",
+            n = {
+                v: function(t) {
+                    return t.split("").reverse().join("")
+                },
+                r: function(t, e) {
+                    t = t.split("");
+                    for (var i, o = l + l, a = t.length; a--;) i = o.indexOf(t[a]), ~i && (t[a] = o.substr(i - e, 1));
+                    return t.join("")
+                },
+                s: function(t, e) {
+                    var i = t.length;
+                    if (i) {
+                        var o = r(t, e),
+                            a = 0;
+                        for (t = t.split(""); ++a < i;) t[a] = t.splice(o[i - 1 - a], 1, t[a])[0];
+                        t = t.join("")
+                    }
+                    return t
+                },
+                i: function(t, e) {
+                    return n.s(t, e ^ vk.id)
+                },
+                x: function(t, e) {
+                    var i = [];
+                    return e = e.charCodeAt(0), each(t.split(""), function(t, o) {
+                        i.push(String.fromCharCode(o.charCodeAt(0) ^ e))
+                    }), i.join("")
+                }
+            }
+    },
+    57: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
         "use strict";
 
         function _loadAllPlaylistAudios(playlist, onDone) {
@@ -94,8 +165,8 @@
             }
         }
         __webpack_require__.r(__webpack_exports__);
-        var _audioplayer_audio_unmask_source__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(157),
-            _audioplayer_audio_layer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5),
+        var _audioplayer_audio_unmask_source__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(43),
+            _audioplayer_audio_layer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(90),
             _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
                 return typeof t
             } : function(t) {
@@ -940,7 +1011,7 @@
                                 curBox().hide()
                             }).show(), removeClass(t, "audio_row__added"), o(!1), !0
                         }
-                    }), addClass(t, "audio_row__added"), d && addClass(d, "audio_row__added"), getAudioPlayer().notify(AudioPlayer.EVENT_ADDED, e.fullId), a && a.onUserAction(e, _))
+                    }), addClass(t, "audio_row__added"), d && addClass(d, "audio_row__added"), getAudioPlayer().notify(AudioPlayer.EVENT_ADDED, e.fullId), a && _ && a.onUserAction(e, _))
                 }
             },
             addAudioToOwner: function(t, e) {
@@ -996,7 +1067,7 @@
                 return t = AudioUtils.asObject(t), t.flags & AudioUtils.AUDIO_ITEM_CLAIMED_BIT
             },
             getAudioExtra: function(t) {
-                return t = AudioUtils.asObject(t), "object" === _typeof(t.extra) ? t.extra : JSON.parse(t.extra || "{}");
+                return t = AudioUtils.asObject(t), "object" === _typeof(t.extra) ? t.extra : JSON.parse(t.extra || "{}")
             },
             getAudioFromEl: function(t, e) {
                 t = domClosest("_audio_row", t);
@@ -2109,7 +2180,7 @@
                 var n = window.AudioPage && currentAudioPage(t);
                 if (n) {
                     var d = n.getPageCurrentPlaylist();
-                    n.onUserAction(e, d)
+                    d && n.onUserAction(e, d)
                 }
             }
         }, AudioPlayer.prototype._setTabIcon = function(t) {
@@ -2993,81 +3064,10 @@
             stManager.done("audioplayer.js")
         } catch (e) {}
     },
-    157: function(t, e, i) {
-        "use strict";
-
-        function o() {
-            return window.wbopen && ~(window.open + "").indexOf("wbopen")
-        }
-
-        function a(t) {
-            if (!o() && ~t.indexOf("audio_api_unavailable")) {
-                var e = t.split("?extra=")[1].split("#"),
-                    i = "" === e[1] ? "" : s(e[1]);
-                if (e = s(e[0]), "string" != typeof i || !e) return t;
-                i = i ? i.split(String.fromCharCode(9)) : [];
-                for (var a, r, l = i.length; l--;) {
-                    if (r = i[l].split(String.fromCharCode(11)), a = r.splice(0, 1, e)[0], !n[a]) return t;
-                    e = n[a].apply(null, r)
-                }
-                if (e && "http" === e.substr(0, 4)) return e
-            }
-            return t
-        }
-
-        function s(t) {
-            if (!t || t.length % 4 == 1) return !1;
-            for (var e, i, o = 0, a = 0, s = ""; i = t.charAt(a++);) i = l.indexOf(i), ~i && (e = o % 4 ? 64 * e + i : i, o++ % 4) && (s += String.fromCharCode(255 & e >> (-2 * o & 6)));
-            return s
-        }
-
-        function r(t, e) {
-            var i = t.length,
-                o = [];
-            if (i) {
-                var a = i;
-                for (e = Math.abs(e); a--;) e = (i * (a + 1) ^ e + a) % i, o[a] = e
-            }
-            return o
-        }
-        i.r(e), i.d(e, "audioUnmaskSource", function() {
-            return a
-        });
-        var l = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN0PQRSTUVWXYZO123456789+/=",
-            n = {
-                v: function(t) {
-                    return t.split("").reverse().join("")
-                },
-                r: function(t, e) {
-                    t = t.split("");
-                    for (var i, o = l + l, a = t.length; a--;) i = o.indexOf(t[a]), ~i && (t[a] = o.substr(i - e, 1));
-                    return t.join("")
-                },
-                s: function(t, e) {
-                    var i = t.length;
-                    if (i) {
-                        var o = r(t, e),
-                            a = 0;
-                        for (t = t.split(""); ++a < i;) t[a] = t.splice(o[i - 1 - a], 1, t[a])[0];
-                        t = t.join("")
-                    }
-                    return t
-                },
-                i: function(t, e) {
-                    return n.s(t, e ^ vk.id)
-                },
-                x: function(t, e) {
-                    var i = [];
-                    return e = e.charCodeAt(0), each(t.split(""), function(t, o) {
-                        i.push(String.fromCharCode(o.charCodeAt(0) ^ e))
-                    }), i.join("")
-                }
-            }
+    63: function(t, e, i) {
+        t.exports = i(57)
     },
-    252: function(t, e, i) {
-        t.exports = i(124)
-    },
-    5: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+    90: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
         "use strict";
 
         function _classCallCheck(t, e) {

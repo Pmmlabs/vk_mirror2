@@ -256,16 +256,16 @@
 
 .join_finish_form {
     margin: 0 auto;
-    width: 200px
+    width: 280px
 }
 
 .join_finish_row {
     margin: 0 auto 10px;
-    width: 200px
+    width: 280px
 }
 
 .join_finish_row input.big_text {
-    width: 200px
+    width: 280px
 }
 
 .join_finish_row .subheader {
@@ -275,7 +275,7 @@
 
 .join_finish_submit {
     margin: 15px auto 0;
-    width: 200px
+    width: 280px
 }
 
 .join_other_phone {
@@ -333,7 +333,7 @@
     position: absolute;
     margin: -3px 0 0 1px;
     height: 2px;
-    width: 198px;
+    width: 278px;
     overflow: hidden;
     border-radius: 0 0 2px 2px
 }
@@ -375,6 +375,23 @@
     text-align: center;
     font-size: 12.5px;
     line-height: 19px
+}
+
+.join_accept_terms_checkbox {
+    cursor: pointer;
+    margin: 25px -20px 25px 0
+}
+
+.join_accept_terms_checkbox .checkbox {
+    display: inline-block
+}
+
+.join_accept_terms_checkbox .join_accept_terms_text {
+    display: inline-block;
+    vertical-align: top;
+    width: 270px;
+    line-height: 18px;
+    margin-top: -2px
 }
 
 .join_resend_box {

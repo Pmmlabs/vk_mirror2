@@ -315,9 +315,10 @@ var Join = {
             autocomplete: true,
             multiselect: false,
             onChange: function(v) {
-                var ph = ge('join_phone'),
-                    pref = ge('join_phone_prefix').firstChild,
-                    code = cur.uiPhoneCountry.val_full()[3];
+                var ph = ge('join_phone');
+                var pref = ge('join_phone_prefix').firstChild;
+                var code = cur.uiPhoneCountry.val_full()[3];
+
                 if (ph.readOnly || v === 0 || v === '0' || v === '' || v === false || v === undefined) {
                     var c = val(pref);
                     if (code == c) return;
@@ -328,8 +329,9 @@ var Join = {
                     }
                     return cur.uiPhoneCountry.val(cur.defCountry, true);
                 }
+
                 val(pref, code);
-                setTimeout(elfocus.pbind(ph), 0);
+                Join.updatePolicyLink(cur.uiPhoneCountry.val());
             }
         });
         if (ge('join_phone').readOnly) {
@@ -357,6 +359,14 @@ var Join = {
         lockButton('join_send_code')
         cur.codeForm.submit();
     },
+    togglePhoneSubmit: function() {
+        var el = geByClass1('checkbox', 'join_accept_terms_checkbox');
+        var policyChecked = isChecked(el);
+        disableButton(ge('join_send_phone'), !policyChecked);
+        disableButton(ge('join_send_code'), !policyChecked);
+        disableButton(ge('join_send_pass'), !policyChecked);
+    },
+
     askPassword: function(hash, sureBox) {
         if (curBox()) curBox().hide();
         cur.sureBoxText = sureBox;
@@ -372,8 +382,8 @@ var Join = {
         }
         ge('join_code').readOnly = true;
         addClass(ge('join_code'), 'join_readonly');
-        show('join_pass_submit', 'join_accept_terms');
-        hide('join_other_phone', 'join_code_submit', 'join_resend');
+        show('join_pass_submit');
+        hide('join_other_phone', 'join_code_submit', 'join_resend', 'join_country_row');
         slideDown('join_pass_row', 150, elfocus.pbind('join_pass'));
         val('join_submit_result', '');
     },
@@ -562,7 +572,7 @@ var Join = {
             cur.uiPhoneCountry.val(cur.uiPhoneCountry.val(), true);
             removeClass('join_phone_prefixed', 'join_readonly_wrap');
         }
-        show('join_phone_submit');
+        show('join_phone_submit', 'join_country_row');
         hide('join_code_submit', 'join_other_phone', 'join_resend');
         slideUp('join_code_row', 150);
         elfocus('join_phone');
@@ -843,6 +853,31 @@ var Join = {
     checkSave: function(value) {
         disableButton(ge('join_save'), !value);
     },
+
+    showPolicy: function(act) {
+        showBox('al_help.php', {
+            act: act,
+            cc_id: cur.uiPhoneCountry.val() || 0,
+            box: 1
+        });
+    },
+
+    updatePolicyLink: function(countryId) {
+        var checkBoxEl = geByClass1('checkbox', 'join_accept_terms_checkbox');
+        checkbox(checkBoxEl, 0);
+
+        var onDone = function(text) {
+            if (text) {
+                geByClass1('join_accept_terms_text', ge('join_accept_terms_checkbox')).innerHTML = text;
+            }
+        };
+        ajax.post('join.php', {
+            act: 'update_policy',
+            cc_id: countryId || 0
+        }, {
+            onDone: onDone
+        });
+    }
 };
 
 try {

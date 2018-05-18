@@ -143,7 +143,7 @@ var stVersions = {
     'cmodules/web/common_web.js': 3,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
-    'uncommon.css': 15328178159,
+    'uncommon.css': 15591343504,
     'filebutton.css': 1044306797,
     'lite.js': 3066107987,
     'lite.css': 45456596618,
@@ -152,7 +152,7 @@ var stVersions = {
     'blog.css': 16879687750,
     'blog.js': 1358605934,
     'html5audio.js': 976782859,
-    'audioplayer.js': 7884807865,
+    'audioplayer.js': 7186348474,
     'audioplayer.css': 19090687754,
     'audio_html5.js': 287741914,
     'audio.js': 1008296479,
@@ -204,7 +204,7 @@ var stVersions = {
     'video_upload.js': 5291915463,
     'video_youtube.js': 458412745,
     'video_youtube.css': 15024554566,
-    'videoplayer.js': 85074818398,
+    'videoplayer.js': 85462644656,
     'videoplayer.css': 41671251252,
     'translation.js': 2712852040,
     'translation.css': 18772534095,
@@ -215,8 +215,8 @@ var stVersions = {
     'prereg.js': 4187303773,
     'index.css': 15783587746,
     'index.js': 356147149,
-    'join.css': 17319351546,
-    'join.js': 1389277395,
+    'join.css': 22666075385,
+    'join.js': 4007003638,
     'intro.css': 18483582016,
     'post.css': 21684415216,
     'module.css': 21024747197,
@@ -229,7 +229,7 @@ var stVersions = {
     'public.js': 1804234624,
     'pages.css': 24495563151,
     'pages.js': 1162259210,
-    'groups.css': 26115948304,
+    'groups.css': 28100815347,
     'groups.js': 608843959,
     'cmodules/web/groups_create.js': 2554367098,
     'groups_create.css': 18033416400,
@@ -256,7 +256,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 203008986797,
-    'imn.js': 257525834781,
+    'imn.js': 256071526395,
     'im.js': 1322065005,
     'emoji.js': 104617691,
     'wide_dd.css': 18133910337,
@@ -561,7 +561,7 @@ var stVersions = {
     'time_spent.js': 732637085,
     'cmodules/web/app_info.js': 2375115030,
     'cmodules/web/grip.js': 4164501492,
-    'cmodules/web/raven_logger.js': 3138109396,
+    'cmodules/web/raven_logger.js': 2731499643,
     'lang': 6887
 };
 var stTypes = {
@@ -637,4 +637,4 @@ var stTypes = {
         'likes.js': 1
     }
 };
-var _rnd = 4072;
+var _rnd = 3839;

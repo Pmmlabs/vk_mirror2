@@ -906,6 +906,10 @@ ul.vk_com_only_good {
     font-size: 14px
 }
 
+.site_policy_box .checkbox {
+    margin-top: 15px
+}
+
 #chrome_bar,
 #custom_bar,
 #win_app_bar,
