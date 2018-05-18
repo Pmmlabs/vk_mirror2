@@ -2541,7 +2541,7 @@ div.feed_recom {
 .feedback_money_decline_row .feedback_rphoto,
 .feedback_money_request_row .feedback_rphoto,
 .feedback_money_row .feedback_rphoto {
-    padding-top: 14px
+    padding-top: 3px
 }
 
 .feedback_vkpay_row .feedback_rphoto {

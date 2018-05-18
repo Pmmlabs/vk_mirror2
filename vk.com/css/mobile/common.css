@@ -12404,7 +12404,8 @@ a.Pad__corner {
     font-size: 0
 }
 
-.OwnerColumn__img {
+.OwnerColumn__img,
+.OwnerColumn__img_empty {
     width: 70px;
     height: 70px;
     border-radius: 70px;
@@ -12685,7 +12686,6 @@ a.Pad__corner {
 }
 
 .ArtistCover__image {
-    height: 180px;
     width: 100%;
     background-position: 50%;
     background-repeat: no-repeat;
@@ -14336,6 +14336,7 @@ a.Pad__corner {
 }
 
 .audioPlaylists__itemAuthor,
+.audioPlaylists__itemStats,
 .audioPlaylists__itemSubtitle {
     display: block;
     font-size: 13px;
@@ -14344,6 +14345,7 @@ a.Pad__corner {
 }
 
 .audioPlaylists__itemAuthor,
+.audioPlaylists__itemStats,
 .audioPlaylists__itemSubtitle,
 .audioPlaylists__itemTitle {
     line-height: 16px;
@@ -23154,6 +23156,9 @@ a.feedBlocks__article:hover {
         z-index: 2;
         margin-left: -48px
     }
+    .vk .header__back.mh_noleftmenu {
+        margin-left: 0
+    }
     .vk .header__right {
         display: -webkit-flex;
         display: -ms-flexbox;
@@ -23249,6 +23254,7 @@ a.feedBlocks__article:hover {
 .audioPlaylistSnippet__link:before,
 .audioPlaylistSnippet__play:before,
 .r .ai_menu_toggle_button,
+.r .audio_item_explicit .ai_title:after,
 .r .audioPlaylist .wi_actions_btn .i_icon {
     background-image: url('/images/mobile/icons/audio_icons.png?8');
     background-repeat: no-repeat;
@@ -23264,7 +23270,8 @@ a.feedBlocks__article:hover {
 .vk_2x .audioPlaylist__play:before,
 .vk_2x .audioPlaylistSnippet__link:before,
 .vk_2x .audioPlaylistSnippet__play:before,
-.vk_2x.r .ai_menu_toggle_button {
+.vk_2x.r .ai_menu_toggle_button,
+.vk_2x.r .audio_item_explicit .ai_title:after {
     background-image: url('/images/mobile/icons/audio_icons_2x.png?8')
 }
 
@@ -23378,7 +23385,7 @@ a.feedBlocks__article:hover {
     background-size: 100%;
     background-position: 50%;
     margin-right: 8px;
-    border-radius: 4px
+    border-radius: 2px
 }
 
 .vk_2x .Audio__play,
@@ -23537,6 +23544,27 @@ a.feedBlocks__article:hover {
         font-size: 13px;
         margin: 0
     }
+}
+
+.Audio__title_explicit,
+.r .audio_item_explicit .ai_title {
+    padding: 0 24px 0 0;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    max-width: 100%;
+    box-sizing: border-box
+}
+
+.Audio__title_explicit:after,
+.r .audio_item_explicit .ai_title:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 2px;
+    width: 24px;
+    height: 24px;
+    background-position: 0 -194px
 }
 
 .Audio__title_simple,
@@ -23712,6 +23740,17 @@ a.feedBlocks__article:hover {
 .Audio_selected .Audio__title {
     font-size: inherit;
     margin-bottom: 0
+}
+
+.Audio_selected .Audio__title_explicit,
+.r .ai_current .ai_title {
+    padding: 0
+}
+
+.Audio_selected .Audio__title_explicit:after,
+.r .ai_current .ai_title:after {
+    content: none;
+    display: none
 }
 
 .Audio_selected_simple .Audio__texts_simple,
