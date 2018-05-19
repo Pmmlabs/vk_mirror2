@@ -28,10 +28,8 @@
         return t.d(a, "a", a), a
     }, t.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, t.p = "", t(t.s = 0)
-}([function(e, t, a) {
-    e.exports = a(1)
-}, function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+    }, t.p = "", t(t.s = 1)
+}([function(__webpack_module__, __webpack_exports__, __webpack_require__) {
     "use strict";
     __webpack_require__.r(__webpack_exports__);
     var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
@@ -1019,16 +1017,16 @@
                                                 }), m.appendChild(o), c = h.appendChild(m), n.moreWrap = h
                                             }
                                             c = (o ? o : r).appendChild(ce("a", {
-                                                    innerHTML: o ? u : '<span class="blind_label">' + u + "</span>",
-                                                    className: "ms_item ms_item_" + p + " _type_" + p
-                                                })), c.setAttribute("tabindex", 0),
-                                                o || (c.setAttribute("data-title", u), c.setAttribute("aria-label", u), c.setAttribute("role", "link"), addEvent(c, "mouseover", function() {
+                                                innerHTML: o ? u : '<span class="blind_label">' + u + "</span>",
+                                                className: "ms_item ms_item_" + p + " _type_" + p
+                                            })), c.setAttribute("tabindex", 0), o || (c.setAttribute("data-title", u),
+                                                c.setAttribute("aria-label", u), c.setAttribute("role", "link"), addEvent(c, "mouseover", function() {
                                                     showTitle(this, !1, !1, {
                                                         noZIndex: !0
                                                     })
                                                 })), _ && addEvent(c, "click", function() {
-                                                    return n.hide(!0), a.onItemClick && !a.onItemClick(p) ? !1 : (_(), !1)
-                                                })
+                                                return n.hide(!0), a.onItemClick && !a.onItemClick(p) ? !1 : (_(), !1)
+                                            })
                                         })
                                     }
                                 });
@@ -1814,4 +1812,6 @@
     try {
         stManager.done(jsc("api/widgets/comments.js"))
     } catch (e) {}
+}, function(e, t, a) {
+    e.exports = a(0)
 }]);

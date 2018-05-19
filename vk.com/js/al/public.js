@@ -14,7 +14,9 @@ window["public"] = window.Public = {
     },
     hideHelpStep: function(e, o, t, a) {
         var i = domClosest("page_block", e);
-        return e && e.tt && e.tt.hide(), i && slideUp(i, 200, re.pbind(i)), ajax.post("/al_public.php", {
+        return e && e.tt && e.tt.hide && e.tt.hide({
+            fasthide: !0
+        }), i && slideUp(i, 200, re.pbind(i)), ajax.post("/al_public.php", {
             act: "a_hide_help_step",
             pid: cur.options.public_id,
             step: o,
@@ -308,16 +310,16 @@ var PagedList = function(e, o, t) {
             }
             if (!r.length) return ge(e).innerHTML = t.emptyRow(n), t.setPages(0, 0, "top"), void t.setPages(0, 0, "bottom");
             for (var d = [], u = o * t.perPage; u < Math.min(r.length, (o + 1) * t.perPage); ++u) {
-                var g = r[u];
-                d.push(l(g, p))
+                var h = r[u];
+                d.push(l(h, p))
             }
-            var h = getSize(ge(e))[1];
+            var g = getSize(ge(e))[1];
             if (ge(e).innerHTML = d.join(""), setStyle(ge(e), {
-                    height: o ? h : "auto"
+                    height: o ? g : "auto"
                 }), t.onShow)
                 for (var u = o * t.perPage; u < Math.min(r.length, (o + 1) * t.perPage); ++u) {
-                    var g = r[u];
-                    t.onShow(g, u)
+                    var h = r[u];
+                    t.onShow(h, u)
                 }
             var _ = Math.ceil(r.length / t.perPage);
             t.setPages(o, _, "top"), t.setPages(o, _, "bottom"), t.onEnd && t.onEnd()

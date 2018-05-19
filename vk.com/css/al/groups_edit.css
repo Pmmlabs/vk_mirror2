@@ -99,6 +99,10 @@ a.group_ad_post_stats {
     margin-bottom: 2px
 }
 
+.group_edit_field .groups_edit_section_input {
+    width: 300px
+}
+
 .group_edit_labeled {
     line-height: 16px;
     padding: 6px 0 10px;
