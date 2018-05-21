@@ -378,7 +378,7 @@ var stVersions = {
     'ads.js': 144152410,
     'ads_payments.js': 2205910694,
     'ads_edit.css': 14924960531,
-    'ads_edit.js': 4001967956,
+    'ads_edit.js': 2386788775,
     'ads_edit_geo.js': 519167575,
     'ads_moder_common.css': 15932255262,
     'ads_moder.css': 15510453832,
@@ -637,4 +637,4 @@ var stTypes = {
         'likes.js': 1
     }
 };
-var _rnd = 7857;
+var _rnd = 4598;

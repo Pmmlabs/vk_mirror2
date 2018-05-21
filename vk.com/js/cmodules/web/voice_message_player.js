@@ -28,9 +28,177 @@
         return e.d(i, "a", i), i
     }, e.o = function(t, e) {
         return Object.prototype.hasOwnProperty.call(t, e)
-    }, e.p = "", e(e.s = 207)
+    }, e.p = "", e(e.s = 418)
 }({
-    150: function(t, e, i) {
+    225: function(t, e, i) {
+        "use strict";
+
+        function o(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        }
+        i.r(e), i.d(e, "VoiceMessagePlayer", function() {
+            return d
+        });
+        var n, s = i(523),
+            a = i(649),
+            r = i(440),
+            u = function() {
+                function t(t, e) {
+                    for (var i = 0; i < e.length; i++) {
+                        var o = e[i];
+                        o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(t, o.key, o)
+                    }
+                }
+                return function(e, i, o) {
+                    return i && t(e.prototype, i), o && t(e, o), e
+                }
+            }(),
+            l = !1,
+            h = '<div class="audio-msg-player audio-msg-track"><button class="audio-msg-track--btn"></button><div class="audio-msg-track--duration"></div><div class="audio-msg-track--wave-wrapper"><div class="audio-msg-track--slider"></div></div></div>',
+            d = function() {
+                function t() {
+                    var e = this;
+                    o(this, t), this._reattach = !1, this._audioEl = null, this._playing = !1, this._timer = null, this._duration = 0, this._detaching = !1;
+                    var i = {
+                        onEnd: function() {
+                            e.detach()
+                        },
+                        onFail: function() {
+                            i.onEnd()
+                        },
+                        onCanPlay: function() {},
+                        onProgressUpdate: function(t) {
+                            e._updateProgress(t)
+                        }
+                    };
+                    n = !1, s.PlayerHTML5.isSupported() ? (s.PlayerHTML5.isSupported('audio/ogg;codecs="opus"') && !s.PlayerHTML5.isSupported('audio/ogg;codecs="codec_check"') && (n = !0), this._impl = new s.PlayerHTML5(i)) : browser.flash && window.renderFlash && (this._impl = new a.PlayerFlash(i)), this.onPlayPause = function(t) {
+                        return cancelEvent(t), e.toggle()
+                    }, this.onDurationClick = function(t) {
+                        e.durationType = !e.durationType, cancelEvent(t)
+                    }, this._initEvents()
+                }
+                return t.prototype._updateProgress = function(t) {
+                    this._durationEl && (this.durationType ? this._durationEl.innerHTML = "-" + formatTime(Math.round(this._duration * (1 - t))) : this._durationEl.innerHTML = formatTime(Math.round(this._duration * t))), this._progressSlider && this._progressSlider.setValue(t)
+                }, t.prototype._initInterface = function() {
+                    var t = this;
+                    this._el = ce("div", {
+                        innerHTML: h
+                    }).firstChild, window.getLang && attr(this._el, "aria-label", getLang("mail_audio_message")), this._playBtn = geByClass1("audio-msg-track--btn", this._el), window.getLang && attr(this._playBtn, "aria-label", getLang("global_audio_play")), this._durationEl = geByClass1("audio-msg-track--duration", this._el), this._durationEl.innerHTML = formatTime(this._duration), this._progressSlider = new r.Slider(geByClass1("audio-msg-track--slider", this._el), {
+                        value: 0,
+                        size: 0,
+                        hintClass: "audio_player_hint",
+                        formatHint: function(e) {
+                            return formatTime(Math.round(e * t._duration))
+                        },
+                        onEndDragging: function(e) {
+                            t._impl.seek(e)
+                        }
+                    });
+                    var e = geByClass1("audio-msg-track--wave-wrapper", this._audioEl).children[0];
+                    geByClass1("slider_slide", this._el).appendChild(e.cloneNode(!0)), geByClass1("slider_amount", this._el).appendChild(e.cloneNode(!0)), addEvent(this._playBtn, "click", this.onPlayPause), addEvent(this._durationEl, "click", this.onDurationClick), this._audioEl.parentNode.appendChild(this._el)
+                }, t.prototype._destroyInterface = function() {
+                    hide(this._el), this._audioEl.parentNode.removeChild(this._el), removeEvent(this._playBtn, "click", this.onPlayPause), this._progressSlider && (this._progressSlider.destroy(), this._progressSlider = null), this._playBtn = null, this._durationEl = null, this._el = null
+                }, t.prototype.attachTo = function(t) {
+                    var e = this;
+                    if (this._audioEl != t) {
+                        null != this._audioEl && (this._reattach = !0), this.detach(), this._audioEl = t, addClass(this._audioEl, "audio-msg-track_player-attached"), this._duration = attr(t, "data-duration"), this._initInterface();
+                        var i = this._audioEl.id.split("_");
+                        if (i && i.length > 1 && (this._owner_id = i[1]), this._reattach = !1, !this._impl.loaded) return new Promise(function(i, o) {
+                            e._impl.onReady(function() {
+                                e._impl.setUrl(attr(t, n ? "data-ogg" : "data-mp3"), {
+                                    duration: e._duration,
+                                    callback: i
+                                })
+                            })
+                        });
+                        this._impl.setUrl(attr(t, n ? "data-ogg" : "data-mp3"), {
+                            duration: this._duration
+                        })
+                    }
+                    return !0
+                }, t.prototype.detach = function() {
+                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : !1;
+                    if (this._audioEl && this._el && !this._detaching) {
+                        if (t && this.isAttached()) return;
+                        this._detaching = !0, this.stop(), this._destroyInterface(), removeClass(this._audioEl, "audio-msg-track_player-attached"), this._audioEl = null
+                    }
+                    this._detaching = !1
+                }, t.prototype.play = function() {
+                    this._audioEl && (this._reattach || t.pauseGlobalMedia(), addClass(this._el, "audio-msg-track_playing"), window.getLang && attr(this._playBtn, "aria-label", getLang("global_audio_pause")), this._playing = !0, this._createTimer(), this._owner_id && statlogsValueEvent("audio_message_play", this._owner_id), this._impl.play())
+                }, t.prototype.pause = function() {
+                    this._audioEl && (!this._reattach && this._playing && t.resumeGlobalMedia(), window.getLang && attr(this._playBtn, "aria-label", getLang("global_audio_play")), removeClass(this._el, "audio-msg-track_playing"), this._playing = !1, this._impl.pause(), this._killTimer())
+                }, t.prototype.stop = function() {
+                    this.pause(), this._impl.stop()
+                }, t.prototype.toggle = function() {
+                    this._playing ? this.pause() : this.play()
+                }, t.prototype._createTimer = function() {
+                    var t = this;
+                    this._duration > 0 && (this._killTimer(), this._timer = setInterval(function() {
+                        var e = t._impl.getCurrentProgress();
+                        t._updateProgress(e)
+                    }, 100))
+                }, t.prototype._killTimer = function() {
+                    this._timer && (clearInterval(this._timer), this._timer = null)
+                }, t.prototype._initEvents = function() {
+                    var t = this;
+                    window.ap ? ap.on(this, AudioPlayer.EVENT_PLAY, function() {
+                        delete ap.pausedByMsg, t.pause()
+                    }) : window.audio && audio.onPlay(function() {
+                        delete audio.pausedByMsg, t.pause()
+                    }), window.Notifier && (Notifier.addRecvClbk("audio_start", "audio_msg", function() {
+                        t.pause()
+                    }), Notifier.addRecvClbk("video_start", "audio_msg", function() {
+                        t.pause()
+                    }))
+                }, t.prototype.isAttached = function() {
+                    if (this._audioEl) {
+                        for (var t = this._audioEl; t.parentNode;) t = t.parentNode;
+                        return !!t.body
+                    }
+                    return !1
+                }, t.pauseGlobalMedia = function() {
+                    window.Notifier && (l = !0, Notifier.lcSend("video_start")), window.ap && ap.isPlaying() ? (ap.pause(), ap.pausedByMsg = !0) : window.audio && audio.playing && audio.playing() && (audio.pause(), audio.pausedByMsg = !0)
+                }, t.resumeGlobalMedia = function() {
+                    window.Notifier && l && (l = !1, Notifier.lcSend("video_hide")), window.ap && ap.pausedByMsg ? (ap.play(), delete ap.pausedByMsg) : window.audio && audio.playing && audio.pausedByMsg && (audio.play(), delete audio.pausedByMsg)
+                }, u(t, [{
+                    key: "type",
+                    get: function() {
+                        return this._impl.type
+                    }
+                }, {
+                    key: "durationType",
+                    get: function() {
+                        return window.AudioPlayer ? !!ls.get(AudioPlayer.LS_PREFIX + AudioPlayer.LS_DURATION_TYPE) : "1" == lsGet("audio_time_left")
+                    },
+                    set: function(t) {
+                        window.AudioPlayer ? ls.set(AudioPlayer.LS_PREFIX + AudioPlayer.LS_DURATION_TYPE, !!t) : lsSet("audio_time_left", t ? "1" : "0")
+                    }
+                }]), t
+            }()
+    },
+    245: function(t, e, i) {
+        "use strict";
+
+        function o(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        }
+        i.r(e), i.d(e, "AverageAlgorithm", function() {
+            return n
+        });
+        var n = function() {
+            function t() {
+                o(this, t), this.clear()
+            }
+            return t.prototype.push = function(t) {
+                this._count++, this._accum += t
+            }, t.prototype.get = function() {
+                return this._accum / this._count
+            }, t.prototype.clear = function() {
+                this._count = 0, this._accum = 0
+            }, t
+        }()
+    },
+    326: function(t, e, i) {
         "use strict";
 
         function o(t) {
@@ -72,8 +240,8 @@
             return l || (l = new r.VoiceMessagePlayer), l
         }
         i.r(e);
-        var r = i(531),
-            u = i(198),
+        var r = i(225),
+            u = i(534),
             l = null;
         addEvent(window, "orientationchange", function() {
             return setTimeout(s, 500)
@@ -103,7 +271,10 @@
             stManager.done("voice_message_player.js")
         } catch (h) {}
     },
-    191: function(t, e, i) {
+    418: function(t, e, i) {
+        t.exports = i(326)
+    },
+    424: function(t, e, i) {
         "use strict";
 
         function o(t, e) {
@@ -125,7 +296,7 @@
             }, t
         }()
     },
-    198: function(t, e, i) {
+    440: function(t, e, i) {
         "use strict";
 
         function o(t, e) {
@@ -133,50 +304,134 @@
         }
 
         function n(t, e) {
-            var i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : "peak";
-            return new l({
-                srcSampleRate: t.length,
-                dstSampleRate: e,
-                normalizeAlgorithm: i,
-                truncateTo: 0
-            }).push(t)
+            return Math.log(e) / Math.log(t)
         }
-        i.r(e), i.d(e, "Resampler", function() {
-            return l
-        }), i.d(e, "fastResample", function() {
-            return n
+        i.r(e), i.d(e, "Slider", function() {
+            return r
         });
-        var s = i(577),
-            a = i(191),
-            r = i(299),
-            u = {
-                avg: s.AverageAlgorithm,
-                peak: a.PeakAlgorithm,
-                quad: r.QuadAlgorithm
-            },
-            l = function() {
-                function t(e) {
-                    o(this, t), this._normalizeAlgorithm = !1, u[e.normalizeAlgorithm] && (this._normalizeAlgorithm = new u[e.normalizeAlgorithm]), this._srcSampleRate = parseInt(e.srcSampleRate || 0), this._dstSampleRate = parseInt(e.dstSampleRate || 0), this._truncateTo = 1, "undefined" != typeof e.truncateTo && (this._truncateTo = e.truncateTo), this._dstSampleRate > 0 ? this._sampleRate = this._srcSampleRate / this._dstSampleRate : this._sampleRate = 0, u[e.algorithm] || (e.algorithm = "peak"), this._algorithm = new u[e.algorithm], this._sampleCount = 0, this._data = []
-                }
-                return t.prototype.push = function(t) {
-                    if (this._sampleRate <= 0) return [];
-                    for (var e = [], i = void 0, o = 0; o < t.length; o++)
-                        if (this._truncateTo > 0 && (t[o] = Math.min(this._truncateTo, Math.abs(t[o]))), this._sampleCount += 1, this._sampleCount >= this._sampleRate)
-                            for (; this._sampleCount >= this._sampleRate;) this._sampleCount -= this._sampleRate, this._sampleCount <= .8 && this._algorithm.push(t[o]), i = this._algorithm.get(), e.push(i), this._normalizeAlgorithm && this._normalizeAlgorithm.push(i), this._algorithm.clear(), this._sampleCount > .2 && this._algorithm.push(t[o]);
-                        else this._algorithm.push(t[o]);
-                    if (this._normalizeAlgorithm) {
-                        var n = this._normalizeAlgorithm.get();
-                        if (this._normalizeAlgorithm.clear(), n > 0)
-                            for (var s = 0; s < e.length; s++) e[s] = e[s] / n, this._truncateTo > 0 && (e[s] = Math.min(this._truncateTo, Math.abs(e[s])))
+        var s = function() {
+                function t(t, e) {
+                    for (var i = 0; i < e.length; i++) {
+                        var o = e[i];
+                        o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(t, o.key, o)
                     }
-                    return e
-                }, t
-            }()
+                }
+                return function(e, i, o) {
+                    return i && t(e.prototype, i), o && t(e, o), e
+                }
+            }(),
+            a = 35;
+        "undefined" == typeof window.isTouch && (window.isTouch = !1);
+        var r = function() {
+            function t(e, i) {
+                if (o(this, t), !e) throw new Error("No element was provided for Slider");
+                e = ge(e), this.options = i || {
+                    size: 1
+                }, "undefined" == typeof this.options.logfbase && (this.options.logfbase = a), this.options.backValue = this.options.backValue || 0;
+                var n = 100 * this.options.backValue,
+                    s = this.options.withBackLine ? '<div class="slider_back" style="width:' + n + '%"></div>' : "",
+                    r = '<div class="slider_slide"><div class="slider_loading_bar" style="opacity: 0; display: none;"></div> ' + s + ' <div class="slider_amount"></div> <div class="slider_handler"></div> </div>';
+                this._el = ce("div", {
+                    innerHTML: r,
+                    className: "slider",
+                    id: e.getAttribute("id") || ""
+                });
+                var u = this;
+                if (e.classList)
+                    for (var l = e.classList, h = 0, d = l.length; d > h; h++) addClass(this._el, l[h]);
+                else this._el.className = e.className;
+                each(this._el.attributes, function(t, e) {
+                    ("id" != e.name || "class" != e.name) && u._el.setAttribute(e.name, e.value)
+                }), e.parentNode.replaceChild(this._el, e), this._amountEl = geByClass1("slider_amount", this._el), this._handlerEl = geByClass1("slider_handler", this._el), this._slideEl = geByClass1("slider_slide", this._el), this._backEl = geByClass1("slider_back", this._el), this._progressEl = geByClass1("slider_loading_bar", this._el), this.options.color && (setStyle(this._amountEl, {
+                    backgroundColor: this.options.color
+                }), setStyle(this._handlerEl, {
+                    backgroundColor: this.options.color
+                })), this.options.backColor && setStyle(this._slideEl, {
+                    backgroundColor: this.options.backColor
+                }), addClass(this._el, "slider_size_" + this.options.size), this.options.debounce && (this._onValueChangeDebounced = debounce(this._onValueChange, this.options.debounce)), !isTouch && i.formatHint && (addEvent(this._el, "mousemove", this._ev_onMouseOver = this._onMouseOver.bind(this)), addEvent(this._el, "mouseleave", this._ev_onMouseLeave = this._onMouseLeave.bind(this))), addEvent(this._el, isTouch ? "touchstart" : "mousedown", this._ev_onMouseDown = this._onMouseDown.bind(this)), addEvent(this._el, "click", cancelEvent), this.setValue(this.options.value || 0, !this.options.fireChangeEventOnInit, !1), this.setBackValue(this.options.backValue)
+            }
+            return t.prototype.toggleLoading = function(t) {
+                t = !!t, toggle(this._progressEl, t), setStyle(this._progressEl, "opacity", t ? 1 : 0)
+            }, t.prototype.destroy = function() {
+                !isTouch && this.options.formatHint && (removeEvent(this._el, "mousemove", this._ev_onMouseOver), removeEvent(this._el, "mouseleave", this._ev_onMouseLeave), removeEvent(this._el, "mousedown", this._ev_onMouseDown));
+                var t = window.re || window.remove;
+                t(this._el), t(this._currHintEl)
+            }, t.prototype._updateHint = function(t, e) {
+                this._currHintEl || (this._currHintEl = ce("div", {
+                    className: "slider_hint",
+                    id: "slider_hint"
+                }), this.options.hintClass && addClass(this._currHintEl, this.options.hintClass), this._el.appendChild(this._currHintEl));
+                var i = this._getPos(),
+                    o = Math.round((t.pageX || t.touches[0].pageX) - i[0]),
+                    n = this._width;
+                if (o = e ? Math.min(Math.max(0, o), n) : o, o >= 0 && n >= o) {
+                    var s = o / n;
+                    this._currHintEl.innerHTML = this.options.formatHint ? this.options.formatHint.call(this, s) : s;
+                    var a = this._currHintEl.getBoundingClientRect();
+                    setStyle(this._currHintEl, {
+                        left: this._slideEl.offsetLeft + o - (a.right - a.left) / 2,
+                        top: this._slideEl.offsetTop - (a.bottom - a.top) - 10
+                    }), !e && this._toggleHint(!0)
+                } else !e && this._toggleHint(!1);
+                this.options.formatHint || this._toggleHint(!1)
+            }, t.prototype._toggleHint = function(t) {
+                toggleClass(this._currHintEl, "visible", t)
+            }, t.prototype._onMouseOver = function(e) {
+                t._currenSliderDrag || hasClass(this._el, "active") || this._updateHint(e)
+            }, t.prototype._onMouseLeave = function(t) {
+                hasClass(this._el, "active") || this._toggleHint(!1)
+            }, t.prototype._onMouseDown = function(e) {
+                (0 == e.button || e.touches) && (delete cur._sliderMouseUpNowEl, addEvent(window, isTouch ? "touchmove" : "mousemove", this._ev_onMouseMove = this._onMouseMove.bind(this)), addEvent(window, isTouch ? "touchend touchcancel" : "mouseup", this._ev_onMouseUp = this._onMouseUp.bind(this)), this._onMouseMove(e), t._currenSliderDrag = this, addClass(this._el, "active"), cancelEvent(e))
+            }, t.prototype._onMouseUp = function(e) {
+                cur._sliderMouseUpNowEl = this._el, removeEvent(window, isTouch ? "touchmove" : "mousemove", this._ev_onMouseMove), removeEvent(window, isTouch ? "touchend touchcancel" : "mouseup", this._ev_onMouseUp), this._onValueChange(), removeClass(this._el, "active"), t._currenSliderDrag = !1, this._toggleHint(!1), this.options.onEndDragging && this.options.onEndDragging(this._currValue), cancelEvent(e)
+            }, t.prototype._onMouseMove = function(t) {
+                var e = this._getPos(),
+                    i = e[0];
+                i = "undefined" != typeof t.touches && t.touches.length > 0 ? t.touches[0].pageX : t.pageX, i = Math.max(i, e[0]), i = Math.min(i, e[0] + this._width), i -= e[0], this.setValue(i / this._width, !0, !0), this._onValueChangeDebounced ? this._onValueChangeDebounced() : this._onValueChange(), this._toggleHint(!0), this._updateHint(t, !0), cancelEvent(t)
+            }, t.prototype._getPos = function() {
+                return this._slidePos = getXY(this._slideEl)
+            }, t.prototype._logf = function(t) {
+                if (!this.options.log) return t;
+                var e = this.options.logfbase;
+                return (Math.pow(e, t) - 1) / (e - 1)
+            }, t.prototype._unlogf = function(t) {
+                if (!this.options.log) return t;
+                var e = this.options.logfbase;
+                return n(e, 1 + t * (e - 1))
+            }, t.prototype.setValue = function(t, e, i) {
+                if (!hasClass(this._el, "active") || i) {
+                    var o = i ? this._logf(t) : t;
+                    if (this._currValue != o) {
+                        this._currValue = o;
+                        var n = i ? t : this._unlogf(t);
+                        n = 100 * n + "%", setStyle(this._amountEl, {
+                            width: n
+                        }), setStyle(this._handlerEl, {
+                            left: n
+                        }), !e && this._onValueChange()
+                    }
+                }
+            }, t.prototype.setBackValue = function(t) {
+                toggleClass(this._backEl, "slider_back_transition", t > this._backValue), this._backValue = t;
+                var e = 100 * t + "%";
+                setStyle(this._backEl, {
+                    width: e
+                })
+            }, t.prototype._onValueChange = function() {
+                this._lastValue = this._lastValue || 0, this._lastValue != this._currValue && (this._lastValue = this._currValue, this.options.onChange && this.options.onChange(this._currValue))
+            }, s(t, [{
+                key: "_width",
+                get: function() {
+                    if (!this._widthCache) {
+                        var t = this._el.getBoundingClientRect();
+                        this._widthCache = t.right - t.left
+                    }
+                    return this._widthCache
+                }
+            }]), t
+        }()
     },
-    207: function(t, e, i) {
-        t.exports = i(150)
-    },
-    25: function(t, e, i) {
+    523: function(t, e, i) {
         "use strict";
 
         function o(t, e) {
@@ -336,7 +591,55 @@
             }();
         r.STATE_HAVE_NOTHING = 0, r.STATE_HAVE_FUTURE_DATA = 3, r.HAVE_ENOUGH_DATA = 4, r.AUDIO_EL_ID = "ap_audio"
     },
-    299: function(t, e, i) {
+    534: function(t, e, i) {
+        "use strict";
+
+        function o(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        }
+
+        function n(t, e) {
+            var i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : "peak";
+            return new l({
+                srcSampleRate: t.length,
+                dstSampleRate: e,
+                normalizeAlgorithm: i,
+                truncateTo: 0
+            }).push(t)
+        }
+        i.r(e), i.d(e, "Resampler", function() {
+            return l
+        }), i.d(e, "fastResample", function() {
+            return n
+        });
+        var s = i(245),
+            a = i(424),
+            r = i(563),
+            u = {
+                avg: s.AverageAlgorithm,
+                peak: a.PeakAlgorithm,
+                quad: r.QuadAlgorithm
+            },
+            l = function() {
+                function t(e) {
+                    o(this, t), this._normalizeAlgorithm = !1, u[e.normalizeAlgorithm] && (this._normalizeAlgorithm = new u[e.normalizeAlgorithm]), this._srcSampleRate = parseInt(e.srcSampleRate || 0), this._dstSampleRate = parseInt(e.dstSampleRate || 0), this._truncateTo = 1, "undefined" != typeof e.truncateTo && (this._truncateTo = e.truncateTo), this._dstSampleRate > 0 ? this._sampleRate = this._srcSampleRate / this._dstSampleRate : this._sampleRate = 0, u[e.algorithm] || (e.algorithm = "peak"), this._algorithm = new u[e.algorithm], this._sampleCount = 0, this._data = []
+                }
+                return t.prototype.push = function(t) {
+                    if (this._sampleRate <= 0) return [];
+                    for (var e = [], i = void 0, o = 0; o < t.length; o++)
+                        if (this._truncateTo > 0 && (t[o] = Math.min(this._truncateTo, Math.abs(t[o]))), this._sampleCount += 1, this._sampleCount >= this._sampleRate)
+                            for (; this._sampleCount >= this._sampleRate;) this._sampleCount -= this._sampleRate, this._sampleCount <= .8 && this._algorithm.push(t[o]), i = this._algorithm.get(), e.push(i), this._normalizeAlgorithm && this._normalizeAlgorithm.push(i), this._algorithm.clear(), this._sampleCount > .2 && this._algorithm.push(t[o]);
+                        else this._algorithm.push(t[o]);
+                    if (this._normalizeAlgorithm) {
+                        var n = this._normalizeAlgorithm.get();
+                        if (this._normalizeAlgorithm.clear(), n > 0)
+                            for (var s = 0; s < e.length; s++) e[s] = e[s] / n, this._truncateTo > 0 && (e[s] = Math.min(this._truncateTo, Math.abs(e[s])))
+                    }
+                    return e
+                }, t
+            }()
+    },
+    563: function(t, e, i) {
         "use strict";
 
         function o(t, e) {
@@ -358,310 +661,7 @@
             }, t
         }()
     },
-    531: function(t, e, i) {
-        "use strict";
-
-        function o(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-        i.r(e), i.d(e, "VoiceMessagePlayer", function() {
-            return d
-        });
-        var n, s = i(25),
-            a = i(74),
-            r = i(589),
-            u = function() {
-                function t(t, e) {
-                    for (var i = 0; i < e.length; i++) {
-                        var o = e[i];
-                        o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(t, o.key, o)
-                    }
-                }
-                return function(e, i, o) {
-                    return i && t(e.prototype, i), o && t(e, o), e
-                }
-            }(),
-            l = !1,
-            h = '<div class="audio-msg-player audio-msg-track"><button class="audio-msg-track--btn"></button><div class="audio-msg-track--duration"></div><div class="audio-msg-track--wave-wrapper"><div class="audio-msg-track--slider"></div></div></div>',
-            d = function() {
-                function t() {
-                    var e = this;
-                    o(this, t), this._reattach = !1, this._audioEl = null, this._playing = !1, this._timer = null, this._duration = 0, this._detaching = !1;
-                    var i = {
-                        onEnd: function() {
-                            e.detach()
-                        },
-                        onFail: function() {
-                            i.onEnd()
-                        },
-                        onCanPlay: function() {},
-                        onProgressUpdate: function(t) {
-                            e._updateProgress(t)
-                        }
-                    };
-                    n = !1, s.PlayerHTML5.isSupported() ? (s.PlayerHTML5.isSupported('audio/ogg;codecs="opus"') && !s.PlayerHTML5.isSupported('audio/ogg;codecs="codec_check"') && (n = !0), this._impl = new s.PlayerHTML5(i)) : browser.flash && window.renderFlash && (this._impl = new a.PlayerFlash(i)), this.onPlayPause = function(t) {
-                        return cancelEvent(t), e.toggle()
-                    }, this.onDurationClick = function(t) {
-                        e.durationType = !e.durationType, cancelEvent(t)
-                    }, this._initEvents()
-                }
-                return t.prototype._updateProgress = function(t) {
-                    this._durationEl && (this.durationType ? this._durationEl.innerHTML = "-" + formatTime(Math.round(this._duration * (1 - t))) : this._durationEl.innerHTML = formatTime(Math.round(this._duration * t))), this._progressSlider && this._progressSlider.setValue(t)
-                }, t.prototype._initInterface = function() {
-                    var t = this;
-                    this._el = ce("div", {
-                        innerHTML: h
-                    }).firstChild, window.getLang && attr(this._el, "aria-label", getLang("mail_audio_message")), this._playBtn = geByClass1("audio-msg-track--btn", this._el), window.getLang && attr(this._playBtn, "aria-label", getLang("global_audio_play")), this._durationEl = geByClass1("audio-msg-track--duration", this._el), this._durationEl.innerHTML = formatTime(this._duration), this._progressSlider = new r.Slider(geByClass1("audio-msg-track--slider", this._el), {
-                        value: 0,
-                        size: 0,
-                        hintClass: "audio_player_hint",
-                        formatHint: function(e) {
-                            return formatTime(Math.round(e * t._duration))
-                        },
-                        onEndDragging: function(e) {
-                            t._impl.seek(e)
-                        }
-                    });
-                    var e = geByClass1("audio-msg-track--wave-wrapper", this._audioEl).children[0];
-                    geByClass1("slider_slide", this._el).appendChild(e.cloneNode(!0)), geByClass1("slider_amount", this._el).appendChild(e.cloneNode(!0)), addEvent(this._playBtn, "click", this.onPlayPause), addEvent(this._durationEl, "click", this.onDurationClick), this._audioEl.parentNode.appendChild(this._el)
-                }, t.prototype._destroyInterface = function() {
-                    hide(this._el), this._audioEl.parentNode.removeChild(this._el), removeEvent(this._playBtn, "click", this.onPlayPause), this._progressSlider && (this._progressSlider.destroy(), this._progressSlider = null), this._playBtn = null, this._durationEl = null, this._el = null
-                }, t.prototype.attachTo = function(t) {
-                    var e = this;
-                    if (this._audioEl != t) {
-                        null != this._audioEl && (this._reattach = !0), this.detach(), this._audioEl = t, addClass(this._audioEl, "audio-msg-track_player-attached"), this._duration = attr(t, "data-duration"), this._initInterface();
-                        var i = this._audioEl.id.split("_");
-                        if (i && i.length > 1 && (this._owner_id = i[1]), this._reattach = !1, !this._impl.loaded) return new Promise(function(i, o) {
-                            e._impl.onReady(function() {
-                                e._impl.setUrl(attr(t, n ? "data-ogg" : "data-mp3"), {
-                                    duration: e._duration,
-                                    callback: i
-                                })
-                            })
-                        });
-                        this._impl.setUrl(attr(t, n ? "data-ogg" : "data-mp3"), {
-                            duration: this._duration
-                        })
-                    }
-                    return !0
-                }, t.prototype.detach = function() {
-                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : !1;
-                    if (this._audioEl && this._el && !this._detaching) {
-                        if (t && this.isAttached()) return;
-                        this._detaching = !0, this.stop(), this._destroyInterface(), removeClass(this._audioEl, "audio-msg-track_player-attached"), this._audioEl = null
-                    }
-                    this._detaching = !1
-                }, t.prototype.play = function() {
-                    this._audioEl && (this._reattach || t.pauseGlobalMedia(), addClass(this._el, "audio-msg-track_playing"), window.getLang && attr(this._playBtn, "aria-label", getLang("global_audio_pause")), this._playing = !0, this._createTimer(), this._owner_id && statlogsValueEvent("audio_message_play", this._owner_id), this._impl.play())
-                }, t.prototype.pause = function() {
-                    this._audioEl && (!this._reattach && this._playing && t.resumeGlobalMedia(), window.getLang && attr(this._playBtn, "aria-label", getLang("global_audio_play")), removeClass(this._el, "audio-msg-track_playing"), this._playing = !1, this._impl.pause(), this._killTimer())
-                }, t.prototype.stop = function() {
-                    this.pause(), this._impl.stop()
-                }, t.prototype.toggle = function() {
-                    this._playing ? this.pause() : this.play()
-                }, t.prototype._createTimer = function() {
-                    var t = this;
-                    this._duration > 0 && (this._killTimer(), this._timer = setInterval(function() {
-                        var e = t._impl.getCurrentProgress();
-                        t._updateProgress(e)
-                    }, 100))
-                }, t.prototype._killTimer = function() {
-                    this._timer && (clearInterval(this._timer), this._timer = null)
-                }, t.prototype._initEvents = function() {
-                    var t = this;
-                    window.ap ? ap.on(this, AudioPlayer.EVENT_PLAY, function() {
-                        delete ap.pausedByMsg, t.pause()
-                    }) : window.audio && audio.onPlay(function() {
-                        delete audio.pausedByMsg, t.pause()
-                    }), window.Notifier && (Notifier.addRecvClbk("audio_start", "audio_msg", function() {
-                        t.pause()
-                    }), Notifier.addRecvClbk("video_start", "audio_msg", function() {
-                        t.pause()
-                    }))
-                }, t.prototype.isAttached = function() {
-                    if (this._audioEl) {
-                        for (var t = this._audioEl; t.parentNode;) t = t.parentNode;
-                        return !!t.body
-                    }
-                    return !1
-                }, t.pauseGlobalMedia = function() {
-                    window.Notifier && (l = !0, Notifier.lcSend("video_start")), window.ap && ap.isPlaying() ? (ap.pause(), ap.pausedByMsg = !0) : window.audio && audio.playing && audio.playing() && (audio.pause(), audio.pausedByMsg = !0)
-                }, t.resumeGlobalMedia = function() {
-                    window.Notifier && l && (l = !1, Notifier.lcSend("video_hide")), window.ap && ap.pausedByMsg ? (ap.play(), delete ap.pausedByMsg) : window.audio && audio.playing && audio.pausedByMsg && (audio.play(), delete audio.pausedByMsg)
-                }, u(t, [{
-                    key: "type",
-                    get: function() {
-                        return this._impl.type
-                    }
-                }, {
-                    key: "durationType",
-                    get: function() {
-                        return window.AudioPlayer ? !!ls.get(AudioPlayer.LS_PREFIX + AudioPlayer.LS_DURATION_TYPE) : "1" == lsGet("audio_time_left")
-                    },
-                    set: function(t) {
-                        window.AudioPlayer ? ls.set(AudioPlayer.LS_PREFIX + AudioPlayer.LS_DURATION_TYPE, !!t) : lsSet("audio_time_left", t ? "1" : "0")
-                    }
-                }]), t
-            }()
-    },
-    577: function(t, e, i) {
-        "use strict";
-
-        function o(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-        i.r(e), i.d(e, "AverageAlgorithm", function() {
-            return n
-        });
-        var n = function() {
-            function t() {
-                o(this, t), this.clear()
-            }
-            return t.prototype.push = function(t) {
-                this._count++, this._accum += t
-            }, t.prototype.get = function() {
-                return this._accum / this._count
-            }, t.prototype.clear = function() {
-                this._count = 0, this._accum = 0
-            }, t
-        }()
-    },
-    589: function(t, e, i) {
-        "use strict";
-
-        function o(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-
-        function n(t, e) {
-            return Math.log(e) / Math.log(t)
-        }
-        i.r(e), i.d(e, "Slider", function() {
-            return r
-        });
-        var s = function() {
-                function t(t, e) {
-                    for (var i = 0; i < e.length; i++) {
-                        var o = e[i];
-                        o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(t, o.key, o)
-                    }
-                }
-                return function(e, i, o) {
-                    return i && t(e.prototype, i), o && t(e, o), e
-                }
-            }(),
-            a = 35;
-        "undefined" == typeof window.isTouch && (window.isTouch = !1);
-        var r = function() {
-            function t(e, i) {
-                if (o(this, t), !e) throw new Error("No element was provided for Slider");
-                e = ge(e), this.options = i || {
-                    size: 1
-                }, "undefined" == typeof this.options.logfbase && (this.options.logfbase = a), this.options.backValue = this.options.backValue || 0;
-                var n = 100 * this.options.backValue,
-                    s = this.options.withBackLine ? '<div class="slider_back" style="width:' + n + '%"></div>' : "",
-                    r = '<div class="slider_slide"><div class="slider_loading_bar" style="opacity: 0; display: none;"></div> ' + s + ' <div class="slider_amount"></div> <div class="slider_handler"></div> </div>';
-                this._el = ce("div", {
-                    innerHTML: r,
-                    className: "slider",
-                    id: e.getAttribute("id") || ""
-                });
-                var u = this;
-                if (e.classList)
-                    for (var l = e.classList, h = 0, d = l.length; d > h; h++) addClass(this._el, l[h]);
-                else this._el.className = e.className;
-                each(this._el.attributes, function(t, e) {
-                    ("id" != e.name || "class" != e.name) && u._el.setAttribute(e.name, e.value)
-                }), e.parentNode.replaceChild(this._el, e), this._amountEl = geByClass1("slider_amount", this._el), this._handlerEl = geByClass1("slider_handler", this._el), this._slideEl = geByClass1("slider_slide", this._el), this._backEl = geByClass1("slider_back", this._el), this._progressEl = geByClass1("slider_loading_bar", this._el), this.options.color && (setStyle(this._amountEl, {
-                    backgroundColor: this.options.color
-                }), setStyle(this._handlerEl, {
-                    backgroundColor: this.options.color
-                })), this.options.backColor && setStyle(this._slideEl, {
-                    backgroundColor: this.options.backColor
-                }), addClass(this._el, "slider_size_" + this.options.size), this.options.debounce && (this._onValueChangeDebounced = debounce(this._onValueChange, this.options.debounce)), !isTouch && i.formatHint && (addEvent(this._el, "mousemove", this._ev_onMouseOver = this._onMouseOver.bind(this)), addEvent(this._el, "mouseleave", this._ev_onMouseLeave = this._onMouseLeave.bind(this))), addEvent(this._el, isTouch ? "touchstart" : "mousedown", this._ev_onMouseDown = this._onMouseDown.bind(this)), addEvent(this._el, "click", cancelEvent), this.setValue(this.options.value || 0, !this.options.fireChangeEventOnInit, !1), this.setBackValue(this.options.backValue)
-            }
-            return t.prototype.toggleLoading = function(t) {
-                t = !!t, toggle(this._progressEl, t), setStyle(this._progressEl, "opacity", t ? 1 : 0)
-            }, t.prototype.destroy = function() {
-                !isTouch && this.options.formatHint && (removeEvent(this._el, "mousemove", this._ev_onMouseOver), removeEvent(this._el, "mouseleave", this._ev_onMouseLeave), removeEvent(this._el, "mousedown", this._ev_onMouseDown));
-                var t = window.re || window.remove;
-                t(this._el), t(this._currHintEl)
-            }, t.prototype._updateHint = function(t, e) {
-                this._currHintEl || (this._currHintEl = ce("div", {
-                    className: "slider_hint",
-                    id: "slider_hint"
-                }), this.options.hintClass && addClass(this._currHintEl, this.options.hintClass), this._el.appendChild(this._currHintEl));
-                var i = this._getPos(),
-                    o = Math.round((t.pageX || t.touches[0].pageX) - i[0]),
-                    n = this._width;
-                if (o = e ? Math.min(Math.max(0, o), n) : o, o >= 0 && n >= o) {
-                    var s = o / n;
-                    this._currHintEl.innerHTML = this.options.formatHint ? this.options.formatHint.call(this, s) : s;
-                    var a = this._currHintEl.getBoundingClientRect();
-                    setStyle(this._currHintEl, {
-                        left: this._slideEl.offsetLeft + o - (a.right - a.left) / 2,
-                        top: this._slideEl.offsetTop - (a.bottom - a.top) - 10
-                    }), !e && this._toggleHint(!0)
-                } else !e && this._toggleHint(!1);
-                this.options.formatHint || this._toggleHint(!1)
-            }, t.prototype._toggleHint = function(t) {
-                toggleClass(this._currHintEl, "visible", t)
-            }, t.prototype._onMouseOver = function(e) {
-                t._currenSliderDrag || hasClass(this._el, "active") || this._updateHint(e)
-            }, t.prototype._onMouseLeave = function(t) {
-                hasClass(this._el, "active") || this._toggleHint(!1)
-            }, t.prototype._onMouseDown = function(e) {
-                (0 == e.button || e.touches) && (delete cur._sliderMouseUpNowEl, addEvent(window, isTouch ? "touchmove" : "mousemove", this._ev_onMouseMove = this._onMouseMove.bind(this)), addEvent(window, isTouch ? "touchend touchcancel" : "mouseup", this._ev_onMouseUp = this._onMouseUp.bind(this)), this._onMouseMove(e), t._currenSliderDrag = this, addClass(this._el, "active"), cancelEvent(e))
-            }, t.prototype._onMouseUp = function(e) {
-                cur._sliderMouseUpNowEl = this._el, removeEvent(window, isTouch ? "touchmove" : "mousemove", this._ev_onMouseMove), removeEvent(window, isTouch ? "touchend touchcancel" : "mouseup", this._ev_onMouseUp), this._onValueChange(), removeClass(this._el, "active"), t._currenSliderDrag = !1, this._toggleHint(!1), this.options.onEndDragging && this.options.onEndDragging(this._currValue), cancelEvent(e)
-            }, t.prototype._onMouseMove = function(t) {
-                var e = this._getPos(),
-                    i = e[0];
-                i = "undefined" != typeof t.touches && t.touches.length > 0 ? t.touches[0].pageX : t.pageX, i = Math.max(i, e[0]), i = Math.min(i, e[0] + this._width), i -= e[0], this.setValue(i / this._width, !0, !0), this._onValueChangeDebounced ? this._onValueChangeDebounced() : this._onValueChange(), this._toggleHint(!0), this._updateHint(t, !0), cancelEvent(t)
-            }, t.prototype._getPos = function() {
-                return this._slidePos = getXY(this._slideEl)
-            }, t.prototype._logf = function(t) {
-                if (!this.options.log) return t;
-                var e = this.options.logfbase;
-                return (Math.pow(e, t) - 1) / (e - 1)
-            }, t.prototype._unlogf = function(t) {
-                if (!this.options.log) return t;
-                var e = this.options.logfbase;
-                return n(e, 1 + t * (e - 1))
-            }, t.prototype.setValue = function(t, e, i) {
-                if (!hasClass(this._el, "active") || i) {
-                    var o = i ? this._logf(t) : t;
-                    if (this._currValue != o) {
-                        this._currValue = o;
-                        var n = i ? t : this._unlogf(t);
-                        n = 100 * n + "%", setStyle(this._amountEl, {
-                            width: n
-                        }), setStyle(this._handlerEl, {
-                            left: n
-                        }), !e && this._onValueChange()
-                    }
-                }
-            }, t.prototype.setBackValue = function(t) {
-                toggleClass(this._backEl, "slider_back_transition", t > this._backValue), this._backValue = t;
-                var e = 100 * t + "%";
-                setStyle(this._backEl, {
-                    width: e
-                })
-            }, t.prototype._onValueChange = function() {
-                this._lastValue = this._lastValue || 0, this._lastValue != this._currValue && (this._lastValue = this._currValue, this.options.onChange && this.options.onChange(this._currValue))
-            }, s(t, [{
-                key: "_width",
-                get: function() {
-                    if (!this._widthCache) {
-                        var t = this._el.getBoundingClientRect();
-                        this._widthCache = t.right - t.left
-                    }
-                    return this._widthCache
-                }
-            }]), t
-        }()
-    },
-    74: function(t, e, i) {
+    649: function(t, e, i) {
         "use strict";
 
         function o(t, e) {

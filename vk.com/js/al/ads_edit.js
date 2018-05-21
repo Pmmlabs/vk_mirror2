@@ -6365,6 +6365,9 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
                     defaultItems: this.getUiCriterionDefaultData(criterionName),
                     selectedItems: this.getUiCriterionSelectedData(criterionName),
 
+                    // TODO: @atukallo: uncomment when turning new segments on (and what does this code do??)
+                    // indexkeys: criterionName === 'interest_categories' ? [1, 4] : false,
+
                     introText: this.getUiCriterionIntroText(criterionName),
                     placeholder: this.getUiCriterionPlaceholderText(criterionName),
                     noResult: this.getUiCriterionNoResultText(criterionName),
