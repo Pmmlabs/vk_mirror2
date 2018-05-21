@@ -738,7 +738,10 @@ Ads.createExportSubmitButton = function(elem, bindingId, topUnionId) {
 
         elem = geByClass1('client_choose_row_' + bindingId);
         if (elem && elem.uiDropdown) {
-            curClientId = elem.uiDropdown.val();
+            curClientId = parseInt(elem.uiDropdown.val(), 10);
+            if (!curClientId) {
+                curClientId = 'aca';
+            }
         }
 
         elem = geByClass('export_method_' + bindingId)[0];
@@ -1005,7 +1008,7 @@ Ads.createStaticDropdownMenuAds = function(elem, bindingId, values, params) {
         multiselect: 0,
         selectedItems: 0,
         onChange: function(value) {
-            var i = value;
+            var i = parseInt(value, 10);
             if (!i) i = 'aca';
             Ads.openInnerTable(i, bindingId);
         }
