@@ -544,6 +544,7 @@ i i.untranslated {
 
 .tr_box_edit_key .tr_key_settings_option {
     margin-right: 8px;
+    margin-bottom: 5px;
     float: left
 }
 

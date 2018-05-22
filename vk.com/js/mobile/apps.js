@@ -1301,6 +1301,7 @@ vkApp.prototype.VKWebAppShowWallPostBoxCancel = function(eventData) {
     }
 };
 
+vkApp.callNativeClientMethod = vkApp.prototype.callNativeClientMethod;
 
 if (!window.Apps) window.Apps = {
     optionHiddenClass: 'apps_hidden',

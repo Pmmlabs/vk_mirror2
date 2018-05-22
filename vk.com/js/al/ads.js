@@ -685,6 +685,21 @@ Ads.createExportSubmitButton = function(elem, bindingId, topUnionId) {
     });
     postIframe.style.display = 'none';
     document.body.appendChild(postIframe);
+
+    function showExportFastBoxDataEmpty(e) {
+        if (e.data === 'ads_target_export_data_empty') {
+            var box = new showFastBox(getLang("ads_export_stat_error_box_title_no_data"), getLang("ads_error_export_stat_period_no_data"));
+        }
+    }
+
+    addEvent(window, 'message', showExportFastBoxDataEmpty);
+
+    if (cur && cur.destroy) {
+        cur.destroy.push(function() {
+            removeEvent(window, 'message', showExportFastBoxDataEmpty);
+        });
+    }
+
     var topUnionIdParam = (topUnionId ? '&union_id=' + topUnionId : '');
     var postForm = ce('form', {
         method: 'post',

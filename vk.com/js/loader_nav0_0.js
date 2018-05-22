@@ -152,7 +152,7 @@ var stVersions = {
     'blog.css': 16879687750,
     'blog.js': 1358605934,
     'html5audio.js': 976782859,
-    'audioplayer.js': 7186348474,
+    'audioplayer.js': 8443406757,
     'audioplayer.css': 19090687754,
     'audio_html5.js': 287741914,
     'audio.js': 1008296479,
@@ -207,7 +207,7 @@ var stVersions = {
     'videoplayer.js': 82130016415,
     'videoplayer.css': 41671251252,
     'translation.js': 2712852040,
-    'translation.css': 18772534095,
+    'translation.css': 15852672327,
     'reg.css': 887926110,
     'reg.js': 1336565657,
     'invite.css': 18907281029,
@@ -255,8 +255,8 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 203008986797,
-    'imn.js': 256051131707,
+    'im.css': 201824553938,
+    'imn.js': 254008684555,
     'im.js': 1322065005,
     'emoji.js': 104617691,
     'wide_dd.css': 18133910337,
@@ -375,7 +375,7 @@ var stVersions = {
     'aes_light.js': 1484013701,
     'ads.css': 27322466222,
     'ads_bonus.css': 1294533291,
-    'ads.js': 1347830292,
+    'ads.js': 559926811,
     'ads_payments.js': 2205910694,
     'ads_edit.css': 14924960531,
     'ads_edit.js': 2386788775,
@@ -637,4 +637,4 @@ var stTypes = {
         'likes.js': 1
     }
 };
-var _rnd = 6513;
+var _rnd = 7614;

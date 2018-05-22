@@ -4777,6 +4777,10 @@ img.im_photo_thumb {
     text-decoration: none
 }
 
+.im-page .im-page--dialogs-filter.im-page--dialogs-filter_hidden {
+    display: none
+}
+
 .im-page .im-page--dialogs-filter-wrap {
     display: inline-block
 }

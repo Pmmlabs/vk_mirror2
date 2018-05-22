@@ -10615,6 +10615,10 @@ img[src^="/images/mobile/places/"] {
     width: 100%
 }
 
+body.apps_settingsPage {
+    background: #fff
+}
+
 .app_setting_wrap {
     text-align: center;
     padding: 15% 4%
