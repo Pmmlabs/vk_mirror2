@@ -3062,21 +3062,6 @@ img.pv_movebox_thumb {
     z-index: 800
 }
 
-.pv_chronicle_icon {
-    background-image: url('/images/chronicle/icon_tab.png?3');
-    background-size: 11px 11px;
-    margin: 0px 0px -2px 4px;
-    width: 11px;
-    height: 11px;
-    display: inline-block;
-    zoom: 1;
-    margin: 0px 0px -2px 6px
-}
-
-.is_2x .pv_chronicle_icon {
-    background-image: url('/images/chronicle/icon_tab_2x.png?3')
-}
-
 .pe_canvas {
     position: absolute;
     left: 0px;

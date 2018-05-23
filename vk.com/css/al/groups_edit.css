@@ -1842,47 +1842,6 @@ a.group_ad_post_link.deleted.deleted:hover {
     margin: 0px 0px 25px
 }
 
-.snapster_rooms_wrap {
-    position: relative;
-    margin: 0px -25px -20px;
-    padding: 0px 5px;
-    overflow: hidden
-}
-
-.snapster_rooms {
-    padding: 0px 20px
-}
-
-.group_edit_room_item {
-    margin: 0px;
-    padding: 0px!important
-}
-
-.group_edit_room_item:hover:first-child {
-    border-top: 1px solid #fff
-}
-
-.group_edit_room_desscription {
-    margin-bottom: 15px;
-    color: #777
-}
-
-.snapster_room_title {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block
-}
-
-.group_edit_room_item_photo {
-    background-size: cover
-}
-
-.group_edit_room_more_wrap {
-    padding: 10px 0px;
-    text-align: center
-}
-
 .apps_catalog_row_added {
     color: #656565
 }

@@ -62,8 +62,7 @@
 .wall_module .reply_to_title .reply_to_cancel,
 .wall_module td.page_media_link_thumb,
 .wall_post_source_ads_mark,
-.wall_post_source_icon,
-.wall_post_source_icon.wall_post_source_chronicle {
+.wall_post_source_icon {
     -ms-high-contrast-adjust: none
 }
 
@@ -1213,20 +1212,6 @@ h5.post_author {
     .wall_post_source_icon {
         background-image: url(/images/profile_icons_2x.png?17);
         background-size: 13px 341px
-    }
-}
-
-.wall_post_source_icon.wall_post_source_chronicle {
-    background: url(/images/chronicle/icon_tab.png?3) no-repeat;
-    margin: 0px 0px -2px 5px
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .wall_post_source_icon.wall_post_source_chronicle {
-        background-image: url(/images/chronicle/icon_tab_2x.png?3);
-        background-size: 11px 11px
     }
 }
 

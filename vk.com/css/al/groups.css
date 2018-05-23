@@ -136,10 +136,6 @@ a.groups_messages_block:before {
     background-position: 0 -115px
 }
 
-.group_info_row.snapster:before {
-    background-position: 0 -134px
-}
-
 .group_counters_wrap {
     padding: 0 15px 15px
 }

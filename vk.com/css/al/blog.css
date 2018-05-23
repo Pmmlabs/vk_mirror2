@@ -1186,10 +1186,6 @@
     background-image: url('/images/blog/adv_product.svg')
 }
 
-.blog_product_icon.blog_product_icon_snapster {
-    background-image: url('/images/blog/snapster_product.svg')
-}
-
 .blog_product_title {
     font-size: 19px;
     font-weight: 500;

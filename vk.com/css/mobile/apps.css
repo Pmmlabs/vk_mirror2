@@ -4861,45 +4861,6 @@ input.wide_button {
     border-bottom: none
 }
 
-.mi_chronicle_invite_btn {
-    margin-top: 5px;
-    margin-right: 5px
-}
-
-.mi_chronicle_invite_btn_android {
-    background-color: #689f38
-}
-
-.mi_chronicle_invite_wr {
-    text-align: center
-}
-
-.mi_chronicle_invite_room_cover {
-    background-size: cover;
-    margin: 0px auto
-}
-
-.mi_chronicle_invite_room_title {
-    font-weight: 600;
-    margin-top: 5px
-}
-
-.mi_chronicle_invite_room_followers {
-    margin-top: 5px;
-    color: #777
-}
-
-.mi_chronicle_invite_room_desc {
-    line-height: 160%;
-    margin-top: 3px
-}
-
-.mi_chronicle_invite_room_install {
-    font-size: 11px;
-    color: #777;
-    margin: 10px 0px 7px
-}
-
 .di_img,
 .di_iwrap {
     width: 32px;
