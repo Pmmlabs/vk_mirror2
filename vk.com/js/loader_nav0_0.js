@@ -156,7 +156,9 @@ var stVersions = {
     'audioplayer.css': 19090687754,
     'audio_html5.js': 287741914,
     'audio.js': 1008296479,
+    'cmodules/web/audio_admins.js': 4902697229,
     'audio.css': 23345069559,
+    'audio_admins.css': 18824998901,
     'gifts.css': 21027645445,
     'gifts.js': 338252255,
     'cc.js': 1644397126,
@@ -256,7 +258,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 201824553938,
-    'imn.js': 250800864730,
+    'imn.js': 252667471480,
     'im.js': 1322065005,
     'emoji.js': 104617691,
     'wide_dd.css': 18133910337,
@@ -634,7 +636,8 @@ var stTypes = {
         'wk_editor.js': 1,
         'groups_edit_stories.js': 1,
         'apps.js': 1,
-        'likes.js': 1
+        'likes.js': 1,
+        'audio_admins.js': 1
     }
 };
-var _rnd = 9883;
+var _rnd = 6067;
