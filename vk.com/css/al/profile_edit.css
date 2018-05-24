@@ -330,7 +330,7 @@
     display: block;
     padding: 0 10px 0 0;
     height: 32px;
-    background: url(/images/social_integration.png?1) no-repeat;
+    background: url(/images/social_integration.png?2) no-repeat;
     padding-right: 0px;
     border-right: 10px solid transparent;
     background-position: right 0
@@ -343,7 +343,7 @@
     .pedit_social_icon_3,
     .pedit_social_icon_4,
     .pedit_social_icon_7 {
-        background-image: url(/images/social_integration_2x.png?1);
+        background-image: url(/images/social_integration_2x.png?2);
         background-size: 32px 128px
     }
 }

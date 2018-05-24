@@ -28,9 +28,12 @@
         return n.d(o, "a", o), o
     }, n.o = function(e, n) {
         return Object.prototype.hasOwnProperty.call(e, n)
-    }, n.p = "", n(n.s = 687)
+    }, n.p = "", n(n.s = 286)
 }({
-    566: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+    286: function(e, n, o) {
+        e.exports = o(438)
+    },
+    438: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
         "use strict";
         __webpack_require__.r(__webpack_exports__), window.LandingDonorsDay = {
             BLOOD_LINES: [{
@@ -289,8 +292,5 @@
         try {
             stManager.done("landing_donors_day.js")
         } catch (e) {}
-    },
-    687: function(e, n, o) {
-        e.exports = o(566)
     }
 });

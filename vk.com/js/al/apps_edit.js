@@ -782,8 +782,14 @@ var AppsEdit = {
         e && (/^http:\/\//.test(e) ? val("app_iframe_url", e.replace(/^http:/, "https:")) : /^https:\/\//.test(e) || val("app_iframe_url", "https://" + e))
     },
     onChangeMobileSecureUrl: function() {
-        var e = val("app_m_iframe_secure_url");
-        e && (/^http:\/\//.test(e) ? val("app_m_iframe_secure_url", e.replace(/^http:/, "https:")) : /^https:\/\//.test(e) || val("app_m_iframe_secure_url", "https://" + e))
+        var e = val("app_m_iframe_secure_url"),
+            t = ge("apps_edit_m_apple_dev_team_id");
+        e ? (/^http:\/\//.test(e) ? val("app_m_iframe_secure_url", e.replace(/^http:/, "https:")) : /^https:\/\//.test(e) || val("app_m_iframe_secure_url", "https://" + e), AppsEdit.slideShow(t)) : AppsEdit.slideHide(t)
+    },
+    onKeyUpMobileSecureUrl: function() {
+        var e = val("app_m_iframe_secure_url"),
+            t = ge("apps_edit_m_apple_dev_team_id");
+        e ? AppsEdit.slideShow(t) : AppsEdit.slideHide(t)
     },
     addFunc: function() {
         hide("apps_edit_funcs_empty"), hide("apps_edit_funcs_not_found"), show("func_search_panel");
@@ -1217,7 +1223,8 @@ var AppsEdit = {
                 cur.funcsVersions[e].last_v++;
                 var i = cur.funcsVersions[e].last_v,
                     n = AppsEdit.getFuncVersionCode(e, cur.funcsVersions[e].versions[0][0]);
-                cur.funcsVersions[e].versions.unshift([i, n]), AppsEdit.updateVersionsDD(e), AppsEdit.putVersionCode(e, i), removeClass("func_row_" + e, "dev_no_func_versions"), hide("apps_edit_add_version" + e), cur.funcsVersions[e].disable_add = i
+                cur.funcsVersions[e].versions.unshift([i, n]),
+                    AppsEdit.updateVersionsDD(e), AppsEdit.putVersionCode(e, i), removeClass("func_row_" + e, "dev_no_func_versions"), hide("apps_edit_add_version" + e), cur.funcsVersions[e].disable_add = i
             }
     },
     saveFuncsPosition: function() {
@@ -2316,6 +2323,14 @@ var AppsEdit = {
                 appendEl: document.body
             }), void cancelEvent(e)) : void 0
         })
+    },
+    slideShow: function(e) {
+        var t = 150;
+        isVisible(e) || slideDown(e, t)
+    },
+    slideHide: function(e) {
+        var t = 150;
+        isVisible(e) && slideUp(e, t)
     },
     _eof: 1
 };

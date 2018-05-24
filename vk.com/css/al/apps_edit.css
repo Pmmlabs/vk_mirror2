@@ -3285,3 +3285,7 @@ input.execute_field_input {
 .apps_mobile_iframe_secure_tt {
     width: 188px
 }
+
+.apps_edit_m_apple_dev_team_id_wrap.hidden_input {
+    display: none
+}
