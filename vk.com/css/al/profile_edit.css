@@ -12,7 +12,8 @@
 .pedit_set_icon,
 .pedit_social_icon_1,
 .pedit_social_icon_3,
-.pedit_social_icon_4 {
+.pedit_social_icon_4,
+.pedit_social_icon_7 {
     -ms-high-contrast-adjust: none
 }
 
@@ -324,7 +325,8 @@
 
 .pedit_social_icon_1,
 .pedit_social_icon_3,
-.pedit_social_icon_4 {
+.pedit_social_icon_4,
+.pedit_social_icon_7 {
     display: block;
     padding: 0 10px 0 0;
     height: 32px;
@@ -339,9 +341,10 @@
 (min-resolution: 192dpi) {
     .pedit_social_icon_1,
     .pedit_social_icon_3,
-    .pedit_social_icon_4 {
+    .pedit_social_icon_4,
+    .pedit_social_icon_7 {
         background-image: url(/images/social_integration_2x.png?1);
-        background-size: 32px 96px
+        background-size: 32px 128px
     }
 }
 
@@ -357,6 +360,13 @@
 
 .pedit_social_icon_3 {
     background-position: right -32px
+}
+
+.pedit_social_icon_7 {
+    cursor: default;
+    padding-right: 0px;
+    border-right: 10px solid transparent;
+    background-position: right -96px
 }
 
 .pedit_social_label {
@@ -537,4 +547,12 @@
         background-image: url(/images/icons/add_row_2x.png);
         background-size: 14px 14px
     }
+}
+
+#rss_new_url_error_wrap {
+    display: none
+}
+
+.pedit_box_al_wrap input.dark {
+    width: 100%
 }

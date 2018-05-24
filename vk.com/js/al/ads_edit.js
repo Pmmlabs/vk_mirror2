@@ -1336,7 +1336,7 @@ AdsEdit.initCreatingPostBox = function(creatingPostBox, groupsDefaultItems, sele
     }
 }
 
-AdsEdit.showCreatingPostForm = function(buttonElem, creatingPostBox, postOwnerId) {
+AdsEdit.showCreatingPostForm = function(buttonElem, creatingPostBox, postOwnerId, snippetLink) {
     if (buttonElem && hasClass(buttonElem.parentNode, 'button_disabled')) {
         return;
     }
@@ -1352,6 +1352,8 @@ AdsEdit.showCreatingPostForm = function(buttonElem, creatingPostBox, postOwnerId
     ajaxParams.client_id = viewParams.client_id;
     ajaxParams.campaign_id = viewParams.campaign_id;
     ajaxParams.link_subtype = viewParams.link_subtype;
+    ajaxParams.snippet_link = snippetLink;
+    ajaxParams.group_id = -postOwnerId;
 
     creatingPostBox = showBox('/adsedit?act=creating_post_form', ajaxParams, {
         onDone: onComplete.pbind(true),
@@ -1419,7 +1421,11 @@ AdsEdit.reinitCreatingPostForm = function(creatingPostBox, wallOptions) {
     postMessageInput = geByClass1('submit_post_field', boxBodyNode);
     val(postMessageInput, clean(postMessage));
 
-    AdsEdit.triggerDefaultMediaForPostForm(wallOptions);
+    if (wallOptions.additional_save_params.ads_promoted_post_snippet_link) {
+        cur.addMedia[cur.wallAddMedia.lnkId].checkURL(wallOptions.additional_save_params.ads_promoted_post_snippet_link);
+    } else {
+        AdsEdit.triggerDefaultMediaForPostForm(wallOptions);
+    }
 }
 
 AdsEdit.reinitCreatingPostFormNeeded = function() {
@@ -1497,7 +1503,11 @@ AdsEdit.initCreatingPostForm = function(creatingPostBox, postOwnerId, wallOption
 
     creatingPostBox.changed = true; // prevent hiding box on background click
 
-    AdsEdit.triggerDefaultMediaForPostForm(wallOptions);
+    if (wallOptions.additional_save_params.ads_promoted_post_snippet_link) {
+        cur.addMedia[cur.wallAddMedia.lnkId].checkURL(wallOptions.additional_save_params.ads_promoted_post_snippet_link);
+    } else {
+        AdsEdit.triggerDefaultMediaForPostForm(wallOptions);
+    }
 
     if (!ls.get('ads_promoted_posts_stealth_groups_selector_hidden') && !cur.buttonTextTooltip) {
         var tryShowTooltipInterval = setInterval(function() {
@@ -2080,6 +2090,10 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
     this.initPreview();
     this.initHelp();
     this.initUi();
+
+    if (this.params.link_type && this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_POST_STEALTH && this.params.link_owner_id.value && !this.params.link_id.value) {
+        AdsEdit.showCreatingPostForm(ge('ads_param_post_create_post'), null, this.params.link_owner_id.value, 'https://vk.com/club' + (-this.params.link_owner_id.value));
+    }
 }
 
 AdsViewEditor.prototype.destroy = function() {

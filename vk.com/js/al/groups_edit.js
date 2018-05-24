@@ -578,6 +578,21 @@ var GroupsEdit = {
             })
         }, getLang("global_cancel"))
     },
+    removeRSS: function(e) {
+        showFastBox({
+            title: getLang("groups_status_export"),
+            bodyStyle: "padding: 20px; line-height: 160%;"
+        }, getLang("groups_rss_confirm"), getLang("global_continue"), function(t) {
+            ajax.post("groupsedit.php", {
+                act: "a_remove_rss",
+                gid: cur.gid,
+                hash: e
+            }, {
+                showProgress: lockButton.pbind(t),
+                hideProgress: unlockButton.pbind(t)
+            })
+        }, getLang("global_cancel"))
+    },
     getFields: function() {
         for (var e = {}, t = 0; t < arguments.length; ++t) {
             var o = arguments[t];
@@ -594,7 +609,8 @@ var GroupsEdit = {
         if (!t) return notaBene(ge("group_edit_name"));
         if (!o) return GroupsEdit.nbAddr();
         var r = ge("group_sw"),
-            s = {
+            s = ge("group_rss"),
+            a = {
                 act: "save",
                 gid: cur.gid,
                 name: t,
@@ -602,30 +618,30 @@ var GroupsEdit = {
                 description: trim(ge("group_edit_desc").value),
                 website: trim(ge("group_website").value),
                 sw: r ? trim(r.value) : void 0,
-                rss: trim(ge("group_rss").value),
+                rss: s ? trim(s.value) : void 0,
                 age_limits: radioval("group_age_limits"),
                 hash: cur.hash
             };
-        if (0 == cur.cls || 2 == cur.cls ? (extend(s, GroupsEdit.getFields("access")), s.subject = cur.subjectDD.val(), 2 == cur.cls && extend(s, {
+        if (0 == cur.cls || 2 == cur.cls ? (extend(a, GroupsEdit.getFields("access")), a.subject = cur.subjectDD.val(), 2 == cur.cls && extend(a, {
                 start_date: val("group_start_date"),
                 finish_date: isVisible("group_edit_finish_time") ? val("group_finish_date") : 0,
                 host: cur.hostDD ? cur.hostDD.val() : !1,
                 email: val("event_mail"),
                 phone: val("event_phone")
-            })) : 1 == cur.cls && extend(s, {
+            })) : 1 == cur.cls && extend(a, {
                 sprivacy: cur.sprivacyDD ? cur.sprivacyDD.val() : void 0,
                 pcategory: cur.pcategoryDD.val(),
                 psubcategory: cur.psubcategoryDD.val(),
                 public_date: val("gedit_public_date")
             }), Groups.categoriesGetDropdown(0)) {
-            var a = Groups.categoriesValue();
-            extend(s, {
-                category_0: a[0],
-                category_1: a[1],
-                category_2: a[2]
+            var i = Groups.categoriesValue();
+            extend(a, {
+                category_0: i[0],
+                category_1: i[1],
+                category_2: i[2]
             })
         }
-        ajax.post("groupsedit.php", s, {
+        ajax.post("groupsedit.php", a, {
             onDone: function(e, t, r) {
                 return 0 > e ? GroupsEdit.nbAddr() : e === !1 ? notaBene(ge("group_edit_name")) : "edit_first" == nav.objLoc.act ? nav.go(nav.objLoc[0]) : (r && val("group_edit_name", replaceEntities(r)), GroupsEdit.showMessage(getLang("groups_saved_msg")), scrollToTop(), t != o && (each(geByTag("a"), function() {
                     this.href = this.href.replace(new RegExp("/" + t + "\\?", "g"), "/" + o + "?").replace(new RegExp("/" + t + "$", "g"), "/" + o)
@@ -865,71 +881,70 @@ var GroupsEdit = {
     },
     initSections: function(e) {
         2 != cur.cls && e.marketCountries && (selectsData.setCountries(e.marketCountries), selectsData.setCities(e.marketCountry, e.marketCities), cur.marketCountryChange = function() {
-                var e = clone(cur.marketCountryDD.val_full()),
-                    t = e.length;
-                if (t) {
-                    if (cur.tagRemoved) return void(cur.tagRemoved = !1);
-                    e = e.pop(), e[0] < 0 ? (cur.marketCountryDD.clear(), cur.marketCountryDD.val(e, !1), cur.marketCountryDD.setOptions({
-                        maxItems: 1
-                    }), cur.marketCityDD.hide()) : t > 1 ? cur.marketCityDD.hide() : (cur.marketCountryDD.setOptions({
-                        maxItems: 10
-                    }), cur.marketCityDD.show())
-                }
-            }, cur.marketCityDD = new CitySelect(ge("group_market_city"), ge("group_market_city_wrap"), {
-                width: 300,
-                dark: !0,
-                multiselect: !0,
-                maxItems: 30,
-                placeholder: getLang("groups_market_select_city"),
-                placeholderColor: "#999",
-                city: e.marketCityVal,
-                country: e.marketCountry,
-                maxItemsShown: function(e) {
-                    return e > 6 ? 500 : 350
-                }
-            }), cur.marketCountryDD = new CountrySelect(ge("group_market_country"), ge("group_market_country_wrap"), {
-                width: 300,
-                dark: !0,
-                multiselect: !0,
-                maxItems: 10,
-                placeholder: getLang("groups_market_select_country"),
-                placeholderColor: "#999",
-                noDefaultCountry: !0,
-                country: 0,
-                selectedItems: e.marketCountryVal,
-                citySelect: cur.marketCityDD,
-                onChange: cur.marketCountryChange,
-                onTagRemove: function(e, t) {
-                    cur.tagRemoved = !0;
-                    var o = t.split(",");
-                    1 == o.length && (cur.marketCityDD.show(), cur.marketCountryDD.setOptions({
-                        maxItems: 10
-                    }))
-                }
-            }), cur.marketCountryChange(), cur.marketCurrencyDD = new Dropdown(ge("group_market_currency"), e.marketCurrencies, {
-                width: 300,
-                dark: !0,
-                multiselect: !1,
-                selectedItems: e.marketCurrency
-            }), cur.marketContactDD = new Dropdown(ge("group_market_contact"), e.marketContacts, {
-                width: 300,
-                dark: !0,
-                multiselect: !1,
-                autocomplete: !0,
-                introText: getLang("groups_start_typing_contact"),
-                noResult: "",
-                placeholder: getLang("groups_choose_market_contact")
-            }), void 0 !== e.marketContact && cur.marketContactDD.val(e.marketContact),
-            cur.marketButtonType = new Dropdown(ge("group_market_button_type"), e.marketButtonTypes, {
-                width: 300,
-                dark: !0,
-                multiselect: !1,
-                autocomplete: !1,
-                selectedItems: e.marketButtonType,
-                onChange: function(e) {
-                    0 === intval(e) ? (show("market_button_type_im"), hide("market_button_type_link")) : 1 === intval(e) && (hide("market_button_type_im"), show("market_button_type_link"))
-                }
-            })), e.wideSections && (extend(cur, {
+            var e = clone(cur.marketCountryDD.val_full()),
+                t = e.length;
+            if (t) {
+                if (cur.tagRemoved) return void(cur.tagRemoved = !1);
+                e = e.pop(), e[0] < 0 ? (cur.marketCountryDD.clear(), cur.marketCountryDD.val(e, !1), cur.marketCountryDD.setOptions({
+                    maxItems: 1
+                }), cur.marketCityDD.hide()) : t > 1 ? cur.marketCityDD.hide() : (cur.marketCountryDD.setOptions({
+                    maxItems: 10
+                }), cur.marketCityDD.show())
+            }
+        }, cur.marketCityDD = new CitySelect(ge("group_market_city"), ge("group_market_city_wrap"), {
+            width: 300,
+            dark: !0,
+            multiselect: !0,
+            maxItems: 30,
+            placeholder: getLang("groups_market_select_city"),
+            placeholderColor: "#999",
+            city: e.marketCityVal,
+            country: e.marketCountry,
+            maxItemsShown: function(e) {
+                return e > 6 ? 500 : 350
+            }
+        }), cur.marketCountryDD = new CountrySelect(ge("group_market_country"), ge("group_market_country_wrap"), {
+            width: 300,
+            dark: !0,
+            multiselect: !0,
+            maxItems: 10,
+            placeholder: getLang("groups_market_select_country"),
+            placeholderColor: "#999",
+            noDefaultCountry: !0,
+            country: 0,
+            selectedItems: e.marketCountryVal,
+            citySelect: cur.marketCityDD,
+            onChange: cur.marketCountryChange,
+            onTagRemove: function(e, t) {
+                cur.tagRemoved = !0;
+                var o = t.split(",");
+                1 == o.length && (cur.marketCityDD.show(), cur.marketCountryDD.setOptions({
+                    maxItems: 10
+                }))
+            }
+        }), cur.marketCountryChange(), cur.marketCurrencyDD = new Dropdown(ge("group_market_currency"), e.marketCurrencies, {
+            width: 300,
+            dark: !0,
+            multiselect: !1,
+            selectedItems: e.marketCurrency
+        }), cur.marketContactDD = new Dropdown(ge("group_market_contact"), e.marketContacts, {
+            width: 300,
+            dark: !0,
+            multiselect: !1,
+            autocomplete: !0,
+            introText: getLang("groups_start_typing_contact"),
+            noResult: "",
+            placeholder: getLang("groups_choose_market_contact")
+        }), void 0 !== e.marketContact && cur.marketContactDD.val(e.marketContact), cur.marketButtonType = new Dropdown(ge("group_market_button_type"), e.marketButtonTypes, {
+            width: 300,
+            dark: !0,
+            multiselect: !1,
+            autocomplete: !1,
+            selectedItems: e.marketButtonType,
+            onChange: function(e) {
+                0 === intval(e) ? (show("market_button_type_im"), hide("market_button_type_link")) : 1 === intval(e) && (hide("market_button_type_im"), show("market_button_type_link"))
+            }
+        })), e.wideSections && (extend(cur, {
             wideSections: e.wideSections,
             mainSectionDD: new Dropdown(ge("main_section"), e.wideSections, {
                 dark: !0,
@@ -2135,8 +2150,7 @@ var GroupsEdit = {
             }
         },
         showError: function(e, t) {
-            hide("group_api_secret_error"),
-                hide("group_api_secret_ok"), t ? (show("group_api_error_info"), cur.curlResult = cur.curlResult || {}, cur.curlResult.error = t) : hide("group_api_error_info"), val("group_api_error_msg", e), hide("group_api_ok"), show("group_api_error")
+            hide("group_api_secret_error"), hide("group_api_secret_ok"), t ? (show("group_api_error_info"), cur.curlResult = cur.curlResult || {}, cur.curlResult.error = t) : hide("group_api_error_info"), val("group_api_error_msg", e), hide("group_api_ok"), show("group_api_error")
         },
         saveSetting: function(e, t, o, r) {
             var s = ge("group_api_settings_saved");

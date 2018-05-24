@@ -158,7 +158,7 @@ var stVersions = {
     'audio.js': 1008296479,
     'cmodules/web/audio_admins.js': 4797777469,
     'audio.css': 21233555694,
-    'audio_admins.css': 17327487264,
+    'audio_admins.css': 19571687530,
     'gifts.css': 21027645445,
     'gifts.js': 338252255,
     'cc.js': 1644397126,
@@ -236,8 +236,8 @@ var stVersions = {
     'cmodules/web/groups_create.js': 2554367098,
     'groups_create.css': 18033416400,
     'cmodules/web/groups_list.js': 5109346988,
-    'groups_edit.css': 35529239812,
-    'groups_edit.js': 2456688593,
+    'groups_edit.css': 35612775694,
+    'groups_edit.js': 1028437702,
     'profile.css': 20124827748,
     'profile.js': 610604261,
     'calendar.css': 20297025217,
@@ -257,7 +257,7 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 199426158832,
+    'im.css': 199719723480,
     'imn.js': 252667471480,
     'im.js': 1322065005,
     'emoji.js': 104617691,
@@ -281,8 +281,8 @@ var stVersions = {
     'apps_check.css': 29780739890,
     'settings.js': 32955858,
     'settings.css': 26571216435,
-    'profile_edit.js': 846080762,
-    'profile_edit.css': 17443209756,
+    'profile_edit.js': 3134199617,
+    'profile_edit.css': 17953244538,
     'profile_edit_edu.js': 872687230,
     'profile_edit_job.js': 1688095335,
     'profile_edit_mil.js': 112384103,
@@ -349,7 +349,7 @@ var stVersions = {
     'achievements.css': 18707314182,
     'sf.css': 19956205465,
     'members.css': 17359171406,
-    'meminfo.css': 24099868009,
+    'meminfo.css': 26820876231,
     'groupinfo.css': 23991710228,
     'bugs.js': 3874995669,
     'bugs.css': 15406198730,
@@ -380,7 +380,7 @@ var stVersions = {
     'ads.js': 559926811,
     'ads_payments.js': 2205910694,
     'ads_edit.css': 14924960531,
-    'ads_edit.js': 2386788775,
+    'ads_edit.js': 3407605072,
     'ads_edit_geo.js': 519167575,
     'ads_moder_common.css': 15932255262,
     'ads_moder.css': 15510453832,
@@ -617,4 +617,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 5741;
+var _rnd = 2555;

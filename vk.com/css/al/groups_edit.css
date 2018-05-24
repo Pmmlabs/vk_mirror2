@@ -3449,3 +3449,7 @@ a.group_ad_post_link.deleted.deleted:hover {
     font-size: 13px;
     min-width: 258px
 }
+
+#rss_new_url_error_wrap {
+    display: none
+}

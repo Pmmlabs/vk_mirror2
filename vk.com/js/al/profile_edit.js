@@ -7,7 +7,7 @@ var ProfileEditor = {
         showMsg("pedit_result", e, "ok_msg", !0), show("pedit_result"), scrollToTop(200)
     },
     initBeforeUnload: function() {
-        cur.nav.push(function(e, i, t, a) {
+        cur.nav.push(function(e, i, t, r) {
             return ProfileEditor.checkChanges(1) === !1 ? (cur.onContinueCb = nav.go.pbind(t), !1) : void 0
         }), cur.prevBefUnload = window.onbeforeunload, window.onbeforeunload = ProfileEditor.checkChanges, cur.destroy.push(function() {
             window.onbeforeunload = cur.prevBefUnload
@@ -45,19 +45,19 @@ var ProfileEditor = {
         var t = function(e) {
                 e ? cur.uiPartner.selectItem(e) : cur.uiPartner.val(0), cur.onPartnerGot && (cur.onPartnerGot(), cur.onPartnerGot = !1)
             },
-            a = function(i) {
+            r = function(i) {
                 if (!cur.uiSex.val()) return void t(0);
-                var a = cur.uiStatus.val();
+                var r = cur.uiStatus.val();
                 if (-1 == i)
-                    if (7 == a) {
-                        var r = val("pedit_partner_custom");
-                        if (r == e.partners[0][1]) return void t(0);
+                    if (7 == r) {
+                        var a = val("pedit_partner_custom");
+                        if (a == e.partners[0][1]) return void t(0);
                         ajax.post(ProfileEditor.controller, {
                             act: "a_get_custom_partner",
-                            query: r
+                            query: a
                         }, {
-                            onDone: function(e, i, r) {
-                                t(!e || !i && 7 != a ? 0 : e)
+                            onDone: function(e, i, a) {
+                                t(!e || !i && 7 != r ? 0 : e)
                             },
                             onFail: function(e) {
                                 return t(0), setTimeout(showFastBox(getLang("global_error"), e).hide, 2e3), !0
@@ -66,7 +66,7 @@ var ProfileEditor = {
                             hideProgress: hide.pbind("pedit_status_progress")
                         })
                     } else t(0);
-                intval(i) && a > 1 && cur.uiStatus.val() < 6 ? intval(i) == e.partner ? ge("pedit_status_detail_content").innerHTML && show("pedit_status_detail") : hide("pedit_status_detail") : (intval(i) || cur.uiPartner.clear(), hide("pedit_status_detail"))
+                intval(i) && r > 1 && cur.uiStatus.val() < 6 ? intval(i) == e.partner ? ge("pedit_status_detail_content").innerHTML && show("pedit_status_detail") : hide("pedit_status_detail") : (intval(i) || cur.uiPartner.clear(), hide("pedit_status_detail"))
             };
         e.status < 0 || e.status > 8 ? e.status = 0 : e.status > 1 && 6 != e.status && show("pedit_status_partner"), cur.uiStatus = new Dropdown(ge("pedit_status"), e.statuses[e.sex], {
             multiselect: !1,
@@ -74,8 +74,8 @@ var ProfileEditor = {
             selectedItems: e.status,
             onChange: function(i) {
                 i = intval(i), i > 1 && 6 != i ? ProfileEditor.updateFriendsList(function() {
-                    show("pedit_status_partner"), e.ptitles[i][cur.uiSex.val()].length ? (ge("pedit_status_ptitle").innerHTML = e.ptitles[i][cur.uiSex.val()] + ":" || "&nbsp;", show("pedit_status_ptitle")) : hide("pedit_status_ptitle"), a(cur.uiPartner.val())
-                }) : (hide("pedit_status_partner", "pedit_status_ptitle"), a(cur.uiPartner.val()))
+                    show("pedit_status_partner"), e.ptitles[i][cur.uiSex.val()].length ? (ge("pedit_status_ptitle").innerHTML = e.ptitles[i][cur.uiSex.val()] + ":" || "&nbsp;", show("pedit_status_ptitle")) : hide("pedit_status_ptitle"), r(cur.uiPartner.val())
+                }) : (hide("pedit_status_partner", "pedit_status_ptitle"), r(cur.uiPartner.val()))
             },
             dark: 1
         }), cur.uiPartner = new Selector(ge("pedit_partner"), e.partners, {
@@ -86,13 +86,13 @@ var ProfileEditor = {
             noResult: "",
             introText: "",
             selectedItems: e.partner,
-            onChange: a,
+            onChange: r,
             dark: 1
         });
-        var r = cur.uiPartner.input,
+        var a = cur.uiPartner.input,
             n = ge("pedit_partner_tt_place"),
             o = ge("pedit_partner_tt_place1");
-        addEvent(r, "focus blur", function(i) {
+        addEvent(a, "focus blur", function(i) {
             "focus" == i.type ? 7 == cur.uiStatus.val() ? showTooltip(n, {
                 text: getLang("profileEdit_partner_hint"),
                 slideX: 15,
@@ -193,10 +193,10 @@ var ProfileEditor = {
         }, cur.onPrivacyChanged = function(e) {
             var i = ge("privacy_edit_" + e),
                 t = cur.privacy[e],
-                a = t[0];
+                r = t[0];
             if (i) {
-                var r = i.innerHTML;
-                i = gpeByClass("pedit_privacy_control", i), a > 0 ? (removeClass(i, "pedit_privacy"), addClass(i, "pedit_privacy_locked")) : (removeClass(i, "pedit_privacy_locked"), addClass(i, "pedit_privacy")), geByTag1("a", i).setAttribute("data-title", r)
+                var a = i.innerHTML;
+                i = gpeByClass("pedit_privacy_control", i), r > 0 ? (removeClass(i, "pedit_privacy"), addClass(i, "pedit_privacy_locked")) : (removeClass(i, "pedit_privacy_locked"), addClass(i, "pedit_privacy")), geByTag1("a", i).setAttribute("data-title", a)
             }
         }, ProfileEditor.initBeforeUnload()
     },
@@ -211,19 +211,19 @@ var ProfileEditor = {
             case "interests":
                 var t = !1;
                 return each(["activities", "interests", "music", "movies", "tv", "books", "games", "quotes", "about"], function(e, i) {
-                    var a = ge("pedit_interests_" + i);
-                    t |= cur.interests_data[i].replace(/\x0d/g, "") != val(a).replace(/\x0d/g, "")
+                    var r = ge("pedit_interests_" + i);
+                    t |= cur.interests_data[i].replace(/\x0d/g, "") != val(r).replace(/\x0d/g, "")
                 }), t;
             case "education":
-                var a = !1,
-                    r = !1;
+                var r = !1,
+                    a = !1;
                 if (isVisible("primary_uni"))
-                    if (ProfileEditorEdu.uniChanged(cur.primary_uni)) r = !0;
+                    if (ProfileEditorEdu.uniChanged(cur.primary_uni)) a = !0;
                     else
-                        for (var n = 0; n < cur.unis.length; ++n) cur.unis[n].id > 0 && ProfileEditorEdu.uniChanged(cur.unis[n]) ? r = !0 : cur.unis[n].id < 0 && isVisible("uni_content" + cur.unis[n].id) && cur.unis[n].uiUniversity.val() && (r = !0);
+                        for (var n = 0; n < cur.unis.length; ++n) cur.unis[n].id > 0 && ProfileEditorEdu.uniChanged(cur.unis[n]) ? a = !0 : cur.unis[n].id < 0 && isVisible("uni_content" + cur.unis[n].id) && cur.unis[n].uiUniversity.val() && (a = !0);
                 if (isVisible("schools"))
-                    for (var n = 0; n < cur.schools.length; ++n) cur.schools[n].id > 0 && ProfileEditorEdu.schoolChanged(cur.schools[n]) ? a = !0 : cur.schools[n].id < 0 && isVisible("school_content" + cur.schools[n].id) && cur.schools[n].uiSchool.val() && (a = !0);
-                return r || a;
+                    for (var n = 0; n < cur.schools.length; ++n) cur.schools[n].id > 0 && ProfileEditorEdu.schoolChanged(cur.schools[n]) ? r = !0 : cur.schools[n].id < 0 && isVisible("school_content" + cur.schools[n].id) && cur.schools[n].uiSchool.val() && (r = !0);
+                return a || r;
             case "career":
                 for (var o = !1, n = 0; n < cur.works.length; ++n) {
                     var s = (cur.works[n].uiPosition.val_full() || [])[1] || "",
@@ -282,7 +282,7 @@ var ProfileEditor = {
     generateDays: function(e, i) {
         for (var t = [
                 [0, getLang("profileEdit_main_sel_bday") + ":"]
-            ], a = ProfileEditor.getLastDay(e, i), r = 1; a >= r; ++r) t.push([r, r + ""]);
+            ], r = ProfileEditor.getLastDay(e, i), a = 1; r >= a; ++a) t.push([a, a + ""]);
         return t
     },
     updateDays: function(e, i) {
@@ -298,10 +298,10 @@ var ProfileEditor = {
                     2: {}
                 };
                 for (var t = 1; 2 >= t; ++t) {
-                    var a, r = 3 - t;
+                    var r, a = 3 - t;
                     for (var n in i[t]) {
-                        for (var o = [], s = clone(i[t][n]), l = [], c = 1; c < s.length; ++c) a = s[c], o.push(a), l.push(a);
-                        for (var c = 1; c < i[r][n].length; ++c) a = i[r][n][c], s.push(a), l.push(a);
+                        for (var o = [], s = clone(i[t][n]), l = [], c = 1; c < s.length; ++c) r = s[c], o.push(r), l.push(r);
+                        for (var c = 1; c < i[a][n].length; ++c) r = i[a][n][c], s.push(r), l.push(r);
                         cur.friendsFull[t][n] = [i[t][n], o, s, l]
                     }
                 }
@@ -316,19 +316,19 @@ var ProfileEditor = {
             i = cur.uiSex.val();
         if (!(2 > e || 6 == e) && i) {
             var t = cur.friendsFull[i].Nom,
-                a = 2 == e || 7 == e || 5 == e ? 2 : 0,
-                r = cur.uiPartner.val(),
+                r = 2 == e || 7 == e || 5 == e ? 2 : 0,
+                a = cur.uiPartner.val(),
                 n = !1;
-            for (var o in t[a])
-                if (t[a][o][0] == r) {
+            for (var o in t[r])
+                if (t[r][o][0] == a) {
                     n = !0;
                     break
                 }
-            n || (r = 0), t[a][0][1] = getLang(5 == e ? "profileEdit_main_sel_rel_with_m" : a ? "profileEdit_main_sel_relat" : "profileEdit_main_sel_rel_with_" + (1 == i ? "m" : "f")), cur.uiPartner.setData(t[a + 1]), cur.uiPartner.setOptions({
-                defaultItems: t[a]
+            n || (a = 0), t[r][0][1] = getLang(5 == e ? "profileEdit_main_sel_rel_with_m" : r ? "profileEdit_main_sel_relat" : "profileEdit_main_sel_rel_with_" + (1 == i ? "m" : "f")), cur.uiPartner.setData(t[r + 1]), cur.uiPartner.setOptions({
+                defaultItems: t[r]
             }), cur.uiPartner.setOptions({
-                placeholder: t[a][0][1]
-            }), cur.uiPartner.val(r, !0)
+                placeholder: t[r][0][1]
+            }), cur.uiPartner.val(a, !0)
         }
     },
     deleteLinkHtml: function(e) {
@@ -351,16 +351,16 @@ var ProfileEditor = {
     },
     onFriendsLoaded: function(e, i) {
         var t = cur.options,
-            a = ce("div", {
+            r = ce("div", {
                 id: "pedit_wrap_" + e + cur.relGuid,
                 className: "pedit_wrap_relation clear_fix"
             }),
-            r = ("child" == e || "grandchild" == e) && (!i || i[0] < 0),
+            a = ("child" == e || "grandchild" == e) && (!i || i[0] < 0),
             n = e + cur.relGuid,
             o = "pedit_" + n,
             s = '<div class="pedit_relation_input"><div class="fl_l"><input class="pedit_dropdown" type="hidden" id="' + o + '" name="' + n + '"/></div><div class="pedit_right_control">' + ProfileEditor.deleteLinkHtml("ProfileEditor.removeRelation('" + e + "', " + cur.relGuid + ")") + "</div>",
             l = 0;
-        r && (l = i ? parseInt(i[3]) : 0, s += '<div class="pedit_next_input clear_fix clear"><input class="pedit_date_field" type="hidden" id="' + o + '_date" value="' + l + '"><div class="pedit_bday fl_l"><input type="hidden" id="' + o + '_day"/></div><div class="pedit_bmonth fl_l"><input type="hidden" id="' + o + '_month"/></div><div class="pedit_byear fl_l"><input type="hidden" id="' + o + '_year"/></div></div>'), a.innerHTML = s, ge(cur.conts[e]).appendChild(a), cur.relIds[e] + 1 >= cur.relLimits[e] ? hide("pedit_add_" + e + "_link") : show("pedit_add_" + e + "_link");
+        a && (l = i ? parseInt(i[3]) : 0, s += '<div class="pedit_next_input clear_fix clear"><input class="pedit_date_field" type="hidden" id="' + o + '_date" value="' + l + '"><div class="pedit_bday fl_l"><input type="hidden" id="' + o + '_day"/></div><div class="pedit_bmonth fl_l"><input type="hidden" id="' + o + '_month"/></div><div class="pedit_byear fl_l"><input type="hidden" id="' + o + '_year"/></div></div>'), r.innerHTML = s, ge(cur.conts[e]).appendChild(r), cur.relIds[e] + 1 >= cur.relLimits[e] ? hide("pedit_add_" + e + "_link") : show("pedit_add_" + e + "_link");
         new Selector(ge(o), cur.friends, {
             placeholder: cur.placeholders[e],
             introText: "",
@@ -374,7 +374,7 @@ var ProfileEditor = {
             },
             dark: 1
         });
-        if (r) {
+        if (a) {
             var c = new Date(1e3 * l),
                 d = [t.byears[0]],
                 u = 1910;
@@ -384,10 +384,10 @@ var ProfileEditor = {
                     var e = 0,
                         i = intval(g.val()),
                         t = intval(m.val()),
-                        a = intval(h.val());
-                    if (i > ProfileEditor.getLastDay(t, a) && (g.val(1), i = 1), g.setData(ProfileEditor.generateDays(t, a)), t) {
-                        var r = new Date(t, Math.max(a - 1, 0), Math.max(i, 1));
-                        e = Math.floor(r.getTime() / 1e3)
+                        r = intval(h.val());
+                    if (i > ProfileEditor.getLastDay(t, r) && (g.val(1), i = 1), g.setData(ProfileEditor.generateDays(t, r)), t) {
+                        var a = new Date(t, Math.max(r - 1, 0), Math.max(i, 1));
+                        e = Math.floor(a.getTime() / 1e3)
                     }
                     ge(o + "_date").value = e
                 },
@@ -413,15 +413,15 @@ var ProfileEditor = {
         var e = cur.options.measure = 1 == cur.options.measure ? 2 : 1,
             i = cur.uiWeight.val(),
             t = cur.uiHeight.val(),
-            a = cur.options.weights[e],
-            r = cur.options.heights[e],
+            r = cur.options.weights[e],
+            a = cur.options.heights[e],
             n = i,
             o = t;
-        o >= 140 && 220 >= o && each(r, function() {
+        o >= 140 && 220 >= o && each(a, function() {
             return this[0] >= 140 && this[0] <= 220 && this[0] >= t ? (o = this[0], !1) : void 0
-        }), cur.uiHeight.setData(r), cur.uiHeight.val(o), n >= 40 && 140 >= n && each(a, function() {
+        }), cur.uiHeight.setData(a), cur.uiHeight.val(o), n >= 40 && 140 >= n && each(r, function() {
             return this[0] >= 40 && this[0] <= 140 && this[0] >= i ? (n = this[0], !1) : void 0
-        }), cur.uiWeight.setData(a), cur.uiWeight.val(n), ge("pedit_units_toggler").innerHTML = 1 == e ? getLang("profileEdit_switch_to_meters") : getLang("profileEdit_switch_to_inches"), ge("pedit_height_title").innerHTML = 1 == e ? getLang("profileEdit_height_in") : getLang("profileEdit_height_cm"), ge("pedit_weight_title").innerHTML = 1 == e ? getLang("profileEdit_weight_lbs") : getLang("profileEdit_weight_kg")
+        }), cur.uiWeight.setData(r), cur.uiWeight.val(n), ge("pedit_units_toggler").innerHTML = 1 == e ? getLang("profileEdit_switch_to_meters") : getLang("profileEdit_switch_to_inches"), ge("pedit_height_title").innerHTML = 1 == e ? getLang("profileEdit_height_in") : getLang("profileEdit_height_cm"), ge("pedit_weight_title").innerHTML = 1 == e ? getLang("profileEdit_weight_lbs") : getLang("profileEdit_weight_kg")
     },
     removeRelation: function(e, i) {
         var t = ge("pedit_wrap_" + e + i);
@@ -553,7 +553,7 @@ var ProfileEditor = {
         }), !1
     },
     nameRequestCancel: function(e, i, t) {
-        var a = ce("div", {
+        var r = ce("div", {
             className: "progress"
         }, {
             display: "block"
@@ -570,10 +570,10 @@ var ProfileEditor = {
                 ProfileEditor.showError(e, "name")
             },
             showProgress: function() {
-                e.parentNode.replaceChild(a, e)
+                e.parentNode.replaceChild(r, e)
             },
             hideProgress: function() {
-                a.parentNode.replaceChild(e, a)
+                r.parentNode.replaceChild(e, r)
             }
         })
     },
@@ -593,9 +593,9 @@ var ProfileEditor = {
                 hash: cur.saveHash
             },
             t = ["email", "mobile", "home", "website", "skype", "country", "city"];
-        for (var a in t) i[t[a]] = ge("pedit_" + t[a]).value;
+        for (var r in t) i[t[r]] = ge("pedit_" + t[r]).value;
         t = ["email", "mobile", "home"];
-        for (var a in t) i["privacy_" + t[a]] = Privacy.getValue(t[a]);
+        for (var r in t) i["privacy_" + t[r]] = Privacy.getValue(t[r]);
         ajax.post(ProfileEditor.controller, i, {
             onDone: function(e, i) {
                 if (e) {
@@ -621,19 +621,30 @@ var ProfileEditor = {
             }
         })
     },
-    setUpFacebook: function(e, i, t, a) {
+    setUpFacebook: function(e, i, t, r) {
         if (t && !cur.disableFbExport) return showBox(ProfileEditor.controller, {
             act: "facebook_settings_box"
         });
-        var r = "https://graph.facebook.com/v2.7/oauth/authorize?client_id=" + e + "&redirect_uri=" + i + "&scope=email,user_birthday,publish_actions&display=popup&state=" + a,
+        var a = "https://graph.facebook.com/v2.7/oauth/authorize?client_id=" + e + "&redirect_uri=" + i + "&scope=email,user_birthday,publish_actions&display=popup&state=" + r,
             n = "scrollbars=0,resizable=1,menubar=0,location=0,left=" + (Math.floor(screen.width / 2) - 300) + ",top=" + (Math.floor(screen.height / 2) - 240) + ",width=600,height=400,toolbar=0,status=0",
-            o = window.open(r, "fb", n);
+            o = window.open(a, "fb", n);
         try {
             o.focus()
         } catch (s) {}
         window.socialCallback = function(e) {
             ge("export_service_3").innerHTML = '<img src="/images/upload.gif" />', ProfileEditor.fetchServiceName(3)
         }
+    },
+    setUpRSS: function(e) {
+        showBox(ProfileEditor.controller, {
+            act: "rss_settings_box",
+            hash: e
+        }, {
+            dark: 1,
+            params: {
+                width: 460
+            }
+        })
     },
     fetchServiceName: function(e) {
         cur["nameService" + e] = setInterval(function() {
@@ -659,10 +670,10 @@ var ProfileEditor = {
     setUpInstagram: function(e) {
         var i = "1fdcd1b154d54990892368072ab4d303",
             t = "https://api.instagram.com/oauth/authorize/?client_id=" + i + "&redirect_uri=" + e + "&response_type=code",
-            a = "scrollbars=0,resizable=1,menubar=0,location=0,left=" + (Math.floor(screen.width / 2) - 300) + ",top=" + (Math.floor(screen.height / 2) - 240) + ",width=600,height=400,toolbar=0,status=0",
-            r = window.open(t, "instagram", a);
+            r = "scrollbars=0,resizable=1,menubar=0,location=0,left=" + (Math.floor(screen.width / 2) - 300) + ",top=" + (Math.floor(screen.height / 2) - 240) + ",width=600,height=400,toolbar=0,status=0",
+            a = window.open(t, "instagram", r);
         try {
-            r.focus()
+            a.focus()
         } catch (n) {}
         window.socialCallback = function(e) {
             showBox(ProfileEditor.controller, {
@@ -699,10 +710,13 @@ var ProfileEditor = {
                 i = "settings_status_export", t = "settings_facebook_confirm";
                 break;
             case 4:
-                i = "settings_status_import_photo", t = "settings_instagram_confirm"
+                i = "settings_status_import_photo", t = "settings_instagram_confirm";
+                break;
+            case 7:
+                i = "profileEdit_import_rss", t = "profileEdit_rss_confirm"
         }
         var t = "<center>" + getLang(t) + "</center>",
-            a = showFastBox(getLang(i), t, getLang("global_continue"), function() {
+            r = showFastBox(getLang(i), t, getLang("global_continue"), function() {
                 ajax.post("/al_profileEdit.php", {
                     act: "a_clear_social_export",
                     service: e,
@@ -710,12 +724,12 @@ var ProfileEditor = {
                 }, {
                     onDone: function(i) {
                         if (i && i.msg) {
-                            a.hide(), ge("export_service_" + e).innerHTML = i.msg, setTimeout(scrollToTop, 300);
+                            r.hide(), ge("export_service_" + e).innerHTML = i.msg, setTimeout(scrollToTop, 300);
                             var t = curBox();
                             t && t.hide()
                         }
                     }
-                }), a.showProgress()
+                }), r.showProgress()
             }, getLang("global_cancel"))
     },
     slideShow: function(e, i) {
@@ -743,8 +757,8 @@ var ProfileEditor = {
         }), ajax.post(ProfileEditor.controller, i, {
             onDone: function(e) {
                 each(["activities", "interests", "music", "movies", "tv", "books", "games", "quotes", "about"], function(i, t) {
-                    var a = ge("pedit_interests_" + t);
-                    val(a, cur.interests_data[t] = winToUtf(e[t])), a.autosize.update()
+                    var r = ge("pedit_interests_" + t);
+                    val(r, cur.interests_data[t] = winToUtf(e[t])), r.autosize.update()
                 }), ProfileEditor.showMsg(getLang("profileEdit_interests_saved"))
             },
             showProgress: lockButton.pbind(e),
@@ -783,14 +797,14 @@ var ProfileEditor = {
         if ("education" == e) {
             if (cur.filter_uni = 0, show("school"), hide("uni"), hide("pedit_result"), !isVisible("schools")) {
                 if (cur.schoolsCount = cur.schools.length, cur.schoolsCount)
-                    for (var a = 0; a < cur.schools.length; ++a) ge("schools").appendChild(ProfileEditorEdu.genSchoolRow(cur.schools[a].id, 0 == a)), cur.schools[a] = ProfileEditorEdu.initSchoolRow(cur.schools[a]);
+                    for (var r = 0; r < cur.schools.length; ++r) ge("schools").appendChild(ProfileEditorEdu.genSchoolRow(cur.schools[r].id, 0 == r)), cur.schools[r] = ProfileEditorEdu.initSchoolRow(cur.schools[r]);
                 else ProfileEditorEdu.addSchool();
                 show("schools")
             }
             cur.schoolsCount >= 7 ? hide("add_school_link") : show("add_school_link"), i && "add_item" in nav.objLoc && (t.add_item = nav.objLoc.add_item), nav.setLoc(t)
         } else if ("higher_education" == e) {
             if (cur.filter_uni = 1, show("uni"), hide("school"), hide("pedit_result"), !isVisible("primary_uni") && (ge("primary_uni").appendChild(ProfileEditorEdu.genUniRow(cur.primary_uni.id, !0, !0)), cur.primary_uni = ProfileEditorEdu.initUniRow(cur.primary_uni), show("primary_uni"), cur.unisCount = cur.unis.length, cur.unisCount)) {
-                for (var a = 0; a < cur.unis.length; ++a) ge("unis").appendChild(ProfileEditorEdu.genUniRow(cur.unis[a].id, !1, 0 == a)), cur.unis[a] = ProfileEditorEdu.initUniRow(cur.unis[a]);
+                for (var r = 0; r < cur.unis.length; ++r) ge("unis").appendChild(ProfileEditorEdu.genUniRow(cur.unis[r].id, !1, 0 == r)), cur.unis[r] = ProfileEditorEdu.initUniRow(cur.unis[r]);
                 show("unis")
             }
             cur.unisCount >= 9 ? hide("add_uni_link") : show("add_uni_link"), i && "add_item" in nav.objLoc && (t.add_item = nav.objLoc.add_item), nav.setLoc(t)

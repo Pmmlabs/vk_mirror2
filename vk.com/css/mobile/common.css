@@ -22681,15 +22681,19 @@ a.feedBlocks__article:hover {
 }
 
 .vk__page_login .fit_box.new_form .socials {
-    text-align: center;
-    margin-top: 4px
+    overflow: hidden
 }
 
 .vk__page_login .fit_box.new_form .social_button {
     padding: 5px;
-    margin: 5px 20px -3px;
-    display: inline-block;
-    line-height: 24px
+    margin-top: 10px;
+    display: block;
+    line-height: 24px;
+    border: 1px solid #caced4;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center
 }
 
 .vk__page_login .fit_box.new_form .social_button .social_icon {
@@ -22702,11 +22706,6 @@ a.feedBlocks__article:hover {
 
 .vk_2x .vk__page_login .fit_box.new_form .social_button .social_icon {
     background-image: url('/images/mobile/auth_social_networks_2x.png')
-}
-
-.vk__page_login .fit_box.new_form .social_button.social_google {
-    position: relative;
-    left: -16px
 }
 
 .vk__page_login .fit_box.new_form .social_button.social_google .social_icon {
@@ -22737,11 +22736,16 @@ a.feedBlocks__article:hover {
     .vk__page_login .fit_box.new_form .login_header {
         padding: 17px 0 7px
     }
-    .vk__page_login .fit_box.new_form .social_button {
-        margin: 5px 39px -5px
+    .vk__page_login .fit_box.new_form .socials {
+        margin-bottom: -3px
     }
-    .vk__page_login .fit_box.new_form .social_button.social_google {
-        left: -10px
+    .vk__page_login .fit_box.new_form .social_button {
+        width: 238px;
+        margin-left: 10px;
+        float: left
+    }
+    .vk__page_login .fit_box.new_form .social_button:first-child {
+        margin-left: 0
     }
 }
 

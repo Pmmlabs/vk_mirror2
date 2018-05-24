@@ -575,6 +575,39 @@ table.history .cur_session {
     display: block
 }
 
+.mi_deleted_photo_counter .mi_deleted_photo_counter_secondary {
+    color: #939393
+}
+
+.mi_deleted_photo_counter .mi_deleted_photo_counter_current {
+    display: inline-block
+}
+
+.mi_deleted_photo_counter .mi_deleted_photo_counter_arrow {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%2214%22%20viewBox%3D%220%200%208%2014%22%3E%3Cpath%20fill%3D%22%23828A99%22%20d%3D%22M1.2%2013.8c-.2%200-.4-.1-.5-.2-.3-.3-.3-.8%200-1.1l5.5-5.5-5.5-5.5c-.3-.3-.3-.8%200-1.1s.8-.3%201.1%200l6%206c.3.3.3.8%200%201.1l-6%206c-.2.2-.4.3-.6.3z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    position: relative;
+    top: 7px;
+    display: inline-block;
+    width: 8px;
+    height: 20px
+}
+
+.mi_deleted_photo_counter .mi_deleted_photo_counter_arrow.inverse {
+    -webkit-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1)
+}
+
+.mi_deleted_photo_counter .mi_deleted_photo_counter_separator {
+    border-left: 1px solid #e7e8ec;
+    margin: 0 6px;
+    display: inline-block;
+    height: 20px;
+    position: relative;
+    top: 4px
+}
+
 .mi_section_actions {
     margin: 8px 0 0;
     padding: 0 28px
