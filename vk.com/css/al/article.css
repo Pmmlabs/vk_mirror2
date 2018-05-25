@@ -475,8 +475,14 @@
     max-width: 100%
 }
 
-.article .video_box_wrap {
+.article .video_box_wrap,
+.article .article_object_audio {
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif
+}
+
+.article .article_object_audio {
+    font-size: 13px;
+    padding: 0 100px
 }
 
 .article .article_object_gif {
@@ -499,6 +505,14 @@
     display: block;
     margin: 0 auto;
     width: 100%
+}
+
+.article figure[data-type="100"] {
+    line-height: 1em
+}
+
+.article figure[data-type="105"] .article_figure_content {
+    overflow: visible
 }
 
 .article figure[data-type="102"] .article_object_video {
@@ -739,6 +753,13 @@
     opacity: 0!important
 }
 
+.article_view>figure[data-type="100"],
+.article_view>figure[data-type="105"] {
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-size: 13px;
+    padding: 0 100px
+}
+
 .article_view .article_object_phone_iphone {
     height: 521px;
     margin: 0 auto;
@@ -844,6 +865,14 @@
     margin-bottom: 30px
 }
 
+.article:not(.article_mobile)>figure[data-type="105"]:not(.article_decoration_last) {
+    margin-bottom: 0
+}
+
+.article:not(.article_mobile)>figure[data-type="105"]:not(.article_decoration_first) {
+    margin-top: 0
+}
+
 .article:not(.article_mobile)>blockquote {
     margin-top: 21px;
     margin-bottom: 21px
@@ -916,6 +945,14 @@
 .article.article_mobile>figure {
     margin-top: 25px;
     margin-bottom: 25px
+}
+
+.article.article_mobile>figure[data-type="105"]:not(.article_decoration_last) {
+    margin-bottom: 0
+}
+
+.article.article_mobile>figure[data-type="105"]:not(.article_decoration_first) {
+    margin-top: 0
 }
 
 .article.article_mobile>blockquote {
@@ -1030,6 +1067,15 @@
 .article.article_mobile>ol {
     margin-left: 32px;
     padding: 0
+}
+
+.article.article_mobile>figure[data-type="105"] {
+    padding: 0 5px
+}
+
+.article.article_mobile.article_webview>figure[data-type="105"],
+.article.article_mobile>figure[data-type="100"] {
+    padding: 0 16px
 }
 
 .article_bottom_extra_info {

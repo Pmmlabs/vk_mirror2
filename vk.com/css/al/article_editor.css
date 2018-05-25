@@ -475,8 +475,14 @@
     max-width: 100%
 }
 
-.article .video_box_wrap {
+.article .video_box_wrap,
+.article .article_object_audio {
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif
+}
+
+.article .article_object_audio {
+    font-size: 13px;
+    padding: 0 100px
 }
 
 .article .article_object_gif {
@@ -499,6 +505,14 @@
     display: block;
     margin: 0 auto;
     width: 100%
+}
+
+.article figure[data-type="100"] {
+    line-height: 1em
+}
+
+.article figure[data-type="105"] .article_figure_content {
+    overflow: visible
 }
 
 .article figure[data-type="102"] .article_object_video {
@@ -739,6 +753,13 @@
     opacity: 0!important
 }
 
+.article_view>figure[data-type="100"],
+.article_view>figure[data-type="105"] {
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-size: 13px;
+    padding: 0 100px
+}
+
 .article_view .article_object_phone_iphone {
     height: 521px;
     margin: 0 auto;
@@ -844,6 +865,14 @@
     margin-bottom: 30px
 }
 
+.article:not(.article_mobile)>figure[data-type="105"]:not(.article_decoration_last) {
+    margin-bottom: 0
+}
+
+.article:not(.article_mobile)>figure[data-type="105"]:not(.article_decoration_first) {
+    margin-top: 0
+}
+
 .article:not(.article_mobile)>blockquote {
     margin-top: 21px;
     margin-bottom: 21px
@@ -916,6 +945,14 @@
 .article.article_mobile>figure {
     margin-top: 25px;
     margin-bottom: 25px
+}
+
+.article.article_mobile>figure[data-type="105"]:not(.article_decoration_last) {
+    margin-bottom: 0
+}
+
+.article.article_mobile>figure[data-type="105"]:not(.article_decoration_first) {
+    margin-top: 0
 }
 
 .article.article_mobile>blockquote {
@@ -1030,6 +1067,15 @@
 .article.article_mobile>ol {
     margin-left: 32px;
     padding: 0
+}
+
+.article.article_mobile>figure[data-type="105"] {
+    padding: 0 5px
+}
+
+.article.article_mobile.article_webview>figure[data-type="105"],
+.article.article_mobile>figure[data-type="100"] {
+    padding: 0 16px
 }
 
 .article_bottom_extra_info {
@@ -2468,6 +2514,10 @@
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Crect%20width%3D%2220%22%20height%3D%2218%22%20x%3D%222%22%20y%3D%223%22%20fill%3D%22%23000%22%20rx%3D%224%22%2F%3E%3Cpath%20fill%3D%22%23EBEDF0%22%20d%3D%22M4.116%2012c0%202.408%201.35%203.999%203.75%203.999.65%200%201.45-.232%202.07-.63.37-.243.464-.635.464-1.099v-2.022c0-.453-.254-.79-.664-.79L8.4%2011.42c-.41%200-.75.375-.75.828%200%20.453.34.678.75.678h.74v.99c-.16.166-.835.425-1.255.425-1.25%200-2.07-.917-2.07-2.342%200-1.59.89-2.342%202.04-2.342.36%200%20.63.066.83.144.14.055.27.088.39.088.25%200%20.47-.132.61-.398.07-.143.1-.287.1-.42%200-.309-.18-.596-.59-.795-.22-.11-.72-.276-1.53-.276-2.2%200-3.55%201.779-3.55%204zm8-3.144v6.286c0%20.468.34.857.8.857s.8-.389.8-.857V8.856c0-.468-.34-.856-.8-.856s-.8.388-.8.856zm6.652%204.127c.41%200%20.75-.34.75-.75s-.34-.75-.75-.75h-1.4L17.37%209.5h1.7c.41%200%20.75-.34.75-.75S19.48%208%2019.07%208h-2.55c-.41%200-.75.34-.75.75v6.6c0%20.41.34.75.8.75s.8-.34.8-.75l-.002-2.367h1.4z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
+.article_editor .article_editor_object_picker_btn#article_editor_object_picker_btn_audio {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%3Crect%20width%3D%2224%22%20height%3D%2224%22%2F%3E%0A%20%20%20%20%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M10.0010578%2C17.14977%20L10.0010578%2C9.5%20L16.9989423%2C7.5%20L16.9989423%2C13.1345932%20C16.526659%2C13.0395343%2016.0064987%2C13.0430516%2015.4794441%2C13.1647317%20C13.8583629%2C13.5389878%2012.7859307%2C14.8893592%2013.0840996%2C16.1808705%20C13.3822685%2C17.4723819%2014.938128%2C18.2159643%2016.5592092%2C17.8417082%20C18.0519948%2C17.4970715%2019.0795375%2C16.3247089%2019%2C15.1328004%20L19%2C4.00656087%20C19%2C3.45065265%2018.568787%2C3.11760356%2018.0430649%2C3.26098229%20L8.95693506%2C5.73901771%20C8.42843442%2C5.88315425%208%2C6.4556644%208%2C6.99539757%20L8%2C15.1348062%20C7.52743565%2C15.0395291%207.00689218%2C15.0429608%206.47944406%2C15.1647317%20C4.85836293%2C15.5389878%203.78593068%2C16.8893592%204.08409959%2C18.1808705%20C4.38226849%2C19.4723819%205.93812804%2C20.2159643%207.55920916%2C19.8417082%20C9.04490982%2C19.4987072%2010.0697732%2C18.3358187%2010.0010578%2C17.14977%20Z%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
+}
+
 .article_editor .article_editor_object_picker_btn#article_editor_object_picker_btn_sep {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20d%3D%22M4%203h15a1%201%200%200%201%200%202H4a1%201%200%201%201%200-2zm0%2015h15a1%201%200%200%201%200%202H4a1%201%200%200%201%200-2zm2.5-8a1.5%201.5%200%201%201%200%203%201.5%201.5%200%200%201%200-3zm5%200a1.5%201.5%200%201%201%200%203%201.5%201.5%200%200%201%200-3zm5%200a1.5%201.5%200%201%201%200%203%201.5%201.5%200%200%201%200-3z%22%20fill%3D%22%23000%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
@@ -2621,6 +2671,7 @@ body[data-useragent*=msie] .article_editor_canvas[contenteditable=true] .article
     margin-top: 10px
 }
 
+.article_editor_canvas[contenteditable=true] figure .article_ed__audioplaylist_play_note,
 .article_editor_canvas[contenteditable=true] figure .article_ed__video_play_note {
     display: none;
     font-size: 13px;
@@ -2630,7 +2681,7 @@ body[data-useragent*=msie] .article_editor_canvas[contenteditable=true] .article
     color: #fff;
     padding: 1px 13px;
     border-radius: 3px;
-    position: relative;
+    position: absolute;
     left: 50%;
     -webkit-transform: translateX(-50%);
     -o-transform: translateX(-50%);
@@ -2638,8 +2689,13 @@ body[data-useragent*=msie] .article_editor_canvas[contenteditable=true] .article
     top: 10px
 }
 
+.article_editor_canvas[contenteditable=true] figure.article_ed__object_highlighted .article_ed__audioplaylist_play_note,
 .article_editor_canvas[contenteditable=true] figure.article_ed__object_highlighted .article_ed__video_play_note {
     display: inline-block
+}
+
+.article_editor_canvas[contenteditable=true] figure[data-type="100"].article_ed__object_highlighted .article_object_audio {
+    padding-top: 42px
 }
 
 .article_editor_canvas[contenteditable=true] figure .article_ed__img_wrap {
