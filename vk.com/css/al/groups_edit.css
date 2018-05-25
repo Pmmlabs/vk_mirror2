@@ -3450,6 +3450,14 @@ a.group_ad_post_link.deleted.deleted:hover {
     min-width: 258px
 }
 
+#group_edit_twitter_export {
+    margin-top: 12px
+}
+
+#group_edit_twitter_import {
+    margin-top: 14px
+}
+
 #rss_new_url_error_wrap {
     display: none
 }

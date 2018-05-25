@@ -922,7 +922,21 @@ var MoneyTransfer = {
         } else if (message.action == '3dsFinish') {
             MoneyTransfer.frameHeight();
             removeClass('payments_iframe_container', 'payments_threeds_frame');
+        } else if (message.action == 'session_fail' && browser.safari) {
+            hide('payments_iframe_container');
+            show('payments_iframe_cookie_trouble');
         }
+    },
+    acceptCookieSafariSpike: function() {
+        var cookieWindow = window.open('https://top-fwz1.mail.ru/counter2?id=1');
+        var cookieBtn = ge('payments_iframe_cookie_trouble_btn');
+        lockButton(cookieBtn);
+        setTimeout(function() {
+            cookieWindow.location = window.location;
+            cookieWindow.close();
+            hide('payments_iframe_cookie_trouble');
+            MoneyTransfer.send();
+        }, 1000);
     },
     initAccept: function(data, html) {
         var frc = ge('payments_iframe_container');

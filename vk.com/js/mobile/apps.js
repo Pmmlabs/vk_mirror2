@@ -669,7 +669,7 @@ var vkApp = function(cont, options, params, onInit) {
             ajax.post('/apps.php', queryParams, {
                 onDone: function(response) {
                     try {
-                        response = parseJSON(response);
+                        response = JSON.parse(response);
                     } catch (e) {
                         response = {
                             error: {
@@ -726,7 +726,7 @@ var vkApp = function(cont, options, params, onInit) {
         externalAppFail: function(rejection) {
             if (!isObject(rejection)) {
                 try {
-                    rejection = parseJSON(rejection);
+                    rejection = JSON.parse(rejection);
                 } catch (e) {
                     rejection = {
                         error_msg: 'Unknown error',

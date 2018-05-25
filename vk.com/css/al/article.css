@@ -1706,13 +1706,19 @@ body.article_body .article_layer {
     position: relative
 }
 
+.article_layer .article_layer_next_thumb_wrap {
+    width: 96px;
+    height: 72px;
+    border-radius: 4px;
+    background-color: #eaeaea;
+    overflow: hidden
+}
+
 .article_layer .article_layer_next_thumb {
     width: 96px;
     height: 72px;
     background-size: cover;
-    background-position: 50%;
-    border-radius: 4px;
-    background-color: #eaeaea
+    background-position: 50%
 }
 
 .article_layer .article_layer_next_title {
@@ -1726,17 +1732,17 @@ body.article_body .article_layer {
     text-overflow: ellipsis
 }
 
-.article_layer .article_layer_next.no_thumb .article_layer_next_thumb {
+.article_layer .article_layer_next.no_thumb .article_layer_next_thumb_wrap {
     display: none
 }
 
 .article_layer .article_layer_prev_next .next,
-.article_layer .article_layer_prev_next .next .article_layer_next_thumb {
+.article_layer .article_layer_prev_next .next .article_layer_next_thumb_wrap {
     float: left
 }
 
 .article_layer .article_layer_prev_next .prev,
-.article_layer .article_layer_prev_next .prev .article_layer_next_thumb {
+.article_layer .article_layer_prev_next .prev .article_layer_next_thumb_wrap {
     float: right
 }
 

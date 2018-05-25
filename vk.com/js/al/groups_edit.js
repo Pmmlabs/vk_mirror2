@@ -641,7 +641,10 @@ var GroupsEdit = {
                 category_2: i[2]
             })
         }
-        ajax.post("groupsedit.php", a, {
+        var n = ge("group_edit_twitter_export");
+        n && (a.twitter_export = isChecked(n));
+        var u = ge("group_edit_twitter_import");
+        u && (a.twitter_import = isChecked(u)), ajax.post("groupsedit.php", a, {
             onDone: function(e, t, r) {
                 return 0 > e ? GroupsEdit.nbAddr() : e === !1 ? notaBene(ge("group_edit_name")) : "edit_first" == nav.objLoc.act ? nav.go(nav.objLoc[0]) : (r && val("group_edit_name", replaceEntities(r)), GroupsEdit.showMessage(getLang("groups_saved_msg")), scrollToTop(), t != o && (each(geByTag("a"), function() {
                     this.href = this.href.replace(new RegExp("/" + t + "\\?", "g"), "/" + o + "?").replace(new RegExp("/" + t + "$", "g"), "/" + o)

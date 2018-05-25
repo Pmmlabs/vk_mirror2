@@ -2488,6 +2488,21 @@ h2.payments_getvotes_title {
     text-align: left
 }
 
+#payments_box.payments_money_transfer_box .payments_iframe_cookie_trouble {
+    text-align: center;
+    padding: 30px 20px;
+    margin: 20px 25px
+}
+
+#payments_box.payments_money_transfer_box .payments_iframe_cookie_trouble_msg {
+    font-size: 15px;
+    line-height: 20px
+}
+
+#payments_box.payments_money_transfer_box .payments_iframe_cookie_trouble_btn {
+    margin-top: 16px
+}
+
 .payments_money_transfer_chat_photo_wrap {
     width: 36px;
     height: 36px;

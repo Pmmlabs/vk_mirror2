@@ -236,8 +236,8 @@ var stVersions = {
     'cmodules/web/groups_create.js': 2554367098,
     'groups_create.css': 20246538831,
     'cmodules/web/groups_list.js': 5109346988,
-    'groups_edit.css': 37825898125,
-    'groups_edit.js': 1028437702,
+    'groups_edit.css': 38476969709,
+    'groups_edit.js': 1931452437,
     'profile.css': 22337950179,
     'profile.js': 610604261,
     'calendar.css': 22510147648,
@@ -274,7 +274,7 @@ var stVersions = {
     'privacy.js': 835833828,
     'privacy.css': 18020848119,
     'apps.css': 39043850015,
-    'apps.js': 2710133624,
+    'apps.js': 3750521081,
     'apps_edit.js': 2351734575,
     'apps_edit.css': 37183668232,
     'apps_check.js': 3204387834,
@@ -349,7 +349,7 @@ var stVersions = {
     'achievements.css': 20920436613,
     'sf.css': 22169327896,
     'members.css': 19572293837,
-    'meminfo.css': 29033998662,
+    'meminfo.css': 29013473282,
     'groupinfo.css': 26204832659,
     'bugs.js': 3874995669,
     'bugs.css': 17619321161,
@@ -367,8 +367,8 @@ var stVersions = {
     'verify.css': 17081975925,
     'away.css': 22463858998,
     'stats.css': 19827047400,
-    'payments.css': 29498860957,
-    'payments.js': 532936968,
+    'payments.css': 30818097858,
+    'payments.js': 711693407,
     'offers.css': 978996883,
     'offers.js': 2030679272,
     'call.js': 4217435992,
@@ -523,7 +523,7 @@ var stVersions = {
     'cmodules/web/speech_worker_opus.js': 2818771805,
     'stories.js': 62618461012,
     'stories.css': 23688842522,
-    'article.css': 34818692945,
+    'article.css': 38438010113,
     'article_editor.css': 36574782356,
     'cmodules/web/article.js': 30865814510,
     'cmodules/web/article_layer.js': 17895309996,
@@ -617,4 +617,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 3003;
+var _rnd = 5174;
