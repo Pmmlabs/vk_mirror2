@@ -1639,6 +1639,148 @@ AdsModer.premoderationSetResultReasonsText = function(requestId) {
     }).join(', ');
 }
 
+AdsModer.retargetingShareAllGroupsConfirm = function(hash) {
+    ajax.post('/ads?act=a_retargeting_group_share_all_confirm', {
+        union_id: cur.options.unionId,
+        hash: hash,
+        link: val('ads_retargeting_group_share_all_target')
+    }, {
+        onDone: function(message, targetUnionId, hash) {
+            var currentUnionId = cur.options.unionId;
+            curBox().hide();
+            var boxHtml = "<div>" + message + "</div><div id='ads_retargeting_allow_extending_limits'></div>";
+            var newBox = showFastBox("�������...", boxHtml);
+
+            new Checkbox(ge('ads_retargeting_allow_extending_limits'), {
+                label: "��������� ����������� ����� ������ ����� ��� �������������?",
+                checked: 1,
+                width: 400
+            });
+
+            newBox.removeButtons();
+            newBox.addButton('���������� �����',
+                AdsModer.retargetingShareAllGroups.pbind(currentUnionId, targetUnionId, hash, newBox),
+                '', false, 'ads_retargeting_group_share_all_button');
+            newBox.addButton(getLang('box_cancel'), newBox.hide, 'gray',
+                false, 'ads_retargeting_group_share_all_cancel_button');
+        },
+        onFail: function(err) {
+            ge('ads_retargeting_box_error').firstChild.innerHTML = err;
+            show('ads_retargeting_box_error');
+            elfocus('ads_retargeting_group_share_all_target');
+            return true;
+        },
+        showProgress: function() {
+            hide('ads_retargeting_box_error');
+            lockButton('ads_retargeting_group_share_all_button_confirm');
+            disable('ads_retargeting_group_share_all_button_confirm', true);
+        },
+        hideProgress: function() {
+            unlockButton('ads_retargeting_group_share_all_button_confirm');
+            disable('ads_retargeting_group_share_all_button_confirm', false);
+        }
+    });
+};
+
+AdsModer.retargetingShareAllGroups = function(currentUnionId, targetUnionId, hash, box) {
+    var buttonConfirm = ge('ads_retargeting_group_share_all_button');
+    var buttonCancel = ge('ads_retargeting_group_share_all_cancel_button');
+    var checkboxExtendLimits = ge('ads_retargeting_allow_extending_limits');
+    if (buttonConfirm) {
+        if (isButtonLocked(buttonConfirm)) {
+            return;
+        }
+        lockButton(buttonConfirm);
+        hide(buttonCancel);
+    }
+
+    var ajaxParams = {
+        union_id: currentUnionId,
+        target_union_id: targetUnionId,
+        hash: hash,
+        allow_extending_limits: checkboxExtendLimits.value,
+    };
+
+    ajax.post('/ads.php?act=a_retargeting_group_share_all', ajaxParams, {
+        onDone: onComplete.pbind(true),
+        onFail: onComplete.pbind(false)
+    });
+
+    function onComplete(isDone, response, boxHtml) {
+        box.content(boxHtml);
+
+        if (!isDone || !isObject(response) || response.error) {
+            box && box.hide();
+
+            var error = (isObject(response) && response.error || getLang('global_unknown_error'));
+            showFastBox(getLang('global_box_error_title'), error);
+            return true;
+        }
+
+        cur.options.targetUnionId = targetUnionId;
+        cur.options.shareAllBox = box;
+        setTimeout(AdsModer.retargetingShareAllGroupsStatus, 1000);
+    }
+};
+
+AdsModer.retargetingShareAllGroupsStatus = function() {
+    var options = {
+        source_union_id: cur.options.unionId,
+        target_union_id: cur.options.targetUnionId,
+    };
+    ajax.post("/ads?act=a_retargeting_group_share_all_status", options, {
+        onDone: function(response) {
+            // If no response or no final result - try again
+            if (!response || !response.result) {
+                setTimeout(AdsModer.retargetingShareAllGroupsStatus, 1000);
+            }
+
+            // If nothing to show in progressbar - return
+            if (!response || !response.processed) {
+                return;
+            }
+
+            var percent = intval((response.processed / response.total) * 100);
+
+            ge('ads_retargeting_processing_msg').innerHTML = response.processed + " �� " +
+                langNumeric(response.total, ['', '%s ������', '%s �����', '%s �����']) + " ����������";
+            setStyle(ge('ads_share_all_progress'), {
+                width: percent + '%'
+            });
+
+            if (!response.result) {
+                return;
+            }
+
+            cur.options.shareAllBox.hide();
+
+            if (response.result === 'partial_ok') {
+                var message = [];
+                if (response.failed_ids && response.failed_ids.length > 0) {
+                    message.push("�������� ������ ��� ��������:");
+                    message.push(response.failed_ids.join(', '));
+                }
+                if (response.skipped_ids && response.skipped_ids.length > 0) {
+                    message.push("��������� ��� ��������:");
+                    message.push(response.skipped_ids.join(', '));
+                }
+
+                showFastBox('����� ����� �� ����������', message.join('<br/>'));
+            }
+
+            if (response.result === 'ok') {
+                showFastBox('�������', (response.message || '��� ��������� ����������.'));
+            }
+        },
+        onFail: function(msg) {
+            ge('ads_retargeting_processing_msg').innerHTML = msg;
+            show('ads_retargeting_box_error');
+            hide(ge('ads_retargeting_box_processing'));
+            return true;
+        },
+    })
+}
+
 try {
     stManager.done('ads_moder.js');
 } catch (e) {}

@@ -6,7 +6,8 @@
 .tr_box_edit_key .tr_history_row .tr_history_row_author_img,
 .tr_lang_status,
 .tr_row_value_text_short:before,
-.tr_translation_box_icons .tr_translation_box_icon {
+.tr_translation_box_icons .tr_translation_box_icon,
+.tr_volunteers_stats_table .tr_volunteers_status {
     -ms-high-contrast-adjust: none
 }
 
@@ -692,6 +693,10 @@ i i.untranslated {
     margin-top: 20px
 }
 
+.tr_edit_translator_box .tr_translator_is_volunteer {
+    margin-top: 10px
+}
+
 .tr_edit_translator_box .tr_mem_link_wrap {
     position: relative;
     display: inline-block
@@ -1046,4 +1051,66 @@ i i.untranslated {
 
 .tr_box_extra_param_tooltip {
     width: 400px
+}
+
+.tr_volunteers_not_found {
+    text-align: center;
+    padding: 100px 0;
+    background: #fff;
+    color: #666
+}
+
+.tr_volunteers_stats_table .paginated_table .paginated_table_table {
+    border: 0
+}
+
+.tr_volunteers_stats_table .paginated_table .paginated_table_header {
+    border: 0;
+    background: none
+}
+
+.tr_volunteers_stats_table .paginated_table .paginated_table_header .paginated_table_cell {
+    border: 0;
+    border-bottom: 1px solid #e7e8ec;
+    cursor: default;
+    background: none
+}
+
+.tr_volunteers_stats_table .paginated_table .paginated_table_header .paginated_table_cell div {
+    border: 0
+}
+
+.tr_volunteers_stats_table .paginated_table .paginated_table_header .paginated_table_cell:hover {
+    background: none
+}
+
+.tr_volunteers_stats_table .tr_volunteers_status {
+    width: 19px;
+    height: 19px;
+    background: url(/images/icons/status_request.png) no-repeat 0px 0px;
+    float: left;
+    margin-right: 8px;
+    background-size: 18px auto;
+    cursor: pointer
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tr_volunteers_stats_table .tr_volunteers_status {
+        background-image: url(/images/icons/status_request_2x.png);
+        background-size: 22px 70px
+    }
+}
+
+.tr_volunteers_stats_table .tr_volunteers_status.tr_volunteers_status_wait {
+    background-position: 0px 0px
+}
+
+.tr_volunteers_stats_table .tr_volunteers_status.tr_volunteers_status_not_sended {
+    background-position: 0px -20px
+}
+
+.tr_volunteers_stats_table .tr_volunteers_status.tr_volunteers_status_sended {
+    background-position: 0px -39px
 }

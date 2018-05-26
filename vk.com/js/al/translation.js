@@ -661,14 +661,18 @@
                         act: "save_translator",
                         hash: a.hash
                     };
-                    _ ? (n.translator_id = domData(_, "user-id"), n.is_add = 1) : n.translator_id = e, n.translator_id && (n.lang_id = i.selectedItems()[0][0], n.parent_lang_id = o.selectedItems()[0][0], n.is_coordinator = intval(hasClass(geByClass1("tr_translator_is_coordinator"), "on")), ajax.post(TR_ADDRESS, n, {
-                        showProgress: lockButton.pbind(t),
-                        hideProgress: unlockButton.pbind(t),
-                        onDone: function() {
-                            var e = curBox();
-                            e && e.hide(), nav.reload()
-                        }
-                    }))
+                    if (_ ? (n.translator_id = domData(_, "user-id"), n.is_add = 1) : n.translator_id = e, n.translator_id) {
+                        n.lang_id = i.selectedItems()[0][0], n.parent_lang_id = o.selectedItems()[0][0], n.is_coordinator = intval(hasClass(geByClass1("tr_translator_is_coordinator"), "on"));
+                        var s = geByClass1("tr_translator_is_volunteer");
+                        s && (n.is_volunteer = intval(hasClass(s, "on"))), ajax.post(TR_ADDRESS, n, {
+                            showProgress: lockButton.pbind(t),
+                            hideProgress: unlockButton.pbind(t),
+                            onDone: function() {
+                                var e = curBox();
+                                e && e.hide(), nav.reload()
+                            }
+                        })
+                    }
                 }, "yes", !0);
                 t.addButton(getLang("global_cancel"), t.hide, "no"), e && t.setControlsText('<a onclick="TR.deleteTranslator(this, ' + e + ", '" + a.hash + "')\">" + getLang("global_delete") + "</a>")
             }

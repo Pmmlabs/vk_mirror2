@@ -3891,7 +3891,7 @@ Ads.copyRetargetingGroup = function() {
         onDone: function(html) {
             ge('ads_retargeting_processing_msg').innerHTML = getLang('ads_retargeting_group_copy_status_queued');
             var progressBarContent = geByClass1('ads_upload_progress_wrap', ge('ads_retargeting_box_processing'));
-            progressBarContent.innerHTML = '<div id="copy_' + cur.options.groupId + '_progress" class="ads_upload_progress" style="width: 0%;"></div>';
+            progressBarContent.innerHTML = '<div id="copy_' + cur.options.groupId + '_progress" class="ads_upload_progress"></div>';
             hide(ge('ads_retargeting_copy_form'));
             show(ge('ads_retargeting_box_processing'));
             cur.options.checkStatusIntervalId = setInterval(Ads.copyRetargetingGroupStatus, 1000)

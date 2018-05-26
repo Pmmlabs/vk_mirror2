@@ -623,14 +623,6 @@
     z-index: 1
 }
 
-.stories_can_hide_reply_action {
-    display: none
-}
-
-.stories_actions.can_hide_reply .stories_can_hide_reply_action {
-    display: block
-}
-
 .stories_bottom_buttons {
     justify-self: flex-end
 }

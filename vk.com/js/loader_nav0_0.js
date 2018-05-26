@@ -208,8 +208,8 @@ var stVersions = {
     'video_youtube.css': 17237676997,
     'videoplayer.js': 82130016415,
     'videoplayer.css': 43884373683,
-    'translation.js': 2712852040,
-    'translation.css': 18065794758,
+    'translation.js': 1898243444,
+    'translation.css': 18718267207,
     'reg.css': 887926110,
     'reg.js': 1336565657,
     'invite.css': 21120403460,
@@ -225,7 +225,7 @@ var stVersions = {
     'owner_photo.js': 1308202247,
     'owner_photo.css': 23250129456,
     'page.js': 3054843480,
-    'page.css': 44566030577,
+    'page.css': 41183095888,
     'page_help.css': 25863096264,
     'public.css': 30767373009,
     'public.js': 2784121325,
@@ -375,9 +375,9 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 29089597799,
     'aes_light.js': 1484013701,
-    'ads.css': 29535588653,
+    'ads.css': 26259402910,
     'ads_bonus.css': 1294533291,
-    'ads.js': 559926811,
+    'ads.js': 3954019554,
     'ads_payments.js': 2205910694,
     'ads_edit.css': 17138082962,
     'ads_edit.js': 3407605072,
@@ -385,7 +385,7 @@ var stVersions = {
     'ads_moder_common.css': 18145377693,
     'ads_moder.css': 17723576263,
     'ads_moder_common.js': 3875868763,
-    'ads_moder.js': 190658095,
+    'ads_moder.js': 2824949856,
     'ads_tagger.js': 2289308011,
     'ads_web.css': 1585148602,
     'ads_web.js': 4274163593,
@@ -521,8 +521,8 @@ var stVersions = {
     'voice_message_player.js': 18549969583,
     'cmodules/web/speech_worker_mp3.js': 4084020816,
     'cmodules/web/speech_worker_opus.js': 2818771805,
-    'stories.js': 62618461012,
-    'stories.css': 23688842522,
+    'stories.js': 61076524817,
+    'stories.css': 21672919127,
     'article.css': 36245881953,
     'article_editor.css': 33447251065,
     'cmodules/web/article.js': 35465397494,
@@ -617,4 +617,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 2292;
+var _rnd = 4022;
