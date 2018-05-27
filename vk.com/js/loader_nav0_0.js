@@ -206,7 +206,7 @@ var stVersions = {
     'video_upload.js': 5291915463,
     'video_youtube.js': 458412745,
     'video_youtube.css': 17237676997,
-    'videoplayer.js': 82130016415,
+    'videoplayer.js': 83702904323,
     'videoplayer.css': 43884373683,
     'translation.js': 1898243444,
     'translation.css': 18718267207,
@@ -617,4 +617,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 42;
+var _rnd = 8525;
