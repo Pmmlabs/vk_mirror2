@@ -702,8 +702,6 @@ textarea.EditableLabel__textarea {
 
 .InfiniteScroll {
     overflow-y: scroll;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
     -ms-overflow-style: none
 }
 
@@ -1929,6 +1927,10 @@ textarea.EditableLabel__textarea {
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center
+}
+
+.Tooltip--align-center .Tooltip__in {
+    -ms-transform: translateX(-50%)
 }
 
 .Tooltip--align-center .Tooltip__in:before {

@@ -590,19 +590,19 @@ var Feed = {
         });
         return uiRightMenu.go(geByClass1("feed_section_" + e), !1, n), !1
     },
-    setSection: function(e, t) {
+    setSection: function(e, t, o) {
         if (t = t || 0, cur.prevSection = cur.section, !(e == cur.section && 2 > t) && e) {
             if (uiRightMenu.hideProgress(cur.feedEls.rmenu), cur.feedEls.search && uiSearch.hideProgress(cur.feedEls.search), t > 1) {
                 toggleClass(cur.feedEls.wrap, "feed_submit_shown", inArray(e, cur.options.feed_types.tabs.concat(["list"])));
-                var o = inArray(e, ["articles_search", "articles", "search", "photos_search", "photos"]);
-                toggleClass(cur.feedEls.wrap, "feed_search_shown", o), o && elfocus(cur.feedEls.search), cur.section && val(cur.feedEls.search, "")
+                var s = inArray(e, ["articles_search", "articles", "search", "photos_search", "photos"]);
+                toggleClass(cur.feedEls.wrap, "feed_search_shown", s), s && elfocus(cur.feedEls.search), cur.section && val(cur.feedEls.search, "")
             }
-            if (2 == t && window.Stories && Stories.updateFeedStories(e), cur.my_feed_types && (~indexOf(cur.my_feed_types.optional_tabs, cur.section) && !~indexOf(cur.my_feed_types.tabs, cur.section) && feed.toggleTabsMenuTab(cur.section, !1), ~indexOf(cur.my_feed_types.optional_tabs, e) && !~indexOf(cur.my_feed_types.tabs, e) && feed.toggleTabsMenuTab(e, !0)), cur.section = e, 4 == t) return void feed.searchUpdate();
+            if (2 == t && window.Stories && Stories.updateFeedStories(e, o), cur.my_feed_types && (~indexOf(cur.my_feed_types.optional_tabs, cur.section) && !~indexOf(cur.my_feed_types.tabs, cur.section) && feed.toggleTabsMenuTab(cur.section, !1), ~indexOf(cur.my_feed_types.optional_tabs, e) && !~indexOf(cur.my_feed_types.tabs, e) && feed.toggleTabsMenuTab(e, !0)), cur.section = e, 4 == t) return void feed.searchUpdate();
             cur.editingHide = "notifications" == e || "replies" == e ? feed.notifyCheckHideReply : !1, cur.gifAutoplayScrollHandler && cur.gifAutoplayScrollHandler(), cur.videoAutoplayScrollHandler && cur.videoAutoplayScrollHandler()
         }
     },
     applyOptions: function(options, from) {
-        if (from = from || 0, options.owner && (cur.owner = options.owner), cur.subsection = options.subsection || "", feed.setSection(options.section, from), cur.options || (cur.options = {
+        if (from = from || 0, options.owner && (cur.owner = options.owner), cur.subsection = options.subsection || "", feed.setSection(options.section, from, options), cur.options || (cur.options = {
                 reply_names: {}
             }), extend(cur.options.reply_names, options.reply_names), delete options.reply_names, extend(cur, options), sectionKey = cur.section, "list" === cur.section && (sectionKey = "list" + options.list), cur.subsections[sectionKey] = cur.subsection, options.loc && 2 == from && nav.setLoc(options.loc), options.section && "news" == options.section && options.subsection && "top" == options.subsection && statlogsValueEvent("feed_switch", 0, "top_news", from), void 0 !== options.filters) {
             var minEl = ge("search_filters_minimized"),
@@ -912,7 +912,8 @@ var Feed = {
                 feed.notifyHideReply(e);
                 var o = geByClass1("_post_content", n),
                     s = geByClass1("_feedback_deleted", n);
-                s ? (s.innerHTML = '<span class="dld_inner">' + t + "</span>", show(s)) : n.appendChild(ce("div", {
+                s ? (s.innerHTML = '<span class="dld_inner">' + t + "</span>",
+                    show(s)) : n.appendChild(ce("div", {
                     className: "feedback_row dld _feedback_deleted",
                     innerHTML: '<span class="dld_inner">' + t + "</span>"
                 })), hide(o, geByClass1("_answer_wrap", n)), hasClass(n, "feedback_row_clickable") && addClass(n, "feedback_row_touched")

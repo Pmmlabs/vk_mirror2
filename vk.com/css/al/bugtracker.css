@@ -3354,7 +3354,11 @@
 
 .bt_reports_reverse_button {
     cursor: pointer;
-    padding: 2px
+    padding: 2px;
+    transition: -webkit-transform 200ms linear;
+    -o-transition: transform 200ms linear, -o-transform 200ms linear;
+    transition: transform 200ms linear;
+    transition: transform 200ms linear, -webkit-transform 200ms linear, -o-transform 200ms linear
 }
 
 .bt_reports_reverse_button:active {
