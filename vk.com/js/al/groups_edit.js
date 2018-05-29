@@ -38,8 +38,8 @@ var GroupsEdit = {
     uNav: function(e, t, o) {
         if (!e[0] && !cur.noLocNav) {
             var r = cur.tab,
-                s = o.tab || "members";
-            if (delete e.tab, isEmpty(e) && s != r) return GroupsEdit.uResetSearch(), hide("group_u_wrap_" + r), show("group_u_wrap_" + s), cur.tab = s, GroupsEdit.uResetSearch(), GroupsEdit.uStart(), nav.setLoc(o), !1
+                a = o.tab || "members";
+            if (delete e.tab, isEmpty(e) && a != r) return GroupsEdit.uResetSearch(), hide("group_u_wrap_" + r), show("group_u_wrap_" + a), cur.tab = a, GroupsEdit.uResetSearch(), GroupsEdit.uStart(), nav.setLoc(o), !1
         }
     },
     uStart: function() {
@@ -93,7 +93,7 @@ var GroupsEdit = {
         cur.opts.data[e] = t, cur.cache[e] = {
             all: []
         };
-        for (var r = 0, s = t.length; s > r; ++r) cur.cache[e].all.push(r);
+        for (var r = 0, a = t.length; a > r; ++r) cur.cache[e].all.push(r);
         cur.index[e] = new vkIndexer(cur.cache[e].all, function(t) {
             return cur.opts.data[e][t][2]
         }, o ? function() {} : GroupsEdit.uSearchUpdate)
@@ -122,13 +122,13 @@ var GroupsEdit = {
             if (toggle("group_u_wrap_additional_admins", "admins" == o && !t && domFC(ge("group_u_rows_additional_admins"))), t || (cur.searched = !1), clearTimeout(cur.updateTimer), "notavail" == r) {
                 if (t.match(/^(https?:\/\/)?([a-z0-9]+\.)*(vkontakte\.ru|vk\.com)\/.+/)) return void(cur.updateTimer = setTimeout(GroupsEdit.uGetPage, 1e3));
                 if (t && e !== !0) return void(cur.updateTimer = setTimeout(GroupsEdit.uSearchUpdate.pbind(!0), 1e3));
-                var s, a = ge("group_u_rows_" + o),
+                var a, s = ge("group_u_rows_" + o),
                     i = ge("group_edit_more_" + o);
-                t ? (cur.htmls[o] || (cur.htmls[o] = a), hide(i), a && domPN(a).replaceChild(ce("div", {
+                t ? (cur.htmls[o] || (cur.htmls[o] = s), hide(i), s && domPN(s).replaceChild(ce("div", {
                     id: "group_u_tmp_" + o,
                     className: "group_u_rows",
                     innerHTML: GroupsEdit.uGenEmpty(getLang("members" == o || "unsure" == o || "admins" == o ? "groups_too_many_enter" : "groups_too_many_for_search"))
-                }), a)) : (cur.htmls[o] && (s = ge("group_u_tmp_" + o), domPN(s).replaceChild(cur.htmls[o], s), "group_l_row" == domFC(s).className && domPN(ge(domFC(s).id)) == cur.htmls[o] && cur.htmls[o].replaceChild(domFC(s), ge(domFC(s).id)), toggle(i, cur.offsets[o] < cur.opts.counts[o]), cur.htmls[o] = s = !1), GroupsEdit.uUpdateSummary()), checkPageBlocks()
+                }), s)) : (cur.htmls[o] && (a = ge("group_u_tmp_" + o), domPN(a).replaceChild(cur.htmls[o], a), "group_l_row" == domFC(a).className && domPN(ge(domFC(a).id)) == cur.htmls[o] && cur.htmls[o].replaceChild(domFC(a), ge(domFC(a).id)), toggle(i, cur.offsets[o] < cur.opts.counts[o]), cur.htmls[o] = a = !1), GroupsEdit.uUpdateSummary()), checkPageBlocks()
             } else "loading" != r && GroupsEdit.uShowMore(!0)
         }
     },
@@ -165,8 +165,8 @@ var GroupsEdit = {
         var t = cur.tab,
             o = cur.opts.data[t],
             r = trim(val(cur.searchInp)),
-            s = !1,
-            a = cur.rnd;
+            a = !1,
+            s = cur.rnd;
         if (o && "loading" != o && ("notavail" != o || !e) && "lazy" != o) {
             if ("notavail" == o) return void ajax.post("groupsedit.php", {
                 act: "get_more",
@@ -175,13 +175,13 @@ var GroupsEdit = {
                 offset: cur.offsets[t]
             }, {
                 onDone: function(e, o) {
-                    if (cur.rnd == a && !cur.searched) {
+                    if (cur.rnd == s && !cur.searched) {
                         cur.opts.counts[t] = e;
-                        var r, s = ce("div", {
+                        var r, a = ce("div", {
                                 innerHTML: o
                             }),
                             i = ge("group_u_rows_" + t);
-                        for (r = domFC(s); r; r = domFC(s)) ge(r.id) ? s.removeChild(r) : (i.appendChild(r), ++cur.offsets[t]);
+                        for (r = domFC(a); r; r = domFC(a)) ge(r.id) ? a.removeChild(r) : (i.appendChild(r), ++cur.offsets[t]);
                         cur.offsets[t] < cur.opts.counts[t] && ajax.post("groupsedit.php", {
                             act: "get_more",
                             id: cur.opts.id,
@@ -215,7 +215,7 @@ var GroupsEdit = {
                             return e - t
                         }), cur.cache[t]["_" + r] = i
                     }
-                    s = GroupsEdit.uGetHighlight(r)
+                    a = GroupsEdit.uGetHighlight(r)
                 }
             var g = i.length,
                 _ = ge("group_u_rows_" + t),
@@ -223,8 +223,8 @@ var GroupsEdit = {
             if (!g) return hide(h), val(_, GroupsEdit.uGenEmpty(r ? cur.opts.nfound[t] : getLang("groups_no_users_in_club"))), val("group_u_summary", ""), void checkPageBlocks();
             for (var m = e ? 0 : _.childNodes.length, v = Math.min(g, m + 20), f = [], c = m; v > c; ++c) {
                 var b = o[i[c]],
-                    w = (b || {})[2];
-                b && (s && (w = w.replace(s.re, s.val)), f.push(GroupsEdit.uGenRow(t, b, w)))
+                    k = (b || {})[2];
+                b && (a && (k = k.replace(a.re, a.val)), f.push(GroupsEdit.uGenRow(t, b, k)))
             }
             e ? (hasClass(cur.searchCont, "ui_search_fixed") && scrollToY(getXY(cur.searchWrap)[1] + 1, 0), val(_, f.join("")), r ? val("group_u_summary", langNumeric(g, "%s", !0)) : GroupsEdit.uUpdateSummary()) : _.innerHTML += f.join(""), n && GroupsEdit.hideMessage(), toggle(h, g > v), checkPageBlocks()
         }
@@ -241,12 +241,12 @@ var GroupsEdit = {
         }, {
             onDone: function(e, t) {
                 if (cur.rnd == r) {
-                    var s = ge("group_u_rows_" + o);
-                    cur.htmls[o] || (cur.htmls[o] = s), hide("group_edit_more_" + o), val("group_u_summary", langNumeric(t ? 1 : "", "%s", !0)), s ? domPN(s).replaceChild(ce("div", {
+                    var a = ge("group_u_rows_" + o);
+                    cur.htmls[o] || (cur.htmls[o] = a), hide("group_edit_more_" + o), val("group_u_summary", langNumeric(t ? 1 : "", "%s", !0)), a ? domPN(a).replaceChild(ce("div", {
                         id: "group_u_tmp_" + o,
                         className: "group_u_rows",
                         innerHTML: e
-                    }), s) : val("group_u_tmp_" + o, e)
+                    }), a) : val("group_u_tmp_" + o, e)
                 }
             },
             showProgress: uiSearch.showProgress.pbind(cur.searchInp),
@@ -267,8 +267,8 @@ var GroupsEdit = {
     },
     uGenRow: function(e, t, o) {
         var r = t[0],
-            s = t[1],
-            a = t[3],
+            a = t[1],
+            s = t[3],
             i = (t[4], t[5]),
             n = t[6],
             u = t[7],
@@ -310,8 +310,8 @@ var GroupsEdit = {
             oid: r,
             tab: e,
             name: p,
-            photo: a,
-            href: s,
+            photo: s,
+            href: a,
             info: c,
             actions: d,
             events: m,
@@ -351,14 +351,14 @@ var GroupsEdit = {
             hash: t,
             from: nav.objLoc.act
         }, {
-            onDone: function(t, o, s) {
-                var a, i = ["members", "unsure", "admins"],
+            onDone: function(t, o, a) {
+                var s, i = ["members", "unsure", "admins"],
                     n = curBox().uRemove,
                     u = "search" == nav.objLoc.act && nav.objLoc.from && cur.gid;
-                if (n || (boxQueue.hideAll(!0), t && GroupsEdit.showMessage(t, o || u && void 0 !== o ? !1 : "error")), u) return val(ge("sgedit_acts" + e), o), val(ge("sgedit_lev" + e), s), val(ge("sgedit_edit" + e), s ? getLang("global_edit") : getLang("groups_members_appoint_manager")), void toggleClass(gpeByClass("search_row", "sgedit_lev" + e), "sgedit_moder", !!s);
+                if (n || (boxQueue.hideAll(!0), t && GroupsEdit.showMessage(t, o || u && void 0 !== o ? !1 : "error")), u) return val(ge("sgedit_acts" + e), o), val(ge("sgedit_lev" + e), a), val(ge("sgedit_edit" + e), a ? getLang("global_edit") : getLang("groups_members_appoint_manager")), void toggleClass(gpeByClass("search_row", "sgedit_lev" + e), "sgedit_moder", !!a);
                 if (o) {
-                    for (a = 0; 3 > a; ++a) {
-                        var c, d, p, l = i[a],
+                    for (s = 0; 3 > s; ++s) {
+                        var c, d, p, l = i[s],
                             g = cur.opts.data[l],
                             _ = !1;
                         if (isArray(g))
@@ -403,11 +403,11 @@ var GroupsEdit = {
                     var o = "search" == nav.objLoc.act && nav.objLoc.from && cur.gid;
                     if (o) nav.reload();
                     else {
-                        var r, s = cur.tab,
-                            a = "requests" == s || "declined" == s || "invites" == s ? [s] : ["members", "unsure", "admins"];
-                        a.length;
+                        var r, a = cur.tab,
+                            s = "requests" == a || "declined" == a || "invites" == a ? [a] : ["members", "unsure", "admins"];
+                        s.length;
                         for (r = 0; 3 > r; ++r) {
-                            var i, n, u, c = a[r],
+                            var i, n, u, c = s[r],
                                 d = cur.opts.data[c];
                             if (isArray(d))
                                 for (i = 0, n = d.length; n > i; ++i)(d[i][0] == e || d[i][0] == vk.id) && (cur.opts.data[c][i][6] = d[i][0] == e ? 6 : 3, (u = ge("group_u_" + c + d[i][0])) && domPN(u).replaceChild(se(GroupsEdit.uGenRow(c, cur.opts.data[c][i])), u))
@@ -474,8 +474,8 @@ var GroupsEdit = {
                 if ("page" == cur.hostFrom) return curBox().hide(), showDoneBox(o), void domPN(ge("event_admin")).replaceChild(se(e), ge("event_admin"));
                 var r = "admins";
                 toggle("group_u_wrap_additional_" + r, !!t), val("group_u_rows_additional_" + r, t);
-                var s = cur.opts.data[r][cur.opts.data[r].length - 1];
-                (el = ge("group_u_" + r + e[0])) && domPN(el).replaceChild(se(GroupsEdit.uGenRow(r, e)), el), e[0] > 0 && s[0] < 0 ? (cur.opts.data[r].pop(), --cur.opts.counts[r], (el = ge("group_u_" + r + s[0])) && domPN(el).removeChild(el)) : e[0] < 0 && s[0] > 0 ? (cur.opts.data[r].push(e), ++cur.opts.counts[r], (el = ge("group_u_" + r + s[0])) && domPN(el).appendChild(se(GroupsEdit.uGenRow(r, e)), el)) : (cur.opts.data[r][cur.opts.data[r].length - 1] = e, (el = ge("group_u_" + r + s[0])) && domPN(el).replaceChild(se(GroupsEdit.uGenRow(r, e)), el)), GroupsEdit.uIndex(r, cur.opts.data[r], !0), curBox().hide(), GroupsEdit.showMessage(o), "admins" != cur.tab && nav.go(extend(nav.objLoc, {
+                var a = cur.opts.data[r][cur.opts.data[r].length - 1];
+                (el = ge("group_u_" + r + e[0])) && domPN(el).replaceChild(se(GroupsEdit.uGenRow(r, e)), el), e[0] > 0 && a[0] < 0 ? (cur.opts.data[r].pop(), --cur.opts.counts[r], (el = ge("group_u_" + r + a[0])) && domPN(el).removeChild(el)) : e[0] < 0 && a[0] > 0 ? (cur.opts.data[r].push(e), ++cur.opts.counts[r], (el = ge("group_u_" + r + a[0])) && domPN(el).appendChild(se(GroupsEdit.uGenRow(r, e)), el)) : (cur.opts.data[r][cur.opts.data[r].length - 1] = e, (el = ge("group_u_" + r + a[0])) && domPN(el).replaceChild(se(GroupsEdit.uGenRow(r, e)), el)), GroupsEdit.uIndex(r, cur.opts.data[r], !0), curBox().hide(), GroupsEdit.showMessage(o), "admins" != cur.tab && nav.go(extend(nav.objLoc, {
                     tab: "admins"
                 }))
             },
@@ -485,7 +485,7 @@ var GroupsEdit = {
     },
     uAction: function(e, t, o, r) {
         if (curBox() || !buttonLocked(e) && "progress_inline" != (domFC(e) || {}).className) {
-            var s = cur.tab;
+            var a = cur.tab;
             ajax.post("groupsedit.php", {
                 act: "user_action",
                 id: cur.gid || cur.opts.id,
@@ -494,10 +494,10 @@ var GroupsEdit = {
                 action: r,
                 from: nav.objLoc.act
             }, {
-                onDone: function(e, a) {
-                    if (GroupsEdit.invalidateBack(), curBox() && curBox().hide(), "search" == nav.objLoc.act && nav.objLoc.from && cur.gid) return val(ge("sgedit_acts" + t), e), val(ge("sgedit_lev" + t), a), void toggleClass(gpeByClass("search_row", "sgedit_lev" + t), "deleted", 0 > r);
+                onDone: function(e, s) {
+                    if (GroupsEdit.invalidateBack(), curBox() && curBox().hide(), "search" == nav.objLoc.act && nav.objLoc.from && cur.gid) return val(ge("sgedit_acts" + t), e), val(ge("sgedit_lev" + t), s), void toggleClass(gpeByClass("search_row", "sgedit_lev" + t), "deleted", 0 > r);
                     if (isArray(e)) {
-                        var i, n = "requests" == s || "declined" == s || "invites" == s ? [s] : ["members", "unsure", "admins"],
+                        var i, n = "requests" == a || "declined" == a || "invites" == a ? [a] : ["members", "unsure", "admins"],
                             u = n.length;
                         for (i = 0; u > i; ++i) {
                             var c, d, p, l = n[i],
@@ -509,7 +509,7 @@ var GroupsEdit = {
                                         _ = !0, cur.opts.data[l][c] = e, "admins" != l && (r ? --cur.opts.counts[l] : ++cur.opts.counts[l]);
                                         break
                                     }(p = ge("group_u_" + l + t)) && (domPN(p).replaceChild(se(GroupsEdit.uGenRow(l, e)), p), "admins" != l && "notavail" == g && (r ? (--cur.opts.counts[l], --cur.offsets[l]) : (++cur.opts.counts[l], ++cur.offsets[l])), toggleClass(ge("group_u_" + l + t), "deleted", 0 > r)), _ || (ajaxCache = {})
-                        }("requests" == s && r > 0 || "admins" == s && 0 > r) && (cur.noLocNav = !0), GroupsEdit.uUpdateSummary()
+                        }("requests" == a && r > 0 || "admins" == a && 0 > r) && (cur.noLocNav = !0), GroupsEdit.uUpdateSummary()
                     } else e ? GroupsEdit.showMessage(e, "error") : GroupsEdit.uRemoveAdmin(t).uRemove = [t, o, r]
                 },
                 showProgress: function() {
@@ -609,8 +609,8 @@ var GroupsEdit = {
         if (!t) return notaBene(ge("group_edit_name"));
         if (!o) return GroupsEdit.nbAddr();
         var r = ge("group_sw"),
-            s = ge("group_rss"),
-            a = {
+            a = ge("group_rss"),
+            s = {
                 act: "save",
                 gid: cur.gid,
                 name: t,
@@ -618,33 +618,33 @@ var GroupsEdit = {
                 description: trim(ge("group_edit_desc").value),
                 website: trim(ge("group_website").value),
                 sw: r ? trim(r.value) : void 0,
-                rss: s ? trim(s.value) : void 0,
+                rss: a ? trim(a.value) : void 0,
                 age_limits: radioval("group_age_limits"),
                 hash: cur.hash
             };
-        if (0 == cur.cls || 2 == cur.cls ? (extend(a, GroupsEdit.getFields("access")), a.subject = cur.subjectDD.val(), 2 == cur.cls && extend(a, {
+        if (0 == cur.cls || 2 == cur.cls ? (extend(s, GroupsEdit.getFields("access")), s.subject = cur.subjectDD.val(), 2 == cur.cls && extend(s, {
                 start_date: val("group_start_date"),
                 finish_date: isVisible("group_edit_finish_time") ? val("group_finish_date") : 0,
                 host: cur.hostDD ? cur.hostDD.val() : !1,
                 email: val("event_mail"),
                 phone: val("event_phone")
-            })) : 1 == cur.cls && extend(a, {
+            })) : 1 == cur.cls && extend(s, {
                 sprivacy: cur.sprivacyDD ? cur.sprivacyDD.val() : void 0,
                 pcategory: cur.pcategoryDD.val(),
                 psubcategory: cur.psubcategoryDD.val(),
                 public_date: val("gedit_public_date")
             }), Groups.categoriesGetDropdown(0)) {
             var i = Groups.categoriesValue();
-            extend(a, {
+            extend(s, {
                 category_0: i[0],
                 category_1: i[1],
                 category_2: i[2]
             })
         }
         var n = ge("group_edit_twitter_export");
-        n && (a.twitter_export = isChecked(n));
+        n && (s.twitter_export = isChecked(n));
         var u = ge("group_edit_twitter_import");
-        u && (a.twitter_import = isChecked(u)), ajax.post("groupsedit.php", a, {
+        u && (s.twitter_import = isChecked(u)), ajax.post("groupsedit.php", s, {
             onDone: function(e, t, r) {
                 return 0 > e ? GroupsEdit.nbAddr() : e === !1 ? notaBene(ge("group_edit_name")) : "edit_first" == nav.objLoc.act ? nav.go(nav.objLoc[0]) : (r && val("group_edit_name", replaceEntities(r)), GroupsEdit.showMessage(getLang("groups_saved_msg")), scrollToTop(), t != o && (each(geByTag("a"), function() {
                     this.href = this.href.replace(new RegExp("/" + t + "\\?", "g"), "/" + o + "?").replace(new RegExp("/" + t + "$", "g"), "/" + o)
@@ -669,9 +669,9 @@ var GroupsEdit = {
             t = ge("group_save");
         0 == cur.cls || 2 == cur.cls ? extend(e, GroupsEdit.getFields("wall", "photos", "video", "audio", "docs", "topics", "wiki", "events")) : 1 == cur.cls && each(["enable_topics", "enable_photos", "enable_video", "enable_audio", "enable_links", "enable_events", "enable_places", "enable_contacts"], function(t, o) {
             e[o] = isChecked(o)
-        }), cur.marketCountryDD && (1 == cur.cls ? e.enable_market = isChecked("enable_market") : extend(e, GroupsEdit.getFields("market")), (e.market || e.enable_market) && (extend(e, GroupsEdit.getFields("market_comments", "market_wiki")), e.market_country = cur.marketCountryDD.val(), isVisible("group_market_city_wrap") && (e.market_city = cur.marketCityDD.val()), e.market_currency = cur.marketCurrencyDD.val(), e.market_contact = cur.marketContactDD.val(), isVisible("market_button_type_link") && (e.market_button_type = cur.marketButtonType.val(), e.market_button_name = trim(val("group_market_button_name"))))), cur.mainSectionDD && cur.secondarySectionDD && (e.main_section = intval(cur.mainSectionDD.val()), e.secondary_section = intval(cur.secondarySectionDD.val())), cur.narrowMainSectionDD && (e.narrow_main_section = intval(cur.narrowMainSectionDD.val())), ajax.post("groupsedit.php", e, {
-            onDone: function(e) {
-                return -2 != e && -3 != e || isVisible("group_edit_market") || GroupsEdit.toggleMarketBlock(!0), -2 == e ? notaBene(domPN(ge("group_market_country"))) : -3 == e ? notaBene(domPN(ge("group_market_contact"))) : -4 == e ? notaBene(domPN(ge("group_market_button_name"))) : (GroupsEdit.showMessage(getLang("groups_sections_saved_msg")), scrollToTop(), void globalHistoryDestroy(nav.objLoc[0]))
+        }), cur.marketCountryDD && (1 == cur.cls ? e.enable_market = isChecked("enable_market") : extend(e, GroupsEdit.getFields("market")), (e.market || e.enable_market) && (extend(e, GroupsEdit.getFields("market_comments", "market_wiki")), e.market_country = cur.marketCountryDD.val(), isVisible("group_market_city_wrap") && (e.market_city = cur.marketCityDD.val()), e.market_currency = cur.marketCurrencyDD.val(), e.market_contact = cur.marketContactDD.val(), isVisible("market_button_type_link") && (e.market_button_type = cur.marketButtonType.val(), e.market_button_name = trim(val("group_market_button_name"))))), cur.mainSectionDD && cur.secondarySectionDD && (e.main_section = intval(cur.mainSectionDD.val()), e.secondary_section = intval(cur.secondarySectionDD.val())), cur.narrowMainSectionDD && (e.narrow_main_section = intval(cur.narrowMainSectionDD.val())), e.market_app = isChecked("market_app") ? 1 : 0, ajax.post("groupsedit.php", e, {
+            onDone: function(t) {
+                return -2 != t && -3 != t || isVisible("group_edit_market") || GroupsEdit.toggleMarketBlock(!0), -2 == t ? notaBene(domPN(ge("group_market_country"))) : -3 == t ? notaBene(domPN(ge("group_market_contact"))) : -4 == t ? notaBene(domPN(ge("group_market_button_name"))) : (GroupsEdit.showMessage(getLang("groups_sections_saved_msg")), scrollToTop(), globalHistoryDestroy(nav.objLoc[0]), cur.hasMarketApp = e.market_app, void GroupsEdit.toggleMarketAppSettings())
             },
             onFail: function(e) {
                 return e && GroupsEdit.showMessage(e, "error"), !0
@@ -862,11 +862,11 @@ var GroupsEdit = {
                 o = geByClass1("group_edit_at", ge("group_edit_start_time"));
             t += o.offsetWidth;
             var r = 300 - t,
-                s = Math.floor(r / 2),
-                a = r - s,
+                a = Math.floor(r / 2),
+                s = r - a,
                 i = {
-                    paddingLeft: s + "px",
-                    paddingRight: a + "px"
+                    paddingLeft: a + "px",
+                    paddingRight: s + "px"
                 };
             setStyle(o, i), setStyle(geByClass1("group_edit_at", ge("group_edit_finish_time")), i), e.hosts && extend(cur, {
                 hostDD: new Dropdown(ge("event_host"), e.hosts, {
@@ -883,10 +883,10 @@ var GroupsEdit = {
         }), placeholderSetup("group_rss")
     },
     initSections: function(e) {
-        2 != cur.cls && e.marketCountries && (selectsData.setCountries(e.marketCountries), selectsData.setCities(e.marketCountry, e.marketCities), cur.marketCountryChange = function() {
+        2 != cur.cls && e.marketCountries && (cur.validMarketCountries = e.validMarketCountries, cur.validMarketCurrencies = e.validMarketCurrencies, cur.hasMarketApp = e.hasMarketApp, selectsData.setCountries(e.marketCountries), selectsData.setCities(e.marketCountry, e.marketCities), cur.marketCountryChange = function() {
             var e = clone(cur.marketCountryDD.val_full()),
                 t = e.length;
-            if (t) {
+            if (GroupsEdit.updateMarketAppAvailable(), t) {
                 if (cur.tagRemoved) return void(cur.tagRemoved = !1);
                 e = e.pop(), e[0] < 0 ? (cur.marketCountryDD.clear(), cur.marketCountryDD.val(e, !1), cur.marketCountryDD.setOptions({
                     maxItems: 1
@@ -923,13 +923,14 @@ var GroupsEdit = {
                 var o = t.split(",");
                 1 == o.length && (cur.marketCityDD.show(), cur.marketCountryDD.setOptions({
                     maxItems: 10
-                }))
+                })), GroupsEdit.updateMarketAppAvailable()
             }
         }), cur.marketCountryChange(), cur.marketCurrencyDD = new Dropdown(ge("group_market_currency"), e.marketCurrencies, {
             width: 300,
             dark: !0,
             multiselect: !1,
-            selectedItems: e.marketCurrency
+            selectedItems: e.marketCurrency,
+            onChange: GroupsEdit.updateMarketAppAvailable
         }), cur.marketContactDD = new Dropdown(ge("group_market_contact"), e.marketContacts, {
             width: 300,
             dark: !0,
@@ -973,21 +974,21 @@ var GroupsEdit = {
             })
         }), cur.narrowMainSectionDD.val(e.narrowMainSection)), GroupsEdit.manageSectionsDD()), cur.destroy.push(function(e) {
             e.marketCountryDD && (e.marketCountryDD.destroy(), e.marketCityDD.destroy(), e.marketCurrencyDD.destroy(), e.marketContactDD.destroy(), e.marketButtonType.destroy())
-        })
+        }), GroupsEdit.updateMarketAppAvailable()
     },
     manageSectionsDD: function() {
         var e, t, o, r = intval(cur.mainSectionDD.val()),
-            s = intval(cur.secondarySectionDD.val());
+            a = intval(cur.secondarySectionDD.val());
         r ? (cur.secondarySectionDD.disable(!1), t = cur.wideSections.filter(function(e) {
             return intval(e[0]) !== r
         }), cur.secondarySectionDD.setOptions({
             defaultItems: t
-        }), cur.secondarySectionDD.val(s === r ? 0 : s)) : (cur.secondarySectionDD.val(0), cur.secondarySectionDD.disable(!0)), cur.narrowMainSectionDD && (s = intval(cur.secondarySectionDD.val()), o = cur.narrowSections.filter(function(e) {
+        }), cur.secondarySectionDD.val(a === r ? 0 : a)) : (cur.secondarySectionDD.val(0), cur.secondarySectionDD.disable(!0)), cur.narrowMainSectionDD && (a = intval(cur.secondarySectionDD.val()), o = cur.narrowSections.filter(function(e) {
             var t = intval(e[0]);
-            return 0 === t || t !== r && t !== s
+            return 0 === t || t !== r && t !== a
         }), cur.narrowMainSectionDD.setOptions({
             defaultItems: o
-        }), e = intval(cur.narrowMainSectionDD.val()), (e === r || e === s) && cur.narrowMainSectionDD.val(0))
+        }), e = intval(cur.narrowMainSectionDD.val()), (e === r || e === a) && cur.narrowMainSectionDD.val(0))
     },
     initMessages: function() {
         var e = ge("messages_widget_domains");
@@ -1043,9 +1044,9 @@ var GroupsEdit = {
     },
     moreSearchBoxLoaded: function(e, t, o) {
         cur.searchBoxParams.offset = t;
-        for (var r = cur.boxRows, s = ce("div", {
+        for (var r = cur.boxRows, a = ce("div", {
                 innerHTML: e
-            }); s.firstChild;) r.appendChild(s.firstChild);
+            }); a.firstChild;) r.appendChild(a.firstChild);
         toggle(cur.boxMoreLink, o), o && (cur.loading = 1, ajax.post(cur.searchBoxAddress, cur.searchBoxParams, {
             onDone: function() {
                 2 == cur.loading ? GroupsEdit.moreSearchBoxLoaded.apply(window, arguments) : cur.loading = !1
@@ -1067,9 +1068,9 @@ var GroupsEdit = {
                 q: o,
                 offset: 0
             })), ajax.post(cur.searchBoxAddress, cur.searchBoxParams, {
-                onDone: function(o, r, s, a) {
+                onDone: function(o, r, a, s) {
                     if (e) {
-                        if (a) return extend(cur.searchBoxParams, cur.oldBoxParams), t && val(t, cur.oldBoxParams.q), void(cur.searchBoxFound && cur.searchBoxFound(a));
+                        if (s) return extend(cur.searchBoxParams, cur.oldBoxParams), t && val(t, cur.oldBoxParams.q), void(cur.searchBoxFound && cur.searchBoxFound(s));
                         cur.boxRows.innerHTML = o ? "" : cur.boxNoRowsTpl, curBox().tbToTop()
                     }
                     GroupsEdit.moreSearchBoxLoaded.apply(window, arguments)
@@ -1119,9 +1120,9 @@ var GroupsEdit = {
             }
         })
     },
-    updateBlacklist: function(e, t, o, r, s) {
+    updateBlacklist: function(e, t, o, r, a) {
         if (o && curBox() && (curBox().emit("success", {
-                delta: s,
+                delta: a,
                 msg: t
             }), boxQueue.hideAll()), 0 === t) return GroupsEdit.editBlacklist(o);
         if (t) {
@@ -1131,12 +1132,12 @@ var GroupsEdit = {
         if ("search" == nav.objLoc.act && "ban" == nav.objLoc.from && o) return nav.go(nav.objLoc[0] + "?act=blacklist", !1, {
             noback: !0
         });
-        var a = ge("group_bl_rows");
-        if (a && cur.gid == e) {
+        var s = ge("group_bl_rows");
+        if (s && cur.gid == e) {
             var i = ge("group_bl_row" + o),
                 n = se(r);
-            if (!i && 0 >= s) return;
-            i && s && (toggle("group_bl_actions" + o, s > 0), toggle("group_bl_restore" + o, 0 > s), toggleClass(i, "deleted", 0 > s)), i && s >= 0 ? domPN(i).replaceChild(n, i) : !i && s > 0 && (a.insertBefore(n, domFC(a)), hide("group_bl_no")), GroupsEdit.recache(cur.offset, s), GroupsEdit.updateBlacklistSummary(s)
+            if (!i && 0 >= a) return;
+            i && a && (toggle("group_bl_actions" + o, a > 0), toggle("group_bl_restore" + o, 0 > a), toggleClass(i, "deleted", 0 > a)), i && a >= 0 ? domPN(i).replaceChild(n, i) : !i && a > 0 && (s.insertBefore(n, domFC(s)), hide("group_bl_no")), GroupsEdit.recache(cur.offset, a), GroupsEdit.updateBlacklistSummary(a)
         }
     },
     updateBlacklistSummary: function(e) {
@@ -1164,8 +1165,8 @@ var GroupsEdit = {
                 offset: 12345,
                 part: 1
             }, cur.moreParams)),
-            s = ajaxCache[r.replace("12345", o)];
-        s && (s[0] += t, ajaxCache[r.replace("12345", o + t)] = s, delete ajaxCache[r.replace("12345", o)]), cur.offset += t
+            a = ajaxCache[r.replace("12345", o)];
+        a && (a[0] += t, ajaxCache[r.replace("12345", o + t)] = a, delete ajaxCache[r.replace("12345", o)]), cur.offset += t
     },
     loaded: function(e, t) {
         cur.offset = e;
@@ -1211,13 +1212,13 @@ var GroupsEdit = {
     },
     reorderLinks: function(e, t, o) {
         for (var r = e.id.replace("group_l_row", ""); o && (!o.id || isVisible("group_l_restore" + o.id.replace("group_l_row", "")));) o = o.previousSibling;
-        var s = (o && o.id || "").replace("group_l_row", "");
+        var a = (o && o.id || "").replace("group_l_row", "");
         ajax.post("groupsedit.php", {
             act: "reorder_links",
             gid: cur.gid,
             hash: cur.hash,
             lid: r,
-            after: s
+            after: a
         }, {
             onDone: GroupsEdit.invalidateBack
         })
@@ -1242,17 +1243,17 @@ var GroupsEdit = {
     linkAction: function(e, t, o) {
         var r = "delete_link" == t;
         if (!r && cur.count >= cur.linksLimit) return GroupsEdit.showMessage(getLang("global_unknown_error"), !0);
-        var s = {
+        var a = {
             act: t,
             lid: o,
             gid: cur.gid,
             hash: cur.hash
         };
         if (GroupsEdit.linksCount(cur.count + (r ? -1 : 1)), !r) {
-            for (var a = ge("group_l_row" + o).previousSibling; a && (!a.id || isVisible("group_l_restore" + a.id.replace("group_l_row", "")));) a = a.previousSibling;
-            s.after = (a && a.id || "").replace("group_l_row", "")
+            for (var s = ge("group_l_row" + o).previousSibling; s && (!s.id || isVisible("group_l_restore" + s.id.replace("group_l_row", "")));) s = s.previousSibling;
+            a.after = (s && s.id || "").replace("group_l_row", "")
         }
-        return ajax.post("groupsedit.php", s, {
+        return ajax.post("groupsedit.php", a, {
             onDone: function() {
                 GroupsEdit.invalidateBack(), toggle("group_l_actions" + o, !r), toggle("group_l_restore" + o, r), toggleClass("group_l_row" + o, "deleted", r)
             },
@@ -1284,7 +1285,7 @@ var GroupsEdit = {
         re(cur.lnkParse), cur.lnkParse = r.insertBefore(ce("div", {
             innerHTML: '<iframe class="upload_frame" name="link_parse_iframe"></iframe>   '
         }), r.firstChild);
-        var s = cur.lnkParse.appendChild(ce("form", {
+        var a = cur.lnkParse.appendChild(ce("form", {
             action: cur.parseUrl,
             method: "post",
             target: "link_parse_iframe"
@@ -1297,7 +1298,7 @@ var GroupsEdit = {
             rhash: cur.parseRHash,
             url: e
         }, function(e, t) {
-            s.appendChild(ce("input", {
+            a.appendChild(ce("input", {
                 type: "hidden",
                 name: e,
                 value: t
@@ -1309,19 +1310,19 @@ var GroupsEdit = {
                         clearInterval(cur.imgLoadInterval)
                     }
                 });
-                for (var s in r.images) {
-                    var a = "",
+                for (var a in r.images) {
+                    var s = "",
                         i = vkImage();
-                    /^\//.test(r.images[s]) ? a = (/^https:\/\//i.test(e) ? "https://" : "http://") + GroupsEdit.getDomain(e) : /^https?:\/\//i.test(r.images[s]) || (a = e.replace(/[^\/]*$/, ""), /^https?:\/\/$/i.test(a) && (a = e + "/")), i.src = a + r.images[s], r.images[s] = i
+                    /^\//.test(r.images[a]) ? s = (/^https:\/\//i.test(e) ? "https://" : "http://") + GroupsEdit.getDomain(e) : /^https?:\/\//i.test(r.images[a]) || (s = e.replace(/[^\/]*$/, ""), /^https?:\/\/$/i.test(s) && (s = e + "/")), i.src = s + r.images[a], r.images[a] = i
                 }
                 cur.imgLoadInterval = setInterval(function() {
                     var e = 0;
                     for (var t in r.images) {
                         var o = r.images[t];
                         if (o) {
-                            var s = o.width,
-                                a = o.height;
-                            s || a ? (s >= 50 && a >= 20 && (cur.lnkImages.push(o.src), GroupsEdit.updateImgs(), cur.lnkIndex || GroupsEdit.rotateImgs()), r.images[t] = !1) : ++e
+                            var a = o.width,
+                                s = o.height;
+                            a || s ? (a >= 50 && s >= 20 && (cur.lnkImages.push(o.src), GroupsEdit.updateImgs(), cur.lnkIndex || GroupsEdit.rotateImgs()), r.images[t] = !1) : ++e
                         }
                     }
                     e || (clearInterval(cur.imgLoadInterval), cur.imgLoadInterval = !0)
@@ -1329,7 +1330,7 @@ var GroupsEdit = {
             }
         }, window.onParseFail = function() {
             hide(o.progress), GroupsEdit.showLinkInfo("", t || e)
-        }, s.submit()
+        }, a.submit()
     },
     getDomain: function(e) {
         return "/" == e.charAt(0) ? locDomain : e.match(/^(https?:\/\/)?([^\/]+)(\/|$)/)[2]
@@ -1361,20 +1362,20 @@ var GroupsEdit = {
             act: "get_link_info",
             lnk: t
         }, {
-            onDone: function(r, s, a, i) {
+            onDone: function(r, a, s, i) {
                 if (t != cur.lnkSent) return !1;
-                if (GroupsEdit.hideMessage(), r > 0) 1 & r ? (show(o.progress), ajax.plainpost(s, {
+                if (GroupsEdit.hideMessage(), r > 0) 1 & r ? (show(o.progress), ajax.plainpost(a, {
                     _tmp: 1
                 }, function(e) {
                     hide(o.progress);
                     var t = trim((e.match(/<title>([^<]*)/i) || {})[1] || "");
-                    cur.lnkImages = ["/images/lnkinner" + window._iconAdd + ".png?1"], cur.lnk = s, GroupsEdit.showLinkInfo(t, s)
-                }, 2 & r ? GroupsEdit.parseLink.pbind(a, i) : function(t) {
+                    cur.lnkImages = ["/images/lnkinner" + window._iconAdd + ".png?1"], cur.lnk = a, GroupsEdit.showLinkInfo(t, a)
+                }, 2 & r ? GroupsEdit.parseLink.pbind(s, i) : function(t) {
                     return hide(o.progress), GroupsEdit.showMessage(getLang("groups_bad_link"), !0), elfocus(e)
-                }, !0)) : 2 & r && GroupsEdit.parseLink(s, a);
+                }, !0)) : 2 & r && GroupsEdit.parseLink(a, s);
                 else {
                     if (0 > r) return GroupsEdit.showMessage(getLang("groups_bad_link"), !0), elfocus(e);
-                    cur.lnk = s, cur.lnkOwnerId = cur.lnkPhotoId = !1, ge("group_al_link_info").innerHTML = a
+                    cur.lnk = a, cur.lnkOwnerId = cur.lnkPhotoId = !1, ge("group_al_link_info").innerHTML = s
                 }
             },
             progress: o.progress
@@ -1424,10 +1425,10 @@ var GroupsEdit = {
         var t = curBox(),
             o = ge("group_al_title"),
             r = ge("group_al_position"),
-            s = t.btns.ok[0];
-        if ((e || !buttonLocked(s)) && (o || r)) {
-            if (lockButton(s), o && cur.lnkIndex) return GroupsEdit.uploadImg();
-            var a, i = (o || r).value,
+            a = t.btns.ok[0];
+        if ((e || !buttonLocked(a)) && (o || r)) {
+            if (lockButton(a), o && cur.lnkIndex) return GroupsEdit.uploadImg();
+            var s, i = (o || r).value,
                 n = {
                     lnk: cur.lnk,
                     index: cur.lnkIndex,
@@ -1438,20 +1439,20 @@ var GroupsEdit = {
                     lid: cur.editing,
                     hash: cur.hash
                 };
-            cur.editing ? (n.act = "do_edit_link", a = function(e, o, r, s) {
-                t.hide(), GroupsEdit.invalidateBack(), o !== !1 && (ge("group_l_photo" + e).style.backgroundImage = "url(" + o + ")"), r !== !1 && (ge("group_l_title" + e).innerHTML = r), s !== !1 && (ge("group_l_position" + e).innerHTML = s)
-            }) : (n.act = "add_link", a = function(e, o, r) {
+            cur.editing ? (n.act = "do_edit_link", s = function(e, o, r, a) {
+                t.hide(), GroupsEdit.invalidateBack(), o !== !1 && (ge("group_l_photo" + e).style.backgroundImage = "url(" + o + ")"), r !== !1 && (ge("group_l_title" + e).innerHTML = r), a !== !1 && (ge("group_l_position" + e).innerHTML = a)
+            }) : (n.act = "add_link", s = function(e, o, r) {
                 t.hide(), GroupsEdit.invalidateBack(), GroupsEdit.showMessage(o);
-                var s = ge("group_l_rows"),
-                    a = ge("group_l_search");
-                s.insertBefore(se(r), s.firstChild), GroupsEdit.linksCount(e), val(a, ""), uiSearch.onChanged(a), elfocus(a)
+                var a = ge("group_l_rows"),
+                    s = ge("group_l_search");
+                a.insertBefore(se(r), a.firstChild), GroupsEdit.linksCount(e), val(s, ""), uiSearch.onChanged(s), elfocus(s)
             }), setTimeout(ajax.post.pbind("groupsedit.php", n, {
-                onDone: a,
+                onDone: s,
                 onFail: function(e) {
                     return t.hide(), GroupsEdit.showMessage(e || getLang("groups_bad_link"), !0), !0
                 },
-                showProgress: lockButton.pbind(s),
-                hideProgress: unlockButton.pbind(s)
+                showProgress: lockButton.pbind(a),
+                hideProgress: unlockButton.pbind(a)
             }), 0)
         }
     },
@@ -1460,15 +1461,15 @@ var GroupsEdit = {
         var t = ge("group_l_no"),
             o = getLang("groups_no_links_found"),
             r = ge("group_l_rows"),
-            s = geByClass("group_l_row", r),
-            a = 0;
+            a = geByClass("group_l_row", r),
+            s = 0;
         r.sorter && r.sorter.destroy();
-        for (var i in s) {
-            var n = s[i];
+        for (var i in a) {
+            var n = a[i];
             if (e) {
                 var u = val(geByClass1("group_l_title", n));
-                u = u.toLowerCase(), u.indexOf(e) > -1 ? (show(n), a++) : hide(n)
-            } else show(n), a++;
+                u = u.toLowerCase(), u.indexOf(e) > -1 ? (show(n), s++) : hide(n)
+            } else show(n), s++;
             setStyle(n, {
                 left: null,
                 top: null,
@@ -1477,11 +1478,11 @@ var GroupsEdit = {
                 cursor: null
             })
         }
-        if (e && !a) {
+        if (e && !s) {
             var c = o.split("{query}").join("<b>" + e.replace(/([<>&#]*)/g, "") + "</b>");
             t.innerHTML = c
         } else t.innerHTML = getLang("groups_no_links");
-        toggle(t, !a), !e && a && sorter.init(r, {
+        toggle(t, !s), !e && s && sorter.init(r, {
             onReorder: GroupsEdit.reorderLinks,
             dh: 1
         }), hasClass(ge("group_l_bar"), "ui_search_fixed") && scrollToY(ge("gedit_search_input_wrap").offsetTop, 0)
@@ -1503,8 +1504,8 @@ var GroupsEdit = {
             replaceClass(t, "summary_tab_sel", "summary_tab")
         }), replaceClass(e, "summary_tab", "summary_tab_sel");
         var r = nav.fromStr(t),
-            s = r[0];
-        return delete r[0], ajax.post(s, extend(r, {
+            a = r[0];
+        return delete r[0], ajax.post(a, extend(r, {
             part: 1
         }), {
             cache: 1,
@@ -1653,11 +1654,11 @@ var GroupsEdit = {
             isObject(e) && "error" in e && showFastBox(getLang("global_box_error_title"), e.error), unlockButton(r)
         }
         var r = window.event.currentTarget,
-            s = {
+            a = {
                 group_id: e,
                 hash: t
             };
-        return lockButton(r), ajax.post("/groupsedit.php?act=a_adsweb_join", s, {
+        return lockButton(r), ajax.post("/groupsedit.php?act=a_adsweb_join", a, {
             onDone: o,
             onFail: o
         }), !1
@@ -1667,11 +1668,11 @@ var GroupsEdit = {
             isObject(e) && "error" in e && showFastBox(getLang("global_box_error_title"), e.error), unlockButton(r)
         }
         var r = window.event.currentTarget,
-            s = {
+            a = {
                 group_id: e,
                 hash: t
             };
-        return lockButton(r), ajax.post("/groupsedit.php?act=a_adsweb_approve_again", s, {
+        return lockButton(r), ajax.post("/groupsedit.php?act=a_adsweb_approve_again", a, {
             onDone: o,
             onFail: o
         }), !1
@@ -1766,7 +1767,7 @@ var GroupsEdit = {
                 pid: e,
                 hash: t || ""
             },
-            s = function(e) {
+            a = function(e) {
                 switch (e) {
                     case 7:
                         key = "obscene_pattern_deleted";
@@ -1776,17 +1777,17 @@ var GroupsEdit = {
                 }
                 GroupsEdit.showMessage(getLang(key) + " (code: " + e + ")", "info"), unlockFlatButton(o)
             },
-            a = GroupsEdit.showMessage.pbind(getLang("global_unknown_error"), "error");
+            s = GroupsEdit.showMessage.pbind(getLang("global_unknown_error"), "error");
         lockFlatButton(o), ajax.post("/groupsedit.php", r, {
-            onDone: s,
-            onFail: a
+            onDone: a,
+            onFail: s
         })
     },
     addObscenePattern: function(e, t) {
         var o = curBox(),
             r = o && o.isVisible(),
-            s = ge(r ? "groups_obscene_edit_box_save" : "group_bl_submit"),
-            a = function(e) {
+            a = ge(r ? "groups_obscene_edit_box_save" : "group_bl_submit"),
+            s = function(e) {
                 switch (e) {
                     case 15:
                     case 7:
@@ -1804,7 +1805,7 @@ var GroupsEdit = {
                     default:
                         key = "obscene_add_pattern_error"
                 }
-                GroupsEdit.showMessage(getLang(key) + " (code: " + e + ")", "info"), unlockFlatButton(s)
+                GroupsEdit.showMessage(getLang(key) + " (code: " + e + ")", "info"), unlockFlatButton(a)
             },
             i = GroupsEdit.showMessage.pbind(getLang("global_unknown_error"), "error"),
             n = {
@@ -1815,8 +1816,8 @@ var GroupsEdit = {
                 hash: t || "",
                 override: e
             };
-        return trim(n.word) ? (lockFlatButton(s), void ajax.post("/groupsedit.php", n, {
-            onDone: a,
+        return trim(n.word) ? (lockFlatButton(a), void ajax.post("/groupsedit.php", n, {
+            onDone: s,
             onFail: i
         })) : (el = r ? "obs_pattern_word" : "group_bl_search", notaBene(el, "warning"))
     },
@@ -1931,8 +1932,8 @@ var GroupsEdit = {
             hide(geByClass1("page_actions_cont", ge("content"))), show(geByClass1("ui_tabs_progress", ge("content"))), nav.objLoc.server = o, nav.go(nav.objLoc)
         },
         checkUrl: function(e, t, o, r) {
-            function s(e, t, o, r, a) {
-                return a > 20 ? void nav.go(nav.objLoc) : void ajax.post("groupsedit.php", {
+            function a(e, t, o, r, s) {
+                return s > 20 ? void nav.go(nav.objLoc) : void ajax.post("groupsedit.php", {
                     act: "callback_get_check_url_result",
                     id: e,
                     server: t,
@@ -1941,7 +1942,7 @@ var GroupsEdit = {
                     onDone: function(i, n, u) {
                         switch (i) {
                             case "wait":
-                                return void setTimeout(s.pbind(e, t, o, r, a + 1), 500);
+                                return void setTimeout(a.pbind(e, t, o, r, s + 1), 500);
                             case "ok":
                                 return void nav.go(nav.objLoc, void 0, {
                                     onDone: function() {
@@ -1978,8 +1979,8 @@ var GroupsEdit = {
                     }
                 })
             }
-            var a = ge("callback_url"),
-                i = val(a);
+            var s = ge("callback_url"),
+                i = val(s);
             ge("callback_title");
             return i ? (lockButton(e), void ajax.post("groupsedit.php", {
                 act: "callback_check_url",
@@ -1988,10 +1989,10 @@ var GroupsEdit = {
                 url: i,
                 hash: r
             }, {
-                onDone: function(a, i) {
-                    switch (a) {
+                onDone: function(s, i) {
+                    switch (s) {
                         case "ok":
-                            s(t, o, r, e, 0);
+                            a(t, o, r, e, 0);
                             break;
                         case "incorrect_url":
                             unlockButton(e), GroupsEdit.callback.showError(getLang("groups_api_incorrect_url"));
@@ -2003,10 +2004,10 @@ var GroupsEdit = {
                 onFail: function() {
                     unlockButton(e)
                 }
-            })) : void notaBene(a)
+            })) : void notaBene(s)
         },
-        changeTitleBox: function(e, t, o, r, s) {
-            function a() {
+        changeTitleBox: function(e, t, o, r, a) {
+            function s() {
                 i.hide(), i.destroy()
             }
             var i = showBox("groupsedit.php", {
@@ -2023,15 +2024,15 @@ var GroupsEdit = {
                 onFail: function() {}
             });
             i.setButtons(getLang("global_save"), function() {
-                GroupsEdit.callback.setTitle(i.btns.ok[0], t, o, s)
-            }, getLang("global_cancel"), a)
+                GroupsEdit.callback.setTitle(i.btns.ok[0], t, o, a)
+            }, getLang("global_cancel"), s)
         },
         setTitle: function(e, t, o, r) {
-            function s(t) {
+            function a(t) {
                 unlockButton(e), val("group_api_error_title_msg", t), show("group_api_error_title")
             }
-            var a = ge("callback_title"),
-                i = val(a);
+            var s = ge("callback_title"),
+                i = val(s);
             return hide("group_api_error_title"), i ? (lockButton(e), void ajax.post("groupsedit.php", {
                 act: "callback_set_title",
                 id: t,
@@ -2040,19 +2041,19 @@ var GroupsEdit = {
                 hash: r
             }, {
                 onDone: function(e, t) {
-                    "ok" === e ? nav.go(nav.objLoc) : s(t)
+                    "ok" === e ? nav.go(nav.objLoc) : a(t)
                 },
-                onFail: s
-            })) : void notaBene(a)
+                onFail: a
+            })) : void notaBene(s)
         },
         saveSecret: function(e, t, o, r) {
-            var s = ge("callback_secret"),
-                a = val(s);
-            a && (hide("group_api_ok"), hide("group_api_error"), lockButton(e), ajax.post("groupsedit.php", {
+            var a = ge("callback_secret"),
+                s = val(a);
+            s && (hide("group_api_ok"), hide("group_api_error"), lockButton(e), ajax.post("groupsedit.php", {
                 act: "callback_save_secret",
                 id: t,
                 server: o,
-                secret: a,
+                secret: s,
                 hash: r
             }, {
                 onDone: function(t) {
@@ -2079,48 +2080,48 @@ var GroupsEdit = {
             })
         },
         deleteUrl: function(e, t, o, r) {
-            var s = showFastBox({
+            var a = showFastBox({
                 title: getLang("groups_api_confirm_box_title"),
                 dark: 1,
                 bodyStyle: "padding: 20px; line-height: 160%;"
             }, getLang("groups_api_delete_url_description"), getLang("groups_api_delete_url"), function() {
-                s.showProgress(), ajax.post("groupsedit.php", {
+                a.showProgress(), ajax.post("groupsedit.php", {
                     act: "callback_delete_url",
                     id: t,
                     server: o,
                     hash: r
                 }, {
                     onDone: function(e) {
-                        s.hide(), hide("groups_edit_delete_url"), val("callback_url", "")
+                        a.hide(), hide("groups_edit_delete_url"), val("callback_url", "")
                     }
                 })
             }, getLang("global_cancel"))
         },
         deleteSecret: function(e, t, o, r) {
-            var s = showFastBox({
+            var a = showFastBox({
                 title: getLang("groups_api_confirm_box_title"),
                 dark: 1,
                 bodyStyle: "padding: 20px; line-height: 160%;"
             }, getLang("groups_api_delete_secret_description"), getLang("groups_api_delete_url"), function() {
-                s.showProgress(), ajax.post("groupsedit.php", {
+                a.showProgress(), ajax.post("groupsedit.php", {
                     act: "callback_delete_secret",
                     id: t,
                     server: o,
                     hash: r
                 }, {
                     onDone: function(e) {
-                        s.hide(), hide("groups_edit_delete_secret"), val("callback_secret", "")
+                        a.hide(), hide("groups_edit_delete_secret"), val("callback_secret", "")
                     }
                 })
             }, getLang("global_cancel"))
         },
         deleteCert: function(e, t, o, r) {
-            var s = showFastBox({
+            var a = showFastBox({
                 title: getLang("groups_api_confirm_box_title"),
                 dark: 1,
                 bodyStyle: "padding: 20px; line-height: 160%;"
             }, getLang("groups_api_delete_cert_description"), getLang("groups_api_delete_url"), function() {
-                s.showProgress(), ajax.post("groupsedit.php", {
+                a.showProgress(), ajax.post("groupsedit.php", {
                     act: "callback_delete_cert",
                     id: t,
                     server: o,
@@ -2135,29 +2136,29 @@ var GroupsEdit = {
         showCurlResult: function(e, t, o) {
             var r = cur.curlResult[e];
             if (r) {
-                var s = {
+                var a = {
                     title: t ? getLang("groups_api_request_result") : getLang("groups_api_request_body"),
                     dark: 1,
                     bodyStyle: "padding:0;"
                 };
                 if (o) {
                     if (r === o) return;
-                    s.title = getLang("global_error");
-                    var a = getLang("groups_api_incorrect_response_dialog").replace("{response}", r).replace("{expected}", o);
-                    s.width = 450
+                    a.title = getLang("global_error");
+                    var s = getLang("groups_api_incorrect_response_dialog").replace("{response}", r).replace("{expected}", o);
+                    a.width = 450
                 } else {
-                    var a = '<pre class="group_api_result_pre"">' + r + "</pre>";
-                    s.width = 900
+                    var s = '<pre class="group_api_result_pre"">' + r + "</pre>";
+                    a.width = 900
                 }
-                showFastBox(s, '<div class="group_api_result">' + a + "</div>")
+                showFastBox(a, '<div class="group_api_result">' + s + "</div>")
             }
         },
         showError: function(e, t) {
             hide("group_api_secret_error"), hide("group_api_secret_ok"), t ? (show("group_api_error_info"), cur.curlResult = cur.curlResult || {}, cur.curlResult.error = t) : hide("group_api_error_info"), val("group_api_error_msg", e), hide("group_api_ok"), show("group_api_error")
         },
         saveSetting: function(e, t, o, r) {
-            var s = ge("group_api_settings_saved");
-            setStyle(s, "opacity", 1), clearTimeout(cur.groupeditTimeout), cur.groupeditTimeout = setTimeout(setStyle.pbind(s, "opacity", 0), 1e3), ajax.post("groupsedit.php", {
+            var a = ge("group_api_settings_saved");
+            setStyle(a, "opacity", 1), clearTimeout(cur.groupeditTimeout), cur.groupeditTimeout = setTimeout(setStyle.pbind(a, "opacity", 0), 1e3), ajax.post("groupsedit.php", {
                 act: "callback_save_event_setting",
                 id: e,
                 server: t,
@@ -2166,16 +2167,16 @@ var GroupsEdit = {
                 hash: r
             })
         },
-        deleteServer: function(e, t, o, r, s) {
-            var a = showFastBox({
+        deleteServer: function(e, t, o, r, a) {
+            var s = showFastBox({
                 title: getLang("groups_servers_delete_confirm_box_title"),
                 dark: 1
             }, getLang("groups_tokens_servers_delete_confirm_description").replace("{serverName}", r), getLang("groups_servers_delete_confirm_box_btn"), function() {
-                a.hide(), show(geByClass1("ui_tabs_progress", ge("content"))), hide(geByClass1("page_actions_cont", ge("content"))), ajax.post("groupsedit.php", {
+                s.hide(), show(geByClass1("ui_tabs_progress", ge("content"))), hide(geByClass1("page_actions_cont", ge("content"))), ajax.post("groupsedit.php", {
                     act: "callback_delete_server",
                     id: t,
                     server: o,
-                    hash: s
+                    hash: a
                 }, {
                     onDone: function(t, o) {
                         "ok" === t ? (nav.objLoc.server = o, nav.go(nav.objLoc)) : (unlockButton(e), GroupsEdit.callback.showError(o), hide(geByClass1("ui_tabs_progress", ge("content"))), show(geByClass1("page_actions_cont", ge("content"))))
@@ -2191,13 +2192,13 @@ var GroupsEdit = {
         }
     },
     deleteGroupToken: function(e, t, o, r) {
-        var s = showFastBox({
+        var a = showFastBox({
             title: getLang("groups_tokens_confirm_box_title"),
             dark: 1
         }, getLang("groups_tokens_confirm_delete_token_description"), getLang("groups_tokens_confirm_box_btn"), function() {
-            s.hide();
-            var a = geByClass1("progress_inline", e.parentNode);
-            hide(e), show(a), ajax.post("groupsedit.php", {
+            a.hide();
+            var s = geByClass1("progress_inline", e.parentNode);
+            hide(e), show(s), ajax.post("groupsedit.php", {
                 act: "delete_token",
                 id: t,
                 token_id: o,
@@ -2205,7 +2206,7 @@ var GroupsEdit = {
             }, {
                 onDone: function(e) {
                     var t = ge("group_token" + o);
-                    t.parentNode.removeChild(t), val("group_tokens_count", e > 0 ? e : ""), hide(a);
+                    t.parentNode.removeChild(t), val("group_tokens_count", e > 0 ? e : ""), hide(s);
                     var r = geByClass1("group_tokens_rows");
                     1 == r.childNodes.length && show(ge("group_tokens_row_empty"))
                 }
@@ -2213,13 +2214,13 @@ var GroupsEdit = {
         }, getLang("global_cancel"))
     },
     deleteGroupTokenApp: function(e, t, o, r) {
-        var s = showFastBox({
+        var a = showFastBox({
             title: getLang("groups_tokens_confirm_box_title"),
             dark: 1
         }, getLang("groups_tokens_confirm_delete_tokens_by_app_description"), getLang("groups_tokens_confirm_box_btn"), function() {
-            s.hide();
-            var a = geByClass("progress_inline", e.parentNode)[0];
-            hide(e), show(a), ajax.post("groupsedit.php", {
+            a.hide();
+            var s = geByClass("progress_inline", e.parentNode)[0];
+            hide(e), show(s), ajax.post("groupsedit.php", {
                 act: "delete_token_app",
                 id: t,
                 app_id: o,
@@ -2227,10 +2228,10 @@ var GroupsEdit = {
             }, {
                 onDone: function(e) {
                     for (var t = geByClass("group_token_app" + o), r = 0; r < t.length; r++) {
-                        var s = t[r];
-                        s.parentNode.removeChild(s)
+                        var a = t[r];
+                        a.parentNode.removeChild(a)
                     }
-                    val("group_tokens_count", e > 0 ? e : ""), hide(a);
+                    val("group_tokens_count", e > 0 ? e : ""), hide(s);
                     var i = geByClass1("group_tokens_rows");
                     1 == i.childNodes.length && show(ge("group_tokens_row_empty"))
                 }
@@ -2287,7 +2288,7 @@ var GroupsEdit = {
             errors: "sent" == e ? !1 : 1
         })
     },
-    certInitUploadBox: function(e, t, o, r, s) {
+    certInitUploadBox: function(e, t, o, r, a) {
         e.setOptions({
             width: 480
         }), Upload.init("groups_edit_cert_upload_cont", t, o, {
@@ -2306,8 +2307,8 @@ var GroupsEdit = {
             onUploadComplete: function(t, o) {
                 if (e.hideProgress(), "ok" === (o || "").substring(0, 2)) {
                     show("groups_edit_cert_uploaded"), show("groups_edit_cert_updating"), hide("groups_edit_cert_not_uploaded"), hide("groups_edit_cert_ready"), e.hide();
-                    var a = o.substring(3);
-                    GroupsEdit.callbackUpdateCertResult(a, 0, r, s)
+                    var s = o.substring(3);
+                    GroupsEdit.callbackUpdateCertResult(s, 0, r, a)
                 } else {
                     var i = ge("groups_edit_cert_upload_error");
                     i.innerHTML = getLang(o), show(i)
@@ -2371,31 +2372,31 @@ var GroupsEdit = {
         },
         reorderApps: function(e, t, o) {
             for (var r = e.id.replace("group_apps_list_row_drag_wrapper_", ""); o && !o.id;) o = o.previousSibling;
-            var s = 1,
-                a = geByClass("group_apps_list_row_drag_wrapper");
-            for (var i in a) {
-                if (a[i] == e) break;
-                s++
+            var a = 1,
+                s = geByClass("group_apps_list_row_drag_wrapper");
+            for (var i in s) {
+                if (s[i] == e) break;
+                a++
             }(o && o.id || "").replace("group_apps_list_row_drag_wrapper_", "");
             ajax.post("groupsedit.php", {
                 act: "apps_reorder",
                 id: cur.gid,
                 hash: cur.reorderHash,
                 aid: r,
-                pos: s
+                pos: a
             }, {
                 onDone: GroupsEdit.invalidateBack
             })
         },
-        initEdit: function(e, t, o, r, s) {
-            var a = ge("group_app_btn_name" + e),
+        initEdit: function(e, t, o, r, a) {
+            var s = ge("group_app_btn_name" + e),
                 i = ge("group_app_app_name" + e),
                 n = null;
             r && (n = new Dropdown(ge("groups_app_widget_privacy" + e), cur.appWidgetPrivacy, {
                 width: 300,
                 big: 1,
                 multiselect: !1,
-                selectedItems: s
+                selectedItems: a
             }));
             var u = new Dropdown(ge("groups_app_btn_privacy" + e), cur.btnPrivacy, {
                     width: 300,
@@ -2410,7 +2411,7 @@ var GroupsEdit = {
                     selectedItems: o
                 });
             GroupsEdit.app.editForms[e] = {
-                btnName: a,
+                btnName: s,
                 appName: i,
                 appWidgetPrivacy: n,
                 privacy: u,
@@ -2420,21 +2421,21 @@ var GroupsEdit = {
         showEdit: function(e, t, o) {
             var r = o;
             if (!lockLink(o)) {
-                var s = ge("group_apps_list_row_" + e);
-                hasClass(s, "expanded") ? (removeClass(s, "expanded"), val(r, getLang("groups_apps_change_settings_label"))) : (addClass(s, "expanded"), val(r, getLang("global_cancel"))), unlockLink(r), GroupsEdit.app.sorterDeinit(), GroupsEdit.app.sorterInit()
+                var a = ge("group_apps_list_row_" + e);
+                hasClass(a, "expanded") ? (removeClass(a, "expanded"), val(r, getLang("groups_apps_change_settings_label"))) : (addClass(a, "expanded"), val(r, getLang("global_cancel"))), unlockLink(r), GroupsEdit.app.sorterDeinit(), GroupsEdit.app.sorterInit()
             }
         },
         attach: function(e, t, o, r) {
             if (!cur.show_limit_alert || r)
                 if (!cur.show_alert || r) {
-                    var s = {
+                    var a = {
                         act: "app_attach",
                         id: cur.gid,
                         app_id: e,
                         hash: t,
                         cur_tab: cur.cur_tab
                     };
-                    cur.withoutCatalog && GroupsEdit.app.hideMessage(), ajax.post("groupsedit.php", s, {
+                    cur.withoutCatalog && GroupsEdit.app.hideMessage(), ajax.post("groupsedit.php", a, {
                         onDone: function(e, t, o, r) {
                             scrollToY(0), GroupsEdit.app.clearFromRef(), nav.reload({
                                 onDone: function() {
@@ -2449,16 +2450,16 @@ var GroupsEdit = {
                             unlockLink(o)
                         }
                     })
-                } else var a = getLang("groups_apps_replace_app_message_content", cur.appName),
+                } else var s = getLang("groups_apps_replace_app_message_content", cur.appName),
                     i = showFastBox({
                         title: getLang("groups_apps_replace_app_message_title")
-                    }, a, getLang("groups_apps_replace_app_message_yes"), function() {
+                    }, s, getLang("groups_apps_replace_app_message_yes"), function() {
                         i.hide(), GroupsEdit.app.attach(e, t, o, !0)
                     }, getLang("global_cancel"));
-            else var a = getLang("groups_apps_attach_limit_reached"),
+            else var s = getLang("groups_apps_attach_limit_reached"),
                 i = showFastBox({
                     title: getLang("groups_apps_attach_app_message_title")
-                }, a)
+                }, s)
         },
         changeStatus: function(e) {
             radiobtn(ge("app_status_" + e), e, "app_status")
@@ -2470,7 +2471,7 @@ var GroupsEdit = {
             if (GroupsEdit.app.editForms[e]) {
                 var r = GroupsEdit.app.editForms[e];
                 val(r.btnName, trim(val(r.btnName)));
-                var s = {
+                var a = {
                     act: "app_save",
                     id: cur.gid,
                     app_id: e,
@@ -2479,7 +2480,7 @@ var GroupsEdit = {
                     privacy: r.privacy.selectedItems()[0][0],
                     snippet_type: r.snippetType.selectedItems()[0][0]
                 };
-                r.appWidgetPrivacy && (s.app_widget_privacy = r.appWidgetPrivacy.selectedItems()[0][0]), r.appName && (s.app_name = val(r.appName)), cur.withoutCatalog && GroupsEdit.app.hideMessage(), ajax.post("groupsedit.php", s, {
+                r.appWidgetPrivacy && (a.app_widget_privacy = r.appWidgetPrivacy.selectedItems()[0][0]), r.appName && (a.app_name = val(r.appName)), cur.withoutCatalog && GroupsEdit.app.hideMessage(), ajax.post("groupsedit.php", a, {
                     onDone: function(e, t) {
                         return GroupsEdit.invalidateBack(), GroupsEdit.app.showMessage(t, e), e
                     },
@@ -2498,15 +2499,15 @@ var GroupsEdit = {
         showMessage: function(e, t) {
             GroupsEdit.app.sorterDeinit(), GroupsEdit.showMessage(e, t ? 0 : "error"), GroupsEdit.app.sorterInit()
         },
-        "delete": function(e, t, o, r, s) {
-            if (s) {
-                var a = {
+        "delete": function(e, t, o, r, a) {
+            if (a) {
+                var s = {
                     act: "app_delete",
                     app_id: e,
                     id: cur.gid,
                     hash: t
                 };
-                cur.withoutCatalog && (a.cur_tab = cur.cur_tab, GroupsEdit.app.hideMessage()), ajax.post("groupsedit.php", a, {
+                cur.withoutCatalog && (s.cur_tab = cur.cur_tab, GroupsEdit.app.hideMessage()), ajax.post("groupsedit.php", s, {
                     onDone: function(e, t, o) {
                         GroupsEdit.invalidateBack(), cur.withoutCatalog ? (extend(cur, t), ge("group_apps_wrapper").innerHTML = e, re("apps_cat_add"), GroupsEdit.app.showMessage(o, "info"), cur.show_alert = !1) : (GroupsEdit.app.clearFromRef(), nav.reload())
                     },
@@ -2544,9 +2545,9 @@ var GroupsEdit = {
                     var r = ge("settings_transfer_history").tBodies[0];
                     if (t)
                         if (unlockButton(e), cur.historyOffset += 100, browser.msie) {
-                            var s = se("<table>" + t + "</table>"),
-                                a = geByTag("tr", s);
-                            for (i in a) 1 == a[i].nodeType && r.appendChild(a[i])
+                            var a = se("<table>" + t + "</table>"),
+                                s = geByTag("tr", a);
+                            for (i in s) 1 == s[i].nodeType && r.appendChild(s[i])
                         } else r.insertAdjacentHTML("beforeEnd", t);
                     (!t || o) && (addClass(r.lastChild, "settings_votes_history_last"), hide(e))
                 }
@@ -2563,6 +2564,51 @@ var GroupsEdit = {
             hideProgress: unlockButton(e),
             onDone: show.pbind("group_edit_msg")
         })
+    },
+    updateMarketAppAvailable: function() {
+        var e, t, o, r = ge("market_app");
+        r && (t = cur.marketCountryDD ? cur.marketCountryDD.val().split(",") : [], e = t.every(function(e) {
+            var t = intval(e);
+            return cur.validMarketCountries && ~cur.validMarketCountries.indexOf(t)
+        }), o = cur.marketCurrencyDD ? intval(cur.marketCurrencyDD.val()) : 0, e = e && cur.validMarketCurrencies && ~cur.validMarketCurrencies.indexOf(o), e ? (disable(r, !1), checkbox(r, !!intval(domData(r, "restore-checked")))) : (checkbox(r, !1), disable(r, !0)), GroupsEdit.toggleMarketContactByMarketApp(r), GroupsEdit.toggleMarketAppSettings(r))
+    },
+    onMarketAppCheckboxClick: function(e) {
+        var t = domPN(e);
+        checkbox(e), domData(e, "restore-checked", isChecked(e)), GroupsEdit.toggleMarketContactByMarketApp(e), GroupsEdit.toggleMarketAppSettings(e), GroupsEdit.showMarketAppTooltip(t, !0)
+    },
+    toggleMarketContactByMarketApp: function(e) {
+        var t, o = isChecked(e) && !hasClass(e, "disabled");
+        cur.marketContactDD && (o ? cur.marketContactDD.disable(!0) : (t = cur.marketContactDD.val(), cur.marketContactDD.disable(!1), cur.marketContactDD.val(t)))
+    },
+    showMarketAppTooltip: function(e, t) {
+        var o = domData(e, "title"),
+            r = 282,
+            a = getSize(e)[0],
+            s = 15;
+        return isObject(e.tt) && t && (e.tt.destroy(), s = 0), showTooltip(e, {
+            text: o,
+            hasover: 1,
+            slideX: s,
+            width: r,
+            shift: [-(a + 15), -7],
+            dir: "left"
+        })
+    },
+    toggleMarketAppSettings: function(e) {
+        e = e || ge("market_app");
+        var t = isChecked(e) && !hasClass(e, "disabled") && cur.hasMarketApp;
+        toggleClass(ge("market_app_settings"), "hidden", !t)
+    },
+    hideMarketAppCoupon: function(e, t, o, r) {
+        var a = domPN(ge("market_app_coupon_" + e + "_" + o)),
+            s = {
+                act: "hide_market_app_coupon",
+                app_id: e,
+                group_id: t,
+                coupon_id: o,
+                hash: r
+            };
+        re(a), ajax.post("groupsedit.php", s)
     }
 };
 try {

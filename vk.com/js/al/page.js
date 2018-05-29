@@ -5191,6 +5191,15 @@ var Wall = {
             btn.tt.destroy();
         }
     },
+
+    /**
+     * �������� �� �������
+     *
+     * @param el
+     * @param post
+     * @param hash
+     * @param inline
+     */
     markAsSpam: function(el, post, hash, inline) {
         ajax.post('al_wall.php', {
             act: 'spam',
@@ -5249,6 +5258,7 @@ var Wall = {
             btn.tt.destroy();
         }
     },
+
     ignoreAdsItem: function(post_raw, feed_raw, hash) {
         var postEl = ge('post' + post_raw),
             adData = postEl.getAttribute('data-ad'),

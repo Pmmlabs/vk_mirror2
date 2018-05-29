@@ -6349,6 +6349,11 @@ td.apps_cat_new_h {
     background: transparent
 }
 
+.vkPayOpenApiBox {
+    box-shadow: none;
+    background: transparent
+}
+
 .vkPayOpenApiBox .box_title_wrap {
     display: none!important
 }
@@ -6358,5 +6363,10 @@ td.apps_cat_new_h {
 }
 
 .vkPayOpenApiBox .box_body {
-    padding: 0
+    padding: 0;
+    background: transparent
+}
+
+.vkPayOpenApiBox .apps_main {
+    background: transparent
 }

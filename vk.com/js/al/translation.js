@@ -67,7 +67,7 @@
                 var s = _caseTokenDropdown.selectedItems();
                 s.length && (o.case_token = _caseTokenDropdown.selectedItems()[0][1])
             }
-            if (o.key_status = radioval("tr_key_settings_status"), o.key_status === _KEY_SETTINGS_STATUS_TRANSLATE_CUSTOM_LANGUAGES && (o.selected_languages = cur.translationKeyLanguagesDD.val(), !o.selected_languages)) return notaBene(cur.translationKeyLanguagesDD.input)
+            if (o.key_status = radioval("tr_key_settings_status"), (o.key_status === _KEY_SETTINGS_STATUS_TRANSLATE_CUSTOM_LANGUAGES || o.key_status === _KEY_SETTINGS_STATUS_EVERYONE_BUT) && (o.selected_languages = cur.translationKeyLanguagesDD.val(), !o.selected_languages)) return notaBene(cur.translationKeyLanguagesDD.input)
         }
         ajax.post(TR_ADDRESS, o, {
             showProgress: lockButton.pbind(e),
@@ -390,7 +390,7 @@
                 bodyStyle: "padding: 20px 0 0; overflow: hidden;",
                 width: 550,
                 onHide: function() {
-                    cur.showedAttachScreenBox || (cur.isSuperTranslator && (cur.translationBoxSelectedStatus = radioval("tr_key_settings_status"), cur.translationBoxSelectedStatus == _KEY_SETTINGS_STATUS_TRANSLATE_CUSTOM_LANGUAGES && cur.translationKeyLanguagesDD && (cur.translationBoxKeySelectedLang = cur.translationKeyLanguagesDD.val())), t || cur.showedScreen || nav.setLoc(extend({}, nav.objLoc, {
+                    cur.showedAttachScreenBox || (cur.isSuperTranslator && (cur.translationBoxSelectedStatus = radioval("tr_key_settings_status"), cur.translationBoxSelectedStatus != _KEY_SETTINGS_STATUS_TRANSLATE_CUSTOM_LANGUAGES && cur.translationBoxSelectedStatus != _KEY_SETTINGS_STATUS_EVERYONE_BUT || !cur.translationKeyLanguagesDD || (cur.translationBoxKeySelectedLang = cur.translationKeyLanguagesDD.val())), t || cur.showedScreen || nav.setLoc(extend({}, nav.objLoc, {
                         key: null,
                         key_tr_id: null,
                         key_lang_id: null,
@@ -1017,7 +1017,7 @@
     function updateKeySettingsOptions(e) {
         var t = domData(e, "status"),
             a = isVisible("translations_settings_languages_wrap");
-        t == _KEY_SETTINGS_STATUS_TRANSLATE_CUSTOM_LANGUAGES ? a || show("translations_settings_languages_wrap") : a && hide("translations_settings_languages_wrap")
+        t == _KEY_SETTINGS_STATUS_TRANSLATE_CUSTOM_LANGUAGES || t == _KEY_SETTINGS_STATUS_EVERYONE_BUT ? a || show("translations_settings_languages_wrap") : a && hide("translations_settings_languages_wrap")
     }
 
     function _box_initOptionsLanguages() {
@@ -1033,15 +1033,18 @@
             placeholder: getLang("tran_other_languages_placeholder"),
             dark: 1,
             width: 1 == t ? 500 : 900
-        }), radioval("tr_key_settings_status") === _KEY_SETTINGS_STATUS_TRANSLATE_CUSTOM_LANGUAGES && show("translations_settings_languages_wrap")
+        });
+        var a = radioval("tr_key_settings_status");
+        (a === _KEY_SETTINGS_STATUS_TRANSLATE_CUSTOM_LANGUAGES || a === _KEY_SETTINGS_STATUS_EVERYONE_BUT) && show("translations_settings_languages_wrap")
     }
     var TR_ADDRESS = "translation",
         _caseDropdown, _caseTokenDropdown, _functionTypeDropdown, _keysLangSelectorDropdown, _translatorsDateSelector, _languagesSortDropdown, _translatorsSortDropdown, _KEY_SETTINGS_STATUS_TRANSLATE_TO_ALL = 0,
         _KEY_SETTINGS_STATUS_DONT_TRANSLATE = 1,
         _KEY_SETTINGS_STATUS_TRANSLATE_CUSTOM_LANGUAGES = 2,
         _KEY_SETTINGS_STATUS_TRANSLATE_ONLY_CIS = 3,
-        _KEY_SETTINGS_STATUS_ONLY_MAIN_LANGUAGES = 4,
-        COOKIE_KEY = "remixinline_trans";
+        _KEY_SETTINGS_STATUS_ONLY_MAIN_LANGUAGES = 4;
+    _KEY_SETTINGS_STATUS_VK_APP = 5, _KEY_SETTINGS_STATUS_EVERYONE_BUT = 6;
+    var COOKIE_KEY = "remixinline_trans";
     exports.TR = {
         showTranslatorTranslations: showTranslatorTranslations,
         openKey: openKey,

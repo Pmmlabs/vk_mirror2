@@ -1141,6 +1141,16 @@ span#wk_posts_reach_tooltip_link {
     width: auto
 }
 
+.wk_apps_content.vkpay#wk_box {
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0
+}
+
+.wk_apps_content.vkpay#wk_box .apps_main {
+    background: transparent
+}
+
 .wk_ads_case #wk_content {
     width: 795px
 }

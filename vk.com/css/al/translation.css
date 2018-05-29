@@ -138,13 +138,23 @@ i i.untranslated {
     margin-top: 2px
 }
 
-.tr_key .tr_key_key_name .tr_key_has_screens {
+.tr_key .tr_key_key_name .tr_key_icon {
     float: left;
-    margin-left: 3px;
+    margin-left: 5px;
     width: 17px;
-    height: 16px;
+    height: 17px;
     background-size: 100% auto;
+    background-repeat: no-repeat
+}
+
+.tr_key .tr_key_key_name .tr_key_icon.has_screens {
     background-image: url(/images/svg_icons/photo.svg)
+}
+
+.tr_key .tr_key_key_name .tr_key_icon.has_status {
+    background-size: 15px auto;
+    background-position: 1px 1px;
+    background-image: url(/images/svg_icons/info.svg)
 }
 
 .tr_key .tr_key_section {

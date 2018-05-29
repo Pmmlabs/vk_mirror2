@@ -77,6 +77,12 @@
     }
 }
 
+@media (min-width: 620px) {
+    .installApp__label {
+        margin-left: 20px
+    }
+}
+
 .installApp__label b {
     font-weight: 500
 }

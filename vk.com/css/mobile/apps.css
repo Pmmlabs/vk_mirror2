@@ -8544,6 +8544,25 @@ input.wide_button {
     border-bottom: 0!important
 }
 
+.mki_body .button {
+    margin-right: 12px;
+    margin-left: 12px
+}
+
+@media (min-width: 400px) {
+    .mki_body .button {
+        margin-right: 16px;
+        margin-left: 16px
+    }
+}
+
+@media (max-width: 319px) {
+    .mki_body .button {
+        margin-right: 8px;
+        margin-left: 8px
+    }
+}
+
 .mki_title {
     margin: 3px 0
 }
@@ -8614,6 +8633,10 @@ input.wide_button {
     margin: 0 7px;
     padding: 7px 0;
     border-bottom: 1px solid #efefef
+}
+
+.market_app_tab_cart {
+    float: right
 }
 
 .bl_cont .market_row_item:last-child {

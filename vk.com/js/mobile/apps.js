@@ -590,12 +590,14 @@ var vkApp = function(cont, options, params, onInit) {
                 payToGroupAction = 'pay-to-group',
                 transferToUserAction = 'transfer-to-user',
                 transferToGroupAction = 'transfer-to-group',
+                openServiceAction = 'open-service',
                 validActions = [
                     payToUserAction,
                     payToServiceAction,
                     payToGroupAction,
                     transferToUserAction,
-                    transferToGroupAction
+                    transferToGroupAction,
+                    openServiceAction
                 ],
                 needUserIdActions = [
                     payToUserAction,
@@ -603,7 +605,7 @@ var vkApp = function(cont, options, params, onInit) {
                 ],
                 needGroupIdActions = [
                     payToGroupAction,
-                    transferToUserAction
+                    transferToGroupAction
                 ],
                 query = '',
                 req = [];
@@ -627,6 +629,14 @@ var vkApp = function(cont, options, params, onInit) {
             if (~needGroupIdActions.indexOf(params.action) && !params.group_id) {
                 self.runCallback('onExternalAppFail', {
                     error_msg: 'Missing required param group_id',
+                    error_code: 100
+                });
+                return;
+            }
+
+            if (params.action === openServiceAction && !self.params.is_vkpay) {
+                self.runCallback('onExternalAppFail', {
+                    error_msg: 'Invalid action',
                     error_code: 100
                 });
                 return;
@@ -1264,7 +1274,7 @@ vkApp.prototype.initNativeClientCallbackListener = function() {
 //---------------------------------
 
 vkApp.prototype.appRunCallback = function(eventData) {
-    this.runCallback(eventData.event, eventData.params);
+    this.runCallback(eventData.event, eventData.data);
 };
 
 /**
@@ -1299,6 +1309,10 @@ vkApp.prototype.VKWebAppShowWallPostBoxCancel = function(eventData) {
             error: eventData.data
         });
     }
+};
+
+vkApp.prototype.VKWebExternalAppClose = function() {
+    this.runCallback('onExternalAppClose');
 };
 
 vkApp.callNativeClientMethod = vkApp.prototype.callNativeClientMethod;

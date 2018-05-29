@@ -1021,6 +1021,11 @@ var Market = {
         updateView: function(e) {
             var t = se(e);
             ge(t.id) && domReplaceEl(ge(t.id), t)
+        },
+        openMarketAppPage: function(e) {
+            return showWiki({
+                w: e
+            })
         }
     },
     MarketCart = {
