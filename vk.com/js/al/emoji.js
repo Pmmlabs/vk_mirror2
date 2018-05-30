@@ -12,9 +12,8 @@ if (!window.Emoji) {
         stickerPacksToLoad: [],
         ttShift: 45,
         favoriteAvailable: false,
-        favoriteRemind: 0,
-        favoriteRemindOn: 0,
-        favoriteRemindOff: 0,
+        favoriteRemindOn: false,
+        favoriteRemindOff: false,
         stickerSize: '64',
         stickers: {},
 
@@ -31,6 +30,10 @@ if (!window.Emoji) {
         HIDE_TT_TIMEOUT: 300,
         SHOWN_TT_CLS: 'emoji_tt_shown',
 
+        DELETE_FAV_STICKER_ELEMENTS_DELAY: 500,
+
+        FAV_ICON_TT_MIN_HEIGHT: 35,
+
         tabDefaultId: 0,
 
         init: function(txt, opts) {
@@ -46,7 +49,8 @@ if (!window.Emoji) {
             txt.emojiId = optId;
             opts.lastLoadedEmojiCategoriesIdxes = {};
             opts.preventDoubleClick = vkNow();
-            opts.shouldDeleteFavs = [];
+            opts.deletedFavoriteStickers = [];
+            opts.deleteFavoriteStickersTimeout = null;
             if (opts.forceTxt) {
                 opts.editable = 0;
                 // placeholderSetup(txt);
@@ -1774,6 +1778,8 @@ if (!window.Emoji) {
                 if (opts.onHide) {
                     opts.onHide();
                 }
+
+                Emoji.favorite.deleteFavoriteStickerElements(optId);
             } else {
                 if (opts.needUpdateRecentStickers) {
                     Emoji.updateRecentStickers(optId);
@@ -1865,12 +1871,13 @@ if (!window.Emoji) {
             if (Emoji.hasNewStickers < 0) params.new_shown = 1;
             ajax.post('al_im.php', params, {
                 onDone: function(stickers, recent_emoji, hasAnimations, lang) {
+                    Emoji.buildStickersIndex(stickers);
+
                     if (stickers[Emoji.TAB_FAVORITE_STICKERS] !== undefined) {
                         Emoji.tabDefaultId = Emoji.TAB_FAVORITE_STICKERS;
                         Emoji.favoriteAvailable = true;
-                        Emoji.favoriteRemindOn = stickers[Emoji.TAB_FAVORITE_STICKERS].remind_on;
-                        Emoji.favoriteRemindOff = stickers[Emoji.TAB_FAVORITE_STICKERS].remind_off;
-                        Emoji.favoriteRemind = !(Emoji.favoriteRemindOn && Emoji.favoriteRemindOff);
+                        Emoji.favoriteRemindOn = !!stickers[Emoji.TAB_FAVORITE_STICKERS].remind_on;
+                        Emoji.favoriteRemindOff = !!stickers[Emoji.TAB_FAVORITE_STICKERS].remind_off;
                     }
                     if (lang) {
                         extend(cur.lang, lang);
@@ -1892,6 +1899,27 @@ if (!window.Emoji) {
                 opts.onRecentEmojiUpdate && opts.onRecentEmojiUpdate();
             }
         },
+
+        buildStickersIndex: function(stickers) {
+            var stickersById = {};
+            if (stickers) {
+                for (var packId in stickers) {
+                    if (stickers.hasOwnProperty(packId) && packId > 0 && stickers[packId].stickers) {
+                        var stickersByPackId = stickers[packId].stickers;
+                        var i = stickersByPackId.length;
+                        while (i--) {
+                            var sticker = stickersByPackId[i];
+                            stickersById[sticker[0]] = {
+                                sticker: sticker,
+                                packId: packId,
+                            }
+                        }
+                    }
+                }
+            }
+            Emoji.stickersById = stickersById;
+        },
+
         updateEmojiList: function(stickers, recent_emoji, optId, opts) {
             Emoji.stickers = stickers;
             opts.emojiMoreSt = 0;
@@ -2205,19 +2233,81 @@ if (!window.Emoji) {
                 opts.needLoadStickers.unshift([optId + '_' + Emoji.TAB_RECENT_STICKERS + '_' + stickers[i][0], top]);
             }
             recentWrap.appendChild(stickersFragment);
+            Emoji.updateStickersPos(optId);
+        },
+
+        findStickerIndex: function(pack, id) {
+            if (pack) {
+                var stickers = pack.stickers;
+                var i = stickers.length;
+                while (i--) {
+                    if (String(stickers[i][0]) === String(id)) {
+                        return i;
+                    }
+                }
+            }
+            return -1;
+        },
+
+        findSticker: function(pack, id) {
+            var index = Emoji.findStickerIndex(pack, id);
+            if (index !== -1) {
+                return pack.stickers[index];
+            }
+        },
+
+        findFavoriteStickerIndex: function(id) {
+            return Emoji.findStickerIndex(Emoji.stickers[Emoji.TAB_FAVORITE_STICKERS], id);
+        },
+
+        findFavoriteSticker: function(id) {
+            return Emoji.findSticker(Emoji.stickers[Emoji.TAB_FAVORITE_STICKERS], id);
+        },
+
+        findRecentStickerIndex: function(id) {
+            return Emoji.findStickerIndex(Emoji.stickers[Emoji.TAB_RECENT_STICKERS], id);
+        },
+
+        findRecentSticker: function(id) {
+            return Emoji.findSticker(Emoji.stickers[Emoji.TAB_RECENT_STICKERS], id);
+        },
+
+        findPackSticker: function(stickerId) {
+            if (Emoji.stickersById && Emoji.stickersById.hasOwnProperty(stickerId)) {
+                return Emoji.stickersById[stickerId].sticker;
+            }
+        },
+
+        isStickersLoaded: function() {
+            if (Emoji.stickers) {
+                for (var packId in Emoji.stickers) {
+                    if (Emoji.stickers.hasOwnProperty(packId) && packId !== String(Emoji.TAB_RECENT_STICKERS)) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         },
 
         tabs: {
-            favoriteTabContent: function(act, stNum) {
-                if (!stNum) {
-                    stNum = Emoji.TAB_FAVORITE_STICKERS;
+            favoriteTabContent: function(act, count) {
+                var tabId = Emoji.TAB_FAVORITE_STICKERS;
+                var className = 'emoji_tab emoji_tab_img_cont emoji_tab_favorite emoji_tab_' + tabId;
+                if (cur.stickersTab === tabId) {
+                    className += ' emoji_tab_sel';
                 }
-                var unshowClass = ' unshown';
-                if (Emoji.stickers[stNum] && Emoji.stickers[stNum].stickers.length) {
-                    unshowClass = '';
+
+                if (count === 0) {
+                    if (Emoji.isStickersLoaded()) {
+                        var stickers = Emoji.stickers[tabId];
+                        count = stickers ? stickers.stickers.length : 0;
+                    }
                 }
-                return '<a class="emoji_tab emoji_tab_img_cont emoji_tab_favorite emoji_tab_' +
-                    stNum + (cur.stickersTab == stNum ? ' emoji_tab_sel' : '') + unshowClass + '" onclick="' + act + '">' +
+                if (count === 0) {
+                    className += ' unshown';
+                }
+
+                return '<a class="' + className + '" onclick="' + act + '">' +
                     '<span class="emoji_tab_icon emoji_sprite emoji_tab_icon_favorite"></span>' +
                     '</a>';
             }
@@ -2225,133 +2315,173 @@ if (!window.Emoji) {
 
         favorite: {
             reminder: function(el) {
-                var on = 0;
-                var isOn = hasClass(el, 'on');
-                if (isOn) {
-                    on = Emoji.favoriteRemindOff;
-                } else {
-                    on = Emoji.favoriteRemindOn;
-                }
-                if (on) {
+                var isFav = hasClass(el, 'on');
+                var flag = isFav ? 'favoriteRemindOff' : 'favoriteRemindOn';
+                if (Emoji[flag]) {
                     return;
                 }
-                var elB = el.parentElement;
-                var lang = getLang('purchases_stickers_favorite_add_tt');
-                if (on) {
-                    lang = getLang('purchases_stickers_favorite_rm_tt');
-                }
+
                 var opts = {
-                    text: lang,
-                    shift: [-40, 8],
+                    text: function() {
+                        return getLang(isFav ? 'purchases_stickers_favorite_rm_tt' : 'purchases_stickers_favorite_add_tt');
+                    },
                     black: 1,
                     hidedt: 100,
                     typeClass: 'tt_black',
-                    checkLeft: false
+                    noZIndex: true,
+                    shift: [10, 8],
                 };
-                opts.needLeft = 0;
-                var pos = getXY(elB);
-                if (pos[0] <= 806) {
-                    opts.forceright = 1;
-                } else if (pos[0] > 900) {
-                    opts.shift = [-30, 8];
+
+                var overflowVisibleContainer = domClosest('ui_scroll_container', el);
+                opts.appendEl = overflowVisibleContainer;
+
+                var overflowHiddenContainer = domClosest('ui_scroll_overflow', el);
+
+                var elRect = getXYRect(el);
+                var containerRect = getXYRect(overflowHiddenContainer);
+                var elPos = {
+                    top: elRect.top - containerRect.top,
+                    right: containerRect.right - elRect.right,
+                    bottom: containerRect.bottom - elRect.bottom,
+                    left: elRect.left - containerRect.left,
+                };
+
+                var containerCenterX = (containerRect.width || (containerRect.right - containerRect.left)) / 2;
+                if ((!vk.rtl && elPos.left > containerCenterX) || (vk.rtl && elPos.left < containerCenterX)) {
+                    opts.needLeft = true;
+                    opts.shift[0] = 9;
                 }
-                if (pos[1] > 540) {
-                    return;
-                } else if (pos[1] < 340) {
-                    return;
-                }
-                if (pos[1] < 381) {
-                    opts.dir = 'up toleft';
-                    opts.forcetodown = true;
-                } else {
-                    opts.dir = 'down toleft';
-                }
-                var posTT = pos;
-                posTT[1] = elB.offsetTop + 351;
-                opts.forcexy = posTT;
-                Emoji.ttop = opts;
+
+                opts.forcetodown = elPos.top < Emoji.FAV_ICON_TT_MIN_HEIGHT;
+                opts.forcetoup = elPos.bottom < Emoji.FAV_ICON_TT_MIN_HEIGHT;
+
                 showTooltip(el, opts);
-                if (isOn) {
-                    Emoji.favoriteRemindOff = true;
-                } else {
-                    Emoji.favoriteRemindOn = true;
-                }
+
+                Emoji[flag] = true;
                 ajax.post('stickers.php', {
                     act: 'tt_favorite_off',
-                    'tt_type': isOn ? 1 : 2
+                    'tt_type': isFav ? 1 : 2
                 });
             },
-            addFavStickerId: function(optId, stickerId, baseEl) {
-                if (!Emoji.stickers[Emoji.TAB_FAVORITE_STICKERS]) {
+
+            addFavoriteSticker: function(optId, stickerId, el) {
+                var favorite = Emoji.stickers[Emoji.TAB_FAVORITE_STICKERS];
+                if (!favorite) {
                     return;
                 }
-                var packId = attr(baseEl.parentElement, 'data-pack-id');
-                var stickers = Emoji.stickers[packId].stickers;
-                var recentWrap = ge('emoji_favorite_stickers_cont' + optId);
-                if (!recentWrap) {
+
+                var sticker = Emoji.findPackSticker(stickerId);
+                if (!sticker) {
                     return;
                 }
-                for (var i = 0; i < stickers.length; i++) {
-                    if (stickers[i][0] == stickerId) {
-                        var stickerObject = stickers[i];
-                        stickerObject[4] = 1;
-                        Emoji.stickers[Emoji.TAB_FAVORITE_STICKERS].stickers.unshift(stickerObject);
-                        var stickerEl = Emoji.render.sticker(optId, Emoji.TAB_FAVORITE_STICKERS, stickerObject);
-                        recentWrap.appendChild(stickerEl);
+
+                sticker[4] = 1;
+                favorite.stickers.push(sticker);
+
+                var recentSticker = Emoji.findRecentSticker(stickerId);
+                if (recentSticker) {
+                    recentSticker[4] = 1;
+                }
+
+                var container = ge('emoji_favorite_stickers_cont' + optId);
+                if (container) {
+                    var containerHeight = Emoji.opts[optId].emojiScroll.data.scrollHeight;
+                    var scrollTop = Emoji.opts[optId].emojiScroll.data.scrollTop;
+
+                    var stickerEl = ge('emoji_sticker_item' + optId + '_' + Emoji.TAB_FAVORITE_STICKERS + '_' + stickerId);
+                    if (!stickerEl) {
+                        stickerEl = Emoji.render.sticker(optId, Emoji.TAB_FAVORITE_STICKERS, sticker);
                         Emoji.render.stickerContent(optId, stickerEl, false);
-                        break;
+                        container.appendChild(stickerEl);
+
+                        Emoji.opts[optId].emojiScroll.update();
+                        var heightDiff = Emoji.opts[optId].emojiScroll.data.scrollHeight - containerHeight;
+                        Emoji.opts[optId].emojiScroll.scrollTop(scrollTop + heightDiff);
+                        Emoji.updateStickersPos(optId);
                     }
                 }
-                var tabClass = geByClass1('emoji_tab_' + Emoji.TAB_FAVORITE_STICKERS);
-                if (hasClass(tabClass, 'unshown')) {
-                    removeClass(tabClass, 'unshown');
+
+                var tab = geByClass1('emoji_tab_' + Emoji.TAB_FAVORITE_STICKERS);
+                if (hasClass(tab, 'unshown')) {
+                    removeClass(tab, 'unshown');
                 }
-                Emoji.favorite.updateFavClass(optId, stickerId, 'on');
-                if (Emoji.opts[optId].shouldDeleteFavs.length > 0) {
-                    var positionInShouldDelete = indexOf(Emoji.opts[optId].shouldDeleteFavs, stickerId);
-                    if (positionInShouldDelete !== -1) {
-                        Emoji.opts[optId].shouldDeleteFavs.splice(positionInShouldDelete, 1);
+
+                Emoji.favorite.updateFavoriteStickerElements(optId, stickerId, true);
+
+                if (Emoji.opts[optId].deletedFavoriteStickers.length > 0) {
+                    var index = indexOf(Emoji.opts[optId].deletedFavoriteStickers, stickerId);
+                    if (index !== -1) {
+                        Emoji.opts[optId].deletedFavoriteStickers.splice(index, 1);
                     }
                 }
             },
 
-            deleteFavStickerId: function(optId, stickerId, el) {
-                if (!Emoji.stickers[Emoji.TAB_FAVORITE_STICKERS]) {
+            deleteFavoriteSticker: function(optId, stickerId, el) {
+                var favorite = Emoji.stickers[Emoji.TAB_FAVORITE_STICKERS];
+                if (!favorite) {
                     return;
                 }
-                var stickers = Emoji.stickers[Emoji.TAB_FAVORITE_STICKERS].stickers;
-                for (var i = 0; i < stickers.length; i++) {
-                    if (stickers[i][0] == stickerId) {
-                        Emoji.stickers[Emoji.TAB_FAVORITE_STICKERS].stickers.splice(i, 1);
-                        Emoji.opts[optId].shouldDeleteFavs.push(stickerId)
-                    }
+
+                var favoriteStickerIndex = Emoji.findFavoriteStickerIndex(stickerId);
+                if (favoriteStickerIndex === -1) {
+                    return;
                 }
-                if (Emoji.stickers[Emoji.TAB_FAVORITE_STICKERS].stickers.length === 0) {
+                favorite.stickers.splice(favoriteStickerIndex, 1);
+
+                Emoji.opts[optId].deletedFavoriteStickers.push(stickerId);
+
+                if (favorite.stickers.length === 0) {
                     addClass(geByClass1('emoji_tab_' + Emoji.TAB_FAVORITE_STICKERS), 'unshown');
-                    var packId = attr(el.parentElement, 'data-pack-id');
-                    if (packId === Emoji.TAB_FAVORITE_STICKERS) {
+                    var packId = domData(el.parentElement, 'pack-id');
+                    if (packId === String(Emoji.TAB_FAVORITE_STICKERS)) {
                         addClass(geByClass1('emoji_tab_' + Emoji.TAB_RECENT_STICKERS), 'emoji_tab_sel');
                     }
                 }
-                Emoji.favorite.updateFavClass(optId, stickerId, 'off');
+
+                Emoji.favorite.updateFavoriteStickerElements(optId, stickerId, false);
+
+                var recentSticker = Emoji.findRecentSticker(stickerId);
+                if (recentSticker) {
+                    recentSticker[4] = 0;
+                }
+
+                var packSticker = Emoji.findPackSticker(stickerId);
+                if (packSticker) {
+                    packSticker[4] = 0;
+                }
             },
-            deleteFavStickerContentId: function(optId, stickerId) {
+
+            deleteFavoriteStickerElement: function(optId, stickerId) {
                 re('emoji_sticker_item' + optId + '_' + Emoji.TAB_FAVORITE_STICKERS + '_' + stickerId);
             },
-            updateFavClass: function(optId, stickerId, status) {
-                var elements = geByClass('sticker_item_' + stickerId);
-                for (var i in elements) {
-                    var el = geByClass1('emoji_sticker_item_fav', elements[i]);
-                    if (status === 'on') {
-                        if (!hasClass(el, 'on')) {
-                            addClass(el, 'on');
-                        }
-                    } else if (status === 'off') {
-                        if (hasClass(el, 'on')) {
-                            removeClass(el, 'on');
-                        }
-                    }
+
+            deleteFavoriteStickerElements: function(optId, immediate) {
+                var opts = Emoji.opts[optId];
+                if (opts.deletedFavoriteStickers.length > 0) {
+                    opts.deletedFavoriteStickers.forEach(function(stickerId) {
+                        Emoji.favorite.deleteFavoriteStickerElement(optId, stickerId);
+                    });
+                    opts.deletedFavoriteStickers = [];
+                    Emoji.updateStickersPos(optId);
                 }
+            },
+
+            deleteFavoriteStickerElementsAsync: function(optId) {
+                var opts = Emoji.opts[optId];
+                if (!opts.deleteFavoriteStickersTimeout) {
+                    opts.deleteFavoriteStickersTimeout = setTimeout(function() {
+                        Emoji.favorite.deleteFavoriteStickerElements(optId);
+                        opts.deleteFavoriteStickersTimeout = null;
+                    }, Emoji.DELETE_FAV_STICKER_ELEMENTS_DELAY);
+                }
+            },
+
+            updateFavoriteStickerElements: function(optId, stickerId, on) {
+                geByClass('sticker_item_' + stickerId).forEach(function(element) {
+                    domData(element, 'fav', on ? '1' : null);
+                    toggleClass(element, 'faved', on);
+                    toggleClass(geByClass1('emoji_sticker_item_fav', element), 'on', on);
+                });
             }
         },
 
@@ -2648,7 +2778,7 @@ if (!window.Emoji) {
                 var item = needLoad[i];
                 if (item[1] + 72 >= startPos && item[1] <= endPos) {
                     var el = ge('emoji_sticker_item' + item[0]);
-                    if (!el) {
+                    if (!el || hasClass(el, '__loaded')) {
                         continue;
                     }
                     var src = Emoji.render.stickerContent(optId, el, true);
@@ -2676,15 +2806,9 @@ if (!window.Emoji) {
                     break;
                 }
             }
+
             if (packId != Emoji.TAB_FAVORITE_STICKERS) {
-                if (Emoji.opts[optId].shouldDeleteFavs.length > 0) {
-                    setTimeout(function() {
-                        for (var delId in opts.shouldDeleteFavs) {
-                            Emoji.favorite.deleteFavStickerContentId(optId, opts.shouldDeleteFavs[delId])
-                        }
-                        Emoji.opts[optId].shouldDeleteFavs = [];
-                    }, 500);
-                }
+                Emoji.favorite.deleteFavoriteStickerElementsAsync(optId);
             }
             if (opts.curTab != packId) {
                 Emoji.scrollToTab(packId, optId);
@@ -3166,6 +3290,13 @@ if (!window.Emoji) {
 
             clearTimeout(opts.preloadStickersTimer);
 
+            Emoji.updateStickersPos(optId);
+        },
+
+        updateStickersPos: function(optId) {
+            var opts = Emoji.opts[optId];
+            var cont = geByClass1('emoji_scroll_stickers', opts.tt);
+
             var posTree = [],
                 splitersPos = [];
             var el = cont.firstChild;
@@ -3199,10 +3330,10 @@ if (!window.Emoji) {
         },
 
         stickerItem: function() {
-            return '<a id="emoji_sticker_item%optId%_%selId%_%stickerId%" data-opt-id="%optId%" data-sticker-id="%stickerId%" data-pack-id="%selId%" data-src="%stickerUrl%" data-fav="%fav%" data-fav-hash="%favHash%"  class="emoji_sticker_item sticker_item_%stickerId%" onclick="Emoji.stickerClick(%optId%, %stickerId%, %size%, \'%stickerUrl%\', this, \'keyboard\');"></a>';
+            return '<a id="emoji_sticker_item%optId%_%selId%_%stickerId%" data-opt-id="%optId%" data-sticker-id="%stickerId%" data-pack-id="%selId%" data-src="%stickerUrl%" data-fav="%fav%" data-fav-hash="%favHash%"  class="emoji_sticker_item sticker_item_%stickerId% %favClass%" onclick="Emoji.stickerClick(%optId%, %stickerId%, %size%, \'%stickerUrl%\', this, \'keyboard\');"></a>';
         },
         stickerItemAnimation: function() {
-            return '<a id="emoji_sticker_item%optId%_%selId%_%stickerId%" data-opt-id="%optId%" data-uniq-id="%uniqId%" data-sticker-id="%stickerId%" data-pack-id="%selId%" data-src="%stickerUrl%" data-animation-path="%animationUrl%" data-fav="%fav%" data-fav-hash="%favHash%" class="emoji_sticker_item sticker_item_%stickerId%" onclick="Emoji.stickerClick(%optId%, %stickerId%, %size%,  \'%stickerUrl%\', this, \'keyboard\');"></a>';
+            return '<a id="emoji_sticker_item%optId%_%selId%_%stickerId%" data-opt-id="%optId%" data-uniq-id="%uniqId%" data-sticker-id="%stickerId%" data-pack-id="%selId%" data-src="%stickerUrl%" data-animation-path="%animationUrl%" data-fav="%fav%" data-fav-hash="%favHash%" class="emoji_sticker_item sticker_item_%stickerId% %favClass%" onclick="Emoji.stickerClick(%optId%, %stickerId%, %size%,  \'%stickerUrl%\', this, \'keyboard\');"></a>';
         },
         hintsStickerItemAnimation: function() {
             return '<a id="emoji_sticker_item%optId%_%selId%_%stickerId%" data-pack-id="%selId%" class="emoji_sticker_item %class%" onclick="%onclick%" onmouseover="Emoji.stickerHintOver(this)" onmouseout="Emoji.stickerHintOut(this)" onmouseenter="StickersAnimation.loadAndPlaySticker(this);" data-animation-path="%animationUrl%" data-uniq-id="%uniqId%" data-sticker-id="%stickerId%"><img class="emoji_sticker_image sticker_img" src="%stickerUrl%"  /></a>';
@@ -3222,14 +3353,17 @@ if (!window.Emoji) {
             }
 
             var emojiWrap = geByClass1('emoji_scroll_smiles', tt),
-                stickersWrap = geByClass1('emoji_scroll_stickers', tt);
+                stickersWrap = geByClass1('emoji_scroll_stickers', tt),
+                titleHelper = geByClass1('emoji_cats_title_helper', tt);
 
-            val(geByClass1('emoji_cats_title_helper', tt), '');
+            val(titleHelper, '');
             opts.curEmojiCatId = null;
 
             if (selId == Emoji.TAB_EMOJI) {
                 hide(stickersWrap);
                 show(emojiWrap);
+
+                show(titleHelper);
 
                 if (!opts.emojiInited) {
                     val(emojiWrap, Emoji.getInitEmojiContent(optId));
@@ -3251,12 +3385,17 @@ if (!window.Emoji) {
                 hide(emojiWrap);
                 show(stickersWrap);
 
+                hide(titleHelper);
+
                 var stickers = Emoji.stickers && clone(Emoji.stickers);
                 if (stickers) {
                     delete stickers[Emoji.TAB_RECENT_STICKERS];
                 }
-                if (!stickers || isEmpty(stickers) || !stickers[selId] && selId != Emoji.TAB_RECENT_STICKERS) {
-                    Emoji.onStickersLoad = Emoji.tabSwitch.pbind(selId, selId, optId, noScrollUpdate);
+                if (!window.emojiStickers || !stickers || isEmpty(stickers) || !stickers[selId] && selId != Emoji.TAB_RECENT_STICKERS) {
+                    Emoji.onStickersLoad = function() {
+                        Emoji.updateTabsOpt(optId);
+                        Emoji.tabSwitch(selId, selId, optId, noScrollUpdate);
+                    };
                     Emoji.stickersLoadingProgress(optId, selId, obj);
                     opts.stickersInited = false;
                     opts.curTab = null;
@@ -3365,7 +3504,7 @@ if (!window.Emoji) {
             return res;
         },
 
-        stickerClick: function(optId, stickerNum, width, stickerUrl, obj, sticker_referrer) {
+        stickerClick: function(optId, stickerId, width, stickerUrl, obj, sticker_referrer) {
             var opts = Emoji.opts[optId];
 
             if (vkNow() - opts.ttShowT < Emoji.CLICK_DELAY) {
@@ -3391,35 +3530,33 @@ if (!window.Emoji) {
             }
 
             if (addToRecent) {
-                if (!Emoji.stickers[-1]) {
-                    Emoji.stickers[-1] = {
+                var recentStickerIndex = Emoji.findRecentStickerIndex(stickerId);
+                if (recentStickerIndex !== -1) {
+                    Emoji.stickers[Emoji.TAB_RECENT_STICKERS].stickers.splice(recentStickerIndex, 1);
+                } else
+                if (!Emoji.stickers[Emoji.TAB_RECENT_STICKERS]) {
+                    Emoji.stickers[Emoji.TAB_RECENT_STICKERS] = {
                         stickers: []
                     };
                 }
-                for (var i in Emoji.stickers[-1].stickers) {
-                    if (Emoji.stickers[-1].stickers[i][0] == stickerNum) {
-                        Emoji.stickers[-1].stickers.splice(i, 1);
-                    }
-                }
-                var animationPath = attr(obj, 'data-animation-path');
-                if (!animationPath) {
-                    animationPath = '';
-                }
-                var dataFav = attr(obj, 'data-fav');
-                var dataFavHash = attr(obj, 'data-fav-hash');
-                Emoji.stickers[-1].stickers.unshift([stickerNum, width, stickerUrl, animationPath, dataFav, dataFavHash]);
-                ls.set('recent_stickers', Emoji.stickers[-1]);
 
+                var animationPath = domData(obj, 'animation-path') || '';
+                var dataFav = domData(obj, 'fav');
+                var dataFavHash = domData(obj, 'fav-hash');
+                Emoji.stickers[Emoji.TAB_RECENT_STICKERS].stickers.unshift([
+                    stickerId, width, stickerUrl, animationPath, dataFav, dataFavHash
+                ]);
+                ls.set('recent_stickers', Emoji.stickers[Emoji.TAB_RECENT_STICKERS]);
                 opts.needUpdateRecentStickers = true;
             }
             if (opts.onStickerSend) {
-                opts.onStickerSend(stickerNum, sticker_referrer, 'animation');
+                opts.onStickerSend(stickerId, sticker_referrer, 'animation');
             }
 
-            statlogsValueEvent('stickers_usage', opts.ref, stickerNum, sticker_referrer);
+            statlogsValueEvent('stickers_usage', opts.ref, stickerId, sticker_referrer);
 
             Emoji.ttHide(optId, false, false, true);
-            opts.recentSticker = stickerNum;
+            opts.recentSticker = stickerId;
         },
 
         stickerOver: function(stickerNum, el) {
@@ -3868,7 +4005,7 @@ if (!window.Emoji) {
                 if (stNum === Emoji.TAB_RECENT_STICKERS) {
                     systemTabsHtml += '<a class="emoji_tab emoji_tab_img_cont emoji_tab_recent emoji_tab_' + stNum + (cur.stickersTab == stNum ? ' emoji_tab_sel' : '') + '" onclick="' + act + '"><span class="emoji_tab_icon emoji_sprite emoji_tab_icon_recent"></span></a>';
                 } else if (stNum === Emoji.TAB_FAVORITE_STICKERS) {
-                    systemTabsHtml += Emoji.tabs.favoriteTabContent(act);
+                    systemTabsHtml += Emoji.tabs.favoriteTabContent(act, stickers[i][6]);
                 } else if (stNum) {
                     var tabHtml = '<a class="emoji_tab emoji_tab_img_cont emoji_tab_' + stNum + (cur.stickersTab == stNum ? ' emoji_tab_sel' : '') + (isActive || isForced ? '' : ' emoji_tab_promo') + '" onclick="' + act + '">' +
                         '<img width="22" height="22" src="' + packThumbUrl + '" class="emoji_tab_img"/>' +
@@ -3883,6 +4020,22 @@ if (!window.Emoji) {
                 }
             }
             return systemTabsHtml + stickersTabsHtml;
+        },
+
+        updateTabsOpt: function(optId, stickersInited) {
+            var opts = Emoji.opts[optId];
+            if (opts.noStickers) {
+                return;
+            }
+            var tabsCont = ge('emoji_tabs_cont_' + optId);
+            if (tabsCont) {
+                tabsCont.innerHTML = Emoji.getTabsCode(window.emojiStickers, optId);
+            }
+            Emoji.checkEmojiSlider(opts);
+            Emoji.checkNewStickers(opts);
+            if (typeof stickersInited !== undefined) {
+                opts.stickersInited = !!stickersInited;
+            }
         },
 
         updateTabs: function(newStickers, keywords, update) {
@@ -3917,20 +4070,8 @@ if (!window.Emoji) {
             } else {
                 window.emojiStickers = newStickers;
             }
-            for (var i in Emoji.opts) {
-                var opts = Emoji.opts[i];
-                if (opts.noStickers) {
-                    continue;
-                }
-                var html = '';
-                html += Emoji.getTabsCode(window.emojiStickers, i);
-                var tabsCont = ge('emoji_tabs_cont_' + i);
-                if (tabsCont) {
-                    tabsCont.innerHTML = html;
-                }
-                Emoji.checkEmojiSlider(opts);
-                Emoji.checkNewStickers(opts);
-                opts.stickersInited = false;
+            for (var optId in Emoji.opts) {
+                Emoji.updateTabsOpt(optId, false);
             }
 
             var stickers = Emoji.stickers && clone(Emoji.stickers);
@@ -4094,7 +4235,8 @@ if (!window.Emoji) {
                     stickerSize: Emoji.stickerSize,
                     stickerUrl: stickerMeta[2],
                     fav: stickerMeta[4] || '',
-                    favHash: stickerMeta[5] || ''
+                    favHash: stickerMeta[5] || '',
+                    favClass: stickerMeta[4] ? 'faved' : '',
                 };
                 var rsHtml = '';
                 if ((!browser.msie || browser.msie_edge) && stickerMeta[3]) {
@@ -4160,11 +4302,7 @@ if (!window.Emoji) {
                     if (fav == 1) {
                         favClass = ' on';
                     }
-                    var reminder = '';
-                    if (Emoji.favoriteRemind) {
-                        reminder = 'onmouseover="Emoji.favorite.reminder(this)"';
-                    }
-                    str = str + '<span role="link" ' + reminder + ' class="emoji_sticker_item_fav' + favClass + '" data-sticker-id="' + stickerId + '" data-hash="' + favHash + '" onclick="Stickers.toogleFavorite(this, event, ' + optId + ')"></span>';
+                    str = str + '<span role="link" onmouseover="Emoji.favorite.reminder(this)" class="emoji_sticker_item_fav' + favClass + '" data-sticker-id="' + stickerId + '" data-hash="' + favHash + '" onclick="Stickers.toogleFavorite(this, event, ' + optId + ')"></span>';
                 }
                 val(el, str);
                 return src;

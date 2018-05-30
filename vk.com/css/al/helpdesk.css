@@ -1590,6 +1590,20 @@ body.body_helpdesk_small_sb .left_menu_nav {
     margin-bottom: 7px
 }
 
+.helpdesk_switches_group {
+    border-bottom: 1px solid #b4bfcc;
+    padding-bottom: 10px
+}
+
+.helpdesk_switches_group:last-child {
+    border-bottom: 0 none
+}
+
+.helpdesk_switches_group_title {
+    padding: 15px 10px 5px;
+    font-size: 19px
+}
+
 .helpdesk_switches_list {
     background-color: #f7f7f7
 }
@@ -1619,17 +1633,13 @@ body.body_helpdesk_small_sb .left_menu_nav {
 }
 
 .helpdesk_switch__descr {
-    margin-top: 4px;
+    margin-top: 2px;
     color: #939393;
-    font-size: 12.5px
+    font-size: 12px
 }
 
 .helpdesk_switch_disable_btn {
     display: none
-}
-
-.helpdesk_switch_enabled {
-    border-color: #b4bfcc
 }
 
 .helpdesk_switch_enabled .helpdesk_switch__title {
@@ -1665,11 +1675,21 @@ body.body_helpdesk_small_sb .left_menu_nav {
     border-bottom: 0 none
 }
 
-.helpdesk_switches_log>b {
+.helpdesk_switches_log__msg {
+    float: left;
+    width: 610px
+}
+
+.helpdesk_switches_log__msg>b {
     font-weight: 600;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     color: #000
+}
+
+.helpdesk_switches_log__date {
+    float: right;
+    font-size: 12.5px
 }
 
 .helpdesk_autoanswer_other_langs {
