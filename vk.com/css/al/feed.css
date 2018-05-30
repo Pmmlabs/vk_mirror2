@@ -1158,6 +1158,26 @@
     background-position: -2px -2px
 }
 
+.feedback_app_row .feedback_photo_icon {
+    display: block;
+    background: #5c9ce6 url(/images/svg_icons/feedback/app.svg) no-repeat
+}
+
+.feedback_mail_mention_unify_row .feedback_photo_icon {
+    display: block;
+    background: #5c9ce6 url(/images/svg_icons/feedback/mention_16.svg) no-repeat
+}
+
+.feedback_event_unify_row .feedback_photo_icon {
+    display: block;
+    background: #e64646 url(/images/svg_icons/feedback/event_16.svg) no-repeat
+}
+
+.feedback_comment_unify_row .feedback_photo_icon {
+    display: block;
+    background: #4bb34b url(/images/svg_icons/feedback/comment_16.svg) no-repeat
+}
+
 .feedback_mention_row .feedback_photo_icon {
     display: block;
     background: #fff url(/images/svg_icons/feedback/mention.svg) no-repeat
@@ -1178,6 +1198,11 @@
     background: #e64646 url(/images/svg_icons/feedback/money.svg?1) no-repeat
 }
 
+.feedback_declined_row .feedback_photo_icon {
+    display: block;
+    background: #e64646 url(/images/svg_icons/feedback/declined.svg?1) no-repeat
+}
+
 .feedback_money_request_row .feedback_photo_icon {
     display: block;
     background: #74aded url(/images/svg_icons/feedback/money.svg?1) no-repeat
@@ -1186,6 +1211,11 @@
 .feedback_ads_ok_row .feedback_photo_icon {
     display: block;
     background: #63b9ba url(/images/svg_icons/feedback/approved.svg) no-repeat
+}
+
+.feedback_approved_row .feedback_photo_icon {
+    display: block;
+    background: #4bb34b url(/images/svg_icons/feedback/approved.svg) no-repeat
 }
 
 .feedback_ads_fail_row .feedback_photo_icon {
@@ -2772,4 +2802,23 @@ div.feed_recom {
     position: absolute;
     right: 0;
     top: 5px
+}
+
+.feedback_attachments {
+    margin-top: 5px
+}
+
+.feedback_attachments .notification__media {
+    margin-right: 8px;
+    width: 34px;
+    height: 34px;
+    background-size: cover;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    border-radius: 3px
+}
+
+.feedback_attachments .notification__media.circle {
+    border-radius: 50%
 }

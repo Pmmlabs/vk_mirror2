@@ -330,9 +330,9 @@ var Feed = {
                 m && !isVisible(m.parentNode) && (H = wall.updatePostImages(H)), val(E, H), L && (L = geByClass1("wall_post_more", E), L && L.onclick()), ge("post_poll_id" + r) && wall.updatePoll(r), B && (c += E.offsetHeight), nodeUpdated(E), window.Wall && Wall.updatePostAuthorData(r);
                 break;
             case "edit_reply":
-                var M = e[3],
-                    E = ge("wpt" + M);
-                if (!isVisible("post" + M) || !E) break;
+                var N = e[3],
+                    E = ge("wpt" + N);
+                if (!isVisible("post" + N) || !E) break;
                 var L = geByClass1("wall_reply_more", E);
                 L && (L = isVisible(domNS(L)));
                 var H = psr(e[4]);
@@ -340,9 +340,9 @@ var Feed = {
                 break;
             case "post_parsed_link":
                 if (!i) break;
-                var N = geByClass1("wall_postlink_preview_btn_disabled", i);
-                if (!N) break;
-                intval(e[3]) ? removeClass(N, "wall_postlink_preview_btn_disabled") : re(N);
+                var M = geByClass1("wall_postlink_preview_btn_disabled", i);
+                if (!M) break;
+                intval(e[3]) ? removeClass(M, "wall_postlink_preview_btn_disabled") : re(M);
                 break;
             case "del_post":
                 if (i) {
@@ -615,7 +615,7 @@ var Feed = {
             var query = options.q;
             query.length > 30 && (query = trim(query.substr(0, 30)) + "...")
         }
-        options.last_view && (cur.options.last_view = options.last_view), feed.searchUpdate(), "comments" != cur.section || cur.reposts || toggle("comments_filters", !cur.reposts), isString(cur.all_shown_text) && val("all_shown", cur.all_shown_text), isString(cur.show_more_text) && val("show_more_link", cur.show_more_text), cur.empty_text && val("feed_empty", cur.empty_text), cur.count >= 0 && re("feed_error_wrap");
+        options.last_view && (cur.options.last_view = options.last_view), void 0 !== options.feedback_list && (cur.options.feedback_list = options.feedback_list), feed.searchUpdate(), "comments" != cur.section || cur.reposts || toggle("comments_filters", !cur.reposts), isString(cur.all_shown_text) && val("all_shown", cur.all_shown_text), isString(cur.show_more_text) && val("show_more_link", cur.show_more_text), cur.empty_text && val("feed_empty", cur.empty_text), cur.count >= 0 && re("feed_error_wrap");
         var hasNews = geByClass1("feed_row", cur.rowsCont, "div") || !1,
             isEmpty = !hasNews,
             nextRows = ge("feed_rows_next");
@@ -654,7 +654,7 @@ var Feed = {
                     part: 1,
                     more: 1,
                     last_view: ge("feedback_unread_bar") ? 1 : cur.options.last_view
-                });
+                }), cur.options.feedback_list && (i.list = cur.options.feedback_list);
                 var n = cur.section;
                 ajax.post("al_feed.php?sm_" + cur.section, i, {
                     onDone: function(e, t) {
@@ -912,8 +912,7 @@ var Feed = {
                 feed.notifyHideReply(e);
                 var o = geByClass1("_post_content", n),
                     s = geByClass1("_feedback_deleted", n);
-                s ? (s.innerHTML = '<span class="dld_inner">' + t + "</span>",
-                    show(s)) : n.appendChild(ce("div", {
+                s ? (s.innerHTML = '<span class="dld_inner">' + t + "</span>", show(s)) : n.appendChild(ce("div", {
                     className: "feedback_row dld _feedback_deleted",
                     innerHTML: '<span class="dld_inner">' + t + "</span>"
                 })), hide(o, geByClass1("_answer_wrap", n)), hasClass(n, "feedback_row_clickable") && addClass(n, "feedback_row_touched")
@@ -945,6 +944,32 @@ var Feed = {
             },
             hideProgress: function() {
                 s && "button" === s.tagName.toLowerCase() ? unlockButton(s) : r.parentNode.replaceChild(s, r)
+            }
+        })
+    },
+    unifiedRestoreRow: function(e, t, o) {
+        var s = ce("span", {
+            className: "progress_inline"
+        });
+        ajax.post("al_feed.php", {
+            act: "a_feedback_unified_restore",
+            query: e,
+            hash: t,
+            from: "top_notifier"
+        }, {
+            onDone: function(e) {
+                var t = gpeByClass("_feedback_deleted", o);
+                if (t) {
+                    var s = gpeByClass("_feed_row", t),
+                        r = geByClass1("_post_wrap", s);
+                    c = geByClass1("_post_content", r), show(c, geByClass1("_answer_wrap", s)), hide(t), removeClass(s, "feedback_row_touched")
+                }
+            },
+            showProgress: function() {
+                o && "button" === o.tagName.toLowerCase() ? lockButton(o) : o.parentNode.replaceChild(s, o)
+            },
+            hideProgress: function() {
+                o && "button" === o.tagName.toLowerCase() ? unlockButton(o) : s.parentNode.replaceChild(o, s)
             }
         })
     },
