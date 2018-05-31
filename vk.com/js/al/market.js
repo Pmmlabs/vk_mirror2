@@ -1016,7 +1016,7 @@ var Market = {
                         cur.marketCancelConfirm.hide(), showDoneBox(e), Market.updateView(t)
                     }
                 })
-            }, getLang("global_cancel"))
+            }, getLang("global_no"))
         },
         updateView: function(e) {
             var t = se(e);

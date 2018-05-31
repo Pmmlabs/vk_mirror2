@@ -15387,11 +15387,11 @@ a.Pad__corner {
 }
 
 .appGameHeader {
+    position: relative;
     text-align: center;
     background: #5181b8;
-    border-bottom: 1px solid #ebebeb;
-    padding: 12px 4%;
-    line-height: 31px
+    box-shadow: 0 0 12px rgba(0, 0, 0, .12);
+    padding: 12px 0
 }
 
 .appGameHeader__cancel {
@@ -15406,7 +15406,6 @@ a.Pad__corner {
 }
 
 .appGameHeader_logo {
-    margin: 0 24px 4px 0;
     display: inline-block;
     width: 32px;
     height: 19px
@@ -15417,13 +15416,15 @@ a.Pad__corner {
 }
 
 .appGameHeader_user {
-    float: right
+    position: absolute;
+    right: 6px;
+    top: 6px
 }
 
 .appGameHeader_user img {
-    width: 35px;
-    height: 35px;
-    border-radius: 35px
+    width: 32px;
+    height: 32px;
+    border-radius: 50%
 }
 
 .adultConfirm {
@@ -22976,6 +22977,119 @@ a.feedBlocks__article:hover {
     .vk__page_login .fit_box.new_form .social_button:first-child {
         margin-left: 0
     }
+}
+
+body.apps_settingsPageBody {
+    background: #fff;
+    padding: 0
+}
+
+.apps_gameSettingsPage {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    text-align: center;
+    padding: 48px 24px;
+    font-size: 14px;
+    line-height: 1.43;
+    color: #71757a
+}
+
+@media (min-width: 480px) {
+    .apps_gameSettingsPage {
+        padding-top: 24px
+    }
+}
+
+@media (min-width: 480px) {
+    .apps_gameSettingsPage__avaWrapper {
+        float: left;
+        width: 72px;
+        -webkit-flex-shrink: 0;
+        -ms-flex-negative: 0;
+        flex-shrink: 0
+    }
+}
+
+.apps_gameSettingsPage__ava {
+    width: 72px;
+    height: 72px;
+    border-radius: 14px;
+    display: block;
+    margin: 0 auto
+}
+
+.apps_gameSettingsPage__info {
+    margin-top: 24px
+}
+
+@media (min-width: 480px) {
+    .apps_gameSettingsPage__info {
+        float: left;
+        width: 65%;
+        margin-top: 0;
+        margin-left: 24px;
+        -webkit-flex-basis: 100%;
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%
+    }
+}
+
+.apps_gameSettingsPage__name {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 8px
+}
+
+.apps_gameSettingsPage__buttons {
+    margin-top: 28px
+}
+
+.apps_gameSettingsPage__btn {
+    padding: 10px 32px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    margin-bottom: 16px
+}
+
+._ios .apps_gameSettingsPage__btn {
+    border-radius: 10px;
+    font-size: 17px
+}
+
+@media (min-width: 480px) {
+    .apps_gameSettingsPage__btn {
+        display: inline-block;
+        margin-right: 12px
+    }
+}
+
+.apps_gameSettingsPage__btn_allow {
+    background-color: #5181b8
+}
+
+.apps_gameSettingsPage__btn_cancel {
+    color: #5181b8;
+    background-color: #ecf0f4
+}
+
+@media (min-width: 480px) {
+    .apps_gameSettingsPage {
+        text-align: left;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row
+    }
+}
+
+.apps_gameSettingsPage__controls {
+    display: none
 }
 
 

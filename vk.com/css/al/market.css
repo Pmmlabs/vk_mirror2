@@ -1060,7 +1060,6 @@
     margin-left: -7px
 }
 
-.market_goto_cart,
 .market_like,
 .market_share {
     float: left;
@@ -1073,9 +1072,23 @@
     border-radius: 2px
 }
 
-.market_goto_cart:hover,
 .market_like:hover,
 .market_share:hover {
+    background-color: #e7ebf0
+}
+
+.market_goto_cart {
+    float: left;
+    cursor: pointer;
+    color: #2a5885;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-left: 11px;
+    padding: 4px 7px 5px;
+    border-radius: 2px
+}
+
+.market_goto_cart:hover {
     background-color: #e7ebf0
 }
 
@@ -2798,10 +2811,6 @@
     padding-right: 10px
 }
 
-.market_balance_send {
-    margin-top: 10px
-}
-
 .market_tr_row {
     border-bottom: 1px solid #e7e8ec;
     padding: 15px 10px;
@@ -2924,7 +2933,7 @@
 .market_order_row_date {
     float: left;
     color: #939393;
-    width: 150px
+    width: 170px
 }
 
 .market_order_row_sum {
@@ -2941,7 +2950,7 @@
 
 .market_order_row_note {
     float: left;
-    width: 315px
+    width: 295px
 }
 
 .market_order_view_text {
