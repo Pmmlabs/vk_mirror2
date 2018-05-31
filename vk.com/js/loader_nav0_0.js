@@ -269,7 +269,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 692830727,
+    'feed.js': 3596950987,
     'feed.css': 23069870003,
     'privacy.js': 835833828,
     'privacy.css': 17840113762,
@@ -619,4 +619,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 8385;
+var _rnd = 2929;

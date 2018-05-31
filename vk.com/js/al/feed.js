@@ -662,7 +662,7 @@ var Feed = {
                             if (s) return void(cur.disableAutoMore = !0);
                             if (t) {
                                 var o, i = ce("div");
-                                for (i.innerHTML = t; o = i.firstChild;) o.firstChild && o.firstChild.id && !ge(o.firstChild.id) || "feedback_unread_bar" == o.id || "feed_row_fb_hidden" == o.className || hasClass(o, "feed_to_recomm") ? (cur.rowsCont.appendChild(o), Wall.onPostLoaded(o, !0)) : i.removeChild(o)
+                                for (i.innerHTML = t; o = i.firstChild;) o.firstChild && o.firstChild.id && !ge(o.firstChild.id) || "feedback_unread_bar" == o.id || hasClass(o, "feed_row_fb_hidden") || hasClass(o, "feed_to_recomm") ? (cur.rowsCont.appendChild(o), Wall.onPostLoaded(o, !0)) : i.removeChild(o)
                             }
                             shortCurrency(), feed.applyOptions(e), setTimeout(feed.scrollCheck, 200)
                         }
