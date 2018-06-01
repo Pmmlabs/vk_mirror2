@@ -1924,8 +1924,7 @@
                 i = r[0],
                 a = r[1],
                 o = r[2];
-            r[3], r[4];
-            t.allShown = t.allShown || o, t.history = d(t.history) + i, t.historyToAppend = i;
+            r[3], r[4], t.allShown = t.allShown || o, t.history = d(t.history) + i, t.historyToAppend = i;
             var s = Object.keys(a).length;
             return t.skipped -= s, t.offset += s, t.msgs = extend(t.msgs, a), e
         })
@@ -2503,8 +2502,7 @@
             });
             return ct(i, !0, n), t.then(function(t) {
                 var i = Xt(t, 2);
-                i[0], i[1];
-                return delete n.blockedFlagUpdates[e], r.msgs = null, r.history = null, r.unread = 0, r.lastmsg = !1, r.lastmsg_meta = null, n
+                return i[0], i[1], delete n.blockedFlagUpdates[e], r.msgs = null, r.history = null, r.unread = 0, r.lastmsg = !1, r.lastmsg_meta = null, n
             })
         }
     }
@@ -3528,8 +3526,7 @@
                 cancelled_shares: t.cancelled_shares
             }, Jt).then(function(e) {
                 var t = Xt(e, 1);
-                t[0];
-                return n
+                return t[0], n
             })
         }),
         dn = ce(function(e) {
@@ -19729,7 +19726,7 @@
                         n = t[0],
                         r = t[1],
                         i = t[2];
-                    if (!a.loading) return a.props.virtualized || a.props.hasMore ? void(r - n - i <= a.props.threshold && (a.loading = !0, a.props.loadMore().then(function() {
+                    return a.loading ? void 0 : a.props.virtualized || a.props.hasMore ? void(r - n - i <= a.props.threshold && (a.loading = !0, a.props.loadMore().then(function() {
                         a.loading = !1
                     }))) : a.detachListeners()
                 }, 34), a.onScroll = function(e) {
@@ -20857,61 +20854,60 @@
         }) : e[t] = n, e
     }
     n.r(t), n.d(t, "OUR_DOMAINS", function() {
-            return C
-        }), n.d(t, "ENTITIES", function() {
-            return k
-        }), n.d(t, "VK_DOMAIN", function() {
-            return E
-        }), n.d(t, "MENTION", function() {
-            return S
-        }), n.d(t, "MENTION_RAW", function() {
-            return j
-        }), n.d(t, "ARROW_UP", function() {
-            return T
-        }), n.d(t, "ARROW_DOWN", function() {
-            return I
-        }), n.d(t, "PAGE_UP", function() {
-            return M
-        }), n.d(t, "PAGE_DOWN", function() {
-            return P
-        }), n.d(t, "END_KEY", function() {
-            return x
-        }), n.d(t, "HOME", function() {
-            return L
-        }), n.d(t, "ENTER", function() {
-            return A
-        }), n.d(t, "ESC", function() {
-            return N
-        }), n.d(t, "UNPRINTABLE_KEYS", function() {
-            return D
-        }), n.d(t, "UP_DOWN_CONTROLS", function() {
-            return R
-        }), n.d(t, "PRINTABLE", function() {
-            return F
-        }), n.d(t, "FOLDER_UNREAD", function() {
-            return B
-        }), n.d(t, "FOLDER_ALL", function() {
-            return H
-        }), n.d(t, "FOLDER_UNRESPOND", function() {
-            return U
-        }), n.d(t, "FOLDER_IMPORTANT", function() {
-            return z
-        }),
-        n.d(t, "FOLDERS", function() {
-            return G
-        }), n.d(t, "FOLDER_MASKS", function() {
-            return V
-        }), n.d(t, "TOP_DOMAINS", function() {
-            return W
-        }), n.d(t, "MAX_DOMAIN_LENGTH", function() {
-            return q
-        }), n.d(t, "EMAIL", function() {
-            return K
-        }), n.d(t, "MESSAGE_REGEXP", function() {
-            return Q
-        }), n.d(t, "RE_HASHTAG_EXTRACTION_PATTERN", function() {
-            return ne
-        });
+        return C
+    }), n.d(t, "ENTITIES", function() {
+        return k
+    }), n.d(t, "VK_DOMAIN", function() {
+        return E
+    }), n.d(t, "MENTION", function() {
+        return S
+    }), n.d(t, "MENTION_RAW", function() {
+        return j
+    }), n.d(t, "ARROW_UP", function() {
+        return T
+    }), n.d(t, "ARROW_DOWN", function() {
+        return I
+    }), n.d(t, "PAGE_UP", function() {
+        return M
+    }), n.d(t, "PAGE_DOWN", function() {
+        return P
+    }), n.d(t, "END_KEY", function() {
+        return x
+    }), n.d(t, "HOME", function() {
+        return L
+    }), n.d(t, "ENTER", function() {
+        return A
+    }), n.d(t, "ESC", function() {
+        return N
+    }), n.d(t, "UNPRINTABLE_KEYS", function() {
+        return D
+    }), n.d(t, "UP_DOWN_CONTROLS", function() {
+        return R
+    }), n.d(t, "PRINTABLE", function() {
+        return F
+    }), n.d(t, "FOLDER_UNREAD", function() {
+        return B
+    }), n.d(t, "FOLDER_ALL", function() {
+        return H
+    }), n.d(t, "FOLDER_UNRESPOND", function() {
+        return U
+    }), n.d(t, "FOLDER_IMPORTANT", function() {
+        return z;
+    }), n.d(t, "FOLDERS", function() {
+        return G
+    }), n.d(t, "FOLDER_MASKS", function() {
+        return V
+    }), n.d(t, "TOP_DOMAINS", function() {
+        return W
+    }), n.d(t, "MAX_DOMAIN_LENGTH", function() {
+        return q
+    }), n.d(t, "EMAIL", function() {
+        return K
+    }), n.d(t, "MESSAGE_REGEXP", function() {
+        return Q
+    }), n.d(t, "RE_HASHTAG_EXTRACTION_PATTERN", function() {
+        return ne
+    });
     var i, a = "\\w\\$А-Яа-яёЁєЄҐґЇїІіЈј",
         o = "(https?:\\/\\/)?",
         s = "((?:[" + a + "\\—\\-\\_]+\\.){1,5})",
@@ -25234,14 +25230,12 @@
         if (t && "border-box" === ce(e, "boxSizing") && (t = !1), e == document) a = [Math.max(o.clientWidth, bodyNode.scrollWidth, o.scrollWidth, bodyNode.offsetWidth, o.offsetWidth), Math.max(o.clientHeight, bodyNode.scrollHeight, o.scrollHeight, bodyNode.offsetHeight, o.offsetHeight)];
         else if (e) {
             var s = function() {
-                if (a = K(e) && (i = Q(e, n)) && void 0 !== i.width ? [i.width, i.height] : [e.offsetWidth, e.offsetHeight], t) {
-                    each(a, function(t, n) {
-                        var r = t ? ["Top", "Bottom"] : ["Left", "Right"];
-                        each(r, function() {
-                            a[t] -= parseFloat(ce(e, "padding" + this)) || 0, a[t] -= parseFloat(ce(e, "border" + this + "Width")) || 0
-                        })
+                a = K(e) && (i = Q(e, n)) && void 0 !== i.width ? [i.width, i.height] : [e.offsetWidth, e.offsetHeight], t && each(a, function(t, n) {
+                    var r = t ? ["Top", "Bottom"] : ["Left", "Right"];
+                    each(r, function() {
+                        a[t] -= parseFloat(ce(e, "padding" + this)) || 0, a[t] -= parseFloat(ce(e, "border" + this + "Width")) || 0
                     })
-                }
+                })
             };
             if (G(e)) s();
             else {
@@ -25989,7 +25983,7 @@
                 n = function(e) {
                     t();
                     var n = e.dataTransfer.files;
-                    if (n.length && Upload.checkFilesSizes(window.videoInlineUploader, e.dataTransfer.files)) return window.Upload && Upload.checked && Upload.checked[window.videoInlineUploader] && Upload.onFileApiSend(window.videoInlineUploader, e.dataTransfer.files), cancelEvent(e)
+                    return n.length && Upload.checkFilesSizes(window.videoInlineUploader, e.dataTransfer.files) ? (window.Upload && Upload.checked && Upload.checked[window.videoInlineUploader] && Upload.onFileApiSend(window.videoInlineUploader, e.dataTransfer.files), cancelEvent(e)) : void 0
                 },
                 r = function() {
                     addEvent(boxLayerWrap, "dragenter dragover", e), addEvent(boxLayerWrap, "dragleave", t), addEvent(boxLayerWrap, "drop", n)

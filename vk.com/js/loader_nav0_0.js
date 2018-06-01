@@ -337,10 +337,10 @@ var stVersions = {
     'docs.css': 26643087075,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 19468906789,
-    'helpdesk.js': 1167281994,
-    'helpdesk.css': 22613300113,
+    'helpdesk.js': 1013112447,
+    'helpdesk.css': 20692092257,
     'tickets.js': 2918658001,
-    'tickets.css': 25935554916,
+    'tickets.css': 26949268715,
     'faq.css': 24655225615,
     'talmud.js': 1641838680,
     'agents.js': 2426697933,
@@ -428,7 +428,7 @@ var stVersions = {
     'contests.css': 2752582154,
     'ui.css': 18383601785,
     'ui.js': 3953380422,
-    'ui_common.js': 2830856243,
+    'ui_common.js': 1617946438,
     'ui_common.css': 18592946540,
     'ui_media_selector.js': 1154359531,
     'ui_media_selector.css': 22721976276,
@@ -450,7 +450,7 @@ var stVersions = {
     'landings/vk10_years.css': 18699036179,
     'market.css': 27887569576,
     'market.js': 2110360326,
-    'market_adm.css': 19950052347,
+    'market_adm.css': 19866081694,
     'market_adm.js': 2677502581,
     'stories_admin.css': 20762347255,
     'stories_admin.js': 1129028316,
@@ -549,6 +549,7 @@ var stVersions = {
     'time_spent.js': 732637085,
     'cmodules/web/app_info.js': 2375115030,
     'cmodules/web/grip.js': 4164501492,
+    'cmodules/web/reports.js': 21346976370,
     'cmodules/web/raven_logger.js': 2731499643,
     'lang': 6887
 };
@@ -619,4 +620,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 3672;
+var _rnd = 7675;

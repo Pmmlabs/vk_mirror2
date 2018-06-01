@@ -4,11 +4,13 @@
 
 .helpdesk_bookmark_note_icon,
 .helpdesk_bookmark_note_icon_edit,
+.helpdesk_favorites_groups_tab__edit,
+.helpdesk_m_table_status,
+.helpdesk_m_table_status.status_opened,
 .helpdesk_marked_user_row_processing .helpdesk_marked_user_row_marks,
 .helpdesk_mobile_ticket,
 .helpdesk_settings_button,
-.helpdesk_user_marks.helpdesk_user_marks_processing,
-.tickets_favorites_groups_tab__edit {
+.helpdesk_user_marks.helpdesk_user_marks_processing {
     -ms-high-contrast-adjust: none
 }
 
@@ -580,14 +582,14 @@ body.body_helpdesk_small_sb .left_menu_nav {
     color: #000
 }
 
-.tickets_favorites_groups {
+.helpdesk_favorites_groups {
     margin-bottom: 8px;
     color: #2a5885;
     font-size: 13px;
-    line-height: 19.5px
+    line-height: 26px
 }
 
-.tickets_favorites_groups_tab__edit {
+.helpdesk_favorites_groups_tab__edit {
     background-image: url(/images/icons/photo_edit_actions.png);
     background-position: left 82px;
     -o-transition: all 200ms ease-in-out;
@@ -603,20 +605,20 @@ body.body_helpdesk_small_sb .left_menu_nav {
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
-    .tickets_favorites_groups_tab__edit {
+    .helpdesk_favorites_groups_tab__edit {
         background-image: url(/images/icons/photo_edit_actions_2x.png);
         background-size: 16px 148px
     }
 }
 
-.tickets_favorites_groups_tab__edit:hover {
+.helpdesk_favorites_groups_tab__edit:hover {
     text-decoration: underline;
     opacity: 1
 }
 
-.tickets_favorites_groups_tab_sel .tickets_favorites_groups_tab__edit {
+.tickets_favorites_groups_tab_sel .helpdesk_favorites_groups_tab__edit {
     margin-left: 8px;
-    width: 13px
+    width: 14px
 }
 
 .tickets_favorites_groups_tab_title {
@@ -675,13 +677,27 @@ body.body_helpdesk_small_sb .left_menu_nav {
     color: #fff
 }
 
-.tickets_favorites_groups_list {
+.helpdesk_favorites_groups_list {
     display: inline-block
 }
 
 .tickets_favorites_editor__text {
     box-sizing: border-box;
     width: 100%
+}
+
+.helpdesk_bookmarks_timer {
+    padding: 5px 15px 5px 35px;
+    line-height: 1.154;
+    width: 150px
+}
+
+.helpdesk_bookmarks_timer .datepicker_container {
+    margin-bottom: 5px
+}
+
+.helpdesk_bookmarks_timer .timepicker_dots {
+    width: 2px
 }
 
 .helpdesk_edit_user_marks {
@@ -1193,7 +1209,7 @@ body.body_helpdesk_small_sb .left_menu_nav {
 }
 
 .helpdesk_m_table .helpdesk_m_table_short_title {
-    width: 400px
+    width: 500px
 }
 
 .helpdesk_m_table .helpdesk_not_found {
@@ -1237,6 +1253,37 @@ body.body_helpdesk_small_sb .left_menu_nav {
 
 .helpdesk_m_table .helpdesk_bookmark_note {
     position: relative
+}
+
+.helpdesk_m_table_status {
+    width: 15px;
+    height: 15px;
+    background: url(/images/support/ok_24.png) no-repeat 0 0;
+    background-size: 15px 15px!important;
+    content: ""
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .helpdesk_m_table_status {
+        background-image: url(/images/support/ok_24_2x.png);
+        background-size: 24px 24px
+    }
+}
+
+.helpdesk_m_table_status.status_opened {
+    background: url(/images/support/clock_24.png) no-repeat 0 0;
+    background-size: 15px 15px!important
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .helpdesk_m_table_status.status_opened {
+        background-image: url(/images/support/clock_24_2x.png);
+        background-size: 24px 24px
+    }
 }
 
 .helpdesk_bookmark_note_icon,
@@ -1348,9 +1395,10 @@ body.body_helpdesk_small_sb .left_menu_nav {
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    width: 75px;
+    font-size: 11px;
+    width: 65px;
     padding-right: 0;
-    color: #42648b
+    color: #656565
 }
 
 .helpdesk_m_table_row__normal .helpdesk_m_table .id {
@@ -1378,6 +1426,20 @@ body.body_helpdesk_small_sb .left_menu_nav {
     font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto
+}
+
+.helpdesk_m_table__until {
+    float: right;
+    padding: 8px;
+    color: #656565
+}
+
+.helpdesk_m_table__until.helpdesk_m_table__until_late {
+    color: #b00
+}
+
+.helpdesk_m_table__until.helpdesk_m_table__until_actual {
+    color: #1a1
 }
 
 .helpdesk_m_table .even,

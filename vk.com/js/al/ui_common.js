@@ -204,10 +204,15 @@ var uiTabs = {
         },
         hide: function(t, e) {
             cur.uiActionsMenuShowTimeout && (clearTimeout(cur.uiActionsMenuShowTimeout), delete cur.uiActionsMenuShowTimeout);
-            var i = data(t, "hidetimer");
-            i || data(t, "hidetimer", setTimeout(function() {
+            var i = data(t, "hidedelay");
+            i ? data(t, "hidedelay", !1) : i = 200;
+            var s = data(t, "hidetimer");
+            s || data(t, "hidetimer", setTimeout(function() {
                 uiActionsMenu.toggle(t, !1), data(t, "hidetimer", 0)
-            }, 200))
+            }, i))
+        },
+        hideDelay: function(t, e) {
+            data(t, "hidedelay", e)
         }
     },
     uiRightMenu = {
@@ -834,8 +839,8 @@ var uiTabs = {
             var l = "onwheel" in this.el.outer ? "wheel" : void 0 !== document.onmousewheel ? "mousewheel" : browser.mozilla ? "MozMousePixelScroll" : "DOMMouseScroll";
             return this.addEvent(this.el.container, l, function(t) {
                     this.animation && this.animation.stop(), !this.disabled && this.options.stopScrollPropagation && (this.unnecessary ? this.options.stopScrollPropagationAlways && cancelEvent(t) : this.isScrollEventUnused(t) ? cancelEvent(t) : stopEvent(t))
-                }.bind(this), !this.options.stopScrollPropagation), this.options["native"] || this.addEvent(this.el.barContainer, "mousedown", this.dragstart.bind(this)),
-                each(this.options.scrollElements, function(t, e) {
+                }.bind(this), !this.options.stopScrollPropagation),
+                this.options["native"] || this.addEvent(this.el.barContainer, "mousedown", this.dragstart.bind(this)), each(this.options.scrollElements, function(t, e) {
                     this.addEvent(e, l, function(t) {
                         this.disabled || this.unnecessary || (this.scrollBy(this.scrollEventDelta(t)), (this.options.stopScrollPropagation || !this.isScrollEventUnused(t)) && cancelEvent(t))
                     }.bind(this))
@@ -1443,8 +1448,7 @@ Slider.prototype.toggleAdState = function(t) {
 }, Slider.prototype._onMouseMove = function(t) {
     var e = this._getPos(),
         i = Math.max(t.pageX, e[0]);
-    i = Math.min(i, e[0] + this._width),
-        i -= e[0], this.setValue(i / this._width, !0, !0), this._onValueChangeDebounced ? this._onValueChangeDebounced() : this._onValueChange(), this._toggleHint(!0), this._updateHint(t, !0), cancelEvent(t)
+    i = Math.min(i, e[0] + this._width), i -= e[0], this.setValue(i / this._width, !0, !0), this._onValueChangeDebounced ? this._onValueChangeDebounced() : this._onValueChange(), this._toggleHint(!0), this._updateHint(t, !0), cancelEvent(t)
 }, Slider.prototype._getPos = function() {
     return this._slidePos = getXY(this._slideEl)
 }, Slider.LOGFBASE = 35, Slider.prototype._logf = function(t) {

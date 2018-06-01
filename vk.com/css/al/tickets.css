@@ -13,10 +13,13 @@
 .help_tile_alert_waiting:before,
 .help_tiles_empty,
 .tickets_actions_add_to_bookmark,
+.tickets_actions_bookmarks_menu.tickets_actions_bookmarks_timer .ui_actions_menu_icons,
 .tickets_actions_bookmarks_menu .ui_actions_menu_icons,
 .tickets_delegate_btn_process,
 .tickets_header_info.tickets_header_info_progress,
-.tickets_header_links .ui_actions_menu_item.tickets_header_links_fav_selected:before,
+.tickets_header_links .ui_actions_menu_item.helpdesk_header_links_fav_selected:before,
+.tickets_header_links .ui_actions_menu_item.helpdesk_header_links_fav_timer_off:before,
+.tickets_header_links .ui_actions_menu_item.helpdesk_header_links_fav_timer_on:before,
 .tickets_header_task_info.tickets_header_info_progress,
 .tickets_header_title_locked,
 .tickets_list_load_more_loading,
@@ -667,10 +670,10 @@ body.dev .tickets_header_links {
     background-position: 0 3px
 }
 
-.tickets_header_links .ui_actions_menu_item.tickets_header_links_fav_selected:before {
-    left: 12px;
-    top: 0;
-    background: url(/images/icons/dropdown_check.png?2) no-repeat 5px 10px;
+.tickets_header_links .ui_actions_menu_item.helpdesk_header_links_fav_timer_on:before {
+    left: 8px;
+    top: 4px;
+    background: url(/images/post_icon.png?10) no-repeat left -219px;
     line-height: 30px;
     opacity: 0.7
 }
@@ -678,7 +681,41 @@ body.dev .tickets_header_links {
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
-    .tickets_header_links .ui_actions_menu_item.tickets_header_links_fav_selected:before {
+    .tickets_header_links .ui_actions_menu_item.helpdesk_header_links_fav_timer_on:before {
+        background-image: url(/images/post_icon_2x.png?10);
+        background-size: 20px 413px
+    }
+}
+
+.tickets_header_links .ui_actions_menu_item.helpdesk_header_links_fav_timer_off:before {
+    left: 9px;
+    top: 4px;
+    background: url(/images/mobile/close.png) no-repeat 3px 6px;
+    line-height: 30px;
+    opacity: 0.7
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tickets_header_links .ui_actions_menu_item.helpdesk_header_links_fav_timer_off:before {
+        background-image: url(/images/mobile/close_2x.png);
+        background-size: 15px 11px
+    }
+}
+
+.tickets_header_links .ui_actions_menu_item.helpdesk_header_links_fav_selected:before {
+    left: 12px;
+    top: 0;
+    background: url(/images/icons/dropdown_check.png?2) no-repeat 0 10px;
+    line-height: 30px;
+    opacity: 0.7
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tickets_header_links .ui_actions_menu_item.helpdesk_header_links_fav_selected:before {
         background-image: url(/images/icons/dropdown_check_2x.png?2);
         background-size: 14px 10px
     }
@@ -4179,7 +4216,21 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     top: 16px
 }
 
+.tickets_actions_bookmarks_menu.tickets_actions_bookmarks_timer .ui_actions_menu_icons {
+    background: url(/images/post_icon.png?10) no-repeat -5px -222px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tickets_actions_bookmarks_menu.tickets_actions_bookmarks_timer .ui_actions_menu_icons {
+        background-image: url(/images/post_icon_2x.png?10);
+        background-size: 20px 413px
+    }
+}
+
 .tickets_actions_bookmarks_menu .ui_actions_menu {
+    min-width: 210px;
     right: 12px
 }
 
