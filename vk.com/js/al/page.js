@@ -6398,7 +6398,7 @@ var Wall = {
             acts.push(cur.wallTpl.spam);
         }
         var isEditor = adminLevel > 1 && ev[9] == oid || oid == vk.id || ev[9] == vk.id;
-        if (isEditor) {
+        if (isEditor && ev[13] !== 'rss') {
             acts.push(cur.wallTpl.edit);
         }
 

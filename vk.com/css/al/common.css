@@ -2484,15 +2484,15 @@ body.body_im.firefox.layers_shown #page_wrap {
     height: 25px;
     opacity: 0.75;
     filter: alpha(opacity=75);
-    background: url(/images/icons/menu_icon.png?8) no-repeat 7px -441px
+    background: url(/images/icons/menu_icon.png?9) no-repeat 7px -441px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     #side_bar .left_icon {
-        background-image: url(/images/icons/menu_icon_2x.png?8);
-        background-size: 18px 1017px
+        background-image: url(/images/icons/menu_icon_2x.png?9);
+        background-size: 18px 1045px
     }
 }
 
@@ -2641,6 +2641,10 @@ body.body_im.firefox.layers_shown #page_wrap {
 
 #side_bar #l_bt .left_icon {
     background-position: 7px -968px
+}
+
+#side_bar #l_vkp .left_icon {
+    background-position: 7px -1023px
 }
 
 #side_bar .left_label {

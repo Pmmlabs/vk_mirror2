@@ -799,8 +799,9 @@ var vkApp = function(cont, options, params, onInit) {
                 return;
             }
 
-            var sber9thMayAppId = 6463155,
-                noCallNative = !!cur.app.isNativeIosWebView() && cur.aid === sber9thMayAppId;
+            // Need added support link_image, link_title, link_button fields to ios.
+            var noCallNativeInIosApps = [6463155, 6245523, 6232217],
+                noCallNative = cur.app.isNativeIosWebView() && ~noCallNativeInIosApps.indexOf(cur.aid);
 
             params = params || {};
             params.attachments = cur.app.getValidPostAttachments(params.attachments || params.attachment);

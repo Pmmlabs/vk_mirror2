@@ -127,6 +127,10 @@ a.group_ad_post_stats {
     text-decoration: underline
 }
 
+.group_edit_row {
+    clear: both
+}
+
 .group_edit_row.no_label .group_edit_labeled {
     margin: -6px 0 7px
 }
@@ -839,7 +843,7 @@ input.group_ad_cost {
     width: 18px;
     height: 8px;
     margin: 0 6px;
-    background: url(/images/icons/menu_icon.png?8) no-repeat 0 -255px;
+    background: url(/images/icons/menu_icon.png?9) no-repeat 0 -255px;
     opacity: 0.6;
     filter: alpha(opacity=60)
 }
@@ -848,8 +852,8 @@ input.group_ad_cost {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .group_ad_more_icon {
-        background-image: url(/images/icons/menu_icon_2x.png?8);
-        background-size: 18px 1017px
+        background-image: url(/images/icons/menu_icon_2x.png?9);
+        background-size: 18px 1045px
     }
 }
 
