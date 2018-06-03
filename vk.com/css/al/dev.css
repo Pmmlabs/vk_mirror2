@@ -934,21 +934,18 @@ input.dev_input_simular {
 }
 
 .dev_main_featured .dev_main_featured_banners_anim {
-    transition: -webkit-transform 500ms cubic-bezier(0.4, 0, 0.4, 1);
     -o-transition: transform 500ms cubic-bezier(0.4, 0, 0.4, 1), -o-transform 500ms cubic-bezier(0.4, 0, 0.4, 1);
     transition: transform 500ms cubic-bezier(0.4, 0, 0.4, 1);
-    transition: transform 500ms cubic-bezier(0.4, 0, 0.4, 1), -webkit-transform 500ms cubic-bezier(0.4, 0, 0.4, 1), -o-transform 500ms cubic-bezier(0.4, 0, 0.4, 1)
+    transition: transform 500ms cubic-bezier(0.4, 0, 0.4, 1), -o-transform 500ms cubic-bezier(0.4, 0, 0.4, 1)
 }
 
 .dev_main_featured .dev_main_featured_banners_anim_next,
 .dev_main_featured .dev_main_featured_banners_prev {
-    -webkit-transform: translateX(-100%);
     -o-transform: translateX(-100%);
     transform: translateX(-100%)
 }
 
 .dev_main_featured .dev_main_featured_banners_anim_prev {
-    -webkit-transform: translateX(0px);
     -o-transform: translateX(0px);
     transform: translateX(0px)
 }
@@ -986,7 +983,6 @@ input.dev_input_simular {
 
 .dev_main_featured .dev_main_featured_banners_arrow.dev_main_featured_banners_arrow_next {
     background-position: 100%;
-    -webkit-transform: scaleX(-1);
     -o-transform: scaleX(-1);
     transform: scaleX(-1);
     right: 0px
@@ -1048,7 +1044,6 @@ input.dev_input_simular {
     margin-top: 75px;
     border: 0px;
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     cursor: pointer;
     -o-transition: opacity 150ms ease-in-out;
@@ -1062,10 +1057,9 @@ input.dev_input_simular {
     display: inline-block;
     margin-left: 5px;
     background: url(/images/dev/dev_header_icons.png) 0px -18px;
-    transition: -webkit-transform 150ms ease;
     -o-transition: transform 150ms ease, -o-transform 150ms ease;
     transition: transform 150ms ease;
-    transition: transform 150ms ease, -webkit-transform 150ms ease, -o-transform 150ms ease
+    transition: transform 150ms ease, -o-transform 150ms ease
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1083,7 +1077,6 @@ input.dev_input_simular {
 }
 
 .dev_main_featured .dev_main_featured_banner_slide_btn:hover:after {
-    -webkit-transform: translateX(2px);
     -o-transform: translateX(2px);
     transform: translateX(2px)
 }
@@ -1094,7 +1087,6 @@ input.dev_input_simular {
 
 .dev_main_featured .dev_main_featured_banner_active .dev_main_featured_banner_slide_cont {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1120,7 +1112,6 @@ input.dev_input_simular {
 
 .dev_main_featured .dev_main_featured_banners_bg_item.dev_main_featured_banners_bg_active {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1327,10 +1318,9 @@ input.dev_input_simular {
     height: 72px;
     width: 72px;
     margin: 0 auto;
-    transition: -webkit-transform 200ms ease-in-out;
     -o-transition: transform 200ms ease-in-out, -o-transform 200ms ease-in-out;
     transition: transform 200ms ease-in-out;
-    transition: transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out, -o-transform 200ms ease-in-out
+    transition: transform 200ms ease-in-out, -o-transform 200ms ease-in-out
 }
 
 .dev_main_platforms .dev_main_platform .dev_main_platform_icon_ios {
@@ -1354,7 +1344,6 @@ input.dev_input_simular {
 }
 
 .dev_main_platforms .dev_main_platform:hover .dev_main_platform_icon {
-    -webkit-transform: translateY(-8px);
     -o-transform: translateY(-8px);
     transform: translateY(-8px)
 }
@@ -1407,10 +1396,9 @@ input.dev_input_simular {
     height: 11px;
     vertical-align: middle;
     background: url(/images/icons/search_arrow.png) no-repeat;
-    transition: -webkit-transform 70ms linear;
     -o-transition: transform 70ms linear, -o-transform 70ms linear;
     transition: transform 70ms linear;
-    transition: transform 70ms linear, -webkit-transform 70ms linear, -o-transform 70ms linear
+    transition: transform 70ms linear, -o-transform 70ms linear
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1423,7 +1411,6 @@ input.dev_input_simular {
 }
 
 .dev_main_blog_post_more:hover:after {
-    -webkit-transform: translateX(3px);
     -o-transform: translateX(3px);
     transform: translateX(3px)
 }
@@ -3300,7 +3287,6 @@ body.dev.dev_main_page input.dev_top_input {
 }
 
 .dev_method_block.dev_block_spoiler_minimized .dev_method_block_title:after {
-    -webkit-transform: rotate(180deg);
     -o-transform: rotate(180deg);
     transform: rotate(180deg)
 }

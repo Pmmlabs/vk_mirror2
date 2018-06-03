@@ -609,7 +609,6 @@
 }
 
 body.mac .join_next.fixed {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 

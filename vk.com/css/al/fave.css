@@ -236,7 +236,6 @@
 .fave_link_actions_wrap .fave_link_progress:hover {
     text-decoration: none;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -248,7 +247,6 @@
     display: none;
     background: url(/images/c_upload.gif) no-repeat 0 0;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

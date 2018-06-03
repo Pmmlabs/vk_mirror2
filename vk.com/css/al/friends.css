@@ -189,10 +189,9 @@
     height: 11px;
     vertical-align: middle;
     background: url(/images/icons/search_arrow.png) no-repeat;
-    transition: -webkit-transform 70ms linear;
     -o-transition: transform 70ms linear, -o-transform 70ms linear;
     transition: transform 70ms linear;
-    transition: transform 70ms linear, -webkit-transform 70ms linear, -o-transform 70ms linear
+    transition: transform 70ms linear, -o-transform 70ms linear
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -205,7 +204,6 @@
 }
 
 .friends_header_load_more a:hover:after {
-    -webkit-transform: translateX(3px);
     -o-transform: translateX(3px);
     transform: translateX(3px)
 }
@@ -653,7 +651,6 @@ body[data-useragent*=msie_edge] .friends_actions_menu .ui_actions_menu {
 .friends_possible_add:hover,
 .friends_possible_remove:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -724,7 +721,6 @@ body[data-useragent*=msie_edge] .friends_actions_menu .ui_actions_menu {
 
 .friends_cur_filters .token:hover .del_icon {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -860,7 +856,6 @@ body[data-useragent*=msie_edge] .friends_actions_menu .ui_actions_menu {
 
 .friends_find_user_add:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -897,7 +892,6 @@ body[data-useragent*=msie_edge] .friends_actions_menu .ui_actions_menu {
     position: absolute;
     top: 50%;
     left: 10px;
-    -webkit-transform: translateY(-50%);
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
     padding: 10px;

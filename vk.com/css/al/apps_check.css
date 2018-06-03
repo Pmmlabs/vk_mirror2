@@ -289,7 +289,6 @@
 
 .apps_check_row:hover .apps_check_delete_row {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -355,7 +354,6 @@
 
 .apps_check_row .apps_check_delete_row:hover .thumb_x {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

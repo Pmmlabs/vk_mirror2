@@ -787,17 +787,14 @@
     background: url(/images/blog/about_cover.jpg) no-repeat 50%;
     background-size: cover;
     min-width: 960px;
-    transition: -webkit-transform 5s cubic-bezier(0.12, 0.53, 0.42, 0.82);
     -o-transition: transform 5s cubic-bezier(0.12, 0.53, 0.42, 0.82), -o-transform 5s cubic-bezier(0.12, 0.53, 0.42, 0.82);
     transition: transform 5s cubic-bezier(0.12, 0.53, 0.42, 0.82);
-    transition: transform 5s cubic-bezier(0.12, 0.53, 0.42, 0.82), -webkit-transform 5s cubic-bezier(0.12, 0.53, 0.42, 0.82), -o-transform 5s cubic-bezier(0.12, 0.53, 0.42, 0.82);
-    -webkit-transform: scale(1);
+    transition: transform 5s cubic-bezier(0.12, 0.53, 0.42, 0.82), -o-transform 5s cubic-bezier(0.12, 0.53, 0.42, 0.82);
     -o-transform: scale(1);
     transform: scale(1)
 }
 
 .blog_about_cover_scaling {
-    -webkit-transform: scale(1.2);
     -o-transform: scale(1.2);
     transform: scale(1.2)
 }
@@ -893,10 +890,8 @@
 
 .blog_about_company_offices_items {
     margin-top: 63px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center
 }
@@ -1130,14 +1125,12 @@
     height: 120px;
     margin: 55px auto 0;
     background: no-repeat 50% / contain;
-    transition: -webkit-transform 200ms ease-in-out;
     -o-transition: transform 200ms ease-in-out, -o-transform 200ms ease-in-out;
     transition: transform 200ms ease-in-out;
-    transition: transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out, -o-transform 200ms ease-in-out
+    transition: transform 200ms ease-in-out, -o-transform 200ms ease-in-out
 }
 
 .blog_product:hover .blog_product_icon {
-    -webkit-transform: translateY(-8px);
     -o-transform: translateY(-8px);
     transform: translateY(-8px)
 }

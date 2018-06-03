@@ -1648,7 +1648,6 @@ a.ads_ad_box2:hover {
 .ads_ad_box.redesign .ads_ad_close_button:hover .ads_ad_close_button_x,
 .ads_ad_box.redesign:hover .ads_ad_close_button {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

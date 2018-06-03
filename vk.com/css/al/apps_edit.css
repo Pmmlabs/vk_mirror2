@@ -2387,7 +2387,6 @@ input.apps_edit_input {
 .apps_edit_full_wrap .thumb_x_button:hover .thumb_x,
 .apps_edit_full_wrap:hover .thumb_x_button {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

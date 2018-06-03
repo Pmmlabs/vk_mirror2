@@ -133,7 +133,6 @@
 .pedit_del_icon:hover,
 .pedit_set_icon:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

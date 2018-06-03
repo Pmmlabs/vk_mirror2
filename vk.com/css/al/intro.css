@@ -60,7 +60,6 @@
 
 .intr_hide_wrap:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

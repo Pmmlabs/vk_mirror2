@@ -203,7 +203,6 @@ html {
 .landing .landings_psb_tools_wrapper .landings_psb_text_block {
     position: absolute;
     top: 50%;
-    -webkit-transform: translate3d(-50%, -50%, 0);
     transform: translate3d(-50%, -50%, 0);
     width: 100%;
     max-width: 500px;
@@ -387,12 +386,11 @@ html {
     background-color: #f7f8fa;
     position: relative;
     padding-bottom: 24px;
-    margin-bottom: 60px
+    margin-bottom: 60px;
+    transform: translateZ(0)
 }
 
-.landing .landings_psb_questions,
 body.mac .landing .landings_psb_questions {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -474,7 +472,6 @@ body.mac .landing .landings_psb_questions {
     white-space: nowrap;
     left: 50%;
     margin-left: -400px;
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 

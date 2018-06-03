@@ -455,10 +455,9 @@
     height: 11px;
     vertical-align: middle;
     background: url(/images/icons/search_arrow.png) no-repeat;
-    transition: -webkit-transform 70ms linear;
     -o-transition: transform 70ms linear, -o-transform 70ms linear;
     transition: transform 70ms linear;
-    transition: transform 70ms linear, -webkit-transform 70ms linear, -o-transform 70ms linear
+    transition: transform 70ms linear, -o-transform 70ms linear
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -471,7 +470,6 @@
 }
 
 .vk_10_years_snippet_caption:hover:after {
-    -webkit-transform: translateX(3px);
     -o-transform: translateX(3px);
     transform: translateX(3px)
 }

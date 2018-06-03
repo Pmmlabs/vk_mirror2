@@ -263,7 +263,6 @@ div.wdd.wdd_focused.wdd_toup {
 
 .wdd_add:hover .wdd_add_plus {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

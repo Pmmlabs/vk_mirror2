@@ -305,7 +305,6 @@
 
 .market_row:hover .market_row_controls {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -333,7 +332,6 @@
 
 .market_row_ctrl:hover .market_row_icon {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1127,7 +1125,6 @@
 .my_like .market_like_icon,
 .my_like .market_share_icon {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1516,7 +1513,6 @@
 
 .market_prg_x:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2051,7 +2047,6 @@
 
 #marketplace .market_content .market_row_user_ban:hover {
     opacity: 1!important;
-    -webkit-filter: none!important;
     filter: none!important
 }
 
@@ -2243,7 +2238,6 @@
 #marketplace .market_content .market_row .market_edit_actions.selected,
 #marketplace .market_content .market_row .market_edit_actions.selected .fav {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2297,7 +2291,6 @@
 
 #marketplace .market_content .market_row.over .market_edit_actions {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2310,7 +2303,6 @@
 #marketplace .market_content .market_row.over .market_edit_actions.selected,
 #marketplace .market_content .market_row.over .market_edit_actions.selected .fav {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

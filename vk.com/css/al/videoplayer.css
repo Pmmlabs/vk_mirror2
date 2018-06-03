@@ -46,10 +46,9 @@
 }
 
 .videoplayer_media {
-    transition: -webkit-transform 0.2s ease-in-out;
     -o-transition: transform 0.2s ease-in-out, -o-transform 0.2s ease-in-out;
     transition: transform 0.2s ease-in-out;
-    transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out, -o-transform 0.2s ease-in-out
+    transition: transform 0.2s ease-in-out, -o-transform 0.2s ease-in-out
 }
 
 .videoplayer_media:after {
@@ -69,10 +68,9 @@
     top: 10px;
     right: 10px;
     overflow: hidden;
-    transition-property: visibility, opacity, -webkit-transform;
     -o-transition-property: transform, visibility, opacity, -o-transform;
     transition-property: transform, visibility, opacity;
-    transition-property: transform, visibility, opacity, -webkit-transform, -o-transform;
+    transition-property: transform, visibility, opacity, -o-transform;
     -o-transition-duration: 0.25s;
     transition-duration: 0.25s;
     -o-transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
@@ -93,7 +91,6 @@
 
 .videoplayer_share_actions.hidden {
     visibility: hidden;
-    -webkit-transform: translateY(-50px);
     -o-transform: translateY(-50px);
     transform: translateY(-50px);
     opacity: 0
@@ -126,7 +123,6 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    -webkit-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     width: 24px;
@@ -211,10 +207,9 @@
     height: 45px;
     white-space: nowrap;
     font-size: 13px;
-    transition: -webkit-transform 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955);
     -o-transition: transform 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955), -o-transform 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955);
     transition: transform 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-    transition: transform 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955), -webkit-transform 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955), -o-transform 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    transition: transform 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955), -o-transform 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955);
     will-change: transform
 }
 
@@ -247,13 +242,11 @@
 
 .videoplayer_controls.hidden {
     visibility: visible;
-    -webkit-transform: translateY(100%);
     -o-transform: translateY(100%);
     transform: translateY(100%)
 }
 
 .videoplayer_ui._keyboard_focus .videoplayer_controls.hidden {
-    -webkit-transform: none;
     -o-transform: none;
     transform: none;
     -o-transition-property: opacity, visibility;
@@ -491,10 +484,8 @@ body[data-useragent=safari] .videoplayer_live_app_link {
 }
 
 .videoplayer_volume_slider._vertical {
-    -webkit-transform-origin: 0 0;
     -o-transform-origin: 0 0;
     transform-origin: 0 0;
-    -webkit-transform: rotate(-90deg);
     -o-transform: rotate(-90deg);
     transform: rotate(-90deg);
     position: absolute;
@@ -569,7 +560,6 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     position: absolute;
     left: 50%;
     bottom: 3px;
-    -webkit-transform: translateX(-50%);
     -o-transform: translateX(-50%);
     transform: translateX(-50%);
     padding: 3px 7px;
@@ -618,21 +608,10 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     background-image: -o-linear-gradient(315deg, transparent 1%, hsla(0, 0%, 97%, .31) 1%, hsla(0, 0%, 97%, .31) 35%, transparent 35%, transparent 65%, hsla(0, 0%, 97%, .31) 65%, hsla(0, 0%, 97%, .31) 99%, transparent 99%);
     background-image: linear-gradient(135deg, transparent 1%, hsla(0, 0%, 97%, .31) 0, hsla(0, 0%, 97%, .31) 35%, transparent 0, transparent 65%, hsla(0, 0%, 97%, .31) 0, hsla(0, 0%, 97%, .31) 99%, transparent 0);
     background-size: 9px 6px;
-    -webkit-animation: videoplayer-slider-disabled 1s infinite linear;
     -o-animation: videoplayer-slider-disabled 1s infinite linear;
     animation: videoplayer-slider-disabled 1s infinite linear;
-    -webkit-animation-play-state: paused;
     -o-animation-play-state: paused;
     animation-play-state: paused
-}
-
-@-webkit-keyframes videoplayer-slider-disabled {
-    0% {
-        background-position: 0 0
-    }
-    to {
-        background-position: 36px 0
-    }
 }
 
 @-o-keyframes videoplayer-slider-disabled {
@@ -654,7 +633,6 @@ body[data-useragent=safari] .videoplayer_live_app_link {
 }
 
 .videoplayer_ui[data-state=playing] .videoplayer_slider._disabled {
-    -webkit-animation-play-state: running;
     -o-animation-play-state: running;
     animation-play-state: running
 }
@@ -699,10 +677,9 @@ body[data-useragent=safari] .videoplayer_live_app_link {
 
 .videoplayer_slider ._loaded {
     background: hsla(0, 0%, 100%, .4);
-    transition: -webkit-transform .2s;
     -o-transition: transform .2s, -o-transform .2s;
     transition: transform .2s;
-    transition: transform .2s, -webkit-transform .2s, -o-transform .2s
+    transition: transform .2s, -o-transform .2s
 }
 
 .videoplayer_slider ._loaded,
@@ -735,13 +712,11 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     background: #fff;
     visibility: hidden;
     opacity: 0;
-    -webkit-transform: scale(0);
     -o-transform: scale(0);
     transform: scale(0);
-    transition: opacity .2s, visibility .2s, -webkit-transform .2s;
     -o-transition: opacity .2s, transform .2s, visibility .2s, -o-transform .2s;
     transition: opacity .2s, transform .2s, visibility .2s;
-    transition: opacity .2s, transform .2s, visibility .2s, -webkit-transform .2s, -o-transform .2s;
+    transition: opacity .2s, transform .2s, visibility .2s, -o-transform .2s;
     will-change: opacity, transform
 }
 
@@ -749,13 +724,11 @@ body[data-useragent=safari] .videoplayer_live_app_link {
 .videoplayer_slider:hover ._handle {
     visibility: visible;
     opacity: 1;
-    -webkit-transform: scale(1);
     -o-transform: scale(1);
     transform: scale(1)
 }
 
 .videoplayer_slider._dragging ._handle {
-    -webkit-transform: scale(1.3);
     -o-transform: scale(1.3);
     transform: scale(1.3)
 }
@@ -1334,7 +1307,6 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     content: '';
     position: absolute;
     background: #b6b9bd;
-    -webkit-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg)
 }
@@ -1354,14 +1326,12 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     margin-top: -25px;
     text-align: center;
     white-space: nowrap;
-    transition: opacity .4s, -webkit-transform .4s;
     -o-transition: transform .4s, opacity .4s, -o-transform .4s;
     transition: transform .4s, opacity .4s;
-    transition: transform .4s, opacity .4s, -webkit-transform .4s, -o-transform .4s
+    transition: transform .4s, opacity .4s, -o-transform .4s
 }
 
 .videoplayer_end_suggestions._before_intro {
-    -webkit-transform: translateY(50px);
     -o-transform: translateY(50px);
     transform: translateY(50px);
     opacity: 0;
@@ -1376,14 +1346,12 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     color: #fff;
     text-align: left;
     cursor: pointer;
-    transition: -webkit-transform .2s;
     -o-transition: transform .2s, -o-transform .2s;
     transition: transform .2s;
-    transition: transform .2s, -webkit-transform .2s, -o-transform .2s
+    transition: transform .2s, -o-transform .2s
 }
 
 .videoplayer_end_suggestions ._item:hover {
-    -webkit-transform: translateY(-8px);
     -o-transform: translateY(-8px);
     transform: translateY(-8px);
     text-decoration: none
@@ -1629,65 +1597,35 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     background: #fff;
     position: absolute;
     bottom: 0;
-    -webkit-transform-origin: 50% 100%;
     -o-transform-origin: 50% 100%;
     transform-origin: 50% 100%;
-    -webkit-animation: 1.5s infinite linear alternate;
     -o-animation: 1.5s infinite linear alternate;
     animation: 1.5s infinite linear alternate;
-    -webkit-animation-play-state: paused;
     -o-animation-play-state: paused;
     animation-play-state: paused
 }
 
 .videoplayer_ui[data-state=playing] .videoplayer_autoplay_timer_equalizer ._col {
-    -webkit-animation-play-state: running;
     -o-animation-play-state: running;
     animation-play-state: running
 }
 
-.videoplayer_autoplay_timer_equalizer ._col:nth-child(1) {
+.videoplayer_autoplay_timer_equalizer ._col:first-child {
     left: 0;
-    -webkit-animation-name: videoplayer-equalizer-col1;
     -o-animation-name: videoplayer-equalizer-col1;
     animation-name: videoplayer-equalizer-col1
 }
 
 .videoplayer_autoplay_timer_equalizer ._col:nth-child(2) {
     left: 3px;
-    -webkit-animation-name: videoplayer-equalizer-col2;
     -o-animation-name: videoplayer-equalizer-col2;
     animation-name: videoplayer-equalizer-col2
 }
 
 .videoplayer_autoplay_timer_equalizer ._col:nth-child(3) {
     left: 6px;
-    -webkit-animation-name: videoplayer-equalizer-col3;
     -o-animation-name: videoplayer-equalizer-col3;
     animation-name: videoplayer-equalizer-col3
-}
-
-@-webkit-keyframes videoplayer-equalizer-col1 {
-    0% {
-        -webkit-transform: scaleY(0.1);
-        transform: scaleY(0.1)
-    }
-    25% {
-        -webkit-transform: scaleY(0.8);
-        transform: scaleY(0.8)
-    }
-    50% {
-        -webkit-transform: scaleY(0.4);
-        transform: scaleY(0.4)
-    }
-    75% {
-        -webkit-transform: scaleY(0.6);
-        transform: scaleY(0.6)
-    }
-    to {
-        -webkit-transform: scaleY(0.1);
-        transform: scaleY(0.1)
-    }
 }
 
 @-o-keyframes videoplayer-equalizer-col1 {
@@ -1715,52 +1653,24 @@ body[data-useragent=safari] .videoplayer_live_app_link {
 
 @keyframes videoplayer-equalizer-col1 {
     0% {
-        -webkit-transform: scaleY(0.1);
         -o-transform: scaleY(0.1);
         transform: scaleY(0.1)
     }
     25% {
-        -webkit-transform: scaleY(0.8);
         -o-transform: scaleY(0.8);
         transform: scaleY(0.8)
     }
     50% {
-        -webkit-transform: scaleY(0.4);
         -o-transform: scaleY(0.4);
         transform: scaleY(0.4)
     }
     75% {
-        -webkit-transform: scaleY(0.6);
         -o-transform: scaleY(0.6);
         transform: scaleY(0.6)
     }
     to {
-        -webkit-transform: scaleY(0.1);
         -o-transform: scaleY(0.1);
         transform: scaleY(0.1)
-    }
-}
-
-@-webkit-keyframes videoplayer-equalizer-col2 {
-    0% {
-        -webkit-transform: scaleY(1);
-        transform: scaleY(1)
-    }
-    25% {
-        -webkit-transform: scaleY(0.3);
-        transform: scaleY(0.3)
-    }
-    50% {
-        -webkit-transform: scaleY(0.9);
-        transform: scaleY(0.9)
-    }
-    75% {
-        -webkit-transform: scaleY(0.6);
-        transform: scaleY(0.6)
-    }
-    to {
-        -webkit-transform: scaleY(1);
-        transform: scaleY(1)
     }
 }
 
@@ -1789,52 +1699,24 @@ body[data-useragent=safari] .videoplayer_live_app_link {
 
 @keyframes videoplayer-equalizer-col2 {
     0% {
-        -webkit-transform: scaleY(1);
         -o-transform: scaleY(1);
         transform: scaleY(1)
     }
     25% {
-        -webkit-transform: scaleY(0.3);
         -o-transform: scaleY(0.3);
         transform: scaleY(0.3)
     }
     50% {
-        -webkit-transform: scaleY(0.9);
         -o-transform: scaleY(0.9);
         transform: scaleY(0.9)
     }
     75% {
-        -webkit-transform: scaleY(0.6);
         -o-transform: scaleY(0.6);
         transform: scaleY(0.6)
     }
     to {
-        -webkit-transform: scaleY(1);
         -o-transform: scaleY(1);
         transform: scaleY(1)
-    }
-}
-
-@-webkit-keyframes videoplayer-equalizer-col3 {
-    0% {
-        -webkit-transform: scaleY(0.6);
-        transform: scaleY(0.6)
-    }
-    25% {
-        -webkit-transform: scaleY(0.9);
-        transform: scaleY(0.9)
-    }
-    50% {
-        -webkit-transform: scaleY(0.1);
-        transform: scaleY(0.1)
-    }
-    75% {
-        -webkit-transform: scaleY(0.9);
-        transform: scaleY(0.9)
-    }
-    to {
-        -webkit-transform: scaleY(0.6);
-        transform: scaleY(0.6)
     }
 }
 
@@ -1863,27 +1745,22 @@ body[data-useragent=safari] .videoplayer_live_app_link {
 
 @keyframes videoplayer-equalizer-col3 {
     0% {
-        -webkit-transform: scaleY(0.6);
         -o-transform: scaleY(0.6);
         transform: scaleY(0.6)
     }
     25% {
-        -webkit-transform: scaleY(0.9);
         -o-transform: scaleY(0.9);
         transform: scaleY(0.9)
     }
     50% {
-        -webkit-transform: scaleY(0.1);
         -o-transform: scaleY(0.1);
         transform: scaleY(0.1)
     }
     75% {
-        -webkit-transform: scaleY(0.9);
         -o-transform: scaleY(0.9);
         transform: scaleY(0.9)
     }
     to {
-        -webkit-transform: scaleY(0.6);
         -o-transform: scaleY(0.6);
         transform: scaleY(0.6)
     }
@@ -2116,7 +1993,6 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     top: -16px;
     width: 96px;
     height: 96px;
-    -webkit-filter: drop-shadow(0 0 10px rgba(0, 0, 0, .5));
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))
 }
 
@@ -2130,10 +2006,9 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     background: #fff;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .5);
     overflow: hidden;
-    transition: -webkit-transform .3s;
     -o-transition: transform .3s, -o-transform .3s;
     transition: transform .3s;
-    transition: transform .3s, -webkit-transform .3s, -o-transform .3s
+    transition: transform .3s, -o-transform .3s
 }
 
 .videoplayer_donation_gift ._gift_count:empty {
@@ -2248,10 +2123,9 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     right: 0;
     border-radius: 50%;
     background-color: rgba(0, 0, 0, .5);
-    transition: background .2s, -webkit-transform .2s;
     -o-transition: background .2s, transform .2s, -o-transform .2s;
     transition: background .2s, transform .2s;
-    transition: background .2s, transform .2s, -webkit-transform .2s, -o-transform .2s;
+    transition: background .2s, transform .2s, -o-transform .2s;
     -o-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
     will-change: background, transform
@@ -2259,7 +2133,6 @@ body[data-useragent=safari] .videoplayer_live_app_link {
 
 .videoplayer_thumb:hover .videoplayer_big_play_btn_bg {
     background-color: rgba(0, 0, 0, .6);
-    -webkit-transform: scale(1.15);
     -o-transform: scale(1.15);
     transform: scale(1.15)
 }
@@ -2304,10 +2177,9 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    transition-property: visibility, opacity, -webkit-transform;
     -o-transition-property: visibility, transform, opacity, -o-transform;
     transition-property: visibility, transform, opacity;
-    transition-property: visibility, transform, opacity, -webkit-transform, -o-transform;
+    transition-property: visibility, transform, opacity, -o-transform;
     -o-transition-duration: 0.25s;
     transition-duration: 0.25s;
     -o-transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
@@ -2334,14 +2206,12 @@ body[data-useragent=safari] .videoplayer_live_app_link {
 
 .videoplayer_title.hidden {
     visibility: hidden;
-    -webkit-transform: translateY(-44px);
     -o-transform: translateY(-44px);
     transform: translateY(-44px);
     opacity: 0
 }
 
 .videoplayer_ui._fullscreen .videoplayer_title.hidden {
-    -webkit-transform: translateY(-58px);
     -o-transform: translateY(-58px);
     transform: translateY(-58px)
 }
@@ -2478,7 +2348,6 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     bottom: -20px;
     left: -20px;
     right: -20px;
-    -webkit-filter: blur(20px);
     filter: blur(20px);
     background: #000 no-repeat 50%;
     background-size: cover
@@ -2725,7 +2594,6 @@ body[data-useragent=safari] .videoplayer_live_app_link {
 .videoplayer_notice.hidden {
     visibility: hidden;
     opacity: 0;
-    -webkit-transform: translateY(-10px);
     -o-transform: translateY(-10px);
     transform: translateY(-10px)
 }

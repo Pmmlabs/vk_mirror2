@@ -712,7 +712,6 @@
     background-image: url(/images/icons/m_settings.png);
     width: 16px;
     height: 16px;
-    -webkit-transform: scale(0.75);
     -o-transform: scale(0.75);
     transform: scale(0.75);
     position: absolute;
@@ -1322,7 +1321,6 @@
 
 .bt_comment_hidden {
     display: inline-block;
-    -webkit-transform: translateY(50%);
     -o-transform: translateY(50%);
     transform: translateY(50%);
     margin-right: 10px
@@ -1439,7 +1437,6 @@
 
 .bt_report_cmt .reply_action:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1688,7 +1685,6 @@
 .bt_member_search.ui_search_field_empty .ui_search_custom_ctrl,
 .bt_reporter_search.ui_search_field_empty .ui_search_custom_ctrl {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1969,17 +1965,13 @@
 }
 
 .bt_reporter_product.is_over:hover .bt_reporter_product_img {
-    -webkit-filter: none;
     filter: none
 }
 
 .bt_reporter_product.is_over .bt_reporter_product_img {
-    -webkit-filter: grayscale();
     filter: grayscale();
-    transition: -webkit-filter 150ms linear;
     -o-transition: filter 150ms linear;
-    transition: filter 150ms linear;
-    transition: filter 150ms linear, -webkit-filter 150ms linear
+    transition: filter 150ms linear
 }
 
 .bt_reporter_product.is_over .bt_reporter_product_a_img:after {
@@ -1992,7 +1984,6 @@
     width: 10px;
     height: 12px;
     top: 34px;
-    -webkit-transform: scale(1.3);
     -o-transform: scale(1.3);
     transform: scale(1.3)
 }
@@ -2060,17 +2051,13 @@
 }
 
 .bt_product_row.is_over:hover .bt_prod_one_photo__img {
-    -webkit-filter: none;
     filter: none
 }
 
 .bt_product_row.is_over .bt_prod_one_photo__img {
-    -webkit-filter: grayscale();
     filter: grayscale();
-    transition: -webkit-filter 150ms linear;
     -o-transition: filter 150ms linear;
-    transition: filter 150ms linear;
-    transition: filter 150ms linear, -webkit-filter 150ms linear
+    transition: filter 150ms linear
 }
 
 .bt_product_row.is_over .bt_product_row_photo:after {
@@ -2080,7 +2067,6 @@
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%22100%25%22%20width%3D%22100%25%22%20version%3D%221.1%22%20viewBox%3D%220%200%203.9687499%203.9687501%22%3E%0A%20%3Cg%20transform%3D%22translate(0%20-293.03)%22%3E%0A%20%20%3Cg%3E%0A%20%20%20%3Crect%20rx%3D%22.25212%22%20ry%3D%22.33479%22%20height%3D%221.9006%22%20width%3D%222.8637%22%20stroke%3D%22%23fff%22%20y%3D%22294.73%22%20x%3D%22.55250%22%20stroke-width%3D%22.75036%22%20fill%3D%22%23a8bbcf%22%2F%3E%0A%20%20%20%3Cellipse%20stroke-opacity%3D%22.94118%22%20fill-opacity%3D%220%22%20rx%3D%22.95104%22%20ry%3D%22.99228%22%20stroke%3D%22%23fff%22%20cy%3D%22294.7%22%20cx%3D%221.9844%22%20stroke-width%3D%221.3483%22%2F%3E%0A%20%20%20%3Cellipse%20rx%3D%22.95104%22%20ry%3D%22.99228%22%20stroke%3D%22%23a8bbcf%22%20cy%3D%22294.7%22%20cx%3D%221.9844%22%20stroke-width%3D%220.56%22%20fill%3D%22none%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%20%20%3Crect%20stroke-opacity%3D%220%22%20rx%3D%22.25212%22%20ry%3D%22.33479%22%20height%3D%221.9006%22%20width%3D%222.8637%22%20y%3D%22294.73%22%20x%3D%22.55250%22%20fill%3D%22%23a8bbcf%22%2F%3E%0A%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") no-repeat;
     width: 10px;
     height: 12px;
-    -webkit-transform: scale(2);
     -o-transform: scale(2);
     transform: scale(2);
     bottom: 1px;
@@ -2204,7 +2190,6 @@
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%22100%25%22%20width%3D%22100%25%22%20version%3D%221.1%22%20viewBox%3D%220%200%203.9687499%203.9687501%22%3E%0A%20%3Cg%20transform%3D%22translate(0%20-293.03)%22%3E%0A%20%20%3Cg%3E%0A%20%20%20%3Crect%20rx%3D%22.25212%22%20ry%3D%22.33479%22%20height%3D%221.9006%22%20width%3D%222.8637%22%20stroke%3D%22%23fff%22%20y%3D%22294.73%22%20x%3D%22.55250%22%20stroke-width%3D%22.75036%22%20fill%3D%22%23a8bbcf%22%2F%3E%0A%20%20%20%3Cellipse%20stroke-opacity%3D%22.94118%22%20fill-opacity%3D%220%22%20rx%3D%22.95104%22%20ry%3D%22.99228%22%20stroke%3D%22%23fff%22%20cy%3D%22294.7%22%20cx%3D%221.9844%22%20stroke-width%3D%221.3483%22%2F%3E%0A%20%20%20%3Cellipse%20rx%3D%22.95104%22%20ry%3D%22.99228%22%20stroke%3D%22%23a8bbcf%22%20cy%3D%22294.7%22%20cx%3D%221.9844%22%20stroke-width%3D%220.56%22%20fill%3D%22none%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%20%20%3Crect%20stroke-opacity%3D%220%22%20rx%3D%22.25212%22%20ry%3D%22.33479%22%20height%3D%221.9006%22%20width%3D%222.8637%22%20y%3D%22294.73%22%20x%3D%22.55250%22%20fill%3D%22%23a8bbcf%22%2F%3E%0A%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") no-repeat;
     width: 10px;
     height: 12px;
-    -webkit-transform: scale(1.5);
     -o-transform: scale(1.5);
     transform: scale(1.5);
     margin-left: 4px;
@@ -2229,7 +2214,6 @@
     width: 10px;
     height: 12px;
     top: 34px;
-    -webkit-transform: scale(1.3);
     -o-transform: scale(1.3);
     transform: scale(1.3)
 }
@@ -2780,23 +2764,10 @@
     height: 100%;
     position: absolute;
     top: 0;
-    -webkit-animation: shine-animation 1s infinite linear 0.2s;
     -o-animation: shine-animation 1s infinite linear 0.2s;
     animation: shine-animation 1s infinite linear 0.2s;
-    -webkit-transform: translate(-100%);
     -o-transform: translate(-100%);
     transform: translate(-100%)
-}
-
-@-webkit-keyframes shine-animation {
-    0% {
-        -webkit-transform: translate(-300%);
-        transform: translate(-300%)
-    }
-    to {
-        -webkit-transform: translate(600%);
-        transform: translate(600%)
-    }
 }
 
 @-o-keyframes shine-animation {
@@ -2812,12 +2783,10 @@
 
 @keyframes shine-animation {
     0% {
-        -webkit-transform: translate(-300%);
         -o-transform: translate(-300%);
         transform: translate(-300%)
     }
     to {
-        -webkit-transform: translate(600%);
         -o-transform: translate(600%);
         transform: translate(600%)
     }
@@ -2841,7 +2810,6 @@
 }
 
 .bt_member_activity_reports .hidden_reports_message_block .bt_report_small_row.dummy {
-    -webkit-filter: blur(5px);
     filter: blur(5px)
 }
 
@@ -3355,14 +3323,12 @@
 .bt_reports_reverse_button {
     cursor: pointer;
     padding: 2px;
-    transition: -webkit-transform 200ms linear;
     -o-transition: transform 200ms linear, -o-transform 200ms linear;
     transition: transform 200ms linear;
-    transition: transform 200ms linear, -webkit-transform 200ms linear, -o-transform 200ms linear
+    transition: transform 200ms linear, -o-transform 200ms linear
 }
 
 .bt_reports_reverse_button:active {
-    -webkit-transform: translateY(1px);
     -o-transform: translateY(1px);
     transform: translateY(1px)
 }
@@ -3553,7 +3519,6 @@
 
 .bugtracker_members_filters .token:hover .del_icon {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -3715,16 +3680,12 @@
     content: '';
     width: 16px;
     height: 16px;
-    -webkit-animation-name: round_spinner;
     -o-animation-name: round_spinner;
     animation-name: round_spinner;
-    -webkit-animation-duration: 700ms;
     -o-animation-duration: 700ms;
     animation-duration: 700ms;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner.png)
@@ -3831,14 +3792,12 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     opacity: 1;
-    transition: opacity 100ms linear 300ms, -webkit-transform 100ms linear 300ms;
     -o-transition: transform 100ms linear 300ms, opacity 100ms linear 300ms, -o-transform 100ms linear 300ms;
     transition: transform 100ms linear 300ms, opacity 100ms linear 300ms;
-    transition: transform 100ms linear 300ms, opacity 100ms linear 300ms, -webkit-transform 100ms linear 300ms, -o-transform 100ms linear 300ms
+    transition: transform 100ms linear 300ms, opacity 100ms linear 300ms, -o-transform 100ms linear 300ms
 }
 
 .bugtracker_logo.bt_logo_hidden .top_home_logo:after {
-    -webkit-transform: translate(-15px);
     -o-transform: translate(-15px);
     transform: translate(-15px);
     opacity: 0

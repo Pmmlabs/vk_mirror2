@@ -118,7 +118,6 @@ body.body_helpdesk_small_sb .left_menu_nav {
 
 .helpdesk_settings_button:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -729,19 +728,16 @@ body.body_helpdesk_small_sb .left_menu_nav {
 }
 
 .helpdesk_edit_user_mark_disabled .helpdesk_user_mark {
-    -webkit-filter: grayscale(75%);
     filter: grayscale(75%);
     opacity: 0.5
 }
 
 .helpdesk_edit_user_mark_disabled:hover .helpdesk_user_mark {
-    -webkit-filter: grayscale(50%);
     filter: grayscale(50%);
     opacity: 1
 }
 
 .helpdesk_edit_user_mark_disabled:hover .helpdesk_user_mark:hover {
-    -webkit-filter: grayscale(25%);
     filter: grayscale(25%)
 }
 
@@ -976,7 +972,6 @@ body.body_helpdesk_small_sb .left_menu_nav {
 }
 
 .helpdesk_mobile_ticket.helpdesk_mobile_ticket_uikit {
-    -webkit-filter: sepia() saturate(10000%) hue-rotate(195deg);
     filter: sepia() saturate(10000%) hue-rotate(195deg);
     opacity: 1
 }
@@ -1443,7 +1438,7 @@ body.body_helpdesk_small_sb .left_menu_nav {
 }
 
 .helpdesk_m_table .even,
-.helpdesk_m_table>tbody>tr:nth-child(even) {
+.helpdesk_m_table>tbody>tr:nth-child(2n) {
     background: #eff2f4
 }
 
@@ -2019,7 +2014,6 @@ body.body_helpdesk_small_sb .left_menu_nav {
 }
 
 .helpdesk_troll_chat {
-    -webkit-filter: grayscale(50%);
     filter: grayscale(50%);
     margin: -2px 0;
     width: 22px;

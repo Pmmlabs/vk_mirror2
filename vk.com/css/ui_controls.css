@@ -844,7 +844,6 @@ x:-moz-any-link {
     column-gap: 0;
     -moz-column-gap: 0;
     -webkit-column-gap: 0;
-    page-break-inside: avoid;
     break-inside: avoid;
     -webkit-column-break-inside: avoid
 }
@@ -1163,7 +1162,6 @@ x:-moz-any-link {
 }
 
 .idd_popup.idd_align_left {
-    -webkit-transform: translateX(-100%);
     -o-transform: translateX(-100%);
     transform: translateX(-100%)
 }

@@ -406,13 +406,11 @@
     color: #fff;
     background-color: #5181b8;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
 .flist_sel_showed_all:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     background-color: #5b88bd;
     border-color: #5b88bd

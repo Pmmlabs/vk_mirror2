@@ -11,14 +11,27 @@
     var a = {};
     return t.m = e, t.c = a, t.d = function(e, a, r) {
         t.o(e, a) || Object.defineProperty(e, a, {
-            configurable: !1,
             enumerable: !0,
             get: r
         })
     }, t.r = function(e) {
-        Object.defineProperty(e, "__esModule", {
+        "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
+            value: "Module"
+        }), Object.defineProperty(e, "__esModule", {
             value: !0
         })
+    }, t.t = function(e, a) {
+        if (1 & a && (e = t(e)), 8 & a) return e;
+        if (4 & a && "object" == typeof e && e && e.__esModule) return e;
+        var r = Object.create(null);
+        if (t.r(r), Object.defineProperty(r, "default", {
+                enumerable: !0,
+                value: e
+            }), 2 & a && "string" != typeof e)
+            for (var n in e) t.d(r, n, function(t) {
+                return e[t]
+            }.bind(null, n));
+        return r
     }, t.n = function(e) {
         var a = e && e.__esModule ? function() {
             return e["default"]
@@ -28,340 +41,13 @@
         return t.d(a, "a", a), a
     }, t.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, t.p = "", t(t.s = 171)
+    }, t.p = "", t(t.s = 262)
 }({
-    168: function(e, t, a) {
-        "use strict";
-
-        function r(e) {
-            return "im_store_" + e
-        }
-
-        function n(e) {
-            return ls.get(r(e)) || {}
-        }
-
-        function i(e, t, a) {
-            if (ls.checkVersion()) {
-                var n = JSON.stringify(t);
-                rand(0, 1e5) <= 1 && statlogsValueEvent("im_local_store_size", n.length), a(r(e), n)
-            }
-        }
-
-        function o(e, t, a) {
-            return t === m ? e[t] || [] : t === b ? e[t] && e[t][a] : e[t] ? extend(!0, {}, e[t][a]) : null
-        }
-
-        function c(e, t, a) {
-            switch (e[t] || (e[t] = {}), t) {
-                case m:
-                    var r = a;
-                    r && r.length > 0 ? e[t] = r : delete e[t];
-                    break;
-                case b:
-                    var n = d(a, 2),
-                        i = n[0],
-                        o = n[1];
-                    o ? e[t][i] = +o : delete e[t][i]
-            }
-            return e
-        }
-
-        function s(e, t) {
-            for (var a = ["fwd", "draft", "bind_attach"], r = n(e), o = !1, c = a.length; c--;) a[c] in r && (delete r[a[c]], o = !0);
-            o && i(e, r, t)
-        }
-
-        function u(e, t, a) {
-            a.key === r(e) && (t.db = JSON.parse(a.newValue), t.checkTime = Date.now())
-        }
-
-        function l(e) {
-            var t = debounce(function(e, t) {
-                localStorage.setItem(e, t)
-            }, 300);
-            ls.checkVersion() && s(e, t);
-            var a = {
-                    db: n(e),
-                    checkTime: Date.now()
-                },
-                r = u.bind(null, e, a);
-            return window.addEventListener("storage", r, !1), {
-                select: function(t, r) {
-                    return Date.now() - a.checkTime > 1e3 && (a.db = n(e)), o(a.db, t, r)
-                },
-                selectByKey: function(t) {
-                    return Date.now() - a.checkTime > 1e3 && (a.db = n(e)), a.db[t]
-                },
-                update: function(r, n) {
-                    var o = c(a.db, r, n);
-                    return a.db = o, a.checkTime = Date.now(), i(e, o, t)
-                },
-                updateByKey: function(r, n) {
-                    return a.db[r] = n, a.checkTime = Date.now(), i(e, a.db, t)
-                },
-                unmount: function() {
-                    window.removeEventListener("storage", r, !1)
-                }
-            }
-        }
-        a.r(t), a.d(t, "RECENT_SEARCH_OP", function() {
-            return m
-        }), a.d(t, "PIN_HIDDEN_ID_OP", function() {
-            return b
-        }), a.d(t, "deleteOldStoredFormat", function() {
-            return s
-        }), a.d(t, "mount", function() {
-            return l
-        });
-        var d = function() {
-                function e(e, t) {
-                    var a = [],
-                        r = !0,
-                        n = !1,
-                        i = void 0;
-                    try {
-                        for (var o, c = e[Symbol.iterator](); !(r = (o = c.next()).done) && (a.push(o.value), !t || a.length !== t); r = !0);
-                    } catch (s) {
-                        n = !0, i = s
-                    } finally {
-                        try {
-                            !r && c["return"] && c["return"]()
-                        } finally {
-                            if (n) throw i
-                        }
-                    }
-                    return a
-                }
-                return function(t, a) {
-                    if (Array.isArray(t)) return t;
-                    if (Symbol.iterator in Object(t)) return e(t, a);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }(),
-            m = "recent_search",
-            b = "pin_hide"
-    },
-    171: function(e, t, a) {
-        e.exports = a(205)
-    },
-    201: function(e, t, a) {
-        "use strict";
-
-        function r() {
-            return {
-                txt: "",
-                attaches: [],
-                urlBinds: [],
-                cancelled: []
-            }
-        }
-
-        function n(e, t) {
-            this._db = e, this._key = t, this.dData = r(), this.load()
-        }
-
-        function i(e) {
-            switch (e.type) {
-                case "mail":
-                    return e.id < 0 && 1 == e.object.fwd_count;
-                default:
-                    return !e.object
-            }
-        }
-
-        function o(e) {
-            return {
-                txt: e.txt,
-                attaches: e.attaches.length ? e.attaches : void 0,
-                urlBinds: e.urlBinds.length ? e.urlBinds : void 0,
-                cancelled: e.cancelled.length ? e.cancelled : void 0
-            }
-        }
-
-        function c(e) {
-            return {
-                txt: e.txt,
-                attaches: e.attaches || [],
-                urlBinds: e.urlBinds || [],
-                cancelled: e.cancelled || []
-            }
-        }
-
-        function s(e, t) {
-            var a = [];
-            e.fwd_count ? a.push({
-                type: "mail",
-                id: -t,
-                object: {
-                    fwd_count: e.fwd_count
-                }
-            }) : e.fwd && a.push({
-                type: "mail",
-                id: -t,
-                object: {
-                    fwd_count: Object(d.parseFwd)(e.fwd).length
-                }
-            });
-            for (var r = 1; e["attach" + r + "_type"]; ++r) "call" === e["attach" + r + "_type"] ? a.push({
-                type: e["attach" + r + "_type"],
-                id: e["attach" + r],
-                initiatorId: intval(e["attach" + r + "_call_initiator_id"]),
-                state: e["attach" + r + "_call_state"],
-                duration: intval(e["attach" + r + "_call_duration"]),
-                receiverId: intval(e["attach" + r + "_call_receiver_id"])
-            }) : a.push({
-                type: e["attach" + r + "_type"],
-                id: e["attach" + r],
-                kind: e["attach" + r + "_kind"],
-                productId: e["attach" + r + "_product_id"]
-            });
-            return e.geo && a.push({
-                type: "geo",
-                id: e.geo
-            }), a
-        }
-
-        function u(e, t) {
-            return new n(e, "draft_" + t)
-        }
-        a.r(t), a.d(t, "ImDraft", function() {
-            return n
-        }), a.d(t, "convertKludgesToAttaches", function() {
-            return s
-        }), a.d(t, "loadDraftForPeer", function() {
-            return u
-        });
-        var l = a(267),
-            d = a(208),
-            m = function() {
-                function e(e, t) {
-                    var a = [],
-                        r = !0,
-                        n = !1,
-                        i = void 0;
-                    try {
-                        for (var o, c = e[Symbol.iterator](); !(r = (o = c.next()).done) && (a.push(o.value), !t || a.length !== t); r = !0);
-                    } catch (s) {
-                        n = !0, i = s
-                    } finally {
-                        try {
-                            !r && c["return"] && c["return"]()
-                        } finally {
-                            if (n) throw i
-                        }
-                    }
-                    return a
-                }
-                return function(t, a) {
-                    if (Array.isArray(t)) return t;
-                    if (Symbol.iterator in Object(t)) return e(t, a);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }();
-        n.prototype.dump = function() {
-            this._key && this._db.updateByKey(this._key, o(this.dData))
-        }, n.prototype.load = function() {
-            if (this._key) {
-                var e = this._db.selectByKey(this._key);
-                e && (this.dData = c(e))
-            }
-        }, n.prototype.clear = function() {
-            this.dData = r(), this.dump()
-        }, n.prototype.setText = function(e) {
-            this.dData.txt = trim(e), this.dump()
-        }, n.prototype.addAttach = function(e, t, a) {
-            if (("share" === e || "mail" === e) && this.removeAttachByType(e), !e || !t) return !1;
-            var r = this.dData.attaches.findIndex(function(a) {
-                return a.type === e && a.id === t
-            }); - 1 === r ? (this.dData.attaches.push({
-                type: e,
-                id: t,
-                object: a
-            }), this.dump()) : "video" === e && (this.dData.attaches[r] = {
-                type: e,
-                id: t,
-                object: a
-            }, this.dump())
-        }, n.prototype.syncWithSelector = function(e) {
-            var t = this,
-                a = this.getFwdRaw();
-            this.dData.attaches = (a ? [a] : []).concat(e.getMedias().map(function(e) {
-                var a = m(e, 2),
-                    r = a[0],
-                    n = a[1],
-                    i = t.dData.attaches.find(function(e) {
-                        return e.type == r && e.id == n
-                    });
-                return i || {
-                    type: r,
-                    id: n
-                }
-            })), this.dump()
-        }, n.prototype.removeAttachByType = function(e) {
-            for (var t = this.dData.attaches.length; t--;) this.dData.attaches[t].type === e && this.dData.attaches.splice(t, 1);
-            this.dump()
-        }, n.prototype.removeAllAttaches = function() {
-            this.dData.attaches = [], this.dData.cancelled = [], this.dump()
-        }, n.prototype.addBindUrl = function(e, t, a) {
-            this.getBoundAttach(e) || (this.dData.urlBinds.push({
-                url: e,
-                type: t,
-                id: a
-            }), this.dump())
-        }, n.prototype.getBoundAttach = function(e) {
-            var t = this.dData.urlBinds.find(function(t) {
-                return t.url === e
-            });
-            return t ? this.dData.attaches.find(function(e) {
-                return e.type === t.type && e.id === t.id
-            }) || null : null
-        }, n.prototype.getShareUrl = function() {
-            var e = this.dData.attaches.find(function(e) {
-                return "share" === e.type
-            });
-            return e && e.object ? e.object.url : void 0
-        }, n.prototype.getCancelledShares = function() {
-            return this.dData.cancelled.length ? this.dData.cancelled : void 0
-        }, n.prototype.hasAttaches = function() {
-            return this.dData.attaches.length > 0
-        }, n.prototype.destroy = function() {
-            this.dData = {}, this._key = this._db = null
-        }, n.prototype.prepareObjects = function(e, t) {
-            var a = this,
-                r = this.dData.attaches.find(i);
-            return r ? Object(l.post)(l.CONTROLLER, {
-                act: "draft_medias",
-                gid: e,
-                messageId: t || 0,
-                media: t ? void 0 : this.dData.attaches.map(function(e) {
-                    return [e.type, e.id]
-                }).join("*")
-            }).then(function(e) {
-                var t = m(e, 1),
-                    r = t[0];
-                a.dData.attaches = r.map(function(e) {
-                    return {
-                        type: e[0],
-                        id: e[1],
-                        object: e[2]
-                    }
-                })
-            }) : Promise.resolve()
-        }, n.prototype.getFwdRaw = function() {
-            return this.dData.attaches.find(function(e) {
-                return "mail" === e.type
-            })
-        }, n.prototype.getFwdCount = function() {
-            var e = this.getFwdRaw();
-            return e ? e.id < 0 ? e.object.fwd_count : e.id.split(";").length : 0
-        }
-    },
-    205: function(e, t, a) {
+    1: function(e, t, a) {
         "use strict";
         a.r(t);
-        var r = a(168),
-            n = a(201),
+        var r = a(211),
+            n = a(703),
             i = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
                 return typeof e
             } : function(e) {
@@ -621,7 +307,7 @@
             stManager.done("writebox.js")
         } catch (c) {}
     },
-    208: function(e, t, a) {
+    141: function(e, t, a) {
         "use strict";
 
         function r(e) {
@@ -774,7 +460,7 @@
         }), a.d(t, "linksReplacer", function() {
             return h
         });
-        var p = a(314),
+        var p = a(7),
             g = function() {
                 function e(e, t) {
                     var a = [],
@@ -807,7 +493,122 @@
             _ = y.statlogsValueEvent,
             x = {}
     },
-    267: function(e, t, a) {
+    211: function(e, t, a) {
+        "use strict";
+
+        function r(e) {
+            return "im_store_" + e
+        }
+
+        function n(e) {
+            return ls.get(r(e)) || {}
+        }
+
+        function i(e, t, a) {
+            if (ls.checkVersion()) {
+                var n = JSON.stringify(t);
+                rand(0, 1e5) <= 1 && statlogsValueEvent("im_local_store_size", n.length), a(r(e), n)
+            }
+        }
+
+        function o(e, t, a) {
+            return t === m ? e[t] || [] : t === b ? e[t] && e[t][a] : e[t] ? extend(!0, {}, e[t][a]) : null
+        }
+
+        function c(e, t, a) {
+            switch (e[t] || (e[t] = {}), t) {
+                case m:
+                    var r = a;
+                    r && r.length > 0 ? e[t] = r : delete e[t];
+                    break;
+                case b:
+                    var n = d(a, 2),
+                        i = n[0],
+                        o = n[1];
+                    o ? e[t][i] = +o : delete e[t][i]
+            }
+            return e
+        }
+
+        function s(e, t) {
+            for (var a = ["fwd", "draft", "bind_attach"], r = n(e), o = !1, c = a.length; c--;) a[c] in r && (delete r[a[c]], o = !0);
+            o && i(e, r, t)
+        }
+
+        function u(e, t, a) {
+            a.key === r(e) && (t.db = JSON.parse(a.newValue), t.checkTime = Date.now())
+        }
+
+        function l(e) {
+            var t = debounce(function(e, t) {
+                localStorage.setItem(e, t)
+            }, 300);
+            ls.checkVersion() && s(e, t);
+            var a = {
+                    db: n(e),
+                    checkTime: Date.now()
+                },
+                r = u.bind(null, e, a);
+            return window.addEventListener("storage", r, !1), {
+                select: function(t, r) {
+                    return Date.now() - a.checkTime > 1e3 && (a.db = n(e)), o(a.db, t, r)
+                },
+                selectByKey: function(t) {
+                    return Date.now() - a.checkTime > 1e3 && (a.db = n(e)), a.db[t]
+                },
+                update: function(r, n) {
+                    var o = c(a.db, r, n);
+                    return a.db = o, a.checkTime = Date.now(), i(e, o, t)
+                },
+                updateByKey: function(r, n) {
+                    return a.db[r] = n, a.checkTime = Date.now(), i(e, a.db, t)
+                },
+                unmount: function() {
+                    window.removeEventListener("storage", r, !1)
+                }
+            }
+        }
+        a.r(t), a.d(t, "RECENT_SEARCH_OP", function() {
+            return m
+        }), a.d(t, "PIN_HIDDEN_ID_OP", function() {
+            return b
+        }), a.d(t, "deleteOldStoredFormat", function() {
+            return s
+        }), a.d(t, "mount", function() {
+            return l
+        });
+        var d = function() {
+                function e(e, t) {
+                    var a = [],
+                        r = !0,
+                        n = !1,
+                        i = void 0;
+                    try {
+                        for (var o, c = e[Symbol.iterator](); !(r = (o = c.next()).done) && (a.push(o.value), !t || a.length !== t); r = !0);
+                    } catch (s) {
+                        n = !0, i = s
+                    } finally {
+                        try {
+                            !r && c["return"] && c["return"]()
+                        } finally {
+                            if (n) throw i
+                        }
+                    }
+                    return a
+                }
+                return function(t, a) {
+                    if (Array.isArray(t)) return t;
+                    if (Symbol.iterator in Object(t)) return e(t, a);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }(),
+            m = "recent_search",
+            b = "pin_hide"
+    },
+    262: function(e, t, a) {
+        e.exports = a(1)
+    },
+    426: function(e, t, a) {
         "use strict";
 
         function r(e, t, a) {
@@ -886,7 +687,7 @@
         var o = "al_im.php",
             c = 2
     },
-    314: function(e, t, a) {
+    7: function(e, t, a) {
         "use strict";
 
         function r(e, t, a) {
@@ -912,27 +713,27 @@
         }), a.d(t, "ARROW_DOWN", function() {
             return O
         }), a.d(t, "PAGE_UP", function() {
-            return z
-        }), a.d(t, "PAGE_DOWN", function() {
             return M
+        }), a.d(t, "PAGE_DOWN", function() {
+            return z
         }), a.d(t, "END_KEY", function() {
-            return R
-        }), a.d(t, "HOME", function() {
-            return q
-        }), a.d(t, "ENTER", function() {
-            return I
-        }), a.d(t, "ESC", function() {
-            return F
-        }), a.d(t, "UNPRINTABLE_KEYS", function() {
             return S
+        }), a.d(t, "HOME", function() {
+            return R
+        }), a.d(t, "ENTER", function() {
+            return q
+        }), a.d(t, "ESC", function() {
+            return I
+        }), a.d(t, "UNPRINTABLE_KEYS", function() {
+            return F
         }), a.d(t, "UP_DOWN_CONTROLS", function() {
             return N
         }), a.d(t, "PRINTABLE", function() {
-            return C
-        }), a.d(t, "FOLDER_UNREAD", function() {
-            return B
-        }), a.d(t, "FOLDER_ALL", function() {
             return P
+        }), a.d(t, "FOLDER_UNREAD", function() {
+            return C
+        }), a.d(t, "FOLDER_ALL", function() {
+            return B
         }), a.d(t, "FOLDER_UNRESPOND", function() {
             return L
         }), a.d(t, "FOLDER_IMPORTANT", function() {
@@ -977,22 +778,21 @@
             T = /(^|[\s.,:\'\";>\)\(])(\*|@)([A-Za-z0-9_\.]{2,32})\s*\((.+?)\)/g,
             A = 38,
             O = 40,
-            z = 33,
-            M = 34,
-            R = 35,
-            q = 36,
-            I = 13,
-            F = 27,
-            S = [A, O, z, M, I, F, R, q],
-            N = [z, M, O, A, q, R],
-            C = "printable",
-            B = "unread",
-            P = "all",
+            M = 33,
+            z = 34,
+            S = 35,
+            R = 36,
+            q = 13,
+            I = 27,
+            F = [A, O, M, z, q, I, S, R],
+            N = [M, z, O, A, R, S],
+            P = "printable",
+            C = "unread",
+            B = "all",
             L = "unrespond",
             H = "important",
-            W = [P, B, L, H],
-            K = (n = {},
-                r(n, L, 2), r(n, H, 1), n),
+            W = [B, C, L, H],
+            K = (n = {}, r(n, L, 2), r(n, H, 1), n),
             U = [].concat(k.split(","), w.split(","), _.split(",").map(function(e) {
                 return "xn--" + e
             })),
@@ -1009,5 +809,217 @@
             ee = "(" + $ + Q + "{0,100}" + Y + Q + "{0,100})",
             te = "((?:[a-z0-9_]*[a-z0-9])?(?:(?:.[a-z](?:[a-z0-9_]+[a-z0-9])?)*.[a-z][a-z0-9_]{2,40}[a-z0-9])?)",
             ae = "(^|[s.,:'\";>)(]?)(" + ee + ")(@" + te + ")?(?=$|[s.,:'\"&;?<)(]?)"
+    },
+    703: function(e, t, a) {
+        "use strict";
+
+        function r() {
+            return {
+                txt: "",
+                attaches: [],
+                urlBinds: [],
+                cancelled: []
+            }
+        }
+
+        function n(e, t) {
+            this._db = e, this._key = t, this.dData = r(), this.load()
+        }
+
+        function i(e) {
+            switch (e.type) {
+                case "mail":
+                    return e.id < 0 && 1 == e.object.fwd_count;
+                default:
+                    return !e.object
+            }
+        }
+
+        function o(e) {
+            return {
+                txt: e.txt,
+                attaches: e.attaches.length ? e.attaches : void 0,
+                urlBinds: e.urlBinds.length ? e.urlBinds : void 0,
+                cancelled: e.cancelled.length ? e.cancelled : void 0
+            }
+        }
+
+        function c(e) {
+            return {
+                txt: e.txt,
+                attaches: e.attaches || [],
+                urlBinds: e.urlBinds || [],
+                cancelled: e.cancelled || []
+            }
+        }
+
+        function s(e, t) {
+            var a = [];
+            e.fwd_count ? a.push({
+                type: "mail",
+                id: -t,
+                object: {
+                    fwd_count: e.fwd_count
+                }
+            }) : e.fwd && a.push({
+                type: "mail",
+                id: -t,
+                object: {
+                    fwd_count: Object(d.parseFwd)(e.fwd).length
+                }
+            });
+            for (var r = 1; e["attach" + r + "_type"]; ++r) "call" === e["attach" + r + "_type"] ? a.push({
+                type: e["attach" + r + "_type"],
+                id: e["attach" + r],
+                initiatorId: intval(e["attach" + r + "_call_initiator_id"]),
+                state: e["attach" + r + "_call_state"],
+                duration: intval(e["attach" + r + "_call_duration"]),
+                receiverId: intval(e["attach" + r + "_call_receiver_id"])
+            }) : a.push({
+                type: e["attach" + r + "_type"],
+                id: e["attach" + r],
+                kind: e["attach" + r + "_kind"],
+                productId: e["attach" + r + "_product_id"]
+            });
+            return e.geo && a.push({
+                type: "geo",
+                id: e.geo
+            }), a
+        }
+
+        function u(e, t) {
+            return new n(e, "draft_" + t)
+        }
+        a.r(t), a.d(t, "ImDraft", function() {
+            return n
+        }), a.d(t, "convertKludgesToAttaches", function() {
+            return s
+        }), a.d(t, "loadDraftForPeer", function() {
+            return u
+        });
+        var l = a(426),
+            d = a(141),
+            m = function() {
+                function e(e, t) {
+                    var a = [],
+                        r = !0,
+                        n = !1,
+                        i = void 0;
+                    try {
+                        for (var o, c = e[Symbol.iterator](); !(r = (o = c.next()).done) && (a.push(o.value), !t || a.length !== t); r = !0);
+                    } catch (s) {
+                        n = !0, i = s
+                    } finally {
+                        try {
+                            !r && c["return"] && c["return"]()
+                        } finally {
+                            if (n) throw i
+                        }
+                    }
+                    return a
+                }
+                return function(t, a) {
+                    if (Array.isArray(t)) return t;
+                    if (Symbol.iterator in Object(t)) return e(t, a);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }();
+        n.prototype.dump = function() {
+            this._key && this._db.updateByKey(this._key, o(this.dData))
+        }, n.prototype.load = function() {
+            if (this._key) {
+                var e = this._db.selectByKey(this._key);
+                e && (this.dData = c(e))
+            }
+        }, n.prototype.clear = function() {
+            this.dData = r(), this.dump()
+        }, n.prototype.setText = function(e) {
+            this.dData.txt = trim(e), this.dump()
+        }, n.prototype.addAttach = function(e, t, a) {
+            if (("share" === e || "mail" === e) && this.removeAttachByType(e), !e || !t) return !1;
+            var r = this.dData.attaches.findIndex(function(a) {
+                return a.type === e && a.id === t
+            }); - 1 === r ? (this.dData.attaches.push({
+                type: e,
+                id: t,
+                object: a
+            }), this.dump()) : "video" === e && (this.dData.attaches[r] = {
+                type: e,
+                id: t,
+                object: a
+            }, this.dump())
+        }, n.prototype.syncWithSelector = function(e) {
+            var t = this,
+                a = this.getFwdRaw();
+            this.dData.attaches = (a ? [a] : []).concat(e.getMedias().map(function(e) {
+                var a = m(e, 2),
+                    r = a[0],
+                    n = a[1],
+                    i = t.dData.attaches.find(function(e) {
+                        return e.type == r && e.id == n
+                    });
+                return i || {
+                    type: r,
+                    id: n
+                }
+            })), this.dump()
+        }, n.prototype.removeAttachByType = function(e) {
+            for (var t = this.dData.attaches.length; t--;) this.dData.attaches[t].type === e && this.dData.attaches.splice(t, 1);
+            this.dump()
+        }, n.prototype.removeAllAttaches = function() {
+            this.dData.attaches = [], this.dData.cancelled = [], this.dump()
+        }, n.prototype.addBindUrl = function(e, t, a) {
+            this.getBoundAttach(e) || (this.dData.urlBinds.push({
+                url: e,
+                type: t,
+                id: a
+            }), this.dump())
+        }, n.prototype.getBoundAttach = function(e) {
+            var t = this.dData.urlBinds.find(function(t) {
+                return t.url === e
+            });
+            return t ? this.dData.attaches.find(function(e) {
+                return e.type === t.type && e.id === t.id
+            }) || null : null
+        }, n.prototype.getShareUrl = function() {
+            var e = this.dData.attaches.find(function(e) {
+                return "share" === e.type
+            });
+            return e && e.object ? e.object.url : void 0
+        }, n.prototype.getCancelledShares = function() {
+            return this.dData.cancelled.length ? this.dData.cancelled : void 0
+        }, n.prototype.hasAttaches = function() {
+            return this.dData.attaches.length > 0
+        }, n.prototype.destroy = function() {
+            this.dData = {}, this._key = this._db = null
+        }, n.prototype.prepareObjects = function(e, t) {
+            var a = this,
+                r = this.dData.attaches.find(i);
+            return r ? Object(l.post)(l.CONTROLLER, {
+                act: "draft_medias",
+                gid: e,
+                messageId: t || 0,
+                media: t ? void 0 : this.dData.attaches.map(function(e) {
+                    return [e.type, e.id]
+                }).join("*")
+            }).then(function(e) {
+                var t = m(e, 1),
+                    r = t[0];
+                a.dData.attaches = r.map(function(e) {
+                    return {
+                        type: e[0],
+                        id: e[1],
+                        object: e[2]
+                    }
+                })
+            }) : Promise.resolve()
+        }, n.prototype.getFwdRaw = function() {
+            return this.dData.attaches.find(function(e) {
+                return "mail" === e.type
+            })
+        }, n.prototype.getFwdCount = function() {
+            var e = this.getFwdRaw();
+            return e ? e.id < 0 ? e.object.fwd_count : e.id.split(";").length : 0
+        }
     }
 });

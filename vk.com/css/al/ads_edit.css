@@ -481,10 +481,9 @@ a.ads_edit_link_go:hover {
     box-sizing: border-box;
     background-color: #fff;
     cursor: pointer;
-    transition: box-shadow 0.2s ease, -webkit-transform 0.2s ease;
     -o-transition: box-shadow 0.2s ease, transform 0.2s ease, -o-transform 0.2s ease;
     transition: box-shadow 0.2s ease, transform 0.2s ease;
-    transition: box-shadow 0.2s ease, transform 0.2s ease, -webkit-transform 0.2s ease, -o-transform 0.2s ease
+    transition: box-shadow 0.2s ease, transform 0.2s ease, -o-transform 0.2s ease
 }
 
 .ads_edit_link_type_card_small {
@@ -493,7 +492,6 @@ a.ads_edit_link_go:hover {
 
 .ads_edit_link_type_card:hover {
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .04), 0 1px 1px 0 rgba(0, 0, 0, .02);
-    -webkit-transform: translateY(-3px);
     -o-transform: translateY(-3px);
     transform: translateY(-3px)
 }
@@ -501,7 +499,6 @@ a.ads_edit_link_go:hover {
 .ads_edit_link_type_card.disabled:hover,
 .ads_edit_link_type_card.selected {
     box-shadow: none;
-    -webkit-transform: none;
     -o-transform: none;
     transform: none
 }
@@ -1446,21 +1443,6 @@ a.ads_edit_link_go:hover {
     cursor: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHdpZHRoPSIyN3B4IiBoZWlnaHQ9IjMzcHgiIHZpZXdCb3g9IjAgMCAyNyAzMyIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4gICAgICAgIDx0aXRsZT5waW5fbWFwPC90aXRsZT4gICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+ICAgIDxkZWZzPiAgICAgICAgPGZpbHRlciB4PSItNTAlIiB5PSItNTAlIiB3aWR0aD0iMjAwJSIgaGVpZ2h0PSIyMDAlIiBmaWx0ZXJVbml0cz0ib2JqZWN0Qm91bmRpbmdCb3giIGlkPSJmaWx0ZXItMSI+ICAgICAgICAgICAgPGZlT2Zmc2V0IGR4PSIwIiBkeT0iNSIgaW49IlNvdXJjZUFscGhhIiByZXN1bHQ9InNoYWRvd09mZnNldE91dGVyMSI+PC9mZU9mZnNldD4gICAgICAgICAgICA8ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIyLjUiIGluPSJzaGFkb3dPZmZzZXRPdXRlcjEiIHJlc3VsdD0ic2hhZG93Qmx1ck91dGVyMSI+PC9mZUdhdXNzaWFuQmx1cj4gICAgICAgICAgICA8ZmVDb2xvck1hdHJpeCB2YWx1ZXM9IjAgMCAwIDAgMCAgIDAgMCAwIDAgMCAgIDAgMCAwIDAgMCAgMCAwIDAgMC4zIDAiIHR5cGU9Im1hdHJpeCIgaW49InNoYWRvd0JsdXJPdXRlcjEiIHJlc3VsdD0ic2hhZG93TWF0cml4T3V0ZXIxIj48L2ZlQ29sb3JNYXRyaXg+ICAgICAgICAgICAgPGZlTWVyZ2U+ICAgICAgICAgICAgICAgIDxmZU1lcmdlTm9kZSBpbj0ic2hhZG93TWF0cml4T3V0ZXIxIj48L2ZlTWVyZ2VOb2RlPiAgICAgICAgICAgICAgICA8ZmVNZXJnZU5vZGUgaW49IlNvdXJjZUdyYXBoaWMiPjwvZmVNZXJnZU5vZGU+ICAgICAgICAgICAgPC9mZU1lcmdlPiAgICAgICAgPC9maWx0ZXI+ICAgIDwvZGVmcz4gICAgPGcgaWQ9IlBhZ2UtMSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+ICAgICAgICA8ZyBpZD0i0KDQtdC20LjQvC3QtNC+0LHQsNCy0LvQtdC90LjRjy3Qv9C40L3QsC3QvdCwLdC60LDRgNGC0YMiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC03MTIuMDAwMDAwLCAtNDk3LjAwMDAwMCkiPiAgICAgICAgICAgIDxnIGlkPSJHcm91cC0yMCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTAxLjAwMDAwMCwgMjU5LjAwMDAwMCkiPiAgICAgICAgICAgICAgICA8ZyBpZD0icGluX21hcCIgZmlsdGVyPSJ1cmwoI2ZpbHRlci0xKSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjE2LjAwMDAwMCwgMjM4LjAwMDAwMCkiPiAgICAgICAgICAgICAgICAgICAgPGcgaWQ9Ik92YWwtODktKy1TaGFwZS0xNiI+ICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTAsOC42OTcxNDU1OCBDMCwxMS43NTUwNTY0IDIuNTUyNzUzMTIsMTUuOTQzOTMwOCA0Ljg3MTc1OTI0LDE5LjE1MjczNTkgQzUuNTAzNDEyOTcsMjAuMDI2NzU0MiA4LjQyNjMzMDU3LDIzLjI5NTc1NiA4LjQyNjMzMDU3LDIzLjI5NTc1NiBDOC40MjYzMzA1NywyMy4yOTU3NTYgMTEuMzUxNjc3OSwyMC4xOTQ2NjY4IDExLjkwOTI5MDQsMTkuNDIwNDY2NyBDMTQuMjgxMTQ5MywxNi4xMjczMzExIDE2Ljk5MDM1ODIsMTEuNjYyMDYzOCAxNi45OTAzNTgyLDguNjk3MTQ1NTggQzE3LjIxOTk1NzcsMy40MzMwODM3OCAxMy4zMTY3NjczLDAgOC43MjQ3Nzg1NSwwIEMzLjkwMzE5MDQsMCAwLDMuNDMzMDgzNzggMCw4LjY5NzE0NTU4IFoiIGlkPSJTaGFwZS0xNiIgZmlsbD0iIzJCMkYzMyI+PC9wYXRoPiAgICAgICAgICAgICAgICAgICAgICAgIDxjaXJjbGUgaWQ9Ik92YWwtODkiIGZpbGw9IiNGRkZGRkYiIGN4PSI4LjQ3NjE5MDQ4IiBjeT0iOC41IiByPSI0LjUiPjwvY2lyY2xlPiAgICAgICAgICAgICAgICAgICAgPC9nPiAgICAgICAgICAgICAgICA8L2c+ICAgICAgICAgICAgPC9nPiAgICAgICAgPC9nPiAgICA8L2c+PC9zdmc+) 9 24, auto
 }
 
-@-webkit-keyframes wait {
-    0% {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
-    50% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1)
-    }
-    to {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
-}
-
 @-o-keyframes wait {
     0% {
         -o-transform: scale(1);
@@ -1478,17 +1460,14 @@ a.ads_edit_link_go:hover {
 
 @keyframes wait {
     0% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1)
     }
     50% {
-        -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
         transform: scale(1.1)
     }
     to {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1)
     }
@@ -1562,10 +1541,9 @@ a.ads_edit_link_go:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    transition: -webkit-transform 2.2s ease;
     -o-transition: transform 2.2s ease, -o-transform 2.2s ease;
     transition: transform 2.2s ease;
-    transition: transform 2.2s ease, -webkit-transform 2.2s ease, -o-transform 2.2s ease
+    transition: transform 2.2s ease, -o-transform 2.2s ease
 }
 
 .ads_edit_easy_promote_box__image-layer_1 {
@@ -1583,7 +1561,6 @@ a.ads_edit_link_go:hover {
 }
 
 .ads_edit_easy_promote_box__image_animated .ads_edit_easy_promote_box__image-layer_1 {
-    -webkit-transform: translateY(-160px);
     -o-transform: translateY(-160px);
     transform: translateY(-160px)
 }
@@ -1603,7 +1580,6 @@ a.ads_edit_link_go:hover {
 }
 
 .ads_edit_easy_promote_box__image_animated .ads_edit_easy_promote_box__image-layer_2 {
-    -webkit-transform: translateY(-320px);
     -o-transform: translateY(-320px);
     transform: translateY(-320px)
 }
@@ -1620,11 +1596,9 @@ a.ads_edit_link_go:hover {
 
 .ads_edit_easy_promote_box__screens-wrapper {
     position: relative;
-    transition: -webkit-transform 0.6s ease;
     -o-transition: transform 0.6s ease, -o-transform 0.6s ease;
     transition: transform 0.6s ease;
-    transition: transform 0.6s ease, -webkit-transform 0.6s ease, -o-transform 0.6s ease;
-    -webkit-transform: translateY(0px);
+    transition: transform 0.6s ease, -o-transform 0.6s ease;
     -o-transform: translateY(0px);
     transform: translateY(0px)
 }
@@ -1683,14 +1657,12 @@ a.ads_edit_link_go:hover {
     width: 418px;
     margin: 0 auto;
     text-align: center;
-    transition: -webkit-transform 1.3s ease;
     -o-transition: transform 1.3s ease, -o-transform 1.3s ease;
     transition: transform 1.3s ease;
-    transition: transform 1.3s ease, -webkit-transform 1.3s ease, -o-transform 1.3s ease
+    transition: transform 1.3s ease, -o-transform 1.3s ease
 }
 
 .ads_edit_easy_promote_box__header_animated {
-    -webkit-transform: translateY(120px);
     -o-transform: translateY(120px);
     transform: translateY(120px)
 }
@@ -1720,10 +1692,9 @@ a.ads_edit_link_go:hover {
     background-position: left 5px;
     background-repeat: no-repeat;
     background-size: 38px auto;
-    transition: opacity 0.8s ease, -webkit-transform 0.8s ease;
     -o-transition: transform 0.8s ease, opacity 0.8s ease, -o-transform 0.8s ease;
     transition: transform 0.8s ease, opacity 0.8s ease;
-    transition: transform 0.8s ease, opacity 0.8s ease, -webkit-transform 0.8s ease, -o-transform 0.8s ease;
+    transition: transform 0.8s ease, opacity 0.8s ease, -o-transform 0.8s ease;
     opacity: 1
 }
 
@@ -1741,7 +1712,6 @@ a.ads_edit_link_go:hover {
 
 .ads_edit_easy_promote_box__intro-block_animated {
     opacity: 0;
-    -webkit-transform: translateY(20px);
     -o-transform: translateY(20px);
     transform: translateY(20px)
 }
@@ -2014,10 +1984,9 @@ input.ads_edit_easy_promote_box__payments-input-amount {
     background-repeat: no-repeat;
     background-size: 150px auto;
     background-position: 50%;
-    transition: background-color 0.1s ease, opacity 0.2s linear, -webkit-transform 0.2s linear;
     -o-transition: background-color 0.1s ease, transform 0.2s linear, opacity 0.2s linear, -o-transform 0.2s linear;
     transition: background-color 0.1s ease, transform 0.2s linear, opacity 0.2s linear;
-    transition: background-color 0.1s ease, transform 0.2s linear, opacity 0.2s linear, -webkit-transform 0.2s linear, -o-transform 0.2s linear;
+    transition: background-color 0.1s ease, transform 0.2s linear, opacity 0.2s linear, -o-transform 0.2s linear;
     font-weight: 500;
     line-height: 1.46;
     letter-spacing: -0.1px;
@@ -2092,7 +2061,6 @@ input.ads_edit_easy_promote_box__payments-input-amount {
 
 .ads_edit_easy_promote_box__payments-systems-item_rotated,
 .ads_edit_easy_promote_box__payments-systems-item_rotated-inv {
-    -webkit-transform: perspective(300px);
     transform: perspective(300px);
     opacity: 0.0
 }
@@ -2139,14 +2107,12 @@ input.ads_edit_easy_promote_box__payments-input-amount {
     margin: 0 auto;
     width: 64px;
     height: 64px;
-    transition: -webkit-transform 0.8s ease;
     -o-transition: transform 0.8s ease, -o-transform 0.8s ease;
     transition: transform 0.8s ease;
-    transition: transform 0.8s ease, -webkit-transform 0.8s ease, -o-transform 0.8s ease
+    transition: transform 0.8s ease, -o-transform 0.8s ease
 }
 
 .ads_edit_easy_promote_box__payment-result-icon-container_animated {
-    -webkit-animation: wait 3s infinite;
     -o-animation: wait 3s infinite;
     animation: wait 3s infinite
 }
@@ -2157,13 +2123,10 @@ input.ads_edit_easy_promote_box__payments-input-amount {
     background-repeat: no-repeat;
     background-size: 64px 64px;
     background-position: 50%;
-    transition: opacity 0.8s ease, -webkit-transform 0.8s ease;
     -o-transition: transform 0.8s ease, opacity 0.8s ease, -o-transform 0.8s ease;
     transition: transform 0.8s ease, opacity 0.8s ease;
-    transition: transform 0.8s ease, opacity 0.8s ease, -webkit-transform 0.8s ease, -o-transform 0.8s ease;
-    -webkit-transform: perspective(200px);
+    transition: transform 0.8s ease, opacity 0.8s ease, -o-transform 0.8s ease;
     transform: perspective(200px);
-    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     position: absolute;
     top: 0;
@@ -2183,7 +2146,6 @@ input.ads_edit_easy_promote_box__payments-input-amount {
 }
 
 .ads_edit_easy_promote_box__payment-result-icon_hidden {
-    -webkit-transform: perspective(200px) rotateY(180deg);
     transform: perspective(200px) rotateY(180deg);
     opacity: 0.5
 }

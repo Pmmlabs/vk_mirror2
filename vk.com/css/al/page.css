@@ -109,13 +109,10 @@
 .like_cont {
     padding: 12px 0;
     border-top: 1px solid #e7e8ec;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
     justify-content: space-between;
     position: relative
@@ -133,10 +130,8 @@
 
 .like_btns,
 .like_btn {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center
 }
@@ -169,7 +164,6 @@
     opacity: 0.7;
     -o-transition: opacity 100ms ease-in-out;
     transition: opacity 100ms ease-in-out;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto
 }
@@ -184,7 +178,6 @@
 }
 
 .like_btn.like.active.animate .like_button_icon {
-    -webkit-animation: page_post_like_animation 0.2s ease-out;
     -o-animation: page_post_like_animation 0.2s ease-out;
     animation: page_post_like_animation 0.2s ease-out
 }
@@ -271,21 +264,6 @@
     margin-left: 0!important
 }
 
-@-webkit-keyframes page_post_like_animation {
-    0% {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
-    50% {
-        -webkit-transform: scale(1.15);
-        transform: scale(1.15)
-    }
-    to {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
-}
-
 @-o-keyframes page_post_like_animation {
     0% {
         -o-transform: scale(1);
@@ -303,27 +281,22 @@
 
 @keyframes page_post_like_animation {
     0% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1)
     }
     50% {
-        -webkit-transform: scale(1.15);
         -o-transform: scale(1.15);
         transform: scale(1.15)
     }
     to {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1)
     }
 }
 
 .like_views {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
     height: 14px;
@@ -371,16 +344,13 @@
 
 .like_wrap .ui_actions_menu_top .ui_actions_menu {
     margin-bottom: -15px!important;
-    display: -webkit-flex!important;
     display: -ms-flexbox!important;
     display: flex!important;
-    -webkit-flex-direction: column-reverse;
     -ms-flex-direction: column-reverse;
     flex-direction: column-reverse
 }
 
 .like_wrap .ui_actions_menu_top .ui_actions_menu .ui_actions_menu_item {
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto
 }
@@ -403,7 +373,6 @@
     white-space: nowrap;
     line-height: 16px;
     font-size: 14px;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center
 }
@@ -702,16 +671,12 @@
     margin-top: -2px;
     width: 16px;
     height: 16px;
-    -webkit-animation-name: round_spinner;
     -o-animation-name: round_spinner;
     animation-name: round_spinner;
-    -webkit-animation-duration: 700ms;
     -o-animation-duration: 700ms;
     animation-duration: 700ms;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner.png)
@@ -1378,7 +1343,6 @@ html:not([lang=ru]) .wall_marked_as_ads {
 .wall_post_more:hover,
 .wall_reply_more:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     text-decoration: none
 }
@@ -1653,7 +1617,6 @@ div.submit_post_field font {
 
 .wall_module .reply:hover .like_wrap.my_like .like_icon {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1665,7 +1628,6 @@ div.submit_post_field font {
 
 .wall_module .reply .reply_action:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2610,7 +2572,6 @@ a.page_media_link_desc {
     width: 100%!important;
     height: auto!important;
     top: 50%;
-    -webkit-transform: translateY(-50%);
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
     z-index: 1;
@@ -2814,7 +2775,6 @@ a.page_media_link_desc {
 .page_media_money_transfer .page_media_money_decline_btn:hover .button,
 .page_media_stickers_store .page_media_money_decline_btn:hover .button {
     opacity: 1!important;
-    -webkit-filter: none!important;
     filter: none!important
 }
 
@@ -3036,7 +2996,6 @@ a.page_media_link_desc {
 
 .media_preview .x:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -4254,7 +4213,6 @@ a.wall_reply_greeting {
 
 .replies:hover .replies_side_wrap {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -4490,7 +4448,6 @@ img.page_preview_video {
 }
 
 body.mac .reply_box_inner_wrap.fixed {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -4524,15 +4481,11 @@ body.mac .reply_box_inner_wrap.fixed {
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
-    transition: -webkit-transform 0.3s ease;
     -o-transition: transform 0.3s ease, -o-transform 0.3s ease;
     transition: transform 0.3s ease;
-    transition: transform 0.3s ease, -webkit-transform 0.3s ease, -o-transform 0.3s ease;
-    -webkit-backface-visibility: hidden;
+    transition: transform 0.3s ease, -o-transform 0.3s ease;
     backface-visibility: hidden;
-    -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg);
     position: absolute;
     top: 10px;
@@ -4541,12 +4494,10 @@ body.mac .reply_box_inner_wrap.fixed {
 
 .author_secondary .post_field_user_image,
 .post_field_user_image.post_field_image_secondary {
-    -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg)
 }
 
 .author_secondary .post_field_user_image.post_field_image_secondary {
-    -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg);
     z-index: 1
 }
@@ -4818,14 +4769,12 @@ div.submit_post_field[contenteditable=true]>p {
 .checkbox_pic.on,
 .checkbox_pic:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
 .checkbox_official {
     cursor: pointer;
     overflow: hidden;
-    -webkit-transform: perspective(1000px);
     transform: perspective(1000px);
     position: relative;
     -ms-user-select: none;
@@ -4838,15 +4787,11 @@ div.submit_post_field[contenteditable=true]>p {
 }
 
 .checkbox_official .post_field_choose_image {
-    -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
-    transition: -webkit-transform 0.3s ease;
     -o-transition: transform 0.3s ease, -o-transform 0.3s ease;
     transition: transform 0.3s ease;
-    transition: transform 0.3s ease, -webkit-transform 0.3s ease, -o-transform 0.3s ease;
-    -webkit-backface-visibility: hidden;
+    transition: transform 0.3s ease, -o-transform 0.3s ease;
     backface-visibility: hidden;
-    -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg);
     position: absolute;
     top: 0;
@@ -4855,12 +4800,10 @@ div.submit_post_field[contenteditable=true]>p {
 
 .author_secondary .checkbox_official .post_field_choose_image,
 .checkbox_official .post_field_choose_image.post_field_choose_secondary {
-    -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg)
 }
 
 .author_secondary .checkbox_official .post_field_choose_image.post_field_choose_secondary {
-    -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg);
     z-index: 1
 }
@@ -5106,26 +5049,22 @@ div.submit_post_field[contenteditable=true]>p {
 }
 
 .signed_checkbox {
-    transition: opacity 0.3s ease, visibility 0.3s ease, -webkit-transform 0.3s ease;
     -o-transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, -o-transform 0.3s ease;
     transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, -webkit-transform 0.3s ease, -o-transform 0.3s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, -o-transform 0.3s ease;
     opacity: 0;
     filter: alpha(opacity=0);
     visibility: hidden;
     pointer-events: none;
-    -webkit-transform: translate3d(100%, 0, 0);
     transform: translate3d(100%, 0, 0);
     line-height: 1em
 }
 
 .signed_checkbox.shown {
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     visibility: visible;
     pointer-events: auto;
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -5363,7 +5302,6 @@ div.submit_post_field[contenteditable=true]>p {
 .wall_module .my_like .post_like_icon,
 .wall_module .my_share .post_share_icon {
     opacity: 1!important;
-    -webkit-filter: none!important;
     filter: none!important
 }
 
@@ -5666,7 +5604,6 @@ div.submit_post_field[contenteditable=true]>p {
 .like_tt_share:hover,
 .like_tt_share:hover:before {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -5951,7 +5888,6 @@ body[data-useragent=safari] h2.page_name {
 
 .ui_tabs.page_info_tabs {
     line-height: 19px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     white-space: nowrap
@@ -6077,7 +6013,6 @@ body[data-useragent=safari] h2.page_name {
 
 .current_audio_cnt:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -6289,14 +6224,12 @@ textarea.page_poll_export_code {
 
 .owner_photo_wrap:hover .owner_photo_bubble {
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     margin-top: 0
 }
 
 .owner_photo_wrap:hover .owner_photo_top_bubble {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -6313,7 +6246,6 @@ textarea.page_poll_export_code {
 
 .owner_photo_bubble_action:hover .owner_photo_bubble_action_in {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -6541,7 +6473,6 @@ div.page_cover_image .ui_actions_menu_icons {
 
 .page_cover:hover .page_cover_menu {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -6567,7 +6498,6 @@ div.page_cover_image .ui_actions_menu_icons {
 
 .page_cover_action:hover:before {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -7068,7 +6998,6 @@ div.page_cover_image .ui_actions_menu_icons {
 
 .page_gif_progress_icon .pr {
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     margin-top: 22px
 }
@@ -7116,7 +7045,6 @@ div.page_cover_image .ui_actions_menu_icons {
 .page_gif_add:hover,
 .page_gif_share:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -7146,7 +7074,6 @@ div.page_cover_image .ui_actions_menu_icons {
 .page_gif_large:hover .page_gif_actions,
 .page_gif_loaded:hover .page_gif_actions {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -7541,7 +7468,6 @@ div.medadd_c_linkprg {
 
 .medadd_c_linkimg_controls .medadd_c_linkimg_controls_btn:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -7568,7 +7494,6 @@ div.medadd_c_linkprg {
 
 .medadd_c_linkcon:hover .medadd_c_linkimg_controls {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -7842,7 +7767,6 @@ div.medadd_c_linkprg {
 
 .medadd_inline_editable:hover .medadd_inline_editable_icon {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -8615,7 +8539,6 @@ button.wall_block_app_btn {
 
 .page_wall_search .page_reset_search:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -8885,14 +8808,12 @@ button.wall_block_app_btn {
     height: 13px;
     vertical-align: middle;
     background: url('/images/svg_icons/vk2017_arrow.svg') no-repeat;
-    transition: -webkit-transform 100ms linear;
     -o-transition: transform 100ms linear, -o-transform 100ms linear;
     transition: transform 100ms linear;
-    transition: transform 100ms linear, -webkit-transform 100ms linear, -o-transform 100ms linear
+    transition: transform 100ms linear, -o-transform 100ms linear
 }
 
 .vk2017_snippet_show_layer_button:hover:after {
-    -webkit-transform: translateX(3px);
     -o-transform: translateX(3px);
     transform: translateX(3px)
 }
@@ -8927,10 +8848,8 @@ button.wall_block_app_btn {
 
 .post_feedback_info_wrap {
     position: relative;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column
 }
@@ -8983,12 +8902,10 @@ button.wall_block_app_btn {
     background-size: cover;
     background-position: 50%;
     background-color: #e7ebf0;
-    -webkit-filter: blur(0.5px);
     filter: blur(0.5px)
 }
 
 .article_snippet.article_snippet__no_cover .article_snippet__image {
-    -webkit-filter: blur(50px);
     filter: blur(50px);
     background-size: 190%
 }
@@ -8998,16 +8915,12 @@ button.wall_block_app_btn {
     height: 100%;
     position: absolute;
     top: 0;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center
 }
@@ -9161,7 +9074,6 @@ button.wall_block_app_btn {
 }
 
 .article_snippet.article_snippet_mini {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     margin: 10px 0;
@@ -9198,12 +9110,10 @@ button.wall_block_app_btn {
 }
 
 .article_snippet.article_snippet_mini.article_snippet__deleted .article_snippet_mini_thumb {
-    -webkit-filter: grayscale(1) brightness(0.8);
     filter: grayscale(1) brightness(0.8)
 }
 
 .article_snippet.article_snippet_mini.article_snippet__no_cover .article_snippet_mini_thumb {
-    -webkit-filter: blur(14px) brightness(0.5);
     filter: blur(14px) brightness(0.5);
     background-size: 400%
 }
@@ -9218,7 +9128,6 @@ button.wall_block_app_btn {
     border: 1px solid #e0e2e6;
     border-left: none;
     border-radius: 0 2px 2px 0;
-    -webkit-flex-grow: 1;
     -ms-flex-positive: 1;
     flex-grow: 1
 }
@@ -9450,7 +9359,6 @@ button.wall_block_app_btn {
 
 .post_suggestions__arrow_left {
     left: 0;
-    -webkit-transform: scaleX(-1);
     -o-transform: scaleX(-1);
     transform: scaleX(-1)
 }

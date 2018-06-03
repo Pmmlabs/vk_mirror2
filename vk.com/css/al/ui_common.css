@@ -122,7 +122,6 @@ input.ui_search_field {
 }
 
 body.mac .ui_tabs_fixed {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -216,7 +215,6 @@ a.ui_box_header_link {
 
 .ui_tab_search:hover:after {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -245,14 +243,12 @@ a.ui_box_header_link {
 .ui_tab_group.ui_tab_group_sel:before {
     background: #5181b8;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
 .ui_tab_group.visible:before {
     z-index: 5;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -263,7 +259,6 @@ a.ui_box_header_link {
 .ui_tab_group.shown .ui_tab_group_items {
     visibility: visible;
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     pointer-events: auto
 }
@@ -377,7 +372,6 @@ a.ui_box_header_link {
 
 .ui_box_search:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -453,10 +447,9 @@ a.ui_box_header_link {
     width: 100px;
     height: 2px;
     background-color: #5181b8;
-    transition: width 0.2s ease, -webkit-transform 0.2s ease;
     -o-transition: width 0.2s ease, transform 0.2s ease, -o-transform 0.2s ease;
     transition: width 0.2s ease, transform 0.2s ease;
-    transition: width 0.2s ease, transform 0.2s ease, -webkit-transform 0.2s ease, -o-transform 0.2s ease
+    transition: width 0.2s ease, transform 0.2s ease, -o-transform 0.2s ease
 }
 
 .ui_tabs.ui_tabs_sliding .ui_tab_sel {
@@ -739,10 +732,9 @@ a.ui_crumb {
     height: 32px;
     width: 2px;
     background-color: #5181b8;
-    transition: margin-top 0.2s ease, -webkit-transform 0.2s ease;
     -o-transition: margin-top 0.2s ease, transform 0.2s ease, -o-transform 0.2s ease;
     transition: margin-top 0.2s ease, transform 0.2s ease;
-    transition: margin-top 0.2s ease, transform 0.2s ease, -webkit-transform 0.2s ease, -o-transform 0.2s ease;
+    transition: margin-top 0.2s ease, transform 0.2s ease, -o-transform 0.2s ease;
     z-index: 1
 }
 
@@ -845,7 +837,6 @@ body.sf .ui_rmenu_count {
 
 .ui_calendar_icon:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -918,7 +909,6 @@ body.sf .ui_rmenu_count {
 }
 
 body.mac .ui_search.ui_search_fixed {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -1159,10 +1149,9 @@ input.ui_search_field:focus~.placeholder .ph_content {
     padding: 0;
     margin: 0;
     float: right;
-    transition: opacity 50ms linear, margin 100ms ease, -webkit-transform 60ms linear;
     -o-transition: opacity 50ms linear, margin 100ms ease, transform 60ms linear, -o-transform 60ms linear;
     transition: opacity 50ms linear, margin 100ms ease, transform 60ms linear;
-    transition: opacity 50ms linear, margin 100ms ease, transform 60ms linear, -webkit-transform 60ms linear, -o-transform 60ms linear
+    transition: opacity 50ms linear, margin 100ms ease, transform 60ms linear, -o-transform 60ms linear
 }
 
 .ui_search_new .ui_search_button_control:active {
@@ -1240,7 +1229,6 @@ input.ui_search_field:focus~.placeholder .ph_content {
 
 .ui_search_reset:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1339,10 +1327,8 @@ input.ui_search_field:focus~.placeholder .ph_content {
     filter: alpha(opacity=75)
 }
 
-.ui_tab_search_wrap .ui_search_reset:hover,
-.ui_search_loading .ui_search_reset {
+.ui_tab_search_wrap .ui_search_reset:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1350,7 +1336,9 @@ input.ui_search_field:focus~.placeholder .ph_content {
     background-image: url(/images/c_upload.gif);
     -o-transition: none;
     transition: none;
-    visibility: visible
+    visibility: visible;
+    opacity: 1;
+    filter: none
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1567,7 +1555,6 @@ a.ui_search_custom_link {
 .ui_search_fltr_control.shown .ui_search_fltr {
     visibility: visible;
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     top: 37px;
     pointer-events: auto
@@ -1689,7 +1676,6 @@ a.ui_search_custom_link {
 .ui_multiselect_cnt .token:hover .token_del,
 .ui_search_filters_pane .token:hover .token_del {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1717,7 +1703,6 @@ a.ui_search_custom_link {
 .ui_search_filters_pane.expanded {
     max-height: 60px;
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     padding: 7px 0
 }
@@ -1745,7 +1730,6 @@ a.ui_search_custom_link {
 
 .ui_search_filters_reset:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1766,7 +1750,6 @@ a.ui_search_custom_link {
     margin: 7px 0;
     max-height: 24px;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1857,7 +1840,6 @@ a.ui_search_custom_link {
 .ui_actions_menu_wrap.shown .ui_actions_menu {
     visibility: visible;
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     display: block!important;
     top: 41px;
@@ -2151,7 +2133,6 @@ a.ui_search_custom_link {
 
 .ui_actions_menu_hide:hover {
     opacity: 1!important;
-    -webkit-filter: none!important;
     filter: none!important
 }
 
@@ -2207,7 +2188,6 @@ a.ui_search_custom_link {
 
 .ui_zoom:hover .ui_zoom_icon {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2225,7 +2205,6 @@ a.ui_search_custom_link {
 
 @media all and (min-width: 0) {
     .ui_zoom {
-        -webkit-filter: none;
         filter: none
     }
 }
@@ -2287,7 +2266,6 @@ a.ui_search_custom_link {
 .ui_thumb_pe_button:hover .ui_thumb_x,
 .ui_thumb_x_button:hover .ui_thumb_x {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2574,7 +2552,6 @@ a.ui_search_custom_link {
 .ui_scroll_hidden.ui_scroll_scrolled>.ui_scroll_bar_container,
 .ui_scroll_hidden>.ui_scroll_bar_container:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2639,7 +2616,6 @@ a.ui_search_custom_link {
 
 .ui_scroll_shadow_top_visible>.ui_scroll_overflow>.ui_scroll_shadow_top {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2649,7 +2625,6 @@ a.ui_search_custom_link {
 
 .ui_scroll_shadow_bottom_visible>.ui_scroll_overflow>.ui_scroll_shadow_bottom {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2693,7 +2668,6 @@ a.ui_search_custom_link {
 
 .ui_scroll_default_theme>.ui_scroll_overflow>.ui_scroll_shadow_bottom {
     bottom: -3px;
-    -webkit-transform: rotate(180deg);
     -o-transform: rotate(180deg);
     transform: rotate(180deg)
 }
@@ -2742,7 +2716,6 @@ a.ui_search_custom_link {
 
 .ui_scroll_dark_theme>.ui_scroll_overflow>.ui_scroll_shadow_bottom {
     bottom: -3px;
-    -webkit-transform: rotate(180deg);
     -o-transform: rotate(180deg);
     transform: rotate(180deg)
 }
@@ -2800,7 +2773,6 @@ a.ui_search_custom_link {
 .scrollbar_cont.scrollbar_hidden.scrollbar_c_overed .scrollbar_inner,
 .scrollbar_cont.scrollbar_hidden .scrollbar_inner.scrollbar_hovered {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2845,7 +2817,6 @@ a.ui_search_custom_link {
 .scrollbar_bottom {
     margin-top: 0;
     padding-bottom: 3px;
-    -webkit-transform: rotate(180deg);
     -o-transform: rotate(180deg);
     transform: rotate(180deg)
 }
@@ -3137,7 +3108,6 @@ a.ui_search_custom_link {
 }
 
 .olist_item_wrap_ignore .olist_item_name .olist_item_ignore_week {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex
 }
@@ -3266,7 +3236,6 @@ a.ui_search_custom_link {
     background-image: url(/images/small_progress_bkg.png);
     background-position-x: 0;
     background-position-y: 0;
-    -webkit-animation: uploadProgressAnimation 1s linear infinite;
     -o-animation: uploadProgressAnimation 1s linear infinite;
     animation: uploadProgressAnimation 1s linear infinite
 }
@@ -3277,15 +3246,6 @@ a.ui_search_custom_link {
     .ui_progress .ui_progress_bar {
         background-image: url(/images/small_progress_bkg_2x.png);
         background-size: 28px 28px
-    }
-}
-
-@-webkit-keyframes uploadProgressAnimation {
-    0% {
-        background-position-x: 0
-    }
-    to {
-        background-position-x: 28px
     }
 }
 
@@ -3373,7 +3333,6 @@ a.ui_search_custom_link {
     transition: opacity 300ms linear;
     background-image: url(/images/audio_progress.png);
     background-position: 0 0;
-    -webkit-animation: slider_loading_animation 300ms linear infinite;
     -o-animation: slider_loading_animation 300ms linear infinite;
     animation: slider_loading_animation 300ms linear infinite
 }
@@ -3497,15 +3456,6 @@ a.ui_search_custom_link {
     width: 9px;
     top: -3.5px;
     margin-left: -4.5px
-}
-
-@-webkit-keyframes slider_loading_animation {
-    0% {
-        background-position: 0 0
-    }
-    to {
-        background-position: 9px 0
-    }
 }
 
 @-o-keyframes slider_loading_animation {

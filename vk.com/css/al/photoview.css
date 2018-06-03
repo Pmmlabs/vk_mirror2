@@ -247,7 +247,6 @@
     position: absolute;
     white-space: nowrap;
     z-index: 109;
-    -webkit-filter: drop-shadow(0px 0px 1px rgba(0, 20, 51, .12));
     filter: drop-shadow(0px 0px 1px rgba(0, 20, 51, 0.12));
     -webkit-backface-visibility: hidden;
     cursor: default;
@@ -272,7 +271,6 @@
     display: block;
     position: absolute;
     background-color: #fff;
-    -webkit-transform: rotate(-45deg);
     -o-transform: rotate(-45deg);
     transform: rotate(-45deg);
     border-radius: 2px
@@ -348,14 +346,12 @@
 
 .suggested_tag_user {
     padding: 12px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     white-space: nowrap
 }
 
 .suggested_tag_user .suggested_tag_user__name {
-    -webkit-flex-shrink: 1;
     -ms-flex-negative: 1;
     flex-shrink: 1;
     overflow: hidden;
@@ -530,13 +526,10 @@ body[data-useragent=safari] .friends_dropdown__list_content {
 }
 
 .friends_dropdown__list_item .friends_dropdown__list_info {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
     justify-content: space-between;
     height: 34px
@@ -996,7 +989,6 @@ body[data-useragent=safari] .friends_dropdown__list_content {
     position: absolute;
     top: 5%;
     left: 50%;
-    -webkit-transform: translateX(-50%);
     -o-transform: translateX(-50%);
     transform: translateX(-50%);
     opacity: 0;
@@ -1007,10 +999,9 @@ body[data-useragent=safari] .friends_dropdown__list_content {
 
 .pv_cont .pv_hh_like .pv_hh_like_base {
     opacity: 0.8;
-    transition: -webkit-transform 60ms ease;
     -o-transition: transform 60ms ease, -o-transform 60ms ease;
     transition: transform 60ms ease;
-    transition: transform 60ms ease, -webkit-transform 60ms ease, -o-transform 60ms ease
+    transition: transform 60ms ease, -o-transform 60ms ease
 }
 
 .pv_cont .pv_hh_like .pv_hh_like_base,
@@ -1024,36 +1015,30 @@ body[data-useragent=safari] .friends_dropdown__list_content {
 
 .pv_cont .pv_hh_like .pv_hh_like_liked {
     background-position: 0px -240px;
-    transition: opacity 60ms linear, -webkit-transform 200ms cubic-bezier(0.26, 0.47, 0.19, 1.6);
     -o-transition: opacity 60ms linear, transform 200ms cubic-bezier(0.26, 0.47, 0.19, 1.6), -o-transform 200ms cubic-bezier(0.26, 0.47, 0.19, 1.6);
     transition: opacity 60ms linear, transform 200ms cubic-bezier(0.26, 0.47, 0.19, 1.6);
-    transition: opacity 60ms linear, transform 200ms cubic-bezier(0.26, 0.47, 0.19, 1.6), -webkit-transform 200ms cubic-bezier(0.26, 0.47, 0.19, 1.6), -o-transform 200ms cubic-bezier(0.26, 0.47, 0.19, 1.6);
+    transition: opacity 60ms linear, transform 200ms cubic-bezier(0.26, 0.47, 0.19, 1.6), -o-transform 200ms cubic-bezier(0.26, 0.47, 0.19, 1.6);
     opacity: 0;
-    -webkit-transform: scale(0.1);
     -o-transform: scale(0.1);
     transform: scale(0.1)
 }
 
 .pv_cont .pv_hh_like:hover .pv_hh_like_base {
-    -webkit-transform: scale(1.1);
     -o-transform: scale(1.1);
     transform: scale(1.1)
 }
 
 .pv_cont .pv_hh_like.pv_liked:hover .pv_hh_like_base {
-    -webkit-transform: scale(1);
     -o-transform: scale(1);
     transform: scale(1)
 }
 
 .pv_cont .pv_hh_like:active .pv_hh_like_base {
-    -webkit-transform: scale(0.96);
     -o-transform: scale(0.96);
     transform: scale(0.96)
 }
 
 .pv_cont .pv_hh_like.pv_liked .pv_hh_like_liked {
-    -webkit-transform: scale(1);
     -o-transform: scale(1);
     transform: scale(1);
     opacity: 1
@@ -1992,7 +1977,6 @@ body[data-useragent=safari] .friends_dropdown__list_content {
 
 .pv_liked .pv_like_icon {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2348,7 +2332,6 @@ body[data-useragent=safari] .friends_dropdown__list_content {
 
 .pva_row:hover .pva_repeat_cont {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

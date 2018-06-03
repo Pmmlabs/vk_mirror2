@@ -201,13 +201,11 @@ tr:hover .dtt_month_u_template_edit {
 }
 
 .dtt_month_d.dtt_month_d_sel {
-    -webkit-filter: brightness(80%);
     filter: brightness(80%);
     background-color: #f2f4f7
 }
 
 .dtt_month_d.dtt_month_d_sel:hover {
-    -webkit-filter: brightness(85%);
     filter: brightness(85%);
     background-color: #bccde0
 }
@@ -221,7 +219,6 @@ tr:hover .dtt_month_u_template_edit {
 }
 
 .dtt_month_d:hover {
-    -webkit-filter: brightness(90%);
     filter: brightness(90%);
     background-color: #e7edf2
 }
@@ -482,7 +479,6 @@ tr:hover .dtt_month_u_template_edit {
 
 .settings_icon:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

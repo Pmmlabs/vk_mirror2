@@ -127,7 +127,6 @@
 .owner_photo_rotate_left:hover,
 .owner_photo_rotate_right:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -136,19 +135,16 @@
 }
 
 .owner_photo_rotate1 {
-    -webkit-transform: rotate(90deg);
     -o-transform: rotate(90deg);
     transform: rotate(90deg)
 }
 
 .owner_photo_rotate2 {
-    -webkit-transform: rotate(180deg);
     -o-transform: rotate(180deg);
     transform: rotate(180deg)
 }
 
 .owner_photo_rotate3 {
-    -webkit-transform: rotate(270deg);
     -o-transform: rotate(270deg);
     transform: rotate(270deg)
 }

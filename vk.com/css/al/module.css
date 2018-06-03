@@ -401,7 +401,6 @@
     content: '';
     z-index: 1;
     background: rgba(0, 0, 0, .4);
-    -webkit-filter: blur(8px);
     filter: blur(8px);
     width: 150px;
     height: 150px;
@@ -415,10 +414,9 @@
     height: 32px;
     margin: 0 auto;
     background: url('/images/svg_icons/profile_story_icon.svg?1') no-repeat bottom;
-    transition: -webkit-transform 150ms ease-in-out;
     -o-transition: transform 150ms ease-in-out, -o-transform 150ms ease-in-out;
     transition: transform 150ms ease-in-out;
-    transition: transform 150ms ease-in-out, -webkit-transform 150ms ease-in-out, -o-transform 150ms ease-in-out
+    transition: transform 150ms ease-in-out, -o-transform 150ms ease-in-out
 }
 
 .page_story_photo .page_story_photo_caption {
@@ -447,7 +445,6 @@
 }
 
 .page_story_photo:hover .page_story_photo_icon {
-    -webkit-transform: translateY(-2px);
     -o-transform: translateY(-2px);
     transform: translateY(-2px)
 }
@@ -822,7 +819,6 @@ a.page_module_upload:hover {
 .page_module_upload.hover .page_upload_label,
 a.page_module_upload:hover .page_upload_label {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

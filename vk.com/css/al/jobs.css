@@ -330,7 +330,6 @@ td.labeled.jobs_apply_doc {
 
 .jobs_apply_doc_x_wrap:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

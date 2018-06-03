@@ -334,7 +334,6 @@
 }
 
 .agent_reply_photo.agent_reply_photo_editable:hover {
-    -webkit-transform: scale(1.5);
     -o-transform: scale(1.5);
     transform: scale(1.5)
 }

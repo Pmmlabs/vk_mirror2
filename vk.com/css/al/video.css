@@ -370,7 +370,6 @@
     color: #fff;
     text-align: center;
     overflow: hidden;
-    -webkit-transform: translateZ(0);
     transform: translateZ(0);
     border-radius: 0 2px 2px 0;
     cursor: pointer
@@ -379,7 +378,6 @@
 .video_playlist_item .video_playlist_item_counter_back {
     top: 0;
     left: 0;
-    -webkit-filter: blur(14px) brightness(0.7);
     filter: blur(14px) brightness(0.7);
     width: 180%;
     height: 140%;
@@ -408,7 +406,6 @@
 }
 
 .video_playlist_item.video_playlist_item_playable .video_playlist_item_counter:hover .video_playlist_item_counter_back {
-    -webkit-filter: blur(14px) brightness(0.65);
     filter: blur(14px) brightness(0.65)
 }
 
@@ -784,7 +781,6 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
 .video_choosebox_bottom.fixed {
     box-shadow: 0 -1px 3px 0 rgba(0, 0, 0, .06);
     position: fixed!important;
-    -webkit-transform: translateZ(0px);
     transform: translateZ(0px)
 }
 
@@ -821,7 +817,6 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
 
 .video_thumb_actions>div:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -884,7 +879,6 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
 .video_added .video_thumb_action_add .icon_added {
     background-position: 0px -126px;
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     pointer-events: all
 }
@@ -892,7 +886,6 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
 .video_item:hover .video_thumb_actions,
 .video_item:hover .video_thumb_play {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -932,7 +925,6 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
 
 .video_search_input .ui_search_custom_ctrl {
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     -o-transition: opacity 100ms linear;
     transition: opacity 100ms linear
@@ -1257,7 +1249,6 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
     position: absolute;
     top: 50%;
     left: 50%;
-    -webkit-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     color: #7a92ae;

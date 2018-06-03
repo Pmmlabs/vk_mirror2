@@ -432,16 +432,12 @@ textarea.ashelper {
     display: inline-block;
     width: 34px;
     height: 34px;
-    -webkit-animation-name: round_spinner;
     -o-animation-name: round_spinner;
     animation-name: round_spinner;
-    -webkit-animation-duration: 700ms;
     -o-animation-duration: 700ms;
     animation-duration: 700ms;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner_big.png)
@@ -460,16 +456,12 @@ textarea.ashelper {
     display: inline-block;
     width: 16px;
     height: 16px;
-    -webkit-animation-name: round_spinner;
     -o-animation-name: round_spinner;
     animation-name: round_spinner;
-    -webkit-animation-duration: 700ms;
     -o-animation-duration: 700ms;
     animation-duration: 700ms;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner.png)
@@ -481,17 +473,6 @@ textarea.ashelper {
     .round_spinner {
         background-image: url(/images/icons/round_spinner_2x.png);
         background-size: 16px 16px
-    }
-}
-
-@-webkit-keyframes round_spinner {
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg)
-    }
-    to {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg)
     }
 }
 
@@ -508,12 +489,10 @@ textarea.ashelper {
 
 @keyframes round_spinner {
     0% {
-        -webkit-transform: rotate(0deg);
         -o-transform: rotate(0deg);
         transform: rotate(0deg)
     }
     to {
-        -webkit-transform: rotate(360deg);
         -o-transform: rotate(360deg);
         transform: rotate(360deg)
     }
@@ -837,7 +816,6 @@ textarea.ashelper {
 
 .box_x_button:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -862,7 +840,6 @@ textarea.ashelper {
     -o-transition: none;
     transition: none;
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     pointer-events: none
 }
@@ -909,16 +886,12 @@ textarea.ashelper {
     display: inline-block;
     width: 34px;
     height: 34px;
-    -webkit-animation-name: round_spinner;
     -o-animation-name: round_spinner;
     animation-name: round_spinner;
-    -webkit-animation-duration: 700ms;
     -o-animation-duration: 700ms;
     animation-duration: 700ms;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner_big.png);
@@ -1023,7 +996,6 @@ textarea.ashelper {
     height: 1px;
     background: #dbdde0;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1207,7 +1179,6 @@ textarea.ashelper {
     height: 1px;
     background: #dbdde0;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1329,7 +1300,6 @@ textarea.ashelper {
 
 #layer_stl:hover #layer_stl_text {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1339,7 +1309,6 @@ textarea.ashelper {
 }
 
 body.mac #layer_stl .fixed {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -1700,7 +1669,6 @@ textarea::-webkit-input-placeholder {
     transition: color 0.2s ease;
     padding: 1px;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1753,7 +1721,6 @@ textarea~.placeholder .ph_content {
     transition: color 0.2s ease;
     padding: 1px;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1972,7 +1939,6 @@ textarea.disabled {
 
 .summary_tab_sel .summary_tab_x:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2244,7 +2210,6 @@ h2.page_block_h2 {
     right: -10px;
     background: no-repeat 50%;
     background-size: cover;
-    -webkit-filter: blur(10px);
     filter: blur(10px)
 }
 
@@ -2334,7 +2299,6 @@ h2.page_block_h2 {
 
 .video_widget_box_close:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2710,19 +2674,15 @@ button.flat_button .pr {
     border-radius: 50%;
     margin-right: 2px;
     opacity: 0.2;
-    -webkit-animation-duration: 750ms;
     -o-animation-duration: 750ms;
     animation-duration: 750ms;
-    -webkit-animation-name: pr_bt_anim;
     -o-animation-name: pr_bt_anim;
     animation-name: pr_bt_anim;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite
 }
 
 body.mac .pr_bt {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -2760,34 +2720,19 @@ body.mac .pr_bt {
     margin-right: 0
 }
 
-.pr_bt:nth-child(1) {
-    -webkit-animation-delay: 0ms;
+.pr_bt:first-child {
     -o-animation-delay: 0ms;
     animation-delay: 0ms
 }
 
 .pr_bt:nth-child(2) {
-    -webkit-animation-delay: 180ms;
     -o-animation-delay: 180ms;
     animation-delay: 180ms
 }
 
 .pr_bt:nth-child(3) {
-    -webkit-animation-delay: 360ms;
     -o-animation-delay: 360ms;
     animation-delay: 360ms
-}
-
-@-webkit-keyframes pr_bt_anim {
-    0% {
-        opacity: 0.2
-    }
-    30% {
-        opacity: 1
-    }
-    to {
-        opacity: 0.2
-    }
 }
 
 @-o-keyframes pr_bt_anim {
@@ -2825,7 +2770,6 @@ body.mac .pr_bt {
     left: 0;
     right: 0;
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     margin: auto;
     width: 18px;
@@ -2930,10 +2874,9 @@ button.ui_load_more_btn {
     top: 0;
     left: 0;
     z-index: 1;
-    transition: top 200ms ease, left 200ms ease, -webkit-transform 200ms ease;
     -o-transition: transform 200ms ease, top 200ms ease, left 200ms ease, -o-transform 200ms ease;
     transition: transform 200ms ease, top 200ms ease, left 200ms ease;
-    transition: transform 200ms ease, top 200ms ease, left 200ms ease, -webkit-transform 200ms ease, -o-transform 200ms ease;
+    transition: transform 200ms ease, top 200ms ease, left 200ms ease, -o-transform 200ms ease;
     -webkit-transform: translateZ(0);
     -webkit-backface-visibility: hidden;
     -webkit-perspective: 1000
@@ -3635,16 +3578,12 @@ div.top_result_baloon a {
     display: inline-block;
     width: 34px;
     height: 34px;
-    -webkit-animation-name: round_spinner;
     -o-animation-name: round_spinner;
     animation-name: round_spinner;
-    -webkit-animation-duration: 700ms;
     -o-animation-duration: 700ms;
     animation-duration: 700ms;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner_big.png)
@@ -4204,7 +4143,6 @@ div.top_result_baloon a {
 
 .top_audio_player.top_audio_player_enabled {
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     display: block;
     pointer-events: all
@@ -4369,13 +4307,10 @@ div.top_result_baloon a {
 .audio_row .audio_row__performer_title {
     overflow: hidden;
     position: relative;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex-shrink: 1;
     -ms-flex-negative: 1;
     flex-shrink: 1;
-    -webkit-flex-grow: 1;
     -ms-flex-positive: 1;
     flex-grow: 1
 }
@@ -4386,14 +4321,12 @@ div.top_result_baloon a {
     -o-transition: padding-top 70ms linear;
     transition: padding-top 70ms linear;
     max-width: 70%;
-    -webkit-flex-shrink: 1;
     -ms-flex-negative: 1;
     flex-shrink: 1
 }
 
 .audio_row .audio_row__performers:hover,
 .audio_row .audio_row__title:hover {
-    -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0
 }
@@ -4413,7 +4346,6 @@ div.top_result_baloon a {
     margin-left: 15px;
     margin-right: 12px;
     height: 100%;
-    -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0
 }
@@ -4606,13 +4538,10 @@ div.top_result_baloon a {
     width: 100%;
     box-sizing: border-box;
     padding-left: 44px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    -webkit-align-items: stretch;
     -ms-flex-align: stretch;
     align-items: stretch
 }
@@ -4772,10 +4701,8 @@ div.top_result_baloon a {
 }
 
 .audio_w_covers .audio_row .audio_row__performer_title {
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center
 }
@@ -4785,7 +4712,6 @@ div.top_result_baloon a {
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    -webkit-order: -1;
     -ms-flex-order: -1;
     order: -1;
     margin-bottom: 2px
@@ -4925,7 +4851,6 @@ div.top_result_baloon a {
 
 .audio_row__current .audio_inline_player {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -5335,10 +5260,9 @@ div.top_result_baloon a {
     display: none;
     will-change: transform;
     pointer-events: none;
-    transition: opacity 150ms linear, -webkit-transform 150ms ease;
     -o-transition: opacity 150ms linear, transform 150ms ease, -o-transform 150ms ease;
     transition: opacity 150ms linear, transform 150ms ease;
-    transition: opacity 150ms linear, transform 150ms ease, -webkit-transform 150ms ease, -o-transform 150ms ease
+    transition: opacity 150ms linear, transform 150ms ease, -o-transform 150ms ease
 }
 
 .eltt.eltt_noborder {
@@ -5348,7 +5272,6 @@ div.top_result_baloon a {
 .eltt.eltt_vis {
     opacity: 1;
     pointer-events: all;
-    -webkit-transform: translate(0)!important;
     -o-transform: translate(0)!important;
     transform: translate(0)!important
 }
@@ -5377,7 +5300,6 @@ div.top_result_baloon a {
 }
 
 .eltt.eltt_bottom {
-    -webkit-transform: translateY(10px);
     -o-transform: translateY(10px);
     transform: translateY(10px)
 }
@@ -5394,7 +5316,6 @@ div.top_result_baloon a {
 }
 
 .eltt.eltt_top {
-    -webkit-transform: translateY(-10px);
     -o-transform: translateY(-10px);
     transform: translateY(-10px)
 }
@@ -5411,7 +5332,6 @@ div.top_result_baloon a {
 }
 
 .eltt.eltt_left {
-    -webkit-transform: translate(-10px);
     -o-transform: translate(-10px);
     transform: translate(-10px)
 }
@@ -5429,7 +5349,6 @@ div.top_result_baloon a {
 }
 
 .eltt.eltt_right {
-    -webkit-transform: translate(10px);
     -o-transform: translate(10px);
     transform: translate(10px)
 }
@@ -5459,7 +5378,6 @@ div.top_result_baloon a {
 }
 
 .eltt.eltt_bottom {
-    -webkit-transform: translateY(10px);
     -o-transform: translateY(10px);
     transform: translateY(10px)
 }
@@ -5476,7 +5394,6 @@ div.top_result_baloon a {
 }
 
 .eltt.eltt_top {
-    -webkit-transform: translateY(-10px);
     -o-transform: translateY(-10px);
     transform: translateY(-10px)
 }
@@ -5493,7 +5410,6 @@ div.top_result_baloon a {
 }
 
 .eltt.eltt_left {
-    -webkit-transform: translate(-10px);
     -o-transform: translate(-10px);
     transform: translate(-10px)
 }
@@ -5511,7 +5427,6 @@ div.top_result_baloon a {
 }
 
 .eltt.eltt_right {
-    -webkit-transform: translate(10px);
     -o-transform: translate(10px);
     transform: translate(10px)
 }
@@ -5541,7 +5456,6 @@ div.top_result_baloon a {
 }
 
 .eltt.eltt_bottom {
-    -webkit-transform: translateY(10px);
     -o-transform: translateY(10px);
     transform: translateY(10px)
 }
@@ -5558,7 +5472,6 @@ div.top_result_baloon a {
 }
 
 .eltt.eltt_top {
-    -webkit-transform: translateY(-10px);
     -o-transform: translateY(-10px);
     transform: translateY(-10px)
 }
@@ -5575,7 +5488,6 @@ div.top_result_baloon a {
 }
 
 .eltt.eltt_left {
-    -webkit-transform: translate(-10px);
     -o-transform: translate(-10px);
     transform: translate(-10px)
 }
@@ -5593,7 +5505,6 @@ div.top_result_baloon a {
 }
 
 .eltt.eltt_right {
-    -webkit-transform: translate(10px);
     -o-transform: translate(10px);
     transform: translate(10px)
 }

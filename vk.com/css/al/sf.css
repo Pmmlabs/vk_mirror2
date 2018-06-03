@@ -471,16 +471,13 @@ body.sf .mention_tt_actions {
     right: 0;
     bottom: 0;
     background: #f05c44;
-    -webkit-transform: scaleY(0);
     -o-transform: scaleY(0);
     transform: scaleY(0);
-    -webkit-transform-origin: 50% 0;
     -o-transform-origin: 50% 0;
     transform-origin: 50% 0;
-    transition-property: -webkit-transform;
     -o-transition-property: transform, -o-transform;
     transition-property: transform;
-    transition-property: transform, -webkit-transform, -o-transform;
+    transition-property: transform, -o-transform;
     -o-transition-duration: 0.2s;
     transition-duration: 0.2s;
     -o-transition-timing-function: ease-out;
@@ -506,7 +503,6 @@ body.sf .mention_tt_actions {
 
 .sf_button_bad.holding:before,
 .sf_button_spam.holding:before {
-    -webkit-transform: scaleY(1);
     -o-transform: scaleY(1);
     transform: scaleY(1);
     -o-transition-timing-function: ease-out;
@@ -976,17 +972,17 @@ body.sf .mention_tt_actions {
     width: 380px
 }
 
-.sf_sc #sf_reports_new .sf_report:nth-of-type(1) {
+.sf_sc #sf_reports_new .sf_report:first-of-type {
     background: #f4f6f8;
     margin: -15px -20px -11px;
     padding: 15px 20px 11px
 }
 
-.sf_sc #sf_reports_new .sf_report:nth-of-type(1) .wr_header {
+.sf_sc #sf_reports_new .sf_report:first-of-type .wr_header {
     background: #e4e6e7
 }
 
-.sf_sc #sf_reports_new .sf_report:nth-of-type(1) .sf_buttons {
+.sf_sc #sf_reports_new .sf_report:first-of-type .sf_buttons {
     right: -180px;
     opacity: 0.8
 }
@@ -1371,7 +1367,6 @@ body.sf .mention_tt_actions {
 
 .sf_settings_icon:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

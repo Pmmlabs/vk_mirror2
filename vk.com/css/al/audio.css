@@ -205,13 +205,10 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     color: #393e42;
-    -webkit-flex-shrink: 1;
     -ms-flex-negative: 1;
     flex-shrink: 1;
-    -webkit-flex-grow: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex
 }
@@ -316,7 +313,6 @@
 
 .audio_page_player .audio_control_btn.audio_enabled .icon {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -408,19 +404,16 @@
     z-index: 102;
     margin: 0;
     border-radius: 0;
-    transition: -webkit-transform 250ms ease;
     -o-transition: transform 250ms ease, -o-transform 250ms ease;
     transition: transform 250ms ease;
-    transition: transform 250ms ease, -webkit-transform 250ms ease, -o-transform 250ms ease;
+    transition: transform 250ms ease, -o-transform 250ms ease;
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, .11);
-    -webkit-transform: translateY(-10px);
     -o-transform: translateY(-10px);
     transform: translateY(-10px);
     background-color: #fff
 }
 
 .audio_page_player.audio_page_player_fixed_shown {
-    -webkit-transform: translateY(42px);
     -o-transform: translateY(42px);
     transform: translateY(42px)
 }
@@ -709,19 +702,15 @@
 
 .audio_page_layout .audio_block_small_items_list {
     margin-bottom: 10px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
     justify-content: space-between
 }
 
 .audio_page_layout .audio_block_small_item {
-    -webkit-flex-grow: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
-    -webkit-flex-basis: 0;
     -ms-flex-preferred-size: 0;
     flex-basis: 0;
     min-width: 0;
@@ -760,13 +749,10 @@
 
 .audio_page_layout .audio_block_small_item .audio_block_small_item__info {
     height: 40px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
     font-size: 13px;
@@ -847,12 +833,9 @@
     background-size: cover;
     border-radius: 50%;
     background-position: 50%;
-    -webkit-filter: brightness(1);
     filter: brightness(1);
-    transition: -webkit-filter 50ms linear;
     -o-transition: filter 50ms linear;
-    transition: filter 50ms linear;
-    transition: filter 50ms linear, -webkit-filter 50ms linear
+    transition: filter 50ms linear
 }
 
 .audio_page_layout .audio_owner_item.artist_no_image .audio_owner_item__img {
@@ -896,13 +879,11 @@
     background-repeat: no-repeat;
     background-position: 50%;
     opacity: 0;
-    -webkit-transform: translateY(5px);
     -o-transform: translateY(5px);
     transform: translateY(5px);
-    transition: opacity 150ms linear, -webkit-transform 170ms ease;
     -o-transition: transform 170ms ease, opacity 150ms linear, -o-transform 170ms ease;
     transition: transform 170ms ease, opacity 150ms linear;
-    transition: transform 170ms ease, opacity 150ms linear, -webkit-transform 170ms ease, -o-transform 170ms ease
+    transition: transform 170ms ease, opacity 150ms linear, -o-transform 170ms ease
 }
 
 .audio_page_layout .audio_owner_item.audio_pl__playing .audio_owner_item__play {
@@ -910,19 +891,16 @@
 }
 
 .audio_page_layout .audio_owner_item:hover .audio_owner_item__img {
-    -webkit-filter: brightness(0.5);
     filter: brightness(0.5)
 }
 
 .audio_page_layout .audio_owner_item:hover .audio_owner_item__play {
     opacity: 1;
-    -webkit-transform: translate(0px);
     -o-transform: translate(0px);
     transform: translate(0px)
 }
 
 .audio_page_layout .audio_owner_item:hover .audio_owner_item__play:active {
-    -webkit-transform: translateY(1px);
     -o-transform: translateY(1px);
     transform: translateY(1px)
 }
@@ -1097,7 +1075,6 @@
 .audio_page_layout .audio_friends_list {
     padding: 10px 0 5px;
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     -o-transition: opacity 150ms linear;
     transition: opacity 150ms linear;
@@ -1182,17 +1159,14 @@
     top: 0;
     left: 15px;
     opacity: 0;
-    -webkit-transform: translateY(57px);
     -o-transform: translateY(57px);
     transform: translateY(57px);
-    transition: opacity 160ms linear, -webkit-transform 160ms ease;
     -o-transition: transform 160ms ease, opacity 160ms linear, -o-transform 160ms ease;
     transition: transform 160ms ease, opacity 160ms linear;
-    transition: transform 160ms ease, opacity 160ms linear, -webkit-transform 160ms ease, -o-transform 160ms ease
+    transition: transform 160ms ease, opacity 160ms linear, -o-transform 160ms ease
 }
 
 .audio_pl_item .audio_pl__cover:hover .audio_pl__actions_btns {
-    -webkit-transform: translateY(53px);
     -o-transform: translateY(53px);
     transform: translateY(53px);
     opacity: 1
@@ -1830,7 +1804,6 @@
 }
 
 .audio_page__shuffle_all .audio_page__shuffle_all_button:active:before {
-    -webkit-transform: translate3d(0, 1px, 0);
     transform: translate3d(0, 1px, 0)
 }
 
@@ -2213,11 +2186,9 @@
     height: 9px;
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%229%22%20height%3D%229%22%20viewBox%3D%220%200%209%209%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%3Crect%20width%3D%229%22%20height%3D%229%22%2F%3E%0A%20%20%20%20%3Cpath%20fill%3D%22%23828A99%22%20fill-rule%3D%22nonzero%22%20d%3D%22M2.21723181%2C7.76114967%20C1.95704574%2C8.08679446%202.0057114%2C8.56527862%202.3259296%2C8.82987394%20C2.6461478%2C9.09446926%203.11665842%2C9.04497889%203.37684448%2C8.71933409%20L6.36525038%2C4.97909221%20C6.58827312%2C4.69996046%206.58827312%2C4.30003954%206.36525038%2C4.02090779%20L3.37684448%2C0.280665906%20C3.11665842%2C-0.0449788853%202.6461478%2C-0.094469259%202.3259296%2C0.170126062%20C2.0057114%2C0.434721384%201.95704574%2C0.913205535%202.21723181%2C1.23885033%20L4.8228491%2C4.5%20L2.21723181%2C7.76114967%20Z%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
     opacity: 0.7;
-    transition: -webkit-transform 0.4s ease;
     -o-transition: transform 0.4s ease, -o-transform 0.4s ease;
     transition: transform 0.4s ease;
-    transition: transform 0.4s ease, -webkit-transform 0.4s ease, -o-transform 0.4s ease;
-    -webkit-transform: translateZ(0);
+    transition: transform 0.4s ease, -o-transform 0.4s ease;
     transform: translateZ(0)
 }
 
@@ -2288,7 +2259,6 @@
 }
 
 .audio_section_promo__biglink:hover .audio_section_promo__title_arrow {
-    -webkit-transform: translate3d(3px, 0, 0);
     transform: translate3d(3px, 0, 0)
 }
 
@@ -2650,13 +2620,10 @@
     position: relative;
     z-index: 3;
     min-height: 172px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
     justify-content: space-between;
     box-sizing: border-box;
@@ -2674,7 +2641,6 @@
 }
 
 .audio_artist_block .audio_artist_block__cover.blur {
-    -webkit-filter: blur(50px);
     filter: blur(50px)
 }
 

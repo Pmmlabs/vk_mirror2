@@ -11,14 +11,27 @@
     var s = {};
     return t.m = e, t.c = s, t.d = function(e, s, n) {
         t.o(e, s) || Object.defineProperty(e, s, {
-            configurable: !1,
             enumerable: !0,
             get: n
         })
     }, t.r = function(e) {
-        Object.defineProperty(e, "__esModule", {
+        "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
+            value: "Module"
+        }), Object.defineProperty(e, "__esModule", {
             value: !0
         })
+    }, t.t = function(e, s) {
+        if (1 & s && (e = t(e)), 8 & s) return e;
+        if (4 & s && "object" == typeof e && e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (t.r(n), Object.defineProperty(n, "default", {
+                enumerable: !0,
+                value: e
+            }), 2 & s && "string" != typeof e)
+            for (var i in e) t.d(n, i, function(t) {
+                return e[t]
+            }.bind(null, i));
+        return n
     }, t.n = function(e) {
         var s = e && e.__esModule ? function() {
             return e["default"]
@@ -28,12 +41,9 @@
         return t.d(s, "a", s), s
     }, t.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, t.p = "", t(t.s = 131)
+    }, t.p = "", t(t.s = 758)
 }({
-    131: function(e, t, s) {
-        e.exports = s(377)
-    },
-    377: function(e, t, s) {
+    20: function(e, t, s) {
         "use strict";
 
         function n(e, t) {
@@ -48,8 +58,8 @@
                     a = void 0;
                 try {
                     for (var o, r = e[Symbol.iterator](); !(n = (o = r.next()).done) && (s.push(o.value), !t || s.length !== t); n = !0);
-                } catch (c) {
-                    i = !0, a = c
+                } catch (d) {
+                    i = !0, a = d
                 } finally {
                     try {
                         !n && r["return"] && r["return"]()
@@ -199,8 +209,8 @@
                             var o = '<form action="' + this.paymentSystemsFormElement.action + '" method="' + this.paymentSystemsFormElement.method + '" id="popup_payment_form" accept-charset="UTF-8">' + this.paymentSystemsFormElement.innerHTML + "</form>",
                                 r = getLang("payment_redirect").replace("%s", t.paymentSystemData.title);
                             cur._popup_text = cur.paymentsPopupHtml(r, o, "document.getElementById('popup_payment_form').submit()");
-                            var c = "scrollbars=1, resizable=1, menubar=1, left=0, top=0, toolbar=1, status=1";
-                            a = window.open("", "_blank", c), cur.paymentsPopupWrite(a)
+                            var d = "scrollbars=1, resizable=1, menubar=1, left=0, top=0, toolbar=1, status=1";
+                            a = window.open("", "_blank", d), cur.paymentsPopupWrite(a)
                         }
                         setTimeout(this.waitForPaymentResult.bind(this, extend(t, {
                             paymentPopup: t.paymentPopup || a,
@@ -241,9 +251,9 @@
                     o = a[0],
                     r = a[1];
                 r = intval(r);
-                var c = t.getAttribute("data-action");
+                var d = t.getAttribute("data-action");
                 if (hasClass(t, "ui_actions_menu_item_disabled")) return !1;
-                switch (c) {
+                switch (d) {
                     case "save-to-current":
                         if (0 == s) return !1;
                         if (0 >= r) return !1;
@@ -448,10 +458,10 @@
                     e && t.interestsDropdown.selectItem(e)
                 }), this.showInterestsDropdown()), this.updateTargetParams()
             }, e.prototype.showGroupsDropdown = function() {
-                return hide(this.groupShowerLink), show(this.groupsDropdown.container), removeClass(gpeByClass(this.classname("row-content"), this.groupsDropdown.container), this.classname("row-content_simple")), this.groupsDropdown.updateInput(), !1
+                return hide(this.groupShowerLink), show(this.groupsDropdown.container), removeClass(gpeByClass(this.classname("row-content"), this.groupsDropdown.container), this.classname("row-content_simple")),
+                    this.groupsDropdown.updateInput(), !1
             }, e.prototype.showInterestsDropdown = function() {
-                return hide(this.interestsShowerLink), show(this.interestsDropdown.container), removeClass(gpeByClass(this.classname("row-content"), this.interestsDropdown.container), this.classname("row-content_simple")),
-                    this.interestsDropdown.updateInput(), !1
+                return hide(this.interestsShowerLink), show(this.interestsDropdown.container), removeClass(gpeByClass(this.classname("row-content"), this.interestsDropdown.container), this.classname("row-content_simple")), this.interestsDropdown.updateInput(), !1
             }, e.prototype.editCriteriaPreset = function(e, t, s, n) {
                 var i = this;
                 if (e = intval(e) || this.options.selected_union_id, !e) return !1;
@@ -480,14 +490,14 @@
                                 }
                             } else {
                                 var r = e + "_" + -a.request_id,
-                                    c = e + "_" + s.criteria_preset_id;
-                                i.options.audiences[c] = i.options.audiences[r], i.options.audiences[c][0] = c, "description" in s && (i.options.audiences[c][2] = s.description), delete i.options.audiences[r], i.audienceDropdown.setOptions({
+                                    d = e + "_" + s.criteria_preset_id;
+                                i.options.audiences[d] = i.options.audiences[r], i.options.audiences[d][0] = d, "description" in s && (i.options.audiences[d][2] = s.description), delete i.options.audiences[r], i.audienceDropdown.setOptions({
                                     defaultItems: Object.values(i.options.audiences)
-                                }), i.audienceDropdown.selectItem(c)
+                                }), i.audienceDropdown.selectItem(d)
                             }
                         if (n) {
-                            var d = e + "_" + t;
-                            delete i.options.audiences[d], i.audienceDropdown.setOptions({
+                            var c = e + "_" + t;
+                            delete i.options.audiences[c], i.audienceDropdown.setOptions({
                                 defaultItems: Object.values(i.options.audiences)
                             }), i.audienceDropdown.selectItem(0)
                         }
@@ -867,7 +877,8 @@
                         n = s.split("_"),
                         a = i(n, 2),
                         o = a[0];
-                    a[1], this.editCriteriaPreset(o, 0, t, 0)
+                    a[1];
+                    this.editCriteriaPreset(o, 0, t, 0)
                 }
                 return this.isEditingAudienceName = !1, !1
             }, e.prototype.isSuggestedCriteria = function(e) {
@@ -883,5 +894,8 @@
         try {
             stManager.done(jsc("web/ads_edit_easy.js"))
         } catch (a) {}
+    },
+    758: function(e, t, s) {
+        e.exports = s(20)
     }
 });

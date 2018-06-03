@@ -577,7 +577,6 @@ a.group_blb_user_name,
 .group_l_row .group_l_progress:hover {
     text-decoration: none;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -593,7 +592,6 @@ a.group_blb_user_name,
     display: none;
     background: url(/images/c_upload.gif) no-repeat 0 0;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1636,7 +1634,7 @@ a.group_ad_post_link.deleted.deleted:hover {
 
 .group_api_result_pre {
     margin: 0;
-    font-family: monospace
+    font-family: monospace, sans-serif
 }
 
 .group_api_error,
@@ -2466,7 +2464,6 @@ a.group_ad_post_link.deleted.deleted:hover {
 
 .group_money_transfers_table .settings_transfer_history tr:hover .settings_transfer_action:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

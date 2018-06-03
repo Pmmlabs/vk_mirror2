@@ -11,14 +11,27 @@
     var r = {};
     return e.m = t, e.c = r, e.d = function(t, r, i) {
         e.o(t, r) || Object.defineProperty(t, r, {
-            configurable: !1,
             enumerable: !0,
             get: i
         })
     }, e.r = function(t) {
-        Object.defineProperty(t, "__esModule", {
+        "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(t, Symbol.toStringTag, {
+            value: "Module"
+        }), Object.defineProperty(t, "__esModule", {
             value: !0
         })
+    }, e.t = function(t, r) {
+        if (1 & r && (t = e(t)), 8 & r) return t;
+        if (4 & r && "object" == typeof t && t && t.__esModule) return t;
+        var i = Object.create(null);
+        if (e.r(i), Object.defineProperty(i, "default", {
+                enumerable: !0,
+                value: t
+            }), 2 & r && "string" != typeof t)
+            for (var n in t) e.d(i, n, function(e) {
+                return t[e]
+            }.bind(null, n));
+        return i
     }, e.n = function(t) {
         var r = t && t.__esModule ? function() {
             return t["default"]
@@ -28,29 +41,198 @@
         return e.d(r, "a", r), r
     }, e.o = function(t, e) {
         return Object.prototype.hasOwnProperty.call(t, e)
-    }, e.p = "", e(e.s = 129)
+    }, e.p = "", e(e.s = 614)
 }({
-    129: function(t, e, r) {
-        t.exports = r(259)
+    263: function(t, e, r) {
+        "use strict";
+
+        function i(t, e) {
+            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+        }
+        r.r(e);
+        var n = r(73),
+            o = function() {
+                function t(e) {
+                    var r = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
+                    return i(this, t), r.items = r.items || [], e = ge(e), addClass(e, "rich_dropdown_wrap"), this.input = new n["default"](e, r.items), this.input.renderByInitialData(r.initialData), this.setOptions(r), this
+                }
+                return t.prototype.destroy = function() {
+                    this.input.destroy(), delete this.input
+                }, t.prototype.getValue = function() {
+                    return this.input.getValue()
+                }, t.prototype.getStringValue = function() {
+                    return this.input.getStringValue()
+                }, t.prototype.onChange = function(t) {
+                    return this.input.setOptions({
+                        onChange: t
+                    }), this
+                }, t.prototype.setOptions = function() {
+                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+                    for (var e in t) {
+                        var r = t[e];
+                        switch (e) {
+                            case "placeholder":
+                                this.input.setPlaceholder(r);
+                                break;
+                            case "operators":
+                                this.input.autoComplete.setOperators(r), this.input.updateOptionsObj();
+                                break;
+                            case "disabledText":
+                                this.input.setDisabledText(r);
+                                break;
+                            case "autoCompleteMaxWidth":
+                                this.input.setAutoCompleteMaxWidth(r);
+                                break;
+                            case "width":
+                                this.input.setWidth(r);
+                                break;
+                            case "items":
+                                this.input.autoComplete.setOptions(r), this.input.updateOptionsObj();
+                                break;
+                            case "value":
+                                this.setValue(r);
+                                break;
+                            case "onChange":
+                                this.onChange(r)
+                        }
+                    }
+                    return this
+                }, t.prototype.disable = function() {
+                    this.input.disable()
+                }, t.prototype.enable = function() {
+                    this.input.enable()
+                }, t.prototype.toggleDisable = function() {
+                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : void 0;
+                    this.input.disabled && t !== !0 || t === !1 ? this.input.enable() : this.input.disable()
+                }, t.prototype.setValue = function() {
+                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
+                    this.input.setValue(t)
+                }, t
+            }();
+        e["default"] = o
     },
-    130: function(t, e, r) {
+    374: function(t, e, r) {
+        "use strict";
+
+        function i(t) {
+            return stripHTML(String(t)).replace(/\&nbsp\;/g, h.SPACE)
+        }
+
+        function n(t) {
+            for (var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "", r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : !1, i = {}, o = 0; o < t.length; o++) {
+                var s = t[o],
+                    a = [r ? s.key : s.label];
+                e && a.unshift(e);
+                var l = a.join(".").toLowerCase();
+                i[l] = s, s.options && (i = extend(i, n(s.options, l, r)))
+            }
+            return i
+        }
+
+        function o(t) {
+            return String(t).split(/(\u0028|\u0029|\u003A|\s+)/g).filter(function(t) {
+                return t
+            })
+        }
+
+        function s(t, e) {
+            var r = e || {},
+                i = r.color;
+            setStyle(t, {
+                color: i
+            })
+        }
+
+        function a(t, e) {
+            var r = ce("div", {
+                className: "rich_dropdown_textarea",
+                innerHTML: (clean(e) || " ") + '<div class="rich_dropdown_cursor"></div>'
+            }, {
+                opacity: 0,
+                position: "absolute"
+            });
+            t.appendChild(r);
+            var i = geByClass1("rich_dropdown_cursor", r),
+                n = {
+                    left: i.offsetLeft,
+                    top: i.offsetTop
+                };
+            return re(r), n
+        }
+
+        function l(t, e) {
+            for (var r = o(e), i = t, n = 0; n < r.length; n++) {
+                var s = trim(r[n]).toLowerCase();
+                s && (i[s] || (i[s] = {}), i = i[s])
+            }
+        }
+
+        function u(t, e, r) {
+            return r.map(function(r) {
+                return p(t, e, r)
+            }).join(" ")
+        }
+
+        function p(t, e, r) {
+            var i = r.type,
+                n = r.key,
+                o = r.values;
+            switch (i) {
+                case h.TYPE_SECTION:
+                    return "( " + u(t, e, o) + " )";
+                case h.TYPE_OPERATOR:
+                    var s = t[n];
+                    return isObject(s) ? s.label : "Failed (" + n + ")";
+                case h.TYPE_OPERAND:
+                    var a = e[n];
+                    return isObject(a) ? a.label : "Failed (" + n + ")"
+            }
+            return "Bad type (" + i + ")"
+        }
+        r.r(e), r.d(e, "convertText", function() {
+            return i
+        }), r.d(e, "genOptionsObject", function() {
+            return n
+        }), r.d(e, "splitTextToWords", function() {
+            return o
+        }), r.d(e, "setStyles", function() {
+            return s
+        }), r.d(e, "getCursorPosition", function() {
+            return a
+        }), r.d(e, "prefixesThreeGen", function() {
+            return l
+        }), r.d(e, "itemsToString", function() {
+            return u
+        });
+        var h = r(46)
+    },
+    399: function(t, e, r) {
+        "use strict";
+        r.r(e);
+        var i = r(263);
+        window.RichDropDown = i["default"];
+        try {
+            stManager.done("rich_dropdown.js")
+        } catch (n) {}
+    },
+    46: function(t, e, r) {
         "use strict";
         r.r(e), r.d(e, "SPACE", function() {
             return i
         }), r.d(e, "ITEM_CLASS", function() {
             return n
         }), r.d(e, "TYPE_ITEM", function() {
-            return s
-        }), r.d(e, "TYPE_OPERATOR", function() {
             return o
+        }), r.d(e, "TYPE_OPERATOR", function() {
+            return s
         }), r.d(e, "TYPE_BRACKET", function() {
             return a
         }), r.d(e, "TYPE_OPEN_BRACKET", function() {
             return l
         }), r.d(e, "TYPE_CLOSE_BRACKET", function() {
-            return p
-        }), r.d(e, "TYPE_SECTION", function() {
             return u
+        }), r.d(e, "TYPE_SECTION", function() {
+            return p
         }), r.d(e, "TYPE_OPERAND", function() {
             return h
         }), r.d(e, "TYPE_COLON", function() {
@@ -60,34 +242,28 @@
         });
         var i = " ",
             n = "rich_dropdown_item",
-            s = "item",
-            o = "operator",
+            o = "item",
+            s = "operator",
             a = "bracket",
             l = "open_bracket",
-            p = "close_bracket",
-            u = "section",
+            u = "close_bracket",
+            p = "section",
             h = "operand",
             d = "colon",
             c = "comma"
     },
-    259: function(t, e, r) {
-        "use strict";
-        r.r(e);
-        var i = r(91);
-        window.RichDropDown = i["default"];
-        try {
-            stManager.done("rich_dropdown.js")
-        } catch (n) {}
+    614: function(t, e, r) {
+        t.exports = r(399)
     },
-    634: function(t, e, r) {
+    708: function(t, e, r) {
         "use strict";
 
         function i(t, e) {
             if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
         }
         r.r(e);
-        var n = r(640),
-            s = function() {
+        var n = r(374),
+            o = function() {
                 function t(e, r) {
                     var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {};
                     i(this, t), this.options = r, this.itemEl = null, this.opts = n, this._initIndexer(), this._initDom(e)
@@ -131,13 +307,13 @@
                         e = this.searchData,
                         r = void 0,
                         i = "show_operators" === e.extra,
-                        s = "suggest_operator" === e.extra.substr(0, 16);
-                    s && (e.query = ""), e.query = e.query.replace(/[^a-zа-я0-9\s]/gi, ""), i ? r = this.getOperators() : this.subOptions ? r = e.query ? this.subIndexer.search(e.query) : this.subOptions : (r = e.query ? this.indexer.search(e.query) : this.options, 0 !== r.length || "show_all_if_empty" !== e.extra && !s || (r = this.options)), r = clone(r);
-                    var o = this.getOperators(!0, !0);
-                    if (s) {
+                        o = "suggest_operator" === e.extra.substr(0, 16);
+                    o && (e.query = ""), e.query = e.query.replace(/[^a-zа-я0-9\s]/gi, ""), i ? r = this.getOperators() : this.subOptions ? r = e.query ? this.subIndexer.search(e.query) : this.subOptions : (r = e.query ? this.indexer.search(e.query) : this.options, 0 !== r.length || "show_all_if_empty" !== e.extra && !o || (r = this.options)), r = clone(r);
+                    var s = this.getOperators(!0, !0);
+                    if (o) {
                         var a = e.extra.substr(16);
-                        "&" === a && o["&!"] ? r.unshift(o["&!"]) : "|" === a && o["|!"] && r.unshift(o["|!"])
-                    } else "show_no_operator" === e.extra && o["!"] && (e.query && o["!"].label.substr(0, e.query.length) !== e.query || r.unshift(o["!"]));
+                        "&" === a && s["&!"] ? r.unshift(s["&!"]) : "|" === a && s["|!"] && r.unshift(s["|!"])
+                    } else "show_no_operator" === e.extra && s["!"] && (e.query && s["!"].label.substr(0, e.query.length) !== e.query || r.unshift(s["!"]));
                     if (i)
                         for (var l = 0; l < r.length; l++)
                             if (r[l].isOperator && "!" === r[l].key) {
@@ -146,18 +322,18 @@
                             }
                     if (JSON.stringify(r) !== this.lastItems || e.query !== this.lastQuery) {
                         val(this.listEl, "");
-                        var p = e.query.toLowerCase(),
-                            u = new RegExp("" + p, "ig"),
+                        var u = e.query.toLowerCase(),
+                            p = new RegExp("" + u, "ig"),
                             h = void 0;
                         if (i) {
-                            var d = p.replace(/[^a-zа-я0-9\s]+/g, "").split("").map(function(t) {
+                            var d = u.replace(/[^a-zа-я0-9\s]+/g, "").split("").map(function(t) {
                                 return t + ".*?"
                             }).join("");
                             h = new RegExp("^(" + d + ")", "i");
                             for (var c = [], f = 0; f < r.length; f++) {
-                                var E = r[f],
-                                    y = E.label.match(h);
-                                c.push([E, y ? y[0].length : 0])
+                                var y = r[f],
+                                    E = y.label.match(h);
+                                c.push([y, E ? E[0].length : 0])
                             }
                             c = c.sort(function(t, e) {
                                 return t[1] < e[1] ? 1 : t[1] > e[1] ? -1 : 0
@@ -167,15 +343,15 @@
                         }
                         for (var v = function(e) {
                                 var i = r[e],
-                                    s = i.label.replace(u, function(t) {
+                                    o = i.label.replace(p, function(t) {
                                         return "<span>" + t + "</span>"
                                     }),
-                                    o = se('<div class="rich_dropdown_list_item">\n        <div class="rich_dropdown_list_item_label">' + s + '</div>\n        <div class="rich_dropdown_list_item_type">' + t._getType(i) + "</div>\n      </div>");
-                                addEvent(o, "mousedown", function(e) {
+                                    s = se('<div class="rich_dropdown_list_item">\n        <div class="rich_dropdown_list_item_label">' + o + '</div>\n        <div class="rich_dropdown_list_item_type">' + t._getType(i) + "</div>\n      </div>");
+                                addEvent(s, "mousedown", function(e) {
                                     return t._onMouseDown(i, e)
-                                }), addEvent(o, "mouseover", function(e) {
-                                    vkNow() - (t.lastDownChangeTs || 0) > 500 && t._overItem(o, !0)
-                                }), o.data = i, 0 === e && addClass(o, "selected"), n.setStyles(o, i.styles), t.listEl.appendChild(o)
+                                }), addEvent(s, "mouseover", function(e) {
+                                    vkNow() - (t.lastDownChangeTs || 0) > 500 && t._overItem(s, !0)
+                                }), s.data = i, 0 === e && addClass(s, "selected"), n.setStyles(s, i.styles), t.listEl.appendChild(s)
                             }, g = 0; g < r.length; g++) v(g);
                         0 === r.length && val(this.listEl, '<div class="rich_dropdown_not_found">' + getLang("search_nothing_found") + "</div>"), this.lastItems = JSON.stringify(r), this.lastQuery = e.query;
                         var _ = bodyNode.appendChild(ce("div", {
@@ -237,14 +413,14 @@
                         }],
                         n = [];
                     if (this.validOperators)
-                        for (var s = 0; s < i.length; s++) this.validOperators[i[s].key] && n.push(i[s]);
+                        for (var o = 0; o < i.length; o++) this.validOperators[i[o].key] && n.push(i[o]);
                     else n = i;
                     if (t) {
-                        for (var o = {}, a = 0; a < n.length; a++) {
+                        for (var s = {}, a = 0; a < n.length; a++) {
                             var l = n[a];
-                            o[(e ? l.key : l.label).toLowerCase()] = l
+                            s[(e ? l.key : l.label).toLowerCase()] = l
                         }
-                        return o
+                        return s
                     }
                     return n
                 }, t.prototype._overItem = function(t) {
@@ -254,113 +430,18 @@
                     setStyle(this.listEl, "max-width", parseInt(t) + "px")
                 }, t
             }();
-        e["default"] = s
+        e["default"] = o
     },
-    640: function(t, e, r) {
-        "use strict";
-
-        function i(t) {
-            return stripHTML(String(t)).replace(/\&nbsp\;/g, h.SPACE)
-        }
-
-        function n(t) {
-            for (var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "", r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : !1, i = {}, s = 0; s < t.length; s++) {
-                var o = t[s],
-                    a = [r ? o.key : o.label];
-                e && a.unshift(e);
-                var l = a.join(".").toLowerCase();
-                i[l] = o, o.options && (i = extend(i, n(o.options, l, r)))
-            }
-            return i
-        }
-
-        function s(t) {
-            return String(t).split(/(\u0028|\u0029|\u003A|\s+)/g).filter(function(t) {
-                return t
-            })
-        }
-
-        function o(t, e) {
-            var r = e || {},
-                i = r.color;
-            setStyle(t, {
-                color: i
-            })
-        }
-
-        function a(t, e) {
-            var r = ce("div", {
-                className: "rich_dropdown_textarea",
-                innerHTML: (clean(e) || " ") + '<div class="rich_dropdown_cursor"></div>'
-            }, {
-                opacity: 0,
-                position: "absolute"
-            });
-            t.appendChild(r);
-            var i = geByClass1("rich_dropdown_cursor", r),
-                n = {
-                    left: i.offsetLeft,
-                    top: i.offsetTop
-                };
-            return re(r), n
-        }
-
-        function l(t, e) {
-            for (var r = s(e), i = t, n = 0; n < r.length; n++) {
-                var o = trim(r[n]).toLowerCase();
-                o && (i[o] || (i[o] = {}), i = i[o])
-            }
-        }
-
-        function p(t, e, r) {
-            return r.map(function(r) {
-                return u(t, e, r)
-            }).join(" ")
-        }
-
-        function u(t, e, r) {
-            var i = r.type,
-                n = r.key,
-                s = r.values;
-            switch (i) {
-                case h.TYPE_SECTION:
-                    return "( " + p(t, e, s) + " )";
-                case h.TYPE_OPERATOR:
-                    var o = t[n];
-                    return isObject(o) ? o.label : "Failed (" + n + ")";
-                case h.TYPE_OPERAND:
-                    var a = e[n];
-                    return isObject(a) ? a.label : "Failed (" + n + ")"
-            }
-            return "Bad type (" + i + ")"
-        }
-        r.r(e), r.d(e, "convertText", function() {
-            return i
-        }), r.d(e, "genOptionsObject", function() {
-            return n
-        }), r.d(e, "splitTextToWords", function() {
-            return s
-        }), r.d(e, "setStyles", function() {
-            return o
-        }), r.d(e, "getCursorPosition", function() {
-            return a
-        }), r.d(e, "prefixesThreeGen", function() {
-            return l
-        }), r.d(e, "itemsToString", function() {
-            return p
-        });
-        var h = r(130)
-    },
-    674: function(t, e, r) {
+    73: function(t, e, r) {
         "use strict";
 
         function i(t, e) {
             if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
         }
         r.r(e);
-        var n = r(640),
-            s = r(130),
-            o = r(634),
+        var n = r(374),
+            o = r(46),
+            s = r(708),
             a = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
                 return typeof t
             } : function(t) {
@@ -371,16 +452,16 @@
                     var r = [],
                         i = !0,
                         n = !1,
-                        s = void 0;
+                        o = void 0;
                     try {
-                        for (var o, a = t[Symbol.iterator](); !(i = (o = a.next()).done) && (r.push(o.value), !e || r.length !== e); i = !0);
+                        for (var s, a = t[Symbol.iterator](); !(i = (s = a.next()).done) && (r.push(s.value), !e || r.length !== e); i = !0);
                     } catch (l) {
-                        n = !0, s = l
+                        n = !0, o = l
                     } finally {
                         try {
                             !i && a["return"] && a["return"]()
                         } finally {
-                            if (n) throw s
+                            if (n) throw o
                         }
                     }
                     return r
@@ -391,9 +472,9 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }(),
-            p = function() {
+            u = function() {
                 function t(e, r) {
-                    i(this, t), this.el = e, this.opts = {}, this.autoComplete = new o["default"](e, r, {
+                    i(this, t), this.el = e, this.opts = {}, this.autoComplete = new s["default"](e, r, {
                         onSelect: this._onSelect.bind(this)
                     }), this.updateOptionsObj(), this._init()
                 }
@@ -406,7 +487,7 @@
                         e = this.autoComplete.getOperators();
                     this.optionsObj = n.genOptionsObject(t);
                     for (var r = {}, i = 0; i < t.length; i++) n.prefixesThreeGen(r, t[i].label);
-                    for (var s = 0; s < e.length; s++) n.prefixesThreeGen(r, e[s].label);
+                    for (var o = 0; o < e.length; o++) n.prefixesThreeGen(r, e[o].label);
                     this.prefixesThree = r
                 }, t.prototype.setPlaceholder = function(t) {
                     attr(this.textaraEl, "placeholder", t)
@@ -445,13 +526,13 @@
                     if (e || this._process(), (!e || "click" === t.type || "input" === t.type) && "insertText" !== t.inputType) {
                         var r = this._getQueryBySelection(!0),
                             i = l(r, 2),
-                            s = i[0],
-                            o = i[1],
+                            o = i[0],
+                            s = i[1],
                             a = n.getCursorPosition(this.wrapEl, val(this.textaraEl).substr(0, this.textaraEl.selectionStart));
                         this.autoComplete.update({
                             pos: a,
-                            query: trim(s),
-                            extra: o
+                            query: trim(o),
+                            extra: s
                         })
                     }
                 }, t.prototype._onBlur = function(t) {
@@ -460,24 +541,24 @@
                     this._replaceTextBySelection(t)
                 }, t.prototype._validatedParsedValue = function(t) {
                     for (var e = null, r = this.autoComplete.getOperators(!0), i = [], n = 0; n < t.length; n++) {
-                        var o = t[n],
-                            a = o.type,
-                            l = o.words,
-                            p = trim(l.join("")),
-                            u = a;
-                        if (a === s.TYPE_BRACKET && (u = "(" === trim(l.join("")) ? s.TYPE_OPEN_BRACKET : s.TYPE_CLOSE_BRACKET), u === s.TYPE_ITEM && inArray(e, [s.TYPE_ITEM, s.TYPE_CLOSE_BRACKET])) return !1;
-                        if (u === s.TYPE_OPEN_BRACKET) {
-                            if (e && !inArray(e, [s.TYPE_CLOSE_BRACKET, s.TYPE_OPERATOR, s.TYPE_OPEN_BRACKET])) return !1;
+                        var s = t[n],
+                            a = s.type,
+                            l = s.words,
+                            u = trim(l.join("")),
+                            p = a;
+                        if (a === o.TYPE_BRACKET && (p = "(" === trim(l.join("")) ? o.TYPE_OPEN_BRACKET : o.TYPE_CLOSE_BRACKET), p === o.TYPE_ITEM && inArray(e, [o.TYPE_ITEM, o.TYPE_CLOSE_BRACKET])) return !1;
+                        if (p === o.TYPE_OPEN_BRACKET) {
+                            if (e && !inArray(e, [o.TYPE_CLOSE_BRACKET, o.TYPE_OPERATOR, o.TYPE_OPEN_BRACKET])) return !1;
                             i.push("(")
                         } else {
-                            if (u === s.TYPE_CLOSE_BRACKET && !i.pop()) return !1;
-                            if (u === s.TYPE_OPERATOR) {
-                                var h = r[p];
-                                if (!h.unary && !inArray(e, [s.TYPE_CLOSE_BRACKET, s.TYPE_ITEM])) return !1;
-                                if (h.unary && null !== e && e !== s.TYPE_OPEN_BRACKET) return !1
+                            if (p === o.TYPE_CLOSE_BRACKET && !i.pop()) return !1;
+                            if (p === o.TYPE_OPERATOR) {
+                                var h = r[u];
+                                if (!h.unary && !inArray(e, [o.TYPE_CLOSE_BRACKET, o.TYPE_ITEM])) return !1;
+                                if (h.unary && null !== e && e !== o.TYPE_OPEN_BRACKET) return !1
                             }
                         }
-                        e = u
+                        e = p
                     }
                     return i.length > 0 ? !1 : !0
                 }, t.prototype.getValue = function() {
@@ -494,33 +575,33 @@
                         r = this.optionsObj,
                         i = this.autoComplete.getOperators(!0);
                     if (!this._validatedParsedValue(e)) return !1;
-                    for (var n = t(), o = n, a = 0; a < e.length; a++) {
+                    for (var n = t(), s = n, a = 0; a < e.length; a++) {
                         var l = e[a],
-                            p = l.type,
-                            u = l.words,
-                            h = u.join("");
+                            u = l.type,
+                            p = l.words,
+                            h = p.join("");
                         if (trim(h)) {
                             var d = !1,
                                 c = void 0;
-                            if (p === s.TYPE_BRACKET) {
-                                if ("(" !== u[0]) {
-                                    if (o && o.parent) {
-                                        o = o.parent;
+                            if (u === o.TYPE_BRACKET) {
+                                if ("(" !== p[0]) {
+                                    if (s && s.parent) {
+                                        s = s.parent;
                                         continue
                                     }
                                     return !1
                                 }
                                 d = !0, l.isSection = !0
                             } else {
-                                if (inArray(p, [s.TYPE_COLON, s.TYPE_COMMA])) continue;
-                                if (p === s.TYPE_OPERATOR) l.data = i[trim(h).toLowerCase()];
-                                else if (p === s.TYPE_ITEM) {
+                                if (inArray(u, [o.TYPE_COLON, o.TYPE_COMMA])) continue;
+                                if (u === o.TYPE_OPERATOR) l.data = i[trim(h).toLowerCase()];
+                                else if (u === o.TYPE_ITEM) {
                                     var f = r[trim(h.toLowerCase())];
                                     if (!f) return !1;
                                     l.data = f
                                 }
                             }
-                            c = t(o, l), o.children.push(c), d && (o = c, d = !1)
+                            c = t(s, l), s.children.push(c), d && (s = c, d = !1)
                         }
                     }
                     return this._threeToArray(n)
@@ -530,17 +611,17 @@
                         r = this.autoComplete.getOperators(!0);
                     if (!this._validatedParsedValue(t)) return !1;
                     for (var i = [], n = 0; n < t.length; n++) {
-                        var o = t[n],
-                            a = o.type,
-                            l = o.words,
-                            p = l.join("");
-                        if (trim(p))
-                            if (a === s.TYPE_BRACKET) i.push(p);
-                            else if (a === s.TYPE_OPERATOR) i.push(r[trim(p).toLowerCase()].key);
-                        else if (a === s.TYPE_ITEM) {
-                            var u = e[trim(p).toLowerCase()];
-                            if (!u) return !1;
-                            i.push(u.key)
+                        var s = t[n],
+                            a = s.type,
+                            l = s.words,
+                            u = l.join("");
+                        if (trim(u))
+                            if (a === o.TYPE_BRACKET) i.push(u);
+                            else if (a === o.TYPE_OPERATOR) i.push(r[trim(u).toLowerCase()].key);
+                        else if (a === o.TYPE_ITEM) {
+                            var p = e[trim(u).toLowerCase()];
+                            if (!p) return !1;
+                            i.push(p.key)
                         }
                     }
                     return i.join("")
@@ -548,11 +629,11 @@
                     for (var e = [], r = 0; r < t.children.length; r++) {
                         var i = t.children[r],
                             n = i.data,
-                            o = n.type,
+                            s = n.type,
                             a = n.isSection,
                             l = n.data,
-                            p = {};
-                        a ? p.type = s.TYPE_SECTION : o === s.TYPE_OPERATOR ? (p.type = s.TYPE_OPERATOR, p.key = l.key) : (p.type = s.TYPE_OPERAND, p.key = l.key), a && (p.values = this._threeToArray(i)), e.push(p)
+                            u = {};
+                        a ? u.type = o.TYPE_SECTION : s === o.TYPE_OPERATOR ? (u.type = o.TYPE_OPERATOR, u.key = l.key) : (u.type = o.TYPE_OPERAND, u.key = l.key), a && (u.values = this._threeToArray(i)), e.push(u)
                     }
                     return e
                 }, t.prototype.renderByInitialData = function(t) {
@@ -561,13 +642,13 @@
                     var e = this.autoComplete.getOperators(!0, !0),
                         r = n.genOptionsObject(this.autoComplete.getOptions(), !1, !0),
                         i = trim(t).match(/([a-zA-Z0-9._]+|[\u0021\u007C\u0026]+|[\u0028\u0029])/g),
-                        s = i.map(function(t) {
+                        o = i.map(function(t) {
                             if (e[t]) return e[t].label;
                             if (inArray(t, ["(", ")"])) return t;
                             var i = r[t];
                             return isObject(i) ? i.label : "Failed (" + t + ")"
                         });
-                    val(this.textaraEl, s.join(" ")), this._process()
+                    val(this.textaraEl, o.join(" ")), this._process()
                 }, t.prototype.setValue = function(t) {
                     this.renderByInitialData(t), this.forceUpdate(!0), this.autoComplete.hide(), this.disabled && (this.disabledOrigText = val(this.textaraEl))
                 }, t.prototype._renderByInitialData = function(t) {
@@ -578,64 +659,64 @@
                 }, t.prototype._validateLastItem = function(t, e, r) {
                     var i = this.optionsObj,
                         n = e.length - 1,
-                        o = trim(e[n].words.join("")).toLowerCase().replace(/\s\s+/g, " "),
+                        s = trim(e[n].words.join("")).toLowerCase().replace(/\s\s+/g, " "),
                         a = e[n - 1];
-                    return t[o] && (r > 0 || t[o].unary) ? (e[n].type = s.TYPE_OPERATOR, e[n].validated = !0, e[n].data = t[o]) : !i[o] || a && a.type === s.TYPE_ITEM || (e[n].type = s.TYPE_ITEM, e[n].validated = !0), e
+                    return t[s] && (r > 0 || t[s].unary) ? (e[n].type = o.TYPE_OPERATOR, e[n].validated = !0, e[n].data = t[s]) : !i[s] || a && a.type === o.TYPE_ITEM || (e[n].type = o.TYPE_ITEM, e[n].validated = !0), e
                 }, t.prototype._parseStr = function(t) {
-                    for (var e = n.splitTextToWords(t), r = this.autoComplete.getOperators(!0), i = (this.optionsObj, this.textaraEl.selectionStart), o = [], l = this.prefixesThree, p = !1, u = void 0, h = 0, d = !1, c = 0, f = 0; f < e.length; f++) {
-                        var E = e[f];
-                        if (E) {
-                            var y = o[o.length - 1] ? o[o.length - 1].validated : !1,
-                                v = trim(E).toLowerCase();
-                            h += E.length;
+                    for (var e = n.splitTextToWords(t), r = this.autoComplete.getOperators(!0), i = (this.optionsObj, this.textaraEl.selectionStart), s = [], l = this.prefixesThree, u = !1, p = void 0, h = 0, d = !1, c = 0, f = 0; f < e.length; f++) {
+                        var y = e[f];
+                        if (y) {
+                            var E = s[s.length - 1] ? s[s.length - 1].validated : !1,
+                                v = trim(y).toLowerCase();
+                            h += y.length;
                             var g = void 0;
-                            if (g = ":" === v ? s.TYPE_COLON : "," === v ? s.TYPE_COMMA : inArray(v, ["(", ")"]) ? s.TYPE_BRACKET : s.TYPE_ITEM, g === s.TYPE_ITEM) {
-                                u || (o.push({
+                            if (g = ":" === v ? o.TYPE_COLON : "," === v ? o.TYPE_COMMA : inArray(v, ["(", ")"]) ? o.TYPE_BRACKET : o.TYPE_ITEM, g === o.TYPE_ITEM) {
+                                p || (s.push({
                                     type: g,
                                     words: []
-                                }), u = o[o.length - 1]);
+                                }), p = s[s.length - 1]);
                                 var _ = "object" === a(l[v]),
-                                    T = E.match(/\s/),
+                                    T = y.match(/\s/),
                                     m = !1;
-                                !T && !_ || p || (o[o.length - 1].words.push(E), this._validateLastItem(r, o, c), m = !0), !_ && !T || p ? (m || (_ || o[o.length - 1].validated || o[o.length - 1].type !== g ? o.push({
+                                !T && !_ || u || (s[s.length - 1].words.push(y), this._validateLastItem(r, s, c), m = !0), !_ && !T || u ? (m || (_ || s[s.length - 1].validated || s[s.length - 1].type !== g ? s.push({
                                     type: g,
-                                    words: [E]
-                                }) : o[o.length - 1].words.push(E)), u = o[o.length - 1], this._validateLastItem(r, o, c), "object" === a(this.prefixesThree[v]) ? (l = this.prefixesThree[v], p = !1) : (l = this.prefixesThree, p = !0)) : _ && (l = l[v], p = !1), h >= i && !d && (o[o.length - 1].selected = !0, d = !0), inArray(g, [s.TYPE_COLON, s.TYPE_COMMA, s.TYPE_BRACKET]) && (o[o.length - 1].validated = !0), y && o[o.length - 1].validated && c++
-                            } else o.push({
+                                    words: [y]
+                                }) : s[s.length - 1].words.push(y)), p = s[s.length - 1], this._validateLastItem(r, s, c), "object" === a(this.prefixesThree[v]) ? (l = this.prefixesThree[v], u = !1) : (l = this.prefixesThree, u = !0)) : _ && (l = l[v], u = !1), h >= i && !d && (s[s.length - 1].selected = !0, d = !0), inArray(g, [o.TYPE_COLON, o.TYPE_COMMA, o.TYPE_BRACKET]) && (s[s.length - 1].validated = !0), E && s[s.length - 1].validated && c++
+                            } else s.push({
                                 type: g,
-                                words: [E]
-                            }), u = !1
+                                words: [y]
+                            }), p = !1
                         }
                     }
-                    return o
+                    return s
                 }, t.prototype._process = function() {
                     var t = clean(val(this.textaraEl).replace(/\n/g, "")),
                         e = this.optionsObj,
                         r = this._parseStr(t);
                     val(this.inputEl, "");
                     for (var i = [], n = 0; n < r.length; n++) {
-                        var o = r[n],
-                            a = o.type,
-                            l = o.words,
-                            p = o.validated,
-                            u = l.join(""),
+                        var s = r[n],
+                            a = s.type,
+                            l = s.words,
+                            u = s.validated,
+                            p = l.join(""),
                             h = ce("div", {
-                                className: s.ITEM_CLASS + " " + a
+                                className: o.ITEM_CLASS + " " + a
                             });
-                        if (a === s.TYPE_ITEM) {
-                            var d = e[trim(u.toLowerCase()).replace(/\s\s+/g, " ")];
-                            p && isObject(d) && (addClass(h, "validated"), toggleClass(h, "value", !d.options))
-                        } else if (inArray(a, [s.TYPE_OPERATOR, s.TYPE_COLON, s.TYPE_COMMA])) addClass(h, "validated");
-                        else if (a === s.TYPE_BRACKET)
-                            if ("(" === u) addClass(h, "incorrect"), i.push(h);
+                        if (a === o.TYPE_ITEM) {
+                            var d = e[trim(p.toLowerCase()).replace(/\s\s+/g, " ")];
+                            u && isObject(d) && (addClass(h, "validated"), toggleClass(h, "value", !d.options))
+                        } else if (inArray(a, [o.TYPE_OPERATOR, o.TYPE_COLON, o.TYPE_COMMA])) addClass(h, "validated");
+                        else if (a === o.TYPE_BRACKET)
+                            if ("(" === p) addClass(h, "incorrect"), i.push(h);
                             else {
                                 var c = i.pop();
                                 c ? removeClass(c, "incorrect") : addClass(h, "incorrect")
                             }
-                        for (var f = "", E = 0; E < l.length; E++) {
-                            var y = l[E].replace(/\s/g, "&nbsp;"),
+                        for (var f = "", y = 0; y < l.length; y++) {
+                            var E = l[y].replace(/\s/g, "&nbsp;"),
                                 v = "";
-                            !l[E].match(/^\s+$/) || 0 !== E && E !== l.length - 1 || (v = "spaces_only"), f += '<span class="' + v + '">' + y + "</span>"
+                            !l[y].match(/^\s+$/) || 0 !== y && y !== l.length - 1 || (v = "spaces_only"), f += '<span class="' + v + '">' + E + "</span>"
                         }
                         val(h, f), this.inputEl.appendChild(h)
                     }
@@ -645,49 +726,49 @@
                         if (e[i].label.substr(0, r) === t) return !0;
                     return !1
                 }, t.prototype._getQueryBySelection = function() {
-                    for (var t = this.textaraEl.selectionStart, e = this.autoComplete.getOperators(!0), r = val(this.textaraEl), i = this._parseStr(r), o = void 0, a = 0, l = void 0, p = void 0, u = 0, h = 0; h < i.length; h++) {
+                    for (var t = this.textaraEl.selectionStart, e = this.autoComplete.getOperators(!0), r = val(this.textaraEl), i = this._parseStr(r), s = void 0, a = 0, l = void 0, u = void 0, p = 0, h = 0; h < i.length; h++) {
                         var d = i[h],
                             c = d.words.join("");
-                        if (trim(c) && (l = d), d.validated && (p = d, u++), d.selected) {
-                            o = d;
+                        if (trim(c) && (l = d), d.validated && (u = d, p++), d.selected) {
+                            s = d;
                             break
                         }
                         a += c.length
                     }
-                    if (o || (o = l), !o) return ["", "show_no_operator"];
+                    if (s || (s = l), !s) return ["", "show_no_operator"];
                     var f = "",
-                        E = o.words.join("").substr(0, Math.max(0, t - a)),
-                        y = n.splitTextToWords(E).pop(),
-                        v = !!String(y).match(/\s$/),
-                        g = p && p.type === s.TYPE_ITEM,
+                        y = s.words.join("").substr(0, Math.max(0, t - a)),
+                        E = n.splitTextToWords(y).pop(),
+                        v = !!String(E).match(/\s$/),
+                        g = u && u.type === o.TYPE_ITEM,
                         _ = trim(l.words.join(""));
-                    return (o.type === s.TYPE_OPERATOR && (y !== s.SPACE || E !== o.words.join("")) && u > 1 || l && l.type === s.TYPE_BRACKET && ")" === _ || o.type === s.TYPE_ITEM && o.validated && v && E === o.words.join("") || o.type === s.TYPE_ITEM && !o.validated && this._checkOperatorByPrefix(o.words.join("")) && g) && (f = "show_operators"), o.type === s.TYPE_OPERATOR && inArray(o.data.key, ["|", "&"]) && v && (f = "suggest_operator" + o.data.key), (l.type === s.TYPE_BRACKET && "(" === _ || !u && 1 === i.length || "operator" === l.type && "!" === e[_].key && !v) && (f = "show_no_operator"), !f && v && (f = "show_all_if_empty"), [clean(E), f]
+                    return (s.type === o.TYPE_OPERATOR && (E !== o.SPACE || y !== s.words.join("")) && p > 1 || l && l.type === o.TYPE_BRACKET && ")" === _ || s.type === o.TYPE_ITEM && s.validated && v && y === s.words.join("") || s.type === o.TYPE_ITEM && !s.validated && this._checkOperatorByPrefix(s.words.join("")) && g) && (f = "show_operators"), s.type === o.TYPE_OPERATOR && inArray(s.data.key, ["|", "&"]) && v && (f = "suggest_operator" + s.data.key), (l.type === o.TYPE_BRACKET && "(" === _ || !p && 1 === i.length || "operator" === l.type && "!" === e[_].key && !v) && (f = "show_no_operator"), !f && v && (f = "show_all_if_empty"), [clean(y), f]
                 }, t.prototype._replaceTextBySelection = function(t) {
-                    for (var e = this.textaraEl.selectionStart, r = this.textaraEl.selectionEnd, i = val(this.textaraEl), n = " " + t.label + " ", o = t.isOperator ? s.TYPE_OPERATOR : s.TYPE_ITEM, a = "", l = null, p = this._parseStr(i, 1), u = !0, h = 0, d = !1, c = 0; c < p.length; c++) {
-                        var f = p[c],
-                            E = f.selected,
-                            y = f.words,
+                    for (var e = this.textaraEl.selectionStart, r = this.textaraEl.selectionEnd, i = val(this.textaraEl), n = " " + t.label + " ", s = t.isOperator ? o.TYPE_OPERATOR : o.TYPE_ITEM, a = "", l = null, u = this._parseStr(i, 1), p = !0, h = 0, d = !1, c = 0; c < u.length; c++) {
+                        var f = u[c],
+                            y = f.selected,
+                            E = f.words,
                             v = f.type,
                             g = f.validated,
-                            _ = y.join(""),
+                            _ = E.join(""),
                             T = _.length;
-                        if (h += T, (h > e || E && (!g || o === v)) && (null === l && (l = h - T), o === v && (p[c].words = [n], p[c].validated = !0, u = !1), E && (d = !0), h >= r)) break
+                        if (h += T, (h > e || y && (!g || s === v)) && (null === l && (l = h - T), s === v && (u[c].words = [n], u[c].validated = !0, p = !1), y && (d = !0), h >= r)) break
                     }
-                    u && (p.push({
+                    p && (u.push({
                         words: [n]
                     }), e !== r || d || (l = h = e));
-                    for (var m = 0; m < p.length; m++) {
-                        var O = p[m],
+                    for (var m = 0; m < u.length; m++) {
+                        var O = u[m],
                             v = O.type,
-                            y = O.words,
+                            E = O.words,
                             g = O.validated;
-                        (!inArray(v, [s.TYPE_ITEM, s.TYPE_OPERATOR]) || g) && (a += y.join(""))
+                        (!inArray(v, [o.TYPE_ITEM, o.TYPE_OPERATOR]) || g) && (a += E.join(""))
                     }
                     if (a || (l = r - n.length), browser.mozilla) {
-                        var C = i.substr(0, l) + n.replace(/\s\s+/g, " ") + i.substr(h),
-                            b = C.length - i.length;
-                        val(this.textaraEl, C);
-                        var x = Math.max(l, h + b);
+                        var b = i.substr(0, l) + n.replace(/\s\s+/g, " ") + i.substr(h),
+                            C = b.length - i.length;
+                        val(this.textaraEl, b);
+                        var x = Math.max(l, h + C);
                         this.textaraEl.setSelectionRange(x, x)
                     } else this.textaraEl.setSelectionRange(l, h), document.execCommand("insertText", !0, n.replace(/\s\s+/g, " "));
                     var w = val(this.textaraEl),
@@ -714,74 +795,6 @@
                     })
                 }, t
             }();
-        e["default"] = p
-    },
-    91: function(t, e, r) {
-        "use strict";
-
-        function i(t, e) {
-            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-        }
-        r.r(e);
-        var n = r(674),
-            s = function() {
-                function t(e) {
-                    var r = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-                    return i(this, t), r.items = r.items || [], e = ge(e), addClass(e, "rich_dropdown_wrap"), this.input = new n["default"](e, r.items), this.input.renderByInitialData(r.initialData), this.setOptions(r), this
-                }
-                return t.prototype.destroy = function() {
-                    this.input.destroy(), delete this.input
-                }, t.prototype.getValue = function() {
-                    return this.input.getValue()
-                }, t.prototype.getStringValue = function() {
-                    return this.input.getStringValue()
-                }, t.prototype.onChange = function(t) {
-                    return this.input.setOptions({
-                        onChange: t
-                    }), this
-                }, t.prototype.setOptions = function() {
-                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
-                    for (var e in t) {
-                        var r = t[e];
-                        switch (e) {
-                            case "placeholder":
-                                this.input.setPlaceholder(r);
-                                break;
-                            case "operators":
-                                this.input.autoComplete.setOperators(r), this.input.updateOptionsObj();
-                                break;
-                            case "disabledText":
-                                this.input.setDisabledText(r);
-                                break;
-                            case "autoCompleteMaxWidth":
-                                this.input.setAutoCompleteMaxWidth(r);
-                                break;
-                            case "width":
-                                this.input.setWidth(r);
-                                break;
-                            case "items":
-                                this.input.autoComplete.setOptions(r), this.input.updateOptionsObj();
-                                break;
-                            case "value":
-                                this.setValue(r);
-                                break;
-                            case "onChange":
-                                this.onChange(r)
-                        }
-                    }
-                    return this
-                }, t.prototype.disable = function() {
-                    this.input.disable()
-                }, t.prototype.enable = function() {
-                    this.input.enable()
-                }, t.prototype.toggleDisable = function() {
-                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : void 0;
-                    this.input.disabled && t !== !0 || t === !1 ? this.input.enable() : this.input.disable()
-                }, t.prototype.setValue = function() {
-                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
-                    this.input.setValue(t)
-                }, t
-            }();
-        e["default"] = s
+        e["default"] = u
     }
 });

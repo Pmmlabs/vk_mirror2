@@ -558,10 +558,9 @@ a.landing_ads_product:hover .landing_ads_product_icon {
     width: 6px;
     margin-left: 5px;
     background: url(/images/icons/search_arrow.png) no-repeat 50%;
-    transition: -webkit-transform 150ms ease-in-out;
     -o-transition: transform 150ms ease-in-out, -o-transform 150ms ease-in-out;
     transition: transform 150ms ease-in-out;
-    transition: transform 150ms ease-in-out, -webkit-transform 150ms ease-in-out, -o-transform 150ms ease-in-out
+    transition: transform 150ms ease-in-out, -o-transform 150ms ease-in-out
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -574,7 +573,6 @@ a.landing_ads_product:hover .landing_ads_product_icon {
 }
 
 .landing_ads_news_header_more_btn:hover:after {
-    -webkit-transform: translateX(2px);
     -o-transform: translateX(2px);
     transform: translateX(2px)
 }
@@ -1051,7 +1049,6 @@ a.landing_ads_product:hover .landing_ads_product_icon {
 }
 
 .landing_ads_company_page_post_container {
-    -webkit-transform-origin: 0;
     -o-transform-origin: 0;
     transform-origin: 0
 }
@@ -1159,10 +1156,9 @@ a.landing_ads_product:hover .landing_ads_product_icon {
     height: 787px;
     background: url(/images/landings/ads/company_page_website.png);
     z-index: 1;
-    transition: -webkit-transform 200ms ease-in-out;
     -o-transition: transform 200ms ease-in-out, -o-transform 200ms ease-in-out;
     transition: transform 200ms ease-in-out;
-    transition: transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out, -o-transform 200ms ease-in-out
+    transition: transform 200ms ease-in-out, -o-transform 200ms ease-in-out
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1274,7 +1270,6 @@ a.landing_ads_product:hover .landing_ads_product_icon {
 }
 
 .landing_ads_company_page_widgets.followers .landing_ads_company_page_widgets_site {
-    -webkit-transform: translateY(-105px);
     -o-transform: translateY(-105px);
     transform: translateY(-105px)
 }
@@ -1284,7 +1279,6 @@ a.landing_ads_product:hover .landing_ads_product_icon {
 }
 
 .landing_ads_company_page_widgets.comments .landing_ads_company_page_widgets_site {
-    -webkit-transform: translateY(-355px);
     -o-transform: translateY(-355px);
     transform: translateY(-355px)
 }
@@ -1424,14 +1418,12 @@ a.landing_ads_product:hover .landing_ads_product_icon {
     background: url('/images/svg_icons/landings_main_slider_button_arrow.svg') no-repeat 50%;
     display: inline-block;
     margin-left: 6px;
-    transition: -webkit-transform 150ms ease-in-out;
     -o-transition: transform 150ms ease-in-out, -o-transform 150ms ease-in-out;
     transition: transform 150ms ease-in-out;
-    transition: transform 150ms ease-in-out, -webkit-transform 150ms ease-in-out, -o-transform 150ms ease-in-out
+    transition: transform 150ms ease-in-out, -o-transform 150ms ease-in-out
 }
 
 .landing_ads_action_button:hover:after {
-    -webkit-transform: translateX(2px);
     -o-transform: translateX(2px);
     transform: translateX(2px)
 }
@@ -1765,10 +1757,9 @@ a.landing_ads_product:hover .landing_ads_product_icon {
 
 .landing_ads_targeting_ads_example_post_browser_feed,
 .landing_ads_targeting_ads_example_post_iphone_feed {
-    transition: -webkit-transform 200ms ease-in-out;
     -o-transition: transform 200ms ease-in-out, -o-transform 200ms ease-in-out;
     transition: transform 200ms ease-in-out;
-    transition: transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out, -o-transform 200ms ease-in-out
+    transition: transform 200ms ease-in-out, -o-transform 200ms ease-in-out
 }
 
 .landing_ads_targeting_ads_example_group_wrap {
@@ -1942,10 +1933,9 @@ a.landing_ads_product:hover .landing_ads_product_icon {
     height: 8px;
     background: url('/images/landings/ads/questions_arrow.svg') 50% no-repeat;
     opacity: 0.5;
-    transition: opacity 150ms ease-in-out, -webkit-transform 150ms ease-in-out;
     -o-transition: opacity 150ms ease-in-out, transform 150ms ease-in-out, -o-transform 150ms ease-in-out;
     transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
-    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out, -webkit-transform 150ms ease-in-out, -o-transform 150ms ease-in-out
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out, -o-transform 150ms ease-in-out
 }
 
 .landing_ads_question:hover:after {
@@ -1978,7 +1968,6 @@ a.landing_ads_product:hover .landing_ads_product_icon {
 }
 
 .landing_ads_question.shown:after {
-    -webkit-transform: rotate(180deg);
     -o-transform: rotate(180deg);
     transform: rotate(180deg)
 }
@@ -2120,7 +2109,6 @@ a.landing_ads_product:hover .landing_ads_product_icon {
     height: 253px;
     left: 50%;
     margin-left: -169px;
-    -webkit-transform-origin: bottom;
     -o-transform-origin: bottom;
     transform-origin: bottom;
     top: 68px!important
@@ -2134,30 +2122,19 @@ a.landing_ads_product:hover .landing_ads_product_icon {
     height: 100%;
     background-size: 100% auto!important;
     background: no-repeat top;
-    transition: z-index 300ms linear, -webkit-transform 300ms ease-in-out;
     -o-transition: transform 300ms ease-in-out, z-index 300ms linear, -o-transform 300ms ease-in-out;
     transition: transform 300ms ease-in-out, z-index 300ms linear;
-    transition: transform 300ms ease-in-out, z-index 300ms linear, -webkit-transform 300ms ease-in-out, -o-transform 300ms ease-in-out;
-    -webkit-transform-origin: bottom;
+    transition: transform 300ms ease-in-out, z-index 300ms linear, -o-transform 300ms ease-in-out;
     -o-transform-origin: bottom;
     transform-origin: bottom;
     cursor: pointer
 }
 
-@-webkit-keyframes ads_games_integration_anim {
-    0%,
-    50% {
-        -webkit-transform: scale(1);
+@-o-keyframes ads_games_integration_anim {
+    0% {
+        -o-transform: scale(1);
         transform: scale(1)
     }
-    to {
-        -webkit-transform: scale(1.26);
-        transform: scale(1.26)
-    }
-}
-
-@-o-keyframes ads_games_integration_anim {
-    0%,
     50% {
         -o-transform: scale(1);
         transform: scale(1)
@@ -2169,14 +2146,15 @@ a.landing_ads_product:hover .landing_ads_product_icon {
 }
 
 @keyframes ads_games_integration_anim {
-    0%,
+    0% {
+        -o-transform: scale(1);
+        transform: scale(1)
+    }
     50% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1)
     }
     to {
-        -webkit-transform: scale(1.26);
         -o-transform: scale(1.26);
         transform: scale(1.26)
     }
@@ -2240,32 +2218,16 @@ a.landing_ads_product:hover .landing_ads_product_icon {
 }
 
 #looped_groups_marquee {
-    -webkit-animation-name: landing_ads_marquee;
     -o-animation-name: landing_ads_marquee;
     animation-name: landing_ads_marquee;
-    -webkit-animation-duration: 5s;
     -o-animation-duration: 5s;
     animation-duration: 5s;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
-    -webkit-transform-origin: 0;
     -o-transform-origin: 0;
     transform-origin: 0
-}
-
-@-webkit-keyframes landing_ads_marquee {
-    0% {
-        -webkit-transform: translateY(0px);
-        transform: translateY(0px)
-    }
-    to {
-        -webkit-transform: translateY(-100%);
-        transform: translateY(-100%)
-    }
 }
 
 @-o-keyframes landing_ads_marquee {
@@ -2281,12 +2243,10 @@ a.landing_ads_product:hover .landing_ads_product_icon {
 
 @keyframes landing_ads_marquee {
     0% {
-        -webkit-transform: translateY(0px);
         -o-transform: translateY(0px);
         transform: translateY(0px)
     }
     to {
-        -webkit-transform: translateY(-100%);
         -o-transform: translateY(-100%);
         transform: translateY(-100%)
     }
@@ -2478,7 +2438,7 @@ a.landing_ads_product:hover .landing_ads_product_icon {
     text-decoration: none!important
 }
 
-.landing_ads_partner_row:nth-child(even) {
+.landing_ads_partner_row:nth-child(2n) {
     margin-left: 110px
 }
 

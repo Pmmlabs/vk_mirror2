@@ -237,7 +237,6 @@
 }
 
 body.mac .wcommunity_footer .pr {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -379,7 +378,6 @@ body.mac .wcommunity_footer .pr {
 }
 
 body.mac .wcommunity_show_more button .pr {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 

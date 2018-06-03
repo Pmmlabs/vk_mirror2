@@ -46,16 +46,12 @@
     display: inline-block;
     width: 34px;
     height: 34px;
-    -webkit-animation-name: round_spinner;
     -o-animation-name: round_spinner;
     animation-name: round_spinner;
-    -webkit-animation-duration: 700ms;
     -o-animation-duration: 700ms;
     animation-duration: 700ms;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner_big.png);
@@ -66,7 +62,6 @@
     right: 0;
     margin: -17px;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

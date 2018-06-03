@@ -94,7 +94,6 @@ body {
 
 #desktop_content,
 #mobile_content {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -281,7 +280,6 @@ body {
     z-index: 100;
     position: absolute;
     top: 50%;
-    -webkit-transform: translateY(-50%);
     -o-transform: translateY(-50%);
     transform: translateY(-50%)
 }
@@ -572,7 +570,6 @@ body {
 }
 
 .landing .landings_psb_questions #_landings_psb_questions__questions_list {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0);
     -o-transition: all 0.4s ease;
     transition: all 0.4s ease;
@@ -840,7 +837,6 @@ body {
 .landing .landing_psb_popup .landing_psb_popup_controls .landing_psb_popup__arrow_left {
     background: url(/images/landings/PSB/web_assets/left_row.png);
     left: -50px;
-    -webkit-transform: translateX(-394px);
     -o-transform: translateX(-394px);
     transform: translateX(-394px)
 }
@@ -857,7 +853,6 @@ body {
 .landing .landing_psb_popup .landing_psb_popup_controls .landing_psb_popup__arrow_right {
     background: url(/images/landings/PSB/web_assets/right_row.png);
     right: -50px;
-    -webkit-transform: translateX(335px);
     -o-transform: translateX(335px);
     transform: translateX(335px)
 }
@@ -903,7 +898,6 @@ body {
     box-sizing: content-box;
     position: absolute;
     left: 50%;
-    -webkit-transform: translateX(335px);
     -o-transform: translateX(335px);
     transform: translateX(335px);
     top: 0;
@@ -959,7 +953,6 @@ body {
 }
 
 .landing .landing_psb_popup .landing_psb_popup_frame .landing_psb_popup_frame__header>* {
-    -webkit-filter: none;
     filter: none
 }
 

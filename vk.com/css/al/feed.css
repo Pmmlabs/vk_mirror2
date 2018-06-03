@@ -93,7 +93,6 @@
 
 .feed_lists_icon .ui_actions_menu_icons:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -118,7 +117,6 @@
 
 .feed_filter_icon:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -171,7 +169,6 @@
 
 #ui_rmenu_live:hover .feed_filter_icon:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -218,7 +215,6 @@
 
 .feed_filters_show_types_btn:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -729,7 +725,6 @@
 
 .feedback_row .reply_action:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1314,7 +1309,6 @@
 .feedback_sticky_row.hover .feedback_row_menu,
 .feedback_sticky_row:hover .feedback_row_menu {
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     visibility: visible
 }
@@ -1568,7 +1562,6 @@
 
 .feedback_sticky_gift_btn:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1579,16 +1572,12 @@
     margin: -3px -3px 0 0;
     width: 16px;
     height: 16px;
-    -webkit-animation-name: round_spinner;
     -o-animation-name: round_spinner;
     animation-name: round_spinner;
-    -webkit-animation-duration: 700ms;
     -o-animation-duration: 700ms;
     animation-duration: 700ms;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner.png)
@@ -1625,7 +1614,6 @@
 .top_notify_cont .feedback_row:not(.dld).hover .feedback_row_menu,
 .top_notify_cont .feedback_row:not(.dld):hover .feedback_row_menu {
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     visibility: visible
 }
@@ -1752,7 +1740,6 @@
 
 .feedback_row_answer .reply_action:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2162,7 +2149,6 @@ div.feed_recom {
 
 .feed_video_tab_hint .feed_hint_close:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2369,7 +2355,6 @@ div.feed_recom {
 
 .feed_blog_reminder_hide:hover {
     opacity: 1!important;
-    -webkit-filter: none!important;
     filter: none!important
 }
 
@@ -2435,7 +2420,6 @@ div.feed_recom {
 
 .feed_blog_reminder_large:hover .feed_blog_reminder_large_close_wrap {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2451,7 +2435,6 @@ div.feed_recom {
 
 .feed_blog_reminder_large_close:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2666,29 +2649,23 @@ div.feed_recom {
 }
 
 .feed_block_articles .module_body {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     width: 100%;
     box-sizing: border-box;
+    -ms-flex-direction: column;
+    flex-direction: column;
     padding-top: 10px;
     padding-bottom: 10px
-}
-
-.feed_block_articles .module_body,
-.feed_block_article {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column
 }
 
 .feed_block_article {
     position: relative;
     display: block;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-justify-content: center;
+    -ms-flex-direction: column;
+    flex-direction: column;
     -ms-flex-pack: center;
     justify-content: center;
     margin: 0 -10px;

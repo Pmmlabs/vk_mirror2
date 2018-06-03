@@ -187,10 +187,8 @@ input.BlockSearchInput {
     width: 0;
     height: 0;
     white-space: nowrap;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-animation: fadeIn .1s ease;
     -o-animation: fadeIn .1s ease;
     animation: fadeIn .1s ease;
     -o-transition: opacity .2s ease, visibility .2s ease;
@@ -215,7 +213,6 @@ input.BlockSearchInput {
     font-size: 12.5px;
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
     line-height: 15px;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     direction: ltr;
@@ -251,7 +248,6 @@ input.BlockSearchInput {
 }
 
 .Dropdown--t {
-    -webkit-align-items: flex-end;
     -ms-flex-align: end;
     align-items: flex-end
 }
@@ -268,15 +264,12 @@ input.BlockSearchInput {
 
 .Dropdown--t .Dropdown__in:after {
     border-top-color: #fff;
-    -webkit-transform: translate3d(0, -0.5px, 0);
     transform: translate3d(0, -0.5px, 0)
 }
 
 .Dropdown--r {
-    -webkit-justify-content: left;
     -ms-flex-pack: left;
     justify-content: left;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center
 }
@@ -296,12 +289,10 @@ input.BlockSearchInput {
 .Dropdown--r .Dropdown__in:after {
     border-right-color: #fff;
     margin-top: -4px;
-    -webkit-transform: translate3d(0.5px, 0, 0);
     transform: translate3d(0.5px, 0, 0)
 }
 
 .Dropdown--b {
-    -webkit-align-items: flex-start;
     -ms-flex-align: start;
     align-items: flex-start
 }
@@ -318,18 +309,14 @@ input.BlockSearchInput {
 
 .Dropdown--b .Dropdown__in:after {
     border-bottom-color: #fff;
-    -webkit-transform: translate3d(0, 0.5px, 0);
     transform: translate3d(0, 0.5px, 0)
 }
 
 .Dropdown--l {
-    -webkit-justify-content: left;
     -ms-flex-pack: left;
     justify-content: left;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-flex-direction: row-reverse;
     -ms-flex-direction: row-reverse;
     flex-direction: row-reverse
 }
@@ -349,12 +336,10 @@ input.BlockSearchInput {
 .Dropdown--l .Dropdown__in:after {
     border-left-color: #fff;
     margin-top: -4px;
-    -webkit-transform: translate3d(-0.5px, 0, 0);
     transform: translate3d(-0.5px, 0, 0)
 }
 
 .Dropdown--align-left {
-    -webkit-justify-content: left;
     -ms-flex-pack: left;
     justify-content: left
 }
@@ -374,7 +359,6 @@ input.BlockSearchInput {
 }
 
 .Dropdown--align-center {
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center
 }
@@ -390,10 +374,8 @@ input.BlockSearchInput {
 }
 
 .Dropdown--align-right {
-    -webkit-justify-content: left;
     -ms-flex-pack: left;
     justify-content: left;
-    -webkit-flex-direction: row-reverse;
     -ms-flex-direction: row-reverse;
     flex-direction: row-reverse
 }
@@ -410,15 +392,6 @@ input.BlockSearchInput {
 .Dropdown--align-right .Dropdown__in:after {
     right: 14px;
     margin-right: -4px
-}
-
-@-webkit-keyframes fadeIn {
-    0% {
-        opacity: 0
-    }
-    to {
-        opacity: 100%
-    }
 }
 
 @-o-keyframes fadeIn {
@@ -449,7 +422,6 @@ input.BlockSearchInput {
 .EditableLabel:hover:after {
     position: absolute;
     top: 50%;
-    -webkit-transform: translateY(-50%);
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
     right: 4px;
@@ -494,7 +466,6 @@ textarea.EditableLabel__textarea {
 .EditableLabel__save {
     position: absolute;
     top: 50%;
-    -webkit-transform: translateY(-50%);
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
     right: 4px;
@@ -560,13 +531,10 @@ textarea.EditableLabel__textarea {
 
 .Entity__main {
     height: 100%;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center
 }
@@ -732,10 +700,8 @@ textarea.EditableLabel__textarea {
     font-size: 13px;
     line-height: 28px;
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
     height: 54px;
@@ -776,13 +742,11 @@ textarea.EditableLabel__textarea {
 .ListItem__icon {
     width: 28px;
     height: 28px;
-    -webkit-flex: 0 0 28px;
     -ms-flex: 0 0 28px;
     flex: 0 0 28px
 }
 
 .ListItem__main {
-    -webkit-flex: 1 1 auto;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     overflow: hidden;
@@ -792,7 +756,6 @@ textarea.EditableLabel__textarea {
 
 .ListItem__aside {
     padding: 0 5px;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto
 }
@@ -816,7 +779,6 @@ textarea.EditableLabel__textarea {
     height: 100%;
     border-radius: 50%;
     overflow: hidden;
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -841,18 +803,15 @@ textarea.EditableLabel__textarea {
 }
 
 .MembersGrid__i:nth-child(2) {
-    -webkit-transform: translate3d(1px, 0, 0);
     transform: translate3d(1px, 0, 0)
 }
 
 .MembersGrid--4 .MembersGrid__i:nth-child(3) {
-    -webkit-transform: translate3d(0, 1px, 0);
     transform: translate3d(0, 1px, 0)
 }
 
 .MembersGrid--3 .MembersGrid__i:nth-child(3),
 .MembersGrid--4 .MembersGrid__i:nth-child(4) {
-    -webkit-transform: translate3d(1px, 1px, 0);
     transform: translate3d(1px, 1px, 0)
 }
 
@@ -860,23 +819,19 @@ textarea.EditableLabel__textarea {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .MembersGrid__i:nth-child(2) {
-        -webkit-transform: translate3d(0.5px, 0, 0);
         transform: translate3d(0.5px, 0, 0)
     }
     .MembersGrid--4 .MembersGrid__i:nth-child(3) {
-        -webkit-transform: translate3d(0, 0.5px, 0);
         transform: translate3d(0, 0.5px, 0)
     }
     .MembersGrid--3 .MembersGrid__i:nth-child(3),
     .MembersGrid--4 .MembersGrid__i:nth-child(4) {
-        -webkit-transform: translate3d(0.5px, 0.5px, 0);
         transform: translate3d(0.5px, 0.5px, 0)
     }
 }
 
 .MultiSelect {
     max-height: 100%;
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
@@ -885,19 +840,15 @@ textarea.EditableLabel__textarea {
 .MultiSelect,
 .MultiSelect__search {
     position: relative;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex
 }
 
 .MultiSelect__search {
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     padding: 8px 20px 7px;
-    -webkit-transform: translateZ(0);
     transform: translateZ(0);
-    -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     background: #fff;
@@ -906,7 +857,6 @@ textarea.EditableLabel__textarea {
 
 .MultiSelect__caret {
     position: relative;
-    -webkit-flex: 1 0 auto;
     -ms-flex: 1 0 auto;
     flex: 1 0 auto;
     margin: 4px 0 3px;
@@ -953,10 +903,8 @@ textarea.EditableLabel__textarea {
 }
 
 .MultiSelect__token {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     margin: 4px 5px 3px 0;
@@ -970,7 +918,6 @@ textarea.EditableLabel__textarea {
 }
 
 .MultiSelect__tokenTitle {
-    -webkit-flex: 0 1 auto;
     -ms-flex: 0 1 auto;
     flex: 0 1 auto;
     overflow: hidden;
@@ -986,7 +933,6 @@ textarea.EditableLabel__textarea {
 
 .MultiSelect__tokenRemove {
     position: relative;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     padding: 7px 10px 8px 6px;
@@ -1004,7 +950,6 @@ textarea.EditableLabel__textarea {
 }
 
 .MultiSelect__scroll {
-    -webkit-flex: 1 1 auto;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto
 }
@@ -1015,13 +960,10 @@ textarea.EditableLabel__textarea {
     color: #939393;
     font-size: 13px;
     line-height: 18px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
@@ -1045,10 +987,8 @@ textarea.EditableLabel__textarea {
     border-radius: 50%;
     margin: 0 1px;
     opacity: .2;
-    -webkit-animation: Progress__highlight .75s linear infinite;
     -o-animation: Progress__highlight .75s linear infinite;
     animation: Progress__highlight .75s linear infinite;
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -1056,34 +996,19 @@ textarea.EditableLabel__textarea {
     background: #fff
 }
 
-.Progress__item:nth-child(1) {
-    -webkit-animation-delay: 0;
+.Progress__item:first-child {
     -o-animation-delay: 0;
     animation-delay: 0
 }
 
 .Progress__item:nth-child(2) {
-    -webkit-animation-delay: .18s;
     -o-animation-delay: .18s;
     animation-delay: .18s
 }
 
 .Progress__item:nth-child(3) {
-    -webkit-animation-delay: .36s;
     -o-animation-delay: .36s;
     animation-delay: .36s
-}
-
-@-webkit-keyframes Progress__highlight {
-    0% {
-        opacity: .2
-    }
-    30% {
-        opacity: 1
-    }
-    to {
-        opacity: .2
-    }
 }
 
 @-o-keyframes Progress__highlight {
@@ -1113,7 +1038,6 @@ textarea.EditableLabel__textarea {
 .PopupHeader {
     position: relative;
     height: 54px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     background: #5b88bd;
@@ -1122,7 +1046,6 @@ textarea.EditableLabel__textarea {
     line-height: 16px;
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
     padding: 0;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
     z-index: 1;
@@ -1134,7 +1057,6 @@ textarea.EditableLabel__textarea {
 }
 
 .PopupHeader__back {
-    -webkit-flex: 1 0 10%;
     -ms-flex: 1 0 10%;
     flex: 1 0 10%
 }
@@ -1173,7 +1095,6 @@ textarea.EditableLabel__textarea {
     line-height: 16px;
     margin: 0;
     padding: 0 25px;
-    -webkit-flex: 1 1 auto;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     overflow: hidden;
@@ -1187,7 +1108,6 @@ textarea.EditableLabel__textarea {
 }
 
 .PopupHeader__close {
-    -webkit-flex: 1 0 10%;
     -ms-flex: 1 0 10%;
     flex: 1 0 10%;
     text-align: right
@@ -1211,7 +1131,6 @@ textarea.EditableLabel__textarea {
 
 .MultiSelect {
     max-height: 100%;
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
@@ -1220,19 +1139,15 @@ textarea.EditableLabel__textarea {
 .MultiSelect,
 .MultiSelect__search {
     position: relative;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex
 }
 
 .MultiSelect__search {
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     padding: 8px 20px 7px;
-    -webkit-transform: translateZ(0);
     transform: translateZ(0);
-    -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     background: #fff;
@@ -1243,7 +1158,6 @@ textarea.EditableLabel__textarea {
 
 .MultiSelect__caret {
     position: relative;
-    -webkit-flex: 1 0 auto;
     -ms-flex: 1 0 auto;
     flex: 1 0 auto;
     margin: 4px 0 3px;
@@ -1290,10 +1204,8 @@ textarea.EditableLabel__textarea {
 }
 
 .MultiSelect__token {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     margin: 4px 5px 3px 0;
@@ -1307,7 +1219,6 @@ textarea.EditableLabel__textarea {
 }
 
 .MultiSelect__tokenTitle {
-    -webkit-flex: 0 1 auto;
     -ms-flex: 0 1 auto;
     flex: 0 1 auto;
     overflow: hidden;
@@ -1324,7 +1235,6 @@ textarea.EditableLabel__textarea {
 
 .MultiSelect__tokenRemove {
     position: relative;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     padding: 7px 10px 8px 6px;
@@ -1343,7 +1253,6 @@ textarea.EditableLabel__textarea {
 }
 
 .MultiSelect__scroll {
-    -webkit-flex: 1 1 auto;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     overflow: auto
@@ -1356,7 +1265,6 @@ textarea.EditableLabel__textarea {
     color: #939393;
     font-size: 13px;
     line-height: 18px;
-    -webkit-flex: 1 0 auto;
     -ms-flex: 1 0 auto;
     flex: 1 0 auto
 }
@@ -1475,39 +1383,23 @@ textarea.EditableLabel__textarea {
 .Spinner {
     width: 100%;
     height: 100%;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center
 }
 
 .Spinner__svg {
-    -webkit-animation: rotator 1.4s linear infinite;
     -o-animation: rotator 1.4s linear infinite;
     animation: rotator 1.4s linear infinite
 }
 
 .Spinner__path {
-    -webkit-transform-origin: center;
     -o-transform-origin: center;
     transform-origin: center;
     stroke-linecap: round
-}
-
-@-webkit-keyframes rotator {
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg)
-    }
-    to {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg)
-    }
 }
 
 @-o-keyframes rotator {
@@ -1523,12 +1415,10 @@ textarea.EditableLabel__textarea {
 
 @keyframes rotator {
     0% {
-        -webkit-transform: rotate(0deg);
         -o-transform: rotate(0deg);
         transform: rotate(0deg)
     }
     to {
-        -webkit-transform: rotate(360deg);
         -o-transform: rotate(360deg);
         transform: rotate(360deg)
     }
@@ -1560,7 +1450,6 @@ textarea.EditableLabel__textarea {
 .Tabs__list {
     margin: 0 0 -1px;
     padding: 0;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex
 }
@@ -1568,7 +1457,6 @@ textarea.EditableLabel__textarea {
 .Tabs__item {
     margin: 0 4px;
     list-style: none;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     border-bottom: 2px solid transparent;
@@ -1622,13 +1510,11 @@ textarea.EditableLabel__textarea {
     bottom: -1px;
     left: 0;
     background: #6387ac;
-    -webkit-transform-origin: center;
     -o-transform-origin: center;
     transform-origin: center;
-    transition: visiblity .3s ease, -webkit-transform .3s ease;
     -o-transition: transform .3s ease, visiblity .3s ease, -o-transform .3s ease;
     transition: transform .3s ease, visiblity .3s ease;
-    transition: transform .3s ease, visiblity .3s ease, -webkit-transform .3s ease, -o-transform .3s ease
+    transition: transform .3s ease, visiblity .3s ease, -o-transform .3s ease
 }
 
 .Tabs--animating .Tabs__divider {
@@ -1713,11 +1599,9 @@ textarea.EditableLabel__textarea {
     width: 0;
     height: 0;
     white-space: nowrap;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     pointer-events: none;
-    -webkit-animation: fadeIn .3s ease;
     -o-animation: fadeIn .3s ease;
     animation: fadeIn .3s ease;
     -o-transition: opacity .2s ease, visibility .2s ease;
@@ -1739,7 +1623,6 @@ textarea.EditableLabel__textarea {
     border-radius: 4px;
     font-size: 12.5px;
     line-height: 15px;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     direction: ltr
@@ -1754,7 +1637,6 @@ textarea.EditableLabel__textarea {
 }
 
 .Tooltip--t {
-    -webkit-align-items: flex-end;
     -ms-flex-align: end;
     align-items: flex-end
 }
@@ -1769,10 +1651,8 @@ textarea.EditableLabel__textarea {
 }
 
 .Tooltip--r {
-    -webkit-justify-content: left;
     -ms-flex-pack: left;
     justify-content: left;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center
 }
@@ -1789,7 +1669,6 @@ textarea.EditableLabel__textarea {
 }
 
 .Tooltip--b {
-    -webkit-align-items: flex-start;
     -ms-flex-align: start;
     align-items: flex-start
 }
@@ -1804,10 +1683,8 @@ textarea.EditableLabel__textarea {
 }
 
 .Tooltip--l {
-    -webkit-justify-content: left;
     -ms-flex-pack: left;
     justify-content: left;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
     direction: rtl
@@ -1825,7 +1702,6 @@ textarea.EditableLabel__textarea {
 }
 
 .Tooltip--align-left {
-    -webkit-justify-content: left;
     -ms-flex-pack: left;
     justify-content: left
 }
@@ -1840,7 +1716,6 @@ textarea.EditableLabel__textarea {
 }
 
 .Tooltip--align-center {
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center
 }
@@ -1855,7 +1730,6 @@ textarea.EditableLabel__textarea {
 }
 
 .Tooltip--align-right {
-    -webkit-justify-content: left;
     -ms-flex-pack: left;
     justify-content: left;
     direction: rtl
@@ -1895,7 +1769,6 @@ textarea.EditableLabel__textarea {
 }
 
 .InfoBlock .InfoBlock--header .InfoBlock--loading {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     float: right;
@@ -1911,7 +1784,6 @@ textarea.EditableLabel__textarea {
 }
 
 .Decisions .Decisions--ClaimResolvedRow .Decisions--loading {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     float: right;

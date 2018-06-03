@@ -468,7 +468,6 @@ img {
 
 .like_wrap.checked .icon_heart {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

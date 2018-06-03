@@ -258,7 +258,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 195515682980,
-    'imn.js': 257510337973,
+    'imn.js': 253058421749,
     'im.js': 1322065005,
     'emoji.js': 3955121562,
     'wide_dd.css': 17901568486,
@@ -519,11 +519,11 @@ var stVersions = {
     'favicon': 6,
     'speech.js': 29879154215,
     'voice_message_player.js': 18549969583,
-    'cmodules/web/speech_worker_mp3.js': 4084020816,
+    'cmodules/web/speech_worker_mp3.js': 4119569941,
     'cmodules/web/speech_worker_opus.js': 2818771805,
-    'stories.js': 62689815011,
+    'stories.js': 58237898787,
     'stories.css': 19227454845,
-    'cmodules/web/stories_manage.js': 31843634361,
+    'cmodules/web/stories_manage.js': 27391718137,
     'stories_manage.css': 69466276799,
     'article.css': 30483804606,
     'article_editor.css': 31001786783,
@@ -549,8 +549,8 @@ var stVersions = {
     'time_spent.js': 732637085,
     'cmodules/web/app_info.js': 2375115030,
     'cmodules/web/grip.js': 4164501492,
-    'cmodules/web/reports.js': 21346976370,
-    'cmodules/web/raven_logger.js': 2731499643,
+    'cmodules/web/reports.js': 16895060146,
+    'cmodules/web/raven_logger.js': 5036423544,
     'lang': 6887
 };
 var stTypes = {
@@ -620,4 +620,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 9951;
+var _rnd = 24;

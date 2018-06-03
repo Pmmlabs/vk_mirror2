@@ -141,10 +141,10 @@
 
 .achievement_blur .achievement_img,
 .achievement_blur_only .achievement_img {
-    transition: width 200ms linear, height 200ms linear, filter 200ms linear, -webkit-filter 200ms linear;
+    -o-transition: width 200ms linear, height 200ms linear, filter 200ms linear;
+    transition: width 200ms linear, height 200ms linear, filter 200ms linear;
     width: 100px;
     height: 100px;
-    -webkit-filter: blur(10px) grayscale(75%);
     filter: blur(10px) grayscale(75%);
     opacity: 0.8
 }
@@ -152,13 +152,13 @@
 .achievement_blur_only .achievement_img:hover {
     width: 128px;
     height: 128px;
-    -webkit-filter: blur(0) grayscale(0%);
     filter: blur(0) grayscale(0%)
 }
 
 .achievement_row {
     padding: 10px;
-    transition: filter 600ms linear, -webkit-filter 600ms linear;
+    -o-transition: filter 600ms linear;
+    transition: filter 600ms linear;
     display: block;
     text-decoration: none
 }
@@ -174,7 +174,6 @@
 }
 
 .achievement_row.achievement_row_faded {
-    -webkit-filter: blur(10px) grayscale(75%);
     filter: blur(10px) grayscale(75%)
 }
 
@@ -813,8 +812,8 @@
 .achievements_achieved_box_icon_img {
     width: 100px;
     height: 100px;
-    transition: opacity 600ms ease-in, width 600ms ease-in, height 600ms ease-in, filter 600ms ease-in, -webkit-filter 600ms ease-in;
-    -webkit-filter: blur(10px) grayscale(75%);
+    -o-transition: opacity 600ms ease-in, width 600ms ease-in, height 600ms ease-in, filter 600ms ease-in;
+    transition: opacity 600ms ease-in, width 600ms ease-in, height 600ms ease-in, filter 600ms ease-in;
     filter: blur(10px) grayscale(75%);
     opacity: 0.8;
     vertical-align: middle
@@ -823,13 +822,13 @@
 .achievements_achieved_box_visible .achievements_achieved_box_icon_img {
     width: 128px;
     height: 128px;
-    -webkit-filter: blur(0) grayscale(0%);
     filter: blur(0) grayscale(0%);
     opacity: 1
 }
 
 .achievements_achieved_box_content {
-    transition: opacity 600ms ease-in, width 600ms ease-in, height 600ms ease-in, filter 600ms ease-in, -webkit-filter 600ms ease-in;
+    -o-transition: opacity 600ms ease-in, width 600ms ease-in, height 600ms ease-in, filter 600ms ease-in;
+    transition: opacity 600ms ease-in, width 600ms ease-in, height 600ms ease-in, filter 600ms ease-in;
     margin-left: 142px;
     padding-top: 15px;
     opacity: 0.2

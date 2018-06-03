@@ -360,7 +360,6 @@ input.bnt_poll_answer {
 
 .bp_post .my_like .like_icon {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -378,7 +377,6 @@ input.bnt_poll_answer {
 
 .bp_post .bp_action:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

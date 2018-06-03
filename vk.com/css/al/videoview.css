@@ -259,10 +259,9 @@ body.mobfixed #mv_layer_wrap {
 }
 
 .mv_live_gifts_list.animated {
-    transition: -webkit-transform .6s;
     -o-transition: transform .6s, -o-transform .6s;
     transition: transform .6s;
-    transition: transform .6s, -webkit-transform .6s, -o-transform .6s
+    transition: transform .6s, -o-transform .6s
 }
 
 .mv_live_gifts_item {
@@ -621,7 +620,6 @@ textarea.dark.mv_live_gift_popup_comment_input {
 
 .mv_subscribe_block.mv_state_subscribed .mv_subscribed_btn_wrap {
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     visibility: visible
 }
@@ -758,7 +756,6 @@ textarea.dark.mv_live_gift_popup_comment_input {
 .mv_like_wrap:hover .mv_like_icon,
 .mv_like_wrap.my_like .mv_like_icon {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -917,7 +914,6 @@ textarea.dark.mv_live_gift_popup_comment_input {
 }
 
 .mv_info_wide_column {
-    -webkit-flex-grow: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
     position: relative;
@@ -973,7 +969,6 @@ textarea.dark.mv_live_gift_popup_comment_input {
 
 .mv_min_title:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1303,10 +1298,8 @@ textarea.dark.mv_live_gift_popup_comment_input {
 
 .mv_info {
     background: #fff;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     min-height: 70px;
@@ -1444,7 +1437,6 @@ textarea.dark.mv_live_gift_popup_comment_input {
 
 .mv_top_button:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1553,7 +1545,6 @@ textarea.dark.mv_live_gift_popup_comment_input {
 
 .mv_playlist_controls:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1776,7 +1767,6 @@ textarea.dark.mv_live_gift_popup_comment_input {
 
 #mv_pl_tt .mv_tt_add_playlist:hover span {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1887,10 +1877,8 @@ textarea.dark.mv_live_gift_popup_comment_input {
     background-color: #f6dfd8;
     box-sizing: border-box;
     color: #6b3d2e;
-    -webkit-flex-basis: 100%;
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
-    -webkit-flex-shrink: 1;
     -ms-flex-negative: 1;
     flex-shrink: 1;
     width: 100%;
@@ -2056,10 +2044,9 @@ textarea.dark.mv_live_gift_popup_comment_input {
     position: absolute;
     opacity: 0.75;
     filter: alpha(opacity=75);
-    transition: opacity 0.2s, -webkit-transform 0.2s;
     -o-transition: opacity 0.2s, transform 0.2s, -o-transform 0.2s;
     transition: opacity 0.2s, transform 0.2s;
-    transition: opacity 0.2s, transform 0.2s, -webkit-transform 0.2s, -o-transform 0.2s
+    transition: opacity 0.2s, transform 0.2s, -o-transform 0.2s
 }
 
 #mv_external_finish .mv_finish_like_icon {
@@ -2104,7 +2091,6 @@ textarea.dark.mv_live_gift_popup_comment_input {
     background-position: -181px -52px;
     opacity: 0;
     filter: alpha(opacity=0);
-    -webkit-transform: scale(0);
     -o-transform: scale(0);
     transform: scale(0)
 }
@@ -2131,14 +2117,12 @@ textarea.dark.mv_live_gift_popup_comment_input {
 #mv_external_finish .mv_finish_like.selected .mv_finish_like_text,
 #mv_external_finish .mv_finish_like.selected .mv_finish_liked_icon {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
 #mv_external_finish .mv_finish_add.selected .mv_finish_add_icon {
     opacity: 0;
     filter: alpha(opacity=0);
-    -webkit-transform: scale(0);
     -o-transform: scale(0);
     transform: scale(0)
 }
@@ -2146,7 +2130,6 @@ textarea.dark.mv_live_gift_popup_comment_input {
 #mv_external_finish .mv_finish_add.selected .mv_finish_added_icon {
     opacity: 0.75;
     filter: alpha(opacity=75);
-    -webkit-transform: scale(1);
     -o-transform: scale(1);
     transform: scale(1)
 }
@@ -2208,7 +2191,6 @@ textarea.dark.mv_live_gift_popup_comment_input {
 #mv_external_finish .mv_finish_share:hover .mv_finish_share_icon,
 #mv_external_finish .mv_finish_share:hover .mv_finish_share_text {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2259,7 +2241,6 @@ textarea.dark.mv_live_gift_popup_comment_input {
 
 #mv_external_finish .mv_finish_next_cancel:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2364,19 +2345,16 @@ textarea.dark.mv_live_gift_popup_comment_input {
     text-align: left;
     text-decoration: none;
     cursor: pointer;
-    transition: -webkit-transform 0.2s;
     -o-transition: transform 0.2s, -o-transform 0.2s;
     transition: transform 0.2s;
-    transition: transform 0.2s, -webkit-transform 0.2s, -o-transform 0.2s
+    transition: transform 0.2s, -o-transform 0.2s
 }
 
 body.mac #mv_external_finish .mv_finish_suggestions_item {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
 #mv_external_finish .mv_finish_suggestions_item:hover {
-    -webkit-transform: translateY(-8px);
     -o-transform: translateY(-8px);
     transform: translateY(-8px)
 }
@@ -3058,16 +3036,13 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: transparent;
-    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     left: 0;
     position: absolute;
     top: 0;
-    -webkit-transform: rotateY(0deg) translateZ(-1000px);
     transform: rotateY(0deg) translateZ(-1000px);
-    -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
-    transition: transform 0.3s ease, -webkit-transform 0.3s ease, -o-transform 0.3s ease, opacity 0.3s ease;
+    transition: transform 0.3s ease, -o-transform 0.3s ease, opacity 0.3s ease;
     will-change: transform
 }
 
@@ -3102,17 +3077,14 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
 }
 
 .mv_chat_reply_author_photo_secondary_img {
-    -webkit-transform: rotateY(180deg) translateZ(1000px);
     transform: rotateY(180deg) translateZ(1000px)
 }
 
 .mv_chat_author_secondary .mv_chat_reply_author_photo_img {
-    -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg)
 }
 
 .mv_chat_author_secondary .mv_chat_reply_author_photo_secondary_img {
-    -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg)
 }
 
@@ -3480,16 +3452,14 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     position: absolute;
     top: 0;
     left: 0;
-    transition: opacity 200ms ease-in-out, -webkit-transform 200ms ease-in-out;
     -o-transition: transform 200ms ease-in-out, opacity 200ms ease-in-out, -o-transform 200ms ease-in-out;
     transition: transform 200ms ease-in-out, opacity 200ms ease-in-out;
-    transition: transform 200ms ease-in-out, opacity 200ms ease-in-out, -webkit-transform 200ms ease-in-out, -o-transform 200ms ease-in-out
+    transition: transform 200ms ease-in-out, opacity 200ms ease-in-out, -o-transform 200ms ease-in-out
 }
 
 .mv_actions_block .like_btn.mv_add_button .like_button_icon.mv_plus_icon,
 .mv_actions_private_panel .like_btn.mv_add_button .like_button_icon.mv_plus_icon {
     background-image: url('/images/svg_icons/add_outline_24.svg');
-    -webkit-transform: translateY(8px);
     -o-transform: translateY(8px);
     transform: translateY(8px);
     opacity: 0!important
@@ -3498,7 +3468,6 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
 .mv_actions_block .like_btn.mv_add_button .like_button_icon.mv_added_icon,
 .mv_actions_private_panel .like_btn.mv_add_button .like_button_icon.mv_added_icon {
     opacity: 0!important;
-    -webkit-transform: translateY(-8px);
     -o-transform: translateY(-8px);
     transform: translateY(-8px);
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%2F%3E%3Cpath%20d%3D%22m4%2012.5%204.9999939%205%2011.5000061-11.5%22%20stroke%3D%22%23828a99%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.8%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
@@ -3506,7 +3475,6 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
 
 .mv_actions_block .like_btn.mv_add_button .like_button_icon.mv_add_icon_curr,
 .mv_actions_private_panel .like_btn.mv_add_button .like_button_icon.mv_add_icon_curr {
-    -webkit-transform: translateY(0);
     -o-transform: translateY(0);
     transform: translateY(0);
     opacity: 0.7!important

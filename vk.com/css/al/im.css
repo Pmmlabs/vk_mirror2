@@ -271,10 +271,8 @@ input.BlockSearchInput {
     width: 0;
     height: 0;
     white-space: nowrap;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-animation: fadeIn .1s ease;
     -o-animation: fadeIn .1s ease;
     animation: fadeIn .1s ease;
     -o-transition: opacity .2s ease, visibility .2s ease;
@@ -299,7 +297,6 @@ input.BlockSearchInput {
     font-size: 12.5px;
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
     line-height: 15px;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     direction: ltr;
@@ -335,7 +332,6 @@ input.BlockSearchInput {
 }
 
 .Dropdown--t {
-    -webkit-align-items: flex-end;
     -ms-flex-align: end;
     align-items: flex-end
 }
@@ -352,15 +348,12 @@ input.BlockSearchInput {
 
 .Dropdown--t .Dropdown__in:after {
     border-top-color: #fff;
-    -webkit-transform: translate3d(0, -0.5px, 0);
     transform: translate3d(0, -0.5px, 0)
 }
 
 .Dropdown--r {
-    -webkit-justify-content: left;
     -ms-flex-pack: left;
     justify-content: left;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center
 }
@@ -380,12 +373,10 @@ input.BlockSearchInput {
 .Dropdown--r .Dropdown__in:after {
     border-right-color: #fff;
     margin-top: -4px;
-    -webkit-transform: translate3d(0.5px, 0, 0);
     transform: translate3d(0.5px, 0, 0)
 }
 
 .Dropdown--b {
-    -webkit-align-items: flex-start;
     -ms-flex-align: start;
     align-items: flex-start
 }
@@ -402,18 +393,14 @@ input.BlockSearchInput {
 
 .Dropdown--b .Dropdown__in:after {
     border-bottom-color: #fff;
-    -webkit-transform: translate3d(0, 0.5px, 0);
     transform: translate3d(0, 0.5px, 0)
 }
 
 .Dropdown--l {
-    -webkit-justify-content: left;
     -ms-flex-pack: left;
     justify-content: left;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-flex-direction: row-reverse;
     -ms-flex-direction: row-reverse;
     flex-direction: row-reverse
 }
@@ -433,12 +420,10 @@ input.BlockSearchInput {
 .Dropdown--l .Dropdown__in:after {
     border-left-color: #fff;
     margin-top: -4px;
-    -webkit-transform: translate3d(-0.5px, 0, 0);
     transform: translate3d(-0.5px, 0, 0)
 }
 
 .Dropdown--align-left {
-    -webkit-justify-content: left;
     -ms-flex-pack: left;
     justify-content: left
 }
@@ -458,7 +443,6 @@ input.BlockSearchInput {
 }
 
 .Dropdown--align-center {
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center
 }
@@ -474,10 +458,8 @@ input.BlockSearchInput {
 }
 
 .Dropdown--align-right {
-    -webkit-justify-content: left;
     -ms-flex-pack: left;
     justify-content: left;
-    -webkit-flex-direction: row-reverse;
     -ms-flex-direction: row-reverse;
     flex-direction: row-reverse
 }
@@ -494,15 +476,6 @@ input.BlockSearchInput {
 .Dropdown--align-right .Dropdown__in:after {
     right: 14px;
     margin-right: -4px
-}
-
-@-webkit-keyframes fadeIn {
-    0% {
-        opacity: 0
-    }
-    to {
-        opacity: 100%
-    }
 }
 
 @-o-keyframes fadeIn {
@@ -533,7 +506,6 @@ input.BlockSearchInput {
 .EditableLabel:hover:after {
     position: absolute;
     top: 50%;
-    -webkit-transform: translateY(-50%);
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
     right: 4px;
@@ -578,7 +550,6 @@ textarea.EditableLabel__textarea {
 .EditableLabel__save {
     position: absolute;
     top: 50%;
-    -webkit-transform: translateY(-50%);
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
     right: 4px;
@@ -644,13 +615,10 @@ textarea.EditableLabel__textarea {
 
 .Entity__main {
     height: 100%;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center
 }
@@ -816,10 +784,8 @@ textarea.EditableLabel__textarea {
     font-size: 13px;
     line-height: 28px;
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
     height: 54px;
@@ -860,13 +826,11 @@ textarea.EditableLabel__textarea {
 .ListItem__icon {
     width: 28px;
     height: 28px;
-    -webkit-flex: 0 0 28px;
     -ms-flex: 0 0 28px;
     flex: 0 0 28px
 }
 
 .ListItem__main {
-    -webkit-flex: 1 1 auto;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     overflow: hidden;
@@ -876,7 +840,6 @@ textarea.EditableLabel__textarea {
 
 .ListItem__aside {
     padding: 0 5px;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto
 }
@@ -900,7 +863,6 @@ textarea.EditableLabel__textarea {
     height: 100%;
     border-radius: 50%;
     overflow: hidden;
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -925,18 +887,15 @@ textarea.EditableLabel__textarea {
 }
 
 .MembersGrid__i:nth-child(2) {
-    -webkit-transform: translate3d(1px, 0, 0);
     transform: translate3d(1px, 0, 0)
 }
 
 .MembersGrid--4 .MembersGrid__i:nth-child(3) {
-    -webkit-transform: translate3d(0, 1px, 0);
     transform: translate3d(0, 1px, 0)
 }
 
 .MembersGrid--3 .MembersGrid__i:nth-child(3),
 .MembersGrid--4 .MembersGrid__i:nth-child(4) {
-    -webkit-transform: translate3d(1px, 1px, 0);
     transform: translate3d(1px, 1px, 0)
 }
 
@@ -944,23 +903,19 @@ textarea.EditableLabel__textarea {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .MembersGrid__i:nth-child(2) {
-        -webkit-transform: translate3d(0.5px, 0, 0);
         transform: translate3d(0.5px, 0, 0)
     }
     .MembersGrid--4 .MembersGrid__i:nth-child(3) {
-        -webkit-transform: translate3d(0, 0.5px, 0);
         transform: translate3d(0, 0.5px, 0)
     }
     .MembersGrid--3 .MembersGrid__i:nth-child(3),
     .MembersGrid--4 .MembersGrid__i:nth-child(4) {
-        -webkit-transform: translate3d(0.5px, 0.5px, 0);
         transform: translate3d(0.5px, 0.5px, 0)
     }
 }
 
 .MultiSelect {
     max-height: 100%;
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
@@ -969,19 +924,15 @@ textarea.EditableLabel__textarea {
 .MultiSelect,
 .MultiSelect__search {
     position: relative;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex
 }
 
 .MultiSelect__search {
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     padding: 8px 20px 7px;
-    -webkit-transform: translateZ(0);
     transform: translateZ(0);
-    -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     background: #fff;
@@ -990,7 +941,6 @@ textarea.EditableLabel__textarea {
 
 .MultiSelect__caret {
     position: relative;
-    -webkit-flex: 1 0 auto;
     -ms-flex: 1 0 auto;
     flex: 1 0 auto;
     margin: 4px 0 3px;
@@ -1037,10 +987,8 @@ textarea.EditableLabel__textarea {
 }
 
 .MultiSelect__token {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     margin: 4px 5px 3px 0;
@@ -1054,7 +1002,6 @@ textarea.EditableLabel__textarea {
 }
 
 .MultiSelect__tokenTitle {
-    -webkit-flex: 0 1 auto;
     -ms-flex: 0 1 auto;
     flex: 0 1 auto;
     overflow: hidden;
@@ -1070,7 +1017,6 @@ textarea.EditableLabel__textarea {
 
 .MultiSelect__tokenRemove {
     position: relative;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     padding: 7px 10px 8px 6px;
@@ -1088,7 +1034,6 @@ textarea.EditableLabel__textarea {
 }
 
 .MultiSelect__scroll {
-    -webkit-flex: 1 1 auto;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto
 }
@@ -1099,13 +1044,10 @@ textarea.EditableLabel__textarea {
     color: #939393;
     font-size: 13px;
     line-height: 18px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
@@ -1129,10 +1071,8 @@ textarea.EditableLabel__textarea {
     border-radius: 50%;
     margin: 0 1px;
     opacity: .2;
-    -webkit-animation: Progress__highlight .75s linear infinite;
     -o-animation: Progress__highlight .75s linear infinite;
     animation: Progress__highlight .75s linear infinite;
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -1140,34 +1080,19 @@ textarea.EditableLabel__textarea {
     background: #fff
 }
 
-.Progress__item:nth-child(1) {
-    -webkit-animation-delay: 0;
+.Progress__item:first-child {
     -o-animation-delay: 0;
     animation-delay: 0
 }
 
 .Progress__item:nth-child(2) {
-    -webkit-animation-delay: .18s;
     -o-animation-delay: .18s;
     animation-delay: .18s
 }
 
 .Progress__item:nth-child(3) {
-    -webkit-animation-delay: .36s;
     -o-animation-delay: .36s;
     animation-delay: .36s
-}
-
-@-webkit-keyframes Progress__highlight {
-    0% {
-        opacity: .2
-    }
-    30% {
-        opacity: 1
-    }
-    to {
-        opacity: .2
-    }
 }
 
 @-o-keyframes Progress__highlight {
@@ -1197,7 +1122,6 @@ textarea.EditableLabel__textarea {
 .PopupHeader {
     position: relative;
     height: 54px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     background: #5b88bd;
@@ -1206,7 +1130,6 @@ textarea.EditableLabel__textarea {
     line-height: 16px;
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
     padding: 0;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
     z-index: 1;
@@ -1218,7 +1141,6 @@ textarea.EditableLabel__textarea {
 }
 
 .PopupHeader__back {
-    -webkit-flex: 1 0 10%;
     -ms-flex: 1 0 10%;
     flex: 1 0 10%
 }
@@ -1257,7 +1179,6 @@ textarea.EditableLabel__textarea {
     line-height: 16px;
     margin: 0;
     padding: 0 25px;
-    -webkit-flex: 1 1 auto;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     overflow: hidden;
@@ -1271,7 +1192,6 @@ textarea.EditableLabel__textarea {
 }
 
 .PopupHeader__close {
-    -webkit-flex: 1 0 10%;
     -ms-flex: 1 0 10%;
     flex: 1 0 10%;
     text-align: right
@@ -1295,7 +1215,6 @@ textarea.EditableLabel__textarea {
 
 .MultiSelect {
     max-height: 100%;
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
@@ -1304,19 +1223,15 @@ textarea.EditableLabel__textarea {
 .MultiSelect,
 .MultiSelect__search {
     position: relative;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex
 }
 
 .MultiSelect__search {
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     padding: 8px 20px 7px;
-    -webkit-transform: translateZ(0);
     transform: translateZ(0);
-    -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     background: #fff;
@@ -1327,7 +1242,6 @@ textarea.EditableLabel__textarea {
 
 .MultiSelect__caret {
     position: relative;
-    -webkit-flex: 1 0 auto;
     -ms-flex: 1 0 auto;
     flex: 1 0 auto;
     margin: 4px 0 3px;
@@ -1374,10 +1288,8 @@ textarea.EditableLabel__textarea {
 }
 
 .MultiSelect__token {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     margin: 4px 5px 3px 0;
@@ -1391,7 +1303,6 @@ textarea.EditableLabel__textarea {
 }
 
 .MultiSelect__tokenTitle {
-    -webkit-flex: 0 1 auto;
     -ms-flex: 0 1 auto;
     flex: 0 1 auto;
     overflow: hidden;
@@ -1408,7 +1319,6 @@ textarea.EditableLabel__textarea {
 
 .MultiSelect__tokenRemove {
     position: relative;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     padding: 7px 10px 8px 6px;
@@ -1427,7 +1337,6 @@ textarea.EditableLabel__textarea {
 }
 
 .MultiSelect__scroll {
-    -webkit-flex: 1 1 auto;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     overflow: auto
@@ -1440,7 +1349,6 @@ textarea.EditableLabel__textarea {
     color: #939393;
     font-size: 13px;
     line-height: 18px;
-    -webkit-flex: 1 0 auto;
     -ms-flex: 1 0 auto;
     flex: 1 0 auto
 }
@@ -1559,39 +1467,23 @@ textarea.EditableLabel__textarea {
 .Spinner {
     width: 100%;
     height: 100%;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center
 }
 
 .Spinner__svg {
-    -webkit-animation: rotator 1.4s linear infinite;
     -o-animation: rotator 1.4s linear infinite;
     animation: rotator 1.4s linear infinite
 }
 
 .Spinner__path {
-    -webkit-transform-origin: center;
     -o-transform-origin: center;
     transform-origin: center;
     stroke-linecap: round
-}
-
-@-webkit-keyframes rotator {
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg)
-    }
-    to {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg)
-    }
 }
 
 @-o-keyframes rotator {
@@ -1607,12 +1499,10 @@ textarea.EditableLabel__textarea {
 
 @keyframes rotator {
     0% {
-        -webkit-transform: rotate(0deg);
         -o-transform: rotate(0deg);
         transform: rotate(0deg)
     }
     to {
-        -webkit-transform: rotate(360deg);
         -o-transform: rotate(360deg);
         transform: rotate(360deg)
     }
@@ -1644,7 +1534,6 @@ textarea.EditableLabel__textarea {
 .Tabs__list {
     margin: 0 0 -1px;
     padding: 0;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex
 }
@@ -1652,7 +1541,6 @@ textarea.EditableLabel__textarea {
 .Tabs__item {
     margin: 0 4px;
     list-style: none;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     border-bottom: 2px solid transparent;
@@ -1706,13 +1594,11 @@ textarea.EditableLabel__textarea {
     bottom: -1px;
     left: 0;
     background: #6387ac;
-    -webkit-transform-origin: center;
     -o-transform-origin: center;
     transform-origin: center;
-    transition: visiblity .3s ease, -webkit-transform .3s ease;
     -o-transition: transform .3s ease, visiblity .3s ease, -o-transform .3s ease;
     transition: transform .3s ease, visiblity .3s ease;
-    transition: transform .3s ease, visiblity .3s ease, -webkit-transform .3s ease, -o-transform .3s ease
+    transition: transform .3s ease, visiblity .3s ease, -o-transform .3s ease
 }
 
 .Tabs--animating .Tabs__divider {
@@ -1797,11 +1683,9 @@ textarea.EditableLabel__textarea {
     width: 0;
     height: 0;
     white-space: nowrap;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     pointer-events: none;
-    -webkit-animation: fadeIn .3s ease;
     -o-animation: fadeIn .3s ease;
     animation: fadeIn .3s ease;
     -o-transition: opacity .2s ease, visibility .2s ease;
@@ -1823,7 +1707,6 @@ textarea.EditableLabel__textarea {
     border-radius: 4px;
     font-size: 12.5px;
     line-height: 15px;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     direction: ltr
@@ -1838,7 +1721,6 @@ textarea.EditableLabel__textarea {
 }
 
 .Tooltip--t {
-    -webkit-align-items: flex-end;
     -ms-flex-align: end;
     align-items: flex-end
 }
@@ -1853,10 +1735,8 @@ textarea.EditableLabel__textarea {
 }
 
 .Tooltip--r {
-    -webkit-justify-content: left;
     -ms-flex-pack: left;
     justify-content: left;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center
 }
@@ -1873,7 +1753,6 @@ textarea.EditableLabel__textarea {
 }
 
 .Tooltip--b {
-    -webkit-align-items: flex-start;
     -ms-flex-align: start;
     align-items: flex-start
 }
@@ -1888,10 +1767,8 @@ textarea.EditableLabel__textarea {
 }
 
 .Tooltip--l {
-    -webkit-justify-content: left;
     -ms-flex-pack: left;
     justify-content: left;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
     direction: rtl
@@ -1909,7 +1786,6 @@ textarea.EditableLabel__textarea {
 }
 
 .Tooltip--align-left {
-    -webkit-justify-content: left;
     -ms-flex-pack: left;
     justify-content: left
 }
@@ -1924,7 +1800,6 @@ textarea.EditableLabel__textarea {
 }
 
 .Tooltip--align-center {
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center
 }
@@ -1939,7 +1814,6 @@ textarea.EditableLabel__textarea {
 }
 
 .Tooltip--align-right {
-    -webkit-justify-content: left;
     -ms-flex-pack: left;
     justify-content: left;
     direction: rtl
@@ -1977,10 +1851,8 @@ textarea.EditableLabel__textarea {
     position: relative;
     padding: 0 0 0 96px;
     min-height: 75px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column
 }
@@ -2185,17 +2057,14 @@ textarea.EditableLabel__textarea {
 
 .ChatSettingsMembers {
     height: 418px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
     background: #fff
 }
 
 .ChatSettingsMembers>.ChatSettingsMembers__multiSelect {
-    -webkit-flex: 1 1 auto;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     min-height: 0;
@@ -2203,7 +2072,6 @@ textarea.EditableLabel__textarea {
 }
 
 .ChatSettingsMembers>.ChatSettingsMembers__submitArea {
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto
 }
@@ -2243,7 +2111,6 @@ textarea.EditableLabel__textarea {
 }
 
 .ChatSettingsMembersWidget--search .ChatSettingsMembersWidget__header {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     border-bottom: 1px solid #e7e8ec
@@ -2263,7 +2130,6 @@ textarea.EditableLabel__textarea {
 
 .ChatSettingsMembersWidget--search .ChatSettingsMembersWidget__search {
     display: block;
-    -webkit-flex: 1 0 auto;
     -ms-flex: 1 0 auto;
     flex: 1 0 auto
 }
@@ -2282,7 +2148,6 @@ textarea.EditableLabel__textarea {
     z-index: 1;
     outline: none;
     background: none;
-    -webkit-flex: 0 0 49px;
     -ms-flex: 0 0 49px;
     flex: 0 0 49px;
     padding: 0
@@ -2358,10 +2223,8 @@ textarea.EditableLabel__textarea {
 }
 
 .ChatSettingsMembersWidget__add {
-    display: -webkit-inline-flex;
     display: -ms-inline-flexbox;
     display: inline-flex;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
     color: #2a5885;
@@ -2382,7 +2245,6 @@ textarea.EditableLabel__textarea {
     background: #fff url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20width%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M9%207h6c.552%200%201%20.448%201%201s-.448%201-1%201h-6v6c0%20.552-.448%201-1%201s-1-.448-1-1v-6h-6c-.552%200-1-.448-1-1s.448-1%201-1h6v-6c0-.552.448-1%201-1s1%20.448%201%201z%22%20fill%3D%22%239bb2cc%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat;
     margin-right: 12px;
     content: '';
-    -webkit-flex: 0 0 38px;
     -ms-flex: 0 0 38px;
     flex: 0 0 38px
 }
@@ -2514,7 +2376,6 @@ textarea.EditableLabel__textarea {
 .ChatSettings {
     border-radius: 4px;
     overflow: hidden;
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -2536,7 +2397,6 @@ textarea.EditableLabel__textarea {
 .MessageForward {
     border-radius: 4px;
     overflow: hidden;
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -2580,14 +2440,12 @@ textarea.EditableLabel__textarea {
 }
 
 .MessageForward--form .MessageForward__footer {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex
 }
 
 .MessageForward__form {
     position: relative;
-    -webkit-flex: 1 1 auto;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     max-width: calc(100% - 60px)
@@ -2619,7 +2477,6 @@ div.MessageForward__input~.placeholder .ph_input {
 
 .MessageForward__send,
 .MessageForward__send-spinner {
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     width: 60px;
@@ -2958,7 +2815,6 @@ img.im_photo_thumb {
 
 .scroll_fix_wrap:hover .im_stickers_layer_close {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2969,7 +2825,6 @@ img.im_photo_thumb {
 
 .scroll_fix_wrap:hover .popup_box_container:hover .im_stickers_layer_close:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -3057,7 +2912,6 @@ img.im_photo_thumb {
 .im_stickers_banners_wrap:hover .isb_arrow_left:after,
 .im_stickers_banners_wrap:hover .isb_arrow_right:after {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -3357,7 +3211,6 @@ img.im_photo_thumb {
     position: fixed;
     top: 0;
     z-index: 200;
-    -webkit-transform: translateZ(0);
     transform: translateZ(0);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .08);
     border-color: #e3e7ef
@@ -3493,7 +3346,6 @@ img.im_photo_thumb {
 
 .im_stickers_notif_close:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -3655,7 +3507,6 @@ img.im_photo_thumb {
 
 .im-page_classic.im-page .im-page--fixer .mobile_tt:after,
 .im-page_classic.im-page .im-page--fixer .mobile_tt:before {
-    -webkit-transform: translateX(70px);
     -o-transform: translateX(70px);
     transform: translateX(70px)
 }
@@ -4608,7 +4459,6 @@ img.im_photo_thumb {
     display: block;
     float: right;
     margin: 14px;
-    -webkit-animation: none;
     -o-animation: none;
     animation: none
 }
@@ -4626,16 +4476,12 @@ img.im_photo_thumb {
     display: inline-block;
     width: 16px;
     height: 16px;
-    -webkit-animation-name: round_spinner;
     -o-animation-name: round_spinner;
     animation-name: round_spinner;
-    -webkit-animation-duration: 700ms;
     -o-animation-duration: 700ms;
     animation-duration: 700ms;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner.png)
@@ -4836,16 +4682,12 @@ img.im_photo_thumb {
     display: inline-block;
     width: 16px;
     height: 16px;
-    -webkit-animation-name: round_spinner;
     -o-animation-name: round_spinner;
     animation-name: round_spinner;
-    -webkit-animation-duration: 700ms;
     -o-animation-duration: 700ms;
     animation-duration: 700ms;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner.png);
@@ -4958,7 +4800,6 @@ img.im_photo_thumb {
 }
 
 .im-page .im-page--dialogs-search_fill+.ui_search_custom_ctrl .im-dialog-select .im-dialog-select--btn {
-    -webkit-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg)
 }
@@ -5248,7 +5089,6 @@ img.im_photo_thumb {
 }
 
 .im-page--dialogs-search .ui_search_input_block {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex
 }
@@ -5257,14 +5097,12 @@ img.im_photo_thumb {
     border-left-width: 15px;
     padding: 15px 10px 15px 26px;
     height: 48px;
-    -webkit-flex: 1 1 auto;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto
 }
 
 .im-page--dialogs-search .ui_search_custom_ctrl {
     position: static;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto
 }
@@ -5549,10 +5387,8 @@ img.im_photo_thumb {
     display: none;
     padding: 15px 36px 15px 82px;
     height: 80px;
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
     box-sizing: border-box
@@ -5661,7 +5497,6 @@ img.im_photo_thumb {
 }
 
 .im-chat-input.im-chat-input_error .im-chat-input--error {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex
 }
@@ -5844,10 +5679,8 @@ img.im_photo_thumb {
 
 .im-page--title {
     position: relative;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
     overflow: hidden;
@@ -5859,7 +5692,6 @@ img.im_photo_thumb {
 }
 
 .im-page_classic .im-page--title {
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
     padding: 8px 0 4px;
@@ -5882,7 +5714,6 @@ img.im_photo_thumb {
 }
 
 .im-page_group .im-page--title {
-    -webkit-align-items: flex-start;
     -ms-flex-align: start;
     align-items: flex-start;
     text-align: left
@@ -5893,10 +5724,8 @@ img.im_photo_thumb {
 }
 
 .im-page--title-main {
-    display: -webkit-inline-flex;
     display: -ms-inline-flexbox;
     display: inline-flex;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
     overflow: hidden;
@@ -5908,13 +5737,10 @@ img.im_photo_thumb {
 }
 
 .im-page--title-main-in {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex: 1 1 auto;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
     box-sizing: border-box;
@@ -5927,7 +5753,6 @@ img.im_photo_thumb {
 }
 
 .im-page--title-main-inner {
-    -webkit-flex: 1 1 auto;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     overflow: hidden;
@@ -5943,7 +5768,6 @@ img.im_photo_thumb {
 
 .im-page--chat-header_verified .im-page--title-main-verified {
     display: inline-block;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     margin-left: 6px;
@@ -5956,7 +5780,6 @@ img.im_photo_thumb {
 
 .im-page_classic .im-page--chat-header_muted .im-page--title-main-in:after {
     display: inline-block;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     margin: 1px 0 0 8px;
@@ -5968,7 +5791,6 @@ img.im_photo_thumb {
 }
 
 .im-page--title-meta {
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     margin-left: 8px;
@@ -6003,7 +5825,6 @@ img.im_photo_thumb {
 
 .im-page--chat-header_muted .im-page--title:after {
     display: inline-block;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     margin: 3px 0 0 10px;
@@ -6107,7 +5928,6 @@ img.im_photo_thumb {
 }
 
 .im-page--header-icon_star:active:before {
-    -webkit-transform: scale(0.9);
     -o-transform: scale(0.9);
     transform: scale(0.9)
 }
@@ -6226,10 +6046,8 @@ img.im_photo_thumb {
 
 .im-page--selected-messages {
     display: none;
-    -webkit-flex: 1 1 auto;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
     overflow: hidden;
@@ -6238,7 +6056,6 @@ img.im_photo_thumb {
 }
 
 .im-page--selected-messages-count {
-    -webkit-flex: 0 1 auto;
     -ms-flex: 0 1 auto;
     flex: 0 1 auto;
     overflow: hidden;
@@ -6248,7 +6065,6 @@ img.im_photo_thumb {
 
 .im-page--selected-messages-remove {
     position: relative;
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     margin: 0 0 -1px;
@@ -6277,7 +6093,6 @@ img.im_photo_thumb {
 }
 
 .im-page--chat-header_actions .im-page--selected-messages {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex
 }
@@ -6351,7 +6166,6 @@ img.im_photo_thumb {
 
 .im-page-pinned--meta {
     margin: 0 0 1px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex
 }
@@ -6362,7 +6176,6 @@ img.im_photo_thumb {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #42648b;
-    -webkit-flex: 0 1 auto;
     -ms-flex: 0 1 auto;
     flex: 0 1 auto;
     overflow: hidden;
@@ -6374,7 +6187,6 @@ img.im_photo_thumb {
     font-size: 12.5px;
     margin-left: 5px;
     color: hsla(220, 8%, 51%, .6);
-    -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto
 }
@@ -7025,7 +6837,6 @@ img.im_photo_thumb {
 .im-mess .im-mess--edit:active,
 .im-mess .im-mess--fav:active,
 .im-mess .im-mess--reply:active {
-    -webkit-transform: scale(0.9);
     -o-transform: scale(0.9);
     transform: scale(0.9)
 }
@@ -8405,7 +8216,6 @@ img.im_photo_thumb {
     display: inline-block;
     content: '.\A..\A...';
     white-space: pre-wrap;
-    -webkit-animation: typer-simple 1s steps(4) infinite;
     -o-animation: typer-simple 1s steps(4) infinite;
     animation: typer-simple 1s steps(4) infinite
 }
@@ -9175,40 +8985,27 @@ body.sf .nim-dialog .nim-dialog--unread {
     margin-left: 4px
 }
 
-@-webkit-keyframes typer-simple {
-    0%,
-    24.99% {
-        -webkit-transform: translateY(0);
-        transform: translateY(0)
-    }
-    25%,
-    49.99% {
-        -webkit-transform: translateY(-16px);
-        transform: translateY(-16px)
-    }
-    50%,
-    99.99% {
-        -webkit-transform: translateY(-32px);
-        transform: translateY(-32px)
-    }
-    to {
-        -webkit-transform: translateY(0);
-        transform: translateY(0)
-    }
-}
-
 @-o-keyframes typer-simple {
-    0%,
+    0% {
+        -o-transform: translateY(0);
+        transform: translateY(0)
+    }
     24.99% {
         -o-transform: translateY(0);
         transform: translateY(0)
     }
-    25%,
+    25% {
+        -o-transform: translateY(-16px);
+        transform: translateY(-16px)
+    }
     49.99% {
         -o-transform: translateY(-16px);
         transform: translateY(-16px)
     }
-    50%,
+    50% {
+        -o-transform: translateY(-32px);
+        transform: translateY(-32px)
+    }
     99.99% {
         -o-transform: translateY(-32px);
         transform: translateY(-32px)
@@ -9220,26 +9017,31 @@ body.sf .nim-dialog .nim-dialog--unread {
 }
 
 @keyframes typer-simple {
-    0%,
-    24.99% {
-        -webkit-transform: translateY(0);
+    0% {
         -o-transform: translateY(0);
         transform: translateY(0)
     }
-    25%,
-    49.99% {
-        -webkit-transform: translateY(-16px);
+    24.99% {
+        -o-transform: translateY(0);
+        transform: translateY(0)
+    }
+    25% {
         -o-transform: translateY(-16px);
         transform: translateY(-16px)
     }
-    50%,
+    49.99% {
+        -o-transform: translateY(-16px);
+        transform: translateY(-16px)
+    }
+    50% {
+        -o-transform: translateY(-32px);
+        transform: translateY(-32px)
+    }
     99.99% {
-        -webkit-transform: translateY(-32px);
         -o-transform: translateY(-32px);
         transform: translateY(-32px)
     }
     to {
-        -webkit-transform: translateY(0);
         -o-transform: translateY(0);
         transform: translateY(0)
     }
@@ -9265,19 +9067,16 @@ body.sf .nim-dialog .nim-dialog--unread {
     margin-top: -2px;
     background: #a9abad;
     vertical-align: middle;
-    -webkit-animation: 1.1s linear 0s infinite typer;
     -o-animation: 1.1s linear 0s infinite typer;
     animation: 1.1s linear 0s infinite typer
 }
 
 .im-typing .im-typing--icon .pr_bt:nth-child(2) {
-    -webkit-animation-delay: 0.36666667s;
     -o-animation-delay: 0.36666667s;
     animation-delay: 0.36666667s
 }
 
 .im-typing .im-typing--icon .pr_bt:nth-child(3) {
-    -webkit-animation-delay: 0.73333333s;
     -o-animation-delay: 0.73333333s;
     animation-delay: 0.73333333s
 }
@@ -9292,18 +9091,6 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .im-typing.im-typing_classic .im-typing--icon.pr {
     left: 11px
-}
-
-@-webkit-keyframes typer {
-    0% {
-        opacity: 0.5
-    }
-    25% {
-        opacity: 1
-    }
-    50% {
-        opacity: 0.5
-    }
 }
 
 @-o-keyframes typer {
@@ -9529,7 +9316,6 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .ui_actions_menu_item.im-action:hover:before {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -9557,7 +9343,6 @@ body.sf .nim-dialog .nim-dialog--unread {
 .im-members .im-members--error {
     position: absolute;
     top: 50%;
-    -webkit-transform: translateY(-50%);
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
     color: #939393;
@@ -9871,7 +9656,6 @@ body.sf .nim-dialog .nim-dialog--unread {
 .im-preloader.im-preloader_fixed-center {
     position: absolute;
     top: 50%;
-    -webkit-transform: translateY(-50%);
     -o-transform: translateY(-50%);
     transform: translateY(-50%)
 }
@@ -10208,7 +9992,6 @@ body.sf .nim-dialog .nim-dialog--unread {
 }
 
 .im-create.im-create_shown .im-create--cancel .im-dialog-select--btn {
-    -webkit-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg)
 }
@@ -10315,16 +10098,14 @@ body.sf .nim-dialog .nim-dialog--unread {
     box-sizing: border-box;
     bottom: -70px;
     position: absolute;
-    transition: -webkit-transform 0.15s ease-out;
     -o-transition: transform 0.15s ease-out, -o-transform 0.15s ease-out;
     transition: transform 0.15s ease-out;
-    transition: transform 0.15s ease-out, -webkit-transform 0.15s ease-out, -o-transform 0.15s ease-out;
+    transition: transform 0.15s ease-out, -o-transform 0.15s ease-out;
     width: 100%;
     padding-left: 0
 }
 
 .im-create.im-create_classic.im-create_classic.im-create_tools .im-create--footer {
-    -webkit-transform: translateY(-70px);
     -o-transform: translateY(-70px);
     transform: translateY(-70px)
 }
@@ -10360,7 +10141,6 @@ body.sf .nim-dialog .nim-dialog--unread {
 }
 
 .im-dialog-select.im-dialog-select_rotated .im-dialog-select--btn {
-    -webkit-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg)
 }
@@ -10371,10 +10151,9 @@ body.sf .nim-dialog .nim-dialog--unread {
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%3E%3Cpath%20fill%3D%22%2391A8C4%22%20d%3D%22M8%206v-6h-2v6h-6v2h6v6h2v-6h6v-2h-6z%22%2F%3E%3C%2Fsvg%3E') top no-repeat;
     display: block;
     padding: 0;
-    transition: -webkit-transform 0.3s;
     -o-transition: transform 0.3s, -o-transform 0.3s;
     transition: transform 0.3s;
-    transition: transform 0.3s, -webkit-transform 0.3s, -o-transform 0.3s;
+    transition: transform 0.3s, -o-transform 0.3s;
     outline: 0;
     cursor: pointer;
     border: none;
@@ -10449,7 +10228,6 @@ body.sf .nim-dialog .nim-dialog--unread {
 }
 
 .im-to-end .im-to-end--label {
-    -webkit-transform: translateY(50px);
     -o-transform: translateY(50px);
     transform: translateY(50px);
     -o-transition: 0.2s transform;
@@ -10488,7 +10266,6 @@ body.sf .nim-dialog .nim-dialog--unread {
 }
 
 .im-to-end.im-to-end_shown .im-to-end--label {
-    -webkit-transform: translateY(0);
     -o-transform: translateY(0);
     transform: translateY(0)
 }
@@ -10512,16 +10289,12 @@ body.sf .nim-dialog .nim-dialog--unread {
     display: inline-block;
     width: 16px;
     height: 16px;
-    -webkit-animation-name: round_spinner;
     -o-animation-name: round_spinner;
     animation-name: round_spinner;
-    -webkit-animation-duration: 700ms;
     -o-animation-duration: 700ms;
     animation-duration: 700ms;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner.png)
@@ -10556,13 +10329,10 @@ body.sf .nim-dialog .nim-dialog--unread {
     right: 10px;
     bottom: 10px;
     border: 1px dashed #587da8;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center
 }
@@ -11340,14 +11110,12 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .im-send-btn.im-send-btn_saudio.im-send-btn_audio:after,
 .im-send-btn.im-send-btn_saudio.im-send-btn_audio:before {
-    -webkit-animation: none;
     -o-animation: none;
     animation: none
 }
 
 .im-send-btn.im-send-btn_static:after,
 .im-send-btn.im-send-btn_static:before {
-    -webkit-animation: none!important;
     -o-animation: none!important;
     animation: none!important
 }
@@ -11364,7 +11132,6 @@ body.sf .nim-dialog .nim-dialog--unread {
 .im-send-btn.im-send-btn_loading:after,
 .im-send-btn.im-send-btn_send.im-send-btn_loading:after {
     opacity: 0;
-    -webkit-animation: none;
     -o-animation: none;
     animation: none
 }
@@ -11372,22 +11139,17 @@ body.sf .nim-dialog .nim-dialog--unread {
 .im-send-btn.im-send-btn_audio.im-send-btn_loading:before,
 .im-send-btn.im-send-btn_loading:before,
 .im-send-btn.im-send-btn_send.im-send-btn_loading:before {
-    -webkit-animation: none;
     -o-animation: none;
     animation: none;
     display: inline-block;
     width: 16px;
     height: 16px;
-    -webkit-animation-name: round_spinner;
     -o-animation-name: round_spinner;
     animation-name: round_spinner;
-    -webkit-animation-duration: 700ms;
     -o-animation-duration: 700ms;
     animation-duration: 700ms;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner.png);
@@ -11417,7 +11179,6 @@ body.sf .nim-dialog .nim-dialog--unread {
 }
 
 .im-send-btn.im-send-btn_audio:before {
-    -webkit-animation: 0.15s linear 0s im-zoom-appear;
     -o-animation: 0.15s linear 0s im-zoom-appear;
     animation: 0.15s linear 0s im-zoom-appear;
     opacity: 1
@@ -11425,14 +11186,12 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .im-send-btn.im-send-btn_audio:after,
 .im-send-btn.im-send-btn_send:before {
-    -webkit-animation: 0.15s linear 0s im-zoom-hide;
     -o-animation: 0.15s linear 0s im-zoom-hide;
     animation: 0.15s linear 0s im-zoom-hide;
     opacity: 0
 }
 
 .im-send-btn.im-send-btn_send:after {
-    -webkit-animation: 0.15s linear 0s im-zoom-appear;
     -o-animation: 0.15s linear 0s im-zoom-appear;
     animation: 0.15s linear 0s im-zoom-appear;
     opacity: 1
@@ -11442,30 +11201,6 @@ body.sf .nim-dialog .nim-dialog--unread {
     opacity: 1
 }
 
-@-webkit-keyframes im-zoom-hide {
-    0% {
-        -webkit-transform: scale(1);
-        transform: scale(1);
-        opacity: 1
-    }
-    49% {
-        opacity: 1
-    }
-    49%,
-    50% {
-        -webkit-transform: scale(0.1);
-        transform: scale(0.1)
-    }
-    50%,
-    to {
-        opacity: 0
-    }
-    to {
-        -webkit-transform: scale(0.1);
-        transform: scale(0.1)
-    }
-}
-
 @-o-keyframes im-zoom-hide {
     0% {
         -o-transform: scale(1);
@@ -11473,18 +11208,17 @@ body.sf .nim-dialog .nim-dialog--unread {
         opacity: 1
     }
     49% {
-        opacity: 1
-    }
-    49%,
-    50% {
+        opacity: 1;
         -o-transform: scale(0.1);
         transform: scale(0.1)
     }
-    50%,
-    to {
-        opacity: 0
+    50% {
+        opacity: 0;
+        -o-transform: scale(0.1);
+        transform: scale(0.1)
     }
     to {
+        opacity: 0;
         -o-transform: scale(0.1);
         transform: scale(0.1)
     }
@@ -11492,91 +11226,68 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 @keyframes im-zoom-hide {
     0% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1);
         opacity: 1
     }
     49% {
-        opacity: 1
-    }
-    49%,
-    50% {
-        -webkit-transform: scale(0.1);
+        opacity: 1;
         -o-transform: scale(0.1);
         transform: scale(0.1)
     }
-    50%,
-    to {
-        opacity: 0
-    }
-    to {
-        -webkit-transform: scale(0.1);
+    50% {
+        opacity: 0;
         -o-transform: scale(0.1);
         transform: scale(0.1)
     }
-}
-
-@-webkit-keyframes im-zoom-appear {
-    0%,
-    50% {
-        opacity: 0
-    }
-    0%,
-    50%,
-    51% {
-        -webkit-transform: scale(0.1);
+    to {
+        opacity: 0;
+        -o-transform: scale(0.1);
         transform: scale(0.1)
-    }
-    51%,
-    to {
-        opacity: 1
-    }
-    to {
-        -webkit-transform: scale(1);
-        transform: scale(1)
     }
 }
 
 @-o-keyframes im-zoom-appear {
-    0%,
-    50% {
+    0% {
+        -o-transform: scale(0.1);
+        transform: scale(0.1);
         opacity: 0
     }
-    0%,
-    50%,
+    50% {
+        -o-transform: scale(0.1);
+        transform: scale(0.1);
+        opacity: 0
+    }
     51% {
         -o-transform: scale(0.1);
-        transform: scale(0.1)
-    }
-    51%,
-    to {
+        transform: scale(0.1);
         opacity: 1
     }
     to {
+        opacity: 1;
         -o-transform: scale(1);
         transform: scale(1)
     }
 }
 
 @keyframes im-zoom-appear {
-    0%,
-    50% {
+    0% {
+        -o-transform: scale(0.1);
+        transform: scale(0.1);
         opacity: 0
     }
-    0%,
-    50%,
-    51% {
-        -webkit-transform: scale(0.1);
+    50% {
         -o-transform: scale(0.1);
-        transform: scale(0.1)
+        transform: scale(0.1);
+        opacity: 0
     }
-    51%,
-    to {
+    51% {
+        -o-transform: scale(0.1);
+        transform: scale(0.1);
         opacity: 1
     }
     to {
-        -webkit-transform: scale(1);
+        opacity: 1;
         -o-transform: scale(1);
         transform: scale(1)
     }
@@ -11924,7 +11635,6 @@ body.sf .nim-dialog .nim-dialog--unread {
 .im-mask-snippet__bg {
     background-position: 50%;
     background-size: 300%;
-    -webkit-filter: blur(32px);
     filter: blur(32px)
 }
 
@@ -12052,11 +11762,9 @@ body.sf .nim-dialog .nim-dialog--unread {
 .im-top-banner {
     height: 52px;
     background: #fff;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     padding-left: 12px;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
     background: #fafbfc
@@ -12072,14 +11780,12 @@ body.sf .nim-dialog .nim-dialog--unread {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    -webkit-flex-shrink: 2;
     -ms-flex-negative: 2;
     flex-shrink: 2
 }
 
 .im-top-banner--icon {
     width: 30px;
-    -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0;
     height: 30px;
@@ -12132,13 +11838,10 @@ body.sf .nim-dialog .nim-dialog--unread {
 }
 
 .im-top-banner--buttons {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-justify-content: flex-end;
     -ms-flex-pack: end;
     justify-content: flex-end;
-    -webkit-flex-grow: 2;
     -ms-flex-positive: 2;
     flex-grow: 2;
     padding-right: 15px
@@ -12349,15 +12052,6 @@ body.sf .nim-dialog .nim-dialog--unread {
     padding-right: 0
 }
 
-@-webkit-keyframes repaint {
-    0% {
-        width: 99.999%
-    }
-    to {
-        width: 100%
-    }
-}
-
 @-o-keyframes repaint {
     0% {
         width: 99.999%
@@ -12377,7 +12071,6 @@ body.sf .nim-dialog .nim-dialog--unread {
 }
 
 .safari-repaint {
-    -webkit-animation: repaint 100ms;
     -o-animation: repaint 100ms;
     animation: repaint 100ms
 }

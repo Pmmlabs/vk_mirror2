@@ -285,7 +285,6 @@ textarea.wke_textarea {
 }
 
 body.mac .wke_top_fixed .wke_controls {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -304,7 +303,6 @@ body.mac .wke_top_fixed .wke_controls {
 }
 
 body.mac .wke_bottom_fixed .box_controls {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 

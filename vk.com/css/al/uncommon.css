@@ -525,7 +525,6 @@ input.passchange_input_error {
 
 .top_info_wrap .hide_button:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -856,7 +855,6 @@ ul.vk_com_only_good {
 
 .compromised_password_warning_box .close_icon:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1345,7 +1343,6 @@ div.validation_last_button .button {
 .shortener_stats_stripe {
     margin-top: 24px;
     overflow: hidden;
-    -webkit-align-content: center;
     -ms-flex-line-pack: center;
     align-content: center
 }

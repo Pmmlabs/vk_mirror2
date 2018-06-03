@@ -773,7 +773,6 @@ img.mail_preview_video {
 .mail_old_is_important:hover .mail_old_important_toggler {
     background-position: 0 -239px;
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     visibility: visible
 }

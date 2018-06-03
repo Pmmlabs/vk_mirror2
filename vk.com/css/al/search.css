@@ -69,7 +69,6 @@
 }
 
 body.mac #filter_form {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -792,7 +791,6 @@ div.search_row:first-child {
 
 .search_video_row_cont:hover .search_video_moder_actions {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

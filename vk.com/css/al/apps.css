@@ -568,13 +568,10 @@
     font-size: 13px;
     line-height: 15px;
     height: 36px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center
 }
@@ -698,7 +695,6 @@
 
 .apps_recent_row:hover .thumb_x_button {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -749,7 +745,6 @@
 .apps_cat_row .thumb_x_button:hover .thumb_x,
 .apps_recent_row .thumb_x_button:hover .thumb_x {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -859,7 +854,6 @@
 
 .apps_notification_row.apps_notification_row_new:not(.apps_notification_service):before {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1029,13 +1023,10 @@
 .apps_feed_info_wrap {
     margin-left: 40px;
     height: 40px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center
 }
@@ -1088,7 +1079,6 @@
 .apps_featured_slider:hover .apps_featured_next:hover:before,
 .apps_featured_slider:hover .apps_featured_prev:hover:before {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1127,7 +1117,6 @@
 }
 
 body.mac .apps_featured_thumb .apps_featured_thumb_content {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -1137,7 +1126,6 @@ body.mac .apps_featured_thumb .apps_featured_thumb_content {
 }
 
 body.mac .apps_featured_thumb .ads_ad_big_app_info_box {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -1148,7 +1136,6 @@ body.mac .apps_featured_thumb .ads_ad_big_app_info_box {
 .apps_featured_thumb.selected .ads_ad_big_app_info_box,
 .apps_featured_thumb.selected .apps_featured_thumb_content {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1425,7 +1412,6 @@ body.mac .apps_featured_thumb .ads_ad_big_app_info_box {
 
 .apps_cat_row:hover .thumb_x_button {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1441,7 +1427,6 @@ body.mac .apps_featured_thumb .ads_ad_big_app_info_box {
     position: absolute;
     top: 50%;
     left: 50%;
-    -webkit-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     width: 99px;
@@ -1465,7 +1450,6 @@ body.mac .apps_featured_thumb .ads_ad_big_app_info_box {
 
 .apps_cat_row.loading .pr {
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     margin-top: 5px;
     margin-bottom: 5px
@@ -1785,15 +1769,13 @@ body.mac .apps_featured_thumb .ads_ad_big_app_info_box {
 
 a.apps_cat_header_link:after,
 a.page_block_header .apps_cat_header_link:after {
-    transition: -webkit-transform 70ms linear;
     -o-transition: transform 70ms linear, -o-transform 70ms linear;
     transition: transform 70ms linear;
-    transition: transform 70ms linear, -webkit-transform 70ms linear, -o-transform 70ms linear
+    transition: transform 70ms linear, -o-transform 70ms linear
 }
 
 a.apps_cat_header_link:hover:after,
 a.page_block_header:hover .apps_cat_header_link:after {
-    -webkit-transform: translateX(3px);
     -o-transform: translateX(3px);
     transform: translateX(3px)
 }
@@ -1965,7 +1947,6 @@ a.page_block_header:hover .apps_cat_header_link:after {
 
 .apps_cat_row:hover .apps_edit_actions {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1981,7 +1962,6 @@ a.page_block_header:hover .apps_cat_header_link:after {
 .apps_edit_actions .apps_action_delete:hover,
 .apps_edit_actions .apps_action_edit:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2251,7 +2231,6 @@ a.page_block_header:hover .apps_cat_header_link:after {
 .apps_settings_action_edit:hover,
 .apps_settings_action_remove:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -3043,7 +3022,6 @@ a.page_block_header:hover .apps_cat_header_link:after {
 
 .apps_i_description_show_more:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     text-decoration: none
 }
@@ -3167,7 +3145,6 @@ a.page_block_header:hover .apps_cat_header_link:after {
 .apps_i_slider_outer:hover .apps_i_slider_next.apps_i_slider_available:before,
 .apps_i_slider_outer:hover .apps_i_slider_prev.apps_i_slider_available:before {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -3367,7 +3344,6 @@ a.page_block_header:hover .apps_cat_header_link:after {
 
 .apps_i_run_box:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -3416,7 +3392,6 @@ a.page_block_header:hover .apps_cat_header_link:after {
 
 .apps_i_slider_thumb.apps_i_slider_thumb_promo_video .video_thumb_play {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -3699,10 +3674,8 @@ a.page_block_header:hover .apps_cat_header_link:after {
     position: relative;
     bottom: -20px;
     min-height: 38px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center
 }
@@ -3804,7 +3777,6 @@ a.page_block_header:hover .apps_cat_header_link:after {
 .app_search .search_reset.over,
 .apps_search_wrap .search_reset.over {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -4691,7 +4663,6 @@ a.app_decline:hover {
 
 .apps_paymentbox_close_lnk:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -4704,16 +4675,12 @@ a.app_decline:hover {
     display: inline-block;
     width: 34px;
     height: 34px;
-    -webkit-animation-name: round_spinner;
     -o-animation-name: round_spinner;
     animation-name: round_spinner;
-    -webkit-animation-duration: 700ms;
     -o-animation-duration: 700ms;
     animation-duration: 700ms;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner_big.png)
@@ -5686,7 +5653,6 @@ td.apps_cat_new_h {
 
 .apps_scroll_wrap .apps_scroll_right_wrap {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -5716,7 +5682,6 @@ td.apps_cat_new_h {
 .apps_scroll_left_wrap:hover .apps_scroll_left,
 .apps_scroll_right_wrap:hover .apps_scroll_right {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -5862,7 +5827,6 @@ td.apps_cat_new_h {
 
 .apps_featured_wrap .apps_featured_big_thumbs_wrap .apps_featured_thumb_big.selected {
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     pointer-events: all;
     z-index: 2

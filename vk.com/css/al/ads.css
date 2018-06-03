@@ -2952,7 +2952,6 @@ h4.subheader.ads_retargeting_subheader_bordered {
 }
 
 .ads_retargeting_group_share_history_row {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     margin-top: 2px
@@ -2964,7 +2963,6 @@ h4.subheader.ads_retargeting_subheader_bordered {
     display: inline-block;
     margin-right: 10px;
     vertical-align: top;
-    -webkit-flex: 0;
     -ms-flex: 0;
     flex: 0;
     min-width: 105px
@@ -2973,7 +2971,6 @@ h4.subheader.ads_retargeting_subheader_bordered {
 .ads_retargeting_group_share_history_row_text {
     display: inline-block;
     vertical-align: top;
-    -webkit-flex: 1;
     -ms-flex: 1;
     flex: 1
 }
@@ -3116,7 +3113,6 @@ h4.subheader.ads_retargeting_subheader_bordered {
 
 .ads_retargeting_price_list_item_edit:hover:after {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -3137,7 +3133,6 @@ h4.subheader.ads_retargeting_subheader_bordered {
 
 .ads_retargeting_price_list_item_get_process_info:hover:after {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -3216,7 +3211,6 @@ h4.subheader.ads_retargeting_subheader_bordered {
 }
 
 .ads_retargeting_price_list_item_cell_update_link.ads_retargeting_price_list_item_cell_update_link_waiting:after {
-    -webkit-animation: 700ms linear infinite round_spinner;
     -o-animation: 700ms linear infinite round_spinner;
     animation: 700ms linear infinite round_spinner
 }
@@ -3807,13 +3801,10 @@ td.ads_settings_notifacations_label {
 }
 
 .ads_relevance_score_info.ads_relevance_score_info_empty {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
     height: 128px
@@ -3907,14 +3898,12 @@ td.ads_settings_notifacations_label {
     width: 6px;
     height: 8px;
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%228%22%20viewBox%3D%2288%204%208%208%22%3E%3Cg%20fill%3D%22none%22%3E%3Crect%20x%3D%2288%22%20y%3D%224%22%20width%3D%228%22%20height%3D%228%22%2F%3E%3Cpath%20d%3D%22M90.2%2010.8C90%2011.1%2090%2011.5%2090.3%2011.7%2090.6%2011.9%2091%2011.9%2091.2%2011.6L93.8%208.4C94%208.2%2094%207.8%2093.8%207.6L91.2%204.4C91%204.1%2090.6%204.1%2090.3%204.3%2090%204.5%2090%204.9%2090.2%205.2L92.5%208%2090.2%2010.8Z%22%20fill%3D%22%239CB0C3%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
-    transition: -webkit-transform 150ms ease-in-out;
     -o-transition: transform 150ms ease-in-out, -o-transform 150ms ease-in-out;
     transition: transform 150ms ease-in-out;
-    transition: transform 150ms ease-in-out, -webkit-transform 150ms ease-in-out, -o-transform 150ms ease-in-out
+    transition: transform 150ms ease-in-out, -o-transform 150ms ease-in-out
 }
 
 .ads_relevance_score_footer_link:hover:after {
-    -webkit-transform: translateX(2px);
     -o-transform: translateX(2px);
     transform: translateX(2px)
 }

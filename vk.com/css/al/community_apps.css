@@ -117,7 +117,6 @@
     margin-left: 7px;
     border-radius: 13px;
     line-height: 12px;
-    -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0
 }
@@ -193,10 +192,8 @@
 
 .apps_group_catalog_rows .apps_catalog_row .apps_catalog_row_info .apps_catalog_row_name {
     max-height: 16px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
     font-weight: 500;

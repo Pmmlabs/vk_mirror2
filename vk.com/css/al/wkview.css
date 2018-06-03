@@ -267,7 +267,6 @@
     filter: alpha(opacity=55);
     -o-transition: opacity 0.15s ease-in-out;
     transition: opacity 0.15s ease-in-out;
-    -webkit-transform: translateZ(0);
     transform: translateZ(0);
     cursor: pointer;
     z-index: 631
@@ -318,7 +317,6 @@
     transition: opacity 0.15s ease-in-out;
     cursor: pointer;
     position: fixed;
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -351,7 +349,6 @@
 .wk_arrow_bg:hover .wk_arrow,
 .wk_right_nav:hover .wk_close {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -508,7 +505,6 @@
     height: 1em;
     width: auto;
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     display: none
 }
@@ -583,7 +579,6 @@
 }
 
 body.mac .wl_reply_form_fixed {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -655,7 +650,6 @@ body.mac .wl_reply_form_fixed {
 .wk_like_wrap:hover .wk_like_icon,
 .wk_like_wrap.my_like .wk_like_icon {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1107,14 +1101,12 @@ span#wk_posts_reach_tooltip_link {
 }
 
 .wk_reach_tooltip_wrapper {
-    -webkit-transform: translateY(50px);
     -o-transform: translateY(50px);
     transform: translateY(50px)
 }
 
 .wk_reach_tooltip_wrapper:after,
 .wk_reach_tooltip_wrapper:before {
-    -webkit-transform: translateY(-50px);
     -o-transform: translateY(-50px);
     transform: translateY(-50px)
 }

@@ -1,24 +1,37 @@
 ﻿! function(t) {
-    function e(i) {
-        if (o[i]) return o[i].exports;
-        var n = o[i] = {
-            i: i,
+    function e(n) {
+        if (o[n]) return o[n].exports;
+        var i = o[n] = {
+            i: n,
             l: !1,
             exports: {}
         };
-        return t[i].call(n.exports, n, n.exports, e), n.l = !0, n.exports
+        return t[n].call(i.exports, i, i.exports, e), i.l = !0, i.exports
     }
     var o = {};
-    return e.m = t, e.c = o, e.d = function(t, o, i) {
+    return e.m = t, e.c = o, e.d = function(t, o, n) {
         e.o(t, o) || Object.defineProperty(t, o, {
-            configurable: !1,
             enumerable: !0,
-            get: i
+            get: n
         })
     }, e.r = function(t) {
-        Object.defineProperty(t, "__esModule", {
+        "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(t, Symbol.toStringTag, {
+            value: "Module"
+        }), Object.defineProperty(t, "__esModule", {
             value: !0
         })
+    }, e.t = function(t, o) {
+        if (1 & o && (t = e(t)), 8 & o) return t;
+        if (4 & o && "object" == typeof t && t && t.__esModule) return t;
+        var n = Object.create(null);
+        if (e.r(n), Object.defineProperty(n, "default", {
+                enumerable: !0,
+                value: t
+            }), 2 & o && "string" != typeof t)
+            for (var i in t) e.d(n, i, function(e) {
+                return t[e]
+            }.bind(null, i));
+        return n
     }, e.n = function(t) {
         var o = t && t.__esModule ? function() {
             return t["default"]
@@ -28,9 +41,12 @@
         return e.d(o, "a", o), o
     }, e.o = function(t, e) {
         return Object.prototype.hasOwnProperty.call(t, e)
-    }, e.p = "", e(e.s = 60)
+    }, e.p = "", e(e.s = 413)
 }({
-    498: function(t, e, o) {
+    413: function(t, e, o) {
+        t.exports = o(521)
+    },
+    521: function(t, e, o) {
         "use strict";
         o.r(e), window.Community = {
             init: function() {
@@ -84,64 +100,64 @@
             sendStateEvent: function(t) {
                 cur.Rpc.callMethod("publish", t ? "widgets.groups.joined" : "widgets.groups.leaved")
             },
-            sendChangeState: function(t, e, o, i, n) {
+            sendChangeState: function(t, e, o, n, i) {
                 this.sendStateEvent(t);
-                var c = ge("hiddenDomain");
+                var u = ge("hiddenDomain");
                 ajax.post("/widget_community.php", {
                     act: "a_change_state",
                     state: t,
                     oid: e,
                     hash: cur.hash,
-                    domain: c ? c.value : "",
-                    is_event: i ? 1 : 0
+                    domain: u ? u.value : "",
+                    is_event: n ? 1 : 0
                 }, {
                     onDone: o,
-                    onFail: n
+                    onFail: i
                 })
             },
             changeGroupState: function(t, e) {
                 var o = this,
-                    i = function() {
-                        function i(t) {
+                    n = function() {
+                        function n(t) {
                             t ? (val("members_count", cur.count_in), replaceClass(e, "color3_bg", "color4_bg color2 secondary _subscribed"), val(e, cur.unsubscribe_lang), setStyle("anim_row", "left", 0)) : (val("members_count", cur.count_out), replaceClass(e, "color4_bg color2 secondary _subscribed", "color3_bg"), val(e, cur.subscribe_lang), setStyle("anim_row", "left", -cur.mWidth))
                         }
-                        cur.changinGroupState || (cur.changinGroupState = !0, lockButton(e), cur.noAuth ? (Widgets.oauth(), window.gotSession = function(i) {
-                            -1 == i && (setTimeout(location.reload.bind(location), 1e3), location.href = location.href + "&1"), i && ajax.post("/widget_community.php", {
+                        cur.changinGroupState || (cur.changinGroupState = !0, lockButton(e), cur.noAuth ? (Widgets.oauth(), window.gotSession = function(n) {
+                            -1 == n && (setTimeout(location.reload.bind(location), 1e3), location.href = location.href + "&1"), n && ajax.post("/widget_community.php", {
                                 act: "a_get_info",
                                 oid: cur.oid
                             }, {
-                                onDone: function(i) {
-                                    i.hash && (cur.noAuth = !1, cur.justAuth = !0, cur.hash = i.hash, cur.changinGroupState = !1, o.changeGroupState(t, e))
+                                onDone: function(n) {
+                                    n.hash && (cur.noAuth = !1, cur.justAuth = !0, cur.hash = n.hash, cur.changinGroupState = !1, o.changeGroupState(t, e))
                                 }
                             })
                         }) : t && !cur.justAuth ? (unlockButton(e), cur.changinGroupState = !1, Widgets.showSubscribeBox(cur.oid, function() {
-                            o.sendStateEvent(t), i(!0)
+                            o.sendStateEvent(t), n(!0)
                         }, t)) : cur.justAuth || o.sendChangeState(t, cur.oid, function() {
-                            unlockButton(e), i(t), cur.changinGroupState = !1
+                            unlockButton(e), n(t), cur.changinGroupState = !1
                         }, !1, function() {
                             unlockButton(e), cur.changinGroupState = !1
                         }))
                     };
-                cur.confirmUnsubscribe && !t ? Widgets.showUnsubscribeBox(cur.oid, i) : i()
+                cur.confirmUnsubscribe && !t ? Widgets.showUnsubscribeBox(cur.oid, n) : n()
             },
             changeEventState: function(t, e) {
                 function o(t) {
                     t ? (val("members_count", cur.count_in), setStyle("anim_row", "left", 0)) : (val("members_count", cur.count_out), setStyle("anim_row", "left", -cur.mWidth))
                 }
-                var i = this;
+                var n = this;
                 cur.changinEventState || (cur.changinEventState = !0, lockButton(e), cur.noAuth ? (Widgets.oauth(), window.gotSession = function(o) {
                     cur.noAuth = !1, ajax.post("/widget_community.php", {
                         act: "a_get_info",
                         oid: cur.oid
                     }, {
                         onDone: function(o) {
-                            o.hash && (cur.hash = o.hash, cur.changinEventState = !1, i.changeEventState(t, e))
+                            o.hash && (cur.hash = o.hash, cur.changinEventState = !1, n.changeEventState(t, e))
                         }
                     })
                 }) : t > 0 && !cur.justAuth ? (unlockButton(e), cur.changinEventState = !1, Widgets.showSubscribeBox(cur.oid, function(e) {
-                    void 0 !== e && val("community_footer", e), i.sendStateEvent(t), o(!0), i.resizeWidget()
+                    void 0 !== e && val("community_footer", e), n.sendStateEvent(t), o(!0), n.resizeWidget()
                 }, t, !0)) : cur.justAuth || this.sendChangeState(t, cur.oid, function(t) {
-                    void 0 !== t && val("community_footer", t), cur.changinEventState = !1, o(!1), i.resizeWidget()
+                    void 0 !== t && val("community_footer", t), cur.changinEventState = !1, o(!1), n.resizeWidget()
                 }, 1, function() {
                     unlockButton(e), cur.changinEventState = !1
                 }))
@@ -176,8 +192,8 @@
                     width: cur.width,
                     mode: cur.mode ? 1 : void 0
                 }, {
-                    onDone: function(o, i, n) {
-                        cur.offset += n, cur.offset >= i ? hide(e) : unlockButton(e), ge("page_wall_posts").appendChild(cf(o)), t.resizeWidget(), setTimeout(t.resizeWidget, 500)
+                    onDone: function(o, n, i) {
+                        cur.offset += i, cur.offset >= n ? hide(e) : unlockButton(e), ge("page_wall_posts").appendChild(cf(o)), t.resizeWidget(), setTimeout(t.resizeWidget, 500)
                     }
                 }))
             },
@@ -254,22 +270,22 @@
                             pollFull: function() {},
                             likesShow: function(t, e, o) {
                                 o = o || {};
-                                var i = hasClass(t, "post_like"),
-                                    n = Wall.parsePostId(e),
-                                    c = n.type,
-                                    u = n.id,
-                                    a = c + u,
-                                    s = t && gpeByClass("_post_content", t) || Wall.domPost(u),
-                                    r = o.share ? "_share_wrap" : "_like_wrap",
-                                    l = domByClass(s, r),
+                                var n = hasClass(t, "post_like"),
+                                    i = Wall.parsePostId(e),
+                                    u = i.type,
+                                    c = i.id,
+                                    a = u + c,
+                                    r = t && gpeByClass("_post_content", t) || Wall.domPost(c),
+                                    s = o.share ? "_share_wrap" : "_like_wrap",
+                                    l = domByClass(r, s),
                                     d = domByClass(l, "_icon"),
-                                    h = s && domByClass(s, "_share_wrap");
+                                    h = r && domByClass(r, "_share_wrap");
                                 if (d && !cur.viewAsBox) {
-                                    var p = i ? 14 : 58,
-                                        g = getXY(l)[0],
-                                        f = getXY(d)[0],
+                                    var p = n ? 14 : 58,
+                                        f = getXY(l)[0],
+                                        g = getXY(d)[0],
                                         m = getSize(d, !0)[0],
-                                        _ = f + m / 2 - g - p;
+                                        _ = g + m / 2 - f - p;
                                     showTooltip(d.parentNode, {
                                         url: "/like.php",
                                         params: extend({
@@ -280,7 +296,7 @@
                                             published: 1
                                         } : {}),
                                         slide: 15,
-                                        shift: [-_, i ? 5 : -3],
+                                        shift: [-_, n ? 5 : -3],
                                         ajaxdt: 100,
                                         showdt: 400,
                                         hidedt: 200,
@@ -293,7 +309,7 @@
                                                 Wall.likesShow(t, e, o)
                                             }
                                         },
-                                        typeClass: "like_tt " + (i ? "wcommunity_post_like_tt" : "wcommunity_like_tt"),
+                                        typeClass: "like_tt " + (n ? "wcommunity_post_like_tt" : "wcommunity_like_tt"),
                                         className: o.cl || ""
                                     })
                                 }
@@ -316,9 +332,6 @@
         };
         try {
             stManager.done(jsc("api/widgets/community.js"))
-        } catch (i) {}
-    },
-    60: function(t, e, o) {
-        t.exports = o(498)
+        } catch (n) {}
     }
 });

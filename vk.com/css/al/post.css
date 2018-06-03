@@ -722,7 +722,6 @@ a.page_poll_code {
 
 .page_pics_preview .page_media_x_wrap:hover .page_media_x {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -757,7 +756,6 @@ a.page_poll_code {
 
 .page_docs_preview .page_media_x_wrap:hover .page_media_x {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -813,7 +811,6 @@ div.medadd_c_nofixed {
 
 .medadd_c_polla_wr .medadd_c_pollrem .page_media_x:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

@@ -192,7 +192,6 @@ html {
 
 .share_field_wrap:hover .share_field_edit {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -307,7 +306,6 @@ html {
 
 .summary_tab_sel .summary_tab_x:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

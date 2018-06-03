@@ -63,10 +63,9 @@
 }
 
 .landings_slider_helper_anim_def {
-    transition: -webkit-transform 400ms ease-in-out;
     -o-transition: transform 400ms ease-in-out, -o-transform 400ms ease-in-out;
     transition: transform 400ms ease-in-out;
-    transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out, -o-transform 400ms ease-in-out
+    transition: transform 400ms ease-in-out, -o-transform 400ms ease-in-out
 }
 
 .landings_slider_helper_anim_def .landings_slider_item.active,
@@ -80,14 +79,12 @@
 
 .landings_slider_item_def_next,
 .landings_slider_item_slide_fade_next {
-    -webkit-transform: translateX(100%);
     -o-transform: translateX(100%);
     transform: translateX(100%)
 }
 
 .landings_slider_item_def_prev,
 .landings_slider_item_slide_fade_prev {
-    -webkit-transform: translateX(-100%);
     -o-transform: translateX(-100%);
     transform: translateX(-100%)
 }
@@ -98,17 +95,15 @@
 }
 
 .landings_slider_item_def_started .landings_slider_item {
-    transition: -webkit-transform 400ms ease-in-out;
     -o-transition: transform 400ms ease-in-out, -o-transform 400ms ease-in-out;
     transition: transform 400ms ease-in-out;
-    transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out, -o-transform 400ms ease-in-out
+    transition: transform 400ms ease-in-out, -o-transform 400ms ease-in-out
 }
 
 .landings_slider_item_slide_fade_started .landings_slider_item {
-    transition: opacity 400ms ease-in-out, -webkit-transform 400ms ease-in-out;
     -o-transition: opacity 400ms ease-in-out, transform 400ms ease-in-out, -o-transform 400ms ease-in-out;
     transition: opacity 400ms ease-in-out, transform 400ms ease-in-out;
-    transition: opacity 400ms ease-in-out, transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out, -o-transform 400ms ease-in-out
+    transition: opacity 400ms ease-in-out, transform 400ms ease-in-out, -o-transform 400ms ease-in-out
 }
 
 .landings_slider_item_slide_fade_started .landings_slider_item.active {
@@ -167,7 +162,6 @@
 
 .landings_slider_point.active:after {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -193,10 +187,9 @@
     left: 0;
     width: 100%;
     height: 100%;
-    transition: -webkit-transform 400ms ease-in-out;
     -o-transition: transform 400ms ease-in-out, -o-transform 400ms ease-in-out;
     transition: transform 400ms ease-in-out;
-    transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out, -o-transform 400ms ease-in-out
+    transition: transform 400ms ease-in-out, -o-transform 400ms ease-in-out
 }
 
 .landings_base_slider_slide {
@@ -241,7 +234,6 @@
 
 .landings_slider_base_arrow.right:after {
     right: 40px;
-    -webkit-transform: scaleX(-1);
     -o-transform: scaleX(-1);
     transform: scaleX(-1)
 }
@@ -308,10 +300,9 @@
     background: url('/images/svg_icons/landings_main_slider_button_arrow.svg') no-repeat 50%;
     display: inline-block;
     margin-left: 6px;
-    transition: -webkit-transform 150ms ease-in-out;
     -o-transition: transform 150ms ease-in-out, -o-transform 150ms ease-in-out;
     transition: transform 150ms ease-in-out;
-    transition: transform 150ms ease-in-out, -webkit-transform 150ms ease-in-out, -o-transform 150ms ease-in-out
+    transition: transform 150ms ease-in-out, -o-transform 150ms ease-in-out
 }
 
 .landings_main_slider_button:fist-child {
@@ -323,7 +314,6 @@
 }
 
 .landings_main_slider_button:hover:after {
-    -webkit-transform: translateX(2px);
     -o-transform: translateX(2px);
     transform: translateX(2px)
 }

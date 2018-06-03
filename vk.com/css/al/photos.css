@@ -387,7 +387,6 @@
 
 .photos_container .photos_row {
     box-sizing: border-box;
-    -webkit-transform: translate(0px);
     -o-transform: translate(0px);
     transform: translate(0px);
     background-repeat: no-repeat;
@@ -502,10 +501,8 @@
     bottom: 4px;
     left: 4px;
     display: block;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
     cursor: pointer
@@ -537,26 +534,6 @@
     display: block
 }
 
-@-webkit-keyframes photos_faces_found {
-    0% {
-        -webkit-transform: scale(1);
-        transform: scale(1);
-        opacity: 0
-    }
-    50% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1)
-    }
-    50%,
-    to {
-        opacity: 1
-    }
-    to {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
-}
-
 @-o-keyframes photos_faces_found {
     0% {
         -o-transform: scale(1);
@@ -565,38 +542,31 @@
     }
     50% {
         -o-transform: scale(1.1);
-        transform: scale(1.1)
-    }
-    50%,
-    to {
+        transform: scale(1.1);
         opacity: 1
     }
     to {
         -o-transform: scale(1);
-        transform: scale(1)
+        transform: scale(1);
+        opacity: 1
     }
 }
 
 @keyframes photos_faces_found {
     0% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1);
         opacity: 0
     }
     50% {
-        -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
-        transform: scale(1.1)
-    }
-    50%,
-    to {
+        transform: scale(1.1);
         opacity: 1
     }
     to {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1)
+        transform: scale(1);
+        opacity: 1
     }
 }
 
@@ -605,13 +575,11 @@
 }
 
 .photos_photo_edit_row.has_faces .photo_row_faces_label {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex
 }
 
 .photos_photo_edit_row.has_faces.animated .photo_row_faces_label {
-    -webkit-animation: photos_faces_found 0.5s ease-in-out;
     -o-animation: photos_faces_found 0.5s ease-in-out;
     animation: photos_faces_found 0.5s ease-in-out
 }
@@ -795,7 +763,6 @@
 
 .photos_album_reverse_btn:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -837,7 +804,6 @@
 
 #photos_edit_selected_actions.photos_selected {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -933,7 +899,6 @@
 
 .photos_container_edit_grid .photos_edit_selected .photos_photo_edit_row_selector {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1201,7 +1166,6 @@
 
 #pv_move_to_album_cont .photo_row:hover .photos_album_thumb:before {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1230,7 +1194,6 @@
 
 #pv_move_to_album_cont .photos_inactive .photos_album .photos_in_progress .photos_album_thumb {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2796,7 +2759,6 @@ a.photos_tt_edit:hover {
     position: absolute;
     top: 50%;
     left: 50%;
-    -webkit-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     color: #7a92ae;

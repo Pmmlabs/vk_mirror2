@@ -540,7 +540,6 @@ a.button_link:hover {
     display: block;
     content: "";
     position: absolute;
-    -webkit-animation: 700ms linear infinite round_spinner;
     -o-animation: 700ms linear infinite round_spinner;
     animation: 700ms linear infinite round_spinner;
     top: 50%;
@@ -808,7 +807,6 @@ button.flat_btn_lock {
 }
 
 .round_button.round_button_large_white:active {
-    -webkit-transform: translateY(1px);
     -o-transform: translateY(1px);
     transform: translateY(1px)
 }
@@ -1405,7 +1403,6 @@ textarea::-webkit-input-placeholder {
     transition: color 0.2s ease;
     padding: 1px;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1458,7 +1455,6 @@ textarea~.placeholder .ph_content {
     transition: color 0.2s ease;
     padding: 1px;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1649,7 +1645,6 @@ h4.subheader {
 }
 
 body.mac #page_header_cont {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -1803,17 +1798,6 @@ body.mac #page_header_cont {
     display: inline-block
 }
 
-@-webkit-keyframes top_audio_play_loading {
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg)
-    }
-    to {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg)
-    }
-}
-
 @-o-keyframes top_audio_play_loading {
     0% {
         -o-transform: rotate(0deg);
@@ -1827,12 +1811,10 @@ body.mac #page_header_cont {
 
 @keyframes top_audio_play_loading {
     0% {
-        -webkit-transform: rotate(0deg);
         -o-transform: rotate(0deg);
         transform: rotate(0deg)
     }
     to {
-        -webkit-transform: rotate(360deg);
         -o-transform: rotate(360deg);
         transform: rotate(360deg)
     }
@@ -1866,7 +1848,6 @@ body.mac #page_header_cont {
     width: 8px;
     height: 8px;
     background-color: #224b7a;
-    -webkit-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
     top: 6px;
@@ -1908,7 +1889,6 @@ body.mac #page_header_cont {
     height: 10px;
     left: 6px;
     top: 5px;
-    -webkit-animation: top_audio_play_loading 0.8s infinite linear;
     -o-animation: top_audio_play_loading 0.8s infinite linear;
     animation: top_audio_play_loading 0.8s infinite linear
 }
@@ -2123,7 +2103,6 @@ a.unl:hover {
 #top_profile_menu.shown {
     visibility: visible;
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     top: 48px;
     pointer-events: auto
@@ -2340,7 +2319,6 @@ a.ad_box_new:hover {
 
 .left_app_block:hover .left_app_play {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2680,7 +2658,6 @@ body.body_im.firefox.layers_shown #page_wrap {
 
 #side_bar ol li .left_row:hover .left_icon {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2690,7 +2667,6 @@ body.body_im.firefox.layers_shown #page_wrap {
 
 #side_bar ol li:hover .left_settings {
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     -o-transition-delay: 700ms;
     transition-delay: 700ms
@@ -2703,7 +2679,6 @@ body.body_im.firefox.layers_shown #page_wrap {
 
 #side_bar ol li:hover .left_settings:hover .left_settings_inner {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2893,7 +2868,6 @@ a:hover .left_count_persist .left_void {
 
 .left_menu_more:hover:after {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -3008,7 +2982,6 @@ wbr {
 }
 
 body.mac #stl_left {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -3016,7 +2989,6 @@ body.mac #stl_left {
 #stl_left:hover {
     text-decoration: none;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -3072,7 +3044,6 @@ body.no_stl #stl_bg {
 .stl_active.over #stl_bg,
 .stl_active:hover #stl_bg {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -3165,7 +3136,6 @@ body.no_stl #stl_bg {
 
 #layer_stl:hover #layer_stl_text {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -3175,7 +3145,6 @@ body.no_stl #stl_bg {
 }
 
 body.mac #layer_stl .fixed {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -3441,7 +3410,6 @@ body.mac #layer_stl .fixed {
 
 .box_x_button:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -3466,7 +3434,6 @@ body.mac #layer_stl .fixed {
     -o-transition: none;
     transition: none;
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     pointer-events: none
 }
@@ -3513,16 +3480,12 @@ body.mac #layer_stl .fixed {
     display: inline-block;
     width: 34px;
     height: 34px;
-    -webkit-animation-name: round_spinner;
     -o-animation-name: round_spinner;
     animation-name: round_spinner;
-    -webkit-animation-duration: 700ms;
     -o-animation-duration: 700ms;
     animation-duration: 700ms;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner_big.png);
@@ -3632,7 +3595,6 @@ body.mac #layer_stl .fixed {
     height: 1px;
     background: #dbdde0;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -4252,7 +4214,6 @@ body.mac #layer_stl .fixed {
 
 .summary_tab_sel .summary_tab_x:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -4649,7 +4610,6 @@ ul.t0 li.active_link a b.tl2 {
 }
 
 body.mac #pg_fixed {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -4886,7 +4846,6 @@ th.piechart_col_header_second {
 
 .piechart_rows_root.transp_children .piechart_column .piechart_row.hovered {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -5047,7 +5006,6 @@ a.ts_search_link {
 
 .ts_contact.active.write .ts_contact_status:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -5673,7 +5631,6 @@ a.page_block_header:hover .header_side_link {
 .page_block_sub_header .header_side_link.with_arrow:hover:after,
 .ui_tabs_header .header_side_link.with_arrow:hover:after,
 .ui_tabs_sub_header .header_side_link.with_arrow:hover:after {
-    -webkit-transform: translateX(3px);
     -o-transform: translateX(3px);
     transform: translateX(3px)
 }
@@ -5690,10 +5647,9 @@ a.page_block_header:hover .header_side_link {
     height: 11px;
     width: 6px;
     vertical-align: middle;
-    transition: -webkit-transform 70ms linear;
     -o-transition: transform 70ms linear, -o-transform 70ms linear;
     transition: transform 70ms linear;
-    transition: transform 70ms linear, -webkit-transform 70ms linear, -o-transform 70ms linear
+    transition: transform 70ms linear, -o-transform 70ms linear
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -5769,7 +5725,6 @@ a.page_block_header:hover .header_side_link {
 }
 
 body.mac .narrow_column.fixed {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -5873,7 +5828,6 @@ body.mac .narrow_column.fixed {
     right: -10px;
     background: no-repeat 50%;
     background-size: cover;
-    -webkit-filter: blur(10px);
     filter: blur(10px)
 }
 
@@ -5900,16 +5854,12 @@ body.mac .narrow_column.fixed {
     display: inline-block;
     width: 34px;
     height: 34px;
-    -webkit-animation-name: round_spinner;
     -o-animation-name: round_spinner;
     animation-name: round_spinner;
-    -webkit-animation-duration: 700ms;
     -o-animation-duration: 700ms;
     animation-duration: 700ms;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner_big.png)
@@ -5928,16 +5878,12 @@ body.mac .narrow_column.fixed {
     display: inline-block;
     width: 16px;
     height: 16px;
-    -webkit-animation-name: round_spinner;
     -o-animation-name: round_spinner;
     animation-name: round_spinner;
-    -webkit-animation-duration: 700ms;
     -o-animation-duration: 700ms;
     animation-duration: 700ms;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner.png)
@@ -5949,17 +5895,6 @@ body.mac .narrow_column.fixed {
     .round_spinner {
         background-image: url(/images/icons/round_spinner_2x.png);
         background-size: 16px 16px
-    }
-}
-
-@-webkit-keyframes round_spinner {
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg)
-    }
-    to {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg)
     }
 }
 
@@ -5976,12 +5911,10 @@ body.mac .narrow_column.fixed {
 
 @keyframes round_spinner {
     0% {
-        -webkit-transform: rotate(0deg);
         -o-transform: rotate(0deg);
         transform: rotate(0deg)
     }
     to {
-        -webkit-transform: rotate(360deg);
         -o-transform: rotate(360deg);
         transform: rotate(360deg)
     }
@@ -6011,19 +5944,15 @@ button.flat_button .pr {
     border-radius: 50%;
     margin-right: 2px;
     opacity: 0.2;
-    -webkit-animation-duration: 750ms;
     -o-animation-duration: 750ms;
     animation-duration: 750ms;
-    -webkit-animation-name: pr_bt_anim;
     -o-animation-name: pr_bt_anim;
     animation-name: pr_bt_anim;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite
 }
 
 body.mac .pr_bt {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -6061,34 +5990,19 @@ body.mac .pr_bt {
     margin-right: 0
 }
 
-.pr_bt:nth-child(1) {
-    -webkit-animation-delay: 0ms;
+.pr_bt:first-child {
     -o-animation-delay: 0ms;
     animation-delay: 0ms
 }
 
 .pr_bt:nth-child(2) {
-    -webkit-animation-delay: 180ms;
     -o-animation-delay: 180ms;
     animation-delay: 180ms
 }
 
 .pr_bt:nth-child(3) {
-    -webkit-animation-delay: 360ms;
     -o-animation-delay: 360ms;
     animation-delay: 360ms
-}
-
-@-webkit-keyframes pr_bt_anim {
-    0% {
-        opacity: 0.2
-    }
-    30% {
-        opacity: 1
-    }
-    to {
-        opacity: 0.2
-    }
 }
 
 @-o-keyframes pr_bt_anim {
@@ -6126,7 +6040,6 @@ body.mac .pr_bt {
     left: 0;
     right: 0;
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     margin: auto;
     width: 18px;
@@ -6231,10 +6144,9 @@ button.ui_load_more_btn {
     top: 0;
     left: 0;
     z-index: 1;
-    transition: top 200ms ease, left 200ms ease, -webkit-transform 200ms ease;
     -o-transition: transform 200ms ease, top 200ms ease, left 200ms ease, -o-transform 200ms ease;
     transition: transform 200ms ease, top 200ms ease, left 200ms ease;
-    transition: transform 200ms ease, top 200ms ease, left 200ms ease, -webkit-transform 200ms ease, -o-transform 200ms ease;
+    transition: transform 200ms ease, top 200ms ease, left 200ms ease, -o-transform 200ms ease;
     -webkit-transform: translateZ(0);
     -webkit-backface-visibility: hidden;
     -webkit-perspective: 1000
@@ -6378,10 +6290,9 @@ button.ui_load_more_btn {
     display: none;
     will-change: transform;
     pointer-events: none;
-    transition: opacity 150ms linear, -webkit-transform 150ms ease;
     -o-transition: opacity 150ms linear, transform 150ms ease, -o-transform 150ms ease;
     transition: opacity 150ms linear, transform 150ms ease;
-    transition: opacity 150ms linear, transform 150ms ease, -webkit-transform 150ms ease, -o-transform 150ms ease
+    transition: opacity 150ms linear, transform 150ms ease, -o-transform 150ms ease
 }
 
 .eltt.eltt_noborder {
@@ -6391,7 +6302,6 @@ button.ui_load_more_btn {
 .eltt.eltt_vis {
     opacity: 1;
     pointer-events: all;
-    -webkit-transform: translate(0)!important;
     -o-transform: translate(0)!important;
     transform: translate(0)!important
 }
@@ -6420,7 +6330,6 @@ button.ui_load_more_btn {
 }
 
 .eltt.eltt_bottom {
-    -webkit-transform: translateY(10px);
     -o-transform: translateY(10px);
     transform: translateY(10px)
 }
@@ -6437,7 +6346,6 @@ button.ui_load_more_btn {
 }
 
 .eltt.eltt_top {
-    -webkit-transform: translateY(-10px);
     -o-transform: translateY(-10px);
     transform: translateY(-10px)
 }
@@ -6454,7 +6362,6 @@ button.ui_load_more_btn {
 }
 
 .eltt.eltt_left {
-    -webkit-transform: translate(-10px);
     -o-transform: translate(-10px);
     transform: translate(-10px)
 }
@@ -6472,7 +6379,6 @@ button.ui_load_more_btn {
 }
 
 .eltt.eltt_right {
-    -webkit-transform: translate(10px);
     -o-transform: translate(10px);
     transform: translate(10px)
 }
@@ -6502,7 +6408,6 @@ button.ui_load_more_btn {
 }
 
 .eltt.eltt_bottom {
-    -webkit-transform: translateY(10px);
     -o-transform: translateY(10px);
     transform: translateY(10px)
 }
@@ -6519,7 +6424,6 @@ button.ui_load_more_btn {
 }
 
 .eltt.eltt_top {
-    -webkit-transform: translateY(-10px);
     -o-transform: translateY(-10px);
     transform: translateY(-10px)
 }
@@ -6536,7 +6440,6 @@ button.ui_load_more_btn {
 }
 
 .eltt.eltt_left {
-    -webkit-transform: translate(-10px);
     -o-transform: translate(-10px);
     transform: translate(-10px)
 }
@@ -6554,7 +6457,6 @@ button.ui_load_more_btn {
 }
 
 .eltt.eltt_right {
-    -webkit-transform: translate(10px);
     -o-transform: translate(10px);
     transform: translate(10px)
 }
@@ -6584,7 +6486,6 @@ button.ui_load_more_btn {
 }
 
 .eltt.eltt_bottom {
-    -webkit-transform: translateY(10px);
     -o-transform: translateY(10px);
     transform: translateY(10px)
 }
@@ -6601,7 +6502,6 @@ button.ui_load_more_btn {
 }
 
 .eltt.eltt_top {
-    -webkit-transform: translateY(-10px);
     -o-transform: translateY(-10px);
     transform: translateY(-10px)
 }
@@ -6618,7 +6518,6 @@ button.ui_load_more_btn {
 }
 
 .eltt.eltt_left {
-    -webkit-transform: translate(-10px);
     -o-transform: translate(-10px);
     transform: translate(-10px)
 }
@@ -6636,7 +6535,6 @@ button.ui_load_more_btn {
 }
 
 .eltt.eltt_right {
-    -webkit-transform: translate(10px);
     -o-transform: translate(10px);
     transform: translate(10px)
 }
@@ -6734,7 +6632,6 @@ button.ui_load_more_btn {
     height: 14px;
     border-top-right-radius: 3px;
     box-shadow: 0 0 1px 0 rgba(0, 20, 51, .4);
-    -webkit-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
     margin-left: -7px;
@@ -6753,7 +6650,6 @@ button.ui_load_more_btn {
     height: 14px;
     border-bottom-left-radius: 3px;
     box-shadow: 0 0 1px 0 rgba(0, 20, 51, .4);
-    -webkit-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
     margin-right: -7px;
@@ -6772,7 +6668,6 @@ button.ui_load_more_btn {
     height: 14px;
     border-bottom-right-radius: 3px;
     box-shadow: 0 0 1px 0 rgba(0, 20, 51, .4);
-    -webkit-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
     margin-left: -7px;
@@ -6791,7 +6686,6 @@ button.ui_load_more_btn {
     height: 14px;
     border-top-left-radius: 3px;
     box-shadow: 0 0 1px 0 rgba(0, 20, 51, .4);
-    -webkit-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
     margin-left: -7px;
@@ -6833,7 +6727,6 @@ button.ui_load_more_btn {
 }
 
 .eltt.feature_intro_blue_tt.eltt_top .eltt_arrow {
-    -webkit-transform: rotate(90deg);
     -o-transform: rotate(90deg);
     transform: rotate(90deg)
 }
@@ -7433,7 +7326,6 @@ button.ui_load_more_btn {
 
 .top_audio_player.top_audio_player_enabled {
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     display: block;
     pointer-events: all
@@ -7598,13 +7490,10 @@ button.ui_load_more_btn {
 .audio_row .audio_row__performer_title {
     overflow: hidden;
     position: relative;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex-shrink: 1;
     -ms-flex-negative: 1;
     flex-shrink: 1;
-    -webkit-flex-grow: 1;
     -ms-flex-positive: 1;
     flex-grow: 1
 }
@@ -7615,14 +7504,12 @@ button.ui_load_more_btn {
     -o-transition: padding-top 70ms linear;
     transition: padding-top 70ms linear;
     max-width: 70%;
-    -webkit-flex-shrink: 1;
     -ms-flex-negative: 1;
     flex-shrink: 1
 }
 
 .audio_row .audio_row__performers:hover,
 .audio_row .audio_row__title:hover {
-    -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0
 }
@@ -7642,7 +7529,6 @@ button.ui_load_more_btn {
     margin-left: 15px;
     margin-right: 12px;
     height: 100%;
-    -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0
 }
@@ -7835,13 +7721,10 @@ button.ui_load_more_btn {
     width: 100%;
     box-sizing: border-box;
     padding-left: 44px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    -webkit-align-items: stretch;
     -ms-flex-align: stretch;
     align-items: stretch
 }
@@ -8001,10 +7884,8 @@ button.ui_load_more_btn {
 }
 
 .audio_w_covers .audio_row .audio_row__performer_title {
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center
 }
@@ -8014,7 +7895,6 @@ button.ui_load_more_btn {
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    -webkit-order: -1;
     -ms-flex-order: -1;
     order: -1;
     margin-bottom: 2px
@@ -8154,7 +8034,6 @@ button.ui_load_more_btn {
 
 .audio_row__current .audio_inline_player {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -8522,15 +8401,8 @@ button.ui_load_more_btn {
 }
 
 .lazyload {
-    transition: -webkit-filter 200ms ease-in-out;
     -o-transition: filter 200ms ease-in-out;
     transition: filter 200ms ease-in-out;
-    transition: filter 200ms ease-in-out, -webkit-filter 200ms ease-in-out
-}
-
-.lazyload,
-.lazyload_preview {
-    -webkit-filter: blur(2px);
     filter: blur(2px)
 }
 
@@ -8541,6 +8413,7 @@ button.ui_load_more_btn {
     left: 0;
     right: 0;
     background: no-repeat 50% / cover;
+    filter: blur(2px);
     z-index: -1;
     pointer-events: none
 }
@@ -8548,7 +8421,6 @@ button.ui_load_more_btn {
 .lazyload_loaded,
 .lazyload_loaded .lazyload_preview,
 .lazyload_preview_inner {
-    -webkit-filter: blur(0px);
     filter: blur(0px)
 }
 
@@ -8569,7 +8441,6 @@ button.ui_load_more_btn {
 }
 
 .sticker_animation {
-    -webkit-transform: translate(0);
     -o-transform: translate(0);
     transform: translate(0)
 }

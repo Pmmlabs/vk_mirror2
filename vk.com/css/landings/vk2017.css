@@ -357,7 +357,6 @@
 }
 
 .landing_vk2017_snowflake {
-    -webkit-transform: translateY(-1px);
     -o-transform: translateY(-1px);
     transform: translateY(-1px);
     top: 0;
@@ -382,7 +381,6 @@
 .landing_vk2017_snowflake2 {
     width: 4px;
     height: 4px;
-    -webkit-transform: translateY(-4px);
     -o-transform: translateY(-4px);
     transform: translateY(-4px)
 }
@@ -390,7 +388,6 @@
 .landing_vk2017_snowflake3 {
     width: 3px;
     height: 3px;
-    -webkit-transform: translateY(-3px);
     -o-transform: translateY(-3px);
     transform: translateY(-3px)
 }
@@ -398,50 +395,30 @@
 .landing_vk2017_snowflake4 {
     width: 2px;
     height: 2px;
-    -webkit-transform: translateY(-2px);
     -o-transform: translateY(-2px);
     transform: translateY(-2px)
 }
 
 .landing_vk2017_snowflake_anim1 div,
 .landing_vk2017_snowflake_anim2 div {
-    -webkit-animation: landing_vk2017_snowflake_keyframe1 3s infinite ease-in-out;
     -o-animation: landing_vk2017_snowflake_keyframe1 3s infinite ease-in-out;
     animation: landing_vk2017_snowflake_keyframe1 3s infinite ease-in-out
 }
 
 .landing_vk2017_snowflake_anim2 div {
-    -webkit-animation-direction: reverse;
     -o-animation-direction: reverse;
     animation-direction: reverse
 }
 
 .landing_vk2017_snowflake_anim3 div,
 .landing_vk2017_snowflake_anim4 div {
-    -webkit-animation: landing_vk2017_snowflake_keyframe2 4s infinite ease-in-out;
     -o-animation: landing_vk2017_snowflake_keyframe2 4s infinite ease-in-out;
     animation: landing_vk2017_snowflake_keyframe2 4s infinite ease-in-out
 }
 
 .landing_vk2017_snowflake_anim4 div {
-    -webkit-animation-direction: reverse;
     -o-animation-direction: reverse;
     animation-direction: reverse
-}
-
-@-webkit-keyframes landing_vk2017_snowflake_keyframe1 {
-    0% {
-        -webkit-transform: translateX(10px) translateZ(0);
-        transform: translateX(10px) translateZ(0)
-    }
-    50% {
-        -webkit-transform: translateX(-10px) translateZ(0);
-        transform: translateX(-10px) translateZ(0)
-    }
-    to {
-        -webkit-transform: translateX(10px) translateZ(0);
-        transform: translateX(10px) translateZ(0)
-    }
 }
 
 @-o-keyframes landing_vk2017_snowflake_keyframe1 {
@@ -458,31 +435,13 @@
 
 @keyframes landing_vk2017_snowflake_keyframe1 {
     0% {
-        -webkit-transform: translateX(10px) translateZ(0);
         transform: translateX(10px) translateZ(0)
     }
     50% {
-        -webkit-transform: translateX(-10px) translateZ(0);
         transform: translateX(-10px) translateZ(0)
     }
     to {
-        -webkit-transform: translateX(10px) translateZ(0);
         transform: translateX(10px) translateZ(0)
-    }
-}
-
-@-webkit-keyframes landing_vk2017_snowflake_keyframe2 {
-    0% {
-        -webkit-transform: translateX(20px) translateZ(0);
-        transform: translateX(20px) translateZ(0)
-    }
-    50% {
-        -webkit-transform: translateX(-20px) translateZ(0);
-        transform: translateX(-20px) translateZ(0)
-    }
-    to {
-        -webkit-transform: translateX(20px) translateZ(0);
-        transform: translateX(20px) translateZ(0)
     }
 }
 
@@ -500,15 +459,12 @@
 
 @keyframes landing_vk2017_snowflake_keyframe2 {
     0% {
-        -webkit-transform: translateX(20px) translateZ(0);
         transform: translateX(20px) translateZ(0)
     }
     50% {
-        -webkit-transform: translateX(-20px) translateZ(0);
         transform: translateX(-20px) translateZ(0)
     }
     to {
-        -webkit-transform: translateX(20px) translateZ(0);
         transform: translateX(20px) translateZ(0)
     }
 }

@@ -3023,7 +3023,6 @@ span.fc_contact_photo.online.mobile:after {
 
 .notifier_close_wrap:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -3217,7 +3216,6 @@ span.fc_contact_photo.online.mobile:after {
 .fc_tab_max_wrap:hover .fc_tab_max,
 .fc_tab_pin_wrap:hover .fc_tab_pin {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -3455,7 +3453,6 @@ div.fc_clist_filter {
 
 .fc_clist_online.fc_clist_online_active:before {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -3532,19 +3529,16 @@ em.fc_clist_hl {
     background: #a9abad;
     vertical-align: middle;
     margin-top: -2px;
-    -webkit-animation: 1.1s linear 0s infinite fc-typer;
     -o-animation: 1.1s linear 0s infinite fc-typer;
     animation: 1.1s linear 0s infinite fc-typer
 }
 
 .fc_tab_typing_icon .pr_bt:nth-child(2) {
-    -webkit-animation-delay: 0.36666667s;
     -o-animation-delay: 0.36666667s;
     animation-delay: 0.36666667s
 }
 
 .fc_tab_typing_icon .pr_bt:nth-child(3) {
-    -webkit-animation-delay: 0.73333333s;
     -o-animation-delay: 0.73333333s;
     animation-delay: 0.73333333s
 }
@@ -3752,7 +3746,6 @@ a.fc_msgs_img {
 
 .fc_msg_progress .pr {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -3764,7 +3757,6 @@ a.fc_msgs_img {
 .fc_scrollbar_inner.scrollbar_hovered,
 .fc_scrollbar_inner:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -3780,7 +3772,6 @@ a.fc_msgs_img {
 
 .fc_msg_attachments .pr {
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     text-align: center
 }
@@ -3994,7 +3985,6 @@ a.fc_msg_att_lnk:hover .fc_msg_att_text {
 }
 
 body.mac .chat_onl_wrap {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -4203,7 +4193,6 @@ img.fc_inline_chatter_half {
 .chat_tab_wrap:hover .chat_tab_close,
 .chat_tab_imgcont {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -4341,7 +4330,6 @@ img.fc_inline_chatter_half {
 
 .chat_cont_sh_top {
     top: 0;
-    -webkit-transform: rotate(180deg);
     -o-transform: rotate(180deg);
     transform: rotate(180deg)
 }
@@ -4417,18 +4405,6 @@ div.chat_tab_img {
     width: 34px
 }
 
-@-webkit-keyframes fc-typer {
-    0% {
-        opacity: 0.5
-    }
-    25% {
-        opacity: 1
-    }
-    50% {
-        opacity: 0.5
-    }
-}
-
 @-o-keyframes fc-typer {
     0% {
         opacity: 0.5
@@ -4483,7 +4459,6 @@ div.chat_tab_img {
     opacity: 0.7;
     filter: alpha(opacity=70);
     z-index: 4;
-    -webkit-transform: translateZ(0);
     transform: translateZ(0);
     -o-transition: opacity 200ms ease-in-out;
     transition: opacity 200ms ease-in-out
@@ -4570,7 +4545,6 @@ div.chat_tab_img {
 
 .emoji_scroll_progress .pr {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -4646,7 +4620,6 @@ div.chat_tab_img {
     border-width: 5px;
     margin: 0 -5px;
     border-bottom-color: #ebeef2;
-    -webkit-transform: translate3d(0, 0.5px, 0);
     transform: translate3d(0, 0.5px, 0)
 }
 
@@ -4665,7 +4638,6 @@ div.chat_tab_img {
     border-width: 5px;
     margin: 0 -5px;
     border-top-color: #ebeef2;
-    -webkit-transform: translate3d(0, -0.5px, 0);
     transform: translate3d(0, -0.5px, 0)
 }
 
@@ -4682,7 +4654,6 @@ div.chat_tab_img {
     -o-transition: opacity 150ms ease-in-out, visibility 0ms ease-in-out 0ms;
     transition: opacity 150ms ease-in-out, visibility 0ms ease-in-out 0ms;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -4998,7 +4969,6 @@ div.chat_tab_img {
 }
 
 .emoji_sticker_item .emoji_sticker_item_fav:active {
-    -webkit-transform: scale(0.9);
     -o-transform: scale(0.9);
     transform: scale(0.9)
 }
@@ -5223,7 +5193,6 @@ div.chat_tab_img {
 
 .sticker_hints_arrow.sticker_left {
     left: 0;
-    -webkit-transform: scaleX(-1);
     -o-transform: scaleX(-1);
     transform: scaleX(-1)
 }
@@ -5284,7 +5253,6 @@ div.chat_tab_img {
 #top_notify_btn.active #top_notify_wrap {
     visibility: visible;
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     top: 42px;
     pointer-events: auto
@@ -5310,10 +5278,9 @@ div.chat_tab_img {
 }
 
 .top_notify_header .top_notify_header_label {
-    transition: -webkit-transform 0.1s;
     -o-transition: transform 0.1s, -o-transform 0.1s;
     transition: transform 0.1s;
-    transition: transform 0.1s, -webkit-transform 0.1s, -o-transform 0.1s
+    transition: transform 0.1s, -o-transform 0.1s
 }
 
 .top_notify_header .top_notify_header_sub_label {
@@ -5330,7 +5297,6 @@ div.chat_tab_img {
 }
 
 .top_notify_header.top_notify_header_swap_labels .top_notify_header_label {
-    -webkit-transform: translateY(-13px);
     -o-transform: translateY(-13px);
     transform: translateY(-13px)
 }
@@ -5446,7 +5412,6 @@ div.chat_tab_img {
     border-width: 5px;
     margin: 0 -5px;
     border-bottom-color: #fff;
-    -webkit-transform: translate3d(0, 0.5px, 0);
     transform: translate3d(0, 0.5px, 0)
 }
 
@@ -5465,7 +5430,6 @@ div.chat_tab_img {
     border-width: 5px;
     margin: 0 -5px;
     border-top-color: #fff;
-    -webkit-transform: translate3d(0, -0.5px, 0);
     transform: translate3d(0, -0.5px, 0)
 }
 

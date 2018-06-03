@@ -1256,7 +1256,6 @@
     margin: -4px;
     width: 38px;
     height: 38px;
-    -webkit-transform: scale(0.8);
     -o-transform: scale(0.8);
     transform: scale(0.8)
 }

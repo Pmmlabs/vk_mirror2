@@ -11,14 +11,27 @@
     var r = {};
     return e.m = t, e.c = r, e.d = function(t, r, o) {
         e.o(t, r) || Object.defineProperty(t, r, {
-            configurable: !1,
             enumerable: !0,
             get: o
         })
     }, e.r = function(t) {
-        Object.defineProperty(t, "__esModule", {
+        "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(t, Symbol.toStringTag, {
+            value: "Module"
+        }), Object.defineProperty(t, "__esModule", {
             value: !0
         })
+    }, e.t = function(t, r) {
+        if (1 & r && (t = e(t)), 8 & r) return t;
+        if (4 & r && "object" == typeof t && t && t.__esModule) return t;
+        var o = Object.create(null);
+        if (e.r(o), Object.defineProperty(o, "default", {
+                enumerable: !0,
+                value: t
+            }), 2 & r && "string" != typeof t)
+            for (var s in t) e.d(o, s, function(e) {
+                return t[e]
+            }.bind(null, s));
+        return o
     }, e.n = function(t) {
         var r = t && t.__esModule ? function() {
             return t["default"]
@@ -28,9 +41,9 @@
         return e.d(r, "a", r), r
     }, e.o = function(t, e) {
         return Object.prototype.hasOwnProperty.call(t, e)
-    }, e.p = "", e(e.s = 408)
+    }, e.p = "", e(e.s = 551)
 }({
-    254: function(t, e, r) {
+    194: function(t, e, r) {
         "use strict";
 
         function o(t, e) {
@@ -271,7 +284,8 @@
                     this.draggingCard && delete this.draggingCard;
                     var r = this.cardsElements.indexOf(t),
                         o = this.lastDestinationCardIndex;
-                    this.cardsElements[o], this.wrapperTransitions(!0, t), setStyle(t, {
+                    this.cardsElements[o];
+                    this.wrapperTransitions(!0, t), setStyle(t, {
                         transform: "translateX(" + (o - r) * (this.CARD_WIDTH + this.CARDS_MARGIN) + "px)"
                     }), removeClass(t, "pretty-card_dragging_yes"), setTimeout(function() {
                         removeClass(t, "pretty-card_ontop_yes");
@@ -438,7 +452,7 @@
                                 c = hasClass(domPN(p), "pretty-card__price-wrapper_hidden_yes") ? this.options.price_unshown : val(p).replace(/\D+/g, ""),
                                 h = geByClass1("pretty-card__button", n),
                                 _ = n.prettyCardId,
-                                g = {
+                                u = {
                                     id: _,
                                     title: val(geByClass1("pretty-card__title", n)),
                                     price: l,
@@ -447,11 +461,11 @@
                                     link: n.prettyCardLink,
                                     photo: n.prettyCardPhoto
                                 };
-                            e.push(_), t.push(g)
+                            e.push(_), t.push(u)
                         }
                     }
-                } catch (u) {
-                    o = !0, s = u
+                } catch (g) {
+                    o = !0, s = g
                 } finally {
                     try {
                         !r && a["return"] && a["return"]()
@@ -469,7 +483,7 @@
             stManager.done(jsc("web/pretty_cards.js"))
         } catch (s) {}
     },
-    408: function(t, e, r) {
-        t.exports = r(254)
+    551: function(t, e, r) {
+        t.exports = r(194)
     }
 });

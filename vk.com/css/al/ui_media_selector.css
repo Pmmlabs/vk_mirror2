@@ -53,7 +53,6 @@
 
 .media_selector .ms_item:hover:before {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -170,7 +169,6 @@
 .media_selector .ms_item_more:hover {
     text-decoration: none;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -206,7 +204,6 @@
 
 .ms_items_more_wrap.shown .ms_item_more {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -214,7 +211,6 @@
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 

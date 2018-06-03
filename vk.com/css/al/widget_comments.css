@@ -94,16 +94,12 @@
     display: inline-block;
     width: 34px;
     height: 34px;
-    -webkit-animation-name: round_spinner;
     -o-animation-name: round_spinner;
     animation-name: round_spinner;
-    -webkit-animation-duration: 700ms;
     -o-animation-duration: 700ms;
     animation-duration: 700ms;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner_big.png);
@@ -114,7 +110,6 @@
     right: 0;
     margin: -17px;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -303,7 +298,6 @@
 
 .wcomments_admin_icon:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -320,14 +314,12 @@
 .wcomments_admin_tabs.ui_tabs {
     padding-left: 5px;
     padding-right: 5px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     white-space: nowrap
 }
 
 .wcomments_admin_tabs.ui_tabs .wcomments_admin_tab_wrap {
-    -webkit-flex-grow: 1;
     -ms-flex-positive: 1;
     flex-grow: 1
 }
@@ -766,7 +758,6 @@
 .wall_module .post.wcomments_post:hover .ui_actions_menu_wrap {
     visibility: visible;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -881,7 +872,6 @@
 #page_wrap .wcomments_post_footer .like_cont {
     border-top: 0;
     padding: 0;
-    -webkit-flex-direction: row-reverse;
     -ms-flex-direction: row-reverse;
     flex-direction: row-reverse
 }
@@ -973,7 +963,6 @@
 
 #page_wrap .wcomments_post_footer .post_like_wrap:hover .post_like.my_like .post_like_icon {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

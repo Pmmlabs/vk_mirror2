@@ -970,7 +970,6 @@ a.groups_catalog_comm_title_link {
 .group_box_row .group_box_progress:hover {
     text-decoration: none;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -986,7 +985,6 @@ a.groups_catalog_comm_title_link {
     display: none;
     background: url(/images/c_upload.gif) no-repeat 0 0;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2072,13 +2070,11 @@ a.app_widget_matches_live_icon:active {
 }
 
 .app_widget_donation_content {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex
 }
 
 .app_widget_donation_text {
-    -webkit-flex-basis: 100%;
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
     word-wrap: break-word;
@@ -2160,7 +2156,6 @@ a.app_widget_matches_live_icon:active {
 
 .app_widget_donation_date {
     text-align: right;
-    -webkit-align-self: flex-end;
     -ms-flex-item-align: end;
     align-self: flex-end;
     white-space: nowrap;
@@ -2190,7 +2185,6 @@ a.app_widget_matches_live_icon:active {
 
 .group_help_hide:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -2373,41 +2367,10 @@ a.app_widget_matches_live_icon:active {
 .group_online_beacon_wrapper:after {
     content: '';
     background: #52b842;
-    -webkit-animation: beacon_wrapper_pulsate 2.5s ease-out;
     -o-animation: beacon_wrapper_pulsate 2.5s ease-out;
     animation: beacon_wrapper_pulsate 2.5s ease-out;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite
-}
-
-@-webkit-keyframes beacon_wrapper_pulsate {
-    0% {
-        -webkit-transform: scale(0);
-        transform: scale(0);
-        opacity: 0.45
-    }
-    70% {
-        -webkit-transform: scale(0.5);
-        transform: scale(0.5);
-        opacity: 0.35
-    }
-    90% {
-        -webkit-transform: scale(1);
-        transform: scale(1);
-        opacity: 0
-    }
-    91% {
-        opacity: 0
-    }
-    91%,
-    to {
-        -webkit-transform: scale(0);
-        transform: scale(0)
-    }
-    to {
-        opacity: 0.45
-    }
 }
 
 @-o-keyframes beacon_wrapper_pulsate {
@@ -2427,47 +2390,41 @@ a.app_widget_matches_live_icon:active {
         opacity: 0
     }
     91% {
+        -o-transform: scale(0);
+        transform: scale(0);
         opacity: 0
     }
-    91%,
     to {
         -o-transform: scale(0);
-        transform: scale(0)
-    }
-    to {
+        transform: scale(0);
         opacity: 0.45
     }
 }
 
 @keyframes beacon_wrapper_pulsate {
     0% {
-        -webkit-transform: scale(0);
         -o-transform: scale(0);
         transform: scale(0);
         opacity: 0.45
     }
     70% {
-        -webkit-transform: scale(0.5);
         -o-transform: scale(0.5);
         transform: scale(0.5);
         opacity: 0.35
     }
     90% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1);
         opacity: 0
     }
     91% {
+        -o-transform: scale(0);
+        transform: scale(0);
         opacity: 0
     }
-    91%,
     to {
-        -webkit-transform: scale(0);
         -o-transform: scale(0);
-        transform: scale(0)
-    }
-    to {
+        transform: scale(0);
         opacity: 0.45
     }
 }
@@ -2507,29 +2464,9 @@ a.app_widget_matches_live_icon:active {
     width: 7px;
     height: 11px;
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%227%22%20height%3D%2211%22%20viewBox%3D%220%200%207%2011%22%3E%3Cg%20fill%3D%22%234597F5%22%3E%3Cpath%20opacity%3D%22.5%22%20d%3D%22M.4%203.5c.1.1.2.3.4.5.2.5.4%201%20.4%201.5s-.1%201-.4%201.4c-.2.3-.3.5-.4.6-.4.4-.4.9%200%201.3s.9.4%201.3%200c.2-.2.4-.5.7-.9.4-.8.6-1.5.6-2.4s-.2-1.6-.6-2.3c-.3-.4-.5-.8-.7-.9-.4-.4-.9-.4-1.3%200s-.3.9%200%201.2z%22%2F%3E%3Cpath%20opacity%3D%22.25%22%20d%3D%22M3.9%201.5c.1.2.3.5.6%201%20.4.8.7%201.8.7%203%200%201.1-.3%202.1-.7%202.9-.3.6-.5.9-.6%201.1-.3.4-.3.9%200%201.3s.9.4%201.3%200c.3-.3.6-.8%201-1.5.4-1.1.8-2.3.8-3.8s-.4-2.7-.9-3.8c-.4-.7-.7-1.2-1-1.4-.3-.3-.9-.3-1.3%200s-.3.9.1%201.2z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 0 0;
-    -webkit-animation: group_subscribe_channel_animation 5s linear infinite;
     -o-animation: group_subscribe_channel_animation 5s linear infinite;
     animation: group_subscribe_channel_animation 5s linear infinite;
     content: ''
-}
-
-@-webkit-keyframes group_subscribe_channel_animation {
-    0% {
-        -webkit-transform: translate(-2px);
-        transform: translate(-2px);
-        opacity: 0
-    }
-    20% {
-        -webkit-transform: translate(0);
-        transform: translate(0)
-    }
-    20%,
-    90% {
-        opacity: 1
-    }
-    to {
-        opacity: 0
-    }
 }
 
 @-o-keyframes group_subscribe_channel_animation {
@@ -2540,9 +2477,9 @@ a.app_widget_matches_live_icon:active {
     }
     20% {
         -o-transform: translate(0);
-        transform: translate(0)
+        transform: translate(0);
+        opacity: 1
     }
-    20%,
     90% {
         opacity: 1
     }
@@ -2553,17 +2490,15 @@ a.app_widget_matches_live_icon:active {
 
 @keyframes group_subscribe_channel_animation {
     0% {
-        -webkit-transform: translate(-2px);
         -o-transform: translate(-2px);
         transform: translate(-2px);
         opacity: 0
     }
     20% {
-        -webkit-transform: translate(0);
         -o-transform: translate(0);
-        transform: translate(0)
+        transform: translate(0);
+        opacity: 1
     }
-    20%,
     90% {
         opacity: 1
     }

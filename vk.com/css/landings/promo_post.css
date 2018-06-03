@@ -108,10 +108,9 @@
 }
 
 .landing_promo_post_screens {
-    transition: -webkit-transform 700ms ease-in-out;
     -o-transition: transform 700ms ease-in-out, -o-transform 700ms ease-in-out;
     transition: transform 700ms ease-in-out;
-    transition: transform 700ms ease-in-out, -webkit-transform 700ms ease-in-out, -o-transform 700ms ease-in-out
+    transition: transform 700ms ease-in-out, -o-transform 700ms ease-in-out
 }
 
 .landing_promo_post_screens.no_anim {
@@ -451,10 +450,9 @@
 }
 
 .desktop_media_screens_helper {
-    transition: -webkit-transform 500ms ease-in-out;
     -o-transition: transform 500ms ease-in-out, -o-transform 500ms ease-in-out;
     transition: transform 500ms ease-in-out;
-    transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out, -o-transform 500ms ease-in-out
+    transition: transform 500ms ease-in-out, -o-transform 500ms ease-in-out
 }
 
 .desktop_media_screen {
@@ -589,10 +587,9 @@
 }
 
 .iphone_media_screens_helper {
-    transition: -webkit-transform 500ms ease-in-out;
     -o-transition: transform 500ms ease-in-out, -o-transform 500ms ease-in-out;
     transition: transform 500ms ease-in-out;
-    transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out, -o-transform 500ms ease-in-out
+    transition: transform 500ms ease-in-out, -o-transform 500ms ease-in-out
 }
 
 .iphone_media_screen {
@@ -795,7 +792,6 @@
 .landing_promo_post_feed_last {
     opacity: 0;
     position: absolute;
-    -webkit-transform: translateY(150px);
     -o-transform: translateY(150px);
     transform: translateY(150px);
     -o-transition: all 700ms ease-in-out;
@@ -806,14 +802,12 @@
 .landing_promo_post_feed_featured.shown,
 .landing_promo_post_feed_first.shown,
 .landing_promo_post_feed_last.shown {
-    -webkit-transform: translateY(0px);
     -o-transform: translateY(0px);
     transform: translateY(0px);
     opacity: 1
 }
 
 .landing_promo_post_feed_featured {
-    -webkit-transform: translateX(-1060px);
     -o-transform: translateX(-1060px);
     transform: translateX(-1060px)
 }
@@ -868,7 +862,6 @@
     right: 212px;
     display: none;
     z-index: 2;
-    -webkit-transform: translateY(108px);
     -o-transform: translateY(108px);
     transform: translateY(108px)
 }
@@ -1063,37 +1056,31 @@
 }
 
 .screen7_animate .create_group_cursor {
-    -webkit-animation: create_community_anim 18s infinite ease-in-out 0.2s;
     -o-animation: create_community_anim 18s infinite ease-in-out 0.2s;
     animation: create_community_anim 18s infinite ease-in-out 0.2s
 }
 
 .screen7_animate .landing_promo_post_tt1 {
-    -webkit-animation: create_community_anim1 18s infinite linear 50ms;
     -o-animation: create_community_anim1 18s infinite linear 50ms;
     animation: create_community_anim1 18s infinite linear 50ms
 }
 
 .screen7_animate .landing_promo_post_tt2 {
-    -webkit-animation: create_community_anim2 18s infinite linear 50ms;
     -o-animation: create_community_anim2 18s infinite linear 50ms;
     animation: create_community_anim2 18s infinite linear 50ms
 }
 
 .screen7_animate .landing_promo_post_tt3 {
-    -webkit-animation: create_community_anim3 18s infinite linear 50ms;
     -o-animation: create_community_anim3 18s infinite linear 50ms;
     animation: create_community_anim3 18s infinite linear 50ms
 }
 
 .screen7_animate .landing_promo_post_tt4 {
-    -webkit-animation: create_community_anim4 18s infinite linear 50ms;
     -o-animation: create_community_anim4 18s infinite linear 50ms;
     animation: create_community_anim4 18s infinite linear 50ms
 }
 
 .screen7_animate .landing_promo_post_tt5 {
-    -webkit-animation: create_community_anim5 18s infinite linear 50ms;
     -o-animation: create_community_anim5 18s infinite linear 50ms;
     animation: create_community_anim5 18s infinite linear 50ms
 }
@@ -1127,36 +1114,6 @@
 .landing_promo_post_create_community_step.step5 {
     top: 330px;
     left: 475px
-}
-
-@-webkit-keyframes create_community_anim {
-    0%,
-    7.5%,
-    92.5%,
-    to {
-        -webkit-transform: translate(0px);
-        transform: translate(0px)
-    }
-    12.5%,
-    27.5% {
-        -webkit-transform: translate(-25px, 136px);
-        transform: translate(-25px, 136px)
-    }
-    32.5%,
-    47.5% {
-        -webkit-transform: translate(-80px, 344px);
-        transform: translate(-80px, 344px)
-    }
-    52.5%,
-    67.5% {
-        -webkit-transform: translate(307px, 61px);
-        transform: translate(307px, 61px)
-    }
-    72.5%,
-    87.5% {
-        -webkit-transform: translate(307px, 329px);
-        transform: translate(307px, 329px)
-    }
 }
 
 @-o-keyframes create_community_anim {
@@ -1194,46 +1151,28 @@
     7.5%,
     92.5%,
     to {
-        -webkit-transform: translate(0px);
         -o-transform: translate(0px);
         transform: translate(0px)
     }
     12.5%,
     27.5% {
-        -webkit-transform: translate(-25px, 136px);
         -o-transform: translate(-25px, 136px);
         transform: translate(-25px, 136px)
     }
     32.5%,
     47.5% {
-        -webkit-transform: translate(-80px, 344px);
         -o-transform: translate(-80px, 344px);
         transform: translate(-80px, 344px)
     }
     52.5%,
     67.5% {
-        -webkit-transform: translate(307px, 61px);
         -o-transform: translate(307px, 61px);
         transform: translate(307px, 61px)
     }
     72.5%,
     87.5% {
-        -webkit-transform: translate(307px, 329px);
         -o-transform: translate(307px, 329px);
         transform: translate(307px, 329px)
-    }
-}
-
-@-webkit-keyframes create_community_anim1 {
-    0%,
-    7.4%,
-    92.6%,
-    to {
-        opacity: 1
-    }
-    9%,
-    90% {
-        opacity: 0
     }
 }
 
@@ -1263,19 +1202,6 @@
     }
 }
 
-@-webkit-keyframes create_community_anim2 {
-    12.5%,
-    27.5% {
-        opacity: 1
-    }
-    0%,
-    11%,
-    29%,
-    to {
-        opacity: 0
-    }
-}
-
 @-o-keyframes create_community_anim2 {
     12.5%,
     27.5% {
@@ -1297,19 +1223,6 @@
     0%,
     11%,
     29%,
-    to {
-        opacity: 0
-    }
-}
-
-@-webkit-keyframes create_community_anim3 {
-    32.5%,
-    47.5% {
-        opacity: 1
-    }
-    0%,
-    30%,
-    49%,
     to {
         opacity: 0
     }
@@ -1341,19 +1254,6 @@
     }
 }
 
-@-webkit-keyframes create_community_anim4 {
-    52.5%,
-    67.5% {
-        opacity: 1
-    }
-    0%,
-    50%,
-    69%,
-    to {
-        opacity: 0
-    }
-}
-
 @-o-keyframes create_community_anim4 {
     52.5%,
     67.5% {
@@ -1375,19 +1275,6 @@
     0%,
     50%,
     69%,
-    to {
-        opacity: 0
-    }
-}
-
-@-webkit-keyframes create_community_anim5 {
-    72.5%,
-    87.5% {
-        opacity: 1
-    }
-    0%,
-    70%,
-    89%,
     to {
         opacity: 0
     }
@@ -1644,16 +1531,13 @@
 .settings_screen_anim_step3 .ad_settings_cursor,
 .settings_screen_anim_step4 .ad_settings_cursor {
     opacity: 1;
-    -webkit-transform: translate(0px);
     -o-transform: translate(0px);
     transform: translate(0px)
 }
 
 .settings_screen_anim_step1 .ad_settings_cursor {
-    -webkit-animation: ad_settings_cursor_anim_step1 10s ease-in-out 0.2s;
     -o-animation: ad_settings_cursor_anim_step1 10s ease-in-out 0.2s;
     animation: ad_settings_cursor_anim_step1 10s ease-in-out 0.2s;
-    -webkit-animation-fill-mode: forwards;
     -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
     top: 214px;
@@ -1661,10 +1545,8 @@
 }
 
 .settings_screen_anim_step1 .landing_promo_post_settings_dd_action {
-    -webkit-animation: ad_settings_cursor_anim_popup_step2_first_part 2.1s, ad_settings_cursor_anim_popup_step2 10s linear 2.1s;
     -o-animation: ad_settings_cursor_anim_popup_step2_first_part 2.1s, ad_settings_cursor_anim_popup_step2 10s linear 2.1s;
     animation: ad_settings_cursor_anim_popup_step2_first_part 2.1s, ad_settings_cursor_anim_popup_step2 10s linear 2.1s;
-    -webkit-animation-fill-mode: forwards;
     -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
     display: block
@@ -1679,19 +1561,15 @@
 }
 
 .settings_screen_anim_step1 .landing_promo_post_settings_tt4 {
-    -webkit-animation: ad_settings_cursor_anim_tt_step2 10s ease-in-out 0.2s;
     -o-animation: ad_settings_cursor_anim_tt_step2 10s ease-in-out 0.2s;
     animation: ad_settings_cursor_anim_tt_step2 10s ease-in-out 0.2s;
-    -webkit-animation-fill-mode: forwards;
     -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards
 }
 
 .settings_screen_anim_step2 .ad_settings_cursor {
-    -webkit-animation: ad_settings_cursor_anim_step2 10s ease-in-out 0.2s;
     -o-animation: ad_settings_cursor_anim_step2 10s ease-in-out 0.2s;
     animation: ad_settings_cursor_anim_step2 10s ease-in-out 0.2s;
-    -webkit-animation-fill-mode: forwards;
     -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
     top: 282px;
@@ -1699,29 +1577,23 @@
 }
 
 .settings_screen_anim_step2 .landing_promo_post_settings_tt1 {
-    -webkit-animation: ad_settings_cursor_anim_tt_step2 10s ease-in-out 0.2s;
     -o-animation: ad_settings_cursor_anim_tt_step2 10s ease-in-out 0.2s;
     animation: ad_settings_cursor_anim_tt_step2 10s ease-in-out 0.2s;
-    -webkit-animation-fill-mode: forwards;
     -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards
 }
 
 .settings_screen_anim_step2 .landing_promo_post_settings_popup {
-    -webkit-animation: ad_settings_cursor_anim_popup_step2_first_part 2.1s, ad_settings_cursor_anim_popup_step2 10s linear 2.1s;
     -o-animation: ad_settings_cursor_anim_popup_step2_first_part 2.1s, ad_settings_cursor_anim_popup_step2 10s linear 2.1s;
     animation: ad_settings_cursor_anim_popup_step2_first_part 2.1s, ad_settings_cursor_anim_popup_step2 10s linear 2.1s;
-    -webkit-animation-fill-mode: forwards;
     -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
     display: block
 }
 
 .settings_screen_anim_step3 .ad_settings_cursor {
-    -webkit-animation: ad_settings_cursor_anim_step3 10s ease-in-out 0.2s;
     -o-animation: ad_settings_cursor_anim_step3 10s ease-in-out 0.2s;
     animation: ad_settings_cursor_anim_step3 10s ease-in-out 0.2s;
-    -webkit-animation-fill-mode: forwards;
     -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
     top: 257px;
@@ -1729,29 +1601,23 @@
 }
 
 .settings_screen_anim_step3 .landing_promo_post_settings_tt2 {
-    -webkit-animation: ad_settings_cursor_anim_tt_step2 10s ease-in-out 0.2s;
     -o-animation: ad_settings_cursor_anim_tt_step2 10s ease-in-out 0.2s;
     animation: ad_settings_cursor_anim_tt_step2 10s ease-in-out 0.2s;
-    -webkit-animation-fill-mode: forwards;
     -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards
 }
 
 .settings_screen_anim_step3 .landing_promo_post_settings_popup2 {
-    -webkit-animation: ad_settings_cursor_anim_popup_step2_first_part 2.1s, ad_settings_cursor_anim_popup_step2 10s linear 2.1s;
     -o-animation: ad_settings_cursor_anim_popup_step2_first_part 2.1s, ad_settings_cursor_anim_popup_step2 10s linear 2.1s;
     animation: ad_settings_cursor_anim_popup_step2_first_part 2.1s, ad_settings_cursor_anim_popup_step2 10s linear 2.1s;
-    -webkit-animation-fill-mode: forwards;
     -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
     display: block
 }
 
 .settings_screen_anim_step4 .ad_settings_cursor {
-    -webkit-animation: ad_settings_cursor_anim_step4 10s ease-in-out 0.2s;
     -o-animation: ad_settings_cursor_anim_step4 10s ease-in-out 0.2s;
     animation: ad_settings_cursor_anim_step4 10s ease-in-out 0.2s;
-    -webkit-animation-fill-mode: forwards;
     -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
     top: 256px;
@@ -1759,79 +1625,18 @@
 }
 
 .settings_screen_anim_step4 .landing_promo_post_settings_tt3 {
-    -webkit-animation: ad_settings_cursor_anim_tt_step4 10s ease-in-out 0.2s;
     -o-animation: ad_settings_cursor_anim_tt_step4 10s ease-in-out 0.2s;
     animation: ad_settings_cursor_anim_tt_step4 10s ease-in-out 0.2s;
-    -webkit-animation-fill-mode: forwards;
     -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards
 }
 
 .settings_screen_anim_step4 .landing_promo_post_settings_popup3 {
-    -webkit-animation: ad_settings_cursor_anim_popup_step2_first_part 2.1s, ad_settings_cursor_anim_popup_step2 10s linear 2.1s;
     -o-animation: ad_settings_cursor_anim_popup_step2_first_part 2.1s, ad_settings_cursor_anim_popup_step2 10s linear 2.1s;
     animation: ad_settings_cursor_anim_popup_step2_first_part 2.1s, ad_settings_cursor_anim_popup_step2 10s linear 2.1s;
-    -webkit-animation-fill-mode: forwards;
     -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
     display: block
-}
-
-@-webkit-keyframes ad_settings_cursor_anim_step1 {
-    0% {
-        top: 214px;
-        right: 67px
-    }
-    5%,
-    30% {
-        top: 254px;
-        right: 594px
-    }
-    15% {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
-    17% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1)
-    }
-    19% {
-        -webkit-transform: scale(0.9);
-        transform: scale(0.9)
-    }
-    21% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1)
-    }
-    23% {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
-    38%,
-    to {
-        top: 282px;
-        right: 502px
-    }
-    40% {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
-    42% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1)
-    }
-    44% {
-        -webkit-transform: scale(0.9);
-        transform: scale(0.9)
-    }
-    46% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1)
-    }
-    48% {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
 }
 
 @-o-keyframes ad_settings_cursor_anim_step1 {
@@ -1902,27 +1707,22 @@
         right: 594px
     }
     15% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1)
     }
     17% {
-        -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
         transform: scale(1.1)
     }
     19% {
-        -webkit-transform: scale(0.9);
         -o-transform: scale(0.9);
         transform: scale(0.9)
     }
     21% {
-        -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
         transform: scale(1.1)
     }
     23% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1)
     }
@@ -1932,85 +1732,23 @@
         right: 502px
     }
     40% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1)
     }
     42% {
-        -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
         transform: scale(1.1)
     }
     44% {
-        -webkit-transform: scale(0.9);
         -o-transform: scale(0.9);
         transform: scale(0.9)
     }
     46% {
-        -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
         transform: scale(1.1)
     }
     48% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1)
-    }
-}
-
-@-webkit-keyframes ad_settings_cursor_anim_step2 {
-    0% {
-        top: 282px;
-        right: 502px
-    }
-    5%,
-    30% {
-        top: 258px;
-        right: 528px
-    }
-    15% {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
-    17% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1)
-    }
-    19% {
-        -webkit-transform: scale(0.9);
-        transform: scale(0.9)
-    }
-    21% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1)
-    }
-    23% {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
-    38%,
-    to {
-        top: 257px;
-        right: 320px
-    }
-    40% {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
-    42% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1)
-    }
-    44% {
-        -webkit-transform: scale(0.9);
-        transform: scale(0.9)
-    }
-    46% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1)
-    }
-    48% {
-        -webkit-transform: scale(1);
         transform: scale(1)
     }
 }
@@ -2083,27 +1821,22 @@
         right: 528px
     }
     15% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1)
     }
     17% {
-        -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
         transform: scale(1.1)
     }
     19% {
-        -webkit-transform: scale(0.9);
         -o-transform: scale(0.9);
         transform: scale(0.9)
     }
     21% {
-        -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
         transform: scale(1.1)
     }
     23% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1)
     }
@@ -2113,44 +1846,24 @@
         right: 320px
     }
     40% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1)
     }
     42% {
-        -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
         transform: scale(1.1)
     }
     44% {
-        -webkit-transform: scale(0.9);
         -o-transform: scale(0.9);
         transform: scale(0.9)
     }
     46% {
-        -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
         transform: scale(1.1)
     }
     48% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1)
-    }
-}
-
-@-webkit-keyframes ad_settings_cursor_anim_tt_step2 {
-    0%,
-    21% {
-        visibility: hidden;
-        -webkit-transform: translateY(-15px);
-        transform: translateY(-15px)
-    }
-    23%,
-    to {
-        visibility: visible;
-        -webkit-transform: translateY(0px);
-        transform: translateY(0px)
     }
 }
 
@@ -2173,23 +1886,14 @@
     0%,
     21% {
         visibility: hidden;
-        -webkit-transform: translateY(-15px);
         -o-transform: translateY(-15px);
         transform: translateY(-15px)
     }
     23%,
     to {
         visibility: visible;
-        -webkit-transform: translateY(0px);
         -o-transform: translateY(0px);
         transform: translateY(0px)
-    }
-}
-
-@-webkit-keyframes ad_settings_cursor_anim_popup_step2_first_part {
-    0%,
-    to {
-        opacity: 0
     }
 }
 
@@ -2204,30 +1908,6 @@
     0%,
     to {
         opacity: 0
-    }
-}
-
-@-webkit-keyframes ad_settings_cursor_anim_popup_step2 {
-    0% {
-        opacity: 1;
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
-    2% {
-        -webkit-transform: scale(1.05);
-        transform: scale(1.05)
-    }
-    4% {
-        -webkit-transform: scale(0.95);
-        transform: scale(0.95)
-    }
-    6% {
-        -webkit-transform: scale(1.05);
-        transform: scale(1.05)
-    }
-    8% {
-        -webkit-transform: scale(1);
-        transform: scale(1)
     }
 }
 
@@ -2258,85 +1938,23 @@
 @keyframes ad_settings_cursor_anim_popup_step2 {
     0% {
         opacity: 1;
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1)
     }
     2% {
-        -webkit-transform: scale(1.05);
         -o-transform: scale(1.05);
         transform: scale(1.05)
     }
     4% {
-        -webkit-transform: scale(0.95);
         -o-transform: scale(0.95);
         transform: scale(0.95)
     }
     6% {
-        -webkit-transform: scale(1.05);
         -o-transform: scale(1.05);
         transform: scale(1.05)
     }
     8% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1)
-    }
-}
-
-@-webkit-keyframes ad_settings_cursor_anim_step3 {
-    0% {
-        top: 257px;
-        right: 320px
-    }
-    5%,
-    30% {
-        top: 256px;
-        right: 414px
-    }
-    15% {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
-    17% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1)
-    }
-    19% {
-        -webkit-transform: scale(0.9);
-        transform: scale(0.9)
-    }
-    21% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1)
-    }
-    23% {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
-    38%,
-    to {
-        top: 256px;
-        right: 275px
-    }
-    40% {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
-    42% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1)
-    }
-    44% {
-        -webkit-transform: scale(0.9);
-        transform: scale(0.9)
-    }
-    46% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1)
-    }
-    48% {
-        -webkit-transform: scale(1);
         transform: scale(1)
     }
 }
@@ -2409,27 +2027,22 @@
         right: 414px
     }
     15% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1)
     }
     17% {
-        -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
         transform: scale(1.1)
     }
     19% {
-        -webkit-transform: scale(0.9);
         -o-transform: scale(0.9);
         transform: scale(0.9)
     }
     21% {
-        -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
         transform: scale(1.1)
     }
     23% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1)
     }
@@ -2439,85 +2052,23 @@
         right: 275px
     }
     40% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1)
     }
     42% {
-        -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
         transform: scale(1.1)
     }
     44% {
-        -webkit-transform: scale(0.9);
         -o-transform: scale(0.9);
         transform: scale(0.9)
     }
     46% {
-        -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
         transform: scale(1.1)
     }
     48% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
-        transform: scale(1)
-    }
-}
-
-@-webkit-keyframes ad_settings_cursor_anim_step4 {
-    0% {
-        top: 256px;
-        right: 275px
-    }
-    5%,
-    30% {
-        top: 91px;
-        right: 200px
-    }
-    15% {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
-    17% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1)
-    }
-    19% {
-        -webkit-transform: scale(0.9);
-        transform: scale(0.9)
-    }
-    21% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1)
-    }
-    23% {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
-    38%,
-    to {
-        top: 214px;
-        right: 67px
-    }
-    40% {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
-    42% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1)
-    }
-    44% {
-        -webkit-transform: scale(0.9);
-        transform: scale(0.9)
-    }
-    46% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1)
-    }
-    48% {
-        -webkit-transform: scale(1);
         transform: scale(1)
     }
 }
@@ -2590,27 +2141,22 @@
         right: 200px
     }
     15% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1)
     }
     17% {
-        -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
         transform: scale(1.1)
     }
     19% {
-        -webkit-transform: scale(0.9);
         -o-transform: scale(0.9);
         transform: scale(0.9)
     }
     21% {
-        -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
         transform: scale(1.1)
     }
     23% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1)
     }
@@ -2620,44 +2166,24 @@
         right: 67px
     }
     40% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1)
     }
     42% {
-        -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
         transform: scale(1.1)
     }
     44% {
-        -webkit-transform: scale(0.9);
         -o-transform: scale(0.9);
         transform: scale(0.9)
     }
     46% {
-        -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
         transform: scale(1.1)
     }
     48% {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1)
-    }
-}
-
-@-webkit-keyframes ad_settings_cursor_anim_tt_step4 {
-    0%,
-    21% {
-        visibility: hidden;
-        -webkit-transform: translateX(-15px);
-        transform: translateX(-15px)
-    }
-    23%,
-    to {
-        visibility: visible;
-        -webkit-transform: translateX(0px);
-        transform: translateX(0px)
     }
 }
 
@@ -2680,14 +2206,12 @@
     0%,
     21% {
         visibility: hidden;
-        -webkit-transform: translateX(-15px);
         -o-transform: translateX(-15px);
         transform: translateX(-15px)
     }
     23%,
     to {
         visibility: visible;
-        -webkit-transform: translateX(0px);
         -o-transform: translateX(0px);
         transform: translateX(0px)
     }
@@ -2807,7 +2331,6 @@
     background-size: cover;
     -o-transition: all 400ms ease;
     transition: all 400ms ease;
-    -webkit-transform: scale(0.95);
     -o-transform: scale(0.95);
     transform: scale(0.95);
     visibility: hidden
@@ -2815,7 +2338,6 @@
 
 .landing_promo_post_story_item.active {
     opacity: 1;
-    -webkit-transform: scale(1);
     -o-transform: scale(1);
     transform: scale(1);
     visibility: visible

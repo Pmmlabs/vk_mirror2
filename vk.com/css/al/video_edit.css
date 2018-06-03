@@ -492,7 +492,6 @@
     background-image: url(/images/line_progress.png);
     background-position-x: 0;
     background-position-y: 0;
-    -webkit-animation: videoUploadProgressAnimation 1s linear infinite;
     -o-animation: videoUploadProgressAnimation 1s linear infinite;
     animation: videoUploadProgressAnimation 1s linear infinite
 }
@@ -553,15 +552,6 @@
 
 .video_upload_progress.video_upload_progress_processing .video_upload_progress_text {
     color: #938dbd
-}
-
-@-webkit-keyframes videoUploadProgressAnimation {
-    0% {
-        background-position-x: 0
-    }
-    to {
-        background-position-x: 40px
-    }
 }
 
 @-o-keyframes videoUploadProgressAnimation {
@@ -1248,7 +1238,6 @@
     margin: auto;
     margin-left: 50%;
     margin-top: 42px;
-    -webkit-transform: translateX(-50%);
     -o-transform: translateX(-50%);
     transform: translateX(-50%)
 }

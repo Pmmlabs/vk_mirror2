@@ -4740,7 +4740,6 @@ input.wide_button {
 }
 
 .mi_chronicle_blur {
-    -webkit-filter: blur(10px);
     -moz-filter: blur(10px);
     -o-filter: blur(10px);
     -ms-filter: blur(10px);
@@ -6759,19 +6758,6 @@ input.wide_button {
     -webkit-animation-timing-function: ease-in
 }
 
-@-webkit-keyframes fall-down {
-    0% {
-        -webkit-transform: translateY(-70%);
-        -webkit-transform: translate3d(0, -70%, 0);
-        opacity: 0.2
-    }
-    to {
-        -webkit-transform: translate(0);
-        -webkit-transform: translateZ(0);
-        opacity: 1
-    }
-}
-
 .answers_item {
     min-height: 40px
 }
@@ -7209,7 +7195,6 @@ input.wide_button {
 
 .away_auth_page {
     margin-top: 20px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     margin-left: auto;
@@ -9558,25 +9543,20 @@ only screen and (min-device-pixel-ratio: 2) {
 
 .zpv_img,
 .zpv_siblings {
-    -webkit-backface-visibility: hidden;
     backface-visibility: hidden
 }
 
 #zpv_left {
     -o-transform: translate(-105%);
-    -webkit-transform: translate(-105%);
     transform: translate(-105%);
     -o-transform: translate3d(-105%, 0, 0);
-    -webkit-transform: translate3d(-105%, 0, 0);
     transform: translate3d(-105%, 0, 0)
 }
 
 #zpv_right {
     -o-transform: translate(105%);
-    -webkit-transform: translate(105%);
     transform: translate(105%);
     -o-transform: translate3d(105%, 0, 0);
-    -webkit-transform: translate3d(105%, 0, 0);
     transform: translate3d(105%, 0, 0)
 }
 
@@ -10450,7 +10430,6 @@ img[src^="/images/mobile/places/"] {
         display: none
     }
     .vk_flex_yes .Bell {
-        display: -webkit-flex!important;
         display: -ms-flexbox!important;
         display: flex!important
     }
@@ -10657,11 +10636,9 @@ img[src^="/images/mobile/places/"] {
 }
 
 .apps_wallPostBoxHeader {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     padding: 10px 12px;
-    -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
     background: #ebedf0
@@ -10673,7 +10650,6 @@ img[src^="/images/mobile/places/"] {
     width: 40px;
     height: 40px;
     margin-right: 8px;
-    -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0;
     border-radius: 50%
@@ -10682,7 +10658,6 @@ img[src^="/images/mobile/places/"] {
 .apps_wallPostBoxHeader__text {
     float: left;
     width: 75%;
-    -webkit-flex-basis: 100%;
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
     margin-top: 5px;

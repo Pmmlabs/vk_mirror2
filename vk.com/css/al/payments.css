@@ -931,7 +931,6 @@
 
 .payments_box_close_lnk:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -953,16 +952,12 @@
     display: inline-block;
     width: 34px;
     height: 34px;
-    -webkit-animation-name: round_spinner;
     -o-animation-name: round_spinner;
     animation-name: round_spinner;
-    -webkit-animation-duration: 700ms;
     -o-animation-duration: 700ms;
     animation-duration: 700ms;
-    -webkit-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner_big.png)
@@ -1039,7 +1034,6 @@
 
 .payments_getvotes_method_opt.payments_getvotes_active_row .pr {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1311,7 +1305,6 @@ h2.payments_getvotes_title {
 
 .payments_getvotes_ps_row.payments_getvotes_active_row .pr {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -1686,7 +1679,6 @@ h2.payments_getvotes_title {
 
 .payments_instant_progress_wrap.loading .pr {
     opacity: 1;
-    -webkit-filter: none;
     filter: none;
     display: block
 }
@@ -1815,7 +1807,6 @@ h2.payments_getvotes_title {
 
 .payments_box_wide .payments_box_menu .payments_progress .pr {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

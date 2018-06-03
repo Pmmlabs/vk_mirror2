@@ -72,7 +72,6 @@
 .ads_case_header__info {
     padding-top: 22px;
     padding-bottom: 31px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     border-bottom: 1px solid #e7e8ec
@@ -245,7 +244,6 @@
 }
 
 .ads_case_counters {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     margin-top: 18px
@@ -304,16 +302,12 @@
 .ads_case_image_text {
     padding: 30px;
     min-height: 493px;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
-    -webkit-align-items: left;
     -ms-flex-align: left;
     align-items: left;
     background: 50% no-repeat;
@@ -321,7 +315,6 @@
 }
 
 .ads_case_image_text.align_right {
-    -webkit-align-items: flex-end;
     -ms-flex-align: end;
     align-items: flex-end
 }
@@ -437,17 +430,6 @@
     }
 }
 
-@-webkit-keyframes ads-case-show-text {
-    0% {
-        -webkit-transform: translateX(30px);
-        transform: translateX(30px)
-    }
-    to {
-        -webkit-transform: translateX(0px);
-        transform: translateX(0px)
-    }
-}
-
 @-o-keyframes ads-case-show-text {
     0% {
         -o-transform: translateX(30px);
@@ -461,25 +443,12 @@
 
 @keyframes ads-case-show-text {
     0% {
-        -webkit-transform: translateX(30px);
         -o-transform: translateX(30px);
         transform: translateX(30px)
     }
     to {
-        -webkit-transform: translateX(0px);
         -o-transform: translateX(0px);
         transform: translateX(0px)
-    }
-}
-
-@-webkit-keyframes ads-case-hide-text {
-    0% {
-        -webkit-transform: translateX(0px);
-        transform: translateX(0px)
-    }
-    to {
-        -webkit-transform: translateX(-40px);
-        transform: translateX(-40px)
     }
 }
 
@@ -496,25 +465,12 @@
 
 @keyframes ads-case-hide-text {
     0% {
-        -webkit-transform: translateX(0px);
         -o-transform: translateX(0px);
         transform: translateX(0px)
     }
     to {
-        -webkit-transform: translateX(-40px);
         -o-transform: translateX(-40px);
         transform: translateX(-40px)
-    }
-}
-
-@-webkit-keyframes ads-case-show-image {
-    0% {
-        -webkit-transform: translateY(40px);
-        transform: translateY(40px)
-    }
-    to {
-        -webkit-transform: translateY(0px);
-        transform: translateY(0px)
     }
 }
 
@@ -531,12 +487,10 @@
 
 @keyframes ads-case-show-image {
     0% {
-        -webkit-transform: translateY(40px);
         -o-transform: translateY(40px);
         transform: translateY(40px)
     }
     to {
-        -webkit-transform: translateY(0px);
         -o-transform: translateY(0px);
         transform: translateY(0px)
     }
@@ -556,10 +510,8 @@
 }
 
 .ads_case_block_tabs .ui_tabs {
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
     border-bottom: 1px solid #cfd0d1
@@ -628,7 +580,6 @@
 
 .ads_case_block_tabs.no-animation .ads_case_tab_content__image,
 .ads_case_block_tabs.no-animation .ads_case_tab_content__text {
-    -webkit-animation-duration: 0s!important;
     -o-animation-duration: 0s!important;
     animation-duration: 0s!important
 }
@@ -640,7 +591,6 @@
     opacity: 0;
     -o-transition: opacity 0.3s;
     transition: opacity 0.3s;
-    -webkit-animation: ads-case-hide-text 0.3s ease-in;
     -o-animation: ads-case-hide-text 0.3s ease-in;
     animation: ads-case-hide-text 0.3s ease-in;
     padding-bottom: 60px
@@ -648,7 +598,6 @@
 
 .ads_case_tab_content.active .ads_case_tab_content__text {
     opacity: 1;
-    -webkit-animation: ads-case-show-text 0.3s ease-out;
     -o-animation: ads-case-show-text 0.3s ease-out;
     animation: ads-case-show-text 0.3s ease-out;
     pointer-events: all
@@ -666,7 +615,6 @@
 
 .ads_case_tab_content.active .ads_case_tab_content__image {
     opacity: 1;
-    -webkit-animation: ads-case-show-image 0.3s ease-in;
     -o-animation: ads-case-show-image 0.3s ease-in;
     animation: ads-case-show-image 0.3s ease-in;
     pointer-events: all

@@ -60,13 +60,10 @@
     color: #fff;
     margin: 0 auto 20px;
     position: relative;
-    transition: -webkit-transform 1s;
     -o-transition: transform 1s, -o-transform 1s;
     transition: transform 1s;
-    transition: transform 1s, -webkit-transform 1s, -o-transform 1s;
-    -webkit-transform-style: preserve-3d;
+    transition: transform 1s, -o-transform 1s;
     transform-style: preserve-3d;
-    -webkit-backface-visibility: hidden;
     backface-visibility: hidden
 }
 
@@ -83,7 +80,6 @@
     background: linear-gradient(-180deg, #4f5d6b, #465361);
     border-radius: 5px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .35);
-    -webkit-backface-visibility: hidden;
     backface-visibility: hidden
 }
 
@@ -98,15 +94,12 @@
     pointer-events: none;
     -o-transition: opacity .3s ease .2s;
     transition: opacity .3s ease .2s;
-    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    -webkit-transform: translateZ(0) rotate(-34deg);
     transform: translateZ(0) rotate(-34deg)
 }
 
 #ads_bonus .adv_promocode_coupon__side--back {
     z-index: 4;
-    -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg)
 }
 
@@ -150,7 +143,6 @@
 }
 
 #ads_bonus .adv_promocode_coupon--flipped {
-    -webkit-transform: rotateY(-180deg);
     transform: rotateY(-180deg)
 }
 
@@ -240,7 +232,6 @@
 #ads_bonus .adv_promocode_section--coupon {
     background: #f9fafc url(/images/bonus/bg-top.jpg) no-repeat 50% 102%;
     margin-bottom: 20px;
-    -webkit-perspective: 1000px;
     perspective: 1000px;
     background-size: cover
 }

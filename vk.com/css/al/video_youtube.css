@@ -331,7 +331,6 @@
 .video_yt_quality_item.selected .video_yt_quality_item_text,
 .video_yt_quality_item:hover .video_yt_quality_item_text {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -432,7 +431,6 @@
 #video_yt_volumebar:hover .video_yt_volumebar_slider {
     visibility: visible;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -592,10 +590,9 @@
 
 .video_yt_add_icon,
 .video_yt_added_icon {
-    transition: opacity 0.2s, -webkit-transform 0.2s;
     -o-transition: opacity 0.2s, transform 0.2s, -o-transform 0.2s;
     transition: opacity 0.2s, transform 0.2s;
-    transition: opacity 0.2s, transform 0.2s, -webkit-transform 0.2s, -o-transform 0.2s
+    transition: opacity 0.2s, transform 0.2s, -o-transform 0.2s
 }
 
 .video_yt_add.selected:hover>.video_yt_added_icon,
@@ -667,7 +664,6 @@
     background-position: -164px -28px;
     opacity: 0;
     filter: alpha(opacity=0);
-    -webkit-transform: scale(0);
     -o-transform: scale(0);
     transform: scale(0)
 }
@@ -690,7 +686,6 @@
 .video_yt_add.selected .video_yt_add_icon {
     opacity: 0;
     filter: alpha(opacity=0);
-    -webkit-transform: scale(0);
     -o-transform: scale(0);
     transform: scale(0)
 }
@@ -698,7 +693,6 @@
 .video_yt_add.selected .video_yt_added_icon {
     opacity: 0.7;
     filter: alpha(opacity=70);
-    -webkit-transform: scale(1);
     -o-transform: scale(1);
     transform: scale(1)
 }
@@ -791,7 +785,6 @@
 .video_yt_popup_author:hover {
     text-decoration: none;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 

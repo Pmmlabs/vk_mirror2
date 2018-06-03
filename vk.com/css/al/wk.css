@@ -62,7 +62,6 @@ a.wk_inline_video div.video_play_inline {
 }
 
 body.mac #wk_page_acts {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 
@@ -89,7 +88,6 @@ body.mac #wk_page_acts {
 
 .wk_page_acts a:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -608,7 +606,6 @@ ol {
 }
 
 body.mac .wk_poll_fixed {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0)
 }
 

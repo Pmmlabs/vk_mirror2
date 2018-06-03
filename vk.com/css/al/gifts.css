@@ -107,7 +107,6 @@
 .gift_delete.gift_progress {
     background: url(/images/c_upload.gif) no-repeat 0 0;
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -127,7 +126,6 @@
 
 .post:hover .gift_delete:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -181,10 +179,9 @@ h4.gifts_section_header {
     height: 11px;
     vertical-align: middle;
     background: url(/images/icons/search_arrow.png) no-repeat;
-    transition: -webkit-transform 70ms linear;
     -o-transition: transform 70ms linear, -o-transform 70ms linear;
     transition: transform 70ms linear;
-    transition: transform 70ms linear, -webkit-transform 70ms linear, -o-transform 70ms linear
+    transition: transform 70ms linear, -o-transform 70ms linear
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -197,7 +194,6 @@ h4.gifts_section_header {
 }
 
 .gifts_section_show_all:hover:after {
-    -webkit-transform: translateX(3px);
     -o-transform: translateX(3px);
     transform: translateX(3px)
 }
@@ -248,7 +244,6 @@ h4.gifts_section_header {
 
 .gifts_section_scroll_wrap .gifts_scroll_right_wrap {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -287,7 +282,6 @@ h4.gifts_section_header {
 .gifts_scroll_left_wrap:hover .gifts_scroll_left,
 .gifts_scroll_right_wrap:hover .gifts_scroll_right {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -408,7 +402,6 @@ h4.gifts_section_header {
 
 .gift_cell_fadded:hover .gift_img {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -661,38 +654,16 @@ h4.gifts_section_header {
 }
 
 .gift_duck_act {
-    -webkit-transform-origin: 163px 42px;
     -o-transform-origin: 163px 42px;
     transform-origin: 163px 42px;
-    -webkit-animation: gift_duck 190ms linear;
     -o-animation: gift_duck 190ms linear;
     animation: gift_duck 190ms linear
 }
 
 .gift_duck_tease#gift_item_733 img,
 img.gift_duck_tease#gift_item_733 {
-    -webkit-animation: gift_duck_tease 2100ms infinite;
     -o-animation: gift_duck_tease 2100ms infinite;
     animation: gift_duck_tease 2100ms infinite
-}
-
-@-webkit-keyframes gift_duck {
-    0% {
-        -webkit-transform: scale(0.7);
-        transform: scale(0.7)
-    }
-    20% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1)
-    }
-    60% {
-        -webkit-transform: scale(0.98);
-        transform: scale(0.98)
-    }
-    to {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
 }
 
 @-o-keyframes gift_duck {
@@ -716,47 +687,20 @@ img.gift_duck_tease#gift_item_733 {
 
 @keyframes gift_duck {
     0% {
-        -webkit-transform: scale(0.7);
         -o-transform: scale(0.7);
         transform: scale(0.7)
     }
     20% {
-        -webkit-transform: scale(1.1);
         -o-transform: scale(1.1);
         transform: scale(1.1)
     }
     60% {
-        -webkit-transform: scale(0.98);
         -o-transform: scale(0.98);
         transform: scale(0.98)
     }
     to {
-        -webkit-transform: scale(1);
         -o-transform: scale(1);
         transform: scale(1)
-    }
-}
-
-@-webkit-keyframes gift_duck_tease {
-    60% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg)
-    }
-    64% {
-        -webkit-transform: rotate(2deg);
-        transform: rotate(2deg)
-    }
-    68% {
-        -webkit-transform: rotate(-2deg);
-        transform: rotate(-2deg)
-    }
-    72% {
-        -webkit-transform: rotate(0.8deg);
-        transform: rotate(0.8deg)
-    }
-    75% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg)
     }
 }
 
@@ -785,27 +729,22 @@ img.gift_duck_tease#gift_item_733 {
 
 @keyframes gift_duck_tease {
     60% {
-        -webkit-transform: rotate(0deg);
         -o-transform: rotate(0deg);
         transform: rotate(0deg)
     }
     64% {
-        -webkit-transform: rotate(2deg);
         -o-transform: rotate(2deg);
         transform: rotate(2deg)
     }
     68% {
-        -webkit-transform: rotate(-2deg);
         -o-transform: rotate(-2deg);
         transform: rotate(-2deg)
     }
     72% {
-        -webkit-transform: rotate(0.8deg);
         -o-transform: rotate(0.8deg);
         transform: rotate(0.8deg)
     }
     75% {
-        -webkit-transform: rotate(0deg);
         -o-transform: rotate(0deg);
         transform: rotate(0deg)
     }
@@ -829,7 +768,6 @@ img.gift_duck_tease#gift_item_733 {
 
 .gift_zing.zing_shown {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
 
@@ -839,7 +777,6 @@ img.gift_duck_tease#gift_item_733 {
 }
 
 .gift_rot {
-    -webkit-transform: rotate(180deg);
     -o-transform: rotate(180deg);
     transform: rotate(180deg);
     -o-transition: all 5000ms ease-in-out;
@@ -925,6 +862,5 @@ img.gift_duck_tease#gift_item_733 {
 
 .gifts_notif_close:hover {
     opacity: 1;
-    -webkit-filter: none;
     filter: none
 }
