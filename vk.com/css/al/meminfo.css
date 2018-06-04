@@ -756,3 +756,29 @@ table.history .cur_session {
     display: inline-block;
     vertical-align: middle
 }
+
+h2.meminfo_decline_purchases_title {
+    margin: 2px 0 10px;
+    padding: 0 0 10px;
+    color: #42648b;
+    font-size: 14px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    border-bottom: 1px solid #e7e8ec
+}
+
+.meminfo_decline_purchases_check {
+    text-align: left;
+    margin: 7px 0 3px;
+    padding: 2px 0 5px
+}
+
+.meminfo_decline_purchases_btn {
+    margin: 6px 0 0;
+    padding: 6px 0 0
+}
+
+.meminfo_decline_purchases_select_div {
+    padding-bottom: 2px
+}

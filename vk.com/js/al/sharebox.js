@@ -26,8 +26,7 @@ var ShareBox = {
         }, each(radioBtns.like_share.els, function(e, a) {
             var i = domNS(a);
             hasClass(a, "disabled") && i && (addClass(i, "like_share_disabled"), (geByTag1("input", i) || {}).readOnly = !0)
-        }), cur.shareAction = "", cur.lang = extend(cur.lang || {}, a.lang), extend(cur, {
-            sbField: ge("like_share_text"),
+        }), cur.shareAction = "", cur.lang = extend(cur.lang || {}, a.lang), cur.sbField = ge("like_share_text"), cur.sbField.getValue = Emoji.val.pbind(cur.sbField), extend(cur, {
             sbAva: ge("like_share_ava"),
             sbTo: [0],
             sbShareHash: a.shHash,
@@ -105,9 +104,7 @@ var ShareBox = {
                     i = a && a.full && 1 == a.selCount;
                 toggle("like_share_title_wrap", a && 2 == radioBtns.like_share.val && (e.lastLen > 200 && !i || val("like_share_title")) ? !0 : !1)
             }
-        }), cur.sbHidden = !0, autosizeSetup(cur.sbField, {
-            minHeight: 80
-        }), setTimeout(elfocus.pbind(cur.sbField), 0), Wall.initComposer(cur.sbField, {
+        }), cur.sbHidden = !0, setTimeout(elfocus.pbind(cur.sbField), 0), Wall.initComposer(cur.sbField, {
             lang: {
                 introText: getLang("profile_mention_start_typing"),
                 noResult: getLang("profile_mention_not_found")
@@ -125,7 +122,18 @@ var ShareBox = {
                     onMediaChange: ShareBox.mediaChange
                 }
             } : void 0
-        }), ShareBox.mediaChange();
+        }), ShareBox.mediaChange(), Emoji.init(cur.sbField, {
+            ttDiff: -48,
+            rPointer: !0,
+            shouldFocus: !0,
+            ref: "share",
+            noEnterSend: !0,
+            noStickers: !0,
+            controlsCont: cur.sbField.parentNode,
+            checkEditable: function() {
+                cur.sbCheckLen(cur.sbField)
+            }
+        });
         var i = cur.postTo;
         cur.postTo = !1, e.setOptions({
             onClean: function() {

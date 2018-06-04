@@ -6730,7 +6730,8 @@ div.page_cover_image .ui_actions_menu_icons {
 
 .like_share_cont {
     padding: 7px 0 0;
-    position: relative
+    position: relative;
+    text-align: left
 }
 
 .like_share_radio {
@@ -6779,7 +6780,21 @@ div.page_cover_image .ui_actions_menu_icons {
 .like_share_text {
     display: block;
     width: 100%;
-    height: 80px
+    min-height: 80px
+}
+
+.like_share_text[contenteditable=true] {
+    padding-right: 27px;
+    text-align: left
+}
+
+.like_share_emoji_wrap {
+    position: relative
+}
+
+.like_share_emoji_wrap .emoji_smile_wrap {
+    top: 5px;
+    right: 5px
 }
 
 .like_share_send_wrap,
