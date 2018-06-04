@@ -455,8 +455,7 @@
                     return this.opts.onBufferUpdate && addEvent(e, "progress", function() {
                         i._currentAudioEl == e && i.opts.onBufferUpdate(i.getCurrentBuffered());
                         var t = e.buffered;
-                        t.length;
-                        1 == t.length && 0 == t.start(0) && t.end(0) == e.duration && (e._fullyLoaded = !0)
+                        t.length, 1 == t.length && 0 == t.start(0) && t.end(0) == e.duration && (e._fullyLoaded = !0)
                     }), addEvent(e, "stalled", function() {
                         i._currentAudioEl == e && i._isInvalidDuration() && i._currentAudioEl.currentTime >= i.duration - 1 && i._currentAudioEl.dispatchEvent(new Event("ended"))
                     }), this.opts.onProgressUpdate && addEvent(e, "timeupdate", function() {

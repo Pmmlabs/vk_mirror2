@@ -335,10 +335,10 @@
                         _ = trim(val(l)),
                         u = "edit",
                         p = ge(d);
-                    p && (u = domData(p, "state")), (_ || "edit" !== u) && ("email" !== i || "edit" !== u || this.validateEmail(_)) && ("phone_number" !== i || "edit" !== u || this.validatePhone(_)) && ("birthday" !== i || this.validateBirthday(_)) ? a.push({
+                    p && (u = domData(p, "state")), !_ && "edit" === u || "email" === i && "edit" === u && !this.validateEmail(_) || "phone_number" === i && "edit" === u && !this.validatePhone(_) || "birthday" === i && !this.validateBirthday(_) ? (notaBene(l, !1, n), n = !0) : a.push({
                         question: i,
                         value: _
-                    }) : (notaBene(l, !1, n), n = !0)
+                    })
                 }
                 for (var c = 0; c < o.step2.custom_questions.length; c++) {
                     var m = o.step2.custom_questions[c],

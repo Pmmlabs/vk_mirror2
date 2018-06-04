@@ -837,14 +837,12 @@
             if (e && "border-box" === at(t, "boxSizing") && (e = !1), t == document) i = [Math.max(u.clientWidth, bodyNode.scrollWidth, u.scrollWidth, bodyNode.offsetWidth, u.offsetWidth), Math.max(u.clientHeight, bodyNode.scrollHeight, u.scrollHeight, bodyNode.offsetHeight, u.offsetHeight)];
             else if (t) {
                 var c = function() {
-                    if (i = X(t) && (o = V(t, n)) && void 0 !== o.width ? [o.width, o.height] : [t.offsetWidth, t.offsetHeight], e) {
-                        each(i, function(e, n) {
-                            var r = e ? ["Top", "Bottom"] : ["Left", "Right"];
-                            each(r, function() {
-                                i[e] -= parseFloat(at(t, "padding" + this)) || 0, i[e] -= parseFloat(at(t, "border" + this + "Width")) || 0
-                            })
+                    i = X(t) && (o = V(t, n)) && void 0 !== o.width ? [o.width, o.height] : [t.offsetWidth, t.offsetHeight], e && each(i, function(e, n) {
+                        var r = e ? ["Top", "Bottom"] : ["Left", "Right"];
+                        each(r, function() {
+                            i[e] -= parseFloat(at(t, "padding" + this)) || 0, i[e] -= parseFloat(at(t, "border" + this + "Width")) || 0
                         })
-                    }
+                    })
                 };
                 if (F(t)) c();
                 else {
@@ -1502,7 +1500,8 @@
                     }
                     var r = this,
                         o = new r(v);
-                    if (!K(t)) return E(o, new TypeError("You must pass an array to race.")), o;
+                    if (!K(t)) return E(o, new TypeError("You must pass an array to race.")),
+                        o;
                     for (var i = t.length, u = 0; o._state === ut && i > u; u++) N(r.resolve(t[u]), void 0, e, n);
                     return o
                 }
@@ -1743,9 +1742,7 @@
                         })
                     }
                     u = t
-                }, u = 0; u < e.length; u++) {
-                i(u)
-            }
+                }, u = 0; u < e.length; u++) i(u)
         }
 
         function u(t) {

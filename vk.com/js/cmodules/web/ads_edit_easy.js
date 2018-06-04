@@ -877,8 +877,7 @@
                         n = s.split("_"),
                         a = i(n, 2),
                         o = a[0];
-                    a[1];
-                    this.editCriteriaPreset(o, 0, t, 0)
+                    a[1], this.editCriteriaPreset(o, 0, t, 0)
                 }
                 return this.isEditingAudienceName = !1, !1
             }, e.prototype.isSuggestedCriteria = function(e) {

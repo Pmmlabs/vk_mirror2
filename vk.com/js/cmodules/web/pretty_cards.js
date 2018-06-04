@@ -284,8 +284,7 @@
                     this.draggingCard && delete this.draggingCard;
                     var r = this.cardsElements.indexOf(t),
                         o = this.lastDestinationCardIndex;
-                    this.cardsElements[o];
-                    this.wrapperTransitions(!0, t), setStyle(t, {
+                    this.cardsElements[o], this.wrapperTransitions(!0, t), setStyle(t, {
                         transform: "translateX(" + (o - r) * (this.CARD_WIDTH + this.CARDS_MARGIN) + "px)"
                     }), removeClass(t, "pretty-card_dragging_yes"), setTimeout(function() {
                         removeClass(t, "pretty-card_ontop_yes");
