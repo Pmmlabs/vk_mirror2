@@ -4936,6 +4936,7 @@ div.chat_tab_img {
 
 .emoji_sticker_item {
     padding: 3px 2px;
+    position: relative;
     display: inline-block;
     zoom: 1;
     border-radius: 4px;
@@ -4961,9 +4962,9 @@ div.chat_tab_img {
 .emoji_sticker_item .emoji_sticker_item_fav {
     width: 20px;
     height: 20px;
-    bottom: 70px;
-    left: 25px;
-    position: relative;
+    top: 0;
+    right: 0;
+    position: absolute;
     display: none;
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Ctitle%3Efave_20%3C%2Ftitle%3E%3Cdefs%3E%3Cpath%20d%3D%22M9.48%204.507c.287-.679.75-.687%201.04%200L12%208l3.345.329c.732.071.876.513.304%201l-2.647%202.251.99%203.699c.19.708-.136.935-.739.5L10%2013.425l-3.252%202.352c-.599.433-.93.212-.74-.5l.99-3.698-2.646-2.252c-.565-.48-.43-.927.304-1L8%208l1.48-3.493z%22%20id%3D%22a%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h20v20H0z%22%2F%3E%3Cuse%20fill%3D%22%23C2C5CD%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Cpath%20stroke%3D%22%23FFF%22%20stroke-width%3D%222%22%20d%3D%22M12.69%207.063l2.753.27c1.615.159%202.095%201.701.854%202.757l-2.165%201.842.827%203.088c.434%201.622-.93%202.553-2.292%201.569L10%2014.66%207.333%2016.59c-1.355.98-2.726.058-2.29-1.57l.826-3.087-2.165-1.842C2.47%209.04%202.94%207.492%204.558%207.333l2.753-.27%201.248-2.946c.632-1.492%202.247-1.5%202.882%200l1.248%202.946z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 50%
 }

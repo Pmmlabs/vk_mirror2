@@ -14,6 +14,8 @@ if (!window.Emoji) {
         favoriteAvailable: false,
         favoriteRemindOn: false,
         favoriteRemindOff: false,
+        favoriteLimit: 20,
+        favoriteLimitNoticed: false,
         stickerSize: '64',
         stickers: {},
 
@@ -1874,10 +1876,14 @@ if (!window.Emoji) {
                     Emoji.buildStickersIndex(stickers);
 
                     if (stickers[Emoji.TAB_FAVORITE_STICKERS] !== undefined) {
+                        var favorite = stickers[Emoji.TAB_FAVORITE_STICKERS];
+
                         Emoji.tabDefaultId = Emoji.TAB_FAVORITE_STICKERS;
                         Emoji.favoriteAvailable = true;
-                        Emoji.favoriteRemindOn = !!stickers[Emoji.TAB_FAVORITE_STICKERS].remind_on;
-                        Emoji.favoriteRemindOff = !!stickers[Emoji.TAB_FAVORITE_STICKERS].remind_off;
+                        Emoji.favoriteRemindOn = !!favorite.remind_on;
+                        Emoji.favoriteRemindOff = !!favorite.remind_off;
+                        Emoji.favoriteLimit = favorite.limit;
+                        Emoji.favoriteLimitNoticed = favorite.limit_noticed;
                     }
                     if (lang) {
                         extend(cur.lang, lang);
@@ -2376,7 +2382,17 @@ if (!window.Emoji) {
                 }
 
                 sticker[4] = 1;
-                favorite.stickers.push(sticker);
+
+                favorite.stickers.unshift(sticker);
+
+                var opts = Emoji.opts[optId];
+                var deletedFavoriteStickers = opts.deletedFavoriteStickers;
+                opts.deletedFavoriteStickers = [stickerId];
+                while (favorite.stickers.length > Emoji.favoriteLimit) {
+                    Emoji.favorite.deleteFavoriteSticker(optId, favorite.stickers[favorite.stickers.length - 1][0]);
+                }
+                Emoji.favorite.deleteFavoriteStickerElements(optId);
+                opts.deletedFavoriteStickers = deletedFavoriteStickers;
 
                 var recentSticker = Emoji.findRecentSticker(stickerId);
                 if (recentSticker) {
@@ -2392,7 +2408,13 @@ if (!window.Emoji) {
                     if (!stickerEl) {
                         stickerEl = Emoji.render.sticker(optId, Emoji.TAB_FAVORITE_STICKERS, sticker);
                         Emoji.render.stickerContent(optId, stickerEl, false);
-                        container.appendChild(stickerEl);
+
+                        var firstStickerEl = domFC(container);
+                        if (firstStickerEl) {
+                            domInsertBefore(stickerEl, firstStickerEl);
+                        } else {
+                            container.appendChild(stickerEl);
+                        }
 
                         Emoji.opts[optId].emojiScroll.update();
                         var heightDiff = Emoji.opts[optId].emojiScroll.data.scrollHeight - containerHeight;
@@ -2403,6 +2425,9 @@ if (!window.Emoji) {
 
                 var tab = geByClass1('emoji_tab_' + Emoji.TAB_FAVORITE_STICKERS);
                 if (hasClass(tab, 'unshown')) {
+                    if (Emoji.opts[optId].curTab === Emoji.TAB_FAVORITE_STICKERS) {
+                        removeClass(geByClass1('emoji_tab_' + Emoji.TAB_RECENT_STICKERS), 'emoji_tab_sel');
+                    }
                     removeClass(tab, 'unshown');
                 }
 
@@ -2430,7 +2455,7 @@ if (!window.Emoji) {
 
                 Emoji.opts[optId].deletedFavoriteStickers.push(stickerId);
 
-                if (favorite.stickers.length === 0) {
+                if (favorite.stickers.length === 0 && el) {
                     addClass(geByClass1('emoji_tab_' + Emoji.TAB_FAVORITE_STICKERS), 'unshown');
                     var packId = domData(el.parentElement, 'pack-id');
                     if (packId === String(Emoji.TAB_FAVORITE_STICKERS)) {
@@ -2455,7 +2480,7 @@ if (!window.Emoji) {
                 re('emoji_sticker_item' + optId + '_' + Emoji.TAB_FAVORITE_STICKERS + '_' + stickerId);
             },
 
-            deleteFavoriteStickerElements: function(optId, immediate) {
+            deleteFavoriteStickerElements: function(optId) {
                 var opts = Emoji.opts[optId];
                 if (opts.deletedFavoriteStickers.length > 0) {
                     opts.deletedFavoriteStickers.forEach(function(stickerId) {

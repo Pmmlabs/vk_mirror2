@@ -5897,6 +5897,10 @@ var Wall = {
             cur.onWallLike();
         }
     },
+    bookmark: function(button, event) {
+        cancelEvent(event);
+        addClass(button, 'bookmarked');
+    },
     likeShare: function(post_id, hash) {
         if (!vk.id || cur.viewAsBox) return;
         var matches = post_id.match(/(-?\d+)(_?)(photo|video|note|topic|market|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/),

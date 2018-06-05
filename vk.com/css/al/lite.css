@@ -5556,6 +5556,12 @@ div.top_result_baloon a {
     border-left-color: #5a9eff!important
 }
 
+.eltt.eltt_blue.eltt_right .eltt_arrow_back,
+.eltt.eltt_blue.eltt_right .eltt_arrow_back .eltt_arrow {
+    border-right-color: #5a9eff!important;
+    border-left-color: transparent!important
+}
+
 .eltt.eltt_blue .eltt_blue_hide {
     float: right;
     height: 24px;

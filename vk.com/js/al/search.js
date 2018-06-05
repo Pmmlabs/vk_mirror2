@@ -58,10 +58,10 @@ var slide_show = function(e) {
         onEnter: function(e, s) {
             window.iSearch && iSearch.select && iSearch.select.isVisible() && iSearch.select.active > -1 || (clearTimeout(cur.requestTimeout), searcher.updResults(), searcher.highlightHotHashtag(s))
         },
-        checkbox: function(e, s, t) {
+        checkbox: function(e, s, t, r) {
             checkbox(e);
-            var r = isChecked(e) ? 1 : 0;
-            t && (r = 1 - r), val(s, r), searcher.updResults()
+            var o = isChecked(e) ? 1 : 0;
+            t && (o = 1 - o), val(s, o), r || searcher.updResults()
         },
         sendSearchReq: function(e, s) {
             if (cur.searchReq) try {
@@ -538,6 +538,30 @@ void 0 === window.iSearch && (iSearch = {
             o = r.name,
             i = s ? "c[domain]" : "c[url]";
         return radiobtn(e, s, "search_status_hint_domain"), elfocus(r), val(r) && i != o && (r.name = i, searcher.updResults()), cancelEvent(t)
+    },
+    onChangeCommunityType: function(e) {
+        var s = 3;
+        e = positive(e), val(ge("c[type]"), e), slide_show("region_filters"), e === s ? (slide_show("events_filter"), val(ge("all_events"), isChecked("future") ? 0 : 1)) : (slide_hide("events_filter"), val(ge("all_events"), 0)), checkPageBlocks(), searchActions.updateCommunityThemes(e), searcher.updResults()
+    },
+    updateCommunityThemes: function(e, s) {
+        e = positive(e);
+        var t, r = positive(val(ge("not_safe_search"))),
+            o = [],
+            i = 5;
+        r ? o = cur.communityThemes[e] || [] : each(cur.communityThemes[e] || [], function() {
+            this[i] || o.push(this)
+        }), s ? (t = positive(cur.communityThemesDD.val()), (inArray(t, cur.notSafeThemesIds) || !t) && cur.communityThemesDD.clear()) : cur.communityThemesDD.clear(), cur.communityThemesDD.setOptions({
+            autocomplete: !1
+        }), cur.communityThemesDD.setData(o), cur.communityThemesDD.setOptions({
+            autocomplete: !0
+        }), e ? slide_show("cTheme") : slide_hide("cTheme")
+    },
+    onChangeCommunityTheme: function(e) {
+        val(ge("c[theme]"), e), searcher.updResults()
+    },
+    onChangeNotSafe: function(e, s, t) {
+        var r = val(ge("c[theme]"));
+        inArray(r, cur.notSafeThemesIds) && val(ge("c[theme]"), ""), searcher.checkbox(e, s, t, !0), searchActions.updateCommunityThemes(val(ge("c[type]")), !0), searcher.updResults()
     }
 };
 try {

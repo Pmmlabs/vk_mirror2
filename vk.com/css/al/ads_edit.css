@@ -835,6 +835,10 @@ a.ads_edit_link_go:hover {
     padding-right: 5px
 }
 
+#ads_edit_targeting_group_interests {
+    position: relative
+}
+
 #ads_edit_criterion_row_birthday .ads_edit_label,
 #ads_edit_criterion_row_birthday .ads_edit_value {
     padding-bottom: 8px

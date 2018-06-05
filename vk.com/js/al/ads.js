@@ -5170,6 +5170,15 @@ Ads.showPriceListErrorsTooltip = function() {
     });
 }
 
+Ads.showFriendsBirthdayTooltip = function() {
+    Ads.showNewFeatureTooltip('ads_friends_birthday_feature', ge("ads_edit_targeting_group_interests"), {
+        width: 235,
+        offset: [-70, -60],
+        forceSide: 'right',
+        content: getLang('ads_edit_friends_birthday_feature')
+    });
+}
+
 /**
  Show tooltip about new feature.
  ttp  - tooltip name
