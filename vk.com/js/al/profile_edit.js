@@ -715,7 +715,7 @@ var ProfileEditor = {
             case 7:
                 i = "profileEdit_import_rss", t = "profileEdit_rss_confirm"
         }
-        var t = "<center>" + getLang(t) + "</center>",
+        var t = getLang(t),
             r = showFastBox(getLang(i), t, getLang("global_continue"), function() {
                 ajax.post("/al_profileEdit.php", {
                     act: "a_clear_social_export",

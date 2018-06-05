@@ -580,7 +580,7 @@ var GroupsEdit = {
     },
     removeRSS: function(e) {
         showFastBox({
-            title: getLang("groups_status_export"),
+            title: getLang("groups_edit_import_rss"),
             bodyStyle: "padding: 20px; line-height: 160%;"
         }, getLang("groups_rss_confirm"), getLang("global_continue"), function(t) {
             ajax.post("groupsedit.php", {

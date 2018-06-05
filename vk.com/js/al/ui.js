@@ -21,55 +21,55 @@ Ui.tableInitFilters = function(e) {
     i = i.split(",");
     var r = t;
     "string" == typeof r && (r = {}, r[i[0]] = trim(t));
-    var s, a, n = [];
-    for (var u in i) a = i[u], s = a in r ? "[^~]*" + r[a].replace(/[~]/g, "") + "[^~]*" : "[^~]*", n.push(a + "=" + s);
-    t = "~" + n.join("~") + "~";
-    var l = e.getAttribute("ui_filter_term");
-    if (l === t) return !1;
+    var s, a, l = [];
+    for (var n in i) a = i[n], s = a in r ? "[^~]*" + r[a].replace(/[~]/g, "") + "[^~]*" : "[^~]*", l.push(a + "=" + s);
+    t = "~" + l.join("~") + "~";
+    var u = e.getAttribute("ui_filter_term");
+    if (u === t) return !1;
     if (e.setAttribute("ui_filter_term", t), 0 == t.length) return e.removeAttribute("ui_filter_rows_indices"), !0;
-    var o, _, b, d = e.getAttribute("ui_filter_data"),
+    var o, _, d, b = e.getAttribute("ui_filter_data"),
         g = parseJSON(e.getAttribute("ui_filter_index")),
         p = [],
-        f = 0,
-        c = 0;
-    for (t = t.replace(/[|]/g, ""), o = new RegExp(t, "gi"), b = {}; null != (_ = o.exec(d));) p.push(_.index);
+        c = 0,
+        f = 0;
+    for (t = t.replace(/[|]/g, ""), o = new RegExp(t, "gi"), d = {}; null != (_ = o.exec(b));) p.push(_.index);
     for (var h in g) {
-        for (; f < p.length && p[f] < h;) b[g[h]] || (b[g[h]] = 1, c++), f++;
-        if (f >= p.length) break
+        for (; c < p.length && p[c] < h;) d[g[h]] || (d[g[h]] = 1, f++), c++;
+        if (c >= p.length) break
     }
-    return e.setAttribute("ui_filter_rows_indices", JSON.stringify(b)), c
+    return e.setAttribute("ui_filter_rows_indices", JSON.stringify(d)), f
 }, Ui.tableOnclick = function(e, t) {
     var i = vkNow(),
         e = normEvent(e || window.event),
         r = t.getAttribute("ui_table_header_id"),
         s = t.getAttribute("ui_table_rows_id"),
         a = t.getAttribute("ui_table_more_id"),
-        n = t.getAttribute("ui_table_excluded_id"),
-        u = t.getAttribute("ui_table_shower_id"),
-        l = t.getAttribute("ui_table_result_id"),
+        l = t.getAttribute("ui_table_excluded_id"),
+        n = t.getAttribute("ui_table_shower_id"),
+        u = t.getAttribute("ui_table_result_id"),
         o = t.getAttribute("ui_table_pages_id"),
         _ = t.getAttribute("ui_group_key"),
-        b = ge(r),
-        d = ge(s),
+        d = ge(r),
+        b = ge(s),
         g = ge(a),
-        p = ge(n),
+        p = ge(l),
+        c = ge(n),
         f = ge(u),
-        c = ge(l),
         h = ge(o),
-        w = e.target,
-        v = !1,
+        v = e.target,
+        w = !1,
         m = !1,
         A = !1,
         U = !1,
         C = !1,
         y = !1,
         S = 0;
-    if (d) {
-        for (; w && w !== t && w !== b && w !== d && w !== g && w !== f && w !== c && w !== h;) "TH" === w.nodeName ? v = w : "TD" === w.nodeName ? m = w : w.hasAttribute("ui_page_number") ? y = w : w.hasAttribute("ui_per_page_limit") ? C = w : w.hasAttribute(_) ? (A = w, S = Math.abs(intval(w.getAttribute(_)))) : A && "TR" === w.nodeName && (U = w), w = w.parentNode;
-        w === b && v ? Ui.tableUpdateSort(t, d, g, p, v, !0) : w !== d && w !== g && w !== c || !U ? w === f && m ? Ui.tableUpdateShower(t, g, f, m) : w === h && C ? Ui.tableUpdatePerPageLimit(t, b, d, g, p, C) : w === h && y && Ui.tableUpdatePageNumber(t, b, d, g, p, y) : Ui.tableUpdateHiderGroup(d, g, U, S);
-        var N = vkNow(),
-            O = (document.body.offsetHeight, vkNow());
-        window.debugLog && debugLog("Table click time JS: ", N - i, ", time with reflow: ", O - i)
+    if (b) {
+        for (; v && v !== t && v !== d && v !== b && v !== g && v !== c && v !== f && v !== h;) "TH" === v.nodeName ? w = v : "TD" === v.nodeName ? m = v : v.hasAttribute("ui_page_number") ? y = v : v.hasAttribute("ui_per_page_limit") ? C = v : v.hasAttribute(_) ? (A = v, S = Math.abs(intval(v.getAttribute(_)))) : A && "TR" === v.nodeName && (U = v), v = v.parentNode;
+        v === d && w ? Ui.tableUpdateSort(t, b, g, p, w, !0) : v !== b && v !== g && v !== f || !U ? v === c && m ? Ui.tableUpdateShower(t, g, c, m) : v === h && C ? Ui.tableUpdatePerPageLimit(t, d, b, g, p, C) : v === h && y && Ui.tableUpdatePageNumber(t, d, b, g, p, y) : Ui.tableUpdateHiderGroup(b, g, U, S);
+        var L = vkNow(),
+            N = (document.body.offsetHeight, vkNow());
+        window.debugLog && debugLog("Table click time JS: ", L - i, ", time with reflow: ", N - i)
     }
 }, Ui.tableOnFilterKeypress = function(e, t) {
     e.target;
@@ -79,21 +79,21 @@ Ui.tableInitFilters = function(e) {
 }, Ui.tableClearRowsSortCache = function(e) {
     e.t_rows_sort && delete e.t_rows_sort
 }, Ui.tableGetRowsSort = function(e, t, i, r, s, a) {
-    var n = !isObject(s),
-        u = e.t_rows_sort;
-    if (!u) {
-        var l, o, _, b, d;
-        u = [];
-        for (var g = 0; b = [t, i, r][g]; ++g) {
-            l = b.children;
-            for (var p = 0; d = l[p]; p++) o = intval(d.getAttribute("ui_sort_index")), u[o] || (u[o] = {}), u[o].row = d, u[o].hasOwnProperty("excludedByFilter") || (u[o].excludedByFilter = !n && !s[o]), !n && s[o] && o in a && (_ = a[o], _ && (u[_] || (u[_] = {}), u[_].excludedByFilter = !1))
+    var l = !isObject(s),
+        n = e.t_rows_sort;
+    if (!n) {
+        var u, o, _, d, b;
+        n = [];
+        for (var g = 0; d = [t, i, r][g]; ++g) {
+            u = d.children;
+            for (var p = 0; b = u[p]; p++) o = intval(b.getAttribute("ui_sort_index")), n[o] || (n[o] = {}), n[o].row = b, n[o].hasOwnProperty("excludedByFilter") || (n[o].excludedByFilter = !l && !s[o]), !l && s[o] && o in a && (_ = a[o], _ && (n[_] || (n[_] = {}), n[_].excludedByFilter = !1))
         }
         Object.defineProperty && (Object.defineProperty(e, "t_rows_sort", {
             configurable: !0,
             writable: !0
-        }), e.t_rows_sort = u)
+        }), e.t_rows_sort = n)
     }
-    return u
+    return n
 }, Ui.tableGetAllIndices = function(e, t) {
     function i(e, t) {
         if (e[2] < 0 && t[2] < 0) {
@@ -116,35 +116,35 @@ Ui.tableInitFilters = function(e) {
     function r(e, t) {
         return result = i(e, t), (1 == result || -1 == result) && (result *= -1), result
     }
-    var s, a, n, u;
-    if (n = e.p_group_indices, n || (n = e.getAttribute("ui_group_indices"), n = n ? parseJSON(n) : {}, Object.defineProperty && (Object.defineProperty(e, "p_group_indices", {
+    var s, a, l, n;
+    if (l = e.p_group_indices, l || (l = e.getAttribute("ui_group_indices"), l = l ? parseJSON(l) : {}, Object.defineProperty && (Object.defineProperty(e, "p_group_indices", {
             configurable: !0,
             writable: !0
-        }), e.p_group_indices = n)), u = e.p_wide_indices, u || (u = e.getAttribute("ui_wide_indices"), u = u ? parseJSON(u) : {}, Object.defineProperty && (Object.defineProperty(e, "p_wide_indices", {
+        }), e.p_group_indices = l)), n = e.p_wide_indices, n || (n = e.getAttribute("ui_wide_indices"), n = n ? parseJSON(n) : {}, Object.defineProperty && (Object.defineProperty(e, "p_wide_indices", {
             configurable: !0,
             writable: !0
-        }), e.p_wide_indices = u)), s = t ? t.p_sort_indices_asc : [], a = t ? t.p_sort_indices_desc : [], !s && (s = t.getAttribute("ui_sort_indices_asc"), a = t.getAttribute("ui_sort_indices_desc"), s)) {
+        }), e.p_wide_indices = n)), s = t ? t.p_sort_indices_asc : [], a = t ? t.p_sort_indices_desc : [], !s && (s = t.getAttribute("ui_sort_indices_asc"), a = t.getAttribute("ui_sort_indices_desc"), s)) {
         s = s.split(","), a = a.split(",");
-        for (var l in s) s[l] = intval(s[l]);
-        for (var l in a) a[l] = intval(a[l])
+        for (var u in s) s[u] = intval(s[u]);
+        for (var u in a) a[u] = intval(a[u])
     }
     if (!s) {
         s = [], a = [];
-        var o, _, b = t.getAttribute("ui_sort_data"),
-            d = [];
-        if (!b) return;
-        b = b.split("!");
-        var g = b.shift();
+        var o, _, d = t.getAttribute("ui_sort_data"),
+            b = [];
+        if (!d) return;
+        d = d.split("!");
+        var g = d.shift();
         if ("int" === g)
-            for (var l = 0, p = b.length; p > l; l++) o = l in n ? n[l] : -1, _ = intval(b[o]), u[l] ? d[l] = [l, d[l - 1][1], d[l - 1][2], d[l - 1][3], 1] : d[l] = [l, intval(b[l]), o, _, 0];
+            for (var u = 0, p = d.length; p > u; u++) o = u in l ? l[u] : -1, _ = intval(d[o]), n[u] ? b[u] = [u, b[u - 1][1], b[u - 1][2], b[u - 1][3], 1] : b[u] = [u, intval(d[u]), o, _, 0];
         else if ("float" === g)
-            for (var l = 0, p = b.length; p > l; l++) o = l in n ? n[l] : -1, _ = floatval(b[o]), u[l] ? d[l] = [l, d[l - 1][1], d[l - 1][2], d[l - 1][3], 1] : d[l] = [l, floatval(b[l]), o, _, 0];
+            for (var u = 0, p = d.length; p > u; u++) o = u in l ? l[u] : -1, _ = floatval(d[o]), n[u] ? b[u] = [u, b[u - 1][1], b[u - 1][2], b[u - 1][3], 1] : b[u] = [u, floatval(d[u]), o, _, 0];
         else
-            for (var l = 0, p = b.length; p > l; l++) o = l in n ? n[l] : -1, _ = b[o], u[l] ? d[l] = [l, d[l - 1][1], d[l - 1][2], d[l - 1][3], 1] : d[l] = [l, b[l], o, _, 0];
-        d.sort(i);
-        for (var l = 0, p = d.length; p > l; l++) s.push(d[l][0]);
-        d.sort(r);
-        for (var l = 0, p = d.length; p > l; l++) a.push(d[l][0]);
+            for (var u = 0, p = d.length; p > u; u++) o = u in l ? l[u] : -1, _ = d[o], n[u] ? b[u] = [u, b[u - 1][1], b[u - 1][2], b[u - 1][3], 1] : b[u] = [u, d[u], o, _, 0];
+        b.sort(i);
+        for (var u = 0, p = b.length; p > u; u++) s.push(b[u][0]);
+        b.sort(r);
+        for (var u = 0, p = b.length; p > u; u++) a.push(b[u][0]);
         t.setAttribute("ui_sort_indices_asc", s.join(",")), t.setAttribute("ui_sort_indices_desc", a.join(",")), Object.defineProperty && (Object.defineProperty(t, "p_sort_indices_asc", {
             configurable: !0,
             writable: !0
@@ -153,90 +153,90 @@ Ui.tableInitFilters = function(e) {
             writable: !0
         }), t.p_sort_indices_asc = s, t.p_sort_indices_desc = a)
     }
-    return [s, a, n]
+    return [s, a, l]
 }, Ui.tableUpdateEven = function(e, t) {
-    var i, r, s, a, n = 0;
+    var i, r, s, a = 0;
     i = e.children;
-    for (var u, l = 0; u = i[l]; l++) r = hasClass(u, "unshown"), s = hasClass(u, "wide"), r || (a = "ui_table_row", a += n % 2 ? " even" : "", a += s ? " wide" : "", u.className = a, n++, s && (n = 1));
+    for (var l, n = 0; l = i[n]; n++) r = hasClass(l, "unshown"), s = hasClass(l, "wide"), r || (l.classList.remove("unshown"), a % 2 ? l.classList.add("even") : l.classList.remove("even"), s ? l.classList.add("wide") : l.classList.remove("wide"), a++, s && (a = 1));
     if (isVisible(t)) {
         i = t.children;
-        for (var u, l = 0; u = i[l]; l++) r = hasClass(u, "unshown"), s = hasClass(u, "wide"), r || (a = "ui_table_row", a += n % 2 ? " even" : "", a += s ? " wide" : "", u.className = a, n++, s && (n = 1))
+        for (var l, n = 0; l = i[n]; n++) r = hasClass(l, "unshown"), s = hasClass(l, "wide"), r || (l.classList.remove("unshown"), a % 2 ? l.classList.add("even") : l.classList.remove("even"), s ? l.classList.add("wide") : l.classList.remove("wide"), a++, s && (a = 1))
     }
 }, Ui.tableFilterRows = function(e, t) {
     var i = e.getAttribute("ui_table_rows_id"),
         r = e.getAttribute("ui_table_more_id"),
         s = e.getAttribute("ui_table_pages_id"),
         a = e.getAttribute("ui_table_excluded_id"),
-        n = e.getAttribute("ui_table_empty_filter_id"),
-        u = e.getAttribute("ui_table_shower_id"),
-        l = parseInt(e.getAttribute("ui_shower_enabled")),
+        l = e.getAttribute("ui_table_empty_filter_id"),
+        n = e.getAttribute("ui_table_shower_id"),
+        u = parseInt(e.getAttribute("ui_shower_enabled")),
         o = e.getAttribute("ui_filter_columns"),
         _ = e.getAttribute("ui_table_result_id"),
-        b = ge(_),
-        d = ge(i),
+        d = ge(_),
+        b = ge(i),
         g = ge(r),
         p = ge(a),
-        f = ge(s),
-        c = ge(n),
-        h = ge(u),
-        w = geByTag1("thead", e),
-        v = geByClass1("sort", w, "th"),
+        c = ge(s),
+        f = ge(l),
+        h = ge(n),
+        v = geByTag1("thead", e),
+        w = geByClass1("sort", v, "th"),
         m = geByClass1("shower", h, "td"),
-        A = geByClass1("ui_table_pages_numbers", f);
-    if (!d) return !1;
+        A = geByClass1("ui_table_pages_numbers", c);
+    if (!b) return !1;
     var U = Ui.tableSetFilterTerm(e, t, o);
     if (U === !1) return !1;
-    if (0 === U ? (removeClass(c, "unshown"), addClass(b, "unshown")) : (addClass(c, "unshown"), removeClass(b, "unshown")), Ui.tableClearRowsSortCache(e), e.setAttribute("ui_rows_page_number", 0), Ui.tableUpdateSort(e, d, g, p, v, !1), m) {
+    if (0 === U ? (removeClass(f, "unshown"), addClass(d, "unshown")) : (addClass(f, "unshown"), removeClass(d, "unshown")), Ui.tableClearRowsSortCache(e), e.setAttribute("ui_rows_page_number", 0), Ui.tableUpdateSort(e, b, g, p, w, !1), m) {
         var C = m.getAttribute("ui_shower_less");
-        l && g.children.length ? (C || g.hasClass(g, "unshown")) && removeClass(h, "unshown") : addClass(h, "unshown")
+        u && g.children.length ? (C || g.hasClass(g, "unshown")) && removeClass(h, "unshown") : addClass(h, "unshown")
     }
     A && Ui.tableUpdatePages(e, A, 0)
 }, Ui.tableUpdateSort = function(e, t, i, r, s, a) {
-    var n, u, l, o, _, b, d, g = !hasClass(i, "unshown"),
+    var l, n, u, o, _, d, b, g = !hasClass(i, "unshown"),
         p = i.nextSibling,
-        f = [];
-    if (n = Ui.tableGetAllIndices(e, s)) {
-        for (u = n[2], d = parseJSON(e.getAttribute("ui_filter_rows_indices")), l = Ui.tableGetRowsSort(e, t, i, r, d, u), o = l.length, _ = intval(e.getAttribute("ui_rows_limit")), b = intval(e.getAttribute("ui_rows_page_number")) * _, e.removeChild(t), e.removeChild(i); t.firstChild;) t.removeChild(t.firstChild);
+        c = [];
+    if (l = Ui.tableGetAllIndices(e, s)) {
+        for (n = l[2], b = parseJSON(e.getAttribute("ui_filter_rows_indices")), u = Ui.tableGetRowsSort(e, t, i, r, b, n), o = u.length, _ = intval(e.getAttribute("ui_rows_limit")), d = intval(e.getAttribute("ui_rows_page_number")) * _, e.removeChild(t), e.removeChild(i); t.firstChild;) t.removeChild(t.firstChild);
         for (; i.firstChild;) i.removeChild(i.firstChild);
-        var c = s ? hasClass(s, "sort") : !0,
+        var f = s ? hasClass(s, "sort") : !0,
             h = s ? hasClass(s, "reverse") : !1,
-            w = s ? intval(s.getAttribute("ui_sort_original")) : 3;
-        if (a && (w && (w = c ? w % 3 + 1 : 1), h = c && !h || !c && h), c && 3 == w)
-            for (var v = 0; o > v; v++) f[v] = v;
-        else f = h ? n[1] : n[0];
-        for (var m, A, U, C, y, S, N, O, T = (!g && Object.defineProperty, !1), F = 0, P = !1, x = t.hasAttribute("ui_ensure_group_visibilities") ? parseJSON(t.getAttribute("ui_ensure_group_visibilities")) : {}, v = 0; o > v; v++) A = f[v], m = l[A].row, U = !(A in u), C = hasClass(m, "unshown"), y = hasClass(m, "wide"), S = l[A].excludedByFilter, !U && m.hasAttribute("ui_group") && (O = u[A] + ":" + intval(m.getAttribute("ui_group")), C = O in x ? x[O] : C), N = "ui_table_row", N += C ? " unshown" : "", N += P % 2 ? " even" : "", N += y ? " wide" : "", m.className = N, S ? r.appendChild(m) : (b > F || b >= F && !U || _ && (F - b - 1 >= _ || F - b >= _ && U) ? T ? T.push(m) : i.appendChild(m) : (t.appendChild(m), P === !1 && (P = 0)), F += U, P !== !1 && (P += !C, y && !C && (P = 1)));
-        e.setAttribute("ui_main_rows_count", F), t.removeAttribute("ui_ensure_group_visibilities"), T && T.length && (Object.defineProperty(i, "p_rows_more", {
+            v = s ? intval(s.getAttribute("ui_sort_original")) : 3;
+        if (a && (v && (v = f ? v % 3 + 1 : 1), h = f && !h || !f && h), f && 3 == v)
+            for (var w = 0; o > w; w++) c[w] = w;
+        else c = h ? l[1] : l[0];
+        for (var m, A, U, C, y, S, L, N = (!g && Object.defineProperty, !1), O = 0, T = !1, F = t.hasAttribute("ui_ensure_group_visibilities") ? parseJSON(t.getAttribute("ui_ensure_group_visibilities")) : {}, w = 0; o > w; w++) A = c[w], m = u[A].row, U = !(A in n), C = hasClass(m, "unshown"), y = hasClass(m, "wide"), S = u[A].excludedByFilter, !U && m.hasAttribute("ui_group") && (L = n[A] + ":" + intval(m.getAttribute("ui_group")), C = L in F ? F[L] : C), C ? m.classList.add("unshown") : m.classList.remove("unshown"), T % 2 ? m.classList.add("even") : m.classList.remove("even"), y ? m.classList.add("wide") : m.classList.remove("wide"), S ? r.appendChild(m) : (d > O || d >= O && !U || _ && (O - d - 1 >= _ || O - d >= _ && U) ? N ? N.push(m) : i.appendChild(m) : (t.appendChild(m), T === !1 && (T = 0)), O += U, T !== !1 && (T += !C, y && !C && (T = 1)));
+        e.setAttribute("ui_main_rows_count", O), t.removeAttribute("ui_ensure_group_visibilities"), N && N.length && (Object.defineProperty(i, "p_rows_more", {
             configurable: !0,
             writable: !0
-        }), i.p_rows_more = T), s && a && (removeClass(geByClass1("sort", s.parentNode), "sort"), c && 3 == w || addClass(s, "sort"), c && 1 != w && toggleClass(s, "reverse", h), w && s.setAttribute("ui_sort_original", w)), e.insertBefore(i, p), e.insertBefore(t, i)
+        }), i.p_rows_more = N), s && a && (removeClass(geByClass1("sort", s.parentNode), "sort"), f && 3 == v || addClass(s, "sort"), f && 1 != v && toggleClass(s, "reverse", h), v && s.setAttribute("ui_sort_original", v)), e.insertBefore(i, p), e.insertBefore(t, i)
     }
 }, Ui.tableUpdatePages = function(e, t, i) {
     for (; t.firstChild;) t.removeChild(t.firstChild);
     var r, s, a = intval(e.getAttribute("ui_main_rows_count")),
-        n = intval(e.getAttribute("ui_rows_limit")),
-        u = n ? Math.ceil(a / n) : 1,
-        l = i >= 4 ? i - 2 : 0,
-        o = u - i > 4 ? i + 2 : u - 1;
-    if (1 != u) {
-        0 != l && (s = "ui_table_page", r = document.createElement("a"), r.className = s, r.setAttribute("ui_page_number", 0), r.innerHTML = "&laquo;", t.appendChild(r));
-        for (var _ = l; o >= _; _++) s = "ui_table_page", s += _ == i ? " selected" : "", r = document.createElement("a"), r.className = s, r.setAttribute("ui_page_number", _), r.innerHTML = _ + 1, t.appendChild(r);
-        o != u - 1 && (s = "ui_table_page", r = document.createElement("a"), r.className = s, r.setAttribute("ui_page_number", u - 1), r.innerHTML = "&raquo;", t.appendChild(r))
+        l = intval(e.getAttribute("ui_rows_limit")),
+        n = l ? Math.ceil(a / l) : 1,
+        u = i >= 4 ? i - 2 : 0,
+        o = n - i > 4 ? i + 2 : n - 1;
+    if (1 != n) {
+        0 != u && (s = "ui_table_page", r = document.createElement("a"), r.className = s, r.setAttribute("ui_page_number", 0), r.innerHTML = "&laquo;", t.appendChild(r));
+        for (var _ = u; o >= _; _++) s = "ui_table_page", s += _ == i ? " selected" : "", r = document.createElement("a"), r.className = s, r.setAttribute("ui_page_number", _), r.innerHTML = _ + 1, t.appendChild(r);
+        o != n - 1 && (s = "ui_table_page", r = document.createElement("a"), r.className = s, r.setAttribute("ui_page_number", n - 1), r.innerHTML = "&raquo;", t.appendChild(r))
     }
 }, Ui.tableUpdatePerPageLimit = function(e, t, i, r, s, a) {
     if (!hasClass(a, "selected")) {
         removeClass(geByClass1("selected", a.parentNode), "selected"), addClass(a, "selected"), e.setAttribute("ui_rows_limit", a.getAttribute("ui_per_page_limit"));
-        var n = a.parentNode.nextSibling;
-        hasClass(n, "ui_table_pages_numbers") && (Ui.tableUpdatePages(e, n, 0), e.setAttribute("ui_rows_page_number", 0));
-        var u = geByClass1("sort", t, "th");
-        Ui.tableUpdateSort(e, i, r, s, u, !1)
+        var l = a.parentNode.nextSibling;
+        hasClass(l, "ui_table_pages_numbers") && (Ui.tableUpdatePages(e, l, 0), e.setAttribute("ui_rows_page_number", 0));
+        var n = geByClass1("sort", t, "th");
+        Ui.tableUpdateSort(e, i, r, s, n, !1)
     }
 }, Ui.tableUpdatePageNumber = function(e, t, i, r, s, a) {
-    var n = intval(e.getAttribute("ui_rows_page_number")),
-        u = intval(a.getAttribute("ui_page_number"));
-    if (n != u) {
-        Ui.tableUpdatePages(e, a.parentNode, u), e.setAttribute("ui_rows_page_number", u);
-        var l = geByClass1("sort", t, "th");
-        Ui.tableUpdateSort(e, i, r, s, l, !1)
+    var l = intval(e.getAttribute("ui_rows_page_number")),
+        n = intval(a.getAttribute("ui_page_number"));
+    if (l != n) {
+        Ui.tableUpdatePages(e, a.parentNode, n), e.setAttribute("ui_rows_page_number", n);
+        var u = geByClass1("sort", t, "th");
+        Ui.tableUpdateSort(e, i, r, s, u, !1)
     }
 }, Ui.tableUpdateShower = function(e, t, i, r) {
     var s = r.getAttribute("ui_shower_less");
@@ -246,16 +246,16 @@ Ui.tableInitFilters = function(e) {
     } else addClass(i, "unshown"), removeClass(t, "unshown");
     var a = t.p_rows_more;
     if (a && a.length) {
-        var n = t.nextSibling;
+        var l = t.nextSibling;
         e.removeChild(t);
-        for (var u, l = 0; u = a[l]; l++) t.appendChild(u);
-        t.p_rows_more = [], e.insertBefore(t, n)
+        for (var n, u = 0; n = a[u]; u++) t.appendChild(n);
+        t.p_rows_more = [], e.insertBefore(t, l)
     }
 }, Ui.tableUpdateHiderGroup = function(e, t, i, r) {
-    for (var s, a, n = i.nextSibling, u = parseInt(i.getAttribute("ui_sort_index")), l = !1, o = e.hasAttribute("ui_ensure_group_visibilities") ? parseJSON(e.getAttribute("ui_ensure_group_visibilities")) : {}; n && n.hasAttribute("ui_group");) {
-        if (Math.abs(intval(n.getAttribute("ui_group"))) == r) a = toggleClass(n, "unshown") ? 1 : 0, s = u + ":" + r, o[s] = a, l = hasClass(n, "wide");
-        else if (l) break;
-        n = n.nextSibling
+    for (var s, a, l = i.nextSibling, n = parseInt(i.getAttribute("ui_sort_index")), u = !1, o = e.hasAttribute("ui_ensure_group_visibilities") ? parseJSON(e.getAttribute("ui_ensure_group_visibilities")) : {}; l && l.hasAttribute("ui_group");) {
+        if (Math.abs(intval(l.getAttribute("ui_group"))) == r) a = toggleClass(l, "unshown") ? 1 : 0, s = n + ":" + r, o[s] = a, u = hasClass(l, "wide");
+        else if (u) break;
+        l = l.nextSibling
     }
     e.setAttribute("ui_ensure_group_visibilities", JSON.stringify(o)), Ui.tableUpdateEven(e, t)
 };

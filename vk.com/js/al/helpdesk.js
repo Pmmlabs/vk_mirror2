@@ -1878,6 +1878,28 @@ var Helpdesk = {
     toggleBookmarksTimer: function(e) {
         Helpdesk.toggleBookmarksTimerView(e, !1), e ? Helpdesk.setFavoriteUntil(val("helpdesk_bookmarks_timer_date")) : Helpdesk.setFavoriteUntil(0)
     },
+    setDMCAStatus: function(btn, ticket_id, status, hash, sure, comment) {
+        var params = {
+            ticket_id: ticket_id,
+            status: status,
+            hash: hash
+        };
+        if (sure) params.comment = comment, ajax.post("helpdesk?act=a_change_dmca_status", params, {
+            onDone: function(content, script) {
+                content && val("tickets_content", content), script && eval(script)
+            },
+            onFail: function(e) {
+                return Tickets.showMsgBox(e, getLang("global_error")), !0
+            },
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn)
+        });
+        else var callback = 2 == status ? cur.showDeclineBox : cur.showApproveBox,
+            box = callback(function() {
+                var e = val("tickets_decline_dmca_comment") || "";
+                box.hide(), Helpdesk.setDMCAStatus(btn, ticket_id, status, hash, !0, e)
+            })
+    },
     _eof: 1
 };
 try {

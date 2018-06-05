@@ -321,9 +321,9 @@ var Restore = {
         var e, o, t, r, s, n = ge("submitBtn");
         e = val("login");
         var a = isVisible("new_phone_wrap") ? "new_phone" : "phone";
-        if (r = val(a).replace(/[^0-9]/g, ""), r && Restore.checkedPasswordStatus(), isVisible("email_wrap") && !/^\s*$/.test(e) && !/^\s*[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9_\.\-]+\s*$/.test(e) && !/^\s*[a-zA-Z0-9_]{6,32}\s*$/.test(e)) return Restore.showResult("request_email_res", getLang("restore_login_error"), "login");
+        if (r = val(a).replace(/[^0-9\*]/g, ""), r && Restore.checkedPasswordStatus(), isVisible("email_wrap") && !/^\s*$/.test(e) && !/^\s*[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9_\.\-]+\s*$/.test(e) && !/^\s*[a-zA-Z0-9_]{6,32}\s*$/.test(e)) return Restore.showResult("request_email_res", getLang("restore_login_error"), "login");
         if (o = val("email"), t = val("old_phone").replace(/[^0-9]/g, ""), !/^\s*$/.test(t) && !/^[1-9][0-9]{6,14}$/.test(t)) return Restore.showResult("request_phone_res", getLang("restore_old_phone_error"), "old_phone");
-        if (isVisible(a) && !/^[1-9][0-9]{6,14}$/.test(r)) return Restore.showResult("request_phone_res", getLang("restore_phone_error"), a);
+        if (isVisible(a) && !/^[1-9][0-9\*]{6,14}$/.test(r)) return Restore.showResult("request_phone_res", getLang("restore_phone_error"), a);
         if (cur.checkedPhones && cur.checkedPhones[r] && 2 == cur.checkedPhones[r][0]) return Restore.showResult("request_email_res", cur.checkedPhones[r][1], a, !0);
         if (!isVisible("new_phone_wrap") && !e && !t) {
             var i = getLang("restore_need_email_or_phone");
@@ -487,9 +487,9 @@ var Restore = {
         var o = "new_phone",
             t = ge("restore_submit_full_request");
         if (cur.requestParams || (cur.requestParams = {}, cur.requestStep = "phones"), "phones" == cur.requestStep) {
-            var r = val(o).replace(/[^0-9]/g, "");
+            var r = val(o).replace(/[^0-9\*]/g, "");
             if (!r) return notaBene(o);
-            if (!/^[1-9][0-9]{6,14}$/.test(r)) return Restore.showResult("request_phone_res", getLang("restore_phone_error"), o);
+            if (!/^[1-9][0-9\*]{6,14}$/.test(r)) return Restore.showResult("request_phone_res", getLang("restore_phone_error"), o);
             cur.requestParams.phone = r
         }
         if ("back_link" == cur.requestStep && e) return Restore.changeFormStep("back_link", "photo");
