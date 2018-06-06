@@ -1132,6 +1132,7 @@ var BugTracker = {
                 hash: t,
                 login_tf: val("bt_settings__login_tf"),
                 login_ha: val("bt_settings__login_ha"),
+                menu_side: cur.btMenuSideDD.val(),
                 platforms: []
             },
             o = !0;
@@ -1139,12 +1140,13 @@ var BugTracker = {
             r.platforms.push(attr(t, "platform-id"))
         }), r.moder_name = val("bt_settings__moder_name"), ajax.post("bugtracker", r, {
             showProgress: lockButton.pbind(e),
-            hideProgress: unlockButton.pbind(e),
             onDone: function(e) {
-                showDoneBox(e), hide("bt_settings_error")
+                hide("bt_settings_error"), nav.reload({
+                    onDone: showDoneBox.pbind(e)
+                })
             },
-            onFail: function(e) {
-                return show("bt_settings_error"), val("bt_settings_error", e), !0
+            onFail: function(t) {
+                return unlockButton(e), show("bt_settings_error"), val("bt_settings_error", t), !0
             }
         }))
     },

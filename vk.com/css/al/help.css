@@ -2,6 +2,17 @@
     display: none
 }
 
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
 .help_page {
     padding: 20px 25px;
     line-height: 170%;
@@ -32,6 +43,84 @@
 
 .ccform_field_static {
     padding: 1px 0px 9px
+}
+
+.help_legal_information {
+    padding: 38px 0 65px;
+    margin: 0 105px;
+    position: relative;
+    font-size: 14px;
+    line-height: 20px
+}
+
+.help_legal_information_title {
+    font-size: 23px;
+    line-height: 28px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding: 0 0 8px;
+    margin: 0;
+    text-align: center
+}
+
+.help_legal_information_desc {
+    text-align: center
+}
+
+.help_legal_information_content {
+    padding-top: 49px
+}
+
+.help_legal_information_content .wikiSubHeader {
+    padding: 38px 0 25px;
+    line-height: 19px;
+    font-size: 16px;
+    letter-spacing: -0.3px
+}
+
+.help_legal_information_content .wikiSubHeader:first-child {
+    padding-top: 0
+}
+
+.help_legal_information_content .wikiVkLink {
+    border: none;
+    line-height: 18px;
+    font-size: 15px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    color: #42648b;
+    letter-spacing: -0.2px;
+    padding-bottom: 4px;
+    display: inline-block;
+    margin-top: 33px
+}
+
+.help_legal_information_content .wikiVkLink:hover {
+    border: none;
+    text-decoration: underline
+}
+
+.help_legal_information_content .wikiVkLink:before {
+    content: '';
+    display: block;
+    height: 1px;
+    background: #e7e8ec;
+    position: absolute;
+    width: 100%;
+    margin-top: -25px;
+    pointer-events: none
+}
+
+.help_legal_information_content .wikiSubHeader+.wikiVkLink,
+.help_legal_information_content .wikiVkLink:first-child {
+    margin-top: 0
+}
+
+.help_legal_information_content .wikiSubHeader+.wikiVkLink:before,
+.help_legal_information_content .wikiVkLink:first-child:before {
+    display: none
 }
 
 #ccform_content_links,

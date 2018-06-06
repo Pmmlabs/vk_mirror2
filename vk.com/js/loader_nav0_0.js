@@ -92,6 +92,7 @@ var navMap = {
     'grouptest$': ['al_help.php', ['help.css', 'help.js']],
     'dmca$': ['al_tickets.php', ['tickets.css', 'tickets.js']],
     'terms$': ['al_help.php', ['help.css', 'help.js']],
+    'legal$': ['al_help.php', ['help.css', 'help.js']],
     'privacy($|/)': ['al_help.php', ['help.css', 'help.js']],
     'licence$': ['al_help.php', ['help.css', 'help.js']],
     'editdb($|/)': ['edit.php', []],
@@ -259,7 +260,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 194736922885,
-    'imn.js': 254134457158,
+    'imn.js': 253110296582,
     'im.js': 1322065005,
     'emoji.js': 2723938640,
     'wide_dd.css': 17901568486,
@@ -271,7 +272,7 @@ var stVersions = {
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
     'feed.js': 3596950987,
-    'feed.css': 20026379983,
+    'feed.css': 20385689952,
     'privacy.js': 835833828,
     'privacy.css': 15575383837,
     'apps.css': 37111827322,
@@ -341,7 +342,7 @@ var stVersions = {
     'helpdesk.js': 4100563069,
     'helpdesk.css': 18427362332,
     'tickets.js': 2918658001,
-    'tickets.css': 23905778695,
+    'tickets.css': 20097224084,
     'faq.css': 22390495690,
     'talmud.js': 1641838680,
     'agents.js': 2426697933,
@@ -354,7 +355,7 @@ var stVersions = {
     'groupinfo.css': 77489573775,
     'bugs.js': 3874995669,
     'bugs.css': 15173856879,
-    'bugtracker.js': 2858353743,
+    'bugtracker.js': 797811899,
     'bugtracker.css': 26517486443,
     'login.css': 18380167306,
     'cmodules/web/login.js': 3491120396,
@@ -398,7 +399,7 @@ var stVersions = {
     'pinbar.js': 284788792,
     'sms_office.css': 1728588285,
     'sms_office.js': 333673010,
-    'help.css': 3097192141,
+    'help.css': 15630305548,
     'help.js': 915032948,
     'claims.css': 16498444251,
     'claims.js': 4191854833,
@@ -623,4 +624,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 4625;
+var _rnd = 3811;

@@ -1153,6 +1153,12 @@
     background-position: -2px -2px
 }
 
+.feedback_birthday_gift_row .feedback_photo_icon {
+    display: block;
+    background: #e64646 url(/images/svg_icons/feedback/gift_2.svg) no-repeat;
+    background-position: -2px -2px
+}
+
 .feedback_app_row .feedback_photo_icon {
     display: block;
     background: #5c9ce6 url(/images/svg_icons/feedback/app.svg) no-repeat

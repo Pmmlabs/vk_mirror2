@@ -3244,6 +3244,24 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     width: 100%
 }
 
+.help_table .help_table_question_full {
+    border: 0
+}
+
+.help_table .help_table_question_full .help_table_found {
+    margin: 0 auto;
+    width: 510px
+}
+
+.help_table .help_table_question_full .tickets_new_wrap {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #e7e8ec
+}
+
+.help_table .help_table_question_full .tickets_new_wrap .tickets_title_label {
+    margin-bottom: 0
+}
+
 .help_table_questions {
     border-right: 1px solid #e7e8ec;
     padding: 15px 20px 20px;
