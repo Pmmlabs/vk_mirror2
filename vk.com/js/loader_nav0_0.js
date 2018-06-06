@@ -159,7 +159,7 @@ var stVersions = {
     'audio_html5.js': 287741914,
     'audio.js': 1008296479,
     'cmodules/web/audio_admins.js': 4797777469,
-    'audio.css': 21001213843,
+    'audio.css': 20651260399,
     'audio_admins.css': 19339345679,
     'gifts.css': 20795303594,
     'gifts.js': 338252255,
@@ -259,8 +259,8 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 194736922885,
-    'imn.js': 253110296582,
+    'im.css': 192777219027,
+    'imn.js': 254268363954,
     'im.js': 1322065005,
     'emoji.js': 2723938640,
     'wide_dd.css': 17901568486,
@@ -339,8 +339,8 @@ var stVersions = {
     'docs.css': 23599597055,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 17204176864,
-    'helpdesk.js': 4100563069,
-    'helpdesk.css': 18427362332,
+    'helpdesk.js': 1925004756,
+    'helpdesk.css': 20734849343,
     'tickets.js': 2918658001,
     'tickets.css': 20097224084,
     'faq.css': 22390495690,
@@ -532,8 +532,8 @@ var stVersions = {
     'cmodules/web/article.js': 33673314689,
     'cmodules/web/article_layer.js': 17706033555,
     'article_view.js': 12657933645,
-    'bookmarks.css': 14851752425,
-    'cmodules/web/bookmarks.js': 3541036604,
+    'bookmarks.css': 14992422052,
+    'cmodules/web/bookmarks.js': 1303575103,
     'shortener.js': 16413120,
     'cmodules/web/pretty_cards.js': 124004037,
     'cmodules/web/landing_ads_case.js': 3936066274,
@@ -624,4 +624,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 3811;
+var _rnd = 3318;

@@ -976,6 +976,15 @@ body.body_helpdesk_small_sb .left_menu_nav {
     opacity: 1
 }
 
+.helpdesk_smb_ticket {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin: 0 4px 1px 0;
+    background: #5b88bd;
+    display: inline-block
+}
+
 .helpdesk_user_marks {
     float: right;
     margin: 0 0 5px 10px;

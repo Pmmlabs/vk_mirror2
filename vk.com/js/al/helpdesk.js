@@ -527,7 +527,7 @@ var Helpdesk = {
             };
         cur.cat_average_times && intval(cur.cat_average_times[t]) > 0 && (o.avg_time = getTemplate("passToBoxAvgTime", {
             avg_time: cur.cat_average_times[t]
-        })), 16 != t && 17 != t && 18 != t || cur.isMobileTicket || (o.send_payform = '<div class="checkbox' + (cur.sendPayFormDefault ? " on" : "") + '" id="support_send_payform" onclick="checkbox(this);">' + getLang("support_send_form_to_user") + "</div>");
+        })), 16 != t && 17 != t && 18 != t || cur.isImTicket || (o.send_payform = '<div class="checkbox' + (cur.sendPayFormDefault ? " on" : "") + '" id="support_send_payform" onclick="checkbox(this);">' + getLang("support_send_form_to_user") + "</div>");
         var i = getTemplate("passToBox", o),
             r = showFastBox({
                 title: getLang("support_pass_title"),

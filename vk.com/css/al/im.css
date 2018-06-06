@@ -10346,10 +10346,13 @@ body.sf .nim-dialog .nim-dialog--unread {
     line-height: 1.5em
 }
 
+.im-dropbox[data-mode=media] .im-dropbox--rect--photo,
 .im-dropbox[data-mode=photo] .im-dropbox--rect--photo {
     top: 40%
 }
 
+.im-dropbox[data-mode=media] .im-dropbox--msg_videodoc,
+.im-dropbox[data-mode=media] .im-dropbox--rect--video,
 .im-dropbox[data-mode=photo] .im-dropbox--msg_videodoc,
 .im-dropbox[data-mode=photo] .im-dropbox--rect--video {
     display: none!important
@@ -10364,34 +10367,16 @@ body.sf .nim-dialog .nim-dialog--unread {
     display: none!important
 }
 
+.im-dropbox[data-mode=media] .im-dropbox--rect--doc,
 .im-dropbox[data-mode=photo] .im-dropbox--rect--doc,
 .im-dropbox[data-mode=video] .im-dropbox--rect--doc {
     height: calc(40% - 22px);
     bottom: auto
 }
 
+.im-dropbox[data-mode=media] .im-dropbox--msg_doc,
 .im-dropbox[data-mode=photo] .im-dropbox--msg_doc,
 .im-dropbox[data-mode=video] .im-dropbox--msg_doc {
-    display: none
-}
-
-.im-dropbox[data-mode=media] .im-dropbox--rect--doc {
-    height: calc(33% - 22px);
-    bottom: auto
-}
-
-.im-dropbox[data-mode=media] .im-dropbox--rect--photo {
-    top: 33%;
-    height: calc(33% - 12px)
-}
-
-.im-dropbox[data-mode=media] .im-dropbox--rect--video {
-    top: 66%;
-    height: calc(33%)
-}
-
-.im-dropbox[data-mode=media] .im-dropbox--msg_photodoc,
-.im-dropbox[data-mode=media] .im-dropbox--msg_videodoc {
     display: none
 }
 

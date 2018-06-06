@@ -224,8 +224,8 @@
     content: ' ';
     display: inline-block;
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2211%22%20height%3D%2211%22%20viewBox%3D%220%200%2011%2011%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ctitle%3EExplicit_11%3C%2Ftitle%3E%3Cpath%20d%3D%22M1%202.506v5.988A1.5%201.5%200%200%200%202.491%2010H8.51C9.337%2010%2010%209.326%2010%208.494V2.506A1.5%201.5%200%200%200%208.509%201H2.49C1.663%201%201%201.674%201%202.506zM5%205V4h2V3H4v5h3V7H5V6h2V5H5zM0%202.506A2.496%202.496%200%200%201%202.491%200H8.51A2.5%202.5%200%200%201%2011%202.506v5.988A2.496%202.496%200%200%201%208.509%2011H2.49A2.5%202.5%200%200%201%200%208.494V2.506z%22%20fill%3D%22%23828A99%22%20fill-rule%3D%22nonzero%22%20fill-opacity%3D%22.7%22%2F%3E%3C%2Fsvg%3E") no-repeat 50%;
-    width: 13px;
     height: 13px;
+    width: 14px;
     margin-left: 5px
 }
 

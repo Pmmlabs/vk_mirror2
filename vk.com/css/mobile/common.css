@@ -22399,6 +22399,107 @@ a.feedBlocks__article:hover {
     font-size: 14px
 }
 
+.post_suggest {
+    display: block;
+    box-sizing: border-box;
+    padding: 12px;
+    background-color: #f7f7f7;
+    position: relative;
+    margin-top: 10px;
+    border-top: 1px solid #e3e5e8;
+    min-height: 72px;
+    margin-bottom: -8px;
+    text-decoration: none;
+    color: inherit
+}
+
+.post_suggest .post_suggest__close {
+    background-color: #e7e9ea;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 10px;
+    right: 10px
+}
+
+.post_suggest .post_suggest__image {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    background-size: cover;
+    background-position: 50%;
+    border-radius: 2px
+}
+
+.post_suggest .post_suggest__info {
+    margin-left: 60px;
+    margin-right: 30px
+}
+
+.post_suggest .post_suggest__text {
+    line-height: 1.29;
+    font-size: 14px
+}
+
+.post_suggest .post_suggest__action_text {
+    color: #528bcc;
+    margin-top: 6px;
+    font-weight: 600
+}
+
+.post_suggest .post_suggest__friends {
+    margin-top: 8px
+}
+
+.post_suggest .post_suggest__friend {
+    background-size: cover;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #f7f7f7;
+    margin-right: -6px
+}
+
+.post_suggest .post_suggest__friend,
+.post_suggest .post_suggest__friends_avatars {
+    display: inline-block;
+    vertical-align: top
+}
+
+.post_suggest .post_suggest__friends_total {
+    display: inline-block;
+    vertical-align: top;
+    margin: 6px 0 0 10px;
+    color: #5a5d61
+}
+
+.post_suggest:after,
+.post_suggest:before {
+    bottom: 100%;
+    left: 33px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none
+}
+
+.post_suggest:after {
+    border-color: hsla(0, 0%, 97%, 0);
+    border-bottom-color: #f7f7f7;
+    border-width: 5px;
+    margin-left: -5px
+}
+
+.post_suggest:before {
+    border-color: rgba(227, 229, 232, 0);
+    border-bottom-color: #e3e5e8;
+    border-width: 6px;
+    margin-left: -6px
+}
+
 .friendsList__divider {
     margin-top: 6px;
     margin-left: 12px;
@@ -26012,7 +26113,10 @@ body.apps_settingsPageBody {
         margin-bottom: 0
     }
     .r .wi_author .explain {
-        margin-left: 5px
+        margin-left: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis
     }
 }
 
