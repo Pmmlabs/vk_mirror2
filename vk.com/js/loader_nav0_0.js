@@ -41,6 +41,7 @@ var navMap = {
     'settings$': ['al_settings.php', ['settings.js', 'settings.css']],
     'edit$': ['al_profileEdit.php', ['profile_edit.js', 'profile_edit.css']],
     'blog($|/)': ['blog.php', ['blog.css', 'blog.js', 'page.js']],
+    'press$': ['blog.php', ['blog.css', 'blog.js', 'page.js']],
     'fave$': ['al_fave.php', ['fave.js', 'fave.css', 'page.css', 'wall.css', 'qsorter.js', 'indexer.js']],
     'topic$': ['al_board.php', ['board.css']],
     'board\\d+$': ['al_board.php', ['board.css', 'board.js']],
@@ -158,7 +159,7 @@ var stVersions = {
     'audioplayer.css': 18858345903,
     'audio_html5.js': 287741914,
     'audio.js': 1008296479,
-    'cmodules/web/audio_admins.js': 4797777469,
+    'cmodules/web/audio_admins.js': 5876846224,
     'audio.css': 20651260399,
     'audio_admins.css': 19339345679,
     'gifts.css': 20795303594,
@@ -393,7 +394,7 @@ var stVersions = {
     'ads_web.js': 4274163593,
     'mrtarg.js': 1146267795,
     'mrtarg.css': 3142794554,
-    'cmodules/web/ads_edit_easy.js': 2869794635,
+    'cmodules/web/ads_edit_easy.js': 3815508636,
     'health.css': 2251304991,
     'health.js': 2993570139,
     'pinbar.js': 284788792,
@@ -487,7 +488,7 @@ var stVersions = {
     'landings/testing.css': 16747717781,
     'vkme.css': 23333264245,
     'cmodules/web/vkme-desktop.js': 5837370790,
-    'ui_controls.js': 722858875,
+    'ui_controls.js': 2247765440,
     'highcharts.js': 1982709850,
     'ui_controls.css': 16390758369,
     'selects.js': 2835310113,
@@ -529,7 +530,7 @@ var stVersions = {
     'stories_manage.css': 69466276799,
     'article.css': 29705044511,
     'article_editor.css': 30223026688,
-    'cmodules/web/article.js': 33673314689,
+    'cmodules/web/article.js': 33739468033,
     'cmodules/web/article_layer.js': 17706033555,
     'article_view.js': 12657933645,
     'bookmarks.css': 14992422052,
@@ -554,7 +555,7 @@ var stVersions = {
     'cmodules/web/app_info.js': 2375115030,
     'cmodules/web/grip.js': 4164501492,
     'cmodules/web/reports.js': 16895060146,
-    'cmodules/web/raven_logger.js': 5036423544,
+    'cmodules/web/raven_logger.js': 6577215850,
     'lang': 6887
 };
 var stTypes = {
@@ -624,4 +625,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 3318;
+var _rnd = 8838;

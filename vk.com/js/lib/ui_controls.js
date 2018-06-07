@@ -703,6 +703,10 @@ extend(UiControl.prototype, {
             target: this.selectedItemsContainer
         })), this._updateOptionsAriaSelected(!0), !1)
     },
+    getTokenById: function(t) {
+        for (var e in this._selectedItems)
+            if (this._selectedItems[e][0] == t) return ge("bit_" + this.guid + "_" + t)
+    },
     replaceTagID: function(t, e) {
         for (var i in this._selectedItems)
             if (this._selectedItems[i][0] == t) {
@@ -740,9 +744,10 @@ extend(UiControl.prototype, {
         if (this.options.multiselect || (this._selectedItems.length && (this.changeAfterBlur = !0), this._clear()), this.updatePlaceholder(), clearTimeout(this.requestTimeout), 0 == t.length) return void this.showDefaultList();
         this.curTerm = t;
         var e, i = isFunction(this.options.customSearch) && this.options.customSearch(t);
-        return i ? void this.receiveData(t, i) : void(this.dataURL ? (e = this.cache.getData(t), null === e ? this.requestTimeout = setTimeout(function() {
-            this.request(this.receiveData.bind(this), this.showNoDataList.bind(this));
-        }.bind(this), 300) : e && e.length ? this.receiveData(t, e) : this.showNoDataList()) : (e = this.indexer.search(t), e && e.length ? this.receiveData(t, e) : this.showNoDataList()))
+        return i ? void this.receiveData(t, i) : void(this.dataURL ? (e = this.cache.getData(t),
+            null === e ? this.requestTimeout = setTimeout(function() {
+                this.request(this.receiveData.bind(this), this.showNoDataList.bind(this))
+            }.bind(this), 300) : e && e.length ? this.receiveData(t, e) : this.showNoDataList()) : (e = this.indexer.search(t), e && e.length ? this.receiveData(t, e) : this.showNoDataList()))
     },
     showNoDataList: function() {
         (this.hasFocus || this.readOnly) && (this._showSelectList(this.options.noResult), this.defaultList = !1)
@@ -1554,7 +1559,7 @@ extend(UiControl.prototype, {
             addClass(e, "dd_a_hover")
         }, e.onmouseout = function() {
             removeClass(e, "dd_a_hover")
-        }), this.items[t.i] = e, this.rows.appendChild(e), "left" == this.options.align && this.alignBody();
+        }), this.items[t.i] = e, this.rows.appendChild(e), "left" == this.options.align && this.alignBody()
     },
     getRows: function() {
         return this.rows
