@@ -19,28 +19,36 @@ var Groups = {
             e[0] && clearTimeout(Groups.keyTO)
         }), e.cntKey && Groups.subscribe(e.cntKey), e.age_disclaimer && Groups.showDisclaimer(e, "group")
     },
+    inviteToChat: function(e, o) {
+        stManager.add([jsc("web/group_invite_chat.js"), "group_invite_chat.css", "indexer.js"], function() {
+            window.showGroupChatInviteBox(e)
+        }), o.preventDefault()
+    },
+    inviteToChatPreload: function() {
+        stManager.add([jsc("web/group_invite_chat.js"), "group_invite_chat.css", "indexer.js"], function() {})
+    },
     showDisclaimer: function(e, o) {
         var t = !1,
             a = function() {
                 t || (e.age_disclaimer_back ? history.back() : location.href = "/")
             },
-            s = showFastBox({
+            n = showFastBox({
                 title: getLang("groups_age_warning"),
                 width: 470,
                 hideOnBGClick: !1,
                 onHide: a,
                 forceNoBtn: 1
             }, '<div class="group_age_disclaimer">' + getLang("groups_age_disclaimer") + '<br><div class="checkbox group_age_checkbox" onclick="checkbox(this); disableButton(curBox().proceedButton, !isChecked(this))"><div></div>' + getLang("groups_age_accepted") + "</div></div>");
-        s.removeButtons();
-        var n = s.addButton(getLang("global_cancel"), s.hide, "no", !0);
-        addClass(n, "group_age_disclaimer_close"), s.proceedButton = s.addButton(getLang("groups_age_approve"), function() {
-            t = !0, removeClass(ge(o), "hidden"), s.hide(), e.age_disclaimer_hash ? ajax.post("al_groups.php", {
+        n.removeButtons();
+        var s = n.addButton(getLang("global_cancel"), n.hide, "no", !0);
+        addClass(s, "group_age_disclaimer_close"), n.proceedButton = n.addButton(getLang("groups_age_approve"), function() {
+            t = !0, removeClass(ge(o), "hidden"), n.hide(), e.age_disclaimer_hash ? ajax.post("al_groups.php", {
                 act: "a_set_user_age",
                 hash: e.age_disclaimer_hash
             }) : setCookie("remixage18", 1), cur.zNavInfo && zNav(cur.zNavInfo.info, cur.zNavInfo.opts)
         }, "yes", !0);
-        var r = geByClass1("box_controls", domPN(s.bodyNode));
-        addClass(r, "group_age_disclaimer_box"), replaceClass(domFC(r), "fl_r", "fl_l"), disableButton(s.proceedButton, 1)
+        var r = geByClass1("box_controls", domPN(n.bodyNode));
+        addClass(r, "group_age_disclaimer_box"), replaceClass(domFC(r), "fl_r", "fl_l"), disableButton(n.proceedButton, 1)
     },
     switchTab: function(e, o, t) {
         return checkEvent(t) ? !0 : "wiki" == o && hasClass(e, "ui_tab_sel") ? nav.go(e, t) : (ge("page_info_wrap").className = "page_info_wrap " + o, uiTabs.switchTab(e))
@@ -59,10 +67,10 @@ var Groups = {
         }), cancelEvent(a)
     },
     hideHelpStep: function(e, o, t, a) {
-        var s = domClosest("page_block", e);
+        var n = domClosest("page_block", e);
         return e && e.tt && e.tt.hide && e.tt.hide({
             fasthide: !0
-        }), s && slideUp(s, 200, re.pbind(s)), ajax.post("/al_public.php", {
+        }), n && slideUp(n, 200, re.pbind(n)), ajax.post("/al_public.php", {
             act: "a_hide_help_step",
             pid: o,
             step: "help_step_advice",
@@ -88,7 +96,7 @@ var Groups = {
     },
     vote: function(e, o, t, a) {
         radiobtn(e, a, "vote_option" + t);
-        var s = hasClass(e.firstChild, "progress") ? e.firstChild : e.insertBefore(ce("span", {
+        var n = hasClass(e.firstChild, "progress") ? e.firstChild : e.insertBefore(ce("span", {
             className: "fl_r progress"
         }), e.firstChild);
         ajax.post("al_voting.php", {
@@ -99,7 +107,7 @@ var Groups = {
             hash: cur.polls[t].hash
         }, {
             onDone: Groups.votingUpdate.pbind("vote"),
-            progress: s
+            progress: n
         })
     },
     subscribe: function(e) {
@@ -219,12 +227,12 @@ var Groups = {
         var a = geByClass1("_page_actions_container");
         a && o && domPN(a).replaceChild(se(o), a), void 0 !== t && val("group_moder_info", t)
     },
-    enter: function(e, o, t, a, s) {
-        var n, r;
-        if (e = ge(e), hasClass(e, "flat_button")) n = lockButton.pbind(e), r = unlockButton.pbind(e);
+    enter: function(e, o, t, a, n) {
+        var s, r;
+        if (e = ge(e), hasClass(e, "flat_button")) s = lockButton.pbind(e), r = unlockButton.pbind(e);
         else {
             if (e.firstChild && "progress" == e.firstChild.className) return;
-            n = function() {
+            s = function() {
                 e.oldhtml = e.innerHTML, e.innerHTML = '<span class="progress" style="display: block"></span>'
             }, r = function() {
                 e.innerHTML = e.oldhtml
@@ -237,7 +245,7 @@ var Groups = {
             context: a
         }, {
             onDone: function(e, o) {
-                if (s) return s();
+                if (n) return n();
                 Groups.updateActions(e, o), toggle("page_actions", e);
                 var t = geByClass1("_groups_invite_block");
                 t && slideUp(t, 200), nav.reload({
@@ -251,24 +259,24 @@ var Groups = {
                     bodyStyle: "padding: 20px; line-height: 160%;"
                 }, e).hide, 3e3), !0) : void 0
             },
-            showProgress: n,
+            showProgress: s,
             hideProgress: r
         })
     },
-    confirm: function(e, o, t, a, s) {
-        var n = showFastBox({
+    confirm: function(e, o, t, a, n) {
+        var s = showFastBox({
             title: getLang("global_warning"),
             bodyStyle: "padding: 20px; line-height: 160%;"
         }, getLang(e), getLang("group_leave_group"), function() {
-            n.hide(), Groups.leave(o, t, a, s)
+            s.hide(), Groups.leave(o, t, a, n)
         }, getLang("global_cancel"))
     },
-    leave: function(e, o, t, a, s) {
-        var n, r;
-        if (e = ge(e), hasClass(e, "flat_button")) n = lockButton.pbind(e), r = unlockButton.pbind(e);
+    leave: function(e, o, t, a, n) {
+        var s, r;
+        if (e = ge(e), hasClass(e, "flat_button")) s = lockButton.pbind(e), r = unlockButton.pbind(e);
         else {
             if (e.firstChild && "progress" == e.firstChild.className) return;
-            n = function() {
+            s = function() {
                 e.oldhtml = e.innerHTML, e.innerHTML = '<span class="progress" style="display: block"></span>'
             }, r = function() {
                 e.innerHTML = e.oldhtml
@@ -281,14 +289,14 @@ var Groups = {
             context: a
         }, {
             onDone: function(e, o) {
-                if (s) return s();
+                if (n) return n();
                 Groups.updateActions(e, o), toggle("page_actions", e);
                 var t = geByClass1("_groups_invite_block");
                 t && slideUp(t, 200), nav.reload({
                     noframe: !0
                 })
             },
-            showProgress: n,
+            showProgress: s,
             hideProgress: r
         })
     },
@@ -304,12 +312,12 @@ var Groups = {
             var o = ge("page_other_acts"); - 1 == e ? hide(o) : fadeOut(o, 200)
         }
     },
-    toggleTop: function(e, o, t, a, s) {
+    toggleTop: function(e, o, t, a, n) {
         ajax.post("al_groups.php", {
             act: "a_toggle_top",
             gid: o,
             hash: t,
-            nocis: s
+            nocis: n
         }, {
             onDone: function(o) {
                 e.innerHTML = o
@@ -336,8 +344,8 @@ var Groups = {
             var a = t ? getLang("groups_fast_menu_access_invert") : getLang("groups_fast_menu_access");
             val(e, a), e.setAttribute("data-value", t), "groups_list" == cur.module && window.GroupsList && GroupsList.updateGroupField(o, 11, t)
         }
-        var s = 1 ^ intval(e.getAttribute("data-value")),
-            n = hasClass(e, "page_actions_item") || hasClass(e, "ui_actions_menu_item");
+        var n = 1 ^ intval(e.getAttribute("data-value")),
+            s = hasClass(e, "page_actions_item") || hasClass(e, "ui_actions_menu_item");
         return ajax.post("al_settings.php", {
             act: "a_toggle_admin_fast",
             gid: o,
@@ -345,18 +353,18 @@ var Groups = {
             update_menu: 1
         }, {
             onDone: function(e, o) {
-                n && a(e), geByTag1("ol", ge("side_bar")).innerHTML = o, window.Notifier && Notifier.resetCommConnection()
+                s && a(e), geByTag1("ol", ge("side_bar")).innerHTML = o, window.Notifier && Notifier.resetCommConnection()
             },
             onFail: function(e) {
-                return n || a(0), "too_much_groups" !== e ? !1 : (showFastBox(getLang("global_error"), getLang("groups_left_menu_full", 5)), !0)
+                return s || a(0), "too_much_groups" !== e ? !1 : (showFastBox(getLang("global_error"), getLang("groups_left_menu_full", 5)), !0)
             }.bind(),
-            showProgress: n && function() {
+            showProgress: s && function() {
                 hasClass(e, "page_actions_item") ? window.Page && Page.actionsDropdownLock(e) : lockActionsMenuItem(e)
             },
-            hideProgress: n && function() {
+            hideProgress: s && function() {
                 hasClass(e, "page_actions_item") ? window.Page && Page.actionsDropdownUnlock(e) : unlockActionsMenuItem(e)
             }
-        }), n || a(s), !1
+        }), s || a(n), !1
     },
     showMapBox: function(e, o, t) {
         window.showZeroZoneBox && showZeroZoneBox("places", function() {
@@ -397,27 +405,27 @@ var Groups = {
         var t = o[0][e],
             a = o[1];
         if (void 0 === a) return t;
-        for (var s = [], n = 0; n < t.length; n++) {
-            var r = t[n];
-            r[3] = "section", s = s.concat([r]), a[r[0]] && (r[5] = "1", s = s.concat(a[r[0]]))
+        for (var n = [], s = 0; s < t.length; s++) {
+            var r = t[s];
+            r[3] = "section", n = n.concat([r]), a[r[0]] && (r[5] = "1", n = n.concat(a[r[0]]))
         }
-        for (var n = 0; n < s.length; n++) s[n][3] += " sectioned";
-        return s
+        for (var s = 0; s < n.length; s++) n[s][3] += " sectioned";
+        return n
     },
     initCategories: function(e) {
         e.prefix = e.prefix || "group_category_", e.groupClass = e.groupClass || 0, cur.groupCategoriesDD = cur.groupCategoriesDD || {}, cur.groupCategoriesDD[e.prefix] = cur.groupCategoriesDD[e.prefix] || {};
         for (var o = e.categories[e.groupClass], t = 0; 2 > t; ++t) {
             var a = [],
-                s = cur.groupCategoriesDD[e.prefix],
-                n = s[t];
+                n = cur.groupCategoriesDD[e.prefix],
+                s = n[t];
             if (0 == t) a = o[t][0];
             else if (t > 0) {
-                var r = s[t - 1].val();
+                var r = n[t - 1].val();
                 "" != r && o[t] && (a = this.getFlattenedCategories(r, o.slice(1)) || [])
             }
-            n && n.container && n.container.compareDocumentPosition && n.container.compareDocumentPosition(bodyNode) & Node.DOCUMENT_POSITION_DISCONNECTED && (n.destroy(), n = null), n ? (n.setData(a), n.currenDataItems = a, n.setOptions({
+            s && s.container && s.container.compareDocumentPosition && s.container.compareDocumentPosition(bodyNode) & Node.DOCUMENT_POSITION_DISCONNECTED && (s.destroy(), s = null), s ? (s.setData(a), s.currenDataItems = a, s.setOptions({
                 defaultItems: a
-            }), n.clear()) : n = new Dropdown(ge(e.prefix + t), a, {
+            }), s.clear()) : s = new Dropdown(ge(e.prefix + t), a, {
                 width: 300,
                 dark: !0,
                 multiselect: !1,
@@ -430,14 +438,14 @@ var Groups = {
                 placeholder: getLang("groups_choose_subject"),
                 onChange: function(t, a) {
                     if (0 == t && a) {
-                        var n = Groups.getFlattenedCategories(a, o.slice(1)) || [];
-                        s[t + 1].setData(n), s[t + 1].currenDataItems = n, s[t + 1].setOptions({
-                            defaultItems: n
+                        var s = Groups.getFlattenedCategories(a, o.slice(1)) || [];
+                        n[t + 1].setData(s), n[t + 1].currenDataItems = s, n[t + 1].setOptions({
+                            defaultItems: s
                         });
-                        for (var r = t + 1; 2 > r; ++r) s[r].clear(), s[r].disable(r > t + 1 || !n.length), toggle(ge(e.prefix + "wrap_" + r), !(r > t + 1 || !n.length))
+                        for (var r = t + 1; 2 > r; ++r) n[r].clear(), n[r].disable(r > t + 1 || !s.length), toggle(ge(e.prefix + "wrap_" + r), !(r > t + 1 || !s.length))
                     }
                 }.pbind(t)
-            }), e.selected[t] && -1 != e.selected[t] ? 1 == t && e.selected[2] ? n.val(e.selected[2]) : n.val(e.selected[t]) : t > 0 && (-1 == e.selected[t - 1] || !a.length) && (n.disable(!0), hide(ge(e.prefix + "wrap_" + t))), cur.groupCategoriesDD[e.prefix][t] = n
+            }), e.selected[t] && -1 != e.selected[t] ? 1 == t && e.selected[2] ? s.val(e.selected[2]) : s.val(e.selected[t]) : t > 0 && (-1 == e.selected[t - 1] || !a.length) && (s.disable(!0), hide(ge(e.prefix + "wrap_" + t))), cur.groupCategoriesDD[e.prefix][t] = s
         }
     },
     categoriesGetDropdown: function(e, o) {
@@ -449,20 +457,20 @@ var Groups = {
                 t = a;
                 break
             }
-        for (var s = -1, a = t; a >= 0; a--)
+        for (var n = -1, a = t; a >= 0; a--)
             if (Number(e[a][0]) < 3e3) {
-                s = a;
+                n = a;
                 break
             }
-        return -1 == t || -1 == s ? [0, 0] : s == t ? [e[t][0], 0] : [e[s][0], e[t][0]]
+        return -1 == t || -1 == n ? [0, 0] : n == t ? [e[t][0], 0] : [e[n][0], e[t][0]]
     },
     categoriesValue: function(e) {
         for (var o = [], t = 0; 2 > t; ++t) {
             var a = this.categoriesGetDropdown(t, e);
             if (0 == t) o.push(a ? intval(a.val()) : 0);
             else {
-                var s = a ? intval(a.val()) : 0;
-                o = o.concat(this.getDetailedCategories(a.dataItems, s))
+                var n = a ? intval(a.val()) : 0;
+                o = o.concat(this.getDetailedCategories(a.dataItems, n))
             }
         }
         return o
@@ -488,7 +496,7 @@ var Groups = {
                 category_2: a[2]
             })
         }
-        var s = ge("group_set_categories_submit");
+        var n = ge("group_set_categories_submit");
         hide("group_set_categories_error_wrap"), hide("group_set_categories_success_wrap"), ajax.post("al_groups.php", t, {
             onDone: function(e) {
                 val("group_set_categories_success", e), show("group_set_categories_success_wrap")
@@ -496,8 +504,8 @@ var Groups = {
             onFail: function(e) {
                 return val("group_set_categories_error", e), show("group_set_categories_error_wrap"), !0
             },
-            showProgress: lockButton.pbind(s),
-            hideProgress: unlockButton.pbind(s)
+            showProgress: lockButton.pbind(n),
+            hideProgress: unlockButton.pbind(n)
         })
     }
 };

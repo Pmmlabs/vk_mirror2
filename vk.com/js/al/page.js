@@ -1298,6 +1298,7 @@ var Page = {
             if (canPlayMp4) {
                 el = ce('video', {
                     autoplay: true,
+                    muted: true,
                     loop: 'loop',
                     poster: obj.getAttribute('data-thumb'),
                     src: el_src + '&mp4=1',

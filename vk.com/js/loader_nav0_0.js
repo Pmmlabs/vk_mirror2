@@ -209,7 +209,7 @@ var stVersions = {
     'video_upload.js': 5291915463,
     'video_youtube.js': 458412745,
     'video_youtube.css': 14792212715,
-    'videoplayer.js': 90451157316,
+    'videoplayer.js': 91716286175,
     'videoplayer.css': 38140490025,
     'translation.js': 3205673093,
     'translation.css': 18081978602,
@@ -227,15 +227,15 @@ var stVersions = {
     'module.css': 20013645251,
     'owner_photo.js': 1308202247,
     'owner_photo.css': 20804665174,
-    'page.js': 1008151050,
+    'page.js': 3587955458,
     'page.css': 40298145834,
     'page_help.css': 22638871887,
     'public.css': 24109285250,
     'public.js': 2784121325,
     'pages.css': 22240458045,
     'pages.js': 1162259210,
-    'groups.css': 25710230730,
-    'groups.js': 608843959,
+    'groups.css': 24800999174,
+    'groups.js': 1566146009,
     'cmodules/web/groups_create.js': 2554367098,
     'groups_create.css': 17801074549,
     'cmodules/web/groups_list.js': 5109346988,
@@ -261,7 +261,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 192777219027,
-    'imn.js': 254268363954,
+    'imn.js': 260224460911,
     'im.js': 1322065005,
     'emoji.js': 2723938640,
     'wide_dd.css': 17901568486,
@@ -329,7 +329,7 @@ var stVersions = {
     'widgets.css': 30044621708,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 71133869084,
+    'notifier.js': 78363661650,
     'notifier.css': 26710823076,
     'cmodules/sw/sw.js': 4889939668,
     'earthday.js': 2276669993,
@@ -554,6 +554,8 @@ var stVersions = {
     'time_spent.js': 732637085,
     'cmodules/web/app_info.js': 2375115030,
     'cmodules/web/grip.js': 4164501492,
+    'cmodules/web/group_invite_chat.js': 42635271733,
+    'group_invite_chat.css': 70516744804,
     'cmodules/web/reports.js': 16895060146,
     'cmodules/web/raven_logger.js': 6577215850,
     'lang': 6887
@@ -625,4 +627,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 6377;
+var _rnd = 4350;
