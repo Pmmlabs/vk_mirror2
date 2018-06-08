@@ -1154,3 +1154,7 @@ span#wk_posts_reach_tooltip_link {
 .wk_ads_case#wk_box {
     border-radius: 4px
 }
+
+.closed_comments .reply_link_wrap {
+    display: none
+}

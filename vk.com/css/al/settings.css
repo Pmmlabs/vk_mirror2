@@ -1858,6 +1858,10 @@ input.settings_app_password_name {
     background-position: 8px -964px
 }
 
+.settings_menu_rows .olist_item_menu.olist_item_no_vkpay .olist_item_photo {
+    background-position: 8px -1021px
+}
+
 .settings_menu_rows .settings_menu_rows_disabled .olist_item_wrap:not(.olist_item_wrap_on) {
     pointer-events: none
 }

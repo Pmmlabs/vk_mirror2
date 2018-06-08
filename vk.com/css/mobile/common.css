@@ -4287,7 +4287,7 @@ input.wide_button {
     display: none;
     right: 0;
     top: 45px;
-    z-index: 1;
+    z-index: 3;
     width: 100%
 }
 
@@ -28768,6 +28768,10 @@ body.apps_settingsPageBody {
 .Comment__showNextContainer,
 .r .wall_replies .show_next_wrap {
     padding: 0 0 1px
+}
+
+.wall_replies.closed_comments .pi_reply_wrap {
+    display: none
 }
 
 @media (max-width: 319px) {

@@ -3589,6 +3589,7 @@ var Wall = {
         Wall.hideEditPost(true);
         if (cur.wallAddMedia) cur.wallAddMedia.unchooseMedia();
         checkbox('export_status', false);
+        checkbox('close_comments', false);
 
         var composer = data(rf, 'composer')
         if (composer) {
@@ -3643,6 +3644,25 @@ var Wall = {
 
         ge('send_post').innerHTML = isAnon ? getLang('wall_send') : prevBtnText;
     },
+
+    showPostSettings: function(el) {
+        if (el.initedTooltip) {
+            return;
+        }
+
+        var content = domNS(el);
+
+        new ElementTooltip(el, {
+            cls: 'post_settings_tooltip',
+            content: val(content),
+            defaultSide: 'top',
+            offset: [0, -5],
+        });
+
+        el.initedTooltip = true;
+        re(content);
+    },
+
     saveExport: function(el, service, hash) {
         if (!isChecked('friends_only') && !Wall.isAnonPost()) {
             checkbox(el);
@@ -3663,8 +3683,18 @@ var Wall = {
         var isAnon = Wall.isAnonPost();
 
         checkbox(el, !isAnon && !isChecked(el));
-        checkbox('status_export', !isAnon && !isChecked(el));
-        checkbox('facebook_export', !isAnon && !isChecked(el));
+
+        var friendsOnly = isChecked(el);
+        var twitter = ge('status_export');
+        var fb = ge('facebook_export');
+
+        if (friendsOnly) {
+            checkbox(twitter, false);
+            checkbox(fb, false);
+        }
+
+        twitter && disable(twitter, friendsOnly);
+        fb && disable(fb, friendsOnly);
     },
     needCheckSign: function() {
         var el = ge('check_sign');
@@ -3677,6 +3707,12 @@ var Wall = {
             onHide: el.onmouseover.bind(el)
         });
         checkbox(el, !checked);
+    },
+    checkAsGroup: function(el) {
+        checkbox(el);
+        wall.setReplyAsGroup(el, {
+            fromGroup: isChecked(el)
+        });
     },
     sendPost: function(skipLocked) {
         var addmedia = cur.wallAddMedia || {},
@@ -3703,6 +3739,7 @@ var Wall = {
                 check_sign: Wall.needCheckSign(),
                 status_export: !isAnon && isChecked('status_export'),
                 facebook_export: !isAnon && ge('facebook_export') ? (isChecked('facebook_export') ? 1 : 0) : '',
+                close_comments: ge('close_comments') ? (isChecked('close_comments') ? 1 : 0) : '',
                 official: (domData(domClosest('_submit_post_box', ge('official')), 'from-oid') == cur.postTo) ? 1 : '',
                 signed: isChecked('signed'),
                 anonymous: isAnon,
@@ -5673,7 +5710,7 @@ var Wall = {
         var oid = intval(oid_pid[0]),
             pid_type = oid_pid[1].replace(/-?\d+$/, ''),
             el = ge('post' + oid + pid_type + '_' + reply);
-        if (!cur.stickerClicked && Wall.checkReplyClick(el, event)) return;
+        if (gpeByClass('closed_comments', el) || (!cur.stickerClicked && Wall.checkReplyClick(el, event))) return;
         (event || {}).cancelBubble = true;
 
         var moreLink = geByClass1('wall_reply_more', el, 'a');
@@ -6813,6 +6850,12 @@ var Wall = {
                         } else if (!lastPost) {
                             cur.pgOffset++;
                         }
+
+                        // can reply
+                        if (!ev[8]) {
+                            addClass(newEl, 'closed_comments');
+                        }
+
                         while (insBefore && (insBefore.tagName == 'INPUT' || insBefore.nodeType != 1 || hasClass(insBefore, 'post_fixed'))) {
                             insBefore = insBefore.nextSibling;
                         }
@@ -7467,7 +7510,9 @@ var Wall = {
         }
 
         var wrap = domClosest('_submit_post_box', el),
-            signed = wrap && domByClass(wrap, '_signed_checkbox'),
+            signed = wrap && ge('signed'),
+            closeComments = wrap && ge('close_comments'),
+            official = wrap && ge('official'),
             ttChooser = data(el, 'tt'),
             from = opts.from || (opts.fromGroup ? cur.oid : vk.id),
             fromData = (from == vk.id) ? wall.replyAsProfileData() : (window.replyAsData && window.replyAsData[from] || wall.replyAsGroupDomData(el));
@@ -7486,11 +7531,17 @@ var Wall = {
         }
 
         if (signed) {
-            toggleClass(signed, 'shown', from < 0);
-            if (opts.signed !== undefined) {
-                checkbox(signed, opts.signed);
-            }
+            disable(signed, from > 0);
         }
+
+        if (closeComments) {
+            disable(closeComments, from > 0);
+        }
+
+        if (official) {
+            checkbox(official, from !== vk.id);
+        }
+
         el.setAttribute('aria-label', getLang(from < 0 ? 'wall_reply_as_group' : 'wall_reply_as_user'));
 
         if (el.hasAttribute('data-replace-owner-name')) {
@@ -8050,6 +8101,71 @@ var Wall = {
         geByClass('_post_author_data_' + post_id).forEach(function(el) {
             el.post_author_data_update = true;
         });
+    },
+
+    closeComments: function(el, owner, post_id, hash, onDone) {
+        var close = intval(domData(el, 'closed')) ? 0 : 1;
+
+        ajax.post('al_wall.php', {
+            act: 'close_comments',
+            owner_id: owner,
+            post_id: post_id,
+            close: close,
+            hash: hash
+        }, {
+            onDone: function() {
+                if (onDone) {
+                    onDone(close);
+                } else {
+                    var post = gpeByClass('post', el);
+                    Wall.onCloseComments(close, post);
+                }
+            }
+        })
+    },
+
+    onCloseComments: function(close, post, skip) {
+        if (!post || hasClass(post, 'postponed') || !hasClass(post, 'post')) {
+            return;
+        }
+
+        var commentBut = geByClass1('comment', post);
+        var replyBox = geByClass1('reply_box_inner_wrap', post);
+
+        if (!skip && (!commentBut || !replyBox)) {
+            var postId = post.id.replace('post', '').split('_');
+
+            ajax.post('al_wall.php', {
+                act: 'comment_box',
+                owner_id: postId[0],
+                post_id: postId[1]
+            }, {
+                onDone: function(comment, reply) {
+                    var commentBut = geByClass1('comment', post);
+                    var replyBox = geByClass1('reply_box_inner_wrap', post);
+
+                    if (!commentBut && comment) {
+                        var likeBut = geByClass1('like', post);
+                        domInsertAfter(se(comment), domNS(likeBut));
+                    }
+
+                    if (!replyBox && reply) {
+                        var repliesList = geByClass1('replies_list', post);
+                        domInsertAfter(se(reply), repliesList);
+                    }
+
+                    Wall.onCloseComments(close, post, true);
+                }
+            });
+
+            return;
+        }
+
+        toggleClass(post, 'closed_comments', close);
+
+        var action = geByClass1('action_closing_comments', post);
+        domData(action, 'closed', close);
+        val(action, getLang(close ? 'wall_open_comments' : 'wall_closing_comments'));
     },
 
     showPostAuthorData: function(el, event) {

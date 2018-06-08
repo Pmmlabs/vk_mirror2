@@ -4284,7 +4284,7 @@ input.wide_button {
     display: none;
     right: 0;
     top: 45px;
-    z-index: 1;
+    z-index: 3;
     width: 100%
 }
 

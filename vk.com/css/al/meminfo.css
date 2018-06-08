@@ -743,7 +743,7 @@ table.history .cur_session {
 }
 
 .meminfo_sort_selector {
-    margin: 5px 0
+    margin: 12px 0 5px
 }
 
 .meminfo_sort_selector .meminfo_sort_selector_label {
@@ -781,4 +781,12 @@ h2.meminfo_decline_purchases_title {
 
 .meminfo_decline_purchases_select_div {
     padding-bottom: 2px
+}
+
+.deleted_rows_header {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
 }

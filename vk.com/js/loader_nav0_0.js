@@ -194,8 +194,8 @@ var stVersions = {
     'photos_add.css': 25541737628,
     'photos_add.js': 2491851607,
     'wkpoll.js': 3269049793,
-    'wkview.js': 3368142263,
-    'wkview.css': 23654832321,
+    'wkview.js': 1397842818,
+    'wkview.css': 23288547020,
     'single_pv.css': 1445030012,
     'single_pv.js': 2438273057,
     'video.js': 1529301213,
@@ -227,8 +227,8 @@ var stVersions = {
     'module.css': 20013645251,
     'owner_photo.js': 1308202247,
     'owner_photo.css': 20804665174,
-    'page.js': 3587955458,
-    'page.css': 40298145834,
+    'page.js': 989759115,
+    'page.css': 37802507626,
     'page_help.css': 22638871887,
     'public.css': 24109285250,
     'public.js': 2784121325,
@@ -254,7 +254,7 @@ var stVersions = {
     'qsearch.js': 4098038985,
     'wall.css': 23406431893,
     'wall.js': 2318930545,
-    'walledit.js': 1984174071,
+    'walledit.js': 3246554852,
     'thumbs_edit.css': 15375959729,
     'thumbs_edit.js': 3014691161,
     'mail.css': 2042965398,
@@ -283,7 +283,7 @@ var stVersions = {
     'apps_check.js': 3204387834,
     'apps_check.css': 26235838611,
     'settings.js': 32955858,
-    'settings.css': 25560114489,
+    'settings.css': 27284690800,
     'profile_edit.js': 3810774798,
     'profile_edit.css': 17720902687,
     'profile_edit_edu.js': 872687230,
@@ -352,7 +352,7 @@ var stVersions = {
     'achievements.css': 18474972331,
     'sf.css': 19723863614,
     'members.css': 17126829555,
-    'meminfo.css': 24062369102,
+    'meminfo.css': 23786231801,
     'groupinfo.css': 77489573775,
     'bugs.js': 3874995669,
     'bugs.css': 15173856879,
@@ -433,7 +433,7 @@ var stVersions = {
     'ui.js': 1385249136,
     'ui_common.js': 1617946438,
     'ui_common.css': 16328216615,
-    'ui_media_selector.js': 1154359531,
+    'ui_media_selector.js': 1700826335,
     'ui_media_selector.css': 20457246351,
     'ui_manual.css': 16370443737,
     'admin.css': 19843475620,
@@ -627,4 +627,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 4350;
+var _rnd = 6465;
