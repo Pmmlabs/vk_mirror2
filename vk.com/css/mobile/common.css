@@ -29757,6 +29757,7 @@ body.apps_settingsPageBody {
 
 .Icon_notify_birthday,
 .Icon_notify_comment,
+.Icon_notify_content_achievements,
 .Icon_notify_email,
 .Icon_notify_event,
 .Icon_notify_follow,
@@ -29786,6 +29787,7 @@ body.apps_settingsPageBody {
 
 .Icon_notify_birthday:before,
 .Icon_notify_comment:before,
+.Icon_notify_content_achievements:before,
 .Icon_notify_email:before,
 .Icon_notify_event:before,
 .Icon_notify_follow:before,
@@ -29816,6 +29818,7 @@ body.apps_settingsPageBody {
 
 .vk_2x .Icon_notify_birthday:before,
 .vk_2x .Icon_notify_comment:before,
+.vk_2x .Icon_notify_content_achievements:before,
 .vk_2x .Icon_notify_email:before,
 .vk_2x .Icon_notify_event:before,
 .vk_2x .Icon_notify_follow:before,
@@ -29940,6 +29943,10 @@ body.apps_settingsPageBody {
 
 .Icon_notify_push_chat:before {
     background-position: 0 -1008px
+}
+
+.Icon_notify_content_achievements:before {
+    background-position: 0 -1064px
 }
 
 .Icon_notify_mini_birthday,

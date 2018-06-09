@@ -1056,39 +1056,6 @@ var BugTracker = {
         var r = radioval("sort");
         "" != r && (e.sort = r), nav.go(e)
     },
-    clearCart: function(e, t) {
-        cur.btClearCartCallback && cur.btClearCartCallback(), slideUp("bt_shop_cart_info", 300), ajax.post("bugtracker", {
-            act: "a_clear_cart",
-            reload: e,
-            hash: t
-        }, {})
-    },
-    setDelivery: function(e, t) {
-        radiobtn(e, t, "delivery"), hasClass(e, "disabled") || (each(geByClass("_descr", "bt_order_form_delivery_descr"), function(e, t) {
-            hide(t)
-        }), show("bt_order_form_delivery_descr" + t), toggle("bt_order_form_address_block", 2 == t), 2 == t && autosizeSetup(ge("bt_order_form__address"), {}), show("bt_order_form_note_block"), autosizeSetup(ge("bt_order_form__note"), {}), ls.set("bt_order_delivery", t))
-    },
-    createOrder: function(e, t) {
-        var r = {
-                act: "a_create_order",
-                hash: t,
-                delivery: radioval("delivery"),
-                phone: trim(val("bt_order_form__phone")),
-                note: trim(val("bt_order_form__note"))
-            },
-            o = !1;
-        r.phone || (notaBene("bt_order_form__phone"), o = !0), 2 == r.delivery && (r = extend(r, {
-            person: trim(val("bt_order_form__person")),
-            address: trim(val("bt_order_form__address"))
-        }), r.address.length < 10 && (notaBene("bt_order_form__address"),
-            o = !0), r.person.length < 4 && (notaBene("bt_order_form__person"), o = !0)), o || ajax.post("bugtracker", r, {
-            showProgress: lockButton.pbind(e),
-            hideProgress: unlockButton.pbind(e),
-            onDone: function(e) {
-                ls.remove("bt_order_delivery"), ls.remove("bt_order_person"), ls.remove("bt_order_address"), ls.remove("bt_order_note"), nav.go("bugtracker?act=order&id=" + e + "&m=1")
-            }
-        })
-    },
     cancelOrder: function(e, t, r) {
         cur.btCancelBox = showFastBox(getLang("global_warning"), getLang("bugs_t_cancel_order_confirm"), getLang("bugs_t_cancel_order"), function() {
             ajax.post("bugtracker", {
@@ -1136,7 +1103,8 @@ var BugTracker = {
                 platforms: []
             },
             o = !0;
-        "" != r.login_tf && -1 == r.login_tf.indexOf("@") && (notaBene("bt_settings__login_tf"), o = !1), "" != r.login_ha && -1 == r.login_ha.indexOf("@") && (notaBene("bt_settings__login_ha"), o = !1), o && (each(geByClass("on", "bt_settings_platforms"), function(e, t) {
+        "" != r.login_tf && -1 == r.login_tf.indexOf("@") && (notaBene("bt_settings__login_tf"),
+            o = !1), "" != r.login_ha && -1 == r.login_ha.indexOf("@") && (notaBene("bt_settings__login_ha"), o = !1), o && (each(geByClass("on", "bt_settings_platforms"), function(e, t) {
             r.platforms.push(attr(t, "platform-id"))
         }), r.moder_name = val("bt_settings__moder_name"), ajax.post("bugtracker", r, {
             showProgress: lockButton.pbind(e),

@@ -6852,7 +6852,7 @@ var Wall = {
                         }
 
                         // can reply
-                        if (!ev[8]) {
+                        if (ev[8] == 0) {
                             addClass(newEl, 'closed_comments');
                         }
 
