@@ -1187,15 +1187,15 @@ body.mac .apps_featured_thumb .ads_ad_big_app_info_box {
     z-index: 1;
     right: 20px;
     bottom: 20px;
-    background: #5fb053
+    background: #4bb34b
 }
 
 .apps_featured_thumb_play_btn:hover {
-    background: #68b35d
+    background: #51b851
 }
 
 .apps_featured_thumb_play_btn:active {
-    background: #5aa84d
+    background: #43a843
 }
 
 .apps_featured_thumb_descr,
@@ -3099,15 +3099,15 @@ a.page_block_header:hover .apps_cat_header_link:after {
 }
 
 .apps_purchase_btn {
-    background: #5fb053
+    background: #4bb34b
 }
 
 .apps_purchase_btn:hover {
-    background: #68b35d
+    background: #51b851
 }
 
 .apps_purchase_btn:active {
-    background: #5aa84d
+    background: #43a843
 }
 
 .apps_i_slider_outer,

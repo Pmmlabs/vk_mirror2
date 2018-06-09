@@ -284,7 +284,8 @@
     height: 14px;
     width: 12px;
     cursor: pointer;
-    opacity: 0.7
+    opacity: 0.7;
+    filter: alpha(opacity=70)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -297,7 +298,8 @@
 }
 
 .bt_tag_label_remove:hover {
-    opacity: 1
+    opacity: 1;
+    filter: none
 }
 
 .bt_selected_note {
@@ -477,7 +479,8 @@
 }
 
 .bt_report_form_found_block_progress {
-    opacity: 0.5
+    opacity: 0.5;
+    filter: alpha(opacity=50)
 }
 
 .bt_report_form_found_row {
@@ -486,7 +489,8 @@
 
 .bt_report_form_found_row_clone {
     color: #42648b;
-    opacity: 0.8
+    opacity: 0.8;
+    filter: alpha(opacity=80)
 }
 
 .bt_report_form_found_row_nclones {
@@ -666,7 +670,8 @@
 }
 
 .bt_reports_reloading {
-    opacity: 0.5
+    opacity: 0.5;
+    filter: alpha(opacity=50)
 }
 
 .bt_reports_reloading a {
@@ -703,7 +708,8 @@
 }
 
 .bt_report_additional_actions:hover:before {
-    opacity: 1
+    opacity: 1;
+    filter: none
 }
 
 .bt_report_additional_actions:before {
@@ -717,7 +723,8 @@
     position: absolute;
     left: -2px;
     top: -2px;
-    opacity: 0.75
+    opacity: 0.75;
+    filter: alpha(opacity=75)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -787,7 +794,8 @@
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%23828a99%22%20d%3D%22M5.5.5c.3-.7.7-.7%201%200l1.5%203.5%203.3.3c.7.1.9.5.3%201l-2.6%202.3%201%203.7c.2.7-.1.9-.7.5l-3.3-2.4-3.3%202.4c-.6.4-.9.2-.7-.5l1-3.7-2.6-2.3c-.6-.5-.4-.9.3-1l3.3-.3%201.5-3.5z%22%2F%3E%3C%2Fsvg%3E") 50% no-repeat;
     cursor: pointer;
     display: inline-block;
-    opacity: 0.5
+    opacity: 0.5;
+    filter: alpha(opacity=50)
 }
 
 .bt_report_one_fav .bt_report_fav {
@@ -795,7 +803,8 @@
 }
 
 .bt_report_row .bt_report_fav:hover {
-    opacity: 0.7
+    opacity: 0.7;
+    filter: alpha(opacity=70)
 }
 
 .bt_report_fav.bt_report_fav_checked,
@@ -803,6 +812,7 @@
 .bt_report_row:hover .bt_report_fav.bt_report_fav_checked {
     visibility: visible;
     opacity: 1;
+    filter: none;
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%236590c7%22%20d%3D%22M5.5.5c.3-.7.7-.7%201%200l1.5%203.5%203.3.3c.7.1.9.5.3%201l-2.6%202.3%201%203.7c.2.7-.1.9-.7.5l-3.3-2.4-3.3%202.4c-.6.4-.9.2-.7-.5l1-3.7-2.6-2.3c-.6-.5-.4-.9.3-1l3.3-.3%201.5-3.5z%22%2F%3E%3C%2Fsvg%3E") 50% no-repeat
 }
 
@@ -959,7 +969,8 @@
     font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    opacity: 0.9
+    opacity: 0.9;
+    filter: alpha(opacity=90)
 }
 
 .bt_report_descr,
@@ -1007,19 +1018,216 @@
     -o-transition: opacity 300ms linear;
     transition: opacity 300ms linear;
     opacity: 0.1;
+    filter: alpha(opacity=10);
     position: absolute
 }
 
 .bt_report_row:hover .bt_report_row_clone_btn {
-    opacity: 1
-}
-
-.bt_report_one {
-    overflow: hidden
+    opacity: 1;
+    filter: none
 }
 
 .bt_report_one .msg {
     margin: 0 0 15px
+}
+
+.bt_report_footer {
+    border-top: 1px solid #e7e8ec;
+    padding: 11px 20px;
+    background: #fafbfc;
+    white-space: nowrap
+}
+
+.bt_report_footer .moder_view_status {
+    text-align: right;
+    display: inline-block;
+    color: #939393;
+    width: 50%
+}
+
+.bt_report_footer .reproduces_tt .like_tt_header {
+    float: none
+}
+
+.bt_report_footer .reproducing {
+    display: inline-block;
+    vertical-align: middle;
+    width: 50%;
+    position: relative
+}
+
+.bt_report_footer .reproducing>* {
+    float: left
+}
+
+.bt_report_footer .reproducing .flat_button {
+    padding: 2px 10px 2px 62px;
+    border-radius: 13px 4px 4px 13px;
+    margin: -2px 0 -2px -62px;
+    padding-right: 10px;
+    margin-right: 0;
+    height: 28px;
+    color: #67707a;
+    -o-transition: margin 100ms linear, padding 100ms linear;
+    transition: margin 100ms linear, padding 100ms linear
+}
+
+.bt_report_footer .reproducing .flat_button:before {
+    content: '';
+    display: inline-block;
+    width: 7px
+}
+
+.bt_report_footer .reproducing.checked .common_count {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.bt_report_footer .reproducing.checked .flat_button {
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    background: #e5ebf1
+}
+
+.bt_report_footer .reproducing .user_img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    -moz-force-broken-image-icon: 0;
+    background-color: #fafbfc;
+    float: left;
+    margin-right: -24px;
+    pointer-events: none;
+    box-shadow: 0 0 0 1px #fff;
+    position: relative;
+    z-index: 1;
+    visibility: collapse;
+    -o-transition: visibility 0ms linear 100ms, margin 100ms linear;
+    transition: visibility 0ms linear 100ms, margin 100ms linear
+}
+
+.bt_report_footer .reproducing .user_img:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    background-color: #fff
+}
+
+.bt_report_footer .reproducing .user_img:after {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fafbfc;
+    background-image: url(/images/camera_100.png);
+    background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .bt_report_footer .reproducing .user_img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
+.bt_report_footer .reproducing .user_img.visible {
+    margin-right: -12px;
+    visibility: visible;
+    -o-transition: margin 100ms linear;
+    transition: margin 100ms linear
+}
+
+.bt_report_footer .reproducing .common_count {
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    display: inline-block;
+    background: #dae1e8;
+    color: #67707a;
+    border-radius: 50%;
+    font-size: 13px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 0 1px #fff;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    cursor: default
+}
+
+.bt_reproducer {
+    padding: 15px 20px 0
+}
+
+.bt_reproducer .bt_reproducer_content {
+    display: inline-block
+}
+
+.bt_reproducer .bt_reproducer_content .bugtracker_device:not(:last-child) {
+    padding-bottom: 5px
+}
+
+.bt_reproducer .bt_reproducer_photo {
+    margin-right: 5px;
+    vertical-align: top;
+    display: inline-block
+}
+
+.bt_reproducer .bt_reproducer_photo .bt_reproducer_photo_img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    -moz-force-broken-image-icon: 0;
+    background-color: #fafbfc
+}
+
+.bt_reproducer .bt_reproducer_photo .bt_reproducer_photo_img:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    background-color: #fff
+}
+
+.bt_reproducer .bt_reproducer_photo .bt_reproducer_photo_img:after {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fafbfc;
+    background-image: url(/images/camera_100.png);
+    background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .bt_reproducer .bt_reproducer_photo .bt_reproducer_photo_img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
+.bt_reproducer .bt_reproducer_name {
+    display: inline-block
 }
 
 .bt_report_one_new_version_actions {
@@ -1045,21 +1253,24 @@
 }
 
 .bt_report_one_fav {
-    padding-left: 26px;
+    padding-left: 30px;
     box-sizing: border-box;
     float: right;
-    margin-top: 4px;
     position: relative
 }
 
 .bt_report_one_fav .bt_report_fav {
-    left: 8px;
+    left: 12px;
     top: 8px
 }
 
 .bt_report_one_author {
     border-bottom: 1px solid #e7e8ec;
     padding-bottom: 15px
+}
+
+.bt_report_one_author .flat_button {
+    margin-top: 4px
 }
 
 .bt_report_one_author__img {
@@ -1134,7 +1345,6 @@
 }
 
 .bt_report_one_descr {
-    margin-bottom: 12px;
     font-size: 13px;
     line-height: 17px;
     overflow: hidden;
@@ -1148,6 +1358,10 @@
 .bt_report_one_tags {
     margin-bottom: 12px;
     line-height: 22px
+}
+
+.bt_report_one_attachs {
+    margin-top: 8px
 }
 
 .bt_report_one_attachs:empty {
@@ -1417,11 +1631,13 @@
 }
 
 .bt_report_cmt .bt_reporter_card_link {
-    opacity: 0
+    opacity: 0;
+    filter: alpha(opacity=0)
 }
 
 .bt_report_cmt:hover .bt_reporter_card_link {
-    opacity: 0.7
+    opacity: 0.7;
+    filter: alpha(opacity=70)
 }
 
 .bt_report_cmt .reply_action {
@@ -1459,11 +1675,13 @@
 }
 
 .bt_report_cmt_a:hover .bt_report_cmt_a__go {
-    opacity: 0.35
+    opacity: 0.35;
+    filter: alpha(opacity=35)
 }
 
 .bt_report_cmt_a:hover .bt_report_cmt_a__go:hover {
-    opacity: 0.8
+    opacity: 0.8;
+    filter: alpha(opacity=80)
 }
 
 .bt_report_cmt_a__go {
@@ -1475,6 +1693,7 @@
     top: 0;
     background-color: #e7edf2;
     opacity: 0;
+    filter: alpha(opacity=0);
     position: absolute;
     width: 30px
 }
@@ -1494,7 +1713,8 @@
 }
 
 .bt_report_cmt_processing {
-    opacity: 0.4
+    opacity: 0.4;
+    filter: alpha(opacity=40)
 }
 
 .bt_report_cmt_processing a {
@@ -1705,7 +1925,8 @@
     float: left;
     margin-left: 3px;
     padding-top: 9px;
-    opacity: 0.7
+    opacity: 0.7;
+    filter: alpha(opacity=70)
 }
 
 .bt_reporter_row:first-child {
@@ -2043,7 +2264,8 @@
 }
 
 .bt_product_row.bt_product_row_locked {
-    opacity: 0.5
+    opacity: 0.5;
+    filter: alpha(opacity=50)
 }
 
 .bt_product_row.bt_product_row_locked a {
@@ -2341,11 +2563,13 @@
 }
 
 .bt_prod_version:hover .bt_prod_version_edit {
-    opacity: 0.5
+    opacity: 0.5;
+    filter: alpha(opacity=50)
 }
 
 .bt_prod_version:hover .bt_prod_version_edit:hover {
-    opacity: 1
+    opacity: 1;
+    filter: none
 }
 
 .bt_prod_version_release_notes {
@@ -2381,6 +2605,7 @@
     cursor: pointer;
     display: inline-block;
     opacity: 0;
+    filter: alpha(opacity=0);
     text-transform: lowercase;
     vertical-align: baseline
 }
@@ -2532,6 +2757,7 @@
 
 .bt_member_loading .bt_member_details {
     opacity: 0.5;
+    filter: alpha(opacity=50);
     pointer-events: none
 }
 
@@ -2586,7 +2812,7 @@
 }
 
 .bt_member_activity #hint_container {
-    white-space: 'nowrap';
+    white-space: nowrap;
     position: absolute;
     left: 0
 }
@@ -2642,7 +2868,8 @@
 }
 
 .bt_member_activity_lines.selection .bt_member_activity_item.selected {
-    opacity: 1!important
+    opacity: 1!important;
+    filter: none!important
 }
 
 .bt_member_activity_lines.selection .bt_member_activity_item.selected.empty {
@@ -3171,7 +3398,8 @@
 }
 
 .bt_members_list .bt_reporter_row.excluded:not(.excluding) {
-    opacity: 0.5
+    opacity: 0.5;
+    filter: alpha(opacity=50)
 }
 
 .bt_members_list .bt_reporter_row.excluded:not(.excluding) .bt_reporter_row_count {
@@ -3191,7 +3419,8 @@
 }
 
 .bt_members_list .bt_reporter_row.bt_already_invited {
-    opacity: 0.5
+    opacity: 0.5;
+    filter: alpha(opacity=50)
 }
 
 .bt_members_list .bt_reporter_row.bt_already_invited .bt_already_invited_text {
@@ -3285,12 +3514,14 @@
     width: 16px;
     height: 16px;
     padding-top: 2px;
-    opacity: 0.75
+    opacity: 0.75;
+    filter: alpha(opacity=75)
 }
 
 .ui_tab:hover .bugtracker_invite_tab,
 .ui_tab_sel .bugtracker_invite_tab {
-    opacity: 1
+    opacity: 1;
+    filter: none
 }
 
 .bugtracker_members_box_footer_link {
@@ -3392,7 +3623,8 @@
 
 .bugtracker_device.rejected .bugtracker_device_info,
 .bugtracker_device.unchecked .bugtracker_device_info {
-    opacity: 0.5
+    opacity: 0.5;
+    filter: alpha(opacity=50)
 }
 
 .bugtracker_device.rejected .bugtracker_device_info {
@@ -3400,7 +3632,8 @@
 }
 
 .bugtracker_device:hover .buttons .action {
-    opacity: 0.5
+    opacity: 0.5;
+    filter: alpha(opacity=50)
 }
 
 .bugtracker_device .buttons {
@@ -3410,14 +3643,16 @@
 .bugtracker_device .buttons .action {
     -o-transition: opacity 100ms;
     transition: opacity 100ms;
-    opacity: 0.0;
+    opacity: 0;
+    filter: alpha(opacity=0);
     width: 17px;
     height: 17px;
     display: inline-block
 }
 
 .bugtracker_device .buttons .action:hover {
-    opacity: 0.8
+    opacity: 0.8;
+    filter: alpha(opacity=80)
 }
 
 .bugtracker_device .buttons.locked:before {
@@ -3537,6 +3772,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     opacity: 1;
+    filter: none;
     -o-transition: transform 100ms linear 300ms, opacity 100ms linear 300ms, -o-transform 100ms linear 300ms;
     transition: transform 100ms linear 300ms, opacity 100ms linear 300ms;
     transition: transform 100ms linear 300ms, opacity 100ms linear 300ms, -o-transform 100ms linear 300ms
@@ -3545,7 +3781,8 @@
 .bugtracker_logo.bt_logo_hidden .top_home_logo:after {
     -o-transform: translate(-15px);
     transform: translate(-15px);
-    opacity: 0
+    opacity: 0;
+    filter: alpha(opacity=0)
 }
 
 .bt_merge_buttons {
@@ -3567,4 +3804,73 @@
 .bt_products_search.ui_search_new {
     margin: 0!important;
     margin-top: 20px!important
+}
+
+.bt_reproduce_select_device_popup {
+    top: 35px;
+    -o-transform: translateY(-11px);
+    transform: translateY(-11px);
+    padding: 15px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    position: absolute;
+    visibility: hidden;
+    z-index: 101;
+    width: 340px;
+    white-space: nowrap
+}
+
+.bt_reproduce_select_device_popup:after,
+.bt_reproduce_select_device_popup:before {
+    left: 18px;
+    top: -12px
+}
+
+.bt_generic_popup {
+    border-radius: 5px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    box-shadow: #bababa 0 0 3px;
+    padding: 15px;
+    -o-transition: margin 180ms ease-in-out, transform 180ms ease-in-out, opacity 180ms ease-in-out, visibility 0ms linear 180ms, -o-transform 180ms ease-in-out;
+    transition: margin 180ms ease-in-out, transform 180ms ease-in-out, opacity 180ms ease-in-out, visibility 0ms linear 180ms;
+    transition: margin 180ms ease-in-out, transform 180ms ease-in-out, opacity 180ms ease-in-out, visibility 0ms linear 180ms, -o-transform 180ms ease-in-out;
+    visibility: hidden;
+    position: absolute;
+    background: #fff;
+    z-index: 100;
+    pointer-events: none
+}
+
+.bt_generic_popup:after,
+.bt_generic_popup:before {
+    width: 0;
+    height: 0;
+    border: transparent solid 6px;
+    content: ' ';
+    display: block;
+    position: absolute
+}
+
+.bt_generic_popup:before {
+    margin-top: -3px;
+    margin-left: -1px;
+    border-bottom-color: rgba(0, 0, 0, .11);
+    border-width: 7px
+}
+
+.bt_generic_popup:after {
+    border-bottom-color: #fff
+}
+
+.bt_generic_popup.shown {
+    opacity: 1;
+    filter: none;
+    -o-transition: margin 180ms ease-in-out, transform 180ms ease-in-out, opacity 180ms ease-in-out, visibility 0ms linear 0ms, -o-transform 180ms ease-in-out;
+    transition: margin 180ms ease-in-out, transform 180ms ease-in-out, opacity 180ms ease-in-out, visibility 0ms linear 0ms;
+    transition: margin 180ms ease-in-out, transform 180ms ease-in-out, opacity 180ms ease-in-out, visibility 0ms linear 0ms, -o-transform 180ms ease-in-out;
+    pointer-events: initial;
+    visibility: visible;
+    -o-transform: none;
+    transform: none
 }

@@ -405,15 +405,15 @@ body.mobfixed #mv_layer_wrap {
 }
 
 .mv_live_gift_popup_send_btn {
-    background: #5fb053
+    background: #4bb34b
 }
 
 .mv_live_gift_popup_send_btn:hover {
-    background: #68b35d
+    background: #51b851
 }
 
 .mv_live_gift_popup_send_btn:active {
-    background: #5aa84d
+    background: #43a843
 }
 
 .mv_live_gift_popup_send_btn:before {
@@ -704,15 +704,15 @@ textarea.dark.mv_live_gift_popup_comment_input {
 .mv_donate_button.mv_donate_button {
     margin-top: 10px;
     margin-left: 10px;
-    background: #5fb053
+    background: #4bb34b
 }
 
 .mv_donate_button.mv_donate_button:hover {
-    background: #68b35d
+    background: #51b851
 }
 
 .mv_donate_button.mv_donate_button:active {
-    background: #5aa84d
+    background: #43a843
 }
 
 .mv_donate_icon {
@@ -1173,28 +1173,28 @@ textarea.dark.mv_live_gift_popup_comment_input {
 
 .mv_stop_streaming_button.flat_button {
     margin-left: 10px;
-    background-color: #f4524d
+    background-color: #e64646
 }
 
 .mv_stop_streaming_button.flat_button:hover {
-    background-color: #f85751
+    background-color: #eb5050
 }
 
 .mv_stop_streaming_button.flat_button:active {
-    background-color: #e64a45
+    background-color: #db3b3b
 }
 
 .mv_broadcast_live_ads_button.flat_button {
     margin-left: 10px;
-    background: #5fb053
+    background: #4bb34b
 }
 
 .mv_broadcast_live_ads_button.flat_button:hover {
-    background: #68b35d
+    background: #51b851
 }
 
 .mv_broadcast_live_ads_button.flat_button:active {
-    background: #5aa84d
+    background: #43a843
 }
 
 .mv_live_ads_timer {

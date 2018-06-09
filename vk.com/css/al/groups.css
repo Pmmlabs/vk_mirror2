@@ -1596,15 +1596,15 @@ a.group_app_button:after {
 }
 
 .app_widget_list_cover_button .flat_button {
-    background: #5fb053
+    background: #4bb34b
 }
 
 .app_widget_list_cover_button .flat_button:hover {
-    background: #68b35d
+    background: #51b851
 }
 
 .app_widget_list_cover_button .flat_button:active {
-    background: #5aa84d
+    background: #43a843
 }
 
 .app_widget_text_content,

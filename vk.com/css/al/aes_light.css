@@ -719,15 +719,15 @@ a.ads_ad_box2:hover {
     z-index: 1;
     right: 20px;
     bottom: 20px;
-    background: #5fb053
+    background: #4bb34b
 }
 
 .ads_ad_big_app_info_box.big_app .ads_ad_play:hover {
-    background: #68b35d
+    background: #51b851
 }
 
 .ads_ad_big_app_info_box.big_app .ads_ad_play:active {
-    background: #5aa84d
+    background: #43a843
 }
 
 .ads_ad_photo_icon_box,

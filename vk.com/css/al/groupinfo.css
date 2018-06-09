@@ -101,6 +101,36 @@ input.BlockSearchInput {
     background-color: #dae2ea
 }
 
+.Button--negative {
+    background: #e64646;
+    color: #fff;
+    border-radius: 4px
+}
+
+.Button--negative:not(.Button--disabled):focus,
+.Button--negative:not(.Button--disabled):hover {
+    background: #eb5050
+}
+
+.Button--negative:not(.Button--disabled):active {
+    background-color: #db3b3b
+}
+
+.Button--positive {
+    background: #4bb34b;
+    color: #fff;
+    border-radius: 4px
+}
+
+.Button--positive:not(.Button--disabled):focus,
+.Button--positive:not(.Button--disabled):hover {
+    background: #51b851
+}
+
+.Button--positive:not(.Button--disabled):active {
+    background-color: #43a843
+}
+
 .Button--tertiary {
     display: inline-block;
     vertical-align: top;
@@ -163,6 +193,12 @@ input.BlockSearchInput {
 .Button--disabled {
     opacity: .5;
     cursor: default
+}
+
+.Button--overflow {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
 }
 
 .ButtonWithProgress {

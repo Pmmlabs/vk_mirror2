@@ -185,6 +185,36 @@ input.BlockSearchInput {
     background-color: #dae2ea
 }
 
+.Button--negative {
+    background: #e64646;
+    color: #fff;
+    border-radius: 4px
+}
+
+.Button--negative:not(.Button--disabled):focus,
+.Button--negative:not(.Button--disabled):hover {
+    background: #eb5050
+}
+
+.Button--negative:not(.Button--disabled):active {
+    background-color: #db3b3b
+}
+
+.Button--positive {
+    background: #4bb34b;
+    color: #fff;
+    border-radius: 4px
+}
+
+.Button--positive:not(.Button--disabled):focus,
+.Button--positive:not(.Button--disabled):hover {
+    background: #51b851
+}
+
+.Button--positive:not(.Button--disabled):active {
+    background-color: #43a843
+}
+
 .Button--tertiary {
     display: inline-block;
     vertical-align: top;
@@ -247,6 +277,12 @@ input.BlockSearchInput {
 .Button--disabled {
     opacity: .5;
     cursor: default
+}
+
+.Button--overflow {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
 }
 
 .ButtonWithProgress {
@@ -1835,6 +1871,31 @@ textarea.EditableLabel__textarea {
     to {
         opacity: 100%
     }
+}
+
+.Keyboard {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: -5px;
+    max-height: 170px;
+    overflow-y: scroll
+}
+
+.Keyboard--hidden {
+    display: none
+}
+
+.Keyboard__button {
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    margin: 5px;
+    height: 38px;
+    display: -ms-flexbox;
+    display: flex
 }
 
 .ChatSettingsInfo {
@@ -5192,6 +5253,11 @@ img.im_photo_thumb {
     position: relative
 }
 
+.im-chat-input .im-chat-input_open-keyboard .im-chat-input--attaches,
+.im-chat-input .im-chat-input_open-keyboard .im-chat-input--fwd {
+    display: none
+}
+
 .im-chat-input .im-chat-input--overflowed .im-chat-input--scroll {
     overflow-y: auto;
     overflow-x: hidden;
@@ -5291,6 +5357,10 @@ img.im_photo_thumb {
 
 .im-chat-input .media_preview_has_medias {
     border-bottom: none
+}
+
+.im-chat-input .im-chat-input--keyboard-container {
+    margin-bottom: 12px
 }
 
 .im-chat-input .im-chat-input--attach {
@@ -5453,6 +5523,10 @@ img.im_photo_thumb {
     color: #939393
 }
 
+.im-chat-input .im-chat-input_open-keyboard .im-chat-input--text {
+    padding-right: 106px
+}
+
 .im-chat-input .im-chat-input--rcemoji {
     margin: 5px 15px 0 0;
     position: relative;
@@ -5479,6 +5553,38 @@ img.im_photo_thumb {
     bottom: -13px;
     right: -57px;
     position: absolute
+}
+
+.im-chat-input .im_chat-input--keyboard-button {
+    position: absolute;
+    z-index: 3;
+    border: none;
+    padding: 6px 7px 6px 5px;
+    margin: 0;
+    background: transparent;
+    right: 73px;
+    bottom: 0;
+    cursor: pointer;
+    opacity: 0.7
+}
+
+.im-chat-input .im_chat-input--keyboard-button:hover {
+    opacity: 1
+}
+
+.im-chat-input .im_chat-input--keyboard-button.im_chat-input--keyboard-button_hidden {
+    display: none
+}
+
+.im-chat-input .im_chat-input--keyboard-button .im_chat-input--keyboard-button-icon {
+    display: block;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20height%3D%2217.8%22%20rx%3D%224%22%20stroke%3D%22%23828a99%22%20stroke-width%3D%221.8%22%20width%3D%2217.8%22%20x%3D%223.1%22%20y%3D%223.1%22%20fill%3D%22none%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M9%207a2%202%200%201%201%200%204%202%202%200%200%201%200-4zm6%200a2%202%200%201%201%200%204%202%202%200%200%201%200-4zm-6%206a2%202%200%201%201%200%204%202%202%200%200%201%200-4zm6%200a2%202%200%201%201%200%204%202%202%200%200%201%200-4z%22%20fill%3D%22%23828a99%22%2F%3E%0A%3C%2Fsvg%3E");
+    width: 24px;
+    height: 24px
+}
+
+.im-chat-input .im-chat-input_open-keyboard .im_chat-input--keyboard-button .im_chat-input--keyboard-button-icon {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20height%3D%2217.8%22%20rx%3D%224%22%20stroke%3D%22%23528bcc%22%20stroke-width%3D%221.8%22%20width%3D%2217.8%22%20x%3D%223.1%22%20y%3D%223.1%22%20fill%3D%22none%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M9%207a2%202%200%201%201%200%204%202%202%200%200%201%200-4zm6%200a2%202%200%201%201%200%204%202%202%200%200%201%200-4zm-6%206a2%202%200%201%201%200%204%202%202%200%200%201%200-4zm6%200a2%202%200%201%201%200%204%202%202%200%200%201%200-4z%22%20fill%3D%22%23528bcc%22%2F%3E%0A%3C%2Fsvg%3E")
 }
 
 .im-chat-input.im-chat-input_shadowed {
