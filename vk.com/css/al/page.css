@@ -2103,7 +2103,8 @@ div.submit_post_field font {
     margin-bottom: 10px
 }
 
-.wall_module .post_wf .page_media_thumbed_link:last-child {
+.wall_module .post_wf .page_media_thumbed_link:last-child,
+.wall_module .post_wf .wall_text .page_media_poll_wrap:last-child {
     margin-bottom: 0
 }
 

@@ -43,7 +43,8 @@ a.group_ad_post_stats {
     padding: 20px
 }
 
-#group_edit_msg {
+#group_edit_msg,
+#group_edit_bots {
     display: none;
     margin-bottom: 0
 }
@@ -2251,6 +2252,11 @@ a.group_ad_post_link.deleted.deleted:hover {
 .group_edit_community_widget_settings #community_widget_settings {
     margin-top: 5px;
     display: none
+}
+
+.group_edit_community_bot_notice {
+    margin-bottom: 10px;
+    color: #777e8c
 }
 
 .group_edit_community_widget_hint {

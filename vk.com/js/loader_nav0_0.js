@@ -228,7 +228,7 @@ var stVersions = {
     'owner_photo.js': 1308202247,
     'owner_photo.css': 18229265239,
     'page.js': 868439226,
-    'page.css': 35227107691,
+    'page.css': 37993229257,
     'page_help.css': 20063471952,
     'public.css': 21533885315,
     'public.js': 2784121325,
@@ -239,8 +239,8 @@ var stVersions = {
     'cmodules/web/groups_create.js': 2554367098,
     'groups_create.css': 15225674614,
     'cmodules/web/groups_list.js': 5109346988,
-    'groups_edit.css': 27336821811,
-    'groups_edit.js': 1694731257,
+    'groups_edit.css': 30058933380,
+    'groups_edit.js': 1881169855,
     'profile.css': 16538325867,
     'profile.js': 610604261,
     'calendar.css': 17489283431,
@@ -260,7 +260,7 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 193355971902,
+    'im.css': 192279869659,
     'imn.js': 258930846234,
     'im.js': 1322065005,
     'emoji.js': 2723938640,
@@ -376,7 +376,7 @@ var stVersions = {
     'offers.js': 2030679272,
     'call.js': 4217435992,
     'call.css': 3256039661,
-    'aes_light.css': 23289973487,
+    'aes_light.css': 24071002551,
     'aes_light.js': 1484013701,
     'ads.css': 20459778598,
     'ads_bonus.css': 1294533291,
@@ -437,7 +437,7 @@ var stVersions = {
     'ui_media_selector.css': 17881846416,
     'ui_manual.css': 13795043802,
     'admin.css': 17268075685,
-    'duty_timetable.js': 299646865,
+    'duty_timetable.js': 2022938460,
     'duty_timetable.css': 15715694255,
     'paysupp_admin.js': 127920242,
     'paysupp_admin.css': 14581749992,
@@ -627,4 +627,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 6933;
+var _rnd = 1314;

@@ -734,6 +734,24 @@ var GroupsEdit = {
             hideProgress: unlockButton.pbind(t)
         })
     },
+    saveBots: function() {
+        var e = {
+                act: "save_messages",
+                gid: cur.gid,
+                hash: cur.hash
+            },
+            t = ge("group_save");
+        extend(e, GroupsEdit.getFields("messages_chat_bot_group")), e.messages_chat_bot_group && (e.messages_enable_start = hasClass(geByClass1("_messages_enabled_bot_keyboard"), "on") ? 1 : 0, e.messages_enable_chats = hasClass(geByClass1("_messages_enabled_chats"), "on") ? 1 : 0), ajax.post("groupsedit.php", e, {
+            onDone: function() {
+                GroupsEdit.showMessage(getLang("groups_messages_saved_bots")), scrollToTop(), globalHistoryDestroy(nav.objLoc[0])
+            },
+            onFail: function(e) {
+                return e && GroupsEdit.showMessage(e, "error"), !0
+            },
+            showProgress: lockButton.pbind(t),
+            hideProgress: unlockButton.pbind(t)
+        })
+    },
     savePayments: function(e) {
         var t = {
             act: "save_payments",
@@ -1714,9 +1732,8 @@ var GroupsEdit = {
         e && !isVisible(t) ? (slideDown(t, 300), show("ui_rmenu_payments")) : !e && isVisible(t) && (slideUp(t, 300), hide("ui_rmenu_payments"))
     },
     toggleBotBlock: function(e) {
-        var t = geByClass1("_gedit_bot_features"),
-            o = hasClass(e, "on");
-        o && !isVisible(t) ? slideDown(t, 300) : !o && isVisible(t) && slideUp(t, 300)
+        var t = geByClass1("_gedit_bot_features");
+        e && !isVisible(t) ? slideDown(t, 300) : !e && isVisible(t) && slideUp(t, 300)
     },
     toggleMarketBlock: function(e) {
         e ? (setStyle("group_edit_market_placeholder", "height", getSize("group_edit_market_link")[1] + "px"), hide("group_edit_market_link"), show("group_edit_market_placeholder"), slideDown("group_edit_market", 300), slideUp("group_edit_market_placeholder", 300)) : (hide("group_edit_market_link"), slideUp("group_edit_market", 300))

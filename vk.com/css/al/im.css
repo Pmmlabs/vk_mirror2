@@ -1881,7 +1881,7 @@ textarea.EditableLabel__textarea {
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     margin: -5px;
-    max-height: 170px;
+    max-height: calc(312px);
     overflow-y: scroll
 }
 
@@ -11839,7 +11839,8 @@ body.sf .nim-dialog .nim-dialog--unread {
     line-height: 30px;
     white-space: nowrap;
     text-overflow: ellipsis;
-    color: #656565
+    color: #656565;
+    padding-right: 5px
 }
 
 .im-money-request-snippet__users_link {

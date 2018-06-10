@@ -1702,7 +1702,7 @@ input.wide_button {
     width: 24px;
     height: 22px;
     margin: 0 6px 0 0;
-    background: url(/images/mobile/menu_icons.png?11) no-repeat 0 22px;
+    background: url(/images/mobile/menu_icons.png?15) no-repeat 0 22px;
     display: none
 }
 
@@ -1775,7 +1775,24 @@ input.wide_button {
 }
 
 .mmi_apps .i_icon {
-    background-position: 0 -374px
+    background-position: 0 -373px
+}
+
+.mmi_open_in_app {
+    display: none
+}
+
+.mmi_open_in_app.supported {
+    display: list-item
+}
+
+.mmi_open_iphone .i_icon {
+    display: none;
+    background-position: 0 -394px
+}
+
+.mmi_open_android .i_icon {
+    background-position: 0 -414px
 }
 
 .footer_menu {
@@ -9987,6 +10004,11 @@ only screen and (min-device-pixel-ratio: 2) {
     overflow: hidden
 }
 
+.informer_view_3 {
+    padding-right: 44px!important;
+    padding-bottom: 26px!important
+}
+
 .informer_icon {
     max-width: 100%
 }
@@ -10001,7 +10023,8 @@ only screen and (min-device-pixel-ratio: 2) {
     height: 130px
 }
 
-.informer_view_2 .informer_icon {
+.informer_view_2 .informer_icon,
+.informer_view_3 .informer_icon {
     margin-bottom: 9px;
     width: 40px;
     height: 40px;
@@ -10009,6 +10032,11 @@ only screen and (min-device-pixel-ratio: 2) {
 }
 
 .informer_view_2 .informer_content {
+    margin-left: 48px;
+    margin-right: 40px
+}
+
+.informer_view_3 .informer_content {
     margin-left: 50px;
     margin-right: 40px
 }
@@ -10022,6 +10050,10 @@ only screen and (min-device-pixel-ratio: 2) {
     width: 22px;
     height: 22px;
     cursor: pointer
+}
+
+.informer_view_3 .informer_close {
+    top: 21px
 }
 
 .informer.informer_view_1:not(.gift_informer) .informer_content {
@@ -10042,6 +10074,14 @@ only screen and (min-device-pixel-ratio: 2) {
     margin-top: 8px
 }
 
+.informer_view_3 .informer_title {
+    padding-top: 3px
+}
+
+.informer_view_3 .informer_title>a {
+    color: inherit
+}
+
 .informer_message {
     color: #888;
     padding-top: 6px;
@@ -10052,6 +10092,16 @@ only screen and (min-device-pixel-ratio: 2) {
 .informer_view_1 .informer_message {
     padding-left: 10px;
     padding-right: 10px
+}
+
+.informer_view_3 .informer_message {
+    padding: 1px 0 0;
+    font-size: 13px;
+    line-height: 15px
+}
+
+.informer_view_3 .informer_message>a {
+    color: inherit
 }
 
 .informer_button {
@@ -22434,7 +22484,6 @@ a.feedBlocks__article:hover {
 }
 
 .post_suggest {
-    display: block;
     box-sizing: border-box;
     padding: 12px;
     background-color: #f7f7f7;
@@ -22442,19 +22491,27 @@ a.feedBlocks__article:hover {
     margin-top: 10px;
     border-top: 1px solid #e3e5e8;
     min-height: 72px;
-    margin-bottom: -8px;
-    text-decoration: none;
-    color: inherit
+    margin-bottom: -8px
 }
 
 .post_suggest .post_suggest__close {
-    background-color: #e7e9ea;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
+    background-image: url('/images/mobile/suggest_dismiss.png');
+    width: 36px;
+    height: 36px;
     position: absolute;
-    top: 10px;
-    right: 10px
+    top: 5px;
+    right: 5px;
+    background-size: 36px 36px
+}
+
+.vk_2x .post_suggest .post_suggest__close {
+    background-image: url('/images/mobile/suggest_dismiss_2x.png')
+}
+
+.post_suggest .post_suggest_link {
+    display: block;
+    text-decoration: none;
+    color: inherit
 }
 
 .post_suggest .post_suggest__image {
@@ -22504,7 +22561,7 @@ a.feedBlocks__article:hover {
 .post_suggest .post_suggest__friends_total {
     display: inline-block;
     vertical-align: top;
-    margin: 6px 0 0 10px;
+    margin: 6px 0 0 7px;
     color: #5a5d61
 }
 

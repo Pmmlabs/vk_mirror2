@@ -297,8 +297,7 @@ var DTT = {
         var t = [];
         each(geByClass("_input", "dtt_templates_box_list"), function(e, o) {
             t.push(val(o))
-        }), ajax.post("duty_timetable.php", {
-            act: "a_save_templates",
+        }), ajax.post("duty_timetable.php?act=a_save_templates", {
             id: cur.dttTemplateBoxUid,
             dept: cur.dept,
             hours: t
