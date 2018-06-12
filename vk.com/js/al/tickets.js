@@ -464,16 +464,16 @@ var Tickets = {
     deleteComment: function(e, t, a) {
         return ajax.post(cur.objLoc, {
             act: "delete_comment",
-            ticket_id: cur.ticket_id || a,
-            cid: e,
-            hash: t
+            ticket_id: e,
+            reply_id: t,
+            hash: a
         }, {
-            onDone: function(t) {
-                var a = ge("reply" + e).firstChild;
-                a && (cur.deletedComments || (cur.deletedComments = []), cur.deletedComments[e] = val(a), val(a, t))
+            onDone: function(e) {
+                var a = domFC(ge("reply" + t));
+                a && (cur.deletedComments || (cur.deletedComments = []), cur.deletedComments[t] = val(a), val(a, e))
             },
-            onFail: function(t) {
-                return hide("reply_actions" + e), Tickets.showError(t)
+            onFail: function(e) {
+                return hide("reply_actions" + t), Tickets.showError(e)
             }
         }), !1
     },
@@ -981,7 +981,8 @@ var Tickets = {
             c = r ? r.length > 33 ? r.substr(0, 30) + "..." : r : "",
             l = ge("upload" + n + "_progress");
         if (l)
-            if (show(l), l.full) {
+            if (show(l),
+                l.full) {
                 var d = a(l, "tween"),
                     _ = intval(l.full * o);
                 d && d.isTweening ? d.to.width = _ : animate(l, {

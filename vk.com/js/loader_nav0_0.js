@@ -202,7 +202,7 @@ var stVersions = {
     'video.css': 27577022048,
     'videocat.js': 3590298689,
     'videocat.css': 23070391766,
-    'videoview.js': 10565825625,
+    'videoview.js': 13066071286,
     'videoview.css': 25416279475,
     'video_edit.js': 2135196486,
     'video_edit.css': 20462547729,
@@ -340,10 +340,10 @@ var stVersions = {
     'docs.css': 21024197120,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 14628776929,
-    'helpdesk.js': 1925004756,
+    'helpdesk.js': 3699392954,
     'helpdesk.css': 18159449408,
-    'tickets.js': 2918658001,
-    'tickets.css': 17521824149,
+    'tickets.js': 2261927229,
+    'tickets.css': 19571344517,
     'faq.css': 19815095755,
     'talmud.js': 1641838680,
     'agents.js': 2426697933,
@@ -627,4 +627,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 511;
+var _rnd = 613;

@@ -1900,6 +1900,11 @@ var Helpdesk = {
                 box.hide(), Helpdesk.setDMCAStatus(btn, ticket_id, status, hash, !0, e)
             })
     },
+    deleteCommentConfirm: function(e, t, s) {
+        var a = showFastBox(getLang("global_warning"), getLang("helpdesk_confirm_im_reply_delete"), getLang("global_yes"), function() {
+            Tickets.deleteComment(e, t, s), a.hide()
+        }, getLang("global_cancel"))
+    },
     _eof: 1
 };
 try {
