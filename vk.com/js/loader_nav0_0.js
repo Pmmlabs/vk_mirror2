@@ -234,7 +234,7 @@ var stVersions = {
     'public.js': 2784121325,
     'pages.css': 19665058110,
     'pages.js': 1162259210,
-    'groups.css': 22225599239,
+    'groups.css': 22021518930,
     'groups.js': 1566146009,
     'cmodules/web/groups_create.js': 2554367098,
     'groups_create.css': 15225674614,
@@ -340,7 +340,7 @@ var stVersions = {
     'docs.css': 21024197120,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 14628776929,
-    'helpdesk.js': 3699392954,
+    'helpdesk.js': 2913283560,
     'helpdesk.css': 18159449408,
     'tickets.js': 2261927229,
     'tickets.css': 19571344517,
@@ -627,4 +627,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 8048;
+var _rnd = 3540;

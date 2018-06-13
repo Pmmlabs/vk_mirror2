@@ -19699,6 +19699,20 @@ body.article_body.article_dark {
     border-bottom: 1px solid #efefef
 }
 
+.appWidget__branding_footer {
+    line-height: 14px;
+    margin: 0 12px;
+    border-top: 1px solid #ececec;
+    text-align: center;
+    padding: 15px 0;
+    color: #909499
+}
+
+.appWidget__branding_footer img {
+    vertical-align: top;
+    margin-left: 4px
+}
+
 .appWidget__table {
     padding: 4px 12px
 }

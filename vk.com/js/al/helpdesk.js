@@ -207,8 +207,7 @@ var Helpdesk = {
         })
     },
     addTemplate: function(e) {
-        return !showBox("helpdesk", {
-            act: "add_template",
+        return !showBox("helpdesk?act=add_template", {
             type: e,
             section: cur.selectedSection
         }, {
@@ -231,15 +230,12 @@ var Helpdesk = {
         if (!anySectionChecked && isVisible("add_template_sections")) return notaBene("add_template_sections"), !1;
         var attachs = [],
             chosen = cur.ticketsTemplateMedia.chosenMedias;
-        if (chosen)
-            for (var i in chosen) {
-                var att = chosen[i],
-                    type = att[0],
-                    value = att[1];
-                ("photo" == type || "doc" == type) && attachs.push(type + "," + value)
-            }
+        chosen && each(chosen, function(e, t) {
+            var s = t[0],
+                a = t[1];
+            ("photo" == s || "doc" == s) && attachs.push(s + "," + a)
+        });
         var query = {
-            act: "a_save_template",
             type: tid ? null : type,
             title: title,
             title_text: titleText,
@@ -255,7 +251,7 @@ var Helpdesk = {
         };
         tid && (query.template_id = tid);
         var box = curBox();
-        return ajax.post("helpdesk", query, {
+        return ajax.post("helpdesk?act=a_save_template", query, {
             showProgress: lockButton.bind(btn),
             hideProgress: unlockButton.bind(btn),
             onDone: function(title, type, links, script) {
@@ -1899,6 +1895,43 @@ var Helpdesk = {
                 var e = val("tickets_decline_dmca_comment") || "";
                 box.hide(), Helpdesk.setDMCAStatus(btn, ticket_id, status, hash, !0, e)
             })
+    },
+    choosePhotoBox: function(e, t, s, a) {
+        showBox("helpdesk?act=choose_photo_box", {
+            to_id: e,
+            section: t
+        }, {
+            params: {
+                bodyStyle: "padding: 0px",
+                title: !0
+            },
+            cache: 1,
+            onFail: function() {
+                var e = {
+                    hideOnStart: !0,
+                    target: s ? s : cur.lastMediaTarget
+                };
+                return a && (e.uploadData = a), Tickets.showAddScreenBox(Tickets.initPhotoUpload.pbind("tis_add_data", e)), !0
+            }
+        })
+    },
+    chooseDocBox: function(e, t, s, a) {
+        showBox("helpdesk?act=choose_doc_box", {
+            to_id: e,
+            section: t
+        }, {
+            params: {
+                bodyStyle: "padding: 0px",
+                title: !0
+            },
+            onFail: function() {
+                var e = {
+                    hideOnStart: !0,
+                    target: s ? s : cur.lastMediaTarget
+                };
+                return a && (e.uploadData = a), Tickets.showAddDocBox(Tickets.initDocUpload.pbind("tis_add_data", e)), !0
+            }
+        })
     },
     deleteCommentConfirm: function(e, t, s) {
         var a = showFastBox(getLang("global_warning"), getLang("helpdesk_confirm_im_reply_delete"), getLang("global_yes"), function() {

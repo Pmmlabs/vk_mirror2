@@ -1383,6 +1383,19 @@ a.group_app_button:after {
     margin-right: 17px
 }
 
+.app_widget_branding_footer {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 14px;
+    padding-right: 2px;
+    vertical-align: baseline
+}
+
+.app_widget_branding_footer img {
+    vertical-align: top;
+    margin-left: 6px
+}
+
 .app_widget_list_row {
     line-height: 19px;
     color: #000;
