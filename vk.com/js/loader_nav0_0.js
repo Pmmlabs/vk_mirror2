@@ -239,7 +239,8 @@ var stVersions = {
     'cmodules/web/groups_create.js': 2554367098,
     'groups_create.css': 15225674614,
     'cmodules/web/groups_list.js': 5109346988,
-    'groups_edit.css': 30058933380,
+    'cmodules/web/GroupsEdit.js': 11937383697,
+    'groups_edit.css': 35255869379,
     'groups_edit.js': 1881169855,
     'profile.css': 16538325867,
     'profile.js': 610604261,
@@ -352,7 +353,7 @@ var stVersions = {
     'achievements.css': 15899572396,
     'sf.css': 17148463679,
     'members.css': 14551429620,
-    'meminfo.css': 21210831866,
+    'meminfo.css': 24636821850,
     'groupinfo.css': 74302509891,
     'bugs.js': 3874995669,
     'bugs.css': 12598456944,
@@ -366,7 +367,7 @@ var stVersions = {
     'graffiti.css': 404471482,
     'graffiti_new.js': 67279821,
     'graffiti_new.css': 17207004694,
-    'abuse.css': 13511637190,
+    'abuse.css': 12326857788,
     'verify.css': 12061111708,
     'away.css': 17442994781,
     'stats.css': 14806183183,
@@ -394,7 +395,7 @@ var stVersions = {
     'ads_web.js': 4274163593,
     'mrtarg.js': 1146267795,
     'mrtarg.css': 3142794554,
-    'cmodules/web/ads_edit_easy.js': 3815508636,
+    'cmodules/web/ads_edit_easy.js': 2243042172,
     'health.css': 2251304991,
     'health.js': 2993570139,
     'pinbar.js': 284788792,
@@ -627,4 +628,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 3540;
+var _rnd = 8743;

@@ -41,8 +41,8 @@
         return t.d(s, "a", s), s
     }, t.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, t.p = "", t(t.s = 1)
-}([function(e, t, s) {
+    }, t.p = "", t(t.s = 3)
+}([, , function(e, t, s) {
     "use strict";
 
     function n(e, t) {
@@ -434,7 +434,12 @@
             }
         }, e.prototype.getUpdateTargetParams = function(e) {
             e = e || {};
-            var t = {
+            var t = "",
+                s = this.getCriteriaPreset(this.audienceDropdown.val()),
+                n = i(s, 1),
+                a = n[0];
+            this.geoEditor.inited ? t = this.geoEditor.savePointsToString() : a && (t = a.geo_near);
+            var o = {
                 geo_type: Radiobutton.val("ads_targeting_criterion_geo_type"),
                 geo_mask: this.options.geo.mask,
                 country: this.geoCountryDropdown.val(),
@@ -444,16 +449,16 @@
                 age_to: this.ageToDropdown.val(),
                 interest_categories: this.interestsDropdown.val(),
                 groups: this.groupsDropdown.val(),
-                geo_near: this.geoEditor.inited ? this.geoEditor.savePointsToString() : "",
+                geo_near: t,
                 planner_duration: this.durationDropdown.val(),
                 planner_daily_budget: this.dailyLimitDropdown.val()
             };
-            if (1 == t.geo_type ? (t.country = "", t.cities = "") : 0 == t.geo_type && (t.geo_near = "", t.geo_mask = ""), 0 == t.retargeting_groups && (t.retargeting_groups = ""), t.country && e.need_cities_data && (t.need_cities_data = 1), this.options.suggested_criteria || (t.need_suggested_criteria = 1), this.options.category_selected) t.category1_id = this.options.category_selected;
+            if (1 == o.geo_type ? (o.country = "", o.cities = "") : 0 == o.geo_type && (o.geo_near = "", o.geo_mask = ""), 0 == o.retargeting_groups && (o.retargeting_groups = ""), o.country && e.need_cities_data && (o.need_cities_data = 1), this.options.suggested_criteria || (o.need_suggested_criteria = 1), this.options.category_selected) o.category1_id = this.options.category_selected;
             else if (this.options.category_suggestions) {
-                var s = this.options.category_suggestions[0];
-                s && (t.category1_id = s[1] ? s[1] : s[0])
-            } else t.need_link_post = 1;
-            return t.request_id = +new Date, extend({}, this.options.target_params, t)
+                var r = this.options.category_suggestions[0];
+                r && (o.category1_id = r[1] ? r[1] : r[0])
+            } else o.need_link_post = 1;
+            return o.request_id = +new Date, extend({}, this.options.target_params, o)
         }, e.prototype.setCriteriaData = function(e) {
             "groups" in e && e.groups && this.groupsDropdown.setOptions({
                 defaultItems: e.groups
@@ -463,13 +468,12 @@
         }, e.prototype.setTargetingParams = function(e) {
             var t = this;
             this.ageFromDropdown.selectItem(0), this.ageToDropdown.selectItem(0), e.age_from && this.ageFromDropdown.selectItem(e.age_from), e.age_to && this.ageToDropdown.selectItem(e.age_to), Radiobutton.select("ads_targeting_criterion_sex", e.sex ? e.sex : 0), this.groupsDropdown.clear(), e.groups && (e.groups.split(",").map(function(e) {
-                    e && t.groupsDropdown.selectItem(e)
-                }), this.showGroupsDropdown()), this.geoRegionDropdown.clear(), e.cities && (e.cities.split(",").map(function(e) {
-                    e && t.geoRegionDropdown.selectItem(e)
-                }), this.updateGeoRegionDropdown()), this.geoCountryDropdown.selectItem(e.country ? e.country : 0),
-                this.interestsDropdown.clear(), e.interest_categories && (e.interest_categories.split(",").map(function(e) {
-                    e && t.interestsDropdown.selectItem(e)
-                }), this.showInterestsDropdown()), e.geo_near ? (this.geoEditor && this.geoEditor.inited && this.geoEditor.setPointsFromString(e.geo_near), Radiobutton.select("ads_targeting_criterion_geo_type", 1)) : Radiobutton.select("ads_targeting_criterion_geo_type", 0), this.updateTargetParams()
+                e && t.groupsDropdown.selectItem(e)
+            }), this.showGroupsDropdown()), this.geoRegionDropdown.clear(), e.cities && (e.cities.split(",").map(function(e) {
+                e && t.geoRegionDropdown.selectItem(e);
+            }), this.updateGeoRegionDropdown()), this.geoCountryDropdown.selectItem(e.country ? e.country : 0), this.interestsDropdown.clear(), e.interest_categories && (e.interest_categories.split(",").map(function(e) {
+                e && t.interestsDropdown.selectItem(e)
+            }), this.showInterestsDropdown()), e.geo_near ? (this.geoEditor && this.geoEditor.inited && this.geoEditor.setPointsFromString(e.geo_near), Radiobutton.select("ads_targeting_criterion_geo_type", 1)) : Radiobutton.select("ads_targeting_criterion_geo_type", 0), this.updateTargetParams()
         }, e.prototype.showGroupsDropdown = function() {
             return hide(this.groupShowerLink), show(this.groupsDropdown.container), removeClass(gpeByClass(this.classname("row-content"), this.groupsDropdown.container), this.classname("row-content_simple")), this.groupsDropdown.updateInput(), !1
         }, e.prototype.showInterestsDropdown = function() {
@@ -907,5 +911,5 @@
         stManager.done(jsc("web/ads_edit_easy.js"))
     } catch (a) {}
 }, function(e, t, s) {
-    e.exports = s(0)
+    e.exports = s(2)
 }]);

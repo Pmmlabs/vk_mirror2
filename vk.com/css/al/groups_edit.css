@@ -39,6 +39,93 @@ a.group_ad_post_stats {
     padding: 0
 }
 
+.NemesisContentReportsPage .NemesisContentReportsPage--status-block {
+    padding: 20px
+}
+
+.NemesisContentReportsPage .NemesisContentReportsPage--status-block .NemesisContentReportsPage--summary {
+    font-weight: 500;
+    margin-bottom: 5px
+}
+
+.NemesisContentReportsPage .NemesisContentReportsPage--status-block .NemesisContentReportsPage--punishment-description {
+    color: #828282
+}
+
+.NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage--total-counter {
+    margin-left: 6px;
+    color: #939393;
+    font-size: 14px
+}
+
+.NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage--strikes {
+    padding: 20px
+}
+
+.NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage--strikes .NemesisContentReportsPage--header {
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage--strikes .NemesisContentReportsPage--strikes--old {
+    border-top: 1px solid #e7e8ec;
+    margin-top: 20px
+}
+
+.NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage--strikes .NemesisContentReportsPage--strikes--old:not(:first-child) {
+    padding-top: 20px
+}
+
+.NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage--strikes--empty-label {
+    padding: 20px;
+    color: #939393
+}
+
+.Strike {
+    padding: 20px 0px;
+    border-bottom: 1px solid #e7e8ec
+}
+
+.Strike.expired {
+    opacity: 0.4
+}
+
+.Strike:last-child {
+    border-bottom: 0px;
+    padding-bottom: 0px
+}
+
+.Strike .Strike--field {
+    position: relative
+}
+
+.Strike .Strike--field:not(:first-child) {
+    margin-top: 4px
+}
+
+.Strike .Strike--field .Strike--field--label {
+    color: #656565
+}
+
+.Strike .Strike--field .Strike--field--value {
+    position: absolute;
+    left: 93px
+}
+
+.Strike .Strike--bottom {
+    margin-top: 12px;
+    color: #939393
+}
+
+.Strike .Strike--bottom .Strike--date {
+    margin-right: 5px
+}
+
+.Strike .Strike--bottom .Strike--action {
+    margin-left: 5px
+}
+
 .group_edit {
     padding: 20px
 }

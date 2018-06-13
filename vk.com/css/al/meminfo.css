@@ -595,6 +595,115 @@ table.history .cur_session {
     border-collapse: collapse
 }
 
+.mi_table .mi_row {
+    line-height: 26px;
+    position: relative
+}
+
+.mi_table .mi_row:first-child td {
+    padding-top: 6px
+}
+
+.mi_table .mi_row .mi_row_title {
+    display: inline-block;
+    padding-left: 20px;
+    color: #828282;
+    width: 150px
+}
+
+.mi_table .mi_row .mi_row_data {
+    display: inline-block;
+    max-width: 599px
+}
+
+.mi_table .mi_row .mi_row_data:not(:last-child) {
+    width: 160px
+}
+
+.mi_table .mi_row .mi_row_data:last-child {
+    padding-right: 20px
+}
+
+.mi_change_label_recent {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.mi_slim_button {
+    font-size: 12px;
+    padding: 3px 12px 4px
+}
+
+.mi_slim_button:active {
+    padding: 4px 12px 3px
+}
+
+tr:first-child td .mi_right_column {
+    margin-top: 6px
+}
+
+.mi_right_column {
+    position: absolute;
+    right: 20px;
+    top: 3px
+}
+
+.mi_ajax_mark {
+    display: inline-block
+}
+
+.mi_ajax_mark.mi_ajax_mark_big {
+    display: block;
+    text-align: center;
+    margin-top: 16px
+}
+
+.mi_ajax_mark .mi_ajax_mark_loading {
+    background: url('/images/loadline.gif');
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 60px;
+    height: 8px;
+    margin: 0 8px
+}
+
+.mi_page_block {
+    padding-bottom: 20px
+}
+
+.mi_header {
+    height: auto;
+    line-height: 40px;
+    padding-top: 10px
+}
+
+.mi_header .page_block_header_inner {
+    display: inline
+}
+
+.mi_header .page_block_header_extra {
+    margin-top: -8px
+}
+
+.mi_personal_info {
+    padding: 18px 20px 10px
+}
+
+.ui_tabs.mi_tabs {
+    line-height: 24px;
+    font-size: 14px;
+    padding: 0
+}
+
+.ui_tabs.mi_tabs li:first-child>.ui_tab {
+    margin-left: -5px
+}
+
+.ui_tabs.mi_tabs .ui_tab {
+    margin: 0 3px -1px
+}
+
 .mi_table>tbody>tr>td:first-child,
 .mi_table>thead>tr>th:first-child {
     padding-left: 28px
@@ -789,4 +898,22 @@ h2.meminfo_decline_purchases_title {
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale
+}
+
+.mi_deleted_box_header {
+    display: inline-block;
+    margin-top: 0px
+}
+
+.mi_deleted_photos_album_selector_block {
+    float: right
+}
+
+.mi_deleted_photos_info_block {
+    margin-top: 10px
+}
+
+.mi_deleted_photos_info_block .mi_deleted_photos_info_separator {
+    border-bottom: 1px solid #e7e8ec;
+    margin: 12px 0
 }
