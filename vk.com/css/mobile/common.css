@@ -1317,12 +1317,13 @@ input.wide_button {
     margin-bottom: -2px
 }
 
-.verified.top_author {
-    background-position: 0 -403px
-}
-
 .op_header .verified.top_author {
     background-position: 0 -426px
+}
+
+.mark_top_verified .wi_author .verified.top_author,
+.pic_from .verified.top_author {
+    background-position: 0 -403px
 }
 
 .fit_box .qs_textfield,

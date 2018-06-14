@@ -2,6 +2,11 @@
     display: none
 }
 
+.mi_ajax_mark.mi_ajax_mark_big .mi_ajax_mark_loading,
+.mi_ajax_mark .mi_ajax_mark_loading {
+    -ms-high-contrast-adjust: none
+}
+
 .h4-text {
     color: #000;
     border-bottom: none;
@@ -655,17 +660,57 @@ tr:first-child td .mi_right_column {
 
 .mi_ajax_mark.mi_ajax_mark_big {
     display: block;
-    text-align: center;
+    text-align: center
+}
+
+.mi_ajax_mark.mi_ajax_mark_big .mi_ajax_mark_loading {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    -o-animation-name: round_spinner;
+    animation-name: round_spinner;
+    -o-animation-duration: 700ms;
+    animation-duration: 700ms;
+    -o-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
+    background-image: url(/images/icons/round_spinner_big.png);
     margin-top: 16px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mi_ajax_mark.mi_ajax_mark_big .mi_ajax_mark_loading {
+        background-image: url(/images/icons/round_spinner_big_2x.png);
+        background-size: 34px 34px
+    }
+}
+
 .mi_ajax_mark .mi_ajax_mark_loading {
-    background: url('/images/loadline.gif');
-    background-repeat: no-repeat;
     display: inline-block;
-    width: 60px;
-    height: 8px;
+    width: 16px;
+    height: 16px;
+    -o-animation-name: round_spinner;
+    animation-name: round_spinner;
+    -o-animation-duration: 700ms;
+    animation-duration: 700ms;
+    -o-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
+    background-image: url(/images/icons/round_spinner.png);
     margin: 0 8px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mi_ajax_mark .mi_ajax_mark_loading {
+        background-image: url(/images/icons/round_spinner_2x.png);
+        background-size: 16px 16px
+    }
 }
 
 .mi_page_block {

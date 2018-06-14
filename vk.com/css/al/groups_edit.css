@@ -45,11 +45,15 @@ a.group_ad_post_stats {
 
 .NemesisContentReportsPage .NemesisContentReportsPage--status-block .NemesisContentReportsPage--summary {
     font-weight: 500;
-    margin-bottom: 5px
+    margin-bottom: 8px
 }
 
 .NemesisContentReportsPage .NemesisContentReportsPage--status-block .NemesisContentReportsPage--punishment-description {
     color: #828282
+}
+
+.NemesisContentReportsPage .NemesisContentReportsPage--status-block .NemesisContentReportsPage--punishment-end-date-label {
+    margin-top: 8px
 }
 
 .NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage--total-counter {
@@ -68,12 +72,9 @@ a.group_ad_post_stats {
     -moz-osx-font-smoothing: auto
 }
 
-.NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage--strikes .NemesisContentReportsPage--strikes--old {
-    border-top: 1px solid #e7e8ec;
-    margin-top: 20px
-}
-
 .NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage--strikes .NemesisContentReportsPage--strikes--old:not(:first-child) {
+    margin-top: 20px;
+    border-top: 1px solid #e7e8ec;
     padding-top: 20px
 }
 

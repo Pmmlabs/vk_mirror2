@@ -142,7 +142,7 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 1318650823,
     'common.js': 1161,
-    'common.css': 32184943062,
+    'common.css': 33504438959,
     'cmodules/web/common_web.js': 3,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
@@ -211,7 +211,7 @@ var stVersions = {
     'video_youtube.css': 12216812780,
     'videoplayer.js': 92201080152,
     'videoplayer.css': 35565090090,
-    'translation.js': 3205673093,
+    'translation.js': 568505835,
     'translation.css': 15506578667,
     'reg.css': 887926110,
     'reg.js': 1336565657,
@@ -239,8 +239,8 @@ var stVersions = {
     'cmodules/web/groups_create.js': 2554367098,
     'groups_create.css': 15225674614,
     'cmodules/web/groups_list.js': 5109346988,
-    'cmodules/web/GroupsEdit.js': 11937383697,
-    'groups_edit.css': 35255869379,
+    'cmodules/web/GroupsEdit.js': 15669780701,
+    'groups_edit.css': 33195086550,
     'groups_edit.js': 1881169855,
     'profile.css': 16538325867,
     'profile.js': 610604261,
@@ -273,7 +273,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 4095306545,
+    'feed.js': 3192963654,
     'feed.css': 17810290017,
     'privacy.js': 835833828,
     'privacy.css': 12999983902,
@@ -353,7 +353,7 @@ var stVersions = {
     'achievements.css': 15899572396,
     'sf.css': 17148463679,
     'members.css': 14551429620,
-    'meminfo.css': 24636821850,
+    'meminfo.css': 22116997265,
     'groupinfo.css': 74305615503,
     'bugs.js': 3874995669,
     'bugs.css': 12598456944,
@@ -559,6 +559,8 @@ var stVersions = {
     'group_invite_chat.css': 67329680920,
     'cmodules/web/reports.js': 19854794487,
     'cmodules/web/raven_logger.js': 6577215850,
+    'community_bot.js': 1928249077,
+    'community_bot.css': 3742743729,
     'lang': 6887
 };
 var stTypes = {
@@ -628,4 +630,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 228;
+var _rnd = 304;

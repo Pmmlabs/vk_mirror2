@@ -397,10 +397,10 @@
                         tab: null
                     })), a && setTimeout(function() {
                         ge("box_layer_wrap").scrollTop = cur.translatorsLogBoxOffset, delete cur.translatorsLogBoxOffset
-                    }, 150), cur.onBoxKeyDownEvent && removeEvent(window, "keydown", cur.onBoxKeyDownEvent), delete cur.keySectionsDD, delete cur.keyBoxValueHeight, cur.showedScreen || (delete cur.translationBoxParams, delete cur.translationsScreensList, delete ajaxCache["/" + TR_ADDRESS + "#" + ajx2q(o)], delete cur.translationBoxType, delete cur.translationsScreensListAll, delete cur.translationBoxKeySelectedLang, delete cur.translationBoxKeySelectedLangList, delete cur.translationBoxSelectedStatus), delete cur.translationBoxOpened, delete cur.translationBoxFocusedForm)
+                    }, 150), cur.onBoxKeyDownEvent && removeEvent(window, "keydown", cur.onBoxKeyDownEvent), delete cur.keySectionsDD, delete cur.keyBoxValueHeight, cur.showedScreen || (delete cur.translationBoxParams, delete cur.translationsScreensList, delete ajaxCache["/" + TR_ADDRESS + "#" + ajx2q(o)], delete cur.translationBoxType, delete cur.translationsScreensListAll, delete cur.translationBoxKeySelectedLang, delete cur.translationBoxKeySelectedLangList, delete cur.translationBoxSelectedStatus), delete cur.translationBoxOpened, delete cur.translationBoxFocusedForm, delete cur.translationBoxNeedHideBox)
                 },
                 onShow: function() {
-                    cur.translationBoxParams = [e, t, a], cur.translationsScreensList || (cur.translationsScreensList = []), delete cur.showedAttachScreenBox
+                    cur.translationBoxParams = [e, t, a], cur.translationsScreensList || (cur.translationsScreensList = []), delete cur.showedAttachScreenBox, cur.translationBoxNeedHideBox && curBox().hide()
                 }
             },
             onDone: function(a, n) {
@@ -486,8 +486,8 @@
                     }, "yes", !0);
                     if (e && cur.isSuperTranslator) {
                         cur.sections = n.sections;
-                        var y = "<a onclick=\"TR.deleteKey('" + e + "', '" + n.editHash + "')\">" + getLang("tran_delete_key") + '</a><span class="divider">|</span><a onclick="TR.cloneKey(\'' + e + "', '" + n.editHash + "')\">" + getLang("tran_copy_key") + "</a>";
-                        a.setControlsText(y)
+                        var x = "<a onclick=\"TR.deleteKey('" + e + "', '" + n.editHash + "')\">" + getLang("tran_delete_key") + '</a><span class="divider">|</span><a onclick="TR.cloneKey(\'' + e + "', '" + n.editHash + "')\">" + getLang("tran_copy_key") + "</a>";
+                        a.setControlsText(x)
                     }
                     addEvent(window, "keydown", cur.onBoxKeyDownEvent = function(a) {
                         a.ctrlKey && a.keyCode == KEY.ENTER && saveKey(p, n.editHash, function() {
@@ -540,7 +540,7 @@
             key: t
         }, {
             onDone: function() {
-                boxQueue.hideAll(), re("key_" + t)
+                cur.translationBoxNeedHideBox = !0, curBox().hide(), re("key_" + t)
             }
         })
     }
@@ -558,7 +558,7 @@
                 key: e
             }, {
                 onDone: function() {
-                    boxQueue.hideAll(), re("key_" + e)
+                    re("key_" + e), cur.translationBoxNeedHideBox = !0, curBox().hide()
                 }
             })
         }, getLang("box_no"))
@@ -594,7 +594,7 @@
                 with_log: intval(hasClass(ge("tr_clone_box_save_log_checkbox"), "on"))
             }, {
                 onDone: function() {
-                    boxQueue.hideAll(), openKey(n)
+                    cur.translationBoxNeedHideBox = !0, curBox().hide(), setTimeout(openKey.pbind(n), 100)
                 }
             }))
         }, getLang("box_cancel"))
