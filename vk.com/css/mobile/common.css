@@ -22524,7 +22524,7 @@ a.feedBlocks__article:hover {
 
 .post_suggest .post_suggest_link {
     display: block;
-    text-decoration: none;
+    text-decoration: none!important;
     color: inherit
 }
 
@@ -22534,7 +22534,7 @@ a.feedBlocks__article:hover {
     position: absolute;
     background-size: cover;
     background-position: 50%;
-    border-radius: 2px
+    border-radius: 4px
 }
 
 .post_suggest .post_suggest__info {
@@ -22544,13 +22544,15 @@ a.feedBlocks__article:hover {
 
 .post_suggest .post_suggest__text {
     line-height: 1.29;
-    font-size: 14px
+    font-size: 14px;
+    text-decoration: none!important
 }
 
 .post_suggest .post_suggest__action_text {
     color: #528bcc;
     margin-top: 6px;
-    font-weight: 500
+    font-weight: 500;
+    text-decoration: none!important
 }
 
 .post_suggest .post_suggest__friends {
@@ -22576,7 +22578,8 @@ a.feedBlocks__article:hover {
     display: inline-block;
     vertical-align: top;
     margin: 6px 0 0 7px;
-    color: #5a5d61
+    color: #5a5d61;
+    font-size: 13px
 }
 
 .post_suggest:after,

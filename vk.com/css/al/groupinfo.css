@@ -1987,6 +1987,20 @@ table.history tr th {
     border-collapse: collapse
 }
 
+.gi_top_td {
+    vertical-align: top
+}
+
+.gi_description_td {
+    width: 300px;
+    word-break: break-word;
+    word-wrap: break-word
+}
+
+.gi_box .box_body {
+    padding: 10px
+}
+
 .gi_table>tbody>tr>td:first-child,
 .gi_table>thead>tr>th:first-child {
     padding-left: 28px

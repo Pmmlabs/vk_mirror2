@@ -1880,9 +1880,7 @@ textarea.EditableLabel__textarea {
     flex-direction: row;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    margin: -5px;
-    max-height: calc(312px);
-    overflow-y: scroll
+    margin: -5px
 }
 
 .Keyboard--hidden {
@@ -5386,6 +5384,7 @@ img.im_photo_thumb {
 }
 
 .im-chat-input .im-chat-input--attach-file {
+    cursor: pointer;
     opacity: 0;
     width: 1px;
     height: 1px;
@@ -5499,7 +5498,7 @@ img.im_photo_thumb {
     overflow-x: hidden;
     border-radius: 6px;
     line-height: 17px;
-    padding: 9px 74px 10px 13px;
+    padding: 9px 106px 10px 13px;
     margin-bottom: 0;
     word-wrap: break-word;
     box-sizing: border-box;
@@ -5523,8 +5522,8 @@ img.im_photo_thumb {
     color: #939393
 }
 
-.im-chat-input .im-chat-input_open-keyboard .im-chat-input--text {
-    padding-right: 106px
+.im-chat-input>:not(.im-chat-input_open-keyboard):not(.im-chat-input_close-keyboard) .im-chat-input--text {
+    padding-right: 74px
 }
 
 .im-chat-input .im-chat-input--rcemoji {

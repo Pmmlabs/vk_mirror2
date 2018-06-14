@@ -206,10 +206,10 @@ var stVersions = {
     'videoview.css': 25416279475,
     'video_edit.js': 2135196486,
     'video_edit.css': 20462547729,
-    'video_upload.js': 5291915463,
+    'video_upload.js': 5994829855,
     'video_youtube.js': 458412745,
     'video_youtube.css': 12216812780,
-    'videoplayer.js': 91716286175,
+    'videoplayer.js': 92201080152,
     'videoplayer.css': 35565090090,
     'translation.js': 3205673093,
     'translation.css': 15506578667,
@@ -261,8 +261,8 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 192279869659,
-    'imn.js': 258930846234,
+    'im.css': 192317697722,
+    'imn.js': 256821437543,
     'im.js': 1322065005,
     'emoji.js': 2723938640,
     'wide_dd.css': 15326168551,
@@ -354,7 +354,7 @@ var stVersions = {
     'sf.css': 17148463679,
     'members.css': 14551429620,
     'meminfo.css': 24636821850,
-    'groupinfo.css': 74302509891,
+    'groupinfo.css': 74305615503,
     'bugs.js': 3874995669,
     'bugs.css': 12598456944,
     'bugtracker.js': 2203237703,
@@ -384,7 +384,7 @@ var stVersions = {
     'ads.js': 2733727573,
     'ads_payments.js': 2205910694,
     'ads_edit.css': 12090108295,
-    'ads_edit.js': 3407605072,
+    'ads_edit.js': 4139227725,
     'ads_edit_geo.js': 519167575,
     'ads_moder_common.css': 13124513476,
     'ads_moder.css': 12702712046,
@@ -628,4 +628,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 8743;
+var _rnd = 228;
