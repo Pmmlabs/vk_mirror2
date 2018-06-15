@@ -531,7 +531,8 @@ textarea.EditableLabel__textarea {
     padding: 0 0 0 52px;
     font-size: 13px;
     line-height: 15px;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    border-color: inherit
 }
 
 .Entity--size34 {
@@ -544,7 +545,8 @@ textarea.EditableLabel__textarea {
     top: 0;
     left: 0;
     width: 40px;
-    height: 40px
+    height: 40px;
+    border-color: inherit
 }
 
 .Entity--size34 .Entity__aside {
@@ -751,12 +753,19 @@ textarea.EditableLabel__textarea {
     cursor: pointer
 }
 
-.ListItem--selectable:hover {
+.ListItem--active,
+.ListItem--can-be-hovered.ListItem--selectable:hover {
     border-color: #e7e8ec;
     background: #f5f7fa
 }
 
-.ListItem--border.ListItem--selectable:first-child:hover {
+.ListItem--active .ListItem__main,
+.ListItem--can-be-hovered.ListItem--selectable:hover .ListItem__main {
+    border-color: #f5f7fa
+}
+
+.ListItem--border.ListItem--can-be-hovered.ListItem--selectable:first-child:hover,
+.ListItem--selectable:first-child.ListItem--active {
     border-top-color: transparent
 }
 
@@ -770,7 +779,7 @@ textarea.EditableLabel__textarea {
     content: ''
 }
 
-.ListItem--border.ListItem--selectable:hover:before,
+.ListItem--border.ListItem--can-be-hovered.ListItem--selectable:hover:before,
 .ListItem--border:last-child:before {
     content: none
 }
@@ -779,7 +788,8 @@ textarea.EditableLabel__textarea {
     width: 28px;
     height: 28px;
     -ms-flex: 0 0 28px;
-    flex: 0 0 28px
+    flex: 0 0 28px;
+    border-color: inherit
 }
 
 .ListItem__main {
@@ -787,7 +797,8 @@ textarea.EditableLabel__textarea {
     flex: 1 1 auto;
     overflow: hidden;
     max-width: calc(100% - 25px);
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
+    border-color: #fff
 }
 
 .ListItem__aside {
@@ -806,8 +817,56 @@ textarea.EditableLabel__textarea {
     display: block
 }
 
-.ListItem--chevron:hover:after {
+.ListItem--can-be-hovered.ListItem--chevron:hover:after {
     opacity: .8
+}
+
+.Avatar {
+    width: 34px;
+    height: 34px;
+    position: relative;
+    transform: translateZ(0)
+}
+
+.Avatar--online {
+    border-color: inherit
+}
+
+.Avatar--online:after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-width: 2px;
+    border-style: solid;
+    border-color: inherit;
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background-color: #8ac176
+}
+
+.Avatar--online.Avatar--mobile:after {
+    bottom: -1px;
+    height: 9px;
+    width: 6px;
+    border-radius: 3px;
+    background-size: cover;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%207%2011%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cg%20id%3D%22Symbols%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22%238AC176%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22online%22%20transform%3D%22translate(-203.000000%2C%20-422.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M203%2C423.506439%20C203%2C422.674456%20203.671189%2C422%20204.501676%2C422%20L208.498324%2C422%20C209.327677%2C422%20210%2C422.671541%20210%2C423.506439%20L210%2C431.493561%20C210%2C432.325544%20209.328811%2C433%20208.498324%2C433%20L204.501676%2C433%20C203.672323%2C433%20203%2C432.328459%20203%2C431.493561%20L203%2C423.506439%20Z%20M204%2C424%20L209%2C424%20L209%2C430%20L204%2C430%20L204%2C424%20Z%22%20id%3D%22mobile_m%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
+}
+
+.Avatar__wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 50%
+}
+
+.Avatar__img {
+    max-width: 100%;
+    max-height: 100%
 }
 
 .MembersGrid {

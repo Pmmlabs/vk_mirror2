@@ -175,7 +175,6 @@ window.Stories = {
         }
     },
     nextStory: function() {
-        125864255 == vk.id;
         var e = wkcur.globalStories[wkcur.storyOwner],
             r = ge("story_view_" + wkcur.storyOwner);
         if (e) return Stories.timeLineUpdateStop(), setStyle(geByClass1("_story_view_timeline_progress" + wkcur.storyIndex, r), "transform", "translateX(100%)"), wkcur.storyIndex++, wkcur.storyIndex >= e.length ? Stories.nextOwner() : void Stories.playStory()

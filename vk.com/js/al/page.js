@@ -6480,6 +6480,10 @@ var Wall = {
             })
         };
 
+        if (window.fifaReplaceText) {
+            repls.text = fifaReplaceText(repls.text);
+        }
+
         extendCb && extend(repls, extendCb(repls, ev));
 
         if (isEditor && cur.wallTpl.author_data) {
@@ -6561,6 +6565,10 @@ var Wall = {
                 object_raw: ev[3]
             })
         };
+
+        if (window.fifaReplaceText) {
+            repls.text = fifaReplaceText(repls.text);
+        }
 
         extendCb && extend(repls, extendCb(repls));
 
@@ -6887,6 +6895,10 @@ var Wall = {
                             poll_hash: cur.wallTpl.poll_hash
                         }));
 
+                        if (window.fifaReplaceText) {
+                            text = fifaReplaceText(text);
+                        }
+
                         // only for VK videos
                         var isPlayerLoaded = (cur.videoInlinePlayer && isAncestor(window._videoLastInlined[0], editEl));
                         var isVideoPlaying = isPlayerLoaded && cur.videoInlinePlayer.getState() == 'playing';
@@ -6929,6 +6941,11 @@ var Wall = {
                         if (wasExpanded) wasExpanded = isVisible(domNS(wasExpanded));
 
                         var text = psr(ev[4]);
+
+                        if (window.fifaReplaceText) {
+                            text = fifaReplaceText(text);
+                        }
+
                         val(editEl, text);
 
                         updH = -editEl.offsetHeight;

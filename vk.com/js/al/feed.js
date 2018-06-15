@@ -331,7 +331,7 @@ var Feed = {
                         poll_hash: cur.wallTpl.poll_hash
                     })),
                     m = ge("post" + r);
-                m && !isVisible(m.parentNode) && (N = wall.updatePostImages(N)), val(L, N), H && (H = geByClass1("wall_post_more", L), H && H.onclick()), ge("post_poll_id" + r) && wall.updatePoll(r), E && (c += L.offsetHeight), nodeUpdated(L), window.Wall && Wall.updatePostAuthorData(r);
+                m && !isVisible(m.parentNode) && (N = wall.updatePostImages(N)), window.fifaReplaceText && (N = fifaReplaceText(N)), val(L, N), H && (H = geByClass1("wall_post_more", L), H && H.onclick()), ge("post_poll_id" + r) && wall.updatePoll(r), E && (c += L.offsetHeight), nodeUpdated(L), window.Wall && Wall.updatePostAuthorData(r);
                 break;
             case "edit_reply":
                 var M = e[3],
@@ -340,7 +340,7 @@ var Feed = {
                 var H = geByClass1("wall_reply_more", L);
                 H && (H = isVisible(domNS(H)));
                 var N = psr(e[4]);
-                val(L, N), updH = -L.offsetHeight, updY = getXY(L)[1], H && (H = geByClass1("wall_reply_more", L), H && H.onclick()), updH += L.offsetHeight, nodeUpdated(L);
+                window.fifaReplaceText && (N = fifaReplaceText(N)), val(L, N), updH = -L.offsetHeight, updY = getXY(L)[1], H && (H = geByClass1("wall_reply_more", L), H && H.onclick()), updH += L.offsetHeight, nodeUpdated(L);
                 break;
             case "post_parsed_link":
                 if (!i) break;
@@ -915,8 +915,7 @@ var Feed = {
                 feed.notifyHideReply(e);
                 var o = geByClass1("_post_content", n),
                     s = geByClass1("_feedback_deleted", n);
-                s ? (s.innerHTML = '<span class="dld_inner">' + t + "</span>",
-                    show(s)) : n.appendChild(ce("div", {
+                s ? (s.innerHTML = '<span class="dld_inner">' + t + "</span>", show(s)) : n.appendChild(ce("div", {
                     className: "feedback_row dld _feedback_deleted",
                     innerHTML: '<span class="dld_inner">' + t + "</span>"
                 })), hide(o, geByClass1("_answer_wrap", n)), hasClass(n, "feedback_row_clickable") && addClass(n, "feedback_row_touched")

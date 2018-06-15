@@ -800,7 +800,7 @@ var vkApp = function(cont, options, params, onInit) {
             }
 
             // Need added support link_image, link_title, link_button fields to ios.
-            var noCallNativeInIosApps = [6463155, 6245523, 6232217, 6502608],
+            var noCallNativeInIosApps = [6463155, 6245523, 6232217, 6502608, 6501403],
                 noCallNative = cur.app.isNativeIosWebView() && ~noCallNativeInIosApps.indexOf(cur.aid);
 
             params = params || {};

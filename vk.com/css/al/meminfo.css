@@ -660,7 +660,9 @@ tr:first-child td .mi_right_column {
 
 .mi_ajax_mark.mi_ajax_mark_big {
     display: block;
-    text-align: center
+    text-align: center;
+    height: auto;
+    vertical-align: middle
 }
 
 .mi_ajax_mark.mi_ajax_mark_big .mi_ajax_mark_loading {
@@ -676,7 +678,8 @@ tr:first-child td .mi_right_column {
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner_big.png);
-    margin-top: 16px
+    margin-top: 16px;
+    background-size: auto
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -701,7 +704,10 @@ tr:first-child td .mi_right_column {
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner.png);
-    margin: 0 8px
+    margin: 0 8px;
+    height: 12px;
+    width: 12px;
+    background-size: 12px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
