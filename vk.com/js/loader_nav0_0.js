@@ -239,8 +239,8 @@ var stVersions = {
     'cmodules/web/groups_create.js': 2554367098,
     'groups_create.css': 15225674614,
     'cmodules/web/groups_list.js': 5109346988,
-    'cmodules/web/GroupsEdit.js': 22165109620,
-    'groups_edit.css': 35445393545,
+    'cmodules/web/GroupsEdit.js': 21788854032,
+    'groups_edit.css': 36293892633,
     'groups_edit.js': 1881169855,
     'profile.css': 16538325867,
     'profile.js': 610604261,
@@ -343,7 +343,7 @@ var stVersions = {
     'tags_dd.css': 14628776929,
     'helpdesk.js': 2913283560,
     'helpdesk.css': 18159449408,
-    'tickets.js': 2261927229,
+    'tickets.js': 105116548,
     'tickets.css': 19571344517,
     'faq.css': 19815095755,
     'talmud.js': 1641838680,
@@ -622,7 +622,7 @@ var stTypes = {
         'article_view.js': 1,
         'rich_dropdown.js': 1,
         'lazyload.js': 1,
-        'ny2018.js': 1,
+        'fifa2018.js': 1,
         'wk_editor.js': 1,
         'groups_edit_stories.js': 1,
         'apps.js': 1,
@@ -630,4 +630,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 6581;
+var _rnd = 4866;

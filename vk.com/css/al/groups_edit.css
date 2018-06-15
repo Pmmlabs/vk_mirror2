@@ -3,6 +3,7 @@
 }
 
 #groups_edit_request_type_progress,
+.ErrorPlug .ErrorPlug--emote,
 .gedit_import_box_icon,
 .gedit_servers_menu .page_actions_btn,
 .gedit_servers_menu .page_actions_header,
@@ -62,9 +63,9 @@ a.group_ad_post_stats {
 }
 
 .NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage--total-counter {
-    margin-left: 6px;
     color: #939393;
-    font-size: 14px
+    font-size: 14px;
+    margin-left: 6px
 }
 
 .NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage--strikes {
@@ -133,25 +134,22 @@ a.group_ad_post_stats {
 }
 
 .PunishMeter {
+    margin: -10px 10px -10px -10px;
+    position: relative;
     width: 106px;
     height: 56px;
-    display: block;
     float: left;
-    position: relative;
-    margin-top: -10px;
-    margin-left: -10px;
-    margin-right: 10px;
     overflow: hidden
 }
 
 .PunishMeter .PunishMeter--background {
-    background: url(/images/svg_icons/groups/nemesis_reports/punish_meter_background.svg);
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2256%22%20viewBox%3D%220%200%20106%2056%22%20width%3D%22106%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22m0%200h106v56h-106z%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22m96%2049h-26c0-9.3888407-7.6111593-17-17-17s-17%207.6111593-17%2017h-26c0-23.7482442%2019.2517558-43%2043-43s43%2019.2517558%2043%2043z%22%20fill%3D%22%23e7e8ec%22%20fill-rule%3D%22nonzero%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
     width: 100%;
     height: 100%
 }
 
 .PunishMeter .PunishMeter--pointer {
-    background: url(/images/svg_icons/groups/nemesis_reports/punish_meter_pointer.svg) no-repeat;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2250%22%20viewBox%3D%220%200%206%2050%22%20width%3D%226%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Cpath%20d%3D%22m.01717639%2046.6770839%202.45626541-46.17778974c.01489051-.27994156.24622089-.49929416.5265582-.49929416.28033731%200%20.51166769.2193526.5265582.49929416l2.45626541%2046.17778974c.01135296.1060826.01717639.2138193.01717639.3229161%200%201.6568542-1.34314575%203-3%203s-3-1.3431458-3-3c0-.1090968.00582343-.2168335.01717639-.3229161z%22%20fill%3D%22%23353535%22%20fill-rule%3D%22evenodd%22%2F%3E%0A%3C%2Fsvg%3E") no-repeat;
     background-size: 6px;
     width: 6px;
     height: 50px;
@@ -172,15 +170,15 @@ a.group_ad_post_stats {
 }
 
 .PunishMeter .PunishMeter--fluid.green {
-    background: url(/images/svg_icons/groups/nemesis_reports/punish_meter_fluid_green.svg)
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2256%22%20viewBox%3D%220%200%20106%2056%22%20width%3D%22106%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22m0%200h106v56h-106z%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22m96%2049h-26c0-9.3888407-7.6111593-17-17-17s-17%207.6111593-17%2017h-26c0-23.7482442%2019.2517558-43%2043-43s43%2019.2517558%2043%2043z%22%20fill%3D%22%234bb34b%22%20fill-rule%3D%22nonzero%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
 }
 
 .PunishMeter .PunishMeter--fluid.yellow {
-    background: url(/images/svg_icons/groups/nemesis_reports/punish_meter_fluid_yellow.svg)
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2256%22%20viewBox%3D%220%200%20106%2056%22%20width%3D%22106%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22m0%200h106v56h-106z%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22m96%2049h-26c0-9.3888407-7.6111593-17-17-17s-17%207.6111593-17%2017h-26c0-23.7482442%2019.2517558-43%2043-43s43%2019.2517558%2043%2043z%22%20fill%3D%22%23ffa000%22%20fill-rule%3D%22nonzero%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
 }
 
 .PunishMeter .PunishMeter--fluid.red {
-    background: url(/images/svg_icons/groups/nemesis_reports/punish_meter_fluid_red.svg)
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2256%22%20viewBox%3D%220%200%20106%2056%22%20width%3D%22106%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22m0%200h106v56h-106z%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22m96%2049h-26c0-9.3888407-7.6111593-17-17-17s-17%207.6111593-17%2017h-26c0-23.7482442%2019.2517558-43%2043-43s43%2019.2517558%2043%2043z%22%20fill%3D%22%23e64646%22%20fill-rule%3D%22nonzero%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
 }
 
 .PunishMeter .PunishMeter--fluid-hider {
@@ -213,7 +211,7 @@ a.group_ad_post_stats {
 .PunishMeter .PunishMeter--punish-2-notch {
     top: 9px;
     left: 74px;
-    -o-transform: rotate(133deg);
+    -o-transform: rotate(210deg);
     transform: rotate(210deg);
     -o-transform-origin: bottom;
     transform-origin: bottom;
@@ -231,7 +229,7 @@ a.group_ad_post_stats {
 .PunishMeter .PunishMeter--punish-3-notch {
     top: 42.5px;
     left: 91px;
-    -o-transform: rotate(180deg);
+    -o-transform: rotate(90deg);
     transform: rotate(90deg);
     -o-transform-origin: bottom;
     transform-origin: bottom;
@@ -244,6 +242,28 @@ a.group_ad_post_stats {
 
 .PunishMeter .PunishMeter--punish-3-notch.passed {
     background: #656565
+}
+
+.ErrorPlug {
+    padding: 30px 20px 20px;
+    text-align: center
+}
+
+.ErrorPlug .ErrorPlug--emote {
+    margin: auto;
+    margin-bottom: 20px;
+    background: url(/images/agents/sad.png) no-repeat;
+    height: 70px;
+    width: 70px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ErrorPlug .ErrorPlug--emote {
+        background-image: url(/images/agents/sad_2x.png);
+        background-size: 70px 70px
+    }
 }
 
 .group_edit {

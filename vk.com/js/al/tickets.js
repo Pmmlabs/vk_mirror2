@@ -73,16 +73,17 @@ var Tickets = {
         e.tt && e.tt.hide && e.tt.hide()
     },
     initExtraFields: function() {
-        for (var e in cur.extraFields) {
-            var t = cur.extraFields[e],
-                a = ge("tickets_new_extra_field_" + e + "_inp");
-            3 == t.required && cur.verifiedPage || (a ? (t.title && placeholderSetup(a, {
-                back: !0
-            }), t.note && (data(a, "note", t.note), addEvent(a, "focus", function(e) {
+        var e = ge("tickets_new_extra_fields"),
+            t = e ? geByClass("_extra_field", e) : [];
+        each(t, function(e, t) {
+            var a = attr(t, "ef-index"),
+                i = ge("tickets_new_extra_field_" + a + "_inp"),
+                o = cur.extraFieldsNotes[a];
+            return i ? o && "" !== o ? (addEvent(i, "focus", function(e) {
                 var t = e.target;
-                Tickets.showTooltip(t, data(t, "note"), "extra_field", !0, !0)
-            }), addEvent(a, "blur", Tickets.hideTooltip.pbind(a)))) : data(ge("tickets_new_extra_field_" + e), "value", ""))
-        }
+                Tickets.showTooltip(t, o, "extra_field", !0, !0)
+            }), void addEvent(i, "blur", Tickets.hideTooltip.pbind(i))) : !0 : (data(t, "value", ""), !0)
+        })
     },
     doSaveTicket: function(e) {
         ajax.post(cur.objLoc + "?act=save", e, {
@@ -95,6 +96,23 @@ var Tickets = {
             hideProgress: unlockButton.pbind("tickets_send")
         })
     },
+    getFieldsFromObjLoc: function(e) {
+        var t = {};
+        return each(e, function(e, a) {
+            nav.objLoc[a] && (t[a] = nav.objLoc[a])
+        }), t
+    },
+    getAudioFields: function() {
+        var e = {};
+        if (cur.samples && cur.samples.audio || ge("audio_checking")) {
+            e.audio_html = ge("audio_checking").innerHTML;
+            var t = (cur.samples || {}).audio || "";
+            window.ag && window.sh && (e.audio_html = e.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (e.audio_html = e.audio_html.replace(/_info/g, "dwnl_info")), e.audio_orig = ce("div", {
+                innerHTML: t.replace(/z9q2m/g, "audio")
+            }).innerHTML
+        }
+        return e
+    },
     saveTicket: function(e) {
         var t = trim(val("tickets_title")),
             a = trim(val("tickets_text")),
@@ -103,37 +121,29 @@ var Tickets = {
         var o = Tickets.getUploadAttachs();
         a || cur.descriptionNotNeeded || o.length || (notaBene("tickets_text", !1, !i), i = !1);
         var s = Tickets.getBrowser(),
-            r = {
+            r = extend({
                 title: t,
                 text: a,
                 hash: e,
                 attachs: o,
                 browser: s,
                 section: cur.faqSection
-            };
-        if (cur.samples && cur.samples.audio || ge("audio_checking")) {
-            r.audio_html = ge("audio_checking").innerHTML;
-            var n = (cur.samples || {}).audio || "";
-            window.ag && window.sh && (r.audio_html = r.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (r.audio_html = r.audio_html.replace(/_info/g, "dwnl_info")), r.audio_orig = ce("div", {
-                innerHTML: n.replace(/z9q2m/g, "audio")
-            }).innerHTML
-        }
-        nav.objLoc.mid && (r.mid = nav.objLoc.mid), nav.objLoc.gid && (r.gid = nav.objLoc.gid), nav.objLoc.app_id && (r.app_id = nav.objLoc.app_id), nav.objLoc.union_id && (r.union_id = nav.objLoc.union_id), cur.fromFaqId && (r.faq = cur.fromFaqId), cur.from ? r.from = cur.from : nav.objLoc.from && (r.from = nav.objLoc.from);
-        for (var c in cur.extraFields) {
-            var l = cur.extraFields[c],
-                d = ge("tickets_new_extra_field_" + c + "_inp"),
-                _ = "",
-                p = d;
-            if (3 != l.required || !cur.verifiedPage) {
-                d ? _ = d.value.trim() : (p = ge("tickets_new_extra_field_" + c), _ = data(p, "value"));
-                var u = 1 == l.required || (2 == l.required || 3 == l.required) && !cur.verifiedPage;
-                (!_ && u || 4 == l.type && u && -1 == _.indexOf("vk.com")) && (notaBene(p, !1, !i), i = !1), r["extra_field_" + c] = _
-            }
-        }
-        if (!i) return !1;
-        if (nav.objLoc.mobile && (r.mobile = 1), nav.objLoc.bhash && (r.bhash = nav.objLoc.bhash), 39 == r.faqSection) {
-            var h = ls.get("support_outdated_left");
-            h && h.ts && Math.floor((new Date).getTime() / 1e3) - h.ts < 3600 && (r.outdated_ticket_id = h.id), ls.remove("support_outdated_left")
+            }, Tickets.getAudioFields(), Tickets.getFieldsFromObjLoc(["mid", "gid", "app_id", "union_id", "from", "mobile", "bhash"]));
+        cur.fromFaqId && (r.faq = cur.fromFaqId), cur.from && (r.from = cur.from);
+        var n = ge("tickets_new_extra_fields"),
+            c = n ? geByClass("_extra_field", n) : [];
+        if (each(c, function(e, t) {
+                var a = attr(t, "ef-index"),
+                    o = ge("tickets_new_extra_field_" + a + "_inp"),
+                    s = "",
+                    n = o,
+                    c = hasClass(t, "_ef_required"),
+                    l = hasClass(t, "_ef_check_url");
+                o ? s = trim(val(o)) : (n = t, s = data(n, "value")), c && ("" === s || l && -1 == s.indexOf("vk.com")) && (notaBene(n, !1, !i), i = !1), r["extra_field_" + a] = s
+            }), !i) return !1;
+        if (39 == r.faqSection) {
+            var l = ls.get("support_outdated_left");
+            l && l.ts && Math.floor((new Date).getTime() / 1e3) - l.ts < 3600 && (r.outdated_ticket_id = l.id), ls.remove("support_outdated_left")
         }
         Tickets.doSaveTicket(r)
     },
@@ -152,15 +162,8 @@ var Tickets = {
                     attachs: i,
                     browser: o,
                     section: cur.faqSection
-                }, Tickets.getPayFields());
-            if (nav.objLoc.gid && (s.gid = nav.objLoc.gid), nav.objLoc.app_id && (s.app_id = nav.objLoc.app_id), nav.objLoc.union_id && (s.union_id = nav.objLoc.union_id), cur.samples && cur.samples.audio || ge("audio_checking")) {
-                s.audio_html = val("audio_checking");
-                var r = (cur.samples || {}).audio || "";
-                window.ag && window.sh && (s.audio_html = s.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (s.audio_html = s.audio_html.replace(/_info/g, "dwnl_info")), s.audio_orig = ce("div", {
-                    innerHTML: r.replace(/z9q2m/g, "audio")
-                }).innerHTML
-            }
-            "new_ads" == nav.objLoc.act && (s.section = 1), "new_pay" == nav.objLoc.act && (s.section = 16), nav.objLoc.from && (s.from = nav.objLoc.from), Tickets.doSaveTicket(s)
+                }, Tickets.getAudioFields(), Tickets.getPayFields(), Tickets.getFieldsFromObjLoc(["gid", "app_id", "union_id", "from"]));
+            Tickets.doSaveTicket(s)
         }
     },
     saveDMCATicket: function(e) {
@@ -172,14 +175,7 @@ var Tickets = {
                     section: cur.faqSection,
                     attachs: t,
                     browser: a
-                }, Tickets.getDMCAFields());
-            if (cur.samples && cur.samples.audio || ge("audio_checking")) {
-                i.audio_html = ge("audio_checking").innerHTML;
-                var o = (cur.samples || {}).audio || "";
-                window.ag && window.sh && (i.audio_html = i.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (i.audio_html = i.audio_html.replace(/_info/g, "dwnl_info")), i.audio_orig = ce("div", {
-                    innerHTML: o.replace(/z9q2m/g, "audio")
-                }).innerHTML
-            }
+                }, Tickets.getDMCAFields(), Tickets.getAudioFields());
             Tickets.doSaveTicket(i)
         }
     },
@@ -214,8 +210,7 @@ var Tickets = {
         }, e).hide, 4e3), !1
     },
     checkPhone: function(e) {
-        ajax.post("support", {
-            act: "check_phone",
+        ajax.post("support?act=a_check_phone", {
             phone: e
         }, {
             cache: 1,
@@ -743,14 +738,13 @@ var Tickets = {
         removeClass(i, "tickets_new_extra_field__uploaded_c"), removeClass(i, "tickets_new_extra_field__uploaded_p"), re("tickets_new_extra_field__file_" + t), hide("tis_add_lnk"), show("tickets_new_extra_field__upload_btn_" + t, "tickets_new_extra_field__example_" + t), data(ge("tickets_new_extra_field_" + t), "value", "")
     },
     allExtraFieldFilesUploaded: function() {
-        for (var e in cur.extraFields) {
-            var t = cur.extraFields[e];
-            if (6 == t.type || 7 == t.type || 8 == t.type) {
-                var a = data(ge("tickets_new_extra_field_" + e), "value");
-                if (!a) return !1
-            }
-        }
-        return !0
+        var e = !0,
+            t = ge("tickets_new_extra_fields"),
+            a = t ? geByClass("_ef_file", t) : [];
+        return each(a, function(t, a) {
+            var i = data(a, "value");
+            return i ? void 0 : (e = !1, !1)
+        }), e
     },
     chooseExtraFieldComplete: function(e, t, a) {
         if (void 0 === a.upload_ind) return !1;
@@ -765,7 +759,7 @@ var Tickets = {
             o = se('<div class="page_preview_photo_wrap" id="tickets_new_extra_field__file_' + e + '">' + i + '<div class="page_media_x_wrap inl_bl" ' + (browser.msie ? "title" : "tootltip") + '="' + getLang("dont_attach") + '" onmouseover="if (browser.msie) return; showTooltip(this, {text: this.getAttribute(\'tootltip\'), shift: [13, 3, 3], black: 1})"><div class="page_media_x" onclick="Tickets.removeExtraFieldFile(event, ' + e + ');"></div></div></div>');
         re("upload" + a.upload_ind + "_progress_wrap"), data(ge("tickets_new_extra_field_" + e), "value", t);
         var s = ge("tickets_new_extra_field__uploaded_" + e);
-        return s.appendChild(o), removeClass(s, "tickets_new_extra_field__uploaded_p"), addClass(s, "tickets_new_extra_field__uploaded_c"), cur.fileApiUploadStarted || boxQueue.hideLast(), cur.lastPostMsg = !1, void 0 !== a.upload_ind && delete a.upload_ind, Tickets.allExtraFieldFilesUploaded() && show("tis_add_lnk"), !1
+        return s.appendChild(o), removeClass(s, "tickets_new_extra_field__uploaded_p"), addClass(s, "tickets_new_extra_field__uploaded_c"), cur.fileApiUploadStarted || boxQueue.hideLast(), cur.lastPostMsg = !1, void 0 !== a.upload_ind && delete a.upload_ind, console.log(e), Tickets.allExtraFieldFilesUploaded() && show("tis_add_lnk"), !1
     },
     chooseFail: function(e, t, a) {
         var i = void 0 !== t.ind ? t.ind : t;
@@ -981,8 +975,7 @@ var Tickets = {
             c = r ? r.length > 33 ? r.substr(0, 30) + "..." : r : "",
             l = ge("upload" + n + "_progress");
         if (l)
-            if (show(l),
-                l.full) {
+            if (show(l), l.full) {
                 var d = a(l, "tween"),
                     _ = intval(l.full * o);
                 d && d.isTweening ? d.to.width = _ : animate(l, {
