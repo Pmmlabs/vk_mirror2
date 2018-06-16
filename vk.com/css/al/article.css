@@ -884,6 +884,10 @@
     margin-bottom: 0
 }
 
+.article:not(.article_mobile)>ol {
+    padding-left: 20px
+}
+
 .article:not(.article_mobile)>h1,
 .article:not(.article_mobile)>h2,
 .article:not(.article_mobile)>h3 {
@@ -964,6 +968,10 @@
 .article.article_mobile>ol>li:last-child,
 .article.article_mobile>ul>li:last-child {
     margin-bottom: 0
+}
+
+.article.article_mobile>ol {
+    padding-left: 20px
 }
 
 .article.article_mobile>h1,
@@ -1053,11 +1061,6 @@
 .article.article_mobile>ul {
     list-style-type: disc;
     margin-left: 32px
-}
-
-.article.article_mobile>ol {
-    margin-left: 32px;
-    padding: 0
 }
 
 .article.article_mobile>figure[data-type="105"] {

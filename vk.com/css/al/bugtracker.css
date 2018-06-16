@@ -935,6 +935,15 @@
     color: #939393
 }
 
+.bt_report_id {
+    color: #656565;
+    float: left;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: inline-block
+}
+
 .bt_report_title {
     margin-bottom: 8px;
     padding-right: 33px;

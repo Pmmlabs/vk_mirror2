@@ -1985,6 +1985,36 @@ a.ui_search_custom_link {
     }
 }
 
+.ui_actions_menu_icons_labeled .ui_actions_menu_icons {
+    background: none
+}
+
+.ui_actions_menu_icons_label {
+    color: #5b6e85;
+    border-bottom: 4px solid #d1d9e0;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 13px;
+    line-height: 13px;
+    top: 3px;
+    left: 0;
+    right: 0;
+    padding-left: 2px;
+    position: absolute;
+    text-align: center;
+    -ms-user-select: none;
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none
+}
+
+.ui_actions_menu_icons_label:after {
+    content: "!"
+}
+
 .ui_actions_menu_item {
     text-overflow: ellipsis;
     overflow: hidden;

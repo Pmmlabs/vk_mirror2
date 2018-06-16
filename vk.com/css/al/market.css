@@ -2894,11 +2894,15 @@
 }
 
 .market_orders {
-    padding: 15px 20px
+    padding: 5px 20px 15px
 }
 
 .market_orders .ui_tabs {
     margin-bottom: 15px
+}
+
+.market_shop_ui_actions.ui_actions_menu_wrap {
+    font-size: 13px
 }
 
 .market_order_row {
@@ -2960,9 +2964,15 @@
     padding-top: 15px
 }
 
+.page_block_header .flat_button.market_shop_crumbs_btn {
+    margin-top: 13px;
+    line-height: 13px
+}
+
 .flat_button.market_shop_cart_info {
-    margin-top: 8px;
-    margin-right: 8px
+    margin-top: 9px;
+    margin-right: 8px;
+    line-height: 13px
 }
 
 .flat_button.market_shop_balance_info {
@@ -2971,6 +2981,7 @@
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    line-height: 13px;
     position: relative
 }
 
@@ -2980,7 +2991,7 @@
     background: url(/images/icons/payments_s.png) no-repeat 0 0;
     content: "";
     position: absolute;
-    top: 4px;
+    top: 3px;
     left: 7px;
     background-position: 0 -68px
 }
@@ -2995,12 +3006,12 @@
 }
 
 .ui_search_custom_ctrl .flat_button.market_shop_balance_info {
-    margin-top: 8px
+    margin-top: 9px
 }
 
 .page_block_header .flat_button.market_shop_balance_info {
-    margin-top: 12px;
-    line-height: 15px
+    margin-top: 13px;
+    line-height: 13px
 }
 
 .market_item_footer_info .like_wrap {

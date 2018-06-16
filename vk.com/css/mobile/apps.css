@@ -10007,6 +10007,10 @@ only screen and (min-device-pixel-ratio: 2) {
     padding-bottom: 26px!important
 }
 
+.informer_view_3>a:hover {
+    text-decoration: none
+}
+
 .informer_icon {
     max-width: 100%
 }

@@ -191,10 +191,10 @@ a.group_ad_post_stats {
 }
 
 .PunishMeter .PunishMeter--punish-1-notch {
-    top: 8px;
-    left: 31px;
-    -o-transform: rotate(133deg);
-    transform: rotate(150deg);
+    top: 44px;
+    left: 9px;
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
     -o-transform-origin: bottom;
     transform-origin: bottom;
     background: #828282;
@@ -209,10 +209,10 @@ a.group_ad_post_stats {
 }
 
 .PunishMeter .PunishMeter--punish-2-notch {
-    top: 9px;
-    left: 74px;
-    -o-transform: rotate(210deg);
-    transform: rotate(210deg);
+    top: 14px;
+    left: 22px;
+    -o-transform: rotate(135deg);
+    transform: rotate(135deg);
     -o-transform-origin: bottom;
     transform-origin: bottom;
     background: #828282;
@@ -227,7 +227,41 @@ a.group_ad_post_stats {
 }
 
 .PunishMeter .PunishMeter--punish-3-notch {
-    top: 42.5px;
+    top: 6px;
+    left: 52px;
+    -o-transform-origin: bottom;
+    transform-origin: bottom;
+    background: #828282;
+    background-size: 2px;
+    width: 2px;
+    height: 4px;
+    position: absolute
+}
+
+.PunishMeter .PunishMeter--punish-3-notch.passed {
+    background: #656565
+}
+
+.PunishMeter .PunishMeter--punish-4-notch {
+    top: 14px;
+    left: 82px;
+    -o-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+    -o-transform-origin: bottom;
+    transform-origin: bottom;
+    background: #828282;
+    background-size: 2px;
+    width: 2px;
+    height: 4px;
+    position: absolute
+}
+
+.PunishMeter .PunishMeter--punish-4-notch.passed {
+    background: #656565
+}
+
+.PunishMeter .PunishMeter--punish-5-notch {
+    top: 44px;
     left: 91px;
     -o-transform: rotate(90deg);
     transform: rotate(90deg);
@@ -240,7 +274,7 @@ a.group_ad_post_stats {
     position: absolute
 }
 
-.PunishMeter .PunishMeter--punish-3-notch.passed {
+.PunishMeter .PunishMeter--punish-5-notch.passed {
     background: #656565
 }
 
