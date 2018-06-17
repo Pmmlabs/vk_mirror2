@@ -1893,6 +1893,15 @@ textarea.EditableLabel__textarea {
     margin-bottom: 20px
 }
 
+.CopyrightReportsPage .CopyrightReportsPage--strikes-page-link {
+    position: relative;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    margin: 15px 0 0;
+    padding: 12px 20px
+}
+
 .uploaded_stories_rows {
     padding: 10px
 }

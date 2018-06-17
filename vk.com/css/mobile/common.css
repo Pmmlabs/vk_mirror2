@@ -12078,6 +12078,54 @@ a.Pad__corner {
     }
 }
 
+.Picker {
+    border: 1px solid #caced4;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box
+}
+
+.Picker__native {
+    width: 100%;
+    outline: none;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 15px;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0 34px 0 12px;
+    height: 40px;
+    line-height: 40px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent
+}
+
+.Picker__chevron {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    margin-top: -6px;
+    pointer-events: none;
+    z-index: 1
+}
+
+
+/*!
+ * Some adjustments for non-mobile devices
+ */
+
+._hover .Picker__native {
+    padding-right: 12px
+}
+
+._hover .Picker__chevron {
+    display: none
+}
+
 .LoadMore {
     text-align: center
 }
@@ -33066,404 +33114,6 @@ body.apps_settingsPageBody {
     }
 }
 
-
-/*!
- * Some hacks for notifications page with new header
- */
-
-.m .vk__page_notifications .basis__header,
-.m .vk__page_notifications .mhb_back.mhb_back.mhb_back.mhb_back {
-    overflow: visible!important
-}
-
-.m .vk__page_notifications .mh_header:not(#zpv_summary) {
-    overflow: visible!important;
-    min-width: 0;
-    font-weight: 400!important;
-    text-align: left
-}
-
-.m .vk__page_notifications .basis__header .Unfold {
-    margin-left: -8px;
-    padding-top: 2px
-}
-
-
-/*!
- * Some hacks for site policy page (`/terms` and `/privacy`)
- * opened from "accept policy" checkbox
- */
-
-.vk__page_fromAcceptPolicy .mhb_notify,
-.vk__page_fromAcceptPolicy .mhi_vkhome {
-    display: none
-}
-
-@media (min-width: 882px) {
-    .vk__page_fromAcceptPolicy .mhi_vkhome {
-        display: block
-    }
-    .vk__page_fromAcceptPolicy .header__left {
-        display: none
-    }
-}
-
-
-/*!
- * A set of hacks to make old design look like new design.
- * Used in cases when implementing new design is too expensive.
- */
-
-.Pad__alert .fi_row {
-    margin: 0!important;
-    padding: 0!important
-}
-
-.Pad__alert .service_msg {
-    border: none;
-    padding: 0;
-    background: transparent!important
-}
-
-.pageAttachMoney .tabs_block .field_prefix,
-.Row .field_prefix,
-.vk__page_redesign .basis .fi_row .field_prefix {
-    margin-bottom: 4px;
-    margin-right: 8px
-}
-
-.pageAttachMoney .tabs_block .prv_body,
-.Row .prv_body,
-.vk__page_redesign .basis .fi_row .prv_body {
-    background: transparent
-}
-
-.pageAttachMoney .tabs_block .prv_title,
-.Row .prv_title,
-.vk__page_redesign .basis .fi_row .prv_title {
-    margin-bottom: 2px
-}
-
-.pageAttachMoney .tabs_block .prv_value,
-.Row .prv_value,
-.vk__page_redesign .basis .fi_row .prv_value {
-    margin-top: 0;
-    padding-top: 0
-}
-
-.Alert .service_msg_box,
-.Alert .service_msg {
-    padding: 0;
-    border: none
-}
-
-.Alert .service_msg {
-    font-size: 15px;
-    line-height: 20px
-}
-
-.vk__page_redesign .basis .form_item {
-    padding: 0!important
-}
-
-.vk__page_redesign .basis .pcont {
-    background: #fff
-}
-
-.vk__page_redesign .basis .textfield_disabled {
-    background: #e4e8ed!important
-}
-
-.vk__page_redesign .basis .button:first-child:not(:last-child) {
-    margin-right: 8px;
-    margin-bottom: 8px
-}
-
-.vk__page_redesign .basis .near_btn {
-    font-size: 14px!important
-}
-
-.vk__page_redesign .basis .fi_label {
-    font-size: 15px;
-    line-height: 1.33;
-    color: #909499;
-    padding-bottom: 6px
-}
-
-.vk__page_redesign .basis .fi_field_links {
-    padding-top: 12px
-}
-
-.vk__page_redesign .basis .fi_field_sample {
-    font-size: 15px;
-    line-height: 1.33;
-    color: #909499;
-    padding-top: 12px!important
-}
-
-.vk__page_redesign .basis .inline_item {
-    padding-top: 6px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid rgba(0, 0, 0, .08);
-    border-top: none!important;
-    margin-top: 0!important
-}
-
-.vk__page_redesign .basis .ii_body {
-    padding: 0;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-align: center;
-    align-items: center
-}
-
-.vk__page_redesign .basis .ii_img {
-    width: 44px;
-    height: 44px;
-    margin-right: 10px;
-    -ms-flex-negative: 0;
-    flex-shrink: 0
-}
-
-.vk__page_redesign .basis .ii_owner {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.25;
-    color: #222;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    padding-right: 32px;
-    white-space: nowrap
-}
-
-.vk_flex_no .vk__page_redesign .basis .ii_body {
-    overflow: hidden;
-    white-space: nowrap
-}
-
-.vk_flex_no .vk__page_redesign .basis .ii_img {
-    float: left
-}
-
-.vk_flex_no .vk__page_redesign .basis .ii_owner {
-    display: block;
-    margin-top: 12px
-}
-
-.vk__page_redesign .basis .ii_btn {
-    position: relative;
-    z-index: 1;
-    margin-top: -2px;
-    width: 24px;
-    height: 24px;
-    min-height: auto;
-    padding: 12px;
-    margin-right: -12px;
-    background: none!important
-}
-
-@media (min-width: 400px) {
-    .vk__page_redesign .basis .ii_btn {
-        margin-right: -16px
-    }
-}
-
-.vk__page_redesign .basis .message_item_cont {
-    height: 44px;
-    display: table-cell;
-    vertical-align: middle
-}
-
-.vk__page_redesign .filter_peer_wrap .ii_body {
-    background: none!important
-}
-
-.vk__page_redesign .filter_peer_wrap .ii_body:before {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 50%;
-    margin-top: -12px;
-    width: 24px;
-    height: 24px;
-    display: block;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: 0 -1008px;
-    background-image: url('/images/mobile/skins/icon/base.png')
-}
-
-.vk_2x .vk__page_redesign .filter_peer_wrap .ii_body:before {
-    background-image: url('/images/mobile/skins/icon/base_2x.png')
-}
-
-.vk__page_redesign .filter_peer_wrap .inline_item_selected {
-    background: transparent
-}
-
-.vk__page_redesign .filter_peer_wrap .inline_item_selected .ii_body:before {
-    background-position: 0 -984px
-}
-
-.vk__page_redesign .basis .selected_users_wrap {
-    display: none
-}
-
-.vk__page_redesign .pv_select_block {
-    height: 0
-}
-
-.vk__page_redesign .pv_select_block .form_item {
-    border-bottom: none!important
-}
-
-.vk__page_redesign .pv_select_label {
-    height: 0
-}
-
-.vk__page_redesign .pv_select_label .service_msg_box {
-    display: none
-}
-
-.vk__page_redesign .pv_select_label .service_msg {
-    color: transparent
-}
-
-.vk__page_redesign .service_msg {
-    font-size: 14px;
-    line-height: 18px
-}
-
-.vk__page_redesign .basis #value_link {
-    background-color: #5181b8;
-    cursor: pointer;
-    width: 48px;
-    height: 48px;
-    padding: 2px;
-    color: transparent!important;
-    position: absolute;
-    top: -48px;
-    right: 0;
-    z-index: 10000;
-    border-radius: 0;
-    background-size: 44px;
-    background-repeat: no-repeat;
-    background-position: 2px -174px;
-    background-image: url('/images/mobile/skins/icon/header.png')
-}
-
-.vk_2x .vk__page_redesign .basis #value_link {
-    background-image: url('/images/mobile/skins/icon/header_2x.png')
-}
-
-@media (min-width: 882px) {
-    .vk__page_redesign .basis #value_link {
-        right: auto;
-        margin-left: 327px
-    }
-}
-
-._hfixed.vk__page_redesign .basis #value_link {
-    position: fixed;
-    top: 0
-}
-
-._hover.vk__page_redesign .basis #value_link:hover,
-._touch.vk__page_redesign .basis #value_link.hover {
-    background-color: #4676ac
-}
-
-@media (min-width: 882px) {
-    .vk__page_redesign.qs_opened .basis #value_link {
-        margin-left: 178px
-    }
-}
-
-.vk__page_redesign .qs_loading {
-    padding-top: 25px!important;
-    padding-bottom: 26px!important
-}
-
-.vk__page_redesign .filter_peer_wrap .slim_header,
-.vk__page_redesign .filter_peer_wrap .row_table_last_column {
-    display: none
-}
-
-.vk__page_redesign .filter_peer_wrap .head_panel {
-    border: 0;
-    background: none;
-    padding: 0 12px
-}
-
-.vk__page_redesign .filter_peer_wrap .qsearch .iwrap {
-    padding-bottom: 0;
-    padding-left: 55px
-}
-
-.vk__page_redesign .filter_peer_wrap .qs_field_wrap:after {
-    left: 14px
-}
-
-.vk__page_redesign .filter_peer_wrap .row_table_main_column {
-    border-top: none!important
-}
-
-.vk__page_redesign .service_msg_null {
-    background: transparent!important;
-    border: none!important;
-    padding: 13px!important
-}
-
-.vk__page_noCornerLinks .header__right {
-    display: none!important
-}
-
-.mhead {
-    z-index: 10
-}
-
-.basis__header,
-.mhb_back.mhb_back.mhb_back.mhb_back {
-    overflow: visible!important
-}
-
-.header__center.is_unfold {
-    padding-top: 0!important;
-    padding-bottom: 0!important
-}
-
-.header__center.is_unfold .mh_header {
-    overflow: visible!important
-}
-
-.mh_header:not(#zpv_summary) {
-    min-width: 0;
-    text-align: left
-}
-
-.basis__header .Unfold {
-    margin-left: -8px;
-    padding-top: 2px
-}
-
-.vk__page_notifications_comments .bl_cont {
-    display: none
-}
-
-.vk__page_notifications_comments .head_panel {
-    background: #fff;
-    padding: 0
-}
-
-.selected_all .filter_peer_wrap {
-    display: block
-}
-
-.selected_all .inline_item:not(.inline_item_selected) {
-    pointer-events: none
-}
-
-.selected_all .inline_item:not(.inline_item_selected) .ii_body:before,
 .load_before_closed {
     display: none
 }
@@ -34707,4 +34357,405 @@ body.apps_settingsPageBody {
 .mailHat_hasPinnedMsg .Unfold__item_name_unpin {
     display: -ms-flexbox;
     display: flex
+}
+
+
+/*!
+ * Some hacks for notifications page with new header
+ */
+
+.m .vk__page_notifications .basis__header,
+.m .vk__page_notifications .mhb_back.mhb_back.mhb_back.mhb_back {
+    overflow: visible!important
+}
+
+.m .vk__page_notifications .mh_header:not(#zpv_summary) {
+    overflow: visible!important;
+    min-width: 0;
+    font-weight: 400!important;
+    text-align: left
+}
+
+.m .vk__page_notifications .basis__header .Unfold {
+    margin-left: -8px;
+    padding-top: 2px
+}
+
+
+/*!
+ * Some hacks for site policy page (`/terms` and `/privacy`)
+ * opened from "accept policy" checkbox
+ */
+
+.vk__page_fromAcceptPolicy .mhb_notify,
+.vk__page_fromAcceptPolicy .mhi_vkhome {
+    display: none
+}
+
+@media (min-width: 882px) {
+    .vk__page_fromAcceptPolicy .mhi_vkhome {
+        display: block
+    }
+    .vk__page_fromAcceptPolicy .header__left {
+        display: none
+    }
+}
+
+
+/*!
+ * A set of hacks to make old design look like new design.
+ * Used in cases when implementing new design is too expensive.
+ */
+
+.Pad__alert .fi_row {
+    margin: 0!important;
+    padding: 0!important
+}
+
+.Pad__alert .service_msg {
+    border: none;
+    padding: 0;
+    background: transparent!important
+}
+
+.pageAttachMoney .tabs_block .field_prefix,
+.Row .field_prefix,
+.vk__page_redesign .basis .fi_row .field_prefix {
+    margin-bottom: 4px;
+    margin-right: 8px
+}
+
+.pageAttachMoney .tabs_block .prv_body,
+.Row .prv_body,
+.vk__page_redesign .basis .fi_row .prv_body {
+    background: transparent
+}
+
+.pageAttachMoney .tabs_block .prv_title,
+.Row .prv_title,
+.vk__page_redesign .basis .fi_row .prv_title {
+    margin-bottom: 2px
+}
+
+.pageAttachMoney .tabs_block .prv_value,
+.Row .prv_value,
+.vk__page_redesign .basis .fi_row .prv_value {
+    margin-top: 0;
+    padding-top: 0
+}
+
+.Alert .service_msg_box,
+.Alert .service_msg {
+    padding: 0;
+    border: none
+}
+
+.Alert .service_msg {
+    font-size: 15px;
+    line-height: 20px
+}
+
+.vk__page_redesign .basis .form_item {
+    padding: 0!important
+}
+
+.vk__page_redesign .basis .pcont {
+    background: #fff
+}
+
+.vk__page_redesign .basis .textfield_disabled {
+    background: #e4e8ed!important
+}
+
+.vk__page_redesign .basis .button:first-child:not(:last-child) {
+    margin-right: 8px;
+    margin-bottom: 8px
+}
+
+.vk__page_redesign .basis .near_btn {
+    font-size: 14px!important
+}
+
+.vk__page_redesign .basis .fi_label {
+    font-size: 15px;
+    line-height: 1.33;
+    color: #909499;
+    padding-bottom: 6px
+}
+
+.vk__page_redesign .basis .fi_field_links {
+    padding-top: 12px
+}
+
+.vk__page_redesign .basis .fi_field_sample {
+    font-size: 15px;
+    line-height: 1.33;
+    color: #909499;
+    padding-top: 12px!important
+}
+
+.vk__page_redesign .basis .inline_item {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(0, 0, 0, .08);
+    border-top: none!important;
+    margin-top: 0!important
+}
+
+.vk__page_redesign .basis .ii_body {
+    padding: 0;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.vk__page_redesign .basis .ii_img {
+    width: 44px;
+    height: 44px;
+    margin-right: 10px;
+    -ms-flex-negative: 0;
+    flex-shrink: 0
+}
+
+.vk__page_redesign .basis .ii_owner {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.25;
+    color: #222;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-right: 32px;
+    white-space: nowrap
+}
+
+.vk_flex_no .vk__page_redesign .basis .ii_body {
+    overflow: hidden;
+    white-space: nowrap
+}
+
+.vk_flex_no .vk__page_redesign .basis .ii_img {
+    float: left
+}
+
+.vk_flex_no .vk__page_redesign .basis .ii_owner {
+    display: block;
+    margin-top: 12px
+}
+
+.vk__page_redesign .basis .ii_btn {
+    position: relative;
+    z-index: 1;
+    margin-top: -2px;
+    width: 24px;
+    height: 24px;
+    min-height: auto;
+    padding: 12px;
+    margin-right: -12px;
+    background: none!important
+}
+
+@media (min-width: 400px) {
+    .vk__page_redesign .basis .ii_btn {
+        margin-right: -16px
+    }
+}
+
+.vk__page_redesign .basis .message_item_cont {
+    height: 44px;
+    display: table-cell;
+    vertical-align: middle
+}
+
+.vk__page_redesign .filter_peer_wrap .ii_body {
+    background: none!important
+}
+
+.vk__page_redesign .filter_peer_wrap .ii_body:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -12px;
+    width: 24px;
+    height: 24px;
+    display: block;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: 0 -1008px;
+    background-image: url('/images/mobile/skins/icon/base.png')
+}
+
+.vk_2x .vk__page_redesign .filter_peer_wrap .ii_body:before {
+    background-image: url('/images/mobile/skins/icon/base_2x.png')
+}
+
+.vk__page_redesign .filter_peer_wrap .inline_item_selected {
+    background: transparent
+}
+
+.vk__page_redesign .filter_peer_wrap .inline_item_selected .ii_body:before {
+    background-position: 0 -984px
+}
+
+.vk__page_redesign .basis .selected_users_wrap {
+    display: none
+}
+
+.vk__page_redesign .pv_select_block {
+    height: 0
+}
+
+.vk__page_redesign .pv_select_block .form_item {
+    border-bottom: none!important
+}
+
+.vk__page_redesign .pv_select_label {
+    height: 0
+}
+
+.vk__page_redesign .pv_select_label .service_msg_box {
+    display: none
+}
+
+.vk__page_redesign .pv_select_label .service_msg {
+    color: transparent
+}
+
+.vk__page_redesign .service_msg {
+    font-size: 14px;
+    line-height: 18px
+}
+
+.vk__page_redesign .basis #value_link {
+    background-color: #5181b8;
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    padding: 2px;
+    color: transparent!important;
+    position: absolute;
+    top: -48px;
+    right: 0;
+    z-index: 10000;
+    border-radius: 0;
+    background-size: 44px;
+    background-repeat: no-repeat;
+    background-position: 2px -174px;
+    background-image: url('/images/mobile/skins/icon/header.png')
+}
+
+.vk_2x .vk__page_redesign .basis #value_link {
+    background-image: url('/images/mobile/skins/icon/header_2x.png')
+}
+
+@media (min-width: 882px) {
+    .vk__page_redesign .basis #value_link {
+        right: auto;
+        margin-left: 327px
+    }
+}
+
+._hfixed.vk__page_redesign .basis #value_link {
+    position: fixed;
+    top: 0
+}
+
+._hover.vk__page_redesign .basis #value_link:hover,
+._touch.vk__page_redesign .basis #value_link.hover {
+    background-color: #4676ac
+}
+
+@media (min-width: 882px) {
+    .vk__page_redesign.qs_opened .basis #value_link {
+        margin-left: 178px
+    }
+}
+
+.vk__page_redesign .qs_loading {
+    padding-top: 25px!important;
+    padding-bottom: 26px!important
+}
+
+.vk__page_redesign .filter_peer_wrap .slim_header,
+.vk__page_redesign .filter_peer_wrap .row_table_last_column {
+    display: none
+}
+
+.vk__page_redesign .filter_peer_wrap .head_panel {
+    border: 0;
+    background: none;
+    padding: 0 12px
+}
+
+.vk__page_redesign .filter_peer_wrap .qsearch .iwrap {
+    padding-bottom: 0;
+    padding-left: 55px
+}
+
+.vk__page_redesign .filter_peer_wrap .qs_field_wrap:after {
+    left: 14px
+}
+
+.vk__page_redesign .filter_peer_wrap .row_table_main_column {
+    border-top: none!important
+}
+
+.vk__page_redesign .service_msg_null {
+    background: transparent!important;
+    border: none!important;
+    padding: 13px!important
+}
+
+.vk__page_noCornerLinks .header__right {
+    display: none!important
+}
+
+.mhead {
+    z-index: 10
+}
+
+.basis__header,
+.mhb_back.mhb_back.mhb_back.mhb_back {
+    overflow: visible!important
+}
+
+.header__center.is_unfold {
+    padding-top: 0!important;
+    padding-bottom: 0!important
+}
+
+.header__center.is_unfold .mh_header {
+    overflow: visible!important
+}
+
+.mh_header:not(#zpv_summary) {
+    min-width: 0;
+    text-align: left
+}
+
+.basis__header .Unfold {
+    margin-left: -8px;
+    padding-top: 2px
+}
+
+.vk__page_notifications_comments .bl_cont {
+    display: none
+}
+
+.vk__page_notifications_comments .head_panel {
+    background: #fff;
+    padding: 0
+}
+
+.selected_all .filter_peer_wrap {
+    display: block
+}
+
+.selected_all .inline_item:not(.inline_item_selected) {
+    pointer-events: none
+}
+
+.selected_all .inline_item:not(.inline_item_selected) .ii_body:before {
+    display: none
 }

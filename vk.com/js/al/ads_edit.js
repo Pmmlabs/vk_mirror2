@@ -8775,6 +8775,15 @@ AdsTargetingEditor.prototype.updateGeoEditorDefaultRadius = function(criterionNa
 }
 
 AdsTargetingEditor.prototype.eventsRetargetingGroupsAdd = function(container, template, audienceSelected, eventsSelected) {
+    // fallback for old format
+    if (eventsSelected && isString(eventsSelected) && eventsSelected.indexOf('+') != -1) {
+        var eventsSelected_ = [];
+        each(eventsSelected.split(','), function(k, v) {
+            eventsSelected_.push(Math.min.apply(null, v.split('+')));
+        });
+        eventsSelected = eventsSelected_.join(',');
+    }
+
     var newAudience = domFC(se(template));
     container.appendChild(newAudience);
 
