@@ -1574,23 +1574,19 @@ var BugTracker = {
         }), !1
     },
     searchDevice: function() {
-        var e = !1,
-            t = 0,
-            r = "";
-        return function o(a, n) {
-            r = n, e || (clearTimeout(t), t = setTimeout(function() {
-                e = !0, ajax.post("bugtracker?act=a_search_device", {
-                    q: n,
-                    from: a
+        var e = 0,
+            t = "";
+        return function(r, o) {
+            t = o, clearTimeout(e), e = setTimeout(function() {
+                t === o && ajax.post("bugtracker?act=a_search_device", {
+                    q: o,
+                    from: r
                 }, {
-                    onDone: function(t) {
-                        e = !1, val("bugtracker_device_search_results_container", t), r !== n && o(r)
-                    },
-                    onFail: function() {
-                        e = !1
+                    onDone: function(e) {
+                        t === o && val("bugtracker_device_search_results_container", e)
                     }
                 })
-            }, 200))
+            }, 200)
         }
     }(),
     changePlatformVersions: function(e, t) {

@@ -6334,3 +6334,17 @@ td.apps_cat_new_h {
 .vkPayOpenApiBox .apps_main {
     background: transparent
 }
+
+.vkPayOpenApiBox_transfer {
+    width: 835px!important;
+    min-width: 835px!important
+}
+
+.vkPayOpenApiBox_transfer .app_container {
+    width: 835px!important;
+    height: 680px!important
+}
+
+.vkPayOpenApiBox_transfer .app_container>iframe {
+    height: 680px!important
+}

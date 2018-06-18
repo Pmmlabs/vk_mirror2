@@ -657,7 +657,7 @@ var Feed = {
                     part: 1,
                     more: 1,
                     last_view: ge("feedback_unread_bar") ? 1 : cur.options.last_view
-                }), cur.options.feedback_list && (i.list = cur.options.feedback_list);
+                }), cur.options.feedback_list && (i.list = cur.options.feedback_list), nav.objLoc.situational_suggest_id && (i.situational_suggest_id = nav.objLoc.situational_suggest_id);
                 var n = cur.section;
                 ajax.post("al_feed.php?sm_" + cur.section, i, {
                     onDone: function(e, t) {

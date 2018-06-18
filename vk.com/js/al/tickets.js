@@ -1522,8 +1522,7 @@ var Tickets = {
         }), a && scrollToY(getXY(a)[1])
     },
     tutorialSelect: function(btn, id, noActions) {
-        cur.tutorialProcessing || ajax.post("support", {
-            act: "tutorial",
+        cur.tutorialProcessing || ajax.post("support?act=tutorial", {
             id: id,
             load: 1,
             ban: nav.objLoc.ban || 0,

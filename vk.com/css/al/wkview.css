@@ -1143,6 +1143,15 @@ span#wk_posts_reach_tooltip_link {
     background: transparent
 }
 
+.wk_apps_content.vkpay.vkpay_transfer .app_container {
+    width: 835px!important;
+    height: 680px!important
+}
+
+.wk_apps_content.vkpay.vkpay_transfer .app_container>iframe {
+    height: 680px!important
+}
+
 .wk_ads_case #wk_content {
     width: 795px
 }
