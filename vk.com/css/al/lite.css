@@ -4037,6 +4037,24 @@ div.top_result_baloon a {
     font-size: 13px
 }
 
+.audio_pl_snippet.audio_pl_snippet_size_medium .audio_pl_snippet__cover {
+    margin-right: 13px
+}
+
+.audio_pl_snippet.audio_pl_snippet_size_medium .audio_pl_snippet_play {
+    font-size: 0;
+    padding-left: 22px
+}
+
+.audio_pl_snippet.audio_pl_snippet_size_medium .audio_pl_snippet_play:after {
+    content: ' ';
+    font-size: 13px
+}
+
+.audio_pl_snippet.audio_pl_snippet_size_medium .audio_pl_snippet__actions {
+    padding-right: 13px
+}
+
 .audio_pl_snippet__info_subtitle {
     color: #828282
 }
