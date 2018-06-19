@@ -2077,3 +2077,14 @@ body.body_helpdesk_small_sb .left_menu_nav {
     margin-left: 10px;
     color: #939393
 }
+
+.helpdesk_reply_author_link {
+    padding: 1px 0 0 18px;
+    background-size: 14px 14px!important;
+    display: inline-block;
+    height: 16px
+}
+
+.helpdesk_reply_author_link .tickets_reply_actions__date {
+    margin: -1px 0 0
+}

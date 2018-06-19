@@ -239,8 +239,8 @@ var stVersions = {
     'cmodules/web/groups_create.js': 2554367098,
     'groups_create.css': 13255036258,
     'cmodules/web/groups_list.js': 5109346988,
-    'cmodules/web/GroupsEdit.js': 19541836125,
-    'groups_edit.css': 33777673622,
+    'cmodules/web/GroupsEdit.js': 19418385316,
+    'groups_edit.css': 33777673623,
     'groups_edit.js': 1881169855,
     'profile.css': 14567687511,
     'profile.js': 610604261,
@@ -342,9 +342,9 @@ var stVersions = {
     'tags_dd.js': 3735969205,
     'tags_dd.css': 12658138573,
     'helpdesk.js': 2913283560,
-    'helpdesk.css': 16188811052,
+    'helpdesk.css': 15623758234,
     'tickets.js': 3960842667,
-    'tickets.css': 17600706161,
+    'tickets.css': 17320808877,
     'faq.css': 17844457399,
     'talmud.js': 1641838680,
     'agents.js': 2426697933,
@@ -354,7 +354,7 @@ var stVersions = {
     'sf.css': 15177825323,
     'members.css': 12580791264,
     'meminfo.css': 21287325602,
-    'groupinfo.css': 75119146866,
+    'groupinfo.css': 75689569231,
     'bugs.js': 3874995669,
     'bugs.css': 10627818588,
     'bugtracker.js': 1129869494,
@@ -630,4 +630,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 2802;
+var _rnd = 9644;
