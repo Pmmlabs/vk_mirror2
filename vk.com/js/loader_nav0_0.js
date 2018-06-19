@@ -357,8 +357,8 @@ var stVersions = {
     'groupinfo.css': 75119146866,
     'bugs.js': 3874995669,
     'bugs.css': 10627818588,
-    'bugtracker.js': 3921937129,
-    'bugtracker.css': 17270707918,
+    'bugtracker.js': 1129869494,
+    'bugtracker.css': 16761754654,
     'login.css': 13834129015,
     'cmodules/web/login.js': 3491120396,
     'upload.js': 3788345205,
@@ -630,4 +630,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 5883;
+var _rnd = 2802;

@@ -1760,49 +1760,54 @@ var BugTracker = {
     },
     reproduced: function(e, t, r, o, a) {
         if (cur.allow_reproduce) {
-            var n = !hasClass(domPN(e), "checked"),
-                i = o - a + +n;
-            toggleClass(domPN(e), "checked", n);
-            var s = ge("reproducer_" + vk.id);
-            if (s) {
-                var c = n ? 12 : 0,
-                    d = attr(e, "data-imgs-width"),
-                    u = +d + c + "px";
-                toggleClass(s, "visible", n), window.is_rtl ? (setStyle(e, "padding-right", u), setStyle(e, "margin-right", "-" + u)) : (setStyle(e, "padding-left", u), setStyle(e, "margin-left", "-" + u))
+            var n = domPN(e),
+                i = !hasClass(n, "checked"),
+                s = o - a + +i;
+            toggleClass(n, "checked", i);
+            var c = ge("reproducer_" + vk.id);
+            if (c) {
+                var d = i ? 12 : 0,
+                    u = attr(e, "data-imgs-width"),
+                    _ = +u + d + "px";
+                toggleClass(c, "visible", i), vk.rtl ? (setStyle(e, "padding-right", _), setStyle(e, "margin-right", "-" + _)) : (setStyle(e, "padding-left", _), setStyle(e, "margin-left", "-" + _))
             }
-            if (domPN(e).rtt && domPN(e).rtt.showSelf(n), val(geByClass1("_common_count", domPN(e)), i), ajax.post("/bugtracker?act=a_reproduced", {
+            if (n.rtt && n.rtt.showSelf(i), val(geByClass1("_common_count", n), s), ajax.post("/bugtracker?act=a_reproduced", {
                     report_id: t,
                     hash: r,
-                    set: +n
+                    set: +i
                 }, {
                     onDone: function() {
-                        n && BugTracker.showReproduceDeviceSelect(domPN(e), t)
+                        i && BugTracker.showReproduceDeviceSelect(domPN(e), t)
                     }
-                }), !n) {
-                var _ = geByClass1("_reproduce_select_device_popup");
-                _.hide(), each(geByClass("checkbox on", _), function(e, t) {
+                }), !i) {
+                var l = geByClass1("_reproduce_select_device_popup");
+                l.hide(), each(geByClass("checkbox on", l), function(e, t) {
                     checkbox(t, !1)
                 })
             }
+            var b = geByClass("user_img visible", n).length,
+                g = [9 - 12 * Math.min(3, b), 10],
+                h = n.rtt;
+            h.setShift(g)
         }
     },
     showReproducesTooltips: function(e, t) {
-        var r = geByClass("user_img visible", o).length;
-        if (r) {
-            var o = domPN(e),
-                a = [9 - 12 * Math.min(3, r), 10];
-            if (o.tt) n = o.rtt, n.setShift(a);
+        var r = domPN(e),
+            o = geByClass("user_img visible", r).length;
+        if (o) {
+            var a = [9 - 12 * Math.min(3, o), 10];
+            if (r.tt) n = r.rtt, n.setShift(a);
             else {
                 var n = new BugtrackerComponents.ReproducesTooltip({
-                    container: o,
+                    container: r,
                     shift: a,
                     bugreportId: t
                 });
-                o.rtt = n
+                r.rtt = n, n.onDataLoad(function(t, o) {
+                    val(geByClass1("_common_count", r), o), domPN(e).rtt.showSelf(hasClass(domPN(e), "checked"))
+                })
             }
-            n.onDataLoad(function(e, t) {
-                val(geByClass1("_common_count", o), t)
-            }), n.show(), hasClass(domPN(e), "checked") && BugTracker.showReproduceDeviceSelect(domPN(e), t)
+            n.show(), hasClass(domPN(e), "checked") && BugTracker.showReproduceDeviceSelect(domPN(e), t)
         }
     },
     showReproduceDeviceSelect: function(e, t) {

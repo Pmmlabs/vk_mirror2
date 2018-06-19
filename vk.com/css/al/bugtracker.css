@@ -2,6 +2,17 @@
     display: none
 }
 
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
 .bt_icon_count:before,
 .bt_icon_solved:before,
 .bt_icon_vuln:before,
@@ -14,17 +25,6 @@
 .bugtracker_device .buttons.locked:before,
 .bugtracker_members_filters .token .del_icon {
     -ms-high-contrast-adjust: none
-}
-
-.h4-text {
-    color: #000;
-    border-bottom: none;
-    font-size: 1em;
-    font-weight: 400;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
-    margin: 0;
-    padding: 0
 }
 
 .bt_add_report_btn.button_small {
@@ -1054,6 +1054,11 @@
     width: 50%
 }
 
+.bt_report_footer .reproduces_tt {
+    -o-transition: left 0.2s ease, top 0.2s ease;
+    transition: left 0.2s ease, top 0.2s ease
+}
+
 .bt_report_footer .reproduces_tt .like_tt_header {
     float: none
 }
@@ -1173,7 +1178,8 @@
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    cursor: default
+    cursor: default;
+    pointer-events: none
 }
 
 .bt_reproducer {
