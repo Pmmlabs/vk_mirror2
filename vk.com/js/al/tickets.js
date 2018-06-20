@@ -96,7 +96,7 @@ var Tickets = {
             hideProgress: unlockButton.pbind("tickets_send")
         })
     },
-    getFieldsFromObjLoc: function(e) {
+    getFromObjLoc: function(e) {
         var t = {};
         return each(e, function(e, a) {
             nav.objLoc[a] && (t[a] = nav.objLoc[a])
@@ -128,7 +128,7 @@ var Tickets = {
                 attachs: o,
                 browser: s,
                 section: cur.faqSection
-            }, Tickets.getAudioFields(), Tickets.getFieldsFromObjLoc(["mid", "gid", "app_id", "union_id", "from", "mobile", "bhash"]));
+            }, Tickets.getAudioFields(), Tickets.getFromObjLoc(["mid", "group_id", "app_id", "union_id", "from", "mobile", "bhash"]));
         cur.fromFaqId && (r.faq = cur.fromFaqId), cur.from && (r.from = cur.from);
         var n = ge("tickets_new_extra_fields"),
             c = n ? geByClass("_extra_field", n) : [];
@@ -162,7 +162,7 @@ var Tickets = {
                     attachs: i,
                     browser: o,
                     section: cur.faqSection
-                }, Tickets.getAudioFields(), Tickets.getPayFields(), Tickets.getFieldsFromObjLoc(["gid", "app_id", "union_id", "from"]));
+                }, Tickets.getAudioFields(), Tickets.getPayFields(), Tickets.getFromObjLoc(["group_id", "app_id", "union_id", "from"]));
             Tickets.doSaveTicket(s)
         }
     },
@@ -1287,12 +1287,12 @@ var Tickets = {
         " " == e[e.length - 1] && (e[e.length - 1] = "_"), addClass(ge("tickets_search"), "loading"), setStyle(ge("tickets_search_reset"), {
             opacity: .6
         });
-        var t = {
+        var t = extend({
             act: "get_faq",
             q: e,
             from: nav.objLoc.act
-        };
-        nav.objLoc.gid && (t.gid = nav.objLoc.gid), nav.objLoc.app_id && (t.app_id = nav.objLoc.app_id), nav.objLoc.union_id && (t.union_id = nav.objLoc.union_id), cur.tlmd && cur.showAll && (delete cur.showAll, t.show_all = 1, cur.from_ads && (t.from = "ads")), ajax.post("support", t, {
+        }, Tickets.getFromObjLoc(["group_id", "app_id", "union_id"]));
+        cur.tlmd && cur.showAll && (delete cur.showAll, t.show_all = 1, cur.from_ads && (t.from = "ads")), ajax.post("support", t, {
             cache: 1,
             hideProgress: removeClass.pbind("tickets_search", "loading"),
             onDone: function(t, a) {
@@ -1413,7 +1413,7 @@ var Tickets = {
                 r = "";
             s && (r = s.value.trim(), r && (o.title = r))
         }
-        return t && (o.from = t), i && (o.bhash = i), nav.objLoc.union_id && (o.union_id = nav.objLoc.union_id), nav.objLoc.app_id && (o.app_id = nav.objLoc.app_id), nav.go(o), !1
+        return t && (o.from = t), i && (o.bhash = i), nav.go(extend(o, Tickets.getFromObjLoc(["union_id", "app_id", "group_id"]))), !1
     },
     listScrollToQuestion: function(e) {
         var t = null;

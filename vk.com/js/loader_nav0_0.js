@@ -212,7 +212,7 @@ var stVersions = {
     'videoplayer.js': 91782027195,
     'videoplayer.css': 33594451734,
     'translation.js': 568505835,
-    'translation.css': 13535940311,
+    'translation.css': 13205517206,
     'reg.css': 887926110,
     'reg.js': 1336565657,
     'invite.css': 14128900887,
@@ -330,7 +330,7 @@ var stVersions = {
     'widgets.css': 24407635839,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 76418868734,
+    'notifier.js': 75491862595,
     'notifier.css': 22164784785,
     'cmodules/sw/sw.js': 4889939668,
     'earthday.js': 2276669993,
@@ -343,9 +343,9 @@ var stVersions = {
     'tags_dd.css': 12658138573,
     'helpdesk.js': 2913283560,
     'helpdesk.css': 15623758234,
-    'tickets.js': 3960842667,
-    'tickets.css': 17320808877,
-    'faq.css': 17844457399,
+    'tickets.js': 3760264995,
+    'tickets.css': 18669663134,
+    'faq.css': 18525987193,
     'talmud.js': 1641838680,
     'agents.js': 2426697933,
     'agents.css': 12841027990,
@@ -357,8 +357,8 @@ var stVersions = {
     'groupinfo.css': 75689569231,
     'bugs.js': 3874995669,
     'bugs.css': 10627818588,
-    'bugtracker.js': 1129869494,
-    'bugtracker.css': 16761754654,
+    'bugtracker.js': 1079488016,
+    'bugtracker.css': 19359243901,
     'login.css': 13834129015,
     'cmodules/web/login.js': 3491120396,
     'upload.js': 3788345205,
@@ -630,4 +630,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 9644;
+var _rnd = 7855;

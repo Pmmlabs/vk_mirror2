@@ -967,7 +967,8 @@ body.dev .tu_row {
 .tu_info {
     box-sizing: border-box;
     position: relative;
-    width: 500px
+    width: 500px;
+    word-wrap: break-word
 }
 
 .tu_info.tu_info_waiting {
@@ -1042,6 +1043,10 @@ body.dev .tu_row {
         background-image: url(/images/icons/lock_2x.png);
         background-size: 10px 11px
     }
+}
+
+.tickets_list_3cols .tu_info {
+    width: 290px
 }
 
 .tt_default.tt_left.tickets_side_tt_right:after,

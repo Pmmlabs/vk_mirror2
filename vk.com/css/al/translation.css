@@ -6,8 +6,7 @@
 .tr_box_edit_key .tr_history_row .tr_history_row_author_img,
 .tr_lang_status,
 .tr_row_value_text_short:before,
-.tr_translation_box_icons .tr_translation_box_icon,
-.tr_volunteers_stats_table .tr_volunteers_status {
+.tr_translation_box_icons .tr_translation_box_icon {
     -ms-high-contrast-adjust: none
 }
 
@@ -1097,20 +1096,11 @@ i i.untranslated {
 .tr_volunteers_stats_table .tr_volunteers_status {
     width: 19px;
     height: 19px;
-    background: url(/images/icons/status_request.png) no-repeat 0px 0px;
     float: left;
     margin-right: 8px;
+    background: url('/images/icons/status_request.png') no-repeat 0px 0px;
     background-size: 18px auto;
     cursor: pointer
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .tr_volunteers_stats_table .tr_volunteers_status {
-        background-image: url(/images/icons/status_request_2x.png);
-        background-size: 22px 70px
-    }
 }
 
 .tr_volunteers_stats_table .tr_volunteers_status.tr_volunteers_status_wait {
