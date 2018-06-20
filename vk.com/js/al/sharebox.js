@@ -173,14 +173,6 @@ var ShareBox = {
             noResult: getLang("mail_not_found"),
             img: cur.sbAva,
             introText: getLang("mail_choose_recipient"),
-            custom: function(e) {
-                return -1 != e.indexOf("@") ? [
-                    [clean(e), clean(e), getLang("mail_enter_email_address"), "/images/pics/contact50.gif", 0, ""]
-                ] : !1
-            },
-            chooseOnBlur: function(e) {
-                return e = trim(e + ""), e.length < 64 && e.match(/^[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]{2,6}$/i)
-            },
             onChange: function(e) {
                 curBox().changed = !0, ShareBox.rbChanged(ge("like_share_mail"), 2, !0);
                 var a = cur.wdd.like_mail_dd,
