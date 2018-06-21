@@ -558,7 +558,7 @@ var stVersions = {
     'cmodules/web/group_invite_chat.js': 43933190606,
     'group_invite_chat.css': 70352327381,
     'cmodules/web/reports.js': 19854794487,
-    'cmodules/web/raven_logger.js': 3781101180,
+    'cmodules/web/raven_logger.js': 7336038093,
     'cmodules/web/add_to_community_app.js': 3370737776,
     'community_bot.js': 1928249077,
     'community_bot.css': 3742743729,
@@ -631,4 +631,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 7346;
+var _rnd = 4287;
