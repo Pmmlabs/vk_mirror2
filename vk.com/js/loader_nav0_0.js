@@ -241,7 +241,7 @@ var stVersions = {
     'cmodules/web/groups_list.js': 5109346988,
     'cmodules/web/GroupsEdit.js': 19418385316,
     'groups_edit.css': 37206218584,
-    'groups_edit.js': 1881169855,
+    'groups_edit.js': 2403173456,
     'profile.css': 17996232472,
     'profile.js': 610604261,
     'calendar.css': 18947190036,
@@ -262,7 +262,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 197709927949,
-    'imn.js': 262005727291,
+    'imn.js': 262981795874,
     'im.js': 1322065005,
     'emoji.js': 3487749369,
     'wide_dd.css': 16784075156,
@@ -277,7 +277,7 @@ var stVersions = {
     'feed.css': 19268196622,
     'privacy.js': 835833828,
     'privacy.css': 14457890507,
-    'apps.css': 35700753359,
+    'apps.css': 32350649494,
     'apps.js': 2592138904,
     'apps_edit.js': 2351734575,
     'apps_edit.css': 31751002947,
@@ -322,7 +322,7 @@ var stVersions = {
     'cmodules/api/widgets/app.js': 3131808422,
     'cmodules/api/widgets/auth.js': 2163782307,
     'api/widgets/al_add_community_app.js': 807582258,
-    'widget_add_community_app.css': 26584772817,
+    'widget_add_community_app.css': 27623731580,
     'api/widgets/community_messages.js': 909574838,
     'widget_community_messages.css': 29479824989,
     'al_poll.css': 3,
@@ -381,7 +381,7 @@ var stVersions = {
     'aes_light.js': 1484013701,
     'ads.css': 21917685203,
     'ads_bonus.css': 1294533291,
-    'ads.js': 2733727573,
+    'ads.js': 624274273,
     'ads_payments.js': 2205910694,
     'ads_edit.css': 13548014900,
     'ads_edit.js': 2571050786,
@@ -631,4 +631,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 4287;
+var _rnd = 3186;

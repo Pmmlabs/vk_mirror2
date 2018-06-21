@@ -6209,7 +6209,7 @@ td.apps_cat_new_h {
 }
 
 .add_to_mine_community_box .add_community_app_groups.add_community_app_groups_multi .flist_item_name {
-    max-width: 200px;
+    max-width: 170px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

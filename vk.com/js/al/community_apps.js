@@ -5,8 +5,8 @@ var CommunityApps = {
     showManage: function(s, n, a) {
         return cancelEvent(a), showApp(a, s, !1, null, n)
     },
-    attach: function(s, n, a, p, o) {
-        cur.gid ? GroupsEdit.app.attach(s, n, a, p) : Apps.addToMineGroups(s, n, "catalog", o)
+    attach: function(s, n, a, p, o, r) {
+        cur.gid ? GroupsEdit.app.attach(s, n, a, p, r) : Apps.addToMineGroups(s, n, "catalog", o)
     },
     searchInp: ge("s_search"),
     isSearch: !1,

@@ -5170,12 +5170,12 @@ Ads.showPriceListErrorsTooltip = function() {
     });
 }
 
-Ads.showFriendsBirthdayTooltip = function() {
-    Ads.showNewFeatureTooltip('ads_friends_birthday_feature', ge("ads_edit_targeting_group_interests"), {
+Ads.showNewInterestsTooltip = function() {
+    Ads.showNewFeatureTooltip('ads_weights_new_interests_feature', ge("ads_edit_targeting_group_interests"), {
         width: 235,
         offset: [-70, -60],
         forceSide: 'right',
-        content: getLang('ads_edit_friends_birthday_feature')
+        content: getLang('ads_edit_weights_new_interests_feature')
     });
 }
 

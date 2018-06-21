@@ -2442,17 +2442,17 @@ var GroupsEdit = {
                 hasClass(a, "expanded") ? (removeClass(a, "expanded"), val(r, getLang("groups_apps_change_settings_label"))) : (addClass(a, "expanded"), val(r, getLang("global_cancel"))), unlockLink(r), GroupsEdit.app.sorterDeinit(), GroupsEdit.app.sorterInit()
             }
         },
-        attach: function(e, t, o, r) {
-            if (!cur.show_limit_alert || r)
+        attach: function(e, t, o, r, a) {
+            if (a = a || !1, a || !cur.show_limit_alert || r)
                 if (!cur.show_alert || r) {
-                    var a = {
+                    var s = {
                         act: "app_attach",
                         id: cur.gid,
                         app_id: e,
                         hash: t,
                         cur_tab: cur.cur_tab
                     };
-                    cur.withoutCatalog && GroupsEdit.app.hideMessage(), ajax.post("groupsedit.php", a, {
+                    cur.withoutCatalog && GroupsEdit.app.hideMessage(), ajax.post("groupsedit.php", s, {
                         onDone: function(e, t, o, r) {
                             scrollToY(0), GroupsEdit.app.clearFromRef(), nav.reload({
                                 onDone: function() {
@@ -2467,16 +2467,16 @@ var GroupsEdit = {
                             unlockLink(o)
                         }
                     })
-                } else var s = getLang("groups_apps_replace_app_message_content", cur.appName),
-                    i = showFastBox({
+                } else var i = getLang("groups_apps_replace_app_message_content", cur.appName),
+                    n = showFastBox({
                         title: getLang("groups_apps_replace_app_message_title")
-                    }, s, getLang("groups_apps_replace_app_message_yes"), function() {
-                        i.hide(), GroupsEdit.app.attach(e, t, o, !0)
+                    }, i, getLang("groups_apps_replace_app_message_yes"), function() {
+                        n.hide(), GroupsEdit.app.attach(e, t, o, !0)
                     }, getLang("global_cancel"));
-            else var s = getLang("groups_apps_attach_limit_reached"),
-                i = showFastBox({
+            else var i = getLang("groups_apps_attach_limit_reached"),
+                n = showFastBox({
                     title: getLang("groups_apps_attach_app_message_title")
-                }, s)
+                }, i)
         },
         changeStatus: function(e) {
             radiobtn(ge("app_status_" + e), e, "app_status")
