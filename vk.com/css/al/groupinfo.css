@@ -597,6 +597,10 @@ textarea.EditableLabel__textarea {
     margin-top: 4px
 }
 
+.Entity__description:empty {
+    margin: 0
+}
+
 .File {
     position: relative;
     min-height: 22px
@@ -767,6 +771,10 @@ textarea.EditableLabel__textarea {
 .ListItem--border.ListItem--can-be-hovered.ListItem--selectable:first-child:hover,
 .ListItem--selectable:first-child.ListItem--active {
     border-top-color: transparent
+}
+
+.ListItem--border.ListItem--selectable:last-child:hover {
+    border-bottom-color: transparent
 }
 
 .ListItem--border:before {
@@ -2016,12 +2024,6 @@ table.history tr th {
 .gi_more_link:hover {
     background-color: #e9edf1;
     text-decoration: none
-}
-
-.gi_tabsbar {
-    padding: 5px;
-    background-color: #f5f5f5;
-    border-bottom: 1px solid #e8ebed
 }
 
 .gi_blank {

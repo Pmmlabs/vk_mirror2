@@ -261,8 +261,8 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 197709927949,
-    'imn.js': 262981795874,
+    'im.css': 198900157699,
+    'imn.js': 260303053923,
     'im.js': 1322065005,
     'emoji.js': 3487749369,
     'wide_dd.css': 16784075156,
@@ -344,7 +344,7 @@ var stVersions = {
     'helpdesk.js': 2913283560,
     'helpdesk.css': 19052303195,
     'tickets.js': 3760264995,
-    'tickets.css': 22098208095,
+    'tickets.css': 21810343355,
     'faq.css': 21954532154,
     'talmud.js': 1641838680,
     'agents.js': 2426697933,
@@ -354,7 +354,7 @@ var stVersions = {
     'sf.css': 18606370284,
     'members.css': 16009336225,
     'meminfo.css': 24715870563,
-    'groupinfo.css': 79118114192,
+    'groupinfo.css': 81133692870,
     'bugs.js': 3874995669,
     'bugs.css': 14056363549,
     'bugtracker.js': 1079488016,
@@ -528,7 +528,7 @@ var stVersions = {
     'stories.js': 56378863322,
     'stories.css': 18109961515,
     'cmodules/web/stories_manage.js': 27871803208,
-    'stories_manage.css': 69301859376,
+    'stories_manage.css': 70492089126,
     'article.css': 31499168337,
     'article_editor.css': 33120241265,
     'cmodules/web/article.js': 37530935843,
@@ -556,10 +556,10 @@ var stVersions = {
     'cmodules/web/app_info.js': 2375115030,
     'cmodules/web/grip.js': 4164501492,
     'cmodules/web/group_invite_chat.js': 43933190606,
-    'group_invite_chat.css': 70352327381,
+    'group_invite_chat.css': 71542557131,
     'cmodules/web/reports.js': 19854794487,
     'cmodules/web/raven_logger.js': 7336038093,
-    'cmodules/web/add_to_community_app.js': 3370737776,
+    'cmodules/web/add_to_community_app.js': 3789381770,
     'community_bot.js': 1928249077,
     'community_bot.css': 3742743729,
     'lang': 6887
@@ -631,4 +631,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 3186;
+var _rnd = 7716;

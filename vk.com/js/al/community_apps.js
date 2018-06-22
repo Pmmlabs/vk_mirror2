@@ -1,26 +1,58 @@
 var CommunityApps = {
-    showInstall: function(s, n) {
-        return cancelEvent(n), showApp(n, s, !0)
+    INSTALL_MARKET_PAGE: "add_community_app.php",
+    INSTALL_MARKET_ACT: "a_install_market_app",
+    showInstall: function(a, o) {
+        return cancelEvent(o), showApp(o, a, !0)
     },
-    showManage: function(s, n, a) {
-        return cancelEvent(a), showApp(a, s, !1, null, n)
+    showManage: function(a, o, n) {
+        return cancelEvent(n), showApp(n, a, !1, null, o)
     },
-    attach: function(s, n, a, p, o, r) {
-        cur.gid ? GroupsEdit.app.attach(s, n, a, p, r) : Apps.addToMineGroups(s, n, "catalog", o)
+    attach: function(a, o, n, t, r, s) {
+        cur.gid ? GroupsEdit.app.attach(a, o, n, t, s) : Apps.addToMineGroups(a, o, "catalog", r)
+    },
+    installMarket: function(a, o, n) {
+        return cur.gid ? this.installMarketToGroup(a, o, cur.gid) : (n && WkView && WkView.hide(), showBox("apps", {
+            act: "add_market_app_to_groups_box"
+        }, {
+            params: {
+                dark: 1,
+                width: 450,
+                bodyStyle: "padding: 22px 0 0"
+            },
+            onFail: function(a) {
+                return showFastBox(getLang("global_error"), a), !0
+            }
+        })), !1
+    },
+    installMarketToGroup: function(a, o, n) {
+        ajax.post(this.INSTALL_MARKET_PAGE, {
+            act: this.INSTALL_MARKET_ACT,
+            hash: o,
+            group_id: n
+        }, {
+            onDone: function(a) {
+                nav.go(a)
+            },
+            onFail: function(a) {
+                return a = a || getLang("global_error"), curBox().hide(), showFastBox(getLang("global_error"), a), !0
+            },
+            showProgress: lockButton.pbind(a),
+            hideProgress: unlockButton.pbind(a)
+        })
     },
     searchInp: ge("s_search"),
     isSearch: !1,
     searchStr: "",
-    onChangeQuery: function(s, n, a) {
-        if (s.length < 3 && (s = ""), !CommunityApps.isSearch && CommunityApps.searchStr !== s) {
-            var p = {
+    onChangeQuery: function(a, o, n) {
+        if (a.length < 3 && (a = ""), !CommunityApps.isSearch && CommunityApps.searchStr !== a) {
+            var t = {
                 act: "community_apps_search",
-                q: s
+                q: a
             };
-            CommunityApps.searchStr = s, ajax.post("al_apps.php", p, {
+            CommunityApps.searchStr = a, ajax.post("al_apps.php", t, {
                 cache: 1,
-                onDone: function(s) {
-                    val(ge("apps_group_catalog_rows"), s)
+                onDone: function(a) {
+                    val(ge("apps_group_catalog_rows"), a)
                 },
                 showProgress: function() {
                     CommunityApps.isSearch = !0, CommunityApps.searchInp && uiSearch.showProgress(CommunityApps.searchInp)

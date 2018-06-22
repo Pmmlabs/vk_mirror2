@@ -370,6 +370,13 @@ body.dev .tickets_reply_row {
     color: #42648b
 }
 
+.tickets_author__level {
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    color: #939699
+}
+
 .tickets_reply_text {
     padding-bottom: 2px;
     color: #000;
