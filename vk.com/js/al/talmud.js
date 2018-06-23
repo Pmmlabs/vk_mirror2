@@ -5,14 +5,14 @@ var Talmud = {
         }, 0)), toggleClass(t, "shown")
     },
     toggleRow: function(t, e, o) {
-        return o.target || (o.target = o.srcElement || document), "a" == o.target.tagName.toLowerCase() ? !0 : (Talmud.doToggleRow(e, !hasClass(e, "detailed")), !1)
+        return o.target || (o.target = o.srcElement || document), "a" == o.target.tagName.toLowerCase() ? !0 : (Talmud.doToggleRow(e, !hasClass(e, "talmud_inner_row_hidden")), !1)
     },
     doToggleRow: function(t, e) {
-        toggle(geByClass1("talmud_short_text", t), !e), toggle(geByClass1("talmud_full_text", t), e), toggleClass(t, "detailed", e)
+        toggleClass(t, "talmud_inner_row_hidden", e)
     },
     toggleRowPrevent: function(t, e) {
-        var o = gpeByClass("talmud_inner_row", e);
-        hasClass(o, "detailed") && t.stopPropagation()
+        gpeByClass("talmud_inner_row", e);
+        t.stopPropagation()
     },
     handleTagsPos: function() {
         if (!ge("tlmd_tags_td")) return !1;
@@ -22,14 +22,14 @@ var Talmud = {
             a = ge("tlmd_tags_td"),
             l = getXY(a)[1],
             r = getSize(a)[1],
-            s = ge("tlmd_tags"),
-            i = (getXY(s)[1], getSize(s)[1]),
-            d = Math.max(0, t + e - r - l),
-            n = 20 > r - i,
+            i = ge("tlmd_tags"),
+            d = (getXY(i)[1], getSize(i)[1]),
+            s = Math.max(0, t + e - r - l),
+            n = 20 > r - d,
             c = cur.filterLastPos || 0,
-            g = cur.lastSt || 0,
-            _ = getSize("page_header_cont")[1];
-        t > l && !n ? (addClass(s, "fixed"), o = e > i ? Math.min(_, e - i - d) : Math.max(Math.min(_, c + g - t), e - i - d)) : (removeClass(s, "fixed"), o = 0), cur.filterLastPos = o, cur.lastSt = t, setStyle(s, {
+            _ = cur.lastSt || 0,
+            g = getSize("page_header_cont")[1];
+        t > l && !n ? (addClass(i, "fixed"), o = e > d ? Math.min(g, e - d - s) : Math.max(Math.min(g, c + _ - t), e - d - s)) : (removeClass(i, "fixed"), o = 0), cur.filterLastPos = o, cur.lastSt = t, setStyle(i, {
             top: o + "px"
         })
     },
@@ -69,7 +69,7 @@ var Talmud = {
         toggleClass(e, "tlmd_slide_opened"), o ? (hide(a), slideDown(geByClass1("tlmd_slide_content", e), 500)) : (slideUp(geByClass1("tlmd_slide_content", e), 300), setTimeout(show.pbind(a), 300))
     },
     toggleTagsBar: function(t) {
-        setCookie("remixtlmd_tags_bar", t, 365, !1), toggle("tlmd_tags_td", t), toggle("tlmd_search_show_tags", !t)
+        setCookie("remixtlmd_tags_bar", t, 365, !1), toggle("tlmd_tags_td", t), toggle("tlmd_search_show_tags", !t), toggleClass("tlmd_found_list", "tlmd_found_list_wide", !t)
     },
     savePostText: function(t) {
         for (var e = t, o = "", a = {}; e;) a["text" + o] = e.substring(0, 4e3), e = e.substring(4e3), o = "" === o ? "1" : parseInt(o) + 1;

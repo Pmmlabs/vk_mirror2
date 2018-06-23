@@ -346,7 +346,7 @@ var stVersions = {
     'tickets.js': 3760264995,
     'tickets.css': 21895837914,
     'faq.css': 22040026713,
-    'talmud.js': 1641838680,
+    'talmud.js': 3834581071,
     'agents.js': 2426697933,
     'agents.css': 16355067510,
     'achievements.js': 3514956550,
@@ -631,4 +631,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 793;
+var _rnd = 3550;
