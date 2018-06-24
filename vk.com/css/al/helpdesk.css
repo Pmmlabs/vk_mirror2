@@ -1964,6 +1964,14 @@ body.body_helpdesk_small_sb .left_menu_nav {
     opacity: 0.2
 }
 
+.helpdesk_pass_to {
+    padding: 10px 0
+}
+
+.tickets_post_form__panel_fast .helpdesk_pass_to {
+    padding: 0
+}
+
 .helpdesk_pt_title {
     font-weight: 700;
     -webkit-font-smoothing: antialiased;

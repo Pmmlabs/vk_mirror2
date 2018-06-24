@@ -1248,7 +1248,7 @@ var Helpdesk = {
         })
     },
     trollAutoReply: function(e) {
-        return ajax.post("helpdesk?act=troll_auto_reply", {
+        return ajax.post("helpdesk?act=a_troll_auto_reply", {
             ticket_id: cur.ticket_id,
             hash: e
         }, {
@@ -1256,6 +1256,19 @@ var Helpdesk = {
             hideProgress: Helpdesk.hideTicketProgress,
             onDone: Helpdesk._show
         }), !1
+    },
+    trollsMultiReply: function(e, t) {
+        var s = [];
+        each(cur.checkedTickets, function(e, t) {
+            s.push(e)
+        }), ajax.post("helpdesk?act=a_troll_auto_reply", {
+            tickets: s,
+            hash: t
+        }, {
+            onDone: Helpdesk._show,
+            showProgress: lockButton.pbind(e),
+            hideProgress: unlockButton.pbind(e)
+        })
     },
     autoReplyPass: function(e, t) {
         ajax.post("helpdesk?act=auto_reply_pass", {
@@ -1375,8 +1388,7 @@ var Helpdesk = {
     },
     setTicketTag: function(e, t, s, a) {
         var o = hasClass(e, "secondary") ? 1 : 0;
-        ajax.post("helpdesk", {
-            act: "set_tag",
+        ajax.post("helpdesk?act=a_set_tag", {
             id: t,
             tid: s,
             hash: a,

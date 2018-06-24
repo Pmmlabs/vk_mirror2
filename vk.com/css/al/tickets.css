@@ -463,6 +463,11 @@ body.dev .tickets_post_field_wrap {
     display: block
 }
 
+.tickets_post_form__panel.tickets_post_form__panel_fast {
+    background: #fafbfc;
+    display: block
+}
+
 .tickets_post_form__panel .tickets_envelope_controls {
     padding-top: 0
 }
@@ -809,10 +814,6 @@ body.dev .tickets_header_links {
     float: left;
     margin-right: 0;
     margin-left: 8px
-}
-
-#tickets_pass_to {
-    padding: 10px 0
 }
 
 .tickets_pass_to_box .msg {
