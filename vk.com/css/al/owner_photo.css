@@ -71,6 +71,10 @@
     min-width: 170px
 }
 
+.owner_photo_input_wrap .upload_pr {
+    padding: 4px 0
+}
+
 .owner_photo_remove {
     margin: 10px 0 20px
 }

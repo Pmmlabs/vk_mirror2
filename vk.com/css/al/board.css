@@ -190,39 +190,6 @@ input.bnt_poll_answer {
     margin: 3px 0 0 -3px
 }
 
-.bnt_media_preview .medadd_c_pollh,
-.bnt_media_preview .medadd_h_poll {
-    color: #222
-}
-
-.bnt_media_preview .page_preview_poll_wrap {
-    padding-top: 8px
-}
-
-.bnt_media_preview .medadd_c_pollh {
-    margin-top: 18px
-}
-
-.bnt_media_preview .medadd_c_pollcb {
-    display: none
-}
-
-.bnt_media_preview .medadd_c_polladd_wr {
-    margin-bottom: 0
-}
-
-.bet_wrap {
-    padding: 5px 25px 22px
-}
-
-.bet_wrap .subheader:first-child {
-    margin-top: 13px
-}
-
-.bet_wrap .checkbox {
-    margin: -1px 0 12px
-}
-
 .bet_wrap .media_selector>.ms_item {
     width: auto;
     margin: 10px 0 -1px -4px;
@@ -230,11 +197,12 @@ input.bnt_poll_answer {
     line-height: 26px
 }
 
-.bet_wrap .page_preview_poll_wrap .page_media_x_wrap {
-    margin-top: 4px
+.bet_wrap .page_preview_poll_wrap+.medadd_poll {
+    margin-top: -28px
 }
 
 .bet_wrap .bnt_media_preview {
+    margin-top: 10px;
     border-top: 1px solid #e7e8ec;
     margin-bottom: 0
 }
@@ -248,11 +216,16 @@ input.bnt_poll_answer {
 }
 
 .bet_wrap .bnt_media_preview .page_docs_preview {
-    margin-bottom: -2px
+    margin-bottom: -2px;
+    padding-bottom: 0
 }
 
 .bet_settings {
     padding-bottom: 3px
+}
+
+.bet_settings .checkbox {
+    margin: 12px 0 0
 }
 
 .bet_poll_settings {
@@ -602,13 +575,9 @@ a.bp_date {
     word-wrap: break-word
 }
 
-.bv_wrap {
-    margin: 0 20px
-}
-
 .bv_wrap .bt_pages_wrap {
-    border-bottom: 1px solid #e7e8ec;
-    padding-top: 20px
+    margin: 0 20px;
+    border-bottom: 1px solid #e7e8ec
 }
 
 .bv_wrap .bt_pages {

@@ -2989,6 +2989,18 @@ function domQuery(selectors, parent) {
     return (parent || document).querySelectorAll(selectors);
 }
 
+function domQuery1(selector, parent) {
+    return (parent || document).querySelector(selector);
+}
+
+function domReplaceEl(oldEl, newEl) {
+    if (isString(newEl)) {
+        newEl = se(newEl);
+    }
+    domPN(oldEl).replaceChild(newEl, oldEl);
+    return newEl;
+}
+
 function domClosestPositioned(el, opts) {
     opts = opts || {};
     var parent = opts.fromEl || domPN(el),

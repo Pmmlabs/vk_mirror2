@@ -24,44 +24,44 @@ var tooltips = {
                         n = ge("page_header_wrap") && isAncestor(el, "page_layout") ? getSize("page_header_wrap") : [0, 0];
                     if (!o[0] && !o[1]) return void hide(el.tt.container);
                     t.style.opacity = 0, opts.width && (t.style.width = opts.width + "px"), opts.maxWidth && (t.style["max-width"] = opts.maxWidth + "px"), show(t), isNewTT || (t.firstChild.className = "toup" + (opts.toup ? 1 : ""));
-                    var l = opts.shift;
-                    isFunction(l) && (l = l()), void 0 !== l && 2 == l.length && l.push(l[1]);
-                    var r = bodyNode.scrollTop || htmlNode.scrollTop || 0,
+                    var r = opts.shift;
+                    isFunction(r) && (r = r()), void 0 !== r && 2 == r.length && r.push(r[1]);
+                    var l = bodyNode.scrollTop || htmlNode.scrollTop || 0,
                         d = getSize(t),
-                        a = e[1] - d[1] - l[1] - n[1] - r,
-                        p = lastWindowHeight - (e[1] + o[1] + d[1] + l[2]) + r,
+                        a = e[1] - d[1] - r[1] - n[1] - l,
+                        p = lastWindowHeight - (e[1] + o[1] + d[1] + r[2]) + l,
                         c = 0 > a,
                         h = 0 > p,
                         u = 0 > a;
-                    c && h ? (a > p && a + r > 0 && (i = !0, u = !1), i && u ? i = !1 : i || !h || u || (i = !0)) : i && c ? i = !1 : i || !h || c || (i = !0);
-                    var v = opts.needLeft || (opts.black || opts.checkLeft) && window.lastWindowWidth && lastWindowWidth - (e[0] + (s ? o[0] + l[0] : d[0] - l[0])) < 1,
+                    c && h ? (a > p && a + l > 0 && (i = !0, u = !1), i && u ? i = !1 : i || !h || u || (i = !0)) : i && c ? i = !1 : i || !h || c || (i = !0);
+                    var v = opts.needLeft || (opts.black || opts.checkLeft) && window.lastWindowWidth && lastWindowWidth - (e[0] + (s ? o[0] + r[0] : d[0] - r[0])) < 1,
                         f = "";
                     opts.forceright && (v = 0), opts.forcetodown && (i = !1), opts.forcetoup && (i = !0), isNewTT ? (removeClass(t, "tt_up"), removeClass(t, "tt_down"), f = opts.dir && inArray(opts.dir, ["up", "down", "left", "right"]) ? "tt_" + opts.dir : "tt_" + (i ? "down" : "up"), addClass(t, f), toggleClass(t, "toleft", !!v), d = getSize(t)) : (f = "toup" + (i ? 1 : ""), (i != opts.toup || v) && (f += v ? " toleft" : "", d = getSize(t)), t.firstChild.className = f, addClass(t, i ? "tt_toup" : ""));
-                    var w = getXY(domPN(t));
-                    e[0] -= w[0], e[1] -= w[1];
-                    var m = domPN(t);
+                    var m = getXY(domPN(t));
+                    e[0] -= m[0], e[1] -= m[1];
+                    var w = domPN(t);
                     if (el.tt.zIndexEls = [], !opts.noZIndex)
-                        for (; m && m != bodyNode && !hasClass(m, "scroll_fix");) {
-                            var g = intval(getStyle(m, "zIndex")),
-                                _ = intval(m.ttCount);
-                            if (g && !_) break;
-                            setStyle(m, "zIndex", opts.zIndex || 100), el.tt.zIndexEls.push(m), m.ttCount = _ + 1, m = domPN(m)
+                        for (; w && w != bodyNode && !hasClass(w, "scroll_fix");) {
+                            var x = intval(getStyle(w, "zIndex")),
+                                g = intval(w.ttCount);
+                            if (x && !g) break;
+                            setStyle(w, "zIndex", opts.zIndex || 100), el.tt.zIndexEls.push(w), w.ttCount = g + 1, w = domPN(w)
                         }
-                    var x;
-                    x = isNewTT ? !inArray(opts.dir, ["left", "right"]) || opts.forcetoup || opts.forcetodown ? i ? e[1] - (d[1] + l[1]) : e[1] + o[1] + l[2] : e[1] - Math.floor(d[1] / 2) - l[1] : e[1] + (i ? -(d[1] + l[1]) : o[1] + l[2]);
-                    var y = x + intval(opts.slide) * (i ? -1 : 1),
-                        C = e[0] + (s ? l[0] + o[0] - d[0] : i ? -l[0] : -(l[3] || l[0]));
+                    var _;
+                    _ = isNewTT ? !inArray(opts.dir, ["left", "right"]) || opts.forcetoup || opts.forcetodown ? i ? e[1] - (d[1] + r[1]) : e[1] + o[1] + r[2] : e[1] - Math.floor(d[1] / 2) - r[1] : e[1] + (i ? -(d[1] + r[1]) : o[1] + r[2]);
+                    var y = _ + intval(opts.slide) * (i ? -1 : 1),
+                        C = e[0] + (s ? r[0] + o[0] - d[0] : i ? -r[0] : -(r[3] || r[0]));
                     v && (C -= (d[0] - (opts.reverseOffset || 39)) * (s ? -1 : 1)), opts.center && (addClass(t, "tocenter"), d[0] != o[0] && (C -= s ? 0 : (d[0] - o[0]) / 2));
-                    var b = C + (s ? -1 : 1) * intval(opts.slideX);
-                    if (opts.showIfFit && (C + w[0] < 0 || C + w[0] + d[0] > lastWindowWidth || x + w[1] < 0 || x + w[1] + d[1] > lastWindowHeight)) return hide(el.tt.container);
+                    var T = C + (s ? -1 : 1) * intval(opts.slideX);
+                    if (opts.showIfFit && (C + m[0] < 0 || C + m[0] + d[0] > lastWindowWidth || _ + m[1] < 0 || _ + m[1] + d[1] > lastWindowHeight)) return hide(el.tt.container);
                     el.tt.showing = !0, setStyle(t, {
                         top: y,
-                        left: b
+                        left: T
                     });
-                    var T = {
+                    var b = {
                         opacity: 1
                     };
-                    b != C && (T.left = C), y != x && (T.top = x), animate(t, T, void 0 !== opts.showsp ? opts.showsp : 200, function() {
+                    T != C && (b.left = C), y != _ && (b.top = _), animate(t, b, void 0 !== opts.showsp ? opts.showsp : 200, function() {
                         el.tt && el.tt.showing && (el.tt.showing = !1), opts.onShowEnd && opts.onShowEnd(), el.tt && (el.tt.shown = !0)
                     }), opts.onShowStart && opts.onShowStart(el.tt)
                 }
@@ -106,17 +106,17 @@ var tooltips = {
                 s = getXY(o),
                 n = getSize(o, !1, !0);
             if (n[0] || n[1]) {
-                var l = getSize(i),
-                    r = e.needLeft || e.black && lastWindowWidth && lastWindowWidth - (s[0] + l[0]) < 1,
+                var r = getSize(i),
+                    l = e.needLeft || e.black && lastWindowWidth && lastWindowWidth - (s[0] + r[0]) < 1,
                     d = hasClass(i.firstChild, "toup1") || e.toup || hasClass(i, "tt_down"),
                     a = e.shift,
                     p = vk.rtl && !e.asrtl || e.asrtl && !vk.rtl;
                 isFunction(a) && (a = a());
                 var c = getXY(domPN(i));
                 s[0] -= c[0], s[1] -= c[1];
-                var h = s[0] + (p ? a[0] + n[0] - l[0] : d ? -a[0] : -(a[3] || a[0]));
-                r && (h -= l[0] - 39), e.center && l[0] != n[0] && (h -= (l[0] - n[0]) / 2);
-                var u = s[1] + (d ? -(l[1] + a[1]) : n[1] + a[2]);
+                var h = s[0] + (p ? a[0] + n[0] - r[0] : d ? -a[0] : -(a[3] || a[0]));
+                l && (h -= r[0] - 39), e.center && r[0] != n[0] && (h -= (r[0] - n[0]) / 2);
+                var u = s[1] + (d ? -(r[1] + a[1]) : n[1] + a[2]);
                 setStyle(i, {
                     left: h,
                     top: u
@@ -188,29 +188,29 @@ var tooltips = {
         if (void 0 !== o.dir) var s = "tt_w";
         else var s = "tt";
         var n = void 0 !== o.dir ? o.typeClass || "tt_default" : "",
-            l = s + " " + n + " " + (o.className || "");
+            r = s + " " + n + " " + (o.className || "");
         if (t.tt && t.tt.el) {
-            var r = t.tt.container;
-            t.tt.onClean && t.tt.onClean(), geByClass1("wrapped", r).innerHTML = o.content, extend(t.tt, {
+            var l = t.tt.container;
+            t.tt.onClean && t.tt.onClean(), geByClass1("wrapped", l).innerHTML = o.content, extend(t.tt, {
                 opts: o,
                 show: tooltips.show.pbind(t, e)
-            }), r.className = l, hide(r)
+            }), l.className = r, hide(l)
         } else {
             if (o.black) var d = ce("div", {
                 innerHTML: o.content,
-                className: l
+                className: r
             }, {
                 display: "none"
             });
             else if (void 0 !== o.dir) var d = ce("div", {
                 innerHTML: '<div class="wrapped">' + o.content + "</div>",
-                className: l + i
+                className: r + i
             }, {
                 display: "none"
             });
             else var d = ce("div", {
                 innerHTML: '<table cellspacing="0" cellpadding="0">    <tr><td colspan="3" class="tt_top"><div class="top_pointer"></div></td></tr>    <tr>      <td class="side_sh"></td>      <td class="outer"><table cellspacing="0" cellpadding="0">        <tr><td class="side_sh"></td>          <td class="wrapped">' + o.content + '</td>        <td class="side_sh"></td></tr>        <tr><td colspan="3"><div class="bottom_sh"></div></td></tr>      </table></td>      <td class="side_sh"></td>    </tr>    <tr><td colspan="3" class="tt_bottom"><div class="bottom_sh"></div><div class="bottom_pointer' + i + '"></div></td></tr>  </table>',
-                className: l
+                className: r
             }, {
                 display: "none"
             });
@@ -235,58 +235,6 @@ var tooltips = {
             }), t.tt = p, cur.tooltips || (cur.tooltips = []), cur.tooltips.push(p)
         }
         o.init && o.init(p)
-    },
-    pollFastShare: function(t, e, o, i, s) {
-        ajax.post("widget_poll.php", {
-            act: "a_share",
-            sid: t,
-            url: e,
-            hash: o,
-            app: i,
-            poll_id: s,
-            no_widget: 1
-        }, {
-            onDone: function(t) {
-                el.innerHTML = t
-            },
-            showProgress: function() {
-                show(el.previousSibling), hide(el)
-            },
-            hideProgress: function() {
-                hide(el.previousSibling), show(el)
-            }
-        })
-    },
-    pollVote: function(t, e, o) {
-        var i = ge("poll_bottom" + t);
-        ajax.post("widget_poll.php", {
-            act: "a_vote",
-            option_id: e,
-            hash: cur.polls[t].hash,
-            app: cur.polls[t].aid,
-            poll_id: cur.polls[t].id,
-            no_widget: 1,
-            url: cur.polls[t].url,
-            sid: t,
-            i: o
-        }, {
-            onDone: function(e, i) {
-                var s = ge("post_media_lnk" + t + "_" + o),
-                    n = extend(s.tt.opts, {
-                        className: "wall_tt",
-                        content: e || " ",
-                        showdt: 0,
-                        js: i
-                    });
-                tooltips.create(s, n), s.tt.show()
-            },
-            showProgress: function() {
-                show(i.nextSibling), hide(i)
-            },
-            hideProgress: function() {
-                show(i), hide(i.nextSibling)
-            }
-        })
     },
     addAudio: function(t, e, o, i) {
         ajax.post("audio.php", {

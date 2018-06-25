@@ -863,16 +863,6 @@
     display: none
 }
 
-.poll_block .medias_poll_title {
-    padding: 7px 2px 3px;
-    margin: 0px 5px
-}
-
-.poll_block .medias_poll_body {
-    padding: 2px 2px 7px;
-    margin: 0px 5px
-}
-
 .payments_help {
     padding: 12px 0 0
 }

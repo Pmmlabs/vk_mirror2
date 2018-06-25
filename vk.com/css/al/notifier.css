@@ -26,6 +26,7 @@
 .fc_contact_over:hover .fc_contact_status,
 .fc_msg_att_icon_doc,
 .fc_msg_att_icon_mail,
+.fc_msg_att_icon_voting,
 .fc_msg_att_icon_wall,
 .fc_tab_attach .media_selector .ms_item_more,
 .notifier_close_wrap:before,
@@ -3846,6 +3847,7 @@ a.fc_msg_att_lnk:hover .fc_msg_att_text {
 
 .fc_msg_att_icon_doc,
 .fc_msg_att_icon_mail,
+.fc_msg_att_icon_voting,
 .fc_msg_att_icon_wall {
     display: block;
     float: left;
@@ -3860,13 +3862,15 @@ a.fc_msg_att_lnk:hover .fc_msg_att_text {
 (min-resolution: 192dpi) {
     .fc_msg_att_icon_doc,
     .fc_msg_att_icon_mail,
+    .fc_msg_att_icon_voting,
     .fc_msg_att_icon_wall {
         background-image: url(/images/icons/chats_2x.png?14);
         background-size: 22px 182px
     }
 }
 
-.fc_msg_att_icon_doc {
+.fc_msg_att_icon_doc,
+.fc_msg_att_icon_voting {
     background-position: 0px -169px
 }
 

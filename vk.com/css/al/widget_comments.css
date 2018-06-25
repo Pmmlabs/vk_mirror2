@@ -614,15 +614,21 @@
 }
 
 .wcomments_auto .wcomments_form .ms_items_more,
-.wcomments_nano .wcomments_form .ms_items_more {
+.wcomments_auto .wcomments_post .ms_items_more,
+.wcomments_nano .wcomments_form .ms_items_more,
+.wcomments_nano .wcomments_post .ms_items_more {
     word-wrap: initial;
     left: -60px
 }
 
 .wcomments_auto .wcomments_form .ms_items_more:after,
 .wcomments_auto .wcomments_form .ms_items_more:before,
+.wcomments_auto .wcomments_post .ms_items_more:after,
+.wcomments_auto .wcomments_post .ms_items_more:before,
 .wcomments_nano .wcomments_form .ms_items_more:after,
-.wcomments_nano .wcomments_form .ms_items_more:before {
+.wcomments_nano .wcomments_form .ms_items_more:before,
+.wcomments_nano .wcomments_post .ms_items_more:after,
+.wcomments_nano .wcomments_post .ms_items_more:before {
     left: 57.5px
 }
 
@@ -634,6 +640,10 @@
 .wall_module .page_private_album_wrap {
     max-width: 100%;
     box-sizing: border-box
+}
+
+.wall_module .media_voting_clickable_options .media_voting_options {
+    cursor: default
 }
 
 .wall_module .post.wcomments_post {
@@ -665,14 +675,6 @@
     width: 100%
 }
 
-.wall_module .post.wcomments_post .page_media_poll_wrap {
-    max-width: 478px
-}
-
-.wall_module .post.wcomments_post .page_media_poll_wrap:last-child {
-    margin: 15px 0 7px
-}
-
 .wall_module .post.wcomments_post .page_media_thumbed_link {
     margin: 15px 0 5px!important
 }
@@ -691,12 +693,13 @@
 .wall_module .post.wcomments_post .page_media_thumbed_link,
 .wall_module .post.wcomments_post .page_media_wrap,
 .wall_module .post.wcomments_post .post_media,
+.wall_module .post.wcomments_post .post_media_voting,
 .wall_module .post.wcomments_post .wall_audio_rows {
     max-width: 510px
 }
 
-.wall_module .post.wcomments_post .replies .page_media_poll_wrap {
-    max-width: 454px
+.wall_module .post.wcomments_post .wall_audio_rows {
+    max-width: 530px
 }
 
 .wall_module .post.wcomments_post .replies .audio_pl_snippet,
@@ -704,17 +707,14 @@
 .wall_module .post.wcomments_post .replies .page_media_thumbed_link,
 .wall_module .post.wcomments_post .replies .page_media_wrap,
 .wall_module .post.wcomments_post .replies .post_media,
-.wall_module .post.wcomments_post .replies .wall_audio_rows {
+.wall_module .post.wcomments_post .replies .post_media_voting {
     max-width: 486px
 }
 
-.wall_module .post.wcomments_post .poll_tt .poll_tt_header,
-.wall_module .post.wcomments_post .poll_tt .wrapped,
-.wall_module .post.wcomments_post .page_poll_stats {
-    cursor: default
+.wall_module .post.wcomments_post .replies .wall_audio_rows {
+    max-width: 506px
 }
 
-.wall_module .post.wcomments_post .page_poll_code,
 .wall_module .post.wcomments_post .post_media_link_preview_wrap,
 .wall_module .post.wcomments_post .wall_postlink_preview_btn,
 .wall_module .post.wcomments_post .wall_postlink_preview_btn_disabled {
@@ -729,11 +729,11 @@
     padding-top: 0
 }
 
-.wall_module .post.wcomments_post .ui_actions_menu_wrap {
+.wall_module .post.wcomments_post .ui_actions_menu_wrap:first-child {
     top: -22px;
     right: -18px;
     position: absolute;
-    z-index: 2
+    z-index: 3
 }
 
 .wall_module .post.wcomments_post .ui_actions_menu {
@@ -746,7 +746,7 @@
 }
 
 .wall_module .post.wcomments_post .no_likes.post_like,
-.wall_module .post.wcomments_post .ui_actions_menu_wrap {
+.wall_module .post.wcomments_post .ui_actions_menu_wrap:first-child {
     visibility: hidden;
     opacity: 0;
     filter: alpha(opacity=0);
@@ -755,7 +755,7 @@
 }
 
 .wall_module .post.wcomments_post:hover .no_likes.post_like,
-.wall_module .post.wcomments_post:hover .ui_actions_menu_wrap {
+.wall_module .post.wcomments_post:hover .ui_actions_menu_wrap:first-child {
     visibility: visible;
     opacity: 1;
     filter: none
@@ -968,6 +968,16 @@
 
 #page_wrap .wcomments_post_footer .post_like_wrap .post_like_link {
     display: none
+}
+
+.wcomments_nano .wall_module .post.wcomments_post .medadd_datepicker {
+    height: 84px;
+    white-space: normal
+}
+
+.wcomments_nano .wall_module .post.wcomments_post .medadd_datepicker_checkbox:not(.on)+.medadd_datepicker,
+.wcomments_nano .wall_module .post.wcomments_post .medadd_datepicker_hidden {
+    height: 0
 }
 
 .wcomments_nano .wall_module .post.wcomments_post .page_media_thumbed_link .page_media_link_thumb {

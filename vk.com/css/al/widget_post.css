@@ -127,12 +127,6 @@ body.widget_body {
     margin: 10px 0 0 15px
 }
 
-.poll_tt .poll_tt_header,
-.poll_tt .wrapped,
-.page_poll_stats {
-    cursor: default
-}
-
 #wpost_post_body {
     min-width: 120px
 }
@@ -148,8 +142,8 @@ div.wpost_post_body_wrap .wall_reply_text {
     line-height: 1.43
 }
 
-div.wpost_post_body_wrap .page_media_poll_wrap {
-    max-width: 478px
+div.wpost_post_body_wrap .post_media_voting {
+    max-width: 510px
 }
 
 div.wpost_post_body_wrap .page_media_link_img {
@@ -174,10 +168,7 @@ div.wpost_post_body_wrap .wall_audio_rows {
     max-width: 510px
 }
 
-div.wpost_post_body_wrap .copy_quote .page_media_poll_wrap {
-    max-width: 464px
-}
-
+div.wpost_post_body_wrap .copy_quote .post_media_voting,
 div.wpost_post_body_wrap .copy_quote .audio_pl_snippet,
 div.wpost_post_body_wrap .copy_quote .media_desc,
 div.wpost_post_body_wrap .copy_quote .page_media_thumbed_link,
@@ -192,7 +183,6 @@ div.wpost_post_body_wrap .copy_quote .wall_audio_rows {
     box-sizing: border-box
 }
 
-#wpost_post .page_poll_code,
 #wpost_post .post_media_link_preview_wrap,
 #wpost_post .wall_postlink_preview_btn,
 #wpost_post .wall_postlink_preview_btn_disabled {

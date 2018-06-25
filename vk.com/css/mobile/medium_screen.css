@@ -861,16 +861,6 @@
     display: inline
 }
 
-.poll_block .medias_poll_title {
-    padding: 12px 5px 3px;
-    margin: 0px 7px
-}
-
-.poll_block .medias_poll_body {
-    padding: 7px 5px 12px;
-    margin: 0px 7px
-}
-
 .payments_help {
     padding: 20px 0 0
 }

@@ -1752,3 +1752,7 @@ textarea.blog_notification_setting_row_input {
 .blog_notification_extended_button {
     margin-top: 15px
 }
+
+.blog_poll_container {
+    margin: 0 auto
+}

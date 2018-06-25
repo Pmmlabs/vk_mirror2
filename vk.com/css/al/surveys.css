@@ -134,8 +134,7 @@
 
 .survey_answer_block_wrap .bt_pages_wrap,
 .survey_block_wrap .bt_pages_wrap {
-    border-bottom: 1 px solid #e7e8ec;
-    padding-top: 20px
+    border-bottom: 1 px solid #e7e8ec
 }
 
 .survey_answer_block_wrap .bt_pages,
@@ -213,7 +212,6 @@
 .survey_nota {
     float: right;
     color: #939393;
-    padding-left: 10px;
     font-weight: 400
 }
 

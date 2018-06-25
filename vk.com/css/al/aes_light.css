@@ -1438,8 +1438,8 @@ a.ads_ad_box2:hover {
     padding-bottom: 20px
 }
 
-.ads_ad_promoted_post .wall_module .wall_text .page_media_poll_wrap:last-child,
-.ads_ad_promoted_post .wall_module .wall_text .page_media_thumbed_link:last-child {
+.ads_ad_promoted_post .wall_module .wall_text .page_media_thumbed_link:last-child,
+.ads_ad_promoted_post .wall_module .wall_text .post_media_voting:last-child {
     margin-bottom: 0
 }
 

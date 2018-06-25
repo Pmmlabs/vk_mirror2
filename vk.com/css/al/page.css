@@ -2081,10 +2081,10 @@ div.submit_post_field font {
 .wall_module .post.ads_ads_preview .wall_text .page_media_thumbed_link:last-child,
 .wall_module .post.post_fr_likes .page_media_thumbed_link:last-child,
 .wall_module .post.post_fr_likes .wall_text .vk2017_snippet,
-.wall_module .post.postponed .wall_text .page_media_poll_wrap:last-child,
 .wall_module .post.postponed .wall_text .page_media_thumbed_link:last-child,
-.wall_module .post.suggest .wall_text .page_media_poll_wrap:last-child,
-.wall_module .post.suggest .wall_text .page_media_thumbed_link:last-child {
+.wall_module .post.postponed .wall_text .post_media_voting:last-child,
+.wall_module .post.suggest .wall_text .page_media_thumbed_link:last-child,
+.wall_module .post.suggest .wall_text .post_media_voting:last-child {
     margin-bottom: 0
 }
 
@@ -2104,7 +2104,7 @@ div.submit_post_field font {
 }
 
 .wall_module .post_wf .page_media_thumbed_link:last-child,
-.wall_module .post_wf .wall_text .page_media_poll_wrap:last-child {
+.wall_module .post_wf .wall_text .post_media_voting:last-child {
     margin-bottom: 0
 }
 
@@ -4970,8 +4970,8 @@ div.submit_post_field[contenteditable=true]>p {
 .submit_post_box.anon_field_on .medadd_c_market_info,
 .submit_post_box.anon_field_on .medadd_c_market_thumb,
 .submit_post_box.anon_field_on .medadd_c_note,
-.submit_post_box.anon_field_on .medadd_c_poll,
 .submit_post_box.anon_field_on .medadd_c_timer,
+.submit_post_box.anon_field_on .medadd_poll,
 .submit_post_box.anon_field_on .ms_item:not(.ms_item_photo),
 .submit_post_box.anon_field_on .ms_items_more_wrap,
 .submit_post_box.anon_field_on .page_doc_row,
@@ -5007,8 +5007,8 @@ div.submit_post_field[contenteditable=true]>p {
 .submit_post_box.anon_field_on .audio_row_content:before,
 .submit_post_box.anon_field_on .medadd_c_market_info:before,
 .submit_post_box.anon_field_on .medadd_c_note:before,
-.submit_post_box.anon_field_on .medadd_c_poll:before,
 .submit_post_box.anon_field_on .medadd_c_timer:before,
+.submit_post_box.anon_field_on .medadd_poll:before,
 .submit_post_box.anon_field_on .ms_items_more_wrap:before,
 .submit_post_box.anon_field_on .page_doc_row:before,
 .submit_post_box.anon_field_on .page_preview_doc_photo:before {
@@ -5496,7 +5496,7 @@ div.submit_post_field[contenteditable=true]>p {
 }
 
 .tt_w.like_tt,
-.tt_w.poll_tt {
+.tt_w.voting_tt {
     color: #fff;
     cursor: pointer;
     background-color: #000;
@@ -5506,7 +5506,7 @@ div.submit_post_field[contenteditable=true]>p {
 }
 
 .tt_w.like_tt.tt_up:after,
-.tt_w.poll_tt.tt_up:after {
+.tt_w.voting_tt.tt_up:after {
     left: 40px;
     border-width: 6px;
     margin: 0 -6px;
@@ -5514,7 +5514,7 @@ div.submit_post_field[contenteditable=true]>p {
 }
 
 .tt_w.like_tt.tt_down:after,
-.tt_w.poll_tt.tt_down:after {
+.tt_w.voting_tt.tt_down:after {
     left: 40px;
     border-width: 6px;
     margin: 0 -6px;
@@ -5523,8 +5523,8 @@ div.submit_post_field[contenteditable=true]>p {
 
 .tt_w.like_tt.toleft.tt_down:after,
 .tt_w.like_tt.toleft.tt_up:after,
-.tt_w.poll_tt.toleft.tt_down:after,
-.tt_w.poll_tt.toleft.tt_up:after {
+.tt_w.voting_tt.toleft.tt_down:after,
+.tt_w.voting_tt.toleft.tt_up:after {
     left: auto;
     right: 40px
 }
@@ -5553,7 +5553,7 @@ div.submit_post_field[contenteditable=true]>p {
 }
 
 .like_tt_header,
-.poll_tt_header {
+.voting_tt_header {
     cursor: pointer;
     padding: 10px 30px 0 15px;
     font-weight: 700;
@@ -5563,24 +5563,24 @@ div.submit_post_field[contenteditable=true]>p {
 }
 
 .like_tt_wrap,
-.poll_tt_wrap {
+.voting_tt_wrap {
     padding: 0 0 12px
 }
 
 .like_tt_content,
-.poll_tt_content {
+.voting_tt_content {
     padding: 8px 15px 0
 }
 
 .like_tt_hider,
-.poll_tt_hider {
+.voting_tt_hider {
     max-width: 240px;
     white-space: nowrap;
     overflow: hidden
 }
 
 .toleft .like_tt_hider,
-.toleft .poll_tt_hider {
+.toleft .voting_tt_hider {
     min-width: 240px
 }
 
@@ -5596,7 +5596,7 @@ div.submit_post_field[contenteditable=true]>p {
 }
 
 .like_tt_owner,
-.poll_tt_owner {
+.voting_tt_owner {
     display: inline-block;
     vertical-align: top;
     width: 35px;
@@ -5608,12 +5608,12 @@ div.submit_post_field[contenteditable=true]>p {
     margin-left: 6px
 }
 
-.poll_tt_owner {
+.voting_tt_owner {
     margin-right: 6px
 }
 
 .like_tt_image,
-.poll_tt_image {
+.voting_tt_image {
     width: 35px;
     height: 35px;
     border-radius: 50%
@@ -6182,8 +6182,8 @@ div.page_status_input {
 
 textarea.page_poll_export_code {
     background-color: #f0f4fb;
+    resize: vertical;
     width: 100%;
-    height: 100px;
     margin: 0
 }
 
@@ -7233,29 +7233,6 @@ div.create_poll_cb {
 
 .im_write_form .medadd_c_doc {
     max-width: 330px
-}
-
-.medadd_c_pollh,
-.medadd_h {
-    font-size: 12.5px;
-    color: #5c5c5c;
-    font-weight: 700;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
-}
-
-.medadd_c_pollh:hover,
-.medadd_h:hover {
-    text-decoration: none
-}
-
-.medadd_c {
-    padding-top: 8px
-}
-
-.medadd_c_pollh,
-.medadd_c_pollcb {
-    margin: 12px 0 0
 }
 
 .medadd_c_market .medadd_c_market_thumb {

@@ -1283,7 +1283,7 @@ input.wide_button {
 
 .vk_2x .top_author,
 .vk_2x .verified {
-    background-image: url(/images/mobile/skins/icon/statuses_2x.png?6)
+    background-image: url(/images/mobile/skins/icon/statuses_2x.png?7)
 }
 
 .wi_author .top_author,
@@ -3239,7 +3239,9 @@ input.wide_button {
     visibility: hidden;
     border-radius: 9px;
     min-width: 9px;
-    height: 9px
+    height: 9px;
+    -o-transition: width 0.1s linear;
+    transition: width 0.1s linear
 }
 
 .thumb_upload .ph_img,
@@ -3669,137 +3671,6 @@ input.wide_button {
     border: 4px solid #fff;
     box-shadow: 0 1px 3px -1px rgba(0, 0, 0, .6), inset 0 0 1px rgba(0, 0, 0, .15);
     margin: 0 1px
-}
-
-.single_poll_opinion .medias_poll {
-    padding: 2px 0
-}
-
-.medias_poll_title {
-    display: block;
-    padding: 2px 0 0
-}
-
-._hover .medias_poll_title:hover {
-    text-decoration: none
-}
-
-.medias_poll_label {
-    color: gray
-}
-
-.medias_poll_labeled {
-    font-weight: 700;
-    color: #4c6b8f
-}
-
-.medias_poll_type {
-    font-size: small;
-    color: #999;
-    padding: 2px 0 0
-}
-
-.medias_poll_body {
-    padding: 1px 0 1px 7px;
-    margin: 7px 0 2px;
-    border-left: 2px solid #c3d1e0
-}
-
-.poll_option {
-    margin: 1px 0;
-    padding: 3px 0
-}
-
-.poll_option,
-.poll_option .option_row {
-    display: block
-}
-
-._hover .poll_option:hover {
-    text-decoration: none
-}
-
-.poll_option_text {
-    padding: 0 0 4px;
-    line-height: normal;
-    color: #000
-}
-
-.poll_option_val {
-    font-size: small;
-    padding-left: 5px;
-    color: #777
-}
-
-.poll_option_line {
-    font-size: small;
-    position: relative
-}
-
-.poll_option_line_val {
-    position: absolute;
-    color: #8ba1bc
-}
-
-.poll_option_line_bg {
-    width: 100%;
-    background-color: #f7f7f7
-}
-
-.poll_option_line_pro {
-    background-color: #dae1e8
-}
-
-.poll_option_line_pro,
-.poll_option_line_val {
-    font-size: small;
-    width: 100%;
-    height: 1.2em;
-    padding: 2px 0;
-    text-align: center;
-    vertical-align: middle
-}
-
-.poll_option_line_bg,
-.poll_option_line_pro {
-    border-radius: 3px
-}
-
-.medias_poll .small_button {
-    margin: 6px 0 2px
-}
-
-.medias_poll_total {
-    padding: 7px 0 4px
-}
-
-.poll_field {
-    padding: 0 0 7px
-}
-
-.poll_add_answer {
-    text-align: left;
-    color: #777
-}
-
-.poll_del_btn {
-    display: none;
-    float: right;
-    padding: 3px;
-    width: 15px;
-    background: url(/images/mobile/close.png?2) no-repeat 50%
-}
-
-._js .poll_del_btn {
-    display: block
-}
-
-._js .poll_field_body {
-    margin-right: 27px
-}
-
-.fit_box .poll_del_btn {
-    padding: 5px
 }
 
 .medias_audio .divider {
@@ -4492,6 +4363,10 @@ input.wide_button {
 .vk_al_yes .messages .msg_item,
 .vk_al_yes .messages .msg_item * {
     cursor: pointer
+}
+
+.msg_item {
+    -webkit-tap-highlight-color: transparent
 }
 
 .msg_item .pi_medias {
@@ -6126,7 +6001,7 @@ input.wide_button {
 }
 
 .vk_2x .pp_last_activity .mlvi {
-    background-image: url(/images/mobile/skins/icon/statuses_2x.png?6)
+    background-image: url(/images/mobile/skins/icon/statuses_2x.png?7)
 }
 
 .pp_info,
@@ -6622,23 +6497,6 @@ input.wide_button {
 
 .cp_attach_button {
     display: inline-block
-}
-
-.poll_block .medias_poll {
-    padding: 0;
-    border-bottom: 1px solid #e9e9e9
-}
-
-.poll_block .medias_poll_title {
-    padding: 7px 2px 3px;
-    margin: 0px 5px;
-    border-bottom: 1px solid #e7eaed
-}
-
-.poll_block .medias_poll_body {
-    padding: 2px 2px 7px;
-    margin: 0px 5px;
-    border-left: none
 }
 
 .checkin_map {

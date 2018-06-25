@@ -297,7 +297,7 @@ body.mac #filter_form {
     margin-bottom: 0!important
 }
 
-.search_auto_results.wall_module .wall_text .page_media_poll_wrap:last-child {
+.search_auto_results.wall_module .wall_text .post_media_voting:last-child {
     margin-bottom: 0
 }
 

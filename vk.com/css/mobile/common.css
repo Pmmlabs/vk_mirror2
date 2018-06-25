@@ -1285,7 +1285,7 @@ input.wide_button {
 .OwnerRow__verified,
 .vk_2x .top_author,
 .vk_2x .verified {
-    background-image: url(/images/mobile/skins/icon/statuses_2x.png?6)
+    background-image: url(/images/mobile/skins/icon/statuses_2x.png?7)
 }
 
 .wi_author .top_author,
@@ -3242,7 +3242,9 @@ input.wide_button {
     visibility: hidden;
     border-radius: 9px;
     min-width: 9px;
-    height: 9px
+    height: 9px;
+    -o-transition: width 0.1s linear;
+    transition: width 0.1s linear
 }
 
 .thumb_upload .ph_img,
@@ -3672,137 +3674,6 @@ input.wide_button {
     border: 4px solid #fff;
     box-shadow: 0 1px 3px -1px rgba(0, 0, 0, .6), inset 0 0 1px rgba(0, 0, 0, .15);
     margin: 0 1px
-}
-
-.single_poll_opinion .medias_poll {
-    padding: 2px 0
-}
-
-.medias_poll_title {
-    display: block;
-    padding: 2px 0 0
-}
-
-._hover .medias_poll_title:hover {
-    text-decoration: none
-}
-
-.medias_poll_label {
-    color: gray
-}
-
-.medias_poll_labeled {
-    font-weight: 700;
-    color: #4c6b8f
-}
-
-.medias_poll_type {
-    font-size: small;
-    color: #999;
-    padding: 2px 0 0
-}
-
-.medias_poll_body {
-    padding: 1px 0 1px 7px;
-    margin: 7px 0 2px;
-    border-left: 2px solid #c3d1e0
-}
-
-.poll_option {
-    margin: 1px 0;
-    padding: 3px 0
-}
-
-.poll_option,
-.poll_option .option_row {
-    display: block
-}
-
-._hover .poll_option:hover {
-    text-decoration: none
-}
-
-.poll_option_text {
-    padding: 0 0 4px;
-    line-height: normal;
-    color: #000
-}
-
-.poll_option_val {
-    font-size: small;
-    padding-left: 5px;
-    color: #777
-}
-
-.poll_option_line {
-    font-size: small;
-    position: relative
-}
-
-.poll_option_line_val {
-    position: absolute;
-    color: #8ba1bc
-}
-
-.poll_option_line_bg {
-    width: 100%;
-    background-color: #f7f7f7
-}
-
-.poll_option_line_pro {
-    background-color: #dae1e8
-}
-
-.poll_option_line_pro,
-.poll_option_line_val {
-    font-size: small;
-    width: 100%;
-    height: 1.2em;
-    padding: 2px 0;
-    text-align: center;
-    vertical-align: middle
-}
-
-.poll_option_line_bg,
-.poll_option_line_pro {
-    border-radius: 3px
-}
-
-.medias_poll .small_button {
-    margin: 6px 0 2px
-}
-
-.medias_poll_total {
-    padding: 7px 0 4px
-}
-
-.poll_field {
-    padding: 0 0 7px
-}
-
-.poll_add_answer {
-    text-align: left;
-    color: #777
-}
-
-.poll_del_btn {
-    display: none;
-    float: right;
-    padding: 3px;
-    width: 15px;
-    background: url(/images/mobile/close.png?2) no-repeat 50%
-}
-
-._js .poll_del_btn {
-    display: block
-}
-
-._js .poll_field_body {
-    margin-right: 27px
-}
-
-.fit_box .poll_del_btn {
-    padding: 5px
 }
 
 .medias_audio .divider {
@@ -4495,6 +4366,10 @@ input.wide_button {
 .vk_al_yes .messages .msg_item,
 .vk_al_yes .messages .msg_item * {
     cursor: pointer
+}
+
+.msg_item {
+    -webkit-tap-highlight-color: transparent
 }
 
 .msg_item .pi_medias {
@@ -6129,7 +6004,7 @@ input.wide_button {
 }
 
 .vk_2x .pp_last_activity .mlvi {
-    background-image: url(/images/mobile/skins/icon/statuses_2x.png?6)
+    background-image: url(/images/mobile/skins/icon/statuses_2x.png?7)
 }
 
 .pp_info,
@@ -6625,23 +6500,6 @@ input.wide_button {
 
 .cp_attach_button {
     display: inline-block
-}
-
-.poll_block .medias_poll {
-    padding: 0;
-    border-bottom: 1px solid #e9e9e9
-}
-
-.poll_block .medias_poll_title {
-    padding: 7px 2px 3px;
-    margin: 0px 5px;
-    border-bottom: 1px solid #e7eaed
-}
-
-.poll_block .medias_poll_body {
-    padding: 2px 2px 7px;
-    margin: 0px 5px;
-    border-left: none
 }
 
 .checkin_map {
@@ -11135,6 +10993,11 @@ img[src^="/images/mobile/places/"] {
     vertical-align: top
 }
 
+.blog_poll_container {
+    margin: 0 -10px;
+    width: auto!important
+}
+
 @-o-keyframes slider_loading_animation {
     0% {
         background-position: 0 0
@@ -11454,10 +11317,6 @@ img[src^="/images/mobile/places/"] {
     margin-top: -6px
 }
 
-.Row_style_noGoIcon .Row__go {
-    display: none
-}
-
 @media (min-width: 400px) {
     .pageAttachMoney .tabs_block,
     .Row,
@@ -11575,6 +11434,10 @@ a.Pad__corner {
         border-top: 1px solid #e9e9e9;
         border-bottom: 1px solid #e9e9e9
     }
+}
+
+.Flow__row {
+    margin-top: 8px
 }
 
 .Input,
@@ -11721,7 +11584,7 @@ a.Pad__corner {
     height: 34px;
     line-height: 34px;
     padding: 0 14px;
-    color: #fff!important;
+    color: #fff;
     background: #5181b8
 }
 
@@ -11730,7 +11593,7 @@ a.Pad__corner {
     height: 34px;
     line-height: 34px;
     padding: 0 14px;
-    color: #306096!important;
+    color: #306096;
     background: #e6ebf1
 }
 
@@ -11739,7 +11602,7 @@ a.Pad__corner {
     height: 34px;
     line-height: 34px;
     padding: 0 14px;
-    color: #306096!important;
+    color: #306096;
     background: transparent
 }
 
@@ -11756,7 +11619,7 @@ a.Pad__corner {
     line-height: 26px;
     padding: 0 10px;
     border: 1px solid #5181b8;
-    color: #5181b8!important;
+    color: #5181b8;
     background: #fff
 }
 
@@ -11766,7 +11629,7 @@ a.Pad__corner {
     padding: 0 14px;
     font-size: 15px;
     background: #5181b8;
-    color: #fff!important
+    color: #fff
 }
 
 .Btn_theme_minor {
@@ -11776,6 +11639,12 @@ a.Pad__corner {
 .Btn_loading {
     color: transparent!important;
     pointer-events: none
+}
+
+.Label {
+    font-size: 15px;
+    color: #909499;
+    margin-bottom: 6px
 }
 
 .BtnStack {
@@ -11821,11 +11690,12 @@ a.Pad__corner {
 .UserStack__photos {
     -ms-flex-negative: 0;
     flex-shrink: 0;
-    position: relative
+    position: relative;
+    margin: -2px
 }
 
 .UserStack_withText .UserStack__photos {
-    margin-right: 8px
+    margin-right: 6px!important
 }
 
 .UserStack__photo {
@@ -11837,16 +11707,53 @@ a.Pad__corner {
 }
 
 .UserStack__photo:first-child {
-    margin-left: 0
+    margin-left: 0!important
 }
 
 .UserStack__text {
     font-size: 13px;
+    line-height: 20px;
     color: #909499;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis
 }
+
+
+/*!
+ * Clip path
+ */
+
+.UserStack_useClipPath .UserStack__photos {
+    margin: 0
+}
+
+.UserStack_useClipPath .UserStack__photo {
+    border: none;
+    margin-left: 4px
+}
+
+.UserStack_useClipPath.UserStack_withText .UserStack__photos {
+    margin-right: 8px!important
+}
+
+@supports ((-webkit-clip-path: url('#UserStack__clipPath')) or (clip-path: url('#UserStack__clipPath'))) {
+    .vk_safari_no.vk_ios_no .UserStack_useClipPath .UserStack__photo {
+        border-radius: 0;
+        -webkit-clip-path: url('#UserStack__clipPath');
+        clip-path: url('#UserStack__clipPath');
+        margin-left: -2px
+    }
+    .vk_safari_no.vk_ios_no .UserStack_useClipPath .UserStack__photo:first-child {
+        -webkit-clip-path: none;
+        clip-path: none
+    }
+}
+
+
+/*!
+ * Flex fallback
+ */
 
 .vk_flex_no .UserStack {
     overflow: hidden
@@ -11894,11 +11801,11 @@ a.Pad__corner {
     position: relative;
     background-size: 100%;
     background-repeat: no-repeat;
-    background-image: url('/images/mobile/checkboxes.png?1')
+    background-image: url('/images/mobile/checkboxes.png?3')
 }
 
 .vk_2x .Control__icon:before {
-    background-image: url('/images/mobile/checkboxes_2x.png?1')
+    background-image: url('/images/mobile/checkboxes_2x.png?3')
 }
 
 .Control_type_switcher {
@@ -11984,11 +11891,11 @@ a.Pad__corner {
 }
 
 .Control_type_checkbox .Control__native:checked+.Control__icon:before {
-    background-position: 0 0px
+    background-position: 0 -72px
 }
 
 .Control_type_checkbox .Control__icon:before {
-    background-position: 0 -24px
+    background-position: 0 -48px
 }
 
 .Control_type_checkbox {
@@ -11997,11 +11904,11 @@ a.Pad__corner {
 }
 
 .Control_type_radio .Control__native:checked+.Control__icon:before {
-    background-position: 0 -48px
+    background-position: 0 -240px
 }
 
 .Control_type_radio .Control__icon:before {
-    background-position: 0 -72px
+    background-position: 0 -216px
 }
 
 .Control_type_radio {
@@ -12030,6 +11937,11 @@ a.Pad__corner {
 
 .Select {
     position: relative
+}
+
+.Select_disabled {
+    pointer-events: none;
+    opacity: 0.7
 }
 
 .Select__native {
@@ -12458,7 +12370,8 @@ a.Pad__corner {
 }
 
 .Slider__line {
-    white-space: nowrap
+    white-space: nowrap;
+    transform: translateZ(0)
 }
 
 .Slider__line,
@@ -12587,6 +12500,48 @@ a.Pad__corner {
 
 .vk_flex_no .TabRow__tab {
     display: inline-block
+}
+
+.HeaderBtn {
+    outline: none;
+    border: none;
+    background-color: #5181b8;
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    padding: 2px;
+    box-sizing: border-box;
+    color: transparent;
+    position: absolute;
+    top: -48px;
+    right: 0;
+    z-index: 10000;
+    border-radius: 0
+}
+
+._hover .HeaderBtn:hover,
+._touch .HeaderBtn.hover {
+    background-color: #4676ac
+}
+
+._hfixed .HeaderBtn {
+    position: fixed;
+    top: 0
+}
+
+
+/*!
+ * Desktop view adjustments
+ */
+
+@media (min-width: 882px) {
+    .HeaderBtn {
+        right: auto;
+        margin-left: 343px
+    }
+    .qs_opened .HeaderBtn {
+        margin-left: 194px
+    }
 }
 
 .AudioBlock {
@@ -22531,11 +22486,11 @@ a.feedBlocks__article:hover {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -179px;
-    background-image: url('/images/mobile/skins/icon/statuses.png')
+    background-image: url('/images/mobile/skins/icon/statuses.png?7')
 }
 
 .vk_2x .vk__page_newCreatePost #medias_map .medias_map .medias_map_close:before {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?7')
 }
 
 .vk__page_newCreatePost #post_options_box {
@@ -23176,11 +23131,11 @@ body.apps_settingsPageBody {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -44px;
-    background-image: url('/images/mobile/skins/icon/header.png')
+    background-image: url('/images/mobile/skins/icon/header.png?3')
 }
 
 .vk_2x.h .mhi_home:not(.mhi_vkhome):not(.mhb_vkhome):before {
-    background-image: url('/images/mobile/skins/icon/header_2x.png')
+    background-image: url('/images/mobile/skins/icon/header_2x.png?3')
 }
 
 .h .mhb_back {
@@ -23217,11 +23172,11 @@ body.apps_settingsPageBody {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -88px;
-    background-image: url('/images/mobile/skins/icon/header.png')
+    background-image: url('/images/mobile/skins/icon/header.png?3')
 }
 
 .vk_2x .header__back {
-    background-image: url('/images/mobile/skins/icon/header_2x.png')
+    background-image: url('/images/mobile/skins/icon/header_2x.png?3')
 }
 
 @media (min-width: 882px) {
@@ -23295,11 +23250,11 @@ body.apps_settingsPageBody {
     background-size: 44px;
     background-repeat: no-repeat;
     background-position: 0 0px;
-    background-image: url('/images/mobile/skins/icon/header.png')
+    background-image: url('/images/mobile/skins/icon/header.png?3')
 }
 
 .vk_2x.h .mhi_notify:before {
-    background-image: url('/images/mobile/skins/icon/header_2x.png')
+    background-image: url('/images/mobile/skins/icon/header_2x.png?3')
 }
 
 .header_accept_btn {
@@ -23309,12 +23264,12 @@ body.apps_settingsPageBody {
     background-size: 44px;
     background-repeat: no-repeat;
     background-position: 0 -175px;
-    background-image: url('/images/mobile/skins/icon/header.png');
+    background-image: url('/images/mobile/skins/icon/header.png?3');
     padding: 0!important
 }
 
 .vk_2x .header_accept_btn {
-    background-image: url('/images/mobile/skins/icon/header_2x.png')
+    background-image: url('/images/mobile/skins/icon/header_2x.png?3')
 }
 
 .mhb_notify.mhb_notify_import_contacts {
@@ -24399,14 +24354,10 @@ body.apps_settingsPageBody {
 
 .Button,
 .chatPreview__join,
-.Poll__submit,
-.r .cp_attached_post .medias_poll .small_button,
 .r .cp_attached_post .mlt_preview_btn .small_button,
 .r .cp_attached_post .snippet_type_mask .small_button,
 .r .cp_attached_post .snippet_type_story .small_button,
-.r .e .medias_poll .small_button,
 .r .e .mlt_preview_btn .small_button,
-.r .wall_item .medias_poll .small_button,
 .r .wall_item .mlt_preview_btn .small_button,
 .r .wall_item .snippet_type_mask .small_button,
 .r .wall_item .snippet_type_story .small_button,
@@ -24433,14 +24384,10 @@ body.apps_settingsPageBody {
 @media (max-width: 319px) {
     .Button,
     .chatPreview__join,
-    .Poll__submit,
-    .r .cp_attached_post .medias_poll .small_button,
     .r .cp_attached_post .mlt_preview_btn .small_button,
     .r .cp_attached_post .snippet_type_mask .small_button,
     .r .cp_attached_post .snippet_type_story .small_button,
-    .r .e .medias_poll .small_button,
     .r .e .mlt_preview_btn .small_button,
-    .r .wall_item .medias_poll .small_button,
     .r .wall_item .mlt_preview_btn .small_button,
     .r .wall_item .snippet_type_mask .small_button,
     .r .wall_item .snippet_type_story .small_button,
@@ -25111,15 +25058,11 @@ body.apps_settingsPageBody {
     margin: 0 12px
 }
 
-.Poll,
 .Post__thumbed,
 .r .cp_attached_post .medias_link_thumbed,
-.r .cp_attached_post .medias_poll,
 .r .e .medias_link_thumbed,
-.r .e .medias_poll,
 .r .wall_item .medias_link_thumbed,
 .r .wall_item .medias_map,
-.r .wall_item .medias_poll,
 .ThumbedLink {
     margin: 8px 8px 0
 }
@@ -25192,15 +25135,11 @@ body.apps_settingsPageBody {
     .Socials {
         margin: 0 8px
     }
-    .Poll,
     .Post__thumbed,
     .r .cp_attached_post .medias_link_thumbed,
-    .r .cp_attached_post .medias_poll,
     .r .e .medias_link_thumbed,
-    .r .e .medias_poll,
     .r .wall_item .medias_link_thumbed,
     .r .wall_item .medias_map,
-    .r .wall_item .medias_poll,
     .ThumbedLink {
         margin: 4px 4px 0
     }
@@ -27901,233 +27840,6 @@ body.apps_settingsPageBody {
     margin-top: 12px
 }
 
-.Poll,
-.r .cp_attached_post .medias_poll,
-.r .e .medias_poll,
-.r .wall_item .medias_poll {
-    padding: 8px;
-    margin-bottom: 0!important;
-    border: 1px solid #e5e5e5;
-    background: #fff!important
-}
-
-.Poll__title,
-.r .cp_attached_post .medias_poll_title,
-.r .e .medias_poll_title,
-.r .wall_item .medias_poll_title {
-    padding: 0 4px 10px
-}
-
-.Poll__titleFirstLine,
-.r .cp_attached_post .medias_poll_labeled,
-.r .e .medias_poll_labeled,
-.r .wall_item .medias_poll_labeled {
-    display: block;
-    margin-bottom: 2px;
-    font-size: 15px;
-    font-weight: 500;
-    color: #000;
-    position: relative;
-    top: -1px
-}
-
-.Poll__titleType,
-.r .cp_attached_post .medias_poll_type,
-.r .e .medias_poll_type,
-.r .wall_item .medias_poll_type,
-.Poll__titleCounter,
-.r .cp_attached_post .medias_poll_total,
-.r .e .medias_poll_total,
-.r .wall_item .medias_poll_total {
-    display: inline-block;
-    padding: 0;
-    font-size: 13px;
-    color: #909499
-}
-
-.Poll__titleDotSeparator,
-.r .cp_attached_post .medias_poll_type:after,
-.r .e .medias_poll_type:after,
-.r .wall_item .medias_poll_type:after {
-    content: '';
-    display: inline-block;
-    width: 2px;
-    height: 2px;
-    margin-top: 4px;
-    background: #909499;
-    margin-left: 4px;
-    position: relative;
-    top: -3px;
-    border-radius: 50%
-}
-
-.Poll__options,
-.r .cp_attached_post .medias_poll_body,
-.r .e .medias_poll_body,
-.r .wall_item .medias_poll_body {
-    margin: -8px 0 0;
-    padding: 0;
-    border: none
-}
-
-.Poll__option,
-.r .cp_attached_post .poll_option,
-.r .e .poll_option,
-.r .wall_item .poll_option {
-    margin: 8px 0 0;
-    padding: 6px 8px 8px;
-    position: relative;
-    border-radius: 3px;
-    background: #e9edf2
-}
-
-.Poll__optionTexts,
-.r .cp_attached_post .poll_option_text,
-.r .e .poll_option_text,
-.r .wall_item .poll_option_text {
-    display: -ms-flexbox;
-    display: flex;
-    padding: 0;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -ms-flex-align: center;
-    align-items: center;
-    position: relative;
-    z-index: 1
-}
-
-.Poll__optionAnswer,
-.r .cp_attached_post .poll_option_text_inner,
-.r .e .poll_option_text_inner,
-.r .wall_item .poll_option_text_inner {
-    padding: 0;
-    font-size: 14px;
-    line-height: 18px;
-    margin-right: 16px
-}
-
-.Poll__optionPercent,
-.r .cp_attached_post .poll_option_val,
-.r .e .poll_option_val,
-.r .wall_item .poll_option_val {
-    font-size: 14px;
-    color: #000
-}
-
-.Poll__optionProgress,
-.r .cp_attached_post .poll_option_line_pro,
-.r .e .poll_option_line_pro,
-.r .wall_item .poll_option_line_pro {
-    background: #cedff2;
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    padding: 0;
-    height: 100%;
-    z-index: 0
-}
-
-.Poll__submit,
-.r .cp_attached_post .medias_poll .small_button,
-.r .e .medias_poll .small_button,
-.r .wall_item .medias_poll .small_button {
-    margin: 8px 0 0
-}
-
-.Poll_unanswered .Poll__option,
-.r .cp_attached_post form .poll_option,
-.r .e form .poll_option,
-.r .wall_item form .poll_option {
-    padding: 4px;
-    background: transparent
-}
-
-@media (max-width: 319px) {
-    .Poll,
-    .r .cp_attached_post .medias_poll,
-    .r .e .medias_poll,
-    .r .wall_item .medias_poll {
-        margin: 4px 4px 0;
-        padding: 4px
-    }
-    .Poll__title,
-    .r .cp_attached_post .medias_poll_title,
-    .r .e .medias_poll_title,
-    .r .wall_item .medias_poll_title {
-        margin-bottom: 4px
-    }
-    .Poll__options,
-    .r .cp_attached_post .medias_poll_body,
-    .r .e .medias_poll_body,
-    .r .wall_item .medias_poll_body {
-        margin-top: -4px
-    }
-    .Poll__option,
-    .r .cp_attached_post .poll_option,
-    .r .e .poll_option,
-    .r .wall_item .poll_option {
-        margin-top: 4px
-    }
-    .Poll__titleFirstLine,
-    .r .cp_attached_post .medias_poll_labeled,
-    .r .e .medias_poll_labeled,
-    .r .wall_item .medias_poll_labeled {
-        font-size: 14px
-    }
-    .Poll__titleType,
-    .r .cp_attached_post .medias_poll_type,
-    .r .e .medias_poll_type,
-    .r .wall_item .medias_poll_type,
-    .Poll__titleCounter,
-    .r .cp_attached_post .medias_poll_total,
-    .r .e .medias_poll_total,
-    .r .wall_item .medias_poll_total {
-        font-size: 12px
-    }
-    .Poll__submit,
-    .r .cp_attached_post .medias_poll .small_button,
-    .r .e .medias_poll .small_button,
-    .r .wall_item .medias_poll .small_button {
-        margin-top: 4px
-    }
-}
-
-.r .cp_attached_post .medias_poll_label,
-.r .e .medias_poll_label,
-.r .wall_item .medias_poll_label,
-.r .cp_attached_post .poll_option_line_val,
-.r .e .poll_option_line_val,
-.r .wall_item .poll_option_line_val {
-    display: none
-}
-
-.r .cp_attached_post .poll_option_line,
-.r .cp_attached_post .poll_option_line_bg,
-.r .e .poll_option_line,
-.r .e .poll_option_line_bg,
-.r .wall_item .poll_option_line,
-.r .wall_item .poll_option_line_bg {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background: transparent
-}
-
-.r .cp_attached_post .poll_option .option_row,
-.r .e .poll_option .option_row,
-.r .wall_item .poll_option .option_row {
-    padding: 0
-}
-
-.r .cp_attached_post .poll_option .option_label,
-.r .e .poll_option .option_label,
-.r .wall_item .poll_option .option_label {
-    font-size: 14px
-}
-
 .MosaicItem__skrim,
 .r .cp_attached_post .medias_thumbs .thumb_map_album:before,
 .r .cp_attached_post .medias_thumbs a[href^="/video"].thumb_map_l:after,
@@ -29183,6 +28895,7 @@ body.apps_settingsPageBody {
 .Icon_burger,
 .Icon_close,
 .Icon_dots,
+.Icon_filters,
 .Icon_msg,
 .Icon_ok,
 .Icon_reveal {
@@ -29195,12 +28908,13 @@ body.apps_settingsPageBody {
 .Icon_burger:before,
 .Icon_close:before,
 .Icon_dots:before,
+.Icon_filters:before,
 .Icon_msg:before,
 .Icon_ok:before,
 .Icon_reveal:before {
     width: 44px;
     height: 44px;
-    background-image: url('/images/mobile/skins/icon/header.png?2')
+    background-image: url('/images/mobile/skins/icon/header.png?3')
 }
 
 .vk_2x .Icon_back:before,
@@ -29208,10 +28922,11 @@ body.apps_settingsPageBody {
 .vk_2x .Icon_burger:before,
 .vk_2x .Icon_close:before,
 .vk_2x .Icon_dots:before,
+.vk_2x .Icon_filters:before,
 .vk_2x .Icon_msg:before,
 .vk_2x .Icon_ok:before,
 .vk_2x .Icon_reveal:before {
-    background-image: url('/images/mobile/skins/icon/header_2x.png?2')
+    background-image: url('/images/mobile/skins/icon/header_2x.png?3')
 }
 
 .Icon_msg:before {
@@ -29244,6 +28959,10 @@ body.apps_settingsPageBody {
 
 .Icon_close:before {
     background-position: 0 -306px
+}
+
+.Icon_filters:before {
+    background-position: 0 -598px
 }
 
 .Icon_reveal {
@@ -29718,9 +29437,11 @@ body.apps_settingsPageBody {
 .Icon_close12.Icon_bluer,
 .Icon_docMini,
 .Icon_msgMini,
+.Icon_online,
 .Icon_phone,
 .Icon_phoneMini,
 .Icon_pin,
+.Icon_revote,
 .Icon_star,
 .Icon_trash,
 .Icon_verified,
@@ -29742,9 +29463,11 @@ body.apps_settingsPageBody {
 .Icon_close12.Icon_bluer:before,
 .Icon_docMini:before,
 .Icon_msgMini:before,
+.Icon_online:before,
 .Icon_phone:before,
 .Icon_phoneMini:before,
 .Icon_pin:before,
+.Icon_revote:before,
 .Icon_star:before,
 .Icon_trash:before,
 .Icon_verified:before,
@@ -29757,7 +29480,7 @@ body.apps_settingsPageBody {
 .vk__page_redesign .basis .ii_btn.Icon_bluer:before {
     width: 20px;
     height: 20px;
-    background-image: url('/images/mobile/skins/icon/statuses.png?3')
+    background-image: url('/images/mobile/skins/icon/statuses.png?7')
 }
 
 .vk_2x .Icon_arrowDown:before,
@@ -29767,9 +29490,11 @@ body.apps_settingsPageBody {
 .vk_2x .Icon_close12.Icon_bluer:before,
 .vk_2x .Icon_docMini:before,
 .vk_2x .Icon_msgMini:before,
+.vk_2x .Icon_online:before,
 .vk_2x .Icon_phone:before,
 .vk_2x .Icon_phoneMini:before,
 .vk_2x .Icon_pin:before,
+.vk_2x .Icon_revote:before,
 .vk_2x .Icon_star:before,
 .vk_2x .Icon_trash:before,
 .vk_2x .Icon_verified:before,
@@ -29785,7 +29510,11 @@ body.apps_settingsPageBody {
 .vk_2x.m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bluer:before,
 .vk_2x .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bluer:before,
 .vk_2x .vk__page_redesign .basis .ii_btn.Icon_bluer:before {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?3')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?7')
+}
+
+.Icon_online:before {
+    background-position: 0 0px
 }
 
 .Icon_phone:before,
@@ -29878,6 +29607,14 @@ body.apps_settingsPageBody {
     background-position: 0 -532px
 }
 
+.Icon_revote:before {
+    background-position: 0 -592px
+}
+
+.Icon_revote.Icon_blue:before {
+    background-position: 0 -616px
+}
+
 .Icon_close12.Icon_bluer,
 .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bluer,
 .vk__page_redesign .basis .ii_btn.Icon_bluer {
@@ -29910,6 +29647,7 @@ body.apps_settingsPageBody {
 .Icon_notify_related_events,
 .Icon_notify_repost,
 .Icon_notify_story_reply,
+.Icon_notify_voting,
 .Icon_notify_wall {
     width: 28px;
     height: 28px
@@ -29940,6 +29678,7 @@ body.apps_settingsPageBody {
 .Icon_notify_related_events:before,
 .Icon_notify_repost:before,
 .Icon_notify_story_reply:before,
+.Icon_notify_voting:before,
 .Icon_notify_wall:before {
     width: 28px;
     height: 28px;
@@ -29971,6 +29710,7 @@ body.apps_settingsPageBody {
 .vk_2x .Icon_notify_related_events:before,
 .vk_2x .Icon_notify_repost:before,
 .vk_2x .Icon_notify_story_reply:before,
+.vk_2x .Icon_notify_voting:before,
 .vk_2x .Icon_notify_wall:before {
     background-image: url('/images/mobile/skins/icon/notifications_2x.png?7')
 }
@@ -30075,6 +29815,10 @@ body.apps_settingsPageBody {
     background-position: 0 -1008px
 }
 
+.Icon_notify_voting:before {
+    background-position: 0 -1036px
+}
+
 .Icon_notify_content_achievements:before {
     background-position: 0 -1064px
 }
@@ -30101,6 +29845,7 @@ body.apps_settingsPageBody {
 .Icon_notify_mini_transfer_money,
 .Icon_notify_mini_transfer_money_cancelled,
 .Icon_notify_mini_transfer_votes,
+.Icon_notify_mini_voting,
 .Icon_notify_mini_wall {
     width: 20px;
     height: 20px
@@ -30128,6 +29873,7 @@ body.apps_settingsPageBody {
 .Icon_notify_mini_transfer_money:before,
 .Icon_notify_mini_transfer_money_cancelled:before,
 .Icon_notify_mini_transfer_votes:before,
+.Icon_notify_mini_voting:before,
 .Icon_notify_mini_wall:before {
     width: 20px;
     height: 20px;
@@ -30156,6 +29902,7 @@ body.apps_settingsPageBody {
 .vk_2x .Icon_notify_mini_transfer_money:before,
 .vk_2x .Icon_notify_mini_transfer_money_cancelled:before,
 .vk_2x .Icon_notify_mini_transfer_votes:before,
+.vk_2x .Icon_notify_mini_voting:before,
 .vk_2x .Icon_notify_mini_wall:before {
     background-image: url('/images/mobile/skins/icon/notifications_mini_2x.png?6')
 }
@@ -30243,6 +29990,10 @@ body.apps_settingsPageBody {
 
 .Icon_notify_mini_story_reply:before {
     background-position: 0 -540px
+}
+
+.Icon_notify_mini_voting:before {
+    background-position: 0 -560px
 }
 
 .Icon_notify_mini_friend_found:before {
@@ -31019,6 +30770,1006 @@ body.apps_settingsPageBody {
 
 .PrivacyPolicy__buttonRow {
     padding-top: 8px
+}
+
+.Voting {
+    padding: 0 12px 4px;
+    position: relative;
+    z-index: 1;
+    cursor: default
+}
+
+.Voting__link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1
+}
+
+
+/*!
+ * Header
+ */
+
+.Voting__revote {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    cursor: pointer;
+    z-index: 2
+}
+
+.Voting__revote:before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    right: -12px;
+    bottom: -12px
+}
+
+
+/*!
+ * Options
+ */
+
+.Voting__options {
+    margin-top: 2px;
+    margin-bottom: 4px
+}
+
+.Voting__option {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 9px 12px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    background: rgba(0, 57, 115, .1);
+    -webkit-tap-highlight-color: transparent;
+    color: #000
+}
+
+.Voting__option:last-child {
+    margin-bottom: 0
+}
+
+.Voting__option_voteable {
+    cursor: pointer
+}
+
+.Voting__optionResultsLink {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1
+}
+
+.Voting__optionControl[type=submit] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    opacity: 0;
+    cursor: pointer
+}
+
+.Voting__optionControl[type=checkbox] {
+    display: none
+}
+
+.Voting__checkbox {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 24px;
+    height: 18px;
+    position: relative
+}
+
+.Voting__checkbox:after {
+    content: '';
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: -3px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: 0 -48px;
+    background-image: url('/images/mobile/checkboxes.png?3')
+}
+
+.vk_2x .Voting__checkbox:after {
+    background-image: url('/images/mobile/checkboxes_2x.png?3')
+}
+
+.Voting__optionControl[type=checkbox]:checked+.Voting__checkbox:after {
+    background-position: 0 -72px
+}
+
+.Voting__optionFill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: #003973;
+    opacity: 0.06
+}
+
+.Voting__option_max .Voting__optionFill {
+    opacity: 0.14
+}
+
+.Voting__optionRight {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 600;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    width: 90px
+}
+
+.Voting__optionTitle {
+    font-size: 15px;
+    word-break: break-word;
+    line-height: 18px
+}
+
+.Voting__optionVotes {
+    color: #818c99;
+    opacity: 0.72;
+    font-size: 14px;
+    line-height: 0
+}
+
+.Voting__myVoteIcon {
+    width: 24px;
+    height: 1px;
+    position: relative;
+    margin-right: 1px
+}
+
+.Voting__myVoteIcon:after {
+    content: '';
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: -11px;
+    left: -1px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: 0 -168px;
+    background-image: url('/images/mobile/checkboxes.png?2')
+}
+
+.vk_2x .Voting__myVoteIcon:after {
+    background-image: url('/images/mobile/checkboxes_2x.png?2')
+}
+
+
+/*!
+ * Footer
+ */
+
+.Voting__footer {
+    height: 41px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.Voting__submit {
+    height: 30px;
+    line-height: 30px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 30px
+}
+
+.Voting__resultsText,
+.Voting__stub {
+    font-size: 14px;
+    color: #71757a
+}
+
+.Voting_multi .Voting__submit {
+    display: none
+}
+
+.Voting_multi.Voting_hasCheckedOptions .Voting__submit {
+    display: block
+}
+
+.Voting_multi.Voting_hasCheckedOptions .Voting__results,
+.Voting_multi.Voting_hasCheckedOptions .Voting__stub {
+    display: none
+}
+
+.Voting_loading .Voting__results,
+.Voting_loading .Voting__stub,
+.Voting_loading .Voting__submit {
+    display: none!important
+}
+
+.Voting:not(.Voting_loading) .Voting__loading {
+    display: none
+}
+
+
+/*!
+ * Animations
+ */
+
+.vk_flex_yes .Voting_beforeAnimation .Voting__optionFill {
+    -o-transform: scaleX(0);
+    transform: scaleX(0)
+}
+
+.vk_flex_yes .Voting__optionFill {
+    -o-transform: scaleX(1);
+    transform: scaleX(1);
+    -o-transform-origin: left;
+    transform-origin: left;
+    -o-transition: transform 0.5s ease, -o-transform 0.5s ease;
+    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, -o-transform 0.5s ease
+}
+
+.vk_flex_yes .Voting_beforeAnimation .Voting__optionRight_animate {
+    opacity: 0;
+    -o-transform: translateX(80px);
+    transform: translateX(80px)
+}
+
+.vk_flex_yes .Voting__optionRight_animate {
+    opacity: 1;
+    -o-transform: translateX(0);
+    transform: translateX(0);
+    -o-transition: transform 0.5s ease, opacity 0.5s ease, -o-transform 0.5s ease;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    transition: transform 0.5s ease, opacity 0.5s ease, -o-transform 0.5s ease
+}
+
+.vk_flex_yes .Voting_beforeAnimation .Voting__optionVotes {
+    opacity: 0!important
+}
+
+.vk_flex_yes .Voting__optionVotes {
+    -o-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease
+}
+
+.vk_flex_yes .Voting_beforeAnimation .Voting__results {
+    opacity: 0
+}
+
+.vk_flex_yes .Voting__results {
+    opacity: 1;
+    -o-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease
+}
+
+
+/*!
+ * Dark theme
+ */
+
+.Voting_dark .Voting__option {
+    color: #fff;
+    background: hsla(0, 0%, 100%, .12)
+}
+
+.Voting_dark .Voting__checkbox:after {
+    background-position: 0 0px
+}
+
+.Voting_dark .Voting__optionControl[type=checkbox]:checked+.Voting__checkbox:after {
+    background-position: 0 -24px
+}
+
+.Voting_dark .Voting__optionFill {
+    background: #fff;
+    opacity: 0.12
+}
+
+.Voting_dark .Voting__option_max .Voting__optionFill {
+    opacity: 0.26
+}
+
+.Voting_dark .Voting__optionVotes {
+    color: #fff;
+    opacity: 0.44
+}
+
+.Voting_dark .Voting__myVoteIcon:after {
+    background-position: 0 -144px
+}
+
+.Voting_dark .Voting__resultsText {
+    color: hsla(0, 0%, 100%, .84)
+}
+
+.Voting_dark .Voting__submit {
+    background: #fff
+}
+
+.Voting_dark .Voting__stub {
+    color: hsla(0, 0%, 100%, .84)
+}
+
+
+/*!
+ * View as attach (not as standalone)
+ */
+
+.pi_medias .Voting {
+    margin: 0 8px
+}
+
+
+/*!
+ * View inside message
+ */
+
+.msg_item .Voting {
+    margin-left: 0;
+    margin-right: 0
+}
+
+
+/*!
+ * View for old messenger
+ */
+
+.d .msg_item .Voting {
+    margin-right: 24px
+}
+
+
+/*!
+ * View with other attachments nearby
+ */
+
+.pi_medias>.Voting:not(:first-child) {
+    margin-top: 12px!important
+}
+
+.pi_medias>.Voting:not(:last-child) {
+    margin-bottom: 12px!important
+}
+
+
+/*!
+ * Flex fallback
+ */
+
+.vk_flex_no .Voting__option {
+    display: table;
+    width: 100%;
+    box-sizing: border-box
+}
+
+.vk_flex_no .Voting__optionLeft {
+    display: table-cell;
+    width: 100%;
+    vertical-align: middle
+}
+
+.vk_flex_no .Voting__optionRight {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle
+}
+
+.vk_flex_no .Voting__myVoteIcon {
+    display: inline-block;
+    top: -4px
+}
+
+.vk_flex_no .Voting__checkbox {
+    left: -22px
+}
+
+.vk_flex_no .Voting__footer {
+    display: block;
+    text-align: center;
+    padding-top: 11px;
+    box-sizing: border-box;
+    position: relative
+}
+
+.vk_flex_no .Voting_hasCheckedOptions .Voting__submit {
+    display: inline-block;
+    position: relative;
+    top: -5px
+}
+
+.VotingBcg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 4px;
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, .01);
+    z-index: -1
+}
+
+
+/*!
+ * Default
+ */
+
+.VotingBcg_type_default {
+    border: 1px solid #d1d3d6;
+    background: #fff
+}
+
+@supports ((-o-transform: scale(0.5)) or (transform: scale(0.5))) {
+    .VotingBcg_type_default {
+        border: none
+    }
+    .VotingBcg_type_default:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 8px;
+        border: 1px solid #d1d3d6;
+        width: 200%;
+        height: 200%;
+        -o-transform: scale(0.5);
+        transform: scale(0.5);
+        -o-transform-origin: 0 0;
+        transform-origin: 0 0;
+        pointer-events: none
+    }
+}
+
+
+/*!
+ * Photo
+ */
+
+.VotingBcg_type_photo:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .4);
+    border-radius: 4px
+}
+
+.VotingBcg__photoBox {
+    position: relative
+}
+
+.VotingBcg__photoImage {
+    height: 100%;
+    background-size: cover;
+    background-position: 50%;
+    border-radius: 4px 4px 0 0
+}
+
+.VotingBcg__photoGradient {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 4px
+}
+
+.VotingForm {
+    border-top: 0
+}
+
+.VotingForm__section {
+    padding-top: 0;
+    padding-bottom: 10px
+}
+
+.VotingForm__section_title {
+    padding-top: 12px;
+    padding-bottom: 20px
+}
+
+.VotingForm__section_options {
+    padding-bottom: 20px
+}
+
+.VotingForm__label {
+    font-size: 15px;
+    padding-top: 0;
+    padding-bottom: 6px;
+    color: #909499
+}
+
+
+/*!
+ * Options section
+ */
+
+.VotingForm__option {
+    position: relative;
+    margin-bottom: 8px
+}
+
+.VotingForm__option:last-child {
+    margin-bottom: 0
+}
+
+.VotingForm__optionInput {
+    padding-right: 26px
+}
+
+.VotingForm__option:first-child:last-child .VotingForm__optionInput {
+    padding-right: 0
+}
+
+.VotingForm__optionRemove {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    cursor: pointer
+}
+
+.VotingForm__optionRemove:after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px
+}
+
+.VotingForm__option:first-child:last-child .VotingForm__optionRemove {
+    display: none
+}
+
+.VotingForm__addOption {
+    margin-top: 8px
+}
+
+.VotingForm_maxOptions .VotingForm__addOption {
+    display: none
+}
+
+
+/*!
+ * Background section
+ */
+
+.VotingForm__bcgs {
+    display: -ms-flexbox;
+    display: flex;
+    padding-top: 2px
+}
+
+.VotingForm__bcg {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    margin-right: 12px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent
+}
+
+.VotingForm__bcg:last-child {
+    margin-right: 0
+}
+
+.VotingForm__bcgPreview {
+    width: 84px;
+    height: 92px;
+    padding-top: 20px;
+    position: relative
+}
+
+.VotingForm__bcgTextGhost {
+    background: #fff;
+    border-radius: 2px;
+    opacity: 0.24;
+    margin: 0 auto
+}
+
+.VotingForm__bcg_light .VotingForm__bcgTextGhost {
+    background: #e9edf2;
+    opacity: 1
+}
+
+.VotingForm__bcgTextGhost_0 {
+    height: 2px;
+    width: 52px
+}
+
+.VotingForm__bcgTextGhost_1 {
+    margin-top: 4px;
+    height: 2px;
+    width: 36px
+}
+
+.VotingForm__bcgTextGhost_2 {
+    margin-top: 16px;
+    height: 12px;
+    width: 68px
+}
+
+.VotingForm__bcgTextGhost_3,
+.VotingForm__bcgTextGhost_4 {
+    margin-top: 4px;
+    height: 12px;
+    width: 68px
+}
+
+.VotingForm__bcgTextGhost_5 {
+    margin-top: 8px;
+    height: 4px;
+    width: 32px
+}
+
+.VotingForm__bcgRadio {
+    display: none
+}
+
+.VotingForm__bcgControl {
+    margin: 12px auto 0;
+    width: 24px;
+    height: 24px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: 0 -216px;
+    background-image: url('/images/mobile/checkboxes.png?3')
+}
+
+.vk_2x .VotingForm__bcgControl {
+    background-image: url('/images/mobile/checkboxes_2x.png?3')
+}
+
+.VotingForm__bcgRadio:checked+.VotingForm__bcgControl {
+    background-position: 0 -240px
+}
+
+
+/*!
+ * Params section
+ */
+
+.VotingForm__expire {
+    padding-bottom: 4px
+}
+
+.VotingForm__dateTime {
+    padding-top: 8px;
+    padding-bottom: 4px;
+    display: none;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.VotingForm_withExpire .VotingForm__dateTime {
+    display: -ms-flexbox;
+    display: flex
+}
+
+.VotingForm__date {
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    margin-right: 12px
+}
+
+
+/*!
+ * Upload
+ */
+
+.VotingForm__upload {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    display: -ms-flexbox;
+    display: flex;
+    width: 84px;
+    height: 112px;
+    border: 1px dashed #528bcc;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border-radius: 4px;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden
+}
+
+.VotingForm__upload .medias_thumb {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    padding: 0;
+    height: auto;
+    margin: 0
+}
+
+.VotingForm__upload .ph_img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    width: 100%
+}
+
+.VotingForm__upload .tu_cancel_wrap {
+    display: none
+}
+
+.VotingForm_uploading {
+    border-color: transparent
+}
+
+.VotingForm_uploading .VotingForm__uploadIcon {
+    display: none
+}
+
+
+/*!
+ * Flex fallback
+ */
+
+.vk_flex_no .VotingForm__bcg {
+    display: inline-block
+}
+
+.vk_flex_no .VotingForm__upload {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 12px
+}
+
+.vk_flex_no .VotingForm__uploadIcon {
+    margin-left: 30px;
+    margin-top: 42px
+}
+
+.VotingHeader {
+    padding: 30px;
+    text-align: center
+}
+
+.VotingHeader__title {
+    font-weight: 700;
+    font-size: 22px;
+    color: #2c2d2e;
+    letter-spacing: 0.35px;
+    line-height: 27px;
+    word-wrap: break-word
+}
+
+.VotingHeader__title_multiline {
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: 0.34px
+}
+
+.VotingHeader__subtitle {
+    margin-top: 4px;
+    font-size: 13px;
+    line-height: 16px;
+    color: #71757a;
+    text-align: center
+}
+
+
+/*!
+ * White theme
+ */
+
+.VotingHeader_white .VotingHeader__title {
+    color: #fff
+}
+
+.VotingHeader_white .VotingHeader__subtitle {
+    color: hsla(0, 0%, 100%, .84)
+}
+
+
+/*!
+ * Texts
+ */
+
+.VotingStatsBar__texts {
+    margin-bottom: 8px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    font-size: 15px;
+    line-height: 20px
+}
+
+.VotingStatsBar__title {
+    padding-right: 12px
+}
+
+.VotingStatsBar__percent {
+    white-space: nowrap;
+    font-weight: 500
+}
+
+
+/*!
+ * Bar
+ */
+
+.VotingStatsBar__bar {
+    height: 2px;
+    background: rgba(0, 28, 61, .08);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative
+}
+
+.VotingStatsBar__barFill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: #528bcc
+}
+
+
+/*!
+ * Flex fallback
+ */
+
+.vk_flex_no .VotingStatsBar__texts {
+    display: table;
+    width: 100%
+}
+
+.vk_flex_no .VotingStatsBar__title {
+    display: table-cell;
+    width: 100%
+}
+
+.vk_flex_no .VotingStatsBar__percent {
+    display: table-cell;
+    text-align: right
+}
+
+.VotingStats {
+    background: #fff;
+    position: relative
+}
+
+.VotingStats__header {
+    background: #ebedf0;
+    padding-top: 50px;
+    padding-bottom: 54px
+}
+
+.VotingStats__voters {
+    margin-top: 8px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.VotingStats__chevronIcon {
+    margin-left: 4px;
+    position: relative;
+    height: 20px;
+    line-height: 21px
+}
+
+.VotingStats__chevronIcon:before {
+    display: inline-block
+}
+
+
+/*!
+ * Flex fallback
+ */
+
+.vk_flex_no .VotingStats__votersStack,
+.vk_flex_no .VotingStats__chevronIcon {
+    display: inline-block;
+    vertical-align: middle
+}
+
+.VotingStatsOption__voter {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.VotingStatsOption__voterPhoto {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    margin-right: 10px
+}
+
+.VotingStatsOption__voterName {
+    font-size: 16px;
+    -ms-flex-item-align: center;
+    align-self: center;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.VotingStatsOption__voterOnline {
+    position: absolute
+}
+
+.VotingStatsOption__voterOnline_desktop {
+    margin-left: 30px;
+    margin-top: 30px
+}
+
+.VotingStatsOption__voterOnline_mobile {
+    margin-left: 31px;
+    margin-top: 27px
+}
+
+
+/*!
+ * Flex fallback
+ */
+
+.vk_flex_no .VotingStatsOption__voter {
+    display: block
+}
+
+.vk_flex_no .VotingStatsOption__voterPhoto,
+.vk_flex_no .VotingStatsOption__voterName {
+    display: inline-block;
+    vertical-align: middle
+}
+
+.vk_flex_no .VotingStatsOption__voterOnline {
+    margin-top: -14px
+}
+
+.VotingStatsFilters {
+    padding-top: 16px
+}
+
+.VotingStatsFilters__section {
+    padding-bottom: 20px
+}
+
+.VotingStatsFilters__section:not(:first-child) {
+    padding-top: 0
 }
 
 .SettingsMenu__item {
@@ -32445,20 +33196,20 @@ body.apps_settingsPageBody {
     margin-right: 0!important
 }
 
-.comment_item .mi_forwarded .Icon,
-.comment_item .mi_forwarded .m .vk__page_chatAdd .basis .lvi.mlvi,
-.comment_item .mi_forwarded .m .vk__page_chatAdd .basis .lvi.vkmobilelvi,
-.comment_item .mi_forwarded .m .vk__page_chatSettings .basis .lvi.mlvi,
-.comment_item .mi_forwarded .m .vk__page_chatSettings .basis .lvi.vkmobilelvi,
-.comment_item .mi_forwarded .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
-.comment_item .mi_forwarded .vk__page_redesign .basis .ii_btn,
-.msg__text .mi_forwarded .Icon,
-.msg__text .mi_forwarded .m .vk__page_chatAdd .basis .lvi.mlvi,
-.msg__text .mi_forwarded .m .vk__page_chatAdd .basis .lvi.vkmobilelvi,
-.msg__text .mi_forwarded .m .vk__page_chatSettings .basis .lvi.mlvi,
-.msg__text .mi_forwarded .m .vk__page_chatSettings .basis .lvi.vkmobilelvi,
-.msg__text .mi_forwarded .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
-.msg__text .mi_forwarded .vk__page_redesign .basis .ii_btn {
+.comment_item .mi_forwarded .Icon:not(.Icon_revote),
+.comment_item .mi_forwarded .m .vk__page_chatAdd .basis .lvi.mlvi:not(.Icon_revote),
+.comment_item .mi_forwarded .m .vk__page_chatAdd .basis .lvi.vkmobilelvi:not(.Icon_revote),
+.comment_item .mi_forwarded .m .vk__page_chatSettings .basis .lvi.mlvi:not(.Icon_revote),
+.comment_item .mi_forwarded .m .vk__page_chatSettings .basis .lvi.vkmobilelvi:not(.Icon_revote),
+.comment_item .mi_forwarded .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"]:not(.Icon_revote),
+.comment_item .mi_forwarded .vk__page_redesign .basis .ii_btn:not(.Icon_revote),
+.msg__text .mi_forwarded .Icon:not(.Icon_revote),
+.msg__text .mi_forwarded .m .vk__page_chatAdd .basis .lvi.mlvi:not(.Icon_revote),
+.msg__text .mi_forwarded .m .vk__page_chatAdd .basis .lvi.vkmobilelvi:not(.Icon_revote),
+.msg__text .mi_forwarded .m .vk__page_chatSettings .basis .lvi.mlvi:not(.Icon_revote),
+.msg__text .mi_forwarded .m .vk__page_chatSettings .basis .lvi.vkmobilelvi:not(.Icon_revote),
+.msg__text .mi_forwarded .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"]:not(.Icon_revote),
+.msg__text .mi_forwarded .vk__page_redesign .basis .ii_btn:not(.Icon_revote) {
     float: left;
     margin: 1px 10px 0 2px
 }
@@ -33468,6 +34219,15 @@ body.apps_settingsPageBody {
     display: none
 }
 
+.uMailWrite__attachments .medias_link:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0
+}
+
 .uMailWrite__attachment,
 .uMailWrite__attachments .medias_row.medias_row.medias_row,
 .uMailWrite__attachments .medias_thumb {
@@ -33543,11 +34303,11 @@ body.apps_settingsPageBody {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -200px;
-    background-image: url('/images/mobile/skins/icon/statuses.png')
+    background-image: url('/images/mobile/skins/icon/statuses.png?7')
 }
 
 .vk_2x .uMailWrite__attachments .medias_link_icon:before {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?7')
 }
 
 .uMailWrite__attachments .medias_link {
@@ -33577,11 +34337,15 @@ body.apps_settingsPageBody {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -242px;
-    background-image: url('/images/mobile/skins/icon/statuses.png')
+    background-image: url('/images/mobile/skins/icon/statuses.png?7')
 }
 
 .vk_2x .uMailWrite__attachments .medias_audio .medias_link_icon:before {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?7')
+}
+
+.uMailWrite__attachments .attachment_type_poll .medias_link_icon:before {
+    background-position: 0 -569px
 }
 
 .uMailWrite__attachments .medias_row.medias_row.medias_row,
@@ -33614,12 +34378,12 @@ body.apps_settingsPageBody {
     display: block;
     background-size: 100%;
     background-repeat: no-repeat;
-    background-image: url('/images/mobile/skins/icon/statuses.png')
+    background-image: url('/images/mobile/skins/icon/statuses.png?7')
 }
 
 .vk_2x .uMailWrite__attachments .medias_row .tu_cancel_wrap:before,
 .vk_2x .uMailWrite__attachments .medias_thumb .tu_cancel_wrap:before {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?7')
 }
 
 .uMailWrite__attachments .medias_row .tu_cancel_wrap:before {
@@ -33669,6 +34433,7 @@ body.apps_settingsPageBody {
 .uMailWrite__attachments .i_mail_edit_attach_fwd,
 .uMailWrite__attachments .i_map,
 .uMailWrite__attachments .i_market,
+.uMailWrite__attachments .i_poll,
 .uMailWrite__attachments .i_story,
 .uMailWrite__attachments .i_wall,
 .uMailWrite__attachments .i_wall_reply,
@@ -33688,6 +34453,10 @@ body.apps_settingsPageBody {
 
 .uMailWrite__attachments .thumb_upload .ph_img {
     display: block
+}
+
+.uMailWrite:not(.uMailWrite_canAttachPoll) .uMailWrite__pollUnfoldItem {
+    display: none
 }
 
 .uMailWrite__button {

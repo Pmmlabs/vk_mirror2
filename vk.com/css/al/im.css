@@ -2698,6 +2698,10 @@ div.MessageForward__input~.placeholder .ph_input {
     padding-bottom: 4px
 }
 
+.im_msg_media_poll {
+    padding-top: 10px
+}
+
 .im_msg_media_doc_block {
     display: block;
     width: 350px
@@ -6893,7 +6897,7 @@ img.im_photo_thumb {
     vertical-align: top
 }
 
-.im-mess .im-mess--post .wall_text .page_media_poll_wrap:last-child {
+.im-mess .im-mess--post .wall_text .post_media_voting:last-child {
     margin-bottom: 0
 }
 

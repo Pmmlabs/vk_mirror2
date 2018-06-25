@@ -88,61 +88,8 @@ var Groups = {
             }
         }, e)
     },
-    votingUpdate: function(act, html, js, state) {
-        var mod = ge("group_voting");
-        mod.parentNode.replaceChild(ce("div", {
-            innerHTML: html
-        }).firstChild, mod), "tomain" == act && toggle("group_voting", state), js && eval(js)
-    },
-    vote: function(e, o, t, a) {
-        radiobtn(e, a, "vote_option" + t);
-        var n = hasClass(e.firstChild, "progress") ? e.firstChild : e.insertBefore(ce("span", {
-            className: "fl_r progress"
-        }), e.firstChild);
-        ajax.post("al_voting.php", {
-            act: "vote",
-            option_id: a,
-            owner_id: o,
-            voting_id: t,
-            hash: cur.polls[t].hash
-        }, {
-            onDone: Groups.votingUpdate.pbind("vote"),
-            progress: n
-        })
-    },
     subscribe: function(e) {
         window.Notifier && Notifier.addKey(e, Groups.updates), Groups.keyTO = setTimeout(Groups.subscribe, 3e4)
-    },
-    votingAction: function(e, o) {
-        if (o) {
-            var t = gpeByClass("top_result_baloon_wrap", o);
-            t && fadeOut(t.firstChild, 200)
-        }
-        var a = 0;
-        switch (e) {
-            case 101:
-                e = "openclose", a = 0;
-                break;
-            case 102:
-                e = "openclose", a = 1;
-                break;
-            case 103:
-                e = "tomain", a = 0;
-                break;
-            case 104:
-                e = "tomain", a = 1
-        }
-        ajax.post("al_voting.php", {
-            act: e,
-            owner_id: cur._voting.oid,
-            voting_id: cur._voting.vid,
-            state: a,
-            is_wide: cur._voting.is_wide,
-            context: "group",
-            hash: cur._voting.hash
-        }, {
-            onDone: Groups.votingUpdate.pbind(e)
-        })
     },
     toggleFeedIgnored: function(e, o, t) {
         ajax.post("al_feed.php", {

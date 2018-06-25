@@ -1823,7 +1823,19 @@ if (!VK.Widgets) {
             title: options.pageTitle || pData.title,
             description: options.pageDescription || pData.description
         };
-        return VK.Widgets._constructor('al_widget_poll.php', objId, options, params, {}, {
+        if (options.share !== undefined) {
+            params.share = options.share ? 1 : 0;
+        }
+        return VK.Widgets._constructor('al_widget_poll.php', objId, options, params, {
+            showBox: function(url, props) {
+                var box = VK.Util.Box(VK.Widgets.showBoxUrl(options.base_domain, url), [], {
+                    proxy: function() {
+                        rpc.callMethod.apply(rpc, arguments);
+                    }
+                });
+                box.show();
+            }
+        }, {
             startHeight: 144,
             minWidth: 300
         });

@@ -176,20 +176,41 @@ var OwnerPhoto = {
                 if (i.error) {
                     var a = o.wide ? "wide" : o.cover ? "cover" : "photo";
                     OwnerPhoto.showError(1, i.error + (t || ""), a)
-                } else if (i.x_src && i.x_size && i.size) {
-                    var n = Upload.options[cur.ownerPhotoUploadId].base_url + "upload.php?act=" + (o.cover ? "owner_cover_crop" : "owner_photo_edit") + "&_query=" + encodeURIComponent(r) + "&_origin=" + encodeURIComponent(locProtocol + "//" + locHost),
-                        h = i.x_src;
-                    i.x_src.startsWith("http") || (h = Upload.options[cur.ownerPhotoUploadId].static_url + h), removeClass("owner_photo_upload_return", "unshown"), OwnerPhoto.edit({
-                        thumb: h,
-                        thumbSize: i.x_size,
-                        size: i.size,
-                        uploadUrl: n,
-                        square: o.square,
-                        no_crop: o.no_crop,
-                        wide: o.wide,
-                        cover: o.cover
-                    })
-                } else {
+                } else if (o.is_voting ? i.color && i.photo && i.photo.sizes : i.x_src && i.x_size && i.size)
+                    if (o.is_voting) ajax.post("al_voting.php", {
+                        act: "save_photo",
+                        hash: o.hash,
+                        photo: r
+                    }, {
+                        onDone: function() {
+                            if (vk.widget) try {
+                                var e = ["proxy", "addMedia", o.lnk_id, "pollBackgroundUploaded"].concat([].slice.call(arguments));
+                                Rpc.callMethod.apply(Rpc, e)
+                            } catch (r) {
+                                OwnerPhoto.showError(1, "")
+                            } else cur.addMedia && cur.addMedia[o.lnk_id] && isFunction(cur.addMedia[o.lnk_id].pollBackgroundUploaded) && cur.addMedia[o.lnk_id].pollBackgroundUploaded.apply(null, [].slice.call(arguments));
+                            curBox() && curBox().hide()
+                        },
+                        onFail: function(o) {
+                            return OwnerPhoto.showError(1, o), !0
+                        }
+                    });
+                    else {
+                        var n = Upload.options[cur.ownerPhotoUploadId].base_url + "upload.php?act=" + (o.cover ? "owner_cover_crop" : "owner_photo_edit") + "&_query=" + encodeURIComponent(r) + "&_origin=" + encodeURIComponent(locProtocol + "//" + locHost);
+                        o.is_voting && (i.x_src = "v" + i.photo.sizes[0][1] + "/" + i.photo.sizes[0][2] + "/" + i.photo.sizes[0][3] + ".jpg", i.x_size = [i.photo.sizes[0][4], i.photo.sizes[0][5]], i.size = [i.photo.sizes[0][4], i.photo.sizes[0][5]]);
+                        var h = i.x_src;
+                        i.x_src.startsWith("http") || (h = Upload.options[cur.ownerPhotoUploadId].static_url + h), removeClass("owner_photo_upload_return", "unshown"), OwnerPhoto.edit({
+                            thumb: h,
+                            thumbSize: i.x_size,
+                            size: i.size,
+                            uploadUrl: n,
+                            square: o.square,
+                            no_crop: o.no_crop,
+                            wide: o.wide,
+                            cover: o.cover
+                        })
+                    }
+                else {
                     var c = r === !1 ? "[FALSE]" : null === r ? "[NULL]" : void 0 === r ? "[UNDEFINED]" : "&laquo;" + clean(r.toString().substr(0, 1024)) + "&raquo;";
                     OwnerPhoto.showError(1, "ERR_CLIENT_BAD_RESPONSE: bad upload owner photo response, recv " + c)
                 }

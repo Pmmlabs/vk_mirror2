@@ -189,6 +189,10 @@
     text-decoration: none
 }
 
+.datepicker_at {
+    padding: 7px 9px 8px
+}
+
 .timepicker_dots {
     float: left;
     padding: 7px 4px 8px

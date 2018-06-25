@@ -432,21 +432,14 @@ body.mac .wcommunity_show_more button .pr {
     box-sizing: border-box
 }
 
-.widget_body .poll_tt .poll_tt_header,
-.widget_body .poll_tt .wrapped,
-.widget_body .page_poll_stats {
-    cursor: default
-}
-
-.widget_body .page_poll_code,
 .widget_body .post_media_link_preview_wrap,
 .widget_body .wall_postlink_preview_btn,
 .widget_body .wall_postlink_preview_btn_disabled {
     display: none
 }
 
-.widget_body .page_media_poll_wrap {
-    max-width: 478px
+.widget_body .post_media_voting {
+    max-width: 510px
 }
 
 .widget_body .page_media_link_img {
@@ -467,10 +460,7 @@ body.mac .wcommunity_show_more button .pr {
     max-width: 510px
 }
 
-.widget_body .copy_quote .page_media_poll_wrap {
-    max-width: 464px
-}
-
+.widget_body .copy_quote .post_media_voting,
 .widget_body .copy_quote .audio_pl_snippet,
 .widget_body .copy_quote .media_desc,
 .widget_body .copy_quote .page_media_thumbed_link,
@@ -580,7 +570,7 @@ body.mac .wcommunity_show_more button .pr {
     left: 14px
 }
 
-.wall_module .wcommunity_post_wide .wall_text .page_media_poll_wrap:last-child {
+.wall_module .wcommunity_post_wide .wall_text .post_media_voting:last-child {
     margin: 15px 0 7px
 }
 
@@ -661,4 +651,20 @@ body.mac .wcommunity_show_more button .pr {
 
 .likes_tt_like:after {
     left: 20px!important
+}
+
+.wcommunity_mini .media_voting_question {
+    line-height: 32px;
+    max-height: 96px;
+    font-size: 24px
+}
+
+.wcommunity_nano .media_voting_question {
+    line-height: 20px;
+    max-height: 63px;
+    font-size: 20px
+}
+
+.wcommunity_nano .media_voting_header {
+    padding: 0 20px
 }

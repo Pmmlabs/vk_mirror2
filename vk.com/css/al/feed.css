@@ -1089,6 +1089,11 @@
     background: #e64646 url(/images/svg_icons/feedback/like.svg) no-repeat
 }
 
+.feedback_voting_row .feedback_photo_icon {
+    display: block;
+    background: #4bb34b url(/images/svg_icons/feedback/voting.svg) no-repeat
+}
+
 .feedback_live_row .feedback_photo_icon {
     display: block;
     background: #e64646 url(/images/svg_icons/feedback/live.svg) no-repeat

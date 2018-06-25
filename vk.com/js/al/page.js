@@ -3172,22 +3172,9 @@ var Wall = {
                     }
                     break;
                 case 'poll':
-                    var pollData = (cur.wallAddMedia || {}).pollData(true);
+                    var pollData = (cur.wallAddMedia || {}).pollData(true, true);
                     if (pollData) {
-                        var pollDraft = {
-                                edit: false,
-                                question: pollData.media,
-                                answers: []
-                            },
-                            k = 0;
-                        if (pollData.anonymous) {
-                            pollDraft.anon = true;
-                        }
-                        while (pollData['answers[' + k + ']'] !== undefined) {
-                            pollDraft.answers.push([0, pollData['answers[' + k + ']']]);
-                            k++;
-                        }
-                        extend(lsText.medias[i][2], pollDraft);
+                        extend(lsText.medias[i][2], pollData);
                     }
                     break;
             }
@@ -3301,13 +3288,13 @@ var Wall = {
                     attachVal = this[1];
                 switch (type) {
                     case 'poll':
-                        var poll = addmedia.pollData(true);
+                        var poll = addmedia.pollData(true, true);
                         if (!poll) {
                             params.delayed = true;
                             return false;
                         }
-                        attachVal = poll.media;
-                        delete poll.media;
+                        attachVal = poll.question;
+                        delete poll.question;
                         params = extend(params, poll);
                         break;
                     case 'share':
@@ -3786,8 +3773,8 @@ var Wall = {
                             ret = true;
                             return false;
                         }
-                        attachVal = poll.media;
-                        delete poll.media;
+                        attachVal = poll.question;
+                        delete poll.question;
                         params = extend(params, poll);
                         break;
                     case 'share':
@@ -6255,58 +6242,423 @@ var Wall = {
         }
         return res;
     },
-    pollVote: function(option, post, params, attachI) {
-        if (cur.viewAsBox) return cur.viewAsBox();
 
-        addClass(option, 'on');
-        var progress = geByClass1('_poll_progress', option);
-        ajax.post('widget_poll.php', extend(params, {
-            act: 'a_vote',
-            no_widget: 1,
-            inline: 1,
-            sid: post,
-            i: attachI
-        }), {
-            onDone: function(html, script) {
-                each(geByClass('page_media_poll'), function() {
-                    if (this.id == 'post_poll' + post) {
-                        val(this, html);
+    votingRevote: function(actionMenuItemEl) {
+        if (actionsMenuItemLocked(actionMenuItemEl)) {
+            return;
+        }
+
+        var votingEl = gpeByClass('media_voting', actionMenuItemEl);
+
+        if (votingEl) {
+            var votingId = domData(votingEl, 'id');
+            var isBoard = domData(votingEl, 'board');
+            var isFixed = domData(votingEl, 'fixed');
+
+            if (this.votingIsLocked(votingId)) {
+                return;
+            }
+
+            var hash = domData(votingEl, 'hash');
+            var votingEls = geByClass('_media_voting' + votingId);
+
+            ajax.post('al_voting.php', {
+                act: 'revote',
+                voting_id: votingId,
+                is_board: isBoard,
+                is_widget: vk.widget ? 1 : 0,
+                is_fixed: isFixed,
+                hash: hash,
+                width: vk.widget ? cur.widgetWidth : undefined,
+                vote_hash: cur.voteHash
+            }, {
+                onDone: this.votingUpdate.bind(this, votingId),
+                showProgress: function() {
+                    lockActionsMenuItem(actionMenuItemEl);
+                    this.votingLock(votingId);
+                }.bind(this),
+                hideProgress: function() {
+                    unlockActionsMenuItem(actionMenuItemEl);
+                    this.votingUnlock(votingId);
+                }.bind(this)
+            });
+        }
+    },
+    votingIsLocked: function(votingId) {
+        var votingEls = geByClass('_media_voting' + votingId);
+        var isLocked = false;
+        votingEls.forEach(function(votingEl) {
+            if (hasClass(votingEl, 'media_voting_locked')) {
+                isLocked = true;
+            }
+        });
+        return isLocked;
+    },
+    votingLock: function(votingId) {
+        var votingEls = geByClass('_media_voting' + votingId);
+        votingEls.forEach(function(votingEl) {
+            addClass(votingEl, 'media_voting_locked');
+        });
+    },
+    votingUnlock: function(votingId) {
+        var votingEls = geByClass('_media_voting' + votingId);
+        votingEls.forEach(function(votingEl) {
+            removeClass(votingEl, 'media_voting_locked');
+        });
+    },
+    votingUpdate: function(votingId, data) {
+        if (votingId) {
+            var votingEls = geByClass('_media_voting' + votingId);
+
+            if (votingEls.length) {
+                if (isString(data)) {
+                    votingEls.forEach(function(el) {
+                        if (data === '') {
+                            re(el);
+                        } else {
+                            var newEl = cf(data);
+                            if (hasClass(el, 'media_voting_can_vote')) {
+                                var votingEl = domFC(newEl);
+                                addClass(votingEl, 'media_voting_just_voted');
+                                domReplaceEl(el, newEl);
+                                removeClassDelayed(votingEl, 'media_voting_just_voted');
+                            } else {
+                                domReplaceEl(el, newEl);
+                            }
+                        }
+                    });
+                    if (vk.widget && window.WPoll) {
+                        window.WPoll.resizeWidget();
                     }
-                })
-                if (script) {
-                    eval(script);
                 }
-            },
-            showProgress: showProgress.pbind(progress),
-            hideProgress: hideProgress.pbind(progress)
-        });
+            }
+        }
     },
-    pollFull: function(v, post, e, opt) {
-        stManager.add('wkpoll.js');
-        return showWiki({
-            w: 'poll' + post,
-            opt_id: opt
-        }, false, e, {
-            queue: 1,
-            noloader: !!curBox()
-        });
+    votingVote: function(votingEl, optionIds) {
+        var votingId = domData(votingEl, 'id');
+
+        if (this.votingIsLocked(votingId) || !vk.id) {
+            if (vk.widget) {
+                Widgets.oauth();
+            }
+            return;
+        }
+
+        var isBoard = domData(votingEl, 'board');
+        var isFixed = domData(votingEl, 'fixed');
+        var isWkview = hasClass(domPN(votingEl), 'wk_voting_box');
+        var hash = domData(votingEl, 'hash');
+
+        if (optionIds.length && hash) {
+            ajax.post('al_voting.php', {
+                act: 'vote',
+                voting_id: votingId,
+                is_board: isBoard,
+                is_widget: vk.widget ? 1 : 0,
+                is_fixed: isFixed,
+                option_ids: optionIds.join(','),
+                hash: hash,
+                width: vk.widget ? cur.widgetWidth : undefined,
+                vote_hash: cur.voteHash
+            }, {
+                onDone: function(html, shareMessage) {
+                    if (isWkview) {
+                        nav.reload();
+                        return;
+                    }
+                    if (vk.widget && window.WPoll) {
+                        window.WPoll.updateShareMessage(shareMessage);
+                    }
+                    this.votingUpdate(votingId, html);
+                }.bind(this),
+                showProgress: this.votingLock.bind(this, votingId),
+                hideProgress: function(votingId) {
+                    if (!isWkview) {
+                        this.votingUnlock(votingId);
+                    }
+                }.bind(this, votingId)
+            });
+        }
     },
-    pollOver: function(el, post, opt) {
-        showTooltip(el, {
-            url: 'al_wall.php',
-            params: {
-                act: 'poll_opt_stats',
-                post_raw: post,
-                opt_id: opt
-            },
-            slide: 15,
-            ajaxdt: 100,
-            showdt: 400,
-            hidedt: 200,
-            dir: 'auto',
-            typeClass: 'poll_tt',
-        });
+    votingButtonVote: function(buttonEl) {
+        var votingEl = gpeByClass('media_voting', buttonEl);
+
+        if (votingEl && hasClass(votingEl, 'media_voting_multiple')) {
+            var optionEls = geByClass('media_voting_option_selected', votingEl);
+            var optionIds = [];
+            optionEls.forEach(function(optionEl) {
+                var optionId = domData(optionEl, 'id');
+                if (optionId) {
+                    optionIds.push(optionId);
+                }
+            });
+
+            this.votingVote(votingEl, optionIds);
+        }
     },
+    votingOptionVote: function(optionEl, event) {
+        var votingEl = gpeByClass('media_voting', optionEl);
+
+        if (votingEl) {
+            var isMultiple = hasClass(votingEl, 'media_voting_multiple');
+
+            if (isMultiple) {
+                var votingId = domData(votingEl, 'id');
+
+                if (this.votingIsLocked(votingId) || !vk.id) {
+                    if (vk.widget) {
+                        Widgets.oauth();
+                    }
+                    return;
+                }
+
+                toggleClass(optionEl, 'media_voting_option_selected');
+                var hasSelectedOptions = geByClass('media_voting_option_selected', votingEl).length;
+                toggleClass(votingEl, 'media_voting_has_selected_options', hasSelectedOptions);
+            } else {
+                var optionId = domData(optionEl, 'id');
+
+                this.votingVote(votingEl, [optionId]);
+            }
+
+            cancelEvent(event);
+        }
+    },
+    votingOptionTooltip: function(optionEl) {
+        var votingEl = gpeByClass('media_voting', optionEl);
+
+        if (votingEl) {
+            var optionId = domData(optionEl, 'id');
+            var ownerId = domData(votingEl, 'owner-id');
+            var votingId = domData(votingEl, 'id');
+            var isBoard = domData(votingEl, 'board');
+
+            showTooltip(optionEl, {
+                url: 'al_voting.php',
+                params: {
+                    act: 'option_tt',
+                    option_id: optionId,
+                    owner_id: ownerId,
+                    is_board: isBoard,
+                    voting_id: votingId
+                },
+                slide: 15,
+                ajaxdt: 100,
+                showdt: 400,
+                hidedt: 200,
+                dir: 'auto',
+                shift: [0, 10, 10],
+                typeClass: 'voting_tt',
+            });
+        }
+    },
+    votingLayer: function(el, event) {
+        var optionEl = hasClass(el, 'media_voting_option_wrap') ? el : false;
+        var optionId = optionEl ? domData(optionEl, 'id') : 0;
+        var votingEl = hasClass(el, 'media_voting') ? el : gpeByClass('media_voting', el);
+
+        if (votingEl) {
+            var votingId = domData(votingEl, 'id');
+            var ownerId = domData(votingEl, 'owner-id');
+            var isBoard = domData(votingEl, 'board');
+            var opts = {
+                w: (isBoard ? 'board_poll' : 'poll') + ownerId + '_' + votingId,
+            };
+            if (optionId) {
+                opts.opt_id = optionId;
+            }
+
+            if (vk.widget) {
+                window.open(location.origin + '/' + opts.w, 'poll');
+            } else {
+                showWiki(opts, false, undefined, {
+                    queue: 1,
+                    noloader: !!curBox()
+                });
+            }
+
+            cancelEvent(event);
+        }
+    },
+    votingUpdateByPostRaw: function(postRaw) {
+        if (vk.id) {
+            postRaw = postRaw.split('_');
+            var postId = positive(postRaw[1]);
+            var ownerId = intval(postRaw[0]);
+            var votingEls = geByClass('_post_media_voting' + ownerId + '_' + postId);
+
+            if (postId && ownerId && votingEls.length) {
+                ajax.post('al_voting.php', {
+                    act: 'update',
+                    post_id: postId,
+                    owner_id: ownerId
+                }, {
+                    onDone: function(html) {
+                        if (html) {
+                            votingEls.forEach(function(el) {
+                                val(el, html);
+                            });
+                        }
+                    },
+                    onFail: function() {
+                        return true;
+                    }
+                });
+            }
+        }
+    },
+    votingExport: function(el) {
+        var votingEl = gpeByClass('media_voting', el);
+
+        if (votingEl && !domData(votingEl, 'board')) {
+            var votingId = domData(votingEl, 'id');
+
+            showBox('al_voting.php', {
+                act: 'export_box',
+                vote_hash: cur.voteHash,
+                is_widget: vk.widget ? 1 : 0,
+                voting_id: votingId
+            }, {
+                onDone: function() {
+                    curBox().setOptions({
+                        width: 500
+                    });
+                }
+            });
+        }
+    },
+    votingOnMain: function(actionMenuItemEl, state) {
+        if (actionsMenuItemLocked(actionMenuItemEl)) {
+            return;
+        }
+
+        var votingEl = gpeByClass('media_voting', actionMenuItemEl);
+
+        if (votingEl) {
+            var votingId = domData(votingEl, 'id');
+            var isFixed = domData(votingEl, 'fixed');
+
+            if (this.votingIsLocked(votingId)) {
+                return;
+            }
+
+            var hash = domData(votingEl, 'hash');
+            var votingEls = geByClass('_media_voting' + votingId);
+
+            ajax.post('al_voting.php', {
+                act: 'onmain',
+                state: state ? 1 : 0,
+                voting_id: votingId,
+                is_fixed: isFixed,
+                hash: hash
+            }, {
+                onDone: this.votingUpdate.bind(this, votingId),
+                showProgress: function() {
+                    lockActionsMenuItem(actionMenuItemEl);
+                    this.votingLock(votingId);
+                }.bind(this),
+                hideProgress: function() {
+                    unlockActionsMenuItem(actionMenuItemEl);
+                    this.votingUnlock(votingId);
+                }.bind(this)
+            });
+        }
+    },
+    votingClosed: function(actionMenuItemEl, state) {
+        if (actionsMenuItemLocked(actionMenuItemEl)) {
+            return;
+        }
+
+        var votingEl = gpeByClass('media_voting', actionMenuItemEl);
+
+        if (votingEl) {
+            var votingId = domData(votingEl, 'id');
+            var isFixed = domData(votingEl, 'fixed');
+
+            if (this.votingIsLocked(votingId)) {
+                return;
+            }
+
+            var hash = domData(votingEl, 'hash');
+            var votingEls = geByClass('_media_voting' + votingId);
+
+            ajax.post('al_voting.php', {
+                act: 'closed',
+                state: state ? 1 : 0,
+                voting_id: votingId,
+                is_fixed: isFixed,
+                hash: hash
+            }, {
+                onDone: this.votingUpdate.bind(this, votingId),
+                showProgress: function() {
+                    lockActionsMenuItem(actionMenuItemEl);
+                    this.votingLock(votingId);
+                }.bind(this),
+                hideProgress: function() {
+                    unlockActionsMenuItem(actionMenuItemEl);
+                    this.votingUnlock(votingId);
+                }.bind(this)
+            });
+        }
+    },
+    votingNarrowAction: function(votingId, hash, action) {
+        var act;
+        var state;
+        switch (action) {
+            case 101:
+                act = 'closed';
+                state = 0;
+                break;
+
+            case 102:
+                act = 'closed';
+                state = 1;
+                break;
+
+            case 103:
+                act = 'onmain';
+                state = 0;
+                break;
+
+            case 104:
+                act = 'onmain';
+                state = 1;
+                break;
+        }
+
+        if (act && !cur.votingNarrowActionProgress) {
+            ajax.post('al_voting.php', {
+                act: act,
+                voting_id: votingId,
+                is_fixed: 1,
+                state: state,
+                narrow: 1,
+                hash: hash
+            }, {
+                onDone: function(html, js) {
+                    var votingModuleEl = ge('group_voting');
+                    if (votingModuleEl) {
+                        votingModuleEl = domPN(votingModuleEl);
+                        if (html) {
+                            domReplaceEl(votingModuleEl, cf(html));
+                        } else {
+                            re(votingModuleEl);
+                        }
+                    }
+                    if (js) {
+                        eval(js);
+                    }
+                },
+                showProgress: function() {
+                    cur.votingNarrowActionProgress = true;
+                },
+                hideProgress: function() {
+                    cur.votingNarrowActionProgress = false;
+                }
+            });
+        }
+    },
+
     foTT: function(el, text, opts) {
         if (opts && opts.oid) {
             if (opts.oid == vk.id) {
@@ -6705,73 +7057,6 @@ var Wall = {
         headerEl.setAttribute('offs', shown + '/' + total);
     },
 
-    updatePoll: function(post_raw) {
-        if (!vk.id) return;
-        ajax.post('al_wall.php', {
-            act: 'post_poll',
-            post_raw: post_raw
-        }, {
-            onDone: function(html) {
-                if (html) {
-                    var pollWrapEl = ge('post_poll' + post_raw),
-                        pollTable = geByTag1('table', pollWrapEl);
-                    if (pollTable) {
-                        for (var i = 0; i < pollTable.rows.length; ++i) {
-                            var t = pollTable.rows[i].tt;
-                            if (t && t.destroy) t.destroy();
-                        }
-                    }
-                    val(pollWrapEl, html);
-                }
-            },
-            onFail: function() {
-                return true;
-            }
-        });
-    },
-
-    updatePollResults: function(post_raw, newPollDataTxt) {
-        var pollWrapEl = ge('post_poll' + post_raw),
-            pollTable = geByTag1('table', pollWrapEl),
-            pollRaw = val('post_poll_raw' + post_raw);
-
-        if (!pollWrapEl) return;
-
-        var newPollData = eval('(' + newPollDataTxt + ')'),
-            totalVotes = 0,
-            maxVotes = 0,
-            pollStats = '';
-
-        each(newPollData, function() {
-            totalVotes += this[1];
-            if (this[1] > maxVotes) {
-                maxVotes = this[1];
-            }
-        });
-
-        if (pollTable && pollRaw) {
-            each(newPollData, function(i) {
-                pollStats += rs(cur.wallTpl.poll_stats, {
-                    option_text: this[0],
-                    css_percent: totalVotes ? Math.round(this[1] * 100 / maxVotes) : 0,
-                    count: langNumeric(this[1], '%s', true),
-                    percent: totalVotes ? Math.round(this[1] * 1000 / totalVotes) / 10 : 0,
-                    handlers: val('post_poll_open' + post_raw) ? (' onmouseover="Wall.pollOver(this, \'' + post_raw + '\', ' + i + ')"') : '',
-                    row_class: ''
-                });
-            });
-            for (var i = 0; i < pollTable.rows.length; ++i) {
-                var t = pollTable.rows[i].tt;
-                if (t && t.destroy) t.destroy();
-            }
-            val(pollTable, pollStats);
-        }
-        var codeLink = geByClass1('page_poll_code', pollWrapEl, 'a'),
-            totalEl = geByClass1('page_poll_total', pollWrapEl);
-        val(totalEl, langNumeric(totalVotes, cur.lang.wall_X_people_voted || '%', true));
-        if (codeLink) totalEl.insertBefore(codeLink, domFC(totalEl));
-    },
-
     updated: function(layer, key, data) {
         var cur = layer ? wkcur : window.cur;
         if (!cur.wallAddQueue || cur.wallAddQueue.key != key) {
@@ -6868,9 +7153,7 @@ var Wall = {
                             insBefore = insBefore.nextSibling;
                         }
                         cont.insertBefore(newEl, insBefore);
-                        if (ge('post_poll_id' + post_id)) {
-                            Wall.updatePoll(post_id);
-                        }
+                        Wall.votingUpdateByPostRaw(post_id);
                         updH = newEl.offsetHeight + mt;
                         updY = getXY(newEl, fixed)[1];
                         nodeUpdated(newEl);
@@ -6923,9 +7206,7 @@ var Wall = {
                             wasExpanded = geByClass1('wall_post_more', editEl);
                             if (wasExpanded) wasExpanded.onclick();
                         }
-                        if (ge('post_poll_id' + post_id)) {
-                            Wall.updatePoll(post_id);
-                        }
+                        Wall.votingUpdateByPostRaw(post_id);
                         updH += editEl.offsetHeight;
                         nodeUpdated(editEl);
                         Wall.updatePostAuthorData(post_id);
@@ -7136,12 +7417,6 @@ var Wall = {
                             share_num: ev[4],
                             share_title: false
                         });
-                        break;
-                    }
-                case 'vote_poll':
-                    {
-                        if (!el) break;
-                        Wall.updatePollResults(post_id, ev[3]);
                         break;
                     }
                 case 'upd_ci':
@@ -8947,8 +9222,8 @@ Composer = {
                         if (intval(attachVal)) {
                             params.poll_id = intval(attachVal);
                         }
-                        attachVal = poll.media;
-                        delete poll.media;
+                        attachVal = poll.question;
+                        delete poll.question;
                         params = extend(params, poll);
                         break;
 

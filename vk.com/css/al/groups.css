@@ -290,10 +290,6 @@ a.groups_messages_block:before {
     word-wrap: break-word
 }
 
-.group_voting_msg.info_msg {
-    margin: 0
-}
-
 .info_msg.trusted_warning {
     margin: 0px;
     line-height: 20px

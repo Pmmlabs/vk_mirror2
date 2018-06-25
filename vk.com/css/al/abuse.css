@@ -339,7 +339,7 @@
 }
 
 .ab2_wall_block .post_media .audio,
-.ab2_wall_block .post_media .page_media_poll_wrap {
+.ab2_wall_block .post_media .post_media_voting {
     display: none
 }
 
