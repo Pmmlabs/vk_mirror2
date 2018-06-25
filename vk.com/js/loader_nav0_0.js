@@ -452,9 +452,9 @@ var stVersions = {
     'ads_offers_moder.js': 3862633445,
     'landings/landings.css': 19048401363,
     'landings/vk10_years.css': 15402307483,
-    'market.css': 22110593922,
+    'market.css': 22876146117,
     'market.js': 2110360326,
-    'market_adm.css': 16569352998,
+    'market_adm.css': 16487920117,
     'market_adm.js': 2677502581,
     'stories_admin.css': 17465618559,
     'stories_admin.js': 1129028316,
@@ -631,4 +631,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 3583;
+var _rnd = 4434;

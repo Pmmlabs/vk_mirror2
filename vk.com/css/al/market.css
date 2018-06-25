@@ -2711,6 +2711,11 @@
     margin-left: 7px
 }
 
+.market_cart_wrap .no_rows {
+    padding-top: 100px;
+    padding-bottom: 100px
+}
+
 .market_cart {
     padding: 15px 20px
 }
