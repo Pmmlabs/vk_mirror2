@@ -6270,6 +6270,7 @@ var Wall = {
                 is_fixed: isFixed,
                 hash: hash,
                 width: vk.widget ? cur.widgetWidth : undefined,
+                url: vk.widget ? cur.url : undefined,
                 vote_hash: cur.voteHash
             }, {
                 onDone: this.votingUpdate.bind(this, votingId),
@@ -6359,6 +6360,7 @@ var Wall = {
                 option_ids: optionIds.join(','),
                 hash: hash,
                 width: vk.widget ? cur.widgetWidth : undefined,
+                url: vk.widget ? cur.url : undefined,
                 vote_hash: cur.voteHash
             }, {
                 onDone: function(html, shareMessage) {

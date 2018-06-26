@@ -211,8 +211,8 @@ var stVersions = {
     'video_youtube.css': 12863114123,
     'videoplayer.js': 91782027195,
     'videoplayer.css': 38228179247,
-    'translation.js': 568505835,
-    'translation.css': 15822456905,
+    'translation.js': 2637644180,
+    'translation.css': 14951600193,
     'reg.css': 887926110,
     'reg.js': 1336565657,
     'invite.css': 16745840586,
@@ -227,7 +227,7 @@ var stVersions = {
     'module.css': 20126451806,
     'owner_photo.js': 3368798011,
     'owner_photo.css': 19110397564,
-    'page.js': 1961457271,
+    'page.js': 854882271,
     'page.css': 39020234165,
     'page_help.css': 22751678442,
     'public.css': 24222091805,
@@ -273,7 +273,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 3117672463,
+    'feed.js': 267308370,
     'feed.css': 21611129817,
     'privacy.js': 835833828,
     'privacy.css': 13646285245,
@@ -367,7 +367,7 @@ var stVersions = {
     'graffiti.css': 404471482,
     'graffiti_new.js': 67279821,
     'graffiti_new.css': 19895211184,
-    'abuse.css': 13205884479,
+    'abuse.css': 15010756618,
     'verify.css': 12707413051,
     'away.css': 18089296124,
     'stats.css': 15452484526,
@@ -389,7 +389,7 @@ var stVersions = {
     'ads_moder_common.css': 13770814819,
     'ads_moder.css': 13349013389,
     'ads_moder_common.js': 3875868763,
-    'ads_moder.js': 2824949856,
+    'ads_moder.js': 312405863,
     'ads_tagger.js': 2289308011,
     'ads_web.css': 1585148602,
     'ads_web.js': 4274163593,
@@ -531,9 +531,9 @@ var stVersions = {
     'stories_manage.css': 69680483864,
     'article.css': 32729468222,
     'article_editor.css': 34350541150,
-    'cmodules/web/article.js': 37530935843,
-    'cmodules/web/article_layer.js': 19410695666,
-    'article_view.js': 14362595756,
+    'cmodules/web/article.js': 35134551458,
+    'cmodules/web/article_layer.js': 19754252983,
+    'article_view.js': 14706153073,
     'bookmarks.css': 13063323460,
     'cmodules/web/bookmarks.js': 1303575103,
     'shortener.js': 16413120,
@@ -562,6 +562,7 @@ var stVersions = {
     'cmodules/web/add_to_community_app.js': 3789381770,
     'community_bot.js': 1928249077,
     'community_bot.css': 3742743729,
+    'translation_discussions.js': 931766015,
     'lang': 6887
 };
 var stTypes = {
@@ -631,4 +632,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 1122;
+var _rnd = 7401;

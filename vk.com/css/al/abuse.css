@@ -101,6 +101,10 @@
     margin-bottom: 10px
 }
 
+.abuse_hidden_reports {
+    color: #939393
+}
+
 .ab2_abuse_row .ab2_abuse_gen_date,
 .ab2_abuse_row .ab2_abuser_age {
     color: #777
@@ -1375,6 +1379,82 @@
     color: #000;
     display: inline-block;
     width: 250px
+}
+
+.abuse_bottom_panel {
+    position: relative
+}
+
+.abuse_navigation_button_left {
+    position: absolute;
+    top: 50%;
+    left: 8px
+}
+
+.abuse_navigation_button_right {
+    position: absolute;
+    top: 50%;
+    right: 8px
+}
+
+.abuse_verdict {
+    border-top: 1px solid #e7e8ec;
+    margin-top: 8px;
+    padding-top: 16px;
+    margin-bottom: 10px;
+    text-align: center
+}
+
+.abuse_verdict .abuse_verdict_description {
+    text-align: center;
+    margin-top: 12px
+}
+
+.abuse_verdict .abuse_verdict_description:first-child {
+    margin-top: 0px
+}
+
+.abuse_verdict .abuse_verdict_description .abuse_verdict_description_label {
+    color: #939393;
+    display: inline-block;
+    vertical-align: middle;
+    width: 80px;
+    text-align: right;
+    margin-right: 4px
+}
+
+.abuse_verdict .abuse_verdict_description .abuse_verdict_description_selector {
+    display: inline-block;
+    vertical-align: middle
+}
+
+.abuse_verdict .abuse_verdict_actions {
+    margin-top: 20px;
+    position: relative
+}
+
+.abuse_verdict .abuse_verdict_actions .abuse_verdict_center_buttons {
+    text-align: center
+}
+
+.abuse_verdict .abuse_verdict_actions .abuse_verdict_button {
+    vertical-align: middle;
+    margin: 0 8px
+}
+
+.abuse_verdict .abuse_custom_reason {
+    width: 377px;
+    margin: 6px auto 10px;
+    display: block
+}
+
+.abuse_verdict .abuse_custom_reason:not(.abuse_custom_reason_visible) {
+    display: none
+}
+
+.abuse_lynch {
+    text-align: center;
+    margin-bottom: 8px
 }
 
 .abuse_hint {

@@ -312,7 +312,7 @@ var Feed = {
                     var B = geByClass1("post", f);
                     addClass(B, "closed_comments")
                 }
-                C && P && (cur.newPostsCount = cur.newPostsCount ? cur.newPostsCount + 1 : 1, cur.feedEls.newPosts.innerHTML = getLang("news_new_posts", cur.newPostsCount), addClass(cur.feedEls.wrap, "feed_has_new"), 1 == cur.newPostsCount && feed.needScrollPost(t, cur.feedEls.newPosts) && !k && (c += getSize(cur.feedEls.newPosts)[1])), AudioUtils.updateQueueReceivedPost(f), ge("post_poll_id" + r) && wall.votingUpdateByPostRaw(r), cur.feedUnreadCount++, "search" != n && nodeUpdated(f), v.length > 300 ? m.removeChild(v[300]) : v.length <= 1 && removeClass(cur.feedEls.wrap, "feed_is_empty"), Wall.updateMentionsIndex();
+                C && P && (cur.newPostsCount = cur.newPostsCount ? cur.newPostsCount + 1 : 1, cur.feedEls.newPosts.innerHTML = getLang("news_new_posts", cur.newPostsCount), addClass(cur.feedEls.wrap, "feed_has_new"), 1 == cur.newPostsCount && feed.needScrollPost(t, cur.feedEls.newPosts) && !k && (c += getSize(cur.feedEls.newPosts)[1])), AudioUtils.updateQueueReceivedPost(f), wall.votingUpdateByPostRaw(r), cur.feedUnreadCount++, "search" != n && nodeUpdated(f), v.length > 300 ? m.removeChild(v[300]) : v.length <= 1 && removeClass(cur.feedEls.wrap, "feed_is_empty"), Wall.updateMentionsIndex();
                 break;
             case "new_post_reply":
                 if (i) break;
@@ -331,7 +331,7 @@ var Feed = {
                         poll_hash: cur.wallTpl.poll_hash
                     })),
                     m = ge("post" + r);
-                m && !isVisible(m.parentNode) && (N = wall.updatePostImages(N)), window.fifaReplaceText && (N = fifaReplaceText(N)), val(L, N), H && (H = geByClass1("wall_post_more", L), H && H.onclick()), ge("post_poll_id" + r) && wall.votingUpdateByPostRaw(r), E && (c += L.offsetHeight), nodeUpdated(L), window.Wall && Wall.updatePostAuthorData(r);
+                m && !isVisible(m.parentNode) && (N = wall.updatePostImages(N)), window.fifaReplaceText && (N = fifaReplaceText(N)), val(L, N), H && (H = geByClass1("wall_post_more", L), H && H.onclick()), wall.votingUpdateByPostRaw(r), E && (c += L.offsetHeight), nodeUpdated(L), window.Wall && Wall.updatePostAuthorData(r);
                 break;
             case "edit_reply":
                 var M = e[3],

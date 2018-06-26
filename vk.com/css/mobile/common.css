@@ -31707,6 +31707,10 @@ body.apps_settingsPageBody {
 }
 
 .VotingStatsOption__voter {
+    position: relative
+}
+
+.VotingStatsOption__voterInner {
     position: relative;
     display: -ms-flexbox;
     display: flex
@@ -31728,7 +31732,9 @@ body.apps_settingsPageBody {
 }
 
 .VotingStatsOption__voterOnline {
-    position: absolute
+    position: absolute;
+    top: 0;
+    left: 0
 }
 
 .VotingStatsOption__voterOnline_desktop {
@@ -31746,7 +31752,8 @@ body.apps_settingsPageBody {
  * Flex fallback
  */
 
-.vk_flex_no .VotingStatsOption__voter {
+.vk_flex_no .VotingStatsOption__voter,
+.vk_flex_no .VotingStatsOption__voterInner {
     display: block
 }
 
@@ -31754,10 +31761,6 @@ body.apps_settingsPageBody {
 .vk_flex_no .VotingStatsOption__voterName {
     display: inline-block;
     vertical-align: middle
-}
-
-.vk_flex_no .VotingStatsOption__voterOnline {
-    margin-top: -14px
 }
 
 .VotingStatsFilters {

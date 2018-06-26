@@ -408,7 +408,7 @@ AdsModer.premoderationProcessRequest = function(action, requestKey, requestKeyMo
     var moderComment = ge('moder_comment_' + requestKeyModer);
 
     if (action !== 'disapprove' ||
-        (action === 'disapprove' && (moderComment.getValue().trim().length || cur.uiReasonsControls[requestKeyModer].getSelectedItems().length))) {
+        (action === 'disapprove' && (val(moderComment).trim().length || cur.uiReasonsControls[requestKeyModer].getSelectedItems().length))) {
         var result = AdsModer.premoderationProcessRequestsMassCheck(action, requestKey);
         if (result) {
             return;
@@ -434,7 +434,7 @@ AdsModer.premoderationProcessRequest = function(action, requestKey, requestKeyMo
         }
     }
 
-    ajaxParams.moder_comment = moderComment.getValue();
+    ajaxParams.moder_comment = val(moderComment);
     if (action === 'disapprove') {
         ajaxParams.moder_rules = cur.uiReasonsControls[requestKeyModer].getSelectedItems().join(',');
     }
