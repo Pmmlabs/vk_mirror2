@@ -2759,6 +2759,10 @@
     font-size: 12px
 }
 
+.market_cart_row_num {
+    width: 30px
+}
+
 .market_cart_row_img {
     padding: 3px 0;
     width: 45px;
@@ -2773,8 +2777,9 @@
 
 .market_cart_row_title {
     padding-left: 10px;
+    padding-right: 10px;
     font-size: 14px;
-    width: 300px
+    width: 330px
 }
 
 .market_cart_row_count .text {
@@ -2787,7 +2792,7 @@
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     text-align: right;
-    width: 150px
+    width: 135px
 }
 
 .market_cart_rows_total {

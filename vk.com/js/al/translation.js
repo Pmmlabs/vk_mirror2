@@ -373,7 +373,7 @@ var TR_ADDRESS = "translation";
                 t && "photo" == t[0] && s.push(t[1] + "/" + (cur.addScreens.phLists[t[1]] || ""))
             }), a.additional || (a.additional = {}), a.additional.draft_photos = s.join(";")
         }
-        n && cancelEvent(n), TranslationDiscussions && "discussions" == nav.objLoc.tab && TranslationDiscussions.backupDataShowPhoto(), showPhoto(e, t, a)
+        n && cancelEvent(n), window.TranslationDiscussions && "discussions" == nav.objLoc.tab && TranslationDiscussions.backupDataShowPhoto(), showPhoto(e, t, a)
     }
 
     function openKey(e, t, a) {
@@ -403,7 +403,7 @@ var TR_ADDRESS = "translation";
                         cid: null
                     })), a && setTimeout(function() {
                         ge("box_layer_wrap").scrollTop = cur.translatorsLogBoxOffset, delete cur.translatorsLogBoxOffset
-                    }, 150), cur.onBoxKeyDownEvent && removeEvent(window, "keydown", cur.onBoxKeyDownEvent), delete cur.keySectionsDD, delete cur.keyBoxValueHeight, cur.showedScreen || (delete cur.translationBoxParams, delete cur.translationsScreensList, delete ajaxCache["/" + TR_ADDRESS + "#" + ajx2q(o)], delete cur.translationBoxType, delete cur.translationsScreensListAll, delete cur.translationBoxKeySelectedLang, delete cur.translationBoxKeySelectedLangList, delete cur.translationBoxSelectedStatus, TranslationDiscussions.destroy()), delete cur.translationBoxOpened, delete cur.translationBoxFocusedForm, delete cur.translationBoxIsInlineTranslation, delete cur.translationBoxNeedHideBox)
+                    }, 150), cur.onBoxKeyDownEvent && removeEvent(window, "keydown", cur.onBoxKeyDownEvent), delete cur.keySectionsDD, delete cur.keyBoxValueHeight, cur.showedScreen || (delete cur.translationBoxParams, delete cur.translationsScreensList, delete ajaxCache["/" + TR_ADDRESS + "#" + ajx2q(o)], delete cur.translationBoxType, delete cur.translationsScreensListAll, delete cur.translationBoxKeySelectedLang, delete cur.translationBoxKeySelectedLangList, delete cur.translationBoxSelectedStatus, window.TranslationDiscussions && TranslationDiscussions.destroy()), delete cur.translationBoxOpened, delete cur.translationBoxFocusedForm, delete cur.translationBoxIsInlineTranslation, delete cur.translationBoxNeedHideBox)
                 },
                 onShow: function() {
                     cur.translationBoxParams = [e, t, a], cur.translationsScreensList || (cur.translationsScreensList = []), delete cur.showedAttachScreenBox, cur.translationBoxNeedHideBox && curBox().hide()

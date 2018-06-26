@@ -142,7 +142,7 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 1318650823,
     'common.js': 1161,
-    'common.css': 32932433712,
+    'common.css': 38485958560,
     'cmodules/web/common_web.js': 3,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
@@ -211,7 +211,7 @@ var stVersions = {
     'video_youtube.css': 12863114123,
     'videoplayer.js': 91782027195,
     'videoplayer.css': 38228179247,
-    'translation.js': 2637644180,
+    'translation.js': 1925703379,
     'translation.css': 14951600193,
     'reg.css': 887926110,
     'reg.js': 1336565657,
@@ -452,9 +452,9 @@ var stVersions = {
     'ads_offers_moder.js': 3862633445,
     'landings/landings.css': 18151301542,
     'landings/vk10_years.css': 14505207662,
-    'market.css': 24020951443,
+    'market.css': 24243663757,
     'market.js': 2110360326,
-    'market_adm.css': 15590820296,
+    'market_adm.css': 15067159166,
     'market_adm.js': 2677502581,
     'stories_admin.css': 16568518738,
     'stories_admin.js': 1129028316,
@@ -557,7 +557,7 @@ var stVersions = {
     'cmodules/web/grip.js': 4164501492,
     'cmodules/web/group_invite_chat.js': 43933190606,
     'group_invite_chat.css': 72772857016,
-    'cmodules/web/reports.js': 19854794487,
+    'cmodules/web/reports.js': 19080758200,
     'cmodules/web/raven_logger.js': 7336038093,
     'cmodules/web/add_to_community_app.js': 3789381770,
     'community_bot.js': 1928249077,
@@ -632,4 +632,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 7401;
+var _rnd = 9336;
