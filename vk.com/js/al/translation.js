@@ -77,18 +77,24 @@ var TR_ADDRESS = "translation";
                 if (o) {
                     each(o[0], function(e, t) {
                         var a = ge("tr_section_counter_" + e);
-                        a && (t[0] ? a.innerHTML = "+" + t[0] : a.innerHTML = "")
+                        if (a) {
+                            var n = t[0] ? "+" + t[0] : "";
+                            val(a, n)
+                        }
                     });
                     var r = ge("tr_section_counter_total");
-                    o[1] ? r.innerHTML = "+" + o[1] : r.innerHTML = ""
+                    if (r) {
+                        var i = o[1] ? "+" + o[1] : "";
+                        val(r, i)
+                    }
                 }
                 if (s && each(s, function(e, t) {
                         toggle("translation_" + n.key + "_" + e, t)
                     }), e && n.key) {
-                    var i = document.querySelector(".tr_key[data-key=" + n.key + "]");
-                    i && (removeClass(i, "tr_untranslated"), geByClass1("_tr_key_inner", i).innerHTML = e);
-                    var l = cur.translationBoxIsInlineTranslation;
-                    delete cur.translationBoxIsInlineTranslation, l && (val(l, t), console.log(t), addClass(l, "translated"))
+                    var l = document.querySelector(".tr_key[data-key=" + n.key + "]");
+                    l && (removeClass(l, "tr_untranslated"), geByClass1("_tr_key_inner", l).innerHTML = e);
+                    var c = cur.translationBoxIsInlineTranslation;
+                    delete cur.translationBoxIsInlineTranslation, c && (val(c, t), console.log(t), addClass(c, "translated"))
                 } else nav.reload();
                 boxQueue.hideAll(), a && a(e), n.mark_untranslated && nav.reload()
             }

@@ -558,11 +558,11 @@ var Feed = {
     switchNotifyList: function(e, t) {
         uiRightMenu.go(geByClass1("feed_section_" + e), !1, !1), feed.go(t)
     },
-    switchSubSection: function(e, t) {
+    switchSubSection: function(e, t, o) {
         if (t && checkEvent(t)) return !0;
         sectionKey = cur.section, "list" === cur.section && (sectionKey = "list" + cur.list), cur.subsection = cur.subsections[sectionKey] = e;
-        var o = feed.getSectionParams(cur.section);
-        delete cur.feedUpdateLoading, delete cur.isFeedLoading, nav.go(extend(o || {}, {
+        var s = feed.getSectionParams(cur.section);
+        s.hash = o, delete cur.feedUpdateLoading, delete cur.isFeedLoading, nav.go(extend(s || {}, {
             0: "feed"
         })), uiRightMenu.showProgress(cur.feedEls.rmenu)
     },
@@ -754,10 +754,10 @@ var Feed = {
             "tabs" != t && e.push(o === !0 ? "*" : o.join(","))
         }), setCookie("remixfeed", e.join("."), 365)
     },
-    toggleFeedTop: function(e, t) {
-        var o = geByClass1("_ui_toggler", e),
-            s = "top";
-        switch (toggleClass(o, "on"), cur.section) {
+    toggleFeedTop: function(e, t, o) {
+        var s = geByClass1("_ui_toggler", e),
+            r = "top";
+        switch (toggleClass(s, "on"), cur.section) {
             case "news":
             case "recommended":
             case "groups":
@@ -765,12 +765,12 @@ var Feed = {
             case "videos":
             case "photos":
             case "list":
-                s = hasClass(o, "on") ? "top" : "recent";
+                r = hasClass(s, "on") ? "top" : "recent";
                 break;
             case "articles":
-                s = hasClass(o, "on") ? "suggested" : "top"
+                r = hasClass(s, "on") ? "suggested" : "top"
         }
-        feed.switchSubSection(s, t)
+        feed.switchSubSection(r, t, o)
     },
     switchList: function(e) {
         cur.prevList = cur.list, cur.list = e, feed.setSection("list", 1), uiRightMenu.go(geByClass1("feed_section_list" + e), !1, !1), feed.go(feed.getSectionParams(cur.section))

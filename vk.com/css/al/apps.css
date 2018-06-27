@@ -36,6 +36,7 @@
 .apps_settings_icons .apps_settings_payments,
 .apps_settings_icons .apps_settings_stats,
 .apps_settings_row_wrap.loading .apps_settings_action_remove,
+.apps_vkPayPageBlock .app_container:after,
 .apps_win_instr_head:before,
 .media-photo-thumb-background,
 .media-video-play,
@@ -6311,6 +6312,49 @@ td.apps_cat_new_h {
     top: -1px;
     left: -1px;
     background: transparent
+}
+
+.apps_vkPayPageBlock .app_container>iframe {
+    position: relative;
+    z-index: 2
+}
+
+.apps_vkPayPageBlock .app_container:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 34px;
+    height: 34px;
+    -o-animation-name: round_spinner;
+    animation-name: round_spinner;
+    -o-animation-duration: 700ms;
+    animation-duration: 700ms;
+    -o-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
+    background-image: url(/images/icons/round_spinner_big.png);
+    z-index: 1;
+    -o-transition: opacity 3s ease-in;
+    transition: opacity 3s ease-in;
+    opacity: 1
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_vkPayPageBlock .app_container:after {
+        background-image: url(/images/icons/round_spinner_big_2x.png);
+        background-size: 34px 34px
+    }
+}
+
+.apps_vkPayPageBlock .app_container.loaded:after {
+    opacity: 0
 }
 
 .vkPayOpenApiBox {

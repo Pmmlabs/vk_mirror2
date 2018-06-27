@@ -1785,10 +1785,12 @@ var BugTracker = {
                     checkbox(t, !1)
                 }))
             }
-            var g = geByClass("user_img visible", i).length,
-                h = [9 - 12 * Math.min(3, g), 10],
-                p = i.rtt;
-            p.setShift(h)
+            var g = i.rtt;
+            if (g) {
+                var h = geByClass("user_img visible", i).length,
+                    p = [9 - 12 * Math.min(3, h), 10];
+                g.setShift(p)
+            }
         }
     },
     showReproducesTooltips: function(e, t, r) {

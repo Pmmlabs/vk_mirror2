@@ -204,13 +204,13 @@ var GroupsEdit = {
                 if (r.match(/^(https?:\/\/)?([a-z0-9]+\.)*(vkontakte\.ru|vk\.com)\/.+/)) {
                     var u = GroupsEdit.uGetAddr(r);
                     i = [];
-                    for (var c = 0, d = o.length; d > c; ++c)(o[c][0] == u || o[c][1] == "/" + u) && i.push(c)
+                    for (var c = 0, p = o.length; p > c; ++c)(o[c][0] == u || o[c][1] == "/" + u) && i.push(c)
                 } else {
                     if (i = cur.cache[t]["_" + r], void 0 === i) {
-                        var p = cur.index[t].search(r),
+                        var d = cur.index[t].search(r),
                             l = {};
                         i = [];
-                        for (var c = 0, d = p.length; d > c; ++c) l[p[c]] || (l[p[c]] = !0, i.push(p[c]));
+                        for (var c = 0, p = d.length; p > c; ++c) l[d[c]] || (l[d[c]] = !0, i.push(d[c]));
                         i.sort(function(e, t) {
                             return e - t
                         }), cur.cache[t]["_" + r] = i
@@ -273,10 +273,10 @@ var GroupsEdit = {
             n = t[6],
             u = t[7],
             c = "",
-            d = "",
-            p = o || t[2],
+            p = "",
+            d = o || t[2],
             l = cur.qShown;
-        o || !l || l.match(/^(https?:\/\/)?([a-z0-9]+\.)*(vkontakte\.ru|vk\.com)\/.+/) || (highlight = GroupsEdit.uGetHighlight(l), p = p.replace(highlight.re, highlight.val)), n > 0 ? c += '<div class="group_u_info_row group_u_level">' + cur.opts.levels[n] + "</div>" : i[0] && (c += '<div class="group_u_desc">' + i[0] + "</div>");
+        o || !l || l.match(/^(https?:\/\/)?([a-z0-9]+\.)*(vkontakte\.ru|vk\.com)\/.+/) || (highlight = GroupsEdit.uGetHighlight(l), d = d.replace(highlight.re, highlight.val)), n > 0 ? c += '<div class="group_u_info_row group_u_level">' + cur.opts.levels[n] + "</div>" : i[0] && (c += '<div class="group_u_desc">' + i[0] + "</div>");
         var g = intval(i[1]),
             _ = onlinePlatformClass(g),
             h = !0,
@@ -298,22 +298,22 @@ var GroupsEdit = {
             case "unsure":
             case "admins":
                 var v = "";
-                n > 3 ? 6 > n && (v = '<a onclick="GroupsEdit.uMainAdmin()">' + getLang("Edit") + "</a>") : n > 0 ? v = '<a onclick="GroupsEdit.uEditAdmin(' + r + ')">' + getLang("Edit") + "</a>" : !n && cur.opts.admin && (v = '<a onclick="GroupsEdit.uEditAdmin(' + r + ')">' + getLang("groups_members_appoint_manager") + "</a>"), v && (c += '<div class="group_u_info_row">' + v + "</div>"), 0 > n ? d += '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', 0)\">" + getLang("groups_restore_member") + "</a>" : 0 >= n ? d += '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', -1)\">" + getLang("groups_members_delete") + "</a>" : 5 > n && r > 0 && (d += '<a class="group_u_action" onclick="GroupsEdit.uRemoveAdmin(' + r + ')">' + getLang("groups_remove_manager") + "</a>");
+                n > 3 ? 6 > n && (v = '<a onclick="GroupsEdit.uMainAdmin()">' + getLang("Edit") + "</a>") : n > 0 ? v = '<a onclick="GroupsEdit.uEditAdmin(' + r + ')">' + getLang("Edit") + "</a>" : !n && cur.opts.admin && (v = '<a onclick="GroupsEdit.uEditAdmin(' + r + ')">' + getLang("groups_members_appoint_manager") + "</a>"), v && (c += '<div class="group_u_info_row">' + v + "</div>"), 0 > n ? p += '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', 0)\">" + getLang("groups_restore_member") + "</a>" : 0 >= n ? p += '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', -1)\">" + getLang("groups_members_delete") + "</a>" : 5 > n && r > 0 && (p += '<a class="group_u_action" onclick="GroupsEdit.uRemoveAdmin(' + r + ')">' + getLang("groups_remove_manager") + "</a>");
                 break;
             case "declined":
-                d += 0 > n ? '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', 0)\">" + getLang("groups_restore_member") + "</a>" : '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', -1)\">" + getLang("groups_members_delete") + "</a>";
+                p += 0 > n ? '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', 0)\">" + getLang("groups_restore_member") + "</a>" : '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', -1)\">" + getLang("groups_members_delete") + "</a>";
                 break;
             case "invites":
-                d += 0 > n ? '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', 0)\">" + getLang("groups_send_invitation") + "</a>" : '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', -1)\">" + getLang("groups_members_invitations_cancel") + "</a>"
+                p += 0 > n ? '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', 0)\">" + getLang("groups_send_invitation") + "</a>" : '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', -1)\">" + getLang("groups_members_invitations_cancel") + "</a>"
         }
         return rs(cur.opts.userTpl, {
             oid: r,
             tab: e,
-            name: p,
+            name: d,
             photo: s,
             href: a,
             info: c,
-            actions: d,
+            actions: p,
             events: m,
             online: _
         })
@@ -358,11 +358,11 @@ var GroupsEdit = {
                 if (n || (boxQueue.hideAll(!0), t && GroupsEdit.showMessage(t, o || u && void 0 !== o ? !1 : "error")), u) return val(ge("sgedit_acts" + e), o), val(ge("sgedit_lev" + e), a), val(ge("sgedit_edit" + e), a ? getLang("global_edit") : getLang("groups_members_appoint_manager")), void toggleClass(gpeByClass("search_row", "sgedit_lev" + e), "sgedit_moder", !!a);
                 if (o) {
                     for (s = 0; 3 > s; ++s) {
-                        var c, d, p, l = i[s],
+                        var c, p, d, l = i[s],
                             g = cur.opts.data[l],
                             _ = !1;
                         if (isArray(g))
-                            for (c = 0, d = g.length; d > c; ++c)
+                            for (c = 0, p = g.length; p > c; ++c)
                                 if (g[c][0] == e) {
                                     _ = !0, "admins" == l && (o[6] > 0 && g[c][6] <= 0 ? ++cur.opts.counts[l] : o[6] <= 0 && g[c][6] > 0 && --cur.opts.counts[l]), cur.opts.data[l][c] = o;
                                     break
@@ -370,14 +370,14 @@ var GroupsEdit = {
                         if ("admins" === l && !_ && r) {
                             cur.opts.data[l].unshift(o), ++cur.opts.counts.admins, val(cur.searchInp, ""), cur.qShown = !1, GroupsEdit.uIndex(l, cur.opts.data[l]);
                             var h = cur.opts.data[l][cur.opts.data[l].length - 1],
-                                p = ge("group_u_" + l + h[0]);
-                            p && domPN(p).insertBefore(se(GroupsEdit.uGenRow(l, o)), p)
+                                d = ge("group_u_" + l + h[0]);
+                            d && domPN(d).insertBefore(se(GroupsEdit.uGenRow(l, o)), d)
                         } else if ("admins" === l && _ && !r) {
-                            var p = ge("group_u_" + l + e);
-                            p && domPN(p).removeChild(p)
+                            var d = ge("group_u_" + l + e);
+                            d && domPN(d).removeChild(d)
                         } else {
-                            var p = ge("group_u_" + l + e);
-                            p && domPN(p).replaceChild(se(GroupsEdit.uGenRow(l, o)), p), _ || (ajaxCache = {})
+                            var d = ge("group_u_" + l + e);
+                            d && domPN(d).replaceChild(se(GroupsEdit.uGenRow(l, o)), d), _ || (ajaxCache = {})
                         }
                         GroupsEdit.uUpdateSummary()
                     }
@@ -408,9 +408,9 @@ var GroupsEdit = {
                         s.length;
                         for (r = 0; 3 > r; ++r) {
                             var i, n, u, c = s[r],
-                                d = cur.opts.data[c];
-                            if (isArray(d))
-                                for (i = 0, n = d.length; n > i; ++i)(d[i][0] == e || d[i][0] == vk.id) && (cur.opts.data[c][i][6] = d[i][0] == e ? 6 : 3, (u = ge("group_u_" + c + d[i][0])) && domPN(u).replaceChild(se(GroupsEdit.uGenRow(c, cur.opts.data[c][i])), u))
+                                p = cur.opts.data[c];
+                            if (isArray(p))
+                                for (i = 0, n = p.length; n > i; ++i)(p[i][0] == e || p[i][0] == vk.id) && (cur.opts.data[c][i][6] = p[i][0] == e ? 6 : 3, (u = ge("group_u_" + c + p[i][0])) && domPN(u).replaceChild(se(GroupsEdit.uGenRow(c, cur.opts.data[c][i])), u))
                         }
                     }
                 },
@@ -500,15 +500,15 @@ var GroupsEdit = {
                         var i, n = "requests" == a || "declined" == a || "invites" == a ? [a] : ["members", "unsure", "admins"],
                             u = n.length;
                         for (i = 0; u > i; ++i) {
-                            var c, d, p, l = n[i],
+                            var c, p, d, l = n[i],
                                 g = cur.opts.data[l],
                                 _ = !1;
                             if (isArray(g))
-                                for (c = 0, d = g.length; d > c; ++c)
+                                for (c = 0, p = g.length; p > c; ++c)
                                     if (g[c][0] == t) {
                                         _ = !0, cur.opts.data[l][c] = e, "admins" != l && (r ? --cur.opts.counts[l] : ++cur.opts.counts[l]);
                                         break
-                                    }(p = ge("group_u_" + l + t)) && (domPN(p).replaceChild(se(GroupsEdit.uGenRow(l, e)), p), "admins" != l && "notavail" == g && (r ? (--cur.opts.counts[l], --cur.offsets[l]) : (++cur.opts.counts[l], ++cur.offsets[l])), toggleClass(ge("group_u_" + l + t), "deleted", 0 > r)), _ || (ajaxCache = {})
+                                    }(d = ge("group_u_" + l + t)) && (domPN(d).replaceChild(se(GroupsEdit.uGenRow(l, e)), d), "admins" != l && "notavail" == g && (r ? (--cur.opts.counts[l], --cur.offsets[l]) : (++cur.opts.counts[l], ++cur.offsets[l])), toggleClass(ge("group_u_" + l + t), "deleted", 0 > r)), _ || (ajaxCache = {})
                         }("requests" == a && r > 0 || "admins" == a && 0 > r) && (cur.noLocNav = !0), GroupsEdit.uUpdateSummary()
                     } else e ? GroupsEdit.showMessage(e, "error") : GroupsEdit.uRemoveAdmin(t).uRemove = [t, o, r]
                 },
@@ -992,7 +992,34 @@ var GroupsEdit = {
             })
         }), cur.narrowMainSectionDD.val(e.narrowMainSection)), GroupsEdit.manageSectionsDD()), cur.destroy.push(function(e) {
             e.marketCountryDD && (e.marketCountryDD.destroy(), e.marketCityDD.destroy(), e.marketCurrencyDD.destroy(), e.marketContactDD.destroy(), e.marketButtonType.destroy())
-        }), GroupsEdit.updateMarketAppAvailable()
+        }), e.needShowMarketAppFeatureTooltip && GroupsEdit.initFeatureMarketAppTooltip(e.marketAppFeatureTooltipHideHash), cur.hasMarketApp && (GroupsEdit.toggleMarketBlock(!0, !0), GroupsEdit.showFeatureMarketAppTooltip()), GroupsEdit.updateMarketAppAvailable()
+    },
+    initFeatureMarketAppTooltip: function(e) {
+        var t = ge("market_app_settings");
+        t && (cur.closeMarketFeatureTT = function() {
+            return cur.marketAppFeaturTT && cur.marketAppFeaturTT.hide(), ajax.post("al_index.php", {
+                act: "hide_feature_tt",
+                hash: e,
+                type: "market_app"
+            }), !1
+        }, cur.marketAppFeaturTT = new ElementTooltip(t, {
+            content: '<div class="feature_tooltip__close" onclick="return cur.closeMarketFeatureTT()"></div>' + getLang("groups_edit_market_app_feature_tt"),
+            forceSide: "bottom",
+            cls: "feature_intro_tt feature_info_tooltip hot_feature_tooltip",
+            autoShow: !1,
+            noHideOnClick: !0,
+            noAutoHideOnWindowClick: !0,
+            appendToParent: !0,
+            offset: [6, -3]
+        }))
+    },
+    showFeatureMarketAppTooltip: function(e) {
+        cur.hasMarketApp && (e = e || 0, setTimeout(function() {
+            cur.marketAppFeaturTT && cur.marketAppFeaturTT.show()
+        }, e))
+    },
+    hideFeatureMarketAppTooltip: function() {
+        cur.marketAppFeaturTT && cur.marketAppFeaturTT.hide()
     },
     manageSectionsDD: function() {
         var e, t, o, r = intval(cur.mainSectionDD.val()),
@@ -1735,8 +1762,8 @@ var GroupsEdit = {
         var t = geByClass1("_gedit_bot_features");
         e && !isVisible(t) ? slideDown(t, 300) : !e && isVisible(t) && slideUp(t, 300)
     },
-    toggleMarketBlock: function(e) {
-        e ? (setStyle("group_edit_market_placeholder", "height", getSize("group_edit_market_link")[1] + "px"), hide("group_edit_market_link"), show("group_edit_market_placeholder"), slideDown("group_edit_market", 300), slideUp("group_edit_market_placeholder", 300)) : (hide("group_edit_market_link"), slideUp("group_edit_market", 300))
+    toggleMarketBlock: function(e, t) {
+        e ? (setStyle("group_edit_market_placeholder", "height", getSize("group_edit_market_link")[1] + "px"), hide("group_edit_market_link"), show("group_edit_market_placeholder"), t ? show("group_edit_market") : slideDown("group_edit_market", 300), t ? hide("group_edit_market_placeholder") : slideUp("group_edit_market_placeholder", 300), GroupsEdit.showFeatureMarketAppTooltip(330)) : (hide("group_edit_market_link"), t ? hide("group_edit_market") : slideUp("group_edit_market", 300), GroupsEdit.hideFeatureMarketAppTooltip())
     },
     showMarketTT: function(e, t, o) {
         var r = o ? [-313, -15] : [-110, -8];
@@ -2602,7 +2629,7 @@ var GroupsEdit = {
             r = 282,
             a = getSize(e)[0],
             s = 15;
-        return isObject(e.tt) && t && (e.tt.destroy(), s = 0), showTooltip(e, {
+        if (!cur.hasMarketApp) return isObject(e.tt) && t && (e.tt.destroy(), s = 0), showTooltip(e, {
             text: o,
             hasover: 1,
             slideX: s,
@@ -2614,7 +2641,7 @@ var GroupsEdit = {
     toggleMarketAppSettings: function(e) {
         e = e || ge("market_app");
         var t = isChecked(e) && !hasClass(e, "disabled") && cur.hasMarketApp;
-        toggleClass(ge("market_app_settings"), "hidden", !t)
+        toggleClass(ge("market_app_settings"), "hidden", !t), t ? GroupsEdit.showFeatureMarketAppTooltip() : GroupsEdit.hideFeatureMarketAppTooltip()
     },
     hideMarketAppCoupon: function(e, t, o, r) {
         var a = domPN(ge("market_app_coupon_" + e + "_" + o)),
