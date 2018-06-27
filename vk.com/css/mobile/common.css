@@ -11801,11 +11801,11 @@ a.Pad__corner {
     position: relative;
     background-size: 100%;
     background-repeat: no-repeat;
-    background-image: url('/images/mobile/checkboxes.png?3')
+    background-image: url('/images/mobile/checkboxes.png?4')
 }
 
 .vk_2x .Control__icon:before {
-    background-image: url('/images/mobile/checkboxes_2x.png?3')
+    background-image: url('/images/mobile/checkboxes_2x.png?4')
 }
 
 .Control_type_switcher {
@@ -15463,11 +15463,11 @@ a.Pad__corner {
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: 0 -24px;
-    background-image: url('/images/mobile/checkboxes.png')
+    background-image: url('/images/mobile/checkboxes.png?4')
 }
 
 .vk_2x .adultConfirm__checkboxIcon:after {
-    background-image: url('/images/mobile/checkboxes_2x.png')
+    background-image: url('/images/mobile/checkboxes_2x.png?4')
 }
 
 input:checked+.adultConfirm__checkboxIcon:after {
@@ -22215,17 +22215,17 @@ a.feedBlocks__article:hover {
 }
 
 .feedAssistance_recommendedFriends.feedAssistance_circleFriends .prettyCard__photo {
-    width: 80px;
-    height: 80px;
-    margin: 16px 32px 0;
+    width: 100px;
+    height: 100px;
+    margin: 12px 22px 0;
     border-radius: 50%
 }
 
 .feedAssistance_recommendedFriends.feedAssistance_circleFriends .prettyCard__photo:before {
     width: 144px;
-    height: 96px;
-    right: -32px;
-    top: -16px;
+    height: 112px;
+    right: -22px;
+    top: -12px;
     border-bottom: 0
 }
 
@@ -22242,22 +22242,6 @@ a.feedBlocks__article:hover {
 
 .vk_2x .feedAssistance_recommendedFriends.feedAssistance_circleFriends .prettyCard__closeButton {
     background-image: url('/images/mobile/skins/icon/base_2x.png')
-}
-
-.feedAssistance_recommendedFriends .feedAssistance__header {
-    font-weight: 400;
-    line-height: 1.4;
-    margin-top: -3px;
-    margin-bottom: -2px
-}
-
-.feedAssistance_recommendedFriends__title {
-    font-size: 13px;
-    text-transform: uppercase
-}
-
-.feedAssistance_recommendedFriends__all_link {
-    float: right
 }
 
 .feedAssistance_recommendedFriends .prettyCard__button.goodAuthorSubscribe:before {
@@ -30889,11 +30873,11 @@ body.apps_settingsPageBody {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -48px;
-    background-image: url('/images/mobile/checkboxes.png?3')
+    background-image: url('/images/mobile/checkboxes.png?4')
 }
 
 .vk_2x .Voting__checkbox:after {
-    background-image: url('/images/mobile/checkboxes_2x.png?3')
+    background-image: url('/images/mobile/checkboxes_2x.png?4')
 }
 
 .Voting__optionControl[type=checkbox]:checked+.Voting__checkbox:after {
@@ -30958,11 +30942,11 @@ body.apps_settingsPageBody {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -168px;
-    background-image: url('/images/mobile/checkboxes.png?2')
+    background-image: url('/images/mobile/checkboxes.png?4')
 }
 
 .vk_2x .Voting__myVoteIcon:after {
-    background-image: url('/images/mobile/checkboxes_2x.png?2')
+    background-image: url('/images/mobile/checkboxes_2x.png?4')
 }
 
 
@@ -31442,11 +31426,11 @@ body.apps_settingsPageBody {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -216px;
-    background-image: url('/images/mobile/checkboxes.png?3')
+    background-image: url('/images/mobile/checkboxes.png?4')
 }
 
 .vk_2x .VotingForm__bcgControl {
-    background-image: url('/images/mobile/checkboxes_2x.png?3')
+    background-image: url('/images/mobile/checkboxes_2x.png?4')
 }
 
 .VotingForm__bcgRadio:checked+.VotingForm__bcgControl {

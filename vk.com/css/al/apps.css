@@ -6336,15 +6336,15 @@ td.apps_cat_new_h {
 }
 
 .vkPayOpenApiBox_transfer {
-    width: 835px!important;
-    min-width: 835px!important
+    width: 490px!important;
+    min-width: 490px!important
 }
 
 .vkPayOpenApiBox_transfer .app_container {
-    width: 835px!important;
-    height: 680px!important
+    width: 490px!important;
+    min-height: 493px!important
 }
 
 .vkPayOpenApiBox_transfer .app_container>iframe {
-    height: 680px!important
+    min-height: 493px!important
 }

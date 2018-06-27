@@ -31,14 +31,14 @@ var WallEdit = {
             share: s.share
         }), cur.editHash = o, val(_, " - " + (s.reply ? getLang("wall_editing_reply") : getLang("wall_editing_post"))), addEvent(window, "keydown", WallEdit.handleEditEsc), t = Emoji.emojiToHTML(clean(replaceEntities(t)), !0);
         var w = "";
-        s.signed && !s.no_sign && (w += '<div id="wpe_signed" class="checkbox' + (s.signed > 0 ? " on" : "") + '" onclick="checkbox(this)">' + getLang("wall_suggest_subscribe") + "</div>"), s.post_settings && (w += s.post_settings), w && (w = '<div class="post_edit_settings_wrap"><span onmouseover="Wall.showPostSettings(this);" class="post_settings checkbox_pic"></span><span class="_post_settings_items">' + w + "</span></div>");
+        s.signed && !s.no_sign && (w += '<div id="wpe_signed" class="checkbox' + (s.signed > 0 ? " on" : "") + '" onclick="checkbox(this)">' + getLang("wall_suggest_subscribe") + "</div>"), s.post_settings && (w += s.post_settings), w && (w = '<div class="post_edit_settings_wrap"><div class="post_settings"><span onmouseover="Wall.showPostSettings(this);" onclick="Wall.showPostSettings(this, event);" class="post_settings checkbox_pic" tabindex="0" role="button"></span><span class="_post_settings_items">' + w + "</span></div></div>");
         browser.opera_mobile ? "blur" : "keyup";
         r.parentNode.insertBefore(ce("div", {
             id: "wpe_cont",
             innerHTML: '<div class="clear_fix"><div class="wpe_text_cont _emoji_field_wrap"><div class="emoji_smile_wrap _emoji_wrap"><div class="emoji_smile _emoji_btn" title="' + stripHTML(getLang("wall_reply_emoji_hint")) + '" onmouseover="return WallEdit.emojiShowTT(this, event);" onmouseout="return WallEdit.emojiHideTT(this, event);" onmousedown="return cancelEvent(event);"><div class="emoji_smile_icon"></div></div></div><div id="wpe_text" class="dark" contenteditable="true">' + t + '</div></div></div><div id="wpe_warn"></div><div id="wpe_media_preview" class="clear_fix media_preview"></div>' + (s.add ? '<div class="wpe_auth">' + s.add + "</div>" : "") + '<div class="wpe_buttons">' + (s.noatt ? "" : '<div id="wpe_add_media" class="page_add_media"><span class="add_media_lnk"></span></div>') + "  " + w + '  <button id="wpe_save" class="flat_button" onclick="WallEdit.savePost()">' + (g && intval(g.getAttribute("data-suggest")) ? getLang("wall_publish_suggest") : getLang("global_save")) + '</button>  <button class="wpe_cancel flat_button secondary button_light" onclick="WallEdit.cancelEditPost()">' + getLang("global_cancel") + "</button></div>"
         }, {
             display: "none"
-        }), r);
+        }), r), updateAriaElements();
         var m = {
                 introText: getLang("profile_mention_start_typing"),
                 noResult: getLang("profile_mention_not_found")

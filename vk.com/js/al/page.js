@@ -3632,22 +3632,24 @@ var Wall = {
         ge('send_post').innerHTML = isAnon ? getLang('wall_send') : prevBtnText;
     },
 
-    showPostSettings: function(el) {
-        if (el.initedTooltip) {
-            return;
+    showPostSettings: function(el, ev) {
+        if (!data(el, 'ett')) {
+            var content = domNS(el);
+
+            new ElementTooltip(el, {
+                cls: 'post_settings_tooltip',
+                content: val(content),
+                defaultSide: 'top',
+                offset: [0, -5],
+                appendTo: domPN(el)
+            });
+
+            re(content);
         }
 
-        var content = domNS(el);
-
-        new ElementTooltip(el, {
-            cls: 'post_settings_tooltip',
-            content: val(content),
-            defaultSide: 'top',
-            offset: [0, -5],
-        });
-
-        el.initedTooltip = true;
-        re(content);
+        if (ev && checkKeyboardEvent(ev) && ev.type === 'click') {
+            data(el, 'ett').toggle();
+        }
     },
 
     saveExport: function(el, service, hash) {
@@ -8551,6 +8553,89 @@ var Wall = {
 
             cur.topWallFeatureTT.show();
         }
+    },
+
+    toggleRecommFriend: function(btn, ev, hash) {
+        var card = gpeByClass('friend_recomm_card', btn);
+        var mid = card && +domData(card, 'uid');
+        var from = domData(gpeByClass('ui_gallery', btn), 'from') || 'user_rec';
+
+        if (!mid) {
+            return;
+        }
+
+        ajax.post('al_friends.php', {
+            act: 'add',
+            mid: mid,
+            hash: hash,
+            from: from,
+            ts: vkNow()
+        }, {
+            onDone: function(text) {
+                val(btn, text);
+                addClass(btn, 'secondary');
+                disableButton(btn, true);
+                addClass(card, 'friend_recomm_card_accepted');
+                re(geByClass1('wall_card_text_special', card));
+            },
+            onFail: function(text) {
+                if (!text) return;
+                showFastBox(getLang('global_error'), text);
+                return true;
+            },
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn)
+        });
+
+        cancelEvent(ev);
+        return false;
+    },
+
+    hideRecommFriend: function(btn, ev, hash) {
+        var card = gpeByClass('friend_recomm_card', btn);
+        var mid = card && +domData(card, 'uid');
+        var from = domData(gpeByClass('ui_gallery', btn), 'from') || 'user_rec';
+
+        if (!mid) {
+            return;
+        }
+
+        ajax.post('al_friends.php', {
+            act: 'hide_possible',
+            mid: mid,
+            hash: hash,
+            from: from
+        }, {
+            onDone: function() {
+                var gallery = uiGetGallery(gpeByClass('ui_gallery', btn));
+
+                if (gallery) {
+                    var item = gpeByClass('ui_gallery_item', btn);
+                    gallery.removeItem(item);
+                }
+            },
+            onFail: function(text) {
+                if (!text) return;
+                showFastBox(getLang('global_error'), text);
+                return true;
+            },
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn)
+        });
+
+        cancelEvent(ev);
+        return false;
+    },
+
+    onClickRecommFriend: function(el) {
+        var mid = +domData(el, 'uid');
+        var from = domData(gpeByClass('ui_gallery', el), 'from') || 'user_rec';
+
+        if (!mid) {
+            return;
+        }
+
+        statlogsValueEvent('friends_recomm_block', 'open_user', [mid, vkNow(), from].join('|'));
     },
 }
 

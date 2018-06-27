@@ -1,5 +1,6 @@
 #gtop_aesweb_available .gtop_image,
 #gtop_app_in_groups .gtop_image,
+#gtop_market_app .gtop_image,
 #gtop_money_transfer .gtop_image,
 .app_widget_list_info.address:before,
 .app_widget_list_info.time:before,
@@ -1327,6 +1328,26 @@ a.group_app_button:after {
     }
 }
 
+#gtop_market_app.gtop_complex_message {
+    min-height: 100px
+}
+
+#gtop_market_app .gtop_image {
+    background: url(/images/groups/market_app_notice.png) no-repeat 0 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #gtop_market_app .gtop_image {
+        background-image: url(/images/groups/market_app_notice_2x.png);
+        background-size: 100px 100px
+    }
+}
+
 .group_manage_row {
     margin-bottom: 8px
 }
@@ -2523,4 +2544,39 @@ a.app_widget_matches_live_icon:active {
     to {
         opacity: 0
     }
+}
+
+.vk_pay {
+    height: 14px;
+    width: 40px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2039.46%2014%22%20height%3D%22100%25%22%20width%3D%22100%25%22%3E%3Ctitle%3Evk_pay_badge_14%3C%2Ftitle%3E%0A%20%20%3Cpath%20d%3D%22M4.85%2C0H9.15C13.07%2C0%2C14%2C.93%2C14%2C4.85V9.15C14%2C13.07%2C13.07%2C14%2C9.15%2C14H4.85C.93%2C14%2C0%2C13.07%2C0%2C9.15V4.85C0%2C.93.93%2C0%2C4.85%2C0Zm6.68%2C4.75c.06-.22%2C0-.38-.31-.38h-1a.44.44%2C0%2C0%2C0-.44.29A8.54%2C8.54%2C0%2C0%2C1%2C8.51%2C6.75c-.24.24-.35.31-.48.31S7.88%2C7%2C7.88%2C6.77v-2c0-.26-.08-.38-.29-.38H6a.25.25%2C0%2C0%2C0-.26.23c0%2C.25.37.3.41%2C1v1.5c0%2C.33-.06.39-.19.39-.35%2C0-1.19-1.27-1.69-2.73-.1-.28-.2-.4-.46-.4h-1c-.29%2C0-.35.14-.35.29A8.2%2C8.2%2C0%2C0%2C0%2C4%2C8%2C4%2C4%2C0%2C0%2C0%2C7.15%2C9.92c.65%2C0%2C.73-.15.73-.4V8.6c0-.29.06-.35.27-.35s.41.08%2C1%2C.66.81%2C1%2C1.2%2C1h1c.29%2C0%2C.44-.15.35-.43a4.38%2C4.38%2C0%2C0%2C0-.86-1.2c-.24-.28-.59-.58-.7-.74s-.11-.28%2C0-.45A12.78%2C12.78%2C0%2C0%2C0%2C11.54%2C4.75Z%22%20transform%3D%22translate(0)%22%20fill%3D%22%23a2acb8%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M21.6%2C3.45a3.06%2C3.06%2C0%2C0%2C1%2C1.26.27%2C3.24%2C3.24%2C0%2C0%2C1%2C1%2C.74%2C3.64%2C3.64%2C0%2C0%2C1%2C.72%2C1.13A3.71%2C3.71%2C0%2C0%2C1%2C24.9%2C7a3.71%2C3.71%2C0%2C0%2C1-.27%2C1.43%2C3.64%2C3.64%2C0%2C0%2C1-.72%2C1.13%2C3.24%2C3.24%2C0%2C0%2C1-1%2C.74%2C3.06%2C3.06%2C0%2C0%2C1-1.26.27%2C2.53%2C2.53%2C0%2C0%2C1-.77-.11%2C4.22%2C4.22%2C0%2C0%2C1-.57-.23%2C2.5%2C2.5%2C0%2C0%2C1-.49-.35v3H18V3.52h1.3l.31.68a2.66%2C2.66%2C0%2C0%2C1%2C.54-.38%2C4.2%2C4.2%2C0%2C0%2C1%2C.63-.26A2.63%2C2.63%2C0%2C0%2C1%2C21.6%2C3.45ZM19.61%2C7a1.89%2C1.89%2C0%2C0%2C0%2C.51%2C1.38%2C1.79%2C1.79%2C0%2C0%2C0%2C2.51%2C0A1.89%2C1.89%2C0%2C0%2C0%2C23.13%2C7a1.89%2C1.89%2C0%2C0%2C0-.51-1.38%2C1.79%2C1.79%2C0%2C0%2C0-2.51%2C0A1.89%2C1.89%2C0%2C0%2C0%2C19.61%2C7ZM29%2C3.45a2.91%2C2.91%2C0%2C0%2C1%2C1.1.2%2C2.63%2C2.63%2C0%2C0%2C1%2C.87.57%2C2.6%2C2.6%2C0%2C0%2C1%2C.57.86%2C2.83%2C2.83%2C0%2C0%2C1%2C.21%2C1.09V10.5h-1.3l-.31-.68a3.39%2C3.39%2C0%2C0%2C1-.54.38%2C3%2C3%2C0%2C0%2C1-.63.27%2C2.8%2C2.8%2C0%2C0%2C1-.83.11A2.54%2C2.54%2C0%2C0%2C1%2C26.43%2C10a1.83%2C1.83%2C0%2C0%2C1-.61-1.42A2.17%2C2.17%2C0%2C0%2C1%2C26%2C7.66a1.82%2C1.82%2C0%2C0%2C1%2C.7-.74A4%2C4%2C0%2C0%2C1%2C28%2C6.43a9.73%2C9.73%2C0%2C0%2C1%2C2-.17%2C1.22%2C1.22%2C0%2C0%2C0-.31-.89A1.12%2C1.12%2C0%2C0%2C0%2C28.88%2C5a1.1%2C1.1%2C0%2C0%2C0-.56.12%2C1.37%2C1.37%2C0%2C0%2C0-.33.26.88.88%2C0%2C0%2C0-.18.38H26a2.67%2C2.67%2C0%2C0%2C1%2C.28-.91%2C2.42%2C2.42%2C0%2C0%2C1%2C.61-.74%2C3%2C3%2C0%2C0%2C1%2C.91-.51A3.5%2C3.5%2C0%2C0%2C1%2C29%2C3.45ZM28.5%2C9.21a1.54%2C1.54%2C0%2C0%2C0%2C1.11-.4%2C1.37%2C1.37%2C0%2C0%2C0%2C.42-1v-.3a9.21%2C9.21%2C0%2C0%2C0-1.26.07%2C2.62%2C2.62%2C0%2C0%2C0-.74.2.74.74%2C0%2C0%2C0-.36.31.9.9%2C0%2C0%2C0-.09.41.7.7%2C0%2C0%2C0%2C.26.52A1%2C1%2C0%2C0%2C0%2C28.5%2C9.21Zm3.92-5.69h1.84L36%2C8.07l1.61-4.55h1.84L38.1%2C7l-.51%2C1.3-.45%2C1.16-.34.87-.17.41a9%2C9%2C0%2C0%2C1-.51%2C1.05%2C3.11%2C3.11%2C0%2C0%2C1-.54.71%2C1.82%2C1.82%2C0%2C0%2C1-.63.39%2C2.25%2C2.25%2C0%2C0%2C1-.77.12h-.24l-.19%2C0-.18%2C0V11.49a1.38%2C1.38%2C0%2C0%2C0%2C.9-.26%2C1.68%2C1.68%2C0%2C0%2C0%2C.48-.65l.15-.38Z%22%20transform%3D%22translate(0)%22%20fill%3D%22%2395a0ad%22%2F%3E%0A%3C%2Fsvg%3E") 0 0 no-repeat;
+    background-size: 40px 14px
+}
+
+.group_row_info .group_row_labeled.inline {
+    display: inline-block
+}
+
+.group_row_info .vk_pay {
+    display: inline-block;
+    margin-left: 7px;
+    height: 15px;
+    width: 60px;
+    background-position: 7px 1px
+}
+
+.group_row_info .vk_pay:before {
+    content: "\00b7";
+    color: #939393;
+    padding: 0 1px;
+    text-decoration: none;
+    vertical-align: middle;
+    display: inline-block;
+    pointer-events: none;
+    position: relative;
+    left: -3px
+}
+
+.page_info_tabs .vk_pay {
+    margin: 18px 10px 0px auto
 }

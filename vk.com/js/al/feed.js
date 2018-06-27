@@ -151,7 +151,7 @@ var Feed = {
                             l = 0;
                         if ("news" == cur.section) {
                             if (a = scrollGetY(), o) {
-                                for (d.innerHTML = o; d.lastChild;) r = d.lastChild, c.insertBefore(r, c.firstChild), Wall.onPostLoaded(r, !0);
+                                for (d.innerHTML = o; d.lastChild;) r = d.lastChild, c.insertBefore(r, c.firstChild), Feed.onPostLoaded(r, !0);
                                 each(geByClass("ts" + s, c), function() {
                                     var e = this;
                                     l += this.offsetHeight, nodeUpdated(e), cur.feedUnreadCount++
@@ -187,7 +187,7 @@ var Feed = {
                                 }), c.firstChild), inArray(n, cur.feedToSort) || cur.feedToSort.push(n)) : (re(i.parentNode), c.insertBefore(i.parentNode, c.firstChild), m > g + w + 100 && (_ = v), _ && scrollToY(scrollGetY() + _, 0, !1, !0)), cur.feedUnreadCount += p
                             }
                             d.removeChild(r)
-                        } else a = scrollGetY(), c.insertBefore(r, c.firstChild), Wall.onPostLoaded(r, !0), nodeUpdated(r), l = r.offsetHeight, a > 100 && scrollToY(a + l, 0, !1, !0);
+                        } else a = scrollGetY(), c.insertBefore(r, c.firstChild), Feed.onPostLoaded(r, !0), nodeUpdated(r), l = r.offsetHeight, a > 100 && scrollToY(a + l, 0, !1, !0);
                         else d.removeChild(r);
                         feed.applyOptions(t), feed.updateTitle()
                     }
@@ -302,15 +302,15 @@ var Feed = {
                             label: getLang("news_show_X_reposts", w.length)
                         });
                         var x = se('<div class="feed_row' + (C ? "_unshown" : "") + '">' + b + "</div>"),
-                            S = domFC(S);
+                            B = domFC(B);
                         Wall.updateAnonNewPost(e, x), m.insertBefore(x, m.firstChild), !C && feed.needScrollPost(t, x) && (c += x.offsetHeight + d(x)), P = !0, p = x.firstChild, f = geByClass1("feed_reposts_first", p, "div"), h = geByClass1("feed_reposts_group", p, "div"), each(clone(w), function() {
                             feed.needScrollPost(t, this) && (c -= this.offsetHeight + d(this)), re(this.parentNode), h.appendChild(this.firstChild)
                         })
                     } else f = se('<div class="feed_row' + (C ? "_unshown" : "") + '"><div class="feed_repost' + y + '">' + b + "</div></div>"), Wall.updateAnonNewPost(e, f), m.insertBefore(f, m.firstChild), P = !0, !C && feed.needScrollPost(t, f) && (c += f.offsetHeight + d(f))
                 } else f = se('<div class="feed_row' + (C ? "_unshown" : "") + '">' + b + "</div>"), Wall.updateAnonNewPost(e, f), m.insertBefore(f, m.firstChild), P = !0, !C && feed.needScrollPost(t, f) && (c += f.offsetHeight + d(f));
                 if (0 == e[8]) {
-                    var B = geByClass1("post", f);
-                    addClass(B, "closed_comments")
+                    var S = geByClass1("post", f);
+                    addClass(S, "closed_comments")
                 }
                 C && P && (cur.newPostsCount = cur.newPostsCount ? cur.newPostsCount + 1 : 1, cur.feedEls.newPosts.innerHTML = getLang("news_new_posts", cur.newPostsCount), addClass(cur.feedEls.wrap, "feed_has_new"), 1 == cur.newPostsCount && feed.needScrollPost(t, cur.feedEls.newPosts) && !k && (c += getSize(cur.feedEls.newPosts)[1])), AudioUtils.updateQueueReceivedPost(f), wall.votingUpdateByPostRaw(r), cur.feedUnreadCount++, "search" != n && nodeUpdated(f), v.length > 300 ? m.removeChild(v[300]) : v.length <= 1 && removeClass(cur.feedEls.wrap, "feed_is_empty"), Wall.updateMentionsIndex();
                 break;
@@ -359,41 +359,41 @@ var Feed = {
                 break;
             case "new_reply":
                 if (!i || cur.wallMyReplied[r] || ge("post" + e[3])) break;
-                var A = ge("replies" + r),
-                    F = ge("replies_wrap" + r),
-                    D = i.offsetHeight,
+                var F = ge("replies" + r),
+                    D = ge("replies_wrap" + r),
+                    A = i.offsetHeight,
                     u = r.split("_")[0],
                     l = 0 > u ? 8 & a ? 2 : 2 & a ? 1 : 0 : 0,
                     V = wall.getNewReplyHTML(e, l),
                     f = !1,
                     q = !1;
-                if (isVisible(A) && isVisible(F) && !isVisible("reply_link" + r)) {
-                    var I = A.nextSibling,
-                        O = geByClass("new_reply", A, "div").length + 1;
+                if (isVisible(F) && isVisible(D) && !isVisible("reply_link" + r)) {
+                    var I = F.nextSibling,
+                        O = geByClass("new_reply", F, "div").length + 1;
                     if (cur.wallMyOpened[r]) {
                         I && "replies_open" == I.className && re(I), q = !0;
-                        var U = geByClass1("wr_header", A, "a"),
-                            W = geByClass("reply", A, "div").length + 1,
-                            Y = W;
-                        U && (Y = intval(U.getAttribute("offs").split("/")[1]) + 1), (Y > 5 || Y > W) && (U || A.insertBefore(U = ce("a", {
+                        var U = geByClass1("wr_header", F, "a"),
+                            Y = geByClass("reply", F, "div").length + 1,
+                            W = Y;
+                        U && (W = intval(U.getAttribute("offs").split("/")[1]) + 1), (W > 5 || W > Y) && (U || F.insertBefore(U = ce("a", {
                             className: "wr_header"
-                        }), A.firstChild), wall.updateRepliesHeader(r, U, W, Y))
+                        }), F.firstChild), wall.updateRepliesHeader(r, U, Y, W))
                     } else V = wall.updatePostImages(V), f = se(V), addClass(f, "new_reply"), I && "replies_open" == I.className || (I = ce("div", {
                         className: "replies_open",
                         onclick: wall.openNewComments.pbind(r),
                         role: "button",
                         tabIndex: 0
-                    }), A.parentNode.insertBefore(I, A.nextSibling)), I.innerHTML = getLang("wall_x_new_replies_more", Math.min(100, O)), I.newCnt = O
-                } else re("reply_link" + r), show(F, A), q = !0;
-                r.split("_")[0] == vk.id && cur.feedUnreadCount++, f || (f = se(V)), A.appendChild(f), feed.needScrollPost(t, q ? f : I) && (c += i.offsetHeight - D), q && nodeUpdated(f), Wall.repliesSideSetup(r), Wall.updateMentionsIndex(), Likes.update("wall" + r, {
+                    }), F.parentNode.insertBefore(I, F.nextSibling)), I.innerHTML = getLang("wall_x_new_replies_more", Math.min(100, O)), I.newCnt = O
+                } else re("reply_link" + r), show(D, F), q = !0;
+                r.split("_")[0] == vk.id && cur.feedUnreadCount++, f || (f = se(V)), F.appendChild(f), feed.needScrollPost(t, q ? f : I) && (c += i.offsetHeight - A), q && nodeUpdated(f), Wall.repliesSideSetup(r), Wall.updateMentionsIndex(), Likes.update("wall" + r, {
                     comment_num: e[13]
                 });
                 break;
             case "del_reply":
                 if (!cur.wallMyDeleted[r] && i) {
                     feed.needScrollPost(t, i) && (c -= i.offsetHeight);
-                    var B = i.parentNode.id.match(/replies(-?\d+_\d+)/);
-                    revertLastInlineVideo(i), re(i), B && Wall.repliesSideSetup(B[1])
+                    var S = i.parentNode.id.match(/replies(-?\d+_\d+)/);
+                    revertLastInlineVideo(i), re(i), S && Wall.repliesSideSetup(S[1])
                 }
                 break;
             case "view_post":
@@ -404,11 +404,11 @@ var Feed = {
             case "like_post":
             case "like_reply":
                 if (!i) break;
-                var z = "like_reply" == s ? "wall_reply" + r : r,
-                    G = i && domByClass(i, "_like_wrap"),
+                var G = "like_reply" == s ? "wall_reply" + r : r,
+                    z = i && domByClass(i, "_like_wrap"),
                     K = i && domByClass(i, "_share_wrap");
-                wall.likeFullUpdate(G, z, {
-                    like_my: G && hasClass(G, "my_like"),
+                wall.likeFullUpdate(z, G, {
+                    like_my: z && hasClass(z, "my_like"),
                     like_num: e[3],
                     like_title: !1,
                     share_my: K && hasClass(K, "my_share"),
@@ -635,7 +635,7 @@ var Feed = {
             var e, t = ge("feed_rows_next");
             if (t) {
                 if (t.firstChild)
-                    for (; t.firstChild;) e = t.firstChild, cur.rowsCont.insertBefore(e, t), Wall.onPostLoaded(e, !0);
+                    for (; t.firstChild;) e = t.firstChild, cur.rowsCont.insertBefore(e, t), Feed.onPostLoaded(e, !0);
                 re(t)
             }
             "live" == cur.section && (cur.all_shown = !0);
@@ -661,7 +661,7 @@ var Feed = {
                             if (s) return void(cur.disableAutoMore = !0);
                             if (t) {
                                 var o, i = ce("div");
-                                for (i.innerHTML = t; o = i.firstChild;) o.firstChild && o.firstChild.id && !ge(o.firstChild.id) || "feedback_unread_bar" == o.id || hasClass(o, "feed_row_fb_hidden") || hasClass(o, "feed_to_recomm") ? (cur.rowsCont.appendChild(o), Wall.onPostLoaded(o, !0)) : i.removeChild(o)
+                                for (i.innerHTML = t; o = i.firstChild;) o.firstChild && o.firstChild.id && !ge(o.firstChild.id) || "feedback_unread_bar" == o.id || hasClass(o, "feed_row_fb_hidden") || hasClass(o, "feed_to_recomm") ? (cur.rowsCont.appendChild(o), Feed.onPostLoaded(o, !0)) : i.removeChild(o)
                             }
                             shortCurrency(), feed.applyOptions(e), setTimeout(feed.scrollCheck, 200)
                         }
@@ -1356,15 +1356,19 @@ var Feed = {
                 for (Page.postsUnseen(f), r = cur.topRow; r && (t = l ? l : r.offsetTop, !(t >= d + c)); r = i)
                     if (i = domNS(r), "feed_rows_next" == (i || {}).id && (i = null), l = i ? i.offsetTop : t + r.offsetHeight, d > l && i && (cur.topRow = i), LongView && LongView.register(r, "feed"), !a.registerElement(r) && (n = r.bits || 0, !(n >= 3) && (cur.feedSeenPostHeight > 0 ? (cur.feedPostHeaderHeight = cur.feedPostHeaderHeight || getH(geByClass1("post_header", r)), o = t + cur.feedPostHeaderHeight, s = o + cur.feedSeenPostHeight, r.postBottom || (r.postBottom = o + getH(geByClass1("wall_text", r))), s = Math.min(s, r.postBottom), n |= (o >= d && d + c > o ? 1 : 0) | (s >= d && d + c > s ? 2 : 0)) : n |= (t >= d && d + c > t ? 1 : 0) | (l >= d && d + c > l ? 2 : 0), n && (r.bits = n, 3 == n)))) {
                         var p = feed.postsGetRaws(r);
-                        u.push(p), hasClass(r, "feed_to_recomm") && statlogsValueEvent("promo_button_view_blocks", p.index, p.module)
+                        if (u.push(p), hasClass(r, "feed_to_recomm")) statlogsValueEvent("promo_button_view_blocks", p.index, p.module);
+                        else if (geByClass1("feed_friends_recomm", r)) {
+                            var _ = domData(geByClass1("ui_gallery", r), "from");
+                            statlogsValueEvent("friends_recomm_block", "view_block", [_, p.index, vkNow(), p.module].join("|"))
+                        }
                     }
                 u = u.concat(a.process(d, c)), LongView && LongView.onScroll(d, c), Page.postsSeen(u);
-                var _ = ge("show_more_link"),
-                    h = _.offsetTop;
-                if (!_.seen && h >= d && d + c > h) {
-                    _.seen = Date.now();
-                    var g = cur.section + (cur.subsection ? "_" + cur.subsection : "");
-                    statlogsValueEvent("feed_load_more_seen", isButtonLocked(_), g)
+                var h = ge("show_more_link"),
+                    g = h.offsetTop;
+                if (!h.seen && g >= d && d + c > g) {
+                    h.seen = Date.now();
+                    var w = cur.section + (cur.subsection ? "_" + cur.subsection : "");
+                    statlogsValueEvent("feed_load_more_seen", isButtonLocked(h), w)
                 }
             }
         }
@@ -1440,7 +1444,7 @@ var Feed = {
                         t = {};
                     each(loadedPostsCheckerElements, function(o) {
                         var s = ge(o);
-                        if (s && hasClass(s, "feed_row")) return s.firstChild ? void Wall.onPostLoaded(s, !0) : (t[o] = !0, void(e = !1))
+                        if (s && hasClass(s, "feed_row")) return s.firstChild ? void Feed.onPostLoaded(s, !0) : (t[o] = !0, void(e = !1))
                     }), e || (loadedPostsCheckerElements = t, setTimeout(loadedPostsChecker, loadedPostsCheckerInterval))
                 }
             };
@@ -1470,7 +1474,7 @@ var Feed = {
                 }
                 ge("feed_wall").className = wallClass, toggle("feed_recommends", inArray(cur.section, ["news", "recommended", "videos"])), val("feed_app_widget", app_widget_html || ""), toggle("feed_app_widget", app_widget_html), app_widget_html && app_widget_js && eval(app_widget_js), cur.rowsCont && cur.rowsCont.children && (each(cur.rowsCont.children, function() {
                     var e = this;
-                    if (hasClass(e, "feed_row")) return e.id && !e.firstChild ? void(loadedPostsCheckerElements[e.id] = !0) : void Wall.onPostLoaded(e, !0)
+                    if (hasClass(e, "feed_row")) return e.id && !e.firstChild ? void(loadedPostsCheckerElements[e.id] = !0) : void Feed.onPostLoaded(e, !0)
                 }), isEmpty(loadedPostsCheckerElements) || setTimeout(loadedPostsChecker, 10)), setTimeout(feed.scrollCheck, 200)
             },
             onFail: function() {
@@ -1569,7 +1573,7 @@ var Feed = {
             }
         }), cur.idleManager.onUnIdle = feed.updateTitle, cur.idleManager.onIdle = feed.reSortItems, cur.options = cur.options || {}, extend(cur.options, e), feed.applyOptions(e, 3), cur.rowsCont = e.wallCont = ge("feed_rows"), wall.init(e), cur.rowsCont && cur.rowsCont.children && each(cur.rowsCont.children, function() {
             var e = this;
-            hasClass(e, "feed_row") && e.firstChild && Wall.onPostLoaded(e, !0)
+            hasClass(e, "feed_row") && e.firstChild && Feed.onPostLoaded(e, !0)
         }), cur._back = {
             text: getLang("news_return_to_news"),
             show: [feed.startEvents],
@@ -1797,6 +1801,39 @@ var Feed = {
             var e = [cur.section, cur.subsection].filter(Boolean).join("_");
             TimeSpent.update(e)
         }
+    },
+    onPostLoaded: function(e, t) {
+        var o = geByClass1("ui_gallery", e);
+        if (o) {
+            var s = domData(o, "from") || "user_rec",
+                r = {
+                    scrollY: !1,
+                    onViewItem: function(e, t) {
+                        if (!e.viewed) {
+                            var o = geByClass1("friend_recomm_card", e),
+                                r = o && +domData(o, "uid");
+                            statlogsValueEvent("friends_recomm_block", "show_user_rec", [r, vkNow(), t, s].join("|")), e.viewed = !0
+                        }
+                    },
+                    onDestroy: function() {
+                        re(e)
+                    }
+                };
+            cur.friends_recomm_from && (r.onLoadMore = function() {
+                ajax.post("al_feed.php", {
+                    act: "a_recomm_friends_gallery",
+                    from: cur.friends_recomm_from
+                }, {
+                    onDone: function(e, t) {
+                        var s = [];
+                        e && (s = domChildren(ce("div", {
+                            innerHTML: e
+                        }))), uiGetGallery(o).addMore(s, !t), cur.friends_recomm_from = t
+                    }
+                })
+            }), new uiGallery(o, r)
+        }
+        Wall.onPostLoaded(e, t)
     }
 };
 window.feed = Feed;

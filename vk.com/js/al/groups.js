@@ -454,6 +454,19 @@ var Groups = {
             showProgress: lockButton.pbind(n),
             hideProgress: unlockButton.pbind(n)
         })
+    },
+    hideTopNotice: function(e, o, t) {
+        var a = "gtop_" + e,
+            n = {
+                act: "hide_top_notice",
+                notice: e,
+                group_id: o,
+                hash: t
+            };
+        return ajax.post("al_groups.php", n), slideUp(ge(a), 150, re.pbind(a)), !1
+    },
+    goToTopNoticeMoreLink: function(e, o, t, a) {
+        return statlogsValueEvent("groups_top_notice", 1, o, "accept"), checkEvent(e) || a ? !0 : nav.go(t)
     }
 };
 try {
