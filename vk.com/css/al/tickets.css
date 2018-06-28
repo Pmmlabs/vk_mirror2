@@ -761,8 +761,8 @@ body.dev .tickets_header_links {
     background-position: 0 -195px
 }
 
-.tickets_header_links .ui_actions_menu_item.tickets_header_links_send_form:before {
-    background-position: 0 -130px
+.tickets_header_links .ui_actions_menu_item.helpdesk_header_links_send_form:before {
+    background-position: 0 -132px
 }
 
 .tickets_header_links .ui_actions_menu_item.tickets_header_links_take_to_section:before {

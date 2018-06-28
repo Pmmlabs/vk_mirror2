@@ -1294,17 +1294,41 @@ var Helpdesk = {
     },
     sendPayForm: function(e) {
         var t = showFastBox({
-            title: getLang("support_send_form_to_user"),
-            width: 500
-        }, cur.send_pay_label, getLang("box_send"), function() {
-            Helpdesk.doSendPayForm(val("tickets_send_comm"), t, e)
-        }, getLang("global_cancel"));
-        return !1
+                title: getLang("support_send_form_to_user"),
+                width: 500
+            }, cur.sendPayFormBox, getLang("box_send"), function() {
+                Helpdesk.doSendPayForm(val("tickets_send_comm"), t, e)
+            }, getLang("global_cancel")),
+            s = ge("tickets_send_comm");
+        return s && autosizeSetup(s, {}), !1
     },
     doSendPayForm: function(e, t, s) {
         var a = geByClass1("flat_button", t.bodyNode);
-        return ajax.post("helpdesk", {
-            act: "send_pay_form",
+        return ajax.post("helpdesk?act=a_send_pay_form", {
+            ticket_id: cur.ticket_id,
+            text: e,
+            hash: s
+        }, {
+            onDone: function(e, s) {
+                t.hide(), Helpdesk._show(e, s)
+            },
+            showProgress: lockButton.pbind(a),
+            hideProgress: unlockButton.pbind(a)
+        }), !1
+    },
+    sendVkPayCodeRequest: function(e) {
+        var t = showFastBox({
+                title: getLang("support_send_vkpay_code_request_to_user"),
+                width: 500
+            }, cur.sendVkPayCodeRequestBox, getLang("box_send"), function() {
+                Helpdesk.doSendVkPayCodeRequest(val("tickets_send_comm"), t, e)
+            }, getLang("global_cancel")),
+            s = ge("tickets_send_comm");
+        return s && autosizeSetup(s, {}), !1
+    },
+    doSendVkPayCodeRequest: function(e, t, s) {
+        var a = geByClass1("flat_button", t.bodyNode);
+        return ajax.post("helpdesk?act=a_send_vkpay_code_request", {
             ticket_id: cur.ticket_id,
             text: e,
             hash: s

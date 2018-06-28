@@ -6392,3 +6392,7 @@ td.apps_cat_new_h {
 .vkPayOpenApiBox_transfer .app_container>iframe {
     min-height: 493px!important
 }
+
+.wk_wiki_content #apps_layer .apps_header {
+    border-radius: 4px 4px 0 0
+}
