@@ -353,6 +353,24 @@ var Tickets = {
             extend(i, Tickets.getPayFields()), Tickets.doSendReply(i)
         }
     },
+    checkVkPayForm: function() {
+        var e = val("tickets_vkpay_code"),
+            t = ge("tickets_vkpay_phone"),
+            a = !0;
+        if (e.match(/^\d{4}$/) || (notaBene("tickets_vkpay_code"), a = !1), t) {
+            var i = trim(val(t));
+            i.match(/^[\d\*]{10,}$/) || (notaBene("tickets_vkpay_phone"), a = !1)
+        }
+        return a
+    },
+    addVkPayData: function(e) {
+        if (!cur.sendingAnswer && Tickets.checkVkPayForm()) {
+            var t = Tickets.getReplyQueryData("", e, []);
+            extend(t, {
+                ef: [val("tickets_vkpay_code"), val("tickets_vkpay_phone")]
+            }), Tickets.doSendReply(t)
+        }
+    },
     doSendReply: function(query) {
         Tickets.removeReplyDraft(), cur.sendingAnswer = !0, ajax.post(cur.objLoc, query, {
             onDone: function(content, script) {
@@ -1552,6 +1570,13 @@ var Tickets = {
         var t = domPN(domPN(e)),
             a = geByClass1("wk_hider_body", t);
         toggleClass(t, "wk_hider_box"), toggleClass(t, "wk_hider_box_opened"), hasClass(t, "wk_hider_box_opened") ? slideDown(a, 200) : slideUp(a, 200)
+    },
+    payoutFormTT: function(e, t) {
+        showTooltip(e, {
+            text: t,
+            dir: "bottom",
+            forcetoup: !0
+        })
     },
     _eof: 1
 };

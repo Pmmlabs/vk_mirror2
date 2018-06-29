@@ -5192,12 +5192,20 @@ Ads.showNewFeatureTooltip = function(ttp, el, opts) {
 
     var tooltipName = ttp;
     var tooltipLs = tooltipName + '_hidden';
+    var tooltipDisplayCounterLs = tooltipName + '_display_counter';
 
     if (ls.get(tooltipLs) || cur[tooltipName]) {
         return;
     }
 
     opts = opts || {};
+
+    if (opts.displayCounter) {
+        var tooltipDisplayCounter = ls.get(tooltipDisplayCounterLs);
+        if (tooltipDisplayCounter && (parseInt(tooltipDisplayCounter, 10) >= parseInt(opts.displayCounter, 10))) {
+            return;
+        }
+    }
 
     var defaultOpts = {
         autoShow: false,
@@ -5231,6 +5239,10 @@ Ads.showNewFeatureTooltip = function(ttp, el, opts) {
     var params = extend(defaultOpts, opts);
     cur[tooltipName] = new ElementTooltip(el, params);
     cur[tooltipName].show();
+
+    if (opts.displayCounter) {
+        ls.set(tooltipDisplayCounterLs, (ls.get(tooltipDisplayCounterLs) + 1));
+    }
 
     cur[tooltipName].closeTooltip = function(event) {
         cancelEvent(event);

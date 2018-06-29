@@ -590,7 +590,7 @@ var Photoview = {
                 }
                 v = v || "", cur.pvAlbumName.innerHTML = v, toggle(cur.pvBottomInfo, !cur.pvIsLightMode || cur.pvShowBottomActions || v);
                 var b = [];
-                if (!p.taginfo && p.actions.tag && p.tags[0] < cur.pvMaxTags && b.push("<a id=\"pv_tag_link\" onclick=\"stManager.add(['photo_tagger_mode.js', 'tagger.css', 'tagger.js'], function() { Phototag.startTag(); })\">" + getLang("photos_tagperson") + "</a>"), p.actions.del && b.push('<a id="pv_delete" onclick="Photoview.deletePhoto()">' + getLang("photos_pv_act_delete") + "</a>"), p.actions.save && b.push('<a id="pv_save_to_me" onclick="Photoview.savePhoto()">' + getLang("photos_pv_act_save") + "</a>"), cur.pvShowBottomActions && !n) {
+                if (vk.id && b.push('<a id="pv_share" onclick="Photoview.sendPhoto()">' + getLang("photos_share_from_view") + "</a>"), !p.taginfo && p.actions.tag && p.tags[0] < cur.pvMaxTags && b.push("<a id=\"pv_tag_link\" onclick=\"stManager.add(['photo_tagger_mode.js', 'tagger.css', 'tagger.js'], function() { Phototag.startTag(); })\">" + getLang("photos_tagperson") + "</a>"), p.actions.del && b.push('<a id="pv_delete" onclick="Photoview.deletePhoto()">' + getLang("photos_pv_act_delete") + "</a>"), p.actions.save && b.push('<a id="pv_save_to_me" onclick="Photoview.savePhoto()">' + getLang("photos_pv_act_save") + "</a>"), cur.pvShowBottomActions && !n) {
                     var C = [],
                         L = [];
                     if (p.actions.spam && (C.push(["spam", getLang("photos_report"), "", "Photoview.showSpamActions()"]), C.push("sep"), L = cur.pvReasons), p.actions.forbid) {

@@ -1358,17 +1358,20 @@ var Feed = {
                         var p = feed.postsGetRaws(r);
                         if (u.push(p), hasClass(r, "feed_to_recomm")) statlogsValueEvent("promo_button_view_blocks", p.index, p.module);
                         else if (geByClass1("feed_friends_recomm", r)) {
-                            var _ = domData(geByClass1("ui_gallery", r), "from");
-                            statlogsValueEvent("friends_recomm_block", "view_block", [_, p.index, vkNow(), p.module].join("|"))
+                            var _ = geByClass1("ui_gallery", r),
+                                h = domData(_, "from");
+                            uiGetGallery(_).getVisibleItems().forEach(function(e) {
+                                Feed.onViewFriendRecomm(e[0], e[1], h)
+                            }), _.visible = !0, statlogsValueEvent("friends_recomm_block", "view_block", [h, p.index, vkNow(), p.module].join("|"))
                         }
                     }
                 u = u.concat(a.process(d, c)), LongView && LongView.onScroll(d, c), Page.postsSeen(u);
-                var h = ge("show_more_link"),
-                    g = h.offsetTop;
-                if (!h.seen && g >= d && d + c > g) {
-                    h.seen = Date.now();
-                    var w = cur.section + (cur.subsection ? "_" + cur.subsection : "");
-                    statlogsValueEvent("feed_load_more_seen", isButtonLocked(h), w)
+                var g = ge("show_more_link"),
+                    w = g.offsetTop;
+                if (!g.seen && w >= d && d + c > w) {
+                    g.seen = Date.now();
+                    var m = cur.section + (cur.subsection ? "_" + cur.subsection : "");
+                    statlogsValueEvent("feed_load_more_seen", isButtonLocked(g), m)
                 }
             }
         }
@@ -1809,11 +1812,7 @@ var Feed = {
                 r = {
                     scrollY: !1,
                     onViewItem: function(e, t) {
-                        if (!e.viewed) {
-                            var o = geByClass1("friend_recomm_card", e),
-                                r = o && +domData(o, "uid");
-                            statlogsValueEvent("friends_recomm_block", "show_user_rec", [r, vkNow(), t, s].join("|")), e.viewed = !0
-                        }
+                        o.visible && Feed.onViewFriendRecomm(e, t, s)
                     },
                     onDestroy: function() {
                         re(e)
@@ -1834,6 +1833,13 @@ var Feed = {
             }), new uiGallery(o, r)
         }
         Wall.onPostLoaded(e, t)
+    },
+    onViewFriendRecomm: function(e, t, o) {
+        if (!e.viewed) {
+            var s = geByClass1("friend_recomm_card", e),
+                r = s && +domData(s, "uid");
+            statlogsValueEvent("friends_recomm_block", "show_user_rec", [r, vkNow(), t, o].join("|")), e.viewed = !0
+        }
     }
 };
 window.feed = Feed;

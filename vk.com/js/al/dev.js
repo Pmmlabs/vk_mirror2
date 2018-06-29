@@ -1204,19 +1204,12 @@ var Dev = {
     },
 
     reportError: function(address, title) {
-        return !showBox('/bugs', {
-            act: 'new_box',
-            doc: address,
-            doc_title: replaceEntities(title)
-        }, {
-            stat: ['wide_dd.js', 'wide_dd.css', 'page.css', 'page.js', 'upload.js'],
-            cache: 1,
-            dark: 1,
-            params: {
-                width: 500,
-                hideButtons: true,
-                bodyStyle: 'border: 0px; padding: 0px'
-            }
+        nav.go({
+            0: 'bugtracker',
+            act: 'add',
+            product: 22,
+            descr: address ? getLang('bugs_mistake_title').replace('{title}', address) : getLang('bugs_mistake'),
+            title: title ? getLang('bugs_report_doc') : getLang('bugs_report_bug')
         });
     },
 

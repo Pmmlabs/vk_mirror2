@@ -1974,6 +1974,26 @@ var Helpdesk = {
             Tickets.deleteComment(e, t, s), a.hide()
         }, getLang("global_cancel"))
     },
+    showPayoutLogs: function(e, t) {
+        showBox("helpdesk?act=payout_requests_log_box", {
+            id: e,
+            cid: t
+        }, {
+            params: {
+                hideButtons: !0,
+                width: 700
+            }
+        })
+    },
+    checkPayoutAvailable: function(e) {
+        ajax.post("helpdesk?act=a_check_payout_available", {
+            id: e
+        }, {
+            onDone: function(t) {
+                t || addClass("helpdesk_header_links_send_payout_form" + e, "helpdesk_header_links_send_payout_form_disabled")
+            }
+        })
+    },
     _eof: 1
 };
 try {

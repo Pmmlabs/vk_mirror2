@@ -2096,3 +2096,17 @@ body.body_helpdesk_small_sb .left_menu_nav {
 .helpdesk_reply_author_link .tickets_reply_actions__date {
     margin: -1px 0 0
 }
+
+.helpdesk_payout_log_table {
+    border-collapse: collapse;
+    width: 100%
+}
+
+.helpdesk_payout_log_table>thead>tr>th {
+    padding: 5px 10px
+}
+
+.helpdesk_payout_log_table>tbody>tr>td {
+    border-top: 1px solid #e7e8ec;
+    padding: 5px 10px
+}

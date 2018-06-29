@@ -102,20 +102,6 @@ Bugs = {
         var e = ge("bugs_search_input");
         e.value = "", e.focus(), this.updateAllSearch(e, !1)
     },
-    showNewBox: function() {
-        return !showBox("bugs", {
-            act: "new_box"
-        }, {
-            stat: ["wide_dd.js", "wide_dd.css", "page.css", "page.js", "upload.js"],
-            cache: 1,
-            dark: 1,
-            params: {
-                width: 500,
-                hideButtons: !0,
-                bodyStyle: "border: 0px; padding: 0px"
-            }
-        })
-    },
     checkTextLength: function(e, t, a) {
         var o = trim(e.value).replace(/\n\n\n+/g, "\n\n");
         if (e.lastLen !== o.length) {

@@ -20,6 +20,7 @@
 .tickets_header_links .ui_actions_menu_item.helpdesk_header_links_fav_selected:before,
 .tickets_header_links .ui_actions_menu_item.helpdesk_header_links_fav_timer_off:before,
 .tickets_header_links .ui_actions_menu_item.helpdesk_header_links_fav_timer_on:before,
+.tickets_header_links .ui_actions_menu_item.helpdesk_header_links_send_payout_form:before,
 .tickets_header_task_info.tickets_header_info_progress,
 .tickets_header_title_locked,
 .tickets_list_load_more_loading,
@@ -427,6 +428,11 @@ body.dev .tickets_post_field_wrap {
     width: 725px
 }
 
+.tickets_post_field_wrap .emoji_smile_wrap {
+    top: 4px;
+    right: 1px
+}
+
 .tickets_post_field {
     padding: 0;
     background: #fafbfc;
@@ -459,6 +465,20 @@ body.dev .tickets_post_field_wrap {
     display: none
 }
 
+.tickets_post_form__panel.tickets_post_form__panel_vkpay {
+    border-top: 0 none;
+    padding-left: 70px
+}
+
+.tickets_post_form__panel.tickets_post_form__panel_vkpay .tickets_envelope_controls {
+    padding-top: 15px
+}
+
+.tickets_post_form__panel.tickets_post_form__panel_vkpay .tickets_envelope_controls .flat_button {
+    float: left;
+    width: 100px
+}
+
 .tickets_post_form__panel.tickets_post_form__panel_shown {
     display: block
 }
@@ -470,6 +490,19 @@ body.dev .tickets_post_field_wrap {
 
 .tickets_post_form__panel .tickets_envelope_controls {
     padding-top: 0
+}
+
+.tickets_post_form__panel_vkpay .subheader:first-child {
+    margin-top: 0
+}
+
+input.text.tickets_post_form_panel_vkpay__code {
+    margin-right: 10px;
+    width: 100px
+}
+
+.tickets_post_form_panel_vkpay__phone {
+    width: 200px
 }
 
 #tickets_links_warn,
@@ -765,8 +798,30 @@ body.dev .tickets_header_links {
     background-position: 0 -132px
 }
 
+.tickets_header_links .ui_actions_menu_item.helpdesk_header_links_send_payout_form:before {
+    background: url(/images/icons/menu_icon.png?9) no-repeat 1px -1025px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tickets_header_links .ui_actions_menu_item.helpdesk_header_links_send_payout_form:before {
+        background-image: url(/images/icons/menu_icon_2x.png?9);
+        background-size: 18px 1045px
+    }
+}
+
 .tickets_header_links .ui_actions_menu_item.tickets_header_links_take_to_section:before {
     background-position: 0 -153px
+}
+
+.ui_actions_menu_item.helpdesk_header_links_send_payout_form_disabled {
+    color: #656565;
+    cursor: not-allowed;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    pointer-events: none;
+    text-decoration: line-through
 }
 
 .tickets_edit_reply {
@@ -2588,11 +2643,6 @@ a.tickets_question_row_tt_unread {
 .big_wall_post.tickets_reply_post_field .submit_post_box {
     margin-left: 44px;
     border-bottom: none
-}
-
-.tickets_post_field_wrap .emoji_smile_wrap {
-    top: 4px;
-    right: 1px
 }
 
 .tickets_submit_post_field.submit_post_field[contenteditable=true] {
