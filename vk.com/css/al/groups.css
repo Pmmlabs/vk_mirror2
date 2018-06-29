@@ -1186,6 +1186,7 @@ a.groups_catalog_comm_title_link {
     text-decoration: none
 }
 
+a.artist_page_button,
 a.group_app_button,
 a.group_app_button_multi {
     display: block;
@@ -1199,11 +1200,13 @@ a.group_app_button_multi {
     color: #336bab
 }
 
+a.artist_page_button.group_app_button_with_sign,
 a.group_app_button.group_app_button_with_sign,
 a.group_app_button_multi.group_app_button_with_sign {
     line-height: 1.23
 }
 
+a.artist_page_button.group_app_button_with_sign .groups_app_button_sign,
 a.group_app_button.group_app_button_with_sign .groups_app_button_sign,
 a.group_app_button_multi.group_app_button_with_sign .groups_app_button_sign {
     margin-top: 1px;
@@ -1213,40 +1216,51 @@ a.group_app_button_multi.group_app_button_with_sign .groups_app_button_sign {
     font-weight: 400
 }
 
+a.artist_page_button:hover,
 a.group_app_button:hover,
 a.group_app_button_multi:hover {
     text-decoration: none
 }
 
+a.artist_page_button:hover:after,
 a.group_app_button:hover:after,
 a.group_app_button_multi:hover:after,
+a.artist_page_button:hover:before,
 a.group_app_button:hover:before,
 a.group_app_button_multi:hover:before {
     background-color: #83a5d3
 }
 
+a.artist_page_button,
 a.group_app_button_multi {
     padding: 12px 12px 11px;
     border-bottom: 1px solid #e3e4e8
 }
 
+a.artist_page_button.group_app_button_with_sign,
 a.group_app_button_multi.group_app_button_with_sign {
     padding: 8px 12px 9px;
     padding-right: 15px
 }
 
+a.artist_page_button.group_app_button_with_sign .group_app_button_icon,
 a.group_app_button_multi.group_app_button_with_sign .group_app_button_icon {
     margin-top: 2px
 }
 
+a.artist_page_button.group_app_button_with_sign .groups_app_button_sign,
 a.group_app_button_multi.group_app_button_with_sign .groups_app_button_sign {
     margin-left: 12px
 }
 
+a.artist_page_button:last-child,
 a.group_app_button_multi:last-child {
     border-bottom: 0
 }
 
+a.artist_page_button .artist_page_button_icon,
+a.artist_page_button .group_app_button_icon,
+a.group_app_button_multi .artist_page_button_icon,
 a.group_app_button_multi .group_app_button_icon {
     width: 24px;
     height: 24px;
@@ -1255,10 +1269,16 @@ a.group_app_button_multi .group_app_button_icon {
     float: left
 }
 
+a.artist_page_button .artist_page_button_label,
+a.artist_page_button .group_app_button_label,
+a.group_app_button_multi .artist_page_button_label,
 a.group_app_button_multi .group_app_button_label {
     margin-left: 12px
 }
 
+a.artist_page_button .artist_page_button_label:hover,
+a.artist_page_button .group_app_button_label:hover,
+a.group_app_button_multi .artist_page_button_label:hover,
 a.group_app_button_multi .group_app_button_label:hover {
     text-decoration: underline
 }
@@ -1273,6 +1293,10 @@ a.group_app_button:after {
     height: 24px;
     border-radius: 50%;
     background: #648fc9 url('/images/svg_icons/groups/arrow_ne.svg') no-repeat 50% calc(50% - 1px)
+}
+
+a.artist_page_button .artist_page_button_icon {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20opacity%3D%22.4%22%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20d%3D%22M13.011%2014.506l-6.098%205.082a1.776%201.776%200%200%201-2.501-2.5l5.082-6.099a6.522%206.522%200%200%200%203.517%203.517zM15.5%2013a4.5%204.5%200%201%201%200-9%204.5%204.5%200%200%201%200%209z%22%20fill%3D%22%23528BCC%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 #gtop_app_in_groups.gtop_complex_message {

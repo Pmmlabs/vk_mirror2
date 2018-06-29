@@ -159,6 +159,13 @@ i i.untranslated {
 }
 
 .tr_key .tr_key_key_name .tr_key_icon.has_status {
+    filter: grayscale(59%);
+    background-size: 17px auto;
+    background-position: 0px -448px;
+    background-image: url(/images/icons/menu_icon.png)
+}
+
+.tr_key .tr_key_key_name .tr_key_icon.has_description {
     background-size: 15px auto;
     background-position: 1px 1px;
     background-image: url(/images/svg_icons/info.svg)

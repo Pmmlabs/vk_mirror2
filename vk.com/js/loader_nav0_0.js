@@ -212,7 +212,7 @@ var stVersions = {
     'videoplayer.js': 91782027195,
     'videoplayer.css': 38228179247,
     'translation.js': 246426624,
-    'translation.css': 14951600193,
+    'translation.css': 13975737788,
     'reg.css': 887926110,
     'reg.js': 1336565657,
     'invite.css': 16745840586,
@@ -234,7 +234,7 @@ var stVersions = {
     'public.js': 2784121325,
     'pages.css': 24836837565,
     'pages.js': 1162259210,
-    'groups.css': 21618314113,
+    'groups.css': 22250497824,
     'groups.js': 3063641696,
     'cmodules/web/groups_create.js': 2554367098,
     'groups_create.css': 15871975957,
@@ -562,7 +562,7 @@ var stVersions = {
     'cmodules/web/add_to_community_app.js': 397597546,
     'community_bot.js': 1928249077,
     'community_bot.css': 3742743729,
-    'translation_discussions.js': 931766015,
+    'translation_discussions.js': 600623966,
     'ui_gallery.css': 14075235927,
     'cmodules/web/ui_components.js': 4923564620,
     'lang': 6887
@@ -634,4 +634,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 5081;
+var _rnd = 2760;
