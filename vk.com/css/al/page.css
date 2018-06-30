@@ -8153,6 +8153,14 @@ button.wall_block_app_btn {
     text-align: left
 }
 
+.wall_reasons_result .pr {
+    display: inline-block
+}
+
+.wall_reasons_result .pr+span {
+    visibility: hidden
+}
+
 .wall_reasons_header+.wall_reasons_header {
     padding-top: 4px
 }

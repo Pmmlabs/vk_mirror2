@@ -176,7 +176,32 @@ var BugTracker = {
     },
     addSearchFilter: function(e, t, r, o) {
         var a = null;
-        "platform" == e ? a = cur.btSearchPlatformDD : "product" == e ? a = cur.btSearchProductDD : "platform_version" == e ? a = cur.btSearchPlatformVersionDD : "device" == e ? a = cur.btSearchDeviceDD : "version" == e ? a = cur.btSearchVersionDD : "tag" == e ? a = cur.btSearchTagsDD : "region" == e && (a = cur.btSearchRegionDD), a && (r && BugTracker.ddVisible(cur.btSearchProductDD) && cur.btSearchProductDD.val() != r && (cur.btPreventUpdateProduct = "product" != e, cur.btSearchProductDD.val(r, !0)), "product" != e && ("platform_version" != e && "device" != e || !BugTracker.ddVisible(cur.btSearchPlatformDD) || (cur.btPreventUpdatePlatform = !0, cur.btSearchPlatformDD.val(o, !0)), a.val(t, !0)))
+        switch (e) {
+            case "platform":
+                a = cur.btSearchPlatformDD;
+                break;
+            case "product":
+                a = cur.btSearchProductDD;
+                break;
+            case "platform_version":
+                a = cur.btSearchPlatformVersionDD;
+                break;
+            case "device":
+                a = cur.btSearchDeviceDD;
+                break;
+            case "version":
+                a = cur.btSearchVersionDD;
+                break;
+            case "tag":
+                a = cur.btSearchTagsDD;
+                break;
+            case "region":
+                a = cur.btSearchRegionDD;
+                break;
+            case "status":
+                a = cur.btSearchStatusDD
+        }
+        a && (r && BugTracker.ddVisible(cur.btSearchProductDD) && cur.btSearchProductDD.val() != r && (cur.btPreventUpdateProduct = "product" != e, cur.btSearchProductDD.val(r, !0)), "product" != e && ("platform_version" != e && "device" != e || !BugTracker.ddVisible(cur.btSearchPlatformDD) || (cur.btPreventUpdatePlatform = !0, cur.btSearchPlatformDD.val(o, !0)), a.val(t, !0)))
     },
     ddVisible: function(e) {
         return isVisible(domPN(e.container))
@@ -1103,8 +1128,7 @@ var BugTracker = {
                 platforms: []
             },
             o = !0;
-        "" != r.login_tf && -1 == r.login_tf.indexOf("@") && (notaBene("bt_settings__login_tf"),
-            o = !1), "" != r.login_ha && -1 == r.login_ha.indexOf("@") && (notaBene("bt_settings__login_ha"), o = !1), o && (each(geByClass("on", "bt_settings_platforms"), function(e, t) {
+        "" != r.login_tf && -1 == r.login_tf.indexOf("@") && (notaBene("bt_settings__login_tf"), o = !1), "" != r.login_ha && -1 == r.login_ha.indexOf("@") && (notaBene("bt_settings__login_ha"), o = !1), o && (each(geByClass("on", "bt_settings_platforms"), function(e, t) {
             r.platforms.push(attr(t, "platform-id"))
         }), r.moder_name = val("bt_settings__moder_name"), ajax.post("bugtracker", r, {
             showProgress: lockButton.pbind(e),

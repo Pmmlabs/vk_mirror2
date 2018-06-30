@@ -6380,17 +6380,17 @@ td.apps_cat_new_h {
 }
 
 .vkPayOpenApiBox_transfer {
-    width: 490px!important;
-    min-width: 490px!important
+    max-width: 490px;
+    min-width: 490px
 }
 
 .vkPayOpenApiBox_transfer .app_container {
-    width: 490px!important;
-    min-height: 493px!important
+    max-width: 490px;
+    min-height: 493px
 }
 
 .vkPayOpenApiBox_transfer .app_container>iframe {
-    min-height: 493px!important
+    min-height: 493px
 }
 
 .wk_wiki_content #apps_layer .apps_header {

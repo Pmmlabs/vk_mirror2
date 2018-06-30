@@ -21,6 +21,365 @@
     padding: 0
 }
 
+.audio_pl_item2 {
+    display: inline-block;
+    width: 153px;
+    height: 210px;
+    padding: 5px;
+    box-sizing: border-box;
+    vertical-align: top;
+    position: relative
+}
+
+.audio_pl_item2 .audio_pl__cover {
+    width: 143px;
+    height: 143px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2272%22%20height%3D%2272%22%20viewBox%3D%22687%20319%2072%2072%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M687%20319h72v72h-72%22%2F%3E%3Cpath%20d%3D%22M739%20371c0%204.42-3.58%208-8%208s-8-3.58-8-8%203.58-8%208-8c1.9%200%203.63.66%205%201.75V340.7c0-1.1.87-2.22%201.94-2.5l8.12-2c1.08-.28%201.94.4%201.94%201.5v5c0%201.1-.87%202.22-1.94%202.5l-7.06%201.75V371zm-40-30.5c0-.83.67-1.5%201.5-1.5h29c.83%200%201.5.67%201.5%201.5s-.67%201.5-1.5%201.5h-29c-.83%200-1.5-.67-1.5-1.5zm0%209c0-.83.67-1.5%201.5-1.5h29c.83%200%201.5.67%201.5%201.5s-.67%201.5-1.5%201.5h-29c-.83%200-1.5-.67-1.5-1.5zm0%209c0-.83.67-1.5%201.5-1.5h21c.83%200%201.5.67%201.5%201.5s-.67%201.5-1.5%201.5h-21c-.83%200-1.5-.67-1.5-1.5z%22%20fill%3D%22%236F98C7%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-color: #e7edf5;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    display: block;
+    overflow: hidden
+}
+
+.audio_pl_item2 .audio_pl__actions_wrap {
+    opacity: 0;
+    background-color: rgba(0, 0, 0, .5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    -o-transition: opacity 80ms linear;
+    transition: opacity 80ms linear
+}
+
+.audio_pl_item2 .audio_pl__actions_btns {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 53px;
+    opacity: 0;
+    -o-transition: top 160ms ease, opacity 160ms linear;
+    transition: top 160ms ease, opacity 160ms linear;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.audio_pl_item2 .audio_pl__cover:hover .audio_pl__actions_btns {
+    top: 47px;
+    opacity: 1
+}
+
+.audio_pl_item2 .audio_pl__actions_btn {
+    margin: 0 6px;
+    cursor: pointer;
+    opacity: 1;
+    -o-transition: opacity 60ms linear;
+    transition: opacity 60ms linear
+}
+
+.audio_pl_item2 .audio_pl__actions_btn:hover {
+    opacity: 0.85
+}
+
+.audio_pl_item2 .audio_pl__actions_btn:active {
+    position: relative;
+    top: 1px
+}
+
+.audio_pl_item2 .audio_pl__actions_add {
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+    position: relative
+}
+
+.audio_pl_item2 .audio_pl__actions_add:after,
+.audio_pl_item2 .audio_pl__actions_add:before {
+    content: '';
+    display: block;
+    position: absolute;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Ctitle%3Eadd_24%3C%2Ftitle%3E%3Cdefs%3E%3Cpath%20d%3D%22M11%2011V3.429c0-.79.403-1.429.9-1.429s.9.64.9%201.429V11h7.771c.79%200%201.429.403%201.429.9s-.64.9-1.429.9h-7.77v7.771c0%20.79-.404%201.429-.9%201.429-.498%200-.9-.64-.9-1.429V12.8H3.428c-.79%200-1.429-.403-1.429-.9s.64-.9%201.429-.9H11z%22%20id%3D%22b%22%2F%3E%3Cfilter%20x%3D%22-70%25%22%20y%3D%22-65%25%22%20width%3D%22240%25%22%20height%3D%22240%25%22%20filterUnits%3D%22objectBoundingBox%22%20id%3D%22a%22%3E%3CfeMorphology%20radius%3D%22.5%22%20operator%3D%22dilate%22%20in%3D%22SourceAlpha%22%20result%3D%22shadowSpreadOuter1%22%2F%3E%3CfeOffset%20dy%3D%221%22%20in%3D%22shadowSpreadOuter1%22%20result%3D%22shadowOffsetOuter1%22%2F%3E%3CfeGaussianBlur%20stdDeviation%3D%224%22%20in%3D%22shadowOffsetOuter1%22%20result%3D%22shadowBlurOuter1%22%2F%3E%3CfeColorMatrix%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.4%200%22%20in%3D%22shadowBlurOuter1%22%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cg%20fill-rule%3D%22nonzero%22%3E%3Cuse%20fill%3D%22%23000%22%20filter%3D%22url(%23a)%22%20xlink%3Ahref%3D%22%23b%22%2F%3E%3Cuse%20fill%3D%22%23FFF%22%20fill-rule%3D%22evenodd%22%20xlink%3Ahref%3D%22%23b%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    -o-transition: top 160ms ease;
+    transition: top 160ms ease
+}
+
+.audio_pl_item2 .audio_pl__actions_add:after {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cdefs%3E%3Cpath%20id%3D%22b%22%20d%3D%22M4%2015l4%204L20%207%22%2F%3E%3Cfilter%20id%3D%22a%22%20width%3D%22286.2%25%22%20height%3D%22348.3%25%22%20x%3D%22-93.1%25%22%20y%3D%22-115.8%25%22%20filterUnits%3D%22objectBoundingBox%22%3E%3CfeMorphology%20in%3D%22SourceAlpha%22%20operator%3D%22dilate%22%20radius%3D%221.4%22%20result%3D%22shadowSpreadOuter1%22%2F%3E%3CfeOffset%20dy%3D%221%22%20in%3D%22shadowSpreadOuter1%22%20result%3D%22shadowOffsetOuter1%22%2F%3E%3CfeMorphology%20in%3D%22SourceAlpha%22%20radius%3D%221.5%22%20result%3D%22shadowInner%22%2F%3E%3CfeOffset%20dy%3D%221%22%20in%3D%22shadowInner%22%20result%3D%22shadowInner%22%2F%3E%3CfeComposite%20in%3D%22shadowOffsetOuter1%22%20in2%3D%22shadowInner%22%20operator%3D%22out%22%20result%3D%22shadowOffsetOuter1%22%2F%3E%3CfeGaussianBlur%20in%3D%22shadowOffsetOuter1%22%20result%3D%22shadowBlurOuter1%22%20stdDeviation%3D%224%22%2F%3E%3CfeColorMatrix%20in%3D%22shadowBlurOuter1%22%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.4%200%22%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2224%22%20height%3D%2224%22%20opacity%3D%22.5%22%20rx%3D%222%22%2F%3E%3Cg%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cuse%20fill%3D%22%23000%22%20filter%3D%22url(%23a)%22%20xlink%3Ahref%3D%22%23b%22%2F%3E%3Cuse%20stroke%3D%22%23FFF%22%20stroke-width%3D%221.8%22%20xlink%3Ahref%3D%22%23b%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    top: 100%
+}
+
+.audio_pl_item2.audio_pl__followed .audio_pl__actions_add:before {
+    top: -100%
+}
+
+.audio_pl_item2.audio_pl__followed .audio_pl__actions_add:after {
+    top: 0
+}
+
+.audio_pl_item2 .audio_pl__actions_edit {
+    display: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cdefs%3E%3Cpath%20id%3D%22b%22%20d%3D%22M4.95%2017.15l1.705%201.679-.508.5-1.91.653c-.17.058-.26-.035-.227-.2l.433-2.131.508-.5zm1.492-1.467L16.99%205.296a1.017%201.017%200%200%201%201.427.001l.28.275a.977.977%200%200%201%200%201.405L8.148%2017.361l-1.705-1.678z%22%2F%3E%3Cfilter%20id%3D%22a%22%20width%3D%22286.8%25%22%20height%3D%22286.7%25%22%20x%3D%22-93.4%25%22%20y%3D%22-86.7%25%22%20filterUnits%3D%22objectBoundingBox%22%3E%3CfeMorphology%20in%3D%22SourceAlpha%22%20operator%3D%22dilate%22%20radius%3D%22.5%22%20result%3D%22shadowSpreadOuter1%22%2F%3E%3CfeOffset%20dy%3D%221%22%20in%3D%22shadowSpreadOuter1%22%20result%3D%22shadowOffsetOuter1%22%2F%3E%3CfeGaussianBlur%20in%3D%22shadowOffsetOuter1%22%20result%3D%22shadowBlurOuter1%22%20stdDeviation%3D%224%22%2F%3E%3CfeColorMatrix%20in%3D%22shadowBlurOuter1%22%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.4%200%22%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cuse%20fill%3D%22%23000%22%20filter%3D%22url(%23a)%22%20xlink%3Ahref%3D%22%23b%22%2F%3E%3Cuse%20fill%3D%22%23FFF%22%20xlink%3Ahref%3D%22%23b%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    width: 24px;
+    height: 24px
+}
+
+.audio_pl_item2.audio_pl__canedit .audio_pl__actions_edit {
+    display: block
+}
+
+.audio_pl_item2.audio_pl__canedit .audio_pl__actions_add {
+    display: none
+}
+
+.audio_pl_item2.audio_pl__no_author {
+    height: 177px
+}
+
+.audio_pl_item2 .audio_pl__actions_play {
+    width: 40px;
+    height: 45px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2242px%22%20height%3D%2248px%22%20viewBox%3D%220%200%2042%2048%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Cpath%20d%3D%22M15.514776%2C38.5872125%20C14.1259036%2C39.4868665%2013%2C38.8640164%2013%2C37.2234275%20L13%2C10.7795279%20C13%2C9.12667621%2014.1242033%2C8.51498751%2015.514776%2C9.41574296%20L36.271812%2C22.8612913%20C37.2439451%2C23.4909989%2037.2415128%2C24.5135321%2036.271812%2C25.1416641%20L15.514776%2C38.5872125%20Z%22%20id%3D%22path-1%22%2F%3E%3Cfilter%20x%3D%22-58.3%25%22%20y%3D%22-43.3%25%22%20width%3D%22216.7%25%22%20height%3D%22193.3%25%22%20filterUnits%3D%22objectBoundingBox%22%20id%3D%22filter-2%22%3E%3CfeMorphology%20radius%3D%220.5%22%20operator%3D%22dilate%22%20in%3D%22SourceAlpha%22%20result%3D%22shadowSpreadOuter1%22%2F%3E%3CfeOffset%20dy%3D%221%22%20in%3D%22shadowSpreadOuter1%22%20result%3D%22shadowOffsetOuter1%22%2F%3E%3CfeGaussianBlur%20stdDeviation%3D%224%22%20in%3D%22shadowOffsetOuter1%22%20result%3D%22shadowBlurOuter1%22%2F%3E%3CfeColorMatrix%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.4%200%22%20in%3D%22shadowBlurOuter1%22%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Cg%20id%3D%22Page-1%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20id%3D%22musicMain%22%3E%3Cg%20id%3D%22Group-12-Copy%22%3E%3Cg%20id%3D%22Group%22%3E%3Cg%20id%3D%22smallGreyPlay-Copy%22%20transform%3D%22translate(-392.000000%2C%20-331.000000)%20translate(345.000000%2C%20286.000000)%20translate(43.000000%2C%2044.000000)%22%3E%3Ccircle%20id%3D%22Oval-151%22%20cx%3D%2224%22%20cy%3D%2224%22%20r%3D%2224%22%2F%3E%3Cg%20id%3D%22Path-2%22%3E%3Cuse%20fill%3D%22black%22%20filter%3D%22url(%23filter-2)%22%20xlink%3Ahref%3D%22%23path-1%22%2F%3E%3Cuse%20fill%3D%22%23FFFFFF%22%20xlink%3Ahref%3D%22%23path-1%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+}
+
+.audio_pl_item2.audio_pl__playing .audio_pl__actions_play {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240px%22%20height%3D%2248px%22%20viewBox%3D%220%200%2040%2048%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Cpath%20d%3D%22M13%2C10.5082641%20C13%2C9.67527283%2013.6764628%2C9%2014.5063976%2C9%20L20.4936024%2C9%20C21.3255628%2C9%2022%2C9.66865487%2022%2C10.5082641%20L22%2C37.4917359%20C22%2C38.3247272%2021.3235372%2C39%2020.4936024%2C39%20L14.5063976%2C39%20C13.6744372%2C39%2013%2C38.3313451%2013%2C37.4917359%20L13%2C10.5082641%20Z%20M26%2C10.5082641%20C26%2C9.67527283%2026.6764628%2C9%2027.5063976%2C9%20L33.4936024%2C9%20C34.3255628%2C9%2035%2C9.66865487%2035%2C10.5082641%20L35%2C37.4917359%20C35%2C38.3247272%2034.3235372%2C39%2033.4936024%2C39%20L27.5063976%2C39%20C26.6744372%2C39%2026%2C38.3313451%2026%2C37.4917359%20L26%2C10.5082641%20Z%22%20id%3D%22path-1%22%2F%3E%3Cfilter%20x%3D%22-63.6%25%22%20y%3D%22-43.3%25%22%20width%3D%22227.3%25%22%20height%3D%22193.3%25%22%20filterUnits%3D%22objectBoundingBox%22%20id%3D%22filter-2%22%3E%3CfeMorphology%20radius%3D%220.5%22%20operator%3D%22dilate%22%20in%3D%22SourceAlpha%22%20result%3D%22shadowSpreadOuter1%22%2F%3E%3CfeOffset%20dy%3D%221%22%20in%3D%22shadowSpreadOuter1%22%20result%3D%22shadowOffsetOuter1%22%2F%3E%3CfeGaussianBlur%20stdDeviation%3D%224%22%20in%3D%22shadowOffsetOuter1%22%20result%3D%22shadowBlurOuter1%22%2F%3E%3CfeColorMatrix%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.4%200%22%20in%3D%22shadowBlurOuter1%22%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Cg%20id%3D%22Page-1%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20id%3D%22musicMain%22%3E%3Cg%20id%3D%22Group-12-Copy%22%3E%3Cg%20id%3D%22Group%22%3E%3Cg%20id%3D%22smallGreyPlay-Copy-2%22%20transform%3D%22translate(-392.000000%2C%20-331.000000)%20translate(345.000000%2C%20286.000000)%20translate(43.000000%2C%2044.000000)%22%3E%3Ccircle%20id%3D%22Oval-151%22%20cx%3D%2224%22%20cy%3D%2224%22%20r%3D%2224%22%2F%3E%3Cg%20id%3D%22Combined-Shape%22%3E%3Cuse%20fill%3D%22black%22%20filter%3D%22url(%23filter-2)%22%20xlink%3Ahref%3D%22%23path-1%22%2F%3E%3Cuse%20fill%3D%22%23FFFFFF%22%20xlink%3Ahref%3D%22%23path-1%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+}
+
+.audio_pl_item2.audio_pl__empty .audio_pl__actions_play,
+.audio_pl_item2.audio_pl__empty .audio_pl__actions_play:hover {
+    opacity: 0.5
+}
+
+.audio_pl_item2.audio_pl__empty .audio_pl__actions_play:active {
+    position: relative;
+    top: 0
+}
+
+.audio_pl_item2 .audio_pl__actions_share {
+    width: 24px;
+    height: 24px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.8%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20d%3D%22M13%208.75V4.402a.417.417%200%200%201%20.687-.318l8.94%207.598a.417.417%200%200%201%200%20.636l-8.94%207.598a.417.417%200%200%201-.687-.318V15.25c-5.361%200-9.16%201.04-11.398%203.121a.25.25%200%200%201-.413-.241C2.685%2011.877%206.623%208.75%2013%208.75z%22%20stroke%3D%22%23828A99%22%20stroke-width%3D%221.8%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+}
+
+.audio_pl_item2 .audio_pl__cover_stats {
+    color: #fff;
+    position: absolute;
+    bottom: 13px;
+    width: 100%;
+    text-align: center
+}
+
+.audio_pl_item2 .audio_pl__stats_count,
+.audio_pl_item2 .audio_pl__stats_listens {
+    display: inline-block;
+    position: relative;
+    padding: 0 0 0 15px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, .4)
+}
+
+.audio_pl_item2 .audio_pl__stats_count {
+    margin-right: 8px
+}
+
+.audio_pl_item2 .audio_pl__stats_count:before {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2217px%22%20height%3D%2215px%22%20viewBox%3D%220%200%2017%2015%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Cpath%20d%3D%22M0%2C4.5%20C0%2C4.22385763%200.222473145%2C4%200.509665847%2C4%20L8.49033415%2C4%20C8.77181483%2C4%209%2C4.23193359%209%2C4.5%20C9%2C4.77614237%208.77752686%2C5%208.49033415%2C5%20L0.509665847%2C5%20C0.228185172%2C5%200%2C4.76806641%200%2C4.5%20Z%20M0%2C10.5%20C0%2C10.2238576%200.21484375%2C10%200.497698784%2C10%20L4.50230122%2C10%20C4.77717266%2C10%205%2C10.2319336%205%2C10.5%20C5%2C10.7761424%204.78515625%2C11%204.50230122%2C11%20L0.497698784%2C11%20C0.222827336%2C11%200%2C10.7680664%200%2C10.5%20Z%20M0%2C7.5%20C0%2C7.22385763%200.222473145%2C7%200.509665847%2C7%20L8.49033415%2C7%20C8.77181483%2C7%209%2C7.23193359%209%2C7.5%20C9%2C7.77614237%208.77752686%2C8%208.49033415%2C8%20L0.509665847%2C8%20C0.228185172%2C8%200%2C7.76806641%200%2C7.5%20Z%22%20id%3D%22path-1%22%2F%3E%3Cfilter%20x%3D%22-72.2%25%22%20y%3D%22-78.6%25%22%20width%3D%22244.4%25%22%20height%3D%22285.7%25%22%20filterUnits%3D%22objectBoundingBox%22%20id%3D%22filter-2%22%3E%3CfeOffset%20dy%3D%221%22%20in%3D%22SourceAlpha%22%20result%3D%22shadowOffsetOuter1%22%2F%3E%3CfeGaussianBlur%20stdDeviation%3D%222%22%20in%3D%22shadowOffsetOuter1%22%20result%3D%22shadowBlurOuter1%22%2F%3E%3CfeColorMatrix%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.4%200%22%20in%3D%22shadowBlurOuter1%22%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Cg%20id%3D%22Page-1%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20id%3D%22musicMain%22%3E%3Cg%20id%3D%22Group-12-Copy%22%3E%3Cg%20id%3D%22Group%22%3E%3Cg%20id%3D%22Group-15%22%3E%3Cg%20id%3D%22Group-14%22%3E%3Cg%20id%3D%22Combined-Shape%22%20transform%3D%22translate(-366.000000%2C%20-394.000000)%20translate(345.000000%2C%20286.000000)%20translate(25.000000%2C%20107.000000)%22%3E%3Cuse%20fill%3D%22black%22%20filter%3D%22url(%23filter-2)%22%20xlink%3Ahref%3D%22%23path-1%22%2F%3E%3Cuse%20fill%3D%22%23FFFFFF%22%20xlink%3Ahref%3D%22%23path-1%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    content: ' ';
+    display: block;
+    position: absolute;
+    width: 17px;
+    height: 15px;
+    left: -2px;
+    top: 1px
+}
+
+.audio_pl_item2 .audio_pl__stats_listens:before {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2217px%22%20height%3D%2217px%22%20viewBox%3D%220%200%2017%2017%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Cpath%20d%3D%22M8.75111916%2C8.97953431%20C8.91237074%2C8.51616108%209%2C8.01831399%209%2C7.5%20C9%2C5.01471863%206.98528137%2C3%204.5%2C3%20C2.01471863%2C3%200%2C5.01471863%200%2C7.5%20C0%2C8.01831399%200.0876292589%2C8.51616108%200.248880837%2C8.97953431%20C0.0948942245%2C9.24594707%20-4.28919417e-14%2C9.58079832%200%2C10%20C1.70495775e-13%2C11.6666667%201.5%2C12%202.25%2C12%20C3%2C12%203%2C11.1045695%203%2C10%20C3%2C8.8954305%203%2C8%202.25%2C8%20C2.00415983%2C8%201.67773647%2C8.03581475%201.34997226%2C8.14266307%20C1.30783424%2C7.9350097%201.28571429%2C7.72008804%201.28571429%2C7.5%20C1.28571429%2C5.72479902%202.72479902%2C4.28571429%204.5%2C4.28571429%20C6.27520098%2C4.28571429%207.71428571%2C5.72479902%207.71428571%2C7.5%20C7.71428571%2C7.72008804%207.69216576%2C7.9350097%207.65002774%2C8.14266307%20C7.32226353%2C8.03581475%206.99584017%2C8%206.75%2C8%20C6%2C8%206%2C8.8954305%206%2C10%20C6%2C11.1045695%206%2C12%206.75%2C12%20C7.5%2C12%209%2C11.6666667%209%2C10%20C9%2C9.58079832%208.90510578%2C9.24594707%208.75111916%2C8.97953431%20Z%22%20id%3D%22path-1%22%2F%3E%3Cfilter%20x%3D%22-72.2%25%22%20y%3D%22-61.1%25%22%20width%3D%22244.4%25%22%20height%3D%22244.4%25%22%20filterUnits%3D%22objectBoundingBox%22%20id%3D%22filter-2%22%3E%3CfeOffset%20dy%3D%221%22%20in%3D%22SourceAlpha%22%20result%3D%22shadowOffsetOuter1%22%2F%3E%3CfeGaussianBlur%20stdDeviation%3D%222%22%20in%3D%22shadowOffsetOuter1%22%20result%3D%22shadowBlurOuter1%22%2F%3E%3CfeColorMatrix%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.4%200%22%20in%3D%22shadowBlurOuter1%22%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Cg%20id%3D%22Page-1%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20id%3D%22musicMain%22%3E%3Cg%20id%3D%22Group-12-Copy%22%3E%3Cg%20id%3D%22Group%22%3E%3Cg%20id%3D%22Group-15%22%3E%3Cg%20id%3D%22Group-13%22%3E%3Cg%20id%3D%22Combined-Shape%22%20transform%3D%22translate(-406.000000%2C%20-393.000000)%20translate(345.000000%2C%20286.000000)%20translate(25.000000%2C%20107.000000)%20translate(40.000000%2C%200.000000)%22%3E%3Cuse%20fill%3D%22black%22%20filter%3D%22url(%23filter-2)%22%20xlink%3Ahref%3D%22%23path-1%22%2F%3E%3Cuse%20fill%3D%22%23FFFFFF%22%20xlink%3Ahref%3D%22%23path-1%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    content: ' ';
+    display: block;
+    position: absolute;
+    width: 17px;
+    height: 15px;
+    left: -2px;
+    top: 0
+}
+
+.audio_pl_item2 .audio_pl__cover:hover .audio_pl__actions_wrap {
+    opacity: 1
+}
+
+.audio_pl_item2 .audio_pl__actions {
+    position: absolute;
+    top: 6px;
+    right: 0;
+    opacity: 0;
+    -o-transition: opacity 50ms linear;
+    transition: opacity 50ms linear
+}
+
+.audio_pl_item2 .audio_pl__actions .audio_pl__action {
+    width: 28px;
+    height: 28px;
+    background-color: #000;
+    opacity: 0.5;
+    margin-right: 6px;
+    border-radius: 2px;
+    cursor: pointer;
+    -o-transition: opacity 50ms linear, background-position 150ms ease;
+    transition: opacity 50ms linear, background-position 150ms ease;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2228%22%20height%3D%2284%22%20viewBox%3D%220%2068%2028%2084%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20transform%3D%22translate(0%20124)%22%3E%3Crect%20opacity%3D%22.5%22%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%222.33%22%2F%3E%3Cpath%20d%3D%22M15%2013V9c0-.54-.45-1-1-1-.56%200-1%20.45-1%201v4H9c-.54%200-1%20.45-1%201%200%20.56.45%201%201%201h4v4c0%20.54.45%201%201%201%20.56%200%201-.45%201-1v-4h4c.54%200%201-.45%201-1%200-.56-.45-1-1-1h-4z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%2096)%22%3E%3Crect%20opacity%3D%22.5%22%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%222.33%22%2F%3E%3Cpath%20d%3D%22M8.7%2015.3c-.38-.4-1.02-.4-1.4%200-.4.38-.4%201.02%200%201.4l3%203c.38.4%201.02.4%201.4%200l9-9c.4-.38.4-1.02%200-1.4-.38-.4-1.02-.4-1.4%200L11%2017.6l-2.3-2.3z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(0%2068)%22%3E%3Crect%20opacity%3D%22.5%22%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%222.33%22%2F%3E%3Cpath%20d%3D%22M9.22%2017.28l1.5%201.5-.72.72c-.23.23-2%20.5-2%20.5s.27-1.77.5-2l.72-.72zm1.06-1.06l8-7.93c.4-.4%201.04-.4%201.43%200%20.4.38.4%201.02%200%201.4l-7.92%208.02-1.5-1.5z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    display: none
+}
+
+.audio_pl_item2 .audio_pl__actions .audio_pl__action:hover {
+    opacity: 0.6
+}
+
+.audio_pl_item2 .audio_pl__actions .audio_pl__action:active {
+    margin-top: 1px
+}
+
+.audio_pl_item2 .audio_pl__actions .audio_pl__action_follow {
+    background-position: 0 -56px
+}
+
+.audio_pl_item2.audio_pl__followed .audio_pl__action_follow {
+    background-position: 0 -28px
+}
+
+.audio_pl_item2.audio_pl__canedit .audio_pl__action_edit,
+.audio_pl_item2.audio_pl__canfollow .audio_pl__action_follow {
+    display: inline-block
+}
+
+.audio_pl_item2 .audio_pl__play {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%225%205%2024%2024%22%3E%3Cg%20fill%3D%22none%22%3E%3Crect%20x%3D%225%22%20y%3D%225%22%20width%3D%2224%22%20height%3D%2224%22%2F%3E%3Cpath%20d%3D%22M14%2023.9C13.5%2024.2%2013%2024%2013%2023.3L13%2010.7C13%2010%2013.5%209.8%2014%2010.1L23.4%2016.3C24%2016.7%2024%2017.3%2023.4%2017.7L14%2023.9Z%22%20fill%3D%22%233D6899%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    width: 34px;
+    height: 34px;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    background-position: 50%;
+    border-radius: 50%;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, .12);
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    opacity: 0;
+    -o-transition: opacity 50ms linear;
+    transition: opacity 50ms linear
+}
+
+.audio_pl_item2 .audio_pl__play:active {
+    bottom: 7px
+}
+
+.audio_pl_item2.audio_pl__empty .audio_pl__play {
+    display: none!important
+}
+
+.audio_pl_item2:hover .audio_pl__play {
+    opacity: 0.8
+}
+
+.audio_pl_item2:hover .audio_pl__play:hover {
+    opacity: 1
+}
+
+.audio_pl_item2.audio_pl__playing .audio_pl__play {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%225%205%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M5%205h24v24H5z%22%2F%3E%3Cpath%20d%3D%22M12%2010.6c0-.33.26-.6.6-.6h2.8c.34%200%20.6.27.6.6v12.8c0%20.33-.26.6-.6.6h-2.8c-.34%200-.6-.27-.6-.6V10.6zm6%200c0-.33.26-.6.6-.6h2.8c.34%200%20.6.27.6.6v12.8c0%20.33-.26.6-.6.6h-2.8c-.34%200-.6-.27-.6-.6V10.6z%22%20fill%3D%22%233D6899%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+}
+
+.audio_pl_item2:hover .audio_pl__actions {
+    opacity: 1
+}
+
+.audio_pl_item2 .audio_pl__info {
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 8px;
+    text-overflow: ellipsis
+}
+
+.audio_pl_item2 .audio_pl_artist_link {
+    color: #939393
+}
+
+.audio_pl_item2 .audio_pl__subtitle {
+    margin-top: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #939393
+}
+
+.audio_pl_item2 .audio_pl__subtitle>a {
+    color: #000
+}
+
+.audio_pl_item2.audio_pl__explicit .audio_item__title {
+    max-width: 100%;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.audio_pl_item2.audio_pl__explicit .audio_pl__title {
+    padding-right: 18px
+}
+
+.audio_pl_item2.audio_pl__explicit .audio_pl__title:after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 2px;
+    right: 0;
+    width: 13px;
+    height: 13px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%220%200%2013%2013%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ctitle%3EExplicit_13%3C%2Ftitle%3E%3Cpath%20d%3D%22M1%202.841v7.318C1%2011.173%201.816%2012%202.823%2012h7.354A1.828%201.828%200%200%200%2012%2010.159V2.84A1.834%201.834%200%200%200%2010.177%201H2.823A1.828%201.828%200%200%200%201%202.841zm-1%20.121A2.95%202.95%200%200%201%202.944%200h7.112A2.955%202.955%200%200%201%2013%202.962v7.076A2.95%202.95%200%200%201%2010.056%2013H2.944A2.955%202.955%200%200%201%200%2010.038V2.962zM6%206v1h2V6H6zm0-2v1h2V4H6zm0%204v1h2V8H6zM5%204v5h1V4H5z%22%20fill%3D%22%23828A99%22%20fill-rule%3D%22nonzero%22%20fill-opacity%3D%22.7%22%2F%3E%3C%2Fsvg%3E") no-repeat 50%;
+    margin-left: 5px
+}
+
+.audio_artist_page .audio_pl_item2.audio_pl__new:after {
+    display: block;
+    content: 'New';
+    position: absolute;
+    top: 8px;
+    right: 1px;
+    height: 18px;
+    width: 36px;
+    background: #f66261;
+    border-radius: 3px;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: -0.2px;
+    line-height: 18px
+}
+
+.audio_pl_item2 .audio_pl__year_subtitle {
+    margin-top: 2px;
+    color: #939393
+}
+
+.audio_pl_item2 .audio_pl__title {
+    display: inline-block;
+    position: relative;
+    max-width: 100%;
+    box-sizing: border-box
+}
+
 .audio_page_player {
     position: static;
     box-sizing: border-box

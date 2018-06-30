@@ -6662,6 +6662,52 @@ var Wall = {
             });
         }
     },
+    votingReport: function(actionMenuItemEl, hash) {
+        if (actionsMenuItemLocked(actionMenuItemEl)) {
+            return;
+        }
+
+        var votingEl = gpeByClass('media_voting', actionMenuItemEl);
+
+        if (votingEl) {
+            var votingId = domData(votingEl, 'id');
+
+            if (this.votingIsLocked(votingId)) {
+                return;
+            }
+
+            var isBoard = domData(votingEl, 'board');
+
+            ajax.post('al_voting.php', {
+                act: 'a_report_form',
+                voting_id: votingId,
+                is_board: isBoard,
+                hash: hash
+            }, {
+                onDone: function(html, js) {
+                    var newEl = cf(html);
+                    if (hasClass(votingEl, 'media_voting_board')) {
+                        addClass(domFC(newEl), 'media_voting_board');
+                    }
+                    domReplaceEl(votingEl, newEl);
+                    if (js) {
+                        eval(js);
+                    }
+                    if (vk.widget && window.WPoll) {
+                        window.WPoll.resizeWidget();
+                    }
+                },
+                showProgress: function() {
+                    lockActionsMenuItem(actionMenuItemEl);
+                    this.votingLock(votingId);
+                }.bind(this),
+                hideProgress: function() {
+                    unlockActionsMenuItem(actionMenuItemEl);
+                    this.votingUnlock(votingId);
+                }.bind(this)
+            });
+        }
+    },
 
     foTT: function(el, text, opts) {
         if (opts && opts.oid) {

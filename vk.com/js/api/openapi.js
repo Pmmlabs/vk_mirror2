@@ -560,6 +560,7 @@ VK.extend = function(target, source, overwrite) {
 };
 
 VK._protocol = 'https:';
+VK._base_domain = '';
 
 if (!VK.xdConnectionCallbacks) {
 
@@ -1225,13 +1226,15 @@ if (!VK.xdConnectionCallbacks) {
             },
 
             _openApp: function(url, params) {
-                var src, box, request = [];
+                var src, box, domain, request = [];
                 params = params || {};
 
                 if (!url || !VK._apiId || VK.App._appOpened) {
                     return;
+
                 }
-                src = VK._protocol + '//vk.com/apps?act=open_external_app_openapi&aid=' + VK._apiId;
+                domain = VK._base_domain || 'vk.com';
+                src = VK._protocol + '//' + domain + '/apps?act=open_external_app_openapi&aid=' + VK._apiId;
                 params['aid'] = VK._apiId;
 
                 for (var arg in params) {

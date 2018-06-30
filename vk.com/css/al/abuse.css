@@ -20,6 +20,69 @@
     padding: 0
 }
 
+#abuse_main_column,
+#abuse_right_column {
+    display: inline-block
+}
+
+#abuse_right_column {
+    vertical-align: top;
+    margin-left: 15px;
+    position: fixed
+}
+
+#abuse_right_column .abuse_verdict_block {
+    padding: 12px
+}
+
+#abuse_right_column .abuse_verdict_block .abuse_verdict_subblock {
+    margin-bottom: 20px
+}
+
+#abuse_right_column .abuse_verdict_block .abuse_verdict_header {
+    font-size: 14px;
+    border-bottom: 1px solid #e7e8ec;
+    padding-bottom: 8px;
+    margin-bottom: 8px
+}
+
+#abuse_right_column .abuse_verdict_block .abuse_radio {
+    padding: 4px 0
+}
+
+#abuse_right_column .abuse_verdict_block .abuse_radio.disabled {
+    opacity: 0.5;
+    filter: alpha(opacity=50)
+}
+
+#abuse_right_column .abuse_verdict_block .abuse_verdict_button:not(:first-child) {
+    margin-left: 16px
+}
+
+#abuse_right_column .abuse_navigation_block {
+    line-height: 36px;
+    height: 36px
+}
+
+#abuse_right_column .abuse_navigation_block .abuse_navigation_button.disabled {
+    opacity: 0.5;
+    filter: alpha(opacity=50)
+}
+
+#abuse_right_column .abuse_navigation_block .abuse_navigation_button.disabled:hover {
+    text-decoration: none;
+    cursor: default
+}
+
+#abuse_right_column .abuse_navigation_block .abuse_navigation_button.abuse_navigation_button_left {
+    padding: 0 2px 0 10px
+}
+
+#abuse_right_column .abuse_navigation_block .abuse_navigation_button.abuse_navigation_button_right {
+    float: right;
+    padding: 0 10px 0 2px
+}
+
 .ab2_feed_rows_wrap {
     padding: 5px
 }
@@ -1385,18 +1448,6 @@
     position: relative
 }
 
-.abuse_navigation_button_left {
-    position: absolute;
-    top: 50%;
-    left: 8px
-}
-
-.abuse_navigation_button_right {
-    position: absolute;
-    top: 50%;
-    right: 8px
-}
-
 .abuse_verdict {
     border-top: 1px solid #e7e8ec;
     margin-top: 8px;
@@ -1442,13 +1493,11 @@
     margin: 0 8px
 }
 
-.abuse_verdict .abuse_custom_reason {
-    width: 377px;
-    margin: 6px auto 10px;
-    display: block
+.abuse_custom_reason {
+    width: 198px
 }
 
-.abuse_verdict .abuse_custom_reason:not(.abuse_custom_reason_visible) {
+.abuse_custom_reason:not(.abuse_custom_reason_visible) {
     display: none
 }
 

@@ -1004,7 +1004,8 @@
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-transform: lowercase
+    text-transform: lowercase;
+    color: inherit
 }
 
 .bt_report_info_details {

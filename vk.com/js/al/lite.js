@@ -1744,25 +1744,28 @@ window.ajax = {
                     break;
                 case 11:
                 case 12:
-                    onBodyResize(true);
+                    if (vk.widget) {
+                        window.open(vk.loginscheme + '://vk.com/settings?z=validatebox', 'validatebox');
+                    } else {
+                        onBodyResize(true);
+                        show(boxLayerBG);
+                        show(boxLayerWrap);
 
-                    show(boxLayerBG);
-                    show(boxLayerWrap);
+                        cur.box = showFastBox({
+                            title: getLang('global_not_activated_title'),
+                            dark: 1,
+                            hideOnBGClick: true,
+                            bodyStyle: "line-height: 160%",
+                            onWidgetHide: function() {
+                                setTimeout(function() {
+                                    hide(boxLayerBG);
+                                    hide(boxLayerWrap);
+                                }, 0)
+                            }
+                        }, getLang('global_mobile_need_validation').replace('{link}', '<br/><a onclick="cur.box.hide();" href="' + vk.loginscheme + '://vk.com/settings?z=validatebox">').replace('{/link}', '</a>'));
 
-                    cur.box = showFastBox({
-                        title: getLang('global_not_activated_title'),
-                        dark: 1,
-                        hideOnBGClick: true,
-                        bodyStyle: "line-height: 160%",
-                        onWidgetHide: function() {
-                            setTimeout(function() {
-                                hide(boxLayerBG);
-                                hide(boxLayerWrap);
-                            }, 0)
-                        }
-                    }, getLang('global_mobile_need_validation').replace('{link}', '<br/><a onclick="cur.box.hide();" href="' + vk.loginscheme + '://vk.com/settings?z=validatebox">').replace('{/link}', '</a>'));
-
-                    o.onFail.apply();
+                        o.onFail.apply();
+                    }
                     break;
                 default:
                     if (code == -1 || code == -2 || code == -3) {

@@ -1053,6 +1053,24 @@ a.page_post_thumb_wrap:hover {
     top: 51px
 }
 
+.media_voting_report {
+    position: relative;
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 1px #e0e2e7;
+    background-color: #fff;
+    padding: 16px 20px
+}
+
+.media_voting_report.wall_reasons_result {
+    color: #939393
+}
+
+.media_voting_report.media_voting_board {
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent
+}
+
 .media_voting_header {
     height: 200px;
     text-align: center;

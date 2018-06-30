@@ -3514,14 +3514,14 @@ img.pv_movebox_thumb {
     opacity: 0.5
 }
 
-.pe_delete_selected_btn,
-.pe_restore_link {
+.pv_box .pe_delete_selected_btn,
+.pv_box .pe_restore_link {
     color: #fff;
     opacity: 0.6
 }
 
-.pe_delete_selected_btn:hover,
-.pe_restore_link:hover {
+.pv_box .pe_delete_selected_btn:hover,
+.pv_box .pe_restore_link:hover {
     opacity: 1
 }
 
