@@ -118,19 +118,24 @@ var Profile = {
                 }).onContinue = Profile.toggleFriend.pbind(e, i, o, !1, !0), cancelEvent(t);
                 stManager.add(["tooltips.css", "tooltips.js"])
             }
-            var s = ce("img", {
+            var s, n = ce("img", {
                     src: "/images/upload" + (window.devicePixelRatio >= 2 ? "_2x" : "") + ".gif"
                 }, {
                     width: 32
                 }),
-                n = e;
-            ajax.post("al_friends.php", {
-                act: o ? "add" : "remove",
-                mid: cur.oid,
-                hash: i,
-                from: "profile",
-                ref: cur.ref
-            }, {
+                a = e,
+                c = {
+                    act: o ? "add" : "remove",
+                    mid: cur.oid,
+                    hash: i,
+                    from: "profile",
+                    ref: cur.ref
+                };
+            if (o) {
+                var s = Wall.friendsRecommLogGet(!0, cur.oid);
+                s.length && (Wall.friendsRecommLogClear(cur.oid), c.logs = s)
+            }
+            ajax.post("al_friends.php", c, {
                 onDone: function(e, i, t, r, s) {
                     if (o && cur.onFriendAdd && cur.onFriendAdd(), !e) return nav.reload();
                     var n = (ge("profile_am_subscribed") || {}).tt;
@@ -146,13 +151,13 @@ var Profile = {
                     }, [t, r]), setTimeout(Profile.friendTooltip, 0)), Profile.frDropdownClear()
                 },
                 showProgress: function() {
-                    "BUTTON" == e.tagName ? lockButton(e) : hasClass(e, "page_actions_item") ? window.Page && Page.actionsDropdownLock(e) : hasClass(domFC(e), "progress") ? show(domFC(e)) : n.replaceChild(s, n.firstChild)
+                    "BUTTON" == e.tagName ? lockButton(e) : hasClass(e, "page_actions_item") ? window.Page && Page.actionsDropdownLock(e) : hasClass(domFC(e), "progress") ? show(domFC(e)) : a.replaceChild(n, a.firstChild)
                 },
                 hideProgress: function() {
-                    "BUTTON" == e.tagName ? unlockButton(e) : hasClass(e, "page_actions_item") ? window.Page && Page.actionsDropdownUnlock(e) : hasClass(domFC(e), "progress") ? hide(domFC(e)) : n.replaceChild(n.firstChild, s)
+                    "BUTTON" == e.tagName ? unlockButton(e) : hasClass(e, "page_actions_item") ? window.Page && Page.actionsDropdownUnlock(e) : hasClass(domFC(e), "progress") ? hide(domFC(e)) : a.replaceChild(a.firstChild, n)
                 },
                 onFail: function(e) {
-                    return e ? (showFastBox({
+                    return s && Wall.friendsRecommLogOnFail(s), e ? (showFastBox({
                         title: getLang("global_error"),
                         bodyStyle: "padding: 20px; line-height: 160%;"
                     }, e), !0) : void 0
@@ -520,7 +525,7 @@ var Profile = {
                         display: o && 1 != o ? "inline" : "none"
                     }), addClass(t, "is_online")) : "offline" == i && removeClass(t, "is_online")
                 }
-            }, browser.msie && intval(browser.version) < 11 ? void re(geByClass1("profile_1april_button_wrap", "narrow_column")) : (browser.opera && intval(browser.version) < 13 && re(geByClass1("profile_1april_button_wrap", "narrow_column")), void(e.stickers_1april && e.stickers_1april.length ? Profile.render1AprilStickers(e.stickers_1april) : addClass(geByClass1("page_avatar_wrap"), "no_stickers_1april")))
+            }, browser.msie && intval(browser.version) < 11 ? void re(geByClass1("profile_1april_button_wrap", "narrow_column")) : (browser.opera && intval(browser.version) < 13 && re(geByClass1("profile_1april_button_wrap", "narrow_column")), e.stickers_1april && e.stickers_1april.length ? Profile.render1AprilStickers(e.stickers_1april) : addClass(geByClass1("page_avatar_wrap"), "no_stickers_1april"), void setTimeout(Wall.friendsRecommLogSend, 100))
         },
         inviteHintUpdate: function() {
             var e = ge("top_invite_hint");

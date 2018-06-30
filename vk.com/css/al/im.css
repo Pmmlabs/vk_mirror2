@@ -1940,6 +1940,52 @@ textarea.EditableLabel__textarea {
     }
 }
 
+.StatsTable .StatsTable--header {
+    padding: 9px 20px
+}
+
+.StatsTable .StatsTable--header .StatsTable--header--label {
+    display: inline-block;
+    width: 231px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.StatsTable .StatsTable--header .StatsTable--header--value-description {
+    display: inline-block;
+    color: #222
+}
+
+.StatsTable .StatsTable--rows .StatsTable--row {
+    padding: 9px 20px
+}
+
+.StatsTable .StatsTable--rows .StatsTable--row:hover {
+    background: #e9edf0
+}
+
+.StatsTable .StatsTable--rows .StatsTable--row:nth-child(odd) {
+    background: #f2f3f5
+}
+
+.StatsTable .StatsTable--rows .StatsTable--row:nth-child(odd):hover {
+    background: #e9edf0
+}
+
+.StatsTable .StatsTable--rows .StatsTable--row .StatsTable--row--label {
+    display: inline-block;
+    color: #4e5966;
+    width: 231px
+}
+
+.StatsTable .StatsTable--rows .StatsTable--row .StatsTable--row--value {
+    display: inline-block;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
 .Keyboard {
     margin: -5px;
     max-height: calc(312px);

@@ -8610,13 +8610,21 @@ var Wall = {
             return;
         }
 
-        ajax.post('al_friends.php', {
+        var params = {
             act: 'add',
             mid: mid,
             hash: hash,
             from: from,
             ts: vkNow()
-        }, {
+        };
+        var midLogs = Wall.friendsRecommLogGet(true, mid);
+
+        if (midLogs.length) {
+            Wall.friendsRecommLogClear(mid);
+            params.logs = midLogs;
+        }
+
+        ajax.post('al_friends.php', params, {
             onDone: function(text) {
                 val(btn, text);
                 addClass(btn, 'secondary');
@@ -8625,6 +8633,10 @@ var Wall = {
                 re(geByClass1('wall_card_text_special', card));
             },
             onFail: function(text) {
+                if (midLogs) {
+                    Wall.friendsRecommLogOnFail(midLogs);
+                }
+
                 if (!text) return;
                 showFastBox(getLang('global_error'), text);
                 return true;
@@ -8681,8 +8693,109 @@ var Wall = {
             return;
         }
 
-        statlogsValueEvent('friends_recomm_block', 'open_user', [mid, vkNow(), from].join('|'));
+        Wall.friendsRecommLogSave(['open_user', mid, vkNow(), from]);
     },
+
+    friendsRecommLogSave: function(log, force) {
+        var logs = Wall.friendsRecommLogGet();
+        logs.push(log);
+        ls.set('friends_recomm', logs);
+
+        Wall.friendsRecommLogSend(force);
+    },
+
+    friendsRecommLogGet: function(prepare, mid, exclude) {
+        var logs = ls.get('friends_recomm') || [];
+
+        if (mid) {
+            logs = logs.filter(function(log) {
+                return (exclude ? log[1] !== mid : log[1] === mid) && inArray(log[0], ['show_user_rec', 'open_user']);
+            });
+        }
+
+        if (prepare) {
+            logs = logs.map(function(log) {
+                return log.join('|');
+            });
+        }
+
+        return logs;
+    },
+
+    friendsRecommLogClear: function(mid) {
+        if (mid) {
+            var logs = Wall.friendsRecommLogGet(false, mid, true);
+
+            if (!logs.length) {
+                ls.remove('friends_recomm');
+            } else {
+                ls.set('friends_recomm', logs);
+            }
+
+        } else {
+            ls.remove('friends_recomm');
+        }
+    },
+
+    friendsRecommLogSend: function(force) {
+        if (!cur.friendsRecommLogIdle && window.curNotifier && curNotifier.idle_manager) {
+            if (!isArray(cur.onIdle)) {
+                cur.onIdle = [];
+            }
+            if (!isArray(cur.onUnidle)) {
+                cur.onUnidle = [];
+            }
+
+            cur.friendsRecommLogIdle = function() {
+                clearTimeout(cur.friendsRecommLog)
+            };
+            cur.onIdle.push(cur.friendsRecommLogIdle);
+            cur.onUnidle.push(Wall.friendsRecommLogSend);
+        }
+
+        clearTimeout(cur.friendsRecommLog);
+
+        if (force) {
+            Wall._friendsRecommLogSend();
+        } else {
+            cur.friendsRecommLog = setTimeout(Wall._friendsRecommLogSend, 10000);
+        }
+    },
+
+    _friendsRecommLogSend: function() {
+        if (cur.friendsRecommProcess) {
+            return;
+        }
+
+        var logs = Wall.friendsRecommLogGet(true);
+
+        if (logs.length) {
+            cur.friendsRecommProcess = true;
+            Wall.friendsRecommLogClear();
+
+            ajax.post('al_friends.php', {
+                act: 'a_recomm_logs',
+                logs: logs
+            }, {
+                onDone: function() {
+                    delete cur.friendsRecommProcess;
+                },
+                onFail: function() {
+                    Wall.friendsRecommLogOnFail(logs);
+                    delete cur.friendsRecommProcess;
+                    return true;
+                }
+            });
+        }
+    },
+
+    friendsRecommLogOnFail: function(prevLogs) {
+        var logs = Wall.friendsRecommLogGet();
+        logs = prevLogs.map(function(log) {
+            return log.split('|');
+        }).concat(logs);
+        ls.set('friends_recomm', logs);
+    }
 }
 
 var wall = Wall;
