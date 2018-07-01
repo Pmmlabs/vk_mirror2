@@ -1149,7 +1149,7 @@ var Market = {
                 t = !1,
                 r = ge("market_shop_create_order"),
                 o = ge("market_shop_clear_cart");
-            if (!buttonLocked(r)) return lockButton(r), 0 == e.delivery_id && (notaBene(cur.marketCartDeliveryDD.container), t = !0), e.contact_phone.length < 4 && (notaBene("market_cart_contact_phone"), t = !0), isVisible("market_cart_delivery_address_block") && (e.delivery_address = trim(val("market_cart_delivery_address")), e.delivery_person = trim(val("market_cart_delivery_person")), e.delivery_person.length < 4 && (notaBene("market_cart_delivery_person"), t = !0), e.delivery_address.length < 4 && (notaBene("market_cart_delivery_address"), t = !0)), t ? void unlockButton(r) : void ajax.post("market?act=a_create_order", e, {
+            if (!buttonLocked(r)) return lockButton(r), 0 == e.delivery_id && (notaBene(cur.marketCartDeliveryDD.container), t = !0), e.contact_phone.length < 4 && (notaBene("market_cart_contact_phone"), t = !0), isVisible("market_cart_delivery_address_block") && (e.delivery_address = trim(val("market_cart_delivery_address")), e.delivery_person = trim(val("market_cart_delivery_person")), e.delivery_person.length < 4 && (notaBene("market_cart_delivery_person"), t = !0), e.delivery_address.length < 4 && (notaBene("market_cart_delivery_address"), t = !0)), isVisible("market_cart_delivery_need_to_meet") && (e.need_to_meet = isChecked("market_cart_delivery_need_to_meet") ? 1 : 0), t ? void unlockButton(r) : void ajax.post("market?act=a_create_order", e, {
                 showProgress: function() {
                     hide(o)
                 },
@@ -1166,8 +1166,9 @@ var Market = {
         },
         deliveryChanged: function(e) {
             var t = "",
-                r = !1;
-            0 != e && cur.marketCartDeliveriesData[e] && (t = cur.marketCartDeliveriesData[e].descr, r = cur.marketCartDeliveriesData[e].address_required), val("market_cart_delivery_note", t), toggle("market_cart_delivery_address_block", r)
+                r = !1,
+                o = !1;
+            0 != e && cur.marketCartDeliveriesData[e] && (t = cur.marketCartDeliveriesData[e].descr, r = cur.marketCartDeliveriesData[e].address_required, o = cur.marketCartDeliveriesData[e].need_to_meet), val("market_cart_delivery_note", t), toggle("market_cart_delivery_need_to_meet", o), toggle("market_cart_delivery_address_block", r)
         },
         buyerChanged: function(e) {
             e = intval(e), 0 >= e || ajax.post("market?act=a_load_delivery_data", {
@@ -1176,7 +1177,7 @@ var Market = {
             }, {
                 onDone: function(e) {
                     var t = intval(e.delivery_id);
-                    cur.marketCartDeliveriesData[t] || (t = 0), cur.marketCartDeliveryDD.val(t, !0), val("market_cart_delivery_address", e.delivery_address), val("market_cart_delivery_person", e.delivery_person), val("market_cart_contact_phone", e.contact_phone)
+                    cur.marketCartDeliveriesData[t] || (t = 0), cur.marketCartDeliveryDD.val(t, !0), val("market_cart_delivery_address", e.delivery_address), val("market_cart_delivery_person", e.delivery_person), val("market_cart_contact_phone", e.contact_phone), checkbox("market_cart_delivery_need_to_meet", e.need_to_meet)
                 }
             })
         }
@@ -1837,7 +1838,7 @@ var Market = {
                 });
                 this.cont.appendChild(o), this.resultList = geByClass("result_list", o)[0], this.resultListShadow = geByClass("result_list_shadow", o)[0], hide(this.resultList, this.resultListShadow), browser.chrome ? this.resultList.style.opacity = 1 : browser.safari || setStyle(this.resultListShadow, "top", browser.mozilla ? 0 : browser.msie && browser.version < 8 ? 0 : -1), this.resultList.style.width = this.resultListShadow.style.width = o.style.width = getSize(e)[0] + "px", this.onShowCallback = t ? t.onShow : !1, this.initSelect(t), cur.indexTags = new vkIndexer(cur.tagsList, function(e) {
                     return e[1]
-                }), addEvent(e, "keyup click mouseup", r.inputUpHandler), addEvent(document, "click", r.documentClick), addEvent(e, "keypress keydown", r.inputDownHandler)
+                }), addEvent(e, "keyup click mouseup", r.inputUpHandler), addEvent(document, "click", r.documentClick), addEvent(e, "keypress keydown", r.inputDownHandler);
             }
         },
         inputUpHandler: function(e) {

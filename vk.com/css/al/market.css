@@ -2721,8 +2721,12 @@
 }
 
 .market_cart_delivery_note {
+    color: #656565
+}
+
+.market_cart_delivery_note,
+.market_cart_delivery_need_to_meet {
     margin-top: 10px;
-    color: #656565;
     font-size: 12px
 }
 

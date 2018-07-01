@@ -2007,6 +2007,10 @@ textarea.disabled {
     width: 50%
 }
 
+.fourth_width {
+    width: 25%
+}
+
 h1 {
     font-size: 18px;
     color: #222;

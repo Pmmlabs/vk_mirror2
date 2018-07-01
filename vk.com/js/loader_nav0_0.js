@@ -142,7 +142,7 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 1318650823,
     'common.js': 1161,
-    'common.css': 50738950965,
+    'common.css': 49450308298,
     'cmodules/web/common_web.js': 3,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
@@ -452,10 +452,10 @@ var stVersions = {
     'ads_offers_moder.js': 3862633445,
     'landings/landings.css': 18151301542,
     'landings/vk10_years.css': 14505207662,
-    'market.css': 28120039560,
-    'market.js': 2110360326,
-    'market_adm.css': 15067159166,
-    'market_adm.js': 2677502581,
+    'market.css': 31071474823,
+    'market.js': 2669128162,
+    'market_adm.css': 14237384671,
+    'market_adm.js': 2279024920,
     'stories_admin.css': 16568518738,
     'stories_admin.js': 1129028316,
     'vk2016.css': 2021229875,
@@ -634,4 +634,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 9847;
+var _rnd = 5466;
