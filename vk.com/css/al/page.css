@@ -3029,6 +3029,16 @@ a.page_media_link_desc {
     color: #45688e
 }
 
+.media_preview .page_preview_article_wrap,
+.media_preview .page_preview_audio_playlist_wrap {
+    margin-bottom: 20px
+}
+
+.media_preview .page_preview_article_wrap:last-child,
+.media_preview .page_preview_audio_playlist_wrap:last-child {
+    margin-bottom: 0
+}
+
 .pam_dpic {
     display: block;
     position: relative

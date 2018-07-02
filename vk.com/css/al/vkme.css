@@ -27,7 +27,7 @@
 .r select,
 .r textarea {
     -webkit-font-smoothing: subpixel-antialiased;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Segoe UI, Segoe WP, Helvetica Neue, Lucida Grande, Verdana, Tahoma, Arial, sans-serif!important
+    font-family: Roboto, BlinkMacSystemFont, -apple-system, Segoe UI, Segoe WP, Helvetica Neue, Lucida Grande, Verdana, Tahoma, Arial, sans-serif!important
 }
 
 .r .basis {

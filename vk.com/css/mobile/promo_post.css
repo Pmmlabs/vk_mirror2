@@ -85,10 +85,16 @@
     font-size: 22px;
     color: #2b2f33;
     line-height: 26px;
-    box-sizing: border-box;
     font-weight: 300;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto
+}
+
+.landing_pp_big_title,
+.landing_pp_descr {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
 }
 
 .landing_pp_descr {
@@ -97,12 +103,13 @@
     color: #1d1d1e;
     padding: 0px 26px;
     margin-top: 16px;
-    word-wrap: break-word;
-    box-sizing: border-box
+    word-wrap: break-word
 }
 
 .landing_pp_header {
     background-image: url(/images/landings/promo_post/mob/header.jpg);
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     width: 100%;
@@ -114,6 +121,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_header {
         background-image: url(/images/landings/promo_post/mob/header_2x.jpg);
+        -moz-background-size: 882px 505px;
+        -o-background-size: 882px 505px;
         background-size: 882px 505px
     }
 }
@@ -147,6 +156,8 @@
     padding: 15px 12px;
     display: inline-block;
     border-bottom: 2px solid transparent;
+    -webkit-transition: border-color 200ms ease-in-out;
+    -moz-transition: border-color 200ms ease-in-out;
     -o-transition: border-color 200ms ease-in-out;
     transition: border-color 200ms ease-in-out
 }
@@ -156,9 +167,12 @@
 }
 
 .landing_pp_tabs_helper_anim {
+    -webkit-transition: -webkit-transform 200ms ease-in-out;
+    transition: -webkit-transform 200ms ease-in-out;
+    -moz-transition: transform 200ms ease-in-out, -moz-transform 200ms ease-in-out;
     -o-transition: transform 200ms ease-in-out, -o-transform 200ms ease-in-out;
     transition: transform 200ms ease-in-out;
-    transition: transform 200ms ease-in-out, -o-transform 200ms ease-in-out
+    transition: transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out, -moz-transform 200ms ease-in-out, -o-transform 200ms ease-in-out
 }
 
 .landing_pp_examples {
@@ -180,9 +194,12 @@
 }
 
 .landing_pp_examples_helper_anim {
+    -webkit-transition: -webkit-transform 400ms ease-in-out;
+    transition: -webkit-transform 400ms ease-in-out;
+    -moz-transition: transform 400ms ease-in-out, -moz-transform 400ms ease-in-out;
     -o-transition: transform 400ms ease-in-out, -o-transform 400ms ease-in-out;
     transition: transform 400ms ease-in-out;
-    transition: transform 400ms ease-in-out, -o-transform 400ms ease-in-out
+    transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out, -moz-transform 400ms ease-in-out, -o-transform 400ms ease-in-out
 }
 
 .landing_pp_example,
@@ -209,6 +226,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_example_picture {
         background-image: url(/images/landings/promo_post/mob/iphone_browser1_2x.jpg);
+        -moz-background-size: 320px 293px;
+        -o-background-size: 320px 293px;
         background-size: 320px 293px
     }
 }
@@ -222,6 +241,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_example_photos {
         background-image: url(/images/landings/promo_post/mob/iphone_browser2_2x.jpg);
+        -moz-background-size: 320px 293px;
+        -o-background-size: 320px 293px;
         background-size: 320px 293px
     }
 }
@@ -235,6 +256,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_example_video {
         background-image: url(/images/landings/promo_post/mob/iphone_browser3_2x.jpg);
+        -moz-background-size: 320px 293px;
+        -o-background-size: 320px 293px;
         background-size: 320px 293px
     }
 }
@@ -248,6 +271,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_example_poll {
         background-image: url(/images/landings/promo_post/mob/iphone_browser4_2x.jpg);
+        -moz-background-size: 320px 293px;
+        -o-background-size: 320px 293px;
         background-size: 320px 293px
     }
 }
@@ -261,6 +286,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_example_map {
         background-image: url(/images/landings/promo_post/mob/iphone_browser5_2x.jpg);
+        -moz-background-size: 320px 293px;
+        -o-background-size: 320px 293px;
         background-size: 320px 293px
     }
 }
@@ -274,6 +301,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_example_market {
         background-image: url(/images/landings/promo_post/mob/iphone_browser6_2x.jpg);
+        -moz-background-size: 320px 293px;
+        -o-background-size: 320px 293px;
         background-size: 320px 293px
     }
 }
@@ -287,6 +316,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_example_group {
         background-image: url(/images/landings/promo_post/mob/iphone_browser7_2x.jpg);
+        -moz-background-size: 320px 293px;
+        -o-background-size: 320px 293px;
         background-size: 320px 293px
     }
 }
@@ -300,6 +331,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_example_site {
         background-image: url(/images/landings/promo_post/mob/iphone_browser8_2x.jpg);
+        -moz-background-size: 320px 293px;
+        -o-background-size: 320px 293px;
         background-size: 320px 293px
     }
 }
@@ -313,6 +346,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_example_call {
         background-image: url(/images/landings/promo_post/mob/iphone_browser9_2x.jpg);
+        -moz-background-size: 320px 293px;
+        -o-background-size: 320px 293px;
         background-size: 320px 293px
     }
 }
@@ -325,10 +360,14 @@
 .landing_pp_example_circle {
     width: 6px;
     height: 6px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
     border-radius: 3px;
     background: #6d8eb2;
     opacity: 0.4;
     filter: alpha(opacity=40);
+    -webkit-transition: opacity 200ms ease-in-out;
+    -moz-transition: opacity 200ms ease-in-out;
     -o-transition: opacity 200ms ease-in-out;
     transition: opacity 200ms ease-in-out;
     display: inline-block;
@@ -337,6 +376,7 @@
 
 .landing_pp_example_circle.active {
     opacity: 1;
+    -webkit-filter: none;
     filter: none
 }
 
@@ -366,6 +406,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_feed_pic {
         background-image: url(/images/landings/promo_post/mob/adv_example_2x.jpg);
+        -moz-background-size: 304px 365px;
+        -o-background-size: 304px 365px;
         background-size: 304px 365px
     }
 }
@@ -390,6 +432,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_big_adcreate_pic {
         background-image: url(/images/landings/promo_post/mob/browser_2x.png);
+        -moz-background-size: 307px 213px;
+        -o-background-size: 307px 213px;
         background-size: 307px 213px
     }
 }
@@ -418,6 +462,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_big_group_create_pic {
         background-image: url(/images/landings/promo_post/mob/fit_2x.png);
+        -moz-background-size: 303px 319px;
+        -o-background-size: 303px 319px;
         background-size: 303px 319px
     }
 }
@@ -453,6 +499,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_target_ic {
         background-image: url(/images/landings/promo_post/screen6/pic1_2x.png);
+        -moz-background-size: 164px 164px;
+        -o-background-size: 164px 164px;
         background-size: 164px 164px
     }
 }
@@ -466,6 +514,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_target_ic_cities {
         background-image: url(/images/landings/promo_post/screen6/pic2_2x.png);
+        -moz-background-size: 164px 164px;
+        -o-background-size: 164px 164px;
         background-size: 164px 164px
     }
 }
@@ -479,6 +529,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_target_ic_demography {
         background-image: url(/images/landings/promo_post/screen6/pic3_2x.png);
+        -moz-background-size: 164px 164px;
+        -o-background-size: 164px 164px;
         background-size: 164px 164px
     }
 }
@@ -492,6 +544,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_target_ic_interests {
         background-image: url(/images/landings/promo_post/screen6/pic4_2x.png);
+        -moz-background-size: 164px 164px;
+        -o-background-size: 164px 164px;
         background-size: 164px 164px
     }
 }
@@ -529,19 +583,32 @@
 .landing_pp_stories_helper {
     white-space: nowrap;
     margin-top: -19px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -moz-box-orient: horizontal;
+    -moz-box-direction: normal;
     -ms-flex-direction: row;
     flex-direction: row
 }
 
 .landing_pp_story {
     background-image: url(/images/landings/promo_post/mob/bg1.jpg);
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat;
     display: block;
     min-width: 100%;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
     -ms-flex: 1;
     flex: 1;
     width: 100%;
@@ -554,6 +621,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_story {
         background-image: url(/images/landings/promo_post/mob/bg1_2x.jpg);
+        -moz-background-size: 882px 1000px;
+        -o-background-size: 882px 1000px;
         background-size: 882px 1000px
     }
 }
@@ -567,6 +636,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_story_2 {
         background-image: url(/images/landings/promo_post/mob/bg2_2x.jpg);
+        -moz-background-size: 882px 1000px;
+        -o-background-size: 882px 1000px;
         background-size: 882px 1000px
     }
 }
@@ -580,6 +651,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_story_3 {
         background-image: url(/images/landings/promo_post/mob/bg3_2x.jpg);
+        -moz-background-size: 882px 1000px;
+        -o-background-size: 882px 1000px;
         background-size: 882px 1000px
     }
 }
@@ -593,6 +666,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_story_4 {
         background-image: url(/images/landings/promo_post/mob/bg4_2x.jpg);
+        -moz-background-size: 882px 1000px;
+        -o-background-size: 882px 1000px;
         background-size: 882px 1000px
     }
 }
@@ -610,6 +685,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_story_ava {
         background-image: url(/images/landings/promo_post/stories/user1_2x.png);
+        -moz-background-size: 128px 128px;
+        -o-background-size: 128px 128px;
         background-size: 128px 128px
     }
 }
@@ -623,6 +700,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_story_ava_2 {
         background-image: url(/images/landings/promo_post/stories/user2_2x.png);
+        -moz-background-size: 128px 128px;
+        -o-background-size: 128px 128px;
         background-size: 128px 128px
     }
 }
@@ -636,6 +715,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_story_ava_3 {
         background-image: url(/images/landings/promo_post/stories/user3_2x.png);
+        -moz-background-size: 128px 128px;
+        -o-background-size: 128px 128px;
         background-size: 128px 128px
     }
 }
@@ -649,6 +730,8 @@
 (min-resolution: 192dpi) {
     .landing_pp_story_ava_4 {
         background-image: url(/images/landings/promo_post/stories/user4_2x.png);
+        -moz-background-size: 128px 128px;
+        -o-background-size: 128px 128px;
         background-size: 128px 128px
     }
 }
@@ -699,7 +782,11 @@
 .landing_pp_price_filters .selector,
 .landing_pp_price_filters select {
     width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
     border-radius: 3px
 }
 

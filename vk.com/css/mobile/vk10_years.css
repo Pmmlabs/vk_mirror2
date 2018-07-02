@@ -32,6 +32,8 @@
 
 .vk_2x .vk10_years_head {
     background-image: url('/images/landings/vk10_years/landing_mobile_2x.png');
+    -moz-background-size: 608px 135px;
+    -o-background-size: 608px 135px;
     background-size: 608px 135px
 }
 
@@ -73,6 +75,8 @@
 
 .vk_2x .vk10_years_caption_ic:after {
     background-image: url('/images/landings/vk10_years/vk10_icons_2x.png');
+    -moz-background-size: 24px 283px;
+    -o-background-size: 24px 283px;
     background-size: 24px 283px
 }
 
@@ -120,6 +124,9 @@
 .vk10_years_sep {
     width: 800px;
     margin: 56px auto 0px;
+    background-image: -webkit-gradient(linear, right top, left top, from(#fff), color-stop(5%, #f3f3f3), color-stop(95%, #e8e8e8), color-stop(95%, #fff));
+    background-image: -webkit-linear-gradient(right, #fff, #f3f3f3 5%, #e8e8e8 95%, #fff);
+    background-image: -moz-linear-gradient(right, #fff, #f3f3f3 5%, #e8e8e8 95%, #fff);
     background-image: -o-linear-gradient(right, #fff, #f3f3f3 5%, #e8e8e8 95%, #fff);
     background-image: linear-gradient(270deg, #fff, #f3f3f3 5%, #e8e8e8 95%, #fff);
     height: 1px
@@ -157,7 +164,11 @@
     bottom: 0px;
     left: 50%;
     margin-left: -156px;
+    -webkit-box-shadow: 0 6px 24px 0 rgba(0, 0, 0, .4);
+    -moz-box-shadow: 0 6px 24px 0 rgba(0, 0, 0, .4);
     box-shadow: 0 6px 24px 0 rgba(0, 0, 0, .4);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
     border-radius: 4px;
     z-index: 1
 }
@@ -198,7 +209,11 @@
 .vk10_years_friends_item_img {
     width: 80px;
     height: 80px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
     border-radius: 40px;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
     background-position: 50%
 }
@@ -209,6 +224,8 @@
     padding: 8px;
     background: #fff;
     z-index: 2;
+    -webkit-border-radius: 72px;
+    -moz-border-radius: 72px;
     border-radius: 72px;
     margin-left: -72px
 }
@@ -216,6 +233,8 @@
 .vk10_years_friends_item:nth-child(2) .vk10_years_friends_item_img {
     width: 128px;
     height: 128px;
+    -webkit-border-radius: 64px;
+    -moz-border-radius: 64px;
     border-radius: 64px
 }
 
@@ -255,9 +274,13 @@
     letter-spacing: 0.1px;
     padding: 16px 30px 16px 55px;
     border: 2px solid hsla(0, 0%, 100%, .3);
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
     border-radius: 100px;
     display: inline-block;
     margin-top: 100px;
+    -webkit-transition: border-color 400ms ease;
+    -moz-transition: border-color 400ms ease;
     -o-transition: border-color 400ms ease;
     transition: border-color 400ms ease;
     cursor: pointer;
@@ -290,6 +313,8 @@
 (min-resolution: 192dpi) {
     .vk10_years_share_btn:after {
         background-image: url(/images/landings/vk10_years/vk10_icons_2x.png);
+        -moz-background-size: 24px 283px;
+        -o-background-size: 24px 283px;
         background-size: 24px 283px
     }
 }
@@ -325,6 +350,8 @@
 .vk10_years_mobile {
     text-align: center;
     padding: 0px 17px 48px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
     background: #fff
 }
@@ -380,6 +407,8 @@
     left: 0px;
     padding: 6px;
     background: #fff;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
     border-radius: 50%;
     z-index: 3
 }
@@ -398,6 +427,8 @@
 .vk10_years_mobile .vk10_years_friends_item_img {
     width: 72px!important;
     height: 72px!important;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
     border-radius: 50%
 }
 

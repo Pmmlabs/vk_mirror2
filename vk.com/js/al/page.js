@@ -4556,7 +4556,7 @@ var Wall = {
                 }
             });
             var media, toup = false;
-            if (mediaTypes.length > 0 && post.match(/^-?\d+_(photo|video|topic|market)?\d+(mv)?$/)) {
+            if (mediaTypes.length > 0 && (post.match(/^(\d+_)?-?\d+_(photo|video|topic|market)?\d+(mv)?(_\d+)?$/))) {
                 media = {
                     lnk: ge('reply_add_media_' + post),
                     preview: ge('reply_media_preview' + post),

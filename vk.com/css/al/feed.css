@@ -12,7 +12,6 @@
 .feedback_celebration_row .feedback_sticky_icon,
 .feedback_event_row .feedback_sticky_icon,
 .feedback_gift_row .feedback_sticky_icon,
-.feedback_grouped_row_wrap .post_actions,
 .feedback_important_row .feedback_sticky_icon,
 .feedback_market_row .feedback_sticky_icon,
 .feedback_message_row .feedback_sticky_icon,
@@ -754,6 +753,20 @@
     border-top: 1px solid #e7e8ec
 }
 
+.feedback_row_clickable:not(.feedback_row_touched) {
+    cursor: pointer
+}
+
+.feedback_row_clickable:not(.feedback_row_touched):hover .feedback_row_menu {
+    opacity: 1;
+    filter: none;
+    visibility: visible
+}
+
+.feed_notifications .feedback_row_menu_icon {
+    width: 25px
+}
+
 .feedback_row_wrap.unread:not(.feedback_row_touched) {
     background-color: #f5f7fa
 }
@@ -1022,22 +1035,6 @@
 .feedback_rphoto_img {
     width: 50px;
     vertical-align: top
-}
-
-.feedback_grouped_row_wrap .post_actions {
-    margin-top: 9px;
-    background: url(/images/icons/feedback_arrow.png?3) no-repeat;
-    background-position: right 0;
-    height: 5px
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .feedback_grouped_row_wrap .post_actions {
-        background-image: url(/images/icons/feedback_arrow_2x.png?3);
-        background-size: 9px 5px
-    }
 }
 
 .feedback_grouped_row_wrap.feedback_row_expanded .post_actions {
@@ -2861,6 +2858,10 @@ div.feed_recom {
 
 .feed_friends_recomm .ui_gallery__inner_cont {
     padding-bottom: 20px
+}
+
+.feed_friends_recomm .ui_gallery_item {
+    margin-bottom: 0
 }
 
 .feed_friends_recomm .ui_gallery_item:first-child {
