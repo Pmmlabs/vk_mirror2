@@ -391,6 +391,11 @@
     color: #466ad4
 }
 
+.article code,
+.article pre {
+    clear: both
+}
+
 .article>pre+pre {
     padding-top: 0!important;
     margin-top: -14px!important
@@ -398,8 +403,8 @@
 
 .article>figure {
     position: relative;
-    margin-right: -40px;
-    margin-left: -40px
+    margin: 0;
+    clear: both
 }
 
 .article>figure .article_object_video,
@@ -408,7 +413,11 @@
     border-radius: 2px;
     display: block;
     margin: 0 auto;
-    max-width: 100%
+    width: 100%
+}
+
+.article>figure .article_ed__video_img {
+    width: 100%
 }
 
 .article>figure figcaption {
@@ -471,6 +480,88 @@
     position: relative;
     margin: 0 auto;
     max-width: 100%
+}
+
+.article>figure .article_ed__img_wrapper {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.article>figure.article__carousel .article_ed__img_wrapper {
+    background-color: #1e1e1e;
+    border-radius: 2px
+}
+
+.article>figure.article__carousel .article_ed__img_inner {
+    min-width: 720px;
+    width: 100%
+}
+
+.article>figure .article_ed__img_inner {
+    position: relative;
+    display: inline-block;
+    min-width: 100px;
+    border-radius: 2px;
+    box-sizing: border-box
+}
+
+.article>figure[data-mode="1"] {
+    float: left;
+    width: 350px;
+    margin: 30px 40px 30px 0px!important
+}
+
+.article>figure[data-mode="2"] {
+    margin-left: -100px;
+    margin-right: -100px
+}
+
+.article>figure[data-mode="3"] {
+    margin-left: calc(-100vw / 2 + 720px / 2);
+    margin-right: calc(-100vw / 2 + 720px / 2)
+}
+
+.article>figure[data-mode="3"] .article_ed__gif_content,
+.article>figure[data-mode="3"] .article_figure_content {
+    width: 100%!important
+}
+
+.article>figure[data-mode="2"] .article_ed__img_content.article_object_el img,
+.article>figure[data-mode="2"] .article_object_video,
+.article>figure[data-mode="2"] video,
+.article>figure[data-mode="3"] .article_ed__img_content.article_object_el img,
+.article>figure[data-mode="3"] .article_object_video,
+.article>figure[data-mode="3"] video {
+    width: 100%!important;
+    max-width: none!important
+}
+
+.article>figure[data-mode="2"] .article_ed__img_inner,
+.article>figure[data-mode="3"] .article_ed__img_inner {
+    width: 100%
+}
+
+.article>figure[data-mode="1"] .article_ed__extra_controls,
+.article>figure[data-mode="1"] .article_ed__video_play_note,
+.article>figure[data-mode="3"] .article_ed__extra_controls,
+.article>figure[data-mode="3"] .article_ed__video_play_note {
+    display: none!important
+}
+
+.article>figure.article_p_obj_small img,
+.article>figure.article_p_obj_small video {
+    width: auto!important;
+    max-width: 100%!important
+}
+
+.article .article_decoration_before:after {
+    content: "";
+    display: table;
+    clear: both
 }
 
 .article .video_box_wrap,
@@ -570,15 +661,15 @@
     min-height: 530px
 }
 
-.article_edit figure[data-type="103"] img,
-.article_edit figure[data-type="103"] video {
-    width: 100%
+.article_view:after {
+    content: "";
+    display: table;
+    clear: both
 }
 
 .article_view>figure .article_figure_content {
     position: relative;
     margin: 0 auto;
-    border-radius: 2px;
     overflow: hidden;
     max-width: 100%
 }
@@ -587,11 +678,6 @@
     position: absolute;
     width: 100%;
     height: 100%
-}
-
-.article_view>figure[data-type="103"] img,
-.article_view>figure[data-type="103"] video {
-    width: 100%
 }
 
 .article_view>figure[data-type="102"] .article_object_video {
@@ -897,7 +983,7 @@
 
 .article:not(.article_mobile)>h2,
 .article:not(.article_mobile)>h3,
-.article:not(.article_mobile)>h1+* {
+.article:not(.article_mobile)>h1+:not(figure) {
     margin-top: 40px
 }
 
@@ -908,6 +994,12 @@
 
 .article:not(.article_mobile)>[data-sep]:not(cite) {
     margin-top: 96px!important
+}
+
+.article:not(.article_mobile) p.article_paragraph:last-of-type:after {
+    content: "";
+    display: table;
+    clear: both
 }
 
 .article_mobile_layout {
@@ -986,7 +1078,7 @@
     margin-top: 33px
 }
 
-.article.article_mobile>h1+* {
+.article.article_mobile>h1+:not(figure) {
     margin-top: 10px
 }
 
@@ -1265,7 +1357,8 @@ body.article_body .article_layer {
     transition: opacity 60ms linear;
     top: 0;
     pointer-events: none;
-    transform: translateZ(0)
+    transform: translateZ(0);
+    z-index: 999
 }
 
 .article_layer .article_layer__up.article_layer__up--shown {
@@ -1303,7 +1396,8 @@ body.article_body .article_layer {
     margin-top: 20px;
     margin-right: 30px;
     right: 0;
-    transform: translateZ(0)
+    transform: translateZ(0);
+    z-index: 999
 }
 
 .mac .article_layer .article_layer__top_actions {
@@ -1582,33 +1676,47 @@ body.article_body .article_layer {
 }
 
 .article_layer .article_layer__footer {
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+    border-color: #ebebeb;
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    z-index: 9;
+    margin-top: 30px;
+    margin-bottom: 30px
+}
+
+.article_layer .article_layer__footer_inner {
+    position: relative;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-align: center;
     align-items: center;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    position: relative;
     width: 720px;
-    background-color: #fff;
     padding: 11px 0;
-    margin: 30px 0;
-    border-color: #ebebeb;
-    -o-transform: translateY(0);
-    transform: translateY(0);
-    z-index: 9
+    box-sizing: border-box;
+    margin: 0 auto
 }
 
 .article_layer .article_layer__footer--fix {
     position: fixed;
+    left: 0;
+    right: 0;
     bottom: 0;
-    margin: 0 -45px;
-    padding: 11px 45px;
+    margin-top: 0;
+    margin-bottom: 0;
     border-top-width: 1px;
     border-top-style: solid;
     -o-transition: background-color 450ms ease-in-out, transform 350ms ease, border-top-color 450ms ease-in-out, -o-transform 350ms ease;
     transition: background-color 450ms ease-in-out, transform 350ms ease, border-top-color 450ms ease-in-out;
     transition: background-color 450ms ease-in-out, transform 350ms ease, border-top-color 450ms ease-in-out, -o-transform 350ms ease
+}
+
+.article_layer .article_layer__footer--fix_inner {
+    padding: 11px 45px
 }
 
 .article_layer .article_layer__footer--hide,

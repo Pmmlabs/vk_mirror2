@@ -529,11 +529,11 @@ var stVersions = {
     'stories.css': 17755972818,
     'cmodules/web/stories_manage.js': 28198384746,
     'stories_manage.css': 75259318153,
-    'article.css': 37063460590,
-    'article_editor.css': 38684533518,
-    'cmodules/web/article.js': 34550826880,
-    'cmodules/web/article_layer.js': 19754252983,
-    'article_view.js': 14706153073,
+    'article.css': 40773392299,
+    'article_editor.css': 39883161105,
+    'cmodules/web/article.js': 38360682242,
+    'cmodules/web/article_layer.js': 18966677446,
+    'article_view.js': 13918577536,
     'bookmarks.css': 13520940025,
     'cmodules/web/bookmarks.js': 1303575103,
     'shortener.js': 16413120,
@@ -634,4 +634,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 1498;
+var _rnd = 5957;
