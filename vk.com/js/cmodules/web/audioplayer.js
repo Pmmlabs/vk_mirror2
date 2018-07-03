@@ -44,8 +44,8 @@
         return Object.prototype.hasOwnProperty.call(t, e)
     }, i.p = "", i(i.s = 0)
 }([function(t, e, i) {
-    t.exports = i(5)
-}, , function(t, e, i) {
+    t.exports = i(2)
+}, function(t, e, i) {
     "use strict";
     i.r(e), i.d(e, "audioUnmaskSource", function() {
         return s
@@ -110,86 +110,8 @@
     }
 }, function(__webpack_module__, __webpack_exports__, __webpack_require__) {
     "use strict";
-
-    function _classCallCheck(t, e) {
-        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-    }
     __webpack_require__.r(__webpack_exports__);
-    var AudioLayer = function() {
-        function AudioLayer() {
-            _classCallCheck(this, AudioLayer), this._els = {
-                layerPlace: ge("top_audio_layer_place"),
-                topPlayBtn: geByClass1("_top_audio_player_play"),
-                topNotaBtn: geByClass1("_top_nav_audio_btn"),
-                topNotaBtnGroup: ge("top_audio_btn_group")
-            }
-        }
-        return AudioLayer.prepare = function(t) {
-            stManager.add(["audio.js", "audioplayer.js", "audio.css", "suggester.js", "auto_list.js", "indexer.js"], function() {
-                t && t()
-            })
-        }, AudioLayer.prototype.toggle = function(t, e) {
-            var i = this;
-            this._initTooltip();
-            var o = this._els.tt,
-                a = void 0 !== t ? t : !o.isShown();
-            a ? (o.show(), cancelStackPush("top_audio", function() {
-                i.toggle(!1, !0)
-            }, !0)) : (e || cancelStackPop(), o.hide()), toggleClass(this._els.topNotaBtn, "active", a)
-        }, AudioLayer.prototype.hide = function() {
-            this._els.tt.hide()
-        }, AudioLayer.prototype.isShown = function() {
-            return this._els.tt && this._els.tt.isShown()
-        }, AudioLayer.prototype.updatePosition = function() {
-            return this._els.tt && this._els.tt.updatePosition()
-        }, AudioLayer.prototype._layerPosition = function() {
-            var t = getXY(this._els.layerPlace),
-                e = getXY("page_body")[0] - t[0] - 1,
-                i = 0;
-            isVisible(this._els.topNotaBtnGroup) ? i = -e + (getXY(this._els.topNotaBtn)[0] - t[0]) + 15 : i = -e + (getXY(this._els.topPlayBtn)[0] - t[0]) + 3;
-            return {
-                left: e,
-                top: 0,
-                arrowPosition: i
-            }
-        }, AudioLayer.prototype.getPageInstance = function() {
-            return this._page
-        }, AudioLayer.prototype._initTooltip = function _initTooltip() {
-            var _this2 = this;
-            this._els.tt || (this._els.container = se('<div class="audio_layer_container"><div class="top_audio_loading">' + rs(vk.pr_tpl, {
-                id: "",
-                cls: "pr_big"
-            }) + "</div></div>"), this._els.tt = new ElementTooltip(this._els.layerPlace, {
-                id: "audio_layer_tt",
-                content: this._els.container,
-                width: 660,
-                offset: [22, 5],
-                autoShow: !1,
-                customShow: !0,
-                setPos: this._layerPosition.bind(this),
-                forceSide: "bottom",
-                onHide: function() {
-                    _this2._page && _this2._page.onLayerHide()
-                },
-                onShow: function() {
-                    _this2._page && _this2._page.onLayerShow(_this2._initSection)
-                }
-            }), ajax.post("al_audio.php", {
-                act: "layer",
-                is_layer: 1,
-                is_current_playlist: ap.getCurrentPlaylist() ? 1 : 0
-            }, {
-                onDone: function onDone(html, data, templatesScript) {
-                    eval(templatesScript), _this2._els.container.innerHTML = html, _this2._page = new AudioPage(geByClass1("_audio_page_layout", _this2._els.container), data), _this2._initSection = "recoms" == data.initSection ? data.initSection : void 0, _this2._page.onLayerShow(_this2._initSection)
-                }
-            }))
-        }, AudioLayer
-    }();
-    __webpack_exports__.default = AudioLayer
-}, , function(__webpack_module__, __webpack_exports__, __webpack_require__) {
-    "use strict";
-    __webpack_require__.r(__webpack_exports__);
-    var _audioplayer_audio_unmask_source__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2),
+    var _audioplayer_audio_unmask_source__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1),
         _audioplayer_audio_layer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3),
         _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
             return typeof t
@@ -1235,6 +1157,16 @@
                 id: e.id,
                 owner_id: e.owner_id,
                 hash: e.actionHash
+            }, {
+                params: {
+                    width: 750
+                }
+            })
+        },
+        getUMAInfoAlbum: function(t, e) {
+            e.isInEditBox || showBox("al_audio.php", {
+                act: "get_uma_restrictions_album",
+                playlist_raw_id: t
             }, {
                 params: {
                     width: 750
@@ -3115,4 +3047,82 @@
     try {
         stManager.done("audioplayer.js")
     } catch (t) {}
+}, function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    function _classCallCheck(t, e) {
+        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+    }
+    __webpack_require__.r(__webpack_exports__);
+    var AudioLayer = function() {
+        function AudioLayer() {
+            _classCallCheck(this, AudioLayer), this._els = {
+                layerPlace: ge("top_audio_layer_place"),
+                topPlayBtn: geByClass1("_top_audio_player_play"),
+                topNotaBtn: geByClass1("_top_nav_audio_btn"),
+                topNotaBtnGroup: ge("top_audio_btn_group")
+            }
+        }
+        return AudioLayer.prepare = function(t) {
+            stManager.add(["audio.js", "audioplayer.js", "audio.css", "suggester.js", "auto_list.js", "indexer.js"], function() {
+                t && t()
+            })
+        }, AudioLayer.prototype.toggle = function(t, e) {
+            var i = this;
+            this._initTooltip();
+            var o = this._els.tt,
+                a = void 0 !== t ? t : !o.isShown();
+            a ? (o.show(), cancelStackPush("top_audio", function() {
+                i.toggle(!1, !0)
+            }, !0)) : (e || cancelStackPop(), o.hide()), toggleClass(this._els.topNotaBtn, "active", a)
+        }, AudioLayer.prototype.hide = function() {
+            this._els.tt.hide()
+        }, AudioLayer.prototype.isShown = function() {
+            return this._els.tt && this._els.tt.isShown()
+        }, AudioLayer.prototype.updatePosition = function() {
+            return this._els.tt && this._els.tt.updatePosition()
+        }, AudioLayer.prototype._layerPosition = function() {
+            var t = getXY(this._els.layerPlace),
+                e = getXY("page_body")[0] - t[0] - 1,
+                i = 0;
+            isVisible(this._els.topNotaBtnGroup) ? i = -e + (getXY(this._els.topNotaBtn)[0] - t[0]) + 15 : i = -e + (getXY(this._els.topPlayBtn)[0] - t[0]) + 3;
+            return {
+                left: e,
+                top: 0,
+                arrowPosition: i
+            }
+        }, AudioLayer.prototype.getPageInstance = function() {
+            return this._page
+        }, AudioLayer.prototype._initTooltip = function _initTooltip() {
+            var _this2 = this;
+            this._els.tt || (this._els.container = se('<div class="audio_layer_container"><div class="top_audio_loading">' + rs(vk.pr_tpl, {
+                id: "",
+                cls: "pr_big"
+            }) + "</div></div>"), this._els.tt = new ElementTooltip(this._els.layerPlace, {
+                id: "audio_layer_tt",
+                content: this._els.container,
+                width: 660,
+                offset: [22, 5],
+                autoShow: !1,
+                customShow: !0,
+                setPos: this._layerPosition.bind(this),
+                forceSide: "bottom",
+                onHide: function() {
+                    _this2._page && _this2._page.onLayerHide()
+                },
+                onShow: function() {
+                    _this2._page && _this2._page.onLayerShow(_this2._initSection)
+                }
+            }), ajax.post("al_audio.php", {
+                act: "layer",
+                is_layer: 1,
+                is_current_playlist: ap.getCurrentPlaylist() ? 1 : 0
+            }, {
+                onDone: function onDone(html, data, templatesScript) {
+                    eval(templatesScript), _this2._els.container.innerHTML = html, _this2._page = new AudioPage(geByClass1("_audio_page_layout", _this2._els.container), data), _this2._initSection = "recoms" == data.initSection ? data.initSection : void 0, _this2._page.onLayerShow(_this2._initSection)
+                }
+            }))
+        }, AudioLayer
+    }();
+    __webpack_exports__.default = AudioLayer
 }]);

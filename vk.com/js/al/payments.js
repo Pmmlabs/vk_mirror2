@@ -500,7 +500,11 @@ var MoneyTransfer = {
         }
         setTimeout(elfocus.pbind('transfer_amount'), 100);
         shortCurrency();
+        if (browser.mozilla) {
+            MoneyTransfer.checkTrackingProtection(true);
+        }
         MoneyTransfer.autosizeAmount();
+        MoneyTransfer.cookieTroubleCounter = 0;
     },
     send: function() {
         var box = curBox(),
@@ -549,7 +553,7 @@ var MoneyTransfer = {
             onDone: function(data, html) {
                 cur._popup_text = html;
                 cur._popup_callback = function() {
-                    hide('payments_money_transfer_wrap', 'payments_money_transfer_buttons', 'payments_box_error', 'payments_money_transfer_prg');
+                    hide('payments_money_transfer_wrap', 'payments_money_transfer_buttons', 'payments_box_error', 'payments_money_transfer_prg', 'payments_iframe_cookie_trouble', 'payments_iframe_cookie_disabled_div');
                     show('payments_money_transfer_iframe', 'payments_iframe_container');
                     if (cur.uiTransferTo) {
                         hide('payments_money_transfer_user_select');
@@ -575,6 +579,9 @@ var MoneyTransfer = {
                     iframe.contentWindow.document.write(html);
                     iframe.contentWindow.document.close();
                     cur._popup_callback();
+                }
+                if (browser.mozilla && !cur.trackingProtectionOff) {
+                    MoneyTransfer.trackingProtectionDivVisibility(true);
                 }
                 MoneyTransfer.startCheckStatus(data);
             },
@@ -922,9 +929,14 @@ var MoneyTransfer = {
         } else if (message.action == '3dsFinish') {
             MoneyTransfer.frameHeight();
             removeClass('payments_iframe_container', 'payments_threeds_frame');
-        } else if (message.action == 'session_fail' && browser.safari) {
+        } else if (message.action == 'session_fail') {
             hide('payments_iframe_container');
-            show('payments_iframe_cookie_trouble');
+            if (MoneyTransfer.cookieTroubleCounter) {
+                show('payments_iframe_cookie_disabled_div');
+            } else {
+                show('payments_iframe_cookie_trouble');
+            }
+            MoneyTransfer.cookieTroubleCounter++;
         }
     },
     acceptCookieSafariSpike: function() {
@@ -937,6 +949,30 @@ var MoneyTransfer = {
             hide('payments_iframe_cookie_trouble');
             MoneyTransfer.send();
         }, 1000);
+    },
+    trackingProtectionDivVisibility: function(value) {
+        hide(value ? 'payments_iframe_container' : 'payments_iframe_tracking_protection_div');
+        show(value ? 'payments_iframe_tracking_protection_div' : 'payments_iframe_container');
+    },
+    checkTrackingProtection: function(onlyFlag) {
+        hide('payments_iframe_container');
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://top-fwz1.mail.ru/counter2?id=1', true);
+        xhr.onreadystatechange = function() {
+            if (xhr.status !== 200) {
+                cur.trackingProtectionOff = false;
+                if (!onlyFlag) {
+                    MoneyTransfer.trackingProtectionDivVisibility(true);
+                }
+            } else {
+                cur.trackingProtectionOff = true;
+                if (!onlyFlag) {
+                    MoneyTransfer.trackingProtectionDivVisibility(false);
+                    MoneyTransfer.send();
+                }
+            }
+        };
+        xhr.send();
     },
     initAccept: function(data, html) {
         var frc = ge('payments_iframe_container');

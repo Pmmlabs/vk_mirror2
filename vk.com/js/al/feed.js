@@ -1836,9 +1836,8 @@ var Feed = {
     },
     onViewFriendRecomm: function(e, t, o) {
         if (!e.viewed) {
-            var s = geByClass1("friend_recomm_card", e),
-                r = s && +domData(s, "uid");
-            Wall.friendsRecommLogSave(["show_user_rec", r, vkNow(), t, o]), e.viewed = !0
+            var s = +domData(e, "uid");
+            Wall.friendsRecommLogSave(["show_user_rec", s, vkNow(), t, o]), e.viewed = !0
         }
     }
 };

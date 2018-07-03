@@ -268,7 +268,13 @@ window.locHash = location.hash.replace('#/', '').replace('#!', '');
 window.locDomain = locHost.toString().match(/[a-zA-Z]+\.[a-zA-Z]+\.?$/)[0];
 window.locBase = location.toString().replace(/#.+$/, '');
 if (!vk.nodomain) {
-    if (!browser.msie6 || document.domain != locDomain) document.domain = locDomain;
+    if (!browser.msie6 || document.domain != locDomain) {
+        try {
+            document.domain = locDomain;
+        } catch (error) {
+            debugLog(error);
+        }
+    }
 }
 
 window.__qlTimer = null;

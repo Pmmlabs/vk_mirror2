@@ -292,7 +292,8 @@
                         (window.locProtocol || 'http:') + '//maps.google.com/maps/api/js', {
                             sensor: 'false',
                             callback: 'gMapsInit',
-                            language: lngcode || 'en'
+                            language: lngcode || 'en',
+                            key: 'AIzaSyAMiyvdUfktHG6mU9JkDSCbLmr1QWgyywk'
                         }
                     ));
                 }

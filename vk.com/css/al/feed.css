@@ -757,7 +757,7 @@
     cursor: pointer
 }
 
-.feedback_row_clickable:not(.feedback_row_touched):hover .feedback_row_menu {
+.feedback_row_wrap:hover .feedback_row_menu {
     opacity: 1;
     filter: none;
     visibility: visible

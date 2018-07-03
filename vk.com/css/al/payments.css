@@ -2486,11 +2486,50 @@ h2.payments_getvotes_title {
 }
 
 #payments_box.payments_money_transfer_box .payments_iframe_cookie_trouble_msg {
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
     font-size: 15px;
     line-height: 20px
 }
 
 #payments_box.payments_money_transfer_box .payments_iframe_cookie_trouble_btn {
+    margin-top: 16px
+}
+
+#payments_box.payments_money_transfer_box .payments_iframe_cookie_disabled_div {
+    text-align: center;
+    padding: 30px 20px;
+    margin: 20px 25px
+}
+
+#payments_box.payments_money_transfer_box .payments_iframe_cookie_disabled_msg {
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    font-size: 15px;
+    line-height: 22px
+}
+
+#payments_box.payments_money_transfer_box .payments_iframe_cookie_disabled_btn {
+    margin-top: 16px
+}
+
+#payments_box.payments_money_transfer_box .payments_iframe_tracking_protection {
+    text-align: center;
+    padding: 30px 20px;
+    margin: 20px 25px
+}
+
+#payments_box.payments_money_transfer_box .payments_iframe_tracking_protection_msg {
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    font-size: 15px;
+    line-height: 22px
+}
+
+#payments_box.payments_money_transfer_box .payments_iframe_tracking_protection_btn {
     margin-top: 16px
 }
 

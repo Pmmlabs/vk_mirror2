@@ -190,6 +190,10 @@ a.ui_box_header_link {
     color: #2a5885
 }
 
+.ui_tab_default .ui_tab_plain {
+    color: #656565
+}
+
 .ui_tab_search {
     padding: 17px 6px 14px
 }
