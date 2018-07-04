@@ -3612,6 +3612,7 @@
     display: inline
 }
 
+.bugtracker_device .bugtracker_device_device_spec_model,
 .bugtracker_device .bugtracker_device_platform {
     display: inline;
     color: #939393;

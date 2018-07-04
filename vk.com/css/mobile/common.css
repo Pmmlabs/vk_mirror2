@@ -17992,10 +17992,15 @@ input:checked+.adultConfirm__checkboxIcon:after {
     -moz-border-radius: 2px;
     border-radius: 2px;
     display: block;
-    margin: 0 auto;
-    width: 100%
+    margin: 0 auto
 }
 
+.article>figure img {
+    max-width: 100%
+}
+
+.article>figure .article_object_video,
+.article>figure video,
 .article>figure .article_ed__video_img {
     width: 100%
 }
@@ -19832,6 +19837,7 @@ figure[data-type="102"] .article_object_video_play {
 }
 
 .basisGroup__mainInfo {
+    min-height: 0!important;
     min-height: auto!important;
     overflow: hidden
 }
@@ -20758,6 +20764,7 @@ figure[data-type="102"] .article_object_video_play {
 
 .pinnedMsg .di_cont {
     margin-left: 0;
+    min-height: 0;
     min-height: auto
 }
 
@@ -26854,7 +26861,7 @@ body.apps_settingsPageBody {
 .r .wi_buttons+.pi_header,
 .r .wi_head,
 .Socials {
-    margin: 0 12px
+    margin: 0 8px
 }
 
 .Post__thumbed,
@@ -27844,6 +27851,11 @@ body.apps_settingsPageBody {
 
 .medias_thumbs+.articleSnippet__block {
     margin-top: 12px
+}
+
+.audio_item+.articleSnippet__block {
+    margin-top: 8px;
+    margin-bottom: 8px
 }
 
 .post_item.comment_item {
@@ -32275,7 +32287,9 @@ body.apps_settingsPageBody {
     -moz-border-radius: 2px;
     border-radius: 2px;
     border: 1px solid #dee0e3;
-    display: none
+    display: none;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch
 }
 
 .vk_js_no .Unfold__popup {
@@ -32477,6 +32491,21 @@ body.apps_settingsPageBody {
     bottom: 0;
     right: 12px;
     margin: auto
+}
+
+@media (max-width: 340px) {
+    .Unfold__popup {
+        max-width: 310px
+    }
+    .Unfold__itemText {
+        padding-right: 20px
+    }
+}
+
+@media (max-height: 400px) {
+    .Unfold__popup {
+        max-height: 70vh
+    }
 }
 
 .ScrollView,
@@ -35032,6 +35061,19 @@ body.apps_settingsPageBody {
     height: 40px
 }
 
+.convo__row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    max-height: 20px
+}
+
+.convo__row_right {
+    margin-left: auto
+}
+
 .convo__row_text {
     margin-top: 4px;
     line-height: 20px
@@ -35319,7 +35361,10 @@ body.apps_settingsPageBody {
 .msg__date {
     font-size: 13px;
     color: #909499;
-    white-space: nowrap
+    white-space: nowrap;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0
 }
 
 .msg__restore {
@@ -35351,11 +35396,26 @@ body.apps_settingsPageBody {
 .msg__edited {
     font-size: 13px;
     color: #909499;
-    white-space: nowrap
+    white-space: nowrap;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0
 }
 
 .msg__editedMiddot {
     padding: 0 4px
+}
+
+@media (max-width: 340px) {
+    .msg__edited {
+        -webkit-flex-shrink: 1;
+        -ms-flex-negative: 1;
+        flex-shrink: 1;
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        min-width: 60px
+    }
 }
 
 .msg__admin {
@@ -35619,7 +35679,10 @@ body.apps_settingsPageBody {
 .msg__text .mi_date {
     font-size: 13px;
     color: #909499;
-    white-space: nowrap
+    white-space: nowrap;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0
 }
 
 .comment_item .thumbs_map_wrap,
@@ -36918,6 +36981,7 @@ body.apps_settingsPageBody {
 }
 
 .uMailWrite__attachments .medias_link_texts {
+    min-height: 0!important;
     min-height: auto!important
 }
 
@@ -37643,6 +37707,7 @@ body.apps_settingsPageBody {
 
 ._ios.vk__page_mail {
     overflow-y: auto!important;
+    min-height: 0!important;
     min-height: auto!important
 }
 
@@ -38073,6 +38138,7 @@ body.apps_settingsPageBody {
     margin-top: -2px;
     width: 24px;
     height: 24px;
+    min-height: 0;
     min-height: auto;
     padding: 12px;
     margin-right: -12px;

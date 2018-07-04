@@ -412,10 +412,15 @@
 .article>figure video {
     border-radius: 2px;
     display: block;
-    margin: 0 auto;
-    width: 100%
+    margin: 0 auto
 }
 
+.article>figure img {
+    max-width: 100%
+}
+
+.article>figure .article_object_video,
+.article>figure video,
 .article>figure .article_ed__video_img {
     width: 100%
 }
