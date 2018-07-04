@@ -1896,6 +1896,23 @@ var Helpdesk = {
             })
         }, getLang("global_cancel")))
     },
+    requestRest: function(e, t) {
+        cur.helpdeskRequestRestBox = showBox("helpdesk?act=request_rest_box", {
+            hash: t
+        }, {})
+    },
+    doRequestRest: function() {
+        return -1 == radioval("restType") ? notaBene("request_rest_types") : void ajax.post("helpdesk?act=a_create_rest_request", {
+            type: radioval("restType"),
+            reason: trim(val("request_rest_reason")),
+            hash: cur.restRequestHash
+        }, {
+            progress: cur.helpdeskRequestRestBox.progress,
+            onDone: function(e) {
+                cur.helpdeskRequestRestBox.hide(), showDoneBox(e), nav.reload()
+            }
+        })
+    },
     ticketStatusTT: function(e, t) {
         showTooltip(e, {
             text: t,

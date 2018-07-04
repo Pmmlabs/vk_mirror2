@@ -7899,7 +7899,11 @@ var Wall = {
             cur.oid = fromData[0];
         }
         if (el.hasAttribute('data-reinit-ads-post-editor') && window.AdsEdit) {
-            AdsEdit.reinitCreatingPostFormBound();
+            if (opts.withoutRedraw) {
+                AdsEdit.reinitCreatingPostFormBoundWithoutRedraw();
+            } else {
+                AdsEdit.reinitCreatingPostFormBound();
+            }
         }
 
         if (el.id == 'official') {

@@ -1389,12 +1389,23 @@ AdsEdit.triggerDefaultMediaForPostForm = function(wallOptions) {
                     break;
                 }
 
+            case 'promoted_post_lead_form':
+                {
+                    triggerMediaType = 'lead_form';
+                    break;
+                }
+
             default:
             case 'promoted_post':
                 {
                     // do nothing
                     break;
                 }
+        }
+
+        if (triggerMediaType === 'lead_form') {
+            AdsEdit.showLeadFormBoxes();
+            return false;
         }
 
         if (triggerMediaType && cur.wallAddMedia) {
@@ -1408,7 +1419,8 @@ AdsEdit.triggerDefaultMediaForPostForm = function(wallOptions) {
     }
 }
 
-AdsEdit.reinitCreatingPostForm = function(creatingPostBox, wallOptions) {
+AdsEdit.reinitCreatingPostForm = function(creatingPostBox, wallOptions, withoutRedraw) {
+    withoutRedraw = !!withoutRedraw;
     var boxBodyNode = creatingPostBox.bodyNode;
     var postMessageInput = geByClass1('submit_post_field', boxBodyNode);
     var postMessage = trim((window.Emoji ? Emoji.editableVal : val)(postMessageInput));
@@ -1418,13 +1430,15 @@ AdsEdit.reinitCreatingPostForm = function(creatingPostBox, wallOptions) {
     Wall.init(wallOptions);
     Wall.showEditPost();
 
-    postMessageInput = geByClass1('submit_post_field', boxBodyNode);
-    val(postMessageInput, clean(postMessage));
+    if (!withoutRedraw) {
+        postMessageInput = geByClass1('submit_post_field', boxBodyNode);
+        val(postMessageInput, clean(postMessage));
 
-    if (wallOptions.additional_save_params.ads_promoted_post_snippet_link) {
-        cur.addMedia[cur.wallAddMedia.lnkId].checkURL(wallOptions.additional_save_params.ads_promoted_post_snippet_link);
-    } else {
-        AdsEdit.triggerDefaultMediaForPostForm(wallOptions);
+        if (wallOptions.additional_save_params.ads_promoted_post_snippet_link) {
+            cur.addMedia[cur.wallAddMedia.lnkId].checkURL(wallOptions.additional_save_params.ads_promoted_post_snippet_link);
+        } else {
+            AdsEdit.triggerDefaultMediaForPostForm(wallOptions);
+        }
     }
 }
 
@@ -1499,7 +1513,8 @@ AdsEdit.initCreatingPostForm = function(creatingPostBox, postOwnerId, wallOption
     Wall.init(wallOptions);
     Wall.showEditPost();
 
-    AdsEdit.reinitCreatingPostFormBound = AdsEdit.reinitCreatingPostForm.pbind(creatingPostBox, wallOptions);
+    AdsEdit.reinitCreatingPostFormBound = AdsEdit.reinitCreatingPostForm.pbind(creatingPostBox, wallOptions, false);
+    AdsEdit.reinitCreatingPostFormBoundWithoutRedraw = AdsEdit.reinitCreatingPostForm.pbind(creatingPostBox, wallOptions, true);
 
     creatingPostBox.changed = true; // prevent hiding box on background click
 
@@ -1698,6 +1713,270 @@ AdsEdit.scrollToEditing = function() {
     var scrollY = getXY(scrollElem)[1] + getSize(scrollElem)[1] + 20;
     scrollToY(scrollY);
 }
+
+AdsEdit.showLeadFormBoxes = function() {
+    // first of all, check do we have a group and do we need to show group change box
+    if (cur.canUseLeadFormsForAd && cur.postTo) {
+        this.showLeadFormBox(-cur.postTo);
+        return false;
+    }
+
+    this.showLeadFormGroupBox(-cur.postTo);
+}
+
+AdsEdit.showLeadFormBox = function(groupId) {
+    if (!groupId) {
+        return false;
+    }
+
+    var ajaxParams = {
+        group_id: groupId
+    };
+
+    var showOptions = {};
+    showOptions.params = {
+        width: 795,
+        containerClass: 'ads_create_lead_form_ad',
+        progress: true,
+        hideButtons: true
+    };
+
+    showBox('/adsedit?act=show_lead_form_box', ajaxParams, showOptions);
+}
+
+AdsEdit.showLeadFormGroupBox = function(groupId) {
+    var showOptions = {};
+    showOptions.params = {
+        width: 450,
+        dark: 1,
+        progress: true,
+    };
+
+    var ajaxParams = {
+        selected_group_id: groupId
+    };
+
+    cur.leadFormGroupBox = showBox('/adsedit?act=show_lead_form_group_box', ajaxParams, showOptions);
+}
+
+AdsEdit.goToShowLeadFormGroupBox = function(groupId) {
+    if (curBox()) {
+        curBox().hide();
+    }
+
+    AdsEdit.showLeadFormGroupBox(groupId);
+}
+
+AdsEdit.changeLeadFormGroupForPostEdit = function(el, ownerId) {
+    cur.oid = ownerId;
+    cur.postTo = ownerId;
+
+    var groupSelect = geByClass1('ads_edit_ad_submit_post_author_selector');
+
+    if (!window.replyAsData) {
+        window.replyAsData = {};
+    }
+    // we need to format group info data from one select to other. It's id, pict_url, group_url and group_name
+    window.replyAsData[ownerId] = [-(el[0]), el[3], false, el[1]];
+    wall.setReplyAsGroup(groupSelect, {
+        from: (ownerId).toString(),
+        reinitConfirmed: true,
+        withoutRedraw: true
+    });
+}
+
+AdsEdit.initLeadFormGroupBoxDropdown = function(groups, selectedGroupId, selectedGroupData, selectedGroupParams) {
+    var groupsDropdownEl = ge('ads_edit_ad_creating_post_lead_form_group');
+
+    if (!groupsDropdownEl) {
+        return false;
+    }
+
+    var groupList = [];
+    each(groups, function(groupId, groupInfo) {
+        groupList.push(groupInfo);
+    });
+
+    var leadFormGroupBoxDropdownUrl = '/adsedit?act=search_user_objects&section=groups&create_promoted_stealth=1&format_menu_list=1&check_for_opened=1&group_purpose=' + AdsEdit.ADS_AD_CHECK_GROUP_PURPOSE_LINK_OBJECT;
+    var leadFormGroupBoxDropdown = new Autocomplete(groupsDropdownEl, leadFormGroupBoxDropdownUrl, {
+        autocomplete: true,
+        big: true,
+        preventDuplicates: true,
+        width: 400,
+        withIcons: true,
+        defaultItems: groupList,
+        includeLabelsOnMatch: true,
+        multiselect: false,
+        maxItems: 20,
+        selectedItems: selectedGroupId,
+        placeholder: getLang('ads_edit_lead_forms_group_box_placeholder'),
+        onChange: this.onChangeLeadFormGroupBoxDropdown.bind(this)
+    });
+
+    this.hideLeadFormGroupBoxResults();
+    if (selectedGroupParams.need_install) {
+        this.showLeadFormGroupBoxNeedInstall(selectedGroupId);
+    } else {
+        this.showLeadFormGroupBoxAlreadyInstalled(selectedGroupId);
+    }
+
+    if (-selectedGroupId !== cur.postTo) {
+        this.changeLeadFormGroupForPostEdit(selectedGroupData, -selectedGroupId);
+    }
+}
+
+AdsEdit.onChangeLeadFormGroupBoxDropdown = function(groupId, el) {
+    if (!groupId || !el) {
+        return false;
+    }
+
+    var selectGroupForLeadFormBoxBody = ge('ads_edit_select_group_for_lead_form_box_body');
+    if (!selectGroupForLeadFormBoxBody) {
+        return false;
+    }
+
+    var selectGroupForLeadFormBoxResults = geByClass('ads_edit_easy_group_lead_form_box__result', selectGroupForLeadFormBoxBody);
+    if (!selectGroupForLeadFormBoxResults) {
+        return false;
+    }
+
+    var selectGroupForLeadFormBoxSettingsLink = ge('ads_edit_easy_group_lead_form_box__result_settings_link', selectGroupForLeadFormBoxBody);
+    if (selectGroupForLeadFormBoxSettingsLink) {
+        selectGroupForLeadFormBoxSettingsLink.href = '/public' + groupId + '?act=apps';
+    }
+
+    var selectGroupForLeadFormBoxAppLink = ge('ads_edit_easy_group_lead_form_box__result_app_link', selectGroupForLeadFormBoxBody);
+    if (selectGroupForLeadFormBoxAppLink) {
+        selectGroupForLeadFormBoxAppLink.href = '/community_apps?from=club' + groupId + '&w=app6013442';
+    }
+
+    var ajaxParams = {};
+    ajaxParams.group_id = groupId;
+
+    this.changeLeadFormGroupForPostEdit(el, -groupId);
+
+    ajax.post('/adsedit?act=get_lead_form_group_info', ajaxParams, {
+        onDone: this.onChangeLeadFormGroupBoxDropdownComplete.bind(this, groupId),
+        onFail: this.onChangeLeadFormGroupBoxDropdownComplete.bind(this, groupId),
+        showProgress: function() {
+            if (cur.leadFormGroupBox) {
+                cur.leadFormGroupBox.showProgress();
+            }
+        },
+        hideProgress: function() {
+            if (cur.leadFormGroupBox) {
+                cur.leadFormGroupBox.hideProgress();
+            }
+        }
+    });
+}
+
+AdsEdit.onChangeLeadFormGroupBoxDropdownComplete = function(groupId, result) {
+    this.hideLeadFormGroupBoxResults();
+
+    if (!result || !result.ok) {
+        this.showLeadFormGroupBoxError();
+        return true;
+    }
+
+    if (result.installed) {
+        this.showLeadFormGroupBoxAlreadyInstalled(groupId);
+        return true;
+    }
+
+    if (result.need_install) {
+        this.showLeadFormGroupBoxNeedInstall(groupId);
+        return true;
+    }
+}
+
+AdsEdit.hideLeadFormGroupBoxResults = function() {
+    var selectGroupForLeadFormBoxBody = ge('ads_edit_select_group_for_lead_form_box_body');
+    if (!selectGroupForLeadFormBoxBody) {
+        return false;
+    }
+
+    var selectGroupForLeadFormBoxResults = geByClass('ads_edit_easy_group_lead_form_box__result', selectGroupForLeadFormBoxBody);
+    if (!selectGroupForLeadFormBoxResults) {
+        return false;
+    }
+
+    each(selectGroupForLeadFormBoxResults, function(i, item) {
+        hide(item);
+    });
+
+    if (!cur.leadFormGroupBox) {
+        return false;
+    }
+
+    cur.leadFormGroupBox.removeButtons();
+}
+
+AdsEdit.showLeadFormGroupBoxError = function() {
+    var selectGroupForLeadFormBoxError = ge('ads_edit_easy_group_lead_form_box__result_error');
+    if (!selectGroupForLeadFormBoxError) {
+        return false;
+    }
+
+    show(selectGroupForLeadFormBoxError);
+
+    if (!cur.leadFormGroupBox) {
+        return false;
+    }
+
+    cur.leadFormGroupBox.removeButtons();
+    cur.leadFormGroupBox.addButton(getLang('global_close'), cur.leadFormGroupBox.hide);
+}
+
+AdsEdit.showLeadFormGroupBoxAlreadyInstalled = function(groupId) {
+    if (!cur.leadFormGroupBox) {
+        return false;
+    }
+
+    cur.leadFormGroupBox.removeButtons();
+    var goToFormButton = cur.leadFormGroupBox.addButton(getLang('global_box_continue'), this.onClickLeadFormGroupBoxContinue.bind(this), '', true, 'ads_edit_easy_group_lead_form_box__result_app_go');
+    if (goToFormButton) {
+        attr(goToFormButton, 'data-group-id', groupId);
+    }
+}
+
+AdsEdit.showLeadFormGroupBoxNeedInstall = function(groupId) {
+    var selectGroupForLeadFormBoxResultNeedInstall = ge('ads_edit_easy_group_lead_form_box__result_need_install');
+    if (!selectGroupForLeadFormBoxResultNeedInstall) {
+        return false;
+    }
+
+    show(selectGroupForLeadFormBoxResultNeedInstall);
+
+    if (!cur.leadFormGroupBox) {
+        return false;
+    }
+
+    cur.leadFormGroupBox.removeButtons();
+    var installButton = cur.leadFormGroupBox.addButton(getLang('global_box_continue'), this.onClickLeadFormGroupBoxContinue.bind(this), '', true, 'ads_edit_easy_group_lead_form_box__result_app_install');
+    if (installButton) {
+        attr(installButton, 'data-group-id', groupId);
+    }
+}
+
+AdsEdit.onClickLeadFormGroupBoxContinue = function(button) {
+    if (!button) {
+        return false;
+    }
+
+    var groupId = attr(button, 'data-group-id');
+    if (!groupId) {
+        return false;
+    }
+
+    if (curBox()) {
+        curBox().hide();
+    }
+
+    this.showLeadFormBox(groupId);
+}
+
+
 
 //
 // AdsEditor

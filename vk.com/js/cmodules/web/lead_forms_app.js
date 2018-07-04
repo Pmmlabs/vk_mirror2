@@ -42,95 +42,65 @@
         return r.d(t, "a", t), t
     }, r.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, r.p = "", r(r.s = 3)
+    }, r.p = "", r(r.s = 5)
 }([function(e, t, r) {
     "use strict";
-    r.r(t), r.d(t, "default", function() {
-        return i
+    r.r(t), r.d(t, "createMutations", function() {
+        return l
+    }), r.d(t, "createModule", function() {
+        return _
+    }), r.d(t, "destroyModule", function() {
+        return d
     });
-    var a = r(5),
-        o = r(1),
-        n = 5;
+    var a = r(3);
 
-    function s(e, t, r, s) {
+    function o(e) {
+        if (Array.isArray(e)) {
+            for (var t = 0, r = Array(e.length); t < e.length; t++) r[t] = e[t];
+            return r
+        }
+        return Array.from(e)
+    }
+    var n = window,
+        s = n.addEvent,
+        i = n.removeEvent;
+
+    function l(e) {
         return {
-            addCustomQuestion: function(e) {
-                r.length < n && (r.push(Object(o.default)(r.length + 1, e, {
-                    onRemove: function(e) {
-                        r.splice(e - 1, 1);
-                        for (var a = 0; a < r.length; a++) r[a].setNum(a + 1);
-                        t().updateCustomQuestionsButton(), LeadFormsApp.updatePreview()
-                    }
-                })), t().updateCustomQuestionsButton(), LeadFormsApp.step2Changed())
-            },
-            updateCustomQuestionsButton: function() {
-                var e = r.length,
-                    t = ge("lead_forms_app_add_question_button"),
-                    a = geByTag1("span", t);
-                toggle(t, e < n), e > 0 ? val(a, " (" + cur.lang.communityApps_lead_forms_custom_questions_limit_pref.replace("%s", n - e) + ")") : val(a, "")
-            },
-            getCustomQuestionsData: function() {
-                for (var e = [], t = 0; t < r.length; t++) e.push(r[t].getData());
+            callMutations: function() {
+                if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
                 return e
             },
-            getAdmins: function() {
-                return s.adminsDD.val()
-            },
-            getAdminsElem: function() {
-                return s.adminsDD.container
-            },
-            getEmails: function() {
-                return s.adminsEmailsDD.selectedItems().map(function(e) {
-                    return e[1]
-                }).join(",")
-            },
-            getEmailsElem: function() {
-                return s.adminsEmailsDD.container
-            },
-            renderConfData: function() {
-                for (var e = cur.leadFormConf.step2.custom_questions, r = 0; r < e.length; r++) t().addCustomQuestion(e[r])
-            },
-            unmount: function() {
-                Object(a.destroyModule)(e)
+            bindMutations: function() {
+                if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
+                return e = e.apply(void 0, arguments)
             }
         }
     }
 
-    function i(e) {
-        var t = {},
-            r = cur.leadFormConf,
-            o = Object(a.createMutations)(s),
-            n = o.callMutations,
-            i = o.bindMutations;
-        return t.adminsDD = new Dropdown(ge("lead_forms_generator_dd_settings_admins"), cur.leadFormsAdmins, {
-            width: 300,
-            big: 1,
-            selectedItem: r.step5 ? r.step5.admins : void 0,
-            multiselect: !0,
-            autocomplete: !0,
-            placeholder: getLang("communityApps_lead_form_settings_admins_placeholder"),
-            onChange: LeadFormsApp.checkboxNotificationsChanged
-        }), t.adminsEmailsDD = new Selector(ge("lead_forms_generator_dd_settings_admins_emails"), [], {
-            width: 300,
-            big: 1,
-            dropdown: !1,
-            enableCustom: !0,
-            multiCustom: 1,
-            noResult: "",
-            maxItems: 10,
-            placeholder: getLang("communityApps_lead_form_settings_admins_emails_placeholder"),
-            onChange: LeadFormsApp.checkboxNotificationsChanged,
-            customSearch: LeadFormsApp.checkboxNotificationsChanged
-        }), t.scroll = new uiScroll(e), i(Object(a.createModule)({
-            handlers: function(e, t) {}
-        }), n, [], t)
+    function _(e) {
+        var t = {
+            _registeredHandlers: []
+        };
+        return e.handlers(function(e, t, r, a) {
+            s(t, r, a), e._registeredHandlers.push(["bind", t, r, a])
+        }.bind(null, t), function(e, t, r, o, n) {
+            Object(a.addDelegateEvent)(t, r, o, n), e._registeredHandlers.push(["delegate", t, r, o, n])
+        }.bind(null, t)), t
+    }
+
+    function d(e) {
+        e._registeredHandlers.forEach(function(e) {
+            var t = e.slice(1);
+            "delegate" === e[0] ? a.removeDelegateEvent.apply(void 0, o(t)) : i.apply(void 0, o(t))
+        }), e._registeredHandlers = []
     }
 }, function(e, t, r) {
     "use strict";
     r.r(t), r.d(t, "default", function() {
         return u
     });
-    var a = r(5),
+    var a = r(0),
         o = function() {
             return function(e, t) {
                 if (Array.isArray(e)) return e;
@@ -266,7 +236,7 @@
 }, function(e, t, r) {
     "use strict";
     r.r(t);
-    var a = r(0),
+    var a = r(4),
         o = function() {
             return function(e, t) {
                 if (Array.isArray(e)) return e;
@@ -292,15 +262,16 @@
             }
         }();
     window.LeadFormsApp = {
-        showGeneratorBox: function(e) {
-            var t = this;
-            showBox("lead_forms_app.php", {
+        showGeneratorBox: function(e, t) {
+            var r = this;
+            t = t ? 1 : 0, showBox("lead_forms_app.php", {
                 act: "generate_form_box",
                 group_id: cur.leadFormGroupId,
-                form_id: e
+                form_id: e,
+                is_ads: t
             }, {
                 onDone: function() {
-                    cur.initialFormConf = LeadFormsApp.getDomData(), cur.leadFormName = trim(val("lead_form_header_name")), t.checkSectionFill()
+                    cur.initialFormConf = LeadFormsApp.getDomData(), cur.leadFormName = trim(val("lead_form_header_name")), r.checkSectionFill()
                 },
                 params: {
                     onHideAttempt: function(e) {
@@ -380,7 +351,7 @@
         },
         saveUploadedCover: function(e, t) {
             var r = this;
-            e.photos = JSON.stringify(e.photos), ajax.post("al_photos.php", extend({
+            e.photos = JSON.stringify(e.photos), ajax.post("/al_photos.php", extend({
                 act: "choose_uploaded"
             }, e), {
                 onDone: function(e, t) {
@@ -473,30 +444,34 @@
                 d = this.checkStepErrors(n, 5);
             (!_ || (o.description || o.link) && _) && this.chooseStepStatus(_, 4), (!_ || _ && (n.pixel || n.no_repeat || n.notification || n.im_notify || n.admins || n.emails)) && this.chooseStepStatus(d, 5), this.chooseStepStatus(s, 1), this.chooseStepStatus(i, 2), this.chooseStepStatus(l, 3)
         },
-        saveForm: function(e) {
-            var t = this,
-                r = this.getDomData(),
-                a = r.step1,
-                o = r.step2,
-                n = r.step3,
-                s = r.step4,
-                i = r.step5,
-                l = !1;
-            this.checkStepErrors(a, 1) ? this.showStepSuccess(1) : (l = !0, this.showStepError(1), a.title || addClass("lead_forms_generator_input_title", "input_error")), this.checkStepErrors(o, 2) ? (this.showStepSuccess(2), hide(geByClass1("lead_form_app_questions_error"))) : (l = !0, this.showStepError(2), show(geByClass1("lead_form_app_questions_error"))), this.checkStepErrors(n, 3) ? this.showStepSuccess(3) : (l = !0, this.showStepError(3), addClass("lead_forms_generator_input_policy_url", "input_error")), this.checkStepErrors(s, 4) ? this.showStepSuccess(4) : this.showStepError(4), this.checkStepErrors(i, 5) ? this.showStepSuccess(5) : (l = !0, this.showStepError(5)), !i.notification || i.admins || i.emails || (addClass(cur.leadFromGenerator.getAdminsElem(), "input_error"), addClass(cur.leadFromGenerator.getEmailsElem(), "input_error")), i.im_notify && !i.admins && addClass(cur.leadFromGenerator.getAdminsElem(), "input_error"), i.pixel && !i.pixel.match(/^VK\-RTRG\-([a-zA-Z0-9\-]+)$/) && (addClass("lead_forms_generator_input_pixel", "input_error"), showFastBox(getLang("global_error"), getLang("communityApps_lead_forms_pixel_error")));
-            var _ = geByClass1("lead_form_header_error");
-            l ? show(_) : (hide(_), ajax.post("lead_forms_app.php", {
+        saveForm: function(e, t) {
+            var r = this;
+            t = t ? 1 : 0;
+            var a = this.getDomData(),
+                o = a.step1,
+                n = a.step2,
+                s = a.step3,
+                i = a.step4,
+                l = a.step5,
+                _ = !1;
+            this.checkStepErrors(o, 1) ? this.showStepSuccess(1) : (_ = !0, this.showStepError(1), o.title || addClass("lead_forms_generator_input_title", "input_error")), this.checkStepErrors(n, 2) ? (this.showStepSuccess(2), hide(geByClass1("lead_form_app_questions_error"))) : (_ = !0, this.showStepError(2), show(geByClass1("lead_form_app_questions_error"))), this.checkStepErrors(s, 3) ? this.showStepSuccess(3) : (_ = !0, this.showStepError(3), addClass("lead_forms_generator_input_policy_url", "input_error")), this.checkStepErrors(i, 4) ? this.showStepSuccess(4) : this.showStepError(4), this.checkStepErrors(l, 5) ? this.showStepSuccess(5) : (_ = !0, this.showStepError(5)), !l.notification || l.admins || l.emails || (addClass(cur.leadFromGenerator.getAdminsElem(), "input_error"), addClass(cur.leadFromGenerator.getEmailsElem(), "input_error")), l.im_notify && !l.admins && addClass(cur.leadFromGenerator.getAdminsElem(), "input_error"), l.pixel && !l.pixel.match(/^VK\-RTRG\-([a-zA-Z0-9\-]+)$/) && (addClass("lead_forms_generator_input_pixel", "input_error"), showFastBox(getLang("global_error"), getLang("communityApps_lead_forms_pixel_error")));
+            var d = geByClass1("lead_form_header_error");
+            _ ? show(d) : (hide(d), ajax.post("/lead_forms_app.php", {
                 act: "save_form",
                 name: val("lead_form_header_name"),
                 group_id: cur.leadFormGroupId,
-                data: JSON.stringify(r),
+                data: JSON.stringify(a),
                 hash: cur.leadFormsAppSaveHash,
-                form_id: cur.leadFormId
+                form_id: cur.leadFormId,
+                is_ads: t
             }, {
-                onDone: function() {
-                    curBox().hide(!0), nav.reload()
+                onDone: function(e) {
+                    if (curBox().hide(!0), !e.forms_html) return !1;
+                    var t = ge("lead_form_apps_forms_table");
+                    t && (t.innerHTML = e.forms_html)
                 },
                 onFail: function(e) {
-                    return show(_), "bad_policy_link" === e ? (t.showStepError(3), addClass("lead_forms_generator_input_policy_url", "input_error"), !0) : "bad_site_link" === e ? (t.showStepError(4), addClass("lead_forms_generator_input_confirm_url", "input_error"), !0) : void 0
+                    return show(d), "bad_policy_link" === e ? (r.showStepError(3), addClass("lead_forms_generator_input_policy_url", "input_error"), !0) : "bad_site_link" === e ? (r.showStepError(4), addClass("lead_forms_generator_input_confirm_url", "input_error"), !0) : void 0
                 },
                 showProgress: lockButton.pbind(e),
                 hideProgress: unlockButton.pbind(e)
@@ -538,7 +513,7 @@
         updatePreview: function() {
             var e = this;
             clearTimeout(cur.leadFormsUpdatePreviewTimer), cur.leadFormsUpdatePreviewTimer = setTimeout(function() {
-                e.showPreviewSpinner(), ajax.post("lead_forms_app.php", {
+                e.showPreviewSpinner(), ajax.post("/lead_forms_app.php", {
                     act: "save_preview",
                     group_id: cur.leadFormGroupId,
                     preview_id: cur.leadFormsPreviewId,
@@ -670,13 +645,13 @@
                         break
                     }
                     if (B.question === "custom_" + r.step2.validate_card) {
-                        var q = ge("lead_forms_view_input_custom_question_" + r.step2.validate_card);
+                        var D = ge("lead_forms_view_input_custom_question_" + r.step2.validate_card);
                         if (!B.value.match(/^\d{16,18}$/)) {
-                            o = !0, notaBene(q), LeadFormsApp.scrollToEl(q);
+                            o = !0, notaBene(D), LeadFormsApp.scrollToEl(D);
                             break
                         }
                         if (!C(B.value)) {
-                            o = !0, notaBene(q), LeadFormsApp.scrollToEl(q);
+                            o = !0, notaBene(D), LeadFormsApp.scrollToEl(D);
                             break
                         }
                         w = B.value
@@ -692,12 +667,12 @@
                 }
             }
 
-            function D() {
+            function q() {
                 if (t) return r = ge("lead_forms_view_form_preview_error"), show(r), setTimeout(function() {
                     hide(r)
                 }, 5e3), !1;
                 var r;
-                ajax.post("lead_forms_app.php", {
+                ajax.post("/lead_forms_app.php", {
                     act: "send_form",
                     hash: cur.leadFormSendHash,
                     questions: JSON.stringify(a),
@@ -720,13 +695,13 @@
                 var t = JSON.parse(e);
                 if (t && "success" === t.storeCard.reason && t.storeCard.skr_destinationCardSynonim) {
                     for (var o = 0; o < a.length; ++o) a[o].question === "custom_" + r.step2.validate_card && (a[o].value = t.storeCard.skr_destinationCardSynonim);
-                    D()
+                    q()
                 } else {
                     debugLog("Error storing card", e);
                     var n = ge("lead_forms_view_input_custom_question_" + r.step2.validate_card);
                     notaBene(n), LeadFormsApp.scrollToEl(n)
                 }
-            }, void 0, !1, void 0, void 0, !0) : D())
+            }, void 0, !1, void 0, void 0, !0) : q())
         },
         titleError: function(e, t) {
             addClass(e, "mark_as_error"), setTimeout(function() {
@@ -756,7 +731,7 @@
         },
         setFormStatus: function(e, t, r) {
             var a = 1;
-            hasClass(e, "lead_forms_app_form_active") && (a = 0), toggleClass(e, "lead_forms_app_form_active"), val(e, a ? cur.lang.communityApps_lead_form_status_on : cur.lang.communityApps_lead_form_status_off), ajax.post("lead_forms_app.php", {
+            hasClass(e, "lead_forms_app_form_active") && (a = 0), toggleClass(e, "lead_forms_app_form_active"), val(e, a ? cur.lang.communityApps_lead_form_status_on : cur.lang.communityApps_lead_form_status_off), ajax.post("/lead_forms_app.php", {
                 act: "set_form_status",
                 status: a,
                 group_id: cur.leadFormGroupId,
@@ -778,7 +753,7 @@
             removeClass(domCA(e, ".ui_table_row"), "lead_forms_app_form_deleted"), removeClass("lead_form_actions" + t, "lead_forms_app_no_display"), addClass("lead_form_restore" + t, "lead_forms_app_no_display"), this.deleteFormSend(r, t, !0)
         },
         deleteFormSend: function(e, t, r) {
-            ajax.post("lead_forms_app.php", {
+            ajax.post("/lead_forms_app.php", {
                 act: "form_delete",
                 hash: e,
                 form_id: t,
@@ -786,22 +761,28 @@
                 restore: r ? 1 : 0
             })
         },
-        copyForm: function(e, t, r, a) {
-            if (cancelEvent(a), linkLocked(e)) return !1;
-            this.copyFormSend(r, t, e)
+        copyForm: function(e, t, r, a, o) {
+            if (cancelEvent(o), linkLocked(e)) return !1;
+            this.copyFormSend(r, t, a, e)
         },
-        copyFormSend: function(e, t, r) {
-            ajax.post("lead_forms_app.php", {
+        copyFormSend: function(e, t, r, a) {
+            r = r ? 1 : 0, ajax.post("/lead_forms_app.php", {
                 act: "form_copy",
                 hash: e,
                 form_id: t,
-                group_id: cur.leadFormGroupId
+                group_id: cur.leadFormGroupId,
+                is_ads: r
             }, {
-                onDone: function() {
-                    nav.reload()
+                onDone: function(e) {
+                    if (!e.ok || !e.forms_html) return !1;
+                    var t = ge("lead_form_apps_forms_table");
+                    t && (t.innerHTML = e.forms_html)
                 },
                 showProgress: function() {
-                    lockLink.pbind(r), addClass(geByClass1("lead_form_apps_forms_table"), "lead_form_apps_forms_table_loading")
+                    lockLink(a), addClass(ge("lead_form_apps_forms_table"), "lead_form_apps_forms_table_loading")
+                },
+                hideProgress: function() {
+                    unlockLink(a), removeClass(ge("lead_form_apps_forms_table"), "lead_form_apps_forms_table_loading")
                 }
             })
         },
@@ -851,13 +832,42 @@
         },
         toggleInput: function(e, t) {
             t ? removeClass(geByClass1(e), "lead_forms_app_labeled_row_hidden") : addClass(geByClass1(e), "lead_forms_app_labeled_row_hidden")
+        },
+        createAd: function(e, t, r, a, o) {
+            if (cancelEvent(e), !a) return !1;
+            ajax.post("/lead_forms_app.php", {
+                act: "set_form_status",
+                status: 1,
+                group_id: t,
+                form_id: r,
+                hash: o
+            }, {
+                onDone: function(e) {
+                    cur.addMedia[cur.wallAddMedia.lnkId].checkURL(a), curBox().hide()
+                },
+                showProgress: function() {
+                    addClass(ge("lead_form_apps_forms_table"), "lead_form_apps_forms_table_loading")
+                },
+                hideProgress: function() {
+                    removeClass(ge("lead_form_apps_forms_table"), "lead_form_apps_forms_table_loading")
+                }
+            })
+        },
+        showCreateAdTooltip: function() {
+            if ("undefined" == typeof Ads || !Ads) return !1;
+            var e = geByClass1("lead_forms_app_form_action_create_ad");
+            if (!e) return !1;
+            Ads.showNewFeatureTooltip("leadFormsCreateAd", e, {
+                displayCounter: 5,
+                width: 235,
+                offset: [-5, 0],
+                content: getLang("communityApps_lead_forms_tooltip")
+            })
         }
     };
     try {
         stManager.done("lead_forms_app.js")
     } catch (e) {}
-}, function(e, t, r) {
-    e.exports = r(2)
 }, function(e, t, r) {
     "use strict";
     r.r(t), r.d(t, "addDelegateEvent", function() {
@@ -929,54 +939,86 @@
     }
 }, function(e, t, r) {
     "use strict";
-    r.r(t), r.d(t, "createMutations", function() {
-        return l
-    }), r.d(t, "createModule", function() {
-        return _
-    }), r.d(t, "destroyModule", function() {
-        return d
+    r.r(t), r.d(t, "default", function() {
+        return i
     });
-    var a = r(4);
+    var a = r(0),
+        o = r(1),
+        n = 5;
 
-    function o(e) {
-        if (Array.isArray(e)) {
-            for (var t = 0, r = Array(e.length); t < e.length; t++) r[t] = e[t];
-            return r
-        }
-        return Array.from(e)
-    }
-    var n = window,
-        s = n.addEvent,
-        i = n.removeEvent;
-
-    function l(e) {
+    function s(e, t, r, s) {
         return {
-            callMutations: function() {
-                if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
+            addCustomQuestion: function(e) {
+                r.length < n && (r.push(Object(o.default)(r.length + 1, e, {
+                    onRemove: function(e) {
+                        r.splice(e - 1, 1);
+                        for (var a = 0; a < r.length; a++) r[a].setNum(a + 1);
+                        t().updateCustomQuestionsButton(), LeadFormsApp.updatePreview()
+                    }
+                })), t().updateCustomQuestionsButton(), LeadFormsApp.step2Changed())
+            },
+            updateCustomQuestionsButton: function() {
+                var e = r.length,
+                    t = ge("lead_forms_app_add_question_button"),
+                    a = geByTag1("span", t);
+                toggle(t, e < n), e > 0 ? val(a, " (" + cur.lang.communityApps_lead_forms_custom_questions_limit_pref.replace("%s", n - e) + ")") : val(a, "")
+            },
+            getCustomQuestionsData: function() {
+                for (var e = [], t = 0; t < r.length; t++) e.push(r[t].getData());
                 return e
             },
-            bindMutations: function() {
-                if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
-                return e = e.apply(void 0, arguments)
+            getAdmins: function() {
+                return s.adminsDD.val()
+            },
+            getAdminsElem: function() {
+                return s.adminsDD.container
+            },
+            getEmails: function() {
+                return s.adminsEmailsDD.selectedItems().map(function(e) {
+                    return e[1]
+                }).join(",")
+            },
+            getEmailsElem: function() {
+                return s.adminsEmailsDD.container
+            },
+            renderConfData: function() {
+                for (var e = cur.leadFormConf.step2.custom_questions, r = 0; r < e.length; r++) t().addCustomQuestion(e[r])
+            },
+            unmount: function() {
+                Object(a.destroyModule)(e)
             }
         }
     }
 
-    function _(e) {
-        var t = {
-            _registeredHandlers: []
-        };
-        return e.handlers(function(e, t, r, a) {
-            s(t, r, a), e._registeredHandlers.push(["bind", t, r, a])
-        }.bind(null, t), function(e, t, r, o, n) {
-            Object(a.addDelegateEvent)(t, r, o, n), e._registeredHandlers.push(["delegate", t, r, o, n])
-        }.bind(null, t)), t
+    function i(e) {
+        var t = {},
+            r = cur.leadFormConf,
+            o = Object(a.createMutations)(s),
+            n = o.callMutations,
+            i = o.bindMutations;
+        return t.adminsDD = new Dropdown(ge("lead_forms_generator_dd_settings_admins"), cur.leadFormsAdmins, {
+            width: 300,
+            big: 1,
+            selectedItem: r.step5 ? r.step5.admins : void 0,
+            multiselect: !0,
+            autocomplete: !0,
+            placeholder: getLang("communityApps_lead_form_settings_admins_placeholder"),
+            onChange: LeadFormsApp.checkboxNotificationsChanged
+        }), t.adminsEmailsDD = new Selector(ge("lead_forms_generator_dd_settings_admins_emails"), [], {
+            width: 300,
+            big: 1,
+            dropdown: !1,
+            enableCustom: !0,
+            multiCustom: 1,
+            noResult: "",
+            maxItems: 10,
+            placeholder: getLang("communityApps_lead_form_settings_admins_emails_placeholder"),
+            onChange: LeadFormsApp.checkboxNotificationsChanged,
+            customSearch: LeadFormsApp.checkboxNotificationsChanged
+        }), t.scroll = new uiScroll(e), i(Object(a.createModule)({
+            handlers: function(e, t) {}
+        }), n, [], t)
     }
-
-    function d(e) {
-        e._registeredHandlers.forEach(function(e) {
-            var t = e.slice(1);
-            "delegate" === e[0] ? a.removeDelegateEvent.apply(void 0, o(t)) : i.apply(void 0, o(t))
-        }), e._registeredHandlers = []
-    }
+}, function(e, t, r) {
+    e.exports = r(2)
 }]);

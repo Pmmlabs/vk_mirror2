@@ -1169,6 +1169,10 @@ body.body_helpdesk_small_sb .left_menu_nav {
     display: none
 }
 
+.helpdesk_rest_request_types .radiobtn {
+    margin: 10px 0
+}
+
 .helpdesk_m_list {
     padding: 10px
 }
