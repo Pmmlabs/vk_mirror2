@@ -218,7 +218,7 @@ var AppsEdit = {
                         var c = ge("app_domain");
                         c && (c.value = s.domain), hide("apps_addr_result")
                     }
-                    s.titleNotice && (ge("app_name_notice").innerHTML = s.titleNotice, show("app_name_notice"), s.titleHide ? (addClass("app_name", "apps_edit_input_readonly"), ge("app_name").readOnly = !0) : (removeClass("app_name", "apps_edit_input_readonly"), ge("app_name").readOnly = !1));
+                    s.titleNotice && (ge("app_name_notice").innerHTML = s.titleNotice, show("app_name_notice"), s.titleHide ? (addClass("app_name", "apps_edit_input_readonly"), ge("app_name").readOnly = !0) : (removeClass("app_name", "apps_edit_input_readonly"), ge("app_name").readOnly = !1)), void 0 !== s.canChangeGroup && cur.dropDowns.app_group && cur.dropDowns.app_group.disable(!s.canChangeGroup);
                     var o = ge("apps_options_saved");
                     o.innerHTML = a, show(o), scrollToTop(200)
                 }
@@ -1223,8 +1223,7 @@ var AppsEdit = {
                 cur.funcsVersions[e].last_v++;
                 var i = cur.funcsVersions[e].last_v,
                     n = AppsEdit.getFuncVersionCode(e, cur.funcsVersions[e].versions[0][0]);
-                cur.funcsVersions[e].versions.unshift([i, n]),
-                    AppsEdit.updateVersionsDD(e), AppsEdit.putVersionCode(e, i), removeClass("func_row_" + e, "dev_no_func_versions"), hide("apps_edit_add_version" + e), cur.funcsVersions[e].disable_add = i
+                cur.funcsVersions[e].versions.unshift([i, n]), AppsEdit.updateVersionsDD(e), AppsEdit.putVersionCode(e, i), removeClass("func_row_" + e, "dev_no_func_versions"), hide("apps_edit_add_version" + e), cur.funcsVersions[e].disable_add = i
             }
     },
     saveFuncsPosition: function() {

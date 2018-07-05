@@ -2317,6 +2317,15 @@ input.apps_edit_input {
     margin-top: -1px
 }
 
+.apps_edit_group_dd {
+    display: inline-block
+}
+
+.apps_edit_group_dd_hint {
+    top: -11px;
+    margin-left: 5px
+}
+
 .apps_edit_small_banner_panel {
     display: inline-block;
     width: 146px;

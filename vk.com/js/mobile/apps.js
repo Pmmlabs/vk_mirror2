@@ -509,7 +509,7 @@ var vkApp = function(cont, options, params, onInit) {
                 }
             });
         },
-        showAllowMessagesFromCommunityBox: function() {
+        showAllowMessagesFromCommunityBox: function(groupId) {
             if (cur.allowMessagesFromCommunityBox) {
                 return;
             }
@@ -528,6 +528,8 @@ var vkApp = function(cont, options, params, onInit) {
             };
             if (options.gid) {
                 params.gid = options.gid;
+            } else {
+                params.gid = groupId;
             }
             ajax.post('/apps.php', params, {
                 onDone: function(html, js) {
