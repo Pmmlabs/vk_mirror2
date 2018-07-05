@@ -5,6 +5,8 @@
 .helpdesk_bookmark_note_icon,
 .helpdesk_bookmark_note_icon_edit,
 .helpdesk_favorites_groups_tab__edit,
+.helpdesk_m_table .helpdesk_bookmark_dd_add,
+.helpdesk_m_table .helpdesk_bookmark_dd_delete,
 .helpdesk_m_table_status,
 .helpdesk_m_table_status.status_opened,
 .helpdesk_marked_user_row_processing .helpdesk_marked_user_row_marks,
@@ -1243,12 +1245,22 @@ body.body_helpdesk_small_sb .left_menu_nav {
 .helpdesk_m_table .helpdesk_bookmark_dd_add,
 .helpdesk_m_table .helpdesk_bookmark_dd_delete {
     padding-left: 20px;
-    background: url('/images/supp_icons.png') no-repeat;
+    background: url(/images/supp_icons.png?1) no-repeat;
     background-size: 17px auto
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .helpdesk_m_table .helpdesk_bookmark_dd_add,
+    .helpdesk_m_table .helpdesk_bookmark_dd_delete {
+        background-image: url(/images/supp_icons_2x.png?1);
+        background-size: 20px 238px
+    }
+}
+
 .helpdesk_m_table .helpdesk_bookmark_dd_add {
-    background-position: -2px 0px
+    background-position: -2px 0
 }
 
 .helpdesk_m_table .helpdesk_bookmark_dd_delete {

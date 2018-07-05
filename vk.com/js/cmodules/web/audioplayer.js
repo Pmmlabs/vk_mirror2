@@ -42,10 +42,8 @@
         return i.d(e, "a", e), e
     }, i.o = function(t, e) {
         return Object.prototype.hasOwnProperty.call(t, e)
-    }, i.p = "", i(i.s = 0)
+    }, i.p = "", i(i.s = 3)
 }([function(t, e, i) {
-    t.exports = i(2)
-}, function(t, e, i) {
     "use strict";
     i.r(e), i.d(e, "audioUnmaskSource", function() {
         return s
@@ -110,9 +108,87 @@
     }
 }, function(__webpack_module__, __webpack_exports__, __webpack_require__) {
     "use strict";
+
+    function _classCallCheck(t, e) {
+        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+    }
     __webpack_require__.r(__webpack_exports__);
-    var _audioplayer_audio_unmask_source__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1),
-        _audioplayer_audio_layer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3),
+    var AudioLayer = function() {
+        function AudioLayer() {
+            _classCallCheck(this, AudioLayer), this._els = {
+                layerPlace: ge("top_audio_layer_place"),
+                topPlayBtn: geByClass1("_top_audio_player_play"),
+                topNotaBtn: geByClass1("_top_nav_audio_btn"),
+                topNotaBtnGroup: ge("top_audio_btn_group")
+            }
+        }
+        return AudioLayer.prepare = function(t) {
+            stManager.add(["audio.js", "audioplayer.js", "audio.css", "suggester.js", "auto_list.js", "indexer.js"], function() {
+                t && t()
+            })
+        }, AudioLayer.prototype.toggle = function(t, e) {
+            var i = this;
+            this._initTooltip();
+            var o = this._els.tt,
+                a = void 0 !== t ? t : !o.isShown();
+            a ? (o.show(), cancelStackPush("top_audio", function() {
+                i.toggle(!1, !0)
+            }, !0)) : (e || cancelStackPop(), o.hide()), toggleClass(this._els.topNotaBtn, "active", a)
+        }, AudioLayer.prototype.hide = function() {
+            this._els.tt.hide()
+        }, AudioLayer.prototype.isShown = function() {
+            return this._els.tt && this._els.tt.isShown()
+        }, AudioLayer.prototype.updatePosition = function() {
+            return this._els.tt && this._els.tt.updatePosition()
+        }, AudioLayer.prototype._layerPosition = function() {
+            var t = getXY(this._els.layerPlace),
+                e = getXY("page_body")[0] - t[0] - 1,
+                i = 0;
+            isVisible(this._els.topNotaBtnGroup) ? i = -e + (getXY(this._els.topNotaBtn)[0] - t[0]) + 15 : i = -e + (getXY(this._els.topPlayBtn)[0] - t[0]) + 3;
+            return {
+                left: e,
+                top: 0,
+                arrowPosition: i
+            }
+        }, AudioLayer.prototype.getPageInstance = function() {
+            return this._page
+        }, AudioLayer.prototype._initTooltip = function _initTooltip() {
+            var _this2 = this;
+            this._els.tt || (this._els.container = se('<div class="audio_layer_container"><div class="top_audio_loading">' + rs(vk.pr_tpl, {
+                id: "",
+                cls: "pr_big"
+            }) + "</div></div>"), this._els.tt = new ElementTooltip(this._els.layerPlace, {
+                id: "audio_layer_tt",
+                content: this._els.container,
+                width: 660,
+                offset: [22, 5],
+                autoShow: !1,
+                customShow: !0,
+                setPos: this._layerPosition.bind(this),
+                forceSide: "bottom",
+                onHide: function() {
+                    _this2._page && _this2._page.onLayerHide()
+                },
+                onShow: function() {
+                    _this2._page && _this2._page.onLayerShow(_this2._initSection)
+                }
+            }), ajax.post("al_audio.php", {
+                act: "layer",
+                is_layer: 1,
+                is_current_playlist: ap.getCurrentPlaylist() ? 1 : 0
+            }, {
+                onDone: function onDone(html, data, templatesScript) {
+                    eval(templatesScript), _this2._els.container.innerHTML = html, _this2._page = new AudioPage(geByClass1("_audio_page_layout", _this2._els.container), data), _this2._initSection = "recoms" == data.initSection ? data.initSection : void 0, _this2._page.onLayerShow(_this2._initSection)
+                }
+            }))
+        }, AudioLayer
+    }();
+    __webpack_exports__.default = AudioLayer
+}, function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+    "use strict";
+    __webpack_require__.r(__webpack_exports__);
+    var _audioplayer_audio_unmask_source__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0),
+        _audioplayer_audio_layer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1),
         _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
             return typeof t
         } : function(t) {
@@ -725,7 +801,14 @@
                         z: !1
                     }), layerQueue.pop()
                 }
-                getAudioPlayer().getPlaylist(AudioPlaylist.TYPE_PLAYLIST, t, e, i).loadAll(function(n, d) {
+                new AudioPlaylist({
+                    type: AudioPlaylist.TYPE_PLAYLIST,
+                    ownerId: t,
+                    albumId: e,
+                    hasMore: !0,
+                    accessHash: i,
+                    fromId: cur.oid
+                }).loadAll(function(n, d) {
                     if (hide(boxLoader), hide(boxLayerWrap), d) {
                         var u = getLang("audio_error_deleted_playlist_box").split("/");
                         return new MessageBox({
@@ -962,7 +1045,7 @@
             var i = "";
             return t.forEach(function(o, a) {
                 var s = "/audio?performer=1&q=" + encodeURIComponent(o.name);
-                o.id && (s = "/artist/" + o.id), i += e ? '<a href="' + s + '">' + o.name + "</a>" : o.name, a < t.length - 1 && (i += ", ")
+                o.id && (s = "/artist/" + o.id), i += e ? '<a class="artist_link" href="' + s + '">' + o.name + "</a>" : o.name, a < t.length - 1 && (i += ", ")
             }), i
         },
         getAudioPerformers: function(t) {
@@ -970,7 +1053,7 @@
                 i = "";
             if (isArray(t[AudioUtils.AUDIO_ITEM_INDEX_MAIN_ARTISTS]) && (i = AudioUtils.getAudioArtistsString(t[AudioUtils.AUDIO_ITEM_INDEX_MAIN_ARTISTS], e)), isArray(t[AudioUtils.AUDIO_ITEM_INDEX_FEAT_ARTISTS]) && (i += " feat. ", i += AudioUtils.getAudioArtistsString(t[AudioUtils.AUDIO_ITEM_INDEX_FEAT_ARTISTS], e)), !i) {
                 var o = t[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER].replace(/<\/?em>/g, "");
-                if (e) i = '<a data-performer="' + o + '" href="' + ("/audio?performer=1&q=" + encodeURIComponent(o)) + '">' + o + "</a>";
+                if (e) i = '<a class="artist_link" data-performer="' + o + '" href="' + ("/audio?performer=1&q=" + encodeURIComponent(o)) + '">' + o + "</a>";
                 else i = o
             }
             return i
@@ -1179,6 +1262,53 @@
                 hash: e,
                 audio_id: t
             }), re(i)
+        },
+        removeFromGroup: function(t, e, i) {
+            var o = t + "_" + e;
+            if (cur.audioPage._ownerId < 0) var a = window.showBox("al_audio.php", {
+                act: "delete_from_group_box",
+                playlist_id: o,
+                group_id: -cur.audioPage._ownerId
+            }).setButtons(getLang("global_yes"), function() {
+                ajax.post("al_audio.php", {
+                    act: "delete_from_group",
+                    group_id: -cur.audioPage._ownerId,
+                    hash: i,
+                    playlist_id: o
+                }, {
+                    onDone: function(t) {
+                        a.hide(), showDoneBox(t)
+                    },
+                    onFail: function(t) {
+                        return a.hide(), showDoneBox(t), !0
+                    }
+                })
+            }, getLang("global_cancel"), function() {
+                return a.hide()
+            }).show()
+        },
+        addToGroupBox: function(t, e) {
+            var i = t + "_" + e,
+                o = window.showBox("al_audio.php", {
+                    act: "add_to_groups_box",
+                    playlist_id: i
+                }).addButton(getLang("Save"), function() {
+                    var t = [];
+                    for (var e in cur.wdd.follow_playlist_wwd.selected) t.push(cur.wdd.follow_playlist_wwd.selected[e][0]);
+                    t.length && (ge("add_playlist_to_group_fail").innerHTML = "", ajax.post("al_audio.php", {
+                        act: "add_to_group",
+                        group_ids: t,
+                        hash: ge("add_playlist_to_group_hash").value,
+                        playlist_id: i
+                    }, {
+                        onDone: function(t) {
+                            o.hide(), showDoneBox(t)
+                        },
+                        onFail: function(t) {
+                            return ge("add_playlist_to_group_fail").innerHTML = t, !0
+                        }
+                    }))
+                })
         }
     }, window.TopAudioPlayer = function(t, e) {
         this.ap = getAudioPlayer(), this._el = t, this._playIconBtn = ge("top_audio"), this._audioBtnGroup = ge("top_audio_btn_group"), this.init()
@@ -1252,7 +1382,7 @@
         if (this.constructor != t) throw new Error("AudioPlaylist was called without 'new' operator");
         getAudioPlayer().addPlaylist(this);
         var a = {};
-        return e && isFunction(e.getId) ? (this._ref = e, void getAudioPlayer().addPlaylist(this)) : (isObject(e) ? a = e : (a.ownerId = i, a.type = e, a.albumId = o || ++t.plIndex), this._type = a.type, this._ownerId = a.ownerId || vk.id, this._albumId = a.albumId || 0, this._list = [], this.mergeWith(a), this)
+        return e && isFunction(e.getId) ? (this._ref = e, void getAudioPlayer().addPlaylist(this)) : (isObject(e) ? a = e : (a.ownerId = i, a.type = e, a.albumId = o || ++t.plIndex), this._type = a.type, this._ownerId = a.ownerId || vk.id, this._albumId = a.albumId || 0, this._fromId = a.fromId || 0, this._list = [], this.mergeWith(a), this)
     }, AudioPlaylist.plIndex = 0, AudioPlaylist.TYPE_CURRENT = "current", AudioPlaylist.TYPE_PLAYLIST = "playlist", AudioPlaylist.TYPE_ALBUM = "album", AudioPlaylist.TYPE_TEMP = "temp", AudioPlaylist.TYPE_RECOM = "recoms", AudioPlaylist.TYPE_SEARCH = "search", AudioPlaylist.TYPE_FEED = "feed", AudioPlaylist.TYPE_LIVE = "live", AudioPlaylist.TYPE_WALL = "wall", AudioPlaylist.TYPE_RECENT = "recent", AudioPlaylist.DEFAULT_PLAYLIST_ID = -1, AudioPlaylist.prototype.serialize = function() {
         var t = {},
             e = getAudioPlayer().getCurrentAudio(),
@@ -1310,6 +1440,8 @@
         return this.getSelf()._rawDescription || ""
     }, AudioPlaylist.prototype.getAccessHash = function() {
         return this.getSelf()._accessHash || ""
+    }, AudioPlaylist.prototype.getFromId = function() {
+        return this.getSelf()._fromId || 0
     }, AudioPlaylist.prototype.getAuthorLine = function() {
         return this.getSelf()._authorLine || ""
     }, AudioPlaylist.prototype.getAuthorHref = function() {
@@ -1462,6 +1594,7 @@
                     owner_id: playlist.getOwnerId(),
                     playlist_id: playlist.getPlaylistId(),
                     access_hash: playlist.getAccessHash(),
+                    from_id: playlist.getFromId(),
                     offset: chunkIndex * AUDIO_LOAD_CHUNK_SIZE,
                     is_loading_all: 1,
                     claim: intval(nav.objLoc.claim)
@@ -1619,7 +1752,7 @@
                 for (a = 0, s = t.items.length; a < s; a++) this._items.push(t.items[a])
             }
             var r = this;
-            each("gridCovers artistsBlock communitiesBlock playlistsBlock addClasses nextOffset hasMore followHash accessHash isFollowed rawId title subTitle authorLine authorHref authorName infoLine1 infoLine2 isOfficial rawDescription description lastUpdated listens feedFrom feedOffset live searchParams totalCount totalCountHash postId wallQuery wallType originalList shuffle isAdsAllowed editHash coverUrl searchQid".split(" "), function(e, i) {
+            each(["accessHash", "addClasses", "artistsBlock", "authorLine", "authorHref", "authorName", "communitiesBlock", "coverUrl", "description", "gridCovers", "editHash", "feedFrom", "feedOffset", "followHash", "hasMore", "infoLine1", "infoLine2", "isAdsAllowed", "isFollowed", "isOfficial", "lastUpdated", "listens", "live", "nextOffset", "originalList", "playlistsBlock", "postId", "rawId", "rawDescription", "searchQid", "searchParams", "shuffle", "subTitle", "title", "totalCount", "totalCountHash", "wallQuery", "wallType"], function(e, i) {
                 void 0 !== t[i] && (r["_" + i] = t[i])
             })
         }
@@ -3047,82 +3180,6 @@
     try {
         stManager.done("audioplayer.js")
     } catch (t) {}
-}, function(__webpack_module__, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    function _classCallCheck(t, e) {
-        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-    }
-    __webpack_require__.r(__webpack_exports__);
-    var AudioLayer = function() {
-        function AudioLayer() {
-            _classCallCheck(this, AudioLayer), this._els = {
-                layerPlace: ge("top_audio_layer_place"),
-                topPlayBtn: geByClass1("_top_audio_player_play"),
-                topNotaBtn: geByClass1("_top_nav_audio_btn"),
-                topNotaBtnGroup: ge("top_audio_btn_group")
-            }
-        }
-        return AudioLayer.prepare = function(t) {
-            stManager.add(["audio.js", "audioplayer.js", "audio.css", "suggester.js", "auto_list.js", "indexer.js"], function() {
-                t && t()
-            })
-        }, AudioLayer.prototype.toggle = function(t, e) {
-            var i = this;
-            this._initTooltip();
-            var o = this._els.tt,
-                a = void 0 !== t ? t : !o.isShown();
-            a ? (o.show(), cancelStackPush("top_audio", function() {
-                i.toggle(!1, !0)
-            }, !0)) : (e || cancelStackPop(), o.hide()), toggleClass(this._els.topNotaBtn, "active", a)
-        }, AudioLayer.prototype.hide = function() {
-            this._els.tt.hide()
-        }, AudioLayer.prototype.isShown = function() {
-            return this._els.tt && this._els.tt.isShown()
-        }, AudioLayer.prototype.updatePosition = function() {
-            return this._els.tt && this._els.tt.updatePosition()
-        }, AudioLayer.prototype._layerPosition = function() {
-            var t = getXY(this._els.layerPlace),
-                e = getXY("page_body")[0] - t[0] - 1,
-                i = 0;
-            isVisible(this._els.topNotaBtnGroup) ? i = -e + (getXY(this._els.topNotaBtn)[0] - t[0]) + 15 : i = -e + (getXY(this._els.topPlayBtn)[0] - t[0]) + 3;
-            return {
-                left: e,
-                top: 0,
-                arrowPosition: i
-            }
-        }, AudioLayer.prototype.getPageInstance = function() {
-            return this._page
-        }, AudioLayer.prototype._initTooltip = function _initTooltip() {
-            var _this2 = this;
-            this._els.tt || (this._els.container = se('<div class="audio_layer_container"><div class="top_audio_loading">' + rs(vk.pr_tpl, {
-                id: "",
-                cls: "pr_big"
-            }) + "</div></div>"), this._els.tt = new ElementTooltip(this._els.layerPlace, {
-                id: "audio_layer_tt",
-                content: this._els.container,
-                width: 660,
-                offset: [22, 5],
-                autoShow: !1,
-                customShow: !0,
-                setPos: this._layerPosition.bind(this),
-                forceSide: "bottom",
-                onHide: function() {
-                    _this2._page && _this2._page.onLayerHide()
-                },
-                onShow: function() {
-                    _this2._page && _this2._page.onLayerShow(_this2._initSection)
-                }
-            }), ajax.post("al_audio.php", {
-                act: "layer",
-                is_layer: 1,
-                is_current_playlist: ap.getCurrentPlaylist() ? 1 : 0
-            }, {
-                onDone: function onDone(html, data, templatesScript) {
-                    eval(templatesScript), _this2._els.container.innerHTML = html, _this2._page = new AudioPage(geByClass1("_audio_page_layout", _this2._els.container), data), _this2._initSection = "recoms" == data.initSection ? data.initSection : void 0, _this2._page.onLayerShow(_this2._initSection)
-                }
-            }))
-        }, AudioLayer
-    }();
-    __webpack_exports__.default = AudioLayer
+}, function(t, e, i) {
+    t.exports = i(2)
 }]);

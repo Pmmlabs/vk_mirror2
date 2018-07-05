@@ -72,16 +72,16 @@ a.group_ad_post_stats {
     padding: 20px
 }
 
-.NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage--strikes .NemesisContentReportsPage--header {
-    font-weight: 500;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto
-}
-
-.NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage--strikes .NemesisContentReportsPage--strikes--old:not(:first-child) {
+.NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage--strikes .NemesisContentReportsPage--strikes--block:not(:first-child) {
     margin-top: 20px;
     border-top: 1px solid #e7e8ec;
     padding-top: 20px
+}
+
+.NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage--strikes .NemesisContentReportsPage--strikes--block .NemesisContentReportsPage--header {
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }
 
 .NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage--strikes--empty-label {
@@ -91,7 +91,8 @@ a.group_ad_post_stats {
 
 .Strike {
     padding: 20px 0px;
-    border-bottom: 1px solid #e7e8ec
+    border-bottom: 1px solid #e7e8ec;
+    position: relative
 }
 
 .Strike.expired {
@@ -101,6 +102,19 @@ a.group_ad_post_stats {
 .Strike:last-child {
     border-bottom: 0px;
     padding-bottom: 0px
+}
+
+.Strike .Strike--top {
+    margin-bottom: 12px
+}
+
+.Strike .Strike--top .Strike--new-sign {
+    display: inline-block;
+    background: #4697f6;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-left: 8px
 }
 
 .Strike .Strike--field {
@@ -123,14 +137,6 @@ a.group_ad_post_stats {
 .Strike .Strike--bottom {
     margin-top: 12px;
     color: #939393
-}
-
-.Strike .Strike--bottom .Strike--date {
-    margin-right: 5px
-}
-
-.Strike .Strike--bottom .Strike--action {
-    margin-left: 5px
 }
 
 .PunishMeter {

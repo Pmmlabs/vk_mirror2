@@ -246,6 +246,7 @@ var Tickets = {
             case 5:
             case 6:
             case 8:
+            case 9:
             case 7:
                 if (2 == cur.payType) {
                     if (void 0 === cur.paySystem) return cur.showPaySysTT(), !1;
@@ -278,6 +279,7 @@ var Tickets = {
             case 5:
             case 6:
             case 8:
+            case 9:
             case 7:
                 e.pay_date = val("tickets_payment_date"), e.pay_sum = floatval(val("tickets_pay_sum"))
         }

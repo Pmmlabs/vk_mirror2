@@ -4098,6 +4098,10 @@ div.top_result_baloon a {
     margin-bottom: 0
 }
 
+.post_info .audio_pl_snippet2:last-child {
+    margin-bottom: -20px
+}
+
 .copy_quote .audio_pl_snippet2,
 .im_msg_media .audio_pl_snippet2,
 .wall_text .audio_pl_snippet2 {
@@ -4110,6 +4114,11 @@ div.top_result_baloon a {
 
 .audio_pl_snippet2 .audio_pl_snippet__info_subtitle {
     color: #828282
+}
+
+.audio_pl_snippet2 .audio_pl_add_to_clubs,
+.audio_pl_snippet2 .audio_pl_remove_from_club {
+    display: none
 }
 
 .ap_layer .audio_pl_snippet2 {
@@ -4125,13 +4134,12 @@ div.top_result_baloon a {
 
 .ap_layer .audio_pl_snippet2 .audio_pl_snippet__footer,
 .ap_layer .audio_pl_snippet2 .audio_pl_snippet__stats,
-.ap_layer .audio_pl_snippet2.audio_pl__has_desc .audio_pl_snippet__description {
-    display: block
-}
-
+.ap_layer .audio_pl_snippet2.audio_pl__has_desc .audio_pl_snippet__description,
 .ap_layer .audio_pl_snippet2.audio_pl__canedit .audio_pl_snippet__action_btn_delete,
-.ap_layer .audio_pl_snippet2.audio_pl__canedit .audio_pl_snippet__action_btn_edit {
-    display: inline-block
+.ap_layer .audio_pl_snippet2.audio_pl__canedit .audio_pl_snippet__action_btn_edit,
+.ap_layer .audio_pl_snippet2.audio_pl__can_add_to_clubs .audio_pl_add_to_clubs,
+.ap_layer .audio_pl_snippet2.audio_pl__can_remove_from_club .audio_pl_remove_from_club {
+    display: block
 }
 
 .audio_pl_snippet2 .audio_pl_snippet__footer {
@@ -4499,8 +4507,20 @@ div.top_result_baloon a {
     background-size: contain
 }
 
+.ap_layer .audio_pl_snippet2 .audio_pl_snippet__button_play {
+    display: block
+}
+
 .audio_pl_snippet2.audio_pl__playing .audio_pl_snippet__button_play:before {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%23FFFFFF%22%2F%3E%3Cpath%20fill%3D%22%23222222%22%20d%3D%22M8%2C7.59559822%20C8%2C7.26665841%208.27685547%2C7%208.60709476%2C7%20L10.3929052%2C7%20C10.7281944%2C7%2011%2C7.26747584%2011%2C7.59559822%20L11%2C16.4044018%20C11%2C16.7333416%2010.7231445%2C17%2010.3929052%2C17%20L8.60709476%2C17%20C8.27180558%2C17%208%2C16.7325242%208%2C16.4044018%20L8%2C7.59559822%20Z%20M13%2C7.59559822%20C13%2C7.26665841%2013.2768555%2C7%2013.6070948%2C7%20L15.3929052%2C7%20C15.7281944%2C7%2016%2C7.26747584%2016%2C7.59559822%20L16%2C16.4044018%20C16%2C16.7333416%2015.7231445%2C17%2015.3929052%2C17%20L13.6070948%2C17%20C13.2718056%2C17%2013%2C16.7325242%2013%2C16.4044018%20L13%2C7.59559822%20Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+}
+
+.audio_pl_snippet2.audio_pl__playing .audio_pl_snippet__action_btn_listen:before {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%235181B8%22%2F%3E%3Cpath%20fill%3D%22%23FFF%22%20d%3D%22M8%207.596c0-.33.277-.596.607-.596h1.786c.335%200%20.607.267.607.596v8.808a.605.605%200%200%201-.607.596H8.607A.602.602%200%200%201%208%2016.404V7.596zm5%200c0-.33.277-.596.607-.596h1.786c.335%200%20.607.267.607.596v8.808a.605.605%200%200%201-.607.596h-1.786a.602.602%200%200%201-.607-.596V7.596z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+}
+
+.audio_pl_snippet2.audio_pl__playing .audio_pl_snippet__action_btn_listen:hover:before {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%235b88bd%22%2F%3E%3Cpath%20fill%3D%22%23FFF%22%20d%3D%22M8%207.596c0-.33.277-.596.607-.596h1.786c.335%200%20.607.267.607.596v8.808a.605.605%200%200%201-.607.596H8.607A.602.602%200%200%201%208%2016.404V7.596zm5%200c0-.33.277-.596.607-.596h1.786c.335%200%20.607.267.607.596v8.808a.605.605%200%200%201-.607.596h-1.786a.602.602%200%200%201-.607-.596V7.596z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .audio_pl_snippet2 .audio_pl_snippet__header:hover .audio_pl_snippet__button_play {
@@ -4532,7 +4552,6 @@ div.top_result_baloon a {
     display: inline-block;
     font-size: 14px;
     height: 24px;
-    letter-spacing: -0.2px;
     line-height: 24px;
     padding: 0 24px 0 30px;
     position: relative;
@@ -5470,10 +5489,6 @@ div.top_result_baloon a {
     background-image: url('/images/audio_row_placeholder.png')
 }
 
-.is_2x .audio_w_covers .audio_row .audio_row__cover {
-    background-image: url('/images/audio_row_placeholder_2x.png')
-}
-
 .audio_w_covers .audio_row .audio_row__cover_back {
     background-color: transparent;
     -o-transition: background-color 60ms linear;
@@ -6283,7 +6298,8 @@ div.top_result_baloon a {
     color: #939393
 }
 
-.audio_page_player2 .audio_page_player_title_performer {
+.audio_page_player2 .audio_page_player_title_performer,
+.audio_page_player2 .audio_page_player_title_performer .artist_link {
     color: #939393
 }
 
@@ -6458,12 +6474,15 @@ div.top_result_baloon a {
 }
 
 .audio_page_player2 .audio_page_player__cover {
-    width: 40px;
-    height: 40px;
-    float: left;
+    background-color: #e6edf5;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2213px%22%20height%3D%2221px%22%20viewBox%3D%220%200%2013%2021%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20id%3D%22Page-1%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20id%3D%22musicPlayerAtrwork%22%3E%3Cg%20id%3D%22Group-3%22%3E%3Cg%20id%3D%22Group-2%22%3E%3Cg%20id%3D%22artAudioPlayer%22%20transform%3D%22translate(-101.000000%2C%20-97.000000)%20translate(80.000000%2C%2080.000000)%22%3E%3Crect%20id%3D%22Mask%22%20width%3D%2254%22%20height%3D%2254%22%2F%3E%3Cpath%20d%3D%22M27%2C21.007484%20C27%2C20.4510659%2027.4438648%2C20%2028%2C20%20L28%2C20%20C28.5522847%2C20%2029%2C20.4489202%2029%2C21.007484%20L29%2C33.992516%20C29%2C34.5489341%2028.5561352%2C35%2028%2C35%20L28%2C35%20C27.4477153%2C35%2027%2C34.5510798%2027%2C33.992516%20L27%2C21.007484%20Z%22%20id%3D%22Rectangle%22%20fill%3D%22%236f9ac7%22%2F%3E%3Cpath%20d%3D%22M27%2C18.7122688%20C27%2C18.4325926%2027.217172%2C18.1658118%2027.4922264%2C18.1150768%20L33.5077736%2C17.0054814%20C33.7796227%2C16.9553376%2034%2C17.1453957%2034%2C17.4210866%20L34%2C20.2818361%20C34%2C20.5615123%2033.782828%2C20.8282931%2033.5077736%2C20.8790281%20L27.4922264%2C21.9886235%20C27.2203773%2C22.0387673%2027%2C21.8487092%2027%2C21.5730183%20L27%2C18.7122688%20Z%22%20id%3D%22Rectangle-2%22%20fill%3D%22%236f9ac7%22%2F%3E%3Ccircle%20id%3D%22Oval-8%22%20fill%3D%22%236f9ac7%22%20cx%3D%2225%22%20cy%3D%2234%22%20r%3D%224%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-position: 50%;
+    background-repeat: no-repeat;
     border-radius: 4px;
-    background: #f5f6f8 url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2213px%22%20height%3D%2221px%22%20viewBox%3D%220%200%2013%2021%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20id%3D%22Page-1%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20id%3D%22musicPlayerAtrwork%22%3E%3Cg%20id%3D%22Group-3%22%3E%3Cg%20id%3D%22Group-2%22%3E%3Cg%20id%3D%22artAudioPlayer%22%20transform%3D%22translate(-101.000000%2C%20-97.000000)%20translate(80.000000%2C%2080.000000)%22%3E%3Crect%20id%3D%22Mask%22%20width%3D%2254%22%20height%3D%2254%22%2F%3E%3Cpath%20d%3D%22M27%2C21.007484%20C27%2C20.4510659%2027.4438648%2C20%2028%2C20%20L28%2C20%20C28.5522847%2C20%2029%2C20.4489202%2029%2C21.007484%20L29%2C33.992516%20C29%2C34.5489341%2028.5561352%2C35%2028%2C35%20L28%2C35%20C27.4477153%2C35%2027%2C34.5510798%2027%2C33.992516%20L27%2C21.007484%20Z%22%20id%3D%22Rectangle%22%20fill%3D%22%23AFBAC6%22%2F%3E%3Cpath%20d%3D%22M27%2C18.7122688%20C27%2C18.4325926%2027.217172%2C18.1658118%2027.4922264%2C18.1150768%20L33.5077736%2C17.0054814%20C33.7796227%2C16.9553376%2034%2C17.1453957%2034%2C17.4210866%20L34%2C20.2818361%20C34%2C20.5615123%2033.782828%2C20.8282931%2033.5077736%2C20.8790281%20L27.4922264%2C21.9886235%20C27.2203773%2C22.0387673%2027%2C21.8487092%2027%2C21.5730183%20L27%2C18.7122688%20Z%22%20id%3D%22Rectangle-2%22%20fill%3D%22%23AFBAC6%22%2F%3E%3Ccircle%20id%3D%22Oval-8%22%20fill%3D%22%23AFBAC6%22%20cx%3D%2225%22%20cy%3D%2234%22%20r%3D%224%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 50%;
-    margin: 8px 0 8px 11px
+    float: left;
+    margin: 8px 0 8px 11px;
+    width: 40px;
+    height: 40px
 }
 
 .audio_page_player2.audio_page_player_fixed .audio_page_player__cover {

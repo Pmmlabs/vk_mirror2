@@ -1797,7 +1797,7 @@ AdsEdit.initLeadFormGroupBoxDropdown = function(groups, selectedGroupId, selecte
         groupList.push(groupInfo);
     });
 
-    var leadFormGroupBoxDropdownUrl = '/adsedit?act=search_user_objects&section=groups&create_promoted_stealth=1&format_menu_list=1&check_for_opened=1&group_purpose=' + AdsEdit.ADS_AD_CHECK_GROUP_PURPOSE_LINK_OBJECT;
+    var leadFormGroupBoxDropdownUrl = '/adsedit?act=search_user_objects&section=groups&create_promoted_stealth=1&format_menu_list=1&check_for_admin=1&check_for_opened=1&group_purpose=' + AdsEdit.ADS_AD_CHECK_GROUP_PURPOSE_LINK_OBJECT;
     var leadFormGroupBoxDropdown = new Autocomplete(groupsDropdownEl, leadFormGroupBoxDropdownUrl, {
         autocomplete: true,
         big: true,

@@ -21,6 +21,7 @@
 .tickets_header_links .ui_actions_menu_item.helpdesk_header_links_fav_timer_off:before,
 .tickets_header_links .ui_actions_menu_item.helpdesk_header_links_fav_timer_on:before,
 .tickets_header_links .ui_actions_menu_item.helpdesk_header_links_send_payout_form:before,
+.tickets_header_links .ui_actions_menu_item:before,
 .tickets_header_task_info.tickets_header_info_progress,
 .tickets_header_title_locked,
 .tickets_list_load_more_loading,
@@ -706,9 +707,18 @@ body.dev .tickets_header_links {
     width: 20px;
     left: 7.5px;
     top: 4px;
-    background: url('/images/supp_icons.png') no-repeat 0 -300px;
+    background: url(/images/supp_icons.png?1) no-repeat 0 -300px;
     content: "";
     position: absolute
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tickets_header_links .ui_actions_menu_item:before {
+        background-image: url(/images/supp_icons_2x.png?1);
+        background-size: 20px 238px
+    }
 }
 
 .tickets_header_links .ui_actions_menu_item.tickets_header_links_addfav:before {
