@@ -155,7 +155,7 @@ var stVersions = {
     'blog.css': 17671672442,
     'blog.js': 1358605934,
     'html5audio.js': 976782859,
-    'audioplayer.js': 7363365927,
+    'audioplayer.js': 7656581131,
     'audioplayer.css': 14558937183,
     'audio_html5.js': 287741914,
     'audio.js': 3500422362,
@@ -211,7 +211,7 @@ var stVersions = {
     'video_youtube.css': 10492803995,
     'videoplayer.js': 91782027195,
     'videoplayer.css': 36661913882,
-    'translation.js': 3156161887,
+    'translation.js': 361230417,
     'translation.css': 11605427660,
     'reg.css': 887926110,
     'reg.js': 1336565657,
@@ -261,8 +261,8 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 204016870832,
-    'imn.js': 252924057437,
+    'im.css': 206352126403,
+    'imn.js': 255599107509,
     'im.js': 1322065005,
     'emoji.js': 3520618690,
     'wide_dd.css': 13602159766,
@@ -341,10 +341,10 @@ var stVersions = {
     'docs.css': 23644020524,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 12904768144,
-    'helpdesk.js': 2628247432,
-    'helpdesk.css': 17357298652,
+    'helpdesk.js': 1243408814,
+    'helpdesk.css': 26303758342,
     'tickets.js': 1946038597,
-    'tickets.css': 22782505062,
+    'tickets.css': 28121779377,
     'faq.css': 18772616764,
     'talmud.js': 3834581071,
     'agents.js': 2426697933,
@@ -366,7 +366,7 @@ var stVersions = {
     'graffiti.css': 404471482,
     'graffiti_new.js': 67279821,
     'graffiti_new.css': 19826828098,
-    'abuse.css': 12056723938,
+    'abuse.css': 12056723939,
     'verify.css': 10337102923,
     'away.css': 15718985996,
     'stats.css': 13082174398,
@@ -633,4 +633,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 9040;
+var _rnd = 8849;

@@ -897,7 +897,7 @@ var Helpdesk = {
         })
     },
     onFavoriteChanged: function(e, t) {
-        return e && !isVisible("tickets_bookmarks_menu") && Helpdesk.toggleBookmarksTimerView(!1, !0), toggle("tickets_bookmarks_icon", !e), toggle("tickets_bookmarks_menu", e), window.tooltips && tooltips.destroyAll(), e && (each(geByClass("_movefav", "tickets_bookmarks_menu"), function(e, t) {
+        return e && !isVisible("tickets_bookmarks_menu") && (Helpdesk.toggleBookmarksTimerView(!1, !0), Helpdesk.toggleBookmarkIsFavView(!1)), toggle("tickets_bookmarks_icon", !e), toggle("tickets_bookmarks_menu", e), window.tooltips && tooltips.destroyAll(), e && (each(geByClass("_movefav", "tickets_bookmarks_menu"), function(e, t) {
             removeClass(t, "helpdesk_header_links_fav_selected")
         }), addClass("tickets_header_links_movefav_" + t, "helpdesk_header_links_fav_selected")), ajax.post("helpdesk?act=a_favorite", {
             ticket_id: cur.ticket_id,
@@ -910,6 +910,13 @@ var Helpdesk = {
         ajax.post("helpdesk?act=a_set_favorite_until", {
             ticket_id: cur.ticket_id,
             until: e,
+            hash: cur.hashes.favorite_hash
+        })
+    },
+    setIsFavorite: function(e) {
+        ajax.post("helpdesk?act=a_set_is_favorite", {
+            ticket_id: cur.ticket_id,
+            is_fav: e,
             hash: cur.hashes.favorite_hash
         })
     },
@@ -1091,16 +1098,15 @@ var Helpdesk = {
             s = val(e),
             a = !attr(e, "toggle-value");
         return attr(e, "toggle-value", a ? "1" : ""), val(e, t), attr(e, "toggle-text", s), each(geByClass("similar_row_wrap", "similar_rows"), function(e, t) {
-            Helpdesk.doToggleSimilarRow(t, a)
+            Helpdesk.doToggleSimilarRow(t, a);
         }), !1
     },
     toggleSimilarRow: function(e, t) {
-        return t.target || (t.target = t.srcElement || document), "a" == t.target.tagName.toLowerCase() ? !0 : (Helpdesk.doToggleSimilarRow(e, !hasClass(e, "detailed")),
-            isVisible("tickets_toup") && (setStyle(ge("tickets_toup"), {
-                height: "0px"
-            }), setStyle(ge("tickets_toup"), {
-                height: getSize(ge("tickets_similar"))[1]
-            })), !1)
+        return t.target || (t.target = t.srcElement || document), "a" == t.target.tagName.toLowerCase() ? !0 : (Helpdesk.doToggleSimilarRow(e, !hasClass(e, "detailed")), isVisible("tickets_toup") && (setStyle(ge("tickets_toup"), {
+            height: "0px"
+        }), setStyle(ge("tickets_toup"), {
+            height: getSize(ge("tickets_similar"))[1]
+        })), !1)
     },
     doToggleSimilarRow: function(e, t) {
         toggle(geByClass1("_tickets_similar_short_text", e), !t), toggle(geByClass1("_tickets_similar_full_text", e), t), toggleClass(e, "detailed", t)
@@ -1927,6 +1933,12 @@ var Helpdesk = {
     toggleBookmarksTimer: function(e) {
         Helpdesk.toggleBookmarksTimerView(e, !1), e ? Helpdesk.setFavoriteUntil(val("helpdesk_bookmarks_timer_date")) : Helpdesk.setFavoriteUntil(0)
     },
+    toggleBookmarkIsFav: function(e) {
+        Helpdesk.toggleBookmarkIsFavView(e), Helpdesk.setIsFavorite(e)
+    },
+    toggleBookmarkIsFavView: function(e) {
+        toggle("tickets_header_links_fav_set_love_on", !e), toggle("tickets_header_links_fav_set_love_off", e), toggleClass("tickets_bookmarks_menu", "tickets_actions_bookmarks_love", e)
+    },
     setDMCAStatus: function(btn, ticket_id, status, hash, sure, comment) {
         var params = {
             ticket_id: ticket_id,
@@ -2010,6 +2022,9 @@ var Helpdesk = {
                 t || addClass("helpdesk_header_links_send_payout_form" + e, "helpdesk_header_links_send_payout_form_disabled")
             }
         })
+    },
+    changeRestType: function(e, t) {
+        radiobtn(e, t, "restType"), 3 == t ? val("request_rest_save_button", getLang("helpdesk_start_rest")) : val("request_rest_save_button", cur.helpdeskRequestRestBoxButton)
     },
     _eof: 1
 };

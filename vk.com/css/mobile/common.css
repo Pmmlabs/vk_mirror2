@@ -34585,9 +34585,9 @@ body.apps_settingsPageBody {
     visibility: visible
 }
 
+.Stories_paused .Story__footer>.Story__table>.Story__cell,
 .Story__body:after,
 .Story__body:before,
-.Story__footer,
 .Story__header,
 .StoryAuthor__header,
 .StoryAuthor__prev {
@@ -34600,7 +34600,7 @@ body.apps_settingsPageBody {
 
 .Stories_paused .Story__body:after,
 .Stories_paused .Story__body:before,
-.Stories_paused .Story__footer,
+.Stories_paused .Story__footer>.Story__table>.Story__cell,
 .Stories_paused .Story__header,
 .Stories_paused .StoryAuthor__header,
 .Stories_paused .StoryAuthor__prev {
@@ -34609,6 +34609,10 @@ body.apps_settingsPageBody {
     -moz-transition: opacity 0.2s ease 0.3s;
     -o-transition: opacity 0.2s ease 0.3s;
     transition: opacity 0.2s ease 0.3s
+}
+
+.Stories_touchMove .Story__footer>.Story__table>.Story__cell.Story__cell_moreLink {
+    opacity: 1
 }
 
 .Stories__layer {
@@ -34643,7 +34647,8 @@ body.apps_settingsPageBody {
     top: 28px;
     right: 16px;
     width: 24px;
-    height: 24px
+    height: 24px;
+    z-index: 5
 }
 
 .Stories__authors {
@@ -34651,7 +34656,21 @@ body.apps_settingsPageBody {
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0
+    bottom: 0;
+    -webkit-transition: -webkit-transform 0.3s ease;
+    transition: -webkit-transform 0.3s ease;
+    -moz-transition: transform 0.3s ease, -moz-transform 0.3s ease;
+    -o-transition: transform 0.3s ease, -o-transform 0.3s ease;
+    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, -webkit-transform 0.3s ease, -moz-transform 0.3s ease, -o-transform 0.3s ease;
+    z-index: 3
+}
+
+.Stories_touchMove .Stories__authors {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none
 }
 
 .Stories__authors>.StoryAuthor {
@@ -34673,6 +34692,18 @@ body.apps_settingsPageBody {
     animation: lds-rolling 1s linear infinite;
     top: 23px;
     left: 23px
+}
+
+.Stories__swipeText {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 1
+}
+
+.Stories__swipeText_top {
+    top: -65px
 }
 
 @-webkit-keyframes lds-rolling {
@@ -35060,7 +35091,23 @@ body.apps_settingsPageBody {
     max-width: 200px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box
+    box-sizing: border-box;
+    -webkit-transition: -webkit-transform 0.3s ease;
+    transition: -webkit-transform 0.3s ease;
+    -moz-transition: transform 0.3s ease, -moz-transform 0.3s ease;
+    -o-transition: transform 0.3s ease, -o-transform 0.3s ease;
+    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, -webkit-transform 0.3s ease, -moz-transform 0.3s ease, -o-transform 0.3s ease;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    transform: translateZ(0)
+}
+
+.Stories_touchMove .Story__moreLink {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none
 }
 
 .Story__commentButtonText,
@@ -35545,7 +35592,7 @@ body.apps_settingsPageBody {
 
 ._story__Icons_i,
 .Story__icon:after {
-    background-image: url('/images/mobile/skins/icon/stories_icons.png?3');
+    background-image: url('/images/mobile/skins/icon/stories_icons.png?4');
     -moz-background-size: 48px;
     -o-background-size: 48px;
     background-size: 48px;
@@ -35554,7 +35601,7 @@ body.apps_settingsPageBody {
 
 ._story__Icons_i_2x,
 .vk_2x .Story__icon:after {
-    background-image: url('/images/mobile/skins/icon/stories_icons_2x.png?3')
+    background-image: url('/images/mobile/skins/icon/stories_icons_2x.png?4')
 }
 
 .Story__icon {

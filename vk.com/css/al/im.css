@@ -1987,9 +1987,12 @@ textarea.EditableLabel__textarea {
 }
 
 .Keyboard {
-    margin: -5px;
-    max-height: calc(312px);
-    overflow-y: auto
+    margin: -5px
+}
+
+.Keyboard,
+.Keyboard__scroll-wrapper {
+    max-height: calc(312px)
 }
 
 .Keyboard__container {
