@@ -411,17 +411,28 @@ var Helpdesk = {
             hash: s
         })
     },
+    setActualTicketsContent: function(e, t) {
+        var s = se(e);
+        domReplaceEl(ge(s.id), s), Helpdesk.setButtonsContent(t)
+    },
+    setButtonsContent: function(e) {
+        if ("" !== e) {
+            var t = se(e),
+                s = ge(t.id);
+            if (s) domReplaceEl(s, t);
+            else {
+                var a = ge("tickets_get_new");
+                a.insertBefore(t, domFC(a))
+            }
+        } else re("helpdesk_m_table_actions")
+    },
     getNewTicket: function(e, t) {
         ajax.post("helpdesk", {
             act: "get_ticket",
             hash: t
         }, {
             onDone: function(e) {
-                var t = se(e[0]);
-                if (domReplaceEl(ge(t.id), t), e[1]) {
-                    var s = se(e[1]);
-                    domReplaceEl(ge(s.id), s)
-                } else re("helpdesk_m_table_actions")
+                Helpdesk.setActualTicketsContent(e[0], e[1])
             },
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e)
@@ -1098,7 +1109,7 @@ var Helpdesk = {
             s = val(e),
             a = !attr(e, "toggle-value");
         return attr(e, "toggle-value", a ? "1" : ""), val(e, t), attr(e, "toggle-text", s), each(geByClass("similar_row_wrap", "similar_rows"), function(e, t) {
-            Helpdesk.doToggleSimilarRow(t, a);
+            Helpdesk.doToggleSimilarRow(t, a)
         }), !1
     },
     toggleSimilarRow: function(e, t) {
@@ -1892,12 +1903,7 @@ var Helpdesk = {
             }, {
                 progress: cur.helpdeskRestBox.progress,
                 onDone: function(e) {
-                    cur.helpdeskRestBox.hide();
-                    var t = se(e[0]);
-                    if (domReplaceEl(ge(t.id), t), e[1]) {
-                        var s = se(e[1]);
-                        domReplaceEl(ge(s.id), s)
-                    } else re("helpdesk_m_table_actions")
+                    cur.helpdeskRestBox.hide(), Helpdesk.setActualTicketsContent(e[0], e[1])
                 }
             })
         }, getLang("global_cancel")))
@@ -1914,10 +1920,22 @@ var Helpdesk = {
             hash: cur.restRequestHash
         }, {
             progress: cur.helpdeskRequestRestBox.progress,
-            onDone: function(e) {
-                cur.helpdeskRequestRestBox.hide(), showDoneBox(e), nav.reload()
+            onDone: function(e, t) {
+                cur.helpdeskRequestRestBox.hide(), showDoneBox(e), Helpdesk.setActualTicketsContent(t[0], t[1])
             }
         })
+    },
+    doCancelRest: function() {
+        var e = showFastBox(getLang("global_action_confirmation"), getLang("helpdesk_confirm_cancel_rest_request"), getLang("helpdesk_cancel_rest"), function() {
+            e.hide(), ajax.post("helpdesk?act=a_cancel_rest_request", {
+                hash: cur.restRequestHash
+            }, {
+                progress: cur.helpdeskRequestRestBox.progress,
+                onDone: function(e, t) {
+                    cur.helpdeskRequestRestBox.hide(), showDoneBox(e), Helpdesk.setActualTicketsContent(t[0], t[1])
+                }
+            })
+        }, getLang("global_cancel"), null)
     },
     ticketStatusTT: function(e, t) {
         showTooltip(e, {

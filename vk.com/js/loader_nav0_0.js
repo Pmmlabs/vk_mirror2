@@ -121,7 +121,7 @@ var navMap = {
     'stories(-?\\d+)?(_\\d+)?$': ['al_stories.php', ['stories.css', 'stories.js']],
     'story(-?\\d+)_(\\d+)$': ['al_stories.php', ['stories.css', 'stories.js']],
     'mask(-?\\d+)_(\\d+)$': ['al_masks.php', []],
-    'bugtracker($|/)|bugs($|/)': ['al_bugtracker.php', ['bugtracker.css', 'bugtracker.js']],
+    '(bugtracker|bugs)($|/)': ['al_bugtracker.php', ['bugtracker.css', 'bugtracker.js']],
     'bugtracker_adm($|/)': ['al_bugtracker_adm.php', ['bugtracker.css', 'bugtracker.js']],
     'landings$': ['landings.php', []],
     'ach($|/)': ['achievements.php', ['achievements.css', 'achievements.js']],
@@ -155,7 +155,7 @@ var stVersions = {
     'blog.css': 17671672442,
     'blog.js': 1358605934,
     'html5audio.js': 976782859,
-    'audioplayer.js': 7656581131,
+    'audioplayer.js': 4961048044,
     'audioplayer.css': 14558937183,
     'audio_html5.js': 287741914,
     'audio.js': 3500422362,
@@ -341,7 +341,7 @@ var stVersions = {
     'docs.css': 23644020524,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 12904768144,
-    'helpdesk.js': 1243408814,
+    'helpdesk.js': 100387064,
     'helpdesk.css': 26303758342,
     'tickets.js': 1946038597,
     'tickets.css': 28121779377,
@@ -366,7 +366,7 @@ var stVersions = {
     'graffiti.css': 404471482,
     'graffiti_new.js': 67279821,
     'graffiti_new.css': 19826828098,
-    'abuse.css': 12056723939,
+    'abuse.css': 12056723940,
     'verify.css': 10337102923,
     'away.css': 15718985996,
     'stats.css': 13082174398,
@@ -556,7 +556,8 @@ var stVersions = {
     'cmodules/web/grip.js': 4164501492,
     'cmodules/web/group_invite_chat.js': 43933190606,
     'group_invite_chat.css': 77825691654,
-    'cmodules/web/reports.js': 19080758200,
+    'cmodules/web/reports.js': 17637648136,
+    'reports.css': 67241155169,
     'cmodules/web/raven_logger.js': 7336038093,
     'cmodules/web/add_to_community_app.js': 397597546,
     'community_bot.js': 1928249077,
@@ -633,4 +634,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 8849;
+var _rnd = 1953;
