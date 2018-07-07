@@ -3729,6 +3729,7 @@ var Wall = {
                 status_export: !isAnon && isChecked('status_export'),
                 facebook_export: !isAnon && ge('facebook_export') ? (isChecked('facebook_export') ? 1 : 0) : '',
                 close_comments: ge('close_comments') ? (isChecked('close_comments') ? 1 : 0) : '',
+                mute_notifications: ge('mute_notifications') ? (isChecked('mute_notifications') ? 1 : 0) : '',
                 official: (domData(domClosest('_submit_post_box', ge('official')), 'from-oid') == cur.postTo) ? 1 : '',
                 signed: isChecked('signed'),
                 anonymous: isAnon,
@@ -7854,6 +7855,7 @@ var Wall = {
         var wrap = domClosest('_submit_post_box', el),
             signed = wrap && ge('signed'),
             closeComments = wrap && ge('close_comments'),
+            muteNotifications = wrap && ge('mute_notifications'),
             official = wrap && ge('official'),
             ttChooser = data(el, 'tt'),
             from = opts.from || (opts.fromGroup ? cur.oid : vk.id),
@@ -7878,6 +7880,10 @@ var Wall = {
 
         if (closeComments) {
             disable(closeComments, from > 0);
+        }
+
+        if (muteNotifications) {
+            disable(muteNotifications, from > 0);
         }
 
         if (official) {

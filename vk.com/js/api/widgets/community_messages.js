@@ -596,7 +596,8 @@ var CommunityWidget = {
             }
 
             this.sentI--;
-            var msgID = vkNow(); //this.sentI;
+            // fix server int32 overflow (msg.random_id - signed int32: max value 2147483647)
+            var msgID = vkNow() % 2147483647; // this.sentI;
             var data = {
                 id: msgID,
                 unread: 1,

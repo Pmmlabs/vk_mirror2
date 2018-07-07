@@ -34884,6 +34884,19 @@ body.apps_settingsPageBody {
     width: 75%
 }
 
+.StoryAuthor_videoHold .Story__header {
+    z-index: 20
+}
+
+.StoryAuthor_videoHold,
+.StoryAuthor_videoHold .Story__body {
+    z-index: 19
+}
+
+.StoryAuthor_videoHold .StoryAuthor__next {
+    display: none
+}
+
 .Story {
     position: absolute;
     top: 0;
@@ -35645,6 +35658,14 @@ body.apps_settingsPageBody {
 
 .Story__icon_verified:after {
     background-position: 0 -528px
+}
+
+.Story__icon_prometheus:after {
+    background-position: 0 -624px
+}
+
+.Story__icon_prometheus.Story__icon_verified:after {
+    background-position: 0 -672px
 }
 
 .Story__icon_deleted:after {

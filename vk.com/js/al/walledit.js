@@ -191,6 +191,7 @@ var WallEdit = {
                         suggest: t,
                         signed: isChecked("wpe_signed"),
                         close_comments: ge("wpe_close_comments") ? isChecked("wpe_close_comments") ? 1 : 0 : "",
+                        mute_notifications: ge("wpe_mute_notifications") ? isChecked("wpe_mute_notifications") ? 1 : 0 : "",
                         hash: cur.editHash,
                         to_id: t.split("_")[0]
                     }), ajax.post("al_wall.php", Wall.fixPostParams(d), {
