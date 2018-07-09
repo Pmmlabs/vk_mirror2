@@ -257,6 +257,16 @@
     padding-left: 18px
 }
 
+.article blockquote,
+.article cite {
+    clear: both
+}
+
+.article blockquote>p,
+.article cite>p {
+    margin: 0
+}
+
 .article blockquote+blockquote {
     background-image: none;
     margin-top: 0!important
@@ -2689,16 +2699,6 @@ body[data-useragent*=msie] .article_editor_canvas[contenteditable=true] .article
 
 .article_editor_canvas[contenteditable=true] figure+figure {
     margin-top: 0!important
-}
-
-.article_editor_canvas[contenteditable=true]>blockquote,
-.article_editor_canvas[contenteditable=true]>cite {
-    clear: both
-}
-
-.article_editor_canvas[contenteditable=true]>blockquote>p,
-.article_editor_canvas[contenteditable=true]>cite>p {
-    margin: 0
 }
 
 .article_editor_canvas[contenteditable=true] sup {

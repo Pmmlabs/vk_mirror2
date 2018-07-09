@@ -17893,6 +17893,16 @@ input:checked+.adultConfirm__checkboxIcon:after {
     padding-left: 18px
 }
 
+.article blockquote,
+.article cite {
+    clear: both
+}
+
+.article blockquote>p,
+.article cite>p {
+    margin: 0
+}
+
 .article blockquote+blockquote {
     background-image: none;
     margin-top: 0!important

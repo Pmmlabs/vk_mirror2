@@ -3454,8 +3454,8 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
             var value = ((this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_APP && this.params.link_id.app_game_links_ids[this.params.link_id.value]) ? 125 : 0);
             var disabled = (value == 125);
             if (!value && this.params.category1_id.suggestions.length) {
-                var suggestion = this.params.category1_id.suggestions[0];
-                value = suggestion[1] ? suggestion[1] : suggestion[0];
+                var suggestions = this.params.category1_id.suggestions;
+                value = suggestions[0];
             }
             this.onParamUpdate(paramName, value, false, true);
             if (this.params[paramName].uiInited) {
@@ -3872,6 +3872,8 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
         case 'category2_id':
         case 'subcategory1_id':
         case 'subcategory2_id':
+            var viewParams = cur.targetingEditor.viewEditor.getParams(); // detect category automatically from group category
+            // this.params[paramName].hidden = (this.params[paramName].hidden_normal || inArray(viewParams.link_type, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) || this.params.category1_id.value == 125 && !this.params.category2_id.value && this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_APP && this.params.link_id.app_game_links_ids[this.params.link_id.value]);
             this.params[paramName].hidden = (this.params[paramName].hidden_normal || this.params.category1_id.value == 125 && !this.params.category2_id.value && this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_APP && this.params.link_id.app_game_links_ids[this.params.link_id.value]);
             this.initUiParam(paramName);
             toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
@@ -4148,6 +4150,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 this.updateUiParamVisibility('platform_no_ad_network');
                 this.updateUiParamVisibility('views_limit_flag');
                 this.updateUiParamVisibility('views_limit_exact');
+                this.updateUiParamVisibility('category1_id');
                 this.updatePreview('layout');
                 this.updatePreview('play');
                 this.updatePreview('description');
@@ -4341,6 +4344,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
             case 'category1_id':
                 this.params.subcategory1_id.value = 0;
 
+                this.updateUiParamVisibility('category1_id');
                 this.updateUiParamData('subcategory1_id');
                 this.updateUiParamDisabledText('subcategory1_id');
                 this.updateUiParamEnabled('subcategory1_id');

@@ -2611,7 +2611,7 @@ var GroupsEdit = {
     },
     updateMarketAppAvailable: function() {
         var e, t, o, r = ge("market_app");
-        r && (t = cur.marketCountryDD ? cur.marketCountryDD.val().split(",") : [], e = t.every(function(e) {
+        r && (t = cur.marketCountryDD ? cur.marketCountryDD.val().split(",") : [], e = t.some(function(e) {
             var t = intval(e);
             return cur.validMarketCountries && ~cur.validMarketCountries.indexOf(t)
         }), o = cur.marketCurrencyDD ? intval(cur.marketCurrencyDD.val()) : 0, e = e && cur.validMarketCurrencies && ~cur.validMarketCurrencies.indexOf(o), e ? (disable(r, !1), checkbox(r, !!intval(domData(r, "restore-checked")))) : (checkbox(r, !1), disable(r, !0)), GroupsEdit.toggleMarketContactByMarketApp(r), GroupsEdit.toggleMarketAppSettings(r))
