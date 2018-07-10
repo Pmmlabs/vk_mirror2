@@ -36662,16 +36662,28 @@ body.apps_settingsPageBody {
 }
 
 .convo__row {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    max-height: 20px
+}
+
+.convo__row,
+.convo__row_right {
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
     display: -ms-flexbox;
-    display: flex;
-    max-height: 20px
+    display: flex
 }
 
 .convo__row_right {
-    margin-left: auto
+    margin-left: auto;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0
 }
 
 .convo__row_text {
@@ -36722,7 +36734,10 @@ body.apps_settingsPageBody {
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     font-size: 14px;
-    color: #71757a
+    color: #71757a;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0
 }
 
 .convo__msgAuthor {
@@ -36751,8 +36766,12 @@ body.apps_settingsPageBody {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    margin-right: 5px;
-    margin-bottom: 4px
+    margin-right: 5px
+}
+
+.convo__unread:not(.Oval_hidden) {
+    display: block;
+    margin-top: -2px
 }
 
 .convo_unreadOut .convo__unreadOut {
@@ -36781,35 +36800,9 @@ body.apps_settingsPageBody {
     display: none
 }
 
-@supports ((display: -webkit-box) or (display: -webkit-flex) or (display: -moz-box) or (display: -ms-flexbox) or (display: flex)) {
-    .convo__row {
-        position: static;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: justify;
-        -webkit-justify-content: space-between;
-        -moz-box-pack: justify;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-        -webkit-box-align: end;
-        -webkit-align-items: flex-end;
-        -moz-box-align: end;
-        -ms-flex-align: end;
-        align-items: flex-end
-    }
-    .convo__date {
-        position: static;
-        -webkit-flex-shrink: 0;
-        -ms-flex-negative: 0;
-        flex-shrink: 0
-    }
-    .convo__body_hasUnread .convo__text,
-    .convo__title {
-        padding-right: 12px
-    }
+.convo__body_hasUnread .convo__text,
+.convo__title {
+    padding-right: 12px
 }
 
 .m .convo__text * {
@@ -38299,6 +38292,10 @@ body.apps_settingsPageBody {
     padding: 0
 }
 
+.uMailWrite_keyboard .uMailWrite__textareaContainer {
+    right: 136px
+}
+
 .uMailWrite__textarea {
     width: 100%;
     height: 32px;
@@ -38796,8 +38793,29 @@ body.apps_settingsPageBody {
     display: none
 }
 
-.uMailWrite__button_stickers {
-    right: 46px
+.uMailWrite__button_keyboard {
+    right: 92px;
+    display: none
+}
+
+.uMailWrite_keyboard .uMailWrite__button_keyboard {
+    display: block
+}
+
+.uMailWrite__button_keyboard_icon {
+    margin: auto;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20stroke%3D%22%23AAAEB3%22%20stroke-width%3D%221.8%22%20x%3D%222.1%22%20y%3D%222.1%22%20width%3D%2219.8%22%20height%3D%2219.8%22%20rx%3D%224%22%2F%3E%3Cpath%20d%3D%22M8.4%206a2.4%202.4%200%201%201%200%204.8%202.4%202.4%200%200%201%200-4.8zm7.2%200a2.4%202.4%200%201%201%200%204.8%202.4%202.4%200%200%201%200-4.8zm-7.2%207.2a2.4%202.4%200%201%201%200%204.8%202.4%202.4%200%200%201%200-4.8zm7.2%200a2.4%202.4%200%201%201%200%204.8%202.4%202.4%200%200%201%200-4.8z%22%20fill%3D%22%23AAAEB3%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') 50% no-repeat
+}
+
+.uMailWrite__button_keyboard_active .uMailWrite__button_keyboard_icon {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20stroke%3D%22%235181B8%22%20stroke-width%3D%221.8%22%20x%3D%222.1%22%20y%3D%222.1%22%20width%3D%2219.8%22%20height%3D%2219.8%22%20rx%3D%224%22%2F%3E%3Cpath%20d%3D%22M8.4%206a2.4%202.4%200%201%201%200%204.8%202.4%202.4%200%200%201%200-4.8zm7.2%200a2.4%202.4%200%201%201%200%204.8%202.4%202.4%200%200%201%200-4.8zm-7.2%207.2a2.4%202.4%200%201%201%200%204.8%202.4%202.4%200%200%201%200-4.8zm7.2%200a2.4%202.4%200%201%201%200%204.8%202.4%202.4%200%200%201%200-4.8z%22%20fill%3D%22%235181B8%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') 50% no-repeat
 }
 
 .uMailWrite__button_send {
@@ -38875,7 +38893,14 @@ body.apps_settingsPageBody {
 }
 
 .uMailWrite__button_loading .Icon_spinner,
-.uMailWrite__button_uploading .Icon_spinner,
+.uMailWrite__button_uploading .Icon_spinner {
+    opacity: 1
+}
+
+.uMailWrite__button_stickers {
+    right: 46px
+}
+
 .uMailWrite__button_stickers .Icon_sticker {
     opacity: 1
 }
@@ -38921,12 +38946,6 @@ body.apps_settingsPageBody {
     display: block
 }
 
-.uMailWrite__popupStickers {
-    bottom: 100%;
-    left: 0;
-    right: 0
-}
-
 .uMailWrite__popupStickers_open .stickers_panel {
     display: block!important
 }
@@ -38937,6 +38956,113 @@ body.apps_settingsPageBody {
     -ms-transform: none!important;
     -o-transform: none!important;
     transform: none!important
+}
+
+.uMailWrite__keyboard {
+    max-height: 282px;
+    background: #f4f6f9;
+    padding: 8px 12px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    display: none
+}
+
+._ios .uMailWrite__keyboard {
+    max-height: 284px
+}
+
+.uMailWrite__keyboard_open {
+    display: block
+}
+
+.uMailWrite:not(.uMailWrite_keyboard) .uMailWrite__keyboard_open {
+    display: none
+}
+
+.uMailWrite__keyboard_row {
+    padding: 4px 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.uMailWrite__keyboard_button {
+    margin: 0;
+    padding: 0 6px;
+    border: none;
+    outline: none;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none!important;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-appearance: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 1px;
+    height: 34px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #dfe6ed;
+    font-size: 14px;
+    line-height: 34px;
+    letter-spacing: -0.2px;
+    text-align: center;
+    color: #000;
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -moz-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-flex-shrink: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1
+}
+
+.uMailWrite__keyboard_button_primary {
+    background-color: #5181b8;
+    color: #fff
+}
+
+.uMailWrite__keyboard_button_negative {
+    background-color: #e64646;
+    color: #fff
+}
+
+.uMailWrite__keyboard_button_positive {
+    background-color: #4bb34b;
+    color: #fff
+}
+
+.uMailWrite__keyboard_button:not(:first-child) {
+    margin-left: 8px
+}
+
+@media (max-height: 700px) {
+    ._ios .uMailWrite__keyboard,
+    .uMailWrite__keyboard {
+        max-height: 200px
+    }
+}
+
+@media (max-height: 400px) {
+    ._ios .uMailWrite__keyboard,
+    .uMailWrite__keyboard {
+        max-height: 110px
+    }
 }
 
 .uMailWrite__popupStickers .stickers_panel {
@@ -39100,7 +39226,9 @@ body.apps_settingsPageBody {
     margin-top: 7px
 }
 
+.uMailWrite_editing .uMailWrite__button_keyboard,
 .uMailWrite_editing .uMailWrite__button_stickers,
+.uMailWrite_editing .uMailWrite__keyboard,
 .uMailWrite_editing .uMailWrite__popupStickers,
 .uMailWrite_editing .Unfold__item[href*=attach_money] {
     display: none

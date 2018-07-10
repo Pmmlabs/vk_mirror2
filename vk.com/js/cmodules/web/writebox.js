@@ -42,213 +42,9 @@
         return a.d(t, "a", t), t
     }, a.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, a.p = "", a(a.s = 59)
+    }, a.p = "", a(a.s = 83)
 }({
-    118: function(e, t, a) {
-        "use strict";
-        a.r(t), a.d(t, "ImDraft", function() {
-            return o
-        }), a.d(t, "convertKludgesToAttaches", function() {
-            return s
-        }), a.d(t, "loadDraftForPeer", function() {
-            return u
-        });
-        var r = a(70),
-            n = a(69),
-            i = function() {
-                return function(e, t) {
-                    if (Array.isArray(e)) return e;
-                    if (Symbol.iterator in Object(e)) return function(e, t) {
-                        var a = [],
-                            r = !0,
-                            n = !1,
-                            i = void 0;
-                        try {
-                            for (var o, c = e[Symbol.iterator](); !(r = (o = c.next()).done) && (a.push(o.value), !t || a.length !== t); r = !0);
-                        } catch (e) {
-                            n = !0, i = e
-                        } finally {
-                            try {
-                                !r && c.return && c.return()
-                            } finally {
-                                if (n) throw i
-                            }
-                        }
-                        return a
-                    }(e, t);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }();
-
-        function o(e, t) {
-            this._db = e, this._key = t, this.dData = {
-                txt: "",
-                attaches: [],
-                urlBinds: [],
-                cancelled: []
-            }, this.load()
-        }
-
-        function c(e) {
-            switch (e.type) {
-                case "mail":
-                    return e.id < 0 && 1 == e.object.fwd_count;
-                default:
-                    return !e.object
-            }
-        }
-
-        function s(e, t) {
-            var a = [];
-            e.fwd_count ? a.push({
-                type: "mail",
-                id: -t,
-                object: {
-                    fwd_count: e.fwd_count
-                }
-            }) : e.fwd && a.push({
-                type: "mail",
-                id: -t,
-                object: {
-                    fwd_count: Object(n.parseFwd)(e.fwd).length
-                }
-            });
-            for (var r = 1; e["attach" + r + "_type"]; ++r) "call" === e["attach" + r + "_type"] ? a.push({
-                type: e["attach" + r + "_type"],
-                id: e["attach" + r],
-                initiatorId: intval(e["attach" + r + "_call_initiator_id"]),
-                state: e["attach" + r + "_call_state"],
-                duration: intval(e["attach" + r + "_call_duration"]),
-                receiverId: intval(e["attach" + r + "_call_receiver_id"])
-            }) : a.push({
-                type: e["attach" + r + "_type"],
-                id: e["attach" + r],
-                kind: e["attach" + r + "_kind"],
-                productId: e["attach" + r + "_product_id"]
-            });
-            return e.geo && a.push({
-                type: "geo",
-                id: e.geo
-            }), a
-        }
-
-        function u(e, t) {
-            return new o(e, "draft_" + t)
-        }
-        o.prototype.dump = function() {
-            var e;
-            this._key && this._db.updateByKey(this._key, {
-                txt: (e = this.dData).txt,
-                attaches: e.attaches.length ? e.attaches : void 0,
-                urlBinds: e.urlBinds.length ? e.urlBinds : void 0,
-                cancelled: e.cancelled.length ? e.cancelled : void 0
-            })
-        }, o.prototype.load = function() {
-            if (this._key) {
-                var e = this._db.selectByKey(this._key);
-                e && (this.dData = function(e) {
-                    return {
-                        txt: e.txt,
-                        attaches: e.attaches || [],
-                        urlBinds: e.urlBinds || [],
-                        cancelled: e.cancelled || []
-                    }
-                }(e))
-            }
-        }, o.prototype.clear = function() {
-            this.dData = {
-                txt: "",
-                attaches: [],
-                urlBinds: [],
-                cancelled: []
-            }, this.dump()
-        }, o.prototype.setText = function(e) {
-            this.dData.txt = trim(e), this.dump()
-        }, o.prototype.addAttach = function(e, t, a) {
-            if ("share" !== e && "mail" !== e || this.removeAttachByType(e), !e || !t && "poll" !== e) return !1;
-            var r = this.dData.attaches.findIndex(function(a) {
-                return a.type === e && a.id === t
-            }); - 1 === r ? (this.dData.attaches.push({
-                type: e,
-                id: t,
-                object: a
-            }), this.dump()) : "video" !== e && "poll" !== e || (this.dData.attaches[r] = {
-                type: e,
-                id: t,
-                object: a
-            }, this.dump())
-        }, o.prototype.syncWithSelector = function(e) {
-            var t = this,
-                a = this.getFwdRaw();
-            this.dData.attaches = (a ? [a] : []).concat(e.getMedias().map(function(e) {
-                var a = i(e, 2),
-                    r = a[0],
-                    n = a[1];
-                return t.dData.attaches.find(function(e) {
-                    return e.type == r && e.id == n
-                }) || {
-                    type: r,
-                    id: n
-                }
-            })), this.dump()
-        }, o.prototype.removeAttachByType = function(e) {
-            for (var t = this.dData.attaches.length; t--;) this.dData.attaches[t].type === e && this.dData.attaches.splice(t, 1);
-            this.dump()
-        }, o.prototype.removeAllAttaches = function() {
-            this.dData.attaches = [], this.dData.cancelled = [], this.dump()
-        }, o.prototype.addBindUrl = function(e, t, a) {
-            this.getBoundAttach(e) || (this.dData.urlBinds.push({
-                url: e,
-                type: t,
-                id: a
-            }), this.dump())
-        }, o.prototype.getBoundAttach = function(e) {
-            var t = this.dData.urlBinds.find(function(t) {
-                return t.url === e
-            });
-            return t && this.dData.attaches.find(function(e) {
-                return e.type === t.type && e.id === t.id
-            }) || null
-        }, o.prototype.getShareUrl = function() {
-            var e = this.dData.attaches.find(function(e) {
-                return "share" === e.type
-            });
-            if (e && e.object) return e.object.url
-        }, o.prototype.getCancelledShares = function() {
-            return this.dData.cancelled.length ? this.dData.cancelled : void 0
-        }, o.prototype.hasAttaches = function() {
-            return this.dData.attaches.length > 0
-        }, o.prototype.destroy = function() {
-            this.dData = {}, this._key = this._db = null
-        }, o.prototype.prepareObjects = function(e, t) {
-            var a = this;
-            return this.dData.attaches.find(c) ? Object(r.post)(r.CONTROLLER, {
-                act: "draft_medias",
-                gid: e,
-                messageId: t || 0,
-                media: t ? void 0 : this.dData.attaches.map(function(e) {
-                    return [e.type, e.id]
-                }).join("*")
-            }).then(function(e) {
-                var t = i(e, 1)[0];
-                a.dData.attaches = t.map(function(e) {
-                    return {
-                        type: e[0],
-                        id: e[1],
-                        object: e[2]
-                    }
-                })
-            }) : Promise.resolve()
-        }, o.prototype.getFwdRaw = function() {
-            return this.dData.attaches.find(function(e) {
-                return "mail" === e.type
-            })
-        }, o.prototype.getFwdCount = function() {
-            var e = this.getFwdRaw();
-            return e ? e.id < 0 ? e.object.fwd_count : e.id.split(";").length : 0
-        }
-    },
-    128: function(e, t, a) {
+    153: function(e, t, a) {
         "use strict";
         var r;
 
@@ -347,11 +143,178 @@
             z = new RegExp("(https?:\\/\\/)?(((?:[\\w\\$А-Яа-яёЁєЄҐґЇїІіЈј\\—\\-\\_]+\\.){1,5})([A-Za-z\\$а-яА-Я\\-\\d]{2,22})(?:\\:(\\d{2,5}))?)(([\\/?#])(?:\\&amp;|\\&#\\d{2,6};|,[_%]|!|,*[\\wА-Яа-я\\xa8\\xb8\\xc0-\\xffєЄҐґЇїІіЈј\\—\\-\\_@#%?+\\/\\$.~=;:'ªµºÀ-ÖØ-öø-ˁˆ-ˑˠ-ˤˬˮͰ-ʹͶͷͺ-ͽͿΆΈ-ΊΌΎ-ΡΣ-ϵϷ-ҁҊ-ԯԱ-Ֆՙա-ևא-תװ-ײؠ-يٮٯٱ-ۓەۥۦۮۯۺ-ۼۿܐܒ-ܯݍ-ޥޱߊ-ߪߴߵߺࠀ-ࠕࠚࠤࠨࡀ-ࡘࢠ-ࢴࢶ-ࢽऄ-हऽॐक़-ॡॱ-ঀঅ-ঌএঐও-নপ-রলশ-হঽৎড়ঢ়য়-ৡৰৱਅ-ਊਏਐਓ-ਨਪ-ਰਲਲ਼ਵਸ਼ਸਹਖ਼-ੜਫ਼ੲ-ੴઅ-ઍએ-ઑઓ-નપ-રલળવ-હઽૐૠૡૹଅ-ଌଏଐଓ-ନପ-ରଲଳଵ-ହଽଡ଼ଢ଼ୟ-ୡୱஃஅ-ஊஎ-ஐஒ-கஙசஜஞடணதந-பம-ஹௐఅ-ఌఎ-ఐఒ-నప-హఽౘ-ౚౠౡಀಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹಽೞೠೡೱೲഅ-ഌഎ-ഐഒ-ഺഽൎൔ-ൖൟ-ൡൺ-ൿඅ-ඖක-නඳ-රලව-ෆก-ะาำเ-ๆກຂຄງຈຊຍດ-ທນ-ຟມ-ຣລວສຫອ-ະາຳຽເ-ໄໆໜ-ໟༀཀ-ཇཉ-ཬྈ-ྌက-ဪဿၐ-ၕၚ-ၝၡၥၦၮ-ၰၵ-ႁႎႠ-ჅჇჍა-ჺჼ-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚᎀ-ᎏᎠ-Ᏽᏸ-ᏽᐁ-ᙬᙯ-ᙿᚁ-ᚚᚠ-ᛪᛱ-ᛸᜀ-ᜌᜎ-ᜑᜠ-ᜱᝀ-ᝑᝠ-ᝬᝮ-ᝰក-ឳៗៜᠠ-ᡷᢀ-ᢄᢇ-ᢨᢪᢰ-ᣵᤀ-ᤞᥐ-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉᨀ-ᨖᨠ-ᩔᪧᬅ-ᬳᭅ-ᭋᮃ-ᮠᮮᮯᮺ-ᯥᰀ-ᰣᱍ-ᱏᱚ-ᱽᲀ-ᲈᳩ-ᳬᳮ-ᳱᳵᳶᴀ-ᶿḀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ᾼιῂ-ῄῆ-ῌῐ-ΐῖ-Ίῠ-Ῥῲ-ῴῶ-ῼⁱⁿₐ-ₜℂℇℊ-ℓℕℙ-ℝℤΩℨK-ℭℯ-ℹℼ-ℿⅅ-ⅉⅎↃↄⰀ-Ⱞⰰ-ⱞⱠ-ⳤⳫ-ⳮⳲⳳⴀ-ⴥⴧⴭⴰ-ⵧⵯⶀ-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⸯ々〆〱-〵〻〼ぁ-ゖゝ-ゟァ-ヺー-ヿㄅ-ㄭㄱ-ㆎㆠ-ㆺㇰ-ㇿ㐀-䶵一-鿕ꀀ-ꒌꓐ-ꓽꔀ-ꘌꘐ-ꘟꘪꘫꙀ-ꙮꙿ-ꚝꚠ-ꛥꜗ-ꜟꜢ-ꞈꞋ-ꞮꞰ-ꞷꟷ-ꠁꠃ-ꠅꠇ-ꠊꠌ-ꠢꡀ-ꡳꢂ-ꢳꣲ-ꣷꣻꣽꤊ-ꤥꤰ-ꥆꥠ-ꥼꦄ-ꦲꧏꧠ-ꧤꧦ-ꧯꧺ-ꧾꨀ-ꨨꩀ-ꩂꩄ-ꩋꩠ-ꩶꩺꩾ-ꪯꪱꪵꪶꪹ-ꪽꫀꫂꫛ-ꫝꫠ-ꫪꫲ-ꫴꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-ꭚꭜ-ꭥꭰ-ꯢ가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִײַ-ﬨשׁ-זּטּ-לּמּנּסּףּפּצּ-ﮱﯓ-ﴽﵐ-ﶏﶒ-ﷇﷰ-ﷻﹰ-ﹴﹶ-ﻼＡ-Ｚａ-ｚｦ-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ　-〿＀-￯]+|(?:\\(|\\[)[\\w\\$А-Яа-яёЁєЄҐґЇїІіЈј\\d&#%;,]+(?:\\)|\\])){0,200})?", "ig"),
             M = "(^|[s.,:'\";>)(]?)((#(?:[a-zA-Zа-яА-ЯёіјєїґўЁІЈЄЇҐЎ’_\\d]|(?:&#(?:19[2-9]|(?:[2-9]|1[0-3])[0-9][0-9]);?)){0,100}(?:[a-zA-Zа-яА-ЯёіјєїґўЁІЈЄЇҐЎ’]|(?:&#(?:19[2-9]|(?:[2-9]|1[0-3])[0-9][0-9]);?))(?:[a-zA-Zа-яА-ЯёіјєїґўЁІЈЄЇҐЎ’_\\d]|(?:&#(?:19[2-9]|(?:[2-9]|1[0-3])[0-9][0-9]);?)){0,100}))(@((?:[a-z0-9_]*[a-z0-9])?(?:(?:.[a-z](?:[a-z0-9_]+[a-z0-9])?)*.[a-z][a-z0-9_]{2,40}[a-z0-9])?))?(?=$|[s.,:'\"&;?<)(]?)"
     },
-    172: function(e, t, a) {
+    185: function(e, t, a) {
+        "use strict";
+        a.r(t), a.d(t, "parseFwd", function() {
+            return m
+        }), a.d(t, "replaceHyperLinks", function() {
+            return b
+        }), a.d(t, "replaceEmailLinks", function() {
+            return h
+        }), a.d(t, "replaceMentions", function() {
+            return f
+        }), a.d(t, "replaceHashtags", function() {
+            return v
+        }), a.d(t, "confirmDelivery", function() {
+            return y
+        }), a.d(t, "linksReplacer", function() {
+            return k
+        });
+        var r = a(153),
+            n = function() {
+                return function(e, t) {
+                    if (Array.isArray(e)) return e;
+                    if (Symbol.iterator in Object(e)) return function(e, t) {
+                        var a = [],
+                            r = !0,
+                            n = !1,
+                            i = void 0;
+                        try {
+                            for (var o, c = e[Symbol.iterator](); !(r = (o = c.next()).done) && (a.push(o.value), !t || a.length !== t); r = !0);
+                        } catch (e) {
+                            n = !0, i = e
+                        } finally {
+                            try {
+                                !r && c.return && c.return()
+                            } finally {
+                                if (n) throw i
+                            }
+                        }
+                        return a
+                    }(e, t);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }(),
+            i = void 0,
+            o = window,
+            c = o.clean,
+            s = o.replaceEntities,
+            u = o.statlogsValueEvent;
+
+        function l(e) {
+            var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [],
+                a = e.split("_"),
+                r = n(a, 2);
+            return [r[0], r[1], t]
+        }
+        var d = {};
+
+        function m(e) {
+            if (d[e]) return d[e];
+            for (var t = e ? e.length : 0, a = [], r = [], i = "", o = 0; o < t; o++) {
+                var c = e[o],
+                    s = c.charCodeAt(0);
+                s >= 48 && s <= 57 || "_" === c || "-" === c ? i += c : "(" !== c && ")" !== c && ":" !== c && "," !== c || ("" !== i && (r.push(i), a.push("id"), i = ""), r.push(c), a.push(c))
+            }
+            i.length > 0 && (r.push(i), a.push("id"));
+            var u = function e(t, a) {
+                    var r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 0,
+                        i = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 0;
+                    if (i > 50) return [
+                        [], t.length
+                    ];
+                    for (var o = [], c = ""; r < t.length;) {
+                        var s = t[r];
+                        if ("id" === s) c = a[r];
+                        else if ("," === s && c) o.push(l(c)), c = "";
+                        else if ("(" === s) {
+                            var u = e(t, a, r + 1, i + 1),
+                                d = n(u, 2),
+                                m = d[0];
+                            r = d[1], o.push(l(c, m)), c = ""
+                        } else if (")" === s) return "" !== c && o.push(l(c)), [o, r];
+                        r++
+                    }
+                    return c && o.push(l(c)), [o, r]
+                }(a, r),
+                m = n(u, 1)[0];
+            return Object.keys(d).length > 300 && (d = {}), d[e] = m, m
+        }
+
+        function b(e, t) {
+            for (var a = void 0, n = 0, i = e; null !== (a = r.MESSAGE_REGEXP.exec(e));) {
+                var o = (a = p(a))[0].length,
+                    c = a.index + o,
+                    s = e[a.index - 1],
+                    u = e[c - 1],
+                    l = void 0 !== s && /([\w\$А-Яа-яёЁєЄҐґЇїІіЈј\—\-\_@;.])/i.test(s),
+                    d = void 0 !== u && /([:;$])/i.test(u);
+                if (!l && !d) {
+                    var m = g(a),
+                        b = m.domain.toLowerCase();
+                    if (b.length <= r.MAX_DOMAIN_LENGTH && -1 !== r.TOP_DOMAINS.indexOf(b)) {
+                        var h = t(m);
+                        i = i.slice(0, a.index + n) + h + i.slice(c + n), n += h.length - o
+                    }
+                }
+            }
+            return i
+        }
+
+        function h(e, t) {
+            return e.replace(r.EMAIL, t || function(e) {
+                return '<a href="mailto:' + e + '">' + e + "</a>"
+            })
+        }
+
+        function f(e, t) {
+            return e.replace(r.MENTION, t || function(e, t, a, r, n) {
+                return '<a href="/' + (t + a) + '" class="mem_link" mention="' + c(r || "") + '" mention_id="' + c(t + a) + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)">' + n + "</a>"
+            })
+        }
+
+        function p(e) {
+            if (!e[0] || !e[6]) return e;
+            var t = e[0].length - 1,
+                a = e[6].length - 1;
+            return "." === e[0][t] && "." === e[6][a] && (e[0] = e[0].slice(0, t), e[6] = e[6].slice(0, a)), e
+        }
+
+        function g(e) {
+            return {
+                full: e[0],
+                protocol: e[1] || "http://",
+                url: e[2],
+                domain: e[4],
+                query: e[6] || ""
+            }
+        }
+
+        function v(e, t) {
+            return e.replace((i || (i = new RegExp(r.RE_HASHTAG_EXTRACTION_PATTERN, "ig")), i), function(e, a, r, n, i, o) {
+                return (a || "") + t(r + (i || ""))
+            })
+        }
+
+        function y(e) {
+            u("ttl_message_confirm_delivery", e)
+        }
+
+        function k(e, t) {
+            var a = t.protocol,
+                n = t.url,
+                i = t.query,
+                o = t.domain,
+                u = t.full;
+            try {
+                u = decodeURIComponent(u)
+            } catch (e) {}
+            if (u.length > 55 && (u = u.substr(0, 53) + ".."), u = c(u).replace(/&amp;/g, "&"), !e && o.match(r.OUR_DOMAINS)) {
+                var l, d = n = s(n).replace(r.ENTITIES, encodeURIComponent),
+                    m = n.indexOf("#/"),
+                    b = "";
+                return m >= 0 ? d = n.substr(m + 1) : (m = n.indexOf("#!")) >= 0 && (d = "/" + n.substr(m + 2).replace(/^\//, "")), (l = d.match(r.VK_DOMAIN)) && l[1].length < 32 && (b = ' mention_id="' + l[1] + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)"'), '<a href="' + function(e) {
+                    return e.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+                }(a + n + i) + '" target="_blank"' + b + ">" + u + "</a>"
+            }
+            return '<a href="' + ("away.php?utf=1&to=" + encodeURIComponent(a + s(n + i))) + '" target="_blank" onclick="' + ("return goAway('" + c((a + n + i).replace(/'/g, "\\'")) + "', {}, event);") + '">' + u + "</a>"
+        }
+    },
+    200: function(e, t, a) {
         "use strict";
         a.r(t);
-        var r = a(76),
-            n = a(118),
+        var r = a(64),
+            n = a(207),
             i = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
                 return typeof e
             } : function(e) {
@@ -612,28 +575,18 @@
             stManager.done("writebox.js")
         } catch (e) {}
     },
-    59: function(e, t, a) {
-        e.exports = a(172)
-    },
-    69: function(e, t, a) {
+    207: function(e, t, a) {
         "use strict";
-        a.r(t), a.d(t, "parseFwd", function() {
-            return m
-        }), a.d(t, "replaceHyperLinks", function() {
-            return b
-        }), a.d(t, "replaceEmailLinks", function() {
-            return h
-        }), a.d(t, "replaceMentions", function() {
-            return f
-        }), a.d(t, "replaceHashtags", function() {
-            return v
-        }), a.d(t, "confirmDelivery", function() {
-            return y
-        }), a.d(t, "linksReplacer", function() {
-            return k
+        a.r(t), a.d(t, "ImDraft", function() {
+            return o
+        }), a.d(t, "convertKludgesToAttaches", function() {
+            return s
+        }), a.d(t, "loadDraftForPeer", function() {
+            return u
         });
-        var r = a(128),
-            n = function() {
+        var r = a(97),
+            n = a(185),
+            i = function() {
                 return function(e, t) {
                     if (Array.isArray(e)) return e;
                     if (Symbol.iterator in Object(e)) return function(e, t) {
@@ -656,206 +609,177 @@
                     }(e, t);
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
-            }(),
-            i = void 0,
-            o = window,
-            c = o.clean,
-            s = o.replaceEntities,
-            u = o.statlogsValueEvent;
-
-        function l(e) {
-            var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [],
-                a = e.split("_"),
-                r = n(a, 2);
-            return [r[0], r[1], t]
-        }
-        var d = {};
-
-        function m(e) {
-            if (d[e]) return d[e];
-            for (var t = e ? e.length : 0, a = [], r = [], i = "", o = 0; o < t; o++) {
-                var c = e[o],
-                    s = c.charCodeAt(0);
-                s >= 48 && s <= 57 || "_" === c || "-" === c ? i += c : "(" !== c && ")" !== c && ":" !== c && "," !== c || ("" !== i && (r.push(i), a.push("id"), i = ""), r.push(c), a.push(c))
-            }
-            i.length > 0 && (r.push(i), a.push("id"));
-            var u = function e(t, a) {
-                    var r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 0,
-                        i = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 0;
-                    if (i > 50) return [
-                        [], t.length
-                    ];
-                    for (var o = [], c = ""; r < t.length;) {
-                        var s = t[r];
-                        if ("id" === s) c = a[r];
-                        else if ("," === s && c) o.push(l(c)), c = "";
-                        else if ("(" === s) {
-                            var u = e(t, a, r + 1, i + 1),
-                                d = n(u, 2),
-                                m = d[0];
-                            r = d[1], o.push(l(c, m)), c = ""
-                        } else if (")" === s) return "" !== c && o.push(l(c)), [o, r];
-                        r++
-                    }
-                    return c && o.push(l(c)), [o, r]
-                }(a, r),
-                m = n(u, 1)[0];
-            return Object.keys(d).length > 300 && (d = {}), d[e] = m, m
-        }
-
-        function b(e, t) {
-            for (var a = void 0, n = 0, i = e; null !== (a = r.MESSAGE_REGEXP.exec(e));) {
-                var o = (a = p(a))[0].length,
-                    c = a.index + o,
-                    s = e[a.index - 1],
-                    u = e[c - 1],
-                    l = void 0 !== s && /([\w\$А-Яа-яёЁєЄҐґЇїІіЈј\—\-\_@;.])/i.test(s),
-                    d = void 0 !== u && /([:;$])/i.test(u);
-                if (!l && !d) {
-                    var m = g(a),
-                        b = m.domain.toLowerCase();
-                    if (b.length <= r.MAX_DOMAIN_LENGTH && -1 !== r.TOP_DOMAINS.indexOf(b)) {
-                        var h = t(m);
-                        i = i.slice(0, a.index + n) + h + i.slice(c + n), n += h.length - o
-                    }
-                }
-            }
-            return i
-        }
-
-        function h(e, t) {
-            return e.replace(r.EMAIL, t || function(e) {
-                return '<a href="mailto:' + e + '">' + e + "</a>"
-            })
-        }
-
-        function f(e, t) {
-            return e.replace(r.MENTION, t || function(e, t, a, r, n) {
-                return '<a href="/' + (t + a) + '" class="mem_link" mention="' + c(r || "") + '" mention_id="' + c(t + a) + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)">' + n + "</a>"
-            })
-        }
-
-        function p(e) {
-            if (!e[0] || !e[6]) return e;
-            var t = e[0].length - 1,
-                a = e[6].length - 1;
-            return "." === e[0][t] && "." === e[6][a] && (e[0] = e[0].slice(0, t), e[6] = e[6].slice(0, a)), e
-        }
-
-        function g(e) {
-            return {
-                full: e[0],
-                protocol: e[1] || "http://",
-                url: e[2],
-                domain: e[4],
-                query: e[6] || ""
-            }
-        }
-
-        function v(e, t) {
-            return e.replace((i || (i = new RegExp(r.RE_HASHTAG_EXTRACTION_PATTERN, "ig")), i), function(e, a, r, n, i, o) {
-                return (a || "") + t(r + (i || ""))
-            })
-        }
-
-        function y(e) {
-            u("ttl_message_confirm_delivery", e)
-        }
-
-        function k(e, t) {
-            var a = t.protocol,
-                n = t.url,
-                i = t.query,
-                o = t.domain,
-                u = t.full;
-            try {
-                u = decodeURIComponent(u)
-            } catch (e) {}
-            if (u.length > 55 && (u = u.substr(0, 53) + ".."), u = c(u).replace(/&amp;/g, "&"), !e && o.match(r.OUR_DOMAINS)) {
-                var l, d = n = s(n).replace(r.ENTITIES, encodeURIComponent),
-                    m = n.indexOf("#/"),
-                    b = "";
-                return m >= 0 ? d = n.substr(m + 1) : (m = n.indexOf("#!")) >= 0 && (d = "/" + n.substr(m + 2).replace(/^\//, "")), (l = d.match(r.VK_DOMAIN)) && l[1].length < 32 && (b = ' mention_id="' + l[1] + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)"'), '<a href="' + function(e) {
-                    return e.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-                }(a + n + i) + '" target="_blank"' + b + ">" + u + "</a>"
-            }
-            return '<a href="' + ("away.php?utf=1&to=" + encodeURIComponent(a + s(n + i))) + '" target="_blank" onclick="' + ("return goAway('" + c((a + n + i).replace(/'/g, "\\'")) + "', {}, event);") + '">' + u + "</a>"
-        }
-    },
-    70: function(e, t, a) {
-        "use strict";
-        a.r(t), a.d(t, "CONTROLLER", function() {
-            return r
-        }), a.d(t, "post", function() {
-            return i
-        }), a.d(t, "plainget", function() {
-            return o
-        }), a.d(t, "plaingetCancelable", function() {
-            return c
-        });
-        var r = "al_im.php",
-            n = 2;
-
-        function i(e, t, a) {
-            return t && (t.im_v = n), new Promise(function(r, n) {
-                ajax.post(e, t, {
-                    timeout: a,
-                    onDone: function() {
-                        r.apply(null, [
-                            [].concat(Array.prototype.slice.call(arguments))
-                        ])
-                    },
-                    onFail: function() {
-                        return n.apply(null, arguments), !0
-                    }
-                })
-            })
-        }
+            }();
 
         function o(e, t) {
-            return c(e, t, arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {}).request
+            this._db = e, this._key = t, this.dData = {
+                txt: "",
+                attaches: [],
+                urlBinds: [],
+                cancelled: []
+            }, this.load()
         }
 
-        function c(e, t) {
-            var a = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
-                r = void 0;
-            return r = window.XDomainRequest ? new XDomainRequest : ajax._getreq(), {
-                request: new Promise(function(n, i) {
-                    var o = void 0,
-                        c = Date.now(),
-                        s = a.timeout || 60,
-                        u = ajx2q(t);
-                    if (window.XDomainRequest) r.open("get", e + "?" + u), r.ontimeout = function() {
-                        i(["", {}])
-                    }, r.onerror = function() {
-                        i(["", {}])
-                    }, r.onload = function() {
-                        n([r.responseText, {}])
-                    }, setTimeout(function() {
-                        r.send()
-                    }, 0);
-                    else {
-                        r.onreadystatechange = function() {
-                            4 == r.readyState && (clearInterval(o), r.status >= 200 && r.status < 300 ? n([r.responseText, r]) : i([r.responseText, r]))
-                        };
-                        try {
-                            r.open("GET", e + "?" + u, !0)
-                        } catch (e) {
-                            return i([e, r])
-                        }
-                        r.send()
-                    }
-                    o = setInterval(function() {
-                        Date.now() - c > 1e3 * s && (i(["", {}]), clearInterval(o))
-                    }, 1e3)
-                }),
-                cancel: function() {
-                    r.abort()
-                }
+        function c(e) {
+            switch (e.type) {
+                case "mail":
+                    return e.id < 0 && 1 == e.object.fwd_count;
+                default:
+                    return !e.object
             }
         }
+
+        function s(e, t) {
+            var a = [];
+            e.fwd_count ? a.push({
+                type: "mail",
+                id: -t,
+                object: {
+                    fwd_count: e.fwd_count
+                }
+            }) : e.fwd && a.push({
+                type: "mail",
+                id: -t,
+                object: {
+                    fwd_count: Object(n.parseFwd)(e.fwd).length
+                }
+            });
+            for (var r = 1; e["attach" + r + "_type"]; ++r) "call" === e["attach" + r + "_type"] ? a.push({
+                type: e["attach" + r + "_type"],
+                id: e["attach" + r],
+                initiatorId: intval(e["attach" + r + "_call_initiator_id"]),
+                state: e["attach" + r + "_call_state"],
+                duration: intval(e["attach" + r + "_call_duration"]),
+                receiverId: intval(e["attach" + r + "_call_receiver_id"])
+            }) : a.push({
+                type: e["attach" + r + "_type"],
+                id: e["attach" + r],
+                kind: e["attach" + r + "_kind"],
+                productId: e["attach" + r + "_product_id"]
+            });
+            return e.geo && a.push({
+                type: "geo",
+                id: e.geo
+            }), a
+        }
+
+        function u(e, t) {
+            return new o(e, "draft_" + t)
+        }
+        o.prototype.dump = function() {
+            var e;
+            this._key && this._db.updateByKey(this._key, {
+                txt: (e = this.dData).txt,
+                attaches: e.attaches.length ? e.attaches : void 0,
+                urlBinds: e.urlBinds.length ? e.urlBinds : void 0,
+                cancelled: e.cancelled.length ? e.cancelled : void 0
+            })
+        }, o.prototype.load = function() {
+            if (this._key) {
+                var e = this._db.selectByKey(this._key);
+                e && (this.dData = function(e) {
+                    return {
+                        txt: e.txt,
+                        attaches: e.attaches || [],
+                        urlBinds: e.urlBinds || [],
+                        cancelled: e.cancelled || []
+                    }
+                }(e))
+            }
+        }, o.prototype.clear = function() {
+            this.dData = {
+                txt: "",
+                attaches: [],
+                urlBinds: [],
+                cancelled: []
+            }, this.dump()
+        }, o.prototype.setText = function(e) {
+            this.dData.txt = trim(e), this.dump()
+        }, o.prototype.addAttach = function(e, t, a) {
+            if ("share" !== e && "mail" !== e || this.removeAttachByType(e), !e || !t && "poll" !== e) return !1;
+            var r = this.dData.attaches.findIndex(function(a) {
+                return a.type === e && a.id === t
+            }); - 1 === r ? (this.dData.attaches.push({
+                type: e,
+                id: t,
+                object: a
+            }), this.dump()) : "video" !== e && "poll" !== e || (this.dData.attaches[r] = {
+                type: e,
+                id: t,
+                object: a
+            }, this.dump())
+        }, o.prototype.syncWithSelector = function(e) {
+            var t = this,
+                a = this.getFwdRaw();
+            this.dData.attaches = (a ? [a] : []).concat(e.getMedias().map(function(e) {
+                var a = i(e, 2),
+                    r = a[0],
+                    n = a[1];
+                return t.dData.attaches.find(function(e) {
+                    return e.type == r && e.id == n
+                }) || {
+                    type: r,
+                    id: n
+                }
+            })), this.dump()
+        }, o.prototype.removeAttachByType = function(e) {
+            for (var t = this.dData.attaches.length; t--;) this.dData.attaches[t].type === e && this.dData.attaches.splice(t, 1);
+            this.dump()
+        }, o.prototype.removeAllAttaches = function() {
+            this.dData.attaches = [], this.dData.cancelled = [], this.dump()
+        }, o.prototype.addBindUrl = function(e, t, a) {
+            this.getBoundAttach(e) || (this.dData.urlBinds.push({
+                url: e,
+                type: t,
+                id: a
+            }), this.dump())
+        }, o.prototype.getBoundAttach = function(e) {
+            var t = this.dData.urlBinds.find(function(t) {
+                return t.url === e
+            });
+            return t && this.dData.attaches.find(function(e) {
+                return e.type === t.type && e.id === t.id
+            }) || null
+        }, o.prototype.getShareUrl = function() {
+            var e = this.dData.attaches.find(function(e) {
+                return "share" === e.type
+            });
+            if (e && e.object) return e.object.url
+        }, o.prototype.getCancelledShares = function() {
+            return this.dData.cancelled.length ? this.dData.cancelled : void 0
+        }, o.prototype.hasAttaches = function() {
+            return this.dData.attaches.length > 0
+        }, o.prototype.destroy = function() {
+            this.dData = {}, this._key = this._db = null
+        }, o.prototype.prepareObjects = function(e, t) {
+            var a = this;
+            return this.dData.attaches.find(c) ? Object(r.post)(r.CONTROLLER, {
+                act: "draft_medias",
+                gid: e,
+                messageId: t || 0,
+                media: t ? void 0 : this.dData.attaches.map(function(e) {
+                    return [e.type, e.id]
+                }).join("*")
+            }).then(function(e) {
+                var t = i(e, 1)[0];
+                a.dData.attaches = t.map(function(e) {
+                    return {
+                        type: e[0],
+                        id: e[1],
+                        object: e[2]
+                    }
+                })
+            }) : Promise.resolve()
+        }, o.prototype.getFwdRaw = function() {
+            return this.dData.attaches.find(function(e) {
+                return "mail" === e.type
+            })
+        }, o.prototype.getFwdCount = function() {
+            var e = this.getFwdRaw();
+            return e ? e.id < 0 ? e.object.fwd_count : e.id.split(";").length : 0
+        }
     },
-    76: function(e, t, a) {
+    64: function(e, t, a) {
         "use strict";
         a.r(t), a.d(t, "RECENT_SEARCH_OP", function() {
             return n
@@ -957,6 +881,82 @@
                 },
                 unmount: function() {
                     window.removeEventListener("storage", l, !1)
+                }
+            }
+        }
+    },
+    83: function(e, t, a) {
+        e.exports = a(200)
+    },
+    97: function(e, t, a) {
+        "use strict";
+        a.r(t), a.d(t, "CONTROLLER", function() {
+            return r
+        }), a.d(t, "post", function() {
+            return i
+        }), a.d(t, "plainget", function() {
+            return o
+        }), a.d(t, "plaingetCancelable", function() {
+            return c
+        });
+        var r = "al_im.php",
+            n = 2;
+
+        function i(e, t, a) {
+            return t && (t.im_v = n), new Promise(function(r, n) {
+                ajax.post(e, t, {
+                    timeout: a,
+                    onDone: function() {
+                        r.apply(null, [
+                            [].concat(Array.prototype.slice.call(arguments))
+                        ])
+                    },
+                    onFail: function() {
+                        return n.apply(null, arguments), !0
+                    }
+                })
+            })
+        }
+
+        function o(e, t) {
+            return c(e, t, arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {}).request
+        }
+
+        function c(e, t) {
+            var a = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
+                r = void 0;
+            return r = window.XDomainRequest ? new XDomainRequest : ajax._getreq(), {
+                request: new Promise(function(n, i) {
+                    var o = void 0,
+                        c = Date.now(),
+                        s = a.timeout || 60,
+                        u = ajx2q(t);
+                    if (window.XDomainRequest) r.open("get", e + "?" + u), r.ontimeout = function(e) {
+                        i([e, {}])
+                    }, r.onerror = function(e) {
+                        i([e, {}])
+                    }, r.onload = function() {
+                        n([r.responseText, {}])
+                    }, setTimeout(function() {
+                        r.send()
+                    }, 0);
+                    else {
+                        r.onreadystatechange = function() {
+                            4 == r.readyState && (clearInterval(o), r.status >= 200 && r.status < 300 ? n([r.responseText, r]) : i([r.responseText, r]))
+                        };
+                        try {
+                            r.open("GET", e + "?" + u, !0)
+                        } catch (e) {
+                            return i([e, r])
+                        }
+                        r.send()
+                    }
+                    o = setInterval(function() {
+                        Date.now() - c > 1e3 * s && (i(["", {}]), clearInterval(o))
+                    }, 1e3)
+                }),
+                cancel: function() {
+                    r.abort()
                 }
             }
         }

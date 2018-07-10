@@ -646,6 +646,20 @@ body.body_helpdesk_small_sb .left_menu_nav {
     background: #5b88bd
 }
 
+.tickets_favorites_groups_tab.tickets_favorites_groups_tab_fav:hover {
+    background: #fae1e2;
+    color: #000;
+    text-decoration: none
+}
+
+.tickets_favorites_groups_tab.tickets_favorites_groups_tab_fav.tickets_favorites_groups_tab_sel {
+    background: #eb6a6c
+}
+
+.tickets_favorites_groups_tab.tickets_favorites_groups_tab_fav.tickets_favorites_groups_tab_sel:hover {
+    color: #fff
+}
+
 .tickets_favorites_groups_add {
     font-weight: 700;
     -webkit-font-smoothing: antialiased;

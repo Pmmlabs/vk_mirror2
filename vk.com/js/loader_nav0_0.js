@@ -262,13 +262,13 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 206352126403,
-    'imn.js': 253069426808,
+    'imn.js': 258691490045,
     'im.js': 1322065005,
     'emoji.js': 3520618690,
     'wide_dd.css': 13602159766,
     'wide_dd.js': 452755344,
     'writebox.css': 14028758741,
-    'writebox.js': 11882451930,
+    'writebox.js': 12631209155,
     'sharebox.js': 2415141047,
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
@@ -330,7 +330,7 @@ var stVersions = {
     'widgets.css': 27649024773,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 78178448698,
+    'notifier.js': 79391187525,
     'notifier.css': 24826177686,
     'cmodules/sw/sw.js': 4889939668,
     'earthday.js': 2276669993,
@@ -341,8 +341,8 @@ var stVersions = {
     'docs.css': 23644020524,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 12904768144,
-    'helpdesk.js': 100387064,
-    'helpdesk.css': 26303758342,
+    'helpdesk.js': 203826948,
+    'helpdesk.css': 30137390749,
     'tickets.js': 1946038597,
     'tickets.css': 28121779377,
     'faq.css': 18772616764,
@@ -433,7 +433,7 @@ var stVersions = {
     'ui.js': 1385249136,
     'ui_common.js': 1617946438,
     'ui_common.css': 13918042057,
-    'cmodules/web/ui_media_selector.js': 4865421488,
+    'cmodules/web/ui_media_selector.js': 5614178713,
     'ui_media_selector.css': 16157837631,
     'ui_manual.css': 12071035017,
     'admin.css': 15544066900,
@@ -530,9 +530,9 @@ var stVersions = {
     'stories_manage.css': 72431391460,
     'article.css': 33751880458,
     'article_editor.css': 34365643506,
-    'cmodules/web/article.js': 35069406045,
-    'cmodules/web/article_layer.js': 18966677446,
-    'article_view.js': 13918577536,
+    'cmodules/web/article.js': 35101845925,
+    'cmodules/web/article_layer.js': 18999117326,
+    'article_view.js': 13951017416,
     'bookmarks.css': 10693013332,
     'cmodules/web/bookmarks.js': 1303575103,
     'shortener.js': 16413120,
@@ -563,7 +563,7 @@ var stVersions = {
     'community_bot.js': 1928249077,
     'community_bot.css': 3742743729,
     'translation_discussions.js': 2879502163,
-    'ui_gallery.css': 11617411575,
+    'ui_gallery.css': 11224228491,
     'cmodules/web/ui_components.js': 4923564620,
     'lang': 6888
 };
@@ -634,4 +634,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 1365;
+var _rnd = 6460;

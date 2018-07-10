@@ -427,8 +427,7 @@ var Helpdesk = {
         } else re("helpdesk_m_table_actions")
     },
     getNewTicket: function(e, t) {
-        ajax.post("helpdesk", {
-            act: "get_ticket",
+        ajax.post("helpdesk?act=a_get_ticket", {
             hash: t
         }, {
             onDone: function(e) {
