@@ -1090,12 +1090,20 @@
 }
 
 .abuse_profile_container .abuse_profile_content .panel_container.reward_active {
+    cursor: pointer;
     background: #74d174;
     background: rgba(116, 209, 116, .3);
     border-color: #74d174
 }
 
+.abuse_profile_container .abuse_profile_content .panel_container.penalty_available {
+    background: #d7b2b2;
+    background: hsla(0, 32%, 77%, .3);
+    border-color: #d7b2b2
+}
+
 .abuse_profile_container .abuse_profile_content .panel_container.penalty_active {
+    cursor: pointer;
     background: #d17474;
     background: hsla(0, 50%, 64%, .3);
     border-color: #d17474

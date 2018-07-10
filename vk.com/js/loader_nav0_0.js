@@ -262,7 +262,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 206352126403,
-    'imn.js': 258691490045,
+    'imn.js': 256630711689,
     'im.js': 1322065005,
     'emoji.js': 3520618690,
     'wide_dd.css': 13602159766,
@@ -330,7 +330,7 @@ var stVersions = {
     'widgets.css': 27649024773,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 79391187525,
+    'notifier.js': 77655012904,
     'notifier.css': 24826177686,
     'cmodules/sw/sw.js': 4889939668,
     'earthday.js': 2276669993,
@@ -356,7 +356,7 @@ var stVersions = {
     'meminfo.css': 21533955173,
     'groupinfo.css': 83072995204,
     'bugtracker.js': 1300830816,
-    'bugtracker.css': 25052245851,
+    'bugtracker.css': 22431190082,
     'cmodules/web/bugtracker.js': 26101844406,
     'login.css': 13304300707,
     'cmodules/web/login.js': 3491120396,
@@ -366,7 +366,7 @@ var stVersions = {
     'graffiti.css': 404471482,
     'graffiti_new.js': 67279821,
     'graffiti_new.css': 19826828098,
-    'abuse.css': 12056723940,
+    'abuse.css': 12075378724,
     'verify.css': 10337102923,
     'away.css': 15718985996,
     'stats.css': 13082174398,
@@ -485,7 +485,7 @@ var stVersions = {
     'landing_aes.js': 17167906988,
     'landings/donors_day.css': 14461697210,
     'landing_donors_day.js': 1027075361,
-    'landings/testing.css': 12448309061,
+    'landings/testing.css': 12508444064,
     'vkme.css': 19033855525,
     'cmodules/web/vkme-desktop.js': 5837370790,
     'ui_controls.js': 3968782565,
@@ -494,7 +494,7 @@ var stVersions = {
     'selects.js': 2835310113,
     'mentions.js': 3097650360,
     'apps_flash.js': 574154589,
-    'maps.js': 1745819694,
+    'maps.js': 1745819695,
     'places.js': 592992591,
     'places.css': 17841086487,
     'map2.js': 3799102730,
@@ -634,4 +634,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 6460;
+var _rnd = 2084;

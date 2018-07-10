@@ -275,6 +275,8 @@ img.wk_photo_no_padding {
     background-color: #fff;
     margin: 3px 6px 3px 0px;
     background-repeat: no-repeat;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     height: 90px;

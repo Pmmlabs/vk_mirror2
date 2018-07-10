@@ -12,6 +12,8 @@
 
 .oauth_sdk_box {
     background-color: #fff;
+    -webkit-box-shadow: 0 2px 1px #d3d3d3, 0 2px 0 #d3d3d3;
+    -moz-box-shadow: 0 2px 1px #d3d3d3, 0 2px 0 #d3d3d3;
     box-shadow: 0 2px 1px #d3d3d3, 0 2px 0 #d3d3d3
 }
 
@@ -67,6 +69,7 @@
 
 .oauth_sdk_app_title {
     white-space: nowrap;
+    -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     overflow: hidden
 }
@@ -165,6 +168,7 @@
 .oauth_requests_title {
     font-weight: 500;
     white-space: nowrap;
+    -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     overflow: hidden;
     padding-top: 2px;
@@ -314,5 +318,7 @@ body.oauth_sdk_vk {
 }
 
 .oauth_sdk_vk .oauth_sdk_box {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
     box-shadow: none
 }

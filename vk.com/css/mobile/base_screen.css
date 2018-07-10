@@ -381,7 +381,11 @@
     padding: 0 0 7px;
     background-color: transparent;
     border: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
     border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
     box-shadow: none
 }
 
@@ -453,6 +457,8 @@
     display: inline;
     float: none;
     margin: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
     border-radius: 0
 }
 
@@ -576,6 +582,8 @@
 }
 
 .di_unread_cnt {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
     border-radius: 0;
     float: none;
     clear: none;
@@ -699,6 +707,8 @@
 .app_item .th_img {
     width: 35px;
     height: 35px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
     border-radius: 3px
 }
 
@@ -725,6 +735,8 @@
 .app_friends .ph_img {
     width: 22px;
     height: 22px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
     border-radius: 2px
 }
 

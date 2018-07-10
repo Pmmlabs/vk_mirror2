@@ -16263,51 +16263,6 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     }
 }
 
-.adultConfirm__checkbox {
-    display: table;
-    overflow: hidden;
-    line-height: 18px;
-    text-align: left
-}
-
-.adultConfirm__checkbox input {
-    position: absolute;
-    left: -9999px
-}
-
-.adultConfirm__checkboxIcon {
-    display: table-cell;
-    vertical-align: top
-}
-
-.adultConfirm__checkboxIcon:after {
-    content: "";
-    display: block;
-    height: 24px;
-    width: 24px;
-    margin: -2px;
-    background-repeat: no-repeat;
-    -moz-background-size: 100%;
-    -o-background-size: 100%;
-    background-size: 100%;
-    background-position: 0 -24px;
-    background-image: url('/images/mobile/checkboxes.png?4')
-}
-
-.vk_2x .adultConfirm__checkboxIcon:after {
-    background-image: url('/images/mobile/checkboxes_2x.png?4')
-}
-
-input:checked+.adultConfirm__checkboxIcon:after {
-    background-position: 0 0px
-}
-
-.adultConfirm__checkboxLabel {
-    display: table-cell;
-    vertical-align: middle;
-    padding: 0 0 0 10px
-}
-
 .adultConfirm__cancel,
 .adultConfirm__submit {
     -webkit-border-radius: 3px;

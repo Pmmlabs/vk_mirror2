@@ -13,6 +13,7 @@
     padding: 0
 }
 
+.bt_guest_invitation,
 .bt_icon_count:before,
 .bt_icon_solved:before,
 .bt_icon_vuln:before,
@@ -3890,4 +3891,63 @@
     visibility: visible;
     -o-transform: none;
     transform: none
+}
+
+.bt_guest_invitation {
+    border-radius: 3px;
+    background: url(/images/landings/testing/bugs.png) no-repeat;
+    color: #fff;
+    background-color: #70aee0;
+    background-position: right 0;
+    background-size: auto 100%;
+    box-sizing: border-box;
+    padding: 23px 31px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .bt_guest_invitation {
+        background-image: url(/images/landings/testing/bugs_2x.png);
+        background-size: 180px 180px
+    }
+}
+
+.bt_guest_invitation .title {
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    font-size: 17px
+}
+
+.bt_guest_invitation .subtitle {
+    line-height: 19px;
+    width: 500px;
+    margin-top: 8px
+}
+
+.bt_guest_invitation .flat_button {
+    border-radius: 15px;
+    margin-top: 16px;
+    line-height: 16px
+}
+
+.bt_guest_invitation .more_info_btn {
+    background: #fff;
+    color: #5181b8;
+    width: 140px;
+    margin-right: 8px
+}
+
+.bt_guest_invitation .more_info_btn:hover {
+    background: #f9fcff
+}
+
+.bt_guest_invitation .hide_btn {
+    color: #fff!important
+}
+
+.bt_guest_invitation .hide_btn:hover {
+    color: #5181b8!important;
+    background: #f9fcff!important
 }

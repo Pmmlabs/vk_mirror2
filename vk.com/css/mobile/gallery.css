@@ -162,10 +162,14 @@
     }
     .msg_item .thumbs_list .thumb_map_img_unsized {
         background-position: center 0;
+        -moz-background-size: contain;
+        -o-background-size: contain;
         background-size: contain
     }
     .msg_item .thumbs_list .thumb_map_album .thumb_map_img_unsized {
         background-position: 50%;
+        -moz-background-size: cover;
+        -o-background-size: cover;
         background-size: cover;
         max-height: 98px
     }

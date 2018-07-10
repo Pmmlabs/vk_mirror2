@@ -318,6 +318,8 @@ textarea {
     width: 75px;
     height: 75px;
     margin: 0 10px 0 0;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
     border-radius: 10px
 }
 
@@ -347,6 +349,8 @@ textarea {
 
 .app_page_wrap .app_button {
     min-width: 45px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
     border-radius: 4px;
     padding: 7px 8px 8px!important
 }

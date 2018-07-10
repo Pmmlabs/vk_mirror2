@@ -53,6 +53,7 @@
 
 .oauth_sdk_app_title {
     white-space: nowrap;
+    -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     overflow: hidden;
     padding-top: 3px;
@@ -154,6 +155,7 @@
 
 .oauth_requests_title {
     white-space: nowrap;
+    -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     overflow: hidden;
     color: #384554

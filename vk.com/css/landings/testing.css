@@ -57,7 +57,8 @@
 }
 
 .landing_testing {
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif!important
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif!important;
+    width: 800px
 }
 
 .landing_testing_head {
