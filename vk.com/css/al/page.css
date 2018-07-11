@@ -8287,7 +8287,11 @@ button.wall_block_app_btn {
 }
 
 .page_actions_item.grey {
-    pointer-events: none;
+    pointer-events: none
+}
+
+.page_actions_item.grey,
+.page_actions_item.grey_hoverable {
     color: #828282
 }
 
@@ -8319,8 +8323,11 @@ button.wall_block_app_btn {
 }
 
 .page_actions_item:hover {
-    background-color: #e7edf2;
     text-decoration: none
+}
+
+.page_actions_item:hover:not(.grey_hoverable) {
+    background-color: #e7edf2
 }
 
 .page_actions_item.disabled:hover {

@@ -1140,26 +1140,22 @@
 
 .feedback_publish_row .feedback_photo_icon {
     display: block;
-    background: #ffa000 url(/images/svg_icons/feedback/publish.svg) no-repeat;
-    background-position: -4px 0
+    background: #ffa000 url(/images/svg_icons/feedback/publish.svg?2) no-repeat
 }
 
 .feedback_private_post_row .feedback_photo_icon {
     display: block;
-    background: #444 url(/images/svg_icons/feedback/publish.svg) no-repeat;
-    background-position: -4px 0
+    background: #444 url(/images/svg_icons/feedback/publish.svg?2) no-repeat
 }
 
 .feedback_gift_row .feedback_photo_icon {
     display: block;
-    background: #ffa000 url(/images/svg_icons/feedback/gift_2.svg) no-repeat;
-    background-position: -2px -2px
+    background: #ffa000 url(/images/svg_icons/feedback/gift_2.svg?2) no-repeat
 }
 
 .feedback_birthday_gift_row .feedback_photo_icon {
     display: block;
-    background: #e64646 url(/images/svg_icons/feedback/gift_2.svg) no-repeat;
-    background-position: -2px -2px
+    background: #e64646 url(/images/svg_icons/feedback/gift_2.svg?2) no-repeat
 }
 
 .feedback_app_row .feedback_photo_icon {

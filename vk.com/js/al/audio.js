@@ -1386,7 +1386,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     function t(e) {
         if (s.isAdPlaying()) d.innerHTML = getLang("global_audio_ad"), setStyle(u, "display", "none"), toggleClass(r, "audio_song_is_explicit", !1);
         else {
-            const t = AudioUtils.getAudioPerformers(e);
+            var t = AudioUtils.getAudioPerformers(e);
             e = AudioUtils.asObject(e), setStyle(u, "display", "block"), d.innerHTML = geByClass1("audio_page_player2") ? t : e.performer, _.innerHTML = e.title, c.innerHTML = e.subTitle ? e.subTitle : "", e.coverUrl_p ? (setStyle(g, "background-image", "url(" + e.coverUrl_p + ")"), setStyle(g, "background-size", "cover")) : (setStyle(g, "background-image", null), setStyle(g, "background-size", "")), toggleClass(r, "audio_title_long_performer", e.isLongPerformer), toggleClass(r, "audio_song_is_explicit", e.isExplicit), !o.isLayer() && s.getCurrentAudio() && AudioUtils.asObject(s.getCurrentAudio()).fullId == e.fullId && (setDocumentTitle(replaceEntities(stripHTML(e.performer + " - " + e.title))), clearTimeout(window.pageSetTitleTimer))
         }
     }
