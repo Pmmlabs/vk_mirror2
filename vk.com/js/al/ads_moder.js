@@ -1006,6 +1006,10 @@ AdsModer.statSummaryShowVotesBox = function(periodType, period) {
     showBox('/adsmoder?act=stat_summary_votes', ajaxParams, showOptions);
 }
 
+AdsModer.initIncreaseBudgetPage = function(increaseSpecialTypes) {
+    new Radiobuttons(ge('ads_increase_special_type_'), increaseSpecialTypes, {});
+}
+
 AdsModer.increaseBudget = function() {
     if (!Ads.lock('increaseBudget', onLock, onUnlock)) {
         return;
@@ -1013,6 +1017,7 @@ AdsModer.increaseBudget = function() {
 
     var ajaxParams = {};
     ajaxParams.union_id = val('ads_increase_budget_union_id');
+    ajaxParams.increase_special_type = val('ads_increase_special_type_');
     ajaxParams.money_amount = val('ads_increase_budget_amount');
     ajaxParams.hash = val('ads_increase_budget_hash');
 

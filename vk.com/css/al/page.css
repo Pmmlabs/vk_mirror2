@@ -4507,6 +4507,10 @@ body.mac .reply_box_inner_wrap.fixed {
     transition: transform 0.3s ease;
     transition: transform 0.3s ease, -o-transform 0.3s ease;
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -khtml-backface-visibility: hidden;
     transform: rotateY(0deg);
     position: absolute;
     top: 10px;
@@ -4864,6 +4868,10 @@ div.submit_post_field[contenteditable=true]>p {
     transition: transform 0.3s ease;
     transition: transform 0.3s ease, -o-transform 0.3s ease;
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -khtml-backface-visibility: hidden;
     transform: rotateY(0deg);
     position: absolute;
     top: 0;

@@ -768,6 +768,10 @@ a {
     top: 0px;
     left: 0px;
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -khtml-backface-visibility: hidden;
     transform: rotateY(180deg);
     transform-style: preserve-3d;
     -ms-animation: wcm_button_change 6s infinite
