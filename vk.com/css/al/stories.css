@@ -308,14 +308,28 @@
     background: transparent
 }
 
+.stories_author .page_top_author,
 .stories_author .page_verified {
     width: 20px!important;
     height: 20px!important;
     min-width: 20px;
-    background: url('/images/svg_icons/stories_verified.svg') no-repeat 50% / contain;
     pointer-events: none;
-    padding: 0!important;
-    margin-top: 2px
+    padding: 0!important
+}
+
+.stories_author .page_verified {
+    margin-top: 2px;
+    background: url('/images/svg_icons/stories_verified.svg') no-repeat 50% / contain
+}
+
+.stories_author .page_top_author {
+    margin-top: 0;
+    background: url('/images/svg_icons/stories/stories_fire.svg') no-repeat 50% / contain
+}
+
+.stories_author .page_verified.page_top_author {
+    margin-top: 0;
+    background: url('/images/svg_icons/stories/stories_fire_verified.svg') no-repeat 50% / contain
 }
 
 .stories_author_cont_wrap {
@@ -411,11 +425,13 @@
     line-height: 16px
 }
 
+.stories_author_cont .page_top_author,
 .stories_author_cont .page_verified,
 .stories_author_name {
     opacity: 0.7
 }
 
+.stories_item.active .stories_author_cont .page_top_author,
 .stories_item.active .stories_author_cont .page_verified,
 .stories_item.active .stories_author_name {
     opacity: 1

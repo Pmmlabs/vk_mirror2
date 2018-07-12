@@ -2269,11 +2269,11 @@ input.wide_button {
 
 .pinfo_row_highlight .wide_link {
     color: #fff;
-    background: #6182aa
+    background: #5181b8
 }
 
 .pinfo_row_highlight .wide_link:hover {
-    background: #6182aa
+    background: #5181b8
 }
 
 .pinfo_row dd,
@@ -26875,6 +26875,7 @@ body.apps_settingsPageBody {
 .r .new_post_container .new_post_link,
 .r .post_item.comment_item,
 .r .post_item.post_message_item,
+.r.r .wall_item .medias_map,
 .r .vk2017_snippet,
 .r .wall_item .ads_disclaimer,
 .r .wall_item .ads_mark,
@@ -26894,7 +26895,7 @@ body.apps_settingsPageBody {
 .r .wi_buttons+.pi_header,
 .r .wi_head,
 .Socials {
-    margin: 0 8px
+    margin: 0 12px
 }
 
 .Post__thumbed,
@@ -26953,6 +26954,7 @@ body.apps_settingsPageBody {
     .r .new_post_container .new_post_link,
     .r .post_item.comment_item,
     .r .post_item.post_message_item,
+    .r.r .wall_item .medias_map,
     .r .vk2017_snippet,
     .r .wall_item .ads_disclaimer,
     .r .wall_item .ads_mark,
@@ -27031,6 +27033,7 @@ body.apps_settingsPageBody {
     .r .new_post_container .new_post_link,
     .r .post_item.comment_item,
     .r .post_item.post_message_item,
+    .r.r .wall_item .medias_map,
     .r .vk2017_snippet,
     .r .wall_item .ads_disclaimer,
     .r .wall_item .ads_mark,

@@ -1,8 +1,13 @@
 var TR_ADDRESS = "translation";
 ! function(exports) {
-    function _box_initAutosizeTexts() {
+    function _box_initTextareas() {
         var e;
         hasClass("translations_box_edit_key", "tr_box_edit_key_simple") && (e = 450), each(geByClass("_tr_text_value"), function() {
+            var t = domData(this, "config");
+            if (t && (t = JSON.parse(t), t.langId && !isMainSupportedLanguage(t.langId))) {
+                var a = geByClass1("tr_key_edit_counter", domPN(this));
+                val(geByClass1("_tr_counter_parent", a), t.parentValue.length), val(geByClass1("_tr_counter", a), val(this).length), show(a), _formKeyDownCheck(this)
+            }
             this.autosize ? (this.autosize.options.maxHeight = e, this.autosize.update()) : autosizeSetup(this, {
                 minHeight: 50,
                 maxHeight: e
@@ -46,12 +51,13 @@ var TR_ADDRESS = "translation";
                     val(this, e < o.length ? o[e] : "")
                 }), each(geByClass("_tr_text_value", t), function(e) {
                     val(this, e < s.length ? s[e] : "")
-                }), domReplaceEl(n[0], e), n[1] && domReplaceEl(n[1], t), _box_initAutosizeTexts()
+                }), domReplaceEl(n[0], e), n[1] && domReplaceEl(n[1], t), _box_initTextareas()
             }
         })
     }
 
     function saveKey(e, t, a) {
+        if (hasClass(e, "button_disabled")) return !1;
         var n = {
             act: "save_key",
             hash: t
@@ -180,7 +186,7 @@ var TR_ADDRESS = "translation";
                 removeClass(t, "active")
             }), addClass(e, "active"), curBox().setOptions({
                 width: a
-            }), window.tooltips && tooltips.hideAll(), _box_initOtherLangsScroll(o), _box_initAutosizeTexts(), cur.translationBoxType = t, ajax.post(TR_ADDRESS, {
+            }), window.tooltips && tooltips.hideAll(), _box_initOtherLangsScroll(o), _box_initTextareas(), cur.translationBoxType = t, ajax.post(TR_ADDRESS, {
                 act: "a_change_box_type",
                 box_type: t
             })
@@ -424,7 +430,7 @@ var TR_ADDRESS = "translation";
                     var s = ge("translation_box_type_" + cur.translationBoxType);
                     s && setTimeout(switchBoxType.pbind(s, cur.translationBoxType), 1)
                 }
-                if (extend(cur, n.cur), _box_initAutosizeTexts(), e || _box_initValuesChangeEvents(), cur.isSuperTranslator && (cur.translationBoxKeySelectedLang || (cur.translationBoxKeySelectedLang = []), cur.translationBoxKeySelectedLang.length || (cur.translationBoxKeySelectedLang = cur.translationBoxKeySelectedLangList), _box_initOptionsLanguages(), "undefined" != typeof cur.translationBoxSelectedStatus && ge("tr_key_settings_options"))) {
+                if (extend(cur, n.cur), _box_initTextareas(), e || _box_initValuesChangeEvents(), cur.isSuperTranslator && (cur.translationBoxKeySelectedLang || (cur.translationBoxKeySelectedLang = []), cur.translationBoxKeySelectedLang.length || (cur.translationBoxKeySelectedLang = cur.translationBoxKeySelectedLangList), _box_initOptionsLanguages(), "undefined" != typeof cur.translationBoxSelectedStatus && ge("tr_key_settings_options"))) {
                     var r = ge("translation_key_status_" + e + "_" + cur.translationBoxSelectedStatus);
                     r && (radiobtn(r, cur.translationBoxSelectedStatus, "tr_key_settings_status"), TR.updateKeySettingsOptions(r))
                 }
@@ -438,7 +444,7 @@ var TR_ADDRESS = "translation";
                     _ = !1;
                 each(l, function(e) {
                     addEvent(this, "input change", function(e) {
-                        if (c != val(l[0])) {
+                        if (cur.isSuperTranslator && c != val(l[0])) {
                             c = val(l[0]);
                             var t = c.match(/(\{[a-zA-Z_]+\})/g) || [],
                                 a = [];
@@ -1010,16 +1016,16 @@ var TR_ADDRESS = "translation";
         })
     }
 
-    function insertSpecSymbol(e, t) {
+    function insertSpecSymbol(e, t, a) {
         if (cancelEvent(t), !cur.translationBoxFocusedForm) return !1;
-        var a = replaceEntities(val(e)),
-            n = cur.translationBoxFocusedForm,
-            o = n.selectionStart,
-            s = n.selectionEnd,
-            r = val(n),
-            i = r.substring(0, o),
-            l = r.substring(s, r.length);
-        val(n, i + a + l), n.selectionStart = n.selectionEnd = o + a.length, n.focus(), n.timeout && clearTimeout(n.timeout)
+        var n = replaceEntities(val(e)),
+            o = cur.translationBoxFocusedForm,
+            s = o.selectionStart,
+            r = o.selectionEnd,
+            i = val(o),
+            l = i.substring(0, s),
+            c = i.substring(r, i.length);
+        val(o, l + n + c), o.selectionStart = o.selectionEnd = s + n.length, o.focus(), a && window.tooltips && window.tooltips.destroy(e), o.timeout && (clearTimeout(o.timeout), _formKeyDownCheck(o))
     }
 
     function removeFocusedForm(e) {
@@ -1028,8 +1034,44 @@ var TR_ADDRESS = "translation";
         }, 200)
     }
 
+    function isMainSupportedLanguage(e) {
+        return 0 === intval(e) || 3 == intval(e)
+    }
+
+    function _formUpdateCounter(e) {
+        var t = val(e).length,
+            a = geByClass1("_tr_counter", domPN(e));
+        a && val(a, t)
+    }
+
+    function _formSpecialCodeNotFound(e, t) {
+        var a = domPN(e),
+            n = geByClass1("_tr_missing_key_icon", a);
+        if (t) {
+            addClass(a, "tr_key_edit_missing_special_code");
+            var o = getLang("tran_special_code_not_found").replace("{variable}", t);
+            domData(n, "title", o), val(n, t), addClass("translation_box_save", "button_disabled")
+        } else removeClass(a, "tr_key_edit_missing_special_code"), val(n, ""), domData(n, "title", ""), removeClass("translation_box_save", "button_disabled")
+    }
+
+    function _formKeyDownCheck(e) {
+        e.timeout && (clearTimeout(e.timeout), delete e.timeout), _formUpdateCounter(e), e.timeout = setTimeout(function() {
+            delete e.timeout;
+            var t = JSON.parse(domData(e, "config"));
+            if (t && !isMainSupportedLanguage(t.langId) && t.specialCodes) {
+                var a = val(e).match(_SPECIAL_CODES_REGEX);
+                a || (a = []), a = a.map(trim);
+                var n = !1;
+                each(t.specialCodes.map(trim), function(t, o) {
+                    var s = a.indexOf(o);
+                    return -1 === s ? (n = !0, _formSpecialCodeNotFound(e, o)) : void 0
+                }), n || _formSpecialCodeNotFound(e)
+            }
+        }, 100)
+    }
+
     function setFocusedForm(e) {
-        cur.translationBoxFocusedForm = e
+        e.eventsInited || (addEvent(e, "change input", _formKeyDownCheck.pbind(e)), e.eventsInited = !0), cur.translationBoxFocusedForm = e
     }
 
     function updateKeySettingsOptions(e) {
@@ -1055,7 +1097,8 @@ var TR_ADDRESS = "translation";
         var a = radioval("tr_key_settings_status");
         (a === _KEY_SETTINGS_STATUS_TRANSLATE_CUSTOM_LANGUAGES || a === _KEY_SETTINGS_STATUS_EVERYONE_BUT) && show("translations_settings_languages_wrap")
     }
-    var _caseDropdown, _caseTokenDropdown, _functionTypeDropdown, _keysLangSelectorDropdown, _translatorsDateSelector, _languagesSortDropdown, _translatorsSortDropdown, _KEY_SETTINGS_STATUS_TRANSLATE_TO_ALL = 0,
+    var _caseDropdown, _caseTokenDropdown, _functionTypeDropdown, _keysLangSelectorDropdown, _translatorsDateSelector, _languagesSortDropdown, _translatorsSortDropdown, _SPECIAL_CODES_REGEX = /((\%[a-z]+)|\{([a-zA-Z0-9\.\-\_\/]+)\})/gi,
+        _KEY_SETTINGS_STATUS_TRANSLATE_TO_ALL = 0,
         _KEY_SETTINGS_STATUS_DONT_TRANSLATE = 1,
         _KEY_SETTINGS_STATUS_TRANSLATE_CUSTOM_LANGUAGES = 2,
         _KEY_SETTINGS_STATUS_TRANSLATE_ONLY_CIS = 3,

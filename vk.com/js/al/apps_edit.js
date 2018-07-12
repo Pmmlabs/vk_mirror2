@@ -2165,7 +2165,7 @@ var AppsEdit = {
             },
             i = showBox("al_video.php", {
                 act: "a_choose_video_box",
-                from: "app_edit",
+                from: "article",
                 app_id: cur.aid
             }, {
                 stat: ["page.css", "page.js"],

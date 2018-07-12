@@ -652,7 +652,7 @@ var Video = {
     },
     onScroll: function() {
         var e;
-        cur.albumsShowingAll[cur.getOwnerId()] ? e = "albums" : (e = Video._getCurrentSectionType(), Video.getLoc().q || "search" == e ? e = isVisible(gpeByClass("ge_video_pane", "ui_search_global_videos_load_more")) ? Video.VIDEO_GLOBAL_SEARCH_TYPE : Video.VIDEO_SEARCH_TYPE : "album" == e && (e = Video.getLoc().section));
+        cur.getOwnerId && cur.albumsShowingAll[cur.getOwnerId()] ? e = "albums" : (e = Video._getCurrentSectionType(), Video.getLoc().q || "search" == e ? e = isVisible(gpeByClass("ge_video_pane", "ui_search_global_videos_load_more")) ? Video.VIDEO_GLOBAL_SEARCH_TYPE : Video.VIDEO_SEARCH_TYPE : "album" == e && (e = Video.getLoc().section));
         var o = curBox() ? curBox().bodyNode : void 0,
             i = geByClass1("_video_" + e + "_list", o);
         if (i) {
@@ -860,7 +860,10 @@ var Video = {
                 act: "a_choose_video_box"
             }), {
                 cache: 1,
-                dark: 1
+                dark: 1,
+                onDone: function() {
+                    cur.videoUploadParams.vars.is_wall_upload_allowed || re("video_choose_upload_area_wrap")
+                }
             })
         }
         var i = curBox(),
@@ -885,44 +888,42 @@ var Video = {
         cur.videoChoosePrevSection = cur.videoChoosePrevSection || "all", 0 == cur.videoChoosePrevSection.indexOf("album_") && (cur.videoChoosePrevSection = "albums"), nav.go("/videos?section=" + cur.videoChoosePrevSection)
     },
     initChooseBox: function(e, o, i, t, r, d, a) {
-        function n() {}
-
-        function c() {
-            v.setOptions({
+        function n() {
+            _.setOptions({
                 width: 631,
                 bodyStyle: "padding: 0",
                 hideButtons: !0
-            }), n(), ge("box_layer_wrap").scrollTop = 0
+            }), ge("box_layer_wrap").scrollTop = 0
         }
 
-        function s() {
+        function c() {
             each(Video.AVAILABLE_TABS, function(e, o) {
                 hide("video_subtab_pane_" + o)
             }), hide(geByClass1("video_subtab_pane_album"))
         }
 
-        function l() {
-            v.setOptions({
+        function s() {
+            _.setOptions({
                 title: '<div class="back" onclick="Video.chooseBoxBack();">' + getLang("video_choose_box_back_to_videos") + "</div>",
                 bodyStyle: "padding: 0",
                 noRefreshCoords: 1
-            }), n()
+            })
         }
 
-        function u() {
+        function l() {
             var e = r;
             if (!d && !o && cur.videoSwitchOwnerId) {
                 var i = t == vk.id ? getLang("video_choose_wall_to_group_videos") : getLang("video_choose_wall_to_my_videos"),
                     a = t == vk.id ? cur.videoSwitchOwnerId : vk.id;
                 e += '<span class="divider">|</span><a class="toggle" onclick="Video.switchChooserToOwner(' + a + ')">' + i + "</a>"
             }
-            v.getOptions().defaultTitle && (e = v.getOptions().defaultTitle), v.setOptions({
+            _.getOptions().defaultTitle && (e = _.getOptions().defaultTitle), _.setOptions({
                 title: e,
                 grey: o
-            }), n()
+            })
         }
 
-        function _() {
+        function u() {
             curBox() && each(geByClass("video_item", curBox().bodyNode), function() {
                 var e = geByClass1("media_check_btn_wrap", this),
                     o = this.getAttribute("data-id");
@@ -930,24 +931,24 @@ var Video = {
             })
         }
         cur.found = {}, cur.currentSortings = {}, cur._preloadedPages = {}, cur.videoSearchFilters = {}, cur.chosenVideos = [], cur.albumsShowingAll = {}, cur.isNoteEdit = e, cur.videoShowWindow = {}, cur.isSnippetVideoSelection = a;
-        var v = curBox(),
-            h = cur.getOwnerId;
+        var _ = curBox(),
+            v = cur.getOwnerId;
         cur.getOwnerId = function() {
             return t
-        }, v.setOptions({
+        }, _.setOptions({
             onHideAttempt: function() {
-                return cur.getOwnerId = h, !0
+                return cur.getOwnerId = v, !0
             }
         }), cur.nav.push(function(e, o, i, t) {
             if (!t.filtersChanged && 1 == Object.keys(i).length && i[0] && 0 != i[0].indexOf("video") && !t.fromSearch) return !0;
             if (e[0] && !e.section && i[0] != "videos" + cur.getOwnerId()) return !0;
             hide("global_prg");
-            var r = geByClass1("video_default_tabs", v.bodyNode),
-                d = geByClass1("video_subtab_pane_album", v.bodyNode),
+            var r = geByClass1("video_default_tabs", _.bodyNode),
+                d = geByClass1("video_subtab_pane_album", _.bodyNode),
                 a = e.section ? e.section : "all";
             Video._prepareSearchFilters(i);
-            var n = e.section ? "" : i.q || val(cur.searchInputEl);
-            if (n ? (trim(val(cur.searchInputEl)) != trim(n), a = "search", t.fromSearch || t.globalQuery || (t.globalQuery = n), Video.doSearch(n, t.globalQuery), l(), Video._updateChooseFixedBottom()) : (Video.inputVal(cur.searchInputEl, ""), Video.doSearch("")), cur.videoForcedSection = a, -1 != Video.AVAILABLE_TABS.indexOf(a)) s(), show("video_subtab_pane_" + a), show(r), hide("albumPane"), u(), c(), cur.videoChoosePrevSection = a, "albums" != a && Video.loadSilent(a), Video.updateEmptyPlaceholder(a);
+            var v = e.section ? "" : i.q || val(cur.searchInputEl);
+            if (v ? (trim(val(cur.searchInputEl)) != trim(v), a = "search", t.fromSearch || t.globalQuery || (t.globalQuery = v), Video.doSearch(v, t.globalQuery), s(), Video._updateChooseFixedBottom()) : (Video.inputVal(cur.searchInputEl, ""), Video.doSearch("")), cur.videoForcedSection = a, -1 != Video.AVAILABLE_TABS.indexOf(a)) c(), show("video_subtab_pane_" + a), show(r), hide("albumPane"), l(), n(), cur.videoChoosePrevSection = a, "albums" != a && Video.loadSilent(a), Video.updateEmptyPlaceholder(a);
             else if (a && 0 == a.indexOf("album_")) {
                 var h = a.split("_")[1];
                 showGlobalPrg(ge("video_playlist_item_" + h), {
@@ -957,17 +958,17 @@ var Video = {
                     shift: [0, -22],
                     zIndex: 1e3
                 }), Video._addPendingAction(a, function() {
-                    l(), s(), hide("global_prg"), hide(r), d.id = "video_subtab_pane_" + a;
+                    s(), c(), hide("global_prg"), hide(r), d.id = "video_subtab_pane_" + a;
                     var e = geByClass1("video_items_list", d);
                     e.id = "video_" + a + "_list", addClass(e, "_video_" + a + "_list"), e.innerHTML = "", show(d);
                     var o = cur.getOwnerId();
-                    cur.videoShowWindow = cur.videoShowWindow || {}, cur.videoShowWindow[o] = cur.videoShowWindow[o] || {}, cur.videoShowWindow[o][a] = !1, Video.showMore(a, geByClass1("ui_load_more_btn", ge("video_subtab_pane_album"))), c(), _(), Video._updateChooseFixedBottom()
+                    cur.videoShowWindow = cur.videoShowWindow || {}, cur.videoShowWindow[o] = cur.videoShowWindow[o] || {}, cur.videoShowWindow[o][a] = !1, Video.showMore(a, geByClass1("ui_load_more_btn", ge("video_subtab_pane_album"))), n(), u(), Video._updateChooseFixedBottom()
                 }), cur.videoChoosePrevSection = a, Video.loadSilent(a)
             }
-            return _(), !1
-        }), cur.chooseVideoToMail = i, cur.isCurrentVideoLayer = !0, Video.loadSilent(), c(), addEvent(ge("box_layer_wrap"), "scroll", Video.onScroll);
-        var g = boxLayerWrap.scrollTop;
-        elfocus(geByClass1("_scroll_node", v.bodyNode)), boxLayerWrap.scrollTop = g, Video.initSearch(), u(), o || (cur.chooseVideoMedia = function(e, o, i) {
+            return u(), !1
+        }), cur.chooseVideoToMail = i, cur.isCurrentVideoLayer = !0, Video.loadSilent(), n(), addEvent(ge("box_layer_wrap"), "scroll", Video.onScroll);
+        var h = boxLayerWrap.scrollTop;
+        elfocus(geByClass1("_scroll_node", _.bodyNode)), boxLayerWrap.scrollTop = h, Video.initSearch(), l(), o || (cur.chooseVideoMedia = function(e, o, i) {
             var t = e;
             hasClass(t, "media_check_btn_wrap") ? cur.cancelClick = !0 : t = geByClass1("media_check_btn_wrap", t), toggleClass(t, "checked");
             var r = 0;
@@ -988,26 +989,33 @@ var Video = {
             onHide: function() {
                 hide("global_prg"), cur.nav.pop(), removeEvent(ge("box_layer_wrap"), "scroll", Video.onScroll), cur.isCurrentVideoLayer = !1
             }
-        }), n()
+        })
     },
-    doAttachSelectedVideos: function(e) {
-        return hasClass(e, "flat_button") ? lockButton(e) : showGlobalPrg(geByClass1("video_item_thumb_wrap", e) || e, {
+    doAttachSelectedVideos: function(e, o) {
+        hasClass(e, "flat_button") ? lockButton(e) : showGlobalPrg(geByClass1("video_item_thumb_wrap", e) || e, {
             cls: "progress_inv_img",
             w: 46,
             h: 16,
             zIndex: 1e3
-        }), cur.chooseVideoAdd ? cur.chooseVideoAdd(cur.chosenVideos) : void ajax.post("al_video.php", {
+        });
+        var i = function() {
+            hasClass(e, "flat_button") && unlockButton(e), hide("global_prg")
+        };
+        return cur.chooseVideoAdd ? cur.chooseVideoAdd(cur.chosenVideos, "", i) : void Video.attachVideos(cur.chosenVideos, i)
+    },
+    attachVideos: function(e, o) {
+        ajax.post("al_video.php", {
             act: "a_videos_attach_info",
             to_mail: intval(cur.chooseVideoToMail),
-            videos: cur.chosenVideos.join(",")
+            videos: e.join(",")
         }, {
-            onDone: function(o) {
-                if (hasClass(e, "flat_button") && unlockButton(e), hide("global_prg"), cur.isSnippetVideoSelection && cur.chooseSnippetVideo) return each(o, function(e, o) {
+            onDone: function(e) {
+                if (o && o(), cur.isSnippetVideoSelection && cur.chooseSnippetVideo) return each(e, function(e, o) {
                     return cur.chooseSnippetVideo(e, o), !1
                 }), void(curBox() && curBox().hide());
                 var i = 0;
-                each(o, function(e, o) {
-                    cur.isNoteEdit && window.editorChooseVideo ? editorChooseVideo(o.thumb, o.name, o.duration, "/video" + e, e) : cur.chooseMedia("video", e, o, i, cur.chosenVideos.length > 1), i++
+                each(e, function(e, o) {
+                    cur.isNoteEdit && window.editorChooseVideo ? window.editorChooseVideo(o.thumb, o.name, o.duration, "/video" + e, e) : cur.chooseMedia("video", e, o, i, cur.chosenVideos.length > 1), i++
                 }), curBox() && cur.chosenVideos.length > 1 && curBox().hide()
             }
         })
@@ -1023,7 +1031,7 @@ var Video = {
         }
     },
     _addPendingAction: function(e, o) {
-        var i = cur.getOwnerId();
+        var i = cur.getOwnerId ? cur.getOwnerId() : cur.oid;
         if (cur.videoPendingAction = cur.videoPendingAction || {}, cur.videoPendingAction[i] = cur.videoPendingAction[i] || {}, e) {
             var t = cur.videoPendingAction[i][e];
             cur.videoPendingAction[i][e] = function() {

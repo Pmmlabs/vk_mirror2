@@ -3707,8 +3707,8 @@ var Wall = {
         var addmedia = cur.wallAddMedia || {},
             media = addmedia.chosenMedia || {},
             medias = cur.wallAddMedia ? addmedia.getMedias() : [],
-            share = (addmedia.shareData || {})
-        msg = trim((window.Emoji ? Emoji.editableVal : val)(ge('post_field'))),
+            share = (addmedia.shareData || {}),
+            msg = trim((window.Emoji ? Emoji.editableVal : val)(ge('post_field'))),
             postponePost = false,
             isAnon = Wall.isAnonPost(),
             sendBtn = ge('send_post');
@@ -3720,25 +3720,25 @@ var Wall = {
         }
 
         var params = {
-                act: 'post',
-                message: msg,
-                to_id: cur.postTo,
-                type: pType,
-                friends_only: !isAnon && isChecked('friends_only'),
-                check_sign: Wall.needCheckSign(),
-                status_export: !isAnon && isChecked('status_export'),
-                facebook_export: !isAnon && ge('facebook_export') ? (isChecked('facebook_export') ? 1 : 0) : '',
-                close_comments: ge('close_comments') ? (isChecked('close_comments') ? 1 : 0) : '',
-                mute_notifications: ge('mute_notifications') ? (isChecked('mute_notifications') ? 1 : 0) : '',
-                official: (domData(domClosest('_submit_post_box', ge('official')), 'from-oid') == cur.postTo) ? 1 : '',
-                signed: isChecked('signed'),
-                anonymous: isAnon,
-                hash: cur.options.post_hash,
-                from: cur.from ? cur.from : '',
-                fixed: cur.options.fixed_post_id || ''
-            },
-            ownmsg = (cur.postTo == vk.id || params.official || cur.options.only_official),
-            attachI = 0;
+            act: 'post',
+            message: msg,
+            to_id: cur.postTo,
+            type: pType,
+            friends_only: !isAnon && isChecked('friends_only'),
+            check_sign: Wall.needCheckSign(),
+            status_export: !isAnon && isChecked('status_export'),
+            facebook_export: !isAnon && ge('facebook_export') ? (isChecked('facebook_export') ? 1 : 0) : '',
+            close_comments: ge('close_comments') ? (isChecked('close_comments') ? 1 : 0) : '',
+            mute_notifications: ge('mute_notifications') ? (isChecked('mute_notifications') ? 1 : 0) : '',
+            official: (domData(domClosest('_submit_post_box', ge('official')), 'from-oid') == cur.postTo) ? 1 : '',
+            signed: isChecked('signed'),
+            anonymous: isAnon,
+            hash: cur.options.post_hash,
+            from: cur.from ? cur.from : '',
+            fixed: cur.options.fixed_post_id || ''
+        };
+        var attachI = 0;
+
         if (cur.options.additional_save_params) {
             params = extend(params, cur.options.additional_save_params);
         }
@@ -3760,12 +3760,30 @@ var Wall = {
         }
 
         if (medias.length) {
+            var hasUploadedNewCount = 0;
             var ret = false;
             each(medias, function(k, v) {
                 if (!v) return;
                 var type = this[0],
                     attachVal = this[1];
                 switch (type) {
+                    case 'video':
+                        // draft only for publics ???
+                        var draft = Wall.getOwnerDraft(cur.oid)[1];
+                        if (!draft) {
+                            break;
+                        }
+
+                        each(draft, function(i, attach) {
+                            if (attach[1] === attachVal) {
+                                var currentAttach = attach[2];
+                                if (currentAttach.upload_new) {
+                                    hasUploadedNewCount++; // check only unique
+                                }
+                            }
+                        });
+
+                        break;
                     case 'poll':
                         if (isAnon) {
                             return;
@@ -3942,6 +3960,31 @@ var Wall = {
                 params['attach' + (attachI + 1)] = attachVal;
                 attachI++;
             });
+
+            if (hasUploadedNewCount && !skipLocked && !cur.postponeVideoPost) {
+                if (curBox()) {
+                    curBox().hide();
+                }
+
+                var box = showBox('al_video.php?act=postponed_post_box', {
+                    videos_count: hasUploadedNewCount
+                }, {
+                    onDone: function(box, data, additional) {
+                        box.removeButtons();
+                        box.addButton(additional.video_post_later_text, function() {
+                            cur.postponeVideoPost = true;
+                            Wall.sendPost(true);
+                            box.hide();
+                        });
+                        box.addButton(additional.video_post_now_text, function() {
+                            Wall.sendPost(true);
+                            box.hide();
+                        }, 'no');
+                    },
+                });
+                return;
+            }
+
             if (ret) {
                 if (skipLocked) {
                     unlockButton(sendBtn);
@@ -3962,6 +4005,13 @@ var Wall = {
             return;
         }
 
+        if (cur.postponeVideoPost) {
+            params = extend(params, {
+                postpone_video: true,
+                postpone_video_hd: isChecked(ge('postponed_post_hd')),
+            });
+        }
+
         if (cur.postAutosave) {
             clearTimeout(cur.postAutosave);
         }
@@ -3973,6 +4023,7 @@ var Wall = {
                 onDone: function(rows, names) {
                     Wall.clearInput();
                     cur.postSent = false;
+                    cur.postponeVideoPost = false;
 
                     if (cur.options.onSendPostDone) {
                         cur.options.onSendPostDone.apply(window, arguments);
@@ -4036,6 +4087,8 @@ var Wall = {
                 },
                 onFail: function(msg) {
                     cur.postSent = false;
+                    cur.postponeVideoPost = false;
+
                     if (cur.options.onSendPostFail) {
                         cur.options.onSendPostFail.apply(window, arguments);
                         return;
@@ -4563,6 +4616,7 @@ var Wall = {
                     preview: ge('reply_media_preview' + post),
                     types: mediaTypes,
                     options: {
+                        from: 'comment',
                         limit: 2,
                         disabledTypes: ['album', 'market'],
                         toggleLnk: true,
@@ -7660,6 +7714,7 @@ var Wall = {
             wallMentions: [],
             wallMyRepliesCnt: 0,
             wallUploadOpts: opts.upload,
+            wallUploadVideoOpts: opts.upload_video,
             hasGroupAudioAccess: opts.hasGroupAudioAccess,
         });
         if (opts.wall_tpl && opts.wall_tpl.lang) {
@@ -7770,6 +7825,7 @@ var Wall = {
                     Wall.postChanged();
                 },
                 editable: 1,
+                from: 'post',
                 sortable: 1
             }, opts.media_opts || {}));
         }
@@ -8811,6 +8867,8 @@ var Wall = {
 var wall = Wall;
 
 WallUpload = {
+    _videoUploadIndex: null,
+
     photoUploaded: function(info, params) {
         var i = info.ind !== undefined ? info.ind : info,
             fileName = (info.fileName ? info.fileName : info).replace(/[&<>"']/g, ''),
@@ -8914,15 +8972,29 @@ WallUpload = {
         if (!cur.uploadAdded) {
             cur.uploadAdded = true;
             if (!window.Upload) {
-                stManager.add(['upload.js'], function() {
+                stManager.add(['upload.js', 'video_upload.js'], function() {
                     WallUpload.initLoader();
+                    Wall._videoUploadIndex = WallUpload.initVideoUploader();
                 });
             } else {
                 WallUpload.initLoader();
+                Wall._videoUploadIndex = WallUpload.initVideoUploader();
             }
         } else {
             WallUpload.show();
         }
+    },
+
+    initVideoUploader: function() {
+        var data = cur.wallUploadVideoOpts;
+        if (!data || !data.vars.is_wall_upload_allowed) {
+            return;
+        }
+        var uploadHolder = ge('post_field_upload_video');
+        var dropbox = ge('post_upload_video_dropbox');
+        data.options.from = 'post';
+
+        return window.VideoInlineUpload.getUploadModule(uploadHolder, dropbox, data, WallUpload.addMedia());
     },
 
     initLoader: function() {
@@ -8932,28 +9004,53 @@ WallUpload = {
 
         if (!WallUpload.checkDragDrop()) return;
 
-        field.parentNode.insertBefore(cur.uploadWrap = ce('div', {
+        cur.uploadWrap = ce('div', {
             className: 'post_upload_wrap fl_r',
             innerHTML: '<div id="post_field_upload" class="post_upload"></div>'
-        }), field);
+        });
+        domInsertBefore(cur.uploadWrap, field);
+
+        cur.uploadVideoWrap = ce('div', {
+            className: 'post_upload_video_wrap fl_r',
+            innerHTML: '<div id="post_field_upload_video" class="post_upload_video"></div>'
+        });
+        domInsertBefore(cur.uploadVideoWrap, field);
+
         var submitBox = WallUpload.attachEl();
         submitBox.insertBefore(ce('div', {
             id: 'post_upload_dropbox',
             className: 'post_upload_dropbox',
-            innerHTML: '<div class="post_upload_dropbox_inner"><div class="post_upload_label drop_label">' + (data.opts.lang.wall_drop_photos_here || 'Drop files here') + '</div><div class="post_upload_label release_label">' + (data.opts.lang.wall_release_photos_here || 'Release button to attach files') + '</div></div>'
+            innerHTML: '' +
+                '<div class="post_upload_dropbox_inner">' +
+                '<div class="post_upload_label drop_label">' + (data.opts.lang.wall_drop_media_here || 'Drop files here') + '</div>' +
+                '<div class="post_upload_label release_label">' + (data.opts.lang.wall_release_media_here || 'Release button to attach files') + '</div>' +
+                '</div>'
         }), submitBox.firstChild);
 
         cur.wallUploadInd = Upload.init('post_field_upload', data.url, data.params, {
+            accept: 'image/jpeg,image/png,image/gif',
+            dragEl: bodyNode,
+            dropbox: 'post_upload_dropbox',
+            file_input: null,
             file_name: 'photo',
             file_size_limit: 1024 * 1024 * 25, // 25Mb
             file_types_description: 'Image files (*.jpg, *.jpeg, *.png, *.gif)',
             file_types: '*.jpg;*.JPG;*.jpeg;*.JPEG;*.png;*.PNG;*.gif;*.GIF',
-            file_input: null,
-            accept: 'image/jpeg,image/png,image/gif',
             file_match: data.opts.ext_re,
             lang: data.opts.lang,
+            noFlash: 1,
+            multiple: 1,
+            multi_progress: 1,
+            max_files: 10,
+            chooseBox: 1,
+            clear: 1,
+            type: 'photo',
+            max_attempts: 3,
+            server: data.opts.server,
+            error: data.opts.default_error,
+            error_hash: data.opts.error_hash,
+            label: data.opts.label,
             wiki_editor: 0,
-
             onUploadStart: function(info, res) {
                 var i = info.ind !== undefined ? info.ind : info,
                     options = Upload.options[i];
@@ -9009,22 +9106,18 @@ WallUpload = {
                     Upload.embed(i);
                 }
             },
-            onDragEnter: WallUpload.initCallback,
-
-            noFlash: 1,
-            multiple: 1,
-            multi_progress: 1,
-            max_files: 10,
-            chooseBox: 1,
-            clear: 1,
-            type: 'photo',
-            max_attempts: 3,
-            server: data.opts.server,
-            error: data.opts.default_error,
-            error_hash: data.opts.error_hash,
-            dropbox: 'post_upload_dropbox',
-            label: data.opts.label,
-            dragEl: bodyNode
+            onDragEnter: function() {
+                if (cur.editingPost) {
+                    WallUpload.init();
+                } else {
+                    Wall.showEditPost();
+                }
+            },
+            onNoFilteredCallback: function(files) {
+                if (Wall._videoUploadIndex) {
+                    Upload.onFileApiSend(Wall._videoUploadIndex, files);
+                }
+            }
         });
         cur.uploadInited = true;
         WallUpload.show();

@@ -5140,19 +5140,23 @@ div.submit_post_field[contenteditable=true]>p {
     transform: translateZ(0)
 }
 
+.post_upload_video_wrap,
 .post_upload_wrap {
     position: absolute
 }
 
+.post_upload_video_wrap .loading,
 .post_upload_wrap .loading {
     display: none
 }
 
+.post_upload_video_wrap div.post_upload_video,
 .post_upload_wrap div.post_upload {
     overflow: hidden;
     position: relative
 }
 
+.post_upload_video_wrap input,
 .post_upload_wrap input {
     position: absolute
 }
@@ -9500,4 +9504,16 @@ button.wall_block_app_btn {
 
 .wrap_like_stickers .sticker_hints_left_pad .like_stickers_title {
     margin-left: 30px
+}
+
+.video_postponed_post_hd_only {
+    margin-top: 15px
+}
+
+.hint_icon.vk_testers_hint {
+    margin: 0.4em 7px 0;
+    height: 1em;
+    display: inline-block;
+    overflow: initial;
+    vertical-align: top
 }

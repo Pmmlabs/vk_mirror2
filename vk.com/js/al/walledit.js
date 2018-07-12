@@ -85,7 +85,8 @@ var WallEdit = {
                     limit: s.copy ? 1 : s.reply ? 2 : 10,
                     toggleLnk: s.reply || s.copy,
                     editable: !s.reply && !s.copy,
-                    sortable: !s.reply && !s.copy
+                    sortable: !s.reply && !s.copy,
+                    from: s.reply ? "comment" : "post"
                 }, s.media_opts || {})
             }, s.teWidth && (t.options.teWidth = s.teWidth), s.teHeight && (t.options.teHeight = s.teHeight), ("photo_comment" == s.reply || "video_comment" == s.reply) && (t.options.nocl = 1), "photo_comment" == s.reply && (t.options.maxShown = 0, t.options.hideAfterCount = 0));
             var c = ge("wpe_text"),

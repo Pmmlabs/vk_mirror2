@@ -719,11 +719,45 @@ i i.untranslated {
     -moz-osx-font-smoothing: auto
 }
 
-.tr_box_edit_key .tr_key_edit_wrap .tr_key_edit_labeled {
+.tr_box_edit_key .tr_key_edit_wrap .tr_key_edit_counter {
+    right: 5px;
+    top: 1px;
+    cursor: pointer;
+    color: #666;
+    position: absolute;
+    font-size: 10px;
+    display: none
+}
+
+.tr_box_edit_key .tr_key_edit_wrap .tr_key_edit_plain.tr_key_edit_missing_special_code .tr_key_edit_missing_key_icon,
+.tr_box_edit_key .tr_key_edit_wrap .tr_key_edit_textarea_wrap.tr_key_edit_missing_special_code .tr_key_edit_missing_key_icon {
+    right: -3px;
+    top: -3px;
+    width: 8px;
+    height: 8px;
+    border-radius: 5px;
+    overflow: hidden;
+    text-indent: -1000px;
+    content: '';
+    position: absolute;
+    display: block;
+    background: #f05c44;
+    cursor: pointer
+}
+
+.tr_box_edit_key .tr_key_edit_wrap .tr_key_edit_plain.tr_key_edit_missing_special_code textarea,
+.tr_box_edit_key .tr_key_edit_wrap .tr_key_edit_textarea_wrap.tr_key_edit_missing_special_code textarea {
+    border-color: #f05c44
+}
+
+.tr_box_edit_key .tr_key_edit_wrap .tr_key_edit_labeled,
+.tr_box_edit_key .tr_key_edit_wrap .tr_key_edit_plain {
+    position: relative;
     white-space: nowrap
 }
 
 .tr_box_edit_key .tr_key_edit_wrap textarea {
+    padding: 13px;
     box-sizing: border-box;
     display: block;
     height: 30px;
