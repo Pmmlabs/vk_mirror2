@@ -239,7 +239,7 @@ var stVersions = {
     'cmodules/web/groups_create.js': 2554367098,
     'groups_create.css': 17563181176,
     'cmodules/web/groups_list.js': 5109346988,
-    'cmodules/web/GroupsEdit.js': 24306261355,
+    'cmodules/web/GroupsEdit.js': 25650797204,
     'groups_edit.css': 42285440348,
     'groups_edit.js': 3295974936,
     'profile.css': 24003483353,
@@ -264,7 +264,7 @@ var stVersions = {
     'im.css': 211197460485,
     'imn.js': 254301899418,
     'im.js': 1322065005,
-    'emoji.js': 3520618690,
+    'emoji.js': 1656312013,
     'wide_dd.css': 17663675113,
     'wide_dd.js': 452755344,
     'writebox.css': 18090274088,
@@ -380,10 +380,10 @@ var stVersions = {
     'aes_light.js': 1484013701,
     'ads.css': 27924936084,
     'ads_bonus.css': 1294533291,
-    'ads.js': 2192927894,
+    'ads.js': 2414288805,
     'ads_payments.js': 2205910694,
     'ads_edit.css': 17412421177,
-    'ads_edit.js': 698427506,
+    'ads_edit.js': 490905883,
     'ads_edit_geo.js': 519167575,
     'ads_moder_common.css': 15462020038,
     'ads_moder.css': 15040218608,
@@ -556,7 +556,7 @@ var stVersions = {
     'cmodules/web/grip.js': 4164501492,
     'cmodules/web/group_invite_chat.js': 43933190606,
     'group_invite_chat.css': 82671025736,
-    'cmodules/web/reports.js': 17637648136,
+    'cmodules/web/reports.js': 21379408325,
     'reports.css': 71302670516,
     'cmodules/web/raven_logger.js': 5078836146,
     'cmodules/web/add_to_community_app.js': 397597546,
@@ -635,4 +635,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 4325;
+var _rnd = 376;

@@ -6267,6 +6267,9 @@ AdsTargetingEditor.prototype.init = function(options, editor, viewEditor, criter
             value: '',
             data: []
         },
+        autoaudience: {
+            value: 0
+        },
         price_list_id: {
             value: 0,
             data: []
@@ -6412,6 +6415,9 @@ AdsTargetingEditor.prototype.initHelpCriterion = function(criterionName) {
                 return -(44 + 345 + 28 + (geByClass1('ads_edit_value', ge('ads_edit_criterion_row_geo_near')).clientHeight - 345 - 28) / 2)
             };
             break;
+        case 'autoaudience':
+            shiftTop = -52;
+            break;
     }
 
     switch (criterionName) {
@@ -6425,6 +6431,7 @@ AdsTargetingEditor.prototype.initHelpCriterion = function(criterionName) {
         case 'browsers':
         case 'pays_money':
         case 'retargeting_groups':
+        case 'autoaudience':
         case 'tags':
         case 'geo_type':
         case 'geo_mask':
@@ -6935,6 +6942,22 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
                 this.criteria[criterionName].ui = new Checkbox(targetElem, {
                     label: this.criteria.travellers.label_checkbox,
                     checked: this.criteria.travellers.value,
+                    width: this.options.uiWidth,
+                    onChange: function(state) {
+                        this.onUiChange(criterionName, state);
+                    }.bind(this)
+                });
+                this.cur.destroy.push(function() {
+                    this.criteria[criterionName].ui.destroy();
+                }.bind(this));
+                break;
+            }
+        case 'autoaudience':
+            {
+                targetElem = ge(this.options.targetIdPrefix + criterionName);
+                this.criteria[criterionName].ui = new Checkbox(targetElem, {
+                    label: this.criteria.autoaudience.label_checkbox,
+                    checked: this.criteria.autoaudience.value,
                     width: this.options.uiWidth,
                     onChange: function(state) {
                         this.onUiChange(criterionName, state);

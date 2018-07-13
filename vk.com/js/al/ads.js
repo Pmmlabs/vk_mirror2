@@ -3479,7 +3479,7 @@ Ads.showEditAdminBox = function(event, unionId, userId, userEmail, isRemove) {
     return false;
 }
 
-Ads.showRetargetingGroupActions = function(el, groupId, hasAttachedPixel, canRequestLookalike, isShared, canShare) {
+Ads.showRetargetingGroupActions = function(el, groupId, hasAttachedPixel, canRequestLookalike, isShared, canShare, isAutoaudience) {
     cur.options.groupId = groupId;
     cur.uiRetargetingActions.setOptions({
         target: el
@@ -3498,7 +3498,7 @@ Ads.showRetargetingGroupActions = function(el, groupId, hasAttachedPixel, canReq
         hide(addAudienceEl);
         show(editAudienceEl);
     }
-    if (isShared) {
+    if (isShared || isAutoaudience) {
         hide(addAudienceEl);
         hide(editAudienceEl);
         hide(excludeAudienceEl);
@@ -5148,6 +5148,7 @@ Ads.showPixelErrorsBox = function(event, unionId, pixelId, hash) {
 
 Ads.showRelevanceScoreTooltip = function() {
     Ads.showNewFeatureTooltip('ads_promoted_posts_relevance_score_tooltip', geByClass1("ads_relevance_score_top"), {
+        displayCounter: 1,
         width: 190,
         offset: [10, 0],
         content: getLang('ads_relevance_score_hint_new_feature')

@@ -110,9 +110,9 @@ if (!window.Emoji) {
                     });
                 }
 
-                addEvent(txt, 'keypress keydown keyup paste', function(e) {
+                addEvent(txt, 'keypress keydown keyup input paste', function(e) {
                     if (e.canceled) return false;
-                    if (e.type == 'keydown') {
+                    if (e.type === 'keydown') {
                         if (opts.onChange) {
                             Emoji.raw[optId] = txt.innerHTML;
                         }
@@ -210,13 +210,13 @@ if (!window.Emoji) {
                         }
                     }
 
-                    if (e.type == 'paste') {
+                    if (e.type === 'paste') {
                         Emoji.onEditablePaste(txt, opts, optId, e);
                         if (opts.checkEditable) {
                             setTimeout(opts.checkEditable.pbind(optId, txt), 0);
                         }
                         Emoji.checkStickersKeywords(optId, opts);
-                    } else if (e.type == 'keyup') {
+                    } else if (e.type === 'keyup') {
                         if (opts.noLineBreaks && !txt.textContent && !txt.innerText) {
                             each(geByTag('br', txt), function(k, br) {
                                 re(br);
@@ -232,7 +232,7 @@ if (!window.Emoji) {
                             }
                             delete Emoji.raw[optId];
                         }
-                    } else if (e.type == 'keydown') {
+                    } else if (e.type === 'keydown' || e.type === 'input') {
                         if (opts.checkEditable) {
                             setTimeout(opts.checkEditable.pbind(optId, txt), 0);
                         }
