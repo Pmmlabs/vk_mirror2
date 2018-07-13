@@ -137,7 +137,13 @@ h4.tickets_template.favs {
 }
 
 h4.tickets_template.my {
-    margin-top: 5px
+    line-height: 26px
+}
+
+h4.tickets_template.my .flat_button {
+    float: right;
+    padding-top: 5px;
+    padding-bottom: 6px
 }
 
 .tickets_input_text {

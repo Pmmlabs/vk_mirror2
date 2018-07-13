@@ -1093,12 +1093,12 @@ VkMap.prototype.loadGoogleAPI = function() {
         try {
             headNode.appendChild(ce('script', {
                 type: 'text/javascript',
-                src: 'http://maps.google.com/maps/api/js?sensor=false&callback=VkMap.onloadCallback'
+                src: 'http://maps.google.com/maps/api/js?sensor=false&callback=VkMap.onloadCallback&key=AIzaSyAMiyvdUfktHG6mU9JkDSCbLmr1QWgyywk'
             }));
         } catch (e) {
             attachScript(
                 'google_maps_api_lib',
-                'http://maps.google.com/maps/api/js?sensor=false&callback=VkMap.onloadCallback'
+                'http://maps.google.com/maps/api/js?sensor=false&callback=VkMap.onloadCallback&key=AIzaSyAMiyvdUfktHG6mU9JkDSCbLmr1QWgyywk'
             );
         }
     }

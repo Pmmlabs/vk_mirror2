@@ -7739,6 +7739,10 @@ button.ui_load_more_btn {
     margin-bottom: -20px
 }
 
+.reply_text .audio_pl_snippet2:last-child {
+    margin-bottom: 5px
+}
+
 .copy_quote .audio_pl_snippet2,
 .im_msg_media .audio_pl_snippet2,
 .wall_text .audio_pl_snippet2 {
@@ -7746,7 +7750,7 @@ button.ui_load_more_btn {
 }
 
 .reply_text .audio_pl_snippet2 {
-    margin: 15px 0
+    margin: 5px 0
 }
 
 .audio_pl_snippet2 .audio_pl_snippet__info_subtitle {
@@ -8227,11 +8231,14 @@ button.ui_load_more_btn {
     background-position: 0 0
 }
 
-.im_msg_media_audio_playlist .audio_pl_snippet2 .audio_pl_snippet__action_btn_add {
+.im_msg_media_audio_playlist .audio_pl_snippet2 .audio_pl_snippet__action_btn_add,
+.reply_text .audio_pl_snippet2 .audio_pl_snippet__action_btn_add {
     padding-right: 10px
 }
 
-.im_msg_media_audio_playlist .audio_pl_snippet2 .audio_pl_snippet__action_btn_add_text {
+.pv_comments .audio_pl_snippet2 .audio_pl_snippet__action_btn_add,
+.im_msg_media_audio_playlist .audio_pl_snippet2 .audio_pl_snippet__action_btn_add_text,
+.reply_text .audio_pl_snippet2 .audio_pl_snippet__action_btn_add_text {
     display: none
 }
 
@@ -8253,14 +8260,16 @@ button.ui_load_more_btn {
     display: none
 }
 
-.im_msg_media_audio_playlist .audio_pl_snippet2 .audio_pl_snippet__action_btn_listen {
+.im_msg_media_audio_playlist .audio_pl_snippet2 .audio_pl_snippet__action_btn_listen,
+.reply_text .audio_pl_snippet2 .audio_pl_snippet__action_btn_listen {
     -ms-flex-order: 2;
     order: 2;
     padding-left: 24px;
     padding-right: 0
 }
 
-.im_msg_media_audio_playlist .audio_pl_snippet2 .audio_pl_snippet__action_btn_listen_text {
+.im_msg_media_audio_playlist .audio_pl_snippet2 .audio_pl_snippet__action_btn_listen_text,
+.reply_text .audio_pl_snippet2 .audio_pl_snippet__action_btn_listen_text {
     display: none
 }
 
@@ -8283,6 +8292,7 @@ button.ui_load_more_btn {
 }
 
 .im_msg_media_audio_playlist .audio_pl_snippet2 .audio_pl_snippet__action_btn_share,
+.reply_text .audio_pl_snippet2 .audio_pl_snippet__action_btn_share,
 .audio_pl_snippet2 .audio_pl_snippet__action_btn_share_text {
     display: none
 }
@@ -8362,6 +8372,10 @@ button.ui_load_more_btn {
     padding: 0
 }
 
+.reply_text .audio_pl_snippet2 .audio_pl_snippet__body {
+    display: none
+}
+
 .audio_pl_snippet2 .audio_pl_snippet__more_btn {
     box-sizing: border-box;
     color: #2a5885;
@@ -8415,6 +8429,16 @@ button.ui_load_more_btn {
     display: block
 }
 
+.reply_text .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_line_small {
+    line-height: 20px
+}
+
+.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_line_small>.audio_pl_snippet__artist_link,
+.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_line_small>.mem_link {
+    display: block
+}
+
+.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_line_small>.dvd:first-of-type,
 .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_author,
 .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_line {
     display: none
@@ -8422,6 +8446,10 @@ button.ui_load_more_btn {
 
 .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__header {
     height: 63px
+}
+
+.reply_text .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__header {
+    height: 83px
 }
 
 .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__header_inner {
@@ -8433,9 +8461,18 @@ button.ui_load_more_btn {
     height: 64px
 }
 
+.reply_text .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__cover {
+    width: 84px;
+    height: 84px
+}
+
 .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_title {
     font-size: 16px;
     line-height: 18px
+}
+
+.reply_text .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_title {
+    line-height: 20px
 }
 
 .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info {
@@ -8446,6 +8483,14 @@ button.ui_load_more_btn {
     flex-direction: row;
     -ms-flex-align: center;
     align-items: center
+}
+
+.pv_comments .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info {
+    margin: 0
+}
+
+.reply_text .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info {
+    height: 83px
 }
 
 .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_inner {
@@ -8461,6 +8506,10 @@ button.ui_load_more_btn {
     -ms-flex-negative: 1;
     flex-shrink: 1;
     height: 40px
+}
+
+.reply_text .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_inner {
+    height: auto
 }
 
 .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__actions {

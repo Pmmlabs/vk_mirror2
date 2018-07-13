@@ -583,6 +583,10 @@ body.body_helpdesk_small_sb .left_menu_nav {
     color: #000
 }
 
+.helpdesk_will_expire_in {
+    cursor: help
+}
+
 .helpdesk_favorites_groups {
     margin-bottom: 8px;
     color: #2a5885;
@@ -1197,6 +1201,10 @@ body.body_helpdesk_small_sb .left_menu_nav {
 
 .helpdesk_m_list {
     padding: 10px
+}
+
+.helpdesk_m_table__expire_in {
+    cursor: help
 }
 
 .helpdesk_m_table_actions {

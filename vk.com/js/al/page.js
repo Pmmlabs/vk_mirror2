@@ -3969,14 +3969,14 @@ var Wall = {
                 var box = showBox('al_video.php?act=postponed_post_box', {
                     videos_count: hasUploadedNewCount
                 }, {
-                    onDone: function(box, data, additional) {
+                    onDone: function(box, data) {
                         box.removeButtons();
-                        box.addButton(additional.video_post_later_text, function() {
+                        box.addButton(data.video_post_later_text, function() {
                             cur.postponeVideoPost = true;
                             Wall.sendPost(true);
                             box.hide();
                         });
-                        box.addButton(additional.video_post_now_text, function() {
+                        box.addButton(data.video_post_now_text, function() {
                             Wall.sendPost(true);
                             box.hide();
                         }, 'no');
@@ -4682,12 +4682,6 @@ var Wall = {
 
         if (isFunction(cur.onReplyFormFocus)) {
             cur.onReplyFormFocus(rf);
-        }
-
-        if (ev && (hasClass(ev.target, '_reply_wrap') || gpeByClass('_reply_wrap', ev.target))) {
-            ajax.post('al_index.php', {
-                act: 'stat_reply_btn_press',
-            });
         }
 
         return false;
@@ -5854,14 +5848,6 @@ var Wall = {
         }
         var tt = wrap.tt || {},
             opts = clone(tt.opts || {});
-        var testGroupWithFeedbackStr = inArray(cur.postLikesTestGroup, ['four', 'five', 'six', 'seven']);
-        if (testGroupWithFeedbackStr && !views) {
-            var elem = geByClass1(share ? 'feedback_share' : 'feedback_like', post);
-            if (elem) {
-                tt = elem.tt || {}
-            }
-        }
-
         var countInput = domByClass(tt.container, '_value'),
             content = domByClass(tt.container, '_content'),
             titleNode = domByClass(tt.container, '_title');
@@ -5923,21 +5909,13 @@ var Wall = {
         }
 
         Wall.updateFeedbackVisibility(post);
-
-        if (browser.msie_edge && intval(cur.postLikesTestGroup) !== -1) {
-            var feedbackWrap = geByClass1('post_feedback_info', post);
-            if (feedbackWrap) {
-                hide(feedbackWrap);
-                show(feedbackWrap);
-            }
-        }
     },
     updateFeedbackVisibility: function(post) {
         var views = trim(val(geByClass1('feedback_views', post))),
             share = trim(val(geByClass1('feedback_share', post))),
             likes = trim(val(geByClass1('feedback_like', post)));
 
-        var hidden = !likes && !share && (!views || cur.postLikesTestGroup === 'four');
+        var hidden = !likes && !share && !views;
         toggleClass(geByClass1('post_feedback_info', post), 'empty', hidden);
     },
     likeShareUpdate: function(el, post_id, my, count, title) {
@@ -8344,10 +8322,6 @@ var Wall = {
             hasShare = postEl && domByClass(postEl, '_share_wrap');
         if (!iconEl || cur.viewAsBox) return;
 
-        if (inArray(cur.postLikesTestGroup, ['four', 'five', 'six', 'seven']) && !hasClass(el, '_feedback_info_item') && !post_id.match(/reply|comment/) && (!window.wkcur || !wkcur.shown)) {
-            return
-        }
-
         var tt_offset = 41, // @likes-tt-corner-offset + 1
             wrap_left = getXY(wrapEl)[0],
             icon_left = getXY(iconEl)[0],
@@ -8372,10 +8346,6 @@ var Wall = {
             }
 
             left_offset += getSize(countEl)[0] / 2
-        }
-
-        if (inArray(cur.postLikesTestGroup, ['two', 'three'])) {
-            left_offset += 1
         }
 
         var ttEl = hasClass(iconEl, '_feedback_info_item') ? iconEl : iconEl.parentNode;

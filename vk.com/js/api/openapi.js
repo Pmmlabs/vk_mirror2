@@ -3079,6 +3079,7 @@ if (!VK.Retargeting) {
         pixelCode: null,
         Init: function(pixelCode) {
             this.pixelCode = pixelCode;
+            return this;
         },
         Event: function(event) {
             if (!this.pixelCode) {
@@ -3174,6 +3175,19 @@ if (!VK.Retargeting) {
                 console.error(errorBegin + errors[i]);
             }
         }
+    };
+}
+
+if (!VK.Pixel) {
+    VK.Pixel = function(pixelCode) {
+        if (this.constructor != VK.Pixel) {
+            throw Error('VK.Pixel was called without \'new\' operator');
+        }
+
+        VK.extend(this, VK.Retargeting);
+        this.pixelCode = pixelCode;
+
+        return this;
     };
 }
 

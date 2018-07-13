@@ -13,10 +13,11 @@ function AudioPage(e, t) {
         contentBlock: geByClass1("_audio_page_content_block", e),
         scrollWrap: geByClass1("_audio_page_content_block_wrap", e),
         searchSectionAudios: geByClass1("_audio_section_search__local_audios_list", e),
-        searchSectionAudiosHeader: geByClass1("_audio_section_search__local_audios_header", e),
+        searchSectionAudiosHeader: geByClass1("audio_section_search__local_audios_header", e),
         searchSectionPlaylists: geByClass1("_audio_section_search__local_playlists_list", e),
         searchSectionPlaylistsHeader: geByClass1("_audio_section_search__local_playlists_header", e),
         searchNoLocalResults: geByClass1("_audio_local_no_results", e),
+        searchGlobalBlocks: geByClass1("_audio_section_global_search__blocks", e),
         searchGlobalCommunitiesPlace: geByClass1("_audio_section_global_search__communities_place", e),
         searchGlobalPlaylistsPlace: geByClass1("_audio_section_global_search__playlists_place", e),
         searchGlobalArtistsPlace: geByClass1("_audio_section_global_search__artists_place", e),
@@ -24,6 +25,7 @@ function AudioPage(e, t) {
         searchGlobalAudiosBlockHeader: geByClass1("_audio_section_global_search__audios_header", e),
         searchGlobalAudiosList: geByClass1("_audio_section_global_search__audios_list", e),
         recomsBlocks: geByClass1("_audio_recoms_blocks", e),
+        searchBlocks: geByClass1("_audio_search_blocks", e),
         searchInput: geByClass1("ui_search_field", geByClass1("_audio_search", e)),
         footer: geByClass1("_audio_page__footer", e),
         footerNowPlayingInfo: geByClass1("_audio_page__footer_now_playing", e),
@@ -206,7 +208,11 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
 }, AudioPage.prototype._showSearchSection = function(e) {
     this._toggleSearchProgress(!0);
     var t = getAudioPlayer().getPlaylist(AudioPlaylist.TYPE_PLAYLIST, this.getOwnerId(), AudioPlaylist.DEFAULT_PLAYLIST_ID);
-    t.loadAll(function() {
+    geByClass1("audio_page_player2") ? (this._sectionData = {
+        q: e.globalQuery || e.q
+    }, this.showSection("search", function() {
+        this._toggleSearchProgress(!1)
+    }.bind(this))) : t.loadAll(function() {
         this._toggleSearchProgress(!1), this._doShowSearchSection(e)
     }.bind(this))
 }, AudioPage.prototype._toggleSearchProgress = function(e) {
@@ -273,7 +279,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     }), cancelEvent(e)) : void 0
 }, AudioPage.prototype._deinitNavigation = function() {
     cur.nav.pop(), this._navigationInited = !1
-}, AudioPage.PageSections = ["recoms_personal", "recoms_audio", "recoms_block", "search_playlists"], AudioPage.prototype.initNavigation = function() {
+}, AudioPage.PageSections = ["recoms_audio", "recoms_block", "search_block", "recoms_personal"], AudioPage.prototype.initNavigation = function() {
     this._navigationInited || (this._navigationInited = !0, this._prevLoc = {}, cur.nav.push(function(e, t, i, a) {
         var o = this._ignoreResetedSearch;
         if (delete this._ignoreResetedSearch, o && a.fromSearch) return !1;
@@ -325,34 +331,40 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     var t = geByClass1("_audio_section__" + e, this._els.sections);
     re(t)
 }, AudioPage.prototype.showSection = function(e, t, i) {
-    if ("search" != this._currentSection || "all" != e && "current" != e || uiSearch.reset(this._els.searchInput, !0), this._switchTab(e), this._currentSection == e) return void(isFunction(t) && t());
+    "search" !== this._currentSection || "all" !== e && "current" !== e || uiSearch.reset(this._els.searchInput, !0), this._switchTab(e);
+    var a = geByClass1("audio_page_player2") && "search" === e;
+    if (this._currentSection === e && "search" !== this._currentSection) return void(isFunction(t) && t());
     this._currentSection = e;
-    var a = geByClass1("_audio_section__" + e, this._els.sections);
-    if (a) {
+    var o = geByClass1("_audio_section__" + e, this._els.sections);
+    if (o && (!a || i === !1)) {
         each(geByClass("_audio_section", this._els.pageContainer), function() {
             hide(this)
-        }), hide(this._els.searchGlobalCommunitiesPlace), hide(this._els.searchGlobalPlaylistsPlace), hide(this._els.searchGlobalArtistsPlace), hide(this._els.searchGlobalAudiosBlock), toggle(this._els.recomsBlocks, "recoms" == e && !this.isLayer()), show(a), this._onSectionOut(), delete cur._back;
-        var o = this._data.sectionData[e];
+        }), hide(this._els.searchGlobalBlocks), hide(this._els.searchGlobalCommunitiesPlace), hide(this._els.searchGlobalPlaylistsPlace), hide(this._els.searchGlobalArtistsPlace), hide(this._els.searchGlobalAudiosBlock), toggle(this._els.recomsBlocks, "recoms" === e && !this.isLayer()), toggle(this._els.searchBlocks, "search" === e), show(o), this._onSectionOut(), delete cur._back;
+        var s = this._data.sectionData[e];
         switch (e) {
             case "current":
-                this._initSection_all(a, o, !0);
+                this._initSection_all(o, s, !0);
                 break;
             case "friend":
-                this._initSection_all(a, o);
+                this._initSection_all(o, s);
                 break;
             case "playlists":
-                this._initSection_playlists(a, o);
+                this._initSection_playlists(o, s);
                 break;
             case "updates":
-                this._initSection_updates(a, o);
+                this._initSection_updates(o, s);
                 break;
             case "recoms":
-                this.isLayer() || vk.id != this.getOwnerId() ? this._initSection_all(a, o) : this._initSection_recoms(a, o);
+                this.isLayer() || vk.id != this.getOwnerId() ? this._initSection_all(o, s) : this._initSection_recoms(o, s);
+                break;
+            case "search":
+                a && this._initSection_search(o, s);
                 break;
             case "all":
             case "recoms_audio":
             case "recoms_block":
-                o.isRecomsPlaylists || this._initSection_all(a, o)
+            case "search_block":
+                s.isRecomsPlaylists || this._initSection_all(o, s)
         }
         return getAudioPlayer().updateCurrentPlaying(), void(isFunction(t) && t())
     }
@@ -362,16 +374,27 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         owner_id: this._ownerId,
         is_layer: this.isLayer() ? 1 : 0
     }, this._sectionData || {}), {
-        onDone: function(a, o, s) {
-            this._data.sectionData = this._data.sectionData || {}, this._data.sectionData[e] = o;
-            var l = se('<div class="audio_section _audio_section _audio_section__' + e + " audio_section__" + e + ' clear_fix audio_w_covers">' + a + "</div>");
-            this._els.sections.appendChild(l), s && (this._els.recomsBlocks.innerHTML = s), delete this._currentSection, this.showSection(e, t, i)
+        onDone: function(i, o, s) {
+            if (this._data.sectionData = this._data.sectionData || {}, this._data.sectionData[e] = o, a) {
+                var l = geByClass1("_audio_section__" + e, this._els.sections);
+                l && re(l)
+            }
+            var r = se('<div class="audio_section _audio_section _audio_section__' + e + " audio_section__" + e + ' clear_fix audio_w_covers">' + i + "</div>");
+            this._els.sections.appendChild(r), s && ("recoms" === e && (this._els.recomsBlocks.innerHTML = s), "search" === e && (this._els.searchBlocks.innerHTML = s)), delete this._currentSection, this.showSection(e, t, !1)
         }.bind(this)
     }), delete this._sectionData
 }, AudioPage.prototype._onSectionOut = function(e) {
     e ? (this._onSectionOutCbs = this._onSectionOutCbs ? this._onSectionOutCbs : [], this._onSectionOutCbs.push(e)) : (each(this._onSectionOutCbs || [], function(e, t) {
         t()
     }), this._onSectionOutCbs = [])
+}, AudioPage.prototype._initSection_search = function(e, t) {
+    each(t.playlists || [], function(e, i) {
+        if (i) {
+            i.searchParams = t.searchParams;
+            var a = getAudioPlayer().getPlaylist(i.type, i.ownerId, i.id);
+            0 == a.getAudiosList() && a.mergeWith(i)
+        }
+    })
 }, AudioPage.prototype._initSection_recoms = function(e, t) {
     function i(e) {
         each(e.playlists || [], function(e, t) {
@@ -754,14 +777,14 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     }
 
     function y(e) {
-        T || (T = new GridSorter(z.list, "ape_audio_item_wrap", {
+        B || (B = new GridSorter(z.list, "ape_audio_item_wrap", {
             wrapNode: z.list,
             onReorder: function(e, t) {
                 var i, a = domData(geByClass1("_audio_row", e), "full-id"),
                     o = G.indexOfAudio(a);
                 t ? (a = domData(geByClass1("_audio_row", t), "full-id"), i = G.indexOfAudio(a)) : i = G.getAudiosCount(), G.moveAudio(o, i)
             }
-        })), e ? T.enable() : T.disable()
+        })), e ? B.enable() : B.disable()
     }
 
     function f(i, o) {
@@ -858,9 +881,9 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         var l = o.newPlaylistHash || cur.audioPage && cur.audioPage._data.newPlaylistHash || "";
         ajax.post("al_audio.php", {
             act: "save_playlist",
-            hash: B ? l : Y.getEditHash(),
+            hash: T ? l : Y.getEditHash(),
             owner_id: t,
-            playlist_id: B ? 0 : Y.getPlaylistId(),
+            playlist_id: T ? 0 : Y.getPlaylistId(),
             title: i,
             description: a,
             Audios: s.join(","),
@@ -879,7 +902,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                         a && val(a, e.title);
                         var o = geByClass1("_audio_pl__stats_count", this);
                         o && (o.innerHTML = e.totalCount)
-                    }), B && cur.audioPage && t == cur.audioPage.getOwnerId() && (each(geByClass("_audio_page_block__playlists_items", cur.audioPage._els.pageContainer), function() {
+                    }), T && cur.audioPage && t == cur.audioPage.getOwnerId() && (each(geByClass("_audio_page_block__playlists_items", cur.audioPage._els.pageContainer), function() {
                         var e = se(getTemplate("audio_pl_item", i)),
                             t = this;
                         t.insertBefore(e, t.firstChild);
@@ -961,7 +984,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         onAudioChoose: AudioUtils.onAudioChoose,
         onPlaylistChoose: AudioUtils.onPlaylistChoose
     }, o), cur.onChooseAudio = o.onAudioChoose, cur.onChoosePlaylist = o.onPlaylistChoose;
-    var T, B = !i || i == AudioPlaylist.DEFAULT_PLAYLIST_ID,
+    var B, T = !i || i == AudioPlaylist.DEFAULT_PLAYLIST_ID,
         k = getAudioPlayer(),
         x = !1,
         D = !1,
@@ -980,7 +1003,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         j = a.length > 0,
         Y = !1,
         G = k.getPlaylist(AudioPlaylist.TYPE_TEMP, t, irand(0, 999999));
-    B && "attach" != e ? o.addAudio && G.addAudio(o.addAudio) : (Y = k.getPlaylist(AudioPlaylist.TYPE_PLAYLIST, t, i), G.addAudio(Y.getUnshuffledAudiosList()), G.mergeWith({
+    T && "attach" != e ? o.addAudio && G.addAudio(o.addAudio) : (Y = k.getPlaylist(AudioPlaylist.TYPE_PLAYLIST, t, i), G.addAudio(Y.getUnshuffledAudiosList()), G.mergeWith({
         title: Y.getTitle(),
         description: Y.getDescription(),
         rawDescription: Y.getRawDescription(),
@@ -1163,7 +1186,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                 onDone: function(a) {
                     if (a) {
                         var o = a[AudioUtils.AUDIO_ITEM_INDEX_TITLE] != t[AudioUtils.AUDIO_ITEM_INDEX_TITLE];
-                        o = o || a[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER] != t[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER], o = o || a[AudioUtils.AUDIO_ITEM_INDEX_FLAGS] != t[AudioUtils.AUDIO_ITEM_INDEX_FLAGS], o && (console.log("replaced"), getAudioPlayer().updateAudio(l.fullId, a), "all" == n._currentSection && "audio" == cur.module && n._initAudioRowsAutoList(), l = a), i(1.5 * e)
+                        o = o || a[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER] != t[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER], o = o || a[AudioUtils.AUDIO_ITEM_INDEX_FLAGS] != t[AudioUtils.AUDIO_ITEM_INDEX_FLAGS], o && (getAudioPlayer().updateAudio(l.fullId, a), "all" == n._currentSection && "audio" == cur.module && n._initAudioRowsAutoList(), l = a), i(1.5 * e)
                     }
                 }
             })
@@ -1298,7 +1321,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     var i = t.indexOfAudio(e);
     if (-1 != i && t.getType() == AudioPlaylist.TYPE_SEARCH) {
         var a = t.getOwnerId() == vk.id && i >= 0 && i < t.getLocalFoundCount();
-        if (!a) {
+        if (!a && t.getSearchParams()) {
             var o = t.getSearchParams();
             o.globalQuery && uiSearch.saveHistorySearch(this.searchInputEl, o.globalQuery, e.ownerId, e.id, t.getTotalCount(), t.getTotalCountHash())
         }
@@ -1546,5 +1569,5 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     toggleClass(this._els.player, "audio_page_player_show_remove_ads", !!e)
 };
 try {
-    stManager.done("audio.js")
+    stManager.done("audio.js");
 } catch (e) {}
