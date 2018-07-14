@@ -8988,8 +8988,7 @@ button.wall_block_app_btn {
 .article_snippet .article_snippet__image {
     background-size: cover;
     background-position: 50%;
-    background-color: #e7ebf0;
-    filter: blur(0.5px)
+    background-color: #e7ebf0
 }
 
 .article_snippet.article_snippet__no_cover .article_snippet__image {
@@ -9036,7 +9035,27 @@ button.wall_block_app_btn {
     margin-top: 12px;
     font-size: 14px;
     color: #ebebeb;
-    text-shadow: 0 4px 12px rgba(0, 0, 0, .4)
+    text-shadow: 0 4px 12px rgba(0, 0, 0, .4);
+    line-height: 14px
+}
+
+.article_snippet .article_snippet__top_author,
+.article_snippet .article_snippet__verified_author {
+    display: inline-block;
+    vertical-align: top;
+    width: 12px;
+    height: 12px;
+    margin-left: 5px
+}
+
+.article_snippet .article_snippet__verified_author {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2212%22%20width%3D%2212%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h12v12H0z%22%2F%3E%3Cpath%20d%3D%22M5.809%2011.293l-1.282.42a.615.615%200%200%201-.69-.224l-.79-1.093a.615.615%200%200%200-.309-.225l-1.284-.414a.615.615%200%200%201-.425-.586l.002-1.35a.615.615%200%200%200-.118-.363l-.795-1.09a.615.615%200%200%201%200-.724l.795-1.09a.615.615%200%200%200%20.118-.363L1.03%202.842c-.001-.267.171-.504.425-.586l1.284-.414a.615.615%200%200%200%20.31-.225l.79-1.093A.615.615%200%200%201%204.527.3l1.282.42c.124.04.258.04.382%200L7.473.3a.615.615%200%200%201%20.69.224l.79%201.093a.615.615%200%200%200%20.309.225l1.284.414a.615.615%200%200%201%20.425.586l-.002%201.35c0%20.13.041.257.118.362l.795%201.09a.615.615%200%200%201%200%20.725l-.795%201.09a.615.615%200%200%200-.118.363l.002%201.349a.615.615%200%200%201-.425.586l-1.284.414a.615.615%200%200%200-.31.225l-.79%201.093a.615.615%200%200%201-.689.223l-1.282-.419a.615.615%200%200%200-.382%200zM3.959%206.04a.65.65%200%200%200-.919.92l1.5%201.5a.65.65%200%200%200%20.92%200l3.5-3.5a.65.65%200%200%200-.92-.92L5%207.08z%22%20fill%3D%22%23ebebeb%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    margin-top: 2px
+}
+
+.article_snippet .article_snippet__top_author {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2212%22%20width%3D%2212%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h12v12H0z%22%2F%3E%3Cpath%20d%3D%22M6.092.787a.188.188%200%200%201%20.295.192.85.85%200%200%201-.1.27c-1.416%202.185-.794%203.5.16%203.64.988.147%201.71-.515%201.556-1.943l-.067-.622a.172.172%200%200%201%20.266-.162c.321.212.706.596%201.153%201.154%201.591%201.985%201.653%203.646%201.644%204.36C10.967%2010.239%209.071%2012%206.5%2012%203.93%2012%202%2010.239%202%207.677c.011-1.94.991-4.67%203.696-6.6l.396-.29z%22%20fill%3D%22%23ebebeb%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    margin-top: 1px
 }
 
 .article_snippet.article_snippet__banned .article_snippet__author,

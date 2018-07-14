@@ -59,8 +59,7 @@
 
 .wk_voting_option {
     line-height: 16px;
-    font-size: 13px;
-    letter-spacing: -0.1px
+    font-size: 13px
 }
 
 .wk_voting_option_text {
@@ -143,8 +142,7 @@ svg+.wk_voting_avatar+.wk_voting_avatar+.wk_voting_avatar+.wk_voting_avatar+.wk_
 .wk_voting_option_count {
     font-size: 13px;
     color: #6f7985;
-    line-height: 24px;
-    letter-spacing: -0.1px
+    line-height: 24px
 }
 
 .wk_voting_box_graphed .wk_voting_stats:not(.wk_voting_fixed),

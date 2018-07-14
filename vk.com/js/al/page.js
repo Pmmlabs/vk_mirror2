@@ -6289,6 +6289,7 @@ var Wall = {
             var votingId = domData(votingEl, 'id');
             var isBoard = domData(votingEl, 'board');
             var isFixed = domData(votingEl, 'fixed');
+            var ref = domData(votingEl, 'ref');
 
             if (this.votingIsLocked(votingId)) {
                 return;
@@ -6304,6 +6305,7 @@ var Wall = {
                 is_widget: vk.widget ? 1 : 0,
                 is_fixed: isFixed,
                 hash: hash,
+                ref: ref,
                 width: vk.widget ? cur.widgetWidth : undefined,
                 url: vk.widget ? cur.url : undefined,
                 vote_hash: cur.voteHash
@@ -6384,6 +6386,7 @@ var Wall = {
         var isFixed = domData(votingEl, 'fixed');
         var isWkview = hasClass(domPN(votingEl), 'wk_voting_box');
         var hash = domData(votingEl, 'hash');
+        var ref = domData(votingEl, 'ref');
 
         if (optionIds.length && hash) {
             ajax.post('al_voting.php', {
@@ -6394,6 +6397,7 @@ var Wall = {
                 is_fixed: isFixed,
                 option_ids: optionIds.join(','),
                 hash: hash,
+                ref: ref,
                 width: vk.widget ? cur.widgetWidth : undefined,
                 url: vk.widget ? cur.url : undefined,
                 vote_hash: cur.voteHash
@@ -6549,9 +6553,11 @@ var Wall = {
 
         if (votingEl && !domData(votingEl, 'board')) {
             var votingId = domData(votingEl, 'id');
+            var ref = domData(votingEl, 'ref');
 
             showBox('al_voting.php', {
                 act: 'export_box',
+                ref: ref,
                 vote_hash: cur.voteHash,
                 is_widget: vk.widget ? 1 : 0,
                 voting_id: votingId
@@ -6574,6 +6580,7 @@ var Wall = {
         if (votingEl) {
             var votingId = domData(votingEl, 'id');
             var isFixed = domData(votingEl, 'fixed');
+            var ref = domData(votingEl, 'ref');
 
             if (this.votingIsLocked(votingId)) {
                 return;
@@ -6587,6 +6594,7 @@ var Wall = {
                 state: state ? 1 : 0,
                 voting_id: votingId,
                 is_fixed: isFixed,
+                ref: ref,
                 hash: hash
             }, {
                 onDone: this.votingUpdate.bind(this, votingId),
@@ -6611,6 +6619,7 @@ var Wall = {
         if (votingEl) {
             var votingId = domData(votingEl, 'id');
             var isFixed = domData(votingEl, 'fixed');
+            var ref = domData(votingEl, 'ref');
 
             if (this.votingIsLocked(votingId)) {
                 return;
@@ -6624,6 +6633,7 @@ var Wall = {
                 state: state ? 1 : 0,
                 voting_id: votingId,
                 is_fixed: isFixed,
+                ref: ref,
                 hash: hash
             }, {
                 onDone: this.votingUpdate.bind(this, votingId),

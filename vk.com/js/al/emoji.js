@@ -3902,7 +3902,7 @@ if (!window.Emoji) {
                         try {
                             vk.widget && Rpc.callMethod('proxy', 'updateStickers');
                         } catch (e) {} // for widget_comments.js
-                        if (window.Videoview) {
+                        if (sticker_referrer === 'video_live' && window.Videoview) {
                             Videoview.onStickersPurchased(packId);
                         }
                     }

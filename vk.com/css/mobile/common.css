@@ -16074,12 +16074,56 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     font-size: 18px
 }
 
+.articleSnippet__block .articleSnippet_author {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
 .articleSnippet__block .articleSnippet_author,
 .articleSnippet__block .articleSnippet_author>a {
-    font-size: 13px;
+    font-size: 12px;
     color: #ebebeb;
     margin-top: 4px;
     line-height: 1.22
+}
+
+.articleSnippet__block .articleSnippet_author .article_snippet__top_author,
+.articleSnippet__block .articleSnippet_author .article_snippet__verified_author {
+    display: inline-block;
+    vertical-align: top;
+    width: 12px;
+    height: 12px;
+    margin-left: 5px;
+    -moz-background-size: 12px 12px;
+    -o-background-size: 12px 12px;
+    background-size: 12px 12px;
+    background-image: url('/images/mobile/article_author_verified.png')
+}
+
+.vk_2x .articleSnippet__block .articleSnippet_author .article_snippet__top_author,
+.vk_2x .articleSnippet__block .articleSnippet_author .article_snippet__verified_author {
+    background-image: url('/images/mobile/article_author_verified_2x.png')
+}
+
+.articleSnippet__block .articleSnippet_author .article_snippet__top_author {
+    background-image: url('/images/mobile/article_author_fire.png')!important
+}
+
+.vk_2x .articleSnippet__block .articleSnippet_author .article_snippet__top_author {
+    background-image: url('/images/mobile/article_author_fire_2x.png')!important
 }
 
 .articleSnippet__block .articleSnippet_button {
@@ -16119,6 +16163,11 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .cp_attached_post .articleSnippet__block {
     margin: 7px 7px 0
+}
+
+.vk_flex_no .article_snippet__top_author,
+.vk_flex_no .article_snippet__verified_author {
+    margin-top: 1px
 }
 
 .appHeader {
@@ -21347,7 +21396,12 @@ a.appWidget__matches_live_icon:active {
 
 .appWidget__match {
     margin: 20px 12px;
-    position: relative
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex
 }
 
 .appWidget__match:after {
@@ -21379,10 +21433,28 @@ a.appWidget__matches_live_icon:active {
 }
 
 .appWidget__match_score {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis
+}
+
+.appWidget__match_state {
+    margin: 0 auto;
+    max-width: 180px
+}
+
+.appWidget__match_score {
     font-size: 19px;
     line-height: 18px;
     position: relative;
-    top: -1px
+    top: -1px;
+    white-space: nowrap
+}
+
+.appWidget__match_score .appWidget__match_additional_score {
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: -50%
 }
 
 .appWidget__imaged .appWidget__match_score {
@@ -21404,25 +21476,51 @@ a.appWidget__matches_live_icon:active {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    overflow: hidden;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 1 50%;
+    -moz-box-flex: 0;
+    -ms-flex: 0 1 50%;
+    flex: 0 1 50%;
     width: 39%
 }
 
 .appWidget__match_team_a {
+    text-align: left;
     float: left;
-    text-align: left
+    -webkit-box-ordinal-group: 2;
+    -webkit-order: 1;
+    -moz-box-ordinal-group: 2;
+    -ms-flex-order: 1;
+    order: 1
 }
 
 .appWidget__imaged .appWidget__match_team_a {
-    padding-left: 58px
+    padding-left: 58px;
+    min-height: 50px
 }
 
 .appWidget__match_team_b {
+    text-align: right;
     float: right;
-    text-align: right
+    -webkit-box-ordinal-group: 4;
+    -webkit-order: 3;
+    -moz-box-ordinal-group: 4;
+    -ms-flex-order: 3;
+    order: 3
 }
 
 .appWidget__imaged .appWidget__match_team_b {
-    padding-right: 58px
+    padding-right: 58px;
+    min-height: 50px
+}
+
+.appWidget__match_info {
+    -webkit-box-ordinal-group: 3;
+    -webkit-order: 2;
+    -moz-box-ordinal-group: 3;
+    -ms-flex-order: 2;
+    order: 2
 }
 
 .appWidget__match_team_a_icon,
@@ -21461,6 +21559,10 @@ a.appWidget__matches_live_icon:active {
     letter-spacing: -0.15px
 }
 
+.appWidget__match_team_name a {
+    color: #222
+}
+
 .appWidget__imaged .appWidget__match_team_name {
     padding-top: 17px
 }
@@ -21469,16 +21571,12 @@ a.appWidget__matches_live_icon:active {
     padding-top: 6px
 }
 
-.appWidget__match_info {
-    overflow: hidden
-}
-
 @media screen and (max-width: 500px) {
     .appWidget__match_team_a,
     .appWidget__match_team_b {
         width: 35%
     }
-    .appWidget__imaged .appWidget_match_info {
+    .appWidget__imaged .appWidget__match_info {
         position: absolute;
         left: 58px;
         top: 0;
@@ -31395,6 +31493,10 @@ body.apps_settingsPageBody {
     background-position: 0 -1320px
 }
 
+.Icon_more.Icon_white:before {
+    background-position: 0 -1416px
+}
+
 .Icon_attach_blue,
 .Icon_audio_blue,
 .Icon_camera_blue,
@@ -33032,26 +33134,27 @@ body.apps_settingsPageBody {
     z-index: 1
 }
 
-
-/*!
- * Header
- */
-
-.Voting__revote {
-    position: absolute;
-    right: 12px;
-    top: 12px;
-    cursor: pointer;
-    z-index: 2
+.Voting a:not(.Voting__link) {
+    position: relative;
+    z-index: 1
 }
 
-.Voting__revote:before {
-    content: '';
+
+/*!
+ * Dots menu
+ */
+
+.Voting__dots {
     position: absolute;
-    top: -12px;
-    left: -12px;
-    right: -12px;
-    bottom: -12px
+    right: 0;
+    z-index: 2;
+    top: 2px;
+    right: 2px
+}
+
+.Voting__dotsPopup {
+    margin-top: -2px;
+    margin-right: -2px
 }
 
 
@@ -33940,6 +34043,18 @@ body.apps_settingsPageBody {
     letter-spacing: 0.34px
 }
 
+.VotingHeader__author {
+    display: inline-block;
+    color: #426997;
+    padding: 8px 8px 2px;
+    font-size: 13px;
+    max-width: 100%;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
 .VotingHeader__subtitle {
     margin-top: 4px;
     font-size: 13px;
@@ -33957,6 +34072,7 @@ body.apps_settingsPageBody {
     color: #fff
 }
 
+.VotingHeader_white .VotingHeader__author,
 .VotingHeader_white .VotingHeader__subtitle {
     color: hsla(0, 0%, 100%, .84)
 }

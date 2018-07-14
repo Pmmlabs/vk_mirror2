@@ -1856,7 +1856,9 @@ a .app_widget_tiles_title {
 }
 
 .app_widget_match {
-    color: #000
+    color: #000;
+    display: -ms-flexbox;
+    display: flex
 }
 
 .app_widget_match.app_widget_imaged {
@@ -1873,6 +1875,11 @@ a .app_widget_tiles_title {
     letter-spacing: -0.13px
 }
 
+.app_widget_match_info {
+    -ms-flex-order: 2;
+    order: 2
+}
+
 .app_widget_match_score,
 .app_widget_match_state {
     padding-left: 8px;
@@ -1880,11 +1887,25 @@ a .app_widget_tiles_title {
     text-align: center
 }
 
+.app_widget_match_state {
+    margin: 0 auto;
+    max-width: 180px
+}
+
 .app_widget_match_score {
     font-size: 19px;
     line-height: 18px;
     position: relative;
-    top: -1px
+    top: -1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.app_widget_match_score .app_widget_match_additional_score {
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: -50%
 }
 
 .app_widget_imaged .app_widget_match_score {
@@ -1908,21 +1929,33 @@ a .app_widget_tiles_title {
 }
 
 .app_widget_match_team_a {
+    text-align: left;
     float: left;
-    text-align: left
+    overflow: hidden;
+    -ms-flex: 0 1 50%;
+    flex: 0 1 50%;
+    -ms-flex-order: 1;
+    order: 1
 }
 
 .app_widget_imaged .app_widget_match_team_a {
-    padding-left: 58px
+    padding-left: 58px;
+    min-height: 50px
 }
 
 .app_widget_match_team_b {
+    text-align: right;
     float: right;
-    text-align: right
+    overflow: hidden;
+    -ms-flex: 0 1 50%;
+    flex: 0 1 50%;
+    -ms-flex-order: 3;
+    order: 3
 }
 
 .app_widget_imaged .app_widget_match_team_b {
-    padding-right: 58px
+    padding-right: 58px;
+    min-height: 50px
 }
 
 .app_widget_match_team_a_icon,
@@ -1954,6 +1987,10 @@ a .app_widget_tiles_title {
     line-height: 17px;
     padding-top: 1px;
     letter-spacing: -0.15px
+}
+
+.app_widget_match_team_name a {
+    color: #000
 }
 
 .app_widget_imaged .app_widget_match_team_name {

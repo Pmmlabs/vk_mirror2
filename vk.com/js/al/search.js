@@ -12,7 +12,7 @@ var slide_show = function(e) {
                 "c[section]": e || cur.section
             } : serializeForm(s) || {}, t["c[q]"] = val("search_query");
             for (var r in t) t[r] && "0" != t[r] || delete t[r], "-1" == t[r] && t[r + "_custom"] ? (t[r] = t[r + "_custom"], delete t[r + "_custom"]) : t[r + "_custom"] && delete t[r + "_custom"];
-            return "video" != cur.section || t["c[sort]"] || (t["c[sort]"] = "0"), "people" == cur.section && ge("c[photo]") && !t["c[photo]"] && (t["c[photo]"] = "0"), "people" == cur.section && t["c[invite]"] && delete t.from, "communities" != cur.section || !cur.filtersShown || t["c[q]"] || t["c[category]"] || (t["c[skip_catalog]"] = "1"), t
+            return "video" != cur.section || t["c[sort]"] || (t["c[sort]"] = "0"), "people" == cur.section && ge("photo") && !t["c[photo]"] && (t["c[photo]"] = "0"), "people" == cur.section && t["c[invite]"] && delete t.from, "communities" != cur.section || !cur.filtersShown || t["c[q]"] || t["c[category]"] || (t["c[skip_catalog]"] = "1"), t
         },
         sameParams: function(e) {
             if (!cur.params) return !1;
@@ -432,7 +432,7 @@ void 0 === window.iSearch && (iSearch = {
     },
     inviteToGroup: function(e, s, t, r, o) {
         var i = function(o) {
-            o ? link = '<button class="flat_button button_small button_wide search_btn_invite secondary" onclick="return searchActions.inviteToGroup(this, ' + s + ", " + t + ", '" + r + "', 1)\">" + getLang("search_cancel_invitation") + "</button>" : link = '<button class="flat_button button_small button_wide search_btn_invite" onclick="return searchActions.inviteToGroup(this, ' + s + ", " + t + ", 0, '" + r + "')\">" + getLang("search_send_invitation") + "</button>", e.parentNode.replaceChild(se(link), e)
+            o ? link = '<button class="flat_button button_small button_wide search_btn_invite secondary" onclick="return searchActions.inviteToGroup(this, ' + s + ", " + t + ", '" + r + "', 1)\">" + getLang("search_cancel_invitation") + "</button>" : link = '<button class="flat_button button_small button_wide search_btn_invite" onclick="return searchActions.inviteToGroup(this, ' + s + ", " + t + ", '" + r + "', 0)\">" + getLang("search_send_invitation") + "</button>", e.parentNode.replaceChild(se(link), e)
         };
         return o ? ajax.post("/al_page.php", {
             act: "a_cancel_invite",
