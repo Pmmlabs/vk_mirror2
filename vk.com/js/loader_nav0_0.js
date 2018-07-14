@@ -262,7 +262,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 209284666159,
-    'imn.js': 258547067496,
+    'imn.js': 256302769663,
     'im.js': 1322065005,
     'emoji.js': 2218734923,
     'wide_dd.css': 17663675113,
@@ -330,7 +330,7 @@ var stVersions = {
     'widgets.css': 30581564529,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 56843050903,
+    'notifier.js': 54598753070,
     'notifier.css': 27758717442,
     'cmodules/sw/sw.js': 4889939668,
     'earthday.js': 2276669993,
@@ -558,7 +558,7 @@ var stVersions = {
     'group_invite_chat.css': 80758231410,
     'cmodules/web/reports.js': 21379408325,
     'reports.css': 71302670516,
-    'cmodules/web/raven_logger.js': 3548548593,
+    'cmodules/web/raven_logger.js': 6675803049,
     'cmodules/web/add_to_community_app.js': 397597546,
     'community_bot.js': 1928249077,
     'community_bot.css': 3742743729,
@@ -635,4 +635,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 8045;
+var _rnd = 6036;
