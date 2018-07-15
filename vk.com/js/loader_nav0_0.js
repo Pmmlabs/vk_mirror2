@@ -278,7 +278,7 @@ var stVersions = {
     'privacy.js': 835833828,
     'privacy.css': 15337490464,
     'apps.css': 40111012802,
-    'apps.js': 391393273,
+    'apps.js': 1355237873,
     'apps_edit.js': 1468838940,
     'apps_edit.css': 36357151248,
     'apps_check.js': 3204387834,
@@ -635,4 +635,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 6036;
+var _rnd = 92;

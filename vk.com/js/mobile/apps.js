@@ -801,14 +801,10 @@ var vkApp = function(cont, options, params, onInit) {
                 return;
             }
 
-            // Need added support link_image, link_title, link_button fields to ios.
-            var noCallNativeInIosApps = [6463155, 6245523, 6232217, 6502608, 6501403, 6619775],
-                noCallNative = cur.app.isNativeIosWebView() && ~noCallNativeInIosApps.indexOf(cur.aid);
-
             params = params || {};
             params.attachments = cur.app.getValidPostAttachments(params.attachments || params.attachment);
 
-            if (!params.message && (!params.attachments || !isArray(params.attachments) || !params.attachments.length)) {
+            if (!params.message && (!params.attachments || !params.attachments.length)) {
                 var error = {
                     error_code: 100,
                     error_msg: 'One of the parameters specified was missing or invalid'
@@ -820,7 +816,7 @@ var vkApp = function(cont, options, params, onInit) {
                 return;
             }
 
-            if (cur.app.isNativeClientWebView() && cur.app.nativeClientHasMethod('showWallPostBox') && !noCallNative) {
+            if (cur.app.isNativeClientWebView() && cur.app.nativeClientHasMethod('showWallPostBox')) {
                 params = cur.app.isNativeAndroidWebView() ? obj2qs(params) : params;
                 cur.app.callNativeClientMethod('showWallPostBox', params);
                 return;
@@ -983,7 +979,7 @@ vkApp.prototype.getValidPostAttachments = function(attachments) {
             validAttachments.push(attach);
         }
     });
-    return validAttachments.length ? validAttachments : '';
+    return validAttachments.join(',');
 };
 
 /**
