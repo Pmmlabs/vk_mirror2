@@ -615,9 +615,14 @@ var Helpdesk = {
             default:
                 t = "sum_rate"
         }
-        return t != cur.sort && (each(geByClass("table_header_upper_span", e.parentNode), function(e, t) {
-            removeClass(t, "sorted")
-        }), addClass(geByClass1("table_header_upper_span", e), "sorted"), nav.go("/helpdesk?act=" + nav.objLoc.act + "&sort=" + t)), !1
+        if (t != cur.sort) {
+            each(geByClass("table_header_upper_span", e.parentNode), function(e, t) {
+                removeClass(t, "sorted")
+            }), addClass(geByClass1("table_header_upper_span", e), "sorted");
+            var s = "";
+            nav.objLoc.section && (s = "&section=" + nav.objLoc.section), nav.go("/helpdesk?act=" + nav.objLoc.act + s + "&sort=" + t)
+        }
+        return !1
     },
     toggleAddBugRow: function(e, t, s) {
         if (s.target || (s.target = s.srcElement || document), "a" == s.target.tagName.toLowerCase()) return !0;
@@ -1098,10 +1103,11 @@ var Helpdesk = {
         toggle("tickets_similar", !isVisible("tickets_similar"));
         var t = ge("toggle_similar_link");
         return toggleClass(t, "opened", isVisible("tickets_similar")), isVisible("tickets_similar") ? (t.innerHTML = getLang("support_hide_similar"), ge("similar_search") && cur.searchDD.updateInput(), cur.similarCount < 10 ? hide("tickets_toup") : isVisible("tickets_toup") && (setStyle(ge("tickets_toup"), {
-            height: "0px"
-        }), setStyle(ge("tickets_toup"), {
-            height: getSize(ge("tickets_similar"))[1]
-        }))) : t.innerHTML = cur.similarCount ? getLang("support_show_similar", cur.similarCount) : getLang("support_search_similar"), e && scrollToTop(0), !1
+                height: "0px"
+            }), setStyle(ge("tickets_toup"), {
+                height: getSize(ge("tickets_similar"))[1]
+            }))) : t.innerHTML = cur.similarCount ? getLang("support_show_similar", cur.similarCount) : getLang("support_search_similar"),
+            e && scrollToTop(0), !1
     },
     toggleSimilarRows: function(e) {
         var t = attr(e, "toggle-text"),

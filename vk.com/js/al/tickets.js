@@ -1198,17 +1198,23 @@ var Tickets = {
             }
         return !1
     },
+    getAskQuestionData: function(e) {
+        return "faq_dislike" == e && cur.askQuestionFaqDislike ? cur.askQuestionFaqDislike : cur.askQuestion
+    },
     rateFAQAdditional: function(e, t, a, i, o) {
         if (!vk.id) return !1;
         var s = ge("tickets_faq_unuseful" + e);
-        ajax.post("support", {
-            act: "faq_rate_additional",
-            faq_id: e,
-            additional_id: t,
-            hash: a
-        }), hide(geByClass1("help_table_question_rated_additional", s)), show(geByClass1("help_table_question__rated_final", s)), 2 == t && (cur.askQuestion.permission ? Tickets.tryAskQuestion(function() {
-            Tickets.goToForm(e, "dislike", i, o)
-        }) : cur.isFaqTutorial && 2 != t || (hide(geByClass1("help_table_question__rated_final__t", s)), show(geByClass1("help_table_question__rated_no_perm", s))))
+        if (ajax.post("support", {
+                act: "faq_rate_additional",
+                faq_id: e,
+                additional_id: t,
+                hash: a
+            }), hide(geByClass1("help_table_question_rated_additional", s)), show(geByClass1("help_table_question__rated_final", s)), 2 == t) {
+            var r = Tickets.getAskQuestionData("faq_dislike");
+            r.permission ? Tickets.tryAskQuestion(function() {
+                Tickets.goToForm(e, "dislike", i, o)
+            }, "faq_dislike") : cur.isFaqTutorial && 2 != t || (hide(geByClass1("help_table_question__rated_final__t", s)), show(geByClass1("help_table_question__rated_no_perm", s)))
+        }
     },
     cancelRateFAQ: function(e, t, a, i) {
         return vk.id ? (ajax.post("support", {
@@ -1464,10 +1470,11 @@ var Tickets = {
         var t = ge("help_table_questions__title");
         e ? (show(t), t.innerHTML = e) : hide(t)
     },
-    tryAskQuestion: function(e) {
-        var t = 2;
-        if (cur.askQuestion && (t = cur.askQuestion.permission), t) {
-            if (1 == t) return Tickets.showAverageTime(cur.askQuestion.time, e), !1;
+    tryAskQuestion: function(e, t) {
+        var a = 2,
+            i = Tickets.getAskQuestionData(t);
+        if (i && (a = i.permission), a) {
+            if (1 == a) return Tickets.showAverageTime(i.time, e), !1;
             e()
         } else setTimeout(showFastBox({
             dark: 1,

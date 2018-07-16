@@ -671,7 +671,7 @@ var GroupsEdit = {
             e[o] = isChecked(o)
         }), cur.marketCountryDD && (1 == cur.cls ? e.enable_market = isChecked("enable_market") : extend(e, GroupsEdit.getFields("market")), (e.market || e.enable_market) && (extend(e, GroupsEdit.getFields("market_comments", "market_wiki")), e.market_country = cur.marketCountryDD.val(), isVisible("group_market_city_wrap") && (e.market_city = cur.marketCityDD.val()), e.market_currency = cur.marketCurrencyDD.val(), e.market_contact = cur.marketContactDD.val(), isVisible("market_button_type_link") && (e.market_button_type = cur.marketButtonType.val(), e.market_button_name = trim(val("group_market_button_name"))))), cur.mainSectionDD && cur.secondarySectionDD && (e.main_section = intval(cur.mainSectionDD.val()), e.secondary_section = intval(cur.secondarySectionDD.val())), cur.narrowMainSectionDD && (e.narrow_main_section = intval(cur.narrowMainSectionDD.val())), e.market_app = isChecked("market_app") ? 1 : 0, ajax.post("groupsedit.php", e, {
             onDone: function(t) {
-                return -2 != t && -3 != t || isVisible("group_edit_market") || GroupsEdit.toggleMarketBlock(!0), -2 == t ? notaBene(domPN(ge("group_market_country"))) : -3 == t ? notaBene(domPN(ge("group_market_contact"))) : -4 == t ? notaBene(domPN(ge("group_market_button_name"))) : (GroupsEdit.showMessage(getLang("groups_sections_saved_msg")), scrollToTop(), globalHistoryDestroy(nav.objLoc[0]), cur.hasMarketApp = e.market_app, void GroupsEdit.toggleMarketAppSettings())
+                return -2 != t && -3 != t || isVisible("group_edit_market") || GroupsEdit.toggleMarketBlock(!0), -2 == t ? notaBene(domPN(ge("group_market_country"))) : -3 == t ? notaBene(domPN(ge("group_market_contact"))) : -4 == t ? notaBene(domPN(ge("group_market_button_name"))) : (GroupsEdit.showMessage(getLang("groups_sections_saved_msg")), scrollToTop(), globalHistoryDestroy(nav.objLoc[0]), cur.hasMarketApp = (e.market || e.enable_market) && e.market_app, void GroupsEdit.toggleMarketAppSettings())
             },
             onFail: function(e) {
                 return e && GroupsEdit.showMessage(e, "error"), !0
@@ -906,9 +906,10 @@ var GroupsEdit = {
                 t = e.length;
             if (GroupsEdit.updateMarketAppAvailable(), t) {
                 if (cur.tagRemoved) return void(cur.tagRemoved = !1);
-                e = e.pop(), e[0] < 0 ? (cur.marketCountryDD.clear(), cur.marketCountryDD.val(e, !1), cur.marketCountryDD.setOptions({
-                    maxItems: 1
-                }), cur.marketCityDD.hide()) : t > 1 ? cur.marketCityDD.hide() : (cur.marketCountryDD.setOptions({
+                e = e.pop(), e[0] < 0 ? (cur.marketCountryDD.clear(), cur.marketCountryDD.val(e, !1),
+                    cur.marketCountryDD.setOptions({
+                        maxItems: 1
+                    }), cur.marketCityDD.hide()) : t > 1 ? cur.marketCityDD.hide() : (cur.marketCountryDD.setOptions({
                     maxItems: 10
                 }), cur.marketCityDD.show())
             }
@@ -1014,9 +1015,21 @@ var GroupsEdit = {
         }))
     },
     showFeatureMarketAppTooltip: function(e) {
-        cur.hasMarketApp && (e = e || 0, setTimeout(function() {
-            cur.marketAppFeaturTT && cur.marketAppFeaturTT.show()
-        }, e))
+        if (cur.hasMarketApp) {
+            var t = 3e3;
+            e = e || 0, setTimeout(function() {
+                cur.marketAppFeaturTT && cur.marketAppFeaturTT.show()
+            }, e), cur.autoCloseMarketAppTimer && clearTimeout(cur.autoCloseMarketAppTimer), cur.autoCloseMarketAppTimer = setTimeout(function() {
+                GroupsEdit.hideFeatureMarketAppTooltip()
+            }, t), isArray(cur.destroy) && cur.destroy.push(function() {
+                clearTimeout(cur.autoCloseMarketAppTimer)
+            })
+        }
+    },
+    openMarketAppSetting: function(e) {
+        return GroupsEdit.hideFeatureMarketAppTooltip(), showWiki({
+            w: e
+        })
     },
     hideFeatureMarketAppTooltip: function() {
         cur.marketAppFeaturTT && cur.marketAppFeaturTT.hide()
