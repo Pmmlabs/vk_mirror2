@@ -380,7 +380,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                 l && re(l)
             }
             var r = se('<div class="audio_section _audio_section _audio_section__' + e + " audio_section__" + e + ' clear_fix audio_w_covers">' + i + "</div>");
-            this._els.sections.appendChild(r), s && ("recoms" === e && (this._els.recomsBlocks.innerHTML = s), "search" === e && (this._els.searchBlocks.innerHTML = s)), delete this._currentSection, this.showSection(e, t, !1)
+            this._els.sections.appendChild(r), s || (s = ""), "recoms" === e && (this._els.recomsBlocks.innerHTML = s), "search" === e && (this._els.searchBlocks.innerHTML = s), delete this._currentSection, this.showSection(e, t, !1)
         }.bind(this)
     }), delete this._sectionData
 }, AudioPage.prototype._onSectionOut = function(e) {

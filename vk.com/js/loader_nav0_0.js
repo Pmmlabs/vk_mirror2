@@ -158,7 +158,7 @@ var stVersions = {
     'audioplayer.js': 7703316467,
     'audioplayer.css': 18620452530,
     'audio_html5.js': 287741914,
-    'audio.js': 3826686695,
+    'audio.js': 1557944505,
     'cmodules/web/audio_admins.js': 5876846224,
     'audio.css': 29251510244,
     'audio_admins.css': 20824058769,
@@ -635,4 +635,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 7880;
+var _rnd = 4968;
