@@ -68,6 +68,19 @@ a.group_ad_post_stats {
     margin-left: 6px
 }
 
+.NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage__strikesHint {
+    float: right;
+    margin: 19px 0 0;
+    width: 19px;
+    height: 19px
+}
+
+.NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage__strikesHint__tooltip {
+    width: 430px;
+    margin-top: 17px;
+    margin-left: 28px
+}
+
 .NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage--strikes {
     padding: 20px
 }
@@ -84,6 +97,37 @@ a.group_ad_post_stats {
     -moz-osx-font-smoothing: auto
 }
 
+.NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage--strikes .NemesisContentReportsPage--strikes--block .NemesisContentReportsPage--header:hover .checkbox {
+    display: block
+}
+
+.NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage--strikes .NemesisContentReportsPage--strikes--block .NemesisContentReportsPage--header .checkbox {
+    display: none;
+    float: right;
+    margin-right: 10px
+}
+
+.NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage--strikes .NemesisContentReportsPage--strikes--block .NemesisContentReportsPage--header .checkbox.checkbox--forced {
+    display: block
+}
+
+.NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage__strikeAppealMenu {
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0px;
+    background: #fafbfc;
+    border: 1px solid #e7e8ec;
+    padding: 15px 20px
+}
+
+.NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage__strikeAppealMenu .NemesisContentReportsPage__strikeAppealMenu__label {
+    float: left
+}
+
+.NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage__strikeAppealMenu .NemesisContentReportsPage__strikeAppealMenu__actions {
+    float: right
+}
+
 .NemesisContentReportsPage .NemesisContentReportsPage--strikes-block .NemesisContentReportsPage--strikes--empty-label {
     padding: 20px;
     color: #939393
@@ -93,6 +137,10 @@ a.group_ad_post_stats {
     padding: 20px 0px;
     border-bottom: 1px solid #e7e8ec;
     position: relative
+}
+
+.Strike:hover .Strike--top .checkbox {
+    display: block
 }
 
 .Strike.expired {
@@ -115,6 +163,16 @@ a.group_ad_post_stats {
     height: 8px;
     border-radius: 50%;
     margin-left: 8px
+}
+
+.Strike .Strike--top .checkbox {
+    float: right;
+    margin-right: 10px;
+    display: none
+}
+
+.Strike .Strike--top .checkbox.checkbox--forced {
+    display: block
 }
 
 .Strike .Strike--field {

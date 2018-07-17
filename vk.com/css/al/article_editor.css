@@ -1611,6 +1611,10 @@
     margin-top: 24px
 }
 
+.article_ed_layer .article_ed_layer__publish_settings .checkbox+.article_ed_layer__publish_settings_ads {
+    margin-top: 10px
+}
+
 .article_ed_layer .article_ed_layer__publish_settings .article_ed_layer__publish_settings_footer {
     margin-top: 26px
 }
