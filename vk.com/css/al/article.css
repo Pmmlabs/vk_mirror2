@@ -1942,6 +1942,10 @@ body.article_body .article_layer {
     right: -41px
 }
 
+.article_layer .article_adsblock {
+    margin: 40px 0 10px
+}
+
 .article_full_view {
     transform: translateZ(0);
     position: fixed;

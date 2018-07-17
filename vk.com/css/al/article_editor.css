@@ -1606,7 +1606,8 @@
     right: 0
 }
 
-.article_ed_layer .article_ed_layer__publish_settings .article_ed_layer__publish_settings_ofm {
+.article_ed_layer .article_ed_layer__publish_settings .article_ed_layer__publish_settings_ofm,
+.article_ed_layer .article_ed_layer__publish_settings .article_ed_layer__publish_settings_ads {
     margin-top: 24px
 }
 

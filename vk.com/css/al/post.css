@@ -722,10 +722,20 @@ a.page_post_thumb_wrap:hover {
     background-position: 0 -16px!important
 }
 
+.media_voting_can_vote.media_voting_clickable_option .media_voting_option_wrap:not(.media_voting_option_selected):hover .media_voting_option {
+    background: #d5dce3
+}
+
+.media_voting_can_vote.media_voting_clickable_option .media_voting_option_wrap.media_voting_option_selected:hover .media_voting_option {
+    background: #cfd8e3
+}
+
 .media_voting_option {
     border-radius: 4px;
     background: #e5eaf0;
     min-height: 30px;
+    -o-transition: background-color 0.1s;
+    transition: background-color 0.1s;
     display: -ms-flexbox;
     display: flex;
     position: relative;
@@ -1057,7 +1067,22 @@ a.page_post_thumb_wrap:hover {
 
 .media_voting_bg_gradient .media_voting_option,
 .media_voting_bg_photo .media_voting_option,
-.media_voting_bg_tile .media_voting_option,
+.media_voting_bg_tile .media_voting_option {
+    background: hsla(0, 0%, 100%, .12)
+}
+
+.media_voting_bg_gradient.media_voting_can_vote.media_voting_clickable_option .media_voting_option_wrap:not(.media_voting_option_selected):hover .media_voting_option,
+.media_voting_bg_photo.media_voting_can_vote.media_voting_clickable_option .media_voting_option_wrap:not(.media_voting_option_selected):hover .media_voting_option,
+.media_voting_bg_tile.media_voting_can_vote.media_voting_clickable_option .media_voting_option_wrap:not(.media_voting_option_selected):hover .media_voting_option {
+    background: hsla(0, 0%, 100%, .18)
+}
+
+.media_voting_bg_gradient.media_voting_can_vote.media_voting_clickable_option .media_voting_option_wrap.media_voting_option_selected:hover .media_voting_option,
+.media_voting_bg_photo.media_voting_can_vote.media_voting_clickable_option .media_voting_option_wrap.media_voting_option_selected:hover .media_voting_option,
+.media_voting_bg_tile.media_voting_can_vote.media_voting_clickable_option .media_voting_option_wrap.media_voting_option_selected:hover .media_voting_option {
+    background: hsla(0, 0%, 100%, .3)
+}
+
 .media_voting_bg_gradient .media_voting_option_wrap .media_voting_option_bar,
 .media_voting_bg_photo .media_voting_option_wrap .media_voting_option_bar,
 .media_voting_bg_tile .media_voting_option_wrap .media_voting_option_bar {

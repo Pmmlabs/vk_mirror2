@@ -1123,10 +1123,7 @@
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    color: #2a5885;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap
+    color: #2a5885
 }
 
 .audio_page_layout .audio_block_small_item .audio_block_small_item__title .group_link,
@@ -1149,6 +1146,13 @@
 
 .audio_page_layout .audio_block_small_item .audio_block_small_item__subscribers {
     color: #939393
+}
+
+.audio_page_layout .audio_block_small_item .audio_block_small_item__subscribers,
+.audio_page_layout .audio_block_small_item .audio_block_small_item__title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
 }
 
 .audio_page_layout .audio_page_block__custom_items {
