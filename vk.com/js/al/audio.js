@@ -305,7 +305,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     var t = geByClass1("_audio_section_tab__" + e, this._els.pageContainer);
     t ? uiTabs.switchTab(domFC(t)) : removeClass(geByClass1("ui_tab_sel", this._els.pageContainer), "ui_tab_sel")
 }, AudioPage.prototype.onLayerHide = function() {
-    this._deinitNavigation(), this._deinitKeyEvents(), this._onSectionOut(), delete this._currentSection, this._muteSearch = !0, uiSearch.reset(this._els.searchInput, !0)
+    this._deinitNavigation(), this._deinitKeyEvents(), this._onSectionOut(), delete this._currentSection, this._muteSearch = !0, geByClass1("audio_page_player2") && hide(this._els.searchNoLocalResults), uiSearch.reset(this._els.searchInput, !0)
 }, AudioPage.prototype.updateLayerHeight = function() {
     var e = 700;
     e = Math.min(e, window.innerHeight - 150), e = Math.max(e, 400), isVisible(this._els.footer) && (e -= getSize(this._els.footer)[1]), setStyle(this._els.scrollWrap, {
@@ -335,13 +335,18 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     var a = geByClass1("audio_page_player2") && "search" === e;
     if (this._currentSection === e && "search" !== this._currentSection) return void(isFunction(t) && t());
     this._currentSection = e;
-    var o = geByClass1("_audio_section__" + e, this._els.sections);
+    var o = geByClass1("_audio_section__" + e, this._els.sections),
+        s = this._data.sectionData[e];
     if (o && (!a || i === !1)) {
-        each(geByClass("_audio_section", this._els.pageContainer), function() {
-            hide(this)
-        }), hide(this._els.searchGlobalBlocks), hide(this._els.searchGlobalCommunitiesPlace), hide(this._els.searchGlobalPlaylistsPlace), hide(this._els.searchGlobalArtistsPlace), hide(this._els.searchGlobalAudiosBlock), toggle(this._els.recomsBlocks, "recoms" === e && !this.isLayer()), toggle(this._els.searchBlocks, "search" === e), show(o), this._onSectionOut(), delete cur._back;
-        var s = this._data.sectionData[e];
-        switch (e) {
+        if (each(geByClass("_audio_section", this._els.pageContainer), function() {
+                hide(this)
+            }), hide(this._els.searchGlobalBlocks), hide(this._els.searchGlobalCommunitiesPlace), hide(this._els.searchGlobalPlaylistsPlace), hide(this._els.searchGlobalArtistsPlace), hide(this._els.searchGlobalAudiosBlock), toggle(this._els.recomsBlocks, "recoms" === e && !this.isLayer()), toggle(this._els.searchBlocks, "search" === e), show(o), geByClass1("audio_page_player2") && (hide(this._els.searchNoLocalResults), "search" === e && !o.innerHTML)) {
+            show(this._els.searchNoLocalResults);
+            var l = vk.id == this._ownerId ? ap.langs.audio_no_local_results : this._ownerId > 0 ? ap.langs.audio_no_user_local_results : ap.langs.audio_no_group_local_results,
+                r = winToUtf(clean(s.searchParams.globalQuery));
+            this._els.searchNoLocalResults.innerHTML = l.replace("{query}", "<strong>" + r + "</strong>")
+        }
+        switch (this._onSectionOut(), delete cur._back, e) {
             case "current":
                 this._initSection_all(o, s, !0);
                 break;
@@ -1312,7 +1317,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             q: e || null
         }), !1, {
             fromSearch: !0,
-            globalQuery: t,
+            globalQuery: e,
             fromHistory: i,
             isLayer: this.isLayer()
         })
@@ -1551,9 +1556,10 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         i && -1 != i.indexOfAudio(s) ? n = i : a && -1 != a.indexOfAudio(s) ? n = a : (n = new AudioPlaylist(AudioPlaylist.TYPE_TEMP, vk.id), n.addAudio(s)), delete this._readyAudio, cur.audioStartReadyAudio = !0, t.play(s, n)
     }
 }, AudioPage.prototype.promoShowMore = function() {
-    nav.go("/app5955265_-128786769#utm_source=vk&utm_medium=vkmusic&utm_campaign=music_bar"), setTimeout(function() {
-        this.promoClose(!0)
-    }.bind(this), 3e3)
+    nav.go("/app5955265_-128786769#utm_source=vk&utm_medium=vkmusic&utm_campaign=music_bar"),
+        setTimeout(function() {
+            this.promoClose(!0)
+        }.bind(this), 3e3)
 }, AudioPage.prototype.promoClose = function(e) {
     hide(this._els.vkMobilePromo), ajax.post("al_audio.php", {
         act: "vkmobile_hide_promo",
@@ -1569,5 +1575,5 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     toggleClass(this._els.player, "audio_page_player_show_remove_ads", !!e)
 };
 try {
-    stManager.done("audio.js");
+    stManager.done("audio.js")
 } catch (e) {}

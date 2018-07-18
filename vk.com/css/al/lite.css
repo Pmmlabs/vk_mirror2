@@ -4271,6 +4271,114 @@ div.top_result_baloon a {
     font-size: 13px
 }
 
+.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__action_btn_add,
+.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__action_btn_listen {
+    padding-right: 10px
+}
+
+.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__action_btn_add_text,
+.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__action_btn_listen_text {
+    display: none
+}
+
+.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_line_small {
+    display: block
+}
+
+.reply_text .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_line_small {
+    line-height: 20px
+}
+
+.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_line_small>.audio_pl_snippet__artist_link {
+    padding-right: 5px
+}
+
+.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_line_small>.dvd:first-of-type,
+.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_author,
+.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_line {
+    display: none
+}
+
+.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__header {
+    height: 63px
+}
+
+.reply_text .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__header {
+    height: 83px
+}
+
+.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__header_inner {
+    height: 64px
+}
+
+.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__cover {
+    width: 64px;
+    height: 64px
+}
+
+.reply_text .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__cover {
+    width: 84px;
+    height: 84px
+}
+
+.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_title {
+    font-size: 16px;
+    line-height: 18px
+}
+
+.reply_text .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_title {
+    line-height: 20px
+}
+
+.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info {
+    height: 64px;
+    margin-left: 64px;
+    padding: 12px 16px;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.pv_comments .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info {
+    margin: 0
+}
+
+.reply_text .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info {
+    height: 83px
+}
+
+.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_inner {
+    overflow: hidden;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    height: 40px
+}
+
+.reply_text .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_inner {
+    height: auto
+}
+
+.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__actions {
+    display: -ms-flexbox;
+    display: flex;
+    min-width: auto;
+    white-space: nowrap;
+    padding-left: 30px
+}
+
+.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__action_btn_share {
+    float: none
+}
+
 .audio_pl_snippet2.audio_pl_snippet_size_medium .audio_pl_snippet__action_btn {
     padding-right: 10px
 }
@@ -4600,7 +4708,6 @@ div.top_result_baloon a {
 }
 
 .pv_comments .audio_pl_snippet2 .audio_pl_snippet__action_btn_add,
-.im_msg_media_audio_playlist .audio_pl_snippet2 .audio_pl_snippet__action_btn_add_text,
 .reply_text .audio_pl_snippet2 .audio_pl_snippet__action_btn_add_text {
     display: none
 }
@@ -4786,105 +4893,6 @@ div.top_result_baloon a {
 
 .audio_pl_snippet2 .audio_pl__type_main_only .audio_row .audio_row__title:before {
     display: none
-}
-
-.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_line_small {
-    display: block
-}
-
-.reply_text .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_line_small {
-    line-height: 20px
-}
-
-.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_line_small>.audio_pl_snippet__artist_link,
-.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_line_small>.mem_link {
-    display: block
-}
-
-.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_line_small>.dvd:first-of-type,
-.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_author,
-.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_line {
-    display: none
-}
-
-.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__header {
-    height: 63px
-}
-
-.reply_text .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__header {
-    height: 83px
-}
-
-.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__header_inner {
-    height: 64px
-}
-
-.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__cover {
-    width: 64px;
-    height: 64px
-}
-
-.reply_text .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__cover {
-    width: 84px;
-    height: 84px
-}
-
-.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_title {
-    font-size: 16px;
-    line-height: 18px
-}
-
-.reply_text .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_title {
-    line-height: 20px
-}
-
-.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info {
-    height: 64px;
-    margin-left: 64px;
-    padding: 12px 16px;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -ms-flex-align: center;
-    align-items: center
-}
-
-.pv_comments .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info {
-    margin: 0
-}
-
-.reply_text .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info {
-    height: 83px
-}
-
-.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_inner {
-    overflow: hidden;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -ms-flex-align: start;
-    align-items: flex-start;
-    -ms-flex-negative: 1;
-    flex-shrink: 1;
-    height: 40px
-}
-
-.reply_text .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_inner {
-    height: auto
-}
-
-.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__actions {
-    display: -ms-flexbox;
-    display: flex;
-    min-width: auto;
-    white-space: nowrap;
-    padding-left: 30px
-}
-
-.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__action_btn_share {
-    float: none
 }
 
 .audio_pl_snippet2 .audio_shuffle_all_button {

@@ -417,7 +417,7 @@ var TR_ADDRESS = "translation";
                         cid: null
                     })), a && setTimeout(function() {
                         ge("box_layer_wrap").scrollTop = cur.translatorsLogBoxOffset, delete cur.translatorsLogBoxOffset
-                    }, 150), cur.onBoxKeyDownEvent && (removeEvent(window, "keydown", cur.onBoxKeyDownEvent), delete cur.onBoxKeyDownEvent), delete cur.keySectionsDD, delete cur.keyBoxValueHeight, cur.showedScreen || (delete cur.translationBoxParams, delete cur.translationsScreensList, delete ajaxCache["/" + TR_ADDRESS + "#" + ajx2q(o)], delete cur.translationBoxType, delete cur.translationsScreensListAll, delete cur.translationBoxKeySelectedLang, delete cur.translationBoxKeySelectedLangList, delete cur.translationBoxSelectedStatus, delete cur.translationBoxAddCommentHash, delete cur.translationKeyLanguagesDD, window.TranslationDiscussions && TranslationDiscussions.destroy()), delete cur.translationBoxOpened, delete cur.translationBoxFocusedForm, delete cur.translationBoxIsInlineTranslation, delete cur.translationBoxNeedHideBox)
+                    }, 150), cur.onBoxKeyDownEvent && (removeEvent(window, "keydown", cur.onBoxKeyDownEvent), delete cur.onBoxKeyDownEvent), delete cur.keySectionsDD, delete cur.keyBoxValueHeight, cur.showedScreen || (delete cur.translationBoxParams, delete cur.translationsScreensList, delete ajaxCache["/" + TR_ADDRESS + "#" + ajx2q(o)], delete cur.translationBoxType, delete cur.translationsScreensListAll, delete cur.translationBoxKeySelectedLang, delete cur.translationBoxKeySelectedLangList, delete cur.translationBoxSelectedStatus, delete cur.translationKeyLanguagesDD, window.TranslationDiscussions && TranslationDiscussions.destroy()), delete cur.translationBoxOpened, delete cur.translationBoxFocusedForm, delete cur.translationBoxIsInlineTranslation, delete cur.translationBoxNeedHideBox)
                 },
                 onShow: function() {
                     cur.translationBoxParams = [e, t, a], cur.translationsScreensList || (cur.translationsScreensList = []), delete cur.showedAttachScreenBox, cur.translationBoxNeedHideBox && curBox().hide()
@@ -1095,7 +1095,7 @@ var TR_ADDRESS = "translation";
             width: 1 == t ? 500 : 900
         });
         var a = radioval("tr_key_settings_status");
-        (a === _KEY_SETTINGS_STATUS_TRANSLATE_CUSTOM_LANGUAGES || a === _KEY_SETTINGS_STATUS_EVERYONE_BUT) && show("translations_settings_languages_wrap")
+        (a === _KEY_SETTINGS_STATUS_TRANSLATE_CUSTOM_LANGUAGES || a === _KEY_SETTINGS_STATUS_EVERYONE_BUT) && show("translations_settings_languages_wrap");
     }
     var _caseDropdown, _caseTokenDropdown, _functionTypeDropdown, _keysLangSelectorDropdown, _translatorsDateSelector, _languagesSortDropdown, _translatorsSortDropdown, _SPECIAL_CODES_REGEX = /((\%[a-z]+)|\{([a-zA-Z0-9\.\-\_\/]+)\})/gi,
         _KEY_SETTINGS_STATUS_TRANSLATE_TO_ALL = 0,

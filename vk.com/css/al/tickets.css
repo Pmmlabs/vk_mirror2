@@ -567,6 +567,10 @@ input.text.tickets_post_form_panel_vkpay__code {
     text-decoration: line-through
 }
 
+.tickets_header_title .title_finished {
+    color: #4e5966
+}
+
 .tickets_header_title_locked {
     height: 11px;
     width: 10px;

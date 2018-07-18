@@ -84,6 +84,10 @@ a .ads_sub_link:hover {
     float: right
 }
 
+#ads_page_wrap2 .faq_search_form {
+    margin-top: 16px
+}
+
 #ads_page_wrap1 {
     width: 950px;
     overflow: hidden

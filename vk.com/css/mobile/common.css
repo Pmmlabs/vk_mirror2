@@ -11904,7 +11904,8 @@ img[src^="/images/mobile/places/"] {
     overflow: hidden;
     font-weight: 500;
     padding: 0;
-    margin: 0
+    margin: 0;
+    line-height: normal
 }
 
 .Pad_noCapsTitle .Pad__title {
@@ -13215,6 +13216,11 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     border: 0
 }
 
+
+/*!
+ * Hacks
+ */
+
 .AudioBlock.Pad {
     border: none!important
 }
@@ -13288,6 +13294,10 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     position: fixed;
     visibility: hidden;
     width: 1px
+}
+
+.AudioSerp_noTabs .AudioSerp__tabs {
+    display: none
 }
 
 .AudioSerp .Pad {

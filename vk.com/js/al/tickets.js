@@ -1401,7 +1401,7 @@ var Tickets = {
                 className: "tickets_suggests"
             }), t.appendChild(a), hide(a)), ajax.post("support?act=a_load_faq_suggests", {
                 q: e,
-                section: cur.section,
+                section: cur.searchSection,
                 union_id: nav.objLoc.union_id
             }, {
                 cache: 1,
@@ -1425,7 +1425,7 @@ var Tickets = {
                 0: cur.objLoc,
                 act: cur.faqsAct
             };
-            t && (a.q = t), nav.go(a)
+            t && (a.q = t), nav.objLoc.union_id && (a.union_id = nav.objLoc.union_id), nav.go(a)
         }
     },
     goToForm: function(e, t, a, i) {

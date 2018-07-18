@@ -2140,6 +2140,10 @@ body.body_helpdesk_small_sb .left_menu_nav {
     color: #939393
 }
 
+.helpdesk_goto_neighbour_ticket {
+    padding: 8px 0
+}
+
 .helpdesk_reply_author_link {
     padding: 1px 0 0 18px;
     background-size: 14px 14px!important;

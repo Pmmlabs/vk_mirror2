@@ -318,14 +318,18 @@
 }
 
 .audio_pl_item2 .audio_pl__subtitle {
-    margin-top: 2px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #939393
+    color: #939393;
+    margin-top: 2px
 }
 
 .audio_pl_item2 .audio_pl__subtitle>a {
     color: #000
+}
+
+.audio_pl_item2 .audio_pl__subtitle,
+.audio_pl_item2 .audio_pl__year_subtitle {
+    overflow: hidden;
+    text-overflow: ellipsis
 }
 
 .audio_pl_item2.audio_pl__explicit .audio_item__title {
@@ -1312,7 +1316,15 @@
 }
 
 .audio_page_layout .no_rows {
-    padding: 10px 50px
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2264%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22m0%200h64v64h-64z%22%2F%3E%3Cpath%20d%3D%22m23%204.25305857v.24321237c0%201.44985843-1.0368716%202.69225117-2.4633437%202.95160973l-8.5366563%201.55211933.0464712%2011.6674172-.0464712-11.36936636c0-1.78124892%200-3.56249784%200-5.34374676%200-.95995048.6820329-1.78450769%201.6249541-1.96452044l7-1.33636752c.1236205-.02360035.2491928-.03547956.3750459-.03547956%201.1045695%200%202%20.8954305%202%202zm-11%2024.82414243c0-.7348001.0464712-8.4072028.0464712-8.4072028s-.0464712%207.3300018-.0464712%209.8300018v1.5973397c0%202.2174432-1.7438606%204.4213402-3.89502158%204.9346168%200%200-2.10497842.9680435-4.60497842-.0319565s-3.5-4.5-1-6.5%209.4535288-.8000031%209.5-4.3000031%200%203.4998485%200%202.8772041z%22%20stroke%3D%22%2300244d%22%20stroke-opacity%3D%22.25%22%20stroke-width%3D%222%22%20transform%3D%22translate(20%2013)%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-position: center 5px;
+    background-repeat: no-repeat;
+    padding-bottom: 10px;
+    padding-top: 80px
+}
+
+.audio_layer_container .audio_page_layout .no_rows {
+    margin-top: 25%
 }
 
 .audio_page_layout .audio_section_empty .audio_page__playlists_count_header {
