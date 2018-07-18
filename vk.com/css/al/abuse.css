@@ -1531,3 +1531,28 @@
     width: 75px;
     height: 2px
 }
+
+.abuse_call {
+    margin-top: 2px
+}
+
+.abuse_call .abuse_call_img {
+    width: 30px;
+    display: inline-block;
+    vertical-align: middle;
+    filter: grayscale(100%)
+}
+
+.abuse_call .abuse_call_text {
+    margin-left: 2px;
+    display: inline-block;
+    vertical-align: middle
+}
+
+.abuse_call .abuse_call_text .abuse_call_state_good {
+    color: #8ac176
+}
+
+.abuse_call .abuse_call_text .abuse_call_state_bad {
+    color: #e64646
+}

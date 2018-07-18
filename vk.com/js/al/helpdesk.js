@@ -1152,16 +1152,31 @@ var Helpdesk = {
         var t = ge("close_ticket_link"),
             s = geByClass1("progress", t),
             o = geByClass1("label", t);
-        return hide(o), show(s), ajax.post("helpdesk", {
-            act: "close_ticket",
+        return hide(o), show(s), ajax.post("helpdesk?act=a_close_ticket", {
             ticket_id: cur.ticket_id,
-            hash: e
+            hash: e,
+            tmp: isChecked("helpdesk_close_temporary")
         }, {
             onDone: Helpdesk._show,
             onFail: function() {
                 show(o), hide(s)
             }
         }), !1
+    },
+    toggleTicketClose: function(e, t) {
+        var s = ge("reply" + e);
+        ajax.post("helpdesk?act=a_toggle_close_ticket", {
+            ticket_id: cur.ticket_id,
+            reply_id: e,
+            hash: t
+        }, {
+            showProgress: addClass.pbind(s, "helpdesk_close_processing"),
+            hideProgress: removeClass.pbind(s, "helpdesk_close_processing"),
+            onDone: function(e) {
+                var t = se(e);
+                domReplaceEl(s, t)
+            }
+        })
     },
     sortFavorites: function(e, t) {
         e.sort(function(e, s) {
