@@ -222,9 +222,9 @@ var GroupsEdit = {
                 h = ge("group_edit_more_" + t);
             if (!g) return hide(h), val(_, GroupsEdit.uGenEmpty(r ? cur.opts.nfound[t] : getLang("groups_no_users_in_club"))), val("group_u_summary", ""), void checkPageBlocks();
             for (var m = e ? 0 : _.childNodes.length, v = Math.min(g, m + 20), f = [], c = m; v > c; ++c) {
-                var b = o[i[c]],
-                    k = (b || {})[2];
-                b && (a && (k = k.replace(a.re, a.val)), f.push(GroupsEdit.uGenRow(t, b, k)))
+                var k = o[i[c]],
+                    b = (k || {})[2];
+                k && (a && (b = b.replace(a.re, a.val)), f.push(GroupsEdit.uGenRow(t, k, b)))
             }
             e ? (hasClass(cur.searchCont, "ui_search_fixed") && scrollToY(getXY(cur.searchWrap)[1] + 1, 0), val(_, f.join("")), r ? val("group_u_summary", langNumeric(g, "%s", !0)) : GroupsEdit.uUpdateSummary()) : _.innerHTML += f.join(""), n && GroupsEdit.hideMessage(), toggle(h, g > v), checkPageBlocks()
         }
@@ -644,7 +644,15 @@ var GroupsEdit = {
         var n = ge("group_edit_twitter_export");
         n && (s.twitter_export = isChecked(n));
         var u = ge("group_edit_twitter_import");
-        u && (s.twitter_import = isChecked(u)), ajax.post("groupsedit.php", s, {
+        u && (s.twitter_import = isChecked(u));
+        var c = ge("groups_edit_phone");
+        if (c) {
+            var p = trim(ge("groups_edit_phone").value);
+            if (!p.match(/^\+?\d{0,20}$/)) return notaBene(ge("groups_edit_phone"));
+            s.phone = p
+        }
+        var d = ge("groups_edit_show_author");
+        d && (s.show_author = isChecked(d)), ajax.post("groupsedit.php", s, {
             onDone: function(e, t, r) {
                 return 0 > e ? GroupsEdit.nbAddr() : e === !1 ? notaBene(ge("group_edit_name")) : "edit_first" == nav.objLoc.act ? nav.go(nav.objLoc[0]) : (r && val("group_edit_name", replaceEntities(r)), GroupsEdit.showMessage(getLang("groups_saved_msg")), scrollToTop(), t != o && (each(geByTag("a"), function() {
                     this.href = this.href.replace(new RegExp("/" + t + "\\?", "g"), "/" + o + "?").replace(new RegExp("/" + t + "$", "g"), "/" + o)
@@ -906,10 +914,9 @@ var GroupsEdit = {
                 t = e.length;
             if (GroupsEdit.updateMarketAppAvailable(), t) {
                 if (cur.tagRemoved) return void(cur.tagRemoved = !1);
-                e = e.pop(), e[0] < 0 ? (cur.marketCountryDD.clear(), cur.marketCountryDD.val(e, !1),
-                    cur.marketCountryDD.setOptions({
-                        maxItems: 1
-                    }), cur.marketCityDD.hide()) : t > 1 ? cur.marketCityDD.hide() : (cur.marketCountryDD.setOptions({
+                e = e.pop(), e[0] < 0 ? (cur.marketCountryDD.clear(), cur.marketCountryDD.val(e, !1), cur.marketCountryDD.setOptions({
+                    maxItems: 1
+                }), cur.marketCityDD.hide()) : t > 1 ? cur.marketCityDD.hide() : (cur.marketCountryDD.setOptions({
                     maxItems: 10
                 }), cur.marketCityDD.show())
             }

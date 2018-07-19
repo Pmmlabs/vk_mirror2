@@ -239,7 +239,7 @@ extend(UiControl.prototype, {
             return t.replace(n, "$2<em>$3</em>")
         },
         formatResult: function(t) {
-            return t[1] + ("string" == typeof t[2] ? " <span>" + t[2] + "</span>" : "")
+            return t[1] + (t[2] && "string" == typeof t[2] ? " <span>" + t[2] + "</span>" : "")
         },
         lastOptionWithoutCommaAtEnd: !1
     },

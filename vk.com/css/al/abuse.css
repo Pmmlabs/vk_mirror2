@@ -1549,10 +1549,6 @@
     vertical-align: middle
 }
 
-.abuse_call .abuse_call_text .abuse_call_state_good {
-    color: #8ac176
-}
-
-.abuse_call .abuse_call_text .abuse_call_state_bad {
-    color: #e64646
+.abuse_call .abuse_call_text .abuse_call_state {
+    color: #828282
 }

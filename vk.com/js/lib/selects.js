@@ -483,9 +483,15 @@ function StationDistrictSelect(fields, input, container, options) {
 }
 
 function StationSelect(input, container, options) {
-    return StationDistrictSelect(1, input, container, extend(options, {
+    var fields = 1;
+    var obj = 'stations';
+    if (options.station_color) {
+        fields = 32;
+        obj = 'stations_with_color';
+    }
+    return StationDistrictSelect(fields, input, container, extend(options, {
         placeholder: options.placeholder ? options.placeholder : getLang('select_station_not_selected'),
-        obj: 'stations',
+        obj: obj,
         value: options.station
     }));
 }
@@ -1894,6 +1900,11 @@ function CitySelect(input, container, options) {
                 city: new_value
             });
         }
+        if (opts.stationSelectWithColor) {
+            opts.stationSelectWithColor.setOptions({
+                city: new_value
+            });
+        }
     }
 
     function zeroChildren() {
@@ -1914,6 +1925,9 @@ function CitySelect(input, container, options) {
         }
         if (selector.options.universitySelect) {
             selector.options.universitySelect.val('', true);
+        }
+        if (options.stationSelectWithColor) {
+            options.stationSelectWithColor.zero();
         }
     }
 
@@ -1948,6 +1962,9 @@ function CitySelect(input, container, options) {
                     }
                     if (options.universitySelect) {
                         fields |= 8;
+                    }
+                    if (options.stationSelectWithColor) {
+                        fields |= 32;
                     }
                     selectsData.getCityInfo(value, fields, function() {
                         updateChildren(value);
@@ -2403,7 +2420,8 @@ function _SelectsData() {
                 schools: info.schools || false,
                 universities: info.universities || false,
                 districts: info.districts || false,
-                stations: info.stations || false
+                stations: info.stations || false,
+                stations_with_color: info.stations_with_color || false
             };
     }
 
@@ -2527,6 +2545,9 @@ function _SelectsData() {
                 }
                 if ((fields & 16) && !fields_needed && cities[city].completed_streets == -1) {
                     $fields_needed = -1;
+                }
+                if ((fields & 32) && !cities[city].stations_with_color) {
+                    fields_needed |= 32;
                 }
             } else {
                 fields_needed = fields;

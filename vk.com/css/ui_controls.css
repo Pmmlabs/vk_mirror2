@@ -24,6 +24,91 @@
     padding: 0
 }
 
+.metro_colored:before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    position: absolute;
+    margin-top: 5px
+}
+
+.metro_color_0:before {
+    background: #000
+}
+
+.metro_color_ff0001:before {
+    background: #ff0001
+}
+
+.metro_color_0000ff:before {
+    background: #00f
+}
+
+.metro_color_000000:before {
+    background: #000
+}
+
+.metro_color_ff0000:before {
+    background: red
+}
+
+.metro_color_ffffff:before {
+    background: #fff
+}
+
+.metro_color_ff0001:before {
+    background: #ff0001
+}
+
+.metro_color_fccc0a:before {
+    background: #fccc0a
+}
+
+.metro_color_00933c:before {
+    background: #00933c
+}
+
+.metro_color_ff6319:before {
+    background: #ff6319
+}
+
+.metro_color_4dc6f4:before {
+    background: #4dc6f4
+}
+
+.metro_color_a7a9ac:before {
+    background: #a7a9ac
+}
+
+.metro_color_2850ad:before {
+    background: #2850ad
+}
+
+.metro_color_9300c4:before {
+    background: #9300c4
+}
+
+.metro_color_ee352e:before {
+    background: #ee352e
+}
+
+.metro_color_a8d92d:before {
+    background: #a8d92d
+}
+
+.metro_color_a6b4d2:before {
+    background: #a6b4d2
+}
+
+.metro_color_00b8ac:before {
+    background: #00b8ac
+}
+
+.metro_color_996633:before {
+    background: #963
+}
+
 .checkbox_container,
 .selector_container {
     zoom: 1
@@ -589,6 +674,15 @@
 .big_text .result_list ul li {
     padding: 7px 0 9px 12px;
     font-size: 14px
+}
+
+.result_list ul li .metro_colored {
+    margin-left: 12px;
+    position: inherit
+}
+
+.result_list ul li .metro_colored:before {
+    margin-left: -11px
 }
 
 .dividing_line ul li {

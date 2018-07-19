@@ -204,6 +204,13 @@ var Page = {
             });
             cancelEvent(ev);
         },
+        showMoreActions: function(btn) {
+            var moreActionMenu = geByClass1('page_actions_more', btn.parentElement);
+            if (moreActionMenu) {
+                hide(btn);
+                slideDown(moreActionMenu, 150);
+            }
+        },
         toggleSubscription: function(btn, hash, ev, oid, source, onDone) {
             var act = parseInt(domData(btn, 'act')) ? 1 : 0;
 
@@ -220,6 +227,10 @@ var Page = {
                     } else {
                         val(btn, text);
                         btn.setAttribute('data-act', act ? 0 : 1);
+                        if (hasClass(btn, 'groups_notify_on') || hasClass(btn, 'groups_notify_off')) {
+                            toggleClass(btn, 'groups_notify_on');
+                            toggleClass(btn, 'groups_notify_off');
+                        }
                     }
                 },
                 showProgress: Page.actionsDropdownLock.pbind(btn),

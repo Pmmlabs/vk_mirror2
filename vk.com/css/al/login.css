@@ -1564,3 +1564,7 @@ table.login_blocked_reason_thumbs {
 .login_change_mail_box .done_msg {
     padding-bottom: 10px
 }
+
+.login_ban_message_call {
+    color: #828282
+}
