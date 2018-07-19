@@ -1929,6 +1929,21 @@ a.tickets_question_row_tt_unread {
     color: #2b587a
 }
 
+.tickets_block_link.close .checkbox {
+    border-radius: 5px;
+    display: inline-block;
+    margin: -2px 0 -2px 6px;
+    padding: 4px 8px
+}
+
+.tickets_block_link.close .checkbox:hover {
+    background: #d1d9e0
+}
+
+.tickets_block_link.close .progress {
+    height: 19px
+}
+
 .tickets_block_link.opened {
     background: #fff;
     border-bottom: 1px solid #e7e8ec

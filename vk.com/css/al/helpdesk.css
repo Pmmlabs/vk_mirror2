@@ -2155,6 +2155,26 @@ body.body_helpdesk_small_sb .left_menu_nav {
     margin: -1px 0 0
 }
 
+.helpdesk_close_processing #undo_link {
+    display: none
+}
+
+.helpdesk_close_processing .helpdesk_close_toggle {
+    pointer-events: none
+}
+
+.helpdesk_close_toggle {
+    border-bottom: 1px dotted;
+    color: #555;
+    display: inline-block;
+    line-height: 11px
+}
+
+.helpdesk_close_toggle:hover {
+    border-bottom: 1px solid;
+    text-decoration: none
+}
+
 .helpdesk_payout_log_table {
     border-collapse: collapse;
     width: 100%

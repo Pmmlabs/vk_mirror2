@@ -4663,6 +4663,7 @@ div.top_result_baloon a {
     cursor: pointer;
     display: inline-block;
     font-size: 14px;
+    font-weight: 500;
     height: 24px;
     line-height: 24px;
     padding: 0 24px 0 30px;
@@ -4801,8 +4802,12 @@ div.top_result_baloon a {
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%228%22%20viewBox%3D%220%200%208%208%22%20width%3D%228%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22%22%3E%3Cpath%20d%3D%22m0%200h8v8h-8z%22%2F%3E%3Cpath%20d%3D%22m.79998779%202.69995117%203.20001221%202.60009766%203.20001221-2.60009766%22%20stroke%3D%22%2392a0b1%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.3%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 50%
 }
 
-.audio_pl_snippet2 .audio_pl_snippet__action_btn_more.shown .ui_actions_menu,
+.audio_pl_snippet2 .audio_pl_snippet__action_btn_more.shown .ui_actions_menu {
+    top: 30px
+}
+
 .audio_pl_snippet2 .audio_pl_snippet__action_btn_more .ui_actions_menu {
+    font-size: 13px;
     top: 30px
 }
 

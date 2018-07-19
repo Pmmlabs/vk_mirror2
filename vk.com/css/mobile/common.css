@@ -16974,22 +16974,51 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .snippet {
-    margin-top: 3px;
-    overflow: hidden
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+    margin-top: 8px
+}
+
+.snippet:after {
+    content: '';
+    position: absolute;
+    border: 1px solid rgba(0, 0, 0, .12);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none
 }
 
 .snippet__icon {
-    float: left;
-    width: 73px;
-    height: 73px;
+    width: 90px;
+    min-width: 90px;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px
+    -webkit-border-radius: 4px 0 0 4px;
+    -moz-border-radius: 4px 0 0 4px;
+    border-radius: 4px 0 0 4px;
+    position: relative
+}
+
+.snippet__icon:after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    bottom: 1px;
+    right: 0;
+    width: 1px;
+    background: rgba(0, 0, 0, .12)
 }
 
 .snippet_type_story .snippet__icon {
@@ -17006,7 +17035,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .snippet__texts {
-    margin-left: 80px
+    margin: 8px
 }
 
 .snippet__title {
@@ -17017,14 +17046,9 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .snippet__subtitle {
     color: #888;
     margin-bottom: 11px;
-    white-space: nowrap;
     overflow: hidden;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis
-}
-
-.snippet_type_mask .snippet__subtitle {
-    white-space: normal
 }
 
 .snippet__body {
@@ -17035,14 +17059,18 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     margin-top: 7px!important
 }
 
-@media (min-width: 350px) {
+@media (max-width: 319px) {
     .snippet__icon {
-        width: 90px;
-        height: 90px
+        display: none!important
     }
-    .snippet__texts {
-        margin-left: 99px
-    }
+}
+
+.vk_flex_no .snippet {
+    display: table
+}
+
+.vk_flex_no .snippet__icon {
+    display: table-cell
 }
 
 .prettyCard {
@@ -27233,8 +27261,8 @@ body.apps_settingsPageBody {
 .r .cp_attached_post .snippet_type_story,
 .r .wall_item .snippet_type_mask,
 .r .wall_item .snippet_type_story {
-    position: relative;
-    z-index: 1
+    margin-top: 8px;
+    position: relative
 }
 
 .r .cp_attached_post .snippet_type_mask .snippet__title,
@@ -27639,18 +27667,6 @@ body.apps_settingsPageBody {
         margin-left: auto!important;
         margin-right: auto!important;
         overflow: visible
-    }
-    .r .cp_attached_post .medias_thumbs:before,
-    .r .wall_item .wi_body>.pi_medias>.medias_thumbs:before {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        content: '';
-        background: #fff;
-        left: 0;
-        right: 0;
-        display: block;
-        z-index: 0
     }
     .r .cp_attached_post .medias_thumbs:before {
         background: transparent
@@ -29579,7 +29595,7 @@ body.apps_settingsPageBody {
     content: '';
     display: block;
     position: absolute;
-    top: -1px;
+    top: 0;
     left: 0;
     right: 0;
     height: 1px;
@@ -30109,21 +30125,19 @@ body.apps_settingsPageBody {
     }
 }
 
-.r .e .pi_medias>.medias_thumbs,
-.r .wall_item .wi_body>.pi_medias>.medias_thumbs {
+.r .wall_item .wi_body .pi_medias {
     position: relative
 }
 
-.r .e .pi_medias>.medias_thumbs:after,
-.r .wall_item .wi_body>.pi_medias>.medias_thumbs:after {
+.r .wall_item .wi_body .pi_medias:after {
     position: absolute;
-    top: 0;
     bottom: -1px;
     content: '';
     background: #fff;
     width: 100%;
+    height: 1px;
     display: block;
-    z-index: -1
+    z-index: 1
 }
 
 .r .cp_attached_post .medias_thumbs,
@@ -33725,6 +33739,15 @@ body.apps_settingsPageBody {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px
+}
+
+
+/*!
+ * View as attach (for the border hiding)
+ */
+
+.wall_item .pi_medias .VotingBcg {
+    margin-bottom: 1px
 }
 
 .VotingForm {

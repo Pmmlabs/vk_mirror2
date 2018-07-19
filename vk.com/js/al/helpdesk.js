@@ -1170,11 +1170,15 @@ var Helpdesk = {
             reply_id: e,
             hash: t
         }, {
-            showProgress: addClass.pbind(s, "helpdesk_close_processing"),
-            hideProgress: removeClass.pbind(s, "helpdesk_close_processing"),
-            onDone: function(e) {
-                var t = se(e);
-                domReplaceEl(s, t)
+            showProgress: function() {
+                addClass(s, "helpdesk_close_processing"), Helpdesk.showTicketProgress()
+            },
+            hideProgress: function() {
+                removeClass(s, "helpdesk_close_processing"), Helpdesk.hideTicketProgress()
+            },
+            onDone: function(e, t) {
+                var o = se(t);
+                domReplaceEl(s, o), val("helpdesk_ticket_status", e)
             }
         })
     },
