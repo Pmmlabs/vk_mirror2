@@ -623,8 +623,7 @@ a.group_ad_post_stats {
 }
 
 #group_edit_cta_button .group_edit_field .hint_icon {
-    margin-top: 6px;
-    margin-left: 9px
+    margin: 6px 0 0 9px
 }
 
 #group_edit_cta_button .group_edit_field .group_edit_input {

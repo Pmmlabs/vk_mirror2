@@ -197,7 +197,7 @@
 }
 
 .article>:last-child {
-    margin-bottom: 0
+    margin-bottom: 0!important
 }
 
 .article>h1 {
@@ -674,6 +674,18 @@
 
 .article:not(.article_mobile) figure[data-type="104"] {
     min-height: 530px
+}
+
+.article .article_source {
+    color: #939393
+}
+
+.article .article_source>a {
+    text-decoration: none
+}
+
+.article .article_source>a:hover {
+    text-decoration: underline
 }
 
 .article_view:after {
@@ -1182,6 +1194,10 @@
 .article_bottom_extra_info {
     margin-top: 10px;
     color: #939393
+}
+
+.article_adsblock {
+    margin: 10px 0 30px
 }
 
 .blog_entry_text .article,

@@ -846,6 +846,37 @@ var vkApp = function(cont, options, params, onInit) {
                 }
             });
         },
+
+        startHandleDeviceOrientation: function(handleOrientation, handleMotion) {
+            var motionListener, orientationListener;
+
+            if (window.DeviceMotionEvent === undefined && window.DeviceOrientationEvent === undefined) {
+                self.runCallback('onDeviceOrientationNotSupported');
+                return;
+            }
+
+            if (window.DeviceOrientationEvent !== undefined && handleOrientation) {
+                orientationListener = function(event) {
+                    self.runCallback('onDeviceOrientation', event.absolute, event.beta, event.gamma, event.alpha);
+                };
+                addEvent(window, 'deviceorientation', orientationListener);
+            }
+
+
+            if (window.DeviceMotionEvent !== undefined && handleMotion) {
+                motionListener = function(event) {
+                    self.runCallback('onDeviceMotion', event.accelerationIncludingGravity.x, event.accelerationIncludingGravity.y, event.accelerationIncludingGravity.z);
+                };
+                addEvent(window, 'devicemotion', motionListener);
+            }
+
+            if (window.cur && isArray(cur.destroy)) {
+                cur.destroy.push(function() {
+                    orientationListener && removeEvent(window, 'deviceorientation', orientationListener);
+                    motionListener && removeEvent(window, 'devicemotion', motionListener);
+                });
+            }
+        }
     };
 
     if (self.options.no_init) {

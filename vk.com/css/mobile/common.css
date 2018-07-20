@@ -17875,7 +17875,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .article>:last-child {
-    margin-bottom: 0
+    margin-bottom: 0!important
 }
 
 .article>h1 {
@@ -18390,6 +18390,18 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .article:not(.article_mobile) figure[data-type="104"] {
     min-height: 530px
+}
+
+.article .article_source {
+    color: #939393
+}
+
+.article .article_source>a {
+    text-decoration: none
+}
+
+.article .article_source>a:hover {
+    text-decoration: underline
 }
 
 .article_view:after {
@@ -18919,6 +18931,10 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .article_bottom_extra_info {
     margin-top: 10px;
     color: #939393
+}
+
+.article_adsblock {
+    margin: 10px 0 30px
 }
 
 .blog_entry_text .article,
@@ -19499,9 +19515,12 @@ figure[data-type="102"] .article_object_video_play {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2248%22%20height%3D%2248%22%20viewBox%3D%220%200%2048%2048%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ctitle%3EGroup%206%3C%2Ftitle%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h48v48H0z%22%2F%3E%3Cpath%20d%3D%22M12%2018v-6c.667-8%204.667-12%2012-12s11.333%204%2012%2012v6c4%200%206%202%206%206v18c0%204-2%206-6%206H12c-4%200-6-2-6-6V24c0-4%202-6%206-6zm4-6v6h16v-6c-.667-5.333-3.333-8-8-8s-7.333%202.667-8%208z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")!important
 }
 
+.article_misc_block {
+    padding: 0 16px 20px
+}
+
 .article_layer_prev_next {
-    display: none;
-    margin-top: 22px
+    margin-top: 20px
 }
 
 .article_layer_prev_next .article_layer_next {

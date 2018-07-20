@@ -8783,9 +8783,7 @@ function articlePrepare(articleUrl) {
     }
 
     stManager.add([jsc('web/article_layer.js'), 'article.css'], function() {
-        ArticleLayer.prepare({
-            url: articleUrl
-        })
+        ArticleLayer.prepare(articleUrl)
     })
 }
 

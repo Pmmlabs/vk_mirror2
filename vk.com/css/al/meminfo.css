@@ -357,6 +357,10 @@ table.history .cur_session {
     padding: 0 10px 10px 0
 }
 
+.mi_vkpay_history_table td {
+    vertical-align: top
+}
+
 .mi_more_link {
     margin: 15px 18px 0;
     padding: 7px 0px;
