@@ -385,6 +385,7 @@ notes_done = "������";
 notes_livejournal_delete = "������� ��� ������ �� <b>LiveJournal<\/b>.";
 offers_reban = "������� � ������";
 offers_unban = "������� �� ������";
+pages_article_report_sent = "������ ����������";
 pagination_allpages = "���";
 payment_no_more_tries_msg = null;
 payments_N_tries_left_msg = ["", "� ��� �������� ���� �������.", "� ��� �������� %s �������.", "� ��� �������� %s �������."];
