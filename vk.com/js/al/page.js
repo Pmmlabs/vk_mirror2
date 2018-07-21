@@ -208,7 +208,7 @@ var Page = {
             var moreActionMenu = geByClass1('page_actions_more', btn.parentElement);
             if (moreActionMenu) {
                 hide(btn);
-                slideDown(moreActionMenu, 150);
+                show(moreActionMenu);
             }
         },
         toggleSubscription: function(btn, hash, ev, oid, source, onDone) {
@@ -227,9 +227,9 @@ var Page = {
                     } else {
                         val(btn, text);
                         btn.setAttribute('data-act', act ? 0 : 1);
-                        if (hasClass(btn, 'groups_notify_on') || hasClass(btn, 'groups_notify_off')) {
-                            toggleClass(btn, 'groups_notify_on');
-                            toggleClass(btn, 'groups_notify_off');
+                        if (hasClass(btn, 'page_menu_group_notify_on') || hasClass(btn, 'page_menu_group_notify_off')) {
+                            toggleClass(btn, 'page_menu_group_notify_on');
+                            toggleClass(btn, 'page_menu_group_notify_off');
                         }
                     }
                 },

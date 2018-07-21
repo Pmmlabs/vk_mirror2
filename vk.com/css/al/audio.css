@@ -1149,11 +1149,7 @@
 }
 
 .audio_page_layout .audio_block_small_item .audio_block_small_item__subscribers {
-    color: #939393
-}
-
-.audio_page_layout .audio_block_small_item .audio_block_small_item__subscribers,
-.audio_page_layout .audio_block_small_item .audio_block_small_item__title {
+    color: #939393;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap

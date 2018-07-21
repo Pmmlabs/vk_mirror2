@@ -42,12 +42,12 @@
         return i.d(e, "a", e), e
     }, i.o = function(t, e) {
         return Object.prototype.hasOwnProperty.call(t, e)
-    }, i.p = "", i(i.s = 3)
+    }, i.p = "", i(i.s = 2)
 }([function(__webpack_module__, __webpack_exports__, __webpack_require__) {
     "use strict";
     __webpack_require__.r(__webpack_exports__);
     var _audioplayer_audio_unmask_source__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1),
-        _audioplayer_audio_layer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2),
+        _audioplayer_audio_layer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3),
         _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
             return typeof t
         } : function(t) {
@@ -226,6 +226,7 @@
                     else if (vk.widget) actionsList = vk.id ? ["add"] : [];
                     else if (contextSection) switch (contextSection) {
                         case "my":
+                        case "search_owned_audios":
                         case "user_list":
                         case "group_list":
                             actionsList = ["recoms", "edit", "next", "add", "delete", "share", "open_album", "add_to_playlist"];
@@ -3115,6 +3116,8 @@
         for (var e, i, a = 0, s = 0, r = ""; i = t.charAt(s++);) ~(i = o.indexOf(i)) && (e = a % 4 ? 64 * e + i : i, a++ % 4) && (r += String.fromCharCode(255 & e >> (-2 * a & 6)));
         return r
     }
+}, function(t, e, i) {
+    t.exports = i(0)
 }, function(__webpack_module__, __webpack_exports__, __webpack_require__) {
     "use strict";
 
@@ -3193,6 +3196,4 @@
         }, AudioLayer
     }();
     __webpack_exports__.default = AudioLayer
-}, function(t, e, i) {
-    t.exports = i(0)
 }]);
