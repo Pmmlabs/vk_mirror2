@@ -640,4 +640,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 5161;
+var _rnd = 8296;
