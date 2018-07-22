@@ -5504,7 +5504,7 @@ img.im_photo_thumb {
 }
 
 .im-chat-input .im-chat-input--attach-label {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20opacity%3D%22.4%22%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20stroke%3D%22%23828A99%22%20stroke-width%3D%221.7%22%20d%3D%22M14.134%203.65c.853%200%201.46.278%201.988.899.017.019.494.61.66.815.228.281.674.536.945.536h.41C20.556%205.9%2022%207.463%2022%209.95v5.85c0%202.241-2%204.2-4.273%204.2H6.273c-2.267%200-4.223-1.953-4.223-4.2V9.95c0-2.496%201.4-4.05%203.814-4.05h.409c.271%200%20.717-.255.945-.536.166-.204.643-.796.66-.815.528-.621%201.135-.899%201.988-.899h4.268z%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%223.85%22%20stroke%3D%22%23828A99%22%20stroke-width%3D%221.7%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 50% no-repeat;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23828A99%22%20stroke-width%3D%221.7%22%3E%3Cpath%20d%3D%22M14.134%203.65c.853%200%201.46.278%201.988.899.017.019.494.61.66.815.228.281.674.536.945.536h.41C20.556%205.9%2022%207.463%2022%209.95v5.85c0%202.241-2%204.2-4.273%204.2H6.273c-2.267%200-4.223-1.953-4.223-4.2V9.95c0-2.496%201.4-4.05%203.814-4.05h.409c.271%200%20.717-.255.945-.536.166-.204.643-.796.66-.815.528-.621%201.135-.899%201.988-.899h4.268z%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%223.85%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 50% no-repeat;
     width: 24px;
     height: 24px;
     padding: 6px 7px 6px 5px;
@@ -5698,11 +5698,11 @@ img.im_photo_thumb {
     right: 73px;
     bottom: 0;
     cursor: pointer;
-    opacity: 1
+    opacity: .7
 }
 
 .im-chat-input .im_chat-input--keyboard-button:hover {
-    opacity: 0.9
+    opacity: .9
 }
 
 .im-chat-input .im_chat-input--keyboard-button.im_chat-input--keyboard-button_hidden {
@@ -5711,13 +5711,17 @@ img.im_photo_thumb {
 
 .im-chat-input .im_chat-input--keyboard-button .im_chat-input--keyboard-button-icon {
     display: block;
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20height%3D%2217.8%22%20rx%3D%224%22%20stroke%3D%22%23828a99%22%20stroke-width%3D%221.8%22%20width%3D%2217.8%22%20x%3D%223.1%22%20y%3D%223.1%22%20fill%3D%22none%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M9%207a2%202%200%201%201%200%204%202%202%200%200%201%200-4zm6%200a2%202%200%201%201%200%204%202%202%200%200%201%200-4zm-6%206a2%202%200%201%201%200%204%202%202%200%200%201%200-4zm6%200a2%202%200%201%201%200%204%202%202%200%200%201%200-4z%22%20fill%3D%22%23828a99%22%2F%3E%0A%3C%2Fsvg%3E");
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20height%3D%2217.8%22%20rx%3D%224%22%20stroke%3D%22%23828a99%22%20stroke-width%3D%221.8%22%20width%3D%2217.8%22%20x%3D%223.1%22%20y%3D%223.1%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M9%207a2%202%200%201%201%200%204%202%202%200%200%201%200-4zm6%200a2%202%200%201%201%200%204%202%202%200%200%201%200-4zm-6%206a2%202%200%201%201%200%204%202%202%200%200%201%200-4zm6%200a2%202%200%201%201%200%204%202%202%200%200%201%200-4z%22%20fill%3D%22%23828a99%22%2F%3E%3C%2Fsvg%3E");
     width: 24px;
     height: 24px
 }
 
 .im-chat-input .im-chat-input_open-keyboard .im_chat-input--keyboard-button {
-    opacity: 0.9
+    opacity: .9
+}
+
+.im-chat-input .im-chat-input_open-keyboard .im_chat-input--keyboard-button:hover {
+    opacity: 1
 }
 
 .im-chat-input .im-chat-input_open-keyboard .im_chat-input--keyboard-button .im_chat-input--keyboard-button-icon {

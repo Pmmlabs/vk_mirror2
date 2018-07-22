@@ -262,7 +262,7 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 211463970981,
+    'im.css': 211419256884,
     'imn.js': 259622124204,
     'im.js': 1322065005,
     'emoji.js': 2218734923,
@@ -640,4 +640,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 8296;
+var _rnd = 3015;
