@@ -1407,7 +1407,7 @@
 
 .audio_page_layout .audio_page_block__audios_empty:before {
     content: ' ';
-    display: block;
+    display: none;
     position: absolute;
     left: 50%;
     margin-left: -30px;

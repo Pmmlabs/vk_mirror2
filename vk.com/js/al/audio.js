@@ -331,7 +331,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     var t = geByClass1("_audio_section__" + e, this._els.sections);
     re(t)
 }, AudioPage.prototype.showSection = function(e, t, i) {
-    "search" !== this._currentSection || "all" !== e && "current" !== e || uiSearch.reset(this._els.searchInput, !0), this._switchTab(e);
+    "search" !== this._currentSection || "all" !== e && "current" !== e || uiSearch.reset(this._els.searchInput, !0), layers.fullhide && layers.fullhide(), this._switchTab(e);
     var a = geByClass1("audio_page_player2") && "search" === e;
     if (this._currentSection === e && "search" !== this._currentSection) return void(isFunction(t) && t());
     this._currentSection = e;
@@ -685,12 +685,13 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             Q = !1;
             var e = r();
             if (e) {
-                U = k.getPlaylist(AudioPlaylist.TYPE_SEARCH, vk.id, hashCode(e + "no conflict")), U.mergeWith({
-                    searchParams: {
-                        globalQuery: e
-                    },
-                    hasMore: !0
-                }), D && D.destroy();
+                U = k.getPlaylist(AudioPlaylist.TYPE_SEARCH, vk.id, hashCode(e + "no conflict")),
+                    U.mergeWith({
+                        searchParams: {
+                            globalQuery: e
+                        },
+                        hasMore: !0
+                    }), D && D.destroy();
                 var t = 0;
                 x && (t = x.getOffset(), x.destroy()), x = new AutoList(z.list, {
                     scrollNode: z.list,

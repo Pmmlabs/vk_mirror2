@@ -142,25 +142,25 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 1318650823,
     'common.js': 1161,
-    'common.css': 46444993538,
+    'common.css': 46063840634,
     'cmodules/web/common_web.js': 4,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
     'uncommon.css': 15146557907,
     'filebutton.css': 1044306797,
     'lite.js': 2244537532,
-    'lite.css': 48689619255,
+    'lite.css': 48308466351,
     'rtl.css': 15680425491,
     'pagination.js': 1027022568,
     'blog.css': 21758637416,
     'blog.js': 1358605934,
     'html5audio.js': 976782859,
-    'audioplayer.js': 5771563841,
+    'audioplayer.js': 5345761123,
     'audioplayer.css': 18645902157,
     'audio_html5.js': 287741914,
-    'audio.js': 658016172,
+    'audio.js': 666040488,
     'cmodules/web/audio_admins.js': 5876846224,
-    'audio.css': 26232685762,
+    'audio.css': 25313726186,
     'audio_admins.css': 21026286208,
     'gifts.css': 20582859848,
     'gifts.js': 338252255,
@@ -640,4 +640,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 3015;
+var _rnd = 4605;

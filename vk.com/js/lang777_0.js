@@ -347,7 +347,6 @@ mail_added_link = "�����������";
 mail_added_mask = "��������";
 mail_cancel = "������";
 mail_close = "�������";
-mail_community_templates = "�������";
 mail_delete = "�����";
 mail_delete_all_spam = "��������� ��� �������������� ����������?";
 mail_deleteall1 = "�������� ���� ������������";
