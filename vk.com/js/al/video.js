@@ -426,7 +426,8 @@ var Video = {
                     d = {
                         act: "search_video",
                         q: e,
-                        offset: o || 0
+                        offset: o || 0,
+                        from: cur.oid
                     };
                 r && (d.snippet_video = 1), ajax.post("/al_video.php", extend(d, cur.videoSearchFilters), {
                     onDone: function(o, r, d, a, n, c) {

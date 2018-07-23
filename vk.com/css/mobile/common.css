@@ -18393,7 +18393,9 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .article .article_source {
-    color: #939393
+    color: #939393;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-size: 16px
 }
 
 .article .article_source>a {

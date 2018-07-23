@@ -560,12 +560,22 @@
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20opacity%3D%22.4%22%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20d%3D%22M17.93%2017.9H6.947c-1.337%200-1.822-.14-2.311-.4A2.726%202.726%200%200%201%203.5%2016.364c-.262-.489-.401-.974-.401-2.31v-6.11c0-1.336.14-1.821.4-2.31A2.726%202.726%200%200%201%204.636%204.5c.489-.262.974-.401%202.31-.401h10.11c1.336%200%201.821.14%202.31.4.49.262.873.646%201.134%201.135.262.489.401.974.401%202.31V12h-.006a.9.9%200%200%201-1.789%200H19.1v-.09a.92.92%200%200%201%200-.01v-2H4.9v4.154c0%20.948.05%201.203.188%201.462.094.176.22.302.396.396.259.139.514.188%201.462.188h10.771l-1.433-1.343a.9.9%200%200%201%201.232-1.314l3.2%203a.9.9%200%200%201%200%201.314l-3.2%203a.9.9%200%201%201-1.232-1.314l1.647-1.543zm1.17-9.8v-.154c0-.948-.05-1.203-.188-1.462a.927.927%200%200%200-.396-.396c-.259-.139-.514-.188-1.462-.188H6.946c-.948%200-1.203.05-1.462.188a.927.927%200%200%200-.396.396c-.139.259-.188.514-.188%201.462V8.1h14.2z%22%20fill%3D%22%23828A99%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
-.page_photo.page_action_menu_groups .page_actions_item.page_menu_group_notify_off:before {
+.page_photo.page_action_menu_groups .page_actions_item.page_menu_group_notify:before {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20opacity%3D%22.04%22%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20d%3D%22M17.2%2012.605v-2.228c0-3.472-1.786-5.577-4.7-5.577s-4.7%202.105-4.7%205.577v2.228c0%20.825-.39%201.422-1.226%202.273a37.45%2037.45%200%200%201-.287.288C5.452%2016%205.235%2016.35%205.32%2016.67c.108.407.334.516%201.1.53.104.002.191.002.384%200h11.404c.186.002.269.002.368%200%20.771-.012.994-.118%201.104-.532.085-.318-.131-.667-.967-1.502a37.71%2037.71%200%200%201-.285-.285c-.837-.853-1.228-1.45-1.228-2.276zM16.317%2019c-.359%201.854-1.84%203-3.817%203-1.981%200-3.46-1.141-3.817-3H6.814c-.207.002-.304.002-.427%200-1.477-.028-2.442-.491-2.807-1.87-.319-1.203.139-1.944%201.435-3.238.142-.14.205-.204.275-.275.515-.525.71-.823.71-1.012v-2.228C6%205.971%208.52%203%2012.5%203S19%205.97%2019%2010.377v2.228c0%20.19.195.488.712%201.014l.273.273c1.298%201.296%201.755%202.036%201.435%203.24-.37%201.384-1.333%201.844-2.814%201.868-.118.002-.21.002-.41%200h-1.879zM12.5%2020.2c.982%200%201.672-.418%201.956-1.2h-3.914c.282.784.97%201.2%201.958%201.2z%22%20fill%3D%22%23828A99%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
-.page_photo.page_action_menu_groups .page_actions_item.page_menu_group_notify_on:before {
+.page_photo.page_action_menu_groups .page_actions_item.page_menu_group_notify.on:before {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20opacity%3D%22.04%22%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cg%20stroke%3D%22%23828A99%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.8%22%3E%3Cpath%20d%3D%22M18.1%2012.6053c0%201.4912%202.9022%202.5971%202.45%204.2947C20.2037%2018.2%2019%2018%2018%2018H7c-1%200-2.2077.1929-2.55-1.1C4%2015.2%206.9%2014.0965%206.9%2012.6053v-2.2281C6.9%206.5%209%203.9%2012.5%203.9c3.5%200%205.6%202.6%205.6%206.4772v2.228z%22%2F%3E%3Cpath%20d%3D%22M12.5%2021.1c-1.7%200-3-1.1337-3-3.1h6c0%201.9551-1.3%203.1-3%203.1z%22%2F%3E%3C%2Fg%3E%3Crect%20fill%3D%22%23528BCC%22%20x%3D%2219%22%20width%3D%225%22%20height%3D%225%22%20rx%3D%222.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+}
+
+.page_photo.page_action_menu_groups .page_actions_item.page_menu_group_notify.on:after {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%22944%201152%208%204%22%3E%3Cpath%20d%3D%22M945.2%201152.2C944.9%201152%20944.5%201152%20944.3%201152.3%20944.1%201152.6%20944.1%201153%20944.4%201153.2L947.6%201155.8C947.8%201156%20948.2%201156%20948.4%201155.8L951.6%201153.2C951.9%201153%20951.9%201152.6%20951.7%201152.3%20951.5%201152%20951.1%201152%20950.8%201152.2L948%201154.5%20945.2%201152.2Z%22%20fill%3D%22%23828a99%22%2F%3E%3C%2Fsvg%3E") no-repeat;
+    content: " ";
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    vertical-align: text-bottom;
+    margin-left: 5px
 }
 
 .page_photo.page_action_menu_groups .page_actions_item.page_menu_group_im_on:before,
@@ -619,6 +629,34 @@
 
 .page_photo.page_action_menu_groups .page_actions_item.group_send_msg_status_block .group_send_msg_status_block_status:hover {
     color: #67707a
+}
+
+.page_photo.page_action_menu_groups .notification_settings_tlt .eltt_arrow_back {
+    display: none
+}
+
+.page_photo.page_action_menu_groups .group_notification_settings {
+    width: 210px;
+    padding: 8px 0
+}
+
+.page_photo.page_action_menu_groups .group_notification_settings .group_notification_setting {
+    padding-left: 12px;
+    padding-top: 8px;
+    padding-bottom: 9px
+}
+
+.page_photo.page_action_menu_groups .group_notification_settings .group_notification_setting.on {
+    background-color: #e7edf2
+}
+
+.page_photo.page_action_menu_groups .group_notification_settings .group_notification_setting.checkbox.on:before {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%235181B8%22%20d%3D%22M10%2016c-.3%200-.5-.1-.7-.3l-3.5-3.5c-.4-.4-.4-1%200-1.4s1-.4%201.4%200l2.8%202.8%206.3-6.3c.4-.4%201-.4%201.4%200s.4%201%200%201.4l-7%207c-.2.2-.4.3-.7.3z%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat
+}
+
+.page_photo.page_action_menu_groups .group_notification_settings .group_notification_setting.checkbox:before {
+    float: right;
+    background-image: none
 }
 
 .group_info .short_text,

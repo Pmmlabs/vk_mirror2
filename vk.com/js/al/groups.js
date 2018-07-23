@@ -467,6 +467,18 @@ var Groups = {
     },
     goToTopNoticeMoreLink: function(e, o, t, a) {
         return statlogsValueEvent("groups_top_notice", 1, o, "accept"), checkEvent(e) || a ? !0 : nav.go(t)
+    },
+    processActionButton: function(e, o, t, a, n) {
+        return isButtonLocked(e) ? !0 : (ajax.post("al_groups.php", {
+            act: "proxy_cta_button",
+            action: o,
+            group_id: t,
+            hash: a
+        }, {
+            onDone: function() {
+                unlockButton(e)
+            }
+        }), n ? n() : !0)
     }
 };
 try {

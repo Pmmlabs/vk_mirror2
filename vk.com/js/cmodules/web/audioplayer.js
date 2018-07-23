@@ -684,7 +684,7 @@
             })
         },
         showAudioAlbum: function(t, e) {
-            e = AudioUtils.asObject(e), layers.fullhide(), AudioUtils.showAudioPlaylist(e.album[0], e.album[1], e.album[2])
+            e = AudioUtils.asObject(e), layers.fullhide && layers.fullhide(), AudioUtils.showAudioPlaylist(e.album[0], e.album[1], e.album[2])
         },
         replaceWithOriginal: function(t, e, i) {
             (e = e || getAudioPlayer().getCurrentAudio()) && (e = AudioUtils.asObject(e), ajax.post("al_audio.php", {

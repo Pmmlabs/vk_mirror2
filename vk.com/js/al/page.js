@@ -211,9 +211,61 @@ var Page = {
                 show(moreActionMenu);
             }
         },
+        notificationSettingsEls: [],
+        notificationSettingsTlt: '',
+        showNotificationTooltip: 0,
+        onSubscriptionItemOnClick: function(el, on, subHash, liveHash) {
+            Page.createSubscriptionTooltip();
+            if (on && !Page.showNotificationTooltip) {
+                ge('group_notification_setting_wall').click();
+                ge('group_notification_setting_live').click();
+            } else {
+                Page.showSubscriptionTooltip(el);
+            }
+        },
+        createSubscriptionTooltip: function() {
+            if (!Page.notificationSettingsTlt) {
+                var el = ge('page_menu_notifications_item');
+                var content = ge('notification_settings_tlt_content');
+                Page.notificationSettingsTlt = new ElementTooltip(el, {
+                    appendToParent: true,
+                    cls: 'eltt_fancy notification_settings_tlt',
+                    centerShift: 0,
+                    offset: [0, 10],
+                    content: content,
+                    align: 'center',
+                    onFirstTimeShow: function(el) {
+                        show(content);
+                    }
+                });
+            }
+        },
+        showSubscriptionTooltip: function(el) {
+            Page.createSubscriptionTooltip();
+            Page.notificationSettingsTlt.show();
+        },
+        subscriptionTooltipOnChangeNotification: function(text, act) {
+            var checkboxes = geByClass('on', ge('notification_settings_tlt_content'));
+            var menuItem = ge('page_menu_notifications_item')
+            if (!checkboxes.length) {
+                removeClass(menuItem, 'on');
+                Page.showNotificationTooltip = 0;
+                val(menuItem, getLang('groups_notifications_on'));
+            } else {
+                var content = ge('notification_settings_tlt_content');
+                val(menuItem, getLang('groups_notifications_set_up'));
+                Page.showNotificationTooltip = 1;
+                addClass(menuItem, 'on');
+            }
+        },
+        onWallSubscriptionDone: function(text, act) {
+            console.log('onWallSubscriptionDone', act);
+            attr(ge('group_notification_setting_wall'), 'data-act', act);
+            Page.subscriptionTooltipOnChangeNotification();
+        },
         toggleSubscription: function(btn, hash, ev, oid, source, onDone) {
             var act = parseInt(domData(btn, 'act')) ? 1 : 0;
-
+            console.log(act);
             ajax.post('al_wall.php', {
                 act: 'a_toggle_posts_subscription',
                 subscribe: act ? 1 : 0,
@@ -227,10 +279,6 @@ var Page = {
                     } else {
                         val(btn, text);
                         btn.setAttribute('data-act', act ? 0 : 1);
-                        if (hasClass(btn, 'page_menu_group_notify_on') || hasClass(btn, 'page_menu_group_notify_off')) {
-                            toggleClass(btn, 'page_menu_group_notify_on');
-                            toggleClass(btn, 'page_menu_group_notify_off');
-                        }
                     }
                 },
                 showProgress: Page.actionsDropdownLock.pbind(btn),
@@ -238,7 +286,7 @@ var Page = {
             });
             cancelEvent(ev);
         },
-        toggleLiveSubscription: function(btn, hash, act, ev) {
+        toggleLiveSubscription: function(btn, hash, act, ev, onDone) {
             if (cur.toggleLiveSubscriptionAct != undefined) {
                 act = cur.toggleLiveSubscriptionAct;
             }
@@ -248,8 +296,12 @@ var Page = {
                 hash: hash
             }, {
                 onDone: function(text) {
-                    val(btn, text);
                     cur.toggleLiveSubscriptionAct = !act;
+                    if (onDone) {
+                        onDone(text);
+                    } else {
+                        val(btn, text);
+                    }
                 },
                 showProgress: Page.actionsDropdownLock.pbind(btn),
                 hideProgress: Page.actionsDropdownUnlock.pbind(btn)
