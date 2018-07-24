@@ -6,7 +6,7 @@ var TR_ADDRESS = "translation";
             var t = domData(this, "config");
             if (t && (t = JSON.parse(t), t.langId && !isMainSupportedLanguage(t.langId))) {
                 var a = geByClass1("tr_key_edit_counter", domPN(this));
-                val(geByClass1("_tr_counter_parent", a), t.parentValue.length), val(geByClass1("_tr_counter", a), val(this).length), show(a), _formKeyDownCheck(this)
+                t.parentValue && (val(geByClass1("_tr_counter_parent", a), t.parentValue.length), val(geByClass1("_tr_counter", a), val(this).length), show(a), _formKeyDownCheck(this))
             }
             this.autosize ? (this.autosize.options.maxHeight = e, this.autosize.update()) : autosizeSetup(this, {
                 minHeight: 50,

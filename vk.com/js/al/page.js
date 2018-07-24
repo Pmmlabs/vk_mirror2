@@ -211,16 +211,15 @@ var Page = {
                 show(moreActionMenu);
             }
         },
-        notificationSettingsEls: [],
         notificationSettingsTlt: '',
-        showNotificationTooltip: 0,
-        onSubscriptionItemOnClick: function(el, on, subHash, liveHash) {
+        onSubscriptionItemOnClick: function(el, subHash, liveHash) {
             Page.createSubscriptionTooltip();
-            if (on && !Page.showNotificationTooltip) {
+            if (hasClass(el, 'on')) {
+                Page.showSubscriptionTooltip(el);
+                Page.notificationSettingsTlt._opts.autoShow = true;
+            } else {
                 ge('group_notification_setting_wall').click();
                 ge('group_notification_setting_live').click();
-            } else {
-                Page.showSubscriptionTooltip(el);
             }
         },
         createSubscriptionTooltip: function() {
@@ -246,20 +245,18 @@ var Page = {
         },
         subscriptionTooltipOnChangeNotification: function(text, act) {
             var checkboxes = geByClass('on', ge('notification_settings_tlt_content'));
-            var menuItem = ge('page_menu_notifications_item')
+            var menuItem = ge('page_menu_notifications_item');
             if (!checkboxes.length) {
                 removeClass(menuItem, 'on');
-                Page.showNotificationTooltip = 0;
                 val(menuItem, getLang('groups_notifications_on'));
+                Page.notificationSettingsTlt._opts.autoShow = false;
             } else {
-                var content = ge('notification_settings_tlt_content');
                 val(menuItem, getLang('groups_notifications_set_up'));
-                Page.showNotificationTooltip = 1;
                 addClass(menuItem, 'on');
             }
         },
-        onWallSubscriptionDone: function(text, act) {
-            attr(ge('group_notification_setting_wall'), 'data-act', act);
+        onWallSubscriptionDone: function(text, act, btn) {
+            attr(btn, 'data-act', act);
             Page.subscriptionTooltipOnChangeNotification();
         },
         toggleSubscription: function(btn, hash, ev, oid, source, onDone) {
@@ -273,7 +270,7 @@ var Page = {
             }, {
                 onDone: function(text) {
                     if (onDone) {
-                        onDone(text, act ? 0 : 1);
+                        onDone(text, act ? 0 : 1, btn);
                     } else {
                         val(btn, text);
                         btn.setAttribute('data-act', act ? 0 : 1);
