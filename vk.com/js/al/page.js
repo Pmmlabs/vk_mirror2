@@ -259,13 +259,11 @@ var Page = {
             }
         },
         onWallSubscriptionDone: function(text, act) {
-            console.log('onWallSubscriptionDone', act);
             attr(ge('group_notification_setting_wall'), 'data-act', act);
             Page.subscriptionTooltipOnChangeNotification();
         },
         toggleSubscription: function(btn, hash, ev, oid, source, onDone) {
             var act = parseInt(domData(btn, 'act')) ? 1 : 0;
-            console.log(act);
             ajax.post('al_wall.php', {
                 act: 'a_toggle_posts_subscription',
                 subscribe: act ? 1 : 0,
@@ -4681,7 +4679,7 @@ var Wall = {
                     options: {
                         from: 'comment',
                         limit: 2,
-                        disabledTypes: ['album', 'market'],
+                        disabledTypes: ['album', 'market', 'poll'],
                         toggleLnk: true,
                         maxShown: maxShown !== undefined ? maxShown : undefined,
                         hideAfterCount: hideAfterCount !== undefined ? hideAfterCount : undefined
@@ -6342,22 +6340,17 @@ var Wall = {
     },
 
     votingRevote: function(actionMenuItemEl) {
-        if (actionsMenuItemLocked(actionMenuItemEl)) {
-            return;
-        }
-
         var votingEl = gpeByClass('media_voting', actionMenuItemEl);
 
         if (votingEl) {
-            var votingId = domData(votingEl, 'id');
-            var isBoard = domData(votingEl, 'board');
-            var isFixed = domData(votingEl, 'fixed');
-            var ref = domData(votingEl, 'ref');
-
             if (this.votingIsLocked(votingId)) {
                 return;
             }
 
+            var votingId = domData(votingEl, 'id');
+            var isBoard = domData(votingEl, 'board');
+            var isFixed = domData(votingEl, 'fixed');
+            var ref = domData(votingEl, 'ref');
             var hash = domData(votingEl, 'hash');
             var votingEls = geByClass('_media_voting' + votingId);
 
@@ -6375,11 +6368,9 @@ var Wall = {
             }, {
                 onDone: this.votingUpdate.bind(this, votingId),
                 showProgress: function() {
-                    lockActionsMenuItem(actionMenuItemEl);
                     this.votingLock(votingId);
                 }.bind(this),
                 hideProgress: function() {
-                    unlockActionsMenuItem(actionMenuItemEl);
                     this.votingUnlock(votingId);
                 }.bind(this)
             });
@@ -6398,7 +6389,9 @@ var Wall = {
     votingLock: function(votingId) {
         var votingEls = geByClass('_media_voting' + votingId);
         votingEls.forEach(function(votingEl) {
-            addClass(votingEl, 'media_voting_locked');
+            if (!domData(votingEl, 'disabled')) {
+                addClass(votingEl, 'media_voting_locked');
+            }
         });
     },
     votingUnlock: function(votingId) {
@@ -6414,17 +6407,19 @@ var Wall = {
             if (votingEls.length) {
                 if (isString(data)) {
                     votingEls.forEach(function(el) {
-                        if (data === '') {
-                            re(el);
-                        } else {
-                            var newEl = cf(data);
-                            if (hasClass(el, 'media_voting_can_vote')) {
-                                var votingEl = domFC(newEl);
-                                addClass(votingEl, 'media_voting_just_voted');
-                                domReplaceEl(el, newEl);
-                                removeClassDelayed(votingEl, 'media_voting_just_voted');
+                        if (!domData(el, 'disabled')) {
+                            if (data === '') {
+                                re(el);
                             } else {
-                                domReplaceEl(el, newEl);
+                                var newEl = cf(data);
+                                if (hasClass(el, 'media_voting_can_vote')) {
+                                    var votingEl = domFC(newEl);
+                                    addClass(votingEl, 'media_voting_just_voted');
+                                    domReplaceEl(el, newEl);
+                                    removeClassDelayed(votingEl, 'media_voting_just_voted');
+                                } else {
+                                    domReplaceEl(el, newEl);
+                                }
                             }
                         }
                     });
@@ -6634,21 +6629,16 @@ var Wall = {
         }
     },
     votingOnMain: function(actionMenuItemEl, state) {
-        if (actionsMenuItemLocked(actionMenuItemEl)) {
-            return;
-        }
-
         var votingEl = gpeByClass('media_voting', actionMenuItemEl);
 
         if (votingEl) {
-            var votingId = domData(votingEl, 'id');
-            var isFixed = domData(votingEl, 'fixed');
-            var ref = domData(votingEl, 'ref');
-
             if (this.votingIsLocked(votingId)) {
                 return;
             }
 
+            var votingId = domData(votingEl, 'id');
+            var isFixed = domData(votingEl, 'fixed');
+            var ref = domData(votingEl, 'ref');
             var hash = domData(votingEl, 'hash');
             var votingEls = geByClass('_media_voting' + votingId);
 
@@ -6662,32 +6652,25 @@ var Wall = {
             }, {
                 onDone: this.votingUpdate.bind(this, votingId),
                 showProgress: function() {
-                    lockActionsMenuItem(actionMenuItemEl);
                     this.votingLock(votingId);
                 }.bind(this),
                 hideProgress: function() {
-                    unlockActionsMenuItem(actionMenuItemEl);
                     this.votingUnlock(votingId);
                 }.bind(this)
             });
         }
     },
     votingClosed: function(actionMenuItemEl, state) {
-        if (actionsMenuItemLocked(actionMenuItemEl)) {
-            return;
-        }
-
         var votingEl = gpeByClass('media_voting', actionMenuItemEl);
 
         if (votingEl) {
-            var votingId = domData(votingEl, 'id');
-            var isFixed = domData(votingEl, 'fixed');
-            var ref = domData(votingEl, 'ref');
-
             if (this.votingIsLocked(votingId)) {
                 return;
             }
 
+            var votingId = domData(votingEl, 'id');
+            var isFixed = domData(votingEl, 'fixed');
+            var ref = domData(votingEl, 'ref');
             var hash = domData(votingEl, 'hash');
             var votingEls = geByClass('_media_voting' + votingId);
 
@@ -6701,11 +6684,9 @@ var Wall = {
             }, {
                 onDone: this.votingUpdate.bind(this, votingId),
                 showProgress: function() {
-                    lockActionsMenuItem(actionMenuItemEl);
                     this.votingLock(votingId);
                 }.bind(this),
                 hideProgress: function() {
-                    unlockActionsMenuItem(actionMenuItemEl);
                     this.votingUnlock(votingId);
                 }.bind(this)
             });
@@ -8576,7 +8557,7 @@ var Wall = {
     },
 
     onCloseComments: function(close, post, skip) {
-        if (!post || hasClass(post, 'postponed') || !hasClass(post, 'post')) {
+        if (!post || hasClass(post, 'postponed') || !hasClass(post, 'post') || vk.widget) {
             return;
         }
 

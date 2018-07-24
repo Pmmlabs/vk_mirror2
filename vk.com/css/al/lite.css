@@ -6168,6 +6168,189 @@ div.top_result_baloon a {
     margin: 35px 0 25px
 }
 
+.audio_promo_box {
+    border-radius: 8px 12px 12px 8px!important
+}
+
+.audio_promo_box #wk_content {
+    height: 600px;
+    width: 740px
+}
+
+.audio_promo_box #wk_content .wk_wiki_content {
+    padding: 0
+}
+
+.audio_promo_box .audio_promo_box_content {
+    font-size: 16px;
+    text-align: center
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_cover {
+    background-image: url('/images/audio_promo/mask.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 8px 8px 0 0;
+    height: 200px;
+    margin-bottom: 58px
+}
+
+.is_2x .audio_promo_box .audio_promo_box_content .audio_promo_cover {
+    background-image: url('/images/audio_promo/mask_2x.png')
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_logo {
+    background-image: url('/images/svg_icons/audio/audio_logo.svg');
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 40px;
+    margin-bottom: 35px;
+    width: 152px
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_items {
+    display: inline-block;
+    line-height: 44px;
+    margin: auto;
+    text-align: left
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_box_item_icon {
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 28px;
+    margin-right: 14px;
+    vertical-align: middle;
+    width: 28px
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_box_item_icon.audio_promo_icon_note {
+    background-image: url('/images/svg_icons/audio_promo/intro_music_outline_28.svg')
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_box_item_icon.audio_promo_icon_playlist {
+    background-image: url('/images/svg_icons/audio_promo/intro_playlists_outline_28.svg')
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_box_item_icon.audio_promo_icon_card {
+    background-image: url('/images/svg_icons/audio_promo/intro_card_outline_28.svg')
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_item_text {
+    display: inline-block;
+    line-height: 22px;
+    vertical-align: middle
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_box_btn {
+    background-color: #5891d2;
+    border-radius: 10px;
+    font-size: 16px;
+    line-height: 44px;
+    margin-top: 35px;
+    padding: 0 30px
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_box_btn:hover {
+    opacity: .9
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_box_btn .audio_promo_btn_caret {
+    background-image: url('/images/svg_icons/audio_promo/intro_chevron_20.svg');
+    background-position: 50%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 44px;
+    margin-left: 5px;
+    vertical-align: top;
+    width: 10px
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_box_card,
+.audio_promo_box .audio_promo_box_content .audio_promo_box_search {
+    padding: 72px
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_box_search_preview,
+.audio_promo_box .audio_promo_box_content .audio_promo_card_cover {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 354px
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_card_cover {
+    background-image: url('/images/audio_promo/artist.png');
+    margin-bottom: 24px
+}
+
+.is_2x .audio_promo_box .audio_promo_box_content .audio_promo_card_cover {
+    background-image: url('/images/audio_promo/artist_2x.png')
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_box_search_preview {
+    background-image: url('/images/audio_promo/search.png');
+    margin-bottom: -35px
+}
+
+.is_2x .audio_promo_box .audio_promo_box_content .audio_promo_box_search_preview {
+    background-image: url('/images/audio_promo/search_2x.png')
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_box_card_title {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 38px;
+    margin-bottom: 4px
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_box_card_desc {
+    font-size: 17px;
+    line-height: 24px
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_card_actions {
+    float: right
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_card_actions .round_button_large_white {
+    font-size: 12px;
+    margin-top: 7px;
+    padding: 8px 18px 9px;
+    padding-left: 38px;
+    pointer-events: none
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_card_actions .round_button_large_white:before {
+    left: 20px;
+    top: 9px
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_box_search_ok {
+    margin-top: 25px;
+    width: 164px
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_box_search_line {
+    font-size: 0;
+    margin-bottom: 45px;
+    text-align: left
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_box_search_line .audio_promo_box_search_album {
+    display: inline-block;
+    padding-right: 28px;
+    width: 120px
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_box_search_line .audio_promo_box_search_album:last-child {
+    padding-right: 0
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_box_search_line .audio_promo_box_search_album .audio_promo_box_card_track_cover {
+    height: 120px;
+    width: 120px
+}
+
 .audio_page_player2 {
     position: static
 }

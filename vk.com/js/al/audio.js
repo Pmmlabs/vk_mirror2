@@ -36,7 +36,7 @@ function AudioPage(e, t) {
         stopScrollPropagationAlways: !0
     })), this._readyAudio = this._data.readyAudio;
     var i = this._data.readyPlaylist;
-    i && (this._pagePlaylist = getAudioPlayer().getPlaylist(i.type, i.ownerId, i.id), this._pagePlaylist.mergeWith(i)), !this._readyAudio && this._pagePlaylist && (this._readyAudio = this._pagePlaylist.getAudioAt(0)), this._data.playlistCoverUploadOptions && (cur.audioCoverUploadOptions = cur.audioCoverUploadOptions || {}, cur.audioCoverUploadOptions[this._ownerId] = this._data.playlistCoverUploadOptions), this.isLayer() || (cur.module = "audio", cur.oid = this._ownerId, this._ownerId == vk.id ? cur.submodule = "my" : this._ownerId < 0 ? cur.submodule = "group_list" : cur.submodule = "user_list"), this._initPlayer(), this._initPlaylists(), this.initNavigation(), this.showSection(t.initSection), this._initSearchParams(), this._els.searchInput && this._els.searchInput.focus(), !this.isLayer() && nav.objLoc.q && "search_playlists" !== nav.objLoc.section && (this._els.searchInput && (this._els.searchInput.value = nav.objLoc.q), this._showSearchSection(nav.objLoc)), this.updateCurrentPlayingInfo(), getAudioPlayer().setStatusExportInfo(this._data["export"]), this.updateStatusExportControls(), this._initKeyEvents(), window.onAudioPageLoaded && (window.onAudioPageLoaded.call(this), delete window.onAudioPageLoaded), this.updateShuffleButton()
+    i && (this._pagePlaylist = getAudioPlayer().getPlaylist(i.type, i.ownerId, i.id), this._pagePlaylist.mergeWith(i)), !this._readyAudio && this._pagePlaylist && (this._readyAudio = this._pagePlaylist.getAudioAt(0)), this._data.playlistCoverUploadOptions && (cur.audioCoverUploadOptions = cur.audioCoverUploadOptions || {}, cur.audioCoverUploadOptions[this._ownerId] = this._data.playlistCoverUploadOptions), this.isLayer() || (cur.module = "audio", cur.oid = this._ownerId, this._ownerId == vk.id ? cur.submodule = "my" : this._ownerId < 0 ? cur.submodule = "group_list" : cur.submodule = "user_list"), this._initPlayer(), this._initPlaylists(), this.initNavigation(), this.showPromoBox(), this.showSection(t.initSection), this._initSearchParams(), this._els.searchInput && this._els.searchInput.focus(), !this.isLayer() && nav.objLoc.q && "search_playlists" !== nav.objLoc.section && (this._els.searchInput && (this._els.searchInput.value = nav.objLoc.q), this._showSearchSection(nav.objLoc)), this.updateCurrentPlayingInfo(), getAudioPlayer().setStatusExportInfo(this._data["export"]), this.updateStatusExportControls(), this._initKeyEvents(), window.onAudioPageLoaded && (window.onAudioPageLoaded.call(this), delete window.onAudioPageLoaded), this.updateShuffleButton()
 }
 AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     var t = geByClass1("_audio_playlist", gpeByClass("_audio_layout", this));
@@ -923,11 +923,11 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         })
     }
 
-    function S(e) {
+    function b(e) {
         show(z.coverThumb), setStyle(z.coverThumb, "background-image", "url(" + e + ")"), addClass(z.uploadCoverButton, "ape_thumb_set")
     }
 
-    function b() {
+    function S() {
         if (cur.audioCoverUploadOptions && cur.audioCoverUploadOptions[t]) {
             var e = cur.audioCoverUploadOptions[t],
                 i = {
@@ -939,7 +939,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                         show(geByClass1("_ape_cover_progress"))
                     },
                     onUploadComplete: function(e, t) {
-                        t = JSON.parse(t), t.error ? (show(z.errorMsg), h()) : (hide(z.errorMsg), M = t, S(M.url), h()), hide(geByClass1("_ape_cover_progress"))
+                        t = JSON.parse(t), t.error ? (show(z.errorMsg), h()) : (hide(z.errorMsg), M = t, b(M.url), h()), hide(geByClass1("_ape_cover_progress"))
                     },
                     onUploadProgress: function(e, t, i) {},
                     onUploadError: function(e, t) {
@@ -975,7 +975,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             hasClass(e.target, "_back") && c()
         }), uiSearch.init("ape_edit_playlist_search", {
             onChange: s
-        }), "edit" == e && (f("initial"), C(), b(), G.getCoverUrl() && S(G.getCoverUrl()), autosizeSetup(z.playlistDescriptionInput, {
+        }), "edit" == e && (f("initial"), C(), S(), G.getCoverUrl() && b(G.getCoverUrl()), autosizeSetup(z.playlistDescriptionInput, {
             minHeight: 30,
             maxHeight: 150,
             onResize: h
@@ -1574,6 +1574,14 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     })
 }, AudioPage.prototype.toggleRemoveAdsLink = function(e) {
     toggleClass(this._els.player, "audio_page_player_show_remove_ads", !!e)
+}, AudioPage.prototype.showPromoBox = function() {
+    ajax.post("al_audio.php?act=need_show_promo", {}, {
+        onDone: function(e) {
+            e && showWiki({
+                w: "promo_box"
+            })
+        }
+    })
 };
 try {
     stManager.done("audio.js")

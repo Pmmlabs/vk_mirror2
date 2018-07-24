@@ -149,6 +149,13 @@ var mobPlatforms = {
     5: 1
 };
 
+var browserFeatures = {
+    // Detect wheel event
+    wheelEvent: 'onwheel' in ce('div') ? 'wheel' : (document.onmousewheel !== void 0 ? 'mousewheel' : (browser.mozilla ? 'MozMousePixelScroll' : 'DOMMouseScroll')),
+    hasBoundingClientRect: 'getBoundingClientRect' in ce('div'),
+    cmaEnabled: navigator.credentials && navigator.credentials.preventSilentAccess && vk.cma
+};
+
 if (!window.vk) window.vk = {
     loginscheme: 'http',
     ip_h: ''

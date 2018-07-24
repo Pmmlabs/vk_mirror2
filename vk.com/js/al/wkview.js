@@ -244,7 +244,7 @@ var WkView = {
             }, (browser.iphone || browser.ipad) && (cur.wkStartScroll = scrollGetY()), options.edit && (cur._editMode = function() {
                 return !0
             }, !window.WkEditor)) return stManager.add(["wk_editor.js", "wk_editor.css"], WkView.show.pbind(title, html, options, script, ev)), !1;
-        if (cur.cancelTooltip = !0, window.tooltips && tooltips.hideAll(), boxQueue.hideAll(), isVisible(wkLayerWrap) || (otherList = !0, addEvent(window, "resize", WkView.onResize), addEvent(wkLayerWrap, "click", WkView.onClick), WkView.showLayer()), wkcur.noLocChange = 0, wkcur.noHistory = options.noLocChange, wkcur.hideTitle = options.hide_title ? 1 : 0, wkcur.shown = !0, wkcur.edit && (wkcur.edit = !1), extend(wkcur, options), wkcur.root) cur.nav.push(function(e, o, r, t) {
+        if (cur.cancelTooltip = !0, window.tooltips && tooltips.hideAll(), boxQueue.hideAll(), isVisible(wkLayerWrap) || (otherList = !0, addEvent(window, "resize", WkView.onResize), addEvent(wkLayerWrap, "click", WkView.onClick), WkView.showLayer()), wkcur.noLocChange = 0, wkcur.noHistory = options.noLocChange, wkcur.hideTitle = options.hide_title ? 1 : 0, wkcur.hideCloseButton = options.hideCloseButton ? 1 : 0, wkcur.shown = !0, wkcur.edit && (wkcur.edit = !1), extend(wkcur, options), wkcur.root) cur.nav.push(function(e, o, r, t) {
             return r = nav.toStr(r), r == wkcur.prevLoc ? (WkView.hide(!0), !1) : void 0
         }), !options.noLocChange && options.myLoc && nav.setLoc(options.myLoc);
         else {
@@ -257,26 +257,34 @@ var WkView = {
             oldT: vkNow()
         }), addClass(wkLayerWrap, "wk_dark"), addEvent(wkLayerWrap, "scroll", WkView.onScroll), addClass(layerBG, "wk_dark");
         var content = html,
-            hideLeft = wkcur.historyLen > 1 ? "" : "display: none;";
-        "wall" == options.type ? (addEvent(window, "resize", WkView.onResize), WkView.wallBeforeInitPost(options)) : options.edit ? addEvent(window, "resize", WkView.onResize) : options && (content = '<div class="wk_text wk_wiki_content' + (options.className ? " " + options.className : "") + '" onclick="return WkView.wikiClick(this, event);">' + content + "</div>"), wkcur.wkCont ? wkcur.wkContent.innerHTML = content : (wkLayer.innerHTML = '<div class="wk_cont">  <div id="wk_box" onclick="wkcur.wkClicked = true;">    <div id="wk_loader"></div>    <a id="wk_close_link" href="javascript: return false;" class="fl_r wk_close_link" onclick="return WkView.hide(false, true, event);">      ' + getLang("global_close") + '    </a>    <div id="wk_summary" class="fl_l"><span class="summary" id="wk_layer_title">' + title + '</span></div>    <div id="wk_content" tabindex="0">' + content + '</div>    <div class="clear"></div>  </div>  </div><div id="wk_left_wrap"><div id="wk_left" style="' + hideLeft + '" class="wk_left no_select"></div></div><div class="wk_left_nav no_select" id="wk_left_nav" style="' + hideLeft + '" onmousedown="wkcur.wkClicked = true; WkView.back();" onselectstart="return cancelEvent(event);"></div><div class="wk_right_nav no_select" id="wk_right_nav" onmousedown="if (!wkcur.noClickHide) { wkcur.wkClicked = true; WkView.hide(); }"><div id="wk_right" class="wk_close no_select"><div class="wk_close_inner"></div></div></div><div id="wk_left_arrow_bg" class="wk_arrow_bg no_select" onclick="return WkView.navigate(this, event, -1);" onmouseover="WkView.preloadArrow(false)"><div class="wk_arrow_bg_inner"></div><div id="wk_left_arrow" class="wk_arrow no_select"></div></div><div id="wk_right_arrow_bg" class="wk_arrow_bg no_select" onclick="return WkView.navigate(this, event, 1);" onmouseover="WkView.preloadArrow(true)"><div class="wk_arrow_bg_inner"></div><div id="wk_right_arrow" class="wk_arrow no_select"></div></div>', options.nocross && re(geByClass1("wk_close_inner", wkLayer)), extend(wkcur, {
-            wkCont: wkLayer.firstChild,
-            wkBox: ge("wk_box"),
-            mvLoader: ge("wk_loader"),
-            wkContent: ge("wk_content"),
-            wkLeftNav: ge("wk_left_nav"),
-            wkRightNav: ge("wk_right_nav"),
-            wkLeft: ge("wk_left"),
-            wkLeftWrap: ge("wk_left_wrap"),
-            wkRight: ge("wk_right"),
-            wkLeftArrow: ge("wk_left_arrow"),
-            wkRightArrow: ge("wk_right_arrow"),
-            wkLeftArrowBg: ge("wk_left_arrow_bg"),
-            wkRightArrowBg: ge("wk_right_arrow_bg")
-        }), "away" == options.wkRaw.substr(0, 4) && (this.evalScripts(wkLayer), setTimeout(function() {
-            window._mediator && window._mediator.start({
-                url: location.pathname + location.search
-            })
-        }, 1500))), toggle("wk_summary", title), wkcur.commonClass ? addClass(wkcur.wkBox, wkcur.commonClass) : wkcur.wkBox.className = "", wkcur.noCloseIcon && hide(wkcur.wkRight), wkcur.oid && wkcur.pid && (WkView.initSTL(), options.edit || (addEvent(wkLayerWrap, "scroll", WkView.onScroll), addEvent(window, "resize", WkView.onResize))), options.overflow ? addClass(wkcur.wkBox, "wk_overflow_hidden") : removeClass(wkcur.wkBox, "wk_overflow_hidden"), script && eval(script), WkView.updateSize(), removeEvent(document, "keydown", WkView.onKeyDown), addEvent(document, "keydown", WkView.onKeyDown), options.onLoaded && options.onLoaded(), shortCurrency(), WkView.updateArrows(), wkcur.wkContent.focus(), wkLayerWrap.scrollTop = 0, "wall" == options.type ? WkView.wallAfterInitPost() : options.toScroll ? (wkLayerWrap.scrollTop = options.toScroll, wkcur.toScroll = 0) : wkLayerWrap.scrollTop = 0, options.fromlist && WkView.preloadArrow(1 == options.fromlist), getAudioPlayer().updateCurrentPlaying(), window.updateAriaElements && updateAriaElements();
+            hideLeft = wkcur.historyLen > 1 ? "" : "display: none;",
+            hideCloseBtn = wkcur.hideCloseButton ? "display: none;" : "";
+        if ("wall" == options.type ? (addEvent(window, "resize", WkView.onResize), WkView.wallBeforeInitPost(options)) : options.edit ? addEvent(window, "resize", WkView.onResize) : options && (content = '<div class="wk_text wk_wiki_content' + (options.className ? " " + options.className : "") + '" onclick="return WkView.wikiClick(this, event);">' + content + "</div>"), wkcur.wkCont ? wkcur.wkContent.innerHTML = content : (wkLayer.innerHTML = '<div class="wk_cont">  <div id="wk_box" onclick="wkcur.wkClicked = true;">    <div id="wk_loader"></div>    <a id="wk_close_link" href="javascript: return false;" class="fl_r wk_close_link" onclick="return WkView.hide(false, true, event);">      ' + getLang("global_close") + '    </a>    <div id="wk_summary" class="fl_l"><span class="summary" id="wk_layer_title">' + title + '</span></div>    <div id="wk_content" tabindex="0">' + content + '</div>    <div class="clear"></div>  </div>  <div id="wk_dots" class="wk_dots"></div>  </div><div id="wk_left_wrap"><div id="wk_left" style="' + hideLeft + '" class="wk_left no_select"></div></div><div class="wk_left_nav no_select" id="wk_left_nav" style="' + hideLeft + '" onmousedown="wkcur.wkClicked = true; WkView.back();" onselectstart="return cancelEvent(event);"></div><div class="wk_right_nav no_select" id="wk_right_nav" onmousedown="if (!wkcur.noClickHide) { wkcur.wkClicked = true; WkView.hide(); }"><div id="wk_right" class="wk_close no_select" style="' + hideCloseBtn + '"><div class="wk_close_inner"></div></div></div><div id="wk_left_arrow_bg" class="wk_arrow_bg no_select" onclick="return WkView.navigate(this, event, -1);" onmouseover="WkView.preloadArrow(false)"><div class="wk_arrow_bg_inner"></div><div id="wk_left_arrow" class="wk_arrow no_select"></div></div><div id="wk_right_arrow_bg" class="wk_arrow_bg no_select" onclick="return WkView.navigate(this, event, 1);" onmouseover="WkView.preloadArrow(true)"><div class="wk_arrow_bg_inner"></div><div id="wk_right_arrow" class="wk_arrow no_select"></div></div>', options.nocross && re(geByClass1("wk_close_inner", wkLayer)), extend(wkcur, {
+                wkCont: wkLayer.firstChild,
+                wkBox: ge("wk_box"),
+                mvLoader: ge("wk_loader"),
+                wkContent: ge("wk_content"),
+                wkLeftNav: ge("wk_left_nav"),
+                wkRightNav: ge("wk_right_nav"),
+                wkLeft: ge("wk_left"),
+                wkLeftWrap: ge("wk_left_wrap"),
+                wkRight: ge("wk_right"),
+                wkLeftArrow: ge("wk_left_arrow"),
+                wkRightArrow: ge("wk_right_arrow"),
+                wkLeftArrowBg: ge("wk_left_arrow_bg"),
+                wkRightArrowBg: ge("wk_right_arrow_bg"),
+                wkDots: ge("wk_dots")
+            }), "away" == options.wkRaw.substr(0, 4) && (this.evalScripts(wkLayer), setTimeout(function() {
+                window._mediator && window._mediator.start({
+                    url: location.pathname + location.search
+                })
+            }, 1500))), toggle("wk_summary", title), options.withDots && options.wkRawList.length)
+            for (var dotsCount = options.wkRawList.length, i = 0; dotsCount > i; i++) {
+                var iRaw = options.wkRawList[i],
+                    dotEl = se('<span class="wk_dots__dot" onclick="WkView.openRaw(event, \'' + iRaw + "')\"></span>");
+                options.wkRaw == iRaw && addClass(dotEl, "wk_dots__dot_active"), wkcur.wkDots.appendChild(dotEl)
+            }
+        wkcur.commonClass ? addClass(wkcur.wkBox, wkcur.commonClass) : wkcur.wkBox.className = "", wkcur.noCloseIcon && hide(wkcur.wkRight), wkcur.oid && wkcur.pid && (WkView.initSTL(), options.edit || (addEvent(wkLayerWrap, "scroll", WkView.onScroll), addEvent(window, "resize", WkView.onResize))), options.overflow ? addClass(wkcur.wkBox, "wk_overflow_hidden") : removeClass(wkcur.wkBox, "wk_overflow_hidden"), script && eval(script), WkView.updateSize(), removeEvent(document, "keydown", WkView.onKeyDown), addEvent(document, "keydown", WkView.onKeyDown), options.onLoaded && options.onLoaded(), shortCurrency(), WkView.updateArrows(), wkcur.wkContent.focus(), wkLayerWrap.scrollTop = 0, "wall" == options.type ? WkView.wallAfterInitPost() : options.toScroll ? (wkLayerWrap.scrollTop = options.toScroll, wkcur.toScroll = 0) : wkLayerWrap.scrollTop = 0, options.fromlist && WkView.preloadArrow(1 == options.fromlist), getAudioPlayer().updateCurrentPlaying(), window.updateAriaElements && updateAriaElements();
         var postLargeGif = domByClass(wkLayer, "page_gif_large");
         return postLargeGif && Page.showGif(domFC(postLargeGif)), window.LazyLoad && LazyLoad.scanDelayed(), !1
     },
@@ -377,6 +385,19 @@ var WkView = {
             t > 0 && (e = wkcur.wkRawList[t - 1]), t >= 0 && r - 1 > t && (o = wkcur.wkRawList[t + 1]), wkcur.wkRawListLoop && r > 1 && (e = e ? e : wkcur.wkRawList[r - 1], o = o ? o : wkcur.wkRawList[0])
         }
         return [e, o]
+    },
+    openRaw: function(e, o) {
+        cancelEvent(e), showWiki(extend({
+            from: wkcur.from
+        }, {
+            w: o
+        }), !1, !1, {
+            fromlist: 1,
+            noloader: !0,
+            preload: {
+                cache: wkcur.navNoCache ? 0 : 1
+            }
+        })
     },
     navigate: function(e, o, r) {
         if ("intro" == wkcur.wkRaw) return WkView.introNext(r), cancelEvent(o), !1;

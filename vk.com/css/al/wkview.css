@@ -1401,6 +1401,28 @@ span#wk_posts_reach_tooltip_link {
     width: auto
 }
 
+.wk_dots {
+    margin-top: 24px;
+    position: absolute;
+    text-align: center;
+    width: 100%
+}
+
+.wk_dots__dot {
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-block;
+    height: 8px;
+    margin: 0 6px;
+    opacity: .4;
+    width: 8px
+}
+
+.wk_dots__dot.wk_dots__dot_active {
+    opacity: 1
+}
+
 .wk_apps_content.vkpay#wk_box {
     background: transparent;
     box-shadow: none;

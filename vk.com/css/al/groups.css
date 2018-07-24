@@ -1,5 +1,6 @@
 #gtop_aesweb_available .gtop_image,
 #gtop_app_in_groups .gtop_image,
+#gtop_groups_addresses .gtop_image,
 #gtop_market_app .gtop_image,
 #gtop_money_transfer .gtop_image,
 #gtop_timepad .gtop_image,
@@ -1416,6 +1417,23 @@ a.artist_page_button .artist_page_button_icon {
 (min-resolution: 192dpi) {
     #gtop_app_in_groups .gtop_image {
         background-image: url(/images/community_apps_logo_2x.png);
+        background-size: 100px 100px
+    }
+}
+
+#gtop_groups_addresses.gtop_complex_message {
+    height: 120px
+}
+
+#gtop_groups_addresses .gtop_image {
+    background: url(/images/groups_addresses_logo.png) no-repeat 0 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #gtop_groups_addresses .gtop_image {
+        background-image: url(/images/groups_addresses_logo_2x.png);
         background-size: 100px 100px
     }
 }
