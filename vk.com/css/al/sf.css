@@ -379,7 +379,15 @@ body.sf .mention_tt_actions {
 .sf_photo_by_hidden,
 .sf_video_by_hidden {
     margin-top: 8px;
-    display: none
+    display: none;
+    border-top: 1px solid #e7e8ec;
+    padding-top: 15px
+}
+
+.sf_photo_by_hidden .sf_video_author img,
+.sf_video_by_hidden .sf_video_author img {
+    border-radius: 50%;
+    margin-right: 10px
 }
 
 .sf_photo_img {

@@ -256,7 +256,7 @@
                         }
                         headNode.appendChild(ce('script', {
                             type: 'text/javascript',
-                            src: (window.locProtocol || 'http:') + '//api-maps.yandex.ru/2.1/?lang=' + lng + '&onload=yandex2MapInit&load=package.standard'
+                            src: (window.locProtocol || 'http:') + '//api-maps.yandex.ru/2.1.64/?lang=' + lng + '&onload=yandex2MapInit&load=package.standard'
                         }));
                     }
                 }

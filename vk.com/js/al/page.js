@@ -218,8 +218,14 @@ var Page = {
                 Page.showSubscriptionTooltip(el);
                 Page.notificationSettingsTlt._opts.autoShow = true;
             } else {
-                ge('group_notification_setting_wall').click();
-                ge('group_notification_setting_live').click();
+                var wallNotify = ge('group_notification_setting_wall');
+                if (wallNotify && !hasClass(wallNotify, 'unshown')) {
+                    wallNotify.click();
+                }
+                var liveNotify = ge('group_notification_setting_live');
+                if (liveNotify && !hasClass(liveNotify, 'unshown')) {
+                    liveNotify.click();
+                }
             }
         },
         createSubscriptionTooltip: function() {
