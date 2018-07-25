@@ -1046,6 +1046,37 @@ AdsModer.increaseBudget = function() {
     }
 }
 
+AdsModer.searchBonus = function(bonusNumber) {
+    if (!Ads.lock('searchBonus', onLock, onUnlock)) {
+        return;
+    }
+
+    var ajaxParams = {};
+    ajaxParams.bonus_number = val('ads_search_bonus_number');
+
+    ajax.post('/adsmoder?act=a_search_bonus', ajaxParams, {
+        onDone: onComplete,
+        onFail: onComplete.rpbind(true)
+    });
+
+    function onComplete(response) {
+        if (response && response.redirect) {
+            nav.go(response.redirect);
+        } else {
+            Ads.unlock('searchBonus');
+            showFastBox(getLang('ads_error_box_title'), response && response.error ? response.error : getLang('ads_error_text'));
+        }
+    }
+
+    function onLock() {
+        lockButton('ads_search_bonus_number_button');
+    }
+
+    function onUnlock() {
+        unlockButton('ads_search_bonus_number_button');
+    }
+}
+
 AdsModer.openDisableOfficeBox = function(ajaxParams, isCompleteCompany, companyName, companyClearFields) {
     cur.lang.ads_disable_office_box_title = '�������� ���������� ��������';
     cur.lang.ads_disable_office_box_button = '������� �������';

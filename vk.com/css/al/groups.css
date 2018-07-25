@@ -1,6 +1,7 @@
 #gtop_aesweb_available .gtop_image,
 #gtop_app_in_groups .gtop_image,
 #gtop_groups_addresses .gtop_image,
+#gtop_groups_addresses_b .gtop_image,
 #gtop_market_app .gtop_image,
 #gtop_money_transfer .gtop_image,
 #gtop_timepad .gtop_image,
@@ -170,6 +171,15 @@ a.groups_messages_block:before {
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Cpath%20d%3D%22M17%204.9a.9.9%200%200%200-.897-.9H3.897a.9.9%200%201%200%200%201.8h12.206c.495%200%20.897-.4.897-.9zm0%205.1a.9.9%200%200%200-.897-.9H3.897a.9.9%200%201%200%200%201.8h12.206c.495%200%20.897-.4.897-.9zM3%2015.1c0%20.497.41.9.896.9h7.208c.495%200%20.896-.4.896-.9%200-.497-.41-.9-.896-.9H3.896c-.495%200-.896.4-.896.9z%22%20id%3D%22a%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.8%22%3E%3Cpath%20d%3D%22M0%200h20v20H0z%22%2F%3E%3Cuse%20fill%3D%22%23828A99%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 50%
 }
 
+.group_info_rows_redesign .group_info_row.address .address_link {
+    max-width: 380px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: top
+}
+
 .group_info_rows_redesign .group_info_row.time .address_time_status_cur {
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -202,6 +212,7 @@ a.groups_messages_block:before {
     left: -3px
 }
 
+.group_info_rows_redesign .group_info_row.soon:before,
 .group_info_rows_redesign .group_info_row.time:before {
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20width%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22%22%3E%3Cpath%20d%3D%22m0%200h20v20h-20z%22%2F%3E%3Cpath%20d%3D%22m10%202.8c-3.9764502%200-7.2%203.2235498-7.2%207.2s3.2235498%207.2%207.2%207.2%207.2-3.2235498%207.2-7.2-3.2235498-7.2-7.2-7.2zm0-1.8c4.9705627%200%209%204.02943725%209%209%200%204.9705627-4.0294373%209-9%209-4.97056275%200-9-4.0294373-9-9%200-4.97056275%204.02943725-9%209-9zm2.6293549%2010.3721379-1.8293553-1.3304401v-3.1416977c0-.49705628-.4029437-.9-.89999998-.9s-.9.40294372-.9.9v3.5999999c0%20.2879429.13777565.5585026.37064551.7278625l2.20000077%201.6000004c.4019874.2923544.9648626.2034793%201.257217-.198508.2923544-.4019874.2034793-.9648626-.198508-1.257217z%22%20fill%3D%22%23828a99%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 50%;
     opacity: 0.8;
@@ -1426,7 +1437,10 @@ a.artist_page_button .artist_page_button_icon {
 }
 
 #gtop_groups_addresses .gtop_image {
-    background: url(/images/groups_addresses_logo.png) no-repeat 0 0
+    background: url(/images/groups_addresses_logo.png) no-repeat 0 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1434,6 +1448,26 @@ a.artist_page_button .artist_page_button_icon {
 (min-resolution: 192dpi) {
     #gtop_groups_addresses .gtop_image {
         background-image: url(/images/groups_addresses_logo_2x.png);
+        background-size: 100px 100px
+    }
+}
+
+#gtop_groups_addresses_b.gtop_complex_message {
+    height: 120px
+}
+
+#gtop_groups_addresses_b .gtop_image {
+    background: url(/images/groups_addresses_logo_b.png) no-repeat 0 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #gtop_groups_addresses_b .gtop_image {
+        background-image: url(/images/groups_addresses_logo_b_2x.png);
         background-size: 100px 100px
     }
 }

@@ -3872,10 +3872,21 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
         case 'category2_id':
         case 'subcategory1_id':
         case 'subcategory2_id':
-            var viewParams = cur.targetingEditor.viewEditor.getParams(); // detect category automatically from group category
-            // this.params[paramName].hidden = (this.params[paramName].hidden_normal || inArray(viewParams.link_type, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) || this.params.category1_id.value == 125 && !this.params.category2_id.value && this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_APP && this.params.link_id.app_game_links_ids[this.params.link_id.value]);
-            this.params[paramName].hidden = (this.params[paramName].hidden_normal || this.params.category1_id.value == 125 && !this.params.category2_id.value && this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_APP && this.params.link_id.app_game_links_ids[this.params.link_id.value]);
-            this.initUiParam(paramName);
+            var viewParams = cur.targetingEditor.viewEditor.getParams();
+            this.params[paramName].hidden = (
+                this.params[paramName].hidden_normal ||
+                (
+                    this.params.category1_id.value == 125 &&
+                    !this.params.category2_id.value &&
+                    this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_APP &&
+                    this.params.link_id.app_game_links_ids[this.params.link_id.value]
+                ) ||
+                (
+                    inArray(viewParams.link_type, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) &&
+                    this.params.category1_id.suggestions[0] &&
+                    this.params.category1_id.value // if can detect category automatically from suggestions
+                )
+            );
             toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
             break;
         case 'stats_url':

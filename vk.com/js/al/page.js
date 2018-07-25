@@ -303,12 +303,20 @@ var Page = {
             });
             cancelEvent(ev);
         },
-        showMessagesFromCommunityTooltip: function(btn, baseState, text) {
+        showMessagesFromCommunityTooltip: function(btn, baseState, text, red) {
             if (cur.toggleMessagesFromCommunityAct == undefined && baseState == 0) {
-                showTooltip(btn, {
-                    text: text,
-                    dir: 'auto'
-                });
+                if (red) {
+                    showTooltip(btn, {
+                        text: text,
+                        dir: 'auto',
+                        shift: [4, -3]
+                    });
+                } else {
+                    showTooltip(btn, {
+                        text: text,
+                        dir: 'auto'
+                    });
+                }
             }
         },
         toggleMessagesFromCommunity: function(btn, hash, act, ev) {

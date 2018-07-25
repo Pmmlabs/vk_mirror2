@@ -11005,9 +11005,9 @@ img[src^="/images/mobile/places/"] {
     color: #fff;
     letter-spacing: -0.1px;
     font-weight: 700;
-    line-height: 45px;
+    line-height: 48px;
     padding: 0px 20px;
-    height: 43px
+    height: 48px
 }
 
 .blog_about_product {
@@ -11239,6 +11239,14 @@ img[src^="/images/mobile/places/"] {
     padding-left: 0!important;
     padding-right: 0!important;
     padding-top: 0!important
+}
+
+.blog_post_text .article__info_line {
+    display: none
+}
+
+.blog_post_text .article_misc_block {
+    padding-left: 0
 }
 
 .blog_more_but {
@@ -19579,6 +19587,7 @@ figure[data-type="102"] .article_object_video_play {
 }
 
 .article_object_audioplaylist_webview .article_object_audioplaylist_cover {
+    position: relative;
     width: 112px;
     height: 112px;
     float: left;

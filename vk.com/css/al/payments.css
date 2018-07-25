@@ -1148,6 +1148,18 @@ h2.payments_getvotes_title {
     text-decoration: underline!important
 }
 
+.payments_msg_link_undotted {
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    border-bottom: none!important
+}
+
+.payments_msg_link_undotted:hover {
+    border-bottom: none!important;
+    text-decoration: underline!important
+}
+
 .payments_getvotes_amounts {
     line-height: 16px
 }
@@ -1899,7 +1911,7 @@ h2.payments_getvotes_title {
 .payments_box_wide .payments_remember_wallet {
     text-align: left;
     padding-left: 140px;
-    margin: 20px 0 5px
+    margin: 10px 10px 5px 0
 }
 
 .payments_box_wide .payments_receipt_email_wrap {
@@ -1948,7 +1960,7 @@ h2.payments_getvotes_title {
     margin-top: 30px
 }
 
-.payments_box_wide .payments_remember_wallet+.payments_receipt_email_wrap {
+.payments_box_wide .payments_receipt_email_wrap {
     margin-top: 20px
 }
 
@@ -1978,6 +1990,10 @@ h2.payments_getvotes_title {
 
 .payments_box_in_money .payments_getvotes_method_opt span {
     display: none
+}
+
+.payments_remember_wallet {
+    margin: 10px 10px 5px 0
 }
 
 .payments_box_summary_grey,
@@ -2023,6 +2039,11 @@ h2.payments_getvotes_title {
 
 .payments_getvotes_confirm_descr_notice {
     padding-top: 5px
+}
+
+.payments_getvotes_amounts_confirm_descr {
+    margin: 0 0 30px;
+    text-align: left
 }
 
 .payments_form_row {
