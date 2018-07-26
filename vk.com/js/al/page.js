@@ -1162,7 +1162,7 @@ var Page = {
                 return false;
             }
             txt.emojiInited = true;
-            stManager.add(['emoji.js', 'notifier.css'], function() {
+            stManager.add([jsc('web/emoji.js'), 'notifier.css'], function() {
                 var optId = Emoji.init(txt, {
                     ttDiff: -48,
                     rPointer: true,
@@ -1319,7 +1319,7 @@ var Page = {
                 },
                 showProgress: lockButton.pbind('currinfo_save'),
                 hideProgress: unlockButton.pbind('currinfo_save'),
-                stat: ['tooltips.js', 'tooltips.css', 'emoji.js']
+                stat: ['tooltips.js', 'tooltips.css', jsc('web/emoji.js')]
             });
         },
         showGif: function(obj, ev, dontHideActive, canPlayMp4) {
@@ -3478,7 +3478,7 @@ var Wall = {
 
         txt.emojiInited = true;
 
-        stManager.add(['emoji.js', 'notifier.css'], function() {
+        stManager.add([jsc('web/emoji.js'), 'notifier.css'], function() {
             Emoji.init(txt, {
                 ttDiff: -42,
                 rPointer: true,
@@ -4555,7 +4555,7 @@ var Wall = {
         }
 
         txt.emojiInited = true;
-        stManager.add(['emoji.js', 'notifier.css'], function() {
+        stManager.add([jsc('web/emoji.js'), 'notifier.css'], function() {
             var optId = Emoji.init(txt, {
                 ttDiff: fixed ? -40 : -42,
                 rPointer: true,
@@ -5848,7 +5848,7 @@ var Wall = {
     stickerClick: function(packId, obj, event) {
         (event || {}).cancelBubble = true;
         if (!window.Emoji) {
-            stManager.add(['emoji.js', 'notifier.css'], function() {
+            stManager.add([jsc('web/emoji.js'), 'notifier.css'], function() {
                 Wall.stickerClick(packId, obj);
             });
             return;
@@ -7608,7 +7608,7 @@ var Wall = {
                                 break;
 
                             default:
-                                stManager.add(['emoji.js'], function() {
+                                stManager.add([jsc('web/emoji.js')], function() {
                                     info = info ? ('<span class="current_text">' + Emoji.emojiToHTML(info, true) + '</span>') : info;
                                     wall.updateOwnerStatus(info, el, ev, edit);
                                 });

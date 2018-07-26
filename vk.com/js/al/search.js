@@ -131,7 +131,7 @@ var slide_show = function(e) {
             var res = ge("results"),
                 sc = ge("search_content"),
                 lighted = hasClass(sc, "highlight");
-            res.className = "search_results search_" + cur.section + "_results" + ("statuses" == cur.section || "auto" == cur.section ? " wall_module" : "") + ("statuses" == cur.section && "" !== options.summary || gpeByClass("page_block", res) ? "" : " page_block") + " mark_top_verified", lighted && addClass(sc, "highlight");
+            res.className = "search_results search_" + cur.section + "_results" + ("statuses" == cur.section || "auto" == cur.section ? " wall_module" : "") + ("statuses" == cur.section && "" !== options.summary || gpeByClass("page_block", res) ? "" : " page_block") + " mark_top_verified", "audio" === cur.section && (res.className += " audio_w_covers"), lighted && addClass(sc, "highlight");
             var more_results = ge("search_more_results");
             cur.has_more || more_results && more_results.firstChild ? (hide("seach_pages"), show("ui_search_load_more")) : hide("ui_search_load_more")
         },

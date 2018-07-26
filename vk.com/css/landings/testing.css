@@ -61,6 +61,10 @@
     width: 800px
 }
 
+.is_mobile .landing_testing {
+    width: auto
+}
+
 .landing_testing_head {
     border-radius: 3px 3px 0 0;
     padding: 45px 0;

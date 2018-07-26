@@ -9,7 +9,7 @@ var WallEdit = {
         }
     },
     editPost: function(e, t, i, o, s, n) {
-        if (!window.Emoji) return stManager.add(["emoji.js", "notifier.css"], function() {
+        if (!window.Emoji) return stManager.add([jsc("web/emoji.js"), "notifier.css"], function() {
             WallEdit.editPost(e, t, i, o, s, n)
         }), !1;
         var a = ge("wpe_text");
@@ -26,16 +26,16 @@ var WallEdit = {
                 className: "wpe_info"
             }),
             u = geByClass1(s.reply ? "like_wrap" : "post_full_like_wrap", d, "div"),
-            g = ge("post_publish_wrap" + e);
-        p && (re(geByClass1("wpe_info", p)), cur.editingPost.push(p.appendChild(_))), cur.editingPost.push(u), cur.editingPost.push(g), cur.lang = extend(cur.lang || {}, s.lang), cur.options = extend(cur.options || {}, {
+            w = ge("post_publish_wrap" + e);
+        p && (re(geByClass1("wpe_info", p)), cur.editingPost.push(p.appendChild(_))), cur.editingPost.push(u), cur.editingPost.push(w), cur.lang = extend(cur.lang || {}, s.lang), cur.options = extend(cur.options || {}, {
             share: s.share
         }), cur.editHash = o, val(_, " - " + (s.reply ? getLang("wall_editing_reply") : getLang("wall_editing_post"))), addEvent(window, "keydown", WallEdit.handleEditEsc), t = Emoji.emojiToHTML(clean(replaceEntities(t)), !0);
-        var w = "";
-        s.signed && !s.no_sign && (w += '<div id="wpe_signed" class="checkbox' + (s.signed > 0 ? " on" : "") + '" onclick="checkbox(this)">' + getLang("wall_suggest_subscribe") + "</div>"), s.post_settings && (w += s.post_settings), w && (w = '<div class="post_edit_settings_wrap"><div class="post_settings"><span onmouseover="Wall.showPostSettings(this);" onclick="Wall.showPostSettings(this, event);" class="post_settings checkbox_pic" tabindex="0" role="button"></span><span class="_post_settings_items">' + w + "</span></div></div>");
+        var g = "";
+        s.signed && !s.no_sign && (g += '<div id="wpe_signed" class="checkbox' + (s.signed > 0 ? " on" : "") + '" onclick="checkbox(this)">' + getLang("wall_suggest_subscribe") + "</div>"), s.post_settings && (g += s.post_settings), g && (g = '<div class="post_edit_settings_wrap"><div class="post_settings"><span onmouseover="Wall.showPostSettings(this);" onclick="Wall.showPostSettings(this, event);" class="post_settings checkbox_pic" tabindex="0" role="button"></span><span class="_post_settings_items">' + g + "</span></div></div>");
         browser.opera_mobile ? "blur" : "keyup";
         r.parentNode.insertBefore(ce("div", {
             id: "wpe_cont",
-            innerHTML: '<div class="clear_fix"><div class="wpe_text_cont _emoji_field_wrap"><div class="emoji_smile_wrap _emoji_wrap"><div class="emoji_smile _emoji_btn" title="' + stripHTML(getLang("wall_reply_emoji_hint")) + '" onmouseover="return WallEdit.emojiShowTT(this, event);" onmouseout="return WallEdit.emojiHideTT(this, event);" onmousedown="return cancelEvent(event);"><div class="emoji_smile_icon"></div></div></div><div id="wpe_text" class="dark" contenteditable="true">' + t + '</div></div></div><div id="wpe_warn"></div><div id="wpe_media_preview" class="clear_fix media_preview"></div>' + (s.add ? '<div class="wpe_auth">' + s.add + "</div>" : "") + '<div class="wpe_buttons">' + (s.noatt ? "" : '<div id="wpe_add_media" class="page_add_media"><span class="add_media_lnk"></span></div>') + "  " + w + '  <button id="wpe_save" class="flat_button" onclick="WallEdit.savePost()">' + (g && intval(g.getAttribute("data-suggest")) ? getLang("wall_publish_suggest") : getLang("global_save")) + '</button>  <button class="wpe_cancel flat_button secondary button_light" onclick="WallEdit.cancelEditPost()">' + getLang("global_cancel") + "</button></div>"
+            innerHTML: '<div class="clear_fix"><div class="wpe_text_cont _emoji_field_wrap"><div class="emoji_smile_wrap _emoji_wrap"><div class="emoji_smile _emoji_btn" title="' + stripHTML(getLang("wall_reply_emoji_hint")) + '" onmouseover="return WallEdit.emojiShowTT(this, event);" onmouseout="return WallEdit.emojiHideTT(this, event);" onmousedown="return cancelEvent(event);"><div class="emoji_smile_icon"></div></div></div><div id="wpe_text" class="dark" contenteditable="true">' + t + '</div></div></div><div id="wpe_warn"></div><div id="wpe_media_preview" class="clear_fix media_preview"></div>' + (s.add ? '<div class="wpe_auth">' + s.add + "</div>" : "") + '<div class="wpe_buttons">' + (s.noatt ? "" : '<div id="wpe_add_media" class="page_add_media"><span class="add_media_lnk"></span></div>') + "  " + g + '  <button id="wpe_save" class="flat_button" onclick="WallEdit.savePost()">' + (w && intval(w.getAttribute("data-suggest")) ? getLang("wall_publish_suggest") : getLang("global_save")) + '</button>  <button class="wpe_cancel flat_button secondary button_light" onclick="WallEdit.cancelEditPost()">' + getLang("global_cancel") + "</button></div>"
         }, {
             display: "none"
         }), r), updateAriaElements();
@@ -64,11 +64,11 @@ var WallEdit = {
                 })
             };
         return s.noatt ? void setTimeout(function() {
-            addClass("wpe_media_preview", "med_no_attach"), show(r.previousSibling, "wpe_media_preview"), hide(r, l, u, g), cur.wallEditComposer = Composer.init(ge("wpe_text"), {
+            addClass("wpe_media_preview", "med_no_attach"), show(r.previousSibling, "wpe_media_preview"), hide(r, l, u, w), cur.wallEditComposer = Composer.init(ge("wpe_text"), {
                 lang: m
             }), Emoji.editableFocus("wpe_text"), cur.weEmoji = v()
         }, 0) : void setTimeout(function() {
-            show(r.previousSibling), hide(r, l, u, g);
+            show(r.previousSibling), hide(r, l, u, w);
             var t, o = [],
                 a = [];
             s.reply ? (each(n, function() {
@@ -111,7 +111,7 @@ var WallEdit = {
                     edit: !0
                 }), t) {
                 cur.wallEditMedia = cur.dropboxAddMedia = cur.wallEditComposer.addMedia, WallUpload.attachToEl(d);
-                for (var _ = 0, w = i.length; w > _; ++_) cur.wallEditMedia.chooseMedia.apply(cur.wallEditMedia, i[_]), "postpone" == i[_][0] && cur.editingPost.push(i[_][1])
+                for (var _ = 0, g = i.length; g > _; ++_) cur.wallEditMedia.chooseMedia.apply(cur.wallEditMedia, i[_]), "postpone" == i[_][0] && cur.editingPost.push(i[_][1])
             }
             setTimeout(function(e) {
                 e._media_added = !0
@@ -141,14 +141,14 @@ var WallEdit = {
                 cur.editingPost = cur.dropboxAddMedia = !1, removeEvent(window, "keydown", WallEdit.handleEditEsc), WallUpload.attachToEl("submit_post_box"), Wall.deinitComposer(_);
                 var u = ge("wpe_add_media");
                 u && cleanElems(u.firstChild);
-                var g = ge("post" + o),
-                    w = geByClass1("post_edit_button", g) || geByClass1("reply_edit_button", g);
-                if (w && setStyle(w, {
+                var w = ge("post" + o),
+                    g = geByClass1("post_edit_button", w) || geByClass1("reply_edit_button", w);
+                if (g && setStyle(g, {
                         visibility: ""
-                    }), removeClass(g, "wpe_wrap"), -1 == e) return void Wall.postponedPublished(o);
+                    }), removeClass(w, "wpe_wrap"), -1 == e) return void Wall.postponedPublished(o);
                 if (void 0 !== e) {
                     val(s, e), val(l, " - " + (a && a.reply ? getLang("wall_reply_saved") : getLang("wall_post_saved")));
-                    var m = geByClass1("rel_date", g);
+                    var m = geByClass1("rel_date", w);
                     if (p) {
                         t && m && (m.innerHTML = t);
                         var v = geByClass1("page_fronly", o);

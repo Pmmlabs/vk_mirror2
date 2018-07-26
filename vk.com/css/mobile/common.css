@@ -20867,7 +20867,7 @@ figure[data-type="102"] .article_object_video_play {
 
 .m .pinnedMsg {
     background: #f5f6f8;
-    border-bottom: 1px solid #e0e0e0
+    border-bottom: 1px solid hsla(0, 0%, 60%, .5)
 }
 
 .d .pinnedMsg {
@@ -20896,12 +20896,15 @@ figure[data-type="102"] .article_object_video_play {
     left: 6px
 }
 
-.pinnedMsg__hide {
+.pinnedMsg__hide.uMailButton {
+    width: 24px;
+    height: 24px;
     position: absolute;
     top: 50%;
     right: 6px;
     margin-top: -12px;
-    cursor: pointer
+    cursor: pointer;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2236%22%20height%3D%2236%22%20viewBox%3D%220%200%2036%2036%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M12.292%2022.217a.982.982%200%200%200-.012%201.396l.107.107a.974.974%200%200%200%201.396-.012L18%2019.36l4.217%204.35a.982.982%200%200%200%201.396.01l.107-.106a.974.974%200%200%200-.012-1.396L19.36%2018l4.35-4.217a.982.982%200%200%200%20.01-1.396l-.106-.107a.974.974%200%200%200-1.396.012L18%2016.64l-4.217-4.35a.982.982%200%200%200-1.396-.01l-.107.106a.974.974%200%200%200%20.012%201.396L16.64%2018l-4.35%204.217z%22%20fill%3D%22%238391A0%22%20opacity%3D%22.7%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat
 }
 
 .pinnedMsg .dialog_item {
@@ -38375,6 +38378,34 @@ body.apps_settingsPageBody {
     }
 }
 
+.uMailButton {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none!important;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-appearance: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: none;
+    height: 34px;
+    font-size: 14px;
+    line-height: 34px;
+    letter-spacing: -0.2px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis
+}
+
 .uMailWrite {
     position: relative;
     z-index: 11
@@ -39129,36 +39160,13 @@ body.apps_settingsPageBody {
 }
 
 .uMailWrite__keyboard_button {
-    margin: 0;
-    padding: 0 6px;
-    border: none;
-    outline: none;
-    position: relative;
-    cursor: pointer;
-    text-decoration: none!important;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-appearance: none;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 1px;
-    height: 34px;
+    background-color: #dfe6ed;
+    color: #000;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
-    background-color: #dfe6ed;
-    font-size: 14px;
-    line-height: 34px;
-    letter-spacing: -0.2px;
-    text-align: center;
-    color: #000;
-    white-space: nowrap;
-    overflow: hidden;
-    -o-text-overflow: ellipsis;
-    text-overflow: ellipsis;
+    padding: 0 6px;
+    width: 1px;
     -webkit-box-flex: 1;
     -webkit-flex-grow: 1;
     -moz-box-flex: 1;
@@ -39803,6 +39811,122 @@ body.apps_settingsPageBody {
     display: -moz-box;
     display: -ms-flexbox;
     display: flex
+}
+
+.messenger__banner {
+    background: #f5f6f7;
+    padding: 10px 0 10px 12px;
+    border-bottom: 1px solid hsla(0, 0%, 60%, .5);
+    position: relative;
+    z-index: 1;
+    display: none;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -moz-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start
+}
+
+.messenger__banner_icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -moz-box-flex: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    overflow: hidden
+}
+
+.messenger__banner_icon_img {
+    max-width: 100%;
+    max-height: 100%
+}
+
+.messenger__banner_content {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -moz-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-flex-shrink: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    width: 1px
+}
+
+.messenger__banner_text {
+    color: #71757a;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: -0.2px;
+    margin-top: -1px;
+    max-height: 60px;
+    overflow: hidden;
+    padding-right: 36px
+}
+
+.messenger__banner_contentExpanded .messenger__banner_text {
+    max-height: 120px
+}
+
+.messenger__banner_close {
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2236%22%20height%3D%2236%22%20viewBox%3D%220%200%2036%2036%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M12.292%2022.217a.982.982%200%200%200-.012%201.396l.107.107a.974.974%200%200%200%201.396-.012L18%2019.36l4.217%204.35a.982.982%200%200%200%201.396.01l.107-.106a.974.974%200%200%200-.012-1.396L19.36%2018l4.35-4.217a.982.982%200%200%200%20.01-1.396l-.106-.107a.974.974%200%200%200-1.396.012L18%2016.64l-4.217-4.35a.982.982%200%200%200-1.396-.01l-.107.106a.974.974%200%200%200%20.012%201.396L16.64%2018l-4.35%204.217z%22%20fill%3D%22%238391A0%22%20opacity%3D%22.7%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat
+}
+
+.messenger__banner_buttons {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap
+}
+
+.messenger__banner_button {
+    margin-top: 8px;
+    margin-right: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    padding: 0 14px
+}
+
+.messenger__banner_button_primary {
+    background-color: #5181b8;
+    color: #fff
+}
+
+.messenger__banner_button_secondary {
+    background-color: #dfe6ed;
+    color: #55677d
+}
+
+.messenger__bannerVisible {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.messenger__bannerVisible+.messenger__pinned,
+.messenger_pinnedVisible .messenger__bannerVisible+.messenger__pinned {
+    display: none
 }
 
 

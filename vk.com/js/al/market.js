@@ -681,7 +681,7 @@ var Market = {
                 hash: o,
                 from: "market" + r
             }, {
-                stat: ["writebox.js", "writebox.css", "wide_dd.css", "page.css", "emoji.js", "notifier.css"],
+                stat: ["writebox.js", "writebox.css", "wide_dd.css", "page.css", jsc("web/emoji.js"), "notifier.css"],
                 cache: 1
             }, e);
             return a && cancelEvent(e), !a

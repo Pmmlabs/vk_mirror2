@@ -42,9 +42,12 @@
         return o.d(t, "a", t), t
     }, o.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, o.p = "", o(o.s = 48)
+    }, o.p = "", o(o.s = 14)
 }({
-    30: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+    14: function(e, t, o) {
+        e.exports = o(59)
+    },
+    59: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
         "use strict";
         __webpack_require__.r(__webpack_exports__);
         var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
@@ -69,7 +72,7 @@
                     wallType: "widget_comments",
                     onReplyFormSizeUpdate: WComments.contentUpdated.bind(WComments, !1),
                     onEditFormSizeUpdate: WComments.contentUpdated.bind(WComments, !1)
-                }), cur.options.filter_media_types = cur.options.media_types || [], this.override("lite.js"), this.override("page.js"), this.override("emoji.js"), stManager.emitter.addListener("update", this.override.bind(this)), this.updateSize(), (e.is_auto || e.is_nano) && extend(e, {
+                }), cur.options.filter_media_types = cur.options.media_types || [], this.override("lite.js"), this.override("page.js"), this.override(jsc("web/emoji.js")), stManager.emitter.addListener("update", this.override.bind(this)), this.updateSize(), (e.is_auto || e.is_nano) && extend(e, {
                     media_opts: {
                         hideAfterCount: 0,
                         maxShown: 0
@@ -591,7 +594,7 @@
                             pauseLastInlineVideo: Widgets.pauseLastInlineVideo
                         });
                         break;
-                    case "emoji.js":
+                    case jsc("web/emoji.js"):
                         extend(Emoji, {
                             focus: function(e, t) {
                                 if (Emoji.editableFocus(e, !1, !0), t && cur.scrollbar) {
@@ -969,8 +972,5 @@
         try {
             stManager.done(jsc("api/widgets/comments.js"))
         } catch (e) {}
-    },
-    48: function(e, t, o) {
-        e.exports = o(30)
     }
 });

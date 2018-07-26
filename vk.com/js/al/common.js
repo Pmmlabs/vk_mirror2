@@ -8298,7 +8298,7 @@ function showWriteMessageBox(e, id) {
         act: 'a_write_box',
         to: id
     }, {
-        stat: ['writebox.js', 'writebox.css', 'wide_dd.css', 'page.css', 'emoji.js', 'notifier.css'],
+        stat: ['writebox.js', 'writebox.css', 'wide_dd.css', 'page.css', jsc('web/emoji.js'), 'notifier.css'],
         cache: 1
     }, e);
     if (box) cancelEvent(e);
@@ -13335,7 +13335,7 @@ function showStory(list, opts) {
         }));
     }, 1000);
 
-    stManager.add(['stories.js', 'stories.css', 'emoji.js'], function() {
+    stManager.add(['stories.js', 'stories.css', jsc('web/emoji.js')], function() {
         clearTimeout(cur.storiesStaticLoadTimer);
         re('stories_loader');
         Stories.show(list, opts);

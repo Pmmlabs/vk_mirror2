@@ -1839,6 +1839,14 @@ var Feed = {
             var s = +domData(e, "uid");
             Wall.friendsRecommLogSave(["show_user_rec", s, vkNow(), t, o]), e.viewed = !0
         }
+    },
+    hideRightBlock: function(e, t, o) {
+        var s = domCA(e, ".page_block");
+        return re(s), ajax.post("al_feed.php", {
+            act: "a_hide_right_block",
+            block_type: t,
+            hash: o
+        }), !1
     }
 };
 window.feed = Feed;
