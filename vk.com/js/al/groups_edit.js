@@ -648,7 +648,6 @@ var GroupsEdit = {
         var c = ge("groups_edit_phone");
         if (c) {
             var p = trim(ge("groups_edit_phone").value);
-            if (!p.match(/^\+?\d{0,20}$/)) return notaBene(ge("groups_edit_phone"));
             s.phone = p
         }
         var d = ge("groups_edit_show_author");

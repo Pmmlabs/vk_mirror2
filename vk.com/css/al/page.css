@@ -479,8 +479,7 @@
 
 .page_photo.page_action_menu_groups {
     font-size: 13px;
-    padding: 8px 0;
-    letter-spacing: -0.1px
+    padding: 8px 0
 }
 
 .page_photo.page_action_menu_groups .page_actions_separator {
@@ -488,8 +487,8 @@
 }
 
 .page_photo.page_action_menu_groups .page_actions_item {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
     padding: 0 0 0 15px;
     color: #67707a;
     height: 36px;
@@ -522,6 +521,8 @@
 }
 
 .page_photo.page_action_menu_groups .page_actions_item:before {
+    -o-transition: opacity 75ms linear;
+    transition: opacity 75ms linear;
     opacity: 0.7;
     filter: alpha(opacity=70);
     float: left;
@@ -575,7 +576,8 @@
     height: 8px;
     display: inline-block;
     vertical-align: text-bottom;
-    margin-left: 5px
+    margin-left: 5px;
+    margin-bottom: 1px
 }
 
 .page_photo.page_action_menu_groups .page_actions_item.page_menu_group_im_on:before,
@@ -624,7 +626,7 @@
 
 .page_photo.page_action_menu_groups .page_actions_item.group_send_msg_status_block .group_send_msg_status_block_title {
     margin-top: 1px;
-    font-weight: 500;
+    font-weight: 400;
     color: #3670b3;
     margin-bottom: 1px
 }
@@ -666,7 +668,9 @@
 
 .page_photo.page_action_menu_groups .group_notification_settings .group_notification_setting.checkbox:before {
     float: right;
-    background-image: none
+    background-image: none;
+    padding-top: 5px;
+    padding-right: 10px
 }
 
 .group_info .short_text,

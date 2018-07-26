@@ -1797,6 +1797,9 @@ if (!window.Upload) {
         isSomethingUploading: function(iUpload) {
             var options = Upload.options[iUpload];
 
+            if (!options) {
+                return false;
+            }
 
             if (options.filesQueue && options.filesQueue.length) {
                 return true;

@@ -9012,7 +9012,7 @@ WallUpload = {
 
         if (!cur.uploadAdded) {
             cur.uploadAdded = true;
-            if (!window.Upload) {
+            if (!window.Upload || !window.VideoInlineUpload) {
                 stManager.add(['upload.js', 'video_upload.js'], function() {
                     WallUpload.initLoader();
                     Wall._videoUploadIndex = WallUpload.initVideoUploader();
@@ -9035,7 +9035,18 @@ WallUpload = {
         var dropbox = ge('post_upload_video_dropbox');
         data.options.from = 'post';
 
-        return window.VideoInlineUpload.getUploadModule(uploadHolder, dropbox, data, WallUpload.addMedia());
+        var sendBtn = ge('send_post');
+
+        var callbacks = {
+            onUploadAllCompleteDone: function() {
+                disableButton(sendBtn, false);
+            },
+            onUploadStartDone: function() {
+                disableButton(sendBtn, true);
+            }
+        };
+
+        return window.VideoInlineUpload.getUploadModule(uploadHolder, dropbox, data, WallUpload.addMedia(), callbacks);
     },
 
     initLoader: function() {

@@ -674,11 +674,6 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
     width: 230px
 }
 
-#video_choose_box,
-#video_review_box {
-    overflow: hidden
-}
-
 #video_choose_box.with_bottom_fixed,
 #video_review_box.with_bottom_fixed {
     padding-bottom: 60px

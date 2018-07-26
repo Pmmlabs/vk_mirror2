@@ -364,8 +364,7 @@ a.group_ad_post_stats {
 }
 
 .group_edit.group_edit_addresses {
-    padding: 18px 20px 15px;
-    letter-spacing: -0.1px
+    padding: 18px 20px 15px
 }
 
 .group_edit.group_edit_addresses .metro_colored {
@@ -427,6 +426,10 @@ a.group_ad_post_stats {
 
 .group_edit.group_edit_addresses #group_edit_addresses_edit_list .groups_edit_address_show_more_btn.expanded .group_edit_labeled {
     padding-bottom: 9px
+}
+
+.group_edit.group_edit_addresses #group_edit_addresses_edit_list .groups_edit_addresses_dot {
+    color: #939393
 }
 
 .group_edit.group_edit_addresses #group_edit_addresses_edit_list .group_edit_addresses_edit_link {
