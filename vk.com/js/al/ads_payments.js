@@ -12,19 +12,19 @@ AdsPayments.openChangeBudgetBox = function(e, n) {
         o = ge("budget_notice_box");
     if (n = window.curLegal ? ge("union_invoice_sum").value : ge("union_budget_sum").value, n = n.replace(",", "."), n = n.replace(/^0+/g, ""), n = n.replace(/(\.\d*?)0+$/g, "$1"), "." === n[0] && (n = "0" + n), "" !== n && "." === n.substr(-1) && (n = n.substr(0, n.length - 1)), "" === n && (n = "0"), "0" === n) return e ? (r.innerHTML = window.enterMoneyAmount, hide(o), show(a), !1) : (hide(a), show(o), !1);
     var t = !0;
-    if (window.curIsMoney && (window.curOfficeLegal || window.userMoney > cur.unionsLimits.budget_increase_rubles_min) && !window.curLegal && window.userMoneyStr && n === window.userMoneyStr && (t = !1), !n.match(cur.unionsLimits.budget_pattern_all)) return r.innerHTML = window.incorrectMoneyFormat, hide(o), show(a), !1;
-    if (t && -1 != n.indexOf(".")) return window.curIsMoney && !window.curLegal && (window.curOfficeLegal || window.userMoney > cur.unionsLimits.budget_increase_rubles_min) ? r.innerHTML = window.enterIntegerOrEqualMoney : r.innerHTML = window.enterIntegerMoney, hide(o), show(a), !1;
+    if (window.curIsMoney && (window.curOfficeLegal || window.userMoney > cur.paymentsMinMoneyAmount) && !window.curLegal && window.userMoneyStr && n === window.userMoneyStr && (t = !1), !n.match(cur.unionsLimits.budget_pattern_all)) return r.innerHTML = window.incorrectMoneyFormat, hide(o), show(a), !1;
+    if (t && -1 != n.indexOf(".")) return window.curIsMoney && !window.curLegal && (window.curOfficeLegal || window.userMoney > cur.paymentsMinMoneyAmount) ? r.innerHTML = window.enterIntegerOrEqualMoney : r.innerHTML = window.enterIntegerMoney, hide(o), show(a), !1;
     var i = parseFloat(n);
     if (t && !n.match(cur.unionsLimits.budget_pattern)) return r.innerHTML = window.incorrectMoneyFormat, hide(o), show(a), !1;
     if (!window.curLegal && i > window.userMoney) return r.innerHTML = window.curOfficeLegal ? window.lowMoneyOnAccountSimple : window.lowMoneyOnAccount, hide(o), show(a), !1;
     if (window.curIsMoney) {
         if (window.curLegal) {
-            if (i < cur.unionsLimits[window.curLimitMinKey]) {
-                var u = getLang(window.langMoneyAmount, cur.unionsLimits[window.curLimitMinKey]);
+            if (i < cur.paymentsMinMoneyAmount) {
+                var u = getLang(window.langMoneyAmount, cur.paymentsMinMoneyAmount);
                 return r.innerHTML = window.lowMoneyPaymentLegal.replace("{money}", u), hide(o), show(a), !1
             }
-        } else if (t && i < cur.unionsLimits.budget_increase_rubles_min) return r.innerHTML = window.lowMoneyPayment, hide(o), show(a), !1
-    } else if (i < cur.unionsLimits.budget_increase_votes_min) return r.innerHTML = window.lowMoneyPayment, hide(o), show(a), !1;
+        } else if (t && i < cur.paymentsMinMoneyAmount) return r.innerHTML = window.lowMoneyPayment, hide(o), show(a), !1
+    } else if (i < cur.paymentsMinMoneyAmount) return r.innerHTML = window.lowMoneyPayment, hide(o), show(a), !1;
     return hide(a), show(o), n
 }, AdsPayments.onBudgetRublesChanged = function(e) {
     if (!window.curPaymentPage) {

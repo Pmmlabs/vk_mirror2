@@ -2752,7 +2752,31 @@ input.wide_button {
 
 .si_owner {
     font-weight: 700;
-    word-wrap: break-word
+    overflow: hidden;
+    word-wrap: break-word;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis
+}
+
+span.si_owner {
+    display: inline-block;
+    vertical-align: top;
+    white-space: nowrap;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-right: 20px;
+    max-width: 100%
+}
+
+span.si_owner .verified {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    right: 0;
+    margin-top: -2px
 }
 
 .si_date {
@@ -3054,7 +3078,7 @@ input.wide_button {
 
 .pi_fronly {
     background: url(/images/mobile/post_icons.png?7) no-repeat -60px;
-    width: 0px;
+    height: 11px;
     padding: 0 10px 0 0;
     margin-left: 5px;
     zoom: 1

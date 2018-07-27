@@ -60,7 +60,7 @@ var Groups = {
             hash: o
         }, {
             onDone: function(o) {
-                val(e, o), cur.toggleFaveAct = !t
+                val(e, o), cur.toggleFaveAct = !t, toggleClass(e, "on")
             },
             showProgress: window.Page && Page.actionsDropdownLock.pbind(e),
             hideProgress: window.Page && Page.actionsDropdownUnlock.pbind(e)

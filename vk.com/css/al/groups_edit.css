@@ -3202,3 +3202,7 @@ a.group_ad_post_link.deleted.deleted:hover {
 .group_edit_marketAppCoupon__close:hover {
     opacity: 1
 }
+
+.groups_edit_phone .group_edit_field {
+    margin-bottom: auto
+}

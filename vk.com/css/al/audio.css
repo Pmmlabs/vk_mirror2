@@ -384,6 +384,16 @@
     box-sizing: border-box
 }
 
+.audio_pl_item2.audio_pl__blocked .audio_pl__actions_add,
+.audio_pl_item2.audio_pl__blocked .audio_pl__actions_play,
+.audio_pl_item2.audio_pl__blocked .audio_pl__actions_share {
+    display: none
+}
+
+.audio_pl_item2.audio_pl__blocked.audio_pl__followed .audio_pl__actions_add {
+    display: block
+}
+
 .audio_page_player {
     position: static;
     box-sizing: border-box

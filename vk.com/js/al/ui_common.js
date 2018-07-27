@@ -222,7 +222,7 @@ var uiTabs = {
                     s = geByClass1("ui_rmenu_item_sel", t),
                     o = s || i,
                     n = getSize(o)[1],
-                    r = o.offsetTop,
+                    r = getXY(o)[1] - getXY(t)[1],
                     l = geByClass1("_ui_rmenu_slider", t);
                 if (!e) {
                     var a = {
@@ -244,30 +244,28 @@ var uiTabs = {
             var i = gpeByClass("ui_rmenu", t),
                 s = geByClass1("ui_rmenu_item_sel", i);
             if (t == s && !e) return !1;
-            var o = hasClass(t, "_audio_album_item");
-            uiRightMenu.initMenu(i, o);
-            var n = getSize(t)[1],
-                r = t.offsetTop,
-                l = [],
-                a = [],
-                h = domPN(t);
-            if (o && (r += getXY(h)[1] - getXY(i)[1]), hasClass(i, "_ui_rmenu_auto_expand")) {
-                var d = geByClass("_ui_rmenu_sublist", i),
-                    u = hasClass(t, "_ui_rmenu_subitem") ? gpeByClass("_ui_rmenu_sublist", t) : hasClass(domNS(t), "_ui_rmenu_sublist") ? domNS(t) : !1;
-                each(d, function() {
-                    isVisible(this) && this !== u && (l.push(this), hide(this))
-                }), u && !isVisible(u) && (a.push(u), show(u)), r = t.offsetTop, each(l, function() {
+            uiRightMenu.initMenu(i);
+            var o = getSize(t)[1],
+                n = getXY(t)[1] - getXY(i)[1],
+                r = [],
+                l = [];
+            if (hasClass(i, "_ui_rmenu_auto_expand")) {
+                var a = geByClass("_ui_rmenu_sublist", i),
+                    h = hasClass(t, "_ui_rmenu_subitem") ? gpeByClass("_ui_rmenu_sublist", t) : hasClass(domNS(t), "_ui_rmenu_sublist") ? domNS(t) : !1;
+                each(a, function() {
+                    isVisible(this) && this !== h && (r.push(this), hide(this))
+                }), h && !isVisible(h) && (l.push(h), show(h)), n = t.offsetTop, each(r, function() {
                     show(this)
-                }), each(a, function() {
+                }), each(l, function() {
                     hide(this)
                 })
             }
-            var c = geByClass1("_ui_rmenu_slider", i),
-                p = intval(c.style.top),
-                m = {
-                    height: n
+            var d = geByClass1("_ui_rmenu_slider", i),
+                u = intval(d.style.top),
+                c = {
+                    height: o
                 };
-            return browser.msie_edge ? m.marginTop = r - p + "px" : m[cssTransformProp] = "translateY(" + (r - p) + "px)", setStyle(c, m), removeClass(s, "ui_rmenu_item_sel"), addClass(t, "ui_rmenu_item_sel"), hasClass(i, "_ui_rmenu_auto_expand") ? each(l.concat(a), function() {
+            return browser.msie_edge ? c.marginTop = n - u + "px" : c[cssTransformProp] = "translateY(" + (n - u) + "px)", setStyle(d, c), removeClass(s, "ui_rmenu_item_sel"), addClass(t, "ui_rmenu_item_sel"), hasClass(i, "_ui_rmenu_auto_expand") ? each(r.concat(l), function() {
                 uiRightMenu.toggleSubmenu(this)
             }) : hasClass(t, "_ui_rmenu_subitem") && !isVisible(domPN(t)) && uiRightMenu.toggleSubmenu(domPN(t)), !1
         },
@@ -275,16 +273,15 @@ var uiTabs = {
             var e = gpeByClass("ui_rmenu", t);
             if (e && isVisible(t)) {
                 var i = hasClass(e, "ui_rmenu_sliding"),
-                    s = hasClass(t, "_audio_album_item"),
-                    o = getSize(t)[1];
+                    s = getSize(t)[1];
                 i && uiRightMenu.hideSliding(e);
-                var n = t.offsetTop,
-                    r = geByClass1("_ui_rmenu_slider", e),
-                    l = intval(r.style.top),
-                    a = {
-                        height: o
+                var o = t.offsetTop,
+                    n = geByClass1("_ui_rmenu_slider", e),
+                    r = intval(n.style.top),
+                    l = {
+                        height: s
                     };
-                s && (n += getXY(domPN(t))[1] - getXY(e)[1]), browser.msie_edge ? a.marginTop = n - l + "px" : a[cssTransformProp] = "translateY(" + (n - l) + "px)", setStyle(r, a), t.offsetLeft, i && uiRightMenu.showSliding(e)
+                browser.msie_edge ? l.marginTop = o - r + "px" : l[cssTransformProp] = "translateY(" + (o - r) + "px)", setStyle(n, l), t.offsetLeft, i && uiRightMenu.showSliding(e)
             }
         },
         unselectAll: function(t) {
@@ -838,22 +835,21 @@ var uiTabs = {
             }, this.init(), this.options.noLazyLoadWatch || (window.LazyLoad && LazyLoad.watch(this.el.outer), window.LazyLoad && LazyLoad.scanDelayed());
             var l = "onwheel" in this.el.outer ? "wheel" : void 0 !== document.onmousewheel ? "mousewheel" : browser.mozilla ? "MozMousePixelScroll" : "DOMMouseScroll";
             return this.addEvent(this.el.container, l, function(t) {
-                    this.animation && this.animation.stop(), !this.disabled && this.options.stopScrollPropagation && (this.unnecessary ? this.options.stopScrollPropagationAlways && cancelEvent(t) : this.isScrollEventUnused(t) ? cancelEvent(t) : stopEvent(t))
-                }.bind(this), !this.options.stopScrollPropagation),
-                this.options["native"] || this.addEvent(this.el.barContainer, "mousedown", this.dragstart.bind(this)), each(this.options.scrollElements, function(t, e) {
-                    this.addEvent(e, l, function(t) {
-                        this.disabled || this.unnecessary || (this.scrollBy(this.scrollEventDelta(t)), (this.options.stopScrollPropagation || !this.isScrollEventUnused(t)) && cancelEvent(t))
-                    }.bind(this))
-                }.bind(this)), this.options.reversed && this.addEvent(this.el.container, "mousedown touchstart pointerdown", function(t) {
-                    this.released = !1, this.noMore = !0;
-                    var e = this.addEvent(document, "mouseup contextmenu touchend pointerup", function(t) {
-                        removeEvent(document, "mouseup contextmenu touchend pointerup", e), this.released = !0, this.noMore && this.stopped && !this.dragging && (this.noMore = !1, this.more())
-                    }.bind(this))
-                }.bind(this)), this.addEvent(this.el.outer, "scroll", function() {
-                    this.update() && (this.stopped ? (this.stopped = !1, this.emitEvent("scrollstart")) : this.options["native"] || this.stopped !== !1 || (this.stopped = 0, addClass(this.el.container, "ui_scroll_scrolled")), this.emitEvent("scroll"), this.stoppedTimeout && clearTimeout(this.stoppedTimeout), this.stoppedTimeout = setTimeout(function() {
-                        this.stopped || (this.stopped = !0, this.options["native"] || removeClass(this.el.container, "ui_scroll_scrolled"), this.emitEvent("scrollstop"), this.noMore && this.released && !this.dragging && (this.noMore = !1, this.more()))
-                    }.bind(this), 200))
-                }.bind(this)), this.api
+                this.animation && this.animation.stop(), !this.disabled && this.options.stopScrollPropagation && (this.unnecessary ? this.options.stopScrollPropagationAlways && cancelEvent(t) : this.isScrollEventUnused(t) ? cancelEvent(t) : stopEvent(t))
+            }.bind(this), !this.options.stopScrollPropagation), this.options["native"] || this.addEvent(this.el.barContainer, "mousedown", this.dragstart.bind(this)), each(this.options.scrollElements, function(t, e) {
+                this.addEvent(e, l, function(t) {
+                    this.disabled || this.unnecessary || (this.scrollBy(this.scrollEventDelta(t)), (this.options.stopScrollPropagation || !this.isScrollEventUnused(t)) && cancelEvent(t))
+                }.bind(this))
+            }.bind(this)), this.options.reversed && this.addEvent(this.el.container, "mousedown touchstart pointerdown", function(t) {
+                this.released = !1, this.noMore = !0;
+                var e = this.addEvent(document, "mouseup contextmenu touchend pointerup", function(t) {
+                    removeEvent(document, "mouseup contextmenu touchend pointerup", e), this.released = !0, this.noMore && this.stopped && !this.dragging && (this.noMore = !1, this.more())
+                }.bind(this))
+            }.bind(this)), this.addEvent(this.el.outer, "scroll", function() {
+                this.update() && (this.stopped ? (this.stopped = !1, this.emitEvent("scrollstart")) : this.options["native"] || this.stopped !== !1 || (this.stopped = 0, addClass(this.el.container, "ui_scroll_scrolled")), this.emitEvent("scroll"), this.stoppedTimeout && clearTimeout(this.stoppedTimeout), this.stoppedTimeout = setTimeout(function() {
+                    this.stopped || (this.stopped = !0, this.options["native"] || removeClass(this.el.container, "ui_scroll_scrolled"), this.emitEvent("scrollstop"), this.noMore && this.released && !this.dragging && (this.noMore = !1, this.more()))
+                }.bind(this), 200))
+            }.bind(this)), this.api
         };
         return t.prototype = {
             init: function() {
@@ -1448,7 +1444,8 @@ Slider.prototype.toggleAdState = function(t) {
 }, Slider.prototype._onMouseMove = function(t) {
     var e = this._getPos(),
         i = Math.max(t.pageX, e[0]);
-    i = Math.min(i, e[0] + this._width), i -= e[0], this.setValue(i / this._width, !0, !0), this._onValueChangeDebounced ? this._onValueChangeDebounced() : this._onValueChange(), this._toggleHint(!0), this._updateHint(t, !0), cancelEvent(t)
+    i = Math.min(i, e[0] + this._width), i -= e[0], this.setValue(i / this._width, !0, !0),
+        this._onValueChangeDebounced ? this._onValueChangeDebounced() : this._onValueChange(), this._toggleHint(!0), this._updateHint(t, !0), cancelEvent(t)
 }, Slider.prototype._getPos = function() {
     return this._slidePos = getXY(this._slideEl)
 }, Slider.LOGFBASE = 35, Slider.prototype._logf = function(t) {

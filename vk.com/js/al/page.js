@@ -2141,9 +2141,9 @@ var Wall = {
         }
         cur.editingPost = [post];
         if (Wall.withMentions) {
-            stManager.add(['ui_controls.css', 'ui_controls.js', 'mentions.js', 'walledit.js']);
+            stManager.add(['ui_controls.css', 'ui_controls.js', 'mentions.js', jsc('web/wall_edit.js')]);
         } else {
-            stManager.add(['walledit.js']);
+            stManager.add([jsc('web/wall_edit.js')]);
         }
         ajax.post('al_wall.php', extend({
             act: 'edit',
