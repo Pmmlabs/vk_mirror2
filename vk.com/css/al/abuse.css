@@ -1172,14 +1172,6 @@
     float: right
 }
 
-.abuse_hidden {
-    visibility: hidden
-}
-
-.abuse_bleak {
-    opacity: 0.5
-}
-
 .abuse_checkmark {
     background-image: url(/images/icons/idd_check.png);
     background-repeat: no-repeat;
@@ -1261,7 +1253,7 @@
     text-align: center
 }
 
-.abuse_cross_solves_block .abuse_cross_solve {
+.abuse_cross_solve {
     display: inline-block;
     vertical-align: top;
     border: 1px solid #aaa;
@@ -1271,50 +1263,98 @@
     margin: 10px 6px
 }
 
-.abuse_cross_solves_block .abuse_cross_solve.abuse_cross_solve_dangerous {
+.abuse_cross_solve.abuse_cross_solve_dangerous {
     border-top: 3px solid #dd8a8a
 }
 
-.abuse_cross_solves_block .abuse_cross_solve .moderator_picture {
+.abuse_cross_solve .moderator_picture {
     display: inline-block;
     margin-right: 3px
 }
 
-.abuse_cross_solves_block .abuse_cross_solve .moderator_picture .moderator_picture_img {
+.abuse_cross_solve .moderator_picture .moderator_picture_img {
     width: 30px;
     height: 30px;
     border-radius: 50%
 }
 
-.abuse_cross_solves_block .abuse_cross_solve .cross_solve_info {
+.abuse_cross_solve .cross_solve_info {
     display: inline-block;
     vertical-align: middle
 }
 
-.abuse_cross_solves_block .abuse_cross_solve .cross_solve_info .cross_solve_rows {
+.abuse_cross_solve .cross_solve_info .cross_solve_rows {
     display: inline-block;
     line-height: 20px
 }
 
-.abuse_cross_solves_block .abuse_cross_solve .cross_solve_info .cross_solve_rows .cross_solve_row {
+.abuse_cross_solve .cross_solve_info .cross_solve_rows .cross_solve_row {
     text-align: left
 }
 
-.abuse_cross_solves_block .abuse_cross_solve .cross_solve_info .cross_solve_rows .cross_solve_row .moderator_name,
-.abuse_cross_solves_block .abuse_cross_solve .cross_solve_info .cross_solve_rows .cross_solve_row .solve_label {
+.abuse_cross_solve .cross_solve_info .cross_solve_rows .cross_solve_row .moderator_name,
+.abuse_cross_solve .cross_solve_info .cross_solve_rows .cross_solve_row .solve_label {
     display: inline-block
 }
 
-.abuse_cross_solves_block .abuse_cross_solve .cross_conclusion_text {
+.abuse_cross_solve .cross_conclusion_text {
     line-height: 28px
 }
 
-.abuse_cross_solves_block .abuse_cross_solve .cross_solve_buttons_row {
+.abuse_cross_solve .cross_solve_buttons_row {
     display: inline-block;
     vertical-align: middle
 }
 
-.abuse_cross_solves_block .abuse_cross_solve .cross_solve_buttons_row .cross_solve_button,
+.abuse_cross_solve .cross_solve_buttons_row .cross_solve_button {
+    cursor: pointer
+}
+
+.abuse_cross_solve_compact .moderator_picture {
+    display: inline-block;
+    margin-right: 3px
+}
+
+.abuse_cross_solve_compact .moderator_picture .moderator_picture_img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%
+}
+
+.abuse_cross_solve_compact .cross_solve_info {
+    display: inline-block;
+    vertical-align: middle
+}
+
+.abuse_cross_solve_compact .cross_solve_info .cross_solve_rows {
+    display: inline-block;
+    line-height: 23px
+}
+
+.abuse_cross_solve_compact .cross_solve_info .cross_solve_rows .cross_solve_row {
+    text-align: left
+}
+
+.abuse_cross_solve_compact .cross_solve_info .cross_solve_rows .cross_solve_row .moderator_name,
+.abuse_cross_solve_compact .cross_solve_info .cross_solve_rows .cross_solve_row .solve_label {
+    display: inline-block
+}
+
+.abuse_cross_solve_compact .cross_conclusion_text {
+    line-height: 28px
+}
+
+.abuse_cross_solve_compact .cross_solve_buttons_row {
+    vertical-align: middle;
+    text-align: center;
+    margin-top: 5px
+}
+
+.abuse_cross_solve_compact .cross_solve_buttons_row .cross_solve_button {
+    cursor: pointer;
+    display: inline-block
+}
+
 .ui_calendar_icon {
     cursor: pointer
 }
@@ -1380,14 +1420,8 @@
     padding-right: 24px
 }
 
-.abuse_tooltip_enabled {
-    text-decoration: underline dashed #939393
-}
-
 .abuse_aftersolve_action {
-    display: inline-block;
-    margin-top: 2px;
-    margin-right: 5px
+    margin-top: 8px
 }
 
 .abuse_photo_tooltip {

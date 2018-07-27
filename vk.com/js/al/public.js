@@ -6,7 +6,7 @@ window["public"] = window.Public = {
             hash: o
         }, {
             onDone: function(o) {
-                val(e, o), cur.toggleFaveAct = !t
+                val(e, o), cur.toggleFaveAct = !t, toggleClass(e, "on")
             },
             showProgress: window.Page && Page.actionsDropdownLock.pbind(e),
             hideProgress: window.Page && Page.actionsDropdownUnlock.pbind(e)
@@ -310,16 +310,16 @@ var PagedList = function(e, o, t) {
             }
             if (!r.length) return ge(e).innerHTML = t.emptyRow(n), t.setPages(0, 0, "top"), void t.setPages(0, 0, "bottom");
             for (var d = [], u = o * t.perPage; u < Math.min(r.length, (o + 1) * t.perPage); ++u) {
-                var h = r[u];
-                d.push(l(h, p))
+                var g = r[u];
+                d.push(l(g, p))
             }
-            var g = getSize(ge(e))[1];
+            var h = getSize(ge(e))[1];
             if (ge(e).innerHTML = d.join(""), setStyle(ge(e), {
-                    height: o ? g : "auto"
+                    height: o ? h : "auto"
                 }), t.onShow)
                 for (var u = o * t.perPage; u < Math.min(r.length, (o + 1) * t.perPage); ++u) {
-                    var h = r[u];
-                    t.onShow(h, u)
+                    var g = r[u];
+                    t.onShow(g, u)
                 }
             var _ = Math.ceil(r.length / t.perPage);
             t.setPages(o, _, "top"), t.setPages(o, _, "bottom"), t.onEnd && t.onEnd()

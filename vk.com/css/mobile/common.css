@@ -2758,7 +2758,7 @@ input.wide_button {
     text-overflow: ellipsis
 }
 
-span.si_owner {
+.items span.si_owner {
     display: inline-block;
     vertical-align: top;
     white-space: nowrap;
@@ -2770,7 +2770,7 @@ span.si_owner {
     max-width: 100%
 }
 
-span.si_owner .verified {
+.items span.si_owner .verified {
     position: absolute;
     width: 20px;
     height: 20px;
