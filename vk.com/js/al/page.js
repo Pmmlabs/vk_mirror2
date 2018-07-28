@@ -6350,40 +6350,57 @@ var Wall = {
         return res;
     },
 
+    votingExtendParams: function(params, votingEl) {
+        if (domData(votingEl, 'fixed')) {
+            params.is_fixed = 1;
+        }
+        if (domData(votingEl, 'preview')) {
+            params.is_preview = 1;
+        }
+        if (domData(votingEl, 'board')) {
+            params.is_board = 1;
+        }
+        if (vk.widget) {
+            params.is_widget = 1;
+            params.width = cur.widgetWidth;
+            params.url = cur.url;
+        }
+        if (cur.voteHash) {
+            params.vote_hash = cur.voteHash;
+        }
+        var votingId = domData(votingEl, 'id');
+        if (votingId) {
+            params.voting_id = votingId;
+        }
+        var ref = domData(votingEl, 'ref');
+        if (ref) {
+            params.ref = ref;
+        }
+        var hash = domData(votingEl, 'hash');
+        if (hash) {
+            params.hash = hash;
+        }
+
+        return params;
+    },
     votingRevote: function(actionMenuItemEl) {
         var votingEl = gpeByClass('media_voting', actionMenuItemEl);
 
         if (votingEl) {
+            var votingId = domData(votingEl, 'id');
+
             if (this.votingIsLocked(votingId)) {
                 return;
             }
 
-            var votingId = domData(votingEl, 'id');
-            var isBoard = domData(votingEl, 'board');
-            var isFixed = domData(votingEl, 'fixed');
-            var ref = domData(votingEl, 'ref');
-            var hash = domData(votingEl, 'hash');
-            var votingEls = geByClass('_media_voting' + votingId);
-
-            ajax.post('al_voting.php', {
+            var params = this.votingExtendParams({
                 act: 'revote',
-                voting_id: votingId,
-                is_board: isBoard,
-                is_widget: vk.widget ? 1 : 0,
-                is_fixed: isFixed,
-                hash: hash,
-                ref: ref,
-                width: vk.widget ? cur.widgetWidth : undefined,
-                url: vk.widget ? cur.url : undefined,
-                vote_hash: cur.voteHash
-            }, {
+            }, votingEl);
+
+            ajax.post('al_voting.php', params, {
                 onDone: this.votingUpdate.bind(this, votingId),
-                showProgress: function() {
-                    this.votingLock(votingId);
-                }.bind(this),
-                hideProgress: function() {
-                    this.votingUnlock(votingId);
-                }.bind(this)
+                showProgress: this.votingLock.bind(this, votingId),
+                hideProgress: this.votingUnlock.bind(this, votingId)
             });
         }
     },
@@ -6451,26 +6468,14 @@ var Wall = {
             return;
         }
 
-        var isBoard = domData(votingEl, 'board');
-        var isFixed = domData(votingEl, 'fixed');
-        var isWkview = hasClass(domPN(votingEl), 'wk_voting_box');
-        var hash = domData(votingEl, 'hash');
-        var ref = domData(votingEl, 'ref');
-
-        if (optionIds.length && hash) {
-            ajax.post('al_voting.php', {
+        if (optionIds.length) {
+            var isWkview = hasClass(domPN(votingEl), 'wk_voting_box');
+            var params = this.votingExtendParams({
                 act: 'vote',
-                voting_id: votingId,
-                is_board: isBoard,
-                is_widget: vk.widget ? 1 : 0,
-                is_fixed: isFixed,
                 option_ids: optionIds.join(','),
-                hash: hash,
-                ref: ref,
-                width: vk.widget ? cur.widgetWidth : undefined,
-                url: vk.widget ? cur.url : undefined,
-                vote_hash: cur.voteHash
-            }, {
+            }, votingEl);
+
+            ajax.post('al_voting.php', params, {
                 onDone: function(html, shareMessage) {
                     if (isWkview) {
                         nav.reload();
@@ -6621,16 +6626,11 @@ var Wall = {
         var votingEl = gpeByClass('media_voting', el);
 
         if (votingEl && !domData(votingEl, 'board')) {
-            var votingId = domData(votingEl, 'id');
-            var ref = domData(votingEl, 'ref');
-
-            showBox('al_voting.php', {
+            var params = this.votingExtendParams({
                 act: 'export_box',
-                ref: ref,
-                vote_hash: cur.voteHash,
-                is_widget: vk.widget ? 1 : 0,
-                voting_id: votingId
-            }, {
+            }, votingEl);
+
+            showBox('al_voting.php', params, {
                 onDone: function() {
                     curBox().setOptions({
                         width: 500
@@ -6647,27 +6647,15 @@ var Wall = {
                 return;
             }
 
-            var votingId = domData(votingEl, 'id');
-            var isFixed = domData(votingEl, 'fixed');
-            var ref = domData(votingEl, 'ref');
-            var hash = domData(votingEl, 'hash');
-            var votingEls = geByClass('_media_voting' + votingId);
-
-            ajax.post('al_voting.php', {
+            var params = this.votingExtendParams({
                 act: 'onmain',
                 state: state ? 1 : 0,
-                voting_id: votingId,
-                is_fixed: isFixed,
-                ref: ref,
-                hash: hash
-            }, {
+            }, votingEl);
+
+            ajax.post('al_voting.php', params, {
                 onDone: this.votingUpdate.bind(this, votingId),
-                showProgress: function() {
-                    this.votingLock(votingId);
-                }.bind(this),
-                hideProgress: function() {
-                    this.votingUnlock(votingId);
-                }.bind(this)
+                showProgress: this.votingLock.bind(this, votingId),
+                hideProgress: this.votingUnlock.bind(this, votingId)
             });
         }
     },
@@ -6675,31 +6663,19 @@ var Wall = {
         var votingEl = gpeByClass('media_voting', actionMenuItemEl);
 
         if (votingEl) {
-            if (this.votingIsLocked(votingId)) {
+            if (this.votingIsLocked(votingEl)) {
                 return;
             }
 
-            var votingId = domData(votingEl, 'id');
-            var isFixed = domData(votingEl, 'fixed');
-            var ref = domData(votingEl, 'ref');
-            var hash = domData(votingEl, 'hash');
-            var votingEls = geByClass('_media_voting' + votingId);
-
-            ajax.post('al_voting.php', {
+            var params = this.votingExtendParams({
                 act: 'closed',
                 state: state ? 1 : 0,
-                voting_id: votingId,
-                is_fixed: isFixed,
-                ref: ref,
-                hash: hash
-            }, {
+            }, votingEl);
+
+            ajax.post('al_voting.php', params, {
                 onDone: this.votingUpdate.bind(this, votingId),
-                showProgress: function() {
-                    this.votingLock(votingId);
-                }.bind(this),
-                hideProgress: function() {
-                    this.votingUnlock(votingId);
-                }.bind(this)
+                showProgress: this.votingLock.bind(this, votingId),
+                hideProgress: this.votingUnlock.bind(this, votingId)
             });
         }
     },
@@ -6770,7 +6746,7 @@ var Wall = {
         if (votingEl) {
             var votingId = domData(votingEl, 'id');
 
-            if (this.votingIsLocked(votingId)) {
+            if (this.votingIsLocked(votingEl)) {
                 return;
             }
 

@@ -1826,6 +1826,10 @@ if (!VK.Widgets) {
             title: options.pageTitle || pData.title,
             description: options.pageDescription || pData.description
         };
+        if (options.preview) {
+            params.is_preview = 1;
+            delete options['preview'];
+        }
         if (options.share !== undefined) {
             params.share = options.share ? 1 : 0;
         }

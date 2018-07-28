@@ -11994,8 +11994,7 @@ a.Pad__corner {
     margin-top: 8px
 }
 
-.Input,
-.vk__page_redesign .basis .fi_row .iwrap {
+.TextInput {
     display: block;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -12009,16 +12008,15 @@ a.Pad__corner {
     background-color: #fff
 }
 
-.Input_hidden {
+.TextInput_hidden {
     display: none
 }
 
-.Input_error {
+.TextInput_error {
     border-color: #f2ab99
 }
 
-.Input__native,
-.vk__page_redesign .basis .fi_row .textfield {
+.TextInput__native {
     font-family: inherit;
     font-size: 15px;
     -webkit-box-sizing: border-box;
@@ -12032,43 +12030,43 @@ a.Pad__corner {
     background-color: transparent
 }
 
-.Input__native::-webkit-input-placeholder {
+.TextInput__native::-webkit-input-placeholder {
     color: #909499
 }
 
-.Input__native:-moz-placeholder,
-.Input__native::-moz-placeholder {
+.TextInput__native:-moz-placeholder,
+.TextInput__native::-moz-placeholder {
     color: #909499
 }
 
-.Input__native:-ms-input-placeholder {
+.TextInput__native:-ms-input-placeholder {
     color: #909499
 }
 
-.Input__native::placeholder {
+.TextInput__native::placeholder {
     color: #909499
 }
 
-.Input__prefix {
+.TextInput__prefix {
     font-size: 15px;
     float: left;
     padding: 9px 0 9px 10px;
     line-height: 20px
 }
 
-.Input__prefix_gray {
+.TextInput__prefix_gray {
     color: #909499
 }
 
-.Input__prefix_rightPadding {
+.TextInput__prefix_rightPadding {
     padding-right: 3px
 }
 
-.Input__nativeWrap {
+.TextInput__nativeWrap {
     overflow: hidden
 }
 
-.Input_prefixed .Input__native {
+.TextInput_prefixed .TextInput__native {
     padding-left: 1px
 }
 
@@ -33206,12 +33204,20 @@ body.apps_settingsPageBody {
     cursor: default
 }
 
+.Voting__notClickable {
+    z-index: 2
+}
+
+.Voting__notClickable,
 .Voting__link {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 0
+}
+
+.Voting__link {
     z-index: 1
 }
 
@@ -33616,6 +33622,15 @@ body.apps_settingsPageBody {
 
 .pi_medias .Voting {
     margin: 0 8px
+}
+
+
+/*!
+ * View when sharing
+ */
+
+.cp_attached_post .Voting {
+    margin: 7px 7px 0
 }
 
 

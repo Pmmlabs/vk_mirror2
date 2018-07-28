@@ -1073,3 +1073,8 @@
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2215%22%20height%3D%229%22%20viewBox%3D%22595%2010%2015%209%22%3E%3Cpath%20d%3D%22M595%2011C595%2010.4%20595.5%2010%20596%2010L604%2010C604.6%2010%20605%2010.4%20605%2011L605%2018C605%2018.6%20604.5%2019%20604%2019L596%2019C595.4%2019%20595%2018.6%20595%2018L595%2011ZM606%2013.2L610%2011%20610%2018%20606%2015.8%20606%2013.2Z%22%20fill%3D%22%236590C7%22%2F%3E%3C%2Fsvg%3E");
     margin-right: 9px
 }
+
+#videocat_page_block_vk_fest_2018_block .video_item {
+    height: auto;
+    margin-bottom: 5px
+}

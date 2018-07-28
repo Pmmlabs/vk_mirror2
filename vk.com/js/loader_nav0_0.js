@@ -201,7 +201,7 @@ var stVersions = {
     'video.js': 2470645467,
     'video.css': 27631029698,
     'videocat.js': 3590298689,
-    'videocat.css': 22346538552,
+    'videocat.css': 20555806487,
     'videoview.js': 15786954113,
     'videoview.css': 29940383520,
     'video_edit.js': 2135196486,
@@ -228,7 +228,7 @@ var stVersions = {
     'module.css': 22381366314,
     'owner_photo.js': 3368798011,
     'owner_photo.css': 20827052410,
-    'page.js': 1149129655,
+    'page.js': 3042739337,
     'page.css': 44213486284,
     'page_help.css': 25006592950,
     'public.css': 27766592479,
@@ -240,7 +240,7 @@ var stVersions = {
     'cmodules/web/groups_create.js': 2554367098,
     'groups_create.css': 17588630803,
     'cmodules/web/groups_list.js': 4113519109,
-    'cmodules/web/GroupsEdit.js': 25981079904,
+    'cmodules/web/GroupsEdit.js': 26969881135,
     'groups_edit.css': 49341900680,
     'groups_edit.js': 4124737002,
     'profile.css': 21481446865,
@@ -321,7 +321,7 @@ var stVersions = {
     'cmodules/api/widgets/allow_messages_from_community.js': 618639651,
     'cmodules/api/widgets/app.js': 3131808422,
     'cmodules/api/widgets/auth.js': 2163782307,
-    'cmodules/api/widgets/poll.js': 1118836654,
+    'cmodules/api/widgets/poll.js': 2902328673,
     'api/widgets/al_add_community_app.js': 807582258,
     'widget_add_community_app.css': 29759873147,
     'api/widgets/community_messages.js': 1318641213,
@@ -501,7 +501,7 @@ var stVersions = {
     'paginated_table.js': 1750088857,
     'paginated_table.css': 16922382172,
     'api/share.js': 2262994046,
-    'api/openapi.js': 1946263206,
+    'api/openapi.js': 96590102,
     'api/xdm.js': 1449919642,
     'hls.min.js': 222578124,
     'candy.min.js': 1892723665,
@@ -635,8 +635,7 @@ var stTypes = {
         'wk_editor.js': 1,
         'groups_edit_stories.js': 1,
         'apps.js': 1,
-        'likes.js': 1,
         'audio_admins.js': 1
     }
 };
-var _rnd = 6577;
+var _rnd = 20;
