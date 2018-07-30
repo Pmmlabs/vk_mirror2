@@ -8762,7 +8762,7 @@ var Wall = {
         return false;
     },
 
-    onClickRecommFriend: function(el, ev) {
+    onClickRecommFriend: function(el) {
         var mid = +domData(el, 'uid');
         var from = domData(gpeByClass('ui_gallery', el), 'from') || 'user_rec';
 
@@ -8771,12 +8771,6 @@ var Wall = {
         }
 
         Wall.friendsRecommLogSave(['open_user', mid, vkNow(), from]);
-
-        return nav.go(el, ev, {
-            params: {
-                _ref: from
-            }
-        });
     },
 
     friendsRecommLogSave: function(log, force) {

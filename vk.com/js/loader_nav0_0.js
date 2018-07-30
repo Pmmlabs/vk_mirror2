@@ -228,7 +228,7 @@ var stVersions = {
     'module.css': 22381366314,
     'owner_photo.js': 3368798011,
     'owner_photo.css': 20827052410,
-    'page.js': 3042739337,
+    'page.js': 528581965,
     'page.css': 44213486284,
     'page_help.css': 25006592950,
     'public.css': 27766592479,
@@ -638,4 +638,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 7251;
+var _rnd = 5894;
