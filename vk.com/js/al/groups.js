@@ -29,31 +29,31 @@ var Groups = {
     },
     showDisclaimer: function(e, o) {
         var t = !1,
-            a = function() {
+            n = function() {
                 t || (e.age_disclaimer_back ? history.back() : location.href = "/")
             },
-            n = showFastBox({
+            a = showFastBox({
                 title: getLang("groups_age_warning"),
                 width: 470,
                 hideOnBGClick: !1,
-                onHide: a,
+                onHide: n,
                 forceNoBtn: 1
             }, '<div class="group_age_disclaimer">' + getLang("groups_age_disclaimer") + '<br><div class="checkbox group_age_checkbox" onclick="checkbox(this); disableButton(curBox().proceedButton, !isChecked(this))"><div></div>' + getLang("groups_age_accepted") + "</div></div>");
-        n.removeButtons();
-        var s = n.addButton(getLang("global_cancel"), n.hide, "no", !0);
-        addClass(s, "group_age_disclaimer_close"), n.proceedButton = n.addButton(getLang("groups_age_approve"), function() {
-            t = !0, removeClass(ge(o), "hidden"), n.hide(), e.age_disclaimer_hash ? ajax.post("al_groups.php", {
+        a.removeButtons();
+        var s = a.addButton(getLang("global_cancel"), a.hide, "no", !0);
+        addClass(s, "group_age_disclaimer_close"), a.proceedButton = a.addButton(getLang("groups_age_approve"), function() {
+            t = !0, removeClass(ge(o), "hidden"), a.hide(), e.age_disclaimer_hash ? ajax.post("al_groups.php", {
                 act: "a_set_user_age",
                 hash: e.age_disclaimer_hash
             }) : setCookie("remixage18", 1), cur.zNavInfo && zNav(cur.zNavInfo.info, cur.zNavInfo.opts)
         }, "yes", !0);
-        var r = geByClass1("box_controls", domPN(n.bodyNode));
-        addClass(r, "group_age_disclaimer_box"), replaceClass(domFC(r), "fl_r", "fl_l"), disableButton(n.proceedButton, 1)
+        var r = geByClass1("box_controls", domPN(a.bodyNode));
+        addClass(r, "group_age_disclaimer_box"), replaceClass(domFC(r), "fl_r", "fl_l"), disableButton(a.proceedButton, 1)
     },
     switchTab: function(e, o, t) {
         return checkEvent(t) ? !0 : "wiki" == o && hasClass(e, "ui_tab_sel") ? nav.go(e, t) : (ge("page_info_wrap").className = "page_info_wrap " + o, uiTabs.switchTab(e))
     },
-    toggleFave: function(e, o, t, a) {
+    toggleFave: function(e, o, t, n) {
         void 0 != cur.toggleFaveAct && (t = cur.toggleFaveAct), ajax.post("fave.php", {
             act: t ? "a_add_group" : "a_delete_group",
             gid: -cur.oid,
@@ -64,18 +64,18 @@ var Groups = {
             },
             showProgress: window.Page && Page.actionsDropdownLock.pbind(e),
             hideProgress: window.Page && Page.actionsDropdownUnlock.pbind(e)
-        }), cancelEvent(a)
+        }), cancelEvent(n)
     },
-    hideHelpStep: function(e, o, t, a) {
-        var n = domClosest("page_block", e);
+    hideHelpStep: function(e, o, t, n) {
+        var a = domClosest("page_block", e);
         return e && e.tt && e.tt.hide && e.tt.hide({
             fasthide: !0
-        }), n && slideUp(n, 200, re.pbind(n)), ajax.post("/al_public.php", {
+        }), a && slideUp(a, 200, re.pbind(a)), ajax.post("/al_public.php", {
             act: "a_hide_help_step",
             pid: o,
             step: "help_step_advice",
             hash: t
-        }), a.cancelBubble = !0, cancelEvent(a)
+        }), n.cancelBubble = !0, cancelEvent(n)
     },
     showInviteBox: function(e, o) {
         return !showBox("al_page.php", {
@@ -162,8 +162,8 @@ var Groups = {
     updates: function(e, o) {
         each(o.events, function(e, o) {
             var t = o.split("<!>"),
-                a = t[1];
-            switch (a) {
+                n = t[1];
+            switch (n) {
                 case "update_cnt":
                     Groups.updateCnt(t[4])
             }
@@ -171,10 +171,10 @@ var Groups = {
     },
     updateActions: function(e, o, t) {
         val("page_actions", e);
-        var a = geByClass1("_page_actions_container");
-        a && o && domPN(a).replaceChild(se(o), a), void 0 !== t && val("group_moder_info", t)
+        var n = geByClass1("_page_actions_container");
+        n && o && domPN(n).replaceChild(se(o), n), void 0 !== t && val("group_moder_info", t)
     },
-    enter: function(e, o, t, a, n) {
+    enter: function(e, o, t, n, a) {
         var s, r;
         if (e = ge(e), hasClass(e, "flat_button")) s = lockButton.pbind(e), r = unlockButton.pbind(e);
         else {
@@ -189,10 +189,10 @@ var Groups = {
             act: "enter",
             gid: o,
             hash: t,
-            context: a
+            context: n
         }, {
             onDone: function(e, o) {
-                if (n) return n();
+                if (a) return a();
                 Groups.updateActions(e, o), toggle("page_actions", e);
                 var t = geByClass1("_groups_invite_block");
                 t && slideUp(t, 200), nav.reload({
@@ -210,15 +210,15 @@ var Groups = {
             hideProgress: r
         })
     },
-    confirm: function(e, o, t, a, n) {
+    confirm: function(e, o, t, n, a) {
         var s = showFastBox({
             title: getLang("global_warning"),
             bodyStyle: "padding: 20px; line-height: 160%;"
         }, getLang(e), getLang("group_leave_group"), function() {
-            s.hide(), Groups.leave(o, t, a, n)
+            s.hide(), Groups.leave(o, t, n, a)
         }, getLang("global_cancel"))
     },
-    leave: function(e, o, t, a, n) {
+    leave: function(e, o, t, n, a) {
         var s, r;
         if (e = ge(e), hasClass(e, "flat_button")) s = lockButton.pbind(e), r = unlockButton.pbind(e);
         else {
@@ -233,10 +233,10 @@ var Groups = {
             act: "leave",
             gid: o,
             hash: t,
-            context: a
+            context: n
         }, {
             onDone: function(e, o) {
-                if (n) return n();
+                if (a) return a();
                 Groups.updateActions(e, o), toggle("page_actions", e);
                 var t = geByClass1("_groups_invite_block");
                 t && slideUp(t, 200), nav.reload({
@@ -259,12 +259,12 @@ var Groups = {
             var o = ge("page_other_acts"); - 1 == e ? hide(o) : fadeOut(o, 200)
         }
     },
-    toggleTop: function(e, o, t, a, n) {
+    toggleTop: function(e, o, t, n, a) {
         ajax.post("al_groups.php", {
             act: "a_toggle_top",
             gid: o,
             hash: t,
-            nocis: n
+            nocis: a
         }, {
             onDone: function(o) {
                 e.innerHTML = o
@@ -273,7 +273,7 @@ var Groups = {
             hideProgress: window.Page && Page.actionsDropdownUnlock.pbind(e)
         })
     },
-    toggleStickers: function(e, o, t, a) {
+    toggleStickers: function(e, o, t, n) {
         ajax.post("al_groups.php", {
             act: "a_toggle_stickers",
             gid: o,
@@ -287,11 +287,11 @@ var Groups = {
         })
     },
     toggleFastAccess: function(e, o, t) {
-        function a(t) {
-            var a = t ? getLang("groups_fast_menu_access_invert") : getLang("groups_fast_menu_access");
-            val(e, a), e.setAttribute("data-value", t), "groups_list" == cur.module && window.GroupsList && GroupsList.updateGroupField(o, 11, t)
+        function n(t) {
+            var n = t ? getLang("groups_fast_menu_access_invert") : getLang("groups_fast_menu_access");
+            val(e, n), e.setAttribute("data-value", t), "groups_list" == cur.module && window.GroupsList && GroupsList.updateGroupField(o, 11, t)
         }
-        var n = 1 ^ intval(e.getAttribute("data-value")),
+        var a = 1 ^ intval(e.getAttribute("data-value")),
             s = hasClass(e, "page_actions_item") || hasClass(e, "ui_actions_menu_item");
         return ajax.post("al_settings.php", {
             act: "a_toggle_admin_fast",
@@ -300,10 +300,10 @@ var Groups = {
             update_menu: 1
         }, {
             onDone: function(e, o) {
-                s && a(e), geByTag1("ol", ge("side_bar")).innerHTML = o, window.Notifier && Notifier.resetCommConnection()
+                s && n(e), geByTag1("ol", ge("side_bar")).innerHTML = o, window.Notifier && Notifier.resetCommConnection()
             },
             onFail: function(e) {
-                return s || a(0), "too_much_groups" !== e ? !1 : (showFastBox(getLang("global_error"), getLang("groups_left_menu_full", 5)), !0)
+                return s || n(0), "too_much_groups" !== e ? !1 : (showFastBox(getLang("global_error"), getLang("groups_left_menu_full", 5)), !0)
             }.bind(),
             showProgress: s && function() {
                 hasClass(e, "page_actions_item") ? window.Page && Page.actionsDropdownLock(e) : lockActionsMenuItem(e)
@@ -311,7 +311,7 @@ var Groups = {
             hideProgress: s && function() {
                 hasClass(e, "page_actions_item") ? window.Page && Page.actionsDropdownUnlock(e) : unlockActionsMenuItem(e)
             }
-        }), s || a(n), !1
+        }), s || n(a), !1
     },
     showMapBox: function(e, o, t) {
         window.showZeroZoneBox && showZeroZoneBox("places", function() {
@@ -345,34 +345,34 @@ var Groups = {
         cur.onPhotoInputChange = function(t) {
             return window.filesToUpload = t, nav.go(e, o)
         };
-        var a = ge("page_upload_photos_input");
-        return a || (a = se('<input id="page_upload_photos_input" class="file page_upload_photos_input" type="file" onchange="cur.onPhotoInputChange(this.files);" multiple="true" accept="image/jpeg,image/png,image/gif" name="photo" />')), a.click(o), !1
+        var n = ge("page_upload_photos_input");
+        return n || (n = se('<input id="page_upload_photos_input" class="file page_upload_photos_input" type="file" onchange="cur.onPhotoInputChange(this.files);" multiple="true" accept="image/jpeg,image/png,image/gif" name="photo" />')), n.click(o), !1
     },
     getFlattenedCategories: function(e, o) {
         var t = o[0][e],
-            a = o[1];
-        if (void 0 === a) return t;
-        for (var n = [], s = 0; s < t.length; s++) {
+            n = o[1];
+        if (void 0 === n) return t;
+        for (var a = [], s = 0; s < t.length; s++) {
             var r = t[s];
-            r[3] = "section", n = n.concat([r]), a[r[0]] && (r[5] = "1", n = n.concat(a[r[0]]))
+            r[3] = "section", a = a.concat([r]), n[r[0]] && (r[5] = "1", a = a.concat(n[r[0]]))
         }
-        for (var s = 0; s < n.length; s++) n[s][3] += " sectioned";
-        return n
+        for (var s = 0; s < a.length; s++) a[s][3] = a[s][3] ? a[s][3] + " sectioned" : "sectioned";
+        return a
     },
     initCategories: function(e) {
         e.prefix = e.prefix || "group_category_", e.groupClass = e.groupClass || 0, cur.groupCategoriesDD = cur.groupCategoriesDD || {}, cur.groupCategoriesDD[e.prefix] = cur.groupCategoriesDD[e.prefix] || {};
         for (var o = e.categories[e.groupClass], t = 0; 2 > t; ++t) {
-            var a = [],
-                n = cur.groupCategoriesDD[e.prefix],
-                s = n[t];
-            if (0 == t) a = o[t][0];
+            var n = [],
+                a = cur.groupCategoriesDD[e.prefix],
+                s = a[t];
+            if (0 == t) n = o[t][0];
             else if (t > 0) {
-                var r = n[t - 1].val();
-                "" != r && o[t] && (a = this.getFlattenedCategories(r, o.slice(1)) || [])
+                var r = a[t - 1].val();
+                "" != r && o[t] && (n = this.getFlattenedCategories(r, o.slice(1)) || [])
             }
-            s && s.container && s.container.compareDocumentPosition && s.container.compareDocumentPosition(bodyNode) & Node.DOCUMENT_POSITION_DISCONNECTED && (s.destroy(), s = null), s ? (s.setData(a), s.currenDataItems = a, s.setOptions({
-                defaultItems: a
-            }), s.clear()) : s = new Dropdown(ge(e.prefix + t), a, {
+            s && s.container && s.container.compareDocumentPosition && s.container.compareDocumentPosition(bodyNode) & Node.DOCUMENT_POSITION_DISCONNECTED && (s.destroy(), s = null), s ? (s.setData(n), s.currenDataItems = n, s.setOptions({
+                defaultItems: n
+            }), s.clear()) : s = new Dropdown(ge(e.prefix + t), n, {
                 width: 300,
                 dark: !0,
                 multiselect: !1,
@@ -380,44 +380,45 @@ var Groups = {
                 introText: getLang("groups_start_typing_subject"),
                 zeroPlaceholder: !0,
                 indexkeys: [1, 4],
+                includeSectionsOnMatch: !0,
                 preventDuplicates: !0,
                 noResult: "",
                 placeholder: getLang("groups_choose_subject"),
-                onChange: function(t, a) {
-                    if (0 == t && a) {
-                        var s = Groups.getFlattenedCategories(a, o.slice(1)) || [];
-                        n[t + 1].setData(s), n[t + 1].currenDataItems = s, n[t + 1].setOptions({
+                onChange: function(t, n) {
+                    if (0 == t && n) {
+                        var s = Groups.getFlattenedCategories(n, o.slice(1)) || [];
+                        a[t + 1].setData(s), a[t + 1].currenDataItems = s, a[t + 1].setOptions({
                             defaultItems: s
                         });
-                        for (var r = t + 1; 2 > r; ++r) n[r].clear(), n[r].disable(r > t + 1 || !s.length), toggle(ge(e.prefix + "wrap_" + r), !(r > t + 1 || !s.length))
+                        for (var r = t + 1; 2 > r; ++r) a[r].clear(), a[r].disable(r > t + 1 || !s.length), toggle(ge(e.prefix + "wrap_" + r), !(r > t + 1 || !s.length))
                     }
                 }.pbind(t)
-            }), e.selected[t] && -1 != e.selected[t] ? 1 == t && e.selected[2] ? s.val(e.selected[2]) : s.val(e.selected[t]) : t > 0 && (-1 == e.selected[t - 1] || !a.length) && (s.disable(!0), hide(ge(e.prefix + "wrap_" + t))), cur.groupCategoriesDD[e.prefix][t] = s
+            }), e.selected[t] && -1 != e.selected[t] ? 1 == t && e.selected[2] ? s.val(e.selected[2]) : s.val(e.selected[t]) : t > 0 && (-1 == e.selected[t - 1] || !n.length) && (s.disable(!0), hide(ge(e.prefix + "wrap_" + t))), cur.groupCategoriesDD[e.prefix][t] = s
         }
     },
     categoriesGetDropdown: function(e, o) {
         return o = o || "group_category_", cur.groupCategoriesDD && cur.groupCategoriesDD[o] && cur.groupCategoriesDD[o][e]
     },
     getDetailedCategories: function(e, o) {
-        for (var t = -1, a = 0; a < e.length; a++)
-            if (e[a][0] == o) {
-                t = a;
+        for (var t = -1, n = 0; n < e.length; n++)
+            if (e[n][0] == o) {
+                t = n;
                 break
             }
-        for (var n = -1, a = t; a >= 0; a--)
-            if (Number(e[a][0]) < 3e3) {
-                n = a;
+        for (var a = -1, n = t; n >= 0; n--)
+            if (Number(e[n][0]) < 3e3) {
+                a = n;
                 break
             }
-        return -1 == t || -1 == n ? [0, 0] : n == t ? [e[t][0], 0] : [e[n][0], e[t][0]]
+        return -1 == t || -1 == a ? [0, 0] : a == t ? [e[t][0], 0] : [e[a][0], e[t][0]]
     },
     categoriesValue: function(e) {
         for (var o = [], t = 0; 2 > t; ++t) {
-            var a = this.categoriesGetDropdown(t, e);
-            if (0 == t) o.push(a ? intval(a.val()) : 0);
+            var n = this.categoriesGetDropdown(t, e);
+            if (0 == t) o.push(n ? intval(n.val()) : 0);
             else {
-                var n = a ? intval(a.val()) : 0;
-                o = o.concat(this.getDetailedCategories(a.dataItems, n))
+                var a = n ? intval(n.val()) : 0;
+                o = o.concat(this.getDetailedCategories(n.dataItems, a))
             }
         }
         return o
@@ -436,14 +437,14 @@ var Groups = {
             hash: o
         };
         if (Groups.categoriesGetDropdown(0)) {
-            var a = Groups.categoriesValue();
+            var n = Groups.categoriesValue();
             extend(t, {
-                category_0: a[0],
-                category_1: a[1],
-                category_2: a[2]
+                category_0: n[0],
+                category_1: n[1],
+                category_2: n[2]
             })
         }
-        var n = ge("group_set_categories_submit");
+        var a = ge("group_set_categories_submit");
         hide("group_set_categories_error_wrap"), hide("group_set_categories_success_wrap"), ajax.post("al_groups.php", t, {
             onDone: function(e) {
                 val("group_set_categories_success", e), show("group_set_categories_success_wrap")
@@ -451,34 +452,34 @@ var Groups = {
             onFail: function(e) {
                 return val("group_set_categories_error", e), show("group_set_categories_error_wrap"), !0
             },
-            showProgress: lockButton.pbind(n),
-            hideProgress: unlockButton.pbind(n)
+            showProgress: lockButton.pbind(a),
+            hideProgress: unlockButton.pbind(a)
         })
     },
     hideTopNotice: function(e, o, t) {
-        var a = "gtop_" + e,
-            n = {
+        var n = "gtop_" + e,
+            a = {
                 act: "hide_top_notice",
                 notice: e,
                 group_id: o,
                 hash: t
             };
-        return ajax.post("al_groups.php", n), slideUp(ge(a), 150, re.pbind(a)), !1
+        return ajax.post("al_groups.php", a), slideUp(ge(n), 150, re.pbind(n)), !1
     },
-    goToTopNoticeMoreLink: function(e, o, t, a) {
-        return statlogsValueEvent("groups_top_notice", 1, o, "accept"), checkEvent(e) || a ? !0 : nav.go(t)
+    goToTopNoticeMoreLink: function(e, o, t, n) {
+        return statlogsValueEvent("groups_top_notice", 1, o, "accept"), checkEvent(e) || n ? !0 : nav.go(t)
     },
-    processActionButton: function(e, o, t, a, n) {
+    processActionButton: function(e, o, t, n, a) {
         return isButtonLocked(e) ? !0 : (ajax.post("al_groups.php", {
             act: "proxy_cta_button",
             action: o,
             group_id: t,
-            hash: a
+            hash: n
         }, {
             onDone: function() {
                 unlockButton(e)
             }
-        }), n ? n() : !0)
+        }), a ? a() : !0)
     }
 };
 try {

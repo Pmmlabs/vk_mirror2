@@ -30949,6 +30949,11 @@ body.apps_settingsPageBody {
     background: #f6f7f9
 }
 
+
+/*!
+ * Themes
+ */
+
 .Alert_theme_error,
 .vk__page_redesign .service_msg_error {
     background: #ffefe9;

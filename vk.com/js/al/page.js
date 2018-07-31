@@ -6647,6 +6647,7 @@ var Wall = {
                 return;
             }
 
+            var votingId = domData(votingEl, 'id');
             var params = this.votingExtendParams({
                 act: 'onmain',
                 state: state ? 1 : 0,
@@ -6667,6 +6668,7 @@ var Wall = {
                 return;
             }
 
+            var votingId = domData(votingEl, 'id');
             var params = this.votingExtendParams({
                 act: 'closed',
                 state: state ? 1 : 0,

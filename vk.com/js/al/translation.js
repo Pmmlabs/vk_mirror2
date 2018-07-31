@@ -973,7 +973,8 @@ var TR_ADDRESS = "translation";
     function initSettingsPage() {
         var e = [];
         each(cur.languagesList, function(t, a) {
-            e.push([a[0], replaceEntities(a[1]), a[2]])
+            var n = a[1];
+            n && e.push([a[0], replaceEntities(n), a[2]])
         }), cur.translatorLanguages = new Dropdown(ge("translations_settings_other_languages"), e, {
             multiselect: !0,
             autocomplete: !0,
@@ -1095,7 +1096,7 @@ var TR_ADDRESS = "translation";
             width: 1 == t ? 500 : 900
         });
         var a = radioval("tr_key_settings_status");
-        (a === _KEY_SETTINGS_STATUS_TRANSLATE_CUSTOM_LANGUAGES || a === _KEY_SETTINGS_STATUS_EVERYONE_BUT) && show("translations_settings_languages_wrap");
+        (a === _KEY_SETTINGS_STATUS_TRANSLATE_CUSTOM_LANGUAGES || a === _KEY_SETTINGS_STATUS_EVERYONE_BUT) && show("translations_settings_languages_wrap")
     }
     var _caseDropdown, _caseTokenDropdown, _functionTypeDropdown, _keysLangSelectorDropdown, _translatorsDateSelector, _languagesSortDropdown, _translatorsSortDropdown, _SPECIAL_CODES_REGEX = /((\%[a-z]+)|\{([a-zA-Z0-9\.\-\_\/]+)\})/gi,
         _KEY_SETTINGS_STATUS_TRANSLATE_TO_ALL = 0,

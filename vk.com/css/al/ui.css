@@ -90,7 +90,8 @@
 }
 
 .ui_table.small td.ui_table_cell,
-.ui_table.small th.ui_table_cell {
+.ui_table.small th.ui_table_cell,
+.ui_table th.ui_table_cell.small {
     height: 14px;
     padding-top: 1px;
     padding-bottom: 1px
@@ -131,12 +132,13 @@
     position: relative
 }
 
-.ui_table th.ui_table_cell.sortable.sort.ta_r .ui_table_header_name {
-    padding-left: 16px
-}
-
+.ui_table th.ui_table_cell.sortable.sort.ta_c .ui_table_header_name,
 .ui_table th.ui_table_cell.sortable.sort.ta_l .ui_table_header_name {
     padding-right: 16px
+}
+
+.ui_table th.ui_table_cell.sortable.sort.ta_r .ui_table_header_name {
+    padding-left: 16px
 }
 
 .ui_table th.ui_table_cell.sortable .ui_table_header_sort {
@@ -158,12 +160,13 @@
     background-position: 0 0
 }
 
-.ui_table th.ui_table_cell.sortable.ta_r .ui_table_header_sort {
-    left: 0
-}
-
+.ui_table th.ui_table_cell.sortable.ta_c .ui_table_header_sort,
 .ui_table th.ui_table_cell.sortable.ta_l .ui_table_header_sort {
     right: 0
+}
+
+.ui_table th.ui_table_cell.sortable.ta_r .ui_table_header_sort {
+    left: 0
 }
 
 .ui_table td.ui_table_cell.shower {

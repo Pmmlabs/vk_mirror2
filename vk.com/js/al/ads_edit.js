@@ -6681,6 +6681,8 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
                     selectedItems: this.getUiCriterionSelectedData(criterionName),
 
                     indexkeys: criterionName === 'interest_categories' ? [1, 4] : [1],
+                    includeSectionsOnMatch: criterionName === 'interest_categories',
+                    preventDuplicates: criterionName === 'interest_categories',
 
                     introText: this.getUiCriterionIntroText(criterionName),
                     placeholder: this.getUiCriterionPlaceholderText(criterionName),

@@ -115,8 +115,8 @@ function addTootlip(t, e) {
     if (t = ge(t), !t || !t.nodeType) throw new Error("First argument not a DOM element");
     if (!data(t, "tt")) {
         var n = (new NTooltip(t, e), t.getAttribute("id") || ""),
-            a = se('<div class="ntt" id="ntt_' + n + '"></div>');
-        data(t, "tt", a), addEvent(t, "mouseenter", s), addEvent(t, "mouseleave", o)
+            l = se('<div class="ntt" id="ntt_' + n + '"></div>');
+        data(t, "tt", l), addEvent(t, "mouseenter", s), addEvent(t, "mouseleave", o)
     }
 }
 
@@ -214,6 +214,7 @@ extend(UiControl.prototype, {
         cacheLength: 100,
         indexkeys: void 0,
         includeLabelsOnMatch: !1,
+        includeSectionsOnMatch: !1,
         preventDuplicates: !1,
         onShow: void 0,
         onHide: void 0,
@@ -269,6 +270,7 @@ extend(UiControl.prototype, {
         this.dataURL = "string" == typeof e ? e : null, this.dataItems = isArray(e) ? e : [], this.currentList = this.dataItems, this.dataURL ? this.cache = new Cache(this.options) : this.indexer = new Indexer(this.dataItems, {
             indexkeys: this.options.indexkeys,
             includeLabelsOnMatch: this.options.includeLabelsOnMatch,
+            includeSectionsOnMatch: this.options.includeSectionsOnMatch,
             preventDuplicates: this.options.preventDuplicates
         }), this._selectedItems = [], this.input = t, this.disabled = !1, this.mouseIsOver = !1, this.hasFocus = 0, this.scrollbarWidth = 0, this.timeout = null, this.readOnly = this.options.autocomplete ? "" : 'readonly="true"', this.requestTimeout = null, this.selectedTokenId = 0, this.selectorWidth = this.options.width
     },
@@ -555,7 +557,7 @@ extend(UiControl.prototype, {
                     o = !1;
                 if (e.options.multiCustom) {
                     i = i.split(e.options.selectedItemsDelimiter), i.length > 1 && (o = i.slice(1).join(e.options.selectedItemsDelimiter)), i = trim(i[0]);
-                    for (var n = 0, a = this._selectedItems.length; a > n; n++)
+                    for (var n = 0, l = this._selectedItems.length; l > n; n++)
                         if (this._selectedItems[n][1] == i) {
                             s = !1;
                             break
@@ -663,26 +665,26 @@ extend(UiControl.prototype, {
             });
             s.setAttribute("data-id", t[0]);
             var o, n = Math.max(this.selector.clientWidth, getSize(s)[0]),
-                a = this;
+                l = this;
             o = this.options.tokenPrefix ? '<span class="token_prefix">' + this.options.tokenPrefix + "</span>" : "<span></span>";
-            var l = clean(stripHTML(t[1])),
-                r = clean(getLang("global_delete")) + " " + l,
+            var a = clean(stripHTML(t[1])),
+                r = clean(getLang("global_delete")) + " " + a,
                 h = vk.a11y ? ' tabindex="0" aria-label="' + r + '" ' : "";
-            s.innerHTML = o + '<span class="token_inner"><span class="x" role="button"' + h + '></span><span class="l"><span class="lc">' + l + "</span>" + (t[5] ? t[5] : "") + "</span>", vk.a11y && (attr(s, "tabindex", -1), attr(s, "role", "option")), addEvent(s, "click", function(e) {
-                return isFunction(a.options.onTokenClick) && a.options.onTokenClick(s.getAttribute("data-id"), e), a.selectToken(t[0]), !1
+            s.innerHTML = o + '<span class="token_inner"><span class="x" role="button"' + h + '></span><span class="l"><span class="lc">' + a + "</span>" + (t[5] ? t[5] : "") + "</span>", vk.a11y && (attr(s, "tabindex", -1), attr(s, "role", "option")), addEvent(s, "click", function(e) {
+                return isFunction(l.options.onTokenClick) && l.options.onTokenClick(s.getAttribute("data-id"), e), l.selectToken(t[0]), !1
             }), addEvent(s, "dblclick", function() {
-                return t[4] && (a.removeTagData(s.getAttribute("data-id")), each(t[4], function(t, e) {
-                    a._selectItem(e, !1)
+                return t[4] && (l.removeTagData(s.getAttribute("data-id")), each(t[4], function(t, e) {
+                    l._selectItem(e, !1)
                 })), !1
             }), addEvent(s, "mouseover", function(e) {
-                addClass(s, "token_hover"), a.showImage(s.getAttribute("data-id"), t), isFunction(a.options.onTokenMouseOver) && a.options.onTokenMouseOver(s.getAttribute("data-id"), e)
+                addClass(s, "token_hover"), l.showImage(s.getAttribute("data-id"), t), isFunction(l.options.onTokenMouseOver) && l.options.onTokenMouseOver(s.getAttribute("data-id"), e)
             }), addEvent(s, "mouseout", function(t) {
-                removeClass(s, "token_hover"), a.showImage(a.activeItemValue ? a.activeItemValue : a.selectedTokenId), isFunction(a.options.onTokenMouseOut) && a.options.onTokenMouseOut(s.getAttribute("data-id"), t)
+                removeClass(s, "token_hover"), l.showImage(l.activeItemValue ? l.activeItemValue : l.selectedTokenId), isFunction(l.options.onTokenMouseOut) && l.options.onTokenMouseOut(s.getAttribute("data-id"), t)
             });
             var d = s.firstChild.nextSibling.firstChild;
             addEvent(d, "mousedown", function() {
-                return a.select.hide(), a.removeTagData(s.getAttribute("data-id")), !a.readOnly && a.hasFocus && a.input.focus(), !1
-            }), a.selectedItemsContainer.appendChild(s);
+                return l.select.hide(), l.removeTagData(s.getAttribute("data-id")), !l.readOnly && l.hasFocus && l.input.focus(), !1
+            }), l.selectedItemsContainer.appendChild(s);
             for (var c = s.firstChild.nextSibling.firstChild.nextSibling, u = c.innerHTML; s.offsetWidth > n && u.length > 3;) u = u.substr(0, u.length - 2), c.innerHTML = u + "...";
             return this.options.limitedListHeight && (this.selectedItemsContainerWrap.style.display = "none", this.selectedItemsContainerWrap.offsetHeight, this.selectedItemsContainerWrap.style.display = "block", this.updateSelectedItemsScroll({
                 target: this.selectedItemsContainer
@@ -744,10 +746,9 @@ extend(UiControl.prototype, {
         if (this.options.multiselect || (this._selectedItems.length && (this.changeAfterBlur = !0), this._clear()), this.updatePlaceholder(), clearTimeout(this.requestTimeout), 0 == t.length) return void this.showDefaultList();
         this.curTerm = t;
         var e, i = isFunction(this.options.customSearch) && this.options.customSearch(t);
-        return i ? void this.receiveData(t, i) : void(this.dataURL ? (e = this.cache.getData(t),
-            null === e ? this.requestTimeout = setTimeout(function() {
-                this.request(this.receiveData.bind(this), this.showNoDataList.bind(this))
-            }.bind(this), 300) : e && e.length ? this.receiveData(t, e) : this.showNoDataList()) : (e = this.indexer.search(t), e && e.length ? this.receiveData(t, e) : this.showNoDataList()))
+        return i ? void this.receiveData(t, i) : void(this.dataURL ? (e = this.cache.getData(t), null === e ? this.requestTimeout = setTimeout(function() {
+            this.request(this.receiveData.bind(this), this.showNoDataList.bind(this))
+        }.bind(this), 300) : e && e.length ? this.receiveData(t, e) : this.showNoDataList()) : (e = this.indexer.search(t), e && e.length ? this.receiveData(t, e) : this.showNoDataList()))
     },
     showNoDataList: function() {
         (this.hasFocus || this.readOnly) && (this._showSelectList(this.options.noResult), this.defaultList = !1)
@@ -776,9 +777,9 @@ extend(UiControl.prototype, {
             s = getSize(this.container)[1] || 22,
             o = this.options.height || 250,
             n = this.options.minHeight || 0,
-            a = (window.pageNode && window.browser.mozilla ? Math.min(getSize(pageNode)[1], window.lastWindowHeight) : window.lastWindowHeight) || getScroll()[3],
-            l = this.resultList && this.resultList.firstChild;
-        if (l && l.firstChild) {
+            l = (window.pageNode && window.browser.mozilla ? Math.min(getSize(pageNode)[1], window.lastWindowHeight) : window.lastWindowHeight) || getScroll()[3],
+            a = this.resultList && this.resultList.firstChild;
+        if (a && a.firstChild) {
             var r = getStyle(this.resultList, "display"),
                 h = getStyle(this.resultList, "visibility");
             setStyle(this.resultList, {
@@ -789,7 +790,7 @@ extend(UiControl.prototype, {
                 display: r
             })
         } else t = n ? n : this.currenDataItems ? this.currenDataItems.length * getSize(this.container)[1] : o;
-        return t > o && (t = o), i + s + t - e > a && i - t - e > 0 && i - t > 40
+        return t > o && (t = o), i + s + t - e > l && i - t - e > 0 && i - t > 40
     },
     isClassEnabled: function(t, e) {
         return new RegExp("\\b" + e + "\\b").test(t)
@@ -806,14 +807,14 @@ extend(UiControl.prototype, {
                 for (o in e) "string" == typeof e[o][2] && e[o][2].length && addClass(this.resultList, "dividing_line")
             }
             var n = this.options.autocomplete && i ? this.options.maxItemsShown(i.length) : e.length,
-                a = this;
+                l = this;
             for (o = 0; o < e.length; ++o) {
-                var l = e[o];
+                var a = e[o];
                 if (!n) break;
-                var r = a.options.formatResult(l);
-                if (i && (r = a.options.highlight(r, i)) && --n, r) {
-                    var h = [l[0], r];
-                    h.push("1" === l[5]), mask = 0, mask |= this.isClassEnabled(l[3], "label"), mask |= this.isClassEnabled(l[3], "sectioned") << 1, mask |= this.isClassEnabled(l[3], "section") << 2, h.push(mask), s.push(h)
+                var r = l.options.formatResult(a);
+                if (i && (r = l.options.highlight(r, i)) && --n, r) {
+                    var h = [a[0], r];
+                    h.push("1" === a[5]), mask = 0, mask |= this.isClassEnabled(a[3], "label"), mask |= this.isClassEnabled(a[3], "sectioned") << 1, mask |= this.isClassEnabled(a[3], "section") << 2, h.push(mask), s.push(h)
                 }
             }
         }
@@ -1125,9 +1126,9 @@ extend(UiControl.prototype, {
         this.maxHeight < this.list.offsetHeight ? (this.container.style.height = this.maxHeight + "px", addClass(this.container, this.CSS.SCROLLABLE)) : (removeClass(this.container, this.CSS.SCROLLABLE), this.container.style.height = "auto")
     },
     content: function(t) {
-        var e, i, s, o, n, a, l, r, h, d, c, u = [],
+        var e, i, s, o, n, l, a, r, h, d, c, u = [],
             p = t.length;
-        for (e = 0; p > e; ++e) i = t[e], s = i[0], o = i[1], n = i[2], a = i[3], l = this.uid + ", " + e, c = this._getOptionId(e), s = void 0 === s || null === s ? "" : s.toString(), o = (void 0 === o || null === o ? "" : o.toString()) || s, a = parseInt(a, 10), r = Boolean(1 & a), h = Boolean(2 & a), d = Boolean(4 & a), u.push("<li ", n ? 'dis="1"' : 'onmousemove="Select.itemMouseMove(' + l + ', this)" onmousedown="Select.itemMouseDown(' + l + ', this)" onclick="Select.itemMouseDown(' + l + ', this)"', ' val="', s.replace(/&/g, "&amp;").replace(/"/g, "&quot;"), '" title="', o.replace(/&/g, "&amp;").replace(/"/g, "&quot;"), '" class="', r ? this.CSS.LABEL + " " : "", h ? this.CSS.SECTIONED + " " : "", d ? this.CSS.SECTION + " " : "", n ? "disabled " : "", e == p - 1 ? this.CSS.LAST + " " : "", (e ? "" : this.CSS.FIRST) + '" role="option" aria-selected="false" tabindex="-1" id="' + c + '">', o, "</li>");
+        for (e = 0; p > e; ++e) i = t[e], s = i[0], o = i[1], n = i[2], l = i[3], a = this.uid + ", " + e, c = this._getOptionId(e), s = void 0 === s || null === s ? "" : s.toString(), o = (void 0 === o || null === o ? "" : o.toString()) || s, l = parseInt(l, 10), r = Boolean(1 & l), h = Boolean(2 & l), d = Boolean(4 & l), u.push("<li ", n ? 'dis="1"' : 'onmousemove="Select.itemMouseMove(' + a + ', this)" onmousedown="Select.itemMouseDown(' + a + ', this)" onclick="Select.itemMouseDown(' + a + ', this)"', ' val="', s.replace(/&/g, "&amp;").replace(/"/g, "&quot;"), '" title="', o.replace(/&/g, "&amp;").replace(/"/g, "&quot;"), '" class="', r ? this.CSS.LABEL + " " : "", h ? this.CSS.SECTIONED + " " : "", d ? this.CSS.SECTION + " " : "", n ? "disabled " : "", e == p - 1 ? this.CSS.LAST + " " : "", (e ? "" : this.CSS.FIRST) + '" role="option" aria-selected="false" tabindex="-1" id="' + c + '">', o, "</li>");
         return this.list.innerHTML = u.join(""), this.updateContainer(), !0
     },
     _getOptionId: function(t) {
@@ -1502,11 +1503,11 @@ extend(UiControl.prototype, {
                 n = s[1] - 4;
             n > 500 && (n = Math.round(n / i) * Math.ceil(i / this.options.columnsCount), setStyle(this.rows, "columnCount", this.options.columnsCount.toString()), setStyle(this.rows, "MozColumnCount", this.options.columnsCount.toString()), setStyle(this.rows, "webkitColumnCount", this.options.columnsCount.toString()), setStyle(this.rows, "width", 2 * o + "px"), setStyle(this.rows, "height", n + "px"))
         }
-        var a = getSize(this.header)[0],
-            l = getSize(this.body)[0];
-        a > l && setStyle(this.rows, "width", a - 2 + "px"), l = getSize(this.body)[0];
+        var l = getSize(this.header)[0],
+            a = getSize(this.body)[0];
+        l > a && setStyle(this.rows, "width", l - 2 + "px"), a = getSize(this.body)[0];
         var r = document.documentElement.clientWidth,
-            h = t + l > r && t + a > l ? -a - 1 + "px" : "auto";
+            h = t + a > r && t + l > a ? -l - 1 + "px" : "auto";
         setStyle(this.body, "right", h)
     },
     moveToTarget: function() {
@@ -1546,20 +1547,21 @@ extend(UiControl.prototype, {
         }), t.h && (e.href = t.h);
         var s = this;
         addEvent(e, "click", function(e) {
-            s.value = e.data.item.i;
-            var i = !0;
-            if (isFunction(t.onClick) && t.onClick(e) === !1 && (i = !1), s.options.onSelect(e) === !1 && (i = !1), t.h) return !0;
-            if (i ? s.hide() : cancelEvent(e), s.options.updateTarget && i) {
-                var o = s.options.updateHeader(e.target.index, e.target.innerHTML);
-                s.header.innerHTML = "<div>" + o + "</div>", s.options.target && (s.options.target.innerHTML = o.replace(/\s+/g, "&nbsp;"))
-            }
-        }, !1, {
-            item: t
-        }), isFunction(t.onMouseOver) && addEvent(e, "mouseover", t.onMouseOver), isFunction(t.onMouseOut) && addEvent(e, "mouseout", t.onMouseOut), browser.msie && (e.onmouseover = function() {
-            addClass(e, "dd_a_hover")
-        }, e.onmouseout = function() {
-            removeClass(e, "dd_a_hover")
-        }), this.items[t.i] = e, this.rows.appendChild(e), "left" == this.options.align && this.alignBody()
+                s.value = e.data.item.i;
+                var i = !0;
+                if (isFunction(t.onClick) && t.onClick(e) === !1 && (i = !1), s.options.onSelect(e) === !1 && (i = !1), t.h) return !0;
+                if (i ? s.hide() : cancelEvent(e), s.options.updateTarget && i) {
+                    var o = s.options.updateHeader(e.target.index, e.target.innerHTML);
+                    s.header.innerHTML = "<div>" + o + "</div>", s.options.target && (s.options.target.innerHTML = o.replace(/\s+/g, "&nbsp;"))
+                }
+            }, !1, {
+                item: t
+            }), isFunction(t.onMouseOver) && addEvent(e, "mouseover", t.onMouseOver),
+            isFunction(t.onMouseOut) && addEvent(e, "mouseout", t.onMouseOut), browser.msie && (e.onmouseover = function() {
+                addClass(e, "dd_a_hover")
+            }, e.onmouseout = function() {
+                removeClass(e, "dd_a_hover")
+            }), this.items[t.i] = e, this.rows.appendChild(e), "left" == this.options.align && this.alignBody()
     },
     getRows: function() {
         return this.rows
@@ -1689,15 +1691,15 @@ extend(UiControl.prototype, {
     },
     createIndex: function() {
         this.storage.data.length && (this.storage.index = {}, debug("createIndex start, " + this.storage.data.length + " items"), this.lastLabel = null, each(this.storage.data, function(t, e) {
-            Selector.prototype.isClassEnabled(e[3], "label") && this.options.includeLabelsOnMatch && (this.lastLabel = t), this.indexItem(t, e, this.lastLabel)
+            (Selector.prototype.isClassEnabled(e[3], "label") && this.options.includeLabelsOnMatch || Selector.prototype.isClassEnabled(e[3], "section") && this.options.includeSectionsOnMatch) && (this.lastLabel = t), this.indexItem(t, e, this.lastLabel)
         }.bind(this)), debug("createIndex ended"))
     },
     indexItem: function(t, e, i) {
-        var s, o, n, a = "",
-            l = {};
-        for (s = 0; s < this.options.indexkeys.length; s++) e[this.options.indexkeys[s]] && (a += " " + e[this.options.indexkeys[s]].replace(this.options.delimeter, " ").replace(/<[^>]*>/g, "").replace(/[\u00AB\u00BB]/g, ""));
-        for (a += (parseLatin(a) || "") + (parseCyr(a) || ""), a = trim(winToUtf(a).toLowerCase()).split(/\s+/), s = 0; s < a.length; s++)
-            for (o = 1; o <= this.options.chars; o++) n = a[s].substr(0, o), l[n] || (l[n] = 1, void 0 === this.storage.index[n] && (this.storage.index[n] = []), i && i != t && this.storage.index[n].push(i), this.storage.index[n].push(t))
+        var s, o, n, l = "",
+            a = {};
+        for (s = 0; s < this.options.indexkeys.length; s++) e[this.options.indexkeys[s]] && (l += " " + e[this.options.indexkeys[s]].replace(this.options.delimeter, " ").replace(/<[^>]*>/g, "").replace(/[\u00AB\u00BB]/g, ""));
+        for (l += (parseLatin(l) || "") + (parseCyr(l) || ""), l = trim(winToUtf(l).toLowerCase()).split(/\s+/), s = 0; s < l.length; s++)
+            for (o = 1; o <= this.options.chars; o++) n = l[s].substr(0, o), a[n] || (a[n] = 1, void 0 === this.storage.index[n] && (this.storage.index[n] = []), i && i != t && this.storage.index[n].push(i), this.storage.index[n].push(t))
     },
     search: function(t) {
         debug("search start, index width: " + this.options.chars + ", data size: " + this.storage.data.length), t = trim(t.toLowerCase().replace(this.options.delimeter, " ")), debug("pattern: " + t + ", length: " + t.length);
@@ -1720,18 +1722,18 @@ extend(UiControl.prototype, {
         var n = [];
         if (debug("index returned: " + s + " items"), !s) return n;
         debug("starting manual filter");
-        var a = null;
+        var l = null;
         return e.already_added = {}, each(e.storage.index[o.substr(0, e.options.chars)], function(i, s) {
-            var o, l = e.storage.data[s],
+            var o, a = e.storage.data[s],
                 r = !1,
                 h = "";
-            for (Selector.prototype.isClassEnabled(l[3], "label") && (a = s), o = 0; o < e.options.indexkeys.length; o++) l[e.options.indexkeys[o]] && (h += " " + l[e.options.indexkeys[o]].replace(e.options.delimeter, " ").replace(/<[^>]*>/, "").replace(/[\u00AB\u00BB]/g, ""));
+            for ((Selector.prototype.isClassEnabled(a[3], "label") || Selector.prototype.isClassEnabled(a[3], "section")) && (l = s), o = 0; o < e.options.indexkeys.length; o++) a[e.options.indexkeys[o]] && (h += " " + a[e.options.indexkeys[o]].replace(e.options.delimeter, " ").replace(/<[^>]*>/, "").replace(/[\u00AB\u00BB]/g, ""));
             for (h += (parseLatin(h) || "") + (parseCyr(h) || ""), h = winToUtf(h).toLowerCase(), o = 0; o < t.length; o++)
                 if (-1 == h.indexOf(" " + t[o])) {
                     r = !0;
                     break
                 }
-            r || (e.options.includeLabelsOnMatch && a && (s == a || e.already_added[a] || (n.push(e.storage.data[a]), e.already_added[a] = !0), a = null), (e.options.preventDuplicates && !e.already_added[s] || !e.options.preventDuplicates) && n.push(l), e.already_added[s] = !0)
+            r || ((e.options.includeLabelsOnMatch || e.options.includeSectionsOnMatch) && l && (s == l || e.already_added[l] || (n.push(e.storage.data[l]), e.already_added[l] = !0), l = null), (e.options.preventDuplicates && !e.already_added[s] || !e.options.preventDuplicates) && n.push(a), e.already_added[s] = !0)
         }), debug("manual filter ended, found " + n.length + " items"), n
     },
     flush: function() {
@@ -1838,8 +1840,8 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
 }), InlineDropdown.IDD_HEADER_CORRECTION_LEFT = -10, InlineDropdown.IDD_HEADER_CORRECTION_TOP = -8, InlineDropdown.prototype._rebuildDropdown = function() {
     function t(t, i) {
         i = i || "";
-        var s = l._opts.sublists && l._opts.sublists[t[0]] ? "idd_sublist" : "",
-            n = '<div class="idd_item ' + i + " " + e + " " + s + '" id="' + o + "idd_item_" + t[0] + '" data-id="' + t[0] + '" tabindex="0" role="button">' + (l._opts.withIcon ? '<div class="idd_item_icon" id="' + t[0] + '"></div>' : "") + '<div class="idd_item_name">' + (l._opts.html ? l._opts.html(t) : t[1]) + "</div></div>";
+        var s = a._opts.sublists && a._opts.sublists[t[0]] ? "idd_sublist" : "",
+            n = '<div class="idd_item ' + i + " " + e + " " + s + '" id="' + o + "idd_item_" + t[0] + '" data-id="' + t[0] + '" tabindex="0" role="button">' + (a._opts.withIcon ? '<div class="idd_item_icon" id="' + t[0] + '"></div>' : "") + '<div class="idd_item_name">' + (a._opts.html ? a._opts.html(t) : t[1]) + "</div></div>";
         return n
     }
     var e = this._opts.withIcon ? "idd_with_icon" : "",
@@ -1847,24 +1849,24 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
         s = this._opts.idPrefix ? this._opts.idPrefix : "",
         o = this._opts.idItemPrefix ? this._opts.idItemPrefix : "",
         n = '<div class="idd_header_wrap ' + e + '"><div class="idd_header ' + i + '" id="' + s + this._items[0][0] + '"></div></div>',
-        a = '<div class="idd_items_wrap"><div class="idd_items_content">',
-        l = this;
+        l = '<div class="idd_items_wrap"><div class="idd_items_content">',
+        a = this;
     each(this._items, function(e, i) {
-        a += t(i)
-    }), a += "</div></div>", this._els.popupItems = se(a), this._els.popupHeader = se(n);
-    var l = this;
+        l += t(i)
+    }), l += "</div></div>", this._els.popupItems = se(l), this._els.popupHeader = se(n);
+    var a = this;
     addEvent(this._els.popupItems, "click", function(t) {
         var e = t.target;
         if ("a" == e.tagName.toLowerCase()) return void setTimeout(function() {
-            l._hide()
+            a._hide()
         });
         for (; e && !hasClass(e, "idd_item");) e = e.parentNode;
-        e && (l.select(e.getAttribute("data-id")) ? l._hide() : l._hoverItem(e)), cancelEvent(t)
+        e && (a.select(e.getAttribute("data-id")) ? a._hide() : a._hoverItem(e)), cancelEvent(t)
     }), each(geByClass("idd_item", this._els.popupItems), function(t, e) {
         addEvent(e, "mouseenter", function(t) {
-            InlineDropdown._preventMouseHover || l._hoverItem(t.currentTarget)
+            InlineDropdown._preventMouseHover || a._hoverItem(t.currentTarget)
         }), addEvent(e, "mouseleave", function(t) {
-            InlineDropdown._preventMouseHover || l._unhoverItem(t.currentTarget, t)
+            InlineDropdown._preventMouseHover || a._unhoverItem(t.currentTarget, t)
         })
     }), addEvent(this._els.popupItems, "mouseenter", function() {
         addEvent(this._els.popupItems, browserFeatures.wheelEvent, this._onWheel.bind(this))
@@ -1890,8 +1892,8 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
                 top: 0,
                 left: 0
             },
-            a = t && t.ownerDocument;
-        if (a) return s = a.documentElement, void 0 !== typeof t.getBoundingClientRect && (n = t.getBoundingClientRect()), o = i(a), [n.left + o.pageXOffset - s.clientLeft, n.top + o.pageYOffset - s.clientTop]
+            l = t && t.ownerDocument;
+        if (l) return s = l.documentElement, void 0 !== typeof t.getBoundingClientRect && (n = t.getBoundingClientRect()), o = i(l), [n.left + o.pageXOffset - s.clientLeft, n.top + o.pageYOffset - s.clientTop]
     }
     if (isVisible(this._els.popupEl)) return void this._hide();
     InlineDropdown._currIDD && InlineDropdown._currIDD._hide(), InlineDropdown._currIDD = this, window.tooltips && tooltips.hideAll();
@@ -1900,15 +1902,15 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
     this._opts.alignLeft && addClass(o, "idd_align_left"), this.openToUp = 1 == this._opts.forceDir || "up" == this._opts.forceDir || -1 != this._opts.forceDir && "down" != this._opts.forceDir && e(), this.openToUp ? (o.appendChild(this._els.popupItems), o.appendChild(this._els.popupHeader)) : (o.appendChild(this._els.popupHeader), o.appendChild(this._els.popupItems));
     var n = geByClass1("idd_header", this._els.popupHeader);
     this._opts.keepTitle ? n.innerHTML = this._title : n.innerHTML = this._selected ? this._selected[1] : "", o.id = "idd_" + this._iddEl.id, this._iddEl.appendChild(o);
-    var a = getSize(o),
-        l = 0;
-    getSize(this._els.popupItems.childNodes[0])[1] > a[1] && (l = sbWidth()), this._opts.checkable && (l += 30);
+    var l = getSize(o),
+        a = 0;
+    getSize(this._els.popupItems.childNodes[0])[1] > l[1] && (a = sbWidth()), this._opts.checkable && (a += 30);
     var r = (i(geByClass1("idd_selected_value", this._iddEl)), getSize(this._els.valueEl)),
         h = (this._opts.withIcon ? 20 : 0, 0);
     this.openToUp && (h = -getSize(this._els.popupItems)[1]);
     var d = {
         marginTop: (this._opts.headerTop || InlineDropdown.IDD_HEADER_CORRECTION_TOP) - r[1] + h,
-        width: a[0] + 8,
+        width: l[0] + 8,
         opacity: 1
     };
     this._opts.alignLeft ? d[vk.rtl ? "marginRight" : "marginLeft"] = r[0] - InlineDropdown.IDD_HEADER_CORRECTION_LEFT : d.marginLeft = (this._opts.headerLeft || InlineDropdown.IDD_HEADER_CORRECTION_LEFT) - (this._opts.withIcon ? 20 : 0), setStyle(o, d), this._unhoverItem(), this._highlightItem(), this._initOutEvent(), this._initKeypressEvent(), this._opts.onShow && this._opts.onShow(this.ddEl), cancelEvent(t)
@@ -1948,7 +1950,7 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
 }, InlineDropdown.prototype._showSubmenu = function(t) {
     function e(t, e) {
         e = e || "";
-        var i = '<div class="idd_item ' + e + " " + a + '" id="idd_item_' + t[0] + '" data-id="' + t[0] + '" role="button" tabindex="0">' + (o.withIcon ? '<div class="idd_item_icon" id="' + t[0] + '"></div>' : "") + '<div class="idd_item_name">' + (o.html ? o.html(t) : t[1]) + "</div></div>";
+        var i = '<div class="idd_item ' + e + " " + l + '" id="idd_item_' + t[0] + '" data-id="' + t[0] + '" role="button" tabindex="0">' + (o.withIcon ? '<div class="idd_item_icon" id="' + t[0] + '"></div>' : "") + '<div class="idd_item_name">' + (o.html ? o.html(t) : t[1]) + "</div></div>";
         return i
     }
     if (clearTimeout(this._hideSubmenuTimeout), t) {
@@ -1958,15 +1960,15 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
             if (addClass(t, "idd_hover_sublist_parent"), this._currSubmenuItem == t) return void clearTimeout(this._submenuHideTimeout);
             var o = this._opts.sublists[s],
                 n = '<div class="idd_popup"><div class="idd_items_wrap"><div class="idd_items_content">',
-                a = o.withIcon ? "idd_with_icon" : "";
+                l = o.withIcon ? "idd_with_icon" : "";
             each(o.items, function(t, i) {
                 n += e(i)
             }), n += "</div></div></div>", this._els.currCascade = se(n), this._iddEl.appendChild(this._els.currCascade);
-            for (var l = getSize(this._els.popupEl), r = (getXY(this._els.popupEl), getSize(t)), h = getSize(this._els.currCascade), d = 0, c = t; null != (c = c.previousSibling);) d++;
-            var u = l[0] + (this._opts.headerLeft || InlineDropdown.IDD_HEADER_CORRECTION_LEFT) - 1;
+            for (var a = getSize(this._els.popupEl), r = (getXY(this._els.popupEl), getSize(t)), h = getSize(this._els.currCascade), d = 0, c = t; null != (c = c.previousSibling);) d++;
+            var u = a[0] + (this._opts.headerLeft || InlineDropdown.IDD_HEADER_CORRECTION_LEFT) - 1;
             setStyle(this._els.currCascade, {
                 marginLeft: u - 3,
-                marginTop: r[1] * d + 6 - (this.openToUp ? l[1] : 0),
+                marginTop: r[1] * d + 6 - (this.openToUp ? a[1] : 0),
                 "z-index": 200,
                 width: h[0] + 30
             }), setTimeout(function() {
@@ -1991,8 +1993,8 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
                 if (e) {
                     var s = !0,
                         n = e.getAttribute("data-id"),
-                        a = geByClass1("idd_item_name", e).innerHTML;
-                    o.onSelect ? s = o.onSelect(n, a) : i._opts.onSelect && (s = i._opts.onSelect(n, a)), s && i._hide()
+                        l = geByClass1("idd_item_name", e).innerHTML;
+                    o.onSelect ? s = o.onSelect(n, l) : i._opts.onSelect && (s = i._opts.onSelect(n, l)), s && i._hide()
                 }
                 cancelEvent(t)
             }), this._currSubmenuItem = t
