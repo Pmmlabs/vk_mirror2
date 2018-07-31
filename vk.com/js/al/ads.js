@@ -3612,7 +3612,7 @@ Ads.retargetingCreateRuleArgumentInput = function(id, type, rule) {
 
     // create new input
     var ruleArgumentsInput;
-    if (inArray(type, [cur.ruleTypesConstants.ADS_RETARGETING_RULE_TYPE_SUBSTR, cur.ruleTypesConstants.ADS_RETARGETING_RULE_TYPE_SUBSTR_ACTION])) {
+    if (type == cur.ruleTypesConstants.ADS_RETARGETING_RULE_TYPE_SUBSTR || type == cur.ruleTypesConstants.ADS_RETARGETING_RULE_TYPE_SUBSTR_ACTION) {
         ruleArgumentsInput = ce('input', {
             type: "hidden",
             id: 'retargeting_rule_argument_' + id
@@ -3628,7 +3628,7 @@ Ads.retargetingCreateRuleArgumentInput = function(id, type, rule) {
 
     cur.smartPixelRules[ruleIndex].argumentWrapper.appendChild(ruleArgumentsInput);
 
-    if (inArray(type, [cur.ruleTypesConstants.ADS_RETARGETING_RULE_TYPE_SUBSTR, cur.ruleTypesConstants.ADS_RETARGETING_RULE_TYPE_SUBSTR_ACTION])) {
+    if (type == cur.ruleTypesConstants.ADS_RETARGETING_RULE_TYPE_SUBSTR || type == cur.ruleTypesConstants.ADS_RETARGETING_RULE_TYPE_SUBSTR_ACTION) {
         cur.smartPixelRules[ruleIndex].selector = new Selector(ruleArgumentsInput, [], {
             multiselect: true,
             dropdown: false,

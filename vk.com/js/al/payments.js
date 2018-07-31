@@ -1008,6 +1008,7 @@ var MoneyTransfer = {
             iframe.contentWindow.document.write(html);
             iframe.contentWindow.document.close();
         }
+        window.addEventListener('message', MoneyTransfer.frameMessage, false);
 
         MoneyTransfer.startCheckStatus(data);
     },

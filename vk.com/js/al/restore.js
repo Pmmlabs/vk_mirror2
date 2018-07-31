@@ -220,8 +220,7 @@ var Restore = {
             cur.restorePasswordChecked || (cur.restorePasswordChecked = {});
             var o = isVisible("new_phone_wrap") ? "new_phone" : "phone",
                 t = val(o).replace(/[^0-9]/g, "");
-            e.length > 0 && !cur.restorePasswordChecked[e] && ajax.post("/restore", {
-                act: "a_check_password",
+            e.length > 0 && !cur.restorePasswordChecked[e] && ajax.post("/restore?act=a_check_password", {
                 hash: cur.options.fhash,
                 password: e
             }, {

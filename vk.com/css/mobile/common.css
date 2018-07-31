@@ -11994,7 +11994,8 @@ a.Pad__corner {
     margin-top: 8px
 }
 
-.TextInput {
+.TextInput,
+.vk__page_redesign .basis .fi_row .iwrap {
     display: block;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -12016,7 +12017,8 @@ a.Pad__corner {
     border-color: #f2ab99
 }
 
-.TextInput__native {
+.TextInput__native,
+.vk__page_redesign .basis .fi_row .textfield {
     font-family: inherit;
     font-size: 15px;
     -webkit-box-sizing: border-box;
@@ -31026,10 +31028,10 @@ body.apps_settingsPageBody {
     -ms-flex-negative: 0;
     flex-shrink: 0;
     opacity: 0.2;
-    -webkit-animation-name: loading__animation;
-    -moz-animation-name: loading__animation;
-    -o-animation-name: loading__animation;
-    animation-name: loading__animation;
+    -webkit-animation-name: Loading-animation;
+    -moz-animation-name: Loading-animation;
+    -o-animation-name: Loading-animation;
+    animation-name: Loading-animation;
     -webkit-animation-duration: 750ms;
     -moz-animation-duration: 750ms;
     -o-animation-duration: 750ms;
@@ -31038,16 +31040,6 @@ body.apps_settingsPageBody {
     -moz-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite
-}
-
-.Loading_large .Loading__dot {
-    width: 6px;
-    height: 6px;
-    margin-right: 4px
-}
-
-.Loading_white .Loading__dot {
-    background-color: #fff
 }
 
 .Loading__dot_0 {
@@ -31072,7 +31064,7 @@ body.apps_settingsPageBody {
     margin-right: 0
 }
 
-@-webkit-keyframes loading__animation {
+@-webkit-keyframes Loading-animation {
     0%,
     to {
         opacity: 0.2
@@ -31082,7 +31074,7 @@ body.apps_settingsPageBody {
     }
 }
 
-@-moz-keyframes loading__animation {
+@-moz-keyframes Loading-animation {
     0%,
     to {
         opacity: 0.2
@@ -31092,7 +31084,7 @@ body.apps_settingsPageBody {
     }
 }
 
-@-o-keyframes loading__animation {
+@-o-keyframes Loading-animation {
     0%,
     to {
         opacity: 0.2
@@ -31102,7 +31094,7 @@ body.apps_settingsPageBody {
     }
 }
 
-@keyframes loading__animation {
+@keyframes Loading-animation {
     0%,
     to {
         opacity: 0.2
@@ -31111,6 +31103,31 @@ body.apps_settingsPageBody {
         opacity: 1
     }
 }
+
+
+/*!
+ * Large
+ */
+
+.Loading_large .Loading__dot {
+    width: 6px;
+    height: 6px;
+    margin-right: 4px
+}
+
+
+/*!
+ * White
+ */
+
+.Loading_white .Loading__dot {
+    background-color: #fff
+}
+
+
+/*!
+ * Flex fallback
+ */
 
 .vk_flex_no .Loading__dots {
     position: absolute;
@@ -36340,6 +36357,10 @@ body.apps_settingsPageBody {
 
 .notification__row a {
     color: #426997
+}
+
+.notification__row a.Btn_theme_regular {
+    color: #fff
 }
 
 .notification__row b {
