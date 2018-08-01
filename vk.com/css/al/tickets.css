@@ -4151,9 +4151,15 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 }
 
 .tickets_extra_fields {
+    border-top: 1px solid #e7e8ec;
     margin-top: 1em;
-    padding-top: 1em;
-    border-top: 1px solid #f2f4f6
+    padding-top: 1em
+}
+
+.tickets_extra_fields.tickets_extra_fields_no_borders {
+    border-top: 0 none;
+    margin-top: 0;
+    padding-top: 0
 }
 
 .tickets_extra_field {

@@ -512,32 +512,38 @@ var TR_ADDRESS = "translation";
     function initTranslationsPage() {
         var e = ge("tr_keys_lang_selector"),
             t = JSON.parse(domData(e, "langs"));
-        _keysLangSelectorDropdown = new Dropdown(e, t, {
-            big: !0,
-            width: 190,
-            placeholder: t[0][1],
-            autocomplete: !0,
-            selectedItems: nav.objLoc.lang_id || cur.langId,
-            onChange: function(e) {
-                e = e || 0, nav.change({
-                    lang_id: e
-                })
-            }
-        }), nav.objLoc.key && openKey(nav.objLoc.key), "deleted" == nav.objLoc.section && new AutoList(geByClass1("_tr_keys"), {
-            onNeedRows: function(e, t) {
-                ajax.post(TR_ADDRESS, {
-                    act: "get_deleted",
-                    lang_id: nav.objLoc.lang_id,
-                    offset: t
-                }, {
-                    onDone: function(t) {
-                        t = [].map.call(se(t).children, function(e) {
-                            return e
-                        }), e(t)
-                    }
-                })
-            }
-        }), "discussions" != nav.objLoc.section && ge("tr_keys_search").select()
+        if (_keysLangSelectorDropdown = new Dropdown(e, t, {
+                big: !0,
+                width: 190,
+                placeholder: t[0][1],
+                autocomplete: !0,
+                selectedItems: nav.objLoc.lang_id || cur.langId,
+                onChange: function(e) {
+                    e = e || 0, nav.change({
+                        lang_id: e
+                    })
+                }
+            }), nav.objLoc.key && openKey(nav.objLoc.key), "deleted" == nav.objLoc.section || isNumeric(nav.objLoc.section)) {
+            var a = clone(nav.objLoc);
+            delete a[0];
+            var n = new AutoList(geByClass1("_tr_keys"), {
+                onNeedRows: function(e, t) {
+                    ajax.post(TR_ADDRESS, extend(a, {
+                        offset: t
+                    }), {
+                        onDone: function(t) {
+                            t = [].map.call(se(t).children, function(e) {
+                                return e
+                            }), e(t)
+                        }
+                    })
+                }
+            });
+            cur.destroy.push(function() {
+                n.destroy()
+            })
+        }
+        "discussions" != nav.objLoc.section && ge("tr_keys_search").select()
     }
 
     function restoreKey(e, t, a) {
@@ -565,7 +571,9 @@ var TR_ADDRESS = "translation";
                 key: e
             }, {
                 onDone: function() {
-                    re("key_" + e), cur.translationBoxNeedHideBox = !0, curBox().hide()
+                    re("key_" + e);
+                    var t = geByClass("tr_key", geByClass1("_tr_keys")).length;
+                    cur.translationBoxNeedHideBox = !0, curBox().hide(), t || setTimeout(nav.reload, 100)
                 }
             })
         }, getLang("box_no"))
