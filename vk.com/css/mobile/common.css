@@ -13244,6 +13244,76 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     }
 }
 
+.SliderTabs {
+    padding: 8px 0;
+    font-size: 14px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    line-height: 16px;
+    background: #5181b8;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08), 0 0 2px 0 rgba(0, 0, 0, .06);
+    -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08), 0 0 2px 0 rgba(0, 0, 0, .06);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08), 0 0 2px 0 rgba(0, 0, 0, .06);
+    position: relative;
+    z-index: 1
+}
+
+.head_panel .SliderTabs {
+    margin: 0 -12px
+}
+
+@media (max-width: 319px) {
+    .head_panel .SliderTabs {
+        margin: 0 -8px
+    }
+}
+
+@media (min-width: 400px) {
+    .head_panel .SliderTabs {
+        margin: 0 -16px
+    }
+}
+
+.SliderTabs__slider {
+    white-space: nowrap
+}
+
+.SliderTabs__tab {
+    -webkit-border-radius: 14px;
+    -moz-border-radius: 14px;
+    border-radius: 14px;
+    padding: 6px 12px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0 0 6px;
+    color: #fff;
+    opacity: 0.7;
+    -webkit-transition: opacity 0.2s ease;
+    -moz-transition: opacity 0.2s ease;
+    -o-transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease;
+    cursor: pointer
+}
+
+._hover .SliderTabs__tab:hover {
+    text-decoration: none
+}
+
+.SliderTabs__tab:first-child {
+    margin-left: 8px
+}
+
+.SliderTabs__tab:last-child {
+    margin-right: 8px
+}
+
+.SliderTabs__tab_selected {
+    background: #fff;
+    color: #5181b8;
+    opacity: 1
+}
+
 .AudioBlock {
     border: 0
 }
@@ -23153,6 +23223,14 @@ a.feedBlocks__article:hover {
 
 .sendMoneyForm_addCardVisible .sendMoneyForm__addCard {
     display: inline-block
+}
+
+.transfersHistory__topButton {
+    -webkit-box-flex: 0.5;
+    -webkit-flex-grow: 0.5;
+    -moz-box-flex: 0.5;
+    -ms-flex-positive: 0.5;
+    flex-grow: 0.5
 }
 
 .transfersHistory__empty {

@@ -1715,6 +1715,20 @@ textarea.EditableLabel__textarea {
     margin-left: 3px
 }
 
+.Tabs__right-content {
+    margin: 0 4px 0 auto;
+    list-style: none;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    white-space: nowrap
+}
+
+.Tabs__right-content>* {
+    display: inline-block;
+    vertical-align: top;
+    padding: 16px 6px 14px
+}
+
 .Textarea {
     width: 100%;
     background: #fff;

@@ -1,76 +1,76 @@
 ﻿! function(e) {
-    function t(n) {
-        if (r[n]) return r[n].exports;
-        var o = r[n] = {
+    var t = {};
+
+    function r(n) {
+        if (t[n]) return t[n].exports;
+        var o = t[n] = {
             i: n,
             l: !1,
             exports: {}
         };
-        return e[n].call(o.exports, o, o.exports, t), o.l = !0, o.exports
+        return e[n].call(o.exports, o, o.exports, r), o.l = !0, o.exports
     }
-    var r = {};
-    return t.m = e, t.c = r, t.d = function(e, r, n) {
-        t.o(e, r) || Object.defineProperty(e, r, {
+    r.m = e, r.c = t, r.d = function(e, t, n) {
+        r.o(e, t) || Object.defineProperty(e, t, {
             enumerable: !0,
             get: n
         })
-    }, t.r = function(e) {
+    }, r.r = function(e) {
         "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
             value: "Module"
         }), Object.defineProperty(e, "__esModule", {
             value: !0
         })
-    }, t.t = function(e, r) {
-        if (1 & r && (e = t(e)), 8 & r) return e;
-        if (4 & r && "object" == typeof e && e && e.__esModule) return e;
+    }, r.t = function(e, t) {
+        if (1 & t && (e = r(e)), 8 & t) return e;
+        if (4 & t && "object" == typeof e && e && e.__esModule) return e;
         var n = Object.create(null);
-        if (t.r(n), Object.defineProperty(n, "default", {
+        if (r.r(n), Object.defineProperty(n, "default", {
                 enumerable: !0,
                 value: e
-            }), 2 & r && "string" != typeof e)
-            for (var o in e) t.d(n, o, function(t) {
+            }), 2 & t && "string" != typeof e)
+            for (var o in e) r.d(n, o, function(t) {
                 return e[t]
             }.bind(null, o));
         return n
-    }, t.n = function(e) {
-        var r = e && e.__esModule ? function() {
-            return e["default"]
+    }, r.n = function(e) {
+        var t = e && e.__esModule ? function() {
+            return e.default
         } : function() {
             return e
         };
-        return t.d(r, "a", r), r
-    }, t.o = function(e, t) {
+        return r.d(t, "a", t), t
+    }, r.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, t.p = "", t(t.s = 226)
+    }, r.p = "", r(r.s = 156)
 }({
-    226: function(e, t, r) {
-        e.exports = r(754)
+    156: function(e, t, r) {
+        e.exports = r(320)
     },
-    754: function(e, t, r) {
+    320: function(e, t, r) {
         "use strict";
         r.r(t);
         var n = function() {
-            function e(e, t) {
-                var r = [],
-                    n = !0,
-                    o = !1,
-                    i = void 0;
-                try {
-                    for (var u, c = e[Symbol.iterator](); !(n = (u = c.next()).done) && (r.push(u.value), !t || r.length !== t); n = !0);
-                } catch (a) {
-                    o = !0, i = a
-                } finally {
+            return function(e, t) {
+                if (Array.isArray(e)) return e;
+                if (Symbol.iterator in Object(e)) return function(e, t) {
+                    var r = [],
+                        n = !0,
+                        o = !1,
+                        i = void 0;
                     try {
-                        !n && c["return"] && c["return"]()
+                        for (var u, c = e[Symbol.iterator](); !(n = (u = c.next()).done) && (r.push(u.value), !t || r.length !== t); n = !0);
+                    } catch (e) {
+                        o = !0, i = e
                     } finally {
-                        if (o) throw i
+                        try {
+                            !n && c.return && c.return()
+                        } finally {
+                            if (o) throw i
+                        }
                     }
-                }
-                return r
-            }
-            return function(t, r) {
-                if (Array.isArray(t)) return t;
-                if (Symbol.iterator in Object(t)) return e(t, r);
+                    return r
+                }(e, t);
                 throw new TypeError("Invalid attempt to destructure non-iterable instance")
             }
         }();
@@ -89,20 +89,19 @@
                     cur.Rpc = new fastXDM.Client(cur.RpcMethods, {
                         safe: !0
                     })
-                } catch (r) {
-                    debugLog(r)
+                } catch (e) {
+                    debugLog(e)
                 }
             },
             onresize: function() {
                 if (cur.height_el && cur.Rpc) {
                     var e = getSize(cur.height_el),
-                        t = n(e, 2),
-                        r = t[1];
-                    cur.Rpc.callMethod("resize", r)
+                        t = n(e, 2)[1];
+                    cur.Rpc.callMethod("resize", t)
                 }
             },
             override: function(e, t) {
-                !StaticFiles[e] && t !== !0 || "lite.js" !== e || extend(window, {
+                !StaticFiles[e] && !0 !== t || "lite.js" !== e || extend(window, {
                     showTooltip: Widgets.showTooltip,
                     showReCaptchaBox: Widgets.showReCaptchaBox,
                     gotSession: function() {
@@ -113,6 +112,6 @@
         };
         try {
             stManager.done(jsc("api/widgets/app.js"))
-        } catch (o) {}
+        } catch (e) {}
     }
 });

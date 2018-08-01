@@ -42,16 +42,253 @@
         return r.d(t, "a", t), t
     }, r.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, r.p = "", r(r.s = 103)
+    }, r.p = "", r(r.s = 485)
 }({
-    103: function(e, t, r) {
-        e.exports = r(140)
+    245: function(e, t, r) {
+        "use strict";
+        r.r(t), r.d(t, "ImDraft", function() {
+            return i
+        }), r.d(t, "loadDraftForPeer", function() {
+            return c
+        });
+        var n = r(277),
+            o = function() {
+                return function(e, t) {
+                    if (Array.isArray(e)) return e;
+                    if (Symbol.iterator in Object(e)) return function(e, t) {
+                        var r = [],
+                            n = !0,
+                            o = !1,
+                            i = void 0;
+                        try {
+                            for (var a, c = e[Symbol.iterator](); !(n = (a = c.next()).done) && (r.push(a.value), !t || r.length !== t); n = !0);
+                        } catch (e) {
+                            o = !0, i = e
+                        } finally {
+                            try {
+                                !n && c.return && c.return()
+                            } finally {
+                                if (o) throw i
+                            }
+                        }
+                        return r
+                    }(e, t);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }();
+
+        function i(e, t) {
+            this._db = e, this._key = t, this.dData = {
+                txt: "",
+                attaches: [],
+                urlBinds: [],
+                cancelled: []
+            }, this.load()
+        }
+
+        function a(e) {
+            switch (e.type) {
+                case "mail":
+                    return e.id < 0 && 1 == e.object.fwd_count;
+                default:
+                    return !e.object
+            }
+        }
+
+        function c(e, t) {
+            return new i(e, "draft_" + t)
+        }
+        i.prototype.dump = function() {
+            var e;
+            this._key && this._db.updateByKey(this._key, {
+                txt: (e = this.dData).txt,
+                attaches: e.attaches.length ? e.attaches : void 0,
+                urlBinds: e.urlBinds.length ? e.urlBinds : void 0,
+                cancelled: e.cancelled.length ? e.cancelled : void 0
+            })
+        }, i.prototype.load = function() {
+            if (this._key) {
+                var e = this._db.selectByKey(this._key);
+                e && (this.dData = function(e) {
+                    return {
+                        txt: e.txt,
+                        attaches: e.attaches || [],
+                        urlBinds: e.urlBinds || [],
+                        cancelled: e.cancelled || []
+                    }
+                }(e))
+            }
+        }, i.prototype.clear = function() {
+            this.dData = {
+                txt: "",
+                attaches: [],
+                urlBinds: [],
+                cancelled: []
+            }, this.dump()
+        }, i.prototype.setText = function(e) {
+            this.dData.txt = trim(e), this.dump()
+        }, i.prototype.addAttach = function(e, t, r) {
+            if ("share" !== e && "mail" !== e || this.removeAttachByType(e), !e || !t && "poll" !== e) return !1;
+            var n = this.dData.attaches.findIndex(function(r) {
+                return r.type === e && r.id === t
+            }); - 1 === n ? (this.dData.attaches.push({
+                type: e,
+                id: t,
+                object: r
+            }), this.dump()) : "video" !== e && "poll" !== e || (this.dData.attaches[n] = {
+                type: e,
+                id: t,
+                object: r
+            }, this.dump())
+        }, i.prototype.syncWithSelector = function(e) {
+            var t = this,
+                r = this.getFwdRaw();
+            this.dData.attaches = (r ? [r] : []).concat(e.getMedias().map(function(e) {
+                var r = o(e, 2),
+                    n = r[0],
+                    i = r[1];
+                return t.dData.attaches.find(function(e) {
+                    return e.type == n && e.id == i
+                }) || {
+                    type: n,
+                    id: i
+                }
+            })), this.dump()
+        }, i.prototype.removeAttachByType = function(e) {
+            for (var t = this.dData.attaches.length; t--;) this.dData.attaches[t].type === e && this.dData.attaches.splice(t, 1);
+            this.dump()
+        }, i.prototype.removeAllAttaches = function() {
+            this.dData.attaches = [], this.dData.cancelled = [], this.dump()
+        }, i.prototype.addBindUrl = function(e, t, r) {
+            this.getBoundAttach(e) || (this.dData.urlBinds.push({
+                url: e,
+                type: t,
+                id: r
+            }), this.dump())
+        }, i.prototype.getBoundAttach = function(e) {
+            var t = this.dData.urlBinds.find(function(t) {
+                return t.url === e
+            });
+            return t && this.dData.attaches.find(function(e) {
+                return e.type === t.type && e.id === t.id
+            }) || null
+        }, i.prototype.getShareUrl = function() {
+            var e = this.dData.attaches.find(function(e) {
+                return "share" === e.type
+            });
+            if (e && e.object) return e.object.url
+        }, i.prototype.getCancelledShares = function() {
+            return this.dData.cancelled.length ? this.dData.cancelled : void 0
+        }, i.prototype.hasAttaches = function() {
+            return this.dData.attaches.length > 0
+        }, i.prototype.destroy = function() {
+            this.dData = {}, this._key = this._db = null
+        }, i.prototype.prepareObjects = function(e, t) {
+            var r = this;
+            return this.dData.attaches.find(a) ? Object(n.post)(n.CONTROLLER, {
+                act: "draft_medias",
+                gid: e,
+                messageId: t || 0,
+                media: t ? void 0 : this.dData.attaches.map(function(e) {
+                    return [e.type, e.id]
+                }).join("*")
+            }).then(function(e) {
+                var t = o(e, 1)[0];
+                r.dData.attaches = t.map(function(e) {
+                    return {
+                        type: e[0],
+                        id: e[1],
+                        object: e[2]
+                    }
+                })
+            }) : Promise.resolve()
+        }, i.prototype.getFwdRaw = function() {
+            return this.dData.attaches.find(function(e) {
+                return "mail" === e.type
+            })
+        }, i.prototype.getFwdCount = function() {
+            var e = this.getFwdRaw();
+            return e ? e.id < 0 ? e.object.fwd_count : e.id.split(";").length : 0
+        }
     },
-    140: function(e, t, r) {
+    277: function(e, t, r) {
+        "use strict";
+        r.r(t), r.d(t, "CONTROLLER", function() {
+            return n
+        }), r.d(t, "post", function() {
+            return i
+        }), r.d(t, "plainget", function() {
+            return a
+        }), r.d(t, "plaingetCancelable", function() {
+            return c
+        });
+        var n = "al_im.php",
+            o = 2;
+
+        function i(e, t, r) {
+            return t && (t.im_v = o), new Promise(function(n, o) {
+                ajax.post(e, t, {
+                    timeout: r,
+                    onDone: function() {
+                        n.apply(null, [
+                            [].concat(Array.prototype.slice.call(arguments))
+                        ])
+                    },
+                    onFail: function() {
+                        return o.apply(null, arguments), !0
+                    }
+                })
+            })
+        }
+
+        function a(e, t) {
+            return c(e, t, arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {}).request
+        }
+
+        function c(e, t) {
+            var r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
+                n = void 0;
+            return n = window.XDomainRequest ? new XDomainRequest : ajax._getreq(), {
+                request: new Promise(function(o, i) {
+                    var a = void 0,
+                        c = Date.now(),
+                        u = r.timeout || 60,
+                        d = ajx2q(t);
+                    if (window.XDomainRequest) n.open("get", e + "?" + d), n.ontimeout = function(e) {
+                        i([e, {}])
+                    }, n.onerror = function(e) {
+                        i([e, {}])
+                    }, n.onload = function() {
+                        o([n.responseText, {}])
+                    }, setTimeout(function() {
+                        n.send()
+                    }, 0);
+                    else {
+                        n.onreadystatechange = function() {
+                            4 == n.readyState && (clearInterval(a), n.status >= 200 && n.status < 300 ? o([n.responseText, n]) : i([n.responseText, n]))
+                        };
+                        try {
+                            n.open("GET", e + "?" + d, !0)
+                        } catch (e) {
+                            return i([e, n])
+                        }
+                        n.send()
+                    }
+                    a = setInterval(function() {
+                        Date.now() - c > 1e3 * u && (i(["", {}]), clearInterval(a))
+                    }, 1e3)
+                }),
+                cancel: function() {
+                    n.abort()
+                }
+            }
+        }
+    },
+    373: function(e, t, r) {
         "use strict";
         r.r(t);
-        var n = r(180),
-            o = r(190),
+        var n = r(459),
+            o = r(245),
             i = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
                 return typeof e
             } : function(e) {
@@ -312,7 +549,7 @@
             stManager.done("writebox.js")
         } catch (e) {}
     },
-    180: function(e, t, r) {
+    459: function(e, t, r) {
         "use strict";
         r.r(t), r.d(t, "RECENT_SEARCH_OP", function() {
             return o
@@ -418,244 +655,7 @@
             }
         }
     },
-    190: function(e, t, r) {
-        "use strict";
-        r.r(t), r.d(t, "ImDraft", function() {
-            return i
-        }), r.d(t, "loadDraftForPeer", function() {
-            return c
-        });
-        var n = r(200),
-            o = function() {
-                return function(e, t) {
-                    if (Array.isArray(e)) return e;
-                    if (Symbol.iterator in Object(e)) return function(e, t) {
-                        var r = [],
-                            n = !0,
-                            o = !1,
-                            i = void 0;
-                        try {
-                            for (var a, c = e[Symbol.iterator](); !(n = (a = c.next()).done) && (r.push(a.value), !t || r.length !== t); n = !0);
-                        } catch (e) {
-                            o = !0, i = e
-                        } finally {
-                            try {
-                                !n && c.return && c.return()
-                            } finally {
-                                if (o) throw i
-                            }
-                        }
-                        return r
-                    }(e, t);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }();
-
-        function i(e, t) {
-            this._db = e, this._key = t, this.dData = {
-                txt: "",
-                attaches: [],
-                urlBinds: [],
-                cancelled: []
-            }, this.load()
-        }
-
-        function a(e) {
-            switch (e.type) {
-                case "mail":
-                    return e.id < 0 && 1 == e.object.fwd_count;
-                default:
-                    return !e.object
-            }
-        }
-
-        function c(e, t) {
-            return new i(e, "draft_" + t)
-        }
-        i.prototype.dump = function() {
-            var e;
-            this._key && this._db.updateByKey(this._key, {
-                txt: (e = this.dData).txt,
-                attaches: e.attaches.length ? e.attaches : void 0,
-                urlBinds: e.urlBinds.length ? e.urlBinds : void 0,
-                cancelled: e.cancelled.length ? e.cancelled : void 0
-            })
-        }, i.prototype.load = function() {
-            if (this._key) {
-                var e = this._db.selectByKey(this._key);
-                e && (this.dData = function(e) {
-                    return {
-                        txt: e.txt,
-                        attaches: e.attaches || [],
-                        urlBinds: e.urlBinds || [],
-                        cancelled: e.cancelled || []
-                    }
-                }(e))
-            }
-        }, i.prototype.clear = function() {
-            this.dData = {
-                txt: "",
-                attaches: [],
-                urlBinds: [],
-                cancelled: []
-            }, this.dump()
-        }, i.prototype.setText = function(e) {
-            this.dData.txt = trim(e), this.dump()
-        }, i.prototype.addAttach = function(e, t, r) {
-            if ("share" !== e && "mail" !== e || this.removeAttachByType(e), !e || !t && "poll" !== e) return !1;
-            var n = this.dData.attaches.findIndex(function(r) {
-                return r.type === e && r.id === t
-            }); - 1 === n ? (this.dData.attaches.push({
-                type: e,
-                id: t,
-                object: r
-            }), this.dump()) : "video" !== e && "poll" !== e || (this.dData.attaches[n] = {
-                type: e,
-                id: t,
-                object: r
-            }, this.dump())
-        }, i.prototype.syncWithSelector = function(e) {
-            var t = this,
-                r = this.getFwdRaw();
-            this.dData.attaches = (r ? [r] : []).concat(e.getMedias().map(function(e) {
-                var r = o(e, 2),
-                    n = r[0],
-                    i = r[1];
-                return t.dData.attaches.find(function(e) {
-                    return e.type == n && e.id == i
-                }) || {
-                    type: n,
-                    id: i
-                }
-            })), this.dump()
-        }, i.prototype.removeAttachByType = function(e) {
-            for (var t = this.dData.attaches.length; t--;) this.dData.attaches[t].type === e && this.dData.attaches.splice(t, 1);
-            this.dump()
-        }, i.prototype.removeAllAttaches = function() {
-            this.dData.attaches = [], this.dData.cancelled = [], this.dump()
-        }, i.prototype.addBindUrl = function(e, t, r) {
-            this.getBoundAttach(e) || (this.dData.urlBinds.push({
-                url: e,
-                type: t,
-                id: r
-            }), this.dump())
-        }, i.prototype.getBoundAttach = function(e) {
-            var t = this.dData.urlBinds.find(function(t) {
-                return t.url === e
-            });
-            return t && this.dData.attaches.find(function(e) {
-                return e.type === t.type && e.id === t.id
-            }) || null
-        }, i.prototype.getShareUrl = function() {
-            var e = this.dData.attaches.find(function(e) {
-                return "share" === e.type
-            });
-            if (e && e.object) return e.object.url
-        }, i.prototype.getCancelledShares = function() {
-            return this.dData.cancelled.length ? this.dData.cancelled : void 0
-        }, i.prototype.hasAttaches = function() {
-            return this.dData.attaches.length > 0
-        }, i.prototype.destroy = function() {
-            this.dData = {}, this._key = this._db = null
-        }, i.prototype.prepareObjects = function(e, t) {
-            var r = this;
-            return this.dData.attaches.find(a) ? Object(n.post)(n.CONTROLLER, {
-                act: "draft_medias",
-                gid: e,
-                messageId: t || 0,
-                media: t ? void 0 : this.dData.attaches.map(function(e) {
-                    return [e.type, e.id]
-                }).join("*")
-            }).then(function(e) {
-                var t = o(e, 1)[0];
-                r.dData.attaches = t.map(function(e) {
-                    return {
-                        type: e[0],
-                        id: e[1],
-                        object: e[2]
-                    }
-                })
-            }) : Promise.resolve()
-        }, i.prototype.getFwdRaw = function() {
-            return this.dData.attaches.find(function(e) {
-                return "mail" === e.type
-            })
-        }, i.prototype.getFwdCount = function() {
-            var e = this.getFwdRaw();
-            return e ? e.id < 0 ? e.object.fwd_count : e.id.split(";").length : 0
-        }
-    },
-    200: function(e, t, r) {
-        "use strict";
-        r.r(t), r.d(t, "CONTROLLER", function() {
-            return n
-        }), r.d(t, "post", function() {
-            return i
-        }), r.d(t, "plainget", function() {
-            return a
-        }), r.d(t, "plaingetCancelable", function() {
-            return c
-        });
-        var n = "al_im.php",
-            o = 2;
-
-        function i(e, t, r) {
-            return t && (t.im_v = o), new Promise(function(n, o) {
-                ajax.post(e, t, {
-                    timeout: r,
-                    onDone: function() {
-                        n.apply(null, [
-                            [].concat(Array.prototype.slice.call(arguments))
-                        ])
-                    },
-                    onFail: function() {
-                        return o.apply(null, arguments), !0
-                    }
-                })
-            })
-        }
-
-        function a(e, t) {
-            return c(e, t, arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {}).request
-        }
-
-        function c(e, t) {
-            var r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
-                n = void 0;
-            return n = window.XDomainRequest ? new XDomainRequest : ajax._getreq(), {
-                request: new Promise(function(o, i) {
-                    var a = void 0,
-                        c = Date.now(),
-                        u = r.timeout || 60,
-                        d = ajx2q(t);
-                    if (window.XDomainRequest) n.open("get", e + "?" + d), n.ontimeout = function(e) {
-                        i([e, {}])
-                    }, n.onerror = function(e) {
-                        i([e, {}])
-                    }, n.onload = function() {
-                        o([n.responseText, {}])
-                    }, setTimeout(function() {
-                        n.send()
-                    }, 0);
-                    else {
-                        n.onreadystatechange = function() {
-                            4 == n.readyState && (clearInterval(a), n.status >= 200 && n.status < 300 ? o([n.responseText, n]) : i([n.responseText, n]))
-                        };
-                        try {
-                            n.open("GET", e + "?" + d, !0)
-                        } catch (e) {
-                            return i([e, n])
-                        }
-                        n.send()
-                    }
-                    a = setInterval(function() {
-                        Date.now() - c > 1e3 * u && (i(["", {}]), clearInterval(a))
-                    }, 1e3)
-                }),
-                cancel: function() {
-                    n.abort()
-                }
-            }
-        }
+    485: function(e, t, r) {
+        e.exports = r(373)
     }
 });
