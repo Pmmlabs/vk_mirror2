@@ -19038,7 +19038,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .article_adsblock {
-    margin: 10px 0 30px
+    margin: 10px -16px 30px
 }
 
 .blog_entry_text .article,
