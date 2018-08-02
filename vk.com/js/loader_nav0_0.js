@@ -393,7 +393,7 @@ var stVersions = {
     'ads_web.js': 4274163593,
     'mrtarg.js': 1146267795,
     'mrtarg.css': 3142794554,
-    'cmodules/web/ads_edit_easy.js': 2243042172,
+    'cmodules/web/ads_edit_easy.js': 523873843,
     'health.css': 2251304991,
     'health.js': 2993570139,
     'pinbar.js': 284788792,
@@ -532,7 +532,7 @@ var stVersions = {
     'cmodules/web/article.js': 42910041487,
     'cmodules/web/article_layer.js': 27708192861,
     'article_view.js': 24085277317,
-    'bookmarks.css': 16123768078,
+    'bookmarks.css': 17935832013,
     'cmodules/web/bookmarks.js': 1801417454,
     'sf.css': 17340425719,
     'shortener.js': 16413120,
@@ -560,9 +560,9 @@ var stVersions = {
     'reports.css': 73892217684,
     'cmodules/web/raven_logger.js': 6758854954,
     'cmodules/web/add_to_community_app.js': 397597546,
-    'cmodules/web/groups_edit_addresses.js': 14607290312,
+    'cmodules/web/groups_edit_addresses.js': 12684220365,
     'addresses.css': 30685147871,
-    'cmodules/web/addresses.js': 10477233421,
+    'cmodules/web/addresses.js': 9500802790,
     'cmodules/web/groups_edit_cta_button.js': 89320519,
     'community_bot.js': 1928249077,
     'community_bot.css': 3742743729,
@@ -638,4 +638,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 5171;
+var _rnd = 9793;
