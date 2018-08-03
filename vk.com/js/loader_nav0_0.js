@@ -387,7 +387,7 @@ var stVersions = {
     'ads_moder_common.css': 15487469665,
     'ads_moder.css': 15065668235,
     'ads_moder_common.js': 3875868763,
-    'ads_moder.js': 3056032706,
+    'ads_moder.js': 860302640,
     'ads_tagger.js': 2289308011,
     'ads_web.css': 1585148602,
     'ads_web.js': 4274163593,
@@ -638,4 +638,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 9351;
+var _rnd = 6911;

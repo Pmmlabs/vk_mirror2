@@ -1046,6 +1046,128 @@ AdsModer.increaseBudget = function() {
     }
 }
 
+AdsModer.initCreateBonusesForm = function(bonusesTypes, expireDate, activationFreeCheckboxLabel) {
+
+    new Radiobuttons(ge('ads_bonuses_type_'), bonusesTypes, {});
+
+    placeholderSetup('ads_bonuses_money_amount');
+    placeholderSetup('ads_bonuses_money_amount_required');
+    AdsModer.updateBonusesMoneyAmountText('ads_bonuses_money_amount', 'ads_bonuses_money_amount_text');
+    AdsModer.updateBonusesMoneyAmountText('ads_bonuses_money_amount_required', 'ads_bonuses_money_amount_required_text');
+
+    new Radiobuttons(ge('expire_type'), [
+        [0, '������ ���������� ����'],
+        [1, '������ ���� ���������']
+    ], {
+        onChange: AdsModer.onBonusesExpireTypeChanged
+    });
+
+    cur.expireType = 0;
+    cur.expireDate = expireDate;
+
+    var datePickerOptions = {
+        year: cur.expireDate.y,
+        month: cur.expireDate.m,
+        day: cur.expireDate.d,
+        onUpdate: function(date, mode) {
+            cur.expireDate = date;
+        }
+    };
+    new Datepicker(ge('ads_bonuses_date'), datePickerOptions);
+
+    var checkboxActivationFree = new Checkbox(ge('ads_bonuses_activation_free'), {
+        label: activationFreeCheckboxLabel,
+        checked: 0,
+        width: 190
+    });
+    var checkboxActivationLegalOnly = new Checkbox(ge('ads_bonuses_activation_legal_only'), {
+        label: '������ ��� ��. ��� (��� - 10 ��� 12 ����)',
+        checked: 0,
+        width: 190
+    });
+}
+
+AdsModer.createBonuses = function() {
+    if (!Ads.lock('createBonuses', onLock, onUnlock)) {
+        return;
+    }
+
+    var ajaxParams = {};
+    ajaxParams.type = val('ads_bonuses_type_');
+    ajaxParams.count = val('ads_bonuses_count');
+    ajaxParams.money_amount = val('ads_bonuses_money_amount');
+    ajaxParams.money_amount_required = val('ads_bonuses_money_amount_required');
+    ajaxParams.activation_free = (val('ads_bonuses_activation_free') ? 1 : 0);
+    ajaxParams.activation_legal_only = (val('ads_bonuses_activation_legal_only') ? 1 : 0);
+    if (cur.expireType == 0) {
+        ajaxParams.expire_days_count = val('ads_bonuses_days_count');
+    } else {
+        ajaxParams.expire_year = cur.expireDate.y;
+        ajaxParams.expire_month = cur.expireDate.m;
+        ajaxParams.expire_day = cur.expireDate.d;
+    }
+
+    ajax.post('/adsmoder?act=a_create_bonuses', ajaxParams, {
+        onDone: onComplete,
+        onFail: onComplete.rpbind(true)
+    });
+
+    function onComplete(response) {
+        if (!isObject(response) || response.error) {
+            var message = (response && response.error ? response.error : '��������� �������������� ������.');
+            showFastBox('���������� ������� ������', message);
+        } else if (response && response.redirect) {
+            nav.go(response.redirect);
+            return;
+        }
+        Ads.unlock('createBonuses');
+    }
+
+    function onLock() {
+        lockButton('ads_create_bonuses_button');
+    }
+
+    function onUnlock() {
+        unlockButton('ads_create_bonuses_button');
+    }
+}
+
+AdsModer.updateBonusesCountText = function() {
+    var moneyAmount = parseInt(val('ads_bonuses_count'), 10);
+    moneyAmount = (isNaN(moneyAmount) ? 0 : moneyAmount);
+    var text = ge('ads_bonuses_count_text');
+    if (moneyAmount == 0) {
+        text.innerHTML = '';
+    } else if (moneyAmount < 5) {
+        text.innerHTML = '���������';
+    } else if (moneyAmount < 10) {
+        text.innerHTML = '����';
+    } else if (moneyAmount < 1000) {
+        text.innerHTML = '� ����� ���';
+    } else if (moneyAmount < 100000) {
+        text.innerHTML = '�����';
+    } else {
+        text.innerHTML = '������';
+    }
+}
+
+AdsModer.updateBonusesMoneyAmountText = function(valueElem, textElemId) {
+    var moneyAmount = parseInt(val(valueElem), 10);
+    moneyAmount = (isNaN(moneyAmount) ? 0 : moneyAmount);
+    ge(textElemId).innerHTML = getLang('global_money_amount_rub_text', moneyAmount);
+}
+
+AdsModer.onBonusesExpireTypeChanged = function(value) {
+    if (value == 0) {
+        hide('ads_bonuses_date_box');
+        show('ads_bonuses_days_count_box');
+    } else {
+        hide('ads_bonuses_days_count_box');
+        show('ads_bonuses_date_box');
+    }
+    cur.expireType = value;
+}
+
 AdsModer.searchBonus = function(bonusNumber) {
     if (!Ads.lock('searchBonus', onLock, onUnlock)) {
         return;
