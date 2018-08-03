@@ -156,8 +156,11 @@ var Groups = {
     },
     updateCnt: function(e) {
         e = parseInt(e);
-        var o = geByClass1("_group_message_cnt");
-        o && (o.textContent = e, toggleClass(o, "unshown", 0 === e))
+        var o = ge("page_menu_group_gim");
+        if (o) {
+            var t = geByClass1("ui_rmenu_count", o);
+            t && (t.textContent = e, toggleClass(t, "unshown", 0 === e))
+        }
     },
     updates: function(e, o) {
         each(o.events, function(e, o) {

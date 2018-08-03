@@ -2036,6 +2036,32 @@ var Page = {
             stManager.add(['audioplayer.css', 'audioplayer.js']);
             data[AudioUtils.AUDIO_ITEM_INDEX_CONTEXT] = 'attach_preview'
             return AudioUtils.drawAudio(data, 'inlined');
+        },
+
+        ownerButtonClick: function(action, el, event) {
+            if (checkEvent(event)) {
+                return;
+            }
+            var BTN_TYPE_OPEN_URL = 'open_url';
+
+            switch (action['type']) {
+                case BTN_TYPE_OPEN_URL:
+                    if (action['is_internal'] && action['open_in_layer']) {
+                        var params = nav.fromStr(action['url']);
+                        var page = params[0].replace('/', '');
+                        delete params[0];
+
+                        return showWiki({
+                            w: page
+                        }, null, null, {
+                            ads_params: params
+                        });
+                    }
+                    return nav.go(el, event);
+                    break;
+            }
+
+            return false;
         }
     },
     page = Page;

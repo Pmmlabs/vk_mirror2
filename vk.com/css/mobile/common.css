@@ -18968,6 +18968,10 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .article_adsblock {
+    margin: 10px 0 30px
+}
+
+.article_adsblock.article_adsblock_mobile {
     margin: 10px -16px 30px
 }
 

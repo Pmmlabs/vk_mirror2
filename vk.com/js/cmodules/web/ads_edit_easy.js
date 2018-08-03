@@ -542,7 +542,7 @@
                     criteria_preset_id: this.audienceDropdown.val(),
                     planner_reach: this.options.expected_reach.value,
                     total_reach: this.options.expected_reach.limit,
-                    suggested_criteria: this.isSuggestedCriteria(t)
+                    suggested_criteria: this.isSuggestedCriteria(t) ? 1 : 0
                 });
             ajax.post("/adsedit?act=save_ad", s, {
                 onDone: this.onCreateAdDone.bind(this, !0),

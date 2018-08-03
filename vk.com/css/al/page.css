@@ -52,7 +52,6 @@
 .vk2017_snippet_bottom_image_right:after,
 .vk2017_snippet_separator,
 .vk2017_snippet_top:after,
-.vk_music_awards:before,
 .wall_marked_as_ads,
 .wall_module .media_desc b,
 .wall_module .media_preview .note b,
@@ -1072,7 +1071,7 @@
 
 .exp_post_menu .wall_module .post_header .ui_actions_menu_icons {
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20stroke%3D%22%23C1C5CC%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.875%22%20d%3D%22M6.5%2010l5.5%204.5%205.5-4.5%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
-    background-position-x: -1.5px
+    background-position-x: -1px
 }
 
 .wall_module .post_header .ui_actions_menu {
@@ -1152,7 +1151,7 @@
 
 .exp_post_menu .post_top_info_wall_actions .ui_actions_menu_icons {
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20stroke%3D%22%23C1C5CC%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.875%22%20d%3D%22M6.5%2010l5.5%204.5%205.5-4.5%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
-    background-position-x: -1.5px
+    background-position-x: -1px
 }
 
 .post_top_info_wall_actions .ui_actions_menu {
@@ -1238,6 +1237,10 @@
 
 .wall_fixed .post_header .ui_actions_menu {
     margin-top: -15px
+}
+
+.exp_post_menu .wall_fixed .post_header .ui_actions_menu {
+    margin-top: -12px
 }
 
 .page_info_wrap:not(:empty)+.wall_fixed {
@@ -9562,42 +9565,40 @@ button.wall_block_app_btn {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20height%3D%22100%25%22%20width%3D%22100%25%22%3E%3Ctitle%3Efavorite_24%3C%2Ftitle%3E%3Cpath%20d%3D%22M0%2C0H24V24H0Z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M15.34%2C8.48l4.43.43a1.43%2C1.43%2C0%2C0%2C1%2C.83%2C2.64l-3.47%2C2.88%2C1.29%2C4.7c.42%2C1.54-.89%2C2.47-2.21%2C1.55L12%2C17.7l-4.21%2C3c-1.31.92-2.63%2C0-2.21-1.55l1.29-4.7L3.4%2C11.55a1.43%2C1.43%2C0%2C0%2C1%2C.83-2.64l4.43-.43L10.61%2C4a1.44%2C1.44%2C0%2C0%2C1%2C2.78%2C0Z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E")
 }
 
-.vk_music_awards {
-    display: block;
+.ownerButton {
     padding: 10px;
-    color: #000;
-    line-height: 19px;
-    cursor: pointer
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center
 }
 
-.vk_music_awards:hover {
+.ownerButton:hover {
     text-decoration: none
 }
 
-.vk_music_awards:before {
-    content: '';
+.ownerButton__icon {
     display: block;
-    float: left;
+    margin: 0;
+    margin-right: 8px;
     height: 36px;
-    width: 36px;
-    padding-right: 8px;
-    background: url(/images/icons/vkma_mic.png) no-repeat 0 1px
+    width: 36px
 }
 
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .vk_music_awards:before {
-        background-image: url(/images/icons/vkma_mic_2x.png);
-        background-size: 36px 36px
-    }
+.ownerButton__title {
+    color: #222
 }
 
-.vk_music_awards_title {
+.ownerButton b {
+    color: #222;
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
-    color: #222
+    -moz-osx-font-smoothing: auto
+}
+
+.ownerButton_music_awards b {
+    display: block;
+    line-height: 20px
 }
 
 .post_author_data {
