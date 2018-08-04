@@ -16004,6 +16004,10 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     filter: blur(21px)
 }
 
+._ioff .articleSnippet__block .articleSnippet__thumb {
+    background: #edf1f5!important
+}
+
 .articleSnippet__block .articleSnippet__inner {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -17043,6 +17047,10 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     position: relative
 }
 
+._ioff .snippet__icon {
+    background: #edf1f5!important
+}
+
 .snippet__icon:after {
     content: '';
     position: absolute;
@@ -17127,6 +17135,10 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     background-repeat: no-repeat;
     -webkit-tap-highlight-color: transparent;
     border: 1px solid rgba(0, 12, 26, .12)
+}
+
+._ioff .prettyCard__photo {
+    background: #edf1f5!important
 }
 
 .prettyCard__body {
@@ -23911,6 +23923,10 @@ a.feedBlocks__article:hover {
     -moz-border-radius: 6px 6px 0 0;
     border-radius: 6px 6px 0 0;
     border: none
+}
+
+._ioff .feedAssistance_recommendedFriends .prettyCard__photo {
+    background: #edf1f5!important
 }
 
 .feedAssistance_recommendedFriends .prettyCard__photo:before {
