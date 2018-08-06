@@ -387,6 +387,7 @@ offers_reban = "������� � ������";
 offers_unban = "������� �� ������";
 pages_article_anchor_copied = "������ �����������";
 pages_article_anchor_copy = "����������� ������";
+pages_article_report_more = "���";
 pages_article_report_sent = "������ ����������";
 pagination_allpages = "���";
 payment_no_more_tries_msg = null;
