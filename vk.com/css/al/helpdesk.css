@@ -1722,6 +1722,227 @@ body.body_helpdesk_small_sb .left_menu_nav {
     margin-bottom: 7px
 }
 
+.helpdesk_activity_table {
+    width: 100%;
+    border-collapse: collapse
+}
+
+.helpdesk_activity_table .helpdesk_activity_fragment_name {
+    border-right: 1px solid #e7e8ec;
+    padding: 3px;
+    height: 40px;
+    font-size: 12.5px
+}
+
+.helpdesk_activity_table .helpdesk_activity_fragment_name .helpdesk_activity_fragment_name_block {
+    margin-left: 2px;
+    margin-right: 40px;
+    width: 190px;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.helpdesk_activity_table .helpdesk_activity_fragment_name .helpdesk_activity_fragment_name_block img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    -moz-force-broken-image-icon: 0;
+    background-color: #fafbfc;
+    float: left
+}
+
+.helpdesk_activity_table .helpdesk_activity_fragment_name .helpdesk_activity_fragment_name_block img:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 25px;
+    background-color: #fff
+}
+
+.helpdesk_activity_table .helpdesk_activity_fragment_name .helpdesk_activity_fragment_name_block img:after {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fafbfc;
+    background-image: url(/images/camera_100.png);
+    background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .helpdesk_activity_table .helpdesk_activity_fragment_name .helpdesk_activity_fragment_name_block img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
+.helpdesk_activity_table .helpdesk_activity_fragment_name .helpdesk_activity_fragment_name_block span {
+    margin-left: 4px;
+    margin-top: 4px;
+    display: inline-block
+}
+
+.helpdesk_activity_table .helpdesk_activity_fragment_name .helpdesk_activity_fragment_name_block .helpdesk_activity_fragment_name_block_agent_number {
+    margin-top: 4px;
+    margin-left: 5px;
+    position: absolute;
+    color: #747474;
+    font-weight: 700
+}
+
+.helpdesk_activity_table .helpdesk_activity_fragment_name .helpdesk_activity_fragment_name_counter {
+    float: right;
+    margin-right: 5px;
+    color: #656565
+}
+
+.helpdesk_activity_table .helpdesk_activity_fragment_name .helpdesk_activity_fragment_name_counter .helpdesk_activity_fragment_count_color_100_150,
+.helpdesk_activity_table .helpdesk_activity_fragment_name .helpdesk_activity_fragment_name_counter .helpdesk_activity_fragment_count_color_150_300,
+.helpdesk_activity_table .helpdesk_activity_fragment_name .helpdesk_activity_fragment_name_counter .helpdesk_activity_fragment_count_color_300_plus {
+    text-align: right;
+    display: inline-block;
+    width: 30px
+}
+
+.helpdesk_activity_table .helpdesk_activity_fragment_name .helpdesk_activity_fragment_name_counter .helpdesk_activity_fragment_count_color_100_150 {
+    color: #74b368
+}
+
+.helpdesk_activity_table .helpdesk_activity_fragment_name .helpdesk_activity_fragment_name_counter .helpdesk_activity_fragment_count_color_150_300 {
+    color: #109e37
+}
+
+.helpdesk_activity_table .helpdesk_activity_fragment_name .helpdesk_activity_fragment_name_counter .helpdesk_activity_fragment_count_color_300_plus {
+    color: #c5a049
+}
+
+.helpdesk_activity_table .helpdesk_activity_item.helpdesk_activity_item_active,
+.helpdesk_activity_table .helpdesk_activity_item:hover {
+    background-color: #f2f4f7
+}
+
+.helpdesk_activity_table .helpdesk_activity_item .helpdesk_activity_fragment {
+    font-size: 11px;
+    cursor: pointer
+}
+
+.helpdesk_activity_table .helpdesk_activity_item .helpdesk_activity_fragment.helpdesk_activity_fragment_small {
+    font-size: 10px
+}
+
+.helpdesk_activity_table .helpdesk_activity_item .helpdesk_activity_fragment:hover {
+    background-color: #c0c8d0
+}
+
+.helpdesk_activity_table .helpdesk_activity_item .helpdesk_activity_fragment.helpdesk_activity_color_100_150 {
+    background-color: #effaed
+}
+
+.helpdesk_activity_table .helpdesk_activity_item .helpdesk_activity_fragment.helpdesk_activity_color_150_300 {
+    background-color: #d7f8e0
+}
+
+.helpdesk_activity_table .helpdesk_activity_item .helpdesk_activity_fragment.helpdesk_activity_color_300_plus {
+    background-color: #fdf1d4
+}
+
+.helpdesk_activity_table .helpdesk_activity_item .helpdesk_activity_fragment .helpdesk_activity_fragment_count {
+    margin: auto;
+    text-align: center;
+    color: #000;
+    text-decoration: none;
+    display: block;
+    width: 24px;
+    height: 14px
+}
+
+.helpdesk_activity_table .helpdesk_activity_header .helpdesk_activity_status_inactive,
+.helpdesk_activity_table .helpdesk_activity_item .helpdesk_activity_status_inactive {
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    background-color: #f2f4f7;
+    color: #656565
+}
+
+.helpdesk_activity_table .helpdesk_activity_header .helpdesk_activity_status_inactive:hover,
+.helpdesk_activity_table .helpdesk_activity_item .helpdesk_activity_status_inactive:hover {
+    background-color: #f2f4f7;
+    color: #656565;
+    cursor: default
+}
+
+.helpdesk_activity_table .helpdesk_activity_header {
+    border-bottom: 1px solid #e7e8ec
+}
+
+.helpdesk_activity_table .helpdesk_activity_header .helpdesk_activity_header_item .helpdesk_activity_header_item_hour {
+    margin: auto;
+    padding: 7px 0;
+    text-align: center;
+    font-size: 11px;
+    width: 24px
+}
+
+.helpdesk_activity_table .helpdesk_activity_separator {
+    border-right: 1px solid #e7e8ec
+}
+
+.helpdesk_activity_table .helpdesk_activity_row_total_separator {
+    border-top: 1px solid #e7e8ec
+}
+
+.helpdesk_activity_controls .helpdesk_activity_controls_selector {
+    margin: 7px 5px
+}
+
+.helpdesk_activity_controls .helpdesk_activity_controls_year {
+    float: right;
+    margin-right: 10px;
+    margin-top: 16px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #656565
+}
+
+.helpdesk_activity_controls .helpdesk_activity_date_controls {
+    padding: 0 14px;
+    float: left
+}
+
+.helpdesk_activity_controls .helpdesk_activity_date_controls .helpdesk_activity_date_next,
+.helpdesk_activity_controls .helpdesk_activity_date_controls .helpdesk_activity_date_prev {
+    width: 28px;
+    height: 28px;
+    display: block;
+    border: 1px solid #dae1e8
+}
+
+.helpdesk_activity_controls .helpdesk_activity_date_controls .helpdesk_activity_date_prev {
+    background: #fff url(/images/stat_arrow_left.gif) 6px 6px no-repeat;
+    margin-top: 7px
+}
+
+.helpdesk_activity_controls .helpdesk_activity_date_controls .helpdesk_activity_date_next {
+    margin-right: 20px;
+    margin-top: 7px;
+    background: #fff url(/images/stat_arrow_right.gif) 6px 6px no-repeat
+}
+
+.helpdesk_activity_controls .helpdesk_activity_date_controls .helpdesk_activity_this_date {
+    margin: 7px 8px 0
+}
+
 .helpdesk_switches_group {
     border-bottom: 1px solid #b4bfcc;
     padding-bottom: 10px

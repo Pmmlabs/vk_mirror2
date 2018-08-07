@@ -6690,11 +6690,12 @@ var Wall = {
         var votingEl = gpeByClass('media_voting', actionMenuItemEl);
 
         if (votingEl) {
-            if (this.votingIsLocked(votingEl)) {
+            var votingId = domData(votingEl, 'id');
+
+            if (this.votingIsLocked(votingId)) {
                 return;
             }
 
-            var votingId = domData(votingEl, 'id');
             var params = this.votingExtendParams({
                 act: 'closed',
                 state: state ? 1 : 0,
@@ -6774,7 +6775,7 @@ var Wall = {
         if (votingEl) {
             var votingId = domData(votingEl, 'id');
 
-            if (this.votingIsLocked(votingEl)) {
+            if (this.votingIsLocked(votingId)) {
                 return;
             }
 

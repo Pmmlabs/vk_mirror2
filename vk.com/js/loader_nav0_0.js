@@ -228,7 +228,7 @@ var stVersions = {
     'module.css': 23460620867,
     'owner_photo.js': 3368798011,
     'owner_photo.css': 20827052410,
-    'page.js': 1713475707,
+    'page.js': 743477615,
     'page.css': 46441560101,
     'page_help.css': 26085847503,
     'public.css': 28845847032,
@@ -342,7 +342,7 @@ var stVersions = {
     'tags_dd.js': 3735969205,
     'tags_dd.css': 16991733118,
     'helpdesk.js': 3347818140,
-    'helpdesk.css': 33395540710,
+    'helpdesk.css': 32621263271,
     'tickets.js': 3707959885,
     'tickets.css': 29034501006,
     'faq.css': 22859581738,
@@ -638,4 +638,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 1646;
+var _rnd = 7406;
