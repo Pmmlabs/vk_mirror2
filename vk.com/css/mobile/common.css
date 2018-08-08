@@ -40437,3 +40437,380 @@ body.apps_settingsPageBody {
 .selected_all .inline_item:not(.inline_item_selected) .ii_body:before {
     display: none
 }
+
+._ios,
+._ios .button,
+._ios .small_button,
+._ios input,
+._ios select,
+._ios textarea {
+    font-size: 14px
+}
+
+._ios .button,
+._ios .near_btn,
+._ios .show_more,
+._ios .show_more_loading,
+._ios .small_button,
+._ios .small_near_btn {
+    font-size: 13px!important
+}
+
+._ios .zpv_header .mh_header {
+    font-size: 1.17em!important
+}
+
+._ios .pagination {
+    line-height: 1.25em
+}
+
+._ios ._copts .checkbox+.option_label:before,
+._ios ._copts .radio+.option_label:before {
+    position: relative;
+    top: -1px
+}
+
+._ios ._copts .option_row_fl .checkbox+.option_label:before,
+._ios ._copts .option_row_fl .radio+.option_label:before {
+    top: 1px
+}
+
+._ios .cp_options_btn .i_icon {
+    padding: 4px 10px 6px
+}
+
+._ios .lfm_item,
+._ios .mm_item {
+    font-size: 1em
+}
+
+._ios .fm_item {
+    font-size: 0.93em
+}
+
+._ios .mmi_wrap {
+    padding-top: 2px;
+    padding-bottom: 1px
+}
+
+._ios .qsearch .button {
+    padding: 7px 7px 6px!important
+}
+
+._ios .mhead {
+    line-height: 1.3em
+}
+
+._ios .mhb_notify {
+    font-size: .93em
+}
+
+._ios .head_search .textfield {
+    padding-top: 6px;
+    padding-bottom: 5px
+}
+
+._ios .head_search .button {
+    font-size: 14px!important;
+    padding: 6px 7px 5px!important
+}
+
+._ios .thumb_label {
+    font-family: Helvetica Neue, Helvetica, Verdana!important
+}
+
+._ios .vi_values {
+    padding: 2px 0 0
+}
+
+._ios .oauth_mobile_header .op_fimg {
+    margin-top: 2px!important
+}
+
+._ios .op_info {
+    padding-top: 0!important
+}
+
+._ios .album_cnt,
+._ios .mt_label {
+    font-family: Helvetica, Verdana!important
+}
+
+._ios .ri_body {
+    padding: 0 0 2px
+}
+
+._ios .si_label,
+._ios .si_slabel,
+._ios .si_status {
+    padding: 0
+}
+
+._ios .si_inline .si_img,
+._ios .si_inline .si_iwrap {
+    width: 40px;
+    height: 40px
+}
+
+._ios .si_inline .si_body {
+    margin-top: 1px;
+    min-height: 39px
+}
+
+._ios .si_inline .si_label,
+._ios .si_inline .si_slabel,
+._ios .si_inline .si_status {
+    padding-top: 0
+}
+
+._ios .pi_text {
+    line-height: 1.3em
+}
+
+._ios .pic_cont {
+    position: relative;
+    top: -1px;
+    margin-bottom: -1px
+}
+
+._ios .pic_skipped .pic_cont {
+    top: 0;
+    margin-bottom: 0
+}
+
+._ios .pic_desc {
+    padding-top: 0;
+    margin: -2px 0
+}
+
+._ios .app_name,
+._ios .app_new {
+    font-weight: 500
+}
+
+._ios .wall_item .medias_link_title {
+    padding-top: 2px
+}
+
+@media screen and (min-width: 480px) {
+    ._ios .mlt_desc {
+        line-height: 1.4em!important;
+        max-height: 4.2em!important;
+        -webkit-line-clamp: 3!important
+    }
+    ._ios .mlt_preview_btn {
+        padding: 7px 0 0
+    }
+}
+
+._ios .create_post_page .textfield {
+    padding: 10px 8px
+}
+
+._ios .pai_info,
+._ios .wall_item .wi_author,
+._ios .wall_item .wi_info {
+    padding-top: 0
+}
+
+._ios .wall_item .medias_audio_artist,
+._ios .wall_item .medias_link_label,
+._ios .wall_item .medias_link_labeled {
+    padding-top: 2px!important
+}
+
+._ios .wall_item .medias_audio_title,
+._ios .wall_item .medias_link_desc {
+    padding-top: 0!important
+}
+
+._ios .litres_doc .wall_item .medias_link_label .medias_link:hover {
+    text-decoration: underline
+}
+
+._ios .di_date,
+._ios .di_head {
+    padding: 0!important
+}
+
+._ios .di_unread_outbox .di_body {
+    padding-top: 2px!important;
+    margin-top: 6px!important
+}
+
+._ios .di_unread_cnt {
+    margin-top: 12px!important;
+    padding: 1px 6px 2px!important
+}
+
+._ios .stickers_name {
+    padding-top: 14px!important
+}
+
+._ios .stickers_author {
+    padding-top: 2px!important
+}
+
+._ios .sp_str {
+    padding: 5px 8px 6px!important;
+    margin-top: -5px!important
+}
+
+._ios .stickers_my .stickers_author,
+._ios .stickers_my .stickers_name {
+    padding-top: 0!important
+}
+
+._ios .app_name {
+    padding-top: 2px!important
+}
+
+._ios .app_genre,
+._ios .app_label {
+    padding-top: 1px!important
+}
+
+._ios .fp_label {
+    padding-top: 5px
+}
+
+._ios .fp_filter {
+    padding-top: 4px
+}
+
+._ios .fp_filter_none,
+._ios .fp_filter_none {
+    padding-top: 5px
+}
+
+._ios .fp_filter_reset {
+    padding-bottom: 5px
+}
+
+._ios .simple_item_create .si_slabel {
+    padding: 0
+}
+
+._ios .need_peers_label .service_msg_box {
+    padding: 28px 7px
+}
+
+._ios .selected_names {
+    padding: 0
+}
+
+._ios .pv_touch_comments .pv_nav_fullscreen {
+    padding: 6px 7px
+}
+
+._ios .mt_photo_count {
+    padding-top: 3px;
+    padding-right: 3px
+}
+
+._ios .thumb_map_wide .mt_photo_count {
+    padding-top: 3px;
+    padding-right: 6px
+}
+
+._ios .app_new {
+    text-transform: uppercase;
+    font-size: .75em
+}
+
+._ios .zpv_photo_desc {
+    max-height: 4em;
+    padding: 1px 0
+}
+
+._ios .zpv_bottom .item_button {
+    padding-top: 11px;
+    padding-bottom: 11px
+}
+
+._ios .zpv_tl {
+    padding: 2px 8px 3px
+}
+
+._ios .app_page_wrap .app_header_wrap {
+    background-color: #f8f8f8
+}
+
+._ios .app_page_wrap .app_header_wrap .app_item {
+    padding: 9px;
+    border-bottom: none
+}
+
+._ios .app_page_wrap .app_item .th_img {
+    width: 75px;
+    height: 75px;
+    margin: 0 10px 0 0;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px
+}
+
+._ios .app_page_wrap .app_body {
+    margin-left: 85px;
+    min-height: 75px
+}
+
+._ios .app_page_wrap .app_name {
+    padding-top: 8px!important
+}
+
+._ios .app_page_wrap .app_genre,
+._ios .app_page_wrap .app_label {
+    font-size: 1em;
+    padding-top: 2px!important
+}
+
+._ios .app_page_wrap .app_button_wrap {
+    margin-top: -1.1em!important
+}
+
+._ios .app_page_wrap .app_button_wrap,
+._ios .app_page_wrap .pi_text_more {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+
+._ios .app_page_wrap .app_button {
+    min-width: 45px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 7px 8px 8px!important
+}
+
+._ios ._hover .app_page_wrap .app_button_wrap:hover .app_button,
+._ios ._touch .app_page_wrap .app_button_wrap.hover .app_button {
+    background-color: #45a545
+}
+
+._ios .app_page_wrap .app_desc {
+    padding: 0 9px 9px
+}
+
+._ios .app_page_wrap .app_desc_wrap {
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #c7c7cb
+}
+
+._ios .app_page_wrap .app_desc_wrap:after {
+    content: '';
+    display: block;
+    height: 1px;
+    background-color: #fff;
+    -webkit-transform: translate3d(0, 1.5px, 0)
+}
+
+._ios .app_page_wrap .app_screenshots {
+    padding: 9px;
+    background-color: #fff
+}
+
+._ios .body_fullscreen .wiki_content,
+._ios .body_fullscreen .wiki_content .wk_audio,
+._ios .body_fullscreen .wiki_content .wk_table {
+    font-family: Helvetica Neue, Helvetica, Times New Roman, Times, serif
+}

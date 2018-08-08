@@ -603,7 +603,6 @@ var stTypes = {
         'mobile/common_2x.css': 1,
         'mobile/full_browser.css': 1,
         'mobile/gallery.css': 1,
-        'mobile/ios_device.css': 1,
         'mobile/medium_head.css': 1,
         'mobile/medium_screen.css': 1,
         'mobile/oauth_android.css': 1,
@@ -638,4 +637,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 4072;
+var _rnd = 489;
