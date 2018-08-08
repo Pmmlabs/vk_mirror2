@@ -925,18 +925,6 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
     transition: opacity 100ms linear
 }
 
-#video_choose_box .video_search_input .eltt {
-    margin-left: -28px
-}
-
-#video_choose_box .video_search_input .eltt.eltt_bottom:before {
-    margin-left: 21px
-}
-
-#video_choose_box .video_search_input .eltt.eltt_bottom:after {
-    margin-left: 22px
-}
-
 .ui_search_field_empty.video_search_input .ui_search_custom_ctrl {
     opacity: 0;
     filter: alpha(opacity=0);

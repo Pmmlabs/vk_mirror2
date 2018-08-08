@@ -2683,7 +2683,7 @@ function setCookie(name, value, days) {
 
 /* DOM */
 
-function domClosestOverflowHidden(startEl) {
+function domClosestOverflowHidden(startEl, ignoreFirefoxScrollFixWrap) {
     startEl = ge(startEl);
     var el = startEl,
         position, overflow, transform, lastPosition;
@@ -2693,11 +2693,18 @@ function domClosestOverflowHidden(startEl) {
         overflow = getStyle(el, 'overflow');
         transform = getStyle(el, 'transform');
 
-        if (
-            el !== startEl &&
+        if (ignoreFirefoxScrollFixWrap && browser.mozilla) { // for mozilla browser
+            if (el.id != 'page_wrap' &&
+                el !== startEl &&
+                overflow !== 'visible' &&
+                (position === 'static' ? (!lastPosition || lastPosition === 'relative') : lastPosition !== 'fixed')) {
+                break;
+            }
+        } else if (el !== startEl && // for other browser
             overflow !== 'visible' &&
-            (position === 'static' ? !lastPosition || lastPosition === 'relative' : lastPosition !== 'fixed')
-        ) break;
+            (position === 'static' ? (!lastPosition || lastPosition === 'relative') : lastPosition !== 'fixed')) {
+            break;
+        }
 
         if (transform !== 'none') {
             lastPosition = void 0;
@@ -6332,9 +6339,9 @@ ElementTooltip.TYPE_HORIZONTAL = 1;
 ElementTooltip.FADE_SPEED = 100; // keep in sync with @eltt_fade_speed
 ElementTooltip.ARROW_SIZE = 6;
 
-ElementTooltip.ARROW_SIZE_MINI = 9
-ElementTooltip.ARROW_SIZE_NORMAL = 7
-ElementTooltip.ARROW_SIZE_BIG = 16
+ElementTooltip.ARROW_SIZE_MINI = 9;
+ElementTooltip.ARROW_SIZE_NORMAL = 8;
+ElementTooltip.ARROW_SIZE_BIG = 16;
 
 ElementTooltip.ALIGN_LEFT = 'left';
 ElementTooltip.ALIGN_CENTER = 'center';
@@ -6503,10 +6510,8 @@ ElementTooltip.prototype.getOptions = function() {
 ElementTooltip.prototype.updatePosition = function() {
     var side = this._opts.forceSide;
 
-    var boundingBox
-    if (this._opts.getTargetBoundingBox) {
-        boundingBox = this._opts.getTargetBoundingBox(this)
-    } else {
+    var boundingBox = this._opts.getTargetBoundingBox ? this._opts.getTargetBoundingBox(this) : false;
+    if (!boundingBox) {
         var elPos = getXY(this._el);
         var elSize = getSize(this._el);
         boundingBox = {
@@ -6517,16 +6522,21 @@ ElementTooltip.prototype.updatePosition = function() {
         }
     }
 
+    var audioLayerWrapEl = gpeByClass('audio_layer_container', this._ttel);
+    var boundingEl = audioLayerWrapEl ? audioLayerWrapEl : domClosestOverflowHidden(this._ttel);
+    var boundingElPos = (boundingEl != bodyNode) ? getXY(boundingEl) : [scrollGetX(), scrollGetY() + getPageHeaderHeight()];
+    var boundingElSize = (boundingEl != bodyNode) ? getSize(boundingEl) : [window.innerWidth, window.innerHeight];
+
     var ttelSize = getSize(this._ttel);
 
-    var arrowSize = this._arrowSize
-    var border = this._opts.noBorder ? 0 : 1
+    var arrowSize = this._arrowSize;
+    var border = this._opts.noBorder ? 0 : 1;
 
     var offset = isFunction(this._opts.offset) ? this._opts.offset() : this._opts.offset;
 
     var style;
 
-    var _this = this
+    var _this = this;
 
     function setArrowCenteredPosition(side, shift) {
         var style = {}
@@ -6570,20 +6580,14 @@ ElementTooltip.prototype.updatePosition = function() {
 
     } else {
         if (!side && this._prevSide && this._opts.preventSideChange) {
-            side = this._prevSide
-
+            side = this._prevSide;
         } else if (!side) {
-            var audioLayerWrapEl = gpeByClass('audio_layer_container', this._ttel)
-            var boundingEl = audioLayerWrapEl ? audioLayerWrapEl : domClosestOverflowHidden(this._ttel);
-            var boundingElPos = (boundingEl != bodyNode) ? getXY(boundingEl) : [scrollGetX(), scrollGetY() + getPageHeaderHeight()];
-            var boundingElSize = (boundingEl != bodyNode) ? getSize(boundingEl) : [window.innerWidth, window.innerHeight]
-
             if (this._opts.type == ElementTooltip.TYPE_VERTICAL) {
-                var inMessages = hasClass(bodyNode, 'body_im')
-                var bottomGap = inMessages ? 60 : (this._opts.bottomGap || 0)
+                var inMessages = hasClass(bodyNode, 'body_im');
+                var bottomGap = inMessages ? 60 : (this._opts.bottomGap || 0);
 
-                var enoughSpaceAbove = (boundingBox.top - boundingElPos[1]) > ttelSize[1] + arrowSize - offset[1]
-                var enoughSpaceBelow = (scrollGetY() + boundingElSize[1] - (boundingBox.top + boundingBox.height + arrowSize) - bottomGap) > ttelSize[1]
+                var enoughSpaceAbove = (boundingBox.top - boundingElPos[1]) > ttelSize[1] + arrowSize - offset[1];
+                var enoughSpaceBelow = (scrollGetY() + boundingElSize[1] - (boundingBox.top + boundingBox.height + arrowSize) - bottomGap) > ttelSize[1];
 
                 if (this._opts.defaultSide == 'top') {
                     side = enoughSpaceAbove ? 'top' : 'bottom'
@@ -6605,21 +6609,23 @@ ElementTooltip.prototype.updatePosition = function() {
             boundingBox.top - parentPos[1]
         ];
 
-        var shift
-        var totalLeftOffset = offset[0] + parentOffset[0]
+        var shift;
+        var totalLeftOffset = offset[0] + parentOffset[0];
 
         if (this._opts.centerShift) {
-            totalLeftOffset += this._opts.centerShift || 0
-            shift = this._opts.centerShift
+            totalLeftOffset += this._opts.centerShift || 0;
+            shift = this._opts.centerShift;
         } else if (this._opts.rightShift) {
-            shift = -(ttelSize[0] / 2 - this._opts.rightShift)
-            totalLeftOffset += shift
+            shift = -(ttelSize[0] / 2 - this._opts.rightShift);
+            totalLeftOffset += shift;
         }
 
-        this._prevSide = side
+        this._prevSide = side;
 
         var horAlignOffset;
         var verAlignOffset;
+        var overflow;
+        var padding = 20;
 
         if (this._opts.align === (vk.rtl ? ElementTooltip.ALIGN_LEFT : ElementTooltip.ALIGN_RIGHT)) {
             horAlignOffset = boundingBox.width - ttelSize[0];
@@ -6634,30 +6640,58 @@ ElementTooltip.prototype.updatePosition = function() {
 
         switch (side) {
             case 'bottom':
+                overflow = horAlignOffset + boundingBox.left + offset[0] + ttelSize[0] + padding - (boundingElPos[0] + boundingElSize[0]);
+
+                if (overflow < 0) {
+                    overflow = 0;
+                }
+
+                shift = shift ? shift - overflow : -overflow;
                 style = {
-                    left: horAlignOffset + totalLeftOffset,
+                    left: horAlignOffset + totalLeftOffset - overflow,
                     top: boundingBox.height + arrowSize - offset[1] + parentOffset[1]
                 };
                 break;
 
             case 'top':
+                overflow = horAlignOffset + boundingBox.left + offset[0] + ttelSize[0] + padding - (boundingElPos[0] + boundingElSize[0]);
+
+                if (overflow < 0) {
+                    overflow = 0;
+                }
+
+                shift = shift ? shift - overflow : -overflow;
                 style = {
-                    left: horAlignOffset + totalLeftOffset,
+                    left: horAlignOffset + totalLeftOffset - overflow,
                     top: -ttelSize[1] - arrowSize + offset[1] + parentOffset[1]
                 };
                 break;
 
             case 'right':
+                overflow = verAlignOffset + boundingBox.top + offset[1] - (boundingElPos[1] + padding);
+
+                if (overflow > 0) {
+                    overflow = 0;
+                }
+
+                shift = shift ? shift - overflow : -overflow;
                 style = {
                     left: boundingBox.width + arrowSize + totalLeftOffset,
-                    top: verAlignOffset + offset[1] + parentOffset[1]
+                    top: verAlignOffset + offset[1] + parentOffset[1] - overflow
                 };
                 break;
 
             case 'left':
+                overflow = verAlignOffset + boundingBox.top + offset[1] - (boundingElPos[1] + padding);
+
+                if (overflow > 0) {
+                    overflow = 0;
+                }
+
+                shift = shift ? shift - overflow : -overflow;
                 style = {
                     left: -ttelSize[0] - arrowSize + totalLeftOffset,
-                    top: verAlignOffset + offset[1] + parentOffset[1]
+                    top: verAlignOffset + offset[1] + parentOffset[1] - overflow
                 };
                 break;
         }
@@ -6665,7 +6699,7 @@ ElementTooltip.prototype.updatePosition = function() {
         if (this._opts.type == ElementTooltip.TYPE_VERTICAL) {
             setArrowCenteredPosition('marginLeft', shift)
         } else {
-            setArrowCenteredPosition('marginTop')
+            setArrowCenteredPosition('marginTop', shift)
         }
     }
 
@@ -6677,7 +6711,7 @@ ElementTooltip.prototype.updatePosition = function() {
 
     addClass(this._ttel, 'eltt_' + side);
     setStyle(this._ttel, style);
-}
+};
 
 ElementTooltip.prototype._hide = function(byElClick) {
     this._isShown = false;
@@ -7924,3 +7958,12 @@ addEvent(window, 'DOMContentLoaded load', function() {
 try {
     stManager.done('lite.js');
 } catch (e) {}
+
+window.getPageHeaderHeight = (function() {
+    var cached;
+    return function() {
+        var headerEl = ge('page_header');
+        cached = cached || (headerEl ? headerEl.offsetHeight : 0);
+        return cached;
+    }
+})();

@@ -207,7 +207,7 @@ var BugTracker = {
             case "status":
                 a = cur.btSearchStatusDD
         }
-        a && (r && BugTracker.ddVisible(cur.btSearchProductDD) && cur.btSearchProductDD.val() != r && (cur.btPreventUpdateProduct = "product" != e, cur.btSearchProductDD.val(r, !0)), "product" != e && ("platform_version" != e && "device" != e || !BugTracker.ddVisible(cur.btSearchPlatformDD) || (cur.btPreventUpdatePlatform = !0, cur.btSearchPlatformDD.val(o, !0)), a.val(t, !0)))
+        a && (r && BugTracker.ddVisible(cur.btSearchProductDD) && intval(cur.btSearchProductDD.val()) !== r && (cur.btPreventUpdateProduct = "product" != e, cur.btSearchProductDD.val(r, !0)), "product" != e && ("platform_version" != e && "device" != e || !BugTracker.ddVisible(cur.btSearchPlatformDD) || (cur.btPreventUpdatePlatform = !0, cur.btSearchPlatformDD.val(o, !0)), a.val(t, !0)))
     },
     ddVisible: function(e) {
         return isVisible(domPN(e.container))

@@ -472,17 +472,18 @@ var Groups = {
     goToTopNoticeMoreLink: function(e, o, t, n) {
         return statlogsValueEvent("groups_top_notice", 1, o, "accept"), checkEvent(e) || n ? !0 : nav.go(t)
     },
-    processActionButton: function(e, o, t, n, a) {
+    processActionButton: function(e, o, t, n, a, s) {
         return isButtonLocked(e) ? !0 : (ajax.post("al_groups.php", {
             act: "proxy_cta_button",
             action: o,
-            group_id: t,
-            hash: n
+            resource: t,
+            group_id: n,
+            hash: a
         }, {
             onDone: function() {
                 unlockButton(e)
             }
-        }), a ? a() : !0)
+        }), s ? s() : !0)
     }
 };
 try {
