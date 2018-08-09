@@ -475,9 +475,6 @@ var Settings = {
             hideProgress: unlockButton.pbind(e)
         })
     },
-    accessCheck: function() {
-        clearTimeout(cur.accessUpdateTO), cur.accessUpdateTO = setTimeout(Settings.accessSubmit, 200)
-    },
     giftsCheck: function() {
         clearTimeout(cur.giftsUpdateTO), cur.giftsUpdateTO = setTimeout(Settings.giftsSubmit, 200)
     },
@@ -485,7 +482,7 @@ var Settings = {
         ajax.post("/al_profile.php", {
             act: "hide_gifts",
             hash: cur.options.hide_gifts_hash,
-            shown: isChecked("hide_gifts") ? 0 : 1
+            shown: ge("settings_hide_gifts").checked ? 0 : 1
         }, {
             onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
         })
@@ -497,15 +494,18 @@ var Settings = {
         ajax.post("/al_settings.php", {
             act: "a_change_autoplay_gif",
             hash: cur.options.gif_autoplay_hash,
-            no_autoplay: isChecked("settings_gif_autoplay") ? 0 : 1
+            no_autoplay: ge("settings_gif_autoplay").checked ? 0 : 1
         }, {
             onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
         })
     },
+    accessCheck: function() {
+        clearTimeout(cur.accessUpdateTO), cur.accessUpdateTO = setTimeout(Settings.accessSubmit, 200)
+    },
     accessSubmit: function() {
         ajax.post("/al_settings.php", {
             act: "a_toggle_access_mode",
-            hash: cur.options.access_hash,
+            hash: cur.options.a11y_hash,
             mode: intval(ge("settings_a11y").checked)
         }, {
             onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("settings_a11y")
@@ -518,7 +518,7 @@ var Settings = {
         ajax.post("/al_settings.php", {
             act: "a_change_stickers_hints",
             hash: cur.options.stickers_hints_hash,
-            hints: isChecked("settings_stickers_hints") ? 1 : 0
+            hints: ge("settings_stickers_hints").checked ? 1 : 0
         }, {
             onDone: function() {
                 window.uiPageBlock && uiPageBlock.showSaved("cposts"), window.Emoji && Emoji.updateTabs.apply(window, arguments)
@@ -532,7 +532,7 @@ var Settings = {
         ajax.post("/al_settings.php", {
             act: "a_change_autoplay_video",
             hash: cur.options.video_autoplay_hash,
-            video_autoplay: isChecked("settings_video_autoplay") ? 1 : 0
+            video_autoplay: ge("settings_video_autoplay").checked ? 1 : 0
         }, {
             onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
         })
@@ -544,10 +544,21 @@ var Settings = {
         ajax.post("/al_settings.php", {
             act: "a_change_autostart_video",
             hash: cur.options.video_autostart_hash,
-            video_autostart: isChecked("settings_video_autostart") ? 1 : 0
+            video_autostart: ge("settings_video_autostart").checked ? 1 : 0
         }, {
             onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
         })
+    },
+    externalAuthCheck: function() {
+        clearTimeout(cur.externalAuthUpdateTO), cur.externalAuthUpdateTO = setTimeout(function() {
+            ajax.post("al_settings.php", {
+                act: "a_change_external_auth",
+                hash: cur.options.external_auth_hash,
+                state: ge("settings_external_auth").checked ? 1 : 0
+            }, {
+                onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
+            })
+        }, 200)
     },
     videoadsCheck: function() {
         clearTimeout(cur.videoadsUpdateTO), cur.videoadsUpdateTO = setTimeout(Settings.videoadsSubmit, 200)
@@ -556,13 +567,13 @@ var Settings = {
         ajax.post("/al_settings.php", {
             act: "a_change_ads_video",
             hash: cur.options.video_ads_hash,
-            video_ads: isChecked("settings_video_ads") ? 1 : 0
+            video_ads: ge("settings_video_ads").checked ? 1 : 0
         }, {
             onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
         })
     },
     microblogCheck: function(t) {
-        hasClass(ge("settings_" + t), "disabled") || (clearTimeout(cur.microblogUpdateTO), cur.microblogUpdateTO = setTimeout(Settings.microblogSubmit, 200))
+        hasClass(ge("settings_" + t), "disabled") || ge("settings_" + t).disabled || (clearTimeout(cur.microblogUpdateTO), cur.microblogUpdateTO = setTimeout(Settings.microblogSubmit, 200))
     },
     microblogSubmit: function() {
         var t = {
@@ -570,7 +581,8 @@ var Settings = {
             hash: cur.options.microblog_hash
         };
         each(["status_default", "no_wall_replies"], function(e, s) {
-            t[s] = isChecked("settings_" + s)
+            var o = ge("settings_" + s);
+            o && (t[s] = o.checked ? 1 : 0)
         }), ajax.post("/al_settings.php", t, {
             onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
         })
@@ -582,7 +594,7 @@ var Settings = {
         ajax.post("/al_settings.php", {
             act: "a_change_autotag_friends",
             hash: cur.options.autotag_friends_hash,
-            autotag_friends: isChecked("settings_photos_auto_tag") ? 1 : 0
+            autotag_friends: ge("settings_autotag_friends").checked ? 1 : 0
         }, {
             onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
         })
@@ -947,7 +959,7 @@ var Settings = {
             settings_no_wall_replies: getLang("settings_no_wall_replies_about"),
             settings_video_autoplay: getLang("settings_video_autoplay")
         }, function(t, e) {
-            t = ge(t), t && (t.onmouseover = function() {
+            t = domQuery1('label[for="' + t + '"]'), t && (t.onmouseover = function() {
                 showTooltip(this, {
                     shift: [-20, 8, 8],
                     dir: "auto",

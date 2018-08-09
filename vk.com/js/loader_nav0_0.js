@@ -148,7 +148,7 @@ var stVersions = {
     'uncommon.js': 1640247993,
     'uncommon.css': 15146557907,
     'filebutton.css': 1044306797,
-    'lite.js': 2826672823,
+    'lite.js': 3179059114,
     'lite.css': 52238032325,
     'rtl.css': 15680425491,
     'pagination.js': 1027022568,
@@ -283,8 +283,8 @@ var stVersions = {
     'apps_edit.css': 36827163639,
     'apps_check.js': 3204387834,
     'apps_check.css': 28148133903,
-    'settings.js': 32955858,
-    'settings.css': 27821513869,
+    'settings.js': 3668500516,
+    'settings.css': 28230453182,
     'profile_edit.js': 3810774798,
     'profile_edit.css': 17508458941,
     'profile_edit_edu.js': 872687230,
@@ -637,4 +637,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 769;
+var _rnd = 5425;

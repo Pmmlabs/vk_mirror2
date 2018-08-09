@@ -7578,6 +7578,18 @@ window.Widgets = {
     },
 
     oauth: function(options, params) {
+        if (vk.show_external_auth_box) {
+            return Widgets.popupBoxOpen(location.origin + '/al_settings.php', extend({
+                act: 'external_auth_box',
+                widget_hash: cur.widgetHash,
+            }, isObject(params) ? params : {}), 'vk_external_auth', extend({
+                width: 655,
+                height: 171,
+                onClose: function() {
+                    location.reload();
+                }
+            }, isObject(options) ? options : {}));
+        }
         Widgets.popupBoxOpen(location.protocol + '//oauth.vk.com/authorize', extend({
             client_id: -1,
             redirect_uri: 'close.html',
