@@ -7708,6 +7708,10 @@ window.Widgets = {
         }
     },
 
+    hideBox: function() {
+        window.Rpc && Rpc.callMethod('destroy');
+    },
+
     showInlineVideo: function(videoId, listId, options, ev, thumb) {
         if (checkEvent(ev)) return true;
 

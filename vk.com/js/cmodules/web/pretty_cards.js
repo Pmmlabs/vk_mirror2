@@ -42,9 +42,9 @@
         return r.d(e, "a", e), e
     }, r.o = function(t, e) {
         return Object.prototype.hasOwnProperty.call(t, e)
-    }, r.p = "", r(r.s = 7)
+    }, r.p = "", r(r.s = 209)
 }({
-    4: function(t, e, r) {
+    168: function(t, e, r) {
         "use strict";
         r.r(e), window.PrettyCardGallery = function() {
             function t(e, r, o) {
@@ -103,39 +103,40 @@
                     var t = se(this.options.placeholder_html);
                     this.wrapper.appendChild(t), this.cardsElements.push(t), this.placeholderElement = t, addEvent(t, "click", this.onPlaceholderClicked.bind(this))
                 }
-            }, t.prototype.onUrlChosen = function(t, e) {
-                var r = this,
-                    o = t.btns.ok[0],
-                    s = geByClass1("share_url_input", t.bodyNode),
-                    i = val(s);
-                lockButton(o), disable(s, !0), hide("share_url_error"), ajax.post("al_wall.php", {
+            }, t.prototype.onUrlChosen = function(t, e, r) {
+                var o = this,
+                    s = t.btns.ok[0],
+                    i = geByClass1("share_url_input", t.bodyNode),
+                    a = val(i);
+                lockButton(s), disable(i, !0), hide("share_url_error"), ajax.post("al_wall.php", {
                     act: "a_pretty_cards_check_url",
-                    url: i
+                    url: a,
+                    owner_id: e
                 }, {
-                    onDone: function(o, s, i) {
-                        r.lastChosenUrl = s, t.hide(), e(s, o, i)
+                    onDone: function(e, s, i) {
+                        o.lastChosenUrl = s, t.hide(), r(s, e, i)
                     },
                     onFail: function(t) {
                         var e = "";
-                        return t && t !== getLang("global_unknown_error") && (e = t + " "), ge("share_url_error").innerHTML = e + getLang("global_share_link_failed"), disable(s, !1), unlockButton(o), show("share_url_error"), elfocus(s), !0
+                        return t && t !== getLang("global_unknown_error") && (e = t + " "), ge("share_url_error").innerHTML = e + getLang("global_share_link_failed"), disable(i, !1), unlockButton(s), show("share_url_error"), elfocus(i), !0
                     }
                 })
-            }, t.prototype.chooseUrl = function(t, e) {
-                var r = this;
+            }, t.prototype.chooseUrl = function(t, e, r) {
+                var o = this;
                 window.onShareChooseUrlBoxInit = function() {
                     var e = curBox(),
-                        o = geByClass1("share_url_input", e.bodyNode);
-                    addEvent(o, "keydown", function(o) {
-                        if (o.which === KEY.ENTER) return r.onUrlChosen(e, t), !1
+                        s = geByClass1("share_url_input", e.bodyNode);
+                    addEvent(s, "keydown", function(s) {
+                        if (s.which === KEY.ENTER) return o.onUrlChosen(e, r, t), !1
                     })
                 };
-                var o = showBox("share.php", {
+                var s = showBox("share.php", {
                     act: "choose_url_box",
                     default_url: e
                 }, {
                     dark: 1
                 });
-                o.removeButtons(), o.addButton(getLang("global_continue"), this.onUrlChosen.bind(this, o, t))
+                s.removeButtons(), s.addButton(getLang("global_continue"), this.onUrlChosen.bind(this, s, r, t))
             }, t.prototype.onPlaceholderClicked = function() {
                 var t = this;
                 this.chooseUrl(function(e, r, o) {
@@ -144,7 +145,7 @@
                         link_decoded: o,
                         allowed_buttons: r
                     })
-                }, this.lastChosenUrl)
+                }, this.lastChosenUrl, this.options.owner_id)
             }, t.prototype.wrapperTransitions = function(t, e, r) {
                 e && (t ? addClass(e, !0 === r ? "pretty-card_transitions_long" : "pretty-card_transitions_on") : (removeClass(e, "pretty-card_transitions_long"), removeClass(e, "pretty-card_transitions_on")))
             }, t.prototype.addCard = function(t) {
@@ -206,7 +207,7 @@
                     }), addEvent(geByClass1("pretty-card__link-editor", o), "click", function() {
                         e.chooseUrl(function(t, r, s) {
                             o.prettyCardAllowedButtons = r, e.setLink(o, t, s)
-                        }, o.prettyCardLink)
+                        }, o.prettyCardLink, e.options.owner_id)
                     });
                     var l = geByClass1("pretty-card__button", o);
                     addEvent(l, "click", this.buttonEditorClicked.bind(this, l, o)), addEvent(l, "mouseover", Page.actionsDropdownUnhide), addEvent(l, "mouseout", Page.actionsDropdownHide.bind(this, this.buttonEditorDropdown)), addEvent(geByClass1("pretty-card__button-remove", l), "click", this.buttonRemoveClicked.bind(this, l)), this.initPhotoUploader(o), addEvent(o, "mousedown", this.onCardMouseDown.bind(this, o)), addEvent(geByTag1("body"), "mouseup", this.onCardMouseUp.bind(this, o))
@@ -478,7 +479,7 @@
             stManager.done(jsc("web/pretty_cards.js"))
         } catch (t) {}
     },
-    7: function(t, e, r) {
-        t.exports = r(4)
+    209: function(t, e, r) {
+        t.exports = r(168)
     }
 });

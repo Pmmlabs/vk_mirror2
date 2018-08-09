@@ -36895,11 +36895,6 @@ body.apps_settingsPageBody {
 }
 
 .convo__row {
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -moz-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
     max-height: 20px
 }
 
@@ -36909,7 +36904,13 @@ body.apps_settingsPageBody {
     display: -webkit-flex;
     display: -moz-box;
     display: -ms-flexbox;
-    display: flex
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 20px
 }
 
 .convo__row_right {
@@ -36920,25 +36921,17 @@ body.apps_settingsPageBody {
 }
 
 .convo__row_text {
-    margin-top: 4px;
-    line-height: 20px
-}
-
-.convo__row_text,
-.convo_short .convo__row_title {
+    margin-top: 3px;
     -webkit-box-align: center;
     -webkit-align-items: center;
     -moz-box-align: center;
     -ms-flex-align: center;
-    align-items: center
+    align-items: center;
+    line-height: 20px
 }
 
-.convo_short .convo__row_title {
-    height: 100%
-}
-
-.convo_short .convo__row_text {
-    display: none
+.convo__row_title {
+    margin-top: -1px
 }
 
 .convo__title {
@@ -36954,8 +36947,7 @@ body.apps_settingsPageBody {
 .convo__star {
     display: none;
     margin-left: auto;
-    margin-right: 7px;
-    top: 1px
+    margin-right: 7px
 }
 
 .convo_important .convo__star {
@@ -36970,7 +36962,8 @@ body.apps_settingsPageBody {
     color: #71757a;
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
-    flex-shrink: 0
+    flex-shrink: 0;
+    margin-top: 1px
 }
 
 .convo__msgAuthor {
