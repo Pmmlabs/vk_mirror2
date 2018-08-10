@@ -940,31 +940,31 @@ var Video = {
             onHideAttempt: function() {
                 return cur.getOwnerId = v, !0
             }
-        }), cur.nav.push(function(e, o, i, t) {
-            if (!t.filtersChanged && 1 == Object.keys(i).length && i[0] && 0 != i[0].indexOf("video") && !t.fromSearch) return !0;
-            if (e[0] && !e.section && i[0] != "videos" + cur.getOwnerId()) return !0;
+        }), cur.nav.push(function(e, o, i, r) {
+            if (!r.filtersChanged && 1 == Object.keys(i).length && i[0] && 0 != i[0].indexOf("video") && !r.fromSearch) return !0;
+            if (e[0] && !e.section && i[0] != "videos" + t) return !0;
             hide("global_prg");
-            var r = geByClass1("video_default_tabs", _.bodyNode),
-                d = geByClass1("video_subtab_pane_album", _.bodyNode),
-                a = e.section ? e.section : "all";
+            var d = geByClass1("video_default_tabs", _.bodyNode),
+                a = geByClass1("video_subtab_pane_album", _.bodyNode),
+                v = e.section ? e.section : "all";
             Video._prepareSearchFilters(i);
-            var v = e.section ? "" : i.q || val(cur.searchInputEl);
-            if (v ? (trim(val(cur.searchInputEl)) != trim(v), a = "search", t.fromSearch || t.globalQuery || (t.globalQuery = v), Video.doSearch(v, t.globalQuery), s(), Video._updateChooseFixedBottom()) : (Video.inputVal(cur.searchInputEl, ""), Video.doSearch("")), cur.videoForcedSection = a, -1 != Video.AVAILABLE_TABS.indexOf(a)) c(), show("video_subtab_pane_" + a), show(r), hide("albumPane"), l(), n(), cur.videoChoosePrevSection = a, "albums" != a && Video.loadSilent(a), Video.updateEmptyPlaceholder(a);
-            else if (a && 0 == a.indexOf("album_")) {
-                var h = a.split("_")[1];
-                showGlobalPrg(ge("video_playlist_item_" + h), {
+            var h = e.section ? "" : i.q || val(cur.searchInputEl);
+            if (h ? (trim(val(cur.searchInputEl)) != trim(h), v = "search", r.fromSearch || r.globalQuery || (r.globalQuery = h), Video.doSearch(h, r.globalQuery), s(), Video._updateChooseFixedBottom()) : (Video.inputVal(cur.searchInputEl, ""), Video.doSearch("")), cur.videoForcedSection = v, -1 != Video.AVAILABLE_TABS.indexOf(v)) c(), show("video_subtab_pane_" + v), show(d), hide("albumPane"), l(), n(), cur.videoChoosePrevSection = v, "albums" != v && Video.loadSilent(v), Video.updateEmptyPlaceholder(v);
+            else if (v && 0 == v.indexOf("album_")) {
+                var g = v.split("_")[1];
+                showGlobalPrg(ge("video_playlist_item_" + g), {
                     cls: "progress_inv_img",
                     w: 46,
                     h: 16,
                     shift: [0, -22],
                     zIndex: 1e3
-                }), Video._addPendingAction(a, function() {
-                    s(), c(), hide("global_prg"), hide(r), d.id = "video_subtab_pane_" + a;
-                    var e = geByClass1("video_items_list", d);
-                    e.id = "video_" + a + "_list", addClass(e, "_video_" + a + "_list"), e.innerHTML = "", show(d);
+                }), Video._addPendingAction(v, function() {
+                    s(), c(), hide("global_prg"), hide(d), a.id = "video_subtab_pane_" + v;
+                    var e = geByClass1("video_items_list", a);
+                    e.id = "video_" + v + "_list", addClass(e, "_video_" + v + "_list"), e.innerHTML = "", show(a);
                     var o = cur.getOwnerId();
-                    cur.videoShowWindow = cur.videoShowWindow || {}, cur.videoShowWindow[o] = cur.videoShowWindow[o] || {}, cur.videoShowWindow[o][a] = !1, Video.showMore(a, geByClass1("ui_load_more_btn", ge("video_subtab_pane_album"))), n(), u(), Video._updateChooseFixedBottom()
-                }), cur.videoChoosePrevSection = a, Video.loadSilent(a)
+                    cur.videoShowWindow = cur.videoShowWindow || {}, cur.videoShowWindow[o] = cur.videoShowWindow[o] || {}, cur.videoShowWindow[o][v] = !1, Video.showMore(v, geByClass1("ui_load_more_btn", ge("video_subtab_pane_album"))), n(), u(), Video._updateChooseFixedBottom()
+                }), cur.videoChoosePrevSection = v, Video.loadSilent(v)
             }
             return u(), !1
         }), cur.chooseVideoToMail = i, cur.isCurrentVideoLayer = !0, Video.loadSilent(), n(), addEvent(ge("box_layer_wrap"), "scroll", Video.onScroll);
@@ -1042,11 +1042,13 @@ var Video = {
     },
     _callPendingAction: function(e) {
         Video._addPendingAction();
-        var o = cur.getOwnerId();
+        var o = Video.getCurOwnerId();
         cur.videoPendingAction[o][e] && cur.videoPendingAction[o][e](), cur.videoPendingAction[o][e] = !1
     },
     _clearPendingAction: function(e) {
-        Video._addPendingAction(), cur.videoPendingAction[cur.getOwnerId()][e] = !1
+        Video._addPendingAction();
+        var o = Video.getCurOwnerId();
+        cur.videoPendingAction[o][e] = !1
     },
     toggleTooltip: function(e, o) {
         showTooltip(e, {
@@ -1398,6 +1400,9 @@ var Video = {
                 return "https://vk.com/video" + e[VideoConstants.VIDEO_ITEM_INDEX_OWNER_ID] + "_" + e[VideoConstants.VIDEO_ITEM_INDEX_ID]
             }).join("\n");
         showFastBox("", '<textarea class="dark" style="width: 100%; height: 350px;">' + t + "</textarea>")
+    },
+    getCurOwnerId: function() {
+        return cur.getOwnerId ? cur.getOwnerId() : cur.oid
     }
 };
 try {

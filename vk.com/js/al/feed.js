@@ -1434,7 +1434,7 @@ var Feed = {
         var eventTarget = window.event && window.event.target;
         if (eventTarget && "search" === params.section && !params._post) {
             var postParams = nav.getPostParams(eventTarget);
-            postParams.post_id && postParams.post_click_type && (setPostParam(postParams.post_id, "_post"), setPostParam(postParams.post_click_type, "_post_click_type"), setPostParam(postParams.post_click_url, "_post_click_url"), setPostParam(postParams.post_click_mention_id, "_post_click_mention_id"), setPostParam(postParams.ad_data, "_post_ad_data"), setPostParam(postParams.ad_block_unique_id, "_post_ad_block_unique_id"))
+            postParams.post_id && postParams.post_click_type && (setPostParam(postParams.post_id, "_post"), setPostParam(postParams.post_click_type, "_post_click_type"), setPostParam(postParams.post_click_url, "_post_click_url"), setPostParam(postParams.post_click_mention_id, "_post_click_mention_id"), setPostParam(postParams.post_click_cc_key, "_post_click_cc_key"), setPostParam(postParams.ad_data, "_post_ad_data"), setPostParam(postParams.ad_block_unique_id, "_post_ad_block_unique_id"))
         }
         var feedReqObj = cur.feedReqObj = {},
             loadedPostsCheckerElements = {},
