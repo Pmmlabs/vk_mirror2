@@ -88,9 +88,7 @@ var Pagination = {
                         }, 0)
                     },
                     frame: 1,
-                    canReload: !0,
-                    showProgress: showTitleProgress,
-                    hideProgress: hideTitleProgress
+                    canReload: !0
                 }), !1
             }
         }

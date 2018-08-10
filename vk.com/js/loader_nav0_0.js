@@ -151,7 +151,7 @@ var stVersions = {
     'lite.js': 3179059114,
     'lite.css': 52238032325,
     'rtl.css': 15680425491,
-    'pagination.js': 1027022568,
+    'pagination.js': 358700184,
     'blog.css': 19669708750,
     'blog.js': 1358605934,
     'html5audio.js': 976782859,
@@ -330,7 +330,7 @@ var stVersions = {
     'widgets.css': 31051576920,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 92531759385,
+    'notifier.js': 92455084215,
     'notifier.css': 30879938800,
     'cmodules/sw/sw.js': 2371912913,
     'earthday.js': 2276669993,
@@ -523,15 +523,15 @@ var stVersions = {
     'voice_message_player.js': 22606389397,
     'cmodules/web/speech_worker_mp3.js': 4119569941,
     'cmodules/web/speech_worker_opus.js': 2818771805,
-    'stories.js': 52390635409,
+    'stories.js': 50386834550,
     'stories.css': 16899251028,
     'cmodules/web/stories_manage.js': 28619494885,
     'stories_manage.css': 74510206513,
     'article.css': 34942396300,
     'article_editor.css': 36107229452,
-    'cmodules/web/article.js': 41115276045,
-    'cmodules/web/article_layer.js': 25913427419,
-    'article_view.js': 22290511875,
+    'cmodules/web/article.js': 40030866209,
+    'cmodules/web/article_layer.js': 24829017583,
+    'article_view.js': 21206102039,
     'bookmarks.css': 14881210709,
     'cmodules/web/bookmarks.js': 357272750,
     'sf.css': 17340425719,
@@ -597,18 +597,12 @@ var stTypes = {
         'mobile/common.js': 1,
         'mobile/oauth.js': 1,
         'mobile/adaptive_table.css': 1,
-        'mobile/base_head.css': 1,
-        'mobile/base_screen.css': 1,
         'mobile/common.css': 1,
-        'mobile/common_2x.css': 1,
         'mobile/full_browser.css': 1,
         'mobile/gallery.css': 1,
-        'mobile/medium_head.css': 1,
-        'mobile/medium_screen.css': 1,
         'mobile/oauth_android.css': 1,
         'mobile/oauth_ios.css': 1,
         'mobile/oauth_winmobile.css': 1,
-        'mobile/small_screen.css': 1,
         'mobile/wiki.css': 1
     },
     fromCompiled: {
@@ -637,4 +631,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 4213;
+var _rnd = 9568;
