@@ -148,7 +148,7 @@ var stVersions = {
     'uncommon.js': 1640247993,
     'uncommon.css': 15146557907,
     'filebutton.css': 1044306797,
-    'lite.js': 3179059114,
+    'lite.js': 2309216157,
     'lite.css': 52238032325,
     'rtl.css': 15680425491,
     'pagination.js': 358700184,
@@ -631,4 +631,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 9568;
+var _rnd = 8664;

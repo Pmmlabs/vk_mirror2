@@ -7356,6 +7356,9 @@ function showAudioClaimWarning(audio, claim) {
     if (reason == 'geo') {
         claimText = getLang('audio_claimed_geo');
         claimTitle = getLang('audio_claim_warning_title');
+    } else if (reason == 'site_rules_violation') {
+        claimText = getLang('audio_site_rules_violation_warning');
+        claimTitle = getLang('audio_site_rules_violation_header');
     } else if (reason == 'subscription') {
         claimText = getLang('audio_claimed_future');
         claimTitle = getLang('audio_claimed_future_title');

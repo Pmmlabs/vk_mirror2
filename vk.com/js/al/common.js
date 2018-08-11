@@ -8116,6 +8116,9 @@ function showAudioClaimWarning(audio, claim, onReplace) {
     if (reason == 'geo') {
         claimText = getLang('audio_claimed_geo'); //getLang(claim_id >= 0 ? 'audio_claimed_geo' : 'audio_claimed_text_geo');
         claimTitle = getLang('audio_claim_warning_title');
+    } else if (reason == 'site_rules_violation') {
+        claimText = getLang('audio_site_rules_violation_warning');
+        claimTitle = getLang('audio_site_rules_violation_header');
     } else if (reason == 'replace') {
         claimText = getLang('audio_claimed_replacement_available');
         claimTitle = getLang('audio_claim_warning_title');
