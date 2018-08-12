@@ -249,6 +249,10 @@
     cursor: pointer
 }
 
+.multi_stories .stories_time_line_item:hover {
+    opacity: 0.72
+}
+
 .stories_time_line_item_cont,
 .stories_time_line_item_cont_active {
     position: relative;
@@ -572,7 +576,7 @@
     display: none
 }
 
-.stories_item.active.multi_stories .stories_item_back {
+.stories_item.active .stories_item_back {
     display: block
 }
 

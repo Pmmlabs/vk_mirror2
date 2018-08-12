@@ -283,7 +283,7 @@ var stVersions = {
     'apps_edit.css': 36827163639,
     'apps_check.js': 3204387834,
     'apps_check.css': 28148133903,
-    'settings.js': 3668500516,
+    'settings.js': 3929668859,
     'settings.css': 28230453182,
     'profile_edit.js': 3810774798,
     'profile_edit.css': 17508458941,
@@ -523,8 +523,8 @@ var stVersions = {
     'voice_message_player.js': 22606389397,
     'cmodules/web/speech_worker_mp3.js': 4119569941,
     'cmodules/web/speech_worker_opus.js': 2818771805,
-    'stories.js': 50386834550,
-    'stories.css': 16899251028,
+    'stories.js': 49174676557,
+    'stories.css': 15391666585,
     'cmodules/web/stories_manage.js': 28619494885,
     'stories_manage.css': 74510206513,
     'article.css': 34942396300,
@@ -631,4 +631,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 4837;
+var _rnd = 6491;

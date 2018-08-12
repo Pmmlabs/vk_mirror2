@@ -35,7 +35,7 @@ var Settings = {
             val: Privacy.getValue(t),
             hash: cur.options.hash
         };
-        if ("search_access" == t || "updates" == t) {
+        if ("search_access" == t || "updates" == t || "company_messages" == t) {
             if ("updates" == t) {
                 var o = Privacy.getValue(t);
                 if ("0" != o.substr(0, 1)) {
