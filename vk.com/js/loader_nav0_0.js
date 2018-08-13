@@ -527,8 +527,8 @@ var stVersions = {
     'stories.css': 15391666585,
     'cmodules/web/stories_manage.js': 28619494885,
     'stories_manage.css': 74510206513,
-    'article.css': 34942396300,
-    'article_editor.css': 36107229452,
+    'article.css': 36259000258,
+    'article_editor.css': 37423833410,
     'cmodules/web/article.js': 40030866209,
     'cmodules/web/article_layer.js': 24829017583,
     'article_view.js': 21206102039,
@@ -631,4 +631,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 6491;
+var _rnd = 287;
