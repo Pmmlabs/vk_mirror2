@@ -1253,18 +1253,29 @@ if (!VK.xdConnectionCallbacks) {
 
                 box = VK.Util.Box(src, {}, {
                     closeExternalApp: function() {
-                        VK.Observer.publish('app.closed');
+                        if (VK.App._result) {
+                            VK.Observer.publish('app.done', VK.App._result);
+                            VK.App._result = null;
+                        } else {
+                            VK.Observer.publish('app.closed');
+                        }
                         box.hide();
                         VK.App._appOpened = false;
                     },
-                    externalAppDone: function(params) {
-                        VK.Observer.publish('app.done', params);
-                        box.hide();
-                        VK.App._appOpened = false;
+                    externalAppDone: function(params, noCloseLayer) {
+                        if (noCloseLayer) {
+                            VK.App._result = params;
+                        } else {
+                            VK.Observer.publish('app.done', params);
+                            box.hide();
+                            VK.App._appOpened = false;
+                            VK.App._result = null;
+                        }
                     }
                 });
                 box.show();
                 VK.App._appOpened = true;
+                VK.App._result = null;
             },
 
             addToGroup: function(appId) {

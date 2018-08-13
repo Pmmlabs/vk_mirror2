@@ -78,12 +78,26 @@ var Tickets = {
         each(t, function(e, t) {
             var a = attr(t, "ef-index"),
                 i = ge("tickets_new_extra_field_" + a + "_inp"),
-                o = cur.extraFieldsNotes[a];
-            return i ? o && "" !== o ? (addEvent(i, "focus", function(e) {
+                o = cur.extraFieldsNotes[a],
+                s = cur.extraFieldsValues[a];
+            return i ? s.length > 0 ? (Tickets.initExtraFieldSelect(t, i, o, s), !0) : o && "" !== o ? (addEvent(i, "focus", function(e) {
                 var t = e.target;
                 Tickets.showTooltip(t, o, "extra_field", !0, !0)
             }), void addEvent(i, "blur", Tickets.hideTooltip.pbind(i))) : !0 : (data(t, "value", ""), !0)
         })
+    },
+    initExtraFieldSelect: function(e, t, a, i) {
+        var o = attr(t, "placeholder"),
+            s = new Dropdown(t, i, {
+                introText: o,
+                placeholder: o,
+                width: getSize(t)[0],
+                big: 1,
+                autocomplete: !0,
+                multiselect: !1,
+                zeroPlaceholder: !0
+            });
+        data(e, "dd", s)
     },
     doSaveTicket: function(e) {
         ajax.post(cur.objLoc + "?act=save", e, {
@@ -139,7 +153,12 @@ var Tickets = {
                     n = o,
                     c = hasClass(t, "_ef_required"),
                     l = hasClass(t, "_ef_check_url");
-                o ? s = trim(val(o)) : (n = t, s = data(n, "value")), c && ("" === s || l && -1 == s.indexOf("vk.com")) && (notaBene(n, !1, !i), i = !1), r["extra_field_" + a] = s
+                if (o) s = trim(val(o));
+                else if (data(t, "dd")) {
+                    var d = data(t, "dd");
+                    s = d.val(), "" === s && (n = d.container)
+                } else n = t, s = data(n, "value");
+                c && ("" === s || l && -1 == s.indexOf("vk.com")) && (notaBene(n, !1, !i), i = !1), r["extra_field_" + a] = s
             }), !i) return !1;
         if (39 == r.faqSection) {
             var l = ls.get("support_outdated_left");

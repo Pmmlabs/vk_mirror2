@@ -278,7 +278,7 @@ var stVersions = {
     'privacy.js': 835833828,
     'privacy.css': 15362940091,
     'apps.css': 40581025193,
-    'apps.js': 880029639,
+    'apps.js': 2835482333,
     'apps_edit.js': 1468838940,
     'apps_edit.css': 36827163639,
     'apps_check.js': 3204387834,
@@ -303,7 +303,7 @@ var stVersions = {
     'notes.css': 2351233181,
     'notes.js': 3300062627,
     'wiki.css': 27491248793,
-    'fave.js': 647565245,
+    'fave.js': 1731225105,
     'fave.css': 19630860250,
     'widget_comments.css': 28561228879,
     'widget_auth.css': 28550170003,
@@ -343,7 +343,7 @@ var stVersions = {
     'tags_dd.css': 16991733118,
     'helpdesk.js': 3347818140,
     'helpdesk.css': 32621263271,
-    'tickets.js': 3707959885,
+    'tickets.js': 109698752,
     'tickets.css': 29034501006,
     'faq.css': 22859581738,
     'talmud.js': 3834581071,
@@ -501,7 +501,7 @@ var stVersions = {
     'paginated_table.js': 1750088857,
     'paginated_table.css': 16922382172,
     'api/share.js': 2262994046,
-    'api/openapi.js': 96590102,
+    'api/openapi.js': 78166946,
     'api/xdm.js': 1449919642,
     'hls.min.js': 222578124,
     'candy.min.js': 1892723665,
@@ -561,8 +561,8 @@ var stVersions = {
     'cmodules/web/raven_logger.js': 6758854954,
     'cmodules/web/add_to_community_app.js': 397597546,
     'cmodules/web/groups_edit_addresses.js': 15119417989,
-    'addresses.css': 29681873610,
-    'cmodules/web/addresses.js': 9260777324,
+    'addresses.css': 30198591130,
+    'cmodules/web/addresses.js': 7695274650,
     'cmodules/web/groups_edit_cta_button.js': 89320519,
     'community_bot.js': 1928249077,
     'community_bot.css': 3742743729,
@@ -631,4 +631,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 287;
+var _rnd = 764;
