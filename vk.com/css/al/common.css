@@ -5886,6 +5886,10 @@ em.highlight {
     cursor: pointer
 }
 
+.settings_hint_icon.hint_icon {
+    margin-left: 3px
+}
+
 .lang_beta {
     margin-left: 2px;
     cursor: pointer;

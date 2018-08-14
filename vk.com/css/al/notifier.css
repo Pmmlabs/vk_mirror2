@@ -3144,6 +3144,7 @@ span.fc_contact_photo.online.mobile:after {
 
 .notifier_add_image {
     max-width: 50px;
+    max-height: 80px;
     border-radius: 2px
 }
 
