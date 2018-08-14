@@ -1367,7 +1367,7 @@ body.article_body_layer:not(.article_body) {
 
 body.article_body .article_layer {
     position: static;
-    height: auto;
+    min-height: 100vh;
     overflow: hidden;
     -o-transform: none;
     transform: none;

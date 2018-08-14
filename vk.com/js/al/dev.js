@@ -2225,6 +2225,64 @@ var Dev = {
         updateCode();
     },
 
+    initWidgetArticleConstructor: function(options) {
+        var wArticle = {
+            linkEl: ge('widget_link'),
+            codeEl: ge('widget_code'),
+            previewEl: ge('widget_preview'),
+            linkTimeout: 0,
+            widgetTpl: options.tpl,
+
+            linkChanged: function() {
+                clearTimeout(this.linkTimeout);
+                this.linkTimeout = setTimeout(function() {
+                    var parser = document.createElement('a');
+                    parser.href = wArticle.linkEl.value;
+
+                    var articleUrl = parser.pathname.slice(1);
+
+                    wArticle.getArticle(articleUrl);
+                }, 300);
+            },
+
+            getArticle: function(url) {
+                if (!url) {
+                    return;
+                }
+
+                ajax.post('widget_article.php', {
+                    act: 'get_prepared',
+                    article_url: url,
+                }, {
+                    onDone: function(article) {
+                        wArticle.updateCode(article, url);
+                    },
+
+                    onFail: function() {
+                        return true;
+                    }
+                })
+            },
+
+            updateCode: function(article, url) {
+                var data = {
+                    owner_id: article.owner_id,
+                    article_id: article.id,
+                    article_url: url
+                };
+
+                val(wArticle.codeEl, rs(wArticle.widgetTpl, data));
+                val(wArticle.previewEl, '<div class="dev_widget_preview" id="vk_article_' + data.owner_id + '_' + data.article_id + '"></div>');
+                VK.Widgets.Article("vk_article_" + data.owner_id + "_" + data.article_id, data.article_url, {
+                    base_domain: options.base_domain
+                });
+            }
+        };
+
+        addEvent(wArticle.linkEl, 'input', wArticle.linkChanged.bind(wArticle));
+        wArticle.linkChanged();
+    },
+
     _eof: 1
 };
 try {

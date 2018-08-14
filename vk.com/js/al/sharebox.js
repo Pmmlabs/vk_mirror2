@@ -264,7 +264,7 @@ var ShareBox = {
             showProgress: lockButton.pbind("like_share_send"),
             hideProgress: unlockButton.pbind("like_share_send"),
             onDone: function(e, a) {
-                cur.likeData = a, curBox().hide(), showDoneBox(e), isObject(a) && Likes.update(cur.sbObj, a), window.Videoview && /^video\-?\d+_\d+$/.test(cur.sbObj) && Videoview.onVideoShared(cur.shareAction, cur.sbObj, cur.sbList), delete cur.shareAction
+                cur.likeData = a, curBox().hide(), showDoneBox(e), !cur.sbObj.indexOf(":") && isObject(a) && Likes.update(cur.sbObj, a), window.Videoview && /^video\-?\d+_\d+$/.test(cur.sbObj) && Videoview.onVideoShared(cur.shareAction, cur.sbObj, cur.sbList), delete cur.shareAction
             },
             onFail: function(e) {
                 return ge("like_share_error").innerHTML = '<div class="msg_text">' + e + "</div>", show("like_share_error"), !0

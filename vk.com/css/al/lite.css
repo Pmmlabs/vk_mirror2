@@ -3936,7 +3936,8 @@ div.top_result_baloon a {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2248%22%20viewBox%3D%22163%2048%2024%2048%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M163%2072h24v24h-24z%22%2F%3E%3Cpath%20d%3D%22M169%2085h12c.55%200%201-.45%201-1s-.45-1-1-1h-12c-.55%200-1%20.45-1%201s.45%201%201%201z%22%20fill%3D%22%23828A99%22%20fill-rule%3D%22nonzero%22%2F%3E%3Cpath%20d%3D%22M174%2078v12c0%20.55.45%201%201%201s1-.45%201-1V78c0-.55-.45-1-1-1s-1%20.45-1%201z%22%20fill%3D%22%23828A99%22%20fill-rule%3D%22nonzero%22%2F%3E%3Cg%20transform%3D%22translate(163%2048)%22%3E%3Crect%20opacity%3D%22.5%22%20width%3D%2224%22%20height%3D%2224%22%20rx%3D%222%22%2F%3E%3Cpath%20stroke%3D%22%23828A99%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M5%2013l4%204L19%207%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");
     background-position: center -21px;
     -o-transition: background-position 150ms ease;
-    transition: background-position 150ms ease
+    transition: background-position 150ms ease;
+    font-size: 0
 }
 
 .audio_pl_snippet.audio_pl__followed .audio_pl_snippet__action_btn_follow {

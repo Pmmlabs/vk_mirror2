@@ -137,7 +137,7 @@ var browser = {
     safari_mobile: /iphone|ipod|ipad/i.test(_ua),
     android: /android/i.test(_ua),
     opera_mobile: /opera mini|opera mobi/i.test(_ua),
-    mobile: /iphone|ipod|ipad|opera mini|opera mobi/i.test(_ua),
+    mobile: /iphone|ipod|ipad|opera mini|opera mobi|mobile/i.test(_ua),
     mac: /mac/i.test(_ua),
     smart_tv: /smart-tv|smarttv/i.test(_ua)
 };
@@ -7968,7 +7968,6 @@ function formatCount(count, opts) {
 function fifaReplaceText(text) {
     return text;
 }
-
 
 addEvent(window, 'DOMContentLoaded load', function() {
     vk.loaded = true;

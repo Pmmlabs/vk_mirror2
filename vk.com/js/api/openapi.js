@@ -2360,6 +2360,25 @@ if (!VK.Widgets) {
         });
     };
 
+    VK.Widgets.Article = function(id, url, options) {
+        var params = {
+            url: url
+        };
+
+        options = options || {};
+
+        return VK.Widgets._constructor('widget_article.php', id, options, params, {
+            showBox: function(url) {
+                var box = VK.Util.Box(VK.Widgets.showBoxUrl(options.base_domain, url), [], {
+                    proxy: function() {
+                        rpc.callMethod.apply(rpc, arguments);
+                    }
+                });
+                box.show();
+            },
+        });
+    };
+
     VK.Widgets.CommunityMessages = (function(CommunityMessages) {
         if (CommunityMessages) return CommunityMessages;
 
