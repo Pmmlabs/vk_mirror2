@@ -4,8 +4,6 @@
 
 .ads_case_header_dodo .ads_case_header__avatar,
 .ads_case_header_dodo .ads_case_header__cover_image,
-.ads_case_header_family776 .ads_case_header__avatar,
-.ads_case_header_family776 .ads_case_header__cover_image,
 .ads_case_header_gorun .ads_case_header__avatar,
 .ads_case_header_gorun .ads_case_header__cover_image,
 .ads_case_header_taxovichkof .ads_case_header__avatar,
@@ -13,7 +11,6 @@
 .ads_case_header_yota .ads_case_header__avatar,
 .ads_case_header_yota .ads_case_header__cover_image,
 .ads_case_image_text.dodo.quote,
-.ads_case_image_text.family776.quote,
 .ads_case_image_text.gorun.quote,
 .ads_case_image_text.taxovichkof.quote1,
 .ads_case_image_text.taxovichkof.quote2,
@@ -22,9 +19,6 @@
 .ads_case_tab_content.dodo.component2 .ads_case_tab_content__image,
 .ads_case_tab_content.dodo.component3 .ads_case_tab_content__image,
 .ads_case_tab_content.dodo.component4 .ads_case_tab_content__image,
-.ads_case_tab_content.family776.component1 .ads_case_tab_content__image,
-.ads_case_tab_content.family776.component2 .ads_case_tab_content__image,
-.ads_case_tab_content.family776.component3 .ads_case_tab_content__image,
 .ads_case_tab_content.gorun.component1 .ads_case_tab_content__image,
 .ads_case_tab_content.taxovichkof.component1 .ads_case_tab_content__image,
 .ads_case_tab_content.taxovichkof.component2 .ads_case_tab_content__image,
@@ -35,9 +29,6 @@
 .ads_case_tab_content_en.dodo.component2 .ads_case_tab_content__image,
 .ads_case_tab_content_en.dodo.component3 .ads_case_tab_content__image,
 .ads_case_tab_content_en.dodo.component4 .ads_case_tab_content__image,
-.ads_case_tab_content_en.family776.component1 .ads_case_tab_content__image,
-.ads_case_tab_content_en.family776.component2 .ads_case_tab_content__image,
-.ads_case_tab_content_en.family776.component3 .ads_case_tab_content__image,
 .ads_case_tab_content_en.gorun.component1 .ads_case_tab_content__image,
 .ads_case_tab_content_en.taxovichkof.component1 .ads_case_tab_content__image,
 .ads_case_tab_content_en.taxovichkof.component2 .ads_case_tab_content__image,
@@ -135,32 +126,6 @@
 (min-resolution: 192dpi) {
     .ads_case_header_dodo .ads_case_header__cover_image {
         background-image: url(/images/landings/ads_cases/dodo/header_2x.jpg);
-        background-size: 795px 250px
-    }
-}
-
-.ads_case_header_family776 .ads_case_header__avatar {
-    background: url(/images/landings/ads_cases/family776/logo.png)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .ads_case_header_family776 .ads_case_header__avatar {
-        background-image: url(/images/landings/ads_cases/family776/logo_2x.png);
-        background-size: 120px 120px
-    }
-}
-
-.ads_case_header_family776 .ads_case_header__cover_image {
-    background: url(/images/landings/ads_cases/family776/header.jpg)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .ads_case_header_family776 .ads_case_header__cover_image {
-        background-image: url(/images/landings/ads_cases/family776/header_2x.jpg);
         background-size: 795px 250px
     }
 }
@@ -362,19 +327,6 @@
     .ads_case_image_text.dodo.quote {
         background-image: url(/images/landings/ads_cases/dodo/quote_2x.jpg);
         background-size: 795px 553px
-    }
-}
-
-.ads_case_image_text.family776.quote {
-    background: url(/images/landings/ads_cases/family776/quote.jpg)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .ads_case_image_text.family776.quote {
-        background-image: url(/images/landings/ads_cases/family776/quote_2x.jpg);
-        background-size: 795px 584px
     }
 }
 
@@ -680,51 +632,6 @@
     }
 }
 
-.ads_case_tab_content.family776.component1 .ads_case_tab_content__image {
-    background: url(/images/landings/ads_cases/family776/component1.png);
-    width: 440px;
-    height: 566px
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .ads_case_tab_content.family776.component1 .ads_case_tab_content__image {
-        background-image: url(/images/landings/ads_cases/family776/component1_2x.png);
-        background-size: 440px 566px
-    }
-}
-
-.ads_case_tab_content.family776.component2 .ads_case_tab_content__image {
-    background: url(/images/landings/ads_cases/family776/component2.png);
-    width: 440px;
-    height: 566px
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .ads_case_tab_content.family776.component2 .ads_case_tab_content__image {
-        background-image: url(/images/landings/ads_cases/family776/component2_2x.png);
-        background-size: 440px 566px
-    }
-}
-
-.ads_case_tab_content.family776.component3 .ads_case_tab_content__image {
-    background: url(/images/landings/ads_cases/family776/component3.png);
-    width: 440px;
-    height: 566px
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .ads_case_tab_content.family776.component3 .ads_case_tab_content__image {
-        background-image: url(/images/landings/ads_cases/family776/component3_2x.png);
-        background-size: 440px 566px
-    }
-}
-
 .ads_case_tab_content.gorun.component1 .ads_case_tab_content__image {
     background: url(/images/landings/ads_cases/gorun/component1.png);
     width: 460px;
@@ -864,45 +771,6 @@
     .ads_case_tab_content_en.dodo.component4 .ads_case_tab_content__image {
         background-image: url(/images/landings/ads_cases/dodo/component4_en_2x.png);
         background-size: 470px 626px
-    }
-}
-
-.ads_case_tab_content_en.family776.component1 .ads_case_tab_content__image {
-    background: url(/images/landings/ads_cases/family776/component1_en.png)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .ads_case_tab_content_en.family776.component1 .ads_case_tab_content__image {
-        background-image: url(/images/landings/ads_cases/family776/component1_en_2x.png);
-        background-size: 440px 566px
-    }
-}
-
-.ads_case_tab_content_en.family776.component2 .ads_case_tab_content__image {
-    background: url(/images/landings/ads_cases/family776/component2_en_upd.png)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .ads_case_tab_content_en.family776.component2 .ads_case_tab_content__image {
-        background-image: url(/images/landings/ads_cases/family776/component2_en_upd_2x.png);
-        background-size: 440px 566px
-    }
-}
-
-.ads_case_tab_content_en.family776.component3 .ads_case_tab_content__image {
-    background: url(/images/landings/ads_cases/family776/component3_en.png)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .ads_case_tab_content_en.family776.component3 .ads_case_tab_content__image {
-        background-image: url(/images/landings/ads_cases/family776/component3_en_2x.png);
-        background-size: 440px 566px
     }
 }
 

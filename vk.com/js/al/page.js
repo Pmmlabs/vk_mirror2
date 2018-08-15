@@ -8799,6 +8799,7 @@ var Wall = {
             return;
         }
 
+        Wall.friendsRecommLogAddVisited(mid, from);
         Wall.friendsRecommLogSave(['open_user', mid, vkNow(), from]);
     },
 
@@ -8840,6 +8841,30 @@ var Wall = {
 
         } else {
             ls.remove('friends_recomm');
+        }
+
+        Wall.friendsRecommLogCleanVisited(mid);
+    },
+
+    friendsRecommLogAddVisited: function(mid, from) {
+        var visited = ls.get('friends_recomm_visited') || {};
+        visited[mid] = from;
+        ls.set('friends_recomm_visited', visited);
+    },
+
+    friendsRecommLogCheckVisited: function(mid) {
+        var visited = ls.get('friends_recomm_visited') || {};
+        return visited[mid];
+    },
+
+    friendsRecommLogCleanVisited: function(mid) {
+        if (mid) {
+            var visited = ls.get('friends_recomm_visited') || {};
+            delete visited[mid];
+            ls.set('friends_recomm_visited', visited);
+
+        } else {
+            ls.remove('friends_recomm_visited');
         }
     },
 

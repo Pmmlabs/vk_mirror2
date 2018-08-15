@@ -2039,6 +2039,325 @@ textarea.EditableLabel__textarea {
     margin: 5px
 }
 
+.TemplatesSettings {
+    border-radius: 4px;
+    background: #fff;
+    overflow: hidden;
+    transform: translateZ(0)
+}
+
+.TemplatesSettings__scroll-wrapper {
+    max-height: 388px
+}
+
+.TemplatesSettings__title {
+    color: #fff;
+    font-size: 1em
+}
+
+.TemplatesSettings__not-found-container {
+    height: 387px;
+    padding: 25px;
+    box-sizing: border-box;
+    color: #939393;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    text-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    line-height: 2
+}
+
+.TemplatesSettings__not-found-container>* {
+    display: block
+}
+
+.TemplatesSettings__content {
+    background: #fff
+}
+
+.TemplatesSettings__item {
+    margin: 0 25px;
+    padding: 20px 0;
+    border-bottom: 1px solid #e7e8ec
+}
+
+.TemplatesSettings__item:last-child {
+    border-bottom: none
+}
+
+.TemplatesSettings__item-content,
+.TemplatesSettings__item-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.TemplatesSettings__item-name {
+    margin: 0 0 8px;
+    padding: 0;
+    color: #000;
+    font-weight: 400
+}
+
+.TemplatesSettings__item-content {
+    margin: 8px 0;
+    padding: 0;
+    color: #939393;
+    font-weight: 400
+}
+
+.TemplatesSettings__buttons-row {
+    margin: 8px 0 0;
+    padding: 0
+}
+
+.TemplatesSettings__buttons-splitter {
+    pointer-events: none;
+    color: #939393
+}
+
+.TemplatesSettings__form {
+    padding: 25px 40px
+}
+
+.TemplatesSettings__form-row {
+    display: -ms-flexbox;
+    display: flex
+}
+
+.TemplatesSettings__form-row:not(:last-child) {
+    margin-bottom: 15px
+}
+
+.TemplatesSettings__label {
+    display: inline-block;
+    color: #828282;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -ms-flex-preferred-size: 74px;
+    flex-basis: 74px;
+    text-align: right;
+    line-height: 30px;
+    margin-right: 12px
+}
+
+.TemplatesSettings__input-container {
+    -ms-flex-negative: 1;
+    flex-shrink: 1
+}
+
+.TemplatesSettings__notice {
+    display: inline-block;
+    margin-top: 8px;
+    color: #828282
+}
+
+.TemplatesSettings__hint {
+    margin: 0 10px 10px 0!important
+}
+
+.TemplatesSettings__list {
+    margin: 0;
+    padding: 0
+}
+
+.TemplatesSettings__footer {
+    padding: 14px 25px;
+    background-color: #f7f8fa;
+    border-top: 1px solid #e7e8ec;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.TemplatesSettings__footer,
+.TemplatesDropDown {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.TemplatesDropDown {
+    position: relative;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.TemplatesDropDown__wrapper {
+    position: absolute;
+    bottom: 0;
+    right: -78px;
+    margin-bottom: 100%;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    -o-transition: opacity 100ms linear, visibility 100ms linear;
+    transition: opacity 100ms linear, visibility 100ms linear
+}
+
+.TemplatesDropDown__wrapper:not(.TemplatesDropDown__wrapper--show) {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none
+}
+
+.TemplatesDropDown__scroll-wrapper {
+    max-height: 290px
+}
+
+.TemplatesDropDown__container {
+    position: relative;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    width: 290px;
+    height: 290px;
+    background: #fff;
+    border: 1px solid #c5d0db;
+    padding: 0;
+    margin-bottom: 9px
+}
+
+.TemplatesDropDown__container:after,
+.TemplatesDropDown__container:before {
+    content: "";
+    display: block;
+    position: absolute;
+    pointer-events: none;
+    top: 100%;
+    height: 0;
+    width: 0;
+    border: solid transparent
+}
+
+.TemplatesDropDown__container:before {
+    right: 96px;
+    border-width: 6px;
+    margin: 0 -6px;
+    border-top-color: #c5d0db
+}
+
+.TemplatesDropDown__container:after {
+    right: calc(96px);
+    border-width: 5px;
+    margin: 0 -5px;
+    border-top-color: #fff
+}
+
+.TemplatesDropDown__not-found-container {
+    height: 260px;
+    padding: 7px 9px;
+    box-sizing: border-box;
+    color: #939393;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    text-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    line-height: 2
+}
+
+.TemplatesDropDown__not-found-container>* {
+    display: block
+}
+
+.TemplatesDropDown__header {
+    padding: 9px 9px 6px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: baseline;
+    align-items: baseline;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.TemplatesDropDown__title {
+    margin: 0;
+    color: #939393;
+    font-size: 1em;
+    font-weight: 400
+}
+
+.TemplatesDropDown__setting-button {
+    border: none;
+    background: transparent
+}
+
+.TemplatesDropDown__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 3px
+}
+
+.TemplatesDropDown__list,
+.TemplatesDropDown__item {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.TemplatesDropDown__item {
+    padding: 7px 9px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1em;
+    border: none;
+    background: transparent
+}
+
+.TemplatesDropDown__item:hover {
+    background-color: #f0f2f5
+}
+
+.TemplatesDropDown__item-content,
+.TemplatesDropDown__item-name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap
+}
+
+.TemplatesDropDown__item-name {
+    margin: 0 0 3px;
+    color: #222;
+    font-weight: 500
+}
+
+.TemplatesDropDown__item-content {
+    color: #939393;
+    width: 100%;
+    word-wrap: normal
+}
+
+.TemplatesDropDown__item:hover .TemplatesDropDown__item-content {
+    color: #6f7985
+}
+
+.TemplatesDropDown__icon {
+    display: block;
+    padding: 0;
+    margin: 0 1px 0 0;
+    opacity: 0.7;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22none%22%3E%3Cpath%20fill%3D%22%23828A99%22%20d%3D%22M4%205h2v2H4V5zM4%2011h2v2H4v-2zM4%2017h2v2H4v-2zM9%206l1%201h9l1-1-1-1h-9L9%206z%22%2F%3E%3Crect%20width%3D%2211%22%20height%3D%222%22%20fill%3D%22%23828A99%22%20rx%3D%221%22%20transform%3D%22translate(9%2011)%22%2F%3E%3Crect%20width%3D%2211%22%20height%3D%222%22%20fill%3D%22%23828A99%22%20rx%3D%221%22%20transform%3D%22translate(9%2017)%22%2F%3E%3C%2Fsvg%3E") 50% no-repeat;
+    background-size: 24px;
+    border: none;
+    width: 36px;
+    height: 36px;
+    cursor: pointer
+}
+
+.TemplatesDropDown__icon:hover {
+    opacity: 1
+}
+
 .ChatSettingsInfo {
     margin: 0 0 12px;
     padding: 25px 25px 20px;
@@ -5445,7 +5764,15 @@ img.im_photo_thumb {
 
 .im-chat-input .emoji_tt_wrap.tt_down {
     bottom: 46px;
-    right: 9px
+    right: 0
+}
+
+.im-chat-input .emoji_tt_wrap.tt_down:before {
+    margin: 0 4px
+}
+
+.im-chat-input .emoji_tt_wrap.tt_down:after {
+    margin: 0 4.5px
 }
 
 .im-chat-input .im-chat-input--txt-wrap {
@@ -5480,7 +5807,8 @@ img.im_photo_thumb {
 .im-chat-input .im-chat-input--smile-wrap {
     top: auto;
     bottom: 0;
-    right: 0
+    right: 0;
+    position: relative
 }
 
 .im-chat-input .im-chat-input--smile-wrap .emoji_smile {
@@ -5505,13 +5833,20 @@ img.im_photo_thumb {
     border-bottom: none
 }
 
+.im-chat-input .im_chat-input--buttons {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: -ms-flexbox;
+    display: flex
+}
+
 .im-chat-input .im-chat-input--keyboard-container {
     margin-bottom: 12px
 }
 
 .im-chat-input .im-chat-input--attach {
-    position: absolute;
-    z-index: 2;
     overflow: hidden;
     right: 41px;
     bottom: 0
@@ -5670,7 +6005,7 @@ img.im_photo_thumb {
     color: #939393
 }
 
-.im-chat-input>:not(.im-chat-input_open-keyboard):not(.im-chat-input_close-keyboard) .im-chat-input--text {
+.im-chat-input .im-chat-input--textarea:not(.im-chat-input_open-keyboard):not(.im-chat-input_close-keyboard):not(.im-chat-input--textarea_show-templates) .im-chat-input--text {
     padding-right: 74px
 }
 
@@ -5702,9 +6037,14 @@ img.im_photo_thumb {
     position: absolute
 }
 
+.im-chat-input .im_chat-input--templates {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: end;
+    align-items: flex-end
+}
+
 .im-chat-input .im_chat-input--keyboard-button {
-    position: absolute;
-    z-index: 2;
     border: none;
     padding: 6px 7px 6px 5px;
     margin: 0;

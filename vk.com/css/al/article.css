@@ -735,6 +735,13 @@
     filter: blur(5px)
 }
 
+.article_view>figure[data-type="101"] .article_object_photo__preload_img {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    top: -1000px
+}
+
 .article_view>figure[data-type="101"] .article_image_full_viewable {
     cursor: pointer
 }

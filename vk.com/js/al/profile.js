@@ -128,10 +128,10 @@ var Profile = {
                     act: o ? "add" : "remove",
                     mid: cur.oid,
                     hash: i,
-                    from: "profile",
-                    ref: cur.ref
-                };
-            if (o) {
+                    from: "profile"
+                },
+                l = Wall.friendsRecommLogCheckVisited(cur.oid);
+            if (l && (c.ref = l), o) {
                 var s = Wall.friendsRecommLogGet(!0, cur.oid);
                 s.length && (Wall.friendsRecommLogClear(cur.oid), c.logs = s)
             }

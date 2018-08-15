@@ -2226,7 +2226,12 @@
 .audio_layer_container .audio_page_content_block_wrap {
     overflow-y: auto;
     overflow-x: hidden;
-    height: 700px
+    height: 700px;
+    z-index: 1
+}
+
+.audio_layer_container .audio_page_player_wrap {
+    z-index: 2
 }
 
 .audio_layer_container .audio_page_layout .audio_search {

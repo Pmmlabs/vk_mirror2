@@ -64,7 +64,6 @@
 .landing_ads_en .landing_ads_widget.followers,
 .landing_ads_en .landing_ads_widget.messages,
 .landing_ads_examples_row_icon.dodo,
-.landing_ads_examples_row_icon.family776,
 .landing_ads_examples_row_icon.gorun,
 .landing_ads_examples_row_icon.taxovichkof,
 .landing_ads_examples_row_icon.yota,
@@ -453,19 +452,6 @@ a.landing_ads_product:hover .landing_ads_product_icon {
 (min-resolution: 192dpi) {
     .landing_ads_examples_row_icon.dodo {
         background-image: url(/images/landings/ads_cases/dodo_entrypoint_2x.png);
-        background-size: 90px 90px
-    }
-}
-
-.landing_ads_examples_row_icon.family776 {
-    background: url(/images/landings/ads_cases/776_entrypoint.png)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .landing_ads_examples_row_icon.family776 {
-        background-image: url(/images/landings/ads_cases/776_entrypoint_2x.png);
         background-size: 90px 90px
     }
 }
