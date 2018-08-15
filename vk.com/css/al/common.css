@@ -4750,6 +4750,10 @@ body.mac #layer_stl .fixed {
     display: none
 }
 
+.force_unshown {
+    display: none!important
+}
+
 .hidden {
     visibility: hidden
 }

@@ -9216,8 +9216,7 @@ button.wall_block_app_btn {
 .article_snippet {
     position: relative;
     display: block;
-    border-radius: 4px;
-    overflow: hidden
+    border-radius: 4px
 }
 
 .article_snippet:after {
@@ -9227,27 +9226,38 @@ button.wall_block_app_btn {
 }
 
 .article_snippet .article_snippet__fade {
-    background-color: rgba(0, 0, 0, .4)
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .4);
+    top: 0
 }
 
-.article_snippet .article_snippet__fade,
+.article_snippet .article_snippet__image_wrap {
+    overflow: hidden;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0
+}
+
 .article_snippet .article_snippet__image {
     pointer-events: none;
     width: 100%;
     height: 100%;
     position: absolute;
     border-radius: 4px;
-    top: 0
-}
-
-.article_snippet .article_snippet__image {
+    top: 0;
     background-size: cover;
     background-position: 50%;
     background-color: #e7ebf0
 }
 
 .article_snippet.article_snippet__no_cover .article_snippet__image {
-    filter: blur(50px);
+    filter: blur(20px);
     background-size: 190%
 }
 

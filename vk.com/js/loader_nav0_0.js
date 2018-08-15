@@ -142,7 +142,7 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 1318650823,
     'common.js': 1161,
-    'common.css': 51688748147,
+    'common.css': 51447824248,
     'cmodules/web/common_web.js': 7,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
@@ -229,7 +229,7 @@ var stVersions = {
     'owner_photo.js': 3368798011,
     'owner_photo.css': 20827052410,
     'page.js': 2874172360,
-    'page.css': 44675834168,
+    'page.css': 46619884458,
     'page_help.css': 26085847503,
     'public.css': 28845847032,
     'public.js': 4174128810,
@@ -263,12 +263,12 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 211729660356,
-    'imn.js': 278870340513,
+    'imn.js': 277823946587,
     'im.js': 1322065005,
     'wide_dd.css': 17689124740,
     'wide_dd.js': 452755344,
     'writebox.css': 18115723715,
-    'writebox.js': 66589643261,
+    'writebox.js': 62968945660,
     'sharebox.js': 3306997107,
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
@@ -330,7 +330,7 @@ var stVersions = {
     'widgets.css': 31421494414,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 93339810113,
+    'notifier.js': 92317694710,
     'notifier.css': 27205162222,
     'cmodules/sw/sw.js': 2371912913,
     'earthday.js': 2276669993,
@@ -532,8 +532,8 @@ var stVersions = {
     'cmodules/web/article.js': 40030866209,
     'cmodules/web/article_layer.js': 25596921796,
     'article_view.js': 21974006252,
-    'bookmarks.css': 14881210709,
-    'cmodules/web/bookmarks.js': 357272750,
+    'bookmarks.css': 15386495493,
+    'cmodules/web/bookmarks.js': 2932558322,
     'sf.css': 17340425719,
     'shortener.js': 16413120,
     'cmodules/web/pretty_cards.js': 82460730,
@@ -631,4 +631,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 1622;
+var _rnd = 1275;

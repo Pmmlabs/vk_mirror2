@@ -5238,6 +5238,18 @@ input.wide_button {
     overflow: hidden
 }
 
+.ai_subtitle {
+    color: #909499
+}
+
+.ai_explicit {
+    display: inline-block!important;
+    vertical-align: middle;
+    position: relative;
+    height: 15px!important;
+    top: -6px
+}
+
 .ai_dur {
     color: #777;
     font-size: small;
