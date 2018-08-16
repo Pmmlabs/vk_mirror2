@@ -11,14 +11,19 @@
     color: #000;
     border-bottom: none;
     font-size: 1em;
-    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     margin: 0;
     padding: 0
 }
 
+.h4-text,
 .tt_w {
+    font-weight: 400
+}
+
+.tt_w {
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     z-index: 1501;
     cursor: default;
     font-size: 12.5px;

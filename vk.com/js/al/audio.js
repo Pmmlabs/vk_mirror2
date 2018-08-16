@@ -442,7 +442,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             e(i)
         }.bind(this)
     });
-    this._data.canEdit && (a = new GridSorter(i, "audio_pl_item", {
+    this._data.canEdit && (a = new GridSorter(i, "audio_pl_item2", {
         onReorder: function(e, t, i) {
             var a = domData(e, "raw-id"),
                 o = domData(i, "raw-id");
