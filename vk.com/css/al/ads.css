@@ -3947,3 +3947,56 @@ td.ads_settings_notifacations_label {
     padding: 8px 10px 8px 0;
     vertical-align: middle
 }
+
+#ads_referral_program .ads_referral_program_content {
+    padding: 20px
+}
+
+#ads_referral_program .ads_referral_description {
+    line-height: 160%;
+    padding-bottom: 30px
+}
+
+#ads_referral_program .ads_referral_description .wikiHeader {
+    border-bottom: 1px solid #e8ebee;
+    padding-bottom: 12px;
+    font-size: 16px;
+    color: #000;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0 0 15px
+}
+
+#ads_referral_program .ads_referral_program_table_min td.table_label {
+    width: 180px
+}
+
+#ads_referral_program .table_label.with_button {
+    height: 15px
+}
+
+#ads_referral_program #ads_referral_program_table .table_label {
+    padding: 14px 10px 14px 0;
+    vertical-align: middle
+}
+
+#ads_referral_program #ads_referral_program_table.ads_referral_program_main_table {
+    width: 100%
+}
+
+#ads_referral_program #ads_referral_program_table.ads_referral_program_main_table .table_label {
+    width: 200px
+}
+
+#ads_referral_program #ads_referral_program_table input {
+    width: 300px;
+    font-size: 13px;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif
+}
+
+#ads_referral_program h2.page_block_h2.no_border {
+    border-bottom: none;
+    padding-bottom: 0px;
+    margin-bottom: 0px
+}
