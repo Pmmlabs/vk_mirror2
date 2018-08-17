@@ -38,6 +38,202 @@
     padding: 0
 }
 
+.ads_schedule_cell {
+    float: left;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    border-top: 0 solid transparent;
+    border-left: 0 solid transparent;
+    border-right: 1px solid #ced3d8;
+    border-bottom: 1px solid #ced3d8;
+    cursor: pointer
+}
+
+.ads_schedule_cell_checked {
+    background-color: #fff;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20width%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22%23fff%22%3E%3Cpath%20d%3D%22m0%200h16v16h-16z%22%2F%3E%3Cpath%20d%3D%22m4.37%207.87%202.63%202.63%205.12-5.12%22%20stroke%3D%22%23adb2b8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-opacity%3D%22.8%22%20stroke-width%3D%221.75%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') 50% no-repeat
+}
+
+.ads_schedule_cell:hover,
+.ads_schedule_cell_hovered {
+    background-color: #f5f7fa
+}
+
+.ads_schedule_cell:first-child {
+    border-left: 1px solid #ced3d8
+}
+
+.ads_schedule_cell_checked.ads_schedule_cell_hovered,
+.ads_schedule_cell_checked:hover {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20width%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22%23f5f7fa%22%3E%3Cpath%20d%3D%22m0%200h16v16h-16z%22%2F%3E%3Cpath%20d%3D%22m4.37%207.87%202.63%202.63%205.12-5.12%22%20stroke%3D%22%23adb2b8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-opacity%3D%22.8%22%20stroke-width%3D%221.75%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') 50% no-repeat
+}
+
+.ads_schedule_clear,
+.ads_schedule_preset {
+    padding: 1px 0 3px;
+    font-size: 13px;
+    line-height: 1.46
+}
+
+.ads_schedule_preset {
+    float: left;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    padding-right: 8px;
+    padding-left: 8px;
+    color: #2a5885;
+    border-radius: 2px;
+    cursor: pointer
+}
+
+.ads_schedule_preset:hover {
+    color: #2a5885;
+    background-color: #e5ebf1
+}
+
+.ads_schedule_preset_selected,
+.ads_schedule_preset_selected:hover {
+    color: #fff;
+    background-color: #5181b8;
+    cursor: default
+}
+
+.ads_schedule_clear.ads_schedule_preset:hover {
+    color: #2a5885;
+    background-color: transparent
+}
+
+.ads_schedule_presets {
+    margin-bottom: 2px
+}
+
+.ads_schedule_row:first-child .ads_schedule_cell {
+    border-top: 1px solid #ced3d8
+}
+
+.ads_schedule_row:first-child .ads_schedule_cell:first-child {
+    border-radius: 2px 0 0 0
+}
+
+.ads_schedule_row:first-child .ads_schedule_cell:last-child {
+    border-radius: 0 2px 0 0
+}
+
+.ads_schedule_row:last-child .ads_schedule_cell:first-child {
+    border-radius: 0 0 0 2px
+}
+
+.ads_schedule_row:last-child .ads_schedule_cell:last-child {
+    border-radius: 0 0 2px 0
+}
+
+.ads_schedule_row_title {
+    display: block;
+    margin-right: 10px;
+    width: 30px;
+    float: left;
+    color: #939393;
+    font-size: 12px;
+    line-height: 17px;
+    text-align: right;
+    cursor: pointer;
+    white-space: nowrap
+}
+
+.ads_schedule_row_title_weekend {
+    color: #db3b3b
+}
+
+.ads_schedule_row_title:hover,
+.ads_schedule_row_title_hovered {
+    color: #656565
+}
+
+.ads_schedule_row_title:first-letter {
+    text-transform: uppercase
+}
+
+.ads_edit_schedule_wide .ads_schedule_row_title {
+    text-align: left
+}
+
+.ads_schedule_hours {
+    margin-left: 40px;
+    margin-top: 10px
+}
+
+.ads_schedule_hour {
+    float: left;
+    cursor: pointer;
+    color: #939393;
+    font-size: 12px;
+    width: 16px;
+    height: 15px;
+    text-align: center;
+    line-height: 15px;
+    border-left: 0 solid transparent;
+    border-right: 1px solid transparent
+}
+
+.ads_schedule_hour:hover,
+.ads_schedule_hour_hovered {
+    color: #656565
+}
+
+.ads_schedule_hour:first-child {
+    border-left: 1px solid transparent
+}
+
+.ads_schedule_table {
+    margin-left: -40px
+}
+
+.ads_edit_schedule_wide .ads_schedule_table {
+    margin-left: 0
+}
+
+.ads_edit_schedule_settings {
+    margin-top: 18px
+}
+
+.ads_edit_schedule_wide .ads_edit_schedule_settings {
+    margin-left: 40px
+}
+
+.ads_edit_schedule_settings_checkbox {
+    float: left
+}
+
+.ads_edit_schedule_settings_hint {
+    margin-left: 5px
+}
+
+.ads_edit_schedule {
+    width: 409px
+}
+
+.ads_edit_schedule.ads_edit_schedule_wide {
+    width: 449px
+}
+
+.ads_edit_schedule_empty {
+    margin: 10px 0;
+    color: #656565
+}
+
+.ads_edit_schedule_wide .ads_edit_schedule_empty {
+    margin-left: 40px
+}
+
+.ads_edit_user_select_none {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
 ul.ads_listing {
     padding: 0 0 0 30px;
     margin: 0 0 15px

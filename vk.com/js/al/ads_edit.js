@@ -2290,6 +2290,9 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
         promoted_post_need_confirmation: {
             value: 0
         },
+        weekly_schedule: {
+            value: ''
+        }
     }
 
     // Init "format photo size"-specific keys
@@ -5051,6 +5054,11 @@ AdsViewEditor.prototype.getParams = function() {
     params.link_complete = (this.params.link_type.complete ? 1 : 0);
     params.link_subtype = this.params.link_type.subvalue;
     params.photo_icon = this.params.photo['value_' + AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON];
+    var weeklyScheduleTargetEl = ge(this.options.targetIdPrefix + 'weekly_schedule');
+    if (weeklyScheduleTargetEl) {
+        params.weekly_schedule = weeklyScheduleTargetEl.value;
+    }
+
     return params;
 }
 

@@ -522,6 +522,16 @@ ExchangeModer.onToggleSearchPostsApprovedOnly = function(elem) {
     ExchangeModer.searchPostsText();
 };
 
+ExchangeModer.cancelActiveRequests = function(button, adId, hash) {
+    ajax.post('/exchangemoder?act=cancel_active_requests', {
+        ad_id: adId,
+        hash: hash
+    }, {
+        onDone: nav.reload,
+        showProgress: lockButton.pbind(button),
+    });
+};
+
 try {
     stManager.done('exchange_moder.js');
 } catch (e) {}

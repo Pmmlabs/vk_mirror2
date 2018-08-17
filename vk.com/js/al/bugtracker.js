@@ -79,14 +79,14 @@ var BugTracker = {
                     box: cur.newBugBox ? 1 : 0
                 },
                 a = !1;
-            if (o.title || (notaBene("bt_form_title"), a = !0), o.issue_type || (notaBene(cur.newBugIssueTypeDD.container), a = !0), o.tags.length || (notaBene(cur.newBugTagsDD.container), a = !0), isVisible("bt_form_phone_block") && "" == o.phone && (notaBene("bt_form_phone"), a = !0), isVisible("bt_form_region_block") && 0 == o.region_id && (notaBene(cur.newBugRegionDD.container), a = !0), !o.platforms.length && isVisible("bt_form_platforms") && (notaBene(cur.newBugPlatformsDD.container), a = !0), "" === cur.newBugPlatformsIOSVersionsDD.val() && isVisible("bt_form_platforms_ios_versions") && (notaBene(cur.newBugPlatformsIOSVersionsDD.container), a = !0), "" === cur.newBugPlatformsAndroidVersionsDD.val() && isVisible("bt_form_platforms_android_versions") && (notaBene(cur.newBugPlatformsAndroidVersionsDD.container), a = !0), !a) {
+            if (o.user_devices = [].map.call(geByClass("bugtracker_device user_device on"), function(e) {
+                    var t = JSON.parse(e.getAttribute("device-info"));
+                    return t.user_id
+                }), o.title || (notaBene("bt_form_title"), a = !0), o.issue_type || (notaBene(cur.newBugIssueTypeDD.container), a = !0), o.tags.length || (notaBene(cur.newBugTagsDD.container), a = !0), isVisible("bt_form_phone_block") && "" == o.phone && (notaBene("bt_form_phone"), a = !0), isVisible("bt_form_region_block") && 0 == o.region_id && (notaBene(cur.newBugRegionDD.container), a = !0), !o.platforms.length && isVisible("bt_form_platforms") && (notaBene(cur.newBugPlatformsDD.container), a = !0), "" === cur.newBugPlatformsIOSVersionsDD.val() && isVisible("bt_form_platforms_ios_versions") && (notaBene(cur.newBugPlatformsIOSVersionsDD.container), a = !0), "" === cur.newBugPlatformsAndroidVersionsDD.val() && isVisible("bt_form_platforms_android_versions") && (notaBene(cur.newBugPlatformsAndroidVersionsDD.container), a = !0), cur.btDeviceRequired && 0 == o.user_devices.length && (notaBene(geByClass1("bugtracker_user_device_list")), a = !0), !a) {
                 var n = [];
                 each(cur.btNewMedia.getMedias(), function(e, t) {
                     n.push(t[0] + "," + t[1])
-                }), o.attachs = n, o.user_devices = [].map.call(geByClass("bugtracker_device user_device on"), function(e) {
-                    var t = JSON.parse(e.getAttribute("device-info"));
-                    return t.user_id
-                }), ajax.post("bugtracker", o, {
+                }), o.attachs = n, ajax.post("bugtracker", o, {
                     onDone: function(e) {
                         if (e) {
                             var t = se(e);
@@ -812,6 +812,7 @@ var BugTracker = {
                 level: cur.editProductLevelDD.val(),
                 nda: isChecked("bt_edit_product__nda") ? 1 : 0,
                 is_over: isChecked("bt_edit_product__is_over") ? 1 : 0,
+                device_req: isChecked("bt_edit_product__device_req") ? 1 : 0,
                 platforms: [],
                 requirements: trim(val("bt_edit_product__requirements")),
                 tags: cur.editProductTagsDD.val(),

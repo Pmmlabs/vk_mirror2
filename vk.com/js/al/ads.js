@@ -1656,6 +1656,9 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
         case 'stop_time':
             valueGeneralType = 'time';
             break;
+        case 'weekly_schedule':
+            valueGeneralType = 'weekly_schedule';
+            break;
         default:
             valueGeneralType = 'text';
             break;
@@ -1812,6 +1815,17 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
                 }
                 if (!value.match(cur.unionsLimits.limit_pattern)) {
                     return getLang('ads_error_limit_invalid_value');
+                }
+                return true;
+            case 'weekly_schedule':
+                if (!value) {
+                    return true;
+                }
+                if (value.match(/[^0-1]/)) {
+                    return getLang('ads_error_schedule_invalid_value');
+                }
+                if (value.length !== 169 && value.length !== 168) {
+                    return getLang('ads_error_schedule_invalid_value');
                 }
                 return true;
         }
@@ -2117,6 +2131,17 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
                 '</td>' +
                 '</tr>';
             break;
+        case 'weekly_schedule':
+            options.contentHTML =
+                '<tr>' +
+                '<td colspan="2">' +
+                '<table class="ads_inline_edit_table" style="width: 100%;">' +
+                '<tr><td><div id="ads_info_schedule"></div><input id="ads_info_schedule_input" class="inlInput text" type="hidden" /></td></tr>' +
+                '<tr class="ads_inline_fast_error_row"><td><div class="ads_inline_fast_error"></div></td></tr>' +
+                '</table>' +
+                '</td>' +
+                '</tr>';
+            break;
     }
 
     var ret = {
@@ -2137,6 +2162,12 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
     }
     cur.inlineEditControls[valueType + '_' + unionId] = accessFunctions;
 
+    if (valueGeneralType === 'weekly_schedule') {
+        var lastValue = additionalParams.scheduleLastValue;
+        AdsEditComponents.renderSchedule('ads_info_schedule', 'ads_info_schedule_input', defaultValue, lastValue, {
+            wide: true
+        });
+    }
     return ret;
 }
 
