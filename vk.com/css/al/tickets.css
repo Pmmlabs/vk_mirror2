@@ -1063,6 +1063,14 @@ body.dev .tu_row {
     line-height: 13px
 }
 
+.tu_row_comment.tu_row_comment_after {
+    margin-top: 7px;
+    font-size: 11px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
 .tu_info {
     box-sizing: border-box;
     position: relative;

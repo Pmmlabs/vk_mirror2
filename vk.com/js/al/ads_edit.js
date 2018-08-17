@@ -6180,6 +6180,11 @@ AdsTargetingEditor.prototype.init = function(options, editor, viewEditor, criter
             data: [],
             selectedData: []
         },
+        groups_active: {
+            value: '',
+            data: [],
+            selectedData: []
+        },
         apps: {
             value: '',
             data: [],
@@ -6666,6 +6671,7 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
         case 'group_types':
         case 'groups':
         case 'groups_not':
+        case 'groups_active':
         case 'apps':
         case 'apps_not':
         case 'religions':
@@ -6700,7 +6706,7 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
 
                     dropdown: true,
                     big: true,
-                    withIcons: inArray(criterionName, ['groups', 'groups_not', 'apps', 'apps_not']),
+                    withIcons: inArray(criterionName, ['groups', 'groups_not', 'groups_active', 'apps', 'apps_not']),
                     maxItems: this.options.uiMaxSelected,
                     width: this.options.uiWidth,
                     height: this.options.uiHeight,
@@ -7073,6 +7079,7 @@ AdsTargetingEditor.prototype.getUiCriterionData = function(criterionName, option
             return '/select.php?act=ainterests';
         case 'groups':
         case 'groups_not':
+        case 'groups_active':
             return '/adsedit?act=search_user_objects&section=groups&group_purpose=' + AdsEdit.ADS_AD_CHECK_GROUP_PURPOSE_CRITERIA;
         case 'apps':
         case 'apps_not':
@@ -7225,6 +7232,7 @@ AdsTargetingEditor.prototype.getUiCriterionDefaultData = function(criterionName)
         case 'cities_not':
             return this.criteria['cities'].defaultData || [];
         case 'groups_not':
+        case 'groups_active':
             return this.criteria['groups'].defaultData || [];
         case 'apps_not':
             return this.criteria['apps'].defaultData || [];
@@ -7515,6 +7523,8 @@ AdsTargetingEditor.prototype.getUiCriterionIntroText = function(criterionName) {
             return getLang('ads_type_group_public');
         case 'groups_not':
             return getLang('ads_type_group_public');
+        case 'groups_active':
+            return getLang('ads_type_group_public');
         case 'apps':
             return getLang('ads_type_app_site');
         case 'apps_not':
@@ -7617,6 +7627,8 @@ AdsTargetingEditor.prototype.getUiCriterionPlaceholderText = function(criterionN
             return getLang('ads_type_community');
         case 'groups_not':
             return getLang('ads_type_community');
+        case 'groups_active':
+            return getLang('ads_type_community');
         case 'apps':
             return getLang('ads_type_app_site');
         case 'apps_not':
@@ -7699,6 +7711,8 @@ AdsTargetingEditor.prototype.getUiCriterionNoResultText = function(criterionName
         case 'groups':
             return getLang('ads_notfound_group');
         case 'groups_not':
+            return getLang('ads_notfound_group');
+        case 'groups_active':
             return getLang('ads_notfound_group');
         case 'apps':
             return getLang('ads_notfound_app');
@@ -7783,6 +7797,7 @@ AdsTargetingEditor.prototype.setAutoGroupsNotValue = function(selectedValue) {
     this.showGroupMore('interests');
     this.initUiCriterion('groups');
     this.initUiCriterion('groups_not');
+    this.initUiCriterion('groups_active');
 
     if (this.criteria.groups.uiInited && this.criteria.groups_not.uiInited) {
         this.criteria.groups_not.ui.clear();

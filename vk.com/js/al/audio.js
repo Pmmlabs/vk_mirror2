@@ -1371,7 +1371,6 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                 content: i,
                 width: 250,
                 offset: [1, 14],
-                rightShift: this.isLayer() ? 45 : 80,
                 elClassWhenShown: "audio_status_tt_shown",
                 id: "audio_status_tt",
                 onFirstTimeShow: function(e) {
@@ -1557,10 +1556,9 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         i && -1 != i.indexOfAudio(s) ? n = i : a && -1 != a.indexOfAudio(s) ? n = a : (n = new AudioPlaylist(AudioPlaylist.TYPE_TEMP, vk.id), n.addAudio(s)), delete this._readyAudio, cur.audioStartReadyAudio = !0, t.play(s, n)
     }
 }, AudioPage.prototype.promoShowMore = function() {
-    nav.go("/app5955265_-128786769#utm_source=vk&utm_medium=vkmusic&utm_campaign=music_bar"),
-        setTimeout(function() {
-            this.promoClose(!0)
-        }.bind(this), 3e3)
+    nav.go("/app5955265_-128786769#utm_source=vk&utm_medium=vkmusic&utm_campaign=music_bar"), setTimeout(function() {
+        this.promoClose(!0)
+    }.bind(this), 3e3)
 }, AudioPage.prototype.promoClose = function(e) {
     hide(this._els.vkMobilePromo), ajax.post("al_audio.php", {
         act: "vkmobile_hide_promo",

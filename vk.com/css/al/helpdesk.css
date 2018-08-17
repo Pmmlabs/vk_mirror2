@@ -2091,11 +2091,14 @@ body.body_helpdesk_small_sb .left_menu_nav {
 }
 
 .helpdesk_extra_info_bar.helpdesk_extra_info_bar_subject_tags {
-    line-height: 28px
+    line-height: 24px
 }
 
-.helpdesk_extra_info_bar .flat_button {
-    margin-right: 2px
+.helpdesk_extra_info_bar.helpdesk_extra_info_bar_subject_tags .flat_button {
+    font-size: 11.5px;
+    line-height: 13px;
+    margin-right: 2px;
+    padding: 3px 10px 4px
 }
 
 .helpdesk_templates {
@@ -2419,5 +2422,18 @@ body.body_helpdesk_small_sb .left_menu_nav {
 
 .helpdesk_payout_log_table>tbody>tr>td {
     border-top: 1px solid #e7e8ec;
+    padding: 5px 10px
+}
+
+.helpdesk_mltags_table {
+    border-collapse: collapse;
+    width: 100%
+}
+
+.helpdesk_mltags_table>tbody>tr:hover {
+    background: #e7edf2
+}
+
+.helpdesk_mltags_table>tbody>tr>td {
     padding: 5px 10px
 }
