@@ -1042,10 +1042,10 @@ body.dev .tu_row {
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    margin: 0 0 1px;
+    margin: 1px 0 2px;
     color: #42648b;
     font-size: 12px;
-    line-height: 17px
+    line-height: 15px
 }
 
 .tu_row_title .deleted {

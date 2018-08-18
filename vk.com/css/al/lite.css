@@ -6574,12 +6574,15 @@ div.top_result_baloon a {
     padding-bottom: 14px
 }
 
+.audio_page_player2 .audio_page_player_track_slider_wrapper {
+    padding: 0 20px
+}
+
 .audio_page_player2 .audio_page_player_track_slider {
-    position: absolute;
+    position: relative;
     left: 0;
     bottom: 0;
-    width: 100%;
-    padding-bottom: 0!important
+    width: 100%
 }
 
 .audio_page_player2 .audio_page_player_track_slider:not(.slider),
@@ -6589,18 +6592,27 @@ div.top_result_baloon a {
     background-color: #e1e8ee
 }
 
+.audio_page_player2 .audio_page_player_volume_slider .slider_back {
+    background-color: #d1d6de
+}
+
+.audio_page_player2 .audio_page_player_volume_slider .slider_slide {
+    background-color: #e7e8ec
+}
+
 .audio_page_player2 .audio_page_player_track_slider.slider.slider_size_1 {
-    height: 5px;
-    bottom: -5px;
+    height: 2px;
+    bottom: 0;
     padding: 10px 0
 }
 
 .audio_page_player2 .audio_page_player_track_slider.slider.slider_size_1 .slider_slide {
-    height: 1px
+    height: 2px;
+    background-color: #e7e8ec
 }
 
 .audio_page_player2 .audio_page_player_track_slider.slider.slider_size_1 .slider_back {
-    background-color: #bcc6d1
+    background-color: #d1d6de
 }
 
 .audio_page_player2 .audio_page_player_track_slider.slider.slider_size_1 .slider_amount {
@@ -6610,10 +6622,10 @@ div.top_result_baloon a {
 }
 
 .audio_page_player2 .audio_page_player_track_slider.slider.slider_size_1 .slider_handler {
-    height: 6px;
-    width: 6px;
-    top: -3.5px;
-    margin-left: -4.5px
+    height: 7px;
+    width: 7px;
+    top: -3px;
+    margin-left: -3px
 }
 
 .audio_page_player2 .audio_play {

@@ -2136,7 +2136,7 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
                 '<tr>' +
                 '<td colspan="2">' +
                 '<table class="ads_inline_edit_table" style="width: 100%;">' +
-                '<tr><td><div id="ads_info_schedule"></div><input id="ads_info_schedule_input" class="inlInput text" type="hidden" /></td></tr>' +
+                '<tr><td><div class="ads_info_schedule"></div><input class="ads_info_schedule_input inlInput text" type="hidden" /></td></tr>' +
                 '<tr class="ads_inline_fast_error_row"><td><div class="ads_inline_fast_error"></div></td></tr>' +
                 '</table>' +
                 '</td>' +
@@ -2164,8 +2164,12 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
 
     if (valueGeneralType === 'weekly_schedule') {
         var lastValue = additionalParams.scheduleLastValue;
-        AdsEditComponents.renderSchedule('ads_info_schedule', 'ads_info_schedule_input', defaultValue, lastValue, {
-            wide: true
+        var langs = parseJSON(additionalParams.langs) || {};
+        var parentEl = geByClass1('ads_info_schedule', ret.obj.container);
+        var outputEl = geByClass1('ads_info_schedule_input', ret.obj.container);
+        AdsEditComponents.renderSchedule(parentEl, outputEl, defaultValue, lastValue, {
+            wide: true,
+            langs: langs
         });
     }
     return ret;

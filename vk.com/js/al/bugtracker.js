@@ -82,7 +82,7 @@ var BugTracker = {
             if (o.user_devices = [].map.call(geByClass("bugtracker_device user_device on"), function(e) {
                     var t = JSON.parse(e.getAttribute("device-info"));
                     return t.user_id
-                }), o.title || (notaBene("bt_form_title"), a = !0), o.issue_type || (notaBene(cur.newBugIssueTypeDD.container), a = !0), o.tags.length || (notaBene(cur.newBugTagsDD.container), a = !0), isVisible("bt_form_phone_block") && "" == o.phone && (notaBene("bt_form_phone"), a = !0), isVisible("bt_form_region_block") && 0 == o.region_id && (notaBene(cur.newBugRegionDD.container), a = !0), !o.platforms.length && isVisible("bt_form_platforms") && (notaBene(cur.newBugPlatformsDD.container), a = !0), "" === cur.newBugPlatformsIOSVersionsDD.val() && isVisible("bt_form_platforms_ios_versions") && (notaBene(cur.newBugPlatformsIOSVersionsDD.container), a = !0), "" === cur.newBugPlatformsAndroidVersionsDD.val() && isVisible("bt_form_platforms_android_versions") && (notaBene(cur.newBugPlatformsAndroidVersionsDD.container), a = !0), cur.btDeviceRequired && 0 == o.user_devices.length && (notaBene(geByClass1("bugtracker_user_device_list")), a = !0), !a) {
+                }), o.title || (notaBene("bt_form_title"), a = !0), o.issue_type || (notaBene(cur.newBugIssueTypeDD.container), a = !0), o.tags.length || (notaBene(cur.newBugTagsDD.container), a = !0), isVisible("bt_form_phone_block") && "" == o.phone && (notaBene("bt_form_phone"), a = !0), isVisible("bt_form_region_block") && 0 == o.region_id && (notaBene(cur.newBugRegionDD.container), a = !0), !o.platforms.length && isVisible("bt_form_platforms") && (notaBene(cur.newBugPlatformsDD.container), a = !0), "" === cur.newBugPlatformsIOSVersionsDD.val() && isVisible("bt_form_platforms_ios_versions") && (notaBene(cur.newBugPlatformsIOSVersionsDD.container), a = !0), "" === cur.newBugPlatformsAndroidVersionsDD.val() && isVisible("bt_form_platforms_android_versions") && (notaBene(cur.newBugPlatformsAndroidVersionsDD.container), a = !0), cur.btDeviceRequired[o.product] && 0 === o.user_devices.length && (notaBene(geByClass1("bt_hform_control bt_hform_control_list", ge("bt_form_user_devices"))), a = !0), !a) {
                 var n = [];
                 each(cur.btNewMedia.getMedias(), function(e, t) {
                     n.push(t[0] + "," + t[1])
@@ -1099,7 +1099,7 @@ var BugTracker = {
             }, {
                 progress: cur.btCancelBox.progress
             })
-        }, getLang("bugs_t_dont_cancel_order"))
+        }, getLang("bugs_t_dont_cancel_order"));
     },
     editOrder: function(e) {
         cur.btEditOrderBox = showBox("bugtracker", {

@@ -1884,7 +1884,8 @@ var Helpdesk = {
             hash: e,
             small_sidebar: isChecked("helpdesk_settings_box_small_sidebar") ? 1 : 0,
             merge_replies: isChecked("helpdesk_settings_box_merge_replies") ? 1 : 0,
-            fixed_ticket_header: isChecked("helpdesk_settings_box_fixed_ticket_header") ? 1 : 0
+            fixed_ticket_header: isChecked("helpdesk_settings_box_fixed_ticket_header") ? 1 : 0,
+            ml_tags: isChecked("helpdesk_settings_box_ml_tags") ? 1 : 0
         };
         ajax.post("helpdesk?act=a_save_settings", t, {
             progress: cur.helpdeskSettingsBox.progress,

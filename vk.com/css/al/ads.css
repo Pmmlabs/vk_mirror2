@@ -69,19 +69,29 @@
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20width%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22%23f5f7fa%22%3E%3Cpath%20d%3D%22m0%200h16v16h-16z%22%2F%3E%3Cpath%20d%3D%22m4.37%207.87%202.63%202.63%205.12-5.12%22%20stroke%3D%22%23adb2b8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-opacity%3D%22.8%22%20stroke-width%3D%221.75%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') 50% no-repeat
 }
 
-.ads_schedule_clear,
-.ads_schedule_preset {
-    padding: 1px 0 3px;
-    font-size: 13px;
-    line-height: 1.46
+.ads_schedule_clear {
+    position: absolute;
+    top: -2px;
+    right: -3px;
+    width: 24px;
+    height: 24px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%2F%3E%3Cpath%20d%3D%22m10%206c0-.55228475.4477153-1%201-1h2c.5522847%200%201%20.44771525%201%201h3c.5522847%200%201%20.44771525%201%201v1h-12v-1c0-.55228475.44771525-1%201-1zm-3%203h10v8.0770861c0%20.6686391-.0696192.9111037-.2003495%201.1555482-.1307303.2444444-.3225718.4362859-.5670162.5670162-.2444445.1307303-.4869091.2003495-1.1555482.2003495h-6.1541722c-.66863905%200-.91110373-.0696192-1.15554818-.2003495-.24444444-.1307303-.43628587-.3225718-.56701619-.5670162-.13073032-.2444445-.20034953-.4869091-.20034953-1.1555482z%22%20fill%3D%22%2399a2ad%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') 50% no-repeat;
+    opacity: 0.7
+}
+
+.ads_schedule_clear:hover {
+    opacity: 1
 }
 
 .ads_schedule_preset {
     float: left;
     margin-right: 8px;
     margin-bottom: 8px;
+    padding: 1px 0 3px;
     padding-right: 8px;
     padding-left: 8px;
+    font-size: 13px;
+    line-height: 1.46;
     color: #2a5885;
     border-radius: 2px;
     cursor: pointer
@@ -99,13 +109,9 @@
     cursor: default
 }
 
-.ads_schedule_clear.ads_schedule_preset:hover {
-    color: #2a5885;
-    background-color: transparent
-}
-
 .ads_schedule_presets {
-    margin-bottom: 2px
+    margin-bottom: 2px;
+    padding-right: 24px
 }
 
 .ads_schedule_row:first-child .ads_schedule_cell {
@@ -210,6 +216,7 @@
 }
 
 .ads_edit_schedule {
+    position: relative;
     width: 409px
 }
 

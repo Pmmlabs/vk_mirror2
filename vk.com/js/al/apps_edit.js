@@ -450,18 +450,6 @@ var AppsEdit = {
             backgroundColor: "#C4D2E1"
         }, 200), window.tooltips && tooltips.hide(e)
     },
-    addSWF: function() {
-        showBox("editapp", {
-            act: "add_swf_box",
-            aid: cur.aid
-        }, {
-            params: {
-                dark: 1,
-                width: "430px",
-                bodyStyle: "padding: 0px; position: relative;"
-            }
-        })
-    },
     deleteSWF: function(e, t, a) {
         tooltips.hide(a);
         var s, i = function() {
@@ -482,18 +470,6 @@ var AppsEdit = {
                 s.hide()
             };
         s = showFastBox(getLang("apps_title_file_delete"), getLang("apps_confirm_file_delete"), getLang("global_delete"), i, getLang("global_cancel"), n)
-    },
-    updateSWF: function() {
-        showBox("editapp", {
-            act: "update_swf_box",
-            aid: cur.aid
-        }, {
-            params: {
-                dark: 1,
-                width: "430px",
-                bodyStyle: "padding: 0px; position: relative;"
-            }
-        })
     },
     showHint: function(e, t, a) {
         e = ge(e), text = cur.hint[e.id], clearTimeout(cur.hideHintTimout), t ? showTooltip(e, {
