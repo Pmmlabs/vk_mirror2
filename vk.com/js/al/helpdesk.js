@@ -1936,7 +1936,11 @@ var Helpdesk = {
     requestRest: function(e, t) {
         cur.helpdeskRequestRestBox = showBox("helpdesk?act=request_rest_box", {
             hash: t
-        }, {})
+        }, {
+            params: {
+                width: 500
+            }
+        })
     },
     doRequestRest: function() {
         return -1 == radioval("restType") ? notaBene("request_rest_types") : void ajax.post("helpdesk?act=a_create_rest_request", {
@@ -2067,7 +2071,7 @@ var Helpdesk = {
         })
     },
     changeRestType: function(e, t) {
-        radiobtn(e, t, "restType"), 3 == t ? val("request_rest_save_button", getLang("helpdesk_start_rest")) : val("request_rest_save_button", cur.helpdeskRequestRestBoxButton)
+        radiobtn(e, t, "restType"), hasClass(e, "disabled") || (3 == t ? val("request_rest_save_button", getLang("helpdesk_start_rest")) : val("request_rest_save_button", cur.helpdeskRequestRestBoxButton))
     },
     willExpireTT: function(e, t) {
         showTooltip(e, {

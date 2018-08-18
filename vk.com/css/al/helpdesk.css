@@ -1205,6 +1205,12 @@ body.body_helpdesk_small_sb .left_menu_nav {
     margin: 10px 0
 }
 
+.helpdesk_rest_request_types .radiobtn.disabled {
+    cursor: no-drop;
+    opacity: 0.7;
+    filter: alpha(opacity=70)
+}
+
 .helpdesk_rest_note {
     color: #656565;
     font-size: 12px;
