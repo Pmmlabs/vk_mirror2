@@ -911,7 +911,8 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
 }
 
 .video_search_input.ui_search.ui_search_new {
-    margin: 20px 20px 10px
+    padding-top: 20px;
+    margin: 0 20px 10px
 }
 
 .video_search_input .ui_search_fltr {

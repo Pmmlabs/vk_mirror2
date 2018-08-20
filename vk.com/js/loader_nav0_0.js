@@ -199,14 +199,14 @@ var stVersions = {
     'single_pv.css': 1445030012,
     'single_pv.js': 2438273057,
     'video.js': 2076539384,
-    'video.css': 27411440596,
+    'video.css': 26833938667,
     'videocat.js': 3590298689,
     'videocat.css': 20555806487,
     'videoview.js': 12180183904,
     'videoview.css': 31019638073,
     'video_edit.js': 2135196486,
     'video_edit.css': 21550899810,
-    'video_upload.js': 8143168755,
+    'video_upload.js': 7216225799,
     'video_youtube.js': 458412745,
     'video_youtube.css': 14579768969,
     'videoplayer.js': 92601051577,
@@ -432,7 +432,7 @@ var stVersions = {
     'ui.js': 1385249136,
     'ui_common.js': 2022847806,
     'ui_common.css': 14447592146,
-    'cmodules/web/ui_media_selector.js': 3392307806,
+    'cmodules/web/ui_media_selector.js': 1903674928,
     'ui_media_selector.css': 30582708539,
     'ui_manual.css': 16157999991,
     'admin.css': 17865305941,
@@ -529,9 +529,9 @@ var stVersions = {
     'stories_manage.css': 72733534355,
     'article.css': 35988831134,
     'article_editor.css': 36827027785,
-    'cmodules/web/article.js': 40310004976,
-    'cmodules/web/article_layer.js': 25748486119,
-    'article_view.js': 22125570575,
+    'cmodules/web/article.js': 39115741426,
+    'cmodules/web/article_layer.js': 24554222569,
+    'article_view.js': 20931307025,
     'bookmarks.css': 15386495493,
     'cmodules/web/bookmarks.js': 2932558322,
     'sf.css': 17340425719,
@@ -631,4 +631,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 264;
+var _rnd = 7905;

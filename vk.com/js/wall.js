@@ -476,7 +476,8 @@ var MediaPoster = function(postType, target, preview, msgBox, toId, types, isAdm
                             tab: tab,
                             to_id: toId,
                             scrollbar_width: window.sbWidth(),
-                            preview: 1
+                            preview: 1,
+                            upload: 1
                         }, true, 'height: 374px');
                         return false;
                     }
