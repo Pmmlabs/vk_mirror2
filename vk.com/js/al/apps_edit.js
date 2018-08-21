@@ -749,21 +749,25 @@ var AppsEdit = {
     },
     updateSecureUrl: function() {
         if (!cur.iframeSecureChanged) {
-            var e = val("app_iframe_url").replace(/^http:/, "https:");
+            var e = val("app_iframe_url").replace(/^http:/, "https:").trim();
             val("app_m_iframe_secure_url", e)
         }
     },
     onChangeIFrameUrl: function() {
         var e = val("app_iframe_url");
-        e && (/^http:\/\//.test(e) ? val("app_iframe_url", e.replace(/^http:/, "https:")) : /^https:\/\//.test(e) || val("app_iframe_url", "https://" + e))
+        e && (/^http:\/\//.test(e) ? val("app_iframe_url", e.replace(/^http:/, "https:")) : /^https:\/\//.test(e) ? val("app_iframe_url") !== e && val("app_iframe_url", "https://" + e) : val("app_iframe_url", "https://" + e))
+    },
+    onChangeDevUrl: function() {
+        var e = val("apps_dev_url").trim();
+        e && (/^http:\/\//.test(e) ? val("apps_dev_url", e.replace(/^http:/, "https:")) : /^https:\/\//.test(e) ? val("apps_dev_url") !== e && val("apps_dev_url", "https://" + e) : val("apps_dev_url", "https://" + e))
     },
     onChangeMobileSecureUrl: function() {
-        var e = val("app_m_iframe_secure_url"),
+        var e = val("app_m_iframe_secure_url").trim(),
             t = ge("apps_edit_m_apple_dev_team_id");
-        e ? (/^http:\/\//.test(e) ? val("app_m_iframe_secure_url", e.replace(/^http:/, "https:")) : /^https:\/\//.test(e) || val("app_m_iframe_secure_url", "https://" + e), AppsEdit.slideShow(t)) : AppsEdit.slideHide(t)
+        e ? (/^http:\/\//.test(e) ? val("app_m_iframe_secure_url", e.replace(/^http:/, "https:")) : /^https:\/\//.test(e) ? val("app_m_iframe_secure_url") !== e && val("app_m_iframe_secure_url", e) : val("app_m_iframe_secure_url", "https://" + e), AppsEdit.slideShow(t)) : AppsEdit.slideHide(t)
     },
     onKeyUpMobileSecureUrl: function() {
-        var e = val("app_m_iframe_secure_url"),
+        var e = val("app_m_iframe_secure_url").trim(),
             t = ge("apps_edit_m_apple_dev_team_id");
         e ? AppsEdit.slideShow(t) : AppsEdit.slideHide(t)
     },

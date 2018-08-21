@@ -240,6 +240,19 @@
     padding: 20px
 }
 
+.apps_install_header--vk-app .apps_install_header__image {
+    border-radius: 4px
+}
+
+.apps_install_header--vk-app .apps_install_header__info p {
+    padding-bottom: 52px;
+    font-size: 13px;
+    line-height: 1.31;
+    letter-spacing: -0.1px;
+    color: #656565
+}
+
+.apps_install_header__qr,
 .apps_install_header__rating {
     float: right;
     position: relative;
@@ -262,7 +275,7 @@
 
 .apps_install_header__info {
     margin-left: 140px;
-    height: 120px;
+    min-height: 120px;
     position: relative
 }
 
@@ -297,12 +310,14 @@
 }
 
 .apps_install_header__actions .flat_button.app,
-.apps_install_header__actions .flat_button.game {
+.apps_install_header__actions .flat_button.game,
+.apps_install_header__actions .flat_button.mobile {
     padding-left: 34px
 }
 
 .apps_install_header__actions .flat_button.app:before,
-.apps_install_header__actions .flat_button.game:before {
+.apps_install_header__actions .flat_button.game:before,
+.apps_install_header__actions .flat_button.mobile:before {
     content: '';
     display: block;
     position: absolute;
@@ -322,6 +337,15 @@
 .apps_install_header__actions .flat_button.game:before {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20fill%3D%22%23FFF%22%20fill-rule%3D%22evenodd%22%20d%3D%22M6%208h-.5c-.276%200-.5.224-.5.5s.224.5.5.5H6v.5c0%20.276.224.5.5.5s.5-.224.5-.5V9h.5c.276%200%20.5-.224.5-.5S7.776%208%207.5%208H7v-.5c0-.276-.224-.5-.5-.5s-.5.224-.5.5V8zm11.77%202.254c.1.404.996%204.54-1.593%204.742-1.095.1-2.29-1.614-3.186-2.522-.795-1.01-1.69-1.513-3.085-1.513-1.393%200-2.19.506-3.086%201.515-.897.908-2.09%202.623-3.088%202.522-2.488-.1-1.592-4.338-1.492-4.742C2.636%208.035%204.03%204%206.818%204c0%200%20.896.1%201.593.504%201.197.505%201.794.505%203.088%200C12.294%204.1%2013.09%204%2013.09%204c2.888%200%204.182%203.934%204.68%206.254zM12.995%209V8h-1v1h1zM14%209h1V8h-1v1z%22%2F%3E%3C%2Fsvg%3E");
     left: 12px
+}
+
+.apps_install_header__actions .flat_button.mobile.button_disabled {
+    width: auto!important
+}
+
+.apps_install_header__actions .flat_button.mobile:before {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20width%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22m0%200h20v20h-20z%22%20opacity%3D%22.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22m6%204.49824524c0-.827458.67646277-1.49824524%201.50639765-1.49824524h5.98720475c.8319604%200%201.5063976.6752491%201.5063976%201.49824524v11.00350956c0%20.827458-.6764628%201.4982452-1.5063976%201.4982452h-5.98720475c-.83196045%200-1.50639765-.6752491-1.50639765-1.4982452zm1%201.01142061v7.98066835c0%20.2871927.22539004.5096658.50342274.5096658h5.99315456c.2705202%200%20.5034227-.2281852.5034227-.5096658v-7.98066835c0-.28719271-.22539-.50966585-.5034227-.50966585h-5.99315456c-.27052021%200-.50342274.22818517-.50342274.50966585zm3%209.49033415v1h1v-1z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+    background-repeat: no-repeat
 }
 
 .apps_install_header .apps_i_desktop:after {
@@ -2863,6 +2887,38 @@ a.page_block_header:hover .apps_cat_header_link:after {
     padding: 0 20px
 }
 
+.apps_i_content--vk-app .apps_i_slider_outer {
+    visibility: hidden;
+    max-height: 0
+}
+
+.apps_i_content--vk-app .apps_i_slider_thumbs_inner {
+    height: auto;
+    max-height: 400px
+}
+
+.apps_i_content--vk-app .apps_i_slider_thumb {
+    max-height: 400px;
+    height: auto;
+    min-width: 225px
+}
+
+.apps_i_content--vk-app .apps_i_slider_thumb>img {
+    width: 225px;
+    max-width: 225px;
+    max-height: 400px;
+    vertical-align: bottom
+}
+
+.apps_i_content--vk-app .apps_i_slider_thumb:first-child {
+    color: red
+}
+
+.apps_i_content--vk-app .apps_i_slider_thumb:first-child .selected:before,
+.apps_i_content--vk-app .apps_i_slider_thumb:first-child .selected+.apps_i_slider_thumb:before {
+    opacity: 0
+}
+
 .apps_i_icon {
     width: 120px;
     height: 120px;
@@ -3425,7 +3481,8 @@ a.page_block_header:hover .apps_cat_header_link:after {
     pointer-events: none
 }
 
-.apps_i_slider_thumb.selected:before {
+.apps_i_slider_thumb.selected:before,
+.apps_i_slider_thumb.in-view:before {
     opacity: 0;
     filter: alpha(opacity=0)
 }

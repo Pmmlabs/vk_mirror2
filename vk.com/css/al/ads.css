@@ -3596,24 +3596,25 @@ ads_retargeting_box_price_list_error_description {
     font-style: italic
 }
 
-.ads_settings_notifacations {
+.ads_settings_notifications {
     margin: 10px 0 0 10px;
     border-collapse: collapse
 }
 
-.ads_settings_notifacations td,
-.ads_settings_notifacations th {
+.ads_settings_notifications th {
     padding: 0 5px;
-    text-align: center
+    text-align: left;
+    vertical-align: top
 }
 
-td.ads_settings_notifacations_label {
-    padding: 0 30px 0 0;
+.ads_settings_notifications td {
+    padding: 0 5px;
     text-align: left
 }
 
-.ads_settings_notifacations .checkbox_container {
-    margin: 0 auto
+td.ads_settings_notifications_label {
+    padding: 0 30px 0 0;
+    text-align: left
 }
 
 #ad_preview_top {

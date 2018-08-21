@@ -1502,7 +1502,8 @@ td.apps_edit_info_save {
     position: relative;
     width: 147px;
     height: 100px;
-    overflow: hidden
+    overflow: hidden;
+    height: auto
 }
 
 .apps_edit_screen img {
