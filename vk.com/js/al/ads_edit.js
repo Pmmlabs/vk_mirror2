@@ -6749,6 +6749,7 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
                     height: this.options.uiHeight,
                     selectedItemsDelimiter: ';',
 
+                    fixBoxWidth: true,
                     onTagAdd: function(tag, value) {
                         this.onUiTagAdd(criterionName, value, tag);
                     }.bind(this),
@@ -6769,6 +6770,13 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
                 this.cur.destroy.push(function() {
                     this.criteria[criterionName].ui.destroy();
                 }.bind(this));
+
+
+                var currentCriteriaUi = this.criteria[criterionName].ui;
+                if (currentCriteriaUi && currentCriteriaUi.selectedItemsContainer) {
+                    currentCriteriaUi.selectedItemsContainerScrollWrap = new uiScroll(currentCriteriaUi.selectedItemsContainer);
+                    currentCriteriaUi.selectedItemsContainer = currentCriteriaUi.selectedItemsContainerScrollWrap.content;
+                }
 
                 var mapContainer = ge(this.options.targetIdPrefix + criterionName + '_box');
                 this.initGeoEditor(criterionName, mapContainer);

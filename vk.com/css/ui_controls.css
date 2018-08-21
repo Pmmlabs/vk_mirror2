@@ -431,6 +431,16 @@
     margin: 0
 }
 
+.ads_edit_geo_radius_tt_container .list_style.selector_container td.selector .token span.x,
+.ads_edit_geo_radius_tt_container .list_style.selector_container td.selector .token span.x_hover {
+    margin: 6px 13px 0 2px!important;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%2F%3E%3Cpath%20d%3D%22m13.1313708%2012%203.6343146%203.6343146c.3124195.3124194.3124195.8189514%200%201.1313708-.3124194.3124195-.8189514.3124195-1.1313708%200l-3.6343146-3.6343146-3.63431458%203.6343146c-.31241943.3124195-.81895141.3124195-1.13137084%200-.31241944-.3124194-.31241944-.8189514%200-1.1313708l3.63431462-3.6343146-3.63431462-3.63431458c-.31241944-.31241943-.31241944-.81895141%200-1.13137084.31241943-.31241944.81895141-.31241944%201.13137084%200l3.63431458%203.63431462%203.6343146-3.63431462c.3124194-.31241944.8189514-.31241944%201.1313708%200%20.3124195.31241943.3124195.81895141%200%201.13137084z%22%20fill%3D%22%2399a2ad%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 50%
+}
+
+.ads_edit_geo_radius_tt_container .selector_container td.selector input.selector_input {
+    box-shadow: 0px -1px 0px #d3d9de
+}
+
 .list_style.selector_container td.selector .token span.x {
     opacity: 0
 }

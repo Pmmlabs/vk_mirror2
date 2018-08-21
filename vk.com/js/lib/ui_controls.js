@@ -475,7 +475,7 @@ extend(UiControl.prototype, {
                 else var o = this.input.offsetLeft;
             else var o = 0;
             var n = this.selectorWidth - o - s;
-            this.options.noArr && (n += 22), this.scrollbarWidth || (n -= 1), this.input.style.width = Math.max(20, n) + "px", e && (i ? e.insertBefore(this.container, i) : e.appendChild(this.container))
+            this.options.noArr && (n += 22), this.scrollbarWidth || this.options.fixBoxWidth || (n -= 1), this.input.style.width = Math.max(20, n) + "px", e && (i ? e.insertBefore(this.container, i) : e.appendChild(this.container))
         }
         this.updatePlaceholder()
     },

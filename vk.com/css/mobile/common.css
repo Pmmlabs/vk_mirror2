@@ -51,7 +51,8 @@ body {
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%
+    text-size-adjust: 100%;
+    min-height: 100%
 }
 
 .button::-moz-focus-inner,
@@ -32979,28 +32980,21 @@ body.apps_settingsPageBody {
     }
 }
 
-.ScrollView,
-.sp_body {
+.ScrollView {
     overflow: auto;
-    -webkit-overflow-scrolling: touch
-}
-
-.ScrollView>*,
-.sp_body>* {
+    -webkit-overflow-scrolling: touch;
     -webkit-transform: translateZ(0px);
     -moz-transform: translateZ(0px);
     transform: translateZ(0px)
 }
 
-._ios .ScrollView:before,
-._ios .sp_body:before {
+._ios .ScrollView:before {
     content: '';
     display: block;
     height: 2px
 }
 
-._ios .ScrollView:after,
-._ios .sp_body:after {
+._ios .ScrollView:after {
     content: '';
     display: block;
     height: 1px;
@@ -38698,7 +38692,10 @@ body.apps_settingsPageBody {
 
 .uMailWrite {
     position: relative;
-    z-index: 11
+    z-index: 11;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    transform: translateZ(0)
 }
 
 .uMailWrite_unableToWrite {
@@ -39416,6 +39413,12 @@ body.apps_settingsPageBody {
     transform: none!important
 }
 
+._ios .uMailWrite__popupStickers .sp_cont {
+    min-height: -webkit-calc(101%);
+    min-height: -moz-calc(101%);
+    min-height: calc(101%)
+}
+
 .uMailWrite__keyboard {
     max-height: 282px;
     background: #f4f6f9;
@@ -39856,22 +39859,53 @@ body.apps_settingsPageBody {
     overflow-y: hidden
 }
 
+.uMessenger {
+    height: 100%
+}
+
 .vk__page_mail {
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
-    left: 0
+    left: 0;
+    height: auto!important;
+    min-height: 0!important
 }
 
-.vk_js_yes .vk__page_mail {
-    min-height: initial!important
+.vk__page_mail .layout {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0
 }
 
-._ios.vk__page_mail {
-    overflow-y: auto!important;
-    min-height: 0!important;
-    min-height: auto!important
+.vk__page_mail .basis,
+.vk__page_mail .basis__content,
+.vk__page_mail .layout__basis,
+.vk__page_mail .layout__body,
+.vk__page_mail .layout__leftMenu,
+.vk__page_mail .leftMenu {
+    height: 100%
+}
+
+.vk__page_mail .leftMenu__searchItems {
+    max-height: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch
+}
+
+@media (min-width: 882px) {
+    .vk__page_mail .leftMenu__content {
+        height: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box
+    }
 }
 
 .vk__page_mail .layout__header {
@@ -39915,26 +39949,6 @@ body.apps_settingsPageBody {
 .uMessenger_community .mailHat .Oval,
 .uMessenger_community .mailActs__button_type_important {
     display: none
-}
-
-.messenger {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0
-}
-
-@media (max-width: 881px) {
-    .messenger {
-        height: auto!important
-    }
-}
-
-@media (min-width: 882px) {
-    .messenger {
-        position: relative
-    }
 }
 
 .messenger__layer {
