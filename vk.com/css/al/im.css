@@ -2147,8 +2147,39 @@ textarea.EditableLabel__textarea {
 }
 
 .TemplatesSettings__input-container {
+    width: 100%;
     -ms-flex-negative: 1;
     flex-shrink: 1
+}
+
+.TemplatesSettings div.TemplatesSettings__input,
+.TemplatesSettings div.TemplatesSettings__textarea {
+    border: 1px solid #d3d9de;
+    background: #fff;
+    font-size: 13px;
+    line-height: 19px;
+    color: #000;
+    outline: none;
+    border-radius: 2px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 4px 9px 5px
+}
+
+.TemplatesSettings div.TemplatesSettings__input {
+    width: 100%;
+    height: 30px
+}
+
+.TemplatesSettings div.TemplatesSettings__textarea {
+    min-height: 47px;
+    max-height: 199px;
+    word-break: break-word;
+    overflow-y: auto
+}
+
+.TemplatesSettings__textarea[disabled] {
+    opacity: .45
 }
 
 .TemplatesSettings__notice {
@@ -5840,6 +5871,10 @@ img.im_photo_thumb {
     z-index: 2;
     display: -ms-flexbox;
     display: flex
+}
+
+.im-chat-input .im_chat-input--buttons>* {
+    transform: translateZ(0)
 }
 
 .im-chat-input .im-chat-input--keyboard-container {
