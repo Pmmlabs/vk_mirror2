@@ -6622,10 +6622,10 @@ div.top_result_baloon a {
 }
 
 .audio_page_player2 .audio_page_player_track_slider.slider.slider_size_1 .slider_handler {
-    height: 7px;
-    width: 7px;
-    top: -3px;
-    margin-left: -3px
+    height: 6px;
+    width: 6px;
+    top: -2.5px;
+    margin-left: -2.5px
 }
 
 .audio_page_player2 .audio_play {
