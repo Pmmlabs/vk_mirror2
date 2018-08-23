@@ -1591,7 +1591,7 @@ var Helpdesk = {
         if (!r) return !1;
         each(geByClass("helpdesk_template_selected", "helpdesk_template_links"), function(e, t) {
             removeClass(t, "helpdesk_template_selected")
-        }), r = r[1].toLowerCase(), console.log("Name part: %s", r);
+        }), r = r[1].toLowerCase();
         var n = [],
             c = [];
         if (each(cur.templates, function(e, t) {

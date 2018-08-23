@@ -23200,11 +23200,11 @@ a.feedBlocks__article:hover {
     background: transparent;
     color: #000;
     font-family: inherit;
-    font-size: inherit
+    font-size: inherit!important
 }
 
 .sendMoneyForm__input_amount {
-    font-size: 64px;
+    font-size: 64px!important;
     font-weight: 300
 }
 
