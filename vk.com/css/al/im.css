@@ -10678,7 +10678,7 @@ body.sf .nim-dialog .nim-dialog--unread {
     padding-right: 20px
 }
 
-.im-create.im-create_classic.im-create_tools .im-create--dcontent .ui_scroll_content {
+.im-create.im-create_classic .im-create--dcontent .ui_scroll_content {
     margin-bottom: 70px
 }
 
@@ -10704,11 +10704,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 }
 
 .im-create.im-create_classic .im-creation--chat-tools {
-    float: left;
-    opacity: 0;
-    visibility: hidden;
-    -o-transition: opacity .15s ease, visibility .15s ease;
-    transition: opacity .15s ease, visibility .15s ease
+    float: left
 }
 
 .im-create.im-create_classic .im-creation--chat-tools .ui_search {
@@ -10732,18 +10728,13 @@ body.sf .nim-dialog .nim-dialog--unread {
     background: #fff;
     height: 70px;
     box-sizing: border-box;
-    bottom: -70px;
+    bottom: 0;
     position: absolute;
     -o-transition: transform 0.15s ease-out, -o-transform 0.15s ease-out;
     transition: transform 0.15s ease-out;
     transition: transform 0.15s ease-out, -o-transform 0.15s ease-out;
     width: 100%;
     padding-left: 0
-}
-
-.im-create.im-create_classic.im-create_classic.im-create_tools .im-create--footer {
-    -o-transform: translateY(-70px);
-    transform: translateY(-70px)
 }
 
 .im-create.im-create_classic .im-create--btn {
@@ -10759,11 +10750,6 @@ body.sf .nim-dialog .nim-dialog--unread {
 .im-create.im-create_classic .im-creation--item:hover {
     padding: 0 20px;
     margin: -1px 0 0
-}
-
-.im-create.im-create_chat-details .im-creation--chat-tools {
-    opacity: 1;
-    visibility: visible
 }
 
 .im-dialog-select {

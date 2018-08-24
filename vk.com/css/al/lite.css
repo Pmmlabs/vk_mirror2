@@ -6248,7 +6248,8 @@ div.top_result_baloon a {
     border-radius: 10px;
     font-size: 16px;
     line-height: 44px;
-    margin-top: 35px;
+    margin-top: 55px;
+    min-width: 165px;
     padding: 0 30px
 }
 
@@ -6269,19 +6270,24 @@ div.top_result_baloon a {
 
 .audio_promo_box .audio_promo_box_content .audio_promo_box_card,
 .audio_promo_box .audio_promo_box_content .audio_promo_box_search {
-    padding: 72px
+    padding: 72px;
+    padding-bottom: 35px
+}
+
+.audio_promo_box .audio_promo_box_content .audio_promo_box_card .audio_promo_box_btn {
+    margin-top: 20px
 }
 
 .audio_promo_box .audio_promo_box_content .audio_promo_box_search_preview,
 .audio_promo_box .audio_promo_box_content .audio_promo_card_cover {
     background-repeat: no-repeat;
     background-size: cover;
-    height: 354px
+    height: 354px;
+    margin-bottom: -15px
 }
 
 .audio_promo_box .audio_promo_box_content .audio_promo_card_cover {
-    background-image: url('/images/audio_promo/artist.png');
-    margin-bottom: 24px
+    background-image: url('/images/audio_promo/artist.png')
 }
 
 .is_2x .audio_promo_box .audio_promo_box_content .audio_promo_card_cover {
@@ -6327,7 +6333,7 @@ div.top_result_baloon a {
 }
 
 .audio_promo_box .audio_promo_box_content .audio_promo_box_search_ok {
-    margin-top: 25px;
+    margin-top: 40px;
     width: 164px
 }
 
@@ -6350,6 +6356,159 @@ div.top_result_baloon a {
 .audio_promo_box .audio_promo_box_content .audio_promo_box_search_line .audio_promo_box_search_album .audio_promo_box_card_track_cover {
     height: 120px;
     width: 120px
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom {
+    font-size: 0;
+    padding: 24px
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_boom_block {
+    background-color: #f0f2f5;
+    border-radius: 6px;
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: 15px;
+    height: 550px;
+    padding-bottom: 25px;
+    padding-top: 100px;
+    position: relative;
+    vertical-align: top;
+    width: 334px
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_boom_block:first-child {
+    margin-right: 24px
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_boom_type {
+    font-family: Proxima Nova, sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 30px;
+    margin-bottom: 35px
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_item {
+    margin-bottom: 15px
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_item:last-child {
+    margin-bottom: 0
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_item_icon {
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 32px;
+    margin-right: 15px;
+    vertical-align: middle;
+    width: 32px
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_item_icon.audio_promo_icon_note {
+    background-image: url('/images/svg_icons/audio_promo/intro_music_outline_32.svg')
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_item_icon.audio_promo_icon_magic {
+    background-image: url('/images/svg_icons/audio_promo/intro_magic_outline_32.svg')
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_item_icon.audio_promo_icon_favorite {
+    background-image: url('/images/svg_icons/audio_promo/intro_favorite_outline_32.svg')
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_item_icon.audio_promo_icon_headphones {
+    background-image: url('/images/svg_icons/audio_promo/intro_headphones_outline_32.svg')
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_item_icon.audio_promo_icon_smile {
+    background-image: url('/images/svg_icons/audio_promo/intro_smile_outline_32.svg')
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_item_icon.audio_promo_icon_download {
+    background-image: url('/images/svg_icons/audio_promo/intro_download_outline_32.svg')
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_boom_free,
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_boom_paid {
+    bottom: 25px;
+    left: 20px;
+    height: 48px;
+    margin: 0;
+    position: absolute;
+    width: calc(100% - 40px)
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_boom_paid {
+    background-color: #fe2c5b;
+    line-height: normal
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_boom_paid_tip {
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 2px;
+    opacity: 0.7
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_boom_friends {
+    bottom: 100px;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 0;
+    left: 20px;
+    line-height: 18px;
+    position: absolute;
+    width: calc(100% - 37px)
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_boom_friends_desc {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    font-size: 13px;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: left;
+    vertical-align: middle
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_boom_friends_photos {
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    padding-left: 15px;
+    text-align: right;
+    vertical-align: middle
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_boom_friend {
+    border: solid 3px #f0f2f5;
+    border-radius: 50%;
+    display: inline-block;
+    float: right;
+    height: 28px;
+    margin-left: -10px;
+    width: 28px
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_boom_friend>img {
+    border-radius: 50%;
+    height: 100%;
+    width: 100%
+}
+
+.audio_promo_box .audio_promo_box_content.audio_promo_box_boom .audio_promo_box_boom_logo {
+    background-image: url('/images/svg_icons/audio_promo/intro_boom_logo.svg');
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 11px;
+    margin: -1px 0 0 3px;
+    vertical-align: middle;
+    width: 48px
 }
 
 .audio_page_player2 {

@@ -22,9 +22,10 @@ var Helpdesk = {
             }
         })
     },
-    agentsProcessedTicketsBox: function(e) {
+    agentsProcessedTicketsBox: function(e, t) {
         showBox("helpdesk?act=processed_log_box", {
-            id: e
+            id: e,
+            section: t
         }, {
             params: {
                 width: 650
@@ -426,9 +427,10 @@ var Helpdesk = {
             }
         } else re("helpdesk_m_table_actions")
     },
-    getNewTicket: function(e, t) {
+    getNewTicket: function(e, t, s) {
         ajax.post("helpdesk?act=a_get_ticket", {
-            hash: t
+            section: t,
+            hash: s
         }, {
             onDone: function(e) {
                 Helpdesk.setActualTicketsContent(e[0], e[1])
@@ -437,6 +439,22 @@ var Helpdesk = {
             hideProgress: unlockButton.pbind(e)
         })
     },
+    saveWeekNorm: function(e, t) {
+        var s = intval(val("norm_input"));
+        cur.norm = s, ajax.post("helpdesk?act=a_save_week_norm", {
+            norm: s,
+            section: e,
+            hash: t
+        })
+    },
+    saveMonthNorm: function(e, t) {
+        var s = intval(val("month_norm_input"));
+        return cur.month_norm = s, ajax.post("helpdesk?act=a_save_month_norm", {
+            norm: s,
+            section: e,
+            hash: t
+        }), !0
+    },
     getNextTicket: function() {
         ajax.post("helpdesk", {
             act: "get_next",
@@ -444,16 +462,16 @@ var Helpdesk = {
             hash: cur.hashes.next_hash
         })
     },
-    delegateAllTickets: function(e, t, s) {
-        return ajax.post("helpdesk", {
-            act: "stop_working",
+    showModerSessionStats: function(e, t, s, o) {
+        showBox("helpdesk?act=moder_session_stats_box", {
             id: e,
-            hash: t
+            section: t,
+            hash: s
         }, {
-            onDone: Helpdesk._show,
-            showProgress: addClass.pbind(s, "tickets_delegate_btn_process"),
-            hideProgress: removeClass.pbind(s, "tickets_delegate_btn_process")
-        }), !1
+            params: {
+                width: 530
+            }
+        })
     },
     showCommentReplies: function(e, t) {
         return showBox("helpdesk", {
@@ -1103,11 +1121,10 @@ var Helpdesk = {
         toggle("tickets_similar", !isVisible("tickets_similar"));
         var t = ge("toggle_similar_link");
         return toggleClass(t, "opened", isVisible("tickets_similar")), isVisible("tickets_similar") ? (t.innerHTML = getLang("support_hide_similar"), ge("similar_search") && cur.searchDD.updateInput(), cur.similarCount < 10 ? hide("tickets_toup") : isVisible("tickets_toup") && (setStyle(ge("tickets_toup"), {
-                height: "0px"
-            }), setStyle(ge("tickets_toup"), {
-                height: getSize(ge("tickets_similar"))[1]
-            }))) : t.innerHTML = cur.similarCount ? getLang("support_show_similar", cur.similarCount) : getLang("support_search_similar"),
-            e && scrollToTop(0), !1
+            height: "0px"
+        }), setStyle(ge("tickets_toup"), {
+            height: getSize(ge("tickets_similar"))[1]
+        }))) : t.innerHTML = cur.similarCount ? getLang("support_show_similar", cur.similarCount) : getLang("support_search_similar"), e && scrollToTop(0), !1
     },
     toggleSimilarRows: function(e) {
         var t = attr(e, "toggle-text"),
@@ -1921,10 +1938,11 @@ var Helpdesk = {
             height: e[1]
         })
     },
-    takeRest: function(e, t, s) {
-        buttonLocked(e) || (cur.helpdeskRestBox = showFastBox(getLang("global_warning"), getLang(s ? "helpdesk_need_a_rest_leave" : "helpdesk_need_a_rest"), getLang("helpdesk_take_rest"), function() {
+    takeRest: function(e, t, s, o) {
+        buttonLocked(e) || (cur.helpdeskRestBox = showFastBox(getLang("global_warning"), getLang(o ? "helpdesk_need_a_rest_leave" : "helpdesk_need_a_rest"), getLang("helpdesk_take_rest"), function() {
             ajax.post("helpdesk?act=a_take_rest", {
-                hash: t
+                section: t,
+                hash: s
             }, {
                 progress: cur.helpdeskRestBox.progress,
                 onDone: function(e) {

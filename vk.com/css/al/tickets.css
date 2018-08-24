@@ -393,6 +393,15 @@ body.dev .tickets_reply_row {
     line-height: 17px
 }
 
+.tickets_reply_text_quote {
+    background: #f4f5f8;
+    font-family: Monaco, Menlo, Ubuntu Mono, Consolas, source-code-pro, monospace;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    margin: 9px 0;
+    padding: 9px 10px
+}
+
 .tickets_sys_content__date {
     color: #939393;
     white-space: nowrap

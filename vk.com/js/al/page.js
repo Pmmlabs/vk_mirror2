@@ -5025,7 +5025,7 @@ var Wall = {
         options = extend({}, options);
 
         if (window.mvcur && mvcur.post == post) {
-            return Videoview.sendComment(post, ev, options.stickerId);
+            return Videoview.sendComment(post, ev, options);
         }
 
         var wallLayer = (window.cur.wallLayer == post),

@@ -737,7 +737,8 @@ body.sf .mention_tt_actions {
 }
 
 .sf_types_table {
-    width: 100%
+    width: 100%;
+    text-align: center
 }
 
 .sf_massaction_table {
@@ -753,11 +754,12 @@ body.sf .mention_tt_actions {
     -o-transition: background-color 100ms linear;
     transition: background-color 100ms linear;
     margin: 5px 2px;
-    padding: 6px;
+    padding: 8px;
     position: relative;
     text-align: center;
     background: #eee;
-    cursor: pointer
+    cursor: pointer;
+    display: inline-block
 }
 
 .sf_type:hover {
@@ -768,13 +770,20 @@ body.sf .mention_tt_actions {
     background: #698aad
 }
 
+.sf_type_specific {
+    text-align: left
+}
+
 .sf_subscription_button {
     width: 175px
 }
 
 .sf_type_label {
+    display: inline-block;
     font-size: 12px;
-    color: #656565
+    color: #656565;
+    min-width: 150px;
+    vertical-align: middle
 }
 
 .sf_type:hover .sf_type_label {
@@ -787,6 +796,10 @@ body.sf .mention_tt_actions {
 
 .sf_type_active:hover .sf_type_label {
     color: #e9ecf1
+}
+
+.sf_type_specific_label {
+    padding-left: 8px
 }
 
 .sf_type_prg {
@@ -806,8 +819,10 @@ body.sf .mention_tt_actions {
 }
 
 .sf_type_info {
-    padding-top: 5px;
-    color: #6a7989
+    color: #6a7989;
+    display: inline-block;
+    max-width: 502px;
+    vertical-align: middle
 }
 
 .sf_type_user:hover {

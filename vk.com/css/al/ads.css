@@ -40,14 +40,16 @@
 
 .ads_schedule_cell {
     float: left;
-    width: 16px;
-    height: 16px;
+    width: 17px;
+    height: 17px;
     background-color: #fff;
     border-top: 0 solid transparent;
     border-left: 0 solid transparent;
     border-right: 1px solid #ced3d8;
     border-bottom: 1px solid #ced3d8;
-    cursor: pointer
+    cursor: pointer;
+    overflow: hidden;
+    box-sizing: border-box
 }
 
 .ads_schedule_cell_checked {
@@ -57,10 +59,11 @@
 
 .ads_schedule_cell:hover,
 .ads_schedule_cell_hovered {
-    background-color: #f5f7fa
+    background-color: #f0f2f5
 }
 
 .ads_schedule_cell:first-child {
+    width: 18px;
     border-left: 1px solid #ced3d8
 }
 
@@ -174,7 +177,7 @@
     cursor: pointer;
     color: #939393;
     font-size: 12px;
-    width: 16px;
+    width: 17px;
     height: 15px;
     text-align: center;
     line-height: 15px;
@@ -197,6 +200,17 @@
 
 .ads_edit_schedule_wide .ads_schedule_table {
     margin-left: 0
+}
+
+.ads_schedule_hour {
+    width: 17px;
+    height: 18px;
+    overflow: hidden;
+    box-sizing: border-box
+}
+
+.ads_schedule_hour:first-child {
+    width: 18px
 }
 
 .ads_edit_schedule_settings {

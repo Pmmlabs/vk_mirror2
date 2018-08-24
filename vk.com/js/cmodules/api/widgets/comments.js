@@ -42,12 +42,12 @@
         return o.d(t, "a", t), t
     }, o.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, o.p = "", o(o.s = 14)
+    }, o.p = "", o(o.s = 1)
 }({
-    14: function(e, t, o) {
-        e.exports = o(59)
+    1: function(e, t, o) {
+        e.exports = o(7)
     },
-    59: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+    7: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
         "use strict";
         __webpack_require__.r(__webpack_exports__);
         var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
@@ -737,7 +737,7 @@
                                 }
                             },
                             sendReply: function(e, t, o) {
-                                if (o = extend({}, o), window.mvcur && mvcur.post == e) return Videoview.sendComment(e, t, o.stickerId);
+                                if (o = extend({}, o), window.mvcur && mvcur.post == e) return Videoview.sendComment(e, t, o);
                                 var s, i = window.cur.wallLayer == e,
                                     n = i ? wkcur : window.cur,
                                     r = ge("reply_field" + e),

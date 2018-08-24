@@ -1121,11 +1121,13 @@ var Photoview = {
                 s = p && data(p, "composer"),
                 v = (cur.pvReplyNames[(cur.reply_to || {})[0]] || [])[1],
                 n = geByClass1("addpost_button", cur.pvReplyForm),
-                c = t ? t.stickerId : !1;
+                t = t || {},
+                c = t.stickerId;
             if (c) var u = {
                 message: "",
                 attach1_type: "sticker",
-                attach1: c
+                attach1: c,
+                sticker_referrer: t.sticker_referrer
             };
             else {
                 var u = s ? Composer.getSendParams(s, Photoview.sendComment.pbind(o)) : {
