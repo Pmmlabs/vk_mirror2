@@ -342,7 +342,7 @@ var stVersions = {
     'docs.css': 27046572671,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 16991733118,
-    'helpdesk.js': 1904089578,
+    'helpdesk.js': 2530685245,
     'helpdesk.css': 30153201232,
     'tickets.js': 109698752,
     'tickets.css': 33370171135,
@@ -634,4 +634,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 8630;
+var _rnd = 8877;

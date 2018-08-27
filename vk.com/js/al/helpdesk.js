@@ -2117,6 +2117,19 @@ var Helpdesk = {
             }
         })
     },
+    dataRequestCreateArchive: function(e, t) {
+        var s = {
+                act: "a_data_request_create_archive",
+                ticket_id: e,
+                hash: t
+            },
+            o = function(e) {
+                showDoneBox(e)
+            };
+        ajax.post("/helpdesk", s, {
+            onDone: o
+        })
+    },
     _eof: 1
 };
 try {
