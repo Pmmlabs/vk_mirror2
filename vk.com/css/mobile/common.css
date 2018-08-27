@@ -39867,9 +39867,9 @@ body.apps_settingsPageBody {
     position: fixed;
     top: 0;
     right: 0;
-    bottom: 0;
+    bottom: auto;
     left: 0;
-    height: auto!important;
+    height: 100%;
     min-height: 0!important
 }
 

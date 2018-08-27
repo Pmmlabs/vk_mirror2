@@ -822,7 +822,8 @@ body.sf .mention_tt_actions {
     color: #6a7989;
     display: inline-block;
     max-width: 502px;
-    vertical-align: middle
+    vertical-align: middle;
+    letter-spacing: -0.36px
 }
 
 .sf_type_user:hover {
