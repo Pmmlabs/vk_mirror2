@@ -35,7 +35,7 @@ var Settings = {
             val: Privacy.getValue(t),
             hash: cur.options.hash
         };
-        if ("search_access" == t || "updates" == t || "company_messages" == t) {
+        if ("search_access" == t || "updates" == t || "company_messages" == t || "profile_closed" == t) {
             if ("updates" == t) {
                 var o = Privacy.getValue(t);
                 if ("0" != o.substr(0, 1)) {
@@ -46,8 +46,18 @@ var Settings = {
             e = "al_settings.php", s.act = "a_save_special"
         } else e = "al_friends.php", s.act = "save_privacy";
         clearTimeout(cur["privacy_timer_" + t]), cur["privacy_timer_" + t] = setTimeout(ajax.post.pbind(e, s, {
-            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("privacy_edit_" + t)
+            onDone: function(e) {
+                return e ? nav.reload({
+                    preventScroll: !0,
+                    onDone: function(t) {
+                        Settings.savePrivacyShowSaved(t), updateNarrow()
+                    }.pbind(t)
+                }) : void Settings.savePrivacyShowSaved(t)
+            }
         }), 500)
+    },
+    savePrivacyShowSaved: function(t) {
+        window.uiPageBlock && uiPageBlock.showSaved("privacy_edit_" + t)
     },
     initPrivacy: function() {
         if (cur.onPrivacyChanged = Settings.savePrivacyKey, nav.objLoc.hl) {
@@ -63,12 +73,13 @@ var Settings = {
         }, 1500))
     },
     scrollHighlightPrivacy: function(t) {
-        if (t = ge(t)) {
-            var e = getXY(t),
-                s = e[1],
-                o = scrollGetY() + getSize("page_header")[1];
-            o > s ? (scrollToY(s, 300), setTimeout(Settings.highlightPrivacy.pbind(t), 300)) : Settings.highlightPrivacy(t)
-        }
+        t = ge(t), t && setTimeout(function() {
+            var e = getXY(t)[1],
+                s = getSize("page_header")[1],
+                o = scrollGetY(),
+                n = clientHeight();
+            s + o > e || e > o + n ? (scrollToY(e), setTimeout(Settings.highlightPrivacy.pbind(t), 300)) : Settings.highlightPrivacy(t)
+        }, 0)
     },
     initSearchBox: function(t, e, s) {
         extend(cur, e), s && ajax.preload(cur.searchBoxAddress, cur.searchBoxParams, s), window.uiScrollBox && uiScrollBox.init(t, {

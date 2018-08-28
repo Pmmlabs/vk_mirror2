@@ -1082,6 +1082,11 @@
     background: #4bb34b url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%2220%2037%2016%2016%22%3E%3Cstyle%3E.a%7Bfill%3A%23FFF%3B%7D%3C%2Fstyle%3E%3Cdesc%3E%20%20Created%20with%20Sketch.%3C%2Fdesc%3E%3Cg%20fill%3D%22none%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%228%22%20r%3D%228%22%2F%3E%3Crect%20x%3D%2227%22%20y%3D%2241%22%20width%3D%222%22%20height%3D%228%22%20class%3D%22a%22%2F%3E%3Crect%20transform%3D%22translate(20%2037)translate(8%208)rotate(-90)%22%20x%3D%22-1%22%20y%3D%22-4%22%20width%3D%222%22%20height%3D%228%22%20class%3D%22a%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat
 }
 
+.feedback_suggested_post_published_row .feedback_photo_icon {
+    display: block;
+    background: #ffa000 url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%2220%20323%2016%2016%22%3E%3Cdesc%3E%20%20Created%20with%20Sketch.%3C%2Fdesc%3E%3Cg%20fill%3D%22none%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%228%22%20r%3D%228%22%2F%3E%3Cpath%20d%3D%22M25.6%20330.4C25.3%20330.1%2024.7%20330.1%2024.4%20330.4%2024.1%20330.7%2024.1%20331.3%2024.4%20331.6L26.4%20333.6C26.7%20333.9%2027.3%20333.9%2027.6%20333.6L31.6%20329.6C31.9%20329.3%2031.9%20328.7%2031.6%20328.4%2031.3%20328.1%2030.7%20328.1%2030.4%20328.4L27%20331.8%2025.6%20330.4Z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat
+}
+
 .feedback_like_row .feedback_photo_icon {
     display: block;
     background: #e64646 url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%2220%2059%2016%2016%22%3E%3Cdesc%3E%20%20Created%20with%20Sketch.%3C%2Fdesc%3E%3Cg%20fill%3D%22none%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%228%22%20r%3D%228%22%2F%3E%3Cpath%20d%3D%22M28.7%2070.3C28.3%2070.7%2027.7%2070.7%2027.3%2070.3L24.6%2067.6C23.8%2066.7%2023.8%2065.4%2024.6%2064.6%2025.4%2063.8%2026.7%2063.8%2027.5%2064.6%2027.7%2064.8%2027.9%2065.1%2028%2065.4%2028.1%2065.1%2028.3%2064.8%2028.5%2064.6%2029.3%2063.8%2030.6%2063.8%2031.4%2064.6%2032.2%2065.4%2032.2%2066.7%2031.4%2067.6L28.7%2070.3Z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat

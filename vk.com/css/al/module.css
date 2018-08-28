@@ -787,8 +787,21 @@
 }
 
 .page_counter .label {
-    color: #828282;
-    line-height: 15px
+    line-height: 15px;
+    color: #828282
+}
+
+.page_counter:not([href]):not([onclick]):hover {
+    text-decoration: none;
+    cursor: auto
+}
+
+.page_counter:not([href]):not([onclick]):hover .label {
+    color: #828282
+}
+
+.page_counter:not([href]):not([onclick]) .count {
+    color: #656565
 }
 
 .page_counter:hover {

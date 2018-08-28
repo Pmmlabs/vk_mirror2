@@ -8680,6 +8680,14 @@ button.wall_block_app_btn {
     background: url(/images/tooltip_arrow_up.gif) no-repeat
 }
 
+.page_actions_closed_profile {
+    font-size: 13px;
+    line-height: 18px;
+    text-align: center;
+    padding-top: 12px;
+    color: #828282
+}
+
 .page_actions_cont {
     position: relative
 }
@@ -9785,12 +9793,7 @@ button.wall_block_app_btn {
     width: 36px
 }
 
-.ownerButton__title {
-    color: #222
-}
-
 .ownerButton b {
-    color: #222;
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto
@@ -9798,7 +9801,28 @@ button.wall_block_app_btn {
 
 .ownerButton_music_awards b {
     display: block;
-    line-height: 20px
+    line-height: 20px;
+    color: #222
+}
+
+.ownerButton_music_awards .ownerButton__title,
+.ownerButton_wow_2018 b,
+.ownerButton_wow_2018 .ownerButton__title {
+    color: #222
+}
+
+.ownerButton_closed_profiles {
+    padding: 13px 15px
+}
+
+.ownerButton_closed_profiles .ownerButton__title,
+.ownerButton_closed_profiles b {
+    color: #222
+}
+
+.ownerButton_closed_profiles .ownerButton__icon {
+    height: 15px;
+    width: 15px
 }
 
 .post_author_data {

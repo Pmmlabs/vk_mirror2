@@ -5538,16 +5538,26 @@ input.wide_button {
     padding: 7px;
     display: block;
     border-bottom: 1px solid #eee;
-    font-weight: 700;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
 }
 
-._hover ._touched:hover .pm_item,
-._hover .pm_item:hover,
-._touch ._touched.hover .pm_item,
-._touch .pm_item.hover {
+._hover ._touched:hover a.pm_item,
+._hover a.pm_item:hover,
+._touch ._touched.hover a.pm_item,
+._touch a.pm_item.hover {
     text-decoration: none;
     background-color: #e9edf1
+}
+
+div.pm_item {
+    color: #909499
+}
+
+div.pm_item .pm_counter {
+    color: #a8adb3
 }
 
 .ii_counter,
@@ -5648,6 +5658,9 @@ input.wide_button {
     display: block;
     border-bottom: 1px solid #eee;
     padding: 5px 7px;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     text-decoration: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
 }
@@ -5661,10 +5674,6 @@ input.wide_button {
 .cm_item_loading .cm_label {
     background: url(/images/mobile/mupload.gif?1) no-repeat 100%;
     display: block
-}
-
-.profile_menu .cm_item {
-    font-weight: 700
 }
 
 .mv_details {

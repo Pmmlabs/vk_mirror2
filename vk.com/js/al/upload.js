@@ -1661,18 +1661,21 @@ if (!window.Upload) {
         },
 
         terminateAllUploads: function() {
-            each(this.checked, (iUpload) => {
+            if (!this.checked) {
+                return;
+            }
+            each(this.checked, function(iUpload) {
                 iUpload = +iUpload;
                 if (!Upload.isSomethingUploading(iUpload)) {
                     return;
                 }
 
-                const options = Upload.options[iUpload];
+                var options = Upload.options[iUpload];
                 if (!options) {
                     return;
                 }
 
-                let fileName = '';
+                var fileName = '';
 
                 if (options.filesQueue && options.filesQueue.length) {
                     options.filesQueue = [];

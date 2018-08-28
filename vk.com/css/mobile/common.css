@@ -5541,16 +5541,26 @@ input.wide_button {
     padding: 7px;
     display: block;
     border-bottom: 1px solid #eee;
-    font-weight: 700;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
 }
 
-._hover ._touched:hover .pm_item,
-._hover .pm_item:hover,
-._touch ._touched.hover .pm_item,
-._touch .pm_item.hover {
+._hover ._touched:hover a.pm_item,
+._hover a.pm_item:hover,
+._touch ._touched.hover a.pm_item,
+._touch a.pm_item.hover {
     text-decoration: none;
     background-color: #e9edf1
+}
+
+div.pm_item {
+    color: #909499
+}
+
+div.pm_item .pm_counter {
+    color: #a8adb3
 }
 
 .ii_counter,
@@ -5651,6 +5661,9 @@ input.wide_button {
     display: block;
     border-bottom: 1px solid #eee;
     padding: 5px 7px;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     text-decoration: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
 }
@@ -5664,10 +5677,6 @@ input.wide_button {
 .cm_item_loading .cm_label {
     background: url(/images/mobile/mupload.gif?1) no-repeat 100%;
     display: block
-}
-
-.profile_menu .cm_item {
-    font-weight: 700
 }
 
 .mv_details {
@@ -33094,6 +33103,38 @@ body.apps_settingsPageBody {
     font-size: 15px
 }
 
+.SwitcherConfirm {
+    position: relative
+}
+
+.SwitcherConfirm__control {
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0
+}
+
+.SwitcherConfirm__description {
+    font-size: 14px;
+    line-height: 1.29;
+    color: #909499
+}
+
+.SwitcherConfirm__popupTitle {
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.SwitcherConfirm__warningWhenOff,
+.SwitcherConfirm__warningWhenOn {
+    display: none
+}
+
+.SwitcherConfirm_checked_no .SwitcherConfirm__warningWhenOff,
+.SwitcherConfirm_checked_yes .SwitcherConfirm__warningWhenOn {
+    display: block
+}
+
 .Bell {
     display: -webkit-box;
     display: -webkit-flex;
@@ -36446,6 +36487,65 @@ body.apps_settingsPageBody {
 .messenger .MoneyCollectPinned__title {
     font-size: 15px;
     line-height: 1.33
+}
+
+.ClosedProfileWall {
+    padding-top: 44px;
+    padding-bottom: 56px;
+    text-align: center;
+    background: #fff
+}
+
+.ClosedProfileWall__icon {
+    margin: 0 auto;
+    width: 56px;
+    height: 56px;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-image: url('/images/mobile/icons/private_profile.png')
+}
+
+.vk_2x .ClosedProfileWall__icon {
+    background-image: url('/images/mobile/icons/private_profile_2x.png')
+}
+
+.ClosedProfileWall__title {
+    color: #777;
+    font-size: 16px;
+    line-height: 1.25;
+    margin-top: 12px;
+    margin-bottom: 6px;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.ClosedProfileWall__description {
+    max-width: 350px;
+    margin: 0 auto;
+    color: #777;
+    font-size: 14px;
+    line-height: 1.29
+}
+
+.ClosedProfileWarning {
+    color: #909499;
+    font-size: 14px;
+    text-align: center;
+    border-bottom: 1px solid #eee
+}
+
+.ClosedProfileWarning__lastWordAndIcon {
+    white-space: nowrap
+}
+
+.ClosedProfileWarning__icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 4px
 }
 
 .notification {

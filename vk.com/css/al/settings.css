@@ -387,6 +387,10 @@
     border-color: transparent
 }
 
+.settings_privacy_row.settings_privacy_row_oneline .settings_label {
+    padding: 11px 10px 0 0
+}
+
 .settings_privacy_row .settings_label {
     width: 245px;
     padding: 2px 10px 0 0;

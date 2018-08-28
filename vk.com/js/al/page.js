@@ -9495,13 +9495,27 @@ Composer = {
         }
     },
     showSelectList: function(composer, term) {
-        composer.wddInput.focused = true;
-        WideDropdown.items(composer.wdd.id, cur.wallMentions || []);
-        WideDropdown._updateList(composer.wdd, false, term);
+        function _showSelectList(wallMentions) {
+            composer.wddInput.focused = true;
+            WideDropdown.items(composer.wdd.id, wallMentions || []);
+            WideDropdown._updateList(composer.wdd, false, term);
 
-        var options = composer.options || {};
-        if (options.onShow) {
-            options.onShow();
+            var options = composer.options || {};
+            if (options.onShow) {
+                options.onShow();
+            }
+        }
+
+        if (typeof cur.wallMentions === 'function') {
+            cur.wallMentions = cur.wallMentions()
+        }
+
+        if (cur.wallMentions && (typeof cur.wallMentions.then === 'function')) {
+            cur.wallMentions.then(function(wallMentions) {
+                _showSelectList(wallMentions);
+            })
+        } else {
+            _showSelectList(cur.wallMentions);
         }
     },
     onItemSelect: function(composer, item) {

@@ -262,12 +262,12 @@ var Privacy = {
                     var f = r[d],
                         p = f[0];
                     if (p > 0) {
-                        var _ = f[4].replace(/'/g, "");
-                        v = !0, o.push('<a href="/' + (_ ? _ : "id" + p) + '" onclick="return nav.go(this, event)">' + f[6] + "</a>")
+                        var h = f[4].replace(/'/g, "");
+                        v = !0, o.push('<a href="/' + (h ? h : "id" + p) + '" onclick="return nav.go(this, event)">' + f[6] + "</a>")
                     } else {
-                        var h = -p,
-                            y = (h - 1) % 8 + 1;
-                        o.push('<a href="/friends?section=list' + h + '" class="group' + y + '">' + a[h] + "</a>")
+                        var _ = -p,
+                            y = (_ - 1) % 8 + 1;
+                        o.push('<a href="/friends?section=list' + _ + '" class="group' + y + '">' + a[_] + "</a>")
                     }
                 }
                 v && (n = c[Privacy.someType]), o = ": " + o.join(", "), u > 5 && (o += " " + getLang("privacy_N_friends_some", u - 5))
@@ -277,12 +277,12 @@ var Privacy = {
                     var f = t[d],
                         p = f[0];
                     if (p > 0) {
-                        var _ = f[4].replace(/'/g, "");
-                        S.push('<a href="/' + (_ ? _ : "id" + p) + '" onclick="return nav.go(this, event)">' + f[6] + "</a>")
+                        var h = f[4].replace(/'/g, "");
+                        S.push('<a href="/' + (h ? h : "id" + p) + '" onclick="return nav.go(this, event)">' + f[6] + "</a>")
                     } else {
-                        var h = -p,
-                            y = (h - 1) % 8 + 1;
-                        S.push('<a href="/friends?section=list' + h + '" class="group' + y + '">' + a[h] + "</a>")
+                        var _ = -p,
+                            y = (_ - 1) % 8 + 1;
+                        S.push('<a href="/friends?section=list' + _ + '" class="group' + y + '">' + a[_] + "</a>")
                     }
                 }
                 o += ", " + getLang("global_privacy_except") + " " + S.join(", "), u > 5 && (o += " " + getLang("privacy_N_friends_more", u - 5))
@@ -298,12 +298,13 @@ var Privacy = {
         if (e == Privacy.customType) {
             var c, a, n = [],
                 o = "";
-            return s[0] == Privacy.customType ? (c = s[1], a = s[2], n = s[3]) : s[0] == Privacy.someType || s[0] == Privacy.listsType ? (c = 0, a = s[2]) : (c = 1, a = s[2]), cur.onCprivSave = Privacy.customSaved.pbind(t), cur.privacy.custom_box_type ? o = cur.privacy.custom_box_type : "apps_invite" == t || "videocalls" == t ? o = "fronly" : "hidden_friends" == t && (o = "hidden_friends"), showBox("al_friends.php", extend(cur.privacy.chooseBoxOpts || {}, {
+            return s[0] == Privacy.customType ? (c = s[1], a = s[2], n = s[3]) : s[0] == Privacy.someType || s[0] == Privacy.listsType ? (c = 0, a = s[2]) : (c = 1, a = s[2]), cur.onCprivSave = Privacy.customSaved.pbind(t), cur.privacy.custom_box_type && (o = cur.privacy.custom_box_type), showBox("al_friends.php", extend(cur.privacy.chooseBoxOpts || {}, {
                 act: "custom_privacy_box",
                 type: c,
                 plus: a.join(","),
                 minus: n.join(","),
-                opt: o
+                opt: o,
+                key: t
             }), {
                 stat: ["ui_controls.js", "ui_controls.css"]
             })
@@ -354,7 +355,7 @@ var Privacy = {
         if (i > 0) return void(cur.hidePrivacyTimer = setTimeout(Privacy.hide.pbind(0), i));
         clearTimeout(cur.hidePrivacyTimer);
         var e = ge("privacy_header");
-        e && (-1 == i ? (hide(cur.privEl), e && e.tt && e.tt.hide()) : isVisible && (fadeOut(cur.privEl, 200), e.tt && e.tt.hide()), cur.privSel = cur.privSelIndex = !1, removeEvent(document, "click", Privacy.qhide))
+        e && (-1 == i ? (hide(cur.privEl), e && e.tt && isFunction(e.tt.hide) && e.tt.hide()) : isVisible && (fadeOut(cur.privEl, 200), e && e.tt && isFunction(e.tt.hide) && e.tt.hide()), cur.privSel = cur.privSelIndex = !1, removeEvent(document, "click", Privacy.qhide))
     },
     show: function(i, e, r, t) {
         var s = cur.privacy[r],
@@ -364,7 +365,7 @@ var Privacy = {
                 if (cur.privEl.parentNode != l) {
                     re(cur.privEl), cur.privEl = l.appendChild(cur.privEl);
                     var c = ge("privacy_header");
-                    c && c.tt && c.tt.hide()
+                    c && c.tt && isFunction(c.tt.hide) && c.tt.hide()
                 }
             } else cur.privEl = l.appendChild(ce("div", {
                 id: "privacy_dropdown",
@@ -382,31 +383,31 @@ var Privacy = {
             }), cur.privSelIndex = s[0], o[cur.privSelIndex] && (cur.privSelIndex = 0);
             var v, d, f = [],
                 p = !1;
-            for (var _ in n) {
+            for (var h in n) {
                 p = !0;
                 break
             }
             f.push('<div class="header" onclick="Privacy.hide(-1)"><div id="privacy_header" class="header_label">' + i.innerHTML + "</div></div>"), f.push('<div class="body">');
-            for (var _ in a)
-                if (!o[_]) {
-                    if (v = _ == cur.privSelIndex && _ != Privacy.listsType ? "_sel" : "", d = "onmouseover=\"Privacy.select('" + _ + "')\" onclick=\"Privacy.choose(event, '" + _ + "')\"", _ == Privacy.listsType) {
+            for (var h in a)
+                if (!o[h]) {
+                    if (v = h == cur.privSelIndex && h != Privacy.listsType ? "_sel" : "", d = "onmouseover=\"Privacy.select('" + h + "')\" onclick=\"Privacy.choose(event, '" + h + "')\"", h == Privacy.listsType) {
                         if (!p) continue
-                    } else d += " onmouseout=\"Privacy.unselect('" + _ + "')\"";
-                    v && _ == Privacy.someType && (v += "_plus"), f.push('<div class="item' + v + '" id="privacy_item' + _ + '" ' + d + ">" + a[_] + "</div>")
+                    } else d += " onmouseout=\"Privacy.unselect('" + h + "')\"";
+                    v && h == Privacy.someType && (v += "_plus"), f.push('<div class="item' + v + '" id="privacy_item' + h + '" ' + d + ">" + a[h] + "</div>")
                 }
             if (a[Privacy.listsType] && p) {
-                var h = cur.privSelIndex != Privacy.listsType;
+                var _ = cur.privSelIndex != Privacy.listsType;
                 f.push('<div id="privacy_lists" class="privacy_lists">'), f.push('<div class="l_header" onclick="return cancelEvent(event)"><div class="l_header_label">' + a[Privacy.listsType] + "</div></div>");
-                for (var _ in n) {
-                    var y = parseInt(_),
-                        v = h ? "" : inArray(-y, s[2]) ? "_sel" : "";
-                    f.push('<div class="l_item' + v + '" id="privacy_l_item' + y + '" onclick="Privacy.choose(event, ' + Privacy.listsType + ", " + y + ')"><div class="privacy_item_icon"></div>' + n[_] + "</div>")
+                for (var h in n) {
+                    var y = parseInt(h),
+                        v = _ ? "" : inArray(-y, s[2]) ? "_sel" : "";
+                    f.push('<div class="l_item' + v + '" id="privacy_l_item' + y + '" onclick="Privacy.choose(event, ' + Privacy.listsType + ", " + y + ')"><div class="privacy_item_icon"></div>' + n[h] + "</div>")
                 }
                 f.push("</div>")
             }
             f.push("</div>"), cur.privRows.innerHTML = f.join(""), cur.privSel = r;
             var S = data(cur.privEl, "tween");
-            if (S && S.stop(!0), show(cur.privEl), a[Privacy.listsType] && h && hide("privacy_lists"), Privacy.toup = !1, getClientRectOffsetY(cur.privEl) > 0 && getClientRectOffsetY(cur.privEl, !1, getSize(cur.privEl)[1]) > 0) {
+            if (S && S.stop(!0), show(cur.privEl), a[Privacy.listsType] && _ && hide("privacy_lists"), Privacy.toup = !1, getClientRectOffsetY(cur.privEl) > 0 && getClientRectOffsetY(cur.privEl, !1, getSize(cur.privEl)[1]) > 0) {
                 Privacy.toup = !0;
                 var g = cur.privRows;
                 g.appendChild(g.firstChild);
