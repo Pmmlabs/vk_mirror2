@@ -1660,6 +1660,39 @@ if (!window.Upload) {
             }
         },
 
+        terminateAllUploads: function() {
+            each(this.checked, (iUpload) => {
+                iUpload = +iUpload;
+                if (!Upload.isSomethingUploading(iUpload)) {
+                    return;
+                }
+
+                const options = Upload.options[iUpload];
+                if (!options) {
+                    return;
+                }
+
+                let fileName = '';
+
+                if (options.filesQueue && options.filesQueue.length) {
+                    options.filesQueue = [];
+                }
+
+                if (options.xhr && options.xhr.readyState !== 4 && options.xhr.readyState !== 0) {
+                    fileName = options.file_name;
+                }
+
+                if (options.chunked && options.chunkedUpload && options.chunkedUpload.activeRequests.length) {
+                    fileName = options.chunkedUpload.fileName;
+                    this.terminateUpload(iUpload, fileName);
+                }
+
+                if (fileName) {
+                    this.terminateUpload(iUpload, fileName);
+                }
+            });
+        },
+
         startNextQueue: function(iUpload) {
             if (cur.multiProgressIndex === undefined) {
                 setTimeout(function() {

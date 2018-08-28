@@ -7461,6 +7461,7 @@ img.im_photo_thumb {
 
 .im-mess .im-mess--edit,
 .im-mess .im-mess--fav,
+.im-mess .im-mess--forward,
 .im-mess .im-mess--reply {
     display: inline-block;
     vertical-align: top;
@@ -7472,11 +7473,23 @@ img.im_photo_thumb {
 
 .im-mess .im-mess--edit:active,
 .im-mess .im-mess--fav:active,
+.im-mess .im-mess--forward:active,
 .im-mess .im-mess--reply:active {
     -o-transform: scale(0.9);
     transform: scale(0.9)
 }
 
+.im-mess .im-mess--forward:active {
+    -o-transform: scale(0.9) scaleX(-1);
+    transform: scale(0.9) scaleX(-1)
+}
+
+.im-mess .im-mess--forward {
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1)
+}
+
+.im-mess .im-mess--forward,
 .im-mess .im-mess--reply {
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2212%22%20viewBox%3D%220%200%2014%2012%22%3E%3Cpath%20fill%3D%22%23828A99%22%20d%3D%22M6%204v-3c0-.6-.3-.7-.7-.3l-4.6%204.6c-.4.4-.4%201%200%201.4l4.6%204.6c.4.4.7.3.7-.3v-3c4%200%206.1%201.2%208%204-.8-4-3-8-8-8z%22%2F%3E%3C%2Fsvg%3E") 50% no-repeat
 }
@@ -7532,6 +7545,12 @@ img.im_photo_thumb {
     background-position: 0 -20px
 }
 
+.im-mess.im-mess_gift .im-mess--forward {
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1)
+}
+
+.im-mess.im-mess_gift .im-mess--forward,
 .im-mess.im-mess_gift .im-mess--reply {
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2212%22%20viewBox%3D%220%200%2014%2012%22%3E%3Cpath%20fill%3D%22%23877a5e%22%20d%3D%22M6%204v-3c0-.6-.3-.7-.7-.3l-4.6%204.6c-.4.4-.4%201%200%201.4l4.6%204.6c.4.4.7.3.7-.3v-3c4%200%206.1%201.2%208%204-.8-4-3-8-8-8z%22%2F%3E%3C%2Fsvg%3E") 50% no-repeat
 }
@@ -7630,6 +7649,7 @@ img.im_photo_thumb {
 
 .im-mess.im-mess_spam .im-mess--edit,
 .im-mess.im-mess_spam .im-mess--fav,
+.im-mess.im-mess_spam .im-mess--forward,
 .im-mess.im-mess_spam .im-mess--reply {
     display: none
 }
@@ -7648,9 +7668,11 @@ img.im_photo_thumb {
 .im-mess.im-mess_sending.im-mess_failed.im-mess_unread .im-mess--check,
 .im-mess.im-mess_failed .im-mess--edit,
 .im-mess.im-mess_failed .im-mess--fav,
+.im-mess.im-mess_failed .im-mess--forward,
 .im-mess.im-mess_failed .im-mess--reply,
 .im-mess.im-mess_sending.im-mess_failed.im-mess_unread .im-mess--edit,
 .im-mess.im-mess_sending.im-mess_failed.im-mess_unread .im-mess--fav,
+.im-mess.im-mess_sending.im-mess_failed.im-mess_unread .im-mess--forward,
 .im-mess.im-mess_sending.im-mess_failed.im-mess_unread .im-mess--reply {
     display: none
 }
@@ -7757,6 +7779,7 @@ img.im_photo_thumb {
 .im-mess.im-mess_unread.im-mess_sending .im-mess--check,
 .im-mess.im-mess_unread.im-mess_sending .im-mess--edit,
 .im-mess.im-mess_unread.im-mess_sending .im-mess--fav,
+.im-mess.im-mess_unread.im-mess_sending .im-mess--forward,
 .im-mess.im-mess_unread.im-mess_sending .im-mess--reply {
     display: none
 }
@@ -7778,9 +7801,11 @@ img.im_photo_thumb {
 
 .history_a11y .im-mess.im-mess_selected .im-mess--edit,
 .history_a11y .im-mess.im-mess_selected .im-mess--fav,
+.history_a11y .im-mess.im-mess_selected .im-mess--forward,
 .history_a11y .im-mess.im-mess_selected .im-mess--reply,
 .im-mess:hover .im-mess--edit,
 .im-mess:hover .im-mess--fav,
+.im-mess:hover .im-mess--forward,
 .im-mess:hover .im-mess--reply {
     visibility: visible;
     opacity: 0.5
@@ -7788,11 +7813,13 @@ img.im_photo_thumb {
 
 .im-mess .im-mess--edit:hover,
 .im-mess .im-mess--fav:hover,
+.im-mess .im-mess--forward:hover,
 .im-mess .im-mess--reply:hover {
     opacity: 0.7
 }
 
 .im-mess .im-mess--edit:active,
+.im-mess .im-mess--forward:active,
 .im-mess .im-mess--reply:active {
     opacity: 1
 }
@@ -7833,8 +7860,10 @@ img.im_photo_thumb {
 .im-mess.im-mess_search:hover .im-mess--check,
 .im-mess.im-mess_search:hover .im-mess--edit,
 .im-mess.im-mess_search:hover .im-mess--fav,
+.im-mess.im-mess_search:hover .im-mess--forward,
 .im-mess.im-mess_search:hover .im-mess--reply,
 .im-mess.im-mess_search .im-mess--edit,
+.im-mess.im-mess_search .im-mess--forward,
 .im-mess.im-mess_search .im-mess--reply {
     display: none
 }
@@ -7892,6 +7921,8 @@ img.im_photo_thumb {
 }
 
 .im-page--history:not(.is_msg_editing) .im-chat-input--editing-head,
+.im-page--history:not(.is_channel) .im-mess--forward,
+.im-page--history.is_channel .im-mess--fav,
 .im-page--history.is_tf_blocked .im-mess--edit,
 .im-page--history.is_tf_blocked .im-mess--reply {
     display: none
