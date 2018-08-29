@@ -6936,15 +6936,15 @@ var Wall = {
             nameStr += '<span class="page_fronly inl_bl" onmouseover="Wall.foTT(this, false, {oid: \'' + oid + '\', pid: \'' + ev[2] + '\'})"></span>';
         }
 
-        if (cur.wallTpl.custom_del && (adminLevel > (ev[9] == oid ? 1 : 0) || oid == vk.id || ev[9] == vk.id || ev[2].split('_')[0] != ev[4])) {
+        if (cur.wallTpl.custom_del && (adminLevel > (ev[9] == oid ? constants.Groups.GROUPS_ADMIN_LEVEL_MODERATOR : constants.Groups.GROUPS_ADMIN_LEVEL_USER) || oid == vk.id || ev[9] == vk.id || ev[2].split('_')[0] != ev[4])) {
             acts.push(cur.wallTpl.custom_del);
         }
-        if (adminLevel > (ev[9] == oid ? 1 : 0) || oid == vk.id || ev[9] == vk.id) {
+        if (adminLevel > (ev[9] == oid ? constants.Groups.GROUPS_ADMIN_LEVEL_MODERATOR : constants.Groups.GROUPS_ADMIN_LEVEL_USER) || oid == vk.id || ev[9] == vk.id) {
             acts.push(cur.wallTpl.del);
         } else if (ev[2].split('_')[0] != ev[4]) {
             acts.push(cur.wallTpl.spam);
         }
-        var isEditor = adminLevel > 1 && ev[9] == oid || oid == vk.id || ev[9] == vk.id;
+        var isEditor = adminLevel > constants.Groups.GROUPS_ADMIN_LEVEL_MODERATOR && ev[9] == oid || oid == vk.id || ev[9] == vk.id;
         if (isEditor && ev[13] !== 'rss') {
             acts.push(cur.wallTpl.edit);
         }
@@ -6953,7 +6953,7 @@ var Wall = {
             ev[6] = ev[6].replace('vk2017_snippet_show_layer_button', 'vk2017_snippet_show_layer_button_hidden');
         }
 
-        var canReplyAsGroup = oid < 0 && ev[9] == oid && adminLevel > 1;
+        var canReplyAsGroup = oid < 0 && ev[9] == oid && adminLevel > constants.Groups.GROUPS_ADMIN_LEVEL_MODERATOR;
 
         repls = {
             oid: oid,
@@ -7026,12 +7026,12 @@ var Wall = {
             attr = '',
             toLnk = ev[10] || '';
 
-        if (adminLevel > 0 || !ev[2].indexOf(vk.id + '_') || ev[4] == vk.id) {
+        if (adminLevel > constants.Groups.GROUPS_ADMIN_LEVEL_USER || !ev[2].indexOf(vk.id + '_') || ev[4] == vk.id) {
             acts.push(cur.wallTpl.del_reply);
         } else if (ev[2].split('_')[0] != ev[4]) {
             acts.push(cur.wallTpl.spam_reply);
         }
-        if ((adminLevel > 1) && (ev[4] == intval(ev[2])) || ev[4] == vk.id) {
+        if ((adminLevel > constants.Groups.GROUPS_ADMIN_LEVEL_MODERATOR) && (ev[4] == intval(ev[2])) || ev[4] == vk.id) {
             acts.push(cur.wallTpl.edit_reply);
         }
         if (ev[8].indexOf('class="wall_reply_more"') != -1) {
@@ -7276,7 +7276,7 @@ var Wall = {
                             lastPost = cont.lastChild,
                             extendCb = fullWall ? FullWall.addTetaTet : false,
                             flgs = intval(ev[ev.length - 1]),
-                            adminLevel = cur.options.is_admin !== undefined ? cur.options.is_admin : (cur.options.wall_oid < 0 ? ((flgs & 8) ? 2 : ((flgs & 2) ? 1 : 0)) : 0),
+                            adminLevel = cur.options.is_admin !== undefined ? cur.options.is_admin : (cur.options.wall_oid < 0 ? ((flgs & 8) ? constants.Groups.GROUPS_ADMIN_LEVEL_EDITOR : ((flgs & 2) ? constants.Groups.GROUPS_ADMIN_LEVEL_MODERATOR : constants.Groups.GROUPS_ADMIN_LEVEL_USER)) : constants.Groups.GROUPS_ADMIN_LEVEL_USER),
                             newEl = se(Wall.getNewPostHTML(ev, adminLevel, extendCb, cur)),
                             insBefore = cont.firstChild;
 
@@ -7448,7 +7448,7 @@ var Wall = {
                         var repliesEl = ge('replies' + post_id),
                             repliesWrap = ge('replies_wrap' + post_id),
                             flgs = intval(ev[ev.length - 1]),
-                            adminLevel = cur.options.is_admin !== undefined ? cur.options.is_admin : (cur.options.wall_oid < 0 ? ((flgs & 8) ? 2 : ((flgs & 2) ? 1 : 0)) : 0),
+                            adminLevel = cur.options.is_admin !== undefined ? cur.options.is_admin : (cur.options.wall_oid < 0 ? ((flgs & 8) ? constants.Groups.GROUPS_ADMIN_LEVEL_EDITOR : ((flgs & 2) ? constants.Groups.GROUPS_ADMIN_LEVEL_MODERATOR : constants.Groups.GROUPS_ADMIN_LEVEL_USER)) : constants.Groups.GROUPS_ADMIN_LEVEL_USER),
                             newEl = se(Wall.getNewReplyHTML(ev, adminLevel, false, cur)),
                             highlight = false,
                             startH = layerpost ? repliesEl.offsetHeight : el.offsetHeight;

@@ -1979,6 +1979,22 @@ textarea.EditableLabel__textarea {
     float: right
 }
 
+.porn-photo {
+    border-bottom: 1px solid #e7e8ec;
+    padding-bottom: 12px;
+    margin-bottom: 12px
+}
+
+.porn-photo:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0
+}
+
+.porn-photo .porn-photo__score {
+    margin-bottom: 2px
+}
+
 .uploaded_stories_rows {
     padding: 10px
 }

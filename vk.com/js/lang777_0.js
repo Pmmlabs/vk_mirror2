@@ -214,6 +214,7 @@ global_add = "��������";
 global_article = "������";
 global_article_added_to_faves = "������ ��������� � {link}���������{\/link}";
 global_article_carousel_counter = "{counter} �� {total}";
+global_artist = "��������";
 global_attach_max_n_files = ["", "�� ������ ���������� � ���������� �� ����� {count} �����.", "�� ������ ���������� � ���������� �� ����� {count} ������.", "�� ������ ���������� � ���������� �� ����� {count} ������."];
 global_audio_ad = "�������";
 global_audio_flash_required = "��� ������������� ������ ��������� Flash �����. <br>�� ������ ���������� ��� {link}�����{\/link}.";

@@ -633,6 +633,22 @@ a.group_ad_post_stats {
     width: 280px
 }
 
+.group_edit_phone .group_edit_field {
+    margin-bottom: auto
+}
+
+.group_edit_show_author {
+    margin: 9px 0 5px
+}
+
+.group_edit_show_author .checkbox {
+    display: inline-block
+}
+
+.group_edit_show_author .hint_icon {
+    margin-left: 7px
+}
+
 .group_edit {
     padding: 20px
 }
@@ -3201,10 +3217,6 @@ a.group_ad_post_link.deleted.deleted:hover {
 
 .group_edit_marketAppCoupon__close:hover {
     opacity: 1
-}
-
-.groups_edit_phone .group_edit_field {
-    margin-bottom: auto
 }
 
 .group_ad_articles {

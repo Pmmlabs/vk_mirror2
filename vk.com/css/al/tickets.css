@@ -119,7 +119,8 @@ body.dev .detailed .tickets_new_title {
 }
 
 .tickets_new_controls {
-    margin-top: 15px
+    margin-top: 15px;
+    min-height: 30px
 }
 
 .tickets_new_controls .flat_button.secondary {
@@ -2391,17 +2392,12 @@ a.tickets_question_row_tt_unread {
     margin: 10px 0 8px
 }
 
-#tickets_dmca_holder .radiobtn,
-#tickets_payment_type .radiobtn {
-    padding: 5px 0px
+.tickets_new_extra_field__radios .radiobtn {
+    padding: 5px 0
 }
 
 .tickets_paysystem_wrap {
     width: 25%
-}
-
-.tickets_paysystem_wrap .radiobtn {
-    padding: 5px 0px
 }
 
 .tickets_payment_row {
@@ -4070,6 +4066,11 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 
 .tickets_new_extra_field {
     margin: 20px 0
+}
+
+.tickets_new_extra_field.tickets_new_extra_field_note {
+    color: #656565;
+    line-height: 20px
 }
 
 .tickets_new_extra_field__label {
