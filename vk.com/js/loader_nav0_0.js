@@ -150,7 +150,7 @@ var stVersions = {
     'uncommon.js': 1640247993,
     'uncommon.css': 15146557907,
     'filebutton.css': 1044306797,
-    'lite.js': 3077509299,
+    'lite.js': 344448126,
     'lite.css': 53366591286,
     'rtl.css': 15680425491,
     'pagination.js': 358700184,
@@ -211,7 +211,7 @@ var stVersions = {
     'video_upload.js': 6520840312,
     'video_youtube.js': 458412745,
     'video_youtube.css': 14579768969,
-    'videoplayer.js': 86797155490,
+    'videoplayer.js': 84400798416,
     'videoplayer.css': 38441777969,
     'translation.js': 3145443957,
     'translation.css': 16278429633,
@@ -243,8 +243,8 @@ var stVersions = {
     'groups_create.css': 17588630803,
     'cmodules/web/groups_list.js': 2410198595,
     'cmodules/web/GroupsEdit.js': 26254597086,
-    'groups_edit.css': 51121685728,
-    'groups_edit.js': 1221354250,
+    'groups_edit.css': 52223186816,
+    'groups_edit.js': 3255648972,
     'profile.css': 28437035748,
     'profile.js': 2415404742,
     'calendar.css': 19852239620,
@@ -332,7 +332,7 @@ var stVersions = {
     'widgets.css': 30159774306,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 96803144633,
+    'notifier.js': 98125315921,
     'notifier.css': 25943442114,
     'cmodules/sw/sw.js': 2371912913,
     'earthday.js': 2276669993,
@@ -533,7 +533,7 @@ var stVersions = {
     'stories_manage.css': 69536082113,
     'article.css': 34727111026,
     'article_editor.css': 35565307677,
-    'cmodules/web/article.js': 41808444920,
+    'cmodules/web/article.js': 40004086964,
     'cmodules/web/article_layer.js': 26823930677,
     'article_view.js': 23201015133,
     'bookmarks.css': 18277920085,
@@ -573,7 +573,7 @@ var stVersions = {
     'translation_discussions.js': 1145389133,
     'ui_gallery.css': 15311193465,
     'cmodules/web/ui_components.js': 4923564620,
-    'apps_feed_blocks.css': 18905629732,
+    'apps_feed_blocks.css': 16000435074,
     'lang': 6903
 };
 var stTypes = {
@@ -635,4 +635,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 8183;
+var _rnd = 8936;

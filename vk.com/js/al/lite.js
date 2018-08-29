@@ -7973,9 +7973,20 @@ addEvent(window, 'DOMContentLoaded load', function() {
     vk.loaded = true;
 });
 
-try {
-    stManager.done('lite.js');
-} catch (e) {}
+if (!window.constants) {
+    window.constants = {};
+}
+
+window.constants.Groups = {
+    GROUPS_ADMIN_LEVEL_USER: 0,
+    GROUPS_ADMIN_LEVEL_MODERATOR: 1,
+    GROUPS_ADMIN_LEVEL_EDITOR: 2,
+    GROUPS_ADMIN_LEVEL_ADMINISTRATOR: 3,
+    GROUPS_ADMIN_LEVEL_HOST: 4,
+    GROUPS_ADMIN_LEVEL_EVENT_CREATOR: 5,
+    GROUPS_ADMIN_LEVEL_CREATOR: 6,
+    GROUPS_ADMIN_PSEUDO_LEVEL_ADVERTISER: 100
+};
 
 window.getPageHeaderHeight = (function() {
     var cached;
@@ -7985,3 +7996,7 @@ window.getPageHeaderHeight = (function() {
         return cached;
     }
 })();
+
+try {
+    stManager.done('lite.js');
+} catch (e) {}

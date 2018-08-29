@@ -712,6 +712,10 @@ a.group_ad_post_stats {
     width: 300px
 }
 
+.group_edit_rss_column_wrap {
+    overflow: hidden
+}
+
 .group_edit_labeled {
     line-height: 16px;
     padding: 6px 0 10px;
