@@ -1272,7 +1272,7 @@ input.wide_button {
 
 .top_author,
 .verified {
-    background-image: url(/images/mobile/skins/icon/statuses.png?6);
+    background-image: url(/images/mobile/skins/icon/statuses.png?8);
     -moz-background-size: 20px;
     -o-background-size: 20px;
     background-size: 20px;
@@ -1318,7 +1318,7 @@ input.wide_button {
 
 .vk_2x .top_author,
 .vk_2x .verified {
-    background-image: url(/images/mobile/skins/icon/statuses_2x.png?7)
+    background-image: url(/images/mobile/skins/icon/statuses_2x.png?8)
 }
 
 .wi_author .top_author,
@@ -3703,7 +3703,10 @@ input.wide_button {
 .medias_link_thumbed {
     padding: 1px 0 1px 7px;
     margin-top: 5px;
-    border-left: 2px solid #c3d1e0
+    border-left: 2px solid #c3d1e0;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px
 }
 
 .mlt_header {
@@ -6219,7 +6222,7 @@ div.pm_item .pm_counter {
 }
 
 .pp_last_activity .mlvi {
-    background-image: url(/images/mobile/skins/icon/statuses.png?6);
+    background-image: url(/images/mobile/skins/icon/statuses.png?8);
     -moz-background-size: 100%!important;
     -o-background-size: 100%!important;
     background-size: 100%!important;
@@ -6238,7 +6241,7 @@ div.pm_item .pm_counter {
 }
 
 .vk_2x .pp_last_activity .mlvi {
-    background-image: url(/images/mobile/skins/icon/statuses_2x.png?7)
+    background-image: url(/images/mobile/skins/icon/statuses_2x.png?8)
 }
 
 .pp_info,

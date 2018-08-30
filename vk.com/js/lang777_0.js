@@ -152,6 +152,7 @@ audio_friends_feed = "���������� ���������
 audio_global_search_found = ["", "� ������ ������� %s �����������", "� ������ ������� %s �����������", "� ������ ������� %s ������������"];
 audio_group_no_recs = "� �������� ����������� ��� ��� ������������.";
 audio_header = "��� �����������";
+audio_listen_snippet = "������� ���";
 audio_loading_error = "�������� ������, ��� ������: {code}";
 audio_lyrics_not_found = "����� ����������� �� ������";
 audio_need_flash_title = "��������� Flash-�������������";

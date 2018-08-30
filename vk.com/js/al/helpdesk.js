@@ -853,8 +853,7 @@ var Helpdesk = {
         var cont = ge("support_moders_stats" + id),
             row = ge("support_moder_stats_row" + id),
             data = ge("support_moder_stats_data" + id);
-        return cont ? (isVisible(data) ? removeClass(row, "detailed") : addClass(row, "detailed"), slideToggle(data, 200)) : (addClass(row, "detailed"), slideToggle(data, 200), ajax.post("helpdesk", {
-            act: "moder_stats",
+        return cont ? (isVisible(data) ? removeClass(row, "detailed") : addClass(row, "detailed"), slideToggle(data, 200)) : (addClass(row, "detailed"), slideToggle(data, 200), ajax.post("helpdesk?act=moder_stats", {
             mid: id,
             hash: hash
         }, {
@@ -863,13 +862,14 @@ var Helpdesk = {
             }
         })), !1
     },
-    showSpecAgentStats: function(id, hash) {
-        var cont = ge("support_moders_stats" + id),
-            row = ge("support_moder_stats_row" + id),
-            data = ge("support_moder_stats_data" + id);
-        return cont ? (isVisible(data) ? removeClass(row, "detailed") : addClass(row, "detailed"), slideToggle(data, 200)) : (addClass(row, "detailed"), slideToggle(data, 200), ajax.post("helpdesk", {
-            act: "spec_agent_stats",
+    showSpecAgentStats: function(id, section, hash) {
+        var prefix = "_" + section,
+            cont = ge("support_moders_stats" + id + prefix),
+            row = ge("support_moder_stats_row" + id + prefix),
+            data = ge("support_moder_stats_data" + id + prefix);
+        return cont ? (isVisible(data) ? removeClass(row, "detailed") : addClass(row, "detailed"), slideToggle(data, 200)) : (addClass(row, "detailed"), slideToggle(data, 200), ajax.post("helpdesk?act=spec_agent_stats", {
             mid: id,
+            section: section,
             hash: hash
         }, {
             onDone: function(res, script) {
@@ -888,22 +888,24 @@ var Helpdesk = {
         s && removeClass(s, "after_over")
     },
     updateModerStats: function(e, t, s, o, a) {
-        return 0 > o ? !1 : (ge("support_moders_period_stats" + e).innerHTML = '<div class="tickets_detailed_loading"><div>', ajax.post("helpdesk", {
-            act: "detailed_stats",
+        if (0 > o) return !1;
+        var i = "_" + a;
+        return ajax.post("helpdesk?act=detailed_stats", {
             mid: e,
             type: s,
             offset: o,
             hash: t,
-            is_spec: a
+            section: a
         }, {
             cache: 1,
+            showProgress: val.pbind("support_moders_period_stats" + e + i, '<div class="tickets_detailed_loading"><div>'),
             onDone: function(t, s) {
-                val("support_moders_period_stats" + e, t), val("moder_subtabs" + e, s)
+                val("support_moders_period_stats" + e + i, t), val("moder_subtabs" + e + i, s)
             },
             onFail: function() {
-                val("support_moders_period_stats" + e, "")
+                val("support_moders_period_stats" + e + i, "")
             }
-        }), !1)
+        }), !1
     },
     subscribeToTag: function(e, t) {
         ajax.post("helpdesk", {
@@ -1120,11 +1122,12 @@ var Helpdesk = {
     toggleSimilar: function(e) {
         toggle("tickets_similar", !isVisible("tickets_similar"));
         var t = ge("toggle_similar_link");
-        return toggleClass(t, "opened", isVisible("tickets_similar")), isVisible("tickets_similar") ? (t.innerHTML = getLang("support_hide_similar"), ge("similar_search") && cur.searchDD.updateInput(), cur.similarCount < 10 ? hide("tickets_toup") : isVisible("tickets_toup") && (setStyle(ge("tickets_toup"), {
-            height: "0px"
-        }), setStyle(ge("tickets_toup"), {
-            height: getSize(ge("tickets_similar"))[1]
-        }))) : t.innerHTML = cur.similarCount ? getLang("support_show_similar", cur.similarCount) : getLang("support_search_similar"), e && scrollToTop(0), !1
+        return toggleClass(t, "opened", isVisible("tickets_similar")), isVisible("tickets_similar") ? (t.innerHTML = getLang("support_hide_similar"), ge("similar_search") && cur.searchDD.updateInput(),
+            cur.similarCount < 10 ? hide("tickets_toup") : isVisible("tickets_toup") && (setStyle(ge("tickets_toup"), {
+                height: "0px"
+            }), setStyle(ge("tickets_toup"), {
+                height: getSize(ge("tickets_similar"))[1]
+            }))) : t.innerHTML = cur.similarCount ? getLang("support_show_similar", cur.similarCount) : getLang("support_search_similar"), e && scrollToTop(0), !1
     },
     toggleSimilarRows: function(e) {
         var t = attr(e, "toggle-text"),

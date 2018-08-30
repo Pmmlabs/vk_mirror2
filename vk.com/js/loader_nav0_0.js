@@ -211,7 +211,7 @@ var stVersions = {
     'video_upload.js': 6520840312,
     'video_youtube.js': 458412745,
     'video_youtube.css': 14579768969,
-    'videoplayer.js': 84400798416,
+    'videoplayer.js': 79067237410,
     'videoplayer.css': 38441777969,
     'translation.js': 3145443957,
     'translation.css': 16278429633,
@@ -343,8 +343,8 @@ var stVersions = {
     'docs.css': 25784852563,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 16991733118,
-    'helpdesk.js': 2530685245,
-    'helpdesk.css': 29201289592,
+    'helpdesk.js': 3891292426,
+    'helpdesk.css': 30917414117,
     'tickets.js': 3289106660,
     'tickets.css': 30818416825,
     'faq.css': 24354340959,
@@ -574,7 +574,7 @@ var stVersions = {
     'ui_gallery.css': 15311193465,
     'cmodules/web/ui_components.js': 4923564620,
     'apps_feed_blocks.css': 16000435074,
-    'lang': 6903
+    'lang': 6904
 };
 var stTypes = {
     fromLib: {
@@ -635,4 +635,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 8936;
+var _rnd = 6247;
