@@ -42,343 +42,13 @@
         return r.d(t, "a", t), t
     }, r.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, r.p = "", r(r.s = 8)
-}([function(e, t, r) {
+    }, r.p = "", r(r.s = 36)
+}([, function(e, t, r) {
     "use strict";
-    r.r(t), r.d(t, "initPhotoCarousel", function() {
-        return a
-    });
-    var n = r(5),
-        i = function() {
-            return function(e, t) {
-                if (Array.isArray(e)) return e;
-                if (Symbol.iterator in Object(e)) return function(e, t) {
-                    var r = [],
-                        n = !0,
-                        i = !1,
-                        a = void 0;
-                    try {
-                        for (var o, s = e[Symbol.iterator](); !(n = (o = s.next()).done) && (r.push(o.value), !t || r.length !== t); n = !0);
-                    } catch (e) {
-                        i = !0, a = e
-                    } finally {
-                        try {
-                            !n && s.return && s.return()
-                        } finally {
-                            if (i) throw a
-                        }
-                    }
-                    return r
-                }(e, t);
-                throw new TypeError("Invalid attempt to destructure non-iterable instance")
-            }
-        }();
-
-    function a(e, t) {
-        var r = domQuery1("[data-sizes]", e),
-            a = JSON.parse(domData(r, "sizes")),
-            o = (domData(r, "media-links") || "").split(",");
-        if (!(a.length <= 1 || domData(e, "carousel-inited"))) {
-            if (domData(e, "carousel-inited", 1), t.mobile) return function(e, t) {
-                var r = geByClass1("article_photo_carousel__controls", t),
-                    a = geByClass1("article_photo_carousel__counter", t),
-                    o = domData(a, "counter-lang") || getLang("global_article_carousel_counter"),
-                    s = getSize(geByClass1("article_figure_content", t)),
-                    c = domPN(geByTag1("img", t)),
-                    l = 0,
-                    d = void 0,
-                    u = 0,
-                    p = void 0,
-                    h = void 0,
-                    f = 0,
-                    _ = !1,
-                    g = !1,
-                    v = !1;
-                r.addEventListener("touchstart", function(e) {
-                    h = e.touches[0].pageX, p = e.touches[0].pageY
-                });
-                var y = !1,
-                    m = void 0;
-                return r.addEventListener("touchmove", function(r) {
-                        if (g || !(Math.abs(r.touches[0].pageY - p) > 5 || _)) {
-                            if (!v && (u = r.touches[0].pageX - h, !(Math.abs(u) < 10) || y)) {
-                                g || window.addEventListener("touchmove", m = function(e) {
-                                    return cancelEvent(e)
-                                }, {
-                                    passive: !1
-                                }), g = !0, y = !0;
-                                var a = Math.min(e.length - 1, Math.max(0, l + (u < 0 ? 1 : -1))),
-                                    o = 0 === a && 0 === l,
-                                    b = a === e.length - 1 && l === e.length - 1;
-                                if (f !== a)
-                                    if (f = a, re(d), o || b) d = !1;
-                                    else {
-                                        var w = Object(n.getAppropriateImage)(e[a], s[0], !0),
-                                            E = i(w, 1)[0];
-                                        d = ce("div", {
-                                            innerHTML: '<img src="' + E + '">'
-                                        }), setStyle(domFC(d), {
-                                            "max-width": s[0],
-                                            "max-height": s[1],
-                                            width: "initial"
-                                        }), setStyle(d, {
-                                            transform: "scale(1.05)",
-                                            opacity: 0
-                                        }), domInsertBefore(d, domPN(geByTag1("img", t)))
-                                    }
-                                var P = Math.abs(u),
-                                    C = 0;
-                                C = o || b ? .2 * u : u, setStyle(c, {
-                                    transform: "translateX(" + C + "px)"
-                                }), d && setStyle(d, {
-                                    transform: "scale(" + Math.max(1, 1.05 - 5e-4 * P) + ")",
-                                    opacity: Math.min(1, .01 * P)
-                                })
-                            }
-                        } else _ = !0
-                    }), r.addEventListener("touchend", function() {
-                        y = !1, _ = !1, v = !0, g = !1, m && window.removeEventListener("touchmove", m);
-                        var r = u < 0,
-                            p = Math.abs(u) < 50 || !d;
-                        if (!p) {
-                            for (var h = l = f; h < Math.min(l + 3, e.length); h++) {
-                                var b = Object(n.getAppropriateImage)(e[h], s[0], !0),
-                                    w = i(b, 1)[0];
-                                Object(n.preloadImage)(w)
-                            }
-                            domData(t, "photo-carousel-index", l)
-                        }
-                        a.innerHTML = o.replace("{counter}", l + 1).replace("{total}", e.length), addClass(c, "with_transition"), addClass(d, "with_transition"), setTimeout(function() {
-                            p ? (setStyle(c, {
-                                transform: "translateX(0px)",
-                                opacity: 1
-                            }), setStyle(d, {
-                                transform: "scale(1.05)",
-                                opacity: 0
-                            })) : (setStyle(c, {
-                                transform: "translateX(" + (r ? "-500px" : "500px") + ")"
-                            }), setStyle(d, {
-                                transform: "scale(1)",
-                                opacity: 1
-                            }))
-                        }), setTimeout(function() {
-                            v = !1, f = !1, removeClass(c, "with_transition"), removeClass(d, "with_transition"), p ? re(d) : (re(c), c = d), d = !1
-                        }, 150)
-                    }),
-                    function(r) {
-                        var d = Object(n.getAppropriateImage)(e[r], s[0], !0),
-                            u = i(d, 1)[0],
-                            p = geByTag1("img", t);
-                        p.src = u, l = f = r, domData(t, "photo-carousel-index", l), c = domPN(p), a.innerHTML = o.replace("{counter}", l + 1).replace("{total}", e.length)
-                    }
-            }(a, e);
-            var s = function(e, t, r, a) {
-                var o = 0,
-                    s = geByClass1("article_photo_carousel__controls", t),
-                    c = geByClass1("article_photo_carousel__counter", t),
-                    l = domData(c, "counter-lang") || getLang("global_article_carousel_counter"),
-                    d = getSize(geByClass1("article_figure_content", t)),
-                    u = domPN(geByTag1("img", t)),
-                    p = geByClass1("article_photo_carousel__left", t),
-                    h = geByClass1("article_photo_carousel__right", t);
-
-                function f(s) {
-                    o += s, o = Math.min(e.length - 1, Math.max(0, o));
-                    var f = Object(n.getAppropriateImage)(e[o], d[0], !0),
-                        _ = i(f, 1),
-                        g = _[0],
-                        v = "";
-                    if (r.moderDeletePhoto) {
-                        var y = a[o];
-                        v = '<a href="' + y + '" target="_blank" class="flat_button article_photo_moder_open">Открыть</a>'
-                    }
-                    var m = s < 0 ? "fading_in_left" : "fading_in_right",
-                        b = se('<div class="' + m + '"><img src="' + g + '">' + v + "</div>");
-                    setStyle(domFC(b), {
-                        "max-width": d[0],
-                        "max-height": Math.ceil(d[1]) + 1,
-                        width: "initial"
-                    }), domInsertAfter(b, domPN(geByTag1("img", t)));
-                    var w = u;
-                    setTimeout(function() {
-                        removeClass(b, "fading_in_left"), removeClass(b, "fading_in_right"), addClass(w, "fading_out")
-                    }), setTimeout(function() {
-                        re(w)
-                    }, 150);
-                    for (var E = o; E < Math.min(o + 3, e.length); E++) {
-                        var P = Object(n.getAppropriateImage)(e[E], d[0], !0),
-                            C = i(P, 1),
-                            O = C[0];
-                        Object(n.preloadImage)(O)
-                    }
-                    u = b, c.innerHTML = l.replace("{counter}", o + 1).replace("{total}", e.length), toggle(p, o > 0), toggle(h, o < e.length - 1), domData(t, "photo-carousel-index", o)
-                }
-                var _ = void 0;
-
-                function g(e) {
-                    clearTimeout(_), toggleClass(s, "article_photo_carousel__mouse_idle", e)
-                }
-                var v = browser.msie && intval(browser.version) <= 11;
-                return h.addEventListener("click", function(e) {
-                    return f(1), v || t.dispatchEvent(new Event("mousemove")), cancelEvent(e)
-                }), p.addEventListener("click", function(e) {
-                    return f(-1), v || t.dispatchEvent(new Event("mousemove")), cancelEvent(e)
-                }), t.addEventListener("mousemove", function() {
-                    g(!1), addClass(s, "article_photo_carousel__mouse_over"), clearTimeout(_), _ = setTimeout(function() {
-                        g(!0)
-                    }, 1e3)
-                }), t.addEventListener("mouseleave", function() {
-                    clearTimeout(_), removeClass(s, "article_photo_carousel__mouse_over"), removeClass(s, "article_photo_carousel__mouse_idle")
-                }), f
-            }(a, e, t, o);
-            data(e, "changePhotoFunction", s)
-        }
-    }
-}, , , , function(e, t, r) {
-    "use strict";
-    r.r(t), r.d(t, "getCleanedState", function() {
-        return a
-    }), r.d(t, "expandParagraphFields", function() {
-        return o
-    });
-    var n = r(5),
-        i = r(16);
-
-    function a(e, t, r) {
-        var a = [];
-        return e.forEach(function(e, o) {
-            if (!r || Object(i.isObjectParagraph)(e) || !Object(i.isParagraphEmpty)(e) || 0 == o || e.type == n.ParagraphType.Code) {
-                var s = {};
-                for (var c in e) {
-                    if (!e.hasOwnProperty(c)) return;
-                    if (!c.startsWith("_") || "_uuid" === c && t) {
-                        var l = e[c];
-                        s[c] = isObject(l) || isArray(l) ? clone(l, !0) : l
-                    }
-                }
-                Object(i.isObjectParagraph)(e) && e._object && (s.mediaId = e._object.getMediaId()), e.sep && (s.sep = 1), s.type == n.ParagraphType.Text && delete s.type, s.lines.forEach(function(e) {
-                    if (void 0 !== e.decorations) {
-                        var t = !0;
-                        each(e.decorations, function(r, n) {
-                            0 == n.length ? delete e.decorations[r] : t = !1
-                        }), t && delete e.decorations
-                    }
-                    e.brs && 0 == e.brs.length && delete e.brs
-                }), a.push(s)
-            }
-        }), JSON.parse(JSON.stringify(a))
-    }
-
-    function o(e) {
-        return e.forEach(function(e) {
-            e.type = e.type || n.ParagraphType.Text, e.lines.forEach(function(e) {
-                e.brs = e.brs || [], e.decorations = e.decorations || {}
-            })
-        }), e
-    }
-}, function(e, t, r) {
-    "use strict";
-    r.r(t), r.d(t, "ParagraphType", function() {
-        return n
-    }), r.d(t, "ResizableObjectTypes", function() {
-        return i
-    }), r.d(t, "ObjectResizeType", function() {
-        return a
-    }), r.d(t, "getAppropriateImage", function() {
-        return s
-    }), r.d(t, "preloadImage", function() {
-        return l
-    }), r.d(t, "mailruStatsPixel", function() {
-        return d
-    }), r.d(t, "getUrlParam", function() {
-        return u
-    });
-    var n = {
-            Text: 1,
-            Header1: 2,
-            Header2: 3,
-            Header3: 4,
-            Code: 5,
-            NumericList: 6,
-            BulletList: 7,
-            Quote: 8,
-            Quote2: 9,
-            ObjectAudioPlaylist: 100,
-            ObjectPhoto: 101,
-            ObjectVideo: 102,
-            ObjectGIF: 103,
-            ObjectAudio: 105
-        },
-        i = [n.ObjectPhoto, n.ObjectGIF, n.ObjectVideo],
-        a = {
-            Normal: 0,
-            Float: 1,
-            Medium: 2,
-            Large: 3
-        };
-
-    function o() {
-        var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {},
-            t = arguments[1];
-        for (var r in e)
-            if (Object.prototype.hasOwnProperty.call(e, r) && !1 === t.call(e[r], r, e[r])) break;
-        return e
-    }
-
-    function s(e, t, r) {
-        var n = [];
-        if (o(e, function(e, t) {
-                r && -1 == ["w", "z", "y", "x", "m", "s"].indexOf(e) || n.push(t)
-            }), !n.length) return [!1];
-        n.sort(function(e, t) {
-            return e[1] - t[1]
-        }), t *= window.devicePixelRatio >= 2 ? 2 : 1;
-        var i = n[n.length - 1];
-        return o(n, function(e, r) {
-            if (r[1] >= t) return i = r, !1
-        }), i
-    }
-    var c = {};
-
-    function l(e, t) {
-        if (!0 === c[e]) return t && t(), !0;
-        if (isArray(c[e])) return c[e].push(t), !1;
-        c[e] = [t];
-        var r = new Image;
-        return r.onload = function() {
-            var t = c[e];
-            c[e] = !0, o(t, function(e, t) {
-                t && t()
-            })
-        }, r.src = e, !1
-    }
-
-    function d(e, t) {
-        if (isObject(t) && !isEmpty(t)) {
-            var r = "https://vk-callback.go.mail.ru/longread_pxl?action=" + e;
-            o(t, function(e, t) {
-                r += "&" + e + "=" + t
-            }), (new Image).src = r
-        }
-    }
-
-    function u(e) {
-        e = e.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var t = new RegExp("[\\?&]" + e + "=([^&#]*)").exec(location.search);
-        return null === t ? "" : decodeURIComponent(t[1].replace(/\+/g, " "))
-    }
-}, , function(e, t, r) {
-    "use strict";
-    r.r(t), r.d(t, "initArticle", function() {
-        return b
-    }), r.d(t, "updateArticle", function() {
-        return w
-    }), r.d(t, "deinitArticle", function() {
-        return E
-    });
-    var n = r(31),
-        i = r(5),
-        a = r(0),
+    r.r(t);
+    var n = r(20),
+        i = r(8),
+        a = r(31),
         o = function() {
             return function(e, t) {
                 if (Array.isArray(e)) return e;
@@ -402,369 +72,52 @@
                 }(e, t);
                 throw new TypeError("Invalid attempt to destructure non-iterable instance")
             }
-        }(),
-        s = void 0,
-        c = void 0,
-        l = void 0,
-        d = void 0,
-        u = void 0,
-        p = void 0,
-        h = void 0,
-        f = void 0,
-        _ = void 0,
-        g = void 0,
-        v = [],
-        y = void 0,
-        m = void 0;
-
-    function b(e, t) {
-        d = t || {}, h = e, window.cur && (window.cur.article = e), c = ge("article_view_" + e.owner_id + "_" + e.id), l = d.scrollNode || window, u = d.getScrollTop || function() {
-                return (document.scrollingElement || window.scrollNode || document.body).scrollTop
-            }, s = gpeByClass("article_body", c) || gpeByClass("_article_layer", c), l.addEventListener("scroll", f = function() {
-                j()
-            }, {
-                passive: !0
-            }), j(), O(), N(),
-            function() {
-                if (d.ga)
-                    if (window.dataLayer = window.dataLayer || [], window.gtag) gtag("config", d.ga, {
-                        page_location: window.location.href
-                    });
-                    else {
-                        var e = document.createElement("script");
-                        e.setAttribute("src", "https://www.googletagmanager.com/gtag/js?id=" + d.ga), e.setAttribute("async", "true"), document.head.appendChild(e), window.gtag = function() {
-                            dataLayer.push(arguments)
-                        }, gtag("js", new Date), gtag("config", d.ga)
-                    }
-            }(), C(), setTimeout(function() {
-                d.isWebView || M(), l.click && l.click(), l.focus()
-            }, 10), window.onBodyResize = window.onBodyResize || function() {}, window.cur && cur.destroy.push(function() {
-                E()
-            }), !d.mobile && window.AudioPlaylist && h.audiosList && h.audiosList.length > 0 && (cur.articlePlaylist = new AudioPlaylist(AudioPlaylist.TYPE_TEMP, h.owner_id, "article_" + h.id), cur.articlePlaylist.mergeWith({
-                list: h.audiosList
-            }))
-    }
-
-    function w() {
-        var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
-        d.notFull = !1, O(), N(), j(), C(e.deviceInfo)
-    }
-
-    function E() {
-        f && (l.removeEventListener("scroll", f), f = !1), _ && (l.removeEventListener("scroll", _), _ = !1), clearTimeout(g)
-    }
-
-    function P(e, t) {
-        v.push(e + "/" + h.owner_id + "_" + h.id + "/" + t), clearTimeout(y), y = setTimeout(function() {
-            var e = d.mobile ? "article.php" : "al_article.php";
-            ajax.post(e, {
-                act: "ads_event",
-                events: v.join(","),
-                is_web_view: intval(d.isWebView)
-            }), v = []
-        }, 200)
-    }
-
-    function C() {
-        var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
-        if (!(isEmpty(h.ads) || d.notFull || isArray(h.ads) && 0 == h.ads.length)) {
-            if (!window.mailRuSdsScriptLoaded) {
-                var t = document.createElement("script");
-                t.setAttribute("src", h.ads.script), t.setAttribute("async", "true"), document.head.appendChild(t), window.mailRuSdsScriptLoaded = !0
-            }
-            var r = ce("ins");
-            addClass(r, "mrg-tag"), addClass(r, "article_adsblock"), d.mobile && addClass(r, "article_adsblock_mobile"), setStyle(r, {
-                display: "block",
-                "text-decoration": "none"
-            });
-            var n = "";
-            for (var i in e) e.hasOwnProperty(i) && (n += "&" + i + "=" + e[i]);
-            for (var a in h.ads.data["ad-query"] = h.ads.data["ad-query"].replace("%device_info%", n), h.ads.data) h.ads.data.hasOwnProperty(a) && domData(r, a, "" + h.ads.data[a]);
-            var o = geByClass1("article_misc_block");
-            o ? o.firstChild ? domInsertBefore(r, o.firstChild) : o.appendChild(r) : domInsertAfter(r, c), window.MRGtag || (window.MRGtag = []);
-            var s = d.isWebView ? {
-                    iframeMode: !0
-                } : {},
-                l = h.ads.eventsHash;
-            s.onNoAds = function() {
-                P("no_ads", l)
-            }, s.onAdsLoaded = function() {
-                P("ads_loaded", l)
-            }, s.onAdsClosed = function() {
-                P("ads_closed", l)
-            }, s.onAdsSuccess = function() {
-                P("ads_success", l)
-            }, s.onAdsClicked = function() {
-                P("ads_clicked", l)
-            }, s.onScriptError = function() {
-                P("script_error", l)
-            }, window.MRGtag.push(s)
+        }();
+    var s = function(e) {
+        function t(r, n) {
+            return function(e, t) {
+                    if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
+                }(this, t),
+                function(e, t) {
+                    if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+                    return !t || "object" != typeof t && "function" != typeof t ? e : t
+                }(this, e.call(this, r, n, !0))
         }
-    }
-
-    function O() {
-        each(geByClass("_article_unmute_button"), function(e, t) {
-            t.addEventListener("click", function() {
-                var e = t.parentNode,
-                    r = geByTag1("video", e);
-                r.muted = !r.muted, toggleClass(e, "article_object_unmuted", !r.muted)
-            })
-        });
-        var e = {};
-        each(geByTag("figure", c), function(t, r) {
-            if (parseInt(domData(r, "type")) == i.ParagraphType.ObjectPhoto) {
-                var n = Object(a.initPhotoCarousel)(r, d),
-                    l = function(e) {
-                        if (d.noImageOpen) return;
-                        if (domData(e, "event-inited")) return;
-                        domData(e, "event-inited", 1);
-                        var t = geByTag1("img", e),
-                            r = geByClass1("article_photo_carousel__controls", e) || t,
-                            n = domQuery1("[data-sizes]", e),
-                            a = JSON.parse(domData(n, "sizes"));
-                        if (d.onImageOpen) {
-                            r.addEventListener("click", function() {
-                                var t = intval(domData(e, "photo-carousel-index"));
-                                d.onImageOpen(a, t), m = e
-                            });
-                            var l = I++;
-                            return domData(e, "id", l), l
-                        }
-                        var u = Object(i.getAppropriateImage)(a[0], window.innerWidth, !0),
-                            h = o(u, 3),
-                            f = h[0],
-                            _ = h[1],
-                            g = h[2],
-                            v = D({
-                                width: _,
-                                height: g
-                            }, {
-                                width: window.innerWidth,
-                                height: window.innerHeight
-                            }),
-                            y = getW(e) < v.width && getH(e) < v.height;
-                        if (!f || !y) return;
-                        addClass(r, "article_image_full_viewable");
-                        var b = data(e, "changePhotoFunction");
-                        r.addEventListener("click", function() {
-                            var t = intval(domData(e, "photo-carousel-index"));
-                            addClass(s, "article_no_scroll");
-                            var r = geByTag1("figcaption", e),
-                                n = se('<div class="article_full_view"><img class="article_full_view__image"></div>');
-                            r && r.innerHTML && n.appendChild(se('<div class="article_full_view__caption"><div class="article_full_view__caption_inner">' + r.innerHTML + "</div></div>")), a.length > 1 && (toggleClass(S, "article_full_view__carousel", a.length > 1), T = se('<div class="article_full_view__right"></div>'), n.appendChild(T), x = se('<div class="article_full_view__left"></div>'), n.appendChild(x), T.addEventListener("click", function(e) {
-                                return t = Math.min(a.length - 1, Math.max(0, t + 1)), L(i, a, t), b && b(1), cancelEvent(e)
-                            }), x.addEventListener("click", function(e) {
-                                return t = Math.min(a.length - 1, Math.max(0, t - 1)), L(i, a, t), b && b(-1), cancelEvent(e)
-                            })), S = se('<div class="article_full_view__counter"><div class="article_full_view__counter_text"></div><div class="article_full_view__close"></div></div>'), n.appendChild(S), a.length > 1 && toggleClass(S, "article_full_view__carousel", a.length > 1), c.appendChild(n), n.addEventListener("click", function(e) {
-                                domClosest("article_full_view__caption_inner", e.target) || A()
-                            }), n.addEventListener("mousewheel", A), p = n;
-                            var i = geByTag1("img", n);
-                            L(i, a, t)
-                        })
-                    }(r);
-                void 0 !== l && (e[l] = n)
-            }
-        }), window.addEventListener("VKWebAppEvent", function(t) {
-            var r = t.detail.index;
-            if (m) {
-                var n = e[domData(m, "id")];
-                n && n(r)
-            }
-        })
-    }
-
-    function j() {
-        var e = {
-                101: -2e3
-            },
-            t = u(),
-            r = window.innerHeight,
-            a = getXY(c)[1];
-        each(geByTag("figure", c), function(s, c) {
-            var l = intval(domData(c, "done"));
-            if (!l) {
-                var u = getH(c),
-                    p = getXY(c)[1] - a,
-                    h = intval(domData(c, "type")),
-                    f = void 0 !== e[h] ? e[h] : 60;
-                (l = function(e, t, r) {
-                    var a = !1;
-                    switch (t) {
-                        case i.ParagraphType.ObjectPhoto:
-                            if (e) {
-                                var s = geByTag1("img", r),
-                                    c = getW(s) || d.width,
-                                    l = domData(s, "baseurl");
-                                if (l) l = Object(n.imageProxyURL)(l, {
-                                    size: c
-                                }), Object(i.preloadImage)(l, function() {
-                                    removeClass(s, "article_object_photo__image_blur"), s.src = l
-                                });
-                                else {
-                                    var u = domQuery1("[data-sizes]", r),
-                                        p = JSON.parse(domData(u, "sizes"));
-                                    p.forEach(function(e, t) {
-                                        if (!(t > 3)) {
-                                            var r = Object(i.getAppropriateImage)(p[t], c, !0),
-                                                n = o(r, 1),
-                                                a = n[0];
-                                            Object(i.preloadImage)(a, function() {
-                                                0 == t && (removeClass(s, "article_object_photo__image_blur"), s.src = a)
-                                            })
-                                        }
-                                    })
-                                }
-                                a = !0
-                            }
-                            break;
-                        case i.ParagraphType.ObjectGIF:
-                            if (!d.mobile) {
-                                var h = geByTag1("video", r);
-                                if (h)
-                                    if (e) {
-                                        if (h.hasAttribute("autoplay")) {
-                                            var f = h.play();
-                                            f && f.catch(function() {})
-                                        }
-                                    } else h.pause();
-                                else a = !0
-                            }
-                    }
-                    return a
-                }(p <= t + r - f && t <= p + u - f, h, c)) && domData(c, "done", 1)
-            }
-        })
-    }
-    var T = void 0,
-        x = void 0,
-        S = void 0,
-        I = 1;
-    var k = void 0;
-
-    function L(e, t, r) {
-        (toggleClass(x, "article_full_view__nav_hidden", 0 == r), toggleClass(T, "article_full_view__nav_hidden", r == t.length - 1), t.length > 1) && (geByClass1("article_full_view__counter_text", S).innerHTML = getLang("global_article_carousel_counter").replace("{counter}", r + 1).replace("{total}", t.length));
-        k = r;
-        var n = Object(i.getAppropriateImage)(t[r], window.innerWidth, !0),
-            a = o(n, 3),
-            s = a[0],
-            c = D({
-                width: a[1],
-                height: a[2]
-            }, {
-                width: window.innerWidth,
-                height: window.innerHeight
-            }),
-            l = !1;
-        if (Object(i.preloadImage)(s, function() {
-                if (k === r) {
-                    l = !0, c.width && isNumeric(c.width) ? setStyle(e, {
-                        width: c.width,
-                        height: c.height
-                    }) : setStyle(e, {
-                        width: null,
-                        height: null
-                    }), e.src = s, removeClass(e, "article_full_view__image_blurred");
-                    for (var n = r; n < Math.min(r + 3, t.length); n++) {
-                        var a = Object(i.getAppropriateImage)(t[n], window.innerWidth, !0),
-                            d = o(a, 1)[0];
-                        Object(i.preloadImage)(d)
-                    }
+        return function(e, t) {
+            if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);
+            e.prototype = Object.create(t && t.prototype, {
+                constructor: {
+                    value: e,
+                    enumerable: !1,
+                    writable: !0,
+                    configurable: !0
                 }
-            })) removeClass(e, "article_full_view__image_blurred");
-        else {
-            var d = Object(i.getAppropriateImage)(t[r], 200, !0),
-                u = o(d, 1)[0];
-            Object(i.preloadImage)(u, function() {
-                k === r && (l || (setStyle(e, {
-                    width: c.width,
-                    height: c.height
-                }), e.src = u))
-            }), addClass(e, "article_full_view__image_blurred")
-        }
-    }
-
-    function A() {
-        return !!p && (re(p), s && removeClass(s, "article_no_scroll"), p = !1, !0)
-    }
-
-    function D(e, t) {
-        var r = e.width / e.height,
-            n = {};
-        return r > t.width / t.height ? (n.width = Math.min(t.width, e.width), n.height = e.height * (n.width / e.width)) : (n.height = Math.min(t.height, e.height), n.width = n.height * r), n
-    }
-
-    function N() {
-        if (!d.notFull) {
-            var e = getH(c),
-                t = getXY(c)[1] - scrollGetY(),
-                r = window.innerHeight,
-                n = Date.now(),
-                a = -1,
-                o = void 0,
-                s = [];
-            f(0), l.addEventListener("scroll", _ = y, {
-                passive: !0
-            }), y()
-        }
-
-        function p() {
-            return Math.round((Date.now() - n) / 1e3)
-        }
-
-        function f(e) {
-            if (!(a >= e)) {
-                for (var t = a + 1; t <= e; t++) s.push(t);
-                if (a = e, clearTimeout(o), o = setTimeout(v, 100), 3 == e && h.ttr) {
-                    var r = h.ttr - p();
-                    r > 0 && (g = setTimeout(function() {
-                        document.hidden || (s = [a = 4], v())
-                    }, 1e3 * r))
-                }
+            }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t)
+        }(t, e), t.prototype.render = function() {
+            var e = this;
+            this._el = se('\n      <div class="article_object_audio"></div>\n    ');
+            var t = i.default.get(a.ParagraphType.ObjectAudioPlaylist, this.getMediaId());
+            if (t.snippet) this._el.innerHTML = t.snippet;
+            else {
+                var r = this.getMediaId().split("_"),
+                    n = o(r, 2),
+                    s = n[0],
+                    c = n[1];
+                this.setLoadingState(!0), ajax.post("al_articles.php", {
+                    act: "get_audioplaylist_snippet",
+                    pl_owner_id: s,
+                    pl_id: c,
+                    pl_access_hash: t.accessHash
+                }, {
+                    onDone: function(t) {
+                        e.setLoadingState(!1), e._el.innerHTML = t
+                    }
+                })
             }
-        }
-
-        function v() {
-            s.length && (ajax.post(d.mobile ? "article.php" : "al_articles.php", {
-                act: "stats",
-                scroll: s.join(","),
-                spent: p(),
-                hash: h.access_hash,
-                article_owner_id: h.owner_id,
-                article_id: h.id,
-                is_web_view: d.isWebView ? 1 : 0,
-                post_id: d.postId,
-                ref: window.cur ? window.cur.module : "",
-                is_widget: h.isWidget
-            }), s.forEach(function(e) {
-                Object(i.mailruStatsPixel)("scroll_" + e, h.mailruStatsData)
-            }), s = [])
-        }
-
-        function y() {
-            var n = u();
-            n > 0 && f(1);
-            for (var i = 1; i < 4; i++) n + 3 * r / 4 > t + e * i / 3 && f(i + 1);
-            n + r > e - 20 && f(4)
-        }
-    }
-
-    function M() {
-        var e = Object(i.getUrlParam)("anchor");
-        e && function() {
-            var t = document.getElementById(e);
-            if (t) {
-                "scrollRestoration" in history && (history.scrollRestoration = "manual");
-                var r = d.isWebView ? 0 : 25,
-                    n = t.parentNode.parentNode.offsetTop - r;
-                window.setTimeout(function() {
-                    browser.msie && !l.scrollTo ? l.scrollTop = n : l.scrollTo(0, n)
-                }, 0)
-            }
-        }()
-    }
-    window.initArticle = b, window.deinitArticle = E, window.updateArticle = w, window.scrollToAnchor = M, window.articleCloseImageFullSize = A
-}, function(e, t, r) {
-    e.exports = r(10)
+            return this._el.appendChild(se('<div class="article_ed__audioplaylist_play_note" contenteditable="false">' + getLang("pages_articles_editor_audio_play_note") + "</div>")), this._el
+        }, t
+    }(n.default);
+    t.default = s
 }, function(e, t, r) {
     "use strict";
 
@@ -930,16 +283,10 @@
 }, function(e, t, r) {
     "use strict";
     r.r(t);
-    var n = r(33),
-        i = r(7);
-    window.ArticleEditor = n.default, window.ArticleView = {
-        initArticle: i.initArticle
-    }, stManager.done(jsc("web/article.js"))
-}, , function(e, t, r) {
-    "use strict";
-    r.r(t);
-    var n = r(16),
-        i = (r(5), function() {
+    var n = r(8),
+        i = r(31),
+        a = r(29),
+        o = function() {
             return function(e, t) {
                 if (Array.isArray(e)) return e;
                 if (Symbol.iterator in Object(e)) return function(e, t) {
@@ -962,310 +309,97 @@
                 }(e, t);
                 throw new TypeError("Invalid attempt to destructure non-iterable instance")
             }
-        }());
-    var a = window.browser && (browser.mozilla || browser.safari),
-        o = void 0,
-        s = function() {
-            function e(t, r, n) {
-                ! function(e, t) {
-                    if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
-                }(this, e), this._mediaId = t, this._editor = r, this._highlighted = !1, this._isCaptioned = !!n, o = this.getEditor().getOptions().multiMediasSeparator
-            }
-            return e.prototype.isCaptioned = function() {
-                return this._isCaptioned
-            }, e.prototype.getEditor = function() {
-                return this._editor
-            }, e.prototype.getMediaIdsCount = function() {
-                return this._mediaId.split(o).length
-            }, e.prototype.getMediaId = function(e) {
-                return void 0 !== e ? this._mediaId.split(o)[e] : this._mediaId
-            }, e.prototype.setMediaId = function(e) {
-                this._mediaId = e
-            }, e.prototype.highlight = function() {
-                var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0],
-                    t = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
-                if (e != this._highlighted) {
-                    this._highlighted = e;
-                    var r = this.el();
-                    if (e) {
-                        var i = getSize(r),
-                            a = se('<div class="article_ed__object_highlight _article_ed__object_highlight"></div>');
-                        setStyle(a, {
-                            width: i[0] + 0,
-                            height: i[1] + 0
-                        }), addClass(r, "article_ed__object_highlighted")
-                    } else re(geByClass1("_article_ed__object_highlight", r)), removeClass(r, "article_ed__object_highlighted");
-                    if (this._isCaptioned)
-                        if (e) this._toggleCaption(!0), this._toggleCaptionPlaceholder(this.isEmptyCaption()), t || Object(n.focusEl)(this._getCaptionEl());
-                        else {
-                            var o = this.isEmptyCaption();
-                            this._toggleCaptionPlaceholder(o), this._toggleCaption(!o)
-                        }
-                }
-            }, e.prototype.render = function() {}, e.prototype.el = function() {
-                var e = this;
-                if (!this._objectEl) {
-                    var t = this.render();
-                    addClass(t, "article_object_el"), t.setAttribute("contenteditable", "false");
-                    var r = this.getEditor().isLocked() ? "false" : "true",
-                        i = browser.mozilla ? 'contenteditable="' + r + '"' : 'contenteditable="false"';
-                    this._objectEl = se("<figure " + i + "></figure>");
-                    var o = this.renderExtraControlsEl();
-                    if (o) {
-                        var s = se('<div class="article_ed__img_wrapper"></div>'),
-                            c = se('<div class="article_ed__img_inner"></div>');
-                        o.setAttribute("contenteditable", "false"), addClass(o, "article_ed__extra_controls"), c.appendChild(t), c.appendChild(o), s.appendChild(c), this._objectEl.appendChild(s)
-                    } else this._objectEl.appendChild(t);
-                    this._isCaptioned && (this._captionEl = se('<figcaption class="article_ed__figcaption" contenteditable="false">\n          <div class="article_ed__figcaption_edit" contenteditable="' + r + '"></div>\n          <div class="article_ed__caption_placeholder" contenteditable="false">' + getLang("pages_article_figure_placeholder") + "</div>\n        </figcaption>"), this._objectEl.appendChild(this._captionEl)), a && t.addEventListener("click", function() {
-                        e.highlight(!0), Object(n.focusEl)(t)
-                    })
-                }
-                return this._setLoadingEl(), this._objectEl
-            }, e.prototype.renderExtraControlsEl = function() {
-                return !1
-            }, e.prototype.setLoadingState = function() {
-                var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0],
-                    t = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
-                !!this._isLoading != e && (this._isLoading = e, this._setLoadingEl(t), toggleClass(this._objectEl, "article_ed__object_loading", e), e || this.getEditor().onObjectStateLoaded(this))
-            }, e.prototype._setLoadingEl = function() {
-                var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
-                if (this._objectEl) {
-                    if (re(geByClass1("article_ed___object_loading_placeholder", this._objectEl)), this._isLoading) {
-                        var t = se('<div class="article_ed___object_loading_placeholder"></div>');
-                        toggleClass(t, "article_ed__object_loading_white", e), domInsertBefore(t, this._objectEl.firstChild)
-                    }
-                    toggleClass(this._objectEl, "article_ed___object_loading", !!this._isLoading)
-                }
-            }, e.prototype.getCaptionEl = function() {
-                return !!this._isCaptioned && this._getCaptionEl()
-            }, e.prototype.isCaptionFocused = function() {
-                return !!this._isCaptioned && this._isFocusInCaption()
-            }, e.prototype.setCaptionElHtml = function(e) {
-                if (this._isCaptioned) {
-                    e = e.trim();
-                    var t = this._getCaptionEl();
-                    t != e && (t.innerHTML = e), this._toggleCaptionPlaceholder(!e), this._toggleCaption(!!e)
-                }
-            }, e.prototype.isEmptyCaption = function() {
-                return !this._getCaptionEl().textContent.trim()
-            }, e.prototype._getCaptionEl = function() {
-                return geByClass1("article_ed__figcaption_edit", this._captionEl)
-            }, e.prototype._toggleCaption = function(e) {
-                toggleClass(this._captionEl, "article_ed__figcaption_visible", e)
-            }, e.prototype._toggleCaptionPlaceholder = function(e) {
-                void 0 !== this._captionPlaceholderShown && this._captionPlaceholderShown === e || (this._captionPlaceholderShown = toggle(geByClass1("article_ed__caption_placeholder", this._captionEl), e))
-            }, e.prototype._isFocusInCaption = function() {
-                var e = this,
-                    t = Object(n.getRange)(),
-                    r = i(t, 2),
-                    a = r[0],
-                    o = function(t) {
-                        return !!traverseParent(t, function(t) {
-                            return t == e._captionEl
-                        }, 10)
-                    };
-                if (r[1]) return o(a.startContainer);
-                var s = o(a.startContainer),
-                    c = o(a.endContainer);
-                return s && c
-            }, e
         }();
-    t.default = s
-}, function(e, t, r) {
-    "use strict";
-    r.r(t), r.d(t, "parseLatin", function() {
-        return a
-    }), r.d(t, "parseCyr", function() {
-        return o
-    }), r.d(t, "parseLatKeys", function() {
-        return s
-    }), r.d(t, "langNumeric", function() {
-        return c
-    }), r.d(t, "langSex", function() {
-        return l
-    }), r.d(t, "langStr", function() {
-        return d
-    }), r.d(t, "addLangKeys", function() {
-        return u
-    }), r.d(t, "getLang", function() {
-        return p
-    }), r.d(t, "langDate", function() {
-        return h
-    }), r.d(t, "getShortDate", function() {
-        return f
-    }), r.d(t, "getShortDateOrTime", function() {
-        return _
-    }), r.d(t, "langWordNumeric", function() {
-        return g
-    }), r.d(t, "getDateText", function() {
-        return v
-    }), r.d(t, "getBigDateNew", function() {
-        return y
-    }), r.d(t, "getSmDate", function() {
-        return m
-    });
-    var n = r(19),
-        i = r(32);
 
-    function a(e) {
-        for (var t = ["yo", "zh", "kh", "ts", "ch", "sch", "shch", "sh", "eh", "yu", "ya", "YO", "ZH", "KH", "TS", "CH", "SCH", "SHCH", "SH", "EH", "YU", "YA", "'"], r = ["ё", "ж", "х", "ц", "ч", "щ", "щ", "ш", "э", "ю", "я", "Ё", "Ж", "Х", "Ц", "Ч", "Щ", "Щ", "Ш", "Э", "Ю", "Я", "ь"], n = e, i = 0, a = t.length; i < a; i++) n = n.split(t[i]).join(r[i]);
-        for (var o = "abvgdezijklmnoprstufhcyABVGDEZIJKLMNOPRSTUFHCYёЁ", s = 0, c = o.length; s < c; s++) n = n.split(o.charAt(s)).join("абвгдезийклмнопрстуфхцыАБВГДЕЗИЙКЛМНОПРСТУФХЦЫеЕ".charAt(s));
-        return n === e ? null : n
+    function s(e, t) {
+        return e ? '<div class="article_ed__caredit_item article_ed__caredit_item_photo" data-media-id="' + t + '">\n      <div class="article_ed__caredit_photo" style="background-image: url(' + e + ')"></div>\n      <div class="article_ed__caredit_remove"><div class="article_ed__caredit_remove_icon"></div></div>\n    </div>' : '<button class="article_ed__caredit_item article_ed__caredit_item_add" nodrag="1">\n      <div class="article_ed__caredit_add"></div>\n      <div class="article_ed__caredit_item_text">' + getLang("pages_article_ed_carousel_add") + "</div>\n    </button>"
     }
-
-    function o(e) {
-        for (var t = ["yo", "zh", "kh", "ts", "ch", "sch", "shch", "sh", "eh", "yu", "ya", "YO", "ZH", "KH", "TS", "CH", "SCH", "SHCH", "SH", "EH", "YU", "YA", "'"], r = ["ё", "ж", "х", "ц", "ч", "щ", "щ", "ш", "э", "ю", "я", "Ё", "Ж", "Х", "Ц", "Ч", "Щ", "Щ", "Ш", "Э", "Ю", "Я", "ь"], n = "абвгдезийклмнопрстуфхцыАБВГДЕЗИЙКЛМНОПРСТУФХЦЫеЕ", i = e, a = 0; a < r.length; a++) i = i.split(r[a]).join(t[a]);
-        for (var o = 0; o < n.length; o++) i = i.split(n.charAt(o)).join("abvgdezijklmnoprstufhcyABVGDEZIJKLMNOPRSTUFHCYёЁ".charAt(o));
-        return i === e ? null : i
-    }
-
-    function s(e) {
-        for (var t = "qwertyuiop[]asdfghjkl;'zxcvbnm,./`", r = e, n = 0; n < t.length; n++) r = r.split(t.charAt(n)).join("йцукенгшщзхъфывапролджэячсмитьбю.ё".charAt(n));
-        return r == e ? null : r
-    }
-
-    function c(e, t, r) {
-        if (!t || !window.langConfig) return e;
-        var n = void 0;
-        if (Object(i.isArray)(t) ? (n = t[1], e != Math.floor(e) ? n = t[langConfig.numRules.float] : Object(i.each)(langConfig.numRules.int, function(r, a) {
-                if ("*" == a[0]) return n = t[a[2]], !1;
-                var o = a[0] ? e % a[0] : e;
-                return -1 != Object(i.indexOf)(a[1], o) ? (n = t[a[2]], !1) : void 0
-            })) : n = t, r) {
-            for (var a = e.toString().split("."), o = [], s = a[0].length - 3; s > -3; s -= 3) o.unshift(a[0].slice(s > 0 ? s : 0, s + 3));
-            a[0] = o.join(langConfig.numDel), e = a.join(langConfig.numDec)
-        }
-        return n = (n || "%s").replace("%s", e)
-    }
-
-    function l(e, t) {
-        if (!Object(i.isArray)(t)) return t;
-        var r = t[1];
-        return window.langConfig ? (Object(i.each)(langConfig.sexRules, function(n, i) {
-            return "*" == i[0] ? (r = t[i[1]], !1) : e == i[0] && t[i[1]] ? (r = t[i[1]], !1) : void 0
-        }), r) : r
-    }
-
-    function d(e) {
-        for (var t = arguments, r = t.length, n = e + "", i = 1; i < r; i += 2) {
-            var a = "%" === t[i][0] ? t[i] : "{" + t[i] + "}";
-            n = n.replace(a, t[i + 1])
-        }
-        return n
-    }
-
-    function u(e, t) {
-        var r = t ? window : window.cur;
-        r.lang ? Object(i.extend)(r.lang, e) : r.lang = e
-    }
-
-    function p() {
-        try {
-            var e = Array.from(arguments),
-                t = e.shift();
-            if (!t) return "...";
-            var r = window.cur.lang && window.cur.lang[t] || window.lang && window.lang[t] || window.langpack && window.langpack[t] || window[t];
-            if (!r) {
-                var n = t.split("_");
-                return n.shift(), n.join(" ")
-            }
-            return Object(i.isFunction)(r) ? r.apply(null, e) : void 0 === e[0] && !Object(i.isArray)(r) || "raw" === e[0] ? r : c(e[0], r, e[1])
-        } catch (e) {
-            debugLog("lang error:" + e.message + "(" + Array.from(arguments).join(", ") + ")")
-        }
-    }
-
-    function h(e, t, r, a, o, s) {
-        var c = void 0;
-        if (s || (s = ""), Object(i.isArray)(t) || (t = ["", t, t, t, t]), "number" == typeof e || "string" == typeof e ? (e > 2147483646e3 && (e = 0), e += r, c = new Date(e)) : c = e, o) t = t[1];
-        else {
-            var l = "";
-            !(l = Object(n.isToday)(c) ? t[3] : Object(n.isYesterday)(c) ? t[2] : Object(n.isTomorrow)(c) ? t[4] : t[1]) && t[1] && (l = t[1]), t = l
-        }
-        var d = {
-                hours: c.getHours(),
-                minutes: c.getMinutes(),
-                seconds: c.getSeconds(),
-                day: c.getDate(),
-                month: c.getMonth() + 1,
-                year: c.getFullYear()
-            },
-            u = "";
-        switch (3 === vk.lang && (u = c.getHours() > 11 ? "pm" : "am", d.hours = c.getHours() % 12 == 0 ? 12 : c.getHours() % 12), vk.lang) {
-            case 1:
-                switch (c.getHours()) {
-                    case 11:
-                        t = t.replace(" о ", " об ");
-                        break;
-                    case 0:
-                        t = t.replace(" о ", " в ")
+    var c = function() {
+        function e(t, r, a, c) {
+            var l = this;
+            ! function(e, t) {
+                if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
+            }(this, e);
+            var d = '<div class="article_ed__caredit">\n                  <div class="article_ed__caredit_inner">\n    ';
+            d += '\n      <div class="article_ed__caredit_header">\n        <div class="article_ed__caredit_container">\n          ' + getLang("pages_article_ed_carousel_title") + '\n          <div class="article_ed__caredit_header_controls">\n            <div class="article_ed__caredit_header_counter"></div>\n            <button class="flat_button article_ed__caredit_save">' + getLang("global_save") + '</button>\n            <button class="flat_button article_ed__caredit_cancel">' + getLang("global_cancel") + "</button>\n          </div>\n         </div>\n      </div>\n    ", d += '\n      <div class="article_ed__caredit_items_wrap article_ed__caredit_container">\n        <div class="article_ed__caredit_items">\n    ', r.getMediaId().split(",").forEach(function(e) {
+                var t = n.default.get(i.ParagraphType.ObjectPhoto, e),
+                    r = Object(i.getAppropriateImage)(t.sizes, 251),
+                    a = o(r, 1)[0];
+                d += s(a, e)
+            }), d += s(), d += "  </div>", d += "</div>", d += '</div>\n             <div class="article_ed__caredit_loading" style="display: none"></div>\n           </div>', this._els = {}, this._els.editor = se(d), this._els.itemsWrap = geByClass1("article_ed__caredit_items_wrap", this._els.editor), this._els.items = geByClass1("article_ed__caredit_items", this._els.editor), this._els.addButton = geByClass1("article_ed__caredit_item_add", this._els.editor), this._els.saveButton = geByClass1("article_ed__caredit_save", this._els.editor), this._els.cancelButton = geByClass1("article_ed__caredit_cancel", this._els.editor), this._els.loading = geByClass1("article_ed__caredit_loading", this._els.editor), this._els.counter = geByClass1("article_ed__caredit_header_counter", this._els.editor), this._els.addButton.addEventListener("click", function() {
+                showBox("al_photos.php", {
+                    to_id: r.getEditor().getArticleOwnerId(),
+                    act: "choose_photo",
+                    max_files: l._limit - l._medias.length,
+                    article: 1
+                }, {
+                    cache: 1,
+                    stat: ["photos.js", "photos.css", "upload.js"]
+                });
+                cur.chooseMedia = l.onPhotoAdd.bind(l), cur.showMediaProgress = function() {
+                    show(l._els.loading), r.getEditor().setMediaUploadMode(!0)
+                }, cur.choosePhotoUploadedAll = function() {
+                    hide(l._els.loading), r.getEditor().setMediaUploadMode(!1)
                 }
-                break;
-            case 3:
-                !Object(n.isToday)(c) || Object(n.isYesterday)(c) || Object(n.isTomorrow)(c) || (t = s + t);
-                break;
-            case 12:
-            case 73:
-                1 == c.getHours() && (t = t.replace(" &#224;s ", " &#224; "))
+            }), this._els.saveButton.addEventListener("click", function() {
+                re(l._els.editor), a(l._medias.join(","))
+            }), this._onSave = a, this._els.cancelButton.addEventListener("click", this.cancel.bind(this)), this._els.items.addEventListener("click", function(e) {
+                if (hasClass(e.target, "article_ed__caredit_remove")) {
+                    var t = gpeByClass("article_ed__caredit_item", e.target);
+                    re(t), l._collectMediaIds(), l._initSorter(), l._toggleAddButton(), l._updateCounter()
+                }
+            }), t.appendChild(this._els.editor), setStyle(this._els.itemsWrap, {
+                height: getSize(this._els.itemsWrap)[1]
+            }), this._initSorter(), this._scroll = new uiScroll(this._els.itemsWrap, {
+                global: !0,
+                stopScrollPropagation: !0,
+                stopScrollPropagationAlways: !0,
+                theme: "dark"
+            }), this._limit = c, this._originalMedias = this._collectMediaIds(), this._toggleAddButton(), this._updateCounter()
         }
-        return 68 === vk.lang && (d.year = d.year + 543), t.replace("{hour}", d.hours).replace("{num_hour}", Object(n.leadingZero)(d.hours)).replace("{minute}", Object(n.leadingZero)(d.minutes)).replace("{day}", d.day).replace("{num_day}", Object(n.leadingZero)(d.day)).replace("{month}", a[d.month]).replace("{year}", d.year).replace("{short_year}", d.year % 100).replace("{second}", Object(n.leadingZero)(d.seconds)).replace("{am_pm}", u)
-    }
-
-    function f(e, t, r, n, i) {
-        e *= 1e3, void 0 === r && (r = !0), void 0 === n && (n = p("months_of", "raw")), t *= 1e3;
-        var a = Date.now(),
-            o = new Date(a),
-            s = new Date(e + t);
-        return !i && e > a && e - a < 864e5 && o.getDate() === s.getDate() ? h(e, "{hour}:{minute} {am_pm}", t, [], !r) : s.getYear() !== o.getYear() || e < a - 157248e5 ? h(e, p("global_date", "raw"), t, n, !r) : h(e, p("global_short_date", "raw"), t, n, !r)
-    }
-
-    function _(e, t, r, i) {
-        return Object(n.isToday)(new Date(1e3 * e + 1e3 * t)) ? h(1e3 * e, "{hour}:{minute} {am_pm}", 1e3 * t, [], !r) : f(e, t, r, i)
-    }
-
-    function g(e, t, r) {
-        return Object(i.isArray)(t) && e < t.length ? t[e] : c(e, r)
-    }
-
-    function v(e, t) {
-        e += t;
-        var r = parseInt(Date.now() / 1e3) - e,
-            n = "";
-        if (r < 60) n = p("global_just_now");
-        else if (r < 3600) {
-            n = g(Object(i.intval)(r / 60), p("global_word_mins_ago", "raw"), p("global_mins_ago", "raw"))
-        } else if (r < 14400) {
-            n = g(Object(i.intval)(r / 3600), p("global_word_hours_ago", "raw"), p("global_hours_ago", "raw"))
-        } else n = y(e, 0, !0, "_l");
-        return n
-    }
-
-    function y(e, t, r, n) {
-        void 0 === r && (r = !0), void 0 === t && (t = 0), void 0 === n && (n = ""), t *= 1e3;
-        var i = new Date(1e3 * e),
-            a = new Date;
-        return i.getFullYear() !== a.getFullYear() && i.getTime() < a.getTime() - 1728e5 || Math.abs(i.getTime() - a.getTime()) > 157248e5 ? h(1e3 * e, p("global_date", "raw"), t, p("months_sm_of"), !r) : h(1e3 * e, p("global_short_date_time" + n, "raw"), t, p("months_sm_of"), !r)
-    }
-
-    function m(e, t, r) {
-        void 0 === r && (r = !0), void 0 === t && (t = 0);
-        var n = new Date,
-            i = n.getFullYear(),
-            a = n.getMonth(),
-            o = new Date(1e3 * e),
-            s = o.getFullYear(),
-            c = o.getMonth();
-        return h(1e3 * e, p(s < i && (a > 1 || c < 9 || i - s >= 2) ? "global_date" : "global_short_date_time", "raw"), t, p("months_sm_of", "raw"), !r)
-    }
-    window.parseLatin = a, window.parseCyr = o, window.parseLatKeys = s, window.langNumeric = c, window.langSex = l, window.langStr = d, window.addLangKeys = u, window.getLang = p, window.langDate = h, window.getShortDate = f, window.getShortDateOrTime = _, window.langWordNumeric = g, window.getDateText = v, window.getBigDateNew = y, window.getSmDate = m
-}, function(e, t, r) {
+        return e.prototype.cancel = function() {
+            re(this._els.editor), this._onSave(this._originalMedias.join(","))
+        }, e.prototype._updateCounter = function() {
+            this._els.counter.innerHTML = langNumeric(this._medias.length, cur.lang.pages_aricle_ed_carousel_counter)
+        }, e.prototype._toggleAddButton = function() {
+            toggle(this._els.addButton, this._medias.length < this._limit), this._scroll.update()
+        }, e.prototype._collectMediaIds = function() {
+            var e = this;
+            return this._medias = [], each(this._els.items.children, function(t, r) {
+                var n = domData(r, "media-id");
+                n && e._medias.push(n)
+            }), this._medias = this._medias.slice(0, this._limit), this._medias
+        }, e.prototype.onPhotoAdd = function(e, t, r, c) {
+            if (!inArray(t, this._medias) && this._medias.length < this._limit) {
+                n.default.add(i.ParagraphType.ObjectPhoto, t, {
+                    size: Object(a.getPhotoSize)(r.editable.sizes),
+                    sizes: r.editable.sizes
+                });
+                var l = Object(i.getAppropriateImage)(r.editable.sizes, 251),
+                    d = o(l, 1)[0];
+                domInsertBefore(se(s(d, t)), this._els.addButton)
+            }
+            return void 0 === c && (curBox() && curBox().hide(), this._initSorter(), this._scroll.update()), this._collectMediaIds(), this._toggleAddButton(), this._updateCounter(), !1
+        }, e.prototype._initSorter = function() {
+            var e = this;
+            this._sorter ? this._sorter.update() : stManager.add(["grid_sorter.js"], function() {
+                e._sorter = new GridSorter(e._els.items, "", {
+                    onReorder: function() {
+                        e._collectMediaIds()
+                    }
+                })
+            })
+        }, e
+    }();
+    t.default = c
+}, , , function(e, t, r) {
     "use strict";
     r.r(t);
-    var n = r(12),
-        i = r(5),
-        a = r(23),
-        o = r(20),
-        s = r(16),
+    var n = r(20),
+        i = r(31),
+        a = r(8),
+        o = r(3),
+        s = r(29),
         c = function() {
             return function(e, t) {
                 if (Array.isArray(e)) return e;
@@ -1443,9 +577,9 @@
 }, function(e, t, r) {
     "use strict";
     r.r(t);
-    var n = r(12),
-        i = r(23),
-        a = r(5);
+    var n = r(20),
+        i = r(8),
+        a = r(31);
     var o = function(e) {
         function t(r, n) {
             return function(e, t) {
@@ -1475,704 +609,6 @@
     t.default = o
 }, function(e, t, r) {
     "use strict";
-    r.r(t), r.d(t, "NBSP", function() {
-        return a
-    }), r.d(t, "CURSOR_MARKER_START", function() {
-        return o
-    }), r.d(t, "CURSOR_MARKER_END", function() {
-        return s
-    }), r.d(t, "ArticleEditorParagraphClass", function() {
-        return c
-    }), r.d(t, "replaceParagraphEntities", function() {
-        return l
-    }), r.d(t, "isQuoteEl", function() {
-        return d
-    }), r.d(t, "paragraphElProperties", function() {
-        return u
-    }), r.d(t, "deb", function() {
-        return p
-    }), r.d(t, "isParagraphEl", function() {
-        return h
-    }), r.d(t, "selectEl", function() {
-        return f
-    }), r.d(t, "focusEl", function() {
-        return _
-    }), r.d(t, "isBR", function() {
-        return g
-    }), r.d(t, "prepareLineText", function() {
-        return v
-    }), r.d(t, "getElementIndex", function() {
-        return y
-    }), r.d(t, "isObjectParagraphEl", function() {
-        return m
-    }), r.d(t, "isObjectParagraph", function() {
-        return b
-    }), r.d(t, "isObjectResize", function() {
-        return w
-    }), r.d(t, "hasSeparator", function() {
-        return E
-    }), r.d(t, "genSepatorId", function() {
-        return C
-    }), r.d(t, "isHeaderParagraph", function() {
-        return O
-    }), r.d(t, "isListParagraph", function() {
-        return j
-    }), r.d(t, "buildParagraph", function() {
-        return T
-    }), r.d(t, "convertBRsToArray", function() {
-        return x
-    }), r.d(t, "getRange", function() {
-        return S
-    }), r.d(t, "prepareSpacesWithSpaces", function() {
-        return I
-    }), r.d(t, "cleanTextSpaces", function() {
-        return k
-    }), r.d(t, "mergeRanges", function() {
-        return L
-    }), r.d(t, "isWhiteSpaceChar", function() {
-        return A
-    }), r.d(t, "isCyrillicChar", function() {
-        return N
-    }), r.d(t, "isLatinChar", function() {
-        return M
-    }), r.d(t, "isAlienParagraphEl", function() {
-        return R
-    }), r.d(t, "getFocusedElement", function() {
-        return B
-    }), r.d(t, "getPhotoSize", function() {
-        return H
-    }), r.d(t, "childNodeIndex", function() {
-        return z
-    }), r.d(t, "generateLatinizedName", function() {
-        return F
-    }), r.d(t, "dataURItoBlob", function() {
-        return W
-    }), r.d(t, "imageToBlob", function() {
-        return Y
-    }), r.d(t, "queuePhotoProcess", function() {
-        return G
-    }), r.d(t, "justCursorInString", function() {
-        return q
-    }), r.d(t, "isParagraphEmpty", function() {
-        return $
-    }), r.d(t, "arrayUnique", function() {
-        return Q
-    }), r.d(t, "decorationsSlice", function() {
-        return J
-    }), r.d(t, "cleanLineBRs", function() {
-        return Z
-    }), r.d(t, "cleanBRs", function() {
-        return ee
-    }), r.d(t, "createParagraphEl", function() {
-        return te
-    }), r.d(t, "traverseTree", function() {
-        return re
-    }), r.d(t, "throttle", function() {
-        return ne
-    }), r.d(t, "isPublishNameCorrect", function() {
-        return ie
-    }), r.d(t, "correctRealIndexes", function() {
-        return oe
-    }), r.d(t, "isVKUrl", function() {
-        return ce
-    }), r.d(t, "decodeURL", function() {
-        return le
-    }), r.d(t, "BlockElements", function() {
-        return de
-    }), r.d(t, "hasBlockElements", function() {
-        return ue
-    });
-    var n = r(5),
-        i = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
-            return typeof e
-        } : function(e) {
-            return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
-        },
-        a = "&nbsp;",
-        o = "​",
-        s = "‌",
-        c = "_article_paragraph";
-
-    function l(e) {
-        return se("<textarea>" + (e || "") + "</textarea>").value.replace(/</g, "&lt;").replace(/>/g, "&gt;")
-    }
-
-    function d(e) {
-        return e && e.nodeType == Node.ELEMENT_NODE && inArray(e.tagName.toLowerCase(), ["cite", "blockquote"])
-    }
-
-    function u(e) {
-        return [domData(e, "type"), domData(e, "uuid"), domData(e, "mode")]
-    }
-
-    function p(e, t) {
-        cur[e] = cur[e] || 0, void 0 === t ? console.log(e, cur[e]) : cur[e], cur[e]++
-    }
-
-    function h(e) {
-        return e && hasClass(e, "_article_paragraph")
-    }
-
-    function f(e) {
-        if (e) try {
-            var t = document.createRange();
-            t.selectNodeContents(e);
-            var r = window.getSelection();
-            r.removeAllRanges(), r.addRange(t)
-        } catch (e) {}
-    }
-
-    function _(e, t) {
-        if (e) try {
-            var r = document.createRange();
-            t ? (r.selectNodeContents(e), r.collapse(!1)) : (r.setStart(e, 0), r.setEnd(e, 0));
-            var n = window.getSelection();
-            n.removeAllRanges(), n.addRange(r)
-        } catch (e) {}
-    }
-
-    function g(e) {
-        return e && e.nodeType == Node.ELEMENT_NODE && "BR" == e.tagName
-    }
-
-    function v(e, t, r, n) {
-        var i = arguments.length > 4 && void 0 !== arguments[4] && arguments[4];
-        if (e = e.substring(t, r), n && n.length) {
-            var a = [],
-                o = 0;
-            n.forEach(function(r) {
-                if (!((r -= t) <= 0 || r > e.length)) {
-                    var n = e.substring(o, r) + "<br/>";
-                    n = i ? n : I(n), a.push(n), o = r
-                }
-            });
-            var s = e.substring(o);
-            a.push(i ? s : I(s));
-            a[a.length - 1];
-            return a.join("")
-        }
-        return i ? e : I(e)
-    }
-
-    function y(e) {
-        if (!e) return !1;
-        for (var t = 0; null != (e = e.previousSibling);) t++;
-        return t
-    }
-
-    function m(e) {
-        return e && e.nodeType == Node.ELEMENT_NODE && !!domData(e, "uuid")
-    }
-
-    function b(e) {
-        return e && e.type && e.type >= 100
-    }
-
-    function w(e) {
-        return e && e.mode
-    }
-
-    function E(e) {
-        return e && e.sep
-    }
-    var P = 0;
-
-    function C() {
-        return ++P
-    }
-
-    function O(e) {
-        var t = void 0;
-        return t = isObject(e) ? e.type : e, inArray(t, [n.ParagraphType.Header1, n.ParagraphType.Header2, n.ParagraphType.Header3])
-    }
-
-    function j(e) {
-        return e && (e.type == n.ParagraphType.NumericList || e.type == n.ParagraphType.BulletList)
-    }
-
-    function T(e) {
-        var t = {};
-        return b(e = e || {}) && (t._uuid = e._uuid), t.lines = e.lines || [{
-            text: "",
-            decorations: {},
-            brs: []
-        }], t.type = e.type ? parseInt(e.type) : n.ParagraphType.Text, e.mediaId && (t.mediaId = e.mediaId), e.sep && (t.sep = e.sep), e.fromExtPage && (t.fromExtPage = e.fromExtPage), t
-    }
-
-    function x(e) {
-        if (isArray(e)) return e;
-        var t = [];
-        return each(e, function(e, r) {
-            t.push(intval(r))
-        }), t.sort(), t
-    }
-
-    function S() {
-        var e = window.getSelection();
-        return e.rangeCount ? [e.getRangeAt(0), e.isCollapsed, e] : [!1]
-    }
-
-    function I(e) {
-        return -1 != e.search(/^\s/) && (e = " " + e.trimLeft()), -1 != e.search(/\s$/) && (e = e.trimRight() + a), e
-    }
-
-    function k(e) {
-        return e.replace(/\s\s+/g, " ").replace(/\s/g, " ")
-    }
-
-    function L(e) {
-        var t = e.slice();
-        t.sort(function(e, t) {
-            return e[0] - t[0]
-        });
-        for (var r = 0; r < t.length - 1;) {
-            var n = t[r],
-                i = t[r + 1];
-            n[1] >= i[0] ? (n[1] = Math.max(n[1], i[1]), t.splice(r + 1, 1)) : r++
-        }
-        return t
-    }
-
-    function A(e) {
-        return /\s/.test(e)
-    }
-    var D = /[\u0400-\u04FF]/;
-
-    function N(e) {
-        return D.test(e)
-    }
-
-    function M(e) {
-        return /[a-zA-Z]/.test(e)
-    }
-
-    function R(e) {
-        return !hasClass(e, c)
-    }
-
-    function B() {
-        return window.getSelection().focusNode
-    }
-
-    function H(e) {
-        var t = [];
-        each(e, function(e, r) {
-            t.push(r)
-        });
-        var r = t.sort(function(e, t) {
-            return t[1] - e[1]
-        })[0];
-        return [r[1], r[2]]
-    }
-
-    function z(e) {
-        for (var t = e.parentNode, r = 0; r < t.childNodes.length; r++)
-            if (e == t.childNodes[r]) return r;
-        return -1
-    }
-    var U = {
-        1072: "a",
-        1073: "b",
-        1074: "v",
-        1075: "g",
-        1076: "d",
-        1077: "e",
-        1105: "e",
-        1078: "zh",
-        1079: "z",
-        1080: "i",
-        1081: "i",
-        1082: "k",
-        1083: "l",
-        1084: "m",
-        1085: "n",
-        1086: "o",
-        1087: "p",
-        1088: "r",
-        1089: "s",
-        1090: "t",
-        1091: "u",
-        1092: "f",
-        1093: "h",
-        1094: "c",
-        1095: "ch",
-        1096: "sh",
-        1097: "sch",
-        1099: "y",
-        1101: "e",
-        1102: "u",
-        1103: "ya"
-    };
-
-    function F(e, t) {
-        e = e.toLowerCase();
-        for (var r = "", n = !1, i = "-qwertyuiopasdfghjklzxcvbnm0123456789".split(""), a = 0; a < e.length; a++)
-            if (/\s/.test(e[a])) n || (r += "-", n = !0);
-            else if (inArray(e[a], i)) r += e[a], n = !1;
-        else {
-            var o = U[e.charCodeAt(a)];
-            o && (r += o, n = !1)
-        }
-        return r = (r = r.substr(0, t)).replace(/-*$/, "").replace(/^-*/, "").replace(/-+/g, "-")
-    }
-
-    function W(e) {
-        var t, r = void 0,
-            n = void 0;
-        r = e.split(",")[0].indexOf("base64") >= 0 ? atob(e.split(",")[1]) : unescape(e.split(",")[1]), t = e.split(",")[0].split(":")[1].split(";")[0], n = new Uint8Array(r.length);
-        for (var i = 0; i < r.length; i++) n[i] = r.charCodeAt(i);
-        return new Blob([n], {
-            type: t
-        })
-    }
-
-    function Y(e, t, r) {
-        var n = void 0;
-        if ("function" == typeof t && (r = t, t = {}), t = t || {}, !e) return r(new Error("Pass in a IMG DOM node or a url as first param"));
-        if ("object" === (void 0 === e ? "undefined" : i(e)) && "img" === e.tagName.toLowerCase() && (n = e.src), "string" == typeof e && (n = e), !/^data:/.test(n) || t.convert) {
-            var a, o = {
-                png: "image/png",
-                jpg: "image/jpeg",
-                jpeg: "image/jpeg",
-                svg: "image/svg+xml"
-            };
-            t.type = o[t.type] || ((a = n) ? o[a.split("?").shift().split(".").pop()] : null), t.src = n, t.callback = r, t.name = n, t.type ? function(e, t) {
-                var r = document.createElement("canvas"),
-                    n = document.createElement("img");
-                n.onload = function() {
-                    var e = r.getContext("2d");
-                    r.width = n.width, r.height = n.height, e.drawImage(n, 0, 0), t(null, r.toDataURL("image/png"))
-                }, n.addEventListener("error", function() {
-                    t(new Error("FailedToLoadImage"))
-                }), r.getContext ? (n.crossOrigin = "anonymous", n.src = e) : setTimeout(t, 0, new Error("CanvasIsNotSupported"))
-            }(n, function(e, t, r) {
-                if (t) return void e.callback(t);
-                var n = W(r);
-                n.name = n.filename = e.name, e.callback(null, n)
-            }.bind(null, t)) : r(new Error("Image type is not supported"))
-        } else r(null, W(n))
-    }
-    var K = [],
-        V = 0,
-        X = 2;
-
-    function G(e, t) {
-        K.push({
-                src: e,
-                cb: t
-            }),
-            function e() {
-                if (0 != K.length && V != X) {
-                    V++;
-                    var t = K.shift(),
-                        r = new Image;
-                    r.addEventListener("error", function() {
-                        t.cb(!0, !1, function() {
-                            V--, e()
-                        })
-                    }), r.addEventListener("load", function() {
-                        Y(r, {}, function(r, n) {
-                            t.cb(r, n, function() {
-                                V--, e()
-                            })
-                        })
-                    }), r.src = t.src
-                }
-            }()
-    }
-
-    function q(e) {
-        return 1 == (e = trim(e)).length && e[0] == o
-    }
-
-    function $(e, t) {
-        if (!e) return !0;
-        if (b(e)) return !1;
-        var r = e.lines;
-        return 0 == r.length || !(t ? trim(r[0].text) : r[0].text)
-    }
-
-    function Q(e) {
-        return e.filter(function(e, t, r) {
-            return r.indexOf(e) === t
-        })
-    }
-
-    function J(e, t, r) {
-        var n = {};
-        for (var i in e) e.hasOwnProperty(i) && function() {
-            var a = [];
-            e[i].forEach(function(e) {
-                t < e[1] && e[0] <= r && a.push([Math.max(e[0], t) - t, Math.min(r, e[1]) - t, e[2]])
-            }), n[i] = a
-        }();
-        return n
-    }
-
-    function Z(e) {
-        e.brs = Q(e.brs), e.brs[e.brs.length - 1] == e.text.length && e.brs.pop()
-    }
-
-    function ee(e, t) {
-        var r = e.length;
-        return 1 == r && e[r - 1] == t ? e.pop() : r > 1 && e[r - 1] == t && e[r - 2] != t && e.pop(), e
-    }
-
-    function te() {
-        var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "",
-            t = arguments[1] ? 'data-sep="' + C() + '"' : "";
-        return se('<p class="' + c + '" ' + t + ">" + e + "</p>")
-    }
-
-    function re(e, t) {
-        var r = !(arguments.length > 2 && void 0 !== arguments[2]) || arguments[2],
-            n = t(e, !(arguments.length > 3 && void 0 !== arguments[3]) || arguments[3]);
-        if (void 0 !== n) return n;
-        for (var i = Array.prototype.slice.call(r ? e.children : e.childNodes), a = void 0; a = i.shift();) {
-            var o = re(a, t, r, !1);
-            if (void 0 !== o) return o
-        }
-    }
-
-    function ne(e, t, r) {
-        var n = void 0,
-            i = void 0,
-            a = void 0,
-            o = null,
-            s = 0;
-        r || (r = {});
-        var c = function() {
-            s = !1 === r.leading ? 0 : Date.now(), o = null, a = e.apply(n, i), o || (n = i = null)
-        };
-        return function() {
-            var l = Date.now();
-            s || !1 !== r.leading || (s = l);
-            var d = t - (l - s);
-            return n = this, i = arguments, d <= 0 || d > t ? (o && (clearTimeout(o), o = null), s = l, a = e.apply(n, i), o || (n = i = null)) : o || !1 === r.trailing || (o = setTimeout(c, d)), a
-        }
-    }
-
-    function ie(e) {
-        return !!/^[a-z0-9\-]+$/.test(e) && (-1 == e.indexOf("--") && ("-" != e[0] && "-" != e[e.length - 1] && !(e.length > 60)))
-    }
-
-    function ae(e, t, r) {
-        e.decorations && each(e.decorations, function(e, n) {
-            n.forEach(function(e) {
-                e[0] > t && (e[0] += r), e[1] > t && (e[1] += r)
-            })
-        }), e.brs && e.brs.forEach(function(r, n) {
-            r > t && (e.brs[n] -= 1)
-        })
-    }
-
-    function oe(e, t) {
-        e.forEach(function(e) {
-            e.lines.forEach(function(e) {
-                for (var r = 0, n = e.text.length; r < n; r++) {
-                    var i = e.text.charCodeAt(r);
-                    i >= 55296 && i <= 56319 && (ae(e, r, t), r += 1)
-                }
-            })
-        })
-    }
-
-    function ce(e) {
-        return /^(https?:\/\/)?([a-z0-9_\-.]+\.)?vk.com(\/.*)?/.test(e)
-    }
-
-    function le(e) {
-        var t = e;
-        try {
-            t = decodeURIComponent(e)
-        } catch (r) {
-            t = e
-        }
-        return t
-    }
-    var de = "div p footer form h1 h2 h3 h4 h5 h6 header hgroup hr main nav output pre section table tfoot address article aside blockquote canvas dd dl dt fieldset figcaption figure".toUpperCase().split(" ");
-
-    function ue(e) {
-        for (var t = 0, r = e.children.length; t < r; t++)
-            if (de.indexOf(e.children[t].tagName) >= 0) return !0;
-        return !1
-    }
-}, , , function(e, t, r) {
-    "use strict";
-
-    function n(e) {
-        var t = new Date;
-        return e.getFullYear() === t.getFullYear() && e.getMonth() === t.getMonth() && e.getDate() === t.getDate()
-    }
-
-    function i(e) {
-        return n(new Date(e.getTime() + 864e5))
-    }
-
-    function a(e) {
-        return n(new Date(e.getTime() - 864e5))
-    }
-
-    function o(e, t) {
-        var r = new Date(e),
-            n = new Date(t);
-        return r.getFullYear() === n.getFullYear() && r.getMonth() === n.getMonth() && r.getDate() === n.getDate()
-    }
-
-    function s(e) {
-        return e >= 10 ? e : "0" + e
-    }
-    r.r(t), r.d(t, "isToday", function() {
-        return n
-    }), r.d(t, "isYesterday", function() {
-        return i
-    }), r.d(t, "isTomorrow", function() {
-        return a
-    }), r.d(t, "isSameDate", function() {
-        return o
-    }), r.d(t, "leadingZero", function() {
-        return s
-    })
-}, function(e, t, r) {
-    "use strict";
-    r.r(t);
-    var n = r(23),
-        i = r(5),
-        a = r(16),
-        o = function() {
-            return function(e, t) {
-                if (Array.isArray(e)) return e;
-                if (Symbol.iterator in Object(e)) return function(e, t) {
-                    var r = [],
-                        n = !0,
-                        i = !1,
-                        a = void 0;
-                    try {
-                        for (var o, s = e[Symbol.iterator](); !(n = (o = s.next()).done) && (r.push(o.value), !t || r.length !== t); n = !0);
-                    } catch (e) {
-                        i = !0, a = e
-                    } finally {
-                        try {
-                            !n && s.return && s.return()
-                        } finally {
-                            if (i) throw a
-                        }
-                    }
-                    return r
-                }(e, t);
-                throw new TypeError("Invalid attempt to destructure non-iterable instance")
-            }
-        }();
-
-    function s(e, t) {
-        return e ? '<div class="article_ed__caredit_item article_ed__caredit_item_photo" data-media-id="' + t + '">\n      <div class="article_ed__caredit_photo" style="background-image: url(' + e + ')"></div>\n      <div class="article_ed__caredit_remove"><div class="article_ed__caredit_remove_icon"></div></div>\n    </div>' : '<button class="article_ed__caredit_item article_ed__caredit_item_add" nodrag="1">\n      <div class="article_ed__caredit_add"></div>\n      <div class="article_ed__caredit_item_text">' + getLang("pages_article_ed_carousel_add") + "</div>\n    </button>"
-    }
-    var c = function() {
-        function e(t, r, a, c) {
-            var l = this;
-            ! function(e, t) {
-                if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
-            }(this, e);
-            var d = '<div class="article_ed__caredit">\n                  <div class="article_ed__caredit_inner">\n    ';
-            d += '\n      <div class="article_ed__caredit_header">\n        <div class="article_ed__caredit_container">\n          ' + getLang("pages_article_ed_carousel_title") + '\n          <div class="article_ed__caredit_header_controls">\n            <div class="article_ed__caredit_header_counter"></div>\n            <button class="flat_button article_ed__caredit_save">' + getLang("global_save") + '</button>\n            <button class="flat_button article_ed__caredit_cancel">' + getLang("global_cancel") + "</button>\n          </div>\n         </div>\n      </div>\n    ", d += '\n      <div class="article_ed__caredit_items_wrap article_ed__caredit_container">\n        <div class="article_ed__caredit_items">\n    ', r.getMediaId().split(",").forEach(function(e) {
-                var t = n.default.get(i.ParagraphType.ObjectPhoto, e),
-                    r = Object(i.getAppropriateImage)(t.sizes, 251),
-                    a = o(r, 1)[0];
-                d += s(a, e)
-            }), d += s(), d += "  </div>", d += "</div>", d += '</div>\n             <div class="article_ed__caredit_loading" style="display: none"></div>\n           </div>', this._els = {}, this._els.editor = se(d), this._els.itemsWrap = geByClass1("article_ed__caredit_items_wrap", this._els.editor), this._els.items = geByClass1("article_ed__caredit_items", this._els.editor), this._els.addButton = geByClass1("article_ed__caredit_item_add", this._els.editor), this._els.saveButton = geByClass1("article_ed__caredit_save", this._els.editor), this._els.cancelButton = geByClass1("article_ed__caredit_cancel", this._els.editor), this._els.loading = geByClass1("article_ed__caredit_loading", this._els.editor), this._els.counter = geByClass1("article_ed__caredit_header_counter", this._els.editor), this._els.addButton.addEventListener("click", function() {
-                showBox("al_photos.php", {
-                    to_id: r.getEditor().getArticleOwnerId(),
-                    act: "choose_photo",
-                    max_files: l._limit - l._medias.length,
-                    article: 1
-                }, {
-                    cache: 1,
-                    stat: ["photos.js", "photos.css", "upload.js"]
-                });
-                cur.chooseMedia = l.onPhotoAdd.bind(l), cur.showMediaProgress = function() {
-                    show(l._els.loading), r.getEditor().setMediaUploadMode(!0)
-                }, cur.choosePhotoUploadedAll = function() {
-                    hide(l._els.loading), r.getEditor().setMediaUploadMode(!1)
-                }
-            }), this._els.saveButton.addEventListener("click", function() {
-                re(l._els.editor), a(l._medias.join(","))
-            }), this._onSave = a, this._els.cancelButton.addEventListener("click", this.cancel.bind(this)), this._els.items.addEventListener("click", function(e) {
-                if (hasClass(e.target, "article_ed__caredit_remove")) {
-                    var t = gpeByClass("article_ed__caredit_item", e.target);
-                    re(t), l._collectMediaIds(), l._initSorter(), l._toggleAddButton(), l._updateCounter()
-                }
-            }), t.appendChild(this._els.editor), setStyle(this._els.itemsWrap, {
-                height: getSize(this._els.itemsWrap)[1]
-            }), this._initSorter(), this._scroll = new uiScroll(this._els.itemsWrap, {
-                global: !0,
-                stopScrollPropagation: !0,
-                stopScrollPropagationAlways: !0,
-                theme: "dark"
-            }), this._limit = c, this._originalMedias = this._collectMediaIds(), this._toggleAddButton(), this._updateCounter()
-        }
-        return e.prototype.cancel = function() {
-            re(this._els.editor), this._onSave(this._originalMedias.join(","))
-        }, e.prototype._updateCounter = function() {
-            this._els.counter.innerHTML = langNumeric(this._medias.length, cur.lang.pages_aricle_ed_carousel_counter)
-        }, e.prototype._toggleAddButton = function() {
-            toggle(this._els.addButton, this._medias.length < this._limit), this._scroll.update()
-        }, e.prototype._collectMediaIds = function() {
-            var e = this;
-            return this._medias = [], each(this._els.items.children, function(t, r) {
-                var n = domData(r, "media-id");
-                n && e._medias.push(n)
-            }), this._medias = this._medias.slice(0, this._limit), this._medias
-        }, e.prototype.onPhotoAdd = function(e, t, r, c) {
-            if (!inArray(t, this._medias) && this._medias.length < this._limit) {
-                n.default.add(i.ParagraphType.ObjectPhoto, t, {
-                    size: Object(a.getPhotoSize)(r.editable.sizes),
-                    sizes: r.editable.sizes
-                });
-                var l = Object(i.getAppropriateImage)(r.editable.sizes, 251),
-                    d = o(l, 1)[0];
-                domInsertBefore(se(s(d, t)), this._els.addButton)
-            }
-            return void 0 === c && (curBox() && curBox().hide(), this._initSorter(), this._scroll.update()), this._collectMediaIds(), this._toggleAddButton(), this._updateCounter(), !1
-        }, e.prototype._initSorter = function() {
-            var e = this;
-            this._sorter ? this._sorter.update() : stManager.add(["grid_sorter.js"], function() {
-                e._sorter = new GridSorter(e._els.items, "", {
-                    onReorder: function() {
-                        e._collectMediaIds()
-                    }
-                })
-            })
-        }, e
-    }();
-    t.default = c
-}, function(e, t, r) {
-    "use strict";
-    r.r(t), r.d(t, "initLimits", function() {
-        return a
-    }), r.d(t, "checkLimits", function() {
-        return o
-    });
-    var n = r(16),
-        i = void 0;
-
-    function a(e) {
-        i = e
-    }
-
-    function o(e) {
-        var t = [];
-        e.length > i.maxParagraphs && t.push(getLang("pages_article_ed_limit_paragraphs").replace("{count}", e.length).replace("{limit}", i.maxParagraphs));
-        var r = 0,
-            a = 0;
-        return e.forEach(function(e) {
-            var o = 0;
-            e.lines.forEach(function(e) {
-                r += e.text.length, o += e.text.length
-            }), Object(n.isObjectParagraph)(e) && a++, o > i.maxSymbolsPerParagraph && t.push(getLang("pages_article_ed_limit_symbols_per_par").replace("{count}", o).replace("{limit}", i.maxSymbolsPerParagraph))
-        }), r > i.maxSymbols && t.push(getLang("pages_article_ed_limit_symbols").replace("{count}", r).replace("{limit}", i.maxSymbols)), a > i.maxObjects && t.push(getLang("pages_article_ed_limit_objects").replace("{count}", a).replace("{limit}", i.maxObjects)), t.length && t.push(getLang("pages_article_ed_limit")), t.join("<br>")
-    }
-}, , function(e, t, r) {
-    "use strict";
     r.r(t);
     var n = {};
 
@@ -2192,7 +628,7 @@
         }, e
     }();
     t.default = a
-}, , , function(e, t, r) {
+}, , function(e, t, r) {
     "use strict";
     r.r(t), r.d(t, "Sequences", function() {
         return n
@@ -2298,1257 +734,26 @@
     "use strict";
     r.r(t);
     var n = r(12),
-        i = r(23),
-        a = r(5);
-    var o = function(e) {
-        function t(r, n) {
-            return function(e, t) {
-                    if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
-                }(this, t),
-                function(e, t) {
-                    if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                    return !t || "object" != typeof t && "function" != typeof t ? e : t
-                }(this, e.call(this, r, n, !0))
-        }
-        return function(e, t) {
-            if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);
-            e.prototype = Object.create(t && t.prototype, {
-                constructor: {
-                    value: e,
-                    enumerable: !1,
-                    writable: !0,
-                    configurable: !0
-                }
-            }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t)
-        }(t, e), t.prototype.render = function() {
-            var e = this;
-            this._el = se('\n      <div class="article_ed__gif_content"></div>\n    ');
-            var t = i.default.get(a.ParagraphType.ObjectGIF, this.getMediaId());
-            if (t)
-                if (t.video) {
-                    if (this._videoEl = ce("video", {
-                            autoplay: !0,
-                            loop: "loop",
-                            muted: !0,
-                            src: t.video + "&mp4=1"
-                        }), t.size) {
-                        var r = t.size[0] < t.size[1],
-                            n = !this._isSmallGifSize();
-                        (r || n) && setStyle(this._videoEl, {
-                            width: t.size[0]
-                        })
-                    }
-                    this._el.appendChild(this._videoEl), this._el.appendChild(se('<span class="article_ed__select_dummy">&nbsp;</span>'))
-                } else if (t.href) {
-                var o = t.href + "&wnd=1&module=" + cur.module;
-                this._imgEl = ce("img"), this._imgEl.addEventListener("error", function() {
-                    showFastBox(getLang("pages_article_error_box_title"), getLang("pages_article_error_box_text")), e._editor.removeObject(e)
-                }), this._imgEl.src = o, this._el.appendChild(this._imgEl)
-            }
-            return this._el
-        }, t.prototype.onViewport = function(e) {
-            if (this._imgEl) setStyle(this._imgEl, "visibility", e ? "visible" : "hidden");
-            else if (e) {
-                var t = this._videoEl.play();
-                t && t.catch(function() {})
-            } else this._videoEl.pause()
-        }, t.prototype.onRender = function() {
-            var e = this;
-            setTimeout(function() {
-                var t = e._videoEl && e._videoEl.play();
-                if (t && t.catch(function() {}), browser.msie && e._videoEl) {
-                    var r = e._videoEl.src;
-                    e._videoEl.src = "", e._videoEl.src = r
-                }
-            })
-        }, t.prototype._isSmallGifSize = function() {
-            var e = i.default.get(a.ParagraphType.ObjectGIF, this.getMediaId());
-            return !(!e && !e.size) && e.size[0] > this.getEditor().getOptions().minGifWidthExpand
-        }, t
-    }(n.default);
-    t.default = o
-}, , function(e, t, r) {
-    "use strict";
-    r.r(t), r.d(t, "ge", function() {
-        return a
-    }), r.d(t, "geByTag", function() {
-        return o
-    }), r.d(t, "geByTag1", function() {
-        return s
-    }), r.d(t, "geByClass", function() {
-        return c
-    }), r.d(t, "geByClass1", function() {
-        return l
-    }), r.d(t, "gpeByClass", function() {
-        return d
-    }), r.d(t, "domQuery", function() {
-        return u
-    }), r.d(t, "domQuery1", function() {
-        return p
-    }), r.d(t, "domClosest", function() {
-        return h
-    }), r.d(t, "domClosestByTag", function() {
-        return f
-    }), r.d(t, "gpeByTag", function() {
-        return _
-    }), r.d(t, "ce", function() {
-        return g
-    }), r.d(t, "re", function() {
-        return E
-    }), r.d(t, "se", function() {
-        return P
-    }), r.d(t, "sech", function() {
-        return C
-    }), r.d(t, "rs", function() {
-        return O
-    }), r.d(t, "psr", function() {
-        return j
-    }), r.d(t, "domReplaceEl", function() {
-        return T
-    }), r.d(t, "domEL", function() {
-        return x
-    }), r.d(t, "domNS", function() {
-        return S
-    }), r.d(t, "domPS", function() {
-        return I
-    }), r.d(t, "domFC", function() {
-        return k
-    }), r.d(t, "domLC", function() {
-        return L
-    }), r.d(t, "domPN", function() {
-        return A
-    }), r.d(t, "domChildren", function() {
-        return D
-    }), r.d(t, "domInsertBefore", function() {
-        return N
-    }), r.d(t, "domInsertAfter", function() {
-        return M
-    }), r.d(t, "domByClass", function() {
-        return R
-    }), r.d(t, "domData", function() {
-        return B
-    }), r.d(t, "domChildIndex", function() {
-        return H
-    }), r.d(t, "domCA", function() {
-        return z
-    }), r.d(t, "domClosestSibling", function() {
-        return U
-    }), r.d(t, "matchesSelector", function() {
-        return F
-    }), r.d(t, "isHover", function() {
-        return W
-    }), r.d(t, "isAncestor", function() {
-        return Y
-    }), r.d(t, "getScroll", function() {
-        return K
-    }), r.d(t, "domClosestPositioned", function() {
-        return V
-    }), r.d(t, "domClosestOverflowHidden", function() {
-        return X
-    }), r.d(t, "show", function() {
-        return G
-    }), r.d(t, "hide", function() {
-        return q
-    }), r.d(t, "isVisible", function() {
-        return $
-    }), r.d(t, "clientHeight", function() {
-        return Q
-    }), r.d(t, "getClientRectOffsetY", function() {
-        return J
-    }), r.d(t, "toggle", function() {
-        return Z
-    }), r.d(t, "boundingRectEnabled", function() {
-        return ee
-    }), r.d(t, "getXYRect", function() {
-        return te
-    }), r.d(t, "getXY", function() {
-        return re
-    }), r.d(t, "isWindow", function() {
-        return ne
-    }), r.d(t, "getSize", function() {
-        return ie
-    }), r.d(t, "getW", function() {
-        return ae
-    }), r.d(t, "getH", function() {
-        return oe
-    }), r.d(t, "hasClass", function() {
-        return se
-    }), r.d(t, "addClass", function() {
-        return ce
-    }), r.d(t, "addClassDelayed", function() {
-        return le
-    }), r.d(t, "removeClass", function() {
-        return de
-    }), r.d(t, "removeClassDelayed", function() {
-        return ue
-    }), r.d(t, "toggleClass", function() {
-        return pe
-    }), r.d(t, "toggleClassDelayed", function() {
-        return he
-    }), r.d(t, "replaceClass", function() {
-        return fe
-    }), r.d(t, "getStyle", function() {
-        return _e
-    }), r.d(t, "setStyle", function() {
-        return ge
-    }), r.d(t, "setStyleDelayed", function() {
-        return ve
-    }), r.d(t, "setPseudoStyle", function() {
-        return ye
-    }), r.d(t, "data", function() {
-        return me
-    }), r.d(t, "attr", function() {
-        return be
-    }), r.d(t, "removeAttr", function() {
-        return we
-    }), r.d(t, "removeData", function() {
-        return Ee
-    }), r.d(t, "cleanElems", function() {
-        return Pe
-    }), r.d(t, "setTitle", function() {
-        return Ce
-    }), r.d(t, "getZoom", function() {
-        return Oe
-    }), r.d(t, "val", function() {
-        return je
-    }), r.d(t, "elfocus", function() {
-        return Te
-    }), r.d(t, "traverseParent", function() {
-        return xe
-    }), r.d(t, "setDocumentTitle", function() {
-        return Ie
-    }), r.d(t, "lockDocumentTitle", function() {
-        return ke
-    });
-    var n = r(32),
-        i = r(9),
-        a = function(e) {
-            return "string" == typeof e || "number" == typeof e ? document.getElementById(e) : e
-        };
-
-    function o(e, t) {
-        return (t = a(t) || document).getElementsByTagName(e)
-    }
-
-    function s(e, t) {
-        return (t = a(t) || document).querySelector && t.querySelector(e) || o(e, t)[0]
-    }
-
-    function c(e, t, r) {
-        return t = a(t) || document, r = r || "*", e = ("." + e).replace(/\s+/gm, "."), Array.prototype.slice.call(t.querySelectorAll(r + e))
-    }
-
-    function l(e, t, r) {
-        return t = a(t) || document, r = r || "*", t.querySelector && t.querySelector(r + ("." + e).replace(/\s+/gm, ".")) || c(e, t, r)[0]
-    }
-
-    function d(e, t, r) {
-        if (!(t = a(t))) return null;
-        for (; r !== t && (t = t.parentNode);)
-            if (se(t, e)) return t;
-        return null
-    }
-
-    function u(e, t) {
-        return (t || document).querySelectorAll(e)
-    }
-
-    function p(e, t) {
-        return (t || document).querySelector(e)
-    }
-
-    function h(e, t) {
-        return se(t, e) ? t : d(e, t)
-    }
-
-    function f(e, t) {
-        return e = e.toUpperCase(), t.nodeType === Node.ELEMENT_NODE && t.tagName.toUpperCase() === e ? t : _(e, t)
-    }
-
-    function _(e, t) {
-        if (!(t = a(t))) return null;
-        for (e = e.toUpperCase(); t = t.parentNode;)
-            if (t.tagName && t.tagName.toUpperCase() === e) return t;
-        return null
-    }
-
-    function g(e, t, r) {
-        var i = document.createElement(e);
-        return t && Object(n.extend)(i, t), r && ge(i, r), i
-    }
-    var v, y, m, b, w = (v = document, y = v.createDocumentFragment(), m = v.createElement("div"), b = v.createRange && v.createRange(), y.appendChild(m), b && b.selectNodeContents(m), b && b.createContextualFragment ? function(e) {
-        return e ? b.createContextualFragment(e) : v.createDocumentFragment()
-    } : function(e) {
-        if (!e) return v.createDocumentFragment();
-        m.innerHTML = e;
-        for (var t = v.createDocumentFragment(); m.firstChild;) t.appendChild(m.firstChild);
-        return t
-    });
-
-    function E(e) {
-        return (e = a(e)) && e.parentNode && e.parentNode.removeChild(e), e
-    }
-    var P = function(e) {
-            return k(g("div", {
-                innerHTML: e
-            }))
-        },
-        C = function(e) {
-            return D(g("div", {
-                innerHTML: e
-            }))
-        };
-
-    function O(e, t) {
-        return Object(n.each)(t, function(t, r) {
-            e = e.replace(new RegExp("%" + t + "%", "g"), (void 0 === r ? "" : r).toString().replace(/\$/g, "&#036;"))
-        }), e
-    }
-
-    function j(e) {
-        return "https:" !== locProtocol ? e : e = (e = (e = (e = (e = e.replace(/http:\/\/(cs(\d+)\.vk\.me\/c(\d+)\/)/gi, "https://$1")).replace(/http:\/\/cs(\d+)\.(userapi\.com|vk\.com|vk\.me|vkontakte\.ru)\/c(\d+)\/(v\d+\/|[a-z0-9\/_:\-]+\.jpg)/gi, "https://pp.vk.me/c$3/$4")).replace(/http:\/\/cs(\d+)\.(userapi\.com|vk\.com|vk\.me|vkontakte\.ru)\/([a-z0-9\/_:\-]+\.jpg)/gi, "https://pp.vk.me/c$1/$3")).replace(/http:\/\/cs(\d+)\.(userapi\.com|vk\.com|vk\.me|vkontakte\.ru)\//gi, "https://ps.vk.me/c$1/")).replace(/http:\/\/video(\d+)\.vkadre\.ru\//gi, "https://ps.vk.me/v$1/")
-    }
-
-    function T(e, t) {
-        return Object(n.isString)(t) && (t = P(t)), A(e).replaceChild(t, e), t
-    }
-
-    function x(e, t) {
-        for (t = t ? "previousSibling" : "nextSibling"; e && !e.tagName;) e = e[t];
-        return e
-    }
-    var S = function(e) {
-            return x((e || {}).nextSibling)
-        },
-        I = function(e) {
-            return x((e || {}).previousSibling, 1)
-        },
-        k = function(e) {
-            return x((e || {}).firstChild)
-        },
-        L = function(e) {
-            return x((e || {}).lastChild, 1)
-        },
-        A = function(e) {
-            return (e || {}).parentNode
-        };
-
-    function D(e) {
-        for (var t = [], r = e.childNodes, n = 0; n < r.length; n++) r[n].tagName && t.push(r[n]);
-        return t
-    }
-
-    function N(e, t) {
-        var r = A(t);
-        return r && r.insertBefore(e, t)
-    }
-
-    function M(e, t) {
-        var r = A(t);
-        return r && r.insertBefore(e, S(t))
-    }
-
-    function R(e, t) {
-        return e ? l(t, e) : e
-    }
-
-    function B(e, t, r) {
-        return e ? void 0 !== r ? (null === r ? e.removeAttribute("data-" + t) : e.setAttribute("data-" + t, r), r) : e.getAttribute("data-" + t) : null
-    }
-
-    function H(e) {
-        for (var t = 0; null != (e = I(e));) t++;
-        return t
-    }
-
-    function z(e, t) {
-        do {
-            e = A(e)
-        } while (e && !F(e, t));
-        return e
-    }
-
-    function U(e, t, r) {
-        for (var n = null; null === n && e;)(e = -1 === r ? I(e) : S(e)) && F(e, t) && (n = e);
-        return n
-    }
-
-    function F(e, t) {
-        return !(!(e = a(e)) || e === document) && (e.matches || e.matchesSelector || e.mozMatchesSelector || e.msMatchesSelector || e.oMatchesSelector || e.webkitMatchesSelector || function(e) {
-            for (var t = (this.document || this.ownerDocument).querySelectorAll(e), r = t.length; --r >= 0 && t.item(r) !== this;);
-            return r > -1
-        }).call(e, t)
-    }
-
-    function W(e) {
-        return F(e, ":hover")
-    }
-
-    function Y(e, t) {
-        var r = a(e);
-        if (t = a(t), !e || !t) return !1;
-        for (; r = r.parentNode;)
-            if (r === t) return !0;
-        return !1
-    }
-
-    function K() {
-        var e = browser.msie6 ? a("PageContainer") : document.body,
-            t = document.documentElement;
-        return [e.scrollLeft || t.scrollLeft || window.pageXOffset || 0, e.scrollTop || t.scrollTop || window.pageYOffset || 0, t.clientWidth || e.clientWidth || 0, t.clientHeight || e.clientHeight || 0]
-    }
-
-    function V(e, t) {
-        for (var r = (t = t || {}).fromEl || A(e), i = t.positions || ["relative", "absolute", "fixed"]; r && r !== bodyNode;) {
-            var a = _e(r, "position");
-            if (Object(n.inArray)(a, i) && (!t.noOverflow || "hidden" !== _e(r, "overflow"))) break;
-            r = A(r)
-        }
-        return r
-    }
-
-    function X(e, t) {
-        for (var r = e = a(e), n = void 0, i = void 0, o = void 0, s = !1; r && r.tagName && r !== bodyNode;) {
-            if (n = _e(r, "position"), i = _e(r, "overflow"), o = _e(r, "transform"), t && browser.mozilla) {
-                if ("page_wrap" != r.id && r !== e && "visible" !== i && ("static" === n ? !s || "relative" === s : "fixed" !== s)) break
-            } else if (r !== e && "visible" !== i && ("static" === n ? !s || "relative" === s : "fixed" !== s)) break;
-            "none" !== o ? s = void 0 : "static" !== n && "fixed" !== s && (s = n), r = A(r)
-        }
-        return r
-    }
-
-    function G(e) {
-        var t = arguments.length;
-        if (t > 1)
-            for (var r = 0; r < t; r++) G(arguments[r]);
-        else if ((e = a(e)) && e.style) {
-            var n = e.olddisplay,
-                i = e.tagName.toLowerCase(),
-                o = "block";
-            e.style.display = n || "", "none" === _e(e, "display") && (o = se(e, "inline") || se(e, "_inline") ? "inline" : se(e, "_inline_block") ? "inline-block" : "tr" !== i || browser.msie ? "table" !== i || browser.msie ? "block" : "table" : "table-row", e.style.display = e.olddisplay = o)
-        }
-    }
-
-    function q(e) {
-        var t = arguments.length;
-        if (t > 1)
-            for (var r = 0; r < t; r++) q(arguments[r]);
-        else if ((e = a(e)) && e.style) {
-            var n = _e(e, "display");
-            e.olddisplay = "none" !== n ? n : "", e.style.display = "none"
-        }
-    }
-
-    function $(e) {
-        return !(!(e = a(e)) || !e.style) && "none" !== _e(e, "display")
-    }
-
-    function Q() {
-        return window.innerHeight || document.documentElement.clientHeight || bodyNode.clientHeight
-    }
-
-    function J(e, t, r) {
-        e = a(e), r = r || 0;
-        var i = re(e)[1],
-            o = ie(e)[1],
-            s = window,
-            c = document.documentElement,
-            l = Math.max(Object(n.intval)(s.innerHeight), Object(n.intval)(c.clientHeight)),
-            d = a("page_header_cont"),
-            u = c.scrollTop || bodyNode.scrollTop || window.scrollY || 0,
-            p = vk.staticheader ? Math.max(0, ie(d)[1] - u) : ie(d)[1];
-        if (t) {
-            if (i + o < u + p + r) return i + o - u - p - r;
-            if (i > u + l - r) return i - u - l + r
-        } else {
-            if (i < u + p + r) return i - u - p - r;
-            if (i + o > u + l - r) return i + o - u - l + r
-        }
-        return 0
-    }
-
-    function Z(e, t) {
-        return void 0 === t && (t = !$(e)), t ? G(e) : q(e), t
-    }
-
-    function ee(e) {
-        return void 0 !== e.getBoundingClientRect
-    }
-
-    function te(e, t) {
-        var r = void 0;
-        if (t && "inline" === _e(e, "display")) {
-            var n = e.getClientRects();
-            r = n && n[0] || e.getBoundingClientRect()
-        } else r = e.getBoundingClientRect();
-        return r
-    }
-
-    function re(e, t) {
-        if (!(e = a(e))) return [0, 0];
-        var r = e.ownerDocument,
-            n = {
-                top: 0,
-                left: 0
-            };
-        if (!r) return [0, 0];
-        var i = r.documentElement;
-        ee(e) && (n = te(e, !0));
-        var o = r === r.window ? r : 9 === r.nodeType && (r.defaultView || r.parentWindow);
-        return [n.left + (t ? 0 : o.pageXOffset || i.scrollLeft) - (i.clientLeft || 0), n.top + (t ? 0 : o.pageYOffset || i.scrollTop) - (i.clientTop || 0)]
-    }
-
-    function ne(e) {
-        return null != e && e === e.window
-    }
-
-    function ie(e, t, r) {
-        e = a(e);
-        var i = document.documentElement,
-            o = [0, 0],
-            s = void 0;
-        if (t && "border-box" === _e(e, "boxSizing") && (t = !1), e === document) o = [Math.max(i.clientWidth, bodyNode.scrollWidth, i.scrollWidth, bodyNode.offsetWidth, i.offsetWidth), Math.max(i.clientHeight, bodyNode.scrollHeight, i.scrollHeight, bodyNode.offsetHeight, i.offsetHeight)];
-        else if (e) {
-            var c = function() {
-                o = ee(e) && (s = te(e, r)) && void 0 !== s.width ? [s.width, s.height] : [e.offsetWidth, e.offsetHeight], t && Object(n.each)(o, function(t, r) {
-                    var i = t ? ["Top", "Bottom"] : ["Left", "Right"];
-                    Object(n.each)(i, function() {
-                        o[t] -= parseFloat(_e(e, "padding" + this)) || 0, o[t] -= parseFloat(_e(e, "border" + this + "Width")) || 0
-                    })
-                })
-            };
-            if ($(e)) c();
-            else {
-                var l = {
-                        position: "absolute",
-                        visibility: "hidden",
-                        display: "block"
-                    },
-                    d = {},
-                    u = !1;
-                e.style.cssText.indexOf("!important") > -1 && (u = e.style.cssText), Object(n.each)(l, function(t, r) {
-                    d[t] = e.style[t], e.style[t] = r
-                }), c(), Object(n.each)(l, function(t, r) {
-                    e.style[t] = d[t]
-                }), u && (e.style.cssText = u)
-            }
-        }
-        return o
-    }
-
-    function ae(e) {
-        return ie(e)[0]
-    }
-
-    function oe(e) {
-        return ie(e)[1]
-    }
-
-    function se(e, t) {
-        var r = a(e);
-        return r && 1 === r.nodeType && (" " + r.className + " ").replace(window.whitespaceRegex, " ").indexOf(" " + t + " ") >= 0
-    }
-
-    function ce(e, t) {
-        var r = a(e);
-        r && !se(r, t) && (r.className = (r.className ? r.className + " " : "") + t)
-    }
-    window.whitespaceRegex = /[\t\r\n\f]/g;
-    var le = function(e, t) {
-        return setTimeout(ce.pbind(e, t), 0)
-    };
-
-    function de(e, t) {
-        var r = a(e);
-        r && (r.className = Object(n.trim)((r.className || "").replace(new RegExp("(\\s|^)" + t + "(\\s|$)"), " ")))
-    }
-    var ue = function(e, t) {
-        return setTimeout(de.pbind(e, t), 0)
-    };
-
-    function pe(e, t, r) {
-        return void 0 === r && (r = !se(e, t)), (r ? ce : de)(e, t), r
-    }
-
-    function he(e, t, r) {
-        return void 0 === r && (r = !se(e, t)), (r ? le : ue)(e, t), r
-    }
-
-    function fe(e, t, r) {
-        de(e, t), ce(e, r)
-    }
-
-    function _e(e, t, r) {
-        if (e = a(e), Object(n.isArray)(t)) {
-            var i = {};
-            return Object(n.each)(t, function(t, r) {
-                return i[r] = _e(e, r)
-            }), i
-        }
-        if (!e) return "";
-        if (void 0 === r && (r = !0), !r && "opacity" === t && browser.msie) {
-            var o = e.style.filter;
-            return o ? o.indexOf("opacity=") >= 0 ? parseFloat(o.match(/opacity=([^)]*)/)[1]) / 100 + "" : "1" : ""
-        }
-        if (!r && e.style && (e.style[t] || "height" === t)) return e.style[t];
-        var s = void 0,
-            c = document.defaultView || window;
-        if (c.getComputedStyle) {
-            t = t.replace(/([A-Z])/g, "-$1").toLowerCase();
-            var l = c.getComputedStyle(e, null);
-            l && (s = l.getPropertyValue(t))
-        } else if (e.currentStyle) {
-            if ("opacity" === t && browser.msie) {
-                var d = e.currentStyle.filter;
-                return d && d.indexOf("opacity=") >= 0 ? parseFloat(d.match(/opacity=([^)]*)/)[1]) / 100 + "" : "1"
-            }
-            var u = t.replace(/\-(\w)/g, function(e, t) {
-                return t.toUpperCase()
-            });
-            "auto" === (s = e.currentStyle[t] || e.currentStyle[u]) && (s = 0), s = (s + "").split(" "), Object(n.each)(s, function(t, r) {
-                if (!/^\d+(px)?$/i.test(r) && /^\d/.test(r)) {
-                    var n = e.style,
-                        i = n.left,
-                        a = e.runtimeStyle.left;
-                    e.runtimeStyle.left = e.currentStyle.left, n.left = r || 0, s[t] = n.pixelLeft + "px", n.left = i, e.runtimeStyle.left = a
-                }
-            }), s = s.join(" ")
-        }
-        if (r && ("width" === t || "height" === t)) {
-            var p = ie(e, !0)[{
-                width: 0,
-                height: 1
-            }[t]];
-            s = (Object(n.intval)(s) ? Math.max(Object(n.floatval)(s), p) : p) + "px"
-        }
-        return s
-    }
-
-    function ge(e, t, r) {
-        if (e = a(e))
-            if (Object(n.isObject)(t)) Object(n.each)(t, function(t, r) {
-                return ge(e, t, r)
-            });
-            else if ("opacity" === t) browser.msie && ((r + "").length ? e.style.filter = 1 !== r ? "alpha(opacity=" + 100 * r + ")" : "" : e.style.cssText = e.style.cssText.replace(/filter\s*:[^;]*/gi, ""), e.style.zoom = 1), e.style.opacity !== r && (e.style.opacity = r);
-        else try {
-            var i = "number" == typeof r;
-            i && /height|width/i.test(t) && (r = Math.abs(r)), r = i && !/z-?index|font-?weight|opacity|zoom|line-?height/i.test(t) ? r + "px" : r, e.style[t] !== r && (e.style[t] = r)
-        } catch (e) {
-            debugLog("setStyle error: ", [t, r], e)
-        }
-    }
-    window.cssTransformProp = function() {
-        var e = document.createElement("div");
-        if (null == e.style.transform) {
-            var t = ["Webkit", "Moz", "ms"];
-            for (var r in t)
-                if (void 0 !== e.style[t[r] + "Transform"]) return t[r] + "Transform"
-        }
-        return "transform"
-    }();
-    var ve = function(e, t, r) {
-        return setTimeout(ge.pbind(e, t, r), 0)
-    };
-
-    function ye(e, t, r) {
-        var i = me(e, "pseudo-id");
-        i || (me(e, "pseudo-id", i = Object(n.irand)(1e8, 999999999)), ce(e, "_pseudo_" + i));
-        var o = t + "-style-" + i,
-            s = a(o),
-            c = "._pseudo_" + i + ":" + t + "{";
-        s || (s = headNode.appendChild(g("style", {
-            id: o,
-            type: "text/css"
-        }))), Object(n.each)(r, function(e, t) {
-            c += e + ": " + t + " !important;"
-        }), c += "}", s.sheet ? (s.sheet.cssRules.length && s.sheet.deleteRule(0), s.sheet.insertRule(c, 0)) : s.styleSheet && (s.styleSheet.cssText = c)
-    }
-
-    function me(e, t, r) {
-        if (!e) return !1;
-        var n = e[vkExpand];
-        return n || (n = e[vkExpand] = ++vkUUID), void 0 !== r && (vkCache[n] || (vkCache[n] = {}, window.__debugMode && (vkCache[n].__elem = e)), vkCache[n][t] = r), t ? vkCache[n] && vkCache[n][t] : n
-    }
-
-    function be(e, t, r) {
-        return e = a(e), void 0 === r ? e.getAttribute(t) : (e.setAttribute(t, r), r)
-    }
-
-    function we(e) {
-        for (var t = 0, r = arguments.length; t < r; ++t) {
-            var n = arguments[t];
-            if (void 0 !== e[n]) try {
-                delete e[n]
-            } catch (t) {
-                try {
-                    e.removeAttribute(n)
-                } catch (e) {}
-            }
-        }
-    }
-
-    function Ee(e, t) {
-        var r = !!e && e[vkExpand];
-        if (r)
-            if (t) {
-                if (vkCache[r]) {
-                    delete vkCache[r][t], t = "";
-                    var n = 0;
-                    for (var a in vkCache[r])
-                        if ("__elem" !== a) {
-                            n++;
-                            break
-                        }
-                    n || Ee(e)
-                }
-            } else Object(i.removeEvent)(e), we(e, vkExpand), delete vkCache[r]
-    }
-
-    function Pe() {
-        for (var e = arguments, t = 0; t < e.length; ++t) {
-            var r = a(e[t]);
-            r && (Ee(r), we(r, "btnevents"))
-        }
-    }
-
-    function Ce(e, t, r) {
-        if ((e = a(e)) && !e.titleSet) {
-            if (t || (t = e), t.scrollWidth > t.clientWidth) e.setAttribute("title", r || e.innerText || e.textContent);
-            else {
-                var n = s("b", e);
-                n && n.scrollWidth > n.clientWidth ? e.setAttribute("title", r || e.innerText || e.textContent) : e.removeAttribute("title")
-            }
-            e.titleSet = 1
-        }
-    }
-
-    function Oe() {
-        var e = a("zoom_test_1") || document.body.appendChild(g("div", {
-            id: "zoom_test_1"
-        }, {
-            left: "10%",
-            position: "absolute",
-            visibility: "hidden"
-        }));
-        return (a("zoom_test_2") || document.body.appendChild(g("div", {
-            id: "zoom_test_2"
-        }, {
-            left: e.offsetLeft + "px",
-            position: "absolute",
-            visibility: "hidden"
-        }))).offsetLeft / e.offsetLeft
-    }
-
-    function je(e, t, r) {
-        if (e = a(e)) return void 0 !== t && (e.setValue ? (e.setValue(t), !r && e.phonblur && e.phonblur()) : "INPUT" === e.tagName || "TEXTAREA" === e.tagName ? e.value = t : void 0 !== e.emojiId && window.Emoji ? Emoji.val(e, t) : e.innerHTML = t, !r && Object(i.triggerEvent)(e, "valueChanged")), e.getValue ? e.getValue() : ("INPUT" === e.tagName || "TEXTAREA" === e.tagName ? e.value : e.innerHTML) || ""
-    }
-
-    function Te(e, t, r) {
-        e = a(e);
-        try {
-            e.focus(), void 0 !== t && !1 !== t || (t = e.value.length), void 0 !== r && !1 !== r || (r = t), e.setSelectionRange && e.setSelectionRange(t, r)
-        } catch (e) {}
-    }
-
-    function xe(e, t, r) {
-        for (e = a(e), r = r || 999; e && !t(e);) {
-            if (0 === --r) return !1;
-            try {
-                if ((e = A(e)) === document) break
-            } catch (t) {
-                e = !1
-            }
-        }
-        return e
-    }
-    window.vkExpand = window.vkExpand || "VK" + Object(n.vkNow)(), window.vkUUID = window.vkUUID || 0, window.vkCache = window.vkCache || {};
-    var Se = !1;
-
-    function Ie(e) {
-        if (!Se) return window.document.title = Object(n.replaceEntities)(e)
-    }
-
-    function ke(e) {
-        Se = e, e && window.cur && window.cur.destroy.push(function() {
-            ke(!1)
-        })
-    }
-    window.ge = a, window.geByTag = o, window.geByTag1 = s, window.geByClass = c, window.geByClass1 = l, window.gpeByClass = d, window.domQuery = u, window.domQuery1 = p, window.domClosest = h, window.ce = g, window.cf = w, window.re = E, window.se = P, window.sech = C, window.rs = O, window.psr = j, window.domReplaceEl = T, window.domEL = x, window.domNS = S, window.domPS = I, window.domFC = k, window.domLC = L, window.domPN = A, window.domChildren = D, window.domInsertBefore = N, window.domInsertAfter = M, window.domByClass = R, window.domData = B, window.domChildIndex = H, window.domCA = z, window.domClosestSibling = U, window.matchesSelector = F, window.isHover = W, window.isAncestor = Y, window.getScroll = K, window.domClosestPositioned = V, window.domClosestOverflowHidden = X, window.show = G, window.hide = q, window.isVisible = $, window.clientHeight = Q, window.getClientRectOffsetY = J, window.toggle = Z, window.boundingRectEnabled = ee, window.getXYRect = te, window.getXY = re, window.isWindow = ne, window.getSize = ie, window.hasClass = se, window.addClass = ce, window.addClassDelayed = le, window.removeClass = de, window.removeClassDelayed = ue, window.toggleClass = pe, window.toggleClassDelayed = he, window.replaceClass = fe, window.getStyle = _e, window.setStyle = ge, window.setStyleDelayed = ve, window.setPseudoStyle = ye, window.data = me, window.attr = be, window.removeAttr = we, window.removeData = Ee, window.cleanElems = Pe, window.setTitle = Ce, window.getZoom = Oe, window.val = je, window.elfocus = Te, window.traverseParent = xe, window.getH = oe, window.getW = ae, window.domClosestByTag = f, window.setDocumentTitle = Ie, window.lockDocumentTitle = ke
+        i = r(21);
+    window.ArticleEditor = n.default, window.ArticleView = {
+        initArticle: i.initArticle
+    }, stManager.done(jsc("web/article.js"))
 }, function(e, t, r) {
     "use strict";
     r.r(t);
-    var n = r(12),
-        i = r(23),
-        a = r(5),
-        o = function() {
-            return function(e, t) {
-                if (Array.isArray(e)) return e;
-                if (Symbol.iterator in Object(e)) return function(e, t) {
-                    var r = [],
-                        n = !0,
-                        i = !1,
-                        a = void 0;
-                    try {
-                        for (var o, s = e[Symbol.iterator](); !(n = (o = s.next()).done) && (r.push(o.value), !t || r.length !== t); n = !0);
-                    } catch (e) {
-                        i = !0, a = e
-                    } finally {
-                        try {
-                            !n && s.return && s.return()
-                        } finally {
-                            if (i) throw a
-                        }
-                    }
-                    return r
-                }(e, t);
-                throw new TypeError("Invalid attempt to destructure non-iterable instance")
-            }
-        }();
-    var s = function(e) {
-        function t(r, n) {
-            return function(e, t) {
-                    if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
-                }(this, t),
-                function(e, t) {
-                    if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                    return !t || "object" != typeof t && "function" != typeof t ? e : t
-                }(this, e.call(this, r, n, !0))
-        }
-        return function(e, t) {
-            if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);
-            e.prototype = Object.create(t && t.prototype, {
-                constructor: {
-                    value: e,
-                    enumerable: !1,
-                    writable: !0,
-                    configurable: !0
-                }
-            }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t)
-        }(t, e), t.prototype.render = function() {
-            var e = this;
-            this._el = se('\n      <div class="article_object_audio"></div>\n    ');
-            var t = i.default.get(a.ParagraphType.ObjectAudioPlaylist, this.getMediaId());
-            if (t.snippet) this._el.innerHTML = t.snippet;
-            else {
-                var r = this.getMediaId().split("_"),
-                    n = o(r, 2),
-                    s = n[0],
-                    c = n[1];
-                this.setLoadingState(!0), ajax.post("al_articles.php", {
-                    act: "get_audioplaylist_snippet",
-                    pl_owner_id: s,
-                    pl_id: c,
-                    pl_access_hash: t.accessHash
-                }, {
-                    onDone: function(t) {
-                        e.setLoadingState(!1), e._el.innerHTML = t
-                    }
-                })
-            }
-            return this._el.appendChild(se('<div class="article_ed__audioplaylist_play_note" contenteditable="false">' + getLang("pages_articles_editor_audio_play_note") + "</div>")), this._el
-        }, t
-    }(n.default);
-    t.default = s
-}, function(e, t, r) {
-    "use strict";
-    r.r(t), r.d(t, "imageProxyURL", function() {
-        return s
-    });
-    var n = function() {
-            return function(e, t) {
-                if (Array.isArray(e)) return e;
-                if (Symbol.iterator in Object(e)) return function(e, t) {
-                    var r = [],
-                        n = !0,
-                        i = !1,
-                        a = void 0;
-                    try {
-                        for (var o, s = e[Symbol.iterator](); !(n = (o = s.next()).done) && (r.push(o.value), !t || r.length !== t); n = !0);
-                    } catch (e) {
-                        i = !0, a = e
-                    } finally {
-                        try {
-                            !n && s.return && s.return()
-                        } finally {
-                            if (i) throw a
-                        }
-                    }
-                    return r
-                }(e, t);
-                throw new TypeError("Invalid attempt to destructure non-iterable instance")
-            }
-        }(),
-        i = window,
-        a = i.each,
-        o = i.intval;
-
-    function s(e, t) {
-        var r = [];
-        return a(t, function(e, t) {
-            switch (e) {
-                case "size":
-                    i = ("" + t).split("x"), a = n(i, 2), o = a[0], s = a[1], o = o ? c(o) : "", s = s ? c(s) : "", t = o + "x" + s
-            }
-            var i, a, o, s;
-            t && r.push(e + "=" + t)
-        }), r.length ? e + "&" + r.join("&") : e
-    }
-
-    function c(e) {
-        return 0 < e && e < 1 ? Math.round(100 * e) / 100 : o(e)
-    }
-}, function(e, t, r) {
-    "use strict";
-    r.r(t), r.d(t, "vkLocal", function() {
-        return s
-    }), r.d(t, "lTimeout", function() {
-        return c
-    }), r.d(t, "rand", function() {
-        return l
-    }), r.d(t, "irand", function() {
-        return d
-    }), r.d(t, "isUndefined", function() {
-        return u
-    }), r.d(t, "isFunction", function() {
-        return p
-    }), r.d(t, "isArray", function() {
-        return h
-    }), r.d(t, "isString", function() {
-        return f
-    }), r.d(t, "isObject", function() {
-        return _
-    }), r.d(t, "isEmpty", function() {
-        return g
-    }), r.d(t, "vkNow", function() {
-        return v
-    }), r.d(t, "vkImage", function() {
-        return y
-    }), r.d(t, "trim", function() {
-        return m
-    }), r.d(t, "stripHTML", function() {
-        return b
-    }), r.d(t, "escapeRE", function() {
-        return w
-    }), r.d(t, "intval", function() {
-        return E
-    }), r.d(t, "floatval", function() {
-        return P
-    }), r.d(t, "positive", function() {
-        return C
-    }), r.d(t, "isNumeric", function() {
-        return O
-    }), r.d(t, "winToUtf", function() {
-        return j
-    }), r.d(t, "replaceEntities", function() {
-        return T
-    }), r.d(t, "clean", function() {
-        return x
-    }), r.d(t, "unclean", function() {
-        return S
-    }), r.d(t, "each", function() {
-        return I
-    }), r.d(t, "indexOf", function() {
-        return k
-    }), r.d(t, "inArray", function() {
-        return L
-    }), r.d(t, "clone", function() {
-        return A
-    }), r.d(t, "arrayKeyDiff", function() {
-        return D
-    }), r.d(t, "extend", function() {
-        return N
-    }), r.d(t, "addTemplates", function() {
-        return M
-    }), r.d(t, "getTemplate", function() {
-        return R
-    }), r.d(t, "serializeForm", function() {
-        return B
-    }), r.d(t, "extractUrls", function() {
-        return H
-    }), r.d(t, "isRetina", function() {
-        return z
-    }), r.d(t, "getCaretCharacterOffsetWithin", function() {
-        return U
-    }), r.d(t, "formatCount", function() {
-        return F
-    }), r.d(t, "encodeHtml", function() {
-        return K
-    }), r.d(t, "decodeHtml", function() {
-        return V
-    });
-    var n = r(29),
-        i = r(13),
-        a = function() {
-            return function(e, t) {
-                if (Array.isArray(e)) return e;
-                if (Symbol.iterator in Object(e)) return function(e, t) {
-                    var r = [],
-                        n = !0,
-                        i = !1,
-                        a = void 0;
-                    try {
-                        for (var o, s = e[Symbol.iterator](); !(n = (o = s.next()).done) && (r.push(o.value), !t || r.length !== t); n = !0);
-                    } catch (e) {
-                        i = !0, a = e
-                    } finally {
-                        try {
-                            !n && s.return && s.return()
-                        } finally {
-                            if (i) throw a
-                        }
-                    }
-                    return r
-                }(e, t);
-                throw new TypeError("Invalid attempt to destructure non-iterable instance")
-            }
-        }(),
-        o = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
-            return typeof e
-        } : function(e) {
-            return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
-        };
-
-    function s(e) {
-        var t = PageID;
-        return function() {
-            t === PageID && e.apply(this, arguments)
-        }
-    }
-
-    function c(e, t) {
-        return setTimeout(s(e), t)
-    }
-    window.PageID = window.PageID || 1;
-    var l = function(e, t) {
-            return Math.random() * (t - e + 1) + e
-        },
-        d = function(e, t) {
-            return Math.floor(l(e, t))
-        },
-        u = function(e) {
-            return void 0 === e
-        },
-        p = function(e) {
-            return e && "[object Function]" === Object.prototype.toString.call(e)
-        },
-        h = function(e) {
-            return "[object Array]" === Object.prototype.toString.call(e)
-        },
-        f = function(e) {
-            return "string" == typeof e
-        },
-        _ = function(e) {
-            return "[object Object]" === Object.prototype.toString.call(e)
-        };
-
-    function g(e) {
-        if ("[object Object]" !== Object.prototype.toString.call(e)) return !1;
-        for (var t in e)
-            if (e.hasOwnProperty(t)) return !1;
-        return !0
-    }
-    var v = function() {
-            return +new Date
-        },
-        y = function() {
-            return window.Image ? new Image : ce("img")
-        },
-        m = function(e) {
-            return (e || "").replace(/^\s+|\s+$/g, "")
-        },
-        b = function(e) {
-            return e ? e.replace(/<(?:.|\s)*?>/g, "") : ""
-        },
-        w = function(e) {
-            return e ? e.replace(/([.*+?^${}()|[\]\/\\])/g, "\\$1") : ""
-        };
-
-    function E(e) {
-        return !0 === e ? 1 : parseInt(e) || 0
-    }
-
-    function P(e) {
-        return !0 === e ? 1 : parseFloat(e) || 0
-    }
-
-    function C(e) {
-        return (e = E(e)) < 0 ? 0 : e
-    }
-
-    function O(e) {
-        return !isNaN(e)
-    }
-
-    function j(e) {
-        return e.replace(/&#(\d\d+);/g, function(e, t) {
-            return (t = E(t)) >= 32 ? String.fromCharCode(t) : e
-        }).replace(/&quot;/gi, '"').replace(/&lt;/gi, "<").replace(/&gt;/gi, ">").replace(/&amp;/gi, "&")
-    }
-
-    function T() {
-        var e = (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-        return Object(n.se)("<textarea>" + e + "</textarea>").value
-    }
-
-    function x(e) {
-        return e ? e.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;") : ""
-    }
-
-    function S(e) {
-        return T(e.replace(/\t/g, "\n"))
-    }
-
-    function I(e, t) {
-        if (_(e) || void 0 === e.length) {
-            for (var r in e)
-                if (Object.prototype.hasOwnProperty.call(e, r) && !1 === t.call(e[r], r, e[r])) break
-        } else
-            for (var n = 0, i = e.length; n < i; n++) {
-                var a = e[n];
-                if (!1 === t.call(a, n, a)) break
-            }
-        return e
-    }
-
-    function k(e, t, r) {
-        for (var n = r || 0, i = (e || []).length; n < i; n++)
-            if (e[n] == t) return n;
-        return -1
-    }
-
-    function L(e, t) {
-        return -1 !== k(t, e)
-    }
-
-    function A(e, t) {
-        var r = _(e) || void 0 === e.length ? {} : [];
-        for (var n in e)(!/webkit/i.test(_ua) || "layerX" != n && "layerY" != n && "webkitMovementX" != n && "webkitMovementY" != n) && (t && "object" === o(e[n]) && "prototype" !== n && null !== e[n] ? r[n] = A(e[n]) : r[n] = e[n]);
-        return r
-    }
-
-    function D(e) {
-        var t = {},
-            r = arguments.length,
-            n = arguments;
-        for (var i in e)
-            if (e.hasOwnProperty(i)) {
-                for (var a = !1, o = 1; o < r; o++) n[o][i] && n[o][i] === e[i] && (a = !0);
-                a || (t[i] = e[i])
-            }
-        return t
-    }
-
-    function N() {
-        var e = arguments,
-            t = e.length,
-            r = e[0] || {},
-            n = 1,
-            i = !1;
-        for ("boolean" == typeof r && (i = r, r = e[1] || {}, n = 2), "object" === (void 0 === r ? "undefined" : o(r)) || p(r) || (r = {}); n < t; n++) {
-            var a = e[n];
-            if (null != a)
-                for (var s in a)
-                    if (a.hasOwnProperty(s)) {
-                        var c = r[s],
-                            l = a[s];
-                        r !== l && (i && l && "object" === (void 0 === l ? "undefined" : o(l)) && !l.nodeType ? r[s] = N(i, c || (null != l.length ? [] : {}), l) : void 0 !== l && (r[s] = l))
-                    }
-        }
-        return r
-    }
-
-    function M(e) {
-        window.templates = window.templates || {}, N(window.templates, e)
-    }
-
-    function R(e, t) {
-        var r = (window.templates = window.templates || {})[e];
-        return "function" == typeof r && (r = r()), r && t ? Object(n.rs)(r, t) : r || ""
-    }
-
-    function B(e) {
-        if ("object" !== (void 0 === e ? "undefined" : o(e))) return !1;
-        var t = {},
-            r = function(t) {
-                return Object(n.geByTag)(t, e)
-            },
-            i = function(r, i) {
-                if (i.name)
-                    if ("text" !== i.type && i.type)
-                        if (i.getAttribute("bool")) {
-                            var a = Object(n.val)(i);
-                            if (!a || "0" === a) return;
-                            t[i.name] = 1
-                        } else t[i.name] = browser.msie && !i.value && e[i.name] ? e[i.name].value : i.value;
-                else t[i.name] = Object(n.val)(i)
-            };
-        return I(r("input"), function(e, t) {
-            if ("radio" !== t.type && "checkbox" !== t.type || t.checked) return i(0, t)
-        }), I(r("select"), i), I(r("textarea"), i), t
-    }
-
-    function H(e, t) {
-        for (var r = t ? /(?:([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+(?:[a-z]{2,9}|xn--p1ai|xn--j1amh|xn--80asehdb|xn--80aswg))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)&]*(&nbsp;|[ \t\r\n \u00A0]|$))|([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9а-яєґї_\-]+\.)+(?:рф|укр|онлайн|сайт|срб))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)&]*(&nbsp;|[ \t\r\n \u00A0]|$)))/i : /(?:([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+(?:[a-z]{2,9}|xn--p1ai|xn--j1amh|xn--80asehdb|xn--80aswg))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)]*(&nbsp;|[ \t\r\n \u00A0]))|([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9а-яєґї_\-]+\.)+(?:рф|укр|онлайн|сайт|срб))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)]*(&nbsp;|[ \t\r\n \u00A0])))/i, n = void 0, i = []; e && (n = e.match(r));) {
-            e = e.substr(n.index + n[0].length);
-            var a = 0;
-            n[4] || (a = 7), i.push({
-                url: n[2 + a],
-                query: n[5 + a] || "",
-                domain: n[4 + a]
-            })
-        }
-        return i
-    }
-    var z = function() {
-        return window.devicePixelRatio >= 2
-    };
-
-    function U(e) {
-        var t = 0,
-            r = 0,
-            n = e.ownerDocument || e.document,
-            i = n.defaultView || n.parentWindow;
-        if (i.getSelection().rangeCount > 0) {
-            var a = i.getSelection().getRangeAt(0),
-                o = a.cloneRange();
-            o.selectNodeContents(e), o.setEnd(a.startContainer, a.startOffset), t = o.toString().length, o.setEnd(a.endContainer, a.endOffset), r = o.toString().length
-        }
-        return [t, r]
-    }
-
-    function F(e) {
-        var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {},
-            r = t.kLimit || 1e3;
-        return e >= (t.mLimit || 1e6) && !t.noCheck ? F(e = (e = E(e / 1e5)) > 1e3 ? E(e / 10) : e / 10, N(t, {
-            noCheck: !0
-        }), !0) + "M" : e >= r && !t.noCheck ? F(e = (e = E(e / 100)) > 100 ? E(e / 10) : e / 10, N(t, {
-            noCheck: !0
-        }), !0) + "K" : Object(i.langNumeric)(e, "%s", !0).replace(/,/g, ".")
-    }
-    var W, Y = a((W = null, [function(e) {
-            return W || (W = Object(n.se)("<span> </span>")), W.innerText = e, W.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;")
-        }, function(e) {
-            return W || (W = Object(n.se)("<span> </span>")), W.innerHTML = e, W.innerText
-        }]), 2),
-        K = Y[0],
-        V = Y[1];
-    window.isRetina = z, window.extractUrls = H, window.serializeForm = B, window.addTemplates = M, window.getTemplate = R, window.rand = l, window.irand = d, window.isUndefined = u, window.isFunction = p, window.isArray = h, window.isString = f, window.isObject = _, window.isEmpty = g, window.vkNow = v, window.vkImage = y, window.trim = m, window.stripHTML = b, window.escapeRE = w, window.intval = E, window.floatval = P, window.positive = C, window.isNumeric = O, window.winToUtf = j, window.replaceEntities = T, window.clean = x, window.unclean = S, window.each = I, window.indexOf = k, window.inArray = L, window.clone = A, window.arrayKeyDiff = D, window.extend = N, window.vkLocal = s, window.lTimeout = c, window.getCaretCharacterOffsetWithin = U, window.formatCount = F, window.encodeHtml = K, window.decodeHtml = V
-}, function(e, t, r) {
-    "use strict";
-    r.r(t);
-    var n = r(14),
-        i = r(34),
-        a = r(27),
-        o = r(15),
-        s = r(30),
-        c = r(26),
-        l = r(16),
-        d = r(5),
-        u = r(4),
-        p = r(21),
-        h = r(37),
-        f = r(23),
-        _ = r(29),
+    var n = r(6),
+        i = r(27),
+        a = r(17),
+        o = r(7),
+        s = r(1),
+        c = r(10),
+        l = r(29),
+        d = r(31),
+        u = r(13),
+        p = r(16),
+        h = r(38),
+        f = r(8),
+        _ = r(40),
         g = function() {
             return function(e, t) {
                 if (Array.isArray(e)) return e;
@@ -5549,10 +2754,1206 @@
     t.default = ue
 }, function(e, t, r) {
     "use strict";
+    r.r(t), r.d(t, "getCleanedState", function() {
+        return a
+    }), r.d(t, "expandParagraphFields", function() {
+        return o
+    });
+    var n = r(31),
+        i = r(29);
+
+    function a(e, t, r) {
+        var a = [];
+        return e.forEach(function(e, o) {
+            if (!r || Object(i.isObjectParagraph)(e) || !Object(i.isParagraphEmpty)(e) || 0 == o || e.type == n.ParagraphType.Code) {
+                var s = {};
+                for (var c in e) {
+                    if (!e.hasOwnProperty(c)) return;
+                    if (!c.startsWith("_") || "_uuid" === c && t) {
+                        var l = e[c];
+                        s[c] = isObject(l) || isArray(l) ? clone(l, !0) : l
+                    }
+                }
+                Object(i.isObjectParagraph)(e) && e._object && (s.mediaId = e._object.getMediaId()), e.sep && (s.sep = 1), s.type == n.ParagraphType.Text && delete s.type, s.lines.forEach(function(e) {
+                    if (void 0 !== e.decorations) {
+                        var t = !0;
+                        each(e.decorations, function(r, n) {
+                            0 == n.length ? delete e.decorations[r] : t = !1
+                        }), t && delete e.decorations
+                    }
+                    e.brs && 0 == e.brs.length && delete e.brs
+                }), a.push(s)
+            }
+        }), JSON.parse(JSON.stringify(a))
+    }
+
+    function o(e) {
+        return e.forEach(function(e) {
+            e.type = e.type || n.ParagraphType.Text, e.lines.forEach(function(e) {
+                e.brs = e.brs || [], e.decorations = e.decorations || {}
+            })
+        }), e
+    }
+}, , function(e, t, r) {
+    "use strict";
+    r.r(t), r.d(t, "vkLocal", function() {
+        return s
+    }), r.d(t, "lTimeout", function() {
+        return c
+    }), r.d(t, "rand", function() {
+        return l
+    }), r.d(t, "irand", function() {
+        return d
+    }), r.d(t, "isUndefined", function() {
+        return u
+    }), r.d(t, "isFunction", function() {
+        return p
+    }), r.d(t, "isArray", function() {
+        return h
+    }), r.d(t, "isString", function() {
+        return f
+    }), r.d(t, "isObject", function() {
+        return _
+    }), r.d(t, "isEmpty", function() {
+        return g
+    }), r.d(t, "vkNow", function() {
+        return v
+    }), r.d(t, "vkImage", function() {
+        return y
+    }), r.d(t, "trim", function() {
+        return m
+    }), r.d(t, "stripHTML", function() {
+        return b
+    }), r.d(t, "escapeRE", function() {
+        return w
+    }), r.d(t, "intval", function() {
+        return E
+    }), r.d(t, "floatval", function() {
+        return P
+    }), r.d(t, "positive", function() {
+        return C
+    }), r.d(t, "isNumeric", function() {
+        return O
+    }), r.d(t, "winToUtf", function() {
+        return j
+    }), r.d(t, "replaceEntities", function() {
+        return T
+    }), r.d(t, "clean", function() {
+        return x
+    }), r.d(t, "unclean", function() {
+        return S
+    }), r.d(t, "each", function() {
+        return I
+    }), r.d(t, "indexOf", function() {
+        return k
+    }), r.d(t, "inArray", function() {
+        return L
+    }), r.d(t, "clone", function() {
+        return A
+    }), r.d(t, "arrayKeyDiff", function() {
+        return D
+    }), r.d(t, "extend", function() {
+        return N
+    }), r.d(t, "addTemplates", function() {
+        return M
+    }), r.d(t, "getTemplate", function() {
+        return R
+    }), r.d(t, "serializeForm", function() {
+        return B
+    }), r.d(t, "extractUrls", function() {
+        return H
+    }), r.d(t, "isRetina", function() {
+        return z
+    }), r.d(t, "getCaretCharacterOffsetWithin", function() {
+        return U
+    }), r.d(t, "formatCount", function() {
+        return F
+    }), r.d(t, "encodeHtml", function() {
+        return K
+    }), r.d(t, "decodeHtml", function() {
+        return V
+    });
+    var n = r(40),
+        i = r(24),
+        a = function() {
+            return function(e, t) {
+                if (Array.isArray(e)) return e;
+                if (Symbol.iterator in Object(e)) return function(e, t) {
+                    var r = [],
+                        n = !0,
+                        i = !1,
+                        a = void 0;
+                    try {
+                        for (var o, s = e[Symbol.iterator](); !(n = (o = s.next()).done) && (r.push(o.value), !t || r.length !== t); n = !0);
+                    } catch (e) {
+                        i = !0, a = e
+                    } finally {
+                        try {
+                            !n && s.return && s.return()
+                        } finally {
+                            if (i) throw a
+                        }
+                    }
+                    return r
+                }(e, t);
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }
+        }(),
+        o = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
+            return typeof e
+        } : function(e) {
+            return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
+        };
+
+    function s(e) {
+        var t = PageID;
+        return function() {
+            t === PageID && e.apply(this, arguments)
+        }
+    }
+
+    function c(e, t) {
+        return setTimeout(s(e), t)
+    }
+    window.PageID = window.PageID || 1;
+    var l = function(e, t) {
+            return Math.random() * (t - e + 1) + e
+        },
+        d = function(e, t) {
+            return Math.floor(l(e, t))
+        },
+        u = function(e) {
+            return void 0 === e
+        },
+        p = function(e) {
+            return e && "[object Function]" === Object.prototype.toString.call(e)
+        },
+        h = function(e) {
+            return "[object Array]" === Object.prototype.toString.call(e)
+        },
+        f = function(e) {
+            return "string" == typeof e
+        },
+        _ = function(e) {
+            return "[object Object]" === Object.prototype.toString.call(e)
+        };
+
+    function g(e) {
+        if ("[object Object]" !== Object.prototype.toString.call(e)) return !1;
+        for (var t in e)
+            if (e.hasOwnProperty(t)) return !1;
+        return !0
+    }
+    var v = function() {
+            return +new Date
+        },
+        y = function() {
+            return window.Image ? new Image : ce("img")
+        },
+        m = function(e) {
+            return (e || "").replace(/^\s+|\s+$/g, "")
+        },
+        b = function(e) {
+            return e ? e.replace(/<(?:.|\s)*?>/g, "") : ""
+        },
+        w = function(e) {
+            return e ? e.replace(/([.*+?^${}()|[\]\/\\])/g, "\\$1") : ""
+        };
+
+    function E(e) {
+        return !0 === e ? 1 : parseInt(e) || 0
+    }
+
+    function P(e) {
+        return !0 === e ? 1 : parseFloat(e) || 0
+    }
+
+    function C(e) {
+        return (e = E(e)) < 0 ? 0 : e
+    }
+
+    function O(e) {
+        return !isNaN(e)
+    }
+
+    function j(e) {
+        return e.replace(/&#(\d\d+);/g, function(e, t) {
+            return (t = E(t)) >= 32 ? String.fromCharCode(t) : e
+        }).replace(/&quot;/gi, '"').replace(/&lt;/gi, "<").replace(/&gt;/gi, ">").replace(/&amp;/gi, "&")
+    }
+
+    function T() {
+        var e = (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+        return Object(n.se)("<textarea>" + e + "</textarea>").value
+    }
+
+    function x(e) {
+        return e ? e.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;") : ""
+    }
+
+    function S(e) {
+        return T(e.replace(/\t/g, "\n"))
+    }
+
+    function I(e, t) {
+        if (_(e) || void 0 === e.length) {
+            for (var r in e)
+                if (Object.prototype.hasOwnProperty.call(e, r) && !1 === t.call(e[r], r, e[r])) break
+        } else
+            for (var n = 0, i = e.length; n < i; n++) {
+                var a = e[n];
+                if (!1 === t.call(a, n, a)) break
+            }
+        return e
+    }
+
+    function k(e, t, r) {
+        for (var n = r || 0, i = (e || []).length; n < i; n++)
+            if (e[n] == t) return n;
+        return -1
+    }
+
+    function L(e, t) {
+        return -1 !== k(t, e)
+    }
+
+    function A(e, t) {
+        var r = _(e) || void 0 === e.length ? {} : [];
+        for (var n in e)(!/webkit/i.test(_ua) || "layerX" != n && "layerY" != n && "webkitMovementX" != n && "webkitMovementY" != n) && (t && "object" === o(e[n]) && "prototype" !== n && null !== e[n] ? r[n] = A(e[n]) : r[n] = e[n]);
+        return r
+    }
+
+    function D(e) {
+        var t = {},
+            r = arguments.length,
+            n = arguments;
+        for (var i in e)
+            if (e.hasOwnProperty(i)) {
+                for (var a = !1, o = 1; o < r; o++) n[o][i] && n[o][i] === e[i] && (a = !0);
+                a || (t[i] = e[i])
+            }
+        return t
+    }
+
+    function N() {
+        var e = arguments,
+            t = e.length,
+            r = e[0] || {},
+            n = 1,
+            i = !1;
+        for ("boolean" == typeof r && (i = r, r = e[1] || {}, n = 2), "object" === (void 0 === r ? "undefined" : o(r)) || p(r) || (r = {}); n < t; n++) {
+            var a = e[n];
+            if (null != a)
+                for (var s in a)
+                    if (a.hasOwnProperty(s)) {
+                        var c = r[s],
+                            l = a[s];
+                        r !== l && (i && l && "object" === (void 0 === l ? "undefined" : o(l)) && !l.nodeType ? r[s] = N(i, c || (null != l.length ? [] : {}), l) : void 0 !== l && (r[s] = l))
+                    }
+        }
+        return r
+    }
+
+    function M(e) {
+        window.templates = window.templates || {}, N(window.templates, e)
+    }
+
+    function R(e, t) {
+        var r = (window.templates = window.templates || {})[e];
+        return "function" == typeof r && (r = r()), r && t ? Object(n.rs)(r, t) : r || ""
+    }
+
+    function B(e) {
+        if ("object" !== (void 0 === e ? "undefined" : o(e))) return !1;
+        var t = {},
+            r = function(t) {
+                return Object(n.geByTag)(t, e)
+            },
+            i = function(r, i) {
+                if (i.name)
+                    if ("text" !== i.type && i.type)
+                        if (i.getAttribute("bool")) {
+                            var a = Object(n.val)(i);
+                            if (!a || "0" === a) return;
+                            t[i.name] = 1
+                        } else t[i.name] = browser.msie && !i.value && e[i.name] ? e[i.name].value : i.value;
+                else t[i.name] = Object(n.val)(i)
+            };
+        return I(r("input"), function(e, t) {
+            if ("radio" !== t.type && "checkbox" !== t.type || t.checked) return i(0, t)
+        }), I(r("select"), i), I(r("textarea"), i), t
+    }
+
+    function H(e, t) {
+        for (var r = t ? /(?:([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+(?:[a-z]{2,9}|xn--p1ai|xn--j1amh|xn--80asehdb|xn--80aswg))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)&]*(&nbsp;|[ \t\r\n \u00A0]|$))|([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9а-яєґї_\-]+\.)+(?:рф|укр|онлайн|сайт|срб))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)&]*(&nbsp;|[ \t\r\n \u00A0]|$)))/i : /(?:([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+(?:[a-z]{2,9}|xn--p1ai|xn--j1amh|xn--80asehdb|xn--80aswg))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)]*(&nbsp;|[ \t\r\n \u00A0]))|([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9а-яєґї_\-]+\.)+(?:рф|укр|онлайн|сайт|срб))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)]*(&nbsp;|[ \t\r\n \u00A0])))/i, n = void 0, i = []; e && (n = e.match(r));) {
+            e = e.substr(n.index + n[0].length);
+            var a = 0;
+            n[4] || (a = 7), i.push({
+                url: n[2 + a],
+                query: n[5 + a] || "",
+                domain: n[4 + a]
+            })
+        }
+        return i
+    }
+    var z = function() {
+        return window.devicePixelRatio >= 2
+    };
+
+    function U(e) {
+        var t = 0,
+            r = 0,
+            n = e.ownerDocument || e.document,
+            i = n.defaultView || n.parentWindow;
+        if (i.getSelection().rangeCount > 0) {
+            var a = i.getSelection().getRangeAt(0),
+                o = a.cloneRange();
+            o.selectNodeContents(e), o.setEnd(a.startContainer, a.startOffset), t = o.toString().length, o.setEnd(a.endContainer, a.endOffset), r = o.toString().length
+        }
+        return [t, r]
+    }
+
+    function F(e) {
+        var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {},
+            r = t.kLimit || 1e3;
+        return e >= (t.mLimit || 1e6) && !t.noCheck ? F(e = (e = E(e / 1e5)) > 1e3 ? E(e / 10) : e / 10, N(t, {
+            noCheck: !0
+        }), !0) + "M" : e >= r && !t.noCheck ? F(e = (e = E(e / 100)) > 100 ? E(e / 10) : e / 10, N(t, {
+            noCheck: !0
+        }), !0) + "K" : Object(i.langNumeric)(e, "%s", !0).replace(/,/g, ".")
+    }
+    var W, Y = a((W = null, [function(e) {
+            return W || (W = Object(n.se)("<span> </span>")), W.innerText = e, W.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;")
+        }, function(e) {
+            return W || (W = Object(n.se)("<span> </span>")), W.innerHTML = e, W.innerText
+        }]), 2),
+        K = Y[0],
+        V = Y[1];
+    window.isRetina = z, window.extractUrls = H, window.serializeForm = B, window.addTemplates = M, window.getTemplate = R, window.rand = l, window.irand = d, window.isUndefined = u, window.isFunction = p, window.isArray = h, window.isString = f, window.isObject = _, window.isEmpty = g, window.vkNow = v, window.vkImage = y, window.trim = m, window.stripHTML = b, window.escapeRE = w, window.intval = E, window.floatval = P, window.positive = C, window.isNumeric = O, window.winToUtf = j, window.replaceEntities = T, window.clean = x, window.unclean = S, window.each = I, window.indexOf = k, window.inArray = L, window.clone = A, window.arrayKeyDiff = D, window.extend = N, window.vkLocal = s, window.lTimeout = c, window.getCaretCharacterOffsetWithin = U, window.formatCount = F, window.encodeHtml = K, window.decodeHtml = V
+}, function(e, t, r) {
+    "use strict";
+    r.r(t), r.d(t, "initLimits", function() {
+        return a
+    }), r.d(t, "checkLimits", function() {
+        return o
+    });
+    var n = r(29),
+        i = void 0;
+
+    function a(e) {
+        i = e
+    }
+
+    function o(e) {
+        var t = [];
+        e.length > i.maxParagraphs && t.push(getLang("pages_article_ed_limit_paragraphs").replace("{count}", e.length).replace("{limit}", i.maxParagraphs));
+        var r = 0,
+            a = 0;
+        return e.forEach(function(e) {
+            var o = 0;
+            e.lines.forEach(function(e) {
+                r += e.text.length, o += e.text.length
+            }), Object(n.isObjectParagraph)(e) && a++, o > i.maxSymbolsPerParagraph && t.push(getLang("pages_article_ed_limit_symbols_per_par").replace("{count}", o).replace("{limit}", i.maxSymbolsPerParagraph))
+        }), r > i.maxSymbols && t.push(getLang("pages_article_ed_limit_symbols").replace("{count}", r).replace("{limit}", i.maxSymbols)), a > i.maxObjects && t.push(getLang("pages_article_ed_limit_objects").replace("{count}", a).replace("{limit}", i.maxObjects)), t.length && t.push(getLang("pages_article_ed_limit")), t.join("<br>")
+    }
+}, function(e, t, r) {
+    "use strict";
     r.r(t);
-    var n = r(12),
-        i = r(5),
-        a = r(23);
+    var n = r(20),
+        i = r(8),
+        a = r(31);
+    var o = function(e) {
+        function t(r, n) {
+            return function(e, t) {
+                    if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
+                }(this, t),
+                function(e, t) {
+                    if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+                    return !t || "object" != typeof t && "function" != typeof t ? e : t
+                }(this, e.call(this, r, n, !0))
+        }
+        return function(e, t) {
+            if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);
+            e.prototype = Object.create(t && t.prototype, {
+                constructor: {
+                    value: e,
+                    enumerable: !1,
+                    writable: !0,
+                    configurable: !0
+                }
+            }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t)
+        }(t, e), t.prototype.render = function() {
+            var e = this;
+            this._el = se('\n      <div class="article_ed__gif_content"></div>\n    ');
+            var t = i.default.get(a.ParagraphType.ObjectGIF, this.getMediaId());
+            if (t)
+                if (t.video) {
+                    if (this._videoEl = ce("video", {
+                            autoplay: !0,
+                            loop: "loop",
+                            muted: !0,
+                            src: t.video + "&mp4=1"
+                        }), t.size) {
+                        var r = t.size[0] < t.size[1],
+                            n = !this._isSmallGifSize();
+                        (r || n) && setStyle(this._videoEl, {
+                            width: t.size[0]
+                        })
+                    }
+                    this._el.appendChild(this._videoEl), this._el.appendChild(se('<span class="article_ed__select_dummy">&nbsp;</span>'))
+                } else if (t.href) {
+                var o = t.href + "&wnd=1&module=" + cur.module;
+                this._imgEl = ce("img"), this._imgEl.addEventListener("error", function() {
+                    showFastBox(getLang("pages_article_error_box_title"), getLang("pages_article_error_box_text")), e._editor.removeObject(e)
+                }), this._imgEl.src = o, this._el.appendChild(this._imgEl)
+            }
+            return this._el
+        }, t.prototype.onViewport = function(e) {
+            if (this._imgEl) setStyle(this._imgEl, "visibility", e ? "visible" : "hidden");
+            else if (e) {
+                var t = this._videoEl.play();
+                t && t.catch(function() {})
+            } else this._videoEl.pause()
+        }, t.prototype.onRender = function() {
+            var e = this;
+            setTimeout(function() {
+                var t = e._videoEl && e._videoEl.play();
+                if (t && t.catch(function() {}), browser.msie && e._videoEl) {
+                    var r = e._videoEl.src;
+                    e._videoEl.src = "", e._videoEl.src = r
+                }
+            })
+        }, t.prototype._isSmallGifSize = function() {
+            var e = i.default.get(a.ParagraphType.ObjectGIF, this.getMediaId());
+            return !(!e && !e.size) && e.size[0] > this.getEditor().getOptions().minGifWidthExpand
+        }, t
+    }(n.default);
+    t.default = o
+}, , , function(e, t, r) {
+    "use strict";
+    r.r(t);
+    var n = r(29),
+        i = (r(31), function() {
+            return function(e, t) {
+                if (Array.isArray(e)) return e;
+                if (Symbol.iterator in Object(e)) return function(e, t) {
+                    var r = [],
+                        n = !0,
+                        i = !1,
+                        a = void 0;
+                    try {
+                        for (var o, s = e[Symbol.iterator](); !(n = (o = s.next()).done) && (r.push(o.value), !t || r.length !== t); n = !0);
+                    } catch (e) {
+                        i = !0, a = e
+                    } finally {
+                        try {
+                            !n && s.return && s.return()
+                        } finally {
+                            if (i) throw a
+                        }
+                    }
+                    return r
+                }(e, t);
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }
+        }());
+    var a = window.browser && (browser.mozilla || browser.safari),
+        o = void 0,
+        s = function() {
+            function e(t, r, n) {
+                ! function(e, t) {
+                    if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
+                }(this, e), this._mediaId = t, this._editor = r, this._highlighted = !1, this._isCaptioned = !!n, o = this.getEditor().getOptions().multiMediasSeparator
+            }
+            return e.prototype.isCaptioned = function() {
+                return this._isCaptioned
+            }, e.prototype.getEditor = function() {
+                return this._editor
+            }, e.prototype.getMediaIdsCount = function() {
+                return this._mediaId.split(o).length
+            }, e.prototype.getMediaId = function(e) {
+                return void 0 !== e ? this._mediaId.split(o)[e] : this._mediaId
+            }, e.prototype.setMediaId = function(e) {
+                this._mediaId = e
+            }, e.prototype.highlight = function() {
+                var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0],
+                    t = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
+                if (e != this._highlighted) {
+                    this._highlighted = e;
+                    var r = this.el();
+                    if (e) {
+                        var i = getSize(r),
+                            a = se('<div class="article_ed__object_highlight _article_ed__object_highlight"></div>');
+                        setStyle(a, {
+                            width: i[0] + 0,
+                            height: i[1] + 0
+                        }), addClass(r, "article_ed__object_highlighted")
+                    } else re(geByClass1("_article_ed__object_highlight", r)), removeClass(r, "article_ed__object_highlighted");
+                    if (this._isCaptioned)
+                        if (e) this._toggleCaption(!0), this._toggleCaptionPlaceholder(this.isEmptyCaption()), t || Object(n.focusEl)(this._getCaptionEl());
+                        else {
+                            var o = this.isEmptyCaption();
+                            this._toggleCaptionPlaceholder(o), this._toggleCaption(!o)
+                        }
+                }
+            }, e.prototype.render = function() {}, e.prototype.el = function() {
+                var e = this;
+                if (!this._objectEl) {
+                    var t = this.render();
+                    addClass(t, "article_object_el"), t.setAttribute("contenteditable", "false");
+                    var r = this.getEditor().isLocked() ? "false" : "true",
+                        i = browser.mozilla ? 'contenteditable="' + r + '"' : 'contenteditable="false"';
+                    this._objectEl = se("<figure " + i + "></figure>");
+                    var o = this.renderExtraControlsEl();
+                    if (o) {
+                        var s = se('<div class="article_ed__img_wrapper"></div>'),
+                            c = se('<div class="article_ed__img_inner"></div>');
+                        o.setAttribute("contenteditable", "false"), addClass(o, "article_ed__extra_controls"), c.appendChild(t), c.appendChild(o), s.appendChild(c), this._objectEl.appendChild(s)
+                    } else this._objectEl.appendChild(t);
+                    this._isCaptioned && (this._captionEl = se('<figcaption class="article_ed__figcaption" contenteditable="false">\n          <div class="article_ed__figcaption_edit" contenteditable="' + r + '"></div>\n          <div class="article_ed__caption_placeholder" contenteditable="false">' + getLang("pages_article_figure_placeholder") + "</div>\n        </figcaption>"), this._objectEl.appendChild(this._captionEl)), a && t.addEventListener("click", function() {
+                        e.highlight(!0), Object(n.focusEl)(t)
+                    })
+                }
+                return this._setLoadingEl(), this._objectEl
+            }, e.prototype.renderExtraControlsEl = function() {
+                return !1
+            }, e.prototype.setLoadingState = function() {
+                var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0],
+                    t = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
+                !!this._isLoading != e && (this._isLoading = e, this._setLoadingEl(t), toggleClass(this._objectEl, "article_ed__object_loading", e), e || this.getEditor().onObjectStateLoaded(this))
+            }, e.prototype._setLoadingEl = function() {
+                var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
+                if (this._objectEl) {
+                    if (re(geByClass1("article_ed___object_loading_placeholder", this._objectEl)), this._isLoading) {
+                        var t = se('<div class="article_ed___object_loading_placeholder"></div>');
+                        toggleClass(t, "article_ed__object_loading_white", e), domInsertBefore(t, this._objectEl.firstChild)
+                    }
+                    toggleClass(this._objectEl, "article_ed___object_loading", !!this._isLoading)
+                }
+            }, e.prototype.getCaptionEl = function() {
+                return !!this._isCaptioned && this._getCaptionEl()
+            }, e.prototype.isCaptionFocused = function() {
+                return !!this._isCaptioned && this._isFocusInCaption()
+            }, e.prototype.setCaptionElHtml = function(e) {
+                if (this._isCaptioned) {
+                    e = e.trim();
+                    var t = this._getCaptionEl();
+                    t != e && (t.innerHTML = e), this._toggleCaptionPlaceholder(!e), this._toggleCaption(!!e)
+                }
+            }, e.prototype.isEmptyCaption = function() {
+                return !this._getCaptionEl().textContent.trim()
+            }, e.prototype._getCaptionEl = function() {
+                return geByClass1("article_ed__figcaption_edit", this._captionEl)
+            }, e.prototype._toggleCaption = function(e) {
+                toggleClass(this._captionEl, "article_ed__figcaption_visible", e)
+            }, e.prototype._toggleCaptionPlaceholder = function(e) {
+                void 0 !== this._captionPlaceholderShown && this._captionPlaceholderShown === e || (this._captionPlaceholderShown = toggle(geByClass1("article_ed__caption_placeholder", this._captionEl), e))
+            }, e.prototype._isFocusInCaption = function() {
+                var e = this,
+                    t = Object(n.getRange)(),
+                    r = i(t, 2),
+                    a = r[0],
+                    o = function(t) {
+                        return !!traverseParent(t, function(t) {
+                            return t == e._captionEl
+                        }, 10)
+                    };
+                if (r[1]) return o(a.startContainer);
+                var s = o(a.startContainer),
+                    c = o(a.endContainer);
+                return s && c
+            }, e
+        }();
+    t.default = s
+}, function(e, t, r) {
+    "use strict";
+    r.r(t), r.d(t, "initArticle", function() {
+        return b
+    }), r.d(t, "updateArticle", function() {
+        return w
+    }), r.d(t, "deinitArticle", function() {
+        return E
+    });
+    var n = r(37),
+        i = r(31),
+        a = r(28),
+        o = function() {
+            return function(e, t) {
+                if (Array.isArray(e)) return e;
+                if (Symbol.iterator in Object(e)) return function(e, t) {
+                    var r = [],
+                        n = !0,
+                        i = !1,
+                        a = void 0;
+                    try {
+                        for (var o, s = e[Symbol.iterator](); !(n = (o = s.next()).done) && (r.push(o.value), !t || r.length !== t); n = !0);
+                    } catch (e) {
+                        i = !0, a = e
+                    } finally {
+                        try {
+                            !n && s.return && s.return()
+                        } finally {
+                            if (i) throw a
+                        }
+                    }
+                    return r
+                }(e, t);
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }
+        }(),
+        s = void 0,
+        c = void 0,
+        l = void 0,
+        d = void 0,
+        u = void 0,
+        p = void 0,
+        h = void 0,
+        f = void 0,
+        _ = void 0,
+        g = void 0,
+        v = [],
+        y = void 0,
+        m = void 0;
+
+    function b(e, t) {
+        d = t || {}, h = e, window.cur && (window.cur.article = e), c = ge("article_view_" + e.owner_id + "_" + e.id), l = d.scrollNode || window, u = d.getScrollTop || function() {
+                return (document.scrollingElement || window.scrollNode || document.body).scrollTop
+            }, s = gpeByClass("article_body", c) || gpeByClass("_article_layer", c), l.addEventListener("scroll", f = function() {
+                j()
+            }, {
+                passive: !0
+            }), j(), O(), N(),
+            function() {
+                if (d.ga)
+                    if (window.dataLayer = window.dataLayer || [], window.gtag) gtag("config", d.ga, {
+                        page_location: window.location.href
+                    });
+                    else {
+                        var e = document.createElement("script");
+                        e.setAttribute("src", "https://www.googletagmanager.com/gtag/js?id=" + d.ga), e.setAttribute("async", "true"), document.head.appendChild(e), window.gtag = function() {
+                            dataLayer.push(arguments)
+                        }, gtag("js", new Date), gtag("config", d.ga)
+                    }
+            }(), C(), setTimeout(function() {
+                d.isWebView || M(), l.click && l.click(), l.focus()
+            }, 10), window.onBodyResize = window.onBodyResize || function() {}, window.cur && cur.destroy.push(function() {
+                E()
+            }), !d.mobile && window.AudioPlaylist && h.audiosList && h.audiosList.length > 0 && (cur.articlePlaylist = new AudioPlaylist(AudioPlaylist.TYPE_TEMP, h.owner_id, "article_" + h.id), cur.articlePlaylist.mergeWith({
+                list: h.audiosList
+            }))
+    }
+
+    function w() {
+        var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+        d.notFull = !1, O(), N(), j(), C(e.deviceInfo)
+    }
+
+    function E() {
+        f && (l.removeEventListener("scroll", f), f = !1), _ && (l.removeEventListener("scroll", _), _ = !1), clearTimeout(g)
+    }
+
+    function P(e, t) {
+        v.push(e + "/" + h.owner_id + "_" + h.id + "/" + t), clearTimeout(y), y = setTimeout(function() {
+            var e = d.mobile ? "article.php" : "al_articles.php";
+            ajax.post(e, {
+                act: "ads_event",
+                events: v.join(","),
+                is_web_view: intval(d.isWebView)
+            }), v = []
+        }, 200)
+    }
+
+    function C() {
+        var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+        if (!(isEmpty(h.ads) || d.notFull || isArray(h.ads) && 0 == h.ads.length)) {
+            if (!window.mailRuSdsScriptLoaded) {
+                var t = document.createElement("script");
+                t.setAttribute("src", h.ads.script), t.setAttribute("async", "true"), document.head.appendChild(t), window.mailRuSdsScriptLoaded = !0
+            }
+            var r = ce("ins");
+            addClass(r, "mrg-tag"), addClass(r, "article_adsblock"), d.mobile && addClass(r, "article_adsblock_mobile"), setStyle(r, {
+                display: "block",
+                "text-decoration": "none"
+            });
+            var n = "";
+            for (var i in e) e.hasOwnProperty(i) && (n += "&" + i + "=" + e[i]);
+            for (var a in h.ads.data["ad-query"] = h.ads.data["ad-query"].replace("%device_info%", n), h.ads.data) h.ads.data.hasOwnProperty(a) && domData(r, a, "" + h.ads.data[a]);
+            var o = geByClass1("article_misc_block");
+            o ? o.firstChild ? domInsertBefore(r, o.firstChild) : o.appendChild(r) : domInsertAfter(r, c), window.MRGtag || (window.MRGtag = []);
+            var s = d.isWebView ? {
+                    iframeMode: !0
+                } : {},
+                l = h.ads.eventsHash;
+            s.onNoAds = function() {
+                P("no_ads", l)
+            }, s.onAdsLoaded = function() {
+                P("ads_loaded", l)
+            }, s.onAdsClosed = function() {
+                P("ads_closed", l)
+            }, s.onAdsSuccess = function() {
+                P("ads_success", l)
+            }, s.onAdsClicked = function() {
+                P("ads_clicked", l)
+            }, s.onScriptError = function() {
+                P("script_error", l)
+            }, window.MRGtag.push(s)
+        }
+    }
+
+    function O() {
+        each(geByClass("_article_unmute_button"), function(e, t) {
+            t.addEventListener("click", function() {
+                var e = t.parentNode,
+                    r = geByTag1("video", e);
+                r.muted = !r.muted, toggleClass(e, "article_object_unmuted", !r.muted)
+            })
+        });
+        var e = {};
+        each(geByTag("figure", c), function(t, r) {
+            if (parseInt(domData(r, "type")) == i.ParagraphType.ObjectPhoto) {
+                var n = Object(a.initPhotoCarousel)(r, d),
+                    l = function(e) {
+                        if (d.noImageOpen) return;
+                        if (domData(e, "event-inited")) return;
+                        domData(e, "event-inited", 1);
+                        var t = geByTag1("img", e),
+                            r = geByClass1("article_photo_carousel__controls", e) || t,
+                            n = domQuery1("[data-sizes]", e),
+                            a = JSON.parse(domData(n, "sizes"));
+                        if (d.onImageOpen) {
+                            r.addEventListener("click", function() {
+                                var t = intval(domData(e, "photo-carousel-index"));
+                                d.onImageOpen(a, t), m = e
+                            });
+                            var l = I++;
+                            return domData(e, "id", l), l
+                        }
+                        var u = Object(i.getAppropriateImage)(a[0], window.innerWidth, !0),
+                            h = o(u, 3),
+                            f = h[0],
+                            _ = h[1],
+                            g = h[2],
+                            v = D({
+                                width: _,
+                                height: g
+                            }, {
+                                width: window.innerWidth,
+                                height: window.innerHeight
+                            }),
+                            y = getW(e) < v.width && getH(e) < v.height;
+                        if (!f || !y) return;
+                        addClass(r, "article_image_full_viewable");
+                        var b = data(e, "changePhotoFunction");
+                        r.addEventListener("click", function() {
+                            var t = intval(domData(e, "photo-carousel-index"));
+                            addClass(s, "article_no_scroll");
+                            var r = geByTag1("figcaption", e),
+                                n = se('<div class="article_full_view"><img class="article_full_view__image"></div>');
+                            r && r.innerHTML && n.appendChild(se('<div class="article_full_view__caption"><div class="article_full_view__caption_inner">' + r.innerHTML + "</div></div>")), a.length > 1 && (toggleClass(S, "article_full_view__carousel", a.length > 1), T = se('<div class="article_full_view__right"></div>'), n.appendChild(T), x = se('<div class="article_full_view__left"></div>'), n.appendChild(x), T.addEventListener("click", function(e) {
+                                return t = Math.min(a.length - 1, Math.max(0, t + 1)), L(i, a, t), b && b(1), cancelEvent(e)
+                            }), x.addEventListener("click", function(e) {
+                                return t = Math.min(a.length - 1, Math.max(0, t - 1)), L(i, a, t), b && b(-1), cancelEvent(e)
+                            })), S = se('<div class="article_full_view__counter"><div class="article_full_view__counter_text"></div><div class="article_full_view__close"></div></div>'), n.appendChild(S), a.length > 1 && toggleClass(S, "article_full_view__carousel", a.length > 1), c.appendChild(n), n.addEventListener("click", function(e) {
+                                domClosest("article_full_view__caption_inner", e.target) || A()
+                            }), n.addEventListener("mousewheel", A), p = n;
+                            var i = geByTag1("img", n);
+                            L(i, a, t)
+                        })
+                    }(r);
+                void 0 !== l && (e[l] = n)
+            }
+        }), window.addEventListener("VKWebAppEvent", function(t) {
+            var r = t.detail.index;
+            if (m) {
+                var n = e[domData(m, "id")];
+                n && n(r)
+            }
+        })
+    }
+
+    function j() {
+        var e = {
+                101: -2e3
+            },
+            t = u(),
+            r = window.innerHeight,
+            a = getXY(c)[1];
+        each(geByTag("figure", c), function(s, c) {
+            var l = intval(domData(c, "done"));
+            if (!l) {
+                var u = getH(c),
+                    p = getXY(c)[1] - a,
+                    h = intval(domData(c, "type")),
+                    f = void 0 !== e[h] ? e[h] : 60;
+                (l = function(e, t, r) {
+                    var a = !1;
+                    switch (t) {
+                        case i.ParagraphType.ObjectPhoto:
+                            if (e) {
+                                var s = geByTag1("img", r),
+                                    c = getW(s) || d.width,
+                                    l = domData(s, "baseurl");
+                                if (l) l = Object(n.imageProxyURL)(l, {
+                                    size: c
+                                }), Object(i.preloadImage)(l, function() {
+                                    removeClass(s, "article_object_photo__image_blur"), s.src = l
+                                });
+                                else {
+                                    var u = domQuery1("[data-sizes]", r),
+                                        p = JSON.parse(domData(u, "sizes"));
+                                    p.forEach(function(e, t) {
+                                        if (!(t > 3)) {
+                                            var r = Object(i.getAppropriateImage)(p[t], c, !0),
+                                                n = o(r, 1),
+                                                a = n[0];
+                                            Object(i.preloadImage)(a, function() {
+                                                0 == t && (removeClass(s, "article_object_photo__image_blur"), s.src = a)
+                                            })
+                                        }
+                                    })
+                                }
+                                a = !0
+                            }
+                            break;
+                        case i.ParagraphType.ObjectGIF:
+                            if (!d.mobile) {
+                                var h = geByTag1("video", r);
+                                if (h)
+                                    if (e) {
+                                        if (h.hasAttribute("autoplay")) {
+                                            var f = h.play();
+                                            f && f.catch(function() {})
+                                        }
+                                    } else h.pause();
+                                else a = !0
+                            }
+                    }
+                    return a
+                }(p <= t + r - f && t <= p + u - f, h, c)) && domData(c, "done", 1)
+            }
+        })
+    }
+    var T = void 0,
+        x = void 0,
+        S = void 0,
+        I = 1;
+    var k = void 0;
+
+    function L(e, t, r) {
+        (toggleClass(x, "article_full_view__nav_hidden", 0 == r), toggleClass(T, "article_full_view__nav_hidden", r == t.length - 1), t.length > 1) && (geByClass1("article_full_view__counter_text", S).innerHTML = getLang("global_article_carousel_counter").replace("{counter}", r + 1).replace("{total}", t.length));
+        k = r;
+        var n = Object(i.getAppropriateImage)(t[r], window.innerWidth, !0),
+            a = o(n, 3),
+            s = a[0],
+            c = D({
+                width: a[1],
+                height: a[2]
+            }, {
+                width: window.innerWidth,
+                height: window.innerHeight
+            }),
+            l = !1;
+        if (Object(i.preloadImage)(s, function() {
+                if (k === r) {
+                    l = !0, c.width && isNumeric(c.width) ? setStyle(e, {
+                        width: c.width,
+                        height: c.height
+                    }) : setStyle(e, {
+                        width: null,
+                        height: null
+                    }), e.src = s, removeClass(e, "article_full_view__image_blurred");
+                    for (var n = r; n < Math.min(r + 3, t.length); n++) {
+                        var a = Object(i.getAppropriateImage)(t[n], window.innerWidth, !0),
+                            d = o(a, 1)[0];
+                        Object(i.preloadImage)(d)
+                    }
+                }
+            })) removeClass(e, "article_full_view__image_blurred");
+        else {
+            var d = Object(i.getAppropriateImage)(t[r], 200, !0),
+                u = o(d, 1)[0];
+            Object(i.preloadImage)(u, function() {
+                k === r && (l || (setStyle(e, {
+                    width: c.width,
+                    height: c.height
+                }), e.src = u))
+            }), addClass(e, "article_full_view__image_blurred")
+        }
+    }
+
+    function A() {
+        return !!p && (re(p), s && removeClass(s, "article_no_scroll"), p = !1, !0)
+    }
+
+    function D(e, t) {
+        var r = e.width / e.height,
+            n = {};
+        return r > t.width / t.height ? (n.width = Math.min(t.width, e.width), n.height = e.height * (n.width / e.width)) : (n.height = Math.min(t.height, e.height), n.width = n.height * r), n
+    }
+
+    function N() {
+        if (!d.notFull) {
+            var e = getH(c),
+                t = getXY(c)[1] - scrollGetY(),
+                r = window.innerHeight,
+                n = Date.now(),
+                a = -1,
+                o = void 0,
+                s = [];
+            f(0), l.addEventListener("scroll", _ = y, {
+                passive: !0
+            }), y()
+        }
+
+        function p() {
+            return Math.round((Date.now() - n) / 1e3)
+        }
+
+        function f(e) {
+            if (!(a >= e)) {
+                for (var t = a + 1; t <= e; t++) s.push(t);
+                if (a = e, clearTimeout(o), o = setTimeout(v, 100), 3 == e && h.ttr) {
+                    var r = h.ttr - p();
+                    r > 0 && (g = setTimeout(function() {
+                        document.hidden || (s = [a = 4], v())
+                    }, 1e3 * r))
+                }
+            }
+        }
+
+        function v() {
+            s.length && (ajax.post(d.mobile ? "article.php" : "al_articles.php", {
+                act: "stats",
+                scroll: s.join(","),
+                spent: p(),
+                hash: h.access_hash,
+                article_owner_id: h.owner_id,
+                article_id: h.id,
+                is_web_view: d.isWebView ? 1 : 0,
+                post_id: d.postId,
+                ref: window.cur ? window.cur.module : "",
+                is_widget: h.isWidget
+            }), s.forEach(function(e) {
+                Object(i.mailruStatsPixel)("scroll_" + e, h.mailruStatsData)
+            }), s = [])
+        }
+
+        function y() {
+            var n = u();
+            n > 0 && f(1);
+            for (var i = 1; i < 4; i++) n + 3 * r / 4 > t + e * i / 3 && f(i + 1);
+            n + r > e - 20 && f(4)
+        }
+    }
+
+    function M() {
+        var e = Object(i.getUrlParam)("anchor");
+        e && function() {
+            var t = document.getElementById(e);
+            if (t) {
+                "scrollRestoration" in history && (history.scrollRestoration = "manual");
+                var r = d.isWebView ? 0 : 25,
+                    n = t.parentNode.parentNode.offsetTop - r;
+                window.setTimeout(function() {
+                    browser.msie && !l.scrollTo ? l.scrollTop = n : l.scrollTo(0, n)
+                }, 0)
+            }
+        }()
+    }
+    window.initArticle = b, window.deinitArticle = E, window.updateArticle = w, window.scrollToAnchor = M, window.articleCloseImageFullSize = A
+}, , , function(e, t, r) {
+    "use strict";
+    r.r(t), r.d(t, "parseLatin", function() {
+        return a
+    }), r.d(t, "parseCyr", function() {
+        return o
+    }), r.d(t, "parseLatKeys", function() {
+        return s
+    }), r.d(t, "langNumeric", function() {
+        return c
+    }), r.d(t, "langSex", function() {
+        return l
+    }), r.d(t, "langStr", function() {
+        return d
+    }), r.d(t, "addLangKeys", function() {
+        return u
+    }), r.d(t, "getLang", function() {
+        return p
+    }), r.d(t, "langDate", function() {
+        return h
+    }), r.d(t, "getShortDate", function() {
+        return f
+    }), r.d(t, "getShortDateOrTime", function() {
+        return _
+    }), r.d(t, "langWordNumeric", function() {
+        return g
+    }), r.d(t, "getDateText", function() {
+        return v
+    }), r.d(t, "getBigDateNew", function() {
+        return y
+    }), r.d(t, "getSmDate", function() {
+        return m
+    });
+    var n = r(32),
+        i = r(15);
+
+    function a(e) {
+        for (var t = ["yo", "zh", "kh", "ts", "ch", "sch", "shch", "sh", "eh", "yu", "ya", "YO", "ZH", "KH", "TS", "CH", "SCH", "SHCH", "SH", "EH", "YU", "YA", "'"], r = ["ё", "ж", "х", "ц", "ч", "щ", "щ", "ш", "э", "ю", "я", "Ё", "Ж", "Х", "Ц", "Ч", "Щ", "Щ", "Ш", "Э", "Ю", "Я", "ь"], n = e, i = 0, a = t.length; i < a; i++) n = n.split(t[i]).join(r[i]);
+        for (var o = "abvgdezijklmnoprstufhcyABVGDEZIJKLMNOPRSTUFHCYёЁ", s = 0, c = o.length; s < c; s++) n = n.split(o.charAt(s)).join("абвгдезийклмнопрстуфхцыАБВГДЕЗИЙКЛМНОПРСТУФХЦЫеЕ".charAt(s));
+        return n === e ? null : n
+    }
+
+    function o(e) {
+        for (var t = ["yo", "zh", "kh", "ts", "ch", "sch", "shch", "sh", "eh", "yu", "ya", "YO", "ZH", "KH", "TS", "CH", "SCH", "SHCH", "SH", "EH", "YU", "YA", "'"], r = ["ё", "ж", "х", "ц", "ч", "щ", "щ", "ш", "э", "ю", "я", "Ё", "Ж", "Х", "Ц", "Ч", "Щ", "Щ", "Ш", "Э", "Ю", "Я", "ь"], n = "абвгдезийклмнопрстуфхцыАБВГДЕЗИЙКЛМНОПРСТУФХЦЫеЕ", i = e, a = 0; a < r.length; a++) i = i.split(r[a]).join(t[a]);
+        for (var o = 0; o < n.length; o++) i = i.split(n.charAt(o)).join("abvgdezijklmnoprstufhcyABVGDEZIJKLMNOPRSTUFHCYёЁ".charAt(o));
+        return i === e ? null : i
+    }
+
+    function s(e) {
+        for (var t = "qwertyuiop[]asdfghjkl;'zxcvbnm,./`", r = e, n = 0; n < t.length; n++) r = r.split(t.charAt(n)).join("йцукенгшщзхъфывапролджэячсмитьбю.ё".charAt(n));
+        return r == e ? null : r
+    }
+
+    function c(e, t, r) {
+        if (!t || !window.langConfig) return e;
+        var n = void 0;
+        if (Object(i.isArray)(t) ? (n = t[1], e != Math.floor(e) ? n = t[langConfig.numRules.float] : Object(i.each)(langConfig.numRules.int, function(r, a) {
+                if ("*" == a[0]) return n = t[a[2]], !1;
+                var o = a[0] ? e % a[0] : e;
+                return -1 != Object(i.indexOf)(a[1], o) ? (n = t[a[2]], !1) : void 0
+            })) : n = t, r) {
+            for (var a = e.toString().split("."), o = [], s = a[0].length - 3; s > -3; s -= 3) o.unshift(a[0].slice(s > 0 ? s : 0, s + 3));
+            a[0] = o.join(langConfig.numDel), e = a.join(langConfig.numDec)
+        }
+        return n = (n || "%s").replace("%s", e)
+    }
+
+    function l(e, t) {
+        if (!Object(i.isArray)(t)) return t;
+        var r = t[1];
+        return window.langConfig ? (Object(i.each)(langConfig.sexRules, function(n, i) {
+            return "*" == i[0] ? (r = t[i[1]], !1) : e == i[0] && t[i[1]] ? (r = t[i[1]], !1) : void 0
+        }), r) : r
+    }
+
+    function d(e) {
+        for (var t = arguments, r = t.length, n = e + "", i = 1; i < r; i += 2) {
+            var a = "%" === t[i][0] ? t[i] : "{" + t[i] + "}";
+            n = n.replace(a, t[i + 1])
+        }
+        return n
+    }
+
+    function u(e, t) {
+        var r = t ? window : window.cur;
+        r.lang ? Object(i.extend)(r.lang, e) : r.lang = e
+    }
+
+    function p() {
+        try {
+            var e = Array.from(arguments),
+                t = e.shift();
+            if (!t) return "...";
+            var r = window.cur.lang && window.cur.lang[t] || window.lang && window.lang[t] || window.langpack && window.langpack[t] || window[t];
+            if (!r) {
+                var n = t.split("_");
+                return n.shift(), n.join(" ")
+            }
+            return Object(i.isFunction)(r) ? r.apply(null, e) : void 0 === e[0] && !Object(i.isArray)(r) || "raw" === e[0] ? r : c(e[0], r, e[1])
+        } catch (e) {
+            debugLog("lang error:" + e.message + "(" + Array.from(arguments).join(", ") + ")")
+        }
+    }
+
+    function h(e, t, r, a, o, s) {
+        var c = void 0;
+        if (s || (s = ""), Object(i.isArray)(t) || (t = ["", t, t, t, t]), "number" == typeof e || "string" == typeof e ? (e > 2147483646e3 && (e = 0), e += r, c = new Date(e)) : c = e, o) t = t[1];
+        else {
+            var l = "";
+            !(l = Object(n.isToday)(c) ? t[3] : Object(n.isYesterday)(c) ? t[2] : Object(n.isTomorrow)(c) ? t[4] : t[1]) && t[1] && (l = t[1]), t = l
+        }
+        var d = {
+                hours: c.getHours(),
+                minutes: c.getMinutes(),
+                seconds: c.getSeconds(),
+                day: c.getDate(),
+                month: c.getMonth() + 1,
+                year: c.getFullYear()
+            },
+            u = "";
+        switch (3 === vk.lang && (u = c.getHours() > 11 ? "pm" : "am", d.hours = c.getHours() % 12 == 0 ? 12 : c.getHours() % 12), vk.lang) {
+            case 1:
+                switch (c.getHours()) {
+                    case 11:
+                        t = t.replace(" о ", " об ");
+                        break;
+                    case 0:
+                        t = t.replace(" о ", " в ")
+                }
+                break;
+            case 3:
+                !Object(n.isToday)(c) || Object(n.isYesterday)(c) || Object(n.isTomorrow)(c) || (t = s + t);
+                break;
+            case 12:
+            case 73:
+                1 == c.getHours() && (t = t.replace(" &#224;s ", " &#224; "))
+        }
+        return 68 === vk.lang && (d.year = d.year + 543), t.replace("{hour}", d.hours).replace("{num_hour}", Object(n.leadingZero)(d.hours)).replace("{minute}", Object(n.leadingZero)(d.minutes)).replace("{day}", d.day).replace("{num_day}", Object(n.leadingZero)(d.day)).replace("{month}", a[d.month]).replace("{year}", d.year).replace("{short_year}", d.year % 100).replace("{second}", Object(n.leadingZero)(d.seconds)).replace("{am_pm}", u)
+    }
+
+    function f(e, t, r, n, i) {
+        e *= 1e3, void 0 === r && (r = !0), void 0 === n && (n = p("months_of", "raw")), t *= 1e3;
+        var a = Date.now(),
+            o = new Date(a),
+            s = new Date(e + t);
+        return !i && e > a && e - a < 864e5 && o.getDate() === s.getDate() ? h(e, "{hour}:{minute} {am_pm}", t, [], !r) : s.getYear() !== o.getYear() || e < a - 157248e5 ? h(e, p("global_date", "raw"), t, n, !r) : h(e, p("global_short_date", "raw"), t, n, !r)
+    }
+
+    function _(e, t, r, i) {
+        return Object(n.isToday)(new Date(1e3 * e + 1e3 * t)) ? h(1e3 * e, "{hour}:{minute} {am_pm}", 1e3 * t, [], !r) : f(e, t, r, i)
+    }
+
+    function g(e, t, r) {
+        return Object(i.isArray)(t) && e < t.length ? t[e] : c(e, r)
+    }
+
+    function v(e, t) {
+        e += t;
+        var r = parseInt(Date.now() / 1e3) - e,
+            n = "";
+        if (r < 60) n = p("global_just_now");
+        else if (r < 3600) {
+            n = g(Object(i.intval)(r / 60), p("global_word_mins_ago", "raw"), p("global_mins_ago", "raw"))
+        } else if (r < 14400) {
+            n = g(Object(i.intval)(r / 3600), p("global_word_hours_ago", "raw"), p("global_hours_ago", "raw"))
+        } else n = y(e, 0, !0, "_l");
+        return n
+    }
+
+    function y(e, t, r, n) {
+        void 0 === r && (r = !0), void 0 === t && (t = 0), void 0 === n && (n = ""), t *= 1e3;
+        var i = new Date(1e3 * e),
+            a = new Date;
+        return i.getFullYear() !== a.getFullYear() && i.getTime() < a.getTime() - 1728e5 || Math.abs(i.getTime() - a.getTime()) > 157248e5 ? h(1e3 * e, p("global_date", "raw"), t, p("months_sm_of"), !r) : h(1e3 * e, p("global_short_date_time" + n, "raw"), t, p("months_sm_of"), !r)
+    }
+
+    function m(e, t, r) {
+        void 0 === r && (r = !0), void 0 === t && (t = 0);
+        var n = new Date,
+            i = n.getFullYear(),
+            a = n.getMonth(),
+            o = new Date(1e3 * e),
+            s = o.getFullYear(),
+            c = o.getMonth();
+        return h(1e3 * e, p(s < i && (a > 1 || c < 9 || i - s >= 2) ? "global_date" : "global_short_date_time", "raw"), t, p("months_sm_of", "raw"), !r)
+    }
+    window.parseLatin = a, window.parseCyr = o, window.parseLatKeys = s, window.langNumeric = c, window.langSex = l, window.langStr = d, window.addLangKeys = u, window.getLang = p, window.langDate = h, window.getShortDate = f, window.getShortDateOrTime = _, window.langWordNumeric = g, window.getDateText = v, window.getBigDateNew = y, window.getSmDate = m
+}, , , function(e, t, r) {
+    "use strict";
+    r.r(t);
+    var n = r(20),
+        i = r(31),
+        a = r(8);
     var o = function(e) {
         function t(r, n) {
             return function(e, t) {
@@ -5589,7 +3990,899 @@
         }, t.prototype.onViewport = function(e) {}, t.prototype.onRender = function() {}, t
     }(n.default);
     t.default = o
-}, , , function(e, t, r) {
+}, function(e, t, r) {
+    "use strict";
+    r.r(t), r.d(t, "initPhotoCarousel", function() {
+        return a
+    });
+    var n = r(31),
+        i = function() {
+            return function(e, t) {
+                if (Array.isArray(e)) return e;
+                if (Symbol.iterator in Object(e)) return function(e, t) {
+                    var r = [],
+                        n = !0,
+                        i = !1,
+                        a = void 0;
+                    try {
+                        for (var o, s = e[Symbol.iterator](); !(n = (o = s.next()).done) && (r.push(o.value), !t || r.length !== t); n = !0);
+                    } catch (e) {
+                        i = !0, a = e
+                    } finally {
+                        try {
+                            !n && s.return && s.return()
+                        } finally {
+                            if (i) throw a
+                        }
+                    }
+                    return r
+                }(e, t);
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }
+        }();
+
+    function a(e, t) {
+        var r = domQuery1("[data-sizes]", e),
+            a = JSON.parse(domData(r, "sizes")),
+            o = (domData(r, "media-links") || "").split(",");
+        if (!(a.length <= 1 || domData(e, "carousel-inited"))) {
+            if (domData(e, "carousel-inited", 1), t.mobile) return function(e, t) {
+                var r = geByClass1("article_photo_carousel__controls", t),
+                    a = geByClass1("article_photo_carousel__counter", t),
+                    o = domData(a, "counter-lang") || getLang("global_article_carousel_counter"),
+                    s = getSize(geByClass1("article_figure_content", t)),
+                    c = domPN(geByTag1("img", t)),
+                    l = 0,
+                    d = void 0,
+                    u = 0,
+                    p = void 0,
+                    h = void 0,
+                    f = 0,
+                    _ = !1,
+                    g = !1,
+                    v = !1;
+                r.addEventListener("touchstart", function(e) {
+                    h = e.touches[0].pageX, p = e.touches[0].pageY
+                });
+                var y = !1,
+                    m = void 0;
+                return r.addEventListener("touchmove", function(r) {
+                        if (g || !(Math.abs(r.touches[0].pageY - p) > 5 || _)) {
+                            if (!v && (u = r.touches[0].pageX - h, !(Math.abs(u) < 10) || y)) {
+                                g || window.addEventListener("touchmove", m = function(e) {
+                                    return cancelEvent(e)
+                                }, {
+                                    passive: !1
+                                }), g = !0, y = !0;
+                                var a = Math.min(e.length - 1, Math.max(0, l + (u < 0 ? 1 : -1))),
+                                    o = 0 === a && 0 === l,
+                                    b = a === e.length - 1 && l === e.length - 1;
+                                if (f !== a)
+                                    if (f = a, re(d), o || b) d = !1;
+                                    else {
+                                        var w = Object(n.getAppropriateImage)(e[a], s[0], !0),
+                                            E = i(w, 1)[0];
+                                        d = ce("div", {
+                                            innerHTML: '<img src="' + E + '">'
+                                        }), setStyle(domFC(d), {
+                                            "max-width": s[0],
+                                            "max-height": s[1],
+                                            width: "initial"
+                                        }), setStyle(d, {
+                                            transform: "scale(1.05)",
+                                            opacity: 0
+                                        }), domInsertBefore(d, domPN(geByTag1("img", t)))
+                                    }
+                                var P = Math.abs(u),
+                                    C = 0;
+                                C = o || b ? .2 * u : u, setStyle(c, {
+                                    transform: "translateX(" + C + "px)"
+                                }), d && setStyle(d, {
+                                    transform: "scale(" + Math.max(1, 1.05 - 5e-4 * P) + ")",
+                                    opacity: Math.min(1, .01 * P)
+                                })
+                            }
+                        } else _ = !0
+                    }), r.addEventListener("touchend", function() {
+                        y = !1, _ = !1, v = !0, g = !1, m && window.removeEventListener("touchmove", m);
+                        var r = u < 0,
+                            p = Math.abs(u) < 50 || !d;
+                        if (!p) {
+                            for (var h = l = f; h < Math.min(l + 3, e.length); h++) {
+                                var b = Object(n.getAppropriateImage)(e[h], s[0], !0),
+                                    w = i(b, 1)[0];
+                                Object(n.preloadImage)(w)
+                            }
+                            domData(t, "photo-carousel-index", l)
+                        }
+                        a.innerHTML = o.replace("{counter}", l + 1).replace("{total}", e.length), addClass(c, "with_transition"), addClass(d, "with_transition"), setTimeout(function() {
+                            p ? (setStyle(c, {
+                                transform: "translateX(0px)",
+                                opacity: 1
+                            }), setStyle(d, {
+                                transform: "scale(1.05)",
+                                opacity: 0
+                            })) : (setStyle(c, {
+                                transform: "translateX(" + (r ? "-500px" : "500px") + ")"
+                            }), setStyle(d, {
+                                transform: "scale(1)",
+                                opacity: 1
+                            }))
+                        }), setTimeout(function() {
+                            v = !1, f = !1, removeClass(c, "with_transition"), removeClass(d, "with_transition"), p ? re(d) : (re(c), c = d), d = !1
+                        }, 150)
+                    }),
+                    function(r) {
+                        var d = Object(n.getAppropriateImage)(e[r], s[0], !0),
+                            u = i(d, 1)[0],
+                            p = geByTag1("img", t);
+                        p.src = u, l = f = r, domData(t, "photo-carousel-index", l), c = domPN(p), a.innerHTML = o.replace("{counter}", l + 1).replace("{total}", e.length)
+                    }
+            }(a, e);
+            var s = function(e, t, r, a) {
+                var o = 0,
+                    s = geByClass1("article_photo_carousel__controls", t),
+                    c = geByClass1("article_photo_carousel__counter", t),
+                    l = domData(c, "counter-lang") || getLang("global_article_carousel_counter"),
+                    d = getSize(geByClass1("article_figure_content", t)),
+                    u = domPN(geByTag1("img", t)),
+                    p = geByClass1("article_photo_carousel__left", t),
+                    h = geByClass1("article_photo_carousel__right", t);
+
+                function f(s) {
+                    o += s, o = Math.min(e.length - 1, Math.max(0, o));
+                    var f = Object(n.getAppropriateImage)(e[o], d[0], !0),
+                        _ = i(f, 1),
+                        g = _[0],
+                        v = "";
+                    if (r.moderDeletePhoto) {
+                        var y = a[o];
+                        v = '<a href="' + y + '" target="_blank" class="flat_button article_photo_moder_open">Открыть</a>'
+                    }
+                    var m = s < 0 ? "fading_in_left" : "fading_in_right",
+                        b = se('<div class="' + m + '"><img src="' + g + '">' + v + "</div>");
+                    setStyle(domFC(b), {
+                        "max-width": d[0],
+                        "max-height": Math.ceil(d[1]) + 1,
+                        width: "initial"
+                    }), domInsertAfter(b, domPN(geByTag1("img", t)));
+                    var w = u;
+                    setTimeout(function() {
+                        removeClass(b, "fading_in_left"), removeClass(b, "fading_in_right"), addClass(w, "fading_out")
+                    }), setTimeout(function() {
+                        re(w)
+                    }, 150);
+                    for (var E = o; E < Math.min(o + 3, e.length); E++) {
+                        var P = Object(n.getAppropriateImage)(e[E], d[0], !0),
+                            C = i(P, 1),
+                            O = C[0];
+                        Object(n.preloadImage)(O)
+                    }
+                    u = b, c.innerHTML = l.replace("{counter}", o + 1).replace("{total}", e.length), toggle(p, o > 0), toggle(h, o < e.length - 1), domData(t, "photo-carousel-index", o)
+                }
+                var _ = void 0;
+
+                function g(e) {
+                    clearTimeout(_), toggleClass(s, "article_photo_carousel__mouse_idle", e)
+                }
+                var v = browser.msie && intval(browser.version) <= 11;
+                return h.addEventListener("click", function(e) {
+                    return f(1), v || t.dispatchEvent(new Event("mousemove")), cancelEvent(e)
+                }), p.addEventListener("click", function(e) {
+                    return f(-1), v || t.dispatchEvent(new Event("mousemove")), cancelEvent(e)
+                }), t.addEventListener("mousemove", function() {
+                    g(!1), addClass(s, "article_photo_carousel__mouse_over"), clearTimeout(_), _ = setTimeout(function() {
+                        g(!0)
+                    }, 1e3)
+                }), t.addEventListener("mouseleave", function() {
+                    clearTimeout(_), removeClass(s, "article_photo_carousel__mouse_over"), removeClass(s, "article_photo_carousel__mouse_idle")
+                }), f
+            }(a, e, t, o);
+            data(e, "changePhotoFunction", s)
+        }
+    }
+}, function(e, t, r) {
+    "use strict";
+    r.r(t), r.d(t, "NBSP", function() {
+        return a
+    }), r.d(t, "CURSOR_MARKER_START", function() {
+        return o
+    }), r.d(t, "CURSOR_MARKER_END", function() {
+        return s
+    }), r.d(t, "ArticleEditorParagraphClass", function() {
+        return c
+    }), r.d(t, "replaceParagraphEntities", function() {
+        return l
+    }), r.d(t, "isQuoteEl", function() {
+        return d
+    }), r.d(t, "paragraphElProperties", function() {
+        return u
+    }), r.d(t, "deb", function() {
+        return p
+    }), r.d(t, "isParagraphEl", function() {
+        return h
+    }), r.d(t, "selectEl", function() {
+        return f
+    }), r.d(t, "focusEl", function() {
+        return _
+    }), r.d(t, "isBR", function() {
+        return g
+    }), r.d(t, "prepareLineText", function() {
+        return v
+    }), r.d(t, "getElementIndex", function() {
+        return y
+    }), r.d(t, "isObjectParagraphEl", function() {
+        return m
+    }), r.d(t, "isObjectParagraph", function() {
+        return b
+    }), r.d(t, "isObjectResize", function() {
+        return w
+    }), r.d(t, "hasSeparator", function() {
+        return E
+    }), r.d(t, "genSepatorId", function() {
+        return C
+    }), r.d(t, "isHeaderParagraph", function() {
+        return O
+    }), r.d(t, "isListParagraph", function() {
+        return j
+    }), r.d(t, "buildParagraph", function() {
+        return T
+    }), r.d(t, "convertBRsToArray", function() {
+        return x
+    }), r.d(t, "getRange", function() {
+        return S
+    }), r.d(t, "prepareSpacesWithSpaces", function() {
+        return I
+    }), r.d(t, "cleanTextSpaces", function() {
+        return k
+    }), r.d(t, "mergeRanges", function() {
+        return L
+    }), r.d(t, "isWhiteSpaceChar", function() {
+        return A
+    }), r.d(t, "isCyrillicChar", function() {
+        return N
+    }), r.d(t, "isLatinChar", function() {
+        return M
+    }), r.d(t, "isAlienParagraphEl", function() {
+        return R
+    }), r.d(t, "getFocusedElement", function() {
+        return B
+    }), r.d(t, "getPhotoSize", function() {
+        return H
+    }), r.d(t, "childNodeIndex", function() {
+        return z
+    }), r.d(t, "generateLatinizedName", function() {
+        return F
+    }), r.d(t, "dataURItoBlob", function() {
+        return W
+    }), r.d(t, "imageToBlob", function() {
+        return Y
+    }), r.d(t, "queuePhotoProcess", function() {
+        return G
+    }), r.d(t, "justCursorInString", function() {
+        return q
+    }), r.d(t, "isParagraphEmpty", function() {
+        return $
+    }), r.d(t, "arrayUnique", function() {
+        return Q
+    }), r.d(t, "decorationsSlice", function() {
+        return J
+    }), r.d(t, "cleanLineBRs", function() {
+        return Z
+    }), r.d(t, "cleanBRs", function() {
+        return ee
+    }), r.d(t, "createParagraphEl", function() {
+        return te
+    }), r.d(t, "traverseTree", function() {
+        return re
+    }), r.d(t, "throttle", function() {
+        return ne
+    }), r.d(t, "isPublishNameCorrect", function() {
+        return ie
+    }), r.d(t, "correctRealIndexes", function() {
+        return oe
+    }), r.d(t, "isVKUrl", function() {
+        return ce
+    }), r.d(t, "decodeURL", function() {
+        return le
+    }), r.d(t, "BlockElements", function() {
+        return de
+    }), r.d(t, "hasBlockElements", function() {
+        return ue
+    });
+    var n = r(31),
+        i = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
+            return typeof e
+        } : function(e) {
+            return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
+        },
+        a = "&nbsp;",
+        o = "​",
+        s = "‌",
+        c = "_article_paragraph";
+
+    function l(e) {
+        return se("<textarea>" + (e || "") + "</textarea>").value.replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    }
+
+    function d(e) {
+        return e && e.nodeType == Node.ELEMENT_NODE && inArray(e.tagName.toLowerCase(), ["cite", "blockquote"])
+    }
+
+    function u(e) {
+        return [domData(e, "type"), domData(e, "uuid"), domData(e, "mode")]
+    }
+
+    function p(e, t) {
+        cur[e] = cur[e] || 0, void 0 === t ? console.log(e, cur[e]) : cur[e], cur[e]++
+    }
+
+    function h(e) {
+        return e && hasClass(e, "_article_paragraph")
+    }
+
+    function f(e) {
+        if (e) try {
+            var t = document.createRange();
+            t.selectNodeContents(e);
+            var r = window.getSelection();
+            r.removeAllRanges(), r.addRange(t)
+        } catch (e) {}
+    }
+
+    function _(e, t) {
+        if (e) try {
+            var r = document.createRange();
+            t ? (r.selectNodeContents(e), r.collapse(!1)) : (r.setStart(e, 0), r.setEnd(e, 0));
+            var n = window.getSelection();
+            n.removeAllRanges(), n.addRange(r)
+        } catch (e) {}
+    }
+
+    function g(e) {
+        return e && e.nodeType == Node.ELEMENT_NODE && "BR" == e.tagName
+    }
+
+    function v(e, t, r, n) {
+        var i = arguments.length > 4 && void 0 !== arguments[4] && arguments[4];
+        if (e = e.substring(t, r), n && n.length) {
+            var a = [],
+                o = 0;
+            n.forEach(function(r) {
+                if (!((r -= t) <= 0 || r > e.length)) {
+                    var n = e.substring(o, r) + "<br/>";
+                    n = i ? n : I(n), a.push(n), o = r
+                }
+            });
+            var s = e.substring(o);
+            a.push(i ? s : I(s));
+            a[a.length - 1];
+            return a.join("")
+        }
+        return i ? e : I(e)
+    }
+
+    function y(e) {
+        if (!e) return !1;
+        for (var t = 0; null != (e = e.previousSibling);) t++;
+        return t
+    }
+
+    function m(e) {
+        return e && e.nodeType == Node.ELEMENT_NODE && !!domData(e, "uuid")
+    }
+
+    function b(e) {
+        return e && e.type && e.type >= 100
+    }
+
+    function w(e) {
+        return e && e.mode
+    }
+
+    function E(e) {
+        return e && e.sep
+    }
+    var P = 0;
+
+    function C() {
+        return ++P
+    }
+
+    function O(e) {
+        var t = void 0;
+        return t = isObject(e) ? e.type : e, inArray(t, [n.ParagraphType.Header1, n.ParagraphType.Header2, n.ParagraphType.Header3])
+    }
+
+    function j(e) {
+        return e && (e.type == n.ParagraphType.NumericList || e.type == n.ParagraphType.BulletList)
+    }
+
+    function T(e) {
+        var t = {};
+        return b(e = e || {}) && (t._uuid = e._uuid), t.lines = e.lines || [{
+            text: "",
+            decorations: {},
+            brs: []
+        }], t.type = e.type ? parseInt(e.type) : n.ParagraphType.Text, e.mediaId && (t.mediaId = e.mediaId), e.sep && (t.sep = e.sep), e.fromExtPage && (t.fromExtPage = e.fromExtPage), t
+    }
+
+    function x(e) {
+        if (isArray(e)) return e;
+        var t = [];
+        return each(e, function(e, r) {
+            t.push(intval(r))
+        }), t.sort(), t
+    }
+
+    function S() {
+        var e = window.getSelection();
+        return e.rangeCount ? [e.getRangeAt(0), e.isCollapsed, e] : [!1]
+    }
+
+    function I(e) {
+        return -1 != e.search(/^\s/) && (e = " " + e.trimLeft()), -1 != e.search(/\s$/) && (e = e.trimRight() + a), e
+    }
+
+    function k(e) {
+        return e.replace(/\s\s+/g, " ").replace(/\s/g, " ")
+    }
+
+    function L(e) {
+        var t = e.slice();
+        t.sort(function(e, t) {
+            return e[0] - t[0]
+        });
+        for (var r = 0; r < t.length - 1;) {
+            var n = t[r],
+                i = t[r + 1];
+            n[1] >= i[0] ? (n[1] = Math.max(n[1], i[1]), t.splice(r + 1, 1)) : r++
+        }
+        return t
+    }
+
+    function A(e) {
+        return /\s/.test(e)
+    }
+    var D = /[\u0400-\u04FF]/;
+
+    function N(e) {
+        return D.test(e)
+    }
+
+    function M(e) {
+        return /[a-zA-Z]/.test(e)
+    }
+
+    function R(e) {
+        return !hasClass(e, c)
+    }
+
+    function B() {
+        return window.getSelection().focusNode
+    }
+
+    function H(e) {
+        var t = [];
+        each(e, function(e, r) {
+            t.push(r)
+        });
+        var r = t.sort(function(e, t) {
+            return t[1] - e[1]
+        })[0];
+        return [r[1], r[2]]
+    }
+
+    function z(e) {
+        for (var t = e.parentNode, r = 0; r < t.childNodes.length; r++)
+            if (e == t.childNodes[r]) return r;
+        return -1
+    }
+    var U = {
+        1072: "a",
+        1073: "b",
+        1074: "v",
+        1075: "g",
+        1076: "d",
+        1077: "e",
+        1105: "e",
+        1078: "zh",
+        1079: "z",
+        1080: "i",
+        1081: "i",
+        1082: "k",
+        1083: "l",
+        1084: "m",
+        1085: "n",
+        1086: "o",
+        1087: "p",
+        1088: "r",
+        1089: "s",
+        1090: "t",
+        1091: "u",
+        1092: "f",
+        1093: "h",
+        1094: "c",
+        1095: "ch",
+        1096: "sh",
+        1097: "sch",
+        1099: "y",
+        1101: "e",
+        1102: "u",
+        1103: "ya"
+    };
+
+    function F(e, t) {
+        e = e.toLowerCase();
+        for (var r = "", n = !1, i = "-qwertyuiopasdfghjklzxcvbnm0123456789".split(""), a = 0; a < e.length; a++)
+            if (/\s/.test(e[a])) n || (r += "-", n = !0);
+            else if (inArray(e[a], i)) r += e[a], n = !1;
+        else {
+            var o = U[e.charCodeAt(a)];
+            o && (r += o, n = !1)
+        }
+        return r = (r = r.substr(0, t)).replace(/-*$/, "").replace(/^-*/, "").replace(/-+/g, "-")
+    }
+
+    function W(e) {
+        var t, r = void 0,
+            n = void 0;
+        r = e.split(",")[0].indexOf("base64") >= 0 ? atob(e.split(",")[1]) : unescape(e.split(",")[1]), t = e.split(",")[0].split(":")[1].split(";")[0], n = new Uint8Array(r.length);
+        for (var i = 0; i < r.length; i++) n[i] = r.charCodeAt(i);
+        return new Blob([n], {
+            type: t
+        })
+    }
+
+    function Y(e, t, r) {
+        var n = void 0;
+        if ("function" == typeof t && (r = t, t = {}), t = t || {}, !e) return r(new Error("Pass in a IMG DOM node or a url as first param"));
+        if ("object" === (void 0 === e ? "undefined" : i(e)) && "img" === e.tagName.toLowerCase() && (n = e.src), "string" == typeof e && (n = e), !/^data:/.test(n) || t.convert) {
+            var a, o = {
+                png: "image/png",
+                jpg: "image/jpeg",
+                jpeg: "image/jpeg",
+                svg: "image/svg+xml"
+            };
+            t.type = o[t.type] || ((a = n) ? o[a.split("?").shift().split(".").pop()] : null), t.src = n, t.callback = r, t.name = n, t.type ? function(e, t) {
+                var r = document.createElement("canvas"),
+                    n = document.createElement("img");
+                n.onload = function() {
+                    var e = r.getContext("2d");
+                    r.width = n.width, r.height = n.height, e.drawImage(n, 0, 0), t(null, r.toDataURL("image/png"))
+                }, n.addEventListener("error", function() {
+                    t(new Error("FailedToLoadImage"))
+                }), r.getContext ? (n.crossOrigin = "anonymous", n.src = e) : setTimeout(t, 0, new Error("CanvasIsNotSupported"))
+            }(n, function(e, t, r) {
+                if (t) return void e.callback(t);
+                var n = W(r);
+                n.name = n.filename = e.name, e.callback(null, n)
+            }.bind(null, t)) : r(new Error("Image type is not supported"))
+        } else r(null, W(n))
+    }
+    var K = [],
+        V = 0,
+        X = 2;
+
+    function G(e, t) {
+        K.push({
+                src: e,
+                cb: t
+            }),
+            function e() {
+                if (0 != K.length && V != X) {
+                    V++;
+                    var t = K.shift(),
+                        r = new Image;
+                    r.addEventListener("error", function() {
+                        t.cb(!0, !1, function() {
+                            V--, e()
+                        })
+                    }), r.addEventListener("load", function() {
+                        Y(r, {}, function(r, n) {
+                            t.cb(r, n, function() {
+                                V--, e()
+                            })
+                        })
+                    }), r.src = t.src
+                }
+            }()
+    }
+
+    function q(e) {
+        return 1 == (e = trim(e)).length && e[0] == o
+    }
+
+    function $(e, t) {
+        if (!e) return !0;
+        if (b(e)) return !1;
+        var r = e.lines;
+        return 0 == r.length || !(t ? trim(r[0].text) : r[0].text)
+    }
+
+    function Q(e) {
+        return e.filter(function(e, t, r) {
+            return r.indexOf(e) === t
+        })
+    }
+
+    function J(e, t, r) {
+        var n = {};
+        for (var i in e) e.hasOwnProperty(i) && function() {
+            var a = [];
+            e[i].forEach(function(e) {
+                t < e[1] && e[0] <= r && a.push([Math.max(e[0], t) - t, Math.min(r, e[1]) - t, e[2]])
+            }), n[i] = a
+        }();
+        return n
+    }
+
+    function Z(e) {
+        e.brs = Q(e.brs), e.brs[e.brs.length - 1] == e.text.length && e.brs.pop()
+    }
+
+    function ee(e, t) {
+        var r = e.length;
+        return 1 == r && e[r - 1] == t ? e.pop() : r > 1 && e[r - 1] == t && e[r - 2] != t && e.pop(), e
+    }
+
+    function te() {
+        var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "",
+            t = arguments[1] ? 'data-sep="' + C() + '"' : "";
+        return se('<p class="' + c + '" ' + t + ">" + e + "</p>")
+    }
+
+    function re(e, t) {
+        var r = !(arguments.length > 2 && void 0 !== arguments[2]) || arguments[2],
+            n = t(e, !(arguments.length > 3 && void 0 !== arguments[3]) || arguments[3]);
+        if (void 0 !== n) return n;
+        for (var i = Array.prototype.slice.call(r ? e.children : e.childNodes), a = void 0; a = i.shift();) {
+            var o = re(a, t, r, !1);
+            if (void 0 !== o) return o
+        }
+    }
+
+    function ne(e, t, r) {
+        var n = void 0,
+            i = void 0,
+            a = void 0,
+            o = null,
+            s = 0;
+        r || (r = {});
+        var c = function() {
+            s = !1 === r.leading ? 0 : Date.now(), o = null, a = e.apply(n, i), o || (n = i = null)
+        };
+        return function() {
+            var l = Date.now();
+            s || !1 !== r.leading || (s = l);
+            var d = t - (l - s);
+            return n = this, i = arguments, d <= 0 || d > t ? (o && (clearTimeout(o), o = null), s = l, a = e.apply(n, i), o || (n = i = null)) : o || !1 === r.trailing || (o = setTimeout(c, d)), a
+        }
+    }
+
+    function ie(e) {
+        return !!/^[a-z0-9\-]+$/.test(e) && (-1 == e.indexOf("--") && ("-" != e[0] && "-" != e[e.length - 1] && !(e.length > 60)))
+    }
+
+    function ae(e, t, r) {
+        e.decorations && each(e.decorations, function(e, n) {
+            n.forEach(function(e) {
+                e[0] > t && (e[0] += r), e[1] > t && (e[1] += r)
+            })
+        }), e.brs && e.brs.forEach(function(r, n) {
+            r > t && (e.brs[n] -= 1)
+        })
+    }
+
+    function oe(e, t) {
+        e.forEach(function(e) {
+            e.lines.forEach(function(e) {
+                for (var r = 0, n = e.text.length; r < n; r++) {
+                    var i = e.text.charCodeAt(r);
+                    i >= 55296 && i <= 56319 && (ae(e, r, t), r += 1)
+                }
+            })
+        })
+    }
+
+    function ce(e) {
+        return /^(https?:\/\/)?([a-z0-9_\-.]+\.)?vk.com(\/.*)?/.test(e)
+    }
+
+    function le(e) {
+        var t = e;
+        try {
+            t = decodeURIComponent(e)
+        } catch (r) {
+            t = e
+        }
+        return t
+    }
+    var de = "div p footer form h1 h2 h3 h4 h5 h6 header hgroup hr main nav output pre section table tfoot address article aside blockquote canvas dd dl dt fieldset figcaption figure".toUpperCase().split(" ");
+
+    function ue(e) {
+        for (var t = 0, r = e.children.length; t < r; t++)
+            if (de.indexOf(e.children[t].tagName) >= 0) return !0;
+        return !1
+    }
+}, , function(e, t, r) {
+    "use strict";
+    r.r(t), r.d(t, "ParagraphType", function() {
+        return n
+    }), r.d(t, "ResizableObjectTypes", function() {
+        return i
+    }), r.d(t, "ObjectResizeType", function() {
+        return a
+    }), r.d(t, "getAppropriateImage", function() {
+        return s
+    }), r.d(t, "preloadImage", function() {
+        return l
+    }), r.d(t, "mailruStatsPixel", function() {
+        return d
+    }), r.d(t, "getUrlParam", function() {
+        return u
+    });
+    var n = {
+            Text: 1,
+            Header1: 2,
+            Header2: 3,
+            Header3: 4,
+            Code: 5,
+            NumericList: 6,
+            BulletList: 7,
+            Quote: 8,
+            Quote2: 9,
+            ObjectAudioPlaylist: 100,
+            ObjectPhoto: 101,
+            ObjectVideo: 102,
+            ObjectGIF: 103,
+            ObjectAudio: 105
+        },
+        i = [n.ObjectPhoto, n.ObjectGIF, n.ObjectVideo],
+        a = {
+            Normal: 0,
+            Float: 1,
+            Medium: 2,
+            Large: 3
+        };
+
+    function o() {
+        var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {},
+            t = arguments[1];
+        for (var r in e)
+            if (Object.prototype.hasOwnProperty.call(e, r) && !1 === t.call(e[r], r, e[r])) break;
+        return e
+    }
+
+    function s(e, t, r) {
+        var n = [];
+        if (o(e, function(e, t) {
+                r && -1 == ["w", "z", "y", "x", "m", "s"].indexOf(e) || n.push(t)
+            }), !n.length) return [!1];
+        n.sort(function(e, t) {
+            return e[1] - t[1]
+        }), t *= window.devicePixelRatio >= 2 ? 2 : 1;
+        var i = n[n.length - 1];
+        return o(n, function(e, r) {
+            if (r[1] >= t) return i = r, !1
+        }), i
+    }
+    var c = {};
+
+    function l(e, t) {
+        if (!0 === c[e]) return t && t(), !0;
+        if (isArray(c[e])) return c[e].push(t), !1;
+        c[e] = [t];
+        var r = new Image;
+        return r.onload = function() {
+            var t = c[e];
+            c[e] = !0, o(t, function(e, t) {
+                t && t()
+            })
+        }, r.src = e, !1
+    }
+
+    function d(e, t) {
+        if (isObject(t) && !isEmpty(t)) {
+            var r = "https://vk-callback.go.mail.ru/longread_pxl?action=" + e;
+            o(t, function(e, t) {
+                r += "&" + e + "=" + t
+            }), (new Image).src = r
+        }
+    }
+
+    function u(e) {
+        e = e.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var t = new RegExp("[\\?&]" + e + "=([^&#]*)").exec(location.search);
+        return null === t ? "" : decodeURIComponent(t[1].replace(/\+/g, " "))
+    }
+}, function(e, t, r) {
+    "use strict";
+
+    function n(e) {
+        var t = new Date;
+        return e.getFullYear() === t.getFullYear() && e.getMonth() === t.getMonth() && e.getDate() === t.getDate()
+    }
+
+    function i(e) {
+        return n(new Date(e.getTime() + 864e5))
+    }
+
+    function a(e) {
+        return n(new Date(e.getTime() - 864e5))
+    }
+
+    function o(e, t) {
+        var r = new Date(e),
+            n = new Date(t);
+        return r.getFullYear() === n.getFullYear() && r.getMonth() === n.getMonth() && r.getDate() === n.getDate()
+    }
+
+    function s(e) {
+        return e >= 10 ? e : "0" + e
+    }
+    r.r(t), r.d(t, "isToday", function() {
+        return n
+    }), r.d(t, "isYesterday", function() {
+        return i
+    }), r.d(t, "isTomorrow", function() {
+        return a
+    }), r.d(t, "isSameDate", function() {
+        return o
+    }), r.d(t, "leadingZero", function() {
+        return s
+    })
+}, , , , function(e, t, r) {
+    e.exports = r(11)
+}, function(e, t, r) {
+    "use strict";
+    r.r(t), r.d(t, "imageProxyURL", function() {
+        return s
+    });
+    var n = function() {
+            return function(e, t) {
+                if (Array.isArray(e)) return e;
+                if (Symbol.iterator in Object(e)) return function(e, t) {
+                    var r = [],
+                        n = !0,
+                        i = !1,
+                        a = void 0;
+                    try {
+                        for (var o, s = e[Symbol.iterator](); !(n = (o = s.next()).done) && (r.push(o.value), !t || r.length !== t); n = !0);
+                    } catch (e) {
+                        i = !0, a = e
+                    } finally {
+                        try {
+                            !n && s.return && s.return()
+                        } finally {
+                            if (i) throw a
+                        }
+                    }
+                    return r
+                }(e, t);
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }
+        }(),
+        i = window,
+        a = i.each,
+        o = i.intval;
+
+    function s(e, t) {
+        var r = [];
+        return a(t, function(e, t) {
+            switch (e) {
+                case "size":
+                    i = ("" + t).split("x"), a = n(i, 2), o = a[0], s = a[1], o = o ? c(o) : "", s = s ? c(s) : "", t = o + "x" + s
+            }
+            var i, a, o, s;
+            t && r.push(e + "=" + t)
+        }), r.length ? e + "&" + r.join("&") : e
+    }
+
+    function c(e) {
+        return 0 < e && e < 1 ? Math.round(100 * e) / 100 : o(e)
+    }
+}, function(e, t, r) {
     "use strict";
     r.r(t);
     var n = function() {
@@ -5654,4 +4947,711 @@
         }, e
     }();
     t.default = n
+}, , function(e, t, r) {
+    "use strict";
+    r.r(t), r.d(t, "ge", function() {
+        return a
+    }), r.d(t, "geByTag", function() {
+        return o
+    }), r.d(t, "geByTag1", function() {
+        return s
+    }), r.d(t, "geByClass", function() {
+        return c
+    }), r.d(t, "geByClass1", function() {
+        return l
+    }), r.d(t, "gpeByClass", function() {
+        return d
+    }), r.d(t, "domQuery", function() {
+        return u
+    }), r.d(t, "domQuery1", function() {
+        return p
+    }), r.d(t, "domClosest", function() {
+        return h
+    }), r.d(t, "domClosestByTag", function() {
+        return f
+    }), r.d(t, "gpeByTag", function() {
+        return _
+    }), r.d(t, "ce", function() {
+        return g
+    }), r.d(t, "re", function() {
+        return E
+    }), r.d(t, "se", function() {
+        return P
+    }), r.d(t, "sech", function() {
+        return C
+    }), r.d(t, "rs", function() {
+        return O
+    }), r.d(t, "psr", function() {
+        return j
+    }), r.d(t, "domReplaceEl", function() {
+        return T
+    }), r.d(t, "domEL", function() {
+        return x
+    }), r.d(t, "domNS", function() {
+        return S
+    }), r.d(t, "domPS", function() {
+        return I
+    }), r.d(t, "domFC", function() {
+        return k
+    }), r.d(t, "domLC", function() {
+        return L
+    }), r.d(t, "domPN", function() {
+        return A
+    }), r.d(t, "domChildren", function() {
+        return D
+    }), r.d(t, "domInsertBefore", function() {
+        return N
+    }), r.d(t, "domInsertAfter", function() {
+        return M
+    }), r.d(t, "domByClass", function() {
+        return R
+    }), r.d(t, "domData", function() {
+        return B
+    }), r.d(t, "domChildIndex", function() {
+        return H
+    }), r.d(t, "domCA", function() {
+        return z
+    }), r.d(t, "domClosestSibling", function() {
+        return U
+    }), r.d(t, "matchesSelector", function() {
+        return F
+    }), r.d(t, "isHover", function() {
+        return W
+    }), r.d(t, "isAncestor", function() {
+        return Y
+    }), r.d(t, "getScroll", function() {
+        return K
+    }), r.d(t, "domClosestPositioned", function() {
+        return V
+    }), r.d(t, "domClosestOverflowHidden", function() {
+        return X
+    }), r.d(t, "show", function() {
+        return G
+    }), r.d(t, "hide", function() {
+        return q
+    }), r.d(t, "isVisible", function() {
+        return $
+    }), r.d(t, "clientHeight", function() {
+        return Q
+    }), r.d(t, "getClientRectOffsetY", function() {
+        return J
+    }), r.d(t, "toggle", function() {
+        return Z
+    }), r.d(t, "boundingRectEnabled", function() {
+        return ee
+    }), r.d(t, "getXYRect", function() {
+        return te
+    }), r.d(t, "getXY", function() {
+        return re
+    }), r.d(t, "isWindow", function() {
+        return ne
+    }), r.d(t, "getSize", function() {
+        return ie
+    }), r.d(t, "getW", function() {
+        return ae
+    }), r.d(t, "getH", function() {
+        return oe
+    }), r.d(t, "hasClass", function() {
+        return se
+    }), r.d(t, "addClass", function() {
+        return ce
+    }), r.d(t, "addClassDelayed", function() {
+        return le
+    }), r.d(t, "removeClass", function() {
+        return de
+    }), r.d(t, "removeClassDelayed", function() {
+        return ue
+    }), r.d(t, "toggleClass", function() {
+        return pe
+    }), r.d(t, "toggleClassDelayed", function() {
+        return he
+    }), r.d(t, "replaceClass", function() {
+        return fe
+    }), r.d(t, "getStyle", function() {
+        return _e
+    }), r.d(t, "setStyle", function() {
+        return ge
+    }), r.d(t, "setStyleDelayed", function() {
+        return ve
+    }), r.d(t, "setPseudoStyle", function() {
+        return ye
+    }), r.d(t, "data", function() {
+        return me
+    }), r.d(t, "attr", function() {
+        return be
+    }), r.d(t, "removeAttr", function() {
+        return we
+    }), r.d(t, "removeData", function() {
+        return Ee
+    }), r.d(t, "cleanElems", function() {
+        return Pe
+    }), r.d(t, "setTitle", function() {
+        return Ce
+    }), r.d(t, "getZoom", function() {
+        return Oe
+    }), r.d(t, "val", function() {
+        return je
+    }), r.d(t, "elfocus", function() {
+        return Te
+    }), r.d(t, "traverseParent", function() {
+        return xe
+    }), r.d(t, "setDocumentTitle", function() {
+        return Ie
+    }), r.d(t, "lockDocumentTitle", function() {
+        return ke
+    });
+    var n = r(15),
+        i = r(2),
+        a = function(e) {
+            return "string" == typeof e || "number" == typeof e ? document.getElementById(e) : e
+        };
+
+    function o(e, t) {
+        return (t = a(t) || document).getElementsByTagName(e)
+    }
+
+    function s(e, t) {
+        return (t = a(t) || document).querySelector && t.querySelector(e) || o(e, t)[0]
+    }
+
+    function c(e, t, r) {
+        return t = a(t) || document, r = r || "*", e = ("." + e).replace(/\s+/gm, "."), Array.prototype.slice.call(t.querySelectorAll(r + e))
+    }
+
+    function l(e, t, r) {
+        return t = a(t) || document, r = r || "*", t.querySelector && t.querySelector(r + ("." + e).replace(/\s+/gm, ".")) || c(e, t, r)[0]
+    }
+
+    function d(e, t, r) {
+        if (!(t = a(t))) return null;
+        for (; r !== t && (t = t.parentNode);)
+            if (se(t, e)) return t;
+        return null
+    }
+
+    function u(e, t) {
+        return (t || document).querySelectorAll(e)
+    }
+
+    function p(e, t) {
+        return (t || document).querySelector(e)
+    }
+
+    function h(e, t) {
+        return se(t, e) ? t : d(e, t)
+    }
+
+    function f(e, t) {
+        return e = e.toUpperCase(), t.nodeType === Node.ELEMENT_NODE && t.tagName.toUpperCase() === e ? t : _(e, t)
+    }
+
+    function _(e, t) {
+        if (!(t = a(t))) return null;
+        for (e = e.toUpperCase(); t = t.parentNode;)
+            if (t.tagName && t.tagName.toUpperCase() === e) return t;
+        return null
+    }
+
+    function g(e, t, r) {
+        var i = document.createElement(e);
+        return t && Object(n.extend)(i, t), r && ge(i, r), i
+    }
+    var v, y, m, b, w = (v = document, y = v.createDocumentFragment(), m = v.createElement("div"), b = v.createRange && v.createRange(), y.appendChild(m), b && b.selectNodeContents(m), b && b.createContextualFragment ? function(e) {
+        return e ? b.createContextualFragment(e) : v.createDocumentFragment()
+    } : function(e) {
+        if (!e) return v.createDocumentFragment();
+        m.innerHTML = e;
+        for (var t = v.createDocumentFragment(); m.firstChild;) t.appendChild(m.firstChild);
+        return t
+    });
+
+    function E(e) {
+        return (e = a(e)) && e.parentNode && e.parentNode.removeChild(e), e
+    }
+    var P = function(e) {
+            return k(g("div", {
+                innerHTML: e
+            }))
+        },
+        C = function(e) {
+            return D(g("div", {
+                innerHTML: e
+            }))
+        };
+
+    function O(e, t) {
+        return Object(n.each)(t, function(t, r) {
+            e = e.replace(new RegExp("%" + t + "%", "g"), (void 0 === r ? "" : r).toString().replace(/\$/g, "&#036;"))
+        }), e
+    }
+
+    function j(e) {
+        return "https:" !== locProtocol ? e : e = (e = (e = (e = (e = e.replace(/http:\/\/(cs(\d+)\.vk\.me\/c(\d+)\/)/gi, "https://$1")).replace(/http:\/\/cs(\d+)\.(userapi\.com|vk\.com|vk\.me|vkontakte\.ru)\/c(\d+)\/(v\d+\/|[a-z0-9\/_:\-]+\.jpg)/gi, "https://pp.vk.me/c$3/$4")).replace(/http:\/\/cs(\d+)\.(userapi\.com|vk\.com|vk\.me|vkontakte\.ru)\/([a-z0-9\/_:\-]+\.jpg)/gi, "https://pp.vk.me/c$1/$3")).replace(/http:\/\/cs(\d+)\.(userapi\.com|vk\.com|vk\.me|vkontakte\.ru)\//gi, "https://ps.vk.me/c$1/")).replace(/http:\/\/video(\d+)\.vkadre\.ru\//gi, "https://ps.vk.me/v$1/")
+    }
+
+    function T(e, t) {
+        return Object(n.isString)(t) && (t = P(t)), A(e).replaceChild(t, e), t
+    }
+
+    function x(e, t) {
+        for (t = t ? "previousSibling" : "nextSibling"; e && !e.tagName;) e = e[t];
+        return e
+    }
+    var S = function(e) {
+            return x((e || {}).nextSibling)
+        },
+        I = function(e) {
+            return x((e || {}).previousSibling, 1)
+        },
+        k = function(e) {
+            return x((e || {}).firstChild)
+        },
+        L = function(e) {
+            return x((e || {}).lastChild, 1)
+        },
+        A = function(e) {
+            return (e || {}).parentNode
+        };
+
+    function D(e) {
+        for (var t = [], r = e.childNodes, n = 0; n < r.length; n++) r[n].tagName && t.push(r[n]);
+        return t
+    }
+
+    function N(e, t) {
+        var r = A(t);
+        return r && r.insertBefore(e, t)
+    }
+
+    function M(e, t) {
+        var r = A(t);
+        return r && r.insertBefore(e, S(t))
+    }
+
+    function R(e, t) {
+        return e ? l(t, e) : e
+    }
+
+    function B(e, t, r) {
+        return e ? void 0 !== r ? (null === r ? e.removeAttribute("data-" + t) : e.setAttribute("data-" + t, r), r) : e.getAttribute("data-" + t) : null
+    }
+
+    function H(e) {
+        for (var t = 0; null != (e = I(e));) t++;
+        return t
+    }
+
+    function z(e, t) {
+        do {
+            e = A(e)
+        } while (e && !F(e, t));
+        return e
+    }
+
+    function U(e, t, r) {
+        for (var n = null; null === n && e;)(e = -1 === r ? I(e) : S(e)) && F(e, t) && (n = e);
+        return n
+    }
+
+    function F(e, t) {
+        return !(!(e = a(e)) || e === document) && (e.matches || e.matchesSelector || e.mozMatchesSelector || e.msMatchesSelector || e.oMatchesSelector || e.webkitMatchesSelector || function(e) {
+            for (var t = (this.document || this.ownerDocument).querySelectorAll(e), r = t.length; --r >= 0 && t.item(r) !== this;);
+            return r > -1
+        }).call(e, t)
+    }
+
+    function W(e) {
+        return F(e, ":hover")
+    }
+
+    function Y(e, t) {
+        var r = a(e);
+        if (t = a(t), !e || !t) return !1;
+        for (; r = r.parentNode;)
+            if (r === t) return !0;
+        return !1
+    }
+
+    function K() {
+        var e = browser.msie6 ? a("PageContainer") : document.body,
+            t = document.documentElement;
+        return [e.scrollLeft || t.scrollLeft || window.pageXOffset || 0, e.scrollTop || t.scrollTop || window.pageYOffset || 0, t.clientWidth || e.clientWidth || 0, t.clientHeight || e.clientHeight || 0]
+    }
+
+    function V(e, t) {
+        for (var r = (t = t || {}).fromEl || A(e), i = t.positions || ["relative", "absolute", "fixed"]; r && r !== bodyNode;) {
+            var a = _e(r, "position");
+            if (Object(n.inArray)(a, i) && (!t.noOverflow || "hidden" !== _e(r, "overflow"))) break;
+            r = A(r)
+        }
+        return r
+    }
+
+    function X(e, t) {
+        for (var r = e = a(e), n = void 0, i = void 0, o = void 0, s = !1; r && r.tagName && r !== bodyNode;) {
+            if (n = _e(r, "position"), i = _e(r, "overflow"), o = _e(r, "transform"), t && browser.mozilla) {
+                if ("page_wrap" != r.id && r !== e && "visible" !== i && ("static" === n ? !s || "relative" === s : "fixed" !== s)) break
+            } else if (r !== e && "visible" !== i && ("static" === n ? !s || "relative" === s : "fixed" !== s)) break;
+            "none" !== o ? s = void 0 : "static" !== n && "fixed" !== s && (s = n), r = A(r)
+        }
+        return r
+    }
+
+    function G(e) {
+        var t = arguments.length;
+        if (t > 1)
+            for (var r = 0; r < t; r++) G(arguments[r]);
+        else if ((e = a(e)) && e.style) {
+            var n = e.olddisplay,
+                i = e.tagName.toLowerCase(),
+                o = "block";
+            e.style.display = n || "", "none" === _e(e, "display") && (o = se(e, "inline") || se(e, "_inline") ? "inline" : se(e, "_inline_block") ? "inline-block" : "tr" !== i || browser.msie ? "table" !== i || browser.msie ? "block" : "table" : "table-row", e.style.display = e.olddisplay = o)
+        }
+    }
+
+    function q(e) {
+        var t = arguments.length;
+        if (t > 1)
+            for (var r = 0; r < t; r++) q(arguments[r]);
+        else if ((e = a(e)) && e.style) {
+            var n = _e(e, "display");
+            e.olddisplay = "none" !== n ? n : "", e.style.display = "none"
+        }
+    }
+
+    function $(e) {
+        return !(!(e = a(e)) || !e.style) && "none" !== _e(e, "display")
+    }
+
+    function Q() {
+        return window.innerHeight || document.documentElement.clientHeight || bodyNode.clientHeight
+    }
+
+    function J(e, t, r) {
+        e = a(e), r = r || 0;
+        var i = re(e)[1],
+            o = ie(e)[1],
+            s = window,
+            c = document.documentElement,
+            l = Math.max(Object(n.intval)(s.innerHeight), Object(n.intval)(c.clientHeight)),
+            d = a("page_header_cont"),
+            u = c.scrollTop || bodyNode.scrollTop || window.scrollY || 0,
+            p = vk.staticheader ? Math.max(0, ie(d)[1] - u) : ie(d)[1];
+        if (t) {
+            if (i + o < u + p + r) return i + o - u - p - r;
+            if (i > u + l - r) return i - u - l + r
+        } else {
+            if (i < u + p + r) return i - u - p - r;
+            if (i + o > u + l - r) return i + o - u - l + r
+        }
+        return 0
+    }
+
+    function Z(e, t) {
+        return void 0 === t && (t = !$(e)), t ? G(e) : q(e), t
+    }
+
+    function ee(e) {
+        return void 0 !== e.getBoundingClientRect
+    }
+
+    function te(e, t) {
+        var r = void 0;
+        if (t && "inline" === _e(e, "display")) {
+            var n = e.getClientRects();
+            r = n && n[0] || e.getBoundingClientRect()
+        } else r = e.getBoundingClientRect();
+        return r
+    }
+
+    function re(e, t) {
+        if (!(e = a(e))) return [0, 0];
+        var r = e.ownerDocument,
+            n = {
+                top: 0,
+                left: 0
+            };
+        if (!r) return [0, 0];
+        var i = r.documentElement;
+        ee(e) && (n = te(e, !0));
+        var o = r === r.window ? r : 9 === r.nodeType && (r.defaultView || r.parentWindow);
+        return [n.left + (t ? 0 : o.pageXOffset || i.scrollLeft) - (i.clientLeft || 0), n.top + (t ? 0 : o.pageYOffset || i.scrollTop) - (i.clientTop || 0)]
+    }
+
+    function ne(e) {
+        return null != e && e === e.window
+    }
+
+    function ie(e, t, r) {
+        e = a(e);
+        var i = document.documentElement,
+            o = [0, 0],
+            s = void 0;
+        if (t && "border-box" === _e(e, "boxSizing") && (t = !1), e === document) o = [Math.max(i.clientWidth, bodyNode.scrollWidth, i.scrollWidth, bodyNode.offsetWidth, i.offsetWidth), Math.max(i.clientHeight, bodyNode.scrollHeight, i.scrollHeight, bodyNode.offsetHeight, i.offsetHeight)];
+        else if (e) {
+            var c = function() {
+                o = ee(e) && (s = te(e, r)) && void 0 !== s.width ? [s.width, s.height] : [e.offsetWidth, e.offsetHeight], t && Object(n.each)(o, function(t, r) {
+                    var i = t ? ["Top", "Bottom"] : ["Left", "Right"];
+                    Object(n.each)(i, function() {
+                        o[t] -= parseFloat(_e(e, "padding" + this)) || 0, o[t] -= parseFloat(_e(e, "border" + this + "Width")) || 0
+                    })
+                })
+            };
+            if ($(e)) c();
+            else {
+                var l = {
+                        position: "absolute",
+                        visibility: "hidden",
+                        display: "block"
+                    },
+                    d = {},
+                    u = !1;
+                e.style.cssText.indexOf("!important") > -1 && (u = e.style.cssText), Object(n.each)(l, function(t, r) {
+                    d[t] = e.style[t], e.style[t] = r
+                }), c(), Object(n.each)(l, function(t, r) {
+                    e.style[t] = d[t]
+                }), u && (e.style.cssText = u)
+            }
+        }
+        return o
+    }
+
+    function ae(e) {
+        return ie(e)[0]
+    }
+
+    function oe(e) {
+        return ie(e)[1]
+    }
+
+    function se(e, t) {
+        var r = a(e);
+        return r && 1 === r.nodeType && (" " + r.className + " ").replace(window.whitespaceRegex, " ").indexOf(" " + t + " ") >= 0
+    }
+
+    function ce(e, t) {
+        var r = a(e);
+        r && !se(r, t) && (r.className = (r.className ? r.className + " " : "") + t)
+    }
+    window.whitespaceRegex = /[\t\r\n\f]/g;
+    var le = function(e, t) {
+        return setTimeout(ce.pbind(e, t), 0)
+    };
+
+    function de(e, t) {
+        var r = a(e);
+        r && (r.className = Object(n.trim)((r.className || "").replace(new RegExp("(\\s|^)" + t + "(\\s|$)"), " ")))
+    }
+    var ue = function(e, t) {
+        return setTimeout(de.pbind(e, t), 0)
+    };
+
+    function pe(e, t, r) {
+        return void 0 === r && (r = !se(e, t)), (r ? ce : de)(e, t), r
+    }
+
+    function he(e, t, r) {
+        return void 0 === r && (r = !se(e, t)), (r ? le : ue)(e, t), r
+    }
+
+    function fe(e, t, r) {
+        de(e, t), ce(e, r)
+    }
+
+    function _e(e, t, r) {
+        if (e = a(e), Object(n.isArray)(t)) {
+            var i = {};
+            return Object(n.each)(t, function(t, r) {
+                return i[r] = _e(e, r)
+            }), i
+        }
+        if (!e) return "";
+        if (void 0 === r && (r = !0), !r && "opacity" === t && browser.msie) {
+            var o = e.style.filter;
+            return o ? o.indexOf("opacity=") >= 0 ? parseFloat(o.match(/opacity=([^)]*)/)[1]) / 100 + "" : "1" : ""
+        }
+        if (!r && e.style && (e.style[t] || "height" === t)) return e.style[t];
+        var s = void 0,
+            c = document.defaultView || window;
+        if (c.getComputedStyle) {
+            t = t.replace(/([A-Z])/g, "-$1").toLowerCase();
+            var l = c.getComputedStyle(e, null);
+            l && (s = l.getPropertyValue(t))
+        } else if (e.currentStyle) {
+            if ("opacity" === t && browser.msie) {
+                var d = e.currentStyle.filter;
+                return d && d.indexOf("opacity=") >= 0 ? parseFloat(d.match(/opacity=([^)]*)/)[1]) / 100 + "" : "1"
+            }
+            var u = t.replace(/\-(\w)/g, function(e, t) {
+                return t.toUpperCase()
+            });
+            "auto" === (s = e.currentStyle[t] || e.currentStyle[u]) && (s = 0), s = (s + "").split(" "), Object(n.each)(s, function(t, r) {
+                if (!/^\d+(px)?$/i.test(r) && /^\d/.test(r)) {
+                    var n = e.style,
+                        i = n.left,
+                        a = e.runtimeStyle.left;
+                    e.runtimeStyle.left = e.currentStyle.left, n.left = r || 0, s[t] = n.pixelLeft + "px", n.left = i, e.runtimeStyle.left = a
+                }
+            }), s = s.join(" ")
+        }
+        if (r && ("width" === t || "height" === t)) {
+            var p = ie(e, !0)[{
+                width: 0,
+                height: 1
+            }[t]];
+            s = (Object(n.intval)(s) ? Math.max(Object(n.floatval)(s), p) : p) + "px"
+        }
+        return s
+    }
+
+    function ge(e, t, r) {
+        if (e = a(e))
+            if (Object(n.isObject)(t)) Object(n.each)(t, function(t, r) {
+                return ge(e, t, r)
+            });
+            else if ("opacity" === t) browser.msie && ((r + "").length ? e.style.filter = 1 !== r ? "alpha(opacity=" + 100 * r + ")" : "" : e.style.cssText = e.style.cssText.replace(/filter\s*:[^;]*/gi, ""), e.style.zoom = 1), e.style.opacity !== r && (e.style.opacity = r);
+        else try {
+            var i = "number" == typeof r;
+            i && /height|width/i.test(t) && (r = Math.abs(r)), r = i && !/z-?index|font-?weight|opacity|zoom|line-?height/i.test(t) ? r + "px" : r, e.style[t] !== r && (e.style[t] = r)
+        } catch (e) {
+            debugLog("setStyle error: ", [t, r], e)
+        }
+    }
+    window.cssTransformProp = function() {
+        var e = document.createElement("div");
+        if (null == e.style.transform) {
+            var t = ["Webkit", "Moz", "ms"];
+            for (var r in t)
+                if (void 0 !== e.style[t[r] + "Transform"]) return t[r] + "Transform"
+        }
+        return "transform"
+    }();
+    var ve = function(e, t, r) {
+        return setTimeout(ge.pbind(e, t, r), 0)
+    };
+
+    function ye(e, t, r) {
+        var i = me(e, "pseudo-id");
+        i || (me(e, "pseudo-id", i = Object(n.irand)(1e8, 999999999)), ce(e, "_pseudo_" + i));
+        var o = t + "-style-" + i,
+            s = a(o),
+            c = "._pseudo_" + i + ":" + t + "{";
+        s || (s = headNode.appendChild(g("style", {
+            id: o,
+            type: "text/css"
+        }))), Object(n.each)(r, function(e, t) {
+            c += e + ": " + t + " !important;"
+        }), c += "}", s.sheet ? (s.sheet.cssRules.length && s.sheet.deleteRule(0), s.sheet.insertRule(c, 0)) : s.styleSheet && (s.styleSheet.cssText = c)
+    }
+
+    function me(e, t, r) {
+        if (!e) return !1;
+        var n = e[vkExpand];
+        return n || (n = e[vkExpand] = ++vkUUID), void 0 !== r && (vkCache[n] || (vkCache[n] = {}, window.__debugMode && (vkCache[n].__elem = e)), vkCache[n][t] = r), t ? vkCache[n] && vkCache[n][t] : n
+    }
+
+    function be(e, t, r) {
+        return e = a(e), void 0 === r ? e.getAttribute(t) : (e.setAttribute(t, r), r)
+    }
+
+    function we(e) {
+        for (var t = 0, r = arguments.length; t < r; ++t) {
+            var n = arguments[t];
+            if (void 0 !== e[n]) try {
+                delete e[n]
+            } catch (t) {
+                try {
+                    e.removeAttribute(n)
+                } catch (e) {}
+            }
+        }
+    }
+
+    function Ee(e, t) {
+        var r = !!e && e[vkExpand];
+        if (r)
+            if (t) {
+                if (vkCache[r]) {
+                    delete vkCache[r][t], t = "";
+                    var n = 0;
+                    for (var a in vkCache[r])
+                        if ("__elem" !== a) {
+                            n++;
+                            break
+                        }
+                    n || Ee(e)
+                }
+            } else Object(i.removeEvent)(e), we(e, vkExpand), delete vkCache[r]
+    }
+
+    function Pe() {
+        for (var e = arguments, t = 0; t < e.length; ++t) {
+            var r = a(e[t]);
+            r && (Ee(r), we(r, "btnevents"))
+        }
+    }
+
+    function Ce(e, t, r) {
+        if ((e = a(e)) && !e.titleSet) {
+            if (t || (t = e), t.scrollWidth > t.clientWidth) e.setAttribute("title", r || e.innerText || e.textContent);
+            else {
+                var n = s("b", e);
+                n && n.scrollWidth > n.clientWidth ? e.setAttribute("title", r || e.innerText || e.textContent) : e.removeAttribute("title")
+            }
+            e.titleSet = 1
+        }
+    }
+
+    function Oe() {
+        var e = a("zoom_test_1") || document.body.appendChild(g("div", {
+            id: "zoom_test_1"
+        }, {
+            left: "10%",
+            position: "absolute",
+            visibility: "hidden"
+        }));
+        return (a("zoom_test_2") || document.body.appendChild(g("div", {
+            id: "zoom_test_2"
+        }, {
+            left: e.offsetLeft + "px",
+            position: "absolute",
+            visibility: "hidden"
+        }))).offsetLeft / e.offsetLeft
+    }
+
+    function je(e, t, r) {
+        if (e = a(e)) return void 0 !== t && (e.setValue ? (e.setValue(t), !r && e.phonblur && e.phonblur()) : "INPUT" === e.tagName || "TEXTAREA" === e.tagName ? e.value = t : void 0 !== e.emojiId && window.Emoji ? Emoji.val(e, t) : e.innerHTML = t, !r && Object(i.triggerEvent)(e, "valueChanged")), e.getValue ? e.getValue() : ("INPUT" === e.tagName || "TEXTAREA" === e.tagName ? e.value : e.innerHTML) || ""
+    }
+
+    function Te(e, t, r) {
+        e = a(e);
+        try {
+            e.focus(), void 0 !== t && !1 !== t || (t = e.value.length), void 0 !== r && !1 !== r || (r = t), e.setSelectionRange && e.setSelectionRange(t, r)
+        } catch (e) {}
+    }
+
+    function xe(e, t, r) {
+        for (e = a(e), r = r || 999; e && !t(e);) {
+            if (0 === --r) return !1;
+            try {
+                if ((e = A(e)) === document) break
+            } catch (t) {
+                e = !1
+            }
+        }
+        return e
+    }
+    window.vkExpand = window.vkExpand || "VK" + Object(n.vkNow)(), window.vkUUID = window.vkUUID || 0, window.vkCache = window.vkCache || {};
+    var Se = !1;
+
+    function Ie(e) {
+        if (!Se) return window.document.title = Object(n.replaceEntities)(e)
+    }
+
+    function ke(e) {
+        Se = e, e && window.cur && window.cur.destroy.push(function() {
+            ke(!1)
+        })
+    }
+    window.ge = a, window.geByTag = o, window.geByTag1 = s, window.geByClass = c, window.geByClass1 = l, window.gpeByClass = d, window.domQuery = u, window.domQuery1 = p, window.domClosest = h, window.ce = g, window.cf = w, window.re = E, window.se = P, window.sech = C, window.rs = O, window.psr = j, window.domReplaceEl = T, window.domEL = x, window.domNS = S, window.domPS = I, window.domFC = k, window.domLC = L, window.domPN = A, window.domChildren = D, window.domInsertBefore = N, window.domInsertAfter = M, window.domByClass = R, window.domData = B, window.domChildIndex = H, window.domCA = z, window.domClosestSibling = U, window.matchesSelector = F, window.isHover = W, window.isAncestor = Y, window.getScroll = K, window.domClosestPositioned = V, window.domClosestOverflowHidden = X, window.show = G, window.hide = q, window.isVisible = $, window.clientHeight = Q, window.getClientRectOffsetY = J, window.toggle = Z, window.boundingRectEnabled = ee, window.getXYRect = te, window.getXY = re, window.isWindow = ne, window.getSize = ie, window.hasClass = se, window.addClass = ce, window.addClassDelayed = le, window.removeClass = de, window.removeClassDelayed = ue, window.toggleClass = pe, window.toggleClassDelayed = he, window.replaceClass = fe, window.getStyle = _e, window.setStyle = ge, window.setStyleDelayed = ve, window.setPseudoStyle = ye, window.data = me, window.attr = be, window.removeAttr = we, window.removeData = Ee, window.cleanElems = Pe, window.setTitle = Ce, window.getZoom = Oe, window.val = je, window.elfocus = Te, window.traverseParent = xe, window.getH = oe, window.getW = ae, window.domClosestByTag = f, window.setDocumentTitle = Ie, window.lockDocumentTitle = ke
 }]);

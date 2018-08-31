@@ -528,9 +528,8 @@ var Restore = {
     },
     resetPasswordByEmail: function(e) {
         val("new_phone").replace(/[^0-9]/g, "");
-        ajax.post("/login", {
-            act: "a_forgot",
-            user_id: cur.user_id,
+        ajax.post("/login?act=a_forgot", {
+            login: val("login"),
             sure: cur.options.fhash,
             hash: cur.resetPasswordTHash,
             from_request: 1

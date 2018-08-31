@@ -758,8 +758,8 @@ var AppsEdit = {
         e && (/^http:\/\//.test(e) ? val("app_iframe_url", e.replace(/^http:/, "https:")) : /^https:\/\//.test(e) ? val("app_iframe_url") !== e && val("app_iframe_url", "https://" + e) : val("app_iframe_url", "https://" + e))
     },
     onChangeDevUrl: function() {
-        var e = val("apps_dev_url").trim();
-        e && (/^http:\/\//.test(e) ? val("apps_dev_url", e.replace(/^http:/, "https:")) : /^https:\/\//.test(e) ? val("apps_dev_url") !== e && val("apps_dev_url", "https://" + e) : val("apps_dev_url", "https://" + e))
+        var e = val("vk_app_dev_url").trim();
+        e && val("vk_app_dev_url") !== e && val("vk_app_dev_url", e)
     },
     onChangeMobileSecureUrl: function() {
         var e = val("app_m_iframe_secure_url").trim(),

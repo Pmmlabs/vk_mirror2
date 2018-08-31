@@ -488,7 +488,8 @@ textarea.EditableLabel__textarea {
     -o-transition: background .14s ease;
     transition: background .14s ease;
     word-wrap: break-word;
-    overflow: auto
+    overflow: auto;
+    cursor: pointer
 }
 
 .EditableLabel:hover .EditableLabel__text {

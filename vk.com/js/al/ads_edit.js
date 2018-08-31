@@ -1395,6 +1395,11 @@ AdsEdit.triggerDefaultMediaForPostForm = function(wallOptions) {
                     break;
                 }
 
+            case 'promoted_post_with_video':
+                {
+                    triggerMediaType = 'video';
+                }
+
             default:
             case 'promoted_post':
                 {
@@ -1405,6 +1410,31 @@ AdsEdit.triggerDefaultMediaForPostForm = function(wallOptions) {
 
         if (triggerMediaType === 'lead_form') {
             AdsEdit.showLeadFormBoxes();
+            return false;
+        } else if (triggerMediaType === 'video') {
+            if (!cur.viewEditor.params.link_type.video_id) {
+                return false;
+            }
+            var videoId = cur.viewEditor.params.link_type.video_id;
+            ajax.post('al_video.php', {
+                act: 'a_videos_attach_info',
+                videos: videoId
+            }, {
+                onDone: function(data) {
+                    cur.addMedia[cur.wallAddMedia.lnkId].chooseMedia('video', videoId, data[videoId], 0, true);
+                },
+                showProgress: function() {
+                    if (curBox) {
+                        curBox().showProgress();
+                    }
+                },
+                hideProgress: function() {
+                    if (curBox) {
+                        curBox().hideProgress();
+                    }
+                }
+            });
+
             return false;
         }
 
@@ -2118,7 +2148,8 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
             allow_edit_link: false,
             editing: false,
             cancelling: false,
-            force_show_other_link_types: false
+            force_show_other_link_types: false,
+            video_id: ''
         },
         link_id: {
             value: '',
@@ -2374,7 +2405,12 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
     this.initUi();
 
     if (this.params.link_type && this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_POST_STEALTH && this.params.link_owner_id.value && !this.params.link_id.value) {
-        AdsEdit.showCreatingPostForm(ge('ads_param_post_create_post'), null, this.params.link_owner_id.value, 'https://vk.com/club' + (-this.params.link_owner_id.value));
+        var snippetLink = '';
+        if (this.params.link_type.subvalue !== "promoted_post_with_video") {
+            snippetLink = 'https://vk.com/club' + (-this.params.link_owner_id.value);
+        }
+
+        AdsEdit.showCreatingPostForm(ge('ads_param_post_create_post'), null, this.params.link_owner_id.value, snippetLink);
     }
 }
 

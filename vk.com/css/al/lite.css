@@ -4099,10 +4099,6 @@ div.top_result_baloon a {
     margin-bottom: 0
 }
 
-.post_info .audio_pl_snippet2:last-child {
-    margin-bottom: -20px
-}
-
 .reply_text .audio_pl_snippet2:last-child {
     margin-bottom: 5px
 }
@@ -4976,6 +4972,10 @@ div.top_result_baloon a {
 .audio_w_covers .audio_shuffle_all_button:active {
     padding-top: 5px;
     padding-bottom: 3px
+}
+
+.page_block:not(.post_fr_likes) .post_info .audio_pl_snippet2:last-child {
+    margin-bottom: -20px
 }
 
 .audio_pl_grid {

@@ -309,6 +309,11 @@ td.apps_edit_wide {
     padding-bottom: 20px
 }
 
+.apps_edit_table .apps_edit_r.checkbox-trigger {
+    padding-top: 12px;
+    padding-bottom: 12px
+}
+
 .apps_edit_table .apps_edit_rs {
     padding-top: 12px;
     padding-bottom: 0px
@@ -1293,9 +1298,14 @@ td.apps_edit_info_narrow {
 td.apps_edit_label {
     color: #666;
     width: 180px;
+    max-width: 180px;
     padding: 11px 10px 0 0;
-    white-space: nowrap;
     text-align: right
+}
+
+.apps_edit_info_wrap_options .apps_edit_table .label,
+.apps_edit_info_wrap_options td.apps_edit_label {
+    width: 220px
 }
 
 #apps_edit_upload_small {
@@ -3297,4 +3307,8 @@ input.execute_field_input {
 
 .apps_edit_m_apple_dev_team_id_wrap.hidden_input {
     display: none
+}
+
+#apps_edit_dev_ur {
+    margin-bottom: 0
 }
