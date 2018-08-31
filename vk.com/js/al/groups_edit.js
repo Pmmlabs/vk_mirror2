@@ -222,9 +222,9 @@ var GroupsEdit = {
                 h = ge("group_edit_more_" + t);
             if (!g) return hide(h), val(_, GroupsEdit.uGenEmpty(r ? cur.opts.nfound[t] : getLang("groups_no_users_in_club"))), val("group_u_summary", ""), void checkPageBlocks();
             for (var m = e ? 0 : _.childNodes.length, v = Math.min(g, m + 20), f = [], c = m; v > c; ++c) {
-                var k = o[i[c]],
-                    b = (k || {})[2];
-                k && (a && (b = b.replace(a.re, a.val)), f.push(GroupsEdit.uGenRow(t, k, b)))
+                var b = o[i[c]],
+                    k = (b || {})[2];
+                b && (a && (k = k.replace(a.re, a.val)), f.push(GroupsEdit.uGenRow(t, b, k)))
             }
             e ? (hasClass(cur.searchCont, "ui_search_fixed") && scrollToY(getXY(cur.searchWrap)[1] + 1, 0), val(_, f.join("")), r ? val("group_u_summary", langNumeric(g, "%s", !0)) : GroupsEdit.uUpdateSummary()) : _.innerHTML += f.join(""), n && GroupsEdit.hideMessage(), toggle(h, g > v), checkPageBlocks()
         }
@@ -286,7 +286,7 @@ var GroupsEdit = {
         var m = intval(i[1]),
             v = onlinePlatformClass(m),
             f = !0,
-            k = f ? ' onmouseover="uiPhotoZoom.over(this, ' + r + ')"' : "";
+            b = f ? ' onmouseover="uiPhotoZoom.over(this, ' + r + ')"' : "";
         switch (e) {
             case "requests":
                 d += -3 == n ? rs(cur.opts.requestMsgTpl, {
@@ -303,8 +303,8 @@ var GroupsEdit = {
             case "members":
             case "unsure":
             case "admins":
-                var b = "";
-                n > constants.Groups.GROUPS_ADMIN_LEVEL_ADMINISTRATOR ? n < constants.Groups.GROUPS_ADMIN_LEVEL_CREATOR && (b = '<a onclick="GroupsEdit.uMainAdmin()">' + getLang("Edit") + "</a>") : n > constants.Groups.GROUPS_ADMIN_LEVEL_USER || c ? b = '<a onclick="GroupsEdit.uEditAdmin(' + r + ')">' + getLang("Edit") + "</a>" : n || c || !cur.opts.admin || (b = '<a onclick="GroupsEdit.uEditAdmin(' + r + ')">' + getLang("groups_members_appoint_manager") + "</a>"), b && (d += '<div class="group_u_info_row">' + b + "</div>"), n < constants.Groups.GROUPS_ADMIN_LEVEL_USER ? p += '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', 0)\">" + getLang("groups_restore_member") + "</a>" : n <= constants.Groups.GROUPS_ADMIN_LEVEL_USER && !c ? p += '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', -1)\">" + getLang("groups_members_delete") + "</a>" : n < constants.Groups.GROUPS_ADMIN_LEVEL_EVENT_CREATOR && r > 0 && (p += '<a class="group_u_action" onclick="GroupsEdit.uRemoveAdmin(' + r + ')">' + getLang("groups_remove_manager") + "</a>");
+                var k = "";
+                n > constants.Groups.GROUPS_ADMIN_LEVEL_ADMINISTRATOR ? n < constants.Groups.GROUPS_ADMIN_LEVEL_CREATOR && (k = '<a onclick="GroupsEdit.uMainAdmin()">' + getLang("Edit") + "</a>") : n > constants.Groups.GROUPS_ADMIN_LEVEL_USER || c ? k = '<a onclick="GroupsEdit.uEditAdmin(' + r + ')">' + getLang("Edit") + "</a>" : n || c || !cur.opts.admin || (k = '<a onclick="GroupsEdit.uEditAdmin(' + r + ')">' + getLang("groups_members_appoint_manager") + "</a>"), k && (d += '<div class="group_u_info_row">' + k + "</div>"), n < constants.Groups.GROUPS_ADMIN_LEVEL_USER ? p += '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', 0)\">" + getLang("groups_restore_member") + "</a>" : n <= constants.Groups.GROUPS_ADMIN_LEVEL_USER && !c ? p += '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', -1)\">" + getLang("groups_members_delete") + "</a>" : n < constants.Groups.GROUPS_ADMIN_LEVEL_EVENT_CREATOR && r > 0 && (p += '<a class="group_u_action" onclick="GroupsEdit.uRemoveAdmin(' + r + ')">' + getLang("groups_remove_manager") + "</a>");
                 break;
             case "declined":
                 p += n < constants.Groups.GROUPS_ADMIN_LEVEL_USER ? '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', 0)\">" + getLang("groups_restore_member") + "</a>" : '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', -1)\">" + getLang("groups_members_delete") + "</a>";
@@ -320,7 +320,7 @@ var GroupsEdit = {
             href: a,
             info: d,
             actions: p,
-            events: k,
+            events: b,
             online: v
         })
     },
@@ -623,7 +623,8 @@ var GroupsEdit = {
                 rss_enable: cur.g_rss_buttonDD.getSelected()[0],
                 rss_url: val("group_rss_file"),
                 is_article: +isChecked("group_rss_article"),
-                is_source_hidden: +isChecked("group_rss_hidden_source")
+                is_source_hidden: +isChecked("group_rss_hidden_source"),
+                is_ads_enabled: +isChecked("group_rss_ads")
             }), 0 == cur.cls || 2 == cur.cls ? (extend(a, GroupsEdit.getFields("access")), a.subject = cur.subjectDD.val(), 2 == cur.cls && extend(a, {
                 start_date: val("group_start_date"),
                 finish_date: isVisible("group_edit_finish_time") ? val("group_finish_date") : 0,
@@ -653,7 +654,7 @@ var GroupsEdit = {
             a.phone = c
         }
         var d = ge("group_edit_show_author");
-        d && (a.show_author = isChecked(d)), ajax.post("groupsedit.php", a, {
+        d && (a.show_author = isChecked(d)), GroupsEdit.geCountrySelector && (a.country_id = GroupsEdit.geCountrySelector.val()), GroupsEdit.geCitySelector && (a.city_id = GroupsEdit.geCitySelector.val()), ajax.post("groupsedit.php", a, {
             onDone: function(e, t, r) {
                 return 0 > e ? GroupsEdit.nbAddr() : e === !1 ? notaBene(ge("group_edit_name")) : "edit_first" == nav.objLoc.act ? nav.go(nav.objLoc[0]) : (r && val("group_edit_name", replaceEntities(r)), GroupsEdit.showMessage(getLang("groups_saved_msg")), scrollToTop(), t != o && (each(geByTag("a"), function() {
                     this.href = this.href.replace(new RegExp("/" + t + "\\?", "g"), "/" + o + "?").replace(new RegExp("/" + t + "$", "g"), "/" + o)
@@ -907,7 +908,7 @@ var GroupsEdit = {
         }
         cur.destroy.push(function(e) {
             0 == e.cls ? e.subjectDD.destroy() : 1 == e.cls ? (e.sprivacyDD && e.sprivacyDD.destroy(), e.pcategoryDD.destroy(), e.psubcategoryDD.destroy()) : 2 == e.cls && (e.subjectDD.destroy(), e.hostDD && e.hostDD.destroy())
-        }), placeholderSetup("group_rss")
+        }), placeholderSetup("group_rss"), e.addressData && GroupsEdit.initAddressData(e.addressData)
     },
     initSections: function(e) {
         2 != cur.cls && e.marketCountries && (cur.validMarketCountries = e.validMarketCountries, cur.validMarketCurrencies = e.validMarketCurrencies, cur.hasMarketApp = e.hasMarketApp, selectsData.setCountries(e.marketCountries), selectsData.setCities(e.marketCountry, e.marketCities), cur.marketCountryChange = function() {
@@ -1021,6 +1022,20 @@ var GroupsEdit = {
             appendToParent: !0,
             offset: [6, -3]
         }))
+    },
+    geCitySelector: "",
+    geCountrySelector: "",
+    initAddressData: function(e) {
+        window.selectsData.setCountries(e.countries), e.country && window.selectsData.setCities(e.country[0], e.cities), GroupsEdit.geCitySelector = new window.CitySelect(ge("sel_groups_edit_city"), ge("groups_edit_city_row"), {
+            width: 300,
+            big: 1
+        }), GroupsEdit.geCountrySelector = new window.CountrySelect(ge("sel_groups_edit_country"), ge("groups_edit_country_row"), {
+            width: 300,
+            citySelect: GroupsEdit.geCitySelector,
+            noDefaultCountry: !0,
+            full_list: getLang("select_country_full_list"),
+            big: 1
+        }), e.country && GroupsEdit.geCountrySelector.val(e.country, !0), e.city && GroupsEdit.geCitySelector.val(e.city, !0)
     },
     showFeatureMarketAppTooltip: function(e) {
         if (cur.hasMarketApp) {

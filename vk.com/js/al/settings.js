@@ -60,7 +60,17 @@ var Settings = {
         window.uiPageBlock && uiPageBlock.showSaved("privacy_edit_" + t)
     },
     initPrivacy: function() {
-        if (cur.onPrivacyChanged = Settings.savePrivacyKey, nav.objLoc.hl) {
+        if (cur.onPrivacyChanged = Settings.savePrivacyKey, cur.privacyNeedConfirm = function(t, e, s) {
+                if ("profile_closed" === t && intval(e)) {
+                    var o = new MessageBox({
+                        title: getLang("settings_closed_profile_confirm_title")
+                    });
+                    return o.content(getLang("settings_closed_profile_confirm_text")), o.removeButtons().addButton(getLang("global_yes"), function() {
+                        s(), o.hide()
+                    }), o.addButton(getLang("global_cancel"), o.hide, "no"), void o.show()
+                }
+                s()
+            }, nav.objLoc.hl) {
             var t = geByClass1("_" + nav.objLoc.hl);
             Settings.scrollHighlightPrivacy(t)
         }

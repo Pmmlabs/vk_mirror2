@@ -1585,7 +1585,7 @@ var Tickets = {
                         TicketsEF._initPlain(e, a, i);
                         break;
                     case "select":
-                        TicketsEF._initSelect(e, a, o);
+                        TicketsEF._initSelect(e, a, i, o);
                         break;
                     case "radio":
                         TicketsEF._initRadio(e, a, t);

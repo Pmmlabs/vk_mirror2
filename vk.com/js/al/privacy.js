@@ -290,51 +290,59 @@ var Privacy = {
             s.innerHTML = n, l.nextSibling.innerHTML = o, hasClass(l, "privacy_graphic") && (e[1] && e[2] && "0" == e[2][0] ? removeClass : addClass)(l, "privacy_locked"), cur.onPrivacyChanged && cur.onPrivacyChanged(i)
         }
     },
-    choose: function(i, e, r) {
-        var t = cur.privSel,
-            s = cur.privacy[t],
-            l = cur.privacy._noselect || "chat_actions" == t;
-        if (l) return cur.onPrivacyChanged && cur.onPrivacyChanged(t, e, r), Privacy.qhide(), cancelEvent(i);
+    choose: function(i, e, r, t) {
+        var s = cur.privSel,
+            l = cur.privacy[s],
+            c = cur.privacy._noselect || "chat_actions" == s;
+        if (cur.privacyNeedConfirm && !t) return void cur.privacyNeedConfirm(s, e, function() {
+            Privacy.show(ge("privacy_edit_" + s), i, s), Privacy.choose(i, e, r, !0)
+        });
+        if (c) return cur.onPrivacyChanged && cur.onPrivacyChanged(s, e, r), Privacy.qhide(), cancelEvent(i);
         if (e == Privacy.customType) {
-            var c, a, n = [],
-                o = "";
-            return s[0] == Privacy.customType ? (c = s[1], a = s[2], n = s[3]) : s[0] == Privacy.someType || s[0] == Privacy.listsType ? (c = 0, a = s[2]) : (c = 1, a = s[2]), cur.onCprivSave = Privacy.customSaved.pbind(t), cur.privacy.custom_box_type && (o = cur.privacy.custom_box_type), showBox("al_friends.php", extend(cur.privacy.chooseBoxOpts || {}, {
+            var a, n, o = [],
+                u = "";
+            return l[0] == Privacy.customType ? (a = l[1], n = l[2], o = l[3]) : l[0] == Privacy.someType || l[0] == Privacy.listsType ? (a = 0, n = l[2]) : (a = 1, n = l[2]), cur.onCprivSave = Privacy.customSaved.pbind(s), cur.privacy.custom_box_type && (u = cur.privacy.custom_box_type), showBox("al_friends.php", extend(cur.privacy.chooseBoxOpts || {}, {
                 act: "custom_privacy_box",
-                type: c,
-                plus: a.join(","),
-                minus: n.join(","),
-                opt: o,
-                key: t
+                type: a,
+                plus: n.join(","),
+                minus: o.join(","),
+                opt: u,
+                key: s
             }), {
                 stat: ["ui_controls.js", "ui_controls.css"]
             })
         }
         if (e == Privacy.someType) {
-            var u = s[0] == Privacy.someType || s[0] == Privacy.complexType && 0 == s[1] ? s[2].join(",") : "";
+            var v = l[0] == Privacy.someType || l[0] == Privacy.complexType && 0 == l[1] ? l[2].join(",") : "";
             return cur.onFlistSave = function(i, e) {
-                Privacy.someSaved(t, i, e)
+                Privacy.someSaved(s, i, e)
             }, showTabbedBox("al_friends.php", extend(cur.privacy.chooseBoxOpts || {}, {
                 act: "select_friends_box",
-                Checked: u
+                Checked: v
             }), {
                 stat: ["ui_controls.js"]
             })
         }
         if (e == Privacy.listsType) {
-            var v = ge("privacy_l_item" + r);
-            if ("l_item_sel" == v.className) {
-                v.className = "l_item";
-                var d = indexOf(s[2], -r); - 1 != d && s[2].splice(d, 1), s[2].length || "updates" == t || (cur.privacy[t] = [0, 1, [0],
-                    []
-                ])
-            } else v.className = "l_item_sel", s[0] != e && (s = cur.privacy[t] = [e, 0, [],
+            var d = ge("privacy_l_item" + r);
+            if ("l_item_sel" == d.className) {
+                d.className = "l_item";
+                var f = indexOf(l[2], -r);
+                if (-1 != f && l[2].splice(f, 1), !l[2].length && "updates" != s) {
+                    var p = cur.privacy[s + "_types"] || cur.privacy._types,
+                        h = Object.keys(p);
+                    cur.privacy[s] = [intval(h[0]), 1, [0],
+                        []
+                    ]
+                }
+            } else d.className = "l_item_sel", l[0] != e && (l = cur.privacy[s] = [e, 0, [],
                 []
-            ]), s[2].push(-r);
-            return Privacy.update(t), cancelEvent(i)
+            ]), l[2].push(-r);
+            return Privacy.update(s), cancelEvent(i)
         }
-        cur.privacy[t] = [e, 1, [e],
+        cur.privacy[s] = [e, 1, [e],
             []
-        ], Privacy.update(t), Privacy.qhide()
+        ], Privacy.update(s), Privacy.qhide()
     },
     select: function(i, e) {
         if (e || i !== cur.privSelIndex) {
