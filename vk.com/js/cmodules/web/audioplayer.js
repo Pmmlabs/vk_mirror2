@@ -42,7 +42,7 @@
         return i.d(e, "a", e), e
     }, i.o = function(t, e) {
         return Object.prototype.hasOwnProperty.call(t, e)
-    }, i.p = "", i(i.s = 1)
+    }, i.p = "", i(i.s = 2)
 }([function(__webpack_module__, __webpack_exports__, __webpack_require__) {
     "use strict";
 
@@ -122,8 +122,6 @@
     }();
     __webpack_exports__.default = AudioLayer
 }, function(t, e, i) {
-    t.exports = i(3)
-}, function(t, e, i) {
     "use strict";
     i.r(e), i.d(e, "audioUnmaskSource", function() {
         return s
@@ -186,10 +184,12 @@
         for (var e, i, a = 0, s = 0, r = ""; i = t.charAt(s++);) ~(i = o.indexOf(i)) && (e = a % 4 ? 64 * e + i : i, a++ % 4) && (r += String.fromCharCode(255 & e >> (-2 * a & 6)));
         return r
     }
+}, function(t, e, i) {
+    t.exports = i(3)
 }, function(__webpack_module__, __webpack_exports__, __webpack_require__) {
     "use strict";
     __webpack_require__.r(__webpack_exports__);
-    var _audioplayer_audio_unmask_source__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2),
+    var _audioplayer_audio_unmask_source__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1),
         _audioplayer_audio_layer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(0),
         _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
             return typeof t
@@ -2993,11 +2993,22 @@
         return t && t.buffered.length ? Math.min(1, t.buffered.end(0) / t.duration) : 0
     }, AudioPlayerHTML5Simple.prototype.play = function(t) {
         var e = Object(_audioplayer_audio_unmask_source__WEBPACK_IMPORTED_MODULE_0__.audioUnmaskSource)(t);
-        this._audioEl.src != e && (this._audioEl.src = e), this._audioEl.play(), this._startFrequencyAnalise()
+        this._audioEl.src != e && (this._audioEl.src = e);
+        var i = this._audioEl.play();
+        i && i.catch(function(t) {
+            console.log(t)
+        }), this._startFrequencyAnalise()
     }, AudioPlayerHTML5Simple.prototype.preparePlay = function() {
-        this._audioEl.play()
+        var t = this._audioEl.play();
+        t && t.catch(function(t) {
+            console.log(t)
+        })
     }, AudioPlayerHTML5Simple.prototype.pause = function() {
-        this._audioEl.pause()
+        if (this._audioEl.paused) return !0;
+        var t = this._audioEl.pause();
+        t && t.catch(function(t) {
+            console.log(t)
+        })
     }, AudioPlayerHTML5Simple.prototype.stop = function() {
         this._audioEl.pause(), this._audioEl.src = ""
     }, AudioPlayerHTML5Simple.prototype._createAudioNode = function() {

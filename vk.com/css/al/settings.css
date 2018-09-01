@@ -1861,7 +1861,8 @@ input.settings_app_password_name {
     background-position: 8px -410px
 }
 
-.settings_menu_rows .olist_item_menu.translate .olist_item_photo {
+.settings_menu_rows .olist_item_menu.translate .olist_item_photo,
+.settings_menu_rows .olist_item_menu.isp .olist_item_photo {
     background-position: 8px -466px
 }
 

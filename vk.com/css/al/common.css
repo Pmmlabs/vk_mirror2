@@ -2994,7 +2994,8 @@ body.body_im.firefox.layers_shown #page_wrap {
     background-position: 7px -413px
 }
 
-#side_bar #l_tr .left_icon {
+#side_bar #l_tr .left_icon,
+#side_bar #l_isp .left_icon {
     background-position: 7px -469px
 }
 

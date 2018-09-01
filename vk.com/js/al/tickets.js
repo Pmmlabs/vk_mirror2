@@ -1580,7 +1580,7 @@ var Tickets = {
                     i = cur.extraFieldsNotes[t],
                     o = TicketsEF._getValues(t),
                     s = TicketsEF._getType(e, a, o);
-                switch (s) {
+                switch (data(e, "ef-type", s), s) {
                     case "plain":
                         TicketsEF._initPlain(e, a, i);
                         break;
@@ -1608,6 +1608,9 @@ var Tickets = {
         },
         _getType: function(e, t, a) {
             return t ? a.length > 0 ? "select" : "plain" : e && geByClass1("radiobtn", e) ? "radio" : "hidden"
+        },
+        _getDefinedType: function(e) {
+            return data(e, "ef-type")
         },
         _initPlain: function(e, t, a) {
             return t ? void(a && "" !== a && (addEvent(t, "focus", function(e) {
@@ -1666,7 +1669,7 @@ var Tickets = {
         _isBlocking: function(e, t) {
             var a = TicketsEF._getInput(t),
                 i = TicketsEF._getValues(t),
-                o = TicketsEF._getType(e, a, i);
+                o = TicketsEF._getDefinedType(e, a, i);
             if ("radio" == o) {
                 var s = intval(radioval(TicketsEF._getRadioName(t))),
                     r = cur.extraFieldsBlocking[t];
@@ -1677,7 +1680,7 @@ var Tickets = {
         _getValueByIndex: function(e) {
             var t = ge("tickets_new_extra_field_" + e),
                 a = TicketsEF._getInput(e);
-            return t ? TicketsEF._getValue(t, e, a, TicketsEF._getType(t, a, TicketsEF._getValues(e))) : ""
+            return t ? TicketsEF._getValue(t, e, a, TicketsEF._getDefinedType(t, a, TicketsEF._getValues(e))) : ""
         },
         _getValue: function(e, t, a, i) {
             var o = "";
@@ -1718,7 +1721,7 @@ var Tickets = {
                     s = hasClass(a, "_ef_required"),
                     r = hasClass(a, "_ef_check_url");
                 if (isVisible(a) && !hasClass(a, "_ef_note")) {
-                    var n = TicketsEF._getType(a, o, TicketsEF._getValues(i)),
+                    var n = TicketsEF._getDefinedType(a, o, TicketsEF._getValues(i)),
                         c = TicketsEF._getValue(a, i, o, n);
                     if (s && ("" === c || r && -1 == c.indexOf("vk.com") || TicketsEF._isBlocking(a, i))) {
                         var l = TicketsEF._getNotableBlock(a, o, n);

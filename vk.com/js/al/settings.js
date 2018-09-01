@@ -65,7 +65,7 @@ var Settings = {
                     var o = new MessageBox({
                         title: getLang("settings_closed_profile_confirm_title")
                     });
-                    return o.content(getLang("settings_closed_profile_confirm_text")), o.removeButtons().addButton(getLang("global_yes"), function() {
+                    return o.content(getLang("settings_closed_profile_confirm_text")), o.removeButtons().addButton(getLang("settings_closed_profile_confirm_btn"), function() {
                         s(), o.hide()
                     }), o.addButton(getLang("global_cancel"), o.hide, "no"), void o.show()
                 }

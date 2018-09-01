@@ -7857,8 +7857,12 @@ var Wall = {
 
         if (opts.media_types) {
             cur.wallAddMedia = new MediaSelector(ge('page_add_media'), 'media_preview', opts.media_types, extend({
-                onAddMediaChange: function() {
+                onAddMediaChange: function(type) {
                     Wall.postChanged(10);
+
+                    if (type != 'poll') {
+                        wall.focusOnEnd();
+                    }
 
                     if (cur.oid != vk.id) {
                         var args = Array.prototype.slice.call(arguments);
