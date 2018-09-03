@@ -13441,6 +13441,19 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     text-overflow: ellipsis
 }
 
+.AspectRatio {
+    position: relative;
+    width: 100%
+}
+
+.AspectRatio__container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0
+}
+
 .AudioBlock {
     border: 0
 }
@@ -30664,6 +30677,10 @@ body.apps_settingsPageBody {
     z-index: 1
 }
 
+.r .wall_item .wi_body .pi_medias[data-border]:after {
+    display: none
+}
+
 .r .cp_attached_post .medias_thumbs,
 .r .e .medias_thumbs,
 .r .wall_item .medias_thumbs {
@@ -33050,6 +33067,73 @@ body.apps_settingsPageBody {
 
 .Icon_control_radio_checked:before {
     background-position: 0 -240px
+}
+
+.Icon_link,
+.Icon_replay {
+    width: 24px;
+    height: 24px
+}
+
+.Icon_link:before,
+.Icon_replay:before {
+    width: 24px;
+    height: 24px;
+    background-image: url('/images/mobile/skins/icon/ads_video.png?1')
+}
+
+.vk_2x .Icon_link:before,
+.vk_2x .Icon_replay:before {
+    background-image: url('/images/mobile/skins/icon/ads_video_2x.png?1')
+}
+
+.Icon_replay:before {
+    background-position: 0 0
+}
+
+.Icon_link:before {
+    background-position: 0 -24px
+}
+
+.Icon_muted,
+.Icon_sound {
+    width: 48px;
+    height: 48px
+}
+
+.Icon_muted:before,
+.Icon_sound:before {
+    width: 48px;
+    height: 48px;
+    background-image: url('/images/mobile/skins/icon/ads_volume.png?1')
+}
+
+.vk_2x .Icon_muted:before,
+.vk_2x .Icon_sound:before {
+    background-image: url('/images/mobile/skins/icon/ads_volume_2x.png?1')
+}
+
+.Icon_sound:before {
+    background-position: 0 0
+}
+
+.Icon_muted:before {
+    background-position: 0 -48px
+}
+
+.Icon_play,
+.Icon_play:before {
+    width: 40px;
+    height: 40px
+}
+
+.Icon_play:before {
+    background-position: 0 0;
+    background-image: url('/images/mobile/icons/post_attachments.png?1')
+}
+
+.vk_2x .Icon_play:before {
+    background-image: url('/images/mobile/icons/post_attachments_2x.png?1')
 }
 
 .Spinner {
@@ -37764,6 +37848,267 @@ body.apps_settingsPageBody {
     display: inline-block;
     vertical-align: middle;
     margin-left: 4px
+}
+
+.PostAttachVideoLink__media {
+    background: #000;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow: hidden
+}
+
+.PostAttachVideoLink__video {
+    cursor: pointer;
+    width: 100%;
+    height: 100%
+}
+
+
+/*!
+ * Play layer
+ */
+
+.PostAttachVideoLink__play {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: pointer
+}
+
+.PostAttachVideoLink_state_pause .PostAttachVideoLink__play {
+    display: block
+}
+
+.PostAttachVideoLink__playIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -20px;
+    margin-left: -20px
+}
+
+.PostAttachVideoLink__thumb {
+    width: 100%
+}
+
+.PostAttachVideoLink__noSupport {
+    padding: 12px
+}
+
+
+/*!
+ * Sound button
+ */
+
+.PostAttachVideoLink__sound {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent
+}
+
+.PostAttachVideoLink_state_play .PostAttachVideoLink__sound {
+    display: block
+}
+
+.PostAttachVideoLink_muted .PostAttachVideoLink__soundIcon_muted_no,
+.PostAttachVideoLink:not(.PostAttachVideoLink_muted) .PostAttachVideoLink__soundIcon_muted_yes {
+    display: none
+}
+
+
+/*!
+ * End overlay
+ */
+
+.PostAttachVideoLink__end {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: absolute;
+    background: hsla(0, 0%, 7%, .8);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.PostAttachVideoLink:not(.PostAttachVideoLink_state_end) .PostAttachVideoLink__end {
+    display: none
+}
+
+.PostAttachVideoLink__endButton {
+    background: hsla(0, 0%, 44%, .65);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    cursor: pointer
+}
+
+._hover .PostAttachVideoLink__endButton:hover {
+    background: hsla(0, 0%, 44%, .85)
+}
+
+
+/*!
+ * "Replay" button at the end
+ */
+
+.PostAttachVideoLink__endButton_replay {
+    padding: 14px;
+    margin-right: 12px
+}
+
+
+/*!
+ * "Link" button at the end
+ */
+
+.PostAttachVideoLink__endButton_link {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 9px 16px 10px 12px;
+    text-decoration: none!important
+}
+
+.PostAttachVideoLink__linkIcon {
+    margin-right: 12px
+}
+
+.PostAttachVideoLink__linkTitle {
+    font-size: 15px;
+    color: #fff;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 18px
+}
+
+.PostAttachVideoLink__linkDomain {
+    opacity: 0.72;
+    font-size: 13px;
+    color: #fff;
+    line-height: 15px
+}
+
+
+/*!
+ * Body
+ */
+
+.PostAttachVideoLink__body {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative
+}
+
+.PostAttachVideoLink__texts {
+    margin-right: 12px
+}
+
+.PostAttachVideoLink__title {
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.29;
+    color: #2e3033
+}
+
+.PostAttachVideoLink__domain {
+    color: #909499;
+    margin-top: 2px
+}
+
+.PostAttachVideoLink__button {
+    z-index: 1
+}
+
+.PostAttachVideoLink__bodyLink {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0
+}
+
+
+/*!
+ * Flex fallback
+ */
+
+.vk_flex_no .PostAttachVideoLink__texts {
+    width: 100%
+}
+
+.vk_flex_no .PostAttachVideoLink__texts,
+.vk_flex_no .PostAttachVideoLink__button {
+    display: table-cell;
+    vertical-align: middle
+}
+
+.vk_flex_no .PostAttachVideoLink__end {
+    display: table-cell;
+    text-align: center;
+    white-space: nowrap
+}
+
+.vk_flex_no .PostAttachVideoLink__endButton {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    top: 50%;
+    margin-top: -26px
+}
+
+.vk_flex_no .PostAttachVideoLink__linkIcon {
+    display: inline-block;
+    vertical-align: middle
+}
+
+.vk_flex_no .PostAttachVideoLink__linkTexts {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left
 }
 
 .notification {

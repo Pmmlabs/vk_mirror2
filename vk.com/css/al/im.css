@@ -2148,9 +2148,9 @@ textarea.EditableLabel__textarea {
 }
 
 .TemplatesSettings__input-container {
-    width: 100%;
-    -ms-flex-negative: 1;
-    flex-shrink: 1
+    width: 1px;
+    -ms-flex-positive: 1;
+    flex-grow: 1
 }
 
 .TemplatesSettings div.TemplatesSettings__input,
@@ -2169,7 +2169,9 @@ textarea.EditableLabel__textarea {
 
 .TemplatesSettings div.TemplatesSettings__input {
     width: 100%;
-    height: 30px
+    height: 30px;
+    word-wrap: unset;
+    overflow-x: auto
 }
 
 .TemplatesSettings div.TemplatesSettings__textarea {
