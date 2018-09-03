@@ -38679,7 +38679,8 @@ body.apps_settingsPageBody {
     -webkit-align-items: flex-end;
     -moz-box-align: end;
     -ms-flex-align: end;
-    align-items: flex-end
+    align-items: flex-end;
+    height: 18px
 }
 
 .msg__author {
@@ -38739,18 +38740,6 @@ body.apps_settingsPageBody {
 
 .msg__editedMiddot {
     padding: 0 4px
-}
-
-@media (max-width: 340px) {
-    .msg__edited {
-        -webkit-flex-shrink: 1;
-        -ms-flex-negative: 1;
-        flex-shrink: 1;
-        overflow: hidden;
-        -o-text-overflow: ellipsis;
-        text-overflow: ellipsis;
-        min-width: 60px
-    }
 }
 
 .msg__admin {
