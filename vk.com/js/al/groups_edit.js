@@ -280,7 +280,11 @@ var GroupsEdit = {
         if (o || !g || g.match(/^(https?:\/\/)?([a-z0-9]+\.)*(vkontakte\.ru|vk\.com)\/.+/) || (highlight = GroupsEdit.uGetHighlight(g), l = l.replace(highlight.re, highlight.val)), n > constants.Groups.GROUPS_ADMIN_LEVEL_USER || c) {
             var _ = [];
             n > constants.Groups.GROUPS_ADMIN_LEVEL_USER && _.push(cur.opts.levels[n]);
-            for (var h in cur.opts.adminFlags) c & h && _.push(cur.opts.adminFlags[h]);
+            for (var h in cur.opts.adminFlags)
+                if (c & h) {
+                    if (8 == h && n > constants.Groups.GROUPS_ADMIN_LEVEL_USER) continue;
+                    _.push(cur.opts.adminFlags[h])
+                }
             d += '<div class="group_u_info_row group_u_level">' + _.join(", ") + "</div>"
         } else i[0] && (d += '<div class="group_u_desc">' + i[0] + "</div>");
         var m = intval(i[1]),
@@ -845,37 +849,38 @@ var GroupsEdit = {
                     placeholder: getLang("groups_choose_subject")
                 })
             }), e.subject && "0" != e.subject && cur.subjectDD.val(e.subject)), 1 == cur.cls) extend(cur, {
-            pcategoryDD: new Dropdown(ge("public_type"), e.pcategories, {
-                width: 300,
-                dark: !0,
-                zeroPlaceholder: !0,
-                multiselect: !1,
-                autocomplete: !1,
-                onChange: function(t) {
-                    t = intval(t), t && (e.psubcategories[t] || {}).length > 1 ? (cur.psubcategoryDD.setOptions({
-                        defaultItems: e.psubcategories[t]
-                    }), cur.psubcategoryDD.val(0), cur.new_categories_allowed || GroupsEdit.show(ge("group_edit_psubcategory"))) : GroupsEdit.hide(ge("group_edit_psubcategory")), void 0 !== e.plabelsmap[t] ? val("gedit_public_date_label", e.plabels[e.plabelsmap[t]]) : val("gedit_public_date_label", e.plabels[e.plabelsmap[0]])
-                }
-            }),
-            psubcategoryDD: new Dropdown(ge("public_subtype"), e.psubcategories[e.pcategory || 0] || [], {
-                width: 300,
-                dark: !0,
-                zeroPlaceholder: !0,
-                multiselect: !1,
-                autocomplete: !1
-            }),
-            sprivacyDD: ge("sprivacy") ? new Dropdown(ge("sprivacy"), e.sprivacies, {
-                dark: !0,
-                multiselect: !1,
-                autocomplete: !1
-            }) : !1,
-            bdPicker: new Daypicker("gedit_public_date", {
-                startYear: 1800,
-                width: 300,
-                dark: !0,
-                zeroPlaceholder: !0
-            })
-        }), cur.sprivacyDD && cur.sprivacyDD.val(e.sprivacy, !0), cur.pcategoryDD.val(e.pcategory, !0), cur.psubcategoryDD.val(e.psubcategory);
+                pcategoryDD: new Dropdown(ge("public_type"), e.pcategories, {
+                    width: 300,
+                    dark: !0,
+                    zeroPlaceholder: !0,
+                    multiselect: !1,
+                    autocomplete: !1,
+                    onChange: function(t) {
+                        t = intval(t), t && (e.psubcategories[t] || {}).length > 1 ? (cur.psubcategoryDD.setOptions({
+                            defaultItems: e.psubcategories[t]
+                        }), cur.psubcategoryDD.val(0), cur.new_categories_allowed || GroupsEdit.show(ge("group_edit_psubcategory"))) : GroupsEdit.hide(ge("group_edit_psubcategory")), void 0 !== e.plabelsmap[t] ? val("gedit_public_date_label", e.plabels[e.plabelsmap[t]]) : val("gedit_public_date_label", e.plabels[e.plabelsmap[0]])
+                    }
+                }),
+                psubcategoryDD: new Dropdown(ge("public_subtype"), e.psubcategories[e.pcategory || 0] || [], {
+                    width: 300,
+                    dark: !0,
+                    zeroPlaceholder: !0,
+                    multiselect: !1,
+                    autocomplete: !1
+                }),
+                sprivacyDD: ge("sprivacy") ? new Dropdown(ge("sprivacy"), e.sprivacies, {
+                    dark: !0,
+                    multiselect: !1,
+                    autocomplete: !1
+                }) : !1,
+                bdPicker: new Daypicker("gedit_public_date", {
+                    startYear: 1800,
+                    width: 300,
+                    dark: !0,
+                    zeroPlaceholder: !0
+                })
+            }), cur.sprivacyDD && cur.sprivacyDD.val(e.sprivacy, !0), cur.pcategoryDD.val(e.pcategory, !0),
+            cur.psubcategoryDD.val(e.psubcategory);
         else if (2 == cur.cls) {
             new Datepicker("group_start_date", {
                 time: "group_start_time",
@@ -1995,18 +2000,19 @@ var GroupsEdit = {
             })
         },
         addServer: function(e, t, o) {
-            hide(geByClass1("page_actions_cont", ge("content"))), hide(ge("add_server_button")), show(geByClass1("ui_tabs_progress", ge("content"))), ajax.post("groupsedit.php", {
-                act: "callback_add_server",
-                id: t,
-                hash: o
-            }, {
-                onDone: function(t, o) {
-                    "ok" === t ? (nav.objLoc.server = o, nav.go(nav.objLoc)) : (unlockButton(e), GroupsEdit.callback.showError(o), show(geByClass1("page_actions_cont", ge("content"))), show(ge("add_server_button")), hide(geByClass1("ui_tabs_progress", ge("content"))))
-                },
-                onFail: function() {
-                    GroupsEdit.callback.showError(getLang("groups_api_error_failed")), unlockButton(e)
-                }
-            })
+            hide(geByClass1("page_actions_cont", ge("content"))), hide(ge("add_server_button")), show(geByClass1("ui_tabs_progress", ge("content"))),
+                ajax.post("groupsedit.php", {
+                    act: "callback_add_server",
+                    id: t,
+                    hash: o
+                }, {
+                    onDone: function(t, o) {
+                        "ok" === t ? (nav.objLoc.server = o, nav.go(nav.objLoc)) : (unlockButton(e), GroupsEdit.callback.showError(o), show(geByClass1("page_actions_cont", ge("content"))), show(ge("add_server_button")), hide(geByClass1("ui_tabs_progress", ge("content"))))
+                    },
+                    onFail: function() {
+                        GroupsEdit.callback.showError(getLang("groups_api_error_failed")), unlockButton(e)
+                    }
+                })
         },
         showServerConfig: function(e, t, o) {
             hide(geByClass1("page_actions_cont", ge("content"))), show(geByClass1("ui_tabs_progress", ge("content"))), nav.objLoc.server = o, nav.go(nav.objLoc)

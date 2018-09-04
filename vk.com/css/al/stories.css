@@ -2127,6 +2127,26 @@
     opacity: 0.9
 }
 
+.stories_link:active {
+    padding: 11px 27px 10px 16px
+}
+
+.stories_link.story_link_object_audio {
+    background-repeat: no-repeat;
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20width%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22%22%3E%3Cpath%20d%3D%22m0%200h16v16h-16z%22%20fill-rule%3D%22nonzero%22%2F%3E%3Cpath%20d%3D%22m4.82812303%2013.8417714c-.45735972.3141207-.82812303.1125585-.82812303-.4370586v-10.80657518c0-.55550156.36581233-.75457976.82812303-.43705861l7.91980457%205.43942752c.3223893.22142126.3244158.57902423%200%20.80183733z%22%20fill%3D%22%23000%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+    background-position: 10px 10px;
+    padding-left: 31px;
+    padding-right: 16px
+}
+
+.stories_link.story_link_object_audio:after {
+    display: none
+}
+
+.stories_link.story_link_object_audio.story_link_object_audio_playing {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20width%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22%22%3E%3Cpath%20d%3D%22m0%200h16v16h-16z%22%20fill-rule%3D%22nonzero%22%2F%3E%3Cpath%20d%3D%22m4%202.59508187c0-.32865464.27685547-.59508187.60709476-.59508187h1.78581048c.33528918%200%20.60709476.27318335.60709476.59508187v10.80983623c0%20.3286547-.27685547.5950819-.60709476.5950819h-1.78581048c-.33528918%200-.60709476-.2731833-.60709476-.5950819zm5%200c0-.32865464.27685547-.59508187.60709476-.59508187h1.78581044c.3352892%200%20.6070948.27318335.6070948.59508187v10.80983623c0%20.3286547-.2768555.5950819-.6070948.5950819h-1.78581044c-.33528918%200-.60709476-.2731833-.60709476-.5950819z%22%20fill%3D%22%23000%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
 .stories_inline_loader {
     border-radius: 100px;
     background: rgba(0, 0, 0, .48);
