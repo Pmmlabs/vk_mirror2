@@ -413,8 +413,9 @@ var Page = {
                 stat: ['owner_photo.css', 'owner_photo.js']
             });
         },
-        ownerCrop: function(oid) {
+        ownerCrop: function(oid, hash) {
             showBox('al_page.php', {
+                hash: hash,
                 act: 'owner_photo_crop',
                 oid: oid || cur.oid
             }, {

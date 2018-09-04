@@ -12158,9 +12158,9 @@ a.Popup__headerCorner {
     display: inline-block;
     font-size: 14px;
     font-weight: 500;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
     border: none;
     outline: none;
     position: relative;
@@ -12179,7 +12179,8 @@ a.Popup__headerCorner {
     -webkit-transition: opacity 0.2s ease;
     -moz-transition: opacity 0.2s ease;
     -o-transition: opacity 0.2s ease;
-    transition: opacity 0.2s ease
+    transition: opacity 0.2s ease;
+    -webkit-tap-highlight-color: transparent
 }
 
 .Btn:disabled {
@@ -12213,6 +12214,15 @@ a.Popup__headerCorner {
     background: #5181b8
 }
 
+._hover .Btn_theme_regular:hover {
+    background: #5b88bd
+}
+
+._hover .Btn_theme_regular:active,
+._touch .Btn_theme_regular.hover {
+    background: #4872a3
+}
+
 .Btn_theme_secondary,
 .vk__page_redesign .basis .gray_button {
     height: 34px;
@@ -12220,6 +12230,15 @@ a.Popup__headerCorner {
     padding: 0 14px;
     color: #306096;
     background: #e6ebf1
+}
+
+._hover .Btn_theme_secondary:hover {
+    background: #dfe6ed
+}
+
+._hover .Btn_theme_secondary:active,
+._touch .Btn_theme_secondary.hover {
+    background: #dae2ea
 }
 
 .Btn_theme_link,
@@ -12231,12 +12250,30 @@ a.Popup__headerCorner {
     background: transparent
 }
 
+._hover .Btn_theme_link:hover {
+    color: #5b88bd
+}
+
+._hover .Btn_theme_link:active,
+._touch .Btn_theme_link.hover {
+    color: #4872a3
+}
+
 .Btn_theme_small {
     height: 28px;
     line-height: 28px;
     padding: 0 10px;
     color: #fff;
     background: #5181b8
+}
+
+._hover .Btn_theme_small:hover {
+    background: #5b88bd
+}
+
+._hover .Btn_theme_small:active,
+._touch .Btn_theme_small.hover {
+    background: #4872a3
 }
 
 .Btn_theme_outline {
@@ -12248,6 +12285,17 @@ a.Popup__headerCorner {
     background: #fff
 }
 
+._hover .Btn_theme_outline:hover {
+    color: #5b88bd;
+    border-color: #5b88bd
+}
+
+._hover .Btn_theme_outline:active,
+._touch .Btn_theme_outline.hover {
+    color: #4872a3;
+    border-color: #4872a3
+}
+
 .Btn_theme_large {
     height: 40px;
     line-height: 40px;
@@ -12255,6 +12303,15 @@ a.Popup__headerCorner {
     font-size: 15px;
     background: #5181b8;
     color: #fff
+}
+
+._hover .Btn_theme_large:hover {
+    background: #5b88bd
+}
+
+._hover .Btn_theme_large:active,
+._touch .Btn_theme_large.hover {
+    background: #4872a3
 }
 
 .Btn_theme_minor {
@@ -31777,6 +31834,7 @@ body.apps_settingsPageBody {
 .Icon_doc,
 .Icon_hide,
 .Icon_important,
+.Icon_info,
 .Icon_invite,
 .Icon_like,
 .Icon_list,
@@ -31826,6 +31884,7 @@ body.apps_settingsPageBody {
 .Icon_doc:before,
 .Icon_hide:before,
 .Icon_important:before,
+.Icon_info:before,
 .Icon_invite:before,
 .Icon_like:before,
 .Icon_list:before,
@@ -31854,7 +31913,7 @@ body.apps_settingsPageBody {
 .vk__page_redesign .basis .ii_btn:before {
     width: 24px;
     height: 24px;
-    background-image: url('/images/mobile/skins/icon/base.png?13')
+    background-image: url('/images/mobile/skins/icon/base.png?14')
 }
 
 .vk_2x .BookmarksItem_article .ai_menu_toggle_button:before,
@@ -31876,6 +31935,7 @@ body.apps_settingsPageBody {
 .vk_2x .Icon_doc:before,
 .vk_2x .Icon_hide:before,
 .vk_2x .Icon_important:before,
+.vk_2x .Icon_info:before,
 .vk_2x .Icon_invite:before,
 .vk_2x .Icon_like:before,
 .vk_2x .Icon_list:before,
@@ -31903,7 +31963,7 @@ body.apps_settingsPageBody {
 .vk_2x.m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"]:before,
 .vk_2x .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"]:before,
 .vk_2x .vk__page_redesign .basis .ii_btn:before {
-    background-image: url('/images/mobile/skins/icon/base_2x.png?13')
+    background-image: url('/images/mobile/skins/icon/base_2x.png?14')
 }
 
 .Icon_news.Icon_active:before {
@@ -32136,6 +32196,10 @@ body.apps_settingsPageBody {
 
 .Icon_play:before {
     background-position: 0 -1584px
+}
+
+.Icon_info:before {
+    background-position: 0 -1608px
 }
 
 .Icon_attach_blue,
