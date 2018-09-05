@@ -1743,19 +1743,19 @@ body.article_body .article_layer {
     padding-top: 3px
 }
 
-.article_layer .article_layer__header .article_layer__header_date_published {
+.article_layer .article_layer__header .article_layer__header_subtitle {
     color: #939393;
     font-size: 13px;
     display: block;
     padding: 4px 0 0 60px
 }
 
-.article_layer .article_layer__header .article_layer__header_date_published>a {
+.article_layer .article_layer__header .article_layer__header_subtitle>a {
     color: #939393;
     text-decoration: none
 }
 
-.article_layer .article_layer__header .article_layer__header_date_published>a:hover {
+.article_layer .article_layer__header .article_layer__header_subtitle>a:hover {
     text-decoration: underline
 }
 

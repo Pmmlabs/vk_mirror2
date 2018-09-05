@@ -1706,12 +1706,20 @@
 }
 
 .article_ed_layer .article_ed_layer__publish_settings .article_ed_layer__publish_settings_ofm,
+.article_ed_layer .article_ed_layer__publish_settings .article_ed_layer__publish_settings_show_author {
+    margin-top: 24px
+}
+
+.article_ed_layer .article_ed_layer__publish_settings .checkbox+.article_ed_layer__publish_settings_show_author {
+    margin-top: 16px
+}
+
 .article_ed_layer .article_ed_layer__publish_settings .article_ed_layer__publish_settings_ads {
     margin-top: 24px
 }
 
 .article_ed_layer .article_ed_layer__publish_settings .checkbox+.article_ed_layer__publish_settings_ads {
-    margin-top: 10px
+    margin-top: 16px
 }
 
 .article_ed_layer .article_ed_layer__publish_settings .article_ed_layer__publish_settings_footer {

@@ -158,7 +158,7 @@ var stVersions = {
     'blog.css': 19669708750,
     'blog.js': 1358605934,
     'html5audio.js': 976782859,
-    'audioplayer.js': 8480847107,
+    'audioplayer.js': 8270990335,
     'audioplayer.css': 18645902157,
     'audio_html5.js': 287741914,
     'audio.js': 2722709996,
@@ -422,7 +422,7 @@ var stVersions = {
     'pe.js': 318083439,
     'pe.css': 14879996109,
     'dev.js': 2375595536,
-    'dev.css': 33890113068,
+    'dev.css': 34093673223,
     'share.css': 28534277841,
     'stickers_office.css': 17068849368,
     'mapbox.js': 262357480,
@@ -532,8 +532,8 @@ var stVersions = {
     'stories.css': 16825425575,
     'cmodules/web/stories_manage.js': 29263696672,
     'stories_manage.css': 71375330800,
-    'article.css': 34727111026,
-    'article_editor.css': 35565307677,
+    'article.css': 32688142026,
+    'article_editor.css': 38010345079,
     'cmodules/web/article.js': 41969418982,
     'cmodules/web/article_layer.js': 27892470495,
     'article_view.js': 24269554951,
@@ -636,4 +636,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 136;
+var _rnd = 2935;

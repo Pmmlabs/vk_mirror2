@@ -1127,6 +1127,34 @@ input.dev_input_simular {
     background-image: url('/images/dev/banners/community_widgets.jpg')
 }
 
+.dev_main_featured .dev_main_featured_banners_bg_item.dev_main_featured_banners_bg_vkapps {
+    background-image: url('/images/landings/services/hero.jpg')
+}
+
+@media only screen and (min-width: 1438px) {
+    .dev_main_featured .dev_main_featured_banners_bg_item.dev_main_featured_banners_bg_vkapps {
+        background-image: url('/images/landings/services/hero@2x.jpg')
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .dev_main_featured .dev_main_featured_banners_bg_item.dev_main_featured_banners_bg_vkapps {
+        background-image: url('/images/landings/services/hero@2x.jpg')
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2.66666667),
+(-webkit-min-device-pixel-ratio: 3),
+(-o-min-device-pixel-ratio: 8/3),
+(-webkit-min-device-pixel-ratio: 2.6666666666666665),
+(min-resolution: 256dpi) {
+    .dev_main_featured .dev_main_featured_banners_bg_item.dev_main_featured_banners_bg_vkapps {
+        background-image: url('/images/landings/services/hero@3x.jpg')
+    }
+}
+
 .dev_main_featured .dev_main_featured_banners_buttons {
     position: absolute;
     bottom: 24px;

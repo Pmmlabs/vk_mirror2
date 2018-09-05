@@ -15753,6 +15753,19 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     }
 }
 
+@media (max-width: 343px) {
+    .mailScrap_isChannel .audioPlaylistSnippet__cell_cover,
+    .mi_forwarded .mi_forwarded .mi_forwarded .audioPlaylistSnippet__cell_cover {
+        display: none
+    }
+}
+
+@media (max-width: 387px) {
+    .mailScrap_isChannel .mi_forwarded .mi_forwarded .mi_forwarded .audioPlaylistSnippet__cell_cover {
+        display: none
+    }
+}
+
 .audioPlaylistSnippet__cell_info {
     padding: 9px 0 0 12px;
     min-height: 100%;
@@ -21388,7 +21401,7 @@ figure[data-type="102"] .article_object_video_play {
     left: 6px
 }
 
-.pinnedMsg__hide.uMailButton {
+.pinnedMsg__hide.MailButton {
     width: 24px;
     height: 24px;
     position: absolute;
@@ -39075,7 +39088,42 @@ body.apps_settingsPageBody {
     -moz-box-flex: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
-    min-width: 0
+    min-width: 0;
+    position: relative
+}
+
+.msg__actions {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 24px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.msg__actions~.msg__text {
+    margin-right: 36px;
+    min-height: 24px
+}
+
+.msg__actionForward.MailButton {
+    width: 24px;
+    height: 24px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20fill%3D%22%23528bcc%22%20d%3D%22M.322%2018.25C1.848%2011.688%205.832%208.174%2012.1%207.87V4.402a1.317%201.317%200%200%201%202.17-1.004l8.939%207.598a1.317%201.317%200%200%201%200%202.008l-8.939%207.598a1.317%201.317%200%200%201-2.17-1.004V16.16c-4.647.12-7.916%201.19-9.836%203.153A1.15%201.15%200%200%201%20.322%2018.25zM13%209.65c-5.262%200-8.669%202.308-10.358%207.055C5.096%2015.124%208.555%2014.35%2013%2014.35h.9v4.204L21.61%2012%2013.9%205.446V9.65H13z%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat
+}
+
+.messenger_actionsOpen .msg__actions {
+    display: none
 }
 
 .msg__head {
@@ -39808,10 +39856,10 @@ body.apps_settingsPageBody {
 .mailActs:not(.mailActs_canImportant) .mailActs__icon_type_important,
 .mailActs:not(.mailActs_canPin) .mailActs__chevronListItem_type_pin,
 .mailActs:not(.mailActs_canPin) .mailActs__icon_type_pin,
-.mailActs_isVkcomgroup .mailActs__button_type_reply,
-.mailActs_isVkcomgroup .mailActs__chevronListItem_type_pin,
-.mailActs_isVkcomgroup .mailActs__icon_type_pin,
-.mailActs_isVkcomgroup .mailActs__icon_type_remove {
+.mailActs_isChannel .mailActs__button_type_reply,
+.mailActs_isChannel .mailActs__chevronListItem_type_pin,
+.mailActs_isChannel .mailActs__icon_type_pin,
+.mailActs_isChannel .mailActs__icon_type_remove {
     display: none
 }
 
@@ -40380,7 +40428,7 @@ body.apps_settingsPageBody {
     }
 }
 
-.uMailButton {
+.MailButton {
     margin: 0;
     padding: 0;
     border: none;
