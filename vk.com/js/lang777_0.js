@@ -292,6 +292,7 @@ global_search_params = "��������� ������";
 global_share_title_required = "������� ��������� ��� ������.";
 global_to_top = "������";
 global_try_to_activate = "������ ������� ����? �������� ����������<br>{link}��������� ����� ��������� ������� �{\/link}";
+global_type_narrative = "�����";
 global_unknown_error = "����������� ������";
 global_user_is_online = "�� �����";
 global_user_is_online_mobile = "�� ����� � ���������� ��������";

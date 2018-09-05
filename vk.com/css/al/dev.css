@@ -2940,7 +2940,8 @@ input.dev_wrong_val {
     font-size: 16px;
     line-height: 24px;
     margin-top: 16px;
-    color: #505359;
+    margin-bottom: 0;
+    color: #939393;
     letter-spacing: 0.2px;
     width: 600px
 }
