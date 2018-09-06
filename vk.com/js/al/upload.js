@@ -1419,13 +1419,14 @@ if (!window.Upload) {
         getUploadOptions: function(iUpload, file) {
             var options = this.options[iUpload];
             var gid = cur.gid || 0;
-            if ((cur.module === 'public' || cur.module === 'groups') && options.from === 'post') {
-                gid = -cur.oid
+
+            if (inArray(cur.module, ['public', 'groups', 'ads']) && options.from === 'post') {
+                gid = -cur.oid;
             }
 
             Upload.options[iUpload].uploadOptionsXhr = ajax.post('al_video.php?act=get_upload_params', {
                 gid: gid,
-                from: options.from
+                from: options.from,
             }, {
                 onDone: function(videoParams) {
                     var vars = ajx2q(videoParams.vars);
