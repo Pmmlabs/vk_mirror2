@@ -127,6 +127,7 @@ var navMap = {
     '(bugtracker|bugs)($|/)': ['al_bugtracker.php', ['bugtracker.css', 'bugtracker.js']],
     'bugtracker_adm($|/)': ['al_bugtracker_adm.php', ['bugtracker.css', 'bugtracker.js']],
     'landings$': ['landings.php', []],
+    'biz$': ['biz.php', []],
     'ach($|/)': ['achievements.php', ['achievements.css', 'achievements.js']],
     'gmta($|/)': ['gmt_achievements.php', []],
     'memedit($|/)': ['members.php', ['members.css', 'dyn-members.js']],
@@ -156,9 +157,9 @@ var stVersions = {
     'rtl.css': 15879161936,
     'pagination.js': 358700184,
     'blog.css': 19868445195,
-    'blog.js': 1358605934,
+    'blog.js': 3939164531,
     'html5audio.js': 976782859,
-    'audioplayer.js': 8159140539,
+    'audioplayer.js': 6679417294,
     'audioplayer.css': 18844638602,
     'audio_html5.js': 287741914,
     'audio.js': 2722709996,
@@ -201,7 +202,7 @@ var stVersions = {
     'wkview.css': 33389445573,
     'single_pv.css': 1445030012,
     'single_pv.js': 2438273057,
-    'video.js': 2076539384,
+    'video.js': 2350470466,
     'video.css': 25770955004,
     'videocat.js': 3590298689,
     'videocat.css': 20754542932,
@@ -238,7 +239,7 @@ var stVersions = {
     'public.js': 4174128810,
     'pages.css': 25558374270,
     'pages.js': 1162259210,
-    'groups.css': 34986615508,
+    'groups.css': 35426527044,
     'groups.js': 855210675,
     'cmodules/web/groups_create.js': 2554367098,
     'groups_create.css': 17787367248,
@@ -266,7 +267,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 216358317528,
-    'imn.js': 281952955784,
+    'imn.js': 285360194299,
     'im.js': 1322065005,
     'wide_dd.css': 17887861185,
     'wide_dd.js': 452755344,
@@ -485,6 +486,8 @@ var stVersions = {
     'landings/vkvalentine.css': 17107967626,
     'landings/vkvalentine.js': 3463861529,
     'landings/calls.js': 1624757932,
+    'landings/businesspages.css': 6921093617,
+    'landings/businesspages.js': 3384934990,
     'landings/ads.css': 19347544183,
     'landing_aes.js': 17167906988,
     'landings/donors_day.css': 18747398629,
@@ -528,9 +531,9 @@ var stVersions = {
     'voice_message_player.js': 22606389397,
     'cmodules/web/speech_worker_mp3.js': 4119569941,
     'cmodules/web/speech_worker_opus.js': 2818771805,
-    'stories.js': 57097851762,
+    'stories.js': 61302594042,
     'stories.css': 17024162020,
-    'cmodules/web/stories_manage.js': 29263696672,
+    'cmodules/web/stories_manage.js': 25373346093,
     'stories_manage.css': 71574067245,
     'article.css': 32886878471,
     'article_editor.css': 38209081524,
@@ -575,7 +578,7 @@ var stVersions = {
     'ui_gallery.css': 15509929910,
     'cmodules/web/ui_components.js': 4923564620,
     'apps_feed_blocks.css': 16199171519,
-    'lang': 6904
+    'lang': 6905
 };
 var stTypes = {
     fromLib: {
@@ -636,4 +639,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 4101;
+var _rnd = 7096;

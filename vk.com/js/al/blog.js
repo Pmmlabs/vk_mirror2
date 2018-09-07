@@ -658,15 +658,14 @@ var blog = {
         query.platforms = platforms;
 
         var buttonText, photoId = attr('blog_notification_image', 'data-pid');
-        if (platformsList.length == 1 && platformsList[0] != 'web2' || platformsList.length > 1) {
-            if (!photoId) {
-                return showFastBox(getLang('global_error'), cur.lang.notification_create_err_image_select);
-            }
 
-            buttonText = trim(val('notification_button_text'));
-            if (!buttonText) {
-                return ge('notification_button_text').focus();
-            }
+        if (!photoId) {
+            return showFastBox(getLang('global_error'), cur.lang.notification_create_err_image_select);
+        }
+
+        buttonText = trim(val('notification_button_text'));
+        if (!buttonText) {
+            return ge('notification_button_text').focus();
         }
 
         query.type = cur.typeDD.val();

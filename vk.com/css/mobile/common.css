@@ -20402,6 +20402,10 @@ figure[data-type="102"] .article_object_video_play {
     box-sizing: border-box
 }
 
+.basis__headerWithUser {
+    width: 100%
+}
+
 .leftMenu__header .mhb_logo {
     padding-left: 3px!important;
     padding-right: 15px!important
