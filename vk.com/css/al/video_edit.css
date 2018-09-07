@@ -7,6 +7,7 @@
 .video_upload_cancel,
 .video_upload_progress .video_upload_progress_bar,
 .video_upload_progress .video_upload_progress_cancel,
+.video_upload_subtitles_added_item_remove,
 .video_upload_tc_wrap .video_tc_item_check,
 .video_upload_tc_wrap .video_tc_slider_btn,
 .video_upload_tc_wrap .video_tc_upload_btn,
@@ -1251,4 +1252,90 @@
 .video_add_live_tab .video_add_live_trans__privacy_item,
 .video_edit_live_settings_wrap .video_add_live_trans__privacy_item {
     margin-bottom: 5px
+}
+
+.video_upload_subtitles_section {
+    margin-bottom: 20px
+}
+
+.video_upload_subtitles_section_header {
+    margin-top: 0
+}
+
+.video_upload_subtitles_added_item {
+    display: inline-block;
+    white-space: nowrap;
+    background: #dae2ea;
+    color: #55677d;
+    border-radius: 2px;
+    padding: 4px 6px 4px 8px;
+    margin: 0 5px 5px 0;
+    font-size: 12.5px
+}
+
+.video_upload_subtitles_added_item_remove {
+    display: inline-block;
+    vertical-align: baseline;
+    width: 10px;
+    height: 10px;
+    padding: 2px;
+    margin-bottom: -3px;
+    background: url(/images/icons/tag_cross.png) no-repeat 50%;
+    opacity: 0.6
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .video_upload_subtitles_added_item_remove {
+        background-image: url(/images/icons/tag_cross_2x.png);
+        background-size: 10px 10px
+    }
+}
+
+.video_upload_subtitles_added_item_remove:hover {
+    opacity: 1
+}
+
+.video_upload_subtitles_added_message {
+    font-size: 12.5px;
+    color: #939393;
+    margin-top: 5px
+}
+
+.video_upload_subtitles_form {
+    display: block
+}
+
+.video_upload_subtitles_form:after {
+    content: '.';
+    display: block;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    clear: both;
+    visibility: hidden
+}
+
+* html .video_upload_subtitles_form {
+    height: 1%
+}
+
+.video_upload_subtitles_button_file,
+.video_upload_subtitles_input_name.dark,
+.video_upload_subtitles_select_lang_wrap {
+    display: inline-block;
+    float: left;
+    width: 160px;
+    margin-right: 8px
+}
+
+.video_upload_subtitles_button_file {
+    margin-right: 0
+}
+
+.video_upload_subtitles_button_file_input_container {
+    width: 0;
+    height: 0;
+    overflow: hidden
 }
