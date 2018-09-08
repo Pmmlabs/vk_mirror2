@@ -1020,7 +1020,7 @@ var Helpdesk = {
                 }
                 break;
             case "history":
-                t.act = "get_answers", t.mid = nav.objLoc.mid
+                t.act = "get_answers", t.mid = nav.objLoc.mid, t.section = nav.objLoc.section
         }
         return t
     },

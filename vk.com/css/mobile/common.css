@@ -33745,6 +33745,79 @@ body.apps_settingsPageBody {
     display: block
 }
 
+.SplashScreen {
+    background: #fff;
+    text-align: center;
+    min-height: -webkit-calc(100vh - 88px);
+    min-height: -moz-calc(100vh - 88px);
+    min-height: calc(100vh - 88px);
+    padding: 40px 32px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.SplashScreen a {
+    color: #5181b8
+}
+
+.SplashScreen__icon {
+    margin: 13px auto;
+    display: block
+}
+
+.SplashScreen__title {
+    font-size: 17px;
+    line-height: 20px;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #000;
+    margin: 6px 0;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+.SplashScreen__text {
+    line-height: 18px;
+    color: #909499
+}
+
+.SplashScreen__text,
+.SplashScreen__more {
+    margin: 6px 0;
+    font-size: 14px;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+.SplashScreen__more {
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    line-height: 16px;
+    padding: 5px 0
+}
+
 .Bell {
     display: -webkit-box;
     display: -webkit-flex;

@@ -1869,7 +1869,7 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
         a = '<div class="idd_items_wrap"><div class="idd_items_content">',
         l = this;
     each(this._items, function(e, i) {
-        a += t(i)
+        a += "separator" === i ? '<div class="idd_separator"></div>' : t(i)
     }), a += "</div></div>", this._els.popupItems = se(a), this._els.popupHeader = se(n);
     var l = this;
     addEvent(this._els.popupItems, "click", function(t) {
