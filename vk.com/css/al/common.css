@@ -837,6 +837,87 @@ button.flat_btn_lock {
     background: #e1e7ed
 }
 
+.button_action_light {
+    border: none;
+    color: #67707a;
+    font-weight: 500;
+    height: 26px;
+    font-size: 14px;
+    cursor: pointer;
+    padding-left: 30px;
+    margin-right: 10px;
+    background-color: transparent;
+    position: relative
+}
+
+.button_action_light:hover {
+    color: #48515a
+}
+
+.button_action_light:hover:before {
+    opacity: 1
+}
+
+.button_action_light.activated {
+    color: #5181b8;
+    font-weight: 500
+}
+
+.button_action_light:before {
+    content: '';
+    display: block;
+    position: absolute;
+    background-repeat: no-repeat;
+    width: 26px;
+    height: 26px;
+    left: 0;
+    top: 0;
+    opacity: 0.7
+}
+
+.button_action_light_share:before {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20height%3D%22100%25%22%20width%3D%22100%25%22%3E%3Ctitle%3Eshare_outline_24%3C%2Ftitle%3E%3Cpath%20d%3D%22M0%2C0H24V24H0Z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M12.1%2C7.87V4.4a1.32%2C1.32%2C0%2C0%2C1%2C2.17-1L23.21%2C11a1.32%2C1.32%2C0%2C0%2C1%2C.15%2C1.86l-.15.15-8.94%2C7.6a1.32%2C1.32%2C0%2C0%2C1-2.17-1V16.16c-4.68.11-8%2C1.09-9.89%2C2.87a1.15%2C1.15%2C0%2C0%2C1-1.9-1.11C1.84%2C11.56%2C5.82%2C8.16%2C12.1%2C7.87Zm1.8-2.42v4.2H13c-5.3%2C0-8.72%2C2.25-10.39%2C6.86C5.06%2C15.06%2C8.53%2C14.35%2C13%2C14.35h.9v4.2L21.61%2C12Z%22%20fill%3D%22%23828a99%22%2F%3E%3C%2Fsvg%3E");
+    background-size: 24px
+}
+
+.button_action_light_bookmark:before {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20opacity%3D%22.4%22%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20stroke%3D%22%2399A2AD%22%20stroke-width%3D%222%22%20d%3D%22M12.459%203.283L14.916%209.1l5.646.556a.5.5%200%200%201%20.275.878l-4.459%203.804%201.584%205.927a.5.5%200%200%201-.777.533l-5.186-3.76-5.187%203.76a.5.5%200%200%201-.776-.533l1.583-5.927-4.46-3.804a.5.5%200%200%201%20.276-.878L9.08%209.1l2.458-5.817a.5.5%200%200%201%20.921%200z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+}
+
+.button_action_light_bookmark.activated:before {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20opacity%3D%22.4%22%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20fill%3D%22%23528BCC%22%20stroke%3D%22%23528BCC%22%20stroke-width%3D%222%22%20d%3D%22M12.46%203.31l2.453%205.841%205.64.56a.5.5%200%200%201%20.277.876l-4.457%203.827%201.581%205.957a.5.5%200%200%201-.778.532L12%2017.126l-5.176%203.777a.5.5%200%200%201-.778-.532l1.581-5.957-4.457-3.827a.5.5%200%200%201%20.276-.877l5.64-.559%202.453-5.841a.5.5%200%200%201%20.922%200z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    opacity: 1
+}
+
+.button_action_light_more {
+    position: relative;
+    padding-left: 0;
+    padding-right: 16px
+}
+
+.button_action_light_more:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 0;
+    left: auto;
+    background-image: url(/images/svg_icons/post_more.svg);
+    background-size: cover;
+    width: 16px;
+    height: 16px
+}
+
+.button_action_light_more .ui_actions_menu {
+    top: 38px;
+    right: -23px;
+    text-align: left
+}
+
+.button_action_light_more.ui_actions_menu_wrap.shown .ui_actions_menu {
+    top: 28px
+}
+
 .fifa_confettiLink {
     position: relative;
     cursor: pointer;

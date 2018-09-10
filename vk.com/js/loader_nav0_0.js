@@ -146,7 +146,7 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 1318650823,
     'common.js': 1161,
-    'common.css': 47259185941,
+    'common.css': 47740437009,
     'cmodules/web/common_web.js': 8,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
@@ -277,10 +277,10 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 1408151763,
+    'feed.js': 1036902562,
     'feed.css': 22163929191,
-    'privacy.js': 2664785909,
-    'privacy.css': 12517489292,
+    'privacy.js': 1338890736,
+    'privacy.css': 13068748610,
     'apps.css': 31546199301,
     'apps.js': 509919053,
     'apps_edit.js': 2493199203,
@@ -535,7 +535,7 @@ var stVersions = {
     'stories.css': 13979974776,
     'cmodules/web/stories_manage.js': 25373346093,
     'stories_manage.css': 68529880001,
-    'article.css': 29842691227,
+    'article.css': 30702793016,
     'article_editor.css': 35164894280,
     'cmodules/web/article.js': 41969418982,
     'cmodules/web/article_layer.js': 28890535383,
@@ -575,8 +575,8 @@ var stVersions = {
     'community_bot.js': 1928249077,
     'community_bot.css': 3742743729,
     'translation_discussions.js': 1145389133,
-    'ui_gallery.css': 12465742666,
-    'cmodules/web/ui_components.js': 4923564620,
+    'ui_gallery.css': 13321193751,
+    'cmodules/web/ui_components.js': 2130032238,
     'apps_feed_blocks.css': 13154984275,
     'lang': 6905
 };
@@ -639,4 +639,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 215;
+var _rnd = 7022;

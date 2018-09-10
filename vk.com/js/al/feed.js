@@ -1830,7 +1830,7 @@ var Feed = {
                         }))), uiGetGallery(o).addMore(s, !t), cur.friends_recomm_from = t
                     }
                 })
-            }), new uiGallery(o, r)
+            }), new UIGallery(o, r)
         }
         Wall.onPostLoaded(e, t)
     },

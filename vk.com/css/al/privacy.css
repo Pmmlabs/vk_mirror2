@@ -474,6 +474,18 @@
     padding-right: 210px
 }
 
+.flist_pagination input.ui_search_field {
+    padding-right: 250px
+}
+
+.flist_pagination .ui_search_reset {
+    display: block
+}
+
+.flist_pagination.flist_select_items .ui_search_reset {
+    right: 200px
+}
+
 .privacy_dropdown {
     position: absolute;
     cursor: pointer;
