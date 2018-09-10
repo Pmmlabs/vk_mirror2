@@ -1,13 +1,13 @@
 var navMap = {
     '<void>': ['al_index.php', ['index.css', 'index.js']],
     '<other>': ['al_profile.php', ['profile.css', 'page.css', 'profile.js', 'page.js']],
-    'public\\d+($|/)': ['al_public.php', ['public.css', 'page.css', 'public.js', 'page.js']],
-    'event\\d+($|/)': ['al_events.php', ['groups.css', 'page.css', 'groups.js', 'page.js']],
-    'club\\d+($|/)': ['al_groups.php', ['groups.css', 'page.css', 'groups.js', 'page.js']],
-    'publics\\d+($|/)': ['al_public.php', ['public.css', 'page.css', 'public.js', 'page.js']],
+    'public\\d+($|/)': ['al_public.php', ['public.css', 'page.css', 'cmodules/web/public.js', 'page.js']],
+    'event\\d+($|/)': ['al_events.php', ['groups.css', 'page.css', 'cmodules/web/groups.js', 'page.js']],
+    'club\\d+($|/)': ['al_groups.php', ['groups.css', 'page.css', 'cmodules/web/groups.js', 'page.js']],
+    'publics\\d+($|/)': ['al_public.php', ['public.css', 'page.css', 'cmodules/web/public.js', 'page.js']],
     'groups(\\d+)?$': ['al_groups.php', ['groups.css', 'cmodules/web/groups_list.js', 'indexer.js']],
     'groups_create$': ['al_groups.php', []],
-    'events$': ['al_groups.php', ['groups.css', 'page.css', 'groups.js', 'page.js']],
+    'events$': ['al_groups.php', ['groups.css', 'page.css', 'cmodules/groups.js', 'page.js']],
     'changemail$': ['al_login.php', ['reg.css']],
     'mail($|/)': ['al_mail.php', ['im.css', 'imn.js']],
     'write[-]?\\d*($|/)': ['al_mail.php', ['im.css', 'imn.js']],
@@ -236,17 +236,17 @@ var stVersions = {
     'page.css': 44905999476,
     'page_help.css': 21978676596,
     'public.css': 24738676125,
-    'public.js': 4174128810,
+    'cmodules/web/public.js': 329399197,
     'pages.css': 22514187026,
     'pages.js': 1162259210,
     'groups.css': 32382339800,
-    'groups.js': 855210675,
+    'cmodules/web/groups.js': 4073681921,
     'cmodules/web/groups_create.js': 2554367098,
     'groups_create.css': 14743180004,
     'cmodules/web/groups_list.js': 2410198595,
     'cmodules/web/GroupsEdit.js': 26680679963,
     'groups_edit.css': 49377736017,
-    'groups_edit.js': 166198560,
+    'cmodules/web/groups_edit.js': 1630043338,
     'profile.css': 25591584949,
     'profile.js': 2415404742,
     'calendar.css': 17006788821,
@@ -639,4 +639,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 7022;
+var _rnd = 3229;
