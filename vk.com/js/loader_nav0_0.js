@@ -537,9 +537,9 @@ var stVersions = {
     'stories_manage.css': 68529880001,
     'article.css': 30702793016,
     'article_editor.css': 35164894280,
-    'cmodules/web/article.js': 41969418982,
-    'cmodules/web/article_layer.js': 28890535383,
-    'article_view.js': 25267619839,
+    'cmodules/web/article.js': 40948915147,
+    'cmodules/web/article_layer.js': 29040503654,
+    'article_view.js': 25417588110,
     'bookmarks.css': 12876251427,
     'cmodules/web/bookmarks.js': 2999228058,
     'sf.css': 15011676970,
@@ -643,4 +643,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 9911;
+var _rnd = 4620;
