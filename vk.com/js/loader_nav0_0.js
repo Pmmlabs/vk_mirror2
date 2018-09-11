@@ -144,7 +144,7 @@ var navMap = {
 };
 var stVersions = {
     'nav': 0,
-    'fonts_cnt.css': 1318650823,
+    'fonts_cnt.css': 2608590508,
     'common.js': 1161,
     'common.css': 47740437009,
     'cmodules/web/common_web.js': 8,
@@ -246,7 +246,7 @@ var stVersions = {
     'cmodules/web/groups_list.js': 2410198595,
     'cmodules/web/GroupsEdit.js': 26680679963,
     'groups_edit.css': 49377736017,
-    'cmodules/web/groups_edit.js': 1630043338,
+    'cmodules/web/groups_edit.js': 1273703774,
     'profile.css': 25591584949,
     'profile.js': 2415404742,
     'calendar.css': 17006788821,
@@ -438,7 +438,7 @@ var stVersions = {
     'ui.js': 1385249136,
     'ui_common.js': 2022847806,
     'ui_common.css': 11602141347,
-    'cmodules/web/ui_media_selector.js': 3277437220,
+    'cmodules/web/ui_media_selector.js': 3687106200,
     'ui_media_selector.css': 26475537632,
     'ui_manual.css': 13312549192,
     'admin.css': 15019855142,
@@ -486,7 +486,7 @@ var stVersions = {
     'landings/vkvalentine.css': 14063780382,
     'landings/vkvalentine.js': 3463861529,
     'landings/calls.js': 1624757932,
-    'landings/businesspages.css': 6921093617,
+    'landings/businesspages.css': 5850546617,
     'landings/businesspages.js': 3384934990,
     'landings/ads.css': 16303356939,
     'landing_aes.js': 17167906988,
@@ -561,6 +561,9 @@ var stVersions = {
     'lead_forms_app.css': 15224378641,
     'time_spent.js': 732637085,
     'cmodules/web/app_info.js': 3251828426,
+    'cmodules/web/audio_upload.js': 5357671596,
+    'cmodules/web/photo_crop.js': 4521557158,
+    'photo_crop.css': 1559756484,
     'cmodules/web/grip.js': 4164501492,
     'cmodules/web/group_invite_chat.js': 41067321178,
     'group_invite_chat.css': 78183015237,
@@ -578,7 +581,8 @@ var stVersions = {
     'ui_gallery.css': 13321193751,
     'cmodules/web/ui_components.js': 2130032238,
     'apps_feed_blocks.css': 13154984275,
-    'lang': 6905
+    'cmodules/web/landing_transparency.js': 250661320,
+    'lang': 6907
 };
 var stTypes = {
     fromLib: {
@@ -639,4 +643,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 3229;
+var _rnd = 9911;
