@@ -1567,5 +1567,8 @@ div.profile_online {
 .profile_closed_wall_dummy .profile_closed_wall_dummy_title {
     font-size: 14px;
     line-height: 18px;
-    padding-bottom: 8px
+    padding-bottom: 8px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }

@@ -210,7 +210,7 @@ var stVersions = {
     'videoview.css': 26912467166,
     'video_edit.js': 2135196486,
     'video_edit.css': 20014010885,
-    'video_upload.js': 9808855203,
+    'video_upload.js': 9246333629,
     'video_youtube.js': 458412745,
     'video_youtube.css': 11734318170,
     'videoplayer.js': 86259847872,
@@ -247,7 +247,7 @@ var stVersions = {
     'cmodules/web/GroupsEdit.js': 26680679963,
     'groups_edit.css': 49377736017,
     'cmodules/web/groups_edit.js': 1273703774,
-    'profile.css': 25591584949,
+    'profile.css': 24726352217,
     'profile.js': 2415404742,
     'calendar.css': 17006788821,
     'calendar.js': 4203451993,
@@ -643,4 +643,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 4620;
+var _rnd = 2440;
