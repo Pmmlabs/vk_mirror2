@@ -7719,6 +7719,34 @@ div.create_poll_cb {
     z-index: 100
 }
 
+.medadd_c_podcast .medadd_c_podcast_thumb {
+    margin-right: 10px;
+    width: 36px;
+    border-radius: 4px
+}
+
+.medadd_c_podcast .medadd_c_podcast_title {
+    display: block;
+    margin-top: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 280px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.medadd_c_podcast .medadd_c_podcast_type {
+    margin-top: 4px;
+    color: #888
+}
+
+.medadd_c_podcast .page_media_x_wrap {
+    margin-top: 4px;
+    z-index: 100
+}
+
 .medadd_c_mask .medadd_c_story_thumb,
 .medadd_c_story .medadd_c_story_thumb {
     background: 50%;

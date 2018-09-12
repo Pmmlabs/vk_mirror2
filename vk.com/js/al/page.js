@@ -212,7 +212,7 @@ var Page = {
             }
         },
         notificationSettingsTlt: '',
-        onSubscriptionItemOnClick: function(el, subHash, liveHash) {
+        onSubscriptionItemOnClick: function(el) {
             Page.createSubscriptionTooltip();
             if (hasClass(el, 'on')) {
                 Page.showSubscriptionTooltip(el);
@@ -225,6 +225,10 @@ var Page = {
                 var liveNotify = ge('group_notification_setting_live');
                 if (liveNotify && !hasClass(liveNotify, 'unshown')) {
                     liveNotify.click();
+                }
+                var podcastsNotify = ge('group_notification_setting_podcasts');
+                if (podcastsNotify && !hasClass(podcastsNotify, 'unshown')) {
+                    podcastsNotify.click();
                 }
             }
         },
@@ -298,6 +302,29 @@ var Page = {
             }, {
                 onDone: function(text) {
                     cur.toggleLiveSubscriptionAct = !act;
+                    if (onDone) {
+                        onDone(text);
+                    } else {
+                        val(btn, text);
+                    }
+                },
+                showProgress: Page.actionsDropdownLock.pbind(btn),
+                hideProgress: Page.actionsDropdownUnlock.pbind(btn)
+            });
+            cancelEvent(ev);
+        },
+        togglePodcastsSubscription: function(btn, hash, act, ev, onDone) {
+            if (cur.togglePodcastsSubscriptionAct != undefined) {
+                act = cur.togglePodcastsSubscriptionAct;
+            }
+            ajax.post('al_wall.php', {
+                act: 'a_toggle_podcasts_subscription',
+                subscribe: act ? 1 : 0,
+                owner_id: cur.oid,
+                hash: hash
+            }, {
+                onDone: function(text) {
+                    cur.togglePodcastsSubscriptionAct = !act;
                     if (onDone) {
                         onDone(text);
                     } else {
@@ -4045,6 +4072,11 @@ var Wall = {
                         var prettyCardsResult = addmedia.prettyCardGallery.getSendData();
                         attachVal = prettyCardsResult.attachVal;
 
+                        break;
+                    case 'podcast':
+                        if (hasClass(this[2], 'attach_disabled')) {
+                            return false;
+                        }
                         break;
                 }
                 if (this[3] && trim(msg) == this[3]) {
@@ -7881,6 +7913,13 @@ var Wall = {
                 from: 'post',
                 sortable: 1
             }, opts.media_opts || {}));
+
+            var podcastMenu = domByClass(cur.wallAddMedia.menu.menuNode, '_type_podcast');
+            var official = ge('official');
+
+            if (podcastMenu && official && !(domData(domClosest('_submit_post_box', official), 'from-oid') == cur.postTo)) {
+                hide(podcastMenu);
+            }
         }
 
         cur.withUpload = window.WallUpload && !browser.safari_mobile && inArray(cur.wallType, ['all', 'own', 'feed', 'full_all', 'ads_promoted_stealth']) && Wall.withMentions && cur.wallUploadOpts;
@@ -8026,6 +8065,23 @@ var Wall = {
         }
 
         triggerEvent(geByClass1('submit_post_field', wrap), 'td_update');
+
+        var podcastMenu = domByClass(cur.wallAddMedia.menu.menuNode, '_type_podcast');
+
+        if (podcastMenu) {
+            var podcastVisible = cur.postTo == from;
+
+            each((cur.wallAddMedia.getMedias() || []), function(index, media) {
+                if (media[0] === 'podcast') {
+                    toggleClass(media[2], 'attach_disabled', !podcastVisible);
+
+                    podcastVisible = false;
+                    return false;
+                }
+            });
+
+            toggle(podcastMenu, podcastVisible);
+        }
 
         return false;
     },

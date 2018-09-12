@@ -227,6 +227,10 @@
     margin-bottom: 30px
 }
 
+.bt_page_content:empty {
+    display: none
+}
+
 .bt_terms_content {
     padding: 20px 45px;
     line-height: 160%

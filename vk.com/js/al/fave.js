@@ -113,7 +113,7 @@ var Fave = {
         }
     },
     scrollCheck: function() {
-        if (!(browser.mobile || cur.isListLoading || cur.disableAutoMore || (cur.section || "").indexOf("likes_") && "articles" !== cur.section)) {
+        if (!(browser.mobile || cur.isListLoading || cur.disableAutoMore || (cur.section || "").indexOf("likes_") && "articles" !== cur.section && "podcasts" !== cur.section)) {
             var e = ge("show_more_" + cur.section);
             if (isVisible(e)) {
                 var r = document.documentElement,

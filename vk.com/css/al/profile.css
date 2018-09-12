@@ -1572,3 +1572,7 @@ div.profile_online {
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto
 }
+
+.profile_closed_wall_dummy .profile_closed_wall_dummy_after {
+    padding-top: 8px
+}
