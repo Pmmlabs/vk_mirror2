@@ -1213,14 +1213,14 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
 }, AudioPage.showActionTooltip = function(e, t) {
     var i = [3, -8, 0],
         a = currentAudioPage(e).isLayer();
-    hasClass(e, "_audio_page_player_add") ? audioShowActionTooltip(e, i, a) : showTooltip(e, {
+    hasClass(e, "_audio_page_player_add") ? audioShowActionTooltip(e, i, a) : (hasClass(e, "_audio_page_player_play_rate") && (i[0] = -17), showTooltip(e, {
         text: t,
         black: 1,
         shift: i,
         appendParentCls: "_audio_page_player",
         forcetodown: a,
         needLeft: a
-    })
+    }))
 }, AudioPage.prototype.onHide = function() {
     var e = this;
     cur.nav = cur.nav.filter(function(t) {
@@ -1571,7 +1571,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         }), s.on(this, AudioPlayer.EVENT_ADDED, function(e, t) {
             e = AudioUtils.asObject(e), e && e.fullId == t && addClass(f, "audio_player_btn_added")
         }), s.on(this, AudioPlayer.EVENT_REMOVED, function(e, t) {
-            e = AudioUtils.asObject(e), e && e.fullId == t && removeClass(f, "audio_player_btn_added");
+            e = AudioUtils.asObject(e), e && e.fullId == t && removeClass(f, "audio_player_btn_added")
         }), s.on(this, AudioPlayer.EVENT_PLAY, function(e, l, d) {
             delete o._readyAudio, data(r, "audio", e), a(), t(e), addClass(p, "audio_playing"), l && !cur.audioStartReadyAudio && (o._trackSlider.setBackValue(0), s.isAdPlaying() || (h.innerHTML = i(0, AudioUtils.asObject(e).duration)), n.setAttribute("title", ""), n.titleSet = !1), y.innerHTML = getLang("global_audio_pause"), o.updateCurrentPlayingInfo(), o.updateShuffleButton(), o.updateFaveButton()
         }), s.on(this, AudioPlayer.EVENT_PAUSE, function(e) {

@@ -5181,7 +5181,7 @@ input.wide_button {
 }
 
 .audio_item .i_play {
-    background: url(/images/mobile/audio_icons.png?8) no-repeat 0 0;
+    background: url(/images/mobile/audio_icons.png?10) no-repeat 0 0;
     float: left;
     width: 24px;
     height: 24px
@@ -11686,7 +11686,7 @@ img[src^="/images/mobile/places/"] {
     width: 24px;
     height: 24px;
     float: left;
-    background: url(/images/mobile/audio_icons.png?8) no-repeat 0 0
+    background: url(/images/mobile/audio_icons.png?10) no-repeat 0 0
 }
 
 .audio-msg-track.audio-msg-track_playing .audio-msg-track--btn {
@@ -12294,6 +12294,18 @@ a.Popup__headerCorner {
 ._touch .Btn_theme_outline.hover {
     color: #4872a3;
     border-color: #4872a3
+}
+
+.Btn_theme_mono {
+    height: 36px;
+    line-height: 36px;
+    padding: 0 14px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    border-radius: 16px;
+    font-weight: 600;
+    color: #000;
+    background: #fff
 }
 
 .Btn_theme_large {
@@ -16331,6 +16343,85 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     opacity: 1
 }
 
+.PodcastPage,
+.PodcastPage__actions {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: column nowrap;
+    -ms-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+    width: 100%
+}
+
+.PodcastPage {
+    height: -webkit-calc(100vh - 48px);
+    height: -moz-calc(100vh - 48px);
+    height: calc(100vh - 48px);
+    padding-top: 48px;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    background-color: #fff
+}
+
+.PodcastPage__logo {
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+    height: 48px;
+    width: 48px;
+    margin-bottom: 29px;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-image: url('/images/mobile/podcast_placeholder_48.png')
+}
+
+.vk_2x .PodcastPage__logo {
+    background-image: url('/images/mobile/podcast_placeholder_48_2x.png')
+}
+
+.PodcastPage__title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+    text-align: center;
+    margin: 0 32px 8px
+}
+
+.PodcastPage__subtitle {
+    font-size: 15px;
+    line-height: 1.33;
+    text-align: center;
+    margin: 0 32px 14px
+}
+
+.PodcastPage__actions {
+    text-align: center
+}
+
+.PodcastPage__actions * {
+    padding: 0 14px 10px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+@media (min-width: 320px) {
+    .PodcastPage__actions * {
+        padding: 0 8px;
+        margin: 0 14px 10px
+    }
+}
+
 .articleSnippet {
     position: relative
 }
@@ -17397,14 +17488,23 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     content: '';
     position: absolute;
     border: 1px solid rgba(0, 0, 0, .12);
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
     border-radius: 4px;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     pointer-events: none
+}
+
+.snippet:after,
+.snippet_type_podcast {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px
+}
+
+.snippet_type_podcast {
+    background: #2c2d2e;
+    border-radius: 4px
 }
 
 .snippet__icon {
@@ -17448,8 +17548,31 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     background-image: none!important
 }
 
+.snippet_type_podcast .snippet__icon {
+    min-width: 120px;
+    min-height: 120px;
+    background-image: url('/images/mobile/podcast_placeholder_120.png')
+}
+
+.vk_2x .snippet_type_podcast .snippet__icon {
+    background-image: url('/images/mobile/podcast_placeholder_120_2x.png')
+}
+
+.snippet_type_podcast .snippet__icon_error {
+    width: unset;
+    height: unset;
+    min-height: 78px;
+    min-width: 78px
+}
+
 .snippet__texts {
     margin: 8px
+}
+
+.snippet_type_podcast .snippet__texts {
+    position: relative;
+    margin: 12px 8px 0;
+    width: 100%
 }
 
 .snippet__title {
@@ -17457,12 +17580,46 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     margin-bottom: 2px
 }
 
+.snippet_type_podcast .snippet__title {
+    color: #fff;
+    font-size: 14px;
+    margin-right: 32px
+}
+
 .snippet__subtitle {
+    position: relative;
     color: #888;
     margin-bottom: 11px;
     overflow: hidden;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis
+}
+
+.snippet_type_podcast .snippet__subtitle {
+    font-size: 12px
+}
+
+.snippet_type_podcast .snippet__subtitle:after {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    content: '';
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    background-position: 0 -416px;
+    background-image: url('/images/mobile/icons/audio_icons.png?10')
+}
+
+.vk_2x .snippet_type_podcast .snippet__subtitle:after {
+    background-image: url('/images/mobile/icons/audio_icons_2x.png?10')
+}
+
+.snippet__error {
+    margin: 12px 0 0 12px;
+    color: #ddd;
+    font-size: 14px;
+    line-height: 18px
 }
 
 .snippet__body {
@@ -17485,6 +17642,72 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .vk_flex_no .snippet__icon {
     display: table-cell
+}
+
+.snippet.snippet_type_podcast {
+    height: 120px
+}
+
+.snippet.snippet_type_podcast .audio_item {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    margin-left: 0px!important
+}
+
+.snippet.snippet_type_podcast .ai_play {
+    margin-right: 0!important
+}
+
+.snippet.snippet_type_podcast .ai_info {
+    margin-right: 12px
+}
+
+.snippet.snippet_type_podcast .snippet__body {
+    position: absolute;
+    bottom: 16px
+}
+
+.snippet.snippet_type_podcast .Popup__headerTitle {
+    white-space: normal
+}
+
+.snippet.snippet_type_podcast .snippet__actions {
+    margin-top: 14px
+}
+
+.snippet.snippet_type_podcast .snippet__actions>* {
+    margin-bottom: 10px;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+.snippet.snippet_type_podcast .snippet__actions>:last-child {
+    margin-bottom: 16px
+}
+
+.snippet.snippet_type_podcast .snippet__favorite {
+    position: absolute;
+    z-index: 10;
+    right: 8px;
+    top: 8px;
+    width: 32px;
+    height: 32px;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    background-position: 0 100px;
+    background-image: url('/images/mobile/icons/audio_icons.png?10')
+}
+
+.vk_2x .snippet.snippet_type_podcast .snippet__favorite {
+    background-image: url('/images/mobile/icons/audio_icons_2x.png?10')
+}
+
+.snippet.snippet_type_podcast .snippet__favorite_active {
+    background-position: 0 68px
 }
 
 .prettyCard {
@@ -25983,7 +26206,7 @@ body.apps_settingsPageBody {
 .r .ai_menu_toggle_button,
 .r .audio_item_explicit .ai_title:after,
 .r .audioPlaylist .wi_actions_btn .i_icon {
-    background-image: url('/images/mobile/icons/audio_icons.png?8');
+    background-image: url('/images/mobile/icons/audio_icons.png?10');
     background-repeat: no-repeat;
     -moz-background-size: 100%;
     -o-background-size: 100%;
@@ -26001,7 +26224,7 @@ body.apps_settingsPageBody {
 .vk_2x .audioPlaylistSnippet__play:before,
 .vk_2x.r .ai_menu_toggle_button,
 .vk_2x.r .audio_item_explicit .ai_title:after {
-    background-image: url('/images/mobile/icons/audio_icons_2x.png?8')
+    background-image: url('/images/mobile/icons/audio_icons_2x.png?10')
 }
 
 .Audio__menuContainer,
@@ -26233,6 +26456,37 @@ body.apps_settingsPageBody {
     .r .wall_item .i_play:after {
         background-position: 0 0px
     }
+}
+
+.Audio__explicitIcon,
+.r .i_explicit {
+    display: inline-block;
+    position: relative;
+    height: 11px;
+    width: 11px
+}
+
+.Audio__explicitIcon:after,
+.r .i_explicit:after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    right: 0;
+    left: -4px;
+    bottom: 0;
+    margin: auto;
+    height: 24px;
+    width: 24px;
+    background-image: url('/images/mobile/icons/audio_icons.png?10');
+    background-position: 0 122px;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%
+}
+
+.vk_2x .Audio__explicitIcon:after,
+.vk_2x.r .i_explicit:after {
+    background-image: url('/images/mobile/icons/audio_icons_2x.png?10')
 }
 
 .article_dark .i_play:after {
@@ -26770,6 +27024,38 @@ body.apps_settingsPageBody {
     }
 }
 
+.r .ai_theme_white .i_play {
+    height: 24px;
+    width: 24px
+}
+
+.r .ai_theme_white .i_play:after {
+    -moz-background-size: 32px;
+    -o-background-size: 32px;
+    background-size: 32px;
+    background-position: 0px -176px!important
+}
+
+.r .ai_theme_white.ai_playing .i_play:after {
+    background-position: 0px -200px!important
+}
+
+.r .ai_theme_white .aic_slider {
+    background-color: #fff
+}
+
+.r .ai_theme_white .aic_progress_line {
+    background-color: #939393
+}
+
+.r .ai_theme_white .aic_load_line {
+    background-color: #5c5c5c
+}
+
+.r .ai_theme_white .aic_back_line {
+    background-color: #4b4b4b
+}
+
 .ai_noProgress .ai_info {
     display: -webkit-box;
     display: -webkit-flex;
@@ -26853,6 +27139,76 @@ body.apps_settingsPageBody {
     margin: 0!important;
     font-size: 13px!important;
     position: static
+}
+
+.ai_noText.ai_noText.ai_noText .ai_dur {
+    font-size: 13px;
+    top: 0;
+    right: -12px
+}
+
+.ai_noText.ai_noText.ai_noText .aic_line {
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px
+}
+
+.ai_noText.ai_noText.ai_noText .ai_controls {
+    font-size: 13px;
+    right: 48px;
+    bottom: 14px
+}
+
+.ai_noText.ai_noText.ai_noText .ai_label,
+.ai_disabled_controls .ai_menu_wrap,
+.ai_disabled_controls .aic_volume_wrap {
+    display: none
+}
+
+.ai_inline.ai_inline.ai_inline {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.ai_inline.ai_inline.ai_inline .i_play {
+    margin-top: 0
+}
+
+.ai_inline.ai_inline.ai_inline .i_explicit {
+    margin-top: 4px
+}
+
+.ai_inline.ai_inline.ai_inline .ai_info {
+    padding-bottom: 0
+}
+
+.ai_inline.ai_inline.ai_inline .ai_controls {
+    position: unset;
+    width: 100%;
+    margin-top: 6px
+}
+
+.ai_inline.ai_inline.ai_inline .ai_dur {
+    position: unset;
+    margin-bottom: 4px
+}
+
+.ai_inline.ai_inline.ai_inline .ai_dur_wrap {
+    margin-left: 9px
+}
+
+.ai_type_podcast .aic_ln.aid_back_line {
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px
 }
 
 .Button,
@@ -32601,6 +32957,7 @@ body.apps_settingsPageBody {
 .Icon_notify_mention,
 .Icon_notify_message,
 .Icon_notify_photo_tag,
+.Icon_notify_podcasts,
 .Icon_notify_private_post,
 .Icon_notify_push,
 .Icon_notify_push_chat,
@@ -32632,6 +32989,7 @@ body.apps_settingsPageBody {
 .Icon_notify_mention:before,
 .Icon_notify_message:before,
 .Icon_notify_photo_tag:before,
+.Icon_notify_podcasts:before,
 .Icon_notify_private_post:before,
 .Icon_notify_push:before,
 .Icon_notify_push_chat:before,
@@ -32664,6 +33022,7 @@ body.apps_settingsPageBody {
 .vk_2x .Icon_notify_mention:before,
 .vk_2x .Icon_notify_message:before,
 .vk_2x .Icon_notify_photo_tag:before,
+.vk_2x .Icon_notify_podcasts:before,
 .vk_2x .Icon_notify_private_post:before,
 .vk_2x .Icon_notify_push:before,
 .vk_2x .Icon_notify_push_chat:before,
@@ -32785,6 +33144,10 @@ body.apps_settingsPageBody {
     background-position: 0 -1064px
 }
 
+.Icon_notify_podcasts:before {
+    background-position: 0 -1148px
+}
+
 .Icon_notify_mini_birthday,
 .Icon_notify_mini_comment,
 .Icon_notify_mini_follow,
@@ -32800,6 +33163,7 @@ body.apps_settingsPageBody {
 .Icon_notify_mini_mention,
 .Icon_notify_mini_new_post,
 .Icon_notify_mini_photo_tag,
+.Icon_notify_mini_podcast,
 .Icon_notify_mini_private_post,
 .Icon_notify_mini_repost,
 .Icon_notify_mini_request_money,
@@ -32828,6 +33192,7 @@ body.apps_settingsPageBody {
 .Icon_notify_mini_mention:before,
 .Icon_notify_mini_new_post:before,
 .Icon_notify_mini_photo_tag:before,
+.Icon_notify_mini_podcast:before,
 .Icon_notify_mini_private_post:before,
 .Icon_notify_mini_repost:before,
 .Icon_notify_mini_request_money:before,
@@ -32857,6 +33222,7 @@ body.apps_settingsPageBody {
 .vk_2x .Icon_notify_mini_mention:before,
 .vk_2x .Icon_notify_mini_new_post:before,
 .vk_2x .Icon_notify_mini_photo_tag:before,
+.vk_2x .Icon_notify_mini_podcast:before,
 .vk_2x .Icon_notify_mini_private_post:before,
 .vk_2x .Icon_notify_mini_repost:before,
 .vk_2x .Icon_notify_mini_request_money:before,
@@ -32960,6 +33326,10 @@ body.apps_settingsPageBody {
 
 .Icon_notify_mini_friend_found:before {
     background-position: 0 -140px
+}
+
+.Icon_notify_mini_podcast:before {
+    background-position: 0 -580px
 }
 
 .Icon_chevron_down,
@@ -33088,7 +33458,7 @@ body.apps_settingsPageBody {
 .Icon_audio_search:before {
     width: 24px;
     height: 24px;
-    background-image: url('/images/mobile/icons/audio_icons.png?9')
+    background-image: url('/images/mobile/icons/audio_icons.png?10')
 }
 
 .vk_2x .Icon_audio_explicit:before,
@@ -33097,7 +33467,7 @@ body.apps_settingsPageBody {
 .vk_2x .Icon_audio_playWhite:before,
 .vk_2x .Icon_audio_plus:before,
 .vk_2x .Icon_audio_search:before {
-    background-image: url('/images/mobile/icons/audio_icons_2x.png?9')
+    background-image: url('/images/mobile/icons/audio_icons_2x.png?10')
 }
 
 .Icon_audio_playWhite:before {
@@ -45959,7 +46329,7 @@ screen and (min-device-pixel-ratio: 1.5) {
         background-image: url('/images/landings/promo_post/stories/user4_2x.png')!important
     }
     .audio-msg-track .audio-msg-track--btn {
-        background: url(/images/mobile/audio_icons_2x.png?7) no-repeat 0 0;
+        background: url(/images/mobile/audio_icons_2x.png?10) no-repeat 0 0;
         -moz-background-size: 200px 40px!important;
         -o-background-size: 200px 40px!important;
         background-size: 200px 40px!important
