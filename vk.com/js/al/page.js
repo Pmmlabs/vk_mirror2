@@ -9599,6 +9599,14 @@ Composer = {
 
         var noAlias = prefValue.match(/\#[\w_\.\u0400-\u04FF]+$/i) ? true : false;
 
+        // � ���������� �� ��������� ������ �� ���������
+        if (document.activeElement.classList.contains('_im_text')) {
+            // Not found short name
+            if (!/^(?:id|club)\d{1,}$/.test(mention)) {
+                noAlias = true;
+            }
+        }
+
         var isEmoji = (window.Emoji && composer.input.emojiId !== undefined);
         if (isEmoji) {
             suffValue = clean(suffValue);
