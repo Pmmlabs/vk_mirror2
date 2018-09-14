@@ -1696,7 +1696,7 @@ var Tickets = {
                     o = radioval(TicketsEF._getRadioName(t));
                     break;
                 case "hidden":
-                    o = data(a, "value")
+                    o = data(e, "value")
             }
             return o
         },
