@@ -4007,3 +4007,48 @@
     color: #5181b8!important;
     background: #f9fcff!important
 }
+
+.bt_report_change .diffAdd {
+    background: #dfd
+}
+
+.bt_report_change .diffRemove {
+    background: #fdd
+}
+
+.bt_report_change .diffAdd,
+.bt_report_change .diffRemove {
+    display: inline
+}
+
+.bt_report_change .diffAdd.block,
+.bt_report_change .diffRemove.block {
+    display: inline-block
+}
+
+.bt_report_change .diffArrow {
+    display: none
+}
+
+.bt_report_change .diffAddBlock {
+    overflow: hidden;
+    background: #efe
+}
+
+.bt_report_change .diffAddBlock td {
+    background: #f6fff6
+}
+
+.bt_report_change .diffRemoveBlock {
+    overflow: hidden;
+    background: #fee
+}
+
+.bt_report_change .diffRemoveBlock td {
+    background: #fff6f6
+}
+
+.bt_report_change .wall_module {
+    padding-left: 10px;
+    padding-right: 10px
+}

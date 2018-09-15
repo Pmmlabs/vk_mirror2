@@ -1291,7 +1291,7 @@ var Helpdesk = {
         }) : notaBene(s)
     },
     undoClose: function(e, t, s) {
-        var o = s ? "undo_troll_reply" : "undo_close_ticket";
+        var o = s ? "a_undo_troll_reply" : "a_undo_close_ticket";
         ajax.post("helpdesk", {
             act: o,
             ticket_id: e,

@@ -149,7 +149,7 @@ var stVersions = {
     'fonts_cnt.css': 2608590508,
     'common.js': 1161,
     'common.css': 44704225591,
-    'cmodules/web/common_web.js': 9,
+    'cmodules/web/common_web.js': 10,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
     'uncommon.css': 12444341970,
@@ -161,7 +161,7 @@ var stVersions = {
     'blog.css': 16967492813,
     'blog.js': 3939164531,
     'html5audio.js': 976782859,
-    'audioplayer.js': 14244336050,
+    'audioplayer.js': 15420512844,
     'audioplayer.css': 15943686221,
     'audio_html5.js': 287741914,
     'audio.js': 3168383194,
@@ -347,7 +347,7 @@ var stVersions = {
     'docs.css': 23390605505,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 14289517181,
-    'helpdesk.js': 735324322,
+    'helpdesk.js': 2256961138,
     'helpdesk.css': 28523167059,
     'tickets.js': 1178821948,
     'tickets.css': 28728177487,
@@ -362,7 +362,7 @@ var stVersions = {
     'groupinfo.css': 87445652521,
     'ownerinfo.css': 6976608880,
     'bugtracker.js': 3143452052,
-    'bugtracker.css': 24816662569,
+    'bugtracker.css': 22490564500,
     'cmodules/web/bugtracker.js': 25557515335,
     'login.css': 16035289351,
     'cmodules/web/login.js': 3491120396,
@@ -488,7 +488,7 @@ var stVersions = {
     'landings/vkvalentine.css': 14207015244,
     'landings/vkvalentine.js': 3463861529,
     'landings/calls.js': 1624757932,
-    'landings/businesspages.css': 5850546617,
+    'landings/businesspages.css': 5489593385,
     'landings/businesspages.js': 3384934990,
     'landings/ads.css': 16446591801,
     'landing_aes.js': 17167906988,
@@ -567,7 +567,7 @@ var stVersions = {
     'cmodules/web/photo_crop.js': 4423121175,
     'photo_crop.css': 1559756484,
     'cmodules/web/podcast.js': 5641305119,
-    'cmodules/web/podcast_add.js': 2126241932,
+    'cmodules/web/podcast_add.js': 2024979536,
     'cmodules/web/podcast_choose.js': 4574431326,
     'podcast.css': 20094896519,
     'podcast_add.css': 13148444806,
@@ -652,4 +652,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 8390;
+var _rnd = 6964;

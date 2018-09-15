@@ -1272,7 +1272,7 @@ input.wide_button {
 
 .top_author,
 .verified {
-    background-image: url(/images/mobile/skins/icon/statuses.png?8);
+    background-image: url(/images/mobile/skins/icon/statuses.png?9);
     -moz-background-size: 20px;
     -o-background-size: 20px;
     background-size: 20px;
@@ -1318,7 +1318,7 @@ input.wide_button {
 
 .vk_2x .top_author,
 .vk_2x .verified {
-    background-image: url(/images/mobile/skins/icon/statuses_2x.png?8)
+    background-image: url(/images/mobile/skins/icon/statuses_2x.png?9)
 }
 
 .wi_author .top_author,
@@ -6222,7 +6222,7 @@ div.pm_item .pm_counter {
 }
 
 .pp_last_activity .mlvi {
-    background-image: url(/images/mobile/skins/icon/statuses.png?8);
+    background-image: url(/images/mobile/skins/icon/statuses.png?9);
     -moz-background-size: 100%!important;
     -o-background-size: 100%!important;
     background-size: 100%!important;
@@ -6241,7 +6241,7 @@ div.pm_item .pm_counter {
 }
 
 .vk_2x .pp_last_activity .mlvi {
-    background-image: url(/images/mobile/skins/icon/statuses_2x.png?8)
+    background-image: url(/images/mobile/skins/icon/statuses_2x.png?9)
 }
 
 .pp_info,
@@ -9985,14 +9985,14 @@ only screen and (min-device-pixel-ratio: 2) {
 .zpv_close_icon {
     display: block;
     opacity: 1;
-    background: url('/images/mobile/skins/icon/header.png') no-repeat -10px -316px;
+    background: url('/images/mobile/skins/icon/header.png?5') no-repeat -10px -316px;
     -moz-background-size: 44px!important;
     -o-background-size: 44px!important;
     background-size: 44px!important
 }
 
 .vk_2x .zpv_close_icon {
-    background-image: url('/images/mobile/skins/icon/header_2x.png')
+    background-image: url('/images/mobile/skins/icon/header_2x.png?5')
 }
 
 .zpv_bottom .item_like .i_like {
