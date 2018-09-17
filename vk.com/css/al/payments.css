@@ -3120,6 +3120,10 @@ h2.payments_getvotes_title {
     line-height: 160%
 }
 
+#payment_system_mailmoney_vkpay .payment_system_logo img {
+    height: 40px
+}
+
 .payment_card_form .labeled {
     padding-top: 2px;
     width: 110px

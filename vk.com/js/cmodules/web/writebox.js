@@ -42,512 +42,90 @@
         return n.d(t, "a", t), t
     }, n.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, n.p = "", n(n.s = 516)
+    }, n.p = "", n(n.s = 160)
 }({
-    129: function(e, t, n) {
+    114: function(e, t, n) {
         "use strict";
-        n.r(t), n.d(t, "getFirstUnread", function() {
-            return d
-        }), n.d(t, "isSearchShown", function() {
-            return l
-        }), n.d(t, "getPeer", function() {
-            return f
-        }), n.d(t, "getCurrentKeyboard", function() {
-            return m
-        }), n.d(t, "getKeyboard", function() {
-            return g
-        }), n.d(t, "getTab", function() {
-            return p
-        }), n.d(t, "getCurrentTab", function() {
-            return h
-        }), n.d(t, "getSelectedMessages", function() {
-            return _
-        }), n.d(t, "getMessageRangeFromSelection", function() {
-            return b
-        }), n.d(t, "countUnread", function() {
-            return v
-        }), n.d(t, "getMessageByRid", function() {
-            return y
-        }), n.d(t, "isRidExist", function() {
-            return w
-        }), n.d(t, "getLocalId", function() {
-            return O
-        }), n.d(t, "getLastMessage", function() {
-            return j
-        }), n.d(t, "parserMessage", function() {
-            return k
-        }), n.d(t, "getAuthorFullName", function() {
-            return E
-        }), n.d(t, "getMessage", function() {
-            return T
-        }), n.d(t, "getPreviousMessage", function() {
-            return I
-        }), n.d(t, "isClassicInterface", function() {
-            return A
-        }), n.d(t, "isLocksAvailable", function() {
-            return C
-        }), n.d(t, "isFoldersAvailable", function() {
-            return S
-        }), n.d(t, "isCommunityInterface", function() {
-            return M
-        }), n.d(t, "isChannel", function() {
-            return x
-        }), n.d(t, "getBareTab", function() {
-            return D
-        }), n.d(t, "isReversedDialogs", function() {
-            return P
-        }), n.d(t, "isFullyLoadedTab", function() {
-            return L
-        }), n.d(t, "makeTabNotFullyLoaded", function() {
-            return N
-        }), n.d(t, "isGoToEndVisible", function() {
-            return R
-        }), n.d(t, "getUnreadScrollBottom", function() {
-            return F
-        }), n.d(t, "isSendingAvailable", function() {
-            return H
-        }), n.d(t, "isCommunityPeer", function() {
-            return U
-        }), n.d(t, "isCommunityBlocked", function() {
-            return B
-        }), n.d(t, "checkVoiceMessageAvailable", function() {
-            return G
-        }), n.d(t, "isSearching", function() {
-            return z
-        }), n.d(t, "getSearchText", function() {
-            return q
-        }), n.d(t, "isSearchingValue", function() {
-            return K
-        }), n.d(t, "isRecentSearchesActive", function() {
-            return V
-        }), n.d(t, "getPinnedMessage", function() {
-            return W
-        }), n.d(t, "doPopularSuggExist", function() {
-            return Y
-        }), n.d(t, "isAnyMessageBeingEdited", function() {
-            return X
-        }), n.d(t, "getGroupId", function() {
-            return $
-        }), n.d(t, "getTabDraft", function() {
-            return Q
-        }), n.d(t, "getTemplates", function() {
-            return Z
-        });
-        var r = n(77),
-            i = n(280),
-            a = n(381),
-            o = n(527),
-            u = n(283),
-            c = n(499),
-            s = n(131);
-
-        function d(e, t) {
-            var n = Object(c.unpackStore)(e),
-                i = n.tabs[n.peer];
-            return Object.keys(i.msgs).filter(function(n) {
-                var a = T(e, t, n);
-                return !Object(r.isOut)(a) && intval(n) > i.in_up_to
-            })[0]
-        }
-
-        function l(e) {
-            return Object(c.unpackStore)(e).searchShown
-        }
-
-        function f(e) {
-            return Object(c.unpackStore)(e).peer
-        }
-
-        function m(e) {
-            return g(e, f(e))
-        }
-
-        function g(e, t) {
-            return (p(e, t) || {}).keyboard
-        }
-
-        function p(e, t) {
-            var n = Object(c.unpackStore)(e);
-            return n.tabs && n.tabs[t]
-        }
-
-        function h(e) {
-            var t = Object(c.unpackStore)(e);
-            return t.peer ? t.tabs[t.peer] : null
-        }
-
-        function _(e) {
-            return Object(c.unpackStore)(e).selectedMessages
-        }
-
-        function b(e, t, n) {
-            var i = p(e, t),
-                a = _(e)[0];
-            if (void 0 === a) return [n];
-            var o = Math.min(n, a),
-                u = Math.max(n, a);
-            return Object.keys(i.msgs).filter(function(e) {
-                return e >= o && e <= u
-            }).filter(function(t) {
-                var n = T(e, e.get().peer, t);
-                return !Object(r.isServiceMsg)(n) && !Object(r.isCallMessage)(n)
-            }).map(intval)
-        }
-
-        function v(e, t) {
-            var n = p(Object(c.unpackStore)(t), e),
-                i = 0;
-            for (var a in n.msgs)
-                if (n.msgs.hasOwnProperty(a)) {
-                    var o = T(t, e, a);
-                    Object(r.isOut)(o) || (i += Object(r.isUnread)(n, o) ? 1 : 0)
-                }
-            return i
-        }
-
-        function y(e, t, n) {
-            var r = p(e, t);
-            return Object.keys(r.msgs).filter(function(r) {
-                return intval(T(e, t, r).randomId) === n
-            }).length > 0
-        }
-
-        function w(e, t, n) {
-            return !!y(e, t, n)
-        }
-
-        function O(e, t) {
-            var n = Object(c.unpackStore)(e),
-                r = n.msg_local_ids_sort && n.msg_local_ids_sort[t];
-            return void 0 !== r ? 2e9 + r : t
-        }
-
-        function j(e, t, n) {
-            var r = p(e, t),
-                a = T(e, t, n),
-                o = Object.keys(r.msgs).filter(function(n) {
-                    var r = T(e, t, n),
-                        o = r.local && r.type !== i.EDIT_MESSAGE;
-                    return !(!a.local && o) && (!(!a.local || o) || O(e, a.messageId) > O(e, r.messageId))
-                }).pop();
-            return o ? T(e, t, o) : null
-        }
-
-        function k(e) {
-            return e && e.length > 0 ? i.addMessageEvent([0].concat(e)) : e
-        }
-
-        function E(e, t, n) {
-            var i = p(e, t),
-                a = T(e, t, n),
-                u = Object(c.unpackStore)(e);
-            return Object(r.isOut)(a) ? Object(o.oCacheGet)(e, u.id).name : a.userId !== a.peerId ? !!Object(o.oCacheExists)(e, a.userId) && Object(o.oCacheGet)(e, a.userId).name : i.tab
-        }
-
-        function T(e, t, n) {
-            var r = p(e, t),
-                i = r && r.msgs && r.msgs[n];
-            return i ? k(i) : null
-        }
-
-        function I(e, t, n) {
-            var r = p(e, t),
-                i = r && r.msgs && Object.keys(r.msgs).sort(function(e, t) {
-                    return +e - t
-                });
-            if (!i) return null;
-            var a = i && i.indexOf("" + n),
-                o = a > -1 ? i[a - 1] : null;
-            return r.msgs[o]
-        }
-
-        function A(e) {
-            var t = Object(c.unpackStore)(e);
-            return t.gid || t.isClassic
-        }
-
-        function C(e) {
-            return Object(c.unpackStore)(e).gid
-        }
-
-        function S(e) {
-            return Object(c.unpackStore)(e).gid
-        }
-
-        function M(e) {
-            return !!Object(c.unpackStore)(e).gid
-        }
-
-        function x(e, t) {
-            return !!(t.peerId > 2e9 && Object(s.doesChatTabHaveFlag)(t, 1024))
-        }
-
-        function D(e, t) {
-            var n = Object(c.unpackStore)(t);
-            return n.tabs[e] || n.mapped_index[e]
-        }
-
-        function P(e) {
-            var t = Object(c.unpackStore)(e);
-            return !!M(e) && ((19542789 === t.gid || 103416369 == t.gid) && (t.active_tab === a.FOLDER_UNRESPOND || t.active_tab === a.FOLDER_UNREAD))
-        }
-
-        function L(e, t) {
-            var n = (e = Object(c.unpackStore)(e)).tabs;
-            return !(!n || !n[t] || void 0 === n[t].history || !n[t].msgs)
-        }
-
-        function N(e, t) {
-            var n = p(e, t);
-            n && (n.msgs = void 0, n.msgid = void 0, n.scrollTop = void 0, n.scrollBottom = void 0, n.contHeight = void 0, n.offset = void 0, n.skipped = void 0)
-        }
-
-        function R(e) {
-            var t = e.get().go_to_end_visible;
-            return !!t && t[0]
-        }
-
-        function F(e) {
-            var t = e.get().go_to_end_visible;
-            return t ? t[1] : 0
-        }
-
-        function H(e) {
-            return !Object(c.unpackStore)(e).lockedSending
-        }
-
-        function U(e) {
-            return e > -2e9 && e < 0
-        }
-
-        function B(e, t) {
-            return !!U(t) && !!p(e, t).blocked_community
-        }
-
-        function G(e) {
-            return Object(c.unpackStore)(e).voice_message_available
-        }
-
-        function z(e) {
-            var t = Object(c.unpackStore)(e);
-            return !(!q(t) && !t.recentSearch)
-        }
-
-        function q(e) {
-            return Object(c.unpackStore)(e).searchText
-        }
-
-        function K(e, t) {
-            var n = Object(c.unpackStore)(e);
-            return !!(t && t !== q(e) || n.recentSearch)
-        }
-
-        function V(e) {
-            return Object(c.unpackStore)(e).recentSearch
-        }
-
-        function W(e) {
-            var t = h(e);
-            return t && t.pinned && k(t.pinned)
-        }
-
-        function Y(e) {
-            var t = e.get().popular_sugg;
-            return t && t.length > 0
-        }
-
-        function X(e) {
-            return 1 == Object(c.unpackStore)(e).isEditing
-        }
-
-        function $(e) {
-            return Object(c.unpackStore)(e).gid
-        }
-
-        function Q(e) {
-            return e.draft || (e.draft = Object(u.loadDraftForPeer)(cur.imDb, e.peerId)), e.draft
-        }
-
-        function Z(e) {
-            return (Object(c.unpackStore)(e).templates || []).filter(function(e) {
-                return !e.deleted
-            })
-        }
-    },
-    131: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "MAIL_CHAT_FLAG_ONLY_ADMINS_CAN_INVITE", function() {
-            return c
-        }), n.d(t, "MAIL_CHAT_FLAG_ONLY_ADMINS_CAN_PIN", function() {
-            return s
-        }), n.d(t, "MAIL_CHAT_FLAG_ONLY_ADMINS_CAN_CHANGE_TITLE", function() {
-            return d
-        }), n.d(t, "MAIL_CHAT_FLAG_ADMINS_CAN_ADD_ADMINS", function() {
-            return l
-        }), n.d(t, "MAIL_CHAT_FLAG_ADMINS_CAN_INVITE_LINK", function() {
-            return f
-        }), n.d(t, "MAIL_CHATS_ACTION_SEE_INVITE_LINK", function() {
-            return m
-        }), n.d(t, "MAIL_CHATS_ACTION_CHANGE_INVITE_LINK", function() {
-            return g
-        }), n.d(t, "MAIL_CHATS_ACTION_INVITE_USER", function() {
-            return p
-        }), n.d(t, "MAIL_CHATS_ACTION_PIN_OR_UNPIN", function() {
-            return h
-        }), n.d(t, "MAIL_CHATS_ACTION_CHANGE_TITLE", function() {
-            return _
-        }), n.d(t, "MAIL_CHATS_ACTION_ADD_ADMIN", function() {
-            return b
-        }), n.d(t, "canSeeInviteLink", function() {
-            return w
-        }), n.d(t, "canChangeInviteLink", function() {
-            return O
-        }), n.d(t, "canAddAdmin", function() {
-            return j
-        }), n.d(t, "canInviteUser", function() {
-            return k
-        }), n.d(t, "canKickUser", function() {
-            return E
-        }), n.d(t, "canPinOrUnpin", function() {
-            return T
-        }), n.d(t, "canChangeTitle", function() {
-            return I
-        }), n.d(t, "canChangeAvatar", function() {
-            return A
-        }), n.d(t, "canSeeAllMessages", function() {
-            return C
-        }), n.d(t, "checkChatRights", function() {
-            return S
-        }), n.d(t, "doesChatTabHaveFlag", function() {
-            return M
-        }), n.d(t, "isUserAdminInChat", function() {
-            return x
-        }), n.d(t, "isUserOwnerInChat", function() {
-            return D
-        }), n.d(t, "isUserInvitedByMe", function() {
-            return P
-        });
-        var r, i = n(129),
-            a = n(499),
-            o = n(489);
-
-        function u(e, t, n) {
-            return t in e ? Object.defineProperty(e, t, {
-                value: n,
-                enumerable: !0,
-                configurable: !0,
-                writable: !0
-            }) : e[t] = n, e
-        }
-        var c = 1,
-            s = 4,
-            d = 8,
-            l = 16,
-            f = 32,
-            m = "see_invite_link",
-            g = "change_invite_link",
-            p = "invite_user",
-            h = "pin_unpin",
-            _ = "change_title",
-            b = "add_admin",
-            v = (u(r = {}, m, f), u(r, g, f), u(r, b, l), u(r, p, c), u(r, h, s), u(r, _, d), r),
-            y = 1;
-
-        function w(e, t, n) {
-            return S(e, m, t, n)
-        }
-
-        function O(e, t, n) {
-            return S(e, g, t, n)
-        }
-
-        function j(e, t, n, r) {
-            var o = Object(a.unpackStore)(e);
-            return !D(Object(i.getTab)(o, n || o.peer), t) && S(e, b, n, r)
-        }
-
-        function k(e, t, n) {
-            return S(e, p, t, n)
-        }
-
-        function E(e, t, n, r) {
-            var u = Object(a.unpackStore)(e);
-            if (function(e, t) {
-                    var n = Object(a.unpackStore)(e);
-                    return void 0 !== n.service && (n.service & t) > 0
-                }(e, y)) return !0;
-            var c = Object(i.getTab)(u, n || u.peer);
-            return !(c.data.kicked && !c.data.closed) && (!Object(o.isFvkcomgroup)(e, n) && (!D(c, t) && (!!D(c, r = void 0 === r ? window.vk.id : r) || (x(c, r) ? !x(c, t) : P(c, t) && !x(c, t)))))
-        }
-
-        function T(e, t, n) {
-            return S(e, h, t, n)
-        }
-
-        function I(e, t, n) {
-            return S(e, _, t, n)
-        }
-
-        function A(e, t, n) {
-            return I(e, t, n) && !Object(o.isFvkcomgroup)(e, t)
-        }
-
-        function C(e, t, n) {
-            return !Object(i.isCommunityPeer)(n) || !!Object(i.getTab)(e, t).caccess[n]
-        }
-
-        function S(e, t, n, r) {
-            var u = Object(a.unpackStore)(e);
-            r = void 0 === r ? window.vk.id : r, n = void 0 === n ? u.peer : n;
-            var c = Object(i.getTab)(u, n),
-                s = !c.data.kicked && !c.data.closed,
-                d = v[t];
-            if (Object(o.isFvkcomgroup)(e, n)) switch (t) {
-                case b:
-                case p:
-                    return !1;
-                case m:
-                    return s;
-                default:
-                    return u.gid > 0
-            }
-            switch (t) {
-                case m:
-                case g:
-                case b:
-                    return M(c, d) ? x(c, r) && s : D(c, r);
-                case p:
-                case h:
-                case _:
-                    return M(c, d) ? x(c, r) && s : s
-            }
-            return !1
-        }
-
-        function M(e, t) {
-            return ((e && e.data && e.data.flags || 0) & t) > 0
-        }
-
-        function x(e, t) {
-            return (e && e.adminIds || []).indexOf(+t) > -1
-        }
-
-        function D(e, t) {
-            return e.ownerId === t
-        }
-
-        function P(e, t) {
-            return -1 !== e.invitedByMe.indexOf(t)
-        }
-    },
-    175: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "addDelegateEvent", function() {
-            return o
-        }), n.d(t, "removeDelegateEvent", function() {
+        n.r(t), n.d(t, "vkLocal", function() {
             return u
+        }), n.d(t, "lTimeout", function() {
+            return c
+        }), n.d(t, "rand", function() {
+            return s
+        }), n.d(t, "irand", function() {
+            return d
+        }), n.d(t, "isUndefined", function() {
+            return l
+        }), n.d(t, "isFunction", function() {
+            return f
+        }), n.d(t, "isArray", function() {
+            return m
+        }), n.d(t, "isString", function() {
+            return g
+        }), n.d(t, "isObject", function() {
+            return p
+        }), n.d(t, "isEmpty", function() {
+            return h
+        }), n.d(t, "vkNow", function() {
+            return _
+        }), n.d(t, "vkImage", function() {
+            return b
+        }), n.d(t, "trim", function() {
+            return v
+        }), n.d(t, "stripHTML", function() {
+            return y
+        }), n.d(t, "escapeRE", function() {
+            return w
+        }), n.d(t, "intval", function() {
+            return O
+        }), n.d(t, "floatval", function() {
+            return j
+        }), n.d(t, "positive", function() {
+            return k
+        }), n.d(t, "isNumeric", function() {
+            return E
+        }), n.d(t, "winToUtf", function() {
+            return T
+        }), n.d(t, "replaceEntities", function() {
+            return I
+        }), n.d(t, "clean", function() {
+            return A
+        }), n.d(t, "unclean", function() {
+            return C
+        }), n.d(t, "each", function() {
+            return S
+        }), n.d(t, "indexOf", function() {
+            return M
+        }), n.d(t, "inArray", function() {
+            return x
+        }), n.d(t, "clone", function() {
+            return D
+        }), n.d(t, "arrayKeyDiff", function() {
+            return P
+        }), n.d(t, "extend", function() {
+            return L
+        }), n.d(t, "addTemplates", function() {
+            return N
+        }), n.d(t, "getTemplate", function() {
+            return R
+        }), n.d(t, "serializeForm", function() {
+            return F
+        }), n.d(t, "extractUrls", function() {
+            return H
+        }), n.d(t, "isRetina", function() {
+            return U
+        }), n.d(t, "getCaretCharacterOffsetWithin", function() {
+            return B
+        }), n.d(t, "formatCount", function() {
+            return G
+        }), n.d(t, "encodeHtml", function() {
+            return K
+        }), n.d(t, "decodeHtml", function() {
+            return V
         });
-        var r = function() {
+        var r = n(193),
+            i = n(163),
+            a = function() {
                 return function(e, t) {
                     if (Array.isArray(e)) return e;
                     if (Symbol.iterator in Object(e)) return function(e, t) {
@@ -571,51 +149,244 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }(),
-            i = new window.Map;
+            o = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
+                return typeof e
+            } : function(e) {
+                return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
+            };
 
-        function a(e) {
-            var t = i.get(e.currentTarget);
-            if (t) {
-                var n = t[e.type];
-                if (n)
-                    for (var a = void 0, o = 0; o < n.length; o++) {
-                        var u = r(n[o], 2),
-                            c = u[0],
-                            s = u[1],
-                            d = void 0;
-                        if (hasClass(e.target, c) ? d = s(e, e.target) : (a = gpeByClass(c, e.target, e.currentTarget)) && (d = s(e, a)), !1 === d) break
-                    }
+        function u(e) {
+            var t = PageID;
+            return function() {
+                t === PageID && e.apply(this, arguments)
             }
         }
 
-        function o(e, t, n, r) {
-            var o = i.get(e);
-            o || (i.set(e, {}), o = i.get(e));
-            for (var u = t.split(" "), c = 0; c < u.length; c++) {
-                var s = u[c];
-                o[s] || (o[s] = [], addEvent(e, s, a)), o[s].push([n, r])
-            }
+        function c(e, t) {
+            return setTimeout(u(e), t)
+        }
+        window.PageID = window.PageID || 1;
+        var s = function(e, t) {
+                return Math.random() * (t - e + 1) + e
+            },
+            d = function(e, t) {
+                return Math.floor(s(e, t))
+            },
+            l = function(e) {
+                return void 0 === e
+            },
+            f = function(e) {
+                return e && "[object Function]" === Object.prototype.toString.call(e)
+            },
+            m = function(e) {
+                return "[object Array]" === Object.prototype.toString.call(e)
+            },
+            g = function(e) {
+                return "string" == typeof e
+            },
+            p = function(e) {
+                return "[object Object]" === Object.prototype.toString.call(e)
+            };
+
+        function h(e) {
+            if ("[object Object]" !== Object.prototype.toString.call(e)) return !1;
+            for (var t in e)
+                if (e.hasOwnProperty(t)) return !1;
+            return !0
+        }
+        var _ = function() {
+                return +new Date
+            },
+            b = function() {
+                return window.Image ? new Image : ce("img")
+            },
+            v = function(e) {
+                return (e || "").replace(/^\s+|\s+$/g, "")
+            },
+            y = function(e) {
+                return e ? e.replace(/<(?:.|\s)*?>/g, "") : ""
+            },
+            w = function(e) {
+                return e ? e.replace(/([.*+?^${}()|[\]\/\\])/g, "\\$1") : ""
+            };
+
+        function O(e) {
+            return !0 === e ? 1 : parseInt(e) || 0
         }
 
-        function u(e, t, n, r) {
-            var o = i.get(e);
-            o && (t.split(" ").forEach(function(t) {
-                o[t] && (o[t] = o[t].filter(function(e) {
-                    return e[0] !== n || e[1] !== r
-                }), 0 === o[t].length && removeEvent(e, t, a))
-            }), 0 === Object.keys(o).map(function(e) {
-                return o[e].length
-            }).reduce(function(e, t) {
-                return e + t
-            }) && i.delete(e))
+        function j(e) {
+            return !0 === e ? 1 : parseFloat(e) || 0
         }
+
+        function k(e) {
+            return (e = O(e)) < 0 ? 0 : e
+        }
+
+        function E(e) {
+            return !isNaN(e)
+        }
+
+        function T(e) {
+            return e.replace(/&#(\d\d+);/g, function(e, t) {
+                return (t = O(t)) >= 32 ? String.fromCharCode(t) : e
+            }).replace(/&quot;/gi, '"').replace(/&lt;/gi, "<").replace(/&gt;/gi, ">").replace(/&amp;/gi, "&")
+        }
+
+        function I() {
+            var e = (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+            return Object(r.se)("<textarea>" + e + "</textarea>").value
+        }
+
+        function A(e) {
+            return e ? e.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;") : ""
+        }
+
+        function C(e) {
+            return I(e.replace(/\t/g, "\n"))
+        }
+
+        function S(e, t) {
+            if (p(e) || void 0 === e.length) {
+                for (var n in e)
+                    if (Object.prototype.hasOwnProperty.call(e, n) && !1 === t.call(e[n], n, e[n])) break
+            } else
+                for (var r = 0, i = e.length; r < i; r++) {
+                    var a = e[r];
+                    if (!1 === t.call(a, r, a)) break
+                }
+            return e
+        }
+
+        function M(e, t, n) {
+            for (var r = n || 0, i = (e || []).length; r < i; r++)
+                if (e[r] == t) return r;
+            return -1
+        }
+
+        function x(e, t) {
+            return -1 !== M(t, e)
+        }
+
+        function D(e, t) {
+            var n = p(e) || void 0 === e.length ? {} : [];
+            for (var r in e)(!/webkit/i.test(_ua) || "layerX" != r && "layerY" != r && "webkitMovementX" != r && "webkitMovementY" != r) && (t && "object" === o(e[r]) && "prototype" !== r && null !== e[r] ? n[r] = D(e[r]) : n[r] = e[r]);
+            return n
+        }
+
+        function P(e) {
+            var t = {},
+                n = arguments.length,
+                r = arguments;
+            for (var i in e)
+                if (e.hasOwnProperty(i)) {
+                    for (var a = !1, o = 1; o < n; o++) r[o][i] && r[o][i] === e[i] && (a = !0);
+                    a || (t[i] = e[i])
+                }
+            return t
+        }
+
+        function L() {
+            var e = arguments,
+                t = e.length,
+                n = e[0] || {},
+                r = 1,
+                i = !1;
+            for ("boolean" == typeof n && (i = n, n = e[1] || {}, r = 2), "object" === (void 0 === n ? "undefined" : o(n)) || f(n) || (n = {}); r < t; r++) {
+                var a = e[r];
+                if (null != a)
+                    for (var u in a)
+                        if (a.hasOwnProperty(u)) {
+                            var c = n[u],
+                                s = a[u];
+                            n !== s && (i && s && "object" === (void 0 === s ? "undefined" : o(s)) && !s.nodeType ? n[u] = L(i, c || (null != s.length ? [] : {}), s) : void 0 !== s && (n[u] = s))
+                        }
+            }
+            return n
+        }
+
+        function N(e) {
+            window.templates = window.templates || {}, L(window.templates, e)
+        }
+
+        function R(e, t) {
+            var n = (window.templates = window.templates || {})[e];
+            return "function" == typeof n && (n = n()), n && t ? Object(r.rs)(n, t) : n || ""
+        }
+
+        function F(e) {
+            if ("object" !== (void 0 === e ? "undefined" : o(e))) return !1;
+            var t = {},
+                n = function(t) {
+                    return Object(r.geByTag)(t, e)
+                },
+                i = function(n, i) {
+                    if (i.name)
+                        if ("text" !== i.type && i.type)
+                            if (i.getAttribute("bool")) {
+                                var a = Object(r.val)(i);
+                                if (!a || "0" === a) return;
+                                t[i.name] = 1
+                            } else t[i.name] = browser.msie && !i.value && e[i.name] ? e[i.name].value : i.value;
+                    else t[i.name] = Object(r.val)(i)
+                };
+            return S(n("input"), function(e, t) {
+                if ("radio" !== t.type && "checkbox" !== t.type || t.checked) return i(0, t)
+            }), S(n("select"), i), S(n("textarea"), i), t
+        }
+
+        function H(e, t) {
+            for (var n = t ? /(?:([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+(?:[a-z]{2,9}|xn--p1ai|xn--j1amh|xn--80asehdb|xn--80aswg))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)&]*(&nbsp;|[ \t\r\n \u00A0]|$))|([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9а-яєґї_\-]+\.)+(?:рф|укр|онлайн|сайт|срб))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)&]*(&nbsp;|[ \t\r\n \u00A0]|$)))/i : /(?:([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+(?:[a-z]{2,9}|xn--p1ai|xn--j1amh|xn--80asehdb|xn--80aswg))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)]*(&nbsp;|[ \t\r\n \u00A0]))|([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9а-яєґї_\-]+\.)+(?:рф|укр|онлайн|сайт|срб))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)]*(&nbsp;|[ \t\r\n \u00A0])))/i, r = void 0, i = []; e && (r = e.match(n));) {
+                e = e.substr(r.index + r[0].length);
+                var a = 0;
+                r[4] || (a = 7), i.push({
+                    url: r[2 + a],
+                    query: r[5 + a] || "",
+                    domain: r[4 + a]
+                })
+            }
+            return i
+        }
+        var U = function() {
+            return window.devicePixelRatio >= 2
+        };
+
+        function B(e) {
+            var t = 0,
+                n = 0,
+                r = e.ownerDocument || e.document,
+                i = r.defaultView || r.parentWindow;
+            if (i.getSelection().rangeCount > 0) {
+                var a = i.getSelection().getRangeAt(0),
+                    o = a.cloneRange();
+                o.selectNodeContents(e), o.setEnd(a.startContainer, a.startOffset), t = o.toString().length, o.setEnd(a.endContainer, a.endOffset), n = o.toString().length
+            }
+            return [t, n]
+        }
+
+        function G(e) {
+            var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {},
+                n = t.kLimit || 1e3;
+            return e >= (t.mLimit || 1e6) && !t.noCheck ? G(e = (e = O(e / 1e5)) > 1e3 ? O(e / 10) : e / 10, L(t, {
+                noCheck: !0
+            }), !0) + "M" : e >= n && !t.noCheck ? G(e = (e = O(e / 100)) > 100 ? O(e / 10) : e / 10, L(t, {
+                noCheck: !0
+            }), !0) + "K" : Object(i.langNumeric)(e, "%s", !0).replace(/,/g, ".")
+        }
+        var z, q = a((z = null, [function(e) {
+                return z || (z = Object(r.se)("<span> </span>")), z.innerText = e, z.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;")
+            }, function(e) {
+                return z || (z = Object(r.se)("<span> </span>")), z.innerHTML = e, z.innerText
+            }]), 2),
+            K = q[0],
+            V = q[1];
+        window.isRetina = U, window.extractUrls = H, window.serializeForm = F, window.addTemplates = N, window.getTemplate = R, window.rand = s, window.irand = d, window.isUndefined = l, window.isFunction = f, window.isArray = m, window.isString = g, window.isObject = p, window.isEmpty = h, window.vkNow = _, window.vkImage = b, window.trim = v, window.stripHTML = y, window.escapeRE = w, window.intval = O, window.floatval = j, window.positive = k, window.isNumeric = E, window.winToUtf = T, window.replaceEntities = I, window.clean = A, window.unclean = C, window.each = S, window.indexOf = M, window.inArray = x, window.clone = D, window.arrayKeyDiff = P, window.extend = L, window.vkLocal = u, window.lTimeout = c, window.getCaretCharacterOffsetWithin = B, window.formatCount = G, window.encodeHtml = K, window.decodeHtml = V
     },
-    185: function(e, t, n) {
+    12: function(e, t, n) {
         "use strict";
         n.r(t), n.d(t, "mount", function() {
             return a
         });
-        var r = n(451);
+        var r = n(198);
 
         function i(e) {
             return {
@@ -631,104 +402,272 @@
             }))
         }
     },
-    237: function(e, t, n) {
+    129: function(e, t, n) {
         "use strict";
-        n.r(t), n.d(t, "canMessageBeEdited", function() {
-            return c
-        }), n.d(t, "convertEmojiHtmlToRegularText", function() {
-            return s
-        }), n.d(t, "findLastMessageToEdit", function() {
-            return d
-        }), n.d(t, "wasMessageReallyModified", function() {
-            return l
-        }), n.d(t, "replaceMsgAfterEdit", function() {
-            return f
-        });
-        var r = n(129),
-            i = n(77),
-            a = n(489),
-            o = n(395),
-            u = n(499);
-
-        function c(e, t) {
-            t = Object(r.parserMessage)(t);
-            var n = vk.id == t.peerId && !Object(u.unpackStore)(e).gid;
-            return 333 != t.peerId && (!(!n && !Object(i.isOut)(t)) && (!Object(i.isServiceMsg)(t) && (!(Date.now() / 1e3 - t.date > 86400) && (!(Object(i.isGift)(t) || Object(i.isSticker)(t) || Object(i.isAudioMsg)(t) || Object(i.isGraffiti)(t) || Object(i.isMoney)(t) || Object(i.isVKPay)(t)) && !Object(a.isAlreadyDeleted)(e, t.peerId, t.messageId)))))
-        }
-
-        function s(e) {
-            var t = document.createElement("div");
-            return e = e.replace(/\[((id|club)\d+)\|(.+?)]/g, function() {
-                var e = arguments.length <= 1 ? void 0 : arguments[1],
-                    t = arguments.length <= 3 ? void 0 : arguments[3];
-                return /^\@/.test(t) ? t : "@" + e + " (" + t + ")"
-            }), t.innerHTML = e, Emoji.val(t)
-        }
-
-        function d(e, t) {
-            return +(t && t.msgs ? Object.keys(t.msgs) : []).filter(function(e) {
-                return e > 0
-            }).sort(function(e, t) {
-                return t - e
-            }).find(function(n) {
-                return c(e, t.msgs[n])
-            }) || null
-        }
-
-        function l(e, t, n) {
-            var r = Object(o.convertKludgesToAttaches)(t.kludges, t.messageId),
-                i = n.dData.attaches;
-            if (s(t.text) !== n.dData.txt || r.length !== i.length) return !0;
-            for (var a = r.length; a--;) {
-                var u = r[a],
-                    c = i[a];
-                if (u.id != c.id || u.type != c.type || "poll" == u.type && c.object && c.object.poll_is_edited) return !0
-            }
-            return !1
-        }
-
-        function f(e, t, n, r, i, o) {
-            t.origText = n, t.text = Object(a.replaceSpecialSymbols)(clean(n)).replace(/\n/gi, "<br>"), t.attaches = r, t.kludges.emoji = 1, t.local = 1, t.share_url = i, t.cancelled_shares = o, t.update_time = Math.floor(Date.now() / 1e3), e.get().tabs[t.peerId].msgs[t.messageId] = t
-        }
+        n.r(t);
+        var r = n(162),
+            i = n(26),
+            a = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
+                return typeof e
+            } : function(e) {
+                return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
+            },
+            o = window.WriteBox = {
+                mrg: function(e) {
+                    return vk.rtl ? {
+                        marginRight: e
+                    } : {
+                        marginLeft: e
+                    }
+                },
+                show: function(e, t) {
+                    var n = t.toData[0],
+                        i = t.toData[7];
+                    if (e.setOptions({
+                            hideButtons: !0,
+                            width: 502,
+                            bodyStyle: "padding: 0px; border: 0px;",
+                            title: t.title,
+                            titleControls: ('<a class="mail_box_header_link" href="/im?sel=' + n + '" onclick="return WriteBox.toFull(event, ' + n + ')">' + t.mail_go_to_dialog + "</a>").replace("%s", i)
+                        }), e.removeButtons(), cur.lang = extend(cur.lang || {}, t.lang), extend(cur, {
+                            mbTxtInp: {},
+                            mbEditable: t.editable,
+                            mbSmile: ge("mbe_smile"),
+                            toData: t.toData,
+                            mbEmoji: t.emoji,
+                            mbMedia: null,
+                            mbField: ge(t.editable ? "mail_box_editable" : "mail_box_text"),
+                            mbAva: ge("mail_box_ava"),
+                            mbMediaTypes: t.mediaTypes,
+                            mbTo: t.toData,
+                            mbHash: t.hash,
+                            mbBannedHim: t.bannedhim,
+                            ldb: Object(r.mount)(vk.id)
+                        }), t.emojiRcnt && !cur.mbRcntEmoji) {
+                        for (var a = [], u = t.emojiRcnt, c = 0, s = u.length; c < s; ++c) {
+                            var d = u[c];
+                            d && a.push('<a id="mbe_rc_em_' + d + '" class="mbe_rc_emojibtn" onmousedown="Emoji.addEmoji(cur.emojiWId, \'' + d + "', this); return cancelEvent(event);\">" + Emoji.getEmojiHTML(d, !1, !0) + "</a>")
+                        }
+                        cur.mbRcntEmoji = a.join("")
+                    }
+                    cur.nav.push(function() {
+                        cur.ldb.unmount()
+                    }), val("mbe_rcemoji", cur.mbRcntEmoji || ""), cur.peer = o.getPeer(), cur.sharedImWrite = {}, cur.emojiWId = Emoji.init(cur.mbField, {
+                        ttDiff: 1,
+                        controlsCont: ge("mbe_emoji_wrap"),
+                        shouldFocus: !0,
+                        onSend: o.send,
+                        rPointer: !0,
+                        noEnterSend: 1,
+                        ref: "writebox",
+                        noStickers: !!t.checkedRecipent,
+                        forceTxt: !t.editable,
+                        sharedTT: cur.sharedImWrite,
+                        txt: ge("mail_box_editable"),
+                        checkEditable: o.checkEditable,
+                        saveDraft: o.saveDraft,
+                        rceCont: ge("mbe_rcemoji_cont"),
+                        addMediaBtn: ge("mail_box_add_row"),
+                        sendWrap: ge("mail_box_controls"),
+                        onKeyAction: function(e) {
+                            clearTimeout(cur.saveWriteBoxDraft);
+                            var t = "paste" == e.type ? 0 : 300;
+                            cur.saveWriteBoxDraft = setTimeout(o.saveDraft, t)
+                        },
+                        onStickerSend: function(e, t) {
+                            var n = trim(Emoji.editableVal(cur.mbField)),
+                                r = cur.mbMedia.getMedias(),
+                                i = cur.toData[0];
+                            ajax.post("/al_im.php", {
+                                act: "a_send_box",
+                                to_ids: i,
+                                chas: cur.mbHash,
+                                msg: "",
+                                ts: cur.ts,
+                                media: "sticker:" + e,
+                                send_sticker: 1,
+                                from: "box",
+                                sticker_referrer: t
+                            }, {
+                                onDone: function(e, t) {
+                                    n || r.length ? o.send(!1) : (t && ls.set("im_draft" + vk.id + "_" + t, !1), curBox().hide(), showDoneBox(e))
+                                },
+                                showProgress: lockButton.pbind("mail_box_send"),
+                                hideProgress: unlockButton.pbind("mail_box_send"),
+                                onFail: function(e) {
+                                    var t = showFastBox(getLang("global_error"), e).hide;
+                                    return setTimeout(t, 3e3), !0
+                                }
+                            })
+                        },
+                        onRecentEmojiUpdate: function() {
+                            o.extractEmoji()
+                        }
+                    }), Emoji.emojiLoadMore(cur.emojiWId), cur.mbTo[0] ? cur.mbHidden = !1 : cur.mbHidden = !0, cur.imwEmoji = -1;
+                    var l = cur.postTo;
+                    cur.postTo = !1, e.setOptions({
+                        onHide: function() {
+                            removeEvent(document, "keydown", o.onKey), cur.mbEmojiShown && Emoji.ttClick(cur.emojiWId, cur.mbSmile, !0), cur.mbOnMouseClick && (cur.onMouseClick = cur.mbOnMouseClick, cur.mbOnMouseClick = !1), browser.mozilla
+                        },
+                        onShow: function() {
+                            addEvent(document, "keydown", o.onKey), cur.mbOnMouseClick || (cur.mbOnMouseClick = cur.onMouseClick), browser.mozilla, cur.sorterClbk && (cur.sorterClbk(), delete cur.sorterClbk)
+                        },
+                        onClean: function() {
+                            clearTimeout(cur.mbSaveDraftTO), delete cur.mbSaveDraftTO, delete cur.mbField, cur.postTo = l, cur.mbEmojiScroll = cur.mbEmojiExpanded = !1, cur.mbForceAttach = !1, window.WideDropdown && WideDropdown.deinit("mail_box_dd")
+                        }
+                    }), addEvent(document, "keydown", o.onKey), cur.mbOnMouseClick || (cur.mbOnMouseClick = cur.onMouseClick), stManager.add(["page.js", "page.css"], function() {
+                        var t = {
+                            mail: 1,
+                            nocl: 1,
+                            editable: 1,
+                            sortable: 1,
+                            teWidth: 150,
+                            teHeight: 100,
+                            toggleLnk: !0
+                        };
+                        cur.mbForceAttach && "market" == cur.mbForceAttach[0] && (t.onMediaAdd = function() {
+                            for (var e in cur.mbMedia.chosenMedias)
+                                if ("market" == cur.mbMedia.chosenMedias[e][0]) {
+                                    var t = cur.mbMedia.chosenMedias[e][2];
+                                    hide(geByClass1("page_media_x_wrap", t))
+                                }
+                        }), cur.mbMedia = new MediaSelector("mail_box_add_link", "mail_box_added_row", cur.mbMediaTypes, t), cur.mbMedia.onChange = function() {
+                            e.changed = !0, setTimeout(function() {
+                                o.saveDraft()
+                            }, 100)
+                        }, ls.checkVersion() && cur.mbTo[0] && o.restoreDraft(cur.mbTo[0])
+                    })
+                },
+                getPeer: function() {
+                    return intval(cur.toData[0])
+                },
+                restoreDraft: function(e) {
+                    var t = o.getPeer();
+                    if (!(!t || e && t != intval(e) || browser.mobile) && cur.mbMedia) {
+                        var n = Object(i.loadDraftForPeer)(cur.ldb, t);
+                        cur.mbForceAttach && "market" == cur.mbForceAttach[0] && (n.setText(unclean(getLang("mail_market_tmpl")).replace(/<br>/g, "\n")), n.removeAllAttaches(), n.addAttach("market", cur.mbForceAttach[1])), o.editableHasVal(cur.mbField) || (cur.mbEditable ? (Emoji.val(cur.mbField, clean(n.dData.txt)), window.Emoji && Emoji.editableFocus(cur.mbField, !1, !0)) : val(cur.mbField, clean(n.dData.txt))), n.prepareObjects().then(function() {
+                            if (cur.mbField && o.getPeer() == t)
+                                for (var e = n.dData.attaches, r = 0; r < e.length; r++) cur.mbMedia.chooseMedia(e[r].type, e[r].id, e[r].object || {}, null, !0)
+                        }), o.checkEditable(cur.emojiWId, cur.mbField), o.checkLen(cur.mbField)
+                    }
+                },
+                saveDraft: function() {
+                    var e = o.getPeer();
+                    if (e && cur.mbField) {
+                        var t = Object(i.loadDraftForPeer)(cur.ldb, e);
+                        t.setText(unclean(trim(Emoji.val(cur.mbField)))), t.removeAllAttaches(), cur.mbMedia.getMedias().forEach(function(e) {
+                            return t.addAttach(e[0], e[1])
+                        }), t.destroy()
+                    }
+                },
+                toFull: function(e, t) {
+                    if (!checkEvent(e)) {
+                        var n = {
+                                0: "im",
+                                sel: t
+                            },
+                            r = trim(Emoji.editableVal(cur.mbField));
+                        if (r && (n.message = r), cur.mbMedia.chosenMedias) {
+                            for (var i = cur.mbMedia.getMedias(), o = [], u = 0, c = i.length; u < c; ++u) {
+                                var s = i[u],
+                                    d = [];
+                                for (var l in s) "object" != a(s[l]) && d.push(s[l]);
+                                o.push(d.join(","))
+                            }
+                            n.media = o.join("*")
+                        }
+                        return nav.go(n, null, {
+                            noback: !0
+                        }), !1
+                    }
+                },
+                send: function(e) {
+                    if (!buttonLocked("mail_box_send")) {
+                        var t = trim(Emoji.editableVal(cur.mbField)),
+                            n = cur.mbMedia.getMedias();
+                        cur.mbEditable && o.extractEmoji();
+                        var r = {
+                            act: "a_send_box",
+                            chas: cur.mbHash,
+                            message: t,
+                            title: isVisible("mail_box_title_wrap") && val("mail_box_title") || "",
+                            from: "box",
+                            entrypoint: "friends" === cur.module ? "friends" : "writebox",
+                            media: [],
+                            to_ids: []
+                        };
+                        cur.mbForceAttach && (r.attach1_type = cur.mbForceAttach[0], r.attach1 = cur.mbForceAttach[1], r.attach1_hash = cur.mbForceAttach[2]);
+                        for (var a, u = 0, c = n.length; u < c; ++u)(a = n[u]) && r.media.push(a[0] + ":" + a[1]);
+                        if (r.media = r.media.join(","), !t && !r.media) return cur.mbEditable ? Emoji.editableFocus(cur.mbField) : elfocus(cur.mbField);
+                        r.to_ids = cur.toData[0], cur.mbBannedHim != r.to_ids || !0 === e ? ajax.post("al_im.php", r, {
+                            onDone: function(e, t) {
+                                if (t) {
+                                    var n = Object(i.loadDraftForPeer)(cur.ldb, t);
+                                    n.clear(), n.destroy()
+                                }
+                                curBox().hide(), showDoneBox(e)
+                            },
+                            showProgress: lockButton.pbind("mail_box_send"),
+                            hideProgress: unlockButton.pbind("mail_box_send")
+                        }) : showBox("al_profile.php", {
+                            act: "banned_him",
+                            action: "mail",
+                            mid: cur.mbBannedHim
+                        }, {
+                            dark: 1
+                        }).onContinue = o.send.pbind(!0)
+                    }
+                },
+                checkLen: function(e) {
+                    cur.mbTxtInp.value = Emoji.editableVal(e), checkTextLength(4096, cur.mbTxtInp, "mail_box_warn"), toggle("mail_box_title_wrap", cur.mbTxtInp.lastLen > 200)
+                },
+                codeToChr: function(e) {
+                    for (var t = e.length / 4, n = "", r = 0; t--;) n += String.fromCharCode(parseInt(e.substr(r, 4), 16)), r += 4;
+                    return n
+                },
+                editableHasVal: function(e) {
+                    return !!e && ("TEXTAREA" == e.tagName ? !!val(e) : !(!geByTag1("IMG", e) && !stripHTML(val(e)).replace(/[\s\xa0]/g, "").length))
+                },
+                checkEditable: function(e, t) {
+                    cur.mbEditable && Emoji.checkEditable(e, t, {
+                        height: 180
+                    })
+                },
+                cssAnimation: function() {
+                    var e = intval(browser.version);
+                    return !!(browser.chrome && e > 14 || browser.mozilla && e > 13 || browser.opera && e > 2)
+                },
+                onKey: function(e) {
+                    var t = "INPUT" == e.target.tagName || "TEXTAREA" == e.target.tagName || "mail_box_editable" == e.target.id;
+                    if (!isInputActive()) {
+                        if (e.keyCode > 40 && !e.ctrlKey && !e.metaKey && !t)
+                            if (cur.mbEditable) Emoji.editableFocus(cur.mbField, !1, !0);
+                            else {
+                                var n = cur.mbField;
+                                !n.active && elfocus(n)
+                            }
+                        return !0
+                    }
+                },
+                extractEmoji: function() {
+                    var e = ge("mbe_rcemoji");
+                    if (e) {
+                        var t = "",
+                            n = Emoji.getRecentEmojiSorted().slice(0, 7);
+                        for (var r in n)
+                            if (n.hasOwnProperty(r)) {
+                                var i = n[r];
+                                t += '<a id="mbe_rc_em_' + i + '" class="mbe_rc_emojibtn" onmousedown="Emoji.addEmoji(cur.emojiWId, \'' + i + "', this); return cancelEvent(event);\">" + Emoji.getEmojiHTML(i, !1, !0) + "</a>"
+                            }
+                        val(e, t)
+                    }
+                }
+            };
+        try {
+            stManager.done("writebox.js")
+        } catch (e) {}
     },
-    279: function(e, t, n) {
-        "use strict";
-
-        function r(e) {
-            var t = new Date;
-            return e.getFullYear() === t.getFullYear() && e.getMonth() === t.getMonth() && e.getDate() === t.getDate()
-        }
-
-        function i(e) {
-            return r(new Date(e.getTime() + 864e5))
-        }
-
-        function a(e) {
-            return r(new Date(e.getTime() - 864e5))
-        }
-
-        function o(e, t) {
-            var n = new Date(e),
-                r = new Date(t);
-            return n.getFullYear() === r.getFullYear() && n.getMonth() === r.getMonth() && n.getDate() === r.getDate()
-        }
-
-        function u(e) {
-            return e >= 10 ? e : "0" + e
-        }
-        n.r(t), n.d(t, "isToday", function() {
-            return r
-        }), n.d(t, "isYesterday", function() {
-            return i
-        }), n.d(t, "isTomorrow", function() {
-            return a
-        }), n.d(t, "isSameDate", function() {
-            return o
-        }), n.d(t, "leadingZero", function() {
-            return u
-        })
-    },
-    280: function(e, t, n) {
+    135: function(e, t, n) {
         "use strict";
         n.r(t), n.d(t, "DELETE", function() {
             return a
@@ -909,7 +848,7 @@
         }), n.d(t, "resendEvent", function() {
             return He
         });
-        var r = n(395),
+        var r = n(22),
             i = function() {
                 return function(e, t) {
                     if (Array.isArray(e)) return e;
@@ -1373,965 +1312,7 @@
             }
         }
     },
-    281: function(e, t, n) {
-        "use strict";
-
-        function r(e, t) {
-            return new Promise(function(n) {
-                setTimeout(n.bind(null, t), 1e3 * e)
-            })
-        }
-
-        function i(e, t) {
-            var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : null,
-                i = 0;
-            return function a() {
-                for (var o = arguments.length, u = Array(o), c = 0; c < o; c++) u[c] = arguments[c];
-                return Promise.resolve().then(function() {
-                    return e.apply(void 0, u)
-                }).catch(function(e) {
-                    if (++i <= t) {
-                        var o = "function" == typeof n ? n(i) : 0;
-                        return 0 === o ? a.apply(void 0, u) : r(o).then(function() {
-                            return a.apply(void 0, u)
-                        })
-                    }
-                    throw e
-                })
-            }
-        }
-
-        function a(e, t, n) {
-            var r = void 0,
-                i = void 0;
-            return function() {
-                for (var a = arguments.length, o = Array(a), u = 0; u < a; u++) o[u] = arguments[u];
-                return new Promise(function(e, a) {
-                    var u = n && !r;
-                    clearTimeout(r), i && i.reject("debounce"), r = setTimeout(function() {
-                        r = null, i = null, n || e(o)
-                    }, t), u ? e(o) : n && a("debounce"), i = {
-                        resolve: e,
-                        reject: a
-                    }
-                }).then(function(t) {
-                    return e.apply(void 0, function(e) {
-                        if (Array.isArray(e)) {
-                            for (var t = 0, n = Array(e.length); t < e.length; t++) n[t] = e[t];
-                            return n
-                        }
-                        return Array.from(e)
-                    }(t))
-                })
-            }
-        }
-
-        function o(e, t) {
-            var n = void 0,
-                r = new Promise(function(r) {
-                    n = r, setTimeout(r.bind(null, t), 1e3 * e)
-                });
-            return {
-                pause: function() {
-                    return r
-                },
-                abort: function() {
-                    n(t)
-                }
-            }
-        }
-        n.r(t), n.d(t, "pause", function() {
-            return r
-        }), n.d(t, "retryFn", function() {
-            return i
-        }), n.d(t, "debouncedPromise", function() {
-            return a
-        }), n.d(t, "abortablePause", function() {
-            return o
-        })
-    },
-    283: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "ImDraft", function() {
-            return o
-        }), n.d(t, "loadDraftForPeer", function() {
-            return c
-        });
-        var r = n(391),
-            i = n(70),
-            a = function() {
-                return function(e, t) {
-                    if (Array.isArray(e)) return e;
-                    if (Symbol.iterator in Object(e)) return function(e, t) {
-                        var n = [],
-                            r = !0,
-                            i = !1,
-                            a = void 0;
-                        try {
-                            for (var o, u = e[Symbol.iterator](); !(r = (o = u.next()).done) && (n.push(o.value), !t || n.length !== t); r = !0);
-                        } catch (e) {
-                            i = !0, a = e
-                        } finally {
-                            try {
-                                !r && u.return && u.return()
-                            } finally {
-                                if (i) throw a
-                            }
-                        }
-                        return n
-                    }(e, t);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }();
-
-        function o(e, t) {
-            this._db = e, this._key = t, this.dData = {
-                txt: "",
-                attaches: [],
-                urlBinds: [],
-                cancelled: []
-            }, this.load()
-        }
-
-        function u(e) {
-            switch (e.type) {
-                case "mail":
-                case "reply":
-                    return e.id < 0 && 1 == e.object.fwd_count;
-                default:
-                    return !e.object
-            }
-        }
-
-        function c(e, t) {
-            return new o(e, "draft_" + t)
-        }
-        o.prototype.dump = function() {
-            var e;
-            this._key && this._db.updateByKey(this._key, {
-                txt: (e = this.dData).txt,
-                attaches: e.attaches.length ? e.attaches : void 0,
-                urlBinds: e.urlBinds.length ? e.urlBinds : void 0,
-                cancelled: e.cancelled.length ? e.cancelled : void 0
-            })
-        }, o.prototype.load = function() {
-            if (this._key) {
-                var e = this._db.selectByKey(this._key);
-                e && (this.dData = function(e) {
-                    return {
-                        txt: e.txt,
-                        attaches: e.attaches || [],
-                        urlBinds: e.urlBinds || [],
-                        cancelled: e.cancelled || []
-                    }
-                }(e))
-            }
-        }, o.prototype.clear = function() {
-            this.dData = {
-                txt: "",
-                attaches: [],
-                urlBinds: [],
-                cancelled: []
-            }, this.dump()
-        }, o.prototype.setText = function(e) {
-            this.dData.txt = trim(e), this.dump()
-        }, o.prototype.addAttach = function(e, t, n) {
-            if ("share" === e && this.removeAttachByType(e), "mail" !== e && "reply" !== e || (this.removeAttachByType("mail"), this.removeAttachByType("reply")), !e || !t && "poll" !== e) return !1;
-            var r = this.dData.attaches.findIndex(function(n) {
-                return n.type === e && n.id === t
-            }); - 1 === r ? (this.dData.attaches.push({
-                type: e,
-                id: t,
-                object: n
-            }), this.dump()) : "video" !== e && "poll" !== e || (this.dData.attaches[r] = {
-                type: e,
-                id: t,
-                object: n
-            }, this.dump())
-        }, o.prototype.syncWithSelector = function(e) {
-            var t = this,
-                n = this.getFwdRaw();
-            this.dData.attaches = (n ? [n] : []).concat(e.getMedias().map(function(e) {
-                var n = a(e, 2),
-                    r = n[0],
-                    i = n[1];
-                return t.dData.attaches.find(function(e) {
-                    return e.type == r && e.id == i
-                }) || {
-                    type: r,
-                    id: i
-                }
-            })), this.dump()
-        }, o.prototype.removeAttachByType = function(e) {
-            for (var t = this.dData.attaches.length; t--;) this.dData.attaches[t].type === e && this.dData.attaches.splice(t, 1);
-            this.dump()
-        }, o.prototype.removeAllAttaches = function() {
-            this.dData.attaches = [], this.dData.cancelled = [], this.dump()
-        }, o.prototype.addBindUrl = function(e, t, n) {
-            this.getBoundAttach(e) || (this.dData.urlBinds.push({
-                url: e,
-                type: t,
-                id: n
-            }), this.dump())
-        }, o.prototype.getBoundAttach = function(e) {
-            var t = this.dData.urlBinds.find(function(t) {
-                return t.url === e
-            });
-            return t && this.dData.attaches.find(function(e) {
-                return e.type === t.type && e.id === t.id
-            }) || null
-        }, o.prototype.getShareUrl = function() {
-            var e = this.dData.attaches.find(function(e) {
-                return "share" === e.type
-            });
-            if (e && e.object) return e.object.url
-        }, o.prototype.hasOnlyReplies = function() {
-            return this.hasAttaches() && !this.dData.attaches.find(function(e) {
-                return "reply" !== e.type
-            })
-        }, o.prototype.getCancelledShares = function() {
-            return this.dData.cancelled.length ? this.dData.cancelled : void 0
-        }, o.prototype.hasAttaches = function() {
-            return this.dData.attaches.length > 0
-        }, o.prototype.destroy = function() {
-            this.dData = {}, this._key = this._db = null
-        }, o.prototype.prepareObjects = function(e, t) {
-            var n = this;
-            return this.dData.attaches.find(u) ? Object(r.post)(i.CONTROLLER, {
-                act: "draft_medias",
-                gid: e,
-                messageId: t || 0,
-                media: t ? void 0 : this.dData.attaches.map(function(e) {
-                    return [e.type, e.id]
-                }).join("*")
-            }).then(function(e) {
-                var t = a(e, 1)[0];
-                n.dData.attaches = t.map(function(e) {
-                    return {
-                        type: e[0],
-                        id: e[1],
-                        object: e[2]
-                    }
-                })
-            }) : Promise.resolve()
-        }, o.prototype.getFwdRaw = function() {
-            return this.dData.attaches.find(function(e) {
-                return "mail" === e.type || "reply" === e.type
-            })
-        }, o.prototype.getFwdCount = function() {
-            var e = this.getFwdRaw();
-            return e ? e.id < 0 ? e.object.fwd_count : e.id.split(";").length : 0
-        }
-    },
-    286: function(e, t, n) {
-        "use strict";
-        n.r(t);
-        var r = n(289),
-            i = n(283),
-            a = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
-                return typeof e
-            } : function(e) {
-                return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
-            },
-            o = window.WriteBox = {
-                mrg: function(e) {
-                    return vk.rtl ? {
-                        marginRight: e
-                    } : {
-                        marginLeft: e
-                    }
-                },
-                show: function(e, t) {
-                    var n = t.toData[0],
-                        i = t.toData[7];
-                    if (e.setOptions({
-                            hideButtons: !0,
-                            width: 502,
-                            bodyStyle: "padding: 0px; border: 0px;",
-                            title: t.title,
-                            titleControls: ('<a class="mail_box_header_link" href="/im?sel=' + n + '" onclick="return WriteBox.toFull(event, ' + n + ')">' + t.mail_go_to_dialog + "</a>").replace("%s", i)
-                        }), e.removeButtons(), cur.lang = extend(cur.lang || {}, t.lang), extend(cur, {
-                            mbTxtInp: {},
-                            mbEditable: t.editable,
-                            mbSmile: ge("mbe_smile"),
-                            toData: t.toData,
-                            mbEmoji: t.emoji,
-                            mbMedia: null,
-                            mbField: ge(t.editable ? "mail_box_editable" : "mail_box_text"),
-                            mbAva: ge("mail_box_ava"),
-                            mbMediaTypes: t.mediaTypes,
-                            mbTo: t.toData,
-                            mbHash: t.hash,
-                            mbBannedHim: t.bannedhim,
-                            ldb: Object(r.mount)(vk.id)
-                        }), t.emojiRcnt && !cur.mbRcntEmoji) {
-                        for (var a = [], u = t.emojiRcnt, c = 0, s = u.length; c < s; ++c) {
-                            var d = u[c];
-                            d && a.push('<a id="mbe_rc_em_' + d + '" class="mbe_rc_emojibtn" onmousedown="Emoji.addEmoji(cur.emojiWId, \'' + d + "', this); return cancelEvent(event);\">" + Emoji.getEmojiHTML(d, !1, !0) + "</a>")
-                        }
-                        cur.mbRcntEmoji = a.join("")
-                    }
-                    cur.nav.push(function() {
-                        cur.ldb.unmount()
-                    }), val("mbe_rcemoji", cur.mbRcntEmoji || ""), cur.peer = o.getPeer(), cur.sharedImWrite = {}, cur.emojiWId = Emoji.init(cur.mbField, {
-                        ttDiff: 1,
-                        controlsCont: ge("mbe_emoji_wrap"),
-                        shouldFocus: !0,
-                        onSend: o.send,
-                        rPointer: !0,
-                        noEnterSend: 1,
-                        ref: "writebox",
-                        noStickers: !!t.checkedRecipent,
-                        forceTxt: !t.editable,
-                        sharedTT: cur.sharedImWrite,
-                        txt: ge("mail_box_editable"),
-                        checkEditable: o.checkEditable,
-                        saveDraft: o.saveDraft,
-                        rceCont: ge("mbe_rcemoji_cont"),
-                        addMediaBtn: ge("mail_box_add_row"),
-                        sendWrap: ge("mail_box_controls"),
-                        onKeyAction: function(e) {
-                            clearTimeout(cur.saveWriteBoxDraft);
-                            var t = "paste" == e.type ? 0 : 300;
-                            cur.saveWriteBoxDraft = setTimeout(o.saveDraft, t)
-                        },
-                        onStickerSend: function(e, t) {
-                            var n = trim(Emoji.editableVal(cur.mbField)),
-                                r = cur.mbMedia.getMedias(),
-                                i = cur.toData[0];
-                            ajax.post("/al_im.php", {
-                                act: "a_send_box",
-                                to_ids: i,
-                                chas: cur.mbHash,
-                                msg: "",
-                                ts: cur.ts,
-                                media: "sticker:" + e,
-                                send_sticker: 1,
-                                from: "box",
-                                sticker_referrer: t
-                            }, {
-                                onDone: function(e, t) {
-                                    n || r.length ? o.send(!1) : (t && ls.set("im_draft" + vk.id + "_" + t, !1), curBox().hide(), showDoneBox(e))
-                                },
-                                showProgress: lockButton.pbind("mail_box_send"),
-                                hideProgress: unlockButton.pbind("mail_box_send"),
-                                onFail: function(e) {
-                                    var t = showFastBox(getLang("global_error"), e).hide;
-                                    return setTimeout(t, 3e3), !0
-                                }
-                            })
-                        },
-                        onRecentEmojiUpdate: function() {
-                            o.extractEmoji()
-                        }
-                    }), Emoji.emojiLoadMore(cur.emojiWId), cur.mbTo[0] ? cur.mbHidden = !1 : cur.mbHidden = !0, cur.imwEmoji = -1;
-                    var l = cur.postTo;
-                    cur.postTo = !1, e.setOptions({
-                        onHide: function() {
-                            removeEvent(document, "keydown", o.onKey), cur.mbEmojiShown && Emoji.ttClick(cur.emojiWId, cur.mbSmile, !0), cur.mbOnMouseClick && (cur.onMouseClick = cur.mbOnMouseClick, cur.mbOnMouseClick = !1), browser.mozilla
-                        },
-                        onShow: function() {
-                            addEvent(document, "keydown", o.onKey), cur.mbOnMouseClick || (cur.mbOnMouseClick = cur.onMouseClick), browser.mozilla, cur.sorterClbk && (cur.sorterClbk(), delete cur.sorterClbk)
-                        },
-                        onClean: function() {
-                            clearTimeout(cur.mbSaveDraftTO), delete cur.mbSaveDraftTO, delete cur.mbField, cur.postTo = l, cur.mbEmojiScroll = cur.mbEmojiExpanded = !1, cur.mbForceAttach = !1, window.WideDropdown && WideDropdown.deinit("mail_box_dd")
-                        }
-                    }), addEvent(document, "keydown", o.onKey), cur.mbOnMouseClick || (cur.mbOnMouseClick = cur.onMouseClick), stManager.add(["page.js", "page.css"], function() {
-                        var t = {
-                            mail: 1,
-                            nocl: 1,
-                            editable: 1,
-                            sortable: 1,
-                            teWidth: 150,
-                            teHeight: 100,
-                            toggleLnk: !0
-                        };
-                        cur.mbForceAttach && "market" == cur.mbForceAttach[0] && (t.onMediaAdd = function() {
-                            for (var e in cur.mbMedia.chosenMedias)
-                                if ("market" == cur.mbMedia.chosenMedias[e][0]) {
-                                    var t = cur.mbMedia.chosenMedias[e][2];
-                                    hide(geByClass1("page_media_x_wrap", t))
-                                }
-                        }), cur.mbMedia = new MediaSelector("mail_box_add_link", "mail_box_added_row", cur.mbMediaTypes, t), cur.mbMedia.onChange = function() {
-                            e.changed = !0, setTimeout(function() {
-                                o.saveDraft()
-                            }, 100)
-                        }, ls.checkVersion() && cur.mbTo[0] && o.restoreDraft(cur.mbTo[0])
-                    })
-                },
-                getPeer: function() {
-                    return intval(cur.toData[0])
-                },
-                restoreDraft: function(e) {
-                    var t = o.getPeer();
-                    if (!(!t || e && t != intval(e) || browser.mobile) && cur.mbMedia) {
-                        var n = Object(i.loadDraftForPeer)(cur.ldb, t);
-                        cur.mbForceAttach && "market" == cur.mbForceAttach[0] && (n.setText(unclean(getLang("mail_market_tmpl")).replace(/<br>/g, "\n")), n.removeAllAttaches(), n.addAttach("market", cur.mbForceAttach[1])), o.editableHasVal(cur.mbField) || (cur.mbEditable ? (Emoji.val(cur.mbField, clean(n.dData.txt)), window.Emoji && Emoji.editableFocus(cur.mbField, !1, !0)) : val(cur.mbField, clean(n.dData.txt))), n.prepareObjects().then(function() {
-                            if (cur.mbField && o.getPeer() == t)
-                                for (var e = n.dData.attaches, r = 0; r < e.length; r++) cur.mbMedia.chooseMedia(e[r].type, e[r].id, e[r].object || {}, null, !0)
-                        }), o.checkEditable(cur.emojiWId, cur.mbField), o.checkLen(cur.mbField)
-                    }
-                },
-                saveDraft: function() {
-                    var e = o.getPeer();
-                    if (e && cur.mbField) {
-                        var t = Object(i.loadDraftForPeer)(cur.ldb, e);
-                        t.setText(unclean(trim(Emoji.val(cur.mbField)))), t.removeAllAttaches(), cur.mbMedia.getMedias().forEach(function(e) {
-                            return t.addAttach(e[0], e[1])
-                        }), t.destroy()
-                    }
-                },
-                toFull: function(e, t) {
-                    if (!checkEvent(e)) {
-                        var n = {
-                                0: "im",
-                                sel: t
-                            },
-                            r = trim(Emoji.editableVal(cur.mbField));
-                        if (r && (n.message = r), cur.mbMedia.chosenMedias) {
-                            for (var i = cur.mbMedia.getMedias(), o = [], u = 0, c = i.length; u < c; ++u) {
-                                var s = i[u],
-                                    d = [];
-                                for (var l in s) "object" != a(s[l]) && d.push(s[l]);
-                                o.push(d.join(","))
-                            }
-                            n.media = o.join("*")
-                        }
-                        return nav.go(n, null, {
-                            noback: !0
-                        }), !1
-                    }
-                },
-                send: function(e) {
-                    if (!buttonLocked("mail_box_send")) {
-                        var t = trim(Emoji.editableVal(cur.mbField)),
-                            n = cur.mbMedia.getMedias();
-                        cur.mbEditable && o.extractEmoji();
-                        var r = {
-                            act: "a_send_box",
-                            chas: cur.mbHash,
-                            message: t,
-                            title: isVisible("mail_box_title_wrap") && val("mail_box_title") || "",
-                            from: "box",
-                            entrypoint: "friends" === cur.module ? "friends" : "writebox",
-                            media: [],
-                            to_ids: []
-                        };
-                        cur.mbForceAttach && (r.attach1_type = cur.mbForceAttach[0], r.attach1 = cur.mbForceAttach[1], r.attach1_hash = cur.mbForceAttach[2]);
-                        for (var a, u = 0, c = n.length; u < c; ++u)(a = n[u]) && r.media.push(a[0] + ":" + a[1]);
-                        if (r.media = r.media.join(","), !t && !r.media) return cur.mbEditable ? Emoji.editableFocus(cur.mbField) : elfocus(cur.mbField);
-                        r.to_ids = cur.toData[0], cur.mbBannedHim != r.to_ids || !0 === e ? ajax.post("al_im.php", r, {
-                            onDone: function(e, t) {
-                                if (t) {
-                                    var n = Object(i.loadDraftForPeer)(cur.ldb, t);
-                                    n.clear(), n.destroy()
-                                }
-                                curBox().hide(), showDoneBox(e)
-                            },
-                            showProgress: lockButton.pbind("mail_box_send"),
-                            hideProgress: unlockButton.pbind("mail_box_send")
-                        }) : showBox("al_profile.php", {
-                            act: "banned_him",
-                            action: "mail",
-                            mid: cur.mbBannedHim
-                        }, {
-                            dark: 1
-                        }).onContinue = o.send.pbind(!0)
-                    }
-                },
-                checkLen: function(e) {
-                    cur.mbTxtInp.value = Emoji.editableVal(e), checkTextLength(4096, cur.mbTxtInp, "mail_box_warn"), toggle("mail_box_title_wrap", cur.mbTxtInp.lastLen > 200)
-                },
-                codeToChr: function(e) {
-                    for (var t = e.length / 4, n = "", r = 0; t--;) n += String.fromCharCode(parseInt(e.substr(r, 4), 16)), r += 4;
-                    return n
-                },
-                editableHasVal: function(e) {
-                    return !!e && ("TEXTAREA" == e.tagName ? !!val(e) : !(!geByTag1("IMG", e) && !stripHTML(val(e)).replace(/[\s\xa0]/g, "").length))
-                },
-                checkEditable: function(e, t) {
-                    cur.mbEditable && Emoji.checkEditable(e, t, {
-                        height: 180
-                    })
-                },
-                cssAnimation: function() {
-                    var e = intval(browser.version);
-                    return !!(browser.chrome && e > 14 || browser.mozilla && e > 13 || browser.opera && e > 2)
-                },
-                onKey: function(e) {
-                    var t = "INPUT" == e.target.tagName || "TEXTAREA" == e.target.tagName || "mail_box_editable" == e.target.id;
-                    if (!isInputActive()) {
-                        if (e.keyCode > 40 && !e.ctrlKey && !e.metaKey && !t)
-                            if (cur.mbEditable) Emoji.editableFocus(cur.mbField, !1, !0);
-                            else {
-                                var n = cur.mbField;
-                                !n.active && elfocus(n)
-                            }
-                        return !0
-                    }
-                },
-                extractEmoji: function() {
-                    var e = ge("mbe_rcemoji");
-                    if (e) {
-                        var t = "",
-                            n = Emoji.getRecentEmojiSorted().slice(0, 7);
-                        for (var r in n)
-                            if (n.hasOwnProperty(r)) {
-                                var i = n[r];
-                                t += '<a id="mbe_rc_em_' + i + '" class="mbe_rc_emojibtn" onmousedown="Emoji.addEmoji(cur.emojiWId, \'' + i + "', this); return cancelEvent(event);\">" + Emoji.getEmojiHTML(i, !1, !0) + "</a>"
-                            }
-                        val(e, t)
-                    }
-                }
-            };
-        try {
-            stManager.done("writebox.js")
-        } catch (e) {}
-    },
-    289: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "RECENT_SEARCH_OP", function() {
-            return i
-        }), n.d(t, "PIN_HIDDEN_ID_OP", function() {
-            return a
-        }), n.d(t, "deleteOldStoredFormat", function() {
-            return s
-        }), n.d(t, "mount", function() {
-            return d
-        });
-        var r = function() {
-                return function(e, t) {
-                    if (Array.isArray(e)) return e;
-                    if (Symbol.iterator in Object(e)) return function(e, t) {
-                        var n = [],
-                            r = !0,
-                            i = !1,
-                            a = void 0;
-                        try {
-                            for (var o, u = e[Symbol.iterator](); !(r = (o = u.next()).done) && (n.push(o.value), !t || n.length !== t); r = !0);
-                        } catch (e) {
-                            i = !0, a = e
-                        } finally {
-                            try {
-                                !r && u.return && u.return()
-                            } finally {
-                                if (i) throw a
-                            }
-                        }
-                        return n
-                    }(e, t);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }(),
-            i = "recent_search",
-            a = "pin_hide";
-
-        function o(e) {
-            return "im_store_" + e
-        }
-
-        function u(e) {
-            return ls.get(o(e)) || {}
-        }
-
-        function c(e, t, n) {
-            if (ls.checkVersion()) {
-                var r = JSON.stringify(t);
-                rand(0, 1e5) <= 1 && statlogsValueEvent("im_local_store_size", r.length), n(o(e), r)
-            }
-        }
-
-        function s(e, t) {
-            for (var n = ["fwd", "draft", "bind_attach"], r = u(e), i = !1, a = n.length; a--;) n[a] in r && (delete r[n[a]], i = !0);
-            i && c(e, r, t)
-        }
-
-        function d(e) {
-            var t = debounce(function(e, t) {
-                localStorage.setItem(e, t)
-            }, 300);
-            ls.checkVersion() && s(e, t);
-            var n = {
-                    db: u(e),
-                    checkTime: Date.now()
-                },
-                d = function(e, t, n) {
-                    n.key === o(e) && (t.db = JSON.parse(n.newValue), t.checkTime = Date.now())
-                }.bind(null, e, n);
-            return window.addEventListener("storage", d, !1), {
-                select: function(t, r) {
-                    return Date.now() - n.checkTime > 1e3 && (n.db = u(e)),
-                        function(e, t, n) {
-                            return t === i ? e[t] || [] : t === a ? e[t] && e[t][n] : e[t] ? extend(!0, {}, e[t][n]) : null
-                        }(n.db, t, r)
-                },
-                selectByKey: function(t) {
-                    return Date.now() - n.checkTime > 1e3 && (n.db = u(e)), n.db[t]
-                },
-                update: function(o, u) {
-                    var s = function(e, t, n) {
-                        switch (e[t] || (e[t] = {}), t) {
-                            case i:
-                                var o = n;
-                                o && o.length > 0 ? e[t] = o : delete e[t];
-                                break;
-                            case a:
-                                var u = r(n, 2),
-                                    c = u[0],
-                                    s = u[1];
-                                s ? e[t][c] = +s : delete e[t][c]
-                        }
-                        return e
-                    }(n.db, o, u);
-                    return n.db = s, n.checkTime = Date.now(), c(e, s, t)
-                },
-                updateByKey: function(r, i) {
-                    return n.db[r] = i, n.checkTime = Date.now(), c(e, n.db, t)
-                },
-                unmount: function() {
-                    window.removeEventListener("storage", d, !1)
-                }
-            }
-        }
-    },
-    312: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "vkLocal", function() {
-            return u
-        }), n.d(t, "lTimeout", function() {
-            return c
-        }), n.d(t, "rand", function() {
-            return s
-        }), n.d(t, "irand", function() {
-            return d
-        }), n.d(t, "isUndefined", function() {
-            return l
-        }), n.d(t, "isFunction", function() {
-            return f
-        }), n.d(t, "isArray", function() {
-            return m
-        }), n.d(t, "isString", function() {
-            return g
-        }), n.d(t, "isObject", function() {
-            return p
-        }), n.d(t, "isEmpty", function() {
-            return h
-        }), n.d(t, "vkNow", function() {
-            return _
-        }), n.d(t, "vkImage", function() {
-            return b
-        }), n.d(t, "trim", function() {
-            return v
-        }), n.d(t, "stripHTML", function() {
-            return y
-        }), n.d(t, "escapeRE", function() {
-            return w
-        }), n.d(t, "intval", function() {
-            return O
-        }), n.d(t, "floatval", function() {
-            return j
-        }), n.d(t, "positive", function() {
-            return k
-        }), n.d(t, "isNumeric", function() {
-            return E
-        }), n.d(t, "winToUtf", function() {
-            return T
-        }), n.d(t, "replaceEntities", function() {
-            return I
-        }), n.d(t, "clean", function() {
-            return A
-        }), n.d(t, "unclean", function() {
-            return C
-        }), n.d(t, "each", function() {
-            return S
-        }), n.d(t, "indexOf", function() {
-            return M
-        }), n.d(t, "inArray", function() {
-            return x
-        }), n.d(t, "clone", function() {
-            return D
-        }), n.d(t, "arrayKeyDiff", function() {
-            return P
-        }), n.d(t, "extend", function() {
-            return L
-        }), n.d(t, "addTemplates", function() {
-            return N
-        }), n.d(t, "getTemplate", function() {
-            return R
-        }), n.d(t, "serializeForm", function() {
-            return F
-        }), n.d(t, "extractUrls", function() {
-            return H
-        }), n.d(t, "isRetina", function() {
-            return U
-        }), n.d(t, "getCaretCharacterOffsetWithin", function() {
-            return B
-        }), n.d(t, "formatCount", function() {
-            return G
-        }), n.d(t, "encodeHtml", function() {
-            return K
-        }), n.d(t, "decodeHtml", function() {
-            return V
-        });
-        var r = n(363),
-            i = n(55),
-            a = function() {
-                return function(e, t) {
-                    if (Array.isArray(e)) return e;
-                    if (Symbol.iterator in Object(e)) return function(e, t) {
-                        var n = [],
-                            r = !0,
-                            i = !1,
-                            a = void 0;
-                        try {
-                            for (var o, u = e[Symbol.iterator](); !(r = (o = u.next()).done) && (n.push(o.value), !t || n.length !== t); r = !0);
-                        } catch (e) {
-                            i = !0, a = e
-                        } finally {
-                            try {
-                                !r && u.return && u.return()
-                            } finally {
-                                if (i) throw a
-                            }
-                        }
-                        return n
-                    }(e, t);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }(),
-            o = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
-                return typeof e
-            } : function(e) {
-                return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
-            };
-
-        function u(e) {
-            var t = PageID;
-            return function() {
-                t === PageID && e.apply(this, arguments)
-            }
-        }
-
-        function c(e, t) {
-            return setTimeout(u(e), t)
-        }
-        window.PageID = window.PageID || 1;
-        var s = function(e, t) {
-                return Math.random() * (t - e + 1) + e
-            },
-            d = function(e, t) {
-                return Math.floor(s(e, t))
-            },
-            l = function(e) {
-                return void 0 === e
-            },
-            f = function(e) {
-                return e && "[object Function]" === Object.prototype.toString.call(e)
-            },
-            m = function(e) {
-                return "[object Array]" === Object.prototype.toString.call(e)
-            },
-            g = function(e) {
-                return "string" == typeof e
-            },
-            p = function(e) {
-                return "[object Object]" === Object.prototype.toString.call(e)
-            };
-
-        function h(e) {
-            if ("[object Object]" !== Object.prototype.toString.call(e)) return !1;
-            for (var t in e)
-                if (e.hasOwnProperty(t)) return !1;
-            return !0
-        }
-        var _ = function() {
-                return +new Date
-            },
-            b = function() {
-                return window.Image ? new Image : ce("img")
-            },
-            v = function(e) {
-                return (e || "").replace(/^\s+|\s+$/g, "")
-            },
-            y = function(e) {
-                return e ? e.replace(/<(?:.|\s)*?>/g, "") : ""
-            },
-            w = function(e) {
-                return e ? e.replace(/([.*+?^${}()|[\]\/\\])/g, "\\$1") : ""
-            };
-
-        function O(e) {
-            return !0 === e ? 1 : parseInt(e) || 0
-        }
-
-        function j(e) {
-            return !0 === e ? 1 : parseFloat(e) || 0
-        }
-
-        function k(e) {
-            return (e = O(e)) < 0 ? 0 : e
-        }
-
-        function E(e) {
-            return !isNaN(e)
-        }
-
-        function T(e) {
-            return e.replace(/&#(\d\d+);/g, function(e, t) {
-                return (t = O(t)) >= 32 ? String.fromCharCode(t) : e
-            }).replace(/&quot;/gi, '"').replace(/&lt;/gi, "<").replace(/&gt;/gi, ">").replace(/&amp;/gi, "&")
-        }
-
-        function I() {
-            var e = (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-            return Object(r.se)("<textarea>" + e + "</textarea>").value
-        }
-
-        function A(e) {
-            return e ? e.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;") : ""
-        }
-
-        function C(e) {
-            return I(e.replace(/\t/g, "\n"))
-        }
-
-        function S(e, t) {
-            if (p(e) || void 0 === e.length) {
-                for (var n in e)
-                    if (Object.prototype.hasOwnProperty.call(e, n) && !1 === t.call(e[n], n, e[n])) break
-            } else
-                for (var r = 0, i = e.length; r < i; r++) {
-                    var a = e[r];
-                    if (!1 === t.call(a, r, a)) break
-                }
-            return e
-        }
-
-        function M(e, t, n) {
-            for (var r = n || 0, i = (e || []).length; r < i; r++)
-                if (e[r] == t) return r;
-            return -1
-        }
-
-        function x(e, t) {
-            return -1 !== M(t, e)
-        }
-
-        function D(e, t) {
-            var n = p(e) || void 0 === e.length ? {} : [];
-            for (var r in e)(!/webkit/i.test(_ua) || "layerX" != r && "layerY" != r && "webkitMovementX" != r && "webkitMovementY" != r) && (t && "object" === o(e[r]) && "prototype" !== r && null !== e[r] ? n[r] = D(e[r]) : n[r] = e[r]);
-            return n
-        }
-
-        function P(e) {
-            var t = {},
-                n = arguments.length,
-                r = arguments;
-            for (var i in e)
-                if (e.hasOwnProperty(i)) {
-                    for (var a = !1, o = 1; o < n; o++) r[o][i] && r[o][i] === e[i] && (a = !0);
-                    a || (t[i] = e[i])
-                }
-            return t
-        }
-
-        function L() {
-            var e = arguments,
-                t = e.length,
-                n = e[0] || {},
-                r = 1,
-                i = !1;
-            for ("boolean" == typeof n && (i = n, n = e[1] || {}, r = 2), "object" === (void 0 === n ? "undefined" : o(n)) || f(n) || (n = {}); r < t; r++) {
-                var a = e[r];
-                if (null != a)
-                    for (var u in a)
-                        if (a.hasOwnProperty(u)) {
-                            var c = n[u],
-                                s = a[u];
-                            n !== s && (i && s && "object" === (void 0 === s ? "undefined" : o(s)) && !s.nodeType ? n[u] = L(i, c || (null != s.length ? [] : {}), s) : void 0 !== s && (n[u] = s))
-                        }
-            }
-            return n
-        }
-
-        function N(e) {
-            window.templates = window.templates || {}, L(window.templates, e)
-        }
-
-        function R(e, t) {
-            var n = (window.templates = window.templates || {})[e];
-            return "function" == typeof n && (n = n()), n && t ? Object(r.rs)(n, t) : n || ""
-        }
-
-        function F(e) {
-            if ("object" !== (void 0 === e ? "undefined" : o(e))) return !1;
-            var t = {},
-                n = function(t) {
-                    return Object(r.geByTag)(t, e)
-                },
-                i = function(n, i) {
-                    if (i.name)
-                        if ("text" !== i.type && i.type)
-                            if (i.getAttribute("bool")) {
-                                var a = Object(r.val)(i);
-                                if (!a || "0" === a) return;
-                                t[i.name] = 1
-                            } else t[i.name] = browser.msie && !i.value && e[i.name] ? e[i.name].value : i.value;
-                    else t[i.name] = Object(r.val)(i)
-                };
-            return S(n("input"), function(e, t) {
-                if ("radio" !== t.type && "checkbox" !== t.type || t.checked) return i(0, t)
-            }), S(n("select"), i), S(n("textarea"), i), t
-        }
-
-        function H(e, t) {
-            for (var n = t ? /(?:([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+(?:[a-z]{2,9}|xn--p1ai|xn--j1amh|xn--80asehdb|xn--80aswg))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)&]*(&nbsp;|[ \t\r\n \u00A0]|$))|([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9а-яєґї_\-]+\.)+(?:рф|укр|онлайн|сайт|срб))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)&]*(&nbsp;|[ \t\r\n \u00A0]|$)))/i : /(?:([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+(?:[a-z]{2,9}|xn--p1ai|xn--j1amh|xn--80asehdb|xn--80aswg))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)]*(&nbsp;|[ \t\r\n \u00A0]))|([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9а-яєґї_\-]+\.)+(?:рф|укр|онлайн|сайт|срб))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)]*(&nbsp;|[ \t\r\n \u00A0])))/i, r = void 0, i = []; e && (r = e.match(n));) {
-                e = e.substr(r.index + r[0].length);
-                var a = 0;
-                r[4] || (a = 7), i.push({
-                    url: r[2 + a],
-                    query: r[5 + a] || "",
-                    domain: r[4 + a]
-                })
-            }
-            return i
-        }
-        var U = function() {
-            return window.devicePixelRatio >= 2
-        };
-
-        function B(e) {
-            var t = 0,
-                n = 0,
-                r = e.ownerDocument || e.document,
-                i = r.defaultView || r.parentWindow;
-            if (i.getSelection().rangeCount > 0) {
-                var a = i.getSelection().getRangeAt(0),
-                    o = a.cloneRange();
-                o.selectNodeContents(e), o.setEnd(a.startContainer, a.startOffset), t = o.toString().length, o.setEnd(a.endContainer, a.endOffset), n = o.toString().length
-            }
-            return [t, n]
-        }
-
-        function G(e) {
-            var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {},
-                n = t.kLimit || 1e3;
-            return e >= (t.mLimit || 1e6) && !t.noCheck ? G(e = (e = O(e / 1e5)) > 1e3 ? O(e / 10) : e / 10, L(t, {
-                noCheck: !0
-            }), !0) + "M" : e >= n && !t.noCheck ? G(e = (e = O(e / 100)) > 100 ? O(e / 10) : e / 10, L(t, {
-                noCheck: !0
-            }), !0) + "K" : Object(i.langNumeric)(e, "%s", !0).replace(/,/g, ".")
-        }
-        var z, q = a((z = null, [function(e) {
-                return z || (z = Object(r.se)("<span> </span>")), z.innerText = e, z.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;")
-            }, function(e) {
-                return z || (z = Object(r.se)("<span> </span>")), z.innerHTML = e, z.innerText
-            }]), 2),
-            K = q[0],
-            V = q[1];
-        window.isRetina = U, window.extractUrls = H, window.serializeForm = F, window.addTemplates = N, window.getTemplate = R, window.rand = s, window.irand = d, window.isUndefined = l, window.isFunction = f, window.isArray = m, window.isString = g, window.isObject = p, window.isEmpty = h, window.vkNow = _, window.vkImage = b, window.trim = v, window.stripHTML = y, window.escapeRE = w, window.intval = O, window.floatval = j, window.positive = k, window.isNumeric = E, window.winToUtf = T, window.replaceEntities = I, window.clean = A, window.unclean = C, window.each = S, window.indexOf = M, window.inArray = x, window.clone = D, window.arrayKeyDiff = P, window.extend = L, window.vkLocal = u, window.lTimeout = c, window.getCaretCharacterOffsetWithin = B, window.formatCount = G, window.encodeHtml = K, window.decodeHtml = V
-    },
-    323: function(e, t, n) {
+    147: function(e, t, n) {
         "use strict";
         n.r(t), n.d(t, "updateLocation", function() {
             return o
@@ -2371,1398 +1352,7 @@
             }
         }
     },
-    361: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "isWeirdLogging", function() {
-            return s
-        }), n.d(t, "imWeirdLog", function() {
-            return d
-        }), n.d(t, "imWeirdCatch", function() {
-            return l
-        }), n.d(t, "startLoggingAllUnhandled", function() {
-            return f
-        }), n.d(t, "stopLoggingAllUnhandled", function() {
-            return m
-        });
-        var r = n(391),
-            i = n(281),
-            a = void 0,
-            o = 1;
-
-        function u(e, t, n, r, i) {
-            if ("Script error." !== e) {
-                var o = i ? i.stack || i.message : null;
-                d("unhandled_error", o ? {
-                    err: e,
-                    stack: o
-                } : {
-                    err: e
-                })
-            }
-            a && a.apply(this, arguments)
-        }
-
-        function c(e) {
-            e.preventDefault()
-        }
-
-        function s() {
-            return !!window.imwl
-        }
-
-        function d(e, t) {
-            var n = !(arguments.length > 2 && void 0 !== arguments[2]) || arguments[2];
-            s() && (n && window.console && (console.error(e, t), console.trace && console.trace()), Object(i.retryFn)(r.post, 3, function() {
-                return 2
-            })("al_im.php", {
-                act: "a_weird_log",
-                kind: e,
-                data: JSON.stringify(extend({
-                    errIdx: o++,
-                    ua: navigator.userAgent
-                }, t))
-            }))
-        }
-
-        function l(e, t) {
-            var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {};
-            return d(e, extend({
-                err: t && t.message || t
-            }, n)), Promise.reject(t)
-        }
-
-        function f() {
-            a = window.onerror, window.onerror = u, window.addEventListener("unhandledrejection", c)
-        }
-
-        function m() {
-            window.onerror = a, a = void 0, window.removeEventListener("unhandledrejection", c)
-        }
-    },
-    363: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "ge", function() {
-            return a
-        }), n.d(t, "geByTag", function() {
-            return o
-        }), n.d(t, "geByTag1", function() {
-            return u
-        }), n.d(t, "geByClass", function() {
-            return c
-        }), n.d(t, "geByClass1", function() {
-            return s
-        }), n.d(t, "gpeByClass", function() {
-            return d
-        }), n.d(t, "domQuery", function() {
-            return l
-        }), n.d(t, "domQuery1", function() {
-            return f
-        }), n.d(t, "domClosest", function() {
-            return m
-        }), n.d(t, "domClosestByTag", function() {
-            return g
-        }), n.d(t, "gpeByTag", function() {
-            return p
-        }), n.d(t, "ce", function() {
-            return h
-        }), n.d(t, "re", function() {
-            return O
-        }), n.d(t, "se", function() {
-            return j
-        }), n.d(t, "sech", function() {
-            return k
-        }), n.d(t, "rs", function() {
-            return E
-        }), n.d(t, "psr", function() {
-            return T
-        }), n.d(t, "domReplaceEl", function() {
-            return I
-        }), n.d(t, "domEL", function() {
-            return A
-        }), n.d(t, "domNS", function() {
-            return C
-        }), n.d(t, "domPS", function() {
-            return S
-        }), n.d(t, "domFC", function() {
-            return M
-        }), n.d(t, "domLC", function() {
-            return x
-        }), n.d(t, "domPN", function() {
-            return D
-        }), n.d(t, "domChildren", function() {
-            return P
-        }), n.d(t, "domInsertBefore", function() {
-            return L
-        }), n.d(t, "domInsertAfter", function() {
-            return N
-        }), n.d(t, "domByClass", function() {
-            return R
-        }), n.d(t, "domData", function() {
-            return F
-        }), n.d(t, "domChildIndex", function() {
-            return H
-        }), n.d(t, "domCA", function() {
-            return U
-        }), n.d(t, "domClosestSibling", function() {
-            return B
-        }), n.d(t, "matchesSelector", function() {
-            return G
-        }), n.d(t, "isHover", function() {
-            return z
-        }), n.d(t, "isAncestor", function() {
-            return q
-        }), n.d(t, "getScroll", function() {
-            return K
-        }), n.d(t, "domClosestPositioned", function() {
-            return V
-        }), n.d(t, "domClosestOverflowHidden", function() {
-            return W
-        }), n.d(t, "show", function() {
-            return Y
-        }), n.d(t, "hide", function() {
-            return X
-        }), n.d(t, "isVisible", function() {
-            return $
-        }), n.d(t, "clientHeight", function() {
-            return Q
-        }), n.d(t, "getClientRectOffsetY", function() {
-            return Z
-        }), n.d(t, "toggle", function() {
-            return J
-        }), n.d(t, "boundingRectEnabled", function() {
-            return ee
-        }), n.d(t, "getXYRect", function() {
-            return te
-        }), n.d(t, "getXY", function() {
-            return ne
-        }), n.d(t, "isWindow", function() {
-            return re
-        }), n.d(t, "getSize", function() {
-            return ie
-        }), n.d(t, "getW", function() {
-            return ae
-        }), n.d(t, "getH", function() {
-            return oe
-        }), n.d(t, "hasClass", function() {
-            return ue
-        }), n.d(t, "addClass", function() {
-            return ce
-        }), n.d(t, "addClassDelayed", function() {
-            return se
-        }), n.d(t, "removeClass", function() {
-            return de
-        }), n.d(t, "removeClassDelayed", function() {
-            return le
-        }), n.d(t, "toggleClass", function() {
-            return fe
-        }), n.d(t, "toggleClassDelayed", function() {
-            return me
-        }), n.d(t, "replaceClass", function() {
-            return ge
-        }), n.d(t, "getStyle", function() {
-            return pe
-        }), n.d(t, "setStyle", function() {
-            return he
-        }), n.d(t, "setStyleDelayed", function() {
-            return _e
-        }), n.d(t, "setPseudoStyle", function() {
-            return be
-        }), n.d(t, "data", function() {
-            return ve
-        }), n.d(t, "attr", function() {
-            return ye
-        }), n.d(t, "removeAttr", function() {
-            return we
-        }), n.d(t, "removeData", function() {
-            return Oe
-        }), n.d(t, "cleanElems", function() {
-            return je
-        }), n.d(t, "setTitle", function() {
-            return ke
-        }), n.d(t, "getZoom", function() {
-            return Ee
-        }), n.d(t, "val", function() {
-            return Te
-        }), n.d(t, "elfocus", function() {
-            return Ie
-        }), n.d(t, "traverseParent", function() {
-            return Ae
-        }), n.d(t, "setDocumentTitle", function() {
-            return Se
-        }), n.d(t, "lockDocumentTitle", function() {
-            return Me
-        });
-        var r = n(312),
-            i = n(448),
-            a = function(e) {
-                return "string" == typeof e || "number" == typeof e ? document.getElementById(e) : e
-            };
-
-        function o(e, t) {
-            return (t = a(t) || document).getElementsByTagName(e)
-        }
-
-        function u(e, t) {
-            return (t = a(t) || document).querySelector && t.querySelector(e) || o(e, t)[0]
-        }
-
-        function c(e, t, n) {
-            return t = a(t) || document, n = n || "*", e = ("." + e).replace(/\s+/gm, "."), Array.prototype.slice.call(t.querySelectorAll(n + e))
-        }
-
-        function s(e, t, n) {
-            return t = a(t) || document, n = n || "*", t.querySelector && t.querySelector(n + ("." + e).replace(/\s+/gm, ".")) || c(e, t, n)[0]
-        }
-
-        function d(e, t, n) {
-            if (!(t = a(t))) return null;
-            for (; n !== t && (t = t.parentNode);)
-                if (ue(t, e)) return t;
-            return null
-        }
-
-        function l(e, t) {
-            return (t || document).querySelectorAll(e)
-        }
-
-        function f(e, t) {
-            return (t || document).querySelector(e)
-        }
-
-        function m(e, t) {
-            return ue(t, e) ? t : d(e, t)
-        }
-
-        function g(e, t) {
-            return e = e.toUpperCase(), t.nodeType === Node.ELEMENT_NODE && t.tagName.toUpperCase() === e ? t : p(e, t)
-        }
-
-        function p(e, t) {
-            if (!(t = a(t))) return null;
-            for (e = e.toUpperCase(); t = t.parentNode;)
-                if (t.tagName && t.tagName.toUpperCase() === e) return t;
-            return null
-        }
-
-        function h(e, t, n) {
-            var i = document.createElement(e);
-            return t && Object(r.extend)(i, t), n && he(i, n), i
-        }
-        var _, b, v, y, w = (_ = document, b = _.createDocumentFragment(), v = _.createElement("div"), y = _.createRange && _.createRange(), b.appendChild(v), y && y.selectNodeContents(v), y && y.createContextualFragment ? function(e) {
-            return e ? y.createContextualFragment(e) : _.createDocumentFragment()
-        } : function(e) {
-            if (!e) return _.createDocumentFragment();
-            v.innerHTML = e;
-            for (var t = _.createDocumentFragment(); v.firstChild;) t.appendChild(v.firstChild);
-            return t
-        });
-
-        function O(e) {
-            return (e = a(e)) && e.parentNode && e.parentNode.removeChild(e), e
-        }
-        var j = function(e) {
-                return M(h("div", {
-                    innerHTML: e
-                }))
-            },
-            k = function(e) {
-                return P(h("div", {
-                    innerHTML: e
-                }))
-            };
-
-        function E(e, t) {
-            return Object(r.each)(t, function(t, n) {
-                e = e.replace(new RegExp("%" + t + "%", "g"), (void 0 === n ? "" : n).toString().replace(/\$/g, "&#036;"))
-            }), e
-        }
-
-        function T(e) {
-            return "https:" !== locProtocol ? e : e = (e = (e = (e = (e = e.replace(/http:\/\/(cs(\d+)\.vk\.me\/c(\d+)\/)/gi, "https://$1")).replace(/http:\/\/cs(\d+)\.(userapi\.com|vk\.com|vk\.me|vkontakte\.ru)\/c(\d+)\/(v\d+\/|[a-z0-9\/_:\-]+\.jpg)/gi, "https://pp.vk.me/c$3/$4")).replace(/http:\/\/cs(\d+)\.(userapi\.com|vk\.com|vk\.me|vkontakte\.ru)\/([a-z0-9\/_:\-]+\.jpg)/gi, "https://pp.vk.me/c$1/$3")).replace(/http:\/\/cs(\d+)\.(userapi\.com|vk\.com|vk\.me|vkontakte\.ru)\//gi, "https://ps.vk.me/c$1/")).replace(/http:\/\/video(\d+)\.vkadre\.ru\//gi, "https://ps.vk.me/v$1/")
-        }
-
-        function I(e, t) {
-            return Object(r.isString)(t) && (t = j(t)), D(e).replaceChild(t, e), t
-        }
-
-        function A(e, t) {
-            for (t = t ? "previousSibling" : "nextSibling"; e && !e.tagName;) e = e[t];
-            return e
-        }
-        var C = function(e) {
-                return A((e || {}).nextSibling)
-            },
-            S = function(e) {
-                return A((e || {}).previousSibling, 1)
-            },
-            M = function(e) {
-                return A((e || {}).firstChild)
-            },
-            x = function(e) {
-                return A((e || {}).lastChild, 1)
-            },
-            D = function(e) {
-                return (e || {}).parentNode
-            };
-
-        function P(e) {
-            for (var t = [], n = e.childNodes, r = 0; r < n.length; r++) n[r].tagName && t.push(n[r]);
-            return t
-        }
-
-        function L(e, t) {
-            var n = D(t);
-            return n && n.insertBefore(e, t)
-        }
-
-        function N(e, t) {
-            var n = D(t);
-            return n && n.insertBefore(e, C(t))
-        }
-
-        function R(e, t) {
-            return e ? s(t, e) : e
-        }
-
-        function F(e, t, n) {
-            return e ? void 0 !== n ? (null === n ? e.removeAttribute("data-" + t) : e.setAttribute("data-" + t, n), n) : e.getAttribute("data-" + t) : null
-        }
-
-        function H(e) {
-            for (var t = 0; null != (e = S(e));) t++;
-            return t
-        }
-
-        function U(e, t) {
-            do {
-                e = D(e)
-            } while (e && !G(e, t));
-            return e
-        }
-
-        function B(e, t, n) {
-            for (var r = null; null === r && e;)(e = -1 === n ? S(e) : C(e)) && G(e, t) && (r = e);
-            return r
-        }
-
-        function G(e, t) {
-            return !(!(e = a(e)) || e === document) && (e.matches || e.matchesSelector || e.mozMatchesSelector || e.msMatchesSelector || e.oMatchesSelector || e.webkitMatchesSelector || function(e) {
-                for (var t = (this.document || this.ownerDocument).querySelectorAll(e), n = t.length; --n >= 0 && t.item(n) !== this;);
-                return n > -1
-            }).call(e, t)
-        }
-
-        function z(e) {
-            return G(e, ":hover")
-        }
-
-        function q(e, t) {
-            var n = a(e);
-            if (t = a(t), !e || !t) return !1;
-            for (; n = n.parentNode;)
-                if (n === t) return !0;
-            return !1
-        }
-
-        function K() {
-            var e = browser.msie6 ? a("PageContainer") : document.body,
-                t = document.documentElement;
-            return [e.scrollLeft || t.scrollLeft || window.pageXOffset || 0, e.scrollTop || t.scrollTop || window.pageYOffset || 0, t.clientWidth || e.clientWidth || 0, t.clientHeight || e.clientHeight || 0]
-        }
-
-        function V(e, t) {
-            for (var n = (t = t || {}).fromEl || D(e), i = t.positions || ["relative", "absolute", "fixed"]; n && n !== bodyNode;) {
-                var a = pe(n, "position");
-                if (Object(r.inArray)(a, i) && (!t.noOverflow || "hidden" !== pe(n, "overflow"))) break;
-                n = D(n)
-            }
-            return n
-        }
-
-        function W(e, t) {
-            for (var n = e = a(e), r = void 0, i = void 0, o = void 0, u = !1; n && n.tagName && n !== bodyNode;) {
-                if (r = pe(n, "position"), i = pe(n, "overflow"), o = pe(n, "transform"), t && browser.mozilla) {
-                    if ("page_wrap" != n.id && n !== e && "visible" !== i && ("static" === r ? !u || "relative" === u : "fixed" !== u)) break
-                } else if (n !== e && "visible" !== i && ("static" === r ? !u || "relative" === u : "fixed" !== u)) break;
-                "none" !== o ? u = void 0 : "static" !== r && "fixed" !== u && (u = r), n = D(n)
-            }
-            return n
-        }
-
-        function Y(e) {
-            var t = arguments.length;
-            if (t > 1)
-                for (var n = 0; n < t; n++) Y(arguments[n]);
-            else if ((e = a(e)) && e.style) {
-                var r = e.olddisplay,
-                    i = e.tagName.toLowerCase(),
-                    o = "block";
-                e.style.display = r || "", "none" === pe(e, "display") && (o = ue(e, "inline") || ue(e, "_inline") ? "inline" : ue(e, "_inline_block") ? "inline-block" : "tr" !== i || browser.msie ? "table" !== i || browser.msie ? "block" : "table" : "table-row", e.style.display = e.olddisplay = o)
-            }
-        }
-
-        function X(e) {
-            var t = arguments.length;
-            if (t > 1)
-                for (var n = 0; n < t; n++) X(arguments[n]);
-            else if ((e = a(e)) && e.style) {
-                var r = pe(e, "display");
-                e.olddisplay = "none" !== r ? r : "", e.style.display = "none"
-            }
-        }
-
-        function $(e) {
-            return !(!(e = a(e)) || !e.style) && "none" !== pe(e, "display")
-        }
-
-        function Q() {
-            return window.innerHeight || document.documentElement.clientHeight || bodyNode.clientHeight
-        }
-
-        function Z(e, t, n) {
-            e = a(e), n = n || 0;
-            var i = ne(e)[1],
-                o = ie(e)[1],
-                u = window,
-                c = document.documentElement,
-                s = Math.max(Object(r.intval)(u.innerHeight), Object(r.intval)(c.clientHeight)),
-                d = a("page_header_cont"),
-                l = c.scrollTop || bodyNode.scrollTop || window.scrollY || 0,
-                f = vk.staticheader ? Math.max(0, ie(d)[1] - l) : ie(d)[1];
-            if (t) {
-                if (i + o < l + f + n) return i + o - l - f - n;
-                if (i > l + s - n) return i - l - s + n
-            } else {
-                if (i < l + f + n) return i - l - f - n;
-                if (i + o > l + s - n) return i + o - l - s + n
-            }
-            return 0
-        }
-
-        function J(e, t) {
-            return void 0 === t && (t = !$(e)), t ? Y(e) : X(e), t
-        }
-
-        function ee(e) {
-            return void 0 !== e.getBoundingClientRect
-        }
-
-        function te(e, t) {
-            var n = void 0;
-            if (t && "inline" === pe(e, "display")) {
-                var r = e.getClientRects();
-                n = r && r[0] || e.getBoundingClientRect()
-            } else n = e.getBoundingClientRect();
-            return n
-        }
-
-        function ne(e, t) {
-            if (!(e = a(e))) return [0, 0];
-            var n = e.ownerDocument,
-                r = {
-                    top: 0,
-                    left: 0
-                };
-            if (!n) return [0, 0];
-            var i = n.documentElement;
-            ee(e) && (r = te(e, !0));
-            var o = n === n.window ? n : 9 === n.nodeType && (n.defaultView || n.parentWindow);
-            return [r.left + (t ? 0 : o.pageXOffset || i.scrollLeft) - (i.clientLeft || 0), r.top + (t ? 0 : o.pageYOffset || i.scrollTop) - (i.clientTop || 0)]
-        }
-
-        function re(e) {
-            return null != e && e === e.window
-        }
-
-        function ie(e, t, n) {
-            e = a(e);
-            var i = document.documentElement,
-                o = [0, 0],
-                u = void 0;
-            if (t && "border-box" === pe(e, "boxSizing") && (t = !1), e === document) o = [Math.max(i.clientWidth, bodyNode.scrollWidth, i.scrollWidth, bodyNode.offsetWidth, i.offsetWidth), Math.max(i.clientHeight, bodyNode.scrollHeight, i.scrollHeight, bodyNode.offsetHeight, i.offsetHeight)];
-            else if (e) {
-                var c = function() {
-                    o = ee(e) && (u = te(e, n)) && void 0 !== u.width ? [u.width, u.height] : [e.offsetWidth, e.offsetHeight], t && Object(r.each)(o, function(t, n) {
-                        var i = t ? ["Top", "Bottom"] : ["Left", "Right"];
-                        Object(r.each)(i, function() {
-                            o[t] -= parseFloat(pe(e, "padding" + this)) || 0, o[t] -= parseFloat(pe(e, "border" + this + "Width")) || 0
-                        })
-                    })
-                };
-                if ($(e)) c();
-                else {
-                    var s = {
-                            position: "absolute",
-                            visibility: "hidden",
-                            display: "block"
-                        },
-                        d = {},
-                        l = !1;
-                    e.style.cssText.indexOf("!important") > -1 && (l = e.style.cssText), Object(r.each)(s, function(t, n) {
-                        d[t] = e.style[t], e.style[t] = n
-                    }), c(), Object(r.each)(s, function(t, n) {
-                        e.style[t] = d[t]
-                    }), l && (e.style.cssText = l)
-                }
-            }
-            return o
-        }
-
-        function ae(e) {
-            return ie(e)[0]
-        }
-
-        function oe(e) {
-            return ie(e)[1]
-        }
-
-        function ue(e, t) {
-            var n = a(e);
-            return n && 1 === n.nodeType && (" " + n.className + " ").replace(window.whitespaceRegex, " ").indexOf(" " + t + " ") >= 0
-        }
-
-        function ce(e, t) {
-            var n = a(e);
-            n && !ue(n, t) && (n.className = (n.className ? n.className + " " : "") + t)
-        }
-        window.whitespaceRegex = /[\t\r\n\f]/g;
-        var se = function(e, t) {
-            return setTimeout(ce.pbind(e, t), 0)
-        };
-
-        function de(e, t) {
-            var n = a(e);
-            n && (n.className = Object(r.trim)((n.className || "").replace(new RegExp("(\\s|^)" + t + "(\\s|$)"), " ")))
-        }
-        var le = function(e, t) {
-            return setTimeout(de.pbind(e, t), 0)
-        };
-
-        function fe(e, t, n) {
-            return void 0 === n && (n = !ue(e, t)), (n ? ce : de)(e, t), n
-        }
-
-        function me(e, t, n) {
-            return void 0 === n && (n = !ue(e, t)), (n ? se : le)(e, t), n
-        }
-
-        function ge(e, t, n) {
-            de(e, t), ce(e, n)
-        }
-
-        function pe(e, t, n) {
-            if (e = a(e), Object(r.isArray)(t)) {
-                var i = {};
-                return Object(r.each)(t, function(t, n) {
-                    return i[n] = pe(e, n)
-                }), i
-            }
-            if (!e) return "";
-            if (void 0 === n && (n = !0), !n && "opacity" === t && browser.msie) {
-                var o = e.style.filter;
-                return o ? o.indexOf("opacity=") >= 0 ? parseFloat(o.match(/opacity=([^)]*)/)[1]) / 100 + "" : "1" : ""
-            }
-            if (!n && e.style && (e.style[t] || "height" === t)) return e.style[t];
-            var u = void 0,
-                c = document.defaultView || window;
-            if (c.getComputedStyle) {
-                t = t.replace(/([A-Z])/g, "-$1").toLowerCase();
-                var s = c.getComputedStyle(e, null);
-                s && (u = s.getPropertyValue(t))
-            } else if (e.currentStyle) {
-                if ("opacity" === t && browser.msie) {
-                    var d = e.currentStyle.filter;
-                    return d && d.indexOf("opacity=") >= 0 ? parseFloat(d.match(/opacity=([^)]*)/)[1]) / 100 + "" : "1"
-                }
-                var l = t.replace(/\-(\w)/g, function(e, t) {
-                    return t.toUpperCase()
-                });
-                "auto" === (u = e.currentStyle[t] || e.currentStyle[l]) && (u = 0), u = (u + "").split(" "), Object(r.each)(u, function(t, n) {
-                    if (!/^\d+(px)?$/i.test(n) && /^\d/.test(n)) {
-                        var r = e.style,
-                            i = r.left,
-                            a = e.runtimeStyle.left;
-                        e.runtimeStyle.left = e.currentStyle.left, r.left = n || 0, u[t] = r.pixelLeft + "px", r.left = i, e.runtimeStyle.left = a
-                    }
-                }), u = u.join(" ")
-            }
-            if (n && ("width" === t || "height" === t)) {
-                var f = ie(e, !0)[{
-                    width: 0,
-                    height: 1
-                }[t]];
-                u = (Object(r.intval)(u) ? Math.max(Object(r.floatval)(u), f) : f) + "px"
-            }
-            return u
-        }
-
-        function he(e, t, n) {
-            if (e = a(e))
-                if (Object(r.isObject)(t)) Object(r.each)(t, function(t, n) {
-                    return he(e, t, n)
-                });
-                else if ("opacity" === t) browser.msie && ((n + "").length ? e.style.filter = 1 !== n ? "alpha(opacity=" + 100 * n + ")" : "" : e.style.cssText = e.style.cssText.replace(/filter\s*:[^;]*/gi, ""), e.style.zoom = 1), e.style.opacity !== n && (e.style.opacity = n);
-            else try {
-                var i = "number" == typeof n;
-                i && /height|width/i.test(t) && (n = Math.abs(n)), n = i && !/z-?index|font-?weight|opacity|zoom|line-?height/i.test(t) ? n + "px" : n, e.style[t] !== n && (e.style[t] = n)
-            } catch (e) {
-                debugLog("setStyle error: ", [t, n], e)
-            }
-        }
-        window.cssTransformProp = function() {
-            var e = document.createElement("div");
-            if (null == e.style.transform) {
-                var t = ["Webkit", "Moz", "ms"];
-                for (var n in t)
-                    if (void 0 !== e.style[t[n] + "Transform"]) return t[n] + "Transform"
-            }
-            return "transform"
-        }();
-        var _e = function(e, t, n) {
-            return setTimeout(he.pbind(e, t, n), 0)
-        };
-
-        function be(e, t, n) {
-            var i = ve(e, "pseudo-id");
-            i || (ve(e, "pseudo-id", i = Object(r.irand)(1e8, 999999999)), ce(e, "_pseudo_" + i));
-            var o = t + "-style-" + i,
-                u = a(o),
-                c = "._pseudo_" + i + ":" + t + "{";
-            u || (u = headNode.appendChild(h("style", {
-                id: o,
-                type: "text/css"
-            }))), Object(r.each)(n, function(e, t) {
-                c += e + ": " + t + " !important;"
-            }), c += "}", u.sheet ? (u.sheet.cssRules.length && u.sheet.deleteRule(0), u.sheet.insertRule(c, 0)) : u.styleSheet && (u.styleSheet.cssText = c)
-        }
-
-        function ve(e, t, n) {
-            if (!e) return !1;
-            var r = e[vkExpand];
-            return r || (r = e[vkExpand] = ++vkUUID), void 0 !== n && (vkCache[r] || (vkCache[r] = {}, window.__debugMode && (vkCache[r].__elem = e)), vkCache[r][t] = n), t ? vkCache[r] && vkCache[r][t] : r
-        }
-
-        function ye(e, t, n) {
-            return e = a(e), void 0 === n ? e.getAttribute(t) : (e.setAttribute(t, n), n)
-        }
-
-        function we(e) {
-            for (var t = 0, n = arguments.length; t < n; ++t) {
-                var r = arguments[t];
-                if (void 0 !== e[r]) try {
-                    delete e[r]
-                } catch (t) {
-                    try {
-                        e.removeAttribute(r)
-                    } catch (e) {}
-                }
-            }
-        }
-
-        function Oe(e, t) {
-            var n = !!e && e[vkExpand];
-            if (n)
-                if (t) {
-                    if (vkCache[n]) {
-                        delete vkCache[n][t], t = "";
-                        var r = 0;
-                        for (var a in vkCache[n])
-                            if ("__elem" !== a) {
-                                r++;
-                                break
-                            }
-                        r || Oe(e)
-                    }
-                } else Object(i.removeEvent)(e), we(e, vkExpand), delete vkCache[n]
-        }
-
-        function je() {
-            for (var e = arguments, t = 0; t < e.length; ++t) {
-                var n = a(e[t]);
-                n && (Oe(n), we(n, "btnevents"))
-            }
-        }
-
-        function ke(e, t, n) {
-            if ((e = a(e)) && !e.titleSet) {
-                if (t || (t = e), t.scrollWidth > t.clientWidth) e.setAttribute("title", n || e.innerText || e.textContent);
-                else {
-                    var r = u("b", e);
-                    r && r.scrollWidth > r.clientWidth ? e.setAttribute("title", n || e.innerText || e.textContent) : e.removeAttribute("title")
-                }
-                e.titleSet = 1
-            }
-        }
-
-        function Ee() {
-            var e = a("zoom_test_1") || document.body.appendChild(h("div", {
-                id: "zoom_test_1"
-            }, {
-                left: "10%",
-                position: "absolute",
-                visibility: "hidden"
-            }));
-            return (a("zoom_test_2") || document.body.appendChild(h("div", {
-                id: "zoom_test_2"
-            }, {
-                left: e.offsetLeft + "px",
-                position: "absolute",
-                visibility: "hidden"
-            }))).offsetLeft / e.offsetLeft
-        }
-
-        function Te(e, t, n) {
-            if (e = a(e)) return void 0 !== t && (e.setValue ? (e.setValue(t), !n && e.phonblur && e.phonblur()) : "INPUT" === e.tagName || "TEXTAREA" === e.tagName ? e.value = t : void 0 !== e.emojiId && window.Emoji ? Emoji.val(e, t) : e.innerHTML = t, !n && Object(i.triggerEvent)(e, "valueChanged")), e.getValue ? e.getValue() : ("INPUT" === e.tagName || "TEXTAREA" === e.tagName ? e.value : e.innerHTML) || ""
-        }
-
-        function Ie(e, t, n) {
-            e = a(e);
-            try {
-                e.focus(), void 0 !== t && !1 !== t || (t = e.value.length), void 0 !== n && !1 !== n || (n = t), e.setSelectionRange && e.setSelectionRange(t, n)
-            } catch (e) {}
-        }
-
-        function Ae(e, t, n) {
-            for (e = a(e), n = n || 999; e && !t(e);) {
-                if (0 === --n) return !1;
-                try {
-                    if ((e = D(e)) === document) break
-                } catch (t) {
-                    e = !1
-                }
-            }
-            return e
-        }
-        window.vkExpand = window.vkExpand || "VK" + Object(r.vkNow)(), window.vkUUID = window.vkUUID || 0, window.vkCache = window.vkCache || {};
-        var Ce = !1;
-
-        function Se(e) {
-            if (!Ce) return window.document.title = Object(r.replaceEntities)(e)
-        }
-
-        function Me(e) {
-            Ce = e, e && window.cur && window.cur.destroy.push(function() {
-                Me(!1)
-            })
-        }
-        window.ge = a, window.geByTag = o, window.geByTag1 = u, window.geByClass = c, window.geByClass1 = s, window.gpeByClass = d, window.domQuery = l, window.domQuery1 = f, window.domClosest = m, window.ce = h, window.cf = w, window.re = O, window.se = j, window.sech = k, window.rs = E, window.psr = T, window.domReplaceEl = I, window.domEL = A, window.domNS = C, window.domPS = S, window.domFC = M, window.domLC = x, window.domPN = D, window.domChildren = P, window.domInsertBefore = L, window.domInsertAfter = N, window.domByClass = R, window.domData = F, window.domChildIndex = H, window.domCA = U, window.domClosestSibling = B, window.matchesSelector = G, window.isHover = z, window.isAncestor = q, window.getScroll = K, window.domClosestPositioned = V, window.domClosestOverflowHidden = W, window.show = Y, window.hide = X, window.isVisible = $, window.clientHeight = Q, window.getClientRectOffsetY = Z, window.toggle = J, window.boundingRectEnabled = ee, window.getXYRect = te, window.getXY = ne, window.isWindow = re, window.getSize = ie, window.hasClass = ue, window.addClass = ce, window.addClassDelayed = se, window.removeClass = de, window.removeClassDelayed = le, window.toggleClass = fe, window.toggleClassDelayed = me, window.replaceClass = ge, window.getStyle = pe, window.setStyle = he, window.setStyleDelayed = _e, window.setPseudoStyle = be, window.data = ve, window.attr = ye, window.removeAttr = we, window.removeData = Oe, window.cleanElems = je, window.setTitle = ke, window.getZoom = Ee, window.val = Te, window.elfocus = Ie, window.traverseParent = Ae, window.getH = oe, window.getW = ae, window.domClosestByTag = g, window.setDocumentTitle = Se, window.lockDocumentTitle = Me
-    },
-    381: function(e, t, n) {
-        "use strict";
-        var r;
-
-        function i(e, t, n) {
-            return t in e ? Object.defineProperty(e, t, {
-                value: n,
-                enumerable: !0,
-                configurable: !0,
-                writable: !0
-            }) : e[t] = n, e
-        }
-        n.r(t), n.d(t, "OUR_DOMAINS", function() {
-            return a
-        }), n.d(t, "ENTITIES", function() {
-            return o
-        }), n.d(t, "VK_DOMAIN", function() {
-            return u
-        }), n.d(t, "MENTION", function() {
-            return c
-        }), n.d(t, "MENTION_RAW", function() {
-            return s
-        }), n.d(t, "ARROW_UP", function() {
-            return d
-        }), n.d(t, "ARROW_DOWN", function() {
-            return l
-        }), n.d(t, "PAGE_UP", function() {
-            return f
-        }), n.d(t, "PAGE_DOWN", function() {
-            return m
-        }), n.d(t, "END_KEY", function() {
-            return g
-        }), n.d(t, "HOME", function() {
-            return p
-        }), n.d(t, "ENTER", function() {
-            return h
-        }), n.d(t, "ESC", function() {
-            return _
-        }), n.d(t, "UNPRINTABLE_KEYS", function() {
-            return b
-        }), n.d(t, "UP_DOWN_CONTROLS", function() {
-            return v
-        }), n.d(t, "PRINTABLE", function() {
-            return y
-        }), n.d(t, "FOLDER_UNREAD", function() {
-            return w
-        }), n.d(t, "FOLDER_ALL", function() {
-            return O
-        }), n.d(t, "FOLDER_UNRESPOND", function() {
-            return j
-        }), n.d(t, "FOLDER_IMPORTANT", function() {
-            return k
-        }), n.d(t, "FOLDERS", function() {
-            return E
-        }), n.d(t, "FOLDER_MASKS", function() {
-            return T
-        }), n.d(t, "TOP_DOMAINS", function() {
-            return I
-        }), n.d(t, "MAX_DOMAIN_LENGTH", function() {
-            return A
-        }), n.d(t, "EMAIL", function() {
-            return C
-        }), n.d(t, "MESSAGE_REGEXP", function() {
-            return S
-        }), n.d(t, "RE_HASHTAG_EXTRACTION_PATTERN", function() {
-            return M
-        });
-        var a = /^([a-zA-Z0-9\.\_\-]+\.)?(vkontakte\.ru|vk\.com|vkadre\.ru|vshtate\.ru|userapi\.com|vk\.me)$/,
-            o = /([^a-zA-Z0-9#%;_\-.\/?&=\[\]])/g,
-            u = /^(?:https?:\/\/)?(?:vk\.com|vkontakte\.ru)?\/([a-zA-Z0-9\._]+)\??$/,
-            c = /\[(id|club)(\d+)(?:\:([a-z0-9_\-]+))?\|([^\$]+?)\]/g,
-            s = /(^|[\s.,:\'\";>\)\(])(\*|@)([A-Za-z0-9_\.]{2,32})\s*\((.+?)\)/g,
-            d = 38,
-            l = 40,
-            f = 33,
-            m = 34,
-            g = 35,
-            p = 36,
-            h = 13,
-            _ = 27,
-            b = [d, l, f, m, h, _, g, p],
-            v = [f, m, l, d, p, g],
-            y = "printable",
-            w = "unread",
-            O = "all",
-            j = "unrespond",
-            k = "important",
-            E = [O, w, j, k],
-            T = (i(r = {}, j, 2), i(r, k, 1), r),
-            I = [].concat("aaa,aarp,abarth,abb,abbott,abbvie,abc,able,abogado,abudhabi,ac,academy,accenture,accountant,accountants,aco,active,actor,ad,adac,ads,adult,ae,aeg,aero,aetna,af,afamilycompany,afl,africa,ag,agakhan,agency,ai,aig,aigo,airbus,airforce,airtel,akdn,al,alfaromeo,alibaba,alipay,allfinanz,allstate,ally,alsace,alstom,am,americanexpress,americanfamily,amex,amfam,amica,amsterdam,an,analytics,android,anquan,anz,ao,aol,apartments,app,apple,aq,aquarelle,ar,aramco,archi,army,arpa,art,arte,as,asda,asia,associates,at,athleta,attorney,au,auction,audi,audible,audio,auspost,author,auto,autos,avianca,aw,aws,ax,axa,az,azure,ba,baby,baidu,banamex,bananarepublic,band,bank,bar,barcelona,barclaycard,barclays,barefoot,bargains,baseball,basketball,bauhaus,bayern,bb,bbc,bbt,bbva,bcg,bcn,bd,be,beats,beauty,beer,bentley,berlin,best,bestbuy,bet,bf,bg,bh,bharti,bi,bible,bid,bike,bing,bingo,bio,biz,bj,bl,black,blackfriday,blanco,blockbuster,blog,bloomberg,blue,bm,bms,bmw,bn,bnl,bnpparibas,bo,boats,boehringer,bofa,bom,bond,boo,book,booking,boots,bosch,bostik,boston,bot,boutique,box,bq,br,bradesco,bridgestone,broadway,broker,brother,brussels,bs,bt,budapest,bugatti,build,builders,business,buy,buzz,bv,bw,by,bz,bzh,ca,cab,cafe,cal,call,calvinklein,cam,camera,camp,cancerresearch,canon,capetown,capital,capitalone,car,caravan,cards,care,career,careers,cars,cartier,casa,case,caseih,cash,casino,cat,catering,catholic,cba,cbn,cbre,cbs,cc,cd,ceb,center,ceo,cern,cf,cfa,cfd,cg,ch,chanel,channel,chase,chat,cheap,chintai,chloe,christmas,chrome,chrysler,church,ci,cipriani,circle,cisco,citadel,citi,citic,city,cityeats,ck,cl,claims,cleaning,click,clinic,clinique,clothing,cloud,club,clubmed,cm,cn,co,coach,codes,coffee,college,cologne,com,comcast,commbank,community,company,compare,computer,comsec,condos,construction,consulting,contact,contractors,cooking,cookingchannel,cool,coop,corsica,country,coupon,coupons,courses,cr,credit,creditcard,creditunion,cricket,crown,crs,cruise,cruises,csc,cu,cuisinella,cv,cw,cx,cy,cymru,cyou,cz,dabur,dad,dance,data,date,dating,datsun,day,dclk,dds,de,deal,dealer,deals,degree,delivery,dell,deloitte,delta,democrat,dental,dentist,desi,design,dev,dhl,diamonds,diet,digital,direct,directory,discount,discover,dish,diy,dj,dk,dm,dnp,do,docs,doctor,dodge,dog,doha,domains,dot,download,drive,dtv,dubai,duck,dunlop,duns,dupont,durban,dvag,dvr,dz,earth,eat,ec,eco,edeka,edu,education,ee,eg,eh,email,emerck,energy,engineer,engineering,enterprises,epost,epson,equipment,er,ericsson,erni,es,esq,estate,esurance,et,eu,eurovision,eus,events,everbank,exchange,expert,exposed,express,extraspace,fage,fail,fairwinds,faith,family,fan,fans,farm,farmers,fashion,fast,fedex,feedback,ferrari,ferrero,fi,fiat,fidelity,fido,film,final,finance,financial,fire,firestone,firmdale,fish,fishing,fit,fitness,fj,fk,flickr,flights,flir,florist,flowers,fly,fm,fo,foo,food,foodnetwork,football,ford,forex,forsale,forum,foundation,fox,fr,free,fresenius,frl,frogans,frontdoor,frontier,ftr,fujitsu,fujixerox,fun,fund,furniture,futbol,fyi,ga,gal,gallery,gallo,gallup,game,games,gap,garden,gb,gbiz,gd,gdn,ge,gea,gent,genting,george,gf,gg,ggee,gh,gi,gift,gifts,gives,giving,gl,glade,glass,gle,global,globo,gm,gmail,gmbh,gmo,gmx,gn,godaddy,gold,goldpoint,golf,goo,goodhands,goodyear,goog,google,gop,got,gov,gp,gq,gr,grainger,graphics,gratis,green,gripe,group,gs,gt,gu,guardian,gucci,guge,guide,guitars,guru,gw,gy,hair,hamburg,hangout,haus,hbo,hdfc,hdfcbank,health,healthcare,help,helsinki,here,hermes,hgtv,hiphop,hisamitsu,hitachi,hiv,hk,hkt,hm,hn,hockey,holdings,holiday,homedepot,homegoods,homes,homesense,honda,honeywell,horse,hospital,host,hosting,hot,hoteles,hotmail,house,how,hr,hsbc,ht,htc,hu,hughes,hyatt,hyundai,ibm,icbc,ice,icu,id,ie,ieee,ifm,ikano,il,im,imamat,imdb,immo,immobilien,in,industries,infiniti,info,ing,ink,institute,insurance,insure,int,intel,international,intuit,investments,io,ipiranga,iq,ir,irish,is,iselect,ismaili,ist,istanbul,it,itau,itv,iveco,iwc,jaguar,java,jcb,jcp,je,jeep,jetzt,jewelry,jio,jlc,jll,jm,jmp,jnj,jo,jobs,joburg,jot,joy,jp,jpmorgan,jprs,juegos,juniper,kaufen,kddi,ke,kerryhotels,kerrylogistics,kerryproperties,kfh,kg,kh,ki,kia,kim,kinder,kindle,kitchen,kiwi,km,kn,koeln,komatsu,kosher,kp,kpmg,kpn,kr,krd,kred,kuokgroup,kw,ky,kyoto,kz,la,lacaixa,ladbrokes,lamborghini,lamer,lancaster,lancia,lancome,land,landrover,lanxess,lasalle,lat,latino,latrobe,law,lawyer,lb,lc,lds,lease,leclerc,lefrak,legal,lego,lexus,lgbt,li,liaison,lidl,life,lifeinsurance,lifestyle,lighting,like,lilly,limited,limo,lincoln,linde,link,lipsy,live,living,lixil,lk,loan,loans,local,locker,locus,loft,lol,london,lotte,lotto,love,lpl,lplfinancial,lr,ls,lt,ltd,ltda,lu,lundbeck,lupin,luxe,luxury,lv,ly,ma,macys,madrid,maif,maison,makeup,man,management,mango,market,marketing,markets,marriott,marshalls,maserati,mattel,mba,mc,mcd,mcdonalds,mckinsey,md,me,med,media,meet,melbourne,meme,memorial,men,menu,meo,metlife,mf,mg,mh,miami,microsoft,mil,mini,mint,mit,mitsubishi,mk,ml,mlb,mls,mm,mma,mn,mo,mobi,mobile,mobily,moda,moe,moi,mom,monash,money,monster,montblanc,mopar,mormon,mortgage,moscow,moto,motorcycles,mov,movie,movistar,mp,mq,mr,ms,msd,mt,mtn,mtpc,mtr,mu,museum,mutual,mv,mw,mx,my,mz,na,nab,nadex,nagoya,name,nationwide,natura,navy,nba,nc,ne,nec,net,netbank,netflix,network,neustar,new,newholland,news,next,nextdirect,nexus,nf,nfl,ng,ngo,nhk,ni,nico,nike,nikon,ninja,nissan,nissay,nl,no,nokia,northwesternmutual,norton,now,nowruz,nowtv,np,nr,nra,nrw,ntt,nu,nyc,nz,obi,observer,off,office,okinawa,olayan,olayangroup,oldnavy,ollo,om,omega,one,ong,onl,online,onyourside,ooo,open,oracle,orange,org,organic,orientexpress,origins,osaka,otsuka,ott,ovh,pa,page,pamperedchef,panasonic,panerai,paris,pars,partners,parts,party,passagens,pay,pccw,pe,pet,pf,pfizer,pg,ph,pharmacy,philips,phone,photo,photography,photos,physio,piaget,pics,pictet,pictures,pid,pin,ping,pink,pioneer,pizza,pk,pl,place,play,playstation,plumbing,plus,pm,pn,pnc,pohl,poker,politie,porn,post,pr,pramerica,praxi,press,prime,pro,prod,productions,prof,progressive,promo,properties,property,protection,pru,prudential,ps,pt,pub,pw,pwc,py,qa,qpon,quebec,quest,qvc,racing,radio,raid,re,read,realestate,realtor,realty,recipes,red,redstone,redumbrella,rehab,reise,reisen,reit,reliance,ren,rent,rentals,repair,report,republican,rest,restaurant,review,reviews,rexroth,rich,richardli,ricoh,rightathome,ril,rio,rip,rmit,ro,rocher,rocks,rodeo,rogers,room,rs,rsvp,ru,ruhr,run,rw,rwe,ryukyu,sa,saarland,safe,safety,sakura,sale,salon,samsclub,samsung,sandvik,sandvikcoromant,sanofi,sap,sapo,sarl,sas,save,saxo,sb,sbi,sbs,sc,sca,scb,schaeffler,schmidt,scholarships,school,schule,schwarz,science,scjohnson,scor,scot,sd,se,seat,secure,security,seek,select,sener,services,ses,seven,sew,sex,sexy,sfr,sg,sh,shangrila,sharp,shaw,shell,shia,shiksha,shoes,shop,shopping,shouji,show,showtime,shriram,si,silk,sina,singles,site,sj,sk,ski,skin,sky,skype,sl,sling,sm,smart,smile,sn,sncf,so,soccer,social,softbank,software,sohu,solar,solutions,song,sony,soy,space,spiegel,spot,spreadbetting,sr,srl,srt,ss,st,stada,staples,star,starhub,statebank,statefarm,statoil,stc,stcgroup,stockholm,storage,store,stream,studio,study,style,su,sucks,supplies,supply,support,surf,surgery,suzuki,sv,swatch,swiftcover,swiss,sx,sy,sydney,symantec,systems,sz,tab,taipei,talk,taobao,target,tatamotors,tatar,tattoo,tax,taxi,tc,tci,td,tdk,team,tech,technology,tel,telecity,telefonica,temasek,tennis,teva,tf,tg,th,thd,theater,theatre,tiaa,tickets,tienda,tiffany,tips,tires,tirol,tj,tjmaxx,tjx,tk,tkmaxx,tl,tm,tmall,tn,to,today,tokyo,tools,top,toray,toshiba,total,tours,town,toyota,toys,tp,tr,trade,trading,training,travel,travelchannel,travelers,travelersinsurance,trust,trv,tt,tube,tui,tunes,tushu,tv,tvs,tw,tz,ua,ubank,ubs,uconnect,ug,uk,um,unicom,university,uno,uol,ups,us,uy,uz,va,vacations,vana,vanguard,vc,ve,vegas,ventures,verisign,vermögensberater,vermögensberatung,versicherung,vet,vg,vi,viajes,video,vig,viking,villas,vin,vip,virgin,visa,vision,vista,vistaprint,viva,vivo,vlaanderen,vn,vodka,volkswagen,volvo,vote,voting,voto,voyage,vu,vuelos,wales,walmart,walter,wang,wanggou,warman,watch,watches,weather,weatherchannel,webcam,weber,website,wed,wedding,weibo,weir,wf,whoswho,wien,wiki,williamhill,win,windows,wine,winners,wme,wolterskluwer,woodside,work,works,world,wow,ws,wtc,wtf,xbox,xerox,xfinity,xihuan,xin,xperia,xxx,xyz,yachts,yahoo,yamaxun,yandex,ye,yodobashi,yoga,yokohama,you,youtube,yt,yu,yun,za,zappos,zara,zero,zip,zippo,zm,zone,zuerich,zw".split(","), "бг,бел,дети,ею,католик,ком,мкд,мон,москва,онлайн,орг,рус,рф,сайт,срб,укр".split(","), "qxam,90ae,90ais,d1acj3b,e1a4c,80aqecdr1a,j1aef,d1alf,l1acc,80adxhks,80asehdb,c1avg,p1acf,p1ai,80aswg,90a3ac,j1amh,80ao21a,y9a3aq,9dbq2a,mgbca7dzdo,mgba3a3ejt,mgbayh7gpa,lgbbat1ad8j,mgberp4a5d4ar,mgba7c0bbn0a,mgbc0a9azcg,mgb2ddes,mgbaam7a8h,mgba3a4f16a,mgbbh1a,mgbab2bd,ngbe9e0a,mgbbh1a71e,pgbs0dh,mgbpl2fh,ogbpf8fl,ngbc5azd,mgbtx2b,mgb9awbf,ygbi2ammx,wgbl6a,mgbi4ecexp,fhbei,wgbh1c,mgbx4cd0ab,mgbb9fbpob,4gbrim,mgbt3dhd,mgbai9azgqp6j,mgbgu82a,11b4c3d,c2br7g,h2brj9c,h2breg3eve,h2brj9c8c,i1b6b1a6a2e,54b7fta0cc,45brj9c,45br5cyl,s9brj9c,gecrj9c,3hcrj9c,xkc2dl3a5ee0h,xkc2al3hye2a,clchc0ea0b2g2a9gcd,fpcrj9c3d,2scrj9c,rvc1e0am3e,fzc2c9e2c,42c2d9a,o3cw4h,node,q9jyb4c,gckr3f0f,qcka1pmc,tckwe,cck2b3b,1ck2e1b,bck1b9a5dre4c,eckvdtc9d,rhqv96g,fiq64b,fiqs8s,fiqz9s,fiq228c5hs,vhquv,1qqw23a,vuq861b,nyqy26a,45q11c,55qx5d,55qw42g,kprw13d,kpry57d,czru2d,czrs0t,czr694b,w4rs40l,w4r85el8fhu5dnra,3ds443g,3oq18vl8pn36a,pssy2u,tiq49xqyj,fjq720a,fct429k,estv75g,xhq521b,9krt00a,30rr7y,6qq986b3xl,kput3i,kpu716f,zfr164b,mxtq1m,yfro4i67o,efvy88h,9et52u,rovu88b,nqv7f,b4w605ferd,unup4y,mix891f,mix082f,3pxu8k,pbt977c,6frz82g,nqv7fs00ema,ses554g,hxt814e,5tzm5g,io0a7i,8y0a063a,jlq61u9w7b,flw351e,g2xx48c,gk3at1e,3bst00m,fzys8d69uvgm,kcrx77d1x4a,jvr189m,imr513n,5su34j936bgsg,j6w193g,t60b56a,mk1bu44c,cg4bki,3e0b707e".split(",").map(function(e) {
-                return "xn--" + e
-            })),
-            A = I.reduce(function(e, t) {
-                return Math.max(e, t.length)
-            }, 0),
-            C = new RegExp("([a-zA-Zа-яА-Я\\-_\\.0-9\\+]+@(((?:[\\w\\$А-Яа-яёЁєЄҐґЇїІіЈј\\—\\-\\_]+\\.){1,5})([A-Za-z\\$а-яА-Я\\-\\d]{2,22})))", "ig"),
-            S = new RegExp("(https?:\\/\\/)?(((?:[\\w\\$А-Яа-яёЁєЄҐґЇїІіЈј\\—\\-\\_]+\\.){1,5})([A-Za-z\\$а-яА-Я\\-\\d]{2,22})(?:\\:(\\d{2,5}))?)(([\\/?#])(?:\\&amp;|\\&#\\d{2,6};|,[_%]|!|,*[\\wА-Яа-я\\xa8\\xb8\\xc0-\\xffєЄҐґЇїІіЈј\\—\\-\\_@#%?+\\/\\$.~=;:'ªµºÀ-ÖØ-öø-ˁˆ-ˑˠ-ˤˬˮͰ-ʹͶͷͺ-ͽͿΆΈ-ΊΌΎ-ΡΣ-ϵϷ-ҁҊ-ԯԱ-Ֆՙա-ևא-תװ-ײؠ-يٮٯٱ-ۓەۥۦۮۯۺ-ۼۿܐܒ-ܯݍ-ޥޱߊ-ߪߴߵߺࠀ-ࠕࠚࠤࠨࡀ-ࡘࢠ-ࢴࢶ-ࢽऄ-हऽॐक़-ॡॱ-ঀঅ-ঌএঐও-নপ-রলশ-হঽৎড়ঢ়য়-ৡৰৱਅ-ਊਏਐਓ-ਨਪ-ਰਲਲ਼ਵਸ਼ਸਹਖ਼-ੜਫ਼ੲ-ੴઅ-ઍએ-ઑઓ-નપ-રલળવ-હઽૐૠૡૹଅ-ଌଏଐଓ-ନପ-ରଲଳଵ-ହଽଡ଼ଢ଼ୟ-ୡୱஃஅ-ஊஎ-ஐஒ-கஙசஜஞடணதந-பம-ஹௐఅ-ఌఎ-ఐఒ-నప-హఽౘ-ౚౠౡಀಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹಽೞೠೡೱೲഅ-ഌഎ-ഐഒ-ഺഽൎൔ-ൖൟ-ൡൺ-ൿඅ-ඖක-නඳ-රලව-ෆก-ะาำเ-ๆກຂຄງຈຊຍດ-ທນ-ຟມ-ຣລວສຫອ-ະາຳຽເ-ໄໆໜ-ໟༀཀ-ཇཉ-ཬྈ-ྌက-ဪဿၐ-ၕၚ-ၝၡၥၦၮ-ၰၵ-ႁႎႠ-ჅჇჍა-ჺჼ-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚᎀ-ᎏᎠ-Ᏽᏸ-ᏽᐁ-ᙬᙯ-ᙿᚁ-ᚚᚠ-ᛪᛱ-ᛸᜀ-ᜌᜎ-ᜑᜠ-ᜱᝀ-ᝑᝠ-ᝬᝮ-ᝰក-ឳៗៜᠠ-ᡷᢀ-ᢄᢇ-ᢨᢪᢰ-ᣵᤀ-ᤞᥐ-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉᨀ-ᨖᨠ-ᩔᪧᬅ-ᬳᭅ-ᭋᮃ-ᮠᮮᮯᮺ-ᯥᰀ-ᰣᱍ-ᱏᱚ-ᱽᲀ-ᲈᳩ-ᳬᳮ-ᳱᳵᳶᴀ-ᶿḀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ᾼιῂ-ῄῆ-ῌῐ-ΐῖ-Ίῠ-Ῥῲ-ῴῶ-ῼⁱⁿₐ-ₜℂℇℊ-ℓℕℙ-ℝℤΩℨK-ℭℯ-ℹℼ-ℿⅅ-ⅉⅎↃↄⰀ-Ⱞⰰ-ⱞⱠ-ⳤⳫ-ⳮⳲⳳⴀ-ⴥⴧⴭⴰ-ⵧⵯⶀ-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⸯ々〆〱-〵〻〼ぁ-ゖゝ-ゟァ-ヺー-ヿㄅ-ㄭㄱ-ㆎㆠ-ㆺㇰ-ㇿ㐀-䶵一-鿕ꀀ-ꒌꓐ-ꓽꔀ-ꘌꘐ-ꘟꘪꘫꙀ-ꙮꙿ-ꚝꚠ-ꛥꜗ-ꜟꜢ-ꞈꞋ-ꞮꞰ-ꞷꟷ-ꠁꠃ-ꠅꠇ-ꠊꠌ-ꠢꡀ-ꡳꢂ-ꢳꣲ-ꣷꣻꣽꤊ-ꤥꤰ-ꥆꥠ-ꥼꦄ-ꦲꧏꧠ-ꧤꧦ-ꧯꧺ-ꧾꨀ-ꨨꩀ-ꩂꩄ-ꩋꩠ-ꩶꩺꩾ-ꪯꪱꪵꪶꪹ-ꪽꫀꫂꫛ-ꫝꫠ-ꫪꫲ-ꫴꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-ꭚꭜ-ꭥꭰ-ꯢ가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִײַ-ﬨשׁ-זּטּ-לּמּנּסּףּפּצּ-ﮱﯓ-ﴽﵐ-ﶏﶒ-ﷇﷰ-ﷻﹰ-ﹴﹶ-ﻼＡ-Ｚａ-ｚｦ-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ　-〿＀-￯*]+|(?:\\(|\\[)[\\w\\$А-Яа-яёЁєЄҐґЇїІіЈј\\d&#%;,]+(?:\\)|\\])){0,200})?", "ig"),
-            M = "(^|[s.,:'\";>)(]?)((#(?:[a-zA-Zа-яА-ЯёіјєїґўЁІЈЄЇҐЎ’_\\d]|(?:&#(?:19[2-9]|(?:[2-9]|1[0-3])[0-9][0-9]);?)){0,100}(?:[a-zA-Zа-яА-ЯёіјєїґўЁІЈЄЇҐЎ’]|(?:&#(?:19[2-9]|(?:[2-9]|1[0-3])[0-9][0-9]);?))(?:[a-zA-Zа-яА-ЯёіјєїґўЁІЈЄЇҐЎ’_\\d]|(?:&#(?:19[2-9]|(?:[2-9]|1[0-3])[0-9][0-9]);?)){0,100}))(@((?:[a-z0-9_]*[a-z0-9])?(?:(?:.[a-z](?:[a-z0-9_]+[a-z0-9])?)*.[a-z][a-z0-9_]{2,40}[a-z0-9])?))?(?=$|[s.,:'\"&;?<)(]?)"
-    },
-    391: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "post", function() {
-            return a
-        }), n.d(t, "plainget", function() {
-            return o
-        }), n.d(t, "plaingetCancelable", function() {
-            return u
-        });
-        var r = window.ajax,
-            i = 2;
-
-        function a(e, t, n) {
-            return t && (t.im_v = i), new Promise(function(i, a) {
-                r.post(e, t, {
-                    timeout: n,
-                    onDone: function() {
-                        i.apply(null, [
-                            [].concat(Array.prototype.slice.call(arguments))
-                        ])
-                    },
-                    onFail: function() {
-                        return a.apply(null, arguments), !0
-                    }
-                })
-            })
-        }
-
-        function o(e, t) {
-            return u(e, t, arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {}).request
-        }
-
-        function u(e, t) {
-            var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
-                i = void 0;
-            return i = window.XDomainRequest ? new XDomainRequest : r._getreq(), {
-                request: new Promise(function(r, a) {
-                    var o = void 0,
-                        u = Date.now(),
-                        c = n.timeout || 60,
-                        s = ajx2q(t);
-                    if (window.XDomainRequest) i.open("get", e + "?" + s), i.ontimeout = function(e) {
-                        a([e, {}])
-                    }, i.onerror = function(e) {
-                        a([e, {}])
-                    }, i.onload = function() {
-                        r([i.responseText, {}])
-                    }, setTimeout(function() {
-                        i.send()
-                    }, 0);
-                    else {
-                        i.onreadystatechange = function() {
-                            4 == i.readyState && (clearInterval(o), i.status >= 200 && i.status < 300 ? r([i.responseText, i]) : a([i.responseText, i]))
-                        };
-                        try {
-                            i.open("GET", e + "?" + s, !0)
-                        } catch (e) {
-                            return a([e, i])
-                        }
-                        i.send()
-                    }
-                    o = setInterval(function() {
-                        Date.now() - u > 1e3 * c && (a(["", {}]), clearInterval(o))
-                    }, 1e3)
-                }),
-                cancel: function() {
-                    i.abort()
-                }
-            }
-        }
-    },
-    395: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "parseFwd", function() {
-            return u
-        }), n.d(t, "convertKludgesToAttaches", function() {
-            return c
-        }), n.d(t, "isReservedPeer", function() {
-            return s
-        }), n.d(t, "isUserPeer", function() {
-            return d
-        }), n.d(t, "isChatPeer", function() {
-            return l
-        });
-        var r = function() {
-                return function(e, t) {
-                    if (Array.isArray(e)) return e;
-                    if (Symbol.iterator in Object(e)) return function(e, t) {
-                        var n = [],
-                            r = !0,
-                            i = !1,
-                            a = void 0;
-                        try {
-                            for (var o, u = e[Symbol.iterator](); !(r = (o = u.next()).done) && (n.push(o.value), !t || n.length !== t); r = !0);
-                        } catch (e) {
-                            i = !0, a = e
-                        } finally {
-                            try {
-                                !r && u.return && u.return()
-                            } finally {
-                                if (i) throw a
-                            }
-                        }
-                        return n
-                    }(e, t);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }(),
-            i = window.intval;
-
-        function a(e) {
-            var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [],
-                n = e.split("_"),
-                i = r(n, 2);
-            return [i[0], i[1], t]
-        }
-        var o = {};
-
-        function u(e) {
-            if (o[e]) return o[e];
-            for (var t = e ? e.length : 0, n = [], i = [], u = "", c = 0; c < t; c++) {
-                var s = e[c],
-                    d = s.charCodeAt(0);
-                d >= 48 && d <= 57 || "_" === s || "-" === s ? u += s : "(" !== s && ")" !== s && ":" !== s && "," !== s || ("" !== u && (i.push(u), n.push("id"), u = ""), i.push(s), n.push(s))
-            }
-            u.length > 0 && (i.push(u), n.push("id"));
-            var l = function e(t, n) {
-                    var i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 0,
-                        o = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 0;
-                    if (o > 50) return [
-                        [], t.length
-                    ];
-                    for (var u = [], c = ""; i < t.length;) {
-                        var s = t[i];
-                        if ("id" === s) c = n[i];
-                        else if ("," === s && c) u.push(a(c)), c = "";
-                        else if ("(" === s) {
-                            var d = e(t, n, i + 1, o + 1),
-                                l = r(d, 2),
-                                f = l[0];
-                            i = l[1], u.push(a(c, f)), c = ""
-                        } else if (")" === s) return "" !== c && u.push(a(c)), [u, i];
-                        i++
-                    }
-                    return c && u.push(a(c)), [u, i]
-                }(n, i),
-                f = r(l, 1)[0];
-            return Object.keys(o).length > 300 && (o = {}), o[e] = f, f
-        }
-
-        function c(e, t) {
-            var n = [];
-            e.fwd_count ? n.push({
-                type: "mail",
-                id: -t,
-                object: {
-                    fwd_count: e.fwd_count
-                }
-            }) : e.fwd && n.push({
-                type: "mail",
-                id: -t,
-                object: {
-                    fwd_count: u(e.fwd).length
-                }
-            });
-            for (var r = 1; e["attach" + r + "_type"]; ++r) "call" === e["attach" + r + "_type"] ? n.push({
-                type: e["attach" + r + "_type"],
-                id: e["attach" + r],
-                initiatorId: i(e["attach" + r + "_call_initiator_id"]),
-                state: e["attach" + r + "_call_state"],
-                duration: i(e["attach" + r + "_call_duration"]),
-                receiverId: i(e["attach" + r + "_call_receiver_id"])
-            }) : n.push({
-                type: e["attach" + r + "_type"],
-                id: e["attach" + r],
-                kind: e["attach" + r + "_kind"],
-                productId: e["attach" + r + "_product_id"]
-            });
-            return e.geo && n.push({
-                type: "geo",
-                id: e.geo
-            }), n
-        }
-
-        function s(e) {
-            return 0 == e
-        }
-
-        function d(e) {
-            return e > 0 && e < 2e9
-        }
-
-        function l(e) {
-            return e > 2e9
-        }
-    },
-    448: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "KEY", function() {
-            return a
-        }), n.d(t, "addEvent", function() {
-            return o
-        }), n.d(t, "removeEvent", function() {
-            return u
-        }), n.d(t, "triggerEvent", function() {
-            return c
-        }), n.d(t, "cancelEvent", function() {
-            return s
-        }), n.d(t, "stopEvent", function() {
-            return d
-        }), n.d(t, "normEvent", function() {
-            return l
-        }), n.d(t, "checkEvent", function() {
-            return f
-        }), n.d(t, "checkKeyboardEvent", function() {
-            return m
-        }), n.d(t, "checkOver", function() {
-            return g
-        });
-        var r = n(363),
-            i = n(312),
-            a = {
-                LEFT: 37,
-                UP: 38,
-                RIGHT: 39,
-                DOWN: 40,
-                DEL: 8,
-                TAB: 9,
-                RETURN: 13,
-                ENTER: 13,
-                ESC: 27,
-                PAGEUP: 33,
-                PAGEDOWN: 34,
-                SPACE: 32,
-                CTRL: 17,
-                ALT: 18,
-                SHIFT: 16
-            };
-
-        function o(e, t, n, a, o, u) {
-            if ((e = Object(r.ge)(e)) && 3 != e.nodeType && 8 != e.nodeType) {
-                var c, d = o ? ((c = function(e) {
-                    var t = e.data;
-                    e.data = o;
-                    var r = n.apply(this, [e]);
-                    return e.data = t, r
-                }).handler = n, c) : n;
-                e.setInterval && e !== window && (e = window);
-                var f = Object(r.data)(e, "events") || Object(r.data)(e, "events", {}),
-                    m = Object(r.data)(e, "handle") || Object(r.data)(e, "handle", function(e) {
-                        return function() {
-                            (function(e) {
-                                e = l(e);
-                                var t = Array.from(arguments);
-                                t[0] = e;
-                                var n = Object(r.data)(this, "events");
-                                if (!n || "string" != typeof e.type || !n[e.type] || !n[e.type].length) return;
-                                var i = (n[e.type] || []).slice();
-                                for (var a in i)
-                                    if (i.hasOwnProperty(a)) {
-                                        if ("mouseover" === e.type || "mouseout" === e.type) {
-                                            for (var o = e.relatedElement; o && o !== this;) o = o.parentNode;
-                                            if (o === this) continue
-                                        }
-                                        var u = i[a].apply(this, t);
-                                        if (!1 !== u && -1 !== u || s(e), -1 === u) return !1
-                                    }
-                            }).apply(e, arguments)
-                        }
-                    }(e));
-                Object(i.each)(t.split(/\s+/), function(t, n) {
-                    f[n] || (f[n] = [], !a && e.addEventListener ? e.addEventListener(n, m, u) : !a && e.attachEvent && e.attachEvent("on" + n, m)), f[n].push(d)
-                })
-            }
-        }
-
-        function u(e, t, n, a) {
-            if (void 0 === a && (a = !1), e = Object(r.ge)(e)) {
-                var o = Object(r.data)(e, "events");
-                if (o)
-                    if ("string" == typeof t) Object(i.each)(t.split(/\s+/), function(t, u) {
-                        if (Object(i.isArray)(o[u])) {
-                            var c = o[u].length;
-                            if (Object(i.isFunction)(n)) {
-                                for (var s = c - 1; s >= 0; s--)
-                                    if (o[u][s] && (o[u][s] === n || o[u][s].handler === n)) {
-                                        o[u].splice(s, 1), c--;
-                                        break
-                                    }
-                            } else {
-                                for (var d = 0; d < c; d++) delete o[u][d];
-                                c = 0
-                            }
-                            c || (e.removeEventListener ? e.removeEventListener(u, Object(r.data)(e, "handle"), a) : e.detachEvent && e.detachEvent("on" + u, Object(r.data)(e, "handle")), delete o[u])
-                        }
-                    }), Object(i.isEmpty)(o) && (Object(r.removeData)(e, "events"), Object(r.removeData)(e, "handle"));
-                    else
-                        for (var c in o) o.hasOwnProperty(c) && u(e, c)
-            }
-        }
-
-        function c(e, t, n, a) {
-            e = Object(r.ge)(e);
-            var o = Object(r.data)(e, "handle");
-            if (o) {
-                var u = function() {
-                    return o.call(e, Object(i.extend)(n || {}, {
-                        type: t,
-                        target: e
-                    }))
-                };
-                a ? u() : setTimeout(u, 0)
-            }
-        }
-
-        function s(e) {
-            if (!(e = e || window.event)) return !1;
-            for (; e.originalEvent;) e = e.originalEvent;
-            return e.preventDefault && e.preventDefault(), e.stopPropagation && e.stopPropagation(), e.stopImmediatePropagation && e.stopImmediatePropagation(), e.cancelBubble = !0, e.returnValue = !1, !1
-        }
-
-        function d(e) {
-            if (!(e = e || window.event)) return !1;
-            for (; e.originalEvent;) e = e.originalEvent;
-            return e.stopPropagation && e.stopPropagation(), e.cancelBubble = !0, !1
-        }
-
-        function l(e) {
-            var t = e = e || window.event;
-            if ((e = Object(i.clone)(t)).originalEvent = t, e.target || (e.target = e.srcElement || document), 3 == e.target.nodeType && (e.target = e.target.parentNode), !e.relatedTarget && e.fromElement && (e.relatedTarget = e.fromElement === e.target), null == e.pageX && null != e.clientX) {
-                var n = document.documentElement,
-                    r = bodyNode;
-                e.pageX = e.clientX + (n && n.scrollLeft || r && r.scrollLeft || 0) - (n.clientLeft || 0), e.pageY = e.clientY + (n && n.scrollTop || r && r.scrollTop || 0) - (n.clientTop || 0)
-            }
-            return !e.which && (e.charCode || 0 === e.charCode ? e.charCode : e.keyCode) && (e.which = e.charCode || e.keyCode), !e.metaKey && e.ctrlKey ? e.metaKey = e.ctrlKey : !e.ctrlKey && e.metaKey && browser.mac && (e.ctrlKey = e.metaKey), !e.which && e.button && (e.which = 1 & e.button ? 1 : 2 & e.button ? 3 : 4 & e.button ? 2 : 0), e
-        }
-
-        function f(e) {
-            var t = e || window.event;
-            return t && ("click" === t.type || "mousedown" === t.type || "mouseup" === t.type) && (t.which > 1 || t.button > 1 || t.ctrlKey || t.shiftKey || browser.mac && t.metaKey) || !1
-        }
-
-        function m(e) {
-            if (!(e = l(e)) || !e.target) return !1;
-            if (!e.screenX) return !0;
-            var t = Object(r.getSize)(e.target),
-                n = Object(r.getXY)(e.target),
-                i = e.pageX - n[0],
-                a = e.pageY - n[1];
-            return i < -1 || i > t[0] + 1 || a < -1 || a > t[1] + 1 || Math.abs(e.pageX - n[0] - t[0] / 2) < 1 && Math.abs(e.pageY - n[1] - t[1] / 2) < 1
-        }
-
-        function g(e, t) {
-            if (!e) return !0;
-            e = e.originalEvent || e, t = t || e.target;
-            var n = e.fromElement || e.relatedTarget;
-            if (!n || n === t || n === t.parentNode) return !0;
-            for (; n !== t && n.parentNode && n.parentNode !== bodyNode;) n = n.parentNode;
-            return n !== t
-        }
-        window.KEY = a, window.addEvent = o, window.removeEvent = u, window.triggerEvent = c, window.cancelEvent = s, window.stopEvent = d, window.normEvent = l, window.checkEvent = f, window.checkKeyboardEvent = m, window.checkOver = g
-    },
-    451: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "createMutations", function() {
-            return c
-        }), n.d(t, "createModule", function() {
-            return s
-        }), n.d(t, "destroyModule", function() {
-            return d
-        });
-        var r = n(175);
-
-        function i(e) {
-            if (Array.isArray(e)) {
-                for (var t = 0, n = Array(e.length); t < e.length; t++) n[t] = e[t];
-                return n
-            }
-            return Array.from(e)
-        }
-        var a = window,
-            o = a.addEvent,
-            u = a.removeEvent;
-
-        function c(e) {
-            return {
-                callMutations: function() {
-                    if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
-                    return e
-                },
-                bindMutations: function() {
-                    if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
-                    return e = e.apply(void 0, arguments)
-                }
-            }
-        }
-
-        function s(e) {
-            var t = {
-                _registeredHandlers: []
-            };
-            return e.handlers(function(e, t, n, r) {
-                o(t, n, r), e._registeredHandlers.push(["bind", t, n, r])
-            }.bind(null, t), function(e, t, n, i, a) {
-                Object(r.addDelegateEvent)(t, n, i, a), e._registeredHandlers.push(["delegate", t, n, i, a])
-            }.bind(null, t)), t
-        }
-
-        function d(e) {
-            e._registeredHandlers.forEach(function(e) {
-                var t = e.slice(1);
-                "delegate" === e[0] ? r.removeDelegateEvent.apply(void 0, i(t)) : u.apply(void 0, i(t))
-            }), e._registeredHandlers = []
-        }
-    },
-    464: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "replaceHyperLinks", function() {
-            return s
-        }), n.d(t, "replaceEmailLinks", function() {
-            return d
-        }), n.d(t, "replaceMentions", function() {
-            return l
-        }), n.d(t, "replaceHashtags", function() {
-            return g
-        }), n.d(t, "confirmDelivery", function() {
-            return p
-        }), n.d(t, "linksReplacer", function() {
-            return h
-        });
-        var r = n(381),
-            i = void 0,
-            a = window,
-            o = a.clean,
-            u = a.replaceEntities,
-            c = a.statlogsValueEvent;
-
-        function s(e, t) {
-            for (var n = void 0, i = 0, a = e; null !== (n = r.MESSAGE_REGEXP.exec(e));) {
-                var o = (n = f(n))[0].length,
-                    u = n.index + o,
-                    c = e[n.index - 1],
-                    s = e[u - 1],
-                    d = void 0 !== c && /([\w\$А-Яа-яёЁєЄҐґЇїІіЈј\—\-\_@;.])/i.test(c),
-                    l = void 0 !== s && /([:;$])/i.test(s);
-                if (!d && !l) {
-                    var g = m(n),
-                        p = g.domain.toLowerCase();
-                    if (p.length <= r.MAX_DOMAIN_LENGTH && -1 !== r.TOP_DOMAINS.indexOf(p)) {
-                        var h = t(g);
-                        a = a.slice(0, n.index + i) + h + a.slice(u + i), i += h.length - o
-                    }
-                }
-            }
-            return a
-        }
-
-        function d(e, t) {
-            return e.replace(r.EMAIL, t || function(e) {
-                return '<a href="mailto:' + e + '">' + e + "</a>"
-            })
-        }
-
-        function l(e, t) {
-            return e.replace(r.MENTION, t || function(e, t, n, r, i) {
-                return '<a href="/' + (t + n) + '" class="mem_link" mention="' + o(r || "") + '" mention_id="' + o(t + n) + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)">' + i + "</a>"
-            })
-        }
-
-        function f(e) {
-            if (!e[0] || !e[6]) return e;
-            var t = e[0].length - 1,
-                n = e[6].length - 1;
-            return "." === e[0][t] && "." === e[6][n] && (e[0] = e[0].slice(0, t), e[6] = e[6].slice(0, n)), e
-        }
-
-        function m(e) {
-            return {
-                full: e[0],
-                protocol: e[1] || "http://",
-                url: e[2],
-                domain: e[4],
-                query: e[6] || ""
-            }
-        }
-
-        function g(e, t) {
-            return e.replace((i || (i = new RegExp(r.RE_HASHTAG_EXTRACTION_PATTERN, "ig")), i), function(e, n, r, i, a, o) {
-                return (n || "") + t(r + (a || ""))
-            })
-        }
-
-        function p(e) {
-            c("ttl_message_confirm_delivery", e)
-        }
-
-        function h(e, t) {
-            var n = t.protocol,
-                i = t.url,
-                a = t.query,
-                c = t.domain,
-                s = t.full;
-            try {
-                s = decodeURIComponent(s)
-            } catch (e) {}
-            if (s.length > 55 && (s = s.substr(0, 53) + ".."), s = o(s).replace(/&amp;/g, "&"), !e && c.match(r.OUR_DOMAINS)) {
-                var d, l = i = u(i).replace(r.ENTITIES, encodeURIComponent),
-                    f = i.indexOf("#/"),
-                    m = "";
-                return f >= 0 ? l = i.substr(f + 1) : (f = i.indexOf("#!")) >= 0 && (l = "/" + i.substr(f + 2).replace(/^\//, "")), (d = l.match(r.VK_DOMAIN)) && d[1].length < 32 && (m = ' mention_id="' + d[1] + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)"'), '<a href="' + function(e) {
-                    return e.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-                }(n + i + a) + '" target="_blank"' + m + ">" + s + "</a>"
-            }
-            return '<a href="' + ("away.php?utf=1&to=" + encodeURIComponent(n + u(i + a))) + '" target="_blank" onclick="' + ("return goAway('" + o((n + i + a).replace(/'/g, "\\'")) + "', {}, event);") + '">' + s + "</a>"
-        }
-    },
-    489: function(e, t, n) {
+    150: function(e, t, n) {
         "use strict";
         n.r(t), n.d(t, "SENDING_CLASS", function() {
             return y
@@ -4033,10 +1623,10 @@
         }), n.d(t, "formatTimespan", function() {
             return tr
         });
-        var r = n(280),
-            i = n(381),
-            a = n(451),
-            o = n(129);
+        var r = n(135),
+            i = n(159),
+            a = n(198),
+            o = n(4);
         n.d(t, "getFirstUnread", function() {
             return o.getFirstUnread
         }), n.d(t, "isSearchShown", function() {
@@ -4124,9 +1714,9 @@
         }), n.d(t, "getTemplates", function() {
             return o.getTemplates
         });
-        var u = n(77),
-            c = n(464),
-            s = n(395);
+        var u = n(44),
+            c = n(195),
+            s = n(22);
         n.d(t, "isChatPeer", function() {
             return s.isChatPeer
         }), n.d(t, "isUserPeer", function() {
@@ -4134,14 +1724,14 @@
         }), n.d(t, "isReservedPeer", function() {
             return s.isReservedPeer
         });
-        var d = n(6),
-            l = n(499),
-            f = n(527),
-            m = n(518),
-            g = n(237),
-            p = n(70),
-            h = n(361),
-            _ = n(131),
+        var d = n(176),
+            l = n(68),
+            f = n(66),
+            m = n(47),
+            g = n(92),
+            p = n(64),
+            h = n(85),
+            _ = n(158),
             b = function() {
                 return function(e, t) {
                     if (Array.isArray(e)) return e;
@@ -5670,226 +3260,381 @@
             return _e("global_and").replace(/{before}/gi, a).replace(/{after}/gi, o)
         }
     },
-    499: function(e, t, n) {
+    158: function(e, t, n) {
         "use strict";
+        n.r(t), n.d(t, "MAIL_CHAT_FLAG_ONLY_ADMINS_CAN_INVITE", function() {
+            return c
+        }), n.d(t, "MAIL_CHAT_FLAG_ONLY_ADMINS_CAN_PIN", function() {
+            return s
+        }), n.d(t, "MAIL_CHAT_FLAG_ONLY_ADMINS_CAN_CHANGE_TITLE", function() {
+            return d
+        }), n.d(t, "MAIL_CHAT_FLAG_ADMINS_CAN_ADD_ADMINS", function() {
+            return l
+        }), n.d(t, "MAIL_CHAT_FLAG_ADMINS_CAN_INVITE_LINK", function() {
+            return f
+        }), n.d(t, "MAIL_CHATS_ACTION_SEE_INVITE_LINK", function() {
+            return m
+        }), n.d(t, "MAIL_CHATS_ACTION_CHANGE_INVITE_LINK", function() {
+            return g
+        }), n.d(t, "MAIL_CHATS_ACTION_INVITE_USER", function() {
+            return p
+        }), n.d(t, "MAIL_CHATS_ACTION_PIN_OR_UNPIN", function() {
+            return h
+        }), n.d(t, "MAIL_CHATS_ACTION_CHANGE_TITLE", function() {
+            return _
+        }), n.d(t, "MAIL_CHATS_ACTION_ADD_ADMIN", function() {
+            return b
+        }), n.d(t, "canSeeInviteLink", function() {
+            return w
+        }), n.d(t, "canChangeInviteLink", function() {
+            return O
+        }), n.d(t, "canAddAdmin", function() {
+            return j
+        }), n.d(t, "canInviteUser", function() {
+            return k
+        }), n.d(t, "canKickUser", function() {
+            return E
+        }), n.d(t, "canPinOrUnpin", function() {
+            return T
+        }), n.d(t, "canChangeTitle", function() {
+            return I
+        }), n.d(t, "canChangeAvatar", function() {
+            return A
+        }), n.d(t, "canSeeAllMessages", function() {
+            return C
+        }), n.d(t, "checkChatRights", function() {
+            return S
+        }), n.d(t, "doesChatTabHaveFlag", function() {
+            return M
+        }), n.d(t, "isUserAdminInChat", function() {
+            return x
+        }), n.d(t, "isUserOwnerInChat", function() {
+            return D
+        }), n.d(t, "isUserInvitedByMe", function() {
+            return P
+        });
+        var r, i = n(4),
+            a = n(68),
+            o = n(150);
 
-        function r(e, t) {
-            var n = [],
-                r = 0;
-            return function(i) {
-                n.push(i), r || (r = setTimeout(function() {
-                    r = !1, e(n), n = []
-                }, t))
+        function u(e, t, n) {
+            return t in e ? Object.defineProperty(e, t, {
+                value: n,
+                enumerable: !0,
+                configurable: !0,
+                writable: !0
+            }) : e[t] = n, e
+        }
+        var c = 1,
+            s = 4,
+            d = 8,
+            l = 16,
+            f = 32,
+            m = "see_invite_link",
+            g = "change_invite_link",
+            p = "invite_user",
+            h = "pin_unpin",
+            _ = "change_title",
+            b = "add_admin",
+            v = (u(r = {}, m, f), u(r, g, f), u(r, b, l), u(r, p, c), u(r, h, s), u(r, _, d), r),
+            y = 1;
+
+        function w(e, t, n) {
+            return S(e, m, t, n)
+        }
+
+        function O(e, t, n) {
+            return S(e, g, t, n)
+        }
+
+        function j(e, t, n, r) {
+            var o = Object(a.unpackStore)(e);
+            return !D(Object(i.getTab)(o, n || o.peer), t) && S(e, b, n, r)
+        }
+
+        function k(e, t, n) {
+            return S(e, p, t, n)
+        }
+
+        function E(e, t, n, r) {
+            var u = Object(a.unpackStore)(e);
+            if (function(e, t) {
+                    var n = Object(a.unpackStore)(e);
+                    return void 0 !== n.service && (n.service & t) > 0
+                }(e, y)) return !0;
+            var c = Object(i.getTab)(u, n || u.peer);
+            return !(c.data.kicked && !c.data.closed) && (!Object(o.isFvkcomgroup)(e, n) && (!D(c, t) && (!!D(c, r = void 0 === r ? window.vk.id : r) || (x(c, r) ? !x(c, t) : P(c, t) && !x(c, t)))))
+        }
+
+        function T(e, t, n) {
+            return S(e, h, t, n)
+        }
+
+        function I(e, t, n) {
+            return S(e, _, t, n)
+        }
+
+        function A(e, t, n) {
+            return I(e, t, n) && !Object(o.isFvkcomgroup)(e, t)
+        }
+
+        function C(e, t, n) {
+            return !Object(i.isCommunityPeer)(n) || !!Object(i.getTab)(e, t).caccess[n]
+        }
+
+        function S(e, t, n, r) {
+            var u = Object(a.unpackStore)(e);
+            r = void 0 === r ? window.vk.id : r, n = void 0 === n ? u.peer : n;
+            var c = Object(i.getTab)(u, n),
+                s = !c.data.kicked && !c.data.closed,
+                d = v[t];
+            if (Object(o.isFvkcomgroup)(e, n)) switch (t) {
+                case b:
+                case p:
+                    return !1;
+                case m:
+                    return s;
+                default:
+                    return u.gid > 0
             }
+            switch (t) {
+                case m:
+                case g:
+                case b:
+                    return M(c, d) ? x(c, r) && s : D(c, r);
+                case p:
+                case h:
+                case _:
+                    return M(c, d) ? x(c, r) && s : s
+            }
+            return !1
         }
 
-        function i(e) {
-            return e.length > 0 && e.pop().func(), e
+        function M(e, t) {
+            return ((e && e.data && e.data.flags || 0) & t) > 0
         }
 
-        function a(e, t) {
-            var n = void 0,
-                r = void 0;
-            if (window.__debugMode) {
-                switch (t) {
-                    case "error":
-                        n = "color: red", r = "background: red; color: white";
-                        break;
-                    case "success":
-                        n = "color: green", r = "background: green; color: white";
-                        break;
-                    default:
-                        n = "color: blue;", r = "background: #000; color: #fff;"
+        function x(e, t) {
+            return (e && e.adminIds || []).indexOf(+t) > -1
+        }
+
+        function D(e, t) {
+            return e.ownerId === t
+        }
+
+        function P(e, t) {
+            return -1 !== e.invitedByMe.indexOf(t)
+        }
+    },
+    159: function(e, t, n) {
+        "use strict";
+        var r;
+
+        function i(e, t, n) {
+            return t in e ? Object.defineProperty(e, t, {
+                value: n,
+                enumerable: !0,
+                configurable: !0,
+                writable: !0
+            }) : e[t] = n, e
+        }
+        n.r(t), n.d(t, "OUR_DOMAINS", function() {
+            return a
+        }), n.d(t, "ENTITIES", function() {
+            return o
+        }), n.d(t, "VK_DOMAIN", function() {
+            return u
+        }), n.d(t, "MENTION", function() {
+            return c
+        }), n.d(t, "MENTION_RAW", function() {
+            return s
+        }), n.d(t, "ARROW_UP", function() {
+            return d
+        }), n.d(t, "ARROW_DOWN", function() {
+            return l
+        }), n.d(t, "PAGE_UP", function() {
+            return f
+        }), n.d(t, "PAGE_DOWN", function() {
+            return m
+        }), n.d(t, "END_KEY", function() {
+            return g
+        }), n.d(t, "HOME", function() {
+            return p
+        }), n.d(t, "ENTER", function() {
+            return h
+        }), n.d(t, "ESC", function() {
+            return _
+        }), n.d(t, "UNPRINTABLE_KEYS", function() {
+            return b
+        }), n.d(t, "UP_DOWN_CONTROLS", function() {
+            return v
+        }), n.d(t, "PRINTABLE", function() {
+            return y
+        }), n.d(t, "FOLDER_UNREAD", function() {
+            return w
+        }), n.d(t, "FOLDER_ALL", function() {
+            return O
+        }), n.d(t, "FOLDER_UNRESPOND", function() {
+            return j
+        }), n.d(t, "FOLDER_IMPORTANT", function() {
+            return k
+        }), n.d(t, "FOLDERS", function() {
+            return E
+        }), n.d(t, "FOLDER_MASKS", function() {
+            return T
+        }), n.d(t, "TOP_DOMAINS", function() {
+            return I
+        }), n.d(t, "MAX_DOMAIN_LENGTH", function() {
+            return A
+        }), n.d(t, "EMAIL", function() {
+            return C
+        }), n.d(t, "MESSAGE_REGEXP", function() {
+            return S
+        }), n.d(t, "RE_HASHTAG_EXTRACTION_PATTERN", function() {
+            return M
+        });
+        var a = /^([a-zA-Z0-9\.\_\-]+\.)?(vkontakte\.ru|vk\.com|vkadre\.ru|vshtate\.ru|userapi\.com|vk\.me)$/,
+            o = /([^a-zA-Z0-9#%;_\-.\/?&=\[\]])/g,
+            u = /^(?:https?:\/\/)?(?:vk\.com|vkontakte\.ru)?\/([a-zA-Z0-9\._]+)\??$/,
+            c = /\[(id|club)(\d+)(?:\:([a-z0-9_\-]+))?\|([^\$]+?)\]/g,
+            s = /(^|[\s.,:\'\";>\)\(])(\*|@)([A-Za-z0-9_\.]{2,32})\s*\((.+?)\)/g,
+            d = 38,
+            l = 40,
+            f = 33,
+            m = 34,
+            g = 35,
+            p = 36,
+            h = 13,
+            _ = 27,
+            b = [d, l, f, m, h, _, g, p],
+            v = [f, m, l, d, p, g],
+            y = "printable",
+            w = "unread",
+            O = "all",
+            j = "unrespond",
+            k = "important",
+            E = [O, w, j, k],
+            T = (i(r = {}, j, 2), i(r, k, 1), r),
+            I = [].concat("aaa,aarp,abarth,abb,abbott,abbvie,abc,able,abogado,abudhabi,ac,academy,accenture,accountant,accountants,aco,active,actor,ad,adac,ads,adult,ae,aeg,aero,aetna,af,afamilycompany,afl,africa,ag,agakhan,agency,ai,aig,aigo,airbus,airforce,airtel,akdn,al,alfaromeo,alibaba,alipay,allfinanz,allstate,ally,alsace,alstom,am,americanexpress,americanfamily,amex,amfam,amica,amsterdam,an,analytics,android,anquan,anz,ao,aol,apartments,app,apple,aq,aquarelle,ar,aramco,archi,army,arpa,art,arte,as,asda,asia,associates,at,athleta,attorney,au,auction,audi,audible,audio,auspost,author,auto,autos,avianca,aw,aws,ax,axa,az,azure,ba,baby,baidu,banamex,bananarepublic,band,bank,bar,barcelona,barclaycard,barclays,barefoot,bargains,baseball,basketball,bauhaus,bayern,bb,bbc,bbt,bbva,bcg,bcn,bd,be,beats,beauty,beer,bentley,berlin,best,bestbuy,bet,bf,bg,bh,bharti,bi,bible,bid,bike,bing,bingo,bio,biz,bj,bl,black,blackfriday,blanco,blockbuster,blog,bloomberg,blue,bm,bms,bmw,bn,bnl,bnpparibas,bo,boats,boehringer,bofa,bom,bond,boo,book,booking,boots,bosch,bostik,boston,bot,boutique,box,bq,br,bradesco,bridgestone,broadway,broker,brother,brussels,bs,bt,budapest,bugatti,build,builders,business,buy,buzz,bv,bw,by,bz,bzh,ca,cab,cafe,cal,call,calvinklein,cam,camera,camp,cancerresearch,canon,capetown,capital,capitalone,car,caravan,cards,care,career,careers,cars,cartier,casa,case,caseih,cash,casino,cat,catering,catholic,cba,cbn,cbre,cbs,cc,cd,ceb,center,ceo,cern,cf,cfa,cfd,cg,ch,chanel,channel,chase,chat,cheap,chintai,chloe,christmas,chrome,chrysler,church,ci,cipriani,circle,cisco,citadel,citi,citic,city,cityeats,ck,cl,claims,cleaning,click,clinic,clinique,clothing,cloud,club,clubmed,cm,cn,co,coach,codes,coffee,college,cologne,com,comcast,commbank,community,company,compare,computer,comsec,condos,construction,consulting,contact,contractors,cooking,cookingchannel,cool,coop,corsica,country,coupon,coupons,courses,cr,credit,creditcard,creditunion,cricket,crown,crs,cruise,cruises,csc,cu,cuisinella,cv,cw,cx,cy,cymru,cyou,cz,dabur,dad,dance,data,date,dating,datsun,day,dclk,dds,de,deal,dealer,deals,degree,delivery,dell,deloitte,delta,democrat,dental,dentist,desi,design,dev,dhl,diamonds,diet,digital,direct,directory,discount,discover,dish,diy,dj,dk,dm,dnp,do,docs,doctor,dodge,dog,doha,domains,dot,download,drive,dtv,dubai,duck,dunlop,duns,dupont,durban,dvag,dvr,dz,earth,eat,ec,eco,edeka,edu,education,ee,eg,eh,email,emerck,energy,engineer,engineering,enterprises,epost,epson,equipment,er,ericsson,erni,es,esq,estate,esurance,et,eu,eurovision,eus,events,everbank,exchange,expert,exposed,express,extraspace,fage,fail,fairwinds,faith,family,fan,fans,farm,farmers,fashion,fast,fedex,feedback,ferrari,ferrero,fi,fiat,fidelity,fido,film,final,finance,financial,fire,firestone,firmdale,fish,fishing,fit,fitness,fj,fk,flickr,flights,flir,florist,flowers,fly,fm,fo,foo,food,foodnetwork,football,ford,forex,forsale,forum,foundation,fox,fr,free,fresenius,frl,frogans,frontdoor,frontier,ftr,fujitsu,fujixerox,fun,fund,furniture,futbol,fyi,ga,gal,gallery,gallo,gallup,game,games,gap,garden,gb,gbiz,gd,gdn,ge,gea,gent,genting,george,gf,gg,ggee,gh,gi,gift,gifts,gives,giving,gl,glade,glass,gle,global,globo,gm,gmail,gmbh,gmo,gmx,gn,godaddy,gold,goldpoint,golf,goo,goodhands,goodyear,goog,google,gop,got,gov,gp,gq,gr,grainger,graphics,gratis,green,gripe,group,gs,gt,gu,guardian,gucci,guge,guide,guitars,guru,gw,gy,hair,hamburg,hangout,haus,hbo,hdfc,hdfcbank,health,healthcare,help,helsinki,here,hermes,hgtv,hiphop,hisamitsu,hitachi,hiv,hk,hkt,hm,hn,hockey,holdings,holiday,homedepot,homegoods,homes,homesense,honda,honeywell,horse,hospital,host,hosting,hot,hoteles,hotmail,house,how,hr,hsbc,ht,htc,hu,hughes,hyatt,hyundai,ibm,icbc,ice,icu,id,ie,ieee,ifm,ikano,il,im,imamat,imdb,immo,immobilien,in,industries,infiniti,info,ing,ink,institute,insurance,insure,int,intel,international,intuit,investments,io,ipiranga,iq,ir,irish,is,iselect,ismaili,ist,istanbul,it,itau,itv,iveco,iwc,jaguar,java,jcb,jcp,je,jeep,jetzt,jewelry,jio,jlc,jll,jm,jmp,jnj,jo,jobs,joburg,jot,joy,jp,jpmorgan,jprs,juegos,juniper,kaufen,kddi,ke,kerryhotels,kerrylogistics,kerryproperties,kfh,kg,kh,ki,kia,kim,kinder,kindle,kitchen,kiwi,km,kn,koeln,komatsu,kosher,kp,kpmg,kpn,kr,krd,kred,kuokgroup,kw,ky,kyoto,kz,la,lacaixa,ladbrokes,lamborghini,lamer,lancaster,lancia,lancome,land,landrover,lanxess,lasalle,lat,latino,latrobe,law,lawyer,lb,lc,lds,lease,leclerc,lefrak,legal,lego,lexus,lgbt,li,liaison,lidl,life,lifeinsurance,lifestyle,lighting,like,lilly,limited,limo,lincoln,linde,link,lipsy,live,living,lixil,lk,loan,loans,local,locker,locus,loft,lol,london,lotte,lotto,love,lpl,lplfinancial,lr,ls,lt,ltd,ltda,lu,lundbeck,lupin,luxe,luxury,lv,ly,ma,macys,madrid,maif,maison,makeup,man,management,mango,market,marketing,markets,marriott,marshalls,maserati,mattel,mba,mc,mcd,mcdonalds,mckinsey,md,me,med,media,meet,melbourne,meme,memorial,men,menu,meo,metlife,mf,mg,mh,miami,microsoft,mil,mini,mint,mit,mitsubishi,mk,ml,mlb,mls,mm,mma,mn,mo,mobi,mobile,mobily,moda,moe,moi,mom,monash,money,monster,montblanc,mopar,mormon,mortgage,moscow,moto,motorcycles,mov,movie,movistar,mp,mq,mr,ms,msd,mt,mtn,mtpc,mtr,mu,museum,mutual,mv,mw,mx,my,mz,na,nab,nadex,nagoya,name,nationwide,natura,navy,nba,nc,ne,nec,net,netbank,netflix,network,neustar,new,newholland,news,next,nextdirect,nexus,nf,nfl,ng,ngo,nhk,ni,nico,nike,nikon,ninja,nissan,nissay,nl,no,nokia,northwesternmutual,norton,now,nowruz,nowtv,np,nr,nra,nrw,ntt,nu,nyc,nz,obi,observer,off,office,okinawa,olayan,olayangroup,oldnavy,ollo,om,omega,one,ong,onl,online,onyourside,ooo,open,oracle,orange,org,organic,orientexpress,origins,osaka,otsuka,ott,ovh,pa,page,pamperedchef,panasonic,panerai,paris,pars,partners,parts,party,passagens,pay,pccw,pe,pet,pf,pfizer,pg,ph,pharmacy,philips,phone,photo,photography,photos,physio,piaget,pics,pictet,pictures,pid,pin,ping,pink,pioneer,pizza,pk,pl,place,play,playstation,plumbing,plus,pm,pn,pnc,pohl,poker,politie,porn,post,pr,pramerica,praxi,press,prime,pro,prod,productions,prof,progressive,promo,properties,property,protection,pru,prudential,ps,pt,pub,pw,pwc,py,qa,qpon,quebec,quest,qvc,racing,radio,raid,re,read,realestate,realtor,realty,recipes,red,redstone,redumbrella,rehab,reise,reisen,reit,reliance,ren,rent,rentals,repair,report,republican,rest,restaurant,review,reviews,rexroth,rich,richardli,ricoh,rightathome,ril,rio,rip,rmit,ro,rocher,rocks,rodeo,rogers,room,rs,rsvp,ru,ruhr,run,rw,rwe,ryukyu,sa,saarland,safe,safety,sakura,sale,salon,samsclub,samsung,sandvik,sandvikcoromant,sanofi,sap,sapo,sarl,sas,save,saxo,sb,sbi,sbs,sc,sca,scb,schaeffler,schmidt,scholarships,school,schule,schwarz,science,scjohnson,scor,scot,sd,se,seat,secure,security,seek,select,sener,services,ses,seven,sew,sex,sexy,sfr,sg,sh,shangrila,sharp,shaw,shell,shia,shiksha,shoes,shop,shopping,shouji,show,showtime,shriram,si,silk,sina,singles,site,sj,sk,ski,skin,sky,skype,sl,sling,sm,smart,smile,sn,sncf,so,soccer,social,softbank,software,sohu,solar,solutions,song,sony,soy,space,spiegel,spot,spreadbetting,sr,srl,srt,ss,st,stada,staples,star,starhub,statebank,statefarm,statoil,stc,stcgroup,stockholm,storage,store,stream,studio,study,style,su,sucks,supplies,supply,support,surf,surgery,suzuki,sv,swatch,swiftcover,swiss,sx,sy,sydney,symantec,systems,sz,tab,taipei,talk,taobao,target,tatamotors,tatar,tattoo,tax,taxi,tc,tci,td,tdk,team,tech,technology,tel,telecity,telefonica,temasek,tennis,teva,tf,tg,th,thd,theater,theatre,tiaa,tickets,tienda,tiffany,tips,tires,tirol,tj,tjmaxx,tjx,tk,tkmaxx,tl,tm,tmall,tn,to,today,tokyo,tools,top,toray,toshiba,total,tours,town,toyota,toys,tp,tr,trade,trading,training,travel,travelchannel,travelers,travelersinsurance,trust,trv,tt,tube,tui,tunes,tushu,tv,tvs,tw,tz,ua,ubank,ubs,uconnect,ug,uk,um,unicom,university,uno,uol,ups,us,uy,uz,va,vacations,vana,vanguard,vc,ve,vegas,ventures,verisign,vermögensberater,vermögensberatung,versicherung,vet,vg,vi,viajes,video,vig,viking,villas,vin,vip,virgin,visa,vision,vista,vistaprint,viva,vivo,vlaanderen,vn,vodka,volkswagen,volvo,vote,voting,voto,voyage,vu,vuelos,wales,walmart,walter,wang,wanggou,warman,watch,watches,weather,weatherchannel,webcam,weber,website,wed,wedding,weibo,weir,wf,whoswho,wien,wiki,williamhill,win,windows,wine,winners,wme,wolterskluwer,woodside,work,works,world,wow,ws,wtc,wtf,xbox,xerox,xfinity,xihuan,xin,xperia,xxx,xyz,yachts,yahoo,yamaxun,yandex,ye,yodobashi,yoga,yokohama,you,youtube,yt,yu,yun,za,zappos,zara,zero,zip,zippo,zm,zone,zuerich,zw".split(","), "бг,бел,дети,ею,католик,ком,мкд,мон,москва,онлайн,орг,рус,рф,сайт,срб,укр".split(","), "qxam,90ae,90ais,d1acj3b,e1a4c,80aqecdr1a,j1aef,d1alf,l1acc,80adxhks,80asehdb,c1avg,p1acf,p1ai,80aswg,90a3ac,j1amh,80ao21a,y9a3aq,9dbq2a,mgbca7dzdo,mgba3a3ejt,mgbayh7gpa,lgbbat1ad8j,mgberp4a5d4ar,mgba7c0bbn0a,mgbc0a9azcg,mgb2ddes,mgbaam7a8h,mgba3a4f16a,mgbbh1a,mgbab2bd,ngbe9e0a,mgbbh1a71e,pgbs0dh,mgbpl2fh,ogbpf8fl,ngbc5azd,mgbtx2b,mgb9awbf,ygbi2ammx,wgbl6a,mgbi4ecexp,fhbei,wgbh1c,mgbx4cd0ab,mgbb9fbpob,4gbrim,mgbt3dhd,mgbai9azgqp6j,mgbgu82a,11b4c3d,c2br7g,h2brj9c,h2breg3eve,h2brj9c8c,i1b6b1a6a2e,54b7fta0cc,45brj9c,45br5cyl,s9brj9c,gecrj9c,3hcrj9c,xkc2dl3a5ee0h,xkc2al3hye2a,clchc0ea0b2g2a9gcd,fpcrj9c3d,2scrj9c,rvc1e0am3e,fzc2c9e2c,42c2d9a,o3cw4h,node,q9jyb4c,gckr3f0f,qcka1pmc,tckwe,cck2b3b,1ck2e1b,bck1b9a5dre4c,eckvdtc9d,rhqv96g,fiq64b,fiqs8s,fiqz9s,fiq228c5hs,vhquv,1qqw23a,vuq861b,nyqy26a,45q11c,55qx5d,55qw42g,kprw13d,kpry57d,czru2d,czrs0t,czr694b,w4rs40l,w4r85el8fhu5dnra,3ds443g,3oq18vl8pn36a,pssy2u,tiq49xqyj,fjq720a,fct429k,estv75g,xhq521b,9krt00a,30rr7y,6qq986b3xl,kput3i,kpu716f,zfr164b,mxtq1m,yfro4i67o,efvy88h,9et52u,rovu88b,nqv7f,b4w605ferd,unup4y,mix891f,mix082f,3pxu8k,pbt977c,6frz82g,nqv7fs00ema,ses554g,hxt814e,5tzm5g,io0a7i,8y0a063a,jlq61u9w7b,flw351e,g2xx48c,gk3at1e,3bst00m,fzys8d69uvgm,kcrx77d1x4a,jvr189m,imr513n,5su34j936bgsg,j6w193g,t60b56a,mk1bu44c,cg4bki,3e0b707e".split(",").map(function(e) {
+                return "xn--" + e
+            })),
+            A = I.reduce(function(e, t) {
+                return Math.max(e, t.length)
+            }, 0),
+            C = new RegExp("([a-zA-Zа-яА-Я\\-_\\.0-9\\+]+@(((?:[\\w\\$А-Яа-яёЁєЄҐґЇїІіЈј\\—\\-\\_]+\\.){1,5})([A-Za-z\\$а-яА-Я\\-\\d]{2,22})))", "ig"),
+            S = new RegExp("(https?:\\/\\/)?(((?:[\\w\\$А-Яа-яёЁєЄҐґЇїІіЈј\\—\\-\\_]+\\.){1,5})([A-Za-z\\$а-яА-Я\\-\\d]{2,22})(?:\\:(\\d{2,5}))?)(([\\/?#])(?:\\&amp;|\\&#\\d{2,6};|,[_%]|!|,*[\\wА-Яа-я\\xa8\\xb8\\xc0-\\xffєЄҐґЇїІіЈј\\—\\-\\_@#%?+\\/\\$.~=;:'ªµºÀ-ÖØ-öø-ˁˆ-ˑˠ-ˤˬˮͰ-ʹͶͷͺ-ͽͿΆΈ-ΊΌΎ-ΡΣ-ϵϷ-ҁҊ-ԯԱ-Ֆՙա-ևא-תװ-ײؠ-يٮٯٱ-ۓەۥۦۮۯۺ-ۼۿܐܒ-ܯݍ-ޥޱߊ-ߪߴߵߺࠀ-ࠕࠚࠤࠨࡀ-ࡘࢠ-ࢴࢶ-ࢽऄ-हऽॐक़-ॡॱ-ঀঅ-ঌএঐও-নপ-রলশ-হঽৎড়ঢ়য়-ৡৰৱਅ-ਊਏਐਓ-ਨਪ-ਰਲਲ਼ਵਸ਼ਸਹਖ਼-ੜਫ਼ੲ-ੴઅ-ઍએ-ઑઓ-નપ-રલળવ-હઽૐૠૡૹଅ-ଌଏଐଓ-ନପ-ରଲଳଵ-ହଽଡ଼ଢ଼ୟ-ୡୱஃஅ-ஊஎ-ஐஒ-கஙசஜஞடணதந-பம-ஹௐఅ-ఌఎ-ఐఒ-నప-హఽౘ-ౚౠౡಀಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹಽೞೠೡೱೲഅ-ഌഎ-ഐഒ-ഺഽൎൔ-ൖൟ-ൡൺ-ൿඅ-ඖක-නඳ-රලව-ෆก-ะาำเ-ๆກຂຄງຈຊຍດ-ທນ-ຟມ-ຣລວສຫອ-ະາຳຽເ-ໄໆໜ-ໟༀཀ-ཇཉ-ཬྈ-ྌက-ဪဿၐ-ၕၚ-ၝၡၥၦၮ-ၰၵ-ႁႎႠ-ჅჇჍა-ჺჼ-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚᎀ-ᎏᎠ-Ᏽᏸ-ᏽᐁ-ᙬᙯ-ᙿᚁ-ᚚᚠ-ᛪᛱ-ᛸᜀ-ᜌᜎ-ᜑᜠ-ᜱᝀ-ᝑᝠ-ᝬᝮ-ᝰក-ឳៗៜᠠ-ᡷᢀ-ᢄᢇ-ᢨᢪᢰ-ᣵᤀ-ᤞᥐ-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉᨀ-ᨖᨠ-ᩔᪧᬅ-ᬳᭅ-ᭋᮃ-ᮠᮮᮯᮺ-ᯥᰀ-ᰣᱍ-ᱏᱚ-ᱽᲀ-ᲈᳩ-ᳬᳮ-ᳱᳵᳶᴀ-ᶿḀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ᾼιῂ-ῄῆ-ῌῐ-ΐῖ-Ίῠ-Ῥῲ-ῴῶ-ῼⁱⁿₐ-ₜℂℇℊ-ℓℕℙ-ℝℤΩℨK-ℭℯ-ℹℼ-ℿⅅ-ⅉⅎↃↄⰀ-Ⱞⰰ-ⱞⱠ-ⳤⳫ-ⳮⳲⳳⴀ-ⴥⴧⴭⴰ-ⵧⵯⶀ-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⸯ々〆〱-〵〻〼ぁ-ゖゝ-ゟァ-ヺー-ヿㄅ-ㄭㄱ-ㆎㆠ-ㆺㇰ-ㇿ㐀-䶵一-鿕ꀀ-ꒌꓐ-ꓽꔀ-ꘌꘐ-ꘟꘪꘫꙀ-ꙮꙿ-ꚝꚠ-ꛥꜗ-ꜟꜢ-ꞈꞋ-ꞮꞰ-ꞷꟷ-ꠁꠃ-ꠅꠇ-ꠊꠌ-ꠢꡀ-ꡳꢂ-ꢳꣲ-ꣷꣻꣽꤊ-ꤥꤰ-ꥆꥠ-ꥼꦄ-ꦲꧏꧠ-ꧤꧦ-ꧯꧺ-ꧾꨀ-ꨨꩀ-ꩂꩄ-ꩋꩠ-ꩶꩺꩾ-ꪯꪱꪵꪶꪹ-ꪽꫀꫂꫛ-ꫝꫠ-ꫪꫲ-ꫴꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-ꭚꭜ-ꭥꭰ-ꯢ가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִײַ-ﬨשׁ-זּטּ-לּמּנּסּףּפּצּ-ﮱﯓ-ﴽﵐ-ﶏﶒ-ﷇﷰ-ﷻﹰ-ﹴﹶ-ﻼＡ-Ｚａ-ｚｦ-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ　-〿＀-￯*]+|(?:\\(|\\[)[\\w\\$А-Яа-яёЁєЄҐґЇїІіЈј\\d&#%;,]+(?:\\)|\\])){0,200})?", "ig"),
+            M = "(^|[s.,:'\";>)(]?)((#(?:[a-zA-Zа-яА-ЯёіјєїґўЁІЈЄЇҐЎ’_\\d]|(?:&#(?:19[2-9]|(?:[2-9]|1[0-3])[0-9][0-9]);?)){0,100}(?:[a-zA-Zа-яА-ЯёіјєїґўЁІЈЄЇҐЎ’]|(?:&#(?:19[2-9]|(?:[2-9]|1[0-3])[0-9][0-9]);?))(?:[a-zA-Zа-яА-ЯёіјєїґўЁІЈЄЇҐЎ’_\\d]|(?:&#(?:19[2-9]|(?:[2-9]|1[0-3])[0-9][0-9]);?)){0,100}))(@((?:[a-z0-9_]*[a-z0-9])?(?:(?:.[a-z](?:[a-z0-9_]+[a-z0-9])?)*.[a-z][a-z0-9_]{2,40}[a-z0-9])?))?(?=$|[s.,:'\"&;?<)(]?)"
+    },
+    160: function(e, t, n) {
+        e.exports = n(129)
+    },
+    162: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "RECENT_SEARCH_OP", function() {
+            return i
+        }), n.d(t, "PIN_HIDDEN_ID_OP", function() {
+            return a
+        }), n.d(t, "deleteOldStoredFormat", function() {
+            return s
+        }), n.d(t, "mount", function() {
+            return d
+        });
+        var r = function() {
+                return function(e, t) {
+                    if (Array.isArray(e)) return e;
+                    if (Symbol.iterator in Object(e)) return function(e, t) {
+                        var n = [],
+                            r = !0,
+                            i = !1,
+                            a = void 0;
+                        try {
+                            for (var o, u = e[Symbol.iterator](); !(r = (o = u.next()).done) && (n.push(o.value), !t || n.length !== t); r = !0);
+                        } catch (e) {
+                            i = !0, a = e
+                        } finally {
+                            try {
+                                !r && u.return && u.return()
+                            } finally {
+                                if (i) throw a
+                            }
+                        }
+                        return n
+                    }(e, t);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
-                try {
-                    var i = new Date;
-                    console.debug("%cLP:[" + i.getHours() + ":" + i.getMinutes() + ":" + i.getSeconds() + ":" + i.getMilliseconds() + "]%c " + e, r, n)
-                } catch (e) {}
-            }
-        }
+            }(),
+            i = "recent_search",
+            a = "pin_hide";
 
         function o(e) {
-            var t = [];
-            if (void 0 === e.length) return Object.keys(e).map(function(t) {
-                return e[t]
-            });
-            for (var n = 0; n < e.length; n++) t.push(e[n]);
-            return t
+            return "im_store_" + e
         }
 
         function u(e) {
-            for (var t = {}, n = [], r = 0; r < e.length; r++) t[e[r]] || (n.push(e[r]), t[n[r]] = 1);
-            return n
+            return ls.get(o(e)) || {}
         }
 
-        function c(e) {
-            for (var t = (e + "=".repeat((4 - e.length % 4) % 4)).replace(/\-/g, "+").replace(/_/g, "/"), n = window.atob(t), r = new Uint8Array(n.length), i = 0; i < n.length; ++i) r[i] = n.charCodeAt(i);
-            return r
-        }
-
-        function s(e) {
-            return e.get ? e.get() : e
-        }
-        n.r(t), n.d(t, "throttleAccumulate", function() {
-            return r
-        }), n.d(t, "executionStackPop", function() {
-            return i
-        }), n.d(t, "lplog", function() {
-            return a
-        }), n.d(t, "toArray", function() {
-            return o
-        }), n.d(t, "arrayUnique", function() {
-            return u
-        }), n.d(t, "urlBase64ToUint8Array", function() {
-            return c
-        }), n.d(t, "unpackStore", function() {
-            return s
-        })
-    },
-    516: function(e, t, n) {
-        e.exports = n(286)
-    },
-    518: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "isPinnedMessageVisibleInTab", function() {
-            return g
-        }), n.d(t, "pinnedMessageHide", function() {
-            return p
-        }), n.d(t, "pinnedMessageUnHide", function() {
-            return h
-        }), n.d(t, "pinnedMessageUnpin", function() {
-            return _
-        }), n.d(t, "mount", function() {
-            return y
-        });
-        var r = n(451),
-            i = n(70),
-            a = n(280),
-            o = n(185),
-            u = n(489),
-            c = n(129),
-            s = n(499),
-            d = n(323),
-            l = n(289),
-            f = "_im_pin_hide",
-            m = "_im_pinned_message";
-
-        function g(e, t) {
-            if (Object(s.unpackStore)(e).searchShown) return !1;
-            var n = Object(c.getTab)(e, t),
-                r = n && Object(c.parserMessage)(n.pinned);
-            return !!r && n.pinHideId != r.chat_local_id
-        }
-
-        function p(e, t, n) {
-            var r = !(arguments.length > 3 && void 0 !== arguments[3]) || arguments[3],
-                i = Object(c.getTab)(e, t),
-                a = i && Object(c.parserMessage)(i.pinned);
-            i && a && (i.pinHideId = a.chat_local_id, cur.imDb.update(l.PIN_HIDDEN_ID_OP, [i.peerId, i.pinHideId]), b(n, t, e), re(geByClass1("_im_pinned_tt")), r && window.Notifier && Notifier.lcSend("pin_hide", {
-                hide: 1,
-                peer: t
-            }), statlogsValueEvent("im_pinned_messages", "hide"))
-        }
-
-        function h(e, t, n) {
-            var r = !(arguments.length > 3 && void 0 !== arguments[3]) || arguments[3],
-                i = Object(c.getTab)(e, t);
-            i && i.pinHideId && (delete i.pinHideId, cur.imDb.update(l.PIN_HIDDEN_ID_OP, [i.peerId, void 0]), b(n, t, e), r && window.Notifier && Notifier.lcSend("pin_hide", {
-                hide: 0,
-                peer: t
-            }), statlogsValueEvent("im_pinned_messages", "show"))
-        }
-
-        function _(e, t, n) {
-            var r = b.bind(null, n, t),
-                a = Object(u.showUnpinDialog)(function() {
-                    a.hideProgress(), a.hide(), e.set(i.unpinMessageOptimistic.bind(null, t)).then(r).then(function(e) {
-                        return e.set(i.unpinMessage.bind(null, t))
-                    }).then(r)
-                })
-        }
-
-        function b(e, t, n) {
-            return e().updateChatTopic(t, n), Object(i.setActions)(n.get()), e().updateActions(n), n
-        }
-
-        function v(e) {
-            return {
-                unmount: function() {
-                    Object(r.destroyModule)(e)
-                }
+        function c(e, t, n) {
+            if (ls.checkVersion()) {
+                var r = JSON.stringify(t);
+                rand(0, 1e5) <= 1 && statlogsValueEvent("im_local_store_size", r.length), n(o(e), r)
             }
         }
 
-        function y(e, t, n) {
-            var i = Object(r.createMutations)(v).bindMutations,
-                s = function(e, t, n) {
-                    var r = e.get().peer,
-                        i = Object(c.parserMessage)(Object(c.getTab)(e, r).pinned);
-                    if (n.target.classList.contains(f)) i && p(e, r, t);
-                    else if ("A" !== n.target.tagName) {
-                        var s = i && i.messageId;
-                        if (s && !Object(u.isAlreadyDeleted)(e, r, s)) {
-                            var l = e.get();
-                            Object(c.getMessage)(e, r, s) ? (e.setState({
-                                msgid: s
-                            }), Object(d.updateLocation)({
-                                msgid: s
-                            }), t().focusOnMessage()) : l.longpoll.push([Object(a.changePeer)(r, s)])
-                        } else Object(u.showPinnedBox)(e, t, r, o.mount, n);
-                        statlogsValueEvent("im_pinned_messages", "open")
-                    }
-                }.bind(null, t, n),
-                l = function(e) {
-                    showTooltip(e.target, {
-                        text: getLang("mail_hide_unpin_hover"),
-                        black: 1,
-                        needLeft: 1,
-                        shift: [8, 4],
-                        forcetoup: !0,
-                        className: "_im_pinned_tt",
-                        appendEl: bodyNode
-                    })
-                }.bind(null);
-            return i(Object(r.createModule)({
-                handlers: function(t, n) {
-                    n(e, "click", m, s), n(e, "mouseover", f, l)
+        function s(e, t) {
+            for (var n = ["fwd", "draft", "bind_attach"], r = u(e), i = !1, a = n.length; a--;) n[a] in r && (delete r[n[a]], i = !0);
+            i && c(e, r, t)
+        }
+
+        function d(e) {
+            var t = debounce(function(e, t) {
+                localStorage.setItem(e, t)
+            }, 300);
+            ls.checkVersion() && s(e, t);
+            var n = {
+                    db: u(e),
+                    checkTime: Date.now()
+                },
+                d = function(e, t, n) {
+                    n.key === o(e) && (t.db = JSON.parse(n.newValue), t.checkTime = Date.now())
+                }.bind(null, e, n);
+            return window.addEventListener("storage", d, !1), {
+                select: function(t, r) {
+                    return Date.now() - n.checkTime > 1e3 && (n.db = u(e)),
+                        function(e, t, n) {
+                            return t === i ? e[t] || [] : t === a ? e[t] && e[t][n] : e[t] ? extend(!0, {}, e[t][n]) : null
+                        }(n.db, t, r)
+                },
+                selectByKey: function(t) {
+                    return Date.now() - n.checkTime > 1e3 && (n.db = u(e)), n.db[t]
+                },
+                update: function(o, u) {
+                    var s = function(e, t, n) {
+                        switch (e[t] || (e[t] = {}), t) {
+                            case i:
+                                var o = n;
+                                o && o.length > 0 ? e[t] = o : delete e[t];
+                                break;
+                            case a:
+                                var u = r(n, 2),
+                                    c = u[0],
+                                    s = u[1];
+                                s ? e[t][c] = +s : delete e[t][c]
+                        }
+                        return e
+                    }(n.db, o, u);
+                    return n.db = s, n.checkTime = Date.now(), c(e, s, t)
+                },
+                updateByKey: function(r, i) {
+                    return n.db[r] = i, n.checkTime = Date.now(), c(e, n.db, t)
+                },
+                unmount: function() {
+                    window.removeEventListener("storage", d, !1)
                 }
-            }))
+            }
         }
     },
-    527: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "oCacheExists", function() {
-            return i
-        }), n.d(t, "oCacheGet", function() {
-            return a
-        }), n.d(t, "oCacheAdd", function() {
-            return o
-        });
-        var r = n(499);
-
-        function i(e, t) {
-            return t in Object(r.unpackStore)(e).oCache
-        }
-
-        function a(e, t) {
-            var n = Object(r.unpackStore)(e).oCache[t];
-            return n && !n._n && (! function(e) {
-                if (!e.first_name) {
-                    var t = e.name.split(" ", 2);
-                    e.first_name = t[0], e.short_name = t[1] ? t[0] + " " + t[1].substr(0, 1) + "." : t[0]
-                }
-                e.inv_name || (e.inv_name = e.name), e.kick_name || (e.kick_name = e.inv_name)
-            }(n), n._n = 1), n
-        }
-
-        function o(e, t) {
-            var n = Object(r.unpackStore)(e);
-            n.oCache || (n.oCache = {}), t.id && (n.oCache[t.id] = t)
-        }
-    },
-    55: function(e, t, n) {
+    163: function(e, t, n) {
         "use strict";
         n.r(t), n.d(t, "parseLatin", function() {
             return a
@@ -5922,8 +3667,8 @@
         }), n.d(t, "getSmDate", function() {
             return v
         });
-        var r = n(279),
-            i = n(312);
+        var r = n(215),
+            i = n(114);
 
         function a(e) {
             for (var t = ["yo", "zh", "kh", "ts", "ch", "sch", "shch", "sh", "eh", "yu", "ya", "YO", "ZH", "KH", "TS", "CH", "SCH", "SHCH", "SH", "EH", "YU", "YA", "'"], n = ["ё", "ж", "х", "ц", "ч", "щ", "щ", "ш", "э", "ю", "я", "Ё", "Ж", "Х", "Ц", "Ч", "Щ", "Щ", "Ш", "Э", "Ю", "Я", "ь"], r = e, i = 0, a = t.length; i < a; i++) r = r.split(t[i]).join(n[i]);
@@ -6077,14 +3822,14 @@
         }
         window.parseLatin = a, window.parseCyr = o, window.parseLatKeys = u, window.langNumeric = c, window.langSex = s, window.langStr = d, window.addLangKeys = l, window.getLang = f, window.langDate = m, window.getShortDate = g, window.getShortDateOrTime = p, window.langWordNumeric = h, window.getDateText = _, window.getBigDateNew = b, window.getSmDate = v
     },
-    6: function(e, t, n) {
+    176: function(e, t, n) {
         "use strict";
         n.r(t), n.d(t, "mount", function() {
             return c
         });
-        var r = n(70),
-            i = n(451),
-            a = n(280),
+        var r = n(64),
+            i = n(198),
+            a = n(135),
             o = function() {
                 return function(e, t) {
                     if (Array.isArray(e)) return e;
@@ -6135,7 +3880,1893 @@
             }
         }
     },
-    70: function(e, t, n) {
+    193: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "ge", function() {
+            return a
+        }), n.d(t, "geByTag", function() {
+            return o
+        }), n.d(t, "geByTag1", function() {
+            return u
+        }), n.d(t, "geByClass", function() {
+            return c
+        }), n.d(t, "geByClass1", function() {
+            return s
+        }), n.d(t, "gpeByClass", function() {
+            return d
+        }), n.d(t, "domQuery", function() {
+            return l
+        }), n.d(t, "domQuery1", function() {
+            return f
+        }), n.d(t, "domClosest", function() {
+            return m
+        }), n.d(t, "domClosestByTag", function() {
+            return g
+        }), n.d(t, "gpeByTag", function() {
+            return p
+        }), n.d(t, "ce", function() {
+            return h
+        }), n.d(t, "re", function() {
+            return O
+        }), n.d(t, "se", function() {
+            return j
+        }), n.d(t, "sech", function() {
+            return k
+        }), n.d(t, "rs", function() {
+            return E
+        }), n.d(t, "psr", function() {
+            return T
+        }), n.d(t, "domReplaceEl", function() {
+            return I
+        }), n.d(t, "domEL", function() {
+            return A
+        }), n.d(t, "domNS", function() {
+            return C
+        }), n.d(t, "domPS", function() {
+            return S
+        }), n.d(t, "domFC", function() {
+            return M
+        }), n.d(t, "domLC", function() {
+            return x
+        }), n.d(t, "domPN", function() {
+            return D
+        }), n.d(t, "domChildren", function() {
+            return P
+        }), n.d(t, "domInsertBefore", function() {
+            return L
+        }), n.d(t, "domInsertAfter", function() {
+            return N
+        }), n.d(t, "domByClass", function() {
+            return R
+        }), n.d(t, "domData", function() {
+            return F
+        }), n.d(t, "domChildIndex", function() {
+            return H
+        }), n.d(t, "domCA", function() {
+            return U
+        }), n.d(t, "domClosestSibling", function() {
+            return B
+        }), n.d(t, "matchesSelector", function() {
+            return G
+        }), n.d(t, "isHover", function() {
+            return z
+        }), n.d(t, "isAncestor", function() {
+            return q
+        }), n.d(t, "getScroll", function() {
+            return K
+        }), n.d(t, "domClosestPositioned", function() {
+            return V
+        }), n.d(t, "domClosestOverflowHidden", function() {
+            return W
+        }), n.d(t, "show", function() {
+            return Y
+        }), n.d(t, "hide", function() {
+            return X
+        }), n.d(t, "isVisible", function() {
+            return $
+        }), n.d(t, "clientHeight", function() {
+            return Q
+        }), n.d(t, "getClientRectOffsetY", function() {
+            return Z
+        }), n.d(t, "toggle", function() {
+            return J
+        }), n.d(t, "boundingRectEnabled", function() {
+            return ee
+        }), n.d(t, "getXYRect", function() {
+            return te
+        }), n.d(t, "getXY", function() {
+            return ne
+        }), n.d(t, "isWindow", function() {
+            return re
+        }), n.d(t, "getSize", function() {
+            return ie
+        }), n.d(t, "getW", function() {
+            return ae
+        }), n.d(t, "getH", function() {
+            return oe
+        }), n.d(t, "hasClass", function() {
+            return ue
+        }), n.d(t, "addClass", function() {
+            return ce
+        }), n.d(t, "addClassDelayed", function() {
+            return se
+        }), n.d(t, "removeClass", function() {
+            return de
+        }), n.d(t, "removeClassDelayed", function() {
+            return le
+        }), n.d(t, "toggleClass", function() {
+            return fe
+        }), n.d(t, "toggleClassDelayed", function() {
+            return me
+        }), n.d(t, "replaceClass", function() {
+            return ge
+        }), n.d(t, "getStyle", function() {
+            return pe
+        }), n.d(t, "setStyle", function() {
+            return he
+        }), n.d(t, "setStyleDelayed", function() {
+            return _e
+        }), n.d(t, "setPseudoStyle", function() {
+            return be
+        }), n.d(t, "data", function() {
+            return ve
+        }), n.d(t, "attr", function() {
+            return ye
+        }), n.d(t, "removeAttr", function() {
+            return we
+        }), n.d(t, "removeData", function() {
+            return Oe
+        }), n.d(t, "cleanElems", function() {
+            return je
+        }), n.d(t, "setTitle", function() {
+            return ke
+        }), n.d(t, "getZoom", function() {
+            return Ee
+        }), n.d(t, "val", function() {
+            return Te
+        }), n.d(t, "elfocus", function() {
+            return Ie
+        }), n.d(t, "traverseParent", function() {
+            return Ae
+        }), n.d(t, "setDocumentTitle", function() {
+            return Se
+        }), n.d(t, "lockDocumentTitle", function() {
+            return Me
+        });
+        var r = n(114),
+            i = n(74),
+            a = function(e) {
+                return "string" == typeof e || "number" == typeof e ? document.getElementById(e) : e
+            };
+
+        function o(e, t) {
+            return (t = a(t) || document).getElementsByTagName(e)
+        }
+
+        function u(e, t) {
+            return (t = a(t) || document).querySelector && t.querySelector(e) || o(e, t)[0]
+        }
+
+        function c(e, t, n) {
+            return t = a(t) || document, n = n || "*", e = ("." + e).replace(/\s+/gm, "."), Array.prototype.slice.call(t.querySelectorAll(n + e))
+        }
+
+        function s(e, t, n) {
+            return t = a(t) || document, n = n || "*", t.querySelector && t.querySelector(n + ("." + e).replace(/\s+/gm, ".")) || c(e, t, n)[0]
+        }
+
+        function d(e, t, n) {
+            if (!(t = a(t))) return null;
+            for (; n !== t && (t = t.parentNode);)
+                if (ue(t, e)) return t;
+            return null
+        }
+
+        function l(e, t) {
+            return (t || document).querySelectorAll(e)
+        }
+
+        function f(e, t) {
+            return (t || document).querySelector(e)
+        }
+
+        function m(e, t) {
+            return ue(t, e) ? t : d(e, t)
+        }
+
+        function g(e, t) {
+            return e = e.toUpperCase(), t.nodeType === Node.ELEMENT_NODE && t.tagName.toUpperCase() === e ? t : p(e, t)
+        }
+
+        function p(e, t) {
+            if (!(t = a(t))) return null;
+            for (e = e.toUpperCase(); t = t.parentNode;)
+                if (t.tagName && t.tagName.toUpperCase() === e) return t;
+            return null
+        }
+
+        function h(e, t, n) {
+            var i = document.createElement(e);
+            return t && Object(r.extend)(i, t), n && he(i, n), i
+        }
+        var _, b, v, y, w = (_ = document, b = _.createDocumentFragment(), v = _.createElement("div"), y = _.createRange && _.createRange(), b.appendChild(v), y && y.selectNodeContents(v), y && y.createContextualFragment ? function(e) {
+            return e ? y.createContextualFragment(e) : _.createDocumentFragment()
+        } : function(e) {
+            if (!e) return _.createDocumentFragment();
+            v.innerHTML = e;
+            for (var t = _.createDocumentFragment(); v.firstChild;) t.appendChild(v.firstChild);
+            return t
+        });
+
+        function O(e) {
+            return (e = a(e)) && e.parentNode && e.parentNode.removeChild(e), e
+        }
+        var j = function(e) {
+                return M(h("div", {
+                    innerHTML: e
+                }))
+            },
+            k = function(e) {
+                return P(h("div", {
+                    innerHTML: e
+                }))
+            };
+
+        function E(e, t) {
+            return Object(r.each)(t, function(t, n) {
+                e = e.replace(new RegExp("%" + t + "%", "g"), (void 0 === n ? "" : n).toString().replace(/\$/g, "&#036;"))
+            }), e
+        }
+
+        function T(e) {
+            return "https:" !== locProtocol ? e : e = (e = (e = (e = (e = e.replace(/http:\/\/(cs(\d+)\.vk\.me\/c(\d+)\/)/gi, "https://$1")).replace(/http:\/\/cs(\d+)\.(userapi\.com|vk\.com|vk\.me|vkontakte\.ru)\/c(\d+)\/(v\d+\/|[a-z0-9\/_:\-]+\.jpg)/gi, "https://pp.vk.me/c$3/$4")).replace(/http:\/\/cs(\d+)\.(userapi\.com|vk\.com|vk\.me|vkontakte\.ru)\/([a-z0-9\/_:\-]+\.jpg)/gi, "https://pp.vk.me/c$1/$3")).replace(/http:\/\/cs(\d+)\.(userapi\.com|vk\.com|vk\.me|vkontakte\.ru)\//gi, "https://ps.vk.me/c$1/")).replace(/http:\/\/video(\d+)\.vkadre\.ru\//gi, "https://ps.vk.me/v$1/")
+        }
+
+        function I(e, t) {
+            return Object(r.isString)(t) && (t = j(t)), D(e).replaceChild(t, e), t
+        }
+
+        function A(e, t) {
+            for (t = t ? "previousSibling" : "nextSibling"; e && !e.tagName;) e = e[t];
+            return e
+        }
+        var C = function(e) {
+                return A((e || {}).nextSibling)
+            },
+            S = function(e) {
+                return A((e || {}).previousSibling, 1)
+            },
+            M = function(e) {
+                return A((e || {}).firstChild)
+            },
+            x = function(e) {
+                return A((e || {}).lastChild, 1)
+            },
+            D = function(e) {
+                return (e || {}).parentNode
+            };
+
+        function P(e) {
+            for (var t = [], n = e.childNodes, r = 0; r < n.length; r++) n[r].tagName && t.push(n[r]);
+            return t
+        }
+
+        function L(e, t) {
+            var n = D(t);
+            return n && n.insertBefore(e, t)
+        }
+
+        function N(e, t) {
+            var n = D(t);
+            return n && n.insertBefore(e, C(t))
+        }
+
+        function R(e, t) {
+            return e ? s(t, e) : e
+        }
+
+        function F(e, t, n) {
+            return e ? void 0 !== n ? (null === n ? e.removeAttribute("data-" + t) : e.setAttribute("data-" + t, n), n) : e.getAttribute("data-" + t) : null
+        }
+
+        function H(e) {
+            for (var t = 0; null != (e = S(e));) t++;
+            return t
+        }
+
+        function U(e, t) {
+            do {
+                e = D(e)
+            } while (e && !G(e, t));
+            return e
+        }
+
+        function B(e, t, n) {
+            for (var r = null; null === r && e;)(e = -1 === n ? S(e) : C(e)) && G(e, t) && (r = e);
+            return r
+        }
+
+        function G(e, t) {
+            return !(!(e = a(e)) || e === document) && (e.matches || e.matchesSelector || e.mozMatchesSelector || e.msMatchesSelector || e.oMatchesSelector || e.webkitMatchesSelector || function(e) {
+                for (var t = (this.document || this.ownerDocument).querySelectorAll(e), n = t.length; --n >= 0 && t.item(n) !== this;);
+                return n > -1
+            }).call(e, t)
+        }
+
+        function z(e) {
+            return G(e, ":hover")
+        }
+
+        function q(e, t) {
+            var n = a(e);
+            if (t = a(t), !e || !t) return !1;
+            for (; n = n.parentNode;)
+                if (n === t) return !0;
+            return !1
+        }
+
+        function K() {
+            var e = browser.msie6 ? a("PageContainer") : document.body,
+                t = document.documentElement;
+            return [e.scrollLeft || t.scrollLeft || window.pageXOffset || 0, e.scrollTop || t.scrollTop || window.pageYOffset || 0, t.clientWidth || e.clientWidth || 0, t.clientHeight || e.clientHeight || 0]
+        }
+
+        function V(e, t) {
+            for (var n = (t = t || {}).fromEl || D(e), i = t.positions || ["relative", "absolute", "fixed"]; n && n !== bodyNode;) {
+                var a = pe(n, "position");
+                if (Object(r.inArray)(a, i) && (!t.noOverflow || "hidden" !== pe(n, "overflow"))) break;
+                n = D(n)
+            }
+            return n
+        }
+
+        function W(e, t) {
+            for (var n = e = a(e), r = void 0, i = void 0, o = void 0, u = !1; n && n.tagName && n !== bodyNode;) {
+                if (r = pe(n, "position"), i = pe(n, "overflow"), o = pe(n, "transform"), t && browser.mozilla) {
+                    if ("page_wrap" != n.id && n !== e && "visible" !== i && ("static" === r ? !u || "relative" === u : "fixed" !== u)) break
+                } else if (n !== e && "visible" !== i && ("static" === r ? !u || "relative" === u : "fixed" !== u)) break;
+                "none" !== o ? u = void 0 : "static" !== r && "fixed" !== u && (u = r), n = D(n)
+            }
+            return n
+        }
+
+        function Y(e) {
+            var t = arguments.length;
+            if (t > 1)
+                for (var n = 0; n < t; n++) Y(arguments[n]);
+            else if ((e = a(e)) && e.style) {
+                var r = e.olddisplay,
+                    i = e.tagName.toLowerCase(),
+                    o = "block";
+                e.style.display = r || "", "none" === pe(e, "display") && (o = ue(e, "inline") || ue(e, "_inline") ? "inline" : ue(e, "_inline_block") ? "inline-block" : "tr" !== i || browser.msie ? "table" !== i || browser.msie ? "block" : "table" : "table-row", e.style.display = e.olddisplay = o)
+            }
+        }
+
+        function X(e) {
+            var t = arguments.length;
+            if (t > 1)
+                for (var n = 0; n < t; n++) X(arguments[n]);
+            else if ((e = a(e)) && e.style) {
+                var r = pe(e, "display");
+                e.olddisplay = "none" !== r ? r : "", e.style.display = "none"
+            }
+        }
+
+        function $(e) {
+            return !(!(e = a(e)) || !e.style) && "none" !== pe(e, "display")
+        }
+
+        function Q() {
+            return window.innerHeight || document.documentElement.clientHeight || bodyNode.clientHeight
+        }
+
+        function Z(e, t, n) {
+            e = a(e), n = n || 0;
+            var i = ne(e)[1],
+                o = ie(e)[1],
+                u = window,
+                c = document.documentElement,
+                s = Math.max(Object(r.intval)(u.innerHeight), Object(r.intval)(c.clientHeight)),
+                d = a("page_header_cont"),
+                l = c.scrollTop || bodyNode.scrollTop || window.scrollY || 0,
+                f = vk.staticheader ? Math.max(0, ie(d)[1] - l) : ie(d)[1];
+            if (t) {
+                if (i + o < l + f + n) return i + o - l - f - n;
+                if (i > l + s - n) return i - l - s + n
+            } else {
+                if (i < l + f + n) return i - l - f - n;
+                if (i + o > l + s - n) return i + o - l - s + n
+            }
+            return 0
+        }
+
+        function J(e, t) {
+            return void 0 === t && (t = !$(e)), t ? Y(e) : X(e), t
+        }
+
+        function ee(e) {
+            return void 0 !== e.getBoundingClientRect
+        }
+
+        function te(e, t) {
+            var n = void 0;
+            if (t && "inline" === pe(e, "display")) {
+                var r = e.getClientRects();
+                n = r && r[0] || e.getBoundingClientRect()
+            } else n = e.getBoundingClientRect();
+            return n
+        }
+
+        function ne(e, t) {
+            if (!(e = a(e))) return [0, 0];
+            var n = e.ownerDocument,
+                r = {
+                    top: 0,
+                    left: 0
+                };
+            if (!n) return [0, 0];
+            var i = n.documentElement;
+            ee(e) && (r = te(e, !0));
+            var o = n === n.window ? n : 9 === n.nodeType && (n.defaultView || n.parentWindow);
+            return [r.left + (t ? 0 : o.pageXOffset || i.scrollLeft) - (i.clientLeft || 0), r.top + (t ? 0 : o.pageYOffset || i.scrollTop) - (i.clientTop || 0)]
+        }
+
+        function re(e) {
+            return null != e && e === e.window
+        }
+
+        function ie(e, t, n) {
+            e = a(e);
+            var i = document.documentElement,
+                o = [0, 0],
+                u = void 0;
+            if (t && "border-box" === pe(e, "boxSizing") && (t = !1), e === document) o = [Math.max(i.clientWidth, bodyNode.scrollWidth, i.scrollWidth, bodyNode.offsetWidth, i.offsetWidth), Math.max(i.clientHeight, bodyNode.scrollHeight, i.scrollHeight, bodyNode.offsetHeight, i.offsetHeight)];
+            else if (e) {
+                var c = function() {
+                    o = ee(e) && (u = te(e, n)) && void 0 !== u.width ? [u.width, u.height] : [e.offsetWidth, e.offsetHeight], t && Object(r.each)(o, function(t, n) {
+                        var i = t ? ["Top", "Bottom"] : ["Left", "Right"];
+                        Object(r.each)(i, function() {
+                            o[t] -= parseFloat(pe(e, "padding" + this)) || 0, o[t] -= parseFloat(pe(e, "border" + this + "Width")) || 0
+                        })
+                    })
+                };
+                if ($(e)) c();
+                else {
+                    var s = {
+                            position: "absolute",
+                            visibility: "hidden",
+                            display: "block"
+                        },
+                        d = {},
+                        l = !1;
+                    e.style.cssText.indexOf("!important") > -1 && (l = e.style.cssText), Object(r.each)(s, function(t, n) {
+                        d[t] = e.style[t], e.style[t] = n
+                    }), c(), Object(r.each)(s, function(t, n) {
+                        e.style[t] = d[t]
+                    }), l && (e.style.cssText = l)
+                }
+            }
+            return o
+        }
+
+        function ae(e) {
+            return ie(e)[0]
+        }
+
+        function oe(e) {
+            return ie(e)[1]
+        }
+
+        function ue(e, t) {
+            var n = a(e);
+            return n && 1 === n.nodeType && (" " + n.className + " ").replace(window.whitespaceRegex, " ").indexOf(" " + t + " ") >= 0
+        }
+
+        function ce(e, t) {
+            var n = a(e);
+            n && !ue(n, t) && (n.className = (n.className ? n.className + " " : "") + t)
+        }
+        window.whitespaceRegex = /[\t\r\n\f]/g;
+        var se = function(e, t) {
+            return setTimeout(ce.pbind(e, t), 0)
+        };
+
+        function de(e, t) {
+            var n = a(e);
+            n && (n.className = Object(r.trim)((n.className || "").replace(new RegExp("(\\s|^)" + t + "(\\s|$)"), " ")))
+        }
+        var le = function(e, t) {
+            return setTimeout(de.pbind(e, t), 0)
+        };
+
+        function fe(e, t, n) {
+            return void 0 === n && (n = !ue(e, t)), (n ? ce : de)(e, t), n
+        }
+
+        function me(e, t, n) {
+            return void 0 === n && (n = !ue(e, t)), (n ? se : le)(e, t), n
+        }
+
+        function ge(e, t, n) {
+            de(e, t), ce(e, n)
+        }
+
+        function pe(e, t, n) {
+            if (e = a(e), Object(r.isArray)(t)) {
+                var i = {};
+                return Object(r.each)(t, function(t, n) {
+                    return i[n] = pe(e, n)
+                }), i
+            }
+            if (!e) return "";
+            if (void 0 === n && (n = !0), !n && "opacity" === t && browser.msie) {
+                var o = e.style.filter;
+                return o ? o.indexOf("opacity=") >= 0 ? parseFloat(o.match(/opacity=([^)]*)/)[1]) / 100 + "" : "1" : ""
+            }
+            if (!n && e.style && (e.style[t] || "height" === t)) return e.style[t];
+            var u = void 0,
+                c = document.defaultView || window;
+            if (c.getComputedStyle) {
+                t = t.replace(/([A-Z])/g, "-$1").toLowerCase();
+                var s = c.getComputedStyle(e, null);
+                s && (u = s.getPropertyValue(t))
+            } else if (e.currentStyle) {
+                if ("opacity" === t && browser.msie) {
+                    var d = e.currentStyle.filter;
+                    return d && d.indexOf("opacity=") >= 0 ? parseFloat(d.match(/opacity=([^)]*)/)[1]) / 100 + "" : "1"
+                }
+                var l = t.replace(/\-(\w)/g, function(e, t) {
+                    return t.toUpperCase()
+                });
+                "auto" === (u = e.currentStyle[t] || e.currentStyle[l]) && (u = 0), u = (u + "").split(" "), Object(r.each)(u, function(t, n) {
+                    if (!/^\d+(px)?$/i.test(n) && /^\d/.test(n)) {
+                        var r = e.style,
+                            i = r.left,
+                            a = e.runtimeStyle.left;
+                        e.runtimeStyle.left = e.currentStyle.left, r.left = n || 0, u[t] = r.pixelLeft + "px", r.left = i, e.runtimeStyle.left = a
+                    }
+                }), u = u.join(" ")
+            }
+            if (n && ("width" === t || "height" === t)) {
+                var f = ie(e, !0)[{
+                    width: 0,
+                    height: 1
+                }[t]];
+                u = (Object(r.intval)(u) ? Math.max(Object(r.floatval)(u), f) : f) + "px"
+            }
+            return u
+        }
+
+        function he(e, t, n) {
+            if (e = a(e))
+                if (Object(r.isObject)(t)) Object(r.each)(t, function(t, n) {
+                    return he(e, t, n)
+                });
+                else if ("opacity" === t) browser.msie && ((n + "").length ? e.style.filter = 1 !== n ? "alpha(opacity=" + 100 * n + ")" : "" : e.style.cssText = e.style.cssText.replace(/filter\s*:[^;]*/gi, ""), e.style.zoom = 1), e.style.opacity !== n && (e.style.opacity = n);
+            else try {
+                var i = "number" == typeof n;
+                i && /height|width/i.test(t) && (n = Math.abs(n)), n = i && !/z-?index|font-?weight|opacity|zoom|line-?height/i.test(t) ? n + "px" : n, e.style[t] !== n && (e.style[t] = n)
+            } catch (e) {
+                debugLog("setStyle error: ", [t, n], e)
+            }
+        }
+        window.cssTransformProp = function() {
+            var e = document.createElement("div");
+            if (null == e.style.transform) {
+                var t = ["Webkit", "Moz", "ms"];
+                for (var n in t)
+                    if (void 0 !== e.style[t[n] + "Transform"]) return t[n] + "Transform"
+            }
+            return "transform"
+        }();
+        var _e = function(e, t, n) {
+            return setTimeout(he.pbind(e, t, n), 0)
+        };
+
+        function be(e, t, n) {
+            var i = ve(e, "pseudo-id");
+            i || (ve(e, "pseudo-id", i = Object(r.irand)(1e8, 999999999)), ce(e, "_pseudo_" + i));
+            var o = t + "-style-" + i,
+                u = a(o),
+                c = "._pseudo_" + i + ":" + t + "{";
+            u || (u = headNode.appendChild(h("style", {
+                id: o,
+                type: "text/css"
+            }))), Object(r.each)(n, function(e, t) {
+                c += e + ": " + t + " !important;"
+            }), c += "}", u.sheet ? (u.sheet.cssRules.length && u.sheet.deleteRule(0), u.sheet.insertRule(c, 0)) : u.styleSheet && (u.styleSheet.cssText = c)
+        }
+
+        function ve(e, t, n) {
+            if (!e) return !1;
+            var r = e[vkExpand];
+            return r || (r = e[vkExpand] = ++vkUUID), void 0 !== n && (vkCache[r] || (vkCache[r] = {}, window.__debugMode && (vkCache[r].__elem = e)), vkCache[r][t] = n), t ? vkCache[r] && vkCache[r][t] : r
+        }
+
+        function ye(e, t, n) {
+            return e = a(e), void 0 === n ? e.getAttribute(t) : (e.setAttribute(t, n), n)
+        }
+
+        function we(e) {
+            for (var t = 0, n = arguments.length; t < n; ++t) {
+                var r = arguments[t];
+                if (void 0 !== e[r]) try {
+                    delete e[r]
+                } catch (t) {
+                    try {
+                        e.removeAttribute(r)
+                    } catch (e) {}
+                }
+            }
+        }
+
+        function Oe(e, t) {
+            var n = !!e && e[vkExpand];
+            if (n)
+                if (t) {
+                    if (vkCache[n]) {
+                        delete vkCache[n][t], t = "";
+                        var r = 0;
+                        for (var a in vkCache[n])
+                            if ("__elem" !== a) {
+                                r++;
+                                break
+                            }
+                        r || Oe(e)
+                    }
+                } else Object(i.removeEvent)(e), we(e, vkExpand), delete vkCache[n]
+        }
+
+        function je() {
+            for (var e = arguments, t = 0; t < e.length; ++t) {
+                var n = a(e[t]);
+                n && (Oe(n), we(n, "btnevents"))
+            }
+        }
+
+        function ke(e, t, n) {
+            if ((e = a(e)) && !e.titleSet) {
+                if (t || (t = e), t.scrollWidth > t.clientWidth) e.setAttribute("title", n || e.innerText || e.textContent);
+                else {
+                    var r = u("b", e);
+                    r && r.scrollWidth > r.clientWidth ? e.setAttribute("title", n || e.innerText || e.textContent) : e.removeAttribute("title")
+                }
+                e.titleSet = 1
+            }
+        }
+
+        function Ee() {
+            var e = a("zoom_test_1") || document.body.appendChild(h("div", {
+                id: "zoom_test_1"
+            }, {
+                left: "10%",
+                position: "absolute",
+                visibility: "hidden"
+            }));
+            return (a("zoom_test_2") || document.body.appendChild(h("div", {
+                id: "zoom_test_2"
+            }, {
+                left: e.offsetLeft + "px",
+                position: "absolute",
+                visibility: "hidden"
+            }))).offsetLeft / e.offsetLeft
+        }
+
+        function Te(e, t, n) {
+            if (e = a(e)) return void 0 !== t && (e.setValue ? (e.setValue(t), !n && e.phonblur && e.phonblur()) : "INPUT" === e.tagName || "TEXTAREA" === e.tagName ? e.value = t : void 0 !== e.emojiId && window.Emoji ? Emoji.val(e, t) : e.innerHTML = t, !n && Object(i.triggerEvent)(e, "valueChanged")), e.getValue ? e.getValue() : ("INPUT" === e.tagName || "TEXTAREA" === e.tagName ? e.value : e.innerHTML) || ""
+        }
+
+        function Ie(e, t, n) {
+            e = a(e);
+            try {
+                e.focus(), void 0 !== t && !1 !== t || (t = e.value.length), void 0 !== n && !1 !== n || (n = t), e.setSelectionRange && e.setSelectionRange(t, n)
+            } catch (e) {}
+        }
+
+        function Ae(e, t, n) {
+            for (e = a(e), n = n || 999; e && !t(e);) {
+                if (0 === --n) return !1;
+                try {
+                    if ((e = D(e)) === document) break
+                } catch (t) {
+                    e = !1
+                }
+            }
+            return e
+        }
+        window.vkExpand = window.vkExpand || "VK" + Object(r.vkNow)(), window.vkUUID = window.vkUUID || 0, window.vkCache = window.vkCache || {};
+        var Ce = !1;
+
+        function Se(e) {
+            if (!Ce) return window.document.title = Object(r.replaceEntities)(e)
+        }
+
+        function Me(e) {
+            Ce = e, e && window.cur && window.cur.destroy.push(function() {
+                Me(!1)
+            })
+        }
+        window.ge = a, window.geByTag = o, window.geByTag1 = u, window.geByClass = c, window.geByClass1 = s, window.gpeByClass = d, window.domQuery = l, window.domQuery1 = f, window.domClosest = m, window.ce = h, window.cf = w, window.re = O, window.se = j, window.sech = k, window.rs = E, window.psr = T, window.domReplaceEl = I, window.domEL = A, window.domNS = C, window.domPS = S, window.domFC = M, window.domLC = x, window.domPN = D, window.domChildren = P, window.domInsertBefore = L, window.domInsertAfter = N, window.domByClass = R, window.domData = F, window.domChildIndex = H, window.domCA = U, window.domClosestSibling = B, window.matchesSelector = G, window.isHover = z, window.isAncestor = q, window.getScroll = K, window.domClosestPositioned = V, window.domClosestOverflowHidden = W, window.show = Y, window.hide = X, window.isVisible = $, window.clientHeight = Q, window.getClientRectOffsetY = Z, window.toggle = J, window.boundingRectEnabled = ee, window.getXYRect = te, window.getXY = ne, window.isWindow = re, window.getSize = ie, window.hasClass = ue, window.addClass = ce, window.addClassDelayed = se, window.removeClass = de, window.removeClassDelayed = le, window.toggleClass = fe, window.toggleClassDelayed = me, window.replaceClass = ge, window.getStyle = pe, window.setStyle = he, window.setStyleDelayed = _e, window.setPseudoStyle = be, window.data = ve, window.attr = ye, window.removeAttr = we, window.removeData = Oe, window.cleanElems = je, window.setTitle = ke, window.getZoom = Ee, window.val = Te, window.elfocus = Ie, window.traverseParent = Ae, window.getH = oe, window.getW = ae, window.domClosestByTag = g, window.setDocumentTitle = Se, window.lockDocumentTitle = Me
+    },
+    195: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "replaceHyperLinks", function() {
+            return s
+        }), n.d(t, "replaceEmailLinks", function() {
+            return d
+        }), n.d(t, "replaceMentions", function() {
+            return l
+        }), n.d(t, "replaceHashtags", function() {
+            return g
+        }), n.d(t, "confirmDelivery", function() {
+            return p
+        }), n.d(t, "linksReplacer", function() {
+            return h
+        });
+        var r = n(159),
+            i = void 0,
+            a = window,
+            o = a.clean,
+            u = a.replaceEntities,
+            c = a.statlogsValueEvent;
+
+        function s(e, t) {
+            for (var n = void 0, i = 0, a = e; null !== (n = r.MESSAGE_REGEXP.exec(e));) {
+                var o = (n = f(n))[0].length,
+                    u = n.index + o,
+                    c = e[n.index - 1],
+                    s = e[u - 1],
+                    d = void 0 !== c && /([\w\$А-Яа-яёЁєЄҐґЇїІіЈј\—\-\_@;.])/i.test(c),
+                    l = void 0 !== s && /([:;$])/i.test(s);
+                if (!d && !l) {
+                    var g = m(n),
+                        p = g.domain.toLowerCase();
+                    if (p.length <= r.MAX_DOMAIN_LENGTH && -1 !== r.TOP_DOMAINS.indexOf(p)) {
+                        var h = t(g);
+                        a = a.slice(0, n.index + i) + h + a.slice(u + i), i += h.length - o
+                    }
+                }
+            }
+            return a
+        }
+
+        function d(e, t) {
+            return e.replace(r.EMAIL, t || function(e) {
+                return '<a href="mailto:' + e + '">' + e + "</a>"
+            })
+        }
+
+        function l(e, t) {
+            return e.replace(r.MENTION, t || function(e, t, n, r, i) {
+                return '<a href="/' + (t + n) + '" class="mem_link" mention="' + o(r || "") + '" mention_id="' + o(t + n) + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)">' + i + "</a>"
+            })
+        }
+
+        function f(e) {
+            if (!e[0] || !e[6]) return e;
+            var t = e[0].length - 1,
+                n = e[6].length - 1;
+            return "." === e[0][t] && "." === e[6][n] && (e[0] = e[0].slice(0, t), e[6] = e[6].slice(0, n)), e
+        }
+
+        function m(e) {
+            return {
+                full: e[0],
+                protocol: e[1] || "http://",
+                url: e[2],
+                domain: e[4],
+                query: e[6] || ""
+            }
+        }
+
+        function g(e, t) {
+            return e.replace((i || (i = new RegExp(r.RE_HASHTAG_EXTRACTION_PATTERN, "ig")), i), function(e, n, r, i, a, o) {
+                return (n || "") + t(r + (a || ""))
+            })
+        }
+
+        function p(e) {
+            c("ttl_message_confirm_delivery", e)
+        }
+
+        function h(e, t) {
+            var n = t.protocol,
+                i = t.url,
+                a = t.query,
+                c = t.domain,
+                s = t.full;
+            try {
+                s = decodeURIComponent(s)
+            } catch (e) {}
+            if (s.length > 55 && (s = s.substr(0, 53) + ".."), s = o(s).replace(/&amp;/g, "&"), !e && c.match(r.OUR_DOMAINS)) {
+                var d, l = i = u(i).replace(r.ENTITIES, encodeURIComponent),
+                    f = i.indexOf("#/"),
+                    m = "";
+                return f >= 0 ? l = i.substr(f + 1) : (f = i.indexOf("#!")) >= 0 && (l = "/" + i.substr(f + 2).replace(/^\//, "")), (d = l.match(r.VK_DOMAIN)) && d[1].length < 32 && (m = ' mention_id="' + d[1] + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)"'), '<a href="' + function(e) {
+                    return e.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+                }(n + i + a) + '" target="_blank"' + m + ">" + s + "</a>"
+            }
+            return '<a href="' + ("away.php?utf=1&to=" + encodeURIComponent(n + u(i + a))) + '" target="_blank" onclick="' + ("return goAway('" + o((n + i + a).replace(/'/g, "\\'")) + "', {}, event);") + '">' + s + "</a>"
+        }
+    },
+    197: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "post", function() {
+            return a
+        }), n.d(t, "plainget", function() {
+            return o
+        }), n.d(t, "plaingetCancelable", function() {
+            return u
+        });
+        var r = window.ajax,
+            i = 2;
+
+        function a(e, t, n) {
+            return t && (t.im_v = i), new Promise(function(i, a) {
+                r.post(e, t, {
+                    timeout: n,
+                    onDone: function() {
+                        i.apply(null, [
+                            [].concat(Array.prototype.slice.call(arguments))
+                        ])
+                    },
+                    onFail: function() {
+                        return a.apply(null, arguments), !0
+                    }
+                })
+            })
+        }
+
+        function o(e, t) {
+            return u(e, t, arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {}).request
+        }
+
+        function u(e, t) {
+            var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
+                i = void 0;
+            return i = window.XDomainRequest ? new XDomainRequest : r._getreq(), {
+                request: new Promise(function(r, a) {
+                    var o = void 0,
+                        u = Date.now(),
+                        c = n.timeout || 60,
+                        s = ajx2q(t);
+                    if (window.XDomainRequest) i.open("get", e + "?" + s), i.ontimeout = function(e) {
+                        a([e, {}])
+                    }, i.onerror = function(e) {
+                        a([e, {}])
+                    }, i.onload = function() {
+                        r([i.responseText, {}])
+                    }, setTimeout(function() {
+                        i.send()
+                    }, 0);
+                    else {
+                        i.onreadystatechange = function() {
+                            4 == i.readyState && (clearInterval(o), i.status >= 200 && i.status < 300 ? r([i.responseText, i]) : a([i.responseText, i]))
+                        };
+                        try {
+                            i.open("GET", e + "?" + s, !0)
+                        } catch (e) {
+                            return a([e, i])
+                        }
+                        i.send()
+                    }
+                    o = setInterval(function() {
+                        Date.now() - u > 1e3 * c && (a(["", {}]), clearInterval(o))
+                    }, 1e3)
+                }),
+                cancel: function() {
+                    i.abort()
+                }
+            }
+        }
+    },
+    198: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "createMutations", function() {
+            return c
+        }), n.d(t, "createModule", function() {
+            return s
+        }), n.d(t, "destroyModule", function() {
+            return d
+        });
+        var r = n(32);
+
+        function i(e) {
+            if (Array.isArray(e)) {
+                for (var t = 0, n = Array(e.length); t < e.length; t++) n[t] = e[t];
+                return n
+            }
+            return Array.from(e)
+        }
+        var a = window,
+            o = a.addEvent,
+            u = a.removeEvent;
+
+        function c(e) {
+            return {
+                callMutations: function() {
+                    if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
+                    return e
+                },
+                bindMutations: function() {
+                    if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
+                    return e = e.apply(void 0, arguments)
+                }
+            }
+        }
+
+        function s(e) {
+            var t = {
+                _registeredHandlers: []
+            };
+            return e.handlers(function(e, t, n, r) {
+                o(t, n, r), e._registeredHandlers.push(["bind", t, n, r])
+            }.bind(null, t), function(e, t, n, i, a) {
+                Object(r.addDelegateEvent)(t, n, i, a), e._registeredHandlers.push(["delegate", t, n, i, a])
+            }.bind(null, t)), t
+        }
+
+        function d(e) {
+            e._registeredHandlers.forEach(function(e) {
+                var t = e.slice(1);
+                "delegate" === e[0] ? r.removeDelegateEvent.apply(void 0, i(t)) : u.apply(void 0, i(t))
+            }), e._registeredHandlers = []
+        }
+    },
+    215: function(e, t, n) {
+        "use strict";
+
+        function r(e) {
+            var t = new Date;
+            return e.getFullYear() === t.getFullYear() && e.getMonth() === t.getMonth() && e.getDate() === t.getDate()
+        }
+
+        function i(e) {
+            return r(new Date(e.getTime() + 864e5))
+        }
+
+        function a(e) {
+            return r(new Date(e.getTime() - 864e5))
+        }
+
+        function o(e, t) {
+            var n = new Date(e),
+                r = new Date(t);
+            return n.getFullYear() === r.getFullYear() && n.getMonth() === r.getMonth() && n.getDate() === r.getDate()
+        }
+
+        function u(e) {
+            return e >= 10 ? e : "0" + e
+        }
+        n.r(t), n.d(t, "isToday", function() {
+            return r
+        }), n.d(t, "isYesterday", function() {
+            return i
+        }), n.d(t, "isTomorrow", function() {
+            return a
+        }), n.d(t, "isSameDate", function() {
+            return o
+        }), n.d(t, "leadingZero", function() {
+            return u
+        })
+    },
+    22: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "parseFwd", function() {
+            return u
+        }), n.d(t, "convertKludgesToAttaches", function() {
+            return c
+        }), n.d(t, "isReservedPeer", function() {
+            return s
+        }), n.d(t, "isUserPeer", function() {
+            return d
+        }), n.d(t, "isChatPeer", function() {
+            return l
+        });
+        var r = function() {
+                return function(e, t) {
+                    if (Array.isArray(e)) return e;
+                    if (Symbol.iterator in Object(e)) return function(e, t) {
+                        var n = [],
+                            r = !0,
+                            i = !1,
+                            a = void 0;
+                        try {
+                            for (var o, u = e[Symbol.iterator](); !(r = (o = u.next()).done) && (n.push(o.value), !t || n.length !== t); r = !0);
+                        } catch (e) {
+                            i = !0, a = e
+                        } finally {
+                            try {
+                                !r && u.return && u.return()
+                            } finally {
+                                if (i) throw a
+                            }
+                        }
+                        return n
+                    }(e, t);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }(),
+            i = window.intval;
+
+        function a(e) {
+            var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [],
+                n = e.split("_"),
+                i = r(n, 2);
+            return [i[0], i[1], t]
+        }
+        var o = {};
+
+        function u(e) {
+            if (o[e]) return o[e];
+            for (var t = e ? e.length : 0, n = [], i = [], u = "", c = 0; c < t; c++) {
+                var s = e[c],
+                    d = s.charCodeAt(0);
+                d >= 48 && d <= 57 || "_" === s || "-" === s ? u += s : "(" !== s && ")" !== s && ":" !== s && "," !== s || ("" !== u && (i.push(u), n.push("id"), u = ""), i.push(s), n.push(s))
+            }
+            u.length > 0 && (i.push(u), n.push("id"));
+            var l = function e(t, n) {
+                    var i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 0,
+                        o = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 0;
+                    if (o > 50) return [
+                        [], t.length
+                    ];
+                    for (var u = [], c = ""; i < t.length;) {
+                        var s = t[i];
+                        if ("id" === s) c = n[i];
+                        else if ("," === s && c) u.push(a(c)), c = "";
+                        else if ("(" === s) {
+                            var d = e(t, n, i + 1, o + 1),
+                                l = r(d, 2),
+                                f = l[0];
+                            i = l[1], u.push(a(c, f)), c = ""
+                        } else if (")" === s) return "" !== c && u.push(a(c)), [u, i];
+                        i++
+                    }
+                    return c && u.push(a(c)), [u, i]
+                }(n, i),
+                f = r(l, 1)[0];
+            return Object.keys(o).length > 300 && (o = {}), o[e] = f, f
+        }
+
+        function c(e, t) {
+            var n = [];
+            e.fwd_count ? n.push({
+                type: "mail",
+                id: -t,
+                object: {
+                    fwd_count: e.fwd_count
+                }
+            }) : e.fwd && n.push({
+                type: "mail",
+                id: -t,
+                object: {
+                    fwd_count: u(e.fwd).length
+                }
+            });
+            for (var r = 1; e["attach" + r + "_type"]; ++r) "call" === e["attach" + r + "_type"] ? n.push({
+                type: e["attach" + r + "_type"],
+                id: e["attach" + r],
+                initiatorId: i(e["attach" + r + "_call_initiator_id"]),
+                state: e["attach" + r + "_call_state"],
+                duration: i(e["attach" + r + "_call_duration"]),
+                receiverId: i(e["attach" + r + "_call_receiver_id"])
+            }) : n.push({
+                type: e["attach" + r + "_type"],
+                id: e["attach" + r],
+                kind: e["attach" + r + "_kind"],
+                productId: e["attach" + r + "_product_id"]
+            });
+            return e.geo && n.push({
+                type: "geo",
+                id: e.geo
+            }), n
+        }
+
+        function s(e) {
+            return 0 == e
+        }
+
+        function d(e) {
+            return e > 0 && e < 2e9
+        }
+
+        function l(e) {
+            return e > 2e9
+        }
+    },
+    26: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "ImDraft", function() {
+            return o
+        }), n.d(t, "loadDraftForPeer", function() {
+            return c
+        });
+        var r = n(197),
+            i = n(64),
+            a = function() {
+                return function(e, t) {
+                    if (Array.isArray(e)) return e;
+                    if (Symbol.iterator in Object(e)) return function(e, t) {
+                        var n = [],
+                            r = !0,
+                            i = !1,
+                            a = void 0;
+                        try {
+                            for (var o, u = e[Symbol.iterator](); !(r = (o = u.next()).done) && (n.push(o.value), !t || n.length !== t); r = !0);
+                        } catch (e) {
+                            i = !0, a = e
+                        } finally {
+                            try {
+                                !r && u.return && u.return()
+                            } finally {
+                                if (i) throw a
+                            }
+                        }
+                        return n
+                    }(e, t);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }();
+
+        function o(e, t) {
+            this._db = e, this._key = t, this.dData = {
+                txt: "",
+                attaches: [],
+                urlBinds: [],
+                cancelled: []
+            }, this.load()
+        }
+
+        function u(e) {
+            switch (e.type) {
+                case "mail":
+                case "reply":
+                    return e.id < 0 && 1 == e.object.fwd_count;
+                default:
+                    return !e.object
+            }
+        }
+
+        function c(e, t) {
+            return new o(e, "draft_" + t)
+        }
+        o.prototype.dump = function() {
+            var e;
+            this._key && this._db.updateByKey(this._key, {
+                txt: (e = this.dData).txt,
+                attaches: e.attaches.length ? e.attaches : void 0,
+                urlBinds: e.urlBinds.length ? e.urlBinds : void 0,
+                cancelled: e.cancelled.length ? e.cancelled : void 0
+            })
+        }, o.prototype.load = function() {
+            if (this._key) {
+                var e = this._db.selectByKey(this._key);
+                e && (this.dData = function(e) {
+                    return {
+                        txt: e.txt,
+                        attaches: e.attaches || [],
+                        urlBinds: e.urlBinds || [],
+                        cancelled: e.cancelled || []
+                    }
+                }(e))
+            }
+        }, o.prototype.clear = function() {
+            this.dData = {
+                txt: "",
+                attaches: [],
+                urlBinds: [],
+                cancelled: []
+            }, this.dump()
+        }, o.prototype.setText = function(e) {
+            this.dData.txt = trim(e), this.dump()
+        }, o.prototype.addAttach = function(e, t, n) {
+            if ("share" === e && this.removeAttachByType(e), "mail" !== e && "reply" !== e || (this.removeAttachByType("mail"), this.removeAttachByType("reply")), !e || !t && "poll" !== e) return !1;
+            var r = this.dData.attaches.findIndex(function(n) {
+                return n.type === e && n.id === t
+            }); - 1 === r ? (this.dData.attaches.push({
+                type: e,
+                id: t,
+                object: n
+            }), this.dump()) : "video" !== e && "poll" !== e || (this.dData.attaches[r] = {
+                type: e,
+                id: t,
+                object: n
+            }, this.dump())
+        }, o.prototype.syncWithSelector = function(e) {
+            var t = this,
+                n = this.getFwdRaw();
+            this.dData.attaches = (n ? [n] : []).concat(e.getMedias().map(function(e) {
+                var n = a(e, 2),
+                    r = n[0],
+                    i = n[1];
+                return t.dData.attaches.find(function(e) {
+                    return e.type == r && e.id == i
+                }) || {
+                    type: r,
+                    id: i
+                }
+            })), this.dump()
+        }, o.prototype.removeAttachByType = function(e) {
+            for (var t = this.dData.attaches.length; t--;) this.dData.attaches[t].type === e && this.dData.attaches.splice(t, 1);
+            this.dump()
+        }, o.prototype.removeAllAttaches = function() {
+            this.dData.attaches = [], this.dData.cancelled = [], this.dump()
+        }, o.prototype.addBindUrl = function(e, t, n) {
+            this.getBoundAttach(e) || (this.dData.urlBinds.push({
+                url: e,
+                type: t,
+                id: n
+            }), this.dump())
+        }, o.prototype.getBoundAttach = function(e) {
+            var t = this.dData.urlBinds.find(function(t) {
+                return t.url === e
+            });
+            return t && this.dData.attaches.find(function(e) {
+                return e.type === t.type && e.id === t.id
+            }) || null
+        }, o.prototype.getShareUrl = function() {
+            var e = this.dData.attaches.find(function(e) {
+                return "share" === e.type
+            });
+            if (e && e.object) return e.object.url
+        }, o.prototype.hasOnlyReplies = function() {
+            return this.hasAttaches() && !this.dData.attaches.find(function(e) {
+                return "reply" !== e.type
+            })
+        }, o.prototype.getCancelledShares = function() {
+            return this.dData.cancelled.length ? this.dData.cancelled : void 0
+        }, o.prototype.hasAttaches = function() {
+            return this.dData.attaches.length > 0
+        }, o.prototype.destroy = function() {
+            this.dData = {}, this._key = this._db = null
+        }, o.prototype.prepareObjects = function(e, t) {
+            var n = this;
+            return this.dData.attaches.find(u) ? Object(r.post)(i.CONTROLLER, {
+                act: "draft_medias",
+                gid: e,
+                messageId: t || 0,
+                media: t ? void 0 : this.dData.attaches.map(function(e) {
+                    return [e.type, e.id]
+                }).join("*")
+            }).then(function(e) {
+                var t = a(e, 1)[0];
+                n.dData.attaches = t.map(function(e) {
+                    return {
+                        type: e[0],
+                        id: e[1],
+                        object: e[2]
+                    }
+                })
+            }) : Promise.resolve()
+        }, o.prototype.getFwdRaw = function() {
+            return this.dData.attaches.find(function(e) {
+                return "mail" === e.type || "reply" === e.type
+            })
+        }, o.prototype.getFwdCount = function() {
+            var e = this.getFwdRaw();
+            return e ? e.id < 0 ? e.object.fwd_count : e.id.split(";").length : 0
+        }
+    },
+    32: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "addDelegateEvent", function() {
+            return o
+        }), n.d(t, "removeDelegateEvent", function() {
+            return u
+        });
+        var r = function() {
+                return function(e, t) {
+                    if (Array.isArray(e)) return e;
+                    if (Symbol.iterator in Object(e)) return function(e, t) {
+                        var n = [],
+                            r = !0,
+                            i = !1,
+                            a = void 0;
+                        try {
+                            for (var o, u = e[Symbol.iterator](); !(r = (o = u.next()).done) && (n.push(o.value), !t || n.length !== t); r = !0);
+                        } catch (e) {
+                            i = !0, a = e
+                        } finally {
+                            try {
+                                !r && u.return && u.return()
+                            } finally {
+                                if (i) throw a
+                            }
+                        }
+                        return n
+                    }(e, t);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }(),
+            i = new window.Map;
+
+        function a(e) {
+            var t = i.get(e.currentTarget);
+            if (t) {
+                var n = t[e.type];
+                if (n)
+                    for (var a = void 0, o = 0; o < n.length; o++) {
+                        var u = r(n[o], 2),
+                            c = u[0],
+                            s = u[1],
+                            d = void 0;
+                        if (hasClass(e.target, c) ? d = s(e, e.target) : (a = gpeByClass(c, e.target, e.currentTarget)) && (d = s(e, a)), !1 === d) break
+                    }
+            }
+        }
+
+        function o(e, t, n, r) {
+            var o = i.get(e);
+            o || (i.set(e, {}), o = i.get(e));
+            for (var u = t.split(" "), c = 0; c < u.length; c++) {
+                var s = u[c];
+                o[s] || (o[s] = [], addEvent(e, s, a)), o[s].push([n, r])
+            }
+        }
+
+        function u(e, t, n, r) {
+            var o = i.get(e);
+            o && (t.split(" ").forEach(function(t) {
+                o[t] && (o[t] = o[t].filter(function(e) {
+                    return e[0] !== n || e[1] !== r
+                }), 0 === o[t].length && removeEvent(e, t, a))
+            }), 0 === Object.keys(o).map(function(e) {
+                return o[e].length
+            }).reduce(function(e, t) {
+                return e + t
+            }) && i.delete(e))
+        }
+    },
+    4: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "getFirstUnread", function() {
+            return d
+        }), n.d(t, "isSearchShown", function() {
+            return l
+        }), n.d(t, "getPeer", function() {
+            return f
+        }), n.d(t, "getCurrentKeyboard", function() {
+            return m
+        }), n.d(t, "getKeyboard", function() {
+            return g
+        }), n.d(t, "getTab", function() {
+            return p
+        }), n.d(t, "getCurrentTab", function() {
+            return h
+        }), n.d(t, "getSelectedMessages", function() {
+            return _
+        }), n.d(t, "getMessageRangeFromSelection", function() {
+            return b
+        }), n.d(t, "countUnread", function() {
+            return v
+        }), n.d(t, "getMessageByRid", function() {
+            return y
+        }), n.d(t, "isRidExist", function() {
+            return w
+        }), n.d(t, "getLocalId", function() {
+            return O
+        }), n.d(t, "getLastMessage", function() {
+            return j
+        }), n.d(t, "parserMessage", function() {
+            return k
+        }), n.d(t, "getAuthorFullName", function() {
+            return E
+        }), n.d(t, "getMessage", function() {
+            return T
+        }), n.d(t, "getPreviousMessage", function() {
+            return I
+        }), n.d(t, "isClassicInterface", function() {
+            return A
+        }), n.d(t, "isLocksAvailable", function() {
+            return C
+        }), n.d(t, "isFoldersAvailable", function() {
+            return S
+        }), n.d(t, "isCommunityInterface", function() {
+            return M
+        }), n.d(t, "isChannel", function() {
+            return x
+        }), n.d(t, "getBareTab", function() {
+            return D
+        }), n.d(t, "isReversedDialogs", function() {
+            return P
+        }), n.d(t, "isFullyLoadedTab", function() {
+            return L
+        }), n.d(t, "makeTabNotFullyLoaded", function() {
+            return N
+        }), n.d(t, "isGoToEndVisible", function() {
+            return R
+        }), n.d(t, "getUnreadScrollBottom", function() {
+            return F
+        }), n.d(t, "isSendingAvailable", function() {
+            return H
+        }), n.d(t, "isCommunityPeer", function() {
+            return U
+        }), n.d(t, "isCommunityBlocked", function() {
+            return B
+        }), n.d(t, "checkVoiceMessageAvailable", function() {
+            return G
+        }), n.d(t, "isSearching", function() {
+            return z
+        }), n.d(t, "getSearchText", function() {
+            return q
+        }), n.d(t, "isSearchingValue", function() {
+            return K
+        }), n.d(t, "isRecentSearchesActive", function() {
+            return V
+        }), n.d(t, "getPinnedMessage", function() {
+            return W
+        }), n.d(t, "doPopularSuggExist", function() {
+            return Y
+        }), n.d(t, "isAnyMessageBeingEdited", function() {
+            return X
+        }), n.d(t, "getGroupId", function() {
+            return $
+        }), n.d(t, "getTabDraft", function() {
+            return Q
+        }), n.d(t, "getTemplates", function() {
+            return Z
+        });
+        var r = n(44),
+            i = n(135),
+            a = n(159),
+            o = n(66),
+            u = n(26),
+            c = n(68),
+            s = n(158);
+
+        function d(e, t) {
+            var n = Object(c.unpackStore)(e),
+                i = n.tabs[n.peer];
+            return Object.keys(i.msgs).filter(function(n) {
+                var a = T(e, t, n);
+                return !Object(r.isOut)(a) && intval(n) > i.in_up_to
+            })[0]
+        }
+
+        function l(e) {
+            return Object(c.unpackStore)(e).searchShown
+        }
+
+        function f(e) {
+            return Object(c.unpackStore)(e).peer
+        }
+
+        function m(e) {
+            return g(e, f(e))
+        }
+
+        function g(e, t) {
+            return (p(e, t) || {}).keyboard
+        }
+
+        function p(e, t) {
+            var n = Object(c.unpackStore)(e);
+            return n.tabs && n.tabs[t]
+        }
+
+        function h(e) {
+            var t = Object(c.unpackStore)(e);
+            return t.peer ? t.tabs[t.peer] : null
+        }
+
+        function _(e) {
+            return Object(c.unpackStore)(e).selectedMessages
+        }
+
+        function b(e, t, n) {
+            var i = p(e, t),
+                a = _(e)[0];
+            if (void 0 === a) return [n];
+            var o = Math.min(n, a),
+                u = Math.max(n, a);
+            return Object.keys(i.msgs).filter(function(e) {
+                return e >= o && e <= u
+            }).filter(function(t) {
+                var n = T(e, e.get().peer, t);
+                return !Object(r.isServiceMsg)(n) && !Object(r.isCallMessage)(n)
+            }).map(intval)
+        }
+
+        function v(e, t) {
+            var n = p(Object(c.unpackStore)(t), e),
+                i = 0;
+            for (var a in n.msgs)
+                if (n.msgs.hasOwnProperty(a)) {
+                    var o = T(t, e, a);
+                    Object(r.isOut)(o) || (i += Object(r.isUnread)(n, o) ? 1 : 0)
+                }
+            return i
+        }
+
+        function y(e, t, n) {
+            var r = p(e, t);
+            return Object.keys(r.msgs).filter(function(r) {
+                return intval(T(e, t, r).randomId) === n
+            }).length > 0
+        }
+
+        function w(e, t, n) {
+            return !!y(e, t, n)
+        }
+
+        function O(e, t) {
+            var n = Object(c.unpackStore)(e),
+                r = n.msg_local_ids_sort && n.msg_local_ids_sort[t];
+            return void 0 !== r ? 2e9 + r : t
+        }
+
+        function j(e, t, n) {
+            var r = p(e, t),
+                a = T(e, t, n),
+                o = Object.keys(r.msgs).filter(function(n) {
+                    var r = T(e, t, n),
+                        o = r.local && r.type !== i.EDIT_MESSAGE;
+                    return !(!a.local && o) && (!(!a.local || o) || O(e, a.messageId) > O(e, r.messageId))
+                }).pop();
+            return o ? T(e, t, o) : null
+        }
+
+        function k(e) {
+            return e && e.length > 0 ? i.addMessageEvent([0].concat(e)) : e
+        }
+
+        function E(e, t, n) {
+            var i = p(e, t),
+                a = T(e, t, n),
+                u = Object(c.unpackStore)(e);
+            return Object(r.isOut)(a) ? Object(o.oCacheGet)(e, u.id).name : a.userId !== a.peerId ? !!Object(o.oCacheExists)(e, a.userId) && Object(o.oCacheGet)(e, a.userId).name : i.tab
+        }
+
+        function T(e, t, n) {
+            var r = p(e, t),
+                i = r && r.msgs && r.msgs[n];
+            return i ? k(i) : null
+        }
+
+        function I(e, t, n) {
+            var r = p(e, t),
+                i = r && r.msgs && Object.keys(r.msgs).sort(function(e, t) {
+                    return +e - t
+                });
+            if (!i) return null;
+            var a = i && i.indexOf("" + n),
+                o = a > -1 ? i[a - 1] : null;
+            return r.msgs[o]
+        }
+
+        function A(e) {
+            var t = Object(c.unpackStore)(e);
+            return t.gid || t.isClassic
+        }
+
+        function C(e) {
+            return Object(c.unpackStore)(e).gid
+        }
+
+        function S(e) {
+            return Object(c.unpackStore)(e).gid
+        }
+
+        function M(e) {
+            return !!Object(c.unpackStore)(e).gid
+        }
+
+        function x(e, t) {
+            return !!(t.peerId > 2e9 && Object(s.doesChatTabHaveFlag)(t, 1024))
+        }
+
+        function D(e, t) {
+            var n = Object(c.unpackStore)(t);
+            return n.tabs[e] || n.mapped_index[e]
+        }
+
+        function P(e) {
+            var t = Object(c.unpackStore)(e);
+            return !!M(e) && ((19542789 === t.gid || 103416369 == t.gid) && (t.active_tab === a.FOLDER_UNRESPOND || t.active_tab === a.FOLDER_UNREAD))
+        }
+
+        function L(e, t) {
+            var n = (e = Object(c.unpackStore)(e)).tabs;
+            return !(!n || !n[t] || void 0 === n[t].history || !n[t].msgs)
+        }
+
+        function N(e, t) {
+            var n = p(e, t);
+            n && (n.msgs = void 0, n.msgid = void 0, n.scrollTop = void 0, n.scrollBottom = void 0, n.contHeight = void 0, n.offset = void 0, n.skipped = void 0)
+        }
+
+        function R(e) {
+            var t = e.get().go_to_end_visible;
+            return !!t && t[0]
+        }
+
+        function F(e) {
+            var t = e.get().go_to_end_visible;
+            return t ? t[1] : 0
+        }
+
+        function H(e) {
+            return !Object(c.unpackStore)(e).lockedSending
+        }
+
+        function U(e) {
+            return e > -2e9 && e < 0
+        }
+
+        function B(e, t) {
+            return !!U(t) && !!p(e, t).blocked_community
+        }
+
+        function G(e) {
+            return Object(c.unpackStore)(e).voice_message_available
+        }
+
+        function z(e) {
+            var t = Object(c.unpackStore)(e);
+            return !(!q(t) && !t.recentSearch)
+        }
+
+        function q(e) {
+            return Object(c.unpackStore)(e).searchText
+        }
+
+        function K(e, t) {
+            var n = Object(c.unpackStore)(e);
+            return !!(t && t !== q(e) || n.recentSearch)
+        }
+
+        function V(e) {
+            return Object(c.unpackStore)(e).recentSearch
+        }
+
+        function W(e) {
+            var t = h(e);
+            return t && t.pinned && k(t.pinned)
+        }
+
+        function Y(e) {
+            var t = e.get().popular_sugg;
+            return t && t.length > 0
+        }
+
+        function X(e) {
+            return 1 == Object(c.unpackStore)(e).isEditing
+        }
+
+        function $(e) {
+            return Object(c.unpackStore)(e).gid
+        }
+
+        function Q(e) {
+            return e.draft || (e.draft = Object(u.loadDraftForPeer)(cur.imDb, e.peerId)), e.draft
+        }
+
+        function Z(e) {
+            return (Object(c.unpackStore)(e).templates || []).filter(function(e) {
+                return !e.deleted
+            })
+        }
+    },
+    44: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "isUnread", function() {
+            return a
+        }), n.d(t, "isServiceMsg", function() {
+            return o
+        }), n.d(t, "isCallMessage", function() {
+            return u
+        }), n.d(t, "isOut", function() {
+            return c
+        }), n.d(t, "isGraffiti", function() {
+            return d
+        }), n.d(t, "isAudioMsg", function() {
+            return l
+        }), n.d(t, "isSticker", function() {
+            return f
+        }), n.d(t, "isGift", function() {
+            return m
+        }), n.d(t, "isMoney", function() {
+            return g
+        }), n.d(t, "isMoneyRequest", function() {
+            return p
+        }), n.d(t, "isVKPay", function() {
+            return h
+        }), n.d(t, "isImportant", function() {
+            return _
+        }), n.d(t, "getUserId", function() {
+            return b
+        }), n.d(t, "getAuthorId", function() {
+            return v
+        }), n.d(t, "wasEdited", function() {
+            return y
+        }), n.d(t, "isMessageSelected", function() {
+            return w
+        });
+        var r = n(135),
+            i = n(68);
+
+        function a(e, t) {
+            return "number" != typeof t.messageId || (c(t) ? t.messageId > e.out_up_to : t.messageId > e.in_up_to)
+        }
+
+        function o(e) {
+            return e.kludges && void 0 !== e.kludges.source_act
+        }
+
+        function u(e) {
+            return "call" == e.kludges.attach1_type
+        }
+
+        function c(e) {
+            return e.flags & r.FLAG_OUTBOUND
+        }
+
+        function s(e, t) {
+            var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : null,
+                r = e.attaches[0];
+            return r && (r.type === t || r.type === n)
+        }
+
+        function d(e) {
+            return s(e, "doc") && "graffiti" === e.attaches[0].kind
+        }
+
+        function l(e) {
+            return s(e, "doc") && "audiomsg" === e.attaches[0].kind
+        }
+
+        function f(e) {
+            return s(e, "sticker")
+        }
+
+        function m(e) {
+            return s(e, "gift")
+        }
+
+        function g(e) {
+            return s(e, "money_transfer", "money_request")
+        }
+
+        function p(e) {
+            return s(e, "money_request")
+        }
+
+        function h(e) {
+            return s(e, "link", "vkpay") && 6217559 == e.kludges.attach1_app_id
+        }
+
+        function _(e) {
+            return e.flags & r.FLAG_IMPORTANT
+        }
+
+        function b(e) {
+            return c(e) ? vk.id : e.userId
+        }
+
+        function v(e, t) {
+            var n = Object(i.unpackStore)(e);
+            return c(t) ? n.id : t.userId
+        }
+
+        function y(e) {
+            return e.update_time > 0
+        }
+
+        function w(e, t) {
+            return (e.get().selectedMessages || []).indexOf(t) >= 0
+        }
+    },
+    47: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "isPinnedMessageVisibleInTab", function() {
+            return g
+        }), n.d(t, "pinnedMessageHide", function() {
+            return p
+        }), n.d(t, "pinnedMessageUnHide", function() {
+            return h
+        }), n.d(t, "pinnedMessageUnpin", function() {
+            return _
+        }), n.d(t, "mount", function() {
+            return y
+        });
+        var r = n(198),
+            i = n(64),
+            a = n(135),
+            o = n(12),
+            u = n(150),
+            c = n(4),
+            s = n(68),
+            d = n(147),
+            l = n(162),
+            f = "_im_pin_hide",
+            m = "_im_pinned_message";
+
+        function g(e, t) {
+            if (Object(s.unpackStore)(e).searchShown) return !1;
+            var n = Object(c.getTab)(e, t),
+                r = n && Object(c.parserMessage)(n.pinned);
+            return !!r && n.pinHideId != r.chat_local_id
+        }
+
+        function p(e, t, n) {
+            var r = !(arguments.length > 3 && void 0 !== arguments[3]) || arguments[3],
+                i = Object(c.getTab)(e, t),
+                a = i && Object(c.parserMessage)(i.pinned);
+            i && a && (i.pinHideId = a.chat_local_id, cur.imDb.update(l.PIN_HIDDEN_ID_OP, [i.peerId, i.pinHideId]), b(n, t, e), re(geByClass1("_im_pinned_tt")), r && window.Notifier && Notifier.lcSend("pin_hide", {
+                hide: 1,
+                peer: t
+            }), statlogsValueEvent("im_pinned_messages", "hide"))
+        }
+
+        function h(e, t, n) {
+            var r = !(arguments.length > 3 && void 0 !== arguments[3]) || arguments[3],
+                i = Object(c.getTab)(e, t);
+            i && i.pinHideId && (delete i.pinHideId, cur.imDb.update(l.PIN_HIDDEN_ID_OP, [i.peerId, void 0]), b(n, t, e), r && window.Notifier && Notifier.lcSend("pin_hide", {
+                hide: 0,
+                peer: t
+            }), statlogsValueEvent("im_pinned_messages", "show"))
+        }
+
+        function _(e, t, n) {
+            var r = b.bind(null, n, t),
+                a = Object(u.showUnpinDialog)(function() {
+                    a.hideProgress(), a.hide(), e.set(i.unpinMessageOptimistic.bind(null, t)).then(r).then(function(e) {
+                        return e.set(i.unpinMessage.bind(null, t))
+                    }).then(r)
+                })
+        }
+
+        function b(e, t, n) {
+            return e().updateChatTopic(t, n), Object(i.setActions)(n.get()), e().updateActions(n), n
+        }
+
+        function v(e) {
+            return {
+                unmount: function() {
+                    Object(r.destroyModule)(e)
+                }
+            }
+        }
+
+        function y(e, t, n) {
+            var i = Object(r.createMutations)(v).bindMutations,
+                s = function(e, t, n) {
+                    var r = e.get().peer,
+                        i = Object(c.parserMessage)(Object(c.getTab)(e, r).pinned);
+                    if (n.target.classList.contains(f)) i && p(e, r, t);
+                    else if ("A" !== n.target.tagName) {
+                        var s = i && i.messageId;
+                        if (s && !Object(u.isAlreadyDeleted)(e, r, s)) {
+                            var l = e.get();
+                            Object(c.getMessage)(e, r, s) ? (e.setState({
+                                msgid: s
+                            }), Object(d.updateLocation)({
+                                msgid: s
+                            }), t().focusOnMessage()) : l.longpoll.push([Object(a.changePeer)(r, s)])
+                        } else Object(u.showPinnedBox)(e, t, r, o.mount, n);
+                        statlogsValueEvent("im_pinned_messages", "open")
+                    }
+                }.bind(null, t, n),
+                l = function(e) {
+                    showTooltip(e.target, {
+                        text: getLang("mail_hide_unpin_hover"),
+                        black: 1,
+                        needLeft: 1,
+                        shift: [8, 4],
+                        forcetoup: !0,
+                        className: "_im_pinned_tt",
+                        appendEl: bodyNode
+                    })
+                }.bind(null);
+            return i(Object(r.createModule)({
+                handlers: function(t, n) {
+                    n(e, "click", m, s), n(e, "mouseover", f, l)
+                }
+            }))
+        }
+    },
+    64: function(e, t, n) {
         "use strict";
         n.r(t), n.d(t, "CONTROLLER", function() {
             return O
@@ -6472,21 +6103,21 @@
         }), n.d(t, "resetTabAll", function() {
             return Wn
         });
-        var r = n(391),
-            i = n(323),
-            a = n(280),
-            o = n(281),
-            u = n(499),
-            c = n(289),
-            s = n(489),
-            d = n(381),
-            l = n(129),
-            f = n(77),
-            m = n(527),
-            g = n(361),
-            p = n(518),
-            h = n(131),
-            _ = n(363),
+        var r = n(197),
+            i = n(147),
+            a = n(135),
+            o = n(89),
+            u = n(68),
+            c = n(162),
+            s = n(150),
+            d = n(159),
+            l = n(4),
+            f = n(44),
+            m = n(66),
+            g = n(85),
+            p = n(47),
+            h = n(158),
+            _ = n(193),
             b = Object.assign || function(e) {
                 for (var t = 1; t < arguments.length; t++) {
                     var n = arguments[t];
@@ -8496,113 +8127,475 @@
             return t
         }
     },
-    77: function(e, t, n) {
+    66: function(e, t, n) {
         "use strict";
-        n.r(t), n.d(t, "isUnread", function() {
+        n.r(t), n.d(t, "oCacheExists", function() {
+            return i
+        }), n.d(t, "oCacheGet", function() {
             return a
-        }), n.d(t, "isServiceMsg", function() {
+        }), n.d(t, "oCacheAdd", function() {
             return o
-        }), n.d(t, "isCallMessage", function() {
-            return u
-        }), n.d(t, "isOut", function() {
-            return c
-        }), n.d(t, "isGraffiti", function() {
-            return d
-        }), n.d(t, "isAudioMsg", function() {
-            return l
-        }), n.d(t, "isSticker", function() {
-            return f
-        }), n.d(t, "isGift", function() {
-            return m
-        }), n.d(t, "isMoney", function() {
-            return g
-        }), n.d(t, "isMoneyRequest", function() {
-            return p
-        }), n.d(t, "isVKPay", function() {
-            return h
-        }), n.d(t, "isImportant", function() {
-            return _
-        }), n.d(t, "getUserId", function() {
-            return b
-        }), n.d(t, "getAuthorId", function() {
-            return v
-        }), n.d(t, "wasEdited", function() {
-            return y
-        }), n.d(t, "isMessageSelected", function() {
-            return w
         });
-        var r = n(280),
-            i = n(499);
+        var r = n(68);
+
+        function i(e, t) {
+            return t in Object(r.unpackStore)(e).oCache
+        }
 
         function a(e, t) {
-            return "number" != typeof t.messageId || (c(t) ? t.messageId > e.out_up_to : t.messageId > e.in_up_to)
+            var n = Object(r.unpackStore)(e).oCache[t];
+            return n && !n._n && (! function(e) {
+                if (!e.first_name) {
+                    var t = e.name.split(" ", 2);
+                    e.first_name = t[0], e.short_name = t[1] ? t[0] + " " + t[1].substr(0, 1) + "." : t[0]
+                }
+                e.inv_name || (e.inv_name = e.name), e.kick_name || (e.kick_name = e.inv_name)
+            }(n), n._n = 1), n
+        }
+
+        function o(e, t) {
+            var n = Object(r.unpackStore)(e);
+            n.oCache || (n.oCache = {}), t.id && (n.oCache[t.id] = t)
+        }
+    },
+    68: function(e, t, n) {
+        "use strict";
+
+        function r(e, t) {
+            var n = [],
+                r = 0;
+            return function(i) {
+                n.push(i), r || (r = setTimeout(function() {
+                    r = !1, e(n), n = []
+                }, t))
+            }
+        }
+
+        function i(e) {
+            return e.length > 0 && e.pop().func(), e
+        }
+
+        function a(e, t) {
+            var n = void 0,
+                r = void 0;
+            if (window.__debugMode) {
+                switch (t) {
+                    case "error":
+                        n = "color: red", r = "background: red; color: white";
+                        break;
+                    case "success":
+                        n = "color: green", r = "background: green; color: white";
+                        break;
+                    default:
+                        n = "color: blue;", r = "background: #000; color: #fff;"
+                }
+                try {
+                    var i = new Date;
+                    console.debug("%cLP:[" + i.getHours() + ":" + i.getMinutes() + ":" + i.getSeconds() + ":" + i.getMilliseconds() + "]%c " + e, r, n)
+                } catch (e) {}
+            }
         }
 
         function o(e) {
-            return e.kludges && void 0 !== e.kludges.source_act
+            var t = [];
+            if (void 0 === e.length) return Object.keys(e).map(function(t) {
+                return e[t]
+            });
+            for (var n = 0; n < e.length; n++) t.push(e[n]);
+            return t
         }
 
         function u(e) {
-            return "call" == e.kludges.attach1_type
+            for (var t = {}, n = [], r = 0; r < e.length; r++) t[e[r]] || (n.push(e[r]), t[n[r]] = 1);
+            return n
         }
 
         function c(e) {
-            return e.flags & r.FLAG_OUTBOUND
+            return e.get ? e.get() : e
+        }
+        n.r(t), n.d(t, "throttleAccumulate", function() {
+            return r
+        }), n.d(t, "executionStackPop", function() {
+            return i
+        }), n.d(t, "lplog", function() {
+            return a
+        }), n.d(t, "toArray", function() {
+            return o
+        }), n.d(t, "arrayUnique", function() {
+            return u
+        }), n.d(t, "unpackStore", function() {
+            return c
+        })
+    },
+    74: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "KEY", function() {
+            return a
+        }), n.d(t, "addEvent", function() {
+            return o
+        }), n.d(t, "removeEvent", function() {
+            return u
+        }), n.d(t, "triggerEvent", function() {
+            return c
+        }), n.d(t, "cancelEvent", function() {
+            return s
+        }), n.d(t, "stopEvent", function() {
+            return d
+        }), n.d(t, "normEvent", function() {
+            return l
+        }), n.d(t, "checkEvent", function() {
+            return f
+        }), n.d(t, "checkKeyboardEvent", function() {
+            return m
+        }), n.d(t, "checkOver", function() {
+            return g
+        });
+        var r = n(193),
+            i = n(114),
+            a = {
+                LEFT: 37,
+                UP: 38,
+                RIGHT: 39,
+                DOWN: 40,
+                DEL: 8,
+                TAB: 9,
+                RETURN: 13,
+                ENTER: 13,
+                ESC: 27,
+                PAGEUP: 33,
+                PAGEDOWN: 34,
+                SPACE: 32,
+                CTRL: 17,
+                ALT: 18,
+                SHIFT: 16
+            };
+
+        function o(e, t, n, a, o, u) {
+            if ((e = Object(r.ge)(e)) && 3 != e.nodeType && 8 != e.nodeType) {
+                var c, d = o ? ((c = function(e) {
+                    var t = e.data;
+                    e.data = o;
+                    var r = n.apply(this, [e]);
+                    return e.data = t, r
+                }).handler = n, c) : n;
+                e.setInterval && e !== window && (e = window);
+                var f = Object(r.data)(e, "events") || Object(r.data)(e, "events", {}),
+                    m = Object(r.data)(e, "handle") || Object(r.data)(e, "handle", function(e) {
+                        return function() {
+                            (function(e) {
+                                e = l(e);
+                                var t = Array.from(arguments);
+                                t[0] = e;
+                                var n = Object(r.data)(this, "events");
+                                if (!n || "string" != typeof e.type || !n[e.type] || !n[e.type].length) return;
+                                var i = (n[e.type] || []).slice();
+                                for (var a in i)
+                                    if (i.hasOwnProperty(a)) {
+                                        if ("mouseover" === e.type || "mouseout" === e.type) {
+                                            for (var o = e.relatedElement; o && o !== this;) o = o.parentNode;
+                                            if (o === this) continue
+                                        }
+                                        var u = i[a].apply(this, t);
+                                        if (!1 !== u && -1 !== u || s(e), -1 === u) return !1
+                                    }
+                            }).apply(e, arguments)
+                        }
+                    }(e));
+                Object(i.each)(t.split(/\s+/), function(t, n) {
+                    f[n] || (f[n] = [], !a && e.addEventListener ? e.addEventListener(n, m, u) : !a && e.attachEvent && e.attachEvent("on" + n, m)), f[n].push(d)
+                })
+            }
         }
 
-        function s(e, t) {
-            var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : null,
-                r = e.attaches[0];
-            return r && (r.type === t || r.type === n)
+        function u(e, t, n, a) {
+            if (void 0 === a && (a = !1), e = Object(r.ge)(e)) {
+                var o = Object(r.data)(e, "events");
+                if (o)
+                    if ("string" == typeof t) Object(i.each)(t.split(/\s+/), function(t, u) {
+                        if (Object(i.isArray)(o[u])) {
+                            var c = o[u].length;
+                            if (Object(i.isFunction)(n)) {
+                                for (var s = c - 1; s >= 0; s--)
+                                    if (o[u][s] && (o[u][s] === n || o[u][s].handler === n)) {
+                                        o[u].splice(s, 1), c--;
+                                        break
+                                    }
+                            } else {
+                                for (var d = 0; d < c; d++) delete o[u][d];
+                                c = 0
+                            }
+                            c || (e.removeEventListener ? e.removeEventListener(u, Object(r.data)(e, "handle"), a) : e.detachEvent && e.detachEvent("on" + u, Object(r.data)(e, "handle")), delete o[u])
+                        }
+                    }), Object(i.isEmpty)(o) && (Object(r.removeData)(e, "events"), Object(r.removeData)(e, "handle"));
+                    else
+                        for (var c in o) o.hasOwnProperty(c) && u(e, c)
+            }
+        }
+
+        function c(e, t, n, a) {
+            e = Object(r.ge)(e);
+            var o = Object(r.data)(e, "handle");
+            if (o) {
+                var u = function() {
+                    return o.call(e, Object(i.extend)(n || {}, {
+                        type: t,
+                        target: e
+                    }))
+                };
+                a ? u() : setTimeout(u, 0)
+            }
+        }
+
+        function s(e) {
+            if (!(e = e || window.event)) return !1;
+            for (; e.originalEvent;) e = e.originalEvent;
+            return e.preventDefault && e.preventDefault(), e.stopPropagation && e.stopPropagation(), e.stopImmediatePropagation && e.stopImmediatePropagation(), e.cancelBubble = !0, e.returnValue = !1, !1
         }
 
         function d(e) {
-            return s(e, "doc") && "graffiti" === e.attaches[0].kind
+            if (!(e = e || window.event)) return !1;
+            for (; e.originalEvent;) e = e.originalEvent;
+            return e.stopPropagation && e.stopPropagation(), e.cancelBubble = !0, !1
         }
 
         function l(e) {
-            return s(e, "doc") && "audiomsg" === e.attaches[0].kind
+            var t = e = e || window.event;
+            if ((e = Object(i.clone)(t)).originalEvent = t, e.target || (e.target = e.srcElement || document), 3 == e.target.nodeType && (e.target = e.target.parentNode), !e.relatedTarget && e.fromElement && (e.relatedTarget = e.fromElement === e.target), null == e.pageX && null != e.clientX) {
+                var n = document.documentElement,
+                    r = bodyNode;
+                e.pageX = e.clientX + (n && n.scrollLeft || r && r.scrollLeft || 0) - (n.clientLeft || 0), e.pageY = e.clientY + (n && n.scrollTop || r && r.scrollTop || 0) - (n.clientTop || 0)
+            }
+            return !e.which && (e.charCode || 0 === e.charCode ? e.charCode : e.keyCode) && (e.which = e.charCode || e.keyCode), !e.metaKey && e.ctrlKey ? e.metaKey = e.ctrlKey : !e.ctrlKey && e.metaKey && browser.mac && (e.ctrlKey = e.metaKey), !e.which && e.button && (e.which = 1 & e.button ? 1 : 2 & e.button ? 3 : 4 & e.button ? 2 : 0), e
         }
 
         function f(e) {
-            return s(e, "sticker")
+            var t = e || window.event;
+            return t && ("click" === t.type || "mousedown" === t.type || "mouseup" === t.type) && (t.which > 1 || t.button > 1 || t.ctrlKey || t.shiftKey || browser.mac && t.metaKey) || !1
         }
 
         function m(e) {
-            return s(e, "gift")
+            if (!(e = l(e)) || !e.target) return !1;
+            if (!e.screenX) return !0;
+            var t = Object(r.getSize)(e.target),
+                n = Object(r.getXY)(e.target),
+                i = e.pageX - n[0],
+                a = e.pageY - n[1];
+            return i < -1 || i > t[0] + 1 || a < -1 || a > t[1] + 1 || Math.abs(e.pageX - n[0] - t[0] / 2) < 1 && Math.abs(e.pageY - n[1] - t[1] / 2) < 1
         }
 
-        function g(e) {
-            return s(e, "money_transfer", "money_request")
+        function g(e, t) {
+            if (!e) return !0;
+            e = e.originalEvent || e, t = t || e.target;
+            var n = e.fromElement || e.relatedTarget;
+            if (!n || n === t || n === t.parentNode) return !0;
+            for (; n !== t && n.parentNode && n.parentNode !== bodyNode;) n = n.parentNode;
+            return n !== t
+        }
+        window.KEY = a, window.addEvent = o, window.removeEvent = u, window.triggerEvent = c, window.cancelEvent = s, window.stopEvent = d, window.normEvent = l, window.checkEvent = f, window.checkKeyboardEvent = m, window.checkOver = g
+    },
+    85: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "isWeirdLogging", function() {
+            return s
+        }), n.d(t, "imWeirdLog", function() {
+            return d
+        }), n.d(t, "imWeirdCatch", function() {
+            return l
+        }), n.d(t, "startLoggingAllUnhandled", function() {
+            return f
+        }), n.d(t, "stopLoggingAllUnhandled", function() {
+            return m
+        });
+        var r = n(197),
+            i = n(89),
+            a = void 0,
+            o = 1;
+
+        function u(e, t, n, r, i) {
+            if ("Script error." !== e) {
+                var o = i ? i.stack || i.message : null;
+                d("unhandled_error", o ? {
+                    err: e,
+                    stack: o
+                } : {
+                    err: e
+                })
+            }
+            a && a.apply(this, arguments)
         }
 
-        function p(e) {
-            return s(e, "money_request")
+        function c(e) {
+            e.preventDefault()
         }
 
-        function h(e) {
-            return s(e, "link", "vkpay") && 6217559 == e.kludges.attach1_app_id
+        function s() {
+            return !!window.imwl
         }
 
-        function _(e) {
-            return e.flags & r.FLAG_IMPORTANT
+        function d(e, t) {
+            var n = !(arguments.length > 2 && void 0 !== arguments[2]) || arguments[2];
+            s() && (n && window.console && (console.error(e, t), console.trace && console.trace()), Object(i.retryFn)(r.post, 3, function() {
+                return 2
+            })("al_im.php", {
+                act: "a_weird_log",
+                kind: e,
+                data: JSON.stringify(extend({
+                    errIdx: o++,
+                    ua: navigator.userAgent
+                }, t))
+            }))
         }
 
-        function b(e) {
-            return c(e) ? vk.id : e.userId
+        function l(e, t) {
+            var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {};
+            return d(e, extend({
+                err: t && t.message || t
+            }, n)), Promise.reject(t)
         }
 
-        function v(e, t) {
-            var n = Object(i.unpackStore)(e);
-            return c(t) ? n.id : t.userId
+        function f() {
+            a = window.onerror, window.onerror = u, window.addEventListener("unhandledrejection", c)
         }
 
-        function y(e) {
-            return e.update_time > 0
+        function m() {
+            window.onerror = a, a = void 0, window.removeEventListener("unhandledrejection", c)
+        }
+    },
+    89: function(e, t, n) {
+        "use strict";
+
+        function r(e, t) {
+            return new Promise(function(n) {
+                setTimeout(n.bind(null, t), 1e3 * e)
+            })
         }
 
-        function w(e, t) {
-            return (e.get().selectedMessages || []).indexOf(t) >= 0
+        function i(e, t) {
+            var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : null,
+                i = 0;
+            return function a() {
+                for (var o = arguments.length, u = Array(o), c = 0; c < o; c++) u[c] = arguments[c];
+                return Promise.resolve().then(function() {
+                    return e.apply(void 0, u)
+                }).catch(function(e) {
+                    if (++i <= t) {
+                        var o = "function" == typeof n ? n(i) : 0;
+                        return 0 === o ? a.apply(void 0, u) : r(o).then(function() {
+                            return a.apply(void 0, u)
+                        })
+                    }
+                    throw e
+                })
+            }
+        }
+
+        function a(e, t, n) {
+            var r = void 0,
+                i = void 0;
+            return function() {
+                for (var a = arguments.length, o = Array(a), u = 0; u < a; u++) o[u] = arguments[u];
+                return new Promise(function(e, a) {
+                    var u = n && !r;
+                    clearTimeout(r), i && i.reject("debounce"), r = setTimeout(function() {
+                        r = null, i = null, n || e(o)
+                    }, t), u ? e(o) : n && a("debounce"), i = {
+                        resolve: e,
+                        reject: a
+                    }
+                }).then(function(t) {
+                    return e.apply(void 0, function(e) {
+                        if (Array.isArray(e)) {
+                            for (var t = 0, n = Array(e.length); t < e.length; t++) n[t] = e[t];
+                            return n
+                        }
+                        return Array.from(e)
+                    }(t))
+                })
+            }
+        }
+
+        function o(e, t) {
+            var n = void 0,
+                r = new Promise(function(r) {
+                    n = r, setTimeout(r.bind(null, t), 1e3 * e)
+                });
+            return {
+                pause: function() {
+                    return r
+                },
+                abort: function() {
+                    n(t)
+                }
+            }
+        }
+        n.r(t), n.d(t, "pause", function() {
+            return r
+        }), n.d(t, "retryFn", function() {
+            return i
+        }), n.d(t, "debouncedPromise", function() {
+            return a
+        }), n.d(t, "abortablePause", function() {
+            return o
+        })
+    },
+    92: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "canMessageBeEdited", function() {
+            return c
+        }), n.d(t, "convertEmojiHtmlToRegularText", function() {
+            return s
+        }), n.d(t, "findLastMessageToEdit", function() {
+            return d
+        }), n.d(t, "wasMessageReallyModified", function() {
+            return l
+        }), n.d(t, "replaceMsgAfterEdit", function() {
+            return f
+        });
+        var r = n(4),
+            i = n(44),
+            a = n(150),
+            o = n(22),
+            u = n(68);
+
+        function c(e, t) {
+            t = Object(r.parserMessage)(t);
+            var n = vk.id == t.peerId && !Object(u.unpackStore)(e).gid;
+            return 333 != t.peerId && (!(!n && !Object(i.isOut)(t)) && (!Object(i.isServiceMsg)(t) && (!(Date.now() / 1e3 - t.date > 86400) && (!(Object(i.isGift)(t) || Object(i.isSticker)(t) || Object(i.isAudioMsg)(t) || Object(i.isGraffiti)(t) || Object(i.isMoney)(t) || Object(i.isVKPay)(t)) && !Object(a.isAlreadyDeleted)(e, t.peerId, t.messageId)))))
+        }
+
+        function s(e) {
+            var t = document.createElement("div");
+            return e = e.replace(/\[((id|club)\d+)\|(.+?)]/g, function() {
+                var e = arguments.length <= 1 ? void 0 : arguments[1],
+                    t = arguments.length <= 3 ? void 0 : arguments[3];
+                return /^\@/.test(t) ? t : "@" + e + " (" + t + ")"
+            }), t.innerHTML = e, Emoji.val(t)
+        }
+
+        function d(e, t) {
+            return +(t && t.msgs ? Object.keys(t.msgs) : []).filter(function(e) {
+                return e > 0
+            }).sort(function(e, t) {
+                return t - e
+            }).find(function(n) {
+                return c(e, t.msgs[n])
+            }) || null
+        }
+
+        function l(e, t, n) {
+            var r = Object(o.convertKludgesToAttaches)(t.kludges, t.messageId),
+                i = n.dData.attaches;
+            if (s(t.text) !== n.dData.txt || r.length !== i.length) return !0;
+            for (var a = r.length; a--;) {
+                var u = r[a],
+                    c = i[a];
+                if (u.id != c.id || u.type != c.type || "poll" == u.type && c.object && c.object.poll_is_edited) return !0
+            }
+            return !1
+        }
+
+        function f(e, t, n, r, i, o) {
+            t.origText = n, t.text = Object(a.replaceSpecialSymbols)(clean(n)).replace(/\n/gi, "<br>"), t.attaches = r, t.kludges.emoji = 1, t.local = 1, t.share_url = i, t.cancelled_shares = o, t.update_time = Math.floor(Date.now() / 1e3), e.get().tabs[t.peerId].msgs[t.messageId] = t
         }
     }
 });

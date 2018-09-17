@@ -177,6 +177,7 @@
                             this.doNontransactionalPayment(s, cur.ps_list[s]);
                             break;
                         case "paypal_ipn":
+                        case "mailmoney_vkpay":
                         case "card":
                             this.doTransactionalPayment(s, cur.ps_list[s]);
                             break;
@@ -590,6 +591,22 @@
                 };
             ajax.post("al_payments.php", n, {
                 onDone: function(n, i) {
+                    if ("mailmoney_vkpay" == e) return s.setPaymentResultScreen(getLang("ads_edit_easy_promote_payment_wait"), getLang("ads_edit_easy_promote_payment_wait_description"), "wait"), s.goToScreen(s.paymentResultScreenElement), s.box._hide(!1, !0), showWiki({
+                        w: n
+                    }, !1, !1, {
+                        noLocChange: 1,
+                        skipBoxesHide: 1
+                    }), cur.promoteBox = s.box, cur.onExternalAppDone = function(e) {
+                        e.status || (cur.isPaymentCanceled = !0), cur.promoteBox._show(), cur.promoteBox = null, cur.onExternalAppDone = null, window.WkView && WkView.hide(!1, !0)
+                    }, void s.waitForPaymentResult({
+                        ajaxParams: {
+                            source: "ads",
+                            ads_union_id: s.options.payment_union_id,
+                            type: e,
+                            hash: t.check_hash
+                        },
+                        paymentSystemData: t
+                    });
                     i ? (s.setPaymentIFrameHtml(i), s.nextScreen()) : (s.setPaymentResultScreen(getLang("ads_edit_easy_promote_payment_wait"), getLang("ads_edit_easy_promote_payment_wait_description"), "wait"), s.goToScreen(s.paymentResultScreenElement)), s.waitForPaymentResult({
                         ajaxParams: extend({}, n, {
                             type: e

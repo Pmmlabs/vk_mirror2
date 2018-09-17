@@ -244,7 +244,7 @@ var WkView = {
             }, (browser.iphone || browser.ipad) && (cur.wkStartScroll = scrollGetY()), options.edit && (cur._editMode = function() {
                 return !0
             }, !window.WkEditor)) return stManager.add(["wk_editor.js", "wk_editor.css"], WkView.show.pbind(title, html, options, script, ev)), !1;
-        if (cur.cancelTooltip = !0, window.tooltips && tooltips.hideAll(), boxQueue.hideAll(), isVisible(wkLayerWrap) || (otherList = !0, addEvent(window, "resize", WkView.onResize), addEvent(wkLayerWrap, "click", WkView.onClick), WkView.showLayer()), wkcur.noLocChange = 0, wkcur.noHistory = options.noLocChange, wkcur.hideTitle = options.hide_title ? 1 : 0, wkcur.hideCloseButton = options.hideCloseButton ? 1 : 0, wkcur.shown = !0, wkcur.edit && (wkcur.edit = !1), extend(wkcur, options), wkcur.root) cur.nav.push(function(e, o, r, t) {
+        if (cur.cancelTooltip = !0, window.tooltips && tooltips.hideAll(), options.skipBoxesHide || boxQueue.hideAll(), isVisible(wkLayerWrap) || (otherList = !0, addEvent(window, "resize", WkView.onResize), addEvent(wkLayerWrap, "click", WkView.onClick), WkView.showLayer()), wkcur.noLocChange = 0, wkcur.noHistory = options.noLocChange, wkcur.hideTitle = options.hide_title ? 1 : 0, wkcur.hideCloseButton = options.hideCloseButton ? 1 : 0, wkcur.shown = !0, wkcur.edit && (wkcur.edit = !1), extend(wkcur, options), wkcur.root) cur.nav.push(function(e, o, r, t) {
             return r = nav.toStr(r), r == wkcur.prevLoc ? (WkView.hide(!0), !1) : void 0
         }), !options.noLocChange && options.myLoc && nav.setLoc(options.myLoc);
         else {
