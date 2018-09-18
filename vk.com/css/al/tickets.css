@@ -47,6 +47,20 @@ body.dev .tickets_side_tt .tail {
     padding: 0
 }
 
+.tickets_closed_profile {
+    position: relative
+}
+
+.tickets_closed_profile:before {
+    width: 12px;
+    height: 12px;
+    background: url('data:image/svg+xml;charset=utf-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2215%22%20width%3D%2215%22%20version%3D%221.1%22%20viewBox%3D%220%200%203.9687499%203.9687501%22%3E%0A%20%3Cg%20transform%3D%22translate(0%20-293.03)%22%3E%0A%20%20%3Cg%3E%0A%20%20%20%3Crect%20rx%3D%22.25212%22%20ry%3D%22.33479%22%20height%3D%221.9006%22%20width%3D%222.8637%22%20stroke%3D%22%23fff%22%20y%3D%22294.73%22%20x%3D%22.55250%22%20stroke-width%3D%22.75036%22%20fill%3D%22%23a8bbcf%22%2F%3E%0A%20%20%20%3Cellipse%20stroke-opacity%3D%22.94118%22%20fill-opacity%3D%220%22%20rx%3D%22.95104%22%20ry%3D%22.99228%22%20stroke%3D%22%23fff%22%20cy%3D%22294.7%22%20cx%3D%221.9844%22%20stroke-width%3D%221.3483%22%2F%3E%0A%20%20%20%3Cellipse%20rx%3D%22.95104%22%20ry%3D%22.99228%22%20stroke%3D%22%23a8bbcf%22%20cy%3D%22294.7%22%20cx%3D%221.9844%22%20stroke-width%3D%220.56%22%20fill%3D%22none%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%20%20%3Crect%20stroke-opacity%3D%220%22%20rx%3D%22.25212%22%20ry%3D%22.33479%22%20height%3D%221.9006%22%20width%3D%222.8637%22%20y%3D%22294.73%22%20x%3D%22.55250%22%20fill%3D%22%23a8bbcf%22%2F%3E%0A%20%3C%2Fg%3E%0A%3C%2Fsvg%3E') no-repeat 50% / cover;
+    bottom: 2%;
+    content: '';
+    position: absolute;
+    left: 2%
+}
+
 body.dev #new_ticket {
     padding-top: 30px
 }
@@ -1714,7 +1728,13 @@ body.dev .tickets_faq_row {
 }
 
 .tickets_faq_img img {
-    height: 32px
+    height: 32px;
+    vertical-align: middle
+}
+
+.tickets_faq_img.tickets_closed_profile:before {
+    width: 14px;
+    height: 14px
 }
 
 .similar_row_wrap .tickets_faq_img {
