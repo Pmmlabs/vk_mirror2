@@ -15633,6 +15633,10 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     max-width: 0
 }
 
+.Slider__line .audioPlaylistsPage__cell_desc {
+    max-width: none
+}
+
 @media (max-width: 319px) {
     .audioPlaylistsPage__cell_desc {
         display: block;

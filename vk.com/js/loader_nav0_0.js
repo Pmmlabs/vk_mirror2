@@ -372,7 +372,7 @@ var stVersions = {
     'graffiti.css': 404471482,
     'graffiti_new.js': 67279821,
     'graffiti_new.css': 19573413079,
-    'abuse.css': 13787227299,
+    'abuse.css': 12182263626,
     'verify.css': 11721851960,
     'away.css': 17103735033,
     'stats.css': 14466923435,
@@ -652,4 +652,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 9718;
+var _rnd = 6462;

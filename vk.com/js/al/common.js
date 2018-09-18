@@ -8584,7 +8584,6 @@ var _cleanHide = function(el) {
        appendEl - ���������, � ������� ����� ������ div � ��������
        tip
        typeClass
-       className
        appendParentCls
        showIfFit
        onCreate - function
