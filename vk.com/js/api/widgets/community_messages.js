@@ -196,9 +196,6 @@ var CommunityWidget = {
         }
     },
 
-
-
-
     lpStart: function() {
         curNotifier.lp_started = true;
         CommunityWidget.lpCheck();
@@ -295,7 +292,6 @@ var CommunityWidget = {
 
         switch (ev_type) {
             case 'new':
-                console.log('ev', ev);
                 this.onNewMessage(peer, ev[3], ev[4], ev[5]);
                 break;
             case 'read':
@@ -322,7 +318,6 @@ var CommunityWidget = {
         var els = document.querySelectorAll('.wcm_msg_wrap.wcm_msg_wrap_unread.' + class_name);
         for (var i = 0; i < els; i++) {
             var msg_id = intval(els[i].id.replace('msg', ''));
-            console.log(msg_id);
             this.onReadMessage(msg_id);
         }
     },
@@ -374,12 +369,12 @@ var CommunityWidget = {
         }
 
         var cont = '\
-<div class="wcm_msg">\
-  <div class="wcm_msg_text">' + data.text + '</div>\
-  <div class="wcm_media">' + this.prepareMedia(data.attachments, data.id) + '</div>\
-  <div class="wcm_fwd_msg"></div>\
-  ' + fwd + '\
-</div>';
+      <div class="wcm_msg">\
+        <div class="wcm_msg_text">' + data.text + '</div>\
+        <div class="wcm_media">' + this.prepareMedia(data.attachments, data.id) + '</div>\
+        <div class="wcm_fwd_msg"></div>\
+        ' + fwd + '\
+      </div>';
 
         var class_name = 'wcm_msg_wrap clear_fix';
         if (data.attachments && data.attachments.length > 0 && data.attachments[0].type == 'sticker') {
@@ -895,7 +890,7 @@ var CommunityWidget = {
                     res += '<div class="wcm_attach_item clear_fix wcm_attach_doc">\
             <a href="' + item.url + '" target="_blank"><div class="wcm_attach_doc_ic fl_l ' + class_name + '"></div></a>\
             <div class="wcm_attach_doc_cont">\
-              <div class="wcm_attach_doc_title"><a href="' + item.url + '" target="_blank">' + clean(item.title) + '</a></div>\
+              <div class="wcm_attach_doc_title"><a href="' + item.url + '" target="_blank">' + clean(unclean(unclean(item.title))) + '</a></div>\
               <div class="wcm_attach_doc_size">' + item.size + '</div>\
             </div>\
           </div>';
@@ -1236,7 +1231,7 @@ var CommunityWidget = {
                     innerHTML: '<div class="wcm_attach_item wcm_attach_doc">\
 <div class="wcm_attach_doc_ic fl_l ' + class_name + '"></div>\
 <div class="wcm_attach_doc_cont">\
-  <div class="wcm_attach_doc_title">' + file.name + '</div>\
+  <div class="wcm_attach_doc_title">' + clean(file.name) + '</div>\
   <span class="wcm_doc_upload_retry" onclick="CommunityWidget.uploadRetry(' + file.ident + ');">' + cur.lang.upload_retry + '</span>\
   <div class="clear_fix wcm_doc_progress_inf">\
     <div class="wcm_doc_progress_wrap">\
@@ -1322,7 +1317,6 @@ var CommunityWidget = {
                     from: 'choose',
                 }, params), {
                     onDone: function(oid, did, data) {
-                        console.log(data);
                         var doc_raw = oid + '_' + did;
                         CommunityWidget.mediaInfo['doc' + doc_raw] = {
                             ext: data.ext,

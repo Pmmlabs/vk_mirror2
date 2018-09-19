@@ -1415,27 +1415,9 @@ AdsEdit.triggerDefaultMediaForPostForm = function(wallOptions) {
             if (!cur.viewEditor.params.link_type.video_id) {
                 return false;
             }
-            var videoId = cur.viewEditor.params.link_type.video_id;
-            ajax.post('al_video.php', {
-                act: 'a_videos_attach_info',
-                videos: videoId
-            }, {
-                onDone: function(data) {
-                    cur.addMedia[cur.wallAddMedia.lnkId].chooseMedia('video', videoId, data[videoId], 0, true);
-                },
-                showProgress: function() {
-                    if (curBox) {
-                        curBox().showProgress();
-                    }
-                },
-                hideProgress: function() {
-                    if (curBox) {
-                        curBox().hideProgress();
-                    }
-                }
-            });
 
-            return false;
+            triggerMediaType = 'share';
+            handlerOptions.videoId = cur.viewEditor.params.link_type.video_id;
         }
 
         if (triggerMediaType && cur.wallAddMedia) {
@@ -2004,6 +1986,37 @@ AdsEdit.onClickLeadFormGroupBoxContinue = function(button) {
     }
 
     this.showLeadFormBox(groupId);
+}
+
+AdsEdit.showSnippetVideo = function(videoId) {
+    if (!videoId || !cur.wallAddMedia || (typeof cur.wallAddMedia.lnkId === 'undefined') || !cur.addMedia || !cur.addMedia[cur.wallAddMedia.lnkId]) {
+        return false;
+    }
+
+    ajax.post('al_video.php', {
+        act: 'a_videos_attach_info',
+        videos: videoId,
+    }, {
+        onDone: function(data) {
+            var allowSnippetVideo = cur.options ? (!!(cur.options.share && cur.options.share.allow_snippet_video)) : false;
+            if (allowSnippetVideo) {
+                cur.addMedia[cur.wallAddMedia.lnkId].initSnippetVideoFunctions();
+                cur.chooseSnippetVideo(videoId, data[videoId]);
+            }
+        },
+        showProgress: function() {
+            if (curBox) {
+                curBox().showProgress();
+            }
+        },
+        hideProgress: function() {
+            if (curBox) {
+                curBox().hideProgress();
+            }
+        }
+    });
+
+    return false;
 }
 
 

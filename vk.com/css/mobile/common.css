@@ -17788,14 +17788,6 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     }
 }
 
-.vk_flex_no .snippet {
-    display: table
-}
-
-.vk_flex_no .snippet__icon {
-    display: table-cell
-}
-
 .snippet.snippet_type_podcast {
     background: #2c2d2e;
     -webkit-border-radius: 4px;
@@ -17825,7 +17817,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .snippet.snippet_type_podcast .snippet__texts {
-    position: unset;
+    position: initial;
     overflow: hidden;
     margin-bottom: 40px
 }
@@ -17871,6 +17863,18 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     .snippet.snippet_type_podcast {
         height: 120px
     }
+}
+
+.snippet__actions>* {
+    margin-bottom: 8px;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+.snippet__actions>:last-child {
+    margin-bottom: 16px
 }
 
 .snippet__actions>* {
@@ -28418,6 +28422,11 @@ body.apps_settingsPageBody {
 .r .wall_item .snippet_type_mask,
 .r .wall_item .snippet_type_story {
     background: #fff
+}
+
+.r .cp_attached_post .snippet_type_podcast,
+.r .wall_item .snippet_type_podcast {
+    margin-top: 8px
 }
 
 .r .transfersHistory__item+.show_more_wrap,
