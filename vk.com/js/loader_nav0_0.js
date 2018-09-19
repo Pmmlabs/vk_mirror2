@@ -161,7 +161,7 @@ var stVersions = {
     'blog.css': 16967492813,
     'blog.js': 3939164531,
     'html5audio.js': 976782859,
-    'audioplayer.js': 15461696653,
+    'audioplayer.js': 14912171351,
     'audioplayer.css': 15943686221,
     'audio_html5.js': 287741914,
     'audio.js': 3873978980,
@@ -569,7 +569,7 @@ var stVersions = {
     'cmodules/web/podcast.js': 5641305119,
     'cmodules/web/podcast_add.js': 3119760770,
     'cmodules/web/podcast_choose.js': 4574431326,
-    'podcast.css': 17277340315,
+    'podcast.css': 20041288565,
     'podcast_add.css': 13148444806,
     'podcast_choose.css': 14175328367,
     'podcast_stats.css': 11718196265,
@@ -652,4 +652,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 7944;
+var _rnd = 6108;
