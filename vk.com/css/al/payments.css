@@ -1938,7 +1938,7 @@ h2.payments_getvotes_title {
 }
 
 .payments_box_wide .payments_summary_bill_label {
-    white-space: normal;
+    white-space: nowrap;
     line-height: normal
 }
 
@@ -1981,7 +1981,7 @@ h2.payments_getvotes_title {
 }
 
 .payments_box_in_money #payments_box_left_col .payments_box_menu {
-    top: 135px
+    top: 150px
 }
 
 .payments_box_in_money .payments_getvotes_method_text {
@@ -1996,7 +1996,31 @@ h2.payments_getvotes_title {
     margin: 10px 10px 5px 0
 }
 
-.payments_box_summary_grey,
+.payments_box_summary_grey {
+    color: #828282
+}
+
+.payments_summary_line_through {
+    text-decoration: line-through
+}
+
+.payments_summary_discount_price {
+    color: #59a846
+}
+
+.payments_summary_discount_percents {
+    margin-left: 5px;
+    padding: 0 5px;
+    display: inline-block;
+    border: 1px solid #59a846;
+    color: #59a846;
+    border-radius: 3px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    line-height: 18px
+}
+
 .payments_summary_bill_row {
     color: #828282
 }

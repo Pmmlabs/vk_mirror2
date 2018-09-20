@@ -1783,34 +1783,6 @@ function getVotes(from_box, count) {
     if (window.event && (window.event.which == 2 || window.event.button == 1)) {
         return true;
     }
-    if (!window.getVotesBox) {
-        window.getVotesBox = new MessageBox({
-            title: window.lang_increase_balance,
-            width: '480px',
-            progress: 'getVotesProgress',
-            bodyStyle: 'padding: 0px',
-            onHide: function() {
-                window.getVotesBoxHidden();
-                if (from_box == 1) {
-                    showPaymentBox(window.paymentBoxVotes);
-                }
-            }
-        });
-    }
-    if (count === undefined) {
-        count = window.paymentBoxVotes - window.userBalance;
-        if (count < 0) {
-            count = 0;
-        }
-    }
-    window.getVotesBox.removeButtons().addButton({
-        label: window.lang_close,
-        onClick: window.getVotesBox.hide
-    });
-    window.getVotesBox.loadContent('payments.php?return=apps', {
-        'act': 'a_get_votes_box',
-        votes: count
-    }, true).show();
     return false;
 }
 
