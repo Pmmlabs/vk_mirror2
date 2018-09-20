@@ -1397,7 +1397,11 @@ AdsEdit.triggerDefaultMediaForPostForm = function(wallOptions) {
 
             case 'promoted_post_with_video':
                 {
-                    triggerMediaType = 'video';
+                    if (cur.viewEditor.params.link_type.video_id) {
+                        triggerMediaType = 'share';
+                        handlerOptions.videoId = cur.viewEditor.params.link_type.video_id;
+                    }
+                    break;
                 }
 
             default:
@@ -1411,13 +1415,6 @@ AdsEdit.triggerDefaultMediaForPostForm = function(wallOptions) {
         if (triggerMediaType === 'lead_form') {
             AdsEdit.showLeadFormBoxes();
             return false;
-        } else if (triggerMediaType === 'video') {
-            if (!cur.viewEditor.params.link_type.video_id) {
-                return false;
-            }
-
-            triggerMediaType = 'share';
-            handlerOptions.videoId = cur.viewEditor.params.link_type.video_id;
         }
 
         if (triggerMediaType && cur.wallAddMedia) {

@@ -469,7 +469,7 @@ var BugTracker = {
             e.push(t)
         }), e
     },
-    openMergeBox: function(e) {
+    openBindBox: function(e) {
         cur.btMergeBox = showBox("bugtracker", {
             act: "merge_box",
             ids: BugTracker.getSelectedReportIds()
