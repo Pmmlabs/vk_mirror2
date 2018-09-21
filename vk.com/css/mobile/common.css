@@ -20339,7 +20339,7 @@ figure[data-type="102"] .article_object_video_play {
     background-position: 0 -1271px
 }
 
-.articleView__footer .articleView__footer_btn_bookmark.active .articleView__footer_btn_icon {
+.articleView__footer .articleView__footer_btn_bookmark.articleView__footer_btn_bookmark_active .articleView__footer_btn_icon {
     background-position: 0 -1295px
 }
 
@@ -34318,8 +34318,7 @@ body.apps_settingsPageBody {
 .Popup__scroll {
     padding: 0 16px;
     overflow: hidden;
-    max-height: 420px;
-    max-height: 80vh
+    max-height: 420px
 }
 
 .Popup__scrollContent {
@@ -38673,6 +38672,10 @@ a .BookmarkListItem__subtitle:hover {
     bottom: -10px;
     right: -10px;
     position: absolute
+}
+
+.BookmarksPopup__hideCorner .Popup__headerCorner {
+    display: none
 }
 
 .BookmarksPopup__content {
