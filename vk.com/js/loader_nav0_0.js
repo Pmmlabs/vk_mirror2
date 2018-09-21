@@ -161,7 +161,7 @@ var stVersions = {
     'blog.css': 16967492813,
     'blog.js': 3939164531,
     'html5audio.js': 976782859,
-    'audioplayer.js': 21809219967,
+    'audioplayer.js': 20206829164,
     'audioplayer.css': 15943686221,
     'audio_html5.js': 287741914,
     'audio.js': 3873978980,
@@ -388,7 +388,7 @@ var stVersions = {
     'ads_bonus.css': 1294533291,
     'ads.js': 258177233,
     'ads_payments.js': 1483293789,
-    'ads_edit.css': 35770421675,
+    'ads_edit.css': 34968873467,
     'ads_edit.js': 49911621,
     'ads_edit_geo.js': 519167575,
     'ads_moder_common.css': 12785253728,
@@ -652,4 +652,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 4122;
+var _rnd = 7290;
