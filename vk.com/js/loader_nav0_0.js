@@ -161,10 +161,10 @@ var stVersions = {
     'blog.css': 16967492813,
     'blog.js': 3939164531,
     'html5audio.js': 976782859,
-    'audioplayer.js': 17537299648,
+    'audioplayer.js': 18515731679,
     'audioplayer.css': 15943686221,
     'audio_html5.js': 287741914,
-    'audio.js': 2363187715,
+    'audio.js': 3959486384,
     'cmodules/web/audio_admins.js': 7226287612,
     'audio.css': 23652973113,
     'audio_admins.css': 18632039150,
@@ -235,7 +235,7 @@ var stVersions = {
     'owner_photo.js': 3368798011,
     'owner_photo.css': 18124836473,
     'page.js': 401135213,
-    'page.css': 67696070466,
+    'page.css': 64938262798,
     'page_help.css': 22429880337,
     'public.css': 25189879866,
     'cmodules/web/public.js': 329399197,
@@ -248,7 +248,7 @@ var stVersions = {
     'cmodules/web/groups_list.js': 2447510571,
     'cmodules/web/GroupsEdit.js': 26680679963,
     'groups_edit.css': 49828939758,
-    'cmodules/web/groups_edit.js': 3211164391,
+    'cmodules/web/groups_edit.js': 114389755,
     'profile.css': 23405223241,
     'profile.js': 2415404742,
     'calendar.css': 17150023683,
@@ -283,8 +283,8 @@ var stVersions = {
     'feed.css': 22708736589,
     'privacy.js': 1338890736,
     'privacy.css': 13211983472,
-    'apps.css': 31997403042,
-    'apps.js': 509919053,
+    'apps.css': 35226103161,
+    'apps.js': 966370334,
     'apps_edit.js': 2493199203,
     'apps_edit.css': 32013238403,
     'apps_check.js': 3204387834,
@@ -569,7 +569,7 @@ var stVersions = {
     'cmodules/web/podcast.js': 4512217118,
     'cmodules/web/podcast_add.js': 3119760770,
     'cmodules/web/podcast_choose.js': 4574431326,
-    'podcast.css': 38418821245,
+    'podcast.css': 35661013577,
     'podcast_add.css': 13148444806,
     'podcast_choose.css': 14175328367,
     'podcast_stats.css': 11718196265,
@@ -652,4 +652,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 3464;
+var _rnd = 5121;

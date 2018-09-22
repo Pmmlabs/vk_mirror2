@@ -1408,6 +1408,11 @@
     padding-top: 20px
 }
 
+.podcast_page_layout .podcast_episodes_count {
+    color: #939393;
+    margin-left: 6px
+}
+
 .podcast_page_layout .podcast_episodes_more {
     width: 100%;
     margin-top: 15px

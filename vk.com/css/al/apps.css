@@ -6453,3 +6453,12 @@ td.apps_cat_new_h {
 .wk_wiki_content #apps_layer .apps_header {
     border-radius: 4px 4px 0 0
 }
+
+.apps_vkPayPromo {
+    overflow: hidden
+}
+
+.apps_vkPayPromo__img {
+    display: block;
+    width: 100%
+}

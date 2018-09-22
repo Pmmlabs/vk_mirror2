@@ -1372,9 +1372,9 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     var t = getAudioPlayer(),
         i = t.getCurrentAudio() || this._readyAudio;
     AudioUtils.isPodcast(i) && t.podcastToggleFave(e, i)
-}, AudioPage.prototype.changePlaybackRate = function(e) {
-    var t = getAudioPlayer().getCurrentAudio() || this._readyAudio;
-    AudioUtils.isPodcast(t) && (getAudioPlayer().podcastChangePlaybackRate(e, t), this._updatePlaybackRate())
+}, AudioPage.prototype.changePlaybackRate = function(e, t) {
+    var i = getAudioPlayer().getCurrentAudio() || this._readyAudio;
+    AudioUtils.isPodcast(i) && (getAudioPlayer().podcastChangePlaybackRate(!!t.shiftKey), this._updatePlaybackRate())
 }, AudioPage.prototype._updatePlaybackRate = function() {
     var e = geByClass1("audio_page_player_play_rate", this._els.player);
     e && val(geByClass1("btn_icon", e), getAudioPlayer().podcastGetPlaybackRate() + "x")
