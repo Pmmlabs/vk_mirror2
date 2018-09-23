@@ -269,7 +269,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 213765334025,
-    'imn.js': 284626909399,
+    'imn.js': 286054223193,
     'im.js': 1322065005,
     'wide_dd.css': 14986908803,
     'wide_dd.js': 452755344,
@@ -574,13 +574,13 @@ var stVersions = {
     'podcast_choose.css': 14175328367,
     'podcast_stats.css': 11718196265,
     'cmodules/web/grip.js': 4164501492,
-    'cmodules/web/group_invite_chat.js': 50861940886,
+    'cmodules/web/group_invite_chat.js': 52289254680,
     'group_invite_chat.css': 78634218978,
     'cmodules/web/reports.js': 22741921446,
     'reports.css': 71252578276,
     'cmodules/web/raven_logger.js': 6678103281,
     'cmodules/web/add_to_community_app.js': 397597546,
-    'cmodules/web/groups_edit_addresses.js': 24938437893,
+    'cmodules/web/groups_edit_addresses.js': 27204329659,
     'addresses.css': 27307438103,
     'cmodules/web/addresses.js': 14683409853,
     'cmodules/web/groups_edit_cta_button.js': 89320519,
@@ -652,4 +652,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 9573;
+var _rnd = 8565;
