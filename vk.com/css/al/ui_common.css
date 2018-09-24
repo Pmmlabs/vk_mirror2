@@ -793,6 +793,10 @@ body.sf .ui_rmenu_count {
     display: none
 }
 
+.ui_rmenu_count.grey {
+    background-color: #b2b7c2
+}
+
 .ui_rmenu_dot {
     display: inline-block;
     float: right;

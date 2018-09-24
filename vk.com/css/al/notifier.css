@@ -5355,8 +5355,7 @@ div.chat_tab_img {
     font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    border-bottom: 1px solid #e7e8ec;
-    cursor: pointer
+    border-bottom: 1px solid #e7e8ec
 }
 
 .top_notify_header .top_notify_header_sub_label,
@@ -5370,6 +5369,40 @@ div.chat_tab_img {
     -o-transition: transform 0.1s, -o-transform 0.1s;
     transition: transform 0.1s;
     transition: transform 0.1s, -o-transform 0.1s
+}
+
+.top_notify_header .top_notify_header_label .top_notify_header_label_user {
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    max-width: 160px;
+    overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    float: left
+}
+
+.top_notify_header .top_notify_header_label .top_notify_header_label_groups {
+    cursor: pointer;
+    margin-left: 5px
+}
+
+.top_notify_header .top_notify_header_label .top_notify_header_label_groups:before {
+    color: #939393;
+    width: 16px;
+    text-align: center;
+    content: '\00b7';
+    margin-right: 5px
+}
+
+.top_notify_header .top_notify_header_label .top_notify_header_label_groups:before:hover {
+    text-decoration: none
+}
+
+.top_notify_header .top_notify_header_label .top_notify_header_label_groups_counter {
+    margin-left: 5px;
+    color: #939393
 }
 
 .top_notify_header .top_notify_header_sub_label {

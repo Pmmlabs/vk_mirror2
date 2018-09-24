@@ -163,13 +163,13 @@ var Settings = {
             var r = n[a];
             if (t) {
                 var c = geByClass1("settings_bl_name", r),
-                    l = val(geByTag1("a", c)) || val(geByClass1("name_label"));
-                l.toLowerCase().indexOf(t) > -1 ? (show(r), i++) : hide(r)
+                    u = val(geByTag1("a", c)) || val(geByClass1("name_label"));
+                u.toLowerCase().indexOf(t) > -1 ? (show(r), i++) : hide(r)
             } else show(r), i++
         }
         if (t && !i) {
-            var u = s.split("{query}").join("<b>" + t.replace(/([<>&#]*)/g, "") + "</b>");
-            e.innerHTML = u, show(e), hide("settings_bl_noempty")
+            var l = s.split("{query}").join("<b>" + t.replace(/([<>&#]*)/g, "") + "</b>");
+            e.innerHTML = l, show(e), hide("settings_bl_noempty")
         } else hide(e), show("settings_bl_noempty")
     },
     doAddToBlacklist: function(t, e) {
@@ -333,6 +333,22 @@ var Settings = {
             }
         }), 500), TopNotifier && TopNotifier.invalidate()
     },
+    saveGroupNotify: function(t, e) {
+        if (hasClass(geByClass1("_ui_toggler", t), "ui_toggler_disable")) return !1;
+        toggleClass(geByClass1("_ui_toggler", t), "on");
+        var s = {
+            act: "a_save_group_notify",
+            hash: cur.options.notify_hash,
+            gid: e
+        };
+        each(geByClass("ui_toggler", domClosest("wide_column", t)), function(t, e) {
+            s[e.getAttribute("data-id")] = +hasClass(e, "on")
+        }), clearTimeout(cur.instantNotifyTO), clearTimeout(cur.instantNotifySaveTO), cur.instantNotifyTO = setTimeout(ajax.post.pbind("al_settings.php", s, {
+            onDone: function() {
+                cur.instantNotifySaveTO = setTimeout(window.uiPageBlock && uiPageBlock.showSaved.pbind(t), 1e3)
+            }
+        }), 500), TopNotifier && TopNotifier.invalidate()
+    },
     checkboxSiteNotify: function(t, e) {
         e.target && hasClass(e.target, "item_sel") || (checkbox(t), Settings.saveSiteNotify(t))
     },
@@ -470,10 +486,10 @@ var Settings = {
         for (var s = curBox(), o = [], n = [], i = [], a = [], r = {
                 hash: t,
                 act: "a_change_services"
-            }, c = !1, l = 0; 3 >= l; l++) {
-            var u = cur.menuSettings[l] || {};
-            each(u, function(t, e) {
-                switch (l) {
+            }, c = !1, u = 0; 3 >= u; u++) {
+            var l = cur.menuSettings[u] || {};
+            each(l, function(t, e) {
+                switch (u) {
                     case 1:
                         e && n.push(t);
                         break;
@@ -896,7 +912,7 @@ var Settings = {
                 var c = a.contentWindow.location.href;
                 if (c.match(/&hash=/) && !c.match(/&hash=[a-z0-9_]+/)) return location.href = base_domain + "login.php?op=logout&hash=" + o, !1;
                 re(n)
-            } catch (l) {
+            } catch (u) {
                 return
             }
             cur.options.reset_hash = i, t ? t !== !0 && r.parentNode.replaceChild(ce("div", {
@@ -1499,6 +1515,60 @@ var Settings = {
             showProgress: addClass.pbind(t, "olist_item_loading"),
             hideProgress: removeClass.pbind(t, "olist_item_loading")
         })
+    },
+    showGroupNotifySources: function(t, e) {
+        return cancelEvent(t), showBox("al_settings.php", {
+            act: "group_notify_sources_box",
+            source: e
+        }, {
+            params: {
+                dark: 1,
+                width: 450,
+                bodyStyle: "padding: 0",
+                containerClass: "group_notify_sources_box flist_list_radio"
+            }
+        }), !1
+    },
+    initShowGroupNotifySourcesBox: function(t, e) {
+        cur = cur || {}, extend(cur, e), t.removeButtons(), t.addButton(e.okBtnText, this.groupNotifyPopupSubmit.bind(this)), extend(cur, {
+            popupSubmitBtnEl: curBox().btns.ok[0],
+            popupSelectedGroup: 0,
+            popupGroupsWrapperEl: geByClass1("_add_community_app_groups"),
+            popupContentEl: geByClass1("_add_community_app_content")
+        }), disableButton(cur.popupSubmitBtnEl, !0), cur.popupGroupsEls = geByClass("flist_item", cur.popupGroupsWrapperEl, "div"), 1 === cur.popupGroupsEls.length && this.groupNotifyPopup(cur.popupGroupsEls[0]), each(cur.popupGroupsEls, function(t, e) {
+            addEvent(e, "click", this.groupNotifyPopup.bind(this, e))
+        }.bind(this))
+    },
+    groupNotifyPopup: function(t) {
+        var e = "flist_item_checked",
+            s = intval(t.getAttribute("data-id"));
+        trim(t.getAttribute("data-link"));
+        cur.popupSelectedGroup = s, each(cur.popupGroupsEls, function(s, o) {
+            (o === t ? addClass : removeClass)(o.parentNode, e)
+        }), disableButton(cur.popupSubmitBtnEl, 0 === cur.popupSelectedGroup)
+    },
+    groupNotifyPopupSubmit: function() {
+        var t = cur.popupSelectedGroup;
+        isVisible(cur.popupSubmitBtnEl) && !buttonLocked(cur.popupSubmitBtnEl) && 0 !== t && TopNotifier.addNewSource(t, cur.popup_hash)
+    },
+    delGroupNotifySource: function(t, e, s, o) {
+        cancelEvent(t);
+        var n = showFastBox(getLang("settings_group_notify_disable_title"), getLang("settings_group_notify_disable_text"), getLang("settings_group_notify_disable_yes"), function() {
+            n.hide(), ajax.post("al_settings.php", {
+                act: "a_group_notify_del_source",
+                gid: e,
+                hash: s
+            }, {
+                onDone: function(t) {
+                    e == o ? (TopNotifier && TopNotifier.changeSource("", null, null), nav.go("/settings?act=notify")) : nav.reload()
+                },
+                showProgress: lockButton.pbind(cur.popupSubmitBtnEl),
+                hideProgress: unlockButton.pbind(cur.popupSubmitBtnEl)
+            })
+        }, getLang("global_cancel"))
+    },
+    addSourcePopup: function() {
+        hide(geByClass1("notify_sources")), TopNotifier && TopNotifier.hide(), this.showGroupNotifySources(event, "popup")
     }
 };
 try {

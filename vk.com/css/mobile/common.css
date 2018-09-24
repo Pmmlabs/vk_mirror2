@@ -39424,12 +39424,16 @@ a .BookmarkListItem__subtitle:hover {
     float: left
 }
 
-.vk_flex_no .notification__row_name_attachments,
-.settingsRow {
+.vk_flex_no .notification__row_name_attachments {
     display: block
 }
 
+.group_notify_delete_source_button {
+    color: #e64646
+}
+
 .settingsRow {
+    display: block;
     text-decoration: none!important;
     position: relative
 }

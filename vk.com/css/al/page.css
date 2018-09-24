@@ -10804,3 +10804,15 @@ button.wall_block_app_btn {
     overflow: initial;
     vertical-align: top
 }
+
+.group_notify_sources_box .box_body {
+    padding: 0;
+    display: block;
+    height: 480px;
+    overflow-x: hidden;
+    overflow-y: scroll
+}
+
+.group_notify_sources_box .box_body .flist_item_name {
+    width: 300px
+}

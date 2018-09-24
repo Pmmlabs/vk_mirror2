@@ -144,7 +144,7 @@ var Index = {
     fbJoin: function(e) {
         cur.fbContext = e, setCookie("remixfbstate", cur.fbState, 30);
         var t = location.protocol + "//" + location.host + "/join?act=fb_sign",
-            n = "https://graph.facebook.com/v2.7/oauth/authorize?client_id=" + cur.fbApp + "&redirect_uri=" + encodeURIComponent(t) + "&scope=email,user_birthday&display=popup&state=" + cur.fbState,
+            n = "https://graph.facebook.com/v2.9/oauth/authorize?client_id=" + cur.fbApp + "&redirect_uri=" + encodeURIComponent(t) + "&scope=email,user_birthday&display=popup&state=" + cur.fbState,
             o = "undefined" != typeof window.screenX ? window.screenX : window.screenLeft,
             i = "undefined" != typeof window.screenY ? window.screenY : window.screenTop,
             a = "undefined" != typeof window.outerWidth ? window.outerWidth : document.body.clientWidth,

@@ -327,26 +327,26 @@ var Feed = {
                 if (!isVisible(i) || !L) break;
                 var M = geByClass1("wall_post_more", L);
                 M && (M = isVisible(domNS(M))), (B = feed.needScrollPost(t, L)) && (c -= L.offsetHeight);
-                var N = psr(rs(e[3], {
+                var R = psr(rs(e[3], {
                         poll_hash: cur.wallTpl.poll_hash
                     })),
                     m = ge("post" + r);
-                m && !isVisible(m.parentNode) && (N = wall.updatePostImages(N)), window.fifaReplaceText && (N = fifaReplaceText(N)), val(L, N), M && (M = geByClass1("wall_post_more", L), M && M.onclick()), wall.votingUpdateByPostRaw(r), B && (c += L.offsetHeight), nodeUpdated(L), window.Wall && Wall.updatePostAuthorData(r);
+                m && !isVisible(m.parentNode) && (R = wall.updatePostImages(R)), window.fifaReplaceText && (R = fifaReplaceText(R)), val(L, R), M && (M = geByClass1("wall_post_more", L), M && M.onclick()), wall.votingUpdateByPostRaw(r), B && (c += L.offsetHeight), nodeUpdated(L), window.Wall && Wall.updatePostAuthorData(r);
                 break;
             case "edit_reply":
-                var R = e[3],
-                    L = ge("wpt" + R);
-                if (!isVisible("post" + R) || !L) break;
+                var H = e[3],
+                    L = ge("wpt" + H);
+                if (!isVisible("post" + H) || !L) break;
                 var M = geByClass1("wall_reply_more", L);
                 M && (M = isVisible(domNS(M)));
-                var N = psr(e[4]);
-                window.fifaReplaceText && (N = fifaReplaceText(N)), val(L, N), updH = -L.offsetHeight, updY = getXY(L)[1], M && (M = geByClass1("wall_reply_more", L), M && M.onclick()), updH += L.offsetHeight, nodeUpdated(L);
+                var R = psr(e[4]);
+                window.fifaReplaceText && (R = fifaReplaceText(R)), val(L, R), updH = -L.offsetHeight, updY = getXY(L)[1], M && (M = geByClass1("wall_reply_more", L), M && M.onclick()), updH += L.offsetHeight, nodeUpdated(L);
                 break;
             case "post_parsed_link":
                 if (!i) break;
-                var H = geByClass1("wall_postlink_preview_btn_disabled", i);
-                if (!H) break;
-                intval(e[3]) ? removeClass(H, "wall_postlink_preview_btn_disabled") : re(H);
+                var N = geByClass1("wall_postlink_preview_btn_disabled", i);
+                if (!N) break;
+                intval(e[3]) ? removeClass(N, "wall_postlink_preview_btn_disabled") : re(N);
                 break;
             case "del_post":
                 if (i) {
@@ -993,7 +993,7 @@ var Feed = {
         }, {
             onDone: function(e, t) {
                 var o = gpeByClass("_feedback_deleted", s);
-                o.innerHTML = '<span class="dld_inner">' + e + "</span>", isTop && TopNotifier && TopNotifier.refresh()
+                o.innerHTML = '<span class="dld_inner">' + e + "</span>"
             }
         })
     },
@@ -1019,7 +1019,7 @@ var Feed = {
                         do n.className && hasClass(n, "_feed_row") && n.firstChild && e == n.firstChild.getAttribute("author") && (c = n.offsetHeight, d = n.offsetTop, l === !1 && (l = getXY(n.offsetParent)[1]), hide(n), u > d + l && (u -= c, scrollToY(u, 0))); while (n = n.nextSibling);
                         (0 === cur.wasScroll || cur.wasScroll > 0) && (cur.wasScroll = u), feed.scrollCheck()
                     }
-                    r.innerHTML = '<span class="dld_inner">' + t + "</span>", a && TopNotifier && TopNotifier.refresh()
+                    r.innerHTML = '<span class="dld_inner">' + t + "</span>"
                 },
                 showProgress: function() {
                     s && "button" === s.tagName.toLowerCase() ? lockButton(s) : s.parentNode.replaceChild(r, s)
