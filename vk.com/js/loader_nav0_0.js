@@ -112,6 +112,7 @@ var navMap = {
     'translation($|/)': ['al_translations.php', []],
     'mobile$': ['al_login.php', []],
     'isp$': ['isp.php', ['isp.css']],
+    'peering$': ['isp.php', ['isp.css']],
     'stickers($|/)': ['al_im.php', ['imn.js', 'im.css', 'cmodules/web/emoji.js', 'notifier.css']],
     'stickers_office($|/)': ['stickers.php', ['stickers_office.css']],
     'print$': ['al_print.php', ['print.css', 'print.js']],
@@ -652,4 +653,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 9822;
+var _rnd = 2239;
