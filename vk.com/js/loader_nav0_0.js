@@ -290,7 +290,7 @@ var stVersions = {
     'apps_edit.css': 35607862452,
     'apps_check.js': 3204387834,
     'apps_check.css': 28086790786,
-    'settings.js': 3497536904,
+    'settings.js': 513106289,
     'settings.css': 30024047620,
     'profile_edit.js': 334053301,
     'profile_edit.css': 18400867053,
@@ -337,7 +337,7 @@ var stVersions = {
     'widgets.css': 31360151297,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 98001282279,
+    'notifier.js': 98966401675,
     'notifier.css': 29806680683,
     'cmodules/sw/sw.js': 2371912913,
     'earthday.js': 2276669993,
@@ -653,4 +653,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 2853;
+var _rnd = 3986;

@@ -1549,7 +1549,7 @@ var Settings = {
     },
     groupNotifyPopupSubmit: function() {
         var t = cur.popupSelectedGroup;
-        isVisible(cur.popupSubmitBtnEl) && !buttonLocked(cur.popupSubmitBtnEl) && 0 !== t && TopNotifier.addNewSource(t, cur.popup_hash)
+        isVisible(cur.popupSubmitBtnEl) && !buttonLocked(cur.popupSubmitBtnEl) && 0 !== t && TopNotifier.addNewSource(t, cur.popup_hash, 2)
     },
     delGroupNotifySource: function(t, e, s, o) {
         cancelEvent(t);
