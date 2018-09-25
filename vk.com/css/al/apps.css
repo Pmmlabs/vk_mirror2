@@ -2833,6 +2833,10 @@ a.page_block_header:hover .apps_cat_header_link:after {
     text-align: center
 }
 
+.apps_box_change_photo img {
+    width: 200px
+}
+
 #apps_wall_post_box .post {
     margin: 5px -20px -15px
 }

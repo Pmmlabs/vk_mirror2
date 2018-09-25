@@ -23,6 +23,7 @@
 .ads_moder_comment_rules_icon.icon_restricted_site,
 .ads_moder_comment_rules_icon.icon_spy,
 .ads_moder_comment_rules_icon.icon_vocabulary,
+.ads_news_notification_inline .ads_news_notification_close.round_spinner,
 .ads_retargeting_price_list_item_edit:after {
     -ms-high-contrast-adjust: none
 }
@@ -4218,6 +4219,103 @@ td.ads_settings_notifications_label {
     border-bottom: none;
     padding-bottom: 0px;
     margin-bottom: 0px
+}
+
+#ads_news_notification_wrap {
+    max-height: 36px;
+    overflow: hidden
+}
+
+.ads_news_notification_inline {
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    font-size: 13px;
+    font-stretch: normal;
+    color: #fff;
+    background-color: #5ca8ff;
+    cursor: pointer;
+    display: block;
+    overflow: hidden;
+    -o-transition: margin-top 400ms ease;
+    transition: margin-top 400ms ease
+}
+
+.ads_news_notification_inline.hide {
+    margin-top: -36px
+}
+
+.ads_news_notification_inline.disable_close .ads_news_notification_close {
+    display: none
+}
+
+.ads_news_notification_inline:hover .ads_news_notification_close {
+    opacity: 0.5
+}
+
+.ads_news_notification_inline .ads_news_notification_close {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%2010%2010%22%3E%3Cpath%20fill%3D%22%23FFF%22%20fill-rule%3D%22evenodd%22%20d%3D%22M5%203.691L8.422.27a.92.92%200%200%201%201.305.004.924.924%200%200%201%20.004%201.305L6.31%205%209.73%208.422a.92.92%200%200%201-.004%201.305.924.924%200%200%201-1.305.004L5%206.31%201.578%209.73a.92.92%200%200%201-1.305-.004.924.924%200%200%201-.004-1.305L3.69%205%20.27%201.578A.92.92%200%200%201%20.273.273.924.924%200%200%201%201.578.27L5%203.69z%22%2F%3E%3C%2Fsvg%3E") no-repeat 50%;
+    float: right;
+    width: 38px;
+    height: 36px;
+    opacity: 0;
+    -o-transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease
+}
+
+.ads_news_notification_inline .ads_news_notification_close:hover {
+    opacity: 0.72
+}
+
+.ads_news_notification_inline .ads_news_notification_close.round_spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    -o-animation-name: round_spinner;
+    animation-name: round_spinner;
+    -o-animation-duration: 700ms;
+    animation-duration: 700ms;
+    -o-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
+    background-image: url(/images/icons/round_spinner.png);
+    filter: brightness(2);
+    background-position: 50%;
+    opacity: 0.5;
+    height: 36px;
+    width: 36px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_news_notification_inline .ads_news_notification_close.round_spinner {
+        background-image: url(/images/icons/round_spinner_2x.png);
+        background-size: 16px 16px
+    }
+}
+
+.ads_news_notification_inline .ads_news_notification_content {
+    float: left;
+    margin-left: 20px;
+    color: #fff
+}
+
+.ads_news_notification_inline .ads_news_notification_content:after {
+    background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='8' viewBox='0 0 4 8'%3e%3cpath fill='none' fill-rule='evenodd' stroke='%23FFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M.75 7.25L3.25 4 .75.75' opacity='.72'/%3e%3c/svg%3e");
+    content: "";
+    margin-left: 6px;
+    width: 4px;
+    height: 9px;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    display: inline-block
+}
+
+.ads_news_notification_inline .ads_news_notification_content a {
+    color: inherit;
+    text-decoration: none
 }
 
 #ads_supa {

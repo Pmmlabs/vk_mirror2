@@ -4368,14 +4368,6 @@ Ads.retargetingInputChanged = function(id) {
     }
 }
 
-Ads.hideHeroUnit = function(key, hash) {
-    hide('ads_hero_unit');
-    ajax.post('/ads?act=a_hide_hero', {
-        key: key,
-        hash: hash
-    }, {});
-}
-
 Ads.initContacts = function(selectData, ajaxParams, isBig) {
 
     if (cur.contacts && cur.contacts.destroy) {
@@ -5213,6 +5205,37 @@ Ads.showNewInterestsTooltip = function() {
         forceSide: 'right',
         content: getLang('ads_edit_weights_new_interests_feature')
     });
+}
+
+Ads.hideNewsNotification = function(closeButton, name, hash) {
+    var notification = gpeByClass('ads_news_notification', closeButton);
+    var ajaxOptions = {
+        showProgress: addClass.pbind(closeButton, 'round_spinner'),
+        hideProgress: removeClass.pbind(closeButton, 'round_spinner'),
+        onDone: function(res) {
+            if (!hasClass(notification, 'ads_news_notification_inline')) {
+                re(notification);
+                return;
+            }
+
+            addClass(notification, 'hide');
+
+            setTimeout(re.bind(re, notification), 1000);
+        }
+    };
+
+    if (hasClass(closeButton, 'flat_button')) {
+        ajaxOptions.showProgress = lockButton.pbind(closeButton);
+        ajaxOptions.hideProgress = unlockButton.pbind(closeButton);
+    }
+
+    ajax.post('/ads?act=a_news_notification_hide', {
+        name: name,
+        hash: hash
+    }, ajaxOptions);
+
+    stopEvent();
+    return false;
 }
 
 /**

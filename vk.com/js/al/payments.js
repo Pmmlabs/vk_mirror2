@@ -501,7 +501,7 @@ var MoneyTransfer = {
         setTimeout(elfocus.pbind('transfer_amount'), 100);
         shortCurrency();
         if (browser.mozilla) {
-            MoneyTransfer.checkTrackingProtection(true);
+            MoneyTransfer.checkTrackingProtection(true, true);
         }
         MoneyTransfer.autosizeAmount();
         MoneyTransfer.cookieTroubleCounter = 0;
@@ -939,7 +939,7 @@ var MoneyTransfer = {
             MoneyTransfer.cookieTroubleCounter++;
         }
     },
-    acceptCookieSafariSpike: function() {
+    acceptCookieSafariSpike: function(isSend) {
         var cookieWindow = window.open('https://top-fwz1.mail.ru/counter2?id=1');
         var cookieBtn = ge('payments_iframe_cookie_trouble_btn');
         lockButton(cookieBtn);
@@ -947,14 +947,18 @@ var MoneyTransfer = {
             cookieWindow.location = window.location;
             cookieWindow.close();
             hide('payments_iframe_cookie_trouble');
-            MoneyTransfer.send();
+            if (isSend) {
+                MoneyTransfer.send();
+            } else {
+                MoneyTransfer.initAccept(cur.paymentsOptions.chkData, cur.paymentsOptions.frame);
+            }
         }, 1000);
     },
     trackingProtectionDivVisibility: function(value) {
         hide(value ? 'payments_iframe_container' : 'payments_iframe_tracking_protection_div');
         show(value ? 'payments_iframe_tracking_protection_div' : 'payments_iframe_container');
     },
-    checkTrackingProtection: function(onlyFlag) {
+    checkTrackingProtection: function(onlyFlag, isSend) {
         hide('payments_iframe_container');
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'https://top-fwz1.mail.ru/counter2?id=1', true);
@@ -968,7 +972,11 @@ var MoneyTransfer = {
                 cur.trackingProtectionOff = true;
                 if (!onlyFlag) {
                     MoneyTransfer.trackingProtectionDivVisibility(false);
-                    MoneyTransfer.send();
+                    if (isSend) {
+                        MoneyTransfer.send();
+                    } else {
+                        MoneyTransfer.initAccept(cur.paymentsOptions.chkData, cur.paymentsOptions.frame);
+                    }
                 }
             }
         };
@@ -976,6 +984,7 @@ var MoneyTransfer = {
     },
     initAccept: function(data, html) {
         var frc = ge('payments_iframe_container');
+        show('payments_iframe_container');
         var iframe = ce('iframe', {
             id: 'transfer_iframe',
             name: 'transfer_iframe'
