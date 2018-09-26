@@ -25,7 +25,7 @@ AutoList.prototype.getListEl = function() {
 }, AutoList.prototype._drawRows = function(t) {
     var s = this;
     this._opts.drawRows ? this._opts.drawRows(s._containerEl, t) : each(t, function(t, o) {
-        "string" == typeof o && (o = se(trim(o))), s._containerEl.appendChild(o)
+        "string" == typeof o && (o = se(trim(o))), o && s._containerEl.appendChild(o)
     }), this.toggleProgress(this._state != AutoList.STATE_DONE), !this._forceDrawCalled && this._opts.onRendered && this._opts.onRendered()
 }, AutoList.prototype.toggleProgress = function(t) {
     t ? !this._isProgressShown && this._opts.showProgress && this._opts.showProgress() : this._isProgressShown && this._opts.hideProgress && this._opts.hideProgress(), this._isProgressShown = t

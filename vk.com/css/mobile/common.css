@@ -38068,7 +38068,10 @@ a.BookmarksTags__item {
     color: #000;
     margin: 2px 0;
     max-height: 40px;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
     overflow: hidden;
+    display: block;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical
