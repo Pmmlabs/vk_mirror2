@@ -9999,6 +9999,10 @@ body.sf .nim-dialog .nim-dialog--unread {
     text-decoration: underline
 }
 
+.im-delete-forall-checkbox {
+    line-height: 15px
+}
+
 .im-members {
     padding: 10px 25px;
     min-height: 270px;

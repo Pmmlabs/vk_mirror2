@@ -269,13 +269,13 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 217359958074,
-    'imn.js': 287426035643,
+    'im.css': 216037071283,
+    'imn.js': 289960117632,
     'im.js': 1322065005,
     'wide_dd.css': 18581532852,
     'wide_dd.js': 452755344,
     'writebox.css': 19008131827,
-    'writebox.js': 74174910351,
+    'writebox.js': 72516796106,
     'sharebox.js': 3306997107,
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
@@ -337,7 +337,7 @@ var stVersions = {
     'widgets.css': 33583051110,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 100338214125,
+    'notifier.js': 99060219193,
     'notifier.css': 29806680683,
     'cmodules/sw/sw.js': 2371912913,
     'earthday.js': 2276669993,
@@ -451,7 +451,7 @@ var stVersions = {
     'paysupp_admin.css': 17837114293,
     'ads_market.css': 15252532221,
     'ads_market.js': 3636514352,
-    'ads_market_moder.css': 18641767742,
+    'ads_market_moder.css': 17817409361,
     'ads_market_moder.js': 1149498879,
     'ads_offers.css': 18433678945,
     'ads_offers.js': 4186630263,
@@ -653,4 +653,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 1266;
+var _rnd = 304;
