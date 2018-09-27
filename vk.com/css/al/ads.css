@@ -23,7 +23,7 @@
 .ads_moder_comment_rules_icon.icon_restricted_site,
 .ads_moder_comment_rules_icon.icon_spy,
 .ads_moder_comment_rules_icon.icon_vocabulary,
-.ads_news_notification_inline .ads_news_notification_close.round_spinner,
+.ads_news_notification_inline .ads_news_notification_close.close_round_spinner:after,
 .ads_retargeting_price_list_item_edit:after {
     -ms-high-contrast-adjust: none
 }
@@ -4222,54 +4222,50 @@ td.ads_settings_notifications_label {
 }
 
 #ads_news_notification_wrap {
-    max-height: 36px;
+    max-height: 42px;
     overflow: hidden
 }
 
 .ads_news_notification_inline {
     width: 100%;
-    height: 36px;
-    line-height: 36px;
+    height: 42px;
+    line-height: 42px;
     font-size: 13px;
     font-stretch: normal;
-    color: #fff;
-    background-color: #5ca8ff;
+    background-color: rgba(92, 168, 255, .18);
     cursor: pointer;
     display: block;
     overflow: hidden;
     -o-transition: margin-top 400ms ease;
-    transition: margin-top 400ms ease
+    transition: margin-top 400ms ease;
+    color: #5a76a0;
+    padding: 0 20px;
+    box-sizing: border-box
 }
 
 .ads_news_notification_inline.hide {
-    margin-top: -36px
+    margin-top: -42px
 }
 
+.ads_news_notification_inline.hide .ads_news_notification_close,
 .ads_news_notification_inline.disable_close .ads_news_notification_close {
     display: none
 }
 
-.ads_news_notification_inline:hover .ads_news_notification_close {
-    opacity: 0.5
-}
-
 .ads_news_notification_inline .ads_news_notification_close {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%2010%2010%22%3E%3Cpath%20fill%3D%22%23FFF%22%20fill-rule%3D%22evenodd%22%20d%3D%22M5%203.691L8.422.27a.92.92%200%200%201%201.305.004.924.924%200%200%201%20.004%201.305L6.31%205%209.73%208.422a.92.92%200%200%201-.004%201.305.924.924%200%200%201-1.305.004L5%206.31%201.578%209.73a.92.92%200%200%201-1.305-.004.924.924%200%200%201-.004-1.305L3.69%205%20.27%201.578A.92.92%200%200%201%20.273.273.924.924%200%200%201%201.578.27L5%203.69z%22%2F%3E%3C%2Fsvg%3E") no-repeat 50%;
-    float: right;
-    width: 38px;
-    height: 36px;
-    opacity: 0;
     -o-transition: opacity 0.2s ease;
-    transition: opacity 0.2s ease
+    transition: opacity 0.2s ease;
+    line-height: 42px;
+    height: 42px;
+    float: right
 }
 
-.ads_news_notification_inline .ads_news_notification_close:hover {
-    opacity: 0.72
+.ads_news_notification_inline .ads_news_notification_close.close_round_spinner {
+    font-size: 0
 }
 
-.ads_news_notification_inline .ads_news_notification_close.round_spinner {
+.ads_news_notification_inline .ads_news_notification_close.close_round_spinner:after {
     display: inline-block;
-    width: 16px;
     height: 16px;
     -o-animation-name: round_spinner;
     animation-name: round_spinner;
@@ -4280,42 +4276,68 @@ td.ads_settings_notifications_label {
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner.png);
-    filter: brightness(2);
     background-position: 50%;
-    opacity: 0.5;
-    height: 36px;
-    width: 36px
+    margin-left: 0;
+    height: 42px;
+    width: 16px;
+    opacity: 1
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
-    .ads_news_notification_inline .ads_news_notification_close.round_spinner {
+    .ads_news_notification_inline .ads_news_notification_close.close_round_spinner:after {
         background-image: url(/images/icons/round_spinner_2x.png);
         background-size: 16px 16px
     }
 }
 
+.ads_news_notification_inline .ads_news_notification_close:after {
+    background-image: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 8 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M4.0002 2.95268L6.73797 0.215573C6.80659 0.146959 6.88809 0.0925902 6.9778 0.0555944C7.0675 0.0185987 7.16364 -0.000293977 7.26067 3.45805e-06C7.3577 0.000300893 7.45372 0.0197825 7.5432 0.0573275C7.63267 0.0948726 7.71384 0.14974 7.78204 0.218773C7.92068 0.356935 7.99887 0.54444 7.99947 0.74017C8.00007 0.935901 7.92303 1.12388 7.78524 1.26289L5.04826 4L7.78444 6.73791C7.85305 6.80653 7.90741 6.88804 7.94441 6.97775C7.9814 7.06746 8.00029 7.16359 8 7.26063C7.9997 7.35767 7.98022 7.45369 7.94268 7.54317C7.90513 7.63265 7.85027 7.71383 7.78124 7.78203C7.64308 7.92067 7.45559 7.99887 7.25987 7.99947C7.06415 8.00007 6.87617 7.92302 6.73717 7.78523L4.0002 5.04812L1.26243 7.78443C1.19381 7.85304 1.11231 7.90741 1.0226 7.94441C0.932895 7.9814 0.836761 8.00029 0.739727 8C0.642694 7.9997 0.546677 7.98022 0.457201 7.94267C0.367724 7.90513 0.286554 7.85026 0.21836 7.78123C0.0797225 7.64306 0.00153061 7.45556 0.000930698 7.25983C0.000330786 7.0641 0.0773719 6.87612 0.21516 6.73711L2.95213 4L0.21596 1.26209C0.147297 1.19352 0.0928691 1.11206 0.0558066 1.02238C0.0187441 0.932695 -0.00022112 0.836571 1.94507e-06 0.739533C0.00022501 0.642495 0.019632 0.546458 0.0571064 0.456949C0.0945808 0.367439 0.149383 0.286223 0.21836 0.217973C0.356621 0.0794351 0.544176 0.00138347 0.739897 0.000933516C0.935618 0.000483561 1.12353 0.0776721 1.26243 0.215573L4.0002 2.95188V2.95268Z' fill='%235A76A0'/%3E%3C/svg%3E%0A");
+    background-position: 100%;
+    -o-transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease;
+    background-repeat: no-repeat;
+    display: inline-block;
+    background-size: 9px;
+    margin-left: 6px;
+    content: ' ';
+    opacity: 0.4;
+    height: 9px;
+    width: 9px
+}
+
+.ads_news_notification_inline .ads_news_notification_close:hover:after {
+    opacity: 0.7
+}
+
+.ads_news_notification_inline:hover .ads_news_notification_content:after {
+    margin-left: 8px;
+    opacity: 0.7
+}
+
 .ads_news_notification_inline .ads_news_notification_content {
-    float: left;
-    margin-left: 20px;
-    color: #fff
+    font-weight: 400;
+    float: left
 }
 
 .ads_news_notification_inline .ads_news_notification_content:after {
-    background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='8' viewBox='0 0 4 8'%3e%3cpath fill='none' fill-rule='evenodd' stroke='%23FFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M.75 7.25L3.25 4 .75.75' opacity='.72'/%3e%3c/svg%3e");
-    content: "";
-    margin-left: 6px;
-    width: 4px;
-    height: 9px;
-    background-position: 50%;
+    background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='8' viewBox='0 0 4 8'%3e%3cpath fill='none' fill-rule='evenodd' stroke='%235A76A0' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M.75 7.25L3.25 4 .75.75'/%3e%3c/svg%3e");
+    -o-transition: margin 0.4s ease, opacity 0.2s ease;
+    transition: margin 0.4s ease, opacity 0.2s ease;
     background-repeat: no-repeat;
-    display: inline-block
+    background-position: 50%;
+    display: inline-block;
+    margin-left: 6px;
+    opacity: 0.4;
+    content: "";
+    height: 9px;
+    width: 4px
 }
 
 .ads_news_notification_inline .ads_news_notification_content a {
-    color: inherit;
-    text-decoration: none
+    text-decoration: none;
+    color: inherit
 }
 
 #ads_supa {

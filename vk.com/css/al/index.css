@@ -2,8 +2,15 @@
     display: none
 }
 
-.index_fb_icon {
+.index_fb_icon,
+.index_new_user_row .index_user_ph,
+.index_user_del_wrap {
     -ms-high-contrast-adjust: none
+}
+
+.index_user_del_wrap {
+    -o-transition: opacity 0.15s ease;
+    transition: opacity 0.15s ease
 }
 
 .h4-text {
@@ -100,7 +107,7 @@
 .index_rcolumn {
     float: right;
     width: 320px;
-    min-height: 675px
+    min-height: 625px
 }
 
 .index_rcolumn .page_block {
@@ -363,4 +370,122 @@
     font-size: 1.09em;
     font-weight: 700;
     margin-bottom: 5px
+}
+
+.index_users_wrap.page_block {
+    margin: 0 350px 0 0;
+    padding: 25px;
+    overflow: hidden
+}
+
+.index_users_header {
+    margin: -4px 0 5px;
+    font-size: 20px
+}
+
+.index_users_info {
+    font-size: 14px;
+    color: #222;
+    line-height: 23px
+}
+
+.index_users {
+    margin: 20px -5px 0
+}
+
+.index_user_row {
+    width: 100px;
+    height: 100px;
+    margin: 0 5px 10px;
+    padding: 35px 39px 85px;
+    border: 1px solid rgba(0, 20, 51, .12);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    float: left
+}
+
+.index_user_row:hover {
+    text-decoration: none
+}
+
+.index_user_ph {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    overflow: hidden
+}
+
+.index_user_img {
+    vertical-align: top;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%
+}
+
+.index_user_name {
+    margin: 0 -10px;
+    padding-top: 17px;
+    font-size: 14px;
+    line-height: 1.36;
+    text-align: center;
+    color: #000;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 2.9em;
+    display: block
+}
+
+.index_user_del_wrap {
+    position: absolute;
+    z-index: 10;
+    right: 6px;
+    top: 6px;
+    padding: 10px;
+    cursor: pointer;
+    background: url(/images/cross.png) no-repeat 50%;
+    opacity: 0.7;
+    filter: alpha(opacity=70)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .index_user_del_wrap {
+        background-image: url(/images/cross_2x.png);
+        background-size: 10px 10px
+    }
+}
+
+.index_user_del_wrap:hover {
+    opacity: 1;
+    filter: none
+}
+
+.index_new_user_row .index_user_ph {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #e6edf4 url(/images/icons/new_user.png) no-repeat 50% 50%
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .index_new_user_row .index_user_ph {
+        background-image: url(/images/icons/new_user_2x.png);
+        background-size: 36px 36px
+    }
+}
+
+.index_new_user_row .index_user_name {
+    color: #5181b8
+}
+
+.fans_fan_block {
+    line-height: 160%
 }

@@ -96,6 +96,28 @@ var Index = {
             notaBene(t)
         }))
     },
+    showLoginBox: function(e) {
+        return showBox("al_login.php", {
+            act: "auth_box",
+            ul: e
+        }, {
+            params: {
+                dark: !0,
+                hideButtons: !0,
+                bodyStyle: "padding: 44px 25px;"
+            }
+        }), !1
+    },
+    deleteRecentAccount: function(e, t, n, o) {
+        return window.tooltips && tooltips.hideAll(), ajax.post("/al_login.php?act=delete_recent_account", {
+            mid: t,
+            hash: n
+        }, {
+            onDone: function() {
+                re(gpeByClass("_row", e))
+            }
+        }), cancelEvent(o)
+    },
     getLastDay: function(e, t) {
         return 2 == t ? e % 4 == 0 ? 29 : 28 : t > 0 && (8 > t && t % 2 == 0 || t > 7 && t % 2 == 1) ? 30 : 31
     },
@@ -150,10 +172,10 @@ var Index = {
             a = "undefined" != typeof window.outerWidth ? window.outerWidth : document.body.clientWidth,
             r = "undefined" != typeof window.outerHeight ? window.outerHeight : document.body.clientHeight - 22,
             s = 640,
-            d = 340,
-            c = parseInt(o + (a - s) / 2, 10),
-            u = parseInt(i + (r - d) / 2.5, 10);
-        window.open(n, "fb_sign", "width=" + s + ",height=" + d + ",left=" + c + ",top=" + u);
+            c = 340,
+            d = parseInt(o + (a - s) / 2, 10),
+            u = parseInt(i + (r - c) / 2.5, 10);
+        window.open(n, "fb_sign", "width=" + s + ",height=" + c + ",left=" + d + ",top=" + u);
         return !1
     },
     fbFinish: function(e) {

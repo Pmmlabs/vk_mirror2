@@ -1534,6 +1534,10 @@ table.login_blocked_reason_thumbs {
     text-align: left
 }
 
+.login_ban_message_call {
+    color: #828282
+}
+
 .login_change_mail_box {
     padding: 10px 0px 0px
 }
@@ -1565,6 +1569,62 @@ table.login_blocked_reason_thumbs {
     padding-bottom: 10px
 }
 
-.login_ban_message_call {
-    color: #828282
+.login_user {
+    width: 100px;
+    margin: 0 auto;
+    padding: 0 0 20px;
+    overflow: hidden
+}
+
+.login_user_img {
+    vertical-align: top;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%
+}
+
+.login_user_name {
+    padding: 0 0 25px;
+    font-size: 16px;
+    text-align: center;
+    white-space: nowrap;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block
+}
+
+.login_user_name b {
+    font-weight: 500
+}
+
+.login_box_form_wrap .login_buttons_wrap {
+    margin-top: 0
+}
+
+.login_box_form_wrap .flat_button {
+    margin-right: 15px
+}
+
+.login_box_form_wrap .login_forgot_wrap {
+    display: inline-block;
+    padding-top: 7px;
+    text-align: center
+}
+
+.login_box_form_wrap .login_forgot_wrap .checkbox,
+.login_box_form_wrap .login_forgot_wrap .login_forgot {
+    line-height: 20px
+}
+
+.login_box_form_wrap .login_forgot_wrap .checkbox {
+    display: none
+}
+
+.login_box_form_wrap .login_forgot_wrap .checkbox:before {
+    float: none;
+    display: inline-block;
+    margin: 0 7px -3px 0
 }

@@ -5210,8 +5210,8 @@ Ads.showNewInterestsTooltip = function() {
 Ads.hideNewsNotification = function(closeButton, name, hash) {
     var notification = gpeByClass('ads_news_notification', closeButton);
     var ajaxOptions = {
-        showProgress: addClass.pbind(closeButton, 'round_spinner'),
-        hideProgress: removeClass.pbind(closeButton, 'round_spinner'),
+        showProgress: addClass.pbind(closeButton, 'close_round_spinner'),
+        hideProgress: removeClass.pbind(closeButton, 'close_round_spinner'),
         onDone: function(res) {
             if (!hasClass(notification, 'ads_news_notification_inline')) {
                 re(notification);
