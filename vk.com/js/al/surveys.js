@@ -27,44 +27,59 @@ Survey.prototype.stateChanged = function() {
                 };
                 var u = "survey_edit_" + o + "_" + a;
                 if (t.inputs.indexOf(u) >= 0) {
-                    var c = ge(u);
-                    if (i[e].text = val(c), c.getAttribute("required") && (!i[e].text || i[e].text.trim().length < 2)) return r.push({
-                        elementToScroll: c,
+                    var l = ge(u);
+                    if (i[e].text = val(l), l.getAttribute("required") && (!i[e].text || i[e].text.trim().length < 2)) return r.push({
+                        elementToScroll: l,
                         id: e
                     }), !0
                 }
             } else if ("checkbox" === t.type) {
-                var l = geByClass("survey_select_" + o);
-                if (!l.length || !l[0].offsetParent) return !0;
+                var c = geByClass("survey_select_" + o);
+                if (!c.length || !c[0].offsetParent) return !0;
                 i[e] = {
                     answer: []
                 };
-                for (var h = 0, v = l.length; v > h; h++)
-                    if (isChecked(l[h])) {
-                        var a = l[h].getAttribute("data-id");
+                for (var h = 0, d = c.length; d > h; h++)
+                    if (isChecked(c[h])) {
+                        var a = c[h].getAttribute("data-id");
                         i[e].answer.push(a);
                         var u = "survey_edit_" + o + "_" + a;
                         if (t.inputs.indexOf(u) >= 0) {
-                            var c = ge(u);
-                            if (i[e].text = val(c), c.getAttribute("required") && (!i[e].text || i[e].text.trim().length < 5)) return r.push({
-                                elementToScroll: c,
+                            var l = ge(u);
+                            if (i[e].text = val(l), l.getAttribute("required") && (!i[e].text || i[e].text.trim().length < 5)) return r.push({
+                                elementToScroll: l,
                                 id: e
                             }), !0
                         }
                     }
                 if (0 === i[e].answer.length) return r.push({
-                    elementToScroll: l[0],
+                    elementToScroll: c[0],
                     id: e
                 }), !0
             } else if ("textfield" == t.type || "textarea" == t.type) {
                 var u = "survey_" + t.type + "_" + o,
-                    c = ge(u);
+                    l = ge(u);
                 if (i[e] = {
-                        text: val(c)
+                        text: val(l)
                     }, !i[e].text || i[e].text.trim().length < 2) return t.required && (s = !0, r.push({
-                    elementToScroll: c,
+                    elementToScroll: l,
                     id: e
                 })), !0
+            } else if ("doc" == t.type || "audio" == t.type) {
+                i[e] = {
+                    answer: []
+                };
+                var v = cur.addMedias[e].chosenMedias;
+                if (each(v, function(t, r) {
+                        i[e].answer.push(r[0] + ":" + r[1])
+                    }), t.required && (!v || 0 == v.length)) {
+                    s = !0;
+                    var y = "survey_" + t.type + "_" + o + "_media";
+                    r.push({
+                        elementToScroll: ge(y),
+                        id: e
+                    })
+                }
             }
         }.bind(this)), r.length && (s || !this.limit || n - r.length < this.limit)) {
         var o = r.find(function(e) {
@@ -80,7 +95,11 @@ Survey.prototype.stateChanged = function() {
             width: "auto"
         })
     }
-    lockButton(e), ajax.post("al_surveys.php?act=save_answer", {
+    each(geByClass("page_media_x_wrap"), function(e, t) {
+        t.style.display = "none"
+    }), each(geByClass("media_add"), function(e, t) {
+        t.style.display = "none"
+    }), lockButton(e), ajax.post("al_surveys.php?act=save_answer", {
         id: this._surveyId,
         owner_id: this._ownerId,
         answers: JSON.stringify(i),

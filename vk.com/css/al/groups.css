@@ -18,6 +18,7 @@
 .group_info_row:before,
 .group_places_list .group_box_image_wrap,
 .group_set_categories_wrap,
+.group_ugc__link:before,
 .group_voting_narrow_img,
 .groups_actions_menu .groups_actions_icons,
 a.groups_messages_block:before {
@@ -379,6 +380,42 @@ a.groups_messages_block:before {
         background-image: url(/images/icons/group_info_cons_2x.png);
         background-size: 15px 149px
     }
+}
+
+.group_ugc {
+    padding: 13px 15px;
+    font-size: 12.5px
+}
+
+.group_ugc__link {
+    line-height: 15px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.group_ugc__link:before {
+    content: '';
+    height: 24px;
+    width: 24px;
+    margin-right: 12px;
+    background: url(/images/ugcform-intro/icon.png) no-repeat 50%;
+    background-size: 24px!important
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .group_ugc__link:before {
+        background-image: url(/images/ugcform-intro/icon_2x.png);
+        background-size: 48px 48px
+    }
+}
+
+.group_ugc__label {
+    -ms-flex: 1 0;
+    flex: 1 0
 }
 
 .groups_edit_board_row {

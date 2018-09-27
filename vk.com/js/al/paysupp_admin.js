@@ -22,17 +22,6 @@ var PaysuppAdmin = {
             }
         }) : (notaBene("paysupp_ban__card"), notaBene("paysupp_ban__phone"), notaBene("paysupp_ban__id"), !1)
     },
-    openUnbanBox: function(a, n) {
-        cur.unbanBox = showFastBox(getLang("paysupp_adm_unban_title"), getLang("paysupp_adm_unban_message"), getLang("global_delete"), function() {
-            cur.unbanBox.hide(), ajax.post("paysupp_admin.php", {
-                act: "a_unban",
-                type: a,
-                id: n
-            }, {
-                onDone: hide.pbind("row-" + a + "-" + n)
-            })
-        }, getLang("global_cancel"))
-    },
     _eof: 1
 };
 try {

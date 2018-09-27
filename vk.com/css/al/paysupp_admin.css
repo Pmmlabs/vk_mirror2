@@ -2,10 +2,6 @@
     display: none
 }
 
-.paysupp_ban_table_x__icon {
-    -ms-high-contrast-adjust: none
-}
-
 .h4-text {
     color: #000;
     border-bottom: none;
@@ -705,31 +701,6 @@ li {
     margin-left: 5px
 }
 
-.paysupp_admin .ui_tabs_filter {
-    background: #f7f7f7
-}
-
-.paysupp_admin .ui_tabs .page_list {
-    padding-top: 16px
-}
-
-.paysupp_admin .ui_tabs .page_list a {
-    border-bottom-color: transparent
-}
-
-.paysupp_admin .ui_tabs .page_list .current {
-    background-color: transparent
-}
-
-.paysupp_admin_not_found {
-    margin: 10px 10px 0;
-    padding: 60px 20px;
-    text-align: center;
-    color: #939393;
-    font-size: 12.5px;
-    line-height: 15px
-}
-
 .paysupp_pages_bottom {
     padding: 0 10px;
     line-height: 100%;
@@ -747,90 +718,6 @@ li {
     border: 1px solid #dae2e8
 }
 
-.paysupp_admin_ban_search {
-    float: right
-}
-
-.paysupp_admin_ban_search .flat_button {
-    margin-right: 10px
-}
-
-.ui_tabs .paysupp_admin_ban_search .flat_button {
-    float: left;
-    margin-top: 10px
-}
-
-.paysupp_admin_ban_search .ui_search {
-    border: 1px solid #e7e8ec;
-    float: left;
-    margin-top: 4px;
-    width: 240px
-}
-
-.paysupp_admin_ban_search input.ui_search_field {
-    border-left: 10px solid transparent;
-    padding: 9px 24px 8px
-}
-
-.paysupp_ban_table {
-    margin: 10px 0;
-    border-collapse: collapse;
-    width: 100%
-}
-
-.paysupp_ban_table td,
-.paysupp_ban_table th {
-    border-bottom: 1px solid #e7e8ec;
-    padding: 5px 0 5px 20px;
-    vertical-align: top
-}
-
-.paysupp_ban_table .paysupp_ban_table_x {
-    padding: 5px 0 5px 5px;
-    line-height: 14px;
-    width: 40px
-}
-
-.paysupp_ban_table_x__icon {
-    background: url(/images/pics/cross.png) no-repeat 0 0;
-    width: 14px;
-    height: 14px;
-    -o-transition: opacity 150ms linear;
-    transition: opacity 150ms linear;
-    cursor: pointer;
-    display: inline-block;
-    opacity: 0.3;
-    vertical-align: middle
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .paysupp_ban_table_x__icon {
-        background-image: url(/images/pics/cross_2x.png);
-        background-size: 14px 14px
-    }
-}
-
-.paysupp_ban_table_x__icon:hover {
-    opacity: 1
-}
-
-.paysupp_ban_form {
-    box-sizing: border-box;
-    width: 100%
-}
-
-.paysupp_ban_form__label {
-    color: #606060;
-    padding-right: 8px;
-    text-align: right
-}
-
-.paysupp_ban_form__input .text {
-    width: 265px
-}
-
 .paysupp_log_table {
     margin: 10px 0;
     border-collapse: collapse;
@@ -846,27 +733,4 @@ li {
     border-bottom: 1px solid #e7e8ec;
     padding: 5px 0 5px 20px;
     vertical-align: top
-}
-
-.paysupp_admin_timetable {
-    padding: 10px 15px
-}
-
-.paysupp_admin_timetable_table {
-    margin-top: 5px;
-    width: 100%;
-    border-collapse: collapse
-}
-
-.paysupp_admin_timetable_table>tbody>tr:hover {
-    background: #e7edf2
-}
-
-.paysupp_admin_timetable_table__m {
-    width: 250px
-}
-
-.paysupp_admin_timetable_table__t {
-    text-align: center;
-    width: 100px
 }

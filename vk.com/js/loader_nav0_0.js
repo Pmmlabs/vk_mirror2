@@ -137,6 +137,7 @@ var navMap = {
     'cvkmobile($|/)': ['cvkmobile.php', ['internal/cvkmobile.css', 'internal/cvkmobile.js']],
     'surveys(-[0-9]+)$': ['al_surveys.php', ['surveys.css']],
     'survey(-[0-9]+)_([0-9]+)$': ['al_surveys.php', ['surveys.css', 'surveys.js']],
+    'ugcform($|/)': ['al_surveys.php', ['surveys.css', 'surveys.js']],
     'imnumberx$': ['imnumberx.php', ['imnumberx.css']],
     'push_notifier': ['al_pushNotifier.php', []],
     'artist($|/)': ['al_artist.php', []],
@@ -147,7 +148,7 @@ var navMap = {
 };
 var stVersions = {
     'nav': 0,
-    'fonts_cnt.css': 2608590508,
+    'fonts_cnt.css': 2660709036,
     'common.js': 1161,
     'common.css': 48502002267,
     'cmodules/web/common_web.js': 13,
@@ -209,7 +210,7 @@ var stVersions = {
     'video.css': 26772595550,
     'videocat.js': 3590298689,
     'videocat.css': 21448214599,
-    'videoview.js': 21881700188,
+    'videoview.js': 19082345111,
     'videoview.css': 30958294956,
     'video_edit.js': 2135196486,
     'video_edit.css': 23751869796,
@@ -242,7 +243,7 @@ var stVersions = {
     'cmodules/web/public.js': 329399197,
     'pages.css': 26560014816,
     'pages.js': 1162259210,
-    'groups.css': 36428167590,
+    'groups.css': 34973975021,
     'cmodules/web/groups.js': 4073681921,
     'cmodules/web/groups_create.js': 2554367098,
     'groups_create.css': 18481038915,
@@ -337,7 +338,7 @@ var stVersions = {
     'widgets.css': 33583051110,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 99060219193,
+    'notifier.js': 98914333322,
     'notifier.css': 29806680683,
     'cmodules/sw/sw.js': 2371912913,
     'earthday.js': 2276669993,
@@ -447,8 +448,8 @@ var stVersions = {
     'admin.css': 18757714053,
     'duty_timetable.js': 2022938460,
     'duty_timetable.css': 18971058556,
-    'paysupp_admin.js': 127920242,
-    'paysupp_admin.css': 17837114293,
+    'paysupp_admin.js': 2424508727,
+    'paysupp_admin.css': 15391233758,
     'ads_market.css': 15252532221,
     'ads_market.js': 3636514352,
     'ads_market_moder.css': 17817409361,
@@ -552,8 +553,8 @@ var stVersions = {
     'cmodules/web/trending_results.js': 1020488162,
     'cmodules/web/page_layout.js': 2535703256,
     'landings/ads_cases.css': 28950485940,
-    'surveys.css': 25790833892,
-    'surveys.js': 3963089861,
+    'surveys.css': 26537549654,
+    'surveys.js': 3341392086,
     'landings/author_guide.css': 24955800246,
     'language.js': 3551638980,
     'language.css': 18265274126,
@@ -653,4 +654,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 5226;
+var _rnd = 7332;

@@ -94,6 +94,36 @@
     color: #656565
 }
 
+.survey-intro {
+    opacity: 0;
+    height: 0;
+    transform: translate3d(0, 50px, 0);
+    -o-transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out, -o-transform 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out, -o-transform 0.2s ease-in-out
+}
+
+.survey-intro_visible {
+    opacity: 1;
+    transform: translateZ(0);
+    height: auto
+}
+
+.survey-intro_visible.survey-intro+.survey_page {
+    opacity: 0;
+    height: 0;
+    transform: translate3d(0, -50px, 0);
+    overflow: hidden
+}
+
+.survey-intro+.survey_page {
+    opacity: 1;
+    transform: translateZ(0);
+    -o-transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out, -o-transform 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out, -o-transform 0.2s ease-in-out
+}
+
 .survey_page {
     width: auto
 }
