@@ -7430,10 +7430,22 @@ var Wall = {
                         if (!el) break;
                         var btnWrap = geByClass1('wall_postlink_preview_btn_disabled', el);
                         if (!btnWrap) break;
-                        if (intval(ev[3])) {
+
+                        var articleUrl = ev[3];
+
+                        if (articleUrl === '1') {
+                            // Old wiki page
                             removeClass(btnWrap, 'wall_postlink_preview_btn_disabled');
-                        } else {
+                        } else if (articleUrl === '0') {
                             re(btnWrap);
+                        } else if (articleUrl) {
+                            removeClass(btnWrap, 'wall_postlink_preview_btn_disabled');
+
+                            var btnHref = geByClass1('flat_button', btnWrap);
+                            if (btnHref) {
+                                btnHref.setAttribute('href', ev[3]);
+                                btnHref.removeAttribute('onclick');
+                            }
                         }
                         break;
                     }

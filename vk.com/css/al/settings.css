@@ -2276,3 +2276,8 @@ span.page_block_header_group_notify_settings {
     text-overflow: ellipsis;
     white-space: nowrap
 }
+
+.settings_group_notifications_disable_tooltip:after,
+.settings_group_notifications_disable_tooltip:before {
+    right: 43px!important
+}

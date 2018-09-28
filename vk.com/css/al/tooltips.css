@@ -579,7 +579,8 @@
     width: 270px;
     overflow: hidden;
     overflow-y: auto;
-    padding-top: 5px
+    padding-top: 5px;
+    padding-bottom: 5px
 }
 
 .notify_sources_tt_content .line_cell {

@@ -1569,6 +1569,13 @@ var Settings = {
     },
     addSourcePopup: function() {
         hide(geByClass1("notify_sources")), TopNotifier && TopNotifier.hide(), this.showGroupNotifySources(event, "popup")
+    },
+    groupNotify_disabledSetting: function(t) {
+        showTitle(t, getLang("settings_group_notify_disable_tooltip"), null, {
+            shift: [-17, 14],
+            className: "settings_group_notifications_disable_tooltip",
+            needLeft: 1
+        })
     }
 };
 try {

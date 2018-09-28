@@ -346,12 +346,19 @@ var Feed = {
                 if (!i) break;
                 var N = geByClass1("wall_postlink_preview_btn_disabled", i);
                 if (!N) break;
-                intval(e[3]) ? removeClass(N, "wall_postlink_preview_btn_disabled") : re(N);
+                var j = e[3];
+                if ("1" === j) removeClass(N, "wall_postlink_preview_btn_disabled");
+                else if ("0" === j) re(N);
+                else if (j) {
+                    removeClass(N, "wall_postlink_preview_btn_disabled");
+                    var A = geByClass1("flat_button", N);
+                    A && (A.setAttribute("href", e[3]), A.removeAttribute("onclick"))
+                }
                 break;
             case "del_post":
                 if (i) {
-                    var j = domClosest("feed_row", i) || domClosest("feed_row_unshown", i) || i;
-                    cur.wallMyDeleted[r] || (feed.needScrollPost(t, i) && (c -= i.offsetHeight + d(i)), revertLastInlineVideo(i), re(j)), cur.options.offset--, hasClass(cur.feedEls.wrap, "feed_has_new") && !isVisible(j) && (cur.newPostsCount--, cur.newPostsCount ? cur.feedEls.newPosts.innerHTML = getLang("news_new_posts", cur.newPostsCount) : removeClass(cur.feedEls.wrap, "feed_has_new"))
+                    var D = domClosest("feed_row", i) || domClosest("feed_row_unshown", i) || i;
+                    cur.wallMyDeleted[r] || (feed.needScrollPost(t, i) && (c -= i.offsetHeight + d(i)), revertLastInlineVideo(i), re(D)), cur.options.offset--, hasClass(cur.feedEls.wrap, "feed_has_new") && !isVisible(D) && (cur.newPostsCount--, cur.newPostsCount ? cur.feedEls.newPosts.innerHTML = getLang("news_new_posts", cur.newPostsCount) : removeClass(cur.feedEls.wrap, "feed_has_new"))
                 }
                 break;
             case "res_post":
@@ -359,33 +366,33 @@ var Feed = {
                 break;
             case "new_reply":
                 if (!i || cur.wallMyReplied[r] || ge("post" + e[3])) break;
-                var A = ge("replies" + r),
-                    D = ge("replies_wrap" + r),
-                    F = i.offsetHeight,
+                var F = ge("replies" + r),
+                    V = ge("replies_wrap" + r),
+                    I = i.offsetHeight,
                     u = r.split("_")[0],
                     l = 0 > u ? 8 & a ? constants.Groups.GROUPS_ADMIN_LEVEL_EDITOR : 2 & a ? constants.Groups.GROUPS_ADMIN_LEVEL_MODERATOR : constants.Groups.GROUPS_ADMIN_LEVEL_USER : constants.Groups.GROUPS_ADMIN_LEVEL_USER,
-                    V = wall.getNewReplyHTML(e, l),
+                    O = wall.getNewReplyHTML(e, l),
                     f = !1,
-                    I = !1;
-                if (isVisible(A) && isVisible(D) && !isVisible("reply_link" + r)) {
-                    var O = A.nextSibling,
-                        q = geByClass("new_reply", A, "div").length + 1;
+                    q = !1;
+                if (isVisible(F) && isVisible(V) && !isVisible("reply_link" + r)) {
+                    var U = F.nextSibling,
+                        G = geByClass("new_reply", F, "div").length + 1;
                     if (cur.wallMyOpened[r]) {
-                        O && "replies_open" == O.className && re(O), I = !0;
-                        var U = geByClass1("wr_header", A, "a"),
-                            G = geByClass("reply", A, "div").length + 1,
-                            W = G;
-                        U && (W = intval(U.getAttribute("offs").split("/")[1]) + 1), (W > 5 || W > G) && (U || A.insertBefore(U = ce("a", {
+                        U && "replies_open" == U.className && re(U), q = !0;
+                        var W = geByClass1("wr_header", F, "a"),
+                            Y = geByClass("reply", F, "div").length + 1,
+                            z = Y;
+                        W && (z = intval(W.getAttribute("offs").split("/")[1]) + 1), (z > 5 || z > Y) && (W || F.insertBefore(W = ce("a", {
                             className: "wr_header"
-                        }), A.firstChild), wall.updateRepliesHeader(r, U, G, W))
-                    } else V = wall.updatePostImages(V), f = se(V), addClass(f, "new_reply"), O && "replies_open" == O.className || (O = ce("div", {
+                        }), F.firstChild), wall.updateRepliesHeader(r, W, Y, z))
+                    } else O = wall.updatePostImages(O), f = se(O), addClass(f, "new_reply"), U && "replies_open" == U.className || (U = ce("div", {
                         className: "replies_open",
                         onclick: wall.openNewComments.pbind(r),
                         role: "button",
                         tabIndex: 0
-                    }), A.parentNode.insertBefore(O, A.nextSibling)), O.innerHTML = getLang("wall_x_new_replies_more", Math.min(100, q)), O.newCnt = q
-                } else re("reply_link" + r), show(D, A), I = !0;
-                r.split("_")[0] == vk.id && cur.feedUnreadCount++, f || (f = se(V)), A.appendChild(f), feed.needScrollPost(t, I ? f : O) && (c += i.offsetHeight - F), I && nodeUpdated(f), Wall.repliesSideSetup(r), Wall.updateMentionsIndex(), Likes.update("wall" + r, {
+                    }), F.parentNode.insertBefore(U, F.nextSibling)), U.innerHTML = getLang("wall_x_new_replies_more", Math.min(100, G)), U.newCnt = G
+                } else re("reply_link" + r), show(V, F), q = !0;
+                r.split("_")[0] == vk.id && cur.feedUnreadCount++, f || (f = se(O)), F.appendChild(f), feed.needScrollPost(t, q ? f : U) && (c += i.offsetHeight - I), q && nodeUpdated(f), Wall.repliesSideSetup(r), Wall.updateMentionsIndex(), Likes.update("wall" + r, {
                     comment_num: e[13]
                 });
                 break;
@@ -404,14 +411,14 @@ var Feed = {
             case "like_post":
             case "like_reply":
                 if (!i) break;
-                var Y = "like_reply" == s ? "wall_reply" + r : r,
-                    z = i && domByClass(i, "_like_wrap"),
-                    K = i && domByClass(i, "_share_wrap");
-                wall.likeFullUpdate(z, Y, {
-                    like_my: z && hasClass(z, "my_like"),
+                var K = "like_reply" == s ? "wall_reply" + r : r,
+                    Q = i && domByClass(i, "_like_wrap"),
+                    X = i && domByClass(i, "_share_wrap");
+                wall.likeFullUpdate(Q, K, {
+                    like_my: Q && hasClass(Q, "my_like"),
                     like_num: e[3],
                     like_title: !1,
-                    share_my: K && hasClass(K, "my_share"),
+                    share_my: X && hasClass(X, "my_share"),
                     share_num: e[4],
                     share_title: !1
                 });
