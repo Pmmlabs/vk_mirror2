@@ -1567,8 +1567,8 @@ var Settings = {
             })
         }, getLang("global_cancel"))
     },
-    addSourcePopup: function() {
-        hide(geByClass1("notify_sources")), TopNotifier && TopNotifier.hide(), this.showGroupNotifySources(event, "popup")
+    addSourcePopup: function(t) {
+        hide(geByClass1("notify_sources")), TopNotifier && TopNotifier.hide(), this.showGroupNotifySources(t, "popup")
     },
     groupNotify_disabledSetting: function(t) {
         showTitle(t, getLang("settings_group_notify_disable_tooltip"), null, {

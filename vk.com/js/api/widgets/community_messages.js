@@ -734,7 +734,7 @@ var CommunityWidget = {
         var data = {
             type: 'sticker',
             size: size,
-            src: 'https://vk.com/images/stickers/' + id + '/' + size + '.png',
+            src: Stickers.getStickerUrl(id, size),
         };
         this.mediaInfo['sticker' + id] = data;
         return data;

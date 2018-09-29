@@ -617,7 +617,7 @@ var Profile = {
                     width: r.size ? r.size : r.width,
                     height: r.size ? r.size : r.height,
                     transform: "rotate(" + r.rotate + "deg)",
-                    backgroundImage: "url(/images/stickers/" + r.stickerId + "/512.png)"
+                    backgroundImage: Stickers.getStickerUrl(r.stickerId, 512)
                 })
             }
         },
