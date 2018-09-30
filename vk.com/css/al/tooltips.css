@@ -631,6 +631,10 @@
     background: #5c9ce6 url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20width%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Cpath%20id%3D%22a%22%20d%3D%22m9%209v4c0%20.5522847-.44771525%201-1%201-.55228475%200-1-.4477153-1-1v-4h-4c-.55228475%200-1-.44771525-1-1%200-.55228475.44771525-1%201-1h4v-4c0-.55228475.44771525-1%201-1%20.55228475%200%201%20.44771525%201%201v4h4c.5522847%200%201%20.44771525%201%201%200%20.55228475-.4477153%201-1%201z%22%2F%3E%3Cmask%20fill%3D%22%23fff%22%3E%3Cuse%20fill%3D%22none%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3C%2Fmask%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22%22%3E%3Cpath%20d%3D%22m0%200h16v16h-16z%22%2F%3E%3Cuse%20fill%3D%22%23fff%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 50%
 }
 
+.notify_sources_tt_content .content:not(:hover) .line_cell.selected {
+    background-color: #e4eaf0
+}
+
 div.fw_reply_tt .content,
 div.own_reply_tt .content {
     max-width: 448px;
