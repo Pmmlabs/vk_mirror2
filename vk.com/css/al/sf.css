@@ -549,6 +549,14 @@ body.sf .mention_tt_actions {
     color: #45688e
 }
 
+.sf_button_no_commentsfeed {
+    width: 160px
+}
+
+.sf_button_ban_commentsfeed {
+    background: #c86464
+}
+
 .sf_button_bad.sf_accepted,
 .sf_button_spam.sf_accepted {
     background: #ad6a6a;

@@ -302,15 +302,15 @@ var Feed = {
                             label: getLang("news_show_X_reposts", w.length)
                         });
                         var x = se('<div class="feed_row' + (C ? "_unshown" : "") + '">' + b + "</div>"),
-                            S = domFC(S);
+                            E = domFC(E);
                         Wall.updateAnonNewPost(e, x), m.insertBefore(x, m.firstChild), !C && feed.needScrollPost(t, x) && (c += x.offsetHeight + d(x)), P = !0, p = x.firstChild, f = geByClass1("feed_reposts_first", p, "div"), h = geByClass1("feed_reposts_group", p, "div"), each(clone(w), function() {
                             feed.needScrollPost(t, this) && (c -= this.offsetHeight + d(this)), re(this.parentNode), h.appendChild(this.firstChild)
                         })
                     } else f = se('<div class="feed_row' + (C ? "_unshown" : "") + '"><div class="feed_repost' + y + '">' + b + "</div></div>"), Wall.updateAnonNewPost(e, f), m.insertBefore(f, m.firstChild), P = !0, !C && feed.needScrollPost(t, f) && (c += f.offsetHeight + d(f))
                 } else f = se('<div class="feed_row' + (C ? "_unshown" : "") + '">' + b + "</div>"), Wall.updateAnonNewPost(e, f), m.insertBefore(f, m.firstChild), P = !0, !C && feed.needScrollPost(t, f) && (c += f.offsetHeight + d(f));
                 if (0 == e[8]) {
-                    var E = geByClass1("post", f);
-                    addClass(E, "closed_comments")
+                    var S = geByClass1("post", f);
+                    addClass(S, "closed_comments")
                 }
                 C && P && (cur.newPostsCount = cur.newPostsCount ? cur.newPostsCount + 1 : 1, cur.feedEls.newPosts.innerHTML = getLang("news_new_posts", cur.newPostsCount), addClass(cur.feedEls.wrap, "feed_has_new"), 1 == cur.newPostsCount && feed.needScrollPost(t, cur.feedEls.newPosts) && !k && (c += getSize(cur.feedEls.newPosts)[1])), AudioUtils.updateQueueReceivedPost(f), wall.votingUpdateByPostRaw(r), cur.feedUnreadCount++, "search" != n && nodeUpdated(f), v.length > 300 ? m.removeChild(v[300]) : v.length <= 1 && removeClass(cur.feedEls.wrap, "feed_is_empty"), Wall.updateMentionsIndex();
                 break;
@@ -399,8 +399,8 @@ var Feed = {
             case "del_reply":
                 if (!cur.wallMyDeleted[r] && i) {
                     feed.needScrollPost(t, i) && (c -= i.offsetHeight);
-                    var E = i.parentNode.id.match(/replies(-?\d+_\d+)/);
-                    revertLastInlineVideo(i), re(i), E && Wall.repliesSideSetup(E[1])
+                    var S = i.parentNode.id.match(/replies(-?\d+_\d+)/);
+                    revertLastInlineVideo(i), re(i), S && Wall.repliesSideSetup(S[1])
                 }
                 break;
             case "view_post":
@@ -600,7 +600,7 @@ var Feed = {
     setSection: function(e, t, o) {
         if (t = t || 0, cur.prevSection = cur.section, !(e == cur.section && 2 > t) && e) {
             if (uiRightMenu.hideProgress(cur.feedEls.rmenu), cur.feedEls.search && uiSearch.hideProgress(cur.feedEls.search), t > 1) {
-                toggleClass(cur.feedEls.wrap, "feed_submit_shown", inArray(e, cur.options.feed_types.tabs.concat(["list"])));
+                toggleClass(cur.feedEls.wrap, "feed_submit_shown", inArray(e, cur.options.feed_types.tabs.concat(["list"]))), hasClass(cur.feedEls.wrap, "test_posting_experiment_f") ? toggleClass(cur.feedEls.wrap, "feed_submit_only_shown", "recommended" === e) : hasClass(cur.feedEls.wrap, "test_posting_experiment_g") ? toggleClass(cur.feedEls.wrap, "feed_submit_only_shown", "search" === e) : hasClass(cur.feedEls.wrap, "test_posting_experiment_h") ? toggleClass(cur.feedEls.wrap, "feed_submit_only_shown", "updates" === e) : hasClass(cur.feedEls.wrap, "test_posting_experiment_i") && toggleClass(cur.feedEls.wrap, "feed_submit_only_shown", "comments" === e);
                 var s = inArray(e, ["articles_search", "articles", "search", "photos_search", "photos"]);
                 toggleClass(cur.feedEls.wrap, "feed_search_shown", s), s && elfocus(cur.feedEls.search), cur.section && val(cur.feedEls.search, "")
             }

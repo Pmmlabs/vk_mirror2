@@ -150,14 +150,14 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 2660709036,
     'common.js': 1161,
-    'common.css': 57293953964,
+    'common.css': 56634936497,
     'cmodules/web/common_web.js': 13,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
     'uncommon.css': 16038966019,
     'filebutton.css': 1044306797,
     'lite.js': 344448126,
-    'lite.css': 57079434343,
+    'lite.css': 56420416876,
     'rtl.css': 16572833603,
     'pagination.js': 358700184,
     'blog.css': 20562116862,
@@ -236,8 +236,8 @@ var stVersions = {
     'module.css': 25759020943,
     'owner_photo.js': 3368798011,
     'owner_photo.css': 21719460522,
-    'page.js': 1459644669,
-    'page.css': 64768084528,
+    'page.js': 1369535730,
+    'page.css': 68131938830,
     'page_help.css': 26024504386,
     'public.css': 28784503915,
     'cmodules/web/public.js': 329399197,
@@ -281,8 +281,8 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 2281240445,
-    'feed.css': 27300502259,
+    'feed.js': 107545807,
+    'feed.css': 25388451898,
     'privacy.js': 1338890736,
     'privacy.css': 16806607521,
     'apps.css': 39975637787,
@@ -442,14 +442,12 @@ var stVersions = {
     'ui.js': 1385249136,
     'ui_common.js': 2022847806,
     'ui_common.css': 15365445019,
-    'cmodules/web/ui_media_selector.js': 1339715784,
+    'cmodules/web/ui_media_selector.js': 1149856263,
     'ui_media_selector.css': 30520955091,
     'ui_manual.css': 17050408103,
     'admin.css': 18757714053,
     'duty_timetable.js': 2022938460,
     'duty_timetable.css': 18971058556,
-    'paysupp_admin.js': 2424508727,
-    'paysupp_admin.css': 15391233758,
     'ads_market.css': 15252532221,
     'ads_market.js': 3636514352,
     'ads_market_moder.css': 17817409361,
@@ -546,7 +544,7 @@ var stVersions = {
     'article_view.js': 25047846721,
     'bookmarks.css': 16682403446,
     'cmodules/web/bookmarks.js': 3562856140,
-    'sf.css': 18749535881,
+    'sf.css': 19327206194,
     'shortener.js': 16413120,
     'cmodules/web/pretty_cards.js': 82460730,
     'cmodules/web/landing_ads_case.js': 3936066274,
@@ -593,8 +591,8 @@ var stVersions = {
     'cmodules/web/ui_components.js': 3224689059,
     'apps_feed_blocks.css': 16892843186,
     'cmodules/web/landing_transparency.js': 250661320,
-    'cmodules/web/emoji.js': 3304290901,
-    'lang': 6907
+    'cmodules/web/emoji.js': 164878560,
+    'lang': 6911
 };
 var stTypes = {
     fromLib: {
@@ -655,4 +653,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 255;
+var _rnd = 7525;

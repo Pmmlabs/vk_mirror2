@@ -3509,10 +3509,15 @@ var Wall = {
                         cur.wallAddMedia.chooseMedia.apply(cur.wallAddMedia, data[1][i]);
                     }
                 }
+                if (geByClass1('test_posting_experiment_d')) {
+                    Wall.postBoxShadow(false);
+                }
             }, 0);
-
         });
-        if (data[2]) {
+
+        if (geByClass1('test_posting_experiment_d')) {
+            Wall.postBoxShadow(false);
+        } else if (data[2]) {
             wall.focusOnEnd();
         }
         if (data[3] !== undefined) {
@@ -3576,7 +3581,10 @@ var Wall = {
             return cur.viewAsBox();
         }
 
-        if (cur.editing === 0) return;
+        if (cur.editing === 0) {
+            Wall.postBoxShadow(true);
+            return;
+        }
         setTimeout(WallUpload.init, 0);
 
         Wall.initComposer(input, {
@@ -3590,10 +3598,45 @@ var Wall = {
 
         Wall.hideEditPostReply();
         addClass('submit_post_box', 'shown');
+        Wall.postBoxShadow(true);
         cur.editing = 0;
 
         if (isFunction(cur.onShowEditPost)) {
             cur.onShowEditPost()
+        }
+    },
+
+    postBoxShadow: function(is_enabled) {
+        var submitPostBoxEl = ge('submit_post_box');
+
+        if (submitPostBoxEl && hasClass(submitPostBoxEl, 'test_posting_experiment_d')) {
+            if (is_enabled) {
+                addClass(bodyNode, 'submit_post_box_focused');
+
+                if (cur.postField) {
+                    cur.postField.focus();
+                }
+            } else {
+                removeClass(bodyNode, 'submit_post_box_focused');
+
+                if (cur.postField) {
+                    cur.postField.blur();
+                }
+            }
+        }
+    },
+
+    postBoxFocus: function(event, scrollToScreenTop) {
+        stopEvent(event || window.event);
+        if (cur.postField && window.Emoji) {
+            setTimeout(function() {
+                if (scrollToScreenTop) {
+                    Emoji.focus(cur.postField);
+                    scrollToY(getXY(cur.postField)[1] - 15);
+                } else {
+                    Emoji.focus(cur.postField, true, ge('submit_post_box'));
+                }
+            }, 0);
         }
     },
 
@@ -3673,6 +3716,7 @@ var Wall = {
         if (browser.opera_mobile || !rf) return;
         if (!force && (v || addmedia.chosenMedia || (addmedia.getMedias && addmedia.getMedias().length > 0) || (addmedia.attachCount && addmedia.attachCount() > 0))) return;
         removeClass('submit_post_box', 'shown');
+        Wall.postBoxShadow(false);
         if (rf && !v) {
             if (cur.postMention) {
                 cur.postMention.options.minHeight = cur.emptyPostheight || 14;
@@ -4153,6 +4197,8 @@ var Wall = {
             ajax.post('al_wall.php', Wall.fixPostParams(params), {
                 onDone: function(rows, names) {
                     Wall.clearInput();
+                    Wall.postBoxShadow(false);
+
                     cur.postSent = false;
                     cur.postponeVideoPost = false;
 

@@ -463,6 +463,7 @@
     border-radius: 0 0 2px 2px
 }
 
+.feed_submit_only_shown .feed_post_field_wrap,
 .feed_submit_shown .feed_post_field_wrap,
 .feed_submit_shown .stories_feed_wrap {
     display: block

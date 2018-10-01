@@ -8825,11 +8825,11 @@ button.ui_load_more_btn {
 
 .audio_artist_snippet__cover {
     position: relative;
-    background: no-repeat;
+    background-repeat: no-repeat;
+    background-color: #ebedf0;
     background-size: contain;
-    width: 100%;
-    height: 100%;
-    border-radius: 4px
+    width: 62px;
+    height: 61px
 }
 
 .audio_artist_snippet__cover:after {
@@ -8842,8 +8842,8 @@ button.ui_load_more_btn {
     top: 1px
 }
 
-.audio_artist_snippet__subtitle,
-.audio_artist_snippet__title {
+.audio_artist_snippet:not(.audio_artist_snippet_big) .audio_artist_snippet__title,
+.audio_artist_snippet__subtitle {
     margin-left: 64px;
     padding-left: 15px;
     max-width: 100%;
@@ -8904,7 +8904,10 @@ button.ui_load_more_btn {
 
 .audio_artist_attach_preview.audio_artist_snippet_big .audio_artist_snippet__cover,
 .audio_artist_snippet.audio_artist_snippet_big .audio_artist_snippet__cover {
-    background-size: cover
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px
 }
 
 .audio_artist_attach_preview.audio_artist_snippet_big .audio_artist_snippet__cover:after,
