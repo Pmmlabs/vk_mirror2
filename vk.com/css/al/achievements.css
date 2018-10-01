@@ -1091,3 +1091,7 @@
 .ach_leaders_cards .ach_leaders_row__count {
     color: #009345
 }
+
+.ach_leaders_yellow_cards .ach_leaders_row__count {
+    color: #f0b94a
+}

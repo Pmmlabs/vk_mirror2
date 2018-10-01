@@ -338,7 +338,7 @@ var stVersions = {
     'widgets.css': 33583051110,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 96506201779,
+    'notifier.js': 100552715708,
     'notifier.css': 29806680683,
     'cmodules/sw/sw.js': 2371912913,
     'earthday.js': 2276669993,
@@ -358,7 +358,7 @@ var stVersions = {
     'agents.js': 2426697933,
     'agents.css': 18067030647,
     'achievements.js': 3514956550,
-    'achievements.css': 19154936697,
+    'achievements.css': 16378841715,
     'members.css': 17806793921,
     'meminfo.css': 24322091682,
     'groupinfo.css': 91040276570,
@@ -655,4 +655,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 9229;
+var _rnd = 255;
