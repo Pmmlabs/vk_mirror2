@@ -232,19 +232,29 @@ input.BlockSearchInput {
     background-color: #dae2ea
 }
 
-.Button--size-s {
+.Button--link {
+    display: inline-block;
+    color: #2a5885
+}
+
+.Button--link:not(.Button--disabled):focus,
+.Button--link:not(.Button--disabled):hover {
+    text-decoration: underline
+}
+
+.Button--size-s:not(.Button--link) {
     padding: 5px 16px 6px
 }
 
-.Button--size-s:not(.Button--disabled):active {
+.Button--size-s:not(.Button--disabled):not(.Button--link):active {
     padding: 6px 16px 5px
 }
 
-.Button--size-m {
+.Button--size-m:not(.Button--link) {
     padding: 7px 16px 8px
 }
 
-.Button--size-m:not(.Button--disabled):active {
+.Button--size-m:not(.Button--disabled):not(.Button--link):active {
     padding: 8px 16px 7px
 }
 
@@ -11646,12 +11656,12 @@ body.sf .nim-dialog .nim-dialog--unread {
 }
 
 .im-audio-message-input .audio-msg-track .audio-msg-track--btn {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20version%3D%221.0%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2010%2011%22%20width%3D%2210px%22%20height%3D%2211px%22%3E%0A%20%20%20%20%3Cpolygon%20stroke%3D%22%23b1bbc8%22%20fill%3D%22%23b1bbc8%22%20style%3D%22stroke-linecap%3A%20round%3B%20stroke-linejoin%3A%20round%3B%22%20points%3D%222.5%200.5%202.5%209.5%209.5%205%22%20transform%3D%22%22%2F%3E%0A%3C%2Fsvg%3E") #fff no-repeat 50%
+    background: svg('play.svg', "[fill]: #b1bbc8; [stroke]: #b1bbc8") #fff no-repeat 50%
 }
 
 .im-audio-message-input .audio-msg-track.audio-msg-track_playing .audio-msg-track--btn,
 .im-audio-message-input .audio-msg-track.audio-msg-track_recording .audio-msg-track--btn {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20version%3D%221.0%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2010%2011%22%20width%3D%2210px%22%20height%3D%2211px%22%3E%0A%20%20%20%20%3Crect%20x%3D%221.5%22%20y%3D%221%22%20rx%3D%220.5%22%20ry%3D%220.5%22%20width%3D%222%22%20height%3D%229%22%20fill%3D%22%23b1bbc8%22%20stroke%3D%22%23b1bbc8%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226.5%22%20y%3D%221%22%20rx%3D%220.5%22%20ry%3D%220.5%22%20width%3D%222%22%20height%3D%229%22%20fill%3D%22%23b1bbc8%22%20stroke%3D%22%23b1bbc8%22%2F%3E%0A%3C%2Fsvg%3E") #fff no-repeat 50%
+    background: svg('pause.svg', "[fill]: #b1bbc8; [stroke]: #b1bbc8") #fff no-repeat 50%
 }
 
 .im-audio-message-input .audio-msg-track.audio-msg-track_recording .audio-msg-track--btn {

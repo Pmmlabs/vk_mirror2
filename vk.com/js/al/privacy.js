@@ -485,6 +485,7 @@ var Privacy = {
         }
     },
     getValue: function(i) {
+        if (!cur.privacy || !cur.privacy[i]) return "";
         var e = cur.privacy[i],
             r = [];
         if (e[0] < Privacy.customType) r = [e[0]];

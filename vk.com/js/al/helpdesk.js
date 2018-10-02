@@ -412,9 +412,9 @@ var Helpdesk = {
             hash: s
         })
     },
-    setActualTicketsContent: function(e, t) {
-        var s = se(e);
-        domReplaceEl(ge(s.id), s), Helpdesk.setButtonsContent(t)
+    setActualTicketsContent: function(table, buttons, js) {
+        var tableDiv = se(table);
+        domReplaceEl(ge(tableDiv.id), tableDiv), Helpdesk.setButtonsContent(buttons), "" != js && eval(js)
     },
     setButtonsContent: function(e) {
         if ("" !== e) {
@@ -433,7 +433,7 @@ var Helpdesk = {
             hash: s
         }, {
             onDone: function(e) {
-                Helpdesk.setActualTicketsContent(e[0], e[1])
+                Helpdesk.setActualTicketsContent(e[0], e[1], e[2])
             },
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e)
@@ -1122,8 +1122,8 @@ var Helpdesk = {
     toggleSimilar: function(e) {
         toggle("tickets_similar", !isVisible("tickets_similar"));
         var t = ge("toggle_similar_link");
-        return toggleClass(t, "opened", isVisible("tickets_similar")), isVisible("tickets_similar") ? (t.innerHTML = getLang("support_hide_similar"), ge("similar_search") && cur.searchDD.updateInput(),
-            cur.similarCount < 10 ? hide("tickets_toup") : isVisible("tickets_toup") && (setStyle(ge("tickets_toup"), {
+        return toggleClass(t, "opened", isVisible("tickets_similar")), isVisible("tickets_similar") ? (t.innerHTML = getLang("support_hide_similar"),
+            ge("similar_search") && cur.searchDD.updateInput(), cur.similarCount < 10 ? hide("tickets_toup") : isVisible("tickets_toup") && (setStyle(ge("tickets_toup"), {
                 height: "0px"
             }), setStyle(ge("tickets_toup"), {
                 height: getSize(ge("tickets_similar"))[1]
@@ -1553,7 +1553,16 @@ var Helpdesk = {
         each(geByClass("_ticket_link", "my_tickets_table"), function(t, s) {
             var o = attr(s, "ticket-id");
             e.push([s.href, o])
-        });
+        }), Helpdesk._openTicketsLinks(e)
+    },
+    openAllUrgentTickets: function() {
+        var e = [];
+        each(geByClass("_urgent", "my_tickets_table"), function(t, s) {
+            var o = attr(s, "ticket-id");
+            e.push([s.href, o])
+        }), Helpdesk._openTicketsLinks(e)
+    },
+    _openTicketsLinks: function(e) {
         var t = setInterval(function() {
             if (!e.length) return void clearInterval(t);
             var s = e.shift();
@@ -1949,7 +1958,7 @@ var Helpdesk = {
             }, {
                 progress: cur.helpdeskRestBox.progress,
                 onDone: function(e) {
-                    cur.helpdeskRestBox.hide(), Helpdesk.setActualTicketsContent(e[0], e[1])
+                    cur.helpdeskRestBox.hide(), Helpdesk.setActualTicketsContent(e[0], e[1], e[2])
                 }
             })
         }, getLang("global_cancel")))
@@ -1971,7 +1980,7 @@ var Helpdesk = {
         }, {
             progress: cur.helpdeskRequestRestBox.progress,
             onDone: function(e, t) {
-                cur.helpdeskRequestRestBox.hide(), showDoneBox(e), Helpdesk.setActualTicketsContent(t[0], t[1])
+                cur.helpdeskRequestRestBox.hide(), showDoneBox(e), Helpdesk.setActualTicketsContent(t[0], t[1], t[2])
             }
         })
     },
@@ -1982,7 +1991,7 @@ var Helpdesk = {
             }, {
                 progress: cur.helpdeskRequestRestBox.progress,
                 onDone: function(e, t) {
-                    cur.helpdeskRequestRestBox.hide(), showDoneBox(e), Helpdesk.setActualTicketsContent(t[0], t[1])
+                    cur.helpdeskRequestRestBox.hide(), showDoneBox(e), Helpdesk.setActualTicketsContent(t[0], t[1], t[2])
                 }
             })
         }, getLang("global_cancel"), null)

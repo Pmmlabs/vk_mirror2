@@ -148,19 +148,29 @@ input.BlockSearchInput {
     background-color: #dae2ea
 }
 
-.Button--size-s {
+.Button--link {
+    display: inline-block;
+    color: #2a5885
+}
+
+.Button--link:not(.Button--disabled):focus,
+.Button--link:not(.Button--disabled):hover {
+    text-decoration: underline
+}
+
+.Button--size-s:not(.Button--link) {
     padding: 5px 16px 6px
 }
 
-.Button--size-s:not(.Button--disabled):active {
+.Button--size-s:not(.Button--disabled):not(.Button--link):active {
     padding: 6px 16px 5px
 }
 
-.Button--size-m {
+.Button--size-m:not(.Button--link) {
     padding: 7px 16px 8px
 }
 
-.Button--size-m:not(.Button--disabled):active {
+.Button--size-m:not(.Button--disabled):not(.Button--link):active {
     padding: 8px 16px 7px
 }
 
@@ -1917,14 +1927,6 @@ textarea.EditableLabel__textarea {
     -moz-osx-font-smoothing: grayscale
 }
 
-.InfoBlock {
-    position: relative;
-    background: #fff;
-    border-radius: 2px;
-    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
-    margin: 15px 0 0
-}
-
 .InfoBlock .InfoBlock--header {
     padding: 9px 18px;
     background-color: #dfe5eb;
@@ -1939,12 +1941,13 @@ textarea.EditableLabel__textarea {
     margin-right: -9px
 }
 
-.InfoBlock .InfoBlock--content {
-    padding: 16px 28px
+.InfoBlock .InfoBlock--content .InfoBlock--content-expand_button {
+    margin: 8px 18px 0
 }
 
-.InfoBlock .InfoBlock--content .InoBlock--content-expand_button {
-    margin-top: 8px
+.ReportsAndClaims,
+.Decisions {
+    margin: 16px 0
 }
 
 .Decisions .Decisions--ClaimResolvedRow .Decisions--loading {
@@ -1954,6 +1957,10 @@ textarea.EditableLabel__textarea {
     margin-right: 33px;
     margin-left: 33px;
     margin-top: 3px
+}
+
+.Punishments {
+    margin: 16px 0
 }
 
 .CopyrightReportsPage {

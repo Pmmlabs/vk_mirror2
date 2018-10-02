@@ -147,6 +147,12 @@ h4.tickets_template {
     font-size: 1em
 }
 
+h4.tickets_template .tickets_template_main {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
 h4.tickets_template.favs {
     margin-top: 20px
 }
