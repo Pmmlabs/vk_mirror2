@@ -5,6 +5,7 @@
 #box_loader .loader,
 #layer_stl_text,
 #stl_text,
+.audio_artist_snippet__cover,
 .audio_page_player2 .audio_control_btn .icon,
 .audio_page_player2 .audio_play,
 .audio_page_player2.audio_player_podcast .audio_page_player__cover,
@@ -8829,7 +8830,17 @@ button.ui_load_more_btn {
     background-color: #ebedf0;
     background-size: contain;
     width: 62px;
-    height: 61px
+    height: 62px;
+    background: url(/images/audio/artist_64.png) no-repeat 0 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_artist_snippet__cover {
+        background-image: url(/images/audio/artist_64_2x.png);
+        background-size: 64px 64px
+    }
 }
 
 .audio_artist_snippet__cover:after {
@@ -8842,6 +8853,7 @@ button.ui_load_more_btn {
     top: 1px
 }
 
+.audio_artist_attach_preview .audio_artist_snippet__title,
 .audio_artist_snippet:not(.audio_artist_snippet_big) .audio_artist_snippet__title,
 .audio_artist_snippet__subtitle {
     margin-left: 64px;
