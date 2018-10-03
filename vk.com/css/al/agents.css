@@ -423,43 +423,28 @@
     border-radius: 3px 3px 0 0
 }
 
-.agents_edit_number_form {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
-    border-radius: 2px;
-    background: #fafbfc;
-    padding: 10px;
-    display: none;
-    z-index: 1;
-    top: 0;
-    position: absolute;
-    border: 1px solid #d3d9de;
-    width: 198px
-}
-
-.agents_edit_number_form .agents_edit_number_form_error {
-    margin-bottom: 8px;
-    padding: 5px;
-    background: #ffefe9;
-    border: 1px solid #f2ab99;
-    display: none
-}
-
-.agents_edit_number_form .agents_edit_number_form_input_parent {
-    position: relative
-}
-
-.agents_edit_number_form .agents_edit_number_form_input {
-    padding-right: 30px;
-    width: 160px
-}
-
-.agents_edit_number_form .agents_edit_number_form_progress {
-    right: 20px;
-    bottom: 20px;
-    position: absolute
-}
-
 .agents_agent_number {
     color: #656565;
     text-decoration: underline
+}
+
+.agents_agent_number_box .agents_agent_section_number_row {
+    margin-bottom: 7px;
+    width: 385px
+}
+
+.agents_agent_number_box .agents_agent_section_number_label {
+    padding: 7px 10px 0;
+    float: left;
+    width: 155px;
+    color: #555
+}
+
+.agents_agent_number_box .agents_agent_section_number_input {
+    float: left;
+    width: 206px
+}
+
+.agents_clean_number {
+    display: inline-block
 }

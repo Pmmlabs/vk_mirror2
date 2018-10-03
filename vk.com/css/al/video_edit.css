@@ -1303,6 +1303,11 @@
     margin-top: 5px
 }
 
+.video_upload_subtitles_autoselect_checkbox,
+.video_upload_subtitles_autoselect_wrap {
+    margin-top: 10px
+}
+
 .video_upload_subtitles_form {
     display: block
 }
@@ -1323,7 +1328,7 @@
 
 .video_upload_subtitles_button_file,
 .video_upload_subtitles_input_name.dark,
-.video_upload_subtitles_select_lang_wrap {
+.video_upload_subtitles_lang_wrap {
     display: inline-block;
     float: left;
     width: 160px;

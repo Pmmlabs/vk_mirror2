@@ -1182,6 +1182,11 @@ body.mac .apps_featured_thumb .ads_ad_big_app_info_box {
     z-index: -1
 }
 
+.apps_featured_thumbs_video .videoplayer_autoplay_timer,
+.apps_featured_thumbs_video .videoplayer_context_menu {
+    display: none!important
+}
+
 .apps_featured_thumbs_video .videoplayer {
     z-index: 0;
     cursor: pointer!important

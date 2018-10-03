@@ -554,7 +554,18 @@ body.sf .mention_tt_actions {
 }
 
 .sf_button_ban_commentsfeed {
-    background: #c86464
+    background: #c86464;
+    color: #fff
+}
+
+.sf_button_ban_commentsfeed.sf_accepted {
+    background: #d90021;
+    cursor: default
+}
+
+.sf_button_ban_commentsfeed.sf_declined,
+.sf_button_ban_commentsfeed.sf_declined_other {
+    background: #d9b5b6
 }
 
 .sf_button_bad.sf_accepted,

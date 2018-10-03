@@ -107,8 +107,8 @@
     width: 40px;
     height: 40px;
     margin-left: 8px;
-    border-radius: 4px;
-    background: rgba(0, 0, 0, .4);
+    border-radius: 8px;
+    background-color: hsla(0, 0%, 7%, .8);
     background-size: 24px;
     line-height: 40px;
     color: hsla(0, 0%, 100%, .75);
@@ -140,7 +140,7 @@
 .videoplayer_share_actions ._donate:hover,
 .videoplayer_share_actions ._like:hover,
 .videoplayer_share_actions ._share:hover {
-    background-color: rgba(34, 34, 34, .6)
+    background-color: hsla(0, 0%, 7%, .7)
 }
 
 .videoplayer_share_actions ._add:hover:after,
@@ -352,11 +352,15 @@
 }
 
 .videoplayer_btn_subtitles {
-    opacity: 0.5
+    opacity: .5
 }
 
 .videoplayer_btn_subtitles.active {
     opacity: 1
+}
+
+.videoplayer_btn_subtitles.active:hover {
+    opacity: .8
 }
 
 .videoplayer_controls:not(._has_fullscreen) .videoplayer_btn_settings {
@@ -425,13 +429,8 @@ body[data-useragent=safari] .videoplayer_live_app_link {
 }
 
 .videoplayer_volume_icon {
-    height: 16px;
-    width: 19px
-}
-
-.videoplayer_ui._fullscreen .videoplayer_volume_icon {
-    height: 17px;
-    width: 22px
+    width: 24px;
+    height: 24px
 }
 
 .videoplayer_volume_icon ._cross,
@@ -444,9 +443,8 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     visibility: visible
 }
 
-.videoplayer_volume_icon[data-value=min] ._wave1,
-.videoplayer_volume_icon[data-value=min] ._wave2,
-.videoplayer_volume_icon[data-value=mid] ._wave2 {
+.videoplayer_volume_icon[data-value=mid] ._wave2,
+.videoplayer_volume_icon[data-value=min] ._wave2 {
     visibility: hidden
 }
 
@@ -1912,12 +1910,12 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     position: absolute;
     left: 10px;
     top: 10px;
-    border-radius: 4px;
+    border-radius: 8px;
     line-height: 40px;
     white-space: nowrap;
     padding: 0 20px;
-    background: #000;
-    background: rgba(0, 0, 0, .4);
+    background: #111;
+    background: hsla(0, 0%, 7%, .8);
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
@@ -2151,7 +2149,7 @@ body[data-useragent=safari] .videoplayer_live_app_link {
 
 .videoplayer_settings_menu_list,
 .videoplayer_settings_menu_sublist {
-    background: rgba(0, 0, 0, .72);
+    background-color: hsla(0, 0%, 7%, .8);
     border-radius: 8px;
     bottom: 24px;
     font-size: 13px;
@@ -2202,7 +2200,7 @@ body[data-useragent=safari] .videoplayer_live_app_link {
 .videoplayer_settings_menu_sublist_item {
     -ms-flex-align: center;
     align-items: center;
-    color: hsla(0, 0%, 100%, .9);
+    color: #fff;
     cursor: pointer;
     display: -ms-flexbox;
     display: flex;
@@ -2248,6 +2246,10 @@ body[data-useragent=safari] .videoplayer_live_app_link {
 .videoplayer_ui._keyboard_focus .videoplayer_settings_menu_list_item:focus,
 .videoplayer_ui._keyboard_focus .videoplayer_settings_menu_sublist_item:focus {
     box-shadow: inset 0 0 0 2px #2a5885
+}
+
+.videoplayer_settings_menu_sublist_item {
+    color: hsla(0, 0%, 100%, .9)
 }
 
 .videoplayer_settings_menu_sublist_item:last-child {
@@ -2323,14 +2325,31 @@ body[data-useragent=safari] .videoplayer_live_app_link {
 }
 
 .videoplayer_settings_menu_sublist_header {
-    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20width%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3Cpath%20id%3D%22a%22%20d%3D%22M4.706%207.706a1%201%200%200%201%200-1.412l.088-.088a.997.997%200%200%201%201.414.002l5.084%205.084a.998.998%200%200%201%200%201.416l-5.084%205.084a1.002%201.002%200%200%201-1.414.002l-.088-.088a.995.995%200%200%201%200-1.412L9%2012z%22%2F%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22matrix(-1%200%200%201%2016%200)%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M0%200h16v24H0z%22%2F%3E%0A%20%20%20%20%3Cuse%20fill%3D%22%23fff%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
-    background-position: left 16px center;
-    background-repeat: no-repeat;
+    color: #fff;
     cursor: pointer;
     line-height: 32px;
     padding: 0 18px;
     padding-left: 42px;
+    position: relative;
     text-align: right
+}
+
+.videoplayer_settings_menu_sublist_header:before {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20width%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3Cpath%20id%3D%22a%22%20d%3D%22M4.706%207.706a1%201%200%200%201%200-1.412l.088-.088a.997.997%200%200%201%201.414.002l5.084%205.084a.998.998%200%200%201%200%201.416l-5.084%205.084a1.002%201.002%200%200%201-1.414.002l-.088-.088a.995.995%200%200%201%200-1.412L9%2012z%22%2F%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22matrix(-1%200%200%201%2016%200)%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M0%200h16v24H0z%22%2F%3E%0A%20%20%20%20%3Cuse%20fill%3D%22%23fff%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
+    background-position: left 16px center;
+    background-repeat: no-repeat;
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0
+}
+
+.videoplayer_settings_menu_sublist_header:hover:before {
+    opacity: .8;
+    -o-transition: opacity .2s;
+    transition: opacity .2s
 }
 
 .mv_minimized .videoplayer_settings_menu_sublist_header,
@@ -2841,9 +2860,9 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     line-height: 40px;
     white-space: nowrap;
     padding: 0 20px;
-    border-radius: 4px;
-    background: #000;
-    background: rgba(0, 0, 0, .4);
+    border-radius: 8px;
+    background: #111;
+    background: hsla(0, 0%, 7%, .8);
     color: #fff;
     color: hsla(0, 0%, 100%, .75);
     font-size: 13px;

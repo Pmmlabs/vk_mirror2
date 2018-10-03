@@ -1,42 +1,71 @@
 var Agents = {
     numberKeyDown: function(e) {
-        e.keyCode == KEY.ESC ? hide("edit_number_form") : (e.keyCode == KEY.ENTER || e.keyCode == KEY.RETURN) && (console.log("enter"), Agents.setNumber())
+        (e.keyCode == KEY.ENTER || e.keyCode == KEY.RETURN) && Agents.saveAgentNumbers(cur.userId, cur.hash)
     },
-    numberMouseDown: function(e) {
-        for (var a = e.target; a.parentNode;) {
-            if ("edit_number_form" == a.id) return;
-            a = a.parentNode
-        }
-        hide("edit_number_form")
-    },
-    setNumberForm: function() {
-        var e = ge("edit_number_form"),
-            a = ge("edit_number_input"),
-            n = val("agent_num").replace(/[^0-9]/g, ""),
-            o = ge("edit_number_form_error");
-        val(o, ""), hide(o), val(a, n), show(e), elfocus(a), addEvent(document, "keydown", Agents.numberKeyDown), addEvent(document, "mousedown", Agents.numberMouseDown)
-    },
-    setNumber: function(e) {
-        if (!cur.setNumberLoading) {
-            var a = intval(val("edit_number_input").replace(/[^0-9]/g, "")),
-                n = ge("edit_number_form_error");
-            return a ? void ajax.post("/agents.php", {
-                act: "a_set_number",
-                user_id: cur.userId,
-                hash: cur.hash,
-                num: a,
-                force: e ? 1 : 0
+    cleanAgentNumber: function(e, a, n, o, t, r) {
+        if (!e.loading) {
+            var s = ge("agents_clean_number_loader_" + n);
+            ajax.post("agents.php?act=a_clean_agent_number", {
+                section: o,
+                number: t,
+                hash: r
             }, {
-                onDone: function(e, o) {
-                    1 == e ? (val("agent_num", "#" + a), hide("edit_number_form")) : (val(n, o), show(n))
-                },
                 showProgress: function() {
-                    cur.setNumberLoading = !0, showProgress("agents_edit_number_form_progress")
+                    e.loading = !0, showProgress(s)
                 },
                 hideProgress: function() {
-                    cur.setNumberLoading = !1, hideProgress("agents_edit_number_form_progress")
+                    e.loading = !1, hideProgress(s)
+                },
+                onDone: function() {
+                    hide("agents_number_box_error_" + n)
                 }
-            }) : notaBene("edit_number_input")
+            })
+        }
+    },
+    showNumberBox: function(e, a, n) {
+        showBox("agents.php", {
+            act: "number_box",
+            user_id: a,
+            hash: n
+        }, {
+            onShow: function() {
+                addEvent(document, "keydown", Agents.numberKeyDown)
+            },
+            onHide: function() {
+                removeEvent(document, "keydown", Agents.numberKeyDown), delete cur.setNumberLoading
+            }
+        })
+    },
+    saveAgentNumbers: function(e, a) {
+        if (!cur.setNumberLoading) {
+            var n = ge("agents_number_box_" + e),
+                o = ge("agents_number_box_error_" + e),
+                t = geByClass("_agents_section_number", n),
+                r = {},
+                s = !1;
+            if (each(t, function(e, a) {
+                    var n = domData(a, "section"),
+                        o = trim(val(a)).replace(/[^0-9,]/g, "");
+                    return o ? void(r[n] = o) : (s = a, !1)
+                }), s) return notaBene(s);
+            hide(o), n && ajax.post("agents.php?act=a_save_agent_numbers", {
+                user_id: e,
+                hash: a,
+                numbers: JSON.stringify(r)
+            }, {
+                showProgress: function() {
+                    cur.setNumberLoading = !0, show(curBox().progress)
+                },
+                hideProgress: function() {
+                    cur.setNumberLoading = !1, hide(curBox().progress)
+                },
+                onDone: function(e) {
+                    curBox().hide(), val("agent_num", e)
+                },
+                onFail: function(e) {
+                    return val(o, e), show(o), delete cur.setNumberLoading, !0
+                }
+            })
         }
     },
     initJoinDateCalendar: function(e, a, n) {
@@ -151,8 +180,7 @@ var Agents = {
             act: "cards"
         };
         0 != cur.agentsCardsUidDD.val() && (e.uid = cur.agentsCardsUidDD.val()), -1 != cur.agentsCardsWhoUidDD.val() && (e.who_uid = cur.agentsCardsWhoUidDD.val()), -1 != cur.agentsCardsTypeDD.val() && (e.type = cur.agentsCardsTypeDD.val()), 0 != cur.agentsCardsDeptDD.val() && (e.dept = cur.agentsCardsDeptDD.val()), uiTabs.showProgress(ge("ach_tabs")), nav.go(e)
-    },
-    _eof: 1
+    }
 };
 try {
     stManager.done("agents.js")

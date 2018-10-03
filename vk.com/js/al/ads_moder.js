@@ -146,19 +146,57 @@ AdsModer.openFeaturesEditBox = function(unionId, hash, featuresInfo, featuresEdi
             checked: intval(featureInfo.value),
             width: 500,
             onChange: (function(featureInfo, value) {
-                if (!value || !featureInfo.unset_keys) {
-                    return;
-                }
-                for (var j in featureInfo.unset_keys) {
-                    var unsetKey = featureInfo.unset_keys[j];
-                    if (!checkboxes[unsetKey]) {
-                        continue;
+                if (value && featureInfo.unset_keys_on_set) {
+                    for (var j in featureInfo.unset_keys_on_set) {
+                        var unsetKey = featureInfo.unset_keys_on_set[j];
+                        if (!checkboxes[unsetKey]) {
+                            continue;
+                        }
+                        checkboxes[unsetKey].checked(0);
                     }
-                    checkboxes[unsetKey].checked(0);
+                }
+                if (featureInfo.update_enabled_keys) {
+                    for (var j in featureInfo.update_enabled_keys) {
+                        var enabledKey = featureInfo.update_enabled_keys[j];
+                        if (!checkboxes[enabledKey]) {
+                            continue;
+                        }
+                        AdsModer.updateFeatureEnabled(featuresInfo[enabledKey], checkboxes);
+                    }
                 }
             }).pbind(featureInfo)
         });
     }
+
+    for (var i in featuresInfo) {
+        var featureInfo = featuresInfo[i];
+        AdsModer.updateFeatureEnabled(featureInfo, checkboxes);
+    }
+}
+
+AdsModer.updateFeatureEnabled = function(featureInfo, checkboxes) {
+
+    if (!checkboxes[featureInfo.key]) {
+        return;
+    }
+
+    if (!featureInfo.enable_if_any_keys_set) {
+        return;
+    }
+
+    var enabled = false;
+    for (var i in featureInfo.enable_if_any_keys_set) {
+        var forEnabedKey = featureInfo.enable_if_any_keys_set[i];
+        if (!checkboxes[forEnabedKey]) {
+            continue;
+        }
+        enabled = enabled || !!checkboxes[forEnabedKey].val();
+    }
+
+    if (!enabled) {
+        checkboxes[featureInfo.key].checked(0);
+    }
+    checkboxes[featureInfo.key].disable(!enabled);
 }
 
 AdsModer.saveFeatures = function(unionId, hash, featuresInfo, editBox) {
@@ -172,7 +210,7 @@ AdsModer.saveFeatures = function(unionId, hash, featuresInfo, editBox) {
     ajaxParams.features = [];
     for (var i in featuresInfo) {
         var featureInfo = featuresInfo[i];
-        ajaxParams.features.push(featureInfo.key + ':' + intval(ge('ads_moder_feature_' + featureInfo.key).value));
+        ajaxParams.features.push(featureInfo.key + ':' + intval(val('ads_moder_feature_' + featureInfo.key)));
     }
     ajaxParams.features = ajaxParams.features.join(',');
 
