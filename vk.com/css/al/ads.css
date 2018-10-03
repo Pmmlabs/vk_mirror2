@@ -3759,6 +3759,10 @@ td.ads_settings_notifications_label {
     width: 385px
 }
 
+.ad_preview_top_buttons .button_wide {
+    margin-top: 8px
+}
+
 .ads_alt_table {
     border-collapse: collapse;
     width: 100%

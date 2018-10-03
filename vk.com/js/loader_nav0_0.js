@@ -150,7 +150,7 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 2660709036,
     'common.js': 1161,
-    'common.css': 57314314765,
+    'common.css': 54286926218,
     'cmodules/web/common_web.js': 14,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
@@ -350,7 +350,7 @@ var stVersions = {
     'tags_dd.js': 3735969205,
     'tags_dd.css': 17884141230,
     'helpdesk.js': 2286058061,
-    'helpdesk.css': 32117791108,
+    'helpdesk.css': 31623561222,
     'tickets.js': 1178821948,
     'tickets.css': 33778449531,
     'faq.css': 25246749071,
@@ -386,7 +386,7 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 30832085278,
     'aes_light.js': 1923499650,
-    'ads.css': 49108086999,
+    'ads.css': 51331406143,
     'ads_bonus.css': 1294533291,
     'ads.js': 2318034332,
     'ads_payments.js': 1483293789,
@@ -488,7 +488,7 @@ var stVersions = {
     'landings/vkvalentine.css': 17801639293,
     'landings/vkvalentine.js': 3463861529,
     'landings/calls.js': 1624757932,
-    'landings/businesspages.css': 5489593385,
+    'landings/businesspages.css': 3232605135,
     'landings/businesspages.js': 3384934990,
     'landings/ads.css': 20041215850,
     'landing_aes.js': 17167906988,
@@ -559,7 +559,7 @@ var stVersions = {
     'cmodules/web/stickers.js': 10260768193,
     'cmodules/web/stickers_office.js': 17231596140,
     'cmodules/web/bodymovin.js': 1511042105,
-    'lead_forms_app.js': 9105473210,
+    'lead_forms_app.js': 10009120265,
     'lead_forms_app.css': 21120089388,
     'time_spent.js': 732637085,
     'cmodules/web/app_info.js': 3251828426,
@@ -653,4 +653,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 7799;
+var _rnd = 268;

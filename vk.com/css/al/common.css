@@ -3598,7 +3598,7 @@ body.no_stl #stl_bg {
     width: expression(this.width > 200 ? '200px': '')
 }
 
-#top_back_link.active {
+#top_back_link:active {
     background-position: left -84px
 }
 

@@ -2449,3 +2449,8 @@ body.body_helpdesk_small_sb .left_menu_nav {
 .helpdesk_mltags_table>tbody>tr>td {
     padding: 5px 10px
 }
+
+.helpdesk_mltags_table_row__hidden {
+    opacity: 0.6;
+    filter: alpha(opacity=60)
+}
