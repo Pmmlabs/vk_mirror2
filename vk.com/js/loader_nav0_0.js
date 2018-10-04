@@ -149,20 +149,20 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 2660709036,
     'common.js': 1161,
-    'common.css': 55342921475,
+    'common.css': 54380506365,
     'cmodules/web/common_web.js': 14,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
     'uncommon.css': 16038966019,
     'filebutton.css': 1044306797,
     'lite.js': 344448126,
-    'lite.css': 56389488289,
+    'lite.css': 55427073179,
     'rtl.css': 16572833603,
     'pagination.js': 358700184,
     'blog.css': 20562116862,
     'blog.js': 3939164531,
     'html5audio.js': 976782859,
-    'audioplayer.js': 152875112379,
+    'audioplayer.js': 150581894878,
     'audioplayer.css': 19538310270,
     'audio_html5.js': 287741914,
     'audio.js': 747783412,
@@ -290,7 +290,7 @@ var stVersions = {
     'apps_edit.css': 37830762265,
     'apps_check.js': 3204387834,
     'apps_check.css': 30309690599,
-    'settings.js': 2975578879,
+    'settings.js': 688052291,
     'settings.css': 31478708116,
     'profile_edit.js': 334053301,
     'profile_edit.css': 18400867053,
@@ -512,7 +512,7 @@ var stVersions = {
     'api/share.js': 2262994046,
     'api/openapi.js': 402378786,
     'api/xdm.js': 1449919642,
-    'hls.min.js': 222578124,
+    'hls.min.js': 2368976301,
     'candy.min.js': 1892723665,
     'q_frame.php': 7,
     '/swf/api_wrapper.swf': 7,
@@ -652,4 +652,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 4686;
+var _rnd = 6027;
