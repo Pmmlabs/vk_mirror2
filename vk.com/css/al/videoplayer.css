@@ -64,7 +64,7 @@
 
 .videoplayer_share_actions {
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     top: 10px;
     right: 10px;
     overflow: hidden;

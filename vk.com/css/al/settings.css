@@ -2286,3 +2286,76 @@ span.page_block_header_group_notify_settings a {
 .settings_group_notifications_disable_tooltip:before {
     right: 43px!important
 }
+
+.settings_transfer_empty_box {
+    text-align: center
+}
+
+.settings_transfer_empty_box_icon {
+    margin-top: 60px;
+    height: 72px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2272%22%20viewBox%3D%220%200%2072%2072%22%20width%3D%2272%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22%22%3E%3Cpath%20d%3D%22m0%200h72v72h-72z%22%20opacity%3D%22.4%22%2F%3E%3Cpath%20d%3D%22m61%2050.8786797%202.5606602%202.5606601c.5615944.5615945.5881011%201.4636027.0604538%202.057206l-8%209c-.550377.6191741-1.4984856.6749452-2.1176598.1245682-.6191741-.550377-.6749452-1.4984856-.1245682-2.1176598l5.7808482-6.5034542h-40.9041934c-3.566075%200-4.8592199-.3713024-6.1629236-1.0685308s-2.32685801-1.7203827-3.02408638-3.0240864c-.69722838-1.3037037-1.06853082-2.5968486-1.06853082-6.1629236v-23.4889184c0-3.566075.37130244-4.8592199%201.06853082-6.1629236.69722837-1.3037037%201.72038268-2.326858%203.02408638-3.0240864s2.5968486-1.0685308%206.1629236-1.0685308h35.4889184c3.566075%200%204.8592199.3713024%206.1629236%201.0685308s2.326858%201.7203827%203.0240864%203.0240864%201.0685308%202.5968486%201.0685308%206.1629236v18.2444592c0%20.8284271-.6715729%201.5-1.5%201.5s-1.5-.6715729-1.5-1.5zm0%200v-28.6231389c0-2.7983724-.1858032-3.7605402-.7139704-4.748127-.417629-.7808983-1.0125451-1.3758144-1.7934434-1.7934434-.9875868-.5281672-1.9497546-.7139704-4.748127-.7139704h-35.4889184c-2.7983724%200-3.7605402.1858032-4.748127.7139704-.7808983.417629-1.3758144%201.0125451-1.7934434%201.7934434-.5281672.9875868-.7139704%201.9497546-.7139704%204.748127v23.4889184c0%202.7983724.1858032%203.7605402.7139704%204.748127.417629.7808983%201.0125451%201.3758144%201.7934434%201.7934434.9875868.5281672%201.9497546.7139704%204.748127.7139704h40.6231389l-5.4393399-5.4393398c-.5857864-.5857865-.5857864-1.5355339%200-2.1213204.5857865-.5857864%201.5355339-.5857864%202.1213204%200zm-50-24.8786797h50v3h-50z%22%20fill%3D%22%23528bcc%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat;
+    background-size: 72px;
+    background-position: 50%
+}
+
+.settings_transfer_empty_box_header {
+    padding: 0 55px;
+    font-weight: 500;
+    margin-top: 8px;
+    font-size: 16px;
+    line-height: 22px;
+    color: #000
+}
+
+.settings_transfer_empty_box_header,
+.settings_transfer_empty_box_tip {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.settings_transfer_empty_box_tip {
+    padding: 8px 50px;
+    font-weight: 400;
+    text-align: center;
+    font-size: 13px;
+    line-height: 19px;
+    color: #656565
+}
+
+.settings_transfer_empty_box_link {
+    font-size: 13px;
+    line-height: 19px
+}
+
+.settings_transfer_empty_box_buttons {
+    padding-top: 26px;
+    padding-bottom: 60px
+}
+
+.settings_transfer_empty_box_buttons .flat_button {
+    margin-left: 5px
+}
+
+#settings_payments_transfer_msg {
+    padding: 15px 20px 14px
+}
+
+#settings_payments_transfer_msg .settings_payments_transfer_msg_text {
+    width: 264px;
+    font-size: 13px;
+    line-height: 18px;
+    letter-spacing: -0.2px;
+    color: #000;
+    display: inline-block
+}
+
+#settings_payments_transfer_msg .settings_payments_transfer_msg_buttons {
+    display: inline-block;
+    float: right;
+    margin-top: 3px
+}
+
+#settings_payments_transfer_msg .settings_payments_transfer_msg_buttons .secondary {
+    margin-right: 6px
+}

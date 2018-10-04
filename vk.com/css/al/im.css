@@ -6447,13 +6447,6 @@ img.im_photo_thumb {
     font-size: 13px
 }
 
-.im-page--title-meta .vk_mobile {
-    margin-top: -3px;
-    position: relative;
-    margin-left: 5px;
-    cursor: default
-}
-
 .im-page--title-meta .im_status_mob_onl {
     color: #939393
 }

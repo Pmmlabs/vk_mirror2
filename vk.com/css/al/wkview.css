@@ -429,6 +429,10 @@ svg+.wk_voting_avatar+.wk_voting_avatar+.wk_voting_avatar+.wk_voting_avatar+.wk_
     line-height: 14px
 }
 
+.wk_wiki_content .wk_wiki_with_bottom_padding {
+    padding-bottom: 20px
+}
+
 .wk_wiki_no_title,
 .wk_wiki_no_footer {
     margin-top: 20px

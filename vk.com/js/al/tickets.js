@@ -1282,7 +1282,7 @@ var Tickets = {
                     a = trim(e),
                     i = a.split(" "),
                     o = ge("tickets_text");
-                e.length >= 70 && o && !o.value && !cur.flood && (isVisible("tickets_detailed_form") || Tickets.toggleDetailedForm(), t.value = "", o.focus(), o.value = e), isVisible("tickets_detailed_form") || a == cur.searchStr && (i.length < 4 || 4 == i.length && " " != e[e.length - 1]) || (a ? addClass(ge("tickets_search_reset"), "shown") : removeClass(ge("tickets_search_reset"), "shown"), cur.searchStr = a, clearTimeout(cur.searchFAQTimeout), cur.searchFAQTimeout = setTimeout(function() {
+                e.length >= 70 && o && !o.value && !cur.flood && (isVisible("tickets_detailed_form") || (Tickets.toggleDetailedForm(), t.value = "", o.focus(), o.value = e)), isVisible("tickets_detailed_form") || a == cur.searchStr && (i.length < 4 || 4 == i.length && " " != e[e.length - 1]) || (a ? addClass(ge("tickets_search_reset"), "shown") : removeClass(ge("tickets_search_reset"), "shown"), cur.searchStr = a, clearTimeout(cur.searchFAQTimeout), cur.searchFAQTimeout = setTimeout(function() {
                     Tickets.searchFAQ(cur.searchStr)
                 }.bind(this), 300), browser.mobile || scrollToTop())
             }.bind(this), 10)

@@ -2315,23 +2315,6 @@ body.body_helpdesk_small_sb .left_menu_nav {
     margin-top: 4px
 }
 
-.helpdesk_ticket_vkmobile_pass .helpdesk_ticket_vkmobile_msg {
-    margin-bottom: 15px
-}
-
-.helpdesk_ticket_vkmobile_pass .helpdesk_ticket_vkmobile_text {
-    width: 550px
-}
-
-.helpdesk_ticket_vkmobile_pass .tickets_add_comm {
-    padding: 0;
-    margin-bottom: 8px
-}
-
-.helpdesk_ticket_vkmobile_pass .helpdesk_ticket_vkmobile_autoanswer {
-    margin-top: 8px
-}
-
 .helpdesk_troll_chat {
     filter: grayscale(50%);
     margin: -2px 0;

@@ -3507,7 +3507,7 @@ Ads.showEditAdminBox = function(event, unionId, userId, userEmail, isRemove) {
         params: {}
     };
     showOptions.onFail = Ads.onBoxFail;
-    showOptions.params.width = 440;
+    showOptions.params.width = 500;
 
     showBox('/ads?act=a_edit_admin_box', ajaxParams, showOptions);
 

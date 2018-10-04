@@ -475,27 +475,34 @@ var MoneyTransfer = {
             }
         } else if (ge('transfer_to')) {
             hide('payments_money_transfer_user');
-            cur.uiTransferTo = Dropdown(ge('transfer_to'), cur.paymentsOptions.friends, {
-                big: true,
-                introText: getLang('votes_transfer_start_typing_recipient'),
-                noResult: '',
-                placeholder: getLang('votes_transfer_choose_recipients'),
-                placeholderColored: true,
-                multiselect: false,
-                enableCustom: true,
-                autocomplete: true,
-                imageId: 'transfer_to_photo',
-                indexkeys: [1, 4],
-                noImageSrc: '/images/blank.gif',
-                onChange: function(value) {
-                    if (!value || value == -1) return;
-                    var transfer_to = cur.uiTransferTo.val_full();
-                    cur.paymentsOptions.toId = transfer_to[0];
-                    cur.paymentsOptions.hash = transfer_to[5];
-                    val('payments_money_transfer_summary', transfer_to[6]);
-                    setTimeout(elfocus.pbind('transfer_amount'), 100);
-                }
-            });
+            var is_transfer_tab = cur.paymentsOptions.boxTab === 'transfer';
+
+            cur.uiTransferTo = Dropdown(
+                ge('transfer_to'),
+                cur.paymentsOptions.friends.filter(function(r) {
+                    return is_transfer_tab || r[7] === true;
+                }), {
+                    big: true,
+                    introText: getLang('votes_transfer_start_typing_recipient'),
+                    noResult: '',
+                    placeholder: getLang('votes_transfer_choose_recipients'),
+                    placeholderColored: true,
+                    multiselect: false,
+                    enableCustom: true,
+                    autocomplete: true,
+                    imageId: 'transfer_to_photo',
+                    indexkeys: [1, 4],
+                    noImageSrc: '/images/blank.gif',
+                    onChange: function(value) {
+                        if (!value || value == -1) return;
+                        var transfer_to = cur.uiTransferTo.val_full();
+                        cur.paymentsOptions.toId = transfer_to[0];
+                        cur.paymentsOptions.hash = transfer_to[5];
+                        val('payments_money_transfer_summary', transfer_to[6]);
+                        setTimeout(elfocus.pbind('transfer_amount'), 100);
+                    }
+                });
+
             cur.destroy.push(cur.uiTransferTo.destroy.bind(cur.uiTransferTo));
         }
         setTimeout(elfocus.pbind('transfer_amount'), 100);
@@ -1156,8 +1163,31 @@ var MoneyTransfer = {
         cur.paymentsOptions.boxTab = tab;
         val('payments_money_transfer_summary', cur.paymentsOptions.boxSections[tab].summary);
         val('payments_money_transfer_send', cur.paymentsOptions.boxSections[tab].btn);
+        val('payments_money_transfer_user_select_label', cur.paymentsOptions.boxSections[tab].user_select_label);
+
         toggle('payments_money_transfer_nf_warning', tab == 'transfer');
+
+        MoneyTransfer.renderSelectBox();
+
         setTimeout(elfocus.pbind('transfer_amount'), 100);
+    },
+    renderSelectBox: function() {
+        var is_transfer_tab = cur.paymentsOptions.boxTab === 'transfer';
+
+        cur.uiTransferTo.setData([]);
+        cur.uiTransferTo.setOptions({
+            autocomplete: false
+        });
+        cur.uiTransferTo.setData(cur.paymentsOptions.friends.filter(function(r) {
+            return is_transfer_tab || r[7] === true;
+        }));
+        cur.uiTransferTo.setOptions({
+            autocomplete: true
+        });
+        cur.paymentsOptions.toId = null;
+        cur.paymentsOptions.hash = null;
+        cur.uiTransferTo.clear();
+        cur.uiTransferTo.deselectTokens();
     },
     updateImHistory: function(html, txId, newBtn) {
         var snippet = geByClass1('_money_transfer' + txId, html);

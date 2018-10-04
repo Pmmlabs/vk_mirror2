@@ -684,10 +684,6 @@ div.profile_online {
     display: none
 }
 
-.is_vk_mobile .profile_online_lv {
-    color: #4f8cd1
-}
-
 .is_online .profile_online_lv {
     display: block
 }

@@ -1704,32 +1704,6 @@ var Helpdesk = {
             })
         }, getLang("global_cancel"))
     },
-    showVkMobilePassBox: function(e) {
-        return !showBox("/helpdesk?act=pass_vkmobile_box", {
-            ticket_id: cur.ticket_id,
-            hash: e
-        }, {
-            params: {
-                dark: 1
-            }
-        })
-    },
-    passToVkMobile: function(e, t) {
-        var s = curBox(),
-            o = isChecked(geByClass1("_helpdesk_ticket_vkmobile_send_autoanswer"));
-        ajax.post("/helpdesk?act=a_pass_vkmobile", {
-            text: e,
-            ticket_id: cur.ticket_id,
-            hash: t,
-            auto_answer: o
-        }, {
-            onDone: function(e) {
-                showDoneBox(e), s.hide()
-            },
-            showProgress: s.showProgress,
-            hideProgress: s.hideProgress
-        })
-    },
     goToSmsField: function(e, t) {
         checkEvent(t) || ge("helpdesk_post_field_sms") && (cancelEvent(t), isChecked("reply_with_sms") || Helpdesk.toggleSmsFields(ge("reply_with_sms")), scrollToY(getXY("helpdesk_post_field_sms")[1]), elfocus("tickets_reply"), val("helpdesk_post_field_sms__phone", e))
     },

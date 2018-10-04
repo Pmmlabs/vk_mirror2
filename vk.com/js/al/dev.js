@@ -1876,7 +1876,7 @@ var Dev = {
         });
     },
 
-    initCreateAppForm: function() {
+    initCreateAppForm: function(hash) {
         var select_el = geByClass1('_dev_create_app_select'),
             id_el = geByClass1('_dev_create_app_id'),
             form_el = geByClass1('_dev_create_app_form'),
@@ -1960,6 +1960,7 @@ var Dev = {
 
             ajax.post('apps', {
                 'act': 'a_site_fast_add',
+                'hash': hash,
                 'name': app_name,
                 'site_url': app_url,
                 'site_subject': site_subject,
@@ -2115,7 +2116,7 @@ var Dev = {
     },
 
     initWidgetAuthConstructor: function(options) {
-        Dev.initCreateAppForm();
+        Dev.initCreateAppForm(options.hash);
 
         var code_el = geByClass1('_dev_widget_code'),
             preview_el = geByClass1('_dev_widget_preview'),

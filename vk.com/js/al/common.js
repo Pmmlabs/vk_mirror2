@@ -10748,8 +10748,7 @@ function mobileOnlineTip(el, opts) {
         params: {
             act: 'mobile_tt',
             mid: opts.mid,
-            was: opts.was,
-            vk_mobile: opts.vk_mobile
+            was: opts.was
         },
         slide: 15,
         ajxdt: 200,

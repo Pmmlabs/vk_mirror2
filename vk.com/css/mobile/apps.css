@@ -1225,51 +1225,6 @@ input.wide_button {
     background-position: -9px
 }
 
-.vkmobilelvi {
-    background-image: none!important;
-    padding: 0;
-    margin-left: 0;
-    vertical-align: bottom;
-    display: inline-block!important;
-    position: relative
-}
-
-.pp_last_activity .vkmobilelvi {
-    left: -3px
-}
-
-.leftMenu__searchItems .vkmobilelvi {
-    top: 2px
-}
-
-.leftMenu .vkmobilelvi {
-    left: -2px
-}
-
-.inline_item .vkmobilelvi {
-    top: -1px
-}
-
-.mi_head .vkmobilelvi {
-    left: -3px;
-    top: 1px
-}
-
-#ma_search_items .vkmobilelvi {
-    top: 0
-}
-
-.si_body .vkmobilelvi,
-.dialog_item .vkmobilelvi,
-.head_actions_wrap .vkmobilelvi {
-    top: 2px
-}
-
-.di_activity .vkmobilelvi {
-    height: 15px;
-    top: -2px
-}
-
 .top_author,
 .verified {
     background-image: url(/images/mobile/skins/icon/statuses.png?9);
@@ -6213,10 +6168,6 @@ div.pm_item .pm_counter {
     margin: -1px 0
 }
 
-.pp_last_activity_online_vkmobile {
-    color: #4f8cd1
-}
-
 .pp_last_activity .lvi {
     display: none
 }
@@ -10654,8 +10605,7 @@ only screen and (min-device-pixel-ratio: 2) {
     border-bottom: 1px solid #ececec
 }
 
-.docmenu .icon,
-.docmenu .vkmobilelvi {
+.docmenu .icon {
     display: inline-block;
     width: 24px;
     height: 24px;

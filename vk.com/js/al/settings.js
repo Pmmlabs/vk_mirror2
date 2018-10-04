@@ -1192,7 +1192,7 @@ var Settings = {
     switchPaymentsHistoryTab: function(t, e, s) {
         if (checkEvent(s)) return !0;
         var o = clone(nav.objLoc);
-        return uiTabs.switchTab(t), "transfer" === e ? (hide("settings_votes_history_wrap", "settings_payments_subscriptions_wrap"), show("settings_transfer_history_wrap"), o.section = e) : "subscriptions" === e ? (hide("settings_votes_history_wrap", "settings_transfer_history_wrap"), show("settings_payments_subscriptions_wrap"), o.section = e) : (hide("settings_transfer_history_wrap", "settings_payments_subscriptions_wrap"), show("settings_votes_history_wrap"), delete o.section), nav.setLoc(o), !1
+        return uiTabs.switchTab(t), "transfer" === e ? (hide("settings_votes_history_wrap", "settings_payments_subscriptions_wrap"), show("settings_transfer_history_wrap", "settings_payments_transfer_msg"), o.section = e) : "subscriptions" === e ? (hide("settings_votes_history_wrap", "settings_transfer_history_wrap", "settings_payments_transfer_msg"), show("settings_payments_subscriptions_wrap"), o.section = e) : (hide("settings_transfer_history_wrap", "settings_payments_subscriptions_wrap", "settings_payments_transfer_msg"), show("settings_votes_history_wrap"), delete o.section), nav.setLoc(o), !1
     },
     moneyTransferCancel: function(t, e, s, o, n) {
         var i, a, r = domClosest("_row", t),

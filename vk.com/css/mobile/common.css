@@ -1225,51 +1225,6 @@ input.wide_button {
     background-position: -9px
 }
 
-.vkmobilelvi {
-    background-image: none!important;
-    padding: 0;
-    margin-left: 0;
-    vertical-align: bottom;
-    display: inline-block!important;
-    position: relative
-}
-
-.pp_last_activity .vkmobilelvi {
-    left: -3px
-}
-
-.leftMenu__searchItems .vkmobilelvi {
-    top: 2px
-}
-
-.leftMenu .vkmobilelvi {
-    left: -2px
-}
-
-.inline_item .vkmobilelvi {
-    top: -1px
-}
-
-.mi_head .vkmobilelvi {
-    left: -3px;
-    top: 1px
-}
-
-#ma_search_items .vkmobilelvi {
-    top: 0
-}
-
-.si_body .vkmobilelvi,
-.dialog_item .vkmobilelvi,
-.head_actions_wrap .vkmobilelvi {
-    top: 2px
-}
-
-.di_activity .vkmobilelvi {
-    height: 15px;
-    top: -2px
-}
-
 .OwnerColumn__verified,
 .OwnerRow__verified,
 .top_author,
@@ -6220,10 +6175,6 @@ div.pm_item .pm_counter {
     margin: -1px 0
 }
 
-.pp_last_activity_online_vkmobile {
-    color: #4f8cd1
-}
-
 .pp_last_activity .lvi {
     display: none
 }
@@ -10661,8 +10612,7 @@ only screen and (min-device-pixel-ratio: 2) {
     border-bottom: 1px solid #ececec
 }
 
-.docmenu .icon,
-.docmenu .vkmobilelvi {
+.docmenu .icon {
     display: inline-block;
     width: 24px;
     height: 24px;
@@ -25185,17 +25135,13 @@ a.feedBlocks__article:hover {
 .vk__page_newCreatePost .uMailWrite__attachments .medias_audio .medias_link_icon .BookmarksItem .ai_menu_toggle_button,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_audio .medias_link_icon .Icon,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_audio .medias_link_icon .m .vk__page_chatAdd .basis .lvi.mlvi,
-.vk__page_newCreatePost .uMailWrite__attachments .medias_audio .medias_link_icon .m .vk__page_chatAdd .basis .lvi.vkmobilelvi,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_audio .medias_link_icon .m .vk__page_chatSettings .basis .lvi.mlvi,
-.vk__page_newCreatePost .uMailWrite__attachments .medias_audio .medias_link_icon .m .vk__page_chatSettings .basis .lvi.vkmobilelvi,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_audio .medias_link_icon .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
 .vk__page_newCreatePost .uMailWrite__attachments .medias_audio .medias_link_icon .vk__page_redesign .basis .ii_btn,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_link_icon .BookmarksItem .ai_menu_toggle_button,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_link_icon .Icon,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_link_icon .m .vk__page_chatAdd .basis .lvi.mlvi,
-.vk__page_newCreatePost .uMailWrite__attachments .medias_link_icon .m .vk__page_chatAdd .basis .lvi.vkmobilelvi,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_link_icon .m .vk__page_chatSettings .basis .lvi.mlvi,
-.vk__page_newCreatePost .uMailWrite__attachments .medias_link_icon .m .vk__page_chatSettings .basis .lvi.vkmobilelvi,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_link_icon .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
 .vk__page_newCreatePost .uMailWrite__attachments .medias_link_icon .vk__page_redesign .basis .ii_btn {
     display: inline-block;
@@ -27702,9 +27648,7 @@ body.apps_settingsPageBody {
 }
 
 .m .vk__page_chatAdd .basis .lvi.mlvi,
-.m .vk__page_chatAdd .basis .lvi.vkmobilelvi,
-.m .vk__page_chatSettings .basis .lvi.mlvi,
-.m .vk__page_chatSettings .basis .lvi.vkmobilelvi {
+.m .vk__page_chatSettings .basis .lvi.mlvi {
     display: block;
     width: 20px;
     height: 20px;
@@ -27868,8 +27812,7 @@ body.apps_settingsPageBody {
     top: 28px!important
 }
 
-.m .vk__page_chatSettings .mlvi,
-.m .vk__page_chatSettings .vkmobilelvi {
+.m .vk__page_chatSettings .mlvi {
     top: 27px;
     left: -22px
 }
@@ -32265,9 +32208,7 @@ body.apps_settingsPageBody {
 .BookmarksItem .ai_menu_toggle_button,
 .Icon,
 .m .vk__page_chatAdd .basis .lvi.mlvi,
-.m .vk__page_chatAdd .basis .lvi.vkmobilelvi,
 .m .vk__page_chatSettings .basis .lvi.mlvi,
-.m .vk__page_chatSettings .basis .lvi.vkmobilelvi,
 .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
 .vk__page_redesign .basis .ii_btn {
     display: block
@@ -32280,9 +32221,7 @@ body.apps_settingsPageBody {
 .BookmarksItem_link .BookmarkListItem__image_empty:before,
 .Icon:before,
 .m .vk__page_chatAdd .basis .lvi.mlvi:before,
-.m .vk__page_chatAdd .basis .lvi.vkmobilelvi:before,
 .m .vk__page_chatSettings .basis .lvi.mlvi:before,
-.m .vk__page_chatSettings .basis .lvi.vkmobilelvi:before,
 .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"]:before,
 .vk__page_redesign .basis .ii_btn:before {
     content: '';
@@ -32991,11 +32930,8 @@ body.apps_settingsPageBody {
 .Icon_star,
 .Icon_trash,
 .Icon_verified,
-.Icon_vkmobile,
 .m .vk__page_chatAdd .basis .lvi.mlvi,
-.m .vk__page_chatAdd .basis .lvi.vkmobilelvi,
 .m .vk__page_chatSettings .basis .lvi.mlvi,
-.m .vk__page_chatSettings .basis .lvi.vkmobilelvi,
 .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bluer,
 .vk__page_redesign .basis .ii_btn.Icon_bluer {
     width: 20px;
@@ -33019,11 +32955,8 @@ body.apps_settingsPageBody {
 .Icon_star:before,
 .Icon_trash:before,
 .Icon_verified:before,
-.Icon_vkmobile:before,
 .m .vk__page_chatAdd .basis .lvi.mlvi:before,
-.m .vk__page_chatAdd .basis .lvi.vkmobilelvi:before,
 .m .vk__page_chatSettings .basis .lvi.mlvi:before,
-.m .vk__page_chatSettings .basis .lvi.vkmobilelvi:before,
 .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bluer:before,
 .vk__page_redesign .basis .ii_btn.Icon_bluer:before {
     width: 20px;
@@ -33048,15 +32981,10 @@ body.apps_settingsPageBody {
 .vk_2x .Icon_star:before,
 .vk_2x .Icon_trash:before,
 .vk_2x .Icon_verified:before,
-.vk_2x .Icon_vkmobile:before,
 .vk_2x.m .vk__page_chatAdd .basis .lvi.mlvi:before,
 .vk_2x .m .vk__page_chatAdd .basis .lvi.mlvi:before,
-.vk_2x.m .vk__page_chatAdd .basis .lvi.vkmobilelvi:before,
-.vk_2x .m .vk__page_chatAdd .basis .lvi.vkmobilelvi:before,
 .vk_2x.m .vk__page_chatSettings .basis .lvi.mlvi:before,
 .vk_2x .m .vk__page_chatSettings .basis .lvi.mlvi:before,
-.vk_2x.m .vk__page_chatSettings .basis .lvi.vkmobilelvi:before,
-.vk_2x .m .vk__page_chatSettings .basis .lvi.vkmobilelvi:before,
 .vk_2x.m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bluer:before,
 .vk_2x .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bluer:before,
 .vk_2x .vk__page_redesign .basis .ii_btn.Icon_bluer:before {
@@ -33069,9 +32997,7 @@ body.apps_settingsPageBody {
 
 .Icon_phone:before,
 .m .vk__page_chatAdd .basis .lvi.mlvi:before,
-.m .vk__page_chatAdd .basis .lvi.vkmobilelvi:before,
-.m .vk__page_chatSettings .basis .lvi.mlvi:before,
-.m .vk__page_chatSettings .basis .lvi.vkmobilelvi:before {
+.m .vk__page_chatSettings .basis .lvi.mlvi:before {
     background-position: 0 -20px
 }
 
@@ -33143,18 +33069,6 @@ body.apps_settingsPageBody {
 
 .Icon_pin:before {
     background-position: 0 -382px
-}
-
-.Icon_vkmobile:before {
-    background-position: 0 -492px
-}
-
-.Icon_vkmobile.Icon_blue:before {
-    background-position: 0 -512px
-}
-
-.Icon_vkmobile.Icon_white:before {
-    background-position: 0 -532px
 }
 
 .Icon_revote:before {
@@ -38459,9 +38373,7 @@ a .BookmarkListItem__subtitle:hover {
 .Bookmarks__tagsRemove .BookmarksItem .ai_menu_toggle_button,
 .Bookmarks__tagsRemove .Icon,
 .Bookmarks__tagsRemove .m .vk__page_chatAdd .basis .lvi.mlvi,
-.Bookmarks__tagsRemove .m .vk__page_chatAdd .basis .lvi.vkmobilelvi,
 .Bookmarks__tagsRemove .m .vk__page_chatSettings .basis .lvi.mlvi,
-.Bookmarks__tagsRemove .m .vk__page_chatSettings .basis .lvi.vkmobilelvi,
 .Bookmarks__tagsRemove .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
 .Bookmarks__tagsRemove .vk__page_redesign .basis .ii_btn {
     position: absolute;
@@ -38478,9 +38390,7 @@ a .BookmarkListItem__subtitle:hover {
 .Bookmarks__tagsRemove .BookmarksItem .ai_menu_toggle_button,
 .Bookmarks__tagsRemove .Icon,
 .Bookmarks__tagsRemove .m .vk__page_chatAdd .basis .lvi.mlvi,
-.Bookmarks__tagsRemove .m .vk__page_chatAdd .basis .lvi.vkmobilelvi,
 .Bookmarks__tagsRemove .m .vk__page_chatSettings .basis .lvi.mlvi,
-.Bookmarks__tagsRemove .m .vk__page_chatSettings .basis .lvi.vkmobilelvi,
 .Bookmarks__tagsRemove .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
 .Bookmarks__tagsRemove .vk__page_redesign .basis .ii_btn {
     left: 0
@@ -38503,9 +38413,7 @@ a .BookmarkListItem__subtitle:hover {
 .Bookmarks__tagsSelectItem .BookmarksItem .ai_menu_toggle_button,
 .Bookmarks__tagsSelectItem .Icon,
 .Bookmarks__tagsSelectItem .m .vk__page_chatAdd .basis .lvi.mlvi,
-.Bookmarks__tagsSelectItem .m .vk__page_chatAdd .basis .lvi.vkmobilelvi,
 .Bookmarks__tagsSelectItem .m .vk__page_chatSettings .basis .lvi.mlvi,
-.Bookmarks__tagsSelectItem .m .vk__page_chatSettings .basis .lvi.vkmobilelvi,
 .Bookmarks__tagsSelectItem .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
 .Bookmarks__tagsSelectItem .vk__page_redesign .basis .ii_btn {
     position: absolute;
@@ -38641,9 +38549,7 @@ a .BookmarkListItem__subtitle:hover {
 .BookmarksPopup__createButton .BookmarksItem .ai_menu_toggle_button,
 .BookmarksPopup__createButton .Icon,
 .BookmarksPopup__createButton .m .vk__page_chatAdd .basis .lvi.mlvi,
-.BookmarksPopup__createButton .m .vk__page_chatAdd .basis .lvi.vkmobilelvi,
 .BookmarksPopup__createButton .m .vk__page_chatSettings .basis .lvi.mlvi,
-.BookmarksPopup__createButton .m .vk__page_chatSettings .basis .lvi.vkmobilelvi,
 .BookmarksPopup__createButton .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
 .BookmarksPopup__createButton .vk__page_redesign .basis .ii_btn {
     position: absolute;
@@ -40297,17 +40203,13 @@ a .BookmarkListItem__subtitle:hover {
 .comment_item .mi_forwarded .BookmarksItem .ai_menu_toggle_button:not(.Icon_revote),
 .comment_item .mi_forwarded .Icon:not(.Icon_revote),
 .comment_item .mi_forwarded .m .vk__page_chatAdd .basis .lvi.mlvi:not(.Icon_revote),
-.comment_item .mi_forwarded .m .vk__page_chatAdd .basis .lvi.vkmobilelvi:not(.Icon_revote),
 .comment_item .mi_forwarded .m .vk__page_chatSettings .basis .lvi.mlvi:not(.Icon_revote),
-.comment_item .mi_forwarded .m .vk__page_chatSettings .basis .lvi.vkmobilelvi:not(.Icon_revote),
 .comment_item .mi_forwarded .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"]:not(.Icon_revote),
 .comment_item .mi_forwarded .vk__page_redesign .basis .ii_btn:not(.Icon_revote),
 .msg__text .mi_forwarded .BookmarksItem .ai_menu_toggle_button:not(.Icon_revote),
 .msg__text .mi_forwarded .Icon:not(.Icon_revote),
 .msg__text .mi_forwarded .m .vk__page_chatAdd .basis .lvi.mlvi:not(.Icon_revote),
-.msg__text .mi_forwarded .m .vk__page_chatAdd .basis .lvi.vkmobilelvi:not(.Icon_revote),
 .msg__text .mi_forwarded .m .vk__page_chatSettings .basis .lvi.mlvi:not(.Icon_revote),
-.msg__text .mi_forwarded .m .vk__page_chatSettings .basis .lvi.vkmobilelvi:not(.Icon_revote),
 .msg__text .mi_forwarded .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"]:not(.Icon_revote),
 .msg__text .mi_forwarded .vk__page_redesign .basis .ii_btn:not(.Icon_revote) {
     float: left;
@@ -40512,10 +40414,6 @@ a .BookmarkListItem__subtitle:hover {
     overflow: hidden;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis
-}
-
-.mailHat__onlineIcon_platform_vkmobile {
-    opacity: 0.7
 }
 
 .Unfold__item_name_returnToChat+.Unfold__item_name_leaveChat {
