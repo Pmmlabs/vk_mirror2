@@ -24022,6 +24022,51 @@ a.feedBlocks__article:hover {
     border-top: 0
 }
 
+.transfersHistoryEmptyBox {
+    padding: 56px 24px 50px;
+    text-align: center
+}
+
+.transfersHistoryEmptyBox__icon {
+    height: 72px;
+    background: url('/images/mobile/money_transfer.png') no-repeat 50%;
+    -moz-background-size: 72px;
+    -o-background-size: 72px;
+    background-size: 72px
+}
+
+.vk_2x .transfersHistoryEmptyBox__icon {
+    background-image: url('/images/mobile/money_transfer_2x.png')
+}
+
+.transfersHistoryEmptyBox__title {
+    margin-top: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #000
+}
+
+.transfersHistoryEmptyBox__text {
+    margin-top: 8px;
+    margin-bottom: 4px;
+    font-size: 14px;
+    line-height: 18px;
+    color: #909499
+}
+
+.transfersHistoryEmptyBox__about {
+    margin-top: 4px;
+    line-height: 34px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #306096
+}
+
+.transfersHistoryEmptyBox__buttons {
+    margin-top: 24px
+}
+
 .transfersHistoryItem {
     min-height: 40px;
     font-size: 15px

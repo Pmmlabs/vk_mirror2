@@ -162,7 +162,7 @@ var stVersions = {
     'blog.css': 20562116862,
     'blog.js': 3939164531,
     'html5audio.js': 976782859,
-    'audioplayer.js': 150581894878,
+    'audioplayer.js': 155961996989,
     'audioplayer.css': 19538310270,
     'audio_html5.js': 287741914,
     'audio.js': 747783412,
@@ -291,7 +291,7 @@ var stVersions = {
     'apps_check.js': 3204387834,
     'apps_check.css': 30309690599,
     'settings.js': 688052291,
-    'settings.css': 31478708116,
+    'settings.css': 31514852653,
     'profile_edit.js': 334053301,
     'profile_edit.css': 18400867053,
     'profile_edit_edu.js': 872687230,
@@ -652,4 +652,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 6027;
+var _rnd = 7388;
