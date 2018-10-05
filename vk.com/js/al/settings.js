@@ -1063,7 +1063,7 @@ var Settings = {
                 t && hasClass(t, "settings_line") && Settings.toggleBlock(domFC(t))
             }
         }, 100), cur.destroy.push(function() {
-            window.onLoginDone = nav.reload
+            window.onLogout = window.onLoginDone = nav.reload
         })
     },
     emailPosts: function(t, e) {

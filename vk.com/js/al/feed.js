@@ -135,7 +135,7 @@ var Feed = {
         })
     },
     update: function(e) {
-        if (!cur.feedUpdateLoading && !(cur.add_queue && window.Notifier && Notifier.addKey(cur.add_queue, feed.updated) && "news" != cur.section || "feed" !== cur.module || "top" == cur.subsection || inArray(cur.section, ["search", "photos_search", "mentions", "articles", "articles_search", "likes", "recommended", "live"]))) {
+        if (!cur.feedUpdateLoading && !(cur.add_queue && window.Notifier && Notifier.addKey(cur.add_queue, feed.updated) && "news" != cur.section || "feed" !== cur.module || "top" == cur.subsection || inArray(cur.section, ["search", "notifications", "photos_search", "mentions", "articles", "articles_search", "likes", "recommended", "live"]))) {
             var t = Math.random();
             "news" != cur.section && "comments" != cur.section && t > .3 || "news" == cur.section && (e || t > .05) || (cur.feedUpdateLoading = !0, ajax.post("al_feed.php?au_" + cur.section, extend(feed.getSectionParams(cur.section), {
                 timestamp: cur.timestamp,

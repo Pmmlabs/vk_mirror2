@@ -149,8 +149,8 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 2660709036,
     'common.js': 1161,
-    'common.css': 54380506365,
-    'cmodules/web/common_web.js': 14,
+    'common.css': 55070490193,
+    'cmodules/web/common_web.js': 16,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
     'uncommon.css': 16038966019,
@@ -235,8 +235,8 @@ var stVersions = {
     'module.css': 25759020943,
     'owner_photo.js': 3368798011,
     'owner_photo.css': 21719460522,
-    'page.js': 1369535730,
-    'page.css': 66361653654,
+    'page.js': 1807538185,
+    'page.css': 65628675035,
     'page_help.css': 26024504386,
     'public.css': 28784503915,
     'cmodules/web/public.js': 329399197,
@@ -263,7 +263,7 @@ var stVersions = {
     'qsearch.js': 4098038985,
     'wall.css': 25510501122,
     'wall.js': 2318930545,
-    'cmodules/web/wall_edit.js': 2852525605,
+    'cmodules/web/wall_edit.js': 1688758971,
     'thumbs_edit.css': 16551719142,
     'thumbs_edit.js': 3014691161,
     'mail.css': 2042965398,
@@ -280,8 +280,8 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 107545807,
-    'feed.css': 25388451898,
+    'feed.js': 3213755207,
+    'feed.css': 27725592138,
     'privacy.js': 253273997,
     'privacy.css': 16806607521,
     'apps.css': 40819840238,
@@ -290,7 +290,7 @@ var stVersions = {
     'apps_edit.css': 37830762265,
     'apps_check.js': 3204387834,
     'apps_check.css': 30309690599,
-    'settings.js': 688052291,
+    'settings.js': 2975578879,
     'settings.css': 31514852653,
     'profile_edit.js': 334053301,
     'profile_edit.css': 18400867053,
@@ -337,7 +337,7 @@ var stVersions = {
     'widgets.css': 33583051110,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 92954634835,
+    'notifier.js': 91897181194,
     'notifier.css': 29806680683,
     'cmodules/sw/sw.js': 2371912913,
     'earthday.js': 2276669993,
@@ -617,14 +617,10 @@ var stTypes = {
         'paginated_table.css': 1,
         'mobile/common.js': 1,
         'mobile/oauth.js': 1,
-        'mobile/adaptive_table.css': 1,
         'mobile/common.css': 1,
-        'mobile/full_browser.css': 1,
-        'mobile/gallery.css': 1,
         'mobile/oauth_android.css': 1,
         'mobile/oauth_ios.css': 1,
-        'mobile/oauth_winmobile.css': 1,
-        'mobile/wiki.css': 1
+        'mobile/oauth_winmobile.css': 1
     },
     fromCompiled: {
         'imn.js': 1,
@@ -652,4 +648,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 7388;
+var _rnd = 8474;

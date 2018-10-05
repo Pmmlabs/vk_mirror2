@@ -3210,7 +3210,7 @@ var Wall = {
         }
     },
     postChanged: function(force) {
-        if (!isVisible('submit_post') || !hasClass(ge('submit_post_box'), 'shown')) Wall.showEditPost();
+        if (!cur.posterActive && !isVisible('submit_post') || !hasClass(ge('submit_post_box'), 'shown')) Wall.showEditPost();
         if (vk.id && !vk.widget && !cur.options.no_draft) {
             clearTimeout(cur.postAutosave);
             var saveCallback = (intval(cur.oid) == vk.id) ? Wall.saveDraft : Wall.saveOwnerDraftText.pbind(cur.oid);
@@ -3220,6 +3220,8 @@ var Wall = {
                 cur.postAutosave = setTimeout(saveCallback, (force === 10) ? 10 : 1000);
             }
         }
+
+        cur.poster && cur.poster.checkState();
     },
     ownerDraftKey: function(ownerId) {
         return 'wall_draft' + vk.id + '_' + ownerId;
@@ -3306,7 +3308,8 @@ var Wall = {
             }
         });
         extend(lsText, {
-            txt: content
+            txt: content,
+            bkg_id: cur.posterBkgId
         });
         if (cur.shareShowImg) {
             extend(lsText, {
@@ -3314,8 +3317,9 @@ var Wall = {
             });
         }
         if (ownerId < 0) {
+            var postbox = cur.poster ? ge('submit_post_box') : domClosest('_submit_post_box', ge('official'));
             extend(lsText, {
-                from: (domData(domClosest('_submit_post_box', ge('official')), 'from-oid') || vk.id),
+                from: (domData(postbox, 'from-oid') || vk.id),
                 signed: (isChecked('signed') ? 1 : 0)
             });
         }
@@ -3331,7 +3335,7 @@ var Wall = {
             from: intval(draft.from),
             signed: intval(draft.signed),
             shareShowImg: intval(draft.shareShowImg)
-        }];
+        }, draft.bkg_id];
     },
     saveOwnerDraftMedia: function(ownerId, type, id, object) {
         if (cur.options.no_draft) {
@@ -3397,8 +3401,10 @@ var Wall = {
             medias = cur.wallAddMedia ? addmedia.getMedias() : [],
             share = (addmedia.shareData || {})
         msg = trim((window.Emoji ? Emoji.editableVal : val)(ge('post_field'))), attachI = 0,
+            bkg_id = cur.posterBkgId || '',
             params = {
-                message: msg
+                message: msg,
+                bkg_id: bkg_id
             };
 
         if (isArray(media) && media.length) {
@@ -3491,7 +3497,7 @@ var Wall = {
         if (cur.options.no_draft) {
             return;
         }
-        if (!data[0] && (!data[1] || !data[1].length)) {
+        if (!data[0] && (!data[1] || !data[1].length) && data[4] == null) {
             return;
         }
 
@@ -3500,9 +3506,19 @@ var Wall = {
             return;
         }
 
-        Emoji.val(field, clean(replaceEntities(data[0] || '')).replace(/\n/g, '<br/>'));
+        var backgroundId = data[4];
+
+        if (!backgroundId) { // data[4] == bkg_id
+            Emoji.val(field, clean(replaceEntities(data[0] || '')).replace(/\n/g, '<br/>'));
+        }
         Wall.showEditPost(function() {
             setTimeout(function() {
+                if (data[4] && cur.poster) {
+                    cur.poster.openPoster({
+                        text: data[0],
+                        bkgId: +data[4]
+                    });
+                }
                 if (data[1] && cur.wallAddMedia) {
                     for (var i in data[1]) {
                         cur.noDraftSave = true;
@@ -3520,7 +3536,7 @@ var Wall = {
         } else if (data[2]) {
             wall.focusOnEnd();
         }
-        if (data[3] !== undefined) {
+        if (data[3]) {
             wall.setReplyAsGroup(ge('official'), data[3]);
             if (data[3].shareShowImg) {
                 cur.shareShowImgRestored = data[3].shareShowImg;
@@ -3600,6 +3616,7 @@ var Wall = {
         addClass('submit_post_box', 'shown');
         Wall.postBoxShadow(true);
         cur.editing = 0;
+        cur.poster && cur.poster.checkState();
 
         if (isFunction(cur.onShowEditPost)) {
             cur.onShowEditPost()
@@ -3611,12 +3628,20 @@ var Wall = {
 
         if (submitPostBoxEl && hasClass(submitPostBoxEl, 'test_posting_experiment_d')) {
             if (is_enabled) {
+                if (cur.poster) {
+                    addClass(cur.poster.getPosterElement(), 'poster_test-group-d-focused');
+                }
+
                 addClass(bodyNode, 'submit_post_box_focused');
 
                 if (cur.postField) {
                     cur.postField.focus();
                 }
             } else {
+                if (cur.poster) {
+                    removeClass(cur.poster.getPosterElement(), 'poster_test-group-d-focused');
+                }
+
                 removeClass(bodyNode, 'submit_post_box_focused');
 
                 if (cur.postField) {
@@ -3628,13 +3653,22 @@ var Wall = {
 
     postBoxFocus: function(event, scrollToScreenTop) {
         stopEvent(event || window.event);
-        if (cur.postField && window.Emoji) {
+        if ((cur.postField && window.Emoji) || (cur.poster && cur.posterActive)) {
             setTimeout(function() {
                 if (scrollToScreenTop) {
-                    Emoji.focus(cur.postField);
-                    scrollToY(getXY(cur.postField)[1] - 15);
+                    if (cur.poster && cur.posterActive) {
+                        cur.poster.focusPoster();
+                        scrollToY(getXY(cur.poster.getPosterElement())[1] - 15);
+                    } else {
+                        Emoji.focus(cur.postField);
+                        scrollToY(getXY(cur.postField)[1] - 15);
+                    }
                 } else {
-                    Emoji.focus(cur.postField, true, ge('submit_post_box'));
+                    if (cur.poster && cur.posterActive) {
+                        cur.poster.focusPoster();
+                    } else {
+                        Emoji.focus(cur.postField, true, ge('submit_post_box'));
+                    }
                 }
             }, 0);
         }
@@ -3760,8 +3794,8 @@ var Wall = {
         delete newParams.message;
         return newParams;
     },
-    focusOnEnd: function() {
-        var el = ge('post_field');
+    focusOnEnd: function(el) {
+        el = ge(el) || ge('post_field');
 
         if (!el) {
             return
@@ -3873,21 +3907,28 @@ var Wall = {
             fromGroup: isChecked(el)
         });
     },
-    sendPost: function(skipLocked) {
+    sendPost: function(skipLocked, isPoster) {
         var addmedia = cur.wallAddMedia || {},
             media = addmedia.chosenMedia || {},
             medias = cur.wallAddMedia ? addmedia.getMedias() : [],
             share = (addmedia.shareData || {}),
-            msg = trim((window.Emoji ? Emoji.editableVal : val)(ge('post_field'))),
+            posterMsgEl = isPoster ? ge('poster-field-msg') : null,
+            msg = isPoster ? trim(posterMsgEl.innerText || posterMsgEl.textContent) : (trim((window.Emoji ? Emoji.editableVal : val)(ge('post_field')))),
             postponePost = false,
             isAnon = Wall.isAnonPost(),
-            sendBtn = ge('send_post');
+            sendBtn = isPoster ? ge('poster-send-btn') : ge('send_post');
 
         var pType = cur.options.suggesting ? 'suggest' : cur.wallType;
 
         if (pType === 'top') {
             pType = 'all';
         }
+
+        if (isPoster) {
+            medias = [];
+        }
+
+        var postbox = isPoster ? ge('submit_post_box') : domClosest('_submit_post_box', ge('official'));
 
         var params = {
             act: 'post',
@@ -3900,7 +3941,8 @@ var Wall = {
             facebook_export: !isAnon && ge('facebook_export') ? (isChecked('facebook_export') ? 1 : 0) : '',
             close_comments: ge('close_comments') ? (isChecked('close_comments') ? 1 : 0) : '',
             mute_notifications: ge('mute_notifications') ? (isChecked('mute_notifications') ? 1 : 0) : '',
-            official: (domData(domClosest('_submit_post_box', ge('official')), 'from-oid') == cur.postTo) ? 1 : '',
+            official: (domData(postbox, 'from-oid') == cur.postTo) ? 1 : '',
+            poster_bkg_id: isPoster ? cur.posterBkgId : '',
             signed: isChecked('signed'),
             anonymous: isAnon,
             hash: cur.options.post_hash,
@@ -3915,6 +3957,16 @@ var Wall = {
 
         if (isArray(media) && media.length) {
             medias.push(clone(media));
+        }
+
+        if (isPoster && cur.posterUploadPhoto) {
+            medias.push([
+                'photo',
+                cur.posterUploadPhoto.owner_id + '_' + cur.posterUploadPhoto.id,
+                false
+            ]);
+
+            params.poster_photo_hash = cur.posterUploadPhoto.post_hash;
         }
 
         hide('submit_post_error');
@@ -4196,6 +4248,14 @@ var Wall = {
         setTimeout(function() {
             ajax.post('al_wall.php', Wall.fixPostParams(params), {
                 onDone: function(rows, names) {
+                    if (cur.poster && isPoster) {
+                        cur.poster.onSend();
+                        cur.poster.resetPoster();
+                        cur.poster.closePoster(null, true);
+                    } else if (cur.poster && cur.posterHidden) {
+                        cur.poster.resetPoster();
+                    }
+
                     Wall.clearInput();
                     Wall.postBoxShadow(false);
 
@@ -7960,6 +8020,12 @@ var Wall = {
                         args.unshift(cur.oid);
                         Wall.saveOwnerDraftMedia.apply(window, args);
                     }
+
+                    if (cur.poster) {
+                        setTimeout(function() {
+                            cur.poster && cur.poster.checkState();
+                        });
+                    }
                 },
                 onMediaChange: function() {
                     Wall.postChanged();
@@ -8069,6 +8135,14 @@ var Wall = {
 
         if (domData(wrap, 'from-oid') == from || !fromData || fromData[0] != from) {
             return false;
+        }
+
+        if (!wrap && cur.poster && domClosest('poster', el)) {
+            wrap = ge('submit_post_box');
+            signed = ge('signed');
+            closeComments = ge('close_comments');
+            muteNotifications = ge('mute_notifications');
+            official = ge('official');
         }
 
         domData(wrap, 'from-oid', from);

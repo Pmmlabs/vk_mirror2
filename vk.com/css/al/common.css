@@ -6047,7 +6047,8 @@ em.highlight {
     font-size: 14px
 }
 
-.page_block:empty {
+.page_block:empty,
+.page_block.hide {
     display: none
 }
 

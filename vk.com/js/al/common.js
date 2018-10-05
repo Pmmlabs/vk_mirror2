@@ -213,6 +213,9 @@ var browser = {
     opera_mobile: /opera mini|opera mobi/i.test(_ua),
     opera_mini: /opera mini/i.test(_ua),
     mac: /mac/i.test(_ua),
+    windows7: /windows nt 6.1/i.test(_ua),
+    windowsVista: /windows nt 6.0/i.test(_ua),
+    windowsXp: /windows nt (5.2|5.1)/i.test(_ua),
     search_bot: /(yandex|google|stackrambler|aport|slurp|msnbot|bingbot|twitterbot|ia_archiver|facebookexternalhit)/i.test(_ua),
     smart_tv: /smart-tv|smarttv/i.test(_ua)
 };
