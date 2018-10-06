@@ -149,7 +149,7 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 2660709036,
     'common.js': 1161,
-    'common.css': 55070490193,
+    'common.css': 56058070099,
     'cmodules/web/common_web.js': 16,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
@@ -236,7 +236,7 @@ var stVersions = {
     'owner_photo.js': 3368798011,
     'owner_photo.css': 21719460522,
     'page.js': 1807538185,
-    'page.css': 65628675035,
+    'page.css': 68805947723,
     'page_help.css': 26024504386,
     'public.css': 28784503915,
     'cmodules/web/public.js': 329399197,
@@ -263,7 +263,7 @@ var stVersions = {
     'qsearch.js': 4098038985,
     'wall.css': 25510501122,
     'wall.js': 2318930545,
-    'cmodules/web/wall_edit.js': 1688758971,
+    'cmodules/web/wall_edit.js': 591107786,
     'thumbs_edit.css': 16551719142,
     'thumbs_edit.js': 3014691161,
     'mail.css': 2042965398,
@@ -441,7 +441,7 @@ var stVersions = {
     'ui.js': 1289956404,
     'ui_common.js': 2022847806,
     'ui_common.css': 15365445019,
-    'cmodules/web/ui_media_selector.js': 2648939305,
+    'cmodules/web/ui_media_selector.js': 3596250543,
     'ui_media_selector.css': 30520955091,
     'ui_manual.css': 17050408103,
     'admin.css': 18757714053,
@@ -541,8 +541,8 @@ var stVersions = {
     'cmodules/web/article.js': 43503301439,
     'cmodules/web/article_layer.js': 28670762265,
     'article_view.js': 25047846721,
-    'bookmarks.css': 16682403446,
-    'cmodules/web/bookmarks.js': 3562856140,
+    'bookmarks.css': 15417503284,
+    'cmodules/web/bookmarks.js': 1992680528,
     'sf.css': 20916251115,
     'shortener.js': 16413120,
     'cmodules/web/pretty_cards.js': 82460730,
@@ -589,7 +589,7 @@ var stVersions = {
     'ui_gallery.css': 17059052662,
     'cmodules/web/ui_components.js': 3224689059,
     'apps_feed_blocks.css': 16892843186,
-    'cmodules/web/landing_transparency.js': 250661320,
+    'cmodules/web/landing_transparency.js': 3704310853,
     'cmodules/web/emoji.js': 164878560,
     'lang': 6911
 };
@@ -648,4 +648,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 8474;
+var _rnd = 1105;

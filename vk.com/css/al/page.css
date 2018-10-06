@@ -4263,6 +4263,15 @@ a.page_media_link_desc {
     filter: alpha(opacity=60)
 }
 
+.page_media_link_thumb {
+    position: relative
+}
+
+.page_media_link_thumb .page_media_link__bookmark_button {
+    top: 6px;
+    right: 7px
+}
+
 .page_media_caption {
     padding: 1px 0 5px;
     line-height: 140%;
