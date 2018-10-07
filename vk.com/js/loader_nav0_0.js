@@ -441,7 +441,7 @@ var stVersions = {
     'ui.js': 1289956404,
     'ui_common.js': 2022847806,
     'ui_common.css': 15365445019,
-    'cmodules/web/ui_media_selector.js': 3596250543,
+    'cmodules/web/ui_media_selector.js': 4416436881,
     'ui_media_selector.css': 30520955091,
     'ui_manual.css': 17050408103,
     'admin.css': 18757714053,
@@ -648,4 +648,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 2708;
+var _rnd = 3363;
