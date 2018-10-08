@@ -908,6 +908,7 @@ var MoneyTransfer = {
     frameHeight: function(height, skipContHeight) {
         var fr = ge('transfer_iframe');
         if (height) {
+            height = Math.max(height, 250);
             cur.prevFrameHeight = fr.style.height;
             fr.style.height = height + 'px';
         } else {
@@ -927,6 +928,9 @@ var MoneyTransfer = {
         if (e.data && e.data.substr(0, 1) == '{') {
             message = parseJSON(e.data);
             if (message.type != 'billing') return;
+        }
+        if (vk.dev) {
+            debugLog(message);
         }
         if (message.action === 'resizeFrame') {
             setTimeout(MoneyTransfer.frameHeight.pbind(message.action_params.height), 200);

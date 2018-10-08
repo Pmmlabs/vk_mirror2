@@ -290,7 +290,7 @@ var stVersions = {
     'apps_edit.css': 37830762265,
     'apps_check.js': 3204387834,
     'apps_check.css': 30309690599,
-    'settings.js': 2975578879,
+    'settings.js': 688052291,
     'settings.css': 31514852653,
     'profile_edit.js': 334053301,
     'profile_edit.css': 18400867053,
@@ -348,7 +348,7 @@ var stVersions = {
     'docs.css': 26985229554,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 17884141230,
-    'helpdesk.js': 196907323,
+    'helpdesk.js': 651381551,
     'helpdesk.css': 29836857768,
     'tickets.js': 929097213,
     'tickets.css': 33778449531,
@@ -378,7 +378,7 @@ var stVersions = {
     'away.css': 20698359082,
     'stats.css': 18061547484,
     'payments.css': 33399550822,
-    'payments.js': 1869031586,
+    'payments.js': 947910724,
     'offers.css': 978996883,
     'offers.js': 2030679272,
     'call.js': 4217435992,
@@ -648,4 +648,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 9035;
+var _rnd = 4953;

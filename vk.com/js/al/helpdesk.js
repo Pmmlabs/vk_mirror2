@@ -1020,7 +1020,7 @@ var Helpdesk = {
                 }
                 break;
             case "history":
-                t.act = "get_answers", t.mid = nav.objLoc.mid, t.section = nav.objLoc.section
+                t.act = "get_answers", t.mid = nav.objLoc.mid, t.section = nav.objLoc.section, t.tab && (nav.objLoc.tab = t.tab)
         }
         return t
     },
@@ -1055,9 +1055,9 @@ var Helpdesk = {
                 cur.checkedTickets = {};
                 break;
             case "history":
-                query.q ? (show("tickets_history_tabs__search"), uiTabs.switchTab(geByClass1("ui_tab", "tickets_history_tabs__search"))) : (uiTabs.switchTab(geByClass1("ui_tab", "tickets_history_tabs__all"), {
-                    noAnim: 1
-                }), hide("tickets_history_tabs__search"))
+                uiTabs.switchTab(geByClass1("ui_tab", "tickets_history_tabs__all"), {
+                    noAnim: query.q ? 0 : 1
+                })
         }
         var options = {
             cache: 1,
@@ -1081,7 +1081,7 @@ var Helpdesk = {
                         }), nav.setLoc(nav.objLoc);
                         break;
                     case "history":
-                        delete nav.objLoc.offset, delete nav.objLoc.section, ge("tickets_replies").innerHTML = cont, query.q ? nav.objLoc.q = query.q : delete nav.objLoc.q, nav.setLoc(nav.objLoc)
+                        delete nav.objLoc.offset, val("tickets_replies", cont), query.q ? nav.objLoc.q = query.q : delete nav.objLoc.q, script && eval(script), nav.setLoc(nav.objLoc)
                 }
             }
         };
@@ -1122,12 +1122,11 @@ var Helpdesk = {
     toggleSimilar: function(e) {
         toggle("tickets_similar", !isVisible("tickets_similar"));
         var t = ge("toggle_similar_link");
-        return toggleClass(t, "opened", isVisible("tickets_similar")), isVisible("tickets_similar") ? (t.innerHTML = getLang("support_hide_similar"),
-            ge("similar_search") && cur.searchDD.updateInput(), cur.similarCount < 10 ? hide("tickets_toup") : isVisible("tickets_toup") && (setStyle(ge("tickets_toup"), {
-                height: "0px"
-            }), setStyle(ge("tickets_toup"), {
-                height: getSize(ge("tickets_similar"))[1]
-            }))) : t.innerHTML = cur.similarCount ? getLang("support_show_similar", cur.similarCount) : getLang("support_search_similar"), e && scrollToTop(0), !1
+        return toggleClass(t, "opened", isVisible("tickets_similar")), isVisible("tickets_similar") ? (t.innerHTML = getLang("support_hide_similar"), ge("similar_search") && cur.searchDD.updateInput(), cur.similarCount < 10 ? hide("tickets_toup") : isVisible("tickets_toup") && (setStyle(ge("tickets_toup"), {
+            height: "0px"
+        }), setStyle(ge("tickets_toup"), {
+            height: getSize(ge("tickets_similar"))[1]
+        }))) : t.innerHTML = cur.similarCount ? getLang("support_show_similar", cur.similarCount) : getLang("support_search_similar"), e && scrollToTop(0), !1
     },
     toggleSimilarRows: function(e) {
         var t = attr(e, "toggle-text"),
