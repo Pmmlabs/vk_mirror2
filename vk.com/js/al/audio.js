@@ -530,7 +530,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         var a = t.playlistData;
         a && (i = getAudioPlayer().getPlaylist(a.type, a.ownerId, a.id), i.getAudiosCount() || (i.mergeWith(a), i.load()))
     }
-    i && (this._pagePlaylist = i, domData(this._els.audioRows, "playlist-id", i.getId())), this._initAudioRowsAutoList()
+    i && (this._pagePlaylist = i, domData(this._els.audioRows, "playlist-id", i.getId())), this._initAudioRowsAutoList(), this._data.reverse || this._enableAudioRowsSorter()
 }, AudioPage.prototype.getSortedList = function() {
     return this._sortedList
 }, AudioPage.prototype.shuffleAudioPage = function() {
@@ -595,14 +595,20 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         o.play(l.getAudiosList()[0], l, a)
     })
 }, AudioPage.prototype._enableAudioRowsSorter = function(e) {
-    this.isPodcastPage() || !this._data.audiosReorderHash && !e || (this._audioRowsSorter && this._audioRowsSorter.destroy(), this._audioRowsSorter = new GridSorter(this._els.audioRows, "", {
+    (this._data.audiosReorderHash || e) && (this._audioRowsSorter && this._audioRowsSorter.destroy(), this._audioRowsSorter = new GridSorter(this._els.audioRows, "", {
         wrapNode: this.isLayer() ? this._scroll.scroller : void 0,
         onReorder: function(t, i, a) {
             var o, s = domData(t, "full-id"),
                 l = domData(a, "full-id"),
                 r = e ? getAudioPlayer().getCurrentPlaylist() : this.getPageCurrentPlaylist(),
                 d = r.indexOfAudio(s);
-            l ? (o = r.indexOfAudio(l), o += 1) : o = 0, r.moveAudio(d, o), e || ajax.post("al_audio.php", {
+            l ? (o = r.indexOfAudio(l), o += 1) : o = 0, r.moveAudio(d, o), this.isPodcastPage() ? ajax.post("al_podcasts.php", {
+                act: "a_reorder_episodes",
+                hash: this._data.audiosReorderHash,
+                oid: this.getOwnerId(),
+                episode_id: s ? s.split("_")[1] : 0,
+                next_episode_id: l ? l.split("_")[1] : 0
+            }) : e || ajax.post("al_audio.php", {
                 act: "reorder_audios",
                 hash: this._data.audiosReorderHash,
                 owner_id: this.getOwnerId(),
@@ -671,7 +677,8 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
 }, AudioPage.editPlaylist = function(e, t, i, a) {
     if (vk.widget)
         for (var o in a) a.hasOwnProperty(o) && (isString(a[o]) ? a[o] = clean(a[o]) : isFunction(a[o]) ? delete a[o] : a[o] = intval(a[o]));
-    "edit" == i && a && (a.audioAttachSwitchOwnerId = !1), a && a.audioAttachSwitchOwnerId && (cur.audioAttachSwitchOwnerId = a.audioAttachSwitchOwnerId), i = i || "edit";
+    "edit" == i && a && (a.audioAttachSwitchOwnerId = !1), a && a.audioAttachSwitchOwnerId && (cur.audioAttachSwitchOwnerId = a.audioAttachSwitchOwnerId),
+        i = i || "edit";
     var s, l;
     if (t) s = getAudioPlayer().getPlaylist(AudioPlaylist.TYPE_PLAYLIST, e, t);
     else if (cur.audioPage) {
@@ -1562,7 +1569,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         }), s.on(this, AudioPlayer.EVENT_AD_DEINITED, function() {}.bind(this)), s.on(this, AudioPlayer.EVENT_AD_READY, function() {}.bind(this)), s.on(this, AudioPlayer.EVENT_AD_STARTED, function() {
             this.toggleRemoveAdsLink(!0), this._trackSlider.toggleAdState(!0), this._trackSlider.setBackValue(0)
         }.bind(this)), s.on(this, AudioPlayer.EVENT_AD_COMPLETED, function() {
-            this.toggleRemoveAdsLink(!1), this._trackSlider.toggleAdState(!1)
+            this.toggleRemoveAdsLink(!1), this._trackSlider.toggleAdState(!1);
         }.bind(this)), s.on(this, AudioPlayer.EVENT_START_LOADING, function() {
             o._trackSlider.toggleLoading(!0)
         }), s.on(this, AudioPlayer.EVENT_CAN_PLAY, function() {

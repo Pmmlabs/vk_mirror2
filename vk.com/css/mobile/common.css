@@ -15744,6 +15744,13 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     margin: 9px 0
 }
 
+._hfixed._lm #m .audioPlaylistSnippet__block.mcont,
+._lm #m .audioPlaylistSnippet__block.mcont {
+    float: none;
+    width: auto;
+    border: none
+}
+
 .r .wall_item .audioPlaylistSnippet .audio_item:first-child {
     margin-top: 0!important
 }
@@ -16440,7 +16447,11 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 1.2;
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    padding: 0 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
 }
 
 .audio_artist_snippet.audio_artist_snippet_big .audio_artist_snippet__play_wrap {
@@ -16472,6 +16483,27 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .audio_artist_snippet.audio_artist_snippet_big .audio_artist_snippet__play:before {
     background-position: 0 -168px
+}
+
+.audio_artist_snippet.audio_artist_snippet_blur .audio_artist_snippet__cover {
+    filter: blur(10px);
+    -webkit-filter: blur(10px)
+}
+
+._hfixed._lm #m .audio_artist_snippet.mcont,
+._lm #m .audio_artist_snippet.mcont {
+    float: none;
+    width: auto;
+    border: none
+}
+
+.audio_artist_snippet__link {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 0
 }
 
 .r .msg_item .audio_item.audio_artist_snippet {
@@ -16512,7 +16544,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     display: inline-block;
     vertical-align: top;
     background-position: 0 0;
-    margin: -2px 5px -4px -10px
+    margin: -3px 5px -4px -10px
 }
 
 .vk_2x .audio_artist_snippet__play:before {
@@ -16527,9 +16559,9 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     position: relative;
     background-repeat: no-repeat;
     background-color: #ebedf0;
-    -moz-background-size: contain;
-    -o-background-size: contain;
-    background-size: contain;
+    -moz-background-size: 98px;
+    -o-background-size: 98px;
+    background-size: 98px;
     width: 98px;
     height: 98px;
     background-image: url(/images/audio/artist_98.png)
