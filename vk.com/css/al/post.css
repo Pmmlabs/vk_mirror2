@@ -95,6 +95,10 @@
     line-height: 1.462
 }
 
+.wall_module .post_poster .post_moder_info {
+    margin: 10px 0
+}
+
 .post_moder_reply {
     color: #939393
 }

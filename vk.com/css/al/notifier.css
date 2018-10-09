@@ -5769,11 +5769,11 @@ div.chat_tab_img {
     width: 24px;
     height: 24px;
     float: left;
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20version%3D%221.0%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2010%2011%22%20width%3D%2210px%22%20height%3D%2211px%22%3E%0A%20%20%20%20%3Cpolygon%20stroke%3D%22%23fff%22%20fill%3D%22%23fff%22%20style%3D%22stroke-linecap%3A%20round%3B%20stroke-linejoin%3A%20round%3B%22%20points%3D%222.5%200.5%202.5%209.5%209.5%205%22%20transform%3D%22%22%2F%3E%0A%3C%2Fsvg%3E") #4872a3 no-repeat 50%
+    background: svg('play') #4872a3 no-repeat 50%
 }
 
 .audio-msg-track.audio-msg-track_playing .audio-msg-track--btn {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20version%3D%221.0%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2010%2011%22%20width%3D%2210px%22%20height%3D%2211px%22%3E%0A%20%20%20%20%3Crect%20x%3D%221.5%22%20y%3D%221%22%20rx%3D%220.5%22%20ry%3D%220.5%22%20width%3D%222%22%20height%3D%229%22%20fill%3D%22%23FFF%22%20stroke%3D%22%23FFF%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%226.5%22%20y%3D%221%22%20rx%3D%220.5%22%20ry%3D%220.5%22%20width%3D%222%22%20height%3D%229%22%20fill%3D%22%23FFF%22%20stroke%3D%22%23FFF%22%2F%3E%0A%3C%2Fsvg%3E")
+    background-image: svg('pause')
 }
 
 .audio-msg-track .audio-msg-track--duration {

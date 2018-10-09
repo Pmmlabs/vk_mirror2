@@ -3907,16 +3907,15 @@ var Wall = {
             fromGroup: isChecked(el)
         });
     },
-    sendPost: function(skipLocked, isPoster) {
+    sendPost: function(skipLocked, submitFromPoster) {
         var addmedia = cur.wallAddMedia || {},
             media = addmedia.chosenMedia || {},
             medias = cur.wallAddMedia ? addmedia.getMedias() : [],
             share = (addmedia.shareData || {}),
-            posterMsgEl = isPoster ? ge('poster-field-msg') : null,
-            msg = isPoster ? trim(posterMsgEl.innerText || posterMsgEl.textContent) : (trim((window.Emoji ? Emoji.editableVal : val)(ge('post_field')))),
+            msg = submitFromPoster ? cur.poster.getMessage() : (trim((window.Emoji ? Emoji.editableVal : val)(ge('post_field')))),
             postponePost = false,
             isAnon = Wall.isAnonPost(),
-            sendBtn = isPoster ? ge('poster-send-btn') : ge('send_post');
+            sendBtn = submitFromPoster ? ge('poster-send-btn') : ge('send_post');
 
         var pType = cur.options.suggesting ? 'suggest' : cur.wallType;
 
@@ -3924,11 +3923,11 @@ var Wall = {
             pType = 'all';
         }
 
-        if (isPoster) {
+        if (submitFromPoster) {
             medias = [];
         }
 
-        var postbox = isPoster ? ge('submit_post_box') : domClosest('_submit_post_box', ge('official'));
+        var postbox = submitFromPoster ? ge('submit_post_box') : domClosest('_submit_post_box', ge('official'));
 
         var params = {
             act: 'post',
@@ -3942,7 +3941,7 @@ var Wall = {
             close_comments: ge('close_comments') ? (isChecked('close_comments') ? 1 : 0) : '',
             mute_notifications: ge('mute_notifications') ? (isChecked('mute_notifications') ? 1 : 0) : '',
             official: (domData(postbox, 'from-oid') == cur.postTo) ? 1 : '',
-            poster_bkg_id: isPoster ? cur.posterBkgId : '',
+            poster_bkg_id: submitFromPoster ? cur.posterBkgId : '',
             signed: isChecked('signed'),
             anonymous: isAnon,
             hash: cur.options.post_hash,
@@ -3959,7 +3958,7 @@ var Wall = {
             medias.push(clone(media));
         }
 
-        if (isPoster && cur.posterUploadPhoto) {
+        if (submitFromPoster && cur.posterUploadPhoto) {
             medias.push([
                 'photo',
                 cur.posterUploadPhoto.owner_id + '_' + cur.posterUploadPhoto.id,
@@ -4248,8 +4247,9 @@ var Wall = {
         setTimeout(function() {
             ajax.post('al_wall.php', Wall.fixPostParams(params), {
                 onDone: function(rows, names) {
-                    if (cur.poster && isPoster) {
+                    if (cur.poster && submitFromPoster) {
                         cur.poster.onSend();
+                        cur.poster.unlockEditPoster();
                         cur.poster.resetPoster();
                         cur.poster.closePoster(null, true);
                     } else if (cur.poster && cur.posterHidden) {
@@ -4325,6 +4325,10 @@ var Wall = {
                 onFail: function(msg) {
                     cur.postSent = false;
                     cur.postponeVideoPost = false;
+
+                    if (cur.poster && submitFromPoster) {
+                        cur.poster.unlockEditPoster();
+                    }
 
                     if (cur.options.onSendPostFail) {
                         cur.options.onSendPostFail.apply(window, arguments);
@@ -9806,7 +9810,7 @@ Composer = {
 
 
         var input = composer.input;
-        var message = trim(window.Emoji ? Emoji.editableVal(input) : val(input));
+        var message = cur.posterWpe && cur.posterWpeSend ? cur.posterWpe.getMessage() : trim(window.Emoji ? Emoji.editableVal(input) : val(input));
         var params = {
             message: message
         };

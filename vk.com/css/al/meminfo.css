@@ -1188,3 +1188,11 @@ h2.meminfo_decline_purchases_title {
 .mi_clickhouse_logs_cell_nowrap {
     white-space: nowrap
 }
+
+.mi_subscription_box>div:not(.tb_tabs_wrap) {
+    padding: 20px 25px
+}
+
+.mi_subscription_box .mi_history_table {
+    margin: 0 -25px!important
+}

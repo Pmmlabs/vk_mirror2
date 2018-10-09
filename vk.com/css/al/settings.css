@@ -2355,6 +2355,6 @@ span.page_block_header_group_notify_settings a {
     margin-top: 3px
 }
 
-#settings_payments_transfer_msg .settings_payments_transfer_msg_buttons .secondary {
+#settings_payments_transfer_msg .settings_payments_transfer_msg_buttons button:first-child {
     margin-right: 6px
 }

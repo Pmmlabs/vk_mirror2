@@ -899,7 +899,7 @@ var Feed = {
             showdt: 400,
             hidedt: 800,
             dir: "auto",
-            className: "rich wall_tt wall_module _feed_notification",
+            className: "rich wall_tt wall_module _feed_notification feed_notification",
             appendParentCls: "scroll_fix_wrap"
         }, s))
     },

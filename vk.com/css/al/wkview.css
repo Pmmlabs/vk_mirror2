@@ -707,6 +707,14 @@ svg+.wk_voting_avatar+.wk_voting_avatar+.wk_voting_avatar+.wk_voting_avatar+.wk_
     margin: 10px auto 0
 }
 
+.post_poster .wl_post_body_wrap {
+    padding: 15px 20px 0
+}
+
+.post_poster .wl_post_body_wrap .wall_signed {
+    margin: 10px 0
+}
+
 .wl_post_body_wrap .page_album_wrap .page_post_sized_thumbs {
     margin: 0
 }

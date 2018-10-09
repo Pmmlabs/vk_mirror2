@@ -288,6 +288,10 @@
     padding: 17px 0 2px
 }
 
+.post_poster:not(.post_signed):not(.post_fr_likes):not(.post_btl) .like_cont {
+    border-top: 0
+}
+
 .like_btns,
 .like_btn {
     display: -ms-flexbox;
@@ -870,29 +874,32 @@
     height: 493px
 }
 
+.copy_quote .poster__view,
+.copy_quote .poster__wrap {
+    margin-top: 10px
+}
+
 .wl_post_body_wrap .poster__view,
-.wl_post_body_wrap .poster__wrap {
-    margin: 10px -25px -12px
+.wl_post_body_wrap .poster__wrap,
+.post:not(.im-mess--post):not(.post_copy) .wall_text .poster__view,
+.post:not(.im-mess--post):not(.post_copy) .wall_text .poster__wrap {
+    margin: 0 -20px
 }
 
-.wall_text .poster__view,
-.wall_text .poster__wrap {
-    margin: 7px -20px -20px
+.post:not(.post_poster):not(.im-mess--post):not(.post_copy) .wall_text .poster__view,
+.post:not(.post_poster):not(.im-mess--post):not(.post_copy) .wall_text .poster__wrap {
+    margin: 0 -20px -20px
 }
 
-.im-mess--post .poster__view,
-.im-mess--post .poster__wrap {
-    margin: 0
-}
-
-.poster__wrap+.wall_signed {
+.post:not(.post_poster):not(.post_copy) .poster__view+.wall_signed,
+.post:not(.post_poster):not(.post_copy) .poster__wrap+.wall_signed {
     margin-top: 31px;
     margin-bottom: -9px
 }
 
-#wk_content .poster__wrap+.wall_signed {
-    margin-top: 31px;
-    margin-bottom: 6px
+.feed_notification .post.post_poster .wall_text .poster__view,
+.feed_notification .post.post_poster .wall_text .poster__wrap {
+    margin: 0
 }
 
 .poster__settings-btn-wrapper {
@@ -902,7 +909,7 @@
     border-left: 1px solid #e7e8ec
 }
 
-.poster__settings-btn-wrapper+poster__cancel-btn-wrapper .poster__cancel-btn {
+.poster__settings-btn-wrapper+.poster__cancel-btn-wrapper .poster__cancel-btn {
     margin-left: 0
 }
 
@@ -927,7 +934,7 @@
     opacity: 1
 }
 
-._poster-edit .poster__image {
+.poster_edit .poster__image {
     border-radius: unset
 }
 
@@ -955,17 +962,16 @@
     text-decoration: underline
 }
 
-.poster__input-msg[contenteditable=true] {
+.poster .poster__input-msg {
     width: 100%;
-    padding-left: 32px;
-    padding-right: 32px;
+    padding: 5px 32px 7px;
     background: none!important;
     border: none!important;
     overflow-wrap: break-word;
     z-index: 3
 }
 
-.poster__input-msg[contenteditable=true],
+.poster .poster__input-msg,
 .poster__placeholder {
     position: absolute;
     top: 50%;
@@ -973,7 +979,8 @@
     text-align: center;
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
-    word-wrap: break-word
+    word-wrap: break-word;
+    box-sizing: border-box
 }
 
 .poster__placeholder {
@@ -985,7 +992,6 @@
     white-space: nowrap;
     -o-transition: color 0.2s ease;
     transition: color 0.2s ease;
-    box-sizing: border-box;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -1279,12 +1285,19 @@
     right: 61px
 }
 
-.wall_module .page_wall_posts .poster._poster-edit {
+.wall_module .page_wall_posts .poster.poster_edit {
     margin-top: 15px
 }
 
 .poster__open-btn-layout {
     position: relative
+}
+
+.poster__image-wrapper {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%
 }
 
 .poster.page_block {
@@ -1297,11 +1310,11 @@
 }
 
 .feed_submit_only_shown .poster:not(.hide),
-.feed_submit_shown .poster:not(.hide) {
+.feed_submit_shown .poster.poster_creating:not(.hide) {
     display: block
 }
 
-.feed_wrap .poster,
+.feed_wrap .poster.poster_creating,
 .poster .page_block.hide,
 .poster.hide {
     display: none
@@ -2609,6 +2622,26 @@ h5.post_author {
 }
 
 .wall_module .wall_text {
+    padding: 8px 20px 19px
+}
+
+.wall_module .post_poster .wall_text {
+    padding: 15px 20px 0
+}
+
+.wall_module .post_poster:not(.im-mess--post) .wall_signed {
+    margin: 10px 0
+}
+
+.wall_module .post_poster.post_fr_likes .wall_text {
+    padding-bottom: 19px
+}
+
+.wall_module .post_poster.post_fr_likes .wall_signed {
+    margin: 10px 0 0
+}
+
+.feed_notification .wall_module .post_poster .wall_text {
     padding: 8px 20px 19px
 }
 
