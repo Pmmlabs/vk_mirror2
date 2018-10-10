@@ -906,7 +906,10 @@
 
 .feed_notification .post.post_poster .wall_text .poster__image-wrapper,
 .feed_notification .post.post_poster .wall_text .poster__view,
-.feed_notification .post.post_poster .wall_text .poster__wrap {
+.feed_notification .post.post_poster .wall_text .poster__wrap,
+.wl_postreach_wall_module .post.post_poster .wall_text .poster__image-wrapper,
+.wl_postreach_wall_module .post.post_poster .wall_text .poster__view,
+.wl_postreach_wall_module .post.post_poster .wall_text .poster__wrap {
     margin: 0
 }
 
@@ -965,7 +968,8 @@
     overflow-wrap: break-word
 }
 
-.poster__text .mem_link {
+.poster__text .mem_link,
+.poster__text>a {
     color: inherit;
     text-decoration: underline
 }
@@ -2639,7 +2643,8 @@ h5.post_author {
     color: #939393
 }
 
-.wall_module .wall_text {
+.wall_module .wall_text,
+.wall_module.wl_postreach_wall_module .post_poster .wall_text {
     padding: 8px 20px 19px
 }
 

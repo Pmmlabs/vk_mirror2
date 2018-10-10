@@ -25659,7 +25659,8 @@ a.feedBlocks__article:hover {
     overflow-wrap: break-word
 }
 
-.poster__text .mem_link {
+.poster__text .mem_link,
+.poster__text>a {
     color: inherit;
     text-decoration: underline
 }
@@ -38320,6 +38321,10 @@ a .BookmarkListItem__subtitle:hover {
     overflow: visible
 }
 
+.Pad:first-child~.pcont .BookmarksBlankPage {
+    min-height: auto
+}
+
 .BookmarksBlankPage__text .BookmarksItem_article .ai_menu_toggle_button,
 .BookmarksBlankPage__text .BookmarksItem_post .ai_menu_toggle_button,
 .BookmarksBlankPage__text .BookmarksItem_video .ai_menu_toggle_button,
@@ -40315,6 +40320,139 @@ a .BookmarkListItem__subtitle:hover {
     margin-bottom: 12px
 }
 
+.msg__reply {
+    border-left: 2px solid rgba(99, 131, 168, .4);
+    padding-left: 8px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.msg__replyInner {
+    width: 1px;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -moz-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+.msg__replyPreview {
+    width: 40px;
+    height: 40px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -moz-box-flex: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    background: transparent 50% no-repeat;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin-right: 8px
+}
+
+.msg__replyPreview_empty,
+.msg__replyPreview_icon {
+    background-color: #b1b8bf
+}
+
+.msg__replyPreview_icon {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%
+}
+
+.msg__replyPreviewDoc {
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224px%22%20height%3D%2224px%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%3Cpath%20d%3D%22M4%2C5%20L4%2C18%20C4%2C19.6568542%205.34314575%2C21%207%2C21%20L18%2C21.0023068%20C19.6568542%2C21.0023068%2021%2C19.6591611%2021%2C18.0023068%20C21%2C18.0015376%2020.9999997%2C18.0007683%2020.9999991%2C17.9999991%20L20.9906366%2C8.82752581%20C20.9902289%2C8.29762608%2020.7795465%2C7.78954652%2020.4048507%2C7.41485071%20L15.5757864%2C2.58578644%20C15.2007137%2C2.21071368%2014.6920059%2C2%2014.1615729%2C2%20L7%2C2%20C5.34314575%2C2%204%2C3.34314575%204%2C5%20Z%20M14.0121321%2C4.01213205%20L17.987871%2C7.987871%20C18.1050283%2C8.10502829%2018.1050283%2C8.2949778%2017.987871%2C8.41213509%20C17.9316104%2C8.46839569%2017.8553047%2C8.50000272%2017.7757402%2C8.50000306%20L14%2C8.50002111%20C13.7238576%2C8.50002227%2013.4999991%2C8.27616559%2013.4999979%2C8.00002322%20C13.4999979%2C8.00002252%2013.4999979%2C8.00002181%2013.4999979%2C8.00002111%20L13.5%2C4.2242641%20C13.5%2C4.05857867%2013.6343146%2C3.92426409%2013.8%2C3.92426409%20C13.879565%2C3.92426409%2013.9558711%2C3.95587114%2014.0121321%2C4.01213205%20Z%22%20fill%3D%22%23ffffff%22%3E%3C%2Fpath%3E%0A%3C%2Fsvg%3E') 50% no-repeat
+}
+
+.msg__replyHead {
+    margin-bottom: 2px;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    white-space: nowrap
+}
+
+.msg__replyHead,
+.msg__replyHeadRow {
+    height: 18px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.msg__replyHeadRow {
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+    -moz-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    width: 100%;
+    line-height: normal
+}
+
+.msg__replyName {
+    color: #306096;
+    font-weight: 500;
+    font-size: 15px;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis
+}
+
+.msg__replyDate {
+    color: #909499;
+    font-size: 13px;
+    margin-left: 8px;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0
+}
+
+.msg__replyBody {
+    height: 20px;
+    line-height: 20px;
+    color: #000;
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: -0.2px;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%
+}
+
+.msg__replyAttach {
+    color: #909499
+}
+
+.msg__replyLink {
+    display: block;
+    margin-top: 6px;
+    margin-bottom: 6px
+}
+
 .msg__text {
     margin-top: 2px;
     color: #000;
@@ -40356,6 +40494,10 @@ a .BookmarkListItem__subtitle:hover {
 
 .msg__text .mi_forwarded .mi_text {
     margin-top: 2px
+}
+
+.msg__text .mi_text {
+    line-height: 20px
 }
 
 @media (max-width: 319px) {
@@ -40935,6 +41077,12 @@ a .BookmarkListItem__subtitle:hover {
 
 .mailActs__button:first-child {
     margin-right: 6px
+}
+
+.mailActs__button[disabled] {
+    opacity: 0.6;
+    cursor: default;
+    pointer-events: none
 }
 
 .mailActs__icon {
@@ -41705,6 +41853,31 @@ a .BookmarkListItem__subtitle:hover {
 
 .uMailWrite_canAttachMoney .uMailWrite__button_attach .Unfold__item_money {
     display: block
+}
+
+.uMailWrite__reply {
+    height: 60px;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    padding-right: 48px;
+    border-top: solid 0.5px hsla(0, 0%, 60%, .4);
+    display: none
+}
+
+.uMailWrite__reply_visible {
+    display: block
+}
+
+.uMailWrite__replyClose {
+    position: absolute;
+    top: 12px;
+    right: 0;
+    width: 36px;
+    height: 36px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2236%22%20height%3D%2236%22%20viewBox%3D%220%200%2036%2036%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M12.292%2022.217a.982.982%200%200%200-.012%201.396l.107.107a.974.974%200%200%200%201.396-.012L18%2019.36l4.217%204.35a.982.982%200%200%200%201.396.01l.107-.106a.974.974%200%200%200-.012-1.396L19.36%2018l4.35-4.217a.982.982%200%200%200%20.01-1.396l-.106-.107a.974.974%200%200%200-1.396.012L18%2016.64l-4.217-4.35a.982.982%200%200%200-1.396-.01l-.107.106a.974.974%200%200%200%20.012%201.396L16.64%2018l-4.35%204.217z%22%20fill%3D%22%238391A0%22%20opacity%3D%22.7%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat
 }
 
 .uMailWrite__attachments {
@@ -42656,7 +42829,8 @@ a .BookmarkListItem__subtitle:hover {
 .messenger_actionsOpen .messenger__write,
 .uMessenger_folder_important .messenger__write,
 .uMessenger_folder_unread .messenger__write {
-    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
     max-height: 72px
 }
 

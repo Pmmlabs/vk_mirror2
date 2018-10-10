@@ -162,7 +162,7 @@ var stVersions = {
     'blog.css': 20562116862,
     'blog.js': 3939164531,
     'html5audio.js': 976782859,
-    'audioplayer.js': 157692661596,
+    'audioplayer.js': 158298957935,
     'audioplayer.css': 19538310270,
     'audio_html5.js': 287741914,
     'audio.js': 2398309597,
@@ -236,7 +236,7 @@ var stVersions = {
     'owner_photo.js': 3368798011,
     'owner_photo.css': 21719460522,
     'page.js': 522348813,
-    'page.css': 69532329259,
+    'page.css': 65492025955,
     'page_help.css': 25179520257,
     'public.css': 27939519786,
     'cmodules/web/public.js': 329399197,
@@ -270,12 +270,12 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 212863516125,
-    'imn.js': 289105045439,
+    'imn.js': 288204974166,
     'im.js': 1322065005,
     'wide_dd.css': 18581532852,
     'wide_dd.js': 452755344,
     'writebox.css': 19008131827,
-    'writebox.js': 71927357298,
+    'writebox.js': 72533653637,
     'sharebox.js': 3306997107,
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
@@ -337,7 +337,7 @@ var stVersions = {
     'widgets.css': 32738066981,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 95075702094,
+    'notifier.js': 95681998433,
     'notifier.css': 26331469779,
     'cmodules/sw/sw.js': 2371912913,
     'earthday.js': 2276669993,
@@ -649,4 +649,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 9575;
+var _rnd = 7954;
