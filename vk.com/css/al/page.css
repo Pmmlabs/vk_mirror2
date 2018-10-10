@@ -288,7 +288,7 @@
     padding: 17px 0 2px
 }
 
-.post_poster:not(.post_signed):not(.post_fr_likes):not(.post_btl) .like_cont {
+.post_poster:not(.post_signed):not(.post_fr_likes):not(.post_btl):not(.wpe_wrap) .like_cont {
     border-top: 0
 }
 
@@ -861,6 +861,7 @@
     box-shadow: none
 }
 
+.poster__image-wrapper,
 .poster__view,
 .poster__wrap {
     position: relative;
@@ -869,34 +870,41 @@
     z-index: 1
 }
 
+#wk_content .poster__image-wrapper,
 #wk_content .poster__view,
 #wk_content .poster__wrap {
     height: 493px
 }
 
+.copy_quote .poster__image-wrapper,
 .copy_quote .poster__view,
 .copy_quote .poster__wrap {
     margin-top: 10px
 }
 
+.wl_post_body_wrap .poster__image-wrapper,
 .wl_post_body_wrap .poster__view,
 .wl_post_body_wrap .poster__wrap,
+.post:not(.im-mess--post):not(.post_copy) .wall_text .poster__image-wrapper,
 .post:not(.im-mess--post):not(.post_copy) .wall_text .poster__view,
 .post:not(.im-mess--post):not(.post_copy) .wall_text .poster__wrap {
     margin: 0 -20px
 }
 
+.post:not(.post_poster):not(.im-mess--post):not(.post_copy) .wall_text .poster__image-wrapper,
 .post:not(.post_poster):not(.im-mess--post):not(.post_copy) .wall_text .poster__view,
 .post:not(.post_poster):not(.im-mess--post):not(.post_copy) .wall_text .poster__wrap {
     margin: 0 -20px -20px
 }
 
+.post:not(.post_poster):not(.post_copy) .poster__image-wrapper+.wall_signed,
 .post:not(.post_poster):not(.post_copy) .poster__view+.wall_signed,
 .post:not(.post_poster):not(.post_copy) .poster__wrap+.wall_signed {
     margin-top: 31px;
     margin-bottom: -9px
 }
 
+.feed_notification .post.post_poster .wall_text .poster__image-wrapper,
 .feed_notification .post.post_poster .wall_text .poster__view,
 .feed_notification .post.post_poster .wall_text .poster__wrap {
     margin: 0
@@ -1296,8 +1304,18 @@
 .poster__image-wrapper {
     position: absolute;
     top: 0;
-    height: 100%;
     width: 100%
+}
+
+.poster__loading-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+    z-index: 103;
+    background-color: hsla(0, 0%, 100%, .4)
 }
 
 .poster.page_block {

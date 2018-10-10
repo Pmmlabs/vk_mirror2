@@ -522,6 +522,7 @@ var Feed = {
             case "friends":
             case "videos":
             case "photos":
+            case "feed_podcasts":
                 void 0 === (t.subsection = cur.subsections[e]) && delete t.subsection;
                 break;
             case "owner":
@@ -775,7 +776,10 @@ var Feed = {
                 r = hasClass(s, "on") ? "top" : "recent";
                 break;
             case "articles":
-                r = hasClass(s, "on") ? "suggested" : "top"
+                r = hasClass(s, "on") ? "suggested" : "top";
+                break;
+            case "feed_podcasts":
+                r = hasClass(s, "on") ? "recent" : "top"
         }
         feed.switchSubSection(r, t, o)
     },
@@ -1390,7 +1394,7 @@ var Feed = {
             a = {};
         if (!i) return a;
         if ("ads_feed_placeholder" === i.id) return a;
-        a.module = cur.module, a.index = r, "feed" == cur.module && ("search" == cur.section ? (a.module = "feed_search", a.q = cur.q) : "news" == cur.section ? a.module = cur.subsection ? "feed_news_" + cur.subsection : "feed_news" : "recommended" == cur.section ? a.module = cur.subsection ? "feed_recommended_" + cur.subsection : "feed_recommended" : "friends" == cur.section ? a.module = cur.subsection ? "feed_friends_" + cur.subsection : "feed_friends" : "groups" == cur.section ? a.module = cur.subsection ? "feed_groups_" + cur.subsection : "feed_groups" : "videos" == cur.section ? a.module = cur.subsection ? "feed_videos_" + cur.subsection : "feed_videos" : "photos" == cur.section ? a.module = cur.subsection ? "feed_photos_" + cur.subsection : "feed_photos" : "list" == cur.section ? a.module = cur.subsection ? "feed_list_" + cur.subsection : "feed_list" : a.module = "feed_other");
+        a.module = cur.module, a.index = r, "feed" == cur.module && ("search" == cur.section ? (a.module = "feed_search", a.q = cur.q) : "news" == cur.section ? a.module = cur.subsection ? "feed_news_" + cur.subsection : "feed_news" : "recommended" == cur.section ? a.module = cur.subsection ? "feed_recommended_" + cur.subsection : "feed_recommended" : "friends" == cur.section ? a.module = cur.subsection ? "feed_friends_" + cur.subsection : "feed_friends" : "groups" == cur.section ? a.module = cur.subsection ? "feed_groups_" + cur.subsection : "feed_groups" : "videos" == cur.section ? a.module = cur.subsection ? "feed_videos_" + cur.subsection : "feed_videos" : "photos" == cur.section ? a.module = cur.subsection ? "feed_photos_" + cur.subsection : "feed_photos" : "feed_podcasts" == cur.section ? a.module = cur.subsection ? "feed_pods_" + cur.subsection : "feed_pods" : "list" == cur.section ? a.module = cur.subsection ? "feed_list_" + cur.subsection : "feed_list" : a.module = "feed_other");
         var c = i.getAttribute("data-ad-view");
         c && (a["ad_" + c] = 1);
         var d = i.getAttribute("post_view_hash");
