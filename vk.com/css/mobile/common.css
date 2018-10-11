@@ -36256,6 +36256,16 @@ body.apps_settingsPageBody {
     display: block
 }
 
+.Settings__alertTitle {
+    font-size: 17px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    line-height: 1.18;
+    padding-bottom: 0;
+    color: #000
+}
+
 .ActivitySettings__lastActivityTitle {
     opacity: 0.5;
     font-size: 14px;
@@ -38645,18 +38655,23 @@ a .BookmarkListItem__subtitle:hover {
     z-index: 7
 }
 
-.vk_flex_yes .header__center+.BookmarksTagsButton {
-    position: relative
+@media (min-width: 320px) and (max-width: 881px) {
+    .vk_flex_yes .header__center+.BookmarksTagsButton {
+        position: relative
+    }
 }
 
 @media (min-width: 882px) {
     .BookmarksTagsButton {
+        margin: 0 227px 0 0
+    }
+    ._hfixed .BookmarksTagsButton {
         left: 50%;
         margin: 0 0 0 171px;
         right: auto
     }
-    .header__center+.BookmarksTagsButton,
-    .vk_flex_yes .header__center+.BookmarksTagsButton {
+    ._hfixed .header__center+.BookmarksTagsButton,
+    .vk_flex_yes ._hfixed .header__center+.BookmarksTagsButton {
         position: fixed
     }
     .qs_opened .BookmarksTagsButton {

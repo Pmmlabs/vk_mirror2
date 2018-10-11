@@ -116,7 +116,7 @@ var Tickets = {
                     browser: s,
                     section: cur.faqSection
                 }, Tickets.getAudioFields(), Tickets.getFromObjLoc(["mid", "group_id", "app_id", "union_id", "from", "mobile", "bhash"]));
-            cur.fromFaqId && (r.faq = cur.fromFaqId), cur.from && (r.from = cur.from);
+            nav.objLoc.hasOwnProperty("hds") && (r.hds = nav.objLoc.hds), cur.fromFaqId && (r.faq = cur.fromFaqId), cur.from && (r.from = cur.from);
             var n = TicketsEF.getValues();
             if (n === !1 && (i = !1), !i) return !1;
             if (extend(r, n), 39 == r.faqSection) {

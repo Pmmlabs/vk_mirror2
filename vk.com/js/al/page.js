@@ -3928,6 +3928,12 @@ var Wall = {
         }
 
         var postbox = submitFromPoster ? ge('submit_post_box') : domClosest('_submit_post_box', ge('official'));
+        var official = (domData(postbox, 'from-oid') == cur.postTo) ? 1 : '';
+        if ((!postbox || !cur.postTo) && !official) {
+            if (cur.defaultPostSettings) {
+                official = cur.defaultPostSettings.official ? 1 : '';
+            }
+        }
 
         var params = {
             act: 'post',
@@ -3940,7 +3946,7 @@ var Wall = {
             facebook_export: !isAnon && ge('facebook_export') ? (isChecked('facebook_export') ? 1 : 0) : '',
             close_comments: ge('close_comments') ? (isChecked('close_comments') ? 1 : 0) : '',
             mute_notifications: ge('mute_notifications') ? (isChecked('mute_notifications') ? 1 : 0) : '',
-            official: (domData(postbox, 'from-oid') == cur.postTo) ? 1 : '',
+            official: official,
             poster_bkg_id: submitFromPoster ? cur.posterBkgId : '',
             signed: isChecked('signed'),
             anonymous: isAnon,

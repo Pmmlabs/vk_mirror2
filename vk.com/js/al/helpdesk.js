@@ -2115,6 +2115,13 @@ var Helpdesk = {
             onDone: o
         })
     },
+    setCustomAttachCallBacks: function(e, t) {
+        cur.addScreenShot = function() {
+            Helpdesk.choosePhotoBox(e, cur.selectedSection, null, null)
+        }, t !== !1 ? cur.addExistingDoc = function() {
+            Helpdesk.chooseDocBox(e, t)
+        } : delete cur.addExistingDoc
+    },
     _eof: 1
 };
 try {

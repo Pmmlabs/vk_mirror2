@@ -143,7 +143,8 @@ var navMap = {
     'bookmarks($|/)': ['al_bookmarks.php', []],
     'cleveradmin': ['stream_quiz.php', ['internal/stream_quiz.css', 'cmodules/internal/stream_quiz.js']],
     'podcasts(-?\\d+)?$': ['al_podcasts.php', ['podcast.css', 'cmodules/web/podcast.js']],
-    'podcast(-?\\d+)_(\\d+)$': ['al_podcasts.php', ['podcast.css', 'cmodules/web/podcast.js']]
+    'podcast(-?\\d+)_(\\d+)$': ['al_podcasts.php', ['podcast.css', 'cmodules/web/podcast.js']],
+    'sticker/([a-z0-9\\-]+)$': ['stickers_proxy.php', []]
 };
 var stVersions = {
     'nav': 0,
@@ -162,7 +163,7 @@ var stVersions = {
     'blog.css': 20562116862,
     'blog.js': 3939164531,
     'html5audio.js': 976782859,
-    'audioplayer.js': 158298957935,
+    'audioplayer.js': 159300720850,
     'audioplayer.css': 19538310270,
     'audio_html5.js': 287741914,
     'audio.js': 2398309597,
@@ -235,7 +236,7 @@ var stVersions = {
     'module.css': 24914036814,
     'owner_photo.js': 3368798011,
     'owner_photo.css': 21719460522,
-    'page.js': 522348813,
+    'page.js': 3284065003,
     'page.css': 65492025955,
     'page_help.css': 25179520257,
     'public.css': 27939519786,
@@ -248,7 +249,7 @@ var stVersions = {
     'groups_create.css': 18481038915,
     'cmodules/web/groups_list.js': 2447510571,
     'cmodules/web/GroupsEdit.js': 26680679963,
-    'groups_edit.css': 55485933980,
+    'groups_edit.css': 56051795787,
     'cmodules/web/groups_edit.js': 114389755,
     'profile.css': 27847850001,
     'profile.js': 2681993000,
@@ -291,7 +292,7 @@ var stVersions = {
     'apps_check.js': 3204387834,
     'apps_check.css': 29464706470,
     'settings.js': 688052291,
-    'settings.css': 33812826658,
+    'settings.css': 31660328364,
     'profile_edit.js': 334053301,
     'profile_edit.css': 18400867053,
     'profile_edit_edu.js': 872687230,
@@ -348,10 +349,10 @@ var stVersions = {
     'docs.css': 26140245425,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 17884141230,
-    'helpdesk.js': 651381551,
+    'helpdesk.js': 1494983047,
     'helpdesk.css': 28991873639,
-    'tickets.js': 929097213,
-    'tickets.css': 32933465402,
+    'tickets.js': 1151194956,
+    'tickets.css': 32465833110,
     'faq.css': 25246749071,
     'talmud.js': 3834581071,
     'agents.js': 2789926745,
@@ -649,4 +650,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 8188;
+var _rnd = 6027;
