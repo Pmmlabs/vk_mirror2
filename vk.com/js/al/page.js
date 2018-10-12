@@ -3309,7 +3309,7 @@ var Wall = {
         });
         extend(lsText, {
             txt: content,
-            bkg_id: cur.posterBkgId
+            bkg_id: content ? cur.posterBkgId : null
         });
         if (cur.shareShowImg) {
             extend(lsText, {
@@ -3401,7 +3401,7 @@ var Wall = {
             medias = cur.wallAddMedia ? addmedia.getMedias() : [],
             share = (addmedia.shareData || {})
         msg = trim((window.Emoji ? Emoji.editableVal : val)(ge('post_field'))), attachI = 0,
-            bkg_id = cur.posterBkgId || '',
+            bkg_id = msg ? cur.posterBkgId : null,
             params = {
                 message: msg,
                 bkg_id: bkg_id

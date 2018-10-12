@@ -4976,7 +4976,7 @@ div.top_result_baloon a {
     padding-bottom: 3px
 }
 
-.page_block:not(.post_fr_likes) .post_info .audio_pl_snippet2:last-child {
+.page_block:not(.post_fr_likes):not(.postponed) .post_info .audio_pl_snippet2:last-child {
     margin-bottom: -20px
 }
 
