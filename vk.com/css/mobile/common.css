@@ -33424,6 +33424,7 @@ body.apps_settingsPageBody {
 .Icon_notify_bookmarks,
 .Icon_notify_comment,
 .Icon_notify_content_achievements,
+.Icon_notify_discussions,
 .Icon_notify_email,
 .Icon_notify_event,
 .Icon_notify_follow,
@@ -33457,6 +33458,7 @@ body.apps_settingsPageBody {
 .Icon_notify_bookmarks:before,
 .Icon_notify_comment:before,
 .Icon_notify_content_achievements:before,
+.Icon_notify_discussions:before,
 .Icon_notify_email:before,
 .Icon_notify_event:before,
 .Icon_notify_follow:before,
@@ -33491,6 +33493,7 @@ body.apps_settingsPageBody {
 .vk_2x .Icon_notify_bookmarks:before,
 .vk_2x .Icon_notify_comment:before,
 .vk_2x .Icon_notify_content_achievements:before,
+.vk_2x .Icon_notify_discussions:before,
 .vk_2x .Icon_notify_email:before,
 .vk_2x .Icon_notify_event:before,
 .vk_2x .Icon_notify_follow:before,
@@ -33635,8 +33638,13 @@ body.apps_settingsPageBody {
     background-position: 0 -1148px
 }
 
+.Icon_notify_discussions:before {
+    background-position: 0 -1176px
+}
+
 .Icon_notify_mini_birthday,
 .Icon_notify_mini_comment,
+.Icon_notify_mini_discussions,
 .Icon_notify_mini_follow,
 .Icon_notify_mini_friend_accepted,
 .Icon_notify_mini_friend_found,
@@ -33666,6 +33674,7 @@ body.apps_settingsPageBody {
 
 .Icon_notify_mini_birthday:before,
 .Icon_notify_mini_comment:before,
+.Icon_notify_mini_discussions:before,
 .Icon_notify_mini_follow:before,
 .Icon_notify_mini_friend_accepted:before,
 .Icon_notify_mini_friend_found:before,
@@ -33696,6 +33705,7 @@ body.apps_settingsPageBody {
 
 .vk_2x .Icon_notify_mini_birthday:before,
 .vk_2x .Icon_notify_mini_comment:before,
+.vk_2x .Icon_notify_mini_discussions:before,
 .vk_2x .Icon_notify_mini_follow:before,
 .vk_2x .Icon_notify_mini_friend_accepted:before,
 .vk_2x .Icon_notify_mini_friend_found:before,
@@ -33817,6 +33827,10 @@ body.apps_settingsPageBody {
 
 .Icon_notify_mini_podcast:before {
     background-position: 0 -580px
+}
+
+.Icon_notify_mini_discussions:before {
+    background-position: 0 -600px
 }
 
 .Icon_chevron_down,
