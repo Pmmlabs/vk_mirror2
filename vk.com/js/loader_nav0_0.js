@@ -593,7 +593,7 @@ var stVersions = {
     'cmodules/web/landing_transparency.js': 4255591701,
     'landings/transparency.css': 28306477911,
     'cmodules/web/emoji.js': 164878560,
-    'lang': 6913
+    'lang': 6915
 };
 var stTypes = {
     fromLib: {
@@ -650,4 +650,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 9492;
+var _rnd = 5819;
