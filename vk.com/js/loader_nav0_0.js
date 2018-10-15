@@ -360,7 +360,7 @@ var stVersions = {
     'achievements.js': 3514956550,
     'achievements.css': 16378841715,
     'members.css': 17806793921,
-    'meminfo.css': 29639677764,
+    'meminfo.css': 32864863825,
     'groupinfo.css': 89973045334,
     'ownerinfo.css': 6976608880,
     'bugtracker.js': 1935992230,
@@ -650,4 +650,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 4635;
+var _rnd = 2147;
