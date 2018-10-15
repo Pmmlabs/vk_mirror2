@@ -150,14 +150,14 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 2660709036,
     'common.js': 1161,
-    'common.css': 54874660905,
+    'common.css': 50992670207,
     'cmodules/web/common_web.js': 16,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
     'uncommon.css': 16038966019,
     'filebutton.css': 1044306797,
     'lite.js': 344448126,
-    'lite.css': 53387211500,
+    'lite.css': 49505220802,
     'rtl.css': 16572833603,
     'pagination.js': 358700184,
     'blog.css': 20562116862,
@@ -650,4 +650,4 @@ var stTypes = {
         'audio_admins.js': 1
     }
 };
-var _rnd = 2147;
+var _rnd = 2492;

@@ -5137,7 +5137,9 @@ div.top_result_baloon a {
     -webkit-filter: blur(10px);
     -moz-filter: blur(10px);
     -o-filter: blur(10px);
-    -ms-filter: blur(10px)
+    -ms-filter: blur(10px);
+    -o-transform: scale(1.1);
+    transform: scale(1.1)
 }
 
 .audio_artist_attach_preview .audio_artist_snippet__title,

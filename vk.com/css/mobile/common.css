@@ -16487,7 +16487,12 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .audio_artist_snippet.audio_artist_snippet_blur .audio_artist_snippet__cover {
     filter: blur(10px);
-    -webkit-filter: blur(10px)
+    -webkit-filter: blur(10px);
+    -moz-transform: scale(1.1) translateY(-5px);
+    -ms-transform: scale(1.1) translateY(-5px);
+    -o-transform: scale(1.1) translateY(-5px);
+    transform: scale(1.1) translateY(-5px);
+    -webkit-transform: scale(1.1) translateY(-5px)
 }
 
 ._hfixed._lm #m .audio_artist_snippet.mcont,
