@@ -1978,7 +1978,8 @@ input.wide_button {
     padding: 7px 7px 12px;
     margin-top: -1px;
     border-top: 1px solid #fff;
-    border-bottom: 1px solid #efefef
+    border-bottom: 1px solid #efefef;
+    clear: both
 }
 
 .show_next_wrap {
@@ -13378,10 +13379,30 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 @media (min-width: 882px) {
     .SliderTabs {
-        -webkit-box-shadow: inset 0 -0.5px 0 0 rgba(0, 0, 0, .2);
-        -moz-box-shadow: inset 0 -0.5px 0 0 rgba(0, 0, 0, .2);
-        box-shadow: inset 0 -0.5px 0 0 rgba(0, 0, 0, .2);
-        background: none
+        background: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none
+    }
+    .SliderTabs:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        height: 1px;
+        background: #000;
+        opacity: 0.2;
+        -webkit-transform: scaleY(0.5);
+        -moz-transform: scaleY(0.5);
+        -ms-transform: scaleY(0.5);
+        -o-transform: scaleY(0.5);
+        transform: scaleY(0.5);
+        -webkit-transform-origin: top;
+        -moz-transform-origin: top;
+        -ms-transform-origin: top;
+        -o-transform-origin: top;
+        transform-origin: top
     }
 }
 
@@ -13419,14 +13440,14 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 @media (min-width: 882px) {
     .h .vk_header_tabs .basis__header .SliderTabs {
-        -webkit-box-shadow: inset 0 -0.5px 0 0 rgba(0, 0, 0, .2);
-        -moz-box-shadow: inset 0 -0.5px 0 0 rgba(0, 0, 0, .2);
-        box-shadow: inset 0 -0.5px 0 0 rgba(0, 0, 0, .2);
         border-left: 1px solid #e4e5e6;
         border-right: 1px solid #e4e5e6;
         background: #fff;
         padding: 0;
-        height: 44px
+        height: 44px;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none
     }
 }
 
@@ -13515,6 +13536,12 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .HeaderSubtitle {
     padding: 6px 0 1px
+}
+
+@media (max-width: 319px) {
+    .HeaderSubtitle {
+        margin-top: -15px
+    }
 }
 
 .HeaderSubtitle__title {
@@ -20990,6 +21017,50 @@ figure[data-type="102"] .article_object_video_play {
     box-sizing: border-box
 }
 
+.LikesPhotoBlock {
+    position: relative;
+    padding: 0 0 24px
+}
+
+.LikesPhotoBlock:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0px;
+    bottom: 0;
+    height: 12px;
+    background: #f5f5f5
+}
+
+.LikesPhotoBlock .LikesPhotoBlock__content {
+    white-space: nowrap;
+    overflow: hidden
+}
+
+.LikesPhotoBlock .LikesPhotoBlock__content>* {
+    display: inline-block;
+    vertical-align: top;
+    width: 25%;
+    overflow: hidden;
+    height: 71px;
+    padding: 0 0 0 3px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.LikesPhotoBlock .LikesPhotoBlock__content>:first-child {
+    padding: 0
+}
+
+.LikesPhotoBlock .LikesPhotoBlock__content img {
+    vertical-align: top;
+    height: 100%;
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover
+}
+
 .basis__headerWithUser {
     width: 100%
 }
@@ -26262,11 +26333,12 @@ body.apps_settingsPageBody {
 }
 
 .h .mh_header {
-    padding-top: 0!important;
+    padding-top: 15px!important;
     padding-bottom: 0!important;
     margin-left: 0!important;
     font-size: 16px;
-    font-weight: 500
+    font-weight: 500;
+    margin-top: -15px
 }
 
 .h .mhi_back.mhi_back.mhi_back {
@@ -28366,6 +28438,7 @@ body.apps_settingsPageBody {
 .feedAssistancePromoButton,
 .feedAssistancePromoButtonInstallApp,
 .im_msg_audiomsg,
+.LikesPhotoBlock .LikesPhotoBlock__content,
 .MediaRow,
 .mki_description,
 .mki_description+.wi_like_wrap,
@@ -28460,6 +28533,7 @@ body.apps_settingsPageBody {
     .feedAssistancePromoButton,
     .feedAssistancePromoButtonInstallApp,
     .im_msg_audiomsg,
+    .LikesPhotoBlock .LikesPhotoBlock__content,
     .MediaRow,
     .mki_description,
     .mki_description+.wi_like_wrap,
@@ -28554,6 +28628,7 @@ body.apps_settingsPageBody {
     .feedAssistancePromoButton,
     .feedAssistancePromoButtonInstallApp,
     .im_msg_audiomsg,
+    .LikesPhotoBlock .LikesPhotoBlock__content,
     .MediaRow,
     .mki_description,
     .mki_description+.wi_like_wrap,
@@ -32694,6 +32769,25 @@ body.apps_settingsPageBody {
     background-position: 0 -56px
 }
 
+.Icon_fave_big_star {
+    width: 56px;
+    height: 56px
+}
+
+.Icon_fave_big_star:before {
+    width: 56px;
+    height: 56px;
+    background-image: url('/images/mobile/skins/icon/favorite_outline_56.png?1')
+}
+
+.vk_2x .Icon_fave_big_star:before {
+    background-image: url('/images/mobile/skins/icon/favorite_outline_56_2x.png?1')
+}
+
+.Icon_fave_big_star:before {
+    background-position: 0 0px
+}
+
 .BookmarksItem_article .ai_menu_toggle_button,
 .BookmarksItem_post .ai_menu_toggle_button,
 .BookmarksItem_video .ai_menu_toggle_button,
@@ -34649,11 +34743,22 @@ body.apps_settingsPageBody {
     -webkit-justify-content: center;
     -moz-box-pack: center;
     -ms-flex-pack: center;
-    justify-content: center
+    justify-content: center;
+    position: relative
 }
 
 .SplashScreen a {
     color: #5181b8
+}
+
+.SplashScreen_transparent {
+    background: #f5f5f5
+}
+
+@media (min-width: 882px) {
+    .SplashScreen_transparent {
+        background: #fff
+    }
 }
 
 .SplashScreen__icon {
@@ -34667,33 +34772,68 @@ body.apps_settingsPageBody {
     font-weight: 600;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #000;
-    margin: 6px 0;
+    color: #000
+}
+
+.SplashScreen__title,
+.SplashScreen__text {
+    margin: 3px 0;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     overflow: hidden
 }
 
 .SplashScreen__text {
+    font-size: 14px;
     line-height: 18px;
     color: #909499
 }
 
-.SplashScreen__text,
 .SplashScreen__more {
     margin: 6px 0;
-    font-size: 14px;
-    -o-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    overflow: hidden
-}
-
-.SplashScreen__more {
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
+    font-size: 14px;
     line-height: 16px;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
     padding: 5px 0
+}
+
+.SplashScreen__action {
+    text-align: center;
+    height: 40px
+}
+
+.SplashScreen__action a {
+    color: #55677d
+}
+
+.SplashScreen__actionButton {
+    display: block;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    background-color: #e5ebf1;
+    font-size: 14px;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #55677d;
+    line-height: 16px;
+    padding: 12px;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 20px
 }
 
 .Bell {
@@ -47762,6 +47902,7 @@ img.wk_photo_right {
     .thumbs_list .thumb_item {
         width: 32%;
         max-height: 69px;
+        height: 69px;
         margin: .65%
     }
     .msg_item .thumbs_list .thumb_item,
@@ -47778,6 +47919,7 @@ img.wk_photo_right {
     .thumbs_list .thumb_item {
         width: 24%;
         max-height: 77px;
+        height: 77px;
         margin: .5%
     }
     .msg_item .thumbs_list .thumb_item,
@@ -47794,6 +47936,7 @@ img.wk_photo_right {
     .thumbs_list .thumb_item {
         width: 19%;
         max-height: 76px;
+        height: 76px;
         margin: .5%
     }
     .msg_item .thumbs_list .thumb_item,
@@ -47810,6 +47953,7 @@ img.wk_photo_right {
     .thumbs_list .thumb_item {
         width: 16%;
         max-height: 86px;
+        height: 86px;
         margin: .32%
     }
     .msg_item .thumbs_list .thumb_item,
@@ -47827,7 +47971,6 @@ img.wk_photo_right {
     .post_item .thumbs_list5 .thumb_item,
     .wall_item .thumbs_list5 .thumb_item {
         width: 19%;
-        max-height: 76px;
         max-height: none;
         margin: 0 2px 2px 0
     }
@@ -47838,7 +47981,6 @@ img.wk_photo_right {
     .post_item .thumbs_list4 .thumb_item,
     .wall_item .thumbs_list4 .thumb_item {
         width: 24%;
-        max-height: 77px;
         max-height: none;
         margin: 0 3px 3px 0
     }
@@ -47849,7 +47991,6 @@ img.wk_photo_right {
     .post_item .thumbs_list3 .thumb_item,
     .wall_item .thumbs_list3 .thumb_item {
         width: 32%;
-        max-height: 69px;
         max-height: none;
         margin: 0 3px 3px 0
     }
@@ -47860,7 +48001,6 @@ img.wk_photo_right {
     .post_item .thumbs_list2 .thumb_item,
     .wall_item .thumbs_list2 .thumb_item {
         width: 48%;
-        max-height: 73px;
         max-height: none;
         margin: 0 4px 4px 0
     }

@@ -2,6 +2,8 @@
     display: none
 }
 
+.article_snippet__bookmark_button,
+.article_snippet__bookmark_button[data-state="1"],
 .audio_w_covers .audio_podcast .audio_row__cover,
 .checkbox_pic,
 .choose_more_btn.choose_loading,
@@ -38,6 +40,8 @@
 .page_gif_play_icon,
 .page_gif_progress_icon,
 .page_gif_share_icon,
+.page_media_link__bookmark_button,
+.page_media_link__bookmark_button[data-state="1"],
 .page_media_link_icon,
 .page_media_map_point,
 .page_media_money_transfer .page_media_money_decline_btn .button,
@@ -11004,16 +11008,29 @@ button.wall_block_app_btn {
 .article_snippet__bookmark_button,
 .page_media_link__bookmark_button {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 12px;
+    right: 12px;
     width: 24px;
     height: 24px;
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M15.614%208.204l3.485.343a2.2%202.2%200%200%201%201.212%203.863l-2.727%202.327.994%203.454a2.2%202.2%200%200%201-3.341%202.434l-3.226-2.168-3.145%202.158a2.2%202.2%200%200%201-3.369-2.388l.938-3.477-2.742-2.34a2.2%202.2%200%200%201%201.212-3.863l3.484-.343%201.578-3.838a2.2%202.2%200%200%201%204.07%200l1.577%203.838zm-3.15-3.191a.5.5%200%200%200-.925%200L9.573%209.796l-4.501.443a.5.5%200%200%200-.276.878l3.56%203.037-1.218%204.516a.5.5%200%200%200%20.766.543l4.098-2.811%204.183%202.812a.5.5%200%200%200%20.76-.553l-1.298-4.507%203.56-3.037a.5.5%200%200%200-.275-.878l-4.502-.443-1.966-4.783z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fsvg%3E") no-repeat 50%;
+    background-image: url(/images/icons/bookmarks_outline_24.png);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-color: transparent;
     background-size: 24px;
     border: none;
     opacity: 0.6;
     cursor: pointer;
     z-index: 2
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .article_snippet__bookmark_button,
+    .page_media_link__bookmark_button {
+        background-image: url(/images/icons/bookmarks_outline_24_2x.png);
+        background-size: 24px 24px
+    }
 }
 
 .article_snippet__bookmark_button:hover,
@@ -11023,7 +11040,17 @@ button.wall_block_app_btn {
 
 .article_snippet__bookmark_button[data-state="1"],
 .page_media_link__bookmark_button[data-state="1"] {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20height%3D%22100%25%22%20width%3D%22100%25%22%3E%3Ctitle%3Efavorite_24%3C%2Ftitle%3E%3Cpath%20d%3D%22M0%2C0H24V24H0Z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M15.34%2C8.48l4.43.43a1.43%2C1.43%2C0%2C0%2C1%2C.83%2C2.64l-3.47%2C2.88%2C1.29%2C4.7c.42%2C1.54-.89%2C2.47-2.21%2C1.55L12%2C17.7l-4.21%2C3c-1.31.92-2.63%2C0-2.21-1.55l1.29-4.7L3.4%2C11.55a1.43%2C1.43%2C0%2C0%2C1%2C.83-2.64l4.43-.43L10.61%2C4a1.44%2C1.44%2C0%2C0%2C1%2C2.78%2C0Z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E")
+    background-image: url(/images/icons/bookmarks_filled_24.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .article_snippet__bookmark_button[data-state="1"],
+    .page_media_link__bookmark_button[data-state="1"] {
+        background-image: url(/images/icons/bookmarks_filled_24_2x.png);
+        background-size: 24px 24px
+    }
 }
 
 .ownerButton {

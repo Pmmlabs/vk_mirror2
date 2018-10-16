@@ -1971,7 +1971,8 @@ input.wide_button {
     padding: 7px 7px 12px;
     margin-top: -1px;
     border-top: 1px solid #fff;
-    border-bottom: 1px solid #efefef
+    border-bottom: 1px solid #efefef;
+    clear: both
 }
 
 .show_next_wrap {

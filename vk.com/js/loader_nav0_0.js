@@ -237,7 +237,7 @@ var stVersions = {
     'owner_photo.js': 3368798011,
     'owner_photo.css': 21719460522,
     'page.js': 2418795638,
-    'page.css': 66374735399,
+    'page.css': 67203327590,
     'page_help.css': 25179520257,
     'public.css': 27939519786,
     'cmodules/web/public.js': 329399197,
@@ -286,7 +286,7 @@ var stVersions = {
     'privacy.js': 253273997,
     'privacy.css': 16806607521,
     'apps.css': 38552220006,
-    'apps.js': 966370334,
+    'apps.js': 3675691135,
     'apps_edit.js': 14034164307,
     'apps_edit.css': 36985778136,
     'apps_check.js': 3204387834,
@@ -542,8 +542,8 @@ var stVersions = {
     'cmodules/web/article.js': 44979317270,
     'cmodules/web/article_layer.js': 28670762265,
     'article_view.js': 25047846721,
-    'bookmarks.css': 18483492931,
-    'cmodules/web/bookmarks.js': 1140215157,
+    'bookmarks.css': 18600930865,
+    'cmodules/web/bookmarks.js': 2359859917,
     'sf.css': 20916251115,
     'shortener.js': 16413120,
     'cmodules/web/pretty_cards.js': 82460730,
@@ -651,4 +651,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 4587;
+var _rnd = 639;
