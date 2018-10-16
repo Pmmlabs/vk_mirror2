@@ -2941,3 +2941,25 @@ div.feed_recom {
 .feed_friends_recomm .friend_recomm_card_accepted .feed_card__close {
     display: none
 }
+
+.fave_photos_page_block .fave_photos_block_rows {
+    padding: 11px 20px 18px
+}
+
+.fave_photos_page_block .fave_photos_show_more {
+    position: absolute;
+    right: 20px;
+    top: 16px;
+    padding-right: 13px
+}
+
+.fave_photos_page_block .fave_photos_show_more:after {
+    content: ' ';
+    width: 6px;
+    height: 8px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%228%22%20viewBox%3D%2288%204%208%208%22%3E%3Cg%20fill%3D%22none%22%3E%3Crect%20x%3D%2288%22%20y%3D%224%22%20width%3D%228%22%20height%3D%228%22%2F%3E%3Cpath%20d%3D%22M90.2%2010.8C90%2011.1%2090%2011.5%2090.3%2011.7%2090.6%2011.9%2091%2011.9%2091.2%2011.6L93.8%208.4C94%208.2%2094%207.8%2093.8%207.6L91.2%204.4C91%204.1%2090.6%204.1%2090.3%204.3%2090%204.5%2090%204.9%2090.2%205.2L92.5%208%2090.2%2010.8Z%22%20fill%3D%22%239CB0C3%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    display: block;
+    top: 4px;
+    right: 0;
+    position: absolute
+}

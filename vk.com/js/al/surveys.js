@@ -9,59 +9,59 @@ Survey.prototype.stateChanged = function() {
     this._onStateChange.push(e)
 }, Survey.prototype.send = function(e, t) {
     var i = {},
-        r = [],
-        s = !1,
+        s = [],
+        r = !1,
         n = 0;
     if (each(this.blocks, function(e, t) {
             n++;
-            var o = this._clientSurveyId + "_" + e;
+            var a = this._clientSurveyId + "_" + e;
             if ("select" === t.type) {
-                if (!radioBtns[o].els.length || !radioBtns[o].els[0].offsetParent) return !0;
-                var a = radioBtns[o].val;
-                if (!a) return r.push({
-                    elementToScroll: radioBtns[o].els[0],
+                if (!radioBtns[a].els.length || !radioBtns[a].els[0].offsetParent) return !0;
+                var o = radioBtns[a].val;
+                if (!o) return s.push({
+                    elementToScroll: radioBtns[a].els[0],
                     id: e
                 }), !0;
                 i[e] = {
-                    answer: [a]
+                    answer: [o]
                 };
-                var u = "survey_edit_" + o + "_" + a;
+                var u = "survey_edit_" + a + "_" + o;
                 if (t.inputs.indexOf(u) >= 0) {
                     var l = ge(u);
-                    if (i[e].text = val(l), l.getAttribute("required") && (!i[e].text || i[e].text.trim().length < 2)) return r.push({
+                    if (i[e].text = val(l), l.getAttribute("required") && (!i[e].text || i[e].text.trim().length < 2)) return s.push({
                         elementToScroll: l,
                         id: e
                     }), !0
                 }
             } else if ("checkbox" === t.type) {
-                var c = geByClass("survey_select_" + o);
+                var c = geByClass("survey_select_" + a);
                 if (!c.length || !c[0].offsetParent) return !0;
                 i[e] = {
                     answer: []
                 };
                 for (var h = 0, d = c.length; d > h; h++)
                     if (isChecked(c[h])) {
-                        var a = c[h].getAttribute("data-id");
-                        i[e].answer.push(a);
-                        var u = "survey_edit_" + o + "_" + a;
+                        var o = c[h].getAttribute("data-id");
+                        i[e].answer.push(o);
+                        var u = "survey_edit_" + a + "_" + o;
                         if (t.inputs.indexOf(u) >= 0) {
                             var l = ge(u);
-                            if (i[e].text = val(l), l.getAttribute("required") && (!i[e].text || i[e].text.trim().length < 5)) return r.push({
+                            if (i[e].text = val(l), l.getAttribute("required") && (!i[e].text || i[e].text.trim().length < 5)) return s.push({
                                 elementToScroll: l,
                                 id: e
                             }), !0
                         }
                     }
-                if (0 === i[e].answer.length) return r.push({
+                if (0 === i[e].answer.length) return s.push({
                     elementToScroll: c[0],
                     id: e
                 }), !0
             } else if ("textfield" == t.type || "textarea" == t.type) {
-                var u = "survey_" + t.type + "_" + o,
+                var u = "survey_" + t.type + "_" + a,
                     l = ge(u);
                 if (i[e] = {
                         text: val(l)
-                    }, !i[e].text || i[e].text.trim().length < 2) return t.required && (s = !0, r.push({
+                    }, !i[e].text || i[e].text.trim().length < 2) return t.required && (r = !0, s.push({
                     elementToScroll: l,
                     id: e
                 })), !0
@@ -70,24 +70,24 @@ Survey.prototype.stateChanged = function() {
                     answer: []
                 };
                 var v = cur.addMedias[e].chosenMedias;
-                if (each(v, function(t, r) {
-                        i[e].answer.push(r[0] + ":" + r[1])
+                if (each(v, function(t, s) {
+                        i[e].answer.push(s[0] + ":" + s[1])
                     }), t.required && (!v || 0 == v.length)) {
-                    s = !0;
-                    var y = "survey_" + t.type + "_" + o + "_media";
-                    r.push({
+                    r = !0;
+                    var y = "survey_" + t.type + "_" + a + "_media";
+                    s.push({
                         elementToScroll: ge(y),
                         id: e
                     })
                 }
             }
-        }.bind(this)), r.length && (s || !this.limit || n - r.length < this.limit)) {
-        var o = r.find(function(e) {
+        }.bind(this)), s.length && (r || !this.limit || n - s.length < this.limit)) {
+        var a = s.find(function(e) {
             return e.elementToScroll
         });
-        return o.elementToScroll.scrollIntoView({
+        return a.elementToScroll.scrollIntoView({
             behavior: "smooth"
-        }), r.reverse().forEach(function(e) {
+        }), s.reverse().forEach(function(e) {
             Surveys.notaBene("survey_block_" + e.id)
         }), void showHint(e, {
             dir: "left",
@@ -99,6 +99,11 @@ Survey.prototype.stateChanged = function() {
         t.style.display = "none"
     }), each(geByClass("media_add"), function(e, t) {
         t.style.display = "none"
+    }), each(geByClass("media_label"), function(e, t) {
+        addClass(t, "disabled")
+    }), each(geByClass("survey_block_wrap-media_audio"), function(e, t) {
+        var i = geByClass1("dropbox", t);
+        i && i.parentNode.removeChild(i)
     }), lockButton(e), ajax.post("al_surveys.php?act=save_answer", {
         id: this._surveyId,
         owner_id: this._ownerId,
@@ -146,38 +151,38 @@ var Surveys = {
     disable: function(e, t) {
         return disable(e, t), "TEXTAREA" == e.tagName && (hasClass(e, "disabled") ? e.setAttribute("readonly", "readonly") : e.removeAttribute("readonly")), !1
     },
-    radioButton: function(e, t, i, r) {
+    radioButton: function(e, t, i, s) {
         if (!hasClass(e, "disabled")) {
-            var s = Surveys.activeSurveys[i].state;
-            s[r] || (s[r] = {}), radioBtns[i + "_" + r].val && (s[r][radioBtns[i + "_" + r].val] = !1), s[r][t] = !0, radiobtn(e, t, i + "_" + r), Surveys.activeSurveys[i].blocks[r].inputs.map(function(e) {
+            var r = Surveys.activeSurveys[i].state;
+            r[s] || (r[s] = {}), radioBtns[i + "_" + s].val && (r[s][radioBtns[i + "_" + s].val] = !1), r[s][t] = !0, radiobtn(e, t, i + "_" + s), Surveys.activeSurveys[i].blocks[s].inputs.map(function(e) {
                 return ge(e)
             }).forEach(function(e) {
                 hide(e)
             });
-            var n = "survey_edit_" + i + "_" + r + "_" + t,
-                o = ge(n);
-            o && show(n), Surveys.activeSurveys[i].stateChanged()
+            var n = "survey_edit_" + i + "_" + s + "_" + t,
+                a = ge(n);
+            a && show(n), Surveys.activeSurveys[i].stateChanged()
         }
     },
-    checkbox: function(e, t, i, r, s) {
+    checkbox: function(e, t, i, s, r) {
         if (!hasClass(e, "disabled")) {
-            if (s > 0 && !isChecked(e)) {
-                var n = geByClass("survey_select_" + i + "_" + r).reduce(function(e, t) {
+            if (r > 0 && !isChecked(e)) {
+                var n = geByClass("survey_select_" + i + "_" + s).reduce(function(e, t) {
                     return e + +isChecked(t)
                 }, 0);
-                if (n === s) return
+                if (n === r) return
             }
-            if (checkbox(e, t), Surveys.activeSurveys[i].blocks[r].inputs.map(function(e) {
+            if (checkbox(e, t), Surveys.activeSurveys[i].blocks[s].inputs.map(function(e) {
                     return ge(e)
                 }).forEach(function(e) {
                     hide(e)
                 }), isChecked(e)) {
-                var o = "survey_edit_" + i + "_" + r + "_" + t,
-                    a = ge(o);
-                a && show(o)
+                var a = "survey_edit_" + i + "_" + s + "_" + t,
+                    o = ge(a);
+                o && show(a)
             }
             var u = Surveys.activeSurveys[i].state;
-            u[r] || (u[r] = {}), u[r][e.getAttribute("data-id")] = !!isChecked(e), Surveys.activeSurveys[i].stateChanged()
+            u[s] || (u[s] = {}), u[s][e.getAttribute("data-id")] = !!isChecked(e), Surveys.activeSurveys[i].stateChanged()
         }
     },
     notaBene: function(e) {
