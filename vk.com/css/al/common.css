@@ -8704,7 +8704,7 @@ button.ui_load_more_btn {
     margin-bottom: -20px
 }
 
-.page_block .post_info .reply_content .audio_pl_snippet2:last-child {
+.page_block .post_info .replies .reply_content .audio_pl_snippet2:last-child {
     margin-bottom: 5px
 }
 
@@ -9319,7 +9319,20 @@ button.ui_load_more_btn {
 
 .audio_row .audio_row__duration {
     color: #939393;
-    position: relative
+    position: relative;
+    text-align: right
+}
+
+.audio_row .audio_row__duration-s {
+    min-width: 30px
+}
+
+.audio_row .audio_row__duration-m {
+    min-width: 40px
+}
+
+.audio_row .audio_row__duration-l {
+    min-width: 50px
 }
 
 .audio_row.audio_hq .audio_row__duration:before {

@@ -42,10 +42,8 @@
         return s.d(t, "a", t), t
     }, s.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, s.p = "", s(s.s = 0)
+    }, s.p = "", s(s.s = 1)
 }([function(e, t, s) {
-    e.exports = s(1)
-}, function(e, t, s) {
     "use strict";
     s.r(t);
     var n = function() {
@@ -171,7 +169,6 @@
                 } else {
                     var s = e.target.getAttribute("data-type");
                     switch (s) {
-                        case "yandexmoney":
                         case "webmoney":
                         case "kiwipurse":
                             this.doNontransactionalPayment(s, cur.ps_list[s]);
@@ -180,6 +177,9 @@
                         case "mailmoney_vkpay":
                         case "card":
                             this.doTransactionalPayment(s, cur.ps_list[s]);
+                            break;
+                        case "yandexmoney":
+                            1 === cur.ps_list[s].new_api ? this.doTransactionalPayment(s, cur.ps_list[s]) : this.doNontransactionalPayment(s, cur.ps_list[s]);
                             break;
                         case "terminals":
                             this.paymentCardsTurnOver()
@@ -911,4 +911,6 @@
     try {
         stManager.done(jsc("web/ads_edit_easy.js"))
     } catch (e) {}
+}, function(e, t, s) {
+    e.exports = s(0)
 }]);
