@@ -8006,7 +8006,7 @@ button.ui_load_more_btn {
     line-height: 20px
 }
 
-.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_line_small>.audio_pl_snippet__artist_link {
+.audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info_line_small>.audio_pl_snippet__artist_link:last-of-type {
     padding-right: 5px
 }
 
@@ -8232,6 +8232,12 @@ button.ui_load_more_btn {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%
+}
+
+.audio_pl_snippet2 .audio_pl_snippet__info_author .dvd:before,
+.audio_pl_snippet2 .audio_pl_snippet__info_line .dvd:before,
+.audio_pl_snippet2 .audio_pl_snippet__info_line_small .dvd:before {
+    vertical-align: top
 }
 
 .audio_pl_snippet2 .audio_pl_snippet__info_author .group_link {

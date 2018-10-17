@@ -199,6 +199,10 @@
     vertical-align: middle
 }
 
+.ArchivePage__requests-row .ArchivePage__requests-row__log-button.ArchivePage__requests-row__delete-doc-button {
+    color: red
+}
+
 .ArchivePage .ArchivePage__requests__all-logs-button {
     font-weight: 400
 }

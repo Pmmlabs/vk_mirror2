@@ -2644,6 +2644,10 @@ a.page_block_header:hover .apps_cat_header_link:after {
     visibility: hidden
 }
 
+.apps_main .tt_w .apps_frtt_box {
+    text-align: left
+}
+
 #apps_user_warning_cont,
 .apps_options_bar {
     border-bottom: 1px solid #e7e8ec
@@ -3370,6 +3374,8 @@ a.page_block_header:hover .apps_cat_header_link:after {
     top: 50%;
     left: 50%;
     position: absolute;
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     z-index: 10;
     background: #000;
     background: rgba(0, 0, 0, .8) url(/images/inline_video_small_play.png) 100% no-repeat;
@@ -6470,4 +6476,58 @@ td.apps_cat_new_h {
 .apps_vkPayPromo__img {
     display: block;
     width: 100%
+}
+
+.apps_similarApps {
+    overflow: hidden
+}
+
+.apps_similarApps__list {
+    position: relative;
+    overflow: hidden;
+    height: 225px
+}
+
+.apps_similarApps__listContent {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: start;
+    justify-content: flex-start
+}
+
+.apps_similarApps .apps_cat_row {
+    float: none
+}
+
+.apps_similarApps .apps_cat_wrap {
+    margin: 0
+}
+
+.apps_similarApps .apps_cat_wrap .apps_cat_row:nth-child(-n+5) {
+    margin-top: 5px
+}
+
+.apps_similarApps.page_block .apps_similarApps__title {
+    margin: 22px 20px 15px;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 400
+}
+
+.apps_similarApps.page_block .apps_similarApps__listContent {
+    padding: 0 0 20px 20px;
+    overflow-x: auto;
+    overflow-y: hidden
+}
+
+.apps_similarApps.page_block .apps_similarApps__listContent div {
+    position: static
+}
+
+.apps_similarApps.page_block .apps_similarApps__listContent:after {
+    content: '';
+    display: block;
+    width: 5px;
+    -ms-flex-negative: 0;
+    flex-shrink: 0
 }

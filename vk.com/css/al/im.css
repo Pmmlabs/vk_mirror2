@@ -12496,6 +12496,188 @@ body.sf .nim-dialog .nim-dialog--unread {
     padding-right: 15px
 }
 
+.im-replied-container {
+    position: relative;
+    margin: 0 56px 0 46px
+}
+
+.im-chat-input.im-chat-input_error .im-replied-container {
+    display: none
+}
+
+.im-page_classic .im-replied-container {
+    margin-left: 30px
+}
+
+.im-replied-container--content {
+    padding: 0 24px 0 0;
+    margin: 0 0 12px
+}
+
+.im-audio-message-input .im-replied-container--content {
+    padding: 12px 24px 0 26px;
+    margin: 0
+}
+
+.im-replied-container--content:empty,
+.im-replied-container--content:empty+.im-replied-container--remove {
+    display: none
+}
+
+.im-replied-container--content>.im-replied {
+    margin: 0;
+    cursor: default
+}
+
+.im-replied-container--remove {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 24px;
+    height: 24px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2224%22%20height%3D%2224%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20stroke%3D%22%23828A99%22%20stroke-width%3D%222%22%20d%3D%22M8%2C8%20L16%2C16%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20stroke%3D%22%23828A99%22%20stroke-width%3D%222%22%20d%3D%22M8%2C8%20L16%2C16%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20transform%3D%22matrix(-1%200%200%201%2024%200)%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E') 50% no-repeat;
+    opacity: 0.7;
+    cursor: pointer;
+    margin-top: -12px
+}
+
+.im-replied-container--remove:hover {
+    opacity: 1
+}
+
+.im-replied {
+    position: relative;
+    padding: 0 0 0 10px;
+    white-space: nowrap;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    cursor: pointer;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 5px 0 7px
+}
+
+.im-replied:before {
+    position: absolute;
+    top: 3px;
+    bottom: 0;
+    left: 0;
+    width: 2px;
+    background: #dee6ee;
+    border-radius: 1px;
+    content: ''
+}
+
+.im-replied:hover:before {
+    background: #a3bbd6
+}
+
+.im-replied--photo-wrapper {
+    width: 34px;
+    height: 34px;
+    -ms-flex: 0 0 34px;
+    flex: 0 0 34px;
+    margin: 3px 8px 0 -2px
+}
+
+.im-replied--photo-wrapper:empty {
+    display: none
+}
+
+.im-replied--photo {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    border-radius: 4px;
+    background-size: cover;
+    background-position: 50%;
+    overflow: hidden
+}
+
+.im-replied--photo_video:before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .24);
+    content: ''
+}
+
+.im-replied--photo_video:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    border-left: 9px solid #fff;
+    border-right: 0;
+    margin: -5px 0 0 -4px;
+    content: ''
+}
+
+.im-replied--photo_text {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2034%2034%22%3E%3Crect%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%226%22%20ry%3D%226%22%20fill%3D%22%235c9ce6%22%2F%3E%3Cpath%20d%3D%22M10%2C23a1%2C1%2C0%2C0%2C1%2C1-1h6a1%2C1%2C0%2C0%2C1%2C0%2C2H11A1%2C1%2C0%2C0%2C1%2C10%2C23Zm0-4a1%2C1%2C0%2C0%2C1%2C1-1H23a1%2C1%2C0%2C1%2C1%2C0%2C2H11A1%2C1%2C0%2C0%2C1%2C10%2C19Zm0-4a1%2C1%2C0%2C0%2C1%2C1-1H23a1%2C1%2C0%2C1%2C1%2C0%2C2H11A1%2C1%2C0%2C0%2C1%2C10%2C15Zm0-4a1%2C1%2C0%2C0%2C1%2C1-1H23a1%2C1%2C0%2C1%2C1%2C0%2C2H11A1%2C1%2C0%2C0%2C1%2C10%2C11Z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E')
+}
+
+.im-replied--photo_archive {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2034%2034%22%3E%3Crect%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%226%22%20ry%3D%226%22%20fill%3D%22%234bb34b%22%2F%3E%3Cpath%20d%3D%22M14%2C2h3V4H14Zm3%2C2h3V6H17ZM14%2C6h3V8H14Zm3%2C2h3v2H17Zm-3%2C2h3v2H14Zm3%2C2h3v2H17Zm-3%2C2h3v2H14Zm2.5%2C4h1l2%2C3.15c.29.47.08.85-.46.85H15c-.55%2C0-.75-.38-.46-.85Z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E')
+}
+
+.im-replied--photo_pic {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2034%2034%22%3E%3Crect%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%226%22%20ry%3D%226%22%20fill%3D%22%235c9ce6%22%2F%3E%3Cpath%20d%3D%22M25.42%2C21.4c.83%2C1.44.16%2C2.6-1.49%2C2.6H10.08c-1.65%2C0-2.19-1.07-1.21-2.4l2.43-3.27a1.54%2C1.54%2C0%2C0%2C1%2C2.51-.09L15%2C19.61a.73.73%2C0%2C0%2C0%2C1.22-.08l3.27-4.79a1.16%2C1.16%2C0%2C0%2C1%2C2.13.08ZM12%2C14a2%2C2%2C0%2C1%2C1%2C2-2A2%2C2%2C0%2C0%2C1%2C12%2C14Z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E')
+}
+
+.im-replied--photo_audio {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2034%2034%22%3E%3Crect%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%226%22%20ry%3D%226%22%20fill%3D%22%23aa65f0%22%2F%3E%3Cpath%20d%3D%22M15%2C22.92a2.87%2C2.87%2C0%2C0%2C1-2.44%2C2.69C10.9%2C26%2C9.35%2C25.24%2C9%2C24s.77-2.64%2C2.4-3a3.61%2C3.61%2C0%2C0%2C1%2C1.52%2C0V12.77a1.38%2C1.38%2C0%2C0%2C1%2C1-1.26L23%2C9a.72.72%2C0%2C0%2C1%2C1%2C.75V20.91a2.86%2C2.86%2C0%2C0%2C1-2.44%2C2.71C19.9%2C24%2C18.35%2C23.24%2C18%2C22s.77-2.64%2C2.4-3a3.61%2C3.61%2C0%2C0%2C1%2C1.52%2C0V13.27l-7%2C2Z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E')
+}
+
+.im-replied--photo_videofile {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2034%2034%22%3E%3Crect%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%226%22%20ry%3D%226%22%20fill%3D%22%23e64646%22%2F%3E%3Cpath%20d%3D%22M9%2C13a2%2C2%2C0%2C0%2C1%2C2-2h9a2%2C2%2C0%2C0%2C1%2C2%2C2v8a2%2C2%2C0%2C0%2C1-2%2C2H11a2%2C2%2C0%2C0%2C1-2-2ZM23.5%2C15.5l2.69-1.92c.45-.32.81-.13.81.42v6c0%2C.55-.36.74-.81.42L23.5%2C18.5Z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E')
+}
+
+.im-replied--photo_book {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2034%2034%22%3E%3Crect%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%226%22%20ry%3D%226%22%20fill%3D%22%23ffa000%22%2F%3E%3Cpath%20d%3D%22M16.5%2C12.91V24c0-1.08-2.13-2.31-4.29-2.5a5%2C5%2C0%2C0%2C0-3.8%2C1.42h0A.25.25%2C0%2C0%2C1%2C8%2C22.73V14c0-.05%2C0-1.95%2C0-2%2C.09-1%2C2-2.17%2C4.21-2s4.29%2C1.42%2C4.29%2C2.47C16.5%2C12.62%2C16.5%2C12.76%2C16.5%2C12.91Zm1%2C0c0-.15%2C0-.29%2C0-.41%2C0-1.06%2C2.1-2.28%2C4.29-2.47S25.91%2C11%2C26%2C12c0%2C.05%2C0%2C.95%2C0%2C1v9.73a.25.25%2C0%2C0%2C1-.41.19h0a5%2C5%2C0%2C0%2C0-3.8-1.42c-2.16.19-4.25%2C1.43-4.29%2C2.5Z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E')
+}
+
+.im-replied--photo_doc {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2034%2034%22%3E%3Crect%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%226%22%20ry%3D%226%22%20fill%3D%22%2399a2ad%22%2F%3E%3Cpath%20d%3D%22M10%2C11.47V22.53A2.47%2C2.47%2C0%2C0%2C0%2C12.47%2C25h9.06A2.47%2C2.47%2C0%2C0%2C0%2C24%2C22.53h0v-7.8a1.65%2C1.65%2C0%2C0%2C0-.47-1.15l-4-4.08A1.65%2C1.65%2C0%2C0%2C0%2C18.36%2C9H12.47A2.47%2C2.47%2C0%2C0%2C0%2C10%2C11.47Zm8.46-1%2C4.12%2C4.15a.25.25%2C0%2C0%2C1-.18.43H19a1%2C1%2C0%2C0%2C1-1-1h0l0-3.39a.25.25%2C0%2C0%2C1%2C.43-.17Z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E')
+}
+
+.im-replied--content {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    overflow: hidden
+}
+
+.im-replied--author {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 1px 0 0
+}
+
+.im-replied--author-link {
+    font: 700 12.5px/15px -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #42648b
+}
+
+.im-replied--author-link:hover {
+    text-decoration: none
+}
+
+.im-replied--text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font: 13px/18px -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    color: #000
+}
+
+.im-replied--text>.nim-dialog--preview-attach {
+    color: #828282
+}
+
 .im_rc_emojibtn {
     display: inline-block;
     *display: block;
