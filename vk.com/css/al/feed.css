@@ -2963,3 +2963,27 @@ div.feed_recom {
     right: 0;
     position: absolute
 }
+
+.eltt_likes_feed {
+    padding: 8px 32px 7px 11px;
+    font-size: 14px;
+    max-width: 177px;
+    line-height: 19px
+}
+
+.eltt_likes_feed:after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ctitle%3Ehide_24%3C%2Ftitle%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.7%22%3E%3Cpath%20d%3D%22M0%200H24V24H0z%22%2F%3E%3Cg%20transform%3D%22translate(7%207)%22%20stroke%3D%22%2398A3B3%22%20stroke-linecap%3D%22round%22%20stroke-width%3D%221.6%22%3E%3Cpath%20d%3D%22M0%2010L10%200%22%2F%3E%3Cpath%20d%3D%22M10%2010L0%200%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+    cursor: pointer;
+    position: absolute;
+    top: 7px;
+    right: 9px;
+    opacity: 0.7
+}
+
+.eltt_likes_feed:hover:after {
+    opacity: 1
+}

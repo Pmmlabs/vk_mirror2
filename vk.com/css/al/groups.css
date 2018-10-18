@@ -1,4 +1,3 @@
-#gtop_aesweb_available .gtop_image,
 #gtop_app_in_groups .gtop_image,
 #gtop_groups_addresses .gtop_image,
 #gtop_groups_addresses_b .gtop_image,
@@ -1532,23 +1531,6 @@ a.artist_page_button .artist_page_button_icon {
 (min-resolution: 192dpi) {
     #gtop_money_transfer .gtop_image {
         background-image: url(/images/community_money_2x.png);
-        background-size: 100px 100px
-    }
-}
-
-#gtop_aesweb_available.gtop_complex_message {
-    height: 100px
-}
-
-#gtop_aesweb_available .gtop_image {
-    background: url(/images/community_aesweb.png) no-repeat 0 0
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    #gtop_aesweb_available .gtop_image {
-        background-image: url(/images/community_aesweb_2x.png);
         background-size: 100px 100px
     }
 }

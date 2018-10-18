@@ -243,7 +243,7 @@ var stVersions = {
     'cmodules/web/public.js': 329399197,
     'pages.css': 24292394584,
     'pages.js': 1162259210,
-    'groups.css': 34128990892,
+    'groups.css': 34218601776,
     'cmodules/web/groups.js': 4073681921,
     'cmodules/web/groups_create.js': 2554367098,
     'groups_create.css': 18481038915,
@@ -281,9 +281,9 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 1932157454,
-    'feed.css': 23274231786,
-    'privacy.js': 253273997,
+    'feed.js': 895691528,
+    'feed.css': 24729998985,
+    'privacy.js': 711405089,
     'privacy.css': 16806607521,
     'apps.css': 36996165489,
     'apps.js': 4108324011,
@@ -651,4 +651,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 9773;
+var _rnd = 3537;

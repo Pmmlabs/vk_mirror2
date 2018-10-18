@@ -1,5 +1,5 @@
 var Privacy = {
-    flistBox: function(i, e, r, t, s, l) {
+    flistBox: function(i, e, r, t, s, c) {
         if (cur.flistTpl = t, 0 === r.length && (r = {}), cur.flistList = cur.flistFriends = e, cur.flistSearchList = [], cur.flistSearchTotal = -1, cur.flistSearchLoadStr = "", cur.flistSelectedList = r && r[0] ? r : [], cur.flistSelected = {}, each(r, function() {
                 cur.flistSelected[this[0]] = 1
             }), cur.flistSelectedShowed = 0, cur.flistIndex = new vkIndexer(e, function(i) {
@@ -19,7 +19,7 @@ var Privacy = {
                     t[this[0]] = this, s.push(this[0])
                 }), cur.flistFriendsPrivacy ? (ajax.post("al_settings.php", {
                     act: "hide_friends",
-                    hash: l,
+                    hash: c,
                     ids: s.join(",")
                 }, {
                     onDone: function(e, r) {
@@ -31,9 +31,9 @@ var Privacy = {
                     out: 4e3
                 }), void(cur.flistNavReload && setTimeout(function() {
                     nav.reload()
-                }, 2e3))) : (cur.onFlistSave && cur.onFlistSave(s, t, l, r), void(i.leaveOnSave || i.hide()))
+                }, 2e3))) : (cur.onFlistSave && cur.onFlistSave(s, t, c, r), void(i.leaveOnSave || i.hide()))
             }), cur.flistTooltip) {
-            var c = ge("flist_sel"),
+            var l = ge("flist_sel"),
                 a = {
                     className: "flist_info_tt",
                     text: cur.flistTooltip,
@@ -44,14 +44,14 @@ var Privacy = {
             a = cur.flistTooltipRight ? extend(a, {
                 dir: "left",
                 slideX: -15,
-                shift: [-getSize(c)[0] - 15, -28]
+                shift: [-getSize(l)[0] - 15, -28]
             }) : extend(a, {
                 dir: "right",
                 slideX: 15,
                 shift: [265, -28]
-            }), showTooltip(c, a), stManager.add(["tooltips.js"], function() {
+            }), showTooltip(l, a), stManager.add(["tooltips.js"], function() {
                 i.setOptions({
-                    onHide: tooltips.hide.pbind(c)
+                    onHide: tooltips.hide.pbind(l)
                 })
             })
         } else i.addButton(getLang("global_cancel"), function() {
@@ -70,7 +70,7 @@ var Privacy = {
         }), cur.flistAllCont = ge("flist_all_list"), cur.flistSelCont = ge("flist_sel_list"), cur.flistSearchEl = ge("flist_search"), cur.flistSearchContEl = geByClass1("flist_search_cont", "flist_cont"), cur.flistLimit && cur.flistSelectedCnt >= cur.flistLimit - 1 && Privacy.flistFull(), cur.flistCountStr && cur.flistSelectedCnt > 0 && (ge("flist_sel_summary").innerHTML = langNumeric(cur.flistSelectedCnt, cur.flistCountStr)), toggleClass("flist_cont", "flist_select_items", cur.flistSelectedCnt > 0), !1
     },
     flistMore: function() {
-        return cur.privacy.pagination && !cur.flistSelectedShowed && cur.flistList.length - cur.flistShown < 10 && cur.flistList.length < cur.flistTotalCount ? void(cur.flistSearchStr ? Privacy.flistSearchPagination() : cur.flistMoreLoading || (cur.flistMoreLoading = !0, ajax.post("al_friends.php", extend({}, cur.privacy.chooseBoxOpts || {}, {
+        return cur.privacy && cur.privacy.pagination && !cur.flistSelectedShowed && cur.flistList.length - cur.flistShown < 10 && cur.flistList.length < cur.flistTotalCount ? void(cur.flistSearchStr ? Privacy.flistSearchPagination() : cur.flistMoreLoading || (cur.flistMoreLoading = !0, ajax.post("al_friends.php", extend({}, cur.privacy.chooseBoxOpts || {}, {
             act: "select_friends_box",
             Checked: Object.keys(cur.flistSelected).join(","),
             pagination: 1,
@@ -114,14 +114,14 @@ var Privacy = {
             s = e.parentNode;
         if ("flist_item_sel" == s.id.slice(0, 14) || hasClass(t, "flist_item_checked")) {
             delete cur.flistSelected[i];
-            for (var l = 0; l < cur.flistSelectedList.length; l++)
-                if (cur.flistSelectedList[l][0] == i) {
-                    cur.flistSelectedList.splice(l, 1);
+            for (var c = 0; c < cur.flistSelectedList.length; c++)
+                if (cur.flistSelectedList[c][0] == i) {
+                    cur.flistSelectedList.splice(c, 1);
                     break
                 }
             t && removeClass(t, "flist_item_checked");
-            var c = ge("flist_item_sel" + i);
-            if (c && (re(c), cur.flistSelectedCnt > cur.flistSelInRow && cur.flistSelectedList[cur.flistSelInRow - 1])) {
+            var l = ge("flist_item_sel" + i);
+            if (l && (re(l), cur.flistSelectedCnt > cur.flistSelInRow && cur.flistSelectedList[cur.flistSelInRow - 1])) {
                 var a = cur.flistSelectedList[cur.flistSelInRow - 1];
                 ge("flist_item_sel" + a[0]) || cur.flistSelCont.insertBefore(ce("div", {
                     id: "flist_item_sel" + a[0],
@@ -147,9 +147,9 @@ var Privacy = {
                 re(o[o.length - 1]), val("flist_sel_show_all", "+" + (cur.flistSelectedCnt - cur.flistSelInRow)), removeClass("flist_sel_show_all", "unshown")
             }
             cur.flistLimit && cur.flistSelectedCnt >= cur.flistLimit && Privacy.flistFull(r || window.event);
-            for (var l = 0; l < cur.flistList.length; l++)
-                if (cur.flistList[l] && cur.flistList[l][0] == i) {
-                    cur.flistSelectedList.unshift(cur.flistList[l]);
+            for (var c = 0; c < cur.flistList.length; c++)
+                if (cur.flistList[c] && cur.flistList[c][0] == i) {
+                    cur.flistSelectedList.unshift(cur.flistList[c]);
                     break
                 }
             cur.flistSelected[i] = 1, cur.flistSearchStr && Privacy.flistSearch(!1)
@@ -179,7 +179,7 @@ var Privacy = {
         addClass(cur.flistAllCont, "flist_full")
     },
     flistSearch: function(i) {
-        return i = trim(i), cur.flistSearchStr = i, cur.privacy.pagination && !cur.flistSelectedShowed && cur.flistIndex.list.length < cur.flistTotalCount && i ? void Privacy.flistSearchPagination() : (cur.flistSearchList = [], cur.flistSearchTotal = -1, cur.flistSearchLoadStr = "", clearTimeout(cur.flistSearchLoadMore), i ? (cur.flistList = (cur.flistSelectedShowed ? cur.flistSelectedIndex : cur.flistIndex).search(i), cur.flistSelection = {
+        return i = trim(i), cur.flistSearchStr = i, cur.privacy && cur.privacy.pagination && !cur.flistSelectedShowed && cur.flistIndex.list.length < cur.flistTotalCount && i ? void Privacy.flistSearchPagination() : (cur.flistSearchList = [], cur.flistSearchTotal = -1, cur.flistSearchLoadStr = "", clearTimeout(cur.flistSearchLoadMore), i ? (cur.flistList = (cur.flistSelectedShowed ? cur.flistSelectedIndex : cur.flistIndex).search(i), cur.flistSelection = {
             re: new RegExp("(" + i.replace(cur.flistIndex.delimiter, "|").replace(/[\/\\\(\)\[\]\{\}\*,]/g, "").replace(/^\||\|$/g, "") + ")", "gi"),
             val: '<em class="highlight">$1</em>'
         }, cur.flistScrollbar.scrollTop(0)) : (cur.flistList = cur.flistSelectedShowed ? cur.flistSelectedList : cur.flistFriends, cur.flistSelection = !1, val(cur.flistSearchEl, ""), addClass("ui_search_field_empty", cur.flistSearchContEl)), void(cur.flistList.length && (cur.flistAllCont.innerHTML = "", cur.flistShown = -1, Privacy.flistMore())))
@@ -201,7 +201,7 @@ var Privacy = {
                 }
             })
         }
-        if (!(cur.flistSearchLoading || cur.flistSearchLoadStr === cur.flistSearchStr && cur.flistSearchList.length >= cur.flistSearchTotal)) {
+        if (!(cur.flistSearchLoading || cur.flistSearchLoadStr === cur.flistSearchStr && cur.flistSearchList.length >= cur.flistSearchTotal) && cur.privacy) {
             var e = cur.flistSearchStr;
             cur.flistSearchLoadMore && clearTimeout(cur.flistSearchLoadMore), cur.flistSearchLoadStr === e ? i() : cur.flistSearchLoadMore = setTimeout(i, 500)
         }
@@ -242,11 +242,11 @@ var Privacy = {
             r = cur.privacy[i],
             t = r[0],
             s = cur.privacy[i + "_types"] || cur.privacy._types,
-            l = cur.privacy[i + "_lists"] || cur.privacy._lists || {},
-            c = {};
-        for (var a in l) {
+            c = cur.privacy[i + "_lists"] || cur.privacy._lists || {},
+            l = {};
+        for (var a in c) {
             var n = parseInt(a);
-            c[n] = l[a]
+            l[n] = c[a]
         }
         if (e) {
             e.innerHTML = s[t];
@@ -257,9 +257,9 @@ var Privacy = {
                 if (t == Privacy.listsType) {
                     var f = [];
                     for (var a in r[2]) {
-                        var d = -r[2][a],
-                            v = (d - 1) % 8 + 1;
-                        c[d] && f.push(100 > d ? '<a href="/friends?section=list' + d + '" class="group' + v + '">' + c[d] + "</a>" : '<span class="group' + v + '">' + c[d] + "</span>")
+                        var v = -r[2][a],
+                            d = (v - 1) % 8 + 1;
+                        l[v] && f.push(100 > v ? '<a href="/friends?section=list' + v + '" class="group' + d + '">' + l[v] + "</a>" : '<span class="group' + d + '">' + l[v] + "</span>")
                     }
                     u.nextSibling.innerHTML = (f.length ? ": " : "") + f.join(", ")
                 } else u.nextSibling.innerHTML = "";
@@ -272,17 +272,17 @@ var Privacy = {
     },
     someSaved: function(i, e, r, t) {
         cur.privacy[i] = [Privacy.someType, 0, e, []];
-        for (var s = cur.privacy.lang || {}, l = e.length, c = [], a = 0; l > a && 5 > a; ++a) {
+        for (var s = cur.privacy.lang || {}, c = e.length, l = [], a = 0; c > a && 5 > a; ++a) {
             var n = e[a],
                 o = t ? r[a] : r[n],
                 u = o[4].replace(/'/g, "");
-            c.push('<a href="/' + (u ? u : "id" + n) + '" onclick="return nav.go(this, event)">' + (o[5] || o[1]) + "</a>")
+            l.push('<a href="/' + (u ? u : "id" + n) + '" onclick="return nav.go(this, event)">' + (o[5] || o[1]) + "</a>")
         }
-        c = c.join(", "), l > 5 && (c += " " + (s.some ? getLang(s.some, l - 5) : getLang("privacy_N_friends_some", l - 5)));
+        l = l.join(", "), c > 5 && (l += " " + (s.some ? getLang(s.some, c - 5) : getLang("privacy_N_friends_some", c - 5)));
         var f = ge("privacy_edit_" + i),
-            d = gpeByClass("privacy_edit_wrap", f),
-            v = cur.privacy[i + "_types"] || cur.privacy._types;
-        f.innerHTML = v[Privacy.someType], d.nextSibling.innerHTML = ": " + c, cur.onPrivacyChanged && cur.onPrivacyChanged(i)
+            v = gpeByClass("privacy_edit_wrap", f),
+            d = cur.privacy[i + "_types"] || cur.privacy._types;
+        f.innerHTML = d[Privacy.someType], v.nextSibling.innerHTML = ": " + l, cur.onPrivacyChanged && cur.onPrivacyChanged(i)
     },
     customSaved: function(i, e, r, t) {
         cur.privacy[i] = e;
@@ -290,8 +290,8 @@ var Privacy = {
         if (1 == e[1] && !e[3].length || e[0] == Privacy.listsType) Privacy.update(i);
         else if (e[0] == Privacy.someType) Privacy.someSaved(i, e[2], r, !0);
         else {
-            var l = ge("privacy_edit_" + i),
-                c = gpeByClass("privacy_edit_wrap", l),
+            var c = ge("privacy_edit_" + i),
+                l = gpeByClass("privacy_edit_wrap", c),
                 a = cur.privacy[i + "_types"] || cur.privacy._types,
                 n = cur.privacy[i + "_lists"] || cur.privacy._lists || {},
                 o = a[Privacy.listsType],
@@ -299,23 +299,23 @@ var Privacy = {
             if (1 == e[1]) o = a[e[2][0]];
             else {
                 u = [];
-                for (var f = r.length, d = !1, v = 0; f > v && 5 > v; ++v) {
-                    var p = r[v],
+                for (var f = r.length, v = !1, d = 0; f > d && 5 > d; ++d) {
+                    var p = r[d],
                         h = p[0];
                     if (h > 0) {
                         var _ = p[4].replace(/'/g, "");
-                        d = !0, u.push('<a href="/' + (_ ? _ : "id" + h) + '" onclick="return nav.go(this, event)">' + p[6] + "</a>")
+                        v = !0, u.push('<a href="/' + (_ ? _ : "id" + h) + '" onclick="return nav.go(this, event)">' + p[6] + "</a>")
                     } else {
                         var y = -h,
                             S = (y - 1) % 8 + 1;
                         u.push('<a href="/friends?section=list' + y + '" class="group' + S + '">' + n[y] + "</a>")
                     }
                 }
-                d && (o = a[Privacy.someType]), u = ": " + u.join(", "), f > 5 && (u += " " + getLang(s.some || "privacy_N_friends_some", f - 5))
+                v && (o = a[Privacy.someType]), u = ": " + u.join(", "), f > 5 && (u += " " + getLang(s.some || "privacy_N_friends_some", f - 5))
             }
             if (t.length) {
-                for (var f = t.length, g = [], v = 0; f > v && 5 > v; ++v) {
-                    var p = t[v],
+                for (var f = t.length, g = [], d = 0; f > d && 5 > d; ++d) {
+                    var p = t[d],
                         h = p[0];
                     if (h > 0) {
                         var _ = p[4].replace(/'/g, "");
@@ -328,21 +328,21 @@ var Privacy = {
                 }
                 u += ", " + getLang("global_privacy_except") + " " + g.join(", "), f > 5 && (u += " " + getLang("privacy_N_friends_more", f - 5))
             }
-            l.innerHTML = o, c.nextSibling.innerHTML = u, hasClass(c, "privacy_graphic") && (e[1] && e[2] && "0" == e[2][0] ? removeClass : addClass)(c, "privacy_locked"), cur.onPrivacyChanged && cur.onPrivacyChanged(i)
+            c.innerHTML = o, l.nextSibling.innerHTML = u, hasClass(l, "privacy_graphic") && (e[1] && e[2] && "0" == e[2][0] ? removeClass : addClass)(l, "privacy_locked"), cur.onPrivacyChanged && cur.onPrivacyChanged(i)
         }
     },
     choose: function(i, e, r, t) {
         var s = cur.privSel,
-            l = cur.privacy[s],
-            c = cur.privacy._noselect || "chat_actions" == s;
+            c = cur.privacy[s],
+            l = cur.privacy._noselect || "chat_actions" == s;
         if (cur.privacyNeedConfirm && !t) return void cur.privacyNeedConfirm(s, e, function() {
             Privacy.show(ge("privacy_edit_" + s), i, s), Privacy.choose(i, e, r, !0)
         });
-        if (c) return cur.onPrivacyChanged && cur.onPrivacyChanged(s, e, r), Privacy.qhide(), cancelEvent(i);
+        if (l) return cur.onPrivacyChanged && cur.onPrivacyChanged(s, e, r), Privacy.qhide(), cancelEvent(i);
         if (e == Privacy.customType) {
             var a, n, o = [],
                 u = "";
-            return l[0] == Privacy.customType ? (a = l[1], n = l[2], o = l[3]) : l[0] == Privacy.someType || l[0] == Privacy.listsType ? (a = 0, n = l[2]) : (a = 1, n = l[2]), cur.onCprivSave = Privacy.customSaved.pbind(s), cur.privacy.custom_box_type && (u = cur.privacy.custom_box_type), showBox("al_friends.php", extend(cur.privacy.chooseBoxOpts || {}, {
+            return c[0] == Privacy.customType ? (a = c[1], n = c[2], o = c[3]) : c[0] == Privacy.someType || c[0] == Privacy.listsType ? (a = 0, n = c[2]) : (a = 1, n = c[2]), cur.onCprivSave = Privacy.customSaved.pbind(s), cur.privacy.custom_box_type && (u = cur.privacy.custom_box_type), showBox("al_friends.php", extend(cur.privacy.chooseBoxOpts || {}, {
                 act: "custom_privacy_box",
                 type: a,
                 plus: n.join(","),
@@ -354,7 +354,7 @@ var Privacy = {
             })
         }
         if (e == Privacy.someType) {
-            var f = l[0] == Privacy.someType || l[0] == Privacy.complexType && 0 == l[1] ? l[2].join(",") : "";
+            var f = c[0] == Privacy.someType || c[0] == Privacy.complexType && 0 == c[1] ? c[2].join(",") : "";
             return cur.onFlistSave = function(i, e) {
                 Privacy.someSaved(s, i, e)
             }, showTabbedBox("al_friends.php", extend({}, cur.privacy.chooseBoxOpts || {}, {
@@ -366,20 +366,20 @@ var Privacy = {
             })
         }
         if (e == Privacy.listsType) {
-            var d = ge("privacy_l_item" + r);
-            if ("l_item_sel" == d.className) {
-                d.className = "l_item";
-                var v = indexOf(l[2], -r);
-                if (-1 != v && l[2].splice(v, 1), !l[2].length && "updates" != s) {
+            var v = ge("privacy_l_item" + r);
+            if ("l_item_sel" == v.className) {
+                v.className = "l_item";
+                var d = indexOf(c[2], -r);
+                if (-1 != d && c[2].splice(d, 1), !c[2].length && "updates" != s) {
                     var p = cur.privacy[s + "_types"] || cur.privacy._types,
                         h = Object.keys(p);
                     cur.privacy[s] = [intval(h[0]), 1, [0],
                         []
                     ]
                 }
-            } else d.className = "l_item_sel", l[0] != e && (l = cur.privacy[s] = [e, 0, [],
+            } else v.className = "l_item_sel", c[0] != e && (c = cur.privacy[s] = [e, 0, [],
                 []
-            ]), l[2].push(-r);
+            ]), c[2].push(-r);
             return Privacy.update(s), cancelEvent(i)
         }
         cur.privacy[s] = [e, 1, [e],
@@ -409,15 +409,15 @@ var Privacy = {
     },
     show: function(i, e, r, t) {
         var s = cur.privacy[r],
-            l = (-1 != r.indexOf("actions"), gpeByClass("privacy_edit_wrap", i));
-        if (s && l) {
+            c = (-1 != r.indexOf("actions"), gpeByClass("privacy_edit_wrap", i));
+        if (s && c) {
             if (cur.onPrivacyShow && cur.onPrivacyShow(r), cur.privEl || (cur.privEl = ge("privacy_dropdown")) && (cur.privRows = cur.privEl.firstChild), cur.privEl) {
-                if (cur.privEl.parentNode != l) {
-                    re(cur.privEl), cur.privEl = l.appendChild(cur.privEl);
-                    var c = ge("privacy_header");
-                    c && c.tt && isFunction(c.tt.hide) && c.tt.hide()
+                if (cur.privEl.parentNode != c) {
+                    re(cur.privEl), cur.privEl = c.appendChild(cur.privEl);
+                    var l = ge("privacy_header");
+                    l && l.tt && isFunction(l.tt.hide) && l.tt.hide()
                 }
-            } else cur.privEl = l.appendChild(ce("div", {
+            } else cur.privEl = c.appendChild(ce("div", {
                 id: "privacy_dropdown",
                 innerHTML: '<div class="rows"></div>'
             })), cur.privRows = cur.privEl.firstChild, addEvent(cur.privEl, "mouseout", Privacy.hide.pbind(500)), addEvent(cur.privEl, "mouseover", function() {
@@ -431,31 +431,31 @@ var Privacy = {
             setStyle(cur.privRows, {
                 fontSize: u
             }), cur.privSelIndex = s[0], o[cur.privSelIndex] && (cur.privSelIndex = 0);
-            var f, d, v = [],
+            var f, v, d = [],
                 p = !1;
             for (var h in n) {
                 p = !0;
                 break
             }
-            v.push('<div class="header" onclick="Privacy.hide(-1)"><div id="privacy_header" class="header_label">' + i.innerHTML + "</div></div>"), v.push('<div class="body">');
+            d.push('<div class="header" onclick="Privacy.hide(-1)"><div id="privacy_header" class="header_label">' + i.innerHTML + "</div></div>"), d.push('<div class="body">');
             for (var h in a)
                 if (!o[h]) {
-                    if (f = h == cur.privSelIndex && h != Privacy.listsType ? "_sel" : "", d = "onmouseover=\"Privacy.select('" + h + "')\" onclick=\"Privacy.choose(event, '" + h + "')\"", h == Privacy.listsType) {
+                    if (f = h == cur.privSelIndex && h != Privacy.listsType ? "_sel" : "", v = "onmouseover=\"Privacy.select('" + h + "')\" onclick=\"Privacy.choose(event, '" + h + "')\"", h == Privacy.listsType) {
                         if (!p) continue
-                    } else d += " onmouseout=\"Privacy.unselect('" + h + "')\"";
-                    f && h == Privacy.someType && (f += "_plus"), v.push('<div class="item' + f + '" id="privacy_item' + h + '" ' + d + ">" + a[h] + "</div>")
+                    } else v += " onmouseout=\"Privacy.unselect('" + h + "')\"";
+                    f && h == Privacy.someType && (f += "_plus"), d.push('<div class="item' + f + '" id="privacy_item' + h + '" ' + v + ">" + a[h] + "</div>")
                 }
             if (a[Privacy.listsType] && p) {
                 var _ = cur.privSelIndex != Privacy.listsType;
-                v.push('<div id="privacy_lists" class="privacy_lists">'), v.push('<div class="l_header" onclick="return cancelEvent(event)"><div class="l_header_label">' + a[Privacy.listsType] + "</div></div>");
+                d.push('<div id="privacy_lists" class="privacy_lists">'), d.push('<div class="l_header" onclick="return cancelEvent(event)"><div class="l_header_label">' + a[Privacy.listsType] + "</div></div>");
                 for (var h in n) {
                     var y = parseInt(h),
                         f = _ ? "" : inArray(-y, s[2]) ? "_sel" : "";
-                    v.push('<div class="l_item' + f + '" id="privacy_l_item' + y + '" onclick="Privacy.choose(event, ' + Privacy.listsType + ", " + y + ')"><div class="privacy_item_icon"></div>' + n[h] + "</div>")
+                    d.push('<div class="l_item' + f + '" id="privacy_l_item' + y + '" onclick="Privacy.choose(event, ' + Privacy.listsType + ", " + y + ')"><div class="privacy_item_icon"></div>' + n[h] + "</div>")
                 }
-                v.push("</div>")
+                d.push("</div>")
             }
-            v.push("</div>"), cur.privRows.innerHTML = v.join(""), cur.privSel = r;
+            d.push("</div>"), cur.privRows.innerHTML = d.join(""), cur.privSel = r;
             var S = data(cur.privEl, "tween");
             if (S && S.stop(!0), show(cur.privEl), a[Privacy.listsType] && _ && hide("privacy_lists"), Privacy.toup = !1, getClientRectOffsetY(cur.privEl) > 0 && getClientRectOffsetY(cur.privEl, !1, getSize(cur.privEl)[1]) > 0) {
                 Privacy.toup = !0;
@@ -470,9 +470,9 @@ var Privacy = {
             var T = cur.privacy[r + "_help"],
                 L = cur.privacy[r + "_help_w"];
             if (T) {
-                var c = ge("privacy_header"),
-                    x = getSize(c);
-                showTooltip(c, {
+                var l = ge("privacy_header"),
+                    x = getSize(l);
+                showTooltip(l, {
                     text: T,
                     width: L ? L : 300,
                     dir: "left",

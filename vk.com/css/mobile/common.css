@@ -13001,12 +13001,12 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     -webkit-border-radius: 44px;
     -moz-border-radius: 44px;
     border-radius: 44px;
-    overflow: hidden;
     background-color: #f5f5f5;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    background-position: 50%
+    background-position: 50%;
+    position: relative
 }
 
 .OwnerRow__header {
@@ -13051,6 +13051,12 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     color: #909499
 }
 
+.OwnerRow__online {
+    position: absolute;
+    left: 28px;
+    top: 28px
+}
+
 .OwnerColumn {
     display: block;
     color: #000;
@@ -13091,6 +13097,16 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     position: absolute;
     bottom: -4px;
     right: 4px
+}
+
+.OwnerColumn__online {
+    position: absolute;
+    left: 45px;
+    top: 41px
+}
+
+.OwnerColumn__verified+.OwnerColumn__online {
+    display: none
 }
 
 .OwnerColumn_small.OwnerColumn {
@@ -25476,12 +25492,16 @@ a.feedBlocks__article:hover {
 .vk__page_newCreatePost .uMailWrite__attachments .medias_audio .medias_link_icon .m .vk__page_chatAdd .basis .lvi.mlvi,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_audio .medias_link_icon .m .vk__page_chatSettings .basis .lvi.mlvi,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_audio .medias_link_icon .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
+.vk__page_newCreatePost .uMailWrite__attachments .medias_audio .medias_link_icon .OwnerColumn__online,
+.vk__page_newCreatePost .uMailWrite__attachments .medias_audio .medias_link_icon .OwnerRow__online,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_audio .medias_link_icon .vk__page_redesign .basis .ii_btn,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_link_icon .BookmarksItem .ai_menu_toggle_button,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_link_icon .Icon,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_link_icon .m .vk__page_chatAdd .basis .lvi.mlvi,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_link_icon .m .vk__page_chatSettings .basis .lvi.mlvi,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_link_icon .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
+.vk__page_newCreatePost .uMailWrite__attachments .medias_link_icon .OwnerColumn__online,
+.vk__page_newCreatePost .uMailWrite__attachments .medias_link_icon .OwnerRow__online,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_link_icon .vk__page_redesign .basis .ii_btn {
     display: inline-block;
     margin-top: 2px
@@ -32619,6 +32639,8 @@ body.apps_settingsPageBody {
 .m .vk__page_chatAdd .basis .lvi.mlvi,
 .m .vk__page_chatSettings .basis .lvi.mlvi,
 .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
+.OwnerColumn__online,
+.OwnerRow__online,
 .vk__page_redesign .basis .ii_btn {
     display: block
 }
@@ -32632,6 +32654,8 @@ body.apps_settingsPageBody {
 .m .vk__page_chatAdd .basis .lvi.mlvi:before,
 .m .vk__page_chatSettings .basis .lvi.mlvi:before,
 .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"]:before,
+.OwnerColumn__online:before,
+.OwnerRow__online:before,
 .vk__page_redesign .basis .ii_btn:before {
     content: '';
     display: block;
@@ -33351,6 +33375,8 @@ body.apps_settingsPageBody {
 .Icon_moreSmall,
 .Icon_msgMini,
 .Icon_online,
+.Icon_onlinePhoneSmall,
+.Icon_onlineSmall,
 .Icon_phone,
 .Icon_phoneMini,
 .Icon_pin,
@@ -33361,6 +33387,10 @@ body.apps_settingsPageBody {
 .m .vk__page_chatAdd .basis .lvi.mlvi,
 .m .vk__page_chatSettings .basis .lvi.mlvi,
 .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bluer,
+.OwnerColumn__online,
+.OwnerColumn__online.OwnerColumn__online_mobile,
+.OwnerRow__online,
+.OwnerRow__online.OwnerRow__online_mobile,
 .vk__page_redesign .basis .ii_btn.Icon_bluer {
     width: 20px;
     height: 20px
@@ -33376,6 +33406,8 @@ body.apps_settingsPageBody {
 .Icon_moreSmall:before,
 .Icon_msgMini:before,
 .Icon_online:before,
+.Icon_onlinePhoneSmall:before,
+.Icon_onlineSmall:before,
 .Icon_phone:before,
 .Icon_phoneMini:before,
 .Icon_pin:before,
@@ -33386,6 +33418,10 @@ body.apps_settingsPageBody {
 .m .vk__page_chatAdd .basis .lvi.mlvi:before,
 .m .vk__page_chatSettings .basis .lvi.mlvi:before,
 .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bluer:before,
+.OwnerColumn__online.OwnerColumn__online_mobile:before,
+.OwnerColumn__online:before,
+.OwnerRow__online.OwnerRow__online_mobile:before,
+.OwnerRow__online:before,
 .vk__page_redesign .basis .ii_btn.Icon_bluer:before {
     width: 20px;
     height: 20px;
@@ -33402,6 +33438,8 @@ body.apps_settingsPageBody {
 .vk_2x .Icon_moreSmall:before,
 .vk_2x .Icon_msgMini:before,
 .vk_2x .Icon_online:before,
+.vk_2x .Icon_onlinePhoneSmall:before,
+.vk_2x .Icon_onlineSmall:before,
 .vk_2x .Icon_phone:before,
 .vk_2x .Icon_phoneMini:before,
 .vk_2x .Icon_pin:before,
@@ -33415,6 +33453,10 @@ body.apps_settingsPageBody {
 .vk_2x .m .vk__page_chatSettings .basis .lvi.mlvi:before,
 .vk_2x.m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bluer:before,
 .vk_2x .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bluer:before,
+.vk_2x .OwnerColumn__online.OwnerColumn__online_mobile:before,
+.vk_2x .OwnerColumn__online:before,
+.vk_2x .OwnerRow__online.OwnerRow__online_mobile:before,
+.vk_2x .OwnerRow__online:before,
 .vk_2x .vk__page_redesign .basis .ii_btn.Icon_bluer:before {
     background-image: url('/images/mobile/skins/icon/statuses_2x.png?9')
 }
@@ -33505,6 +33547,18 @@ body.apps_settingsPageBody {
 
 .Icon_revote.Icon_blue:before {
     background-position: 0 -616px
+}
+
+.Icon_onlineSmall:before,
+.OwnerColumn__online:before,
+.OwnerRow__online:before {
+    background-position: 0 -655px
+}
+
+.Icon_onlinePhoneSmall:before,
+.OwnerColumn__online.OwnerColumn__online_mobile:before,
+.OwnerRow__online.OwnerRow__online_mobile:before {
+    background-position: 0 -671px
 }
 
 .BookmarksItem_compact .ai_menu_toggle_button:before,
@@ -38883,6 +38937,8 @@ a .BookmarkListItem__subtitle:hover {
 .Bookmarks__tagsRemove .m .vk__page_chatAdd .basis .lvi.mlvi,
 .Bookmarks__tagsRemove .m .vk__page_chatSettings .basis .lvi.mlvi,
 .Bookmarks__tagsRemove .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
+.Bookmarks__tagsRemove .OwnerColumn__online,
+.Bookmarks__tagsRemove .OwnerRow__online,
 .Bookmarks__tagsRemove .vk__page_redesign .basis .ii_btn {
     position: absolute;
     top: 0;
@@ -38900,6 +38956,8 @@ a .BookmarkListItem__subtitle:hover {
 .Bookmarks__tagsRemove .m .vk__page_chatAdd .basis .lvi.mlvi,
 .Bookmarks__tagsRemove .m .vk__page_chatSettings .basis .lvi.mlvi,
 .Bookmarks__tagsRemove .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
+.Bookmarks__tagsRemove .OwnerColumn__online,
+.Bookmarks__tagsRemove .OwnerRow__online,
 .Bookmarks__tagsRemove .vk__page_redesign .basis .ii_btn {
     left: 0
 }
@@ -38923,6 +38981,8 @@ a .BookmarkListItem__subtitle:hover {
 .Bookmarks__tagsSelectItem .m .vk__page_chatAdd .basis .lvi.mlvi,
 .Bookmarks__tagsSelectItem .m .vk__page_chatSettings .basis .lvi.mlvi,
 .Bookmarks__tagsSelectItem .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
+.Bookmarks__tagsSelectItem .OwnerColumn__online,
+.Bookmarks__tagsSelectItem .OwnerRow__online,
 .Bookmarks__tagsSelectItem .vk__page_redesign .basis .ii_btn {
     position: absolute;
     left: 0;
@@ -39059,6 +39119,8 @@ a .BookmarkListItem__subtitle:hover {
 .BookmarksPopup__createButton .m .vk__page_chatAdd .basis .lvi.mlvi,
 .BookmarksPopup__createButton .m .vk__page_chatSettings .basis .lvi.mlvi,
 .BookmarksPopup__createButton .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
+.BookmarksPopup__createButton .OwnerColumn__online,
+.BookmarksPopup__createButton .OwnerRow__online,
 .BookmarksPopup__createButton .vk__page_redesign .basis .ii_btn {
     position: absolute;
     top: 2px;
@@ -40850,12 +40912,16 @@ a .BookmarkListItem__subtitle:hover {
 .comment_item .mi_forwarded .m .vk__page_chatAdd .basis .lvi.mlvi:not(.Icon_revote),
 .comment_item .mi_forwarded .m .vk__page_chatSettings .basis .lvi.mlvi:not(.Icon_revote),
 .comment_item .mi_forwarded .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"]:not(.Icon_revote),
+.comment_item .mi_forwarded .OwnerColumn__online:not(.Icon_revote),
+.comment_item .mi_forwarded .OwnerRow__online:not(.Icon_revote),
 .comment_item .mi_forwarded .vk__page_redesign .basis .ii_btn:not(.Icon_revote),
 .msg__text .mi_forwarded .BookmarksItem .ai_menu_toggle_button:not(.Icon_revote),
 .msg__text .mi_forwarded .Icon:not(.Icon_revote),
 .msg__text .mi_forwarded .m .vk__page_chatAdd .basis .lvi.mlvi:not(.Icon_revote),
 .msg__text .mi_forwarded .m .vk__page_chatSettings .basis .lvi.mlvi:not(.Icon_revote),
 .msg__text .mi_forwarded .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"]:not(.Icon_revote),
+.msg__text .mi_forwarded .OwnerColumn__online:not(.Icon_revote),
+.msg__text .mi_forwarded .OwnerRow__online:not(.Icon_revote),
 .msg__text .mi_forwarded .vk__page_redesign .basis .ii_btn:not(.Icon_revote) {
     float: left;
     margin: 1px 10px 0 2px
