@@ -163,7 +163,7 @@ var stVersions = {
     'blog.css': 20562116862,
     'blog.js': 3939164531,
     'html5audio.js': 976782859,
-    'audioplayer.js': 160976029038,
+    'audioplayer.js': 161626206830,
     'audioplayer.css': 19538310270,
     'audio_html5.js': 287741914,
     'audio.js': 2398309597,
@@ -651,4 +651,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 3537;
+var _rnd = 5272;
