@@ -2437,3 +2437,9 @@ body.body_helpdesk_small_sb .left_menu_nav {
     opacity: 0.6;
     filter: alpha(opacity=60)
 }
+
+.helpdesk_add_template_sections_list_block {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e7e8ec
+}

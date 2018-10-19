@@ -228,6 +228,16 @@ var Helpdesk = {
             btn = ge("add_template_save");
         if (!title) return notaBene("add_template_title_wrap"), !1;
         if (!text) return notaBene("add_template_text"), !1;
+        var selectedSections = "";
+        if (isVisible("add_template_sections_list_block")) {
+            var sectionsEl = ge("add_template_sections_list_block"),
+                sectionsItems = geByClass("checkbox", sectionsEl),
+                sectionsList = [];
+            if (each(sectionsItems, function(e, t) {
+                    isChecked(t) && sectionsList.push(domData(t, "section"))
+                }), !sectionsList.length) return notaBene(sectionsEl);
+            var selectedSections = sectionsList.join(",")
+        }
         if (!anySectionChecked && isVisible("add_template_sections")) return notaBene("add_template_sections"), !1;
         var attachs = [],
             chosen = cur.ticketsTemplateMedia.chosenMedias;
@@ -247,8 +257,10 @@ var Helpdesk = {
             desktop: isChecked("desktop_template"),
             langs: isChecked("langs_template"),
             by_default: isChecked("default_template"),
+            selected_sections: selectedSections,
             hash: cur.hashes.template_hash,
-            from_section: cur.selectedSection
+            from_section: cur.selectedSection,
+            agent_section: cur.helpdeskAgentSection
         };
         tid && (query.template_id = tid);
         var box = curBox();
@@ -263,9 +275,10 @@ var Helpdesk = {
             }
         }), !1
     },
-    switchTemplates: function(section, sel) {
+    switchTemplates: function(agentSection, section, sel) {
         var query = {
                 act: "a_get_templates",
+                agent_section: agentSection,
                 section: section,
                 hash: cur.hashes.template_hash
             },
@@ -277,6 +290,9 @@ var Helpdesk = {
                 val("helpdesk_template_links", content), script && eval(script)
             }
         }), !1
+    },
+    toggleTemplatePersonal: function(e) {
+        checkbox(e), toggle("add_template_sections_list_block", isChecked("own_template"))
     },
     editTemplate: function() {
         return !showBox("helpdesk", {
@@ -304,7 +320,8 @@ var Helpdesk = {
                 act: "delete_template",
                 template_id: tid,
                 hash: cur.hashes.template_hash,
-                from_section: cur.selectedSection
+                from_section: cur.selectedSection,
+                agent_section: cur.helpdeskAgentSection
             }, {
                 progress: box.progress,
                 onDone: function(content, script) {
@@ -336,22 +353,22 @@ var Helpdesk = {
             c = replaceEntities(t.text.replace(/<br>/g, "\n")) + "\n";
         if ("ie" == n) {
             s.focus();
-            var d = document.selection.createRange();
-            d.collapse(!0), d.moveStart("character", -s.value.length), r = d.text.length
+            var l = document.selection.createRange();
+            l.collapse(!0), l.moveStart("character", -s.value.length), r = l.text.length
         } else "ff" == n && (r = s.selectionStart);
         if (browser.chrome && (r += 1), r += c.length, "ie" == n) {
             s.focus();
-            var d = document.selection.createRange();
-            d.moveStart("character", -s.value.length), d.moveStart("character", r), d.moveEnd("character", 0), d.select()
+            var l = document.selection.createRange();
+            l.moveStart("character", -s.value.length), l.moveStart("character", r), l.moveEnd("character", 0), l.select()
         } else "ff" == n && (s.focus(), s.selectionStart = r, s.selectionEnd = r);
-        var l = s.value.substring(0, r - c.length),
+        var d = s.value.substring(0, r - c.length),
             _ = s.value.substring(r - c.length, s.value.length);
-        if (s.value = l + c + _, s.scrollTop = i, s.autosize || autosizeSetup(s, {
+        if (s.value = d + c + _, s.scrollTop = i, s.autosize || autosizeSetup(s, {
                 minHeight: 42,
                 maxHeight: 100
             }), s.autosize.update(), "ie" == n) {
-            var d = s.createTextRange();
-            d.move("character", r), d.select()
+            var l = s.createTextRange();
+            l.move("character", r), l.select()
         } else "ff" == n && (s.focus(), s.setSelectionRange(r, r));
         if (val("helpdesk_template_title", '<a onclick="Helpdesk.deselectTemplate(' + t.type + "," + e + ');">' + t.title + "</a>"), setStyle("edit_template", {
                 display: vk.id == intval(t.author_id) || cur.canEditTemplates ? "inline-block" : "none"
@@ -363,16 +380,17 @@ var Helpdesk = {
             removeClass(t, "helpdesk_template_selected")
         }), !1
     },
-    saveTemplatesOrder: function(e) {
-        var t = ge("helpdesk_template_links"),
-            s = Array.from(domQuery(".helpdesk_template", t)).map(function(e) {
+    saveTemplatesOrder: function(e, t) {
+        var s = ge("helpdesk_template_links"),
+            o = Array.from(domQuery(".helpdesk_template", s)).map(function(e) {
                 return e.id.replace("template", "")
             });
         ajax.post("helpdesk", {
             act: "a_save_templates_order",
             type: e,
             from_section: cur.selectedSection,
-            template_ids: s
+            template_ids: o,
+            agent_section: t
         })
     },
     toggleMoveTemplatesMode: function() {
@@ -1628,8 +1646,8 @@ var Helpdesk = {
             each(n, function(e, t) {
                 addClass("template" + t, "helpdesk_template_selected")
             });
-            for (var d = c.sort(), l = d[0], _ = d[d.length - 1], u = l.length, h = 0; u > h && l.charAt(h) === _.charAt(h);) h++;
-            h > r.length && (val(e, a.substring(0, a.length - r.length) + l.substring(0, h) + i), elfocus(e, a.length - r.length + h))
+            for (var l = c.sort(), d = l[0], _ = l[l.length - 1], u = d.length, h = 0; u > h && d.charAt(h) === _.charAt(h);) h++;
+            h > r.length && (val(e, a.substring(0, a.length - r.length) + d.substring(0, h) + i), elfocus(e, a.length - r.length + h))
         } else 1 == n.length && (val(e, a.substring(0, a.length - r.length) + i), elfocus(e, a.length - r.length), Helpdesk.selectTemplate(n[0]));
         return !1
     },
