@@ -5643,6 +5643,10 @@ div.chat_tab_img {
     padding: 10px 14px
 }
 
+.top_notify_cont .feedback_row._feedback_deleted {
+    line-height: 18px
+}
+
 .top_notify_cont .feedback_row .post_actions {
     width: 19px;
     margin-left: 4px;

@@ -1617,11 +1617,6 @@
     display: none
 }
 
-.top_notify_cont .feedback_row_clickable:hover,
-.top_notify_cont .feedback_row_wrap {
-    border: none!important
-}
-
 .top_notify_cont .feedback_row:not(.dld).hover,
 .top_notify_cont .feedback_row:not(.dld):hover {
     background-color: #fafbfc
