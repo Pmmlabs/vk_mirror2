@@ -474,8 +474,7 @@ var Helpdesk = {
         }), !0
     },
     getNextTicket: function() {
-        ajax.post("helpdesk", {
-            act: "get_next",
+        ajax.post("helpdesk?act=get_next", {
             ticket_id: cur.ticket_id,
             hash: cur.hashes.next_hash
         })

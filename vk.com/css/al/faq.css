@@ -1079,11 +1079,11 @@
     float: left;
     margin: -5px;
     padding: 5px;
-    min-width: 600px
+    min-width: 500px
 }
 
-.faq_category_row:hover {
-    background: #f2f4f7
+.faq_category_row .faq_category_description:hover {
+    background: #e6e9ed
 }
 
 .faq_category_row .faq_category_title {
@@ -1104,15 +1104,20 @@
     display: none
 }
 
+.faq_category_row .faq_category_subcategories {
+    padding-left: 30px;
+    padding-top: 15px
+}
+
 .faq_category_edit_box .faq_category_edit_row {
-    margin-bottom: 7px;
-    width: 520px
+    margin-bottom: 7px
 }
 
 .faq_category_edit_box .faq_category_edit_row .faq_category_edit_label {
+    box-sizing: border-box;
     padding: 7px 10px 0;
     float: left;
-    width: 155px;
+    width: 210px;
     color: #555
 }
 
