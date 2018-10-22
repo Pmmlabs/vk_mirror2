@@ -4254,7 +4254,6 @@ var Wall = {
             ajax.post('al_wall.php', Wall.fixPostParams(params), {
                 onDone: function(rows, names) {
                     if (cur.poster && submitFromPoster) {
-                        cur.poster.onSend();
                         cur.poster.unlockEditPoster();
                         cur.poster.resetPoster();
                         cur.poster.closePoster(null, true);

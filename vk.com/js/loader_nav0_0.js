@@ -235,7 +235,7 @@ var stVersions = {
     'module.css': 24914036814,
     'owner_photo.js': 3368798011,
     'owner_photo.css': 21719460522,
-    'page.js': 2418795638,
+    'page.js': 2105791279,
     'page.css': 67203327590,
     'page_help.css': 25179520257,
     'public.css': 27939519786,
@@ -263,7 +263,7 @@ var stVersions = {
     'qsearch.js': 4098038985,
     'wall.css': 24665516993,
     'wall.js': 2318930545,
-    'cmodules/web/wall_edit.js': 3558538606,
+    'cmodules/web/wall_edit.js': 2961559367,
     'thumbs_edit.css': 16551719142,
     'thumbs_edit.js': 3014691161,
     'mail.css': 2042965398,
@@ -650,4 +650,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 1743;
+var _rnd = 3229;
