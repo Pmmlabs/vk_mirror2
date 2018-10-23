@@ -337,7 +337,7 @@ var stVersions = {
     'widgets.css': 31832619692,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 93918842799,
+    'notifier.js': 95505253554,
     'notifier.css': 29344870921,
     'cmodules/sw/sw.js': 2371912913,
     'earthday.js': 2276669993,
@@ -538,7 +538,7 @@ var stVersions = {
     'stories_manage.css': 69448639193,
     'article.css': 33903636677,
     'article_editor.css': 38365737941,
-    'cmodules/web/article.js': 44979317270,
+    'cmodules/web/article.js': 46851795028,
     'cmodules/web/article_layer.js': 31475711791,
     'article_view.js': 27852796247,
     'bookmarks.css': 18215323739,
@@ -589,8 +589,8 @@ var stVersions = {
     'ui_gallery.css': 16260605072,
     'cmodules/web/ui_components.js': 3224689059,
     'apps_feed_blocks.css': 16892843186,
-    'cmodules/web/landing_transparency.js': 1859551138,
-    'landings/transparency.css': 27316343245,
+    'cmodules/web/landing_transparency.js': 39832634761,
+    'landings/transparency.css': 34989591340,
     'cmodules/web/emoji.js': 164878560,
     'lang': 6919
 };
@@ -650,4 +650,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 4633;
+var _rnd = 9322;
