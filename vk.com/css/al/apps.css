@@ -2631,6 +2631,10 @@ a.page_block_header:hover .apps_cat_header_link:after {
     margin: 0 auto
 }
 
+.apps_main .app_container--vk-app {
+    font-size: 0
+}
+
 .apps_main .app_container.dummy,
 .apps_main .app_container.loading {
     min-height: 308px
@@ -6478,6 +6482,163 @@ td.apps_cat_new_h {
     width: 100%
 }
 
+.vk_app_modal_outer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .7);
+    pointer-events: none;
+    opacity: 0;
+    -o-transition: opacity .3s;
+    transition: opacity .3s
+}
+
+.vk_app_modal_outer.show {
+    pointer-events: initial;
+    opacity: 1
+}
+
+.vk_app_modal_outer.show .vk_app_modal_container {
+    -o-transform: translateX(-50%) translateY(0);
+    transform: translateX(-50%) translateY(0);
+    opacity: 1
+}
+
+.vk_app_modal_container {
+    position: absolute;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 32px;
+    top: 103px;
+    right: auto;
+    box-sizing: border-box;
+    width: 400px;
+    min-height: 294px;
+    border-radius: 8px;
+    background-color: #fff;
+    left: 50%;
+    font-size: 0;
+    -o-transform: translateX(-50%) translateY(20%);
+    transform: translateX(-50%) translateY(20%);
+    opacity: 0;
+    -o-transition: all .3s;
+    transition: all .3s
+}
+
+.vk_app_modal_container img {
+    width: 72px;
+    height: 72px;
+    border-radius: 100px
+}
+
+.vk_app_modal_container h2 {
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.38;
+    letter-spacing: -0.3px;
+    text-align: center;
+    color: #000
+}
+
+.vk_app_modal_container p,
+.vk_app_modal_container ul {
+    margin-top: 0;
+    font-size: 13px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.38;
+    letter-spacing: -0.1px;
+    text-align: center;
+    color: #656565
+}
+
+.vk_app_modal_container ul {
+    padding: 0;
+    list-style: none
+}
+
+.vk_app_modal_container h2,
+.vk_app_modal_container p,
+.vk_app_modal_container ul {
+    max-width: 300px
+}
+
+.vk_app_modal_close_btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    color: #828a99;
+    cursor: pointer
+}
+
+.vk_app_modal_close_btn:hover {
+    color: rgba(130, 138, 153, .7)
+}
+
+.vk_app_modal_btns {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    -ms-flex-positive: 2;
+    flex-grow: 2;
+    margin-top: 24px
+}
+
+.vk_app_modal_btn {
+    border-radius: 4px;
+    border: none;
+    padding: 7px 16px 8px;
+    font-size: 12.5px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center
+}
+
+.vk_app_modal_btn:last-child {
+    margin-left: 10px
+}
+
+.vk_app_modal_btn--deny {
+    color: #55677d;
+    background-color: #e5ebf1
+}
+
+.vk_app_modal_btn--success {
+    color: #fff;
+    background-color: #5181b8
+}
+
+.vk_app_vk_pay_wrapper {
+    position: absolute;
+    overflow: auto;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 500
+}
+
 .apps_similarApps {
     overflow: hidden
 }
@@ -6530,4 +6691,40 @@ td.apps_cat_new_h {
     width: 5px;
     -ms-flex-negative: 0;
     flex-shrink: 0
+}
+
+.vk_app_vk_pay_inner {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #000;
+    opacity: .8
+}
+
+.vk_app_vk_pay_container {
+    position: absolute;
+    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    -o-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    width: 800px;
+    height: 640px;
+    background: #fff;
+    border-radius: 4px 4px 4px 4px;
+    -webkit-mask-image: radial-gradient(circle, #fff 100%, #000 0);
+    overflow: hidden;
+    backface-visibility: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .15)
+}
+
+.vk_app_vk_pay_frame {
+    width: 100%;
+    height: 100%
+}
+
+#apps_layer .app_container--vk-app {
+    width: 100%!important
 }

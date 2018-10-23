@@ -559,9 +559,13 @@ var Video = {
             i = {};
         i[VideoConstants.VIDEO_ITEM_FLAG_EXTERNAL] = "video_ext", i[VideoConstants.VIDEO_ITEM_FLAG_ACTIVE_LIVE] = "video_active_live", i[VideoConstants.VIDEO_ITEM_FLAG_CAN_EDIT] = "video_can_edit", i[VideoConstants.VIDEO_ITEM_FLAG_CAN_ADD] = "video_can_add", i[VideoConstants.VIDEO_ITEM_FLAG_CAN_DELETE] = "video_can_delete", i[VideoConstants.VIDEO_ITEM_FLAG_PRIVATE] = "video_private", i[VideoConstants.VIDEO_ITEM_FLAG_NO_AUTOPLAY] = "video_nap", i[VideoConstants.VIDEO_ITEM_FLAG_ADDED] = "video_added", i[VideoConstants.VIDEO_ITEM_FLAG_SKIP_THUMB_LOAD] = "video_skip_thumb_load";
         var t = e[VideoConstants.VIDEO_ITEM_INDEX_FLAGS];
-        return each(i, function(e, i) {
+        each(i, function(e, i) {
             t & e && (o += i + " ")
-        }), e[VideoConstants.VIDEO_ITEM_INDEX_PLATFORM] || e[VideoConstants.VIDEO_ITEM_INDEX_DURATION] || t & VideoConstants.VIDEO_ITEM_FLAG_ACTIVE_LIVE || (o += " video_no_duration"), t & VideoConstants.VIDEO_ITEM_FLAG_CAN_EDIT || t & VideoConstants.VIDEO_ITEM_FLAG_CAN_DELETE || t & VideoConstants.VIDEO_ITEM_FLAG_CAN_ADD || (o += " video_no_actions"), cur.videoCanAddAlbums && (o += " video_can_edit_albums"), cur.isSnippetVideoSelection && (o += " no_video_select_btn"), t & VideoConstants.VIDEO_ITEM_FLAG_NEED_SIGN_IN && (attrs += ' rel="nofollow"'), [o, attrs]
+        }), e[VideoConstants.VIDEO_ITEM_INDEX_PLATFORM] || e[VideoConstants.VIDEO_ITEM_INDEX_DURATION] || t & VideoConstants.VIDEO_ITEM_FLAG_ACTIVE_LIVE || (o += " video_no_duration");
+        var r = !(t & VideoConstants.VIDEO_ITEM_FLAG_CAN_EDIT || t & VideoConstants.VIDEO_ITEM_FLAG_CAN_DELETE),
+            d = e[VideoConstants.VIDEO_ITEM_INDEX_BLOCKED],
+            a = !(t & VideoConstants.VIDEO_ITEM_FLAG_CAN_ADD);
+        return r && (d || a) && (o += " video_no_actions"), d && (o += " video_blocked"), cur.videoCanAddAlbums && (o += " video_can_edit_albums"), cur.isSnippetVideoSelection && (o += " no_video_select_btn"), t & VideoConstants.VIDEO_ITEM_FLAG_NEED_SIGN_IN && (attrs += ' rel="nofollow"'), [o, attrs]
     },
     buildVideoEl: function(e) {
         var o = trim(cur.videoItemTpl);

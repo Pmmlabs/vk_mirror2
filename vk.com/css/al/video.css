@@ -626,6 +626,8 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
 }
 
 .video_item .media_check_btn_wrap,
+.video_item.video_blocked .video_thumb_action_add,
+.video_item.video_blocked .video_thumb_play,
 .video_item.video_deleted .video_thumb_actions,
 .video_item.video_deleted .video_thumb_play {
     display: none
