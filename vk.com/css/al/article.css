@@ -1627,35 +1627,30 @@ body.article_body .article_layer {
 }
 
 .article_layer .article_stat .article_stat__funnel_part_current#funnel_part_0 {
-    fill: #eef2f7
-}
-
-.article_layer .article_stat .article_stat__funnel_part_current#funnel_part_1 {
     fill: #dce8f5
 }
 
-.article_layer .article_stat .article_stat__funnel_part_current#funnel_part_2 {
+.article_layer .article_stat .article_stat__funnel_part_current#funnel_part_1 {
     fill: #c7d9ee
 }
 
-.article_layer .article_stat .article_stat__funnel_part_current#funnel_part_3 {
+.article_layer .article_stat .article_stat__funnel_part_current#funnel_part_2 {
     fill: #acc8e7
 }
 
-.article_layer .article_stat .article_stat__funnel_part_current#funnel_part_4 {
+.article_layer .article_stat .article_stat__funnel_part_current#funnel_part_3 {
     fill: #528bcc
 }
 
-.article_layer .article_stat .article_stat__funnel_part_median,
-.article_layer .article_stat .article_stat__funnel_part_median#funnel_part_2 {
+.article_layer .article_stat .article_stat__funnel_part_median {
     fill: #f0f2f5
 }
 
-.article_layer .article_stat .article_stat__funnel_part_median#funnel_part_3 {
+.article_layer .article_stat .article_stat__funnel_part_median#funnel_part_2 {
     fill: #ebedf0
 }
 
-.article_layer .article_stat .article_stat__funnel_part_median#funnel_part_4 {
+.article_layer .article_stat .article_stat__funnel_part_median#funnel_part_3 {
     fill: #dde1e6
 }
 
@@ -1667,11 +1662,11 @@ body.article_body .article_layer {
 }
 
 .article_layer .article_stat .article_stat__funnel_text_part {
-    height: 48px;
+    height: 60px;
     font-size: 14px;
     color: #09131f;
     box-sizing: border-box;
-    padding-top: 17px;
+    padding-top: 24px;
     text-align: center
 }
 

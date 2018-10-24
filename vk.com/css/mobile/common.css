@@ -32538,7 +32538,7 @@ body.apps_settingsPageBody {
     justify-content: center
 }
 
-.Loading__dot {
+.Loading__item {
     float: left;
     width: 5px;
     height: 5px;
@@ -32565,21 +32565,21 @@ body.apps_settingsPageBody {
     animation-iteration-count: infinite
 }
 
-.Loading__dot_0 {
+.Loading__item_0 {
     -webkit-animation-delay: 0ms;
     -moz-animation-delay: 0ms;
     -o-animation-delay: 0ms;
     animation-delay: 0ms
 }
 
-.Loading__dot_1 {
+.Loading__item_1 {
     -webkit-animation-delay: 180ms;
     -moz-animation-delay: 180ms;
     -o-animation-delay: 180ms;
     animation-delay: 180ms
 }
 
-.Loading__dot_2 {
+.Loading__item_2 {
     -webkit-animation-delay: 360ms;
     -moz-animation-delay: 360ms;
     -o-animation-delay: 360ms;
@@ -32632,7 +32632,7 @@ body.apps_settingsPageBody {
  * Large
  */
 
-.Loading_large .Loading__dot {
+.Loading_large .Loading__item {
     width: 6px;
     height: 6px;
     margin-right: 4px
@@ -32643,7 +32643,7 @@ body.apps_settingsPageBody {
  * White
  */
 
-.Loading_white .Loading__dot {
+.Loading_white .Loading__item {
     background-color: #fff
 }
 
@@ -32652,7 +32652,7 @@ body.apps_settingsPageBody {
  * Flex fallback
  */
 
-.vk_flex_no .Loading__dots {
+.vk_flex_no .Loading__items {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -32660,7 +32660,7 @@ body.apps_settingsPageBody {
     margin-top: -3px
 }
 
-.vk_flex_no .Loading_large .Loading__dots {
+.vk_flex_no .Loading_large .Loading__items {
     margin-left: -15px;
     margin-top: -3px
 }
@@ -34981,10 +34981,15 @@ body.apps_settingsPageBody {
     display: -webkit-flex;
     display: -moz-box;
     display: -ms-flexbox;
-    display: flex
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
 }
 
-.typing_gray {
+.typing_dimmed {
     color: #939393;
     font-size: 13px
 }
@@ -34996,19 +35001,47 @@ body.apps_settingsPageBody {
 .typing__loading {
     width: 40px;
     height: 16px;
-    margin-right: 8px
+    margin-right: 8px;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0
+}
+
+.typing__loading_compact {
+    width: auto;
+    padding: 0 2px;
+    height: 16px;
+    margin-right: 6px
 }
 
 .typing__loading.Loading {
     min-height: 16px
 }
 
-.typing__loading .Loading__dot {
+.typing_dimmed .typing__loading .Loading__item {
     background: #a9abad
 }
 
-.typing__loading .Loading__dot:not(:last-child) {
+.typing__loading .Loading__item:not(:last-child) {
     margin-right: 3px
+}
+
+.typing__loading_audio .Loading__item {
+    -webkit-animation-name: typing__audio;
+    -moz-animation-name: typing__audio;
+    -o-animation-name: typing__audio;
+    animation-name: typing__audio;
+    will-change: transform, opacity;
+    -webkit-transform: scaleY(0.45);
+    -moz-transform: scaleY(0.45);
+    -ms-transform: scaleY(0.45);
+    -o-transform: scaleY(0.45);
+    transform: scaleY(0.45);
+    height: 12px;
+    -webkit-border-radius: 1.5px;
+    -moz-border-radius: 1.5px;
+    border-radius: 1.5px;
+    width: 3px
 }
 
 .typing__names {
@@ -35016,13 +35049,76 @@ body.apps_settingsPageBody {
     white-space: nowrap
 }
 
-.typing_gray .typing__names {
+.typing:not(.typing_animation_simple-dots) .typing__names {
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis
 }
 
+@-webkit-keyframes typing__audio {
+    0%,
+    to {
+        opacity: 0.2;
+        -webkit-transform: scaleY(0.45);
+        transform: scaleY(0.45)
+    }
+    30% {
+        opacity: 1;
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1)
+    }
+}
+
+@-moz-keyframes typing__audio {
+    0%,
+    to {
+        opacity: 0.2;
+        -moz-transform: scaleY(0.45);
+        transform: scaleY(0.45)
+    }
+    30% {
+        opacity: 1;
+        -moz-transform: scaleY(1);
+        transform: scaleY(1)
+    }
+}
+
+@-o-keyframes typing__audio {
+    0%,
+    to {
+        opacity: 0.2;
+        -o-transform: scaleY(0.45);
+        transform: scaleY(0.45)
+    }
+    30% {
+        opacity: 1;
+        -o-transform: scaleY(1);
+        transform: scaleY(1)
+    }
+}
+
+@keyframes typing__audio {
+    0%,
+    to {
+        opacity: 0.2;
+        -webkit-transform: scaleY(0.45);
+        -moz-transform: scaleY(0.45);
+        -o-transform: scaleY(0.45);
+        transform: scaleY(0.45)
+    }
+    30% {
+        opacity: 1;
+        -webkit-transform: scaleY(1);
+        -moz-transform: scaleY(1);
+        -o-transform: scaleY(1);
+        transform: scaleY(1)
+    }
+}
+
 .typing__dotsWrap {
-    width: 16px
+    width: 16px;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0
 }
 
 .typing__dots {

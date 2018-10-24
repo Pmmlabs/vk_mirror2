@@ -1276,16 +1276,16 @@
     cursor: default
 }
 
-#submit_post_box:not(.shown):not(.test_posting_experiment_b):not(.test_posting_experiment_c):not(.own_field) .poster__open-btn {
+#submit_post_box:not(.shown):not(.own_field) .poster__open-btn {
     top: 0;
     margin-left: 14px
 }
 
-#submit_post_box:not(.shown):not(.test_posting_experiment_b):not(.test_posting_experiment_c):not(.own_field) .poster__open-btn:active {
+#submit_post_box:not(.shown):not(.own_field) .poster__open-btn:active {
     top: 1px
 }
 
-#submit_post_box:not(.shown):not(.test_posting_experiment_b):not(.test_posting_experiment_c):not(.own_field) .poster__open-btn-wrapper {
+#submit_post_box:not(.shown):not(.own_field) .poster__open-btn-wrapper {
     float: none;
     position: absolute;
     right: 16px;
@@ -1297,7 +1297,7 @@
     border-right: none
 }
 
-#submit_post_box:not(.shown):not(.test_posting_experiment_b):not(.test_posting_experiment_c):not(.own_field) .poster__open-btn-wrapper+.page_add_media {
+#submit_post_box:not(.shown):not(.own_field) .poster__open-btn-wrapper+.page_add_media {
     right: 61px
 }
 
@@ -1330,12 +1330,7 @@
     z-index: 102
 }
 
-.poster.poster_test-group-d-focused {
-    background: none;
-    box-shadow: none
-}
-
-.feed_submit_only_shown .poster:not(.hide),
+.feed_submit_only_shown .poster.poster_creating:not(.hide),
 .feed_submit_shown .poster.poster_creating:not(.hide) {
     display: block
 }
@@ -2893,9 +2888,6 @@ html:not([lang=ru]) .wall_marked_as_ads {
 
 .zoom_text_active .shown div.submit_post_field[contenteditable=true]~.placeholder .ph_input,
 .zoom_text_active .shown div.submit_post_field~.placeholder .ph_input,
-.zoom_text_active .test_posting_experiment_c div.submit_post_field[contenteditable=true]:empty:not(.submit_post_inited):not(.reply_field):before,
-.zoom_text_active .test_posting_experiment_c div.submit_post_field[contenteditable=true]~.placeholder .ph_input,
-.zoom_text_active .test_posting_experiment_c div.submit_post_field~.placeholder .ph_input,
 .zoom_text_active.wall_module.wl_post .wl_post_body_wrap .zoom_text,
 .zoom_text_active .wall_text #wpe_text.zoom_text,
 .zoom_text_active .wall_text .zoom_text,
@@ -2926,15 +2918,9 @@ html:not([lang=ru]) .wall_marked_as_ads {
 
 .zoom_text_active .shown div.submit_post_field[contenteditable=true]~.placeholder .ph_input,
 .zoom_text_active .shown div.submit_post_field~.placeholder .ph_input,
-.zoom_text_active .test_posting_experiment_c div.submit_post_field[contenteditable=true]~.placeholder .ph_input,
-.zoom_text_active .test_posting_experiment_c div.submit_post_field~.placeholder .ph_input,
 .zoom_text_active div.submit_post_field.zoom_text,
 .zoom_text_active div.submit_post_field.zoom_text[contenteditable=true] {
     padding-top: 10px
-}
-
-.zoom_text_active .test_posting_experiment_c div.submit_post_field[contenteditable=true]:empty:not(.submit_post_inited):not(.reply_field):before {
-    margin-top: -4px
 }
 
 #wpe_text.zoom_text font,
@@ -6307,7 +6293,7 @@ div.submit_post_field[contenteditable=true]>p {
     opacity: 0!important
 }
 
-#submit_post_box:not(.shown):not(.test_posting_experiment_b):not(.test_posting_experiment_c):not(.own_field) .submit_post {
+#submit_post_box:not(.shown):not(.own_field) .submit_post {
     display: block;
     height: 0;
     padding: 0;
@@ -6315,22 +6301,22 @@ div.submit_post_field[contenteditable=true]>p {
     overflow: hidden
 }
 
-#submit_post_box:not(.shown):not(.test_posting_experiment_b):not(.test_posting_experiment_c):not(.own_field) .page_add_media {
+#submit_post_box:not(.shown):not(.own_field) .page_add_media {
     float: none;
     position: absolute;
     bottom: 13px;
     right: 11px
 }
 
-#submit_post_box:not(.shown):not(.test_posting_experiment_b):not(.test_posting_experiment_c):not(.own_field) .ms_items_more_wrap,
-#submit_post_box:not(.shown):not(.test_posting_experiment_b):not(.test_posting_experiment_c):not(.own_field) .ms_item {
+#submit_post_box:not(.shown):not(.own_field) .ms_items_more_wrap,
+#submit_post_box:not(.shown):not(.own_field) .ms_item {
     display: none
 }
 
-#submit_post_box:not(.shown):not(.test_posting_experiment_b):not(.test_posting_experiment_c):not(.own_field) .ms_item.ms_item_article,
-#submit_post_box:not(.shown):not(.test_posting_experiment_b):not(.test_posting_experiment_c):not(.own_field) .ms_item.ms_item_audio,
-#submit_post_box:not(.shown):not(.test_posting_experiment_b):not(.test_posting_experiment_c):not(.own_field) .ms_item.ms_item_photo,
-#submit_post_box:not(.shown):not(.test_posting_experiment_b):not(.test_posting_experiment_c):not(.own_field) .ms_item.ms_item_video {
+#submit_post_box:not(.shown):not(.own_field) .ms_item.ms_item_article,
+#submit_post_box:not(.shown):not(.own_field) .ms_item.ms_item_audio,
+#submit_post_box:not(.shown):not(.own_field) .ms_item.ms_item_photo,
+#submit_post_box:not(.shown):not(.own_field) .ms_item.ms_item_video {
     display: block
 }
 
@@ -6522,30 +6508,22 @@ div.submit_post_field[contenteditable=true]>p {
     display: table
 }
 
-.submit_post_box.test_posting_experiment_b .submit_post,
-.submit_post_box.test_posting_experiment_b .submit_post_extend_controls,
 .submit_post_box.own_field .emoji_smile,
 .submit_post_box.own_field .submit_post,
 .submit_post_box.own_field .submit_post_extend_controls,
 .submit_post_box.shown .emoji_smile,
 .submit_post_box.shown .submit_post,
-.submit_post_box.shown .submit_post_extend_controls,
-.submit_post_box.test_posting_experiment_c .emoji_smile,
-.submit_post_box.test_posting_experiment_c .submit_post,
-.submit_post_box.test_posting_experiment_c .submit_post_extend_controls {
+.submit_post_box.shown .submit_post_extend_controls {
     display: block
 }
 
 .submit_post_box.own_field div.submit_post_field,
-.submit_post_box.shown div.submit_post_field,
-.submit_post_box.test_posting_experiment_c div.submit_post_field {
+.submit_post_box.shown div.submit_post_field {
     padding-right: 36px
 }
 
 .submit_post_box.shown div.submit_post_field,
-.submit_post_box.shown div.submit_post_field~.placeholder .ph_input,
-.submit_post_box.test_posting_experiment_c div.submit_post_field,
-.submit_post_box.test_posting_experiment_c div.submit_post_field~.placeholder .ph_input {
+.submit_post_box.shown div.submit_post_field~.placeholder .ph_input {
     min-height: 72px;
     max-height: none
 }
@@ -11181,9 +11159,7 @@ button.wall_block_app_btn {
     width: 320px!important
 }
 
-.submit_post_box.shown .articles_feature_tooltip,
-.submit_post_box.test_posting_experiment_b .articles_feature_tooltip,
-.submit_post_box.test_posting_experiment_c .articles_feature_tooltip {
+.submit_post_box.shown .articles_feature_tooltip {
     margin: 6px 0 0 -20px
 }
 

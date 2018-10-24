@@ -3525,15 +3525,10 @@ var Wall = {
                         cur.wallAddMedia.chooseMedia.apply(cur.wallAddMedia, data[1][i]);
                     }
                 }
-                if (geByClass1('test_posting_experiment_d')) {
-                    Wall.postBoxShadow(false);
-                }
             }, 0);
         });
 
-        if (geByClass1('test_posting_experiment_d')) {
-            Wall.postBoxShadow(false);
-        } else if (data[2]) {
+        if (data[2]) {
             wall.focusOnEnd();
         }
         if (data[3]) {
@@ -3598,7 +3593,6 @@ var Wall = {
         }
 
         if (cur.editing === 0) {
-            Wall.postBoxShadow(true);
             return;
         }
         setTimeout(WallUpload.init, 0);
@@ -3614,40 +3608,11 @@ var Wall = {
 
         Wall.hideEditPostReply();
         addClass('submit_post_box', 'shown');
-        Wall.postBoxShadow(true);
         cur.editing = 0;
         cur.poster && cur.poster.checkState();
 
         if (isFunction(cur.onShowEditPost)) {
             cur.onShowEditPost()
-        }
-    },
-
-    postBoxShadow: function(is_enabled) {
-        var submitPostBoxEl = ge('submit_post_box');
-
-        if (submitPostBoxEl && hasClass(submitPostBoxEl, 'test_posting_experiment_d')) {
-            if (is_enabled) {
-                if (cur.poster) {
-                    addClass(cur.poster.getPosterElement(), 'poster_test-group-d-focused');
-                }
-
-                addClass(bodyNode, 'submit_post_box_focused');
-
-                if (cur.postField) {
-                    cur.postField.focus();
-                }
-            } else {
-                if (cur.poster) {
-                    removeClass(cur.poster.getPosterElement(), 'poster_test-group-d-focused');
-                }
-
-                removeClass(bodyNode, 'submit_post_box_focused');
-
-                if (cur.postField) {
-                    cur.postField.blur();
-                }
-            }
         }
     },
 
@@ -3750,7 +3715,6 @@ var Wall = {
         if (browser.opera_mobile || !rf) return;
         if (!force && (v || addmedia.chosenMedia || (addmedia.getMedias && addmedia.getMedias().length > 0) || (addmedia.attachCount && addmedia.attachCount() > 0))) return;
         removeClass('submit_post_box', 'shown');
-        Wall.postBoxShadow(false);
         if (rf && !v) {
             if (cur.postMention) {
                 cur.postMention.options.minHeight = cur.emptyPostheight || 14;
@@ -4262,7 +4226,6 @@ var Wall = {
                     }
 
                     Wall.clearInput();
-                    Wall.postBoxShadow(false);
 
                     cur.postSent = false;
                     cur.postponeVideoPost = false;
