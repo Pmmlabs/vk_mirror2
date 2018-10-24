@@ -6728,3 +6728,11 @@ td.apps_cat_new_h {
 #apps_layer .app_container--vk-app {
     width: 100%!important
 }
+
+.flash-deprecated {
+    box-shadow: none
+}
+
+.flash-deprecated #apps_user_warning_cont {
+    border-bottom: 1px solid transparent
+}

@@ -601,7 +601,7 @@ var Feed = {
     setSection: function(e, t, o) {
         if (t = t || 0, cur.prevSection = cur.section, !(e == cur.section && 2 > t) && e) {
             if (uiRightMenu.hideProgress(cur.feedEls.rmenu), cur.feedEls.search && uiSearch.hideProgress(cur.feedEls.search), t > 1) {
-                toggleClass(cur.feedEls.wrap, "feed_submit_shown", inArray(e, cur.options.feed_types.tabs.concat(["list"]))), hasClass(cur.feedEls.wrap, "test_posting_experiment_b") && toggleClass(cur.feedEls.wrap, "feed_submit_only_shown", inArray(e, ["recommended", "search", "updates", "comments"]));
+                toggleClass(cur.feedEls.wrap, "feed_submit_shown", inArray(e, cur.options.feed_types.tabs.concat(["list"]))), hasClass(cur.feedEls.wrap, "test_posting_experiment") && toggleClass(cur.feedEls.wrap, "feed_submit_only_shown", inArray(e, ["recommended", "search", "updates", "comments"]));
                 var s = inArray(e, ["articles_search", "articles", "search", "photos_search", "photos"]);
                 toggleClass(cur.feedEls.wrap, "feed_search_shown", s), s && elfocus(cur.feedEls.search), cur.section && val(cur.feedEls.search, "")
             }

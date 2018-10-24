@@ -1176,6 +1176,10 @@ var MoneyTransfer = {
         setTimeout(elfocus.pbind('transfer_amount'), 100);
     },
     renderSelectBox: function() {
+        if (!cur.uiTransferTo) {
+            return;
+        }
+
         var is_transfer_tab = cur.paymentsOptions.boxTab === 'transfer';
 
         cur.uiTransferTo.setData([]);
