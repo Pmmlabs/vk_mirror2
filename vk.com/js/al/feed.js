@@ -161,8 +161,9 @@ var Feed = {
                         } else if (o)
                             for (d.innerHTML = o; i = d.lastChild;)
                                 if ("DIV" == i.tagName)
-                                    if (n = i.firstChild.id.substr(4), n && cur.wallLayer == n) d.removeChild(i);
-                                    else if (r = ge("post" + n)) {
+                                    if ("podcasts_recommended_block" !== i.id)
+                                        if (n = i.firstChild.id.substr(4), n && cur.wallLayer == n) d.removeChild(i);
+                                        else if (r = ge("post" + n)) {
                             if (!hasClass(r.parentNode, "feed_row")) return;
                             var u = ge("replies" + n),
                                 f = u.nextSibling,
@@ -188,6 +189,7 @@ var Feed = {
                             }
                             d.removeChild(i)
                         } else a = scrollGetY(), c.insertBefore(i, c.firstChild), Feed.onPostLoaded(i, !0), nodeUpdated(i), l = i.offsetHeight, a > 100 && scrollToY(a + l, 0, !1, !0);
+                        else d.removeChild(i);
                         else d.removeChild(i);
                         feed.applyOptions(t), feed.updateTitle()
                     }
@@ -522,7 +524,7 @@ var Feed = {
             case "friends":
             case "videos":
             case "photos":
-            case "feed_podcasts":
+            case "podcasts":
                 void 0 === (t.subsection = cur.subsections[e]) && delete t.subsection;
                 break;
             case "owner":
@@ -778,7 +780,7 @@ var Feed = {
             case "articles":
                 i = hasClass(s, "on") ? "suggested" : "top";
                 break;
-            case "feed_podcasts":
+            case "podcasts":
                 i = hasClass(s, "on") ? "recent" : "top"
         }
         feed.switchSubSection(i, t, o)
@@ -1394,7 +1396,7 @@ var Feed = {
             a = {};
         if (!r) return a;
         if ("ads_feed_placeholder" === r.id) return a;
-        a.module = cur.module, a.index = i, "feed" == cur.module && ("search" == cur.section ? (a.module = "feed_search", a.q = cur.q) : "news" == cur.section ? a.module = cur.subsection ? "feed_news_" + cur.subsection : "feed_news" : "recommended" == cur.section ? a.module = cur.subsection ? "feed_recommended_" + cur.subsection : "feed_recommended" : "friends" == cur.section ? a.module = cur.subsection ? "feed_friends_" + cur.subsection : "feed_friends" : "groups" == cur.section ? a.module = cur.subsection ? "feed_groups_" + cur.subsection : "feed_groups" : "videos" == cur.section ? a.module = cur.subsection ? "feed_videos_" + cur.subsection : "feed_videos" : "photos" == cur.section ? a.module = cur.subsection ? "feed_photos_" + cur.subsection : "feed_photos" : "feed_podcasts" == cur.section ? a.module = cur.subsection ? "feed_pods_" + cur.subsection : "feed_pods" : "list" == cur.section ? a.module = cur.subsection ? "feed_list_" + cur.subsection : "feed_list" : a.module = "feed_other");
+        a.module = cur.module, a.index = i, "feed" == cur.module && ("search" == cur.section ? (a.module = "feed_search", a.q = cur.q) : "news" == cur.section ? a.module = cur.subsection ? "feed_news_" + cur.subsection : "feed_news" : "recommended" == cur.section ? a.module = cur.subsection ? "feed_recommended_" + cur.subsection : "feed_recommended" : "friends" == cur.section ? a.module = cur.subsection ? "feed_friends_" + cur.subsection : "feed_friends" : "groups" == cur.section ? a.module = cur.subsection ? "feed_groups_" + cur.subsection : "feed_groups" : "videos" == cur.section ? a.module = cur.subsection ? "feed_videos_" + cur.subsection : "feed_videos" : "photos" == cur.section ? a.module = cur.subsection ? "feed_photos_" + cur.subsection : "feed_photos" : "podcasts" == cur.section ? a.module = cur.subsection ? "feed_pods_" + cur.subsection : "feed_pods" : "list" == cur.section ? a.module = cur.subsection ? "feed_list_" + cur.subsection : "feed_list" : a.module = "feed_other");
         var c = r.getAttribute("data-ad-view");
         c && (a["ad_" + c] = 1);
         var d = r.getAttribute("post_view_hash");

@@ -1868,7 +1868,8 @@ input.settings_app_password_name {
     background-position: 3px -945px
 }
 
-.settings_menu_rows .olist_item_menu.helpdesk .olist_item_photo {
+.settings_menu_rows .olist_item_menu.helpdesk .olist_item_photo,
+.settings_menu_rows .olist_item_menu.olist_item_class__l_hds .olist_item_photo {
     background-position: 8px -354px
 }
 

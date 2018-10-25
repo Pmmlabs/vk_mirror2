@@ -610,6 +610,10 @@
     }
 }
 
+.audio_page_player.audio_player_podcast .audio_player_podcast_title {
+    color: #000
+}
+
 .audio_page_player .audio_page_player_volume_wrap {
     float: right;
     width: 50px;
