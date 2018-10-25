@@ -2386,26 +2386,21 @@ body[data-useragent=safari] .videoplayer_live_app_link {
 
 .videoplayer_subtitle_layer {
     height: 100%;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
     pointer-events: none;
     position: absolute;
     width: 100%
 }
 
 .videoplayer_subtitle_layer__cue {
-    background: rgba(0, 0, 0, .56);
+    background-color: rgba(0, 0, 0, .6);
     border-radius: 4px;
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
     color: #fff;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 30px;
     padding: 3px 8px
-}
-
-._fullscreen .videoplayer_subtitle_layer__cue {
-    font-size: 28px;
-    line-height: 40px
 }
 
 .videoplayer_subtitle_layer__region_bottom,
@@ -2424,7 +2419,7 @@ body[data-useragent=safari] .videoplayer_live_app_link {
 }
 
 .videoplayer_subtitle_layer__region_bottom.with_bottom_margin {
-    margin-bottom: 45px
+    margin-bottom: 35px
 }
 
 .videoplayer_subtitle_layer__region_top {
