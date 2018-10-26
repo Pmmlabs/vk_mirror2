@@ -1087,7 +1087,9 @@
 }
 
 .faq_category_row .faq_category_title {
-    font-weight: 700
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
 }
 
 .faq_category_row .faq_category_title_key {
@@ -1107,6 +1109,10 @@
 .faq_category_row .faq_category_subcategories {
     padding-left: 30px;
     padding-top: 15px
+}
+
+.faq_category_row_trending .faq_category_title {
+    color: #d0021b
 }
 
 .faq_category_edit_box .faq_category_edit_row {

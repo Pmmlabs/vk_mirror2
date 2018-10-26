@@ -964,7 +964,8 @@
     top: 50%;
     width: 100%;
     padding: 0 32px;
-    font-weight: 500;
+    font-family: TT Commons, sans-serif;
+    font-weight: 600;
     text-align: center;
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
@@ -992,7 +993,8 @@
 .poster__placeholder {
     position: absolute;
     top: 50%;
-    font-weight: 500;
+    font-family: TT Commons, sans-serif;
+    font-weight: 600;
     text-align: center;
     -o-transform: translateY(-50%);
     transform: translateY(-50%);

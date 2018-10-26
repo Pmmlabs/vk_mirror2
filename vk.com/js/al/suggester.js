@@ -1,5 +1,5 @@
 function Suggester(t, e) {
-    this._inputEl = t, this._opts = extend(e, {}), this._opts.history = !!this._opts.historyItems, this._fetchTO = !1, this._candidateQuery = "", this._suggestions = {}, addEvent(this._inputEl, "input keyup keydown change valueChanged refresh", this._onInputValueChanged.bind(this)), addEvent(this._inputEl, "click", this._onInputClick.bind(this));
+    this._inputEl = t, this.setOptions(e), this._opts.history = !!this._opts.historyItems, this._fetchTO = !1, this._candidateQuery = "", this._suggestions = {}, addEvent(this._inputEl, "input keyup keydown change valueChanged refresh", this._onInputValueChanged.bind(this)), addEvent(this._inputEl, "click", this._onInputClick.bind(this));
     var s = geByClass1("_ui_search_button_search", this._parentEl());
     s && addEvent(s, "click", function() {
         this.value() && (this._hideSuggestions(!0), this._triggerSearch(this.value(), !0)), this._inputEl.focus()
@@ -12,10 +12,10 @@ Suggester.FETCH_DELAY = 250, Suggester.FETCH_TIMEOUT = 9500, Suggester.SEARCH_TR
     "valueChanged" == t.type && (this.value() || (this._hideSuggestions(!0), this._triggerSearch(""))), "refresh" == t.type && (this.value() || this._hideSuggestions(!0)), t.keyCode === KEY.DEL ? (this._candidateIsNotAppropriateForUser = !0, this._candidateQuery = "") : this._candidateIsNotAppropriateForUser = !1;
     var e = !1;
     if ("keydown" == t.type) {
-        if (this._prevCaretPos = this._prevCaretPos || 0, this._candidateQuery && (t.keyCode == KEY.TAB || t.keyCode == KEY.RIGHT && this._inputEl.selectionStart == this._inputEl.value.length && this._prevCaretPos == this._inputEl.selectionStart) && (this._inputEl.value = this._candidateQuery, this._candidateQuery = "", this._renderCandidate(), this._hideSuggestions(), this._fetchSuggestions(), t.keyCode == KEY.TAB && (e = !0)), setTimeout(function() {
+        if (this._prevCaretPos = this._prevCaretPos || 0, this._candidateQuery && (t.keyCode == KEY.TAB || t.keyCode == KEY.RIGHT && this._inputEl.selectionStart == this._inputEl.value.length && this._prevCaretPos == this._inputEl.selectionStart) && (this._opts.onlyShowSuggestions || (this._inputEl.value = this._candidateQuery), this._candidateQuery = "", this._renderCandidate(), this._hideSuggestions(), this._fetchSuggestions(), t.keyCode == KEY.TAB && (e = !0)), setTimeout(function() {
                 this._prevCaretPos = this._inputEl.selectionStart
             }.bind(this)), (t.keyCode == KEY.UP || t.keyCode == KEY.DOWN) && this._isSuggestionsShown()) return this._selectSuggestion(t.keyCode == KEY.DOWN), !1;
-        if (t.keyCode == KEY.ENTER) return this._cancelFetchSuggestion(), this._hideSuggestions(!0), void this._triggerSearch(this.value(), !0)
+        if (t.keyCode == KEY.ENTER) return this._onAcceptSuggestion(), this._cancelFetchSuggestion(), this._hideSuggestions(!0), void this._triggerSearch(this.value(), !0)
     } else if ("keyup" == t.type) switch (t.keyCode) {
         case KEY.ESC:
             this._isSuggestionsShown() ? (this._triggerSearch(this.value(), this._candidateQuery ? this._candidateQuery : !0), this._hideSuggestions(!0)) : (this._inputEl.value = "", this._triggerSearch(""));
@@ -40,6 +40,9 @@ Suggester.FETCH_DELAY = 250, Suggester.FETCH_TIMEOUT = 9500, Suggester.SEARCH_TR
     return setTimeout(function() {
         this.value() || (this._candidateQuery = ""), this._renderCandidate()
     }.bind(this)), e ? !1 : void 0
+}, Suggester.prototype._onAcceptSuggestion = function() {
+    var t = geByClass1("ui_search_suggestion_selected", this._parentEl());
+    t && isFunction(this._opts.onAcceptSuggestion) && this._opts.onAcceptSuggestion(domData(t, "id"), domData(t, "value"), t)
 }, Suggester.prototype._cancelFetchSuggestion = function() {
     clearTimeout(this._fetchTimeout), clearTimeout(this._fetchTO), this._fetchTimeout = this._fetchTO = 0
 }, Suggester.prototype._selectSuggestion = function(t) {
@@ -50,13 +53,15 @@ Suggester.FETCH_DELAY = 250, Suggester.FETCH_TIMEOUT = 9500, Suggester.SEARCH_TR
         var i = geByClass("ui_search_sugg_list_item", this._parentEl());
         s = domPS(s) || i[i.length - 1]
     }
-    addClass(s, e), this._candidateQuery = "", this._inputEl.value = domData(s, "value"), this._triggerSearchDelayed(this.value(), !0)
+    addClass(s, e), this._candidateQuery = "", s && isFunction(this._opts.onSelectSuggestion) && this._opts.onSelectSuggestion(domData(s, "id"), domData(s, "value"), s), this._opts.onlyShowSuggestions || (this._inputEl.value = domData(s, "value"), this._triggerSearchDelayed(this.value(), !0))
 }, Suggester.prototype._parentEl = function() {
     return gpeByClass("_wrap", this._inputEl)
 }, Suggester.prototype._renderCandidate = function() {
-    var t = geByClass1("_ui_search_suggester_shadow", this._parentEl()),
-        e = this.value();
-    return this._candidateQuery && 0 === this._candidateQuery.indexOf(e.toLowerCase()) ? (t.innerHTML = '<span class="ui_search_suggester_shadow_hidden">' + e + "</span>" + this._candidateQuery.substring(e.length), show(t), !0) : (t.innerHTML = "", hide(t), !1)
+    var t = geByClass1("_ui_search_suggester_shadow", this._parentEl());
+    if (t) {
+        var e = this.value();
+        return this._candidateQuery && 0 === this._candidateQuery.indexOf(e.toLowerCase()) ? (t.innerHTML = '<span class="ui_search_suggester_shadow_hidden">' + e + "</span>" + this._candidateQuery.substring(e.length), show(t), !0) : (t.innerHTML = "", hide(t), !1)
+    }
 }, Suggester.prototype._isSuggestionsShown = function() {
     return !!this._suggestionsShown
 }, Suggester.prototype._hideSuggestions = function(t) {
@@ -70,15 +75,16 @@ Suggester.FETCH_DELAY = 250, Suggester.FETCH_TIMEOUT = 9500, Suggester.SEARCH_TR
         var i = geByClass1("_ui_search_sugg_list", this._parentEl()),
             h = "";
         e && (h += '<div class="ui_search_sugg_history_header">' + getLang("global_recent_search_history") + "</div>"), h += "<div>";
-        var r = 0;
+        var o = 0,
+            a = this;
         each(t, function(t, i) {
-            if (s != i[3]) {
-                var a = "";
-                e && (a = '<a class="ui_search_sugg_list_item_remove" data-hash="' + i[4] + '" data-id="' + i[0] + '">' + getLang("global_remove_history_search_item") + "</a>");
-                var o = e ? "ui_search_sugg_list_item_history" : "";
-                h += '<div class="ui_search_sugg_list_item ' + o + '" data-value="' + i[3] + '">' + i[1] + a + "</div>", r++
+            if (s != i[3] || a._opts.onlyShowSuggestions) {
+                var r = "";
+                e && (r = '<a class="ui_search_sugg_list_item_remove" data-hash="' + i[4] + '" data-id="' + i[0] + '">' + getLang("global_remove_history_search_item") + "</a>");
+                var n = e ? "ui_search_sugg_list_item_history" : "";
+                h += '<div class="ui_search_sugg_list_item ' + n + '" data-value="' + i[3] + '" data-id="' + i[0] + '">' + i[1] + r + "</div>", o++
             }
-        }), 0 != r && (h += "</div>", i.innerHTML = h, show(i), removeEvent(i, "click"), addEvent(i, "click", function(t) {
+        }), 0 != o && (h += "</div>", i.innerHTML = h, show(i), removeEvent(i, "click"), addEvent(i, "click", function(t) {
             if (hasClass(t.target, "ui_search_sugg_list_item_remove")) {
                 var e = domData(t.target, "id"),
                     s = domData(t.target, "hash"),
@@ -92,7 +98,7 @@ Suggester.FETCH_DELAY = 250, Suggester.FETCH_TIMEOUT = 9500, Suggester.SEARCH_TR
             }
             if (hasClass(t.target, "ui_search_sugg_list_item")) {
                 var h = domData(t.target, "value");
-                this._inputEl.value = h, this._hideSuggestions(!0), this._triggerSearch(h, !0, !0), elfocus(this._inputEl)
+                this._onAcceptSuggestion(), this._hideSuggestions(!0), this._opts.onlyShowSuggestions || (this._inputEl.value = h, this._triggerSearch(h, !0, !0)), elfocus(this._inputEl)
             }
         }.bind(this)), removeEvent(i, "mousemove"), addEvent(i, "mousemove", function(t) {
             hasClass(t.target, "ui_search_sugg_list_item") && (removeClass(geByClass1("ui_search_suggestion_selected", i), "ui_search_suggestion_selected"), addClass(t.target, "ui_search_suggestion_selected"))
@@ -119,8 +125,8 @@ Suggester.FETCH_DELAY = 250, Suggester.FETCH_TIMEOUT = 9500, Suggester.SEARCH_TR
     s == t && (this._suggestions[t] = e, this._showSuggestions(e), e.length ? this._candidateIsNotAppropriateForUser ? this._triggerSearch(s) : this._triggerSearch(s, this._candidateQuery ? this._candidateQuery : !0) : this._triggerSearch(s, !0))
 }, Suggester.prototype.saveHistoryItem = function(t, e, s, i, h) {
     if (i && this._opts.history) {
-        for (var r = this._opts.historyItems || [], a = 0, o = r.length; o > a; a++)
-            if (r[a][1] == t) return;
+        for (var o = this._opts.historyItems || [], a = 0, r = o.length; r > a; a++)
+            if (o[a][1] == t) return;
         ajax.post("al_search.php", {
             act: "save_history_item",
             type: this._opts.type,
@@ -136,10 +142,12 @@ Suggester.FETCH_DELAY = 250, Suggester.FETCH_TIMEOUT = 9500, Suggester.SEARCH_TR
             }.bind(this)
         })
     }
+}, Suggester.prototype.setOptions = function(t, e) {
+    e ? this._opts = extend(this._opts, t) : this._opts = extend(t, {})
 }, Suggester.prototype._fetchSuggestions = function() {
     clearTimeout(this._fetchTO);
     var t = trim(this.value());
-    t.length < 2 || (this._fetchTO = setTimeout(function() {
+    t.length < 2 || (isFunction(this._opts.fetchSuggestionsFn) ? this._onSuggestionsFetched(t, this._opts.fetchSuggestionsFn(t)) : this._fetchTO = setTimeout(function() {
         this._fetchTimeout = setTimeout(function() {
             this._fetchTimeout = 0, this._onSuggestionsFetched(t, [])
         }.bind(this), Suggester.FETCH_TIMEOUT), ajax.post("/hints.php", {

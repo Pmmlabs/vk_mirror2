@@ -42,8 +42,8 @@ ul {
 }
 
 html {
-    width: 100%;
-    height: 100%
+    height: 100%;
+    margin: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)
 }
 
 body {
@@ -131,6 +131,20 @@ ul {
     overflow: hidden;
     height: 20px;
     top: -100px
+}
+
+#theme_color_shim {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: env(safe-area-inset-top);
+    background: #5181b8;
+    z-index: 7;
+    -webkit-transition: background-color 300ms;
+    -moz-transition: background-color 300ms;
+    -o-transition: background-color 300ms;
+    transition: background-color 300ms
 }
 
 .sub_header {

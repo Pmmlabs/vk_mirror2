@@ -384,7 +384,7 @@ var uiTabs = {
                             type: options.suggester.type,
                             historyItems: options.suggester.history ? options.suggester.historyItems : !1,
                             onSearch: function(t, e, i) {
-                                t || (uiSearch.removeAllFilters(el), uiSearch.hideProgress(el)), toggleClass(wrapEl, "ui_search_field_empty", !t), options.onChange && options.onChange.call(el, t, e, i)
+                                t || (options.allowFiltersForEmpty || uiSearch.removeAllFilters(el), uiSearch.hideProgress(el)), toggleClass(wrapEl, "ui_search_field_empty", !t), options.onChange && options.onChange.call(el, t, e, i)
                             }
                         }));
                         var mainHandler = {
@@ -422,7 +422,7 @@ var uiTabs = {
                             }).call(el)
                         })
                     }
-                    options.fixed && uiSearch.setFixed(el), options.noAutoDestroy || cur.destroy.push(uiSearch.stopEvents.pbind(el)), uiSearch.initFilters(el, options)
+                    options.fixed && uiSearch.setFixed(el), options.noAutoDestroy || cur.destroy.push(uiSearch.stopEvents.pbind(el)), uiSearch.initFilters(el, options), isFunction(options.onInit) && options.onInit(el, options)
                 }
             }
         },
@@ -466,7 +466,7 @@ var uiTabs = {
             var s = data(t, "opts"),
                 o = uiSearch.getWrapEl(t),
                 n = t.getValue ? t.getValue() : t.value;
-            toggleClass(o, "ui_search_field_empty", !trim(n)), n || uiSearch.removeAllFilters(t), e || s.onChange && s.onChange.call(t, n, i)
+            toggleClass(o, "ui_search_field_empty", !trim(n)), n || s.allowFiltersForEmpty || uiSearch.removeAllFilters(t), e || s.onChange && s.onChange.call(t, n, i)
         },
         focus: function(t) {
             t = uiSearch.getFieldEl(t), elfocus(t)
@@ -835,21 +835,22 @@ var uiTabs = {
             }, this.init(), this.options.noLazyLoadWatch || (window.LazyLoad && LazyLoad.watch(this.el.outer), window.LazyLoad && LazyLoad.scanDelayed());
             var l = "onwheel" in this.el.outer ? "wheel" : void 0 !== document.onmousewheel ? "mousewheel" : browser.mozilla ? "MozMousePixelScroll" : "DOMMouseScroll";
             return this.addEvent(this.el.container, l, function(t) {
-                this.animation && this.animation.stop(), !this.disabled && this.options.stopScrollPropagation && (this.unnecessary ? this.options.stopScrollPropagationAlways && cancelEvent(t) : this.isScrollEventUnused(t) ? cancelEvent(t) : stopEvent(t))
-            }.bind(this), !this.options.stopScrollPropagation), this.options["native"] || this.addEvent(this.el.barContainer, "mousedown", this.dragstart.bind(this)), each(this.options.scrollElements, function(t, e) {
-                this.addEvent(e, l, function(t) {
-                    this.disabled || this.unnecessary || (this.scrollBy(this.scrollEventDelta(t)), (this.options.stopScrollPropagation || !this.isScrollEventUnused(t)) && cancelEvent(t))
-                }.bind(this))
-            }.bind(this)), this.options.reversed && this.addEvent(this.el.container, "mousedown touchstart pointerdown", function(t) {
-                this.released = !1, this.noMore = !0;
-                var e = this.addEvent(document, "mouseup contextmenu touchend pointerup", function(t) {
-                    removeEvent(document, "mouseup contextmenu touchend pointerup", e), this.released = !0, this.noMore && this.stopped && !this.dragging && (this.noMore = !1, this.more())
-                }.bind(this))
-            }.bind(this)), this.addEvent(this.el.outer, "scroll", function() {
-                this.update() && (this.stopped ? (this.stopped = !1, this.emitEvent("scrollstart")) : this.options["native"] || this.stopped !== !1 || (this.stopped = 0, addClass(this.el.container, "ui_scroll_scrolled")), this.emitEvent("scroll"), this.stoppedTimeout && clearTimeout(this.stoppedTimeout), this.stoppedTimeout = setTimeout(function() {
-                    this.stopped || (this.stopped = !0, this.options["native"] || removeClass(this.el.container, "ui_scroll_scrolled"), this.emitEvent("scrollstop"), this.noMore && this.released && !this.dragging && (this.noMore = !1, this.more()))
-                }.bind(this), 200))
-            }.bind(this)), this.api
+                    this.animation && this.animation.stop(), !this.disabled && this.options.stopScrollPropagation && (this.unnecessary ? this.options.stopScrollPropagationAlways && cancelEvent(t) : this.isScrollEventUnused(t) ? cancelEvent(t) : stopEvent(t))
+                }.bind(this), !this.options.stopScrollPropagation),
+                this.options["native"] || this.addEvent(this.el.barContainer, "mousedown", this.dragstart.bind(this)), each(this.options.scrollElements, function(t, e) {
+                    this.addEvent(e, l, function(t) {
+                        this.disabled || this.unnecessary || (this.scrollBy(this.scrollEventDelta(t)), (this.options.stopScrollPropagation || !this.isScrollEventUnused(t)) && cancelEvent(t))
+                    }.bind(this))
+                }.bind(this)), this.options.reversed && this.addEvent(this.el.container, "mousedown touchstart pointerdown", function(t) {
+                    this.released = !1, this.noMore = !0;
+                    var e = this.addEvent(document, "mouseup contextmenu touchend pointerup", function(t) {
+                        removeEvent(document, "mouseup contextmenu touchend pointerup", e), this.released = !0, this.noMore && this.stopped && !this.dragging && (this.noMore = !1, this.more())
+                    }.bind(this))
+                }.bind(this)), this.addEvent(this.el.outer, "scroll", function() {
+                    this.update() && (this.stopped ? (this.stopped = !1, this.emitEvent("scrollstart")) : this.options["native"] || this.stopped !== !1 || (this.stopped = 0, addClass(this.el.container, "ui_scroll_scrolled")), this.emitEvent("scroll"), this.stoppedTimeout && clearTimeout(this.stoppedTimeout), this.stoppedTimeout = setTimeout(function() {
+                        this.stopped || (this.stopped = !0, this.options["native"] || removeClass(this.el.container, "ui_scroll_scrolled"), this.emitEvent("scrollstop"), this.noMore && this.released && !this.dragging && (this.noMore = !1, this.more()))
+                    }.bind(this), 200))
+                }.bind(this)), this.api
         };
         return t.prototype = {
             init: function() {
@@ -1444,8 +1445,7 @@ Slider.prototype.toggleAdState = function(t) {
 }, Slider.prototype._onMouseMove = function(t) {
     var e = this._getPos(),
         i = Math.max(t.pageX, e[0]);
-    i = Math.min(i, e[0] + this._width), i -= e[0], this.setValue(i / this._width, !0, !0),
-        this._onValueChangeDebounced ? this._onValueChangeDebounced() : this._onValueChange(), this._toggleHint(!0), this._updateHint(t, !0), cancelEvent(t)
+    i = Math.min(i, e[0] + this._width), i -= e[0], this.setValue(i / this._width, !0, !0), this._onValueChangeDebounced ? this._onValueChangeDebounced() : this._onValueChange(), this._toggleHint(!0), this._updateHint(t, !0), cancelEvent(t)
 }, Slider.prototype._getPos = function() {
     return this._slidePos = getXY(this._slideEl)
 }, Slider.LOGFBASE = 35, Slider.prototype._logf = function(t) {

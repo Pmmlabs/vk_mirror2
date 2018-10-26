@@ -1164,6 +1164,11 @@ body.mac .apps_featured_thumb .ads_ad_big_app_info_box {
     filter: none
 }
 
+.apps_featured_thumb .inline_video_wrap {
+    width: 100%!important;
+    height: 100%!important
+}
+
 .apps_featured_thumbs_paid_app .apps_featured_thumb_content {
     padding-right: 160px
 }
@@ -6735,4 +6740,36 @@ td.apps_cat_new_h {
 
 .flash-deprecated #apps_user_warning_cont {
     border-bottom: 1px solid transparent
+}
+
+.apps_search .ui_search_filters_pane {
+    padding-left: 20px!important
+}
+
+.apps_search .ui_search_filters_pane .token {
+    float: none;
+    border-radius: 3px;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-bottom: 4px
+}
+
+.apps_search .ui_search_filters_pane .token:active .token_del {
+    top: 0
+}
+
+.apps_search .ui_search_filters_pane .token .token_del {
+    top: 0;
+    margin-left: 4px
+}
+
+.firefox .apps_search .ui_search_filters_pane .token .token_del {
+    margin-top: 3px
+}
+
+.apps_search .ui_search_filters_pane.expanded {
+    padding-left: 20px;
+    padding-right: 25px
 }
