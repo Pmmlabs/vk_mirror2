@@ -2139,7 +2139,16 @@ var Helpdesk = {
             Helpdesk.chooseDocBox(e, t)
         } : delete cur.addExistingDoc
     },
-    _eof: 1
+    showTemplateTooltip: function(e, t) {
+        var s = cur.templates[t];
+        return s && s.tooltip ? void showTooltip(e, {
+            text: s.tooltip,
+            showdt: 400,
+            slide: 15,
+            hasover: 1,
+            dir: "top"
+        }) : !1
+    }
 };
 try {
     stManager.done("helpdesk.js")

@@ -3951,7 +3951,7 @@ var Wall = {
         }
 
         if (medias.length) {
-            var hasUploadedNewCount = 0;
+            var uploadedVideoCount = 0;
             var ret = false;
             each(medias, function(k, v) {
                 if (!v) return;
@@ -3959,6 +3959,10 @@ var Wall = {
                     attachVal = this[1];
                 switch (type) {
                     case 'video':
+                        if (postponePost || pType == 'suggest') {
+                            break;
+                        }
+
                         // draft only for publics ???
                         var draft = Wall.getOwnerDraft(cur.oid)[1];
                         if (!draft) {
@@ -3969,7 +3973,7 @@ var Wall = {
                             if (attach[1] === attachVal) {
                                 var currentAttach = attach[2];
                                 if (currentAttach.upload_new) {
-                                    hasUploadedNewCount++; // check only unique
+                                    uploadedVideoCount++; // check only unique
                                 }
                             }
                         });
@@ -4157,13 +4161,16 @@ var Wall = {
                 attachI++;
             });
 
-            if (hasUploadedNewCount && !skipLocked && !cur.postponeVideoPost) {
+            var canMakePostponedPost = cur.postTo < 0 || cur.postTo === vk.id;
+            var videoPostponedEnabled = cur.wallUploadVideoOpts && cur.wallUploadVideoOpts.vars.is_wall_postponed_allowed;
+
+            if (videoPostponedEnabled && canMakePostponedPost && uploadedVideoCount && !skipLocked && !cur.postponeVideoPost) {
                 if (curBox()) {
                     curBox().hide();
                 }
 
                 var box = showBox('al_video.php?act=postponed_post_box', {
-                    videos_count: hasUploadedNewCount
+                    videos_count: uploadedVideoCount,
                 }, {
                     onDone: function(box, data) {
                         box.removeButtons();

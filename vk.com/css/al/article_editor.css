@@ -1784,11 +1784,13 @@
 }
 
 .article_ed_layer .article_ed_layer__list_item {
+    display: block;
     padding: 14px 40px 14px 16px;
     cursor: pointer;
     height: 64px;
     box-sizing: border-box;
-    position: relative
+    position: relative;
+    text-decoration: none
 }
 
 .article_ed_layer .article_ed_layer__list_item:last-child {

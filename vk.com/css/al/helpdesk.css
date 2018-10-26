@@ -2443,3 +2443,20 @@ body.body_helpdesk_small_sb .left_menu_nav {
     padding-bottom: 10px;
     border-bottom: 1px solid #e7e8ec
 }
+
+.helppdesk_template_tooltip {
+    width: 350px
+}
+
+.helppdesk_template_tooltip .helpdesk_template_tooltip_title {
+    margin-bottom: 10px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #45688e;
+    font-size: 13px
+}
+
+.helppdesk_template_tooltip .helpdesk_template_tooltip_title:empty {
+    display: none
+}

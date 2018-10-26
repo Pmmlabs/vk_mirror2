@@ -235,7 +235,7 @@ var stVersions = {
     'module.css': 27186733534,
     'owner_photo.js': 3368798011,
     'owner_photo.css': 23253465617,
-    'page.js': 1198921482,
+    'page.js': 614230922,
     'page.css': 73935484832,
     'page_help.css': 27452216977,
     'public.css': 30212216506,
@@ -348,8 +348,8 @@ var stVersions = {
     'docs.css': 28412942145,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 19418146325,
-    'helpdesk.js': 2438374187,
-    'helpdesk.css': 32278938679,
+    'helpdesk.js': 1450526587,
+    'helpdesk.css': 29178894440,
     'tickets.js': 1151194956,
     'tickets.css': 34738529830,
     'faq.css': 26039758898,
@@ -425,7 +425,7 @@ var stVersions = {
     'filters_pe.js': 3589638532,
     'pe.js': 318083439,
     'pe.css': 17306409316,
-    'dev.js': 2983717260,
+    'dev.js': 1132065585,
     'dev.css': 34891514946,
     'share.css': 31204299518,
     'stickers_office.css': 19495262575,
@@ -537,7 +537,7 @@ var stVersions = {
     'cmodules/web/stories_manage.js': 28045063732,
     'stories_manage.css': 70982644288,
     'article.css': 35149858857,
-    'article_editor.css': 39975487748,
+    'article_editor.css': 41339884826,
     'cmodules/web/article.js': 37482374142,
     'cmodules/web/article_layer.js': 32039012092,
     'article_view.js': 9757813708,
@@ -651,4 +651,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 2500;
+var _rnd = 56;
