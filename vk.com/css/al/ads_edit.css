@@ -7,6 +7,7 @@
 .ads_edit_easy_promote_box__image-layer_2,
 .ads_edit_geo_box_table_point_remove_button,
 .ads_edit_geo_place_radius_selector,
+.ads_edit_value_criteria_presets_selector_remove,
 .ads_edit_value_events_retargeting_groups_row_remove {
     -ms-high-contrast-adjust: none
 }
@@ -1082,6 +1083,14 @@ a.ads_edit_link_go:hover {
     padding-top: 13px
 }
 
+#ads_edit_targeting_group_criteria_presets {
+    margin-top: 10px
+}
+
+#ads_edit_targeting_group_criteria_preset_name {
+    margin-top: 7px
+}
+
 .ads_edit_value_birthday_today {
     padding-right: 5px
 }
@@ -1105,12 +1114,19 @@ a.ads_edit_link_go:hover {
     resize: vertical
 }
 
+.ads_edit_value_criteria_presets_selector_remove,
+.ads_edit_value_criteria_presets_selector_wrap,
 .ads_edit_value_events_retargeting_groups_row_remove,
 .ads_edit_value_events_retargeting_groups_row_selector_wrap {
     display: inline-block;
     vertical-align: middle
 }
 
+.ads_edit_value_criteria_presets_selector_remove.unshown {
+    display: none
+}
+
+.ads_edit_value_criteria_presets_selector_remove,
 .ads_edit_value_events_retargeting_groups_row_remove {
     background: url(/images/icons/tag_cross.png) 50% no-repeat;
     width: 10px;
@@ -1125,12 +1141,14 @@ a.ads_edit_link_go:hover {
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
+    .ads_edit_value_criteria_presets_selector_remove,
     .ads_edit_value_events_retargeting_groups_row_remove {
         background-image: url(/images/icons/tag_cross_2x.png);
         background-size: 10px 10px
     }
 }
 
+.ads_edit_value_criteria_presets_selector_remove:hover,
 .ads_edit_value_events_retargeting_groups_row_remove:hover {
     opacity: 1
 }

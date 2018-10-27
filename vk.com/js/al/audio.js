@@ -718,7 +718,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     }
 
     function r(t) {
-        return t || "attach" === e || i ? !0 : (showFastBox(getLang("global_warning"), getLang("global_confirm_cancel_operation").replace("{name}", W.toLowerCase()), getLang("global_continue"), function() {
+        return t || "attach" === e || i ? !0 : (showFastBox(getLang("global_warning"), getLang("audio_new_playlist_remove_confirm_text"), getLang("audio_new_playlist_remove_confirm_continue"), function() {
             curBox().hide(), z.hide(!0)
         }, getLang("global_cancel")), !1)
     }

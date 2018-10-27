@@ -11,6 +11,11 @@
 .app_new_sticker.apps_sticker_ua,
 .app_rate,
 .app_sale_sticker,
+.appAchievementsNotice_1,
+.appAchievementsNotice_2,
+.appAchievementsNotice_3,
+.appAchievementsNotice_4,
+.appAchievementsNotice_5,
 .apps_access_icon,
 .apps_cat_header_icon,
 .apps_cat_header_link:after,
@@ -638,6 +643,355 @@
     background-color: #fb8c00
 }
 
+.ui_tooltipMenu {
+    position: relative
+}
+
+.ui_tooltipMenu__current {
+    position: relative;
+    display: inline-block;
+    font-size: 13px;
+    color: #656565
+}
+
+.ui_tooltipMenu__current:hover {
+    text-decoration: none
+}
+
+.ui_tooltipMenu__current:after {
+    content: '';
+    display: inline-block;
+    position: relative;
+    right: -4px;
+    width: 8px;
+    height: 8px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%22944%201152%208%204%22%3E%3Cpath%20d%3D%22M945.2%201152.2C944.9%201152%20944.5%201152%20944.3%201152.3%20944.1%201152.6%20944.1%201153%20944.4%201153.2L947.6%201155.8C947.8%201156%20948.2%201156%20948.4%201155.8L951.6%201153.2C951.9%201153%20951.9%201152.6%20951.7%201152.3%20951.5%201152%20951.1%201152%20950.8%201152.2L948%201154.5%20945.2%201152.2Z%22%20fill%3D%22%2392A0B1%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat
+}
+
+.ui_tooltipMenu__list {
+    text-align: left;
+    list-style: none;
+    margin: 0;
+    padding: 8px 0;
+    min-width: 180px
+}
+
+.ui_tooltipMenu__link {
+    display: block;
+    color: #000;
+    font-size: 13px;
+    padding: 9px 12px
+}
+
+.ui_tooltipMenu__item {
+    display: block;
+    position: relative
+}
+
+.ui_tooltipMenu__item.selected>.ui_tooltipMenu__link:after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    width: 16px;
+    height: 16px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%235181B8%22%20d%3D%22M10%2016c-.3%200-.5-.1-.7-.3l-3.5-3.5c-.4-.4-.4-1%200-1.4s1-.4%201.4%200l2.8%202.8%206.3-6.3c.4-.4%201-.4%201.4%200s.4%201%200%201.4l-7%207c-.2.2-.4.3-.7.3z%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat
+}
+
+.ui_tooltipMenu__link:hover {
+    background: #f0f2f5;
+    text-decoration: none
+}
+
+.ui_tooltipMenu__tooltip .eltt_arrow_back,
+.ui_tooltipMenu__list_unshown {
+    display: none
+}
+
+.appAchievementsIllustration {
+    width: 100%;
+    height: 200px;
+    background: url('/images/apps/achievements/illustration.jpg') no-repeat 50% #f7f8f9;
+    background-size: cover
+}
+
+.appAchievementsHeader {
+    text-align: center;
+    margin-top: 44px
+}
+
+.appAchievementsHeader__title {
+    font-size: 28px;
+    color: #222;
+    margin-bottom: 11px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.appAchievementsHeader__subtitle {
+    font-size: 16px;
+    line-height: 1.38;
+    color: #000
+}
+
+.appAchievementsHeader__menu {
+    position: relative
+}
+
+.appAchievementsHeader .ui_actions_menu_icons {
+    position: static;
+    width: auto;
+    height: auto
+}
+
+.appAchievementsAchievementsList {
+    display: -ms-flexbox;
+    display: flex;
+    padding: 20px;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: start;
+    align-items: flex-start
+}
+
+.appAchievementsAchievementsList__empty {
+    margin: 45px auto;
+    text-align: center;
+    -o-transition: opacity 0.5s, transform 0.5s, -o-transform 0.5s;
+    transition: opacity 0.5s, transform 0.5s;
+    transition: opacity 0.5s, transform 0.5s, -o-transform 0.5s
+}
+
+.appAchievementsAchievementsList__emptyImg {
+    width: 116px;
+    height: 116px;
+    display: block;
+    margin: 0 auto 12px
+}
+
+.appAchievementsAchievementsList__emptyMessage {
+    color: #656565
+}
+
+.appAchievementsAchievement {
+    display: -ms-flexbox;
+    display: flex;
+    width: 370px;
+    padding: 15px;
+    -ms-flex-align: center;
+    align-items: center;
+    box-sizing: border-box;
+    -o-transition: opacity 0.5s, transform 0.5s, -o-transform 0.5s;
+    transition: opacity 0.5s, transform 0.5s;
+    transition: opacity 0.5s, transform 0.5s, -o-transform 0.5s
+}
+
+.appAchievementsAchievement__img {
+    position: relative;
+    display: block;
+    margin: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 116px;
+    height: 116px
+}
+
+.appAchievementsAchievement__info {
+    margin-left: 20px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.appAchievementsAchievement__info span {
+    display: inline-block;
+    margin-top: 4px;
+    max-width: 210px
+}
+
+.appAchievementsAchievement__name {
+    font-size: 19px;
+    line-height: 1.26
+}
+
+.appAchievementsAchievement__desc {
+    font-size: 13px;
+    color: #656565;
+    line-height: 1.36
+}
+
+.appAchievementsAchievement__state {
+    display: none
+}
+
+.appAchievementsAchievement svg {
+    display: block;
+    position: relative
+}
+
+.appAchievementsAchievement.hide {
+    opacity: 0;
+    -o-transform: scale(0.5);
+    transform: scale(0.5)
+}
+
+.appAchievementsAchievement.hidden,
+.appAchievementsAchievementsList__empty.hidden {
+    position: absolute;
+    visibility: hidden
+}
+
+.appAchievementsAchievementsList__empty.hide {
+    opacity: 0;
+    -o-transform: scale(0.5);
+    transform: scale(0.5)
+}
+
+.appAchievementsAchievement.open .appAchievementsAchievement__resDesc {
+    display: none
+}
+
+.appAchievementsAchievement.open .appAchievementsAchievement__state {
+    font-size: 13px;
+    line-height: 1.36;
+    color: #4bb34b
+}
+
+.appAchievementsAchievement.closed .appAchievementsAchievement__state {
+    display: none
+}
+
+.appAchievementsNotice {
+    width: 430px;
+    height: 130px;
+    float: left;
+    box-sizing: border-box;
+    padding: 20px
+}
+
+.appAchievementsNotice__clearFix {
+    clear: both
+}
+
+.appAchievementsNotice__icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+    border-radius: 50%
+}
+
+.appAchievementsNotice__content {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-bottom: 14px
+}
+
+.appAchievementsNotice__info {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.appAchievementsNotice__title {
+    font-size: 19px;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin-bottom: 3px;
+    line-height: 1.26;
+    color: #fff
+}
+
+.appAchievementsNotice__description {
+    display: block;
+    font-size: 13px;
+    color: #fff;
+    opacity: 0.72
+}
+
+.appAchievementsNotice__link {
+    display: inline-block;
+    background: #fff;
+    color: #000
+}
+
+.appAchievementsNotice__link:active,
+.appAchievementsNotice__link:hover {
+    background: #f0f2f5
+}
+
+.appAchievementsNotice_1 {
+    background: url(/images/apps/achievements/level_1_bg.png) no-repeat 50% #634294
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .appAchievementsNotice_1 {
+        background-image: url(/images/apps/achievements/level_1_bg_2x.png);
+        background-size: 430px 130px
+    }
+}
+
+.appAchievementsNotice_2 {
+    background: url(/images/apps/achievements/level_2_bg.png) no-repeat 50% #634294
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .appAchievementsNotice_2 {
+        background-image: url(/images/apps/achievements/level_2_bg_2x.png);
+        background-size: 430px 130px
+    }
+}
+
+.appAchievementsNotice_3 {
+    background: url(/images/apps/achievements/level_3_bg.png) no-repeat 50% #634294
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .appAchievementsNotice_3 {
+        background-image: url(/images/apps/achievements/level_3_bg_2x.png);
+        background-size: 430px 130px
+    }
+}
+
+.appAchievementsNotice_4 {
+    background: url(/images/apps/achievements/level_4_bg.png) no-repeat 50% #634294
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .appAchievementsNotice_4 {
+        background-image: url(/images/apps/achievements/level_4_bg_2x.png);
+        background-size: 430px 130px
+    }
+}
+
+.appAchievementsNotice_5 {
+    background: url(/images/apps/achievements/level_5_bg.png) no-repeat 50% #634294
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .appAchievementsNotice_5 {
+        background-image: url(/images/apps/achievements/level_5_bg_2x.png);
+        background-size: 430px 130px
+    }
+}
+
 .apps_hidden {
     display: none!important
 }
@@ -987,6 +1341,14 @@
     height: 259px
 }
 
+.apps_feed_block.with_achievements {
+    height: 460px
+}
+
+.apps_feed_block.with_achievements .apps_feed_wrap {
+    height: 404px
+}
+
 .apps_feed_wrap {
     padding: 0 31px 0 20px;
     overflow: hidden;
@@ -1077,6 +1439,15 @@
 .apps_feed_show_more_btn {
     margin-bottom: 15px;
     width: 100%
+}
+
+.apps_feed_row.sticker_achievement .achievement_name,
+.apps_feed_row.sticker_achievement .apps_feed_str_cont {
+    color: #ffa000
+}
+
+.apps_feed_row.sticker_achievement .apps_feed_info_str {
+    color: #656565
 }
 
 .apps_featured_slider {

@@ -948,6 +948,8 @@ var MoneyTransfer = {
                 show('payments_iframe_cookie_trouble');
             }
             MoneyTransfer.cookieTroubleCounter++;
+        } else if (message.action === 'putPixel' && message.action_params.alias === "page_load") {
+            statlogsValueEvent('money_transfers', 0, 'iframe_loaded');
         }
     },
     acceptCookieSafariSpike: function(isSend) {

@@ -503,10 +503,9 @@ var Restore = {
         if ("doc" == cur.requestStep) return Restore.changeFullRequestButton(!0, getLang("restore_submit")), Restore.changeFormStep("doc", "comment");
         "comment" == cur.requestStep && (cur.requestParams.comment = val("comment"));
         var n = extend({
-            act: "a_request",
             hash: cur.options.fhash
         }, cur.requestParams);
-        ajax.post("restore", n, {
+        ajax.post("restore?act=a_request", n, {
             onDone: function(e, o, t, r, s, n) {
                 var a = intval(e);
                 if (0 == a && (n = t), 1 == a) return val("request_result", o), show("request_result"), hide("request_form"), void scrollToTop();
