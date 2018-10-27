@@ -3053,7 +3053,7 @@ var Wall = {
             FullWall.updateSummary(cur.pgCount);
         }
         Wall.update();
-        extend(cur.options.reply_names, names);
+        wall.addReplyNames(names);
         Wall.updateMentionsIndex();
 
         if (added) {
@@ -4357,14 +4357,14 @@ var Wall = {
                 loaded: data.num || geByClass('reply', r, 'div').length,
                 count: data.count
             });
-            extend(wkcur.options.reply_names, names);
+            wall.addReplyNames(names);
             WkView.wallUpdateReplies();
             if (!reverse) {
                 wkLayerWrap.scrollTop = wkLayerWrap.scrollHeight;
                 WkView.wallUpdateRepliesOnScroll();
             }
         } else {
-            extend(cur.options.reply_names, names);
+            wall.addReplyNames(names);
             Wall.repliesSideSetup(post);
         }
         Wall.updateMentionsIndex();
@@ -4381,31 +4381,43 @@ var Wall = {
             WkView.wallUpdateReplies();
             return;
         }
-        var r = ge('replies' + post);
-        if (!r) return;
 
-        var header = geByClass1('wr_header', r, 'a'),
-            h = r.offsetHeight || 0,
-            ch = window.innerHeight || document.documentElement.clientHeight || bodyNode.clientHeight,
-            side = ge('replies_side' + post);
+        var replies = ge('replies' + post);
 
-        if (cur.wallMyOpened[post] && header) {
+        if (!replies) {
+            return;
+        }
+
+        var header = geByClass1('wr_header', replies, 'a');
+        var postEl = ge('post' + post);
+        var deepActive = hasClass(postEl, 'deep_active');
+        var side = ge('replies_side' + post);
+
+        if (cur.wallMyOpened[post] && (header || deepActive)) {
             if (!side) {
-                var sideWrap = se('<div class="replies_side_wrap"><div id="replies_side' + post + '" class="replies_side"></div></div>')
-                r.parentNode.insertBefore(sideWrap, r);
+                var sideWrap = se('<div class="replies_side_wrap"><div id="replies_side' + post + '" class="replies_side"></div></div>');
+
+                replies.parentNode.insertBefore(sideWrap, replies);
+
                 side = sideWrap.firstChild;
-                side.onclick = Wall.repliesSideClick.pbind(post);
+
                 side.onmouseover = Wall.repliesSideOver.pbind(post);
                 side.onmouseout = Wall.repliesSideOut.pbind(post);
+
+                if (deepActive) {
+                    side.onclick = Wall.hideDeepReplies.pbind(post);
+                } else {
+                    side.onclick = Wall.repliesSideClick.pbind(post);
+                }
             }
-            show(side);
-            r.onmouseover = Wall.repliesSideOver.pbind(post);
-            r.onmouseout = Wall.repliesSideOut.pbind(post);
+
+            replies.onmouseover = Wall.repliesSideOver.pbind(post);
+            replies.onmouseout = Wall.repliesSideOut.pbind(post);
             Wall.repliesSideOver(post);
         } else {
             hide(side);
-            r.onmouseover = null;
-            r.onmouseout = null;
+            replies.onmouseover = null;
+            replies.onmouseout = null;
         }
     },
     repliesSideClick: function(post) {
@@ -4464,11 +4476,13 @@ var Wall = {
             st = scrollGetY();
         }
         if (st < postData[2]) {
+            show(side);
             newStyle = {
                 marginTop: 0,
                 opacity: 1
             };
         } else if (st < postData[3]) {
+            show(side);
             newClass += ' replies_side_fixed';
             newStyle = {
                 opacity: Math.max(0, Math.min(1, (postData[3] - st) / 200))
@@ -4623,12 +4637,26 @@ var Wall = {
         return false;
     },
     moreReplies: function(post, offset, count, opts) {
-        var params = {
-            act: 'get_replies',
-            offset: offset,
-            post: post,
-            count: count
-        };
+        var params;
+
+        if (opts.deep) {
+            var postItem = post.split('_');
+            params = {
+                act: 'get_post_replies',
+                offset: offset,
+                owner_id: postItem[0],
+                item_id: postItem[1],
+                count: count
+            };
+        } else {
+            params = {
+                act: 'get_replies',
+                offset: offset,
+                post: post,
+                count: count
+            };
+        }
+
         extend(params, {
             rev: opts.rev,
             from: opts.from
@@ -4646,7 +4674,7 @@ var Wall = {
                     // r.removeChild(r.firstChild); // remove header
                     r.innerHTML = replies + r.innerHTML;
                 }
-                extend((post == cur.wallLayer ? wkcur : cur).options.reply_names, names);
+                wall.addReplyNames(names);
                 if (opts.onDone) {
                     opts.onDone(replies, names, data);
                 }
@@ -4657,30 +4685,152 @@ var Wall = {
         });
         return false;
     },
-    emojiOpts: {},
-    getReplyName: function(id) {
-        if (cur.pvShown && cur.pvReplyNames) {
-            return cur.pvReplyNames[id] || [];
+    openDeepShortReplies: function(short, event) {
+        // find first show next button
+        var repliesNext = geByClass1('replies_next', domPN(short));
+
+        re(short);
+
+        if (repliesNext) {
+            repliesNext.click();
         }
 
-        if (window.mvcur && mvcur.mvShown && !mvcur.minimized) {
-            return mvcur.mvReplyNames[id] || [];
-        }
-
-        var data = {},
-            options, replyNames;
-
-        if (cur.wallLayer) {
-            data = wkcur;
-        } else {
-            data = cur;
-        }
-
-        replyNames = (data.options || {}).reply_names;
-        replyNames = replyNames || {};
-
-        return replyNames[id] || [];
+        return cancelEvent(event);
     },
+    showNextReplies: function(showMore, itemFullId, event) {
+        var item = itemFullId.split('_');
+        var offset = domData(showMore, 'offset');
+        var count = domData(showMore, 'count');
+        var isPrev = hasClass(showMore, 'replies_prev');
+
+        var params = {
+            act: 'get_post_replies',
+            owner_id: item[0],
+            item_id: item[1],
+            offset: offset,
+            count: count,
+        };
+
+        // find closest reply
+        var nextItem = showMore;
+
+        do {
+            nextItem = isPrev ? domPS(nextItem) : domNS(nextItem);
+
+            if (nextItem && hasClass(nextItem, 'reply')) {
+                params['closest'] = domData(nextItem, 'post-id');
+                break;
+            }
+
+        } while (nextItem);
+
+        var loader = ce('span', {
+            className: 'progress_inline replies_next_loader'
+        });
+
+        ajax.post('al_wall.php', params, {
+            onDone: function(replies, names, data) {
+                var repliesList = domChildren(ce('div', {
+                    innerHTML: replies
+                }));
+                var fragment = cf();
+                var hasNew = false;
+
+                // Remove already existed items
+                repliesList.forEach(function(reply) {
+                    if (!ge(reply.id)) {
+                        fragment.appendChild(reply);
+                        hasNew = true;
+                    }
+                });
+
+                if (isPrev) {
+                    domInsertAfter(fragment, showMore);
+                } else {
+                    domInsertBefore(fragment, showMore);
+                }
+
+                wall.addReplyNames(names);
+                wall.addDeepRepliesBlock(itemFullId);
+
+                var num = intval(data.num);
+                var prevOffset = intval(data.offset);
+                var count = intval(data.count);
+                var newOffset = Math.max(0, prevOffset + (isPrev ? -num : num));
+                var restCount = count - newOffset;
+                var moreCount = 0;
+
+                // Check size of next chunk for next reply
+                if (
+                    hasNew && (
+                        (isPrev && prevOffset > 0) ||
+                        (!isPrev && restCount > 0)
+                    )
+                ) {
+                    moreCount = isPrev ? offset - newOffset : Math.min(restCount, num);
+
+                    if (data.closest_inx >= 0) {
+                        moreCount = Math.min(moreCount, data.closest_inx);
+                    }
+                }
+
+                if (moreCount) {
+                    if (isPrev) {
+                        val(showMore, getLang('wall_prev_n_replies', moreCount));
+                    } else {
+                        val(showMore, getLang('wall_next_n_replies', moreCount));
+                    }
+
+                    domData(showMore, 'count', moreCount);
+                    domData(showMore, 'offset', newOffset);
+                    show(showMore);
+                } else {
+                    re(showMore);
+                }
+
+                removeClass(ge('replies_wrap_deep' + itemFullId), 'replies_deep_has_short');
+
+                Wall.updateMentionsIndex();
+
+                var postEl = null;
+                var postId = '';
+
+                if (cur.wallLayer) {
+                    postEl = ge('wl_post');
+                    postId = domData(postEl, 'post-id');
+                } else {
+                    postEl = ge('post' + itemFullId);
+                    postId = itemFullId;
+
+                    var isReply = hasClass(postEl, 'reply');
+
+                    if (isReply) {
+                        postEl = gpeByClass('post', postEl);
+                        postId = domData(postEl, 'post-id');
+                    }
+                }
+
+                cur.wallMyOpened = cur.wallMyOpened || {};
+
+                cur.wallMyOpened[postId] = 1;
+                wall.repliesSideSetup(postId);
+            },
+            onFail: function() {
+                show(showMore);
+            },
+            showProgress: function() {
+                hide(showMore);
+                domInsertAfter(loader, showMore);
+                show(loader);
+            },
+            hideProgress: function() {
+                re(loader);
+            }
+        });
+
+        return event && cancelEvent(false);
+    },
+    emojiOpts: {},
     emojiShowTT: function(post, obj, ev) {
         if (Wall.emojiOpts[post] === undefined) {
             return false;
@@ -4693,10 +4843,13 @@ var Wall = {
         }
         return Emoji.ttHide(Wall.emojiOpts[post], obj, ev);
     },
-    initReplyEditable: function(txt, cont, post, fixed) {
+    initReplyEditable: function(txt, cont, post, fixed, notFocus) {
         if (txt.emojiInited) {
             return false;
         }
+
+        var replyButton = ge('reply_button' + post);
+        var replyMediaPreview = ge('reply_media_preview' + post);
 
         txt.emojiInited = true;
         stManager.add([jsc('web/emoji.js'), 'notifier.css'], function() {
@@ -4704,7 +4857,7 @@ var Wall = {
                 ttDiff: fixed ? -40 : -42,
                 rPointer: true,
                 controlsCont: cont,
-                shouldFocus: true,
+                shouldFocus: !notFocus,
                 ref: 'reply',
                 onSend: function() {
                     Wall.sendReply(post);
@@ -4720,6 +4873,11 @@ var Wall = {
                     }
 
                     Wall.checkTextLen(txt, 'reply_warn' + post);
+                },
+                onChange: function() {
+                    if (replyButton) {
+                        toggleClass(replyButton, 'reply_send_disabled', !trim(Emoji.editableVal(txt)) && !hasClass(replyMediaPreview, 'media_preview_has_medias'));
+                    }
                 },
                 onStickerSend: function(stNum, sticker_referrer) {
                     Wall.sendReply(post, false, {
@@ -4740,18 +4898,44 @@ var Wall = {
             }
         });
     },
-    showEditReply: function(post, ev, fixed) {
-        if (cur.viewAsBox) {
-            setTimeout(function() {
-                ge('reply_field' + post).blur()
-            }, 0);
-            return cur.viewAsBox();
-        }
-
+    initEditReply: function(post, fixed, notFocus, onInit) {
+        var postId = post;
         var rf = ge('reply_field' + post);
-        var postEl = cur.wallLayer ? ge('wl_reply_form_inner') : ge('post' + post);
+        var el = ge('post' + post);
         var fakeBox = ge('reply_fakebox' + post);
         var realBox = ge('reply_box' + post);
+        var isReply = hasClass(el, 'reply');
+        var deepActive = false;
+        var postEl;
+
+        if (isReply) {
+            postEl = gpeByClass('wl_post', el) || gpeByClass('post', el);
+            deepActive = hasClass(postEl, 'deep_active');
+
+            if (deepActive) {
+                if (!cur.reply_to) {
+                    var answeringId = domData(el, 'answering-id');
+
+                    if (answeringId) {
+                        var toMsgId = post.split('_')[1];
+                        cur.reply_to = [intval(answeringId), intval(toMsgId)];
+                        val('reply_to' + post, toMsgId);
+                    }
+                }
+
+                wall.addDeepRepliesBlock(post);
+                fakeBox = ge('reply_fakebox' + post);
+            }
+
+            postId = domData(postEl, 'post-id');
+
+        } else if (cur.wallLayer) {
+            deepActive = hasClass(ge('wl_post'), 'deep_active');
+            postEl = ge('wl_reply_form_inner');
+        } else {
+            postEl = el;
+            deepActive = hasClass(postEl, 'deep_active');
+        }
 
         if (!postEl && fakeBox) {
             postEl = gpeByClass('_post_wrap', fakeBox);
@@ -4760,14 +4944,14 @@ var Wall = {
         }
 
         if (fakeBox) {
-            var postHash = ge('post_hash' + post),
-                canReplyAsGroup = intval(postHash && postHash.getAttribute('can_reply_as_group')) > 0,
-                ownerPhoto = domData(fakeBox, 'owner-photo') || '',
-                ownerHref = domData(fakeBox, 'owner-href') || '',
-                ownerName = domData(fakeBox, 'owner-name') || '',
-                tpl = canReplyAsGroup ? cur.wallTpl.reply_form_official_placeholder : (post.match(/^(-?\d+)_(\d+)$/) ? cur.wallTpl.reply_form_official : '');
+            var postHash = ge('post_hash' + postId);
+            var canReplyAsGroup = intval(postHash && postHash.getAttribute('can_reply_as_group')) > 0;
+            var ownerPhoto = domData(fakeBox, 'owner-photo') || '';
+            var ownerHref = domData(fakeBox, 'owner-href') || '';
+            var ownerName = domData(fakeBox, 'owner-name') || '';
+            var tpl = canReplyAsGroup ? cur.wallTpl.reply_form_official_placeholder : (postId.match(/^(-?\d+)_(\d+)$/) ? cur.wallTpl.reply_form_official : '');
 
-            realBox = se(rs(cur.wallTpl.reply_form, {
+            realBox = se(rs((deepActive && cur.wallTpl.reply_form_new) ? cur.wallTpl.reply_form_new : cur.wallTpl.reply_form, {
                 add_buttons: rs(tpl, {
                     post_id: post,
                     oid: intval(post),
@@ -4777,41 +4961,24 @@ var Wall = {
                 oid: intval(post),
                 owner_photo: ownerPhoto,
                 owner_href: ownerHref,
-                owner_name: clean(unclean(ownerName))
+                owner_name: clean(unclean(ownerName)),
             }));
+
             fakeBox.parentNode.replaceChild(realBox, fakeBox);
             rf = ge('reply_field' + post);
         }
-        Wall.initReplyEditable(rf, realBox, post, fixed);
-        if (cur.wallMyOpened) {
-            cur.wallMyOpened[post] = cur.wallMyOpened[post] || false;
-        }
 
-        if (cur.editing === post) {
-            Emoji.editableFocus(rf, false, true);
-            return false;
-        }
-        Wall.hideEditPostReply();
-        addClass(postEl, 'reply_box_open');
-        setStyle('replies_wrap' + post, {
-            display: ''
-        });
-
-        cur.editing = post;
-        if (window.Emoji) {
-            setTimeout(function() {
-                Emoji.editableFocus(rf, false, true);
-                Wall.repliesSideOver(post);
-            }, 0);
-        }
+        Wall.initReplyEditable(rf, realBox, post, fixed, notFocus);
 
         if (!data(rf, 'composer')) {
             var mediaTypes = [];
+            var vectorIcon = false
             var rawTypes;
             var maxShown, hideAfterCount;
+
             if (window.mvcur && mvcur.mvShown) {
                 rawTypes = mvcur.mvMediaTypes;
-            } else if (cur.wallLayer == post) {
+            } else if (cur.wallLayer == postId) {
                 rawTypes = wkcur.options.rmedia_types;
             } else if (window.pvcur && cur.pvShown) {
                 rawTypes = pvcur.rmedia_types;
@@ -4820,15 +4987,24 @@ var Wall = {
             } else {
                 rawTypes = cur.options.rmedia_types;
             }
+
+            if (deepActive) {
+                vectorIcon = true;
+                maxShown = 0;
+                hideAfterCount = 0;
+            }
+
             each(rawTypes || cur.options.media_types || [], function() {
                 if (inArray(this[0], ['photo', 'video', 'audio', 'doc', 'link', 'page'])) {
                     mediaTypes.push(this);
                 }
             });
+
             var media, toup = false;
-            if (mediaTypes.length > 0 && (post.match(/^(\d+_)?-?\d+_(photo|video|topic|market)?\d+(mv)?(_\d+)?$/))) {
+
+            if (mediaTypes.length > 0 && (postId.match(/^(\d+_)?-?\d+_(photo|video|topic|market)?\d+(mv)?(_\d+)?$/))) {
                 media = {
-                    lnk: ge('reply_add_media_' + post),
+                    lnk: deepActive ? ge('reply_more_attaches' + post) : ge('reply_add_media_' + post),
                     preview: ge('reply_media_preview' + post),
                     types: mediaTypes,
                     options: {
@@ -4837,10 +5013,21 @@ var Wall = {
                         disabledTypes: ['album', 'market', 'poll'],
                         toggleLnk: true,
                         maxShown: maxShown !== undefined ? maxShown : undefined,
-                        hideAfterCount: hideAfterCount !== undefined ? hideAfterCount : undefined
+                        hideAfterCount: hideAfterCount !== undefined ? hideAfterCount : undefined,
+                        vectorIcon: vectorIcon,
+                        onToggleBlock: function(visible) {
+                            var field = ge('reply_box_wrap' + post);
+                            var replyPhoto = geByClass1('reply_box_photo', field);
+
+                            replyPhoto && toggle(replyPhoto, visible);
+                        },
+                        onMediaChanged: function() {
+                            toggleClass('reply_button' + post, 'reply_send_disabled', !trim(Emoji.editableVal(rf)) && !hasClass('reply_media_preview' + post, 'media_preview_has_medias'));
+                        }
                     }
                 };
-                if (post.match(/^-?\d+_topic/)) {
+
+                if (postId.match(/^-?\d+_topic/)) {
                     extend(media.options, {
                         disabledTypes: ['album', 'share', 'link', 'page'],
                         limit: 10,
@@ -4854,6 +5041,7 @@ var Wall = {
             } else {
                 re('reply_add_media_' + post);
             }
+
             Wall.initComposer(rf, {
                 lang: {
                     introText: getLang('profile_mention_start_typing'),
@@ -4864,10 +5052,66 @@ var Wall = {
                 width: getSize(rf.parentNode)[0],
                 media: media,
                 isReply: true,
-            });
+            }, onInit);
+        } else if (onInit) {
+            onInit();
         }
-        triggerEvent(window, 'scroll');
+
         if (rf.emojiId !== undefined && cur.afterEmojiInit && cur.afterEmojiInit[post]) {
+            cur.afterEmojiInit[post]();
+            delete cur.afterEmojiInit[post];
+        }
+
+        return {
+            postId: postId,
+            postEl: postEl,
+            isReply: isReply,
+            rf: rf,
+        };
+    },
+    showEditReply: function(post, ev, fixed, isFocus, notFocus, onShown) {
+        if (cur.viewAsBox) {
+            setTimeout(function() {
+                ge('reply_field' + post).blur()
+            }, 0);
+            return cur.viewAsBox();
+        }
+
+        var res = wall.initEditReply(post, fixed, notFocus, onShown);
+
+        if (cur.wallMyOpened) {
+            cur.wallMyOpened[post] = cur.wallMyOpened[post] || false;
+        }
+
+        if (cur.editing === post) {
+            Emoji.editableFocus(res.rf, false, true);
+            return false;
+        }
+
+        Wall.hideEditPostReply();
+
+        if (res.isReply) {
+            addClass(ge('replies_wrap_deep' + post), 'deep_reply_box_open');
+        } else {
+            addClass(res.postEl, 'reply_box_open');
+        }
+
+        setStyle('replies_wrap' + post, {
+            display: ''
+        });
+
+        cur.editing = post;
+
+        if (window.Emoji) {
+            setTimeout(function() {
+                Emoji.editableFocus(res.rf, false, true);
+                Wall.repliesSideOver(post);
+            }, 0);
+        }
+
+        triggerEvent(window, 'scroll');
+
+        if (res.rf.emojiId !== undefined && cur.afterEmojiInit && cur.afterEmojiInit[post]) {
             cur.afterEmojiInit[post]();
             delete cur.afterEmojiInit[post];
         }
@@ -4878,7 +5122,7 @@ var Wall = {
                 hash: cur.wallTpl.poll_hash
             }, {
                 onDone: function(perform) {
-                    if (perform && cur.editing === post) {
+                    if (perform && cur.editing === res.postId) {
                         Wall.replySubmitTooltip(post, 1);
                     }
                 },
@@ -4888,16 +5132,16 @@ var Wall = {
             })
         }
 
-        if (window.mvcur && mvcur.post == post) {
+        if (window.mvcur && mvcur.post == res.postId) {
             Videoview.onShowEditReply();
         }
 
         if (isFunction(cur.onReplyFormSizeUpdate)) {
-            cur.onReplyFormSizeUpdate(rf);
+            cur.onReplyFormSizeUpdate(res.rf);
         }
 
         if (isFunction(cur.onReplyFormFocus)) {
-            cur.onReplyFormFocus(rf);
+            cur.onReplyFormFocus(res.rf);
         }
 
         return false;
@@ -4905,19 +5149,31 @@ var Wall = {
     hideEditReply: function(post, force) {
         cur.editing = false;
 
-        var rf = ge('reply_field' + post),
-            postEl = cur.wallLayer ? ge('wl_reply_form_inner') : ge('post' + post),
-            realBox = ge('reply_box' + post),
-            replyName = cur.reply_to && Wall.getReplyName(cur.reply_to[0]),
-            v = trim(window.Emoji ? Emoji.editableVal(rf) : ''),
-            hasMedia = Wall.hasComposerMedia(rf),
-            replyLink;
+        var rf = ge('reply_field' + post);
+        var el = ge('post' + post);
+        var realBox = ge('reply_box' + post);
+        var replyName = cur.reply_to && Wall.getReplyName(cur.reply_to[0]);
+        var v = trim(window.Emoji ? Emoji.editableVal(rf) : '');
+        var hasMedia = Wall.hasComposerMedia(rf);
+        var replyLink;
+        var postEl;
+
+        var isReply = hasClass(el, 'reply');
+
+        if (cur.wallLayer) {
+            postEl = ge('wl_reply_form_inner');
+        } else if (isReply) {
+            postEl = gpeByClass('post', el);
+        } else {
+            postEl = el;
+        }
+
         if (!postEl && realBox) {
             postEl = gpeByClass('_post_wrap', realBox);
         }
 
         if (!rf || hasMedia && !force) return;
-        if (replyName && isArray(replyName)) {
+        if (replyName && isArray(replyName) && replyName[1]) {
             if (!v || !replyName[1].indexOf(v)) {
                 val(rf, '');
                 v = '';
@@ -4935,7 +5191,14 @@ var Wall = {
         }
         if (browser.opera_mobile || browser.safari_mobile || v) return;
 
-        removeClass(postEl, 'reply_box_open');
+        if (!curBox() || !curBox().isVisible()) {
+            if (isReply) {
+                removeClass(ge('replies_wrap_deep' + post), 'deep_reply_box_open');
+            } else {
+                removeClass(postEl, 'reply_box_open');
+            }
+        }
+
         if (replyLink = ge('reply_link' + post)) {
             hide('replies_wrap' + post);
         }
@@ -4948,6 +5211,12 @@ var Wall = {
         hide('reply_to_title' + post);
         cur.reply_to = false;
 
+        var optId = Wall.emojiOpts[post];
+
+        if (optId >= 0 && Emoji.opts[optId] && Emoji.opts[optId].onChange) {
+            Emoji.opts[optId].onChange();
+        }
+
         cur.onReplyFormSizeUpdate && cur.onReplyFormSizeUpdate();
 
         var point = cur.replySubmitSettings;
@@ -4958,14 +5227,21 @@ var Wall = {
         }
     },
     replyNamesRE: function() {
-        var names = ((cur.wallLayer ? wkcur : cur).options || {}).reply_names;
-        if (!names) return false;
+        wall.addReplyNames({});
+        var names = wall.getReplyNames();
+
+        if (isEmpty(names)) {
+            return false;
+        }
+
         var greetings = [];
-        each(names, function() {
-            if (this[1] && typeof this[1] == 'string') {
-                greetings.push(escapeRE(this[1]));
+
+        each(names, function(name, value) {
+            if (value && typeof value == 'string') {
+                greetings.push(escapeRE(value));
             }
         });
+
         return new RegExp('^(' + greetings.join('|') + ')');
     },
     replyTo: function(post, toMsgId, toId, event) {
@@ -4984,14 +5260,26 @@ var Wall = {
         var reply = ge('post' + replyOid + replyType + '_' + toMsgId);
         var replyTo = reply && geByClass1('reply_to', reply, 'a');
         var re = Wall.replyNamesRE();
+        var postEl = gpeByClass('wl_post', reply) || gpeByClass('post', reply);
+        var deepActive = hasClass(postEl, 'deep_active');
+        var deepWrap = deepActive ? gpeByClass('replies_wrap_deep', reply) : null;
+        var replyId = deepWrap ? domData(deepWrap, 'post-id') : post;
+        var value = '';
 
-        var replyNameFirst = isArray(replyName) ? replyName[0] : replyName;
-        replyNameFirst = '<a class="reply_to_mem" onclick="return wall.showReply(this, \'' + post + '\', \'' + replyOid + replyType + '_' + toMsgId + replyAt + '\', event);">' + replyNameFirst + '</a>';
-        var value = '<span class="reply_to_cancel" onclick="return Wall.cancelReplyTo(\'' + post + '\', event);"></span><div class="reply_to_label">' + langStr(getLang('global_reply_to'), 'user', replyNameFirst) + '</div>';
-        val('reply_to_title' + post, value);
+        if (!deepActive || deepWrap) {
+            var replyNameFirst = (isArray(replyName) ? replyName[0] : replyName) || '';
+            replyNameFirst = '<a class="reply_to_mem" onclick="return wall.showReply(this, \'' + replyId + '\', \'' + replyOid + replyType + '_' + toMsgId + replyAt + '\', event);">' + replyNameFirst + '</a>';
 
-        if (isArray(replyName) && window.Emoji) {
-            var rf = ge('reply_field' + post);
+            var cancelButton = '<span class="reply_to_cancel" onclick="return Wall.cancelReplyTo(\'' + replyId + '\', event);"></span>';
+            var label = '<div class="reply_to_label">' + langStr(getLang('global_reply_to'), 'user', replyNameFirst) + '</div>';
+
+            value = deepActive ? label + cancelButton : cancelButton + label;
+        }
+
+        val('reply_to_title' + replyId, value);
+
+        if (isArray(replyName) && replyName[1] && window.Emoji) {
+            var rf = ge('reply_field' + replyId);
             var v = clean(trim(Emoji.val(rf)));
             v = v.replace(/&nbsp;/g, ' ');
             if (!v || replyNameOld && isArray(replyNameOld) && !winToUtf(replyNameOld[1]).indexOf(winToUtf(v))) {
@@ -5000,9 +5288,16 @@ var Wall = {
                 v = v.replace(re, replyName[1]);
                 Emoji.val(rf, v);
             }
+
+            var optId = Wall.emojiOpts[post];
+
+            if (optId >= 0 && Emoji.opts[optId] && Emoji.opts[optId].onChange) {
+                Emoji.opts[optId].onChange();
+            }
+
             Emoji.focus(rf, true);
         }
-        show('reply_to_title' + post);
+        toggle('reply_to_title' + replyId, value);
 
         if (replyAs) {
             var onBehalfGroup = isVisible(replyAs.parentNode) && replyOid < 0 && replyTo && replyTo.getAttribute('rid') === replyOid;
@@ -5017,12 +5312,16 @@ var Wall = {
         return false;
     },
     cancelReplyTo: function(post, event) {
-        var cur = window.cur.wallLayer == post ? wkcur : window.cur,
-            rf = ge('reply_field' + post),
-            replyName = cur.reply_to && Wall.getReplyName(cur.reply_to[0]),
-            v = clean(trim(window.Emoji ? Emoji.editableVal(rf) : '')),
-            re = Wall.replyNamesRE();
-        if (isArray(replyName) && window.Emoji) {
+        var cur = window.cur.wallLayer == post ? wkcur : window.cur;
+        var rf = ge('reply_field' + post);
+        var replyName = cur.reply_to && Wall.getReplyName(cur.reply_to[0]);
+        var v = clean(trim(window.Emoji ? Emoji.editableVal(rf) : ''));
+        var re = Wall.replyNamesRE();
+        var reply = ge('post' + post);
+        var postEl = gpeByClass('wl_post', reply) || gpeByClass('post', reply);
+        var deepActive = hasClass(postEl, 'deep_active');
+
+        if (isArray(replyName) && replyName[1] && window.Emoji) {
             if (!v || !replyName[1].indexOf(v)) {
                 v = '';
                 Emoji.val(rf, v);
@@ -5030,14 +5329,36 @@ var Wall = {
                 v = v.replace(re, '');
                 Emoji.val(rf, v);
             }
+
+            var optId = Wall.emojiOpts[post];
+
+            if (optId >= 0 && Emoji.opts[optId] && Emoji.opts[optId].onChange) {
+                Emoji.opts[optId].onChange();
+            }
+
             Emoji.focus(rf, true);
         }
-        val('reply_to' + post, '');
+
         hide('reply_to_title' + post);
-        if (window.mvcur && mvcur.post == post) {
-            mvcur.mvReplyTo = false;
+
+        if (deepActive) {
+            var answeringId = domData(reply, 'answering-id');
+
+            if (answeringId) {
+                var toMsgId = post.split('_')[1];
+                cur.reply_to = [intval(answeringId), intval(toMsgId)];
+                val('reply_to' + post, toMsgId);
+            } else {
+                cur.reply_to = false;
+                val('reply_to' + post, '');
+            }
         } else {
-            cur.reply_to = false;
+            if (window.mvcur && mvcur.post == post) {
+                mvcur.mvReplyTo = false;
+            } else {
+                cur.reply_to = false;
+            }
+            val('reply_to' + post, '');
         }
 
         if (cur.onReplyFormSizeUpdate && isFunction(cur.onReplyFormSizeUpdate)) {
@@ -5057,7 +5378,13 @@ var Wall = {
             return
         }
         place = place || hintPlace;
-        if (hasClass(place, 'flat_button') && buttonLocked(place)) {
+        if (
+            (hasClass(place, 'flat_button') && buttonLocked(place)) ||
+            hasClass(place, 'button_disabled')
+        ) {
+            if (!over && point && point.tt && point.tt.hide) {
+                point.tt.hide();
+            }
             return;
         }
 
@@ -5090,12 +5417,14 @@ var Wall = {
                 enabled: ctrlSubmit ? 'on' : '',
                 disabled: !ctrlSubmit ? 'on' : ''
             });
+        var postEl = box && (gpeByClass('wl_post', box) || gpeByClass('post', box));
+        var deepActive = postEl && hasClass(postEl, 'deep_active');
 
         showTooltip(point, {
             text: hint,
             typeClass: 'tt_default_right',
             slide: 15,
-            shift: [0, 8],
+            shift: deepActive ? [15, 8] : [0, 8],
             asrtl: 1,
             hasover: 1,
             toup: false,
@@ -5142,16 +5471,27 @@ var Wall = {
     sendReply: function(post, ev, options) {
         options = extend({}, options);
 
-        if (window.mvcur && mvcur.post == post) {
-            return Videoview.sendComment(post, ev, options);
+        var deepReply = ge('replies_wrap_deep' + post);
+        var postId;
+
+        if (deepReply) {
+            postId = domData(gpeByClass('post', deepReply) || gpeByClass('wl_post', deepReply), 'post-id');
+        } else {
+            postId = post;
         }
 
-        var wallLayer = (window.cur.wallLayer == post),
-            cur = wallLayer ? wkcur : window.cur,
-            rf = ge('reply_field' + post),
-            composer = rf && data(rf, 'composer'),
-            replyName = cur.reply_to && Wall.getReplyName(cur.reply_to[0]),
-            state;
+        if (window.mvcur && mvcur.post == postId) {
+            return Videoview.sendComment(postId, ev, options);
+        }
+
+        var wallLayer = (window.cur.wallLayer == postId);
+        var postEl = wallLayer ? ge('wl_post') : ge('post' + postId);
+        var deepActive = hasClass(postEl, 'deep_active');
+        var cur = wallLayer ? wkcur : window.cur;
+        var rf = ge('reply_field' + post);
+        var composer = rf && data(rf, 'composer');
+        var replyName = cur.reply_to && Wall.getReplyName(cur.reply_to[0]);
+        var state;
 
         var _send = rf && data(rf, 'send');
         if (_send && isFunction(_send)) {
@@ -5179,7 +5519,7 @@ var Wall = {
 
             if (!params.attach1_type) {
                 if (!params.message ||
-                    isArray(replyName) && !replyName[1].indexOf(params.message)) {
+                    isArray(replyName) && replyName[1] && !replyName[1].indexOf(params.message)) {
                     Emoji.editableFocus(ge('reply_field' + post), false, true);
                     return;
                 }
@@ -5197,20 +5537,23 @@ var Wall = {
 
         cur.wallMyOpened = cur.wallMyOpened || {};
 
-        cur.wallMyReplied[post] = 1;
-        cur.wallMyOpened[post] = 1;
-        var post_hash = ge('post_hash' + post) ? ge('post_hash' + post).value : cur.options.post_hash,
-            newEl = null;
+        cur.wallMyReplied[postId] = 1;
+        cur.wallMyOpened[postId] = 1;
+
+        var post_hash = ge('post_hash' + postId) ? ge('post_hash' + postId).value : cur.options.post_hash;
+        var newEl = null;
+        var onlyNew = deepActive && (deepReply || (!wallLayer && cur.wallType !== 'full'));
 
         extend(params, {
             act: 'post',
             type: cur.wallType,
-            reply_to: post,
+            reply_to: postId,
             reply_to_msg: val('reply_to' + post),
             reply_to_user: cur.reply_to && cur.reply_to[0] || 0,
-            start_id: val('start_reply' + post),
-            from: wallLayer && 'wkview' || '',
-            hash: post_hash
+            start_id: val('start_reply' + postId),
+            from: wallLayer ? 'wkview' : '',
+            hash: post_hash,
+            only_new: onlyNew ? 1 : 0,
         });
         if (cur.reverse) {
             params.rev = 1;
@@ -5253,16 +5596,29 @@ var Wall = {
 
         ajax.post('al_wall.php', Wall.fixPostParams(params), {
             onDone: function(reply, replies, names, data) {
-                if (cur.wallType == 'full') {
-                    return FullWall.onReplySent.apply(window, arguments);
+                if (deepActive) {
+                    if (onlyNew) {
+                        return wall.onOnlyNewReplySent.apply(window, arguments);
+                    } else if (wallLayer) {
+                        return wall.onNewReplySentLayer.apply(window, arguments);
+                    }
                 }
-                cur.wallMyReplied[post] = 0;
-                re('reply_link' + post);
-                hide('reply_warn' + post);
+
+                if (cur.wallType == 'full') {
+                    if (deepActive) {
+                        return FullWall.onNewReplySent.apply(window, arguments);
+                    } else {
+                        return FullWall.onReplySent.apply(window, arguments);
+                    }
+                }
+
+                cur.wallMyReplied[postId] = 0;
+                re('reply_link' + postId);
+                hide('reply_warn' + postId);
                 Wall._repliesLoaded(post, false, replies, names, data);
                 Wall.processPostReplyActions(reply);
             },
-            onFail: function() {
+            onFail: function(msg) {
                 newEl && re(newEl);
                 if (composer) {
                     state = Composer.restore(composer, state);
@@ -5270,22 +5626,42 @@ var Wall = {
                     val(rf, params.message);
                 }
                 if (rf.autosize) rf.autosize.update();
+
+                if (msg) {
+                    showFastBox(getLang('global_error'), msg);
+                    return true;
+                }
             },
-            showProgress: lockButton.pbind(ge('reply_button' + post)),
-            hideProgress: unlockButton.pbind(ge('reply_button' + post))
+            showProgress: function() {
+                if (deepActive) {
+                    disableButton(ge('reply_button' + post), true);
+                } else {
+                    lockButton(ge('reply_button' + post));
+                }
+
+            },
+            hideProgress: function() {
+                if (deepActive) {
+                    disableButton(ge('reply_button' + post), false);
+                } else {
+                    unlockButton(ge('reply_button' + post))
+                }
+
+            }
         });
 
         if (window.cur.onPostReply) {
             window.cur.onPostReply(post);
         }
 
-        if (params.from_oid || !params.message) return;
+        if (params.from_oid || !params.message || onlyNew) return;
 
         var repliesEl = ge('replies' + post),
             replyId = -(++cur.wallMyRepliesCnt);
 
         var message = Emoji.emojiToHTML(clean(params.message), true),
-            toName = params.reply_to_user < 0 ? getLang('wall_replied_to_group') : cur.options.reply_names[params.reply_to_user] && cur.options.reply_names[params.reply_to_user][0],
+            names = wall.getReplyNames(),
+            toName = params.reply_to_user < 0 ? getLang('wall_replied_to_group') : names[params.reply_to_user] && names[params.reply_to_user][0],
             toLnk = toName ? rs(cur.wallTpl.reply_link_to, {
                 to_user: toName
             }) : '';
@@ -5335,6 +5711,95 @@ var Wall = {
             }
         }
     },
+    onOnlyNewReplySent: function(replyToId, reply, names) {
+        var toEl = ge('post' + replyToId);
+        var toReply = hasClass(toEl, 'reply');
+        var postEl = toReply ? (gpeByClass('wl_post', toEl) || gpeByClass('post', toEl)) : toEl;
+        var deepActive = hasClass(postEl, 'deep_active');
+
+        if (!deepActive) {
+            return;
+        }
+
+        var deepBlock = gpeByClass('replies_wrap_deep', toEl);
+
+        if (toReply && deepBlock) {
+            replyToId = domData(deepBlock, 'post-id');
+        }
+
+        if (toReply) {
+            wall.addDeepRepliesBlock(replyToId);
+        }
+
+        var repliesList = ge('replies' + replyToId);
+        repliesList.appendChild(se(reply));
+
+        wall.incReplyCounter(postEl);
+
+        wall.addReplyNames(names);
+    },
+    incReplyCounter: function(postEl, incVal, newCount) {
+        incVal = incVal || 1;
+
+        var postId = domData(postEl, 'post-id');
+        var postCommentIcon = geByClass1('comment', postEl);
+        var currentCount;
+
+        if (postCommentIcon) {
+            if (!newCount) {
+                currentCount = +domData(postCommentIcon, 'count');
+                newCount = Math.max(0, currentCount + incVal);
+            }
+
+            Likes.update('wall' + postId, {
+                comment_num: newCount
+            });
+        }
+
+        // update total counter
+        var counter = geByClass1('post_replies_count', postEl);
+
+        if (counter) {
+            if (!newCount) {
+                currentCount = currentCount || intval(val(counter).replace(/[^0-9]+/g, ''));
+                newCount = Math.max(0, currentCount + incVal);
+            }
+
+            val(counter, getLang('wall_N_replies', newCount));
+
+            if (!newCount) {
+                re(counter);
+            }
+        }
+    },
+    onNewReplySentLayer: function(count, rows, offset, names) {
+        var postEl = ge('wl_post');
+
+        var repliesList = geByClass1('wl_replies', postEl);
+        val(repliesList, rows);
+
+        // update total counter
+        var counter = geByClass1('post_replies_count', postEl);
+
+        if (counter) {
+            val(counter, getLang('wall_N_replies', count));
+        }
+
+        var num = domChildren(repliesList).filter(function(child) {
+            return hasClass(child, 'reply');
+        }).length;
+
+        extend(wkcur, {
+            offset: offset,
+            loaded: num,
+            count: count,
+        });
+
+        wall.addReplyNames(names);
+        WkView.wallUpdateReplies();
+        wkLayerWrap.scrollTop = wkLayerWrap.scrollHeight;
+        WkView.wallUpdateRepliesOnScroll();
+    },
     postTooltip: function(el, post, opts, tooltipOpts) {
         if (cur.viewAsBox) return;
         var reply = (opts || {}).reply,
@@ -5372,7 +5837,18 @@ var Wall = {
     },
 
     hideEditPostReply: function(e, noLayerCheck) {
-        if (cur.editing === false || !noLayerCheck && (isVisible(boxLayerBG) || isVisible(layerBG))) return;
+        if (cur.editing === false) {
+            return;
+        }
+
+        if (cur.wallLayer && hasClass('wl_post', 'deep_active')) {
+            noLayerCheck = true;
+        }
+
+        if (!noLayerCheck && (isVisible(boxLayerBG) || isVisible(layerBG))) {
+            return
+        }
+
         var el = (e && e.target) ? e.target : {};
         var id = el.id;
         if (cur.editing) {
@@ -5961,10 +6437,15 @@ var Wall = {
     },
     replyClick: function(post, reply, event, answering) {
         var oid_pid = post.split('_');
-        var oid = intval(oid_pid[0]),
-            pid_type = oid_pid[1].replace(/-?\d+$/, ''),
-            el = ge('post' + oid + pid_type + '_' + reply);
-        if (gpeByClass('closed_comments', el) || (!cur.stickerClicked && Wall.checkReplyClick(el, event))) return;
+        var oid = intval(oid_pid[0]);
+        var pid_type = oid_pid[1].replace(/-?\d+$/, '');
+        var el = ge('post' + oid + pid_type + '_' + reply);
+        var postEl = ge('post' + post);
+
+        if (hasClass(postEl, 'closed_comments') || (!cur.stickerClicked && Wall.checkReplyClick(el, event))) {
+            return;
+        }
+
         (event || {}).cancelBubble = true;
 
         var moreLink = geByClass1('wall_reply_more', el, 'a');
@@ -5974,16 +6455,26 @@ var Wall = {
             return;
         }
         if (answering) {
-            var productId = cur.stickerClicked || false,
-                rf = ge('reply_field' + post);
+            postEl = cur.wallLayer ? ge('wl_post') : postEl;
+            var isDeepActive = hasClass(postEl, 'deep_active');
+            var productId = cur.stickerClicked || false;
+            var fieldId = post;
+
+            if (isDeepActive) {
+                var deepWrap = gpeByClass('replies_wrap_deep', el);
+                fieldId = deepWrap ? domData(deepWrap, 'post-id') : domData(el, 'post-id');
+            }
+
+            var rf = ge('reply_field' + fieldId);
+
             cur.stickerClicked = false;
             if (productId && (!rf || !rf.emojiInited)) {
                 cur.afterEmojiInit = cur.afterEmojiInit || {};
-                cur.afterEmojiInit[post] = function() {
-                    Emoji.clickSticker(productId, ge('reply_field' + post));
+                cur.afterEmojiInit[fieldId] = function() {
+                    Emoji.clickSticker(productId, ge('reply_field' + fieldId));
                 };
             }
-            Wall.replyTo(post, reply, answering, event);
+            Wall.replyTo(fieldId, reply, answering, event);
             if (productId && rf && rf.emojiInited) {
                 Emoji.clickSticker(productId, rf);
             }
@@ -7083,7 +7574,10 @@ var Wall = {
             reply_link: reply_link,
             reply_button: reply_button,
             own_reply_link: cur.wallTpl.own_reply_link,
-            reply_box: ev[8] == 1 ? cur.wallTpl.reply_box : '',
+            reply_box: ev[8] == 1 ? rs(cur.wallTpl.reply_box, {
+                actions: '',
+                class: canReplyAsGroup ? ' reply_fakebox_with_official' : ''
+            }) : '',
             photo: psr(thumbs[0]),
             link: ev[5],
             text: psr(ev[6]),
@@ -7158,8 +7652,11 @@ var Wall = {
         if (can_reply) {
             className += ' reply_replieable';
             answer = cur.wallTpl.reply_link_wrap;
-            if (!cur.options.reply_names[ev[4]]) {
-                cur.options.reply_names[ev[4]] = [ev[11], ev[12]]; // name link, name greeting
+
+            var names = wall.getReplyNames();
+
+            if (!names[ev[4]]) {
+                wall.addReplyName(ev[4], [ev[11], ev[12]]); // name link, name greeting
             }
         }
         if (className) {
@@ -7575,6 +8072,13 @@ var Wall = {
                             (layerpost && (!cur.reverse ? cur.offset + cur.loaded < cur.count : cur.offset))
                         ) break;
 
+                        if (hasClass(layerpost ? ge('wl_post') : ge('post' + post_id), 'deep_active')) {
+                            var res = wall.addNewReply(ev);
+                            updH += res[0];
+                            updY = res[1];
+                            break;
+                        }
+
                         var repliesEl = ge('replies' + post_id),
                             repliesWrap = ge('replies_wrap' + post_id),
                             flgs = intval(ev[ev.length - 1]),
@@ -7657,7 +8161,19 @@ var Wall = {
                     }
                 case 'del_reply':
                     {
-                        if (cur.wallMyDeleted[post_id] || !el) break;
+                        if (cur.wallMyDeleted[post_id] || !el) {
+                            break;
+                        }
+
+                        var postEl = gpeByClass('wl_post', el) || gpeByClass('post', el);
+
+                        if (hasClass(postEl, 'deep_active')) {
+                            var res = wall.removeDeepReply(ev);
+                            updH += res[0];
+                            updY = res[1];
+                            break;
+                        }
+
                         updH -= el.offsetHeight;
                         updY = getXY(el, fixed)[1];
                         revertLastInlineVideo(el);
@@ -8090,6 +8606,33 @@ var Wall = {
             offset: null
         });
     },
+
+    fakeReplyAsGroupOver: function(el) {
+        var canReplyAsGroup = gpeByClass('reply_fakebox_with_official', el);
+
+        if (canReplyAsGroup) {
+            wall.replyAsGroupOver(el);
+        }
+    },
+
+    fakeReplyAsGroupCheck: function(el, postId, event) {
+        var canReplyAsGroup = gpeByClass('reply_fakebox_with_official', el);
+
+        if (canReplyAsGroup) {
+            tooltips.hide(el);
+
+            Wall.showEditReply(postId, null, false, false, false, function() {
+                var official = ge('reply_as_group' + postId);
+
+                if (official) {
+                    official.click();
+                }
+            });
+
+            return event && cancelEvent(event);
+        }
+    },
+
     setReplyAsGroup: function(el, opts) {
         if (!el) {
             return false;
@@ -8177,7 +8720,7 @@ var Wall = {
 
         triggerEvent(geByClass1('submit_post_field', wrap), 'td_update');
 
-        var podcastMenu = domByClass(cur.wallAddMedia.menu.menuNode, '_type_podcast');
+        var podcastMenu = cur.wallAddMedia && domByClass(cur.wallAddMedia.menu.menuNode, '_type_podcast');
 
         if (podcastMenu) {
             var podcastVisible = cur.postTo == from;
@@ -8215,18 +8758,33 @@ var Wall = {
         toggleClass(el, 'author_secondary');
     },
     replyAsGroupOver: function(obj) {
-        if (!hasClass(obj, 'checkbox_official') || hasClass(obj, 'disabled')) return false;
+        if (!(hasClass(obj, 'checkbox_official') || hasClass(obj, 'reply_fakebox_wrap_image')) || hasClass(obj, 'disabled')) {
+            return false;
+        }
 
         var postBox = gpeByClass('_submit_post_box', obj);
+        var deepActive = gpeByClass('deep_active', obj);
+        var deepWrap = deepActive && gpeByClass('replies_wrap_deep', obj);
+        var shift;
+
+        if (deepWrap) {
+            shift = [7, 8, 8];
+        } else if (deepActive) {
+            shift = [2, 8, 8];
+        } else {
+            shift = [9, 8, 8];
+        }
+
         showTooltip(obj, {
             text: function() {
                 var fromGroup = (domData(postBox, 'from-oid') || vk.id) < 0;
                 return (fromGroup ? getLang('global_on_behalf_group') : getLang('global_on_behalf_me'));
             },
             black: 1,
-            shift: [9, 8, 8]
+            shift: shift,
         });
-        if (wall.isWallReply(obj) || wall.isAdsCreatingPost(obj)) {
+
+        if (!hasClass(obj, 'reply_fakebox_wrap_image') && (wall.isWallReply(obj) || wall.isAdsCreatingPost(obj))) {
             var url = '/al_groups.php';
             var act = 'get_editor_clubs';
             if (wall.isAdsCreatingPost(obj)) {
@@ -8239,6 +8797,7 @@ var Wall = {
                 cache: 1
             });
         }
+
         return;
     },
     replyAsGroupFocus: function(obj) {
@@ -8271,7 +8830,11 @@ var Wall = {
                     each(list, function() {
                         window.replyAsData[this[0]] = this;
                     });
-                    wall.replyAsGroupTT(obj, owner);
+
+                    // Temporary bullshit hack
+                    if (isVisible(obj)) {
+                        wall.replyAsGroupTT(obj, owner);
+                    }
                 }
             });
         } else {
@@ -8279,11 +8842,30 @@ var Wall = {
         }
     },
     replyAsGroupDomData: function(obj) {
-        var postBox = gpeByClass('_submit_post_box', obj),
-            oid = postBox && domData(postBox, 'oid'),
-            ownerPhoto = postBox && domData(postBox, 'owner-photo'),
-            ownerHref = postBox && domData(postBox, 'owner-href'),
-            ownerName = postBox && domData(postBox, 'owner-name');
+        var postBox;
+        var oid;
+        var ownerPhoto;
+        var ownerHref;
+        var ownerName;
+
+        if (gpeByClass('replies_wrap_deep', obj)) {
+            var postId = domData(gpeByClass('post', obj) || gpeByClass('wl_post', obj), 'post-id');
+
+            if (postId) {
+                postBox = ge('reply_box' + postId) || ge('reply_fakebox' + postId);
+                oid = postId.split('_')[0];
+            }
+
+        } else {
+            postBox = gpeByClass('_submit_post_box', obj);
+            oid = domData(postBox, 'oid');
+        }
+
+        if (postBox) {
+            ownerPhoto = domData(postBox, 'owner-photo');
+            ownerHref = domData(postBox, 'owner-href');
+            ownerName = domData(postBox, 'owner-name');
+        }
 
         return oid && ownerPhoto && ownerHref && ownerName &&
             [oid, ownerPhoto, ownerHref, clean(unclean(ownerName))] || cur.wallTpl && cur.wallTpl.ownerData || false;
@@ -8346,6 +8928,8 @@ var Wall = {
                 rows += rowTemplate(cl, this[0], this[2], this[1], this[3]);
             });
 
+            var deepActive = gpeByClass('deep_active', obj);
+
             ttChooser = new ElementTooltip(obj, {
                 content: '<div class="post_from_tt_choose _post_scroll_wrap">' + rows + '</div>',
                 appendToParent: true,
@@ -8353,7 +8937,13 @@ var Wall = {
                 customShow: true,
                 defaultSide: 'bottom',
                 offset: function() {
-                    return wall.isAdsCreatingPost(obj) ? [obj.offsetWidth / 2 + 8.5, -2] : [-10, -5];
+                    if (wall.isAdsCreatingPost(obj)) {
+                        return [obj.offsetWidth / 2 + 8.5, -2]
+                    } else if (deepActive) {
+                        return [1, -5];
+                    } else {
+                        return [-10, -5];
+                    }
                 },
                 onFirstTimeShow: function(ttel) {
                     var rowEls = geByClass('post_from_tt_row', ttel);
@@ -9098,7 +9688,451 @@ var Wall = {
             return log.split('|');
         }).concat(logs);
         ls.set('friends_recomm', logs);
-    }
+    },
+
+    replyEditPhoto: function(btn, postId, event) {
+        Wall.showEditReply(postId, null, false, false, false, function() {
+            var addMedia = ge('reply_more_attaches' + postId);
+
+            if (addMedia) {
+                var photoAttach = geByClass1('ms_item_photo', addMedia);
+                tooltips.hide(btn);
+                photoAttach && photoAttach.click();
+            }
+        });
+
+        return event && cancelEvent(event);
+    },
+
+    replyMoreAttachShow: function(btn, postId, event) {
+        Wall.showEditReply(postId, null, false, false, false);
+
+        return event && cancelEvent(event);
+    },
+
+    replyFakeEmojiOver: function(postId) {
+        wall.initEditReply(postId, false, true, function() {
+            var replyEmoji = ge('reply_smile' + postId);
+
+            if (replyEmoji) {
+                var emojiSmile = geByClass1('emoji_smile', replyEmoji);
+                emojiSmile && emojiSmile.onmouseover();
+            }
+        });
+    },
+
+    hideDeepReplies: function(postId) {
+        var postEl = ge('post' + postId);
+
+        if (hasClass(postEl, 'reply')) {
+            postEl = gpeByClass('post', postEl);
+            postId = domData(postEl, 'post-id');
+        }
+
+        var repliesWrap = ge('replies' + postId);
+
+        var showNextReplies = se(rs(cur.wallTpl.reply_deep_next, {
+            post_ist: postId,
+            reply_id: postId,
+            offset: 0,
+            count: 3,
+            text: '',
+            class: ' replies_next_main',
+        }));
+
+        repliesWrap.innerHTML = '';
+        repliesWrap.appendChild(showNextReplies);
+
+        scrollToY(getXY(repliesWrap)[1] - 100, 0, null, true);
+
+        showNextReplies.click();
+        cur.wallMyOpened[postId] = 0;
+    },
+
+    addNewReply: function(ev) {
+        var postId = ev[2];
+        var toLink = ev[10] || '';
+        var found = toLink.match(/wall.showReply\([^-)0-9]*(-?[_0-9]+)[^-)0-9]*(-?[_0-9]+)[^-)0-9]*\)/);
+        var replyToId = (found && found[2]) || '';
+        var isDeepReply = replyToId && replyToId !== postId;
+        var wallLayer = (cur.wallLayer && cur.wallLayer === postId);
+        var curJs = wallLayer ? wkcur : cur;
+        var onePost = (curJs.wallType === 'full');
+        var checkHeightEl = wallLayer ? ge('replies' + postId) : ge('post' + postId);
+        var startH = checkHeightEl.offsetHeight;
+        var updH = 0;
+        var updY = 0;
+        var newEl;
+
+        if (isDeepReply) {
+            newEl = wall._addDeepReply(ev, replyToId);
+        } else {
+            newEl = wall._addRootReply(ev);
+        }
+
+        var postEl = wallLayer ? ge('wl_post') : ge('post' + postId);
+        var counter = geByClass1('post_replies_count', postEl);
+
+        if (!counter && (wallLayer || onePost)) {
+            counter = se(curJs.wallTpl.reply_count);
+
+            var repliesBlock = wallLayer ? geByClass1('wl_replies', postEl) : geByClass1('replies', postEl);
+
+            domInsertBefore(counter, repliesBlock);
+        }
+
+        wall.incReplyCounter(postEl, 1, ev[13]);
+
+        if (wallLayer) {
+            show(geByClass1('wl_replies_wrap', 'wl_replies_wrap'));
+            cur.count++;
+            cur.loaded++;
+        } else {
+            show('replies_wrap' + postId);
+            Wall.repliesSideSetup(postId);
+        }
+
+        Wall.updateMentionsIndex();
+
+        if (newEl) {
+            updH = checkHeightEl.offsetHeight - startH;
+            updY = getXY(newEl, wallLayer)[1];
+        }
+
+        return [updH, updY];
+    },
+
+    _addDeepReply: function(ev, replyToId) {
+        var postId = ev[2];
+        var toLink = ev[10] || '';
+        var toLinkEl = se(toLink);
+        var rootId = (toLinkEl && domData(toLinkEl, 'root-id')) || replyToId;
+        var replyToEl = ge('post' + rootId);
+        var deepWrapParent = replyToEl && gpeByClass('replies_wrap_deep', replyToEl);
+        var wallLayer = (cur.wallLayer && cur.wallLayer === postId);
+        var curJs = wallLayer ? wkcur : cur;
+        var newEl;
+
+        if (deepWrapParent) {
+            rootId = domData(deepWrapParent, 'post-id');
+            replyToEl = ge('post' + rootId);
+        }
+
+        if (!replyToEl) {
+            return null;
+        }
+
+        var deepRepliesBLock = ge('replies' + rootId);
+
+        // Create deep block
+        if (!deepRepliesBLock) {
+            wall.addDeepRepliesBlock(rootId);
+
+            var field = ge('reply_fakebox' + rootId) || ge('reply_box' + rootId);
+
+            if (field) {
+                hide(field);
+            }
+
+            deepRepliesBLock = ge('replies' + rootId);
+            newEl = deepRepliesBLock;
+        }
+
+        if (!deepRepliesBLock) {
+            return null;
+        }
+
+        var deepReplies = geByClass('reply', deepRepliesBLock);
+
+        // Add show more button
+        if (deepReplies.length) {
+            var showMore = wall._addNewReplyShowMore(postId, rootId, deepRepliesBLock, 'replies_next_deep');
+            newEl = newEl || showMore;
+
+            // Add short comment
+        } else {
+            var deepShort = ge('replies_short_deep' + rootId);
+
+            if (deepShort) {
+                var countEl = geByClass1('replies_short_text_count', deepShort);
+                var shortCount = intval(val(countEl).replace(/[^0-9]/g, '')) || 0;
+                val(countEl, getLang('global_replied_to_reply_count', shortCount + 1));
+
+            } else {
+                deepShort = se(rs(curJs.wallTpl.reply_deep_short, {
+                    post_id: postId,
+                    reply_id: rootId,
+                    reply_msg_id: rootId.split('_')[1],
+                    img_src: ev[6] || '',
+                    name: ev[5] || '',
+                    count: getLang('global_replied_to_reply_count', 1),
+                }));
+
+                var deepRepliesFC = domFC(deepRepliesBLock);
+
+                if (deepRepliesFC) {
+                    domInsertBefore(deepShort, deepRepliesFC);
+                } else {
+                    deepRepliesBLock.appendChild(deepShort);
+
+                    var showNextDeepReplies = se(rs(curJs.wallTpl.reply_deep_next, {
+                        post_id: postId,
+                        reply_id: rootId,
+                        offset: 0,
+                        count: 1,
+                        text: getLang('wall_next_n_replies', 1),
+                        class: ' replies_next_deep',
+                    }));
+
+                    deepRepliesBLock.appendChild(showNextDeepReplies);
+                }
+            }
+
+            addClass(deepWrapParent, 'replies_deep_has_short');
+
+            newEl = deepShort;
+        }
+
+        removeClass(deepWrapParent, 'replies_deep_empty_list');
+
+        return newEl;
+    },
+
+    _addRootReply: function(ev) {
+        var postId = ev[2];
+        var wallLayer = (cur.wallLayer && cur.wallLayer === postId);
+        var curJs = wallLayer ? wkcur : cur;
+        var replies = ge('replies' + postId);
+        var repliesCount = domChildren(replies).length;
+        var onePost = (curJs.wallType === 'full');
+        var needAddComment = !repliesCount || (repliesCount < 3 && (wallLayer || onePost));
+
+        // Full comment
+        if (needAddComment) {
+            var flags = intval(ev[ev.length - 1]);
+            var adminLevel = curJs.options.is_admin !== undefined ? curJs.options.is_admin : (curJs.options.wall_oid < 0 ? ((flags & 8) ? constants.Groups.GROUPS_ADMIN_LEVEL_EDITOR : ((flags & 2) ? constants.Groups.GROUPS_ADMIN_LEVEL_MODERATOR : constants.Groups.GROUPS_ADMIN_LEVEL_USER)) : constants.Groups.GROUPS_ADMIN_LEVEL_USER);
+            var newEl = se(Wall.getNewReplyHTML(ev, adminLevel, false, curJs));
+
+            nodeUpdated(newEl);
+            replies.appendChild(newEl);
+
+            return newEl;
+
+            // Show more button
+        } else {
+            return wall._addNewReplyShowMore(postId, postId, replies, 'replies_next_main');
+        }
+    },
+
+    _addNewReplyShowMore: function(postId, replyId, replies, repliesNextClass) {
+        var wallLayer = (cur.wallLayer && cur.wallLayer === postId);
+        var curJs = wallLayer ? wkcur : cur;
+        var maxCount = curJs.options.replies_page_count || 20;
+        var repliesLast = domLC(replies);
+        var count;
+
+        // Upd exist block
+        if (hasClass(repliesLast, 'replies_next')) {
+            count = (+domData(repliesLast, 'count') || 0) + 1;
+            count = Math.min(maxCount, count);
+
+            domData(repliesLast, 'count', count);
+            val(repliesLast, getLang('wall_next_n_replies', count))
+
+            return repliesLast;
+
+            // Add new block
+        } else {
+            var allNexts = geByClass(repliesNextClass, replies);
+            var lastNext = allNexts[allNexts.length - 1];
+            var repliesChilds = domChildren(replies);
+            var offset;
+
+            if (lastNext) {
+                var lastCount = +domData(lastNext, 'count') || maxCount;
+                var lastOffset = +domData(lastNext, 'offset') || 0;
+                var lastPos = (repliesChilds.indexOf(lastNext) || 0) + 1;
+                var nextReplies = repliesChilds.slice(lastPos).filter(function(el) {
+                    return hasClass(el, 'reply');
+                }).length;
+
+                offset = lastOffset + lastCount + nextReplies;
+            } else {
+                offset = repliesChilds.filter(function(el) {
+                    return hasClass(el, 'reply');
+                }).length;
+            }
+
+            var showNextReplies = se(rs(curJs.wallTpl.reply_deep_next, {
+                post_id: postId,
+                reply_id: replyId,
+                offset: offset,
+                count: 1,
+                text: getLang('wall_next_n_replies', 1),
+                class: ' ' + repliesNextClass,
+            }));
+
+            replies.appendChild(showNextReplies);
+            show(showNextReplies);
+
+            return showNextReplies;
+        }
+    },
+
+    removeDeepReply: function(ev) {
+        var replyId = ev[2];
+        var replyEl = ge('post' + replyId);
+        var updH = 0;
+        var updY = 0;
+
+        if (cur.wallMyDeleted[replyId] || !replyEl) {
+            return [updH, updY];
+        }
+
+        updY = getXY(replyEl, cur.layerpost)[1];
+
+        revertLastInlineVideo(replyEl);
+
+        var postEl = gpeByClass('wl_post', replyEl) || gpeByClass('post', replyEl);
+        var postId = postEl ? domData(postEl, 'post-id') : '';
+        var deepWrap = gpeByClass('replies_wrap_deep', replyEl);
+
+        if (deepWrap) {
+            updH = -replyEl.offsetHeight;
+            re(replyEl);
+
+            if (getSize(deepWrap)[1]) {
+                addClass(deepWrap, 'replies_deep_empty_list');
+            }
+
+        } else {
+            var deepRepliesWrap = ge('replies_wrap_deep' + replyId);
+
+            if (deepRepliesWrap) {
+                var wallLayer = (cur.wallLayer && cur.wallLayer === postId);
+                var curJs = wallLayer ? wkcur : cur;
+
+                var replyDate = geByClass1('reply_date', replyEl);
+                var replyAnswer = geByClass1('reply_link_wrap', replyEl);
+                var replyAttr = '';
+
+                var onclick = attr(replyEl, 'onclick');
+
+                if (onclick) {
+                    replyAttr += ' onclick="' + onclick + '"';
+                }
+
+                var deletedReply = se(rs(curJs.wallTpl.reply_deleted, {
+                    reply_id: replyId,
+                    date: replyDate ? replyDate.innerHTML : '',
+                    answer: replyAnswer ? replyAnswer.outerHTML : '',
+                    class: hasClass(replyEl, 'reply_replieable') ? ' reply_replieable' : '',
+                    attr: replyAttr,
+                }));
+
+                var prevHeight = replyEl.offsetHeight;
+
+                domReplaceEl(replyEl, deletedReply);
+
+                updH = deletedReply.offsetHeight - prevHeight;
+
+            } else {
+                updH = -replyEl.offsetHeight;
+                re(replyEl);
+            }
+        }
+
+        if (cur.layerpost) {
+            cur.count--;
+            cur.loaded--;
+        }
+
+        if (postEl) {
+            wall.repliesSideSetup(postId);
+            wall.incReplyCounter(postEl, -1);
+        }
+
+        return [updH, updY];
+    },
+
+    addDeepRepliesBlock: function(replyId) {
+        var replyEl = ge('post' + replyId);
+
+        if (!hasClass(replyEl, 'reply')) {
+            return;
+        }
+
+        var postEl = gpeByClass('wl_post', replyEl) || gpeByClass('post', replyEl);
+
+        if (!hasClass(postEl, 'deep_active')) {
+            return;
+        }
+
+        var postId = domData(postEl, 'post-id');
+        var deepRepliesWrap = ge('replies_wrap_deep' + replyId);
+        var wallTpl = (cur.wallLayer ? wkcur : cur).wallTpl;
+
+        if (!deepRepliesWrap) {
+            deepRepliesWrap = se(rs(wallTpl.reply_deep, {
+                post_id: postId,
+                reply_id: replyId,
+                reply_msg_id: replyId.split('_')[1],
+                text: '',
+                offset: 0,
+                class: ' replies_next_deep',
+            }));
+
+            domInsertAfter(deepRepliesWrap, replyEl);
+        }
+
+        var fakeBox = ge('reply_fakebox' + replyId);
+        var realBox = ge('reply_box' + replyId);
+
+        if (!fakeBox && !realBox) {
+            var field = ge('reply_fakebox' + postId) || ge('reply_box' + postId);
+            var canReplyAsGroup = geByClass1('checkbox_official', field) || gpeByClass('reply_fakebox_with_official', field);
+
+            var replyBox = se(rs(wallTpl.reply_box, {
+                post_id: replyId,
+                owner_name: domData(field, 'owner-name') || '',
+                owner_photo: domData(field, 'owner-photo') || '',
+                owner_href: domData(field, 'owner-href') || '',
+                can_reply_as_group: canReplyAsGroup,
+                class: canReplyAsGroup ? ' reply_fakebox_with_official' : '',
+            }));
+
+            deepRepliesWrap.appendChild(replyBox);
+            addClass(deepRepliesWrap, 'replies_deep_has_field');
+        }
+    },
+
+    addReplyName: function(name, value) {
+        var names = {};
+        names[name] = value;
+        wall.addReplyNames(names);
+    },
+
+    addReplyNames: function(names) {
+        (cur.wallLayer ? wkcur : cur).options.reply_names = extend({}, (cur.wallLayer ? wkcur : cur).options.reply_names, names);
+    },
+
+    getReplyNames: function() {
+        return (cur.wallLayer ? wkcur : cur).options.reply_names || {};
+    },
+
+    getReplyName: function(id) {
+        if (cur.pvShown && cur.pvReplyNames) {
+            return cur.pvReplyNames[id] || [];
+        }
+
+        if (window.mvcur && mvcur.mvShown && !mvcur.minimized) {
+            return mvcur.mvReplyNames[id] || [];
+        }
+
+        var names = wall.getReplyNames();
+
+        return names[id] || [];
+    },
 }
 
 var wall = Wall;

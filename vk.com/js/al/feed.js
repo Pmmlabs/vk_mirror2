@@ -368,38 +368,48 @@ var Feed = {
                 break;
             case "new_reply":
                 if (!r || cur.wallMyReplied[i] || ge("post" + e[3])) break;
-                var F = ge("replies" + i),
-                    V = ge("replies_wrap" + i),
-                    I = r.offsetHeight,
+                if (hasClass(ge("post" + i), "deep_active")) {
+                    var F = wall.addNewReply(e);
+                    c += F[0];
+                    break
+                }
+                var V = ge("replies" + i),
+                    I = ge("replies_wrap" + i),
+                    O = r.offsetHeight,
                     u = i.split("_")[0],
                     l = 0 > u ? 8 & a ? constants.Groups.GROUPS_ADMIN_LEVEL_EDITOR : 2 & a ? constants.Groups.GROUPS_ADMIN_LEVEL_MODERATOR : constants.Groups.GROUPS_ADMIN_LEVEL_USER : constants.Groups.GROUPS_ADMIN_LEVEL_USER,
-                    O = wall.getNewReplyHTML(e, l),
+                    q = wall.getNewReplyHTML(e, l),
                     f = !1,
-                    q = !1;
-                if (isVisible(F) && isVisible(V) && !isVisible("reply_link" + i)) {
-                    var U = F.nextSibling,
-                        G = geByClass("new_reply", F, "div").length + 1;
+                    U = !1;
+                if (isVisible(V) && isVisible(I) && !isVisible("reply_link" + i)) {
+                    var G = V.nextSibling,
+                        W = geByClass("new_reply", V, "div").length + 1;
                     if (cur.wallMyOpened[i]) {
-                        U && "replies_open" == U.className && re(U), q = !0;
-                        var W = geByClass1("wr_header", F, "a"),
-                            Y = geByClass("reply", F, "div").length + 1,
-                            z = Y;
-                        W && (z = intval(W.getAttribute("offs").split("/")[1]) + 1), (z > 5 || z > Y) && (W || F.insertBefore(W = ce("a", {
+                        G && "replies_open" == G.className && re(G), U = !0;
+                        var Y = geByClass1("wr_header", V, "a"),
+                            z = geByClass("reply", V, "div").length + 1,
+                            K = z;
+                        Y && (K = intval(Y.getAttribute("offs").split("/")[1]) + 1), (K > 5 || K > z) && (Y || V.insertBefore(Y = ce("a", {
                             className: "wr_header"
-                        }), F.firstChild), wall.updateRepliesHeader(i, W, Y, z))
-                    } else O = wall.updatePostImages(O), f = se(O), addClass(f, "new_reply"), U && "replies_open" == U.className || (U = ce("div", {
+                        }), V.firstChild), wall.updateRepliesHeader(i, Y, z, K))
+                    } else q = wall.updatePostImages(q), f = se(q), addClass(f, "new_reply"), G && "replies_open" == G.className || (G = ce("div", {
                         className: "replies_open",
                         onclick: wall.openNewComments.pbind(i),
                         role: "button",
                         tabIndex: 0
-                    }), F.parentNode.insertBefore(U, F.nextSibling)), U.innerHTML = getLang("wall_x_new_replies_more", Math.min(100, G)), U.newCnt = G
-                } else re("reply_link" + i), show(V, F), q = !0;
-                i.split("_")[0] == vk.id && cur.feedUnreadCount++, f || (f = se(O)), F.appendChild(f), feed.needScrollPost(t, q ? f : U) && (c += r.offsetHeight - I), q && nodeUpdated(f), Wall.repliesSideSetup(i), Wall.updateMentionsIndex(), Likes.update("wall" + i, {
+                    }), V.parentNode.insertBefore(G, V.nextSibling)), G.innerHTML = getLang("wall_x_new_replies_more", Math.min(100, W)), G.newCnt = W
+                } else re("reply_link" + i), show(I, V), U = !0;
+                i.split("_")[0] == vk.id && cur.feedUnreadCount++, f || (f = se(q)), V.appendChild(f), feed.needScrollPost(t, U ? f : G) && (c += r.offsetHeight - O), U && nodeUpdated(f), Wall.repliesSideSetup(i), Wall.updateMentionsIndex(), Likes.update("wall" + i, {
                     comment_num: e[13]
                 });
                 break;
             case "del_reply":
                 if (!cur.wallMyDeleted[i] && r) {
+                    if (hasClass(gpeByClass("post", r), "deep_active")) {
+                        var F = wall.removeDeepReply(e);
+                        c += F[0];
+                        break
+                    }
                     feed.needScrollPost(t, r) && (c -= r.offsetHeight);
                     var E = r.parentNode.id.match(/replies(-?\d+_\d+)/);
                     revertLastInlineVideo(r), re(r), E && Wall.repliesSideSetup(E[1])
@@ -413,14 +423,14 @@ var Feed = {
             case "like_post":
             case "like_reply":
                 if (!r) break;
-                var K = "like_reply" == s ? "wall_reply" + i : i,
-                    Q = r && domByClass(r, "_like_wrap"),
-                    X = r && domByClass(r, "_share_wrap");
-                wall.likeFullUpdate(Q, K, {
-                    like_my: Q && hasClass(Q, "my_like"),
+                var Q = "like_reply" == s ? "wall_reply" + i : i,
+                    X = r && domByClass(r, "_like_wrap"),
+                    $ = r && domByClass(r, "_share_wrap");
+                wall.likeFullUpdate(X, Q, {
+                    like_my: X && hasClass(X, "my_like"),
                     like_num: e[3],
                     like_title: !1,
-                    share_my: X && hasClass(X, "my_share"),
+                    share_my: $ && hasClass($, "my_share"),
                     share_num: e[4],
                     share_title: !1
                 });
@@ -878,7 +888,8 @@ var Feed = {
                 i = geByClass1("_header", o),
                 r = val(i),
                 n = ge("fbgr_" + e + "_that");
-            toggle(s), toggleClass(o, "feedback_row_expanded", isVisible(s)), val(i, val(n)), val(n, r)
+            toggle(s),
+                toggleClass(o, "feedback_row_expanded", isVisible(s)), val(i, val(n)), val(n, r)
         }
     },
     ungroupUnified: function(e, t) {

@@ -4539,7 +4539,8 @@ div.chat_tab_img {
     margin: 0 2px 0 0
 }
 
-.emoji_smile {
+.emoji_smile,
+.reply_fake_emoji {
     position: absolute;
     cursor: pointer;
     top: 0;
