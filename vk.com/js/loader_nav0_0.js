@@ -352,8 +352,8 @@ var stVersions = {
     'helpdesk.css': 30253145618,
     'tickets.js': 1151194956,
     'tickets.css': 35812781008,
-    'faq.css': 26039758898,
-    'talmud.js': 3834581071,
+    'faq.css': 26950866621,
+    'talmud.js': 2726757681,
     'agents.js': 2789926745,
     'agents.css': 19395879813,
     'achievements.js': 3514956550,
@@ -594,7 +594,7 @@ var stVersions = {
     'landings/transparency.css': 36523596435,
     'cmodules/web/emoji.js': 164878560,
     'cmodules/web/apps_achievements.js': 67167644316,
-    'lang': 6919
+    'lang': 6922
 };
 var stTypes = {
     fromLib: {
@@ -652,4 +652,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 6964;
+var _rnd = 8769;

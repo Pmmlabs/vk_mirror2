@@ -11,7 +11,6 @@ var Talmud = {
         toggleClass(t, "talmud_inner_row_hidden", e)
     },
     toggleRowPrevent: function(t, e) {
-        gpeByClass("talmud_inner_row", e);
         t.stopPropagation()
     },
     handleTagsPos: function() {

@@ -365,7 +365,7 @@
 }
 
 .faq_found_list {
-    padding: 15px 10px;
+    padding: 15px 0;
     background: #fff
 }
 
@@ -570,25 +570,19 @@
     background-color: #fff3f2
 }
 
-.faq_short_text {
-    display: block
+.faq_full_text {
+    cursor: default
 }
 
-.faq_full_text,
-.faq_inner_row.detailed .faq_short_text {
-    display: none
-}
-
-.faq_inner_row.detailed .faq_full_text {
-    display: block
+.faq_inner_row.detail_hidden .faq_full_text {
+    height: 20px;
+    overflow: hidden;
+    pointer-events: none;
+    text-overflow: ellipsis
 }
 
 .faq_found_list .faq_row {
     margin: 0
-}
-
-.faq_found_list .faq_inner_row {
-    padding-right: 0
 }
 
 .faq_title {
@@ -1057,6 +1051,19 @@
 }
 
 .faq_tutorials_row_testers__list:empty {
+    display: none
+}
+
+.faq_categories_block {
+    border-bottom: 1px solid #e7e8ec
+}
+
+.faq_categories_block h4 {
+    color: #656565;
+    padding: 20px 20px 15px
+}
+
+.faq_categories_block h4:empty {
     display: none
 }
 
