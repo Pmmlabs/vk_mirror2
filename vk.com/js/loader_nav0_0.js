@@ -236,7 +236,7 @@ var stVersions = {
     'owner_photo.js': 3368798011,
     'owner_photo.css': 23253465617,
     'page.js': 726980984,
-    'page.css': 75536222735,
+    'page.css': 76873935904,
     'page_help.css': 28526468155,
     'public.css': 31286467684,
     'cmodules/web/public.js': 329399197,
@@ -280,7 +280,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 3761046025,
+    'feed.js': 703557583,
     'feed.css': 27954819148,
     'privacy.js': 711405089,
     'privacy.css': 18340612616,
@@ -539,7 +539,7 @@ var stVersions = {
     'article.css': 36224110035,
     'article_editor.css': 42414136004,
     'cmodules/web/article.js': 37482374142,
-    'cmodules/web/article_layer.js': 32039012092,
+    'cmodules/web/article_layer.js': 34245860178,
     'article_view.js': 9757813708,
     'bookmarks.css': 19749328834,
     'cmodules/web/bookmarks.js': 3570745495,
@@ -652,4 +652,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 6968;
+var _rnd = 7865;
