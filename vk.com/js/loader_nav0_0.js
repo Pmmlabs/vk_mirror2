@@ -201,7 +201,7 @@ var stVersions = {
     'photos_add.css': 28251502136,
     'photos_add.js': 2491851607,
     'cmodules/web/wkpoll.js': 4153706775,
-    'wkview.js': 1520805911,
+    'wkview.js': 660016435,
     'wkview.css': 33790208605,
     'single_pv.css': 1445030012,
     'single_pv.js': 2438273057,
@@ -235,8 +235,8 @@ var stVersions = {
     'module.css': 28260984712,
     'owner_photo.js': 3368798011,
     'owner_photo.css': 23253465617,
-    'page.js': 604257009,
-    'page.css': 77396454808,
+    'page.js': 726980984,
+    'page.css': 75536222735,
     'page_help.css': 28526468155,
     'public.css': 31286467684,
     'cmodules/web/public.js': 329399197,
@@ -652,4 +652,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 8542;
+var _rnd = 6968;

@@ -4491,7 +4491,8 @@ var Wall = {
             newClass += ' replies_side_hidden';
             newStyle = {
                 marginTop: postData[3] - postData[2],
-                opacity: 0
+                opacity: 0,
+                display: null
             };
         }
         if (JSON.stringify(curStyle) !== JSON.stringify(newStyle)) {
@@ -4738,10 +4739,14 @@ var Wall = {
 
                 // Remove already existed items
                 repliesList.forEach(function(reply) {
-                    if (!ge(reply.id)) {
-                        fragment.appendChild(reply);
-                        hasNew = true;
+                    var replyEl = ge(reply.id);
+
+                    if (replyEl && hasClass(replyEl, 'reply')) {
+                        return;
                     }
+
+                    fragment.appendChild(reply);
+                    hasNew = true;
                 });
 
                 if (isPrev) {
@@ -5370,7 +5375,7 @@ var Wall = {
     },
     replySubmitTooltip: function(post, over, place) {
         var cur = post && window.cur.wallLayer == post ? wkcur : window.cur,
-            box = post && ge('reply_box' + post),
+            box = post && (ge('reply_box' + post) || ge('reply_fakebox' + post)),
             hintPlace = box && geByClass1('button_blue', box, 'div'),
             point = cur.replySubmitSettings;
 
@@ -5593,6 +5598,8 @@ var Wall = {
             Emoji.editableFocus(rf, false, true);
             Wall.cancelReplyTo(post, ev);
         }
+
+        hide('reply_warn' + post);
 
         ajax.post('al_wall.php', Wall.fixPostParams(params), {
             onDone: function(reply, replies, names, data) {
@@ -9784,7 +9791,7 @@ var Wall = {
         wall.incReplyCounter(postEl, 1, ev[13]);
 
         if (wallLayer) {
-            show(geByClass1('wl_replies_wrap', 'wl_replies_wrap'));
+            show(geByClass1('wl_replies_wrap', postEl));
             cur.count++;
             cur.loaded++;
         } else {
@@ -10097,7 +10104,7 @@ var Wall = {
                 owner_name: domData(field, 'owner-name') || '',
                 owner_photo: domData(field, 'owner-photo') || '',
                 owner_href: domData(field, 'owner-href') || '',
-                can_reply_as_group: canReplyAsGroup,
+                can_reply_as_group: canReplyAsGroup ? canReplyAsGroup : '',
                 class: canReplyAsGroup ? ' reply_fakebox_with_official' : '',
             }));
 

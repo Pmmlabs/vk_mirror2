@@ -793,7 +793,7 @@ var WkView = {
         !wkcur.reverse && wkcur.offset > 0 && (o = wkcur.offset > 100 ? langNumeric(100, wkcur.lang.wall_show_n_of_m_last).replace("{count}", wkcur.count) : langNumeric(wkcur.count, wkcur.lang.wall_show_all_n_replies), r = !0), val("wl_replies_header_label", o), toggleClass(e, "wl_replies_header_clickable", r);
         var t = ge("wl_replies_wrap"),
             i = ge("wl_reply_form");
-        if (wkcur.count && t && !isVisible(t.firstChild) && show(t.firstChild), i) {
+        if (t && (wkcur.count && !isVisible(t.firstChild) && show(t.firstChild), toggleClass(t, "wl_replies_empty", !wkcur.count)), i) {
             var a = ge("wl_reply_form_wrap");
             i.parentNode != a && a.appendChild(i)
         }
@@ -850,7 +850,7 @@ var WkView = {
             act: "show",
             w: wkcur.wkRaw,
             offset: wkcur.offset
-        }, wkcur.preload)
+        }, wkcur.preload);
     },
     likesToTop: function() {
         var e = ge("tb_tabs_wrap"),
