@@ -748,6 +748,8 @@ var Page = {
                         index: index,
                         q: query,
                         block: block,
+                        postHeight: postElem && postElem.clientHeight,
+                        viewportHeight: window.clientHeight(),
                         session_id: cur.feed_session_id ? cur.feed_session_id : 'na'
                     };
                     Wall.triggerAdPostStat(j, 'impression');
@@ -791,6 +793,8 @@ var Page = {
                         index: _postsExtras[i].index,
                         q: _postsExtras[i].q,
                         session_id: _postsExtras[i].session_id ? _postsExtras[i].session_id : 'na',
+                        postHeight: _postsExtras[i].postHeight,
+                        viewportHeight: _postsExtras[i].viewportHeight,
                         block: _postsExtras[i].block
                     };
                     delete _postsExtras[i];
@@ -895,6 +899,7 @@ var Page = {
             var extras = {};
             var data = [];
             var i, j, r, m;
+            var meta = [];
             if (ls.checkVersion()) {
                 seen = ls.get('posts_seen');
                 modules = ls.get('posts_seen_modules') || {};
@@ -927,7 +932,15 @@ var Page = {
                     var query_str = (m == 's' && extra && extra.q) ? extra.q : '';
                     query_str = query_str.replace(/[,;:]/g, '');
                     var session_id_str = extra && extra.session_id ? extra.session_id : 'na';
-                    var extra_str = (extra && i != 'ad' && i != 'posthashtag') ? (':' + extra.diff + ':' + extra.index + ':' + session_id_str + ':' + (query_str || '') + ':' + (extra.block || '')).replace(/:+$/, '') : '';
+                    var extra_str = '';
+                    if (extra && i !== 'ad' && i !== 'posthashtag') {
+                        extra_str = ':' + [extra.diff, extra.index, session_id_str, query_str || '', extra.block || ''].join(':');
+                        extra_str = extra_str.replace(/:+$/, '');
+                    }
+
+                    if (extra && extra.postHeight) {
+                        meta.push([full_id, extra.postHeight, extra.viewportHeight].join(':'));
+                    }
 
                     r.push(m + ((seen[i][j] > 0) ? j : -j) + extra_str);
                 }
@@ -937,10 +950,10 @@ var Page = {
             }
             if (!data.length) return;
             if (!vk.id) return Page.postsClear();
-
             var query_data = {
                 act: 'seen',
-                data: data.join(';')
+                data: data.join(';'),
+                meta: meta.join(';')
             };
             if (window._postsViewHash) {
                 query_data['hash'] = window._postsViewHash;
@@ -5007,13 +5020,14 @@ var Wall = {
 
             var media, toup = false;
 
-            if (mediaTypes.length > 0 && (postId.match(/^(\d+_)?-?\d+_(photo|video|topic|market)?\d+(mv)?(_\d+)?$/))) {
+            var matches = postId.match(/^(\d+_)?-?\d+_(photo|video|topic|market)?\d+(mv)?(_\d+)?$/);
+            if (mediaTypes.length > 0 && matches) {
                 media = {
                     lnk: deepActive ? ge('reply_more_attaches' + post) : ge('reply_add_media_' + post),
                     preview: ge('reply_media_preview' + post),
                     types: mediaTypes,
                     options: {
-                        from: 'comment',
+                        from: matches[2] === 'topic' ? 'board' : 'comment',
                         limit: 2,
                         disabledTypes: ['album', 'market', 'poll'],
                         toggleLnk: true,

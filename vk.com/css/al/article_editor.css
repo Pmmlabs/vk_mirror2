@@ -1438,20 +1438,43 @@
     text-overflow: ellipsis
 }
 
-.article_ed_layer .article_ed_layer__close {
+.article_ed_layer .article_ed_layer__fixed_control_btn {
     position: fixed;
-    right: 20px;
-    top: 20px;
-    width: 48px;
-    height: 48px;
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2248%22%20height%3D%2248%22%20viewBox%3D%220%200%2048%2048%22%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2248%22%20height%3D%2248%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20stroke%3D%22%23000000%22%20stroke-width%3D%222%22%20d%3D%22M13%2C13%20L35%2C35%22%20stroke-linecap%3D%22round%22%20transform%3D%22matrix(-1%200%200%201%2048%200)%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20stroke%3D%22%23000000%22%20stroke-width%3D%222%22%20d%3D%22M13%2C13%20L35%2C35%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
     opacity: 0.2;
     cursor: pointer;
     z-index: 150
 }
 
-.article_ed_layer .article_ed_layer__close:hover {
+.article_ed_layer .article_ed_layer__fixed_control_btn:active {
+    margin-top: 1px
+}
+
+.article_ed_layer .article_ed_layer__fixed_control_btn:hover {
     opacity: 0.5
+}
+
+.article_ed_layer .article_ed_layer__undo {
+    left: 15px;
+    top: 20px;
+    width: 48px;
+    height: 48px;
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2248%22%20viewBox%3D%220%200%2048%2048%22%20width%3D%2248%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22m0%200h48v48h-48z%22%2F%3E%3Cpath%20d%3D%22m30%2013%204%204-4%204%204-4h-4-8c-4.1421356%200-7.5%203.3578644-7.5%207.5%200%204.1421356%203.3578644%207.5%207.5%207.5h8%22%20fill-rule%3D%22nonzero%22%20stroke%3D%22%23000%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%222%22%20transform%3D%22matrix(-1%200%200%201%2048.5%200)%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.article_ed_layer .article_ed_layer__redo {
+    left: 60px;
+    top: 20px;
+    width: 48px;
+    height: 48px;
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2248%22%20viewBox%3D%220%200%2048%2048%22%20width%3D%2248%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22m0%200h48v48h-48z%22%2F%3E%3Cpath%20d%3D%22m30%2013%204%204-4%204%204-4h-4-8c-4.1421356%200-7.5%203.3578644-7.5%207.5%200%204.1421356%203.3578644%207.5%207.5%207.5h8%22%20fill-rule%3D%22nonzero%22%20stroke%3D%22%23000%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%222%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.article_ed_layer .article_ed_layer__close {
+    right: 20px;
+    top: 20px;
+    width: 48px;
+    height: 48px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2248%22%20height%3D%2248%22%20viewBox%3D%220%200%2048%2048%22%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2248%22%20height%3D%2248%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20stroke%3D%22%23000000%22%20stroke-width%3D%222%22%20d%3D%22M13%2C13%20L35%2C35%22%20stroke-linecap%3D%22round%22%20transform%3D%22matrix(-1%200%200%201%2048%200)%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20stroke%3D%22%23000000%22%20stroke-width%3D%222%22%20d%3D%22M13%2C13%20L35%2C35%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
 }
 
 .article_ed_layer .article_ed_layer__help {
