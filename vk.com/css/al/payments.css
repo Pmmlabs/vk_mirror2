@@ -17,6 +17,7 @@
 .payments_logo_checkout,
 .payments_logo_kiwipurse,
 .payments_logo_mailmoney,
+.payments_logo_mailmoney_vkpay,
 .payments_logo_paypal_ipn,
 .payments_logo_webmoney,
 .payments_logo_yandexmoney,
@@ -2199,7 +2200,7 @@ h2.payments_getvotes_title {
 }
 
 .payments_logo_webmoney {
-    background: url(/images/ps/webmoney.png) right 0 no-repeat;
+    background: url(/images/ps/webmoney.png?1) right 0 no-repeat;
     width: 126px;
     height: 40px
 }
@@ -2208,13 +2209,13 @@ h2.payments_getvotes_title {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .payments_logo_webmoney {
-        background-image: url(/images/ps/webmoney_2x.png);
-        background-size: 126px 40px
+        background-image: url(/images/ps/webmoney_2x.png?1);
+        background-size: 122px 40px
     }
 }
 
 .payments_logo_kiwipurse {
-    background: url(/images/ps/qiwiwallet.png) right 0 no-repeat;
+    background: url(/images/ps/qiwiwallet.png?1) right 0 no-repeat;
     width: 110px;
     height: 40px
 }
@@ -2223,13 +2224,13 @@ h2.payments_getvotes_title {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .payments_logo_kiwipurse {
-        background-image: url(/images/ps/qiwiwallet_2x.png);
-        background-size: 110px 40px
+        background-image: url(/images/ps/qiwiwallet_2x.png?1);
+        background-size: 82px 40px
     }
 }
 
 .payments_logo_yandexmoney {
-    background: url(/images/ps/yandexmoney.png) right 0 no-repeat;
+    background: url(/images/ps/yandexmoney.png?1) right 0 no-repeat;
     width: 120px;
     height: 50px
 }
@@ -2238,8 +2239,8 @@ h2.payments_getvotes_title {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .payments_logo_yandexmoney {
-        background-image: url(/images/ps/yandexmoney_2x.png);
-        background-size: 108px 45px
+        background-image: url(/images/ps/yandexmoney_2x.png?1);
+        background-size: 105px 40px
     }
 }
 
@@ -2278,7 +2279,7 @@ h2.payments_getvotes_title {
 }
 
 .payments_logo_paypal_ipn {
-    background: url(/images/ps/paypal_ipn.png) right 0 no-repeat;
+    background: url(/images/ps/paypal_ipn.png?1) right 0 no-repeat;
     width: 150px;
     height: 38px
 }
@@ -2287,8 +2288,23 @@ h2.payments_getvotes_title {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .payments_logo_paypal_ipn {
-        background-image: url(/images/ps/paypal_ipn_2x.png);
-        background-size: 150px 38px
+        background-image: url(/images/ps/paypal_ipn_2x.png?1);
+        background-size: 82px 40px
+    }
+}
+
+.payments_logo_mailmoney_vkpay {
+    background: url(/images/ps/mailmoney_vkpay.png?1) right 0 no-repeat;
+    width: 100px;
+    height: 38px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .payments_logo_mailmoney_vkpay {
+        background-image: url(/images/ps/mailmoney_vkpay_2x.png?1);
+        background-size: 79px 40px
     }
 }
 
