@@ -2460,3 +2460,19 @@ body.body_helpdesk_small_sb .left_menu_nav {
 .helppdesk_template_tooltip .helpdesk_template_tooltip_title:empty {
     display: none
 }
+
+.helpdesk_take_to_section_box {
+    text-align: center
+}
+
+.helpdesk_take_to_section_box__buttons {
+    margin-top: 15px
+}
+
+.helpdesk_take_to_section_box__buttons .flat_button {
+    margin-bottom: 12px
+}
+
+.helpdesk_take_to_section_box__buttons .flat_button:last-child {
+    margin-bottom: 0
+}

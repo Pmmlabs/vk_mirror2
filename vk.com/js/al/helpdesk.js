@@ -1417,15 +1417,32 @@ var Helpdesk = {
             hideProgress: unlockButton.pbind(o)
         }), !1
     },
-    takeToSection: function() {
-        return ajax.post("helpdesk?act=a_take_to_section", {
+    takeToSection: function(e, t) {
+        return t && cur.toSectionBox.hide(), ajax.post("helpdesk?act=a_take_to_section", {
             ticket_id: cur.ticket_id,
-            hash: cur.hashes.next_hash
+            hash: cur.hashes.next_hash,
+            hds: e
         }, {
             showProgress: Helpdesk.showTicketProgress,
             hideProgress: Helpdesk.hideTicketProgress,
             onDone: Helpdesk._show
         }), !1
+    },
+    takeToSectionBox: function(e) {
+        cur.toSectionBox = new MessageBox({
+            hideButtons: !0,
+            hideOnBGClick: !0,
+            width: 300
+        });
+        var t = "";
+        return delete e._, each(e, function(e, s) {
+            t += getTemplate("takeToSectionButton", {
+                section: e,
+                title: s
+            })
+        }), cur.toSectionBox.content(getTemplate("takeToSectionBox", {
+            buttons: t
+        })), cur.toSectionBox.show(), !1
     },
     dropTicket: function() {
         return ajax.post("helpdesk?act=a_drop_ticket", {
