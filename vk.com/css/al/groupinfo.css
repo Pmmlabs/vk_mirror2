@@ -1987,20 +1987,18 @@ textarea.EditableLabel__textarea {
     float: right
 }
 
-.porn-photo {
-    border-bottom: 1px solid #e7e8ec;
-    padding-bottom: 12px;
-    margin-bottom: 12px
+.adult-item:not(:last-child) {
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #e7e8ec
 }
 
-.porn-photo:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0
+.adult-item .adult-item__html {
+    margin-top: 8px
 }
 
-.porn-photo .porn-photo__score {
-    margin-bottom: 2px
+.adult-item .adult-item__score {
+    font-size: 14px
 }
 
 .uploaded_stories_rows {

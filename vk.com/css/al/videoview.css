@@ -1150,7 +1150,7 @@ textarea.dark.mv_live_gift_popup_comment_input {
 }
 
 .mv_minimized #mv_publish {
-    display: none
+    display: none!important
 }
 
 .mv_publish_table {

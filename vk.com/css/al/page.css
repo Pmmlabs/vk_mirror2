@@ -1681,6 +1681,10 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     margin: -2px 0 0 44px
 }
 
+.deep_active .replies .media_preview_has_medias .page_attach_progress_wrap,
+.deep_active.wall_module .replies .media_preview_has_medias .page_attach_progress_wrap,
+.deep_active.wall_module .wl_replies_block_wrap .media_preview_has_medias .page_attach_progress_wrap,
+.deep_active .wl_replies_block_wrap .media_preview_has_medias .page_attach_progress_wrap,
 .deep_active .replies .wpe_wrap .media_preview_has_medias,
 .deep_active.wall_module .replies .wpe_wrap .media_preview_has_medias,
 .deep_active.wall_module .wl_replies_block_wrap .wpe_wrap .media_preview_has_medias,
@@ -2167,33 +2171,41 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 .deep_active .replies .page_preview_graffiti_wrap,
 .deep_active .replies .page_preview_photo_wrap,
 .deep_active .replies .page_preview_video_wrap,
+.deep_active.wall_module .replies .page_preview_doc_photo,
+.deep_active.wall_module .replies .page_preview_graffiti_wrap,
+.deep_active.wall_module .replies .page_preview_photo_wrap,
+.deep_active.wall_module .replies .page_preview_video_wrap,
+.deep_active.wall_module .wl_replies_block_wrap .page_preview_doc_photo,
+.deep_active.wall_module .wl_replies_block_wrap .page_preview_graffiti_wrap,
+.deep_active.wall_module .wl_replies_block_wrap .page_preview_photo_wrap,
+.deep_active.wall_module .wl_replies_block_wrap .page_preview_video_wrap,
+.deep_active .wl_replies_block_wrap .page_preview_doc_photo,
+.deep_active .wl_replies_block_wrap .page_preview_graffiti_wrap,
+.deep_active .wl_replies_block_wrap .page_preview_photo_wrap,
+.deep_active .wl_replies_block_wrap .page_preview_video_wrap {
+    max-width: 45%;
+    height: auto
+}
+
+.deep_active .replies .page_preview_photo,
 .deep_active .replies div.page_preview_graffiti,
 .deep_active .replies div.page_preview_photo,
 .deep_active .replies div.page_preview_video,
 .deep_active .replies img.page_preview_graffiti,
 .deep_active .replies img.page_preview_video,
-.deep_active.wall_module .replies .page_preview_doc_photo,
-.deep_active.wall_module .replies .page_preview_graffiti_wrap,
-.deep_active.wall_module .replies .page_preview_photo_wrap,
-.deep_active.wall_module .replies .page_preview_video_wrap,
+.deep_active.wall_module .replies .page_preview_photo,
 .deep_active.wall_module .replies div.page_preview_graffiti,
 .deep_active.wall_module .replies div.page_preview_photo,
 .deep_active.wall_module .replies div.page_preview_video,
 .deep_active.wall_module .replies img.page_preview_graffiti,
 .deep_active.wall_module .replies img.page_preview_video,
-.deep_active.wall_module .wl_replies_block_wrap .page_preview_doc_photo,
-.deep_active.wall_module .wl_replies_block_wrap .page_preview_graffiti_wrap,
-.deep_active.wall_module .wl_replies_block_wrap .page_preview_photo_wrap,
-.deep_active.wall_module .wl_replies_block_wrap .page_preview_video_wrap,
+.deep_active.wall_module .wl_replies_block_wrap .page_preview_photo,
 .deep_active.wall_module .wl_replies_block_wrap div.page_preview_graffiti,
 .deep_active.wall_module .wl_replies_block_wrap div.page_preview_photo,
 .deep_active.wall_module .wl_replies_block_wrap div.page_preview_video,
 .deep_active.wall_module .wl_replies_block_wrap img.page_preview_graffiti,
 .deep_active.wall_module .wl_replies_block_wrap img.page_preview_video,
-.deep_active .wl_replies_block_wrap .page_preview_doc_photo,
-.deep_active .wl_replies_block_wrap .page_preview_graffiti_wrap,
-.deep_active .wl_replies_block_wrap .page_preview_photo_wrap,
-.deep_active .wl_replies_block_wrap .page_preview_video_wrap,
+.deep_active .wl_replies_block_wrap .page_preview_photo,
 .deep_active .wl_replies_block_wrap div.page_preview_graffiti,
 .deep_active .wl_replies_block_wrap div.page_preview_photo,
 .deep_active .wl_replies_block_wrap div.page_preview_video,
@@ -2201,17 +2213,15 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 .deep_active .wl_replies_block_wrap img.page_preview_video {
     position: relative;
     width: auto;
-    height: 75px;
-    overflow: hidden;
-    line-height: normal
+    height: auto;
+    max-width: 100%
 }
 
-.deep_active .replies .page_preview_photo,
-.deep_active.wall_module .replies .page_preview_photo,
-.deep_active.wall_module .wl_replies_block_wrap .page_preview_photo,
-.deep_active .wl_replies_block_wrap .page_preview_photo {
-    max-width: none;
-    height: 100%
+.deep_active .replies .page_attach_progress_wrap,
+.deep_active.wall_module .replies .page_attach_progress_wrap,
+.deep_active.wall_module .wl_replies_block_wrap .page_attach_progress_wrap,
+.deep_active .wl_replies_block_wrap .page_attach_progress_wrap {
+    margin-left: 44px
 }
 
 .deep_active .replies .replies_next,
@@ -2372,6 +2382,13 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 .deep_active .wl_replies_block_wrap .replies_wrap_deep .page_add_media {
     padding-top: 4px;
     margin-left: -3px
+}
+
+.deep_active .replies .replies_wrap_deep .page_attach_progress_wrap,
+.deep_active.wall_module .replies .replies_wrap_deep .page_attach_progress_wrap,
+.deep_active.wall_module .wl_replies_block_wrap .replies_wrap_deep .page_attach_progress_wrap,
+.deep_active .wl_replies_block_wrap .replies_wrap_deep .page_attach_progress_wrap {
+    margin-left: 0
 }
 
 .deep_active .replies .replies_wrap_deep .reply_box_more_attaches,
@@ -2752,6 +2769,10 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 .deep_active.wall_module .post_replies_count+.replies .replies_list {
     padding-top: 0;
     border-top: none
+}
+
+.deep_active.closed_comments .replies_list:empty {
+    display: none
 }
 
 #own_reply_add_media {

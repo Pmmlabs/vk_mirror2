@@ -4501,6 +4501,10 @@ div.top_result_baloon a {
     padding-right: 0
 }
 
+.article_editor .audio_pl_snippet2 .audio_pl_snippet__info {
+    text-align: left
+}
+
 .audio_pl_snippet2 .audio_pl_snippet__info_inner {
     max-width: 100%
 }
