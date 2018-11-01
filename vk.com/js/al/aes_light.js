@@ -741,14 +741,15 @@
         }
     }, AdsLight.overrideClickEvents = function(e, t, i) {
         function s(e) {
+            var t = !1;
             if (e = normEvent(e), !l)
                 if ("mouseup" == e.type && (2 == e.which || 1 == e.which && checkEvent(e))) {
                     if ("A" == e.target.nodeName && e.target.hasAttribute("href") && "#" !== e.target.getAttribute("href")) return !0;
                     l = !0, setTimeout(function() {
                         l = !1
                     }, 100), d()
-                } else "click" == e.type && 1 == e.which && a();
-            return cancelEvent(e)
+                } else "click" == e.type && 1 == e.which && (t = a());
+            return i && !t ? !0 : cancelEvent(e)
         }
         if (!e) return !1;
         var a = e.getAttribute("onclick_inside"),

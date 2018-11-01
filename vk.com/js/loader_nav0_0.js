@@ -216,7 +216,7 @@ var stVersions = {
     'video_upload.js': 10530638171,
     'video_youtube.js': 458412745,
     'video_youtube.css': 17330154912,
-    'videoplayer.js': 95064604337,
+    'videoplayer.js': 93317144507,
     'videoplayer.css': 47550453607,
     'translation.js': 3145443957,
     'translation.css': 19028815576,
@@ -337,7 +337,7 @@ var stVersions = {
     'widgets.css': 36244723724,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 95128134751,
+    'notifier.js': 96377370558,
     'notifier.css': 30190199981,
     'cmodules/sw/sw.js': 5960813200,
     'earthday.js': 2276669993,
@@ -367,7 +367,7 @@ var stVersions = {
     'cmodules/web/bugtracker.js': 26117382674,
     'login.css': 23758944022,
     'cmodules/web/login.js': 2208498864,
-    'upload.js': 896771144,
+    'upload.js': 2558068015,
     'upload_photo_transform.js': 1497838791,
     'graffiti.js': 1826105362,
     'graffiti.css': 404471482,
@@ -384,7 +384,7 @@ var stVersions = {
     'call.js': 4217435992,
     'call.css': 3256039661,
     'aes_light.css': 33493757892,
-    'aes_light.js': 1923499650,
+    'aes_light.js': 1934293340,
     'ads.css': 53315586650,
     'ads_bonus.css': 1294533291,
     'ads.js': 4257616553,
@@ -395,7 +395,7 @@ var stVersions = {
     'ads_moder_common.css': 18237855608,
     'ads_moder.css': 17816054178,
     'ads_moder_common.js': 3875868763,
-    'ads_moder.js': 1785402629,
+    'ads_moder.js': 1511742424,
     'ads_tagger.js': 2289308011,
     'ads_web.css': 1585148602,
     'ads_web.js': 4274163593,
@@ -593,7 +593,7 @@ var stVersions = {
     'cmodules/web/landing_transparency.js': 37884594952,
     'landings/transparency.css': 36847569171,
     'cmodules/web/emoji.js': 164878560,
-    'cmodules/web/apps_achievements.js': 67167644316,
+    'cmodules/web/apps_achievements.js': 69416392194,
     'lang': 6922
 };
 var stTypes = {
@@ -652,4 +652,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 7922;
+var _rnd = 8008;

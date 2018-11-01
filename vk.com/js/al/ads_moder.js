@@ -1693,6 +1693,24 @@ AdsModer.searchAdsText = function() {
     });
 }
 
+AdsModer.onPostClick = function(postLink) {
+    var videoThumb = domClosest('page_post_thumb_video', event.target);
+    var videoPlayer = domClosest('inline_video_wrap', event.target);
+
+    if (videoPlayer) {
+        return true;
+    }
+
+    if (videoThumb) {
+        videoThumb.onclick();
+        return false;
+    }
+
+    showWiki({
+        w: postLink
+    });
+};
+
 AdsModer.onToggleSearchAdsEnabledAds = function(elem) {
     toggleClass(elem, 'on');
     AdsModer.searchAdsText();

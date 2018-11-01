@@ -146,6 +146,10 @@ if (!window.Upload) {
             if (ge('check_upload_' + iUpload)) re('check_upload_' + iUpload);
             obj.appendChild(check);
             var form = ge('check_upload_form' + iUpload);
+            if (!form) {
+                return;
+            }
+
             try {
                 form && form.submit();
                 clearTimeout(Upload.checks['timer' + iUpload]);
