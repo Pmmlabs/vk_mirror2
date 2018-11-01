@@ -385,6 +385,10 @@ a.group_ad_post_stats {
     padding-top: 5px
 }
 
+.group_edit.group_edit_addresses #group_edit_addresses_enable .group_edit_labeled .group_edit_hint {
+    line-height: 17px
+}
+
 .group_edit.group_edit_addresses #group_edit_addresses_enable #group_edit_addresses_show_map_row .group_edit_labeled {
     padding-top: 7px
 }
@@ -421,6 +425,7 @@ a.group_ad_post_stats {
 }
 
 .group_edit.group_edit_addresses #group_edit_addresses_edit_list .group_edit_labeled {
+    line-height: 19px;
     padding-bottom: 7px
 }
 
