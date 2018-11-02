@@ -280,7 +280,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 2491754975,
+    'feed.js': 3532163593,
     'feed.css': 28278791884,
     'privacy.js': 711405089,
     'privacy.css': 18664585352,
@@ -359,7 +359,7 @@ var stVersions = {
     'achievements.js': 3514956550,
     'achievements.css': 18236819546,
     'members.css': 19664771752,
-    'meminfo.css': 32339933346,
+    'meminfo.css': 32279656723,
     'groupinfo.css': 88795732718,
     'ownerinfo.css': 8510613975,
     'bugtracker.js': 1935992230,
@@ -389,8 +389,8 @@ var stVersions = {
     'ads_bonus.css': 1294533291,
     'ads.js': 4257616553,
     'ads_payments.js': 1483293789,
-    'ads_edit.css': 42993579702,
-    'ads_edit.js': 3040397106,
+    'ads_edit.css': 39974361697,
+    'ads_edit.js': 1409645858,
     'ads_edit_geo.js': 519167575,
     'ads_moder_common.css': 18237855608,
     'ads_moder.css': 17816054178,
@@ -594,7 +594,7 @@ var stVersions = {
     'landings/transparency.css': 35054315116,
     'cmodules/web/emoji.js': 164878560,
     'cmodules/web/apps_achievements.js': 69416392194,
-    'lang': 6922
+    'lang': 6924
 };
 var stTypes = {
     fromLib: {
@@ -652,4 +652,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 1871;
+var _rnd = 1476;

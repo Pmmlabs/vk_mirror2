@@ -188,7 +188,7 @@
 }
 
 .ArchivePage__requests {
-    margin: 10px 0 14px
+    margin-top: 10px
 }
 
 .ArchivePage__requests-row {
@@ -200,7 +200,7 @@
 }
 
 .ArchivePage__requests-row .ArchivePage__requests-row__log-button.ArchivePage__requests-row__delete-doc-button {
-    color: red
+    color: #c23838
 }
 
 .ArchivePage .ArchivePage__requests__all-logs-button {

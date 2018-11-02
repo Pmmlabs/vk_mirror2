@@ -10,7 +10,7 @@ AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY = 7;
 AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY = 8;
 AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST = 9;
 AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP = 10;
-AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE = 11;
+AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD = 11;
 
 AdsEdit.ADS_AD_LINK_TYPE_GROUP = 1;
 AdsEdit.ADS_AD_LINK_TYPE_EVENT = 2;
@@ -27,7 +27,7 @@ AdsEdit.ADS_AD_LINK_TYPE_POST_STEALTH = 12;
 AdsEdit.ADS_AD_LINK_TYPES_ALL_GROUP = [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC];
 AdsEdit.ADS_AD_LINK_TYPES_ALL_MOBILE_APP = [AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE];
 AdsEdit.ADS_AD_LINK_TYPES_ALL_POST = [AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW, AdsEdit.ADS_AD_LINK_TYPE_POST_STEALTH];
-AdsEdit.ADS_AD_LINK_TYPES_ALL_ADAPTIVE = [AdsEdit.ADS_AD_LINK_TYPE_URL];
+AdsEdit.ADS_AD_LINK_TYPES_ALL_ADAPTIVE_AD = [AdsEdit.ADS_AD_LINK_TYPE_URL];
 
 AdsEdit.ADS_AD_COST_TYPE_CLICK = 0;
 AdsEdit.ADS_AD_COST_TYPE_VIEWS = 1;
@@ -42,8 +42,8 @@ AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE = 'k';
 AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_BIG = 'e';
 AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE = 'd';
 AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON = 'i';
-AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE = 't';
-AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_ICON = 'n';
+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD = 't';
+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD_ICON = 'n';
 
 AdsEdit.ADS_AD_CHECK_GROUP_PURPOSE_LINK_OBJECT = 'link_object';
 AdsEdit.ADS_AD_CHECK_GROUP_PURPOSE_CRITERIA = 'criteria';
@@ -8241,13 +8241,13 @@ AdsTargetingEditor.prototype.onUiChange = function(criterionName, criterionValue
             criterionValue = criterionValue || '';
             break;
         case 'criteria_presets':
-            var criteriaPreset = this.criteria.criteria_presets_raw.data[criterionValue];
-            var criteriaPresetData = this.criteria.criteria_presets_data.data[criterionValue];
+            var criteriaPreset = this.criteria.criteria_presets_raw.data[criterionValue] || {};
+            var criteriaPresetData = this.criteria.criteria_presets_data.data[criterionValue] || {};
             var criteriaSelected = criteriaPreset && criteriaPresetData;
             if (criteriaSelected) {
                 this.selectCriteriaPreset(criteriaPreset, criteriaPresetData);
             }
-            toggleClass(geByClass1('ads_edit_value_criteria_presets_selector_remove'), 'unshown', !criteriaSelected);
+            toggleClass(geByClass1('ads_edit_value_criteria_presets_selector_remove'), 'unshown', !(criteriaSelected && (criterionValue > 0)));
             break;
     }
 
@@ -8326,7 +8326,7 @@ AdsTargetingEditor.prototype.selectCriteriaPreset = function(criteriaPreset, cri
         var criterionValue = (criterionName in criteriaPreset) ? criteriaPreset[criterionName] : this.criteria[criterionName].valueEmpty;
         var criterionValueInt = intval(criteriaPreset[criterionName]);
         var criterionValueArray = (criterionValue ? String(criterionValue).split(',') : []);
-        var criterionData = criteriaPresetData[criterionName];
+        var criterionData = criteriaPresetData[criterionName] || [];
 
         if (criterionName === 'geo_type') {
             continue;
@@ -8463,6 +8463,7 @@ AdsTargetingEditor.prototype.removeCurrentCriteriaPreset = function() {
         client_id: viewParams.client_id,
         criteria_preset_id: criteriaPresetId,
         hash: cur.saveCriteriaPresetHash,
+        source: 'adsedit',
         do_delete: 1
     }));
 
@@ -8477,7 +8478,7 @@ AdsTargetingEditor.prototype.removeCurrentCriteriaPreset = function() {
     this.criteria.criteria_presets.ui.select.removeItem(criteriaPresetId);
     this.criteria.criteria_presets.ui.clear();
 
-    if (newPresets.length == 0) {
+    if (newPresets.length <= 1) { // only "not selected"
         hide(ge('ads_edit_targeting_group_criteria_presets'));
     }
 }
@@ -8790,15 +8791,15 @@ AdsTargetingEditor.prototype.getCriteria = function() {
         criteria[criterionName] = this.criteria[criterionName].value;
     }
     if (this.criteria.geo_type.value == 1) {
-        criteria.country = '';
-        criteria.cities = '';
-        criteria.cities_not = '';
-        criteria.districts = '';
-        criteria.stations = '';
-        criteria.streets = '';
+        delete criteria.country;
+        delete criteria.cities;
+        delete criteria.cities_not;
+        delete criteria.districts;
+        delete criteria.stations;
+        delete criteria.streets;
     } else if (this.criteria.geo_type.value == 0) {
-        criteria.geo_near = '';
-        criteria.geo_mask = '';
+        delete criteria.geo_near;
+        delete criteria.geo_mask;
     }
 
     if (this.criteria.criteria_presets.confirmed) {

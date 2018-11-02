@@ -352,13 +352,13 @@ var Feed = {
                 if (!r) break;
                 var N = geByClass1("wall_postlink_preview_btn_disabled", r);
                 if (!N) break;
-                var j = e[3];
-                if ("1" === j) removeClass(N, "wall_postlink_preview_btn_disabled");
-                else if ("0" === j) re(N);
-                else if (j) {
+                var A = e[3];
+                if ("1" === A) removeClass(N, "wall_postlink_preview_btn_disabled");
+                else if ("0" === A) re(N);
+                else if (A) {
                     removeClass(N, "wall_postlink_preview_btn_disabled");
-                    var A = geByClass1("flat_button", N);
-                    A && (A.setAttribute("href", e[3]), A.removeAttribute("onclick"))
+                    var j = geByClass1("flat_button", N);
+                    j && (j.setAttribute("href", e[3]), j.removeAttribute("onclick"))
                 }
                 break;
             case "del_post":
@@ -923,56 +923,6 @@ var Feed = {
             appendParentCls: "scroll_fix_wrap"
         }, s))
     },
-    notifyDelete: function(e, t, o, s, i, r) {
-        i.tt && i.tt.el && i.tt.hide();
-        var n = ge("feedback_row" + e),
-            a = geByClass1("post_actions", n);
-        ajax.post("al_feed.php", {
-            act: "a_feedback_delete",
-            item: t,
-            hash: s,
-            types: o,
-            candel: r
-        }, {
-            onDone: function(t) {
-                feed.notifyHideReply(e);
-                var o = geByClass1("_post_content", n),
-                    s = geByClass1("_feedback_deleted", n);
-                s ? (s.innerHTML = '<span class="dld_inner">' + t + "</span>", show(s)) : n.appendChild(ce("div", {
-                    className: "feedback_row dld _feedback_deleted",
-                    innerHTML: '<span class="dld_inner">' + t + "</span>"
-                })), hide(o, geByClass1("_answer_wrap", n)), hasClass(n, "feedback_row_clickable") && addClass(n, "feedback_row_touched")
-            },
-            showProgress: addClass.pbind(a, "post_actions_progress"),
-            hideProgress: removeClass.pbind(a, "post_actions_progress")
-        })
-    },
-    notifyUndelete: function(e, t, o, s) {
-        var i = ce("span", {
-            className: "progress_inline"
-        });
-        ajax.post("al_feed.php", {
-            act: "a_feedback_undelete",
-            item: e,
-            hash: o,
-            types: t
-        }, {
-            onDone: function(e) {
-                var t = gpeByClass("_feedback_deleted", s);
-                if (t) {
-                    var o = gpeByClass("_post_wrap", t),
-                        i = geByClass1("_post_content", o);
-                    show(i, geByClass1("_answer_wrap", o)), hide(t), removeClass(o, "feedback_row_touched")
-                }
-            },
-            showProgress: function() {
-                s && "button" === s.tagName.toLowerCase() ? lockButton(s) : s.parentNode.replaceChild(i, s)
-            },
-            hideProgress: function() {
-                s && "button" === s.tagName.toLowerCase() ? unlockButton(s) : i.parentNode.replaceChild(s, i)
-            }
-        })
-    },
     unifiedRestoreRow: function(e, t, o) {
         var s = ce("span", {
             className: "progress_inline"
@@ -1008,19 +958,6 @@ var Feed = {
         }, {
             onDone: function(t) {
                 ge("notify_mark_spam_" + e).innerHTML = t
-            }
-        })
-    },
-    notifyIgnoreAction: function(e, t, o, s) {
-        ajax.post("al_feed.php", {
-            act: "a_feedback_ignore_action",
-            action: e,
-            item_id: t,
-            hash: o
-        }, {
-            onDone: function(e, t) {
-                var o = gpeByClass("_feedback_deleted", s);
-                o.innerHTML = '<span class="dld_inner">' + e + "</span>"
             }
         })
     },

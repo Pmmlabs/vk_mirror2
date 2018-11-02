@@ -364,6 +364,7 @@ mail_im_get_invitation_link = "������������ ����
 mail_im_joined_chat_from_invitation = ["", "{from} ������������� � ������� �� ������������� �������", "{from} �������������� � ������� �� ������������� �������"];
 mail_marked_as_spam = "���������� ����� � ���������� � �������� ������������.";
 mail_money_amount_rub = ["", "%s ���.", "%s ���.", "%s ���."];
+mobile_stories_menu_remove_narrative_title = "������� �����";
 month10_of = "�������";
 month10sm_of = "���";
 month11_of = "������";
