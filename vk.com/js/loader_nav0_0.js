@@ -150,7 +150,7 @@ var stVersions = {
     'fonts_cnt.css': 2660709036,
     'common.js': 1161,
     'common.css': 57703195795,
-    'cmodules/web/common_web.js': 21,
+    'cmodules/web/common_web.js': 22,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
     'uncommon.css': 17896943850,
@@ -165,9 +165,9 @@ var stVersions = {
     'audioplayer.js': 157297709709,
     'audioplayer.css': 21396288101,
     'audio_html5.js': 287741914,
-    'audio.js': 3235705506,
+    'audio.js': 132136019,
     'cmodules/web/audio_admins.js': 7226287612,
-    'audio.css': 32070586013,
+    'audio.css': 28482871426,
     'audio_admins.css': 24084641030,
     'gifts.css': 23333245791,
     'gifts.js': 338252255,
@@ -376,7 +376,7 @@ var stVersions = {
     'abuse.css': 17634865506,
     'verify.css': 17174453840,
     'away.css': 22556336913,
-    'stats.css': 19919525315,
+    'stats.css': 20833303072,
     'payments.css': 37631286327,
     'payments.js': 2519383459,
     'offers.css': 978996883,
@@ -426,7 +426,7 @@ var stVersions = {
     'pe.js': 318083439,
     'pe.css': 17630382052,
     'dev.js': 1132065585,
-    'dev.css': 38306442687,
+    'dev.css': 40390613061,
     'share.css': 34619227259,
     'stickers_office.css': 19819235311,
     'mapbox.js': 262357480,
@@ -627,6 +627,7 @@ var stTypes = {
     },
     fromCompiled: {
         'imn.js': 1,
+        'audio.js': 1,
         'audioplayer.js': 1,
         'notifier.js': 1,
         'writebox.js': 1,
@@ -652,4 +653,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 1476;
+var _rnd = 7881;

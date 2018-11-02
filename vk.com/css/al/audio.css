@@ -1515,6 +1515,13 @@
     margin-top: 20px
 }
 
+.audio_page_layout .audio_section__recoms_block .pr.audio_more_rows,
+.audio_page_layout .audio_section__search_block .pr.audio_more_rows {
+    opacity: 1;
+    text-align: center;
+    padding: 20px 0 5px
+}
+
 .audio_page_layout .audio_friends_list_wrap {
     padding: 0
 }

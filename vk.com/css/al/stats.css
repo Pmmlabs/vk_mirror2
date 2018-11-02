@@ -853,3 +853,111 @@ div.box_stats .stats_flash_wrap {
 .stat_count_desc {
     line-height: 19px
 }
+
+#stats_cont.stats_rating {
+    padding-left: 42px;
+    padding-right: 42px
+}
+
+#stats_cont.stats_rating .stats_head {
+    padding-bottom: 8px
+}
+
+.stats_rating_stars {
+    display: inline-block;
+    overflow: hidden
+}
+
+.stats_rating_star {
+    position: relative;
+    float: left;
+    width: 19px;
+    height: 19px;
+    margin-right: 7px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200H20V20H0z%22%2F%3E%3Cpath%20fill%3D%22%23DFE6ED%22%20d%3D%22M9.695%2015.344l-4.327%202.574a.6.6%200%200%201-.89-.658l1.165-4.756a.6.6%200%200%200-.198-.604l-3.8-3.17a.6.6%200%200%201%20.338-1.058l5.018-.392a.6.6%200%200%200%20.505-.363L9.45%202.365a.6.6%200%200%201%201.103%200l1.945%204.552a.6.6%200%200%200%20.505.363l5.017.392a.6.6%200%200%201%20.338%201.058l-3.8%203.17a.6.6%200%200%200-.198.604l1.165%204.756a.6.6%200%200%201-.89.658l-4.327-2.574a.6.6%200%200%200-.613%200z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 0 0 / cover
+}
+
+.stats_rating_star.stats_rating_star_full:before,
+.stats_rating_star.stats_rating_star_half:before {
+    content: '';
+    position: absolute;
+    width: 19px;
+    height: 19px;
+    top: 0;
+    left: 0;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200H20V20H0z%22%2F%3E%3Cpath%20fill%3D%22%236690C7%22%20d%3D%22M9.695%2015.344l-4.327%202.574a.6.6%200%200%201-.89-.658l1.165-4.756a.6.6%200%200%200-.198-.604l-3.8-3.17a.6.6%200%200%201%20.338-1.058l5.018-.392a.6.6%200%200%200%20.505-.363L9.45%202.365a.6.6%200%200%201%201.103%200l1.945%204.552a.6.6%200%200%200%20.505.363l5.017.392a.6.6%200%200%201%20.338%201.058l-3.8%203.17a.6.6%200%200%200-.198.604l1.165%204.756a.6.6%200%200%201-.89.658l-4.327-2.574a.6.6%200%200%200-.613%200z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 0 0 / cover;
+    z-index: 1
+}
+
+.stats_rating_star.stats_rating_star_half:before {
+    width: 9.5px
+}
+
+.stats_rating_wrap {
+    overflow: hidden;
+    margin-top: 14px;
+    margin-bottom: -4px
+}
+
+.stats_rating_block {
+    box-sizing: border-box;
+    width: 290px;
+    float: left;
+    margin-bottom: 37px;
+    margin-right: 95px
+}
+
+.stats_rating_block:nth-child(2n) {
+    margin-right: 0
+}
+
+.stats_rating_block_title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #222
+}
+
+.stats_rating_block_desc {
+    font-size: 13px;
+    line-height: 1.31;
+    margin: 6px 0 8px;
+    color: #222
+}
+
+.stats_rating_empty {
+    width: 400px;
+    margin: 104px auto;
+    text-align: center
+}
+
+.stats_rating_empty .stats_rating_star {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px
+}
+
+.stats_rating_empty_title {
+    font-size: 19px;
+    margin-top: 22px
+}
+
+.stats_rating_empty_desc {
+    color: #656565;
+    font-size: 13px;
+    line-height: 1.46;
+    margin-top: 9px
+}
+
+.stats_rating_help {
+    color: #828282;
+    border-bottom: 1px solid #e7e8ec;
+    text-align: center;
+    padding: 0 42px 28px;
+    margin: 0 -42px 22px
+}
+
+.stats_rating_beta {
+    display: inline-block;
+    color: #656565;
+    margin-left: 3px
+}
