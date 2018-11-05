@@ -348,8 +348,8 @@ var stVersions = {
     'docs.css': 29811166059,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 19742119061,
-    'helpdesk.js': 451837170,
-    'helpdesk.css': 33630138360,
+    'helpdesk.js': 2191292813,
+    'helpdesk.css': 33889532679,
     'tickets.js': 1151194956,
     'tickets.css': 36136753744,
     'faq.css': 27274839357,
@@ -653,4 +653,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 3301;
+var _rnd = 2473;

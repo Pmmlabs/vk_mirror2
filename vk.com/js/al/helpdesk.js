@@ -1921,7 +1921,8 @@ var Helpdesk = {
             small_sidebar: isChecked("helpdesk_settings_box_small_sidebar") ? 1 : 0,
             merge_replies: isChecked("helpdesk_settings_box_merge_replies") ? 1 : 0,
             fixed_ticket_header: isChecked("helpdesk_settings_box_fixed_ticket_header") ? 1 : 0,
-            ml_tags: isChecked("helpdesk_settings_box_ml_tags") ? 1 : 0
+            ml_tags: isChecked("helpdesk_settings_box_ml_tags") ? 1 : 0,
+            ml_replies: isChecked("helpdesk_settings_box_ml_replies") ? 1 : 0
         };
         ajax.post("helpdesk?act=a_save_settings", t, {
             progress: cur.helpdeskSettingsBox.progress,
@@ -2165,6 +2166,59 @@ var Helpdesk = {
             hasover: 1,
             dir: "top"
         }) : !1
+    },
+    markMlReplyRelevantFromTicket: function(e, t, s, o) {
+        buttonLocked(e) || (lockButton(e), Helpdesk.markMlReplyRelevant(t, s, o, unlockButton.pbind(e), function() {
+            nav.reload()
+        }))
+    },
+    markMlReplyRelevantFromReplyRow: function(e, t, s, o) {
+        if (!buttonLocked(e)) {
+            var a = gpeByClass("_buttons", e);
+            lockButton(e), Helpdesk.markMlReplyRelevant(t, s, o, unlockButton.pbind(e), function() {
+                each(geByClass("flat_button", a), function(e, t) {
+                    addClass(t, "secondary")
+                }), removeClass(e, "secondary")
+            })
+        }
+    },
+    markMlReplyRelevant: function(e, t, s, o, a) {
+        ajax.post("helpdesk?act=a_ml_reply_set_relevant", {
+            ticket_id: e,
+            hash: t,
+            val: s
+        }, {
+            hideProgress: function() {
+                o && o()
+            },
+            onDone: function() {
+                a && a()
+            }
+        })
+    },
+    markMlReplyNeedsAgentFromReplyRow: function(e, t, s, o) {
+        if (!buttonLocked(e)) {
+            var a = gpeByClass("_buttons", e);
+            lockButton(e), Helpdesk.markMlReplyNeedsAgent(t, s, o, unlockButton.pbind(e), function() {
+                each(geByClass("flat_button", a), function(e, t) {
+                    addClass(t, "secondary")
+                }), removeClass(e, "secondary")
+            })
+        }
+    },
+    markMlReplyNeedsAgent: function(e, t, s, o, a) {
+        ajax.post("helpdesk?act=a_ml_reply_set_needs_agent", {
+            ticket_id: e,
+            hash: t,
+            val: s
+        }, {
+            hideProgress: function() {
+                o && o()
+            },
+            onDone: function() {
+                a && a()
+            }
+        })
     }
 };
 try {

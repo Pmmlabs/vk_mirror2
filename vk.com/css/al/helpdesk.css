@@ -2485,3 +2485,31 @@ body.body_helpdesk_small_sb .left_menu_nav {
 .helpdesk_take_to_section_box__buttons .flat_button:last-child {
     margin-bottom: 0
 }
+
+.helpdesk_reply_row_generated .tickets_sys_img {
+    margin-left: 54px
+}
+
+.helpdesk_reply_row_generated .tickets_reply_content {
+    margin-left: 108px
+}
+
+.helpdesk_reply_row_generated_actions {
+    border-top: 1px solid #e7e8ec;
+    margin-top: 7px;
+    padding-top: 7px;
+    text-align: right
+}
+
+.helpdesk_reply_row_generated_action {
+    margin-bottom: 7px
+}
+
+.helpdesk_reply_row_generated_action .flat_button {
+    margin-left: 4px;
+    vertical-align: middle
+}
+
+.helpdesk_reply_row_generated_action:last-child {
+    margin-bottom: 0
+}
