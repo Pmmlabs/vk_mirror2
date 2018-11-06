@@ -162,10 +162,10 @@ var stVersions = {
     'blog.css': 22420094693,
     'blog.js': 3939164531,
     'html5audio.js': 976782859,
-    'audioplayer.js': 157297709709,
+    'audioplayer.js': 155465677510,
     'audioplayer.css': 21396288101,
     'audio_html5.js': 287741914,
-    'audio.js': 3308372090,
+    'audio.js': 1428604094,
     'cmodules/web/audio_admins.js': 7226287612,
     'audio.css': 28482871426,
     'audio_admins.css': 24084641030,
@@ -348,10 +348,10 @@ var stVersions = {
     'docs.css': 29811166059,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 19742119061,
-    'helpdesk.js': 2191292813,
-    'helpdesk.css': 33889532679,
+    'helpdesk.js': 2022103995,
+    'helpdesk.css': 33480318233,
     'tickets.js': 1151194956,
-    'tickets.css': 36136753744,
+    'tickets.css': 35722442553,
     'faq.css': 27274839357,
     'talmud.js': 2726757681,
     'agents.js': 2789926745,
@@ -538,7 +538,7 @@ var stVersions = {
     'stories_manage.css': 71306617024,
     'article.css': 36548082771,
     'article_editor.css': 39601288574,
-    'cmodules/web/article.js': 35579098946,
+    'cmodules/web/article.js': 34262789537,
     'cmodules/web/article_layer.js': 32227944869,
     'article_view.js': 9774618681,
     'bookmarks.css': 20073301570,
@@ -594,7 +594,7 @@ var stVersions = {
     'landings/transparency.css': 35054315116,
     'cmodules/web/emoji.js': 164878560,
     'cmodules/web/apps_achievements.js': 69416392194,
-    'lang': 6924
+    'lang': 6926
 };
 var stTypes = {
     fromLib: {
@@ -653,4 +653,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 8696;
+var _rnd = 5290;

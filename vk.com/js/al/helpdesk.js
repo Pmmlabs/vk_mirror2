@@ -1024,7 +1024,7 @@ var Helpdesk = {
             case "all":
                 t.act = "all", nav.objLoc.faq_id && (t.faq_id = nav.objLoc.faq_id);
                 var s = (window.radioBtns.filters || {}).val;
-                if (t.good = 1 == s ? 1 : "", t.opened = 2 == s ? 1 : "", t.from_support = 3 == s ? 1 : "", t.has_replies = 4 == s ? 1 : "", t.search = 1, ge("tickets_extra_options") && t.opened) {
+                if (t.good = 1 == s ? 1 : "", t.opened = 2 == s ? 1 : "", t.from_support = 3 == s ? 1 : "", t.has_replies = 4 == s ? 1 : "", t.search = 1, ge("helpdesk_extra_options") && t.opened) {
                     t.download = isChecked("tickets_download_checkbox"), t.no_category = isChecked("tickets_no_category_checkbox"), t.photo_server = ge("tickets_photo").value, t.id100 = ge("tickets_id").value, t.id1000 = ge("tickets_id1000").value, t.nospam_pid = ge("tickets_nospam_pid").value, t.cdn = ge("tickets_cdn").value;
                     var o = intval(cur.searchMobile.val());
                     o && (t.mobile = o);
@@ -1033,7 +1033,7 @@ var Helpdesk = {
                     var i = intval(cur.searchTutorial.val());
                     i && (t.tutorial = i);
                     var r = intval(cur.searchSource.val());
-                    r && (t.source = r), isChecked("tickets_time_checkbox") && (t.time_from = val("search_start_date"), t.time_to = val("search_end_date"))
+                    r && (t.source = r), isChecked("helpdesk_time_checkbox") && (t.time_from = val("search_start_date"), t.time_to = val("search_end_date"))
                 }
                 break;
             case "history":

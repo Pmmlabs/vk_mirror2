@@ -2367,10 +2367,6 @@ a.tickets_question_row_tt_unread {
     margin-right: 10px
 }
 
-#tickets_time {
-    padding: 12px 23px 0
-}
-
 .tickets_unbind {
     clear: right;
     float: left;

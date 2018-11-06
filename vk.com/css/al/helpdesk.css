@@ -369,10 +369,20 @@ body.body_helpdesk_small_sb .left_menu_nav {
     margin-bottom: 0
 }
 
+.helpdesk_time_block {
+    padding: 12px 0 0
+}
+
+.helpdesk_time {
+    float: left;
+    padding-left: 35px
+}
+
 .helpdesk_time_label {
     float: left;
-    margin-top: 5px;
-    width: 25px
+    margin-top: 7px;
+    padding-right: 10px;
+    text-align: right
 }
 
 .tickets_all_selected {
@@ -415,12 +425,17 @@ body.body_helpdesk_small_sb .left_menu_nav {
     white-space: nowrap
 }
 
-.tickets_extra_options {
+.helpdesk_extra_options {
     padding: 10px 0 5px
 }
 
-.tickets_extra_options input.text {
+.helpdesk_extra_options input.text {
     width: 105px
+}
+
+.helpdesk_extra_options__columns {
+    border-top: 1px solid #e7e8ec;
+    padding-top: 15px
 }
 
 .tickets_extra_column {
@@ -469,14 +484,6 @@ body.body_helpdesk_small_sb .left_menu_nav {
 
 .tickets_extra_column_last .tickets_extra_label {
     width: 115px
-}
-
-.tickets_extra_title {
-    font-weight: 700;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    margin: 10px 0 15px;
-    color: #555
 }
 
 .add_bug_form {
