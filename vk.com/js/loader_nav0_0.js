@@ -235,8 +235,8 @@ var stVersions = {
     'module.css': 29679365108,
     'owner_photo.js': 3368798011,
     'owner_photo.css': 23850719523,
-    'page.js': 2588754636,
-    'page.css': 81566753174,
+    'page.js': 3933650184,
+    'page.css': 78950654311,
     'page_help.css': 29944848551,
     'public.css': 32704848080,
     'cmodules/web/public.js': 329399197,
@@ -290,7 +290,7 @@ var stVersions = {
     'apps_edit.css': 40005765778,
     'apps_check.js': 3204387834,
     'apps_check.css': 34065770873,
-    'settings.js': 688052291,
+    'settings.js': 4249020749,
     'settings.css': 36180734688,
     'profile_edit.js': 334053301,
     'profile_edit.css': 20532126054,
@@ -349,7 +349,7 @@ var stVersions = {
     'tags_dd.js': 3735969205,
     'tags_dd.css': 20015400231,
     'helpdesk.js': 2022103995,
-    'helpdesk.css': 34574725893,
+    'helpdesk.css': 37049604074,
     'tickets.js': 1151194956,
     'tickets.css': 36816850213,
     'faq.css': 27548120527,
@@ -377,7 +377,7 @@ var stVersions = {
     'verify.css': 17447735010,
     'away.css': 22829618083,
     'stats.css': 21106584242,
-    'payments.css': 38725693987,
+    'payments.css': 38211310488,
     'payments.js': 3392278977,
     'offers.css': 978996883,
     'offers.js': 2030679272,
@@ -653,4 +653,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 2271;
+var _rnd = 8256;

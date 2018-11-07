@@ -3235,6 +3235,7 @@ var Wall = {
         }
 
         cur.poster && cur.poster.checkState();
+        Wall.hidePosterFeatureTooltip();
     },
     ownerDraftKey: function(ownerId) {
         return 'wall_draft' + vk.id + '_' + ownerId;
@@ -3510,7 +3511,8 @@ var Wall = {
         if (cur.options.no_draft) {
             return;
         }
-        if (!data[0] && (!data[1] || !data[1].length) && data[4] == null) {
+        if (!data[0] && (!data[1] || !data[1].length) && data[4] == null) { // if draft is empty
+            Wall.showPosterFeatureTooltip();
             return;
         }
 
@@ -3583,6 +3585,8 @@ var Wall = {
                 setTimeout(Wall.setDraft.pbind(draft), 0);
             } else {
                 cur.postFieldZoomText && cur.postFieldZoomText(cur.postField, cur.wallAddMedia);
+
+                Wall.showPosterFeatureTooltip();
             }
         });
 
@@ -3602,10 +3606,12 @@ var Wall = {
             setTimeout(function() {
                 input.blur()
             }, 0);
+            Wall.hidePosterFeatureTooltip();
             return cur.viewAsBox();
         }
 
         if (cur.editing === 0) {
+            Wall.hidePosterFeatureTooltip();
             return;
         }
         setTimeout(WallUpload.init, 0);
@@ -3623,6 +3629,8 @@ var Wall = {
         addClass('submit_post_box', 'shown');
         cur.editing = 0;
         cur.poster && cur.poster.checkState();
+
+        Wall.hidePosterFeatureTooltip();
 
         if (isFunction(cur.onShowEditPost)) {
             cur.onShowEditPost()
@@ -8492,7 +8500,9 @@ var Wall = {
             deletedCnts: {
                 own: 0,
                 all: 0
-            }
+            },
+            posterFeatureTooltip: opts.poster_feature_tooltip,
+            posterFeatureTooltipHash: opts.poster_feature_tooltip_hash
         });
 
         cur.destroy.push(function(c) {
@@ -9510,6 +9520,59 @@ var Wall = {
         }
     },
 
+    hidePosterFeatureTooltip: function() {
+        if (!cur.posterFeatureTT || !cur.posterFeatureTooltipHash) {
+            return;
+        }
+
+        cur.posterFeatureTT.destroy();
+        cur.posterFeatureTT = null;
+
+        ajax.post('al_index.php', {
+            act: 'hide_feature_tt',
+            hash: cur.posterFeatureTooltipHash,
+            type: 'poster_web',
+        });
+    },
+
+    showPosterFeatureTooltip: function() {
+        if (!cur.posterFeatureTooltip) {
+            return;
+        }
+
+        var showFeatureTooltip = function() {
+            var el = domQuery1('.poster__open-btn', ge('page_poster_btn'));
+
+            if (!el) {
+                return;
+            }
+
+            var content = '<div class="poster_feature_tt__layout" onclick="cur.posterFeatureTT.hide(); cancelEvent(event);">' +
+                '<div class="poster_feature_tt__promo"></div>' +
+                '<div class="poster_feature_tt__close"></div>' +
+                '<div class="poster_feature_tt__info">' + getLang('wall_poster_available_tt') + '</div>'
+            '</div>';
+
+            cur.posterFeatureTT = new ElementTooltip(el, {
+                content: content,
+                forceSide: 'bottom',
+                cls: 'eltt_fancy poster_feature_tt',
+                autoShow: false,
+                noHideOnClick: false,
+                noAutoHideOnWindowClick: true,
+                appendToParent: true,
+                offset: [1, -10],
+                onHide: Wall.hidePosterFeatureTooltip
+            });
+            cur.posterFeatureTT.show();
+        };
+
+        var timeoutId = setTimeout(showFeatureTooltip, 800);
+        cur.destroy.push(function() {
+            clearTimeout(timeoutId);
+        });
+    },
+
     toggleRecommFriend: function(btn, ev, hash) {
         var card = gpeByClass('friend_recomm_card', btn);
         var mid = card && +domData(card, 'uid');
@@ -10438,6 +10501,7 @@ WallUpload = {
             },
             onDragEnter: function() {
                 if (cur.editingPost) {
+                    Wall.hidePosterFeatureTooltip();
                     WallUpload.init();
                 } else {
                     Wall.showEditPost();

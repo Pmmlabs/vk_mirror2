@@ -421,8 +421,12 @@ body.body_helpdesk_small_sb .left_menu_nav {
 
 .tickets_all_search_options .radiobtn {
     float: left;
-    margin-right: 35px;
+    margin-right: 32px;
     white-space: nowrap
+}
+
+.tickets_all_search_options .radiobtn:last-child {
+    margin-right: 0
 }
 
 .helpdesk_extra_options {
@@ -2493,12 +2497,16 @@ body.body_helpdesk_small_sb .left_menu_nav {
     margin-bottom: 0
 }
 
+.helpdesk_reply_row_generated.tickets_reply_row {
+    padding: 14px 0 15px
+}
+
 .helpdesk_reply_row_generated .tickets_sys_img {
-    margin-left: 54px
+    margin-left: 16.2px
 }
 
 .helpdesk_reply_row_generated .tickets_reply_content {
-    margin-left: 108px
+    margin-left: 70.2px
 }
 
 .helpdesk_reply_row_generated_actions {
@@ -2508,15 +2516,7 @@ body.body_helpdesk_small_sb .left_menu_nav {
     text-align: right
 }
 
-.helpdesk_reply_row_generated_action {
-    margin-bottom: 7px
-}
-
 .helpdesk_reply_row_generated_action .flat_button {
     margin-left: 4px;
     vertical-align: middle
-}
-
-.helpdesk_reply_row_generated_action:last-child {
-    margin-bottom: 0
 }

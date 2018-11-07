@@ -1283,6 +1283,19 @@ h2.payments_getvotes_title {
     line-height: 15px
 }
 
+.payments_order_auto_confirm_wrap {
+    margin-top: 15px;
+    text-align: left
+}
+
+.payments_order_auto_confirm_notice {
+    margin-top: 10px;
+    color: #656565;
+    font-size: 11px;
+    line-height: 15px;
+    text-align: left
+}
+
 .payments_receipt_email {
     width: 270px
 }
@@ -1607,31 +1620,23 @@ h2.payments_getvotes_title {
     border-radius: 4px 4px 0 0
 }
 
+.payments_box_instant_pay #payments_getvotes_wrap {
+    padding: 25px
+}
+
 .payments_box_instant_pay .payments_summary_cont {
     margin-top: 2px;
     font-size: 13px
 }
 
-.payments_box_instant_pay .payments_getvotes_order_descr {
-    padding: 10px 0 0;
-    text-align: center
-}
-
 .payments_box_instant_pay .payments_getvotes_op_msg {
     display: block;
-    position: absolute;
-    bottom: 0;
-    text-align: center;
-    padding-right: 25px
+    margin: 15px 0 0
 }
 
 .payments_box_instant_pay .payments_getvotes_buttons {
     padding: 0 0 30px;
     text-align: center
-}
-
-.payments_box_instant_pay.payments_box_app_order {
-    padding-bottom: 85px
 }
 
 .payments_box_instant_pay.payments_box_app_order .payments_getvotes_buttons {
@@ -1643,13 +1648,18 @@ h2.payments_getvotes_title {
 }
 
 .payments_box_instant_pay.payments_box_app_order #payments_box_progress {
-    padding: 40px 0 0;
+    padding: 60px 0 0;
     margin-bottom: -31px
+}
+
+.payments_box_instant_pay.payments_box_app_order #payments_box_progress #payments_box_progress_msg_wrap {
+    padding-bottom: 60px
 }
 
 .payments_box_instant_pay .error,
 .payments_box_instant_pay .info_msg {
-    margin-bottom: 0
+    margin-bottom: 0;
+    margin-top: 20px
 }
 
 .payments_box_instant_pay .flat_button {
@@ -1672,6 +1682,14 @@ h2.payments_getvotes_title {
 
 .payments_box_instant_pay .payments_receipt_email_wrap .payments_receipt_email {
     width: 170px
+}
+
+.payments_box_instant_pay~.payments_iframe_container {
+    margin: 0
+}
+
+.payments_box_instant_pay~.payments_iframe_container:before {
+    display: none
 }
 
 .payments_instant_progress_wrap {
@@ -1697,7 +1715,7 @@ h2.payments_getvotes_title {
 }
 
 .payments_box_gift_order .payments_getvotes_order_descr {
-    padding-bottom: 15px
+    padding-bottom: 25px
 }
 
 .payments_box_gift_order.payments_box_instant_pay #payments_getvotes_wrap {

@@ -1265,6 +1265,41 @@ var Settings = {
             }
         })
     },
+    initAppOrdersDD: function(t, e, s) {
+        cur.appOrdersDD = new InlineDropdown("settings_app_orders", {
+            items: t,
+            selected: e,
+            onShow: function() {
+                if (cur.appOrdersDD) {
+                    var t = 250;
+                    showTooltip(cur.appOrdersDD._els.popupHeader, {
+                        text: getLang("settings_payments_app_orders_tt"),
+                        width: t,
+                        slideX: -15,
+                        className: "pedit_tt",
+                        nohide: !0,
+                        asrtl: !0,
+                        shift: [t + 13, -15, -15],
+                        dir: "left"
+                    })
+                }
+            },
+            onHide: function() {
+                cur.appOrdersDD && cur.appOrdersDD._els.popupHeader.tt && cur.appOrdersDD._els.popupHeader.tt.destroy()
+            },
+            onSelect: function(t) {
+                Settings.toggleAppOrders(t && "0" !== t, s)
+            }
+        })
+    },
+    toggleAppOrders: function(t, e) {
+        ajax.post("al_payments.php?act=a_toggle_app_orders", {
+            autoconfirm: t,
+            hash: e
+        }, {
+            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("settings_app_orders")
+        })
+    },
     initApps: function(opts, appTpl) {
         extend(cur, {
             aSearch: ge("s_search"),
