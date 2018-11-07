@@ -43236,10 +43236,16 @@ a .BookmarkListItem__subtitle:hover {
     position: fixed;
     top: 0;
     right: 0;
-    bottom: auto;
+    bottom: 0;
     left: 0;
-    height: 100%;
     min-height: 0!important
+}
+
+html .vk__page_mail {
+    left: env(safe-area-inset-left);
+    right: env(safe-area-inset-right);
+    bottom: env(safe-area-inset-bottom);
+    top: env(safe-area-inset-top)
 }
 
 .vk__page_mail .layout {

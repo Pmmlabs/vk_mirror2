@@ -1693,7 +1693,7 @@ AdsModer.searchAdsText = function() {
     });
 }
 
-AdsModer.onPostClick = function(postLink) {
+AdsModer.onPostClick = function(event, postLink) {
     var videoThumb = domClosest('page_post_thumb_video', event.target);
     var videoPlayer = domClosest('inline_video_wrap', event.target);
 

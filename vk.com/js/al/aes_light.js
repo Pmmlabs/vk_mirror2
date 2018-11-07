@@ -747,15 +747,15 @@
                     if ("A" == e.target.nodeName && e.target.hasAttribute("href") && "#" !== e.target.getAttribute("href")) return !0;
                     l = !0, setTimeout(function() {
                         l = !1
-                    }, 100), d()
-                } else "click" == e.type && 1 == e.which && (t = a());
+                    }, 100), d(e)
+                } else "click" == e.type && 1 == e.which && (t = a(e));
             return i && !t ? !0 : cancelEvent(e)
         }
         if (!e) return !1;
         var a = e.getAttribute("onclick_inside"),
             d = e.getAttribute("onclick_outside");
         if (!d) return !1;
-        if (a = new Function(a || d), d = new Function(d), !i)
+        if (a = new Function("event", a || d), d = new Function("event", d), !i)
             for (var n, o = geByTag("a", e), r = 0; n = o[r]; r++) n.setAttribute("_href", n.href), n.removeAttribute("href");
         var l = !1;
         return addEvent(e, "click dblclick mousedown mouseup touchstart touchmove touchend", s, !1, !1, !0), t || cur.destroy.push(function(e) {

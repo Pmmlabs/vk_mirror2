@@ -3629,15 +3629,11 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
             this.params[paramName].disabled_web = (this.params.campaign_type.value == AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_APPS_WITH_BUDGET || this.params.campaign_type.value == AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_OLD && this.params.campaign_id.value_app && this.params.campaign_id.value == this.params.campaign_id.value_app || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE || this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_CLICK || isDisclaimers);
             this.params[paramName].disabled = (!inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && this.params[paramName].disabled_web);
 
-            var linkTypeForPlatform = this.params.link_type.value;
-            if (inArray(linkTypeForPlatform, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST)) {
-                linkTypeForPlatform = AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW;
-            }
-
+            var formatType = this.params.format_type.value;
             if (this.params.platform.disabled) {
-                this.params[paramName].value = (this.params.platform.values_disabled[linkTypeForPlatform] ? this.params.platform.values_disabled[linkTypeForPlatform] : this.params.platform.values_disabled[0]);
+                this.params[paramName].value = (this.params.platform.values_disabled[formatType] ? this.params.platform.values_disabled[formatType] : this.params.platform.values_disabled[0]);
             } else {
-                this.params[paramName].value = (this.params.platform.values_normal[linkTypeForPlatform] ? this.params.platform.values_normal[linkTypeForPlatform] : this.params.platform.values_normal[0]);
+                this.params[paramName].value = (this.params.platform.values_normal[formatType] ? this.params.platform.values_normal[formatType] : this.params.platform.values_normal[0]);
             }
 
             this.initUiParam(paramName);
@@ -3706,11 +3702,7 @@ AdsViewEditor.prototype.getUiParamData = function(paramName) {
         case 'subcategory2_id':
             return this.params.category1_id.data_subcategories[this.params.category2_id.value] || [];
         case 'platform':
-            var linkTypeForPlatform = this.params.link_type.value;
-            if (inArray(linkTypeForPlatform, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST)) {
-                linkTypeForPlatform = AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW;
-            }
-            return this.params[paramName].data_all[linkTypeForPlatform] || this.params[paramName].data_all[0] || [];
+            return this.params[paramName].data_all[this.params.format_type.value] || this.params[paramName].data_all[0] || [];
         case 'views_limit_exact':
             return this.params[paramName].data_ranges[this.params.format_type.value] || [];
         default:
@@ -4523,6 +4515,8 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                     auctionName = 'wphone';
                 } else if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST) {
                     auctionName = 'promoted_posts';
+                } else if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD) {
+                    auctionName = 'adaptive_ads';
                 }
 
                 var suffixesAll = '';
@@ -4606,12 +4600,9 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 this.updateUiParam('cost_per_click');
                 break;
             case 'platform':
-                var linkTypeForPlatform = this.params.link_type.value;
-                if (inArray(linkTypeForPlatform, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST)) {
-                    linkTypeForPlatform = AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW;
-                }
-                var linkTypeForPlatformNormal = (this.params.platform.values_normal[linkTypeForPlatform] ? linkTypeForPlatform : 0);
-                this.params.platform.values_normal[linkTypeForPlatformNormal] = this.params.platform.value;
+                var formatType = this.params.format_type.value;
+                var formatTypeNormal = (this.params.platform.values_normal[formatType] ? formatType : 0);
+                this.params.platform.values_normal[formatTypeNormal] = this.params.platform.value;
 
                 isUpdateNeeded = true;
                 break;
@@ -7458,12 +7449,12 @@ AdsTargetingEditor.prototype.updateUiCriterionSelectedData = function(criterionN
         return;
     }
 
-    this.criteria[criterionName].ui.clear();
-
     var value = this.criteria[criterionName].value;
     if (!value) {
         return;
     }
+
+    this.criteria[criterionName].ui.clear();
 
     var selectedItems;
     selectedItems = value.toString().split(',');

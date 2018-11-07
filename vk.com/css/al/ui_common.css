@@ -3438,7 +3438,7 @@ a.ui_search_custom_link {
 .slider .slider_ad_marker {
     display: block;
     width: 8px;
-    height: 3px;
+    height: 2px;
     background-color: #f5a623
 }
 
@@ -3489,7 +3489,7 @@ a.ui_search_custom_link {
 }
 
 .slider.slider_size_1 .slider_slide {
-    height: 3px
+    height: 2px
 }
 
 .slider.slider_size_1 .slider_handler {

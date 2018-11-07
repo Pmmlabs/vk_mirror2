@@ -429,7 +429,8 @@
     margin-right: 40px
 }
 
-.ads_all_ads_box.promoted_post {
+.ads_all_ads_box.promoted_post,
+.ads_all_ads_box.adaptive_ad {
     margin-right: 74px
 }
 
@@ -451,7 +452,8 @@
     padding: 14px
 }
 
-.ads_all_ads_box .ads_ad_box.promoted_post {
+.ads_all_ads_box .ads_ad_box.promoted_post,
+.ads_all_ads_box .ads_ad_box.adaptive_ad {
     padding: 15px
 }
 

@@ -1,4 +1,21 @@
-var Payments = {};
+var Payments = {
+    startFormMeasure: function() {
+        cur.formMeasureTime = Date.now();
+        if (vk.dev) {
+            debugLog(cur.formMeasureTime);
+        }
+    },
+    finishFormMeasure: function(ps_name) {
+        if (cur.formMeasureTime) {
+            var measured = Date.now() - cur.formMeasureTime;
+            if (vk.dev) {
+                debugLog(measured);
+            }
+            delete cur.formMeasureTime;
+            statlogsValueEvent('payments_frame_load_time', measured, ps_name);
+        }
+    }
+};
 
 Payments.init = function() {}
 
@@ -949,6 +966,7 @@ var MoneyTransfer = {
             }
             MoneyTransfer.cookieTroubleCounter++;
         } else if (message.action === 'putPixel' && message.action_params.alias === "page_load") {
+            Payments.finishFormMeasure('dmr_transfer');
             statlogsValueEvent('money_transfers', 0, 'iframe_loaded');
         }
     },

@@ -451,7 +451,7 @@
 .audio_page_player .audio_page_player_prev {
     padding: 22px 6px;
     cursor: pointer;
-    opacity: 0.88
+    opacity: 0.7
 }
 
 .audio_page_player .audio_page_player_next .icon,
@@ -696,7 +696,7 @@
 .audio_page_player .audio_page_player_track_slider:not(.slider),
 .audio_page_player .audio_page_player_volume_slider:not(.slider) {
     margin-top: 3px;
-    height: 3px;
+    height: 2px;
     background-color: #e1e8ee
 }
 
@@ -2287,7 +2287,7 @@
 }
 
 .audio_page_player_wrap {
-    height: 66px
+    height: 56px
 }
 
 .audio_layer_container {
