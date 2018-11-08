@@ -264,6 +264,10 @@
     z-index: 1
 }
 
+.apps_install_header__qr img {
+    border-radius: 4px
+}
+
 .apps_install_header__image {
     width: 120px;
     height: 120px;

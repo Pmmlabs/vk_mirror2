@@ -3237,6 +3237,14 @@ h4.subheader.ads_retargeting_subheader_bordered {
     margin: 0
 }
 
+.ads_retargeting_price_list_empty_text_padding {
+    padding: 0 25px
+}
+
+.ads_retargeting_price_list_empty_button {
+    margin-top: 10px
+}
+
 .ads_retargeting_price_list_errors {
     position: relative;
     margin: 0;

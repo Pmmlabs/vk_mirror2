@@ -655,7 +655,7 @@ var Helpdesk = {
                 removeClass(t, "sorted")
             }), addClass(geByClass1("table_header_upper_span", e), "sorted");
             var s = "";
-            nav.objLoc.section && (s = "&section=" + nav.objLoc.section), nav.go("/helpdesk?act=" + nav.objLoc.act + s + "&sort=" + t)
+            nav.objLoc.hds && (s = "&hds=" + nav.objLoc.hds), nav.objLoc.section && (s = "&section=" + nav.objLoc.section), nav.go("/helpdesk?act=" + nav.objLoc.act + s + "&sort=" + t)
         }
         return !1
     },
@@ -1024,8 +1024,8 @@ var Helpdesk = {
             case "all":
                 t.act = "all", nav.objLoc.faq_id && (t.faq_id = nav.objLoc.faq_id);
                 var s = (window.radioBtns.filters || {}).val;
-                if (t.good = 1 == s ? 1 : "", t.opened = 2 == s ? 1 : "", t.from_support = 3 == s ? 1 : "", t.has_replies = 4 == s ? 1 : "", t.search = 1, ge("helpdesk_extra_options") && t.opened) {
-                    t.download = isChecked("tickets_download_checkbox"), t.no_category = isChecked("tickets_no_category_checkbox"), t.photo_server = ge("tickets_photo").value, t.id100 = ge("tickets_id").value, t.id1000 = ge("tickets_id1000").value, t.nospam_pid = ge("tickets_nospam_pid").value, t.cdn = ge("tickets_cdn").value;
+                if (t.good = 1 == s ? 1 : "", t.opened = 2 == s ? 1 : "", t.from_support = 3 == s ? 1 : "", t.has_replies = 4 == s ? 1 : "", t.long_waiting = 5 == s ? 1 : "", t.ml = 6 == s ? 1 : "", t.search = 1, ge("helpdesk_ento_options") && t.opened) {
+                    t.download = isChecked("tickets_download_checkbox"), t.no_category = isChecked("tickets_no_category_checkbox"), t.photo_server = val("tickets_photo"), t.id100 = val("tickets_id"), t.id1000 = val("tickets_id1000"), t.nospam_pid = val("tickets_nospam_pid"), t.cdn = val("tickets_cdn");
                     var o = intval(cur.searchMobile.val());
                     o && (t.mobile = o);
                     var a = cur.searchBrowser.val();
@@ -1048,6 +1048,10 @@ var Helpdesk = {
         for (var t in cur.params)
             if (e[t] != cur.params[t]) return !1;
         return !0
+    },
+    updateTicketsSearch: function(e, t) {
+        radioval("filters");
+        radiobtn(e, t, "filters"), isVisible("helpdesk_ento_options") && 2 != t ? 6 == t ? hide("helpdesk_ento_options") : slideUp("helpdesk_ento_options", 200) : isVisible("helpdesk_ento_options") || 2 != t || slideDown("helpdesk_ento_options", 200), isVisible("helpdesk_ml_extra_options") && 6 != t ? 2 == t ? hide("helpdesk_ml_extra_options") : slideUp("helpdesk_ml_extra_options", 200) : isVisible("helpdesk_ml_extra_options") || 6 != t || slideDown("helpdesk_ml_extra_options", 200), val("all_search") && (cur.ignoreEqual = !0), Helpdesk.updateAllSearch(!0)
     },
     enterAllSearch: function() {
         Helpdesk.updateAllSearch(!0)
@@ -1093,7 +1097,7 @@ var Helpdesk = {
                         }));
                         break;
                     case "all":
-                        val("tickets_all", cont), script && eval(script), delete nav.objLoc.offset, each(["q", "good", "opened", "download", "from_support", "photo_server", "id100", "nospam_pid", "time_from", "time_to", "mobile", "browser", "id1000", "cdn", "no_category", "tutorial", "source", "has_replies"], function(e, t) {
+                        val("tickets_all", cont), script && eval(script), delete nav.objLoc.offset, each(["q", "good", "opened", "download", "from_support", "photo_server", "id100", "nospam_pid", "time_from", "time_to", "mobile", "browser", "id1000", "cdn", "no_category", "tutorial", "source", "has_replies", "ml", "long_waiting"], function(e, t) {
                             query[t] ? nav.objLoc[t] = query[t] : delete nav.objLoc[t]
                         }), nav.setLoc(nav.objLoc);
                         break;
@@ -1105,7 +1109,7 @@ var Helpdesk = {
         "all_search" === searchEl && extend(options, {
             showProgress: uiSearch.showProgress.pbind("all_search"),
             hideProgress: uiSearch.hideProgress.pbind("all_search")
-        }), ajax.post("helpdesk", query, options)
+        }), ajax.post("helpdesk", query, options);
     },
     restoreDraft: function(e) {
         var t = ge("tickets_reply"),

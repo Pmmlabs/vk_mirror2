@@ -242,7 +242,7 @@
         }, e.prototype.onCreateAdDone = function(e, t) {
             if (!e || t.error_msg || t.error_msg_eng) this.onCreateAdFailed(t);
             else if (t.ad_id && (this.options.created_ad_id = t.ad_id), t.update_options && (this.options = extend(this.options, t.update_options)), this.options.payment_available && this.options.selected_union_id == this.options.payment_union_id) {
-                this.paymentIntroElement.innerHTML = langStr(getLang("ads_edit_easy_promote_payments_intro"), "link", '<a href="https://vk.com/ads?act=office&union_id=' + this.options.created_ad_id + '">', "/link", "</a>");
+                this.paymentIntroElement.innerHTML = langStr(getLang("ads_edit_easy_promote_payments_intro"), "link", '<a href="/ads?act=office&union_id=' + this.options.created_ad_id + '">', "/link", "</a>");
                 var s = this.options.user_offices[this.options.payment_union_id];
                 s && "budget_result" in s && (this.paymentUnionBudgetElement.innerHTML = langNumeric(s.budget_result, getLang("global_money_amount_rub", "raw"), !0)), this.goToScreen(this.paymentScreenElement)
             } else this.onPaymentCompleted();

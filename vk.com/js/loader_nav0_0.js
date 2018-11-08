@@ -284,7 +284,7 @@ var stVersions = {
     'feed.css': 29155653321,
     'privacy.js': 711405089,
     'privacy.css': 18720320299,
-    'apps.css': 49528177394,
+    'apps.css': 50817840141,
     'apps.js': 11179117589,
     'apps_edit.js': 9224971879,
     'apps_edit.css': 39788219555,
@@ -348,8 +348,8 @@ var stVersions = {
     'docs.css': 30688027496,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 19797854008,
-    'helpdesk.js': 2022103995,
-    'helpdesk.css': 36832057851,
+    'helpdesk.js': 1470549582,
+    'helpdesk.css': 37089181754,
     'tickets.js': 1151194956,
     'tickets.css': 36599303990,
     'faq.css': 27330574304,
@@ -385,7 +385,7 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 34370619329,
     'aes_light.js': 3780729751,
-    'ads.css': 54192448087,
+    'ads.css': 55080173772,
     'ads_bonus.css': 1294533291,
     'ads.js': 4257616553,
     'ads_payments.js': 1483293789,
@@ -401,7 +401,7 @@ var stVersions = {
     'ads_web.js': 4274163593,
     'mrtarg.js': 1146267795,
     'mrtarg.css': 3142794554,
-    'cmodules/web/ads_edit_easy.js': 897581717,
+    'cmodules/web/ads_edit_easy.js': 1919443855,
     'cmodules/web/ads_edit_components.js': 21979694895,
     'health.css': 2251304991,
     'health.js': 2993570139,
@@ -653,4 +653,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 9454;
+var _rnd = 4704;
