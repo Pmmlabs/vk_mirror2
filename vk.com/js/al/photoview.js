@@ -1927,7 +1927,9 @@ var Photoview = {
                 var t = ge("pvsa_content_photos"),
                     r = ge("ui_pv_photos_load_more");
                 if (t) {
-                    if (t.appendChild(cf(e)), o >= cur.pvsaCount) return hide(r), void Photoview.onResize();
+                    t.appendChild(cf(e));
+                    var a = cur.pvAlbumData[cur.pvAlbumShown].opts.no_known_count;
+                    if (!a && o >= cur.pvsaCount || !e) return hide(r), void Photoview.onResize();
                     setTimeout(function() {
                         Photoview.onResize()
                     }, 10), cur.pvsaLoading = 1, ajax.post("al_photos.php", {

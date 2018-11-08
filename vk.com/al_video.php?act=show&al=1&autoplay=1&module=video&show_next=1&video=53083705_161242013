@@ -1,1 +1,53 @@
-63868881
+
+addLangKeys({"global_emoji_cat_1":"Эмоции","global_emoji_cat_2":"Животные и растения","global_emoji_cat_3":"Жесты и люди","global_emoji_cat_4":"Еда и напитки","global_emoji_cat_5":"Спорт и активности","global_emoji_cat_6":"Путешествия и транспорт","global_emoji_cat_7":"Предметы","global_emoji_cat_8":"Символы","global_emoji_cat_9":"Флаги","global_emoji_cat_recent":"Часто используемые","global_error":"Ошибка","global_store_stickers":"Магазин стикеров","global_store_stickers_new_available":"Доступны новые стикеры","purchases_stickers_favorite_add_tt":null,"purchases_stickers_favorite_rm_tt":null,"purchases_stickers_favorite_limit_notice":null});
+addTemplates({"_":"_","audio_row":"<div   tabindex=\"0\" class=\"audio_row audio_row_with_cover _audio_row _audio_row_%1%_%0% %cls% audio_row2\" data-full-id=\"%1%_%0%\" onclick=\"return getAudioPlayer().toggleAudio(this, event)\" data-audio=\"%serialized%\" onmouseover=\"AudioUtils.onRowOver(this, event)\" onmouseleave=\"AudioUtils.onRowLeave(this, event)\">\n  <div class=\"audio_row_content _audio_row_content\">\n    <button class=\"blind_label _audio_row__play_btn\" aria-label=\"\" onclick=\"getAudioPlayer().toggleAudio(this, event); return cancelEvent(event)\"><\/button>\n\n    <div class=\"audio_row__cover\" style=\"%cover_style%\"><\/div>\n    <div class=\"audio_row__cover_back _audio_row__cover_back\"><\/div>\n    <div class=\"audio_row__cover_icon _audio_row__cover_icon\"><\/div>\n    <div class=\"audio_row__counter\"><\/div>\n    <div class=\"audio_row__play_btn\"><\/div>\n\n    <div class=\"audio_row__inner\">\n      <div class=\"audio_row__performer_title\">\n        <div onmouseover=\"setTitle(this)\" class=\"audio_row__performers\">%performers%<\/div>\n        <div class=\"audio_row__title _audio_row__title\" onmouseover=\"setTitle(this)\">\n          <span class=\"audio_row__title_inner _audio_row__title_inner\">%3%<\/span>\n          <span class=\"audio_row__title_inner_subtitle _audio_row__title_inner_subtitle\">%16%<\/span>\n        <\/div>\n      <\/div>\n      <div class=\"audio_row__info _audio_row__info\"><div class=\"audio_row__duration audio_row__duration-%duration_mod% _audio_row__duration\">%duration%<\/div><\/div>\n    <\/div>\n\n    <div class=\"audio_player__place _audio_player__place\"><\/div>\n  <\/div>\n<\/div>","audio_bits_to_cls":"{\"1\":\"audio_has_lyrics\",\"2\":\"audio_can_add\",\"4\":\"audio_claimed\",\"8\":\"audio_from_queue\",\"16\":\"audio_hq\",\"1024\":\"audio_explicit\",\"32\":\"audio_lpb\",\"64\":\"audio_has_thumb\",\"256\":\"audio_moder_claimed\"}"});cur.incViews = function() {
+  var oidvid = '53083705_161242013';
+  if (cur.videoInc && cur.videoInc[oidvid]) {
+    return;
+  }
+  if (!cur.videoInc) {
+    cur.videoInc = {};
+    cur.videoStarted = {};
+  }
+  cur.videoInc[oidvid] = setTimeout(function() {
+    cur.videoInc[oidvid] = 'finished';
+    var m = window.Video ? Videoview.getVideoModule(oidvid) : cur.module;
+    var oid = 53083705;
+    if (oid) {
+      ajax.post("al_video.php", {act:'inc_view_counter', oid:oid, vid:161242013, hash:'0af990f2134b3a4bb2b38d487538ed87', module: m});
+    }
+  }, 5000);
+  cur.videoStarted[oidvid] = setTimeout(function() {
+    cur.videoStarted[oidvid] = 'finished';
+    var m = window.Video ? Videoview.getVideoModule(oidvid) : cur.module;
+
+    var videocat = '';
+    if (window.Videocat && window.Video && Video.isInCatalog()) {
+      var plId = VideoPlaylist.getCurListId();
+      if (Videocat.isTop3Playlist(plId)) {
+        videocat = 'featured';
+      } else {
+        videocat = plId;
+      }
+    }
+
+    var oid = 53083705;
+    if (oid) {
+      window.mvcur = window.mvcur || {};
+      mvcur.viewStartedTimestamp = new Date().getTime();
+      ajax.post("al_video.php", {act:'video_view_started', oid:oid, vid:161242013, hash:'0af990f2134b3a4bb2b38d487538ed87', module: m, videocat: videocat});
+    }
+  }, 0);
+  cur.destroy.push(function () {
+    if (cur.videoInc[oidvid] && cur.videoInc[oidvid] != 'finished') {
+      clearTimeout(cur.videoInc[oidvid]);
+    }
+    if (cur.videoStarted[oidvid] && cur.videoStarted[oidvid] != 'finished') {
+      clearTimeout(cur.videoStarted[oidvid]);
+    }
+  });
+};
+mvcur.mvData.addedVideo = '53083705_161242013'; 
+mvcur.mvData.addedVideoHash = '8e3e0a4b9e1709435b'; 
+mvcur.mvData.addedVideoShareHash = 'ea3154917833cfe21e';
+mvcur.mvData.needsNew = 1;
