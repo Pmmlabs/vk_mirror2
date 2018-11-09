@@ -148,7 +148,7 @@ var FullWall = {
                 replies: ge("fw_one_replies_wrap")
             },
             wallUploadOpts: e.upload,
-            deepActive: hasClass(ge("post" + l), "deep_active")
+            deepActive: hasClass(ge("post" + l), "deep_active") && !e.note_id
         }), wall.init(e), cur.deepActive ? (e.scroll && setTimeout(function() {
             scrollToY(e.scroll)
         }, 0), addEvent(window, "scroll", FullWall.onePostOnScroll), addEvent(window, "resize", FullWall.onePostOnScroll), cur.destroy.push(function() {

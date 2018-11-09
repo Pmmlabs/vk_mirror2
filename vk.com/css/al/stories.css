@@ -2511,7 +2511,7 @@
 
 .stories_groups_block_stories_wrap .stories_groups_block_stories_button {
     margin-top: 5px;
-    color: #336bab;
+    color: #3670b3;
     cursor: pointer
 }
 
@@ -2544,7 +2544,7 @@
 }
 
 .stories_groups_block_stories_empty {
-    color: #336bab;
+    color: #3670b3;
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
@@ -2557,13 +2557,17 @@
 }
 
 .stories_groups_block_stories_empty .page_upload_label {
-    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Ctitle%3Estory_24%3C%2Ftitle%3E%3Cdefs%3E%3Cpath%20d%3D%22M7%203h10a4%204%200%200%201%204%204v10a4%204%200%200%201-4%204H7a4%204%200%200%201-4-4V7a4%204%200%200%201%204-4zm.003%209.003c0%202.76%202.24%205%205%205s5-2.24%205-5-2.24-5-5-5-5%202.24-5%205zM8.8%2012a3.2%203.2%200%201%201%206.4%200%203.2%203.2%200%200%201-6.4%200z%22%20id%3D%22a%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20opacity%3D%22.4%22%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cuse%20fill%3D%22%23648fc9%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50% / contain!important;
+    background: url('/images/svg_icons/stories/stories_group_block_add_icon2.svg') no-repeat 50% / contain!important;
     width: 24px;
     height: 24px;
     left: 15px;
     margin: 0;
     top: 13px;
     opacity: 1
+}
+
+.stories_groups_block_stories_empty .page_module_upload {
+    color: #3670b3
 }
 
 .stories_groups_block_stories_empty:hover .page_module_upload {

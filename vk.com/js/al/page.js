@@ -211,73 +211,28 @@ var Page = {
                 show(moreActionMenu);
             }
         },
-        notificationSettingsTlt: '',
-        onSubscriptionItemOnClick: function(el) {
-            Page.createSubscriptionTooltip();
-            if (hasClass(el, 'on')) {
-                Page.showSubscriptionTooltip(el);
-                Page.notificationSettingsTlt._opts.autoShow = true;
-            } else {
-                var wallNotify = ge('group_notification_setting_wall');
-                if (wallNotify && !hasClass(wallNotify, 'unshown')) {
-                    wallNotify.click();
-                }
-                var liveNotify = ge('group_notification_setting_live');
-                if (liveNotify && !hasClass(liveNotify, 'unshown')) {
-                    liveNotify.click();
-                }
-                var podcastsNotify = ge('group_notification_setting_podcasts');
-                if (podcastsNotify && !hasClass(podcastsNotify, 'unshown')) {
-                    podcastsNotify.click();
-                }
-            }
-        },
-        createSubscriptionTooltip: function() {
-            if (!Page.notificationSettingsTlt) {
-                var el = ge('page_menu_notifications_item');
-                var content = ge('notification_settings_tlt_content');
-                Page.notificationSettingsTlt = new ElementTooltip(el, {
-                    appendToParent: true,
-                    cls: 'eltt_fancy notification_settings_tlt',
-                    centerShift: 0,
-                    offset: [0, 10],
-                    content: content,
-                    align: 'center',
-                    onFirstTimeShow: function(el) {
-                        show(content);
-                    }
+        onSubscriptionItemOnClick: function(el, event, wallNotificationHash, liveNotificationHash, podcastHash) {
+            var isEnabled = hasClass(el, 'on');
+            domData(el, 'act', isEnabled ? 0 : 1);
+            if (wallNotificationHash) {
+                Page.toggleSubscription(el, wallNotificationHash, event, 0, 'page', function() {
+                    var btnText = getLang(isEnabled ? 'groups_notifications_on' : 'groups_notifications_set_up');
+                    val(el, btnText);
+                    toggleClass(el, 'on');
                 });
             }
-        },
-        showSubscriptionTooltip: function(el) {
-            Page.createSubscriptionTooltip();
-            Page.notificationSettingsTlt.show();
-        },
-        subscriptionTooltipOnChangeNotification: function(text, act) {
-            var checkboxes = geByClass('on', ge('notification_settings_tlt_content'));
-            var menuItem = ge('page_menu_notifications_item');
-            if (!checkboxes.length) {
-                removeClass(menuItem, 'on');
-                val(menuItem, getLang('groups_notifications_on'));
-                Page.notificationSettingsTlt._opts.autoShow = false;
-            } else {
-                val(menuItem, getLang('groups_notifications_set_up'));
-                addClass(menuItem, 'on');
+            if (liveNotificationHash) {
+                Page.toggleLiveSubscription(el, liveNotificationHash, isEnabled ? 0 : 1, event, function() {}, true);
+            }
+            if (podcastHash) {
+                Page.togglePodcastsSubscription(this, podcastHash, isEnabled ? 0 : 1,
+                    event,
+                    function() {}, true);
             }
         },
-        onWallSubscriptionDone: function(text, act, btn) {
-            attr(btn, 'data-act', act);
-            Page.subscriptionTooltipOnChangeNotification();
-        },
-        toggleSubscription: function(btn, hash, ev, oid, source, onDone) {
+        toggleSubscription: function(btn, hash, ev, oid, source, onDone, disableProgress) {
             var act = parseInt(domData(btn, 'act')) ? 1 : 0;
-            ajax.post('al_wall.php', {
-                act: 'a_toggle_posts_subscription',
-                subscribe: act ? 1 : 0,
-                oid: oid ? oid : cur.oid,
-                hash: hash,
-                source: source
-            }, {
+            var options = {
                 onDone: function(text) {
                     if (onDone) {
                         onDone(text, act ? 0 : 1, btn);
@@ -286,12 +241,21 @@ var Page = {
                         btn.setAttribute('data-act', act ? 0 : 1);
                     }
                 },
-                showProgress: Page.actionsDropdownLock.pbind(btn),
-                hideProgress: Page.actionsDropdownUnlock.pbind(btn)
-            });
+            };
+            if (!disableProgress) {
+                options.showProgress = Page.actionsDropdownLock.pbind(btn);
+                options.hideProgress = Page.actionsDropdownUnlock.pbind(btn);
+            }
+            ajax.post('al_wall.php', {
+                act: 'a_toggle_posts_subscription',
+                subscribe: act ? 1 : 0,
+                oid: oid ? oid : cur.oid,
+                hash: hash,
+                source: source
+            }, options);
             cancelEvent(ev);
         },
-        toggleLiveSubscription: function(btn, hash, act, ev, onDone) {
+        toggleLiveSubscription: function(btn, hash, act, ev, onDone, disableProgress) {
             if (cur.toggleLiveSubscriptionAct != undefined) {
                 act = cur.toggleLiveSubscriptionAct;
             }
@@ -313,7 +277,7 @@ var Page = {
             });
             cancelEvent(ev);
         },
-        togglePodcastsSubscription: function(btn, hash, act, ev, onDone) {
+        togglePodcastsSubscription: function(btn, hash, act, ev, onDone, disableProgress) {
             if (cur.togglePodcastsSubscriptionAct != undefined) {
                 act = cur.togglePodcastsSubscriptionAct;
             }
@@ -331,8 +295,8 @@ var Page = {
                         val(btn, text);
                     }
                 },
-                showProgress: Page.actionsDropdownLock.pbind(btn),
-                hideProgress: Page.actionsDropdownUnlock.pbind(btn)
+                showProgress: !disableProgress && Page.actionsDropdownLock.pbind(btn),
+                hideProgress: !disableProgress && Page.actionsDropdownUnlock.pbind(btn)
             });
             cancelEvent(ev);
         },
@@ -1971,28 +1935,44 @@ var Page = {
             if (!(el = ge(el))) return;
             return hasClass(el, 'page_actions_item_lock');
         },
+        lockTimeout: null,
+        resetLockTimeout: null,
         actionsDropdownLock: function(el) {
             if (
                 (el = ge(el)) &&
                 hasClass(el, 'page_actions_item') &&
                 !hasClass(el, 'page_actions_item_lock')
             ) {
-                data(el, 'inner', el.innerHTML);
-                addClass(el, 'page_actions_item_lock');
-                var lockText = ce('div', {
-                    className: 'page_actions_item_lock_text'
-                });
-                val(lockText, el.innerHTML);
-                el.appendChild(lockText);
-                showProgress(el);
+                if (Page.lockTimeout) {
+                    clearTimeout(Page.lockTimeout);
+                }
+                Page.resetLockTimeout = false;
+                Page.lockTimeout = setTimeout(function() {
+                    if (!Page.resetLockTimeout) {
+                        data(el, 'inner', el.innerHTML);
+                        addClass(el, 'page_actions_item_lock');
+                        var lockText = ce('div', {
+                            className: 'page_actions_item_lock_text'
+                        });
+                        val(lockText, el.innerHTML);
+                        el.appendChild(lockText);
+                        showProgress(el);
+                    }
+
+                }, 500);
+
             }
         },
         actionsDropdownUnlock: function(el) {
+            Page.resetLockTimeout = true;
             if (
                 (el = ge(el)) &&
                 hasClass(el, 'page_actions_item') &&
                 hasClass(el, 'page_actions_item_lock')
             ) {
+                if (Page.lockTimeout) {
+                    clearTimeout(Page.lockTimeout);
+                }
                 removeClass(el, 'page_actions_item_lock');
                 el.innerHTML = data(el, 'inner');
             }

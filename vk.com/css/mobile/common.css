@@ -26547,7 +26547,8 @@ body.apps_settingsPageBody {
 }
 
 #zpv_summary {
-    padding-top: 14px!important
+    padding-top: 14px!important;
+    margin: 0
 }
 
 .h .mhb_user {
