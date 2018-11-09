@@ -2991,6 +2991,7 @@ input.wide_button {
 
 .pi_signed .i_ads_mark {
     background: url(/images/mobile/post_icons.png?7) no-repeat -121px;
+    height: 12px;
     padding: 0 12px 0 0;
     margin-right: 4px
 }
@@ -6336,6 +6337,30 @@ div.pm_item .pm_counter {
     padding: 0 0 2px
 }
 
+.create_post .post_timer {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    font-size: 15px;
+    z-index: 5
+}
+
+.create_post .post_timer:after {
+    background-image: url('/images/mobile/skins/icon/statuses.png?10');
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    background-position: 0 -824px;
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 20px
+}
+
+.vk_2x .create_post .post_timer:after {
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?10')
+}
+
 .create_post .medias_thumb .ph_img,
 .form_item .medias_thumb .ph_img {
     min-width: 40px;
@@ -6397,6 +6422,12 @@ div.pm_item .pm_counter {
 
 .create_post_extra .textfield {
     border: 1px solid #d1d7de
+}
+
+.create_post_timer {
+    width: 100%;
+    height: 38px;
+    background-color: #fff
 }
 
 .cp_attached_wrap .ph_img,

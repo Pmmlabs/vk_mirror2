@@ -2535,6 +2535,7 @@ var Wall = {
         Wall.suggestUpdate(-1);
         showDoneBox(text);
         cur.wallMyDeleted[post] = 1;
+        cur.editingPost = false;
         Wall.deinitComposer(ge('wpe_text'));
 
         if (cur.wallType == 'full_own' || cur.wallType == 'full_all') {
@@ -3615,6 +3616,10 @@ var Wall = {
         if (isFunction(cur.onShowEditPost)) {
             cur.onShowEditPost()
         }
+
+        if (cur.wallAdsReplacedFeatureTooltip) {
+            Wall.showAdsReplacedTooltip();
+        }
     },
 
     postBoxFocus: function(event, scrollToScreenTop) {
@@ -3802,8 +3807,14 @@ var Wall = {
     },
 
     showPostSettings: function(el, ev) {
-        if (!data(el, 'ett')) {
+        var hasNewAdsTT = cur.wallAdsReplacedFeatureTooltip && hasClass(el, 'addpost_opt'); // TODO remove later with 'Ads replaced' tooltip
+
+        if (!data(el, 'ett') || hasNewAdsTT) {
             var content = domNS(el);
+
+            if (hasNewAdsTT) {
+                Wall.hideAdsReplacedTT();
+            }
 
             new ElementTooltip(el, {
                 cls: 'post_settings_tooltip',
@@ -3837,22 +3848,37 @@ var Wall = {
             });
         }, 300);
     },
-    saveFriendsOnly: function(el) {
+    togglePostFriendsOnly: function(el, isFriendsOnly, prefixId) {
         var isAnon = Wall.isAnonPost();
+        var isEditPost = !!prefixId;
 
-        checkbox(el, !isAnon && !isChecked(el));
-
-        var friendsOnly = isChecked(el);
-        var twitter = ge('status_export');
-        var fb = ge('facebook_export');
-
-        if (friendsOnly) {
-            checkbox(twitter, false);
-            checkbox(fb, false);
+        if (isAnon && !isEditPost) {
+            return;
         }
 
-        twitter && disable(twitter, friendsOnly);
-        fb && disable(fb, friendsOnly);
+        prefixId = prefixId || '';
+        var visibleTT = cur['postVisibilityTT' + prefixId];
+
+        if (visibleTT) {
+            visibleTT.hide();
+        }
+
+        radiobtn(el, isFriendsOnly, 'post_settings_btn' + prefixId);
+
+        var twitter = isEditPost ? ge('wpe_status_export') : ge('status_export');
+        var fb = isEditPost ? ge('wpe_facebook_export') : ge('facebook_export');
+        var label = geByClass1('post_action_btn_text', ge('post_visibility_btn' + prefixId));
+
+        if (isFriendsOnly) {
+            label.innerHTML = ge('friends_only' + prefixId).innerHTML;
+            checkbox(twitter, false);
+            checkbox(fb, false);
+        } else {
+            label.innerHTML = ge('no_friends_only' + prefixId).innerHTML;
+        }
+
+        twitter && disable(twitter, isFriendsOnly);
+        fb && disable(fb, isFriendsOnly);
     },
     needCheckSign: function() {
         var el = ge('check_sign');
@@ -3889,7 +3915,20 @@ var Wall = {
         }
 
         if (submitFromPoster) {
+            var postpone = null;
+            each(medias, function() {
+                var type = this[0];
+
+                if (type == 'postpone') {
+                    postpone = this;
+                }
+            });
+
             medias = [];
+
+            if (postpone) {
+                medias.push(postpone);
+            }
         }
 
         var postbox = submitFromPoster ? ge('submit_post_box') : domClosest('_submit_post_box', ge('official'));
@@ -3911,6 +3950,7 @@ var Wall = {
             facebook_export: !isAnon && ge('facebook_export') ? (isChecked('facebook_export') ? 1 : 0) : '',
             close_comments: ge('close_comments') ? (isChecked('close_comments') ? 1 : 0) : '',
             mute_notifications: ge('mute_notifications') ? (isChecked('mute_notifications') ? 1 : 0) : '',
+            mark_as_ads: isChecked('mark_as_ads') ? 1 : 0,
             official: official,
             poster_bkg_id: submitFromPoster ? cur.posterBkgId : '',
             signed: isChecked('signed'),
@@ -3948,6 +3988,10 @@ var Wall = {
                 animate(ge('box_layer_wrap'), {
                     scrollTop: 0
                 });
+            }
+
+            if (cur.poster && cur.posterActive) {
+                cur.poster.showError();
             }
         }
 
@@ -4238,6 +4282,11 @@ var Wall = {
                     cur.postSent = false;
                     cur.postponeVideoPost = false;
 
+                    var markAsAds = ge('mark_as_ads');
+                    if (markAsAds) {
+                        removeClass(markAsAds, 'on');
+                    }
+
                     if (cur.options.onSendPostDone) {
                         cur.options.onSendPostDone.apply(window, arguments);
                         return;
@@ -4316,6 +4365,10 @@ var Wall = {
                     ge('submit_post_error').innerHTML = (msg.length > 60 ? '<div class="msg_text">' + msg + '</div>' : msg);
                     if (!isVisible('submit_post_error')) {
                         slideDown('submit_post_error', 100);
+                    }
+
+                    if (cur.poster && cur.posterActive) {
+                        cur.poster.showError();
                     }
                     return true;
                 },
@@ -8439,6 +8492,8 @@ var Wall = {
             wallUploadOpts: opts.upload,
             wallUploadVideoOpts: opts.upload_video,
             hasGroupAudioAccess: opts.hasGroupAudioAccess,
+            wallAdsReplacedFeatureTooltip: opts.ads_replaced_feature_tooltip,
+            wallAdsReplacedFeatureTooltipHash: opts.ads_replaced_feature_tooltip_hash,
         });
         if (opts.wall_tpl && opts.wall_tpl.lang) {
             cur.lang = extend(cur.lang || {}, opts.wall_tpl.lang);
@@ -8561,7 +8616,8 @@ var Wall = {
                 },
                 editable: 1,
                 from: 'post',
-                sortable: 1
+                sortable: 1,
+                postponeBtnCont: domPN(ge('post_field')),
             }, opts.media_opts || {}));
 
             var podcastMenu = domByClass(cur.wallAddMedia.menu.menuNode, '_type_podcast');
@@ -8570,6 +8626,10 @@ var Wall = {
             if (podcastMenu && official && !(domData(domClosest('_submit_post_box', official), 'from-oid') == cur.postTo)) {
                 hide(podcastMenu);
             }
+        }
+
+        if (ge('post_visibility_btn')) {
+            Wall.createVisibilityPostTooltip();
         }
 
         cur.withUpload = window.WallUpload && !browser.safari_mobile && inArray(cur.wallType, ['all', 'own', 'feed', 'full_all', 'ads_promoted_stealth']) && Wall.withMentions && cur.wallUploadOpts;
@@ -8621,6 +8681,10 @@ var Wall = {
             cur.destroy.push(clean);
         }
         Wall.updateMentionsIndex();
+
+        if (cur.wallAdsReplacedFeatureTooltip && Wall.isFormPostingInTestMode()) {
+            Wall.showAdsReplacedTooltip();
+        }
 
         if (opts.top_wall_feature_tooltip) {
             setTimeout(function() {
@@ -8682,6 +8746,7 @@ var Wall = {
             closeComments = wrap && ge('close_comments'),
             muteNotifications = wrap && ge('mute_notifications'),
             official = wrap && ge('official'),
+            markAsAds = wrap && ge('mark_as_ads'),
             ttChooser = data(el, 'tt'),
             from = opts.from || (opts.fromGroup ? cur.oid : vk.id),
             fromData = (from == vk.id) ? wall.replyAsProfileData() : (window.replyAsData && window.replyAsData[from] || wall.replyAsGroupDomData(el));
@@ -8693,6 +8758,7 @@ var Wall = {
         if (!wrap && cur.poster && domClosest('poster', el)) {
             wrap = ge('submit_post_box');
             signed = ge('signed');
+            markAsAds = ge('mark_as_ads');
             closeComments = ge('close_comments');
             muteNotifications = ge('mute_notifications');
             official = ge('official');
@@ -8709,6 +8775,10 @@ var Wall = {
 
         if (signed) {
             disable(signed, from > 0);
+        }
+
+        if (markAsAds) {
+            disable(markAsAds, from > 0);
         }
 
         if (closeComments) {
@@ -9467,6 +9537,96 @@ var Wall = {
                 el.post_author_data_tt.show();
             }
         })
+    },
+
+    isFormPostingInTestMode: function() {
+        return hasClass('submit_post_box', 'test_posting_experiment_b');
+    },
+
+    hideAdsReplacedTT: function() {
+        cur.adsReplacedFeatureTT.destroy();
+        cur.wallAdsReplacedFeatureTooltip = null;
+        cur.adsReplacedFeatureTT = null;
+
+        ajax.post('al_index.php', {
+            act: 'hide_feature_tt',
+            hash: cur.wallAdsReplacedFeatureTooltipHash,
+            type: 'ads_in_post_replaced',
+        });
+    },
+
+    showAdsReplacedTooltip: function() {
+        if (cur.adsReplacedFeatureTT) {
+            return;
+        }
+
+        var showTT = function() {
+            var el = geByClass1('addpost_opt');
+
+            if (!el) {
+                return;
+            }
+
+            cur.adsReplacedFeatureTT = new ElementTooltip(el, {
+                content: '<div class="ads_replaced_feature_tt__close" onclick="cur.adsReplacedFeatureTT.hide();"></div>' + getLang('global_ads_in_post_replaced'),
+                forceSide: 'top',
+                cls: 'feature_intro_tt ads_replaced_feature_tt',
+                autoShow: false,
+                noHideOnClick: true,
+                noAutoHideOnWindowClick: true,
+                appendTo: domPN(el),
+                offset: [1, -10],
+                onHide: Wall.hideAdsReplacedTT,
+            });
+            cur.adsReplacedFeatureTT.show();
+        };
+
+        var timeoutId = setTimeout(showTT, 800);
+
+        cur.destroy.push(function() {
+            clearTimeout(timeoutId);
+        });
+
+        cur.destroy.push(function() {
+            cur.adsReplacedFeatureTT && cur.adsReplacedFeatureTT.destroy();
+        });
+    },
+
+    createVisibilityPostTooltip: function(prefixId) {
+        prefixId = prefixId || '';
+        var id = 'post_visibility_btn' + prefixId;
+        var btnWrapEl = ge(id);
+        var ttContentEl = geByClass1('post_action_tt_content', btnWrapEl);
+        var btnEl = geByClass1('post_action_btn_layout', btnWrapEl);
+
+        var buttons = ttContentEl.children;
+        radioBtns['post_settings_btn' + prefixId] = {
+            val: false,
+            els: buttons
+        };
+
+        var postVisibilityTT = new ElementTooltip(btnEl, {
+            appendTo: btnWrapEl,
+            forceSide: 'bottom',
+            autoShow: false,
+            cls: 'eltt_fancy post_action_tt',
+            noOverflow: false,
+            centerShift: 0,
+            offset: [-12, 7],
+            content: ttContentEl,
+            align: 'left',
+            onFirstTimeShow: function() {
+                show(ttContentEl);
+            }
+        });
+
+        cur['postVisibilityTT' + prefixId] = postVisibilityTT;
+
+        cur.destroy.push(function() {
+            if (postVisibilityTT) {
+                postVisibilityTT.destroy();
+            }
+        });
     },
 
     showTopWallTooltip: function(hash) {
@@ -10694,9 +10854,15 @@ Composer = {
         if (Composer.isArticleConvertSuggestAvailable(composer)) {
             if (!composer.articleConvertEl) {
                 var inputWrapEl = gpeByClass('post_field_wrap', composer.input)
+                var beforeElem = geByClass1('post_action_btn', inputWrapEl)
 
                 composer.articleConvertEl = se('<button class="article_post_convert round_button">' + getLang('profile_convert_to_article_short') + '</button>')
-                inputWrapEl.appendChild(composer.articleConvertEl)
+
+                if (!beforeElem) {
+                    inputWrapEl.appendChild(composer.articleConvertEl)
+                } else {
+                    inputWrapEl.insertBefore(composer.articleConvertEl, beforeElem)
+                }
 
                 removeEvent(composer.articleConvertEl)
                 addEvent(composer.articleConvertEl, 'click', function() {

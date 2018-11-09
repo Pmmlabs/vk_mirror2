@@ -85,6 +85,10 @@
     pointer-events: none
 }
 
+.medadd_h_timer {
+    margin-top: 0
+}
+
 .medadd_poll {
     box-sizing: border-box
 }

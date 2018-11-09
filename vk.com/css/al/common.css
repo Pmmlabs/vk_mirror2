@@ -11345,7 +11345,8 @@ button.ui_load_more_btn {
 }
 
 .article_post_convert {
-    margin-left: 6px;
+    display: block;
+    margin-left: 12px;
     margin-bottom: 15px
 }
 

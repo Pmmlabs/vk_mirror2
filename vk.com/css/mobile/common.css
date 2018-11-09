@@ -2998,6 +2998,7 @@ input.wide_button {
 
 .pi_signed .i_ads_mark {
     background: url(/images/mobile/post_icons.png?7) no-repeat -121px;
+    height: 12px;
     padding: 0 12px 0 0;
     margin-right: 4px
 }
@@ -6343,6 +6344,30 @@ div.pm_item .pm_counter {
     padding: 0 0 2px
 }
 
+.create_post .post_timer {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    font-size: 15px;
+    z-index: 5
+}
+
+.create_post .post_timer:after {
+    background-image: url('/images/mobile/skins/icon/statuses.png?10');
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    background-position: 0 -824px;
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 20px
+}
+
+.vk_2x .create_post .post_timer:after {
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?10')
+}
+
 .create_post .medias_thumb .ph_img,
 .form_item .medias_thumb .ph_img {
     min-width: 40px;
@@ -6404,6 +6429,12 @@ div.pm_item .pm_counter {
 
 .create_post_extra .textfield {
     border: 1px solid #d1d7de
+}
+
+.create_post_timer {
+    width: 100%;
+    height: 38px;
+    background-color: #fff
 }
 
 .cp_attached_wrap .ph_img,
@@ -12593,8 +12624,15 @@ a.Popup__headerCorner {
 }
 
 .Control_type_checkbox {
-    padding-top: 10px;
-    padding-bottom: 10px
+    padding-bottom: 10px;
+    padding-top: 10px
+}
+
+@media (max-width: 320px) {
+    .Control_type_checkbox {
+        padding-top: 10px;
+        padding-bottom: 0
+    }
 }
 
 .Control_type_radio .Control__native:checked+.Control__icon:before {
@@ -12627,6 +12665,10 @@ a.Popup__headerCorner {
 .Control_type_switcher .Control__label {
     padding-top: 0;
     padding-bottom: 0
+}
+
+.create_post .Control_type_checkbox {
+    padding-left: 0
 }
 
 .Select {
@@ -26560,6 +26602,34 @@ body.apps_settingsPageBody {
     padding: 1px 4px
 }
 
+.header__profile {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.header__avatar {
+    margin: -9px 8px 0 0;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    min-width: 36px;
+    height: 36px
+}
+
+.header__text {
+    vertical-align: top;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis
+}
+
+.header_hidden {
+    display: none
+}
+
 @media (min-width: 882px) {
     .h .basis__header .mhb_logo .mh_header {
         padding-top: 15px!important;
@@ -26582,6 +26652,9 @@ body.apps_settingsPageBody {
 }
 
 @media (min-width: 320px) {
+    .header__avatar {
+        margin: 5px 8px 0 0
+    }
     .h .mhb_back {
         padding-top: 0!important;
         padding-bottom: 0!important;
@@ -29057,6 +29130,11 @@ body.apps_settingsPageBody {
     overflow: hidden;
     font-size: 15px;
     color: #909499
+}
+
+.r .basisGroup .new_post_container,
+.r .basisProfile .new_post_container {
+    margin: 10px 0
 }
 
 .r .cp_attached_post .pi_medias>:first-child,
@@ -47053,6 +47131,7 @@ screen and (min-device-pixel-ratio: 1.5) {
     .pi_signed .i_signed,
     .pic_from .i_copy {
         background-image: url(/images/mobile/post_icons_2x.png?7);
+        height: 12px;
         -moz-background-size: 144px 17px!important;
         -o-background-size: 144px 17px!important;
         background-size: 144px 17px!important

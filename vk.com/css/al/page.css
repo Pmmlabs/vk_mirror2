@@ -296,7 +296,7 @@
     padding: 17px 0 2px
 }
 
-.post_poster:not(.post_signed):not(.post_fr_likes):not(.post_btl):not(.wpe_wrap) .like_cont {
+.post_poster:not(.post_signed):not(.post_fr_likes):not(.post_btl):not(.wpe_wrap):not(.post_marked_as_ads) .like_cont {
     border-top: 0
 }
 
@@ -2902,6 +2902,25 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     display: none
 }
 
+.poster__postpone {
+    padding: 0 15px;
+    border-top: 1px solid #e7e8ec
+}
+
+.poster__postpone .page_preview_postpone_wrap {
+    padding-top: 10px
+}
+
+.poster__settings-btns-wrapper {
+    padding: 15px;
+    border-top: 1px solid #e7e8ec
+}
+
+.poster .post_action_btn {
+    padding: 1px 0;
+    margin: 0 11px 0 0
+}
+
 .poster__image {
     position: absolute;
     height: 100%;
@@ -3276,6 +3295,11 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 
 #submit_post_box:not(.shown):not(.test_posting_experiment_b):not(.test_posting_experiment_c):not(.own_field) .poster__open-btn-wrapper+.page_add_media {
     right: 61px
+}
+
+.poster #submit_post_error,
+.poster .wpe_error.error {
+    margin: 10px!important
 }
 
 .wall_module .page_wall_posts .poster.poster_edit {
@@ -4723,6 +4747,7 @@ h5.post_author {
     color: #939393
 }
 
+.wall_module .post_poster.wpe_wrap .wall_text,
 .wall_module .wall_text,
 .wall_module.wl_postreach_wall_module .post_poster .wall_text {
     padding: 8px 20px 19px
@@ -4873,6 +4898,11 @@ h5.post_author {
     margin-top: 5px;
     padding: 0;
     background: none
+}
+
+.post_poster .wall_marked_as_ads,
+.post_poster .wall_signed {
+    margin: 10px 0
 }
 
 .wall_signed {
@@ -7659,6 +7689,106 @@ img.page_preview_video {
 .post_field_wrap {
     position: relative;
     margin-left: 43px
+}
+
+.post_action_tt_content {
+    display: none
+}
+
+.post_action_tt {
+    width: 210px;
+    padding: 8px 0
+}
+
+.post_action_tt .eltt_arrow_back {
+    display: none
+}
+
+.post_action_btn_layout,
+.post_action_btn_text {
+    position: relative;
+    display: inline-block
+}
+
+.post_action_tt_item {
+    padding: 8px 0 9px 12px;
+    color: #000
+}
+
+.post_action_tt_item:hover {
+    background-color: #e7edf2
+}
+
+.post_action_tt_item.radiobtn.on:before {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%235181B8%22%20d%3D%22M10%2016c-.3%200-.5-.1-.7-.3l-3.5-3.5c-.4-.4-.4-1%200-1.4s1-.4%201.4%200l2.8%202.8%206.3-6.3c.4-.4%201-.4%201.4%200s.4%201%200%201.4l-7%207c-.2.2-.4.3-.7.3z%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat
+}
+
+.post_action_tt_item.radiobtn:before {
+    float: right;
+    background-image: none;
+    padding-top: 5px;
+    padding-right: 10px
+}
+
+.post_action_btn {
+    position: relative;
+    display: inline-block;
+    margin: 2px 11px 14px 12px;
+    vertical-align: top;
+    color: #2a5885;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.anon_field_on .post_action_btn.post_available {
+    opacity: 0.5
+}
+
+#submit_post_box:not(.shown):not(.test_posting_experiment_b):not(.test_posting_experiment_c):not(.own_field) .post_action_btn {
+    display: block;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden
+}
+
+.post_action_btn:hover {
+    cursor: pointer
+}
+
+.post_action_btn~.post_action_btn {
+    margin-left: 0
+}
+
+.post_action_btn .post_action_btn_layout {
+    margin-top: 2px;
+    margin-bottom: 2px
+}
+
+.post_action_btn .post_action_btn_layout:active {
+    margin-top: 3px;
+    margin-bottom: 1px
+}
+
+.post_action_btn .post_action_btn_layout:after {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%22944%201152%208%204%22%3E%3Cpath%20d%3D%22M945.2%201152.2C944.9%201152%20944.5%201152%20944.3%201152.3%20944.1%201152.6%20944.1%201153%20944.4%201153.2L947.6%201155.8C947.8%201156%20948.2%201156%20948.4%201155.8L951.6%201153.2C951.9%201153%20951.9%201152.6%20951.7%201152.3%20951.5%201152%20951.1%201152%20950.8%201152.2L948%201154.5%20945.2%201152.2Z%22%20fill%3D%22%23828a99%22%2F%3E%3C%2Fsvg%3E") no-repeat;
+    content: " ";
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    vertical-align: text-bottom;
+    margin-bottom: 1px
+}
+
+.wpe_text_cont .post_action_btn {
+    margin: 20px 11px 0 0
+}
+
+.wpe_text_cont .post_action_btn:active {
+    margin: 21px 11px -1px 0
 }
 
 .post_field_user_image {
@@ -12641,6 +12771,34 @@ button.wall_block_app_btn {
 
 .eltt.feature_info_tooltip .feature_tooltip__close:hover {
     opacity: 1
+}
+
+.eltt.ads_replaced_feature_tt {
+    font-size: 14px;
+    color: #000;
+    line-height: 19px;
+    width: 210px;
+    padding: 8px 30px 8px 12px
+}
+
+.eltt.ads_replaced_feature_tt .ads_replaced_feature_tt__close {
+    background: url('/images/svg_icons/groups/hide.svg') no-repeat 50% 50%;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    right: 7px;
+    top: 8px;
+    cursor: pointer;
+    opacity: 0.8
+}
+
+.eltt.ads_replaced_feature_tt .ads_replaced_feature_tt__close:hover {
+    opacity: 1
+}
+
+.eltt.ads_replaced_feature_tt.eltt_arrow_size_normal>.eltt_arrow_back {
+    border-top: 8px solid rgba(0, 20, 51, .2)
 }
 
 .poster_feature_tt {

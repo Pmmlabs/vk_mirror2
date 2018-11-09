@@ -1278,6 +1278,10 @@ svg+.media_voting_footer_voted_friend+.media_voting_footer_voted_friend+.media_v
     padding-top: 10px
 }
 
+.page_preview_postpone_wrap {
+    padding-top: 0
+}
+
 .page_preview_audio_wrap {
     position: relative
 }
