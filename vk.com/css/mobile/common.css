@@ -20728,6 +20728,10 @@ figure[data-type="102"] .article_object_video_play {
     line-height: 20px
 }
 
+.articleView__content_misc_block .articleView__ads_block:not(:empty)+.articleView__content_views_info {
+    margin-top: 20px
+}
+
 .articleView__content_misc_block .articleView__social_buttons {
     margin: 5px 0 0 -10px
 }

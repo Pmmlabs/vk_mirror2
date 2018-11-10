@@ -349,7 +349,7 @@ var stVersions = {
     'docs.css': 31528916090,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 20638742602,
-    'helpdesk.js': 1470549582,
+    'helpdesk.js': 406948464,
     'helpdesk.css': 37930070348,
     'tickets.js': 1151194956,
     'tickets.css': 37440192584,
@@ -574,6 +574,7 @@ var stVersions = {
     'podcast_add.css': 19497670227,
     'podcast_choose.css': 20524553788,
     'podcast_stats.css': 18067421686,
+    'cmodules/web/poster.js': 986638267,
     'cmodules/web/grip.js': 4164501492,
     'cmodules/web/group_invite_chat.js': 48393792976,
     'group_invite_chat.css': 83953429844,
@@ -654,4 +655,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 2645;
+var _rnd = 7755;

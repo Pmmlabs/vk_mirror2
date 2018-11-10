@@ -2161,10 +2161,11 @@ var Helpdesk = {
             Helpdesk.chooseDocBox(e, t)
         } : delete cur.addExistingDoc
     },
-    showTemplateTooltip: function(e, t) {
-        var s = cur.templates[t];
-        return s && s.tooltip ? void showTooltip(e, {
-            text: s.tooltip,
+    showTemplateTooltip: function(e, t, s) {
+        if (!t.shiftKey) return !1;
+        var o = cur.templates[s];
+        return o && o.tooltip ? void showTooltip(e, {
+            text: o.tooltip,
             showdt: 400,
             slide: 15,
             hasover: 1,
