@@ -39,22 +39,22 @@ var ShareBox = {
                 if (!buttonLocked("like_share_send")) {
                     hide("like_share_error");
                     var e = radioBtns.like_share.val,
-                        a = 0,
-                        i = cur.sbField && data(cur.sbField, "composer"),
-                        s = i ? Composer.getSendParams(i) : {
+                        i = 0,
+                        s = cur.sbField && data(cur.sbField, "composer"),
+                        d = s ? Composer.getSendParams(s) : {
                             message: trim(val(cur.sbField))
                         };
-                    switch (cur.sbShParam && (s.share_param = cur.sbShParam), e) {
+                    switch (cur.sbShParam && (d.share_param = cur.sbShParam), e) {
                         case 1:
-                            var d = cur.wdd && cur.wdd.like_club_dd;
-                            if (!d || !d.selCount) return elfocus("like_club_inp");
-                            for (var r in d.selected) a = intval(r.replace(/_$/, ""));
+                            var r = cur.wdd && cur.wdd.like_club_dd;
+                            if (!r || !r.selCount) return elfocus("like_club_inp");
+                            for (var o in r.selected) i = intval(o.replace(/_$/, ""));
                         case 0:
                             vk.widget && 4 !== vk.widget ? (window.allowCallback = function() {
-                                ajax.post("like.php", Wall.fixPostParams(extend(s, {
+                                ajax.post("like.php", Wall.fixPostParams(extend(d, {
                                     act: "a_do_publish",
                                     from: "box",
-                                    to: a,
+                                    to: i,
                                     hash: cur.sbShareHash,
                                     object: cur.sbObj,
                                     list: cur.sbList,
@@ -63,25 +63,25 @@ var ShareBox = {
                                 })), ShareBox.options()), cur.shareAction = "publish"
                             }, Widgets.popupBoxOpen("like.php", {
                                 act: "a_allow_publish_box",
-                                to: a,
+                                to: i,
                                 object: cur.sbObj,
                                 list: cur.sbList
                             }, "vk_allow", {
                                 height: 171
-                            })) : (ajax.post("like.php", Wall.fixPostParams(extend(s, {
+                            })) : (ajax.post("like.php", Wall.fixPostParams(extend(d, {
                                 act: "a_do_publish",
                                 from: "box",
-                                to: a,
+                                to: i,
                                 hash: cur.sbShareHash,
                                 object: cur.sbObj,
                                 list: cur.sbList,
-                                ref: cur.section,
+                                ref: a.shRef || cur.section,
                                 ret_data: 1
                             })), ShareBox.options()), cur.shareAction = "publish");
                             break;
                         case 2:
-                            var d = cur.wdd && cur.wdd.like_mail_dd,
-                                s = extend(s, {
+                            var r = cur.wdd && cur.wdd.like_mail_dd,
+                                d = extend(d, {
                                     act: "a_send_box",
                                     from: "box",
                                     to_ids: [],
@@ -92,9 +92,9 @@ var ShareBox = {
                                     media: cur.sbObj + (cur.sbList ? "/" + cur.sbList : ""),
                                     ret_data: 1
                                 });
-                            if (!d || !d.selCount) return elfocus("like_mail_inp");
-                            for (var r in d.selected) s.to_ids.push(r.replace(/_$/, ""));
-                            s.to_ids = s.to_ids.join(","), ajax.post("al_im.php", Wall.fixPostParams(s), ShareBox.options()), cur.shareAction = "im_send"
+                            if (!r || !r.selCount) return elfocus("like_mail_inp");
+                            for (var o in r.selected) d.to_ids.push(o.replace(/_$/, ""));
+                            d.to_ids = d.to_ids.join(","), ajax.post("al_im.php", Wall.fixPostParams(d), ShareBox.options()), cur.shareAction = "im_send"
                     }
                 }
             },

@@ -996,7 +996,7 @@ var Feed = {
     },
     getModuleRef: function() {
         var e = cur.module || "feed_other";
-        return "feed" == cur.module && (e = "news" == cur.section ? cur.subsection ? "feed_news_" + cur.subsection : "feed_news" : cur.section ? e + "_" + cur.section : "feed_other"), e
+        return "feed" == cur.module && (e = "news" == cur.section ? cur.subsection ? "feed_news_" + cur.subsection : "feed_news" : "podcasts" === cur.section ? e + "_" + cur.section + ("recent" === cur.subsection ? "_my" : "") : cur.section ? e + "_" + cur.section : "feed_other"), e
     },
     ignoreItem: function(post_raw, feed_raw, hash, caption_type, uids) {
         var postEl = ge("post" + post_raw),

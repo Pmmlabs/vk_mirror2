@@ -11075,3 +11075,8 @@ img[src^="/images/mobile/places/"] {
     bottom: 0;
     z-index: 2
 }
+
+.app_edit_cont_desktop #app_save_btn,
+.app_edit_cont_mobile #app_save_btn {
+    padding-top: 0
+}

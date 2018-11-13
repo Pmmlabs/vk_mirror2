@@ -151,7 +151,7 @@ var stVersions = {
     'fonts_cnt.css': 2660709036,
     'common.js': 1161,
     'common.css': 56065770609,
-    'cmodules/web/common_web.js': 23,
+    'cmodules/web/common_web.js': 24,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
     'uncommon.css': 18793567391,
@@ -163,10 +163,10 @@ var stVersions = {
     'blog.css': 23316718234,
     'blog.js': 3939164531,
     'html5audio.js': 976782859,
-    'audioplayer.js': 152770724770,
+    'audioplayer.js': 158115287712,
     'audioplayer.css': 22292911642,
     'audio_html5.js': 287741914,
-    'audio.js': 2858608997,
+    'audio.js': 3719544634,
     'cmodules/web/audio_admins.js': 7226287612,
     'audio.css': 32155393325,
     'audio_admins.css': 25802391061,
@@ -278,17 +278,17 @@ var stVersions = {
     'wide_dd.js': 452755344,
     'writebox.css': 21762733199,
     'writebox.js': 73802978188,
-    'sharebox.js': 3306997107,
+    'sharebox.js': 866172943,
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 3433301603,
+    'feed.js': 3987527953,
     'feed.css': 26673140135,
     'privacy.js': 711405089,
     'privacy.css': 19561208893,
     'apps.css': 48335326955,
     'apps.js': 11179117589,
-    'apps_edit.js': 9224971879,
+    'apps_edit.js': 12424122310,
     'apps_edit.css': 37305706369,
     'apps_check.js': 3204387834,
     'apps_check.css': 31365711464,
@@ -568,7 +568,7 @@ var stVersions = {
     'cmodules/web/audio_upload.js': 8183714431,
     'cmodules/web/photo_crop.js': 4423121175,
     'photo_crop.css': 1559756484,
-    'cmodules/web/podcast.js': 9472223059,
+    'cmodules/web/podcast.js': 11173842069,
     'cmodules/web/podcast_add.js': 4130357064,
     'cmodules/web/podcast_choose.js': 4574431326,
     'podcast.css': 44205798024,
@@ -596,7 +596,7 @@ var stVersions = {
     'cmodules/web/landing_transparency.js': 34101339147,
     'landings/transparency.css': 36214849422,
     'cmodules/web/emoji.js': 164878560,
-    'cmodules/web/apps_achievements.js': 67746697551,
+    'cmodules/web/apps_achievements.js': 69271105644,
     'lang': 6927
 };
 var stTypes = {
@@ -656,4 +656,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 714;
+var _rnd = 1597;
