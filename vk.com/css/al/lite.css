@@ -4339,6 +4339,10 @@ div.top_result_baloon a {
     line-height: 20px
 }
 
+.audio_pl_snippet2.audio_pl_snippet_small.audio_pl__explicit .audio_pl_snippet__info_title_row:after {
+    top: 3px
+}
+
 .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info {
     height: 64px;
     margin-left: 64px;
@@ -4463,7 +4467,7 @@ div.top_result_baloon a {
     display: block;
     content: '';
     position: absolute;
-    top: 4px;
+    top: 5px;
     right: 0;
     width: 13px;
     height: 13px;
@@ -4475,7 +4479,7 @@ div.top_result_baloon a {
     display: block;
     font-size: 18px;
     font-weight: 700;
-    line-height: 20px;
+    line-height: 22px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -4486,6 +4490,7 @@ div.top_result_baloon a {
     text-decoration: none
 }
 
+.audio_pl_snippet2 .audio_pl_snippet__info_title:hover .audio_pl_snippet__info_subtitle,
 .audio_pl_snippet2 .audio_pl_snippet__info_title:hover .audio_pl_snippet_info_maintitle {
     text-decoration: underline
 }

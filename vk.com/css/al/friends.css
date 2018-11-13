@@ -51,6 +51,33 @@
     padding: 0
 }
 
+.friend__header {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start
+}
+
+.friends__header-title-wrapper {
+    display: -ms-flexbox;
+    display: flex;
+    min-width: 0;
+    -ms-flex: 1;
+    flex: 1;
+    -ms-flex-align: baseline;
+    align-items: baseline;
+    white-space: nowrap
+}
+
+.friends__header-title {
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.friends__header-list-count {
+    padding: 0 11px
+}
+
 .friends_list,
 .people_results {
     padding: 0 20px

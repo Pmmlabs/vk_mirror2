@@ -1446,7 +1446,7 @@ var Market = {
                     case "ERR_UPLOAD_TERMINATED":
                         return;
                     default:
-                        o = getLang("profile_oph_err_unknown").replace("{link}", '<a href="/support?act=new&from=ph">').replace("{/link}", "</a>")
+                        o = getLang("groups_market_photo_error").replace("{link}", '<a href="/support?act=new&from=ph">').replace("{/link}", "</a>")
                 }
                 if (o = o.replace("{sorry}", "<b>" + getLang("global_error_occured") + "</b>"), 2 === e) {
                     var s = ge("market_photo_crop_error");
