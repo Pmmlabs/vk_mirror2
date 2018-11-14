@@ -9252,6 +9252,31 @@ button.ui_load_more_btn {
     }
 }
 
+._audio_pl.audio_pl_top_audios {
+    counter-reset: chart-counter
+}
+
+._audio_pl.audio_pl_top_audios .audio_row {
+    counter-increment: chart-counter
+}
+
+._audio_pl.audio_pl_top_audios .audio_row .audio_row__inner:before {
+    width: 26px;
+    content: counter(chart-counter);
+    color: #222;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 20px;
+    display: block;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -ms-flex-item-align: center;
+    align-self: center;
+    text-align: center;
+    margin-left: -4px;
+    margin-right: 6px
+}
+
 .wk_text .audio_row.inlined {
     max-width: 362px;
     margin: 0

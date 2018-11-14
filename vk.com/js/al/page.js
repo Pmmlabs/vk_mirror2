@@ -4744,10 +4744,11 @@ var Wall = {
         // find first show next button
         var repliesNext = geByClass1('replies_next', domPN(short));
 
-        re(short);
-
         if (repliesNext) {
+            show(repliesNext);
+            repliesNext.focus();
             repliesNext.click();
+            re(short);
         }
 
         return cancelEvent(event);
@@ -4807,10 +4808,14 @@ var Wall = {
                     hasNew = true;
                 });
 
+                var edgeEl;
+
                 if (isPrev) {
-                    domInsertAfter(fragment, showMore);
-                } else {
+                    edgeEl = domFC(fragment);
                     domInsertBefore(fragment, showMore);
+                } else {
+                    edgeEl = domLC(fragment);
+                    domInsertAfter(fragment, showMore);
                 }
 
                 wall.addReplyNames(names);
@@ -4837,18 +4842,30 @@ var Wall = {
                     }
                 }
 
-                if (moreCount) {
-                    if (isPrev) {
-                        val(showMore, getLang('wall_prev_n_replies', moreCount));
-                    } else {
-                        val(showMore, getLang('wall_next_n_replies', moreCount));
-                    }
-
-                    domData(showMore, 'count', moreCount);
-                    domData(showMore, 'offset', newOffset);
-                    show(showMore);
+                // Save focus on element for accessibility
+                if (document.activeElement === showMore) {
+                    addEvent(showMore, 'focusout', function() {
+                        re(showMore);
+                    });
                 } else {
                     re(showMore);
+                }
+
+                if (moreCount) {
+                    var newShowMore = showMore.cloneNode(true);
+
+                    removeClass(newShowMore, 'replies_next_pre_deleted');
+
+                    if (isPrev) {
+                        domInsertBefore(newShowMore, edgeEl);
+                        val(newShowMore, getLang('wall_prev_n_replies', moreCount));
+                    } else {
+                        domInsertAfter(newShowMore, edgeEl);
+                        val(newShowMore, getLang('wall_next_n_replies', moreCount));
+                    }
+
+                    domData(newShowMore, 'count', moreCount);
+                    domData(newShowMore, 'offset', newOffset);
                 }
 
                 removeClass(ge('replies_wrap_deep' + itemFullId), 'replies_deep_has_short');
@@ -4879,10 +4896,10 @@ var Wall = {
                 wall.repliesSideSetup(postId);
             },
             onFail: function() {
-                show(showMore);
+                removeClass(showMore, 'replies_next_pre_deleted');
             },
             showProgress: function() {
-                hide(showMore);
+                addClass(showMore, 'replies_next_pre_deleted');
                 domInsertAfter(loader, showMore);
                 show(loader);
             },
@@ -5080,6 +5097,7 @@ var Wall = {
                         maxShown: maxShown !== undefined ? maxShown : undefined,
                         hideAfterCount: hideAfterCount !== undefined ? hideAfterCount : undefined,
                         vectorIcon: vectorIcon,
+                        hideLabel: getLang('wall_reply_add_attach_label'),
                         toId: cur.wallType === 'full' ? cur.oid : cur.postTo,
                         onToggleBlock: function(visible) {
                             var field = ge('reply_box' + post);
@@ -8714,12 +8732,15 @@ var Wall = {
         var canReplyAsGroup = gpeByClass('reply_fakebox_with_official', el);
 
         if (canReplyAsGroup) {
-            tooltips.hide(el);
+            if (window.tooltips) {
+                window.tooltips.hide(el);
+            }
 
-            Wall.showEditReply(postId, null, false, false, false, function() {
+            Wall.showEditReply(postId, null, false, false, true, function() {
                 var official = ge('reply_as_group' + postId);
 
                 if (official) {
+                    official.focus();
                     official.click();
                 }
             });
@@ -9949,7 +9970,14 @@ var Wall = {
     },
 
     replyMoreAttachShow: function(btn, postId, event) {
-        Wall.showEditReply(postId, null, false, false, false);
+        Wall.showEditReply(postId, null, false, false, true, function() {
+            var more = geByClass1('ms_items_more_wrap', ge('reply_more_attaches' + postId));
+
+            if (more) {
+                more.focus();
+                more.click();
+            }
+        });
 
         return event && cancelEvent(event);
     },

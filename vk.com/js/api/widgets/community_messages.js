@@ -55,7 +55,11 @@ var CommunityWidget = {
         this.insertUploadInput('photo_upload_inp');
         this.insertUploadInput('doc_upload_inp');
 
-        geByClass1('ms_items_more_helper').style.right = '';
+        var moreItemsHelper = geByClass1('ms_items_more_helper');
+
+        if (moreItemsHelper) {
+            moreItemsHelper.style.right = '';
+        }
 
         this.getSettings();
 

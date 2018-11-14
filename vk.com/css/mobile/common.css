@@ -13838,6 +13838,30 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     border: 0
 }
 
+.AudioBlock_top_audios {
+    counter-reset: chart-counter
+}
+
+.AudioBlock_top_audios .audio_item {
+    counter-increment: chart-counter
+}
+
+.AudioBlock_top_audios .audio_item .ai_body:before {
+    width: 32px;
+    content: counter(chart-counter);
+    color: #222;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 48px;
+    float: left;
+    text-align: center;
+    margin-right: 4px
+}
+
+.AudioBlock_top_audios .audio_item .ai_controls {
+    padding-left: 36px
+}
+
 
 /*!
  * Hacks
@@ -14134,6 +14158,34 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .ArtistPage_playlists .audioPlaylistsPage__item_removed .audioPlaylistsPage__itemLink {
     opacity: 1
+}
+
+.ArtistPage_top_audios {
+    counter-reset: chart-counter
+}
+
+.ArtistPage_top_audios .ArtistPage__header {
+    display: none
+}
+
+.ArtistPage_top_audios .audio_item {
+    counter-increment: chart-counter
+}
+
+.ArtistPage_top_audios .audio_item .ai_body:before {
+    width: 32px;
+    content: counter(chart-counter);
+    color: #222;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 48px;
+    float: left;
+    text-align: center;
+    margin-right: 4px
+}
+
+.ArtistPage_top_audios .audio_item .ai_controls {
+    padding-left: 36px
 }
 
 .AudioSpecialForYou {
