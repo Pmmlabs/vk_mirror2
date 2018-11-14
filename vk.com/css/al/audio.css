@@ -2292,7 +2292,8 @@
 
 .audio_layer_container {
     border-radius: 0 0 4px 4px;
-    overflow: hidden
+    overflow: hidden;
+    text-align: left
 }
 
 .audio_layer_container .audio_page__sort_dd {

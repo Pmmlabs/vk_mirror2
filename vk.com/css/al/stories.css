@@ -392,7 +392,7 @@
 }
 
 .stories_author_inner {
-    width: 100%
+    width: calc(100% - 40px)
 }
 
 .stories_author_photo {
@@ -410,7 +410,8 @@
     pointer-events: none
 }
 
-.stories_author_photo_wrap:hover~.stories_author_name {
+.stories_author_photo_wrap:hover~.stories_author_name,
+.stories_author_photo_wrap:hover~.stories_narrative_author_link {
     text-decoration: underline
 }
 
@@ -454,6 +455,11 @@
 .stories_narrative_author {
     color: hsla(0, 0%, 100%, .7);
     text-shadow: 0 1px 3px rgba(0, 0, 0, .32)
+}
+
+.stories_narrative_author_link {
+    pointer-events: auto;
+    color: inherit
 }
 
 .stories_author_name {
