@@ -9720,14 +9720,14 @@ body.sf .nim-dialog .nim-dialog--unread {
     }
 }
 
-.im-typing {
+.im-activity {
     position: relative;
     padding-left: 47px;
     font-size: 12.5px;
     color: #a9abad
 }
 
-.im-typing .im-typing--icon.pr {
+.im-activity .im-activity--icon.pr {
     float: left;
     position: absolute;
     left: 7px;
@@ -9735,58 +9735,103 @@ body.sf .nim-dialog .nim-dialog--unread {
     line-height: inherit
 }
 
-.im-typing .im-typing--icon .pr_bt {
+.im-activity .im-activity--icon .pr_bt {
     margin-right: 3px;
-    margin-top: -2px;
-    background: #a9abad;
-    vertical-align: middle;
-    -o-animation: 1.1s linear 0s infinite typer;
-    animation: 1.1s linear 0s infinite typer
+    background: #a9abad
 }
 
-.im-typing .im-typing--icon .pr_bt:nth-child(2) {
+.im-activity .im-activity--icon .pr_bt:last-child {
+    margin-right: 0
+}
+
+[data-activity-type=typing] .im-activity .im-activity--icon .pr_bt {
+    -o-animation: 1.1s linear 0s infinite activity__typing;
+    animation: 1.1s linear 0s infinite activity__typing;
+    will-change: opacity;
+    margin-top: -2px;
+    vertical-align: middle
+}
+
+[data-activity-type=typing] .im-activity .im-activity--icon .pr_bt:nth-child(2) {
     -o-animation-delay: 0.36666667s;
     animation-delay: 0.36666667s
 }
 
-.im-typing .im-typing--icon .pr_bt:nth-child(3) {
+[data-activity-type=typing] .im-activity .im-activity--icon .pr_bt:nth-child(3) {
     -o-animation-delay: 0.73333333s;
     animation-delay: 0.73333333s
 }
 
-.im-typing .im-typing--icon .pr_bt:last-child {
-    margin-right: 0
+[data-activity-type=recording] .im-activity .im-activity--icon .pr_bt {
+    -o-animation: 1.1s linear 0s infinite activity__recording-audio;
+    animation: 1.1s linear 0s infinite activity__recording-audio;
+    will-change: transform, opacity;
+    height: 12px;
+    width: 3px;
+    border-radius: 1.5px;
+    -o-transform: scaleY(0.45);
+    transform: scaleY(0.45)
 }
 
-.im-typing.im-typing_shown {
-    visibility: visible
+[data-activity-type=recording] .im-activity .im-activity--icon .pr_bt:nth-child(2) {
+    -o-animation-delay: 0.25s;
+    animation-delay: 0.25s
 }
 
-.im-typing.im-typing_classic .im-typing--icon.pr {
+[data-activity-type=recording] .im-activity .im-activity--icon .pr_bt:nth-child(3) {
+    -o-animation-delay: 0.50s;
+    animation-delay: 0.50s
+}
+
+.im-activity.im-activity_classic .im-activity--icon.pr {
     left: 11px
 }
 
-@-o-keyframes typer {
-    0% {
-        opacity: 0.5
+@-o-keyframes activity__recording-audio {
+    0%,
+    to {
+        opacity: 0.2;
+        -o-transform: scaleY(0.45);
+        transform: scaleY(0.45)
     }
-    25% {
-        opacity: 1
-    }
-    50% {
-        opacity: 0.5
+    30% {
+        opacity: 1;
+        -o-transform: scaleY(1);
+        transform: scaleY(1)
     }
 }
 
-@keyframes typer {
-    0% {
+@keyframes activity__recording-audio {
+    0%,
+    to {
+        opacity: 0.2;
+        -o-transform: scaleY(0.45);
+        transform: scaleY(0.45)
+    }
+    30% {
+        opacity: 1;
+        -o-transform: scaleY(1);
+        transform: scaleY(1)
+    }
+}
+
+@-o-keyframes activity__typing {
+    0%,
+    to {
         opacity: 0.5
     }
-    25% {
+    30% {
         opacity: 1
     }
-    50% {
+}
+
+@keyframes activity__typing {
+    0%,
+    to {
         opacity: 0.5
+    }
+    30% {
+        opacity: 1
     }
 }
 

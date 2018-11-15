@@ -588,8 +588,7 @@ var Helpdesk = {
     },
     showPassBox: function() {
         var e = Helpdesk._getCheckedTicketsList();
-        return !showBox("helpdesk", {
-            act: "show_pass_box",
+        return !showBox("helpdesk?act=a_show_pass_box", {
             tickets: e
         }, {
             params: {

@@ -169,6 +169,9 @@
 .ij_header {
     margin: -4px 0 0;
     font-size: 20px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
     text-align: center
 }
 
@@ -374,19 +377,23 @@
 
 .index_users_wrap.page_block {
     margin: 0 350px 0 0;
-    padding: 25px;
+    padding: 25px 25px 21px;
     overflow: hidden
 }
 
 .index_users_header {
-    margin: -4px 0 5px;
-    font-size: 20px
+    margin: -10px 0 5px;
+    font-size: 20px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    line-height: 24px
 }
 
 .index_users_info {
-    font-size: 14px;
+    font-size: 13px;
     color: #222;
-    line-height: 23px
+    line-height: 15px
 }
 
 .index_users {
@@ -397,12 +404,13 @@
     width: 100px;
     height: 100px;
     margin: 0 5px 10px;
-    padding: 35px 39px 85px;
+    padding: 34px 39px 84px;
     border: 1px solid rgba(0, 20, 51, .12);
     border-radius: 4px;
     overflow: hidden;
     position: relative;
-    float: left
+    float: left;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .02), 0 2px 4px rgba(0, 0, 0, .02)
 }
 
 .index_user_row:hover {

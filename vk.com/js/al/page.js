@@ -685,8 +685,19 @@ var Page = {
                     _postsSeenModules[j] = module;
                     p = posts[i][j];
 
+                    postElem = ge('post' + j);
+                    var podcastSnippet = geByClass1('podcast_snippet', postElem);
+
+                    if (podcastSnippet) {
+                        stManager.add([jsc('web/podcast.js')], function() {
+                            Podcast.log('view', {
+                                episodeId: domData(podcastSnippet, 'episode-id'),
+                                refEl: podcastSnippet,
+                            });
+                        });
+                    }
+
                     if (!(j in isAdPost)) {
-                        postElem = ge('post' + j);
                         // TODO: there are rare situations in which `Page._isAdPost` will be calculated wrong.
                         // For example:
                         // 1) Visit ad post page (e.g. `vk.com/wall-18098621_178771`)

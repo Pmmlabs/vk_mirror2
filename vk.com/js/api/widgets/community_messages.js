@@ -1389,7 +1389,8 @@ var CommunityWidget = {
         if (now - last_typing >= 5000) {
             cur.lastTyping = now;
             ajax.post('al_im.php', {
-                act: 'a_typing',
+                act: 'a_activity',
+                type: 'typing',
                 peer: -this.groupInfo.id,
                 hash: cur.sendHash,
             }, {

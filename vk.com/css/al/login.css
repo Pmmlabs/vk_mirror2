@@ -1628,3 +1628,35 @@ table.login_blocked_reason_thumbs {
     display: inline-block;
     margin: 0 7px -3px 0
 }
+
+.login_compact_mobile_promo {
+    position: relative;
+    margin: 29px 350px 0 0;
+    padding: 56px 40px 58px;
+    overflow: hidden
+}
+
+.login_compact_mobile_promo_picture {
+    position: absolute;
+    right: 32px;
+    bottom: 0;
+    width: 350px;
+    height: 200px
+}
+
+.login_compact_mobile_promo_title {
+    margin: 0 0 16px;
+    max-width: 150px;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.login_compact_mobile_promo_text {
+    max-width: 150px;
+    color: #656565;
+    font-size: 14px;
+    line-height: 19px
+}
