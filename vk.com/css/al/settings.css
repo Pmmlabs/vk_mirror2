@@ -15,6 +15,7 @@
 #privacy_l_item112 .privacy_item_icon,
 #privacy_l_item113 .privacy_item_icon,
 #privacy_l_item114 .privacy_item_icon,
+#privacy_l_item115 .privacy_item_icon,
 .feedback_menu_item .ui_actions_menu_icons,
 .settings_all_services,
 .settings_apps .apps_settings_action_edit,
@@ -446,7 +447,8 @@
 #privacy_l_item110 .privacy_item_icon,
 #privacy_l_item112 .privacy_item_icon,
 #privacy_l_item113 .privacy_item_icon,
-#privacy_l_item114 .privacy_item_icon {
+#privacy_l_item114 .privacy_item_icon,
+#privacy_l_item115 .privacy_item_icon {
     background-image: url(/images/icons/mono_iconset.png?4);
     float: right;
     background-position: left 0;
@@ -472,7 +474,8 @@
     #privacy_l_item110 .privacy_item_icon,
     #privacy_l_item112 .privacy_item_icon,
     #privacy_l_item113 .privacy_item_icon,
-    #privacy_l_item114 .privacy_item_icon {
+    #privacy_l_item114 .privacy_item_icon,
+    #privacy_l_item115 .privacy_item_icon {
         background-image: url(/images/icons/mono_iconset_2x.png?4);
         background-size: 12px 417px
     }
@@ -528,6 +531,10 @@
 
 #privacy_l_item114 .privacy_item_icon {
     background-position: 0 -406px
+}
+
+#privacy_l_item115 .privacy_item_icon {
+    background-position: 0 -208px
 }
 
 .settings_dropdown_time {

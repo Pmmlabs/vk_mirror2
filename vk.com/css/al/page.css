@@ -66,6 +66,7 @@
 .post_suggest .post_suggest__close,
 .post_suggestions__arrow,
 .post_top_info_wall_mention_icon,
+.post_top_info_wall_poll_vote_icon,
 .poster__open-btn,
 .test_group_a .poster_feature_tt__promo,
 .test_group_b .poster_feature_tt__promo,
@@ -4362,6 +4363,7 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 
 .post_top_info_wall_guide,
 .post_top_info_wall_mention,
+.post_top_info_wall_poll_vote,
 .post_top_info_wall_reply {
     padding: 13px 15px 14px;
     box-shadow: 0 0 0 1px #e3e4e8, 0 1px 0 0 #e7e8ec
@@ -4369,6 +4371,7 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 
 .post_top_info_wall_guide:empty,
 .post_top_info_wall_mention:empty,
+.post_top_info_wall_poll_vote:empty,
 .post_top_info_wall_reply:empty {
     display: none
 }
@@ -4398,6 +4401,22 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .post_top_info_wall_mention_icon {
+        background-image: url(/images/icons/mono_iconset_2x.png?4);
+        background-size: 12px 417px
+    }
+}
+
+.post_top_info_wall_poll_vote_icon {
+    margin: 2px 0px -1px;
+    width: 13px;
+    height: 13px;
+    background: url(/images/icons/mono_iconset.png?4) no-repeat left -208px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .post_top_info_wall_poll_vote_icon {
         background-image: url(/images/icons/mono_iconset_2x.png?4);
         background-size: 12px 417px
     }
@@ -4447,6 +4466,12 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 
 .post_top_info_wall_like_text {
     margin-left: 21px;
+    line-height: 15px;
+    color: #656565
+}
+
+.post_top_info_wall_poll_vote_text {
+    margin-left: 16px;
     line-height: 15px;
     color: #656565
 }
