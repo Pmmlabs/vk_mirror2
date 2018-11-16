@@ -2148,6 +2148,65 @@ var Wall = {
             }
         });
     },
+    deleteThread: function(el, post, hash) {
+        ajax.post('al_wall.php', {
+            act: 'delete_thread',
+            post: post,
+            hash: hash
+        }, {
+            onDone: function(text) {
+                var deleteBlock = domPN(domPN(el));
+                deleteBlock.oldElements = val(deleteBlock);
+                hide('replies_wrap_deep' + post);
+                val(deleteBlock, text);
+            },
+            showProgress: function() {
+                hide(el);
+                var progressElement = domNS(el);
+
+                if (!progressElement) {
+                    progressElement = ce('div', {
+                        className: 'progress'
+                    });
+                    domPN(el).appendChild(progressElement);
+                    show(progressElement);
+                }
+            },
+            hideProgress: function() {
+                show(el);
+                re(domNS(el));
+            }
+        });
+    },
+    restoreThread: function(el, post, hash) {
+        ajax.post('al_wall.php', {
+            act: 'restore_thread',
+            post: post,
+            hash: hash
+        }, {
+            onDone: function() {
+                var deleteBlock = domPN(el);
+                show('replies_wrap_deep' + post);
+                val(deleteBlock, deleteBlock.oldElements);
+            },
+            showProgress: function() {
+                hide(el);
+                var progressElement = domNS(el);
+
+                if (!progressElement) {
+                    progressElement = ce('div', {
+                        className: 'progress'
+                    });
+                    domPN(el).appendChild(progressElement);
+                    show(progressElement);
+                }
+            },
+            hideProgress: function() {
+                show(el);
+                re(domNS(el));
+            }
+        });
+    },
     block: function(el, post, hash, bl, from) {
         ajax.post('al_wall.php', {
             act: 'block',
@@ -10721,16 +10780,19 @@ Composer = {
 
         data(el, 'composer', composer);
 
-        el.parentNode.insertBefore(
-            composer.wddWrap = ce('div', {
-                className: 'composer_wdd clear_fix ' + (options.wddClass || ''),
-                id: el.id + '_composer_wdd',
-                innerHTML: '<input type="hidden" id="' + el.id + '_composer_wdd_term"/>'
-            }, {
-                width: options.width || getSize(el)[0]
-            }),
-            el.nextSibling
-        );
+        composer.wddWrap = ce('div', {
+            className: 'composer_wdd clear_fix ' + (options.wddClass || ''),
+            id: el.id + '_composer_wdd',
+            innerHTML: '<input type="hidden" id="' + el.id + '_composer_wdd_term"/>'
+        }, {
+            width: options.width || getSize(el)[0]
+        })
+
+        if (options.appendTo && isFunction(options.appendTo)) {
+            options.appendTo(composer.wddWrap);
+        } else {
+            domInsertBefore(composer.wddWrap, el.nextSibling);
+        }
 
         composer.wddInput = composer.wddWrap.firstChild;
         composer.wdd = WideDropdown.initSelect(composer.wddWrap, extend({
@@ -11049,8 +11111,9 @@ Composer = {
             }
         }
 
-        var isEmoji = (window.Emoji && composer.input.emojiId !== undefined);
-        if (isEmoji) {
+        var poster = composer.options.poster;
+        var isEmoji = (window.Emoji && composer.input.emojiId !== undefined) || poster;
+        if (isEmoji || poster) {
             suffValue = clean(suffValue);
         } else {
             alias = replaceEntities(alias);
@@ -11061,11 +11124,11 @@ Composer = {
         suffValue = suffValue.replace(re, function(whole, asterisk, prevAlias) {
             var replacement = asterisk + mention + ' ';
             if (noAlias) {
-                replacement += isEmoji ? '<span id="tmp_sel_' + cur.selNum + '"></span>' : '';
+                replacement += (isEmoji || poster) ? '<span id="tmp_sel_' + cur.selNum + '"></span>' : '';
             } else {
-                replacement += (isEmoji ? '<span id="tmp_sel_' + cur.selNum + '">' : '') + '(';
+                replacement += ((isEmoji || poster) ? '<span id="tmp_sel_' + cur.selNum + '">' : '') + '(';
                 replacement += alias.replace(/[\(\)\]\[]/g, '');
-                replacement += ')' + (isEmoji ? '</span>' : '') + ' ';
+                replacement += ')' + ((isEmoji || poster) ? '</span>' : '') + ' ';
             }
 
             return replacement;
@@ -11076,14 +11139,17 @@ Composer = {
         }
 
         Composer.hideSelectList(composer);
-        if (isEmoji) {
+        if (isEmoji || poster) {
             Emoji.val(composer.input, clean(prefValue) + suffValue);
             Emoji.focus(composer.input);
             Emoji.editableFocus(composer.input, ge('tmp_sel_' + cur.selNum), true);
+
+            poster && poster.checkText();
         } else {
             val(composer.input, prefValue + suffValue);
             elfocus(composer.input);
         }
+
         return false;
     },
     getCursorPosition: function(node) {

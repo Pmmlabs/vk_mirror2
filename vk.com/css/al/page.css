@@ -67,6 +67,7 @@
 .post_suggestions__arrow,
 .post_top_info_wall_mention_icon,
 .post_top_info_wall_poll_vote_icon,
+.poster__bkg-arrow,
 .poster__open-btn,
 .test_group_a .poster_feature_tt__promo,
 .test_group_b .poster_feature_tt__promo,
@@ -980,6 +981,10 @@
 
 .wall_module .reply .dld .delete_all {
     margin-top: -1px
+}
+
+.wall_module .reply .dld .delete_thread_wrap {
+    margin-top: 19px
 }
 
 .wall_module .reply .dld_inner {
@@ -2931,6 +2936,89 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     display: none
 }
 
+.poster__bkg-arrow-wrapper {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 60px;
+    opacity: 0;
+    z-index: 3;
+    -o-transition: opacity 300ms ease, background-image 300ms ease;
+    transition: opacity 300ms ease, background-image 300ms ease
+}
+
+.poster__view_hover .poster__bkg-arrow-wrapper {
+    opacity: 1
+}
+
+.poster__bkg-arrow-wrapper.poster__bkg-arrow_hovered .poster__bkg-arrow-shadow,
+.poster__bkg-arrow-wrapper.poster__bkg-arrow_hovered .poster__bkg-arrow {
+    opacity: 1;
+    cursor: pointer
+}
+
+.poster__bkg-arrow-wrapper.poster__bkg-arrow_faded {
+    opacity: 0.2
+}
+
+.poster__bkg-arrow {
+    position: absolute;
+    content: ' ';
+    top: 50%;
+    margin-top: -16px;
+    height: 32px;
+    width: 20px;
+    background: url(/images/icons/pv_layer_controls.png) no-repeat;
+    background-position: 0px -25px;
+    opacity: 0.5;
+    -o-transition: opacity 300ms ease;
+    transition: opacity 300ms ease
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .poster__bkg-arrow {
+        background-image: url(/images/icons/pv_layer_controls_2x.png);
+        background-size: 22px 96px
+    }
+}
+
+.poster .poster__bkg-arrow-shadow {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    -o-transition: opacity 300ms ease;
+    transition: opacity 300ms ease
+}
+
+.poster__bkg-arrow_left {
+    left: 0
+}
+
+.poster__bkg-arrow_left .poster__bkg-arrow {
+    left: 12px
+}
+
+.poster__bkg-arrow_left .poster__bkg-arrow-shadow {
+    background: -o-linear-gradient(right, transparent 0%, rgba(0, 0, 0, .08));
+    background: linear-gradient(270deg, transparent 0%, rgba(0, 0, 0, .08))
+}
+
+.poster__bkg-arrow_right {
+    right: 0
+}
+
+.poster__bkg-arrow_right .poster__bkg-arrow {
+    right: 12px;
+    background-position: 0px -63px
+}
+
+.poster__bkg-arrow_right .poster__bkg-arrow-shadow {
+    background: -o-linear-gradient(left, transparent 0%, rgba(0, 0, 0, .08));
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, .08))
+}
+
 .poster__postpone {
     padding: 0 15px;
     border-top: 1px solid #e7e8ec
@@ -2982,6 +3070,7 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
     box-sizing: border-box;
+    white-space: pre-wrap;
     word-wrap: break-word;
     overflow-wrap: break-word
 }
@@ -2997,6 +3086,7 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     padding: 5px 32px 7px;
     background: none!important;
     border: none!important;
+    white-space: pre-wrap;
     overflow-wrap: break-word;
     z-index: 3
 }
@@ -7840,10 +7930,6 @@ img.page_preview_video {
 
 .wpe_text_cont .post_action_btn {
     margin: 20px 11px 0 0
-}
-
-.wpe_text_cont .post_action_btn:active {
-    margin: 21px 11px -1px 0
 }
 
 .post_field_user_image {
