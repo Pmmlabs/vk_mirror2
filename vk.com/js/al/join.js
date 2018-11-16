@@ -124,25 +124,42 @@ var Join = {
         });
     },
 
+    isPhoneCall: function() {
+        return cur.validationType == 3;
+    },
     phoneDone: function(phone, cntr) {
-        var phoneEl = ge('join_phone');
-        if (cur.uiPhoneCountry) {
-            cur.uiPhoneCountry.val(cntr, true);
-        }
-        val(phoneEl, phone);
-        phoneEl.readOnly = true;
-        if (cur.uiPhoneCountry) {
-            cur.uiPhoneCountry.disable(true);
-            addClass('join_phone_prefixed', 'join_readonly_wrap');
+        if (phone) {
+            var phoneEl = ge('join_phone');
+            if (cur.uiPhoneCountry) {
+                cur.uiPhoneCountry.val(cntr, true);
+            }
+            val(phoneEl, phone);
+            phoneEl.readOnly = true;
+            if (cur.uiPhoneCountry) {
+                cur.uiPhoneCountry.disable(true);
+                addClass('join_phone_prefixed', 'join_readonly_wrap');
+            }
+            addClass(phoneEl, 'join_readonly');
         }
         if (cur.resendInt) {
             clearInterval(cur.resendInt);
         }
         cur.resendInt = setInterval(Join.resendUpdate, 1000);
-        addClass(phoneEl, 'join_readonly');
         show('join_code_submit', 'join_other_phone', 'join_resend');
         hide('join_phone_submit');
-        slideDown('join_code_row', 150, elfocus.pbind('join_code'));
+        if (Join.isPhoneCall()) {
+            val(ge('join_called_phone_prefix').firstChild, '');
+            val('join_called_phone', '');
+            slideDown('join_called_phone_row', 150, elfocus.pbind('join_called_phone'));
+        } else {
+            if (isVisible('join_called_phone_row')) {
+                hide('join_called_phone_row');
+                show('join_code_row');
+                setTimeout(elfocus.pbind('join_code'), 100);
+            } else {
+                slideDown('join_code_row', 150, elfocus.pbind('join_code'));
+            }
+        }
         val('join_submit_result', '');
         val('join_code', '');
         Join.initPhoneCode();
@@ -192,6 +209,10 @@ var Join = {
     },
     submitPhone: function(force) {
         if (!force && buttonLocked('join_send_phone')) return;
+        if (!Join.policyChecked()) {
+            notaBene('join_accept_terms_checkbox');
+            return;
+        }
 
         var phoneEl = ge('join_phone'),
             phone = Join.getPhone(),
@@ -206,7 +227,7 @@ var Join = {
         }, {
             showProgress: lockButton.pbind('join_send_phone'),
             hideProgress: unlockButton.pbind('join_send_phone'),
-            onDone: function(needCheck, boxBody, strong, resendDelay) {
+            onDone: function(needCheck, boxBody, strong, resendDelay, type) {
                 if (needCheck) {
                     lockButton('join_send_phone');
                     setTimeout(Join.submitPhone.pbind(true), 1000);
@@ -217,6 +238,7 @@ var Join = {
                     if (tip) tip.destroy();
                     cur.strongCode = strong;
                 }
+                cur.validationType = type;
                 cur.resendDelay = resendDelay;
                 Join.phoneDone(phoneInputVal, cntr);
             },
@@ -291,9 +313,10 @@ var Join = {
         });
         var el = utilsNode.appendChild(ce('div', {
             innerHTML: '\
-<form method="POST" action="' + vk.loginscheme + '://login.vk.com/?act=check_code&_origin=' + locProtocol + '//' + locHost + '" id="join_code_form" name="join_code_form" target="join_code_frame">\
+<form method="POST" action="' + vk.loginscheme + '://' + cur.loginHost + '/?act=check_code&_origin=' + locProtocol + '//' + locHost + '" id="join_code_form" name="join_code_form" target="join_code_frame">\
   <input type="hidden" name="email" id="join_code_phone" />\
   <input type="hidden" name="code" id="join_code_code" />\
+  <input type="hidden" name="call" id="join_code_call" />\
   <input type="hidden" name="recaptcha" id="join_code_recaptcha" />\
   <input type="hidden" name="captcha_sid" id="join_code_sid" />\
   <input type="hidden" name="captcha_key" id="join_code_key" />\
@@ -331,6 +354,9 @@ var Join = {
                 }
 
                 val(pref, code);
+                if (ge('join_called_phone_row')) {
+                    val(geByClass1('join_text', 'content'), getLang(inArray(v[0], cur.calledPhoneCountries) ? 'join_about_phone_with_call' : 'join_about_phone'));
+                }
                 Join.updatePolicyLink(cur.uiPhoneCountry.val());
             }
         });
@@ -346,22 +372,43 @@ var Join = {
     },
     submitPhoneCode: function() {
         if (!cur.codeForm || buttonLocked('join_send_code')) return;
+        if (!Join.policyChecked()) {
+            notaBene('join_accept_terms_checkbox');
+            return;
+        }
 
-        var code = trim(val('join_code')).replace(/[^a-z0-9]/g, '');
-        if (code.length < 5) {
-            return notaBene('join_code');
+        var codeField, codeFieldWrap, codeLen;
+        if (Join.isPhoneCall()) {
+            codeField = 'join_called_phone';
+            codeFieldWrap = 'join_called_phone_prefixed';
+            codeLen = cur.calledPhoneLen;
+        } else {
+            codeField = 'join_code';
+            codeFieldWrap = codeField;
+            codeLen = 5;
+        }
+
+        var code = trim(val(codeField)).replace(/[^a-z0-9]/g, '');
+        if (code.length < codeLen) {
+            return notaBene(codeFieldWrap);
         }
         if (code == '05937') {
             return Join.showMsg('join_submit_result', getLang('join_sorry_code'), elfocus.pbind('join_code', false, false));
         }
         val('join_code_phone', Join.getPhone());
         val('join_code_code', code);
-        lockButton('join_send_code')
+        if (Join.isPhoneCall()) {
+            val('join_code_call', vk.id ? -vk.id : getCookie('remixnreg_sid'));
+        }
+        lockButton('join_send_code');
         cur.codeForm.submit();
     },
-    togglePhoneSubmit: function() {
+    policyChecked: function() {
         var el = geByClass1('checkbox', 'join_accept_terms_checkbox');
-        var policyChecked = isChecked(el);
+        return isChecked(el);
+    },
+    togglePhoneSubmit: function() {
+        var policyChecked = Join.policyChecked();
         disableButton(ge('join_send_phone'), !policyChecked);
         disableButton(ge('join_send_code'), !policyChecked);
         disableButton(ge('join_send_pass'), !policyChecked);
@@ -380,8 +427,14 @@ var Join = {
         if (fb) {
             cur.joinParams.facebook = 1;
         }
-        ge('join_code').readOnly = true;
-        addClass(ge('join_code'), 'join_readonly');
+        if (Join.isPhoneCall()) {
+            ge('join_called_phone').readOnly = true;
+            addClass(ge('join_called_phone'), 'join_readonly');
+            addClass(ge('join_called_phone_prefixed'), 'join_readonly_wrap');
+        } else {
+            ge('join_code').readOnly = true;
+            addClass(ge('join_code'), 'join_readonly');
+        }
         show('join_pass_submit');
         hide('join_other_phone', 'join_code_submit', 'join_resend', 'join_country_row');
         slideDown('join_pass_row', 150, elfocus.pbind('join_pass'));
@@ -418,6 +471,10 @@ var Join = {
     },
     submitPassword: function(toAlready, fbLoginTo) {
         if (buttonLocked('join_send_pass') && !cur.submitOnSign) return;
+        if (!Join.policyChecked()) {
+            notaBene('join_accept_terms_checkbox');
+            return;
+        }
 
         if (fbLoginTo === true) {
             var pass = '000000';
@@ -480,49 +537,41 @@ var Join = {
         showMsg(el, text, type ? type : 'error', true);
         if (isFunction(handler)) handler();
     },
-    codeFailed: function(triesLeft) {
+    codeFailed: function(triesLeft, calledPhonePrefix) {
         if (curBox()) curBox().hide();
         unlockButton('join_send_code');
         var text = getLang('join_wrong_code');
         triesLeft = intval(triesLeft);
         if (triesLeft < 0) {
             text = getLang('join_code_failed');
+            Join.changePhone();
         } else if (triesLeft && triesLeft < 6) {
             text += '<br>' + getLang('join_tries_left').replace('{count}', '<b>' + triesLeft + '</b>');
         }
-        Join.showMsg('join_submit_result', text, elfocus.pbind('join_code'));
+        var codeField;
+        if (Join.isPhoneCall() && isVisible('join_called_phone_prefix')) {
+            codeField = 'join_called_phone';
+            val(ge('join_called_phone_prefix').firstChild, calledPhonePrefix);
+        } else {
+            codeField = 'join_code';
+        }
+        Join.showMsg('join_submit_result', text, elfocus.pbind(codeField));
         if (window._oldOnLoginFailed) onLoginFailed = _oldOnLoginFailed;
     },
-    submitCode: function() {
-        if (buttonLocked('join_send_code')) return;
-
-        var code = val('join_code');
-        if (code.length < 8) return notaBene('join_code');
-
-        if (!window._oldOnLoginFailed) {
-            window._oldOnLoginFailed = onLoginFailed;
-            cur.destroy.push(function() {
-                onLoginFailed = _oldOnLoginFailed;
-                _oldOnLoginFailed = false;
-            });
-        }
-        onLoginFailed = function(code) {
-            if (code === -1) {
-                location.href = location.href.replace(/^http:/, 'https:');
-            } else {
-                Join.codeFailed();
-            }
-        };
-        submitQuickLoginForm(Join.getPhone(), code, {
-            prg: 'join_send_code'
-        })
-    },
     resendUpdate: function() {
+        var resendTime, resendText;
+        if (Join.isPhoneCall()) {
+            resendTime = 'join_send_code_via_sms_time';
+            resendText = 'join_send_code_via_sms';
+        } else {
+            resendTime = 'join_resend_code_time';
+            resendText = 'join_no_code';
+        }
         if (cur.resendDelay > 0) {
-            ge('join_resend').innerHTML = getLang('join_resend_code_time').replace('%s', Math.floor(cur.resendDelay / 60) + ':' + (cur.resendDelay % 60 < 10 ? '0' : '') + (cur.resendDelay % 60));
+            val('join_resend', getLang(resendTime).replace('%s', Math.floor(cur.resendDelay / 60) + ':' + (cur.resendDelay % 60 < 10 ? '0' : '') + (cur.resendDelay % 60)));
             cur.resendDelay--;
         } else {
-            ge('join_resend').innerHTML = '<a id="join_resend_lnk" onclick="return Join.noCode()">' + getLang('join_no_code') + '</a>';
+            val('join_resend', '<a id="join_resend_lnk" onclick="return Join.noCode()">' + getLang(resendText) + '</a>');
             clearInterval(cur.resendInt);
         }
     },
@@ -543,7 +592,11 @@ var Join = {
                 if (prg.parentNode == prnt) prnt.replaceChild(el, prg);
             },
             onDone: function(text, html, btn, cancel) {
-                if (html && btn) {
+                if (text == 1) {
+                    cur.validationType = text;
+                    cur.resendDelay = html;
+                    Join.phoneDone();
+                } else if (html && btn) {
                     val('join_submit_result', '');
                     showFastBox({
                         title: text,
@@ -574,7 +627,8 @@ var Join = {
         }
         show('join_phone_submit', 'join_country_row');
         hide('join_code_submit', 'join_other_phone', 'join_resend');
-        slideUp('join_code_row', 150);
+        slideUp(Join.isPhoneCall() ? 'join_called_phone_row' : 'join_code_row', 150);
+        val('join_phone', '');
         elfocus('join_phone');
     },
     call: function() {
@@ -610,7 +664,7 @@ var Join = {
         }
     },
     tipHide: function() {
-        var els = ['join_phone', 'join_code', 'join_pass'];
+        var els = ['join_phone', 'join_code', 'join_pass', 'join_called_phone'];
         for (var i = 0; i < els.length; ++i) {
             el = ge(els[i]);
             if (el && el.tt && el.tt.hide) el.tt.hide();
@@ -627,6 +681,12 @@ var Join = {
             size = getSize(field);
         if (field.readOnly) return;
         Join.tipShow(field, cur.strongCode ? 'join_code_voice_tip' : 'join_code_tip', [-(size[0] + 10), -Math.floor(size[1] / 2)]);
+    },
+    codeCallTip: function() {
+        var field = ge('join_called_phone'),
+            size = getSize(field);
+        if (field.readOnly) return;
+        Join.tipShow(field, 'join_code_call_tip', [-(size[0] + 10), -Math.floor(size[1] / 2)]);
     },
     passTip: function() {
         var field = ge('join_pass'),
