@@ -150,14 +150,14 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 2660709036,
     'common.js': 1161,
-    'common.css': 63133179776,
+    'common.css': 65517113687,
     'cmodules/web/common_web.js': 24,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
     'uncommon.css': 18793567391,
     'filebutton.css': 1044306797,
     'lite.js': 344448126,
-    'lite.css': 65246531622,
+    'lite.css': 67630465533,
     'rtl.css': 19327434975,
     'pagination.js': 358700184,
     'blog.css': 23316718234,
@@ -238,7 +238,7 @@ var stVersions = {
     'owner_photo.js': 3368798011,
     'owner_photo.css': 24474061894,
     'page.js': 3091358445,
-    'page.css': 77629520151,
+    'page.css': 75810899839,
     'page_help.css': 31162658104,
     'public.css': 35066409710,
     'cmodules/web/public.js': 329399197,
@@ -534,7 +534,7 @@ var stVersions = {
     'voice_message_player.js': 22606389397,
     'cmodules/web/speech_worker_mp3.js': 4119569941,
     'cmodules/web/speech_worker_opus.js': 2818771805,
-    'stories.js': 65432032932,
+    'stories.js': 66127832645,
     'stories.css': 22927920695,
     'cmodules/web/stories_manage.js': 25249468508,
     'stories_manage.css': 77076994296,
@@ -575,7 +575,7 @@ var stVersions = {
     'podcast_add.css': 19497670227,
     'podcast_choose.css': 20524553788,
     'podcast_stats.css': 18067421686,
-    'cmodules/web/poster.js': 854826107,
+    'cmodules/web/poster.js': 1211126774,
     'cmodules/web/grip.js': 4164501492,
     'cmodules/web/group_invite_chat.js': 48393792976,
     'group_invite_chat.css': 83244969310,
@@ -593,11 +593,11 @@ var stVersions = {
     'ui_gallery.css': 19015206444,
     'cmodules/web/ui_components.js': 3224689059,
     'apps_feed_blocks.css': 19647444558,
-    'cmodules/web/landing_transparency.js': 91169158558,
-    'landings/transparency.css': 92191230535,
+    'cmodules/web/landing_transparency.js': 96455787168,
+    'landings/transparency.css': 93012056086,
     'cmodules/web/emoji.js': 164878560,
-    'cmodules/web/apps_achievements.js': 67697448594,
-    'lang': 6927
+    'cmodules/web/apps_achievements.js': 68054627544,
+    'lang': 6928
 };
 var stTypes = {
     fromLib: {
@@ -656,4 +656,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 6613;
+var _rnd = 6833;

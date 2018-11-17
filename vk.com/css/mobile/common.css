@@ -26413,7 +26413,7 @@ body.apps_settingsPageBody {
     text-align: center;
     padding: 48px 24px;
     font-size: 14px;
-    line-height: 1.43;
+    line-height: 20px;
     color: #71757a
 }
 
@@ -26459,9 +26459,13 @@ body.apps_settingsPageBody {
     }
 }
 
+.apps_gameSettingsPage__extraSettingsText {
+    margin-top: 1em
+}
+
 .apps_gameSettingsPage__name {
-    font-size: 16px;
-    line-height: 1.5;
+    font-size: 14px;
+    line-height: 20px;
     margin-bottom: 8px
 }
 
@@ -26478,7 +26482,11 @@ body.apps_settingsPageBody {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
-    margin-bottom: 16px
+    margin-bottom: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
 }
 
 ._ios .apps_gameSettingsPage__btn {

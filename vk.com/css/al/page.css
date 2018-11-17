@@ -3070,7 +3070,6 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
     box-sizing: border-box;
-    white-space: pre-wrap;
     word-wrap: break-word;
     overflow-wrap: break-word
 }
@@ -3086,7 +3085,6 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     padding: 5px 32px 7px;
     background: none!important;
     border: none!important;
-    white-space: pre-wrap;
     overflow-wrap: break-word;
     z-index: 3
 }

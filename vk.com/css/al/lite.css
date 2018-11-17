@@ -5623,8 +5623,8 @@ div.top_result_baloon a {
 }
 
 .audio_restriction_box__controls .flat_button {
-    -ms-flex: 1;
-    flex: 1
+    -ms-flex: 1 0 0;
+    flex: 1 0 0
 }
 
 .audio_restriction_box__controls .flat_button:last-child {
