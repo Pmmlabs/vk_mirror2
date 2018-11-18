@@ -42,775 +42,9 @@
         return n.d(t, "a", t), t
     }, n.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, n.p = "", n(n.s = 385)
+    }, n.p = "", n(n.s = 215)
 }({
-    10: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "mount", function() {
-            return c
-        });
-        var r = n(117),
-            i = n(384),
-            a = n(103),
-            o = function() {
-                return function(e, t) {
-                    if (Array.isArray(e)) return e;
-                    if (Symbol.iterator in Object(e)) return function(e, t) {
-                        var n = [],
-                            r = !0,
-                            i = !1,
-                            a = void 0;
-                        try {
-                            for (var o, u = e[Symbol.iterator](); !(r = (o = u.next()).done) && (n.push(o.value), !t || n.length !== t); r = !0);
-                        } catch (e) {
-                            i = !0, a = e
-                        } finally {
-                            try {
-                                !r && u.return && u.return()
-                            } finally {
-                                if (i) throw a
-                            }
-                        }
-                        return n
-                    }(e, t);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }(),
-            u = "_im_join_chat";
-
-        function c(e, t) {
-            var n = Object(i.createModule)({
-                handlers: function(n, i) {
-                    i(e, "click", u, function(e) {
-                        return function(e, t) {
-                            var n = domData(t, "chat-id"),
-                                i = domData(t, "hash");
-                            return lockButton(t), Object(r.joinChat)(n, i, e.get()).then(function(n) {
-                                var r = o(n, 1)[0];
-                                unlockButton(t), e.get().longpoll.push([Object(a.changePeer)(r)])
-                            }).catch(function(e) {
-                                showFastBox(getLang("mail_join_invite_error_title"), e), unlockButton(t)
-                            })
-                        }(t, e.target)
-                    })
-                }
-            });
-            return {
-                unmount: function() {
-                    Object(i.destroyModule)(n)
-                }
-            }
-        }
-    },
-    103: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "DELETE", function() {
-            return a
-        }), n.d(t, "SET_FLAGS", function() {
-            return o
-        }), n.d(t, "REPLACE_FLAGS", function() {
-            return u
-        }), n.d(t, "RESET_FLAGS", function() {
-            return c
-        }), n.d(t, "ADD_MESSAGE", function() {
-            return s
-        }), n.d(t, "READ_INBOUND", function() {
-            return d
-        }), n.d(t, "READ_OUTBOUND", function() {
-            return l
-        }), n.d(t, "GOT_ONLINE", function() {
-            return f
-        }), n.d(t, "GOT_OFFLINE", function() {
-            return m
-        }), n.d(t, "CHAT_CHANGED", function() {
-            return _
-        }), n.d(t, "CONVERSATION_UPDATED", function() {
-            return g
-        }), n.d(t, "TYPING", function() {
-            return p
-        }), n.d(t, "RECORDING_AUDIO", function() {
-            return h
-        }), n.d(t, "VIDEO_CALL", function() {
-            return b
-        }), n.d(t, "UNREAD_COUNT", function() {
-            return v
-        }), n.d(t, "NOTIFY_SETTINGS_CHANGED", function() {
-            return y
-        }), n.d(t, "EMPTY", function() {
-            return w
-        }), n.d(t, "RESET_DIRECTORIES", function() {
-            return O
-        }), n.d(t, "REPLACE_DIRECTORIES", function() {
-            return k
-        }), n.d(t, "SET_DIRECTORIES", function() {
-            return j
-        }), n.d(t, "RESYNC", function() {
-            return E
-        }), n.d(t, "REFRESH_LP_KEY", function() {
-            return T
-        }), n.d(t, "TRANSITION", function() {
-            return I
-        }), n.d(t, "RESET_PEER", function() {
-            return A
-        }), n.d(t, "MUTEX", function() {
-            return C
-        }), n.d(t, "CHANGE_PEER", function() {
-            return S
-        }), n.d(t, "CHANGE_TAB", function() {
-            return M
-        }), n.d(t, "FAILED_MESSAGE", function() {
-            return P
-        }), n.d(t, "RESEND", function() {
-            return D
-        }), n.d(t, "DELETE_DIALOG", function() {
-            return x
-        }), n.d(t, "EDIT_MESSAGE", function() {
-            return L
-        }), n.d(t, "REPLACE_MESSAGE", function() {
-            return N
-        }), n.d(t, "AUDIO_START", function() {
-            return R
-        }), n.d(t, "FLAG_UNREAD", function() {
-            return F
-        }), n.d(t, "FLAG_OUTBOUND", function() {
-            return H
-        }), n.d(t, "FLAG_IMPORTANT", function() {
-            return U
-        }), n.d(t, "FLAG_CHAT", function() {
-            return B
-        }), n.d(t, "FLAG_FRIENDS", function() {
-            return G
-        }), n.d(t, "FLAG_SPAM", function() {
-            return q
-        }), n.d(t, "FLAG_DELETED", function() {
-            return z
-        }), n.d(t, "FLAG_MEDIA", function() {
-            return K
-        }), n.d(t, "FLAG_STEALTH", function() {
-            return W
-        }), n.d(t, "FLAG_HAS_REPLY", function() {
-            return V
-        }), n.d(t, "FOLDER_IMPORTANT", function() {
-            return Y
-        }), n.d(t, "FOLDER_UNRESPOND", function() {
-            return X
-        }), n.d(t, "FOLDER_HAS_BANNER", function() {
-            return $
-        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_TITLE_CHANGED", function() {
-            return Q
-        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_AVATAR_CHANGED", function() {
-            return Z
-        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_ADMIN_GRANTED", function() {
-            return J
-        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_FLAGS_CHANGED", function() {
-            return ee
-        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_PINNED", function() {
-            return te
-        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_USER_JOINED", function() {
-            return ne
-        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_USER_LEFT", function() {
-            return re
-        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_USER_KICKED", function() {
-            return ie
-        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_ADMIN_KICKED", function() {
-            return ae
-        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_BANNER_CHANGED", function() {
-            return oe
-        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_KEYBOARD_CHANGED", function() {
-            return ue
-        }), n.d(t, "deleteEvent", function() {
-            return ce
-        }), n.d(t, "replaceFlagsEvent", function() {
-            return se
-        }), n.d(t, "setFlagsEvent", function() {
-            return de
-        }), n.d(t, "resetFlagsEvent", function() {
-            return le
-        }), n.d(t, "addMessageEvent", function() {
-            return fe
-        }), n.d(t, "editMessageEvent", function() {
-            return me
-        }), n.d(t, "replaceMessageEvent", function() {
-            return _e
-        }), n.d(t, "editMessageLocallyEvent", function() {
-            return ge
-        }), n.d(t, "readInboundEvent", function() {
-            return pe
-        }), n.d(t, "readOutboundEvent", function() {
-            return he
-        }), n.d(t, "gotOnlineEvent", function() {
-            return be
-        }), n.d(t, "gotOfflineEvent", function() {
-            return ve
-        }), n.d(t, "resetDirectoriesEvent", function() {
-            return ye
-        }), n.d(t, "replaceDirectoriesEvent", function() {
-            return we
-        }), n.d(t, "setDirectoriesEvent", function() {
-            return Oe
-        }), n.d(t, "deleteDialogEvent", function() {
-            return ke
-        }), n.d(t, "chatChangedEvent", function() {
-            return je
-        }), n.d(t, "chatUpdatedEvent", function() {
-            return Ee
-        }), n.d(t, "typingEvent", function() {
-            return Te
-        }), n.d(t, "recordingAudioEvent", function() {
-            return Ie
-        }), n.d(t, "videoCallEvent", function() {
-            return Ae
-        }), n.d(t, "unreadCountEvent", function() {
-            return Ce
-        }), n.d(t, "notifySettingsChangedEvent", function() {
-            return Se
-        }), n.d(t, "refreshMessageEvent", function() {
-            return Me
-        }), n.d(t, "audioStartEvent", function() {
-            return Pe
-        }), n.d(t, "emptyEvent", function() {
-            return De
-        }), n.d(t, "transitionEvent", function() {
-            return xe
-        }), n.d(t, "resyncEvent", function() {
-            return Le
-        }), n.d(t, "refreshLpKeyEvent", function() {
-            return Ne
-        }), n.d(t, "resetPeer", function() {
-            return Re
-        }), n.d(t, "changePeer", function() {
-            return Fe
-        }), n.d(t, "changeTab", function() {
-            return He
-        }), n.d(t, "failedMessage", function() {
-            return Ue
-        }), n.d(t, "mutexEvent", function() {
-            return Be
-        }), n.d(t, "resendEvent", function() {
-            return Ge
-        });
-        var r = n(96),
-            i = function() {
-                return function(e, t) {
-                    if (Array.isArray(e)) return e;
-                    if (Symbol.iterator in Object(e)) return function(e, t) {
-                        var n = [],
-                            r = !0,
-                            i = !1,
-                            a = void 0;
-                        try {
-                            for (var o, u = e[Symbol.iterator](); !(r = (o = u.next()).done) && (n.push(o.value), !t || n.length !== t); r = !0);
-                        } catch (e) {
-                            i = !0, a = e
-                        } finally {
-                            try {
-                                !r && u.return && u.return()
-                            } finally {
-                                if (i) throw a
-                            }
-                        }
-                        return n
-                    }(e, t);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }(),
-            a = "event_delete",
-            o = "event_set_flags",
-            u = "event_replace_flags",
-            c = "event_reset_flags",
-            s = "event_add_message",
-            d = "event_read_inbound",
-            l = "event_read_outbound",
-            f = "event_got_online",
-            m = "event_got_offline",
-            _ = "event_chat_changed",
-            g = "event_chat_updated",
-            p = "event_typing",
-            h = "event_recoding_audio",
-            b = "event_video_call",
-            v = "event_unread_count",
-            y = "event_notify_settings_changed",
-            w = "event_empty",
-            O = "event_reset_directories",
-            k = "event_replace_directories",
-            j = "event_set_directories",
-            E = "event_resync",
-            T = "event_refresh_lp_key",
-            I = "transition_event",
-            A = "reset_peer",
-            C = "mutex",
-            S = "change_peer",
-            M = "event_change_tab",
-            P = "event_failed_message",
-            D = "event_resend",
-            x = "event_delete_dialog",
-            L = "event_edit_message",
-            N = "event_replace_message",
-            R = "event_audio_start",
-            F = 1,
-            H = 2,
-            U = 8,
-            B = 16,
-            G = 32,
-            q = 64,
-            z = 128,
-            K = 512,
-            W = 65536,
-            V = 1 << 21,
-            Y = 1,
-            X = 2,
-            $ = 8,
-            Q = 1,
-            Z = 2,
-            J = 3,
-            ee = 4,
-            te = 5,
-            ne = 6,
-            re = 7,
-            ie = 8,
-            ae = 9,
-            oe = 10,
-            ue = 11;
-
-        function ce(e) {
-            var t = i(e, 2)[1];
-            return {
-                type: a,
-                localId: t
-            }
-        }
-
-        function se(e) {
-            var t = i(e, 4),
-                n = t[1],
-                r = t[2],
-                a = t[3];
-            return {
-                type: u,
-                messageId: n,
-                mask: r,
-                peerId: a
-            }
-        }
-
-        function de(e) {
-            var t = i(e, 4),
-                n = t[1],
-                r = t[2],
-                a = t[3];
-            return {
-                type: o,
-                messageId: n,
-                flags: r,
-                peerId: a
-            }
-        }
-
-        function le(e) {
-            var t = i(e, 4),
-                n = t[1],
-                r = t[2],
-                a = t[3];
-            return {
-                type: c,
-                messageId: n,
-                flags: r,
-                peerId: a
-            }
-        }
-
-        function fe(e) {
-            var t = i(e, 11),
-                n = t[1],
-                a = t[2],
-                o = t[3],
-                u = t[4],
-                c = t[5],
-                d = t[6],
-                l = t[7],
-                f = t[8],
-                m = t[9],
-                _ = t[10],
-                g = extend(d, l || void 0);
-            return {
-                type: s,
-                messageId: intval(n),
-                flags: intval(a),
-                peerId: intval(o),
-                date: intval(u),
-                attaches: Object(r.convertKludgesToAttaches)(g, n),
-                subject: d.title || "",
-                text: c,
-                kludges: g,
-                randomId: intval(f),
-                userId: Object(r.isChatPeer)(o) ? intval(g.from) : intval(o),
-                update_time: _,
-                chat_local_id: m
-            }
-        }
-
-        function me(e) {
-            var t = fe(e);
-            return t.type = L, t
-        }
-
-        function _e(e) {
-            var t = fe(e);
-            return t.type = N, t
-        }
-
-        function ge(e) {
-            return extend({}, e, {
-                type: L
-            })
-        }
-
-        function pe(e) {
-            var t = i(e, 4),
-                n = t[1],
-                r = t[2],
-                a = t[3];
-            return {
-                type: d,
-                peerId: n,
-                upToId: r,
-                unread: a
-            }
-        }
-
-        function he(e) {
-            var t = i(e, 4),
-                n = t[1],
-                r = t[2],
-                a = t[3];
-            return {
-                type: l,
-                peerId: n,
-                upToId: r,
-                unread: a
-            }
-        }
-
-        function be(e) {
-            var t = i(e, 4),
-                n = t[1],
-                r = t[2],
-                a = t[3];
-            return {
-                type: f,
-                userId: -n,
-                platform: r,
-                lastSeenTs: a
-            }
-        }
-
-        function ve(e) {
-            var t = i(e, 4),
-                n = t[1],
-                r = t[2],
-                a = t[3];
-            return {
-                type: m,
-                userId: -n,
-                reason: r,
-                lastSeenTs: a
-            }
-        }
-
-        function ye(e) {
-            var t = i(e, 4),
-                n = t[1],
-                r = t[2],
-                a = t[3];
-            return {
-                type: O,
-                peerId: n,
-                mask: r,
-                local: void 0 !== a && a
-            }
-        }
-
-        function we(e) {
-            var t = i(e, 3),
-                n = t[1],
-                r = t[2];
-            return {
-                type: k,
-                peerId: n,
-                mask: r
-            }
-        }
-
-        function Oe(e) {
-            var t = i(e, 4),
-                n = t[1],
-                r = t[2],
-                a = t[3];
-            return {
-                type: j,
-                peerId: n,
-                mask: r,
-                local: void 0 !== a && a
-            }
-        }
-
-        function ke(e) {
-            var t = i(e, 3),
-                n = t[1],
-                r = t[2];
-            return {
-                type: x,
-                peerId: n,
-                localId: r
-            }
-        }
-
-        function je(e) {
-            var t = i(e, 3),
-                n = t[1],
-                r = t[2];
-            return {
-                type: _,
-                chatId: n,
-                self: r
-            }
-        }
-
-        function Ee(e) {
-            var t = i(e, 4),
-                n = t[1],
-                r = t[2],
-                a = t[3];
-            return {
-                type: g,
-                peerId: r,
-                updateType: n,
-                updateArg: a
-            }
-        }
-
-        function Te(e) {
-            var t = i(e, 5),
-                n = t[1],
-                r = t[2],
-                a = t[3],
-                o = t[4];
-            return {
-                type: p,
-                peerId: n,
-                userIds: r,
-                totalCount: a,
-                ts: o
-            }
-        }
-
-        function Ie(e) {
-            var t = i(e, 5),
-                n = t[1],
-                r = t[2],
-                a = t[3],
-                o = t[4];
-            return {
-                type: h,
-                peerId: n,
-                userIds: r,
-                totalCount: a,
-                ts: o
-            }
-        }
-
-        function Ae(e) {
-            var t = i(e, 3),
-                n = t[1],
-                r = t[2];
-            return {
-                type: b,
-                userId: n,
-                callId: r
-            }
-        }
-
-        function Ce(e) {
-            var t = i(e, 4),
-                n = t[1],
-                r = t[2],
-                a = t[3];
-            return {
-                type: v,
-                count: n,
-                countNotMuted: r,
-                showOnlyNotMuted: a
-            }
-        }
-
-        function Se(e) {
-            var t = i(e, 2)[1],
-                n = void 0 === t ? {} : t;
-            return {
-                type: y,
-                peerId: n.peer_id,
-                sound: n.sound,
-                disabledUntil: n.disabled_until
-            }
-        }
-
-        function Me(e) {
-            var t = i(e, 2)[1],
-                n = void 0 === t ? {} : t,
-                r = fe([!1, n.id, n.flags, n.peer_id, n.date, n.message, extend(n.kludges, {
-                    title: n.title || ""
-                }), {}, n.random_id, n.chat_local_id, n.update_time]);
-            return r.type = L, r
-        }
-
-        function Pe(e) {
-            var t = i(e, 2)[1],
-                n = void 0 === t ? {} : t;
-            return {
-                type: R,
-                uuid: n.uuid,
-                deviceName: n.device_name || ""
-            }
-        }
-
-        function De(e) {
-            return {
-                type: w,
-                params: e
-            }
-        }
-
-        function xe(e) {
-            return {
-                type: I,
-                state: e
-            }
-        }
-
-        function Le() {
-            return {
-                type: E
-            }
-        }
-
-        function Ne(e) {
-            var t = i(e, 3),
-                n = t[1],
-                r = t[2];
-            return {
-                type: T,
-                key: n,
-                url: r
-            }
-        }
-
-        function Re() {
-            var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0],
-                t = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
-            return {
-                type: A,
-                cancelSearch: e,
-                removeActivePeer: t
-            }
-        }
-
-        function Fe(e) {
-            var t = arguments.length > 1 && void 0 !== arguments[1] && arguments[1],
-                n = arguments.length > 2 && void 0 !== arguments[2] && arguments[2],
-                r = arguments.length > 3 && void 0 !== arguments[3] && arguments[3],
-                i = arguments.length > 4 && void 0 !== arguments[4] ? arguments[4] : "";
-            return {
-                type: S,
-                peerId: e,
-                msgid: t,
-                forward: n,
-                cancelSearch: r,
-                entryPoint: i
-            }
-        }
-
-        function He(e) {
-            return {
-                type: M,
-                tab: e
-            }
-        }
-
-        function Ue(e, t, n) {
-            return {
-                type: P,
-                message: t,
-                peer: e,
-                error: n
-            }
-        }
-
-        function Be(e) {
-            var t = i(e, 6),
-                n = (t[0], t[1]),
-                r = t[2],
-                a = t[3],
-                o = t[4],
-                u = t[5];
-            return {
-                type: C,
-                free: !!intval(n) || intval(o) === vk.id,
-                resource: r,
-                peerId: intval(a),
-                who: intval(o),
-                name: u
-            }
-        }
-
-        function Ge(e, t) {
-            return {
-                type: D,
-                message: t,
-                peerId: e
-            }
-        }
-    },
-    114: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "updateLocation", function() {
-            return o
-        }), n.d(t, "updateLazyLocation", function() {
-            return u
-        });
-        var r = window,
-            i = r.nav,
-            a = r.extend;
-
-        function o(e) {
-            var t = a({}, i.objLoc, e);
-            Object.keys(t).filter(function(e) {
-                return "" === t[e]
-            }).forEach(function(e) {
-                delete t[e]
-            });
-            var n = i.toStr(t);
-            i.setLoc(n)
-        }
-
-        function u() {
-            var e = {};
-            return {
-                scheduleNav: function(t) {
-                    e = a(e, t)
-                },
-                commitNav: function() {
-                    o(e), e = {}
-                },
-                scheduleNavWithTimeOut: function(t) {
-                    var n = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 100;
-                    e = a(e, t), setTimeout(function() {
-                        o(e), e = {}
-                    }, n)
-                }
-            }
-        }
-    },
-    117: function(e, t, n) {
+    111: function(e, t, n) {
         "use strict";
         n.r(t), n.d(t, "CONTROLLER", function() {
             return k
@@ -1153,22 +387,22 @@
         }), n.d(t, "resetTabAll", function() {
             return Qn
         });
-        var r = n(349),
-            i = n(114),
-            a = n(103),
-            o = n(427),
-            u = n(5),
-            c = n(149),
-            s = n(260),
-            d = n(459),
-            l = n(140),
-            f = n(86),
-            m = n(308),
-            _ = n(452),
-            g = n(186),
-            p = n(14),
-            h = n(429),
-            b = n(221),
+        var r = n(219),
+            i = n(38),
+            a = n(78),
+            o = n(226),
+            u = n(199),
+            c = n(155),
+            s = n(164),
+            d = n(86),
+            l = n(184),
+            f = n(83),
+            m = n(183),
+            _ = n(134),
+            g = n(96),
+            p = n(113),
+            h = n(168),
+            b = n(13),
             v = Object.assign || function(e) {
                 for (var t = 1; t < arguments.length; t++) {
                     var n = arguments[t];
@@ -3199,7 +2433,7 @@
             return t
         }
     },
-    14: function(e, t, n) {
+    113: function(e, t, n) {
         "use strict";
         n.r(t), n.d(t, "MAIL_CHAT_FLAG_ONLY_ADMINS_CAN_INVITE", function() {
             return c
@@ -3252,9 +2486,9 @@
         }), n.d(t, "isUserInvitedByMe", function() {
             return x
         });
-        var r, i = n(140),
-            a = n(5),
-            o = n(260);
+        var r, i = n(184),
+            a = n(199),
+            o = n(164);
 
         function u(e, t, n) {
             return t in e ? Object.defineProperty(e, t, {
@@ -3365,789 +2599,67 @@
             return -1 !== e.invitedByMe.indexOf(t)
         }
     },
-    140: function(e, t, n) {
+    121: function(e, t, n) {
         "use strict";
-        n.r(t), n.d(t, "getFirstUnread", function() {
+        n.r(t), n.d(t, "canMessageBeEdited", function() {
+            return c
+        }), n.d(t, "convertEmojiHtmlToRegularText", function() {
+            return s
+        }), n.d(t, "findLastMessageToEdit", function() {
             return d
-        }), n.d(t, "isSearchShown", function() {
+        }), n.d(t, "wasMessageReallyModified", function() {
             return l
-        }), n.d(t, "getPeer", function() {
+        }), n.d(t, "replaceMsgAfterEdit", function() {
             return f
-        }), n.d(t, "getCurrentKeyboard", function() {
-            return m
-        }), n.d(t, "getKeyboard", function() {
-            return _
-        }), n.d(t, "getTab", function() {
-            return g
-        }), n.d(t, "getCurrentTab", function() {
-            return p
-        }), n.d(t, "getSelectedMessages", function() {
-            return h
-        }), n.d(t, "getMessageRangeFromSelection", function() {
-            return b
-        }), n.d(t, "countUnread", function() {
-            return v
-        }), n.d(t, "getMessageByRid", function() {
-            return y
-        }), n.d(t, "isRidExist", function() {
-            return w
-        }), n.d(t, "getLocalId", function() {
-            return O
-        }), n.d(t, "getLastMessage", function() {
-            return k
-        }), n.d(t, "parserMessage", function() {
-            return j
-        }), n.d(t, "getAuthorFullName", function() {
-            return E
-        }), n.d(t, "getMessage", function() {
-            return T
-        }), n.d(t, "getPreviousMessage", function() {
-            return I
-        }), n.d(t, "isClassicInterface", function() {
-            return A
-        }), n.d(t, "isLocksAvailable", function() {
-            return C
-        }), n.d(t, "isFoldersAvailable", function() {
-            return S
-        }), n.d(t, "isCommunityInterface", function() {
-            return M
-        }), n.d(t, "isChannel", function() {
-            return P
-        }), n.d(t, "getBareTab", function() {
-            return D
-        }), n.d(t, "isReversedDialogs", function() {
-            return x
-        }), n.d(t, "isFullyLoadedTab", function() {
-            return L
-        }), n.d(t, "makeTabNotFullyLoaded", function() {
-            return N
-        }), n.d(t, "isGoToEndVisible", function() {
-            return R
-        }), n.d(t, "getUnreadScrollBottom", function() {
-            return F
-        }), n.d(t, "isSendingAvailable", function() {
-            return H
-        }), n.d(t, "isCommunityPeer", function() {
-            return U
-        }), n.d(t, "isCommunityBlocked", function() {
-            return B
-        }), n.d(t, "checkVoiceMessageAvailable", function() {
-            return G
-        }), n.d(t, "isSearching", function() {
-            return q
-        }), n.d(t, "getSearchText", function() {
-            return z
-        }), n.d(t, "isSearchingValue", function() {
-            return K
-        }), n.d(t, "isRecentSearchesActive", function() {
-            return W
-        }), n.d(t, "getPinnedMessage", function() {
-            return V
-        }), n.d(t, "doPopularSuggExist", function() {
-            return Y
-        }), n.d(t, "isAnyMessageBeingEdited", function() {
-            return X
-        }), n.d(t, "getGroupId", function() {
-            return $
-        }), n.d(t, "getTabDraft", function() {
-            return Q
-        }), n.d(t, "getTemplates", function() {
-            return Z
         });
-        var r = n(86),
-            i = n(103),
-            a = n(459),
-            o = n(308),
-            u = n(378),
-            c = n(5),
-            s = n(14);
+        var r = n(184),
+            i = n(83),
+            a = n(164),
+            o = n(85),
+            u = n(199);
 
-        function d(e, t) {
-            var n = Object(c.unpackStore)(e),
-                i = n.tabs[n.peer];
-            return Object.keys(i.msgs).filter(function(n) {
-                var a = T(e, t, n);
-                return !Object(r.isOut)(a) && intval(n) > i.in_up_to
-            })[0]
+        function c(e, t) {
+            t = Object(r.parserMessage)(t);
+            var n = vk.id == t.peerId && !Object(u.unpackStore)(e).gid;
+            return 333 != t.peerId && (!(!n && !Object(i.isOut)(t)) && (!Object(i.isServiceMsg)(t) && (!(Date.now() / 1e3 - t.date > 86400) && (!(Object(i.isGift)(t) || Object(i.isSticker)(t) || Object(i.isAudioMsg)(t) || Object(i.isGraffiti)(t) || Object(i.isMoney)(t) || Object(i.isVKPay)(t)) && !Object(a.isAlreadyDeleted)(e, t.peerId, t.messageId)))))
         }
 
-        function l(e) {
-            return Object(c.unpackStore)(e).searchShown
-        }
-
-        function f(e) {
-            return Object(c.unpackStore)(e).peer
-        }
-
-        function m(e) {
-            return _(e, f(e))
-        }
-
-        function _(e, t) {
-            return (g(e, t) || {}).keyboard
-        }
-
-        function g(e, t) {
-            var n = Object(c.unpackStore)(e);
-            return n.tabs && n.tabs[t]
-        }
-
-        function p(e) {
-            var t = Object(c.unpackStore)(e);
-            return t.peer ? t.tabs[t.peer] : null
-        }
-
-        function h(e) {
-            return Object(c.unpackStore)(e).selectedMessages
-        }
-
-        function b(e, t, n) {
-            var i = g(e, t),
-                a = h(e)[0];
-            if (void 0 === a) return [n];
-            var o = Math.min(n, a),
-                u = Math.max(n, a);
-            return Object.keys(i.msgs).filter(function(e) {
-                return e >= o && e <= u
-            }).filter(function(t) {
-                var n = T(e, e.get().peer, t);
-                return !Object(r.isServiceMsg)(n) && !Object(r.isCallMessage)(n)
-            }).map(intval)
-        }
-
-        function v(e, t) {
-            var n = g(Object(c.unpackStore)(t), e),
-                i = 0;
-            for (var a in n.msgs)
-                if (n.msgs.hasOwnProperty(a)) {
-                    var o = T(t, e, a);
-                    Object(r.isOut)(o) || (i += Object(r.isUnread)(n, o) ? 1 : 0)
-                }
-            return i
-        }
-
-        function y(e, t, n) {
-            var r = g(e, t);
-            return Object.keys(r.msgs).filter(function(r) {
-                return intval(T(e, t, r).randomId) === n
-            }).length > 0
-        }
-
-        function w(e, t, n) {
-            return !!y(e, t, n)
-        }
-
-        function O(e, t) {
-            var n = Object(c.unpackStore)(e),
-                r = n.msg_local_ids_sort && n.msg_local_ids_sort[t];
-            return void 0 !== r ? 2e9 + r : t
-        }
-
-        function k(e, t, n) {
-            var r = g(e, t),
-                a = T(e, t, n),
-                o = Object.keys(r.msgs).filter(function(n) {
-                    var r = T(e, t, n),
-                        o = r.local && r.type !== i.EDIT_MESSAGE;
-                    return !(!a.local && o) && (!(!a.local || o) || O(e, a.messageId) > O(e, r.messageId))
-                }).pop();
-            return o ? T(e, t, o) : null
-        }
-
-        function j(e) {
-            return e && e.length > 0 ? i.addMessageEvent([0].concat(e)) : e
-        }
-
-        function E(e, t, n) {
-            var i = g(e, t),
-                a = T(e, t, n),
-                u = Object(c.unpackStore)(e);
-            return Object(r.isOut)(a) ? Object(o.oCacheGet)(e, u.id).name : a.userId !== a.peerId ? !!Object(o.oCacheExists)(e, a.userId) && Object(o.oCacheGet)(e, a.userId).name : i.tab
-        }
-
-        function T(e, t, n) {
-            var r = g(e, t),
-                i = r && r.msgs && r.msgs[n];
-            return i ? j(i) : null
-        }
-
-        function I(e, t, n) {
-            var r = g(e, t),
-                i = r && r.msgs && Object.keys(r.msgs).sort(function(e, t) {
-                    return +e - t
-                });
-            if (!i) return null;
-            var a = i && i.indexOf("" + n),
-                o = a > -1 ? i[a - 1] : null;
-            return r.msgs[o]
-        }
-
-        function A(e) {
-            var t = Object(c.unpackStore)(e);
-            return t.gid || t.isClassic
-        }
-
-        function C(e) {
-            return Object(c.unpackStore)(e).gid
-        }
-
-        function S(e) {
-            return Object(c.unpackStore)(e).gid
-        }
-
-        function M(e) {
-            return !!Object(c.unpackStore)(e).gid
-        }
-
-        function P(e, t) {
-            return !!(t.peerId > 2e9 && Object(s.doesChatTabHaveFlag)(t, 1024))
-        }
-
-        function D(e, t) {
-            var n = Object(c.unpackStore)(t);
-            return n.tabs[e] || n.mapped_index[e]
-        }
-
-        function x(e) {
-            var t = Object(c.unpackStore)(e);
-            return !!M(e) && ((19542789 === t.gid || 103416369 == t.gid) && (t.active_tab === a.FOLDER_UNRESPOND || t.active_tab === a.FOLDER_UNREAD))
-        }
-
-        function L(e, t) {
-            var n = (e = Object(c.unpackStore)(e)).tabs;
-            return !(!n || !n[t] || void 0 === n[t].history || !n[t].msgs)
-        }
-
-        function N(e, t) {
-            var n = g(e, t);
-            n && (n.msgs = void 0, n.msgid = void 0, n.scrollTop = void 0, n.scrollBottom = void 0, n.contHeight = void 0, n.offset = void 0, n.skipped = void 0)
-        }
-
-        function R(e) {
-            var t = e.get().go_to_end_visible;
-            return !!t && t[0]
-        }
-
-        function F(e) {
-            var t = e.get().go_to_end_visible;
-            return t ? t[1] : 0
-        }
-
-        function H(e) {
-            return !Object(c.unpackStore)(e).lockedSending
-        }
-
-        function U(e) {
-            return e > -2e9 && e < 0
-        }
-
-        function B(e, t) {
-            return !!U(t) && !!g(e, t).blocked_community
-        }
-
-        function G(e) {
-            return Object(c.unpackStore)(e).voice_message_available
-        }
-
-        function q(e) {
-            var t = Object(c.unpackStore)(e);
-            return !(!z(t) && !t.recentSearch)
-        }
-
-        function z(e) {
-            return Object(c.unpackStore)(e).searchText
-        }
-
-        function K(e, t) {
-            var n = Object(c.unpackStore)(e);
-            return !!(t && t !== z(e) || n.recentSearch)
-        }
-
-        function W(e) {
-            return Object(c.unpackStore)(e).recentSearch
-        }
-
-        function V(e) {
-            var t = p(e);
-            return t && t.pinned && j(t.pinned)
-        }
-
-        function Y(e) {
-            var t = e.get().popular_sugg;
-            return t && t.length > 0
-        }
-
-        function X(e) {
-            return 1 == Object(c.unpackStore)(e).isEditing
-        }
-
-        function $(e) {
-            return Object(c.unpackStore)(e).gid
-        }
-
-        function Q(e) {
-            return e.draft || (e.draft = Object(u.loadDraftForPeer)(cur.imDb, e.peerId)), e.draft
-        }
-
-        function Z(e) {
-            return (Object(c.unpackStore)(e).templates || []).filter(function(e) {
-                return !e.deleted
-            })
-        }
-    },
-    149: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "RECENT_SEARCH_OP", function() {
-            return i
-        }), n.d(t, "PIN_HIDDEN_ID_OP", function() {
-            return a
-        }), n.d(t, "deleteOldStoredFormat", function() {
-            return s
-        }), n.d(t, "mount", function() {
-            return d
-        });
-        var r = function() {
-                return function(e, t) {
-                    if (Array.isArray(e)) return e;
-                    if (Symbol.iterator in Object(e)) return function(e, t) {
-                        var n = [],
-                            r = !0,
-                            i = !1,
-                            a = void 0;
-                        try {
-                            for (var o, u = e[Symbol.iterator](); !(r = (o = u.next()).done) && (n.push(o.value), !t || n.length !== t); r = !0);
-                        } catch (e) {
-                            i = !0, a = e
-                        } finally {
-                            try {
-                                !r && u.return && u.return()
-                            } finally {
-                                if (i) throw a
-                            }
-                        }
-                        return n
-                    }(e, t);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }(),
-            i = "recent_search",
-            a = "pin_hide";
-
-        function o(e) {
-            return "im_store_" + e
-        }
-
-        function u(e) {
-            return ls.get(o(e)) || {}
-        }
-
-        function c(e, t, n) {
-            if (ls.checkVersion()) {
-                var r = JSON.stringify(t);
-                rand(0, 1e5) <= 1 && statlogsValueEvent("im_local_store_size", r.length), n(o(e), r)
-            }
-        }
-
-        function s(e, t) {
-            for (var n = ["fwd", "draft", "bind_attach"], r = u(e), i = !1, a = n.length; a--;) n[a] in r && (delete r[n[a]], i = !0);
-            i && c(e, r, t)
-        }
-
-        function d(e) {
-            var t = debounce(function(e, t) {
-                localStorage.setItem(e, t)
-            }, 300);
-            ls.checkVersion() && s(e, t);
-            var n = {
-                    db: u(e),
-                    checkTime: Date.now()
-                },
-                d = function(e, t, n) {
-                    n.key === o(e) && (t.db = JSON.parse(n.newValue), t.checkTime = Date.now())
-                }.bind(null, e, n);
-            return window.addEventListener("storage", d, !1), {
-                select: function(t, r) {
-                    return Date.now() - n.checkTime > 1e3 && (n.db = u(e)),
-                        function(e, t, n) {
-                            return t === i ? e[t] || [] : t === a ? e[t] && e[t][n] : e[t] ? extend(!0, {}, e[t][n]) : null
-                        }(n.db, t, r)
-                },
-                selectByKey: function(t) {
-                    return Date.now() - n.checkTime > 1e3 && (n.db = u(e)), n.db[t]
-                },
-                update: function(o, u) {
-                    var s = function(e, t, n) {
-                        switch (e[t] || (e[t] = {}), t) {
-                            case i:
-                                var o = n;
-                                o && o.length > 0 ? e[t] = o : delete e[t];
-                                break;
-                            case a:
-                                var u = r(n, 2),
-                                    c = u[0],
-                                    s = u[1];
-                                s ? e[t][c] = +s : delete e[t][c]
-                        }
-                        return e
-                    }(n.db, o, u);
-                    return n.db = s, n.checkTime = Date.now(), c(e, s, t)
-                },
-                updateByKey: function(r, i) {
-                    return n.db[r] = i, n.checkTime = Date.now(), c(e, n.db, t)
-                },
-                unmount: function() {
-                    window.removeEventListener("storage", d, !1)
-                }
-            }
-        }
-    },
-    155: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "replaceHyperLinks", function() {
-            return s
-        }), n.d(t, "replaceEmailLinks", function() {
-            return d
-        }), n.d(t, "replaceMentions", function() {
-            return l
-        }), n.d(t, "replaceHashtags", function() {
-            return _
-        }), n.d(t, "confirmDelivery", function() {
-            return g
-        }), n.d(t, "linksReplacer", function() {
-            return p
-        });
-        var r = n(459),
-            i = void 0,
-            a = window,
-            o = a.clean,
-            u = a.replaceEntities,
-            c = a.statlogsValueEvent;
-
-        function s(e, t) {
-            for (var n = void 0, i = 0, a = e; null !== (n = r.MESSAGE_REGEXP.exec(e));) {
-                var o = (n = f(n))[0].length,
-                    u = n.index + o,
-                    c = e[n.index - 1],
-                    s = e[u - 1],
-                    d = void 0 !== c && /([\w\$А-Яа-яёЁєЄҐґЇїІіЈј\—\-\_@;.])/i.test(c),
-                    l = void 0 !== s && /([:;$])/i.test(s);
-                if (!d && !l) {
-                    var _ = m(n),
-                        g = _.domain.toLowerCase();
-                    if (g.length <= r.MAX_DOMAIN_LENGTH && -1 !== r.TOP_DOMAINS.indexOf(g)) {
-                        var p = t(_);
-                        a = a.slice(0, n.index + i) + p + a.slice(u + i), i += p.length - o
-                    }
-                }
-            }
-            return a
+        function s(e) {
+            var t = document.createElement("div");
+            return e = e.replace(/\[((id|club)\d+)\|(.+?)]/g, function() {
+                var e = arguments.length <= 1 ? void 0 : arguments[1],
+                    t = arguments.length <= 3 ? void 0 : arguments[3];
+                return /^\@/.test(t) ? t : "@" + e + " (" + t + ")"
+            }), t.innerHTML = e, Emoji.val(t)
         }
 
         function d(e, t) {
-            return e.replace(r.EMAIL, t || function(e) {
-                return '<a href="mailto:' + e + '">' + e + "</a>"
-            })
+            return +(t && t.msgs ? Object.keys(t.msgs) : []).filter(function(e) {
+                return e > 0
+            }).sort(function(e, t) {
+                return t - e
+            }).find(function(n) {
+                return c(e, t.msgs[n])
+            }) || null
         }
 
-        function l(e, t) {
-            return e.replace(r.MENTION, t || function(e, t, n, r, i) {
-                return '<a href="/' + (t + n) + '" class="mem_link" mention="' + o(r || "") + '" mention_id="' + o(t + n) + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)">' + i + "</a>"
-            })
-        }
-
-        function f(e) {
-            if (!e[0] || !e[6]) return e;
-            var t = e[0].length - 1,
-                n = e[6].length - 1;
-            return "." === e[0][t] && "." === e[6][n] && (e[0] = e[0].slice(0, t), e[6] = e[6].slice(0, n)), e
-        }
-
-        function m(e) {
-            return {
-                full: e[0],
-                protocol: e[1] || "http://",
-                url: e[2],
-                domain: e[4],
-                query: e[6] || ""
+        function l(e, t, n) {
+            var r = Object(o.convertKludgesToAttaches)(t.kludges, t.messageId),
+                i = n.dData.attaches;
+            if (s(t.text) !== n.dData.txt || r.length !== i.length) return !0;
+            for (var a = r.length; a--;) {
+                var u = r[a],
+                    c = i[a];
+                if (u.id != c.id || u.type != c.type || "poll" == u.type && c.object && c.object.poll_is_edited) return !0
             }
+            return !1
         }
 
-        function _(e, t) {
-            return e.replace((i || (i = new RegExp(r.RE_HASHTAG_EXTRACTION_PATTERN, "ig")), i), function(e, n, r, i, a, o) {
-                return (n || "") + t(r + (a || ""))
-            })
-        }
-
-        function g(e) {
-            c("ttl_message_confirm_delivery", e)
-        }
-
-        function p(e, t) {
-            var n = t.protocol,
-                i = t.url,
-                a = t.query,
-                c = t.domain,
-                s = t.full;
-            try {
-                s = decodeURIComponent(s)
-            } catch (e) {}
-            if (s.length > 55 && (s = s.substr(0, 53) + ".."), s = o(s).replace(/&amp;/g, "&"), !e && c.match(r.OUR_DOMAINS)) {
-                var d, l = i = u(i).replace(r.ENTITIES, encodeURIComponent),
-                    f = i.indexOf("#/"),
-                    m = "";
-                return f >= 0 ? l = i.substr(f + 1) : (f = i.indexOf("#!")) >= 0 && (l = "/" + i.substr(f + 2).replace(/^\//, "")), (d = l.match(r.VK_DOMAIN)) && d[1].length < 32 && (m = ' mention_id="' + d[1] + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)"'), '<a href="' + function(e) {
-                    return e.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-                }(n + i + a) + '" target="_blank"' + m + ">" + s + "</a>"
-            }
-            return '<a href="' + ("away.php?utf=1&to=" + encodeURIComponent(n + u(i + a))) + '" target="_blank" onclick="' + ("return goAway('" + o((n + i + a).replace(/'/g, "\\'")) + "', {}, event);") + '">' + s + "</a>"
+        function f(e, t, n, r, i, o) {
+            t.origText = n, t.text = Object(a.replaceSpecialSymbols)(clean(n)).replace(/\n/gi, "<br>"), t.attaches = r, t.kludges.emoji = 1, t.local = 1, t.share_url = i, t.cancelled_shares = o, t.update_time = Math.floor(Date.now() / 1e3), e.get().tabs[t.peerId].msgs[t.messageId] = t
         }
     },
-    180: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "addDelegateEvent", function() {
-            return o
-        }), n.d(t, "removeDelegateEvent", function() {
-            return u
-        });
-        var r = function() {
-                return function(e, t) {
-                    if (Array.isArray(e)) return e;
-                    if (Symbol.iterator in Object(e)) return function(e, t) {
-                        var n = [],
-                            r = !0,
-                            i = !1,
-                            a = void 0;
-                        try {
-                            for (var o, u = e[Symbol.iterator](); !(r = (o = u.next()).done) && (n.push(o.value), !t || n.length !== t); r = !0);
-                        } catch (e) {
-                            i = !0, a = e
-                        } finally {
-                            try {
-                                !r && u.return && u.return()
-                            } finally {
-                                if (i) throw a
-                            }
-                        }
-                        return n
-                    }(e, t);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }(),
-            i = new window.Map;
-
-        function a(e) {
-            var t = i.get(e.currentTarget);
-            if (t) {
-                var n = t[e.type];
-                if (n)
-                    for (var a = void 0, o = 0; o < n.length; o++) {
-                        var u = r(n[o], 2),
-                            c = u[0],
-                            s = u[1],
-                            d = void 0;
-                        if (hasClass(e.target, c) ? d = s(e, e.target) : (a = gpeByClass(c, e.target, e.currentTarget)) && (d = s(e, a)), !1 === d) break
-                    }
-            }
-        }
-
-        function o(e, t, n, r) {
-            var o = i.get(e);
-            o || (i.set(e, {}), o = i.get(e));
-            for (var u = t.split(" "), c = 0; c < u.length; c++) {
-                var s = u[c];
-                o[s] || (o[s] = [], addEvent(e, s, a)), o[s].push([n, r])
-            }
-        }
-
-        function u(e, t, n, r) {
-            var o = i.get(e);
-            o && (t.split(" ").forEach(function(t) {
-                o[t] && (o[t] = o[t].filter(function(e) {
-                    return e[0] !== n || e[1] !== r
-                }), 0 === o[t].length && removeEvent(e, t, a))
-            }), 0 === Object.keys(o).map(function(e) {
-                return o[e].length
-            }).reduce(function(e, t) {
-                return e + t
-            }) && i.delete(e))
-        }
-    },
-    186: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "isPinnedMessageVisibleInTab", function() {
-            return f
-        }), n.d(t, "pinnedMessageHide", function() {
-            return m
-        }), n.d(t, "pinnedMessageUnHide", function() {
-            return _
-        }), n.d(t, "pinnedMessageUnpin", function() {
-            return g
-        }), n.d(t, "mount", function() {
-            return b
-        });
-        var r = n(384),
-            i = n(117),
-            a = n(442),
-            o = n(260),
-            u = n(140),
-            c = n(5),
-            s = n(149),
-            d = "_im_pin_hide",
-            l = "_im_pinned_message";
-
-        function f(e, t) {
-            if (Object(c.unpackStore)(e).searchShown) return !1;
-            var n = Object(u.getTab)(e, t),
-                r = n && Object(u.parserMessage)(n.pinned);
-            return !!r && n.pinHideId != r.chat_local_id
-        }
-
-        function m(e, t, n) {
-            var r = !(arguments.length > 3 && void 0 !== arguments[3]) || arguments[3],
-                i = Object(u.getTab)(e, t),
-                a = i && Object(u.parserMessage)(i.pinned);
-            i && a && (i.pinHideId = a.chat_local_id, cur.imDb.update(s.PIN_HIDDEN_ID_OP, [i.peerId, i.pinHideId]), p(n, t, e), re(geByClass1("_im_pinned_tt")), r && window.Notifier && Notifier.lcSend("pin_hide", {
-                hide: 1,
-                peer: t
-            }), statlogsValueEvent("im_pinned_messages", "hide"))
-        }
-
-        function _(e, t, n) {
-            var r = !(arguments.length > 3 && void 0 !== arguments[3]) || arguments[3],
-                i = Object(u.getTab)(e, t);
-            i && i.pinHideId && (delete i.pinHideId, cur.imDb.update(s.PIN_HIDDEN_ID_OP, [i.peerId, void 0]), p(n, t, e), r && window.Notifier && Notifier.lcSend("pin_hide", {
-                hide: 0,
-                peer: t
-            }), statlogsValueEvent("im_pinned_messages", "show"))
-        }
-
-        function g(e, t, n) {
-            var r = p.bind(null, n, t),
-                a = Object(o.showUnpinDialog)(function() {
-                    a.hideProgress(), a.hide(), e.set(i.unpinMessageOptimistic.bind(null, t)).then(r).then(function(e) {
-                        return e.set(i.unpinMessage.bind(null, t))
-                    }).then(r)
-                })
-        }
-
-        function p(e, t, n) {
-            return e().updateChatTopic(t, n), Object(i.setActions)(n.get()), e().updateActions(n), n
-        }
-
-        function h(e) {
-            return {
-                unmount: function() {
-                    Object(r.destroyModule)(e)
-                }
-            }
-        }
-
-        function b(e, t, n) {
-            var i = Object(r.createMutations)(h).bindMutations,
-                c = function(e, t, n) {
-                    var r = e.get().peer,
-                        i = Object(u.parserMessage)(Object(u.getTab)(e, r).pinned);
-                    if (n.target.classList.contains(d)) i && m(e, r, t);
-                    else if ("A" !== n.target.tagName) {
-                        var c = i && i.messageId;
-                        c && !Object(o.isAlreadyDeleted)(e, r, c) ? Object(o.focusOnMessage)(e, t().focusOnMessage, r, c) : Object(o.showPinnedBox)(e, t, r, a.mount, n), statlogsValueEvent("im_pinned_messages", "open")
-                    }
-                }.bind(null, t, n),
-                s = function(e) {
-                    showTooltip(e.target, {
-                        text: getLang("mail_hide_unpin_hover"),
-                        black: 1,
-                        needLeft: 1,
-                        shift: [8, 4],
-                        forcetoup: !0,
-                        className: "_im_pinned_tt",
-                        appendEl: bodyNode
-                    })
-                }.bind(null);
-            return i(Object(r.createModule)({
-                handlers: function(t, n) {
-                    n(e, "click", l, c), n(e, "mouseover", d, s)
-                }
-            }))
-        }
-    },
-    193: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
-        "use strict";
-        __webpack_require__.r(__webpack_exports__), __webpack_require__.d(__webpack_exports__, "topMsg", function() {
-            return topMsg
-        }), __webpack_require__.d(__webpack_exports__, "topError", function() {
-            return topError
-        }), __webpack_require__.d(__webpack_exports__, "showMsg", function() {
-            return showMsg
-        }), __webpack_require__.d(__webpack_exports__, "showGlobalPrg", function() {
-            return showGlobalPrg
-        });
-        var _dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(221),
-            _utils_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(276);
-
-        function topMsg(e, t, n) {
-            if (n || (n = "#D6E5F7"), e) {
-                clearTimeout(window.topMsgTimer);
-                var r = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.ge)("system_msg");
-                r.style.backgroundColor = n, r.innerHTML = e, Object(_dom__WEBPACK_IMPORTED_MODULE_0__.show)(r), t && (window.topMsgTimer = setTimeout(topMsg.pbind(!1), 1e3 * t))
-            } else Object(_dom__WEBPACK_IMPORTED_MODULE_0__.hide)("system_msg")
-        }
-
-        function topError(text, opts) {
-            if (opts || (opts = {}), text.message) {
-                var error = text;
-                text = "<b>JavaScript error:</b> " + error.message, opts.stack = error.stack, error.stack && __debugMode && (text += "<br/>" + error.stack.replace(/\n/g, "<br/>"));
-                try {
-                    console.log(error.stack)
-                } catch (e) {}
-            }
-            if (!opts.stack) try {
-                eval("0 = 1")
-            } catch (e) {
-                opts.stack = e.stack
-            } - 1 != opts.dt && topMsg(text, opts.dt, "#FFB4A3"), __dev || Object(_dom__WEBPACK_IMPORTED_MODULE_0__.ge)("debuglogwrap") || (delete opts.dt, ajax.plainpost("/errors.php", Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__.extend)(opts, {
-                msg: opts.msg || text,
-                module: (window.cur || {}).module,
-                id: vk.id,
-                host: locHost,
-                lang: vk.lang,
-                loc: (window.nav || {}).strLoc,
-                realloc: location.toString()
-            })))
-        }
-
-        function showMsg(e, t, n, r) {
-            var i = "msg" + ("msg" !== n ? " " + n : "");
-            r && (i += " msg_appear"), e = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.ge)(e);
-            var a = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.geByClass1)(n, e),
-                o = a || Object(_dom__WEBPACK_IMPORTED_MODULE_0__.domFC)(e),
-                u = e.insertBefore(Object(_dom__WEBPACK_IMPORTED_MODULE_0__.ce)("div", {
-                    className: i,
-                    innerHTML: '<div class="msg_text">' + t + "</div>"
-                }), o);
-            a && Object(_dom__WEBPACK_IMPORTED_MODULE_0__.re)(a), setTimeout(_dom__WEBPACK_IMPORTED_MODULE_0__.removeClass.pbind(u, "msg_appear"), 0)
-        }
-
-        function showGlobalPrg(e, t) {
-            var n = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.getXY)(e),
-                r = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.getSize)(e),
-                i = t || {},
-                a = i.w,
-                o = void 0 === a ? 32 : a,
-                u = i.h,
-                c = void 0 === u ? 13 : u,
-                s = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.ge)("global_prg");
-            s.className = i.cls || "progress", Object(_dom__WEBPACK_IMPORTED_MODULE_0__.setStyle)(s, {
-                left: n[0] + Math.floor((r[0] - o) / 2) + Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__.intval)(i.shift ? i.shift[0] : 0),
-                top: n[1] + Math.floor((r[1] - c) / 2) + Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__.intval)(i.shift ? i.shift[1] : 0),
-                width: o,
-                height: c,
-                display: "block",
-                "z-index": i.zIndex ? i.zIndex : null
-            }), i.hide && (e.style.visibility = "hidden")
-        }
-    },
-    221: function(e, t, n) {
+    13: function(e, t, n) {
         "use strict";
         n.r(t), n.d(t, "ge", function() {
             return a
@@ -4302,8 +2814,8 @@
         }), n.d(t, "initDomScripts", function() {
             return Pe
         });
-        var r = n(276),
-            i = n(363),
+        var r = n(221),
+            i = n(34),
             a = function(e) {
                 return "string" == typeof e || "number" == typeof e ? document.getElementById(e) : e
             };
@@ -4866,7 +3378,590 @@
         }
         window.ge = a, window.geByTag = o, window.geByTag1 = u, window.geByClass = c, window.geByClass1 = s, window.gpeByClass = d, window.domQuery = l, window.domQuery1 = f, window.domClosest = m, window.ce = p, window.cf = w, window.re = O, window.se = k, window.sech = j, window.rs = E, window.psr = T, window.domReplaceEl = I, window.domEL = A, window.domNS = C, window.domPS = S, window.domFC = M, window.domLC = P, window.domPN = D, window.domChildren = x, window.domInsertBefore = L, window.domInsertAfter = N, window.domByClass = R, window.domData = F, window.domChildIndex = H, window.domCA = U, window.domClosestSibling = B, window.matchesSelector = G, window.isHover = q, window.isAncestor = z, window.getScroll = K, window.domClosestPositioned = W, window.domClosestOverflowHidden = V, window.show = Y, window.hide = X, window.isVisible = $, window.clientHeight = Q, window.getClientRectOffsetY = Z, window.toggle = J, window.boundingRectEnabled = ee, window.getXYRect = te, window.getXY = ne, window.isWindow = re, window.getSize = ie, window.hasClass = ue, window.addClass = ce, window.addClassDelayed = se, window.removeClass = de, window.removeClassDelayed = le, window.toggleClass = fe, window.toggleClassDelayed = me, window.replaceClass = _e, window.getStyle = ge, window.setStyle = pe, window.setStyleDelayed = he, window.setPseudoStyle = be, window.data = ve, window.attr = ye, window.removeAttr = we, window.removeData = Oe, window.cleanElems = ke, window.setTitle = je, window.getZoom = Ee, window.val = Te, window.elfocus = Ie, window.traverseParent = Ae, window.getH = oe, window.getW = ae, window.domClosestByTag = _, window.setDocumentTitle = Se, window.lockDocumentTitle = Me
     },
-    260: function(e, t, n) {
+    130: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "parseLatin", function() {
+            return a
+        }), n.d(t, "parseCyr", function() {
+            return o
+        }), n.d(t, "parseLatKeys", function() {
+            return u
+        }), n.d(t, "langNumeric", function() {
+            return c
+        }), n.d(t, "langSex", function() {
+            return s
+        }), n.d(t, "langStr", function() {
+            return d
+        }), n.d(t, "addLangKeys", function() {
+            return l
+        }), n.d(t, "getLang", function() {
+            return f
+        }), n.d(t, "langDate", function() {
+            return m
+        }), n.d(t, "getShortDate", function() {
+            return _
+        }), n.d(t, "getShortDateOrTime", function() {
+            return g
+        }), n.d(t, "langWordNumeric", function() {
+            return p
+        }), n.d(t, "getDateText", function() {
+            return h
+        }), n.d(t, "getBigDateNew", function() {
+            return b
+        }), n.d(t, "getSmDate", function() {
+            return v
+        });
+        var r = n(179),
+            i = n(221);
+
+        function a(e) {
+            for (var t = ["yo", "zh", "kh", "ts", "ch", "sch", "shch", "sh", "eh", "yu", "ya", "YO", "ZH", "KH", "TS", "CH", "SCH", "SHCH", "SH", "EH", "YU", "YA", "'"], n = ["ё", "ж", "х", "ц", "ч", "щ", "щ", "ш", "э", "ю", "я", "Ё", "Ж", "Х", "Ц", "Ч", "Щ", "Щ", "Ш", "Э", "Ю", "Я", "ь"], r = e, i = 0, a = t.length; i < a; i++) r = r.split(t[i]).join(n[i]);
+            for (var o = "abvgdezijklmnoprstufhcyABVGDEZIJKLMNOPRSTUFHCYёЁ", u = 0, c = o.length; u < c; u++) r = r.split(o.charAt(u)).join("абвгдезийклмнопрстуфхцыАБВГДЕЗИЙКЛМНОПРСТУФХЦЫеЕ".charAt(u));
+            return r === e ? null : r
+        }
+
+        function o(e) {
+            for (var t = ["yo", "zh", "kh", "ts", "ch", "sch", "shch", "sh", "eh", "yu", "ya", "YO", "ZH", "KH", "TS", "CH", "SCH", "SHCH", "SH", "EH", "YU", "YA", "'"], n = ["ё", "ж", "х", "ц", "ч", "щ", "щ", "ш", "э", "ю", "я", "Ё", "Ж", "Х", "Ц", "Ч", "Щ", "Щ", "Ш", "Э", "Ю", "Я", "ь"], r = "абвгдезийклмнопрстуфхцыАБВГДЕЗИЙКЛМНОПРСТУФХЦЫеЕ", i = e, a = 0; a < n.length; a++) i = i.split(n[a]).join(t[a]);
+            for (var o = 0; o < r.length; o++) i = i.split(r.charAt(o)).join("abvgdezijklmnoprstufhcyABVGDEZIJKLMNOPRSTUFHCYёЁ".charAt(o));
+            return i === e ? null : i
+        }
+
+        function u(e) {
+            for (var t = "qwertyuiop[]asdfghjkl;'zxcvbnm,./`", n = e, r = 0; r < t.length; r++) n = n.split(t.charAt(r)).join("йцукенгшщзхъфывапролджэячсмитьбю.ё".charAt(r));
+            return n == e ? null : n
+        }
+
+        function c(e, t, n) {
+            if (!t || !window.langConfig) return e;
+            var r = void 0;
+            if (Object(i.isArray)(t) ? (r = t[1], e != Math.floor(e) ? r = t[langConfig.numRules.float] : Object(i.each)(langConfig.numRules.int, function(n, a) {
+                    if ("*" == a[0]) return r = t[a[2]], !1;
+                    var o = a[0] ? e % a[0] : e;
+                    return -1 != Object(i.indexOf)(a[1], o) ? (r = t[a[2]], !1) : void 0
+                })) : r = t, n) {
+                for (var a = e.toString().split("."), o = [], u = a[0].length - 3; u > -3; u -= 3) o.unshift(a[0].slice(u > 0 ? u : 0, u + 3));
+                a[0] = o.join(langConfig.numDel), e = a.join(langConfig.numDec)
+            }
+            return r = (r || "%s").replace("%s", e)
+        }
+
+        function s(e, t) {
+            if (!Object(i.isArray)(t)) return t;
+            var n = t[1];
+            return window.langConfig ? (Object(i.each)(langConfig.sexRules, function(r, i) {
+                return "*" == i[0] ? (n = t[i[1]], !1) : e == i[0] && t[i[1]] ? (n = t[i[1]], !1) : void 0
+            }), n) : n
+        }
+
+        function d(e) {
+            for (var t = arguments, n = t.length, r = e + "", i = 1; i < n; i += 2) {
+                var a = "%" === t[i][0] ? t[i] : "{" + t[i] + "}";
+                r = r.replace(a, t[i + 1])
+            }
+            return r
+        }
+
+        function l(e, t) {
+            var n = t ? window : window.cur;
+            n.lang ? Object(i.extend)(n.lang, e) : n.lang = e
+        }
+
+        function f() {
+            try {
+                var e = Array.from(arguments),
+                    t = e.shift();
+                if (!t) return "...";
+                var n = window.cur.lang && window.cur.lang[t] || window.lang && window.lang[t] || window.langpack && window.langpack[t] || window[t];
+                if (!n) {
+                    var r = t.split("_");
+                    return r.shift(), r.join(" ")
+                }
+                return Object(i.isFunction)(n) ? n.apply(null, e) : void 0 === e[0] && !Object(i.isArray)(n) || "raw" === e[0] ? n : c(e[0], n, e[1])
+            } catch (e) {
+                debugLog("lang error:" + e.message + "(" + Array.from(arguments).join(", ") + ")")
+            }
+        }
+
+        function m(e, t, n, a, o, u) {
+            var c = void 0;
+            if (u || (u = ""), Object(i.isArray)(t) || (t = ["", t, t, t, t]), "number" == typeof e || "string" == typeof e ? (e > 2147483646e3 && (e = 0), e += n, c = new Date(e)) : c = e, o) t = t[1];
+            else {
+                var s = "";
+                !(s = Object(r.isToday)(c) ? t[3] : Object(r.isYesterday)(c) ? t[2] : Object(r.isTomorrow)(c) ? t[4] : t[1]) && t[1] && (s = t[1]), t = s
+            }
+            var d = {
+                    hours: c.getHours(),
+                    minutes: c.getMinutes(),
+                    seconds: c.getSeconds(),
+                    day: c.getDate(),
+                    month: c.getMonth() + 1,
+                    year: c.getFullYear()
+                },
+                l = "";
+            switch (3 === vk.lang && (l = c.getHours() > 11 ? "pm" : "am", d.hours = c.getHours() % 12 == 0 ? 12 : c.getHours() % 12), vk.lang) {
+                case 1:
+                    switch (c.getHours()) {
+                        case 11:
+                            t = t.replace(" о ", " об ");
+                            break;
+                        case 0:
+                            t = t.replace(" о ", " в ")
+                    }
+                    break;
+                case 3:
+                    !Object(r.isToday)(c) || Object(r.isYesterday)(c) || Object(r.isTomorrow)(c) || (t = u + t);
+                    break;
+                case 12:
+                case 73:
+                    1 == c.getHours() && (t = t.replace(" &#224;s ", " &#224; "))
+            }
+            return 68 === vk.lang && (d.year = d.year + 543), t.replace("{hour}", d.hours).replace("{num_hour}", Object(r.leadingZero)(d.hours)).replace("{minute}", Object(r.leadingZero)(d.minutes)).replace("{day}", d.day).replace("{num_day}", Object(r.leadingZero)(d.day)).replace("{month}", a[d.month]).replace("{year}", d.year).replace("{short_year}", d.year % 100).replace("{second}", Object(r.leadingZero)(d.seconds)).replace("{am_pm}", l)
+        }
+
+        function _(e, t, n, r, i) {
+            e *= 1e3, void 0 === n && (n = !0), void 0 === r && (r = f("months_of", "raw")), t *= 1e3;
+            var a = Date.now(),
+                o = new Date(a),
+                u = new Date(e + t);
+            return !i && e > a && e - a < 864e5 && o.getDate() === u.getDate() ? m(e, "{hour}:{minute} {am_pm}", t, [], !n) : u.getYear() !== o.getYear() || e < a - 157248e5 ? m(e, f("global_date", "raw"), t, r, !n) : m(e, f("global_short_date", "raw"), t, r, !n)
+        }
+
+        function g(e, t, n, i) {
+            return Object(r.isToday)(new Date(1e3 * e + 1e3 * t)) ? m(1e3 * e, "{hour}:{minute} {am_pm}", 1e3 * t, [], !n) : _(e, t, n, i)
+        }
+
+        function p(e, t, n) {
+            return Object(i.isArray)(t) && e < t.length ? t[e] : c(e, n)
+        }
+
+        function h(e, t) {
+            e += t;
+            var n = parseInt(Date.now() / 1e3) - e,
+                r = "";
+            if (n < 60) r = f("global_just_now");
+            else if (n < 3600) {
+                r = p(Object(i.intval)(n / 60), f("global_word_mins_ago", "raw"), f("global_mins_ago", "raw"))
+            } else if (n < 14400) {
+                r = p(Object(i.intval)(n / 3600), f("global_word_hours_ago", "raw"), f("global_hours_ago", "raw"))
+            } else r = b(e, 0, !0, "_l");
+            return r
+        }
+
+        function b(e, t, n, r) {
+            void 0 === n && (n = !0), void 0 === t && (t = 0), void 0 === r && (r = ""), t *= 1e3;
+            var i = new Date(1e3 * e),
+                a = new Date;
+            return i.getFullYear() !== a.getFullYear() && i.getTime() < a.getTime() - 1728e5 || Math.abs(i.getTime() - a.getTime()) > 157248e5 ? m(1e3 * e, f("global_date", "raw"), t, f("months_sm_of"), !n) : m(1e3 * e, f("global_short_date_time" + r, "raw"), t, f("months_sm_of"), !n)
+        }
+
+        function v(e, t, n) {
+            void 0 === n && (n = !0), void 0 === t && (t = 0);
+            var r = new Date,
+                i = r.getFullYear(),
+                a = r.getMonth(),
+                o = new Date(1e3 * e),
+                u = o.getFullYear(),
+                c = o.getMonth();
+            return m(1e3 * e, f(u < i && (a > 1 || c < 9 || i - u >= 2) ? "global_date" : "global_short_date_time", "raw"), t, f("months_sm_of", "raw"), !n)
+        }
+        window.parseLatin = a, window.parseCyr = o, window.parseLatKeys = u, window.langNumeric = c, window.langSex = s, window.langStr = d, window.addLangKeys = l, window.getLang = f, window.langDate = m, window.getShortDate = _, window.getShortDateOrTime = g, window.langWordNumeric = p, window.getDateText = h, window.getBigDateNew = b, window.getSmDate = v
+    },
+    134: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "isWeirdLogging", function() {
+            return s
+        }), n.d(t, "imWeirdLog", function() {
+            return d
+        }), n.d(t, "imWeirdCatch", function() {
+            return l
+        }), n.d(t, "startLoggingAllUnhandled", function() {
+            return f
+        }), n.d(t, "stopLoggingAllUnhandled", function() {
+            return m
+        });
+        var r = n(219),
+            i = n(226),
+            a = void 0,
+            o = 1;
+
+        function u(e, t, n, r, i) {
+            if ("Script error." !== e) {
+                var o = i ? i.stack || i.message : null;
+                d("unhandled_error", o ? {
+                    err: e,
+                    stack: o
+                } : {
+                    err: e
+                })
+            }
+            a && a.apply(this, arguments)
+        }
+
+        function c(e) {
+            e.preventDefault()
+        }
+
+        function s() {
+            return !!window.imwl
+        }
+
+        function d(e, t) {
+            var n = !(arguments.length > 2 && void 0 !== arguments[2]) || arguments[2];
+            s() && (n && window.console && (console.error(e, t), console.trace && console.trace()), Object(i.retryFn)(r.post, 3, function() {
+                return 2
+            })("al_im.php", {
+                act: "a_weird_log",
+                kind: e,
+                data: JSON.stringify(extend({
+                    errIdx: o++,
+                    ua: navigator.userAgent
+                }, t))
+            }))
+        }
+
+        function l(e, t) {
+            var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {};
+            return d(e, extend({
+                err: t && t.message || t
+            }, n)), Promise.reject(t)
+        }
+
+        function f() {
+            a = window.onerror, window.onerror = u, window.addEventListener("unhandledrejection", c)
+        }
+
+        function m() {
+            window.onerror = a, a = void 0, window.removeEventListener("unhandledrejection", c)
+        }
+    },
+    138: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "mount", function() {
+            return c
+        });
+        var r = n(111),
+            i = n(147),
+            a = n(78),
+            o = function() {
+                return function(e, t) {
+                    if (Array.isArray(e)) return e;
+                    if (Symbol.iterator in Object(e)) return function(e, t) {
+                        var n = [],
+                            r = !0,
+                            i = !1,
+                            a = void 0;
+                        try {
+                            for (var o, u = e[Symbol.iterator](); !(r = (o = u.next()).done) && (n.push(o.value), !t || n.length !== t); r = !0);
+                        } catch (e) {
+                            i = !0, a = e
+                        } finally {
+                            try {
+                                !r && u.return && u.return()
+                            } finally {
+                                if (i) throw a
+                            }
+                        }
+                        return n
+                    }(e, t);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }(),
+            u = "_im_join_chat";
+
+        function c(e, t) {
+            var n = Object(i.createModule)({
+                handlers: function(n, i) {
+                    i(e, "click", u, function(e) {
+                        return function(e, t) {
+                            var n = domData(t, "chat-id"),
+                                i = domData(t, "hash");
+                            return lockButton(t), Object(r.joinChat)(n, i, e.get()).then(function(n) {
+                                var r = o(n, 1)[0];
+                                unlockButton(t), e.get().longpoll.push([Object(a.changePeer)(r)])
+                            }).catch(function(e) {
+                                showFastBox(getLang("mail_join_invite_error_title"), e), unlockButton(t)
+                            })
+                        }(t, e.target)
+                    })
+                }
+            });
+            return {
+                unmount: function() {
+                    Object(i.destroyModule)(n)
+                }
+            }
+        }
+    },
+    147: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "createMutations", function() {
+            return c
+        }), n.d(t, "createModule", function() {
+            return s
+        }), n.d(t, "destroyModule", function() {
+            return d
+        });
+        var r = n(15);
+
+        function i(e) {
+            if (Array.isArray(e)) {
+                for (var t = 0, n = Array(e.length); t < e.length; t++) n[t] = e[t];
+                return n
+            }
+            return Array.from(e)
+        }
+        var a = window,
+            o = a.addEvent,
+            u = a.removeEvent;
+
+        function c(e) {
+            return {
+                callMutations: function() {
+                    if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
+                    return e
+                },
+                bindMutations: function() {
+                    if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
+                    return e = e.apply(void 0, arguments)
+                }
+            }
+        }
+
+        function s(e) {
+            var t = {
+                _registeredHandlers: []
+            };
+            return e.handlers(function(e, t, n, r) {
+                o(t, n, r), e._registeredHandlers.push(["bind", t, n, r])
+            }.bind(null, t), function(e, t, n, i, a) {
+                Object(r.addDelegateEvent)(t, n, i, a), e._registeredHandlers.push(["delegate", t, n, i, a])
+            }.bind(null, t)), t
+        }
+
+        function d(e) {
+            e._registeredHandlers.forEach(function(e) {
+                var t = e.slice(1);
+                "delegate" === e[0] ? r.removeDelegateEvent.apply(void 0, i(t)) : u.apply(void 0, i(t))
+            }), e._registeredHandlers = []
+        }
+    },
+    148: function(e, t, n) {
+        "use strict";
+
+        function r() {
+            window._logTimer = (new Date).getTime()
+        }
+
+        function i(e, t) {
+            window.Raven && (t && t.length > 350 && (t = t.slice(0, 150) + "..." + t.slice(-150)), e.message += ": " + t, Raven.captureException(e))
+        }
+
+        function a(e) {
+            try {
+                window.debuglogClient && debuglogClient(e);
+                var t = "[" + ((new Date).getTime() - window._logTimer) / 1e3 + "] ";
+                if (window.console && console.log) {
+                    var n = Array.prototype.slice.call(arguments);
+                    n.unshift(t), browser.msie || browser.mobile ? console.log(n.join(" ")) : console.log.apply(console, n)
+                }
+            } catch (e) {}
+        }
+
+        function o(e) {
+            if (!e) return !1;
+            var t = e.tagName,
+                n = e.id,
+                r = e.className,
+                i = (t || "").toLowerCase();
+            return r && (i += "." + e.className.replace(/\s+/g, ".")), n && !/^__vk/.test(n) && (i += "#" + e.id), i || (e.toString() || "[NULL]")
+        }
+        n.r(t), n.d(t, "initDebugTools", function() {
+            return r
+        }), n.d(t, "logEvalError", function() {
+            return i
+        }), n.d(t, "debugLog", function() {
+            return a
+        }), n.d(t, "debugEl", function() {
+            return o
+        })
+    },
+    15: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "addDelegateEvent", function() {
+            return o
+        }), n.d(t, "removeDelegateEvent", function() {
+            return u
+        });
+        var r = function() {
+                return function(e, t) {
+                    if (Array.isArray(e)) return e;
+                    if (Symbol.iterator in Object(e)) return function(e, t) {
+                        var n = [],
+                            r = !0,
+                            i = !1,
+                            a = void 0;
+                        try {
+                            for (var o, u = e[Symbol.iterator](); !(r = (o = u.next()).done) && (n.push(o.value), !t || n.length !== t); r = !0);
+                        } catch (e) {
+                            i = !0, a = e
+                        } finally {
+                            try {
+                                !r && u.return && u.return()
+                            } finally {
+                                if (i) throw a
+                            }
+                        }
+                        return n
+                    }(e, t);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }(),
+            i = new window.Map;
+
+        function a(e) {
+            var t = i.get(e.currentTarget);
+            if (t) {
+                var n = t[e.type];
+                if (n)
+                    for (var a = void 0, o = 0; o < n.length; o++) {
+                        var u = r(n[o], 2),
+                            c = u[0],
+                            s = u[1],
+                            d = void 0;
+                        if (hasClass(e.target, c) ? d = s(e, e.target) : (a = gpeByClass(c, e.target, e.currentTarget)) && (d = s(e, a)), !1 === d) break
+                    }
+            }
+        }
+
+        function o(e, t, n, r) {
+            var o = i.get(e);
+            o || (i.set(e, {}), o = i.get(e));
+            for (var u = t.split(" "), c = 0; c < u.length; c++) {
+                var s = u[c];
+                o[s] || (o[s] = [], addEvent(e, s, a)), o[s].push([n, r])
+            }
+        }
+
+        function u(e, t, n, r) {
+            var o = i.get(e);
+            o && (t.split(" ").forEach(function(t) {
+                o[t] && (o[t] = o[t].filter(function(e) {
+                    return e[0] !== n || e[1] !== r
+                }), 0 === o[t].length && removeEvent(e, t, a))
+            }), 0 === Object.keys(o).map(function(e) {
+                return o[e].length
+            }).reduce(function(e, t) {
+                return e + t
+            }) && i.delete(e))
+        }
+    },
+    155: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "RECENT_SEARCH_OP", function() {
+            return i
+        }), n.d(t, "PIN_HIDDEN_ID_OP", function() {
+            return a
+        }), n.d(t, "deleteOldStoredFormat", function() {
+            return s
+        }), n.d(t, "mount", function() {
+            return d
+        });
+        var r = function() {
+                return function(e, t) {
+                    if (Array.isArray(e)) return e;
+                    if (Symbol.iterator in Object(e)) return function(e, t) {
+                        var n = [],
+                            r = !0,
+                            i = !1,
+                            a = void 0;
+                        try {
+                            for (var o, u = e[Symbol.iterator](); !(r = (o = u.next()).done) && (n.push(o.value), !t || n.length !== t); r = !0);
+                        } catch (e) {
+                            i = !0, a = e
+                        } finally {
+                            try {
+                                !r && u.return && u.return()
+                            } finally {
+                                if (i) throw a
+                            }
+                        }
+                        return n
+                    }(e, t);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }(),
+            i = "recent_search",
+            a = "pin_hide";
+
+        function o(e) {
+            return "im_store_" + e
+        }
+
+        function u(e) {
+            return ls.get(o(e)) || {}
+        }
+
+        function c(e, t, n) {
+            if (ls.checkVersion()) {
+                var r = JSON.stringify(t);
+                rand(0, 1e5) <= 1 && statlogsValueEvent("im_local_store_size", r.length), n(o(e), r)
+            }
+        }
+
+        function s(e, t) {
+            for (var n = ["fwd", "draft", "bind_attach"], r = u(e), i = !1, a = n.length; a--;) n[a] in r && (delete r[n[a]], i = !0);
+            i && c(e, r, t)
+        }
+
+        function d(e) {
+            var t = debounce(function(e, t) {
+                localStorage.setItem(e, t)
+            }, 300);
+            ls.checkVersion() && s(e, t);
+            var n = {
+                    db: u(e),
+                    checkTime: Date.now()
+                },
+                d = function(e, t, n) {
+                    n.key === o(e) && (t.db = JSON.parse(n.newValue), t.checkTime = Date.now())
+                }.bind(null, e, n);
+            return window.addEventListener("storage", d, !1), {
+                select: function(t, r) {
+                    return Date.now() - n.checkTime > 1e3 && (n.db = u(e)),
+                        function(e, t, n) {
+                            return t === i ? e[t] || [] : t === a ? e[t] && e[t][n] : e[t] ? extend(!0, {}, e[t][n]) : null
+                        }(n.db, t, r)
+                },
+                selectByKey: function(t) {
+                    return Date.now() - n.checkTime > 1e3 && (n.db = u(e)), n.db[t]
+                },
+                update: function(o, u) {
+                    var s = function(e, t, n) {
+                        switch (e[t] || (e[t] = {}), t) {
+                            case i:
+                                var o = n;
+                                o && o.length > 0 ? e[t] = o : delete e[t];
+                                break;
+                            case a:
+                                var u = r(n, 2),
+                                    c = u[0],
+                                    s = u[1];
+                                s ? e[t][c] = +s : delete e[t][c]
+                        }
+                        return e
+                    }(n.db, o, u);
+                    return n.db = s, n.checkTime = Date.now(), c(e, s, t)
+                },
+                updateByKey: function(r, i) {
+                    return n.db[r] = i, n.checkTime = Date.now(), c(e, n.db, t)
+                },
+                unmount: function() {
+                    window.removeEventListener("storage", d, !1)
+                }
+            }
+        }
+    },
+    164: function(e, t, n) {
         "use strict";
         n.r(t), n.d(t, "SENDING_CLASS", function() {
             return O
@@ -5149,11 +4244,11 @@
         }), n.d(t, "getNowEditingMessage", function() {
             return sr
         });
-        var r = n(103),
-            i = n(459),
-            a = n(384),
-            o = n(114),
-            u = n(140);
+        var r = n(78),
+            i = n(86),
+            a = n(147),
+            o = n(38),
+            u = n(184);
         n.d(t, "getFirstUnread", function() {
             return u.getFirstUnread
         }), n.d(t, "isSearchShown", function() {
@@ -5241,9 +4336,9 @@
         }), n.d(t, "getTemplates", function() {
             return u.getTemplates
         });
-        var c = n(86),
-            s = n(155),
-            d = n(96);
+        var c = n(83),
+            s = n(212),
+            d = n(85);
         n.d(t, "isChatPeer", function() {
             return d.isChatPeer
         }), n.d(t, "isUserPeer", function() {
@@ -5251,14 +4346,14 @@
         }), n.d(t, "isReservedPeer", function() {
             return d.isReservedPeer
         });
-        var l = n(10),
-            f = n(5),
-            m = n(308),
-            _ = n(186),
-            g = n(299),
-            p = n(117),
-            h = n(452),
-            b = n(14),
+        var l = n(138),
+            f = n(199),
+            m = n(183),
+            _ = n(96),
+            g = n(121),
+            p = n(111),
+            h = n(134),
+            b = n(113),
             v = function() {
                 return function(e, t) {
                     if (Array.isArray(e)) return e;
@@ -5481,7 +4576,7 @@
         function ut(e, t) {
             var n = ["_im_mess"],
                 r = Object(c.isUnread)(e.tabs[t.peerId], t),
-                i = Object(c.hasReply)(t) && e.newReplyAllowed ? be("im_message_media", {
+                i = Object(c.hasReply)(t) ? be("im_message_media", {
                     type: "reply",
                     messageId: t.messageId,
                     attaches: nt("reply"),
@@ -5490,7 +4585,7 @@
             Object(c.isOut)(t) && r && n.push("im-mess_unread _im_mess_unread"), Object(c.isOut)(t) && n.push("im-mess_out"), Object(c.wasEdited)(t) && n.push("im-mess_was_edited"), Object(g.canMessageBeEdited)(e, t) && n.push("im-mess_editable"), Object(c.isImportant)(t) && n.push("im-mess_fav"), -1 != (e.selectedMessages || []).indexOf(t.messageId) && n.push("im-mess_selected");
             var a = Date.now() - 1e3 * t.date > 1e3;
             t.local && a && n.push("im-mess_sending"), t.local && n.push("" + O), t.local && Object(c.wasEdited)(t) && !r && n.push("im-mess_unread im-mess_nobg"), t.failed && n.push("im-mess_failed " + k), Object(c.isGift)(t) && n.push("im-mess_gift");
-            var o = ct(e, t),
+            var o = ct(t),
                 u = i + jt(e, t.text, t.kludges, !1, t.peerId);
             "" != u && Object(c.wasEdited)(t) && (u += be("sImLblWasEdited", {
                 update_time: t.update_time
@@ -5517,10 +4612,9 @@
             })
         }
 
-        function ct(e, t) {
-            var n = Object(f.unpackStore)(e).newReplyAllowed;
-            return t.attaches.reduce(function(e, r) {
-                return Object(c.hasReply)(t) && n && ("mail" === r.type || "reply" === r.type) ? e : ("sticker" === r.type ? t.messageId ? e.push(Qe(r.id, r.productId, r.kind, t.messageId)) : e.push(Qe(r.id, r.productId)) : e.push(nt(r.type)), e)
+        function ct(e) {
+            return e.attaches.reduce(function(t, n) {
+                return !Object(c.hasReply)(e) || "mail" !== n.type && "reply" !== n.type ? ("sticker" === n.type ? e.messageId ? t.push(Qe(n.id, n.productId, n.kind, e.messageId)) : t.push(Qe(n.id, n.productId)) : t.push(nt(n.type)), t) : t
             }, [])
         }
 
@@ -6902,7 +5996,279 @@
             return r && r.peerId == e.get().peer ? r : null
         }
     },
-    265: function(e, t, n) {
+    166: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "ImDraft", function() {
+            return u
+        }), n.d(t, "loadDraftForPeer", function() {
+            return s
+        });
+        var r = n(219),
+            i = n(78),
+            a = n(111),
+            o = function() {
+                return function(e, t) {
+                    if (Array.isArray(e)) return e;
+                    if (Symbol.iterator in Object(e)) return function(e, t) {
+                        var n = [],
+                            r = !0,
+                            i = !1,
+                            a = void 0;
+                        try {
+                            for (var o, u = e[Symbol.iterator](); !(r = (o = u.next()).done) && (n.push(o.value), !t || n.length !== t); r = !0);
+                        } catch (e) {
+                            i = !0, a = e
+                        } finally {
+                            try {
+                                !r && u.return && u.return()
+                            } finally {
+                                if (i) throw a
+                            }
+                        }
+                        return n
+                    }(e, t);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }();
+
+        function u(e, t) {
+            this._db = e, this._key = t, this.dData = {
+                txt: "",
+                attaches: [],
+                urlBinds: [],
+                cancelled: []
+            }, this.load()
+        }
+
+        function c(e) {
+            switch (e.type) {
+                case "mail":
+                case "reply":
+                    return e.id < 0 && 1 == e.object.fwd_count;
+                default:
+                    return !e.object
+            }
+        }
+
+        function s(e, t) {
+            return new u(e, "draft_" + t)
+        }
+        u.prototype.dump = function() {
+            var e;
+            this._key && this._db.updateByKey(this._key, {
+                txt: (e = this.dData).txt,
+                attaches: e.attaches.length ? e.attaches : void 0,
+                urlBinds: e.urlBinds.length ? e.urlBinds : void 0,
+                cancelled: e.cancelled.length ? e.cancelled : void 0
+            })
+        }, u.prototype.load = function() {
+            if (this._key) {
+                var e = this._db.selectByKey(this._key);
+                e && (this.dData = function(e) {
+                    return {
+                        txt: e.txt,
+                        attaches: e.attaches || [],
+                        urlBinds: e.urlBinds || [],
+                        cancelled: e.cancelled || []
+                    }
+                }(e))
+            }
+        }, u.prototype.clear = function() {
+            this.dData = {
+                txt: "",
+                attaches: [],
+                urlBinds: [],
+                cancelled: []
+            }, this.dump()
+        }, u.prototype.setText = function(e) {
+            this.dData.txt = trim(e), this.dump()
+        }, u.prototype.addAttach = function(e, t, n) {
+            if ("share" === e && this.removeAttachByType(e), "mail" !== e && "reply" !== e || (this.removeAttachByType("mail"), this.removeAttachByType("reply")), !e || !t && "poll" !== e) return !1;
+            var r = this.dData.attaches.findIndex(function(n) {
+                return n.type === e && n.id === t
+            }); - 1 === r ? (this.dData.attaches.push({
+                type: e,
+                id: t,
+                object: n
+            }), this.dump()) : "video" !== e && "poll" !== e || (this.dData.attaches[r] = {
+                type: e,
+                id: t,
+                object: n
+            }, this.dump())
+        }, u.prototype.syncWithSelector = function(e) {
+            var t = this,
+                n = this.getFwdRaw();
+            this.dData.attaches = (n ? [n] : []).concat(e.getMedias().map(function(e) {
+                var n = o(e, 2),
+                    r = n[0],
+                    i = n[1];
+                return t.dData.attaches.find(function(e) {
+                    return e.type == r && e.id == i
+                }) || {
+                    type: r,
+                    id: i
+                }
+            })), this.dump()
+        }, u.prototype.removeAttachByType = function(e) {
+            for (var t = this.dData.attaches.length; t--;) this.dData.attaches[t].type === e && this.dData.attaches.splice(t, 1);
+            this.dump()
+        }, u.prototype.removeAllAttaches = function() {
+            this.dData.attaches = [], this.dData.cancelled = [], this.dump()
+        }, u.prototype.addBindUrl = function(e, t, n) {
+            this.getBoundAttach(e) || (this.dData.urlBinds.push({
+                url: e,
+                type: t,
+                id: n
+            }), this.dump())
+        }, u.prototype.getBoundAttach = function(e) {
+            var t = this.dData.urlBinds.find(function(t) {
+                return t.url === e
+            });
+            return t && this.dData.attaches.find(function(e) {
+                return e.type === t.type && e.id === t.id
+            }) || null
+        }, u.prototype.getShareUrl = function() {
+            var e = this.dData.attaches.find(function(e) {
+                return "share" === e.type
+            });
+            if (e && e.object) return e.object.url
+        }, u.prototype.hasOnlyReplies = function() {
+            var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : null;
+            return e ? e.flags & i.FLAG_HAS_REPLY && !this.dData.attaches.find(function(e) {
+                return "mail" !== e.type
+            }) : this.hasAttaches() && !this.dData.attaches.find(function(e) {
+                return "reply" !== e.type
+            })
+        }, u.prototype.getCancelledShares = function() {
+            return this.dData.cancelled.length ? this.dData.cancelled : void 0
+        }, u.prototype.hasAttaches = function() {
+            return this.dData.attaches.length > 0
+        }, u.prototype.destroy = function() {
+            this.dData = {}, this._key = this._db = null
+        }, u.prototype.prepareObjects = function(e, t) {
+            var n = this;
+            return this.dData.attaches.find(c) ? Object(r.post)(a.CONTROLLER, {
+                act: "draft_medias",
+                gid: e,
+                messageId: t || 0,
+                media: t ? void 0 : this.dData.attaches.map(function(e) {
+                    return [e.type, e.id]
+                }).join("*")
+            }).then(function(e) {
+                var t = o(e, 1)[0];
+                n.dData.attaches = t.map(function(e) {
+                    return {
+                        type: e[0],
+                        id: e[1],
+                        object: e[2]
+                    }
+                })
+            }) : Promise.resolve()
+        }, u.prototype.getFwdRaw = function() {
+            return this.dData.attaches.find(function(e) {
+                return "mail" === e.type || "reply" === e.type
+            })
+        }, u.prototype.getFwdCount = function() {
+            var e = this.getFwdRaw();
+            return e ? e.id < 0 ? e.object.fwd_count : e.id.split(";").length : 0
+        }
+    },
+    168: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "statlogsForwardEvent", function() {
+            return o
+        }), n.d(t, "statlogsForwardFromCommunityEvent", function() {
+            return u
+        }), n.d(t, "statlogsCommunityTemplatesClickEvent", function() {
+            return c
+        }), n.d(t, "statlogsForwardFromChannel", function() {
+            return s
+        }), n.d(t, "statlogsSendingTime", function() {
+            return l
+        }), n.d(t, "statlogsSendingTimeStart", function() {
+            return f
+        }), n.d(t, "statlogsSendingTimeEnd", function() {
+            return m
+        }), n.d(t, "statlogsSendingError", function() {
+            return _
+        }), n.d(t, "statlogsSendingQueueLength", function() {
+            return p
+        }), n.d(t, "statlogsSendingRetry", function() {
+            return h
+        });
+        var r = n(3),
+            i = n(199),
+            a = {};
+
+        function o(e) {
+            Object(r.statlogsProbValueEvent)(.1, "im_forward_stat", d(e), !!e.get().gid)
+        }
+
+        function u(e, t) {
+            Object(r.statlogsProbValueEvent)(.1, "im_forward_from_community_stat", d(e), !!e.get().gid, +t)
+        }
+
+        function c() {
+            Object(r.statlogsProbValueEvent)(1, "im_apply_community_template_stat", 1)
+        }
+
+        function s() {
+            Object(r.statlogsProbValueEvent)(1, "messages_channel_forward_click", 1)
+        }
+
+        function d(e) {
+            var t = e.get().pendingForward;
+            return +(t && t.msgIds && t.msgIds.length)
+        }
+
+        function l(e, t, n) {
+            var i = arguments.length > 3 && void 0 !== arguments[3] && arguments[3];
+            if (!Object(r.randEnabled)(1)) return function() {};
+            var a = +new Date,
+                o = g(e);
+            return function() {
+                var e = +new Date - a;
+                statlogsValueEvent("messages_send_time_web", e, t, n, o, i)
+            }
+        }
+
+        function f(e, t, n, r) {
+            if (t.messageId && -1 !== String(t.messageId).indexOf("rid")) {
+                var i = [t.messageId.replace("rid", ""), n, r].join("_"),
+                    o = t.attaches.length > 0;
+                a[i] = l(e, n, r, o)
+            }
+        }
+
+        function m(e, t, n, r) {
+            var i = [t.randomId, n, r].join("_"),
+                o = a[i];
+            o && (o(), delete a[i])
+        }
+
+        function _(e, t, n, i) {
+            var a = g(e),
+                o = "" === t ? "network" : "unknown";
+            Object(r.randEnabled)(1) && statlogsValueEvent("messages_send_errors_web", o, n, i, a)
+        }
+
+        function g(e) {
+            var t = Object(i.unpackStore)(e);
+            return Boolean(t.longpoll && t.longpoll.isEnabled && t.longpoll.isEnabled())
+        }
+
+        function p(e) {
+            var t = Object(i.unpackStore)(e),
+                n = t.imQueue(t.peer).length;
+            Object(r.randEnabled)(1) && statlogsValueEvent("messages_send_queue_size", n)
+        }
+
+        function h(e) {
+            var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "unknown";
+            Object(r.randEnabled)(1) && statlogsValueEvent("messages_send_retry", 1, t, e)
+        }
+    },
+    179: function(e, t, n) {
         "use strict";
 
         function r(e) {
@@ -6950,7 +6316,850 @@
             return c
         })
     },
-    276: function(e, t, n) {
+    183: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "oCacheExists", function() {
+            return i
+        }), n.d(t, "oCacheGet", function() {
+            return a
+        }), n.d(t, "oCacheAdd", function() {
+            return o
+        });
+        var r = n(199);
+
+        function i(e, t) {
+            return t in Object(r.unpackStore)(e).oCache
+        }
+
+        function a(e, t) {
+            var n = Object(r.unpackStore)(e).oCache[t];
+            return n && !n._n && (! function(e) {
+                if (!e.first_name) {
+                    var t = e.name.split(" ", 2);
+                    e.first_name = t[0], e.short_name = t[1] ? t[0] + " " + t[1].substr(0, 1) + "." : t[0]
+                }
+                e.inv_name || (e.inv_name = e.name), e.kick_name || (e.kick_name = e.inv_name)
+            }(n), n._n = 1), n
+        }
+
+        function o(e, t) {
+            var n = Object(r.unpackStore)(e);
+            n.oCache || (n.oCache = {}), t.id && (n.oCache[t.id] = t)
+        }
+    },
+    184: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "getFirstUnread", function() {
+            return d
+        }), n.d(t, "isSearchShown", function() {
+            return l
+        }), n.d(t, "getPeer", function() {
+            return f
+        }), n.d(t, "getCurrentKeyboard", function() {
+            return m
+        }), n.d(t, "getKeyboard", function() {
+            return _
+        }), n.d(t, "getTab", function() {
+            return g
+        }), n.d(t, "getCurrentTab", function() {
+            return p
+        }), n.d(t, "getSelectedMessages", function() {
+            return h
+        }), n.d(t, "getMessageRangeFromSelection", function() {
+            return b
+        }), n.d(t, "countUnread", function() {
+            return v
+        }), n.d(t, "getMessageByRid", function() {
+            return y
+        }), n.d(t, "isRidExist", function() {
+            return w
+        }), n.d(t, "getLocalId", function() {
+            return O
+        }), n.d(t, "getLastMessage", function() {
+            return k
+        }), n.d(t, "parserMessage", function() {
+            return j
+        }), n.d(t, "getAuthorFullName", function() {
+            return E
+        }), n.d(t, "getMessage", function() {
+            return T
+        }), n.d(t, "getPreviousMessage", function() {
+            return I
+        }), n.d(t, "isClassicInterface", function() {
+            return A
+        }), n.d(t, "isLocksAvailable", function() {
+            return C
+        }), n.d(t, "isFoldersAvailable", function() {
+            return S
+        }), n.d(t, "isCommunityInterface", function() {
+            return M
+        }), n.d(t, "isChannel", function() {
+            return P
+        }), n.d(t, "getBareTab", function() {
+            return D
+        }), n.d(t, "isReversedDialogs", function() {
+            return x
+        }), n.d(t, "isFullyLoadedTab", function() {
+            return L
+        }), n.d(t, "makeTabNotFullyLoaded", function() {
+            return N
+        }), n.d(t, "isGoToEndVisible", function() {
+            return R
+        }), n.d(t, "getUnreadScrollBottom", function() {
+            return F
+        }), n.d(t, "isSendingAvailable", function() {
+            return H
+        }), n.d(t, "isCommunityPeer", function() {
+            return U
+        }), n.d(t, "isCommunityBlocked", function() {
+            return B
+        }), n.d(t, "checkVoiceMessageAvailable", function() {
+            return G
+        }), n.d(t, "isSearching", function() {
+            return q
+        }), n.d(t, "getSearchText", function() {
+            return z
+        }), n.d(t, "isSearchingValue", function() {
+            return K
+        }), n.d(t, "isRecentSearchesActive", function() {
+            return W
+        }), n.d(t, "getPinnedMessage", function() {
+            return V
+        }), n.d(t, "doPopularSuggExist", function() {
+            return Y
+        }), n.d(t, "isAnyMessageBeingEdited", function() {
+            return X
+        }), n.d(t, "getGroupId", function() {
+            return $
+        }), n.d(t, "getTabDraft", function() {
+            return Q
+        }), n.d(t, "getTemplates", function() {
+            return Z
+        });
+        var r = n(83),
+            i = n(78),
+            a = n(86),
+            o = n(183),
+            u = n(166),
+            c = n(199),
+            s = n(113);
+
+        function d(e, t) {
+            var n = Object(c.unpackStore)(e),
+                i = n.tabs[n.peer];
+            return Object.keys(i.msgs).filter(function(n) {
+                var a = T(e, t, n);
+                return !Object(r.isOut)(a) && intval(n) > i.in_up_to
+            })[0]
+        }
+
+        function l(e) {
+            return Object(c.unpackStore)(e).searchShown
+        }
+
+        function f(e) {
+            return Object(c.unpackStore)(e).peer
+        }
+
+        function m(e) {
+            return _(e, f(e))
+        }
+
+        function _(e, t) {
+            return (g(e, t) || {}).keyboard
+        }
+
+        function g(e, t) {
+            var n = Object(c.unpackStore)(e);
+            return n.tabs && n.tabs[t]
+        }
+
+        function p(e) {
+            var t = Object(c.unpackStore)(e);
+            return t.peer ? t.tabs[t.peer] : null
+        }
+
+        function h(e) {
+            return Object(c.unpackStore)(e).selectedMessages
+        }
+
+        function b(e, t, n) {
+            var i = g(e, t),
+                a = h(e)[0];
+            if (void 0 === a) return [n];
+            var o = Math.min(n, a),
+                u = Math.max(n, a);
+            return Object.keys(i.msgs).filter(function(e) {
+                return e >= o && e <= u
+            }).filter(function(t) {
+                var n = T(e, e.get().peer, t);
+                return !Object(r.isServiceMsg)(n) && !Object(r.isCallMessage)(n)
+            }).map(intval)
+        }
+
+        function v(e, t) {
+            var n = g(Object(c.unpackStore)(t), e),
+                i = 0;
+            for (var a in n.msgs)
+                if (n.msgs.hasOwnProperty(a)) {
+                    var o = T(t, e, a);
+                    Object(r.isOut)(o) || (i += Object(r.isUnread)(n, o) ? 1 : 0)
+                }
+            return i
+        }
+
+        function y(e, t, n) {
+            var r = g(e, t);
+            return Object.keys(r.msgs).filter(function(r) {
+                return intval(T(e, t, r).randomId) === n
+            }).length > 0
+        }
+
+        function w(e, t, n) {
+            return !!y(e, t, n)
+        }
+
+        function O(e, t) {
+            var n = Object(c.unpackStore)(e),
+                r = n.msg_local_ids_sort && n.msg_local_ids_sort[t];
+            return void 0 !== r ? 2e9 + r : t
+        }
+
+        function k(e, t, n) {
+            var r = g(e, t),
+                a = T(e, t, n),
+                o = Object.keys(r.msgs).filter(function(n) {
+                    var r = T(e, t, n),
+                        o = r.local && r.type !== i.EDIT_MESSAGE;
+                    return !(!a.local && o) && (!(!a.local || o) || O(e, a.messageId) > O(e, r.messageId))
+                }).pop();
+            return o ? T(e, t, o) : null
+        }
+
+        function j(e) {
+            return e && e.length > 0 ? i.addMessageEvent([0].concat(e)) : e
+        }
+
+        function E(e, t, n) {
+            var i = g(e, t),
+                a = T(e, t, n),
+                u = Object(c.unpackStore)(e);
+            return Object(r.isOut)(a) ? Object(o.oCacheGet)(e, u.id).name : a.userId !== a.peerId ? !!Object(o.oCacheExists)(e, a.userId) && Object(o.oCacheGet)(e, a.userId).name : i.tab
+        }
+
+        function T(e, t, n) {
+            var r = g(e, t),
+                i = r && r.msgs && r.msgs[n];
+            return i ? j(i) : null
+        }
+
+        function I(e, t, n) {
+            var r = g(e, t),
+                i = r && r.msgs && Object.keys(r.msgs).sort(function(e, t) {
+                    return +e - t
+                });
+            if (!i) return null;
+            var a = i && i.indexOf("" + n),
+                o = a > -1 ? i[a - 1] : null;
+            return r.msgs[o]
+        }
+
+        function A(e) {
+            var t = Object(c.unpackStore)(e);
+            return t.gid || t.isClassic
+        }
+
+        function C(e) {
+            return Object(c.unpackStore)(e).gid
+        }
+
+        function S(e) {
+            return Object(c.unpackStore)(e).gid
+        }
+
+        function M(e) {
+            return !!Object(c.unpackStore)(e).gid
+        }
+
+        function P(e, t) {
+            return !!(t.peerId > 2e9 && Object(s.doesChatTabHaveFlag)(t, 1024))
+        }
+
+        function D(e, t) {
+            var n = Object(c.unpackStore)(t);
+            return n.tabs[e] || n.mapped_index[e]
+        }
+
+        function x(e) {
+            var t = Object(c.unpackStore)(e);
+            return !!M(e) && ((19542789 === t.gid || 103416369 == t.gid) && (t.active_tab === a.FOLDER_UNRESPOND || t.active_tab === a.FOLDER_UNREAD))
+        }
+
+        function L(e, t) {
+            var n = (e = Object(c.unpackStore)(e)).tabs;
+            return !(!n || !n[t] || void 0 === n[t].history || !n[t].msgs)
+        }
+
+        function N(e, t) {
+            var n = g(e, t);
+            n && (n.msgs = void 0, n.msgid = void 0, n.scrollTop = void 0, n.scrollBottom = void 0, n.contHeight = void 0, n.offset = void 0, n.skipped = void 0)
+        }
+
+        function R(e) {
+            var t = e.get().go_to_end_visible;
+            return !!t && t[0]
+        }
+
+        function F(e) {
+            var t = e.get().go_to_end_visible;
+            return t ? t[1] : 0
+        }
+
+        function H(e) {
+            return !Object(c.unpackStore)(e).lockedSending
+        }
+
+        function U(e) {
+            return e > -2e9 && e < 0
+        }
+
+        function B(e, t) {
+            return !!U(t) && !!g(e, t).blocked_community
+        }
+
+        function G(e) {
+            return Object(c.unpackStore)(e).voice_message_available
+        }
+
+        function q(e) {
+            var t = Object(c.unpackStore)(e);
+            return !(!z(t) && !t.recentSearch)
+        }
+
+        function z(e) {
+            return Object(c.unpackStore)(e).searchText
+        }
+
+        function K(e, t) {
+            var n = Object(c.unpackStore)(e);
+            return !!(t && t !== z(e) || n.recentSearch)
+        }
+
+        function W(e) {
+            return Object(c.unpackStore)(e).recentSearch
+        }
+
+        function V(e) {
+            var t = p(e);
+            return t && t.pinned && j(t.pinned)
+        }
+
+        function Y(e) {
+            var t = e.get().popular_sugg;
+            return t && t.length > 0
+        }
+
+        function X(e) {
+            return 1 == Object(c.unpackStore)(e).isEditing
+        }
+
+        function $(e) {
+            return Object(c.unpackStore)(e).gid
+        }
+
+        function Q(e) {
+            return e.draft || (e.draft = Object(u.loadDraftForPeer)(cur.imDb, e.peerId)), e.draft
+        }
+
+        function Z(e) {
+            return (Object(c.unpackStore)(e).templates || []).filter(function(e) {
+                return !e.deleted
+            })
+        }
+    },
+    199: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+        "use strict";
+        __webpack_require__.r(__webpack_exports__), __webpack_require__.d(__webpack_exports__, "throttleAccumulate", function() {
+            return throttleAccumulate
+        }), __webpack_require__.d(__webpack_exports__, "executionStackPop", function() {
+            return executionStackPop
+        }), __webpack_require__.d(__webpack_exports__, "lplog", function() {
+            return lplog
+        }), __webpack_require__.d(__webpack_exports__, "toArray", function() {
+            return toArray
+        }), __webpack_require__.d(__webpack_exports__, "arrayUnique", function() {
+            return arrayUnique
+        }), __webpack_require__.d(__webpack_exports__, "unpackStore", function() {
+            return unpackStore
+        }), __webpack_require__.d(__webpack_exports__, "debounce", function() {
+            return debounce
+        }), __webpack_require__.d(__webpack_exports__, "throttle", function() {
+            return throttle
+        }), __webpack_require__.d(__webpack_exports__, "shuffle", function() {
+            return shuffle
+        }), __webpack_require__.d(__webpack_exports__, "parallel", function() {
+            return parallel
+        }), __webpack_require__.d(__webpack_exports__, "hashCode", function() {
+            return hashCode
+        }), __webpack_require__.d(__webpack_exports__, "parseJSON", function() {
+            return parseJSON
+        }), __webpack_require__.d(__webpack_exports__, "checkTextLength", function() {
+            return checkTextLength
+        });
+        var _utils_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(221),
+            _ui_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(208),
+            _debug_tools__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(148);
+
+        function throttleAccumulate(e, t) {
+            var n = [],
+                r = 0;
+            return function(i) {
+                n.push(i), r || (r = setTimeout(function() {
+                    r = !1, e(n), n = []
+                }, t))
+            }
+        }
+
+        function executionStackPop(e) {
+            return e.length > 0 && e.pop().func(), e
+        }
+
+        function lplog(e, t) {
+            var n = void 0,
+                r = void 0;
+            if (window.__debugMode) {
+                switch (t) {
+                    case "error":
+                        n = "color: red", r = "background: red; color: white";
+                        break;
+                    case "success":
+                        n = "color: green", r = "background: green; color: white";
+                        break;
+                    default:
+                        n = "color: blue;", r = "background: #000; color: #fff;"
+                }
+                try {
+                    var i = new Date;
+                    console.debug("%cLP:[" + i.getHours() + ":" + i.getMinutes() + ":" + i.getSeconds() + ":" + i.getMilliseconds() + "]%c " + e, r, n)
+                } catch (e) {}
+            }
+        }
+
+        function toArray(e) {
+            var t = [];
+            if (void 0 === e.length) return Object.keys(e).map(function(t) {
+                return e[t]
+            });
+            for (var n = 0; n < e.length; n++) t.push(e[n]);
+            return t
+        }
+
+        function arrayUnique(e) {
+            for (var t = {}, n = [], r = 0; r < e.length; r++) t[e[r]] || (n.push(e[r]), t[n[r]] = 1);
+            return n
+        }
+
+        function unpackStore(e) {
+            return e.get ? e.get() : e
+        }
+
+        function debounce(e, t, n) {
+            var r = void 0;
+            return function() {
+                var i = this,
+                    a = arguments,
+                    o = n && !r;
+                clearTimeout(r), r = setTimeout(function() {
+                    r = null, n || e.apply(i, a)
+                }, t), o && e.apply(this, a)
+            }
+        }
+
+        function throttle(e, t) {
+            var n = void 0;
+            return function() {
+                n || (e.apply(this, arguments), n = setTimeout(function() {
+                    n = !1
+                }, t))
+            }
+        }
+
+        function shuffle(e) {
+            for (var t = e.length; t > 0;) {
+                var n = Math.floor(Math.random() * t),
+                    r = e[--t];
+                e[t] = e[n], e[n] = r
+            }
+            return e
+        }
+
+        function parallel() {
+            var e = [].slice.call(arguments),
+                t = e.pop(),
+                n = new CallHub(t, e.length);
+            Object(_utils_common__WEBPACK_IMPORTED_MODULE_0__.each)(e, function(e, t) {
+                return t(function() {
+                    return n.done()
+                })
+            })
+        }
+
+        function hashCode(e) {
+            var t = 0;
+            if (0 === e.length) return t;
+            for (var n = 0, r = e.length; n < r; n++) {
+                t = (t << 5) - t + e.charCodeAt(n), t |= 0
+            }
+            return t
+        }
+
+        function parseJSON(obj) {
+            if (window.JSON && JSON.parse) try {
+                return JSON.parse(obj)
+            } catch (e) {
+                Object(_ui_util__WEBPACK_IMPORTED_MODULE_1__.topError)("<b>parseJSON:</b> " + e.message, {
+                    dt: -1,
+                    type: 5,
+                    answer: obj
+                });
+                var evalString = "(" + obj + ")";
+                try {
+                    return eval(evalString)
+                } catch (e) {
+                    if (__debugMode) throw e;
+                    Object(_debug_tools__WEBPACK_IMPORTED_MODULE_2__.logEvalError)(e, evalString)
+                }
+            } else {
+                var _evalString = "(" + obj + ")";
+                try {
+                    return eval(_evalString)
+                } catch (e) {
+                    if (__debugMode) throw e;
+                    Object(_debug_tools__WEBPACK_IMPORTED_MODULE_2__.logEvalError)(e, _evalString)
+                }
+            }
+        }
+
+        function checkTextLength(e, t, n, r, i, a, o) {
+            var u = t.getValue ? t.getValue() : t.value,
+                c = t.lastLen || 0;
+            if (t.lastLen !== u.length || a) {
+                t.lastLen = u.length;
+                var s = {
+                        "&": 5,
+                        "<": 4,
+                        ">": 4,
+                        '"': 6,
+                        "\n": r ? 1 : 4,
+                        "\r": 0,
+                        "!": 5,
+                        "'": 5,
+                        $: 6,
+                        "\\": 6
+                    },
+                    d = {
+                        1168: 1,
+                        1169: 1,
+                        8211: 1,
+                        8212: 1,
+                        8216: 1,
+                        8217: 1,
+                        8218: 1,
+                        8230: 1,
+                        8240: 1,
+                        8249: 1,
+                        8250: 1,
+                        8364: 1,
+                        8470: 1,
+                        8482: 1,
+                        65533: 1
+                    },
+                    l = {
+                        1037: 1,
+                        1104: 1,
+                        1117: 1
+                    };
+                i && (s[","] = 5);
+                var f = function(e) {
+                    for (var t = 0, n = 0, r = e.length; n < r; n++) {
+                        var i = s[e.charAt(n)],
+                            a = e.charCodeAt(n);
+                        t += void 0 !== i ? i : !o && a >= 128 && (a < 1025 || l[a] || a > 1119) && !d[a] && (a < 8220 || a > 8222) && (a < 8224 || a > 8226) ? ("&#" + a + ";").length : 1
+                    }
+                    return t
+                }(u);
+                if (n = ge(n), f > Math.max(e - 100, .75 * e))
+                    if (show(n), f > e)
+                        if (i) {
+                            var m = val(t, function(e, t) {
+                                for (var n = 0, r = "", i = 0, a = e.length; i < a; i++) {
+                                    var u = e.charAt(i),
+                                        c = s[u],
+                                        f = e.charCodeAt(i);
+                                    if ((n += void 0 !== c ? c : !o && f >= 128 && (f < 1025 || l[f] || f > 1119) && !d[f] && (f < 8220 || f > 8222) && (f < 8224 || f > 8226) ? ("&#" + f + ";").length : 1) > t) break;
+                                    r += u
+                                }
+                                return r
+                            }(u, Math.min(e, c)));
+                            t.lastLen = m.length, n.innerHTML = getLang("text_N_symbols_remain", 0)
+                        } else n.innerHTML = getLang("text_exceeds_symbol_limit", f - e);
+                else n.innerHTML = getLang("text_N_symbols_remain", e - f);
+                else hide(n)
+            }
+        }
+    },
+    208: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+        "use strict";
+        __webpack_require__.r(__webpack_exports__), __webpack_require__.d(__webpack_exports__, "topMsg", function() {
+            return topMsg
+        }), __webpack_require__.d(__webpack_exports__, "topError", function() {
+            return topError
+        }), __webpack_require__.d(__webpack_exports__, "showMsg", function() {
+            return showMsg
+        }), __webpack_require__.d(__webpack_exports__, "showGlobalPrg", function() {
+            return showGlobalPrg
+        });
+        var _dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(13),
+            _utils_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(221);
+
+        function topMsg(e, t, n) {
+            if (n || (n = "#D6E5F7"), e) {
+                clearTimeout(window.topMsgTimer);
+                var r = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.ge)("system_msg");
+                r.style.backgroundColor = n, r.innerHTML = e, Object(_dom__WEBPACK_IMPORTED_MODULE_0__.show)(r), t && (window.topMsgTimer = setTimeout(topMsg.pbind(!1), 1e3 * t))
+            } else Object(_dom__WEBPACK_IMPORTED_MODULE_0__.hide)("system_msg")
+        }
+
+        function topError(text, opts) {
+            if (opts || (opts = {}), text.message) {
+                var error = text;
+                text = "<b>JavaScript error:</b> " + error.message, opts.stack = error.stack, error.stack && __debugMode && (text += "<br/>" + error.stack.replace(/\n/g, "<br/>"));
+                try {
+                    console.log(error.stack)
+                } catch (e) {}
+            }
+            if (!opts.stack) try {
+                eval("0 = 1")
+            } catch (e) {
+                opts.stack = e.stack
+            } - 1 != opts.dt && topMsg(text, opts.dt, "#FFB4A3"), __dev || Object(_dom__WEBPACK_IMPORTED_MODULE_0__.ge)("debuglogwrap") || (delete opts.dt, ajax.plainpost("/errors.php", Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__.extend)(opts, {
+                msg: opts.msg || text,
+                module: (window.cur || {}).module,
+                id: vk.id,
+                host: locHost,
+                lang: vk.lang,
+                loc: (window.nav || {}).strLoc,
+                realloc: location.toString()
+            })))
+        }
+
+        function showMsg(e, t, n, r) {
+            var i = "msg" + ("msg" !== n ? " " + n : "");
+            r && (i += " msg_appear"), e = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.ge)(e);
+            var a = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.geByClass1)(n, e),
+                o = a || Object(_dom__WEBPACK_IMPORTED_MODULE_0__.domFC)(e),
+                u = e.insertBefore(Object(_dom__WEBPACK_IMPORTED_MODULE_0__.ce)("div", {
+                    className: i,
+                    innerHTML: '<div class="msg_text">' + t + "</div>"
+                }), o);
+            a && Object(_dom__WEBPACK_IMPORTED_MODULE_0__.re)(a), setTimeout(_dom__WEBPACK_IMPORTED_MODULE_0__.removeClass.pbind(u, "msg_appear"), 0)
+        }
+
+        function showGlobalPrg(e, t) {
+            var n = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.getXY)(e),
+                r = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.getSize)(e),
+                i = t || {},
+                a = i.w,
+                o = void 0 === a ? 32 : a,
+                u = i.h,
+                c = void 0 === u ? 13 : u,
+                s = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.ge)("global_prg");
+            s.className = i.cls || "progress", Object(_dom__WEBPACK_IMPORTED_MODULE_0__.setStyle)(s, {
+                left: n[0] + Math.floor((r[0] - o) / 2) + Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__.intval)(i.shift ? i.shift[0] : 0),
+                top: n[1] + Math.floor((r[1] - c) / 2) + Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__.intval)(i.shift ? i.shift[1] : 0),
+                width: o,
+                height: c,
+                display: "block",
+                "z-index": i.zIndex ? i.zIndex : null
+            }), i.hide && (e.style.visibility = "hidden")
+        }
+    },
+    212: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "replaceHyperLinks", function() {
+            return s
+        }), n.d(t, "replaceEmailLinks", function() {
+            return d
+        }), n.d(t, "replaceMentions", function() {
+            return l
+        }), n.d(t, "replaceHashtags", function() {
+            return _
+        }), n.d(t, "confirmDelivery", function() {
+            return g
+        }), n.d(t, "linksReplacer", function() {
+            return p
+        });
+        var r = n(86),
+            i = void 0,
+            a = window,
+            o = a.clean,
+            u = a.replaceEntities,
+            c = a.statlogsValueEvent;
+
+        function s(e, t) {
+            for (var n = void 0, i = 0, a = e; null !== (n = r.MESSAGE_REGEXP.exec(e));) {
+                var o = (n = f(n))[0].length,
+                    u = n.index + o,
+                    c = e[n.index - 1],
+                    s = e[u - 1],
+                    d = void 0 !== c && /([\w\$А-Яа-яёЁєЄҐґЇїІіЈј\—\-\_@;.])/i.test(c),
+                    l = void 0 !== s && /([:;$])/i.test(s);
+                if (!d && !l) {
+                    var _ = m(n),
+                        g = _.domain.toLowerCase();
+                    if (g.length <= r.MAX_DOMAIN_LENGTH && -1 !== r.TOP_DOMAINS.indexOf(g)) {
+                        var p = t(_);
+                        a = a.slice(0, n.index + i) + p + a.slice(u + i), i += p.length - o
+                    }
+                }
+            }
+            return a
+        }
+
+        function d(e, t) {
+            return e.replace(r.EMAIL, t || function(e) {
+                return '<a href="mailto:' + e + '">' + e + "</a>"
+            })
+        }
+
+        function l(e, t) {
+            return e.replace(r.MENTION, t || function(e, t, n, r, i) {
+                return '<a href="/' + (t + n) + '" class="mem_link" mention="' + o(r || "") + '" mention_id="' + o(t + n) + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)">' + i + "</a>"
+            })
+        }
+
+        function f(e) {
+            if (!e[0] || !e[6]) return e;
+            var t = e[0].length - 1,
+                n = e[6].length - 1;
+            return "." === e[0][t] && "." === e[6][n] && (e[0] = e[0].slice(0, t), e[6] = e[6].slice(0, n)), e
+        }
+
+        function m(e) {
+            return {
+                full: e[0],
+                protocol: e[1] || "http://",
+                url: e[2],
+                domain: e[4],
+                query: e[6] || ""
+            }
+        }
+
+        function _(e, t) {
+            return e.replace((i || (i = new RegExp(r.RE_HASHTAG_EXTRACTION_PATTERN, "ig")), i), function(e, n, r, i, a, o) {
+                return (n || "") + t(r + (a || ""))
+            })
+        }
+
+        function g(e) {
+            c("ttl_message_confirm_delivery", e)
+        }
+
+        function p(e, t) {
+            var n = t.protocol,
+                i = t.url,
+                a = t.query,
+                c = t.domain,
+                s = t.full;
+            try {
+                s = decodeURIComponent(s)
+            } catch (e) {}
+            if (s.length > 55 && (s = s.substr(0, 53) + ".."), s = o(s).replace(/&amp;/g, "&"), !e && c.match(r.OUR_DOMAINS)) {
+                var d, l = i = u(i).replace(r.ENTITIES, encodeURIComponent),
+                    f = i.indexOf("#/"),
+                    m = "";
+                return f >= 0 ? l = i.substr(f + 1) : (f = i.indexOf("#!")) >= 0 && (l = "/" + i.substr(f + 2).replace(/^\//, "")), (d = l.match(r.VK_DOMAIN)) && d[1].length < 32 && (m = ' mention_id="' + d[1] + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)"'), '<a href="' + function(e) {
+                    return e.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+                }(n + i + a) + '" target="_blank"' + m + ">" + s + "</a>"
+            }
+            return '<a href="' + ("away.php?utf=1&to=" + encodeURIComponent(n + u(i + a))) + '" target="_blank" onclick="' + ("return goAway('" + o((n + i + a).replace(/'/g, "\\'")) + "', {}, event);") + '">' + s + "</a>"
+        }
+    },
+    215: function(e, t, n) {
+        e.exports = n(66)
+    },
+    219: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "post", function() {
+            return a
+        }), n.d(t, "plainget", function() {
+            return o
+        }), n.d(t, "plaingetCancelable", function() {
+            return u
+        });
+        var r = window.ajax,
+            i = 2;
+
+        function a(e, t, n) {
+            return t && (t.im_v = i), new Promise(function(i, a) {
+                r.post(e, t, {
+                    timeout: n,
+                    onDone: function() {
+                        i.apply(null, [
+                            [].concat(Array.prototype.slice.call(arguments))
+                        ])
+                    },
+                    onFail: function() {
+                        return a.apply(null, arguments), !0
+                    }
+                })
+            })
+        }
+
+        function o(e, t) {
+            return u(e, t, arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {}).request
+        }
+
+        function u(e, t) {
+            var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
+                i = void 0;
+            return i = window.XDomainRequest ? new XDomainRequest : r._getreq(), {
+                request: new Promise(function(r, a) {
+                    var o = void 0,
+                        u = Date.now(),
+                        c = n.timeout || 60,
+                        s = ajx2q(t);
+                    if (window.XDomainRequest) i.open("get", e + "?" + s), i.ontimeout = function(e) {
+                        a([e, {}])
+                    }, i.onerror = function(e) {
+                        a([e, {}])
+                    }, i.onload = function() {
+                        r([i.responseText, {}])
+                    }, setTimeout(function() {
+                        i.send()
+                    }, 0);
+                    else {
+                        i.onreadystatechange = function() {
+                            4 == i.readyState && (clearInterval(o), i.status >= 200 && i.status < 300 ? r([i.responseText, i]) : a([i.responseText, i]))
+                        };
+                        try {
+                            i.open("GET", e + "?" + s, !0)
+                        } catch (e) {
+                            return a([e, i])
+                        }
+                        i.send()
+                    }
+                    o = setInterval(function() {
+                        Date.now() - u > 1e3 * c && (a(["", {}]), clearInterval(o))
+                    }, 1e3)
+                }),
+                cancel: function() {
+                    i.abort()
+                }
+            }
+        }
+    },
+    221: function(e, t, n) {
         "use strict";
         n.r(t), n.d(t, "vkLocal", function() {
             return u
@@ -7029,8 +7238,8 @@
         }), n.d(t, "decodeHtml", function() {
             return W
         });
-        var r = n(221),
-            i = n(394),
+        var r = n(13),
+            i = n(130),
             a = function() {
                 return function(e, t) {
                     if (Array.isArray(e)) return e;
@@ -7287,138 +7496,84 @@
             W = z[1];
         window.isRetina = U, window.extractUrls = H, window.serializeForm = F, window.addTemplates = N, window.getTemplate = R, window.rand = s, window.irand = d, window.isUndefined = l, window.isFunction = f, window.isArray = m, window.isString = _, window.isObject = g, window.isEmpty = p, window.vkNow = h, window.vkImage = b, window.trim = v, window.stripHTML = y, window.escapeRE = w, window.intval = O, window.floatval = k, window.positive = j, window.isNumeric = E, window.winToUtf = T, window.replaceEntities = I, window.clean = A, window.unclean = C, window.each = S, window.indexOf = M, window.inArray = P, window.clone = D, window.arrayKeyDiff = x, window.extend = L, window.vkLocal = u, window.lTimeout = c, window.getCaretCharacterOffsetWithin = B, window.formatCount = G, window.encodeHtml = K, window.decodeHtml = W
     },
-    285: function(e, t, n) {
+    226: function(e, t, n) {
         "use strict";
 
-        function r() {
-            window._logTimer = (new Date).getTime()
+        function r(e, t) {
+            return new Promise(function(n) {
+                setTimeout(n.bind(null, t), 1e3 * e)
+            })
         }
 
         function i(e, t) {
-            window.Raven && (t && t.length > 350 && (t = t.slice(0, 150) + "..." + t.slice(-150)), e.message += ": " + t, Raven.captureException(e))
-        }
-
-        function a(e) {
-            try {
-                window.debuglogClient && debuglogClient(e);
-                var t = "[" + ((new Date).getTime() - window._logTimer) / 1e3 + "] ";
-                if (window.console && console.log) {
-                    var n = Array.prototype.slice.call(arguments);
-                    n.unshift(t), browser.msie || browser.mobile ? console.log(n.join(" ")) : console.log.apply(console, n)
-                }
-            } catch (e) {}
-        }
-
-        function o(e) {
-            if (!e) return !1;
-            var t = e.tagName,
-                n = e.id,
-                r = e.className,
-                i = (t || "").toLowerCase();
-            return r && (i += "." + e.className.replace(/\s+/g, ".")), n && !/^__vk/.test(n) && (i += "#" + e.id), i || (e.toString() || "[NULL]")
-        }
-        n.r(t), n.d(t, "initDebugTools", function() {
-            return r
-        }), n.d(t, "logEvalError", function() {
-            return i
-        }), n.d(t, "debugLog", function() {
-            return a
-        }), n.d(t, "debugEl", function() {
-            return o
-        })
-    },
-    299: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "canMessageBeEdited", function() {
-            return c
-        }), n.d(t, "convertEmojiHtmlToRegularText", function() {
-            return s
-        }), n.d(t, "findLastMessageToEdit", function() {
-            return d
-        }), n.d(t, "wasMessageReallyModified", function() {
-            return l
-        }), n.d(t, "replaceMsgAfterEdit", function() {
-            return f
-        });
-        var r = n(140),
-            i = n(86),
-            a = n(260),
-            o = n(96),
-            u = n(5);
-
-        function c(e, t) {
-            t = Object(r.parserMessage)(t);
-            var n = vk.id == t.peerId && !Object(u.unpackStore)(e).gid;
-            return 333 != t.peerId && (!(!n && !Object(i.isOut)(t)) && (!Object(i.isServiceMsg)(t) && (!(Date.now() / 1e3 - t.date > 86400) && (!(Object(i.isGift)(t) || Object(i.isSticker)(t) || Object(i.isAudioMsg)(t) || Object(i.isGraffiti)(t) || Object(i.isMoney)(t) || Object(i.isVKPay)(t)) && !Object(a.isAlreadyDeleted)(e, t.peerId, t.messageId)))))
-        }
-
-        function s(e) {
-            var t = document.createElement("div");
-            return e = e.replace(/\[((id|club)\d+)\|(.+?)]/g, function() {
-                var e = arguments.length <= 1 ? void 0 : arguments[1],
-                    t = arguments.length <= 3 ? void 0 : arguments[3];
-                return /^\@/.test(t) ? t : "@" + e + " (" + t + ")"
-            }), t.innerHTML = e, Emoji.val(t)
-        }
-
-        function d(e, t) {
-            return +(t && t.msgs ? Object.keys(t.msgs) : []).filter(function(e) {
-                return e > 0
-            }).sort(function(e, t) {
-                return t - e
-            }).find(function(n) {
-                return c(e, t.msgs[n])
-            }) || null
-        }
-
-        function l(e, t, n) {
-            var r = Object(o.convertKludgesToAttaches)(t.kludges, t.messageId),
-                i = n.dData.attaches;
-            if (s(t.text) !== n.dData.txt || r.length !== i.length) return !0;
-            for (var a = r.length; a--;) {
-                var u = r[a],
-                    c = i[a];
-                if (u.id != c.id || u.type != c.type || "poll" == u.type && c.object && c.object.poll_is_edited) return !0
+            var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : null,
+                i = 0;
+            return function a() {
+                for (var o = arguments.length, u = Array(o), c = 0; c < o; c++) u[c] = arguments[c];
+                return Promise.resolve().then(function() {
+                    return e.apply(void 0, u)
+                }).catch(function(e) {
+                    if (++i <= t) {
+                        var o = "function" == typeof n ? n(i) : 0;
+                        return 0 === o ? a.apply(void 0, u) : r(o).then(function() {
+                            return a.apply(void 0, u)
+                        })
+                    }
+                    throw e
+                })
             }
-            return !1
         }
 
-        function f(e, t, n, r, i, o) {
-            t.origText = n, t.text = Object(a.replaceSpecialSymbols)(clean(n)).replace(/\n/gi, "<br>"), t.attaches = r, t.kludges.emoji = 1, t.local = 1, t.share_url = i, t.cancelled_shares = o, t.update_time = Math.floor(Date.now() / 1e3), e.get().tabs[t.peerId].msgs[t.messageId] = t
-        }
-    },
-    308: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "oCacheExists", function() {
-            return i
-        }), n.d(t, "oCacheGet", function() {
-            return a
-        }), n.d(t, "oCacheAdd", function() {
-            return o
-        });
-        var r = n(5);
-
-        function i(e, t) {
-            return t in Object(r.unpackStore)(e).oCache
-        }
-
-        function a(e, t) {
-            var n = Object(r.unpackStore)(e).oCache[t];
-            return n && !n._n && (! function(e) {
-                if (!e.first_name) {
-                    var t = e.name.split(" ", 2);
-                    e.first_name = t[0], e.short_name = t[1] ? t[0] + " " + t[1].substr(0, 1) + "." : t[0]
-                }
-                e.inv_name || (e.inv_name = e.name), e.kick_name || (e.kick_name = e.inv_name)
-            }(n), n._n = 1), n
+        function a(e, t, n) {
+            var r = void 0,
+                i = void 0;
+            return function() {
+                for (var a = arguments.length, o = Array(a), u = 0; u < a; u++) o[u] = arguments[u];
+                return new Promise(function(e, a) {
+                    var u = n && !r;
+                    clearTimeout(r), i && i.reject("debounce"), r = setTimeout(function() {
+                        r = null, i = null, n || e(o)
+                    }, t), u ? e(o) : n && a("debounce"), i = {
+                        resolve: e,
+                        reject: a
+                    }
+                }).then(function(t) {
+                    return e.apply(void 0, function(e) {
+                        if (Array.isArray(e)) {
+                            for (var t = 0, n = Array(e.length); t < e.length; t++) n[t] = e[t];
+                            return n
+                        }
+                        return Array.from(e)
+                    }(t))
+                })
+            }
         }
 
         function o(e, t) {
-            var n = Object(r.unpackStore)(e);
-            n.oCache || (n.oCache = {}), t.id && (n.oCache[t.id] = t)
+            var n = void 0,
+                r = new Promise(function(r) {
+                    n = r, setTimeout(r.bind(null, t), 1e3 * e)
+                });
+            return {
+                pause: function() {
+                    return r
+                },
+                abort: function() {
+                    n(t)
+                }
+            }
         }
+        n.r(t), n.d(t, "pause", function() {
+            return r
+        }), n.d(t, "retryFn", function() {
+            return i
+        }), n.d(t, "debouncedPromise", function() {
+            return a
+        }), n.d(t, "abortablePause", function() {
+            return o
+        })
     },
-    33: function(e, t, n) {
+    3: function(e, t, n) {
         "use strict";
 
         function r(e, t, n, r, i) {
@@ -7440,78 +7595,7 @@
             return a
         })
     },
-    349: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "post", function() {
-            return a
-        }), n.d(t, "plainget", function() {
-            return o
-        }), n.d(t, "plaingetCancelable", function() {
-            return u
-        });
-        var r = window.ajax,
-            i = 2;
-
-        function a(e, t, n) {
-            return t && (t.im_v = i), new Promise(function(i, a) {
-                r.post(e, t, {
-                    timeout: n,
-                    onDone: function() {
-                        i.apply(null, [
-                            [].concat(Array.prototype.slice.call(arguments))
-                        ])
-                    },
-                    onFail: function() {
-                        return a.apply(null, arguments), !0
-                    }
-                })
-            })
-        }
-
-        function o(e, t) {
-            return u(e, t, arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {}).request
-        }
-
-        function u(e, t) {
-            var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
-                i = void 0;
-            return i = window.XDomainRequest ? new XDomainRequest : r._getreq(), {
-                request: new Promise(function(r, a) {
-                    var o = void 0,
-                        u = Date.now(),
-                        c = n.timeout || 60,
-                        s = ajx2q(t);
-                    if (window.XDomainRequest) i.open("get", e + "?" + s), i.ontimeout = function(e) {
-                        a([e, {}])
-                    }, i.onerror = function(e) {
-                        a([e, {}])
-                    }, i.onload = function() {
-                        r([i.responseText, {}])
-                    }, setTimeout(function() {
-                        i.send()
-                    }, 0);
-                    else {
-                        i.onreadystatechange = function() {
-                            4 == i.readyState && (clearInterval(o), i.status >= 200 && i.status < 300 ? r([i.responseText, i]) : a([i.responseText, i]))
-                        };
-                        try {
-                            i.open("GET", e + "?" + s, !0)
-                        } catch (e) {
-                            return a([e, i])
-                        }
-                        i.send()
-                    }
-                    o = setInterval(function() {
-                        Date.now() - u > 1e3 * c && (a(["", {}]), clearInterval(o))
-                    }, 1e3)
-                }),
-                cancel: function() {
-                    i.abort()
-                }
-            }
-        }
-    },
-    363: function(e, t, n) {
+    34: function(e, t, n) {
         "use strict";
         n.r(t), n.d(t, "KEY", function() {
             return a
@@ -7534,8 +7618,8 @@
         }), n.d(t, "checkOver", function() {
             return _
         });
-        var r = n(221),
-            i = n(276),
+        var r = n(13),
+            i = n(221),
             a = {
                 LEFT: 37,
                 UP: 38,
@@ -7677,11 +7761,51 @@
         }
         window.KEY = a, window.addEvent = o, window.removeEvent = u, window.triggerEvent = c, window.cancelEvent = s, window.stopEvent = d, window.normEvent = l, window.checkEvent = f, window.checkKeyboardEvent = m, window.checkOver = _
     },
-    369: function(e, t, n) {
+    38: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "updateLocation", function() {
+            return o
+        }), n.d(t, "updateLazyLocation", function() {
+            return u
+        });
+        var r = window,
+            i = r.nav,
+            a = r.extend;
+
+        function o(e) {
+            var t = a({}, i.objLoc, e);
+            Object.keys(t).filter(function(e) {
+                return "" === t[e]
+            }).forEach(function(e) {
+                delete t[e]
+            });
+            var n = i.toStr(t);
+            i.setLoc(n)
+        }
+
+        function u() {
+            var e = {};
+            return {
+                scheduleNav: function(t) {
+                    e = a(e, t)
+                },
+                commitNav: function() {
+                    o(e), e = {}
+                },
+                scheduleNavWithTimeOut: function(t) {
+                    var n = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 100;
+                    e = a(e, t), setTimeout(function() {
+                        o(e), e = {}
+                    }, n)
+                }
+            }
+        }
+    },
+    66: function(e, t, n) {
         "use strict";
         n.r(t);
-        var r = n(149),
-            i = n(378),
+        var r = n(155),
+            i = n(166),
             a = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
                 return typeof e
             } : function(e) {
@@ -7942,17 +8066,195 @@
             stManager.done("writebox.js")
         } catch (e) {}
     },
-    378: function(e, t, n) {
+    78: function(e, t, n) {
         "use strict";
-        n.r(t), n.d(t, "ImDraft", function() {
+        n.r(t), n.d(t, "DELETE", function() {
+            return a
+        }), n.d(t, "SET_FLAGS", function() {
+            return o
+        }), n.d(t, "REPLACE_FLAGS", function() {
             return u
-        }), n.d(t, "loadDraftForPeer", function() {
+        }), n.d(t, "RESET_FLAGS", function() {
+            return c
+        }), n.d(t, "ADD_MESSAGE", function() {
             return s
+        }), n.d(t, "READ_INBOUND", function() {
+            return d
+        }), n.d(t, "READ_OUTBOUND", function() {
+            return l
+        }), n.d(t, "GOT_ONLINE", function() {
+            return f
+        }), n.d(t, "GOT_OFFLINE", function() {
+            return m
+        }), n.d(t, "CHAT_CHANGED", function() {
+            return _
+        }), n.d(t, "CONVERSATION_UPDATED", function() {
+            return g
+        }), n.d(t, "TYPING", function() {
+            return p
+        }), n.d(t, "RECORDING_AUDIO", function() {
+            return h
+        }), n.d(t, "VIDEO_CALL", function() {
+            return b
+        }), n.d(t, "UNREAD_COUNT", function() {
+            return v
+        }), n.d(t, "NOTIFY_SETTINGS_CHANGED", function() {
+            return y
+        }), n.d(t, "EMPTY", function() {
+            return w
+        }), n.d(t, "RESET_DIRECTORIES", function() {
+            return O
+        }), n.d(t, "REPLACE_DIRECTORIES", function() {
+            return k
+        }), n.d(t, "SET_DIRECTORIES", function() {
+            return j
+        }), n.d(t, "RESYNC", function() {
+            return E
+        }), n.d(t, "REFRESH_LP_KEY", function() {
+            return T
+        }), n.d(t, "TRANSITION", function() {
+            return I
+        }), n.d(t, "RESET_PEER", function() {
+            return A
+        }), n.d(t, "MUTEX", function() {
+            return C
+        }), n.d(t, "CHANGE_PEER", function() {
+            return S
+        }), n.d(t, "CHANGE_TAB", function() {
+            return M
+        }), n.d(t, "FAILED_MESSAGE", function() {
+            return P
+        }), n.d(t, "RESEND", function() {
+            return D
+        }), n.d(t, "DELETE_DIALOG", function() {
+            return x
+        }), n.d(t, "EDIT_MESSAGE", function() {
+            return L
+        }), n.d(t, "REPLACE_MESSAGE", function() {
+            return N
+        }), n.d(t, "AUDIO_START", function() {
+            return R
+        }), n.d(t, "FLAG_UNREAD", function() {
+            return F
+        }), n.d(t, "FLAG_OUTBOUND", function() {
+            return H
+        }), n.d(t, "FLAG_IMPORTANT", function() {
+            return U
+        }), n.d(t, "FLAG_CHAT", function() {
+            return B
+        }), n.d(t, "FLAG_FRIENDS", function() {
+            return G
+        }), n.d(t, "FLAG_SPAM", function() {
+            return q
+        }), n.d(t, "FLAG_DELETED", function() {
+            return z
+        }), n.d(t, "FLAG_MEDIA", function() {
+            return K
+        }), n.d(t, "FLAG_STEALTH", function() {
+            return W
+        }), n.d(t, "FLAG_HAS_REPLY", function() {
+            return V
+        }), n.d(t, "FOLDER_IMPORTANT", function() {
+            return Y
+        }), n.d(t, "FOLDER_UNRESPOND", function() {
+            return X
+        }), n.d(t, "FOLDER_HAS_BANNER", function() {
+            return $
+        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_TITLE_CHANGED", function() {
+            return Q
+        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_AVATAR_CHANGED", function() {
+            return Z
+        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_ADMIN_GRANTED", function() {
+            return J
+        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_FLAGS_CHANGED", function() {
+            return ee
+        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_PINNED", function() {
+            return te
+        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_USER_JOINED", function() {
+            return ne
+        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_USER_LEFT", function() {
+            return re
+        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_USER_KICKED", function() {
+            return ie
+        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_ADMIN_KICKED", function() {
+            return ae
+        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_BANNER_CHANGED", function() {
+            return oe
+        }), n.d(t, "MAIL_CHAT_UPDATE_TYPE_KEYBOARD_CHANGED", function() {
+            return ue
+        }), n.d(t, "deleteEvent", function() {
+            return ce
+        }), n.d(t, "replaceFlagsEvent", function() {
+            return se
+        }), n.d(t, "setFlagsEvent", function() {
+            return de
+        }), n.d(t, "resetFlagsEvent", function() {
+            return le
+        }), n.d(t, "addMessageEvent", function() {
+            return fe
+        }), n.d(t, "editMessageEvent", function() {
+            return me
+        }), n.d(t, "replaceMessageEvent", function() {
+            return _e
+        }), n.d(t, "editMessageLocallyEvent", function() {
+            return ge
+        }), n.d(t, "readInboundEvent", function() {
+            return pe
+        }), n.d(t, "readOutboundEvent", function() {
+            return he
+        }), n.d(t, "gotOnlineEvent", function() {
+            return be
+        }), n.d(t, "gotOfflineEvent", function() {
+            return ve
+        }), n.d(t, "resetDirectoriesEvent", function() {
+            return ye
+        }), n.d(t, "replaceDirectoriesEvent", function() {
+            return we
+        }), n.d(t, "setDirectoriesEvent", function() {
+            return Oe
+        }), n.d(t, "deleteDialogEvent", function() {
+            return ke
+        }), n.d(t, "chatChangedEvent", function() {
+            return je
+        }), n.d(t, "chatUpdatedEvent", function() {
+            return Ee
+        }), n.d(t, "typingEvent", function() {
+            return Te
+        }), n.d(t, "recordingAudioEvent", function() {
+            return Ie
+        }), n.d(t, "videoCallEvent", function() {
+            return Ae
+        }), n.d(t, "unreadCountEvent", function() {
+            return Ce
+        }), n.d(t, "notifySettingsChangedEvent", function() {
+            return Se
+        }), n.d(t, "refreshMessageEvent", function() {
+            return Me
+        }), n.d(t, "audioStartEvent", function() {
+            return Pe
+        }), n.d(t, "emptyEvent", function() {
+            return De
+        }), n.d(t, "transitionEvent", function() {
+            return xe
+        }), n.d(t, "resyncEvent", function() {
+            return Le
+        }), n.d(t, "refreshLpKeyEvent", function() {
+            return Ne
+        }), n.d(t, "resetPeer", function() {
+            return Re
+        }), n.d(t, "changePeer", function() {
+            return Fe
+        }), n.d(t, "changeTab", function() {
+            return He
+        }), n.d(t, "failedMessage", function() {
+            return Ue
+        }), n.d(t, "mutexEvent", function() {
+            return Be
+        }), n.d(t, "resendEvent", function() {
+            return Ge
         });
-        var r = n(349),
-            i = n(103),
-            a = n(117),
-            o = function() {
+        var r = n(85),
+            i = function() {
                 return function(e, t) {
                     if (Array.isArray(e)) return e;
                     if (Symbol.iterator in Object(e)) return function(e, t) {
@@ -7975,986 +8277,464 @@
                     }(e, t);
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
-            }();
+            }(),
+            a = "event_delete",
+            o = "event_set_flags",
+            u = "event_replace_flags",
+            c = "event_reset_flags",
+            s = "event_add_message",
+            d = "event_read_inbound",
+            l = "event_read_outbound",
+            f = "event_got_online",
+            m = "event_got_offline",
+            _ = "event_chat_changed",
+            g = "event_chat_updated",
+            p = "event_typing",
+            h = "event_recoding_audio",
+            b = "event_video_call",
+            v = "event_unread_count",
+            y = "event_notify_settings_changed",
+            w = "event_empty",
+            O = "event_reset_directories",
+            k = "event_replace_directories",
+            j = "event_set_directories",
+            E = "event_resync",
+            T = "event_refresh_lp_key",
+            I = "transition_event",
+            A = "reset_peer",
+            C = "mutex",
+            S = "change_peer",
+            M = "event_change_tab",
+            P = "event_failed_message",
+            D = "event_resend",
+            x = "event_delete_dialog",
+            L = "event_edit_message",
+            N = "event_replace_message",
+            R = "event_audio_start",
+            F = 1,
+            H = 2,
+            U = 8,
+            B = 16,
+            G = 32,
+            q = 64,
+            z = 128,
+            K = 512,
+            W = 65536,
+            V = 1 << 21,
+            Y = 1,
+            X = 2,
+            $ = 8,
+            Q = 1,
+            Z = 2,
+            J = 3,
+            ee = 4,
+            te = 5,
+            ne = 6,
+            re = 7,
+            ie = 8,
+            ae = 9,
+            oe = 10,
+            ue = 11;
 
-        function u(e, t) {
-            this._db = e, this._key = t, this.dData = {
-                txt: "",
-                attaches: [],
-                urlBinds: [],
-                cancelled: []
-            }, this.load()
-        }
-
-        function c(e) {
-            switch (e.type) {
-                case "mail":
-                case "reply":
-                    return e.id < 0 && 1 == e.object.fwd_count;
-                default:
-                    return !e.object
-            }
-        }
-
-        function s(e, t) {
-            return new u(e, "draft_" + t)
-        }
-        u.prototype.dump = function() {
-            var e;
-            this._key && this._db.updateByKey(this._key, {
-                txt: (e = this.dData).txt,
-                attaches: e.attaches.length ? e.attaches : void 0,
-                urlBinds: e.urlBinds.length ? e.urlBinds : void 0,
-                cancelled: e.cancelled.length ? e.cancelled : void 0
-            })
-        }, u.prototype.load = function() {
-            if (this._key) {
-                var e = this._db.selectByKey(this._key);
-                e && (this.dData = function(e) {
-                    return {
-                        txt: e.txt,
-                        attaches: e.attaches || [],
-                        urlBinds: e.urlBinds || [],
-                        cancelled: e.cancelled || []
-                    }
-                }(e))
-            }
-        }, u.prototype.clear = function() {
-            this.dData = {
-                txt: "",
-                attaches: [],
-                urlBinds: [],
-                cancelled: []
-            }, this.dump()
-        }, u.prototype.setText = function(e) {
-            this.dData.txt = trim(e), this.dump()
-        }, u.prototype.addAttach = function(e, t, n) {
-            if ("share" === e && this.removeAttachByType(e), "mail" !== e && "reply" !== e || (this.removeAttachByType("mail"), this.removeAttachByType("reply")), !e || !t && "poll" !== e) return !1;
-            var r = this.dData.attaches.findIndex(function(n) {
-                return n.type === e && n.id === t
-            }); - 1 === r ? (this.dData.attaches.push({
-                type: e,
-                id: t,
-                object: n
-            }), this.dump()) : "video" !== e && "poll" !== e || (this.dData.attaches[r] = {
-                type: e,
-                id: t,
-                object: n
-            }, this.dump())
-        }, u.prototype.syncWithSelector = function(e) {
-            var t = this,
-                n = this.getFwdRaw();
-            this.dData.attaches = (n ? [n] : []).concat(e.getMedias().map(function(e) {
-                var n = o(e, 2),
-                    r = n[0],
-                    i = n[1];
-                return t.dData.attaches.find(function(e) {
-                    return e.type == r && e.id == i
-                }) || {
-                    type: r,
-                    id: i
-                }
-            })), this.dump()
-        }, u.prototype.removeAttachByType = function(e) {
-            for (var t = this.dData.attaches.length; t--;) this.dData.attaches[t].type === e && this.dData.attaches.splice(t, 1);
-            this.dump()
-        }, u.prototype.removeAllAttaches = function() {
-            this.dData.attaches = [], this.dData.cancelled = [], this.dump()
-        }, u.prototype.addBindUrl = function(e, t, n) {
-            this.getBoundAttach(e) || (this.dData.urlBinds.push({
-                url: e,
-                type: t,
-                id: n
-            }), this.dump())
-        }, u.prototype.getBoundAttach = function(e) {
-            var t = this.dData.urlBinds.find(function(t) {
-                return t.url === e
-            });
-            return t && this.dData.attaches.find(function(e) {
-                return e.type === t.type && e.id === t.id
-            }) || null
-        }, u.prototype.getShareUrl = function() {
-            var e = this.dData.attaches.find(function(e) {
-                return "share" === e.type
-            });
-            if (e && e.object) return e.object.url
-        }, u.prototype.hasOnlyReplies = function() {
-            var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : null;
-            return e ? e.flags & i.FLAG_HAS_REPLY && !this.dData.attaches.find(function(e) {
-                return "mail" !== e.type
-            }) : this.hasAttaches() && !this.dData.attaches.find(function(e) {
-                return "reply" !== e.type
-            })
-        }, u.prototype.getCancelledShares = function() {
-            return this.dData.cancelled.length ? this.dData.cancelled : void 0
-        }, u.prototype.hasAttaches = function() {
-            return this.dData.attaches.length > 0
-        }, u.prototype.destroy = function() {
-            this.dData = {}, this._key = this._db = null
-        }, u.prototype.prepareObjects = function(e, t) {
-            var n = this;
-            return this.dData.attaches.find(c) ? Object(r.post)(a.CONTROLLER, {
-                act: "draft_medias",
-                gid: e,
-                messageId: t || 0,
-                media: t ? void 0 : this.dData.attaches.map(function(e) {
-                    return [e.type, e.id]
-                }).join("*")
-            }).then(function(e) {
-                var t = o(e, 1)[0];
-                n.dData.attaches = t.map(function(e) {
-                    return {
-                        type: e[0],
-                        id: e[1],
-                        object: e[2]
-                    }
-                })
-            }) : Promise.resolve()
-        }, u.prototype.getFwdRaw = function() {
-            return this.dData.attaches.find(function(e) {
-                return "mail" === e.type || "reply" === e.type
-            })
-        }, u.prototype.getFwdCount = function() {
-            var e = this.getFwdRaw();
-            return e ? e.id < 0 ? e.object.fwd_count : e.id.split(";").length : 0
-        }
-    },
-    384: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "createMutations", function() {
-            return c
-        }), n.d(t, "createModule", function() {
-            return s
-        }), n.d(t, "destroyModule", function() {
-            return d
-        });
-        var r = n(180);
-
-        function i(e) {
-            if (Array.isArray(e)) {
-                for (var t = 0, n = Array(e.length); t < e.length; t++) n[t] = e[t];
-                return n
-            }
-            return Array.from(e)
-        }
-        var a = window,
-            o = a.addEvent,
-            u = a.removeEvent;
-
-        function c(e) {
+        function ce(e) {
+            var t = i(e, 2)[1];
             return {
-                callMutations: function() {
-                    if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
-                    return e
-                },
-                bindMutations: function() {
-                    if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
-                    return e = e.apply(void 0, arguments)
-                }
+                type: a,
+                localId: t
             }
         }
 
-        function s(e) {
-            var t = {
-                _registeredHandlers: []
-            };
-            return e.handlers(function(e, t, n, r) {
-                o(t, n, r), e._registeredHandlers.push(["bind", t, n, r])
-            }.bind(null, t), function(e, t, n, i, a) {
-                Object(r.addDelegateEvent)(t, n, i, a), e._registeredHandlers.push(["delegate", t, n, i, a])
-            }.bind(null, t)), t
-        }
-
-        function d(e) {
-            e._registeredHandlers.forEach(function(e) {
-                var t = e.slice(1);
-                "delegate" === e[0] ? r.removeDelegateEvent.apply(void 0, i(t)) : u.apply(void 0, i(t))
-            }), e._registeredHandlers = []
-        }
-    },
-    385: function(e, t, n) {
-        e.exports = n(369)
-    },
-    394: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "parseLatin", function() {
-            return a
-        }), n.d(t, "parseCyr", function() {
-            return o
-        }), n.d(t, "parseLatKeys", function() {
-            return u
-        }), n.d(t, "langNumeric", function() {
-            return c
-        }), n.d(t, "langSex", function() {
-            return s
-        }), n.d(t, "langStr", function() {
-            return d
-        }), n.d(t, "addLangKeys", function() {
-            return l
-        }), n.d(t, "getLang", function() {
-            return f
-        }), n.d(t, "langDate", function() {
-            return m
-        }), n.d(t, "getShortDate", function() {
-            return _
-        }), n.d(t, "getShortDateOrTime", function() {
-            return g
-        }), n.d(t, "langWordNumeric", function() {
-            return p
-        }), n.d(t, "getDateText", function() {
-            return h
-        }), n.d(t, "getBigDateNew", function() {
-            return b
-        }), n.d(t, "getSmDate", function() {
-            return v
-        });
-        var r = n(265),
-            i = n(276);
-
-        function a(e) {
-            for (var t = ["yo", "zh", "kh", "ts", "ch", "sch", "shch", "sh", "eh", "yu", "ya", "YO", "ZH", "KH", "TS", "CH", "SCH", "SHCH", "SH", "EH", "YU", "YA", "'"], n = ["ё", "ж", "х", "ц", "ч", "щ", "щ", "ш", "э", "ю", "я", "Ё", "Ж", "Х", "Ц", "Ч", "Щ", "Щ", "Ш", "Э", "Ю", "Я", "ь"], r = e, i = 0, a = t.length; i < a; i++) r = r.split(t[i]).join(n[i]);
-            for (var o = "abvgdezijklmnoprstufhcyABVGDEZIJKLMNOPRSTUFHCYёЁ", u = 0, c = o.length; u < c; u++) r = r.split(o.charAt(u)).join("абвгдезийклмнопрстуфхцыАБВГДЕЗИЙКЛМНОПРСТУФХЦЫеЕ".charAt(u));
-            return r === e ? null : r
-        }
-
-        function o(e) {
-            for (var t = ["yo", "zh", "kh", "ts", "ch", "sch", "shch", "sh", "eh", "yu", "ya", "YO", "ZH", "KH", "TS", "CH", "SCH", "SHCH", "SH", "EH", "YU", "YA", "'"], n = ["ё", "ж", "х", "ц", "ч", "щ", "щ", "ш", "э", "ю", "я", "Ё", "Ж", "Х", "Ц", "Ч", "Щ", "Щ", "Ш", "Э", "Ю", "Я", "ь"], r = "абвгдезийклмнопрстуфхцыАБВГДЕЗИЙКЛМНОПРСТУФХЦЫеЕ", i = e, a = 0; a < n.length; a++) i = i.split(n[a]).join(t[a]);
-            for (var o = 0; o < r.length; o++) i = i.split(r.charAt(o)).join("abvgdezijklmnoprstufhcyABVGDEZIJKLMNOPRSTUFHCYёЁ".charAt(o));
-            return i === e ? null : i
-        }
-
-        function u(e) {
-            for (var t = "qwertyuiop[]asdfghjkl;'zxcvbnm,./`", n = e, r = 0; r < t.length; r++) n = n.split(t.charAt(r)).join("йцукенгшщзхъфывапролджэячсмитьбю.ё".charAt(r));
-            return n == e ? null : n
-        }
-
-        function c(e, t, n) {
-            if (!t || !window.langConfig) return e;
-            var r = void 0;
-            if (Object(i.isArray)(t) ? (r = t[1], e != Math.floor(e) ? r = t[langConfig.numRules.float] : Object(i.each)(langConfig.numRules.int, function(n, a) {
-                    if ("*" == a[0]) return r = t[a[2]], !1;
-                    var o = a[0] ? e % a[0] : e;
-                    return -1 != Object(i.indexOf)(a[1], o) ? (r = t[a[2]], !1) : void 0
-                })) : r = t, n) {
-                for (var a = e.toString().split("."), o = [], u = a[0].length - 3; u > -3; u -= 3) o.unshift(a[0].slice(u > 0 ? u : 0, u + 3));
-                a[0] = o.join(langConfig.numDel), e = a.join(langConfig.numDec)
-            }
-            return r = (r || "%s").replace("%s", e)
-        }
-
-        function s(e, t) {
-            if (!Object(i.isArray)(t)) return t;
-            var n = t[1];
-            return window.langConfig ? (Object(i.each)(langConfig.sexRules, function(r, i) {
-                return "*" == i[0] ? (n = t[i[1]], !1) : e == i[0] && t[i[1]] ? (n = t[i[1]], !1) : void 0
-            }), n) : n
-        }
-
-        function d(e) {
-            for (var t = arguments, n = t.length, r = e + "", i = 1; i < n; i += 2) {
-                var a = "%" === t[i][0] ? t[i] : "{" + t[i] + "}";
-                r = r.replace(a, t[i + 1])
-            }
-            return r
-        }
-
-        function l(e, t) {
-            var n = t ? window : window.cur;
-            n.lang ? Object(i.extend)(n.lang, e) : n.lang = e
-        }
-
-        function f() {
-            try {
-                var e = Array.from(arguments),
-                    t = e.shift();
-                if (!t) return "...";
-                var n = window.cur.lang && window.cur.lang[t] || window.lang && window.lang[t] || window.langpack && window.langpack[t] || window[t];
-                if (!n) {
-                    var r = t.split("_");
-                    return r.shift(), r.join(" ")
-                }
-                return Object(i.isFunction)(n) ? n.apply(null, e) : void 0 === e[0] && !Object(i.isArray)(n) || "raw" === e[0] ? n : c(e[0], n, e[1])
-            } catch (e) {
-                debugLog("lang error:" + e.message + "(" + Array.from(arguments).join(", ") + ")")
+        function se(e) {
+            var t = i(e, 4),
+                n = t[1],
+                r = t[2],
+                a = t[3];
+            return {
+                type: u,
+                messageId: n,
+                mask: r,
+                peerId: a
             }
         }
 
-        function m(e, t, n, a, o, u) {
-            var c = void 0;
-            if (u || (u = ""), Object(i.isArray)(t) || (t = ["", t, t, t, t]), "number" == typeof e || "string" == typeof e ? (e > 2147483646e3 && (e = 0), e += n, c = new Date(e)) : c = e, o) t = t[1];
-            else {
-                var s = "";
-                !(s = Object(r.isToday)(c) ? t[3] : Object(r.isYesterday)(c) ? t[2] : Object(r.isTomorrow)(c) ? t[4] : t[1]) && t[1] && (s = t[1]), t = s
+        function de(e) {
+            var t = i(e, 4),
+                n = t[1],
+                r = t[2],
+                a = t[3];
+            return {
+                type: o,
+                messageId: n,
+                flags: r,
+                peerId: a
             }
-            var d = {
-                    hours: c.getHours(),
-                    minutes: c.getMinutes(),
-                    seconds: c.getSeconds(),
-                    day: c.getDate(),
-                    month: c.getMonth() + 1,
-                    year: c.getFullYear()
-                },
-                l = "";
-            switch (3 === vk.lang && (l = c.getHours() > 11 ? "pm" : "am", d.hours = c.getHours() % 12 == 0 ? 12 : c.getHours() % 12), vk.lang) {
-                case 1:
-                    switch (c.getHours()) {
-                        case 11:
-                            t = t.replace(" о ", " об ");
-                            break;
-                        case 0:
-                            t = t.replace(" о ", " в ")
-                    }
-                    break;
-                case 3:
-                    !Object(r.isToday)(c) || Object(r.isYesterday)(c) || Object(r.isTomorrow)(c) || (t = u + t);
-                    break;
-                case 12:
-                case 73:
-                    1 == c.getHours() && (t = t.replace(" &#224;s ", " &#224; "))
+        }
+
+        function le(e) {
+            var t = i(e, 4),
+                n = t[1],
+                r = t[2],
+                a = t[3];
+            return {
+                type: c,
+                messageId: n,
+                flags: r,
+                peerId: a
             }
-            return 68 === vk.lang && (d.year = d.year + 543), t.replace("{hour}", d.hours).replace("{num_hour}", Object(r.leadingZero)(d.hours)).replace("{minute}", Object(r.leadingZero)(d.minutes)).replace("{day}", d.day).replace("{num_day}", Object(r.leadingZero)(d.day)).replace("{month}", a[d.month]).replace("{year}", d.year).replace("{short_year}", d.year % 100).replace("{second}", Object(r.leadingZero)(d.seconds)).replace("{am_pm}", l)
         }
 
-        function _(e, t, n, r, i) {
-            e *= 1e3, void 0 === n && (n = !0), void 0 === r && (r = f("months_of", "raw")), t *= 1e3;
-            var a = Date.now(),
-                o = new Date(a),
-                u = new Date(e + t);
-            return !i && e > a && e - a < 864e5 && o.getDate() === u.getDate() ? m(e, "{hour}:{minute} {am_pm}", t, [], !n) : u.getYear() !== o.getYear() || e < a - 157248e5 ? m(e, f("global_date", "raw"), t, r, !n) : m(e, f("global_short_date", "raw"), t, r, !n)
+        function fe(e) {
+            var t = i(e, 11),
+                n = t[1],
+                a = t[2],
+                o = t[3],
+                u = t[4],
+                c = t[5],
+                d = t[6],
+                l = t[7],
+                f = t[8],
+                m = t[9],
+                _ = t[10],
+                g = extend(d, l || void 0);
+            return {
+                type: s,
+                messageId: intval(n),
+                flags: intval(a),
+                peerId: intval(o),
+                date: intval(u),
+                attaches: Object(r.convertKludgesToAttaches)(g, n),
+                subject: d.title || "",
+                text: c,
+                kludges: g,
+                randomId: intval(f),
+                userId: Object(r.isChatPeer)(o) ? intval(g.from) : intval(o),
+                update_time: _,
+                chat_local_id: m
+            }
         }
 
-        function g(e, t, n, i) {
-            return Object(r.isToday)(new Date(1e3 * e + 1e3 * t)) ? m(1e3 * e, "{hour}:{minute} {am_pm}", 1e3 * t, [], !n) : _(e, t, n, i)
+        function me(e) {
+            var t = fe(e);
+            return t.type = L, t
         }
 
-        function p(e, t, n) {
-            return Object(i.isArray)(t) && e < t.length ? t[e] : c(e, n)
+        function _e(e) {
+            var t = fe(e);
+            return t.type = N, t
         }
 
-        function h(e, t) {
-            e += t;
-            var n = parseInt(Date.now() / 1e3) - e,
-                r = "";
-            if (n < 60) r = f("global_just_now");
-            else if (n < 3600) {
-                r = p(Object(i.intval)(n / 60), f("global_word_mins_ago", "raw"), f("global_mins_ago", "raw"))
-            } else if (n < 14400) {
-                r = p(Object(i.intval)(n / 3600), f("global_word_hours_ago", "raw"), f("global_hours_ago", "raw"))
-            } else r = b(e, 0, !0, "_l");
-            return r
-        }
-
-        function b(e, t, n, r) {
-            void 0 === n && (n = !0), void 0 === t && (t = 0), void 0 === r && (r = ""), t *= 1e3;
-            var i = new Date(1e3 * e),
-                a = new Date;
-            return i.getFullYear() !== a.getFullYear() && i.getTime() < a.getTime() - 1728e5 || Math.abs(i.getTime() - a.getTime()) > 157248e5 ? m(1e3 * e, f("global_date", "raw"), t, f("months_sm_of"), !n) : m(1e3 * e, f("global_short_date_time" + r, "raw"), t, f("months_sm_of"), !n)
-        }
-
-        function v(e, t, n) {
-            void 0 === n && (n = !0), void 0 === t && (t = 0);
-            var r = new Date,
-                i = r.getFullYear(),
-                a = r.getMonth(),
-                o = new Date(1e3 * e),
-                u = o.getFullYear(),
-                c = o.getMonth();
-            return m(1e3 * e, f(u < i && (a > 1 || c < 9 || i - u >= 2) ? "global_date" : "global_short_date_time", "raw"), t, f("months_sm_of", "raw"), !n)
-        }
-        window.parseLatin = a, window.parseCyr = o, window.parseLatKeys = u, window.langNumeric = c, window.langSex = s, window.langStr = d, window.addLangKeys = l, window.getLang = f, window.langDate = m, window.getShortDate = _, window.getShortDateOrTime = g, window.langWordNumeric = p, window.getDateText = h, window.getBigDateNew = b, window.getSmDate = v
-    },
-    427: function(e, t, n) {
-        "use strict";
-
-        function r(e, t) {
-            return new Promise(function(n) {
-                setTimeout(n.bind(null, t), 1e3 * e)
+        function ge(e) {
+            return extend({}, e, {
+                type: L
             })
         }
 
-        function i(e, t) {
-            var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : null,
-                i = 0;
-            return function a() {
-                for (var o = arguments.length, u = Array(o), c = 0; c < o; c++) u[c] = arguments[c];
-                return Promise.resolve().then(function() {
-                    return e.apply(void 0, u)
-                }).catch(function(e) {
-                    if (++i <= t) {
-                        var o = "function" == typeof n ? n(i) : 0;
-                        return 0 === o ? a.apply(void 0, u) : r(o).then(function() {
-                            return a.apply(void 0, u)
-                        })
-                    }
-                    throw e
-                })
-            }
-        }
-
-        function a(e, t, n) {
-            var r = void 0,
-                i = void 0;
-            return function() {
-                for (var a = arguments.length, o = Array(a), u = 0; u < a; u++) o[u] = arguments[u];
-                return new Promise(function(e, a) {
-                    var u = n && !r;
-                    clearTimeout(r), i && i.reject("debounce"), r = setTimeout(function() {
-                        r = null, i = null, n || e(o)
-                    }, t), u ? e(o) : n && a("debounce"), i = {
-                        resolve: e,
-                        reject: a
-                    }
-                }).then(function(t) {
-                    return e.apply(void 0, function(e) {
-                        if (Array.isArray(e)) {
-                            for (var t = 0, n = Array(e.length); t < e.length; t++) n[t] = e[t];
-                            return n
-                        }
-                        return Array.from(e)
-                    }(t))
-                })
-            }
-        }
-
-        function o(e, t) {
-            var n = void 0,
-                r = new Promise(function(r) {
-                    n = r, setTimeout(r.bind(null, t), 1e3 * e)
-                });
+        function pe(e) {
+            var t = i(e, 4),
+                n = t[1],
+                r = t[2],
+                a = t[3];
             return {
-                pause: function() {
-                    return r
-                },
-                abort: function() {
-                    n(t)
-                }
-            }
-        }
-        n.r(t), n.d(t, "pause", function() {
-            return r
-        }), n.d(t, "retryFn", function() {
-            return i
-        }), n.d(t, "debouncedPromise", function() {
-            return a
-        }), n.d(t, "abortablePause", function() {
-            return o
-        })
-    },
-    429: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "statlogsForwardEvent", function() {
-            return o
-        }), n.d(t, "statlogsForwardFromCommunityEvent", function() {
-            return u
-        }), n.d(t, "statlogsCommunityTemplatesClickEvent", function() {
-            return c
-        }), n.d(t, "statlogsForwardFromChannel", function() {
-            return s
-        }), n.d(t, "statlogsSendingTime", function() {
-            return l
-        }), n.d(t, "statlogsSendingTimeStart", function() {
-            return f
-        }), n.d(t, "statlogsSendingTimeEnd", function() {
-            return m
-        }), n.d(t, "statlogsSendingError", function() {
-            return _
-        }), n.d(t, "statlogsSendingQueueLength", function() {
-            return p
-        }), n.d(t, "statlogsSendingRetry", function() {
-            return h
-        });
-        var r = n(33),
-            i = n(5),
-            a = {};
-
-        function o(e) {
-            Object(r.statlogsProbValueEvent)(.1, "im_forward_stat", d(e), !!e.get().gid)
-        }
-
-        function u(e, t) {
-            Object(r.statlogsProbValueEvent)(.1, "im_forward_from_community_stat", d(e), !!e.get().gid, +t)
-        }
-
-        function c() {
-            Object(r.statlogsProbValueEvent)(1, "im_apply_community_template_stat", 1)
-        }
-
-        function s() {
-            Object(r.statlogsProbValueEvent)(1, "messages_channel_forward_click", 1)
-        }
-
-        function d(e) {
-            var t = e.get().pendingForward;
-            return +(t && t.msgIds && t.msgIds.length)
-        }
-
-        function l(e, t, n) {
-            var i = arguments.length > 3 && void 0 !== arguments[3] && arguments[3];
-            if (!Object(r.randEnabled)(1)) return function() {};
-            var a = +new Date,
-                o = g(e);
-            return function() {
-                var e = +new Date - a;
-                statlogsValueEvent("messages_send_time_web", e, t, n, o, i)
+                type: d,
+                peerId: n,
+                upToId: r,
+                unread: a
             }
         }
 
-        function f(e, t, n, r) {
-            if (t.messageId && -1 !== String(t.messageId).indexOf("rid")) {
-                var i = [t.messageId.replace("rid", ""), n, r].join("_"),
-                    o = t.attaches.length > 0;
-                a[i] = l(e, n, r, o)
-            }
-        }
-
-        function m(e, t, n, r) {
-            var i = [t.randomId, n, r].join("_"),
-                o = a[i];
-            o && (o(), delete a[i])
-        }
-
-        function _(e, t, n, i) {
-            var a = g(e),
-                o = "" === t ? "network" : "unknown";
-            Object(r.randEnabled)(1) && statlogsValueEvent("messages_send_errors_web", o, n, i, a)
-        }
-
-        function g(e) {
-            var t = Object(i.unpackStore)(e);
-            return Boolean(t.longpoll && t.longpoll.isEnabled && t.longpoll.isEnabled())
-        }
-
-        function p(e) {
-            var t = Object(i.unpackStore)(e),
-                n = t.imQueue(t.peer).length;
-            Object(r.randEnabled)(1) && statlogsValueEvent("messages_send_queue_size", n)
-        }
-
-        function h(e) {
-            var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "unknown";
-            Object(r.randEnabled)(1) && statlogsValueEvent("messages_send_retry", 1, t, e)
-        }
-    },
-    442: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "mount", function() {
-            return a
-        });
-        var r = n(384);
-
-        function i(e) {
+        function he(e) {
+            var t = i(e, 4),
+                n = t[1],
+                r = t[2],
+                a = t[3];
             return {
-                unmount: function() {
-                    Object(r.destroyModule)(e)
-                }
+                type: l,
+                peerId: n,
+                upToId: r,
+                unread: a
             }
         }
 
-        function a(e, t, n) {
-            return (0, Object(r.createMutations)(i).bindMutations)(Object(r.createModule)({
-                handlers: function(e, t) {}
-            }))
-        }
-    },
-    452: function(e, t, n) {
-        "use strict";
-        n.r(t), n.d(t, "isWeirdLogging", function() {
-            return s
-        }), n.d(t, "imWeirdLog", function() {
-            return d
-        }), n.d(t, "imWeirdCatch", function() {
-            return l
-        }), n.d(t, "startLoggingAllUnhandled", function() {
-            return f
-        }), n.d(t, "stopLoggingAllUnhandled", function() {
-            return m
-        });
-        var r = n(349),
-            i = n(427),
-            a = void 0,
-            o = 1;
-
-        function u(e, t, n, r, i) {
-            if ("Script error." !== e) {
-                var o = i ? i.stack || i.message : null;
-                d("unhandled_error", o ? {
-                    err: e,
-                    stack: o
-                } : {
-                    err: e
-                })
-            }
-            a && a.apply(this, arguments)
-        }
-
-        function c(e) {
-            e.preventDefault()
-        }
-
-        function s() {
-            return !!window.imwl
-        }
-
-        function d(e, t) {
-            var n = !(arguments.length > 2 && void 0 !== arguments[2]) || arguments[2];
-            s() && (n && window.console && (console.error(e, t), console.trace && console.trace()), Object(i.retryFn)(r.post, 3, function() {
-                return 2
-            })("al_im.php", {
-                act: "a_weird_log",
-                kind: e,
-                data: JSON.stringify(extend({
-                    errIdx: o++,
-                    ua: navigator.userAgent
-                }, t))
-            }))
-        }
-
-        function l(e, t) {
-            var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {};
-            return d(e, extend({
-                err: t && t.message || t
-            }, n)), Promise.reject(t)
-        }
-
-        function f() {
-            a = window.onerror, window.onerror = u, window.addEventListener("unhandledrejection", c)
-        }
-
-        function m() {
-            window.onerror = a, a = void 0, window.removeEventListener("unhandledrejection", c)
-        }
-    },
-    459: function(e, t, n) {
-        "use strict";
-        var r;
-
-        function i(e, t, n) {
-            return t in e ? Object.defineProperty(e, t, {
-                value: n,
-                enumerable: !0,
-                configurable: !0,
-                writable: !0
-            }) : e[t] = n, e
-        }
-        n.r(t), n.d(t, "OUR_DOMAINS", function() {
-            return a
-        }), n.d(t, "ENTITIES", function() {
-            return o
-        }), n.d(t, "VK_DOMAIN", function() {
-            return u
-        }), n.d(t, "MENTION", function() {
-            return c
-        }), n.d(t, "MENTION_RAW", function() {
-            return s
-        }), n.d(t, "ARROW_UP", function() {
-            return d
-        }), n.d(t, "ARROW_DOWN", function() {
-            return l
-        }), n.d(t, "PAGE_UP", function() {
-            return f
-        }), n.d(t, "PAGE_DOWN", function() {
-            return m
-        }), n.d(t, "END_KEY", function() {
-            return _
-        }), n.d(t, "HOME", function() {
-            return g
-        }), n.d(t, "ENTER", function() {
-            return p
-        }), n.d(t, "ESC", function() {
-            return h
-        }), n.d(t, "UNPRINTABLE_KEYS", function() {
-            return b
-        }), n.d(t, "UP_DOWN_CONTROLS", function() {
-            return v
-        }), n.d(t, "PRINTABLE", function() {
-            return y
-        }), n.d(t, "FOLDER_UNREAD", function() {
-            return w
-        }), n.d(t, "FOLDER_ALL", function() {
-            return O
-        }), n.d(t, "FOLDER_UNRESPOND", function() {
-            return k
-        }), n.d(t, "FOLDER_IMPORTANT", function() {
-            return j
-        }), n.d(t, "FOLDERS", function() {
-            return E
-        }), n.d(t, "FOLDER_MASKS", function() {
-            return T
-        }), n.d(t, "TOP_DOMAINS", function() {
-            return I
-        }), n.d(t, "MAX_DOMAIN_LENGTH", function() {
-            return A
-        }), n.d(t, "EMAIL", function() {
-            return C
-        }), n.d(t, "MESSAGE_REGEXP", function() {
-            return S
-        }), n.d(t, "RE_HASHTAG_EXTRACTION_PATTERN", function() {
-            return M
-        });
-        var a = /^([a-zA-Z0-9\.\_\-]+\.)?(vkontakte\.ru|vk\.com|vkadre\.ru|vshtate\.ru|userapi\.com|vk\.me)$/,
-            o = /([^a-zA-Z0-9#%;_\-.\/?&=\[\]])/g,
-            u = /^(?:https?:\/\/)?(?:vk\.com|vkontakte\.ru)?\/([a-zA-Z0-9\._]+)\??$/,
-            c = /\[(id|club)(\d+)(?:\:([a-z0-9_\-]+))?\|([^\$]+?)\]/g,
-            s = /(^|[\s.,:\'\";>\)\(])(\*|@)([A-Za-z0-9_\.]{2,32})\s*\((.+?)\)/g,
-            d = 38,
-            l = 40,
-            f = 33,
-            m = 34,
-            _ = 35,
-            g = 36,
-            p = 13,
-            h = 27,
-            b = [d, l, f, m, p, h, _, g],
-            v = [f, m, l, d, g, _],
-            y = "printable",
-            w = "unread",
-            O = "all",
-            k = "unrespond",
-            j = "important",
-            E = [O, w, k, j],
-            T = (i(r = {}, k, 2), i(r, j, 1), r),
-            I = [].concat("aaa,aarp,abarth,abb,abbott,abbvie,abc,able,abogado,abudhabi,ac,academy,accenture,accountant,accountants,aco,active,actor,ad,adac,ads,adult,ae,aeg,aero,aetna,af,afamilycompany,afl,africa,ag,agakhan,agency,ai,aig,aigo,airbus,airforce,airtel,akdn,al,alfaromeo,alibaba,alipay,allfinanz,allstate,ally,alsace,alstom,am,americanexpress,americanfamily,amex,amfam,amica,amsterdam,an,analytics,android,anquan,anz,ao,aol,apartments,app,apple,aq,aquarelle,ar,aramco,archi,army,arpa,art,arte,as,asda,asia,associates,at,athleta,attorney,au,auction,audi,audible,audio,auspost,author,auto,autos,avianca,aw,aws,ax,axa,az,azure,ba,baby,baidu,banamex,bananarepublic,band,bank,bar,barcelona,barclaycard,barclays,barefoot,bargains,baseball,basketball,bauhaus,bayern,bb,bbc,bbt,bbva,bcg,bcn,bd,be,beats,beauty,beer,bentley,berlin,best,bestbuy,bet,bf,bg,bh,bharti,bi,bible,bid,bike,bing,bingo,bio,biz,bj,bl,black,blackfriday,blanco,blockbuster,blog,bloomberg,blue,bm,bms,bmw,bn,bnl,bnpparibas,bo,boats,boehringer,bofa,bom,bond,boo,book,booking,boots,bosch,bostik,boston,bot,boutique,box,bq,br,bradesco,bridgestone,broadway,broker,brother,brussels,bs,bt,budapest,bugatti,build,builders,business,buy,buzz,bv,bw,by,bz,bzh,ca,cab,cafe,cal,call,calvinklein,cam,camera,camp,cancerresearch,canon,capetown,capital,capitalone,car,caravan,cards,care,career,careers,cars,cartier,casa,case,caseih,cash,casino,cat,catering,catholic,cba,cbn,cbre,cbs,cc,cd,ceb,center,ceo,cern,cf,cfa,cfd,cg,ch,chanel,channel,chase,chat,cheap,chintai,chloe,christmas,chrome,chrysler,church,ci,cipriani,circle,cisco,citadel,citi,citic,city,cityeats,ck,cl,claims,cleaning,click,clinic,clinique,clothing,cloud,club,clubmed,cm,cn,co,coach,codes,coffee,college,cologne,com,comcast,commbank,community,company,compare,computer,comsec,condos,construction,consulting,contact,contractors,cooking,cookingchannel,cool,coop,corsica,country,coupon,coupons,courses,cr,credit,creditcard,creditunion,cricket,crown,crs,cruise,cruises,csc,cu,cuisinella,cv,cw,cx,cy,cymru,cyou,cz,dabur,dad,dance,data,date,dating,datsun,day,dclk,dds,de,deal,dealer,deals,degree,delivery,dell,deloitte,delta,democrat,dental,dentist,desi,design,dev,dhl,diamonds,diet,digital,direct,directory,discount,discover,dish,diy,dj,dk,dm,dnp,do,docs,doctor,dodge,dog,doha,domains,dot,download,drive,dtv,dubai,duck,dunlop,duns,dupont,durban,dvag,dvr,dz,earth,eat,ec,eco,edeka,edu,education,ee,eg,eh,email,emerck,energy,engineer,engineering,enterprises,epost,epson,equipment,er,ericsson,erni,es,esq,estate,esurance,et,eu,eurovision,eus,events,everbank,exchange,expert,exposed,express,extraspace,fage,fail,fairwinds,faith,family,fan,fans,farm,farmers,fashion,fast,fedex,feedback,ferrari,ferrero,fi,fiat,fidelity,fido,film,final,finance,financial,fire,firestone,firmdale,fish,fishing,fit,fitness,fj,fk,flickr,flights,flir,florist,flowers,fly,fm,fo,foo,food,foodnetwork,football,ford,forex,forsale,forum,foundation,fox,fr,free,fresenius,frl,frogans,frontdoor,frontier,ftr,fujitsu,fujixerox,fun,fund,furniture,futbol,fyi,ga,gal,gallery,gallo,gallup,game,games,gap,garden,gb,gbiz,gd,gdn,ge,gea,gent,genting,george,gf,gg,ggee,gh,gi,gift,gifts,gives,giving,gl,glade,glass,gle,global,globo,gm,gmail,gmbh,gmo,gmx,gn,godaddy,gold,goldpoint,golf,goo,goodhands,goodyear,goog,google,gop,got,gov,gp,gq,gr,grainger,graphics,gratis,green,gripe,group,gs,gt,gu,guardian,gucci,guge,guide,guitars,guru,gw,gy,hair,hamburg,hangout,haus,hbo,hdfc,hdfcbank,health,healthcare,help,helsinki,here,hermes,hgtv,hiphop,hisamitsu,hitachi,hiv,hk,hkt,hm,hn,hockey,holdings,holiday,homedepot,homegoods,homes,homesense,honda,honeywell,horse,hospital,host,hosting,hot,hoteles,hotmail,house,how,hr,hsbc,ht,htc,hu,hughes,hyatt,hyundai,ibm,icbc,ice,icu,id,ie,ieee,ifm,ikano,il,im,imamat,imdb,immo,immobilien,in,industries,infiniti,info,ing,ink,institute,insurance,insure,int,intel,international,intuit,investments,io,ipiranga,iq,ir,irish,is,iselect,ismaili,ist,istanbul,it,itau,itv,iveco,iwc,jaguar,java,jcb,jcp,je,jeep,jetzt,jewelry,jio,jlc,jll,jm,jmp,jnj,jo,jobs,joburg,jot,joy,jp,jpmorgan,jprs,juegos,juniper,kaufen,kddi,ke,kerryhotels,kerrylogistics,kerryproperties,kfh,kg,kh,ki,kia,kim,kinder,kindle,kitchen,kiwi,km,kn,koeln,komatsu,kosher,kp,kpmg,kpn,kr,krd,kred,kuokgroup,kw,ky,kyoto,kz,la,lacaixa,ladbrokes,lamborghini,lamer,lancaster,lancia,lancome,land,landrover,lanxess,lasalle,lat,latino,latrobe,law,lawyer,lb,lc,lds,lease,leclerc,lefrak,legal,lego,lexus,lgbt,li,liaison,lidl,life,lifeinsurance,lifestyle,lighting,like,lilly,limited,limo,lincoln,linde,link,lipsy,live,living,lixil,lk,loan,loans,local,locker,locus,loft,lol,london,lotte,lotto,love,lpl,lplfinancial,lr,ls,lt,ltd,ltda,lu,lundbeck,lupin,luxe,luxury,lv,ly,ma,macys,madrid,maif,maison,makeup,man,management,mango,market,marketing,markets,marriott,marshalls,maserati,mattel,mba,mc,mcd,mcdonalds,mckinsey,md,me,med,media,meet,melbourne,meme,memorial,men,menu,meo,metlife,mf,mg,mh,miami,microsoft,mil,mini,mint,mit,mitsubishi,mk,ml,mlb,mls,mm,mma,mn,mo,mobi,mobile,mobily,moda,moe,moi,mom,monash,money,monster,montblanc,mopar,mormon,mortgage,moscow,moto,motorcycles,mov,movie,movistar,mp,mq,mr,ms,msd,mt,mtn,mtpc,mtr,mu,museum,mutual,mv,mw,mx,my,mz,na,nab,nadex,nagoya,name,nationwide,natura,navy,nba,nc,ne,nec,net,netbank,netflix,network,neustar,new,newholland,news,next,nextdirect,nexus,nf,nfl,ng,ngo,nhk,ni,nico,nike,nikon,ninja,nissan,nissay,nl,no,nokia,northwesternmutual,norton,now,nowruz,nowtv,np,nr,nra,nrw,ntt,nu,nyc,nz,obi,observer,off,office,okinawa,olayan,olayangroup,oldnavy,ollo,om,omega,one,ong,onl,online,onyourside,ooo,open,oracle,orange,org,organic,orientexpress,origins,osaka,otsuka,ott,ovh,pa,page,pamperedchef,panasonic,panerai,paris,pars,partners,parts,party,passagens,pay,pccw,pe,pet,pf,pfizer,pg,ph,pharmacy,philips,phone,photo,photography,photos,physio,piaget,pics,pictet,pictures,pid,pin,ping,pink,pioneer,pizza,pk,pl,place,play,playstation,plumbing,plus,pm,pn,pnc,pohl,poker,politie,porn,post,pr,pramerica,praxi,press,prime,pro,prod,productions,prof,progressive,promo,properties,property,protection,pru,prudential,ps,pt,pub,pw,pwc,py,qa,qpon,quebec,quest,qvc,racing,radio,raid,re,read,realestate,realtor,realty,recipes,red,redstone,redumbrella,rehab,reise,reisen,reit,reliance,ren,rent,rentals,repair,report,republican,rest,restaurant,review,reviews,rexroth,rich,richardli,ricoh,rightathome,ril,rio,rip,rmit,ro,rocher,rocks,rodeo,rogers,room,rs,rsvp,ru,ruhr,run,rw,rwe,ryukyu,sa,saarland,safe,safety,sakura,sale,salon,samsclub,samsung,sandvik,sandvikcoromant,sanofi,sap,sapo,sarl,sas,save,saxo,sb,sbi,sbs,sc,sca,scb,schaeffler,schmidt,scholarships,school,schule,schwarz,science,scjohnson,scor,scot,sd,se,seat,secure,security,seek,select,sener,services,ses,seven,sew,sex,sexy,sfr,sg,sh,shangrila,sharp,shaw,shell,shia,shiksha,shoes,shop,shopping,shouji,show,showtime,shriram,si,silk,sina,singles,site,sj,sk,ski,skin,sky,skype,sl,sling,sm,smart,smile,sn,sncf,so,soccer,social,softbank,software,sohu,solar,solutions,song,sony,soy,space,spiegel,spot,spreadbetting,sr,srl,srt,ss,st,stada,staples,star,starhub,statebank,statefarm,statoil,stc,stcgroup,stockholm,storage,store,stream,studio,study,style,su,sucks,supplies,supply,support,surf,surgery,suzuki,sv,swatch,swiftcover,swiss,sx,sy,sydney,symantec,systems,sz,tab,taipei,talk,taobao,target,tatamotors,tatar,tattoo,tax,taxi,tc,tci,td,tdk,team,tech,technology,tel,telecity,telefonica,temasek,tennis,teva,tf,tg,th,thd,theater,theatre,tiaa,tickets,tienda,tiffany,tips,tires,tirol,tj,tjmaxx,tjx,tk,tkmaxx,tl,tm,tmall,tn,to,today,tokyo,tools,top,toray,toshiba,total,tours,town,toyota,toys,tp,tr,trade,trading,training,travel,travelchannel,travelers,travelersinsurance,trust,trv,tt,tube,tui,tunes,tushu,tv,tvs,tw,tz,ua,ubank,ubs,uconnect,ug,uk,um,unicom,university,uno,uol,ups,us,uy,uz,va,vacations,vana,vanguard,vc,ve,vegas,ventures,verisign,vermögensberater,vermögensberatung,versicherung,vet,vg,vi,viajes,video,vig,viking,villas,vin,vip,virgin,visa,vision,vista,vistaprint,viva,vivo,vlaanderen,vn,vodka,volkswagen,volvo,vote,voting,voto,voyage,vu,vuelos,wales,walmart,walter,wang,wanggou,warman,watch,watches,weather,weatherchannel,webcam,weber,website,wed,wedding,weibo,weir,wf,whoswho,wien,wiki,williamhill,win,windows,wine,winners,wme,wolterskluwer,woodside,work,works,world,wow,ws,wtc,wtf,xbox,xerox,xfinity,xihuan,xin,xperia,xxx,xyz,yachts,yahoo,yamaxun,yandex,ye,yodobashi,yoga,yokohama,you,youtube,yt,yu,yun,za,zappos,zara,zero,zip,zippo,zm,zone,zuerich,zw".split(","), "бг,бел,дети,ею,католик,ком,мкд,мон,москва,онлайн,орг,рус,рф,сайт,срб,укр".split(","), "qxam,90ae,90ais,d1acj3b,e1a4c,80aqecdr1a,j1aef,d1alf,l1acc,80adxhks,80asehdb,c1avg,p1acf,p1ai,80aswg,90a3ac,j1amh,80ao21a,y9a3aq,9dbq2a,mgbca7dzdo,mgba3a3ejt,mgbayh7gpa,lgbbat1ad8j,mgberp4a5d4ar,mgba7c0bbn0a,mgbc0a9azcg,mgb2ddes,mgbaam7a8h,mgba3a4f16a,mgbbh1a,mgbab2bd,ngbe9e0a,mgbbh1a71e,pgbs0dh,mgbpl2fh,ogbpf8fl,ngbc5azd,mgbtx2b,mgb9awbf,ygbi2ammx,wgbl6a,mgbi4ecexp,fhbei,wgbh1c,mgbx4cd0ab,mgbb9fbpob,4gbrim,mgbt3dhd,mgbai9azgqp6j,mgbgu82a,11b4c3d,c2br7g,h2brj9c,h2breg3eve,h2brj9c8c,i1b6b1a6a2e,54b7fta0cc,45brj9c,45br5cyl,s9brj9c,gecrj9c,3hcrj9c,xkc2dl3a5ee0h,xkc2al3hye2a,clchc0ea0b2g2a9gcd,fpcrj9c3d,2scrj9c,rvc1e0am3e,fzc2c9e2c,42c2d9a,o3cw4h,node,q9jyb4c,gckr3f0f,qcka1pmc,tckwe,cck2b3b,1ck2e1b,bck1b9a5dre4c,eckvdtc9d,rhqv96g,fiq64b,fiqs8s,fiqz9s,fiq228c5hs,vhquv,1qqw23a,vuq861b,nyqy26a,45q11c,55qx5d,55qw42g,kprw13d,kpry57d,czru2d,czrs0t,czr694b,w4rs40l,w4r85el8fhu5dnra,3ds443g,3oq18vl8pn36a,pssy2u,tiq49xqyj,fjq720a,fct429k,estv75g,xhq521b,9krt00a,30rr7y,6qq986b3xl,kput3i,kpu716f,zfr164b,mxtq1m,yfro4i67o,efvy88h,9et52u,rovu88b,nqv7f,b4w605ferd,unup4y,mix891f,mix082f,3pxu8k,pbt977c,6frz82g,nqv7fs00ema,ses554g,hxt814e,5tzm5g,io0a7i,8y0a063a,jlq61u9w7b,flw351e,g2xx48c,gk3at1e,3bst00m,fzys8d69uvgm,kcrx77d1x4a,jvr189m,imr513n,5su34j936bgsg,j6w193g,t60b56a,mk1bu44c,cg4bki,3e0b707e".split(",").map(function(e) {
-                return "xn--" + e
-            })),
-            A = I.reduce(function(e, t) {
-                return Math.max(e, t.length)
-            }, 0),
-            C = new RegExp("([a-zA-Zа-яА-Я\\-_\\.0-9\\+]+@(((?:[\\w\\$А-Яа-яёЁєЄҐґЇїІіЈј\\—\\-\\_]+\\.){1,5})([A-Za-z\\$а-яА-Я\\-\\d]{2,22})))", "ig"),
-            S = new RegExp("(https?:\\/\\/)?(((?:[\\w\\$А-Яа-яёЁєЄҐґЇїІіЈј\\—\\-\\_]+\\.){1,5})([A-Za-z\\$а-яА-Я\\-\\d]{2,22})(?:\\:(\\d{2,5}))?)(([\\/?#])(?:\\&amp;|\\&#\\d{2,6};|,[_%]|!|,*[\\wА-Яа-я\\xa8\\xb8\\xc0-\\xffєЄҐґЇїІіЈј\\—\\-\\_@#%?+\\/\\$.~=;:'ªµºÀ-ÖØ-öø-ˁˆ-ˑˠ-ˤˬˮͰ-ʹͶͷͺ-ͽͿΆΈ-ΊΌΎ-ΡΣ-ϵϷ-ҁҊ-ԯԱ-Ֆՙա-ևא-תװ-ײؠ-يٮٯٱ-ۓەۥۦۮۯۺ-ۼۿܐܒ-ܯݍ-ޥޱߊ-ߪߴߵߺࠀ-ࠕࠚࠤࠨࡀ-ࡘࢠ-ࢴࢶ-ࢽऄ-हऽॐक़-ॡॱ-ঀঅ-ঌএঐও-নপ-রলশ-হঽৎড়ঢ়য়-ৡৰৱਅ-ਊਏਐਓ-ਨਪ-ਰਲਲ਼ਵਸ਼ਸਹਖ਼-ੜਫ਼ੲ-ੴઅ-ઍએ-ઑઓ-નપ-રલળવ-હઽૐૠૡૹଅ-ଌଏଐଓ-ନପ-ରଲଳଵ-ହଽଡ଼ଢ଼ୟ-ୡୱஃஅ-ஊஎ-ஐஒ-கஙசஜஞடணதந-பம-ஹௐఅ-ఌఎ-ఐఒ-నప-హఽౘ-ౚౠౡಀಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹಽೞೠೡೱೲഅ-ഌഎ-ഐഒ-ഺഽൎൔ-ൖൟ-ൡൺ-ൿඅ-ඖක-නඳ-රලව-ෆก-ะาำเ-ๆກຂຄງຈຊຍດ-ທນ-ຟມ-ຣລວສຫອ-ະາຳຽເ-ໄໆໜ-ໟༀཀ-ཇཉ-ཬྈ-ྌက-ဪဿၐ-ၕၚ-ၝၡၥၦၮ-ၰၵ-ႁႎႠ-ჅჇჍა-ჺჼ-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚᎀ-ᎏᎠ-Ᏽᏸ-ᏽᐁ-ᙬᙯ-ᙿᚁ-ᚚᚠ-ᛪᛱ-ᛸᜀ-ᜌᜎ-ᜑᜠ-ᜱᝀ-ᝑᝠ-ᝬᝮ-ᝰក-ឳៗៜᠠ-ᡷᢀ-ᢄᢇ-ᢨᢪᢰ-ᣵᤀ-ᤞᥐ-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉᨀ-ᨖᨠ-ᩔᪧᬅ-ᬳᭅ-ᭋᮃ-ᮠᮮᮯᮺ-ᯥᰀ-ᰣᱍ-ᱏᱚ-ᱽᲀ-ᲈᳩ-ᳬᳮ-ᳱᳵᳶᴀ-ᶿḀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ᾼιῂ-ῄῆ-ῌῐ-ΐῖ-Ίῠ-Ῥῲ-ῴῶ-ῼⁱⁿₐ-ₜℂℇℊ-ℓℕℙ-ℝℤΩℨK-ℭℯ-ℹℼ-ℿⅅ-ⅉⅎↃↄⰀ-Ⱞⰰ-ⱞⱠ-ⳤⳫ-ⳮⳲⳳⴀ-ⴥⴧⴭⴰ-ⵧⵯⶀ-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⸯ々〆〱-〵〻〼ぁ-ゖゝ-ゟァ-ヺー-ヿㄅ-ㄭㄱ-ㆎㆠ-ㆺㇰ-ㇿ㐀-䶵一-鿕ꀀ-ꒌꓐ-ꓽꔀ-ꘌꘐ-ꘟꘪꘫꙀ-ꙮꙿ-ꚝꚠ-ꛥꜗ-ꜟꜢ-ꞈꞋ-ꞮꞰ-ꞷꟷ-ꠁꠃ-ꠅꠇ-ꠊꠌ-ꠢꡀ-ꡳꢂ-ꢳꣲ-ꣷꣻꣽꤊ-ꤥꤰ-ꥆꥠ-ꥼꦄ-ꦲꧏꧠ-ꧤꧦ-ꧯꧺ-ꧾꨀ-ꨨꩀ-ꩂꩄ-ꩋꩠ-ꩶꩺꩾ-ꪯꪱꪵꪶꪹ-ꪽꫀꫂꫛ-ꫝꫠ-ꫪꫲ-ꫴꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-ꭚꭜ-ꭥꭰ-ꯢ가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִײַ-ﬨשׁ-זּטּ-לּמּנּסּףּפּצּ-ﮱﯓ-ﴽﵐ-ﶏﶒ-ﷇﷰ-ﷻﹰ-ﹴﹶ-ﻼＡ-Ｚａ-ｚｦ-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ　-〿＀-￯*]+|(?:\\(|\\[)[\\w\\$А-Яа-яёЁєЄҐґЇїІіЈј\\d&#%;,]+(?:\\)|\\])){0,200})?", "ig"),
-            M = "(^|[s.,:'\";>)(]?)((#(?:[a-zA-Zа-яА-ЯёіјєїґўЁІЈЄЇҐЎ’_\\d]|(?:&#(?:19[2-9]|(?:[2-9]|1[0-3])[0-9][0-9]);?)){0,100}(?:[a-zA-Zа-яА-ЯёіјєїґўЁІЈЄЇҐЎ’]|(?:&#(?:19[2-9]|(?:[2-9]|1[0-3])[0-9][0-9]);?))(?:[a-zA-Zа-яА-ЯёіјєїґўЁІЈЄЇҐЎ’_\\d]|(?:&#(?:19[2-9]|(?:[2-9]|1[0-3])[0-9][0-9]);?)){0,100}))(@((?:[a-z0-9_]*[a-z0-9])?(?:(?:.[a-z](?:[a-z0-9_]+[a-z0-9])?)*.[a-z][a-z0-9_]{2,40}[a-z0-9])?))?(?=$|[s.,:'\"&;?<)(]?)"
-    },
-    5: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
-        "use strict";
-        __webpack_require__.r(__webpack_exports__), __webpack_require__.d(__webpack_exports__, "throttleAccumulate", function() {
-            return throttleAccumulate
-        }), __webpack_require__.d(__webpack_exports__, "executionStackPop", function() {
-            return executionStackPop
-        }), __webpack_require__.d(__webpack_exports__, "lplog", function() {
-            return lplog
-        }), __webpack_require__.d(__webpack_exports__, "toArray", function() {
-            return toArray
-        }), __webpack_require__.d(__webpack_exports__, "arrayUnique", function() {
-            return arrayUnique
-        }), __webpack_require__.d(__webpack_exports__, "unpackStore", function() {
-            return unpackStore
-        }), __webpack_require__.d(__webpack_exports__, "debounce", function() {
-            return debounce
-        }), __webpack_require__.d(__webpack_exports__, "throttle", function() {
-            return throttle
-        }), __webpack_require__.d(__webpack_exports__, "shuffle", function() {
-            return shuffle
-        }), __webpack_require__.d(__webpack_exports__, "parallel", function() {
-            return parallel
-        }), __webpack_require__.d(__webpack_exports__, "hashCode", function() {
-            return hashCode
-        }), __webpack_require__.d(__webpack_exports__, "parseJSON", function() {
-            return parseJSON
-        }), __webpack_require__.d(__webpack_exports__, "checkTextLength", function() {
-            return checkTextLength
-        });
-        var _utils_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(276),
-            _ui_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(193),
-            _debug_tools__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(285);
-
-        function throttleAccumulate(e, t) {
-            var n = [],
-                r = 0;
-            return function(i) {
-                n.push(i), r || (r = setTimeout(function() {
-                    r = !1, e(n), n = []
-                }, t))
+        function be(e) {
+            var t = i(e, 4),
+                n = t[1],
+                r = t[2],
+                a = t[3];
+            return {
+                type: f,
+                userId: -n,
+                platform: r,
+                lastSeenTs: a
             }
         }
 
-        function executionStackPop(e) {
-            return e.length > 0 && e.pop().func(), e
-        }
-
-        function lplog(e, t) {
-            var n = void 0,
-                r = void 0;
-            if (window.__debugMode) {
-                switch (t) {
-                    case "error":
-                        n = "color: red", r = "background: red; color: white";
-                        break;
-                    case "success":
-                        n = "color: green", r = "background: green; color: white";
-                        break;
-                    default:
-                        n = "color: blue;", r = "background: #000; color: #fff;"
-                }
-                try {
-                    var i = new Date;
-                    console.debug("%cLP:[" + i.getHours() + ":" + i.getMinutes() + ":" + i.getSeconds() + ":" + i.getMilliseconds() + "]%c " + e, r, n)
-                } catch (e) {}
+        function ve(e) {
+            var t = i(e, 4),
+                n = t[1],
+                r = t[2],
+                a = t[3];
+            return {
+                type: m,
+                userId: -n,
+                reason: r,
+                lastSeenTs: a
             }
         }
 
-        function toArray(e) {
-            var t = [];
-            if (void 0 === e.length) return Object.keys(e).map(function(t) {
-                return e[t]
-            });
-            for (var n = 0; n < e.length; n++) t.push(e[n]);
-            return t
-        }
-
-        function arrayUnique(e) {
-            for (var t = {}, n = [], r = 0; r < e.length; r++) t[e[r]] || (n.push(e[r]), t[n[r]] = 1);
-            return n
-        }
-
-        function unpackStore(e) {
-            return e.get ? e.get() : e
-        }
-
-        function debounce(e, t, n) {
-            var r = void 0;
-            return function() {
-                var i = this,
-                    a = arguments,
-                    o = n && !r;
-                clearTimeout(r), r = setTimeout(function() {
-                    r = null, n || e.apply(i, a)
-                }, t), o && e.apply(this, a)
+        function ye(e) {
+            var t = i(e, 4),
+                n = t[1],
+                r = t[2],
+                a = t[3];
+            return {
+                type: O,
+                peerId: n,
+                mask: r,
+                local: void 0 !== a && a
             }
         }
 
-        function throttle(e, t) {
-            var n = void 0;
-            return function() {
-                n || (e.apply(this, arguments), n = setTimeout(function() {
-                    n = !1
-                }, t))
+        function we(e) {
+            var t = i(e, 3),
+                n = t[1],
+                r = t[2];
+            return {
+                type: k,
+                peerId: n,
+                mask: r
             }
         }
 
-        function shuffle(e) {
-            for (var t = e.length; t > 0;) {
-                var n = Math.floor(Math.random() * t),
-                    r = e[--t];
-                e[t] = e[n], e[n] = r
-            }
-            return e
-        }
-
-        function parallel() {
-            var e = [].slice.call(arguments),
-                t = e.pop(),
-                n = new CallHub(t, e.length);
-            Object(_utils_common__WEBPACK_IMPORTED_MODULE_0__.each)(e, function(e, t) {
-                return t(function() {
-                    return n.done()
-                })
-            })
-        }
-
-        function hashCode(e) {
-            var t = 0;
-            if (0 === e.length) return t;
-            for (var n = 0, r = e.length; n < r; n++) {
-                t = (t << 5) - t + e.charCodeAt(n), t |= 0
-            }
-            return t
-        }
-
-        function parseJSON(obj) {
-            if (window.JSON && JSON.parse) try {
-                return JSON.parse(obj)
-            } catch (e) {
-                Object(_ui_util__WEBPACK_IMPORTED_MODULE_1__.topError)("<b>parseJSON:</b> " + e.message, {
-                    dt: -1,
-                    type: 5,
-                    answer: obj
-                });
-                var evalString = "(" + obj + ")";
-                try {
-                    return eval(evalString)
-                } catch (e) {
-                    if (__debugMode) throw e;
-                    Object(_debug_tools__WEBPACK_IMPORTED_MODULE_2__.logEvalError)(e, evalString)
-                }
-            } else {
-                var _evalString = "(" + obj + ")";
-                try {
-                    return eval(_evalString)
-                } catch (e) {
-                    if (__debugMode) throw e;
-                    Object(_debug_tools__WEBPACK_IMPORTED_MODULE_2__.logEvalError)(e, _evalString)
-                }
+        function Oe(e) {
+            var t = i(e, 4),
+                n = t[1],
+                r = t[2],
+                a = t[3];
+            return {
+                type: j,
+                peerId: n,
+                mask: r,
+                local: void 0 !== a && a
             }
         }
 
-        function checkTextLength(e, t, n, r, i, a, o) {
-            var u = t.getValue ? t.getValue() : t.value,
-                c = t.lastLen || 0;
-            if (t.lastLen !== u.length || a) {
-                t.lastLen = u.length;
-                var s = {
-                        "&": 5,
-                        "<": 4,
-                        ">": 4,
-                        '"': 6,
-                        "\n": r ? 1 : 4,
-                        "\r": 0,
-                        "!": 5,
-                        "'": 5,
-                        $: 6,
-                        "\\": 6
-                    },
-                    d = {
-                        1168: 1,
-                        1169: 1,
-                        8211: 1,
-                        8212: 1,
-                        8216: 1,
-                        8217: 1,
-                        8218: 1,
-                        8230: 1,
-                        8240: 1,
-                        8249: 1,
-                        8250: 1,
-                        8364: 1,
-                        8470: 1,
-                        8482: 1,
-                        65533: 1
-                    },
-                    l = {
-                        1037: 1,
-                        1104: 1,
-                        1117: 1
-                    };
-                i && (s[","] = 5);
-                var f = function(e) {
-                    for (var t = 0, n = 0, r = e.length; n < r; n++) {
-                        var i = s[e.charAt(n)],
-                            a = e.charCodeAt(n);
-                        t += void 0 !== i ? i : !o && a >= 128 && (a < 1025 || l[a] || a > 1119) && !d[a] && (a < 8220 || a > 8222) && (a < 8224 || a > 8226) ? ("&#" + a + ";").length : 1
-                    }
-                    return t
-                }(u);
-                if (n = ge(n), f > Math.max(e - 100, .75 * e))
-                    if (show(n), f > e)
-                        if (i) {
-                            var m = val(t, function(e, t) {
-                                for (var n = 0, r = "", i = 0, a = e.length; i < a; i++) {
-                                    var u = e.charAt(i),
-                                        c = s[u],
-                                        f = e.charCodeAt(i);
-                                    if ((n += void 0 !== c ? c : !o && f >= 128 && (f < 1025 || l[f] || f > 1119) && !d[f] && (f < 8220 || f > 8222) && (f < 8224 || f > 8226) ? ("&#" + f + ";").length : 1) > t) break;
-                                    r += u
-                                }
-                                return r
-                            }(u, Math.min(e, c)));
-                            t.lastLen = m.length, n.innerHTML = getLang("text_N_symbols_remain", 0)
-                        } else n.innerHTML = getLang("text_exceeds_symbol_limit", f - e);
-                else n.innerHTML = getLang("text_N_symbols_remain", e - f);
-                else hide(n)
+        function ke(e) {
+            var t = i(e, 3),
+                n = t[1],
+                r = t[2];
+            return {
+                type: x,
+                peerId: n,
+                localId: r
+            }
+        }
+
+        function je(e) {
+            var t = i(e, 3),
+                n = t[1],
+                r = t[2];
+            return {
+                type: _,
+                chatId: n,
+                self: r
+            }
+        }
+
+        function Ee(e) {
+            var t = i(e, 4),
+                n = t[1],
+                r = t[2],
+                a = t[3];
+            return {
+                type: g,
+                peerId: r,
+                updateType: n,
+                updateArg: a
+            }
+        }
+
+        function Te(e) {
+            var t = i(e, 5),
+                n = t[1],
+                r = t[2],
+                a = t[3],
+                o = t[4];
+            return {
+                type: p,
+                peerId: n,
+                userIds: r,
+                totalCount: a,
+                ts: o
+            }
+        }
+
+        function Ie(e) {
+            var t = i(e, 5),
+                n = t[1],
+                r = t[2],
+                a = t[3],
+                o = t[4];
+            return {
+                type: h,
+                peerId: n,
+                userIds: r,
+                totalCount: a,
+                ts: o
+            }
+        }
+
+        function Ae(e) {
+            var t = i(e, 3),
+                n = t[1],
+                r = t[2];
+            return {
+                type: b,
+                userId: n,
+                callId: r
+            }
+        }
+
+        function Ce(e) {
+            var t = i(e, 4),
+                n = t[1],
+                r = t[2],
+                a = t[3];
+            return {
+                type: v,
+                count: n,
+                countNotMuted: r,
+                showOnlyNotMuted: a
+            }
+        }
+
+        function Se(e) {
+            var t = i(e, 2)[1],
+                n = void 0 === t ? {} : t;
+            return {
+                type: y,
+                peerId: n.peer_id,
+                sound: n.sound,
+                disabledUntil: n.disabled_until
+            }
+        }
+
+        function Me(e) {
+            var t = i(e, 2)[1],
+                n = void 0 === t ? {} : t,
+                r = fe([!1, n.id, n.flags, n.peer_id, n.date, n.message, extend(n.kludges, {
+                    title: n.title || ""
+                }), {}, n.random_id, n.chat_local_id, n.update_time]);
+            return r.type = L, r
+        }
+
+        function Pe(e) {
+            var t = i(e, 2)[1],
+                n = void 0 === t ? {} : t;
+            return {
+                type: R,
+                uuid: n.uuid,
+                deviceName: n.device_name || ""
+            }
+        }
+
+        function De(e) {
+            return {
+                type: w,
+                params: e
+            }
+        }
+
+        function xe(e) {
+            return {
+                type: I,
+                state: e
+            }
+        }
+
+        function Le() {
+            return {
+                type: E
+            }
+        }
+
+        function Ne(e) {
+            var t = i(e, 3),
+                n = t[1],
+                r = t[2];
+            return {
+                type: T,
+                key: n,
+                url: r
+            }
+        }
+
+        function Re() {
+            var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0],
+                t = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
+            return {
+                type: A,
+                cancelSearch: e,
+                removeActivePeer: t
+            }
+        }
+
+        function Fe(e) {
+            var t = arguments.length > 1 && void 0 !== arguments[1] && arguments[1],
+                n = arguments.length > 2 && void 0 !== arguments[2] && arguments[2],
+                r = arguments.length > 3 && void 0 !== arguments[3] && arguments[3],
+                i = arguments.length > 4 && void 0 !== arguments[4] ? arguments[4] : "";
+            return {
+                type: S,
+                peerId: e,
+                msgid: t,
+                forward: n,
+                cancelSearch: r,
+                entryPoint: i
+            }
+        }
+
+        function He(e) {
+            return {
+                type: M,
+                tab: e
+            }
+        }
+
+        function Ue(e, t, n) {
+            return {
+                type: P,
+                message: t,
+                peer: e,
+                error: n
+            }
+        }
+
+        function Be(e) {
+            var t = i(e, 6),
+                n = (t[0], t[1]),
+                r = t[2],
+                a = t[3],
+                o = t[4],
+                u = t[5];
+            return {
+                type: C,
+                free: !!intval(n) || intval(o) === vk.id,
+                resource: r,
+                peerId: intval(a),
+                who: intval(o),
+                name: u
+            }
+        }
+
+        function Ge(e, t) {
+            return {
+                type: D,
+                message: t,
+                peerId: e
             }
         }
     },
-    86: function(e, t, n) {
+    83: function(e, t, n) {
         "use strict";
         n.r(t), n.d(t, "isUnread", function() {
             return a
@@ -8991,8 +8771,8 @@
         }), n.d(t, "isMessageSelected", function() {
             return O
         });
-        var r = n(103),
-            i = n(5);
+        var r = n(78),
+            i = n(199);
 
         function a(e, t) {
             return "number" != typeof t.messageId || (c(t) ? t.messageId > e.out_up_to : t.messageId > e.in_up_to)
@@ -9078,7 +8858,7 @@
             return (e.get().selectedMessages || []).indexOf(t) >= 0
         }
     },
-    96: function(e, t, n) {
+    85: function(e, t, n) {
         "use strict";
         n.r(t), n.d(t, "parseFwd", function() {
             return u
@@ -9201,6 +8981,225 @@
 
         function l(e) {
             return e > 2e9
+        }
+    },
+    86: function(e, t, n) {
+        "use strict";
+        var r;
+
+        function i(e, t, n) {
+            return t in e ? Object.defineProperty(e, t, {
+                value: n,
+                enumerable: !0,
+                configurable: !0,
+                writable: !0
+            }) : e[t] = n, e
+        }
+        n.r(t), n.d(t, "OUR_DOMAINS", function() {
+            return a
+        }), n.d(t, "ENTITIES", function() {
+            return o
+        }), n.d(t, "VK_DOMAIN", function() {
+            return u
+        }), n.d(t, "MENTION", function() {
+            return c
+        }), n.d(t, "MENTION_RAW", function() {
+            return s
+        }), n.d(t, "ARROW_UP", function() {
+            return d
+        }), n.d(t, "ARROW_DOWN", function() {
+            return l
+        }), n.d(t, "PAGE_UP", function() {
+            return f
+        }), n.d(t, "PAGE_DOWN", function() {
+            return m
+        }), n.d(t, "END_KEY", function() {
+            return _
+        }), n.d(t, "HOME", function() {
+            return g
+        }), n.d(t, "ENTER", function() {
+            return p
+        }), n.d(t, "ESC", function() {
+            return h
+        }), n.d(t, "UNPRINTABLE_KEYS", function() {
+            return b
+        }), n.d(t, "UP_DOWN_CONTROLS", function() {
+            return v
+        }), n.d(t, "PRINTABLE", function() {
+            return y
+        }), n.d(t, "FOLDER_UNREAD", function() {
+            return w
+        }), n.d(t, "FOLDER_ALL", function() {
+            return O
+        }), n.d(t, "FOLDER_UNRESPOND", function() {
+            return k
+        }), n.d(t, "FOLDER_IMPORTANT", function() {
+            return j
+        }), n.d(t, "FOLDERS", function() {
+            return E
+        }), n.d(t, "FOLDER_MASKS", function() {
+            return T
+        }), n.d(t, "TOP_DOMAINS", function() {
+            return I
+        }), n.d(t, "MAX_DOMAIN_LENGTH", function() {
+            return A
+        }), n.d(t, "EMAIL", function() {
+            return C
+        }), n.d(t, "MESSAGE_REGEXP", function() {
+            return S
+        }), n.d(t, "RE_HASHTAG_EXTRACTION_PATTERN", function() {
+            return M
+        });
+        var a = /^([a-zA-Z0-9\.\_\-]+\.)?(vkontakte\.ru|vk\.com|vkadre\.ru|vshtate\.ru|userapi\.com|vk\.me)$/,
+            o = /([^a-zA-Z0-9#%;_\-.\/?&=\[\]])/g,
+            u = /^(?:https?:\/\/)?(?:vk\.com|vkontakte\.ru)?\/([a-zA-Z0-9\._]+)\??$/,
+            c = /\[(id|club)(\d+)(?:\:([a-z0-9_\-]+))?\|([^\$]+?)\]/g,
+            s = /(^|[\s.,:\'\";>\)\(])(\*|@)([A-Za-z0-9_\.]{2,32})\s*\((.+?)\)/g,
+            d = 38,
+            l = 40,
+            f = 33,
+            m = 34,
+            _ = 35,
+            g = 36,
+            p = 13,
+            h = 27,
+            b = [d, l, f, m, p, h, _, g],
+            v = [f, m, l, d, g, _],
+            y = "printable",
+            w = "unread",
+            O = "all",
+            k = "unrespond",
+            j = "important",
+            E = [O, w, k, j],
+            T = (i(r = {}, k, 2), i(r, j, 1), r),
+            I = [].concat("aaa,aarp,abarth,abb,abbott,abbvie,abc,able,abogado,abudhabi,ac,academy,accenture,accountant,accountants,aco,active,actor,ad,adac,ads,adult,ae,aeg,aero,aetna,af,afamilycompany,afl,africa,ag,agakhan,agency,ai,aig,aigo,airbus,airforce,airtel,akdn,al,alfaromeo,alibaba,alipay,allfinanz,allstate,ally,alsace,alstom,am,americanexpress,americanfamily,amex,amfam,amica,amsterdam,an,analytics,android,anquan,anz,ao,aol,apartments,app,apple,aq,aquarelle,ar,aramco,archi,army,arpa,art,arte,as,asda,asia,associates,at,athleta,attorney,au,auction,audi,audible,audio,auspost,author,auto,autos,avianca,aw,aws,ax,axa,az,azure,ba,baby,baidu,banamex,bananarepublic,band,bank,bar,barcelona,barclaycard,barclays,barefoot,bargains,baseball,basketball,bauhaus,bayern,bb,bbc,bbt,bbva,bcg,bcn,bd,be,beats,beauty,beer,bentley,berlin,best,bestbuy,bet,bf,bg,bh,bharti,bi,bible,bid,bike,bing,bingo,bio,biz,bj,bl,black,blackfriday,blanco,blockbuster,blog,bloomberg,blue,bm,bms,bmw,bn,bnl,bnpparibas,bo,boats,boehringer,bofa,bom,bond,boo,book,booking,boots,bosch,bostik,boston,bot,boutique,box,bq,br,bradesco,bridgestone,broadway,broker,brother,brussels,bs,bt,budapest,bugatti,build,builders,business,buy,buzz,bv,bw,by,bz,bzh,ca,cab,cafe,cal,call,calvinklein,cam,camera,camp,cancerresearch,canon,capetown,capital,capitalone,car,caravan,cards,care,career,careers,cars,cartier,casa,case,caseih,cash,casino,cat,catering,catholic,cba,cbn,cbre,cbs,cc,cd,ceb,center,ceo,cern,cf,cfa,cfd,cg,ch,chanel,channel,chase,chat,cheap,chintai,chloe,christmas,chrome,chrysler,church,ci,cipriani,circle,cisco,citadel,citi,citic,city,cityeats,ck,cl,claims,cleaning,click,clinic,clinique,clothing,cloud,club,clubmed,cm,cn,co,coach,codes,coffee,college,cologne,com,comcast,commbank,community,company,compare,computer,comsec,condos,construction,consulting,contact,contractors,cooking,cookingchannel,cool,coop,corsica,country,coupon,coupons,courses,cr,credit,creditcard,creditunion,cricket,crown,crs,cruise,cruises,csc,cu,cuisinella,cv,cw,cx,cy,cymru,cyou,cz,dabur,dad,dance,data,date,dating,datsun,day,dclk,dds,de,deal,dealer,deals,degree,delivery,dell,deloitte,delta,democrat,dental,dentist,desi,design,dev,dhl,diamonds,diet,digital,direct,directory,discount,discover,dish,diy,dj,dk,dm,dnp,do,docs,doctor,dodge,dog,doha,domains,dot,download,drive,dtv,dubai,duck,dunlop,duns,dupont,durban,dvag,dvr,dz,earth,eat,ec,eco,edeka,edu,education,ee,eg,eh,email,emerck,energy,engineer,engineering,enterprises,epost,epson,equipment,er,ericsson,erni,es,esq,estate,esurance,et,eu,eurovision,eus,events,everbank,exchange,expert,exposed,express,extraspace,fage,fail,fairwinds,faith,family,fan,fans,farm,farmers,fashion,fast,fedex,feedback,ferrari,ferrero,fi,fiat,fidelity,fido,film,final,finance,financial,fire,firestone,firmdale,fish,fishing,fit,fitness,fj,fk,flickr,flights,flir,florist,flowers,fly,fm,fo,foo,food,foodnetwork,football,ford,forex,forsale,forum,foundation,fox,fr,free,fresenius,frl,frogans,frontdoor,frontier,ftr,fujitsu,fujixerox,fun,fund,furniture,futbol,fyi,ga,gal,gallery,gallo,gallup,game,games,gap,garden,gb,gbiz,gd,gdn,ge,gea,gent,genting,george,gf,gg,ggee,gh,gi,gift,gifts,gives,giving,gl,glade,glass,gle,global,globo,gm,gmail,gmbh,gmo,gmx,gn,godaddy,gold,goldpoint,golf,goo,goodhands,goodyear,goog,google,gop,got,gov,gp,gq,gr,grainger,graphics,gratis,green,gripe,group,gs,gt,gu,guardian,gucci,guge,guide,guitars,guru,gw,gy,hair,hamburg,hangout,haus,hbo,hdfc,hdfcbank,health,healthcare,help,helsinki,here,hermes,hgtv,hiphop,hisamitsu,hitachi,hiv,hk,hkt,hm,hn,hockey,holdings,holiday,homedepot,homegoods,homes,homesense,honda,honeywell,horse,hospital,host,hosting,hot,hoteles,hotmail,house,how,hr,hsbc,ht,htc,hu,hughes,hyatt,hyundai,ibm,icbc,ice,icu,id,ie,ieee,ifm,ikano,il,im,imamat,imdb,immo,immobilien,in,industries,infiniti,info,ing,ink,institute,insurance,insure,int,intel,international,intuit,investments,io,ipiranga,iq,ir,irish,is,iselect,ismaili,ist,istanbul,it,itau,itv,iveco,iwc,jaguar,java,jcb,jcp,je,jeep,jetzt,jewelry,jio,jlc,jll,jm,jmp,jnj,jo,jobs,joburg,jot,joy,jp,jpmorgan,jprs,juegos,juniper,kaufen,kddi,ke,kerryhotels,kerrylogistics,kerryproperties,kfh,kg,kh,ki,kia,kim,kinder,kindle,kitchen,kiwi,km,kn,koeln,komatsu,kosher,kp,kpmg,kpn,kr,krd,kred,kuokgroup,kw,ky,kyoto,kz,la,lacaixa,ladbrokes,lamborghini,lamer,lancaster,lancia,lancome,land,landrover,lanxess,lasalle,lat,latino,latrobe,law,lawyer,lb,lc,lds,lease,leclerc,lefrak,legal,lego,lexus,lgbt,li,liaison,lidl,life,lifeinsurance,lifestyle,lighting,like,lilly,limited,limo,lincoln,linde,link,lipsy,live,living,lixil,lk,loan,loans,local,locker,locus,loft,lol,london,lotte,lotto,love,lpl,lplfinancial,lr,ls,lt,ltd,ltda,lu,lundbeck,lupin,luxe,luxury,lv,ly,ma,macys,madrid,maif,maison,makeup,man,management,mango,market,marketing,markets,marriott,marshalls,maserati,mattel,mba,mc,mcd,mcdonalds,mckinsey,md,me,med,media,meet,melbourne,meme,memorial,men,menu,meo,metlife,mf,mg,mh,miami,microsoft,mil,mini,mint,mit,mitsubishi,mk,ml,mlb,mls,mm,mma,mn,mo,mobi,mobile,mobily,moda,moe,moi,mom,monash,money,monster,montblanc,mopar,mormon,mortgage,moscow,moto,motorcycles,mov,movie,movistar,mp,mq,mr,ms,msd,mt,mtn,mtpc,mtr,mu,museum,mutual,mv,mw,mx,my,mz,na,nab,nadex,nagoya,name,nationwide,natura,navy,nba,nc,ne,nec,net,netbank,netflix,network,neustar,new,newholland,news,next,nextdirect,nexus,nf,nfl,ng,ngo,nhk,ni,nico,nike,nikon,ninja,nissan,nissay,nl,no,nokia,northwesternmutual,norton,now,nowruz,nowtv,np,nr,nra,nrw,ntt,nu,nyc,nz,obi,observer,off,office,okinawa,olayan,olayangroup,oldnavy,ollo,om,omega,one,ong,onl,online,onyourside,ooo,open,oracle,orange,org,organic,orientexpress,origins,osaka,otsuka,ott,ovh,pa,page,pamperedchef,panasonic,panerai,paris,pars,partners,parts,party,passagens,pay,pccw,pe,pet,pf,pfizer,pg,ph,pharmacy,philips,phone,photo,photography,photos,physio,piaget,pics,pictet,pictures,pid,pin,ping,pink,pioneer,pizza,pk,pl,place,play,playstation,plumbing,plus,pm,pn,pnc,pohl,poker,politie,porn,post,pr,pramerica,praxi,press,prime,pro,prod,productions,prof,progressive,promo,properties,property,protection,pru,prudential,ps,pt,pub,pw,pwc,py,qa,qpon,quebec,quest,qvc,racing,radio,raid,re,read,realestate,realtor,realty,recipes,red,redstone,redumbrella,rehab,reise,reisen,reit,reliance,ren,rent,rentals,repair,report,republican,rest,restaurant,review,reviews,rexroth,rich,richardli,ricoh,rightathome,ril,rio,rip,rmit,ro,rocher,rocks,rodeo,rogers,room,rs,rsvp,ru,ruhr,run,rw,rwe,ryukyu,sa,saarland,safe,safety,sakura,sale,salon,samsclub,samsung,sandvik,sandvikcoromant,sanofi,sap,sapo,sarl,sas,save,saxo,sb,sbi,sbs,sc,sca,scb,schaeffler,schmidt,scholarships,school,schule,schwarz,science,scjohnson,scor,scot,sd,se,seat,secure,security,seek,select,sener,services,ses,seven,sew,sex,sexy,sfr,sg,sh,shangrila,sharp,shaw,shell,shia,shiksha,shoes,shop,shopping,shouji,show,showtime,shriram,si,silk,sina,singles,site,sj,sk,ski,skin,sky,skype,sl,sling,sm,smart,smile,sn,sncf,so,soccer,social,softbank,software,sohu,solar,solutions,song,sony,soy,space,spiegel,spot,spreadbetting,sr,srl,srt,ss,st,stada,staples,star,starhub,statebank,statefarm,statoil,stc,stcgroup,stockholm,storage,store,stream,studio,study,style,su,sucks,supplies,supply,support,surf,surgery,suzuki,sv,swatch,swiftcover,swiss,sx,sy,sydney,symantec,systems,sz,tab,taipei,talk,taobao,target,tatamotors,tatar,tattoo,tax,taxi,tc,tci,td,tdk,team,tech,technology,tel,telecity,telefonica,temasek,tennis,teva,tf,tg,th,thd,theater,theatre,tiaa,tickets,tienda,tiffany,tips,tires,tirol,tj,tjmaxx,tjx,tk,tkmaxx,tl,tm,tmall,tn,to,today,tokyo,tools,top,toray,toshiba,total,tours,town,toyota,toys,tp,tr,trade,trading,training,travel,travelchannel,travelers,travelersinsurance,trust,trv,tt,tube,tui,tunes,tushu,tv,tvs,tw,tz,ua,ubank,ubs,uconnect,ug,uk,um,unicom,university,uno,uol,ups,us,uy,uz,va,vacations,vana,vanguard,vc,ve,vegas,ventures,verisign,vermögensberater,vermögensberatung,versicherung,vet,vg,vi,viajes,video,vig,viking,villas,vin,vip,virgin,visa,vision,vista,vistaprint,viva,vivo,vlaanderen,vn,vodka,volkswagen,volvo,vote,voting,voto,voyage,vu,vuelos,wales,walmart,walter,wang,wanggou,warman,watch,watches,weather,weatherchannel,webcam,weber,website,wed,wedding,weibo,weir,wf,whoswho,wien,wiki,williamhill,win,windows,wine,winners,wme,wolterskluwer,woodside,work,works,world,wow,ws,wtc,wtf,xbox,xerox,xfinity,xihuan,xin,xperia,xxx,xyz,yachts,yahoo,yamaxun,yandex,ye,yodobashi,yoga,yokohama,you,youtube,yt,yu,yun,za,zappos,zara,zero,zip,zippo,zm,zone,zuerich,zw".split(","), "бг,бел,дети,ею,католик,ком,мкд,мон,москва,онлайн,орг,рус,рф,сайт,срб,укр".split(","), "qxam,90ae,90ais,d1acj3b,e1a4c,80aqecdr1a,j1aef,d1alf,l1acc,80adxhks,80asehdb,c1avg,p1acf,p1ai,80aswg,90a3ac,j1amh,80ao21a,y9a3aq,9dbq2a,mgbca7dzdo,mgba3a3ejt,mgbayh7gpa,lgbbat1ad8j,mgberp4a5d4ar,mgba7c0bbn0a,mgbc0a9azcg,mgb2ddes,mgbaam7a8h,mgba3a4f16a,mgbbh1a,mgbab2bd,ngbe9e0a,mgbbh1a71e,pgbs0dh,mgbpl2fh,ogbpf8fl,ngbc5azd,mgbtx2b,mgb9awbf,ygbi2ammx,wgbl6a,mgbi4ecexp,fhbei,wgbh1c,mgbx4cd0ab,mgbb9fbpob,4gbrim,mgbt3dhd,mgbai9azgqp6j,mgbgu82a,11b4c3d,c2br7g,h2brj9c,h2breg3eve,h2brj9c8c,i1b6b1a6a2e,54b7fta0cc,45brj9c,45br5cyl,s9brj9c,gecrj9c,3hcrj9c,xkc2dl3a5ee0h,xkc2al3hye2a,clchc0ea0b2g2a9gcd,fpcrj9c3d,2scrj9c,rvc1e0am3e,fzc2c9e2c,42c2d9a,o3cw4h,node,q9jyb4c,gckr3f0f,qcka1pmc,tckwe,cck2b3b,1ck2e1b,bck1b9a5dre4c,eckvdtc9d,rhqv96g,fiq64b,fiqs8s,fiqz9s,fiq228c5hs,vhquv,1qqw23a,vuq861b,nyqy26a,45q11c,55qx5d,55qw42g,kprw13d,kpry57d,czru2d,czrs0t,czr694b,w4rs40l,w4r85el8fhu5dnra,3ds443g,3oq18vl8pn36a,pssy2u,tiq49xqyj,fjq720a,fct429k,estv75g,xhq521b,9krt00a,30rr7y,6qq986b3xl,kput3i,kpu716f,zfr164b,mxtq1m,yfro4i67o,efvy88h,9et52u,rovu88b,nqv7f,b4w605ferd,unup4y,mix891f,mix082f,3pxu8k,pbt977c,6frz82g,nqv7fs00ema,ses554g,hxt814e,5tzm5g,io0a7i,8y0a063a,jlq61u9w7b,flw351e,g2xx48c,gk3at1e,3bst00m,fzys8d69uvgm,kcrx77d1x4a,jvr189m,imr513n,5su34j936bgsg,j6w193g,t60b56a,mk1bu44c,cg4bki,3e0b707e".split(",").map(function(e) {
+                return "xn--" + e
+            })),
+            A = I.reduce(function(e, t) {
+                return Math.max(e, t.length)
+            }, 0),
+            C = new RegExp("([a-zA-Zа-яА-Я\\-_\\.0-9\\+]+@(((?:[\\w\\$А-Яа-яёЁєЄҐґЇїІіЈј\\—\\-\\_]+\\.){1,5})([A-Za-z\\$а-яА-Я\\-\\d]{2,22})))", "ig"),
+            S = new RegExp("(https?:\\/\\/)?(((?:[\\w\\$А-Яа-яёЁєЄҐґЇїІіЈј\\—\\-\\_]+\\.){1,5})([A-Za-z\\$а-яА-Я\\-\\d]{2,22})(?:\\:(\\d{2,5}))?)(([\\/?#])(?:\\&amp;|\\&#\\d{2,6};|,[_%]|!|,*[\\wА-Яа-я\\xa8\\xb8\\xc0-\\xffєЄҐґЇїІіЈј\\—\\-\\_@#%?+\\/\\$.~=;:'ªµºÀ-ÖØ-öø-ˁˆ-ˑˠ-ˤˬˮͰ-ʹͶͷͺ-ͽͿΆΈ-ΊΌΎ-ΡΣ-ϵϷ-ҁҊ-ԯԱ-Ֆՙա-ևא-תװ-ײؠ-يٮٯٱ-ۓەۥۦۮۯۺ-ۼۿܐܒ-ܯݍ-ޥޱߊ-ߪߴߵߺࠀ-ࠕࠚࠤࠨࡀ-ࡘࢠ-ࢴࢶ-ࢽऄ-हऽॐक़-ॡॱ-ঀঅ-ঌএঐও-নপ-রলশ-হঽৎড়ঢ়য়-ৡৰৱਅ-ਊਏਐਓ-ਨਪ-ਰਲਲ਼ਵਸ਼ਸਹਖ਼-ੜਫ਼ੲ-ੴઅ-ઍએ-ઑઓ-નપ-રલળવ-હઽૐૠૡૹଅ-ଌଏଐଓ-ନପ-ରଲଳଵ-ହଽଡ଼ଢ଼ୟ-ୡୱஃஅ-ஊஎ-ஐஒ-கஙசஜஞடணதந-பம-ஹௐఅ-ఌఎ-ఐఒ-నప-హఽౘ-ౚౠౡಀಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹಽೞೠೡೱೲഅ-ഌഎ-ഐഒ-ഺഽൎൔ-ൖൟ-ൡൺ-ൿඅ-ඖක-නඳ-රලව-ෆก-ะาำเ-ๆກຂຄງຈຊຍດ-ທນ-ຟມ-ຣລວສຫອ-ະາຳຽເ-ໄໆໜ-ໟༀཀ-ཇཉ-ཬྈ-ྌက-ဪဿၐ-ၕၚ-ၝၡၥၦၮ-ၰၵ-ႁႎႠ-ჅჇჍა-ჺჼ-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚᎀ-ᎏᎠ-Ᏽᏸ-ᏽᐁ-ᙬᙯ-ᙿᚁ-ᚚᚠ-ᛪᛱ-ᛸᜀ-ᜌᜎ-ᜑᜠ-ᜱᝀ-ᝑᝠ-ᝬᝮ-ᝰក-ឳៗៜᠠ-ᡷᢀ-ᢄᢇ-ᢨᢪᢰ-ᣵᤀ-ᤞᥐ-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉᨀ-ᨖᨠ-ᩔᪧᬅ-ᬳᭅ-ᭋᮃ-ᮠᮮᮯᮺ-ᯥᰀ-ᰣᱍ-ᱏᱚ-ᱽᲀ-ᲈᳩ-ᳬᳮ-ᳱᳵᳶᴀ-ᶿḀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ᾼιῂ-ῄῆ-ῌῐ-ΐῖ-Ίῠ-Ῥῲ-ῴῶ-ῼⁱⁿₐ-ₜℂℇℊ-ℓℕℙ-ℝℤΩℨK-ℭℯ-ℹℼ-ℿⅅ-ⅉⅎↃↄⰀ-Ⱞⰰ-ⱞⱠ-ⳤⳫ-ⳮⳲⳳⴀ-ⴥⴧⴭⴰ-ⵧⵯⶀ-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⸯ々〆〱-〵〻〼ぁ-ゖゝ-ゟァ-ヺー-ヿㄅ-ㄭㄱ-ㆎㆠ-ㆺㇰ-ㇿ㐀-䶵一-鿕ꀀ-ꒌꓐ-ꓽꔀ-ꘌꘐ-ꘟꘪꘫꙀ-ꙮꙿ-ꚝꚠ-ꛥꜗ-ꜟꜢ-ꞈꞋ-ꞮꞰ-ꞷꟷ-ꠁꠃ-ꠅꠇ-ꠊꠌ-ꠢꡀ-ꡳꢂ-ꢳꣲ-ꣷꣻꣽꤊ-ꤥꤰ-ꥆꥠ-ꥼꦄ-ꦲꧏꧠ-ꧤꧦ-ꧯꧺ-ꧾꨀ-ꨨꩀ-ꩂꩄ-ꩋꩠ-ꩶꩺꩾ-ꪯꪱꪵꪶꪹ-ꪽꫀꫂꫛ-ꫝꫠ-ꫪꫲ-ꫴꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-ꭚꭜ-ꭥꭰ-ꯢ가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִײַ-ﬨשׁ-זּטּ-לּמּנּסּףּפּצּ-ﮱﯓ-ﴽﵐ-ﶏﶒ-ﷇﷰ-ﷻﹰ-ﹴﹶ-ﻼＡ-Ｚａ-ｚｦ-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ　-〿＀-￯*]+|(?:\\(|\\[)[\\w\\$А-Яа-яёЁєЄҐґЇїІіЈј\\d&#%;,]+(?:\\)|\\])){0,200})?", "ig"),
+            M = "(^|[s.,:'\";>)(]?)((#(?:[a-zA-Zа-яА-ЯёіјєїґўЁІЈЄЇҐЎ’_\\d]|(?:&#(?:19[2-9]|(?:[2-9]|1[0-3])[0-9][0-9]);?)){0,100}(?:[a-zA-Zа-яА-ЯёіјєїґўЁІЈЄЇҐЎ’]|(?:&#(?:19[2-9]|(?:[2-9]|1[0-3])[0-9][0-9]);?))(?:[a-zA-Zа-яА-ЯёіјєїґўЁІЈЄЇҐЎ’_\\d]|(?:&#(?:19[2-9]|(?:[2-9]|1[0-3])[0-9][0-9]);?)){0,100}))(@((?:[a-z0-9_]*[a-z0-9])?(?:(?:.[a-z](?:[a-z0-9_]+[a-z0-9])?)*.[a-z][a-z0-9_]{2,40}[a-z0-9])?))?(?=$|[s.,:'\"&;?<)(]?)"
+    },
+    95: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "mount", function() {
+            return a
+        });
+        var r = n(147);
+
+        function i(e) {
+            return {
+                unmount: function() {
+                    Object(r.destroyModule)(e)
+                }
+            }
+        }
+
+        function a(e, t, n) {
+            return (0, Object(r.createMutations)(i).bindMutations)(Object(r.createModule)({
+                handlers: function(e, t) {}
+            }))
+        }
+    },
+    96: function(e, t, n) {
+        "use strict";
+        n.r(t), n.d(t, "isPinnedMessageVisibleInTab", function() {
+            return f
+        }), n.d(t, "pinnedMessageHide", function() {
+            return m
+        }), n.d(t, "pinnedMessageUnHide", function() {
+            return _
+        }), n.d(t, "pinnedMessageUnpin", function() {
+            return g
+        }), n.d(t, "mount", function() {
+            return b
+        });
+        var r = n(147),
+            i = n(111),
+            a = n(95),
+            o = n(164),
+            u = n(184),
+            c = n(199),
+            s = n(155),
+            d = "_im_pin_hide",
+            l = "_im_pinned_message";
+
+        function f(e, t) {
+            if (Object(c.unpackStore)(e).searchShown) return !1;
+            var n = Object(u.getTab)(e, t),
+                r = n && Object(u.parserMessage)(n.pinned);
+            return !!r && n.pinHideId != r.chat_local_id
+        }
+
+        function m(e, t, n) {
+            var r = !(arguments.length > 3 && void 0 !== arguments[3]) || arguments[3],
+                i = Object(u.getTab)(e, t),
+                a = i && Object(u.parserMessage)(i.pinned);
+            i && a && (i.pinHideId = a.chat_local_id, cur.imDb.update(s.PIN_HIDDEN_ID_OP, [i.peerId, i.pinHideId]), p(n, t, e), re(geByClass1("_im_pinned_tt")), r && window.Notifier && Notifier.lcSend("pin_hide", {
+                hide: 1,
+                peer: t
+            }), statlogsValueEvent("im_pinned_messages", "hide"))
+        }
+
+        function _(e, t, n) {
+            var r = !(arguments.length > 3 && void 0 !== arguments[3]) || arguments[3],
+                i = Object(u.getTab)(e, t);
+            i && i.pinHideId && (delete i.pinHideId, cur.imDb.update(s.PIN_HIDDEN_ID_OP, [i.peerId, void 0]), p(n, t, e), r && window.Notifier && Notifier.lcSend("pin_hide", {
+                hide: 0,
+                peer: t
+            }), statlogsValueEvent("im_pinned_messages", "show"))
+        }
+
+        function g(e, t, n) {
+            var r = p.bind(null, n, t),
+                a = Object(o.showUnpinDialog)(function() {
+                    a.hideProgress(), a.hide(), e.set(i.unpinMessageOptimistic.bind(null, t)).then(r).then(function(e) {
+                        return e.set(i.unpinMessage.bind(null, t))
+                    }).then(r)
+                })
+        }
+
+        function p(e, t, n) {
+            return e().updateChatTopic(t, n), Object(i.setActions)(n.get()), e().updateActions(n), n
+        }
+
+        function h(e) {
+            return {
+                unmount: function() {
+                    Object(r.destroyModule)(e)
+                }
+            }
+        }
+
+        function b(e, t, n) {
+            var i = Object(r.createMutations)(h).bindMutations,
+                c = function(e, t, n) {
+                    var r = e.get().peer,
+                        i = Object(u.parserMessage)(Object(u.getTab)(e, r).pinned);
+                    if (n.target.classList.contains(d)) i && m(e, r, t);
+                    else if ("A" !== n.target.tagName) {
+                        var c = i && i.messageId;
+                        c && !Object(o.isAlreadyDeleted)(e, r, c) ? Object(o.focusOnMessage)(e, t().focusOnMessage, r, c) : Object(o.showPinnedBox)(e, t, r, a.mount, n), statlogsValueEvent("im_pinned_messages", "open")
+                    }
+                }.bind(null, t, n),
+                s = function(e) {
+                    showTooltip(e.target, {
+                        text: getLang("mail_hide_unpin_hover"),
+                        black: 1,
+                        needLeft: 1,
+                        shift: [8, 4],
+                        forcetoup: !0,
+                        className: "_im_pinned_tt",
+                        appendEl: bodyNode
+                    })
+                }.bind(null);
+            return i(Object(r.createModule)({
+                handlers: function(t, n) {
+                    n(e, "click", l, c), n(e, "mouseover", d, s)
+                }
+            }))
         }
     }
 });

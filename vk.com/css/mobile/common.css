@@ -33893,6 +33893,7 @@ body.apps_settingsPageBody {
 .Icon_notify_live,
 .Icon_notify_mention,
 .Icon_notify_message,
+.Icon_notify_message_request,
 .Icon_notify_photo_tag,
 .Icon_notify_podcasts,
 .Icon_notify_private_post,
@@ -33927,6 +33928,7 @@ body.apps_settingsPageBody {
 .Icon_notify_live:before,
 .Icon_notify_mention:before,
 .Icon_notify_message:before,
+.Icon_notify_message_request:before,
 .Icon_notify_photo_tag:before,
 .Icon_notify_podcasts:before,
 .Icon_notify_private_post:before,
@@ -33941,7 +33943,7 @@ body.apps_settingsPageBody {
 .Icon_notify_wall:before {
     width: 28px;
     height: 28px;
-    background-image: url('/images/mobile/skins/icon/notifications.png?8')
+    background-image: url('/images/mobile/skins/icon/notifications.png?9')
 }
 
 .vk_2x .Icon_notify_birthday:before,
@@ -33962,6 +33964,7 @@ body.apps_settingsPageBody {
 .vk_2x .Icon_notify_live:before,
 .vk_2x .Icon_notify_mention:before,
 .vk_2x .Icon_notify_message:before,
+.vk_2x .Icon_notify_message_request:before,
 .vk_2x .Icon_notify_photo_tag:before,
 .vk_2x .Icon_notify_podcasts:before,
 .vk_2x .Icon_notify_private_post:before,
@@ -33974,7 +33977,7 @@ body.apps_settingsPageBody {
 .vk_2x .Icon_notify_story_reply:before,
 .vk_2x .Icon_notify_voting:before,
 .vk_2x .Icon_notify_wall:before {
-    background-image: url('/images/mobile/skins/icon/notifications_2x.png?8')
+    background-image: url('/images/mobile/skins/icon/notifications_2x.png?9')
 }
 
 .Icon_notify_like:before {
@@ -34097,6 +34100,10 @@ body.apps_settingsPageBody {
     background-position: 0 -1176px
 }
 
+.Icon_notify_message_request:before {
+    background-position: 0 -1204px
+}
+
 .Icon_notify_mini_birthday,
 .Icon_notify_mini_comment,
 .Icon_notify_mini_discussions,
@@ -34111,6 +34118,7 @@ body.apps_settingsPageBody {
 .Icon_notify_mini_like,
 .Icon_notify_mini_live,
 .Icon_notify_mini_mention,
+.Icon_notify_mini_message_request,
 .Icon_notify_mini_new_post,
 .Icon_notify_mini_photo_tag,
 .Icon_notify_mini_podcast,
@@ -34141,6 +34149,7 @@ body.apps_settingsPageBody {
 .Icon_notify_mini_like:before,
 .Icon_notify_mini_live:before,
 .Icon_notify_mini_mention:before,
+.Icon_notify_mini_message_request:before,
 .Icon_notify_mini_new_post:before,
 .Icon_notify_mini_photo_tag:before,
 .Icon_notify_mini_podcast:before,
@@ -34155,7 +34164,7 @@ body.apps_settingsPageBody {
 .Icon_notify_mini_wall:before {
     width: 20px;
     height: 20px;
-    background-image: url('/images/mobile/skins/icon/notifications_mini.png?6')
+    background-image: url('/images/mobile/skins/icon/notifications_mini.png?7')
 }
 
 .vk_2x .Icon_notify_mini_birthday:before,
@@ -34172,6 +34181,7 @@ body.apps_settingsPageBody {
 .vk_2x .Icon_notify_mini_like:before,
 .vk_2x .Icon_notify_mini_live:before,
 .vk_2x .Icon_notify_mini_mention:before,
+.vk_2x .Icon_notify_mini_message_request:before,
 .vk_2x .Icon_notify_mini_new_post:before,
 .vk_2x .Icon_notify_mini_photo_tag:before,
 .vk_2x .Icon_notify_mini_podcast:before,
@@ -34184,7 +34194,7 @@ body.apps_settingsPageBody {
 .vk_2x .Icon_notify_mini_transfer_votes:before,
 .vk_2x .Icon_notify_mini_voting:before,
 .vk_2x .Icon_notify_mini_wall:before {
-    background-image: url('/images/mobile/skins/icon/notifications_mini_2x.png?6')
+    background-image: url('/images/mobile/skins/icon/notifications_mini_2x.png?7')
 }
 
 .Icon_notify_mini_like:before {
@@ -34286,6 +34296,10 @@ body.apps_settingsPageBody {
 
 .Icon_notify_mini_discussions:before {
     background-position: 0 -600px
+}
+
+.Icon_notify_mini_message_request:before {
+    background-position: 0 -620px
 }
 
 .Icon_chevron_down,
