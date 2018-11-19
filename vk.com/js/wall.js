@@ -1242,16 +1242,6 @@ function ShareTooltip(target, options) {
     }, options));
 }
 
-
-/* Check-in preview */
-function checkinPreview(anchor, params) {
-    params.posTarget = geByClass('a', anchor)[0];
-    currentPlaceLink = anchor;
-    showTT(anchor, checkinTooltip, 'places.php', extend({
-        act: 'a_checkin_info'
-    }, params));
-}
-
 function checkinTooltip(target, options) {
     return new BaseTooltip(target, extend({
         width: 350,
