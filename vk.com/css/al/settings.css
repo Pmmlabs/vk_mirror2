@@ -930,6 +930,18 @@ a.settings_blb_title {
     height: 34px
 }
 
+.settings_apps .app_type_origin .app_settings_name {
+    padding-top: 2px;
+    line-height: 15px
+}
+
+.settings_apps .app_type_origin .app_settings_data {
+    padding-top: 1px;
+    font-size: 12.5px;
+    line-height: 15px;
+    color: #939393
+}
+
 .settings_apps .app_settings_name {
     overflow: hidden;
     white-space: nowrap;

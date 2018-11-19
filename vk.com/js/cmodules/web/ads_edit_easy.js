@@ -42,8 +42,10 @@
         return s.d(t, "a", t), t
     }, s.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, s.p = "", s(s.s = 1)
+    }, s.p = "", s(s.s = 0)
 }([function(e, t, s) {
+    e.exports = s(1)
+}, function(e, t, s) {
     "use strict";
     s.r(t);
     var n = function() {
@@ -79,7 +81,7 @@
                     var e = this.getCriteriaPreset(this.audienceDropdown.val())[0];
                     e.geo_near && this.geoEditor.setPointsFromString(e.geo_near), this.geoEditor.updateMap()
                 }, t && s) {
-                this.box = t, this.boxBodyNode = t.bodyNode, this.boxControlsTextNode = t.controlsTextNode, this.imageElement = geByClass1(this.classname("image"), this.boxBodyNode), this.screensContainerElement = geByClass1(this.classname("screens-container"), this.boxBodyNode), this.headerElement = geByClass1(this.classname("header"), this.boxBodyNode), this.acceptTermsCheckboxInput = geByClass1(this.classname("accept-terms"), this.boxControlsTextNode), this.imageLayer1Element = geByClass1(this.classname("image-layer_1"), this.imageElement), this.imageLayer2Element = geByClass1(this.classname("image-layer_2"), this.imageElement), this.screensWrapperElement = geByClass1(this.classname("screens-wrapper"), this.screensContainerElement), this.introScreenElement = geByClass1(this.classname("screen_intro"), this.screensWrapperElement), this.settingsScreenElement = geByClass1(this.classname("screen_settings"), this.screensWrapperElement), this.paymentScreenElement = geByClass1(this.classname("screen_payment"), this.screensWrapperElement), this.cardPaymentScreenElement = geByClass1(this.classname("screen_card-payment"), this.screensWrapperElement), this.paymentResultScreenElement = geByClass1(this.classname("screen_payment-result"), this.screensWrapperElement), this.moreSettingsScreenElement = geByClass1(this.classname("screen_more-settings"), this.screensWrapperElement), this.totalBudgetElement = geByClass1(this.classname("row-content_total-budget"), this.settingsScreenElement), this.expectedReachValueElement = geByClass1(this.classname("expected-reach-value"), this.settingsScreenElement), this.expectedReachLimitElement = geByClass1(this.classname("expected-reach-limit"), this.settingsScreenElement), this.expectedReachBarValueElement = geByClass1(this.classname("expected-reach-bar-value"), this.settingsScreenElement), this.expectedReachHintElement = geByClass1(this.classname("expected-reach-hint"), this.settingsScreenElement), this.audienceSettingsElement = geByClass1(this.classname("audience-settings"), this.settingsScreenElement), this.editAudienceLinkWrapperElement = geByClass1(this.classname("edit-audience-link"), this.settingsScreenElement), this.editAudienceNameLinksWrapperElement = geByClass1(this.classname("edit-audience-name-links"), this.settingsScreenElement), this.budgetTitleRowElement = geByClass1(this.classname("row_budget-title"), this.settingsScreenElement), this.geoContainerPointsElement = geByClass1(this.classname("geo-container_points"), this.settingsScreenElement), this.geoContainerRegionsElement = geByClass1(this.classname("geo-container_regions"), this.settingsScreenElement), this.expectedReachRowElement = geByClass1(this.classname("row_expected-reach"), this.settingsScreenElement), this.updateTargetParamsProgressElement = geByClass1(this.classname("update-progress"), this.settingsScreenElement), this.audienceMenuDotsElement = geByClass1(this.classname("audience-menu-dots"), this.settingsScreenElement), this.audienceMenuSaveElement = geByClass1(this.classname("audience-menu-item_save"), this.audienceMenuDotsElement), this.audienceMenuSaveNewElement = geByClass1(this.classname("audience-menu-item_save_new"), this.audienceMenuDotsElement), this.audienceMenuDeleteElement = geByClass1(this.classname("audience-menu-item_delete"), this.audienceMenuDotsElement), this.audienceProgressElement = geByClass1(this.classname("audience-menu-progress"), this.settingsScreenElement), this.audienceNameInput = geByClass1(this.classname("audience-name-input"), this.settingsScreenElement), this.settingsErrorElement = geByClass1(this.classname("settings-error"), this.settingsScreenElement), this.paymentTotalBudgetElement = geByClass1(this.classname("payments-total-budget"), this.paymentScreenElement), this.paymentUnionBudgetElement = geByClass1(this.classname("payments-union-budget"), this.paymentScreenElement), this.paymentTotalBudgetInput = geByClass1(this.classname("payments-input-amount"), this.paymentScreenElement), this.paymentAmountCurrencyElement = geByClass1(this.classname("payments-amount-currency"), this.paymentScreenElement), this.paymentSystemsElement = geByClass1(this.classname("payments-systems"), this.paymentScreenElement), this.paymentContinueElement = geByClass1(this.classname("payments-continue"), this.paymentScreenElement), this.paymentErrorElement = geByClass1(this.classname("payments-error"), this.paymentScreenElement), this.paymentIntroElement = geByClass1(this.classname("payments-intro"), this.paymentScreenElement), this.cardPaymentIframeContainerElement = geByClass1(this.classname("card-payment-iframe-container"), this.cardPaymentScreenElement), this.paymentSystemsFormElement = geByClass1(this.classname("card-payment-form"), this.cardPaymentScreenElement), this.paymentResultElement = geByClass1(this.classname("payment-result"), this.paymentResultScreenElement), this.paymentResultTitleElement = geByClass1(this.classname("payment-result-title"), this.paymentResultScreenElement), this.paymentResultSubtitleElement = geByClass1(this.classname("payment-result-subtitle"), this.paymentResultScreenElement), this.paymentResultIconContainerElement = geByClass1(this.classname("payment-result-icon-container"), this.paymentResultScreenElement), this.paymentResultButtonContainerElement = geByClass1(this.classname("payment-result-button-container"), this.paymentResultScreenElement), this.paymentResultButtonElement = geByClass1(this.classname("payment-result-button"), this.paymentResultScreenElement), this.moreSettingsOfficeSwitcherRowElement = geByClass1(this.classname("row_office-switcher"), this.moreSettingsScreenElement), this.moreSettingsCategoryIdRowElement = geByClass1(this.classname("row_category-id"), this.moreSettingsScreenElement), this.moreSettingsSubtitleElement = geByClass1(this.classname("more-settings-subtitle"), this.moreSettingsScreenElement), this.moreSettingsOfficeLabelElement = geByClass1(this.classname("more-settings-office-label"), this.moreSettingsScreenElement), this.moreSettingsCategoryLabelElement = geByClass1(this.classname("more-settings-category-label"), this.moreSettingsScreenElement);
+                this.box = t, this.boxBodyNode = t.bodyNode, this.boxControlsTextNode = t.controlsTextNode, this.imageElement = geByClass1(this.classname("image"), this.boxBodyNode), this.screensContainerElement = geByClass1(this.classname("screens-container"), this.boxBodyNode), this.headerElement = geByClass1(this.classname("header"), this.boxBodyNode), this.acceptTermsCheckboxInput = geByClass1(this.classname("accept-terms"), this.boxControlsTextNode), this.imageLayer1Element = geByClass1(this.classname("image-layer_1"), this.imageElement), this.imageLayer2Element = geByClass1(this.classname("image-layer_2"), this.imageElement), this.screensWrapperElement = geByClass1(this.classname("screens-wrapper"), this.screensContainerElement), this.introScreenElement = geByClass1(this.classname("screen_intro"), this.screensWrapperElement), this.settingsScreenElement = geByClass1(this.classname("screen_settings"), this.screensWrapperElement), this.paymentScreenElement = geByClass1(this.classname("screen_payment"), this.screensWrapperElement), this.cardPaymentScreenElement = geByClass1(this.classname("screen_card-payment"), this.screensWrapperElement), this.paymentResultScreenElement = geByClass1(this.classname("screen_payment-result"), this.screensWrapperElement), this.moreSettingsScreenElement = geByClass1(this.classname("screen_more-settings"), this.screensWrapperElement), this.settingsScreenElement && (this.totalBudgetElement = geByClass1(this.classname("row-content_total-budget"), this.settingsScreenElement), this.expectedReachValueElement = geByClass1(this.classname("expected-reach-value"), this.settingsScreenElement), this.expectedReachLimitElement = geByClass1(this.classname("expected-reach-limit"), this.settingsScreenElement), this.expectedReachBarValueElement = geByClass1(this.classname("expected-reach-bar-value"), this.settingsScreenElement), this.expectedReachHintElement = geByClass1(this.classname("expected-reach-hint"), this.settingsScreenElement), this.audienceSettingsElement = geByClass1(this.classname("audience-settings"), this.settingsScreenElement), this.editAudienceLinkWrapperElement = geByClass1(this.classname("edit-audience-link"), this.settingsScreenElement), this.editAudienceNameLinksWrapperElement = geByClass1(this.classname("edit-audience-name-links"), this.settingsScreenElement), this.budgetTitleRowElement = geByClass1(this.classname("row_budget-title"), this.settingsScreenElement), this.geoContainerPointsElement = geByClass1(this.classname("geo-container_points"), this.settingsScreenElement), this.geoContainerRegionsElement = geByClass1(this.classname("geo-container_regions"), this.settingsScreenElement), this.expectedReachRowElement = geByClass1(this.classname("row_expected-reach"), this.settingsScreenElement), this.updateTargetParamsProgressElement = geByClass1(this.classname("update-progress"), this.settingsScreenElement), this.audienceMenuDotsElement = geByClass1(this.classname("audience-menu-dots"), this.settingsScreenElement), this.audienceMenuSaveElement = geByClass1(this.classname("audience-menu-item_save"), this.audienceMenuDotsElement), this.audienceMenuSaveNewElement = geByClass1(this.classname("audience-menu-item_save_new"), this.audienceMenuDotsElement), this.audienceMenuDeleteElement = geByClass1(this.classname("audience-menu-item_delete"), this.audienceMenuDotsElement), this.audienceProgressElement = geByClass1(this.classname("audience-menu-progress"), this.settingsScreenElement), this.audienceNameInput = geByClass1(this.classname("audience-name-input"), this.settingsScreenElement), this.settingsErrorElement = geByClass1(this.classname("settings-error"), this.settingsScreenElement)), this.paymentScreenElement && (this.paymentTotalBudgetElement = geByClass1(this.classname("payments-total-budget"), this.paymentScreenElement), this.paymentUnionBudgetElement = geByClass1(this.classname("payments-union-budget"), this.paymentScreenElement), this.paymentTotalBudgetInput = geByClass1(this.classname("payments-input-amount"), this.paymentScreenElement), this.paymentAmountCurrencyElement = geByClass1(this.classname("payments-amount-currency"), this.paymentScreenElement), this.paymentSystemsElement = geByClass1(this.classname("payments-systems"), this.paymentScreenElement), this.paymentContinueElement = geByClass1(this.classname("payments-continue"), this.paymentScreenElement), this.paymentErrorElement = geByClass1(this.classname("payments-error"), this.paymentScreenElement), this.paymentIntroElement = geByClass1(this.classname("payments-intro"), this.paymentScreenElement)), this.cardPaymentScreenElement && (this.cardPaymentIframeContainerElement = geByClass1(this.classname("card-payment-iframe-container"), this.cardPaymentScreenElement), this.paymentSystemsFormElement = geByClass1(this.classname("card-payment-form"), this.cardPaymentScreenElement)), this.paymentResultScreenElement && (this.paymentResultElement = geByClass1(this.classname("payment-result"), this.paymentResultScreenElement), this.paymentResultTitleElement = geByClass1(this.classname("payment-result-title"), this.paymentResultScreenElement), this.paymentResultSubtitleElement = geByClass1(this.classname("payment-result-subtitle"), this.paymentResultScreenElement), this.paymentResultIconContainerElement = geByClass1(this.classname("payment-result-icon-container"), this.paymentResultScreenElement), this.paymentResultButtonContainerElement = geByClass1(this.classname("payment-result-button-container"), this.paymentResultScreenElement), this.paymentResultButtonElement = geByClass1(this.classname("payment-result-button"), this.paymentResultScreenElement)), this.moreSettingsScreenElement && (this.moreSettingsOfficeSwitcherRowElement = geByClass1(this.classname("row_office-switcher"), this.moreSettingsScreenElement), this.moreSettingsCategoryIdRowElement = geByClass1(this.classname("row_category-id"), this.moreSettingsScreenElement), this.moreSettingsSubtitleElement = geByClass1(this.classname("more-settings-subtitle"), this.moreSettingsScreenElement), this.moreSettingsOfficeLabelElement = geByClass1(this.classname("more-settings-office-label"), this.moreSettingsScreenElement), this.moreSettingsCategoryLabelElement = geByClass1(this.classname("more-settings-category-label"), this.moreSettingsScreenElement));
                 var i = this.box.getOptions();
                 i && i.lang && (cur.lang = extend(cur.lang || {}, i.lang)), t.setOptions({
                     onDestroy: function() {
@@ -89,23 +91,30 @@
                     showBackButton: !1,
                     noBottomControls: !0,
                     noRefreshCoords: !1
-                }), this.currentScreen = this.paymentResultScreenElement) : this.options.no_intro_screen && (this.currentScreen = this.settingsScreenElement, this.box.changed = !0), removeClass(this.currentScreen, "unshown"), removeClass(this.currentScreen, this.classname("screen_hidden")), this.mouseInitialY = !1, this.lastMouseMoveEvent = +new Date, this.editingAudience = !1, this.updateTargetLastRequestID = 0, this.updateTargetCounter = 0, this.box.removeButtons(), this.continueButton = this.box.addButton(getLang("global_continue"), this.onContinueButtonClicked.bind(this), void 0, !0), setTimeout(removeClass.pbind(this.imageElement, this.classname("image_animated")), 200), setTimeout(removeClass.pbind(this.headerElement, this.classname("header_animated")), 3e3);
+                }), this.currentScreen = this.paymentResultScreenElement) : this.options.union_payment ? (this.currentScreen = this.paymentScreenElement, this.box.changed = !0, this.setBoxOptions({
+                    showBackButton: !1,
+                    noBottomControls: !0,
+                    noRefreshCoords: !1
+                })) : this.options.no_intro_screen && (this.currentScreen = this.settingsScreenElement, this.box.changed = !0), removeClass(this.currentScreen, "unshown"), removeClass(this.currentScreen, this.classname("screen_hidden")), this.mouseInitialY = !1, this.lastMouseMoveEvent = +new Date, this.editingAudience = !1, this.updateTargetLastRequestID = 0, this.updateTargetCounter = 0, this.box.removeButtons(), this.continueButton = this.box.addButton(getLang("global_continue"), this.onContinueButtonClicked.bind(this), void 0, !0), setTimeout(removeClass.pbind(this.imageElement, this.classname("image_animated")), 200), setTimeout(removeClass.pbind(this.headerElement, this.classname("header_animated")), 3e3);
                 for (var a = 1; a <= 3; ++a) setTimeout(removeClass.pbind(geByClass1(this.classname("intro-block_" + a), this.boxBodyNode), this.classname("intro-block_animated")), 3e3 + 600 * a);
-                addEvent(this.paymentTotalBudgetInput, "blur change", this.updatePaymentAmount.bind(this)), addEvent(this.paymentScreenElement, "click", this.onPaymentScreenClicked.bind(this)), addEvent(this.paymentContinueElement, "click", this.onPaymentCompleted.bind(this)), this.paymentCardsTurnedOver = !1, this.settingsScreenInitialized = !1, this.initSettingsScreen(), this.initMoreSettingsScreen(), cur.paymentComplete || (cur.paymentComplete = function(e, t) {
+                if (addEvent(this.paymentTotalBudgetInput, "blur change", this.updatePaymentAmount.bind(this)), addEvent(this.paymentScreenElement, "click", this.onPaymentScreenClicked.bind(this)), addEvent(this.paymentContinueElement, "click", this.onPaymentCompleted.bind(this)), this.paymentCardsTurnedOver = !1, !this.options.union_payment) {
+                    this.settingsScreenInitialized = !1, this.initSettingsScreen(), this.initMoreSettingsScreen();
+                    var o = langStr(getLang("ads_edit_easy_promote_accept_terms"), "link", '<a href="https://vk.com/ads?act=office_help&terms=1" target="_blank" onclick="event && event.stopPropagation()">', "/link", "</a>");
+                    this.acceptTermsCheckbox = new Checkbox(this.acceptTermsCheckboxInput, {
+                        checked: !0,
+                        inline: !0,
+                        width: "auto",
+                        containerClass: this.classname("accept-terms-checkbox"),
+                        label: o,
+                        onChange: function() {
+                            n.updateContinueButton()
+                        }
+                    })
+                }
+                cur.paymentComplete || (cur.paymentComplete = function(e, t) {
                     cur.paymentCompleteParams = t, cur.isPaymentComplete = !0
                 }), cur.paymentCanceled || (cur.paymentCanceled = function(e) {
                     e ? cur.isPaymentFailed = !0 : cur.isPaymentCanceled = !0
-                });
-                var o = langStr(getLang("ads_edit_easy_promote_accept_terms"), "link", '<a href="https://vk.com/ads?act=office_help&terms=1" target="_blank" onclick="event && event.stopPropagation()">', "/link", "</a>");
-                this.acceptTermsCheckbox = new Checkbox(this.acceptTermsCheckboxInput, {
-                    checked: !0,
-                    inline: !0,
-                    width: "auto",
-                    containerClass: this.classname("accept-terms-checkbox"),
-                    label: o,
-                    onChange: function() {
-                        n.updateContinueButton()
-                    }
                 }), window.aep = this
             }
         }
@@ -161,32 +170,35 @@
         }, e.prototype.onUpdateTargetParamsFailed = function(e) {
             return debugLog("Get target params failed: ", e), this.options.expected_reach.value = 0, this.options.expected_reach.limit = 0, this.updateExpectedReach(), !0
         }, e.prototype.onPaymentScreenClicked = function(e) {
-            if (hasClass(e.target, this.classname("payments-systems-item")) && (hasClass(e.target, this.classname("payments-systems-item_clickable")) && !(intval(val(this.paymentTotalBudgetInput).replace(/\D+/g, "")) < intval(this.options.payment_min_amount))))
-                if (hide(this.paymentErrorElement), window.tooltips && tooltips.destroy(this.paymentTotalBudgetInput), hasClass(e.target, this.classname("payments-systems-item_inverse"))) {
-                    e.target.getAttribute("data-inverse-type");
-                    var t = e.target.getAttribute("data-inverse-link");
-                    t && window.open(t, "_blank")
-                } else {
-                    var s = e.target.getAttribute("data-type");
-                    switch (s) {
-                        case "webmoney":
-                        case "kiwipurse":
-                            this.doNontransactionalPayment(s, cur.ps_list[s]);
-                            break;
-                        case "paypal_ipn":
-                        case "mailmoney_vkpay":
-                        case "card":
-                            this.doTransactionalPayment(s, cur.ps_list[s]);
-                            break;
-                        case "yandexmoney":
-                            1 === cur.ps_list[s].new_api ? this.doTransactionalPayment(s, cur.ps_list[s]) : this.doNontransactionalPayment(s, cur.ps_list[s]);
-                            break;
-                        case "terminals":
-                            this.paymentCardsTurnOver()
-                    }
+            if (hasClass(e.target, this.classname("payments-systems-item")) && hasClass(e.target, this.classname("payments-systems-item_clickable")))
+                if (intval(val(this.paymentTotalBudgetInput).replace(/\D+/g, "")) < intval(this.options.payment_min_amount)) notaBene(this.paymentTotalBudgetInput, null, !0);
+                else if (hide(this.paymentErrorElement), window.tooltips && tooltips.destroy(this.paymentTotalBudgetInput), hasClass(e.target, this.classname("payments-systems-item_inverse"))) {
+                e.target.getAttribute("data-inverse-type");
+                var t = e.target.getAttribute("data-inverse-link");
+                t && window.open(t, "_blank")
+            } else {
+                var s = e.target.getAttribute("data-type");
+                switch (s) {
+                    case "webmoney":
+                    case "kiwipurse":
+                        this.doNontransactionalPayment(s, cur.ps_list[s]);
+                        break;
+                    case "paypal_ipn":
+                    case "mailmoney_vkpay":
+                    case "card":
+                        this.doTransactionalPayment(s, cur.ps_list[s]);
+                        break;
+                    case "yandexmoney":
+                        1 === cur.ps_list[s].new_api ? this.doTransactionalPayment(s, cur.ps_list[s]) : this.doNontransactionalPayment(s, cur.ps_list[s]);
+                        break;
+                    case "terminals":
+                        this.paymentCardsTurnOver()
                 }
+            }
         }, e.prototype.onPaymentCompleted = function() {
-            this.enableAd()
+            this.options.union_payment ? (this.setPaymentResultScreen(getLang("ads_edit_easy_promote_payment_done"), getLang("ads_payments_success_subtitle"), "success"), this.goToScreen(this.paymentResultScreenElement, !1, {
+                showBackButton: !0
+            })) : this.enableAd()
         }, e.prototype.onPaymentFailed = function(e, t) {
             this.setPaymentResultScreen(t || getLang("ads_edit_easy_promote_payment_failed"), e || getLang("ads_edit_easy_promote_payment_failed_description"), "error"), this.goToScreen(this.paymentResultScreenElement, !1, {
                 showBackButton: !0
@@ -209,8 +221,11 @@
                         }, "");
                         var o = '<form action="' + this.paymentSystemsFormElement.action + '" method="' + this.paymentSystemsFormElement.method + '" id="popup_payment_form" accept-charset="UTF-8">' + this.paymentSystemsFormElement.innerHTML + "</form>",
                             r = getLang("payment_redirect").replace("%s", t.paymentSystemData.title);
-                        cur._popup_text = cur.paymentsPopupHtml(r, o, "document.getElementById('popup_payment_form').submit()");
-                        a = window.open("", "_blank", "scrollbars=1, resizable=1, menubar=1, left=0, top=0, toolbar=1, status=1"), cur.paymentsPopupWrite(a)
+                        if (cur._popup_text = cur.paymentsPopupHtml(r, o, "document.getElementById('popup_payment_form').submit()"), t.paymentPopup) a = t.paymentPopup;
+                        else {
+                            a = window.open("", "_blank", "scrollbars=1, resizable=1, menubar=1, left=0, top=0, toolbar=1, status=1")
+                        }
+                        cur.paymentsPopupWrite(a)
                     }
                     setTimeout(this.waitForPaymentResult.bind(this, extend(t, {
                         paymentPopup: t.paymentPopup || a,
@@ -567,7 +582,7 @@
                 s = e.ajaxParams,
                 n = !1,
                 i = !1;
-            t && t.closed && (n = !0, e.paymentPopupClosedTime || (e.paymentPopupClosedTime = +new Date), i = +new Date - e.paymentPopupClosedTime > 6e3);
+            t && t.closed && (n = !0, e.paymentPopupClosedTime || (e.paymentPopupClosedTime = +new Date), i = +new Date - e.paymentPopupClosedTime > 1e4);
             if (!n || i || e.paymentWaiting || (this.onPaymentWaiting(), e.paymentWaiting = !0), cur.isPaymentComplete) return this.onPaymentCheckDone(!0, e, cur.paymentCompleteParams), void delete cur.isPaymentComplete;
             if (cur.isPaymentCanceled || i) return this.onPaymentCheckDone(!1, e, void 0, void 0, getLang("ads_edit_easy_promote_payment_cancelled")), void delete cur.isPaymentCanceled;
             if (cur.isPaymentFailed) return this.onPaymentCheckDone(!1, e), void delete cur.isPaymentFailed;
@@ -580,19 +595,25 @@
             })
         }, e.prototype.doTransactionalPayment = function(e, t) {
             var s = this,
-                n = {
-                    act: "a_getvotes_charge",
-                    type: e,
-                    payment_account_id: this.options.payment_union_id,
-                    hash: this.options.payment_hash,
-                    account_hash: this.options.payment_ads_hash,
-                    amount: val(this.paymentTotalBudgetInput).replace(/\D+/g, ""),
-                    source: "ads_easy_promote"
-                };
-            ajax.post("al_payments.php", n, {
-                onDone: function(n, i) {
+                n = void 0;
+            if (t && t.provider) {
+                n = window.open("", "_blank", "scrollbars=1, resizable=1, menubar=1, left=0, top=0, toolbar=1, status=1");
+                var i = getLang("payment_redirect").replace("%s", cur.ps_list[e].title);
+                cur._popup_text = cur.paymentsPopupHtml(i, "", ""), cur.paymentsPopupWrite(n)
+            }
+            var a = {
+                act: "a_getvotes_charge",
+                type: e,
+                payment_account_id: this.options.payment_union_id,
+                hash: this.options.payment_hash,
+                account_hash: this.options.payment_ads_hash,
+                amount: val(this.paymentTotalBudgetInput).replace(/\D+/g, ""),
+                source: "ads_easy_promote"
+            };
+            ajax.post("al_payments.php", a, {
+                onDone: function(i, a) {
                     if ("mailmoney_vkpay" == e) return s.setPaymentResultScreen(getLang("ads_edit_easy_promote_payment_wait"), getLang("ads_edit_easy_promote_payment_wait_description"), "wait"), s.goToScreen(s.paymentResultScreenElement), s.box._hide(!1, !0), showWiki({
-                        w: n
+                        w: i
                     }, !1, !1, {
                         noLocChange: 1,
                         skipBoxesHide: 1
@@ -607,12 +628,14 @@
                         },
                         paymentSystemData: t
                     });
-                    i ? (s.setPaymentIFrameHtml(i), s.nextScreen()) : (s.setPaymentResultScreen(getLang("ads_edit_easy_promote_payment_wait"), getLang("ads_edit_easy_promote_payment_wait_description"), "wait"), s.goToScreen(s.paymentResultScreenElement)), s.waitForPaymentResult({
-                        ajaxParams: extend({}, n, {
+                    a ? (s.setPaymentIFrameHtml(a), s.nextScreen()) : (s.setPaymentResultScreen(getLang("ads_edit_easy_promote_payment_wait"), getLang("ads_edit_easy_promote_payment_wait_description"), "wait"), s.goToScreen(s.paymentResultScreenElement));
+                    var o = {
+                        ajaxParams: extend({}, i, {
                             type: e
                         }),
                         paymentSystemData: t
-                    })
+                    };
+                    n && (o.paymentPopup = n), s.waitForPaymentResult(o)
                 },
                 onFail: function(e) {
                     return domFC(s.paymentErrorElement).innerHTML = e, show(s.paymentErrorElement), !0
@@ -911,6 +934,4 @@
     try {
         stManager.done(jsc("web/ads_edit_easy.js"))
     } catch (e) {}
-}, function(e, t, s) {
-    e.exports = s(0)
 }]);
