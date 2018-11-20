@@ -1390,3 +1390,39 @@
 .faq_translations_row_title {
     border-top: 1px solid #e7e8ec
 }
+
+.faq_links_editor {
+    padding: 0 20px 15px
+}
+
+.faq_links_list {
+    margin-top: 15px
+}
+
+.faq_link_row {
+    margin: 0 -5px;
+    padding: 10px 5px
+}
+
+.faq_link_row .flat_button {
+    float: left;
+    margin-right: 10px;
+    width: 50px
+}
+
+.faq_link_row:hover {
+    background: #f0f2f5;
+    -o-transition: background-color 150ms linear;
+    transition: background-color 150ms linear
+}
+
+.faq_link_row__title {
+    float: left;
+    font-size: 14px;
+    line-height: 18px;
+    margin-left: 20px;
+    overflow: hidden;
+    padding-top: 4px;
+    text-overflow: ellipsis;
+    width: 600px
+}

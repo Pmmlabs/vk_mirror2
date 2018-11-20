@@ -38790,13 +38790,13 @@ body.apps_settingsPageBody {
     float: right
 }
 
-.narrativeSnippet {
+.narrative-snippet {
     position: relative;
     display: block;
     margin: 10px 12px
 }
 
-.narrativeSnippet .narrativeSnippet__inner {
+.narrative-snippet__inner {
     display: block;
     position: relative;
     -webkit-border-radius: 10px;
@@ -38814,7 +38814,7 @@ body.apps_settingsPageBody {
     text-decoration: none
 }
 
-.narrativeSnippet .narrativeSnippet__blur {
+.narrative-snippet__blur {
     position: absolute;
     top: 0;
     left: 0;
@@ -38830,15 +38830,15 @@ body.apps_settingsPageBody {
     background-color: rgba(0, 0, 0, .6)
 }
 
-.narrativeSnippet .narrativeSnippet__blur,
-.narrativeSnippet .narrativeSnippet__cover {
+.narrative-snippet__blur,
+.narrative-snippet__cover {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     background-position: 50%
 }
 
-.narrativeSnippet .narrativeSnippet__cover {
+.narrative-snippet__cover {
     position: relative;
     width: 140px;
     height: 210px;
@@ -38871,7 +38871,7 @@ body.apps_settingsPageBody {
     color: #ebedf0
 }
 
-.narrativeSnippet .narrative_author_photo {
+.narrative-snippet .narrative_author_photo {
     position: absolute;
     top: 8px;
     left: 8px;
@@ -38882,16 +38882,16 @@ body.apps_settingsPageBody {
     border-radius: 50%
 }
 
-.narrativeSnippet__deleted,
-.narrativeSnippet__no-access {
+.narrative-snippet__deleted,
+.narrative-snippet__no-access {
     padding: 0 20px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box
 }
 
-.narrativeSnippet__deleted:before,
-.narrativeSnippet__no-access:before {
+.narrative-snippet__deleted:before,
+.narrative-snippet__no-access:before {
     content: '';
     display: block;
     width: 32px;
@@ -38899,15 +38899,15 @@ body.apps_settingsPageBody {
     margin: 20px auto 15px
 }
 
-.narrativeSnippet__deleted:before {
+.narrative-snippet__deleted:before {
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h32v32H0z%22%20opacity%3D%22.1%22%2F%3E%3Cpath%20fill%3D%22%23ebedf0%22%20d%3D%22M12.366%205.495A2.916%202.916%200%200%201%2014.913%204h2.167c1.095%200%202.049.603%202.547%201.495h4.619c.693%200%201.254.562%201.254%201.254v.963c0%20.16-.13.291-.292.291H6.792a.292.292%200%200%201-.292-.291v-.963c0-.692.561-1.254%201.254-1.254zM7.746%209h16.5l-1.333%2016.32A2.917%202.917%200%200%201%2020.006%2028h-8.018a2.917%202.917%200%200%201-2.907-2.68zm8.25%202.5a.583.583%200%200%200-.583.583v12.334a.583.583%200%201%200%201.167%200V12.083a.583.583%200%200%200-.583-.583zm3.5%200a.61.61%200%200%200-.608.583l-.533%2012.334a.559.559%200%200%200%20.558.583.61.61%200%200%200%20.609-.583l.533-12.334a.559.559%200%200%200-.558-.583zm-7%200a.559.559%200%200%200-.557.583l.532%2012.334a.61.61%200%200%200%20.633.582.559.559%200%200%200%20.534-.582l-.533-12.334a.61.61%200%200%200-.608-.583z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50% / 32px
 }
 
-.narrativeSnippet__no-access:before {
+.narrative-snippet__no-access:before {
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h32v32H0z%22%2F%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M2%2016C2%208.272%208.272%202%2016%202s14%206.272%2014%2014-6.272%2014-14%2014S2%2023.728%202%2016zM16%204C9.376%204%204%209.376%204%2016s5.376%2012%2012%2012%2012-5.376%2012-12S22.624%204%2016%204zm-1%2013v-7a1%201%200%200%201%202%200v7a1%201%200%200%201-2%200zm0%204a1%201%200%200%201%202%200%201%201%200%200%201-2%200z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50% / 32px
 }
 
-.narrativeSnippet .narrativeSnippet__top {
+.narrative-snippet__top {
     position: relative;
     text-align: center;
     opacity: 0.75;
@@ -38916,7 +38916,7 @@ body.apps_settingsPageBody {
     margin-bottom: 2px
 }
 
-.narrativeSnippet .narrativeSnippet__author-photo {
+.narrative-snippet__author-photo {
     position: absolute;
     top: 8px;
     left: 8px;
@@ -38927,11 +38927,11 @@ body.apps_settingsPageBody {
     border-radius: 50%
 }
 
-.narrativeSnippet .narrativeSnippet__label {
+.narrative-snippet__label {
     text-transform: uppercase
 }
 
-.narrativeSnippet .narrativeSnippet__title {
+.narrative-snippet__title {
     position: relative;
     font-size: 22px;
     line-height: 27px;
@@ -38947,7 +38947,7 @@ body.apps_settingsPageBody {
     color: #fff
 }
 
-.narrativeSnippet .narrativeSnippet__author {
+.narrative-snippet__author {
     position: relative;
     font-size: 14px;
     line-height: 27px;
@@ -38960,92 +38960,60 @@ body.apps_settingsPageBody {
     text-overflow: ellipsis
 }
 
-.narrativeSnippetMini {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
+.narrative-small-snippet {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+    word-wrap: break-word;
     min-height: 82px;
     margin: 5px 0;
     position: relative;
+    background: #fff;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
-    border-radius: 4px
+    border-radius: 4px;
+    border: 1px solid #e0e2e6;
+    overflow: hidden;
+    color: inherit;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
 }
 
-.narrativeSnippetMini:hover {
+.narrative-small-snippet:hover {
     text-decoration: none
 }
 
-.narrativeSnippetMini .narrativeSnippetMini__thumb {
-    position: relative;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -moz-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-flex-shrink: 0;
-    -ms-flex-negative: 0;
-    flex-shrink: 0;
+.narrative-small-snippet__info-block,
+.narrative-small-snippet__thumb {
+    display: table-cell;
+    vertical-align: middle
+}
+
+.narrative-small-snippet__thumb {
     width: 82px;
+    height: 100%;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     background-color: rgba(0, 0, 0, .8);
-    border: 1px solid #e0e2e6;
-    -webkit-border-radius: 4px 0 0 4px;
-    -moz-border-radius: 4px 0 0 4px;
-    border-radius: 4px 0 0 4px;
-    overflow: hidden;
     text-align: center;
     color: #ebedf0;
     font-size: 13px;
     line-height: 15px
 }
 
-.narrativeSnippetMini .narrativeSnippetMini__thumb,
-.narrativeSnippetMini .narrativeSnippetMini_info-block {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -moz-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center
-}
-
-.narrativeSnippetMini .narrativeSnippetMini_info-block {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    -moz-box-orient: vertical;
-    -moz-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    background-color: #fff;
+.narrative-small-snippet__info-block {
     padding: 13px 12px;
-    border: 1px solid #e0e2e6;
     line-height: 1.23;
     border-left: none;
-    -webkit-border-radius: 0 4px 4px 0;
-    -moz-border-radius: 0 4px 4px 0;
-    border-radius: 0 4px 4px 0;
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-    -moz-box-flex: 1;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box
 }
 
-.narrativeSnippetMini .narrativeSnippetMini__title {
+.narrative-small-snippet__title {
     position: relative;
     font-size: 15px;
     font-weight: 600;
@@ -39059,20 +39027,20 @@ body.apps_settingsPageBody {
     text-overflow: ellipsis
 }
 
-.narrativeSnippetMini .narrativeSnippetMini__title:hover {
+.narrative-small-snippet__title:hover {
     text-decoration: none
 }
 
-.narrativeSnippetMini .narrativeSnippet__deleted,
-.narrativeSnippetMini .narrativeSnippet__no-access {
-    padding: 0 5px;
+.narrative-small-snippet .narrative-snippet__deleted,
+.narrative-small-snippet .narrative-snippet__no-access {
+    padding: 0;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box
 }
 
-.narrativeSnippetMini .narrativeSnippet__deleted:before,
-.narrativeSnippetMini .narrativeSnippet__no-access:before {
+.narrative-small-snippet .narrative-snippet__deleted:before,
+.narrative-small-snippet .narrative-snippet__no-access:before {
     content: '';
     display: block;
     width: 32px;
@@ -39080,8 +39048,8 @@ body.apps_settingsPageBody {
     margin: 0px auto 5px
 }
 
-.narrativeSnippetMini .narrativeSnippetMini__info,
-.narrativeSnippetMini a {
+.narrative-small-snippet__info,
+.narrative-small-snippet a {
     font-size: 13px;
     color: #939393
 }
