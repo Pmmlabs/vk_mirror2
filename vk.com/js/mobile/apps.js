@@ -42,72 +42,9 @@
         return n.d(e, "a", e), e
     }, n.o = function(t, e) {
         return Object.prototype.hasOwnProperty.call(t, e)
-    }, n.p = "", n(n.s = 207)
+    }, n.p = "", n(n.s = 4)
 }({
-    105: function(t, e, n) {
-        "use strict";
-        var o = function() {
-            return function(t, e) {
-                if (Array.isArray(t)) return t;
-                if (Symbol.iterator in Object(t)) return function(t, e) {
-                    var n = [],
-                        o = !0,
-                        i = !1,
-                        r = void 0;
-                    try {
-                        for (var a, s = t[Symbol.iterator](); !(o = (a = s.next()).done) && (n.push(a.value), !e || n.length !== e); o = !0);
-                    } catch (t) {
-                        i = !0, r = t
-                    } finally {
-                        try {
-                            !o && s.return && s.return()
-                        } finally {
-                            if (i) throw r
-                        }
-                    }
-                    return n
-                }(t, e);
-                throw new TypeError("Invalid attempt to destructure non-iterable instance")
-            }
-        }();
-        n(310);
-        var i = n(71),
-            r = window,
-            a = r.cur,
-            s = r.nav,
-            c = r.Btn;
-        if ("/vkpay" === location.pathname || "/vkpay_music" === location.pathname || "/vk_pay_music" === location.pathname || 0 === location.pathname.indexOf("/app6217559") || 0 === location.pathname.indexOf("/app6460535")) {
-            var p = o(location.href.split("#"), 2)[1];
-            p && "unsubscribe" === p || (location.href = location.href.replace("m.", "").replace("act=app_r", ""))
-        }
-        window._iconAdd || (window._iconAdd = window.devicePixelRatio >= 2 ? "_2x" : "");
-        var l = {
-            initAppView: function(t, e) {
-                var n = function(t) {
-                    "block" == t.type ? a.app.runCallback("onWindowBlur") : a.app.runCallback("onWindowFocus")
-                };
-                a.app.onReady.push(function() {
-                    a.app.onLocChanged(t.hash), addEvent(document, "block unblock", n, !0), a.destroy.push(function() {
-                        removeEvent(document, "block unblock", n)
-                    })
-                }), e.icon && (setFavIcon(e.icon), a.destroy.push(function() {
-                    setFavIcon("/images/favicon" + (vk.intnat ? "_vk" : "new") + window._iconAdd + ".ico")
-                }))
-            },
-            runUnverified: function(t, e) {
-                c.setLoading(t, !0), s.hash && (e += "#" + s.hash), s.go(e)
-            },
-            showUnverifiedBackBtn: function() {
-                var t = void 0;
-                window.history && window.history.length > 2 && (t = geByClass1("apps_unverifiedAppWarning__btn_back")) && addClass(t, "apps_unverifiedAppWarning__btn_active")
-            },
-            unverifiedGoBack: function() {
-                return window.history.back(), !1
-            }
-        };
-        window.Apps = l, window.vkApp = i.VKApp
-    },
-    107: function(t, e, n) {
+    16: function(t, e, n) {
         "use strict";
         Object.defineProperty(e, "__esModule", {
             value: !0
@@ -180,209 +117,12 @@
             return (s(f) + s(v) + s(w) + s(m)).toLowerCase()
         }
     },
-    207: function(t, e, n) {
-        t.exports = n(105)
-    },
-    310: function(t, e, n) {
-        "use strict";
-        var o = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
-            return typeof t
-        } : function(t) {
-            return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t
-        };
-        ! function(t) {
-            if (!t.fastXDM) {
-                var e = {},
-                    n = [],
-                    i = {};
-                t.fastXDM = {
-                    _id: 0,
-                    helperUrl: "https://vk.com/js/api/xdmHelper.js",
-                    Server: function(n, o, i) {
-                        this.methods = n || {}, this.filter = o, this.options = i || {}, this.id = t.fastXDM._id++, this.key = function() {
-                            for (var t = "", e = 0; e < 5; e++) t += Math.ceil(15 * Math.random()).toString(16);
-                            return t
-                        }(), this.frameName = "fXD" + this.key, this.server = !0, this.methods["%init%"] = this.methods.__fxdm_i = function() {
-                            t.fastXDM.run(this.id), this.methods.onInit && this.methods.onInit()
-                        }, e[this.key] = [l, this]
-                    },
-                    Client: function(n, o) {
-                        if (this.methods = n || {}, this.options = o || {}, this.id = t.fastXDM._id++, this.client = !0, t.fastXDM.run(this.id), 0 !== window.name.indexOf("fXD")) throw Error("Wrong window.name property.");
-                        this.key = window.name.substr(3), this.caller = window.parent, e[this.key] = [l, this], t.fastXDM.on("helper", function() {
-                            t.fastXDM.onClientStart(this)
-                        }, this), c(function(t) {
-                            t.send(this, t.json.stringify(["%init%"]));
-                            var e = this.methods;
-                            setTimeout(function() {
-                                e.onInit && e.onInit()
-                            }, 0)
-                        }, this)
-                    },
-                    onMessage: function(t) {
-                        if (t.origin != document.origin && cur) {
-                            var n = cur.app && cur.app.options && cur.app.options.src ? cur.app.options.src : "";
-                            if (!n) return !1;
-                            t.origin != n && t.origin + "/" != n.substring(0, t.origin.length + 1) && window.debugLog && debugLog("Warning: message from " + t.origin + " will be disable in future")
-                        }
-                        var o = t.data;
-                        if (!o) return !1;
-                        if ("string" != typeof o && !(o instanceof String)) return !1;
-                        var i = o.substr(0, 5);
-                        if (e[i]) {
-                            var r = e[i][1];
-                            !r || r.filter && !r.filter(t.origin) || e[i][0](o.substr(6), r)
-                        }
-                    },
-                    setJSON: function(t) {
-                        i.json = t
-                    },
-                    getJSON: function(t) {
-                        if (!t) return i.json;
-                        c(function(e) {
-                            t(e.json)
-                        })
-                    },
-                    setEnv: function(t) {
-                        for (var e in t) t.hasOwnProperty(e) && (i[e] = t[e]);
-                        p()
-                    },
-                    _q: {},
-                    on: function(t, e, n) {
-                        this._q[t] || (this._q[t] = []), -1 == this._q[t] ? e.apply(n) : this._q[t].push([e, n])
-                    },
-                    run: function(t) {
-                        for (var e = (this._q[t] || []).length, n = 0; n < e; n++) this._q[t][n][0].apply(this._q[t][n][1]);
-                        this._q[t] = -1
-                    },
-                    waitFor: r
-                }, t.fastXDM.Server.prototype.start = function(e, n) {
-                    if (e.contentWindow) this.caller = e.contentWindow, this.frame = e, t.fastXDM.on("helper", function() {
-                        t.fastXDM.onServerStart(this)
-                    }, this);
-                    else {
-                        var o = this;
-                        (n = n || 0) < 50 && setTimeout(function() {
-                            o.start.apply(o, [e, n + 1])
-                        }, 100)
-                    }
-                }, t.fastXDM.Server.prototype.destroy = function() {
-                    delete e[this.key]
-                }, t.fastXDM.Server.prototype.append = function(t, e, n) {
-                    var i = document.createElement("DIV");
-                    i.innerHTML = '<iframe name="' + this.frameName + '" ' + (n || "") + "></iframe>";
-                    var r = i.firstChild,
-                        a = this,
-                        s = function() {
-                            r.frameBorder = "0", e && function t(e, n) {
-                                for (var i in n) e[i] && "object" === o(e[i]) ? t(e[i], n[i]) : e[i] = n[i]
-                            }(r, e), t.insertBefore(r, t.firstChild), a.start(r)
-                        };
-                    return a.options.layer ? s() : setTimeout(function() {
-                        s()
-                    }, 0), r
-                }, t.fastXDM.Client.prototype.callMethod = t.fastXDM.Server.prototype.callMethod = function() {
-                    for (var e = this, n = Array.prototype.slice.call(arguments), o = n.shift(), i = 0, a = n.length; i < a; i++) "function" == typeof n[i] ? function() {
-                        e.funcsCount = (e.funcsCount || 0) + 1;
-                        var t = n[i],
-                            o = "_func" + e.funcsCount;
-                        e.methods[o] = function() {
-                            t.apply(this, arguments), delete this.methods[o]
-                        }, n[i] = {
-                            _func: e.funcsCount
-                        }
-                    }() : this.options.safe && (n[i] = s(n[i], !1));
-                    r(this, "caller", function() {
-                        t.fastXDM.on(this.id, function() {
-                            c(function(t) {
-                                t.send(this, t.json.stringify([o, n]))
-                            }, this)
-                        }, this)
-                    }, this)
-                }, t.JSON && "object" === o(t.JSON) && t.JSON.parse && t.JSON.stringify && '{"a":[1,2,3]}' === t.JSON.stringify({
-                    a: [1, 2, 3]
-                }).replace(/ /g, "") ? i.json = {
-                    parse: t.JSON.parse,
-                    stringify: t.JSON.stringify
-                } : t.fastXDM._needJSON = !0, t.postMessage ? (i.protocol = "p", i.send = function(t, e) {
-                    var n = t.frame ? t.frame.contentWindow : t.caller;
-                    if (n) try {
-                        n.postMessage(t.key + ":" + e, "*")
-                    } catch (o) {
-                        window.postMessage.call(n, t.key + ":" + e, "*")
-                    }
-                }, t.addEventListener ? t.addEventListener("message", t.fastXDM.onMessage, !1) : t.attachEvent("onmessage", t.fastXDM.onMessage), t.fastXDM._needJSON ? (t.fastXDM._onlyJSON = !0, a()) : p()) : a()
-            }
-
-            function r(t, e, n, o, i) {
-                t[e] ? n.apply(o) : (i = i || 0) < 1e3 && setTimeout(function() {
-                    r(t, e, n, o, i + 1)
-                }, 0)
-            }
-
-            function a(e) {
-                setTimeout(function() {
-                    var n = document.createElement("script");
-                    n.type = "text/javascript", n.src = e || t.fastXDM.helperUrl, r(document, "body", function() {
-                        document.getElementsByTagName("HEAD")[0].appendChild(n)
-                    })
-                }, 0)
-            }
-
-            function s(t, e) {
-                var n = void 0;
-                switch (void 0 === t ? "undefined" : o(t)) {
-                    case "string":
-                        n = e ? t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;") : t.replace(/&#039;/g, "'").replace(/&quot;/g, '"').replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&amp;/g, "&");
-                        break;
-                    case "object":
-                        if ("[object Array]" === Object.prototype.toString.apply(t)) {
-                            n = [];
-                            for (var i = 0, r = t.length; i < r; i++) n[i] = s(t[i], e)
-                        } else
-                            for (var a in n = {}, t) Object.hasOwnProperty.call(t, a) && (n[a] = s(t[a], e));
-                        break;
-                    default:
-                        n = t
-                }
-                return n
-            }
-
-            function c(t, e) {
-                i.loaded ? t.apply(e, [i]) : n.push([e, t])
-            }
-
-            function p() {
-                i.loaded = !0;
-                for (var t = 0, e = n.length; t < e; t++) n[t][1].apply(n[t][0], [i])
-            }
-
-            function l(t, e) {
-                c(function(n) {
-                    var o = n.json.parse(t);
-                    if (o[0]) {
-                        o[1] || (o[1] = []);
-                        for (var i = 0, r = o[1].length; i < r; i++) o[1][i] && o[1][i]._func ? function() {
-                            var t = o[1][i]._func;
-                            o[1][i] = function() {
-                                var n = Array.prototype.slice.call(arguments);
-                                n.unshift("_func" + t), e.callMethod.apply(e, n)
-                            }
-                        }() : e.options.safe && (o[1][i] = s(o[1][i], !0));
-                        setTimeout(function() {
-                            if (!e.methods[o[0]]) throw Error("fastXDM: Method " + o[0] + " is undefined");
-                            e.methods[o[0]].apply(e, o[1])
-                        }, 0)
-                    }
-                })
-            }
-        }(window)
-    },
-    71: function(module, exports, __webpack_require__) {
+    173: function(module, exports, __webpack_require__) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
             value: !0
         }), exports.VKApp = void 0;
-        var _md = __webpack_require__(107),
+        var _md = __webpack_require__(16),
             _md2 = _interopRequireDefault(_md);
 
         function _interopRequireDefault(t) {
@@ -390,7 +130,7 @@
                 default: t
             }
         }
-        __webpack_require__(310);
+        __webpack_require__(261);
         var _window = window,
             trim = _window.trim,
             evalJs = _window.evalJs,
@@ -838,5 +578,265 @@
         }, VKApp.prototype.VKWebExternalAppClose = function() {
             this.runCallback("onExternalAppClose")
         }, VKApp.callNativeClientMethod = VKApp.prototype.callNativeClientMethod
+    },
+    261: function(t, e, n) {
+        "use strict";
+        var o = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
+            return typeof t
+        } : function(t) {
+            return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t
+        };
+        ! function(t) {
+            if (!t.fastXDM) {
+                var e = {},
+                    n = [],
+                    i = {};
+                t.fastXDM = {
+                    _id: 0,
+                    helperUrl: "https://vk.com/js/api/xdmHelper.js",
+                    Server: function(n, o, i) {
+                        this.methods = n || {}, this.filter = o, this.options = i || {}, this.id = t.fastXDM._id++, this.key = function() {
+                            for (var t = "", e = 0; e < 5; e++) t += Math.ceil(15 * Math.random()).toString(16);
+                            return t
+                        }(), this.frameName = "fXD" + this.key, this.server = !0, this.methods["%init%"] = this.methods.__fxdm_i = function() {
+                            t.fastXDM.run(this.id), this.methods.onInit && this.methods.onInit()
+                        }, e[this.key] = [l, this]
+                    },
+                    Client: function(n, o) {
+                        if (this.methods = n || {}, this.options = o || {}, this.id = t.fastXDM._id++, this.client = !0, t.fastXDM.run(this.id), 0 !== window.name.indexOf("fXD")) throw Error("Wrong window.name property.");
+                        this.key = window.name.substr(3), this.caller = window.parent, e[this.key] = [l, this], t.fastXDM.on("helper", function() {
+                            t.fastXDM.onClientStart(this)
+                        }, this), c(function(t) {
+                            t.send(this, t.json.stringify(["%init%"]));
+                            var e = this.methods;
+                            setTimeout(function() {
+                                e.onInit && e.onInit()
+                            }, 0)
+                        }, this)
+                    },
+                    onMessage: function(t) {
+                        if (t.origin != document.origin && cur) {
+                            var n = cur.app && cur.app.options && cur.app.options.src ? cur.app.options.src : "";
+                            if (!n) return !1;
+                            t.origin != n && t.origin + "/" != n.substring(0, t.origin.length + 1) && window.debugLog && debugLog("Warning: message from " + t.origin + " will be disable in future")
+                        }
+                        var o = t.data;
+                        if (!o) return !1;
+                        if ("string" != typeof o && !(o instanceof String)) return !1;
+                        var i = o.substr(0, 5);
+                        if (e[i]) {
+                            var r = e[i][1];
+                            !r || r.filter && !r.filter(t.origin) || e[i][0](o.substr(6), r)
+                        }
+                    },
+                    setJSON: function(t) {
+                        i.json = t
+                    },
+                    getJSON: function(t) {
+                        if (!t) return i.json;
+                        c(function(e) {
+                            t(e.json)
+                        })
+                    },
+                    setEnv: function(t) {
+                        for (var e in t) t.hasOwnProperty(e) && (i[e] = t[e]);
+                        p()
+                    },
+                    _q: {},
+                    on: function(t, e, n) {
+                        this._q[t] || (this._q[t] = []), -1 == this._q[t] ? e.apply(n) : this._q[t].push([e, n])
+                    },
+                    run: function(t) {
+                        for (var e = (this._q[t] || []).length, n = 0; n < e; n++) this._q[t][n][0].apply(this._q[t][n][1]);
+                        this._q[t] = -1
+                    },
+                    waitFor: r
+                }, t.fastXDM.Server.prototype.start = function(e, n) {
+                    if (e.contentWindow) this.caller = e.contentWindow, this.frame = e, t.fastXDM.on("helper", function() {
+                        t.fastXDM.onServerStart(this)
+                    }, this);
+                    else {
+                        var o = this;
+                        (n = n || 0) < 50 && setTimeout(function() {
+                            o.start.apply(o, [e, n + 1])
+                        }, 100)
+                    }
+                }, t.fastXDM.Server.prototype.destroy = function() {
+                    delete e[this.key]
+                }, t.fastXDM.Server.prototype.append = function(t, e, n) {
+                    var i = document.createElement("DIV");
+                    i.innerHTML = '<iframe name="' + this.frameName + '" ' + (n || "") + "></iframe>";
+                    var r = i.firstChild,
+                        a = this,
+                        s = function() {
+                            r.frameBorder = "0", e && function t(e, n) {
+                                for (var i in n) e[i] && "object" === o(e[i]) ? t(e[i], n[i]) : e[i] = n[i]
+                            }(r, e), t.insertBefore(r, t.firstChild), a.start(r)
+                        };
+                    return a.options.layer ? s() : setTimeout(function() {
+                        s()
+                    }, 0), r
+                }, t.fastXDM.Client.prototype.callMethod = t.fastXDM.Server.prototype.callMethod = function() {
+                    for (var e = this, n = Array.prototype.slice.call(arguments), o = n.shift(), i = 0, a = n.length; i < a; i++) "function" == typeof n[i] ? function() {
+                        e.funcsCount = (e.funcsCount || 0) + 1;
+                        var t = n[i],
+                            o = "_func" + e.funcsCount;
+                        e.methods[o] = function() {
+                            t.apply(this, arguments), delete this.methods[o]
+                        }, n[i] = {
+                            _func: e.funcsCount
+                        }
+                    }() : this.options.safe && (n[i] = s(n[i], !1));
+                    r(this, "caller", function() {
+                        t.fastXDM.on(this.id, function() {
+                            c(function(t) {
+                                t.send(this, t.json.stringify([o, n]))
+                            }, this)
+                        }, this)
+                    }, this)
+                }, t.JSON && "object" === o(t.JSON) && t.JSON.parse && t.JSON.stringify && '{"a":[1,2,3]}' === t.JSON.stringify({
+                    a: [1, 2, 3]
+                }).replace(/ /g, "") ? i.json = {
+                    parse: t.JSON.parse,
+                    stringify: t.JSON.stringify
+                } : t.fastXDM._needJSON = !0, t.postMessage ? (i.protocol = "p", i.send = function(t, e) {
+                    var n = t.frame ? t.frame.contentWindow : t.caller;
+                    if (n) try {
+                        n.postMessage(t.key + ":" + e, "*")
+                    } catch (o) {
+                        window.postMessage.call(n, t.key + ":" + e, "*")
+                    }
+                }, t.addEventListener ? t.addEventListener("message", t.fastXDM.onMessage, !1) : t.attachEvent("onmessage", t.fastXDM.onMessage), t.fastXDM._needJSON ? (t.fastXDM._onlyJSON = !0, a()) : p()) : a()
+            }
+
+            function r(t, e, n, o, i) {
+                t[e] ? n.apply(o) : (i = i || 0) < 1e3 && setTimeout(function() {
+                    r(t, e, n, o, i + 1)
+                }, 0)
+            }
+
+            function a(e) {
+                setTimeout(function() {
+                    var n = document.createElement("script");
+                    n.type = "text/javascript", n.src = e || t.fastXDM.helperUrl, r(document, "body", function() {
+                        document.getElementsByTagName("HEAD")[0].appendChild(n)
+                    })
+                }, 0)
+            }
+
+            function s(t, e) {
+                var n = void 0;
+                switch (void 0 === t ? "undefined" : o(t)) {
+                    case "string":
+                        n = e ? t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;") : t.replace(/&#039;/g, "'").replace(/&quot;/g, '"').replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&amp;/g, "&");
+                        break;
+                    case "object":
+                        if ("[object Array]" === Object.prototype.toString.apply(t)) {
+                            n = [];
+                            for (var i = 0, r = t.length; i < r; i++) n[i] = s(t[i], e)
+                        } else
+                            for (var a in n = {}, t) Object.hasOwnProperty.call(t, a) && (n[a] = s(t[a], e));
+                        break;
+                    default:
+                        n = t
+                }
+                return n
+            }
+
+            function c(t, e) {
+                i.loaded ? t.apply(e, [i]) : n.push([e, t])
+            }
+
+            function p() {
+                i.loaded = !0;
+                for (var t = 0, e = n.length; t < e; t++) n[t][1].apply(n[t][0], [i])
+            }
+
+            function l(t, e) {
+                c(function(n) {
+                    var o = n.json.parse(t);
+                    if (o[0]) {
+                        o[1] || (o[1] = []);
+                        for (var i = 0, r = o[1].length; i < r; i++) o[1][i] && o[1][i]._func ? function() {
+                            var t = o[1][i]._func;
+                            o[1][i] = function() {
+                                var n = Array.prototype.slice.call(arguments);
+                                n.unshift("_func" + t), e.callMethod.apply(e, n)
+                            }
+                        }() : e.options.safe && (o[1][i] = s(o[1][i], !0));
+                        setTimeout(function() {
+                            if (!e.methods[o[0]]) throw Error("fastXDM: Method " + o[0] + " is undefined");
+                            e.methods[o[0]].apply(e, o[1])
+                        }, 0)
+                    }
+                })
+            }
+        }(window)
+    },
+    4: function(t, e, n) {
+        t.exports = n(64)
+    },
+    64: function(t, e, n) {
+        "use strict";
+        var o = function() {
+            return function(t, e) {
+                if (Array.isArray(t)) return t;
+                if (Symbol.iterator in Object(t)) return function(t, e) {
+                    var n = [],
+                        o = !0,
+                        i = !1,
+                        r = void 0;
+                    try {
+                        for (var a, s = t[Symbol.iterator](); !(o = (a = s.next()).done) && (n.push(a.value), !e || n.length !== e); o = !0);
+                    } catch (t) {
+                        i = !0, r = t
+                    } finally {
+                        try {
+                            !o && s.return && s.return()
+                        } finally {
+                            if (i) throw r
+                        }
+                    }
+                    return n
+                }(t, e);
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }
+        }();
+        n(261);
+        var i = n(173),
+            r = window,
+            a = r.cur,
+            s = r.nav,
+            c = r.Btn;
+        if ("/vkpay" === location.pathname || "/vkpay_music" === location.pathname || "/vk_pay_music" === location.pathname || 0 === location.pathname.indexOf("/app6217559") || 0 === location.pathname.indexOf("/app6460535")) {
+            var p = o(location.href.split("#"), 2)[1];
+            p && "unsubscribe" === p || (location.href = location.href.replace("m.", "").replace("act=app_r", ""))
+        }
+        window._iconAdd || (window._iconAdd = window.devicePixelRatio >= 2 ? "_2x" : "");
+        var l = {
+            initAppView: function(t, e) {
+                var n = function(t) {
+                    "block" == t.type ? a.app.runCallback("onWindowBlur") : a.app.runCallback("onWindowFocus")
+                };
+                a.app.onReady.push(function() {
+                    a.app.onLocChanged(t.hash), addEvent(document, "block unblock", n, !0), a.destroy.push(function() {
+                        removeEvent(document, "block unblock", n)
+                    })
+                }), e.icon && (setFavIcon(e.icon), a.destroy.push(function() {
+                    setFavIcon("/images/favicon" + (vk.intnat ? "_vk" : "new") + window._iconAdd + ".ico")
+                }))
+            },
+            runUnverified: function(t, e) {
+                c.setLoading(t, !0), s.hash && (e += "#" + s.hash), s.go(e)
+            },
+            showUnverifiedBackBtn: function() {
+                var t = void 0;
+                window.history && window.history.length > 2 && (t = geByClass1("apps_unverifiedAppWarning__btn_back")) && addClass(t, "apps_unverifiedAppWarning__btn_active")
+            },
+            unverifiedGoBack: function() {
+                return window.history.back(), !1
+            }
+        };
+        window.Apps = l, window.vkApp = i.VKApp
     }
 });
