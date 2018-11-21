@@ -1262,6 +1262,10 @@ var MoneyTransfer = {
                 rowClass: 'settings_history_row'
             });
         }
+    },
+
+    historyBox: function() {
+        showBox('al_payments.php?act=money_transfer_history_box');
     }
 };
 

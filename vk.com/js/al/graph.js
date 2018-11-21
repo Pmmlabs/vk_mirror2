@@ -1017,6 +1017,15 @@ if (!window.Graph)
                     line.legendDownloadCSV.style.display = 'none';
                 }
             },
+            toggleLegendByIndex: function(graph, line_index, flag) {
+                if (graph.lines[line_index] !== void 0) {
+                    var line = graph.lines[line_index];
+                    line.shown = flag;
+                    drawCheck(line.legendCheck, line.hexColor, line.hexColor2, line.shown, true);
+                    graph.updateLines();
+                    clearSelection();
+                }
+            },
             toggleLegend: function(ev) {
                 var g = ev.currentTarget.graph,
                     line = ev.currentTarget.line,
@@ -1907,7 +1916,11 @@ if (!window.Graph)
 
                 this.zoutLayout.style.display = noData ? 'none' : 'block';
                 this.vScale.style.display = noData ? 'none' : 'block';;
-                this.title.style.display = noData || this.params.no_title ? 'none' : 'block';
+                if (noData || this.params.no_title) {
+                    this.title.style.opacity = 0;
+                } else {
+                    this.title.style.display = 'block';
+                }
 
                 if (this.lines.length == 0) {
                     this.maxTime = incDate(DEF_TIME, DAY, 0);

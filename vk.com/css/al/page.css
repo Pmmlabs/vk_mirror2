@@ -3639,8 +3639,8 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     font-size: 18px;
     font-weight: 700;
     overflow: hidden;
-    max-height: 69px;
-    line-height: 1.28;
+    max-height: 66px;
+    line-height: 1.23;
     padding-right: 25px;
     width: 100%
 }
@@ -3662,7 +3662,7 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 .podcast_snippet__info {
     display: -ms-flexbox;
     display: flex;
-    margin-top: 9px;
+    margin-top: 3px;
     white-space: nowrap;
     overflow: hidden;
     cursor: default
@@ -3677,11 +3677,86 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     text-decoration: none
 }
 
-.podcast_snippet__audio {
+.podcast_snippet__controls {
+    display: -ms-flexbox;
+    display: flex;
     position: absolute;
-    bottom: 8px;
-    left: 8px;
-    right: 4px
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.podcast_snippet__play {
+    position: relative;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 7px 17px 8px 34px;
+    line-height: 15px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: 16px;
+    font-size: 12px;
+    cursor: pointer;
+    outline: none
+}
+
+.podcast_snippet__play:before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 12px;
+    top: 7px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20width%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22m0%200h16v16h-16z%22%20opacity%3D%22.4%22%2F%3E%3Cpath%20d%3D%22m4.89969126%202.98207098%207.80708624%204.50124154c.287074.16551492.3856171.53241068.2201021.81948463-.0527275.09145224-.1286498.16737456-.2201021.22010212l-7.80708624%204.50124153c-.28707395.1655149-.65396972.0669719-.81948463-.2201021-.05254643-.0911381-.08020663-.1944901-.08020663-.2996913v-9.00248305c0-.33137085.26862915-.6.6-.6.10520113%200%20.20855318.0276602.29969126.08020663z%22%20fill%3D%22%23000%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50% / contain
+}
+
+.audio_row__playing .podcast_snippet__play:before {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20width%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22m0%200h16v16h-16z%22%2F%3E%3Cpath%20d%3D%22m5.02555408%203h.94889184c.3566075%200%20.48592199.03713024.61629236.10685308s.2326858.17203827.30240864.30240864.10685308.25968486.10685308.61629236v7.94889182c0%20.3566075-.03713024.485922-.10685308.6162924s-.17203827.2326858-.30240864.3024086c-.13037037.0697229-.25968486.1068531-.61629236.1068531h-.94889184c-.3566075%200-.48592199-.0371302-.61629236-.1068531-.13037037-.0697228-.2326858-.1720382-.30240864-.3024086s-.10685308-.2596849-.10685308-.6162924v-7.94889182c0-.3566075.03713024-.48592199.10685308-.61629236s.17203827-.2326858.30240864-.30240864.25968486-.10685308.61629236-.10685308zm5.00000002%200h.9488918c.3566075%200%20.485922.03713024.6162924.10685308s.2326858.17203827.3024086.30240864c.0697229.13037037.1068531.25968486.1068531.61629236v7.94889182c0%20.3566075-.0371302.485922-.1068531.6162924-.0697228.1303704-.1720382.2326858-.3024086.3024086-.1303704.0697229-.2596849.1068531-.6162924.1068531h-.9488918c-.35660752%200-.48592201-.0371302-.61629238-.1068531-.13037037-.0697228-.2326858-.1720382-.30240864-.3024086s-.10685308-.2596849-.10685308-.6162924v-7.94889182c0-.3566075.03713024-.48592199.10685308-.61629236s.17203827-.2326858.30240864-.30240864.25968486-.10685308.61629238-.10685308z%22%20fill%3D%22%23000%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.podcast_snippet__time {
+    position: relative;
+    color: #939393;
+    font-size: 12.5px;
+    cursor: default
+}
+
+.podcast_snippet.podcast_explicit .podcast_snippet__time:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 11px;
+    height: 11px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2211%22%20viewBox%3D%220%200%2011%2011%22%20width%3D%2211%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22m1%202.50639765v5.9872047c0%20.82993488.66766222%201.50639765%201.4912653%201.50639765h6.0174694c.82872093%200%201.4912653-.6744372%201.4912653-1.50639765v-5.9872047c0-.82993488-.66766222-1.50639765-1.4912653-1.50639765h-6.0174694c-.82872093%200-1.4912653.6744372-1.4912653%201.50639765zm4%202.49360235v-1h2v-1h-2-1v2%201%202h1%202v-1h-2v-1h2v-1zm-5-2.49360235c0-1.38326294%201.10921669-2.50639765%202.4912653-2.50639765h6.0174694c1.3776788%200%202.4912653%201.12593123%202.4912653%202.50639765v5.9872047c0%201.38326294-1.10921669%202.50639765-2.4912653%202.50639765h-6.0174694c-1.3776788%200-2.4912653-1.12593123-2.4912653-2.50639765z%22%20fill%3D%22%23909499%22%2F%3E%3C%2Fsvg%3E') no-repeat 50% / contain
+}
+
+.podcast_snippet.podcast_explicit_no_time .podcast_snippet__info {
+    position: relative;
+    padding-left: 16px;
+    line-height: 17px
+}
+
+.podcast_snippet.podcast_explicit_no_time .podcast_snippet__info:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 11px;
+    height: 11px;
+    min-width: 11px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2211%22%20viewBox%3D%220%200%2011%2011%22%20width%3D%2211%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22m1%202.50639765v5.9872047c0%20.82993488.66766222%201.50639765%201.4912653%201.50639765h6.0174694c.82872093%200%201.4912653-.6744372%201.4912653-1.50639765v-5.9872047c0-.82993488-.66766222-1.50639765-1.4912653-1.50639765h-6.0174694c-.82872093%200-1.4912653.6744372-1.4912653%201.50639765zm4%202.49360235v-1h2v-1h-2-1v2%201%202h1%202v-1h-2v-1h2v-1zm-5-2.49360235c0-1.38326294%201.10921669-2.50639765%202.4912653-2.50639765h6.0174694c1.3776788%200%202.4912653%201.12593123%202.4912653%202.50639765v5.9872047c0%201.38326294-1.10921669%202.50639765-2.4912653%202.50639765h-6.0174694c-1.3776788%200-2.4912653-1.12593123-2.4912653-2.50639765z%22%20fill%3D%22%23909499%22%2F%3E%3C%2Fsvg%3E') no-repeat 50% / contain
 }
 
 .podcast_snippet__fave {
@@ -3745,56 +3820,6 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     margin-right: -3px
 }
 
-.podcast_snippet .audio_podcast ._audio_player__place:before {
-    content: '';
-    background-color: #4b4b4b;
-    margin-right: 80px
-}
-
-.podcast_snippet .audio_podcast ._audio_player__place.has_audio_player .slider_slide {
-    background-color: #4b4b4b
-}
-
-.podcast_snippet .audio_podcast ._audio_player__place.has_audio_player .slider_loading_bar {
-    background-color: #6f6f6f
-}
-
-.podcast_snippet .audio_podcast ._audio_player__place.has_audio_player .slider_amount,
-.podcast_snippet .audio_podcast ._audio_player__place.has_audio_player .slider_handler {
-    background-color: #fff
-}
-
-.podcast_snippet .audio_podcast ._audio_player__place .audio_inline_player_left {
-    padding-right: 12px
-}
-
-.podcast_snippet .audio_podcast .audio_row__play_btn {
-    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M9.846%2016.86c-.467.303-.846.097-.846-.45V7.588c0-.551.38-.752.846-.45l6.91%204.48c.324.21.327.549%200%20.761l-6.91%204.48z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
-    left: 8px
-}
-
-.podcast_snippet .audio_podcast.audio_row__playing .audio_row__play_btn {
-    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M8%207.596c0-.33.277-.596.607-.596h1.786c.335%200%20.607.267.607.596v8.808a.605.605%200%200%201-.607.596H8.607A.602.602%200%200%201%208%2016.404V7.596zm5%200c0-.33.277-.596.607-.596h1.786c.335%200%20.607.267.607.596v8.808a.605.605%200%200%201-.607.596h-1.786a.602.602%200%200%201-.607-.596V7.596z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
-}
-
-.podcast_snippet .audio_podcast .audio_row__duration {
-    color: #909499
-}
-
-.podcast_snippet .audio_podcast.audio_explicit .audio_row__duration:before {
-    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2211%22%20viewBox%3D%220%200%2011%2011%22%20width%3D%2211%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22m263%208.50639765v5.98720475c0%20.8299348.667662%201.5063976%201.491265%201.5063976h6.01747c.828721%200%201.491265-.6744372%201.491265-1.5063976v-5.98720475c0-.82993488-.667662-1.50639765-1.491265-1.50639765h-6.01747c-.828721%200-1.491265.6744372-1.491265%201.50639765zm4%202.49360235v-1h2v-1h-2-1v2%201%202h1%202v-1h-2v-1h2v-1zm-5-2.49360235c0-1.38326294%201.109217-2.50639765%202.491265-2.50639765h6.01747c1.377678%200%202.491265%201.12593123%202.491265%202.50639765v5.98720475c0%201.3832629-1.109217%202.5063976-2.491265%202.5063976h-6.01747c-1.377678%200-2.491265-1.1259312-2.491265-2.5063976z%22%20fill%3D%22%23909499%22%20transform%3D%22translate(-262%20-6)%22%2F%3E%3C%2Fsvg%3E')
-}
-
-.podcast_snippet .audio_podcast .slider_hint {
-    background-color: #bfc0c0;
-    color: #000;
-    border-radius: 4px
-}
-
-.podcast_snippet .audio_podcast .slider_hint:after {
-    border-top-color: #bfc0c0
-}
-
 .post .podcast_snippet,
 .wl_post .podcast_snippet {
     margin: 15px 0 5px
@@ -3828,19 +3853,19 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 .im_msg_media .podcast_snippet__title {
     font-size: 16px;
     font-weight: 700;
-    max-height: 38px;
+    max-height: 36px;
     line-height: 1.13;
     padding-right: 21px
 }
 
 .im_msg_media .podcast_snippet__info {
-    margin-top: 4px
+    margin-top: 1px
 }
 
-.im_msg_media .podcast_snippet__audio {
-    bottom: 4px;
-    left: 4px;
-    right: 0
+.im_msg_media .podcast_snippet__controls {
+    bottom: 12px;
+    left: 12px;
+    right: 12px
 }
 
 .im_msg_media .podcast_snippet .ui_actions_menu_icons {

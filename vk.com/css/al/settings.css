@@ -75,7 +75,7 @@
 
 .settings_line {
     margin: 0;
-    padding: 14px 0 15px;
+    padding: 15px 0 14px;
     border-bottom: 1px solid #e7e8ec
 }
 
@@ -90,9 +90,9 @@
 .settings_label {
     color: #656565;
     width: 145px;
-    padding: 5px 10px 6px 0;
+    padding: 6px 10px 6px 0;
     float: left;
-    line-height: 17px
+    line-height: 16px
 }
 
 .settings_labeled {
