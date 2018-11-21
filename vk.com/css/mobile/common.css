@@ -12331,6 +12331,80 @@ a.Popup__headerCorner {
     pointer-events: none
 }
 
+.FloatBtn {
+    height: 24px;
+    visibility: hidden;
+    position: fixed;
+    color: #fff;
+    background-color: #528bcc;
+    padding: 6px 6px 6px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+    border: 0;
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    border-radius: 18px;
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .2);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .2);
+    z-index: 10;
+    left: 50%;
+    bottom: 0;
+    -webkit-transition: visibility 0.15s linear, -webkit-transform 0.15s linear;
+    transition: visibility 0.15s linear, -webkit-transform 0.15s linear;
+    -moz-transition: transform 0.15s linear, visibility 0.15s linear, -moz-transform 0.15s linear;
+    -o-transition: transform 0.15s linear, visibility 0.15s linear, -o-transform 0.15s linear;
+    transition: transform 0.15s linear, visibility 0.15s linear;
+    transition: transform 0.15s linear, visibility 0.15s linear, -webkit-transform 0.15s linear, -moz-transform 0.15s linear, -o-transform 0.15s linear;
+    -webkit-transform: translate(-50%, 36px);
+    -moz-transform: translate(-50%, 36px);
+    -ms-transform: translate(-50%, 36px);
+    -o-transform: translate(-50%, 36px);
+    transform: translate(-50%, 36px);
+    outline: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent
+}
+
+._hover .FloatBtn:active,
+._hover .FloatBtn:hover,
+._touch .FloatBtn.active,
+._touch .FloatBtn.hover {
+    background: #4e83bf
+}
+
+.FloatBtn_open {
+    visibility: visible;
+    -webkit-transform: translate(-50%, -12px);
+    -moz-transform: translate(-50%, -12px);
+    -ms-transform: translate(-50%, -12px);
+    -o-transform: translate(-50%, -12px);
+    transform: translate(-50%, -12px)
+}
+
+.FloatBtn__text {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 24px
+}
+
+.FloatBtn__close {
+    display: inline-block;
+    vertical-align: super;
+    margin-left: 8px;
+    width: 24px;
+    height: 24px;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    background-image: url(/images/mobile/button_close.png)
+}
+
+.vk_2x .FloatBtn__close {
+    background-image: url(/images/mobile/button_close_2x.png)
+}
+
 .Label {
     font-size: 15px;
     color: #909499;
@@ -32674,7 +32748,9 @@ body.apps_settingsPageBody {
 .r .post_item.comment_item .audio_item,
 .r .wall_item .post_item.comment_item .audio_item {
     margin-left: 0;
-    margin-right: 0
+    margin-right: 0;
+    display: inline-block;
+    width: 100%
 }
 
 .vk__page_mailMsg.msg__text {

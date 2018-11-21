@@ -2140,19 +2140,6 @@ var Helpdesk = {
             }
         })
     },
-    dataRequestCreateArchive: function(e, t) {
-        var s = {
-                act: "a_data_request_create_archive",
-                ticket_id: e,
-                hash: t
-            },
-            o = function(e) {
-                showDoneBox(e)
-            };
-        ajax.post("/helpdesk", s, {
-            onDone: o
-        })
-    },
     setCustomAttachCallBacks: function(e, t) {
         cur.addScreenShot = function() {
             Helpdesk.choosePhotoBox(e, cur.selectedSection, null, null)

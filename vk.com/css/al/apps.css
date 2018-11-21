@@ -3291,11 +3291,11 @@ a.page_block_header:hover .apps_cat_header_link:after {
 
 .apps_i_content--vk-app .apps_i_slider_thumbs_inner {
     height: auto;
-    max-height: 400px
+    max-height: 450px
 }
 
 .apps_i_content--vk-app .apps_i_slider_thumb {
-    max-height: 400px;
+    max-height: 450px;
     height: auto;
     min-width: 225px
 }
@@ -3303,7 +3303,7 @@ a.page_block_header:hover .apps_cat_header_link:after {
 .apps_i_content--vk-app .apps_i_slider_thumb>img {
     width: 225px;
     max-width: 225px;
-    max-height: 400px;
+    max-height: 450px;
     vertical-align: bottom
 }
 

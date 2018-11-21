@@ -2613,6 +2613,11 @@ var Wall = {
             FullWall.updateSummary(cur.pgCount);
         }
 
+        if (cur.posterWpe && cur.posterWpeSend) {
+            cur.posterWpe.closePoster(null, true);
+            cur.posterWpe.destroy();
+        }
+
         if (postponed) {
             val('page_postponed_posts', postponed);
             wall.postponeUpdateCount();

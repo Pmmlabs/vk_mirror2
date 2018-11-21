@@ -8328,6 +8328,7 @@ AdsTargetingEditor.prototype.selectCriteriaPreset = function(criteriaPreset, cri
         switch (criterionName) {
             case 'geo_near':
                 if (criterionValue) {
+                    this.onCriterionUpdate('geo_type', 1, false, true);
                     this.criteria.geo_type.ui_geo_type_points.checked(true);
                 }
                 if (this.criteria.geo_near.geo_editor && this.criteria.geo_near.geo_editor.inited) {
@@ -8337,6 +8338,7 @@ AdsTargetingEditor.prototype.selectCriteriaPreset = function(criteriaPreset, cri
             case 'cities':
             case 'cities_not':
                 if (criterionValue) {
+                    this.onCriterionUpdate('geo_type', 0, false, true);
                     this.criteria.geo_type.ui_geo_type_regions.checked(true);
                 }
                 // no break
@@ -8370,6 +8372,7 @@ AdsTargetingEditor.prototype.selectCriteriaPreset = function(criteriaPreset, cri
 
             case 'country':
                 if (criterionValue) {
+                    this.onCriterionUpdate('geo_type', 0, false, true);
                     this.criteria.geo_type.ui_geo_type_regions.checked(true);
                 }
                 if (this.criteria[criterionName].uiInited) {
@@ -8782,15 +8785,15 @@ AdsTargetingEditor.prototype.getCriteria = function() {
         criteria[criterionName] = this.criteria[criterionName].value;
     }
     if (this.criteria.geo_type.value == 1) {
-        delete criteria.country;
-        delete criteria.cities;
-        delete criteria.cities_not;
-        delete criteria.districts;
-        delete criteria.stations;
-        delete criteria.streets;
+        criteria.country = '';
+        criteria.cities = '';
+        criteria.cities_not = '';
+        criteria.districts = '';
+        criteria.stations = '';
+        criteria.streets = '';
     } else if (this.criteria.geo_type.value == 0) {
-        delete criteria.geo_near;
-        delete criteria.geo_mask;
+        criteria.geo_near = '';
+        criteria.geo_mask = '';
     }
 
     if (this.criteria.criteria_presets.confirmed) {

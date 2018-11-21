@@ -355,7 +355,7 @@ var Join = {
 
                 val(pref, code);
                 if (ge('join_called_phone_row')) {
-                    val(geByClass1('join_text', 'content'), getLang(inArray(v[0], cur.calledPhoneCountries) ? 'join_about_phone_with_call' : 'join_about_phone'));
+                    val(geByClass1('join_text', 'content'), getLang(!inArray(v[0], cur.calledPhoneExcludeCountries) ? 'join_about_phone_with_call' : 'join_about_phone'));
                 }
                 Join.updatePolicyLink(cur.uiPhoneCountry.val());
             }
