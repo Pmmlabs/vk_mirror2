@@ -42,10 +42,8 @@
         return s.d(t, "a", t), t
     }, s.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, s.p = "", s(s.s = 0)
+    }, s.p = "", s(s.s = 1)
 }([function(e, t, s) {
-    e.exports = s(1)
-}, function(e, t, s) {
     "use strict";
     s.r(t);
     var n = function() {
@@ -386,7 +384,8 @@
             var e = intval(val(this.paymentTotalBudgetInput).replace(/\D+/g, ""));
             e < intval(this.options.payment_min_amount) ? (showTooltip(this.paymentTotalBudgetInput, {
                 text: langNumeric(this.options.payment_min_amount, getLang("ads_minimum_payment", "raw"), !0),
-                dir: "auto"
+                dir: "auto",
+                shift: [0, 6, 0]
             }), addClass(this.paymentSystemsElement, this.classname("payments-systems_disabled"))) : removeClass(this.paymentSystemsElement, this.classname("payments-systems_disabled")), val(this.paymentTotalBudgetInput, stripHTML(langNumeric(e, "%s", !0))), this.paymentAmountCurrencyElement.innerHTML = langNumeric(e, getLang("global_money_amount_rub_text", "raw"), !0)
         }, e.prototype.updateTotalBudget = function() {
             var e = this.durationDropdown.val() * this.dailyLimitDropdown.val();
@@ -934,4 +933,6 @@
     try {
         stManager.done(jsc("web/ads_edit_easy.js"))
     } catch (e) {}
+}, function(e, t, s) {
+    e.exports = s(0)
 }]);
