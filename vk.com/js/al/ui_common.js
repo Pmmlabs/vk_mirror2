@@ -614,24 +614,25 @@ var uiTabs = {
             var e = uiSearch._getFiltersPane(t),
                 i = data(e, "cur_filters") || {},
                 s = geByClass1("ui_search_filters", e);
-            if (isEmpty(i)) removeClass(e, "expanded"), setTimeout(function() {
-                s.innerHTML = "", hide(e)
-            }, 200);
-            else {
-                show(e), addClassDelayed(e, "expanded");
-                var o = [],
-                    n = {},
-                    r = 0;
-                each(i, function(t, e) {
-                    var i = !1,
-                        s = !1,
-                        l = t.match(/(.*?)_([^_]+)$/),
-                        a = l && l[2] || !1;
-                    l = l && l[1] || !1, l && (void 0 !== n[l] && "from" === a ? s = n[l] : void 0 !== n[l] && (i = n[l] + 1), n[l] = r);
-                    var h = '<div class="token" id="token' + t + '" data-id="' + t + '">                          <div class="token_title">' + replaceEntities(clean(e)) + '</div>                          <div class="token_del"></div>                        </div>';
-                    s !== !1 ? o.splice(s, 0, h) : i !== !1 ? o.splice(i, 0, h) : o.push(h), r++
-                }), s.innerHTML = o.join("")
-            }
+            if (s)
+                if (isEmpty(i)) removeClass(e, "expanded"), setTimeout(function() {
+                    s.innerHTML = "", hide(e)
+                }, 200);
+                else {
+                    show(e), addClassDelayed(e, "expanded");
+                    var o = [],
+                        n = {},
+                        r = 0;
+                    each(i, function(t, e) {
+                        var i = !1,
+                            s = !1,
+                            l = t.match(/(.*?)_([^_]+)$/),
+                            a = l && l[2] || !1;
+                        l = l && l[1] || !1, l && (void 0 !== n[l] && "from" === a ? s = n[l] : void 0 !== n[l] && (i = n[l] + 1), n[l] = r);
+                        var h = '<div class="token" id="token' + t + '" data-id="' + t + '">                          <div class="token_title">' + replaceEntities(clean(e)) + '</div>                          <div class="token_del"></div>                        </div>';
+                        s !== !1 ? o.splice(s, 0, h) : i !== !1 ? o.splice(i, 0, h) : o.push(h), r++
+                    }), s.innerHTML = o.join("")
+                }
         }
     },
     uiScrollBox = {

@@ -189,11 +189,15 @@ var Helpdesk = {
     goTab: function(e, t) {
         return inArray(nav.objLoc.act || "", ["history", "all"]) && nav.objLoc.q && (e.href += "&q=" + encodeURIComponent(nav.objLoc.q)), uiTabs.goTab(e, t, !0)
     },
-    switchSubTab: function(e, t, s) {
-        return checkEvent(s) || hasClass(e, "active") ? !1 : (each(geByClass("tickets_subtab1", ge("tickets_subtabs")), function(e, t) {
-            removeClass(t, "active")
-        }), addClass(e, "active"), nav.go(t, s))
+    setTasksSearchByAll: function(e) {
+        ajax.post("helpdesk?act=a_set_tasks_search_all", {
+            enabled: isChecked(e) ? 1 : 0
+        }, {
+            showProgress: addClass.pbind(e, "disabled"),
+            hideProgress: removeClass.pbind(e, "disabled")
+        })
     },
+    tryUpdateBugsSearch: function() {},
     addBug: function(e) {
         var t = Helpdesk._getCheckedTicketsList();
         return !showBox("helpdesk?act=add_bug_box", {
@@ -989,9 +993,9 @@ var Helpdesk = {
         e && " " == e[e.length - 1] && (e[e.length - 1] = "_");
         var t = ge("add_bug_search_input");
         ajax.post("helpdesk?act=a_get_bugs", {
-            q: e
+            q: e,
+            by_all: isChecked("add_bug_search_by_all") ? 1 : 0
         }, {
-            cache: 1,
             showProgress: uiSearch.showProgress.pbind(t),
             hideProgress: uiSearch.hideProgress.pbind(t),
             onDone: function(e, t) {
@@ -1001,6 +1005,11 @@ var Helpdesk = {
                 })), val("tickets_add_button", t)
             }
         })
+    },
+    toggleAddBugSearchType: function(e) {
+        Helpdesk.setTasksSearchByAll(e);
+        var t = trim(val("add_bug_search_input"));
+        "" !== t && Helpdesk.searchAdd(t)
     },
     enterAddBugSearch: function(e, t) {
         clearTimeout(cur.addTimeout), t != cur.searchStr && (cur.searchStr = t, Helpdesk.searchAdd(cur.searchStr))
@@ -1101,14 +1110,14 @@ var Helpdesk = {
                         }), nav.setLoc(nav.objLoc);
                         break;
                     case "history":
-                        delete nav.objLoc.offset, val("tickets_replies", cont), query.q ? nav.objLoc.q = query.q : delete nav.objLoc.q, script && eval(script), nav.setLoc(nav.objLoc)
+                        delete nav.objLoc.offset, val("tickets_replies", cont), query.q ? nav.objLoc.q = query.q : delete nav.objLoc.q, script && eval(script), nav.setLoc(nav.objLoc);
                 }
             }
         };
         "all_search" === searchEl && extend(options, {
             showProgress: uiSearch.showProgress.pbind("all_search"),
             hideProgress: uiSearch.hideProgress.pbind("all_search")
-        }), ajax.post("helpdesk", query, options);
+        }), ajax.post("helpdesk", query, options)
     },
     restoreDraft: function(e) {
         var t = ge("tickets_reply"),

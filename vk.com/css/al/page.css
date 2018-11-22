@@ -10259,7 +10259,6 @@ div.page_cover_image .ui_actions_menu_icons {
 
 .like_share_ava.wdd_imgs .wdd_img_full {
     float: right;
-    margin: 2px 3px 0 0;
     box-shadow: none
 }
 
@@ -10267,6 +10266,7 @@ div.page_cover_image .ui_actions_menu_icons {
     border-radius: 50%
 }
 
+.like_share_ava.wdd_imgs .wdd_img_full .wdd_img,
 .like_share_ava.wdd_imgs .wdd_img_half .wdd_img,
 .like_share_ava.wdd_imgs .wdd_img_tiny .wdd_img {
     width: 36px;
@@ -10282,6 +10282,7 @@ div.page_cover_image .ui_actions_menu_icons {
     visibility: hi
 }
 
+.like_share_ava.wdd_imgs .wdd_img_full,
 .like_share_ava.wdd_imgs .wdd_img_half,
 .like_share_ava.wdd_imgs .wdd_img_tiny {
     border-radius: 50%!important;
@@ -10294,7 +10295,6 @@ div.page_cover_image .ui_actions_menu_icons {
 }
 
 .like_share_cont {
-    padding: 7px 0 0;
     position: relative;
     text-align: left
 }
@@ -10465,6 +10465,29 @@ div.page_cover_image .ui_actions_menu_icons {
 
 .like_share_widget_preview {
     margin: 0 auto
+}
+
+.like_share_post_checkbox {
+    float: right;
+    -o-transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease
+}
+
+.like_share_post_checkbox.like_share_post_checkbox_hidden {
+    opacity: 0;
+    pointer-events: none
+}
+
+.like_share_friends_only {
+    margin-right: 12px;
+    float: right;
+    -o-transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease
+}
+
+.like_share_friends_only.like_share_friends_only_hidden {
+    opacity: 0;
+    pointer-events: none
 }
 
 .composer_wdd {

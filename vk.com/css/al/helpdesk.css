@@ -135,14 +135,17 @@ body.body_helpdesk_small_sb .left_menu_nav {
     margin-bottom: 0
 }
 
-.tickets_add_search {
+.helpdesk_add_search {
     padding: 10px 25px;
-    background: #f7f8fa;
-    text-align: center
+    background: #f7f8fa
 }
 
-.tickets_add_search .ui_search {
+.helpdesk_add_search .ui_search {
     border: 1px solid #d3d9de
+}
+
+.helpdesk_add_search .checkbox {
+    margin-top: 8px
 }
 
 .tickets_add_content {

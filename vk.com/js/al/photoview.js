@@ -121,7 +121,7 @@ var Photoview = {
             }))
         },
         genUrl: function(o, e) {
-            return e.match(/\.[a-z]{3}$/i) || (e += ".jpg"), e.match(/https?:\/\//i) ? e : (o || "").replace(/\/[a-z0-9_:\.]*$/i, "") + "/" + e
+            return e ? (e.match(/\.[a-z]{3}$/i) || (e += ".jpg"), e.match(/https?:\/\//i) ? e : (o || "").replace(/\/[a-z0-9_:\.]*$/i, "") + "/" + e) : ""
         },
         genData: function(o, e) {
             for (var t, r, a = "x" == e ? 3 : "y" == e ? 2 : "z" == e ? 1 : 0, i = (cur.shownAs1AprilEditor ? Photoview.photoSize1April : ["w", "z", "y", "x"]).slice(a), p = 0; 4 - a > p; ++p) {

@@ -1154,6 +1154,11 @@ a.settings_blb_title {
     -moz-osx-font-smoothing: auto
 }
 
+.settings_history_alt_row .hint_icon {
+    top: -1px;
+    margin-left: 5px
+}
+
 .settings_history_row_deleted {
     opacity: 0.4;
     filter: alpha(opacity=40)

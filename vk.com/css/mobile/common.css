@@ -12575,7 +12575,8 @@ a.Popup__headerCorner {
     top: 1px
 }
 
-.Control__icon:before {
+.Control__icon:before,
+.vk__page_publish .radio_items .ri_radio {
     content: '';
     display: block;
     width: 24px;
@@ -12588,7 +12589,8 @@ a.Popup__headerCorner {
     background-image: url('/images/mobile/checkboxes.png?4')
 }
 
-.vk_2x .Control__icon:before {
+.vk_2x .Control__icon:before,
+.vk_2x .vk__page_publish .radio_items .ri_radio {
     background-image: url('/images/mobile/checkboxes_2x.png?4')
 }
 
@@ -14838,6 +14840,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .audioSearch__buttonContainer,
 .BookmarksSearch .row_table_last_column,
 .m .vk__page_chatAdd .basis__content .row_table_last_column,
+.vk__page_publish .pcont .qsearch .row_table_last_column,
 .vk__page_redesign .filter_peer_wrap .row_table_last_column {
     display: none
 }
@@ -21396,6 +21399,313 @@ figure[data-type="102"] .article_object_video_play {
     width: 100%;
     -o-object-fit: cover;
     object-fit: cover
+}
+
+#psc_search,
+#psm_search_items,
+#psm_selected,
+#publish_items_selected {
+    padding: 6px 0 0
+}
+
+#psc_search.upanel,
+#psm_search_items.upanel,
+#psm_selected.upanel,
+#publish_items_selected.upanel {
+    padding: 0
+}
+
+#psc_search .inline_fit_item,
+#psc_search .inline_item,
+#psc_search .simple_fit_item,
+#psc_search .simple_item,
+#psm_search_items .inline_fit_item,
+#psm_search_items .inline_item,
+#psm_search_items .simple_fit_item,
+#psm_search_items .simple_item,
+#psm_selected .inline_fit_item,
+#psm_selected .inline_item,
+#psm_selected .simple_fit_item,
+#psm_selected .simple_item,
+#publish_items_selected .inline_fit_item,
+#publish_items_selected .inline_item,
+#publish_items_selected .simple_fit_item,
+#publish_items_selected .simple_item {
+    padding: 6px 0;
+    border: 0;
+    position: relative;
+    overflow: hidden
+}
+
+.vk_flex_yes #psc_search .inline_fit_item,
+.vk_flex_yes #psc_search .inline_item,
+.vk_flex_yes #psc_search .simple_fit_item,
+.vk_flex_yes #psc_search .simple_item,
+.vk_flex_yes #psm_search_items .inline_fit_item,
+.vk_flex_yes #psm_search_items .inline_item,
+.vk_flex_yes #psm_search_items .simple_fit_item,
+.vk_flex_yes #psm_search_items .simple_item,
+.vk_flex_yes #psm_selected .inline_fit_item,
+.vk_flex_yes #psm_selected .inline_item,
+.vk_flex_yes #psm_selected .simple_fit_item,
+.vk_flex_yes #psm_selected .simple_item,
+.vk_flex_yes #publish_items_selected .inline_fit_item,
+.vk_flex_yes #publish_items_selected .inline_item,
+.vk_flex_yes #publish_items_selected .simple_fit_item,
+.vk_flex_yes #publish_items_selected .simple_item {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    min-width: 0
+}
+
+#psc_search .inline_fit_item .ii_img,
+#psc_search .inline_item .ii_img,
+#psc_search .si_img,
+#psc_search .si_iwrap,
+#psc_search .si_thumb,
+#psm_search_items .inline_fit_item .ii_img,
+#psm_search_items .inline_item .ii_img,
+#psm_search_items .si_img,
+#psm_search_items .si_iwrap,
+#psm_search_items .si_thumb,
+#psm_selected .inline_fit_item .ii_img,
+#psm_selected .inline_item .ii_img,
+#psm_selected .si_img,
+#psm_selected .si_iwrap,
+#psm_selected .si_thumb,
+#publish_items_selected .inline_fit_item .ii_img,
+#publish_items_selected .inline_item .ii_img,
+#publish_items_selected .si_img,
+#publish_items_selected .si_iwrap,
+#publish_items_selected .si_thumb {
+    width: 44px;
+    height: 44px;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    margin: auto
+}
+
+#psc_search .inline_fit_item .ii_body,
+#psc_search .inline_item .ii_body,
+#psc_search .si_body,
+#psm_search_items .inline_fit_item .ii_body,
+#psm_search_items .inline_item .ii_body,
+#psm_search_items .si_body,
+#psm_selected .inline_fit_item .ii_body,
+#psm_selected .inline_item .ii_body,
+#psm_selected .si_body,
+#publish_items_selected .inline_fit_item .ii_body,
+#publish_items_selected .inline_item .ii_body,
+#publish_items_selected .si_body {
+    min-height: 44px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    min-width: 0;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative
+}
+
+#psc_search .inline_fit_item .ii_owner,
+#psc_search .inline_item .ii_owner,
+#psc_search .si_body,
+#psm_search_items .inline_fit_item .ii_owner,
+#psm_search_items .inline_item .ii_owner,
+#psm_search_items .si_body,
+#psm_selected .inline_fit_item .ii_owner,
+#psm_selected .inline_item .ii_owner,
+#psm_selected .si_body,
+#publish_items_selected .inline_fit_item .ii_owner,
+#publish_items_selected .inline_item .ii_owner,
+#publish_items_selected .si_body {
+    margin: 0 0 0 56px
+}
+
+#psc_search .si_body .top_author,
+#psc_search .si_body .verified,
+#psm_search_items .si_body .top_author,
+#psm_search_items .si_body .verified,
+#psm_selected .si_body .top_author,
+#psm_selected .si_body .verified,
+#publish_items_selected .si_body .top_author,
+#publish_items_selected .si_body .verified {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto
+}
+
+#psc_search .inline_fit_item .ii_owner,
+#psc_search .inline_item .ii_owner,
+#psc_search .si_owner,
+#psm_search_items .inline_fit_item .ii_owner,
+#psm_search_items .inline_item .ii_owner,
+#psm_search_items .si_owner,
+#psm_selected .inline_fit_item .ii_owner,
+#psm_selected .inline_item .ii_owner,
+#psm_selected .si_owner,
+#publish_items_selected .inline_fit_item .ii_owner,
+#publish_items_selected .inline_item .ii_owner,
+#publish_items_selected .si_owner {
+    font-weight: 400;
+    font-size: 16px;
+    color: #222;
+    line-height: 20px;
+    padding: 3px 20px 3px 0;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    -webkit-align-self: flex-start;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+    max-width: 100%;
+    max-width: -webkit-calc(100% - 44px);
+    max-width: -moz-calc(100% - 44px);
+    max-width: calc(100% - 44px);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+#psc_search .si_label,
+#psc_search .si_slabel,
+#psc_search .si_status,
+#psm_search_items .si_label,
+#psm_search_items .si_slabel,
+#psm_search_items .si_status,
+#psm_selected .si_label,
+#psm_selected .si_slabel,
+#psm_selected .si_status,
+#publish_items_selected .si_label,
+#publish_items_selected .si_slabel,
+#publish_items_selected .si_status {
+    font-size: 13px;
+    line-height: 16px;
+    color: #909499;
+    padding: 0 0 4px;
+    margin: -2px 0 0;
+    overflow: hidden;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis
+}
+
+#psc_search .si_status,
+#psm_search_items .si_status,
+#psm_selected .si_status,
+#publish_items_selected .si_status {
+    color: #222
+}
+
+#psc_search .lvi,
+#psm_search_items .lvi,
+#psm_selected .lvi,
+#publish_items_selected .lvi {
+    position: absolute;
+    left: 32px;
+    margin: auto;
+    top: 33px;
+    bottom: 0;
+    height: 12px
+}
+
+#psc_search .lvi:before,
+#psm_search_items .lvi:before,
+#psm_selected .lvi:before,
+#publish_items_selected .lvi:before {
+    background-color: #89c475;
+    border: solid 2px #fff;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    height: 8px;
+    width: 8px
+}
+
+#psc_search .lvi.mlvi,
+#psc_search .lvi.vkmobilelvi,
+#psm_search_items .lvi.mlvi,
+#psm_search_items .lvi.vkmobilelvi,
+#psm_selected .lvi.mlvi,
+#psm_selected .lvi.vkmobilelvi,
+#publish_items_selected .lvi.mlvi,
+#publish_items_selected .lvi.vkmobilelvi {
+    background: none;
+    padding: 0;
+    left: 28px;
+    top: 30px
+}
+
+#psc_search .lvi.mlvi:before,
+#psc_search .lvi.vkmobilelvi:before,
+#psm_search_items .lvi.mlvi:before,
+#psm_search_items .lvi.vkmobilelvi:before,
+#psm_selected .lvi.mlvi:before,
+#psm_selected .lvi.vkmobilelvi:before,
+#publish_items_selected .lvi.mlvi:before,
+#publish_items_selected .lvi.vkmobilelvi:before {
+    border: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    background-color: transparent
+}
+
+#psc_search .inline_item,
+#psm_search_items .inline_item,
+#psm_selected .inline_item,
+#publish_items_selected .inline_item {
+    border: 0
+}
+
+#psc_search .inline_item_reset .ii_body,
+#psm_search_items .inline_item_reset .ii_body,
+#psm_selected .inline_item_reset .ii_body,
+#publish_items_selected .inline_item_reset .ii_body {
+    background: none
+}
+
+#psc_search .inline_item_reset .ii_body:before,
+#psm_search_items .inline_item_reset .ii_body:before,
+#psm_selected .inline_item_reset .ii_body:before,
+#publish_items_selected .inline_item_reset .ii_body:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 4px;
+    margin: auto
 }
 
 .basis__headerWithUser {
@@ -28795,6 +29105,22 @@ body.apps_settingsPageBody {
 
 #au_search_items .service_msg_box+.slim_header,
 #au_search_items .slim_header,
+#psc_search .inline_fit_item,
+#psc_search .inline_item,
+#psc_search .simple_fit_item,
+#psc_search .simple_item,
+#psm_search_items .inline_fit_item,
+#psm_search_items .inline_item,
+#psm_search_items .simple_fit_item,
+#psm_search_items .simple_item,
+#psm_selected .inline_fit_item,
+#psm_selected .inline_item,
+#psm_selected .simple_fit_item,
+#psm_selected .simple_item,
+#publish_items_selected .inline_fit_item,
+#publish_items_selected .inline_item,
+#publish_items_selected .simple_fit_item,
+#publish_items_selected .simple_item,
 .ArtistPage__header,
 .Audio,
 .audioPage__count,
@@ -28874,7 +29200,9 @@ body.apps_settingsPageBody {
 .r .wi_buttons,
 .r .wi_buttons+.pi_header,
 .r .wi_head,
-.Socials {
+.Socials,
+.vk__page_publish .cp_attached_post .BookmarksStar,
+.vk__page_publish .head_panel {
     margin: 0 12px
 }
 
@@ -28890,6 +29218,22 @@ body.apps_settingsPageBody {
 @media (max-width: 319px) {
     #au_search_items .service_msg_box+.slim_header,
     #au_search_items .slim_header,
+    #psc_search .inline_fit_item,
+    #psc_search .inline_item,
+    #psc_search .simple_fit_item,
+    #psc_search .simple_item,
+    #psm_search_items .inline_fit_item,
+    #psm_search_items .inline_item,
+    #psm_search_items .simple_fit_item,
+    #psm_search_items .simple_item,
+    #psm_selected .inline_fit_item,
+    #psm_selected .inline_item,
+    #psm_selected .simple_fit_item,
+    #psm_selected .simple_item,
+    #publish_items_selected .inline_fit_item,
+    #publish_items_selected .inline_item,
+    #publish_items_selected .simple_fit_item,
+    #publish_items_selected .simple_item,
     .ArtistPage__header,
     .Audio,
     .audioPage__count,
@@ -28969,7 +29313,9 @@ body.apps_settingsPageBody {
     .r .wi_buttons,
     .r .wi_buttons+.pi_header,
     .r .wi_head,
-    .Socials {
+    .Socials,
+    .vk__page_publish .cp_attached_post .BookmarksStar,
+    .vk__page_publish .head_panel {
         margin: 0 8px
     }
     .Post__thumbed,
@@ -28985,6 +29331,22 @@ body.apps_settingsPageBody {
 @media (min-width: 400px) {
     #au_search_items .service_msg_box+.slim_header,
     #au_search_items .slim_header,
+    #psc_search .inline_fit_item,
+    #psc_search .inline_item,
+    #psc_search .simple_fit_item,
+    #psc_search .simple_item,
+    #psm_search_items .inline_fit_item,
+    #psm_search_items .inline_item,
+    #psm_search_items .simple_fit_item,
+    #psm_search_items .simple_item,
+    #psm_selected .inline_fit_item,
+    #psm_selected .inline_item,
+    #psm_selected .simple_fit_item,
+    #psm_selected .simple_item,
+    #publish_items_selected .inline_fit_item,
+    #publish_items_selected .inline_item,
+    #publish_items_selected .simple_fit_item,
+    #publish_items_selected .simple_item,
     .ArtistPage__header,
     .Audio,
     .audioPage__count,
@@ -29064,7 +29426,9 @@ body.apps_settingsPageBody {
     .r .wi_buttons,
     .r .wi_buttons+.pi_header,
     .r .wi_head,
-    .Socials {
+    .Socials,
+    .vk__page_publish .cp_attached_post .BookmarksStar,
+    .vk__page_publish .head_panel {
         margin: 0 16px
     }
 }
@@ -29523,7 +29887,6 @@ body.apps_settingsPageBody {
 }
 
 .r .vk__page_feed .slim_header,
-.r .vk__page_publish .slim_header,
 .r .vk__page_singlePost .slim_header {
     padding: 8px 12px;
     color: #426997;
@@ -29533,7 +29896,6 @@ body.apps_settingsPageBody {
 
 @media (max-width: 319px) {
     .r .vk__page_feed .slim_header,
-    .r .vk__page_publish .slim_header,
     .r .vk__page_singlePost .slim_header {
         padding: 5px 8px;
         font-size: 13px
@@ -33007,6 +33369,10 @@ body.apps_settingsPageBody {
     margin-top: -3px
 }
 
+#psc_search .lvi,
+#psm_search_items .lvi,
+#psm_selected .lvi,
+#publish_items_selected .lvi,
 .BookmarksItem .ai_menu_toggle_button,
 .Icon,
 .m .vk__page_chatAdd .basis .lvi.mlvi,
@@ -33018,6 +33384,14 @@ body.apps_settingsPageBody {
     display: block
 }
 
+#psc_search .inline_item_reset .ii_body:before,
+#psc_search .lvi:before,
+#psm_search_items .inline_item_reset .ii_body:before,
+#psm_search_items .lvi:before,
+#psm_selected .inline_item_reset .ii_body:before,
+#psm_selected .lvi:before,
+#publish_items_selected .inline_item_reset .ii_body:before,
+#publish_items_selected .lvi:before,
 .BookmarksItem .ai_menu_toggle_button:before,
 .BookmarksItem .BookmarksItem_compact .mlt_thumb_wrap:before,
 .BookmarksItem .mlt_no_photo:after,
@@ -33029,6 +33403,7 @@ body.apps_settingsPageBody {
 .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"]:before,
 .OwnerColumn__online:before,
 .OwnerRow__online:before,
+.vk__page_publish .pcont .qs_field_wrap:after,
 .vk__page_redesign .basis .ii_btn:before {
     content: '';
     display: block;
@@ -33046,9 +33421,12 @@ body.apps_settingsPageBody {
 .Icon_close,
 .Icon_dots,
 .Icon_filters,
+.Icon_gear,
 .Icon_labels,
+.Icon_man,
 .Icon_msg,
 .Icon_ok,
+.Icon_pencil,
 .Icon_reveal {
     width: 44px;
     height: 44px
@@ -33062,9 +33440,12 @@ body.apps_settingsPageBody {
 .Icon_close:before,
 .Icon_dots:before,
 .Icon_filters:before,
+.Icon_gear:before,
 .Icon_labels:before,
+.Icon_man:before,
 .Icon_msg:before,
 .Icon_ok:before,
+.Icon_pencil:before,
 .Icon_reveal:before {
     width: 44px;
     height: 44px;
@@ -33079,9 +33460,12 @@ body.apps_settingsPageBody {
 .vk_2x .Icon_close:before,
 .vk_2x .Icon_dots:before,
 .vk_2x .Icon_filters:before,
+.vk_2x .Icon_gear:before,
 .vk_2x .Icon_labels:before,
+.vk_2x .Icon_man:before,
 .vk_2x .Icon_msg:before,
 .vk_2x .Icon_ok:before,
+.vk_2x .Icon_pencil:before,
 .vk_2x .Icon_reveal:before {
     background-image: url('/images/mobile/skins/icon/header_2x.png?5')
 }
@@ -33114,6 +33498,18 @@ body.apps_settingsPageBody {
 
 .Icon_bell:before {
     background-position: 0 -230px
+}
+
+.Icon_gear:before {
+    background-position: 0 -422px
+}
+
+.Icon_man:before {
+    background-position: 0 -466px
+}
+
+.Icon_pencil:before {
+    background-position: 0 -510px
 }
 
 .Icon_close:before {
@@ -33236,6 +33632,10 @@ body.apps_settingsPageBody {
     height: 24px
 }
 
+#psc_search .inline_item_reset .ii_body:before,
+#psm_search_items .inline_item_reset .ii_body:before,
+#psm_selected .inline_item_reset .ii_body:before,
+#publish_items_selected .inline_item_reset .ii_body:before,
 .BookmarksItem_article .ai_menu_toggle_button:before,
 .BookmarksItem_narrative .ai_menu_toggle_button:before,
 .BookmarksItem_post .ai_menu_toggle_button:before,
@@ -33288,6 +33688,10 @@ body.apps_settingsPageBody {
     background-image: url('/images/mobile/skins/icon/base.png?14')
 }
 
+.vk_2x #psc_search .inline_item_reset .ii_body:before,
+.vk_2x #psm_search_items .inline_item_reset .ii_body:before,
+.vk_2x #psm_selected .inline_item_reset .ii_body:before,
+.vk_2x #publish_items_selected .inline_item_reset .ii_body:before,
 .vk_2x .BookmarksItem_article .ai_menu_toggle_button:before,
 .vk_2x .BookmarksItem_narrative .ai_menu_toggle_button:before,
 .vk_2x .BookmarksItem_post .ai_menu_toggle_button:before,
@@ -33431,6 +33835,10 @@ body.apps_settingsPageBody {
     background-position: 0 -528px
 }
 
+#psc_search .inline_item_reset .ii_body:before,
+#psm_search_items .inline_item_reset .ii_body:before,
+#psm_selected .inline_item_reset .ii_body:before,
+#publish_items_selected .inline_item_reset .ii_body:before,
 .Icon_close16:before {
     background-position: 0 -552px
 }
@@ -33743,13 +34151,25 @@ body.apps_settingsPageBody {
     background-position: 0 -84px
 }
 
+#psc_search .lvi.mlvi,
+#psc_search .lvi.vkmobilelvi,
+#psm_search_items .lvi.mlvi,
+#psm_search_items .lvi.vkmobilelvi,
+#psm_selected .lvi.mlvi,
+#psm_selected .lvi.vkmobilelvi,
+#publish_items_selected .lvi.mlvi,
+#publish_items_selected .lvi.vkmobilelvi,
 .BookmarksItem_compact .ai_menu_toggle_button,
 .Icon_arrowDown,
 .Icon_audioMini,
+.Icon_cardSmall,
 .Icon_check,
 .Icon_close9,
 .Icon_close12.Icon_bluer,
 .Icon_docMini,
+.Icon_giftSmall,
+.Icon_inputSearch,
+.Icon_inputSearchBlue,
 .Icon_moreSmall,
 .Icon_msgMini,
 .Icon_online,
@@ -33757,11 +34177,14 @@ body.apps_settingsPageBody {
 .Icon_onlineSmall,
 .Icon_phone,
 .Icon_phoneMini,
+.Icon_photoSmall,
 .Icon_pin,
 .Icon_revote,
 .Icon_star,
 .Icon_trash,
 .Icon_verified,
+.Icon_vkmobile,
+.Icon_whiteArrowTop,
 .m .vk__page_chatAdd .basis .lvi.mlvi,
 .m .vk__page_chatSettings .basis .lvi.mlvi,
 .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bluer,
@@ -33774,13 +34197,25 @@ body.apps_settingsPageBody {
     height: 20px
 }
 
+#psc_search .lvi.mlvi:before,
+#psc_search .lvi.vkmobilelvi:before,
+#psm_search_items .lvi.mlvi:before,
+#psm_search_items .lvi.vkmobilelvi:before,
+#psm_selected .lvi.mlvi:before,
+#psm_selected .lvi.vkmobilelvi:before,
+#publish_items_selected .lvi.mlvi:before,
+#publish_items_selected .lvi.vkmobilelvi:before,
 .BookmarksItem_compact .ai_menu_toggle_button:before,
 .Icon_arrowDown:before,
 .Icon_audioMini:before,
+.Icon_cardSmall:before,
 .Icon_check:before,
 .Icon_close9:before,
 .Icon_close12.Icon_bluer:before,
 .Icon_docMini:before,
+.Icon_giftSmall:before,
+.Icon_inputSearch:before,
+.Icon_inputSearchBlue:before,
 .Icon_moreSmall:before,
 .Icon_msgMini:before,
 .Icon_online:before,
@@ -33788,11 +34223,14 @@ body.apps_settingsPageBody {
 .Icon_onlineSmall:before,
 .Icon_phone:before,
 .Icon_phoneMini:before,
+.Icon_photoSmall:before,
 .Icon_pin:before,
 .Icon_revote:before,
 .Icon_star:before,
 .Icon_trash:before,
 .Icon_verified:before,
+.Icon_vkmobile:before,
+.Icon_whiteArrowTop:before,
 .m .vk__page_chatAdd .basis .lvi.mlvi:before,
 .m .vk__page_chatSettings .basis .lvi.mlvi:before,
 .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bluer:before,
@@ -33800,19 +34238,32 @@ body.apps_settingsPageBody {
 .OwnerColumn__online:before,
 .OwnerRow__online.OwnerRow__online_mobile:before,
 .OwnerRow__online:before,
+.vk__page_publish .pcont .qs_field_wrap:after,
 .vk__page_redesign .basis .ii_btn.Icon_bluer:before {
     width: 20px;
     height: 20px;
     background-image: url('/images/mobile/skins/icon/statuses.png?9')
 }
 
+.vk_2x #psc_search .lvi.mlvi:before,
+.vk_2x #psc_search .lvi.vkmobilelvi:before,
+.vk_2x #psm_search_items .lvi.mlvi:before,
+.vk_2x #psm_search_items .lvi.vkmobilelvi:before,
+.vk_2x #psm_selected .lvi.mlvi:before,
+.vk_2x #psm_selected .lvi.vkmobilelvi:before,
+.vk_2x #publish_items_selected .lvi.mlvi:before,
+.vk_2x #publish_items_selected .lvi.vkmobilelvi:before,
 .vk_2x .BookmarksItem_compact .ai_menu_toggle_button:before,
 .vk_2x .Icon_arrowDown:before,
 .vk_2x .Icon_audioMini:before,
+.vk_2x .Icon_cardSmall:before,
 .vk_2x .Icon_check:before,
 .vk_2x .Icon_close9:before,
 .vk_2x .Icon_close12.Icon_bluer:before,
 .vk_2x .Icon_docMini:before,
+.vk_2x .Icon_giftSmall:before,
+.vk_2x .Icon_inputSearch:before,
+.vk_2x .Icon_inputSearchBlue:before,
 .vk_2x .Icon_moreSmall:before,
 .vk_2x .Icon_msgMini:before,
 .vk_2x .Icon_online:before,
@@ -33820,11 +34271,14 @@ body.apps_settingsPageBody {
 .vk_2x .Icon_onlineSmall:before,
 .vk_2x .Icon_phone:before,
 .vk_2x .Icon_phoneMini:before,
+.vk_2x .Icon_photoSmall:before,
 .vk_2x .Icon_pin:before,
 .vk_2x .Icon_revote:before,
 .vk_2x .Icon_star:before,
 .vk_2x .Icon_trash:before,
 .vk_2x .Icon_verified:before,
+.vk_2x .Icon_vkmobile:before,
+.vk_2x .Icon_whiteArrowTop:before,
 .vk_2x.m .vk__page_chatAdd .basis .lvi.mlvi:before,
 .vk_2x .m .vk__page_chatAdd .basis .lvi.mlvi:before,
 .vk_2x.m .vk__page_chatSettings .basis .lvi.mlvi:before,
@@ -33835,6 +34289,7 @@ body.apps_settingsPageBody {
 .vk_2x .OwnerColumn__online:before,
 .vk_2x .OwnerRow__online.OwnerRow__online_mobile:before,
 .vk_2x .OwnerRow__online:before,
+.vk_2x .vk__page_publish .pcont .qs_field_wrap:after,
 .vk_2x .vk__page_redesign .basis .ii_btn.Icon_bluer:before {
     background-image: url('/images/mobile/skins/icon/statuses_2x.png?9')
 }
@@ -33919,6 +34374,22 @@ body.apps_settingsPageBody {
     background-position: 0 -382px
 }
 
+.Icon_vkmobile:before {
+    background-position: 0 -492px
+}
+
+.Icon_vkmobile.Icon_blue:before {
+    background-position: 0 -512px
+}
+
+.Icon_vkmobile.Icon_white:before {
+    background-position: 0 -532px
+}
+
+.Icon_inputSearch:before {
+    background-position: 0 -552px
+}
+
 .Icon_revote:before {
     background-position: 0 -592px
 }
@@ -33927,16 +34398,45 @@ body.apps_settingsPageBody {
     background-position: 0 -616px
 }
 
+.Icon_whiteArrowTop:before {
+    background-position: 0 -639px
+}
+
 .Icon_onlineSmall:before,
 .OwnerColumn__online:before,
 .OwnerRow__online:before {
-    background-position: 0 -655px
+    background-position: 0 -652px
 }
 
+#psc_search .lvi.mlvi:before,
+#psc_search .lvi.vkmobilelvi:before,
+#psm_search_items .lvi.mlvi:before,
+#psm_search_items .lvi.vkmobilelvi:before,
+#psm_selected .lvi.mlvi:before,
+#psm_selected .lvi.vkmobilelvi:before,
+#publish_items_selected .lvi.mlvi:before,
+#publish_items_selected .lvi.vkmobilelvi:before,
 .Icon_onlinePhoneSmall:before,
 .OwnerColumn__online.OwnerColumn__online_mobile:before,
 .OwnerRow__online.OwnerRow__online_mobile:before {
-    background-position: 0 -671px
+    background-position: 0 -672px
+}
+
+.Icon_giftSmall:before {
+    background-position: 0 -691px
+}
+
+.Icon_cardSmall:before {
+    background-position: 0 -709px
+}
+
+.Icon_photoSmall:before {
+    background-position: 0 -727px
+}
+
+.Icon_inputSearchBlue:before,
+.vk__page_publish .pcont .qs_field_wrap:after {
+    background-position: 0 -745px
 }
 
 .BookmarksItem_compact .ai_menu_toggle_button:before,
@@ -44410,6 +44910,307 @@ html .vk__page_mail {
     .vk__page_fromAcceptPolicy .header__left {
         display: none
     }
+}
+
+.vk__page_publish .pcont .slim_header {
+    font-size: 13px;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 20px;
+    color: #818c99;
+    padding: 12px;
+    text-transform: uppercase;
+    background: #fff
+}
+
+@media (max-width: 319px) {
+    .vk__page_publish .pcont .slim_header {
+        padding-left: 8px;
+        padding-right: 8px
+    }
+}
+
+@media (min-width: 400px) {
+    .vk__page_publish .pcont .slim_header {
+        padding-left: 16px;
+        padding-right: 16px
+    }
+}
+
+.vk__page_publish .pcont .slim_header.slim_header_top {
+    background: #eaedf1
+}
+
+.vk__page_publish .create_post_extra {
+    background: #eaedf1;
+    padding: 0 11px 12px;
+    border: 0
+}
+
+@media (max-width: 319px) {
+    .vk__page_publish .create_post_extra {
+        padding-left: 7px;
+        padding-right: 7px
+    }
+}
+
+@media (min-width: 400px) {
+    .vk__page_publish .create_post_extra {
+        padding-left: 15px;
+        padding-right: 15px
+    }
+}
+
+.vk__page_publish .create_post_extra .iwrap {
+    margin: 0 17px 0 0
+}
+
+.vk__page_publish .create_post .textfield {
+    min-height: 76px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 15px;
+    line-height: 20px;
+    color: #000;
+    padding: 6px 7px;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.vk__page_publish .create_post .textfield::-webkit-input-placeholder {
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.vk__page_publish .create_post .textfield:-moz-placeholder,
+.vk__page_publish .create_post .textfield::-moz-placeholder {
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.vk__page_publish .create_post .textfield:-ms-input-placeholder {
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.vk__page_publish .create_post .textfield::placeholder {
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.vk__page_publish .cp_publish_block .cp_attach_btn {
+    margin: 17px -2px 5px 12px
+}
+
+.vk__page_publish .cp_attached_post {
+    margin-left: -11px;
+    margin-right: -11px
+}
+
+@media (max-width: 319px) {
+    .vk__page_publish .cp_attached_post {
+        margin-left: -7px;
+        margin-right: -7px
+    }
+}
+
+@media (min-width: 400px) {
+    .vk__page_publish .cp_attached_post {
+        margin-left: -15px;
+        margin-right: -15px
+    }
+}
+
+.vk__page_publish .cp_attached_post .pi_text {
+    margin: 8px 11px!important
+}
+
+@media (max-width: 319px) {
+    .vk__page_publish .cp_attached_post .pi_text {
+        margin: 8px 7px!important
+    }
+}
+
+@media (min-width: 400px) {
+    .vk__page_publish .cp_attached_post .pi_text {
+        margin: 8px 15px!important
+    }
+}
+
+.vk__page_publish .pic_body_wrap {
+    margin-top: 9px!important
+}
+
+.vk__page_publish .cp_attached_post .pic_cont .pic_from {
+    margin: 0 0 1px -3px;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #306096
+}
+
+.vk__page_publish .pcont .hp_block {
+    padding: 0
+}
+
+.vk__page_publish .pcont .qs_textfield {
+    height: 18px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: none;
+    color: #000;
+    font-size: 15px;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0
+}
+
+.vk__page_publish .pcont .qs_textfield::-webkit-input-placeholder {
+    color: rgba(69, 103, 143, .56)
+}
+
+.vk__page_publish .pcont .qs_textfield:-moz-placeholder,
+.vk__page_publish .pcont .qs_textfield::-moz-placeholder {
+    color: rgba(69, 103, 143, .56)
+}
+
+.vk__page_publish .pcont .qs_textfield:-ms-input-placeholder {
+    color: rgba(69, 103, 143, .56)
+}
+
+.vk__page_publish .pcont .qs_textfield::placeholder {
+    color: rgba(69, 103, 143, .56)
+}
+
+.qsearch .vk__page_publish .pcont .iwrap,
+.vk__page_publish .pcont .qsearch .iwrap {
+    height: 18px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    background: rgba(69, 103, 143, .18);
+    border: 0;
+    padding: 7px 7px 7px 31px;
+    opacity: 0.82
+}
+
+.vk__page_publish .pcont .qsearch .row_table .iwrap {
+    margin: 0
+}
+
+.vk__page_publish .pcont .qs_field_wrap:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    left: 6px;
+    opacity: 0.7
+}
+
+.vk__page_publish .pcont .qsearch .row_table_main_column {
+    border: 0;
+    padding: 0
+}
+
+.vk__page_publish .pcont .qsearch .row_table_last_column {
+    border: 0
+}
+
+.vk__page_publish .head_panel {
+    padding: 0 0 4px;
+    background: #fff;
+    border: 0
+}
+
+.vk__page_publish .radio_items {
+    border: 0;
+    margin: 0 0 -7px
+}
+
+.vk__page_publish .radio_items .radio_item {
+    padding: 11px 12px
+}
+
+@media (max-width: 319px) {
+    .vk__page_publish .radio_items .radio_item {
+        padding-left: 8px;
+        padding-right: 8px
+    }
+}
+
+@media (min-width: 400px) {
+    .vk__page_publish .radio_items .radio_item {
+        padding-left: 16px;
+        padding-right: 16px
+    }
+}
+
+.vk__page_publish .radio_items .ri_radio {
+    -moz-background-size: 100%!important;
+    -o-background-size: 100%!important;
+    background-size: 100%!important;
+    background-position: 0 -216px!important;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 12px 0 0
+}
+
+.vk__page_publish .radio_items .ri_checked .ri_radio {
+    background-position: 0 -240px!important
+}
+
+.vk__page_publish .ri_label {
+    font-size: 15px;
+    line-height: 19px
+}
+
+.vk__page_publish .cp_attach_btn .i_icon,
+.vk__page_publish .cp_inline_attach_btn .i_icon {
+    background: none!important
+}
+
+.vk__page_publish .cp_inline_attach_btn input[disabled]+.BookmarksItem .ai_menu_toggle_button,
+.vk__page_publish .cp_inline_attach_btn input[disabled]+.Icon,
+.vk__page_publish .cp_inline_attach_btn input[disabled]+.m .vk__page_chatAdd .basis .lvi.mlvi,
+.vk__page_publish .cp_inline_attach_btn input[disabled]+.m .vk__page_chatSettings .basis .lvi.mlvi,
+.vk__page_publish .cp_inline_attach_btn input[disabled]+.m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
+.vk__page_publish .cp_inline_attach_btn input[disabled]+.OwnerColumn__online,
+.vk__page_publish .cp_inline_attach_btn input[disabled]+.OwnerRow__online,
+.vk__page_publish .cp_inline_attach_btn input[disabled]+.vk__page_redesign .basis .ii_btn {
+    visibility: hidden
+}
+
+.vk__page_publish #psc_search,
+.vk__page_publish #psm_search_items,
+.vk__page_publish #psm_selected,
+.vk__page_publish #publish_items_selected {
+    padding: 0
+}
+
+.vk__page_publish .publish_send_options_toggle {
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px 12px
+}
+
+.vk__page_publish .checkbox_items {
+    margin: 7px 0 0
+}
+
+.vk__page_publish .checkbox_items .Control_type_checkbox {
+    padding: 4px 2px
 }
 
 

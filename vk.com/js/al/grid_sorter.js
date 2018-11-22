@@ -56,8 +56,8 @@ GridSorter.AUTO_SCROLL_DY = 10, GridSorter.DRAG_THRESHOLD_DIST = 0, GridSorter.A
         var r = this._curOverCell.pos,
             s = this._curOverCell.el,
             n = this._grid[this._curDragCellIndex],
-            l = n.size;
-        gpeByClass("_ape_item_list", e) && (r[0] += 20, r[1] += 20), this._isShiftToLeft && (r[1] -= l[1] - this._curOverCell.size[1]), setTimeout(function() {
+            l = n && n.size;
+        gpeByClass("_ape_item_list", e) && (r[0] += 20, r[1] += 20), l && this._isShiftToLeft && (r[1] -= l[1] - this._curOverCell.size[1]), setTimeout(function() {
             if (i) {
                 for (var t = 0, s = o._grid.length; s > t; t++) {
                     var n = o._grid[t];
