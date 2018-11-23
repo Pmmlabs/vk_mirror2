@@ -43,6 +43,8 @@
 .apps_settings_row_wrap.loading .apps_settings_action_remove,
 .apps_vkPayPageBlock .app_container:after,
 .apps_win_instr_head:before,
+.appsBlackFridayBanner,
+.appsBlackFridayBanner .app_rate,
 .media-photo-thumb-background,
 .media-video-play,
 .media-video-thumb-background,
@@ -1866,10 +1868,7 @@ body.mac .apps_featured_thumb .ads_ad_big_app_info_box {
 }
 
 .apps_cat_row__price_badge {
-    position: absolute;
-    display: block;
     min-width: 50px;
-    box-sizing: border-box;
     top: 10px;
     left: -4px;
     padding: 2px 6px;
@@ -1881,6 +1880,21 @@ body.mac .apps_featured_thumb .ads_ad_big_app_info_box {
     font-weight: 600;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto
+}
+
+.apps_cat_row__price_badge,
+.apps_cat_row__badge {
+    position: absolute;
+    display: block;
+    box-sizing: border-box
+}
+
+.apps_cat_row__badge_sale {
+    width: 37px;
+    height: 28px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2030%2024%22%20width%3D%2230%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22m30%202.5638852v18.8722296c0%20.8915187-.0928712%201.214805-.2672638%201.5407309s-.4303067.5817145-.7563925.7560216c-.3260859.1743071-.6495308.2671327-1.5414869.2671327h-25.11347175c-1.28192933%200-2.32113837-1.0386994-2.32113837-2.32%200-.458026.13564274-.9058038.3898345-1.2869045l5.09367995-7.6367727c.1935103-.2901231.24353337-.4081963.27644328-.5478646s.03290991-.2772481%200-.4169164-.08293298-.2577415-.27644328-.5478646l-5.09367995-7.63677274c-.71108645-1.06610656-.42286172-2.50652344.64376796-3.21726114.38128763-.2540671.8292852-.38964332%201.28753591-.38964332h25.11347175c.8919561%200%201.215401.09282561%201.5414869.2671327.3260858.1743071.5819999.43009567.7563925.7560216.1743926.32592592.2672638.64921216.2672638%201.5407309z%22%20fill%3D%22%23f46364%22%2F%3E%3Cg%20fill%3D%22%23fff%22%20fill-rule%3D%22nonzero%22%3E%3Cpath%20d%3D%22m15%208.25c-.4142136%200-.75.33578644-.75.75s.3357864.75.75.75.75-.33578644.75-.75-.3357864-.75-.75-.75zm0-1.25c1.1045695%200%202%20.8954305%202%202s-.8954305%202-2%202-2-.8954305-2-2%20.8954305-2%202-2z%22%2F%3E%3Cpath%20d%3D%22m21%2014.25c-.4142136%200-.75.3357864-.75.75s.3357864.75.75.75.75-.3357864.75-.75-.3357864-.75-.75-.75zm0-1.25c1.1045695%200%202%20.8954305%202%202s-.8954305%202-2%202-2-.8954305-2-2%20.8954305-2%202-2z%22%2F%3E%3Cpath%20d%3D%22m15.3457684%2016.7055876c-.2516141.3290338-.7223222.3917948-1.051356.1401808-.3290338-.2516141-.3917948-.7223222-.1401808-1.051356l6.5-8.49999998c.2516141-.32903379.7223222-.39179487%201.051356-.14018079.3290338.25161407.3917948.72232216.1401808%201.05135595z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50%;
+    top: 7px;
+    right: -7px
 }
 
 .sort .apps_cat_row {
@@ -7147,4 +7161,109 @@ td.apps_cat_new_h {
 .apps_search .ui_search_filters_pane.expanded {
     padding-left: 20px;
     padding-right: 25px
+}
+
+.appsBlackFridayBanner {
+    padding-top: 48px;
+    padding-bottom: 30px;
+    background: url(/images/apps/black_friday/background.png) no-repeat 50% #000;
+    color: #fff
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .appsBlackFridayBanner {
+        background-image: url(/images/apps/black_friday/background_2x.png);
+        background-size: 795px 420px
+    }
+}
+
+.appsBlackFridayBanner__header {
+    text-align: center;
+    margin-bottom: 18px
+}
+
+.appsBlackFridayBanner__footer {
+    margin-top: 8px;
+    text-align: center
+}
+
+.appsBlackFridayBanner__title {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+    margin-bottom: 12px
+}
+
+.appsBlackFridayBanner__desc {
+    font-size: 16px;
+    line-height: 1.38
+}
+
+.appsBlackFridayBanner__allLink {
+    display: inline-block;
+    position: relative;
+    font-size: 13px;
+    color: #fff
+}
+
+.appsBlackFridayBanner__allLink:after {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    -o-transition: transform 0.3s, -o-transform 0.3s;
+    transition: transform 0.3s;
+    transition: transform 0.3s, -o-transform 0.3s;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%228%22%20viewBox%3D%220%200%208%208%22%20width%3D%228%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22matrix(0%201%20-1%200%208%200)%22%3E%3Cpath%20d%3D%22m0%200h8v8h-8z%22%2F%3E%3Cpath%20d%3D%22m.79998779%202.65%203.20001221%202.7%203.20001221-2.7%22%20stroke%3D%22%23b8b8b8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.3%22%20transform%3D%22matrix(1%200%200%20-1%200%208)%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50%;
+    top: 4px;
+    right: -12px
+}
+
+.appsBlackFridayBanner__allLink:hover:after {
+    -o-transform: translateX(2px);
+    transform: translateX(2px)
+}
+
+.appsBlackFridayBanner .app_link {
+    color: #fff
+}
+
+.appsBlackFridayBanner .app_cat_link {
+    color: #fff;
+    opacity: 0.64
+}
+
+.appsBlackFridayBanner .app_rate {
+    background-image: url(/images/apps/black_friday/black_friday_stars.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .appsBlackFridayBanner .app_rate {
+        background-image: url(/images/apps/black_friday/black_friday_stars_2x.png);
+        background-size: 11px 33px
+    }
+}
+
+.appsBlackFridayBanner .app_rate.full {
+    background-position: 0 -1px
+}
+
+.appsBlackFridayBanner .app_rate.half {
+    background-position: 0 -12px
+}
+
+.appsBlackFridayBanner .app_rate.empty {
+    background-position: 0 -23px
+}
+
+.appsBlackFridayBanner .app_rate.stats {
+    background-position: 0 0;
+    cursor: default;
+    height: 9px
 }

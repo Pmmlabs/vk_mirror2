@@ -7,19 +7,19 @@ var Restore = {
     onlineOwner: 2,
     submitForgotPassword: function(e) {
         var o = ge("submitBtn"),
-            t = ge("login_input");
-        if (lastNameInput = ge("lastname_input"), t) {
-            var r = val(t);
-            if (r.length < 3) return notaBene(t);
-            cur.restoreForgotPassParams.login = r
+            t = ge("login_input"),
+            r = ge("lastname_input");
+        if (t) {
+            var s = val(t);
+            if (s.length < 3) return notaBene(t);
+            cur.restoreForgotPassParams.login = s
         }
-        if (lastNameInput) {
-            var s = val(lastNameInput);
-            if (s.length < 1) return elfocus("lastname_input");
-            cur.restoreForgotPassParams.lastName = s
+        if (r) {
+            var n = val(r);
+            if (n.length < 1) return elfocus("lastname_input");
+            cur.restoreForgotPassParams.lastName = n
         }
-        ajax.post("al_login.php", {
-            act: "a_forgot",
+        ajax.post("login?act=a_forgot", {
             login: cur.restoreForgotPassParams.login,
             lname: cur.restoreForgotPassParams.lastName,
             hash: cur.resetPasswordTHash,
@@ -36,8 +36,7 @@ var Restore = {
         var r = ge("submitBtn"),
             s = val("password"),
             n = val("password2");
-        return s.length ? n.length ? void ajax.post("al_login.php", {
-            act: "a_forgot_by_phone",
+        return s.length ? n.length ? void ajax.post("login?act=a_forgot_by_phone", {
             hash: o,
             shash: t,
             login: e,
@@ -108,8 +107,7 @@ var Restore = {
                     slideDown(t, 150)
                 }, 50), cur.checkedPhones[phone] = [e, o]) : isVisible(t) && slideUp(t, 200), 3 != e || cur.restoreNoEmailAccess ? void Restore.checkedPasswordStatus() : (hide("submit_wrapper"), Restore.changeFormStep("phones", "back_link"))
             };
-            cur.checkedPhones = cur.checkedPhones || {}, phone in cur.checkedPhones ? t(cur.checkedPhones[phone][0], cur.checkedPhones[phone][1]) : ajax.post("al_restore.php", {
-                act: "a_check_phone",
+            cur.checkedPhones = cur.checkedPhones || {}, phone in cur.checkedPhones ? t(cur.checkedPhones[phone][0], cur.checkedPhones[phone][1]) : ajax.post("restore?act=a_check_phone", {
                 hash: cur.options.fhash,
                 phone: phone
             }, {
@@ -119,8 +117,7 @@ var Restore = {
     },
     checkEmailOnBlur: function() {
         var e = val("login");
-        e && /^\s*[a-zA-Z0-9_\.]+@[a-zA-Z0-9_\.]+\s*$/.test(e) && (cur.restoreNoEmailAccess || ajax.post("/restore", {
-            act: "a_check_email",
+        e && /^\s*[a-zA-Z0-9_\.]+@[a-zA-Z0-9_\.]+\s*$/.test(e) && (cur.restoreNoEmailAccess || ajax.post("restore?act=a_check_email", {
             hash: cur.options.fhash,
             email: e
         }, {
@@ -183,20 +180,20 @@ var Restore = {
             i = a + "_",
             u = ge(i + "file_button") || ge("restore_extend_request_button");
         unlockButton(u);
-        var l = cur.images.length,
-            c = !0;
+        var c = cur.images.length,
+            l = !0;
         each(cur.images, function(e, o) {
-            return o.type == r && o.deleted ? (l = e, c = !1, !1) : void 0
-        }), cur.images[l] = {
+            return o.type == r && o.deleted ? (c = e, l = !1, !1) : void 0
+        }), cur.images[c] = {
             id: o,
             hash: t,
             type: r
         }, ++cur.images_count[r];
         var _ = 2 == n || 3 == n ? Restore.maxPhotosWithType : Restore.maxPhotos;
-        ge(i + "input").disabled = cur.images_count[r] >= _, ge(i + "input").disabled && 3 != n && hide(i + "upload"), show(i + "photos"), s = s.split("%index%").join(l).split("%type%").join(r);
+        ge(i + "input").disabled = cur.images_count[r] >= _, ge(i + "input").disabled && 3 != n && hide(i + "upload"), show(i + "photos"), s = s.split("%index%").join(c).split("%type%").join(r);
         var h = se(s),
             d = ge(i + "photos");
-        d && (c ? d.appendChild(h) : domReplaceEl(d, h)), hide("simple_request_incorrect"), 3 == n ? Restore.extendRequest(ge("restore_extend_request_button")) : Restore.changeFullRequestButton(!0)
+        d && (l ? d.appendChild(h) : domReplaceEl(d, h)), hide("simple_request_incorrect"), 3 == n ? Restore.extendRequest(ge("restore_extend_request_button")) : Restore.changeFullRequestButton(!0)
     },
     deleteImage: function(e, o, t) {
         var r = e ? "photo" : "doc",
@@ -220,7 +217,7 @@ var Restore = {
             cur.restorePasswordChecked || (cur.restorePasswordChecked = {});
             var o = isVisible("new_phone_wrap") ? "new_phone" : "phone",
                 t = val(o).replace(/[^0-9]/g, "");
-            e.length > 0 && !cur.restorePasswordChecked[e] && ajax.post("/restore?act=a_check_password", {
+            e.length > 0 && !cur.restorePasswordChecked[e] && ajax.post("restore?act=a_check_password", {
                 hash: cur.options.fhash,
                 password: e
             }, {
@@ -330,8 +327,7 @@ var Restore = {
         }
         return (s = val("old_password")) ? (cur.validationLastCallback = function(e) {
             hide("request_phone_res"), e ? Restore.submitSimpleRequest() : elfocus("phone")
-        }, void ajax.post("/al_restore.php", {
-            act: "a_request",
+        }, void ajax.post("restore?act=a_request", {
             hash: cur.options.fhash,
             login: e,
             email: o,

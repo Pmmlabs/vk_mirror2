@@ -353,8 +353,7 @@ a .num_delim {
     content: "\00b7";
     display: inline;
     pointer-events: none;
-    padding: 0 5px;
-    vertical-align: middle
+    padding: 0 5px
 }
 
 .video_thumb_wrap {
@@ -11532,4 +11531,56 @@ button.ui_load_more_btn {
 
 .bookmarks_tt:after {
     left: 44px!important
+}
+
+.eltt.bookmarks_tag_set_tt {
+    min-width: 230px;
+    border: none;
+    background-color: transparent
+}
+
+.eltt.bookmarks_tag_set_tt .eltt_content {
+    border-radius: 3px;
+    background-color: #383838;
+    border: #383838
+}
+
+.eltt.bookmarks_tag_set_tt .eltt_arrow,
+.eltt.bookmarks_tag_set_tt .eltt_arrow_back {
+    border-top-color: #383838!important
+}
+
+.eltt.bookmarks_tag_set_tt.eltt_bottom .eltt_arrow_back,
+.eltt.bookmarks_tag_set_tt.eltt_bottom .eltt_arrow_back .eltt_arrow {
+    border-bottom-color: #383838!important
+}
+
+.bookmarks_tags_list {
+    padding: 5px 0;
+    max-height: 250px;
+    width: 250px;
+    overflow-y: auto
+}
+
+.bookmarks_tags_list .eltt_content {
+    overflow: hidden
+}
+
+.bookmarks_tags_list .bookmarks_tags_list_item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    padding: 6px 25px 6px 35px;
+    color: #fff;
+    white-space: nowrap
+}
+
+.bookmarks_tags_list .bookmarks_tags_list_item:hover {
+    background-color: #4b4b4b
+}
+
+.bookmarks_tags_list .bookmarks_tags_list_item.bookmarks_tags_list_item--selected {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2212px%22%20height%3D%2210px%22%20viewBox%3D%220%200%2012%2010%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20id%3D%22%D0%9C%D0%B0%D1%81%D1%82%D0%B5%D1%80%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20id%3D%22addToPlaylist%22%20stroke-width%3D%221.5%22%20stroke%3D%22%23cdcdcd%22%3E%3Cg%20id%3D%22tooltip-copy-2%22%3E%3Cg%20id%3D%22Group-5-Copy-18%22%3E%3Cg%20id%3D%22Group-2%22%20transform%3D%22translate(-708.000000%2C%20-772.000000)%20translate(700.000000%2C%20602.000000)%20translate(1.000000%2C%20160.000000)%20translate(8.000000%2C%2011.000000)%22%3E%3Cpolyline%20id%3D%22Path-12%22%20points%3D%220%205.33333333%202.5%208%2010%200%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: 12px 8px
 }

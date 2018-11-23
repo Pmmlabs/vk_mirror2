@@ -30,7 +30,7 @@ AutoList.prototype.getListEl = function() {
 }, AutoList.prototype.toggleProgress = function(t) {
     t ? !this._isProgressShown && this._opts.showProgress && this._opts.showProgress() : this._isProgressShown && this._opts.hideProgress && this._opts.hideProgress(), this._isProgressShown = t
 }, AutoList.prototype.drawMore = function() {
-    inArray(this._state, [AutoList.STATE_IDLE, AutoList.STATE_DONE_PREFETCH]) && (this._forceDrawCalled = !0, this._drawRows(this._prefetched), this._setState(AutoList.STATE_PENDING_PREFETCH_ROWS), this._prefetched = [], this._requestRows(!0), this._forceDrawCalled = !1)
+    inArray(this._state, [AutoList.STATE_IDLE, AutoList.STATE_DONE_PREFETCH]) ? (this._forceDrawCalled = !0, this._drawRows(this._prefetched), this._setState(AutoList.STATE_PENDING_PREFETCH_ROWS), this._prefetched = [], this._requestRows(!0), this._forceDrawCalled = !1) : this._state == AutoList.STATE_DONE && this._opts.onNoMore && this._opts.onNoMore(this._containerEl.childElementCount)
 }, AutoList.prototype.destroy = function() {
     this._ev_scroll && (removeEvent(this._scrollNode, "scroll", this._ev_scroll), this._ev_scroll = !1), this._ev_window_resize && removeEvent(window, "resize", this._ev_window_resize), this._setState(AutoList.STATE_DONE), this.toggleProgress(!1)
 }, AutoList.prototype.getOffset = function() {
@@ -43,12 +43,14 @@ AutoList.prototype.getListEl = function() {
 }, AutoList.prototype._onRowsProvided = function(t, s) {
     if (!this.isDone()) {
         if (t === !1) return this._requestRows();
-        switch (t = t || [], this._offset += void 0 === s ? this._countRows(t) : s, this._state) {
+        t = t || [], this._offset += void 0 === s ? this._countRows(t) : s;
+        const o = this._containerEl.childElementCount;
+        switch (this._state) {
             case AutoList.STATE_PENDING_PREFETCH_ROWS:
-                0 == t.length ? (this._setState(AutoList.STATE_DONE_PREFETCH), this._opts.onNoMore && this._opts.onNoMore(), 0 == this._prefetched.length && this._setState(AutoList.STATE_DONE)) : (this._setState(AutoList.STATE_IDLE), this._prefetched = this._prefetched.concat(t), this._opts.onHasMore && this._opts.onHasMore(), this._onScroll());
+                0 == t.length ? (this._setState(AutoList.STATE_DONE_PREFETCH), this._opts.onNoMore && this._opts.onNoMore(o), 0 == this._prefetched.length && this._setState(AutoList.STATE_DONE)) : (this._setState(AutoList.STATE_IDLE), this._prefetched = this._prefetched.concat(t), this._opts.onHasMore && this._opts.onHasMore(), this._onScroll());
                 break;
             case AutoList.STATE_PENDING_ROWS:
-                this._drawRows(t), 0 == t.length ? (this._setState(AutoList.STATE_DONE), this._opts.onNoMore && this._opts.onNoMore()) : (this._setState(AutoList.STATE_PENDING_PREFETCH_ROWS), this._requestRows()), this.toggleProgress(!1);
+                this._drawRows(t), 0 == t.length ? (this._setState(AutoList.STATE_DONE), this._opts.onNoMore && this._opts.onNoMore(o)) : (this._setState(AutoList.STATE_PENDING_PREFETCH_ROWS), this._requestRows()), this.toggleProgress(!1);
                 break;
             case AutoList.STATE_IDLE:
                 this._prefetched = this._prefetched.concat(t);

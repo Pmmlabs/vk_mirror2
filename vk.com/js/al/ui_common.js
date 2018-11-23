@@ -151,11 +151,14 @@ var uiTabs = {
             var i = domClosest("_ui_menu_wrap", t);
             i && uiActionsMenu.toggle(i, !hasClass(i, "shown"))
         },
-        toggle: function(el, s) {
+        toggle: function(el, s, options) {
             var dummyMenu = data(el, "dummyMenu");
             dummyMenu && (el = dummyMenu), toggleClass(el, "shown", s);
             var onhide = attr(el, "onHide");
-            onhide && !hasClass(el, "shown") && eval(onhide)
+            if (onhide && !hasClass(el, "shown") && eval(onhide), options && options.onToggle) {
+                var script = options.onToggle.replace("{isShow}", "" + s);
+                eval(script)
+            }
         },
         show: function(t, e, i) {
             var s = data(t, "hidetimer");
@@ -200,16 +203,16 @@ var uiTabs = {
                     C = getXY(a)[0];
                 removeClass(t, "ui_actions_menu_top"), addClass(t, "no_transition"), f + b + S + w > (browser.mozilla ? getSize("page_wrap")[1] : scrollGetY() + (window.lastWindowHeight || 0)) && addClass(t, "ui_actions_menu_top"), f - S - w < scrollGetY() + getSize("page_header_wrap")[1] && removeClass(t, "ui_actions_menu_top"), toggleClass(t, "ui_actions_menu_left", 0 > C), removeClass(t, "no_transition")
             }
-            i && i.scroll && i.maxHeight && (a.style.maxHeight = (intval(i.maxHeight) || 200) + "px", a.__uiScroll__ || new uiScroll(a)), uiActionsMenu.toggle(t, !0)
+            i && i.scroll && i.maxHeight && (a.style.maxHeight = (intval(i.maxHeight) || 200) + "px", a.__uiScroll__ || new uiScroll(a)), uiActionsMenu.toggle(t, !0, i)
         },
-        hide: function(t, e) {
+        hide: function(t, e, i) {
             cur.uiActionsMenuShowTimeout && (clearTimeout(cur.uiActionsMenuShowTimeout), delete cur.uiActionsMenuShowTimeout);
-            var i = data(t, "hidedelay");
-            i ? data(t, "hidedelay", !1) : i = 200;
-            var s = data(t, "hidetimer");
-            s || data(t, "hidetimer", setTimeout(function() {
-                uiActionsMenu.toggle(t, !1), data(t, "hidetimer", 0)
-            }, i))
+            var s = data(t, "hidedelay");
+            s ? data(t, "hidedelay", !1) : s = 200;
+            var o = data(t, "hidetimer");
+            o || data(t, "hidetimer", setTimeout(function() {
+                uiActionsMenu.toggle(t, !1, i), data(t, "hidetimer", 0)
+            }, s))
         },
         hideDelay: function(t, e) {
             data(t, "hidedelay", e)
@@ -836,22 +839,21 @@ var uiTabs = {
             }, this.init(), this.options.noLazyLoadWatch || (window.LazyLoad && LazyLoad.watch(this.el.outer), window.LazyLoad && LazyLoad.scanDelayed());
             var l = "onwheel" in this.el.outer ? "wheel" : void 0 !== document.onmousewheel ? "mousewheel" : browser.mozilla ? "MozMousePixelScroll" : "DOMMouseScroll";
             return this.addEvent(this.el.container, l, function(t) {
-                    this.animation && this.animation.stop(), !this.disabled && this.options.stopScrollPropagation && (this.unnecessary ? this.options.stopScrollPropagationAlways && cancelEvent(t) : this.isScrollEventUnused(t) ? cancelEvent(t) : stopEvent(t))
-                }.bind(this), !this.options.stopScrollPropagation),
-                this.options["native"] || this.addEvent(this.el.barContainer, "mousedown", this.dragstart.bind(this)), each(this.options.scrollElements, function(t, e) {
-                    this.addEvent(e, l, function(t) {
-                        this.disabled || this.unnecessary || (this.scrollBy(this.scrollEventDelta(t)), (this.options.stopScrollPropagation || !this.isScrollEventUnused(t)) && cancelEvent(t))
-                    }.bind(this))
-                }.bind(this)), this.options.reversed && this.addEvent(this.el.container, "mousedown touchstart pointerdown", function(t) {
-                    this.released = !1, this.noMore = !0;
-                    var e = this.addEvent(document, "mouseup contextmenu touchend pointerup", function(t) {
-                        removeEvent(document, "mouseup contextmenu touchend pointerup", e), this.released = !0, this.noMore && this.stopped && !this.dragging && (this.noMore = !1, this.more())
-                    }.bind(this))
-                }.bind(this)), this.addEvent(this.el.outer, "scroll", function() {
-                    this.update() && (this.stopped ? (this.stopped = !1, this.emitEvent("scrollstart")) : this.options["native"] || this.stopped !== !1 || (this.stopped = 0, addClass(this.el.container, "ui_scroll_scrolled")), this.emitEvent("scroll"), this.stoppedTimeout && clearTimeout(this.stoppedTimeout), this.stoppedTimeout = setTimeout(function() {
-                        this.stopped || (this.stopped = !0, this.options["native"] || removeClass(this.el.container, "ui_scroll_scrolled"), this.emitEvent("scrollstop"), this.noMore && this.released && !this.dragging && (this.noMore = !1, this.more()))
-                    }.bind(this), 200))
-                }.bind(this)), this.api
+                this.animation && this.animation.stop(), !this.disabled && this.options.stopScrollPropagation && (this.unnecessary ? this.options.stopScrollPropagationAlways && cancelEvent(t) : this.isScrollEventUnused(t) ? cancelEvent(t) : stopEvent(t));
+            }.bind(this), !this.options.stopScrollPropagation), this.options["native"] || this.addEvent(this.el.barContainer, "mousedown", this.dragstart.bind(this)), each(this.options.scrollElements, function(t, e) {
+                this.addEvent(e, l, function(t) {
+                    this.disabled || this.unnecessary || (this.scrollBy(this.scrollEventDelta(t)), (this.options.stopScrollPropagation || !this.isScrollEventUnused(t)) && cancelEvent(t))
+                }.bind(this))
+            }.bind(this)), this.options.reversed && this.addEvent(this.el.container, "mousedown touchstart pointerdown", function(t) {
+                this.released = !1, this.noMore = !0;
+                var e = this.addEvent(document, "mouseup contextmenu touchend pointerup", function(t) {
+                    removeEvent(document, "mouseup contextmenu touchend pointerup", e), this.released = !0, this.noMore && this.stopped && !this.dragging && (this.noMore = !1, this.more())
+                }.bind(this))
+            }.bind(this)), this.addEvent(this.el.outer, "scroll", function() {
+                this.update() && (this.stopped ? (this.stopped = !1, this.emitEvent("scrollstart")) : this.options["native"] || this.stopped !== !1 || (this.stopped = 0, addClass(this.el.container, "ui_scroll_scrolled")), this.emitEvent("scroll"), this.stoppedTimeout && clearTimeout(this.stoppedTimeout), this.stoppedTimeout = setTimeout(function() {
+                    this.stopped || (this.stopped = !0, this.options["native"] || removeClass(this.el.container, "ui_scroll_scrolled"), this.emitEvent("scrollstop"), this.noMore && this.released && !this.dragging && (this.noMore = !1, this.more()))
+                }.bind(this), 200))
+            }.bind(this)), this.api
         };
         return t.prototype = {
             init: function() {
@@ -1442,7 +1444,7 @@ Slider.prototype.toggleAdState = function(t) {
 }, Slider.prototype._onMouseDown = function(t) {
     0 == t.button && (delete cur._sliderMouseUpNowEl, this._adState || (addEvent(window, "mousemove", this._ev_onMouseMove = this._onMouseMove.bind(this)), addEvent(window, "mouseup", this._ev_onMouseUp = this._onMouseUp.bind(this)), this._width = getSize(this._slideEl)[0], this._onMouseMove(t), Slider._currenSliderDrag = this, addClass(this._el, "active"), cancelEvent(t)))
 }, Slider.prototype._onMouseUp = function(t) {
-    cur._sliderMouseUpNowEl = this._el, removeEvent(window, "mousemove", this._ev_onMouseMove), removeEvent(window, "mouseup", this._ev_onMouseUp), clearTimeout(this._debounceto), this._onValueChange(), removeClass(this._el, "active"), Slider._currenSliderDrag = !1, this._toggleHint(!1), this.options.onEndDragging && this.options.onEndDragging(this._currValue)
+    cur._sliderMouseUpNowEl = this._el, removeEvent(window, "mousemove", this._ev_onMouseMove), removeEvent(window, "mouseup", this._ev_onMouseUp), clearTimeout(this._debounceto), this._onValueChange(), removeClass(this._el, "active"), Slider._currenSliderDrag = !1, this._toggleHint(!1), this.options.onEndDragging && this.options.onEndDragging(this._currValue);
 }, Slider.prototype._onMouseMove = function(t) {
     var e = this._getPos(),
         i = Math.max(t.pageX, e[0]);

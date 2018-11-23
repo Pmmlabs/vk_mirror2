@@ -4,7 +4,11 @@ var tooltips = {
         if (el.tt) {
             if (el.tt.shown = !1, el.ttimer && clearTimeout(el.ttimer), isFunction(options.text)) {
                 var tt_text = domByClass(el.tt.container, "tt_text");
-                tt_text && (tt_text.innerHTML = options.text())
+                if (tt_text) {
+                    const text = options.text();
+                    if (!text) return;
+                    tt_text.innerHTML = text
+                }
             }
             var opts = extend(el.tt.opts ? clone(el.tt.opts) : {}, options || {}),
                 isNewTT = void 0 !== opts.dir;
