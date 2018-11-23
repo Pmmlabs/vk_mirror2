@@ -15440,6 +15440,17 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     margin: 0!important
 }
 
+.audioPlaylist__album_part {
+    font-size: 13px;
+    line-height: 44px;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #909499;
+    text-transform: uppercase;
+    counter-reset: tracks
+}
+
 .audioPlaylist .show_more_loading {
     background: none
 }
