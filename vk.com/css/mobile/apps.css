@@ -1241,7 +1241,7 @@ input.wide_button {
 
 .top_author,
 .verified {
-    background-image: url(/images/mobile/skins/icon/statuses.png?9);
+    background-image: url(/images/mobile/skins/icon/statuses.png?11);
     -moz-background-size: 20px;
     -o-background-size: 20px;
     background-size: 20px;
@@ -1287,7 +1287,7 @@ input.wide_button {
 
 .vk_2x .top_author,
 .vk_2x .verified {
-    background-image: url(/images/mobile/skins/icon/statuses_2x.png?9)
+    background-image: url(/images/mobile/skins/icon/statuses_2x.png?11)
 }
 
 .wi_author .top_author,
@@ -1713,7 +1713,7 @@ input.wide_button {
     width: 24px;
     height: 22px;
     margin: 0 6px 0 0;
-    background: url(/images/mobile/menu_icons.png?15) no-repeat 0 22px;
+    background: url(/images/mobile/menu_icons.png?16) no-repeat 0 22px;
     display: none
 }
 
@@ -6189,7 +6189,7 @@ div.pm_item .pm_counter {
 }
 
 .pp_last_activity .mlvi {
-    background-image: url(/images/mobile/skins/icon/statuses.png?9);
+    background-image: url(/images/mobile/skins/icon/statuses.png?11);
     -moz-background-size: 100%!important;
     -o-background-size: 100%!important;
     background-size: 100%!important;
@@ -6208,7 +6208,7 @@ div.pm_item .pm_counter {
 }
 
 .vk_2x .pp_last_activity .mlvi {
-    background-image: url(/images/mobile/skins/icon/statuses_2x.png?9)
+    background-image: url(/images/mobile/skins/icon/statuses_2x.png?11)
 }
 
 .pp_info,
@@ -6346,7 +6346,7 @@ div.pm_item .pm_counter {
 }
 
 .create_post .post_timer:after {
-    background-image: url('/images/mobile/skins/icon/statuses.png?10');
+    background-image: url('/images/mobile/skins/icon/statuses.png?11');
     -moz-background-size: 100%;
     -o-background-size: 100%;
     background-size: 100%;
@@ -6358,7 +6358,7 @@ div.pm_item .pm_counter {
 }
 
 .vk_2x .create_post .post_timer:after {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?10')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?11')
 }
 
 .create_post .medias_thumb .ph_img,

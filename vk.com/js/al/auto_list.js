@@ -44,7 +44,7 @@ AutoList.prototype.getListEl = function() {
     if (!this.isDone()) {
         if (t === !1) return this._requestRows();
         t = t || [], this._offset += void 0 === s ? this._countRows(t) : s;
-        const o = this._containerEl.childElementCount;
+        var o = this._containerEl.childElementCount;
         switch (this._state) {
             case AutoList.STATE_PENDING_PREFETCH_ROWS:
                 0 == t.length ? (this._setState(AutoList.STATE_DONE_PREFETCH), this._opts.onNoMore && this._opts.onNoMore(o), 0 == this._prefetched.length && this._setState(AutoList.STATE_DONE)) : (this._setState(AutoList.STATE_IDLE), this._prefetched = this._prefetched.concat(t), this._opts.onHasMore && this._opts.onHasMore(), this._onScroll());

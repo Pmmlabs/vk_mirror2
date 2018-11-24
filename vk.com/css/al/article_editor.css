@@ -244,27 +244,32 @@
     font-style: normal
 }
 
+.article h1,
 .article h2,
 .article h3 {
     position: relative
 }
 
+.article h1:hover .article_anchor_button,
 .article h2:hover .article_anchor_button,
 .article h3:hover .article_anchor_button {
     opacity: .6
 }
 
+.article h1 .article_anchor_title,
 .article h2 .article_anchor_title,
 .article h3 .article_anchor_title {
     position: relative
 }
 
+.article h1 .article_anchor_fsymbol,
 .article h2 .article_anchor_fsymbol,
 .article h3 .article_anchor_fsymbol {
     font-size: 0;
     float: left
 }
 
+.article h1 .article_anchor_button,
 .article h2 .article_anchor_button,
 .article h3 .article_anchor_button {
     position: absolute;
@@ -281,11 +286,13 @@
     transform: translateY(-50%)
 }
 
+.article h1 .article_anchor_button:hover,
 .article h2 .article_anchor_button:hover,
 .article h3 .article_anchor_button:hover {
     opacity: .8
 }
 
+.article h1 .article_anchor_button:active,
 .article h2 .article_anchor_button:active,
 .article h3 .article_anchor_button:active {
     margin-top: 1px

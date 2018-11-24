@@ -985,7 +985,7 @@ extend(UiControl.prototype, {
         }
     },
     _ariaOnSelectHide: function() {
-        vk.a11y && (this.val() || (this.input.value = "", this.updatePlaceholder()), attr(this.input, "aria-haspopup", !1))
+        vk.a11y && (this.updateCustom(), this.val() || (this.input.value = "", this.updatePlaceholder()), attr(this.input, "aria-haspopup", !1))
     },
     _ariaOnSelectShow: function() {
         vk.a11y && attr(this.input, "aria-haspopup", !0)
@@ -1557,7 +1557,8 @@ extend(UiControl.prototype, {
                 el: e
             }), t.onClick && !isFunction(t.onClick)) {
             var i = t.onClick;
-            t.onClick = i.onClick, t.onMouseOver = i.onMouseOver, t.onMouseOut = i.onMouseOut;
+            t.onClick = i.onClick, t.onMouseOver = i.onMouseOver,
+                t.onMouseOut = i.onMouseOut
         }
         e.innerHTML = (this.options.checkable ? '<img src="/images/dropdead_check.gif">' : "") + t.l, t.i && (e.index = t.i), t.c && (e.className = t.c), t.s && extend(e.style, t.s), t.b && extend(e.style, {
             backgroundImage: "url('" + t.b + "')",

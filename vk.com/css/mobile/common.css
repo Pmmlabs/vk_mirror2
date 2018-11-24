@@ -1243,7 +1243,7 @@ input.wide_button {
 .OwnerRow__verified,
 .top_author,
 .verified {
-    background-image: url(/images/mobile/skins/icon/statuses.png?9);
+    background-image: url(/images/mobile/skins/icon/statuses.png?11);
     -moz-background-size: 20px;
     -o-background-size: 20px;
     background-size: 20px;
@@ -1292,7 +1292,7 @@ input.wide_button {
 .OwnerRow__verified,
 .vk_2x .top_author,
 .vk_2x .verified {
-    background-image: url(/images/mobile/skins/icon/statuses_2x.png?9)
+    background-image: url(/images/mobile/skins/icon/statuses_2x.png?11)
 }
 
 .wi_author .top_author,
@@ -1720,7 +1720,7 @@ input.wide_button {
     width: 24px;
     height: 22px;
     margin: 0 6px 0 0;
-    background: url(/images/mobile/menu_icons.png?15) no-repeat 0 22px;
+    background: url(/images/mobile/menu_icons.png?16) no-repeat 0 22px;
     display: none
 }
 
@@ -6196,7 +6196,7 @@ div.pm_item .pm_counter {
 }
 
 .pp_last_activity .mlvi {
-    background-image: url(/images/mobile/skins/icon/statuses.png?9);
+    background-image: url(/images/mobile/skins/icon/statuses.png?11);
     -moz-background-size: 100%!important;
     -o-background-size: 100%!important;
     background-size: 100%!important;
@@ -6215,7 +6215,7 @@ div.pm_item .pm_counter {
 }
 
 .vk_2x .pp_last_activity .mlvi {
-    background-image: url(/images/mobile/skins/icon/statuses_2x.png?9)
+    background-image: url(/images/mobile/skins/icon/statuses_2x.png?11)
 }
 
 .pp_info,
@@ -6353,7 +6353,7 @@ div.pm_item .pm_counter {
 }
 
 .create_post .post_timer:after {
-    background-image: url('/images/mobile/skins/icon/statuses.png?10');
+    background-image: url('/images/mobile/skins/icon/statuses.png?11');
     -moz-background-size: 100%;
     -o-background-size: 100%;
     background-size: 100%;
@@ -6365,7 +6365,7 @@ div.pm_item .pm_counter {
 }
 
 .vk_2x .create_post .post_timer:after {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?10')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?11')
 }
 
 .create_post .medias_thumb .ph_img,
@@ -13096,7 +13096,11 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     padding: 6px 0;
     display: block;
     color: #000;
-    text-decoration: none!important
+    position: relative
+}
+
+.OwnerRow_actions {
+    padding-right: 32px
 }
 
 .OwnerRow__left {
@@ -13122,7 +13126,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .OwnerRow__content {
     display: table;
-    width: 100%
+    width: 100%;
+    text-decoration: none!important
 }
 
 .OwnerRow__img {
@@ -13177,16 +13182,92 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     vertical-align: top
 }
 
+.BookmarkListItem__tags .BookmarksTags__item,
 .OwnerRow__subtitle {
     font-size: 13px;
     line-height: 16px;
-    color: #909499
+    color: #909499;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap
 }
 
 .OwnerRow__online {
     position: absolute;
     left: 28px;
     top: 28px
+}
+
+.OwnerRow__actions {
+    width: 24px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 0 4px
+}
+
+.BookmarkListItem__tags .BookmarksTags,
+.Owner__tags {
+    overflow: hidden;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    padding: 0;
+    line-height: 21px;
+    margin: 0 0 -4px
+}
+
+._ios .Owner__tags {
+    margin: 0
+}
+
+.BookmarkListItem__tags .BookmarksTags:before,
+.BookmarksItem .ai_menu_toggle_button.Owner__tags_icon,
+.Icon.Owner__tags_icon,
+.m .vk__page_chatAdd .basis .lvi.mlvi.Owner__tags_icon,
+.m .vk__page_chatSettings .basis .lvi.mlvi.Owner__tags_icon,
+.m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Owner__tags_icon,
+.OwnerColumn__online.Owner__tags_icon,
+.OwnerRow__online.Owner__tags_icon,
+.vk__page_redesign .basis .ii_btn.Owner__tags_icon {
+    display: inline-block!important;
+    vertical-align: top;
+    position: relative;
+    left: -4px;
+    top: 0
+}
+
+.BookmarkListItem__tags .BookmarksTags__item,
+.Owner__tag {
+    display: inline;
+    vertical-align: top;
+    line-height: 24px
+}
+
+._ios .BookmarkListItem__tags .BookmarksTags__item,
+._ios .Owner__tag {
+    line-height: 20px
+}
+
+.BookmarkListItem__tags .BookmarksTags__item:after,
+.Owner__tag:after {
+    content: "\00b7";
+    display: inline;
+    vertical-align: top;
+    padding: 0 4px;
+    line-height: 24px
+}
+
+._ios .BookmarkListItem__tags .BookmarksTags__item:after,
+._ios .Owner__tag:after {
+    line-height: 20px
+}
+
+.BookmarkListItem__tags .BookmarksTags__item:last-child:after,
+.Owner__tag:last-child:after {
+    content: ''
 }
 
 .OwnerColumn {
@@ -19270,27 +19351,32 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     font-style: normal
 }
 
+.article h1,
 .article h2,
 .article h3 {
     position: relative
 }
 
+.article h1:hover .article_anchor_button,
 .article h2:hover .article_anchor_button,
 .article h3:hover .article_anchor_button {
     opacity: .6
 }
 
+.article h1 .article_anchor_title,
 .article h2 .article_anchor_title,
 .article h3 .article_anchor_title {
     position: relative
 }
 
+.article h1 .article_anchor_fsymbol,
 .article h2 .article_anchor_fsymbol,
 .article h3 .article_anchor_fsymbol {
     font-size: 0;
     float: left
 }
 
+.article h1 .article_anchor_button,
 .article h2 .article_anchor_button,
 .article h3 .article_anchor_button {
     position: absolute;
@@ -19312,11 +19398,13 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     transform: translateY(-50%)
 }
 
+.article h1 .article_anchor_button:hover,
 .article h2 .article_anchor_button:hover,
 .article h3 .article_anchor_button:hover {
     opacity: .8
 }
 
+.article h1 .article_anchor_button:active,
 .article h2 .article_anchor_button:active,
 .article h3 .article_anchor_button:active {
     margin-top: 1px
@@ -26198,11 +26286,11 @@ a.feedBlocks__article:hover {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -179px;
-    background-image: url('/images/mobile/skins/icon/statuses.png?9')
+    background-image: url('/images/mobile/skins/icon/statuses.png?11')
 }
 
 .vk_2x .vk__page_newCreatePost #medias_map .medias_map .medias_map_close:before {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?9')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?11')
 }
 
 .vk__page_newCreatePost #post_options_box {
@@ -33403,11 +33491,13 @@ body.apps_settingsPageBody {
 #psm_selected .lvi:before,
 #publish_items_selected .inline_item_reset .ii_body:before,
 #publish_items_selected .lvi:before,
+.BookmarkListItem__tags .BookmarksTags:before,
 .BookmarksItem .ai_menu_toggle_button:before,
 .BookmarksItem .BookmarksItem_compact .mlt_thumb_wrap:before,
 .BookmarksItem .mlt_no_photo:after,
 .BookmarksItem_article .BookmarkListItem__image_empty:before,
 .BookmarksItem_link .BookmarkListItem__image_empty:before,
+.BookmarksTags:before,
 .Icon:before,
 .m .vk__page_chatAdd .basis .lvi.mlvi:before,
 .m .vk__page_chatSettings .basis .lvi.mlvi:before,
@@ -34192,6 +34282,8 @@ body.apps_settingsPageBody {
 .Icon_pin,
 .Icon_revote,
 .Icon_star,
+.Icon_tagLabel,
+.Icon_tagLabelBig,
 .Icon_trash,
 .Icon_verified,
 .Icon_vkmobile,
@@ -34216,7 +34308,9 @@ body.apps_settingsPageBody {
 #psm_selected .lvi.vkmobilelvi:before,
 #publish_items_selected .lvi.mlvi:before,
 #publish_items_selected .lvi.vkmobilelvi:before,
+.BookmarkListItem__tags .BookmarksTags:before,
 .BookmarksItem_compact .ai_menu_toggle_button:before,
+.BookmarksTags:before,
 .Icon_arrowDown:before,
 .Icon_audioMini:before,
 .Icon_cardSmall:before,
@@ -34238,6 +34332,8 @@ body.apps_settingsPageBody {
 .Icon_pin:before,
 .Icon_revote:before,
 .Icon_star:before,
+.Icon_tagLabel:before,
+.Icon_tagLabelBig:before,
 .Icon_trash:before,
 .Icon_verified:before,
 .Icon_vkmobile:before,
@@ -34253,7 +34349,7 @@ body.apps_settingsPageBody {
 .vk__page_redesign .basis .ii_btn.Icon_bluer:before {
     width: 20px;
     height: 20px;
-    background-image: url('/images/mobile/skins/icon/statuses.png?9')
+    background-image: url('/images/mobile/skins/icon/statuses.png?11')
 }
 
 .vk_2x #psc_search .lvi.mlvi:before,
@@ -34264,7 +34360,9 @@ body.apps_settingsPageBody {
 .vk_2x #psm_selected .lvi.vkmobilelvi:before,
 .vk_2x #publish_items_selected .lvi.mlvi:before,
 .vk_2x #publish_items_selected .lvi.vkmobilelvi:before,
+.vk_2x .BookmarkListItem__tags .BookmarksTags:before,
 .vk_2x .BookmarksItem_compact .ai_menu_toggle_button:before,
+.vk_2x .BookmarksTags:before,
 .vk_2x .Icon_arrowDown:before,
 .vk_2x .Icon_audioMini:before,
 .vk_2x .Icon_cardSmall:before,
@@ -34286,6 +34384,8 @@ body.apps_settingsPageBody {
 .vk_2x .Icon_pin:before,
 .vk_2x .Icon_revote:before,
 .vk_2x .Icon_star:before,
+.vk_2x .Icon_tagLabel:before,
+.vk_2x .Icon_tagLabelBig:before,
 .vk_2x .Icon_trash:before,
 .vk_2x .Icon_verified:before,
 .vk_2x .Icon_vkmobile:before,
@@ -34302,7 +34402,7 @@ body.apps_settingsPageBody {
 .vk_2x .OwnerRow__online:before,
 .vk_2x .vk__page_publish .pcont .qs_field_wrap:after,
 .vk_2x .vk__page_redesign .basis .ii_btn.Icon_bluer:before {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?9')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?11')
 }
 
 .Icon_online:before {
@@ -34453,6 +34553,16 @@ body.apps_settingsPageBody {
 .BookmarksItem_compact .ai_menu_toggle_button:before,
 .Icon_moreSmall:before {
     background-position: 0 -783px
+}
+
+.BookmarkListItem__tags .BookmarksTags:before,
+.Icon_tagLabel:before {
+    background-position: 0 -841px
+}
+
+.BookmarksTags:before,
+.Icon_tagLabelBig:before {
+    background-position: 0 -862px
 }
 
 .Icon_close12.Icon_bluer,
@@ -39718,22 +39828,37 @@ body.apps_settingsPageBody {
 
 .BookmarksTags {
     margin: 0 8px 0 0;
-    padding: 7px 8px
+    padding: 9px 8px 9px 48px;
+    position: relative;
+    min-height: 27px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap
+}
+
+.BookmarksTags:before {
+    position: absolute;
+    left: 14px;
+    top: 13px
 }
 
 .BookmarksTags__item {
-    background: rgba(97, 115, 143, .12);
-    color: #3c6a9e;
-    font-size: 14px;
-    font-weight: 500;
+    color: #5181b8;
+    font-size: 15px;
+    font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    line-height: 16px;
-    padding: 7px 16px;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
-    margin: 4px;
+    line-height: 20px;
     display: inline-block;
     vertical-align: top;
     text-decoration: none;
@@ -39745,6 +39870,19 @@ body.apps_settingsPageBody {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box
+}
+
+.BookmarksTags__item:after {
+    content: "\00b7";
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 4px;
+    color: #aaaeb3
+}
+
+.BookmarksTags__item:last-child:after {
+    content: none;
+    display: none
 }
 
 a.BookmarksTags__item {
@@ -39796,7 +39934,10 @@ a.BookmarksTags__item {
     font-size: 14px;
     line-height: 18px;
     color: #2e3033;
-    padding: 12px 0
+    padding: 12px 0;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis
 }
 
 .BookmarkListItem {
@@ -39882,7 +40023,6 @@ a.BookmarksTags__item {
     font-size: 14px;
     line-height: 20px;
     color: #000;
-    margin: 2px 0;
     max-height: 40px;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
@@ -39916,44 +40056,25 @@ a .BookmarkListItem__subtitle:hover {
     text-decoration: underline
 }
 
-.BookmarkListItem__tags {
-    margin: 2px -2px;
-    position: relative;
-    white-space: nowrap
-}
-
 .BookmarkListItem__tags .BookmarksTags {
-    background: none;
-    padding: 0;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    white-space: nowrap;
-    overflow: hidden;
-    margin: 0 30px 0 0
-}
-
-.BookmarkListItem__tags .BookmarksTags_more {
-    display: inline-block;
-    vertical-align: top;
-    margin: 0
+    margin: 0;
+    display: block;
+    min-height: auto;
+    color: #909499;
+    line-height: 21px
 }
 
 .BookmarkListItem__tags .BookmarksTags__item {
-    font-size: 12px;
-    padding: 2px 8px;
-    margin: 2px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box
-}
-
-.BookmarkListItem__tags .BookmarksTags__item_hidden {
-    display: none
-}
-
-.BookmarkListItem__tags .BookmarksTags__item_more {
-    overflow: visible
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    padding: 0;
+    margin: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    background: none;
+    pointer-events: none
 }
 
 .Pad:first-child~.pcont .BookmarksBlankPage {
@@ -40113,7 +40234,8 @@ a .BookmarkListItem__subtitle:hover {
 .BookmarksItem_removed .BookmarksItem__footer,
 .BookmarksItem_removed .BookmarksItem__header,
 .BookmarksItem_removed .BookmarksItem__newLabel,
-.BookmarksItem_removed .BookmarksItem__tag {
+.BookmarksItem_removed .BookmarksItem__tag,
+.BookmarksItem_removed .OwnerRow__content {
     opacity: 0.3;
     pointer-events: none
 }
@@ -40250,6 +40372,10 @@ a .BookmarkListItem__subtitle:hover {
 
 .BookmarksItem .ai_menu_toggle_button {
     background: none!important
+}
+
+.Bookmarks .OwnerRow__actions .ai_menu_toggle_button {
+    background-position: 0 -120px
 }
 
 .BookmarksItem_full.BookmarksItem_link .BookmarksItem__actions,
@@ -43661,11 +43787,11 @@ a .BookmarkListItem__subtitle:hover {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -200px;
-    background-image: url('/images/mobile/skins/icon/statuses.png?9')
+    background-image: url('/images/mobile/skins/icon/statuses.png?11')
 }
 
 .vk_2x .uMailWrite__attachments .medias_link_icon:before {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?9')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?11')
 }
 
 .uMailWrite__attachments .medias_link {
@@ -43698,11 +43824,11 @@ a .BookmarkListItem__subtitle:hover {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -242px;
-    background-image: url('/images/mobile/skins/icon/statuses.png?9')
+    background-image: url('/images/mobile/skins/icon/statuses.png?11')
 }
 
 .vk_2x .uMailWrite__attachments .medias_audio .medias_link_icon:before {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?9')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?11')
 }
 
 .uMailWrite__attachments .attachment_type_poll .medias_link_icon:before {
@@ -43741,12 +43867,12 @@ a .BookmarkListItem__subtitle:hover {
     -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
-    background-image: url('/images/mobile/skins/icon/statuses.png?9')
+    background-image: url('/images/mobile/skins/icon/statuses.png?11')
 }
 
 .vk_2x .uMailWrite__attachments .medias_row .tu_cancel_wrap:before,
 .vk_2x .uMailWrite__attachments .medias_thumb .tu_cancel_wrap:before {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?9')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?11')
 }
 
 .uMailWrite__attachments .medias_row .tu_cancel_wrap:before {
@@ -48554,10 +48680,10 @@ screen and (min-device-pixel-ratio: 1.5) {
     }
     .lfm_item .i_icon,
     .mm_item .i_icon {
-        background-image: url(/images/mobile/menu_icons_2x.png?15);
-        -moz-background-size: 25px 435px!important;
-        -o-background-size: 25px 435px!important;
-        background-size: 25px 435px!important
+        background-image: url(/images/mobile/menu_icons_2x.png?16);
+        -moz-background-size: 25px 455px!important;
+        -o-background-size: 25px 455px!important;
+        background-size: 25px 455px!important
     }
     .answers_item .pi_img .i_icon,
     .notify_item .i_gift {

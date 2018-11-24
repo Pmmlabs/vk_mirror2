@@ -5,7 +5,7 @@ var tooltips = {
             if (el.tt.shown = !1, el.ttimer && clearTimeout(el.ttimer), isFunction(options.text)) {
                 var tt_text = domByClass(el.tt.container, "tt_text");
                 if (tt_text) {
-                    const text = options.text();
+                    var text = options.text();
                     if (!text) return;
                     tt_text.innerHTML = text
                 }
