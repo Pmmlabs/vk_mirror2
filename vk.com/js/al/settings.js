@@ -586,6 +586,18 @@ var Settings = {
             onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
         })
     },
+    drCheck: function() {
+        clearTimeout(cur.drUpdateTO), cur.drUpdateTO = setTimeout(Settings.drSubmit, 200)
+    },
+    drSubmit: function() {
+        ajax.post("/al_settings.php", {
+            act: "a_change_dr",
+            hash: cur.options.dr_hash,
+            dr: ge("settings_dr").checked ? 1 : 0
+        }, {
+            onDone: nav.reload.pbind()
+        })
+    },
     externalAuthCheck: function() {
         clearTimeout(cur.externalAuthUpdateTO), cur.externalAuthUpdateTO = setTimeout(function() {
             ajax.post("al_settings.php", {

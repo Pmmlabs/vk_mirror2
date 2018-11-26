@@ -292,7 +292,7 @@ var stVersions = {
     'apps_edit.css': 36457540193,
     'apps_check.js': 3204387834,
     'apps_check.css': 30517545288,
-    'settings.js': 4249020749,
+    'settings.js': 353467433,
     'settings.css': 32151833939,
     'profile_edit.js': 334053301,
     'profile_edit.css': 20957976972,
@@ -541,7 +541,7 @@ var stVersions = {
     'article.css': 37555013967,
     'article_editor.css': 40608219770,
     'cmodules/web/article.js': 36017985573,
-    'cmodules/web/article_layer.js': 34000925986,
+    'cmodules/web/article_layer.js': 31349416507,
     'article_view.js': 10496600669,
     'bookmarks.css': 20122309917,
     'cmodules/web/bookmarks.js': 3575362821,
@@ -656,4 +656,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 930;
+var _rnd = 609;
