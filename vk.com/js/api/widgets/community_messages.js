@@ -48,6 +48,13 @@ var CommunityWidget = {
         addEvent(window, 'click', this.onWinClick.bind(this));
         cur = extend(cur, opts);
 
+        if (opts.need_user_source) {
+            cur.source = {
+                info: opts.ref_source_info,
+                link: opts.ref_source_link,
+            };
+        }
+
         CommunityWidget.updatePreviewPos();
 
         this.checkInfo();
@@ -636,6 +643,11 @@ var CommunityWidget = {
         }
 
         this.removeMsgError(msgID);
+
+        if (cur.need_user_source) {
+            cur.source.link = this.getSourceLink();
+            params.ref_source = JSON.stringify(cur.source);
+        }
 
         var _s = this;
         ajax.post('al_im.php', params, {
@@ -1604,6 +1616,19 @@ var CommunityWidget = {
         }
         song.currentTime = 0;
         song.play();
+    },
+    getSourceLink: function() {
+        var url = cur.source.link;
+        try {
+            url = top.location.href;
+        } catch (e) {}
+        return url;
+    },
+    setSourceData: function(data) {
+        if (!cur.need_user_source) {
+            return;
+        }
+        extend(cur.source, data);
     },
     playShowSound: function() {
         var song = ge('song');

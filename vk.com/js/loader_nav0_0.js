@@ -272,12 +272,12 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 218321490637,
-    'imn.js': 280134932336,
+    'imn.js': 285752925747,
     'im.js': 1322065005,
     'wide_dd.css': 21138642771,
     'wide_dd.js': 452755344,
     'writebox.css': 21565241746,
-    'writebox.js': 68921566312,
+    'writebox.js': 71976729110,
     'sharebox.js': 2037973397,
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
@@ -333,13 +333,13 @@ var stVersions = {
     'cmodules/api/widgets/poll.js': 2902328673,
     'api/widgets/al_add_community_app.js': 807582258,
     'widget_add_community_app.css': 33578456579,
-    'api/widgets/community_messages.js': 3568117149,
+    'api/widgets/community_messages.js': 4095060090,
     'widget_community_messages.css': 33877872928,
     'widget_recommended.css': 31269651845,
     'widgets.css': 33790905799,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 96167051138,
+    'notifier.js': 99222213936,
     'notifier.css': 31418676090,
     'cmodules/sw/sw.js': 5960813200,
     'earthday.js': 2276669993,
@@ -512,7 +512,7 @@ var stVersions = {
     'paginated_table.js': 1750088857,
     'paginated_table.css': 20371900203,
     'api/share.js': 2262994046,
-    'api/openapi.js': 402378786,
+    'api/openapi.js': 1552971698,
     'api/xdm.js': 1449919642,
     'hls.min.js': 4153049391,
     'candy.min.js': 1892723665,
@@ -656,4 +656,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 1216;
+var _rnd = 6143;

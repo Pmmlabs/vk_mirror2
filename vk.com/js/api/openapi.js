@@ -2452,6 +2452,9 @@ if (!VK.Widgets) {
                 params.disable_welcome_screen = 1;
             }
 
+            params.ref_source_info = options.ref_source_info;
+            params.ref_source_link = location.href;
+
             var buttonType = options.buttonType;
             if (Object.keys(BUTTONS_CONF).indexOf(buttonType) == -1) {
                 buttonType = DEFAULT_BUTTON_TYPE;
@@ -2729,6 +2732,15 @@ if (!VK.Widgets) {
                 callRpcMethod('minimize');
             }
 
+            function setSourceData(data) {
+                callRpcMethod('setSourceData', VK.extend({
+                    link: location.href,
+                }, data));
+            }
+
+            VK.Util.addEvent('popstate', setSourceData.bind(this, {}), window);
+            VK.Util.addEvent('hashchange', setSourceData.bind(this, {}), window);
+
             function destroyChat() {
                 stopTitleAnimation();
                 CommunityMessages.destroy(objId);
@@ -2738,6 +2750,7 @@ if (!VK.Widgets) {
                 expand: expandChat,
                 minimize: minimizeChat,
                 destroy: destroyChat,
+                setSourceData: setSourceData,
                 changeButtonPosition: changeWidgetPosition,
                 stopTitleAnimation: stopTitleAnimation,
             };
