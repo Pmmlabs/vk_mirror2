@@ -38256,6 +38256,44 @@ body.apps_settingsPageBody {
     display: none
 }
 
+.StoryAuthor__muted {
+    display: none;
+    position: absolute;
+    left: 12px;
+    bottom: 67px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    border-radius: 16px;
+    background: #fff;
+    z-index: 20;
+    padding: 8px 10px 8px 34px
+}
+
+.StoryAuthor_videoMuted .StoryAuthor__muted {
+    display: block
+}
+
+.StoryAuthor_error .StoryAuthor__muted {
+    display: none
+}
+
+.StoryAuthor__muted .Story__icon_unmute {
+    position: absolute;
+    left: 5px;
+    top: 0;
+    bottom: 0;
+    margin: auto
+}
+
+.StoryAuthor__muted_text {
+    font-size: 13px;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #000;
+    text-transform: uppercase
+}
+
 .Story {
     position: absolute;
     top: 0;
@@ -38551,6 +38589,10 @@ body.apps_settingsPageBody {
     right: 0;
     bottom: 44px;
     margin: auto
+}
+
+.StoryAuthor_videoMuted .Story__moreLink .Story__icon_topArrow {
+    display: none
 }
 
 .Story__repliesText,
@@ -38969,7 +39011,7 @@ body.apps_settingsPageBody {
 
 ._story__Icons_i,
 .Story__icon:after {
-    background-image: url('/images/mobile/skins/icon/stories_icons.png?4');
+    background-image: url('/images/mobile/skins/icon/stories_icons.png?5');
     -moz-background-size: 48px;
     -o-background-size: 48px;
     background-size: 48px;
@@ -38978,7 +39020,7 @@ body.apps_settingsPageBody {
 
 ._story__Icons_i_2x,
 .vk_2x .Story__icon:after {
-    background-image: url('/images/mobile/skins/icon/stories_icons_2x.png?4')
+    background-image: url('/images/mobile/skins/icon/stories_icons_2x.png?5')
 }
 
 .Story__icon {
@@ -39030,6 +39072,10 @@ body.apps_settingsPageBody {
 
 .Story__icon_prometheus.Story__icon_verified:after {
     background-position: 0 -672px
+}
+
+.Story__icon_unmute:after {
+    background-position: 0 -720px
 }
 
 .Story__icon_deleted:after {
