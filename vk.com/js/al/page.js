@@ -716,6 +716,18 @@ var Page = {
                         }
                     }
 
+                    var postHeight = 0;
+
+                    if (postElem) {
+                        postHeight = getSize(postElem)[1];
+
+                        var postReplies = geByClass1('replies', postElem);
+
+                        if (postReplies) {
+                            postHeight -= getSize(postReplies)[1];
+                        }
+                    }
+
                     ch = _postsSeen[j] = p;
                     _postsExtras[j] = {
                         start: now,
@@ -723,7 +735,7 @@ var Page = {
                         index: index,
                         q: query,
                         block: block,
-                        postHeight: postElem && postElem.clientHeight,
+                        postHeight: postHeight,
                         viewportHeight: window.clientHeight(),
                         session_id: cur.feed_session_id ? cur.feed_session_id : 'na'
                     };
