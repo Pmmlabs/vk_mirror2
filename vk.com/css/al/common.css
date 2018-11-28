@@ -5743,7 +5743,8 @@ em.highlight {
     border: none;
     vertical-align: -3px;
     margin: 0 1px;
-    display: inline-block
+    display: inline-block;
+    overflow: hidden
 }
 
 .emoji_css {

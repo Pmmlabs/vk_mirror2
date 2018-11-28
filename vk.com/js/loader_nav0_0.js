@@ -150,7 +150,7 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 2660709036,
     'common.js': 1162,
-    'common.css': 66982666273,
+    'common.css': 66533493337,
     'cmodules/web/common_web.js': 25,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
@@ -163,7 +163,7 @@ var stVersions = {
     'blog.css': 23119226781,
     'blog.js': 3939164531,
     'html5audio.js': 976782859,
-    'audioplayer.js': 173418301643,
+    'audioplayer.js': 173535108595,
     'audioplayer.css': 22095420189,
     'audio_html5.js': 287741914,
     'audio.js': 1110275681,
@@ -340,7 +340,7 @@ var stVersions = {
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
     'notifier.js': 99222213936,
-    'notifier.css': 31418676090,
+    'notifier.css': 34867386352,
     'cmodules/sw/sw.js': 5960813200,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
@@ -350,10 +350,10 @@ var stVersions = {
     'docs.css': 31039642168,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 20441251149,
-    'helpdesk.js': 2534044836,
-    'helpdesk.css': 35778786990,
+    'helpdesk.js': 2727235217,
+    'helpdesk.css': 38157529143,
     'tickets.js': 1151194956,
-    'tickets.css': 36950918662,
+    'tickets.css': 33858518254,
     'faq.css': 28352544067,
     'talmud.js': 2726757681,
     'agents.js': 2789926745,
@@ -441,7 +441,7 @@ var stVersions = {
     'contests.css': 2752582154,
     'ui.css': 19914807871,
     'ui.js': 1289956404,
-    'ui_common.js': 747406918,
+    'ui_common.js': 1415203699,
     'ui_common.css': 21412159568,
     'cmodules/web/ui_media_selector.js': 3830922072,
     'ui_media_selector.css': 34650983571,
@@ -595,7 +595,7 @@ var stVersions = {
     'apps_feed_blocks.css': 23112992018,
     'cmodules/web/landing_transparency.js': 96157935182,
     'landings/transparency.css': 93136623658,
-    'cmodules/web/emoji.js': 164878560,
+    'cmodules/web/emoji.js': 5748969524,
     'cmodules/web/apps_achievements.js': 64406924382,
     'lang': 6931
 };
@@ -656,4 +656,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 2170;
+var _rnd = 2245;

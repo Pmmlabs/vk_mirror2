@@ -2167,11 +2167,6 @@ var Helpdesk = {
             dir: "top"
         }) : !1
     },
-    markMlReplyRelevantFromTicket: function(e, t, s, o) {
-        buttonLocked(e) || (lockButton(e), Helpdesk.markMlReplyRelevant(t, s, o, unlockButton.pbind(e), function() {
-            nav.reload()
-        }))
-    },
     markMlReplyRelevantFromReplyRow: function(e, t, s, o) {
         if (!buttonLocked(e)) {
             var a = gpeByClass("_buttons", e);

@@ -2164,6 +2164,14 @@ body.body_helpdesk_small_sb .left_menu_nav {
     padding-top: 15px
 }
 
+.helpdesk_templates.helpdesk_templates_robot {
+    margin-bottom: -10px
+}
+
+.helpdesk_templates.helpdesk_templates_robot .helpdesk_reply_row_generated_actions {
+    border-top: 0 none
+}
+
 .helpdesk_templates_wrap {
     display: table-cell
 }
@@ -2543,7 +2551,7 @@ body.body_helpdesk_small_sb .left_menu_nav {
 }
 
 .helpdesk_ml_ticket {
-    border-bottom: 10px solid #e7e8ec;
+    border-bottom: 1px solid #e7e8ec;
     padding: 12px 0 0
 }
 
@@ -2565,7 +2573,9 @@ body.body_helpdesk_small_sb .left_menu_nav {
 
 .helpdesk_ml_ticket__replies {
     border-collapse: collapse;
+    border-bottom: 1px solid #e7e8ec;
     border-top: 1px solid #e7e8ec;
+    margin-bottom: 10px;
     margin-top: 12px;
     width: 100%
 }

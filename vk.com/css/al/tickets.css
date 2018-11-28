@@ -4009,7 +4009,7 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     float: right
 }
 
-.tickets_post_field_moder .flat_button {
+.tickets_post_field_moder .tickets_envelope_controls .flat_button {
     float: left;
     margin-right: 8px
 }

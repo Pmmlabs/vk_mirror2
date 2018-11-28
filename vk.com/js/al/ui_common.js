@@ -3,7 +3,7 @@ function OList(t, e, i, s) {
         var e = t[1];
         if (s.nameClass) {
             var i = se(e);
-            i && (e = val(geByClass1(s.nameClass, e)) || e)
+            i && (e = val(geByClass1(s.nameClass, i)) || e)
         }
         return e
     }), this.owners = e, this.tpl = s.tpl, this.rsTpl = s.rsTpl, this.idIndex = s.idIndex || 0, this.selected = i, this.getUnsorted = s.getUnsorted, this.unsortedIndex = s.unsortedIndex || 0, this.box = t, this.filter = s.filter, s.onTabUpdate && (this.onTabUpdate = s.onTabUpdate), s.onListClick && (this.onListClick = s.onListClick), t.setButtons(getLang("global_save"), function(i) {
