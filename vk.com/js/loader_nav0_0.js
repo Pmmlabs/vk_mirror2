@@ -134,6 +134,7 @@ var navMap = {
     'memedit($|/)': ['members.php', ['members.css', 'dyn-members.js']],
     'meminfo($|/)': ['member_info.php', ['meminfo.css', 'ownerinfo.css']],
     'groupinfo($|/)': ['group_info.php', ['groupinfo.css', 'ownerinfo.css']],
+    'ownerinfo($|/)': ['owner_info.php', ['ownerinfo.css']],
     'surveys(-[0-9]+)$': ['al_surveys.php', ['surveys.css']],
     'survey(-[0-9]+)_([0-9]+)$': ['al_surveys.php', ['surveys.css', 'surveys.js']],
     'ugcform($|/)': ['al_surveys.php', ['surveys.css', 'surveys.js']],
@@ -150,14 +151,14 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 2660709036,
     'common.js': 1162,
-    'common.css': 66533493337,
+    'common.css': 68150587479,
     'cmodules/web/common_web.js': 25,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
     'uncommon.css': 18596075938,
     'filebutton.css': 1044306797,
     'lite.js': 344448126,
-    'lite.css': 62788175326,
+    'lite.css': 64405269468,
     'rtl.css': 19129943522,
     'pagination.js': 358700184,
     'blog.css': 23119226781,
@@ -286,7 +287,7 @@ var stVersions = {
     'feed.css': 31674697159,
     'privacy.js': 711405089,
     'privacy.css': 19363717440,
-    'apps.css': 50842971702,
+    'apps.css': 48197225346,
     'apps.js': 11472788972,
     'apps_edit.js': 11375204853,
     'apps_edit.css': 36457540193,
@@ -361,9 +362,9 @@ var stVersions = {
     'achievements.js': 3514956550,
     'achievements.css': 18935951634,
     'members.css': 20363903840,
-    'meminfo.css': 32685779120,
+    'meminfo.css': 34522806851,
     'groupinfo.css': 89201855115,
-    'ownerinfo.css': 8936464893,
+    'ownerinfo.css': 8488058642,
     'bugtracker.js': 1935992230,
     'bugtracker.css': 30139601163,
     'cmodules/web/bugtracker.js': 26117382674,
@@ -596,7 +597,7 @@ var stVersions = {
     'cmodules/web/landing_transparency.js': 96157935182,
     'landings/transparency.css': 93136623658,
     'cmodules/web/emoji.js': 5748969524,
-    'cmodules/web/apps_achievements.js': 64406924382,
+    'cmodules/web/apps_achievements.js': 65847809918,
     'lang': 6931
 };
 var stTypes = {
@@ -656,4 +657,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 2245;
+var _rnd = 7779;

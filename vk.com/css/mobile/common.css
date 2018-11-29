@@ -40476,8 +40476,12 @@ a .BookmarkListItem__subtitle:hover {
     .vk_flex_yes ._hfixed .header__center+.BookmarksTagsButton {
         position: fixed
     }
-    .qs_opened .BookmarksTagsButton {
+    .mhb_back+.BookmarksTagsButton,
+    .qs_opened .mhb_back.header__center+.BookmarksTagsButton {
         display: none
+    }
+    .mhb_back.header__center+.BookmarksTagsButton {
+        display: block
     }
 }
 

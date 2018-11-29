@@ -772,14 +772,19 @@
 }
 
 .appAchievementsAchievementsList__emptyImg {
+    display: none;
     width: 116px;
     height: 116px;
-    display: block;
     margin: 0 auto 12px
 }
 
 .appAchievementsAchievementsList__emptyMessage {
     color: #656565
+}
+
+.appAchievementsAchievementsList__empty.opened_empty .appAchievementsAchievementsList__emptyImg_opened,
+.appAchievementsAchievementsList__empty.closed_empty .appAchievementsAchievementsList__emptyImg_closed {
+    display: block
 }
 
 .appAchievementsAchievement {
@@ -802,7 +807,9 @@
     -ms-flex-negative: 0;
     flex-shrink: 0;
     width: 116px;
-    height: 116px
+    height: 116px;
+    background: no-repeat 50%;
+    background-size: contain
 }
 
 .appAchievementsAchievement__info {

@@ -8706,6 +8706,14 @@ button.ui_load_more_btn {
     display: block
 }
 
+.post:not(.post_fr_likes):not(.postponed):not(.post_copy) .post_info .audio_pl_snippet2:last-child {
+    margin-bottom: -20px
+}
+
+.post .post_info .replies .reply_content .audio_pl_snippet2:last-child {
+    margin-bottom: 5px!important
+}
+
 .audio_w_covers .audio_shuffle_all_button {
     padding: 4px 4px 4px 54px;
     line-height: 40px
@@ -8721,14 +8729,6 @@ button.ui_load_more_btn {
 .audio_w_covers .audio_shuffle_all_button:active {
     padding-top: 5px;
     padding-bottom: 3px
-}
-
-.page_block:not(.post_fr_likes):not(.postponed) .post_info .audio_pl_snippet2:last-child {
-    margin-bottom: -20px
-}
-
-.page_block .post_info .replies .reply_content .audio_pl_snippet2:last-child {
-    margin-bottom: 5px
 }
 
 .audio_pl_grid {

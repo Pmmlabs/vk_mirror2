@@ -690,17 +690,6 @@ table.history .cur_session {
     padding: 200px
 }
 
-.mi_block_label {
-    color: #777;
-    padding-top: 4px;
-    width: 40px
-}
-
-.mi_block_msg {
-    line-height: 160%;
-    padding-bottom: 10px
-}
-
 .mi_blank {
     padding: 100px 50px;
     text-align: center;
