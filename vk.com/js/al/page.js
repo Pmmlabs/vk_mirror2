@@ -3967,6 +3967,26 @@ var Wall = {
         twitter && disable(twitter, isFriendsOnly);
         fb && disable(fb, isFriendsOnly);
     },
+    togglePostMarkAsAds: function(el, muteNotificationCheckboxId) {
+        muteNotificationCheckboxId = muteNotificationCheckboxId || 'mute_notifications';
+        var muteNotificationsCheckbox = ge(muteNotificationCheckboxId);
+
+        if (!muteNotificationsCheckbox) {
+            return;
+        }
+
+        var isMarkedAsAds = isChecked(el);
+
+        disable(muteNotificationsCheckbox, isMarkedAsAds);
+
+        if (isMarkedAsAds) {
+            domData(muteNotificationsCheckbox, 'prev-state', +isChecked(muteNotificationsCheckbox));
+            addClass(muteNotificationsCheckbox, 'on');
+        } else {
+            var prevState = +domData(muteNotificationsCheckbox, 'prev-state');
+            toggleClass(muteNotificationsCheckbox, 'on', prevState);
+        }
+    },
     needCheckSign: function() {
         var el = ge('check_sign');
         return el && isChecked(el);
@@ -4370,6 +4390,13 @@ var Wall = {
                     cur.postponeVideoPost = false;
 
                     var markAsAds = ge('mark_as_ads');
+                    var muteNotifications = ge('mute_notifications');
+
+                    if (isChecked(markAsAds) && muteNotifications) {
+                        removeClass(muteNotifications, 'on');
+                        disable(muteNotifications, 0);
+                    }
+
                     if (markAsAds) {
                         removeClass(markAsAds, 'on');
                     }
@@ -8894,7 +8921,12 @@ var Wall = {
         }
 
         if (muteNotifications) {
-            disable(muteNotifications, from > 0);
+            if (isChecked(markAsAds)) {
+                addClass(muteNotifications, 'on');
+                disable(muteNotifications, 1);
+            } else {
+                disable(muteNotifications, from > 0);
+            }
         }
 
         if (official) {

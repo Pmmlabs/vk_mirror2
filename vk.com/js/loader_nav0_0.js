@@ -238,7 +238,7 @@ var stVersions = {
     'module.css': 29813433557,
     'owner_photo.js': 3368798011,
     'owner_photo.css': 24276570441,
-    'page.js': 4217324240,
+    'page.js': 3817056582,
     'page.css': 72661382556,
     'page_help.css': 30078917000,
     'public.css': 33982668606,
@@ -279,7 +279,7 @@ var stVersions = {
     'wide_dd.js': 452755344,
     'writebox.css': 21565241746,
     'writebox.js': 71976729110,
-    'sharebox.js': 2037973397,
+    'sharebox.js': 2779750342,
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
@@ -657,4 +657,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 7779;
+var _rnd = 8155;
