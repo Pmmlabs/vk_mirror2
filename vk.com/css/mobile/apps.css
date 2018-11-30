@@ -4038,6 +4038,24 @@ input.wide_button {
     border-radius: 0!important
 }
 
+.wall_item._ads_block_data_w._ads_block_adaptive_ad .wi_img {
+    -webkit-border-radius: 50%!important;
+    -moz-border-radius: 50%!important;
+    border-radius: 50%!important
+}
+
+.wall_item._ads_block_adaptive_ad {
+    padding-bottom: 12px
+}
+
+.wall_item._ads_block_adaptive_ad .Btn_theme_outline {
+    white-space: nowrap
+}
+
+.wall_item._ads_block_data_w._ads_block_adaptive_ad .ads_disclaimer {
+    margin-top: 8px
+}
+
 .wi_head {
     display: block;
     padding: 7px

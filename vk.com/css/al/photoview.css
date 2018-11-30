@@ -965,11 +965,11 @@ body[data-useragent=safari] .friends_dropdown__list_content {
 }
 
 .pv_cont .pv_reply_form_wrap .reply_field_wrap {
-    margin-left: 43px
+    margin-left: 48px
 }
 
 .pv_cont .pv_reply_form_wrap .reply_field_wrap .composer_wdd .wdd_lwrap {
-    left: -43px
+    left: -48px
 }
 
 .pv_cont .pv_reply_form_wrap .reply_to_title {

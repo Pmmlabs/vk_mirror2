@@ -60,6 +60,24 @@
     width: 405px
 }
 
+.ads_ad_box.ver.repeat_ver.size_site.adaptive_ad {
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 405px;
+    max-width: 550px;
+    padding: 15px 20px
+}
+
+.ads_edit_crop_photo_ad .ads_ad_box.ver.repeat_ver.size_site.adaptive_ad,
+.ads_edit_panel_preview .ads_ad_box.ver.repeat_ver.size_site.adaptive_ad {
+    width: 445px
+}
+
+.ads_ad_box.ver.repeat_ver.size_site.story {
+    width: 900px;
+    background: #797e83
+}
+
 .ads_ad_box.app_in_news.ads_preview_api,
 .ads_ad_box.apps_only.ads_preview_api,
 .ads_ad_box.groups_only.ads_preview_api,
@@ -109,6 +127,11 @@
     padding-top: 0
 }
 
+.ads_ad_box.ver.size_site.repeat_ver.big_app.adaptive_ad,
+.ads_ad_box.ver.size_site.repeat_ver.first.adaptive_ad {
+    padding-top: 15px
+}
+
 .ads_ad_box.ver.repeat_hor.size_small {
     width: 132px
 }
@@ -150,6 +173,11 @@
 
 .ads_ad_box2.ver.repeat_ver.size_site.big_app {
     width: 560px;
+    padding: 0
+}
+
+.ads_ad_box2.ver.repeat_ver.size_site.adaptive_ad {
+    width: 100%;
     padding: 0
 }
 
@@ -545,6 +573,10 @@ a.ads_ad_box2:hover {
     vertical-align: middle
 }
 
+.ads_ad_box5.adaptive_ad {
+    display: block
+}
+
 .ads_ad_box5.hor.repeat_hor.max_size {
     white-space: nowrap
 }
@@ -608,12 +640,21 @@ a.ads_ad_box2:hover {
     border-right-width: 0
 }
 
+.ads_ad_box_border.adaptive_ad {
+    display: none
+}
+
+.ads_edit_crop_photo_ad .ads_ad_box_border.adaptive_ad,
+.ads_edit_panel_preview .ads_ad_box_border.adaptive_ad {
+    display: block
+}
+
 .ads_ad_photo_box {
     position: relative;
     overflow: hidden
 }
 
-.ads_ad_photo_box.ver {
+.ads_ad_photo_box.ver:not(.adaptive_ad) {
     padding-top: 9px
 }
 
@@ -675,7 +716,7 @@ a.ads_ad_box2:hover {
     padding-left: 10px
 }
 
-.ads_ad_photo {
+.ads_ad_photo:not(.adaptive_ad) {
     display: block;
     max-width: 90px
 }
@@ -735,7 +776,9 @@ a.ads_ad_box2:hover {
     display: none
 }
 
+.ads_ad_photo_icon_box.adaptive_ad,
 .ads_ad_photo_icon_box.mobile,
+.ads_ad_photo_icon_box_separator.adaptive_ad,
 .ads_ad_photo_icon_box_separator.mobile {
     display: block
 }
@@ -748,12 +791,27 @@ a.ads_ad_box2:hover {
     overflow: hidden
 }
 
+.ads_ad_photo_icon_box.adaptive_ad {
+    margin-right: 0;
+    width: 50px;
+    height: 50px
+}
+
 .ads_ad_photo_icon_box.iphone {
     border-radius: 5px
 }
 
 .ads_ad_photo_icon {
     max-width: 40px
+}
+
+.adaptive_ad .ads_ad_photo_icon {
+    display: block;
+    max-width: 50px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    vertical-align: top
 }
 
 .ads_ad_title_box {
@@ -789,6 +847,23 @@ a.ads_ad_box2:hover {
 .ads_ad_title_box.mobile {
     font-size: 15px;
     padding-top: 3px
+}
+
+.ads_ad_title_box.adaptive_ad {
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 15px;
+    padding-top: 8px;
+    font-size: 13px;
+    margin: 0;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    color: #2a5885;
+    line-height: 16px;
+    padding-right: 20px;
+    white-space: nowrap
 }
 
 .ads_ad_title_spacer1.mosaic,
@@ -846,6 +921,126 @@ a.ads_ad_box2:hover {
     text-decoration: underline
 }
 
+.ads_ad_explain {
+    color: #939393;
+    font-size: 12.5px;
+    line-height: 14px;
+    text-align: left;
+    padding-left: 65px;
+    padding-top: 3px;
+    display: none
+}
+
+.ads_ad_text_box.adaptive_ad .ads_ad_explain {
+    display: block
+}
+
+.ads_ad_snippet {
+    position: relative;
+    margin: 15px 0 0;
+    padding: 0;
+    border: 1px solid rgba(0, 20, 51, .12);
+    border-radius: 4px;
+    background-color: #fff;
+    display: none
+}
+
+.ads_ad_text_box.adaptive_ad .ads_ad_snippet {
+    display: block
+}
+
+.ads_ad_snippet_link {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
+}
+
+.ads_ad_snippet_top {
+    position: relative;
+    display: block;
+    margin: -1px -1px 0;
+    min-height: 285px;
+    border-radius: 4px 4px 0 0;
+    overflow: hidden
+}
+
+.ads_ad_snippet_top:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    outline: 1px solid rgba(0, 20, 51, .12);
+    outline-offset: -1px
+}
+
+.ads_ad_snippet_img {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-height: 170px;
+    max-height: 285px;
+    background: #ecf1f5
+}
+
+.ads_ad_snippet_description {
+    position: relative;
+    padding: 10px 15px 11px;
+    line-height: 17px;
+    font-size: 12.5px;
+    display: table;
+    width: 100%;
+    box-sizing: border-box
+}
+
+.ads_ad_snippet_description_text {
+    vertical-align: top;
+    display: table-cell;
+    line-height: 0;
+    word-break: break-word;
+    text-align: left
+}
+
+.ads_ad_snippet_description_title {
+    margin-bottom: 7px;
+    font-size: 16px;
+    line-height: 21px;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-height: 2.6em;
+    text-overflow: ellipsis;
+    color: #000
+}
+
+.ads_ad_snippet_description_domain {
+    max-width: 300px;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    color: #939393;
+    line-height: 12px;
+    display: inline-block;
+    padding-bottom: 2px
+}
+
+.ads_ad_snippet_description_button {
+    z-index: 10;
+    vertical-align: middle;
+    display: table-cell;
+    word-break: break-word;
+    padding-left: 6px;
+    width: 1%
+}
+
 .ads_ad_description {
     color: #000
 }
@@ -869,6 +1064,15 @@ a.ads_ad_box2:hover {
     margin-bottom: -4px;
     opacity: 0.9;
     padding: 0
+}
+
+.ads_ad_description.adaptive_ad {
+    position: relative;
+    padding: 11px 0 0;
+    line-height: 1.462;
+    text-align: left;
+    overflow: hidden;
+    word-wrap: break-word
 }
 
 .ads_ad_big_app_info_box {
@@ -911,6 +1115,18 @@ a.ads_ad_box2:hover {
     text-align: left;
     position: relative;
     z-index: 2
+}
+
+.ads_ad_domain.adaptive_ad {
+    max-width: 300px;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    color: #939393;
+    font-size: 1em;
+    padding: 0;
+    line-height: 12px;
+    display: block;
+    padding-bottom: 2px
 }
 
 .ads_ad_domain.apps_only,
@@ -1202,16 +1418,20 @@ a.ads_ad_box2:hover {
 }
 
 .ads_ad_disclaimers.promoted_post {
-    position: relative;
-    text-align: left;
-    color: #939393;
-    font-size: 12.5px;
-    line-height: 19px;
     padding: 0 20px 10px;
     margin-top: -20px
 }
 
-.ads_ad_age_restriction {
+.ads_ad_disclaimers.promoted_post,
+.ads_ad_disclaimers.adaptive_ad {
+    position: relative;
+    text-align: left;
+    color: #939393;
+    font-size: 12.5px;
+    line-height: 19px
+}
+
+.ads_ad_age_restriction:not(.adaptive_ad) {
     color: #777;
     font-size: 9px;
     padding: 2px 3px;
@@ -1219,6 +1439,16 @@ a.ads_ad_box2:hover {
     display: inline-block;
     margin-top: 5px;
     line-height: 10px
+}
+
+.ads_ad_age_restriction.adaptive_ad {
+    display: inline
+}
+
+.ads_ad_age_restriction.adaptive_ad:before {
+    content: '\0000b7';
+    margin-right: 2px;
+    margin-left: 1px
 }
 
 .ads_ad_age_restriction.apps_only,
@@ -1655,4 +1885,10 @@ a.ads_ad_box2:hover {
 .ads_edit_panel_preview.ads_ad_preview {
     float: none;
     overflow: auto
+}
+
+#ad_preview_top.adaptive_ad {
+    position: relative;
+    padding-top: 15px;
+    box-sizing: border-box
 }

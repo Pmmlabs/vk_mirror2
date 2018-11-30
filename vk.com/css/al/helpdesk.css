@@ -467,6 +467,12 @@ body.body_helpdesk_small_sb .left_menu_nav {
     width: 31%
 }
 
+.helpdesk_extra_options__column.helpdesk_extra_options__column_long {
+    margin-top: 10px;
+    width: 68%
+}
+
+.helpdesk_extra_options__column.helpdesk_extra_options__column_second_row,
 .tickets_extra_bottom {
     margin-top: 10px
 }

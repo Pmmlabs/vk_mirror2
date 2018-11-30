@@ -6225,7 +6225,9 @@ var nav = {
 
         var checkAdData = !!post_click_type || forceCheckAdData;
         if (checkAdData) {
-            var adDataWrapper = gpeByClass('_ads_promoted_post_data_w', linkElem);
+            var adDataWrapper = gpeByClass('_ads_block_data_w', linkElem);
+            // TODO: remove _ads_promoted_post_data_w fallback in jan-feb 2019
+            adDataWrapper = adDataWrapper ? adDataWrapper : gpeByClass('_ads_promoted_post_data_w', linkElem);
             var adData = adDataWrapper && adDataWrapper.getAttribute('data-ad');
             var adBlockUID = adDataWrapper && adDataWrapper.getAttribute('data-ad-block-uid');
             if (adData) {

@@ -304,7 +304,8 @@
     padding: 14px
 }
 
-.ads_info_premoderation_request .ads_ad_box.promoted_post {
+.ads_info_premoderation_request .ads_ad_box.promoted_post,
+.ads_info_premoderation_request .ads_ad_box.adaptive_ad {
     padding: 15px
 }
 
@@ -508,7 +509,8 @@
     padding: 14px
 }
 
-.ads_premoderation_requests .ads_ad_box.promoted_post {
+.ads_premoderation_requests .ads_ad_box.promoted_post,
+.ads_premoderation_requests .ads_ad_box.adaptive_ad {
     padding: 15px 15px 0
 }
 
@@ -587,6 +589,7 @@
     width: 440px
 }
 
+.ads_premoderation_request.adaptive_ad,
 .ads_premoderation_request.mobile,
 .ads_premoderation_request.promoted_post {
     width: 910px

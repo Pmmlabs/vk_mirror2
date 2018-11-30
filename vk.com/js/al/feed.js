@@ -1360,6 +1360,7 @@ var Feed = {
                 e = e.split(":"), a[e[0]] = intval(e[1]) || 1
             }))
         } else if (o = i.id.match(n)) a[o[1]] = 1;
+        else if (o = i.id.match(/^post(adsite.*)$/)) a[o[1]] = 1;
         else if (t = i.className, o = t.match(/feed_reposts_wrap(-?\d+_\d+)/)) {
             if (s = domFC(i), hasClass(domFC(s), "post_copy") && (a[o[1]] = -1), (o = domFC(s).id.match(n)) && (a[o[1]] = 1), isVisible(s = domNS(s)))
                 for (s = domFC(s); s; s = domNS(s))(o = s.id.match(n)) && (a[o[1]] = 1)

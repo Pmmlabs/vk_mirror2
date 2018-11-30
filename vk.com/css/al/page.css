@@ -1314,8 +1314,8 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 .wall_module .reply_fakebox {
     vertical-align: top;
     overflow: hidden;
-    max-height: 48px;
-    padding: 14px 20px 16px 12px;
+    max-height: 52px;
+    padding: 16px 20px 16px 12px;
     padding-left: 16px;
     border: 0;
     border-radius: 0 0 2px 2px;
@@ -1587,7 +1587,7 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 .wall_module .reply_box_open .submit_post_field,
 .wall_module .reply_box_open .submit_post_field~.placeholder .ph_input {
     height: auto;
-    min-height: 72px;
+    min-height: 80px;
     max-height: none;
     padding-right: 36px
 }
@@ -3028,7 +3028,7 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     padding-top: 10px
 }
 
-.poster__settings-btns-wrapper {
+.poster_edit .poster__settings-btns-wrapper {
     padding: 15px;
     border-top: 1px solid #e7e8ec
 }
@@ -3395,14 +3395,14 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 }
 
 #submit_post_box:not(.shown):not(.test_posting_experiment_b):not(.test_posting_experiment_c):not(.own_field) .poster__open-btn-layout {
-    margin-left: 14px
+    margin-left: 18px
 }
 
 #submit_post_box:not(.shown):not(.test_posting_experiment_b):not(.test_posting_experiment_c):not(.own_field) .poster__open-btn-wrapper {
     float: none;
     position: absolute;
-    right: 16px;
-    bottom: 14px;
+    right: 20px;
+    bottom: 16px;
     padding: 0;
     margin: 0;
     height: 20px;
@@ -3411,7 +3411,7 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 }
 
 #submit_post_box:not(.shown):not(.test_posting_experiment_b):not(.test_posting_experiment_c):not(.own_field) .poster__open-btn-wrapper+.page_add_media {
-    right: 61px
+    right: 70px
 }
 
 .poster #submit_post_error,
@@ -7870,16 +7870,25 @@ img.page_preview_video {
 
 .post_field_wrap {
     position: relative;
-    margin-left: 43px
+    margin-left: 48px
 }
 
 .post_action_tt_content {
     display: none
 }
 
+._postpone .post_action_tt_content {
+    padding: 8px 20px
+}
+
 .post_action_tt {
     width: 210px;
     padding: 8px 0
+}
+
+.post_action_tt._postpone {
+    width: auto;
+    white-space: nowrap
 }
 
 .post_action_tt .eltt_arrow_back {
@@ -7915,13 +7924,17 @@ img.page_preview_video {
 .post_action_btn {
     position: relative;
     display: inline-block;
-    margin: 2px 11px 14px 12px;
+    margin: 12px 16px 11px 0;
     vertical-align: top;
-    color: #2a5885;
+    color: #828282;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none
+}
+
+.post_action_btn.on {
+    color: #2a5885
 }
 
 .anon_field_on .post_action_btn.post_available {
@@ -7966,7 +7979,7 @@ img.page_preview_video {
 }
 
 .wpe_text_cont .post_action_btn {
-    margin: 20px 11px 0 0
+    margin: 18px 11px 3px 0
 }
 
 .post_field_user_image {
@@ -7984,8 +7997,8 @@ img.page_preview_video {
     -khtml-backface-visibility: hidden;
     transform: rotateY(0deg);
     position: absolute;
-    top: 10px;
-    left: 15px
+    top: 12px;
+    left: 20px
 }
 
 .author_secondary .post_field_user_image,
@@ -8021,9 +8034,9 @@ div.submit_post_field~.placeholder .ph_input {
     vertical-align: top;
     overflow: hidden;
     width: 100%;
-    min-height: 48px;
-    max-height: 48px;
-    padding: 14px 20px 16px 12px;
+    min-height: 52px;
+    max-height: 52px;
+    padding: 16px 20px 16px 12px;
     border: 0;
     border-radius: 2px;
     line-height: 1.462;
@@ -8076,7 +8089,7 @@ div.submit_post_field[contenteditable=true]>p {
     display: none;
     background: #fafbfc;
     border-top: 1px solid #e7e8ec;
-    padding: 15px 20px;
+    padding: 13px 20px 12px;
     border-radius: 0 0 2px 2px
 }
 
@@ -8187,7 +8200,7 @@ div.submit_post_field[contenteditable=true]>p {
 #submit_post_box:not(.shown):not(.test_posting_experiment_b):not(.test_posting_experiment_c):not(.own_field) .page_add_media {
     float: none;
     position: absolute;
-    bottom: 13px;
+    bottom: 15px;
     right: 11px
 }
 
@@ -8415,7 +8428,7 @@ div.submit_post_field[contenteditable=true]>p {
 .submit_post_box.shown div.submit_post_field~.placeholder .ph_input,
 .submit_post_box.test_posting_experiment_c div.submit_post_field,
 .submit_post_box.test_posting_experiment_c div.submit_post_field~.placeholder .ph_input {
-    min-height: 72px;
+    min-height: 80px;
     max-height: none
 }
 
@@ -8432,8 +8445,8 @@ div.submit_post_field[contenteditable=true]>p {
 }
 
 .submit_post_box .emoji_smile_wrap {
-    top: 11px;
-    right: 16px
+    top: 13px;
+    right: 21px
 }
 
 .submit_post_box .emoji_smile {
@@ -10507,7 +10520,7 @@ div.page_cover_image .ui_actions_menu_icons {
 }
 
 .post_field_wrap .composer_wdd .wdd_lwrap {
-    left: -43px;
+    left: -48px;
     width: auto!important
 }
 
@@ -10882,10 +10895,61 @@ div.create_poll_cb {
     text-decoration: none
 }
 
+.post_postpone_cancel,
+.post_postpone_save {
+    float: right
+}
+
+.post_postpone_cancel {
+    margin-right: 8px
+}
+
+.post_postpone_submit_wrapper {
+    padding-top: 9px
+}
+
+.post_actions_btns {
+    position: relative;
+    display: none;
+    margin-left: -28px;
+    margin-right: 20px;
+    border-top: 1px solid #e7e8ec
+}
+
+.shown .post_actions_btns {
+    display: block
+}
+
+.poster .post_actions_btns {
+    display: block;
+    margin: 0;
+    padding: 14px 15px;
+    border-top: 1px solid #e7e8ec
+}
+
+.wpe_post_actions_btns {
+    position: relative
+}
+
+.timer_in_tt .datepicker_item,
+.timer_in_tt .timepicker_dots {
+    display: inline-block;
+    vertical-align: middle;
+    float: none
+}
+
+.post_actions_btns:empty {
+    display: none
+}
+
 div.medadd_c_timer {
     margin: 5px 2px 0px;
     height: 33px;
     overflow: hidden
+}
+
+div.medadd_c_timer.timer_in_tt {
+    margin: 3px 0 0
 }
 
 div.medadd_c_nofixed {

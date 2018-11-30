@@ -1774,6 +1774,7 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
                 suffixesAll += (additionalParams.is_big_app ? '_big_app' : '');
                 suffixesAll += (additionalParams.is_mobile_app ? '_mobile' : '');
                 suffixesAll += (additionalParams.is_promoted_post ? '_promoted_post' : '');
+                suffixesAll += (additionalParams.is_adaptive_ad ? '_adaptive_ad' : '');
                 suffixesAll += (additionalParams.is_exclusive_ad ? '_exclusive' : '');
                 suffixesAll += (additionalParams.is_app_admin ? '_app' : '');
                 var suffixesExt = '';

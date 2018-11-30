@@ -2,10 +2,11 @@ var Page = {
         /**
          * e.g. {
          *   '-1231_132': true,
+         *   'adsite_12345': true,
          *   '-4552_22': false
          * }
          */
-        _isAdPost: {},
+        _adBlockSeenStorage: {},
         _postsClearTimeoutsCalls: 0,
 
         // mainly used in image paste from clipboard (see Emoji)
@@ -667,7 +668,7 @@ var Page = {
                 _postsExtras = {};
             }
             var now = vkNow();
-            var isAdPost = Page._isAdPost;
+            var adBlockSeenStorage = Page._adBlockSeenStorage;
             var postElem;
 
             for (i in posts) {
@@ -697,17 +698,17 @@ var Page = {
                         });
                     }
 
-                    if (!(j in isAdPost)) {
-                        // TODO: there are rare situations in which `Page._isAdPost` will be calculated wrong.
+                    if (!(j in adBlockSeenStorage)) {
+                        // TODO: there are rare situations in which seen check is done incorrectly.
                         // For example:
                         // 1) Visit ad post page (e.g. `vk.com/wall-18098621_178771`)
                         // 2) There is no `data-ad-view` for such post
                         // 3) `isAdPost` will keep `false` for this post
                         // 4) Then, if user sees this post in his newsfeed, no post data for this post will be sent (only ad data)
-                        isAdPost[j] = !!(postElem && attr(postElem, 'data-ad-view'));
+                        adBlockSeenStorage[j] = !!(postElem && attr(postElem, 'data-ad-view'));
                     }
 
-                    if (!isAdPost[j]) {
+                    if (!adBlockSeenStorage[j]) {
                         se = _postsSeen[j];
                         sa = _postsSaved[j];
 
@@ -739,7 +740,7 @@ var Page = {
                         viewportHeight: window.clientHeight(),
                         session_id: cur.feed_session_id ? cur.feed_session_id : 'na'
                     };
-                    Wall.triggerAdPostStat(j, 'impression');
+                    Wall.triggerAdStat(j, 'impression');
                 }
             }
             if (ch) {
@@ -767,7 +768,7 @@ var Page = {
             var modules = ls.get('posts_seen_modules') || {};
             var extras = ls.get('posts_extras') || {};
             var t = Math.floor((vk.ts + Math.floor((vkNow() - vk.started) / 1000)) / 3600);
-            var isAdPost = Page._isAdPost;
+            var adBlockSeenStorage = Page._adBlockSeenStorage;
             var ch, i, p, snt, sn;
             if (!window._postsExtras) {
                 _postsExtras = {};
@@ -787,14 +788,14 @@ var Page = {
                     delete _postsExtras[i];
                 }
                 p = i.split('_');
-                if (p[0] !== 'ad' && p[0] !== 'posthashtag' && p[0] !== 'block') {
+                if (p[0] !== 'ad' && p[0] !== 'adsite' && p[0] !== 'posthashtag' && p[0] !== 'block') {
                     p[0] = intval(p[0]);
                     if (!p[1] || p[1].substr(0, 1) != 'p') {
                         p[1] = intval(p[1]);
                     }
                 }
                 snt = (sent[p[0]] || {})[p[1]];
-                if (p[0] != vk.id && (isAdPost[i] || (!snt || sn == -1 && snt > 0))) {
+                if (p[0] != vk.id && (adBlockSeenStorage[i] || (!snt || sn == -1 && snt > 0))) {
                     if (!seen[p[0]]) {
                         seen[p[0]] = {};
                         delete modules[i];
@@ -3553,7 +3554,7 @@ var Wall = {
                         }
                         break;
                     case 'postpone':
-                        var ts = val('postpone_date' + addmedia.lnkId);
+                        var ts = +addmedia.postponeDate;
                         params = extend(params, {
                             postpone: ts
                         });
@@ -3707,6 +3708,8 @@ var Wall = {
         if (cur.wallAdsReplacedFeatureTooltip) {
             Wall.showAdsReplacedTooltip();
         }
+
+        stManager.add(['ui_controls.css', 'ui_controls.js', 'datepicker.css', 'datepicker.js']);
     },
 
     postBoxFocus: function(event, scrollToScreenTop) {
@@ -3806,7 +3809,7 @@ var Wall = {
             empty = true;
 
         if (browser.opera_mobile || !rf) return;
-        if (!force && (v || addmedia.chosenMedia || (addmedia.getMedias && addmedia.getMedias().length > 0) || (addmedia.attachCount && addmedia.attachCount() > 0))) return;
+        if (!force && (v || addmedia.chosenMedia || (addmedia.getMedias && addmedia.getMedias().length > 0) || addmedia.activeState || (addmedia.attachCount && addmedia.attachCount() > 0))) return;
         removeClass('submit_post_box', 'shown');
         if (rf && !v) {
             if (cur.postMention) {
@@ -3952,16 +3955,26 @@ var Wall = {
 
         radiobtn(el, isFriendsOnly, 'post_settings_btn' + prefixId);
 
+        var visibilityBtn = ge('post_visibility_btn' + prefixId);
         var twitter = isEditPost ? ge('wpe_status_export') : ge('status_export');
         var fb = isEditPost ? ge('wpe_facebook_export') : ge('facebook_export');
-        var label = geByClass1('post_action_btn_text', ge('post_visibility_btn' + prefixId));
+        var label = geByClass1('post_action_btn_text', visibilityBtn);
 
         if (isFriendsOnly) {
-            label.innerHTML = ge('friends_only' + prefixId).innerHTML;
+            var textLabel = ge('friends_only' + prefixId).innerHTML;
+            label.innerHTML = textLabel;
+            label.setAttribute('aria-label', replaceEntities(textLabel));
+
+            addClass(visibilityBtn, 'on');
+
             checkbox(twitter, false);
             checkbox(fb, false);
         } else {
-            label.innerHTML = ge('no_friends_only' + prefixId).innerHTML;
+            var textLabel = ge('no_friends_only' + prefixId).innerHTML;
+            label.innerHTML = textLabel;
+            label.setAttribute('aria-label', replaceEntities(textLabel));
+
+            removeClass(visibilityBtn, 'on');
         }
 
         twitter && disable(twitter, isFriendsOnly);
@@ -6459,15 +6472,31 @@ var Wall = {
             ||
             hasClass(targetEl, 'author') || hasClass(targetEl, 'post_image') || hasClass(targetEl, 'post_img')
         ) {
-            Wall.triggerAdPostStat(postEl, 'click_post_owner');
+            Wall.triggerAdStat(postEl, 'click_post_owner');
         } else if (
             event.target.nodeName == 'A' && gpeByClass('wall_post_text', event.target, postEl) ||
             gpeByClass('page_media_thumbed_link', event.target, postEl) ||
             hasClass(event.target, 'lnk') ||
             gpeByClass('lnk', event.target, postEl)
         ) {
-            Wall.triggerAdPostStat(postEl, 'click_post_link');
+            Wall.triggerAdStat(postEl, 'click_post_link');
         }
+    },
+    adBlockClickStat: function(event, eventType) {
+        event = normEvent(event);
+
+        var wrapClass = '_ads_block_data_w';
+        var el = event.currentTarget;
+        if (!hasClass(el, wrapClass)) {
+            el = gpeByClass(wrapClass, el);
+        }
+
+        var blocks = [];
+        if (el.getAttribute('data-ad-view')) {
+            blocks.push(Wall.postsGetRaws(el));
+            Page.postsSeen(blocks);
+        }
+        Wall.triggerAdStat(el, eventType);
     },
     getAdsEvents: function() {
         var lsData = Wall._lsAdsEvents;
@@ -6491,18 +6520,22 @@ var Wall = {
             ls.set(Wall.LS_ADS_EVENTS, lsData);
         }
     },
+    // TODO: remove "alias" after deploy and change calls to triggerAdStat
     triggerAdPostStat: function(post, event) {
-        var postEl = typeof post == 'string' ? Wall.domPost(post) : post;
+        Wall.triggerAdStat(post, event);
+    },
+    triggerAdStat: function(elIdOrEl, event) {
+        var el = typeof elIdOrEl === 'string' ? Wall.domPost(elIdOrEl) : elIdOrEl;
 
-        var pixels = domData(postEl, 'ad-stat-' + event);
+        var pixels = domData(el, 'ad-stat-' + event);
         while (pixels) {
-            var adBlockUID = domData(postEl, 'ad-block-uid');
+            var adBlockUID = domData(el, 'ad-block-uid');
             var isUniqueEvent = inArray(event, [
                 'load', 'impression',
-                'video_start', 'video_play_3s', 'video_play_25', 'video_play_50', 'video_play_75', 'video_play_95'
+                'video_start', 'video_play_3s', 'video_play_25', 'video_play_50', 'video_play_75', 'video_play_95', 'video_play_100'
             ]);
             if (isUniqueEvent) {
-                domData(postEl, 'ad-stat-' + event, null);
+                domData(el, 'ad-stat-' + event, null);
             }
             if (adBlockUID && isUniqueEvent) {
                 try {
@@ -6529,8 +6562,8 @@ var Wall = {
             break;
         }
 
-        var statHtml = domData(postEl, 'ad-stat-html-' + event);
-        domData(postEl, 'ad-stat-html-' + event, null);
+        var statHtml = domData(el, 'ad-stat-html-' + event);
+        domData(el, 'ad-stat-html-' + event, null);
 
         if (statHtml) {
             var statElemWrap = ce('div', {
@@ -6538,7 +6571,7 @@ var Wall = {
             });
             var elem;
             while (elem = statElemWrap.firstChild) {
-                postEl.appendChild(elem);
+                el.appendChild(elem);
                 if (elem.tagName === 'SCRIPT') {
                     eval(elem.innerHTML);
                 }
@@ -8637,21 +8670,34 @@ var Wall = {
     },
 
     // fyi: this function is used only for ads at the moment, so it is called not in all expected places yet
+    // fyi2: not only "post" - ads and different news items go here too
     onPostLoaded: function(post, maybeWrappedElement) {
         post = ge(post);
+        Wall.onAdBlockLoaded(post, maybeWrappedElement);
         if (maybeWrappedElement && !hasClass(post, '_post')) {
             post = geByClass1('_post', post);
         }
         if (!post || !hasClass(post, '_post')) {
             return;
         }
-        if (hasClass(post, '_ads_promoted_post_data_w')) {
-            Wall.triggerAdPostStat(post, 'load');
-        }
 
         if (cur.onPostLoaded) {
             cur.onPostLoaded(post);
         }
+    },
+    onAdBlockLoaded: function(el, maybeWrappedElement) {
+        var adEl;
+        var wrapClass = '_ads_block_data_w';
+        // TODO: remove _ads_promoted_post_data_w fallback in jan-feb 2019
+        if (hasClass(el, wrapClass) || hasClass(el, '_ads_promoted_post_data_w')) {
+            adEl = el;
+        } else if (maybeWrappedElement) {
+            adEl = geByClass1(wrapClass, el) || geByClass1('_ads_promoted_post_data_w', el);
+        }
+        if (!adEl) {
+            return;
+        }
+        Wall.triggerAdStat(adEl, 'load');
     },
 
     init: function(opts) {
@@ -8749,7 +8795,7 @@ var Wall = {
                 editable: 1,
                 from: 'post',
                 sortable: 1,
-                postponeBtnCont: domPN(ge('post_field')),
+                postponeBtnCont: ge('post_actions_btns'),
             }, opts.media_opts || {}));
 
             var podcastMenu = domByClass(cur.wallAddMedia.menu.menuNode, '_type_podcast');
@@ -9374,7 +9420,7 @@ var Wall = {
             cur.onWallLike();
         }
         if (like_type == 'wall') {
-            Wall.triggerAdPostStat(post_raw, 'like_post');
+            Wall.triggerAdStat(post_raw, 'like_post');
         }
         return false;
     },
@@ -9534,7 +9580,7 @@ var Wall = {
             object: like_obj
         }, params));
         if (like_type == 'wall') {
-            Wall.triggerAdPostStat(post_raw, 'share_post');
+            Wall.triggerAdStat(post_raw, 'share_post');
         }
         return false;
     },
@@ -11004,7 +11050,7 @@ Composer = {
         if (Composer.isArticleConvertSuggestAvailable(composer)) {
             if (!composer.articleConvertEl) {
                 var inputWrapEl = gpeByClass('post_field_wrap', composer.input)
-                var beforeElem = geByClass1('post_action_btn', inputWrapEl)
+                var beforeElem = geByClass1('post_actions_btns', inputWrapEl)
 
                 composer.articleConvertEl = se('<button class="article_post_convert round_button">' + getLang('profile_convert_to_article_short') + '</button>')
 
@@ -11407,7 +11453,11 @@ Composer = {
                         }
                         break;
                     case 'postpone':
-                        params.postpone = cur.postponedLastDate = val('postpone_date' + addMedia.lnkId);
+                        if (addMedia.postponeIsTooltip) {
+                            params.postpone = cur.postponedLastDate = addMedia.postponeDate;
+                        } else {
+                            params.postpone = cur.postponedLastDate = val('postpone_date' + addMedia.lnkId);
+                        }
                         return;
                     case 'mark_as_ads':
                         params.mark_as_ads = 1;
@@ -11442,7 +11492,13 @@ Composer = {
             });
         }
         if (!addMedia.multi && !params.postpone && addMedia.postponePreview) {
-            params.postpone = cur.postponedLastDate = val('postpone_date' + addMedia.lnkId);
+            if (addMedia.postponeIsTooltip) {
+                if (addMedia.postponeDate) {
+                    params.postpone = cur.postponedLastDate = addMedia.postponeDate;
+                }
+            } else {
+                params.postpone = cur.postponedLastDate = val('postpone_date' + addMedia.lnkId);
+            }
         }
         if (!addMedia.multi && !params.mark_as_ads && addMedia.markAsAds) {
             params.mark_as_ads = 1;

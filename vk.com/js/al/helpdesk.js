@@ -1033,7 +1033,7 @@ var Helpdesk = {
                 t.act = "all", nav.objLoc.faq_id && (t.faq_id = nav.objLoc.faq_id);
                 var s = (window.radioBtns.filters || {}).val;
                 if (t.good = 1 == s ? 1 : "", t.opened = 2 == s ? 1 : "", t.from_support = 3 == s ? 1 : "", t.has_replies = 4 == s ? 1 : "", t.long_waiting = 5 == s ? 1 : "", t.ml = 6 == s ? 1 : "", t.search = 1, ge("helpdesk_ento_options") && t.opened) {
-                    t.download = isChecked("tickets_download_checkbox"), t.no_category = isChecked("tickets_no_category_checkbox"), t.photo_server = val("tickets_photo"), t.id100 = val("tickets_id"), t.id1000 = val("tickets_id1000"), t.nospam_pid = val("tickets_nospam_pid"), t.cdn = val("tickets_cdn");
+                    t.download = isChecked("tickets_download_checkbox"), t.no_category = isChecked("tickets_no_category_checkbox"), t.photo_server = val("tickets_photo"), t.id100 = val("tickets_id"), t.id1000 = val("tickets_id1000"), t.otp = cur.searchOtp.val(), t.nospam_pid = val("tickets_nospam_pid"), t.cdn = val("tickets_cdn");
                     var o = intval(cur.searchMobile.val());
                     o && (t.mobile = o);
                     var a = cur.searchBrowser.val();
@@ -1051,11 +1051,12 @@ var Helpdesk = {
     },
     sameParams: function(e) {
         if (!cur.params) return !1;
-        for (var t in e)
-            if (e[t] != cur.params[t]) return !1;
-        for (var t in cur.params)
-            if (e[t] != cur.params[t]) return !1;
-        return !0
+        var t = !0;
+        return each(e, function(e, s) {
+            return s != cur.params[e] ? (t = !1, !1) : void 0
+        }), each(cur.params, function(s, o) {
+            return o != e[s] ? (t = !1, !1) : void 0
+        }), t
     },
     updateTicketsSearch: function(e, t) {
         radioval("filters");
@@ -1105,12 +1106,13 @@ var Helpdesk = {
                         }));
                         break;
                     case "all":
-                        val("tickets_all", cont), script && eval(script), delete nav.objLoc.offset, each(["q", "good", "opened", "download", "from_support", "photo_server", "id100", "nospam_pid", "time_from", "time_to", "mobile", "browser", "id1000", "cdn", "no_category", "tutorial", "source", "has_replies", "ml", "long_waiting"], function(e, t) {
+                        val("tickets_all", cont), script && eval(script), delete nav.objLoc.offset, each(["q", "good", "opened", "download", "from_support", "photo_server", "id100", "otp", "nospam_pid", "time_from", "time_to", "mobile", "browser", "id1000", "cdn", "no_category", "tutorial", "source", "has_replies", "ml", "long_waiting"], function(e, t) {
                             query[t] ? nav.objLoc[t] = query[t] : delete nav.objLoc[t]
                         }), nav.setLoc(nav.objLoc);
                         break;
                     case "history":
-                        delete nav.objLoc.offset, val("tickets_replies", cont), query.q ? nav.objLoc.q = query.q : delete nav.objLoc.q, script && eval(script), nav.setLoc(nav.objLoc);
+                        delete nav.objLoc.offset, val("tickets_replies", cont), query.q ? nav.objLoc.q = query.q : delete nav.objLoc.q,
+                            script && eval(script), nav.setLoc(nav.objLoc)
                 }
             }
         };
