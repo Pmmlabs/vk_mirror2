@@ -1480,3 +1480,7 @@ body.sf .mention_tt_actions {
 .error_label {
     color: red
 }
+
+.avatar_tooltip {
+    width: 200px
+}

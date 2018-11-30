@@ -205,6 +205,7 @@ var ThumbsEdit = {
                 className: "page_album_size"
             })), w.appendChild(ce("div", {
                 innerHTML: e.title,
+                title: replaceEntities(e.title),
                 className: "page_album_title_text"
             })), d.appendChild(w)
         }
