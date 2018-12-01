@@ -1137,6 +1137,14 @@
     width: 7px
 }
 
+.bt_report_footer .reproducing .flat_button:disabled:hover {
+    cursor: default
+}
+
+.reproducing:not(.checked) .bt_report_footer .reproducing .flat_button:disabled:hover {
+    background: none
+}
+
 .bt_report_footer .reproducing.checked .common_count {
     font-weight: 700;
     -webkit-font-smoothing: antialiased;

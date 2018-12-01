@@ -1447,7 +1447,8 @@
 }
 
 .audio_page_layout .audio_recoms_block {
-    padding: 20px 20px 10px
+    padding: 20px 20px 10px;
+    position: relative
 }
 
 .audio_page_layout .audio_recoms_block h2 {
@@ -3041,4 +3042,42 @@
 
 .audio_playback_box .flat_button {
     padding: 7px 53px
+}
+
+.audio_artist_tag {
+    position: absolute;
+    display: block;
+    top: 31px;
+    right: 13px;
+    z-index: 10
+}
+
+.audio_artist_tag__link {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 17px 3px 8px;
+    border-radius: 3px;
+    letter-spacing: -0.2px
+}
+
+.audio_artist_tag__link:before {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    width: 8px;
+    height: 8px;
+    background: url('/images/svg_icons/audio/audio_tag_chevron.svg');
+    background-size: cover
+}
+
+.audio_artist_tag__link:hover {
+    text-decoration: none
+}
+
+.audio_artist_tag__link_award {
+    background-image: -o-linear-gradient(189deg, #ff40a6, #9552c9 52%, #475fe2);
+    background-image: linear-gradient(261deg, #ff40a6, #9552c9 52%, #475fe2)
 }

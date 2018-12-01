@@ -16567,7 +16567,8 @@ div.chat_tab_img {
 .top_notify_header .top_notify_header_sup_label {
     height: 13px;
     -o-transition: opacity 0.1s;
-    transition: opacity 0.1s
+    transition: opacity 0.1s;
+    position: relative
 }
 
 .top_notify_header .top_notify_header_label {
@@ -16607,7 +16608,27 @@ div.chat_tab_img {
 
 .top_notify_header .top_notify_header_label .top_notify_header_label_groups_counter {
     margin-left: 5px;
-    color: #939393
+    background: #b2b7c2;
+    position: absolute;
+    top: -2px;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-size: 11px;
+    height: 16px;
+    line-height: 16px;
+    min-width: 6px;
+    color: #fff
+}
+
+.top_notify_header .top_notify_header_label .top_notify_header_label_groups_counter.unmuted {
+    background: #4a76a8
+}
+
+.top_notify_header .top_notify_header_label .top_notify_header_label_groups_counter:empty {
+    display: none
 }
 
 .top_notify_header .top_notify_header_sub_label {
@@ -16632,7 +16653,9 @@ div.chat_tab_img {
     float: right;
     font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto
+    -moz-osx-font-smoothing: auto;
+    position: relative;
+    z-index: 1
 }
 
 .top_notify_cont {
