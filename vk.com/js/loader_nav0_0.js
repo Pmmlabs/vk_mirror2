@@ -366,7 +366,7 @@ var stVersions = {
     'groupinfo.css': 89201855115,
     'ownerinfo.css': 8488058642,
     'bugtracker.js': 1935992230,
-    'bugtracker.css': 29416550042,
+    'bugtracker.css': 30920421664,
     'cmodules/web/bugtracker.js': 26318140191,
     'login.css': 20890440007,
     'cmodules/web/login.js': 2208498864,
@@ -657,4 +657,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 1628;
+var _rnd = 4837;
