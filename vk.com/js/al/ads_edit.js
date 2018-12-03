@@ -4032,8 +4032,18 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
             });
             break;
         case '_format_type':
-            var headerTitle = ((this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST) ? getLang('ads_edit_ad_header_setting_link_params') : getLang('ads_edit_ad_header_setting_view'));
-            ge('ads_edit_value_header_view').innerHTML = headerTitle
+            var headerTitle = '';
+            switch (this.params.format_type.value) {
+                case AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST:
+                    headerTitle = getLang('ads_edit_ad_header_setting_link_params');
+                    break;
+                case AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD:
+                    headerTitle = getLang('ads_edit_ad_header_setting_adaptive_ad');
+                    break;
+                default:
+                    headerTitle = getLang('ads_edit_ad_header_setting_view');
+            }
+            ge('ads_edit_value_header_view').innerHTML = headerTitle;
             toggleClass('ads_edit_ad_row_upload_photo', 'unshown', !!(this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST));
             toggleClass('ads_edit_ad_row_upload_photo_icon', 'unshown', (this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD));
             break;

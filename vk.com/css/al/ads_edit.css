@@ -1300,8 +1300,16 @@ a.ads_edit_link_go:hover {
     margin: 0 0 8px
 }
 
-.ads_edit_crop_photo_box .error,
+.ads_edit_crop_photo_box .error {
+    margin: 0 0 15px;
+    line-height: 150%
+}
+
 .ads_edit_crop_photo_box .info_msg {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
     margin: 0 0 15px;
     line-height: 150%
 }
@@ -2497,6 +2505,7 @@ input.ads_edit_easy_promote_box__payments-input-amount {
     padding-top: 3px
 }
 
-.ads_ad_snippet_top {
+.ads_edit_crop_photo_box .ads_ad_snippet_top,
+.ads_edit_panel_preview .ads_ad_snippet_top {
     min-height: 205px
 }

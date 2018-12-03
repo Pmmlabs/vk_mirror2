@@ -495,6 +495,10 @@
     margin-right: 31px
 }
 
+.ads_premoderation_request_wrap .ads_ad_snippet_top {
+    min-height: 205px
+}
+
 .ads_premoderation_requests .ads_ad_box.app_in_news,
 .ads_premoderation_requests .ads_ad_box.apps_only,
 .ads_premoderation_requests .ads_ad_box.groups_only,

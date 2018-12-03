@@ -1499,31 +1499,31 @@ i i.untranslated {
     color: #666
 }
 
-.tr_volunteers_stats_table .paginated_table .paginated_table_table {
+.tr_stats_table .paginated_table .paginated_table_table {
     border: 0
 }
 
-.tr_volunteers_stats_table .paginated_table .paginated_table_header {
+.tr_stats_table .paginated_table .paginated_table_header {
     border: 0;
     background: none
 }
 
-.tr_volunteers_stats_table .paginated_table .paginated_table_header .paginated_table_cell {
+.tr_stats_table .paginated_table .paginated_table_header .paginated_table_cell {
     border: 0;
     border-bottom: 1px solid #e7e8ec;
     cursor: default;
     background: none
 }
 
-.tr_volunteers_stats_table .paginated_table .paginated_table_header .paginated_table_cell div {
+.tr_stats_table .paginated_table .paginated_table_header .paginated_table_cell div {
     border: 0
 }
 
-.tr_volunteers_stats_table .paginated_table .paginated_table_header .paginated_table_cell:hover {
+.tr_stats_table .paginated_table .paginated_table_header .paginated_table_cell:hover {
     background: none
 }
 
-.tr_volunteers_stats_table .tr_volunteers_status {
+.tr_stats_table .tr_volunteers_status {
     width: 19px;
     height: 19px;
     float: left;
@@ -1533,14 +1533,24 @@ i i.untranslated {
     cursor: pointer
 }
 
-.tr_volunteers_stats_table .tr_volunteers_status.tr_volunteers_status_wait {
+.tr_stats_table .tr_volunteers_status.tr_volunteers_status_wait {
     background-position: 0px 0px
 }
 
-.tr_volunteers_stats_table .tr_volunteers_status.tr_volunteers_status_not_sended {
+.tr_stats_table .tr_volunteers_status.tr_volunteers_status_not_sended {
     background-position: 0px -20px
 }
 
-.tr_volunteers_stats_table .tr_volunteers_status.tr_volunteers_status_sended {
+.tr_stats_table .tr_volunteers_status.tr_volunteers_status_sended {
     background-position: 0px -39px
+}
+
+.tr_stats_periods .radiobtn {
+    margin: 10px 0
+}
+
+.tr_stats_row_flag {
+    margin-right: 10px;
+    float: left;
+    height: 15px
 }

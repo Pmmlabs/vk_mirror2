@@ -167,7 +167,7 @@ var stVersions = {
     'audioplayer.js': 179003374126,
     'audioplayer.css': 22095420189,
     'audio_html5.js': 287741914,
-    'audio.js': 1114894100,
+    'audio.js': 1731025723,
     'cmodules/web/audio_admins.js': 7226287612,
     'audio.css': 30916247062,
     'audio_admins.css': 25604899608,
@@ -221,8 +221,8 @@ var stVersions = {
     'video_youtube.css': 18029287000,
     'videoplayer.js': 93317144507,
     'videoplayer.css': 48249585695,
-    'translation.js': 3145443957,
-    'translation.css': 19727947664,
+    'translation.js': 3971934328,
+    'translation.css': 20931850415,
     'reg.css': 887926110,
     'reg.js': 1336565657,
     'invite.css': 21912013463,
@@ -288,7 +288,7 @@ var stVersions = {
     'privacy.js': 711405089,
     'privacy.css': 19363717440,
     'apps.css': 48090212675,
-    'apps.js': 11673546489,
+    'apps.js': 11841138219,
     'apps_edit.js': 11575962370,
     'apps_edit.css': 36350527522,
     'apps_check.js': 3204387834,
@@ -388,15 +388,15 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 32857258750,
     'aes_light.js': 3780729751,
-    'ads.css': 56151388575,
+    'ads.css': 56151388576,
     'ads_bonus.css': 1294533291,
     'ads.js': 3723561920,
     'ads_payments.js': 1483293789,
-    'ads_edit.css': 41468214951,
-    'ads_edit.js': 1922401927,
+    'ads_edit.css': 40594178831,
+    'ads_edit.js': 2977822601,
     'ads_edit_geo.js': 519167575,
     'ads_moder_common.css': 18936987696,
-    'ads_moder.css': 19493618040,
+    'ads_moder.css': 21040714831,
     'ads_moder_common.js': 3875868763,
     'ads_moder.js': 2798696304,
     'ads_tagger.js': 2289308011,
@@ -595,7 +595,7 @@ var stVersions = {
     'cmodules/web/ui_components.js': 3224689059,
     'apps_feed_blocks.css': 23112992018,
     'cmodules/web/landing_transparency.js': 96358692699,
-    'landings/transparency.css': 94556466561,
+    'landings/transparency.css': 96352547186,
     'cmodules/web/emoji.js': 4878439511,
     'cmodules/web/apps_achievements.js': 66073069918,
     'lang': 6931
@@ -657,4 +657,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 7326;
+var _rnd = 7996;

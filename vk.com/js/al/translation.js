@@ -68,7 +68,7 @@ var TR_ADDRESS = "translation";
                 each(geByClass("_tr_text_value", this), function() {
                     t.push(val(this))
                 }), t = t.length > 1 ? "@@" + t.join("@") : t[0], n["Value_" + e] = t, n.lang_ids.push(e)
-            }), n.lang_ids = n.lang_ids.join(","), cur.isSuperTranslator) {
+            }), n.lang_ids = n.lang_ids.join(","), n.open_ts = cur.openTs, cur.isSuperTranslator) {
             if (n.description = val("tr_description_edit"), n.description_english = val("tr_description_edit_english"), n.extended_wiki = intval(hasClass("tr_extra_wiki", "on")), n.disable_inline = intval(hasClass("tr_extra_disable_inline", "on")), n["export"] = intval(hasClass("tr_extra_export_to_js", "on")), n.has_case = intval(hasClass("tr_extra_case", "on")), n.mark_untranslated = intval(hasClass("tr_extra_mark_as_untranslated", "on")), n.screens = _box_getScreens(), n.has_case) {
                 n["case"] = _caseDropdown.selectedItems()[0][0];
                 var o = _caseTokenDropdown.selectedItems();
@@ -100,7 +100,7 @@ var TR_ADDRESS = "translation";
                     var l = document.querySelector(".tr_key[data-key=" + n.key + "]");
                     l && (removeClass(l, "tr_untranslated"), geByClass1("_tr_key_inner", l).innerHTML = e);
                     var c = cur.translationBoxIsInlineTranslation;
-                    delete cur.translationBoxIsInlineTranslation, c && (val(c, t), console.log(t), addClass(c, "translated"))
+                    delete cur.translationBoxIsInlineTranslation, c && (val(c, t), addClass(c, "translated"))
                 } else nav.reload();
                 boxQueue.hideAll(), a && a(e), n.mark_untranslated && nav.reload()
             }
@@ -417,7 +417,7 @@ var TR_ADDRESS = "translation";
                         cid: null
                     })), a && setTimeout(function() {
                         ge("box_layer_wrap").scrollTop = cur.translatorsLogBoxOffset, delete cur.translatorsLogBoxOffset
-                    }, 150), cur.onBoxKeyDownEvent && (removeEvent(window, "keydown", cur.onBoxKeyDownEvent), delete cur.onBoxKeyDownEvent), delete cur.keySectionsDD, delete cur.keyBoxValueHeight, cur.showedScreen || (delete cur.translationBoxParams, delete cur.translationsScreensList, delete ajaxCache["/" + TR_ADDRESS + "#" + ajx2q(o)], delete cur.translationBoxType, delete cur.translationsScreensListAll, delete cur.translationBoxKeySelectedLang, delete cur.translationBoxKeySelectedLangList, delete cur.translationBoxSelectedStatus, delete cur.translationKeyLanguagesDD, window.TranslationDiscussions && TranslationDiscussions.destroy()), delete cur.translationBoxOpened, delete cur.translationBoxFocusedForm, delete cur.translationBoxIsInlineTranslation, delete cur.translationBoxNeedHideBox)
+                    }, 150), cur.onBoxKeyDownEvent && (removeEvent(window, "keydown", cur.onBoxKeyDownEvent), delete cur.onBoxKeyDownEvent), delete cur.keySectionsDD, delete cur.keyBoxValueHeight, cur.showedScreen || (delete cur.translationBoxParams, delete cur.translationsScreensList, delete ajaxCache["/" + TR_ADDRESS + "#" + ajx2q(o)], delete cur.translationBoxType, delete cur.translationsScreensListAll, delete cur.translationBoxKeySelectedLang, delete cur.translationBoxKeySelectedLangList, delete cur.translationBoxSelectedStatus, delete cur.translationKeyLanguagesDD, window.TranslationDiscussions && TranslationDiscussions.destroy()), delete cur.translationBoxOpened, delete cur.translationBoxFocusedForm, delete cur.translationBoxIsInlineTranslation, delete cur.translationBoxNeedHideBox, delete cur.openTs)
                 },
                 onShow: function() {
                     cur.translationBoxParams = [e, t, a], cur.translationsScreensList || (cur.translationsScreensList = []), delete cur.showedAttachScreenBox, cur.translationBoxNeedHideBox && curBox().hide()
@@ -1106,6 +1106,12 @@ var TR_ADDRESS = "translation";
         var a = radioval("tr_key_settings_status");
         (a === _KEY_SETTINGS_STATUS_TRANSLATE_CUSTOM_LANGUAGES || a === _KEY_SETTINGS_STATUS_EVERYONE_BUT) && show("translations_settings_languages_wrap")
     }
+
+    function updateStatsPeriod(e) {
+        var t = domData(e, "period"),
+            a = clone(nav.objLoc);
+        radiobtn(e, t, "statsPeriod"), a.period = t, nav.go(a)
+    }
     var _caseDropdown, _caseTokenDropdown, _functionTypeDropdown, _keysLangSelectorDropdown, _translatorsDateSelector, _languagesSortDropdown, _translatorsSortDropdown, _SPECIAL_CODES_REGEX = /((\%[a-z]+)|\{([a-zA-Z0-9\.\-\_\/]+)\})/gi,
         _KEY_SETTINGS_STATUS_TRANSLATE_TO_ALL = 0,
         _KEY_SETTINGS_STATUS_DONT_TRANSLATE = 1,
@@ -1153,7 +1159,8 @@ var TR_ADDRESS = "translation";
         updateKeySettingsOptions: updateKeySettingsOptions,
         restoreKey: restoreKey,
         saveKey: saveKey,
-        toggleDiscussionFilter: toggleDiscussionFilter
+        toggleDiscussionFilter: toggleDiscussionFilter,
+        updateStatsPeriod: updateStatsPeriod
     }
 }(window);
 try {
