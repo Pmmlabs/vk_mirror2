@@ -1137,11 +1137,11 @@
     width: 7px
 }
 
-.bt_report_footer .reproducing .flat_button.disabled:hover {
+.bt_report_footer .reproducing.disabled .flat_button:hover {
     cursor: default
 }
 
-.reproducing:not(.checked) .bt_report_footer .reproducing .flat_button.disabled:hover {
+.bt_report_footer .reproducing.disabled:not(.checked) .flat_button:hover {
     background: none
 }
 
