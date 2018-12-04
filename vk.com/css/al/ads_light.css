@@ -949,6 +949,10 @@ a.ads_ad_box2:hover {
     display: block
 }
 
+.ads_ad_nested_link.adaptive_ad:hover {
+    text-decoration: none
+}
+
 .ads_ad_snippet_link {
     position: absolute;
     display: block;

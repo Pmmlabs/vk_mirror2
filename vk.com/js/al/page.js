@@ -687,16 +687,6 @@ var Page = {
                     p = posts[i][j];
 
                     postElem = ge('post' + j);
-                    var podcastSnippet = geByClass1('podcast_snippet', postElem);
-
-                    if (podcastSnippet) {
-                        stManager.add([jsc('web/podcast.js')], function() {
-                            Podcast.log('view', {
-                                episodeId: domData(podcastSnippet, 'episode-id'),
-                                refEl: podcastSnippet,
-                            });
-                        });
-                    }
 
                     if (!(j in adBlockSeenStorage)) {
                         // TODO: there are rare situations in which seen check is done incorrectly.
@@ -2107,6 +2097,34 @@ var Page = {
             }
 
             return false;
+        },
+
+        postAttachesShowMore: function(btn, event) {
+            var croppedAttaches = domPS(btn);
+
+            if (croppedAttaches && hasClass(croppedAttaches, 'post_cropped_attaches')) {
+                var lastShownAttach = domPS(croppedAttaches);
+                var firstCroppedAttach = domFC(croppedAttaches);
+                var sameType = ['wall_audio_rows', 'post_media', 'post_thumbed_media'].some(function(name) {
+                    return hasClass(lastShownAttach, name) && hasClass(firstCroppedAttach, name);
+                });
+
+                if (sameType) {
+                    domChildren(firstCroppedAttach).forEach(function(el) {
+                        lastShownAttach.appendChild(el);
+                    });
+
+                    re(firstCroppedAttach);
+                }
+
+                var croppedAttachesEls = cf(croppedAttaches.innerHTML);
+
+                domInsertBefore(croppedAttachesEls, croppedAttaches);
+                re(croppedAttaches);
+                re(btn);
+            }
+
+            return event && cancelEvent(event);
         }
     },
     page = Page;
@@ -4884,6 +4902,7 @@ var Wall = {
         var item = itemFullId.split('_');
         var offset = domData(showMore, 'offset');
         var count = domData(showMore, 'count');
+        var collapse = domData(showMore, 'collapse');
         var isPrev = hasClass(showMore, 'replies_prev');
 
         var params = {
@@ -4892,6 +4911,7 @@ var Wall = {
             item_id: item[1],
             offset: offset,
             count: count,
+            collapse: collapse,
         };
 
         // find closest reply
@@ -10182,6 +10202,7 @@ var Wall = {
 
         scrollToY(getXY(repliesWrap)[1] - 100, 0, null, true);
 
+        domData(showNextReplies, 'collapse', true);
         showNextReplies.click();
         cur.wallMyOpened[postId] = 0;
     },

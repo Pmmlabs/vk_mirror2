@@ -8691,6 +8691,7 @@ button.ui_load_more_btn {
 }
 
 .audio_pl_snippet2 .audio_pl_snippet__artist_link {
+    display: inline-block;
     color: #000
 }
 

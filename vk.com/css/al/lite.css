@@ -4976,6 +4976,7 @@ div.top_result_baloon a {
 }
 
 .audio_pl_snippet2 .audio_pl_snippet__artist_link {
+    display: inline-block;
     color: #000
 }
 
