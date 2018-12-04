@@ -42,8 +42,10 @@
         return s.d(t, "a", t), t
     }, s.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, s.p = "", s(s.s = 1)
+    }, s.p = "", s(s.s = 0)
 }([function(e, t, s) {
+    e.exports = s(1)
+}, function(e, t, s) {
     "use strict";
     s.r(t);
     var n = function() {
@@ -615,7 +617,8 @@
                         w: i
                     }, !1, !1, {
                         noLocChange: 1,
-                        skipBoxesHide: 1
+                        skipBoxesHide: 1,
+                        noClickHide: 1
                     }), cur.promoteBox = s.box, cur.onExternalAppDone = function(e) {
                         e.status || (cur.isPaymentCanceled = !0), cur.promoteBox._show(), cur.promoteBox = null, cur.onExternalAppDone = null, window.WkView && WkView.hide(!1, !0)
                     }, void s.waitForPaymentResult({
@@ -933,6 +936,4 @@
     try {
         stManager.done(jsc("web/ads_edit_easy.js"))
     } catch (e) {}
-}, function(e, t, s) {
-    e.exports = s(0)
 }]);

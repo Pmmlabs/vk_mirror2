@@ -27,7 +27,6 @@
 .im-notice--money_transfer .im-notice--image,
 .im-notice--vkadmin .im-notice--image,
 .im-page .im-page--center-empty,
-.im-page .im-page--center-empty.im-page--center-empty_fwd,
 .im-page .im-page--chat-search-empty,
 .im-page .im-page--dialogs-settings,
 .im-page .im-page--dialogs-settings_loading,
@@ -4949,21 +4948,6 @@ img.im_photo_thumb {
     display: block
 }
 
-.im-page .im-page--center-empty.im-page--center-empty_fwd {
-    width: 360px;
-    margin-left: -180px;
-    background: url(/images/icons/fwd_icon.png) no-repeat top
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .im-page .im-page--center-empty.im-page--center-empty_fwd {
-        background-image: url(/images/icons/fwd_icon_2x.png);
-        background-size: 79px 60px
-    }
-}
-
 .im-page .im-page--dialogs-next {
     display: none
 }
@@ -5179,28 +5163,13 @@ img.im_photo_thumb {
     display: none
 }
 
-.im-page .im-page--history_empty.im-page--history .im-page--center-empty {
-    display: block
-}
-
-.im-page .im-page--history_empty.im-page--history .im-page--center-empty.im-page--center-empty_fwd {
-    display: none
-}
-
+.im-page .im-page--history_empty.im-page--history .im-page--center-empty,
 .im-page .im-page--history_empty.im-page--history .im-page--top-notice {
     display: block
 }
 
 .im-page .im-page--history_empty.im-page--history .im-page--top-notice~.im-page--center-empty {
     margin-top: 4px
-}
-
-.im-page .im-page--history.im-page--history_fwd .im-page-history-w {
-    display: none
-}
-
-.im-page .im-page--history.im-page--history_fwd .im-page--center-empty_fwd {
-    display: block
 }
 
 .im-page .im-search-results-head {
@@ -5492,10 +5461,6 @@ img.im_photo_thumb {
 .im-page .im-page--btn:hover {
     text-decoration: underline;
     cursor: pointer
-}
-
-.im-page .im-page--cancel-fwd {
-    margin-top: 37px
 }
 
 .im-page .im-page--dialogs-empty {

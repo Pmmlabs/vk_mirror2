@@ -170,7 +170,7 @@ body.vkme #reg_bar {
 }
 
 .vkme.vkme_mobile .flat_button {
-    font-weight: 500
+    font-weight: 600
 }
 
 .vkme.vkme_mobile .flat_button.button_big {
@@ -404,7 +404,7 @@ body.vkme #reg_bar {
     .vkme_top_nav_wrap .vkme_top_nav .vkme_top_nav_item.vkme_head_owner_name {
         visibility: visible;
         padding-top: 12px;
-        font-weight: 500;
+        font-weight: 600;
         min-width: 190px
     }
     .vkme_page_wrap3 .error {

@@ -3362,6 +3362,44 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     opacity: 0.7
 }
 
+.poster__cta-btn {
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    color: #000;
+    padding: 8px 16px;
+    border-radius: 15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .12);
+    background-color: hsla(0, 0%, 100%, .9);
+    -o-transform: translate(-50%);
+    transform: translate(-50%);
+    -o-transition: transform 0.2s ease, -o-transform 0.2s ease;
+    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, -o-transform 0.2s ease;
+    -webkit-font-smoothing: subpixel-antialiased
+}
+
+.poster__cta-btn:hover {
+    text-decoration: none
+}
+
+.poster__cta-btn:active {
+    margin-bottom: -1px
+}
+
+.poster__wrap:hover .poster__cta-btn {
+    -o-transform: translate(-50%, -51px);
+    transform: translate(-50%, -51px);
+    -o-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s
+}
+
 .poster__open-btn-wrapper {
     display: inline-block;
     float: left;

@@ -12172,6 +12172,8 @@ a.Popup__headerCorner {
     display: inline-block;
     font-size: 14px;
     font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
@@ -12212,6 +12214,14 @@ a.Popup__headerCorner {
 
 .Btn_stretch {
     width: 100%
+}
+
+.Btn__text {
+    display: block;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap
 }
 
 
@@ -12310,6 +12320,26 @@ a.Popup__headerCorner {
     border-color: #4872a3
 }
 
+.Btn_theme_outlineRegular {
+    height: 34px;
+    line-height: 34px;
+    padding: 0 14px;
+    border: 1px solid #5181b8;
+    color: #5181b8;
+    background: #fff
+}
+
+._hover .Btn_theme_outlineRegular:hover {
+    color: #5b88bd;
+    border-color: #5b88bd
+}
+
+._hover .Btn_theme_outlineRegular:active,
+._touch .Btn_theme_outlineRegular.hover {
+    color: #4872a3;
+    border-color: #4872a3
+}
+
 .Btn_theme_mono {
     height: 32px;
     line-height: 32px;
@@ -12347,6 +12377,17 @@ a.Popup__headerCorner {
 .Btn_loading {
     color: transparent!important;
     pointer-events: none
+}
+
+.Btn .BookmarksItem .ai_menu_toggle_button,
+.Btn .Icon,
+.Btn .m .vk__page_chatAdd .basis .lvi.mlvi,
+.Btn .m .vk__page_chatSettings .basis .lvi.mlvi,
+.Btn .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
+.Btn .OwnerColumn__online,
+.Btn .OwnerRow__online,
+.Btn .vk__page_redesign .basis .ii_btn {
+    margin: 5px -2px
 }
 
 .FloatBtn {
@@ -12438,12 +12479,38 @@ a.Popup__headerCorner {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    margin-top: -8px
+    margin-top: -8px;
+    position: relative
+}
+
+.BtnStack_table {
+    display: table;
+    table-layout: fixed;
+    width: 100%
+}
+
+.BtnStack__cell {
+    display: table-cell;
+    vertical-align: top;
+    padding: 0 8px 0 0
+}
+
+.BtnStack__cell_icon {
+    width: 48px
+}
+
+.BtnStack__cell:last-child {
+    padding: 0
+}
+
+.BtnStack__cell>* {
+    width: 100%
 }
 
 .BtnStack__btn {
     margin-right: 8px;
-    margin-top: 8px
+    margin-top: 8px;
+    overflow: hidden
 }
 
 .BtnStack__btn:last-child {
@@ -12462,6 +12529,10 @@ a.Popup__headerCorner {
 
 .vk_flex_no .BtnStack {
     overflow: hidden
+}
+
+.vk_flex_no .BtnStack.BtnStack_table {
+    overflow: visible
 }
 
 .vk_flex_no .BtnStack__btn {
@@ -17685,16 +17756,22 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .dropdown {
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
     position: relative;
     z-index: 2
 }
 
 .dropdown__item {
     display: block;
-    padding: 8px 12px 9px
+    padding: 7px 14px 8px;
+    color: #2a5885;
+    font-size: 13px;
+    line-height: 15px;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }
 
 .dropdown__item:hover {
@@ -17702,14 +17779,21 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .dropdown__item_toggler {
-    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
     text-align: center;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    background: #dee5eb;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    background: #e5ebf1;
     position: relative;
-    z-index: 1
+    color: #55687d;
+    z-index: 1;
+    padding: 9px;
+    white-space: nowrap
 }
 
 .dropdown__item_toggler:after {
@@ -17718,9 +17802,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     width: 10px;
     height: 5px;
     margin-left: 3px;
-    margin-right: -13px;
     background-repeat: no-repeat;
-    background-image: url('/images/mobile/icons/dropdown_arrow.png');
+    background-image: url('/images/mobile/icons/dropdown_arrow.png?1');
     -moz-background-size: 100%;
     -o-background-size: 100%;
     background-size: 100%;
@@ -17729,31 +17812,61 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .vk_2x .dropdown__item_toggler:after {
-    background-image: url('/images/mobile/icons/dropdown_arrow_2x.png')
+    background-image: url('/images/mobile/icons/dropdown_arrow_2x.png?1')
+}
+
+.dropdown_regular .dropdown__item_toggler {
+    color: #fff;
+    background: #5181b8
+}
+
+.dropdown_icon .dropdown__item_toggler {
+    padding: 5px 11px
+}
+
+.dropdown_icon .dropdown__item_toggler .BookmarksItem .ai_menu_toggle_button,
+.dropdown_icon .dropdown__item_toggler .Icon,
+.dropdown_icon .dropdown__item_toggler .m .vk__page_chatAdd .basis .lvi.mlvi,
+.dropdown_icon .dropdown__item_toggler .m .vk__page_chatSettings .basis .lvi.mlvi,
+.dropdown_icon .dropdown__item_toggler .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
+.dropdown_icon .dropdown__item_toggler .OwnerColumn__online,
+.dropdown_icon .dropdown__item_toggler .OwnerRow__online,
+.dropdown_icon .dropdown__item_toggler .vk__page_redesign .basis .ii_btn {
+    margin: auto
+}
+
+.dropdown_icon .dropdown__item_toggler .dropdown__title {
+    margin: 0;
+    overflow: visible;
+    display: inline
+}
+
+.dropdown_icon .dropdown__item_toggler:after {
+    content: none;
+    display: none
 }
 
 .dropdown__item_ghost {
-    font-weight: 700;
-    text-align: center;
-    visibility: hidden
+    display: none
 }
 
 .dropdown__menu {
     display: none;
     position: absolute;
-    left: -1px;
-    top: -1px;
-    right: -1px;
+    left: 0;
+    right: 0;
+    top: 100%;
     background: #fff;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .15);
-    -moz-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .15);
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .15);
-    border: 1px solid #dadada
+    padding: 9px 0;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    border: 1px solid #c5d0db;
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12);
+    -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12);
+    margin: 9px 0 0;
+    z-index: 10
 }
 
 .dropdown__menu .dropdown__item:hover {
@@ -17764,10 +17877,33 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     display: block
 }
 
-.dropdown_open .dropdown__item_toggler {
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0
+.dropdown__title {
+    margin: 0 2px;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+    max-width: -webkit-calc(100% - 30px);
+    max-width: -moz-calc(100% - 30px);
+    max-width: calc(100% - 30px);
+    display: inline-block;
+    vertical-align: top
+}
+
+.BtnStack .dropdown {
+    position: static;
+    width: 100%;
+    margin-top: 8px;
+    margin-right: 8px
+}
+
+.BtnStack .dropdown:last-child {
+    margin-right: 0
+}
+
+.BtnStack .dropdown_icon {
+    width: 48px
 }
 
 .groupCover {
@@ -21878,10 +22014,6 @@ figure[data-type="102"] .article_object_video_play {
 
 .basisDialogs__messages .service_msg_box {
     border-bottom: 0
-}
-
-.basisGroup .dropdown {
-    margin-top: 12px
 }
 
 .basisGroup .inline_upload_wrap .inline_upload {
@@ -29356,6 +29488,8 @@ body.apps_settingsPageBody {
 .r .wi_buttons+.pi_header,
 .r .wi_head,
 .Socials,
+.vk__page_group .basisGroup__main.owner_panel,
+.vk__page_group .profile_info_cont .pinfo_row,
 .vk__page_publish .cp_attached_post .BookmarksStar,
 .vk__page_publish .head_panel {
     margin: 0 12px
@@ -29469,6 +29603,8 @@ body.apps_settingsPageBody {
     .r .wi_buttons+.pi_header,
     .r .wi_head,
     .Socials,
+    .vk__page_group .basisGroup__main.owner_panel,
+    .vk__page_group .profile_info_cont .pinfo_row,
     .vk__page_publish .cp_attached_post .BookmarksStar,
     .vk__page_publish .head_panel {
         margin: 0 8px
@@ -29582,6 +29718,8 @@ body.apps_settingsPageBody {
     .r .wi_buttons+.pi_header,
     .r .wi_head,
     .Socials,
+    .vk__page_group .basisGroup__main.owner_panel,
+    .vk__page_group .profile_info_cont .pinfo_row,
     .vk__page_publish .cp_attached_post .BookmarksStar,
     .vk__page_publish .head_panel {
         margin: 0 16px
@@ -35308,6 +35446,33 @@ body.apps_settingsPageBody {
 
 .vk_2x .Icon_play:before {
     background-image: url('/images/mobile/icons/post_attachments_2x.png?1')
+}
+
+.Icon_community_join,
+.Icon_community_subscribed {
+    width: 24px;
+    height: 24px
+}
+
+.Icon_community_join:before,
+.Icon_community_subscribed:before {
+    width: 24px;
+    height: 24px;
+    background-position: 0 0;
+    background-image: url('/images/mobile/skins/icon/community_action_icons_24px.png?1')
+}
+
+.vk_2x .Icon_community_join:before,
+.vk_2x .Icon_community_subscribed:before {
+    background-image: url('/images/mobile/skins/icon/community_action_icons_24px_2x.png?1')
+}
+
+.Icon_community_join:before {
+    background-position: 0 0
+}
+
+.Icon_community_subscribed:before {
+    background-position: 0 -24px
 }
 
 .Spinner {
@@ -45454,6 +45619,180 @@ html .vk__page_mail {
 
 .vk__page_publish .checkbox_items .Control_type_checkbox {
     padding: 4px 2px
+}
+
+.vk__page_group .pcont .slim_header {
+    font-size: 13px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    line-height: 20px;
+    color: #909499;
+    text-transform: uppercase;
+    background: #fff;
+    padding: 12px
+}
+
+@media (max-width: 319px) {
+    .vk__page_group .pcont .slim_header {
+        padding-left: 8px;
+        padding-right: 8px
+    }
+}
+
+@media (min-width: 400px) {
+    .vk__page_group .pcont .slim_header {
+        padding-left: 16px;
+        padding-right: 16px
+    }
+}
+
+.vk__page_group .pcont .slim_header.slim_header_top {
+    background: #eaedf1
+}
+
+.vk__page_group .basisGroup__groupTitle {
+    font-size: 15px!important;
+    line-height: 20px!important;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    color: 20px
+}
+
+.vk__page_group .basisGroup__groupSubtitle {
+    font-size: 14px;
+    line-height: 16px;
+    color: #71757a
+}
+
+.vk__page_group .basisGroup__main.owner_panel {
+    background: #fff;
+    padding: 12px 0 8px;
+    border: 0
+}
+
+.vk__page_group .basisGroup__buttonsRow {
+    margin: 12px 0 0
+}
+
+.vk__page_group .profile_info_cont {
+    font-size: 14px;
+    line-height: 18px
+}
+
+.vk__page_group .profile_info_cont .pinfo_row {
+    padding: 0 0 9px
+}
+
+.vk__page_group .profile_info_cont .pinfo_row:last-child {
+    padding-bottom: 18px
+}
+
+.vk__page_group .profile_info_cont .pinfo_row dt {
+    color: #71757a
+}
+
+.vk__page_group .profile_info_cont .pinfo_row dd {
+    color: #222
+}
+
+.vk__page_group .profile_info_cont>div:first-child {
+    padding-top: 8px
+}
+
+.vk__page_group .profile_info .slim_header+.profile_info_cont {
+    margin: -8px 0 0;
+    position: relative
+}
+
+.vk__page_group .context_menu li a,
+.vk__page_group .profile_menu .pm_item {
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    padding: 12px;
+    font-size: 16px;
+    line-height: 20px;
+    border: 0;
+    margin: 0
+}
+
+@media (max-width: 319px) {
+    .vk__page_group .context_menu li a,
+    .vk__page_group .profile_menu .pm_item {
+        padding-left: 8px;
+        padding-right: 8px
+    }
+}
+
+@media (min-width: 400px) {
+    .vk__page_group .context_menu li a,
+    .vk__page_group .profile_menu .pm_item {
+        padding-left: 16px;
+        padding-right: 16px
+    }
+}
+
+.vk__page_group .profile_menu .pm_item .pm_counter {
+    color: #84a2c3
+}
+
+.vk__page_group .mk_more,
+.vk__page_group .wide_link {
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    font-size: 14px;
+    line-height: 16px;
+    padding: 9px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px
+}
+
+.vk__page_group .profile_info {
+    position: relative;
+    padding-bottom: 1px
+}
+
+.vk__page_group .profile_info .profile_info:after {
+    content: none;
+    display: none
+}
+
+.vk__page_group .profile_info:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid rgba(0, 0, 0, .12);
+    -webkit-transform: scaleY(0.5);
+    -moz-transform: scaleY(0.5);
+    -ms-transform: scaleY(0.5);
+    -o-transform: scaleY(0.5);
+    transform: scaleY(0.5)
+}
+
+.vk__page_group .profile_market_item {
+    vertical-align: top
+}
+
+.vk__page_group .appWidget__tiles_tile,
+.vk__page_group .profile_market_block {
+    padding: 0!important
+}
+
+.vk__page_group .profile_market_block {
+    margin-top: 0
+}
+
+.vk__page_group .Btn {
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis
 }
 
 
