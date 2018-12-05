@@ -1013,6 +1013,27 @@
     margin-right: 8px
 }
 
+.feedback_apicallText {
+    color: #909499
+}
+
+.feedback_apicallText .feedback_apicallIcon {
+    display: inline-block;
+    background-size: cover;
+    width: 20px;
+    height: 10px;
+    position: relative;
+    top: 1px
+}
+
+.feedback_apicallText .feedback_apicallIcon.doneIcon {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%2220%20323%2016%2016%22%3E%3Cdesc%3E%20%20Created%20with%20Sketch.%3C%2Fdesc%3E%3Cg%20fill%3D%22none%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%228%22%20r%3D%228%22%2F%3E%3Cpath%20d%3D%22M25.6%20330.4C25.3%20330.1%2024.7%20330.1%2024.4%20330.4%2024.1%20330.7%2024.1%20331.3%2024.4%20331.6L26.4%20333.6C26.7%20333.9%2027.3%20333.9%2027.6%20333.6L31.6%20329.6C31.9%20329.3%2031.9%20328.7%2031.6%20328.4%2031.3%20328.1%2030.7%20328.1%2030.4%20328.4L27%20331.8%2025.6%20330.4Z%22%20fill%3D%22%23909499%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') 50% no-repeat
+}
+
+.feedback_apicallText .feedback_apicallIcon.cancelIcon {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%2220%20345%2016%2016%22%3E%3Cdesc%3E%20%20Created%20with%20Sketch.%3C%2Fdesc%3E%3Cg%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M28%20361C32.4%20361%2036%20357.4%2036%20353%2036%20348.6%2032.4%20345%2028%20345%2023.6%20345%2020%20348.6%2020%20353%2020%20357.4%2023.6%20361%2028%20361Z%22%2F%3E%3Cpath%20d%3D%22M28%20354.2L26.1%20356.1C25.8%20356.4%2025.2%20356.4%2024.9%20356.1%2024.6%20355.8%2024.6%20355.2%2024.9%20354.9L26.8%20353%2024.9%20351.1C24.6%20350.8%2024.6%20350.2%2024.9%20349.9%2025.2%20349.6%2025.8%20349.6%2026.1%20349.9L28%20351.8%2029.9%20349.9C30.2%20349.6%2030.8%20349.6%2031.1%20349.9%2031.4%20350.2%2031.4%20350.8%2031.1%20351.1L29.2%20353%2031.1%20354.9C31.4%20355.2%2031.4%20355.8%2031.1%20356.1%2030.8%20356.4%2030.2%20356.4%2029.9%20356.1L28%20354.2Z%22%20fill%3D%22%23909499%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') 50% no-repeat
+}
+
 .feedback_buttons_response {
     line-height: 14px;
     margin: 6px 0;
