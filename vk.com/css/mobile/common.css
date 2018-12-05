@@ -3467,12 +3467,81 @@ input.wide_button {
     text-decoration: none
 }
 
+.mt_label__divider {
+    padding: 0 2px
+}
+
+.mt_docInfo,
 .mt_dur {
     padding: 2px 4px;
     margin: 2px;
     right: 0;
     bottom: 0;
     z-index: 1
+}
+
+.mt_docInfo {
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Segoe UI, Segoe WP, Helvetica Neue, Lucida Grande, Verdana, Tahoma, Arial, sans-serif!important;
+    background: unset;
+    white-space: normal;
+    height: 22px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background: transparent;
+    position: absolute;
+    bottom: 4px;
+    left: 8px;
+    right: 4px;
+    font-weight: 500;
+    line-height: 14px;
+    color: #fff;
+    z-index: 1;
+    margin: 4px 7px;
+    padding: 0!important;
+    text-align: right;
+    overflow: hidden;
+    pointer-events: none
+}
+
+.mt_docInfo:before {
+    content: '';
+    display: inline-block;
+    height: 22px;
+    width: 1px;
+    vertical-align: middle
+}
+
+.mt_docInfo>* {
+    padding: 4px 6px
+}
+
+.mt_docInfo>span {
+    -webkit-border-radius: 3px 0 0 3px;
+    -moz-border-radius: 3px 0 0 3px;
+    border-radius: 3px 0 0 3px;
+    padding-right: 6px
+}
+
+.mt_docInfo>span,
+.mt_docInfo>div {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 14px;
+    background: rgba(0, 0, 0, .4)
+}
+
+.mt_docInfo>div {
+    vertical-align: top;
+    padding-left: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0
+}
+
+.mt_docInfo>div .mt_label__divider {
+    padding-right: 6px;
+    padding-left: 0
 }
 
 .mt_count {
@@ -3871,6 +3940,7 @@ input.wide_button {
 }
 
 .thumb_map_wide .mt_count,
+.thumb_map_wide .mt_docInfo,
 .thumb_map_wide .mt_dur {
     padding: 4px 7px
 }
@@ -6484,6 +6554,7 @@ div.pm_item .pm_counter {
     background: none
 }
 
+.cp_attached_wrap .mt_docInfo,
 .cp_attached_wrap .mt_dur {
     margin: 4px 5px
 }
@@ -21692,6 +21763,72 @@ figure[data-type="102"] .article_object_video_play {
     object-fit: cover
 }
 
+.Gif__popup {
+    text-align: center;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    transform: translateZ(0)
+}
+
+.Gif__popup .Gif__add {
+    display: inline
+}
+
+.Gif__popup .gp__corner {
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    background: url('/images/mobile/skins/icon/base_28.png?2') 0 -112px
+}
+
+.vk_2x .Gif__popup .gp__corner {
+    background: url('/images/mobile/skins/icon/base_28_2x.png?2') 0 -112px;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%
+}
+
+.Gif__popup .Popup__header {
+    padding: 0 0 8px
+}
+
+.Gif__popup .Popup__headerTitle {
+    font-weight: 700
+}
+
+.Gif__popup .Popup__content {
+    display: inline-block;
+    padding-bottom: 16px!important;
+    max-width: 300px
+}
+
+@media (min-width: 480px) {
+    .Gif__popup .Popup__content {
+        max-width: 450px
+    }
+}
+
+@media (min-width: 882px) {
+    .Gif__popup .Popup__content {
+        max-width: 600px
+    }
+}
+
+.Gif__popup .Popup__content .Gif__Wrap {
+    display: inline-block;
+    margin: 0 auto
+}
+
+.Gif__popup .Popup__content .Gif__Wrap img {
+    max-height: inherit;
+    max-width: 100%;
+    margin: 0 auto
+}
+
+.Gif__popup .Icon_share:before {
+    background-image: url('/images/mobile/icons/action_icons_24px.png?1')!important
+}
+
 #psc_search,
 #psm_search_items,
 #psm_selected,
@@ -32606,20 +32743,20 @@ body.apps_settingsPageBody {
 .r .cp_attached_post a[href^="/vudeo"] .mt_dur,
 .r .e a[href^="/video"] .mt_dur,
 .r .wall_item a[href^="/video"] .mt_dur {
-    font-size: 12px;
+    font-size: 11px;
     background: #000;
-    background: rgba(0, 0, 0, .5);
+    line-height: 13px;
+    background: rgba(0, 0, 0, .4);
     color: #fff;
-    color: hsla(0, 0%, 100%, .8);
     z-index: 1;
     padding: 0;
     margin: 0;
     padding: 3px 7px;
     right: 4px;
     bottom: 4px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px
 }
 
 @media (max-width: 319px) {
@@ -35876,6 +36013,34 @@ body.apps_settingsPageBody {
     word-break: break-word
 }
 
+.Popup__buttons {
+    margin: 16px 0
+}
+
+.Popup__button {
+    margin-right: 8px
+}
+
+.Popup__button .BookmarksItem .ai_menu_toggle_button,
+.Popup__button .Icon,
+.Popup__button .m .vk__page_chatAdd .basis .lvi.mlvi,
+.Popup__button .m .vk__page_chatSettings .basis .lvi.mlvi,
+.Popup__button .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
+.Popup__button .OwnerColumn__online,
+.Popup__button .OwnerRow__online,
+.Popup__button .vk__page_redesign .basis .ii_btn {
+    display: inline-block;
+    vertical-align: bottom
+}
+
+.Pb__text {
+    vertical-align: middle;
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #676e75
+}
+
 @media (max-width: 319px) {
     .Popup__wrap {
         padding: 0
@@ -35890,7 +36055,17 @@ body.apps_settingsPageBody {
 }
 
 .Popup__header {
-    padding: 16px
+    padding: 16px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
 }
 
 .Popup_scrollable>.Popup__wrap .Popup__content {
@@ -44208,6 +44383,7 @@ a .BookmarkListItem__subtitle:hover {
 .uMailWrite__attachments .medias_audio_dur,
 .uMailWrite__attachments .medias_audio_title .divider,
 .uMailWrite__attachments .medias_link_desc,
+.uMailWrite__attachments .mt_docInfo,
 .uMailWrite__attachments .mt_dur,
 .uMailWrite__attachments .tu_cancel,
 .uMailWrite__attachments .tu_img {
@@ -49783,6 +49959,7 @@ textarea {
 }
 
 .mt_count,
+.mt_docInfo,
 .mt_dur,
 .thumb_label {
     font-size: .75em
@@ -50407,9 +50584,11 @@ img.wk_photo_right {
         line-height: 1em
     }
     .thumb_map_wide .mt_count,
+    .thumb_map_wide .mt_docInfo,
     .thumb_map_wide .mt_dur {
         font-size: .75em
     }
+    .thumb_map_wide .mt_docInfo,
     .thumb_map_wide .mt_dur {
         padding: 2px 4px
     }

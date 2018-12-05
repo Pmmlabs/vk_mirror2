@@ -3658,10 +3658,6 @@ td.ads_settings_notifications_label {
     margin-top: -24px
 }
 
-#ad_preview_top.adaptive_ad {
-    text-align: left
-}
-
 #ad_preview_top.no_border .ads_ad_box_border.adaptive_ad,
 #ad_preview_top.no_border .ads_ad_box_border.app_in_news,
 #ad_preview_top.no_border .ads_ad_box_border.apps_only,
@@ -3696,11 +3692,16 @@ td.ads_settings_notifications_label {
 
 #ad_preview_top .ads_adaptive_box {
     left: auto;
-    width: 405px
+    width: 385px
 }
 
 #ad_preview_top .ads_ad_snippet_top {
-    min-height: 205px
+    min-height: 216px
+}
+
+#ad_preview_top .ads_ad_box2.ver.repeat_ver.size_site.adaptive_ad {
+    width: 385px;
+    margin: 0 0 0 20px
 }
 
 .ads_ad_with_redesign_preview p {
@@ -3789,6 +3790,7 @@ td.ads_settings_notifications_label {
     letter-spacing: initial
 }
 
+#ad_preview_top.adaptive_ad .ad_preview_top_buttons,
 #ad_preview_top.promoted_post .ad_preview_top_buttons {
     display: inline-block;
     width: 385px

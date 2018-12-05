@@ -2186,15 +2186,19 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     padding-bottom: 5px
 }
 
+.deep_active .replies .page_preview_doc_wrap.page_preview_doc_as_photo_wrap,
 .deep_active .replies .page_preview_graffiti_wrap,
 .deep_active .replies .page_preview_photo_wrap,
 .deep_active .replies .page_preview_video_wrap,
+.deep_active.wall_module .replies .page_preview_doc_wrap.page_preview_doc_as_photo_wrap,
 .deep_active.wall_module .replies .page_preview_graffiti_wrap,
 .deep_active.wall_module .replies .page_preview_photo_wrap,
 .deep_active.wall_module .replies .page_preview_video_wrap,
+.deep_active.wall_module .wl_replies_block_wrap .page_preview_doc_wrap.page_preview_doc_as_photo_wrap,
 .deep_active.wall_module .wl_replies_block_wrap .page_preview_graffiti_wrap,
 .deep_active.wall_module .wl_replies_block_wrap .page_preview_photo_wrap,
 .deep_active.wall_module .wl_replies_block_wrap .page_preview_video_wrap,
+.deep_active .wl_replies_block_wrap .page_preview_doc_wrap.page_preview_doc_as_photo_wrap,
 .deep_active .wl_replies_block_wrap .page_preview_graffiti_wrap,
 .deep_active .wl_replies_block_wrap .page_preview_photo_wrap,
 .deep_active .wl_replies_block_wrap .page_preview_video_wrap {
@@ -2204,18 +2208,22 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 }
 
 .deep_active .replies .page_preview_doc_photo,
+.deep_active .replies .page_preview_doc_wrap.page_preview_doc_as_photo_wrap,
 .deep_active .replies .page_preview_graffiti_wrap,
 .deep_active .replies .page_preview_photo_wrap,
 .deep_active .replies .page_preview_video_wrap,
 .deep_active.wall_module .replies .page_preview_doc_photo,
+.deep_active.wall_module .replies .page_preview_doc_wrap.page_preview_doc_as_photo_wrap,
 .deep_active.wall_module .replies .page_preview_graffiti_wrap,
 .deep_active.wall_module .replies .page_preview_photo_wrap,
 .deep_active.wall_module .replies .page_preview_video_wrap,
 .deep_active.wall_module .wl_replies_block_wrap .page_preview_doc_photo,
+.deep_active.wall_module .wl_replies_block_wrap .page_preview_doc_wrap.page_preview_doc_as_photo_wrap,
 .deep_active.wall_module .wl_replies_block_wrap .page_preview_graffiti_wrap,
 .deep_active.wall_module .wl_replies_block_wrap .page_preview_photo_wrap,
 .deep_active.wall_module .wl_replies_block_wrap .page_preview_video_wrap,
 .deep_active .wl_replies_block_wrap .page_preview_doc_photo,
+.deep_active .wl_replies_block_wrap .page_preview_doc_wrap.page_preview_doc_as_photo_wrap,
 .deep_active .wl_replies_block_wrap .page_preview_graffiti_wrap,
 .deep_active .wl_replies_block_wrap .page_preview_photo_wrap,
 .deep_active .wl_replies_block_wrap .page_preview_video_wrap {
@@ -3377,14 +3385,15 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     background-color: hsla(0, 0%, 100%, .9);
     -o-transform: translate(-50%);
     transform: translate(-50%);
-    -o-transition: transform 0.2s ease, -o-transform 0.2s ease;
-    transition: transform 0.2s ease;
-    transition: transform 0.2s ease, -o-transform 0.2s ease;
+    -o-transition: transform 0.2s ease, background-color 0.1s ease, -o-transform 0.2s ease;
+    transition: transform 0.2s ease, background-color 0.1s ease;
+    transition: transform 0.2s ease, background-color 0.1s ease, -o-transform 0.2s ease;
     -webkit-font-smoothing: subpixel-antialiased
 }
 
 .poster__cta-btn:hover {
-    text-decoration: none
+    text-decoration: none;
+    background-color: hsla(0, 0%, 100%, .95)
 }
 
 .poster__cta-btn:active {
@@ -3394,10 +3403,9 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 .poster__wrap:hover .poster__cta-btn {
     -o-transform: translate(-50%, -51px);
     transform: translate(-50%, -51px);
-    -o-transition-delay: 0.2s;
-    transition-delay: 0.2s;
-    -o-transition-duration: 0.3s;
-    transition-duration: 0.3s
+    -o-transition: transform 0.3s ease 0.2s, background-color 0.1s ease, -o-transform 0.3s ease 0.2s;
+    transition: transform 0.3s ease 0.2s, background-color 0.1s ease;
+    transition: transform 0.3s ease 0.2s, background-color 0.1s ease, -o-transform 0.3s ease 0.2s
 }
 
 .poster__open-btn-wrapper {
@@ -7782,14 +7790,44 @@ a.choose:hover {
     margin-top: 10px
 }
 
+.page_pics_preview .page_preview_doc_wrap.page_preview_doc_as_photo_wrap,
 .page_preview_graffiti_wrap,
 .page_preview_photo_wrap,
 .page_preview_video_wrap {
     position: relative;
     height: 57px;
+    padding: 0;
     overflow: hidden;
     cursor: pointer;
     margin: 0 10px 8px 0
+}
+
+.page_preview_doc_as_photo {
+    vertical-align: top;
+    width: 100%;
+    height: 57px;
+    background-size: cover;
+    background-position: 50%;
+    display: block
+}
+
+.page_preview_doc_as_photo img {
+    display: none
+}
+
+.page_pics_preview .page_preview_doc_wrap.page_preview_doc_as_photo_wrap {
+    width: 80px
+}
+
+.deep_active .replies .page_preview_doc_wrap.page_preview_doc_as_photo_wrap {
+    width: auto;
+    height: auto
+}
+
+.deep_active .replies .page_preview_doc_wrap .page_preview_doc_as_photo {
+    background: none;
+    display: block;
+    height: auto
 }
 
 div.page_preview_graffiti,

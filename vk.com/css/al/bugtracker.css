@@ -469,7 +469,7 @@
     padding: 10px 0
 }
 
-.bt_report_form_page .ui_thumb_extra .ui_extra_btn_pe {
+.bt_report_form_page .photo_thumb_btns .photo_thumb_btn_editor {
     display: none
 }
 
@@ -1567,7 +1567,7 @@
     background: #fafbfc
 }
 
-.bt_comment_form .ui_thumb_extra .ui_extra_btn_pe {
+.bt_comment_form .photo_thumb_btns .photo_thumb_btn_editor {
     display: none
 }
 

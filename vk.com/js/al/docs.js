@@ -118,8 +118,8 @@ var Docs = {
             a = e[4],
             i = e[6],
             n = e[7],
-            d = e[9] || 0,
-            u = e[10] ? e[10] : "",
+            u = e[9] || 0,
+            d = e[10] ? e[10] : "",
             l = "/doc" + a + "_" + o,
             h = a == vk.id || n == vk.id || a == cur.oid && 0 > a && cur.groupAdmin,
             p = "";
@@ -135,7 +135,7 @@ var Docs = {
             })
         }
         var _ = e[8],
-            f = " docs_icon_type" + d,
+            f = " docs_icon_type" + u,
             p = rs(h ? cur.tpl.edit : cur.tpl.add, {
                 oid: a,
                 item_id: o
@@ -151,7 +151,7 @@ var Docs = {
         });
         var m = rs(cur.tpl.itemAdditionalInfo, {
             date: t,
-            actions: u,
+            actions: d,
             tags: i
         });
         return rs(cur.tpl.item, {
@@ -458,9 +458,7 @@ var Docs = {
         if (void 0 !== e.selected) cur.lastAddMedia && (cur.lastAddMedia.unchooseMedia(e.selected), e.selected = void 0, removeClass(e, "docs_item_selected"), s && (s.innerHTML = getLang("global_add_media")));
         else {
             var t = cur.attachCount && cur.attachCount() || 0;
-            r.lang = {
-                profile_choose_doc: getLang("profile_choose_doc")
-            }, window.event = window.event || c, cur.chooseMedia("doc", o, r), window.event = void 0, (!cur.attachCount || cur.attachCount() > t) && cur.lastAddMedia && (e.selected = cur.lastAddMedia.chosenMedias.length - 1, addClass(e, "docs_item_selected"), s && (s.innerHTML = getLang("global_cancel")))
+            window.event = window.event || c, cur.chooseMedia("doc", o, r), window.event = void 0, (!cur.attachCount || cur.attachCount() > t) && cur.lastAddMedia && (e.selected = cur.lastAddMedia.chosenMedias.length - 1, addClass(e, "docs_item_selected"), s && (s.innerHTML = getLang("global_cancel")))
         }
         return cancelEvent(c)
     },

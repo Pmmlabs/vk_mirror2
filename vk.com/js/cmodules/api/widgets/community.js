@@ -42,12 +42,9 @@
         return o.d(e, "a", e), e
     }, o.o = function(t, e) {
         return Object.prototype.hasOwnProperty.call(t, e)
-    }, o.p = "", o(o.s = 170)
+    }, o.p = "", o(o.s = 80)
 }({
-    170: function(t, e, o) {
-        t.exports = o(259)
-    },
-    259: function(t, e, o) {
+    125: function(t, e, o) {
         "use strict";
         o.r(e), window.Community = {
             init: function() {
@@ -233,6 +230,9 @@
                                 },
                                 "al_voting.php": {
                                     export_box: !0
+                                },
+                                "docs.php": {
+                                    show_box: !0
                                 }
                             }),
                             showReCaptchaBox: Widgets.showReCaptchaBox,
@@ -334,5 +334,8 @@
         try {
             stManager.done(jsc("api/widgets/community.js"))
         } catch (t) {}
+    },
+    80: function(t, e, o) {
+        t.exports = o(125)
     }
 });

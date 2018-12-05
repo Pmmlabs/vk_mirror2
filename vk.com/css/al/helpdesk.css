@@ -2617,3 +2617,23 @@ body.body_helpdesk_small_sb .left_menu_nav {
     vertical-align: middle;
     width: 90px
 }
+
+.helpdesk_jedi_form {
+    padding: 10px
+}
+
+.helpdesk_jedi_form .helpdesk_jedi_form_label,
+.helpdesk_jedi_form .helpdesk_jedi_form_msg {
+    margin: 0 0 10px
+}
+
+.helpdesk_jedi_form textarea {
+    resize: none;
+    width: 100%
+}
+
+.helpdesk_jedi_form .helpdesk_jedi_form_button {
+    margin-top: 10px;
+    margin-right: 10px;
+    float: left
+}

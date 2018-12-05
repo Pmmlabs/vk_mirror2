@@ -2216,6 +2216,27 @@ var Helpdesk = {
                 a && a()
             }
         })
+    },
+    initJediTrainingPage: function() {
+        autosizeSetup(ge("helpdesk_jedi_ids_form"), {
+            minHeight: 100,
+            maxHeight: 400
+        })
+    },
+    setJediTraining: function(e, t, s) {
+        var o = trim(val("helpdesk_jedi_ids_form")),
+            a = ge("helpdesk_jedi_form_msg");
+        return o.length ? (hide(a), void ajax.post("helpdesk?act=a_set_jedi_training", {
+            hash: t,
+            user_ids: o,
+            disable: s
+        }, {
+            showProgress: lockButton.bind(e),
+            hideProgress: unlockButton.bind(e),
+            onDone: function(e) {
+                val(a, e), show(a)
+            }
+        })) : notaBene("helpdesk_jedi_ids_form")
     }
 };
 try {

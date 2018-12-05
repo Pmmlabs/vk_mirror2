@@ -33,7 +33,6 @@
 .ui_tab_group:after,
 .ui_tab_search:after,
 .ui_tabs_progress,
-.ui_thumb_extra .ui_extra_btn,
 .ui_thumb_pe_button .ui_thumb_pe,
 .ui_thumb_pe_button .ui_thumb_x,
 .ui_thumb_x_button .ui_thumb_pe,
@@ -2318,56 +2317,6 @@ a.ui_search_custom_link {
 .ui_thumb_pe_button.ui_thumb_small_x,
 .ui_thumb_x_button.ui_thumb_small_x {
     padding: 3px
-}
-
-.ui_thumb_extra {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    padding: 15px 0;
-    opacity: 0;
-    -o-transition: opacity 100ms linear;
-    transition: opacity 100ms linear;
-    background: -o-linear-gradient(top, transparent 0%, rgba(0, 0, 0, .55) 100%);
-    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, .55))
-}
-
-.ui_thumb_extra .ui_extra_btn {
-    width: 24px;
-    height: 24px;
-    background-image: url(/images/attach_icons.png?4);
-    background-position: -5px -167px;
-    display: inline-block;
-    margin: 0 6px;
-    opacity: 0.7;
-    cursor: pointer
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .ui_thumb_extra .ui_extra_btn {
-        background-image: url(/images/attach_icons_2x.png?4);
-        background-size: 32px 254px
-    }
-}
-
-.ui_thumb_extra .ui_extra_btn:hover {
-    opacity: 1
-}
-
-.ui_thumb_extra .ui_extra_btn#ui_btn_pe {
-    background-position: -5px -200px
-}
-
-.thumb_wrap:hover .ui_thumb_extra {
-    opacity: 1
-}
-
-.moving .ui_thumb_extra {
-    display: none
 }
 
 .ui_thumb_pe_button {

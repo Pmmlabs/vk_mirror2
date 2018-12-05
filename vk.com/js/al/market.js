@@ -686,6 +686,15 @@ var Market = {
             }, e);
             return a && cancelEvent(e), !a
         },
+        proxyUrl: function(e, t, r, o, a) {
+            return ajax.post("al_market.php", {
+                act: "a_proxy_url",
+                owner_id: t,
+                hash: a,
+                item_id: r,
+                type: o
+            }), !0
+        },
         itemBoxinit: function() {
             if (cur.mkOptions.post) {
                 var e = ge("reply_field" + cur.mkOptions.post);
@@ -1202,9 +1211,6 @@ var Market = {
             }), t.changed = !0, autosizeSetup("item_description", {
                 minHeight: 80,
                 maxHeight: 250
-            }), autosizeSetup("item_link", {
-                minHeight: 40,
-                maxHeight: 80
             }), MarketEditItemBox.init.category(cur.mkOptions), MarketEditItemBox.init.address(e.marketAddress), MarketEditItemBox.init.albums(e), MarketEditItemBox.init.price(), MarketEditItemBox.init.upload(cur.mkOptions)
         },
         init: {
@@ -1838,9 +1844,8 @@ var Market = {
                     innerHTML: '<div class="result_list"></div><div class="result_list_shadow"><div class="shadow1"></div><div class="shadow2"></div></div>'
                 });
                 this.cont.appendChild(o), this.resultList = geByClass("result_list", o)[0], this.resultListShadow = geByClass("result_list_shadow", o)[0], hide(this.resultList, this.resultListShadow), browser.chrome ? this.resultList.style.opacity = 1 : browser.safari || setStyle(this.resultListShadow, "top", browser.mozilla ? 0 : browser.msie && browser.version < 8 ? 0 : -1), this.resultList.style.width = this.resultListShadow.style.width = o.style.width = getSize(e)[0] + "px", this.onShowCallback = t ? t.onShow : !1, this.initSelect(t), cur.indexTags = new vkIndexer(cur.tagsList, function(e) {
-                        return e[1]
-                    }), addEvent(e, "keyup click mouseup", r.inputUpHandler),
-                    addEvent(document, "click", r.documentClick), addEvent(e, "keypress keydown", r.inputDownHandler)
+                    return e[1]
+                }), addEvent(e, "keyup click mouseup", r.inputUpHandler), addEvent(document, "click", r.documentClick), addEvent(e, "keypress keydown", r.inputDownHandler)
             }
         },
         inputUpHandler: function(e) {

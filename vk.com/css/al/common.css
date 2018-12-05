@@ -22,6 +22,8 @@
 .box_title .security,
 .box_title_wrap.box_grey.box_loading .box_x_button,
 .box_title_wrap.box_grey .box_x_button,
+.box_title_wrap.box_white.box_loading .box_x_button,
+.box_title_wrap.box_white .box_x_button,
 .box_x_button,
 .box_x_button.box_x_tabs,
 .button_gray .button_lock,
@@ -897,6 +899,21 @@ button.flat_btn_lock {
 .button_action_light_bookmark.activated:before {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20opacity%3D%22.4%22%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20fill%3D%22%23528BCC%22%20stroke%3D%22%23528BCC%22%20stroke-width%3D%222%22%20d%3D%22M12.46%203.31l2.453%205.841%205.64.56a.5.5%200%200%201%20.277.876l-4.457%203.827%201.581%205.957a.5.5%200%200%201-.778.532L12%2017.126l-5.176%203.777a.5.5%200%200%201-.778-.532l1.581-5.957-4.457-3.827a.5.5%200%200%201%20.276-.877l5.64-.559%202.453-5.841a.5.5%200%200%201%20.922%200z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
     opacity: 1
+}
+
+.button_action_light_add:before {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ctitle%3Eadd_outline_24%3C%2Ftitle%3E%3Cpath%20d%3D%22M0%2C0H24V24H0Z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M13%2C11h7a1%2C1%2C0%2C0%2C1%2C0%2C2H13v7a1%2C1%2C0%2C0%2C1-2%2C0V13H4a1%2C1%2C0%2C0%2C1%2C0-2h7V4a1%2C1%2C0%2C0%2C1%2C2%2C0Z%22%20fill%3D%22%23828a99%22%2F%3E%3C%2Fsvg%3E');
+    background-size: 24px
+}
+
+.button_action_light_add.activated:before {
+    opacity: 1
+}
+
+.button_action_light_add.activated:before,
+.button_action_light_done:before {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%2F%3E%3Cpath%20d%3D%22m4%2012.5%204.9999939%205%2011.5000061-11.5%22%20stroke%3D%22%23828a99%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.8%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+    background-size: 24px
 }
 
 .button_action_light_more {
@@ -3833,6 +3850,41 @@ body.mac #layer_stl .fixed {
     }
 }
 
+.box_title_wrap.box_white {
+    background-color: #fff;
+    color: #000
+}
+
+.box_title_wrap.box_white .box_title {
+    color: #000
+}
+
+.box_title_wrap.box_white .box_x_button {
+    background: url(/images/cross_popup.png) no-repeat 12px 21px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .box_title_wrap.box_white .box_x_button {
+        background-image: url(/images/cross_popup_2x.png);
+        background-size: 12px 12px
+    }
+}
+
+.box_title_wrap.box_white.box_loading .box_x_button {
+    background: url(/images/g_upload.gif) no-repeat 10px 19px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .box_title_wrap.box_white.box_loading .box_x_button {
+        background-image: url(/images/g_upload_2x.gif);
+        background-size: 16px 16px
+    }
+}
+
 .box_title {
     padding-left: 25px;
     font-size: 14px;
@@ -4045,6 +4097,11 @@ body.mac #layer_stl .fixed {
         background-image: url(/images/icons/round_spinner_big_2x.png);
         background-size: 34px 34px
     }
+}
+
+.box_white+.box_body,
+.box_white+.wk_wiki_content {
+    padding-top: 0
 }
 
 .box_title_controls {

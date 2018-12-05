@@ -42,12 +42,9 @@
         return o.d(t, "a", t), t
     }, o.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, o.p = "", o(o.s = 1)
+    }, o.p = "", o(o.s = 63)
 }({
-    1: function(e, t, o) {
-        e.exports = o(7)
-    },
-    7: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+    144: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
         "use strict";
         __webpack_require__.r(__webpack_exports__);
         var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
@@ -560,6 +557,9 @@
                                 },
                                 "al_voting.php": {
                                     export_box: !0
+                                },
+                                "docs.php": {
+                                    show_box: !0
                                 }
                             }),
                             showReCaptchaBox: Widgets.showReCaptchaBox,
@@ -972,5 +972,8 @@
         try {
             stManager.done(jsc("api/widgets/comments.js"))
         } catch (e) {}
+    },
+    63: function(e, t, o) {
+        e.exports = o(144)
     }
 });

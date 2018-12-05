@@ -449,7 +449,10 @@ var Page = {
                 stat: ['owner_photo.css', 'owner_photo.js']
             });
         },
-        deleteOwnerCover: function(oid, hash) {
+        deleteOwnerCover: function(oid, hash, onDone) {
+            if (!onDone) {
+                onDone = cur.shareSetOwnPhoto;
+            }
             showFastBox({
                 title: getLang('groups_delete_cover_title')
             }, getLang('groups_delete_cover_confirm'), getLang('global_delete'), function(btn) {
@@ -461,7 +464,7 @@ var Page = {
                 }, {
                     showProgress: lockButton.pbind(btn),
                     hideProgress: unlockButton.pbind(btn),
-                    onDone: cur.shareSetOwnPhoto
+                    onDone: onDone
                 });
             }, getLang('global_cancel'));
         },
@@ -1341,147 +1344,202 @@ var Page = {
                 stat: ['tooltips.js', 'tooltips.css', jsc('web/emoji.js')]
             });
         },
-        showGif: function(obj, ev, dontHideActive, canPlayMp4) {
+        showGifBox: function(docId, docOwnerId, postId, postOwnerId, hash, ev) {
+            if (ev && (ev.ctrlKey || ev.metaKey || ev.shiftKey)) {
+                return;
+            }
+
+            cancelEvent(ev);
+            checkMp4(function(canPlay) {
+                if (canPlay) {
+                    cancelEvent(ev);
+                    showBox('docs.php', {
+                        act: 'show_box',
+                        doc_id: docId,
+                        doc_owner_id: docOwnerId,
+                        post_id: postId,
+                        post_owner_id: postOwnerId,
+                        hash: hash,
+                    }, {
+                        stat: ['docs.js', 'docs.css'],
+                        params: {
+                            white: true,
+                            hideButtons: true,
+                        },
+                        onDone: function(box, data) {
+                            if (!vk.widget) {
+                                curBox().setOptions({
+                                    width: data.width + 50 /* box lr padding sum */
+                                })
+                                if (cur.gifAdded && cur.gifAdded[data.doc]) {
+                                    var addBtnEl = geByClass1('docs_gif_box_add_' + data.doc);
+                                    replaceClass(addBtnEl, 'button_action_light_add', 'button_action_light_done');
+                                    val(addBtnEl, getLang('wall_doc_added_short'));
+                                }
+                                var gifThumbEl = geByClass1('page_doc_photo_href', curBox().bodyNode);
+                                Page.showGif(gifThumbEl);
+                            }
+                        }
+                    });
+                }
+            });
+        },
+        showGif: function(linkEl, ev, dontHideActive, canPlayMp4) {
             if (ev && (ev.ctrlKey || ev.metaKey)) {
                 return true;
             }
 
             if (isUndefined(canPlayMp4)) {
                 checkMp4(function(canPlay) {
-                    Page.showGif(obj, ev, dontHideActive, canPlay);
+                    Page.showGif(linkEl, ev, dontHideActive, canPlay);
                 });
                 return;
             }
 
+            var containerEl = domPN(linkEl);
+            var thumbEl = domPN(containerEl);
+            var photoEl = domFC(linkEl);
+
             cur.gifAdded = cur.gifAdded || {};
-            if (cur.activeGif && domPN(domPN(cur.activeGif)) == domPN(domPN(obj)) || hasClass(domPN(cur.activeGif), 'page_gif_large') && !dontHideActive) {
+            if (
+                cur.activeGif && domPN(domPN(cur.activeGif)) == thumbEl ||
+                hasClass(domPN(cur.activeGif), 'page_gif_large') && !dontHideActive
+            ) {
                 Page.hideGif(cur.activeGif, false);
             }
 
-            var doc = obj.getAttribute('data-doc')
-            var hash = obj.getAttribute('data-hash');
-            var addTxt = obj.getAttribute('data-add-txt') || '';
-            var addHash = obj.getAttribute('data-add-hash');
-            var shareTxt = obj.getAttribute('data-share-txt') || '';
-            var postRaw = obj.getAttribute('data-post');
-            var replyRaw = obj.getAttribute('data-reply');
-            var hasPreview = obj.getAttribute('data-preview');
-            var previewWidth = obj.getAttribute('data-width');
-            var previewHeight = obj.getAttribute('data-height');
-            var largeGif = hasClass(domPN(obj), 'page_gif_large');
-            var isAutoplay = !ev;
-            var el;
+            var doc = domData(linkEl, 'doc')
+            var hash = domData(linkEl, 'hash');
+            var addTxt = domData(linkEl, 'add-txt') || '';
+            var addHash = domData(linkEl, 'add-hash');
+            var shareTxt = domData(linkEl, 'share-txt') || '';
+            var postRaw = domData(linkEl, 'post');
+            var replyRaw = domData(linkEl, 'reply');
+            var hasPreview = domData(linkEl, 'preview');
+            var previewWidth = domData(linkEl, 'width');
+            var previewHeight = domData(linkEl, 'height');
+            var thumb = domData(linkEl, 'thumb');
 
-            if (postRaw) {
-                var oid, post_id, ids;
-                ids = postRaw.split('_');
-                oid = ids[0];
-                post_id = ids[1];
-                statlogsValueEvent('show_post_gif', 1, oid, post_id);
-            }
+            var isLargeGif = hasClass(containerEl, 'page_gif_large');
+            var isAutoplay = !ev;
 
             if (!hasPreview) {
                 canPlayMp4 = false;
             }
 
-            var el_src = obj.href + '&wnd=1&module=' + cur.module;
+            var previewEl;
+            var previewSrc = linkEl.href + '&wnd=1&module=' + cur.module;
 
             if (canPlayMp4) {
-                el = ce('video', {
+                previewEl = ce('video', {
                     autoplay: true,
                     muted: true,
                     loop: 'loop',
-                    poster: obj.getAttribute('data-thumb'),
-                    src: el_src + '&mp4=1',
+                    poster: thumb,
+                    src: previewSrc + '&mp4=1',
                     className: 'pages_gif_img page_gif_big'
                 }, {
-                    width: previewWidth ? previewWidth + 'px' : null,
-                    height: previewHeight ? previewHeight + 'px' : null,
-                    background: largeGif ? 'transparent url(' + obj.getAttribute('data-thumb') + ') no-repeat 0 0' : '',
+                    width: previewWidth ? previewWidth + 'px' : undefined,
+                    height: previewHeight ? previewHeight + 'px' : undefined,
+                    background: isLargeGif ? 'transparent url(' + thumb + ') no-repeat 0 0' : '',
                     backgroundSize: 'cover'
                 });
-                attr(el, 'webkit-playsinline', '');
+                attr(previewEl, 'webkit-playsinline', '');
                 if (browser.ipad) {
-                    attr(el, 'controls', '');
+                    attr(previewEl, 'controls', '');
                 }
             } else {
-                el = ce('img', {
-                    src: el_src,
+                previewEl = ce('img', {
+                    src: previewSrc,
                     className: 'pages_gif_img'
                 }, {
-                    width: previewWidth ? previewWidth + 'px' : null,
-                    height: previewHeight ? previewHeight + 'px' : null
+                    visibility: 'hidden'
                 });
             }
 
-            var acts = '<div class="page_gif_share" onmouseover="showTooltip(this, {text: \'' + shareTxt + '\', black: 1, shift: [7, 6, 6], toup: 0, needLeft: 1})" onclick="return Page.shareGif(this, \'' + doc + '\', \'' + hash + '\', event)"><div class="page_gif_share_icon"></div></div>';;
-            if (addHash) {
-                acts += '<div class="page_gif_add" onmouseover="return Page.overGifAdd(this, \'' + addTxt + '\', \'' + doc + '\', event);" onclick="return Page.addGif(this, \'' + doc + '\', \'' + hash + '\', \'' + addHash + '\', event);"><div class="page_gif_add_icon"></div></div>';
-            }
-            acts = '<div class="page_gif_actions">' + acts + '</div>';
-
-            var progressIcon = '<div class="page_gif_progress_icon" style="display:none;">' + rs(vk.pr_tpl, {
+            var shareActionHTML = hash ? '<div class="page_gif_share" onmouseover="showTooltip(this, {text: \'' + shareTxt + '\', black: 1, shift: [7, 6, 6], toup: 0, needLeft: 1})" onclick="return Page.shareGif(this, \'' + doc + '\', \'' + hash + '\', event)"><div class="page_gif_share_icon"></div></div>' : '';
+            var addActionHTML = addHash ? '<div class="page_gif_add" onmouseover="return Page.overGifAdd(this, \'' + addTxt + '\', \'' + doc + '\', event);" onclick="return Page.addGif(this, \'' + doc + '\', \'' + hash + '\', \'' + addHash + '\', event);"><div class="page_gif_add_icon"></div></div>' : '';
+            var actionsHTML = shareActionHTML || addActionHTML ? '<div class="page_gif_actions">' + shareActionHTML + addActionHTML + '</div>' : '';
+            var progressIconHTML = '<div class="page_gif_progress_icon" style="display:none;">' + rs(vk.pr_tpl, {
                 id: '',
                 cls: ''
             }) + '</div>';
 
-            var imgCont = ce('a', {
-                href: obj.href,
+            var previewContainerEl = ce('a', {
+                href: linkEl.href,
                 className: 'page_gif_preview' + (cur.gifAdded[doc] ? ' page_gif_added' : ''),
-                innerHTML: progressIcon + (largeGif ? '<div class="page_gif_label">gif</div>' : '') + acts,
+                innerHTML: progressIconHTML + actionsHTML,
                 onclick: cancelEvent
             }, {
-                background: canPlayMp4 ? '' : (getStyle(domFC(obj), 'background') || '').replace(/"/g, '\''),
-                width: previewWidth ? previewWidth + 'px' : '',
-                height: previewHeight ? previewHeight + 'px' : ''
+                backgroundImage: canPlayMp4 ? '' : (getStyle(photoEl, 'backgroundImage') || '').replace(/"/g, '\''),
+                backgroundSize: canPlayMp4 ? '' : (getStyle(photoEl, 'backgroundSize') || '').replace(/"/g, '\''),
+                width: previewWidth ? previewWidth + 'px' : undefined,
+                height: previewHeight ? previewHeight + 'px' : undefined
             });
 
-            imgCont.appendChild(el);
-            cur.activeGif = imgCont;
-            domPN(obj).insertBefore(imgCont, obj);
-            hide(obj);
+            var progressIconEl = domFC(previewContainerEl);
+            previewContainerEl.appendChild(previewEl);
+            cur.activeGif = previewContainerEl;
+            containerEl.insertBefore(previewContainerEl, linkEl);
+            hide(linkEl);
 
             var isLoaded = false;
-
+            var loadingInterval;
             var onLoaded = function() {
-                if (getSize(el)[0] || getSize(el)[1]) {
+                var size = getSize(previewEl);
+                if (size[0] || size[1]) {
                     clearInterval(loadingInterval);
-                    el.onload = el.onloadeddata = null;
+                    delete previewEl.onload;
+                    delete previewEl.onloadeddata;
                     isLoaded = true;
 
-                    // if (!cur.activeGif) return;
-                    hide(domFC(imgCont));
-                    imgCont.style.background = '';
-                    imgCont.setAttribute('onclick', "return Page.hideGif(this, event);");
-                    addClass(el, 'page_gif_big');
-                    addClass(imgCont, 'page_gif_loaded');
+                    hide(progressIconEl);
+                    previewContainerEl.style.background = '';
+                    previewContainerEl.setAttribute('onclick', "return Page.hideGif(this, event);");
+                    addClass(previewEl, 'page_gif_big');
+                    addClass(previewContainerEl, 'page_gif_loaded');
+                    if (previewWidth) {
+                        previewEl.style.width = previewWidth + 'px';
+                    }
+                    if (previewHeight) {
+                        previewEl.style.height = previewHeight + 'px';
+                    }
+                    previewEl.style.visibility = '';
+
                     statlogsValueEvent('gif_play', 0, canPlayMp4 ? 'mp4' : 'gif');
                 }
             };
 
             if (ev) { // clicked by user
-                show(domFC(imgCont));
+                show(progressIconEl);
             } else {
                 setTimeout(function() {
                     if (!isLoaded) {
-                        show(domFC(imgCont));
+                        show(progressIconEl);
                     }
                 }, 300);
             }
 
             if (canPlayMp4) {
-                el.onloadeddata = onLoaded;
+                previewEl.onloadeddata = onLoaded;
             } else {
-                var loadingInterval = setInterval(onLoaded, 10);
-                el.onload = onLoaded;
+                loadingInterval = setInterval(onLoaded, 10);
+                previewEl.onload = onLoaded;
             }
 
-            domPN(obj).setAttribute('data-playing', 1);
+            domData(containerEl, 'playing', 1);
 
             var statsMode = isAutoplay ? 'autoplay' : 'manual';
             var statsModule = cur.module || 'other';
             var statsFrom = postRaw ? 'post' : (replyRaw ? 'reply' : '');
             statlogsValueEvent('gif_show', statsMode, statsModule, statsFrom);
+
+            if (postRaw) {
+                var postData = postRaw.split('_');
+                var postOwnerId = postData[0];
+                var postId = postData[1];
+                statlogsValueEvent('show_post_gif', 1, postOwnerId, postId);
+            }
 
             return cancelEvent(ev);
         },
@@ -1519,10 +1577,16 @@ var Page = {
             return false;
         },
         addGif: function(obj, doc, hash, addHash, ev) {
+            if (cur.viewAsBox) {
+                stopEvent(ev);
+                return cur.viewAsBox();
+            }
             cur.gifAdded = cur.gifAdded || {};
-            if (isObject(obj.tt)) obj.tt.hide();
+            if (isObject(obj.tt)) {
+                obj.tt.hide();
+            }
 
-            var wrap = gpeByClass('page_gif_large', obj) || domPN(obj);
+            var isBox = hasClass(obj, 'button_action_light');
 
             if (!cur.gifAdded[doc]) {
                 addClass(obj, 'page_gif_adding');
@@ -1534,8 +1598,14 @@ var Page = {
                 }, {
                     onDone: function(text, tooltip, docObj, hash) {
                         showDoneBox(text);
-                        addClass(wrap, 'page_gif_added');
-                        if (obj.tt && obj.tt.el) obj.tt.destroy();
+                        if (isBox) {
+                            replaceClass(obj, 'button_action_light_add', 'button_action_light_done');
+                            val(obj, getLang('wall_doc_added_short'));
+                        } else {
+                            var wrap = gpeByClass('page_gif_large', obj) || domPN(obj);
+                            addClass(wrap, 'page_gif_added');
+                            if (obj.tt && obj.tt.el) obj.tt.destroy();
+                        }
                         cur.gifAdded[doc] = {
                             tooltip: tooltip,
                             did: docObj[0],
@@ -1551,8 +1621,14 @@ var Page = {
                     hash: cur.gifAdded[doc].hash
                 }, {
                     onDone: function() {
-                        removeClass(wrap, 'page_gif_added');
-                        if (obj.tt && obj.tt.el) obj.tt.destroy();
+                        if (isBox) {
+                            replaceClass(obj, 'button_action_light_done', 'button_action_light_add');
+                            val(obj, getLang('wall_doc_add_short'));
+                        } else {
+                            var wrap = gpeByClass('page_gif_large', obj) || domPN(obj);
+                            removeClass(wrap, 'page_gif_added');
+                            if (obj.tt && obj.tt.el) obj.tt.destroy();
+                        }
                         delete cur.gifAdded[doc];
                     }
                 });
@@ -1561,6 +1637,10 @@ var Page = {
         },
 
         shareGif: function(obj, doc, hash, ev) {
+            if (cur.viewAsBox) {
+                stopEvent(ev);
+                return cur.viewAsBox();
+            }
             if (isObject(obj.tt)) obj.tt.hide();
             showBox('like.php', {
                 act: 'publish_box',
@@ -1574,7 +1654,7 @@ var Page = {
         },
 
         initGifAutoplay: function(canPlayMp4) {
-            if (cur.gifAutoplayScrollHandler || browser.mobile || canPlayMp4 === false) return;
+            if (cur.gifAutoplayScrollHandler || browser.mobile || canPlayMp4 === false || cur.viewAsBox) return;
 
             if (isUndefined(canPlayMp4)) {
                 checkMp4(function(canPlay) {

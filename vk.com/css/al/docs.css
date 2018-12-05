@@ -557,3 +557,15 @@ a.docs_item_name {
         background-size: 72px 72px
     }
 }
+
+.docs_gif_box_thumb .page_doc_photo_href,
+.docs_gif_box_thumb .page_gif_large {
+    vertical-align: top;
+    display: inline-block;
+    position: relative;
+    margin: 0
+}
+
+.docs_gif_box_actions .button_action_light {
+    margin-top: 16px
+}

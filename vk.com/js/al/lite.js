@@ -5608,6 +5608,7 @@ function MessageBox(options, dark) {
         animSpeed: 0,
         bodyStyle: '',
         grey: false,
+        white: false,
         selfDestruct: true,
         progress: false,
         hideOnBGClick: false,
@@ -5693,6 +5694,7 @@ function MessageBox(options, dark) {
         }
         toggleClass(boxBody, 'box_no_buttons', options.hideButtons);
         toggleClass(boxTitleWrap, 'box_grey', options.grey);
+        toggleClass(boxTitleWrap, 'box_white', options.white);
 
         // Set box dimensions
         boxContainer.style.minWidth = typeof(options.width) == 'string' ? options.width : options.width + 'px';

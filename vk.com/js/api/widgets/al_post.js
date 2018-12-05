@@ -152,6 +152,9 @@ var WPost = {
                         'widget_like.php': {
                             'a_stats_box': true
                         },
+                        'docs.php': {
+                            'show_box': true
+                        },
                     }),
 
                     showReCaptchaBox: Widgets.showReCaptchaBox,

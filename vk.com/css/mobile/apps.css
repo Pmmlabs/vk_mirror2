@@ -3460,12 +3460,81 @@ input.wide_button {
     text-decoration: none
 }
 
+.mt_label__divider {
+    padding: 0 2px
+}
+
+.mt_docInfo,
 .mt_dur {
     padding: 2px 4px;
     margin: 2px;
     right: 0;
     bottom: 0;
     z-index: 1
+}
+
+.mt_docInfo {
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Segoe UI, Segoe WP, Helvetica Neue, Lucida Grande, Verdana, Tahoma, Arial, sans-serif!important;
+    background: unset;
+    white-space: normal;
+    height: 22px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background: transparent;
+    position: absolute;
+    bottom: 4px;
+    left: 8px;
+    right: 4px;
+    font-weight: 500;
+    line-height: 14px;
+    color: #fff;
+    z-index: 1;
+    margin: 4px 7px;
+    padding: 0!important;
+    text-align: right;
+    overflow: hidden;
+    pointer-events: none
+}
+
+.mt_docInfo:before {
+    content: '';
+    display: inline-block;
+    height: 22px;
+    width: 1px;
+    vertical-align: middle
+}
+
+.mt_docInfo>* {
+    padding: 4px 6px
+}
+
+.mt_docInfo>span {
+    -webkit-border-radius: 3px 0 0 3px;
+    -moz-border-radius: 3px 0 0 3px;
+    border-radius: 3px 0 0 3px;
+    padding-right: 6px
+}
+
+.mt_docInfo>span,
+.mt_docInfo>div {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 14px;
+    background: rgba(0, 0, 0, .4)
+}
+
+.mt_docInfo>div {
+    vertical-align: top;
+    padding-left: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0
+}
+
+.mt_docInfo>div .mt_label__divider {
+    padding-right: 6px;
+    padding-left: 0
 }
 
 .mt_count {
@@ -3864,6 +3933,7 @@ input.wide_button {
 }
 
 .thumb_map_wide .mt_count,
+.thumb_map_wide .mt_docInfo,
 .thumb_map_wide .mt_dur {
     padding: 4px 7px
 }
@@ -6477,6 +6547,7 @@ div.pm_item .pm_counter {
     background: none
 }
 
+.cp_attached_wrap .mt_docInfo,
 .cp_attached_wrap .mt_dur {
     margin: 4px 5px
 }
