@@ -3746,7 +3746,19 @@ input.wide_button {
     border-left: 2px solid #c3d1e0;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
-    border-radius: 8px
+    border-radius: 8px;
+    position: relative
+}
+
+.comment_item .medias_link_thumbed {
+    border-left: 0;
+    padding-left: 0;
+    overflow: hidden;
+    margin: 0 0 6px
+}
+
+.comment_item .mlt_cont {
+    min-height: 0
 }
 
 .mlt_header {

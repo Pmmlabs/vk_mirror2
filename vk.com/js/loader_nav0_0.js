@@ -594,9 +594,9 @@ var stVersions = {
     'translation_discussions.js': 1145389133,
     'ui_gallery.css': 18165749372,
     'cmodules/web/ui_components.js': 3224689059,
-    'apps_feed_blocks.css': 22461026399,
+    'apps_feed_blocks.css': 20702076227,
     'cmodules/web/landing_transparency.js': 92218422463,
-    'landings/transparency.css': 92156000485,
+    'landings/transparency.css': 88590559829,
     'cmodules/web/emoji.js': 4878439511,
     'cmodules/web/apps_achievements.js': 62839783797,
     'lang': 6931
@@ -658,4 +658,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 7341;
+var _rnd = 1928;
