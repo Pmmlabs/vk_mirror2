@@ -164,7 +164,7 @@ var stVersions = {
     'blog.css': 22467261162,
     'blog.js': 3939164531,
     'html5audio.js': 976782859,
-    'audioplayer.js': 180151726229,
+    'audioplayer.js': 176842021745,
     'audioplayer.css': 21443454570,
     'audio_html5.js': 287741914,
     'audio.js': 4213961847,
@@ -251,8 +251,8 @@ var stVersions = {
     'groups_create.css': 20386183215,
     'cmodules/web/groups_list.js': 2447510571,
     'cmodules/web/GroupsEdit.js': 24767144261,
-    'groups_edit.css': 61840180948,
-    'cmodules/web/groups_edit.js': 36255746389,
+    'groups_edit.css': 61646995864,
+    'cmodules/web/groups_edit.js': 37416382677,
     'profile.css': 35370377826,
     'profile.js': 2681993000,
     'calendar.css': 22649792032,
@@ -392,8 +392,8 @@ var stVersions = {
     'ads_bonus.css': 1294533291,
     'ads.js': 3723561920,
     'ads_payments.js': 1483293789,
-    'ads_edit.css': 40845538517,
-    'ads_edit.js': 2977822601,
+    'ads_edit.css': 43017033902,
+    'ads_edit.js': 2819828212,
     'ads_edit_geo.js': 519167575,
     'ads_moder_common.css': 18285022077,
     'ads_moder.css': 19314085060,
@@ -570,10 +570,10 @@ var stVersions = {
     'cmodules/web/photo_crop.js': 4423121175,
     'photo_crop.css': 1559756484,
     'cmodules/web/podcast.js': 9406238210,
-    'cmodules/web/podcast_add.js': 4130357064,
+    'cmodules/web/podcast_add.js': 3482523749,
     'cmodules/web/podcast_choose.js': 4574431326,
     'podcast.css': 48196230826,
-    'podcast_add.css': 18648213155,
+    'podcast_add.css': 18414945890,
     'podcast_choose.css': 19675096716,
     'podcast_stats.css': 17217964614,
     'cmodules/web/poster.js': 2596412437,
@@ -592,12 +592,12 @@ var stVersions = {
     'community_bot.js': 1928249077,
     'community_bot.css': 3742743729,
     'translation_discussions.js': 1145389133,
-    'ui_gallery.css': 18165749372,
+    'ui_gallery.css': 20587897508,
     'cmodules/web/ui_components.js': 3224689059,
     'apps_feed_blocks.css': 20702076227,
     'cmodules/web/landing_transparency.js': 92218422463,
-    'landings/transparency.css': 88590559829,
-    'cmodules/web/emoji.js': 4878439511,
+    'landings/transparency.css': 89772732160,
+    'cmodules/web/emoji.js': 7442856075,
     'cmodules/web/apps_achievements.js': 62839783797,
     'lang': 6931
 };
@@ -658,4 +658,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 1928;
+var _rnd = 3176;

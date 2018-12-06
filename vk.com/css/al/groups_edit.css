@@ -3236,3 +3236,11 @@ a.group_ad_post_link.deleted.deleted:hover {
 .group_ad_articles_stats_btn {
     margin-top: 15px
 }
+
+.group_edit_podcast_gallery_row {
+    margin-right: -20px
+}
+
+.group_edit_podcast_gallery_row .ui_gallery .ui_gallery_item:last-child {
+    margin-right: 53px
+}

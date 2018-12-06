@@ -70,6 +70,7 @@ AdsEdit.init = function() {
     });
 
     cur.targetingEditor.init({}, cur.editor, cur.viewEditor, cur.targetingCriteria, cur.targetingCriteriaData, cur.targetingCriteriaRanges, cur.targetingCriteriaParams, cur.targetingGroups);
+
     cur.destroy.push(function() {
         cur.targetingEditor.destroy();
     });
@@ -2162,7 +2163,6 @@ AdsEditor.prototype.isUpdatingData = function() {
 
 function AdsViewEditor() {}
 AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params, paramsData, paramsParams) {
-
     this.editor = editor;
     this.targetingEditor = targetingEditor;
 
@@ -5114,12 +5114,14 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
     if (updateTargetingForPromotedPost) {
         this.targetingEditor.updateUiCriterionVisibility('price_list_id');
         this.targetingEditor.updateUiCriterionVisibility('price_list_retargeting_formula');
+        this.targetingEditor.updateUiCriterionVisibility('pinned_card_1');
 
         var priceListIdVisible = this.targetingEditor.getUiCriterionVisibility('price_list_id', false);
         if (priceListIdVisible === false) {
             this.targetingEditor.correctCriterion('price_list_id');
             this.targetingEditor.correctCriterion('price_list_retargeting_formula');
             this.targetingEditor.updateUiCriterionVisibility('price_list_id');
+            this.targetingEditor.updateUiCriterionVisibility('pinned_card_1');
             this.targetingEditor.updateUiCriterionVisibility('price_list_retargeting_formula');
         }
 
@@ -5845,12 +5847,14 @@ AdsViewEditor.prototype.completeLink = function() {
         this.targetingEditor.correctCriterion('user_browsers');
         this.targetingEditor.correctCriterion('pays_money');
         this.targetingEditor.correctCriterion('price_list_id');
+        this.targetingEditor.correctCriterion('pinned_card_1');
         this.targetingEditor.correctCriterion('price_list_retargeting_formula');
         this.targetingEditor.updateUiCriterionVisibility('user_devices');
         this.targetingEditor.updateUiCriterionVisibility('user_operating_systems');
         this.targetingEditor.updateUiCriterionVisibility('user_browsers');
         this.targetingEditor.updateUiCriterionVisibility('pays_money');
         this.targetingEditor.updateUiCriterionVisibility('price_list_id');
+        this.targetingEditor.updateUiCriterionVisibility('pinned_card_1');
         this.targetingEditor.updateUiCriterionVisibility('price_list_retargeting_formula');
         this.targetingEditor.updateUiCriterionSelectedDataAll();
         AdsEdit.updateTargetingGroups();
@@ -6579,6 +6583,10 @@ AdsTargetingEditor.prototype.init = function(options, editor, viewEditor, criter
             value: '',
             data: []
         },
+        pinned_card_1: {
+            value: 0,
+            data: []
+        },
         tags: {
             value: ''
         },
@@ -6712,6 +6720,9 @@ AdsTargetingEditor.prototype.initHelpCriterion = function(criterionName) {
         case 'travellers':
             shiftTop = -52;
             break;
+        case 'pinned_card_1':
+            shiftTop = -52;
+            break;
         case 'positions':
             shiftTop = -44;
             break;
@@ -6750,6 +6761,7 @@ AdsTargetingEditor.prototype.initHelpCriterion = function(criterionName) {
         case 'interests':
         case 'group_types':
         case 'travellers':
+        case 'pinned_card_1':
         case 'schools':
         case 'positions':
         case 'browsers':
@@ -7282,12 +7294,13 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
 
                 break;
             }
+        case 'pinned_card_1':
         case 'travellers':
             {
                 targetElem = ge(this.options.targetIdPrefix + criterionName);
                 this.criteria[criterionName].ui = new Checkbox(targetElem, {
-                    label: this.criteria.travellers.label_checkbox,
-                    checked: this.criteria.travellers.value,
+                    label: this.criteria[criterionName].label_checkbox,
+                    checked: this.criteria[criterionName].value,
                     width: this.options.uiWidth,
                     onChange: function(state) {
                         this.onUiChange(criterionName, state);
@@ -7296,6 +7309,9 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
                 this.cur.destroy.push(function() {
                     this.criteria[criterionName].ui.destroy();
                 }.bind(this));
+                if (criterionName === 'pinned_card_1') {
+                    this.updateUiCriterionEnabled(criterionName);
+                }
                 break;
             }
         case 'autoaudience':
@@ -7683,6 +7699,7 @@ AdsTargetingEditor.prototype.getUiCriterionEnabled = function(criterionName) {
             var viewParams = this.viewEditor.getParams();
             return !(viewParams.ad_id || this.criteria[criterionName].data.length <= 1);
         case 'price_list_retargeting_formula':
+        case 'pinned_card_1':
             return !!(this.criteria.price_list_id.value);
         default:
             return null;
@@ -7692,7 +7709,7 @@ AdsTargetingEditor.prototype.getUiCriterionEnabled = function(criterionName) {
 AdsTargetingEditor.prototype.updateUiCriterionEnabled = function(criterionName) {
     if (!('data' in this.criteria[criterionName])) {
         try {
-            console.error("Can't update enabled state");
+            console.error("Can't update enabled state", criterionName);
         } catch (e) {}
         return;
     }
@@ -7701,18 +7718,25 @@ AdsTargetingEditor.prototype.updateUiCriterionEnabled = function(criterionName) 
 
     if (this.criteria[criterionName].ui) {
         var enabled = this.getUiCriterionEnabled(criterionName);
+        var criterionUi = this.criteria[criterionName].ui;
+
         if (enabled !== null) {
-            if (inArray(criterionName, ['price_list_retargeting_formula'])) {
-                this.criteria[criterionName].ui.toggleDisable(!enabled);
+            if (criterionName === 'pinned_card_1') {
+                criterionUi.disable(!enabled);
+                if (!enabled) {
+                    criterionUi.setState(0);
+                }
+            } else if (inArray(criterionName, ['price_list_retargeting_formula'])) {
+                criterionUi.toggleDisable(!enabled);
             } else if (!this.criteria[criterionName].value) {
-                this.criteria[criterionName].ui.disable(enabled); // Fix disabling introText
-                this.criteria[criterionName].ui.disable(!enabled);
-                this.criteria[criterionName].ui.clear(); // Fix placeholder
+                criterionUi.disable(enabled); // Fix disabling introText
+                criterionUi.disable(!enabled);
+                criterionUi.clear(); // Fix placeholder
                 if (this.criteria[criterionName].value === 0) {
-                    this.criteria[criterionName].ui.val(this.criteria[criterionName].value);
+                    criterionUi.val(this.criteria[criterionName].value);
                 }
             } else if (inArray(criterionName, ['price_list_id'])) {
-                this.criteria[criterionName].ui.disable(!enabled);
+                criterionUi.disable(!enabled);
             }
         }
     }
@@ -7775,6 +7799,7 @@ AdsTargetingEditor.prototype.getUiCriterionVisibility = function(criterionName, 
                 visible = !!(this.criteria[criterionName].allowed_any || viewParams.link_type == AdsEdit.ADS_AD_LINK_TYPE_APP);
                 break;
             case 'price_list_id':
+            case 'pinned_card_1':
             case 'price_list_retargeting_formula':
                 var viewParams = this.viewEditor.getParams();
                 var promotedPostKludgesHave = this.viewEditor.getLinkPromotedPostKludgesHave();
@@ -8301,6 +8326,7 @@ AdsTargetingEditor.prototype.onCriterionUpdate = function(criterionName, criteri
                 break;
             case 'price_list_id':
                 this.updateUiCriterionEnabled('price_list_retargeting_formula');
+                this.updateUiCriterionEnabled('pinned_card_1');
                 this.updateUiCriterionPlaceholderText('price_list_retargeting_formula');
                 break;
             case 'price_list_retargeting_formula':

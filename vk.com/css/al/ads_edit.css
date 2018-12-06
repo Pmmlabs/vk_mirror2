@@ -1315,7 +1315,7 @@ a.ads_edit_link_go:hover {
 }
 
 .ads_edit_crop_photo_ad.fl_l {
-    padding-top: 15px
+    padding-left: 15px
 }
 
 .ads_edit_crop_photo_ad .ads_ad_box_border.app_in_news,
@@ -1323,6 +1323,10 @@ a.ads_edit_link_go:hover {
 .ads_edit_crop_photo_ad .ads_ad_box_border.groups_only,
 .ads_edit_crop_photo_ad .ads_ad_box_border.mobile {
     border-style: none
+}
+
+.ads_edit_crop_photo_ad .ads_ad_photo_icon_box {
+    border-radius: 50px
 }
 
 .ads_edit_crop_photo_box .ads_ad_disclaimers.groups_only {
