@@ -252,7 +252,7 @@ var stVersions = {
     'cmodules/web/groups_list.js': 2447510571,
     'cmodules/web/GroupsEdit.js': 24767144261,
     'groups_edit.css': 61646995864,
-    'cmodules/web/groups_edit.js': 37416382677,
+    'cmodules/web/groups_edit.js': 35489121794,
     'profile.css': 35370377826,
     'profile.js': 2681993000,
     'calendar.css': 22649792032,
@@ -345,7 +345,7 @@ var stVersions = {
     'cmodules/sw/sw.js': 5960813200,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
-    'restore.js': 2217205179,
+    'restore.js': 3373932958,
     'restore.css': 21712445411,
     'docs.js': 1861132066,
     'docs.css': 32943167629,
@@ -355,7 +355,7 @@ var stVersions = {
     'helpdesk.css': 38394027334,
     'tickets.js': 1151194956,
     'tickets.css': 36481649336,
-    'faq.css': 27700578448,
+    'faq.css': 27197164664,
     'talmud.js': 2726757681,
     'agents.js': 2789926745,
     'agents.css': 19767019018,
@@ -428,7 +428,7 @@ var stVersions = {
     'filters_pe.js': 3589638532,
     'pe.js': 318083439,
     'pe.css': 17677548521,
-    'dev.js': 1132065585,
+    'dev.js': 2039495622,
     'dev.css': 40559926218,
     'share.css': 34788540416,
     'stickers_office.css': 19866401780,
@@ -658,4 +658,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 3176;
+var _rnd = 8199;

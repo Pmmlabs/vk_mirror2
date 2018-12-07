@@ -1208,8 +1208,8 @@ var Dev = {
             0: 'bugtracker',
             act: 'add',
             product: 22,
-            descr: address ? getLang('bugs_mistake_title').replace('{title}', address) : getLang('bugs_mistake'),
-            title: title ? getLang('bugs_report_doc') : getLang('bugs_report_bug')
+            descr: address ? getLang('developers_mistake_title').replace('{title}', address) : getLang('developers_mistake'),
+            title: title ? getLang('developers_report_doc') : getLang('developers_report_bug')
         });
     },
 

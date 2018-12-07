@@ -533,6 +533,14 @@
     padding: 5px
 }
 
+.faq_inner_subrows {
+    padding: 0 0 10px 20px
+}
+
+.faq_inner_subrows:empty {
+    display: none
+}
+
 .faq_inner_row.only {
     cursor: default
 }
@@ -663,7 +671,15 @@
 }
 
 .faq_row_title__translated {
+    color: #417505
+}
+
+.faq_row_title__untranslated {
     color: #939393
+}
+
+.faq_row_title__translated_expired {
+    color: #eb6a6c
 }
 
 .faq_row_title__fixed {
@@ -671,7 +687,10 @@
 }
 
 .faq_row_title__position {
-    color: #777e8c
+    color: #777e8c;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }
 
 .no_faq_found {
@@ -1036,13 +1055,25 @@
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    margin-bottom: 4px;
-    font-size: 13px
+    font-size: 13px;
+    margin-bottom: 4px
+}
+
+.faq_tutorials_row__details {
+    color: #656565;
+    line-height: 17px;
+    width: 420px
+}
+
+.faq_tutorials_row__details>b {
+    color: #4e5966
 }
 
 .faq_tutorials_row_testers {
-    padding-left: 15px;
-    font-size: 12.5px
+    margin-top: 4px;
+    padding-left: 12px;
+    font-size: 12.5px;
+    line-height: 17px
 }
 
 .faq_tutorials_row_testers__list {

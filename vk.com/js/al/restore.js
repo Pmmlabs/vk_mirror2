@@ -5,43 +5,68 @@ var Restore = {
     requestTypeSimple: 4,
     onlineNoOwner: 1,
     onlineOwner: 2,
-    submitForgotPassword: function(e) {
-        var o = ge("submitBtn"),
-            t = ge("login_input"),
-            r = ge("lastname_input");
-        if (t) {
-            var s = val(t);
-            if (s.length < 3) return notaBene(t);
-            cur.restoreForgotPassParams.login = s
-        }
-        if (r) {
-            var n = val(r);
-            if (n.length < 1) return elfocus("lastname_input");
-            cur.restoreForgotPassParams.lastName = n
-        }
-        ajax.post("login?act=a_forgot", {
-            login: cur.restoreForgotPassParams.login,
-            lname: cur.restoreForgotPassParams.lastName,
-            hash: cur.resetPasswordTHash,
-            sure: e
+    submitAuthCode: function(e) {
+        var o = ge("authBtn"),
+            t = ge("code_input"),
+            r = trim(val(t));
+        return r.length < 5 ? notaBene(t) : void ajax.post("login?act=a_auth_by_code", {
+            hash: e,
+            code: r
         }, {
-            onDone: function(e, o) {
-                e ? (val("forgot_panel", o), showBackLink("/restore"), hide(geByClass1("top_nav_link", ge("top_links"))), show("top_links")) : showMsg("error", o, "error", !0)
+            onDone: function(e, t) {
+                showMsg("error", e, "error", !0), t && disableButton(o, !0)
             },
             showProgress: lockButton.pbind(o),
             hideProgress: unlockButton.pbind(o)
         })
     },
+    submitInstantAuthAsk: function(e, o) {
+        cur.authAskSureBox.hide(), cur.resetPasswordIA = o, Restore.submitForgotPassword(e)
+    },
+    submitForgotPassword: function(hash) {
+        var btn = ge("submitBtn"),
+            loginInput = ge("login_input"),
+            lastNameInput = ge("lastname_input");
+        if (loginInput) {
+            var login = val(loginInput);
+            if (login.length < 3) return notaBene(loginInput);
+            cur.restoreForgotPassParams.login = login
+        }
+        if (lastNameInput) {
+            var lastName = val(lastNameInput);
+            if (lastName.length < 1) return elfocus("lastname_input");
+            cur.restoreForgotPassParams.lastName = lastName
+        }
+        ajax.post("login?act=a_forgot", {
+            login: cur.restoreForgotPassParams.login,
+            lname: cur.restoreForgotPassParams.lastName,
+            hash: cur.resetPasswordTHash,
+            ia: cur.resetPasswordIA,
+            sure: hash
+        }, {
+            onDone: function(result, content, script) {
+                result = intval(result), 0 === result ? showMsg("error", content, "error", !0) : 1 === result && ("" !== content && (val("forgot_panel", content), showBackLink("/restore"), hide(geByClass1("top_nav_link", ge("top_links"))), show("top_links")), "" !== script && eval(script))
+            },
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn)
+        })
+    },
     submitForgotPasswordByPhone: function(e, o, t) {
         var r = ge("submitBtn"),
             s = val("password"),
-            n = val("password2");
+            n = val("password2"),
+            a = null;
+        if ("" === e) {
+            if (e = trim(val("phone_login")), "" === e) return notaBene("phone_login");
+            a = 1
+        }
         return s.length ? n.length ? void ajax.post("login?act=a_forgot_by_phone", {
             hash: o,
             shash: t,
             login: e,
             password: s,
-            password2: n
+            password2: n,
+            manually: a
         }, {
             onDone: function(e, o) {
                 1 == e ? val("restore_password_form", o) : (val("error", o), show("error"))
@@ -180,20 +205,20 @@ var Restore = {
             i = a + "_",
             u = ge(i + "file_button") || ge("restore_extend_request_button");
         unlockButton(u);
-        var c = cur.images.length,
-            l = !0;
+        var l = cur.images.length,
+            c = !0;
         each(cur.images, function(e, o) {
-            return o.type == r && o.deleted ? (c = e, l = !1, !1) : void 0
-        }), cur.images[c] = {
+            return o.type == r && o.deleted ? (l = e, c = !1, !1) : void 0
+        }), cur.images[l] = {
             id: o,
             hash: t,
             type: r
         }, ++cur.images_count[r];
         var _ = 2 == n || 3 == n ? Restore.maxPhotosWithType : Restore.maxPhotos;
-        ge(i + "input").disabled = cur.images_count[r] >= _, ge(i + "input").disabled && 3 != n && hide(i + "upload"), show(i + "photos"), s = s.split("%index%").join(c).split("%type%").join(r);
+        ge(i + "input").disabled = cur.images_count[r] >= _, ge(i + "input").disabled && 3 != n && hide(i + "upload"), show(i + "photos"), s = s.split("%index%").join(l).split("%type%").join(r);
         var h = se(s),
             d = ge(i + "photos");
-        d && (l ? d.appendChild(h) : domReplaceEl(d, h)), hide("simple_request_incorrect"), 3 == n ? Restore.extendRequest(ge("restore_extend_request_button")) : Restore.changeFullRequestButton(!0)
+        d && (c ? d.appendChild(h) : domReplaceEl(d, h)), hide("simple_request_incorrect"), 3 == n ? Restore.extendRequest(ge("restore_extend_request_button")) : Restore.changeFullRequestButton(!0)
     },
     deleteImage: function(e, o, t) {
         var r = e ? "photo" : "doc",
