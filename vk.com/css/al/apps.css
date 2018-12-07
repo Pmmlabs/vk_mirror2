@@ -2926,6 +2926,10 @@ a.page_block_header:hover .apps_cat_header_link:after {
     width: 1%
 }
 
+.apps_options_bar .divider:before {
+    top: -2px
+}
+
 .app_header_with_moderation .apps_admin_info {
     max-width: 100%;
     overflow: hidden;
@@ -6978,6 +6982,14 @@ td.apps_cat_new_h {
     max-width: 300px
 }
 
+.vk_app_modal_container--qr img {
+    width: 140px;
+    height: 140px;
+    border-radius: 0;
+    margin-top: -12px;
+    margin-bottom: -18px
+}
+
 .vk_app_modal_close_btn {
     position: absolute;
     top: 20px;
@@ -7273,4 +7285,60 @@ td.apps_cat_new_h {
     background-position: 0 0;
     cursor: default;
     height: 9px
+}
+
+#qr_code_btn {
+    color: #2a5885;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 54px;
+    border: 0;
+    padding-right: 2px;
+    background-color: transparent
+}
+
+.vk_app_copy_link__container {
+    position: relative;
+    margin-top: 4px;
+    width: 100%;
+    font-size: 13px;
+    line-height: 1.38;
+    text-align: center;
+    color: #2a5885
+}
+
+.vk_app_copy_link__copied {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 0;
+    color: #939393;
+    opacity: 0;
+    pointer-events: none;
+    -o-transition: opacity .8s ease;
+    transition: opacity .8s ease
+}
+
+.vk_app_copy_link__copied--visible {
+    opacity: 1
+}
+
+.vk_app_copy_link__copy {
+    width: 100%;
+    font-size: 13px;
+    line-height: 15px;
+    color: #2a5885;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    -o-transition: opacity .8s ease;
+    transition: opacity .8s ease;
+    opacity: 1
+}
+
+.vk_app_copy_link__copy--hidden {
+    opacity: 0;
+    pointer-events: none
 }
