@@ -15965,6 +15965,56 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     }
 }
 
+.audioPlaylist_blocked .audioPlaylist__row_actions {
+    display: none
+}
+
+.audioPlaylist__list_blocked {
+    padding: 102px 25px;
+    text-align: center
+}
+
+.audioPlaylist__list_blocked:before {
+    content: '';
+    width: 72px;
+    height: 72px;
+    background: url('/images/audio/pensive_face_144x144.png') no-repeat 50%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    display: block;
+    margin: 0 auto 16px
+}
+
+.audioPlaylist__list_blocked_title {
+    font-size: 16px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.38;
+    color: #000;
+    margin: 16px 0 8px
+}
+
+.audioPlaylist__list_blocked_text {
+    font-size: 15px;
+    line-height: 1.33;
+    color: #656565;
+    margin: 8px 0
+}
+
+.audioPlaylist__list_blocked_button {
+    margin-top: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px
+}
+
+.audioPlaylist__list_blocked_button.button {
+    font-size: 14px;
+    font-weight: 600
+}
+
 .audioPlaylists {
     position: relative
 }

@@ -5083,16 +5083,18 @@ var Wall = {
 
                     removeClass(newShowMore, 'replies_next_pre_deleted');
 
-                    if (isPrev) {
-                        domInsertBefore(newShowMore, edgeEl);
-                        val(newShowMore, getLang('wall_prev_n_replies', moreCount));
-                    } else {
-                        domInsertAfter(newShowMore, edgeEl);
-                        val(newShowMore, getLang('wall_next_n_replies', moreCount));
-                    }
+                    if (!collapse) {
+                        if (isPrev) {
+                            domInsertBefore(newShowMore, edgeEl);
+                            val(newShowMore, getLang('wall_prev_n_replies', moreCount));
+                        } else {
+                            domInsertAfter(newShowMore, edgeEl);
+                            val(newShowMore, getLang('wall_next_n_replies', moreCount));
+                        }
 
-                    domData(newShowMore, 'count', moreCount);
-                    domData(newShowMore, 'offset', newOffset);
+                        domData(newShowMore, 'count', moreCount);
+                        domData(newShowMore, 'offset', newOffset);
+                    }
                 }
 
                 removeClass(ge('replies_wrap_deep' + itemFullId), 'replies_deep_has_short');
@@ -10266,13 +10268,16 @@ var Wall = {
             postId = domData(postEl, 'post-id');
         }
 
+        var offset = domData(postEl, 'replies-offset') || 0;
+        var count = domData(postEl, 'replies-limit') || 3;
+
         var repliesWrap = ge('replies' + postId);
 
         var showNextReplies = se(rs(cur.wallTpl.reply_deep_next, {
             post_ist: postId,
             reply_id: postId,
-            offset: 0,
-            count: 3,
+            offset: offset,
+            count: count,
             text: '',
             class: ' replies_next_main',
         }));

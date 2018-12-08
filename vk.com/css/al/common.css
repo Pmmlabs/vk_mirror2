@@ -9,6 +9,7 @@
 .audio_page_player2 .audio_control_btn .icon,
 .audio_page_player2 .audio_play,
 .audio_page_player2.audio_player_podcast .audio_page_player__cover,
+.audio_pl_snippet2 .audio_pl_snippet__stub:before,
 .audio_promo__left:after,
 .audio_promo__right:after,
 .audio_restriction_box__close,
@@ -8762,6 +8763,49 @@ button.ui_load_more_btn {
 
 .audio_pl_snippet2.audio_pl__blocked.audio_pl__followed .audio_pl_snippet__action_btn_add {
     display: block
+}
+
+.audio_pl_snippet2 .audio_pl_snippet__stub {
+    padding: 64px 130px 74px;
+    text-align: center
+}
+
+.audio_pl_snippet2 .audio_pl_snippet__stub:before {
+    content: '';
+    width: 72px;
+    height: 72px;
+    background: url(/images/audio/pensive_face.png) no-repeat 50%;
+    display: block;
+    margin: 0 auto 16px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_pl_snippet2 .audio_pl_snippet__stub:before {
+        background-image: url(/images/audio/pensive_face_2x.png);
+        background-size: 72px 72px
+    }
+}
+
+.audio_pl_snippet2 .audio_pl_snippet__stub_title {
+    font-size: 16px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 1.38;
+    color: #000;
+    margin: 16px 0 10px
+}
+
+.audio_pl_snippet2 .audio_pl_snippet__stub_text {
+    font-size: 13px;
+    line-height: 1.38;
+    color: #656565;
+    margin: 10px 0
+}
+
+.audio_pl_snippet2 .audio_pl_snippet__stub_button {
+    margin-top: 22px
 }
 
 .post:not(.post_fr_likes):not(.postponed):not(.post_copy) .post_info .audio_pl_snippet2:last-child {
