@@ -12462,14 +12462,14 @@ a.Popup__headerCorner {
     pointer-events: none
 }
 
-.Btn .BookmarksItem .ai_menu_toggle_button,
-.Btn .Icon,
-.Btn .m .vk__page_chatAdd .basis .lvi.mlvi,
-.Btn .m .vk__page_chatSettings .basis .lvi.mlvi,
-.Btn .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
-.Btn .OwnerColumn__online,
-.Btn .OwnerRow__online,
-.Btn .vk__page_redesign .basis .ii_btn {
+.Btn_theme_regular .BookmarksItem .ai_menu_toggle_button,
+.Btn_theme_regular .Icon,
+.Btn_theme_regular .m .vk__page_chatAdd .basis .lvi.mlvi,
+.Btn_theme_regular .m .vk__page_chatSettings .basis .lvi.mlvi,
+.Btn_theme_regular .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
+.Btn_theme_regular .OwnerColumn__online,
+.Btn_theme_regular .OwnerRow__online,
+.Btn_theme_regular .vk__page_redesign .basis .ii_btn {
     margin: 5px -2px
 }
 
@@ -24266,7 +24266,6 @@ a .appWidget__tiles_title {
     min-width: 50px;
     max-width: 160px;
     margin-left: 12px;
-    line-height: 19px;
     float: right
 }
 
