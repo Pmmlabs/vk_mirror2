@@ -105,8 +105,7 @@ var Talmud = {
             title: getLang("support_tlmd_delete_title"),
             width: 430
         }, getLang("support_tlmd_delete_confirm"), getLang("global_delete"), function() {
-            !o && nav.objLoc.q && (o = nav.objLoc.q), cur.tlmdIgnoreDiff = !0, ajax.post("tlmd", {
-                act: "delete",
+            !o && nav.objLoc.q && (o = nav.objLoc.q), cur.tlmdIgnoreDiff = !0, ajax.post("tlmd?act=a_delete", {
                 id: t,
                 hash: e,
                 q: o

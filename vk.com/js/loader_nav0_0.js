@@ -357,7 +357,7 @@ var stVersions = {
     'tickets.js': 1151194956,
     'tickets.css': 33068821254,
     'faq.css': 26780861626,
-    'talmud.js': 2726757681,
+    'talmud.js': 3100656417,
     'agents.js': 2789926745,
     'agents.css': 19350715980,
     'achievements.js': 3514956550,
@@ -659,4 +659,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 431;
+var _rnd = 8328;
