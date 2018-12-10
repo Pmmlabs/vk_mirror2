@@ -388,7 +388,7 @@ var stVersions = {
     'call.js': 4217435992,
     'call.css': 3256039661,
     'aes_light.css': 32935968886,
-    'aes_light.js': 3780729751,
+    'aes_light.js': 2821732,
     'ads.css': 52942910132,
     'ads_bonus.css': 1294533291,
     'ads.js': 3723561920,
@@ -598,7 +598,7 @@ var stVersions = {
     'apps_feed_blocks.css': 20285773189,
     'cmodules/web/landing_transparency.js': 92218422463,
     'landings/transparency.css': 96813797153,
-    'cmodules/web/emoji.js': 7442856075,
+    'cmodules/web/emoji.js': 9258885348,
     'cmodules/web/apps_achievements.js': 62839783797,
     'lang': 6931
 };
@@ -659,4 +659,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 8328;
+var _rnd = 4431;
