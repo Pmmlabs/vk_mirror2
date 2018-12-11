@@ -2602,6 +2602,14 @@ body.body_helpdesk_small_sb .left_menu_nav {
     padding-left: 10px
 }
 
+.helpdesk_ml_ticket_reply .diffRemove {
+    background: #fae1e2
+}
+
+.helpdesk_ml_ticket_reply .diffAdd {
+    background: #e8f2e4
+}
+
 .helpdesk_ml_ticket__action {
     color: #656565;
     margin-top: 12px

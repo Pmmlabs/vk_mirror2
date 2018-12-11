@@ -211,6 +211,30 @@ var Helpdesk = {
             }
         })
     },
+    changeBug: function(e, t) {
+        return !showBox("helpdesk?act=add_bug_box", {
+            hash: t,
+            ticket_id: e,
+            change: 1
+        }, {
+            params: {
+                width: 620,
+                bodyStyle: "padding: 0px"
+            }
+        })
+    },
+    changeBugMultiple: function(e, t) {
+        return cur.ticketsToBind = t, !showBox("helpdesk?act=add_bug_box", {
+            issue_id: e,
+            tickets: t,
+            tasks: 1
+        }, {
+            params: {
+                width: 620,
+                bodyStyle: "padding: 0px"
+            }
+        })
+    },
     addTemplate: function(e) {
         return !showBox("helpdesk?act=add_template", {
             type: e,
@@ -700,13 +724,13 @@ var Helpdesk = {
         if (!t) return notaBene("desc"), !1;
         var s = function() {
             var s = {
-                    act: "save_bug",
-                    hash: cur.hashes.save_bug_hash,
+                    hash: cur.saveBugHash,
                     ticket_id: cur.ticket_id,
                     title: e,
                     desc: t,
                     browser: val("browser"),
-                    sections: cur.sectionEditFilter.val()
+                    sections: cur.sectionEditFilter.val(),
+                    current_issue_id: cur.currentIssueId
                 },
                 o = Helpdesk._getCheckedTicketsList();
             o && (s.tickets = o), ge("tickets_closed_autoanswer_addressing_m") && (s.addressing_m = val("tickets_closed_autoanswer_addressing_m")), ge("tickets_closed_autoanswer_addressing_f") && (s.addressing_f = val("tickets_closed_autoanswer_addressing_f")), s.no_autoanswer = isChecked("support_ignore_autoanswer") ? 1 : 0, s.answer_text = val("tickets_send_autoanswer");
@@ -727,7 +751,7 @@ var Helpdesk = {
                 var s = t[0],
                     o = t[1];
                 ("photo" == s || "doc" == s) && r.push(s + "," + o)
-            }), r.length && (s.attachs = r), ajax.post("helpdesk", s, {
+            }), r.length && (s.attachs = r), ajax.post("helpdesk?act=a_save_bug", s, {
                 cache: 1,
                 onDone: Helpdesk._show,
                 onFail: function() {
@@ -736,10 +760,10 @@ var Helpdesk = {
             }), !0
         };
         return showFastBox({
-            title: getLang("support_binding_title"),
-            width: 430,
+            title: getLang("helpdesk_binding_title"),
+            width: 530,
             bodyStyle: "line-height: 160%;"
-        }, cur.sure_bind, getLang("support_do_bind"), function() {
+        }, cur.sureBind, getLang("helpdesk_do_bind"), function() {
             s() && curBox() && (curBox().content('<div style="height:100px; background: url(/images/progress7.gif) 50% 50% no-repeat;"></div>'), curBox().setOptions({
                 bodyStyle: "padding: 0px;"
             }))
@@ -750,7 +774,7 @@ var Helpdesk = {
             target: "auto"
         }), autosizeSetup("tickets_send_autoanswer", {
             maxHeight: 500
-        }), !1
+        }), cur.currentIssueId > 0 && Helpdesk.toggleAutoanswerBlock(ge("support_ignore_autoanswer")), !1
     },
     addAutoReplyScreenShot: function() {
         showBox("helpdesk", {
@@ -772,22 +796,25 @@ var Helpdesk = {
             }
         })
     },
-    bindTicket: function(e, t) {
-        var s = function(e, t) {
+    bindTicket: function(e, t, s) {
+        var o = function(e, t) {
                 var s = {
-                        bug_id: e,
-                        ticket_id: cur.ticket_id,
-                        hash: t
-                    },
-                    o = [],
+                    bug_id: e,
+                    hash: t
+                };
+                cur.ticket_id && (s.ticket_id = cur.ticket_id), cur.fromTasks && (s.tasks = 1);
+                var o = [],
                     a = cur.ticketsAutoMedia.chosenMedias;
-                a && each(a, function(e, t) {
-                    var s = t[0],
-                        a = t[1];
-                    ("photo" == s || "doc" == s) && o.push(s + "," + a)
-                }), o && (s.attachs = o);
-                var i = Helpdesk._getCheckedTicketsList();
-                if (i && (s.tickets = i), ge("support_ignore_autoanswer") && ge("tickets_send_autoanswer")) {
+                if (a && each(a, function(e, t) {
+                        var s = t[0],
+                            a = t[1];
+                        ("photo" == s || "doc" == s) && o.push(s + "," + a)
+                    }), o && (s.attachs = o), cur.ticketsToBind) s.tickets = cur.ticketsToBind;
+                else {
+                    var i = Helpdesk._getCheckedTicketsList();
+                    i && (s.tickets = i)
+                }
+                if (ge("support_ignore_autoanswer") && ge("tickets_send_autoanswer")) {
                     s.no_autoanswer = isChecked("support_ignore_autoanswer") ? 1 : 0, s.answer_text = val("tickets_send_autoanswer");
                     var r = ge("helpdesk_autoanswer_other_langs");
                     if (r) {
@@ -800,22 +827,21 @@ var Helpdesk = {
                         })
                     }
                     ge("tickets_closed_autoanswer_addressing_m") && (s.addressing_m = val("tickets_closed_autoanswer_addressing_m")), ge("tickets_closed_autoanswer_addressing_f") && (s.addressing_f = val("tickets_closed_autoanswer_addressing_f")), ajax.post("helpdesk?act=a_bind_ticket", s, {
-                        cache: 1,
-                        onDone: Helpdesk._show,
+                        onDone: cur.fromTasks ? nav.reload.pbind({}) : Helpdesk._show,
                         onFail: function() {
                             boxQueue.hideAll()
                         }
                     })
                 }
             },
-            o = cur.sure_bind;
-        cur.helpdeskAddBugLangAutoanswers && (o = o.replace('<span id="helodesk_add_bug_lang_autoanswer"></span>', cur.helpdeskAddBugLangAutoanswers));
-        var a = showFastBox({
-            title: getLang("support_binding_title"),
+            a = cur.sureBind;
+        cur.helpdeskAddBugLangAutoanswers && (a = a.replace('<span id="helpdesk_add_bug_lang_autoanswer"></span>', cur.helpdeskAddBugLangAutoanswers));
+        var i = showFastBox({
+            title: getLang("helpdesk_binding_title"),
             width: 530,
             bodyStyle: "line-height: 160%;"
-        }, o, getLang("support_do_bind"), function() {
-            s(e, t), a.hide(), curBox() && curBox().content('<div style="height:100px; background: url(/images/progress7.gif) 50% 50% no-repeat;"></div>')
+        }, a, getLang("helpdesk_do_bind"), function() {
+            o(e, t), i.hide(), curBox() && curBox().content('<div style="height:100px; background: url(/images/progress7.gif) 50% 50% no-repeat;"></div>')
         }, getLang("global_cancel"));
         return autosizeSetup("tickets_send_autoanswer", {
             minHeight: 60,
@@ -825,15 +851,13 @@ var Helpdesk = {
             oneClick: cur.oneClickUpload,
             photoCallback: Helpdesk.addAutoReplyScreenShot,
             target: "auto"
-        }), !1
+        }), s && Helpdesk.toggleAutoanswerBlock(ge("support_ignore_autoanswer")), !1
     },
     unbindTicket: function(e, t, s) {
         var o = function() {
                 var o = cur.unbindBox;
-                ajax.post("helpdesk", {
-                    act: "unbind_ticket",
-                    ticket_id: cur.ticket_id,
-                    bug_id: e,
+                ajax.post("helpdesk?act=a_unbind_ticket", {
+                    ticket_id: e,
                     hash: t
                 }, {
                     cache: 1,
@@ -994,7 +1018,8 @@ var Helpdesk = {
         var t = ge("add_bug_search_input");
         ajax.post("helpdesk?act=a_get_bugs", {
             q: e,
-            by_all: isChecked("add_bug_search_by_all") ? 1 : 0
+            by_all: isChecked("add_bug_search_by_all") ? 1 : 0,
+            current_issue_id: cur.currentIssueId
         }, {
             showProgress: uiSearch.showProgress.pbind(t),
             hideProgress: uiSearch.hideProgress.pbind(t),
@@ -1111,8 +1136,7 @@ var Helpdesk = {
                         }), nav.setLoc(nav.objLoc);
                         break;
                     case "history":
-                        delete nav.objLoc.offset, val("tickets_replies", cont), query.q ? nav.objLoc.q = query.q : delete nav.objLoc.q,
-                            script && eval(script), nav.setLoc(nav.objLoc)
+                        delete nav.objLoc.offset, val("tickets_replies", cont), query.q ? nav.objLoc.q = query.q : delete nav.objLoc.q, script && eval(script), nav.setLoc(nav.objLoc)
                 }
             }
         };
@@ -2169,51 +2193,53 @@ var Helpdesk = {
             dir: "top"
         }) : !1
     },
-    markMlReplyRelevantFromReplyRow: function(e, t, s, o) {
+    markMlReplyRelevantFromReplyRow: function(e, t, s, o, a) {
         if (!buttonLocked(e)) {
-            var a = gpeByClass("_buttons", e);
-            lockButton(e), Helpdesk.markMlReplyRelevant(t, s, o, unlockButton.pbind(e), function() {
-                each(geByClass("flat_button", a), function(e, t) {
+            var i = gpeByClass("_buttons", e);
+            lockButton(e), Helpdesk.markMlReplyRelevant(t, s, o, a, unlockButton.pbind(e), function() {
+                each(geByClass("flat_button", i), function(e, t) {
                     addClass(t, "secondary")
                 }), removeClass(e, "secondary")
             })
         }
     },
-    markMlReplyRelevant: function(e, t, s, o, a) {
+    markMlReplyRelevant: function(e, t, s, o, a, i) {
         ajax.post("helpdesk?act=a_ml_reply_set_relevant", {
             ticket_id: e,
             hash: t,
-            val: s
+            val: s,
+            from_form: o
         }, {
             hideProgress: function() {
-                o && o()
+                a && a()
             },
             onDone: function() {
-                a && a()
+                i && i()
             }
         })
     },
-    markMlReplyNeedsAgentFromReplyRow: function(e, t, s, o) {
+    markMlReplyNeedsAgentFromReplyRow: function(e, t, s, o, a) {
         if (!buttonLocked(e)) {
-            var a = gpeByClass("_buttons", e);
-            lockButton(e), Helpdesk.markMlReplyNeedsAgent(t, s, o, unlockButton.pbind(e), function() {
-                each(geByClass("flat_button", a), function(e, t) {
+            var i = gpeByClass("_buttons", e);
+            lockButton(e), Helpdesk.markMlReplyNeedsAgent(t, s, o, a, unlockButton.pbind(e), function() {
+                each(geByClass("flat_button", i), function(e, t) {
                     addClass(t, "secondary")
                 }), removeClass(e, "secondary")
             })
         }
     },
-    markMlReplyNeedsAgent: function(e, t, s, o, a) {
+    markMlReplyNeedsAgent: function(e, t, s, o, a, i) {
         ajax.post("helpdesk?act=a_ml_reply_set_needs_agent", {
             ticket_id: e,
             hash: t,
-            val: s
+            val: s,
+            from_form: o
         }, {
             hideProgress: function() {
-                o && o()
+                a && a()
             },
             onDone: function() {
-                a && a()
+                i && i()
             }
         })
     },
