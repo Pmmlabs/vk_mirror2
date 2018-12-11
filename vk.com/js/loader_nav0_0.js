@@ -394,7 +394,7 @@ var stVersions = {
     'ads.js': 3723561920,
     'ads_payments.js': 1483293789,
     'ads_edit.css': 42600730864,
-    'ads_edit.js': 2819828212,
+    'ads_edit.js': 1267960866,
     'ads_edit_geo.js': 519167575,
     'ads_moder_common.css': 17868719039,
     'ads_moder.css': 18897782022,
@@ -600,6 +600,7 @@ var stVersions = {
     'landings/transparency.css': 96813797153,
     'cmodules/web/emoji.js': 6861790574,
     'cmodules/web/apps_achievements.js': 62839783797,
+    'cmodules/web/payments.js': 39201098448,
     'lang': 6931
 };
 var stTypes = {
@@ -659,4 +660,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 2836;
+var _rnd = 1436;

@@ -4277,10 +4277,10 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                     inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]) ||
                     (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && (!this.params.cost_type.allow_promoted_posts_cpc || !this.params.link_id.promoted_posts_cpc))
                 );
-                this.params.cost_type.cp� _only = (
+                this.params.cost_type.cpc_only = (
                     inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD])
                 );
-                this.params.cost_type.hidden = this.params.cost_type.cpm_only || this.params.cost_type.cp� _only;
+                this.params.cost_type.hidden = this.params.cost_type.cpm_only || this.params.cost_type.cpc_only;
 
                 if (this.params.cost_type.cpm_only) {
                     this.setCostType(AdsEdit.ADS_AD_COST_TYPE_VIEWS);
