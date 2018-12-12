@@ -341,7 +341,7 @@ var stVersions = {
     'widgets.css': 33001208799,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 100918159189,
+    'notifier.js': 103963859710,
     'notifier.css': 35484478558,
     'cmodules/sw/sw.js': 5960813200,
     'earthday.js': 2276669993,
@@ -590,17 +590,15 @@ var stVersions = {
     'cmodules/web/addresses.js': 12889648417,
     'cmodules/web/groups_edit_cta_button.js': 89320519,
     'groups_live_covers.css': 26489025366,
-    'community_bot.js': 1928249077,
-    'community_bot.css': 3742743729,
     'translation_discussions.js': 1145389133,
     'ui_gallery.css': 20171594470,
     'cmodules/web/ui_components.js': 3224689059,
     'apps_feed_blocks.css': 20285773189,
     'cmodules/web/landing_transparency.js': 92218422463,
     'landings/transparency.css': 96813797153,
-    'cmodules/web/emoji.js': 6861790574,
+    'cmodules/web/emoji.js': 7067071033,
     'cmodules/web/apps_achievements.js': 62839783797,
-    'cmodules/web/payments.js': 39201098448,
+    'cmodules/web/payments.js': 39206289954,
     'lang': 6931
 };
 var stTypes = {
@@ -660,4 +658,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 1436;
+var _rnd = 7450;
