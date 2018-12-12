@@ -1670,7 +1670,8 @@ input.wide_button {
     border-bottom: 1px solid #eee;
     white-space: nowrap;
     padding: 5px 7px;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    overflow: hidden
 }
 
 ._hover .mm_item:hover {
@@ -1694,7 +1695,8 @@ input.wide_button {
 }
 
 .mm_label {
-    font-size: medium
+    font-size: medium;
+    line-height: 16px
 }
 
 .mm_counter {
@@ -1705,6 +1707,21 @@ input.wide_button {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px
+}
+
+.mm_new {
+    float: right;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    color: #99a2ad;
+    margin: 0 4px
+}
+
+._ios .mm_new {
+    line-height: 19px
 }
 
 .lfm_item .i_icon,
@@ -1763,6 +1780,10 @@ input.wide_button {
 
 .mmi_settings .i_icon {
     background-position: 0 -242px
+}
+
+.mmi_likes .i_icon {
+    background-position: 0 -434px
 }
 
 .mmi_help .i_icon {

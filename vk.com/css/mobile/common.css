@@ -1677,7 +1677,8 @@ input.wide_button {
     border-bottom: 1px solid #eee;
     white-space: nowrap;
     padding: 5px 7px;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    overflow: hidden
 }
 
 ._hover .mm_item:hover {
@@ -1701,7 +1702,8 @@ input.wide_button {
 }
 
 .mm_label {
-    font-size: medium
+    font-size: medium;
+    line-height: 16px
 }
 
 .mm_counter {
@@ -1712,6 +1714,21 @@ input.wide_button {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px
+}
+
+.mm_new {
+    float: right;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    color: #99a2ad;
+    margin: 0 4px
+}
+
+._ios .mm_new {
+    line-height: 19px
 }
 
 .lfm_item .i_icon,
@@ -1770,6 +1787,10 @@ input.wide_button {
 
 .mmi_settings .i_icon {
     background-position: 0 -242px
+}
+
+.mmi_likes .i_icon {
+    background-position: 0 -434px
 }
 
 .mmi_help .i_icon {
@@ -38594,7 +38615,7 @@ body.apps_settingsPageBody {
     top: 8px;
     left: 7px;
     right: 7px;
-    z-index: 20;
+    z-index: 52;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -38781,7 +38802,7 @@ body.apps_settingsPageBody {
     background: -moz-linear-gradient(top, rgba(0, 0, 0, .24) 0%, transparent 100%);
     background: -o-linear-gradient(top, rgba(0, 0, 0, .24) 0%, transparent 100%);
     background: linear-gradient(180deg, rgba(0, 0, 0, .24) 0%, transparent);
-    z-index: 1
+    z-index: 51
 }
 
 .Story__body:before {
@@ -38790,7 +38811,7 @@ body.apps_settingsPageBody {
     background: -moz-linear-gradient(270deg, transparent 0%, rgba(0, 0, 0, .24) 100%);
     background: -o-linear-gradient(270deg, transparent 0%, rgba(0, 0, 0, .24) 100%);
     background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .24));
-    z-index: 2
+    z-index: 52
 }
 
 .Story__table {
@@ -39062,7 +39083,7 @@ body.apps_settingsPageBody {
     top: 24px;
     left: 12px;
     right: 12px;
-    z-index: 19;
+    z-index: 52;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -39156,8 +39177,9 @@ body.apps_settingsPageBody {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 1;
-    display: block
+    z-index: 50;
+    display: block;
+    pointer-events: none
 }
 
 .Story__content_video {
@@ -39576,12 +39598,20 @@ body.apps_settingsPageBody {
     color: #fff;
     text-align: center;
     font-size: 15px;
-    pointer-events: none
+    pointer-events: none;
+    padding: 12px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
 }
 
 .NarrativeCover__image {
-    width: 210px;
-    height: 315px;
+    width: 26.9vh;
+    height: 40.3vh;
+    min-width: 152px;
+    min-height: 228px;
+    max-width: 210px;
+    max-height: 315px;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
@@ -39591,7 +39621,8 @@ body.apps_settingsPageBody {
     border-radius: 9px;
     -webkit-box-shadow: 0 9px 24px 0 rgba(0, 0, 0, .16);
     -moz-box-shadow: 0 9px 24px 0 rgba(0, 0, 0, .16);
-    box-shadow: 0 9px 24px 0 rgba(0, 0, 0, .16)
+    box-shadow: 0 9px 24px 0 rgba(0, 0, 0, .16);
+    pointer-events: all
 }
 
 .NarrativeCover__views {
@@ -39605,20 +39636,31 @@ body.apps_settingsPageBody {
 }
 
 .NarrativeCover__title {
-    font-size: 26px;
+    font-size: -webkit-calc(20px + (26 - 20) * (100vh - 568px) / (667 - 568));
+    font-size: -moz-calc(20px + (26 - 20) * (100vh - 568px) / (667 - 568));
+    font-size: calc(20px + (26 - 20) * (100vh - 568px) / (667 - 568));
     font-weight: 700;
     line-height: 1.23;
     margin: 2px 0 5px
 }
 
 .NarrativeMeta {
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, .4)
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    background: rgba(0, 0, 0, .4);
+    z-index: 50
 }
 
 .NarrativeMeta,
 .NarrativeMeta__buttons {
+    position: relative;
+    width: 100%;
+    height: 100%;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -39633,19 +39675,25 @@ body.apps_settingsPageBody {
     -webkit-align-items: center;
     -moz-box-align: center;
     -ms-flex-align: center;
-    align-items: center
+    align-items: center;
+    pointer-events: none
+}
+
+.NarrativeMeta__buttons {
+    z-index: 60
 }
 
 .NarrativeMeta__button {
+    position: relative;
     text-align: center;
-    z-index: 999;
-    pointer-events: all;
     margin-right: 48px;
     color: #fff;
     text-transform: uppercase;
     font-size: 13px;
     max-width: 100px;
-    font-weight: 600
+    width: 100%;
+    font-weight: 600;
+    pointer-events: all
 }
 
 .NarrativeMeta__button:last-of-type {
@@ -39684,12 +39732,198 @@ body.apps_settingsPageBody {
     background: hsla(0, 0%, 100%, .64) url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2236%22%20viewBox%3D%220%200%2036%2036%22%20width%3D%2236%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%3E%3Cpath%20d%3D%22m0%200h36v36h-36z%22%2F%3E%3Cpath%20d%3D%22m10.6213203%2016h18.3786797c.8284271%200%201.5.6715729%201.5%201.5s-.6715729%201.5-1.5%201.5h-18.3789455l7.4396607%207.4404331c.5857561.5858168.5857068%201.5355643-.0001101%202.1213203-.5858168.5857561-1.5355643.5857068-2.1213203-.0001101l-10.00000003-10.0010382c-.58573453-.5857953-.58570988-1.5355003.00005506-2.1212653l9.99999997-9.99999997c.5857865-.58578644%201.5355339-.58578644%202.1213204%200%20.5857864.58578644.5857864%201.5355339%200%202.12132034z%22%20fill%3D%22%23000%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50% / 28px
 }
 
-.Views {
+.NarrativeMeta__text {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%
+}
+
+.NarrativeMeta__recommendations {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    width: 100%;
+    z-index: 59;
+    pointer-events: none
+}
+
+.NarrativeMeta__recommendations.scroll {
+    z-index: 60
+}
+
+.NarrativeMeta__recommendations-title {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    display: block;
+    height: 52px;
+    color: #fff;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 52px;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0 30px;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    -webkit-border-radius: 8px 8px 0 0;
+    -moz-border-radius: 8px 8px 0 0;
+    border-radius: 8px 8px 0 0;
+    background-color: #333;
+    border-bottom: 1px solid #222;
+    z-index: 11
+}
+
+.NarrativeMeta__recommendations-title,
+.NarrativeMeta__recommendations-inner {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.NarrativeMeta__recommendations-inner {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    pointer-events: all;
+    -webkit-border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 0 0;
+    -webkit-overflow-scrolling: touch
+}
+
+.NarrativeMeta__recommendations-inner::-webkit-scrollbar {
+    width: 0
+}
+
+.NarrativeMeta__recommendations-items {
+    background-color: rgba(0, 0, 0, .5);
+    font-size: 0
+}
+
+.NarrativePreview {
+    display: inline-block;
+    vertical-align: top;
+    width: 33.33%;
+    height: 26.4vh;
+    min-height: 150px;
+    font-size: 13px;
+    white-space: normal;
+    overflow-wrap: break-word;
+    color: #fff;
+    background-color: #000;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: 50%;
+    border: 1px solid #000;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: background 0.3s ease-out;
+    -moz-transition: background 0.3s ease-out;
+    -o-transition: background 0.3s ease-out;
+    transition: background 0.3s ease-out;
+    margin-top: -1px;
+    -webkit-transition: opacity 300ms linear;
+    -moz-transition: opacity 300ms linear;
+    -o-transition: opacity 300ms linear;
+    transition: opacity 300ms linear;
+    cursor: pointer;
+    pointer-events: all
+}
+
+.NarrativePreview:hover {
+    text-decoration: none;
+    opacity: .8
+}
+
+.NarrativePreview__title {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.17;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, .32);
+    z-index: 1;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.NarrativePreview__author {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .16);
+    -moz-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .16);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .16);
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%
+}
+
+.NarrativePreview__author,
+.NarrativePreview__inner {
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: 50%
+}
+
+.NarrativePreview__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: background 0.3s ease-out;
+    -moz-transition: background 0.3s ease-out;
+    -o-transition: background 0.3s ease-out;
+    transition: background 0.3s ease-out;
+    overflow: hidden
+}
+
+.NarrativePreview__inner:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, transparent), to(rgba(0, 0, 0, .48)));
+    background: -webkit-linear-gradient(top, transparent 50%, rgba(0, 0, 0, .48));
+    background: -moz-linear-gradient(top, transparent 50%, rgba(0, 0, 0, .48) 100%);
+    background: -o-linear-gradient(top, transparent 50%, rgba(0, 0, 0, .48) 100%);
+    background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, .48))
+}
+
+.NarrativePreview__inner:after,
+.Views {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0
+}
+
+.Views {
     background: #fff;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;

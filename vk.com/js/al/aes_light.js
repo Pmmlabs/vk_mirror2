@@ -1062,7 +1062,7 @@
                 });
             i.parentNode.insertBefore(s, i), window.googletag = window.googletag || {}, googletag.cmd = googletag.cmd || [], vk__adsLight.GPTAdSlots = {}, googletag.cmd.push(function() {
                 each(vk__adsLight.GPTBlocks, function(e, t) {
-                    var i = googletag.defineSlot("vk_native_left", ["fluid"], t);
+                    var i = googletag.defineSlot("/59246935/vk_native_left", ["fluid"], t);
                     vk__adsLight.GPTAdSlots[t] = i, i.addService(googletag.pubads())
                 }), googletag.pubads().enableSingleRequest(), googletag.pubads().addEventListener("slotRenderEnded", function(i) {
                     AdsLight.initGoogleRenderFinished(i, e, t, vk__adsLight.GPTBlocks)

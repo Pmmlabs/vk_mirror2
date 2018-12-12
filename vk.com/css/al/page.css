@@ -13162,7 +13162,7 @@ button.wall_block_app_btn {
     display: table;
     table-layout: fixed;
     word-wrap: break-word;
-    min-height: 72px;
+    min-height: 82px;
     margin: 10px 0;
     position: relative;
     background: #fff;
@@ -13184,7 +13184,7 @@ button.wall_block_app_btn {
 
 .narrative-small-snippet__thumb {
     position: relative;
-    width: 72px;
+    width: 92px;
     height: 100%;
     background-size: cover;
     background-position: 50%;

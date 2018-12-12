@@ -515,6 +515,12 @@ var Join = {
                 location.href = location.href.replace(/^http:/, 'https:');
             } else if (code === 4) {
                 location.href = '/login?m=1&email=' + opts.email;
+            } else if (code === 10) {
+                lockButton('join_send_pass');
+                setTimeout(submitQuickLoginForm.pbind(login, pass, {
+                    prg: 'join_send_pass',
+                    params: cur.joinParams
+                }), 1000);
             } else {
                 nav.reload();
             }
