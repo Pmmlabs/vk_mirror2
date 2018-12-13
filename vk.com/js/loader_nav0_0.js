@@ -253,7 +253,7 @@ var stVersions = {
     'cmodules/web/groups_list.js': 2447510571,
     'cmodules/web/GroupsEdit.js': 24767144261,
     'groups_edit.css': 59657804730,
-    'cmodules/web/groups_edit.js': 34162682923,
+    'cmodules/web/groups_edit.js': 35401587996,
     'profile.css': 31957549744,
     'profile.js': 2681993000,
     'calendar.css': 22233488994,
@@ -658,4 +658,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 3018;
+var _rnd = 868;
