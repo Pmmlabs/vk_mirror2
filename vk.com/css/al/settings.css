@@ -1992,7 +1992,7 @@ input.settings_app_password_name {
     align-items: center;
     box-sizing: border-box;
     position: relative;
-    top: -1px;
+    top: 0px;
     padding: 14px 0;
     min-height: 56px
 }
@@ -2019,7 +2019,7 @@ input.settings_app_password_name {
     align-items: center;
     height: 56px;
     position: relative;
-    top: -1px
+    top: 0px
 }
 
 .settings_separated_row .settings_separated_row_nowrap {
@@ -2045,6 +2045,14 @@ input.settings_app_password_name {
 
 .settings_separated_row .settings_separated_row_footer .settings_row+.settings_row {
     margin-top: 25px
+}
+
+.settings_separated_row .settings_separated_row_hint {
+    color: #939393;
+    font-size: 12.5px;
+    width: 360px;
+    margin-top: 2px;
+    line-height: 16px
 }
 
 .settings_separated_row_iconed.icon_type_ads:before,

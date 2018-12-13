@@ -15013,6 +15013,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .audioPage__search .hp_block,
 .audioSearch__wrap,
 .BookmarksSearch .hp_block,
+.Friends__search .hp_block,
 .m .vk__page_chatAdd .basis__content .hp_block,
 .vk__page_redesign .filter_peer_wrap .hp_block {
     margin: 0 -12px;
@@ -15024,6 +15025,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     .audioPage__search .hp_block,
     .audioSearch__wrap,
     .BookmarksSearch .hp_block,
+    .Friends__search .hp_block,
     .m .vk__page_chatAdd .basis__content .hp_block,
     .vk__page_redesign .filter_peer_wrap .hp_block {
         margin: 0 -8px
@@ -15035,6 +15037,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     .audioPage__search .hp_block,
     .audioSearch__wrap,
     .BookmarksSearch .hp_block,
+    .Friends__search .hp_block,
     .m .vk__page_chatAdd .basis__content .hp_block,
     .vk__page_redesign .filter_peer_wrap .hp_block {
         margin: 0 -16px
@@ -15045,10 +15048,12 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .audioPage__search .qsearch .iwrap,
 .audioSearch__wrapInput,
 .BookmarksSearch .qsearch .iwrap,
+.Friends__search .qsearch .iwrap,
 .m .vk__page_chatAdd .basis__content .qsearch .iwrap,
 .qsearch .ArtistPage__search .iwrap,
 .qsearch .audioPage__search .iwrap,
 .qsearch .BookmarksSearch .iwrap,
+.qsearch .Friends__search .iwrap,
 .qsearch .m .vk__page_chatAdd .basis__content .iwrap,
 .vk__page_redesign .filter_peer_wrap .qsearch .iwrap {
     padding: 0 0 1px 51px
@@ -15059,10 +15064,12 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     .audioPage__search .qsearch .iwrap,
     .audioSearch__wrapInput,
     .BookmarksSearch .qsearch .iwrap,
+    .Friends__search .qsearch .iwrap,
     .m .vk__page_chatAdd .basis__content .qsearch .iwrap,
     .qsearch .ArtistPage__search .iwrap,
     .qsearch .audioPage__search .iwrap,
     .qsearch .BookmarksSearch .iwrap,
+    .qsearch .Friends__search .iwrap,
     .qsearch .m .vk__page_chatAdd .basis__content .iwrap,
     .vk__page_redesign .filter_peer_wrap .qsearch .iwrap {
         padding-left: 43px
@@ -15073,6 +15080,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .audioPage__search .qs_textfield,
 .audioSearch__input,
 .BookmarksSearch .qs_textfield,
+.Friends__search .qs_textfield,
 .m .vk__page_chatAdd .basis__content .qs_textfield,
 .vk__page_redesign .filter_peer_wrap .qs_textfield {
     height: 44px;
@@ -15088,6 +15096,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .audioPage__search .qs_field_wrap:after,
 .audioSearch__searchIcon,
 .BookmarksSearch .qs_field_wrap:after,
+.Friends__search .qs_field_wrap:after,
 .m .vk__page_chatAdd .basis__content .qs_field_wrap:after,
 .vk__page_redesign .filter_peer_wrap .qs_field_wrap:after {
     content: "";
@@ -15111,6 +15120,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     .audioPage__search .qs_field_wrap:after,
     .audioSearch__searchIcon,
     .BookmarksSearch .qs_field_wrap:after,
+    .Friends__search .qs_field_wrap:after,
     .m .vk__page_chatAdd .basis__content .qs_field_wrap:after,
     .vk__page_redesign .filter_peer_wrap .qs_field_wrap:after {
         left: 8px
@@ -15122,6 +15132,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     .audioPage__search .qs_field_wrap:after,
     .audioSearch__searchIcon,
     .BookmarksSearch .qs_field_wrap:after,
+    .Friends__search .qs_field_wrap:after,
     .m .vk__page_chatAdd .basis__content .qs_field_wrap:after,
     .vk__page_redesign .filter_peer_wrap .qs_field_wrap:after {
         left: 16px
@@ -15132,6 +15143,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .vk_2x .audioPage__search .qs_field_wrap:after,
 .vk_2x .audioSearch__searchIcon,
 .vk_2x .BookmarksSearch .qs_field_wrap:after,
+.vk_2x .Friends__search .qs_field_wrap:after,
 .vk_2x.m .vk__page_chatAdd .basis__content .qs_field_wrap:after,
 .vk_2x .vk__page_redesign .filter_peer_wrap .qs_field_wrap:after {
     background-image: url('/images/mobile/icons/top_menu_icons_2x.png?5')
@@ -15141,6 +15153,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .audioPage__search .row_table_main_column,
 .audioSearch__inputContainer,
 .BookmarksSearch .row_table_main_column,
+.Friends__search .row_table_main_column,
 .m .vk__page_chatAdd .basis__content .row_table_main_column,
 .vk__page_redesign .filter_peer_wrap .row_table_main_column {
     padding: 0;
@@ -15151,6 +15164,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .audioPage__search .row_table_last_column,
 .audioSearch__buttonContainer,
 .BookmarksSearch .row_table_last_column,
+.Friends__search .row_table_last_column,
 .m .vk__page_chatAdd .basis__content .row_table_last_column,
 .vk__page_publish .pcont .qsearch .row_table_last_column,
 .vk__page_redesign .filter_peer_wrap .row_table_last_column {
@@ -22219,6 +22233,72 @@ figure[data-type="102"] .article_object_video_play {
     margin: auto
 }
 
+.OwnerAvatar {
+    position: relative;
+    font-size: 0;
+    line-height: 0
+}
+
+.OwnerAvatar__link {
+    display: block
+}
+
+.OwnerAvatar__img {
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%
+}
+
+.OwnerAvatar__img,
+.OwnerAvatar__img_big {
+    width: 44px;
+    height: 44px
+}
+
+@media (min-width: 320px) {
+    .OwnerAvatar__img_big {
+        width: 72px;
+        height: 72px
+    }
+}
+
+.OwnerAvatar__online {
+    position: absolute;
+    right: -5px;
+    bottom: -3px
+}
+
+.OwnerAvatar__online .lvi {
+    position: static!important;
+    margin: 0 8px 2px 0!important
+}
+
+.OwnerAvatar__online .lvi:before {
+    background-color: #4bb34b;
+    border: 2px solid #fff;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    height: 8px;
+    width: 8px
+}
+
+.OwnerAvatar__online .lvi.mlvi,
+.OwnerAvatar__online .lvi.vkmobilelvi {
+    background: none;
+    margin: 0!important;
+    padding: 0
+}
+
+.OwnerAvatar__online .lvi.mlvi:before,
+.OwnerAvatar__online .lvi.vkmobilelvi:before {
+    border: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    background-color: transparent
+}
+
 .basis__headerWithUser {
     width: 100%
 }
@@ -24627,6 +24707,412 @@ a.feedBlocks__article:hover {
 
 .feedBlocks__article_date .item_date {
     color: #909499
+}
+
+.Friends {
+    background: #fff
+}
+
+.Friends .show_more_loading {
+    background: none
+}
+
+.Friends .service_msg_null {
+    color: #909499;
+    font-size: 14px;
+    line-height: 20px
+}
+
+.Friends .service_msg_box {
+    padding: 10px 7px;
+    border-bottom: 12px solid #ebedf0
+}
+
+.Friends .Friends__item {
+    margin: 0;
+    padding: 6px 12px;
+    border: 0;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: table;
+    position: relative
+}
+
+.Friends .Friends__item_request {
+    padding: 12px;
+    border-bottom: 1px solid #d7d8d9
+}
+
+.Friends .Friends__item_request:last-child {
+    border-bottom: none
+}
+
+@supports ((-webkit-transform: scale(0.5)) or (-moz-transform: scale(0.5)) or (-ms-transform: scale(0.5)) or (-o-transform: scale(0.5)) or (transform: scale(0.5))) {
+    .Friends .Friends__item_request {
+        position: relative;
+        border-bottom: none
+    }
+    .Friends .Friends__item_request:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        border-bottom: 1px solid #d7d8d9;
+        -webkit-transform: scaleY(0.5);
+        -moz-transform: scaleY(0.5);
+        -ms-transform: scaleY(0.5);
+        -o-transform: scaleY(0.5);
+        transform: scaleY(0.5)
+    }
+    .Friends .Friends__item_request:after:after:last-child {
+        content: '';
+        display: none
+    }
+}
+
+.Friends .Friends__itemAvatar {
+    display: table-cell;
+    vertical-align: top;
+    padding: 0 12px 0 0
+}
+
+.Friends .Friends__itemName {
+    font-size: 16px;
+    font-weight: 400;
+    display: table-cell;
+    vertical-align: middle
+}
+
+.Friends .Friends__itemName,
+.Friends .Friends__itemName_bold {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    color: #2c2d2e
+}
+
+.Friends .Friends__itemName_bold {
+    font-size: 15px;
+    font-weight: 500
+}
+
+.Friends .Friends__itemName:hover {
+    text-decoration: none
+}
+
+.Friends .Friends__phonebookLink {
+    color: #909499;
+    text-decoration: none
+}
+
+._hover .Friends .Friends__phonebookLink:hover {
+    text-decoration: none
+}
+
+.Friends .Friends__phonebookItem {
+    font-size: 14px;
+    color: #909499;
+    padding: 2px 0 0
+}
+
+.Friends .Friends__itemLastName {
+    display: inline;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.Friends .Friends__itemButtons {
+    padding: 6px 0 0
+}
+
+.Friends .Friends__itemButtons a:hover {
+    text-decoration: none
+}
+
+.Friends .Friends__itemBody {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    word-break: break-word;
+    padding: 0 8px 0 0
+}
+
+.Friends .Friends__itemBody .si_links {
+    padding: 0
+}
+
+.Friends .Friends__itemBody .si_owner {
+    display: table;
+    width: 100%
+}
+
+.Friends .Friends__itemBody .si_owner:first-child:last-child {
+    height: 40px
+}
+
+.Friends .Friends__itemBody .si_owner:hover {
+    text-decoration: none
+}
+
+.Friends .Friends__itemWrite {
+    display: table-cell;
+    vertical-align: top
+}
+
+.Friends .Friends__itemWriteAction {
+    display: block;
+    width: 28px;
+    height: 28px;
+    margin: 8px 0 0;
+    text-indent: -9999px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-image: url('/images/mobile/skins/icon/base_28.png');
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover
+}
+
+.vk_2x .Friends .Friends__itemWriteAction {
+    background-image: url('/images/mobile/skins/icon/base_28_2x.png')
+}
+
+.Friends .Friends__item_request {
+    table-layout: fixed
+}
+
+.Friends .Friends__item_request .Friends__itemAvatar {
+    width: 44px
+}
+
+@media (min-width: 320px) {
+    .Friends .Friends__item_request .Friends__itemAvatar {
+        width: 72px
+    }
+}
+
+.Friends .Friends__item_request .Friends__itemBody {
+    padding: 0;
+    width: 100%
+}
+
+.Friends .Friends__itemMutual {
+    padding: 8px 0 0
+}
+
+.Friends .Friends__requestsHeader {
+    display: table;
+    width: 100%
+}
+
+.Friends .Friends__requestsTitle,
+.Friends .slim_header {
+    font-size: 13px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    line-height: 20px;
+    color: #909499;
+    text-transform: uppercase;
+    background: none;
+    margin: 0;
+    padding: 12px
+}
+
+.Friends .Friends__requestsTitle {
+    display: table-cell;
+    vertical-align: top;
+    width: 100%
+}
+
+.Friends .Friends__requestsMore {
+    white-space: nowrap;
+    display: table-cell;
+    vertical-align: top;
+    font-size: 15px;
+    line-height: 20px;
+    text-align: right;
+    padding: 12px
+}
+
+.Friends__search {
+    padding: 0
+}
+
+.Friends__search .head_panel {
+    padding: 0 12px;
+    border: 0;
+    background: #fff
+}
+
+@media (max-width: 319px) {
+    .Friends__search .head_panel {
+        padding: 0 8px
+    }
+}
+
+@media (min-width: 400px) {
+    .Friends__search .head_panel {
+        padding: 0 16px
+    }
+}
+
+.Friends__search:empty {
+    display: none
+}
+
+.Friends__search .qsearch .iwrap,
+.qsearch .Friends__search .iwrap {
+    padding: 0 0 0 51px
+}
+
+.Friends__search .row_table_main_column {
+    border-top: 0
+}
+
+.Friends__symbol {
+    font-size: 14px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    line-height: 20px;
+    color: #909499;
+    padding: 12px;
+    text-transform: uppercase;
+    top: 48px;
+    background: #fff;
+    z-index: 1
+}
+
+.vk_header_tabs .Friends__symbol {
+    top: 88px
+}
+
+@media (min-width: 882px) {
+    .vk_header_tabs .Friends__symbol {
+        top: 48px
+    }
+}
+
+.ScrollView .Friends__symbol {
+    top: 0
+}
+
+._hfixed .Friends__symbol {
+    position: -webkit-sticky;
+    position: sticky
+}
+
+.Friends__mutuals {
+    display: table;
+    margin: 8px 0 0;
+    position: relative;
+    z-index: 0
+}
+
+._hover .Friends__mutuals:hover {
+    text-decoration: none
+}
+
+.Friends__mutualList {
+    display: none;
+    white-space: nowrap;
+    padding: 0 6px 0 0
+}
+
+@media (min-width: 320px) {
+    .Friends__mutualList {
+        display: table-cell
+    }
+}
+
+.Friends__mutualItem {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    z-index: 2;
+    margin: 0 0 0 -6px;
+    font-size: 0;
+    line-height: 0
+}
+
+.Friends__mutualItemImg {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #fff;
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    border-radius: 24px
+}
+
+.Friends__mutualItem:first-child {
+    z-index: 3;
+    margin: 0
+}
+
+.Friends__mutualItem:last-child {
+    z-index: 1
+}
+
+.Friends__mutualCount {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 13px;
+    line-height: 16px;
+    color: #909499
+}
+
+.Friends__requests {
+    border-bottom: 12px solid #ebedf0
+}
+
+.Friends__fakeSearch:after,
+.Friends__fakeSearch:before {
+    content: '';
+    height: 12px;
+    display: block;
+    background: #ebedf0
+}
+
+.Friends__requests~.bl_cont .Friends__fakeSearch:before,
+.service_msg_box+.Friends__fakeSearch:before {
+    content: none;
+    display: none
+}
+
+.Friends__fakeSearchLink {
+    display: table;
+    width: 100%;
+    padding: 4px 0
+}
+
+._hover .Friends__fakeSearchLink:hover {
+    text-decoration: none
+}
+
+.Friends__fakeSearchIcon {
+    display: table-cell;
+    vertical-align: middle;
+    width: 56px
+}
+
+.Friends .Friends__fakeSearchIcon:before {
+    margin: 12px 16px;
+    top: 0
+}
+
+.Friends__fakeSearchText {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 16px;
+    text-align: left;
+    color: #2c2d2e
 }
 
 .friendRequest {
@@ -27082,6 +27568,10 @@ a.feedBlocks__article:hover {
     margin-top: 12px
 }
 
+.importFriendsBlock {
+    border-bottom: 12px solid #ebedf0
+}
+
 .vk__page_join,
 .vk__page_join .basis__content {
     background-color: #ebedf0!important
@@ -27588,6 +28078,7 @@ body.apps_settingsPageBody {
     padding: 2px!important
 }
 
+.h .mhi_create,
 .h .mhi_notify {
     padding: 0!important;
     margin: 0;
@@ -27596,6 +28087,33 @@ body.apps_settingsPageBody {
     height: 44px
 }
 
+@media (min-width: 882px) {
+    .mhi_create {
+        margin: 0 227px 0 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 7
+    }
+    ._hfixed .mhi_create {
+        left: 50%;
+        margin: 0 0 0 171px;
+        right: auto
+    }
+    ._hfixed .header__center+.header__right .mhi_create,
+    .vk_flex_yes ._hfixed .header__center+.header__right .mhi_create {
+        position: fixed
+    }
+    .mhb_back+.mhi_create,
+    .qs_opened .mhb_back.header__center+.header__right .mhi_create {
+        display: none
+    }
+    .mhb_back.header__center+.header__right .mhi_create {
+        display: block
+    }
+}
+
+.h .mhi_create:before,
 .h .mhi_notify:before {
     content: '';
     float: left;
@@ -27609,8 +28127,17 @@ body.apps_settingsPageBody {
     background-image: url('/images/mobile/skins/icon/header.png?5')
 }
 
+.vk_2x.h .mhi_create:before,
 .vk_2x.h .mhi_notify:before {
     background-image: url('/images/mobile/skins/icon/header_2x.png?5')
+}
+
+.h .mhi_create {
+    padding: 2px!important
+}
+
+.h .mhi_create:before {
+    background-position: 0 -554px
 }
 
 .header_accept_btn {
@@ -27708,6 +28235,14 @@ body.apps_settingsPageBody {
         position: absolute;
         background-color: #5181b8
     }
+}
+
+.header__right {
+    float: right
+}
+
+.header__right .hb_wrap {
+    padding: 0
 }
 
 @media (min-width: 320px) {
@@ -27842,6 +28377,7 @@ body.apps_settingsPageBody {
         margin-left: 0
     }
     .vk .header__right {
+        float: none;
         display: -webkit-box;
         display: -webkit-flex;
         display: -moz-box;
@@ -31641,6 +32177,7 @@ body.apps_settingsPageBody {
     text-align: left!important
 }
 
+.Friends__fakeSearchIcon:before,
 .r .vk__page_feed .tab_item:before,
 .TopMenu__itemIcon {
     content: '';
@@ -31661,6 +32198,7 @@ body.apps_settingsPageBody {
     top: -1px
 }
 
+.vk_2x .Friends__fakeSearchIcon:before,
 .vk_2x.r .vk__page_feed .tab_item:before,
 .vk_2x .TopMenu__itemIcon {
     background-image: url('/images/mobile/icons/top_menu_icons_2x.png?5')
@@ -31674,6 +32212,7 @@ body.apps_settingsPageBody {
     background-position: 0 15.78947368%
 }
 
+.Friends__fakeSearchIcon:before,
 .tab_item_search:before {
     background-position: 0 57.89473684%
 }
@@ -33707,7 +34246,8 @@ body.apps_settingsPageBody {
     border-color: #d4bc4c
 }
 
-.Oval {
+.Oval,
+.Unfold__itemCountHidden {
     display: inline-block;
     background: #5181b8;
     height: 20px;
@@ -33890,6 +34430,7 @@ body.apps_settingsPageBody {
 .m .vk__page_chatAdd .basis .lvi.mlvi,
 .m .vk__page_chatSettings .basis .lvi.mlvi,
 .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
+.OwnerAvatar__online .lvi,
 .OwnerColumn__online,
 .OwnerRow__online,
 .vk__page_redesign .basis .ii_btn {
@@ -33915,6 +34456,7 @@ body.apps_settingsPageBody {
 .m .vk__page_chatAdd .basis .lvi.mlvi:before,
 .m .vk__page_chatSettings .basis .lvi.mlvi:before,
 .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"]:before,
+.OwnerAvatar__online .lvi:before,
 .OwnerColumn__online:before,
 .OwnerRow__online:before,
 .vk__page_publish .pcont .qs_field_wrap:after,
@@ -34704,6 +35246,8 @@ body.apps_settingsPageBody {
 .m .vk__page_chatAdd .basis .lvi.mlvi,
 .m .vk__page_chatSettings .basis .lvi.mlvi,
 .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bluer,
+.OwnerAvatar__online .lvi.mlvi,
+.OwnerAvatar__online .lvi.vkmobilelvi,
 .OwnerColumn__online,
 .OwnerColumn__online.OwnerColumn__online_mobile,
 .OwnerRow__online,
@@ -34754,6 +35298,8 @@ body.apps_settingsPageBody {
 .m .vk__page_chatAdd .basis .lvi.mlvi:before,
 .m .vk__page_chatSettings .basis .lvi.mlvi:before,
 .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bluer:before,
+.OwnerAvatar__online .lvi.mlvi:before,
+.OwnerAvatar__online .lvi.vkmobilelvi:before,
 .OwnerColumn__online.OwnerColumn__online_mobile:before,
 .OwnerColumn__online:before,
 .OwnerRow__online.OwnerRow__online_mobile:before,
@@ -34809,6 +35355,8 @@ body.apps_settingsPageBody {
 .vk_2x .m .vk__page_chatSettings .basis .lvi.mlvi:before,
 .vk_2x.m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bluer:before,
 .vk_2x .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bluer:before,
+.vk_2x .OwnerAvatar__online .lvi.mlvi:before,
+.vk_2x .OwnerAvatar__online .lvi.vkmobilelvi:before,
 .vk_2x .OwnerColumn__online.OwnerColumn__online_mobile:before,
 .vk_2x .OwnerColumn__online:before,
 .vk_2x .OwnerRow__online.OwnerRow__online_mobile:before,
@@ -34941,6 +35489,8 @@ body.apps_settingsPageBody {
 #publish_items_selected .lvi.mlvi:before,
 #publish_items_selected .lvi.vkmobilelvi:before,
 .Icon_onlinePhoneSmall:before,
+.OwnerAvatar__online .lvi.mlvi:before,
+.OwnerAvatar__online .lvi.vkmobilelvi:before,
 .OwnerColumn__online.OwnerColumn__online_mobile:before,
 .OwnerRow__online.OwnerRow__online_mobile:before {
     background-position: 0 -672px
@@ -35800,14 +36350,23 @@ body.apps_settingsPageBody {
     border: 1px solid #dee0e3;
     display: none;
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch
+    -webkit-overflow-scrolling: touch;
+    max-height: 250px;
+    max-height: -webkit-calc(100vh - 195px);
+    max-height: -moz-calc(100vh - 195px);
+    max-height: calc(100vh - 195px)
+}
+
+.basis__header .Unfold__popup {
+    max-width: 100%
 }
 
 .vk_js_no .Unfold__popup {
     top: 43px
 }
 
-.Unfold_open .Unfold__popup {
+.Unfold_open .Unfold__popup,
+.vk_js_no .Unfold_noJSopen .Unfold__popup {
     display: block
 }
 
@@ -35831,9 +36390,9 @@ body.apps_settingsPageBody {
 @supports ((-webkit-box-shadow: initial) or (-moz-box-shadow: initial) or (box-shadow: initial)) {
     .Unfold__popup {
         border: none;
-        -webkit-box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .14);
-        -moz-box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .14);
-        box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .14)
+        -webkit-box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .12);
+        -moz-box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .12);
+        box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .12)
     }
 }
 
@@ -35862,7 +36421,8 @@ body.apps_settingsPageBody {
         -o-transform: translateY(10px);
         transform: translateY(10px)
     }
-    .Unfold_open .Unfold__popup {
+    .Unfold_open .Unfold__popup,
+    .vk_js_no .Unfold_noJSopen .Unfold__popup {
         visibility: visible;
         opacity: 1;
         -webkit-transform: translateY(0);
@@ -35883,6 +36443,8 @@ body.apps_settingsPageBody {
     color: #fff;
     font-size: 16px;
     font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
     overflow: hidden;
     display: -webkit-box;
     display: -webkit-flex;
@@ -35906,7 +36468,10 @@ body.apps_settingsPageBody {
     -webkit-justify-content: center;
     -moz-box-pack: center;
     -ms-flex-pack: center;
-    justify-content: center
+    justify-content: center;
+    max-width: -webkit-calc(100vw - 140px);
+    max-width: -moz-calc(100vw - 140px);
+    max-width: calc(100vw - 140px)
 }
 
 .Unfold__triggerText {
@@ -35982,18 +36547,37 @@ body.apps_settingsPageBody {
 
 .Unfold__itemText {
     height: 20px;
-    padding: 13px 40px 13px 16px;
+    padding: 13px 16px;
     line-height: 20px;
     -webkit-box-flex: 1;
     -webkit-flex-grow: 1;
     -moz-box-flex: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
-    white-space: nowrap
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis
+}
+
+.Unfold__itemCountHidden {
+    visibility: hidden
 }
 
 .Unfold__itemIcon+.Unfold__itemText {
     padding-left: 0
+}
+
+.Unfold__triggerTextCount {
+    display: inline-block;
+    vertical-align: top;
+    opacity: 0.7;
+    font-size: 17px;
+    color: #fff;
+    margin: 0 0 0 1px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }
 
 .Unfold__itemCount {
@@ -36002,21 +36586,6 @@ body.apps_settingsPageBody {
     bottom: 0;
     right: 12px;
     margin: auto
-}
-
-@media (max-width: 340px) {
-    .Unfold__popup {
-        max-width: 310px
-    }
-    .Unfold__itemText {
-        padding-right: 20px
-    }
-}
-
-@media (max-height: 400px) {
-    .Unfold__popup {
-        max-height: 70vh
-    }
 }
 
 .ScrollView {
@@ -41828,6 +42397,18 @@ a .BookmarkListItem__subtitle:hover {
     flex-shrink: 0
 }
 
+.notification_settings_noClick {
+    pointer-events: none
+}
+
+.notification_settings_noClick a {
+    position: static!important
+}
+
+.notification_settings_noClick a .notification__avatarIconOuter {
+    position: relative
+}
+
 .notification__fillLink {
     position: absolute!important;
     left: 0;
@@ -41979,7 +42560,7 @@ a .BookmarkListItem__subtitle:hover {
 }
 
 .notification__tempText {
-    padding: 7px 0;
+    padding: 8px 0;
     color: #909499;
     font-size: 15px
 }

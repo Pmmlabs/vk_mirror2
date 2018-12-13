@@ -3313,3 +3313,143 @@ input.execute_field_input {
 #apps_edit_dev_ur {
     margin-bottom: 0
 }
+
+.apps_edit_catalog_banner_cont {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-top: 10px
+}
+
+.apps_edit_catalog_banner_cont .mock {
+    margin-right: 25px
+}
+
+.apps_edit_catalog_banner_cont .apps_edit_table .label,
+.apps_edit_catalog_banner_cont td.apps_edit_label {
+    width: 80px;
+    text-align: left
+}
+
+.catalog_banner_mock {
+    padding: 16px;
+    box-sizing: border-box;
+    width: 240px;
+    min-height: 144px;
+    border-radius: 10px;
+    box-shadow: 0 0 4px 2px rgba(0, 0, 0, .05);
+    font-size: 0;
+    -o-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease
+}
+
+.catalog_banner_mock__logo {
+    margin-bottom: 8px;
+    background-color: #f0f8ff
+}
+
+.catalog_banner_mock__logo,
+.catalog_banner_mock__logo img {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px
+}
+
+.catalog_banner_mock__title {
+    margin-top: 0;
+    margin-bottom: 2px;
+    font-size: 17px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.29;
+    letter-spacing: -0.4px;
+    color: #fff
+}
+
+.catalog_banner_mock__description {
+    margin: 0;
+    opacity: 0.48;
+    font-size: 13px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.23;
+    letter-spacing: -0.2px;
+    color: #fff;
+    white-space: normal;
+    word-break: break-word
+}
+
+#catalog_banner_color {
+    width: 80px
+}
+
+#apps_edit_catalog_banner_options .dev_row_input.error {
+    min-height: auto;
+    line-height: inherit
+}
+
+.apps_edit_catalog_banner_cont .radiobtn_catalog_banner_title_color {
+    display: -ms-flexbox;
+    display: flex
+}
+
+.apps_edit_catalog_banner_cont .radiobtn {
+    margin-right: 16px
+}
+
+.apps_edit_catalog_banner_cont #dev_height_row_bg {
+    display: -ms-flexbox;
+    display: flex
+}
+
+.apps_edit_catalog_banner_cont .dev_label {
+    text-align: left;
+    width: 80px
+}
+
+.apps_edit_catalog_banner_cont #dev_colorpicker {
+    margin-left: 205px
+}
+
+.apps_edit_catalog_banner_cont .dev_row_input.dev_row_input_color {
+    padding-left: 16px;
+    width: 80px
+}
+
+.apps_edit_catalog_banner_cont .dev_labeled {
+    position: relative
+}
+
+.apps_edit_catalog_banner_cont .dev_labeled:before {
+    content: '#';
+    position: absolute;
+    top: 5px;
+    left: 10px
+}
+
+.apps_edit_catalog_banner_cont .dev_colorbox {
+    -o-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, .1)
+}
+
+.apps_edit_catalog_banner_cont .ttb_cont {
+    background: rgba(0, 0, 0, .7);
+    border-radius: 3px;
+    padding: 4px 7px;
+    color: #fff;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased
+}
+
+.apps_edit_catalog_banner_cont .bottom_pointer {
+    display: block;
+    bottom: auto;
+    opacity: 0.7;
+    background: url(/images/blacktip.gif) 0 5px;
+    background-position: left 0;
+    overflow: hidden
+}

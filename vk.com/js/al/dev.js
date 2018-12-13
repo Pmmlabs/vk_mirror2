@@ -1384,16 +1384,24 @@ var Dev = {
     },
 
     setColor: function(color) {
-        var col = ge('dev_colorbox' + cur.colorNum);
-        setStyle(col, {
-            backgroundColor: 'rgb(' + color.join(',') + ')'
+        var hasNaN = color.some(function(col) {
+            return isNaN(col);
         });
-        var colInp = ge('widget_color' + cur.colorNum);
-        var hex = [color[0].toString(16), color[1].toString(16), color[2].toString(16)];
-        for (var i in hex)
-            if (hex[i].length == 1) hex[i] = '0' + hex[i];
-        val(colInp, hex.join('').toUpperCase());
-        cur.soonUpdatePreview();
+        if (!hasNaN) {
+            var col = ge('dev_colorbox' + cur.colorNum);
+            setStyle(col, {
+                backgroundColor: 'rgb(' + color.join(',') + ')'
+            });
+            var colInp = ge('widget_color' + cur.colorNum);
+            var hex = [color[0].toString(16), color[1].toString(16), color[2].toString(16)];
+            for (var i in hex)
+                if (hex[i].length == 1) hex[i] = '0' + hex[i];
+            val(colInp, hex.join('').toUpperCase());
+            if (cur.colorPicked) {
+                cur.colorPicked['widget_color' + cur.colorNum] = hex.join('').toUpperCase();
+            }
+            cur.soonUpdatePreview();
+        }
     },
 
     showColorBox: function(obj, num, ev) {

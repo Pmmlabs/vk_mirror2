@@ -1533,7 +1533,9 @@
 
 .audio_page_layout .audio_friends_fixed {
     position: fixed;
-    top: 110px
+    top: 110px;
+    bottom: 0;
+    overflow: auto
 }
 
 .audio_page_layout .audio_friends_sticky {
