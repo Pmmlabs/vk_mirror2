@@ -339,6 +339,8 @@ if (browser.android) {
     setCookie('remixscreen_dpr', window.devicePixelRatio || 1, 365);
 }
 setCookie('remixscreen_depth', screen.pixelDepth ? screen.pixelDepth : screen.colorDepth, 365);
+// @note setting flag screen_orientation
+setCookie('remixscreen_orient', Number(window.screen.width >= window.screen.height), 7);
 
 for (var i in StaticFiles) {
     var f = StaticFiles[i];
