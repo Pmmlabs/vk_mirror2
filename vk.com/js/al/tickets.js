@@ -797,7 +797,7 @@ var Tickets = {
                     default:
                         addMedia = cur.ticketsNewMedia
                 }
-                return Upload.init(el, uploadData.url, uploadData.vars, {
+                if (addMedia) return Upload.init(el, uploadData.url, uploadData.vars, {
                     file_name: "photo",
                     file_size_limit: 5242880,
                     file_types_description: "Image files (*.jpg, *.jpeg, *.png, *.gif)",
@@ -890,7 +890,7 @@ var Tickets = {
                     default:
                         addMedia = cur.ticketsNewMedia
                 }
-                return Upload.init(el, uploadData.url, uploadData.vars, {
+                if (addMedia) return Upload.init(el, uploadData.url, uploadData.vars, {
                     file_name: "file",
                     file_size_limit: 209715200,
                     file_types_description: "Documents",

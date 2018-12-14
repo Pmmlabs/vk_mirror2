@@ -17,6 +17,7 @@
 .bt_icon_count:before,
 .bt_icon_solved:before,
 .bt_icon_vuln:before,
+.bt_locked_tool_buttons:after,
 .bt_member_loading .bt_member_details_block,
 .bt_prod_version_edit,
 .bt_report_additional_actions:before,
@@ -4059,4 +4060,44 @@
 .bt_report_change .wall_module {
     padding-left: 10px;
     padding-right: 10px
+}
+
+.bt_locked_tool_buttons {
+    opacity: 1;
+    filter: none;
+    visibility: visible!important
+}
+
+.bt_locked_tool_buttons:after {
+    -o-animation-name: round_spinner;
+    animation-name: round_spinner;
+    -o-animation-duration: 700ms;
+    animation-duration: 700ms;
+    -o-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
+    background: url(/images/icons/round_spinner.png) no-repeat 0 0;
+    width: 16px;
+    height: 16px;
+    opacity: 1;
+    filter: none;
+    display: block;
+    content: '';
+    position: absolute;
+    right: 8px;
+    top: 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .bt_locked_tool_buttons:after {
+        background-image: url(/images/icons/round_spinner_2x.png);
+        background-size: 16px 16px
+    }
+}
+
+.bt_locked_tool_buttons * {
+    visibility: collapse
 }

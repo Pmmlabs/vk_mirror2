@@ -816,6 +816,7 @@ var BugTracker = {
                 platforms: [],
                 requirements: trim(val("bt_edit_product__requirements")),
                 tags: cur.editProductTagsDD.val(),
+                checklists: cur.editProductChecklistDD.val(),
                 distr_type: ge("bt_edit_product_distribution_block") ? radioval("distr_type") : 0
             },
             r = ge("bt_edit_product__btn"),
@@ -1099,7 +1100,7 @@ var BugTracker = {
             }, {
                 progress: cur.btCancelBox.progress
             })
-        }, getLang("bugs_t_dont_cancel_order"));
+        }, getLang("bugs_t_dont_cancel_order"))
     },
     editOrder: function(e) {
         cur.btEditOrderBox = showBox("bugtracker", {
