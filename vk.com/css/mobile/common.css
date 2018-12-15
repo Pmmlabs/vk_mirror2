@@ -22262,20 +22262,18 @@ figure[data-type="102"] .article_object_video_play {
     }
 }
 
-.OwnerAvatar__online {
-    position: absolute;
-    right: -5px;
-    bottom: -3px
-}
-
 .OwnerAvatar__online .lvi {
-    position: static!important;
-    margin: 0 8px 2px 0!important
+    position: absolute;
+    left: 32px;
+    margin: auto;
+    top: 33px;
+    bottom: 0;
+    height: 12px
 }
 
 .OwnerAvatar__online .lvi:before {
     background-color: #4bb34b;
-    border: 2px solid #fff;
+    border: solid 2px #fff;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
     border-radius: 100%;
@@ -22286,8 +22284,9 @@ figure[data-type="102"] .article_object_video_play {
 .OwnerAvatar__online .lvi.mlvi,
 .OwnerAvatar__online .lvi.vkmobilelvi {
     background: none;
-    margin: 0!important;
-    padding: 0
+    padding: 0;
+    left: 28px;
+    top: 30px
 }
 
 .OwnerAvatar__online .lvi.mlvi:before,
@@ -24888,12 +24887,15 @@ a.feedBlocks__article:hover {
 }
 
 .Friends .Friends__item_request .Friends__itemAvatar {
-    width: 44px
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 56px
 }
 
 @media (min-width: 320px) {
     .Friends .Friends__item_request .Friends__itemAvatar {
-        width: 72px
+        width: 84px
     }
 }
 
@@ -25039,16 +25041,22 @@ a.feedBlocks__article:hover {
     z-index: 2;
     margin: 0 0 0 -6px;
     font-size: 0;
-    line-height: 0
+    line-height: 0;
+    overflow: hidden;
+    border: 2px solid #fff;
+    -webkit-border-radius: 28px;
+    -moz-border-radius: 28px;
+    border-radius: 28px
 }
 
 .Friends__mutualItemImg {
     width: 24px;
     height: 24px;
-    border: 2px solid #fff;
     -webkit-border-radius: 24px;
     -moz-border-radius: 24px;
-    border-radius: 24px
+    border-radius: 24px;
+    display: block;
+    overflow: hidden
 }
 
 .Friends__mutualItem:first-child {
@@ -28376,8 +28384,10 @@ body.apps_settingsPageBody {
     .vk .header__back.mh_noleftmenu {
         margin-left: 0
     }
+    .vk .header__center.is_unfold {
+        position: static
+    }
     .vk .header__right {
-        float: none;
         display: -webkit-box;
         display: -webkit-flex;
         display: -moz-box;

@@ -289,8 +289,8 @@ var stVersions = {
     'privacy.js': 711405089,
     'privacy.css': 15518172397,
     'apps.css': 44049926637,
-    'apps.js': 19060461060,
-    'apps_edit.js': 12927004947,
+    'apps.js': 17685432661,
+    'apps_edit.js': 14200516806,
     'apps_edit.css': 33505747352,
     'apps_check.js': 3204387834,
     'apps_check.css': 26950571902,
@@ -405,7 +405,7 @@ var stVersions = {
     'ads_web.js': 4274163593,
     'mrtarg.js': 1146267795,
     'mrtarg.css': 3142794554,
-    'cmodules/web/ads_edit_easy.js': 835114628,
+    'cmodules/web/ads_edit_easy.js': 16350125678,
     'cmodules/web/ads_edit_components.js': 21979694895,
     'health.css': 2251304991,
     'health.js': 2993570139,
@@ -658,4 +658,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 2626;
+var _rnd = 9220;
