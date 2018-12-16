@@ -352,10 +352,10 @@ var stVersions = {
     'docs.css': 26753063161,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 16595706106,
-    'helpdesk.js': 1945889596,
-    'helpdesk.css': 32032480512,
+    'helpdesk.js': 1282854841,
+    'helpdesk.css': 34760598449,
     'tickets.js': 1686045707,
-    'tickets.css': 30291544868,
+    'tickets.css': 30149019008,
     'faq.css': 24003585240,
     'talmud.js': 3100656417,
     'agents.js': 2789926745,
@@ -598,7 +598,7 @@ var stVersions = {
     'landings/transparency.css': 94036520767,
     'cmodules/web/emoji.js': 7067071033,
     'cmodules/web/apps_achievements.js': 66081349434,
-    'cmodules/web/payments.js': 44639781136,
+    'cmodules/web/payments.js': 43157234107,
     'lang': 6931
 };
 var stTypes = {
@@ -658,4 +658,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 3437;
+var _rnd = 2625;

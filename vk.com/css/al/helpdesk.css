@@ -2208,7 +2208,10 @@ body.body_helpdesk_small_sb .left_menu_nav {
 .helpdesk_pt_form .helpdesk_template_title,
 .helpdesk_pt_form .helpdesk_template_title>a {
     color: #000;
-    font-size: 1em
+    font-size: 1em;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }
 
 .helpdesk_templates_actions a {
@@ -2343,6 +2346,26 @@ body.body_helpdesk_small_sb .left_menu_nav {
     color: #45688e
 }
 
+.helpdesk_pt_agent_templates .helpdesk_templates {
+    background: #f2f4f7;
+    margin: 10px 0;
+    padding: 10px
+}
+
+.helpdesk_pt_agent_templates .helpdesk_template_links_wrap {
+    margin-top: 8px
+}
+
+.helpdesk_pt_user_templates .helpdesk_templates {
+    background: #f2f4f7;
+    margin: 10px 0;
+    padding: 10px
+}
+
+.helpdesk_pt_user_templates .helpdesk_template_links_wrap {
+    margin-top: 8px
+}
+
 .helpdesk_pt_links {
     padding-top: 10px;
     -webkit-user-select: none;
@@ -2374,6 +2397,26 @@ body.body_helpdesk_small_sb .left_menu_nav {
 
 .helpdesk_pt_form .checkbox {
     margin-top: 4px
+}
+
+.helpdesk_pt_form blockquote {
+    margin: 13px 0 13px 40px
+}
+
+.helpdesk_pt_form #tickets_pass_comm {
+    display: block
+}
+
+.helpdesk_pt_form__avg {
+    line-height: 160%
+}
+
+.helpdesk_pt_form__avg:empty {
+    display: none
+}
+
+.helpdesk_pt_answer_wrap {
+    border-top: 1px solid #e7e8ec
 }
 
 .helpdesk_troll_chat {

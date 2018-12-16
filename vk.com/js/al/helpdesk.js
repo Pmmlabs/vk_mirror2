@@ -1,4 +1,6 @@
 var Helpdesk = {
+    PASS_TO_USER: 2,
+    PASS_TO_AGENT: 3,
     setSpeakLang: function(e, t) {
         var s = trim(val("helpdesk_user_speak_lang_comment"));
         return s ? void ajax.post("helpdesk", {
@@ -285,7 +287,7 @@ var Helpdesk = {
             langs: isChecked("langs_template"),
             by_default: isChecked("default_template"),
             selected_sections: selectedSections,
-            hash: cur.hashes.template_hash,
+            hash: cur.saveTemplateHash,
             from_section: cur.selectedSection,
             agent_section: cur.helpdeskAgentSection
         };
@@ -295,7 +297,7 @@ var Helpdesk = {
             showProgress: lockButton.bind(btn),
             hideProgress: unlockButton.bind(btn),
             onDone: function(title, type, links, script) {
-                val("helpdesk_template_links" + type, links), val("helpdesk_template_title", '<a onclick="Helpdesk.deselectTemplate(' + type + "," + tid + ');">' + title + "</a>"), 2 == type && (cur.passTemplatesLinksHtml = links), script && eval(script), box.hide()
+                val("helpdesk_template_links" + type, links), val("helpdesk_template_title" + type, '<a onclick="Helpdesk.deselectTemplate(' + type + "," + tid + ');">' + title + "</a>"), type == Helpdesk.PASS_TO_USER ? cur.passUserTemplatesLinksHtml = links : type == Helpdesk.PASS_TO_AGENT && (cur.passAgentTemplatesLinksHtml = links), script && eval(script), box.hide()
             },
             onFail: function() {
                 box.hide()
@@ -331,20 +333,17 @@ var Helpdesk = {
             dark: 1
         }) : !1
     },
-    deleteTemplate: function(type) {
+    deleteTemplate: function(type, hash) {
         var tid = Helpdesk.getSelectedAgentTemplate(type);
         if (!tid) return !1;
-        var box = curBox();
-        return box && box.isVisible() && box.hide({
-            fasthide: 1
-        }), box = showFastBox({
+        var box = showFastBox({
             title: getLang("support_delete_template_title"),
             width: 430,
             dark: 1
         }, getLang("support_delete_template_confirm"), getLang("global_delete"), function() {
             Helpdesk.deselectTemplate(type, tid), ajax.post("helpdesk?act=a_delete_template", {
                 template_id: tid,
-                hash: cur.hashes.template_hash,
+                hash: hash,
                 from_section: cur.selectedSection,
                 agent_section: cur.helpdeskAgentSection
             }, {
@@ -356,7 +355,8 @@ var Helpdesk = {
                     box.hide()
                 }
             })
-        }, getLang("global_cancel")), !1
+        }, getLang("global_cancel"));
+        return !1
     },
     setSelectedAgentTemplate: function(e, t) {
         isObject(cur.selectedTemplate) || (cur.selectedTemplate = {}), cur.selectedTemplate[e] = t
@@ -368,8 +368,8 @@ var Helpdesk = {
         var o = t.scrollTop,
             a = 0,
             i = t.selectionStart || "0" == t.selectionStart ? "ff" : document.selection ? "ie" : !1,
-            r = replaceEntities(s.replace(/<br>/g, "\n")) + (2 == e ? "" : "\n");
-        if (2 == e) return void val(t, r);
+            r = replaceEntities(s.replace(/<br>/g, "\n")) + (e == Helpdesk.PASS_TO_USER || e == Helpdesk.PASS_TO_AGENT ? "" : "\n");
+        if (e == Helpdesk.PASS_TO_USER || e == Helpdesk.PASS_TO_AGENT) return void val(t, r);
         if ("ie" == i) {
             t.focus();
             var n = document.selection.createRange();
@@ -402,20 +402,23 @@ var Helpdesk = {
             case 1:
                 i = getLang("helpdesk_title_from_support") + " " + s.title_text, a = ge("tickets_title"), o = ge("tickets_text");
                 break;
-            case 2:
-                o = ge("tickets_send_autoanswer")
+            case Helpdesk.PASS_TO_USER:
+                o = ge("tickets_send_autoanswer");
+                break;
+            case Helpdesk.PASS_TO_AGENT:
+                o = ge("tickets_pass_comm")
         }
-        if (null !== a && val(a, i), Helpdesk.useTemplate(e, o, s.text), val("helpdesk_template_title", '<a onclick="Helpdesk.deselectTemplate(' + e + "," + t + ');">' + s.title + "</a>"), setStyle("edit_template", {
+        if (null !== a && val(a, i), Helpdesk.useTemplate(e, o, s.text), val("helpdesk_template_title" + e, '<a onclick="Helpdesk.deselectTemplate(' + e + "," + t + ');">' + s.title + "</a>"), setStyle("helpdesk_edit_template" + e, {
                 display: vk.id == intval(s.author_id) || cur.canEditTemplates ? "inline-block" : "none"
-            }), Helpdesk.setSelectedAgentTemplate(e, t), s.attachs && 2 != e) {
+            }), Helpdesk.setSelectedAgentTemplate(e, t), s.attachs && e != Helpdesk.PASS_TO_USER && e != Helpdesk.PASS_TO_AGENT) {
             var r = cur.editing ? cur.ticketsEditMedia : cur.ticketsNewMedia;
             each(s.attachs, function(e, t) {
                 r.chooseMedia(t[0], t[1], t[2])
             })
         }
-        return Helpdesk.focusOnCursor(o), cur.canUseDrafts && 2 != e && (clearTimeout(cur.saveDraftTO), Tickets.saveDraft(cur.ticket_id)), each(geByClass("helpdesk_template_selected", "helpdesk_template_links" + e), function(e, t) {
+        return Helpdesk.focusOnCursor(o), cur.canUseDrafts && e != Helpdesk.PASS_TO_USER && e != Helpdesk.PASS_TO_AGENT && (clearTimeout(cur.saveDraftTO), Tickets.saveDraft(cur.ticket_id)), each(geByClass("helpdesk_template_selected", "helpdesk_template_links" + e), function(e, t) {
             removeClass(t, "helpdesk_template_selected")
-        }), !1
+        }), addClass("template" + t, "helpdesk_template_selected"), !1
     },
     saveTemplatesOrder: function(e, t) {
         var s = ge("helpdesk_template_links" + e),
@@ -429,7 +432,7 @@ var Helpdesk = {
             agent_section: t
         }, {
             onDone: function() {
-                2 == e && (cur.passTemplatesLinksHtml = val("helpdesk_template_links" + e))
+                e == Helpdesk.PASS_TO_USER ? cur.passUserTemplatesLinksHtml = val("helpdesk_template_links" + e) : e == Helpdesk.PASS_TO_AGENT && (cur.passAgentTemplatesLinksHtml = val("helpdesk_template_links" + e))
             }
         })
     },
@@ -466,21 +469,33 @@ var Helpdesk = {
     },
     deselectTemplate: function(e, t) {
         var s, o = null,
-            a = "",
-            i = getLang("support_templates");
+            a = "";
         switch (e) {
             case 0:
                 s = ge("tickets_reply");
                 break;
             case 1:
-                a = getLang("helpdesk_title_from_support") + " ", o = ge("tickets_title"), s = ge("tickets_text"), i = getLang("helpdesk_tickets_templates")
+                a = getLang("helpdesk_title_from_support") + " ", o = ge("tickets_title"), s = ge("tickets_text");
+                break;
+            case Helpdesk.PASS_TO_USER:
+                s = ge("tickets_send_autoanswer");
+                break;
+            case Helpdesk.PASS_TO_AGENT:
+                s = ge("tickets_pass_comm")
         }
-        var r = Helpdesk.getAgentTemplate(e, t),
-            n = null !== r ? r.text.replace(/<br>/g, "\n") : "";
-        return r && trim(val(s)) == trim(replaceEntities(n)) && (val(s, ""), 0 == e && autosizeSetup("tickets_reply", {
-            minHeight: 42,
-            maxHeight: 100
-        })), o && val(o, a), val("helpdesk_template_title", i), hide("edit_template"), Helpdesk.setSelectedAgentTemplate(e, 0), !1
+        var i = Helpdesk.getAgentTemplate(e, t),
+            r = attr(s, "default-text");
+        if (r) val(s, r);
+        else {
+            var n = null !== i ? i.text.replace(/<br>/g, "\n") : "";
+            i && trim(val(s)) == trim(replaceEntities(n)) && (val(s, ""), 0 == e && autosizeSetup("tickets_reply", {
+                minHeight: 42,
+                maxHeight: 100
+            }))
+        }
+        o && val(o, a), val("helpdesk_template_title" + e, attr("helpdesk_template_title" + e, "default-title")), hide("helpdesk_edit_template" + e);
+        var c = geByClass1("helpdesk_template_selected", "helpdesk_templates_list" + e);
+        return c && removeClass(c, "helpdesk_template_selected"), Helpdesk.setSelectedAgentTemplate(e, 0), !1
     },
     clearCommentsFlood: function(e, t, s) {
         hide("tickets_flood_msg"), ajax.post("helpdesk", {
@@ -621,6 +636,20 @@ var Helpdesk = {
         var s = ge("tickets_send_autoanswer");
         isObject(s) && s.autosize && s.autosize.update()
     },
+    initPassAgentTemplates: function() {
+        if (cur.passAgentTemplatesHtml) {
+            var e = se(cur.passAgentTemplatesHtml),
+                t = ge("helpdesk_pt_agent_templates");
+            t && (t.appendChild(e), cur.passAgentTemplatesLinksHtml && val("helpdesk_template_links" + Helpdesk.PASS_TO_AGENT, cur.passAgentTemplatesLinksHtml), Helpdesk.tryInitTemplatesSorter(Helpdesk.PASS_TO_AGENT))
+        }
+    },
+    initPassUserTemplates: function() {
+        if (cur.passUserTemplatesHtml) {
+            var e = se(cur.passUserTemplatesHtml),
+                t = ge("helpdesk_pt_user_templates");
+            t && (t.appendChild(e), cur.passUserTemplatesLinksHtml && val("helpdesk_template_links" + Helpdesk.PASS_TO_USER, cur.passUserTemplatesLinksHtml), Helpdesk.tryInitTemplatesSorter(Helpdesk.PASS_TO_USER))
+        }
+    },
     passTo: function(e, t, s, o) {
         var a = cur.pass_warnings && cur.pass_warnings[t] || cur.pass_warnings[0],
             i = {
@@ -635,17 +664,14 @@ var Helpdesk = {
             avg_time: cur.cat_average_times[t]
         })), o && (i.send_payform = '<div class="checkbox' + (cur.sendPayFormDefault ? " on" : "") + '" id="support_send_payform" onclick="checkbox(this);">' + getLang("support_send_form_to_user") + "</div>");
         var r = getTemplate("passToBox", i),
-            n = showFastBox({
-                title: getLang("support_pass_title"),
+            n = getLang("support_pass_title").replace("{section}", val(e)),
+            c = showFastBox({
+                title: n,
                 width: 675
             }, r, getLang("support_do_pass"), function() {
-                Helpdesk.doPass(t, val("tickets_pass_comm"), n)
+                Helpdesk.doPass(t, val("tickets_pass_comm"), c)
             }, getLang("global_cancel"));
-        if (1 == s && Helpdesk.togglePassToAutoanswer("support_dont_pass_autoanswer", !0), cur.passTemplatesHtml) {
-            var c = se(cur.passTemplatesHtml);
-            ge("helpdesk_pt_answer_wrap").appendChild(c), cur.passTemplatesLinksHtml && val("helpdesk_template_links2", cur.passTemplatesLinksHtml), Helpdesk.tryInitTemplatesSorter(2)
-        }
-        cur.helpdeskPassToCategoryId = t;
+        1 == s && Helpdesk.togglePassToAutoanswer("support_dont_pass_autoanswer", !0), Helpdesk.initPassAgentTemplates(), Helpdesk.initPassUserTemplates(), cur.helpdeskPassToCategoryId = t;
         var l = cur.passToLangKeys && cur.passToLangKeys[t] ? cur.passToLangKeys[t] : "";
         "" != l && val("tickets_send_autoanswer", l), hide("tis_add_lnk_auto"), autosizeSetup("tickets_pass_comm", {
             minHeight: 80,
@@ -1098,7 +1124,8 @@ var Helpdesk = {
             case "all":
                 t.act = "all", nav.objLoc.faq_id && (t.faq_id = nav.objLoc.faq_id);
                 var s = (window.radioBtns.filters || {}).val;
-                if (t.good = 1 == s ? 1 : "", t.opened = 2 == s ? 1 : "", t.from_support = 3 == s ? 1 : "", t.has_replies = 4 == s ? 1 : "", t.long_waiting = 5 == s ? 1 : "", t.ml = 6 == s ? 1 : "", t.search = 1, ge("helpdesk_ento_options") && t.opened) {
+                if (t.good = 1 == s ? 1 : "", t.opened = 2 == s ? 1 : "",
+                    t.from_support = 3 == s ? 1 : "", t.has_replies = 4 == s ? 1 : "", t.long_waiting = 5 == s ? 1 : "", t.ml = 6 == s ? 1 : "", t.search = 1, ge("helpdesk_ento_options") && t.opened) {
                     t.download = isChecked("tickets_download_checkbox"), t.no_category = isChecked("tickets_no_category_checkbox"), t.photo_server = val("tickets_photo"), t.id100 = val("tickets_id"), t.id1000 = val("tickets_id1000"), t.otp = cur.searchOtp.val(), t.nospam_pid = val("tickets_nospam_pid"), t.cdn = val("tickets_cdn");
                     var o = intval(cur.searchMobile.val());
                     o && (t.mobile = o);
@@ -1126,8 +1153,7 @@ var Helpdesk = {
     },
     updateTicketsSearch: function(e, t) {
         radioval("filters");
-        radiobtn(e, t, "filters"), isVisible("helpdesk_ento_options") && 2 != t ? 6 == t ? hide("helpdesk_ento_options") : slideUp("helpdesk_ento_options", 200) : isVisible("helpdesk_ento_options") || 2 != t || slideDown("helpdesk_ento_options", 200),
-            isVisible("helpdesk_ml_extra_options") && 6 != t ? 2 == t ? hide("helpdesk_ml_extra_options") : slideUp("helpdesk_ml_extra_options", 200) : isVisible("helpdesk_ml_extra_options") || 6 != t || slideDown("helpdesk_ml_extra_options", 200), val("all_search") && (cur.ignoreEqual = !0), Helpdesk.updateAllSearch(!0)
+        radiobtn(e, t, "filters"), isVisible("helpdesk_ento_options") && 2 != t ? 6 == t ? hide("helpdesk_ento_options") : slideUp("helpdesk_ento_options", 200) : isVisible("helpdesk_ento_options") || 2 != t || slideDown("helpdesk_ento_options", 200), isVisible("helpdesk_ml_extra_options") && 6 != t ? 2 == t ? hide("helpdesk_ml_extra_options") : slideUp("helpdesk_ml_extra_options", 200) : isVisible("helpdesk_ml_extra_options") || 6 != t || slideDown("helpdesk_ml_extra_options", 200), val("all_search") && (cur.ignoreEqual = !0), Helpdesk.updateAllSearch(!0)
     },
     enterAllSearch: function() {
         Helpdesk.updateAllSearch(!0)

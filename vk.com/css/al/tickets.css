@@ -955,10 +955,6 @@ body.dev .tickets_header_links {
     color: #45688e
 }
 
-#edit_template {
-    display: none
-}
-
 .template_edit_wrap .add_template_title_wrap {
     background: #fff;
     border: 1px solid #c0cad5;

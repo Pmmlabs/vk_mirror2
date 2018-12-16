@@ -36490,7 +36490,11 @@ body.apps_settingsPageBody {
     padding-left: 8px;
     overflow: hidden;
     -o-text-overflow: ellipsis;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
+    font-size: 16px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }
 
 .Unfold__triggerIcon {
