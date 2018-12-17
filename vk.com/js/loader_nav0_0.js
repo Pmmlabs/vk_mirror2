@@ -284,7 +284,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 206692371,
+    'feed.js': 3178470528,
     'feed.css': 27202253997,
     'privacy.js': 711405089,
     'privacy.css': 15518172397,
@@ -658,4 +658,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 730;
+var _rnd = 8763;
