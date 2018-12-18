@@ -50,24 +50,24 @@ var Feed = {
             return feed.longView.headerHeight || (feed.longView.headerHeight = ge("page_header").offsetHeight)
         }
     },
-    blockHideReason: function e(t, o) {
-        if (e.progress) return !1;
-        e.progress = !0;
-        var s = "block_" + t,
+    blockHideReason: function t(e, o) {
+        if (t.progress) return !1;
+        t.progress = !0;
+        var s = "block_" + e,
             r = ge(s);
         delete cur.feedEntriesHTML[s], ajax.post("al_feed.php", {
             act: "a_block_hide_reason",
-            block_id: t,
+            block_id: e,
             reason: 0 | o,
             hash: attr(r, "data-hash"),
             ref: feed.getModuleRef(),
             pos: attr(r, "data-pos")
         }, {
-            onDone: function(t) {
-                e.progress = !1, t ? val(r, t) : hide(r)
+            onDone: function(e) {
+                t.progress = !1, e ? val(r, e) : hide(r)
             },
             hideProgress: function() {
-                e.progress = !1
+                t.progress = !1
             }
         })
     },
@@ -304,19 +304,19 @@ var Feed = {
                             label: getLang("news_show_X_reposts", w.length)
                         });
                         var x = se('<div class="feed_row' + (C ? "_unshown" : "") + '">' + b + "</div>"),
-                            S = domFC(S);
+                            E = domFC(E);
                         Wall.updateAnonNewPost(e, x), m.insertBefore(x, m.firstChild), !C && feed.needScrollPost(t, x) && (c += x.offsetHeight + d(x)), P = !0, p = x.firstChild, f = geByClass1("feed_reposts_first", p, "div"), h = geByClass1("feed_reposts_group", p, "div"), each(clone(w), function() {
                             feed.needScrollPost(t, this) && (c -= this.offsetHeight + d(this)), re(this.parentNode), h.appendChild(this.firstChild)
                         })
                     } else f = se('<div class="feed_row' + (C ? "_unshown" : "") + '"><div class="feed_repost' + y + '">' + b + "</div></div>"), Wall.updateAnonNewPost(e, f), m.insertBefore(f, m.firstChild), P = !0, !C && feed.needScrollPost(t, f) && (c += f.offsetHeight + d(f))
                 } else f = se('<div class="feed_row' + (C ? "_unshown" : "") + '">' + b + "</div>"), Wall.updateAnonNewPost(e, f), m.insertBefore(f, m.firstChild), P = !0, !C && feed.needScrollPost(t, f) && (c += f.offsetHeight + d(f));
                 if (0 == e[8]) {
-                    var E = geByClass1("post", f);
-                    addClass(E, "closed_comments")
+                    var S = geByClass1("post", f);
+                    addClass(S, "closed_comments")
                 }
                 if (cur.deepRepliesActive) {
-                    var E = geByClass1("post", f);
-                    addClass(E, "deep_active")
+                    var S = geByClass1("post", f);
+                    addClass(S, "deep_active")
                 }
                 C && P && (cur.newPostsCount = cur.newPostsCount ? cur.newPostsCount + 1 : 1, cur.feedEls.newPosts.innerHTML = getLang("news_new_posts", cur.newPostsCount), addClass(cur.feedEls.wrap, "feed_has_new"), 1 == cur.newPostsCount && feed.needScrollPost(t, cur.feedEls.newPosts) && !k && (c += getSize(cur.feedEls.newPosts)[1])), AudioUtils.updateQueueReceivedPost(f), wall.votingUpdateByPostRaw(r), cur.feedUnreadCount++, "search" != n && nodeUpdated(f), v.length > 300 ? m.removeChild(v[300]) : v.length <= 1 && removeClass(cur.feedEls.wrap, "feed_is_empty"), Wall.updateMentionsIndex();
                 break;
@@ -415,8 +415,8 @@ var Feed = {
                         break
                     }
                     feed.needScrollPost(t, i) && (c -= i.offsetHeight);
-                    var E = i.parentNode.id.match(/replies(-?\d+_\d+)/);
-                    revertLastInlineVideo(i), re(i), E && Wall.repliesSideSetup(E[1])
+                    var S = i.parentNode.id.match(/replies(-?\d+_\d+)/);
+                    revertLastInlineVideo(i), re(i), S && Wall.repliesSideSetup(S[1])
                 }
                 break;
             case "view_post":
@@ -1661,11 +1661,22 @@ var Feed = {
             hash: e
         })
     },
+    clickBlog: function(t, o, s, r) {
+        return ajax.post("blog.php", {
+            act: "hide_reminder",
+            hash: r,
+            nid: o,
+            accept: 1
+        }, {
+            onDone: function() {}
+        }), "_blank" === !attr(t, "target") ? (cancelEvent(e), nav.go(s)) : void 0
+    },
     hideBlogReminder: function(e, t, o) {
         o && cancelEvent(o), re("feed_blog_reminder"), ajax.post("blog.php", {
             act: "hide_reminder",
             hash: e,
-            nid: t
+            nid: t,
+            accept: 0
         }, {
             onDone: function() {}
         })

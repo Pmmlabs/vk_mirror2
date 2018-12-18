@@ -197,7 +197,7 @@
 }
 
 .videoplayer_share_actions ._add._added:after {
-    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ctitle%3Eadd_outline_white_24%3C%2Ftitle%3E%3Cpath%20d%3D%22M0%2C0H24V24H0Z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M13%2C11h7a1%2C1%2C0%2C0%2C1%2C0%2C2H13v7a1%2C1%2C0%2C0%2C1-2%2C0V13H4a1%2C1%2C0%2C0%2C1%2C0-2h7V4a1%2C1%2C0%2C0%2C1%2C2%2C0Z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E')
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%2F%3E%3Cpath%20d%3D%22m4%2012.5%204.9999939%205%2011.5000061-11.5%22%20stroke%3D%22%23fff%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.8%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .videoplayer_share_actions ._donate:after {
@@ -1153,7 +1153,7 @@ body[data-useragent=safari] .videoplayer_live_app_link {
 }
 
 .videoplayer_end_actions ._add._added:after {
-    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ctitle%3Eadd_outline_white_24%3C%2Ftitle%3E%3Cpath%20d%3D%22M0%2C0H24V24H0Z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M13%2C11h7a1%2C1%2C0%2C0%2C1%2C0%2C2H13v7a1%2C1%2C0%2C0%2C1-2%2C0V13H4a1%2C1%2C0%2C0%2C1%2C0-2h7V4a1%2C1%2C0%2C0%2C1%2C2%2C0Z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E')
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%2F%3E%3Cpath%20d%3D%22m4%2012.5%204.9999939%205%2011.5000061-11.5%22%20stroke%3D%22%23fff%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.8%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .videoplayer_end_actions ._replay:after {

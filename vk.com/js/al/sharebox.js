@@ -24,8 +24,8 @@ var ShareBox = {
             els: [ge("like_share_my"), ge("like_share_club"), ge("like_share_mail")],
             val: a.rbVal
         }, each(radioBtns.like_share.els, function(e, a) {
-            var s = domNS(a);
-            hasClass(a, "disabled") && s && (addClass(s, "like_share_disabled"), (geByTag1("input", s) || {}).readOnly = !0)
+            var i = domNS(a);
+            hasClass(a, "disabled") && i && (addClass(i, "like_share_disabled"), (geByTag1("input", i) || {}).readOnly = !0)
         }), cur.shareAction = "", cur.lang = extend(cur.lang || {}, a.lang), cur.sbField = ge("like_share_text"), cur.sbField.getValue = Emoji.val.pbind(cur.sbField), extend(cur, {
             sbSettingsBtnEl: ge("like_share_settings_btn"),
             sbFriendsOnlyEl: ge("like_share_friends_only"),
@@ -42,22 +42,22 @@ var ShareBox = {
                 if (!buttonLocked("like_share_send")) {
                     hide("like_share_error");
                     var e = radioBtns.like_share.val,
-                        s = 0,
-                        i = cur.sbField && data(cur.sbField, "composer"),
-                        d = i ? Composer.getSendParams(i) : {
+                        i = 0,
+                        s = cur.sbField && data(cur.sbField, "composer"),
+                        d = s ? Composer.getSendParams(s) : {
                             message: trim(val(cur.sbField))
                         };
                     switch (cur.sbShParam && (d.share_param = cur.sbShParam), e) {
                         case 1:
                             var r = cur.wdd && cur.wdd.like_club_dd;
                             if (!r || !r.selCount) return elfocus("like_club_inp");
-                            for (var o in r.selected) s = intval(o.replace(/_$/, ""));
+                            for (var o in r.selected) i = intval(o.replace(/_$/, ""));
                         case 0:
                             if (vk.widget && 4 !== vk.widget) window.allowCallback = function() {
                                 ajax.post("like.php", Wall.fixPostParams(extend(d, {
                                     act: "a_do_publish",
                                     from: "box",
-                                    to: s,
+                                    to: i,
                                     hash: cur.sbShareHash,
                                     object: cur.sbObj,
                                     list: cur.sbList,
@@ -66,7 +66,7 @@ var ShareBox = {
                                 })), ShareBox.options()), cur.shareAction = "publish"
                             }, Widgets.popupBoxOpen("like.php", {
                                 act: "a_allow_publish_box",
-                                to: s,
+                                to: i,
                                 object: cur.sbObj,
                                 list: cur.sbList
                             }, "vk_allow", {
@@ -78,7 +78,7 @@ var ShareBox = {
                                 isVisible(cur.sbSettingsBtnEl) && (t = isVisible("like_share_mark_as_ads") && isChecked("like_share_mark_as_ads") ? 1 : 0, n = isChecked("like_share_mute_notifications") || t), ajax.post("like.php", Wall.fixPostParams(extend(d, {
                                     act: "a_do_publish",
                                     from: "box",
-                                    to: s,
+                                    to: i,
                                     hash: cur.sbShareHash,
                                     object: cur.sbObj,
                                     list: cur.sbList,
@@ -113,43 +113,52 @@ var ShareBox = {
             sbCheckLen: function(e) {
                 checkTextLength(4096, e, "like_share_warn");
                 var a = cur.wdd && cur.wdd.like_mail_dd,
-                    s = a && a.full && 1 == a.selCount;
-                toggle("like_share_title_wrap", a && 2 == radioBtns.like_share.val && (e.lastLen > 200 && !s || val("like_share_title")) ? !0 : !1)
-            }
-        }), cur.sbHidden = !0, setTimeout(elfocus.pbind(cur.sbField), 0), Wall.initComposer(cur.sbField, {
-            lang: {
-                introText: getLang("profile_mention_start_typing"),
-                noResult: getLang("profile_mention_not_found")
+                    i = a && a.full && 1 == a.selCount;
+                toggle("like_share_title_wrap", a && 2 == radioBtns.like_share.val && (e.lastLen > 200 && !i || val("like_share_title")) ? !0 : !1)
             },
-            media: isVisible("like_share_add_media") ? {
-                lnk: ge("like_share_add_media"),
-                preview: ge("like_share_media_preview"),
-                types: a.shTypes,
-                options: {
-                    limit: 1,
-                    disabledTypes: ["album", "share", "link", "page", "article", "poll"],
-                    toggleLnk: !0,
-                    nocl: 1,
-                    onAddMediaChange: ShareBox.mediaChange,
-                    onMediaChange: ShareBox.mediaChange
-                }
-            } : void 0
-        }), ShareBox.mediaChange(), Emoji.init(cur.sbField, {
-            ttDiff: -48,
-            rPointer: !0,
-            shouldFocus: !0,
-            ref: "share",
-            noEnterSend: !0,
-            noStickers: !0,
-            controlsCont: cur.sbField.parentNode,
-            checkEditable: function() {
-                cur.sbCheckLen(cur.sbField)
+            sbReInitMediaSelector: function(e) {
+                var i = (window.data(cur.sbField, "composer") || {}).addMedia,
+                    s = i && i.getMedias(!0),
+                    d = a.shMediaOpts || {},
+                    r = d.limits || [],
+                    o = r[e] || 0;
+                cur.sbField && Wall.deinitComposer(cur.sbField), Emoji.init(cur.sbField, {
+                    ttDiff: -48,
+                    rPointer: !0,
+                    ref: "share",
+                    noEnterSend: !0,
+                    noStickers: !0,
+                    controlsCont: cur.sbField.parentNode,
+                    checkEditable: function() {
+                        cur.sbCheckLen(cur.sbField)
+                    }
+                }), Wall.initComposer(cur.sbField, {
+                    lang: {
+                        introText: getLang("profile_mention_start_typing"),
+                        noResult: getLang("profile_mention_not_found")
+                    },
+                    media: isVisible("like_share_add_media") ? {
+                        lnk: ge("like_share_add_media"),
+                        preview: ge("like_share_media_preview"),
+                        types: a.shTypes,
+                        options: {
+                            limit: o,
+                            disabledTypes: ["album", "share", "link", "page", "article", "poll"],
+                            toggleLnk: !0,
+                            nocl: 1,
+                            onAddMediaChange: ShareBox.mediaChange,
+                            onMediaChange: ShareBox.mediaChange
+                        }
+                    } : void 0
+                }), isArray(s) && s.length && (i = (window.data(cur.sbField, "composer") || {}).addMedia, s.slice(0, o).forEach(function(e) {
+                    i.chooseMedia(e[0], e[1], e[5], null, !0)
+                })), ShareBox.mediaChange()
             }
-        });
-        var s = cur.postTo;
+        }), cur.sbHidden = !0, setTimeout(elfocus.pbind(cur.sbField), 0);
+        var i = cur.postTo;
         cur.postTo = !1, e.setOptions({
             onClean: function() {
-                Wall.deinitComposer(cur.sbField), delete cur.sbField, cur.postTo = s, window.WideDropdown && (WideDropdown.deinit("like_club_dd"), WideDropdown.deinit("like_mail_dd"))
+                Wall.deinitComposer(cur.sbField), delete cur.sbField, cur.postTo = i, window.WideDropdown && (WideDropdown.deinit("like_club_dd"), WideDropdown.deinit("like_mail_dd"))
             }
         }), window._mbFriends || ajax.post("hints.php", {
             act: "a_json_friends",
@@ -170,9 +179,9 @@ var ShareBox = {
             onChange: function(e) {
                 curBox().changed = !0, ShareBox.rbChanged(ge("like_share_club"), 1, !0);
                 var a = cur.wdd.like_club_dd,
-                    s = a.selCount,
-                    i = !0;
-                return 1 == e && setTimeout(elfocus.pbind(cur.sbField), 0), 1 > s && !cur.sbHidden ? (ShareBox.toggleAva(!1), i = 1) : s > 0 && cur.sbHidden && (ShareBox.toggleAva(!0), i = 1), cur.sbCheckLen(cur.sbField), i
+                    i = a.selCount,
+                    s = !0;
+                return 1 == e && setTimeout(elfocus.pbind(cur.sbField), 0), 1 > i && !cur.sbHidden ? (ShareBox.toggleAva(!1), s = 1) : i > 0 && cur.sbHidden && (ShareBox.toggleAva(!0), s = 1), cur.sbCheckLen(cur.sbField), s
             }
         }), hasClass(ge("like_share_mail"), "disabled") || WideDropdown.init("like_mail_dd", {
             defaultItems: window._mbFriends,
@@ -188,54 +197,54 @@ var ShareBox = {
             onChange: function(e) {
                 curBox().changed = !0, ShareBox.rbChanged(ge("like_share_mail"), 2, !0);
                 var a = cur.wdd.like_mail_dd,
-                    s = a.selCount,
-                    i = !0;
-                return 1 == e && setTimeout(elfocus.pbind(cur.sbField), 0), 1 > s && !cur.sbHidden ? (ShareBox.toggleAva(!1), i = 0) : s > 0 && cur.sbHidden && (ShareBox.toggleAva(!0), i = 1), cur.sbCheckLen(cur.sbField), i
+                    i = a.selCount,
+                    s = !0;
+                return 1 == e && setTimeout(elfocus.pbind(cur.sbField), 0), 1 > i && !cur.sbHidden ? (ShareBox.toggleAva(!1), s = 0) : i > 0 && cur.sbHidden && (ShareBox.toggleAva(!0), s = 1), cur.sbCheckLen(cur.sbField), s
             }
         }), each(geByClass("_like_share_about_select", curBox().bodyNode), function() {
             hide(this)
         });
-        var i = radioBtns.like_share.els,
+        var s = radioBtns.like_share.els,
             d = radioBtns.like_share.val;
-        ShareBox.rbChanged(i[d], d)
+        ShareBox.rbChanged(s[d], d)
     },
     toggleAva: function(e) {
         var a = Fx.Transitions.easeOutCubic,
-            s = 150,
-            i = "ease-out";
+            i = 150,
+            s = "ease-out";
         return e ? (show(cur.sbAva), cssAnim(cur.sbAva, extend({
             opacity: 1
         }, ShareBox.mrg(0)), {
-            duration: s,
+            duration: i,
             transition: a,
-            func: i
+            func: s
         }), cssAnim(ge("dark_box_topic"), ShareBox.mrg(26), {
-            duration: s,
+            duration: i,
             transition: a,
-            func: i
+            func: s
         }), cur.sbHidden = !1, 1) : (cssAnim(cur.sbAva, extend({
             opacity: 0
         }, ShareBox.mrg(-26)), {
-            duration: s,
+            duration: i,
             transition: a,
-            func: i
+            func: s
         }, hide.pbind(cur.sbAva)), cssAnim(ge("dark_box_topic"), ShareBox.mrg(0), {
-            duration: s,
+            duration: i,
             transition: a,
-            func: i
+            func: s
         }), cur.sbHidden = !0, 0)
     },
-    rbChanged: function(e, a, s) {
-        if (cur.sbPostCheckboxEl) {
+    rbChanged: function(e, a, i) {
+        if (i || cur.sbReInitMediaSelector(a), cur.sbPostCheckboxEl) {
             cur.sbFriendsOnlyEl && (0 === a ? cur.sbFriendsOnlyEl.classList.remove("like_share_friends_only_hidden") : cur.sbFriendsOnlyEl.classList.add("like_share_friends_only_hidden"));
-            var i = ge("like_share_mark_as_ads"),
+            var s = ge("like_share_mark_as_ads"),
                 d = ge("like_share_mute_notifications");
             if (0 === a) {
-                if (hide(i), isChecked(i)) {
+                if (hide(s), isChecked(s)) {
                     var r = +domData(d, "prev-state");
                     disable(d, 0), toggleClass(d, "on", r)
                 }
-            } else show(i), isChecked(i) && (disable(d, 1), toggleClass(d, "on", 1));
+            } else show(s), isChecked(s) && (disable(d, 1), toggleClass(d, "on", 1));
             2 === a ? cur.sbPostCheckboxEl.classList.add("like_share_post_checkbox_hidden") : cur.sbPostCheckboxEl.classList.remove("like_share_post_checkbox_hidden")
         }
         radiobtn(e, a, "like_share"), getLang("title_for_all") && val("dark_box_topic", getLang(2 > a ? "title_for_all" : "title_for_mail")), val("like_share_title_header", getLang(2 > a ? "like_select_comment" : "likes_select_message")), each(geByClass("_like_share_about_select", curBox().bodyNode), function() {
@@ -243,44 +252,51 @@ var ShareBox = {
         }), show(domNS(e));
         var o = cur.sbField && data(cur.sbField, "composer");
         if (o && o.addMedia) {
-            var t = o.addMedia.menu;
+            var t = o.addMedia,
+                n = t.menu;
             if (1 == a || 0 == a && cur.sbShareOwn) {
-                var n = [],
-                    l = 1 == a;
-                each(t.types, function(e, a) {
-                    "mark_as_ads" === a[0] && (l && o.addMedia.markAsAds || !l) || n.push(a)
-                }), t.setItems(n), show(geByClass1("add_media_type_" + o.addMedia.lnkId + "_postpone", o.addMedia.menu.menuNode, "a")), cur.sbPostponeDate && "postpone" == o.addMedia.chosenMedia[0] && o.addMedia.chosenMediaData && (o.addMedia.chosenMediaData.date = cur.sbPostponeDate, o.addMedia.chooseMedia("postpone", o.addMedia.chosenMedia[1], o.addMedia.chosenMediaData), hide(domFC(ge("like_share_add_media"))), cur.sbPostponeDate = !1), o.addMedia.postponePreview && show(domPN(o.addMedia.postponePreview)), o.addMedia.markAsAds && (l ? show(domPN(geByClass1("page_preview_mark_as_ads_wrap", ge("like_share_media_preview")))) : hide(domPN(geByClass1("page_preview_mark_as_ads_wrap", ge("like_share_media_preview")))))
+                if (t.limit > (t.getMedias(!0) || []).length) {
+                    var l = [],
+                        c = 1 == a;
+                    each(n.types, function(e, a) {
+                        "mark_as_ads" === a[0] && (c && o.addMedia.markAsAds || !c) || l.push(a)
+                    }), n.setItems(l)
+                }
+                show(geByClass1("add_media_type_" + o.addMedia.lnkId + "_postpone", o.addMedia.menu.menuNode, "a")), cur.sbPostponeDate && "postpone" == o.addMedia.chosenMedia[0] && o.addMedia.chosenMediaData && (o.addMedia.chosenMediaData.date = cur.sbPostponeDate, o.addMedia.chooseMedia("postpone", o.addMedia.chosenMedia[1], o.addMedia.chosenMediaData), hide(domFC(ge("like_share_add_media"))), cur.sbPostponeDate = !1), o.addMedia.postponePreview && show(domPN(o.addMedia.postponePreview)), o.addMedia.markAsAds && (c ? show(domPN(geByClass1("page_preview_mark_as_ads_wrap", ge("like_share_media_preview")))) : hide(domPN(geByClass1("page_preview_mark_as_ads_wrap", ge("like_share_media_preview")))))
             } else {
-                var n = [];
-                each(t.types, function(e, a) {
-                    "postpone" !== a[0] && "mark_as_ads" !== a[0] && n.push(a)
-                }), t.setItems(n), hide(geByClass1("add_media_type_" + o.addMedia.lnkId + "_postpone", o.addMedia.menu.menuNode, "a")), o.addMedia.chosenMedia && "postpone" == o.addMedia.chosenMedia[0] && (cur.sbPostponeDate = val("postpone_date" + o.addMedia.lnkId), val("like_share_media_preview", ""), show(domFC(ge("like_share_add_media")))), o.addMedia.postponePreview && hide(domPN(o.addMedia.postponePreview)), o.addMedia.markAsAds && hide(domPN(geByClass1("page_preview_mark_as_ads_wrap", ge("like_share_media_preview"))))
+                if (t.limit > (t.getMedias(!0) || []).length) {
+                    var l = [];
+                    each(n.types, function(e, a) {
+                        "postpone" !== a[0] && "mark_as_ads" !== a[0] && l.push(a)
+                    }), n.setItems(l)
+                }
+                hide(geByClass1("add_media_type_" + o.addMedia.lnkId + "_postpone", o.addMedia.menu.menuNode, "a")), o.addMedia.chosenMedia && "postpone" == o.addMedia.chosenMedia[0] && (cur.sbPostponeDate = val("postpone_date" + o.addMedia.lnkId), val("like_share_media_preview", ""), show(domFC(ge("like_share_add_media")))), o.addMedia.postponePreview && hide(domPN(o.addMedia.postponePreview)), o.addMedia.markAsAds && hide(domPN(geByClass1("page_preview_mark_as_ads_wrap", ge("like_share_media_preview"))))
             }
         }
-        if (s !== !0) switch (a) {
+        if (i !== !0) switch (a) {
             case 0:
                 if (!cur.sbHidden) {
-                    var c = Fx.Transitions.easeOutCubic,
-                        _ = 150,
-                        u = "ease-out";
+                    var _ = Fx.Transitions.easeOutCubic,
+                        u = 150,
+                        h = "ease-out";
                     cssAnim(cur.sbAva, extend({
                         opacity: 0
                     }, ShareBox.mrg(-26)), {
-                        duration: _,
-                        transition: c,
-                        func: u
+                        duration: u,
+                        transition: _,
+                        func: h
                     }, hide.pbind(cur.sbAva)), cssAnim(ge("dark_box_topic"), ShareBox.mrg(0), {
-                        duration: _,
-                        transition: c,
-                        func: u
+                        duration: u,
+                        transition: _,
+                        func: h
                     }), cur.sbHidden = !0
                 }
                 elfocus(cur.sbField);
                 break;
             case 1:
             case 2:
-                var h = 1 == a ? "like_club_dd" : "like_mail_dd";
-                cur.wdd[h].selCount ? elfocus(cur.sbField) : WideDropdown.focus(h), WideDropdown.updimgs(h)
+                var b = 1 == a ? "like_club_dd" : "like_mail_dd";
+                cur.wdd[b].selCount ? elfocus(cur.sbField) : WideDropdown.focus(b), WideDropdown.updimgs(b)
         }
     },
     options: function() {

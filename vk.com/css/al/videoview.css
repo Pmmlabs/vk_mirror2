@@ -3444,7 +3444,7 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
 
 .mv_actions_block .like_btn.mv_add_button .like_button_icon.mv_plus_icon,
 .mv_actions_private_panel .like_btn.mv_add_button .like_button_icon.mv_plus_icon {
-    background-image: url('/images/svg_icons/add_outline_24.svg');
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ctitle%3Eadd_outline_24%3C%2Ftitle%3E%3Cpath%20d%3D%22M0%2C0H24V24H0Z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M13%2C11h7a1%2C1%2C0%2C0%2C1%2C0%2C2H13v7a1%2C1%2C0%2C0%2C1-2%2C0V13H4a1%2C1%2C0%2C0%2C1%2C0-2h7V4a1%2C1%2C0%2C0%2C1%2C2%2C0Z%22%20fill%3D%22%23828a99%22%2F%3E%3C%2Fsvg%3E');
     -o-transform: translateY(8px);
     transform: translateY(8px);
     opacity: 0!important

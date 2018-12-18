@@ -12441,6 +12441,7 @@ button.wall_block_app_btn {
     margin: 7px auto 0;
     padding-bottom: 25px;
     position: relative;
+    overflow: hidden;
     cursor: pointer
 }
 
@@ -12449,15 +12450,15 @@ button.wall_block_app_btn {
 }
 
 .vk2017_snippet_bottom_image_left:after {
-    background: url(/images/landings/vk2017/snippet_bottom_left.png) 0 100% no-repeat
+    background: url(/images/landings/vk2019/bottom_left_img.png) 0 100% no-repeat
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .vk2017_snippet_bottom_image_left:after {
-        background-image: url(/images/landings/vk2017/snippet_bottom_left_2x.png);
-        background-size: 136px 66px
+        background-image: url(/images/landings/vk2019/bottom_left_img_2x.png);
+        background-size: 120px 76px
     }
 }
 
@@ -12466,15 +12467,15 @@ button.wall_block_app_btn {
 }
 
 .vk2017_snippet_bottom_image_right:after {
-    background: url(/images/landings/vk2017/snippet_bottom_right.png) 100% 100% no-repeat
+    background: url(/images/landings/vk2019/bottom_right_img.png) 100% 100% no-repeat
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .vk2017_snippet_bottom_image_right:after {
-        background-image: url(/images/landings/vk2017/snippet_bottom_right_2x.png);
-        background-size: 117px 62px
+        background-image: url(/images/landings/vk2019/bottom_right_img_2x.png);
+        background-size: 120px 76px
     }
 }
 
@@ -12488,9 +12489,9 @@ button.wall_block_app_btn {
 .vk2017_snippet_bottom_image:after {
     content: '';
     display: block;
-    padding-top: 57.62711864%;
+    padding-top: 63.33333333%;
     width: 100%;
-    background-size: contain
+    background-size: cover
 }
 
 .wall_module .wall_text .vk2017_snippet {
@@ -12505,7 +12506,7 @@ button.wall_block_app_btn {
     width: 100%;
     max-width: 510px;
     margin: 0 auto;
-    padding: 0 27px;
+    padding: 0 39px;
     position: relative;
     box-sizing: border-box
 }
@@ -12513,25 +12514,25 @@ button.wall_block_app_btn {
 .vk2017_snippet_top:after {
     content: '';
     display: block;
-    padding-top: 16.66666667%;
+    padding-top: 23.14814815%;
     width: 100%;
-    background: url(/images/landings/vk2017/snippet_top.png) center 0 no-repeat;
-    background-size: contain
+    background: url(/images/landings/vk2019/top_ny_img.png) center 0 no-repeat;
+    background-size: cover
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .vk2017_snippet_top:after {
-        background-image: url(/images/landings/vk2017/snippet_top_2x.png);
-        background-size: 456px 76px
+        background-image: url(/images/landings/vk2019/top_ny_img_2x.png);
+        background-size: 516px 120px
     }
 }
 
 .vk2017_snippet_hashtag {
     font-size: 18px;
     line-height: 21px;
-    margin-top: 40px;
+    margin-top: 19px;
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;

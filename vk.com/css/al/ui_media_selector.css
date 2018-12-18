@@ -387,7 +387,7 @@ input.medadd_poll_question {
 .medadd_poll_backgrounds_arrow_prev {
     position: absolute;
     height: 102px;
-    width: 48px;
+    width: 37px;
     opacity: 0;
     cursor: pointer;
     z-index: 2
@@ -418,7 +418,7 @@ input.medadd_poll_question {
     background-position: 100%;
     width: 26px;
     height: 37px;
-    margin: 21.5px auto 0
+    margin: 21.5px 11px 0 0
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -450,7 +450,7 @@ input.medadd_poll_question {
     background-position: 0;
     width: 26px;
     height: 37px;
-    margin: 21.5px auto 0
+    margin: 21.5px 0 0 11px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),

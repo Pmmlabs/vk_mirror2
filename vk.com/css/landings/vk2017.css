@@ -21,28 +21,23 @@
 }
 
 @font-face {
-    font-family: CoreSansA45;
+    font-family: TT Commons;
     font-style: normal;
-    font-weight: 400;
-    src: url('/images/fonts/CoreSansA45Regular.otf')
+    font-weight: 500;
+    src: url('/images/fonts/TTCommons-Medium.ttf') format('truetype')
 }
 
 @font-face {
-    font-family: CoreSansA45;
+    font-family: TT Commons;
     font-style: normal;
-    font-weight: 500;
-    src: url('/images/fonts/CoreSansA55Medium.otf')
+    font-weight: 400;
+    src: url('/images/fonts/TTCommons-Regular.ttf') format('truetype')
 }
 
-.landing_wk_wrap_vk2017 {
+.landing_wk_wrap_vk2017,
+.landing_wk_wrap_vk2019 {
     padding: 0!important;
     width: 800px
-}
-
-.flat_button,
-.landing_vk2017,
-.landing_vk2017_textarea {
-    font-family: CoreSansA45, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif!important
 }
 
 .landing_vk2017_close {
@@ -72,43 +67,43 @@
 }
 
 .landing_vk2017_top_image {
-    height: 86px;
+    height: 120px;
     width: 516px;
     margin: 0 auto;
-    background: url(/images/landings/vk2017/top.png) no-repeat
+    background: url(/images/landings/vk2019/top_ny_img.png) no-repeat
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .landing_vk2017_top_image {
-        background-image: url(/images/landings/vk2017/top_2x.png);
-        background-size: 516px 86px
+        background-image: url(/images/landings/vk2019/top_ny_img_2x.png);
+        background-size: 516px 120px
     }
 }
 
 .landing_vk2017_bottom_image {
-    width: 256px;
-    height: 74px;
-    margin: 40px auto 0;
-    background: url(/images/landings/vk2017/bottom.png) no-repeat 0 1px
+    width: 516px;
+    height: 139px;
+    margin: 32px auto 0;
+    background: url(/images/landings/vk2019/bottom_ny_img.png) no-repeat 0 1px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .landing_vk2017_bottom_image {
-        background-image: url(/images/landings/vk2017/bottom_2x.png);
-        background-size: 256px 74px
+        background-image: url(/images/landings/vk2019/bottom_ny_img_2x.png);
+        background-size: 516px 139px
     }
 }
 
 .is_mobile.is_2x .landing_vk2017_top_image {
-    background-image: url('/images/landings/vk2017/top_2x.png')
+    background-image: url('/images/landings/vk2019/top_ny_img_2x.png')
 }
 
 .is_mobile.is_2x .landing_vk2017_bottom_image {
-    background-image: url('/images/landings/vk2017/bottom_2x.png')
+    background-image: url('/images/landings/vk2019/bottom_ny_img_2x.png')
 }
 
 .is_mobile.is_2x .page_verified {
@@ -117,21 +112,27 @@
 }
 
 .landing_vk2017_title {
+    font-family: TT Commons, sans-serif!important;
     color: #222;
     font-size: 32px;
-    line-height: 39px
+    line-height: 39px;
+    font-weight: 600
 }
 
 .landing_vk2017_title_general {
-    margin-top: 64px
+    margin-top: 32px
 }
 
 .landing_vk2017_caption {
     width: 560px;
-    line-height: 25px;
+    line-height: 26px;
     color: #656565;
     font-size: 18px;
     margin: 24px auto 0
+}
+
+.landing_vk2017_caption_block:last-child {
+    margin-bottom: 0
 }
 
 .landing_vk2017_caption_promise {
@@ -180,7 +181,7 @@
 }
 
 .landing_vk2017_promise_name {
-    font-weight: 500;
+    font-weight: 600;
     font-size: 18px;
     line-height: 20px;
     padding-top: 4px
@@ -197,14 +198,15 @@
 .landing_vk2017_promise_date {
     color: #939393!important;
     font-weight: 400;
+    font-weight: 400;
     font-size: 14px;
     margin-left: 4px
 }
 
 .landing_vk2017_promise_text {
-    font-size: 16px;
-    line-height: 22px;
-    margin-top: 6px;
+    font-size: 17px;
+    line-height: 24px;
+    margin-top: 3px;
     word-wrap: break-word
 }
 
@@ -295,13 +297,13 @@
 .landing_vk2017_publish_button {
     font-size: 18px;
     line-height: 25px;
-    padding: 11px 25px 12px;
+    padding: 10px 25px 11px;
     border-radius: 8px;
     margin-left: 10px
 }
 
 .landing_vk2017_publish_button:active {
-    padding: 12px 25px 11px
+    padding: 11px 25px 10px
 }
 
 .landing_vk2017_form_info {
@@ -543,18 +545,22 @@
 .landing_vk2017_mob,
 .landing_vk2017_mob .flat_button,
 .landing_vk2017_mob .landing_vk2017_textarea {
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif!important
+    font-family: TT Commons, sans-serif!important
 }
 
 .landing_vk2017_mob .landing_vk2017_close {
     display: none
 }
 
+.landing_vk2017_mob .landing_vk2017_bottom_image {
+    margin: 12px auto 0
+}
+
 .landing_vk2017_mob .landing_vk2017_bottom_image_wrap,
 .landing_vk2017_mob .landing_vk2017_top_wrap {
     width: 100%;
     margin: 0 auto;
-    padding: 0 11px;
+    padding: 0 10px;
     box-sizing: border-box;
     max-width: 512px
 }
@@ -562,17 +568,17 @@
 .landing_vk2017_mob .landing_vk2017_bottom_image,
 .landing_vk2017_mob .landing_vk2017_top_image {
     width: 100%;
-    padding-top: 16.66666667%;
+    padding-top: 23.1%;
     height: 0;
-    background-size: contain
+    background-size: cover
 }
 
 .landing_vk2017_mob .landing_vk2017_bottom_image_wrap {
-    max-width: 200px
+    max-width: 335px
 }
 
 .landing_vk2017_mob .landing_vk2017_bottom_image {
-    padding-top: 28.90625%
+    padding-top: 26.666%
 }
 
 .landing_vk2017_mob .landing_vk2017_title {
@@ -581,18 +587,22 @@
 }
 
 .landing_vk2017_mob .landing_vk2017_title_general {
-    margin-top: 32px
+    margin-top: 12px
 }
 
 .landing_vk2017_mob .landing_vk2017_caption {
     margin-top: 11px;
-    line-height: 19px;
-    font-size: 14px;
+    line-height: 20px;
+    font-size: 16px;
     width: 100%
 }
 
+.landing_vk2017_mob .landing_vk2017_caption_total {
+    margin-top: 2px
+}
+
 .landing_vk2017_mob .landing_vk2017_separator {
-    height: 51px
+    height: 62px
 }
 
 .landing_vk2017_mob .landing_vk2017_promises {
@@ -621,14 +631,14 @@
 }
 
 .landing_vk2017_mob .landing_vk2017_promise_name {
-    font-size: 14px;
-    line-height: 19px;
+    font-size: 15px;
+    line-height: 20px;
     padding-top: 0
 }
 
 .landing_vk2017_mob .landing_vk2017_promise_text {
-    font-size: 14px;
-    line-height: 19px;
+    font-size: 15px;
+    line-height: 20px;
     margin-top: 0
 }
 
@@ -643,12 +653,12 @@
 .landing_vk2017_mob .landing_vk2017_textarea {
     width: 100%;
     min-width: 100%;
-    border-radius: 4px;
+    border-radius: 8px;
     padding: 8px 10px;
-    margin-top: 16px;
+    margin-top: 20px;
     min-height: 79px;
-    font-size: 14px;
-    line-height: 19px
+    font-size: 16px;
+    line-height: 20px
 }
 
 .landing_vk2017_mob .landing_vk2017_form_bottom {
@@ -673,7 +683,7 @@
     border-radius: 4px;
     display: table-cell;
     float: none;
-    font-weight: 500;
+    font-weight: 600;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto
 }
@@ -704,6 +714,7 @@
 .landing_vk2017_mob .landing_vk2017_total {
     font-size: 28px;
     line-height: 34px;
+    font-weight: 600;
     height: 34px;
     overflow: hidden
 }
@@ -718,7 +729,7 @@
 }
 
 .landing_vk2017_mob .landing_vk2017_caption_promise {
-    margin-top: 6px
+    margin-top: 12px
 }
 
 .landing_vk2017_mob .landing_vk2017_user_promise_text {
@@ -726,9 +737,9 @@
 }
 
 .landing_vk2017_mob .landing_vk2017_promise_edit_button {
-    font-size: 14px;
-    line-height: 19px;
-    margin-top: 6px
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 16px
 }
 
 .landing_vk2017_mob .landing_vk2017_promise_complete_msg {
