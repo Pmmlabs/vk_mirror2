@@ -118,6 +118,11 @@ ul {
     background-size: cover
 }
 
+._touched {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    cursor: pointer
+}
+
 .mcont {
     background-color: #fff
 }
@@ -4601,7 +4606,7 @@ input.wide_button {
 }
 
 .msg_item {
-    -webkit-tap-highlight-color: transparent
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
 }
 
 .msg_item .pi_medias {

@@ -357,19 +357,21 @@ var Video = {
         }
     },
     indexItems: function(e) {
-        var o = 0,
-            i = cur.getOwnerId();
-        cur.videoIndexes = cur.videoIndexes || {}, cur.videoIndexes[i] = cur.videoIndexes[i] || {}, each(cur.silentLoaded[i], function(e, t) {
-            cur.videoIndexes[i][e] || o++
-        });
-        var t = new callHub(e, o);
-        each(cur.silentLoaded[i], function(e, o) {
-            cur.videoIndexes[i][e] || (cur.videoIndexes[i][e] = new vkIndexer(o, function(o) {
-                return "albums" == e ? o[0] : o[VideoConstants.VIDEO_ITEM_INDEX_TITLE]
-            }, function() {
-                t.done()
-            }))
-        })
+        if (cur.getOwnerId) {
+            var o = 0,
+                i = cur.getOwnerId();
+            cur.videoIndexes = cur.videoIndexes || {}, cur.videoIndexes[i] = cur.videoIndexes[i] || {}, each(cur.silentLoaded[i], function(e, t) {
+                cur.videoIndexes[i][e] || o++
+            });
+            var t = new callHub(e, o);
+            each(cur.silentLoaded[i], function(e, o) {
+                cur.videoIndexes[i][e] || (cur.videoIndexes[i][e] = new vkIndexer(o, function(o) {
+                    return "albums" == e ? o[0] : o[VideoConstants.VIDEO_ITEM_INDEX_TITLE]
+                }, function() {
+                    t.done()
+                }))
+            })
+        }
     },
     _updateSearchPageTitle: function(e) {
         curBox() || (e ? (cur.prevVideoPageTitle || (cur.prevVideoPageTitle = document.title), setDocumentTitle(getLang("video_title_search").replace("{q}", e))) : cur.prevVideoPageTitle && setDocumentTitle(cur.prevVideoPageTitle))

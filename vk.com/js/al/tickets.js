@@ -162,18 +162,17 @@ var Tickets = {
                 t = 1 == e.type,
                 a = t ? "_legal" : "",
                 i = !1;
-            return (!e.links || e.links.length < 9) && (notaBene("tickets_links"), i = !0), e.text || (notaBene("tickets_text"), i = !0), t ? (e.title || (notaBene("tickets_dmca_corp"), i = !0), (!e.address || e.address.length < 9) && (notaBene("tickets_dmca_address"), i = !0), (!e.real_address || e.real_address.length < 9) && (notaBene("tickets_dmca_real_address"), i = !0)) : (e.title || (notaBene("tickets_dmca_name"), i = !0), e.passport_series || (notaBene("tickets_dmca_passport_series"), i = !0), e.passport_number || (notaBene("tickets_dmca_passport_number"), i = !0), e.passport_date || (notaBene("tickets_dmca_passport_date"), i = !0), e.passport_issued_by || (notaBene("tickets_dmca_passport_issued_by"), i = !0)), (!e.phone || e.phone.length < 7) && (notaBene("tickets_dmca_phone"), i = !0), /^\s*[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9_\.\-]+\s*$/.test(e.email) || (notaBene("tickets_dmca_email"), i = !0), t && ((!e.repr || e.repr.length < 5) && (notaBene("tickets_dmca_repr"), i = !0), (!e.post || e.post.length < 3) && (notaBene("tickets_dmca_post"), i = !0)), i ? !1 : isChecked("support_dmca_agree_owner" + a) ? isChecked("support_dmca_agree_unauthorized" + a) ? isChecked("support_dmca_agree_perjury" + a) ? isChecked("support_dmca_agree_email" + a) ? isChecked("support_dmca_agree_inform" + a) ? isChecked("support_dmca_agree_rules") ? !0 : Tickets.showMsgBox(getLang("help_ccform_need_rules"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_inform" : "help_ccform_natural_need_inform"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_email" : "help_ccform_natural_need_email"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_perjury" : "help_ccform_natural_need_perjury"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_unauthorized" : "help_ccform_natural_need_unauthorized"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_is_owner" : "help_ccform_natural_need_owner"), getLang("global_error"))
+            return (!e.links || e.links.length < 9) && (notaBene("tickets_links"), i = !0), e.text || (notaBene("tickets_text"), i = !0), t ? (e.title || (notaBene("tickets_dmca_corp"), i = !0), (!e.address || e.address.length < 9) && (notaBene("tickets_dmca_address"), i = !0), (!e.real_address || e.real_address.length < 9) && (notaBene("tickets_dmca_real_address"), i = !0)) : (e.title || (notaBene("tickets_dmca_name"), i = !0), e.passport_series || (notaBene("tickets_dmca_passport_series"), i = !0), e.passport_number || (notaBene("tickets_dmca_passport_number"), i = !0), e.passport_date || (notaBene("tickets_dmca_passport_date"), i = !0), e.passport_issued_by || (notaBene("tickets_dmca_passport_issued_by"), i = !0)), (!e.phone_fax || e.phone_fax.length < 7) && (notaBene("tickets_dmca_phone_fax"), i = !0), /^\s*[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9_\.\-]+\s*$/.test(e.email) || (notaBene("tickets_dmca_email"), i = !0), t && ((!e.repr || e.repr.length < 5) && (notaBene("tickets_dmca_repr"), i = !0), (!e.post || e.post.length < 3) && (notaBene("tickets_dmca_post"), i = !0)), i ? !1 : isChecked("support_dmca_agree_owner" + a) ? isChecked("support_dmca_agree_unauthorized" + a) ? isChecked("support_dmca_agree_perjury" + a) ? isChecked("support_dmca_agree_email" + a) ? isChecked("support_dmca_agree_inform" + a) ? isChecked("support_dmca_agree_rules") ? !0 : Tickets.showMsgBox(getLang("help_ccform_need_rules"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_inform" : "help_ccform_natural_need_inform"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_email" : "help_ccform_natural_need_email"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_perjury" : "help_ccform_natural_need_perjury"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_unauthorized" : "help_ccform_natural_need_unauthorized"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_is_owner" : "help_ccform_natural_need_owner"), getLang("global_error"))
         },
         getDMCAFields: function() {
-            var e = (trim(val("tickets_text")), trim(val("tickets_links")), {
+            var e = {
                 text: trim(val("tickets_text")),
                 links: trim(val("tickets_links")),
                 type: cur.dmcaType,
-                phone: trim(val("tickets_dmca_phone")),
-                fax: trim(val("tickets_dmca_fax")),
+                phone_fax: trim(val("tickets_dmca_phone_fax")),
                 email: trim(val("tickets_dmca_email"))
-            });
-            1 == cur.dmcaType ? (e.title = trim(val("tickets_dmca_corp")), e.ogrn = trim(val("tickets_dmca_ogrn")), e.inn = trim(val("tickets_dmca_inn")), e.address = trim(val("tickets_dmca_address")), e.real_address = trim(val("tickets_dmca_real_address")), e.repr = trim(val("tickets_dmca_repr")), e.post = trim(val("tickets_dmca_post"))) : (e.title = trim(val("tickets_dmca_name")), e.passport_series = trim(val("tickets_dmca_passport_series")), e.passport_number = trim(val("tickets_dmca_passport_number")), e.passport_date = trim(val("tickets_dmca_passport_date")), e.passport_issued_by = trim(val("tickets_dmca_passport_issued_by")));
+            };
+            1 == cur.dmcaType ? (e.title = trim(val("tickets_dmca_corp")), e.ogrn = trim(val("tickets_dmca_ogrn")), e.address = trim(val("tickets_dmca_address")), e.real_address = trim(val("tickets_dmca_real_address")), e.repr = trim(val("tickets_dmca_repr")), e.post = trim(val("tickets_dmca_post"))) : (e.title = trim(val("tickets_dmca_name")), e.passport_series = trim(val("tickets_dmca_passport_series")), e.passport_number = trim(val("tickets_dmca_passport_number")), e.passport_date = trim(val("tickets_dmca_passport_date")), e.passport_issued_by = trim(val("tickets_dmca_passport_issued_by")));
             for (var t in e) "" === e[t] && delete e[t];
             return e
         },
@@ -1303,9 +1302,9 @@ var Tickets = {
                     var i = ge("tickets_title").value,
                         o = trim(i).split(" "),
                         s = !1;
-                    if (cur.toggleCanceled || !(o.length > 4 || 4 == o.length && " " == i[i.length - 1]) || cur.flood || (s = !0), t ? ge("tickets_faq_list").innerHTML = ce("div", {
+                    if (cur.toggleCanceled || !(o.length > 4 || 4 == o.length && " " == i[i.length - 1]) || cur.flood || (s = !0), t ? e("tickets_faq_list", ce("div", {
                             innerHTML: t
-                        }).firstChild.innerHTML : (a && (ge("tickets_faq_button").innerHTML = a), s && (cur.toggled = !0, Tickets.toggleDetailedForm())), cur.tlmd) {
+                        }).firstChild.innerHTML) : (a && e("tickets_faq_button", a), s && (cur.toggled = !0, Tickets.toggleDetailedForm())), cur.tlmd) {
                         if (e ? extend(nav.objLoc, {
                                 q: e
                             }) : delete nav.objLoc.q, "faq" == nav.objLoc.act) {
@@ -1427,27 +1426,6 @@ var Tickets = {
                 isVisible(a) || show(a)
             }
         },
-        listClearSearchInput: function() {
-            uiSearch.reset("faq_search_form", !0)
-        },
-        listSelectCategory: function(e, t) {
-            "top" != e && (e = "cat" + e);
-            var a = ge("ui_rmenu_" + e),
-                i = a.innerHTML;
-            return uiRightMenu.switchMenu(a), t && uiRightMenu.showProgress(a), i
-        },
-        listDiselectCategory: function() {
-            each(geByClass("ui_rmenu_item_sel", ge("help_table_categories")), function(e, t) {
-                removeClass(t, "ui_rmenu_item_sel")
-            })
-        },
-        listRemoveCategoryLoading: function() {
-            uiRightMenu.hideProgress("help_table_categories_menu")
-        },
-        listSetTitle: function(e) {
-            var t = ge("help_table_questions__title");
-            e ? (show(t), t.innerHTML = e) : hide(t)
-        },
         tryAskQuestion: function(e, t) {
             var a = 2,
                 i = Tickets.getAskQuestionData(t);
@@ -1466,11 +1444,6 @@ var Tickets = {
         },
         listHideNotFound: function() {
             removeClass("help_table_questions", "help_table_questions_not_found")
-        },
-        listShowNotFound: function(e) {
-            addClass("help_table_questions", "help_table_questions_not_found"), ge("help_table_not_found__query").innerHTML = e;
-            var t = ge("help_table_not_found__btn");
-            t && !isVisible(t) && -1 != e.trim().indexOf(" ") && show(t)
         },
         loadTickets: function() {
             var e = ge("tickets_list_load_more"),

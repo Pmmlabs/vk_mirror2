@@ -1572,3 +1572,12 @@ div.profile_online {
 .profile_closed_wall_dummy .profile_closed_wall_dummy_after {
     padding-top: 8px
 }
+
+.profile__staging-status {
+    padding: 10px 15px;
+    line-height: 21px
+}
+
+.profile__staging-status b {
+    font-weight: 500
+}

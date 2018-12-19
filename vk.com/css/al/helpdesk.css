@@ -2510,6 +2510,11 @@ body.body_helpdesk_small_sb .left_menu_nav {
     text-decoration: none
 }
 
+.helpdesk_link_muted {
+    opacity: 0.5;
+    filter: alpha(opacity=50)
+}
+
 .helpdesk_payout_log_table {
     border-collapse: collapse;
     width: 100%
