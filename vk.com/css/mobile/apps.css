@@ -1246,7 +1246,7 @@ input.wide_button {
 
 .top_author,
 .verified {
-    background-image: url(/images/mobile/skins/icon/statuses.png?11);
+    background-image: url(/images/mobile/skins/icon/statuses.png?12);
     -moz-background-size: 20px;
     -o-background-size: 20px;
     background-size: 20px;
@@ -1292,7 +1292,7 @@ input.wide_button {
 
 .vk_2x .top_author,
 .vk_2x .verified {
-    background-image: url(/images/mobile/skins/icon/statuses_2x.png?11)
+    background-image: url(/images/mobile/skins/icon/statuses_2x.png?12)
 }
 
 .wi_author .top_author,
@@ -6315,7 +6315,7 @@ div.pm_item .pm_counter {
 }
 
 .pp_last_activity .mlvi {
-    background-image: url(/images/mobile/skins/icon/statuses.png?11);
+    background-image: url(/images/mobile/skins/icon/statuses.png?12);
     -moz-background-size: 100%!important;
     -o-background-size: 100%!important;
     background-size: 100%!important;
@@ -6334,7 +6334,7 @@ div.pm_item .pm_counter {
 }
 
 .vk_2x .pp_last_activity .mlvi {
-    background-image: url(/images/mobile/skins/icon/statuses_2x.png?11)
+    background-image: url(/images/mobile/skins/icon/statuses_2x.png?12)
 }
 
 .pp_info,
@@ -6472,7 +6472,7 @@ div.pm_item .pm_counter {
 }
 
 .create_post .post_timer:after {
-    background-image: url('/images/mobile/skins/icon/statuses.png?11');
+    background-image: url('/images/mobile/skins/icon/statuses.png?12');
     -moz-background-size: 100%;
     -o-background-size: 100%;
     background-size: 100%;
@@ -6484,7 +6484,7 @@ div.pm_item .pm_counter {
 }
 
 .vk_2x .create_post .post_timer:after {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?11')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?12')
 }
 
 .create_post .medias_thumb .ph_img,

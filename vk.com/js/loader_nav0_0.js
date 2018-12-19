@@ -247,7 +247,7 @@ var stVersions = {
     'pages.css': 19994481336,
     'pages.js': 1162259210,
     'groups.css': 29031350765,
-    'cmodules/web/groups.js': 43615135398,
+    'cmodules/web/groups.js': 41468424214,
     'cmodules/web/groups_create.js': 2554367098,
     'groups_create.css': 17192603791,
     'cmodules/web/groups_list.js': 2447510571,
@@ -267,7 +267,7 @@ var stVersions = {
     'qsearch.js': 4098038985,
     'wall.css': 20367603745,
     'wall.js': 2138442860,
-    'cmodules/web/wall_edit.js': 978489729,
+    'cmodules/web/wall_edit.js': 2703194860,
     'thumbs_edit.css': 14445967422,
     'cmodules/web/thumbs_edit.js': 2289760328,
     'mail.css': 2042965398,
@@ -577,7 +577,7 @@ var stVersions = {
     'podcast_add.css': 15221366466,
     'podcast_choose.css': 16481517292,
     'podcast_stats.css': 14024385190,
-    'cmodules/web/poster.js': 3975714713,
+    'cmodules/web/poster.js': 1255405027,
     'cmodules/web/grip.js': 4164501492,
     'cmodules/web/group_invite_chat.js': 51836116130,
     'group_invite_chat.css': 74875481324,
@@ -658,4 +658,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 8925;
+var _rnd = 4250;

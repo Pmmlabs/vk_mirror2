@@ -1248,7 +1248,7 @@ input.wide_button {
 .OwnerRow__verified,
 .top_author,
 .verified {
-    background-image: url(/images/mobile/skins/icon/statuses.png?11);
+    background-image: url(/images/mobile/skins/icon/statuses.png?12);
     -moz-background-size: 20px;
     -o-background-size: 20px;
     background-size: 20px;
@@ -1297,7 +1297,7 @@ input.wide_button {
 .OwnerRow__verified,
 .vk_2x .top_author,
 .vk_2x .verified {
-    background-image: url(/images/mobile/skins/icon/statuses_2x.png?11)
+    background-image: url(/images/mobile/skins/icon/statuses_2x.png?12)
 }
 
 .wi_author .top_author,
@@ -6322,7 +6322,7 @@ div.pm_item .pm_counter {
 }
 
 .pp_last_activity .mlvi {
-    background-image: url(/images/mobile/skins/icon/statuses.png?11);
+    background-image: url(/images/mobile/skins/icon/statuses.png?12);
     -moz-background-size: 100%!important;
     -o-background-size: 100%!important;
     background-size: 100%!important;
@@ -6341,7 +6341,7 @@ div.pm_item .pm_counter {
 }
 
 .vk_2x .pp_last_activity .mlvi {
-    background-image: url(/images/mobile/skins/icon/statuses_2x.png?11)
+    background-image: url(/images/mobile/skins/icon/statuses_2x.png?12)
 }
 
 .pp_info,
@@ -6479,7 +6479,7 @@ div.pm_item .pm_counter {
 }
 
 .create_post .post_timer:after {
-    background-image: url('/images/mobile/skins/icon/statuses.png?11');
+    background-image: url('/images/mobile/skins/icon/statuses.png?12');
     -moz-background-size: 100%;
     -o-background-size: 100%;
     background-size: 100%;
@@ -6491,7 +6491,7 @@ div.pm_item .pm_counter {
 }
 
 .vk_2x .create_post .post_timer:after {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?11')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?12')
 }
 
 .create_post .medias_thumb .ph_img,
@@ -12274,6 +12274,12 @@ a.Popup__headerCorner {
 }
 
 .Btn,
+.Groups .GroupsInvite__item .si_links .ai_menu_wrap,
+.Groups .GroupsInvite__item .si_links .si_link,
+.GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap,
+.GroupsInvite .GroupsInvite__item .si_links .si_link,
+.GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap,
+.GroupsNear .GroupsInvite__item .si_links .si_link,
 .vk__page_redesign .basis .button,
 .vk__page_redesign .basis .near_btn {
     margin: 0;
@@ -12308,7 +12314,13 @@ a.Popup__headerCorner {
     -webkit-tap-highlight-color: transparent
 }
 
-.Btn:disabled {
+.Btn:disabled,
+.Groups .GroupsInvite__item .si_links .ai_menu_wrap:disabled,
+.Groups .GroupsInvite__item .si_links .si_link:disabled,
+.GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap:disabled,
+.GroupsInvite .GroupsInvite__item .si_links .si_link:disabled,
+.GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap:disabled,
+.GroupsNear .GroupsInvite__item .si_links .si_link:disabled {
     pointer-events: none;
     opacity: 0.7
 }
@@ -12339,6 +12351,9 @@ a.Popup__headerCorner {
  */
 
 .Btn_theme_regular,
+.Groups .GroupsInvite__item .si_links .si_link,
+.GroupsInvite .GroupsInvite__item .si_links .si_link,
+.GroupsNear .GroupsInvite__item .si_links .si_link,
 .vk__page_redesign .basis .button {
     height: 34px;
     line-height: 34px;
@@ -12347,16 +12362,31 @@ a.Popup__headerCorner {
     background: #5181b8
 }
 
-._hover .Btn_theme_regular:hover {
+._hover .Btn_theme_regular:hover,
+._hover .Groups .GroupsInvite__item .si_links .si_link:hover,
+._hover .GroupsInvite .GroupsInvite__item .si_links .si_link:hover,
+._hover .GroupsNear .GroupsInvite__item .si_links .si_link:hover {
     background: #5b88bd
 }
 
 ._hover .Btn_theme_regular:active,
-._touch .Btn_theme_regular.hover {
+._hover .Groups .GroupsInvite__item .si_links .si_link:active,
+._hover .GroupsInvite .GroupsInvite__item .si_links .si_link:active,
+._hover .GroupsNear .GroupsInvite__item .si_links .si_link:active,
+._touch .Btn_theme_regular.hover,
+._touch .Groups .GroupsInvite__item .si_links .si_link.hover,
+._touch .GroupsInvite .GroupsInvite__item .si_links .si_link.hover,
+._touch .GroupsNear .GroupsInvite__item .si_links .si_link.hover {
     background: #4872a3
 }
 
 .Btn_theme_secondary,
+.Groups .GroupsInvite__item .si_links .ai_menu_wrap,
+.Groups .GroupsInvite__item .si_links .si_link_gray,
+.GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap,
+.GroupsInvite .GroupsInvite__item .si_links .si_link_gray,
+.GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap,
+.GroupsNear .GroupsInvite__item .si_links .si_link_gray,
 .vk__page_redesign .basis .gray_button {
     height: 34px;
     line-height: 34px;
@@ -12365,12 +12395,30 @@ a.Popup__headerCorner {
     background: #e6ebf1
 }
 
-._hover .Btn_theme_secondary:hover {
+._hover .Btn_theme_secondary:hover,
+._hover .Groups .GroupsInvite__item .si_links .ai_menu_wrap:hover,
+._hover .Groups .GroupsInvite__item .si_links .si_link_gray:hover,
+._hover .GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap:hover,
+._hover .GroupsInvite .GroupsInvite__item .si_links .si_link_gray:hover,
+._hover .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap:hover,
+._hover .GroupsNear .GroupsInvite__item .si_links .si_link_gray:hover {
     background: #dfe6ed
 }
 
 ._hover .Btn_theme_secondary:active,
-._touch .Btn_theme_secondary.hover {
+._hover .Groups .GroupsInvite__item .si_links .ai_menu_wrap:active,
+._hover .Groups .GroupsInvite__item .si_links .si_link_gray:active,
+._hover .GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap:active,
+._hover .GroupsInvite .GroupsInvite__item .si_links .si_link_gray:active,
+._hover .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap:active,
+._hover .GroupsNear .GroupsInvite__item .si_links .si_link_gray:active,
+._touch .Btn_theme_secondary.hover,
+._touch .Groups .GroupsInvite__item .si_links .ai_menu_wrap.hover,
+._touch .Groups .GroupsInvite__item .si_links .si_link_gray.hover,
+._touch .GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap.hover,
+._touch .GroupsInvite .GroupsInvite__item .si_links .si_link_gray.hover,
+._touch .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap.hover,
+._touch .GroupsNear .GroupsInvite__item .si_links .si_link_gray.hover {
     background: #dae2ea
 }
 
@@ -12519,7 +12567,10 @@ a.Popup__headerCorner {
 .Btn_theme_regular .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
 .Btn_theme_regular .OwnerColumn__online,
 .Btn_theme_regular .OwnerRow__online,
-.Btn_theme_regular .vk__page_redesign .basis .ii_btn {
+.Btn_theme_regular .vk__page_redesign .basis .ii_btn,
+.Groups .GroupsInvite__item .si_links .si_link .Icon,
+.GroupsInvite .GroupsInvite__item .si_links .si_link .Icon,
+.GroupsNear .GroupsInvite__item .si_links .si_link .Icon {
     margin: 5px -2px
 }
 
@@ -12603,7 +12654,10 @@ a.Popup__headerCorner {
     margin-bottom: 6px
 }
 
-.BtnStack {
+.BtnStack,
+.Groups .GroupsInvite__item .si_links,
+.GroupsInvite .GroupsInvite__item .si_links,
+.GroupsNear .GroupsInvite__item .si_links {
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -12640,18 +12694,36 @@ a.Popup__headerCorner {
     width: 100%
 }
 
-.BtnStack__btn {
+.BtnStack__btn,
+.Groups .GroupsInvite__item .si_links .ai_menu_wrap,
+.Groups .GroupsInvite__item .si_links .si_link,
+.GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap,
+.GroupsInvite .GroupsInvite__item .si_links .si_link,
+.GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap,
+.GroupsNear .GroupsInvite__item .si_links .si_link {
     margin-right: 8px;
     margin-top: 8px;
     overflow: hidden
 }
 
-.BtnStack__btn:last-child {
+.BtnStack__btn:last-child,
+.Groups .GroupsInvite__item .si_links .ai_menu_wrap:last-child,
+.Groups .GroupsInvite__item .si_links .si_link:last-child,
+.GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap:last-child,
+.GroupsInvite .GroupsInvite__item .si_links .si_link:last-child,
+.GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap:last-child,
+.GroupsNear .GroupsInvite__item .si_links .si_link:last-child {
     margin-right: 0
 }
 
 @media (max-width: 350px) {
-    .BtnStack_stretchOnSmallScreens .BtnStack__btn {
+    .BtnStack_stretchOnSmallScreens .BtnStack__btn,
+    .BtnStack_stretchOnSmallScreens .Groups .GroupsInvite__item .si_links .ai_menu_wrap,
+    .BtnStack_stretchOnSmallScreens .Groups .GroupsInvite__item .si_links .si_link,
+    .BtnStack_stretchOnSmallScreens .GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap,
+    .BtnStack_stretchOnSmallScreens .GroupsInvite .GroupsInvite__item .si_links .si_link,
+    .BtnStack_stretchOnSmallScreens .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap,
+    .BtnStack_stretchOnSmallScreens .GroupsNear .GroupsInvite__item .si_links .si_link {
         margin-right: 0;
         width: 100%;
         -webkit-box-sizing: border-box;
@@ -12660,15 +12732,27 @@ a.Popup__headerCorner {
     }
 }
 
-.vk_flex_no .BtnStack {
+.vk_flex_no .BtnStack,
+.vk_flex_no .Groups .GroupsInvite__item .si_links,
+.vk_flex_no .GroupsInvite .GroupsInvite__item .si_links,
+.vk_flex_no .GroupsNear .GroupsInvite__item .si_links {
     overflow: hidden
 }
 
-.vk_flex_no .BtnStack.BtnStack_table {
+.vk_flex_no .BtnStack.BtnStack_table,
+.vk_flex_no .Groups .GroupsInvite__item .si_links.BtnStack_table,
+.vk_flex_no .GroupsInvite .GroupsInvite__item .si_links.BtnStack_table,
+.vk_flex_no .GroupsNear .GroupsInvite__item .si_links.BtnStack_table {
     overflow: visible
 }
 
-.vk_flex_no .BtnStack__btn {
+.vk_flex_no .BtnStack__btn,
+.vk_flex_no .Groups .GroupsInvite__item .si_links .ai_menu_wrap,
+.vk_flex_no .Groups .GroupsInvite__item .si_links .si_link,
+.vk_flex_no .GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap,
+.vk_flex_no .GroupsInvite .GroupsInvite__item .si_links .si_link,
+.vk_flex_no .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap,
+.vk_flex_no .GroupsNear .GroupsInvite__item .si_links .si_link {
     float: left
 }
 
@@ -15043,6 +15127,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .audioSearch__wrap,
 .BookmarksSearch .hp_block,
 .Friends__search .hp_block,
+.Groups__search .hp_block,
 .m .vk__page_chatAdd .basis__content .hp_block,
 .vk__page_redesign .filter_peer_wrap .hp_block {
     margin: 0 -12px;
@@ -15055,6 +15140,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     .audioSearch__wrap,
     .BookmarksSearch .hp_block,
     .Friends__search .hp_block,
+    .Groups__search .hp_block,
     .m .vk__page_chatAdd .basis__content .hp_block,
     .vk__page_redesign .filter_peer_wrap .hp_block {
         margin: 0 -8px
@@ -15067,6 +15153,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     .audioSearch__wrap,
     .BookmarksSearch .hp_block,
     .Friends__search .hp_block,
+    .Groups__search .hp_block,
     .m .vk__page_chatAdd .basis__content .hp_block,
     .vk__page_redesign .filter_peer_wrap .hp_block {
         margin: 0 -16px
@@ -15078,11 +15165,13 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .audioSearch__wrapInput,
 .BookmarksSearch .qsearch .iwrap,
 .Friends__search .qsearch .iwrap,
+.Groups__search .qsearch .iwrap,
 .m .vk__page_chatAdd .basis__content .qsearch .iwrap,
 .qsearch .ArtistPage__search .iwrap,
 .qsearch .audioPage__search .iwrap,
 .qsearch .BookmarksSearch .iwrap,
 .qsearch .Friends__search .iwrap,
+.qsearch .Groups__search .iwrap,
 .qsearch .m .vk__page_chatAdd .basis__content .iwrap,
 .vk__page_redesign .filter_peer_wrap .qsearch .iwrap {
     padding: 0 0 1px 51px
@@ -15094,11 +15183,13 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     .audioSearch__wrapInput,
     .BookmarksSearch .qsearch .iwrap,
     .Friends__search .qsearch .iwrap,
+    .Groups__search .qsearch .iwrap,
     .m .vk__page_chatAdd .basis__content .qsearch .iwrap,
     .qsearch .ArtistPage__search .iwrap,
     .qsearch .audioPage__search .iwrap,
     .qsearch .BookmarksSearch .iwrap,
     .qsearch .Friends__search .iwrap,
+    .qsearch .Groups__search .iwrap,
     .qsearch .m .vk__page_chatAdd .basis__content .iwrap,
     .vk__page_redesign .filter_peer_wrap .qsearch .iwrap {
         padding-left: 43px
@@ -15110,6 +15201,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .audioSearch__input,
 .BookmarksSearch .qs_textfield,
 .Friends__search .qs_textfield,
+.Groups__search .qs_textfield,
 .m .vk__page_chatAdd .basis__content .qs_textfield,
 .vk__page_redesign .filter_peer_wrap .qs_textfield {
     height: 44px;
@@ -15126,6 +15218,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .audioSearch__searchIcon,
 .BookmarksSearch .qs_field_wrap:after,
 .Friends__search .qs_field_wrap:after,
+.Groups__search .qs_field_wrap:after,
 .m .vk__page_chatAdd .basis__content .qs_field_wrap:after,
 .vk__page_redesign .filter_peer_wrap .qs_field_wrap:after {
     content: "";
@@ -15150,6 +15243,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     .audioSearch__searchIcon,
     .BookmarksSearch .qs_field_wrap:after,
     .Friends__search .qs_field_wrap:after,
+    .Groups__search .qs_field_wrap:after,
     .m .vk__page_chatAdd .basis__content .qs_field_wrap:after,
     .vk__page_redesign .filter_peer_wrap .qs_field_wrap:after {
         left: 8px
@@ -15162,6 +15256,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     .audioSearch__searchIcon,
     .BookmarksSearch .qs_field_wrap:after,
     .Friends__search .qs_field_wrap:after,
+    .Groups__search .qs_field_wrap:after,
     .m .vk__page_chatAdd .basis__content .qs_field_wrap:after,
     .vk__page_redesign .filter_peer_wrap .qs_field_wrap:after {
         left: 16px
@@ -15173,6 +15268,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .vk_2x .audioSearch__searchIcon,
 .vk_2x .BookmarksSearch .qs_field_wrap:after,
 .vk_2x .Friends__search .qs_field_wrap:after,
+.vk_2x .Groups__search .qs_field_wrap:after,
 .vk_2x.m .vk__page_chatAdd .basis__content .qs_field_wrap:after,
 .vk_2x .vk__page_redesign .filter_peer_wrap .qs_field_wrap:after {
     background-image: url('/images/mobile/icons/top_menu_icons_2x.png?5')
@@ -15183,6 +15279,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .audioSearch__inputContainer,
 .BookmarksSearch .row_table_main_column,
 .Friends__search .row_table_main_column,
+.Groups__search .row_table_main_column,
 .m .vk__page_chatAdd .basis__content .row_table_main_column,
 .vk__page_redesign .filter_peer_wrap .row_table_main_column {
     padding: 0;
@@ -15194,6 +15291,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .audioSearch__buttonContainer,
 .BookmarksSearch .row_table_last_column,
 .Friends__search .row_table_last_column,
+.Groups__search .row_table_last_column,
 .m .vk__page_chatAdd .basis__content .row_table_last_column,
 .vk__page_publish .pcont .qsearch .row_table_last_column,
 .vk__page_redesign .filter_peer_wrap .row_table_last_column {
@@ -18088,18 +18186,27 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     vertical-align: top
 }
 
-.BtnStack .dropdown {
+.BtnStack .dropdown,
+.Groups .GroupsInvite__item .si_links .dropdown,
+.GroupsInvite .GroupsInvite__item .si_links .dropdown,
+.GroupsNear .GroupsInvite__item .si_links .dropdown {
     position: static;
     width: 100%;
     margin-top: 8px;
     margin-right: 8px
 }
 
-.BtnStack .dropdown:last-child {
+.BtnStack .dropdown:last-child,
+.Groups .GroupsInvite__item .si_links .dropdown:last-child,
+.GroupsInvite .GroupsInvite__item .si_links .dropdown:last-child,
+.GroupsNear .GroupsInvite__item .si_links .dropdown:last-child {
     margin-right: 0
 }
 
-.BtnStack .dropdown_icon {
+.BtnStack .dropdown_icon,
+.Groups .GroupsInvite__item .si_links .dropdown_icon,
+.GroupsInvite .GroupsInvite__item .si_links .dropdown_icon,
+.GroupsNear .GroupsInvite__item .si_links .dropdown_icon {
     width: 48px
 }
 
@@ -18133,7 +18240,10 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 @media screen and (max-width: 881px) {
     .groupCover-vk_animationYes.groupCover-vk_animationStep .mhead {
-        background: transparent!important
+        background: transparent!important;
+        -webkit-box-shadow: none!important;
+        -moz-box-shadow: none!important;
+        box-shadow: none!important
     }
     .groupCover-vk_animationYes.groupCover-vk_animationStep .header__back {
         background-color: transparent!important
@@ -18211,6 +18321,339 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     .h.groupCover-vk_animationYes.groupCover-vk_animationStep .groupCover__dimmer {
         background: #5181b8
     }
+}
+
+.GroupsInvite,
+.GroupsNear {
+    border-bottom: 12px solid #ebedf0;
+    padding: 0 0 6px
+}
+
+.Groups .slim_header,
+.GroupsInvite .GroupsInvite__title,
+.GroupsInvite .GroupsNear__title,
+.GroupsInvite .slim_header,
+.GroupsNear .GroupsInvite__title,
+.GroupsNear .GroupsNear__title,
+.GroupsNear .slim_header {
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    color: #909499;
+    text-transform: uppercase;
+    background: none;
+    margin: 0;
+    padding: 12px
+}
+
+.GroupsInvite,
+.Groups__search {
+    padding: 0
+}
+
+.Groups__search .head_panel {
+    padding: 0 12px;
+    border: 0;
+    background: #fff
+}
+
+@media (max-width: 319px) {
+    .Groups__search .head_panel {
+        padding: 0 8px
+    }
+}
+
+@media (min-width: 400px) {
+    .Groups__search .head_panel {
+        padding: 0 16px
+    }
+}
+
+.Groups__search .qsearch .iwrap,
+.qsearch .Groups__search .iwrap {
+    padding: 0 0 0 51px
+}
+
+.Groups__search .row_table_main_column {
+    border-top: 0
+}
+
+.Groups,
+.GroupsInvite,
+.GroupsNear {
+    background: #fff
+}
+
+.Groups a,
+.GroupsInvite a,
+.GroupsNear a {
+    color: #5181b8
+}
+
+.Groups .service_msg_null,
+.GroupsInvite .service_msg_null,
+.GroupsNear .service_msg_null {
+    color: #909499;
+    font-size: 14px;
+    line-height: 20px
+}
+
+.Groups .Groups__item,
+.Groups .GroupsInvite__item,
+.Groups .GroupsNear__item,
+.GroupsInvite .Groups__item,
+.GroupsInvite .GroupsInvite__item,
+.GroupsInvite .GroupsNear__item,
+.GroupsNear .Groups__item,
+.GroupsNear .GroupsInvite__item,
+.GroupsNear .GroupsNear__item {
+    margin: 0;
+    padding: 6px 12px;
+    border: 0
+}
+
+.Groups .Groups__item .si_img,
+.Groups .GroupsInvite__item .si_img,
+.Groups .GroupsNear__item .si_img,
+.GroupsInvite .Groups__item .si_img,
+.GroupsInvite .GroupsInvite__item .si_img,
+.GroupsInvite .GroupsNear__item .si_img,
+.GroupsNear .Groups__item .si_img,
+.GroupsNear .GroupsInvite__item .si_img,
+.GroupsNear .GroupsNear__item .si_img {
+    width: 44px;
+    height: 44px;
+    margin: 0 12px 0 0
+}
+
+.Groups .Groups__item .si_body,
+.Groups .GroupsInvite__item .si_body,
+.Groups .GroupsNear__item .si_body,
+.GroupsInvite .Groups__item .si_body,
+.GroupsInvite .GroupsInvite__item .si_body,
+.GroupsInvite .GroupsNear__item .si_body,
+.GroupsNear .Groups__item .si_body,
+.GroupsNear .GroupsInvite__item .si_body,
+.GroupsNear .GroupsNear__item .si_body {
+    min-height: 44px;
+    overflow: hidden;
+    margin: 0
+}
+
+.Groups .Groups__item .si_owner,
+.Groups .GroupsInvite__item .si_owner,
+.Groups .GroupsNear__item .si_owner,
+.GroupsInvite .Groups__item .si_owner,
+.GroupsInvite .GroupsInvite__item .si_owner,
+.GroupsInvite .GroupsNear__item .si_owner,
+.GroupsNear .Groups__item .si_owner,
+.GroupsNear .GroupsInvite__item .si_owner,
+.GroupsNear .GroupsNear__item .si_owner {
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    font-size: 16px;
+    line-height: 20px;
+    color: #2c2d2e;
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    position: relative;
+    padding: 3px 26px 0 0;
+    max-width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.Groups .Groups__item .si_owner:hover,
+.Groups .GroupsInvite__item .si_owner:hover,
+.Groups .GroupsNear__item .si_owner:hover,
+.GroupsInvite .Groups__item .si_owner:hover,
+.GroupsInvite .GroupsInvite__item .si_owner:hover,
+.GroupsInvite .GroupsNear__item .si_owner:hover,
+.GroupsNear .Groups__item .si_owner:hover,
+.GroupsNear .GroupsInvite__item .si_owner:hover,
+.GroupsNear .GroupsNear__item .si_owner:hover {
+    text-decoration: none
+}
+
+.Groups .Groups__item .si_owner .top_author,
+.Groups .Groups__item .si_owner .verified,
+.Groups .GroupsInvite__item .si_owner .top_author,
+.Groups .GroupsInvite__item .si_owner .verified,
+.Groups .GroupsNear__item .si_owner .top_author,
+.Groups .GroupsNear__item .si_owner .verified,
+.GroupsInvite .Groups__item .si_owner .top_author,
+.GroupsInvite .Groups__item .si_owner .verified,
+.GroupsInvite .GroupsInvite__item .si_owner .top_author,
+.GroupsInvite .GroupsInvite__item .si_owner .verified,
+.GroupsInvite .GroupsNear__item .si_owner .top_author,
+.GroupsInvite .GroupsNear__item .si_owner .verified,
+.GroupsNear .Groups__item .si_owner .top_author,
+.GroupsNear .Groups__item .si_owner .verified,
+.GroupsNear .GroupsInvite__item .si_owner .top_author,
+.GroupsNear .GroupsInvite__item .si_owner .verified,
+.GroupsNear .GroupsNear__item .si_owner .top_author,
+.GroupsNear .GroupsNear__item .si_owner .verified {
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    position: absolute;
+    right: 2px;
+    top: 3px;
+    bottom: 0
+}
+
+.Groups .Groups__item .si_owner .verified,
+.Groups .GroupsInvite__item .si_owner .verified,
+.Groups .GroupsNear__item .si_owner .verified,
+.GroupsInvite .Groups__item .si_owner .verified,
+.GroupsInvite .GroupsInvite__item .si_owner .verified,
+.GroupsInvite .GroupsNear__item .si_owner .verified,
+.GroupsNear .Groups__item .si_owner .verified,
+.GroupsNear .GroupsInvite__item .si_owner .verified,
+.GroupsNear .GroupsNear__item .si_owner .verified {
+    background-position: 0 -282px
+}
+
+.Groups .Groups__item .si_slabel,
+.Groups .GroupsInvite__item .si_slabel,
+.Groups .GroupsNear__item .si_slabel,
+.GroupsInvite .Groups__item .si_slabel,
+.GroupsInvite .GroupsInvite__item .si_slabel,
+.GroupsInvite .GroupsNear__item .si_slabel,
+.GroupsNear .Groups__item .si_slabel,
+.GroupsNear .GroupsInvite__item .si_slabel,
+.GroupsNear .GroupsNear__item .si_slabel {
+    color: #909499;
+    font-size: 14px;
+    margin: 0
+}
+
+.Groups .GroupsInvite__header,
+.GroupsInvite .GroupsInvite__header,
+.GroupsNear .GroupsInvite__header {
+    display: table;
+    width: 100%
+}
+
+.Groups .GroupsInvite__title,
+.GroupsInvite .GroupsInvite__title,
+.GroupsNear .GroupsInvite__title {
+    display: table-cell;
+    vertical-align: top;
+    width: 100%
+}
+
+.Groups .GroupsInvite__more,
+.GroupsInvite .GroupsInvite__more,
+.GroupsNear .GroupsInvite__more {
+    white-space: nowrap;
+    display: table-cell;
+    vertical-align: top;
+    font-size: 15px;
+    line-height: 20px;
+    text-align: right;
+    padding: 12px
+}
+
+.Groups .GroupsInvite__item,
+.GroupsInvite .GroupsInvite__item,
+.GroupsNear .GroupsInvite__item {
+    padding: 12px 16px 0
+}
+
+.Groups .GroupsInvite__item .si_body,
+.GroupsInvite .GroupsInvite__item .si_body,
+.GroupsNear .GroupsInvite__item .si_body {
+    padding: 0 0 12px
+}
+
+.Groups .GroupsInvite__item .si_owner,
+.GroupsInvite .GroupsInvite__item .si_owner,
+.GroupsNear .GroupsInvite__item .si_owner {
+    padding-top: 0
+}
+
+.Groups .GroupsInvite__item .si_msg .service_msg_box,
+.GroupsInvite .GroupsInvite__item .si_msg .service_msg_box,
+.GroupsNear .GroupsInvite__item .si_msg .service_msg_box {
+    padding: 8px 0;
+    border: 0
+}
+
+.Groups .GroupsInvite__item .si_msg .service_msg,
+.GroupsInvite .GroupsInvite__item .si_msg .service_msg,
+.GroupsNear .GroupsInvite__item .si_msg .service_msg {
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: 13px;
+    line-height: 18px;
+    color: #909499;
+    position: relative
+}
+
+.Groups .GroupsInvite__item .si_msg .service_msg.service_msg_ok,
+.GroupsInvite .GroupsInvite__item .si_msg .service_msg.service_msg_ok,
+.GroupsNear .GroupsInvite__item .si_msg .service_msg.service_msg_ok {
+    padding-left: 28px
+}
+
+.Groups .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
+.GroupsInvite .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
+.GroupsNear .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before {
+    position: absolute;
+    top: -1px;
+    left: 2px
+}
+
+.Groups .GroupsInvite__item .si_links .i_pointer,
+.GroupsInvite .GroupsInvite__item .si_links .i_pointer,
+.GroupsNear .GroupsInvite__item .si_links .i_pointer {
+    top: 48px
+}
+
+.Groups .GroupsInvite__item .si_links .ai_menu_wrap,
+.GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap,
+.GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: 36px;
+    overflow: visible
+}
+
+.Groups .GroupsInvite__item .si_links .ai_menu_toggle_button:after,
+.GroupsInvite .GroupsInvite__item .si_links .ai_menu_toggle_button:after,
+.GroupsNear .GroupsInvite__item .si_links .ai_menu_toggle_button:after {
+    top: -5px;
+    left: -6px;
+    bottom: -4px;
+    right: -6px
+}
+
+.Groups .GroupsInvite__item .si_label,
+.GroupsInvite .GroupsInvite__item .si_label,
+.GroupsNear .GroupsInvite__item .si_label {
+    color: #909499;
+    font-size: 13px;
+    line-height: 16px;
+    margin: 1px 0 3px
+}
+
+.Groups .GroupsInvite__item .si_img,
+.GroupsInvite .GroupsInvite__item .si_img,
+.GroupsNear .GroupsInvite__item .si_img {
+    width: 72px;
+    height: 72px;
+    margin: 0 12px 0 0
 }
 
 .input {
@@ -25175,7 +25618,13 @@ a.feedBlocks__article:hover {
     z-index: 4
 }
 
-.friendRequest .Btn {
+.friendRequest .Btn,
+.friendRequest .Groups .GroupsInvite__item .si_links .ai_menu_wrap,
+.friendRequest .Groups .GroupsInvite__item .si_links .si_link,
+.friendRequest .GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap,
+.friendRequest .GroupsInvite .GroupsInvite__item .si_links .si_link,
+.friendRequest .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap,
+.friendRequest .GroupsNear .GroupsInvite__item .si_links .si_link {
     position: relative;
     z-index: 5
 }
@@ -27221,11 +27670,11 @@ a.feedBlocks__article:hover {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -179px;
-    background-image: url('/images/mobile/skins/icon/statuses.png?11')
+    background-image: url('/images/mobile/skins/icon/statuses.png?12')
 }
 
 .vk_2x .vk__page_newCreatePost #medias_map .medias_map .medias_map_close:before {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?11')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?12')
 }
 
 .vk__page_newCreatePost #post_options_box {
@@ -34501,6 +34950,9 @@ body.apps_settingsPageBody {
 .BookmarksItem_article .BookmarkListItem__image_empty:before,
 .BookmarksItem_link .BookmarkListItem__image_empty:before,
 .BookmarksTags:before,
+.Groups .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
+.GroupsInvite .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
+.GroupsNear .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
 .Icon:before,
 .m .vk__page_chatAdd .basis .lvi.mlvi:before,
 .m .vk__page_chatSettings .basis .lvi.mlvi:before,
@@ -35277,6 +35729,7 @@ body.apps_settingsPageBody {
 .Icon_inputSearchBlue,
 .Icon_moreSmall,
 .Icon_msgMini,
+.Icon_okay,
 .Icon_online,
 .Icon_onlinePhoneSmall,
 .Icon_onlineSmall,
@@ -35317,6 +35770,9 @@ body.apps_settingsPageBody {
 .BookmarkListItem__tags .BookmarksTags:before,
 .BookmarksItem_compact .ai_menu_toggle_button:before,
 .BookmarksTags:before,
+.Groups .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
+.GroupsInvite .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
+.GroupsNear .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
 .Icon_arrowDown:before,
 .Icon_audioMini:before,
 .Icon_cardSmall:before,
@@ -35329,6 +35785,7 @@ body.apps_settingsPageBody {
 .Icon_inputSearchBlue:before,
 .Icon_moreSmall:before,
 .Icon_msgMini:before,
+.Icon_okay:before,
 .Icon_online:before,
 .Icon_onlinePhoneSmall:before,
 .Icon_onlineSmall:before,
@@ -35357,7 +35814,7 @@ body.apps_settingsPageBody {
 .vk__page_redesign .basis .ii_btn.Icon_bluer:before {
     width: 20px;
     height: 20px;
-    background-image: url('/images/mobile/skins/icon/statuses.png?11')
+    background-image: url('/images/mobile/skins/icon/statuses.png?12')
 }
 
 .vk_2x #psc_search .lvi.mlvi:before,
@@ -35371,6 +35828,9 @@ body.apps_settingsPageBody {
 .vk_2x .BookmarkListItem__tags .BookmarksTags:before,
 .vk_2x .BookmarksItem_compact .ai_menu_toggle_button:before,
 .vk_2x .BookmarksTags:before,
+.vk_2x .Groups .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
+.vk_2x .GroupsInvite .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
+.vk_2x .GroupsNear .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
 .vk_2x .Icon_arrowDown:before,
 .vk_2x .Icon_audioMini:before,
 .vk_2x .Icon_cardSmall:before,
@@ -35383,6 +35843,7 @@ body.apps_settingsPageBody {
 .vk_2x .Icon_inputSearchBlue:before,
 .vk_2x .Icon_moreSmall:before,
 .vk_2x .Icon_msgMini:before,
+.vk_2x .Icon_okay:before,
 .vk_2x .Icon_online:before,
 .vk_2x .Icon_onlinePhoneSmall:before,
 .vk_2x .Icon_onlineSmall:before,
@@ -35412,7 +35873,7 @@ body.apps_settingsPageBody {
 .vk_2x .OwnerRow__online:before,
 .vk_2x .vk__page_publish .pcont .qs_field_wrap:after,
 .vk_2x .vk__page_redesign .basis .ii_btn.Icon_bluer:before {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?11')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?12')
 }
 
 .Icon_online:before {
@@ -35575,6 +36036,13 @@ body.apps_settingsPageBody {
 .BookmarksTags:before,
 .Icon_tagLabelBig:before {
     background-position: 0 -862px
+}
+
+.Groups .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
+.GroupsInvite .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
+.GroupsNear .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
+.Icon_okay:before {
+    background-position: 0 -882px
 }
 
 .Icon_close12.Icon_bluer,
@@ -38776,7 +39244,13 @@ body.apps_settingsPageBody {
     padding-top: 8px
 }
 
-.AuthCheck__disable .Btn {
+.AuthCheck__disable .Btn,
+.AuthCheck__disable .Groups .GroupsInvite__item .si_links .ai_menu_wrap,
+.AuthCheck__disable .Groups .GroupsInvite__item .si_links .si_link,
+.AuthCheck__disable .GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap,
+.AuthCheck__disable .GroupsInvite .GroupsInvite__item .si_links .si_link,
+.AuthCheck__disable .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap,
+.AuthCheck__disable .GroupsNear .GroupsInvite__item .si_links .si_link {
     color: #55677d;
     font-weight: 400
 }
@@ -42539,7 +43013,10 @@ a .BookmarkListItem__subtitle:hover {
     color: #426997
 }
 
-.notification__row a.Btn_theme_regular {
+.notification__row a.Btn_theme_regular,
+.notification__row a.Groups .GroupsInvite__item .si_links .si_link,
+.notification__row a.GroupsInvite .GroupsInvite__item .si_links .si_link,
+.notification__row a.GroupsNear .GroupsInvite__item .si_links .si_link {
     color: #fff
 }
 
@@ -45217,11 +45694,11 @@ a .BookmarkListItem__subtitle:hover {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -200px;
-    background-image: url('/images/mobile/skins/icon/statuses.png?11')
+    background-image: url('/images/mobile/skins/icon/statuses.png?12')
 }
 
 .vk_2x .uMailWrite__attachments .medias_link_icon:before {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?11')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?12')
 }
 
 .uMailWrite__attachments .medias_link {
@@ -45254,11 +45731,11 @@ a .BookmarkListItem__subtitle:hover {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -242px;
-    background-image: url('/images/mobile/skins/icon/statuses.png?11')
+    background-image: url('/images/mobile/skins/icon/statuses.png?12')
 }
 
 .vk_2x .uMailWrite__attachments .medias_audio .medias_link_icon:before {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?11')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?12')
 }
 
 .uMailWrite__attachments .attachment_type_poll .medias_link_icon:before {
@@ -45297,12 +45774,12 @@ a .BookmarkListItem__subtitle:hover {
     -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
-    background-image: url('/images/mobile/skins/icon/statuses.png?11')
+    background-image: url('/images/mobile/skins/icon/statuses.png?12')
 }
 
 .vk_2x .uMailWrite__attachments .medias_row .tu_cancel_wrap:before,
 .vk_2x .uMailWrite__attachments .medias_thumb .tu_cancel_wrap:before {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?11')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?12')
 }
 
 .uMailWrite__attachments .medias_row .tu_cancel_wrap:before {
@@ -47160,7 +47637,13 @@ html .vk__page_mail {
     margin-top: 0
 }
 
-.vk__page_group .Btn {
+.vk__page_group .Btn,
+.vk__page_group .Groups .GroupsInvite__item .si_links .ai_menu_wrap,
+.vk__page_group .Groups .GroupsInvite__item .si_links .si_link,
+.vk__page_group .GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap,
+.vk__page_group .GroupsInvite .GroupsInvite__item .si_links .si_link,
+.vk__page_group .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap,
+.vk__page_group .GroupsNear .GroupsInvite__item .si_links .si_link {
     white-space: nowrap;
     overflow: hidden;
     -o-text-overflow: ellipsis;
