@@ -42,7 +42,7 @@
         return n.d(t, "a", t), t
     }, n.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, n.p = "", n(n.s = 7)
+    }, n.p = "", n(n.s = 4)
 }([function(e, t, n) {
     "use strict";
     n.r(t), n.d(t, "vkLocal", function() {
@@ -86,9 +86,9 @@
     }), n.d(t, "winToUtf", function() {
         return x
     }), n.d(t, "replaceEntities", function() {
-        return D
-    }), n.d(t, "clean", function() {
         return P
+    }), n.d(t, "clean", function() {
+        return D
     }), n.d(t, "unclean", function() {
         return k
     }), n.d(t, "each", function() {
@@ -122,8 +122,8 @@
     }), n.d(t, "decodeHtml", function() {
         return z
     });
-    var i = n(3),
-        o = n(9),
+    var i = n(14),
+        o = n(12),
         s = function() {
             return function(e, t) {
                 if (Array.isArray(e)) return e;
@@ -231,17 +231,17 @@
         }).replace(/&quot;/gi, '"').replace(/&lt;/gi, "<").replace(/&gt;/gi, ">").replace(/&amp;/gi, "&")
     }
 
-    function D() {
+    function P() {
         var e = (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
         return Object(i.se)("<textarea>" + e + "</textarea>").value
     }
 
-    function P(e) {
+    function D(e) {
         return e ? e.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;") : ""
     }
 
     function k(e) {
-        return D(e.replace(/\t/g, "\n"))
+        return P(e.replace(/\t/g, "\n"))
     }
 
     function L(e, t) {
@@ -378,11 +378,176 @@
         }]), 2),
         Y = K[0],
         z = K[1];
-    window.isRetina = F, window.extractUrls = N, window.serializeForm = H, window.addTemplates = j, window.getTemplate = I, window.rand = d, window.irand = l, window.isUndefined = u, window.isFunction = p, window.isArray = m, window.isString = h, window.isObject = g, window.isEmpty = _, window.vkNow = f, window.vkImage = y, window.trim = w, window.stripHTML = v, window.escapeRE = b, window.intval = E, window.floatval = C, window.positive = S, window.isNumeric = T, window.winToUtf = x, window.replaceEntities = D, window.clean = P, window.unclean = k, window.each = L, window.indexOf = O, window.inArray = R, window.clone = B, window.arrayKeyDiff = M, window.extend = A, window.vkLocal = a, window.lTimeout = c, window.getCaretCharacterOffsetWithin = W, window.formatCount = U, window.encodeHtml = Y, window.decodeHtml = z
+    window.isRetina = F, window.extractUrls = N, window.serializeForm = H, window.addTemplates = j, window.getTemplate = I, window.rand = d, window.irand = l, window.isUndefined = u, window.isFunction = p, window.isArray = m, window.isString = h, window.isObject = g, window.isEmpty = _, window.vkNow = f, window.vkImage = y, window.trim = w, window.stripHTML = v, window.escapeRE = b, window.intval = E, window.floatval = C, window.positive = S, window.isNumeric = T, window.winToUtf = x, window.replaceEntities = P, window.clean = D, window.unclean = k, window.each = L, window.indexOf = O, window.inArray = R, window.clone = B, window.arrayKeyDiff = M, window.extend = A, window.vkLocal = a, window.lTimeout = c, window.getCaretCharacterOffsetWithin = W, window.formatCount = U, window.encodeHtml = Y, window.decodeHtml = z
+}, function(e, t, n) {
+    "use strict";
+    n.r(t), n.d(t, "KEY", function() {
+        return s
+    }), n.d(t, "addEvent", function() {
+        return r
+    }), n.d(t, "removeEvent", function() {
+        return a
+    }), n.d(t, "triggerEvent", function() {
+        return c
+    }), n.d(t, "cancelEvent", function() {
+        return d
+    }), n.d(t, "stopEvent", function() {
+        return l
+    }), n.d(t, "normEvent", function() {
+        return u
+    }), n.d(t, "checkEvent", function() {
+        return p
+    }), n.d(t, "checkKeyboardEvent", function() {
+        return m
+    }), n.d(t, "checkOver", function() {
+        return h
+    });
+    var i = n(14),
+        o = n(0),
+        s = {
+            LEFT: 37,
+            UP: 38,
+            RIGHT: 39,
+            DOWN: 40,
+            DEL: 8,
+            TAB: 9,
+            RETURN: 13,
+            ENTER: 13,
+            ESC: 27,
+            PAGEUP: 33,
+            PAGEDOWN: 34,
+            SPACE: 32,
+            CTRL: 17,
+            ALT: 18,
+            SHIFT: 16
+        };
+
+    function r(e, t, n, s, r, a) {
+        if ((e = Object(i.ge)(e)) && 3 != e.nodeType && 8 != e.nodeType) {
+            var c, l = r ? ((c = function(e) {
+                var t = e.data;
+                e.data = r;
+                var i = n.apply(this, [e]);
+                return e.data = t, i
+            }).handler = n, c) : n;
+            e.setInterval && e !== window && (e = window);
+            var p = Object(i.data)(e, "events") || Object(i.data)(e, "events", {}),
+                m = Object(i.data)(e, "handle") || Object(i.data)(e, "handle", function(e) {
+                    return function() {
+                        (function(e) {
+                            e = u(e);
+                            var t = Array.from(arguments);
+                            t[0] = e;
+                            var n = Object(i.data)(this, "events");
+                            if (!n || "string" != typeof e.type || !n[e.type] || !n[e.type].length) return;
+                            var o = (n[e.type] || []).slice();
+                            for (var s in o)
+                                if (o.hasOwnProperty(s)) {
+                                    if ("mouseover" === e.type || "mouseout" === e.type) {
+                                        for (var r = e.relatedElement; r && r !== this;) r = r.parentNode;
+                                        if (r === this) continue
+                                    }
+                                    var a = o[s].apply(this, t);
+                                    if (!1 !== a && -1 !== a || d(e), -1 === a) return !1
+                                }
+                        }).apply(e, arguments)
+                    }
+                }(e));
+            Object(o.each)(t.split(/\s+/), function(t, n) {
+                p[n] || (p[n] = [], !s && e.addEventListener ? e.addEventListener(n, m, a) : !s && e.attachEvent && e.attachEvent("on" + n, m)), p[n].push(l)
+            })
+        }
+    }
+
+    function a(e, t, n, s) {
+        if (void 0 === s && (s = !1), e = Object(i.ge)(e)) {
+            var r = Object(i.data)(e, "events");
+            if (r)
+                if ("string" == typeof t) Object(o.each)(t.split(/\s+/), function(t, a) {
+                    if (Object(o.isArray)(r[a])) {
+                        var c = r[a].length;
+                        if (Object(o.isFunction)(n)) {
+                            for (var d = c - 1; d >= 0; d--)
+                                if (r[a][d] && (r[a][d] === n || r[a][d].handler === n)) {
+                                    r[a].splice(d, 1), c--;
+                                    break
+                                }
+                        } else {
+                            for (var l = 0; l < c; l++) delete r[a][l];
+                            c = 0
+                        }
+                        c || (e.removeEventListener ? e.removeEventListener(a, Object(i.data)(e, "handle"), s) : e.detachEvent && e.detachEvent("on" + a, Object(i.data)(e, "handle")), delete r[a])
+                    }
+                }), Object(o.isEmpty)(r) && (Object(i.removeData)(e, "events"), Object(i.removeData)(e, "handle"));
+                else
+                    for (var c in r) r.hasOwnProperty(c) && a(e, c)
+        }
+    }
+
+    function c(e, t, n, s) {
+        e = Object(i.ge)(e);
+        var r = Object(i.data)(e, "handle");
+        if (r) {
+            var a = function() {
+                return r.call(e, Object(o.extend)(n || {}, {
+                    type: t,
+                    target: e
+                }))
+            };
+            s ? a() : setTimeout(a, 0)
+        }
+    }
+
+    function d(e) {
+        if (!(e = e || window.event)) return !1;
+        for (; e.originalEvent;) e = e.originalEvent;
+        return e.preventDefault && e.preventDefault(), e.stopPropagation && e.stopPropagation(), e.stopImmediatePropagation && e.stopImmediatePropagation(), e.cancelBubble = !0, e.returnValue = !1, !1
+    }
+
+    function l(e) {
+        if (!(e = e || window.event)) return !1;
+        for (; e.originalEvent;) e = e.originalEvent;
+        return e.stopPropagation && e.stopPropagation(), e.cancelBubble = !0, !1
+    }
+
+    function u(e) {
+        var t = e = e || window.event;
+        if ((e = Object(o.clone)(t)).originalEvent = t, e.target || (e.target = e.srcElement || document), 3 == e.target.nodeType && (e.target = e.target.parentNode), !e.relatedTarget && e.fromElement && (e.relatedTarget = e.fromElement === e.target), null == e.pageX && null != e.clientX) {
+            var n = document.documentElement,
+                i = bodyNode;
+            e.pageX = e.clientX + (n && n.scrollLeft || i && i.scrollLeft || 0) - (n.clientLeft || 0), e.pageY = e.clientY + (n && n.scrollTop || i && i.scrollTop || 0) - (n.clientTop || 0)
+        }
+        return !e.which && (e.charCode || 0 === e.charCode ? e.charCode : e.keyCode) && (e.which = e.charCode || e.keyCode), !e.metaKey && e.ctrlKey ? e.metaKey = e.ctrlKey : !e.ctrlKey && e.metaKey && browser.mac && (e.ctrlKey = e.metaKey), !e.which && e.button && (e.which = 1 & e.button ? 1 : 2 & e.button ? 3 : 4 & e.button ? 2 : 0), e
+    }
+
+    function p(e) {
+        var t = e || window.event;
+        return t && ("click" === t.type || "mousedown" === t.type || "mouseup" === t.type) && (t.which > 1 || t.button > 1 || t.ctrlKey || t.shiftKey || browser.mac && t.metaKey) || !1
+    }
+
+    function m(e) {
+        if (!(e = u(e)) || !e.target) return !1;
+        if (!e.screenX) return !0;
+        var t = Object(i.getSize)(e.target),
+            n = Object(i.getXY)(e.target),
+            o = e.pageX - n[0],
+            s = e.pageY - n[1];
+        return o < -1 || o > t[0] + 1 || s < -1 || s > t[1] + 1 || Math.abs(e.pageX - n[0] - t[0] / 2) < 1 && Math.abs(e.pageY - n[1] - t[1] / 2) < 1
+    }
+
+    function h(e, t) {
+        if (!e) return !0;
+        e = e.originalEvent || e, t = t || e.target;
+        var n = e.fromElement || e.relatedTarget;
+        if (!n || n === t || n === t.parentNode) return !0;
+        for (; n !== t && n.parentNode && n.parentNode !== bodyNode;) n = n.parentNode;
+        return n !== t
+    }
+    window.KEY = s, window.addEvent = r, window.removeEvent = a, window.triggerEvent = c, window.cancelEvent = d, window.stopEvent = l, window.normEvent = u, window.checkEvent = p, window.checkKeyboardEvent = m, window.checkOver = h
 }, function(e, t, n) {
     "use strict";
     n.r(t);
-    var i = n(5),
+    var i = n(7),
         o = function() {
             return function(e, t) {
                 if (Array.isArray(e)) return e;
@@ -420,7 +585,7 @@
                 var o = this.box.getOptions();
                 o && o.lang && (cur.lang = extend(cur.lang || {}, o.lang)), t.setOptions({
                     onDestroy: function() {
-                        Radiobutton.destroy("ads_targeting_criterion_geo_type"), Radiobutton.destroy("ads_targeting_criterion_sex")
+                        Radiobutton.destroy("ads_targeting_criterion_geo_type"), Radiobutton.destroy("ads_targeting_criterion_sex"), cur.isPaymentProcess = !1
                     }
                 }), this.options = n, this.currentScreen = this.introScreenElement, this.options.already_promoted_ad_id ? (this.setPaymentResultScreen(getLang("ads_edit_easy_promote_already_promoted_title"), getLang("ads_edit_easy_promote_already_promoted_description"), "success"), this.setPaymentResultScreenButton(getLang("ads_edit_easy_promote_go_to_ad"), "https://vk.com/ads?act=office&union_id=" + this.options.already_promoted_ad_id), this.setBoxOptions({
                     showBackButton: !1,
@@ -513,7 +678,7 @@
                 t && window.open(t, "_blank")
             } else {
                 var n = e.target.getAttribute("data-type");
-                switch (n) {
+                switch (cur.isPaymentProcess = !0, n) {
                     case "webmoney":
                     case "kiwipurse":
                         this.doNontransactionalPayment(n, cur.ps_list[n]);
@@ -629,9 +794,9 @@
             if (i = extend({}, {
                     noBottomControls: t === this.cardPaymentScreenElement || t === this.paymentScreenElement || t === this.paymentResultScreenElement
                 }, i || {}), t == this.currentScreen) return this.setBoxOptions(i), !1;
-            t === this.settingsScreenElement && (this.box.changed = !0), addClass(this.boxBodyNode, "ads_edit_easy_promote_box_overflow-hidden"), setStyle(this.screensContainerElement, {
+            t === this.settingsScreenElement && (this.box.changed = !0), window.removeEventListener("message", e.frameMessage, !1), addClass(this.boxBodyNode, "ads_edit_easy_promote_box_overflow-hidden"), setStyle(this.screensContainerElement, {
                 height: this.screensContainerElement.clientHeight
-            }), n && (addClass(this.screensWrapperElement, this.classname("screens-wrapper_transition-disabled")), this.screensWrapperElement.clientHeight), removeClass(t, "unshown"), removeClass(t, this.classname("screen_hidden")), t.scrollTop = 0;
+            }), n && (addClass(this.screensWrapperElement, this.classname("screens-wrapper_transition-disabled")), this.screensWrapperElement.clientHeight, cur.isPaymentProcess = !1), removeClass(t, "unshown"), removeClass(t, this.classname("screen_hidden")), t.scrollTop = 0;
             var o = n ? t.offsetTop + t.clientHeight : this.currentScreen.offsetTop + this.currentScreen.clientHeight;
             return setStyle(this.screensWrapperElement, {
                 transform: "translateY(-" + o + "px)"
@@ -645,7 +810,7 @@
                 }), addClass(e, "unshown"), setStyle(this.screensContainerElement, {
                     height: "auto"
                 }), this.screensWrapperElement.clientHeight, removeClass(this.screensWrapperElement, this.classname("screens-wrapper_transition-disabled")), removeClass(this.boxBodyNode, "ads_edit_easy_promote_box_overflow-hidden")
-            }.bind(this, this.currentScreen), 600), this.currentScreen = t, this.currentScreen === this.settingsScreenElement && this.updateExpectedReach(), window.removeEventListener("message", e.frameMessage, !1), !1
+            }.bind(this, this.currentScreen), 600), this.currentScreen = t, this.currentScreen === this.settingsScreenElement && this.updateExpectedReach(), !1
         }, e.prototype.nextScreen = function(e) {
             var t = (e ? domPS : domNS)(this.currentScreen),
                 n = {};
@@ -922,60 +1087,62 @@
             if (!i || o || e.paymentWaiting || (this.onPaymentWaiting(), e.paymentWaiting = !0), cur.isPaymentComplete) return this.onPaymentCheckDone(!0, e, cur.paymentCompleteParams), void delete cur.isPaymentComplete;
             if (cur.isPaymentCanceled || o) return this.onPaymentCheckDone(!1, e, void 0, void 0, getLang("ads_edit_easy_promote_payment_cancelled")), void delete cur.isPaymentCanceled;
             if (cur.isPaymentFailed) return this.onPaymentCheckDone(!1, e), void delete cur.isPaymentFailed;
-            var s = extend({}, n, {
-                act: "a_getvotes_check"
-            });
-            ajax.post("al_payments.php", s, {
-                onDone: this.onPaymentCheckDone.bind(this, !0, e),
-                onFail: this.onPaymentCheckDone.bind(this, !1, e)
-            })
-        }, e.prototype.doTransactionalPayment = function(e, t) {
-            var n = this,
-                i = void 0;
-            if (t && t.provider) {
-                i = window.open("", "_blank", "scrollbars=1, resizable=1, menubar=1, left=0, top=0, toolbar=1, status=1");
-                var o = getLang("payment_redirect").replace("%s", cur.ps_list[e].title);
-                cur._popup_text = cur.paymentsPopupHtml(o, "", ""), cur.paymentsPopupWrite(i)
+            if (cur.isPaymentProcess) {
+                var s = extend({}, n, {
+                    act: "a_getvotes_check"
+                });
+                ajax.post("al_payments.php", s, {
+                    onDone: this.onPaymentCheckDone.bind(this, !0, e),
+                    onFail: this.onPaymentCheckDone.bind(this, !1, e)
+                })
             }
-            var s = {
+        }, e.prototype.doTransactionalPayment = function(t, n) {
+            var i = this,
+                o = void 0;
+            if (n && n.provider) {
+                o = window.open("", "_blank", "scrollbars=1, resizable=1, menubar=1, left=0, top=0, toolbar=1, status=1");
+                var s = getLang("payment_redirect").replace("%s", cur.ps_list[t].title);
+                cur._popup_text = cur.paymentsPopupHtml(s, "", ""), cur.paymentsPopupWrite(o)
+            }
+            var r = {
                 act: "a_getvotes_charge",
-                type: e,
+                type: t,
                 payment_account_id: this.options.payment_union_id,
                 hash: this.options.payment_hash,
                 account_hash: this.options.payment_ads_hash,
                 amount: val(this.paymentTotalBudgetInput).replace(/\D+/g, ""),
                 source: "ads_easy_promote"
             };
-            ajax.post("al_payments.php", s, {
-                onDone: function(o, s) {
-                    if ("mailmoney_vkpay" == e) return n.setPaymentResultScreen(getLang("ads_edit_easy_promote_payment_wait"), getLang("ads_edit_easy_promote_payment_wait_description"), "wait"), n.goToScreen(n.paymentResultScreenElement), n.box._hide(!1, !0), showWiki({
-                        w: o
+            ajax.post("al_payments.php", r, {
+                onDone: function(s, r) {
+                    if ("mailmoney_vkpay" == t) return i.setPaymentResultScreen(getLang("ads_edit_easy_promote_payment_wait"), getLang("ads_edit_easy_promote_payment_wait_description"), "wait"), i.goToScreen(i.paymentResultScreenElement), i.box._hide(!1, !0), showWiki({
+                        w: s
                     }, !1, !1, {
                         noLocChange: 1,
                         skipBoxesHide: 1,
                         noClickHide: 1
-                    }), cur.promoteBox = n.box, cur.onExternalAppDone = function(e) {
+                    }), cur.promoteBox = i.box, cur.onExternalAppDone = function(e) {
                         e.status || (cur.isPaymentCanceled = !0), cur.promoteBox._show(), cur.promoteBox = null, cur.onExternalAppDone = null, window.WkView && WkView.hide(!1, !0)
-                    }, void n.waitForPaymentResult({
+                    }, void i.waitForPaymentResult({
                         ajaxParams: {
                             source: "ads",
-                            ads_union_id: n.options.payment_union_id,
-                            type: e,
-                            hash: t.check_hash
+                            ads_union_id: i.options.payment_union_id,
+                            type: t,
+                            hash: n.check_hash
                         },
-                        paymentSystemData: t
+                        paymentSystemData: n
                     });
-                    s ? (n.setPaymentIFrameHtml(s), n.nextScreen()) : (n.setPaymentResultScreen(getLang("ads_edit_easy_promote_payment_wait"), getLang("ads_edit_easy_promote_payment_wait_description"), "wait"), n.goToScreen(n.paymentResultScreenElement));
-                    var r = {
-                        ajaxParams: extend({}, o, {
-                            type: e
+                    r ? (i.setPaymentIFrameHtml(r), i.nextScreen(), window.addEventListener("message", e.frameMessage, !1)) : (i.setPaymentResultScreen(getLang("ads_edit_easy_promote_payment_wait"), getLang("ads_edit_easy_promote_payment_wait_description"), "wait"), i.goToScreen(i.paymentResultScreenElement));
+                    var a = {
+                        ajaxParams: extend({}, s, {
+                            type: t
                         }),
-                        paymentSystemData: t
+                        paymentSystemData: n
                     };
-                    i && (r.paymentPopup = i), n.waitForPaymentResult(r)
+                    o && (a.paymentPopup = o), i.waitForPaymentResult(a)
                 },
                 onFail: function(e) {
-                    return domFC(n.paymentErrorElement).innerHTML = e, show(n.paymentErrorElement), !0
+                    return domFC(i.paymentErrorElement).innerHTML = e, show(i.paymentErrorElement), !0
                 },
                 showProgress: addClass.pbind(this.paymentSystemsElement, this.classname("payments-systems_disabled")),
                 hideProgress: removeClass.pbind(this.paymentSystemsElement, this.classname("payments-systems_disabled"))
@@ -1023,8 +1190,8 @@
             if (!t.origin.match(/^https?:\/\/([a-zA-Z0-9\-\.]+\.)?paymentgate\.ru$/) && !t.origin.match(/^https?:\/\/([a-zA-Z0-9\-\.]+\.)?money\.mail\.ru$/)) return !1;
             var n = {};
             t.data && "{" === t.data.substr(0, 1) && "billing" !== (n = Object(i.parseJSON)(t.data)).type || ("submit" === t.data || "3dsPage" === n.action ? setTimeout(e.setCardFrameHeight.pbind(600), 200) : "3dsFinish" === n.action ? e.setCardFrameHeight() : "resizeFrame" === n.action && setTimeout(e.setCardFrameHeight.pbind(n.action_params.height), 200))
-        }, e.prototype.setPaymentIFrameHtml = function(t) {
-            var n = ce("iframe", {
+        }, e.prototype.setPaymentIFrameHtml = function(e) {
+            var t = ce("iframe", {
                 id: "card_iframe",
                 name: "card_iframe"
             }, {
@@ -1034,7 +1201,7 @@
                 overflowX: "hidden",
                 overflowY: "hidden"
             });
-            n.frameBorder = 0, this.cardPaymentIframeContainerElement.innerHTML = "", this.cardPaymentIframeContainerElement.appendChild(n), window.addEventListener("message", e.frameMessage, !1), n.contentWindow.document.open("text/html", "replace"), n.contentWindow.document.write(t), n.contentWindow.document.close()
+            t.frameBorder = 0, this.cardPaymentIframeContainerElement.innerHTML = "", this.cardPaymentIframeContainerElement.appendChild(t), t.contentWindow.document.open("text/html", "replace"), t.contentWindow.document.write(e), t.contentWindow.document.close()
         }, e.setCardFrameHeight = function(e) {
             var t = ge("card_iframe");
             e ? (e = Math.max(e, 250) + 15, cur.prevFrameHeight = t.style.height, t.style.height = e + "px") : t.style.height = cur.prevFrameHeight
@@ -1278,172 +1445,587 @@
     try {
         stManager.done(jsc("web/ads_edit_easy.js"))
     } catch (e) {}
+}, , function(e, t, n) {
+    e.exports = n(2)
 }, function(e, t, n) {
     "use strict";
-    n.r(t), n.d(t, "KEY", function() {
+
+    function i() {
+        window._logTimer = (new Date).getTime()
+    }
+
+    function o(e, t) {
+        window.Raven && (t && t.length > 350 && (t = t.slice(0, 150) + "..." + t.slice(-150)), e.message += ": " + t, Raven.captureException(e))
+    }
+
+    function s(e) {
+        try {
+            window.debuglogClient && debuglogClient(e);
+            var t = "[" + ((new Date).getTime() - window._logTimer) / 1e3 + "] ";
+            if (window.console && console.log) {
+                var n = Array.prototype.slice.call(arguments);
+                n.unshift(t), browser.msie || browser.mobile ? console.log(n.join(" ")) : console.log.apply(console, n)
+            }
+        } catch (e) {}
+    }
+
+    function r(e) {
+        if (!e) return !1;
+        var t = e.tagName,
+            n = e.id,
+            i = e.className,
+            o = (t || "").toLowerCase();
+        return i && (o += "." + e.className.replace(/\s+/g, ".")), n && !/^__vk/.test(n) && (o += "#" + e.id), o || (e.toString() || "[NULL]")
+    }
+    n.r(t), n.d(t, "initDebugTools", function() {
+        return i
+    }), n.d(t, "logEvalError", function() {
+        return o
+    }), n.d(t, "debugLog", function() {
         return s
-    }), n.d(t, "addEvent", function() {
+    }), n.d(t, "debugEl", function() {
         return r
-    }), n.d(t, "removeEvent", function() {
-        return a
-    }), n.d(t, "triggerEvent", function() {
-        return c
-    }), n.d(t, "cancelEvent", function() {
-        return d
-    }), n.d(t, "stopEvent", function() {
-        return l
-    }), n.d(t, "normEvent", function() {
-        return u
-    }), n.d(t, "checkEvent", function() {
-        return p
-    }), n.d(t, "checkKeyboardEvent", function() {
-        return m
-    }), n.d(t, "checkOver", function() {
-        return h
+    })
+}, , function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+    "use strict";
+    __webpack_require__.r(__webpack_exports__), __webpack_require__.d(__webpack_exports__, "throttleAccumulate", function() {
+        return throttleAccumulate
+    }), __webpack_require__.d(__webpack_exports__, "executionStackPop", function() {
+        return executionStackPop
+    }), __webpack_require__.d(__webpack_exports__, "lplog", function() {
+        return lplog
+    }), __webpack_require__.d(__webpack_exports__, "toArray", function() {
+        return toArray
+    }), __webpack_require__.d(__webpack_exports__, "arrayUnique", function() {
+        return arrayUnique
+    }), __webpack_require__.d(__webpack_exports__, "unpackStore", function() {
+        return unpackStore
+    }), __webpack_require__.d(__webpack_exports__, "debounce", function() {
+        return debounce
+    }), __webpack_require__.d(__webpack_exports__, "throttle", function() {
+        return throttle
+    }), __webpack_require__.d(__webpack_exports__, "shuffle", function() {
+        return shuffle
+    }), __webpack_require__.d(__webpack_exports__, "parallel", function() {
+        return parallel
+    }), __webpack_require__.d(__webpack_exports__, "hashCode", function() {
+        return hashCode
+    }), __webpack_require__.d(__webpack_exports__, "parseJSON", function() {
+        return parseJSON
+    }), __webpack_require__.d(__webpack_exports__, "checkTextLength", function() {
+        return checkTextLength
     });
-    var i = n(3),
-        o = n(0),
-        s = {
-            LEFT: 37,
-            UP: 38,
-            RIGHT: 39,
-            DOWN: 40,
-            DEL: 8,
-            TAB: 9,
-            RETURN: 13,
-            ENTER: 13,
-            ESC: 27,
-            PAGEUP: 33,
-            PAGEDOWN: 34,
-            SPACE: 32,
-            CTRL: 17,
-            ALT: 18,
-            SHIFT: 16
-        };
+    var _utils_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0),
+        _ui_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(10),
+        _debug_tools__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5);
 
-    function r(e, t, n, s, r, a) {
-        if ((e = Object(i.ge)(e)) && 3 != e.nodeType && 8 != e.nodeType) {
-            var c, l = r ? ((c = function(e) {
-                var t = e.data;
-                e.data = r;
-                var i = n.apply(this, [e]);
-                return e.data = t, i
-            }).handler = n, c) : n;
-            e.setInterval && e !== window && (e = window);
-            var p = Object(i.data)(e, "events") || Object(i.data)(e, "events", {}),
-                m = Object(i.data)(e, "handle") || Object(i.data)(e, "handle", function(e) {
-                    return function() {
-                        (function(e) {
-                            e = u(e);
-                            var t = Array.from(arguments);
-                            t[0] = e;
-                            var n = Object(i.data)(this, "events");
-                            if (!n || "string" != typeof e.type || !n[e.type] || !n[e.type].length) return;
-                            var o = (n[e.type] || []).slice();
-                            for (var s in o)
-                                if (o.hasOwnProperty(s)) {
-                                    if ("mouseover" === e.type || "mouseout" === e.type) {
-                                        for (var r = e.relatedElement; r && r !== this;) r = r.parentNode;
-                                        if (r === this) continue
-                                    }
-                                    var a = o[s].apply(this, t);
-                                    if (!1 !== a && -1 !== a || d(e), -1 === a) return !1
-                                }
-                        }).apply(e, arguments)
-                    }
-                }(e));
-            Object(o.each)(t.split(/\s+/), function(t, n) {
-                p[n] || (p[n] = [], !s && e.addEventListener ? e.addEventListener(n, m, a) : !s && e.attachEvent && e.attachEvent("on" + n, m)), p[n].push(l)
+    function throttleAccumulate(e, t) {
+        var n = [],
+            i = 0;
+        return function(o) {
+            n.push(o), i || (i = setTimeout(function() {
+                i = !1, e(n), n = []
+            }, t))
+        }
+    }
+
+    function executionStackPop(e) {
+        return e.length > 0 && e.pop().func(), e
+    }
+
+    function lplog(e, t) {
+        var n = void 0,
+            i = void 0;
+        if (window.__debugMode) {
+            switch (t) {
+                case "error":
+                    n = "color: red", i = "background: red; color: white";
+                    break;
+                case "success":
+                    n = "color: green", i = "background: green; color: white";
+                    break;
+                default:
+                    n = "color: blue;", i = "background: #000; color: #fff;"
+            }
+            try {
+                var o = new Date;
+                console.debug("%cLP:[" + o.getHours() + ":" + o.getMinutes() + ":" + o.getSeconds() + ":" + o.getMilliseconds() + "]%c " + e, i, n)
+            } catch (e) {}
+        }
+    }
+
+    function toArray(e) {
+        var t = [];
+        if (void 0 === e.length) return Object.keys(e).map(function(t) {
+            return e[t]
+        });
+        for (var n = 0; n < e.length; n++) t.push(e[n]);
+        return t
+    }
+
+    function arrayUnique(e) {
+        for (var t = {}, n = [], i = 0; i < e.length; i++) t[e[i]] || (n.push(e[i]), t[n[i]] = 1);
+        return n
+    }
+
+    function unpackStore(e) {
+        return e.get ? e.get() : e
+    }
+
+    function debounce(e, t, n) {
+        var i = void 0;
+        return function() {
+            var o = this,
+                s = arguments,
+                r = n && !i;
+            clearTimeout(i), i = setTimeout(function() {
+                i = null, n || e.apply(o, s)
+            }, t), r && e.apply(this, s)
+        }
+    }
+
+    function throttle(e, t) {
+        var n = void 0;
+        return function() {
+            n || (e.apply(this, arguments), n = setTimeout(function() {
+                n = !1
+            }, t))
+        }
+    }
+
+    function shuffle(e) {
+        for (var t = e.length; t > 0;) {
+            var n = Math.floor(Math.random() * t),
+                i = e[--t];
+            e[t] = e[n], e[n] = i
+        }
+        return e
+    }
+
+    function parallel() {
+        var e = [].slice.call(arguments),
+            t = e.pop(),
+            n = new CallHub(t, e.length);
+        Object(_utils_common__WEBPACK_IMPORTED_MODULE_0__.each)(e, function(e, t) {
+            return t(function() {
+                return n.done()
             })
+        })
+    }
+
+    function hashCode(e) {
+        var t = 0;
+        if (0 === e.length) return t;
+        for (var n = 0, i = e.length; n < i; n++) {
+            t = (t << 5) - t + e.charCodeAt(n), t |= 0
+        }
+        return t
+    }
+
+    function parseJSON(obj) {
+        if (window.JSON && JSON.parse) try {
+            return JSON.parse(obj)
+        } catch (e) {
+            Object(_ui_util__WEBPACK_IMPORTED_MODULE_1__.topError)("<b>parseJSON:</b> " + e.message, {
+                dt: -1,
+                type: 5,
+                answer: obj
+            });
+            var evalString = "(" + obj + ")";
+            try {
+                return eval(evalString)
+            } catch (e) {
+                if (__debugMode) throw e;
+                Object(_debug_tools__WEBPACK_IMPORTED_MODULE_2__.logEvalError)(e, evalString)
+            }
+        } else {
+            var _evalString = "(" + obj + ")";
+            try {
+                return eval(_evalString)
+            } catch (e) {
+                if (__debugMode) throw e;
+                Object(_debug_tools__WEBPACK_IMPORTED_MODULE_2__.logEvalError)(e, _evalString)
+            }
         }
     }
 
-    function a(e, t, n, s) {
-        if (void 0 === s && (s = !1), e = Object(i.ge)(e)) {
-            var r = Object(i.data)(e, "events");
-            if (r)
-                if ("string" == typeof t) Object(o.each)(t.split(/\s+/), function(t, a) {
-                    if (Object(o.isArray)(r[a])) {
-                        var c = r[a].length;
-                        if (Object(o.isFunction)(n)) {
-                            for (var d = c - 1; d >= 0; d--)
-                                if (r[a][d] && (r[a][d] === n || r[a][d].handler === n)) {
-                                    r[a].splice(d, 1), c--;
-                                    break
-                                }
-                        } else {
-                            for (var l = 0; l < c; l++) delete r[a][l];
-                            c = 0
-                        }
-                        c || (e.removeEventListener ? e.removeEventListener(a, Object(i.data)(e, "handle"), s) : e.detachEvent && e.detachEvent("on" + a, Object(i.data)(e, "handle")), delete r[a])
-                    }
-                }), Object(o.isEmpty)(r) && (Object(i.removeData)(e, "events"), Object(i.removeData)(e, "handle"));
-                else
-                    for (var c in r) r.hasOwnProperty(c) && a(e, c)
+    function checkTextLength(e, t, n, i, o, s, r) {
+        var a = t.getValue ? t.getValue() : t.value,
+            c = t.lastLen || 0;
+        if (t.lastLen !== a.length || s) {
+            t.lastLen = a.length;
+            var d = {
+                    "&": 5,
+                    "<": 4,
+                    ">": 4,
+                    '"': 6,
+                    "\n": i ? 1 : 4,
+                    "\r": 0,
+                    "!": 5,
+                    "'": 5,
+                    $: 6,
+                    "\\": 6
+                },
+                l = {
+                    1168: 1,
+                    1169: 1,
+                    8211: 1,
+                    8212: 1,
+                    8216: 1,
+                    8217: 1,
+                    8218: 1,
+                    8230: 1,
+                    8240: 1,
+                    8249: 1,
+                    8250: 1,
+                    8364: 1,
+                    8470: 1,
+                    8482: 1,
+                    65533: 1
+                },
+                u = {
+                    1037: 1,
+                    1104: 1,
+                    1117: 1
+                };
+            o && (d[","] = 5);
+            var p = function(e) {
+                for (var t = 0, n = 0, i = e.length; n < i; n++) {
+                    var o = d[e.charAt(n)],
+                        s = e.charCodeAt(n);
+                    t += void 0 !== o ? o : !r && s >= 128 && (s < 1025 || u[s] || s > 1119) && !l[s] && (s < 8220 || s > 8222) && (s < 8224 || s > 8226) ? ("&#" + s + ";").length : 1
+                }
+                return t
+            }(a);
+            if (n = ge(n), p > Math.max(e - 100, .75 * e))
+                if (show(n), p > e)
+                    if (o) {
+                        var m = val(t, function(e, t) {
+                            for (var n = 0, i = "", o = 0, s = e.length; o < s; o++) {
+                                var a = e.charAt(o),
+                                    c = d[a],
+                                    p = e.charCodeAt(o);
+                                if ((n += void 0 !== c ? c : !r && p >= 128 && (p < 1025 || u[p] || p > 1119) && !l[p] && (p < 8220 || p > 8222) && (p < 8224 || p > 8226) ? ("&#" + p + ";").length : 1) > t) break;
+                                i += a
+                            }
+                            return i
+                        }(a, Math.min(e, c)));
+                        t.lastLen = m.length, n.innerHTML = getLang("text_N_symbols_remain", 0)
+                    } else n.innerHTML = getLang("text_exceeds_symbol_limit", p - e);
+            else n.innerHTML = getLang("text_N_symbols_remain", e - p);
+            else hide(n)
         }
     }
+}, , function(e, t, n) {
+    "use strict";
 
-    function c(e, t, n, s) {
-        e = Object(i.ge)(e);
-        var r = Object(i.data)(e, "handle");
-        if (r) {
-            var a = function() {
-                return r.call(e, Object(o.extend)(n || {}, {
-                    type: t,
-                    target: e
-                }))
-            };
-            s ? a() : setTimeout(a, 0)
-        }
+    function i(e) {
+        var t = new Date;
+        return e.getFullYear() === t.getFullYear() && e.getMonth() === t.getMonth() && e.getDate() === t.getDate()
     }
 
-    function d(e) {
-        if (!(e = e || window.event)) return !1;
-        for (; e.originalEvent;) e = e.originalEvent;
-        return e.preventDefault && e.preventDefault(), e.stopPropagation && e.stopPropagation(), e.stopImmediatePropagation && e.stopImmediatePropagation(), e.cancelBubble = !0, e.returnValue = !1, !1
+    function o(e) {
+        return i(new Date(e.getTime() + 864e5))
+    }
+
+    function s(e) {
+        return i(new Date(e.getTime() - 864e5))
+    }
+
+    function r(e, t) {
+        var n = new Date(e),
+            i = new Date(t);
+        return n.getFullYear() === i.getFullYear() && n.getMonth() === i.getMonth() && n.getDate() === i.getDate()
+    }
+
+    function a(e) {
+        return e >= 10 ? e : "0" + e
+    }
+
+    function c(e, t) {
+        var n = void 0;
+        e = Math.max(e, 0);
+        var i = Math.floor(e % 60);
+        n = i < 10 ? "0" + i : i;
+        var o = (e = Math.floor(e / 60)) % 60;
+        return n = o + ":" + n, ((e = Math.floor(e / 60)) > 0 || t) && (o < 10 && (n = "0" + n), n = e + ":" + n), n
+    }
+    n.r(t), n.d(t, "isToday", function() {
+        return i
+    }), n.d(t, "isYesterday", function() {
+        return o
+    }), n.d(t, "isTomorrow", function() {
+        return s
+    }), n.d(t, "isSameDate", function() {
+        return r
+    }), n.d(t, "leadingZero", function() {
+        return a
+    }), n.d(t, "formatTime", function() {
+        return c
+    })
+}, function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+    "use strict";
+    __webpack_require__.r(__webpack_exports__), __webpack_require__.d(__webpack_exports__, "topMsg", function() {
+        return topMsg
+    }), __webpack_require__.d(__webpack_exports__, "topError", function() {
+        return topError
+    }), __webpack_require__.d(__webpack_exports__, "showMsg", function() {
+        return showMsg
+    }), __webpack_require__.d(__webpack_exports__, "showGlobalPrg", function() {
+        return showGlobalPrg
+    });
+    var _dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(14),
+        _utils_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(0);
+
+    function topMsg(e, t, n) {
+        if (n || (n = "#D6E5F7"), e) {
+            clearTimeout(window.topMsgTimer);
+            var i = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.ge)("system_msg");
+            i.style.backgroundColor = n, i.innerHTML = e, Object(_dom__WEBPACK_IMPORTED_MODULE_0__.show)(i), t && (window.topMsgTimer = setTimeout(topMsg.pbind(!1), 1e3 * t))
+        } else Object(_dom__WEBPACK_IMPORTED_MODULE_0__.hide)("system_msg")
+    }
+
+    function topError(text, opts) {
+        if (opts || (opts = {}), text.message) {
+            var error = text;
+            text = "<b>JavaScript error:</b> " + error.message, opts.stack = error.stack, error.stack && __debugMode && (text += "<br/>" + error.stack.replace(/\n/g, "<br/>"));
+            try {
+                console.log(error.stack)
+            } catch (e) {}
+        }
+        if (!opts.stack) try {
+            eval("0 = 1")
+        } catch (e) {
+            opts.stack = e.stack
+        } - 1 != opts.dt && topMsg(text, opts.dt, "#FFB4A3"), __dev || Object(_dom__WEBPACK_IMPORTED_MODULE_0__.ge)("debuglogwrap") || (delete opts.dt, ajax.plainpost("/errors.php", Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__.extend)(opts, {
+            msg: opts.msg || text,
+            module: (window.cur || {}).module,
+            id: vk.id,
+            host: locHost,
+            lang: vk.lang,
+            loc: (window.nav || {}).strLoc,
+            realloc: location.toString()
+        })))
+    }
+
+    function showMsg(e, t, n, i) {
+        var o = "msg" + ("msg" !== n ? " " + n : "");
+        i && (o += " msg_appear"), e = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.ge)(e);
+        var s = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.geByClass1)(n, e),
+            r = s || Object(_dom__WEBPACK_IMPORTED_MODULE_0__.domFC)(e),
+            a = e.insertBefore(Object(_dom__WEBPACK_IMPORTED_MODULE_0__.ce)("div", {
+                className: o,
+                innerHTML: '<div class="msg_text">' + t + "</div>"
+            }), r);
+        s && Object(_dom__WEBPACK_IMPORTED_MODULE_0__.re)(s), setTimeout(_dom__WEBPACK_IMPORTED_MODULE_0__.removeClass.pbind(a, "msg_appear"), 0)
+    }
+
+    function showGlobalPrg(e, t) {
+        var n = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.getXY)(e),
+            i = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.getSize)(e),
+            o = t || {},
+            s = o.w,
+            r = void 0 === s ? 32 : s,
+            a = o.h,
+            c = void 0 === a ? 13 : a,
+            d = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.ge)("global_prg");
+        d.className = o.cls || "progress", Object(_dom__WEBPACK_IMPORTED_MODULE_0__.setStyle)(d, {
+            left: n[0] + Math.floor((i[0] - r) / 2) + Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__.intval)(o.shift ? o.shift[0] : 0),
+            top: n[1] + Math.floor((i[1] - c) / 2) + Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__.intval)(o.shift ? o.shift[1] : 0),
+            width: r,
+            height: c,
+            display: "block",
+            "z-index": o.zIndex ? o.zIndex : null
+        }), o.hide && (e.style.visibility = "hidden")
+    }
+}, , function(e, t, n) {
+    "use strict";
+    n.r(t), n.d(t, "parseLatin", function() {
+        return s
+    }), n.d(t, "parseCyr", function() {
+        return r
+    }), n.d(t, "parseLatKeys", function() {
+        return a
+    }), n.d(t, "langNumeric", function() {
+        return c
+    }), n.d(t, "langSex", function() {
+        return d
+    }), n.d(t, "langStr", function() {
+        return l
+    }), n.d(t, "addLangKeys", function() {
+        return u
+    }), n.d(t, "getLang", function() {
+        return p
+    }), n.d(t, "langDate", function() {
+        return m
+    }), n.d(t, "getShortDate", function() {
+        return h
+    }), n.d(t, "getShortDateOrTime", function() {
+        return g
+    }), n.d(t, "langWordNumeric", function() {
+        return _
+    }), n.d(t, "getDateText", function() {
+        return f
+    }), n.d(t, "getBigDateNew", function() {
+        return y
+    }), n.d(t, "getSmDate", function() {
+        return w
+    });
+    var i = n(9),
+        o = n(0);
+
+    function s(e) {
+        for (var t = ["yo", "zh", "kh", "ts", "ch", "sch", "shch", "sh", "eh", "yu", "ya", "YO", "ZH", "KH", "TS", "CH", "SCH", "SHCH", "SH", "EH", "YU", "YA", "'"], n = ["ё", "ж", "х", "ц", "ч", "щ", "щ", "ш", "э", "ю", "я", "Ё", "Ж", "Х", "Ц", "Ч", "Щ", "Щ", "Ш", "Э", "Ю", "Я", "ь"], i = e, o = 0, s = t.length; o < s; o++) i = i.split(t[o]).join(n[o]);
+        for (var r = "abvgdezijklmnoprstufhcyABVGDEZIJKLMNOPRSTUFHCYёЁ", a = 0, c = r.length; a < c; a++) i = i.split(r.charAt(a)).join("абвгдезийклмнопрстуфхцыАБВГДЕЗИЙКЛМНОПРСТУФХЦЫеЕ".charAt(a));
+        return i === e ? null : i
+    }
+
+    function r(e) {
+        for (var t = ["yo", "zh", "kh", "ts", "ch", "sch", "shch", "sh", "eh", "yu", "ya", "YO", "ZH", "KH", "TS", "CH", "SCH", "SHCH", "SH", "EH", "YU", "YA", "'"], n = ["ё", "ж", "х", "ц", "ч", "щ", "щ", "ш", "э", "ю", "я", "Ё", "Ж", "Х", "Ц", "Ч", "Щ", "Щ", "Ш", "Э", "Ю", "Я", "ь"], i = "абвгдезийклмнопрстуфхцыАБВГДЕЗИЙКЛМНОПРСТУФХЦЫеЕ", o = e, s = 0; s < n.length; s++) o = o.split(n[s]).join(t[s]);
+        for (var r = 0; r < i.length; r++) o = o.split(i.charAt(r)).join("abvgdezijklmnoprstufhcyABVGDEZIJKLMNOPRSTUFHCYёЁ".charAt(r));
+        return o === e ? null : o
+    }
+
+    function a(e) {
+        for (var t = "qwertyuiop[]asdfghjkl;'zxcvbnm,./`", n = e, i = 0; i < t.length; i++) n = n.split(t.charAt(i)).join("йцукенгшщзхъфывапролджэячсмитьбю.ё".charAt(i));
+        return n == e ? null : n
+    }
+
+    function c(e, t, n) {
+        if (!t || !window.langConfig) return e;
+        var i = void 0;
+        if (Object(o.isArray)(t) ? (i = t[1], e != Math.floor(e) ? i = t[langConfig.numRules.float] : Object(o.each)(langConfig.numRules.int, function(n, s) {
+                if ("*" == s[0]) return i = t[s[2]], !1;
+                var r = s[0] ? e % s[0] : e;
+                return -1 != Object(o.indexOf)(s[1], r) ? (i = t[s[2]], !1) : void 0
+            })) : i = t, n) {
+            for (var s = e.toString().split("."), r = [], a = s[0].length - 3; a > -3; a -= 3) r.unshift(s[0].slice(a > 0 ? a : 0, a + 3));
+            s[0] = r.join(langConfig.numDel), e = s.join(langConfig.numDec)
+        }
+        return i = (i || "%s").replace("%s", e)
+    }
+
+    function d(e, t) {
+        if (!Object(o.isArray)(t)) return t;
+        var n = t[1];
+        return window.langConfig ? (Object(o.each)(langConfig.sexRules, function(i, o) {
+            return "*" == o[0] ? (n = t[o[1]], !1) : e == o[0] && t[o[1]] ? (n = t[o[1]], !1) : void 0
+        }), n) : n
     }
 
     function l(e) {
-        if (!(e = e || window.event)) return !1;
-        for (; e.originalEvent;) e = e.originalEvent;
-        return e.stopPropagation && e.stopPropagation(), e.cancelBubble = !0, !1
-    }
-
-    function u(e) {
-        var t = e = e || window.event;
-        if ((e = Object(o.clone)(t)).originalEvent = t, e.target || (e.target = e.srcElement || document), 3 == e.target.nodeType && (e.target = e.target.parentNode), !e.relatedTarget && e.fromElement && (e.relatedTarget = e.fromElement === e.target), null == e.pageX && null != e.clientX) {
-            var n = document.documentElement,
-                i = bodyNode;
-            e.pageX = e.clientX + (n && n.scrollLeft || i && i.scrollLeft || 0) - (n.clientLeft || 0), e.pageY = e.clientY + (n && n.scrollTop || i && i.scrollTop || 0) - (n.clientTop || 0)
+        for (var t = arguments, n = t.length, i = e + "", o = 1; o < n; o += 2) {
+            var s = "%" === t[o][0] ? t[o] : "{" + t[o] + "}";
+            i = i.replace(s, t[o + 1])
         }
-        return !e.which && (e.charCode || 0 === e.charCode ? e.charCode : e.keyCode) && (e.which = e.charCode || e.keyCode), !e.metaKey && e.ctrlKey ? e.metaKey = e.ctrlKey : !e.ctrlKey && e.metaKey && browser.mac && (e.ctrlKey = e.metaKey), !e.which && e.button && (e.which = 1 & e.button ? 1 : 2 & e.button ? 3 : 4 & e.button ? 2 : 0), e
+        return i
     }
 
-    function p(e) {
-        var t = e || window.event;
-        return t && ("click" === t.type || "mousedown" === t.type || "mouseup" === t.type) && (t.which > 1 || t.button > 1 || t.ctrlKey || t.shiftKey || browser.mac && t.metaKey) || !1
+    function u(e, t) {
+        var n = t ? window : window.cur;
+        n.lang ? Object(o.extend)(n.lang, e) : n.lang = e
     }
 
-    function m(e) {
-        if (!(e = u(e)) || !e.target) return !1;
-        if (!e.screenX) return !0;
-        var t = Object(i.getSize)(e.target),
-            n = Object(i.getXY)(e.target),
-            o = e.pageX - n[0],
-            s = e.pageY - n[1];
-        return o < -1 || o > t[0] + 1 || s < -1 || s > t[1] + 1 || Math.abs(e.pageX - n[0] - t[0] / 2) < 1 && Math.abs(e.pageY - n[1] - t[1] / 2) < 1
+    function p() {
+        try {
+            var e = Array.from(arguments),
+                t = e.shift();
+            if (!t) return "...";
+            var n = window.cur.lang && window.cur.lang[t] || window.lang && window.lang[t] || window.langpack && window.langpack[t] || window[t];
+            if (!n) {
+                var i = t.split("_");
+                return i.shift(), i.join(" ")
+            }
+            return Object(o.isFunction)(n) ? n.apply(null, e) : void 0 === e[0] && !Object(o.isArray)(n) || "raw" === e[0] ? n : c(e[0], n, e[1])
+        } catch (e) {
+            debugLog("lang error:" + e.message + "(" + Array.from(arguments).join(", ") + ")")
+        }
     }
 
-    function h(e, t) {
-        if (!e) return !0;
-        e = e.originalEvent || e, t = t || e.target;
-        var n = e.fromElement || e.relatedTarget;
-        if (!n || n === t || n === t.parentNode) return !0;
-        for (; n !== t && n.parentNode && n.parentNode !== bodyNode;) n = n.parentNode;
-        return n !== t
+    function m(e, t, n, s, r, a) {
+        var c = void 0;
+        if (a || (a = ""), Object(o.isArray)(t) || (t = ["", t, t, t, t]), "number" == typeof e || "string" == typeof e ? (e > 2147483646e3 && (e = 0), e += n, c = new Date(e)) : c = e, r) t = t[1];
+        else {
+            var d = "";
+            !(d = Object(i.isToday)(c) ? t[3] : Object(i.isYesterday)(c) ? t[2] : Object(i.isTomorrow)(c) ? t[4] : t[1]) && t[1] && (d = t[1]), t = d
+        }
+        var l = {
+                hours: c.getHours(),
+                minutes: c.getMinutes(),
+                seconds: c.getSeconds(),
+                day: c.getDate(),
+                month: c.getMonth() + 1,
+                year: c.getFullYear()
+            },
+            u = "";
+        switch (3 === vk.lang && (u = c.getHours() > 11 ? "pm" : "am", l.hours = c.getHours() % 12 == 0 ? 12 : c.getHours() % 12), vk.lang) {
+            case 1:
+                switch (c.getHours()) {
+                    case 11:
+                        t = t.replace(" о ", " об ");
+                        break;
+                    case 0:
+                        t = t.replace(" о ", " в ")
+                }
+                break;
+            case 3:
+                !Object(i.isToday)(c) || Object(i.isYesterday)(c) || Object(i.isTomorrow)(c) || (t = a + t);
+                break;
+            case 12:
+            case 73:
+                1 == c.getHours() && (t = t.replace(" &#224;s ", " &#224; "))
+        }
+        return 68 === vk.lang && (l.year = l.year + 543), t.replace("{hour}", l.hours).replace("{num_hour}", Object(i.leadingZero)(l.hours)).replace("{minute}", Object(i.leadingZero)(l.minutes)).replace("{day}", l.day).replace("{num_day}", Object(i.leadingZero)(l.day)).replace("{month}", s[l.month]).replace("{year}", l.year).replace("{short_year}", l.year % 100).replace("{second}", Object(i.leadingZero)(l.seconds)).replace("{am_pm}", u)
     }
-    window.KEY = s, window.addEvent = r, window.removeEvent = a, window.triggerEvent = c, window.cancelEvent = d, window.stopEvent = l, window.normEvent = u, window.checkEvent = p, window.checkKeyboardEvent = m, window.checkOver = h
-}, function(e, t, n) {
+
+    function h(e, t, n, i, o) {
+        e *= 1e3, void 0 === n && (n = !0), void 0 === i && (i = p("months_of", "raw")), t *= 1e3;
+        var s = Date.now(),
+            r = new Date(s),
+            a = new Date(e + t);
+        return !o && e > s && e - s < 864e5 && r.getDate() === a.getDate() ? m(e, "{hour}:{minute} {am_pm}", t, [], !n) : a.getYear() !== r.getYear() || e < s - 157248e5 ? m(e, p("global_date", "raw"), t, i, !n) : m(e, p("global_short_date", "raw"), t, i, !n)
+    }
+
+    function g(e, t, n, o) {
+        return Object(i.isToday)(new Date(1e3 * e + 1e3 * t)) ? m(1e3 * e, "{hour}:{minute} {am_pm}", 1e3 * t, [], !n) : h(e, t, n, o)
+    }
+
+    function _(e, t, n) {
+        return Object(o.isArray)(t) && e < t.length ? t[e] : c(e, n)
+    }
+
+    function f(e, t) {
+        e += t;
+        var n = parseInt(Date.now() / 1e3) - e,
+            i = "";
+        if (n < 60) i = p("global_just_now");
+        else if (n < 3600) {
+            i = _(Object(o.intval)(n / 60), p("global_word_mins_ago", "raw"), p("global_mins_ago", "raw"))
+        } else if (n < 14400) {
+            i = _(Object(o.intval)(n / 3600), p("global_word_hours_ago", "raw"), p("global_hours_ago", "raw"))
+        } else i = y(e, 0, !0, "_l");
+        return i
+    }
+
+    function y(e, t, n, i) {
+        void 0 === n && (n = !0), void 0 === t && (t = 0), void 0 === i && (i = ""), t *= 1e3;
+        var o = new Date(1e3 * e),
+            s = new Date;
+        return o.getFullYear() !== s.getFullYear() && o.getTime() < s.getTime() - 1728e5 || Math.abs(o.getTime() - s.getTime()) > 157248e5 ? m(1e3 * e, p("global_date", "raw"), t, p("months_sm_of"), !n) : m(1e3 * e, p("global_short_date_time" + i, "raw"), t, p("months_sm_of"), !n)
+    }
+
+    function w(e, t, n) {
+        void 0 === n && (n = !0), void 0 === t && (t = 0);
+        var i = new Date,
+            o = i.getFullYear(),
+            s = i.getMonth(),
+            r = new Date(1e3 * e),
+            a = r.getFullYear(),
+            c = r.getMonth();
+        return m(1e3 * e, p(a < o && (s > 1 || c < 9 || o - a >= 2) ? "global_date" : "global_short_date_time", "raw"), t, p("months_sm_of", "raw"), !n)
+    }
+    window.parseLatin = s, window.parseCyr = r, window.parseLatKeys = a, window.langNumeric = c, window.langSex = d, window.langStr = l, window.addLangKeys = u, window.getLang = p, window.langDate = m, window.getShortDate = h, window.getShortDateOrTime = g, window.langWordNumeric = _, window.getDateText = f, window.getBigDateNew = y, window.getSmDate = w
+}, , function(e, t, n) {
     "use strict";
     n.r(t), n.d(t, "ge", function() {
         return s
@@ -1480,9 +2062,9 @@
     }), n.d(t, "psr", function() {
         return x
     }), n.d(t, "domReplaceEl", function() {
-        return D
-    }), n.d(t, "domEL", function() {
         return P
+    }), n.d(t, "domEL", function() {
+        return D
     }), n.d(t, "domNS", function() {
         return k
     }), n.d(t, "domPS", function() {
@@ -1588,9 +2170,9 @@
     }), n.d(t, "val", function() {
         return xe
     }), n.d(t, "elfocus", function() {
-        return De
-    }), n.d(t, "traverseParent", function() {
         return Pe
+    }), n.d(t, "traverseParent", function() {
+        return De
     }), n.d(t, "setDocumentTitle", function() {
         return Le
     }), n.d(t, "lockDocumentTitle", function() {
@@ -1599,7 +2181,7 @@
         return Re
     });
     var i = n(0),
-        o = n(2),
+        o = n(1),
         s = function(e) {
             return "string" == typeof e || "number" == typeof e ? document.getElementById(e) : e
         };
@@ -1687,25 +2269,25 @@
         return "https:" !== locProtocol ? e : e = (e = (e = (e = (e = e.replace(/http:\/\/(cs(\d+)\.vk\.me\/c(\d+)\/)/gi, "https://$1")).replace(/http:\/\/cs(\d+)\.(userapi\.com|vk\.com|vk\.me|vkontakte\.ru)\/c(\d+)\/(v\d+\/|[a-z0-9\/_:\-]+\.jpg)/gi, "https://pp.vk.me/c$3/$4")).replace(/http:\/\/cs(\d+)\.(userapi\.com|vk\.com|vk\.me|vkontakte\.ru)\/([a-z0-9\/_:\-]+\.jpg)/gi, "https://pp.vk.me/c$1/$3")).replace(/http:\/\/cs(\d+)\.(userapi\.com|vk\.com|vk\.me|vkontakte\.ru)\//gi, "https://ps.vk.me/c$1/")).replace(/http:\/\/video(\d+)\.vkadre\.ru\//gi, "https://ps.vk.me/v$1/")
     }
 
-    function D(e, t) {
+    function P(e, t) {
         return Object(i.isString)(t) && (t = C(t)), B(e).replaceChild(t, e), t
     }
 
-    function P(e, t) {
+    function D(e, t) {
         for (t = t ? "previousSibling" : "nextSibling"; e && !e.tagName;) e = e[t];
         return e
     }
     var k = function(e) {
-            return P((e || {}).nextSibling)
+            return D((e || {}).nextSibling)
         },
         L = function(e) {
-            return P((e || {}).previousSibling, 1)
+            return D((e || {}).previousSibling, 1)
         },
         O = function(e) {
-            return P((e || {}).firstChild)
+            return D((e || {}).firstChild)
         },
         R = function(e) {
-            return P((e || {}).lastChild, 1)
+            return D((e || {}).lastChild, 1)
         },
         B = function(e) {
             return (e || {}).parentNode
@@ -2121,7 +2703,7 @@
         if (e = s(e)) return void 0 !== t && (e.setValue ? (e.setValue(t), !n && e.phonblur && e.phonblur()) : "INPUT" === e.tagName || "TEXTAREA" === e.tagName ? e.value = t : void 0 !== e.emojiId && window.Emoji ? Emoji.val(e, t) : e.innerHTML = t, !n && Object(o.triggerEvent)(e, "valueChanged")), e.getValue ? e.getValue() : ("INPUT" === e.tagName || "TEXTAREA" === e.tagName ? e.value : e.innerHTML) || ""
     }
 
-    function De(e, t, n) {
+    function Pe(e, t, n) {
         e = s(e);
         try {
             if (e.focus(), void 0 !== t && !1 !== t || (t = e.value.length), void 0 !== n && !1 !== n || (n = t), e.setSelectionRange) e.setSelectionRange(t, n);
@@ -2134,7 +2716,7 @@
         } catch (e) {}
     }
 
-    function Pe(e, t, n) {
+    function De(e, t, n) {
         for (e = s(e), n = n || 999; e && !t(e);) {
             if (0 === --n) return !1;
             try {
@@ -2160,585 +2742,5 @@
     function Re() {
         window.vkExpand = window.vkExpand || "VK" + Object(i.vkNow)(), window.vkUUID = window.vkUUID || 0, window.vkCache = window.vkCache || {}
     }
-    window.ge = s, window.geByTag = r, window.geByTag1 = a, window.geByClass = c, window.geByClass1 = d, window.gpeByClass = l, window.domQuery = u, window.domQuery1 = p, window.domClosest = m, window.ce = _, window.cf = b, window.re = E, window.se = C, window.sech = S, window.rs = T, window.psr = x, window.domReplaceEl = D, window.domEL = P, window.domNS = k, window.domPS = L, window.domFC = O, window.domLC = R, window.domPN = B, window.domChildren = M, window.domInsertBefore = A, window.domInsertAfter = j, window.domByClass = I, window.domData = H, window.domChildIndex = N, window.domCA = F, window.domClosestSibling = W, window.matchesSelector = U, window.isHover = q, window.isAncestor = K, window.getScroll = Y, window.domClosestPositioned = z, window.domClosestOverflowHidden = G, window.show = V, window.hide = X, window.isVisible = $, window.clientHeight = Z, window.getClientRectOffsetY = J, window.toggle = Q, window.boundingRectEnabled = ee, window.getXYRect = te, window.getXY = ne, window.isWindow = ie, window.getSize = oe, window.hasClass = ae, window.addClass = ce, window.addClassDelayed = de, window.removeClass = le, window.removeClassDelayed = ue, window.toggleClass = pe, window.toggleClassDelayed = me, window.replaceClass = he, window.getStyle = ge, window.setStyle = _e, window.setStyleDelayed = fe, window.setPseudoStyle = ye, window.data = we, window.attr = ve, window.removeAttr = be, window.removeData = Ee, window.cleanElems = Ce, window.setTitle = Se, window.getZoom = Te, window.val = xe, window.elfocus = De, window.traverseParent = Pe, window.getH = re, window.getW = se, window.domClosestByTag = h, window.setDocumentTitle = Le, window.lockDocumentTitle = Oe
-}, function(e, t, n) {
-    "use strict";
-
-    function i() {
-        window._logTimer = (new Date).getTime()
-    }
-
-    function o(e, t) {
-        window.Raven && (t && t.length > 350 && (t = t.slice(0, 150) + "..." + t.slice(-150)), e.message += ": " + t, Raven.captureException(e))
-    }
-
-    function s(e) {
-        try {
-            window.debuglogClient && debuglogClient(e);
-            var t = "[" + ((new Date).getTime() - window._logTimer) / 1e3 + "] ";
-            if (window.console && console.log) {
-                var n = Array.prototype.slice.call(arguments);
-                n.unshift(t), browser.msie || browser.mobile ? console.log(n.join(" ")) : console.log.apply(console, n)
-            }
-        } catch (e) {}
-    }
-
-    function r(e) {
-        if (!e) return !1;
-        var t = e.tagName,
-            n = e.id,
-            i = e.className,
-            o = (t || "").toLowerCase();
-        return i && (o += "." + e.className.replace(/\s+/g, ".")), n && !/^__vk/.test(n) && (o += "#" + e.id), o || (e.toString() || "[NULL]")
-    }
-    n.r(t), n.d(t, "initDebugTools", function() {
-        return i
-    }), n.d(t, "logEvalError", function() {
-        return o
-    }), n.d(t, "debugLog", function() {
-        return s
-    }), n.d(t, "debugEl", function() {
-        return r
-    })
-}, function(__webpack_module__, __webpack_exports__, __webpack_require__) {
-    "use strict";
-    __webpack_require__.r(__webpack_exports__), __webpack_require__.d(__webpack_exports__, "throttleAccumulate", function() {
-        return throttleAccumulate
-    }), __webpack_require__.d(__webpack_exports__, "executionStackPop", function() {
-        return executionStackPop
-    }), __webpack_require__.d(__webpack_exports__, "lplog", function() {
-        return lplog
-    }), __webpack_require__.d(__webpack_exports__, "toArray", function() {
-        return toArray
-    }), __webpack_require__.d(__webpack_exports__, "arrayUnique", function() {
-        return arrayUnique
-    }), __webpack_require__.d(__webpack_exports__, "unpackStore", function() {
-        return unpackStore
-    }), __webpack_require__.d(__webpack_exports__, "debounce", function() {
-        return debounce
-    }), __webpack_require__.d(__webpack_exports__, "throttle", function() {
-        return throttle
-    }), __webpack_require__.d(__webpack_exports__, "shuffle", function() {
-        return shuffle
-    }), __webpack_require__.d(__webpack_exports__, "parallel", function() {
-        return parallel
-    }), __webpack_require__.d(__webpack_exports__, "hashCode", function() {
-        return hashCode
-    }), __webpack_require__.d(__webpack_exports__, "parseJSON", function() {
-        return parseJSON
-    }), __webpack_require__.d(__webpack_exports__, "checkTextLength", function() {
-        return checkTextLength
-    });
-    var _utils_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0),
-        _ui_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8),
-        _debug_tools__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4);
-
-    function throttleAccumulate(e, t) {
-        var n = [],
-            i = 0;
-        return function(o) {
-            n.push(o), i || (i = setTimeout(function() {
-                i = !1, e(n), n = []
-            }, t))
-        }
-    }
-
-    function executionStackPop(e) {
-        return e.length > 0 && e.pop().func(), e
-    }
-
-    function lplog(e, t) {
-        var n = void 0,
-            i = void 0;
-        if (window.__debugMode) {
-            switch (t) {
-                case "error":
-                    n = "color: red", i = "background: red; color: white";
-                    break;
-                case "success":
-                    n = "color: green", i = "background: green; color: white";
-                    break;
-                default:
-                    n = "color: blue;", i = "background: #000; color: #fff;"
-            }
-            try {
-                var o = new Date;
-                console.debug("%cLP:[" + o.getHours() + ":" + o.getMinutes() + ":" + o.getSeconds() + ":" + o.getMilliseconds() + "]%c " + e, i, n)
-            } catch (e) {}
-        }
-    }
-
-    function toArray(e) {
-        var t = [];
-        if (void 0 === e.length) return Object.keys(e).map(function(t) {
-            return e[t]
-        });
-        for (var n = 0; n < e.length; n++) t.push(e[n]);
-        return t
-    }
-
-    function arrayUnique(e) {
-        for (var t = {}, n = [], i = 0; i < e.length; i++) t[e[i]] || (n.push(e[i]), t[n[i]] = 1);
-        return n
-    }
-
-    function unpackStore(e) {
-        return e.get ? e.get() : e
-    }
-
-    function debounce(e, t, n) {
-        var i = void 0;
-        return function() {
-            var o = this,
-                s = arguments,
-                r = n && !i;
-            clearTimeout(i), i = setTimeout(function() {
-                i = null, n || e.apply(o, s)
-            }, t), r && e.apply(this, s)
-        }
-    }
-
-    function throttle(e, t) {
-        var n = void 0;
-        return function() {
-            n || (e.apply(this, arguments), n = setTimeout(function() {
-                n = !1
-            }, t))
-        }
-    }
-
-    function shuffle(e) {
-        for (var t = e.length; t > 0;) {
-            var n = Math.floor(Math.random() * t),
-                i = e[--t];
-            e[t] = e[n], e[n] = i
-        }
-        return e
-    }
-
-    function parallel() {
-        var e = [].slice.call(arguments),
-            t = e.pop(),
-            n = new CallHub(t, e.length);
-        Object(_utils_common__WEBPACK_IMPORTED_MODULE_0__.each)(e, function(e, t) {
-            return t(function() {
-                return n.done()
-            })
-        })
-    }
-
-    function hashCode(e) {
-        var t = 0;
-        if (0 === e.length) return t;
-        for (var n = 0, i = e.length; n < i; n++) {
-            t = (t << 5) - t + e.charCodeAt(n), t |= 0
-        }
-        return t
-    }
-
-    function parseJSON(obj) {
-        if (window.JSON && JSON.parse) try {
-            return JSON.parse(obj)
-        } catch (e) {
-            Object(_ui_util__WEBPACK_IMPORTED_MODULE_1__.topError)("<b>parseJSON:</b> " + e.message, {
-                dt: -1,
-                type: 5,
-                answer: obj
-            });
-            var evalString = "(" + obj + ")";
-            try {
-                return eval(evalString)
-            } catch (e) {
-                if (__debugMode) throw e;
-                Object(_debug_tools__WEBPACK_IMPORTED_MODULE_2__.logEvalError)(e, evalString)
-            }
-        } else {
-            var _evalString = "(" + obj + ")";
-            try {
-                return eval(_evalString)
-            } catch (e) {
-                if (__debugMode) throw e;
-                Object(_debug_tools__WEBPACK_IMPORTED_MODULE_2__.logEvalError)(e, _evalString)
-            }
-        }
-    }
-
-    function checkTextLength(e, t, n, i, o, s, r) {
-        var a = t.getValue ? t.getValue() : t.value,
-            c = t.lastLen || 0;
-        if (t.lastLen !== a.length || s) {
-            t.lastLen = a.length;
-            var d = {
-                    "&": 5,
-                    "<": 4,
-                    ">": 4,
-                    '"': 6,
-                    "\n": i ? 1 : 4,
-                    "\r": 0,
-                    "!": 5,
-                    "'": 5,
-                    $: 6,
-                    "\\": 6
-                },
-                l = {
-                    1168: 1,
-                    1169: 1,
-                    8211: 1,
-                    8212: 1,
-                    8216: 1,
-                    8217: 1,
-                    8218: 1,
-                    8230: 1,
-                    8240: 1,
-                    8249: 1,
-                    8250: 1,
-                    8364: 1,
-                    8470: 1,
-                    8482: 1,
-                    65533: 1
-                },
-                u = {
-                    1037: 1,
-                    1104: 1,
-                    1117: 1
-                };
-            o && (d[","] = 5);
-            var p = function(e) {
-                for (var t = 0, n = 0, i = e.length; n < i; n++) {
-                    var o = d[e.charAt(n)],
-                        s = e.charCodeAt(n);
-                    t += void 0 !== o ? o : !r && s >= 128 && (s < 1025 || u[s] || s > 1119) && !l[s] && (s < 8220 || s > 8222) && (s < 8224 || s > 8226) ? ("&#" + s + ";").length : 1
-                }
-                return t
-            }(a);
-            if (n = ge(n), p > Math.max(e - 100, .75 * e))
-                if (show(n), p > e)
-                    if (o) {
-                        var m = val(t, function(e, t) {
-                            for (var n = 0, i = "", o = 0, s = e.length; o < s; o++) {
-                                var a = e.charAt(o),
-                                    c = d[a],
-                                    p = e.charCodeAt(o);
-                                if ((n += void 0 !== c ? c : !r && p >= 128 && (p < 1025 || u[p] || p > 1119) && !l[p] && (p < 8220 || p > 8222) && (p < 8224 || p > 8226) ? ("&#" + p + ";").length : 1) > t) break;
-                                i += a
-                            }
-                            return i
-                        }(a, Math.min(e, c)));
-                        t.lastLen = m.length, n.innerHTML = getLang("text_N_symbols_remain", 0)
-                    } else n.innerHTML = getLang("text_exceeds_symbol_limit", p - e);
-            else n.innerHTML = getLang("text_N_symbols_remain", e - p);
-            else hide(n)
-        }
-    }
-}, function(e, t, n) {
-    "use strict";
-
-    function i(e) {
-        var t = new Date;
-        return e.getFullYear() === t.getFullYear() && e.getMonth() === t.getMonth() && e.getDate() === t.getDate()
-    }
-
-    function o(e) {
-        return i(new Date(e.getTime() + 864e5))
-    }
-
-    function s(e) {
-        return i(new Date(e.getTime() - 864e5))
-    }
-
-    function r(e, t) {
-        var n = new Date(e),
-            i = new Date(t);
-        return n.getFullYear() === i.getFullYear() && n.getMonth() === i.getMonth() && n.getDate() === i.getDate()
-    }
-
-    function a(e) {
-        return e >= 10 ? e : "0" + e
-    }
-
-    function c(e, t) {
-        var n = void 0;
-        e = Math.max(e, 0);
-        var i = Math.floor(e % 60);
-        n = i < 10 ? "0" + i : i;
-        var o = (e = Math.floor(e / 60)) % 60;
-        return n = o + ":" + n, ((e = Math.floor(e / 60)) > 0 || t) && (o < 10 && (n = "0" + n), n = e + ":" + n), n
-    }
-    n.r(t), n.d(t, "isToday", function() {
-        return i
-    }), n.d(t, "isYesterday", function() {
-        return o
-    }), n.d(t, "isTomorrow", function() {
-        return s
-    }), n.d(t, "isSameDate", function() {
-        return r
-    }), n.d(t, "leadingZero", function() {
-        return a
-    }), n.d(t, "formatTime", function() {
-        return c
-    })
-}, function(e, t, n) {
-    e.exports = n(1)
-}, function(__webpack_module__, __webpack_exports__, __webpack_require__) {
-    "use strict";
-    __webpack_require__.r(__webpack_exports__), __webpack_require__.d(__webpack_exports__, "topMsg", function() {
-        return topMsg
-    }), __webpack_require__.d(__webpack_exports__, "topError", function() {
-        return topError
-    }), __webpack_require__.d(__webpack_exports__, "showMsg", function() {
-        return showMsg
-    }), __webpack_require__.d(__webpack_exports__, "showGlobalPrg", function() {
-        return showGlobalPrg
-    });
-    var _dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3),
-        _utils_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(0);
-
-    function topMsg(e, t, n) {
-        if (n || (n = "#D6E5F7"), e) {
-            clearTimeout(window.topMsgTimer);
-            var i = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.ge)("system_msg");
-            i.style.backgroundColor = n, i.innerHTML = e, Object(_dom__WEBPACK_IMPORTED_MODULE_0__.show)(i), t && (window.topMsgTimer = setTimeout(topMsg.pbind(!1), 1e3 * t))
-        } else Object(_dom__WEBPACK_IMPORTED_MODULE_0__.hide)("system_msg")
-    }
-
-    function topError(text, opts) {
-        if (opts || (opts = {}), text.message) {
-            var error = text;
-            text = "<b>JavaScript error:</b> " + error.message, opts.stack = error.stack, error.stack && __debugMode && (text += "<br/>" + error.stack.replace(/\n/g, "<br/>"));
-            try {
-                console.log(error.stack)
-            } catch (e) {}
-        }
-        if (!opts.stack) try {
-            eval("0 = 1")
-        } catch (e) {
-            opts.stack = e.stack
-        } - 1 != opts.dt && topMsg(text, opts.dt, "#FFB4A3"), __dev || Object(_dom__WEBPACK_IMPORTED_MODULE_0__.ge)("debuglogwrap") || (delete opts.dt, ajax.plainpost("/errors.php", Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__.extend)(opts, {
-            msg: opts.msg || text,
-            module: (window.cur || {}).module,
-            id: vk.id,
-            host: locHost,
-            lang: vk.lang,
-            loc: (window.nav || {}).strLoc,
-            realloc: location.toString()
-        })))
-    }
-
-    function showMsg(e, t, n, i) {
-        var o = "msg" + ("msg" !== n ? " " + n : "");
-        i && (o += " msg_appear"), e = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.ge)(e);
-        var s = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.geByClass1)(n, e),
-            r = s || Object(_dom__WEBPACK_IMPORTED_MODULE_0__.domFC)(e),
-            a = e.insertBefore(Object(_dom__WEBPACK_IMPORTED_MODULE_0__.ce)("div", {
-                className: o,
-                innerHTML: '<div class="msg_text">' + t + "</div>"
-            }), r);
-        s && Object(_dom__WEBPACK_IMPORTED_MODULE_0__.re)(s), setTimeout(_dom__WEBPACK_IMPORTED_MODULE_0__.removeClass.pbind(a, "msg_appear"), 0)
-    }
-
-    function showGlobalPrg(e, t) {
-        var n = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.getXY)(e),
-            i = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.getSize)(e),
-            o = t || {},
-            s = o.w,
-            r = void 0 === s ? 32 : s,
-            a = o.h,
-            c = void 0 === a ? 13 : a,
-            d = Object(_dom__WEBPACK_IMPORTED_MODULE_0__.ge)("global_prg");
-        d.className = o.cls || "progress", Object(_dom__WEBPACK_IMPORTED_MODULE_0__.setStyle)(d, {
-            left: n[0] + Math.floor((i[0] - r) / 2) + Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__.intval)(o.shift ? o.shift[0] : 0),
-            top: n[1] + Math.floor((i[1] - c) / 2) + Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__.intval)(o.shift ? o.shift[1] : 0),
-            width: r,
-            height: c,
-            display: "block",
-            "z-index": o.zIndex ? o.zIndex : null
-        }), o.hide && (e.style.visibility = "hidden")
-    }
-}, function(e, t, n) {
-    "use strict";
-    n.r(t), n.d(t, "parseLatin", function() {
-        return s
-    }), n.d(t, "parseCyr", function() {
-        return r
-    }), n.d(t, "parseLatKeys", function() {
-        return a
-    }), n.d(t, "langNumeric", function() {
-        return c
-    }), n.d(t, "langSex", function() {
-        return d
-    }), n.d(t, "langStr", function() {
-        return l
-    }), n.d(t, "addLangKeys", function() {
-        return u
-    }), n.d(t, "getLang", function() {
-        return p
-    }), n.d(t, "langDate", function() {
-        return m
-    }), n.d(t, "getShortDate", function() {
-        return h
-    }), n.d(t, "getShortDateOrTime", function() {
-        return g
-    }), n.d(t, "langWordNumeric", function() {
-        return _
-    }), n.d(t, "getDateText", function() {
-        return f
-    }), n.d(t, "getBigDateNew", function() {
-        return y
-    }), n.d(t, "getSmDate", function() {
-        return w
-    });
-    var i = n(6),
-        o = n(0);
-
-    function s(e) {
-        for (var t = ["yo", "zh", "kh", "ts", "ch", "sch", "shch", "sh", "eh", "yu", "ya", "YO", "ZH", "KH", "TS", "CH", "SCH", "SHCH", "SH", "EH", "YU", "YA", "'"], n = ["ё", "ж", "х", "ц", "ч", "щ", "щ", "ш", "э", "ю", "я", "Ё", "Ж", "Х", "Ц", "Ч", "Щ", "Щ", "Ш", "Э", "Ю", "Я", "ь"], i = e, o = 0, s = t.length; o < s; o++) i = i.split(t[o]).join(n[o]);
-        for (var r = "abvgdezijklmnoprstufhcyABVGDEZIJKLMNOPRSTUFHCYёЁ", a = 0, c = r.length; a < c; a++) i = i.split(r.charAt(a)).join("абвгдезийклмнопрстуфхцыАБВГДЕЗИЙКЛМНОПРСТУФХЦЫеЕ".charAt(a));
-        return i === e ? null : i
-    }
-
-    function r(e) {
-        for (var t = ["yo", "zh", "kh", "ts", "ch", "sch", "shch", "sh", "eh", "yu", "ya", "YO", "ZH", "KH", "TS", "CH", "SCH", "SHCH", "SH", "EH", "YU", "YA", "'"], n = ["ё", "ж", "х", "ц", "ч", "щ", "щ", "ш", "э", "ю", "я", "Ё", "Ж", "Х", "Ц", "Ч", "Щ", "Щ", "Ш", "Э", "Ю", "Я", "ь"], i = "абвгдезийклмнопрстуфхцыАБВГДЕЗИЙКЛМНОПРСТУФХЦЫеЕ", o = e, s = 0; s < n.length; s++) o = o.split(n[s]).join(t[s]);
-        for (var r = 0; r < i.length; r++) o = o.split(i.charAt(r)).join("abvgdezijklmnoprstufhcyABVGDEZIJKLMNOPRSTUFHCYёЁ".charAt(r));
-        return o === e ? null : o
-    }
-
-    function a(e) {
-        for (var t = "qwertyuiop[]asdfghjkl;'zxcvbnm,./`", n = e, i = 0; i < t.length; i++) n = n.split(t.charAt(i)).join("йцукенгшщзхъфывапролджэячсмитьбю.ё".charAt(i));
-        return n == e ? null : n
-    }
-
-    function c(e, t, n) {
-        if (!t || !window.langConfig) return e;
-        var i = void 0;
-        if (Object(o.isArray)(t) ? (i = t[1], e != Math.floor(e) ? i = t[langConfig.numRules.float] : Object(o.each)(langConfig.numRules.int, function(n, s) {
-                if ("*" == s[0]) return i = t[s[2]], !1;
-                var r = s[0] ? e % s[0] : e;
-                return -1 != Object(o.indexOf)(s[1], r) ? (i = t[s[2]], !1) : void 0
-            })) : i = t, n) {
-            for (var s = e.toString().split("."), r = [], a = s[0].length - 3; a > -3; a -= 3) r.unshift(s[0].slice(a > 0 ? a : 0, a + 3));
-            s[0] = r.join(langConfig.numDel), e = s.join(langConfig.numDec)
-        }
-        return i = (i || "%s").replace("%s", e)
-    }
-
-    function d(e, t) {
-        if (!Object(o.isArray)(t)) return t;
-        var n = t[1];
-        return window.langConfig ? (Object(o.each)(langConfig.sexRules, function(i, o) {
-            return "*" == o[0] ? (n = t[o[1]], !1) : e == o[0] && t[o[1]] ? (n = t[o[1]], !1) : void 0
-        }), n) : n
-    }
-
-    function l(e) {
-        for (var t = arguments, n = t.length, i = e + "", o = 1; o < n; o += 2) {
-            var s = "%" === t[o][0] ? t[o] : "{" + t[o] + "}";
-            i = i.replace(s, t[o + 1])
-        }
-        return i
-    }
-
-    function u(e, t) {
-        var n = t ? window : window.cur;
-        n.lang ? Object(o.extend)(n.lang, e) : n.lang = e
-    }
-
-    function p() {
-        try {
-            var e = Array.from(arguments),
-                t = e.shift();
-            if (!t) return "...";
-            var n = window.cur.lang && window.cur.lang[t] || window.lang && window.lang[t] || window.langpack && window.langpack[t] || window[t];
-            if (!n) {
-                var i = t.split("_");
-                return i.shift(), i.join(" ")
-            }
-            return Object(o.isFunction)(n) ? n.apply(null, e) : void 0 === e[0] && !Object(o.isArray)(n) || "raw" === e[0] ? n : c(e[0], n, e[1])
-        } catch (e) {
-            debugLog("lang error:" + e.message + "(" + Array.from(arguments).join(", ") + ")")
-        }
-    }
-
-    function m(e, t, n, s, r, a) {
-        var c = void 0;
-        if (a || (a = ""), Object(o.isArray)(t) || (t = ["", t, t, t, t]), "number" == typeof e || "string" == typeof e ? (e > 2147483646e3 && (e = 0), e += n, c = new Date(e)) : c = e, r) t = t[1];
-        else {
-            var d = "";
-            !(d = Object(i.isToday)(c) ? t[3] : Object(i.isYesterday)(c) ? t[2] : Object(i.isTomorrow)(c) ? t[4] : t[1]) && t[1] && (d = t[1]), t = d
-        }
-        var l = {
-                hours: c.getHours(),
-                minutes: c.getMinutes(),
-                seconds: c.getSeconds(),
-                day: c.getDate(),
-                month: c.getMonth() + 1,
-                year: c.getFullYear()
-            },
-            u = "";
-        switch (3 === vk.lang && (u = c.getHours() > 11 ? "pm" : "am", l.hours = c.getHours() % 12 == 0 ? 12 : c.getHours() % 12), vk.lang) {
-            case 1:
-                switch (c.getHours()) {
-                    case 11:
-                        t = t.replace(" о ", " об ");
-                        break;
-                    case 0:
-                        t = t.replace(" о ", " в ")
-                }
-                break;
-            case 3:
-                !Object(i.isToday)(c) || Object(i.isYesterday)(c) || Object(i.isTomorrow)(c) || (t = a + t);
-                break;
-            case 12:
-            case 73:
-                1 == c.getHours() && (t = t.replace(" &#224;s ", " &#224; "))
-        }
-        return 68 === vk.lang && (l.year = l.year + 543), t.replace("{hour}", l.hours).replace("{num_hour}", Object(i.leadingZero)(l.hours)).replace("{minute}", Object(i.leadingZero)(l.minutes)).replace("{day}", l.day).replace("{num_day}", Object(i.leadingZero)(l.day)).replace("{month}", s[l.month]).replace("{year}", l.year).replace("{short_year}", l.year % 100).replace("{second}", Object(i.leadingZero)(l.seconds)).replace("{am_pm}", u)
-    }
-
-    function h(e, t, n, i, o) {
-        e *= 1e3, void 0 === n && (n = !0), void 0 === i && (i = p("months_of", "raw")), t *= 1e3;
-        var s = Date.now(),
-            r = new Date(s),
-            a = new Date(e + t);
-        return !o && e > s && e - s < 864e5 && r.getDate() === a.getDate() ? m(e, "{hour}:{minute} {am_pm}", t, [], !n) : a.getYear() !== r.getYear() || e < s - 157248e5 ? m(e, p("global_date", "raw"), t, i, !n) : m(e, p("global_short_date", "raw"), t, i, !n)
-    }
-
-    function g(e, t, n, o) {
-        return Object(i.isToday)(new Date(1e3 * e + 1e3 * t)) ? m(1e3 * e, "{hour}:{minute} {am_pm}", 1e3 * t, [], !n) : h(e, t, n, o)
-    }
-
-    function _(e, t, n) {
-        return Object(o.isArray)(t) && e < t.length ? t[e] : c(e, n)
-    }
-
-    function f(e, t) {
-        e += t;
-        var n = parseInt(Date.now() / 1e3) - e,
-            i = "";
-        if (n < 60) i = p("global_just_now");
-        else if (n < 3600) {
-            i = _(Object(o.intval)(n / 60), p("global_word_mins_ago", "raw"), p("global_mins_ago", "raw"))
-        } else if (n < 14400) {
-            i = _(Object(o.intval)(n / 3600), p("global_word_hours_ago", "raw"), p("global_hours_ago", "raw"))
-        } else i = y(e, 0, !0, "_l");
-        return i
-    }
-
-    function y(e, t, n, i) {
-        void 0 === n && (n = !0), void 0 === t && (t = 0), void 0 === i && (i = ""), t *= 1e3;
-        var o = new Date(1e3 * e),
-            s = new Date;
-        return o.getFullYear() !== s.getFullYear() && o.getTime() < s.getTime() - 1728e5 || Math.abs(o.getTime() - s.getTime()) > 157248e5 ? m(1e3 * e, p("global_date", "raw"), t, p("months_sm_of"), !n) : m(1e3 * e, p("global_short_date_time" + i, "raw"), t, p("months_sm_of"), !n)
-    }
-
-    function w(e, t, n) {
-        void 0 === n && (n = !0), void 0 === t && (t = 0);
-        var i = new Date,
-            o = i.getFullYear(),
-            s = i.getMonth(),
-            r = new Date(1e3 * e),
-            a = r.getFullYear(),
-            c = r.getMonth();
-        return m(1e3 * e, p(a < o && (s > 1 || c < 9 || o - a >= 2) ? "global_date" : "global_short_date_time", "raw"), t, p("months_sm_of", "raw"), !n)
-    }
-    window.parseLatin = s, window.parseCyr = r, window.parseLatKeys = a, window.langNumeric = c, window.langSex = d, window.langStr = l, window.addLangKeys = u, window.getLang = p, window.langDate = m, window.getShortDate = h, window.getShortDateOrTime = g, window.langWordNumeric = _, window.getDateText = f, window.getBigDateNew = y, window.getSmDate = w
+    window.ge = s, window.geByTag = r, window.geByTag1 = a, window.geByClass = c, window.geByClass1 = d, window.gpeByClass = l, window.domQuery = u, window.domQuery1 = p, window.domClosest = m, window.ce = _, window.cf = b, window.re = E, window.se = C, window.sech = S, window.rs = T, window.psr = x, window.domReplaceEl = P, window.domEL = D, window.domNS = k, window.domPS = L, window.domFC = O, window.domLC = R, window.domPN = B, window.domChildren = M, window.domInsertBefore = A, window.domInsertAfter = j, window.domByClass = I, window.domData = H, window.domChildIndex = N, window.domCA = F, window.domClosestSibling = W, window.matchesSelector = U, window.isHover = q, window.isAncestor = K, window.getScroll = Y, window.domClosestPositioned = z, window.domClosestOverflowHidden = G, window.show = V, window.hide = X, window.isVisible = $, window.clientHeight = Z, window.getClientRectOffsetY = J, window.toggle = Q, window.boundingRectEnabled = ee, window.getXYRect = te, window.getXY = ne, window.isWindow = ie, window.getSize = oe, window.hasClass = ae, window.addClass = ce, window.addClassDelayed = de, window.removeClass = le, window.removeClassDelayed = ue, window.toggleClass = pe, window.toggleClassDelayed = me, window.replaceClass = he, window.getStyle = ge, window.setStyle = _e, window.setStyleDelayed = fe, window.setPseudoStyle = ye, window.data = we, window.attr = ve, window.removeAttr = be, window.removeData = Ee, window.cleanElems = Ce, window.setTitle = Se, window.getZoom = Te, window.val = xe, window.elfocus = Pe, window.traverseParent = De, window.getH = re, window.getW = se, window.domClosestByTag = h, window.setDocumentTitle = Le, window.lockDocumentTitle = Oe
 }]);
