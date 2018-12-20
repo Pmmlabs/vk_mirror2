@@ -11,7 +11,19 @@ var ProfileEditor = {
             return ProfileEditor.checkChanges(1) === !1 ? (cur.onContinueCb = nav.go.pbind(t), !1) : void 0
         }), cur.prevBefUnload = window.onbeforeunload, window.onbeforeunload = ProfileEditor.checkChanges, cur.destroy.push(function() {
             window.onbeforeunload = cur.prevBefUnload
-        })
+        }), nav.objLoc.hl && ProfileEditor.scrollHighlightRow(geByClass1("_" + nav.objLoc.hl))
+    },
+    highlightRow: function(e) {
+        e = ge(e), e && (addClass(e, "pedit_row_selected"), addClassDelayed(e, "pedit_row_animated", 1500), removeClassDelayed(e, "pedit_row_selected", 2500), removeClassDelayed(e, "pedit_row_animated", 2500))
+    },
+    scrollHighlightRow: function(e) {
+        e = ge(e), e && setTimeout(function() {
+            var i = getClientRectOffsetY(e),
+                t = getSize("page_header")[1],
+                r = scrollGetY(),
+                a = clientHeight();
+            t + r > i || i > r + a ? (scrollToY(i), setTimeout(ProfileEditor.highlightRow.pbind(e), 300)) : ProfileEditor.highlightRow(e)
+        }, 0)
     },
     initGeneral: function() {
         cur.section = "general";
@@ -814,7 +826,7 @@ var ProfileEditor = {
         cur.section = "career", ProfileEditorJob.init(), ProfileEditor.initBeforeUnload()
     },
     initMilitary: function() {
-        cur.section = "military", ProfileEditorMil.init(), ProfileEditor.initBeforeUnload()
+        cur.section = "military", ProfileEditorMil.init(), ProfileEditor.initBeforeUnload();
     },
     initPersonal: function() {
         var e = cur.options;

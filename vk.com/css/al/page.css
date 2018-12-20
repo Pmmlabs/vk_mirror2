@@ -69,8 +69,6 @@
 .post_top_info_wall_poll_vote_icon,
 .poster__bkg-arrow,
 .poster__open-btn,
-.test_group_a .poster_feature_tt__promo,
-.test_group_b .poster_feature_tt__promo,
 .vk2017_snippet_bottom_image_left:after,
 .vk2017_snippet_bottom_image_right:after,
 .vk2017_snippet_separator,
@@ -8521,6 +8519,10 @@ div.submit_post_field[contenteditable=true]>p {
     display: table
 }
 
+.submit_post_box:not(.shown) .poster_feature_tt {
+    display: none!important
+}
+
 .submit_post_box.test_posting_experiment_b .submit_post,
 .submit_post_box.test_posting_experiment_b .submit_post_extend_controls,
 .submit_post_box.own_field .emoji_smile,
@@ -13467,9 +13469,11 @@ button.wall_block_app_btn {
 
 .poster_feature_tt {
     font-size: 14px;
-    line-height: 21px;
-    width: 393px;
-    padding: 15px 16px 16px 0;
+    line-height: 19px;
+    width: 240px;
+    padding: 7px 16px 9px 12px;
+    color: #fff;
+    background: #5a9eff;
     box-sizing: border-box;
     z-index: 115
 }
@@ -13480,6 +13484,7 @@ button.wall_block_app_btn {
     position: absolute;
     right: 8px;
     top: 8px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%22216%208%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Cpath%20d%3D%22M223%2025l10-10M233%2025l-10-10%22%20stroke%3D%22%23FFF%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E") no-repeat 50%;
     cursor: pointer;
     opacity: 0.8
 }
@@ -13488,38 +13493,12 @@ button.wall_block_app_btn {
     opacity: 1
 }
 
-.test_group_a .poster_feature_tt__close {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%22216%208%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Cpath%20d%3D%22M223%2025l10-10M233%2025l-10-10%22%20stroke%3D%22%2398A3B3%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E") no-repeat 50%
-}
-
-.test_group_a .poster_feature_tt {
-    color: #000;
-    background: #fff
-}
-
-.test_group_b .poster_feature_tt__close {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%22216%208%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Cpath%20d%3D%22M223%2025l10-10M233%2025l-10-10%22%20stroke%3D%22%23FFF%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E") no-repeat 50%
-}
-
-.test_group_b .poster_feature_tt {
-    color: #fff;
-    background: #5a9eff
-}
-
-.test_group_b .poster_feature_tt.eltt_arrow_size_normal.eltt_bottom>.eltt_arrow_back .eltt_arrow {
+.poster_feature_tt.eltt_arrow_size_normal.eltt_bottom>.eltt_arrow_back .eltt_arrow {
     border-bottom-color: #5a9eff
 }
 
-.test_group_b .poster_feature_tt.eltt_arrow_size_normal.eltt_top>.eltt_arrow_back .eltt_arrow {
+.poster_feature_tt.eltt_arrow_size_normal.eltt_top>.eltt_arrow_back .eltt_arrow {
     border-top-color: #5a9eff
-}
-
-.test_group_a .poster_feature_tt.eltt_arrow_size_normal.eltt_top>.eltt_arrow_back .eltt_arrow {
-    border-top-color: #fff
-}
-
-.test_group_a .poster_feature_tt.eltt_arrow_size_normal.eltt_bottom>.eltt_arrow_back .eltt_arrow {
-    border-bottom-color: #fff
 }
 
 .poster_feature_tt__promo {
@@ -13529,34 +13508,8 @@ button.wall_block_app_btn {
     margin: 3px 20px 0
 }
 
-.test_group_a .poster_feature_tt__promo {
-    background: url(/images/poster/promo_poster_1.png) no-repeat
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .test_group_a .poster_feature_tt__promo {
-        background-image: url(/images/poster/promo_poster_1_2x.png);
-        background-size: 56px 56px
-    }
-}
-
-.test_group_b .poster_feature_tt__promo {
-    background: url(/images/poster/promo_poster_2.png) no-repeat
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .test_group_b .poster_feature_tt__promo {
-        background-image: url(/images/poster/promo_poster_2_2x.png);
-        background-size: 56px 56px
-    }
-}
-
 .poster_feature_tt .poster_feature_tt__info {
-    max-width: 256px;
+    max-width: 190px;
     overflow: hidden;
     overflow-wrap: break-word
 }

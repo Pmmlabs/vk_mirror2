@@ -40,6 +40,29 @@
     padding-bottom: 15px
 }
 
+.pedit_row.pedit_row_selected {
+    position: relative;
+    z-index: 0
+}
+
+.pedit_row.pedit_row_selected:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: -10px;
+    right: 0;
+    bottom: 10px;
+    left: 0;
+    background-color: #f2f4f7;
+    -o-transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease
+}
+
+.pedit_row.pedit_row_selected.pedit_row_animated:before {
+    background-color: #000;
+    background-color: transparent
+}
+
 .pedit_box_row {
     padding-bottom: 10px;
     line-height: 1.154

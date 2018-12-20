@@ -2263,29 +2263,60 @@ var Wall = {
         ajax.post('al_wall.php', {
             act: 'delete_thread',
             post: post,
-            hash: hash
+            hash: hash,
+            from_deleted: hasClass(ge('post' + post), 'reply_deleted'),
         }, {
             onDone: function(text) {
-                var deleteBlock = domPN(domPN(el));
-                deleteBlock.oldElements = val(deleteBlock);
+                var deleteBlock = gpeByClass('dld_inner', el);
+
+                if (!deleteBlock) {
+                    var postEl = ge('post' + post);
+                    var postContent = geByClass1('reply_wrap', postEl);
+
+                    hide(postContent);
+                    deleteBlock = ce('div', {
+                        id: 'post_del' + post,
+                        className: 'dld',
+                        innerHTML: '<span class="dld_inner">' + text + '</span>'
+                    });
+                    postEl.appendChild(deleteBlock);
+                } else {
+                    deleteBlock.oldElements = val(deleteBlock);
+                    val(deleteBlock, text);
+                }
+
                 hide('replies_wrap_deep' + post);
-                val(deleteBlock, text);
             },
             showProgress: function() {
                 hide(el);
-                var progressElement = domNS(el);
 
-                if (!progressElement) {
-                    progressElement = ce('div', {
-                        className: 'progress'
-                    });
-                    domPN(el).appendChild(progressElement);
-                    show(progressElement);
+                var actionsWrap = gpeByClass('post_actions', el);
+
+                if (actionsWrap) {
+                    addClass(actionsWrap, 'post_actions_progress');
+                } else {
+                    var progressElement = domNS(el);
+
+                    if (!progressElement) {
+                        progressElement = ce('div', {
+                            className: 'progress'
+                        });
+                        domPN(el).appendChild(progressElement);
+                        show(progressElement);
+                    }
                 }
+
             },
             hideProgress: function() {
                 show(el);
-                re(domNS(el));
+
+                var actionsWrap = gpeByClass('post_actions', el);
+
+                if (actionsWrap) {
+                    removeClass(actionsWrap, 'post_actions_progress');
+                } else {
+                    re(domNS(el));
+                }
             }
         });
     },
@@ -2298,7 +2329,16 @@ var Wall = {
             onDone: function() {
                 var deleteBlock = domPN(el);
                 show('replies_wrap_deep' + post);
-                val(deleteBlock, deleteBlock.oldElements);
+
+                if (deleteBlock.oldElements) {
+                    val(deleteBlock, deleteBlock.oldElements);
+                } else {
+                    var postContent = geByClass1('reply_wrap', 'post' + post);
+
+                    show(postContent);
+                    re('post_del' + post);
+                }
+
             },
             showProgress: function() {
                 hide(el);
@@ -3402,7 +3442,6 @@ var Wall = {
         }
 
         cur.poster && cur.poster.checkState();
-        Wall.hidePosterFeatureTooltip();
     },
     ownerDraftKey: function(ownerId) {
         return 'wall_draft' + vk.id + '_' + ownerId;
@@ -3679,7 +3718,6 @@ var Wall = {
             return;
         }
         if (!data[0] && (!data[1] || !data[1].length) && data[4] == null) { // if draft is empty
-            Wall.showPosterFeatureTooltip();
             return;
         }
 
@@ -3696,6 +3734,8 @@ var Wall = {
         Wall.showEditPost(function() {
             setTimeout(function() {
                 if (data[4] && cur.poster) {
+                    Wall.hidePosterFeatureTooltip();
+
                     cur.poster.openPoster({
                         text: data[0],
                         bkgId: +data[4]
@@ -3752,8 +3792,6 @@ var Wall = {
                 setTimeout(Wall.setDraft.pbind(draft), 0);
             } else {
                 cur.postFieldZoomText && cur.postFieldZoomText(cur.postField, cur.wallAddMedia);
-
-                Wall.showPosterFeatureTooltip();
             }
         });
 
@@ -3773,12 +3811,10 @@ var Wall = {
             setTimeout(function() {
                 input.blur()
             }, 0);
-            Wall.hidePosterFeatureTooltip();
             return cur.viewAsBox();
         }
 
         if (cur.editing === 0) {
-            Wall.hidePosterFeatureTooltip();
             return;
         }
         setTimeout(WallUpload.init, 0);
@@ -3797,7 +3833,7 @@ var Wall = {
         cur.editing = 0;
         cur.poster && cur.poster.checkState();
 
-        Wall.hidePosterFeatureTooltip();
+        Wall.showPosterFeatureTooltip();
 
         if (isFunction(cur.onShowEditPost)) {
             cur.onShowEditPost()
@@ -4495,6 +4531,7 @@ var Wall = {
                         cur.poster.resetPoster();
                     }
 
+                    cur.posterFeatureTT && cur.posterFeatureTT.hide();
                     Wall.clearInput();
 
                     cur.postSent = false;
@@ -4579,6 +4616,8 @@ var Wall = {
                     if (cur.poster && submitFromPoster) {
                         cur.poster.unlockEditPoster();
                     }
+
+                    cur.posterFeatureTT && cur.posterFeatureTT.hide();
 
                     if (cur.options.onSendPostFail) {
                         cur.options.onSendPostFail.apply(window, arguments);
@@ -8870,6 +8909,7 @@ var Wall = {
         if (opts.media_types) {
             cur.wallAddMedia = new MediaSelector(ge('page_add_media'), 'media_preview', opts.media_types, extend({
                 onAddMediaChange: function(type) {
+                    Wall.hidePosterFeatureTooltip();
                     Wall.postChanged(10);
 
                     if (type != 'poll') {
@@ -9949,6 +9989,8 @@ var Wall = {
     },
 
     hidePosterFeatureTooltip: function() {
+        cur.posterFeatureTooltip = false;
+
         if (!cur.posterFeatureTT || !cur.posterFeatureTooltipHash) {
             return;
         }
@@ -9959,7 +10001,7 @@ var Wall = {
         ajax.post('al_index.php', {
             act: 'hide_feature_tt',
             hash: cur.posterFeatureTooltipHash,
-            type: 'poster_web',
+            type: 'poster_new_year',
         });
     },
 
@@ -9971,14 +10013,13 @@ var Wall = {
         var showFeatureTooltip = function() {
             var el = domQuery1('.poster__open-btn', ge('page_poster_btn'));
 
-            if (!el) {
+            if (!el || !cur.posterFeatureTooltip) {
                 return;
             }
 
             var content = '<div class="poster_feature_tt__layout" onclick="cur.posterFeatureTT.hide(); cancelEvent(event);">' +
-                '<div class="poster_feature_tt__promo"></div>' +
                 '<div class="poster_feature_tt__close"></div>' +
-                '<div class="poster_feature_tt__info">' + getLang('wall_poster_available_tt') + '</div>'
+                '<div class="poster_feature_tt__info">' + getLang('wall_new_posters_new_year') + '</div>'
             '</div>';
 
             cur.posterFeatureTT = new ElementTooltip(el, {
@@ -9986,13 +10027,23 @@ var Wall = {
                 forceSide: 'bottom',
                 cls: 'eltt_fancy poster_feature_tt',
                 autoShow: false,
-                noHideOnClick: false,
-                noAutoHideOnWindowClick: true,
+                noOverflow: false,
+                align: 'left',
+                centerShift: -28,
+                noHideOnClick: true,
                 appendToParent: true,
-                offset: [1, -10],
-                onHide: Wall.hidePosterFeatureTooltip
+                offset: [0, -8],
+                onHide: Wall.hidePosterFeatureTooltip,
+                onWindowClick: function() {
+                    cur.posterFeatureTT.hide();
+                    cur.postField.blur(); // need reset focus from main post field
+                },
             });
             cur.posterFeatureTT.show();
+
+            if (cur.poster) {
+                cur.poster.sendStatsInfo('new_bkg_tooltip_show');
+            }
         };
 
         var timeoutId = setTimeout(showFeatureTooltip, 800);
