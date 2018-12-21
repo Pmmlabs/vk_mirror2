@@ -240,7 +240,7 @@ var stVersions = {
     'owner_photo.js': 3368798011,
     'owner_photo.css': 20431025398,
     'page.js': 1370912053,
-    'page.css': 69169984405,
+    'page.css': 67520123828,
     'page_help.css': 20881607009,
     'public.css': 24785358615,
     'cmodules/web/public.js': 329399197,
@@ -288,7 +288,7 @@ var stVersions = {
     'feed.css': 21571917392,
     'privacy.js': 711405089,
     'privacy.css': 15518172397,
-    'apps.css': 38419590032,
+    'apps.css': 41855335900,
     'apps.js': 23559680217,
     'apps_edit.js': 17976547669,
     'apps_edit.css': 27875410747,
@@ -543,8 +543,10 @@ var stVersions = {
     'article.css': 27407991678,
     'article_editor.css': 31410909779,
     'cmodules/web/article.js': 46022712533,
-    'cmodules/web/article_layer.js': 36504583687,
+    'cmodules/web/article_layer.js': 38018631574,
     'article_view.js': 9135119890,
+    'author_page.css': 34381045867,
+    'cmodules/web/author_page.js': 81292628736,
     'bookmarks.css': 16276764874,
     'cmodules/web/bookmarks.js': 3575362821,
     'sf.css': 17097881890,
@@ -552,7 +554,7 @@ var stVersions = {
     'cmodules/web/pretty_cards.js': 82460730,
     'cmodules/web/landing_ads_case.js': 3936066274,
     'cmodules/web/trending_results.js': 1020488162,
-    'cmodules/web/page_layout.js': 3919377953,
+    'cmodules/web/page_layout.js': 2293731470,
     'landings/ads_cases.css': 27662050816,
     'landings/digital_day_2018.css': 20170496908,
     'surveys.css': 21394652277,
@@ -594,11 +596,11 @@ var stVersions = {
     'ui_gallery.css': 17394318084,
     'cmodules/web/ui_components.js': 3224689059,
     'apps_feed_blocks.css': 17902864373,
-    'cmodules/web/landing_transparency.js': 111036632984,
+    'cmodules/web/landing_transparency.js': 111500696699,
     'landings/transparency.css': 94036520767,
     'cmodules/web/emoji.js': 9279160754,
-    'cmodules/web/apps_achievements.js': 83696719947,
-    'cmodules/web/payments.js': 50866536080,
+    'cmodules/web/apps_achievements.js': 84084281490,
+    'cmodules/web/payments.js': 51330599795,
     'lang': 6931
 };
 var stTypes = {
@@ -658,4 +660,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 8280;
+var _rnd = 450;

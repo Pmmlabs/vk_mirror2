@@ -678,15 +678,14 @@
     text-align: left;
     list-style: none;
     margin: 0;
-    padding: 8px 0;
-    min-width: 180px
+    padding: 8px 0
 }
 
 .ui_tooltipMenu__link {
     display: block;
     color: #000;
     font-size: 13px;
-    padding: 9px 12px
+    padding: 9px 45px 9px 12px
 }
 
 .ui_tooltipMenu__item {
