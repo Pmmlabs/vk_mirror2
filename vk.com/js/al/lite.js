@@ -4777,6 +4777,7 @@ function callHub(func, count) {
         }
     };
 }
+window.CallHub = callHub;
 
 function isChecked(el) {
     el = ge(el);

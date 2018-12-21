@@ -158,7 +158,7 @@ var stVersions = {
     'uncommon.js': 1640247993,
     'uncommon.css': 14750530895,
     'filebutton.css': 1044306797,
-    'lite.js': 1112869211,
+    'lite.js': 3977427646,
     'lite.css': 50846832837,
     'rtl.css': 15284398479,
     'pagination.js': 358700184,
@@ -658,4 +658,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 592;
+var _rnd = 8280;

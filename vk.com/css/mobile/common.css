@@ -37518,7 +37518,8 @@ body.apps_settingsPageBody {
     align-items: center;
     text-decoration: none!important;
     padding: 2px;
-    -webkit-tap-highlight-color: transparent
+    -webkit-tap-highlight-color: transparent;
+    max-height: 44px
 }
 
 ._hover .Bell:hover,
