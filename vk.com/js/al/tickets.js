@@ -983,14 +983,14 @@ var Tickets = {
                 });
             else {
                 hide("tickets_new_extra_field__upload_btn_" + e, "tickets_new_extra_field__example_" + e);
-                var u = ge("tickets_new_extra_field__uploaded_" + e);
-                addClass(u, "tickets_new_extra_field__uploaded_p"), cur.attachMediaIndexes || (cur.attachMediaIndexes = {}), cur.attachMediaIndexes[n] = i;
-                var p = '<div><div class="page_attach_progress_wrap">  <div id="upload' + n + '_progress" class="page_attach_progress"></div></div></div></div>' + (c ? '<div class="attach_label">' + c + "</div>" : "") + '<div class="progress_x" onmouseover="showTooltip(this, {text: \'' + getLang("dont_attach") + '\', shift: [6, 3, 3]})" onclick="Upload.terminateUpload(' + t + ", '" + (r || t) + "');\"></div>";
-                u.appendChild(ce("div", {
+                var p = ge("tickets_new_extra_field__uploaded_" + e);
+                addClass(p, "tickets_new_extra_field__uploaded_p"), cur.attachMediaIndexes || (cur.attachMediaIndexes = {}), cur.attachMediaIndexes[n] = i;
+                var u = '<div><div class="page_attach_progress_wrap">  <div id="upload' + n + '_progress" class="page_attach_progress"></div></div></div></div>' + (c ? '<div class="attach_label">' + c + "</div>" : "") + '<div class="progress_x" onmouseover="showTooltip(this, {text: \'' + getLang("dont_attach") + '\', shift: [6, 3, 3]})" onclick="Upload.terminateUpload(' + t + ", '" + (r || t) + "');\"></div>";
+                p.appendChild(ce("div", {
                     id: "upload" + n + "_progress_wrap",
-                    innerHTML: p,
+                    innerHTML: u,
                     className: "clear_fix upload_" + t + "_progress"
-                })), show(u), l = ge("upload" + n + "_progress"), l.full = !1, s ? setStyle(l, {
+                })), show(p), l = ge("upload" + n + "_progress"), l.full = !1, s ? setStyle(l, {
                     width: l.full ? intval(l.full * o) + "px" : s + "%"
                 }) : (setStyle(l, {
                     width: "1px"
@@ -1299,12 +1299,12 @@ var Tickets = {
                 cache: 1,
                 hideProgress: removeClass.pbind("tickets_search", "loading"),
                 onDone: function(t, a) {
-                    var i = ge("tickets_title").value,
+                    var i = val("tickets_title"),
                         o = trim(i).split(" "),
                         s = !1;
-                    if (cur.toggleCanceled || !(o.length > 4 || 4 == o.length && " " == i[i.length - 1]) || cur.flood || (s = !0), t ? e("tickets_faq_list", ce("div", {
+                    if (cur.toggleCanceled || !(o.length > 4 || 4 == o.length && " " == i[i.length - 1]) || cur.flood || (s = !0), t ? val("tickets_faq_list", ce("div", {
                             innerHTML: t
-                        }).firstChild.innerHTML) : (a && e("tickets_faq_button", a), s && (cur.toggled = !0, Tickets.toggleDetailedForm())), cur.tlmd) {
+                        }).firstChild.innerHTML) : (a && val("tickets_faq_button", a), s && (cur.toggled = !0, Tickets.toggleDetailedForm())), cur.tlmd) {
                         if (e ? extend(nav.objLoc, {
                                 q: e
                             }) : delete nav.objLoc.q, "faq" == nav.objLoc.act) {

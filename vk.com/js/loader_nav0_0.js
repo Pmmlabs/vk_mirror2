@@ -165,7 +165,7 @@ var stVersions = {
     'blog.css': 19273681738,
     'blog.js': 3939164531,
     'html5audio.js': 976782859,
-    'audioplayer.js': 191848587865,
+    'audioplayer.js': 192125845978,
     'audioplayer.css': 18249875146,
     'audio_html5.js': 287741914,
     'audio.js': 768606322,
@@ -341,7 +341,7 @@ var stVersions = {
     'widgets.css': 24593595808,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 128120001007,
+    'notifier.js': 125676147468,
     'notifier.css': 27076865567,
     'cmodules/sw/sw.js': 5960813200,
     'earthday.js': 2276669993,
@@ -354,7 +354,7 @@ var stVersions = {
     'tags_dd.css': 16595706106,
     'helpdesk.js': 1282854841,
     'helpdesk.css': 26443944170,
-    'tickets.js': 3132826852,
+    'tickets.js': 3135622813,
     'tickets.css': 24518682403,
     'faq.css': 24003585240,
     'talmud.js': 3100656417,
@@ -389,11 +389,11 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 24528355895,
     'aes_light.js': 273774818,
-    'ads.css': 44535297141,
+    'ads.css': 43790871518,
     'ads_bonus.css': 1294533291,
     'ads.js': 3723561920,
     'ads_payments.js': 1483293789,
-    'ads_edit.css': 39823454478,
+    'ads_edit.css': 37113872942,
     'ads_edit.js': 1267960866,
     'ads_edit_geo.js': 519167575,
     'ads_moder_common.css': 15091442653,
@@ -545,7 +545,7 @@ var stVersions = {
     'cmodules/web/article.js': 46022712533,
     'cmodules/web/article_layer.js': 38018631574,
     'article_view.js': 9135119890,
-    'author_page.css': 34381045867,
+    'author_page.css': 30522379630,
     'cmodules/web/author_page.js': 81292628736,
     'bookmarks.css': 16276764874,
     'cmodules/web/bookmarks.js': 3575362821,
@@ -660,4 +660,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 450;
+var _rnd = 6944;
