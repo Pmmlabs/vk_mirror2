@@ -11,6 +11,7 @@ AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY = 8;
 AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST = 9;
 AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP = 10;
 AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD = 11;
+AdsEdit.ADS_AD_FORMAT_TYPE_STORY = 12;
 
 AdsEdit.ADS_AD_LINK_TYPE_GROUP = 1;
 AdsEdit.ADS_AD_LINK_TYPE_EVENT = 2;
@@ -24,6 +25,7 @@ AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE = 9;
 AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE = 10;
 AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW = 11;
 AdsEdit.ADS_AD_LINK_TYPE_POST_STEALTH = 12;
+AdsEdit.ADS_AD_LINK_TYPE_STORY = 13;
 AdsEdit.ADS_AD_LINK_TYPES_ALL_GROUP = [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC];
 AdsEdit.ADS_AD_LINK_TYPES_ALL_MOBILE_APP = [AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE];
 AdsEdit.ADS_AD_LINK_TYPES_ALL_POST = [AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW, AdsEdit.ADS_AD_LINK_TYPE_POST_STEALTH];
@@ -2224,7 +2226,9 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
             video_preview_hash: '',
             is_ok: false,
             event_final_time: 1,
-            force_show: false
+            force_show: false,
+            stories: [],
+            storiesContainer: null
         },
         link_url_vk: {
             value: 0,
@@ -2548,9 +2552,15 @@ AdsViewEditor.prototype.initPreview = function(paramName) {
     this.preview.promoted_post = geByClass1('ads_ad_promoted_post', this.preview.layout);
     this.preview.big_app_info_box = geByClass1('ads_ad_big_app_info_box', this.preview.layout);
     this.preview.explain = geByClass1('ads_ad_explain', this.preview.layout);
+    this.preview.storiesContainer = ge('ads_edit_stories_container');
 
     var targetElem = geByClass1('wall_module', this.preview.promoted_post);
     AdsLight.overrideClickEvents(targetElem, true);
+
+    var storiesParentEl = this.preview.storiesContainer;
+    if (storiesParentEl && window.AdsEditComponents) {
+        AdsEditComponents.renderStories(storiesParentEl, this.params.link_url.stories.list, this.params.link_url.stories.options);
+    }
 }
 
 AdsViewEditor.prototype.initHelp = function() {
@@ -3529,7 +3539,8 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
                 inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC, AdsEdit.ADS_AD_LINK_TYPE_MARKET, AdsEdit.ADS_AD_LINK_TYPE_APP]) && this.params.link_id.value ||
                 inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_URL, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE]) && linkUrlOk ||
                 this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_VIDEO && this.params.link_id.value && this.params.link_owner_id.value && (linkUrlOk || !this.params.link_url.value) ||
-                inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && this.params.link_id.value && this.params.link_owner_id.value
+                inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && this.params.link_id.value && this.params.link_owner_id.value ||
+                this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_STORY && this.params.link_id.value
             );
             toggleClass('ads_param_link_object_complete', 'button_disabled', !(this.params.link_type.complete && (!inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) || this.params.link_id.promoted_post_checked)));
             break;
@@ -3788,7 +3799,7 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
 AdsViewEditor.prototype.getUiParamData = function(paramName) {
     switch (paramName) {
         case 'link_id':
-            if (inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_GROUP)) {
+            if (inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_GROUP) || this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_STORY) {
                 return '/adsedit?act=search_user_objects&section=groups&group_purpose=' + AdsEdit.ADS_AD_CHECK_GROUP_PURPOSE_LINK_OBJECT;
             } else if (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_APP) {
                 return '/adsedit?act=search_user_objects&section=apps';
@@ -3943,8 +3954,9 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
         case '_link_type':
             toggleClass('ads_edit_ad_row_link_upload_video', 'unshown', !(this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_VIDEO));
             var isAdaptiveAd = (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_URL) && (this.params.link_type.subvalue === 'adaptive_ad');
+            var isStory = (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_STORY);
 
-            var hideOtherLinkTypes = (inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) || isAdaptiveAd) && !this.params.link_type.force_show_other_link_types;
+            var hideOtherLinkTypes = (inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) || isAdaptiveAd || isStory) && !this.params.link_type.force_show_other_link_types;
 
             var otherLinkTypesBlock = geByClass1('ads_edit_link_type_cards_block_other');
             if (hideOtherLinkTypes && isVisible(otherLinkTypesBlock)) {
@@ -4014,6 +4026,7 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
             toggleClass(this.options.targetIdPrefix + paramName + '_mobile_wrap', 'unshown', elemsHidden[AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE] = !(inArray(linkTypeValue, [AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE])));
             toggleClass(this.options.targetIdPrefix + paramName + '_promoted_post_wrap', 'unshown', elemsHidden[AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST] = !(inArray(linkTypeValue, [AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW, AdsEdit.ADS_AD_LINK_TYPE_POST_STEALTH])));
             toggleClass(this.options.targetIdPrefix + paramName + '_adaptive_ad_wrap', 'unshown', elemsHidden[AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD] = !(inArray(linkTypeValue, [AdsEdit.ADS_AD_LINK_TYPE_URL]) && this.params.format_type.allow_adaptive_ad && inArray(linkTypeSubvalue, ['adaptive_ad'])));
+            toggleClass(this.options.targetIdPrefix + paramName + '_story_wrap', 'unshown', elemsHidden[AdsEdit.ADS_AD_FORMAT_TYPE_STORY] = !(inArray(linkTypeValue, [AdsEdit.ADS_AD_LINK_TYPE_STORY])));
 
             this.params.format_type.unreachable = false;
             for (var i in elemsHidden) {
@@ -4044,7 +4057,7 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
                     headerTitle = getLang('ads_edit_ad_header_setting_view');
             }
             ge('ads_edit_value_header_view').innerHTML = headerTitle;
-            toggleClass('ads_edit_ad_row_upload_photo', 'unshown', !!(this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST));
+            toggleClass('ads_edit_ad_row_upload_photo', 'unshown', !!(inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST, AdsEdit.ADS_AD_FORMAT_TYPE_STORY])));
             toggleClass('ads_edit_ad_row_upload_photo_icon', 'unshown', (this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD));
             break;
         case 'title':
@@ -4137,6 +4150,7 @@ AdsViewEditor.prototype.getUiParamPlaceholderText = function(paramName) {
     switch (paramName) {
         case 'link_id':
             switch (this.params.link_type.value) {
+                case AdsEdit.ADS_AD_LINK_TYPE_STORY:
                 case AdsEdit.ADS_AD_LINK_TYPE_GROUP:
                 case AdsEdit.ADS_AD_LINK_TYPE_EVENT:
                 case AdsEdit.ADS_AD_LINK_TYPE_PUBLIC:
@@ -4274,7 +4288,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
             case 'format_type':
                 var formatPhotoSize = this.getFormatPhotoSize();
                 this.params.cost_type.cpm_only = (
-                    inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]) ||
+                    inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE, AdsEdit.ADS_AD_FORMAT_TYPE_STORY]) ||
                     (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && (!this.params.cost_type.allow_promoted_posts_cpc || !this.params.link_id.promoted_posts_cpc))
                 );
                 this.params.cost_type.cpc_only = (
@@ -4289,7 +4303,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                     this.setCostType(AdsEdit.ADS_AD_COST_TYPE_CLICK);
                 }
 
-                this.params.title.hidden = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST);
+                this.params.title.hidden = (inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST, AdsEdit.ADS_AD_FORMAT_TYPE_STORY]));
                 this.params.title.disabled = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS, AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]);
                 this.params.title.max_length = ((this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD) ? this.params.title.max_length_adaptive_ads : this.params.title.max_length_normal);
                 this.params.link_title.hidden = (this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD);
@@ -4305,8 +4319,8 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 this.params.stats_url.hidden = !(this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE && this.params.stats_url.allow_exclusive || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && this.params.stats_url.allow_promoted_post || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD && this.params.stats_url.allow_adaptive_ad);
                 this.params.stats_url2.hidden = !(!this.params.stats_url.hidden && this.params.stats_url2.allow);
                 this.params.view_retargeting_group_id.hidden = (!this.params.view_retargeting_group_id.allow || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST || !this.params.view_retargeting_group_id.value);
-                this.params.views_limit_flag.hidden = (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD);
-                this.params.views_limit_exact.hidden = (this.params.cost_type.value == AdsEdit.ADS_AD_COST_TYPE_CLICK || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD);
+                this.params.views_limit_flag.hidden = (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_STORY);
+                this.params.views_limit_exact.hidden = (this.params.cost_type.value == AdsEdit.ADS_AD_COST_TYPE_CLICK || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_STORY);
 
                 if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY) {
                     this.setTitle(this.params.title['value_' + AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY]);
@@ -4345,7 +4359,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                     }
                 }
 
-                if (inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE, AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST, AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD])) {
+                if (inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE, AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST, AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD, AdsEdit.ADS_AD_FORMAT_TYPE_STORY])) {
                     this.params['views_limit_exact'].value = this.params['views_limit_exact'].default_values[this.params.format_type.value];
                     this.setViewsLimitExact();
                 }
@@ -4409,8 +4423,8 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 isUpdateNeeded = true;
                 break;
             case 'cost_type':
-                this.params.views_limit_flag.hidden = (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD);
-                this.params.views_limit_exact.hidden = (this.params.cost_type.value == AdsEdit.ADS_AD_COST_TYPE_CLICK || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD);
+                this.params.views_limit_flag.hidden = (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_STORY);
+                this.params.views_limit_exact.hidden = (this.params.cost_type.value == AdsEdit.ADS_AD_COST_TYPE_CLICK || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_STORY);
 
                 this.updateUiParam('cost_per_click');
                 this.updateUiParam('platform');
@@ -4425,7 +4439,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 this.params.link_id.value = '';
                 this.params.link_owner_id.value = '';
                 this.params.link_id.data = [];
-                this.params.link_id.hidden = !inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC, AdsEdit.ADS_AD_LINK_TYPE_MARKET, AdsEdit.ADS_AD_LINK_TYPE_APP]);
+                this.params.link_id.hidden = !inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC, AdsEdit.ADS_AD_LINK_TYPE_MARKET, AdsEdit.ADS_AD_LINK_TYPE_APP, AdsEdit.ADS_AD_LINK_TYPE_STORY]);
                 this.params.link_domain.hidden = !inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_URL, AdsEdit.ADS_AD_LINK_TYPE_VIDEO]);
                 if (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_VIDEO) {
                     this.params.link_id.value = this.params.link_id.video_value;
@@ -4471,7 +4485,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                     this.showLinkObjectPanel();
                 }
 
-                if (!this.params.link_type.cancelling && inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC, AdsEdit.ADS_AD_LINK_TYPE_MARKET, AdsEdit.ADS_AD_LINK_TYPE_APP])) {
+                if (!this.params.link_type.cancelling && inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC, AdsEdit.ADS_AD_LINK_TYPE_MARKET, AdsEdit.ADS_AD_LINK_TYPE_APP, AdsEdit.ADS_AD_LINK_TYPE_STORY])) {
                     this.updateNeeded.need_links = true;
                     isUpdateNeeded = true;
                 }
@@ -4516,6 +4530,14 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 this.updateUiParam('_link_id');
                 this.updateUiParamVisibility('_link_id');
                 this.updateTips();
+
+                if (this.params.link_url.storiesContainer) {
+                    var selectedOwnersInfo = this.params.link_id.ui.selectedItems();
+                    if (selectedOwnersInfo && selectedOwnersInfo.length) {
+                        // ����, ��� � �������� ���������� ����� �� selectedOwnersInfo
+                        this.params.link_url.storiesContainer.setOwnerInfo(-selectedOwnersInfo[0][0], selectedOwnersInfo[0][1], selectedOwnersInfo[0][3]);
+                    }
+                }
                 break;
             case 'link_url':
                 var linkUrlInfo = this.getLinkInfo(this.params.link_url.value);
@@ -4669,6 +4691,8 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                     auctionName = 'promoted_posts';
                 } else if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD) {
                     auctionName = 'adaptive_ads';
+                } else if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_STORY) {
+                    auctionName = 'stories';
                 }
 
                 var suffixesAll = '';
@@ -5283,6 +5307,7 @@ AdsViewEditor.prototype.getLinkInfo = function(link) {
 
 AdsViewEditor.prototype.getParams = function() {
     var isAdaptiveAd = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD);
+    var isStory = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_STORY);
 
     var params = {};
     for (var paramName in this.params) {
@@ -5294,6 +5319,15 @@ AdsViewEditor.prototype.getParams = function() {
     var weeklyScheduleTargetEl = ge(this.options.targetIdPrefix + 'weekly_schedule');
     if (weeklyScheduleTargetEl) {
         params.weekly_schedule = weeklyScheduleTargetEl.value;
+    }
+
+    if (isStory && this.params.link_url.storiesContainer) {
+        params.link_url = this.params.link_url.storiesContainer.getStoriesIds();
+        params.stories_update_data = JSON.stringify(this.params.link_url.storiesContainer.getStoriesUpdateData());
+        if (this.params.link_id.value) {
+            params.link_owner_id = -this.params.link_id.value;
+            params.link_id = '';
+        }
     }
 
     return params;
@@ -5323,6 +5357,8 @@ AdsViewEditor.prototype.getFormatPhotoSize = function(isIcon) {
             return AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_UNKNOWN; // No photo needed for promoted post
         case AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD:
             return isIcon ? AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD_ICON : AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD;
+        case AdsEdit.ADS_AD_FORMAT_TYPE_STORY:
+            return AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_UNKNOWN; // No photo needed for a story
         default:
             return AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_UNKNOWN;
     }
@@ -5769,6 +5805,10 @@ AdsViewEditor.prototype.completeLink = function() {
                         this.params.format_type.hidden = true;
                     }
                     break;
+                case AdsEdit.ADS_AD_LINK_TYPE_STORY:
+                    formatTypeDefault = AdsEdit.ADS_AD_FORMAT_TYPE_STORY;
+                    this.params.format_type.hidden = true;
+                    break;
             }
             this.setFormatType(formatTypeDefault);
         } else {
@@ -5980,6 +6020,7 @@ AdsViewEditor.prototype.getLink = function() {
             case AdsEdit.ADS_AD_LINK_TYPE_POST_STEALTH:
                 linkUrl = '/wall' + this.params.link_owner_id.value + '_' + this.params.link_id.value;
                 break;
+                // ADS_AD_LINK_TYPE_STORY ?
         }
     }
     if (inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_URL, AdsEdit.ADS_AD_LINK_TYPE_VIDEO, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE]) && this.getLinkInfo(this.params.link_url.value)) {
@@ -6070,6 +6111,8 @@ AdsViewEditor.prototype.getPreviewDomain = function() {
             return getLang('global_ad_link_type_app');
         case AdsEdit.ADS_AD_LINK_TYPE_VIDEO:
             return getLang('global_ad_link_type_video');
+        case AdsEdit.ADS_AD_LINK_TYPE_STORY:
+            return getLang('global_ad_link_type_story');
         case AdsEdit.ADS_AD_LINK_TYPE_URL:
             var linkUrlInfo = this.getLinkInfo(this.params.link_url.value);
             if (!linkUrlInfo) {
@@ -6108,7 +6151,8 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
             var isWphone = (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE);
             var isPromotedPost = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST);
             var isAdaptiveAd = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD);
-            var isRedesign = !(isAppInNews || isAppsOnly || isGroupsOnly || isBigApp || isMobile || isAndroid || isIphone || isWphone || isPromotedPost || isAdaptiveAd);
+            var isStory = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_STORY);
+            var isRedesign = !(isAppInNews || isAppsOnly || isGroupsOnly || isBigApp || isMobile || isAndroid || isIphone || isWphone || isPromotedPost || isAdaptiveAd || isStory);
             var elems = geByClass('format_edit', this.preview[previewParamName]);
             elems.push(this.preview[previewParamName]);
             for (var i in elems) {
@@ -6121,6 +6165,7 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
                 toggleClass(elems[i], 'iphone', !!(isIphone || isWphone)); // isWphone - temporary
                 toggleClass(elems[i], 'promoted_post', !!isPromotedPost);
                 toggleClass(elems[i], 'adaptive_ad', !!isAdaptiveAd);
+                toggleClass(elems[i], 'story', !!isStory);
                 toggleClass(elems[i], 'redesign', !!isRedesign);
             }
             var titlePlaceElem = (isBigApp ? this.preview.title_big_app : this.preview.title_regular);
@@ -6139,6 +6184,7 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
 
             toggleClass(this.preview.age_restriction, 'inline', isAdaptiveAd);
             toggleClass(this.preview.photo, 'ads_ad_snippet_img', isAdaptiveAd);
+            toggle(this.preview.storiesContainer, isStory);
             break;
         case 'link':
             var linkResult = this.getLink();
@@ -6190,12 +6236,21 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
             break;
         case 'disclaimer_medical':
             toggle(this.preview[previewParamName], !!(this.params.disclaimer_medical.value));
+            if (this.params.link_url.storiesContainer) {
+                this.params.link_url.storiesContainer.setDisclaimerText(this.getDisclaimersText());
+            }
             break;
         case 'disclaimer_specialist':
             toggle(this.preview[previewParamName], !!(this.params.disclaimer_specialist.value));
+            if (this.params.link_url.storiesContainer) {
+                this.params.link_url.storiesContainer.setDisclaimerText(this.getDisclaimersText());
+            }
             break;
         case 'disclaimer_supplements':
             toggle(this.preview[previewParamName], !!(this.params.disclaimer_supplements.value));
+            if (this.params.link_url.storiesContainer) {
+                this.params.link_url.storiesContainer.setDisclaimerText(this.getDisclaimersText());
+            }
             break;
         case 'disclaimer_finance':
             if (this.params.disclaimer_finance.value) {
@@ -6205,6 +6260,7 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
                 this.preview[previewParamName].innerHTML = text;
             }
             toggle(this.preview[previewParamName], !!(this.params.disclaimer_finance.value));
+            this.params.link_url.storiesContainer.setDisclaimerText(this.getDisclaimersText());
             break;
         case 'age_restriction':
             var isMobile = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE);
@@ -6213,6 +6269,13 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
             } else {
                 this.preview[previewParamName].innerHTML = this.getAgeRestrictionText(this.params.age_restriction.value);
                 toggle(this.preview[previewParamName], !!(this.params.age_restriction.value));
+            }
+            if (this.params.link_url.storiesContainer) {
+                if (this.params.age_restriction.value) {
+                    this.params.link_url.storiesContainer.setAgeRestrictionText(this.getAgeRestrictionText(this.params.age_restriction.value));
+                } else {
+                    this.params.link_url.storiesContainer.setAgeRestrictionText('');
+                }
             }
             break;
         case 'disclaimers':
@@ -6336,6 +6399,27 @@ AdsViewEditor.prototype.getAgeRestrictionText = function(ageRestriction) {
         }
     }
     return '';
+}
+
+AdsViewEditor.prototype.getDisclaimersText = function() {
+    var result = [];
+    var disclaimerText = '';
+    var disclaimers = ['disclaimer_medical', 'disclaimer_specialist', 'disclaimer_supplements', 'disclaimer_finance'];
+    for (var i in disclaimers) {
+        var disclaimer = disclaimers[i];
+        if (!this.params[disclaimer].value) {
+            continue;
+        }
+        if (disclaimer === 'disclaimer_finance') {
+            disclaimerText = getLang(this.params.disclaimer_finance.active_template)
+                .replace('{name}', this.params.disclaimer_finance_name.value_escaped || this.params.disclaimer_finance_name.value_default)
+                .replace('{license_no}', this.params.disclaimer_finance_license_no.value_escaped || this.params.disclaimer_finance_license_no.value_default);
+        } else {
+            disclaimerText = this.params[disclaimer].text;
+        }
+        result.push(disclaimerText);
+    }
+    return result.join(' ');
 }
 
 AdsViewEditor.prototype.getLinkButtonText = function(linkButton) {
@@ -6598,6 +6682,7 @@ AdsTargetingEditor.prototype.init = function(options, editor, viewEditor, criter
             data_rules_promoted_posts: [],
             data_rules_promoted_posts_video: [],
             data_rules_adaptive_ads: [],
+            data_rules_stories: [],
             template: ''
         },
         criteria_presets: {
@@ -7807,7 +7892,7 @@ AdsTargetingEditor.prototype.getUiCriterionVisibility = function(criterionName, 
                 break;
             case 'events_retargeting_groups':
                 var viewParams = this.viewEditor.getParams();
-                visible = !!(inArray(viewParams.link_type, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) || viewParams.format_type == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD);
+                visible = !!(inArray(viewParams.link_type, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) || viewParams.format_type == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD || viewParams.format_type == AdsEdit.ADS_AD_FORMAT_TYPE_STORY);
                 break;
             case 'criteria_preset_name':
             case 'criteria_preset_name_button':
@@ -9777,6 +9862,8 @@ AdsTargetingEditor.prototype.eventsRetargetingGroupsAdd = function(container, te
         dataRules = promotedPostKludgesHave.video_ads_autoplay ? this.criteria[criterionName].data_rules_promoted_posts_video : this.criteria[criterionName].data_rules_promoted_posts;
     } else if (formatType == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD) {
         dataRules = this.criteria[criterionName].data_rules_adaptive_ads;
+    } else if (formatType == AdsEdit.ADS_AD_FORMAT_TYPE_STORY) {
+        dataRules = this.criteria[criterionName].data_rules_stories;
     }
 
     var uiRulesSelector = new Selector(targetRulesElem, dataRules, {
@@ -9853,6 +9940,8 @@ AdsTargetingEditor.prototype.eventsRetargetingGroupsUpdateRules = function(crite
         dataRules = promotedPostKludgesHave.video_ads_autoplay ? this.criteria[criterionName].data_rules_promoted_posts_video : this.criteria[criterionName].data_rules_promoted_posts;
     } else if (formatType == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD) {
         dataRules = this.criteria[criterionName].data_rules_adaptive_ads;
+    } else if (formatType == AdsEdit.ADS_AD_FORMAT_TYPE_STORY) {
+        dataRules = this.criteria[criterionName].data_rules_stories;
     }
 
     if (!this.criteria[criterionName].ui) {

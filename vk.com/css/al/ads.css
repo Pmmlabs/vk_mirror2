@@ -3658,6 +3658,10 @@ td.ads_settings_notifications_label {
     margin-top: -24px
 }
 
+#ad_preview_top.story {
+    margin-right: 20px
+}
+
 #ad_preview_top.no_border .ads_ad_box_border.adaptive_ad,
 #ad_preview_top.no_border .ads_ad_box_border.app_in_news,
 #ad_preview_top.no_border .ads_ad_box_border.apps_only,
@@ -3684,6 +3688,11 @@ td.ads_settings_notifications_label {
     width: 405px
 }
 
+#ad_preview_top .ads_ad_box.story {
+    width: 220px;
+    margin: 5px 0 0
+}
+
 #ad_preview_top .ads_ad_box_border.promoted_post {
     left: auto;
     width: 385px;
@@ -3702,6 +3711,86 @@ td.ads_settings_notifications_label {
 #ad_preview_top .ads_ad_box2.ver.repeat_ver.size_site.adaptive_ad {
     width: 385px;
     margin: 0 0 0 20px
+}
+
+#ads_edit_stories_preview_container {
+    position: relative
+}
+
+.ads_preview_stories_item {
+    background-size: cover;
+    background-position: 50%;
+    border-radius: 6px;
+    overflow: hidden;
+    width: 220px;
+    height: 394px;
+    top: 0;
+    left: 0;
+    box-shadow: 2px 1px 4px 1px rgba(0, 0, 0, .3)
+}
+
+#ads_edit_stories_preview_container.office .ads_preview_stories_item_1 {
+    position: relative;
+    z-index: 10
+}
+
+#ads_edit_stories_preview_container.office .ads_preview_stories_item_2 {
+    position: absolute;
+    opacity: 0.5;
+    z-index: 9;
+    width: 208px;
+    height: 374px;
+    top: 10px;
+    left: 24px
+}
+
+#ads_edit_stories_preview_container.office .ads_preview_stories_item_3 {
+    position: absolute;
+    opacity: 0.2;
+    z-index: 8;
+    width: 198px;
+    height: 354px;
+    top: 20px;
+    left: 44px
+}
+
+.ads_preview_stories_item_owner_wrapper {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding-bottom: 10px;
+    width: 100%;
+    z-index: 20;
+    background: -o-linear-gradient(top, transparent 0%, rgba(0, 0, 0, .48) 100%);
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, .48));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#7a000000', GradientType=0)
+}
+
+.ads_preview_stories_item_owner_photo_wrapper {
+    margin: 0 auto;
+    border-radius: 44px;
+    border: 2px solid #a3a3a3;
+    width: 38px
+}
+
+.ads_preview_stories_item_owner_photo {
+    width: 34px;
+    height: 34px;
+    background-size: cover;
+    margin: 2px;
+    border-radius: 34px
+}
+
+.ads_preview_stories_item_owner_name {
+    font-size: 12px;
+    color: #e0e0e0;
+    text-align: center;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, .4);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+    margin: 3px auto 0
 }
 
 .ads_ad_with_redesign_preview p {

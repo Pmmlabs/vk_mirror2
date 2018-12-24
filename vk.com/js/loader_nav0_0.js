@@ -387,17 +387,17 @@ var stVersions = {
     'offers.js': 2030679272,
     'call.js': 4217435992,
     'call.css': 3256039661,
-    'aes_light.css': 24528355895,
+    'aes_light.css': 22992359908,
     'aes_light.js': 273774818,
-    'ads.css': 43790871518,
+    'ads.css': 46518568870,
     'ads_bonus.css': 1294533291,
     'ads.js': 3723561920,
     'ads_payments.js': 1483293789,
-    'ads_edit.css': 37113872942,
-    'ads_edit.js': 1267960866,
+    'ads_edit.css': 105238015606,
+    'ads_edit.js': 4118592108,
     'ads_edit_geo.js': 519167575,
     'ads_moder_common.css': 15091442653,
-    'ads_moder.css': 16120505636,
+    'ads_moder.css': 18129247907,
     'ads_moder_common.js': 3875868763,
     'ads_moder.js': 2798696304,
     'ads_tagger.js': 2289308011,
@@ -406,7 +406,7 @@ var stVersions = {
     'mrtarg.js': 1146267795,
     'mrtarg.css': 3142794554,
     'cmodules/web/ads_edit_easy.js': 38627721655,
-    'cmodules/web/ads_edit_components.js': 21979694895,
+    'cmodules/web/ads_edit_components.js': 77097738448,
     'health.css': 2251304991,
     'health.js': 2993570139,
     'pinbar.js': 284788792,
@@ -538,7 +538,7 @@ var stVersions = {
     'cmodules/web/speech_worker_opus.js': 2818771805,
     'stories.js': 68317157860,
     'stories.css': 15415541089,
-    'cmodules/web/stories_manage.js': 28883504353,
+    'cmodules/web/stories_manage.js': 30484636386,
     'stories_manage.css': 73033957800,
     'article.css': 27407991678,
     'article_editor.css': 31410909779,
@@ -660,4 +660,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 6928;
+var _rnd = 2307;

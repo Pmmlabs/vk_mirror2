@@ -538,6 +538,11 @@
     padding: 10px
 }
 
+.ads_premoderation_requests .ads_ad_box.ver.repeat_ver.size_site.story {
+    width: auto;
+    padding: 15px 15px 0
+}
+
 .ads_premoderation_requests .ads_ad_box_border {
     border-width: 1px
 }
@@ -1247,4 +1252,25 @@ table.ads_logs_info th {
 
 .fast_reason_selected a {
     color: #fff
+}
+
+#ads_edit_stories_preview_container.premoderation {
+    display: -ms-flexbox;
+    display: flex
+}
+
+#ads_edit_stories_preview_container.premoderation .ads_preview_stories_item {
+    width: 110px;
+    height: 197px;
+    margin-right: 5px;
+    -ms-flex-negative: 0;
+    flex-shrink: 0
+}
+
+#ads_edit_stories_preview_container.premoderation .ads_preview_stories_item:last-child {
+    margin-right: 0
+}
+
+#ads_edit_stories_preview_container.premoderation .ads_preview_stories_item_1 {
+    position: relative
 }

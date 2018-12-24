@@ -74,8 +74,7 @@
 }
 
 .ads_ad_box.ver.repeat_ver.size_site.story {
-    width: 900px;
-    background: #797e83
+    width: 250px
 }
 
 .ads_ad_box.app_in_news.ads_preview_api,
@@ -528,7 +527,8 @@
     text-align: left
 }
 
-.ads_ad_box2.ver.promoted_post {
+.ads_ad_box2.ver.promoted_post,
+.ads_ad_box2.ver.story {
     display: none
 }
 
@@ -651,6 +651,10 @@ a.ads_ad_box2:hover {
 .ads_edit_crop_photo_ad .ads_ad_box_border.adaptive_ad,
 .ads_edit_panel_preview .ads_ad_box_border.adaptive_ad {
     display: block
+}
+
+.ads_ad_box_border.story {
+    display: none
 }
 
 .ads_ad_photo_box {
@@ -1717,6 +1721,10 @@ a.ads_ad_box2:hover {
 
 .ads_ad_box.redesign .ads_ad_box2.ver.repeat_ver.size_site.first {
     margin-top: 0
+}
+
+.ads_ad_box.redesign .ads_ad_box2.ver.repeat_ver.size_site.story {
+    display: none
 }
 
 .ads_ad_box.redesign .ads_ad_photo_box {
