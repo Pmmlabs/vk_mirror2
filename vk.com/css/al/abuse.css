@@ -1612,5 +1612,5 @@
     height: 11px;
     display: inline-block;
     background-size: 12px;
-    filter: grayscale(100%)
+    filter: hue-rotate(145deg) saturate(1500%)
 }

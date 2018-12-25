@@ -30,7 +30,7 @@
             function i() {
                 return "web" === vk__adsLight.adsSection && vkNow() - __adsLoaded >= vk.ads_rotate_interval || vkNow() - __adsLoaded >= 5 * vk.ads_rotate_interval
             }
-            return e && !t ? (clearTimeout(c), void(c = setTimeout(function() {
+            return e && !t ? (clearTimeout(_), void(_ = setTimeout(function() {
                 d(e, !0)
             }, 100))) : (e && AdsLight.handleEvent("ads.onEvent", "onScrollWindow", 0), vk__adsLight.userEventTime = window.vkNow && vkNow() || 0, o(), isVkDomain && window.vkNow && window.vk && vk.ads_rotate_interval && i() && (clearTimeout(h), h = setTimeout(function() {
                 i() && (__adsLoaded = 0, AdsLight.updateBlock())
@@ -72,7 +72,7 @@
             g = !1,
             l = !1,
             h = !1,
-            c = !1
+            _ = !1
     }, AdsLight.initWeb = function(e, t, i, s) {
         if (vk__adsLight.adsSection = e, top !== window) {
             var d = {
@@ -187,7 +187,7 @@
     }, AdsLight.getAjaxParams = function(e, t) {
         var i = {},
             s = AdsLight.canUpdate(!0);
-        return t.noAds || t.cache ? i.al_ad = 0 : s || t.ads ? ((t.ads || window.vkNow && window.vk && vk.ads_rotate_interval && "web" !== vk__adsLight.adsSection && vkNow() - __adsLoaded >= vk.ads_rotate_interval) && (__adsLoaded = vkNow(), i.al_ad = 1), (e.al_ad || i.al_ad) && (i.ads_section = vk__adsLight.adsSection, i.ads_showed = AdsLight.getAdsShowed())) : i.al_ad = null, i
+        return cur.group_id && (i._ads_group_id = cur.group_id), t.noAds || t.cache ? i.al_ad = 0 : s || t.ads ? ((t.ads || window.vkNow && window.vk && vk.ads_rotate_interval && "web" !== vk__adsLight.adsSection && vkNow() - __adsLoaded >= vk.ads_rotate_interval) && (__adsLoaded = vkNow(), i.al_ad = 1), (e.al_ad || i.al_ad) && (i.ads_section = vk__adsLight.adsSection, i.ads_showed = AdsLight.getAdsShowed())) : i.al_ad = null, i
     }, AdsLight.doRequest = function(e, t) {
         function i(t) {
             var r = +new Date,
@@ -315,11 +315,11 @@
                     if (AdsLight.sendExperimentStat(d, "lineup"), !vk__adsLight.gadxLoaded) return void(vk__adsLight.gadxLoadTries > 3 ? (AdsLight.sendExperimentStat(d, "fail"), AdsLight.tryExperiment(e.slice(t + 1))) : (AdsLight.initGADX(a[0], [a[1], a[2]], d, e.slice(t + 1)), setTimeout(function() {
                         AdsLight.tryExperiment(e)
                     }, 300)));
-                    var c = AdsLight.getBusyBlockID(vk__adsLight.gadxBlocks),
-                        _ = AdsLight.getFreeBlockID(vk__adsLight.gadxBlocks);
-                    if (!_) return void AdsLight.sendExperimentStat(d, "fail");
-                    if (c) {
-                        var v = ge(c),
+                    var _ = AdsLight.getBusyBlockID(vk__adsLight.gadxBlocks),
+                        c = AdsLight.getFreeBlockID(vk__adsLight.gadxBlocks);
+                    if (!c) return void AdsLight.sendExperimentStat(d, "fail");
+                    if (_) {
+                        var v = ge(_),
                             u = ge("ads_left"),
                             L = getSize(u)[1];
                         setStyle(u, {
@@ -331,14 +331,14 @@
                             left: 0,
                             width: "100%"
                         }), v = ce("div", {
-                            id: _
+                            id: c
                         }, {
                             maxHeight: 0,
                             overflow: "hidden"
                         }), u.appendChild(v)
                     } else {
                         v = ce("div", {
-                            id: _
+                            id: c
                         }, {
                             maxHeight: 0,
                             overflow: "hidden"
@@ -352,7 +352,7 @@
                     }
                     return googletag.cmd.push(function(e, t) {
                         AdsLight.sendExperimentStat(t, "try"), googletag.pubads().refresh([vk__adsLight.gadxSlots[e]]), googletag.display(e)
-                    }.pbind(_, d)), !0;
+                    }.pbind(c, d)), !0;
                 case "wmg":
                     return AdsLight.sendExperimentStat(d, "lineup"), AdsLight.wmgMessageCallback = function(i) {
                         AdsLight.checkWmgMessage.call(this, i, d, e, t)
@@ -379,7 +379,7 @@
             h = -1 != l ? e.indexOf(g, l + r.length) : -1;
         if (-1 != h && (a = e.slice(l + r.length, h)), a && "string" == typeof a) try {
             a = window.parseJSON ? parseJSON(a) : JSON.parse(a)
-        } catch (c) {}
+        } catch (_) {}
         if (a && "[object Object]" === Object.prototype.toString.call(a) || (a = {}), vk__adsLight.adsCanShow = i || "0" === i ? 1 : -vkNow(), vk__adsLight.adsShowed = s, vk__adsLight.adsShowedHash = +new Date, d && (vk__adsLight.adsParams = d), !e)
             if (vk.no_ads) e = "";
             else {
@@ -387,24 +387,24 @@
                 e = ""
             }
         __adsLoaded = vkNow();
-        var _ = ge("ads_left"),
-            v = _ && isVisible(_) || vk.ad_preview;
-        if (!_) {
+        var c = ge("ads_left"),
+            v = c && isVisible(c) || vk.ad_preview;
+        if (!c) {
             var u = ge("side_bar");
             if (!u) return void AdsLight.resizeBlockWrap([0, 0], !1, !1, !0);
-            _ = u.appendChild(ce("div", {
+            c = u.appendChild(ce("div", {
                 id: "ads_left",
                 className: "ads_left_empty"
             }, {
                 display: v ? "block" : "none"
             }))
         }
-        if (AdsLight.showNewBlock(_, e, v), window.vk && vk.ads_rotate_interval && "web" === vk__adsLight.adsSection && (clearInterval(vk__adsLight.reloadTimer), vk__adsLight.reloadTimer = setInterval(function() {
+        if (AdsLight.showNewBlock(c, e, v), window.vk && vk.ads_rotate_interval && "web" === vk__adsLight.adsSection && (clearInterval(vk__adsLight.reloadTimer), vk__adsLight.reloadTimer = setInterval(function() {
                 vkNow() - __adsLoaded >= vk.ads_rotate_interval && vkNow() - vk__adsLight.userEventTime <= 3 * vk.ads_rotate_interval / 4 && (__adsLoaded = 0, AdsLight.updateBlock())
             }, vk.ads_rotate_interval)), a.ads_req_id) try {
             var L = "__vkAdsReq_" + a.ads_req_id;
             window[L] && window[L](a)
-        } catch (c) {}
+        } catch (_) {}
         setTimeout(function() {
             vk__adsLight.updateProgress = 3, AdsLight.onAdsShowed(0)
         }, 100), "undefined" != typeof abp && abp && setCookie("remixab", 1, 30)
@@ -436,28 +436,28 @@
                 width: "100%"
             });
             var t = AdsLight.getBlockSize(p);
-            t = AdsLight.resizeBlockWrap(t, v, u), c ? n() : animate(e, {
+            t = AdsLight.resizeBlockWrap(t, v, u), _ ? n() : animate(e, {
                 width: t[0],
                 height: t[1]
-            }, _, n.pbind())
+            }, c, n.pbind())
         }
 
         function n() {
-            toggleClass(e, "ads_left_empty", c), cleanElems(e);
+            toggleClass(e, "ads_left_empty", _), cleanElems(e);
             var t = AdsLight.getBlockSize(p);
-            t = AdsLight.resizeBlockWrap(t, !1, u, !0), c ? o() : animate(L, {
+            t = AdsLight.resizeBlockWrap(t, !1, u, !0), _ ? o() : animate(L, {
                 opacity: 1
-            }, _, o.pbind())
+            }, c, o.pbind())
         }
 
         function o() {
-            if (c)
+            if (_)
                 if (L.previousSibling)
                     for (var e = L; e = e.previousSibling;) {
                         var t = e.previousSibling ? null : r.pbind();
                         animate(e, {
                             opacity: 0
-                        }, _, t)
+                        }, c, t)
                     } else r();
                 else r()
         }
@@ -472,14 +472,14 @@
                 width: "",
                 height: "",
                 overflow: "visible"
-            }), window.updSideTopLink && updSideTopLink(), AdsLight.updateExternalStats(e), c || AdsLight.scrollToPreview()
+            }), window.updSideTopLink && updSideTopLink(), AdsLight.updateExternalStats(e), _ || AdsLight.scrollToPreview()
         }
         if (!i || browserLight.msie6 || browserLight.msie7) {
             i || debugLog("Ads container is hidden"), e.innerHTML = t, toggleClass(e, "ads_left_empty", !t);
             var g = AdsLight.getBlockSize(e);
             return AdsLight.resizeBlockWrap(g, !1, !1, !0), void AdsLight.updateExternalStats(e)
         }
-        for (var l = getXY(e)[1], h = scrollGetY(), c = !t, _ = l + 50 > h + lastWindowHeight ? 0 : 200, v = AdsLight.getBlockSize(e), u = [0, 0], L = e.appendChild("string" == typeof t ? ce("div", {
+        for (var l = getXY(e)[1], h = scrollGetY(), _ = !t, c = l + 50 > h + lastWindowHeight ? 0 : 200, v = AdsLight.getBlockSize(e), u = [0, 0], L = e.appendChild("string" == typeof t ? ce("div", {
                 innerHTML: t
             }, {
                 display: "none"
@@ -565,10 +565,10 @@
             l && n.push(e[o])
         }
         a = !!a;
-        var h, c = function(e) {
+        var h, _ = function(e) {
             clearTimeout(h), i(void 0 !== e ? e : a)
         };
-        !s && n.length && window != parent && isVkDomain && "web" === vk__adsLight.adsSection && vk__adsLight.rpc && vk__adsLight.rpc.callMethod ? (vk__adsLight.rpc.callMethod("publish", "ads.isVisibleBlockWrap", n, c), h = setTimeout(c, 300)) : !s && n.length && window != parent && !isVkDomain && window.VK && VK.callMethod ? (VK.callMethod("adsPublish", "ads.isVisibleBlockWrap", n, c), h = setTimeout(c, 300)) : c()
+        !s && n.length && window != parent && isVkDomain && "web" === vk__adsLight.adsSection && vk__adsLight.rpc && vk__adsLight.rpc.callMethod ? (vk__adsLight.rpc.callMethod("publish", "ads.isVisibleBlockWrap", n, _), h = setTimeout(_, 300)) : !s && n.length && window != parent && !isVkDomain && window.VK && VK.callMethod ? (VK.callMethod("adsPublish", "ads.isVisibleBlockWrap", n, _), h = setTimeout(_, 300)) : _()
     }, AdsLight.isVisibleBlockWrapRpc = function(e, t, i) {
         var s;
         s = i ? VK.Widgets.RPC[i].frame : cur.app.frame;
@@ -672,16 +672,16 @@
             var e = ge("ads_ads_all_ads_more");
             if (e) {
                 var t = e.getBoundingClientRect();
-                t.top < lastWindowHeight + s && (c = Math.round(Math.max(c, lastWindowHeight - t.top + s)), r()), AdsLight.applyAds(), a()
+                t.top < lastWindowHeight + s && (_ = Math.round(Math.max(_, lastWindowHeight - t.top + s)), r()), AdsLight.applyAds(), a()
             }
         }
 
         function r(e) {
             if (!e) return void setTimeout(r.pbind(!0), 100);
-            if (t && c && !h) {
+            if (t && _ && !h) {
                 h = !0;
                 var i = {};
-                i.ads_more = t, i.ads_height = c, ajax.post("/ads_light.php?act=all_ads_more", i, {
+                i.ads_more = t, i.ads_height = _, ajax.post("/ads_light.php?act=all_ads_more", i, {
                     onDone: g,
                     onFail: l
                 })
@@ -693,7 +693,7 @@
             if (t = e.ads_more, AdsLight.addAdsToApply(e.ads_ids_apply), e.ads_html) {
                 var i = ge("ads_ads_all_ads_rows"),
                     s = ge("ads_ads_all_ads_more");
-                i && (i.innerHTML += e.ads_html, c = !1, o()), s && (s.height = e.ads_more_height)
+                i && (i.innerHTML += e.ads_html, _ = !1, o()), s && (s.height = e.ads_more_height)
             }
             a()
         }
@@ -702,10 +702,10 @@
             return h = !1, !0
         }
         var h = !1,
-            c = !1;
+            _ = !1;
         boxLayerWrap.scrollTop = 0;
-        var _ = {};
-        _.onClean = d, e.setOptions(_), t && addEvent(boxLayerWrap, "scroll", o), n(), o()
+        var c = {};
+        c.onClean = d, e.setOptions(c), t && addEvent(boxLayerWrap, "scroll", o), n(), o()
     }, AdsLight.blockOverOut = function(e, t, i) {
         var s, d = "mouseover" === e.type,
             a = !1;
@@ -861,7 +861,8 @@
     }, AdsLight.onRenderWmgAd = function(e, t, i, s, d) {
         vk__adsLight.showWmgAd && AdsLight.onWmgRenderSuccessful(e, t, i, s, d)
     }, AdsLight.onWmgRenderUnsuccessful = function(e, t) {
-        vk__adsLight.wmgLoading = !1, AdsLight.wmgMessageCallback && removeEventListener("message", AdsLight.wmgMessageCallback), AdsLight.sendExperimentStat(e, "fail"), AdsLight.tryExperiment(t);
+        vk__adsLight.wmgLoading = !1, AdsLight.wmgMessageCallback && removeEventListener("message", AdsLight.wmgMessageCallback),
+            AdsLight.sendExperimentStat(e, "fail"), AdsLight.tryExperiment(t)
     }, AdsLight.onWmgRenderSuccessful = function(e, t, i, s, d) {
         vk__adsLight.wmgLoading = !1, AdsLight.sendExperimentStat(s, "success"), t.removeEventListener("gladeAdFetched", AdsLight.onLoadWmgAd.pbind(s, d)), t.removeEventListener("gladeAdRendered", AdsLight.onRenderWmgAd.pbind(e, t, i, s, d)), AdsLight.showWmgAfterFetch(e, t, i)
     }, AdsLight.showWmgAfterFetch = function(e, t, i) {
@@ -956,7 +957,7 @@
         return d(r, t, i), n
     }, AdsLight.tryRenderTarget = function(e, t, i, s, d, a, n, o, r) {
         function g(e) {
-            var t = ge(_);
+            var t = ge(c);
             if (t) {
                 var i = geByClass1("trg-b-banner-block", t);
                 return i || isArray(e) && isObject(e[0]) && e[0].banner && (i = ge("b" + e[0].banner)), i
@@ -971,20 +972,20 @@
         };
         e && (l.test_id = e), window.vk && vk.id && (l.vk_id = vk.id), AdsLight.sendExperimentStat(i, "try");
         var h = !1,
-            c = setTimeout(function() {
+            _ = setTimeout(function() {
                 AdsLight.sendExperimentStat(i, "noresult"), h && window[h] && (window[h] = function() {}), AdsLight.tryExperiment(r)
             }, 6e3),
-            _ = "ads_left";
+            c = "ads_left";
         stManager.add(["mrtarg.js", "mrtarg.css"], function() {
-            h = AdsLight.getRBAds(_, function(e) {
-                clearTimeout(c), AdsLight.sendExperimentStat(i, "success"), window.RB && window.RB.doCheck && window.RB.doCheck();
+            h = AdsLight.getRBAds(c, function(e) {
+                clearTimeout(_), AdsLight.sendExperimentStat(i, "success"), window.RB && window.RB.doCheck && window.RB.doCheck();
                 var t = g(e);
                 if (t) {
                     var s = ["rbccl", t.getAttribute("c"), t.getAttribute("ac"), o].join(";");
                     AdsLight.sendExperimentStat(i, "extra", s)
                 }
             }, function(e) {
-                clearTimeout(c), AdsLight.sendExperimentStat(i, "fail"), AdsLight.tryExperiment(r)
+                clearTimeout(_), AdsLight.sendExperimentStat(i, "fail"), AdsLight.tryExperiment(r)
             }, l)
         })
     }, AdsLight.initGADX = function(e, t, i, s) {

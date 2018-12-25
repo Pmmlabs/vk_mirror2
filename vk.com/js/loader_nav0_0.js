@@ -152,14 +152,14 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 2660709036,
     'common.js': 1162,
-    'common.css': 60788059502,
+    'common.css': 60201939279,
     'cmodules/web/common_web.js': 29,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
     'uncommon.css': 14750530895,
     'filebutton.css': 1044306797,
     'lite.js': 3977427646,
-    'lite.css': 53488026082,
+    'lite.css': 52901905859,
     'rtl.css': 15284398479,
     'pagination.js': 358700184,
     'blog.css': 19273681738,
@@ -253,7 +253,7 @@ var stVersions = {
     'cmodules/web/groups_list.js': 2447510571,
     'cmodules/web/GroupsEdit.js': 24767144261,
     'groups_edit.css': 49521082979,
-    'cmodules/web/groups_edit.js': 51795578210,
+    'cmodules/web/groups_edit.js': 49481175820,
     'profile.css': 20841539430,
     'profile.js': 2681993000,
     'calendar.css': 19456212608,
@@ -289,9 +289,9 @@ var stVersions = {
     'privacy.js': 711405089,
     'privacy.css': 15518172397,
     'apps.css': 41855335900,
-    'apps.js': 23559680217,
+    'apps.js': 21727596893,
     'apps_edit.js': 17976547669,
-    'apps_edit.css': 27875410747,
+    'apps_edit.css': 28316846119,
     'apps_check.js': 3204387834,
     'apps_check.css': 21320235297,
     'settings.js': 353467433,
@@ -377,7 +377,7 @@ var stVersions = {
     'graffiti.css': 404471482,
     'graffiti_new.js': 67279821,
     'graffiti_new.css': 18025139751,
-    'abuse.css': 14488452551,
+    'abuse.css': 14650671060,
     'verify.css': 14028040885,
     'away.css': 19409923958,
     'stats.css': 17686890117,
@@ -388,7 +388,7 @@ var stVersions = {
     'call.js': 4217435992,
     'call.css': 3256039661,
     'aes_light.css': 22992359908,
-    'aes_light.js': 273774818,
+    'aes_light.js': 725879409,
     'ads.css': 46518568870,
     'ads_bonus.css': 1294533291,
     'ads.js': 3723561920,
@@ -600,7 +600,7 @@ var stVersions = {
     'landings/transparency.css': 94036520767,
     'cmodules/web/emoji.js': 8407878679,
     'cmodules/web/apps_achievements.js': 82677794539,
-    'cmodules/web/payments.js': 49924112844,
+    'cmodules/web/payments.js': 52508747838,
     'lang': 6931
 };
 var stTypes = {
@@ -660,4 +660,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 4536;
+var _rnd = 2083;
