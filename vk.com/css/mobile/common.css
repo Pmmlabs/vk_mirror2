@@ -21992,6 +21992,12 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     font-size: 16px
 }
 
+.blog_entry_text .article.article_mobile figure[data-type="100"],
+.blog_entry_text_wrap .article.article_mobile figure[data-type="100"],
+.blog_post_text .article.article_mobile figure[data-type="100"] {
+    padding: 0!important
+}
+
 .round_loader {
     content: ' ';
     display: block;
@@ -45275,7 +45281,12 @@ a .BookmarkListItem__subtitle:hover {
     -moz-box-flex: 0;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
-    margin: 0 8px 0 0
+    margin: 0;
+    height: 35px
+}
+
+.mailActs__buttonsIn[hidden] {
+    display: none
 }
 
 .mailActs__chevron {
@@ -45289,7 +45300,8 @@ a .BookmarkListItem__subtitle:hover {
     -webkit-flex: 1 1 auto;
     -moz-box-flex: 1;
     -ms-flex: 1 1 auto;
-    flex: 1 1 auto
+    flex: 1 1 auto;
+    height: 34px
 }
 
 .mailActs__chevronIn {

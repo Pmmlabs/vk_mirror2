@@ -4782,7 +4782,7 @@ div.top_result_baloon a {
 }
 
 .audio_pl_snippet2 .audio_pl_snippet__action_btn_share:before {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.8%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20d%3D%22M13%208.75V4.402a.417.417%200%200%201%20.687-.318l8.94%207.598a.417.417%200%200%201%200%20.636l-8.94%207.598a.417.417%200%200%201-.687-.318V15.25c-5.361%200-9.16%201.04-11.398%203.121a.25.25%200%200%201-.413-.241C2.685%2011.877%206.623%208.75%2013%208.75z%22%20stroke%3D%22%23828a99%22%20stroke-width%3D%221.8%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20opacity%3D%221%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20d%3D%22M13%208.75V4.402a.417.417%200%200%201%20.687-.318l8.94%207.598a.417.417%200%200%201%200%20.636l-8.94%207.598a.417.417%200%200%201-.687-.318V15.25c-5.361%200-9.16%201.04-11.398%203.121a.25.25%200%200%201-.413-.241C2.685%2011.877%206.623%208.75%2013%208.75z%22%20stroke%3D%22%23828a99%22%20stroke-width%3D%221.8%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .audio_pl_snippet_small .audio_pl_snippet2 .audio_pl_snippet__action_btn_share {
@@ -5335,6 +5335,14 @@ div.top_result_baloon a {
 .audio_promo:hover .audio_promo__left:after,
 .audio_promo:hover .audio_promo__right:after {
     opacity: 1
+}
+
+.audio_new_year_promo .audio_promo__title {
+    font-size: 20px
+}
+
+.audio_new_year_promo .audio_promo__button {
+    text-decoration: none
 }
 
 .audio_artist_attach_preview,

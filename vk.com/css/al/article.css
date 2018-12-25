@@ -1354,6 +1354,12 @@
     font-size: 16px
 }
 
+.blog_entry_text .article.article_mobile figure[data-type="100"],
+.blog_entry_text_wrap .article.article_mobile figure[data-type="100"],
+.blog_post_text .article.article_mobile figure[data-type="100"] {
+    padding: 0!important
+}
+
 .round_loader {
     content: ' ';
     display: block;

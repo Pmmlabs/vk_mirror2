@@ -2458,6 +2458,33 @@ function parseLatin(text, back) {
     return (outtext == text) ? null : outtext;
 }
 
+function parseCyr(text) {
+    var outtext = text,
+        i,
+        lat1 = ['yo', 'zh', 'kh', 'ts', 'ch', 'sch', 'shch', 'sh', 'eh', 'yu', 'ya', 'YO', 'ZH', 'KH', 'TS', 'CH', 'SCH', 'SHCH', 'SH', 'EH', 'YU', 'YA', "'"],
+        rus1 = ['�', '�', '�', '�', '�', '�', '�', '�', '�', '�', '�', '�', '�', '�', '�', '�', '�', '�', '�', '�', '�', '�', '�'],
+        lat2 = 'abvgdezijklmnoprstufhcyABVGDEZIJKLMNOPRSTUFHCY��',
+        rus2 = '������������������������������������������������';
+    for (i = 0; i < rus1.length; i++) {
+        outtext = outtext.split(rus1[i]).join(lat1[i]);
+    }
+    for (i = 0; i < rus2.length; i++) {
+        outtext = outtext.split(rus2.charAt(i)).join(lat2.charAt(i));
+    }
+    return (outtext == text) ? null : outtext;
+}
+
+function parseLatKeys(text) {
+    var outtext = text,
+        i;
+    lat = "qwertyuiop[]asdfghjkl;'zxcvbnm,./`",
+        rus = "��������������������������������.�";
+    for (i = 0; i < lat.length; i++) {
+        outtext = outtext.split(lat.charAt(i)).join(rus.charAt(i));
+    }
+    return (outtext == text) ? null : outtext;
+}
+
 function placeholderSetup(id) {
     var el = ge(id);
     if (!el) return;
