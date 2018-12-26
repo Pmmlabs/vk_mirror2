@@ -469,7 +469,7 @@ var stVersions = {
     'market_adm.js': 2279024920,
     'stories_admin.css': 17889146572,
     'stories_admin.js': 1129028316,
-    'biz.css': 1427839948,
+    'biz.css': 18899763421,
     'vk2016.css': 2021229875,
     'landings/common.css': 19839842311,
     'landings/community_message.css': 15289408987,
@@ -663,4 +663,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 656;
+var _rnd = 6474;
