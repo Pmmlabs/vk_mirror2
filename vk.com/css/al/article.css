@@ -1582,8 +1582,9 @@ body.article_body .article_layer {
     width: 720px;
     margin: 0 auto 30px;
     position: relative;
-    -o-transition: opacity 100ms linear;
-    transition: opacity 100ms linear;
+    -o-transition: opacity 300ms ease, transform 350ms ease, -o-transform 350ms ease;
+    transition: opacity 300ms ease, transform 350ms ease;
+    transition: opacity 300ms ease, transform 350ms ease, -o-transform 350ms ease;
     padding-top: 30px
 }
 
@@ -1608,8 +1609,8 @@ body.article_body .article_layer {
     display: none
 }
 
-.article_layer .article_layer__content:last-child {
-    margin-bottom: 80px
+.article_layer .article_layer__content.article_layer__content_wait_next {
+    margin-bottom: 180px
 }
 
 .article_layer .article_stat {
@@ -2441,6 +2442,12 @@ body.article_body .article_layer {
 
 .article_dark .ui_actions_menu_item:hover {
     background-color: #444
+}
+
+.article_layer__next_prepared {
+    opacity: 0;
+    -o-transform: translateY(180px);
+    transform: translateY(180px)
 }
 
 .article__info_line {
