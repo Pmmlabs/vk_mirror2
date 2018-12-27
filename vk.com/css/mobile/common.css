@@ -12428,6 +12428,20 @@ a.Popup__headerCorner {
     background: #dae2ea
 }
 
+.Btn_theme_negative {
+    color: #d73d49;
+    background: #faebec
+}
+
+._hover .Btn_theme_negative:hover {
+    background: #f8e2e4
+}
+
+._hover .Btn_theme_negative:active,
+._touch .Btn_theme_negative.hover {
+    background: #f7dee0
+}
+
 .Btn_theme_link,
 .vk__page_redesign .basis .near_btn {
     height: 34px;
@@ -12578,6 +12592,27 @@ a.Popup__headerCorner {
 .GroupsInvite .GroupsInvite__item .si_links .si_link .Icon,
 .GroupsNear .GroupsInvite__item .si_links .si_link .Icon {
     margin: 5px -2px
+}
+
+.Btn_size_normal {
+    height: 34px;
+    line-height: 34px;
+    padding: 0 14px;
+    font-size: 14px
+}
+
+.Btn_size_small {
+    height: 28px;
+    line-height: 26px;
+    padding: 0 10px;
+    font-size: 14px
+}
+
+.Btn_size_large {
+    height: 40px;
+    line-height: 40px;
+    padding: 0 14px;
+    font-size: 15px
 }
 
 .FloatBtn {
@@ -46480,6 +46515,120 @@ a .BookmarkListItem__subtitle:hover {
     display: none
 }
 
+.MessageRequestsPage .messenger__body {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.MessageRequestsPage__content {
+    height: 1px;
+    -webkit-flex-shrink: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    -webkit-box-flex: 2;
+    -webkit-flex-grow: 2;
+    -moz-box-flex: 2;
+    -ms-flex-positive: 2;
+    flex-grow: 2
+}
+
+.MessageRequestsPage__content .convo_unread {
+    background: #fff
+}
+
+.MessageRequestsPage__info {
+    padding: 16px 12px;
+    font-size: 15px;
+    color: #76787a;
+    line-height: 1.33;
+    border-bottom: 1px solid #ebebeb
+}
+
+.MessageRequestsPage__footer {
+    padding: 12px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -moz-box-flex: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0
+}
+
+.MessageRequestsPage__footer .Btn,
+.MessageRequestsPage__footer .Groups .GroupsInvite__item .si_links .ai_menu_wrap,
+.MessageRequestsPage__footer .Groups .GroupsInvite__item .si_links .si_link,
+.MessageRequestsPage__footer .GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap,
+.MessageRequestsPage__footer .GroupsInvite .GroupsInvite__item .si_links .si_link,
+.MessageRequestsPage__footer .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap,
+.MessageRequestsPage__footer .GroupsNear .GroupsInvite__item .si_links .si_link {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -moz-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-flex-shrink: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1
+}
+
+.MessageRequestBox {
+    margin-top: 8px;
+    border-top: 1px solid #d7d7d9
+}
+
+.MessageRequestBox__info {
+    padding: 16px 12px;
+    font-size: 15px;
+    color: #76787a;
+    line-height: 1.33;
+    text-align: center
+}
+
+.MessageRequestBox__buttons {
+    padding: 0 6px 16px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.MessageRequestBox__buttons .Btn,
+.MessageRequestBox__buttons .Groups .GroupsInvite__item .si_links .ai_menu_wrap,
+.MessageRequestBox__buttons .Groups .GroupsInvite__item .si_links .si_link,
+.MessageRequestBox__buttons .GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap,
+.MessageRequestBox__buttons .GroupsInvite .GroupsInvite__item .si_links .si_link,
+.MessageRequestBox__buttons .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap,
+.MessageRequestBox__buttons .GroupsNear .GroupsInvite__item .si_links .si_link {
+    width: 1px;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -moz-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-flex-shrink: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    margin: 0 6px
+}
+
 .uMailWrite {
     position: relative;
     z-index: 11;
@@ -47807,6 +47956,18 @@ a .BookmarkListItem__subtitle:hover {
     min-height: 16px
 }
 
+.uMessenger.messenger_isIncomingMR .typing_id_curConvo,
+.uMessenger.messenger_isRejectedMR .typing_id_curConvo {
+    display: none
+}
+
+.uMessenger.messenger_isIncomingMR .msg_unread,
+.uMessenger.messenger_isIncomingMR .msg_unread .mi_body,
+.uMessenger.messenger_isRejectedMR .msg_unread,
+.uMessenger.messenger_isRejectedMR .msg_unread .mi_body {
+    background: #fff
+}
+
 .messenger__searchList {
     display: none
 }
@@ -47865,13 +48026,19 @@ a .BookmarkListItem__subtitle:hover {
     display: flex
 }
 
-.messenger_actionsOpen .messenger__acts,
+.messenger__mrbox,
+.messenger__footer_isIncomingMR .messenger__write {
+    display: none
+}
+
+.messenger__footer_isIncomingMR .messenger__mrbox,
+.messenger__footer_actionsOpen .messenger__acts,
 .uMessenger_folder_important .messenger__acts,
 .uMessenger_folder_unread .messenger__acts {
     display: block
 }
 
-.messenger_actionsOpen .messenger__write,
+.messenger__footer_actionsOpen .messenger__write,
 .uMessenger_folder_important .messenger__write,
 .uMessenger_folder_unread .messenger__write {
     opacity: 0;
@@ -47879,7 +48046,14 @@ a .BookmarkListItem__subtitle:hover {
     max-height: 72px
 }
 
-.messenger_actionsOpen .uMailWrite__toBottom,
+.messenger__footer_actionsOpen .messenger__mrbox,
+.uMessenger_folder_important .messenger__mrbox,
+.uMessenger_folder_unread .messenger__mrbox {
+    opacity: 0;
+    pointer-events: none
+}
+
+.messenger__footer_actionsOpen .uMailWrite__toBottom,
 .uMessenger_folder_important .uMailWrite__toBottom,
 .uMessenger_folder_unread .uMailWrite__toBottom {
     display: none
@@ -47907,6 +48081,10 @@ html .vk__page_mail {
     right: env(safe-area-inset-right);
     bottom: env(safe-area-inset-bottom);
     top: env(safe-area-inset-top)
+}
+
+html.vk_appAuth_yes .vk__page_mail._ios {
+    bottom: 45px
 }
 
 .vk__page_mail .layout {
@@ -48265,8 +48443,38 @@ html .vk__page_mail {
 }
 
 .messenger__bannerVisible+.messenger__pinned,
-.messenger_pinnedVisible .messenger__bannerVisible+.messenger__pinned {
+.messenger_pinnedVisible .messenger__bannerVisible+.messenger__pinned,
+.messenger__mrsHint_hidden {
     display: none
+}
+
+.messenger__mrsHintBox {
+    height: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+    color: #316096;
+    border-bottom: 1px solid #ebebeb;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-left: 12px;
+    position: relative
+}
+
+.messenger__convoListNotice {
+    font-size: 14px;
+    line-height: 1.36;
+    text-align: center;
+    color: #76787a;
+    padding: 16px 12px
 }
 
 

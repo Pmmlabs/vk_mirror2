@@ -2234,3 +2234,9 @@ table.history tr th {
     display: inline-block;
     vertical-align: middle
 }
+
+.article_ads_enabled_saved {
+    -o-transition: opacity 100ms linear;
+    transition: opacity 100ms linear;
+    color: #777
+}
