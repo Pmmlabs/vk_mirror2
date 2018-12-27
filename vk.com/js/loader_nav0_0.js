@@ -290,7 +290,7 @@ var stVersions = {
     'privacy.js': 711405089,
     'privacy.css': 15518172397,
     'apps.css': 46769437809,
-    'apps.js': 25711464033,
+    'apps.js': 25659375205,
     'apps_edit.js': 17976547669,
     'apps_edit.css': 31016461282,
     'apps_check.js': 3204387834,
@@ -663,4 +663,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 7088;
+var _rnd = 5083;
