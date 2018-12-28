@@ -221,7 +221,7 @@ var stVersions = {
     'video_upload.js': 10965065854,
     'video_youtube.js': 458412745,
     'video_youtube.css': 14183741957,
-    'videoplayer.js': 93317144507,
+    'videoplayer.js': 84225857460,
     'videoplayer.css': 45741726676,
     'translation.js': 3971934328,
     'translation.css': 17086305372,
@@ -274,13 +274,13 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 206072387791,
-    'imn.js': 312920960757,
+    'im.css': 199799559642,
+    'imn.js': 305147770512,
     'im.js': 1322065005,
     'wide_dd.css': 17293097728,
     'wide_dd.js': 452755344,
     'writebox.css': 17719696703,
-    'writebox.js': 96915459027,
+    'writebox.js': 90833110870,
     'sharebox.js': 2646906516,
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
@@ -342,7 +342,7 @@ var stVersions = {
     'widgets.css': 27293210971,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 125552659304,
+    'notifier.js': 122859756336,
     'notifier.css': 27076865567,
     'cmodules/sw/sw.js': 5960813200,
     'earthday.js': 2276669993,
@@ -369,7 +369,7 @@ var stVersions = {
     'ownerinfo.css': 8071755604,
     'bugtracker.js': 1258735500,
     'bugtracker.css': 20982847477,
-    'cmodules/web/bugtracker.js': 33335736691,
+    'cmodules/web/bugtracker.js': 34422301985,
     'login.css': 17044894964,
     'cmodules/web/login.js': 2208498864,
     'upload.js': 2558068015,
@@ -446,7 +446,7 @@ var stVersions = {
     'ui.js': 1289956404,
     'ui_common.js': 1415203699,
     'ui_common.css': 18007337855,
-    'cmodules/web/ui_media_selector.js': 1518033362,
+    'cmodules/web/ui_media_selector.js': 4101789287,
     'cmodules/web/biz.js': 20411024951,
     'ui_media_selector.css': 27146961729,
     'ui_manual.css': 15761972979,
@@ -603,7 +603,7 @@ var stVersions = {
     'landings/transparency.css': 94036520767,
     'cmodules/web/emoji.js': 8407878679,
     'cmodules/web/apps_achievements.js': 82677794539,
-    'cmodules/web/payments.js': 52508747838,
+    'cmodules/web/payments.js': 49225166997,
     'lang': 6931
 };
 var stTypes = {
@@ -663,4 +663,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 5083;
+var _rnd = 5538;

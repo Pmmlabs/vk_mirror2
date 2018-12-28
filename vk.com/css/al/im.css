@@ -4274,6 +4274,14 @@ img.im_photo_thumb {
     width: 550px
 }
 
+.im-page_classic.im-page .im-page--dialogs-message-requests-notice-w {
+    padding: 20px
+}
+
+.im-page_classic.im-page .im-page--dialogs-message-requests-notice {
+    padding: 15px 20px
+}
+
 .im-page_classic.im-page .im-page--header-icon_answer-shown {
     display: inline-block
 }
@@ -5059,6 +5067,45 @@ img.im_photo_thumb {
     min-height: 100%
 }
 
+.im-page .im-page--dialogs-message-requests-button {
+    height: 45px;
+    padding: 15px;
+    box-sizing: border-box;
+    border-top: solid 1px #e7e8ec;
+    border-bottom: solid 1px #e7e8ec;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.1px;
+    color: #222;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.im-page .im-page--dialogs-message-requests-button:hover {
+    background: #f5f7fa;
+    cursor: pointer
+}
+
+.im-page .im-page--dialogs-message-requests-button+.im-page--dialogs-message-requests-notice-w {
+    border-top: none
+}
+
+.im-page .im-page--dialogs-message-requests-notice-w {
+    padding: 15px;
+    border-top: solid 1px #e7e8ec;
+    border-bottom: solid 1px #e7e8ec
+}
+
+.im-page .im-page--dialogs-message-requests-notice {
+    padding: 12px 15px;
+    border-radius: 3px;
+    background-color: #f0f2f5;
+    line-height: 1.38;
+    letter-spacing: -0.2px
+}
+
 .im-page .im-page--history {
     margin-left: 317px;
     height: 100%;
@@ -5502,6 +5549,8 @@ img.im_photo_thumb {
     height: 40px
 }
 
+.im-page .im-page--dialogs-message-requests-button+.nim-dialog .nim-dialog--content,
+.im-page .im-page--dialogs-message-requests-notice-w+.nim-dialog .nim-dialog--content,
 .im-page .im-page--mess-search-w+.nim-dialog .nim-dialog--content,
 .im-page .im-search-results-head+.nim-dialog .nim-dialog--content {
     border-color: transparent
@@ -5509,7 +5558,13 @@ img.im_photo_thumb {
 
 .im-page .im-page--mess-search-w+.nim-dialog:hover,
 .im-page .im-page--mess-search-w+.nim-dialog_hovered,
-.im-page .im-page--mess-search-w+.nim-dialog_unread.nim-dialog_classic {
+.im-page .im-page--mess-search-w+.nim-dialog_unread.nim-dialog_classic,
+.im-page .im-page--dialogs-message-requests-button+.nim-dialog:hover,
+.im-page .im-page--dialogs-message-requests-button+.nim-dialog_hovered,
+.im-page .im-page--dialogs-message-requests-button+.nim-dialog_unread.nim-dialog_classic,
+.im-page .im-page--dialogs-message-requests-notice-w+.nim-dialog:hover,
+.im-page .im-page--dialogs-message-requests-notice-w+.nim-dialog_hovered,
+.im-page .im-page--dialogs-message-requests-notice-w+.nim-dialog_unread.nim-dialog_classic {
     border-top-color: transparent!important
 }
 
@@ -6132,6 +6187,24 @@ img.im_photo_thumb {
 
 .im-chat-input.im-chat-input_error.is-f-vkcomgroup .im-chat-input--error:before {
     display: none
+}
+
+.im-chat-input.im-chat-input_error.is-message_request {
+    padding-left: 0;
+    text-align: center
+}
+
+.im-chat-input.im-chat-input_error.is-message_request .im-chat-input--error {
+    padding: 0 15px;
+    height: 118px
+}
+
+.im-chat-input.im-chat-input_error.is-message_request .im-chat-input--error:before {
+    display: none
+}
+
+.im-chat-input.im-chat-input_error.is-message_request .flat_button {
+    margin: 0 5px
 }
 
 .im-chat-input.im-chat-input_classic {
@@ -10275,7 +10348,12 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .im-page--mess-actions_vkcomgroup .im-page-action[data-action=respond],
 .im-page--mess-actions_vkcomgroup .im-page-action_delete,
-.im-page--mess-actions_vkcomgroup .im-page-action_pin {
+.im-page--mess-actions_vkcomgroup .im-page-action_pin,
+.im-page--mess-actions_out-mr .im-page-action[data-action=forward],
+.im-page--mess-actions_out-mr .im-page-action[data-action=respond],
+.im-page--mess-actions_out-mr .im-page-action_delete,
+.im-page--mess-actions_out-mr .im-page-action_spam,
+.im-page--mess-actions_in-mr .im-page-action[data-action=respond] {
     display: none
 }
 
