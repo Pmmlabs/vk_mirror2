@@ -46530,6 +46530,11 @@ a .BookmarkListItem__subtitle:hover {
     flex-direction: column
 }
 
+.MessageRequestsPage .convo__unread,
+.MessageRequestsPage .convo__unreadOut {
+    display: none
+}
+
 .MessageRequestsPage__content {
     height: 1px;
     -webkit-flex-shrink: 1;
