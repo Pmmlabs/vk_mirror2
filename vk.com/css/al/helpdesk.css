@@ -2699,3 +2699,7 @@ body.body_helpdesk_small_sb .left_menu_nav {
     margin-right: 10px;
     float: left
 }
+
+.helpdesk_new_question_section {
+    margin-top: 10px
+}

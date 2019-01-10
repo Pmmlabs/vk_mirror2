@@ -2332,6 +2332,14 @@ var Helpdesk = {
                 val(a, e), show(a)
             }
         })) : notaBene("helpdesk_jedi_ids_form")
+    },
+    selectNewQuestionSection: function(e, t) {
+        var s = geByClass("_helpdesk_new_question_section", "helpdesk_new_question_sections");
+        each(s, function(e, t) {
+            removeClass(t, "on")
+        }), addClass(e, "on"), nav.change({
+            hds: t
+        })
     }
 };
 try {

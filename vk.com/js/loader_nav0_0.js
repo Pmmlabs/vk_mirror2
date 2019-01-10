@@ -353,8 +353,8 @@ var stVersions = {
     'docs.css': 21122726556,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 16595706106,
-    'helpdesk.js': 1282854841,
-    'helpdesk.css': 26443944170,
+    'helpdesk.js': 1508165849,
+    'helpdesk.css': 27819533862,
     'tickets.js': 3135622813,
     'tickets.css': 24518682403,
     'faq.css': 24003585240,
@@ -469,7 +469,7 @@ var stVersions = {
     'market_adm.js': 2279024920,
     'stories_admin.css': 17889146572,
     'stories_admin.js': 1129028316,
-    'biz.css': 18899763421,
+    'biz.css': 16780605868,
     'vk2016.css': 2021229875,
     'landings/common.css': 19839842311,
     'landings/community_message.css': 15289408987,
@@ -663,4 +663,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 3681;
+var _rnd = 9777;
