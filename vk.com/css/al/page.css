@@ -12621,14 +12621,6 @@ button.wall_block_app_btn {
     display: none
 }
 
-.post_feedback_info_wrap {
-    position: relative;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column
-}
-
 .post_feedback_info {
     height: 15px;
     line-height: 15px;

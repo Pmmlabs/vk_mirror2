@@ -80,7 +80,7 @@ var Photoview = {
                                     if ("photo" == c[l].type && c[l].photo.id == "photo" + o.id) {
                                         var h = c[l].photo;
                                         if (i) {
-                                            h.id = e.id, h.pid = e.id.split("_")[1];
+                                            h.id = "photo" + e.id, h.pid = e.id.split("_")[1];
                                             var g = ({
                                                 editable: {
                                                     sizes: r
@@ -93,7 +93,7 @@ var Photoview = {
                                                 return "photo" == this[0] && this[1] == o.id ? (this[1] = e.id, !1) : void 0
                                             })
                                         }
-                                        c[l].click = n.showPhoto.pbind(e.id, e.list, parseJSON(a)), h.sizes = r, u = !0
+                                        c[l].click = n.showPhoto.pbind(e.id, e.list, parseJSON(a)), c[l].itemId = h.pid, h.sizes = r, u = !0
                                     }
                                     d++
                                 }
@@ -632,8 +632,8 @@ var Photoview = {
                     pvTags: ge("pv_tags"),
                     pvEditing: !1,
                     pvProgress: ge("pv_progress")
-                }), p.deleted || !p.author ? (cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"), isArray(p.deleted) && Photoview.toggleTopInfoPanel(p.deleted[0], p.deleted[1]), n || Photoview.toggleDeletedState(!0)) : p.taginfo ? (cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"),
-                    Photoview.toggleTopInfoPanel(p.taginfo, '        <button class="flat_button" id="pv_confirm_tag" onclick="Photoview.confirmTag(' + p.tagid + ', this)">' + getLang("photos_confirm_tag") + '</button>         <button class="flat_button secondary black" id="pv_delete_tag" onclick="Photoview.deleteTag(' + p.tagid + ', this)">' + getLang("photos_delete_tag") + "</button>       </div>"), show(cur.pvCommentsData)) : (Photoview.toggleTopInfoPanel(!1), Photoview.toggleDeletedState(!1)), (cur.pvOptions || {}).scroll && cur.pvNarrowScrollbar && cur.pvNarrowScrollbar.scrollTop(cur.pvOptions.scroll), cur.pvBodyScrollTop = bodyNode.scrollTop, setTimeout(function() {
+                }), p.deleted || !p.author ? (cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"), isArray(p.deleted) && Photoview.toggleTopInfoPanel(p.deleted[0], p.deleted[1]),
+                    n || Photoview.toggleDeletedState(!0)) : p.taginfo ? (cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"), Photoview.toggleTopInfoPanel(p.taginfo, '        <button class="flat_button" id="pv_confirm_tag" onclick="Photoview.confirmTag(' + p.tagid + ', this)">' + getLang("photos_confirm_tag") + '</button>         <button class="flat_button secondary black" id="pv_delete_tag" onclick="Photoview.deleteTag(' + p.tagid + ', this)">' + getLang("photos_delete_tag") + "</button>       </div>"), show(cur.pvCommentsData)) : (Photoview.toggleTopInfoPanel(!1), Photoview.toggleDeletedState(!1)), (cur.pvOptions || {}).scroll && cur.pvNarrowScrollbar && cur.pvNarrowScrollbar.scrollTop(cur.pvOptions.scroll), cur.pvBodyScrollTop = bodyNode.scrollTop, setTimeout(function() {
                     void 0 !== cur.pvBodyScrollTop && (bodyNode.scrollTop = cur.pvBodyScrollTop, delete cur.pvBodyScrollTop)
                 }, 0), Photoview.updateVerticalPosition();
                 var E = domFC(cur.pvPhoto);
@@ -1484,39 +1484,39 @@ var Photoview = {
                     r = o.index,
                     a = cur.pvData[t][r];
                 extend(a, {
-                    x_src: o.x_src,
-                    y_src: o.y_src,
-                    z_src: o.z_src,
-                    w_src: o.w_src,
-                    base: o.base,
-                    x_: o.x_,
-                    y_: o.y_,
-                    z_: o.z_,
-                    w_: o.w_,
-                    x: 0,
-                    y: 0,
-                    z: 0,
-                    w: 0,
-                    tags: o.tags,
-                    tagged: o.tagged,
-                    suggested_tags: o.suggested_tags,
-                    tagshtml: o.html
-                }), extend(a.rotate, {
-                    photo: o.photo,
-                    hash: o.hash,
-                    rhash: o.rhash,
-                    angle: o.angle,
-                    rot1: o.rot1,
-                    rot3: o.rot3
-                }), t == cur.pvListId && r == cur.pvIndex && Photoview.show(t, r), cur.pvPhotoTags && cur.pvPhotoTags.reload()
+                        x_src: o.x_src,
+                        y_src: o.y_src,
+                        z_src: o.z_src,
+                        w_src: o.w_src,
+                        base: o.base,
+                        x_: o.x_,
+                        y_: o.y_,
+                        z_: o.z_,
+                        w_: o.w_,
+                        x: 0,
+                        y: 0,
+                        z: 0,
+                        w: 0,
+                        tags: o.tags,
+                        tagged: o.tagged,
+                        suggested_tags: o.suggested_tags,
+                        tagshtml: o.html
+                    }), extend(a.rotate, {
+                        photo: o.photo,
+                        hash: o.hash,
+                        rhash: o.rhash,
+                        angle: o.angle,
+                        rot1: o.rot1,
+                        rot3: o.rot3
+                    }), t == cur.pvListId && r == cur.pvIndex && Photoview.show(t, r),
+                    cur.pvPhotoTags && cur.pvPhotoTags.reload()
             }
         },
         likeUpdate: function(o, e, t) {
             e = intval(e);
             var r = cur.pvListId,
                 a = cur.pvIndex,
-                i = (cur.pvData[r][a],
-                    ge("pv_like")),
+                i = (cur.pvData[r][a], ge("pv_like")),
                 p = (domByClass(i, "_icon"), domByClass(i, "_count"));
             if (p) {
                 var s = i.tt || {},
