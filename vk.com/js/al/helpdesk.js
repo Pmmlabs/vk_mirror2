@@ -2039,10 +2039,10 @@ var Helpdesk = {
         })
     },
     onTicketScreenResize: function() {
-        document.documentElement.clientHeight < 650 ? Helpdesk.toggleFixedHeader(0) : Helpdesk.onTicketScroll()
+        document.documentElement.clientHeight < 600 ? Helpdesk.toggleFixedHeader(0) : Helpdesk.onTicketScroll()
     },
     onTicketScroll: function() {
-        if (!(!window.pageNode || !ge("tickets_header_filler") || document.documentElement.clientHeight < 650 || document.documentElement.clientWidth < 500)) {
+        if (!(!window.pageNode || !ge("tickets_header_filler") || document.documentElement.clientHeight < 600 || document.documentElement.clientWidth < 500)) {
             var e = scrollGetY(),
                 t = ge("tickets_content"),
                 s = getSize("page_header_cont")[1];

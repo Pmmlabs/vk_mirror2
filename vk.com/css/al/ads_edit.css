@@ -1891,6 +1891,10 @@ textarea.EditableLabel__textarea {
     }
 }
 
+.StatsTable {
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
+}
+
 .StatsTable .StatsTable--header {
     padding: 9px 20px
 }
@@ -1913,15 +1917,15 @@ textarea.EditableLabel__textarea {
 }
 
 .StatsTable .StatsTable--rows .StatsTable--row:hover {
-    background: #e9edf0
+    background-color: #e9edf0
 }
 
 .StatsTable .StatsTable--rows .StatsTable--row:nth-child(odd) {
-    background: #f2f3f5
+    background-color: #f2f3f5
 }
 
 .StatsTable .StatsTable--rows .StatsTable--row:nth-child(odd):hover {
-    background: #e9edf0
+    background-color: #e9edf0
 }
 
 .StatsTable .StatsTable--rows .StatsTable--row .StatsTable--row--label {

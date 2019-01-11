@@ -42,9 +42,161 @@
         return n.d(e, "a", e), e
     }, n.o = function(t, e) {
         return Object.prototype.hasOwnProperty.call(t, e)
-    }, n.p = "", n(n.s = 14)
+    }, n.p = "", n(n.s = 625)
 }({
-    133: function(t, e, n) {
+    184: function(t, e, n) {
+        "use strict";
+        n.r(e), n.d(e, "initDebugTools", function() {
+            return o
+        }), n.d(e, "logEvalError", function() {
+            return i
+        }), n.d(e, "debugLog", function() {
+            return a
+        }), n.d(e, "debugEl", function() {
+            return u
+        });
+        var r = n(413);
+
+        function o() {
+            window._logTimer = (new Date).getTime()
+        }
+
+        function i(t, e) {
+            window.Raven && (e && e.length > 350 && (e = e.slice(0, 150) + "..." + e.slice(-150)), t.message += ": " + e, Raven.captureException(t))
+        }
+
+        function a(t) {
+            try {
+                window.debuglogClient && debuglogClient(t);
+                var e = "[" + ((new Date).getTime() - window._logTimer) / 1e3 + "] ";
+                if (window.console && console.log) {
+                    var n = Array.prototype.slice.call(arguments);
+                    n.unshift(e), r.browser.msie || r.browser.mobile ? console.log(n.join(" ")) : console.log.apply(console, n)
+                }
+            } catch (t) {}
+        }
+
+        function u(t) {
+            if (!t) return !1;
+            var e = t.tagName,
+                n = t.id,
+                r = t.className,
+                o = (e || "").toLowerCase();
+            return r && (o += "." + t.className.replace(/\s+/g, ".")), n && !/^__vk/.test(n) && (o += "#" + t.id), o || (t.toString() || "[NULL]")
+        }
+    },
+    210: function(t, e, n) {
+        "use strict";
+        n.r(e), n.d(e, "loadImage", function() {
+            return a
+        });
+        var r = n(571),
+            o = n(499),
+            i = r.Promise;
+
+        function a(t) {
+            var e = Object(o.vkNow)();
+            return new i(function(n, r) {
+                var i = Object(o.vkImage)();
+                i.onload = function() {
+                    return n(Object(o.vkNow)() - e)
+                }, i.error = r, i.src = t
+            })
+        }
+    },
+    390: function(t, e) {
+        var n, r, o = t.exports = {};
+
+        function i() {
+            throw new Error("setTimeout has not been defined")
+        }
+
+        function a() {
+            throw new Error("clearTimeout has not been defined")
+        }
+
+        function u(t) {
+            if (n === setTimeout) return setTimeout(t, 0);
+            if ((n === i || !n) && setTimeout) return n = setTimeout, setTimeout(t, 0);
+            try {
+                return n(t, 0)
+            } catch (e) {
+                try {
+                    return n.call(null, t, 0)
+                } catch (e) {
+                    return n.call(this, t, 0)
+                }
+            }
+        }! function() {
+            try {
+                n = "function" == typeof setTimeout ? setTimeout : i
+            } catch (t) {
+                n = i
+            }
+            try {
+                r = "function" == typeof clearTimeout ? clearTimeout : a
+            } catch (t) {
+                r = a
+            }
+        }();
+        var c, l = [],
+            s = !1,
+            f = -1;
+
+        function d() {
+            s && c && (s = !1, c.length ? l = c.concat(l) : f = -1, l.length && p())
+        }
+
+        function p() {
+            if (!s) {
+                var t = u(d);
+                s = !0;
+                for (var e = l.length; e;) {
+                    for (c = l, l = []; ++f < e;) c && c[f].run();
+                    f = -1, e = l.length
+                }
+                c = null, s = !1,
+                    function(t) {
+                        if (r === clearTimeout) return clearTimeout(t);
+                        if ((r === a || !r) && clearTimeout) return r = clearTimeout, clearTimeout(t);
+                        try {
+                            r(t)
+                        } catch (e) {
+                            try {
+                                return r.call(null, t)
+                            } catch (e) {
+                                return r.call(this, t)
+                            }
+                        }
+                    }(t)
+            }
+        }
+
+        function h(t, e) {
+            this.fun = t, this.array = e
+        }
+
+        function v() {}
+        o.nextTick = function(t) {
+            var e = new Array(arguments.length - 1);
+            if (arguments.length > 1)
+                for (var n = 1; n < arguments.length; n++) e[n - 1] = arguments[n];
+            l.push(new h(t, e)), 1 !== l.length || s || u(p)
+        }, h.prototype.run = function() {
+            this.fun.apply(null, this.array)
+        }, o.title = "browser", o.browser = !0, o.env = {}, o.argv = [], o.version = "", o.versions = {}, o.on = v, o.addListener = v, o.once = v, o.off = v, o.removeListener = v, o.removeAllListeners = v, o.emit = v, o.prependListener = v, o.prependOnceListener = v, o.listeners = function(t) {
+            return []
+        }, o.binding = function(t) {
+            throw new Error("process.binding is not supported")
+        }, o.cwd = function() {
+            return "/"
+        }, o.chdir = function(t) {
+            throw new Error("process.chdir is not supported")
+        }, o.umask = function() {
+            return 0
+        }
+    },
+    413: function(t, e, n) {
         "use strict";
         n.r(e), n.d(e, "browser", function() {
             return i
@@ -55,7 +207,7 @@
         }), n.d(e, "initBrowserUtils", function() {
             return c
         });
-        var r = n(21),
+        var r = n(481),
             o = navigator.userAgent.toLowerCase(),
             i = {
                 version: (o.match(/.+(?:me|ox|on|rv|it|era|opr|ie|edge)[\/: ]([\d.]+)/) || [0, "0"])[1],
@@ -101,64 +253,20 @@
             u = {
                 wheelEvent: "onwheel" in Object(r.ce)("div") ? "wheel" : void 0 !== document.onmousewheel ? "mousewheel" : i.mozilla ? "MozMousePixelScroll" : "DOMMouseScroll",
                 hasBoundingClientRect: "getBoundingClientRect" in Object(r.ce)("div"),
-                cmaEnabled: navigator.credentials && navigator.credentials.preventSilentAccess && vk.cma
+                cmaEnabled: navigator.credentials && navigator.credentials.preventSilentAccess && window.vk && vk.cma
             };
 
         function c() {
             window._ua || (window._ua = navigator.userAgent.toLowerCase()), window.locDomain || (window.locDomain = location.host.toString().match(/[a-zA-Z]+\.[a-zA-Z]+\.?$/)[0]), window.locHost = location.host, window.locProtocol = location.protocol, window.locHash = location.hash.replace("#/", "").replace("#!", "")
         }
     },
-    14: function(t, e, n) {
-        t.exports = n(43)
-    },
-    150: function(t, e, n) {
-        "use strict";
-        n.r(e), n.d(e, "initDebugTools", function() {
-            return o
-        }), n.d(e, "logEvalError", function() {
-            return i
-        }), n.d(e, "debugLog", function() {
-            return a
-        }), n.d(e, "debugEl", function() {
-            return u
-        });
-        var r = n(133);
-
-        function o() {
-            window._logTimer = (new Date).getTime()
-        }
-
-        function i(t, e) {
-            window.Raven && (e && e.length > 350 && (e = e.slice(0, 150) + "..." + e.slice(-150)), t.message += ": " + e, Raven.captureException(t))
-        }
-
-        function a(t) {
-            try {
-                window.debuglogClient && debuglogClient(t);
-                var e = "[" + ((new Date).getTime() - window._logTimer) / 1e3 + "] ";
-                if (window.console && console.log) {
-                    var n = Array.prototype.slice.call(arguments);
-                    n.unshift(e), r.browser.msie || r.browser.mobile ? console.log(n.join(" ")) : console.log.apply(console, n)
-                }
-            } catch (t) {}
-        }
-
-        function u(t) {
-            if (!t) return !1;
-            var e = t.tagName,
-                n = t.id,
-                r = t.className,
-                o = (e || "").toLowerCase();
-            return r && (o += "." + t.className.replace(/\s+/g, ".")), n && !/^__vk/.test(n) && (o += "#" + t.id), o || (t.toString() || "[NULL]")
-        }
-    },
-    158: function(t, e, n) {
+    434: function(t, e, n) {
         "use strict";
         n.r(e), n.d(e, "getObjects", function() {
             return c
         });
-        var r = n(261),
-            o = n(21),
+        var r = n(559),
+            o = n(481),
             i = function() {
                 return function(t, e) {
                     if (Array.isArray(t)) return t;
@@ -228,7 +336,195 @@
             }(), Object(r.update)()
         }
     },
-    21: function(t, e, n) {
+    469: function(t, e, n) {
+        "use strict";
+        n.r(e), n.d(e, "parseLatin", function() {
+            return a
+        }), n.d(e, "parseCyr", function() {
+            return u
+        }), n.d(e, "parseLatKeys", function() {
+            return c
+        }), n.d(e, "langNumeric", function() {
+            return l
+        }), n.d(e, "langSex", function() {
+            return s
+        }), n.d(e, "langStr", function() {
+            return f
+        }), n.d(e, "addLangKeys", function() {
+            return d
+        }), n.d(e, "getLang", function() {
+            return p
+        }), n.d(e, "langDate", function() {
+            return h
+        }), n.d(e, "getShortDate", function() {
+            return v
+        }), n.d(e, "getShortDateOrTime", function() {
+            return g
+        }), n.d(e, "langWordNumeric", function() {
+            return m
+        }), n.d(e, "getDateText", function() {
+            return y
+        }), n.d(e, "getBigDateNew", function() {
+            return b
+        }), n.d(e, "getSmDate", function() {
+            return w
+        });
+        var r = n(485),
+            o = n(499),
+            i = n(184);
+
+        function a(t) {
+            for (var e = ["yo", "zh", "kh", "ts", "ch", "sch", "shch", "sh", "eh", "yu", "ya", "YO", "ZH", "KH", "TS", "CH", "SCH", "SHCH", "SH", "EH", "YU", "YA", "'"], n = ["ё", "ж", "х", "ц", "ч", "щ", "щ", "ш", "э", "ю", "я", "Ё", "Ж", "Х", "Ц", "Ч", "Щ", "Щ", "Ш", "Э", "Ю", "Я", "ь"], r = t, o = 0, i = e.length; o < i; o++) r = r.split(e[o]).join(n[o]);
+            for (var a = "abvgdezijklmnoprstufhcyABVGDEZIJKLMNOPRSTUFHCYёЁ", u = 0, c = a.length; u < c; u++) r = r.split(a.charAt(u)).join("абвгдезийклмнопрстуфхцыАБВГДЕЗИЙКЛМНОПРСТУФХЦЫеЕ".charAt(u));
+            return r === t ? null : r
+        }
+
+        function u(t) {
+            for (var e = ["yo", "zh", "kh", "ts", "ch", "sch", "shch", "sh", "eh", "yu", "ya", "YO", "ZH", "KH", "TS", "CH", "SCH", "SHCH", "SH", "EH", "YU", "YA", "'"], n = ["ё", "ж", "х", "ц", "ч", "щ", "щ", "ш", "э", "ю", "я", "Ё", "Ж", "Х", "Ц", "Ч", "Щ", "Щ", "Ш", "Э", "Ю", "Я", "ь"], r = "абвгдезийклмнопрстуфхцыАБВГДЕЗИЙКЛМНОПРСТУФХЦЫеЕ", o = t, i = 0; i < n.length; i++) o = o.split(n[i]).join(e[i]);
+            for (var a = 0; a < r.length; a++) o = o.split(r.charAt(a)).join("abvgdezijklmnoprstufhcyABVGDEZIJKLMNOPRSTUFHCYёЁ".charAt(a));
+            return o === t ? null : o
+        }
+
+        function c(t) {
+            for (var e = "qwertyuiop[]asdfghjkl;'zxcvbnm,./`", n = t, r = 0; r < e.length; r++) n = n.split(e.charAt(r)).join("йцукенгшщзхъфывапролджэячсмитьбю.ё".charAt(r));
+            return n == t ? null : n
+        }
+
+        function l(t, e, n) {
+            if (!e || !window.langConfig) return t;
+            var r = void 0;
+            if (Object(o.isArray)(e) ? (r = e[1], t != Math.floor(t) ? r = e[langConfig.numRules.float] : Object(o.each)(langConfig.numRules.int, function(n, i) {
+                    if ("*" == i[0]) return r = e[i[2]], !1;
+                    var a = i[0] ? t % i[0] : t;
+                    return -1 != Object(o.indexOf)(i[1], a) ? (r = e[i[2]], !1) : void 0
+                })) : r = e, n) {
+                for (var i = t.toString().split("."), a = [], u = i[0].length - 3; u > -3; u -= 3) a.unshift(i[0].slice(u > 0 ? u : 0, u + 3));
+                i[0] = a.join(langConfig.numDel), t = i.join(langConfig.numDec)
+            }
+            return r = (r || "%s").replace("%s", t)
+        }
+
+        function s(t, e) {
+            if (!Object(o.isArray)(e)) return e;
+            var n = e[1];
+            return window.langConfig ? (Object(o.each)(langConfig.sexRules, function(r, o) {
+                return "*" == o[0] ? (n = e[o[1]], !1) : t == o[0] && e[o[1]] ? (n = e[o[1]], !1) : void 0
+            }), n) : n
+        }
+
+        function f(t) {
+            for (var e = arguments, n = e.length, r = t + "", o = 1; o < n; o += 2) {
+                var i = "%" === e[o][0] ? e[o] : "{" + e[o] + "}";
+                r = r.replace(i, e[o + 1])
+            }
+            return r
+        }
+
+        function d(t, e) {
+            var n = e ? window : window.cur;
+            n.lang ? Object(o.extend)(n.lang, t) : n.lang = t
+        }
+
+        function p() {
+            try {
+                var t = Array.from(arguments),
+                    e = t.shift();
+                if (!e) return "...";
+                var n = window.cur.lang && window.cur.lang[e] || window.lang && window.lang[e] || window.langpack && window.langpack[e] || window[e];
+                if (!n) {
+                    var r = e.split("_");
+                    return r.shift(), r.join(" ")
+                }
+                return Object(o.isFunction)(n) ? n.apply(null, t) : void 0 === t[0] && !Object(o.isArray)(n) || "raw" === t[0] ? n : l(t[0], n, t[1])
+            } catch (t) {
+                Object(i.debugLog)("lang error:" + t.message + "(" + Array.from(arguments).join(", ") + ")")
+            }
+        }
+
+        function h(t, e, n, i, a, u) {
+            var c = void 0;
+            if (u || (u = ""), Object(o.isArray)(e) || (e = ["", e, e, e, e]), "number" == typeof t || "string" == typeof t ? (t > 2147483646e3 && (t = 0), t += n, c = new Date(t)) : c = t, a) e = e[1];
+            else {
+                var l = "";
+                !(l = Object(r.isToday)(c) ? e[3] : Object(r.isYesterday)(c) ? e[2] : Object(r.isTomorrow)(c) ? e[4] : e[1]) && e[1] && (l = e[1]), e = l
+            }
+            var s = {
+                    hours: c.getHours(),
+                    minutes: c.getMinutes(),
+                    seconds: c.getSeconds(),
+                    day: c.getDate(),
+                    month: c.getMonth() + 1,
+                    year: c.getFullYear()
+                },
+                f = "";
+            switch (3 === vk.lang && (f = c.getHours() > 11 ? "pm" : "am", s.hours = c.getHours() % 12 == 0 ? 12 : c.getHours() % 12), vk.lang) {
+                case 1:
+                    switch (c.getHours()) {
+                        case 11:
+                            e = e.replace(" о ", " об ");
+                            break;
+                        case 0:
+                            e = e.replace(" о ", " в ")
+                    }
+                    break;
+                case 3:
+                    !Object(r.isToday)(c) || Object(r.isYesterday)(c) || Object(r.isTomorrow)(c) || (e = u + e);
+                    break;
+                case 12:
+                case 73:
+                    1 == c.getHours() && (e = e.replace(" &#224;s ", " &#224; "))
+            }
+            return 68 === vk.lang && (s.year = s.year + 543), e.replace("{hour}", s.hours).replace("{num_hour}", Object(r.leadingZero)(s.hours)).replace("{minute}", Object(r.leadingZero)(s.minutes)).replace("{day}", s.day).replace("{num_day}", Object(r.leadingZero)(s.day)).replace("{month}", i[s.month]).replace("{year}", s.year).replace("{short_year}", s.year % 100).replace("{second}", Object(r.leadingZero)(s.seconds)).replace("{am_pm}", f)
+        }
+
+        function v(t, e, n, r, o) {
+            t *= 1e3, void 0 === n && (n = !0), void 0 === r && (r = p("months_of", "raw")), e *= 1e3;
+            var i = Date.now(),
+                a = new Date(i),
+                u = new Date(t + e);
+            return !o && t > i && t - i < 864e5 && a.getDate() === u.getDate() ? h(t, "{hour}:{minute} {am_pm}", e, [], !n) : u.getYear() !== a.getYear() || t < i - 157248e5 ? h(t, p("global_date", "raw"), e, r, !n) : h(t, p("global_short_date", "raw"), e, r, !n)
+        }
+
+        function g(t, e, n, o) {
+            return Object(r.isToday)(new Date(1e3 * t + 1e3 * e)) ? h(1e3 * t, "{hour}:{minute} {am_pm}", 1e3 * e, [], !n) : v(t, e, n, o)
+        }
+
+        function m(t, e, n) {
+            return Object(o.isArray)(e) && t < e.length ? e[t] : l(t, n)
+        }
+
+        function y(t, e) {
+            t += e;
+            var n = parseInt(Date.now() / 1e3) - t,
+                r = "";
+            if (n < 60) r = p("global_just_now");
+            else if (n < 3600) {
+                r = m(Object(o.intval)(n / 60), p("global_word_mins_ago", "raw"), p("global_mins_ago", "raw"))
+            } else if (n < 14400) {
+                r = m(Object(o.intval)(n / 3600), p("global_word_hours_ago", "raw"), p("global_hours_ago", "raw"))
+            } else r = b(t, 0, !0, "_l");
+            return r
+        }
+
+        function b(t, e, n, r) {
+            void 0 === n && (n = !0), void 0 === e && (e = 0), void 0 === r && (r = ""), e *= 1e3;
+            var o = new Date(1e3 * t),
+                i = new Date;
+            return o.getFullYear() !== i.getFullYear() && o.getTime() < i.getTime() - 1728e5 || Math.abs(o.getTime() - i.getTime()) > 157248e5 ? h(1e3 * t, p("global_date", "raw"), e, p("months_sm_of"), !n) : h(1e3 * t, p("global_short_date_time" + r, "raw"), e, p("months_sm_of"), !n)
+        }
+
+        function w(t, e, n) {
+            void 0 === n && (n = !0), void 0 === e && (e = 0);
+            var r = new Date,
+                o = r.getFullYear(),
+                i = r.getMonth(),
+                a = new Date(1e3 * t),
+                u = a.getFullYear(),
+                c = a.getMonth();
+            return h(1e3 * t, p(u < o && (i > 1 || c < 9 || o - u >= 2) ? "global_date" : "global_short_date_time", "raw"), e, p("months_sm_of", "raw"), !n)
+        }
+    },
+    481: function(t, e, n) {
         "use strict";
         n.r(e), n.d(e, "ge", function() {
             return u
@@ -385,10 +681,10 @@
         }), n.d(e, "initDomScripts", function() {
             return Ht
         });
-        var r = n(268),
-            o = n(500),
-            i = n(133),
-            a = n(150),
+        var r = n(499),
+            o = n(5),
+            i = n(413),
+            a = n(184),
             u = function(t) {
                 return "string" == typeof t || "number" == typeof t ? document.getElementById(t) : t
             };
@@ -950,58 +1246,55 @@
             window.vkExpand = window.vkExpand || "VK" + Object(r.vkNow)(), window.vkUUID = window.vkUUID || 0, window.vkCache = window.vkCache || {}
         }
     },
-    261: function(t, e, n) {
+    485: function(t, e, n) {
         "use strict";
-        n.r(e), n.d(e, "watch", function() {
-            return l
-        }), n.d(e, "update", function() {
-            return f
-        }), n.d(e, "default", function() {
-            return d
-        });
-        var r = n(158),
-            o = n(718),
-            i = n(21),
-            a = window,
-            u = a.curBox,
-            c = a.scrollGetY;
 
-        function l(t) {
-            addEvent(t, "scroll", s.pbind(t))
+        function r(t) {
+            var e = new Date;
+            return t.getFullYear() === e.getFullYear() && t.getMonth() === e.getMonth() && t.getDate() === e.getDate()
         }
 
-        function s(t) {
-            var e = r.getObjects(),
-                n = window.innerHeight,
-                a = 0,
-                l = !0;
-            t === document || t === window ? a = c() : t ? (a = t.scrollTop, l = !1) : window.wkcur && window.wkcur.shown ? (a = window.wkLayerWrap.scrollTop, l = !1) : u() ? (a = window.boxLayerWrap.scrollTop, l = !1) : a = c(), !l && t && (n = t.offsetHeight);
-            for (var s = function(t) {
-                    var r = e[t],
-                        u = r.elem,
-                        c = r.y,
-                        s = r.height;
-                    if ("window" !== r.from && l) return "continue";
-                    if (c > a - 1.5 * n && a + 1.5 * n > c - s) {
-                        Object(i.removeClass)(u, "lazyload_need_load"), e.splice(t, 1), t--;
-                        var d = Object(i.attr)(u, "data-lazyload-src");
-                        Object(o.loadImage)(d).then(function(t) {
-                            t < 10 && Object(i.addClass)(u, "lazyload_no_animation"), "IMG" === u.tagName ? Object(i.attr)(u, "src", d) : Object(i.setStyle)(u, "background-image", "url(" + d + ")"), Object(i.addClass)(u, "lazyload_loaded"), Object(i.re)(Object(i.geByClass1)("lazyload_preview", u))
-                        })
-                    }
-                    f = t
-                }, f = 0; f < e.length; f++) s(f)
+        function o(t) {
+            return r(new Date(t.getTime() + 864e5))
         }
 
-        function f(t) {
-            s(t)
+        function i(t) {
+            return r(new Date(t.getTime() - 864e5))
         }
 
-        function d() {
-            l(window), f()
+        function a(t, e) {
+            var n = new Date(t),
+                r = new Date(e);
+            return n.getFullYear() === r.getFullYear() && n.getMonth() === r.getMonth() && n.getDate() === r.getDate()
         }
+
+        function u(t) {
+            return t >= 10 ? t : "0" + t
+        }
+
+        function c(t, e) {
+            var n = void 0;
+            t = Math.max(t, 0);
+            var r = Math.floor(t % 60);
+            n = r < 10 ? "0" + r : r;
+            var o = (t = Math.floor(t / 60)) % 60;
+            return n = o + ":" + n, ((t = Math.floor(t / 60)) > 0 || e) && (o < 10 && (n = "0" + n), n = t + ":" + n), n
+        }
+        n.r(e), n.d(e, "isToday", function() {
+            return r
+        }), n.d(e, "isYesterday", function() {
+            return o
+        }), n.d(e, "isTomorrow", function() {
+            return i
+        }), n.d(e, "isSameDate", function() {
+            return a
+        }), n.d(e, "leadingZero", function() {
+            return u
+        }), n.d(e, "formatTime", function() {
+            return c
+        })
     },
-    268: function(t, e, n) {
+    499: function(t, e, n) {
         "use strict";
         n.r(e), n.d(e, "vkLocal", function() {
             return c
@@ -1082,9 +1375,9 @@
         }), n.d(e, "initUtilsCommon", function() {
             return V
         });
-        var r = n(21),
-            o = n(465),
-            i = n(133),
+        var r = n(481),
+            o = n(469),
+            i = n(413),
             a = function() {
                 return function(t, e) {
                     if (Array.isArray(t)) return t;
@@ -1343,316 +1636,7 @@
             window.PageID = window.PageID || 1
         }
     },
-    32: function(t, e) {},
-    323: function(t, e) {
-        var n, r, o = t.exports = {};
-
-        function i() {
-            throw new Error("setTimeout has not been defined")
-        }
-
-        function a() {
-            throw new Error("clearTimeout has not been defined")
-        }
-
-        function u(t) {
-            if (n === setTimeout) return setTimeout(t, 0);
-            if ((n === i || !n) && setTimeout) return n = setTimeout, setTimeout(t, 0);
-            try {
-                return n(t, 0)
-            } catch (e) {
-                try {
-                    return n.call(null, t, 0)
-                } catch (e) {
-                    return n.call(this, t, 0)
-                }
-            }
-        }! function() {
-            try {
-                n = "function" == typeof setTimeout ? setTimeout : i
-            } catch (t) {
-                n = i
-            }
-            try {
-                r = "function" == typeof clearTimeout ? clearTimeout : a
-            } catch (t) {
-                r = a
-            }
-        }();
-        var c, l = [],
-            s = !1,
-            f = -1;
-
-        function d() {
-            s && c && (s = !1, c.length ? l = c.concat(l) : f = -1, l.length && p())
-        }
-
-        function p() {
-            if (!s) {
-                var t = u(d);
-                s = !0;
-                for (var e = l.length; e;) {
-                    for (c = l, l = []; ++f < e;) c && c[f].run();
-                    f = -1, e = l.length
-                }
-                c = null, s = !1,
-                    function(t) {
-                        if (r === clearTimeout) return clearTimeout(t);
-                        if ((r === a || !r) && clearTimeout) return r = clearTimeout, clearTimeout(t);
-                        try {
-                            r(t)
-                        } catch (e) {
-                            try {
-                                return r.call(null, t)
-                            } catch (e) {
-                                return r.call(this, t)
-                            }
-                        }
-                    }(t)
-            }
-        }
-
-        function h(t, e) {
-            this.fun = t, this.array = e
-        }
-
-        function v() {}
-        o.nextTick = function(t) {
-            var e = new Array(arguments.length - 1);
-            if (arguments.length > 1)
-                for (var n = 1; n < arguments.length; n++) e[n - 1] = arguments[n];
-            l.push(new h(t, e)), 1 !== l.length || s || u(p)
-        }, h.prototype.run = function() {
-            this.fun.apply(null, this.array)
-        }, o.title = "browser", o.browser = !0, o.env = {}, o.argv = [], o.version = "", o.versions = {}, o.on = v, o.addListener = v, o.once = v, o.off = v, o.removeListener = v, o.removeAllListeners = v, o.emit = v, o.prependListener = v, o.prependOnceListener = v, o.listeners = function(t) {
-            return []
-        }, o.binding = function(t) {
-            throw new Error("process.binding is not supported")
-        }, o.cwd = function() {
-            return "/"
-        }, o.chdir = function(t) {
-            throw new Error("process.chdir is not supported")
-        }, o.umask = function() {
-            return 0
-        }
-    },
-    43: function(t, e, n) {
-        "use strict";
-        n.r(e);
-        var r = n(261),
-            o = n(158),
-            i = window.LazyLoadInited;
-
-        function a(t) {
-            i && (Object(o.default)(), Object(r.update)(t))
-        }
-        window.LazyLoad = {
-            init: function() {
-                i || (window.LazyLoadInited = i = !0, Element.prototype.closest && (Object(o.default)(), Object(r.default)()))
-            },
-            scan: a,
-            scanDelayed: function(t) {
-                return setTimeout(function() {
-                    return a(t)
-                }, 20)
-            },
-            watch: function() {
-                i && Object(r.watch)()
-            }
-        };
-        try {
-            stManager.done("lazyload.js")
-        } catch (t) {}
-    },
-    465: function(t, e, n) {
-        "use strict";
-        n.r(e), n.d(e, "parseLatin", function() {
-            return a
-        }), n.d(e, "parseCyr", function() {
-            return u
-        }), n.d(e, "parseLatKeys", function() {
-            return c
-        }), n.d(e, "langNumeric", function() {
-            return l
-        }), n.d(e, "langSex", function() {
-            return s
-        }), n.d(e, "langStr", function() {
-            return f
-        }), n.d(e, "addLangKeys", function() {
-            return d
-        }), n.d(e, "getLang", function() {
-            return p
-        }), n.d(e, "langDate", function() {
-            return h
-        }), n.d(e, "getShortDate", function() {
-            return v
-        }), n.d(e, "getShortDateOrTime", function() {
-            return g
-        }), n.d(e, "langWordNumeric", function() {
-            return m
-        }), n.d(e, "getDateText", function() {
-            return y
-        }), n.d(e, "getBigDateNew", function() {
-            return b
-        }), n.d(e, "getSmDate", function() {
-            return w
-        });
-        var r = n(532),
-            o = n(268),
-            i = n(150);
-
-        function a(t) {
-            for (var e = ["yo", "zh", "kh", "ts", "ch", "sch", "shch", "sh", "eh", "yu", "ya", "YO", "ZH", "KH", "TS", "CH", "SCH", "SHCH", "SH", "EH", "YU", "YA", "'"], n = ["ё", "ж", "х", "ц", "ч", "щ", "щ", "ш", "э", "ю", "я", "Ё", "Ж", "Х", "Ц", "Ч", "Щ", "Щ", "Ш", "Э", "Ю", "Я", "ь"], r = t, o = 0, i = e.length; o < i; o++) r = r.split(e[o]).join(n[o]);
-            for (var a = "abvgdezijklmnoprstufhcyABVGDEZIJKLMNOPRSTUFHCYёЁ", u = 0, c = a.length; u < c; u++) r = r.split(a.charAt(u)).join("абвгдезийклмнопрстуфхцыАБВГДЕЗИЙКЛМНОПРСТУФХЦЫеЕ".charAt(u));
-            return r === t ? null : r
-        }
-
-        function u(t) {
-            for (var e = ["yo", "zh", "kh", "ts", "ch", "sch", "shch", "sh", "eh", "yu", "ya", "YO", "ZH", "KH", "TS", "CH", "SCH", "SHCH", "SH", "EH", "YU", "YA", "'"], n = ["ё", "ж", "х", "ц", "ч", "щ", "щ", "ш", "э", "ю", "я", "Ё", "Ж", "Х", "Ц", "Ч", "Щ", "Щ", "Ш", "Э", "Ю", "Я", "ь"], r = "абвгдезийклмнопрстуфхцыАБВГДЕЗИЙКЛМНОПРСТУФХЦЫеЕ", o = t, i = 0; i < n.length; i++) o = o.split(n[i]).join(e[i]);
-            for (var a = 0; a < r.length; a++) o = o.split(r.charAt(a)).join("abvgdezijklmnoprstufhcyABVGDEZIJKLMNOPRSTUFHCYёЁ".charAt(a));
-            return o === t ? null : o
-        }
-
-        function c(t) {
-            for (var e = "qwertyuiop[]asdfghjkl;'zxcvbnm,./`", n = t, r = 0; r < e.length; r++) n = n.split(e.charAt(r)).join("йцукенгшщзхъфывапролджэячсмитьбю.ё".charAt(r));
-            return n == t ? null : n
-        }
-
-        function l(t, e, n) {
-            if (!e || !window.langConfig) return t;
-            var r = void 0;
-            if (Object(o.isArray)(e) ? (r = e[1], t != Math.floor(t) ? r = e[langConfig.numRules.float] : Object(o.each)(langConfig.numRules.int, function(n, i) {
-                    if ("*" == i[0]) return r = e[i[2]], !1;
-                    var a = i[0] ? t % i[0] : t;
-                    return -1 != Object(o.indexOf)(i[1], a) ? (r = e[i[2]], !1) : void 0
-                })) : r = e, n) {
-                for (var i = t.toString().split("."), a = [], u = i[0].length - 3; u > -3; u -= 3) a.unshift(i[0].slice(u > 0 ? u : 0, u + 3));
-                i[0] = a.join(langConfig.numDel), t = i.join(langConfig.numDec)
-            }
-            return r = (r || "%s").replace("%s", t)
-        }
-
-        function s(t, e) {
-            if (!Object(o.isArray)(e)) return e;
-            var n = e[1];
-            return window.langConfig ? (Object(o.each)(langConfig.sexRules, function(r, o) {
-                return "*" == o[0] ? (n = e[o[1]], !1) : t == o[0] && e[o[1]] ? (n = e[o[1]], !1) : void 0
-            }), n) : n
-        }
-
-        function f(t) {
-            for (var e = arguments, n = e.length, r = t + "", o = 1; o < n; o += 2) {
-                var i = "%" === e[o][0] ? e[o] : "{" + e[o] + "}";
-                r = r.replace(i, e[o + 1])
-            }
-            return r
-        }
-
-        function d(t, e) {
-            var n = e ? window : window.cur;
-            n.lang ? Object(o.extend)(n.lang, t) : n.lang = t
-        }
-
-        function p() {
-            try {
-                var t = Array.from(arguments),
-                    e = t.shift();
-                if (!e) return "...";
-                var n = window.cur.lang && window.cur.lang[e] || window.lang && window.lang[e] || window.langpack && window.langpack[e] || window[e];
-                if (!n) {
-                    var r = e.split("_");
-                    return r.shift(), r.join(" ")
-                }
-                return Object(o.isFunction)(n) ? n.apply(null, t) : void 0 === t[0] && !Object(o.isArray)(n) || "raw" === t[0] ? n : l(t[0], n, t[1])
-            } catch (t) {
-                Object(i.debugLog)("lang error:" + t.message + "(" + Array.from(arguments).join(", ") + ")")
-            }
-        }
-
-        function h(t, e, n, i, a, u) {
-            var c = void 0;
-            if (u || (u = ""), Object(o.isArray)(e) || (e = ["", e, e, e, e]), "number" == typeof t || "string" == typeof t ? (t > 2147483646e3 && (t = 0), t += n, c = new Date(t)) : c = t, a) e = e[1];
-            else {
-                var l = "";
-                !(l = Object(r.isToday)(c) ? e[3] : Object(r.isYesterday)(c) ? e[2] : Object(r.isTomorrow)(c) ? e[4] : e[1]) && e[1] && (l = e[1]), e = l
-            }
-            var s = {
-                    hours: c.getHours(),
-                    minutes: c.getMinutes(),
-                    seconds: c.getSeconds(),
-                    day: c.getDate(),
-                    month: c.getMonth() + 1,
-                    year: c.getFullYear()
-                },
-                f = "";
-            switch (3 === vk.lang && (f = c.getHours() > 11 ? "pm" : "am", s.hours = c.getHours() % 12 == 0 ? 12 : c.getHours() % 12), vk.lang) {
-                case 1:
-                    switch (c.getHours()) {
-                        case 11:
-                            e = e.replace(" о ", " об ");
-                            break;
-                        case 0:
-                            e = e.replace(" о ", " в ")
-                    }
-                    break;
-                case 3:
-                    !Object(r.isToday)(c) || Object(r.isYesterday)(c) || Object(r.isTomorrow)(c) || (e = u + e);
-                    break;
-                case 12:
-                case 73:
-                    1 == c.getHours() && (e = e.replace(" &#224;s ", " &#224; "))
-            }
-            return 68 === vk.lang && (s.year = s.year + 543), e.replace("{hour}", s.hours).replace("{num_hour}", Object(r.leadingZero)(s.hours)).replace("{minute}", Object(r.leadingZero)(s.minutes)).replace("{day}", s.day).replace("{num_day}", Object(r.leadingZero)(s.day)).replace("{month}", i[s.month]).replace("{year}", s.year).replace("{short_year}", s.year % 100).replace("{second}", Object(r.leadingZero)(s.seconds)).replace("{am_pm}", f)
-        }
-
-        function v(t, e, n, r, o) {
-            t *= 1e3, void 0 === n && (n = !0), void 0 === r && (r = p("months_of", "raw")), e *= 1e3;
-            var i = Date.now(),
-                a = new Date(i),
-                u = new Date(t + e);
-            return !o && t > i && t - i < 864e5 && a.getDate() === u.getDate() ? h(t, "{hour}:{minute} {am_pm}", e, [], !n) : u.getYear() !== a.getYear() || t < i - 157248e5 ? h(t, p("global_date", "raw"), e, r, !n) : h(t, p("global_short_date", "raw"), e, r, !n)
-        }
-
-        function g(t, e, n, o) {
-            return Object(r.isToday)(new Date(1e3 * t + 1e3 * e)) ? h(1e3 * t, "{hour}:{minute} {am_pm}", 1e3 * e, [], !n) : v(t, e, n, o)
-        }
-
-        function m(t, e, n) {
-            return Object(o.isArray)(e) && t < e.length ? e[t] : l(t, n)
-        }
-
-        function y(t, e) {
-            t += e;
-            var n = parseInt(Date.now() / 1e3) - t,
-                r = "";
-            if (n < 60) r = p("global_just_now");
-            else if (n < 3600) {
-                r = m(Object(o.intval)(n / 60), p("global_word_mins_ago", "raw"), p("global_mins_ago", "raw"))
-            } else if (n < 14400) {
-                r = m(Object(o.intval)(n / 3600), p("global_word_hours_ago", "raw"), p("global_hours_ago", "raw"))
-            } else r = b(t, 0, !0, "_l");
-            return r
-        }
-
-        function b(t, e, n, r) {
-            void 0 === n && (n = !0), void 0 === e && (e = 0), void 0 === r && (r = ""), e *= 1e3;
-            var o = new Date(1e3 * t),
-                i = new Date;
-            return o.getFullYear() !== i.getFullYear() && o.getTime() < i.getTime() - 1728e5 || Math.abs(o.getTime() - i.getTime()) > 157248e5 ? h(1e3 * t, p("global_date", "raw"), e, p("months_sm_of"), !n) : h(1e3 * t, p("global_short_date_time" + r, "raw"), e, p("months_sm_of"), !n)
-        }
-
-        function w(t, e, n) {
-            void 0 === n && (n = !0), void 0 === e && (e = 0);
-            var r = new Date,
-                o = r.getFullYear(),
-                i = r.getMonth(),
-                a = new Date(1e3 * t),
-                u = a.getFullYear(),
-                c = a.getMonth();
-            return h(1e3 * t, p(u < o && (i > 1 || c < 9 || o - u >= 2) ? "global_date" : "global_short_date_time", "raw"), e, p("months_sm_of", "raw"), !n)
-        }
-    },
-    500: function(t, e, n) {
+    5: function(t, e, n) {
         "use strict";
         n.r(e), n.d(e, "KEY", function() {
             return a
@@ -1675,9 +1659,9 @@
         }), n.d(e, "checkOver", function() {
             return v
         });
-        var r = n(21),
-            o = n(268),
-            i = n(133),
+        var r = n(481),
+            o = n(499),
+            i = n(413),
             a = {
                 LEFT: 37,
                 UP: 38,
@@ -1818,55 +1802,86 @@
             return n !== e
         }
     },
-    532: function(t, e, n) {
+    551: function(t, e, n) {
         "use strict";
+        n.r(e);
+        var r = n(559),
+            o = n(434),
+            i = window.LazyLoadInited;
 
-        function r(t) {
-            var e = new Date;
-            return t.getFullYear() === e.getFullYear() && t.getMonth() === e.getMonth() && t.getDate() === e.getDate()
+        function a(t) {
+            i && (Object(o.default)(), Object(r.update)(t))
         }
-
-        function o(t) {
-            return r(new Date(t.getTime() + 864e5))
-        }
-
-        function i(t) {
-            return r(new Date(t.getTime() - 864e5))
-        }
-
-        function a(t, e) {
-            var n = new Date(t),
-                r = new Date(e);
-            return n.getFullYear() === r.getFullYear() && n.getMonth() === r.getMonth() && n.getDate() === r.getDate()
-        }
-
-        function u(t) {
-            return t >= 10 ? t : "0" + t
-        }
-
-        function c(t, e) {
-            var n = void 0;
-            t = Math.max(t, 0);
-            var r = Math.floor(t % 60);
-            n = r < 10 ? "0" + r : r;
-            var o = (t = Math.floor(t / 60)) % 60;
-            return n = o + ":" + n, ((t = Math.floor(t / 60)) > 0 || e) && (o < 10 && (n = "0" + n), n = t + ":" + n), n
-        }
-        n.r(e), n.d(e, "isToday", function() {
-            return r
-        }), n.d(e, "isYesterday", function() {
-            return o
-        }), n.d(e, "isTomorrow", function() {
-            return i
-        }), n.d(e, "isSameDate", function() {
-            return a
-        }), n.d(e, "leadingZero", function() {
-            return u
-        }), n.d(e, "formatTime", function() {
-            return c
-        })
+        window.LazyLoad = {
+            init: function() {
+                i || (window.LazyLoadInited = i = !0, Element.prototype.closest && (Object(o.default)(), Object(r.default)()))
+            },
+            scan: a,
+            scanDelayed: function(t) {
+                return setTimeout(function() {
+                    return a(t)
+                }, 20)
+            },
+            watch: function() {
+                i && Object(r.watch)()
+            }
+        };
+        try {
+            stManager.done("lazyload.js")
+        } catch (t) {}
     },
-    63: function(t, e, n) {
+    559: function(t, e, n) {
+        "use strict";
+        n.r(e), n.d(e, "watch", function() {
+            return l
+        }), n.d(e, "update", function() {
+            return f
+        }), n.d(e, "default", function() {
+            return d
+        });
+        var r = n(434),
+            o = n(210),
+            i = n(481),
+            a = window,
+            u = a.curBox,
+            c = a.scrollGetY;
+
+        function l(t) {
+            addEvent(t, "scroll", s.pbind(t))
+        }
+
+        function s(t) {
+            var e = r.getObjects(),
+                n = window.innerHeight,
+                a = 0,
+                l = !0;
+            t === document || t === window ? a = c() : t ? (a = t.scrollTop, l = !1) : window.wkcur && window.wkcur.shown ? (a = window.wkLayerWrap.scrollTop, l = !1) : u() ? (a = window.boxLayerWrap.scrollTop, l = !1) : a = c(), !l && t && (n = t.offsetHeight);
+            for (var s = function(t) {
+                    var r = e[t],
+                        u = r.elem,
+                        c = r.y,
+                        s = r.height;
+                    if ("window" !== r.from && l) return "continue";
+                    if (c > a - 1.5 * n && a + 1.5 * n > c - s) {
+                        Object(i.removeClass)(u, "lazyload_need_load"), e.splice(t, 1), t--;
+                        var d = Object(i.attr)(u, "data-lazyload-src");
+                        Object(o.loadImage)(d).then(function(t) {
+                            t < 10 && Object(i.addClass)(u, "lazyload_no_animation"), "IMG" === u.tagName ? Object(i.attr)(u, "src", d) : Object(i.setStyle)(u, "background-image", "url(" + d + ")"), Object(i.addClass)(u, "lazyload_loaded"), Object(i.re)(Object(i.geByClass1)("lazyload_preview", u))
+                        })
+                    }
+                    f = t
+                }, f = 0; f < e.length; f++) s(f)
+        }
+
+        function f(t) {
+            s(t)
+        }
+
+        function d() {
+            l(window), f()
+        }
+    },
+    571: function(t, e, n) {
         (function(r, o) {
             var i;
             (function() {
@@ -1911,7 +1926,7 @@
                     b.port2.postMessage(0)
                 }) : y = void 0 === d ? function() {
                     try {
-                        var t = n(32);
+                        var t = n(687);
                         return u = t.runOnLoop || t.runOnContext,
                             function() {
                                 u(T)
@@ -2136,9 +2151,9 @@
                     return J
                 }.call(e, n, e, t)) || (t.exports = i), G()
             }).call(this)
-        }).call(this, n(323), n(670))
+        }).call(this, n(390), n(582))
     },
-    670: function(t, e) {
+    582: function(t, e) {
         var n;
         n = function() {
             return this
@@ -2150,23 +2165,8 @@
         }
         t.exports = n
     },
-    718: function(t, e, n) {
-        "use strict";
-        n.r(e), n.d(e, "loadImage", function() {
-            return a
-        });
-        var r = n(63),
-            o = n(268),
-            i = r.Promise;
-
-        function a(t) {
-            var e = Object(o.vkNow)();
-            return new i(function(n, r) {
-                var i = Object(o.vkImage)();
-                i.onload = function() {
-                    return n(Object(o.vkNow)() - e)
-                }, i.error = r, i.src = t
-            })
-        }
-    }
+    625: function(t, e, n) {
+        t.exports = n(551)
+    },
+    687: function(t, e) {}
 });
