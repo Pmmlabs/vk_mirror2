@@ -214,7 +214,7 @@ var stVersions = {
     'video.css': 23585033363,
     'videocat.js': 3590298689,
     'videocat.css': 19377180109,
-    'videoview.js': 31248489984,
+    'videoview.js': 33186850313,
     'videoview.css': 23872880937,
     'video_edit.js': 2135196486,
     'video_edit.css': 22149198499,
@@ -247,7 +247,7 @@ var stVersions = {
     'cmodules/web/public.js': 329399197,
     'pages.css': 19994481336,
     'pages.js': 1162259210,
-    'groups.css': 29031350765,
+    'groups.css': 28130318587,
     'cmodules/web/groups.js': 51569268051,
     'cmodules/web/groups_create.js': 2554367098,
     'groups_create.css': 17192603791,
@@ -289,8 +289,8 @@ var stVersions = {
     'feed.css': 21571917392,
     'privacy.js': 711405089,
     'privacy.css': 15518172397,
-    'apps.css': 46769437809,
-    'apps.js': 22729990885,
+    'apps.css': 46600483707,
+    'apps.js': 22219326376,
     'apps_edit.js': 17976547669,
     'apps_edit.css': 31016461282,
     'apps_check.js': 3204387834,
@@ -447,7 +447,7 @@ var stVersions = {
     'ui_common.js': 1415203699,
     'ui_common.css': 18007337855,
     'cmodules/web/ui_media_selector.js': 4101789287,
-    'cmodules/web/biz.js': 20411024951,
+    'cmodules/web/biz.js': 18059495659,
     'ui_media_selector.css': 27146961729,
     'ui_manual.css': 15761972979,
     'admin.css': 15740170169,
@@ -469,7 +469,7 @@ var stVersions = {
     'market_adm.js': 2279024920,
     'stories_admin.css': 17889146572,
     'stories_admin.js': 1129028316,
-    'biz.css': 16780605868,
+    'biz.css': 18750815580,
     'vk2016.css': 2021229875,
     'landings/common.css': 19839842311,
     'landings/community_message.css': 15289408987,
@@ -539,7 +539,7 @@ var stVersions = {
     'voice_message_player.js': 22606389397,
     'cmodules/web/speech_worker_mp3.js': 4119569941,
     'cmodules/web/speech_worker_opus.js': 2818771805,
-    'stories.js': 70264730954,
+    'stories.js': 69784430009,
     'stories.css': 15415541089,
     'cmodules/web/stories_manage.js': 30484636386,
     'stories_manage.css': 73033957800,
@@ -663,4 +663,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 3075;
+var _rnd = 6743;

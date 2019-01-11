@@ -304,10 +304,6 @@ a.groups_messages_block:before {
     margin-left: 30px
 }
 
-.group_info_rows_redesign a {
-    color: #2e6099
-}
-
 .group_info_rows_redesign .group_info_row {
     padding-bottom: 3px;
     padding-left: 0px

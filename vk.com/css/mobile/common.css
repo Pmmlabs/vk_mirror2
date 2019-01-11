@@ -18745,6 +18745,10 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     padding-bottom: 34%
 }
 
+.author-page-article:last-of-type:after {
+    border-color: transparent
+}
+
 .author-page-article__inner {
     width: 100%;
     display: table;

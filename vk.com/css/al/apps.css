@@ -3465,7 +3465,8 @@ a.page_block_header:hover .apps_cat_header_link:after {
 }
 
 .apps_main .apps_i_wrap {
-    border-radius: 0
+    border-radius: 0;
+    width: 100%
 }
 
 .apps_i_panel {
