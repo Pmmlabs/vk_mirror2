@@ -214,7 +214,7 @@ var stVersions = {
     'video.css': 23585033363,
     'videocat.js': 3590298689,
     'videocat.css': 19377180109,
-    'videoview.js': 33478146708,
+    'videoview.js': 33066870702,
     'videoview.css': 23872880937,
     'video_edit.js': 2135196486,
     'video_edit.css': 22149198499,
@@ -465,8 +465,8 @@ var stVersions = {
     'landings/vk10_years.css': 15825835496,
     'market.css': 24691817361,
     'market.js': 1806905996,
-    'market_adm.css': 15558012505,
-    'market_adm.js': 2279024920,
+    'market_adm.css': 16039824023,
+    'market_adm.js': 3077029506,
     'stories_admin.css': 17889146572,
     'stories_admin.js': 1129028316,
     'biz.css': 18750815580,
@@ -592,7 +592,7 @@ var stVersions = {
     'cmodules/web/add_to_community_app.js': 397597546,
     'cmodules/web/groups_edit_addresses.js': 31084708825,
     'addresses.css': 25759164775,
-    'cmodules/web/addresses.js': 20198541312,
+    'cmodules/web/addresses.js': 18914377162,
     'cmodules/web/groups_edit_cta_button.js': 89320519,
     'groups_live_covers.css': 18081412375,
     'translation_discussions.js': 1145389133,
@@ -663,4 +663,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 9578;
+var _rnd = 2904;
