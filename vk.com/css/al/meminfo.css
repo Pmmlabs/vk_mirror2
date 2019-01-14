@@ -1189,3 +1189,26 @@ h2.meminfo_decline_purchases_title {
 .mi_subscription_box .mi_history_table {
     margin: 0 -25px!important
 }
+
+.mi_move_subscription_header {
+    margin-top: 0
+}
+
+input.mi_move_subscription_user_inp {
+    padding: 5px 9px 7px;
+    width: 420px
+}
+
+.mi_move_subscription_user_progress {
+    margin: 8px -45px;
+    display: none
+}
+
+.loading .mi_move_subscription_user_progress {
+    display: block
+}
+
+#mi_move_subscription_user_info {
+    display: none;
+    padding-top: 20px
+}

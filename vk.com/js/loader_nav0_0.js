@@ -364,7 +364,7 @@ var stVersions = {
     'achievements.js': 3514956550,
     'achievements.css': 15090406591,
     'members.css': 16518358797,
-    'meminfo.css': 30677261808,
+    'meminfo.css': 29969658145,
     'groupinfo.css': 82627999018,
     'ownerinfo.css': 8071755604,
     'bugtracker.js': 1258735500,
@@ -663,4 +663,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 1747;
+var _rnd = 9372;
