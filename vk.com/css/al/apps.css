@@ -3115,7 +3115,8 @@ a.page_block_header:hover .apps_cat_header_link:after {
     width: 1%
 }
 
-.apps_options_bar .divider:before {
+.apps_options_bar .divider:before,
+.apps_options_bar_right .divider:before {
     top: -2px
 }
 
@@ -6732,6 +6733,12 @@ td.apps_cat_new_h {
 
 #apps_layer .apps_header .group_name .group_link {
     color: #656565
+}
+
+#apps_layer .apps_header .group_name:before {
+    left: 0px;
+    margin-right: 8px;
+    top: -2px
 }
 
 #apps_layer .apps_footer_left_inner {

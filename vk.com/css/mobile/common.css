@@ -6849,9 +6849,15 @@ div.pm_item .pm_counter {
     overflow: hidden
 }
 
-.cp_options_btn {
-    cursor: pointer;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+.cp_buttons_block {
+    position: relative
+}
+
+.cp_options_btn.near_btn {
+    position: absolute;
+    padding-left: 6px;
+    height: 34px;
+    top: 11px
 }
 
 .cp_options_btn .i_icon {
@@ -28929,6 +28935,205 @@ a.feedBlocks__article:hover {
     margin-left: -6px
 }
 
+.te_i .ThumbsEdit-wrap {
+    position: relative;
+    margin: 8px auto 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.te_i .ThumbsEdit {
+    margin: 0 auto
+}
+
+.te_i .Thumb-wrap {
+    display: inline-block;
+    margin: 0 3px 3px 0;
+    float: left;
+    position: relative;
+    background: #e1e3e6;
+    -webkit-transition: -webkit-transform 75ms linear;
+    transition: -webkit-transform 75ms linear;
+    -moz-transition: transform 75ms linear, -moz-transform 75ms linear;
+    -o-transition: transform 75ms linear, -o-transform 75ms linear;
+    transition: transform 75ms linear;
+    transition: transform 75ms linear, -webkit-transform 75ms linear, -moz-transform 75ms linear, -o-transform 75ms linear;
+    z-index: 1
+}
+
+@media (min-width: 480px) {
+    .te_i .Thumb-wrap {
+        margin: 0 6px 6px 0
+    }
+}
+
+.te_i .Thumb-wrap .Thumb {
+    overflow: hidden;
+    z-index: 10
+}
+
+.te_i .Thumb-wrap .Thumb--moving {
+    position: absolute;
+    -webkit-box-shadow: 0 0 16px -4px;
+    -moz-box-shadow: 0 0 16px -4px;
+    box-shadow: 0 0 16px -4px
+}
+
+.te_i .Thumb-wrap img,
+.te_i .Thumb-wrap picture {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+    -o-object-fit: cover;
+    object-fit: cover
+}
+
+.te_i .Thumb-wrap.last_column {
+    margin-right: 0
+}
+
+.te_i .Thumb-wrap.last_row {
+    margin-bottom: 0
+}
+
+.te_i .Thumb-wrap--temp {
+    opacity: 0.5
+}
+
+.te_i .Thumb__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none
+}
+
+.te_i .Thumb__overlay-closeBtn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    cursor: pointer;
+    background-image: url('/images/mobile/icons/audio_icons.png?10');
+    background-position: 0 632px;
+    -moz-background-size: 100%!important;
+    -o-background-size: 100%!important;
+    background-size: 100%!important;
+    width: 24px;
+    height: 24px;
+    pointer-events: all
+}
+
+.vk_2x .te_i .Thumb__overlay-closeBtn {
+    background-image: url('/images/mobile/icons/audio_icons_2x.png?10')
+}
+
+.te_i #ThumbsEdit-splitter {
+    position: absolute;
+    background: #5c9ce6;
+    opacity: 0
+}
+
+.te_i .cp_attached_wrap {
+    padding-bottom: 8px
+}
+
+.te_i .cp_attached_wrap .uMailWrite__attachments {
+    margin: 0px;
+    padding-bottom: 0px!important
+}
+
+.te_i #medias_map,
+.te_i #post_options_box,
+.te_i .cp_buttons_block {
+    margin: 0 8px
+}
+
+.te_i .cp_buttons_block {
+    padding-top: 0
+}
+
+.te_i .ibwrap {
+    margin-top: -8px;
+    background: #fff;
+    padding: 0 0 10px!important
+}
+
+.te_i .cp_edited_by {
+    margin: 0 0 8px 8px
+}
+
+.te_i .Loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%)
+}
+
+.te_i .Loader svg {
+    width: 60px;
+    height: 60px;
+    stroke-width: 3px;
+    stroke: #fff;
+    fill: transparent;
+    overflow: visible
+}
+
+.te_i .Loader svg circle {
+    -webkit-transition: stroke-dashoffset 300ms ease-in-out;
+    -moz-transition: stroke-dashoffset 300ms ease-in-out;
+    -o-transition: stroke-dashoffset 300ms ease-in-out;
+    transition: stroke-dashoffset 300ms ease-in-out;
+    -webkit-animation: rotate 1.4s linear infinite;
+    -moz-animation: rotate 1.4s linear infinite;
+    -o-animation: rotate 1.4s linear infinite;
+    animation: rotate 1.4s linear infinite;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%
+}
+
+@-webkit-keyframes rotate {
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@-moz-keyframes rotate {
+    to {
+        -moz-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@-o-keyframes rotate {
+    to {
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes rotate {
+    to {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
 .poster__view,
 .poster__wrap {
     position: relative;
@@ -35002,8 +35207,9 @@ body.apps_settingsPageBody {
 }
 
 .MosaicItemVideo__duration,
-.r .cp_attached_post a[href^="/vudeo"] .mt_dur,
+.r .cp_attached_post a[href^="/video"] .mt_dur,
 .r .e a[href^="/video"] .mt_dur,
+.r .ThumbsEdit .Thumb__overlay .mt_dur,
 .r .wall_item a[href^="/video"] .mt_dur {
     font-size: 11px;
     background: #000;
@@ -38887,6 +39093,136 @@ body.apps_settingsPageBody {
     }
     60% {
         width: 12px
+    }
+}
+
+.ModalMenu {
+    top: unset
+}
+
+.ModalMenu .Popup__wrap {
+    vertical-align: bottom
+}
+
+@media (min-width: 882px) {
+    .ModalMenu .Popup__wrap {
+        vertical-align: middle
+    }
+}
+
+.ModalMenu .Popup__content {
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-animation: appear-bottom 200ms linear;
+    -moz-animation: appear-bottom 200ms linear;
+    -o-animation: appear-bottom 200ms linear;
+    animation: appear-bottom 200ms linear
+}
+
+@media (min-width: 882px) {
+    .ModalMenu .Popup__content {
+        -webkit-transform: unset!important;
+        -moz-transform: unset!important;
+        -ms-transform: unset!important;
+        -o-transform: unset!important;
+        transform: unset!important;
+        -webkit-animation: unset!important;
+        -moz-animation: unset!important;
+        -o-animation: unset!important;
+        animation: unset!important
+    }
+}
+
+.ModalMenu .Btn,
+.ModalMenu .Groups .GroupsInvite__item .si_links .ai_menu_wrap,
+.ModalMenu .Groups .GroupsInvite__item .si_links .si_link,
+.ModalMenu .GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap,
+.ModalMenu .GroupsInvite .GroupsInvite__item .si_links .si_link,
+.ModalMenu .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap,
+.ModalMenu .GroupsNear .GroupsInvite__item .si_links .si_link {
+    width: 100%;
+    margin: 4px 0
+}
+
+.ModalMenu .Btn_theme_secondary,
+.ModalMenu .Groups .GroupsInvite__item .si_links .ai_menu_wrap,
+.ModalMenu .Groups .GroupsInvite__item .si_links .si_link_gray,
+.ModalMenu .GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap,
+.ModalMenu .GroupsInvite .GroupsInvite__item .si_links .si_link_gray,
+.ModalMenu .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap,
+.ModalMenu .GroupsNear .GroupsInvite__item .si_links .si_link_gray {
+    height: 40px;
+    line-height: 40px
+}
+
+.ModalMenu .Btn_theme_select {
+    height: 40px;
+    line-height: 40px;
+    padding: 0 14px;
+    background: transparent;
+    text-align: left;
+    font-weight: 400
+}
+
+._hover .ModalMenu .Btn_theme_select:active,
+._touch .ModalMenu .Btn_theme_select.hover {
+    background: #ebedf0
+}
+
+@media (min-width: 882px) {
+    .ModalMenu .ModalMenu-cancel {
+        display: none
+    }
+}
+
+@-webkit-keyframes appear-bottom {
+    0% {
+        -webkit-transform: translateY(100%);
+        transform: translateY(100%)
+    }
+    to {
+        -webkit-transform: translateY(8px);
+        transform: translateY(8px)
+    }
+}
+
+@-moz-keyframes appear-bottom {
+    0% {
+        -moz-transform: translateY(100%);
+        transform: translateY(100%)
+    }
+    to {
+        -moz-transform: translateY(8px);
+        transform: translateY(8px)
+    }
+}
+
+@-o-keyframes appear-bottom {
+    0% {
+        -o-transform: translateY(100%);
+        transform: translateY(100%)
+    }
+    to {
+        -o-transform: translateY(8px);
+        transform: translateY(8px)
+    }
+}
+
+@keyframes appear-bottom {
+    0% {
+        -webkit-transform: translateY(100%);
+        -moz-transform: translateY(100%);
+        -o-transform: translateY(100%);
+        transform: translateY(100%)
+    }
+    to {
+        -webkit-transform: translateY(8px);
+        -moz-transform: translateY(8px);
+        -o-transform: translateY(8px);
+        transform: translateY(8px)
     }
 }
 

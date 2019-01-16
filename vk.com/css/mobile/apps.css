@@ -6838,9 +6838,15 @@ div.pm_item .pm_counter {
     overflow: hidden
 }
 
-.cp_options_btn {
-    cursor: pointer;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+.cp_buttons_block {
+    position: relative
+}
+
+.cp_options_btn.near_btn {
+    position: absolute;
+    padding-left: 6px;
+    height: 34px;
+    top: 11px
 }
 
 .cp_options_btn .i_icon {

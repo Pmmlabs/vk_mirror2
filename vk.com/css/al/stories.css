@@ -2716,11 +2716,13 @@
 .stories_bottom_wrap {
     display: none;
     position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100%;
-    z-index: 50;
-    background: url('/images/stories_bottom_shadow.png') repeat-x 50% / contain
+    left: 0;
+    bottom: 0;
+    background: url('/images/stories_bottom_shadow.png') repeat-x 50% / contain;
+    -o-transition: opacity 150ms ease-in-out;
+    transition: opacity 150ms ease-in-out;
+    z-index: 50
 }
 
 .stories_item.active .stories_bottom_wrap {
@@ -2728,6 +2730,12 @@
     display: flex;
     -ms-flex-direction: column;
     flex-direction: column
+}
+
+.stories_item.paused .stories_bottom_wrap {
+    opacity: 0;
+    -o-transition-delay: 300ms;
+    transition-delay: 300ms
 }
 
 .stories_item.fatal_error .stories_bottom_wrap {
