@@ -936,7 +936,7 @@ body.dev .app_author {
     line-height: 160%
 }
 
-#app_edit_cont #app_domain {
+#app_domain {
     border: 0;
     padding: 6px 3px 0 0;
     width: 146px;
@@ -944,11 +944,11 @@ body.dev .app_author {
     border: none
 }
 
-#app_edit_cont .apps_addr_field {
+.apps_addr_field {
     width: 100%
 }
 
-#app_edit_cont #apps_addr_result {
+#apps_addr_result {
     position: absolute;
     color: #777;
     margin: 5px 0px 0px 288px

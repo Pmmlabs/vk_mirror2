@@ -7893,7 +7893,8 @@ button.ui_load_more_btn {
 
 .copy_quote .audio_pl_snippet2,
 .im_msg_media .audio_pl_snippet2,
-.wall_text .audio_pl_snippet2 {
+.wall_text .audio_pl_snippet2,
+.wl_post .audio_pl_snippet2 {
     margin-top: 15px
 }
 
@@ -8812,7 +8813,12 @@ button.ui_load_more_btn {
     margin-bottom: -20px
 }
 
-.post .post_info .replies .reply_content .audio_pl_snippet2:last-child {
+.wl_post .audio_pl_snippet2:last-child {
+    margin-bottom: -11px
+}
+
+.post .replies .audio_pl_snippet2:last-child,
+.search_results .post .audio_pl_snippet2:last-child {
     margin-bottom: 5px!important
 }
 
@@ -9354,6 +9360,19 @@ button.ui_load_more_btn {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%228%22%20height%3D%2212%22%20viewBox%3D%2216%209%208%2012%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M16%209.5c0-.28.22-.5.5-.5h2c.28%200%20.5.23.5.5v11c0%20.28-.22.5-.5.5h-2c-.28%200-.5-.23-.5-.5v-11zm5%200c0-.28.22-.5.5-.5h2c.28%200%20.5.23.5.5v11c0%20.28-.22.5-.5.5h-2c-.28%200-.5-.23-.5-.5v-11z%22%20fill%3D%22%23000%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E")
 }
 
+.post:not(.post_fr_likes):not(.postponed):not(.post_copy) .post_info .audio_artist_snippet:last-child {
+    margin-bottom: -20px
+}
+
+.wl_post .audio_artist_snippet:last-child {
+    margin-bottom: -11px
+}
+
+.post .replies .audio_artist_snippet:last-child,
+.search_results .post .audio_artist_snippet:last-child {
+    margin-bottom: 5px!important
+}
+
 @media screen and (max-width: 350px) {
     .audio_artist_snippet.audio_artist_snippet_big .audio_artist_snippet__title {
         max-width: 60%;
@@ -9371,14 +9390,6 @@ button.ui_load_more_btn {
     .audio_artist_snippet.audio_artist_snippet_big .audio_artist_snippet__play:before {
         left: 15px
     }
-}
-
-.post:not(.post_fr_likes):not(.postponed):not(.post_copy) .post_info .audio_artist_snippet:last-child {
-    margin-bottom: -20px
-}
-
-.post .post_info .replies .reply_content .audio_artist_snippet:last-child {
-    margin-bottom: 5px
 }
 
 ._audio_pl.audio_pl_top_audios {
@@ -10710,7 +10721,8 @@ button.ui_load_more_btn {
 #audio_layer_tt {
     box-shadow: 0 20px 40px 0 rgba(0, 0, 0, .3);
     border-top: 0;
-    border-radius: 0 0 4px 4px
+    border-radius: 0 0 4px 4px;
+    -webkit-perspective: none
 }
 
 #audio_layer_tt>.eltt_arrow_back {

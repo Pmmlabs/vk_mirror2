@@ -312,30 +312,6 @@ body.dev #gp_back {
     white-space: nowrap
 }
 
-.audio_status_wrap {
-    padding: 0px 10px;
-    color: #000;
-    max-width: 220px;
-    max-height: 232px;
-    overflow: hidden;
-    line-height: 160%;
-    text-overflow: ellipsis
-}
-
-.audio_status_wrap .hint_title {
-    color: #2a5779;
-    padding-top: 10px;
-    font-weight: 700;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    padding-bottom: 6px
-}
-
-.audio_status_wrap .hint_description,
-.audio_status_wrap .hint_clubs {
-    padding-bottom: 6px
-}
-
 .audio_share_cont {
     position: relative;
     background: #f2f2f2;
@@ -347,12 +323,6 @@ body.dev #gp_back {
 .audio_share_link {
     display: block;
     padding: 5px 25px
-}
-
-.audio_status_wrap .checkbox {
-    padding: 5px 0px 4px;
-    white-space: nowrap;
-    height: 13px
 }
 
 .audio_status_tt.tt .tt_text {
