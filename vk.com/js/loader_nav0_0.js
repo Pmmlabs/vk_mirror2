@@ -270,7 +270,7 @@ var stVersions = {
     'wall.js': 2138442860,
     'cmodules/web/wall_edit.js': 2703194860,
     'thumbs_edit.css': 14445967422,
-    'cmodules/web/thumbs_edit.js': 5758519683,
+    'cmodules/web/thumbs_edit.js': 4000769521,
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
@@ -663,4 +663,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 5137;
+var _rnd = 2177;

@@ -17857,7 +17857,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     content: '';
     width: 24px;
     height: 24px;
-    background: url(/images/mobile/icons/audio_icons.png?11) no-repeat;
+    background: url(/images/mobile/icons/audio_icons.png?12) no-repeat;
     -moz-background-size: 100%;
     -o-background-size: 100%;
     background-size: 100%;
@@ -17868,7 +17868,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .vk_2x .audio_artist_snippet__play:before {
-    background-image: url(/images/mobile/icons/audio_icons_2x.png?11)
+    background-image: url(/images/mobile/icons/audio_icons_2x.png?12)
 }
 
 .playing .audio_artist_snippet__play:before {
@@ -20271,11 +20271,11 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     -o-background-size: 100%;
     background-size: 100%;
     background-position: 0 -412px;
-    background-image: url('/images/mobile/icons/audio_icons.png?10')
+    background-image: url('/images/mobile/icons/audio_icons.png?12')
 }
 
 .vk_2x .snippet.snippet_type_podcast .snippet_type_podcast__views:after {
-    background-image: url('/images/mobile/icons/audio_icons_2x.png?10')
+    background-image: url('/images/mobile/icons/audio_icons_2x.png?12')
 }
 
 .snippet.snippet_type_podcast .snippet__favorite {
@@ -29019,8 +29019,8 @@ a.feedBlocks__article:hover {
     top: 4px;
     right: 4px;
     cursor: pointer;
-    background-image: url('/images/mobile/icons/audio_icons.png?10');
-    background-position: 0 632px;
+    background-image: url('/images/mobile/icons/audio_icons.png?12');
+    background-position: 0 624px;
     -moz-background-size: 100%!important;
     -o-background-size: 100%!important;
     background-size: 100%!important;
@@ -29030,7 +29030,7 @@ a.feedBlocks__article:hover {
 }
 
 .vk_2x .te_i .Thumb__overlay-closeBtn {
-    background-image: url('/images/mobile/icons/audio_icons_2x.png?10')
+    background-image: url('/images/mobile/icons/audio_icons_2x.png?12')
 }
 
 .te_i #ThumbsEdit-splitter {
@@ -30322,7 +30322,7 @@ body.apps_settingsPageBody {
 .r .ai_menu_toggle_button,
 .r .audio_item_explicit .ai_title:after,
 .r .audioPlaylist .wi_actions_btn .i_icon {
-    background-image: url('/images/mobile/icons/audio_icons.png?11');
+    background-image: url('/images/mobile/icons/audio_icons.png?12');
     background-repeat: no-repeat;
     -moz-background-size: 100%;
     -o-background-size: 100%;
@@ -30345,7 +30345,7 @@ body.apps_settingsPageBody {
 .vk_2x .audioPlaylistSnippet__subtitle:after,
 .vk_2x.r .ai_menu_toggle_button,
 .vk_2x.r .audio_item_explicit .ai_title:after {
-    background-image: url('/images/mobile/icons/audio_icons_2x.png?11')
+    background-image: url('/images/mobile/icons/audio_icons_2x.png?12')
 }
 
 .Audio__menuContainer,
@@ -30598,7 +30598,7 @@ body.apps_settingsPageBody {
     margin: auto;
     height: 24px;
     width: 24px;
-    background-image: url('/images/mobile/icons/audio_icons.png?10');
+    background-image: url('/images/mobile/icons/audio_icons.png?12');
     background-position: 0 122px;
     -moz-background-size: 100%;
     -o-background-size: 100%;
@@ -30607,7 +30607,7 @@ body.apps_settingsPageBody {
 
 .vk_2x .Audio__explicitIcon:after,
 .vk_2x.r .i_explicit:after {
-    background-image: url('/images/mobile/icons/audio_icons_2x.png?10')
+    background-image: url('/images/mobile/icons/audio_icons_2x.png?12')
 }
 
 .article_dark .i_play:after {
@@ -37966,7 +37966,7 @@ body.apps_settingsPageBody {
 .Icon_audio_search:before {
     width: 24px;
     height: 24px;
-    background-image: url('/images/mobile/icons/audio_icons.png?10')
+    background-image: url('/images/mobile/icons/audio_icons.png?12')
 }
 
 .vk_2x .Icon_audio_explicit:before,
@@ -37975,7 +37975,7 @@ body.apps_settingsPageBody {
 .vk_2x .Icon_audio_playWhite:before,
 .vk_2x .Icon_audio_plus:before,
 .vk_2x .Icon_audio_search:before {
-    background-image: url('/images/mobile/icons/audio_icons_2x.png?10')
+    background-image: url('/images/mobile/icons/audio_icons_2x.png?12')
 }
 
 .Icon_audio_playWhite:before {
