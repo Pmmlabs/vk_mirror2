@@ -2947,17 +2947,23 @@ input.wide_button {
 
 .pi_author {
     font-weight: 700;
-    color: #4c6b8f
+    color: #4c6b8f;
+    word-wrap: break-word
 }
 
-.pi_author,
-.pi_text {
-    word-wrap: break-word
+.pi_edited {
+    margin-left: 4px
+}
+
+.pi_edited:before {
+    content: '\00b7';
+    padding-right: 4px
 }
 
 .pi_text {
     padding: 4px 0 0;
     line-height: 1.5em;
+    word-wrap: break-word;
     overflow: hidden
 }
 
@@ -45966,7 +45972,7 @@ a .BookmarkListItem__subtitle:hover {
     display: none;
     font-size: 16px;
     line-height: 20px;
-    font-weight: 600;
+    font-weight: 500;
     color: #fff;
     white-space: nowrap;
     overflow: hidden;
@@ -48812,6 +48818,22 @@ html.vk_appAuth_yes .vk__page_mail._ios {
     align-items: center;
     padding-left: 12px;
     position: relative
+}
+
+.messenger__mrsHintBox:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 40px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2216%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20fill%3D%22%23ACB1B9%22%20d%3D%22M4.706%207.706a1%201%200%200%201%200-1.412l.088-.088a.997.997%200%200%201%201.414.002l5.084%205.084a.998.998%200%200%201%200%201.416l-5.084%205.084a1.002%201.002%200%200%201-1.414.002l-.088-.088a.995.995%200%200%201%200-1.412L9%2012%204.706%207.706z%22%20%2F%3E%3C%2Fsvg%3E') 50% no-repeat
+}
+
+._hover .messenger__mrsHintBox:hover,
+._touch .messenger__mrsHintBox.hover {
+    text-decoration: none;
+    background-color: #f4f6f9
 }
 
 .messenger__convoListNotice {

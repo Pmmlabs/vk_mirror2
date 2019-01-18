@@ -4960,25 +4960,30 @@ var Wall = {
 
         if (opts.deep) {
             var postItem = post.split('_');
+
             params = {
                 act: 'get_post_replies',
                 offset: offset,
                 owner_id: postItem[0],
                 item_id: postItem[1],
-                count: count
+                count: count,
             };
+
+            if (opts.order) {
+                params.order = opts.order;
+            }
         } else {
             params = {
                 act: 'get_replies',
                 offset: offset,
                 post: post,
-                count: count
+                count: count,
             };
         }
 
         extend(params, {
             rev: opts.rev,
-            from: opts.from
+            from: opts.from,
         });
 
         ajax.post('al_wall.php', params, {
@@ -5023,6 +5028,7 @@ var Wall = {
         var count = domData(showMore, 'count');
         var collapse = domData(showMore, 'collapse');
         var isPrev = hasClass(showMore, 'replies_prev');
+        var postEl = ge('post' + itemFullId);
 
         var params = {
             act: 'get_post_replies',
@@ -5032,6 +5038,28 @@ var Wall = {
             count: count,
             collapse: collapse,
         };
+
+        var reorderEl;
+
+        if (hasClass(postEl, 'reply')) {
+            var parentPostEl = gpeByClass('post', postEl);
+            var parentPostId = domData(parentPostEl, 'post-id');
+
+            reorderEl = ge('post_replies_reorder' + parentPostId);
+        } else {
+            reorderEl = ge('post_replies_reorder' + itemFullId);
+
+            var repliesEl = ge('replies' + itemFullId);
+            var topRepliesIds = domData(repliesEl, 'top-ids');
+
+            if (topRepliesIds) {
+                params.top_replies = topRepliesIds;
+            }
+        }
+
+        if (reorderEl) {
+            params.order = domData(reorderEl, 'order');
+        }
 
         // find closest reply
         var nextItem = showMore;
@@ -5253,7 +5281,7 @@ var Wall = {
         var fakeBox = ge('reply_fakebox' + post);
         var realBox = ge('reply_box' + post);
         var isReply = hasClass(el, 'reply');
-        var curJs = cur.wallLayer ? wkcur : cur;
+        var pageCur = cur.wallLayer ? wkcur : cur;
         var deepActive = false;
         var postEl;
 
@@ -5298,9 +5326,9 @@ var Wall = {
             var ownerPhoto = domData(fakeBox, 'owner-photo') || '';
             var ownerHref = domData(fakeBox, 'owner-href') || '';
             var ownerName = domData(fakeBox, 'owner-name') || '';
-            var tpl = canReplyAsGroup ? curJs.wallTpl.reply_form_official_placeholder : (postId.match(/^(-?\d+)_(\d+)$/) ? curJs.wallTpl.reply_form_official : '');
+            var tpl = canReplyAsGroup ? pageCur.wallTpl.reply_form_official_placeholder : (postId.match(/^(-?\d+)_(\d+)$/) ? pageCur.wallTpl.reply_form_official : '');
 
-            realBox = se(rs((deepActive && curJs.wallTpl.reply_form_new) ? curJs.wallTpl.reply_form_new : curJs.wallTpl.reply_form, {
+            realBox = se(rs((deepActive && pageCur.wallTpl.reply_form_new) ? pageCur.wallTpl.reply_form_new : pageCur.wallTpl.reply_form, {
                 add_buttons: rs(tpl, {
                     post_id: post,
                     oid: intval(post),
@@ -5334,7 +5362,7 @@ var Wall = {
                 maxShown = 0;
                 hideAfterCount = 0;
             } else {
-                rawTypes = (curJs.options && curJs.options.rmedia_types);
+                rawTypes = (pageCur.options && pageCur.options.rmedia_types);
             }
 
             if (deepActive) {
@@ -5343,7 +5371,7 @@ var Wall = {
                 hideAfterCount = 0;
             }
 
-            each(rawTypes || (curJs.options && curJs.options.media_types) || [], function() {
+            each(rawTypes || (pageCur.options && pageCur.options.media_types) || [], function() {
                 if (inArray(this[0], ['photo', 'video', 'audio', 'doc', 'link', 'page'])) {
                     mediaTypes.push(this);
                 }
@@ -5905,6 +5933,7 @@ var Wall = {
         var post_hash = ge('post_hash' + postId) ? ge('post_hash' + postId).value : cur.options.post_hash;
         var newEl = null;
         var onlyNew = deepActive && (deepReply || (!wallLayer && cur.wallType !== 'full'));
+        var order = wall.getRepliesOrder(postId);
 
         extend(params, {
             act: 'post',
@@ -5916,6 +5945,7 @@ var Wall = {
             from: wallLayer ? 'wkview' : '',
             hash: post_hash,
             only_new: onlyNew ? 1 : 0,
+            order: order,
         });
         if (cur.reverse) {
             params.rev = 1;
@@ -6079,6 +6109,8 @@ var Wall = {
         var toEl = ge('post' + replyToId);
         var toReply = hasClass(toEl, 'reply');
         var postEl = toReply ? (gpeByClass('wl_post', toEl) || gpeByClass('post', toEl)) : toEl;
+        var postId = domData(postEl, 'post-id');
+        var isBackOrder = wall.isBackRepliesOrder(postId);
         var deepActive = hasClass(postEl, 'deep_active');
 
         if (!deepActive) {
@@ -6096,7 +6128,12 @@ var Wall = {
         }
 
         var repliesList = ge('replies' + replyToId);
-        repliesList.appendChild(se(reply));
+
+        if (isBackOrder && repliesList.firstChild) {
+            domInsertBefore(se(reply), repliesList.firstChild);
+        } else {
+            repliesList.appendChild(se(reply));
+        }
 
         wall.incReplyCounter(postEl);
 
@@ -6119,35 +6156,12 @@ var Wall = {
                 comment_num: newCount
             });
         }
-
-        // update total counter
-        var counter = geByClass1('post_replies_count', postEl);
-
-        if (counter) {
-            if (!newCount) {
-                currentCount = currentCount || intval(val(counter).replace(/[^0-9]+/g, ''));
-                newCount = Math.max(0, currentCount + incVal);
-            }
-
-            val(counter, getLang('wall_N_replies', newCount));
-
-            if (!newCount) {
-                re(counter);
-            }
-        }
     },
     onNewReplySentLayer: function(count, rows, offset, names) {
         var postEl = ge('wl_post');
 
         var repliesList = geByClass1('wl_replies', postEl);
         val(repliesList, rows);
-
-        // update total counter
-        var counter = geByClass1('post_replies_count', postEl);
-
-        if (counter) {
-            val(counter, getLang('wall_N_replies', count));
-        }
 
         var num = domChildren(repliesList).filter(function(child) {
             return hasClass(child, 'reply');
@@ -6161,7 +6175,15 @@ var Wall = {
 
         wall.addReplyNames(names);
         WkView.wallUpdateReplies();
-        wkLayerWrap.scrollTop = wkLayerWrap.scrollHeight;
+
+        var postId = domData(postEl, 'post-id');
+
+        if (wall.isBackRepliesOrder(postId)) {
+            wkLayerWrap.scrollTop = getSize(postEl)[1] - getSize('wl_replies_wrap')[1] - 30;
+        } else {
+            wkLayerWrap.scrollTop = wkLayerWrap.scrollHeight;
+        }
+
         WkView.wallUpdateRepliesOnScroll();
     },
     postTooltip: function(el, post, opts, tooltipOpts) {
@@ -9807,6 +9829,25 @@ var Wall = {
         val(action, getLang(close ? 'wall_open_comments' : 'wall_closing_comments'));
     },
 
+    showPostEditedTime: function(el) {
+        var translate = (cur.lang || {}).wall_changed;
+
+        if (!translate) {
+            return;
+        }
+
+        var updateTime = intval(domData(el, 'time'));
+        var timeOffset = (new Date().getTimezoneOffset() + 180) * 60;
+
+        if (updateTime) {
+            showTooltip(el, {
+                text: translate.replace('{time}', getDateText(updateTime, timeOffset)),
+                black: 1,
+                shift: [0, 4]
+            });
+        }
+    },
+
     showPostAuthorData: function(el, event) {
         var post_raw = el.className.match(/_post_author_data_(-?\d+_\d+)/)[1] || '';
         var target = event ? event.target : window.event.srcElement;
@@ -9937,7 +9978,7 @@ var Wall = {
             appendTo: btnWrapEl,
             forceSide: 'bottom',
             autoShow: false,
-            cls: 'eltt_fancy post_action_tt',
+            cls: 'eltt_fancy eltt_fancy_actions',
             noOverflow: false,
             centerShift: 0,
             offset: [-12, 7],
@@ -10325,7 +10366,7 @@ var Wall = {
         var repliesWrap = ge('replies' + postId);
 
         var showNextReplies = se(rs(cur.wallTpl.reply_deep_next, {
-            post_ist: postId,
+            post_id: postId,
             reply_id: postId,
             offset: offset,
             count: count,
@@ -10350,8 +10391,6 @@ var Wall = {
         var replyToId = (found && found[2]) || '';
         var isDeepReply = replyToId && replyToId !== postId;
         var wallLayer = (cur.wallLayer && cur.wallLayer === postId);
-        var curJs = wallLayer ? wkcur : cur;
-        var onePost = (curJs.wallType === 'full');
         var checkHeightEl = wallLayer ? ge('replies' + postId) : ge('post' + postId);
         var startH = checkHeightEl.offsetHeight;
         var updH = 0;
@@ -10365,15 +10404,6 @@ var Wall = {
         }
 
         var postEl = wallLayer ? ge('wl_post') : ge('post' + postId);
-        var counter = geByClass1('post_replies_count', postEl);
-
-        if (!counter && (wallLayer || onePost)) {
-            counter = se(curJs.wallTpl.reply_count);
-
-            var repliesBlock = wallLayer ? geByClass1('wl_replies', postEl) : geByClass1('replies', postEl);
-
-            domInsertBefore(counter, repliesBlock);
-        }
 
         wall.incReplyCounter(postEl, 1, ev[13]);
 
@@ -10404,7 +10434,7 @@ var Wall = {
         var replyToEl = ge('post' + rootId);
         var deepWrapParent = replyToEl && gpeByClass('replies_wrap_deep', replyToEl);
         var wallLayer = (cur.wallLayer && cur.wallLayer === postId);
-        var curJs = wallLayer ? wkcur : cur;
+        var pageCur = wallLayer ? wkcur : cur;
         var newEl;
 
         if (deepWrapParent) {
@@ -10453,7 +10483,7 @@ var Wall = {
                 val(countEl, getLang('global_replied_to_reply_count', shortCount + 1));
 
             } else {
-                deepShort = se(rs(curJs.wallTpl.reply_deep_short, {
+                deepShort = se(rs(pageCur.wallTpl.reply_deep_short, {
                     post_id: postId,
                     reply_id: rootId,
                     reply_msg_id: rootId.split('_')[1],
@@ -10469,7 +10499,7 @@ var Wall = {
                 } else {
                     deepRepliesBLock.appendChild(deepShort);
 
-                    var showNextDeepReplies = se(rs(curJs.wallTpl.reply_deep_next, {
+                    var showNextDeepReplies = se(rs(pageCur.wallTpl.reply_deep_next, {
                         post_id: postId,
                         reply_id: rootId,
                         offset: 0,
@@ -10495,78 +10525,99 @@ var Wall = {
     _addRootReply: function(ev) {
         var postId = ev[2];
         var wallLayer = (cur.wallLayer && cur.wallLayer === postId);
-        var curJs = wallLayer ? wkcur : cur;
+        var pageCur = wallLayer ? wkcur : cur;
         var replies = ge('replies' + postId);
         var repliesCount = domChildren(replies).length;
-        var onePost = (curJs.wallType === 'full');
+        var onePost = (pageCur.wallType === 'full');
         var needAddComment = !repliesCount || (repliesCount < 3 && (wallLayer || onePost));
+        var isBackOrder = wall.isBackRepliesOrder(postId);
 
         // Full comment
         if (needAddComment) {
             var flags = intval(ev[ev.length - 1]);
-            var adminLevel = curJs.options.is_admin !== undefined ? curJs.options.is_admin : (curJs.options.wall_oid < 0 ? ((flags & 8) ? constants.Groups.GROUPS_ADMIN_LEVEL_EDITOR : ((flags & 2) ? constants.Groups.GROUPS_ADMIN_LEVEL_MODERATOR : constants.Groups.GROUPS_ADMIN_LEVEL_USER)) : constants.Groups.GROUPS_ADMIN_LEVEL_USER);
-            var newEl = se(Wall.getNewReplyHTML(ev, adminLevel, false, curJs));
+            var adminLevel = pageCur.options.is_admin !== undefined ? pageCur.options.is_admin : (pageCur.options.wall_oid < 0 ? ((flags & 8) ? constants.Groups.GROUPS_ADMIN_LEVEL_EDITOR : ((flags & 2) ? constants.Groups.GROUPS_ADMIN_LEVEL_MODERATOR : constants.Groups.GROUPS_ADMIN_LEVEL_USER)) : constants.Groups.GROUPS_ADMIN_LEVEL_USER);
+            var newEl = se(Wall.getNewReplyHTML(ev, adminLevel, false, pageCur));
 
             nodeUpdated(newEl);
-            replies.appendChild(newEl);
+
+            if (isBackOrder && replies.firstChild) {
+                domInsertBefore(newEl, replies.firstChild);
+            } else {
+                replies.appendChild(newEl);
+            }
 
             return newEl;
 
             // Show more button
         } else {
-            return wall._addNewReplyShowMore(postId, postId, replies, 'replies_next_main');
+            return wall._addNewReplyShowMore(postId, postId, replies, 'replies_next_main', isBackOrder);
         }
     },
 
-    _addNewReplyShowMore: function(postId, replyId, replies, repliesNextClass) {
+    _addNewReplyShowMore: function(postId, replyId, repliesBlock, repliesNextClass, isPrev) {
         var wallLayer = (cur.wallLayer && cur.wallLayer === postId);
-        var curJs = wallLayer ? wkcur : cur;
-        var maxCount = curJs.options.replies_page_count || 20;
-        var repliesLast = domLC(replies);
+        var pageCur = wallLayer ? wkcur : cur;
+        var maxCount = pageCur.options.replies_page_count || 20;
+        var repliesLast = isPrev ? domFC(repliesBlock) : domLC(repliesBlock);
         var count;
 
         // Upd exist block
         if (hasClass(repliesLast, 'replies_next')) {
-            count = (+domData(repliesLast, 'count') || 0) + 1;
-            count = Math.min(maxCount, count);
+            count = +domData(repliesLast, 'count') || 0;
 
-            domData(repliesLast, 'count', count);
-            val(repliesLast, getLang('wall_next_n_replies', count))
+            if (count < maxCount) {
+                count++;
+                domData(repliesLast, 'count', count);
+                val(repliesLast, isPrev ? getLang('wall_prev_n_replies', count) : getLang('wall_next_n_replies', count));
+            }
 
             return repliesLast;
 
             // Add new block
         } else {
-            var allNexts = geByClass(repliesNextClass, replies);
-            var lastNext = allNexts[allNexts.length - 1];
-            var repliesChilds = domChildren(replies);
             var offset;
 
-            if (lastNext) {
-                var lastCount = +domData(lastNext, 'count') || maxCount;
-                var lastOffset = +domData(lastNext, 'offset') || 0;
-                var lastPos = (repliesChilds.indexOf(lastNext) || 0) + 1;
-                var nextReplies = repliesChilds.slice(lastPos).filter(function(el) {
-                    return hasClass(el, 'reply');
-                }).length;
-
-                offset = lastOffset + lastCount + nextReplies;
+            if (isPrev) {
+                offset = 0;
             } else {
-                offset = repliesChilds.filter(function(el) {
-                    return hasClass(el, 'reply');
-                }).length;
+                var allNexts = geByClass(repliesNextClass, repliesBlock);
+                var lastNext = allNexts[allNexts.length - 1];
+                var repliesChilds = domChildren(repliesBlock);
+
+                if (lastNext) {
+                    var lastCount = +domData(lastNext, 'count') || maxCount;
+                    var lastOffset = +domData(lastNext, 'offset') || 0;
+                    var lastPos = repliesChilds.indexOf(lastNext);
+
+                    lastPos = (lastPos >= 0 ? lastPos : 0) + 1;
+
+                    var nextReplies = repliesChilds.slice(lastPos).filter(function(el) {
+                        return hasClass(el, 'reply');
+                    }).length;
+
+                    offset = lastOffset + lastCount + nextReplies;
+                } else {
+                    offset = repliesChilds.filter(function(el) {
+                        return hasClass(el, 'reply');
+                    }).length;
+                }
             }
 
-            var showNextReplies = se(rs(curJs.wallTpl.reply_deep_next, {
+            var showNextReplies = se(rs(pageCur.wallTpl.reply_deep_next, {
                 post_id: postId,
                 reply_id: replyId,
                 offset: offset,
                 count: 1,
-                text: getLang('wall_next_n_replies', 1),
-                class: ' ' + repliesNextClass,
+                text: isPrev ? getLang('wall_prev_n_replies', 1) : getLang('wall_next_n_replies', 1),
+                class: ' ' + (isPrev ? ' replies_prev' : '') + repliesNextClass,
             }));
 
-            replies.appendChild(showNextReplies);
+            if (isPrev) {
+                domInsertBefore(showNextReplies, repliesBlock.firstChild);
+            } else {
+                repliesBlock.appendChild(showNextReplies);
+            }
+
             show(showNextReplies);
 
             return showNextReplies;
@@ -10604,7 +10655,7 @@ var Wall = {
 
             if (deepRepliesWrap) {
                 var wallLayer = (cur.wallLayer && cur.wallLayer === postId);
-                var curJs = wallLayer ? wkcur : cur;
+                var pageCur = wallLayer ? wkcur : cur;
 
                 var replyDate = geByClass1('reply_date', replyEl);
                 var replyAnswer = geByClass1('reply_link_wrap', replyEl);
@@ -10617,7 +10668,7 @@ var Wall = {
                 }
 
                 var ownerId = replyId.split('_')[0];
-                var deletedReply = se(rs(ownerId < 0 ? curJs.wallTpl.reply_deleted_group : curJs.wallTpl.reply_deleted_user, {
+                var deletedReply = se(rs(ownerId < 0 ? pageCur.wallTpl.reply_deleted_group : pageCur.wallTpl.reply_deleted_user, {
                     reply_id: replyId,
                     date: replyDate ? replyDate.innerHTML : '',
                     answer: replyAnswer ? replyAnswer.outerHTML : '',
@@ -10708,13 +10759,13 @@ var Wall = {
     },
 
     addReplyNames: function(names) {
-        var curJs = cur.wallLayer ? wkcur : cur;
+        var pageCur = cur.wallLayer ? wkcur : cur;
 
-        if (!curJs.options) {
-            curJs.options = {};
+        if (!pageCur.options) {
+            pageCur.options = {};
         }
 
-        curJs.options.reply_names = extend({}, curJs.options.reply_names, names);
+        pageCur.options.reply_names = extend({}, pageCur.options.reply_names, names);
     },
 
     getReplyNames: function() {
@@ -10733,6 +10784,120 @@ var Wall = {
         var names = wall.getReplyNames();
 
         return names[id] || [];
+    },
+
+    showReorderRepliesTooltip: function(el, postId) {
+        var wallLayer = (cur.wallLayer && cur.wallLayer === postId);
+        var pageCur = wallLayer ? wkcur : cur;
+
+        if (!pageCur['postRepliesReorderTT' + postId]) {
+            var wrapEl = domPN(el);
+            var content = se(rs(pageCur.wallTpl.replies_reorder_tooltip || '', {
+                postId: postId
+            }));
+            var buttons = geByClass('radiobtn', content);
+            var currentValue = domData(el, 'order') || 'asc';
+
+            radioBtns['post_replies_reorder' + postId] = {
+                val: currentValue,
+                els: buttons
+            };
+
+            buttons.some(function(btn) {
+                if (domData(btn, 'order') === currentValue) {
+                    checkbox(btn, true);
+                    return true;
+                }
+            });
+
+            var postRepliesReorderTT = new ElementTooltip(el, {
+                appendTo: wrapEl,
+                forceSide: 'bottom',
+                autoShow: false,
+                cls: 'eltt_fancy eltt_fancy_actions',
+                noOverflow: false,
+                centerShift: 0,
+                offset: [-10, 0],
+                content: content,
+                align: 'left',
+            });
+
+            pageCur['postRepliesReorderTT' + postId] = postRepliesReorderTT;
+
+            cur.destroy.push(function() {
+                if (postRepliesReorderTT) {
+                    postRepliesReorderTT.destroy();
+                }
+            });
+
+            postRepliesReorderTT.show();
+        }
+    },
+
+    reorderReplies: function(el, postId, pos) {
+        var wallLayer = (cur.wallLayer && cur.wallLayer === postId);
+        var pageCur = wallLayer ? wkcur : cur;
+
+        pos = pos || 'asc';
+
+        radiobtn(el, pos, 'post_replies_reorder' + postId);
+
+        var reorderEl = ge('post_replies_reorder' + postId);
+
+        val(reorderEl, val(el));
+        domData(reorderEl, 'order', pos);
+
+        if (pageCur['postRepliesReorderTT' + postId]) {
+            pageCur['postRepliesReorderTT' + postId].hide();
+        }
+
+        wall.moreReplies(postId, 0, 0, {
+            deep: true,
+            clear: true,
+            order: pos,
+            onDone: function(replies, names, data) {
+                var repliesElement = ge('replies' + postId);
+
+                if (data.count > data.offset + data.num) {
+                    var wallLayer = (cur.wallLayer && cur.wallLayer === postId);
+                    var pageCur = wallLayer ? wkcur : cur;
+                    var maxCount = pageCur.options.replies_page_count || 20;
+                    var count = Math.min(maxCount, data.count - data.offset - data.num);
+
+                    var showNextReplies = se(rs(pageCur.wallTpl.reply_deep_next, {
+                        post_id: postId,
+                        reply_id: postId,
+                        offset: data.offset + data.num,
+                        count: count,
+                        text: getLang('wall_next_n_replies', count),
+                        class: ' replies_next_main'
+                    }));
+
+                    repliesElement.appendChild(showNextReplies);
+                }
+
+                if (data.top_reply_ids) {
+                    domData(repliesElement, 'top-ids', data.top_reply_ids.join(','));
+                }
+
+                cur.wallMyOpened = cur.wallMyOpened || {};
+                cur.wallMyOpened[postId] = 1;
+                wall.repliesSideSetup(postId);
+            }
+        });
+    },
+
+    getRepliesOrder: function(postId) {
+        var reorderEl = ge('post_replies_reorder' + postId);
+        var order = reorderEl ? domData(reorderEl, 'order') : '';
+
+        return order || 'asc';
+    },
+
+    isBackRepliesOrder: function(postId) {
+        var order = wall.getRepliesOrder(postId);
+
+        return order === 'desc' || order === 'smart';
     },
 }
 

@@ -451,7 +451,7 @@ var WkView = {
             var t = extend(nav.objLoc, {
                 w: wkcur.wkRaw
             });
-            delete t.z, nav.strLoc != nav.toStr(t) && nav.setLoc(t)
+            delete t.order, delete t.z, nav.strLoc != nav.toStr(t) && nav.setLoc(t)
         }
     },
     backLocation: function() {
@@ -850,7 +850,7 @@ var WkView = {
             act: "show",
             w: wkcur.wkRaw,
             offset: wkcur.offset
-        }, wkcur.preload);
+        }, wkcur.preload)
     },
     likesToTop: function() {
         var e = ge("tb_tabs_wrap"),

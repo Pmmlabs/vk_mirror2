@@ -196,14 +196,8 @@ var FullWall = {
         cur.wallMyReplied[a] = 0;
         var r = ge("replies" + a);
         val(r, o);
-        var n = ge("post" + a),
-            i = geByClass1("post_replies_count", n);
-        if (!i) {
-            i = se(cur.wallTpl.reply_count);
-            var s = geByClass1("replies", n);
-            domInsertBefore(i, s)
-        }
-        wall.incReplyCounter(n, 1, e), setTimeout(FullWall.scrollToEnd, 0), extend(cur.options.reply_names, t), nav.setLoc(extend(nav.objLoc, {
+        var n = ge("post" + a);
+        wall.incReplyCounter(n, 1, e), wall.isBackRepliesOrder(a) ? scrollToY(getXY(r)[1] - 30) : setTimeout(FullWall.scrollToEnd, 0), extend(cur.options.reply_names, t), nav.setLoc(extend(nav.objLoc, {
             offset: l || null
         }))
     },

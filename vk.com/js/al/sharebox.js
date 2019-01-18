@@ -14,7 +14,8 @@ var ShareBox = {
         }
     },
     show: function(e, a) {
-        cur.shareBoxWidth = 450, e.setOptions({
+        var i = cur.postTo;
+        cur.postTo = !1, cur.shareBoxWidth = 450, e.setOptions({
             hideButtons: !0,
             grey: !0,
             width: cur.shareBoxWidth,
@@ -117,11 +118,11 @@ var ShareBox = {
                 toggle("like_share_title_wrap", a && 2 == radioBtns.like_share.val && (e.lastLen > 200 && !i || val("like_share_title")) ? !0 : !1)
             },
             sbReInitMediaSelector: function(e) {
-                var i = (window.data(cur.sbField, "composer") || {}).addMedia,
-                    s = i && i.getMedias(!0),
-                    d = a.shMediaOpts || {},
-                    r = d.limits || [],
-                    o = r[e] || 0;
+                var s = (window.data(cur.sbField, "composer") || {}).addMedia,
+                    d = s && s.getMedias(!0),
+                    r = a.shMediaOpts || {},
+                    o = r.limits || [],
+                    t = o[e] || 0;
                 cur.sbField && Wall.deinitComposer(cur.sbField), Emoji.init(cur.sbField, {
                     ttDiff: -48,
                     rPointer: !0,
@@ -142,21 +143,20 @@ var ShareBox = {
                         preview: ge("like_share_media_preview"),
                         types: a.shTypes,
                         options: {
-                            limit: o,
+                            limit: t,
                             disabledTypes: ["album", "share", "link", "page", "article", "poll"],
                             toggleLnk: !0,
                             nocl: 1,
+                            toId: i,
                             onAddMediaChange: ShareBox.mediaChange,
                             onMediaChange: ShareBox.mediaChange
                         }
                     } : void 0
-                }), isArray(s) && s.length && (i = (window.data(cur.sbField, "composer") || {}).addMedia, s.slice(0, o).forEach(function(e) {
-                    i.chooseMedia(e[0], e[1], e[5], null, !0)
+                }), isArray(d) && d.length && (s = (window.data(cur.sbField, "composer") || {}).addMedia, d.slice(0, t).forEach(function(e) {
+                    s.chooseMedia(e[0], e[1], e[5], null, !0)
                 })), ShareBox.mediaChange()
             }
-        }), cur.sbHidden = !0, setTimeout(elfocus.pbind(cur.sbField), 0);
-        var i = cur.postTo;
-        cur.postTo = !1, e.setOptions({
+        }), cur.sbHidden = !0, setTimeout(elfocus.pbind(cur.sbField), 0), e.setOptions({
             onClean: function() {
                 Wall.deinitComposer(cur.sbField), delete cur.sbField, cur.postTo = i, window.WideDropdown && (WideDropdown.deinit("like_club_dd"), WideDropdown.deinit("like_mail_dd"))
             }

@@ -1858,10 +1858,10 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     margin: 0
 }
 
-.deep_active .replies .post_replies_count+.replies_list:empty,
-.deep_active.wall_module .replies .post_replies_count+.replies_list:empty,
-.deep_active.wall_module .wl_replies_block_wrap .post_replies_count+.replies_list:empty,
-.deep_active .wl_replies_block_wrap .post_replies_count+.replies_list:empty {
+.deep_active .replies .post_replies_header+.replies_list:empty,
+.deep_active.wall_module .replies .post_replies_header+.replies_list:empty,
+.deep_active.wall_module .wl_replies_block_wrap .post_replies_header+.replies_list:empty,
+.deep_active .wl_replies_block_wrap .post_replies_header+.replies_list:empty {
     border-top: 0
 }
 
@@ -2806,18 +2806,31 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     margin-top: 12px
 }
 
-.deep_active .post_replies_count,
-.deep_active.wall_module .post_replies_count {
-    color: #6f7985;
-    font-size: 12.5px;
+.deep_active .post_replies_header,
+.deep_active.wall_module .post_replies_header {
     padding: 14px 20px 4px;
-    border-top: 1px solid #e7e8ec
+    border-top: 1px solid #e7e8ec;
+    font-size: 12.5px
 }
 
-.deep_active .post_replies_count+.replies .replies_list,
-.deep_active.wall_module .post_replies_count+.replies .replies_list {
+.deep_active .post_replies_header+.replies .replies_list,
+.deep_active.wall_module .post_replies_header+.replies .replies_list {
     padding-top: 0;
     border-top: none
+}
+
+.deep_active .post_replies_header .post_replies_reorder_wrap,
+.deep_active.wall_module .post_replies_header .post_replies_reorder_wrap {
+    position: relative;
+    float: left
+}
+
+.deep_active .post_replies_header .post_replies_reorder,
+.deep_active.wall_module .post_replies_header .post_replies_reorder {
+    cursor: pointer;
+    color: #2a5885;
+    padding-right: 13px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%22944%201152%208%204%22%3E%3Cpath%20d%3D%22M945.2%201152.2C944.9%201152%20944.5%201152%20944.3%201152.3%20944.1%201152.6%20944.1%201153%20944.4%201153.2L947.6%201155.8C947.8%201156%20948.2%201156%20948.4%201155.8L951.6%201153.2C951.9%201153%20951.9%201152.6%20951.7%201152.3%20951.5%201152%20951.1%201152%20950.8%201152.2L948%201154.5%20945.2%201152.2Z%22%20fill%3D%22%2392A0B1%22%2F%3E%3C%2Fsvg%3E') no-repeat right 7px
 }
 
 .deep_active.closed_comments .replies_list:empty {
@@ -4845,6 +4858,22 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 .post_author.post_author_only {
     white-space: nowrap;
     padding-top: 7px
+}
+
+.post_edit_note {
+    margin-left: 7px
+}
+
+.post_edit_note:before {
+    content: "\00b7";
+    color: #939393;
+    padding: 0 1px;
+    text-decoration: none;
+    vertical-align: middle;
+    display: inline-block;
+    pointer-events: none;
+    position: relative;
+    left: -3px
 }
 
 .post_date {
@@ -7996,49 +8025,19 @@ img.page_preview_video {
     padding: 8px 20px
 }
 
-.post_action_tt {
-    width: 210px;
-    padding: 8px 0
-}
-
-.post_action_tt._postpone {
+.eltt_fancy_actions._postpone {
     width: auto;
     white-space: nowrap
 }
 
-.post_action_tt .eltt_arrow_back {
-    display: none
-}
-
 .post_action_btn_layout,
-.post_action_btn_text {
+.post_action_btn_text,
+.post_action_btn {
     position: relative;
     display: inline-block
 }
 
-.post_action_tt_item {
-    padding: 8px 0 9px 12px;
-    color: #000
-}
-
-.post_action_tt_item:hover {
-    background-color: #e7edf2
-}
-
-.post_action_tt_item.radiobtn.on:before {
-    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%235181B8%22%20d%3D%22M10%2016c-.3%200-.5-.1-.7-.3l-3.5-3.5c-.4-.4-.4-1%200-1.4s1-.4%201.4%200l2.8%202.8%206.3-6.3c.4-.4%201-.4%201.4%200s.4%201%200%201.4l-7%207c-.2.2-.4.3-.7.3z%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat
-}
-
-.post_action_tt_item.radiobtn:before {
-    float: right;
-    background-image: none;
-    padding-top: 5px;
-    padding-right: 10px
-}
-
 .post_action_btn {
-    position: relative;
-    display: inline-block;
     margin: 12px 16px 11px 0;
     vertical-align: top;
     color: #828282;

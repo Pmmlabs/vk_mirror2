@@ -177,6 +177,55 @@
     background-color: rgba(0, 0, 0, .6)
 }
 
+.box_layout .reports_flow_settings .Tabs {
+    max-width: 360px
+}
+
+.box_layout .reports_flow_settings .Tabs .ReportsFlowSettingsBox__tab {
+    position: relative
+}
+
+.box_layout .reports_flow_settings .Tabs .ReportsFlowSettingsBox__tab:hover .ReportsFlowSettingsBox__tab__remove-button {
+    display: block
+}
+
+.box_layout .reports_flow_settings .Tabs .ReportsFlowSettingsBox__tab__remove-button {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%209%209%22%3E%0A%20%20%3Cpath%0A%20%20%20%20d%3D%22M5.9%204.5l2.8-2.8c.4-.4.4-1%200-1.4-.4-.4-1-.4-1.4%200l-2.8%202.8-2.8-2.8c-.4-.4-1-.4-1.4%200-.4.4-.4%201%200%201.4l2.8%202.8-2.8%202.8c-.4.4-.4%201%200%201.4.4.4%201%20.4%201.4%200l2.8-2.8%202.8%202.8c.4.4%201%20.4%201.4%200%20.4-.4.4-1%200-1.4l-2.8-2.8z%22%0A%20%20%20%20fill%3D%22%2391A4B8%22%2F%3E%0A%3C%2Fsvg%3E') 50% no-repeat;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    top: 7px;
+    right: 0px;
+    display: none
+}
+
+.box_layout .reports_flow_settings .Tabs .ReportsFlowSettingsBox__tab--add-tab-button {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20width%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Cpath%0A%20%20%20%20d%3D%22M9%207h6c.552%200%201%20.448%201%201s-.448%201-1%201h-6v6c0%20.552-.448%201-1%201s-1-.448-1-1v-6h-6c-.552%200-1-.448-1-1s.448-1%201-1h6v-6c0-.552.448-1%201-1s1%20.448%201%201z%22%0A%20%20%20%20fill%3D%22%239bb2cc%22%2F%3E%0A%3C%2Fsvg%3E') 50% no-repeat;
+    width: 12px;
+    height: 12px;
+    display: block;
+    margin-top: 1.5px
+}
+
+.box_layout .reports_flow_settings .Tabs .ReportsFlowSettingsBox__tab__new-input {
+    width: 58px
+}
+
+.box_layout .reports_flow_settings .Tabs .ReportsFlowSettingsBox__tab__new-accept-button {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%0A%20%20%3Cpath%20fill%3D%22%235181B8%22%0A%20%20%20%20%20%20%20%20d%3D%22M10%2016c-.3%200-.5-.1-.7-.3l-3.5-3.5c-.4-.4-.4-1%200-1.4s1-.4%201.4%200l2.8%202.8%206.3-6.3c.4-.4%201-.4%201.4%200s.4%201%200%201.4l-7%207c-.2.2-.4.3-.7.3z%22%2F%3E%0A%3C%2Fsvg%3E') 50% no-repeat;
+    width: 12px;
+    height: 12px;
+    display: block;
+    float: right;
+    margin-top: 2px;
+    padding: 7px
+}
+
+.box_layout .reports_flow_settings .Tabs .ReportsFlowSettingsBox__tab--new {
+    height: 15px;
+    margin-top: -7px
+}
+
 .box_layout .reports_flow_settings .box_body {
     border-radius: 0px 0px 4px 4px
 }

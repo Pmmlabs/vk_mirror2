@@ -7160,6 +7160,35 @@ button.ui_load_more_btn {
     border-bottom: none!important
 }
 
+.eltt.eltt_fancy_actions {
+    width: 210px;
+    padding: 8px 0
+}
+
+.eltt.eltt_fancy_actions .eltt_arrow_back {
+    display: none
+}
+
+.eltt .eltt_fancy_action {
+    padding: 8px 0 9px 12px;
+    color: #000
+}
+
+.eltt .eltt_fancy_action:hover {
+    background-color: #e7edf2
+}
+
+.eltt .eltt_fancy_action.radiobtn.on:before {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%235181B8%22%20d%3D%22M10%2016c-.3%200-.5-.1-.7-.3l-3.5-3.5c-.4-.4-.4-1%200-1.4s1-.4%201.4%200l2.8%202.8%206.3-6.3c.4-.4%201-.4%201.4%200s.4%201%200%201.4l-7%207c-.2.2-.4.3-.7.3z%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat
+}
+
+.eltt .eltt_fancy_action.radiobtn:before {
+    float: right;
+    background-image: none;
+    padding-top: 5px;
+    padding-right: 10px
+}
+
 .eltt.eltt_blue {
     padding: 7px 13px 9px;
     color: #fff;

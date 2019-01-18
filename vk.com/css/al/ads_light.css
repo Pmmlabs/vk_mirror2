@@ -957,6 +957,15 @@ a.ads_ad_box2:hover {
     display: block
 }
 
+.ads_ad_nested_link_clear {
+    text-decoration: none;
+    display: block
+}
+
+.ads_ad_nested_link_clear .ads_ad_snippet_img {
+    border: 0
+}
+
 .ads_ad_nested_link.adaptive_ad:hover {
     text-decoration: none
 }

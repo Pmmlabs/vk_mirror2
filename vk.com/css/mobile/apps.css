@@ -2940,17 +2940,23 @@ input.wide_button {
 
 .pi_author {
     font-weight: 700;
-    color: #4c6b8f
+    color: #4c6b8f;
+    word-wrap: break-word
 }
 
-.pi_author,
-.pi_text {
-    word-wrap: break-word
+.pi_edited {
+    margin-left: 4px
+}
+
+.pi_edited:before {
+    content: '\00b7';
+    padding-right: 4px
 }
 
 .pi_text {
     padding: 4px 0 0;
     line-height: 1.5em;
+    word-wrap: break-word;
     overflow: hidden
 }
 

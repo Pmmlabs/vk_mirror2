@@ -820,19 +820,24 @@ var Photoview = {
         },
         savePhoto: function() {
             var o = cur.pvListId,
-                e = cur.pvIndex,
-                t = cur.pvData[o][e];
+                e = cur.pvData[o][cur.pvIndex];
             ajax.post("al_photos.php", {
                 act: "save_me",
-                photo: t.id,
+                photo: e.id,
                 list: o,
-                hash: t.hash
-            });
-            var r = ge("pv_save_to_me");
-            domPN(r).replaceChild(ce("div", {
-                className: "pv_save_to_me_saved",
-                innerHTML: getLang("photos_pv_act_save_saved")
-            }), r)
+                hash: e.hash
+            }, {
+                onDone: function() {
+                    var o = document.getElementById("pv_save_to_me");
+                    domPN(o).replaceChild(ce("div", {
+                        className: "pv_save_to_me_saved",
+                        innerHTML: getLang("photos_pv_act_save_saved")
+                    }), o), e.actions.save = 0
+                },
+                onFail: function(o) {
+                    return showFastBox(getLang("global_error"), o), !0
+                }
+            })
         },
         sendPhoto: function() {
             var o = cur.pvListId,
@@ -1484,32 +1489,31 @@ var Photoview = {
                     r = o.index,
                     a = cur.pvData[t][r];
                 extend(a, {
-                        x_src: o.x_src,
-                        y_src: o.y_src,
-                        z_src: o.z_src,
-                        w_src: o.w_src,
-                        base: o.base,
-                        x_: o.x_,
-                        y_: o.y_,
-                        z_: o.z_,
-                        w_: o.w_,
-                        x: 0,
-                        y: 0,
-                        z: 0,
-                        w: 0,
-                        tags: o.tags,
-                        tagged: o.tagged,
-                        suggested_tags: o.suggested_tags,
-                        tagshtml: o.html
-                    }), extend(a.rotate, {
-                        photo: o.photo,
-                        hash: o.hash,
-                        rhash: o.rhash,
-                        angle: o.angle,
-                        rot1: o.rot1,
-                        rot3: o.rot3
-                    }), t == cur.pvListId && r == cur.pvIndex && Photoview.show(t, r),
-                    cur.pvPhotoTags && cur.pvPhotoTags.reload()
+                    x_src: o.x_src,
+                    y_src: o.y_src,
+                    z_src: o.z_src,
+                    w_src: o.w_src,
+                    base: o.base,
+                    x_: o.x_,
+                    y_: o.y_,
+                    z_: o.z_,
+                    w_: o.w_,
+                    x: 0,
+                    y: 0,
+                    z: 0,
+                    w: 0,
+                    tags: o.tags,
+                    tagged: o.tagged,
+                    suggested_tags: o.suggested_tags,
+                    tagshtml: o.html
+                }), extend(a.rotate, {
+                    photo: o.photo,
+                    hash: o.hash,
+                    rhash: o.rhash,
+                    angle: o.angle,
+                    rot1: o.rot1,
+                    rot3: o.rot3
+                }), t == cur.pvListId && r == cur.pvIndex && Photoview.show(t, r), cur.pvPhotoTags && cur.pvPhotoTags.reload()
             }
         },
         likeUpdate: function(o, e, t) {
