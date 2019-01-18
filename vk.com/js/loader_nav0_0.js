@@ -62,7 +62,7 @@ var navMap = {
     'abuse2($|/)': ['abuse.php', []],
     'names_admin($|/)': ['names_admin.php', []],
     'students_verification($|/)': ['students_verification.php', []],
-    'restore2($|/)': ['restore2.php', ['internal/restore2.css', 'internal/restore2.js', 'internal/restore2_autoanswers.js', 'sorter.js']],
+    'restore2($|/)': ['restore2.php', ['internal/restore2.css', 'sorter.js']],
     'datababes($|/)': ['datababes.php', []],
     '(support($|/)|faq\\d+)': ['al_tickets.php', ['tickets.css', 'tickets.js']],
     'helpdesk($|/)': ['al_helpdesk.php', ['tickets.css', 'tickets.js', 'helpdesk.css', 'helpdesk.js']],
@@ -342,7 +342,7 @@ var stVersions = {
     'widgets.css': 27293210971,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 123586104577,
+    'notifier.js': 123734227116,
     'notifier.css': 27076865567,
     'cmodules/sw/sw.js': 5960813200,
     'earthday.js': 2276669993,
@@ -548,7 +548,7 @@ var stVersions = {
     'cmodules/web/article_layer.js': 39361411616,
     'article_view.js': 9634537410,
     'author_page.css': 32375727166,
-    'cmodules/web/author_page.js': 80177438180,
+    'cmodules/web/author_page.js': 78750866886,
     'bookmarks.css': 16276764874,
     'cmodules/web/bookmarks.js': 3575362821,
     'sf.css': 16668082882,
@@ -601,7 +601,7 @@ var stVersions = {
     'cmodules/web/landing_transparency.js': 104273124751,
     'landings/transparency.css': 91593435732,
     'cmodules/web/emoji.js': 8407878679,
-    'cmodules/web/apps_achievements.js': 82969090934,
+    'cmodules/web/apps_achievements.js': 81542519640,
     'cmodules/web/payments.js': 49516463392,
     'lang': 6933
 };
@@ -662,4 +662,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 6043;
+var _rnd = 7816;
