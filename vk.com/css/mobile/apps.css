@@ -7228,7 +7228,10 @@ div.pm_item .pm_counter {
     margin-top: 2px;
     padding-top: 2px;
     color: #99a0a8;
-    font-size: 13px
+    font-size: 13px;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis
 }
 
 .prv_private {
@@ -7239,8 +7242,18 @@ div.pm_item .pm_counter {
 
 .prv_group {
     padding: 1px 3px;
-    line-height: 150%;
-    white-space: nowrap
+    line-height: 120%;
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    max-width: 98%;
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align: top;
+    margin: 1px 0
 }
 
 .prvg0 {
@@ -8631,7 +8644,8 @@ div.pm_item .pm_counter {
 .sel_desc {
     font-size: small;
     color: #777;
-    padding: 3px 0 0
+    padding: 3px 0 0;
+    padding-right: 15px
 }
 
 .link_preview {

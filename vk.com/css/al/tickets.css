@@ -2522,14 +2522,6 @@ a.tickets_question_row_tt_unread {
     color: #609
 }
 
-.tickets_dmca_buttons {
-    padding-top: 10px
-}
-
-.tickets_dmca_buttons .secondary {
-    margin: 0px 10px
-}
-
 #tickets_decline_dmca_comment {
     width: 393px;
     height: 70px

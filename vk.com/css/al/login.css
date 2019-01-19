@@ -866,6 +866,11 @@ table.login_blocked_reason_thumbs {
     width: 140px
 }
 
+.login_authcheck_row .subheader {
+    margin-top: 0;
+    width: 360px
+}
+
 .login_authcheck_no_code {
     display: block;
     position: absolute;

@@ -2475,6 +2475,19 @@ body.body_helpdesk_small_sb .left_menu_nav {
     color: #939393
 }
 
+.helpdesk_dmca_buttons {
+    padding-top: 10px
+}
+
+.helpdesk_dmca_buttons .flat_button {
+    float: left
+}
+
+.helpdesk_dmca_buttons .flat_button.secondary {
+    margin-left: 10px;
+    margin-right: 10px
+}
+
 .helpdesk_goto_neighbour_ticket {
     padding: 8px 0
 }
