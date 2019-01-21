@@ -35164,6 +35164,8 @@ body.apps_settingsPageBody {
 }
 
 .MosaicItem__skrim,
+.r .article_object_video_blocked .thumb_map_album:before,
+.r .article_object_video_blocked a[href^="/video"].thumb_map_l:after,
 .r .cp_attached_post .medias_thumbs .thumb_map_album:before,
 .r .cp_attached_post .medias_thumbs a[href^="/video"].thumb_map_l:after,
 .r .e .medias_thumbs .thumb_map_album:before,
@@ -35187,6 +35189,8 @@ body.apps_settingsPageBody {
 }
 
 .vk_2x .MosaicItem__skrim,
+.vk_2x.r .article_object_video_blocked .thumb_map_album:before,
+.vk_2x.r .article_object_video_blocked a[href^="/video"].thumb_map_l:after,
 .vk_2x.r .cp_attached_post .medias_thumbs .thumb_map_album:before,
 .vk_2x.r .cp_attached_post .medias_thumbs a[href^="/video"].thumb_map_l:after,
 .vk_2x.r .e .medias_thumbs .thumb_map_album:before,
@@ -35197,6 +35201,7 @@ body.apps_settingsPageBody {
 }
 
 .MosaicItem__playIcon,
+.r .article_object_video_blocked a[href^="/video"]:before,
 .r .cp_attached_post .medias_thumbs a[href^="/video"]:before,
 .r .e .medias_thumbs a[href^="/video"]:before,
 .r .wall_item .medias_thumbs a[href^="/video"]:before {
@@ -35220,6 +35225,7 @@ body.apps_settingsPageBody {
 }
 
 .vk_2x .MosaicItem__playIcon,
+.vk_2x.r .article_object_video_blocked a[href^="/video"]:before,
 .vk_2x.r .cp_attached_post .medias_thumbs a[href^="/video"]:before,
 .vk_2x.r .e .medias_thumbs a[href^="/video"]:before,
 .vk_2x.r .wall_item .medias_thumbs a[href^="/video"]:before {
@@ -35249,6 +35255,7 @@ body.apps_settingsPageBody {
 
 @media (max-width: 319px) {
     .MosaicItem__playIcon,
+    .r .article_object_video_blocked a[href^="/video"]:before,
     .r .cp_attached_post .medias_thumbs a[href^="/video"]:before,
     .r .e .medias_thumbs a[href^="/video"]:before,
     .r .wall_item .medias_thumbs a[href^="/video"]:before {
@@ -35340,6 +35347,7 @@ body.apps_settingsPageBody {
     display: none
 }
 
+.r .article_object_video_blocked,
 .r .cp_attached_post .medias_thumbs,
 .r .e .medias_thumbs,
 .r .wall_item .medias_thumbs {
@@ -35347,30 +35355,35 @@ body.apps_settingsPageBody {
     padding: 0
 }
 
+.r .article_object_video_blocked .thumbs_map_wrap,
 .r .cp_attached_post .medias_thumbs .thumbs_map_wrap,
 .r .e .medias_thumbs .thumbs_map_wrap,
 .r .wall_item .medias_thumbs .thumbs_map_wrap {
     margin: 0 auto
 }
 
+.r .article_object_video_blocked .thumbs_map_album,
 .r .cp_attached_post .medias_thumbs .thumbs_map_album,
 .r .e .medias_thumbs .thumbs_map_album,
 .r .wall_item .medias_thumbs .thumbs_map_album {
     width: 100%!important
 }
 
+.r .article_object_video_blocked .thumbs_map_helper,
 .r .cp_attached_post .medias_thumbs .thumbs_map_helper,
 .r .e .medias_thumbs .thumbs_map_helper,
 .r .wall_item .medias_thumbs .thumbs_map_helper {
     margin-bottom: 0!important
 }
 
+.r .article_object_video_blocked .thumb_map_img,
 .r .cp_attached_post .medias_thumbs .thumb_map_img,
 .r .e .medias_thumbs .thumb_map_img,
 .r .wall_item .medias_thumbs .thumb_map_img {
     display: none
 }
 
+.r .article_object_video_blocked .thumb_map_img_as_div,
 .r .cp_attached_post .medias_thumbs .thumb_map_img_as_div,
 .r .e .medias_thumbs .thumb_map_img_as_div,
 .r .wall_item .medias_thumbs .thumb_map_img_as_div {
@@ -35384,6 +35397,8 @@ body.apps_settingsPageBody {
     background-position: 50%
 }
 
+.r .article_object_video_blocked a[href^="/video"].thumb_map_m:before,
+.r .article_object_video_blocked a[href^="/video"].thumb_map_s:before,
 .r .cp_attached_post .medias_thumbs a[href^="/video"].thumb_map_m:before,
 .r .cp_attached_post .medias_thumbs a[href^="/video"].thumb_map_s:before,
 .r .e .medias_thumbs a[href^="/video"].thumb_map_m:before,
@@ -35393,6 +35408,8 @@ body.apps_settingsPageBody {
     display: none
 }
 
+.r .article_object_video_blocked a[href^="/video"].thumb_map_m .mt_dur:before,
+.r .article_object_video_blocked a[href^="/video"].thumb_map_s .mt_dur:before,
 .r .cp_attached_post .medias_thumbs a[href^="/video"].thumb_map_m .mt_dur:before,
 .r .cp_attached_post .medias_thumbs a[href^="/video"].thumb_map_s .mt_dur:before,
 .r .e .medias_thumbs a[href^="/video"].thumb_map_m .mt_dur:before,
@@ -35411,6 +35428,8 @@ body.apps_settingsPageBody {
     margin-right: 6px
 }
 
+.vk_2x.r .article_object_video_blocked a[href^="/video"].thumb_map_m .mt_dur:before,
+.vk_2x.r .article_object_video_blocked a[href^="/video"].thumb_map_s .mt_dur:before,
 .vk_2x.r .cp_attached_post .medias_thumbs a[href^="/video"].thumb_map_m .mt_dur:before,
 .vk_2x.r .cp_attached_post .medias_thumbs a[href^="/video"].thumb_map_s .mt_dur:before,
 .vk_2x.r .e .medias_thumbs a[href^="/video"].thumb_map_m .mt_dur:before,
@@ -35420,12 +35439,14 @@ body.apps_settingsPageBody {
     background-image: url('/images/mobile/icons/play_small_2x.png')
 }
 
+.r .article_object_video_blocked a[href^="/video"].thumb_map_l:after,
 .r .cp_attached_post .medias_thumbs a[href^="/video"].thumb_map_l:after,
 .r .e .medias_thumbs a[href^="/video"].thumb_map_l:after,
 .r .wall_item .medias_thumbs a[href^="/video"].thumb_map_l:after {
     z-index: 0
 }
 
+.r .article_object_video_blocked .thumb_map_album .mt_title,
 .r .cp_attached_post .medias_thumbs .thumb_map_album .mt_title,
 .r .e .medias_thumbs .thumb_map_album .mt_title,
 .r .wall_item .medias_thumbs .thumb_map_album .mt_title {
@@ -35436,6 +35457,7 @@ body.apps_settingsPageBody {
 }
 
 @media (max-width: 319px) {
+    .r .article_object_video_blocked .thumb_map_album .mt_title,
     .r .cp_attached_post .medias_thumbs .thumb_map_album .mt_title,
     .r .e .medias_thumbs .thumb_map_album .mt_title,
     .r .wall_item .medias_thumbs .thumb_map_album .mt_title {
@@ -35443,6 +35465,7 @@ body.apps_settingsPageBody {
     }
 }
 
+.r .article_object_video_blocked .thumb_map_album .mt_count,
 .r .cp_attached_post .medias_thumbs .thumb_map_album .mt_count,
 .r .e .medias_thumbs .thumb_map_album .mt_count,
 .r .wall_item .medias_thumbs .thumb_map_album .mt_count {
@@ -35460,6 +35483,7 @@ body.apps_settingsPageBody {
 }
 
 @media (max-width: 319px) {
+    .r .article_object_video_blocked .thumb_map_album .mt_count,
     .r .cp_attached_post .medias_thumbs .thumb_map_album .mt_count,
     .r .e .medias_thumbs .thumb_map_album .mt_count,
     .r .wall_item .medias_thumbs .thumb_map_album .mt_count {
@@ -35467,9 +35491,14 @@ body.apps_settingsPageBody {
     }
 }
 
+.r .article_object_video_blocked .thumb_map_album .mt_photo_count_number,
 .r .cp_attached_post .medias_thumbs .thumb_map_album .mt_photo_count_number,
 .r .e .medias_thumbs .thumb_map_album .mt_photo_count_number,
 .r .wall_item .medias_thumbs .thumb_map_album .mt_photo_count_number,
+.r .article_object_video_blocked .thumb_map_m .mt_photo_count,
+.r .article_object_video_blocked .thumb_map_m .mt_photo_count+.mt_title,
+.r .article_object_video_blocked .thumb_map_s .mt_photo_count,
+.r .article_object_video_blocked .thumb_map_s .mt_photo_count+.mt_title,
 .r .cp_attached_post .medias_thumbs .thumb_map_m .mt_photo_count,
 .r .cp_attached_post .medias_thumbs .thumb_map_m .mt_photo_count+.mt_title,
 .r .cp_attached_post .medias_thumbs .thumb_map_s .mt_photo_count,
@@ -35485,6 +35514,8 @@ body.apps_settingsPageBody {
     display: none
 }
 
+.r .article_object_video_blocked .thumb_map_m .mt_photo_count_number,
+.r .article_object_video_blocked .thumb_map_s .mt_photo_count_number,
 .r .cp_attached_post .medias_thumbs .thumb_map_m .mt_photo_count_number,
 .r .cp_attached_post .medias_thumbs .thumb_map_s .mt_photo_count_number,
 .r .e .medias_thumbs .thumb_map_m .mt_photo_count_number,
@@ -35507,6 +35538,8 @@ body.apps_settingsPageBody {
     bottom: 4px
 }
 
+.r .article_object_video_blocked .thumb_map_m .mt_photo_count_number:before,
+.r .article_object_video_blocked .thumb_map_s .mt_photo_count_number:before,
 .r .cp_attached_post .medias_thumbs .thumb_map_m .mt_photo_count_number:before,
 .r .cp_attached_post .medias_thumbs .thumb_map_s .mt_photo_count_number:before,
 .r .e .medias_thumbs .thumb_map_m .mt_photo_count_number:before,
@@ -35525,6 +35558,8 @@ body.apps_settingsPageBody {
     background-image: url('/images/mobile/icons/album.png')
 }
 
+.vk_2x.r .article_object_video_blocked .thumb_map_m .mt_photo_count_number:before,
+.vk_2x.r .article_object_video_blocked .thumb_map_s .mt_photo_count_number:before,
 .vk_2x.r .cp_attached_post .medias_thumbs .thumb_map_m .mt_photo_count_number:before,
 .vk_2x.r .cp_attached_post .medias_thumbs .thumb_map_s .mt_photo_count_number:before,
 .vk_2x.r .e .medias_thumbs .thumb_map_m .mt_photo_count_number:before,
@@ -35534,6 +35569,7 @@ body.apps_settingsPageBody {
     background-image: url('/images/mobile/icons/album_2x.png')
 }
 
+.r .article_object_video_blocked .thumb_map_l .mt_photo_count_number,
 .r .cp_attached_post .medias_thumbs .thumb_map_l .mt_photo_count_number,
 .r .e .medias_thumbs .thumb_map_l .mt_photo_count_number,
 .r .wall_item .medias_thumbs .thumb_map_l .mt_photo_count_number {

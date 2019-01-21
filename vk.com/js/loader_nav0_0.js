@@ -214,7 +214,7 @@ var stVersions = {
     'video.css': 23585033363,
     'videocat.js': 3590298689,
     'videocat.css': 19377180109,
-    'videoview.js': 33066870702,
+    'videoview.js': 30403472435,
     'videoview.css': 23872880937,
     'video_edit.js': 2135196486,
     'video_edit.css': 22149198499,
@@ -247,14 +247,14 @@ var stVersions = {
     'cmodules/web/public.js': 329399197,
     'pages.css': 19994481336,
     'pages.js': 1162259210,
-    'groups.css': 86204284394,
-    'cmodules/web/groups.js': 51234400525,
-    'cmodules/web/groups_create.js': 2554367098,
+    'groups.css': 92191432422,
+    'cmodules/web/groups.js': 86589585869,
+    'cmodules/web/groups_create.js': 3275450130,
     'groups_create.css': 17192603791,
     'cmodules/web/groups_list.js': 2447510571,
     'cmodules/web/GroupsEdit.js': 25817080517,
-    'groups_edit.css': 49521082979,
-    'cmodules/web/groups_edit.js': 49926241658,
+    'groups_edit.css': 54944258662,
+    'cmodules/web/groups_edit.js': 48114399295,
     'profile.css': 20841539430,
     'profile.js': 2681993000,
     'calendar.css': 19456212608,
@@ -589,9 +589,9 @@ var stVersions = {
     'reports.css': 68296582447,
     'cmodules/web/raven_logger.js': 6829821831,
     'cmodules/web/add_to_community_app.js': 397597546,
-    'cmodules/web/groups_edit_addresses.js': 31084708825,
+    'cmodules/web/groups_edit_addresses.js': 77207570761,
     'addresses.css': 25759164775,
-    'cmodules/web/addresses.js': 18914377162,
+    'cmodules/web/addresses.js': 19826746865,
     'cmodules/web/groups_edit_cta_button.js': 89320519,
     'groups_live_covers.css': 18081412375,
     'translation_discussions.js': 1145389133,
@@ -662,4 +662,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 6327;
+var _rnd = 2570;
