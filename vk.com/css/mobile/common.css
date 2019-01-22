@@ -14776,7 +14776,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     -moz-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    height: 176px;
+    min-height: 176px;
     padding-top: 28px;
     padding-bottom: 26px;
     -webkit-box-sizing: border-box;
@@ -14867,7 +14867,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .AudioSpecialForYou__icon {
     position: absolute;
-    top: 6px;
+    top: 2px;
     left: 8px
 }
 
@@ -14882,7 +14882,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .AudioSpecialForYou__thumbs {
     position: absolute;
-    top: 24px;
+    bottom: -8px;
     right: -16px
 }
 
@@ -32039,6 +32039,7 @@ body.apps_settingsPageBody {
 .audioPlaylists,
 .audioPlaylistsPage,
 .audioSearch__header,
+.Blocked__header,
 .Bookmarks ._si_container>.OwnerRow,
 .BookmarksItem.BookmarksItem_compact,
 .BookmarksItem.BookmarksItem_compact:last-child,
@@ -32153,6 +32154,7 @@ body.apps_settingsPageBody {
     .audioPlaylists,
     .audioPlaylistsPage,
     .audioSearch__header,
+    .Blocked__header,
     .Bookmarks ._si_container>.OwnerRow,
     .BookmarksItem.BookmarksItem_compact,
     .BookmarksItem.BookmarksItem_compact:last-child,
@@ -32267,6 +32269,7 @@ body.apps_settingsPageBody {
     .audioPlaylists,
     .audioPlaylistsPage,
     .audioSearch__header,
+    .Blocked__header,
     .Bookmarks ._si_container>.OwnerRow,
     .BookmarksItem.BookmarksItem_compact,
     .BookmarksItem.BookmarksItem_compact:last-child,
@@ -49419,6 +49422,47 @@ html.vk_appAuth_yes .vk__page_mail._ios {
     overflow: hidden;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis
+}
+
+.Blocked {
+    padding: 0 0 6px
+}
+
+.Blocked__header {
+    padding: 6px 0 0
+}
+
+.Blocked__subtitle .OwnerRow__img {
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
+    min-width: 40px
+}
+
+.Blocked__subtitle .OwnerRow__right {
+    padding: 0 0 0 8px
+}
+
+.Blocked__subtitle .OwnerRow__title {
+    font-size: 15px;
+    white-space: normal
+}
+
+.Blocked__subtitle .login_blocked_reason_action_time {
+    color: #909499;
+    font-size: 13px;
+    line-height: 15px;
+    margin: 2px 0 0
+}
+
+.Blocked__label {
+    margin: -1px 0 0;
+    font-size: 15px;
+    line-height: 20px
+}
+
+.Blocked__body {
+    pointer-events: none
 }
 
 

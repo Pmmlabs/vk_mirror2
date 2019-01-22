@@ -262,7 +262,6 @@
 
 .login_blocked_wrap .page_block .content .tutorial_finish_appeal {
     margin-bottom: 20px;
-    max-height: 44px;
     overflow-y: hidden;
     -o-transition-property: all;
     transition-property: all;
@@ -585,6 +584,11 @@
 
 .login_blocked_wrap .login_blocked_reason_wout_msg .login_blocked_reason_label {
     margin-top: 6px
+}
+
+.login_blocked_wrap .tutorial_step .header {
+    height: auto;
+    padding-bottom: 11px
 }
 
 .settings_deact_page .settings_deact_header {
