@@ -199,6 +199,274 @@ a.groups_messages_block:before {
     margin-top: 16px
 }
 
+.address_box #page_add_place_box {
+    padding: 25px
+}
+
+.address_box #page_add_place_box textarea {
+    height: 49px
+}
+
+.address_box #page_add_place_box .msg,
+.address_box #page_add_place_box .row {
+    margin: 0
+}
+
+.address_box #page_add_place_box .row .label {
+    line-height: 15px;
+    padding: 5px 12px 10px 0;
+    width: 163px
+}
+
+.address_box #page_add_place_box .row .field,
+.address_box #page_add_place_box .row .labeled {
+    line-height: 15px
+}
+
+.address_box #page_add_place_box .row .field .dark,
+.address_box #page_add_place_box .row .field .selector_container,
+.address_box #page_add_place_box .row .labeled .dark,
+.address_box #page_add_place_box .row .labeled .selector_container {
+    margin-bottom: 0
+}
+
+.address_box #page_add_place_box .row:not(:last-child) {
+    margin-bottom: 10px
+}
+
+.address_box #page_add_place_box .row.row_text .label {
+    padding: 1px 12px 3px 0
+}
+
+.address_box #page_add_place_box .row.row_text .labeled {
+    padding: 2px 12px 2px 0;
+    overflow: hidden
+}
+
+.address_box #page_add_place_box .row.row_text .labeled .checkbox {
+    line-height: 14px
+}
+
+.address_box #page_add_place_box #edit_address {
+    padding: 0
+}
+
+.address_box #page_add_place_box #edit_address_is_main {
+    margin-top: 13px;
+    margin-bottom: 12px
+}
+
+.address_box #page_add_place_box #edit_address_is_main .hint_icon {
+    margin-left: 7px
+}
+
+.address_box #page_add_place_box #edit_address_set_as_main_block {
+    margin-top: 15px;
+    margin-bottom: 8px
+}
+
+.address_box #page_add_place_box #public_place_map {
+    height: 200px;
+    padding: 12px 0 0
+}
+
+.address_box #page_add_place_box #public_place_map .places_map {
+    height: 200px
+}
+
+.address_box #page_add_place_box #public_place_map .places_map>* {
+    border: 1px solid rgba(0, 0, 0, .08);
+    border-radius: 4px
+}
+
+.address_box #page_add_place_box #edit_address_additional .labeled {
+    line-height: 0
+}
+
+.address_box #page_add_place_box .group_edit_address_form {
+    background: #fff;
+    padding: 0
+}
+
+.address_box #page_add_place_box .group_edit_address_form .dark {
+    width: 280px
+}
+
+.address_box #page_add_place_box .group_edit_addresses_timetable {
+    margin-top: 15px
+}
+
+.address_box #page_add_place_box .group_edit_addresses_timetable .row .label {
+    padding-top: 7px
+}
+
+.address_box #page_add_place_box .group_edit_addresses_timetable .timetable_label {
+    padding-top: 1px
+}
+
+.address_box #page_add_place_box .group_edit_addresses_timetable .timetable_label .timetable_day {
+    line-height: 15px
+}
+
+.address_box #page_add_place_box .group_edit_addresses_timetable .timetable_label .timetable_day .timetable_checkbox {
+    width: 113px;
+    line-height: 14px;
+    overflow: hidden;
+    padding: 5px 12px 10px 0
+}
+
+.address_box #page_add_place_box .group_edit_addresses_timetable .timetable_label .timetable_day .timetable_label {
+    margin-bottom: 6px
+}
+
+.address_box #page_add_place_box .group_edit_addresses_timetable .timetable_label .timetable_day .time_inputs {
+    float: left
+}
+
+.address_box #page_add_place_box .group_edit_addresses_timetable .timetable_label .timetable_day .time_inputs .time_input {
+    width: 65px
+}
+
+.address_box #page_add_place_box .group_edit_addresses_timetable .timetable_label .timetable_day .time_inputs .time_input.time_break_start,
+.address_box #page_add_place_box .group_edit_addresses_timetable .timetable_label .timetable_day .time_inputs .time_input.time_open {
+    margin-right: 9px
+}
+
+.address_box #page_add_place_box .group_edit_addresses_timetable .timetable_label .timetable_day .time_inputs .time_input.time_break_end,
+.address_box #page_add_place_box .group_edit_addresses_timetable .timetable_label .timetable_day .time_inputs .time_input.time_close {
+    margin-left: 9px
+}
+
+.address_box #page_add_place_box .group_edit_addresses_timetable .timetable_label .timetable_day .group_edit_address_time_control {
+    display: inline-block;
+    margin: 6px 0 0 9px;
+    width: 16px;
+    height: 16px
+}
+
+.address_box #page_add_place_box .group_edit_addresses_timetable .timetable_label .timetable_day .group_edit_address_time_control.groups_address_add_break {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h16v16H0z%22%2F%3E%3Cpath%20d%3D%22M3%208h10M8%203v10%22%20stroke%3D%22%23AFBACD%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+}
+
+.address_box #page_add_place_box .group_edit_addresses_timetable .timetable_label .timetable_day .group_edit_address_time_control.groups_address_rm_break {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h16v16H0z%22%2F%3E%3Cpath%20d%3D%22M4%204l8%208M12%204l-8%208%22%20stroke%3D%22%23AFBACD%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+}
+
+.address_box #page_add_place_box .group_edit_addresses_timetable .timetable_label .timetable_day .group_edit_address_time_control:active {
+    -o-transform: scale(0.9);
+    transform: scale(0.9)
+}
+
+.address_box #page_add_place_box .group_edit_addresses_timetable .timetable_label .timetable_day .timetable_break {
+    margin-top: 10px;
+    margin-bottom: 15px
+}
+
+.address_box #page_add_place_box .group_edit_addresses_timetable .timetable_label .timetable_day .timetable_break .timetable_checkbox {
+    width: 90px;
+    margin-left: 23px;
+    color: #656565
+}
+
+.address_box #page_add_place_box .group_edit_addresses_timetable .timetable_label .timetable_day .timetable_checkbox {
+    text-transform: capitalize
+}
+
+.address_box #page_add_place_box .group_edit_addresses_timetable .timetable_label .timetable_day:not(:last-child) {
+    margin-bottom: 10px
+}
+
+.address_box .field {
+    overflow: hidden
+}
+
+.address_box .field:not(:last-child) {
+    margin-bottom: 15px
+}
+
+.address_box .address_create_step {
+    color: #626d7a
+}
+
+.address_box .box_title .back {
+    padding-left: 33px
+}
+
+.address_box .box_controls {
+    padding-left: 25px;
+    padding-right: 25px
+}
+
+.address_box .ij_tt {
+    border: 1px solid #e64646;
+    border-radius: 4px;
+    background-color: #e64646;
+    max-width: 222px
+}
+
+.address_box .ij_tt.tt_left:after,
+.address_box .ij_tt.tt_left:before {
+    top: 50%
+}
+
+.address_box .ij_tt.tt_left:before {
+    border-width: 6px;
+    margin: -6px 0;
+    border-right-color: #e64646
+}
+
+.address_box .ij_tt.tt_left:after {
+    border-width: 5px;
+    margin: -5px 0;
+    border-right-color: #e64646;
+    transform: translate3d(0.5px, 0, 0)
+}
+
+.address_box .ij_tt.tt_right:after,
+.address_box .ij_tt.tt_right:before {
+    top: 50%
+}
+
+.address_box .ij_tt.tt_right:before {
+    border-width: 6px;
+    margin: -6px 0;
+    border-left-color: #e64646
+}
+
+.address_box .ij_tt.tt_right:after {
+    border-width: 5px;
+    margin: -5px 0;
+    border-left-color: #e64646;
+    transform: translate3d(-0.5px, 0, 0)
+}
+
+.address_box .ij_tt.tt_w .tt_text {
+    padding: 5px 8px;
+    color: #fff
+}
+
+.address_box .ij_tt.tt_w .tt_text b {
+    display: inline-block;
+    padding-bottom: 6px
+}
+
+.address_box.address_box_edit #page_add_place_box #public_place_map {
+    padding: 20px 0
+}
+
+.address_box.address_box_add #page_add_place_box #group_edit_address_timetable {
+    margin-bottom: 0
+}
+
+#group_edit_box_msg {
+    display: none;
+    margin: 15px 0 20px
+}
+
+.group_search_rows #group_edit_box_msg {
+    margin-bottom: 5px
+}
+
 .LegacySelect {
     display: block;
     vertical-align: middle;
