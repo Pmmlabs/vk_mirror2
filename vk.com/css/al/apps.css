@@ -51,6 +51,7 @@
 .apps_win_instr_head:before,
 .appsCollectionNyBanner,
 .appsCollectionNyBanner .app_rate,
+.AppsSalesProduct .app_rate,
 .media-photo-thumb-background,
 .media-video-play,
 .media-video-thumb-background,
@@ -1090,6 +1091,227 @@
         background-image: url(/images/apps/achievements/level_5_right_bg_2x.png);
         background-size: 348px 148px
     }
+}
+
+.AppsSalesProduct {
+    position: relative;
+    width: 245px;
+    height: 235px;
+    border-radius: 4px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    color: #fff;
+    background-color: #a8b8c8;
+    opacity: 1;
+    -o-transition: opacity 0.3s;
+    transition: opacity 0.3s
+}
+
+.AppsSalesProduct:hover {
+    opacity: 0.96
+}
+
+.AppsSalesProduct__link {
+    display: block;
+    box-sizing: border-box;
+    position: relative;
+    width: 245px;
+    height: 235px;
+    padding: 22px 22px 0;
+    color: #fff
+}
+
+.AppsSalesProduct__link:hover {
+    text-decoration: none
+}
+
+.AppsSalesProduct__link:hover .AppsSalesProduct__product:after {
+    -o-transform: translateX(1px);
+    transform: translateX(1px);
+    opacity: 0.86
+}
+
+.AppsSalesProduct__app {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.AppsSalesProduct__appName {
+    color: #fff;
+    display: inline-block;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 600;
+    font-size: 12.5px
+}
+
+.AppsSalesProduct__appGenre {
+    margin-top: 6px;
+    font-size: 12.5px;
+    line-height: 1.04;
+    opacity: 0.64
+}
+
+.AppsSalesProduct__appIcon {
+    width: 72px;
+    height: 72px;
+    border: solid 1px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+    margin-bottom: 8px
+}
+
+.AppsSalesProduct__product {
+    color: #fff;
+    position: absolute;
+    height: 56px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10px;
+    display: -ms-flexbox;
+    display: flex;
+    box-sizing: border-box;
+    background-color: hsla(0, 0%, 100%, .12)
+}
+
+.AppsSalesProduct__product:after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 19px;
+    opacity: 0.72;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20width%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22%22%3E%3Cpath%20d%3D%22m0%200h16v16h-16z%22%2F%3E%3Cpath%20d%3D%22m5%2014%206-6-6-6%22%20fill-rule%3D%22nonzero%22%20stroke%3D%22%23fff%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50%;
+    -o-transition: transform 0.3s, -o-transform 0.3s;
+    transition: transform 0.3s;
+    transition: transform 0.3s, -o-transform 0.3s;
+    right: 7px
+}
+
+.AppsSalesProduct__product:hover:after {
+    -o-transform: translateX(2px);
+    transform: translateX(2px)
+}
+
+.AppsSalesProduct__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .04);
+    border: solid 1px rgba(0, 0, 0, .04);
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    margin-right: 8px
+}
+
+.AppsSalesProduct__info {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 56px
+}
+
+.AppsSalesProduct__name {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.38;
+    max-width: 157px
+}
+
+.AppsSalesProduct__name,
+.AppsSalesProduct__price {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.AppsSalesProduct__price {
+    max-width: 78.5px;
+    font-size: 12.5px;
+    line-height: 1.44
+}
+
+.AppsSalesProduct__actualPrice {
+    opacity: 0.64;
+    text-decoration: line-through
+}
+
+.AppsSalesProduct__salePrice {
+    font-weight: 500;
+    margin-right: 6px
+}
+
+.AppsSalesProduct .app_rate {
+    background: url(/images/apps/shared/white_stars.png) no-repeat 50%
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .AppsSalesProduct .app_rate {
+        background-image: url(/images/apps/shared/white_stars_2x.png);
+        background-size: 9px 31px
+    }
+}
+
+.AppsSalesProduct .app_rate.full {
+    background-position: 0 0
+}
+
+.AppsSalesProduct .app_rate.half {
+    background-position: 0 -11px
+}
+
+.AppsSalesProduct .app_rate.empty {
+    background-position: 0 -22px
+}
+
+.AppsSalesProduct .app_rate.stats {
+    background-position: 0 0;
+    cursor: default;
+    height: 9px
+}
+
+.apps_salesCatalogList {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 15px;
+    padding-bottom: 15px
+}
+
+.apps_salesCatalogList .AppsSalesProduct {
+    margin: 5px
+}
+
+.apps_salesCatalogList.apps_cat_wrap {
+    margin: 0 5px 0 15px
+}
+
+.apps_salesCatalogList .no_rows {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%
+}
+
+.apps_salesCatalogList .apps_cat_row:nth-child(-n+5) {
+    margin-top: 0!important
+}
+
+.apps_salesCatalogList .apps_cat_row:nth-child(5n+1) {
+    margin-left: 5px
 }
 
 .apps_hidden {
@@ -2362,6 +2584,10 @@ body.mac .apps_featured_thumb .ads_ad_big_app_info_box {
 .apps_cat_header_icon.collection232 {
     background-color: #000;
     background-position: 0 -252px
+}
+
+.apps_cat_header_icon.apps_icon_sales {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2228%22%20viewBox%3D%220%200%2028%2028%22%20width%3D%2228%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%3E%3Cpath%20d%3D%22m0%200h28v28h-28z%22%2F%3E%3Cg%20transform%3D%22translate(8%208)%22%3E%3Cpath%20d%3D%22m2.5.75c-.96649831%200-1.75.78350169-1.75%201.75s.78350169%201.75%201.75%201.75%201.75-.78350169%201.75-1.75-.78350169-1.75-1.75-1.75z%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.5%22%2F%3E%3Cpath%20d%3D%22m9.5%207.75c-.96649831%200-1.75.78350169-1.75%201.75%200%20.9664983.78350169%201.75%201.75%201.75.9664983%200%201.75-.7835017%201.75-1.75%200-.96649831-.7835017-1.75-1.75-1.75z%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.5%22%2F%3E%3Cpath%20d%3D%22m2.6014381%2011.6639012c-.31143404.3873936-.87794575.4489709-1.26533932.1375369s-.44897093-.8779458-.13753688-1.2653393l8.2-10.20000002c.31143404-.38739357.8779458-.44897093%201.2653393-.13753688.3873936.31143404.4489709.87794575.1375369%201.26533932z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50% #f46364
 }
 
 .apps_cat_header_link {
@@ -4552,6 +4778,15 @@ a.page_block_header:hover .apps_cat_header_link:after {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 140%
+}
+
+.apps_top_tabs .ui_tab_group_label {
+    display: inline-block;
+    max-width: 180px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: bottom
 }
 
 .apps_table {

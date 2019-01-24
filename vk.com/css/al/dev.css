@@ -2581,23 +2581,28 @@ body.dev a.dev_search_match_row {
     box-shadow: 0 1px 3px rgba(0, 0, 0, .28)
 }
 
-#dev_colorpicker {
+#dev_colorpicker,
+.dev_colorpicker_container {
     position: absolute;
     margin-left: 275px
 }
 
-#dev_palette {
+#dev_palette,
+.dev_palette {
     margin-left: 180px
 }
 
 #dev_palette,
-#dev_colors {
+.dev_palette,
+#dev_colors,
+.dev_colors {
     position: absolute;
     cursor: pointer;
     box-shadow: 0 0 5px rgba(0, 0, 0, .25)
 }
 
-#dev_picker1 {
+#dev_picker1,
+.dev_picker1 {
     margin-left: 178px;
     width: 22px;
     height: 1px;
@@ -2606,14 +2611,17 @@ body.dev a.dev_search_match_row {
 }
 
 #dev_picker1,
-#dev_picker2 {
+.dev_picker1,
+#dev_picker2,
+.dev_picker2 {
     position: absolute;
     margin-top: 40px;
     pointer-events: none;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .25)
 }
 
-#dev_picker2 {
+#dev_picker2,
+.dev_picker2 {
     margin-left: 40px;
     width: 8px;
     height: 8px;

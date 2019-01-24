@@ -1213,8 +1213,9 @@ var Dev = {
         });
     },
 
-    paletteDown: function(ev, down, y, noChangeColor) {
-        var palette = ge('dev_palette');
+    paletteDown: function(ev, down, y, noChangeColor, pickerId) {
+        pickerId = pickerId || '';
+        var palette = ge('dev_palette' + pickerId);
         var height = getSize(palette)[1];
         if (y === undefined) {
             var y = ev.offsetY || ev.layerY;
@@ -1223,19 +1224,19 @@ var Dev = {
         var t = Math.round(y / (height / 360));
         t = Math.abs(t - 360);
         t = (t == 360) ? 0 : t;
-        ge('dev_colors').style.backgroundColor = "rgb(" + Dev.hsv2rgb(t, 100, 100) + ")";
+        ge('dev_colors' + pickerId).style.backgroundColor = "rgb(" + Dev.hsv2rgb(t, 100, 100) + ")";
         if (!noChangeColor) {
             Dev.setColor(Dev.hsv2rgb(t, cur.pickerX, cur.pickerY));
         }
         cur.pickerT = t;
-        var pointer = ge('dev_picker1');
+        var pointer = ge('dev_picker1' + pickerId);
         setStyle(pointer, {
             marginTop: y - 1
         });
         if (down) {
             var yMain = ev.clientY;
             var onMove = function(evNew) {
-                Dev.paletteDown(evNew, false, y + evNew.clientY - yMain);
+                Dev.paletteDown(evNew, false, y + evNew.clientY - yMain, undefined, pickerId);
             }
             addEvent(window, 'mousemove', onMove);
 
@@ -1246,9 +1247,10 @@ var Dev = {
         return cancelEvent(ev);
     },
 
-    colorsDown: function(ev, down, x, y, noChangeColor) {
-        var pointer = ge('dev_picker2');
-        var colors = ge('dev_colors');
+    colorsDown: function(ev, down, x, y, noChangeColor, pickerId) {
+        pickerId = pickerId || '';
+        var pointer = ge('dev_picker2' + pickerId);
+        var colors = ge('dev_colors' + pickerId);
         var size = getSize(colors);
         if (x === undefined) {
             var x = ev.offsetX || ev.layerX;
@@ -1271,7 +1273,7 @@ var Dev = {
             var yMain = ev.clientY;
             var xMain = ev.clientX;
             var onMove = function(evNew) {
-                Dev.colorsDown(evNew, false, x + evNew.clientX - xMain, y + evNew.clientY - yMain);
+                Dev.colorsDown(evNew, false, x + evNew.clientX - xMain, y + evNew.clientY - yMain, undefined, pickerId);
             }
             addEvent(window, 'mousemove', onMove);
             addEvent(window, 'mouseup', function(evNew) {
@@ -1404,23 +1406,25 @@ var Dev = {
         }
     },
 
-    showColorBox: function(obj, num, ev) {
+    showColorBox: function(obj, num, ev, pickerId) {
         if (browser.msie && browser.version < 9) {
             return false;
         }
         cur.colorNum = num;
-        var wrap = ge('dev_widget_colors');
-        var cont = ge('dev_colorpicker');
-        var colors = ge('dev_colors');
-        var palette = ge('dev_palette');
+        pickerId = pickerId || '';
+        var wrap = ge('dev_widget_colors' + pickerId);
+        var cont = ge('dev_colorpicker' + pickerId);
+        var colors = ge('dev_colors' + pickerId);
+        var palette = ge('dev_palette' + pickerId);
         var shownHere = false;
         if (!cur.colorShown) {
             fadeIn(cont, 200);
             var shownHere = true;
             cur.colorShown = true;
         }
+        var initedProp = pickerId ? 'colorInited' + pickerId : 'colorInited';
         var posY = (getXY(obj)[1] - getXY(wrap)[1]);
-        if (cur.colorInited) {
+        if (cur[initedProp]) {
             animate(cont, {
                 marginTop: -179 + posY
             }, 200)
@@ -1455,14 +1459,14 @@ var Dev = {
         var rgb = Dev.hex2rgb(color);
         var hsv = Dev.rgb2hsv(rgb);
 
-        Dev.paletteDown(false, false, (360 - hsv.h) / 360 * getSize(palette)[1], true);
+        Dev.paletteDown(false, false, (360 - hsv.h) / 360 * getSize(palette)[1], true, pickerId);
         var colorsSize = getSize(colors);
-        Dev.colorsDown(false, false, (hsv.s) / 100 * colorsSize[0], (100 - hsv.v) / 100 * colorsSize[1], true);
+        Dev.colorsDown(false, false, (hsv.s) / 100 * colorsSize[0], (100 - hsv.v) / 100 * colorsSize[1], true, pickerId);
 
         var onWndMove = function(ev) {
             var el = ev.target;
             while (el) {
-                if (el.id == 'dev_colorpicker' || hasClass(el, 'dev_colorbox_cont')) {
+                if (el.id == 'dev_colorpicker' + pickerId || hasClass(el, 'dev_colorbox_cont')) {
                     if (cur.colorBoxHideTimeout) {
                         debugLog('cancel Hide');
                         clearTimeout(cur.colorBoxHideTimeout);
