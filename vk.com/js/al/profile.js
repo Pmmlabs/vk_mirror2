@@ -339,11 +339,12 @@ var Profile = {
                 hideProgress: window.Page && Page.actionsDropdownUnlock.pbind(e)
             }), void cancelEvent(o))
         },
-        showGiftBox: function(e, i) {
+        showGiftBox: function(e, i, o) {
             return cur.gftbxWasScroll = boxLayerWrap.scrollTop, boxLayerWrap.scrollTop = 0, cur.viewAsBox ? cur.viewAsBox() : !showBox("al_gifts.php", {
                 act: "get_gift_box",
                 mid: e,
-                fr: e == vk.id ? 1 : 0
+                fr: e == vk.id ? 1 : 0,
+                ref: o
             }, {
                 stat: ["gifts.css", "wide_dd.js", "wide_dd.css"],
                 cache: 1

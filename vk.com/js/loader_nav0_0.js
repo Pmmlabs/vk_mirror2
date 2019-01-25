@@ -174,7 +174,7 @@ var stVersions = {
     'audio.css': 25577432584,
     'audio_admins.css': 18541454280,
     'gifts.css': 20748056961,
-    'gifts.js': 338252255,
+    'gifts.js': 2251554329,
     'cc.js': 1644397126,
     'indexer.js': 1700343828,
     'graph.js': 2698357242,
@@ -255,10 +255,10 @@ var stVersions = {
     'cmodules/web/GroupsEdit.js': 25817080517,
     'groups_edit.css': 55505482787,
     'cmodules/web/groups_edit.js': 48590635731,
-    'profile.css': 21402763555,
-    'profile.js': 2681993000,
+    'profile.css': 21402763556,
+    'profile.js': 3988525563,
     'calendar.css': 20017436733,
-    'calendar.js': 4203451993,
+    'calendar.js': 79178639,
     'wk.css': 22438165495,
     'wk.js': 2226505193,
     'pay.css': 989146268,
@@ -342,7 +342,7 @@ var stVersions = {
     'widgets.css': 28954491653,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 125497357743,
+    'notifier.js': 124022027652,
     'notifier.css': 27638089692,
     'cmodules/sw/sw.js': 5960813200,
     'earthday.js': 2276669993,
@@ -551,7 +551,7 @@ var stVersions = {
     'cmodules/web/author_page.js': 79227103322,
     'bookmarks.css': 16837988999,
     'cmodules/web/bookmarks.js': 3575362821,
-    'sf.css': 17229307007,
+    'sf.css': 17329785306,
     'shortener.js': 16413120,
     'cmodules/web/pretty_cards.js': 82460730,
     'cmodules/web/landing_ads_case.js': 3936066274,
@@ -600,7 +600,7 @@ var stVersions = {
     'apps_feed_blocks.css': 18464088498,
     'cmodules/web/landing_transparency.js': 104749361187,
     'landings/transparency.css': 95708135076,
-    'cmodules/web/emoji.js': 8407878679,
+    'cmodules/web/emoji.js': 10126080658,
     'cmodules/web/apps_achievements.js': 82018756076,
     'cmodules/web/payments.js': 49992699828,
     'lang': 6933
@@ -662,4 +662,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 6609;
+var _rnd = 4574;

@@ -766,6 +766,11 @@ body.sf .mention_tt_actions {
     display: none
 }
 
+.post_report .sf_post .wall_text>div,
+.sf_post .reply_link_wrap {
+    display: block
+}
+
 .sf_post .wall_reply_text .wall_post_text {
     width: 447px
 }

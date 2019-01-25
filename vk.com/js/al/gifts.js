@@ -109,11 +109,12 @@ var Gifts = {
             isVisible(t) && o > getXY(t, !0)[1] && t.click()
         }
     },
-    showGiftBox: function(o, t) {
-        return window.Profile ? Profile.showGiftBox(o, t) : (cur.gftbxWasScroll = boxLayerWrap.scrollTop, boxLayerWrap.scrollTop = 0, cur.viewAsBox ? cur.viewAsBox() : !showBox("al_gifts.php", {
+    showGiftBox: function(o, t, i) {
+        return window.Profile ? Profile.showGiftBox(o, t, i) : (cur.gftbxWasScroll = boxLayerWrap.scrollTop, boxLayerWrap.scrollTop = 0, cur.viewAsBox ? cur.viewAsBox() : !showBox("al_gifts.php", {
             act: "get_gift_box",
             mid: o,
-            fr: o == vk.id ? 1 : 0
+            fr: o == vk.id ? 1 : 0,
+            ref: i
         }, {
             stat: ["gifts.css", "wide_dd.js", "wide_dd.css"],
             cache: 1

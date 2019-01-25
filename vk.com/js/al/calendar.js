@@ -148,11 +148,12 @@ var Calendar = {
             calMon: e,
             calYear: a,
             calEventsById: {},
-            sendGift: function(e, a) {
+            sendGift: function(e, a, t) {
                 return !showBox("al_gifts.php", {
                     act: "get_gift_box",
                     mid: a,
-                    fr: a == vk.id ? 1 : 0
+                    fr: a == vk.id ? 1 : 0,
+                    ref: t
                 }, {
                     stat: ["gifts.css", "ui_controls.js", "ui_controls.css"],
                     cache: 1,
