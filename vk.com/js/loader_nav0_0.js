@@ -289,8 +289,8 @@ var stVersions = {
     'feed.css': 22133141517,
     'privacy.js': 711405089,
     'privacy.css': 16079396522,
-    'apps.css': 54156435988,
-    'apps.js': 24484287439,
+    'apps.css': 52983172523,
+    'apps.js': 26116472191,
     'apps_edit.js': 85906444109,
     'apps_edit.css': 97024527026,
     'apps_check.js': 3204387834,
@@ -662,4 +662,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 81;
+var _rnd = 6609;
