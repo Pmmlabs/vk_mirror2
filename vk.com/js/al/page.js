@@ -2524,7 +2524,7 @@ var Wall = {
 
     },
     switchTabContent: function(tab) {
-        hide('page_wall_posts', 'page_postponed_posts', 'page_suggested_posts', 'page_search_posts', 'page_top_posts');
+        hide('page_wall_posts', 'page_postponed_posts', 'page_suggested_posts', 'page_search_posts', 'page_top_posts', 'page_archive_posts');
         switch (tab) {
             case 'own':
             case 'all':
@@ -2543,6 +2543,9 @@ var Wall = {
             case 'top':
                 show('page_top_posts');
                 break;
+            case 'archive':
+                show('page_archive_posts');
+                break;
         }
         // checkPageBlocks();
     },
@@ -2560,8 +2563,14 @@ var Wall = {
         if (cur.wallTab == 'postponed') {
             wall.checkPostponedCount();
         }
+        if (cur.wallTab === 'archive' || type === 'archive') {
+            (cur.wallLayer ? wkcur : cur).wallMyDeleted = {};
+        }
+        if (isFunction(cur.wallArchiveFeatureTooltipHide)) {
+            cur.wallArchiveFeatureTooltipHide();
+        }
 
-        if (type !== 'top') {
+        if (type !== 'top' && type !== 'archive') {
             var wallEl = ge('page_wall_posts');
             removeClass(wallEl, 'own');
             removeClass(wallEl, 'all');
@@ -2574,14 +2583,13 @@ var Wall = {
         uiTabs.switchTab(el);
         uiTabs.hideProgress(el);
 
-        if (type === 'top') {
+        if (type === 'top' || type === 'archive') {
             cur.baseWallModule = cur.module;
-            cur.module = 'wall_top';
+            cur.module = 'wall_' + type;
 
             if (cur.topWallFeatureTT) {
                 cur.topWallFeatureTT.hide();
             }
-
         } else if (cur.baseWallModule) {
             cur.module = cur.baseWallModule;
             delete cur.baseWallModule;
@@ -2593,9 +2601,13 @@ var Wall = {
         } else {
             cur.wallNextFrom = 0;
             cur.wallTopNextFrom = 0;
+            cur.wallArchiveNextFrom = 0;
 
             if (type === 'top') {
                 delete cur.wallTopFinished;
+            }
+            if (type === 'archive') {
+                delete cur.wallArchiveFinished;
             }
 
             uiTabs.showProgress(el);
@@ -2605,9 +2617,31 @@ var Wall = {
 
         return cancelEvent(ev);
     },
+    resetWall: function() {
+        if (cur.wallType && cur.wallTab) {
+            var tabEl = geByClass1('_wall_tab_' + cur.wallType);
+
+            if (tabEl) {
+                cur.wallNextFrom = 0;
+                cur.wallTopNextFrom = 0;
+                cur.wallArchiveNextFrom = 0;
+                (cur.wallLayer ? wkcur : cur).wallMyDeleted = {};
+
+                if (cur.wallType === 'top') {
+                    delete cur.wallTopFinished;
+                }
+                if (cur.wallType === 'archive') {
+                    delete cur.wallArchiveFinished;
+                }
+
+                uiTabs.showProgress(tabEl);
+                Wall.showMore(0, tabEl, true);
+            }
+        }
+    },
     hasPosts: function(type) {
         type = type || cur.wallType;
-        return !!(geByClass1('post', (type === 'top' ? 'page_top_posts' : 'page_wall_posts')));
+        return !!(geByClass1('post', (type === 'archive' ? 'page_archive_posts' : (type === 'top' ? 'page_top_posts' : 'page_wall_posts'))));
     },
     showSuggested: function(ev, rows, notAll) {
         if (ev && checkEvent(ev)) return true;
@@ -2993,6 +3027,7 @@ var Wall = {
 
                     removeClass(moreTab, 'unshown');
 
+
                     statlogsValueEvent('wall_more_tab_shown', cur.oid);
                 }
             }
@@ -3119,28 +3154,44 @@ var Wall = {
         }
         return 0;
     },
-    receive: function(rows, names, type) {
+    receive: function(rows, names, type, cleanAllBlocks) {
         type = type || cur.wallType;
+        cleanAllBlocks = cleanAllBlocks === true;
 
         var isTop = (type === 'top');
+        var isArchive = (type === 'archive');
         var n = ce('div', {
-                innerHTML: rows
-            }),
-            revert = !!cur.options.revert;
-        var posts = (isTop ? ge('page_top_posts') : ge('page_wall_posts'));
-        var cleanBlock = (isTop ? ge('page_wall_posts') : ge('page_top_posts'));
-        var current = (revert ? posts.firstChild : posts.lastChild),
-            added = 0;
+            innerHTML: rows
+        });
+        var revert = !!cur.options.revert;
+        var cleanBlocks = [];
+        var posts = isArchive ? ge('page_archive_posts') : (isTop ? ge('page_top_posts') : ge('page_wall_posts'));
+        var added = 0;
         var adsPosts = [];
         var prevPostEl;
         var prevCurrent;
+        var current;
         var insertPositionEl;
-        var el, node;
+        var el;
+        var node;
+
+        if (cleanAllBlocks) {
+            cleanBlocks = ['page_top_posts', 'page_wall_posts', 'page_archive_posts'];
+        } else {
+            if (isArchive) {
+                cleanBlocks = ['page_top_posts', 'page_wall_posts'];
+            } else if (isTop) {
+                cleanBlocks = ['page_wall_posts', 'page_archive_posts'];
+            } else {
+                cleanBlocks = ['page_top_posts', 'page_archive_posts']
+            }
+
+            current = revert ? posts.firstChild : posts.lastChild;
+        }
 
         // Clean up other posts container
-        if (cleanBlock) {
-            el = domFC(cleanBlock);
-
+        cleanBlocks.forEach(function(cleanBlockId) {
+            el = domFC(ge(cleanBlockId));
             while (el) {
                 node = el;
                 el = domNS(el);
@@ -3149,7 +3200,7 @@ var Wall = {
                     re(node);
                 }
             }
-        }
+        })
 
         function getPostId(postEl) {
             if (!postEl || !postEl.tagName || postEl.tagName.toLowerCase() !== 'div' || !postEl.id || postEl.id.substr(0, 4) !== 'post') {
@@ -3189,7 +3240,7 @@ var Wall = {
                 current.tagName.toLowerCase() == 'div' &&
                 !hasClass(current, 'post_fixed') // ???
                 &&
-                (hasClass(current, '_ads_promoted_post') || (!isTop && Wall.cmp(current.id, el.id) < 0))
+                (hasClass(current, '_ads_promoted_post') || (!isTop && !isArchive && Wall.cmp(current.id, el.id) < 0))
             ) {
                 current = (revert ? current.nextSibling : current.previousSibling);
             }
@@ -3268,6 +3319,10 @@ var Wall = {
             cur.wallTopFinished = cur.oid;
         }
 
+        if (isArchive && !added) {
+            cur.wallArchiveFinished = cur.oid;
+        }
+
         if (type == 'full_own' || type == 'full_all') {
             Pagination.recache(added);
             FullWall.updateSummary(cur.pgCount);
@@ -3280,22 +3335,27 @@ var Wall = {
             getAudioPlayer().updateCurrentPlaying();
         }
     },
-    showMore: function(offset, tabEl) {
+    showMore: function(offset, tabEl, clean) {
         if (cur.viewAsBox) return cur.viewAsBox();
         if (cur.wallLayer) return;
         if (cur.wallTab == 'suggested') return Wall.suggestMore();
         if (cur.wallTypeLoading && cur.wallTypeLoading[cur.wallType]) return;
         if (cur.wallType === 'top' && cur.wallTopFinished === cur.oid) return;
+        if (cur.wallType === 'archive' && cur.wallArchiveFinished === cur.oid) {
+            return;
+        }
 
         var type = cur.wallType,
             isTop = (type === 'top'),
+            isArchive = (type === 'archive'),
             more = ge('wall_more_link'),
-            wallNextFrom = (offset !== 0 ? (isTop ? cur.wallTopNextFrom : cur.wallNextFrom) : '') || '',
+            wallNextFrom = (offset !== 0 ? (isArchive ? cur.wallArchiveNextFrom : (isTop ? cur.wallTopNextFrom : cur.wallNextFrom)) : '') || '',
             tmp = cur.wallLoading = cur.oid,
             onlyCache = (isTop && !!cur.wallTopOnlyCache);
 
         cur.wallTypeLoading = cur.wallTypeLoading || {};
         cur.wallTypeLoading[type] = true;
+        clean = clean === true && !offset;
 
         ajax.post('al_wall.php', {
             act: 'get_wall',
@@ -3344,14 +3404,16 @@ var Wall = {
                     });
                 }
 
-                if (isTop) {
+                if (isArchive) {
+                    cur.wallArchiveNextFrom = newNextFrom;
+                } else if (isTop) {
                     cur.wallTopNextFrom = newNextFrom;
                 } else {
                     cur.wallNextFrom = newNextFrom;
                 }
 
                 setTimeout(function() {
-                    Wall.receive(data, names, type);
+                    Wall.receive(data, names, type, clean);
 
                     if (!offset && type === cur.wallType) {
                         Wall.showWall();
@@ -6249,6 +6311,122 @@ var Wall = {
             }
         }
     },
+
+    postShowDeletedMessage: function(postRaw, msg) {
+        var postEl = ge('post' + postRaw);
+
+        if (postEl) {
+            var postContentEl = geByClass1('_post_content', postEl) || geByClass1('feedback_row_t', postEl);
+
+            revertLastInlineVideo(postContentEl);
+            hide(postContentEl);
+            if (hasClass(domNS(postContentEl), 'post_publish')) {
+                hide(domNS(postContentEl));
+            }
+
+            var postDeletedId = 'post_del' + postRaw;
+            var postDeletedEl = ge(postDeletedId);
+            var postDeletedHtml = '<span class="dld_inner">' + msg + '</span>';
+
+            if (postDeletedEl) {
+                val(postDeletedEl, postDeletedHtml);
+                show(postDeletedEl);
+            } else {
+                postEl.appendChild(ce('div', {
+                    id: postDeletedId,
+                    className: 'dld',
+                    innerHTML: postDeletedHtml,
+                }));
+            }
+
+            return true;
+        }
+
+        return false;
+    },
+
+    postHideDeletedMessage: function(postRaw) {
+        var postEl = ge('post' + postRaw);
+
+        if (postEl) {
+            var postContentEl = geByClass1('_post_content', postEl) || geByClass1('feedback_row_t', postEl);
+
+            show(postContentEl);
+            if (hasClass(domNS(postContentEl), 'post_publish')) {
+                show(domNS(postContentEl));
+            }
+
+            var postDeletedEl = ge('post_del' + postRaw);
+            hide(postDeletedEl);
+
+            return true;
+        }
+
+        return false;
+    },
+
+    postSetArchiveState: function(actionEl, postRaw, hash, state, isRollback) {
+        if (actionsMenuItemLocked(actionEl) || linkLocked(actionEl)) {
+            return;
+        }
+
+        var postId = intval(postRaw.split('_')[1]);
+        var isActionMenuItem = hasClass(actionEl, 'ui_actions_menu_item');
+        var isArchiveWall = cur.pgParams && cur.pgParams.archive || cur.module === 'wall_archive';
+        var localCur = cur.wallLayer ? wkcur : cur;
+
+        if (localCur) {
+            if (!localCur.wallMyDeleted) {
+                localCur.wallMyDeleted = {};
+            }
+            localCur.wallMyDeleted[postRaw] = !isArchiveWall === !state ? 0 : 1;
+        }
+
+        ajax.post('al_wall_archive.php', {
+            act: 'a_set_state',
+            from: ge('page_wall_more_tab') ? 'profile' : (cur.pid ? 'post' : 'wall'),
+            hash: hash,
+            state: state ? 1 : 0,
+            postId: postId,
+        }, {
+            onDone: function(msg, js) {
+                if (isArchiveWall) {
+                    state = !state;
+                }
+                if (isRollback ? Wall.postHideDeletedMessage(postRaw) : Wall.postShowDeletedMessage(postRaw, msg)) {
+                    if (cur.wallType == 'full_own' || cur.wallType == 'full_all') {
+                        Pagination.recache(state ? -1 : 1);
+                        FullWall.updateSummary(cur.pgCount);
+                    } else if (cur.wallType == 'full') {
+                        if (hasClass(postEl, 'reply')) {
+                            state ? --cur.pgOffset : ++cur.pgOffset;
+                            state ? --cur.pgCount : ++cur.pgCount;
+                            FullWall.repliesSummary(cur.pgCount);
+                        }
+                    }
+
+                    var postEl = ge('post' + postRaw);
+                    if (hasClass(postEl, 'suggest')) {
+                        Wall.suggestUpdate(state ? -1 : 1);
+                    } else if (cur.wallType == 'own' || cur.wallType == 'all') {
+                        if (hasClass(postEl, 'own')) {
+                            state ? ++cur.deletedCnts.own : --cur.deletedCnts.own;
+                        }
+                        if (hasClass(postEl, 'all')) {
+                            state ? ++cur.deletedCnts.all : --cur.deletedCnts.all;
+                        }
+                        Wall.update();
+                    }
+                }
+                if (js) {
+                    eval(js);
+                }
+            },
+            showProgress: isActionMenuItem ? lockActionsMenuItem.pbind(actionEl) : lockLink(actionEl),
+            hideProgress: isActionMenuItem ? unlockActionsMenuItem.pbind(actionEl) : unlockLink(actionEl),
+        });
+    },
+
     deletePost: function(el, post, hash, root, force) {
         (cur.wallLayer ? wkcur : cur).wallMyDeleted[post] = 1;
         var r = ge('post' + post),
@@ -6276,21 +6454,9 @@ var Wall = {
                     }, getLang('box_cancel'));
                     return;
                 }
-                var t = geByClass1('_post_content', r) || geByClass1('feedback_row_t', r);
-                revertLastInlineVideo(t);
-                var pd = ge('post_del' + post);
-                if (pd) {
-                    pd.innerHTML = '<span class="dld_inner">' + msg + '</span>';
-                    show(pd);
-                } else {
-                    r.appendChild(ce('div', {
-                        id: 'post_del' + post,
-                        className: 'dld',
-                        innerHTML: '<span class="dld_inner">' + msg + '</span>'
-                    }));
-                }
-                hide(t);
-                if (domNS(t).className == 'post_publish') hide(domNS(t));
+
+                Wall.postShowDeletedMessage(post, msg);
+
                 if (cur.wallType == 'full_own' || cur.wallType == 'full_all') {
                     Pagination.recache(-1);
                     FullWall.updateSummary(cur.pgCount);
@@ -6467,42 +6633,40 @@ var Wall = {
             }
         });
     },
-    restorePost: function(post, hash, root) {
-        (cur.wallLayer ? wkcur : cur).wallMyDeleted[post] = 0;
+    restorePost: function(postRaw, hash, root) {
+        (cur.wallLayer ? wkcur : cur).wallMyDeleted[postRaw] = 0;
         ajax.post('al_wall.php', {
             act: 'restore',
-            post: post,
+            post: postRaw,
             hash: hash,
             root: root ? 1 : 0
         }, {
             onDone: function(msg) {
-                re('post_del_btn' + post);
-                var pd = ge('post_del' + post);
-                if (!pd) return;
-                var r = ge('post' + post),
-                    t = geByClass1('_post_content', r) || geByClass1('feedback_row_t', r);
-                show(t);
-                if (domNS(t).className == 'post_publish') show(domNS(t));
-                re(pd);
+                re('post_del_btn' + postRaw);
 
+                if (!Wall.postHideDeletedMessage(postRaw)) {
+                    return;
+                }
+
+                var postEl = ge('post' + postRaw);
                 if (cur.wallType == 'full_own' || cur.wallType == 'full_all') {
                     Pagination.recache(1);
                     FullWall.updateSummary(cur.pgCount);
                 } else if (cur.wallType == 'full') {
-                    if (hasClass(r, 'reply')) {
+                    if (hasClass(postEl, 'reply')) {
                         cur.pgOffset++;
                         cur.pgCount++;
                         FullWall.repliesSummary(cur.pgCount);
                     }
                 }
 
-                if (hasClass(r, 'suggest')) {
+                if (hasClass(postEl, 'suggest')) {
                     Wall.suggestUpdate(1);
-                } else if (hasClass(r, 'postponed')) {
+                } else if (hasClass(postEl, 'postponed')) {
                     wall.postponeUpdateCount();
                 } else if (cur.wallType == 'own' || cur.wallType == 'all') {
-                    if (hasClass(r, 'own')) --cur.deletedCnts.own;
-                    if (hasClass(r, 'all')) --cur.deletedCnts.all;
+                    if (hasClass(postEl, 'own')) --cur.deletedCnts.own;
+                    if (hasClass(postEl, 'all')) --cur.deletedCnts.all;
                     Wall.update();
                 }
             }
@@ -7844,33 +8008,35 @@ var Wall = {
         }
 
         var isTopWall = (cur.wallType === 'top');
+        var isArchiveWall = (cur.wallType === 'archive');
 
         if (
-            (cur.wallType !== 'all' && cur.wallType !== 'own' && !isTopWall) ||
-            (cur.wallTab !== 'all' && cur.wallTab !== 'own' && cur.wallTab !== 'top')
+            (cur.wallType !== 'all' && cur.wallType !== 'own' && !isTopWall && !isArchiveWall) ||
+            (cur.wallTab !== 'all' && cur.wallTab !== 'own' && cur.wallTab !== 'top' && cur.wallTab !== 'archive')
         ) {
             return;
         }
 
-        var postType = (isTopWall ? 'own' : cur.wallType);
+        var postType = isArchiveWall ? 'all' : (isTopWall ? 'own' : cur.wallType);
 
         var morelnk = ge('wall_more_link');
-        var posts = (isTopWall ? ge('page_top_posts') : ge('page_wall_posts'));
+        var posts = isArchiveWall ? 'page_archive_posts' : (isTopWall ? ge('page_top_posts') : ge('page_wall_posts'));
 
         var del = intval(cur.deletedCnts[postType]);
         var count = geByClass(postType, posts).length - del;
         var needHideMore = false;
 
-        if (isTopWall && (isVisible(geByClass1('no_posts', posts)) || cur.wallTopFinished === cur.oid)) {
+        if ((isTopWall || isArchiveWall) && (isVisible(geByClass1('no_posts', posts)) || cur.wallTopFinished === cur.oid || cur.wallArchiveFinished === cur.oid)) {
             needHideMore = true;
         } else {
             var cnts = {
                 all: intval(val('page_wall_count_all')),
                 own: intval(val('page_wall_count_own')),
                 top: intval(val('page_wall_count_top')),
+                archive: intval(val('page_wall_count_archive')),
             };
 
-            var maxCount = cnts[(isTopWall ? 'top' : postType)];
+            var maxCount = cnts[isArchiveWall ? 'archive' : (isTopWall ? 'top' : postType)];
 
             if (cur.wallTab != 'suggested') {
                 var cnt = maxCount;
@@ -7884,7 +8050,7 @@ var Wall = {
 
             var checkCount = count;
 
-            if (!isTopWall && cur.options['fixed_post_id'] && cur.options['wall_oid'] < 0) {
+            if (!isTopWall && !isArchiveWall && cur.options['fixed_post_id'] && cur.options['wall_oid'] < 0) {
                 checkCount += 1;
             }
 
@@ -9792,6 +9958,7 @@ var Wall = {
 
         var commentBut = geByClass1('comment', post);
         var replyBox = geByClass1('reply_box_inner_wrap', post);
+        var isArchiveWall = cur.pgParams && cur.pgParams.archive || cur.module === 'wall_archive';
 
         if (!skip && (!commentBut || !replyBox)) {
             var postId = post.id.replace('post', '').split('_');
@@ -9802,17 +9969,19 @@ var Wall = {
                 post_id: postId[1]
             }, {
                 onDone: function(comment, reply) {
-                    var commentBut = geByClass1('comment', post);
-                    var replyBox = geByClass1('reply_box_inner_wrap', post);
+                    if (!isArchiveWall) {
+                        var commentBut = geByClass1('comment', post);
+                        var replyBox = geByClass1('reply_box_inner_wrap', post);
 
-                    if (!commentBut && comment) {
-                        var likeBut = geByClass1('like', post);
-                        domInsertAfter(se(comment), domNS(likeBut));
-                    }
+                        if (!commentBut && comment) {
+                            var likeBut = geByClass1('like', post);
+                            domInsertAfter(se(comment), domNS(likeBut));
+                        }
 
-                    if (!replyBox && reply) {
-                        var repliesList = geByClass1('replies_list', post);
-                        domInsertAfter(se(reply), repliesList);
+                        if (!replyBox && reply) {
+                            var repliesList = geByClass1('replies_list', post);
+                            domInsertAfter(se(reply), repliesList);
+                        }
                     }
 
                     Wall.onCloseComments(close, post, true);
@@ -9822,7 +9991,9 @@ var Wall = {
             return;
         }
 
-        toggleClass(post, 'closed_comments', close);
+        if (!isArchiveWall) {
+            toggleClass(post, 'closed_comments', close);
+        }
 
         var action = geByClass1('action_closing_comments', post);
         domData(action, 'closed', close);

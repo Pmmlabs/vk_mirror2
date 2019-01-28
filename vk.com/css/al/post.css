@@ -1423,3 +1423,8 @@ div.med_no_attach {
 .post_inline_progress+* {
     visibility: hidden
 }
+
+.post_header_action_link {
+    float: right;
+    line-height: 32px
+}

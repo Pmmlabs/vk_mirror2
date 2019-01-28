@@ -30,25 +30,25 @@ var WkView = {
                 var w = a[3].split("/"),
                     l = a[4] ? q2ajx(a[4].substr(1)) : {}
             }
-            var n = {};
+            var s = {};
             switch (w[0]) {
                 case "pages":
-                    n.oid = l.oid || l.o, n.id = l.id, n.p = l.p;
+                    s.oid = l.oid || l.o, s.id = l.id, s.p = l.p;
                     break;
                 case "ru":
                 case "en":
-                    n.p = w[1], n.global = w[0];
+                    s.p = w[1], s.global = w[0];
                     break;
                 default:
                     if (w[0].match(/^page-?\d+_\d+$/)) {
                         var l = w[0].substr(4).split("_");
-                        n.oid = l[0], n.id = l[1], n = extend(r, n)
+                        s.oid = l[0], s.id = l[1], s = extend(r, s)
                     } else if (w[0].match(/^note\d+_\d+$/)) {
                         var l = w[0].substr(4).split("_");
-                        n.w = w[0]
+                        s.w = w[0]
                     }
             }
-            if (n.w || n.oid && (n.id || n.p)) return showWiki(n), cancelEvent(o)
+            if (s.w || s.oid && (s.id || s.p)) return showWiki(s), cancelEvent(o)
         }
     },
     edit: function() {
@@ -123,25 +123,25 @@ var WkView = {
                 }), setStyle(t, {
                     paddingTop: 0
                 }));
-                var n = ge("wke_controls"),
-                    s = ge("wke_controls_cont");
-                if (s) {
-                    var c = getXY(s, !0);
+                var s = ge("wke_controls"),
+                    n = ge("wke_controls_cont");
+                if (n) {
+                    var c = getXY(n, !0);
                     if (c[1] < 0) {
                         if (!wkcur.fixedTop) {
                             wkcur.fixedTop = !0;
-                            var k = getSize(s);
-                            addClass(wkcur.wkContent, "wke_top_fixed"), setStyle(n, {
+                            var k = getSize(n);
+                            addClass(wkcur.wkContent, "wke_top_fixed"), setStyle(s, {
                                 width: k[0],
                                 height: k[1]
-                            }), setStyle(s, {
+                            }), setStyle(n, {
                                 paddingTop: k[1]
                             })
                         }
-                    } else wkcur.fixedTop && (wkcur.fixedTop = !1, removeClass(wkcur.wkContent, "wke_top_fixed"), setStyle(n, {
+                    } else wkcur.fixedTop && (wkcur.fixedTop = !1, removeClass(wkcur.wkContent, "wke_top_fixed"), setStyle(s, {
                         width: null,
                         height: null
-                    }), setStyle(s, {
+                    }), setStyle(n, {
                         paddingTop: 0
                     }))
                 }
@@ -244,7 +244,7 @@ var WkView = {
             }, (browser.iphone || browser.ipad) && (cur.wkStartScroll = scrollGetY()), options.edit && (cur._editMode = function() {
                 return !0
             }, !window.WkEditor)) return stManager.add(["wk_editor.js", "wk_editor.css"], WkView.show.pbind(title, html, options, script, ev)), !1;
-        if (cur.cancelTooltip = !0, window.tooltips && tooltips.hideAll(), options.skipBoxesHide || boxQueue.hideAll(), isVisible(wkLayerWrap) || (otherList = !0, addEvent(window, "resize", WkView.onResize), addEvent(wkLayerWrap, "click", WkView.onClick), WkView.showLayer()), wkcur.noLocChange = 0, wkcur.noHistory = options.noLocChange, wkcur.hideTitle = options.hide_title ? 1 : 0, wkcur.hideCloseButton = options.hideCloseButton ? 1 : 0, wkcur.shown = !0, wkcur.edit && (wkcur.edit = !1), extend(wkcur, options), wkcur.root) cur.nav.push(function(e, o, r, t) {
+        if (cur.cancelTooltip = !0, window.tooltips && tooltips.hideAll(), options.skipBoxesHide || boxQueue.hideAll(), isVisible(wkLayerWrap) || (otherList = !0, addEvent(window, "resize", WkView.onResize), addEvent(wkLayerWrap, "click", WkView.onClick), WkView.showLayer()), wkcur.noLocChange = 0, wkcur.noHistory = options.noLocChange, wkcur.isArchived = options.isArchived, wkcur.hideTitle = options.hide_title ? 1 : 0, wkcur.hideCloseButton = options.hideCloseButton ? 1 : 0, wkcur.shown = !0, wkcur.edit && (wkcur.edit = !1), extend(wkcur, options), wkcur.root) cur.nav.push(function(e, o, r, t) {
             return r = nav.toStr(r), r == wkcur.prevLoc ? (WkView.hide(!0), !1) : void 0
         }), !options.noLocChange && options.myLoc && nav.setLoc(options.myLoc);
         else {
@@ -357,18 +357,18 @@ var WkView = {
             w = getSize(wkcur.wkLeftArrow)[0] || getSize(wkcur.wkRightArrow)[0];
         wkcur.wkLeftNav.style.width = Math.floor((lastWindowWidth - e - r) / 2) + "px", wkcur.wkRightNav.style.left = Math.floor((lastWindowWidth - e + r) / 2) + "px", wkcur.wkRightNav.style.width = Math.floor((lastWindowWidth - e - r) / 2) + "px", wkcur.wkClose && (wkcur.wkClose.style.left = lastWindowWidth - e - 37 + "px"), wkcur.wkRight.style.left = Math.floor((lastWindowWidth - e + r) / 2) + "px";
         var l = WkView.getNextWkRaws(),
-            n = "intro" == wkcur.wkRaw;
-        if (l[0] || l[1] || n) {
-            var s = browser.mobile ? window.innerHeight : lastWindowHeight,
-                c = (wkcur.wkCont.offsetHeight < s ? wkcur.wkCont.offsetTop + 10 + t / 2 : s / 2) - 8;
-            l[0] || n && wkcur.introControlsCur ? (show(wkcur.wkLeftArrow), show(wkcur.wkLeftArrowBg), setStyle(wkcur.wkLeftArrowBg, {
+            s = "intro" == wkcur.wkRaw;
+        if (l[0] || l[1] || s) {
+            var n = browser.mobile ? window.innerHeight : lastWindowHeight,
+                c = (wkcur.wkCont.offsetHeight < n ? wkcur.wkCont.offsetTop + 10 + t / 2 : n / 2) - 8;
+            l[0] || s && wkcur.introControlsCur ? (show(wkcur.wkLeftArrow), show(wkcur.wkLeftArrowBg), setStyle(wkcur.wkLeftArrowBg, {
                 left: (lastWindowWidth - e - r) / 2 - i
             }), setStyle(wkcur.wkLeftArrow, {
                 left: (lastWindowWidth - e - r) / 2 - a + (a - w) / 2,
                 top: c
             })) : hide(wkcur.wkLeftArrow, wkcur.wkLeftArrowBg), setStyle(wkcur.wkRight, {
                 paddingBottom: (c - getXY(wkcur.wkRight, !0)[1] - 24) / 2
-            }), l[1] || n && wkcur.introControls && wkcur.introControlsCur < wkcur.introControls.length - 1 ? (show(wkcur.wkRightArrow), show(wkcur.wkRightArrowBg), setStyle(wkcur.wkRightArrowBg, {
+            }), l[1] || s && wkcur.introControls && wkcur.introControlsCur < wkcur.introControls.length - 1 ? (show(wkcur.wkRightArrow), show(wkcur.wkRightArrowBg), setStyle(wkcur.wkRightArrowBg, {
                 left: (lastWindowWidth - e - r) / 2 + r
             }), setStyle(wkcur.wkRightArrow, {
                 left: (lastWindowWidth - e - r) / 2 + r + (a - w) / 2,
@@ -386,6 +386,9 @@ var WkView = {
         }
         return [e, o]
     },
+    recacheRaw: function(e) {
+        return cur.wkviewNavRecache && e && cur.wkviewNavRecache[e] ? (delete cur.wkviewNavRecache[e], !0) : !1
+    },
     openRaw: function(e, o) {
         cancelEvent(e), showWiki(extend({
             from: wkcur.from
@@ -395,7 +398,7 @@ var WkView = {
             fromlist: 1,
             noloader: !0,
             preload: {
-                cache: wkcur.navNoCache ? 0 : 1
+                cache: wkcur.navNoCache || WkView.recacheRaw(o) ? 0 : 1
             }
         })
     },
@@ -403,22 +406,22 @@ var WkView = {
         if ("intro" == wkcur.wkRaw) return WkView.introNext(r), cancelEvent(o), !1;
         var t = WkView.getNextWkRaws(),
             i = {};
-        wkcur.from && (i.from = wkcur.from);
-        var a = {
-            cache: wkcur.navNoCache ? 0 : 1
-        };
-        r > 0 && t[1] && (wkcur.wkRawLoading = !0, addClass(wkcur.wkRightArrow, "wk_arrow_progress"), showProgress(wkcur.wkRightArrow), showWiki(extend(i, {
+        wkcur.from && (i.from = wkcur.from), r > 0 && t[1] && (wkcur.wkRawLoading = !0, addClass(wkcur.wkRightArrow, "wk_arrow_progress"), showProgress(wkcur.wkRightArrow), showWiki(extend(i, {
             w: t[1]
         }), !1, !1, {
             fromlist: 1,
             noloader: !0,
-            preload: a
+            preload: {
+                cache: wkcur.navNoCache || WkView.recacheRaw(t[1]) ? 0 : 1
+            }
         }), cancelEvent(o)), 0 > r && t[0] && (wkcur.wkRawLoading = !0, addClass(wkcur.wkLeftArrow, "wk_arrow_progress"), hideProgress(wkcur.wkRightArrow), showWiki(extend(i, {
             w: t[0]
         }), !1, !1, {
             fromlist: -1,
             noloader: !0,
-            preload: a
+            preload: {
+                cache: wkcur.navNoCache || WkView.recacheRaw(t[0]) ? 0 : 1
+            }
         }), cancelEvent(o))
     },
     updateHeight: function() {
@@ -555,9 +558,9 @@ var WkView = {
             var a = t.tt || {},
                 w = clone(a.opts || {}),
                 l = domByClass(a.container, "_value"),
-                n = domByClass(a.container, "_content"),
-                s = domByClass(a.container, "_title");
-            r && s && val(s, r), a && (a.likeInvalidated = !0), l && (l.value = o), wkcur.likes = o, animateCount(i, o), wkcur.liked = e, toggleClass(t, "my_like", e), toggleClass(t, "no_likes", !o), toggleClass(n, "me_hidden", !e), a.el && (o ? r === !1 ? a.destroy && a.destroy() : isVisible(a.container) || r || tooltips.show(a.el, extend(w, {
+                s = domByClass(a.container, "_content"),
+                n = domByClass(a.container, "_title");
+            r && n && val(n, r), a && (a.likeInvalidated = !0), l && (l.value = o), wkcur.likes = o, animateCount(i, o), wkcur.liked = e, toggleClass(t, "my_like", e), toggleClass(t, "no_likes", !o), toggleClass(s, "me_hidden", !e), a.el && (o ? r === !1 ? a.destroy && a.destroy() : isVisible(a.container) || r || tooltips.show(a.el, extend(w, {
                 showdt: 0
             })) : a.hide())
         }
@@ -589,7 +592,7 @@ var WkView = {
                 from: "wkview_extpage"
             }, l);
             else {
-                var n = ajax.post.pbind("al_groups.php", {
+                var s = ajax.post.pbind("al_groups.php", {
                     act: w ? "a_leave" : "a_enter",
                     gid: -o,
                     hash: r,
@@ -597,10 +600,10 @@ var WkView = {
                     t_src: i,
                     ad_data: a || ""
                 }, l);
-                if (t && w) var s = showFastBox(t.title, t.text, t.btn, function() {
-                    s.hide(), n()
+                if (t && w) var n = showFastBox(t.title, t.text, t.btn, function() {
+                    n.hide(), s()
                 }, getLang("global_cancel"));
-                else n()
+                else s()
             }
         }
     },
@@ -649,6 +652,47 @@ var WkView = {
     },
     wallOnEdited: function(e) {
         wkcur.edit = !1
+    },
+    wallPostShowDeletedMessage: function(e, o) {
+        var r = ge("wl_post");
+        if (r && domData(r, "post-id") === e) {
+            cur.pgPaused = !0, hide("wl_replies_wrap", "wl_post_actions_wrap", "wl_reply_form_wrap");
+            var t = domNS(r);
+            return t && hasClass(t, "no_rows") ? val(t, o) : (t = ce("div", {
+                id: "post_del" + e,
+                innerHTML: o,
+                className: "no_rows"
+            }), domPN(r).insertBefore(t, domNS(r)), hide(r)), cur.wkviewNavRecache || (cur.wkviewNavRecache = {}), cur.wkviewNavRecache[wkcur.wkRaw] = 1, wkLayerWrap.scrollTop = 0, WkView.updateSize(), !0
+        }
+        return !1
+    },
+    wallPostHideDeletedMessage: function(e) {
+        var o = ge("wl_post");
+        if (o && domData(o, "post-id") === e) {
+            cur.pgPaused = !1, show("wl_replies_wrap", "wl_post_actions_wrap", "wl_reply_form_wrap");
+            var r = domNS(o);
+            return r && hasClass(r, "no_rows") && re(r), show(o), cur.wkviewNavRecache || (cur.wkviewNavRecache = {}), cur.wkviewNavRecache[wkcur.wkRaw] = 1, wkLayerWrap.scrollTop = 0, WkView.updateSize(), !0
+        }
+        return !1
+    },
+    wallPostSetArchiveState: function(e, o, r, t, i) {
+        if (!actionsMenuItemLocked(e) && !linkLocked(e)) {
+            var a = intval(o.split("_")[1]),
+                w = hasClass(e, "ui_actions_menu_item");
+            ajax.post("al_wall_archive.php", {
+                act: "a_set_state",
+                from: "wkview",
+                hash: r,
+                state: t ? 1 : 0,
+                postId: a
+            }, {
+                onDone: function(e) {
+                    i ? WkView.wallPostHideDeletedMessage(o) : WkView.wallPostShowDeletedMessage(o, e)
+                },
+                showProgress: w ? lockActionsMenuItem.pbind(e) : lockLink(e),
+                hideProgress: w ? unlockActionsMenuItem.pbind(e) : unlockLink(e)
+            })
+        }
     },
     wallPostDelete: function(act, hash, force) {
         var post = wkcur.post;
@@ -714,15 +758,15 @@ var WkView = {
             var w = ge("wl_reply_form");
             if (w && !hasClass(w, "wl_post_reply_form_forbidden")) {
                 var l = ge("wl_reply_form_wrap"),
-                    n = getXY(l, !0)[1],
-                    s = getSize(w);
-                if (formH = s[1], e && wkcur.fixedBottom === !1 && o - formH < n + 20) wkLayerWrap.scrollTop += n + 20 - (o - formH);
-                else if (isVisible(l) && o - formH < n) {
+                    s = getXY(l, !0)[1],
+                    n = getSize(w);
+                if (formH = n[1], e && wkcur.fixedBottom === !1 && o - formH < s + 20) wkLayerWrap.scrollTop += s + 20 - (o - formH);
+                else if (isVisible(l) && o - formH < s) {
                     (!wkcur.fixedBottom || e) && (wkcur.fixedBottom = !0, addClass(w, "wl_reply_form_fixed"));
                     var c = wkcur.fixedBottom ? Math.min(0, Math.max(-wkLayerWrap.scrollLeft, bodyNode.clientWidth - getSize(ge("page_layout"))[0])) : null;
                     setStyle("wl_reply_form_wrap", {
-                        width: s[0],
-                        height: s[1],
+                        width: n[0],
+                        height: n[1],
                         bottom: k,
                         marginLeft: c
                     });
@@ -820,10 +864,11 @@ var WkView = {
             clear: !0,
             rev: wkcur.reverse ? 1 : 0,
             onDone: function(o, r, t) {
-                domFC(e).className = wkcur.reverse ? "sort_rev_icon" : "sort_not_rev_icon", extend(wkcur, {
-                    count: t.count,
-                    loaded: t.num
-                }), WkView.wallUpdateReplies(), wkcur.loadingReplies = !1
+                domFC(e).className = wkcur.reverse ? "sort_rev_icon" : "sort_not_rev_icon",
+                    extend(wkcur, {
+                        count: t.count,
+                        loaded: t.num
+                    }), WkView.wallUpdateReplies(), wkcur.loadingReplies = !1
             },
             onFail: function() {
                 wkcur.reverse = !wkcur.reverse, wkcur.loadingReplies = !1
@@ -898,7 +943,7 @@ var WkView = {
                 var w = ge("wk_likes_rows");
                 if (w) {
                     if (a)
-                        for (var l = geByClass("wk_likes_hidden", w), n = 0, s = l.length; s > n; ++n) w.appendChild(l[n]), removeClass(l[n], "wk_likes_hidden");
+                        for (var l = geByClass("wk_likes_hidden", w), s = 0, n = l.length; n > s; ++s) w.appendChild(l[s]), removeClass(l[s], "wk_likes_hidden");
                     w.appendChild(cf(o)), wkcur.offset = r, t ? WkView.likesPreload() : hide(e), WkView.updateHeight(), i && extend(cur.options.reply_names, i)
                 }
             },
@@ -1122,12 +1167,12 @@ var WkView = {
             post_id: r
         }, {
             onDone: function(t) {
-                t && (ge("wl_reply_form_wrap").appendChild(se(t)), !e && WkView.wallAfterInitPost(), WkView.onCloseComments(e, o, r, !0))
+                t && (ge("wl_reply_form_wrap").appendChild(se(t)), !e && !wkcur.isArchived && WkView.wallAfterInitPost(), WkView.onCloseComments(e, o, r, !0))
             }
         });
         var a = e ? ge("wl_reply_form") : geByClass1("wl_post_reply_form_forbidden"),
             w = ge("wl_post");
-        toggleClass(w, "closed_comments", e), show(i), hide(a);
+        wkcur.isArchived ? (toggleClass(w, "closed_comments", !0), hide(i), hide(a)) : (toggleClass(w, "closed_comments", e), show(i), hide(a));
         var l = geByClass1("action_closing_comments", w);
         domData(l, "closed", e), val(l, getLang(e ? "wall_open_comments" : "wall_closing_comments"))
     },

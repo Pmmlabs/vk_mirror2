@@ -6519,13 +6519,27 @@ a.page_media_link_desc {
 }
 
 .no_posts {
-    padding: 37px 20px 49px;
+    padding: 36px 20px;
     color: #656565;
-    text-align: center
+    text-align: center;
+    line-height: 19px
+}
+
+.no_posts--cta {
+    color: #000
+}
+
+.no_posts--cta a {
+    display: inline-block;
+    padding-top: 8px
+}
+
+.no_posts--archive .no_posts_cover {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2262%22%20height%3D%2275%22%3E%3Cpath%20fill%3D%22%23D5DFE9%22%20d%3D%22M59.014%209H9v64h50.014V9zM7%2066V8c0-.552.45-1%201.007-1h44.007V2H2v64h5zM54.014%207h5.993c.556%200%201.007.452%201.007%201v66c0%20.552-.45%201-1.007%201h-52A1.007%201.007%200%200%201%207%2074v-6H1.007A1.007%201.007%200%200%201%200%2067V1c0-.552.45-1%201.007-1h52c.556%200%201.007.452%201.007%201v6zM23.839%2034.864l-2.417.832a1%201%200%200%201-.651-1.89l4.68-1.612a1%201%200%200%201%201.271.62l1.612%204.68a1%201%200%201%201-1.891.65l-.819-2.375c-.092.165-.18.333-.264.505-2.42%204.964-.36%2010.95%204.604%2013.371a9.972%209.972%200%200%200%208.254.234%201%201%200%200%201%20.773%201.844%2011.972%2011.972%200%200%201-9.903-.28c-5.957-2.905-8.43-10.09-5.525-16.046.088-.18.18-.358.276-.533zm6.83-3.505a1%201%200%200%201-.735-1.86%2011.969%2011.969%200%200%201%209.675.373c5.956%202.905%208.43%2010.09%205.525%2016.046a12.074%2012.074%200%200%201-1.025%201.723%201%201%200%201%201-1.628-1.162c.322-.452.608-.932.855-1.438%202.421-4.964.36-10.95-4.604-13.371a9.97%209.97%200%200%200-8.063-.311zm8.824.798a1%201%200%200%201%201.034-1.712c5.29%203.197%207.295%209.932%204.567%2015.524-2.727%205.592-9.269%208.16-15.045%205.96a1%201%200%200%201%20.712-1.87c4.811%201.833%2010.263-.307%2012.536-4.966%202.272-4.66.602-10.273-3.804-12.936zm-.074%2010.663a1%201%200%201%201-.64%201.895l-5.783-1.953a1%201%200%200%201-.68-.947v-5.903a1%201%200%201%201%202%200v5.185l5.103%201.723z%22%2F%3E%3C%2Fsvg%3E') 50% 0 no-repeat
 }
 
 .no_posts_cover {
-    height: 99px;
+    height: 97px;
     background: url(/images/no_posts.png) no-repeat 50% 0
 }
 
@@ -8848,6 +8862,11 @@ div.submit_post_field[contenteditable=true]>p {
 
 .wpe_info {
     color: #939393
+}
+
+.explain .divider:before,
+.wpe_info .divider:before {
+    vertical-align: unset
 }
 
 .wpe_text_cont {
@@ -11906,6 +11925,11 @@ button.wall_block_app_btn {
     padding-top: 0
 }
 
+.page_wall_posts.archive .wall_archived_label,
+.wall_posts.archive .wall_archived_label {
+    display: none
+}
+
 .wall_post_report_cont {
     position: relative;
     border: 1px solid #fff;
@@ -12711,7 +12735,9 @@ button.wall_block_app_btn {
     padding: 0 20px;
     word-break: break-word;
     word-wrap: break-word;
-    text-shadow: 0 4px 21px rgba(0, 0, 0, .32)
+    text-shadow: 0 4px 21px rgba(0, 0, 0, .32);
+    max-width: 100%;
+    box-sizing: border-box
 }
 
 .article_snippet.article_snippet__long_title .article_snippet__title {
@@ -13816,4 +13842,15 @@ button.wall_block_app_btn {
 
 .group_notify_sources_box .box_body .flist_item_name {
     width: 300px
+}
+
+.wall_archive_link_block {
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    line-height: 1.462
+}
+
+.wall_archive_link {
+    padding-top: 15px
 }
