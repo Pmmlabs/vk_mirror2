@@ -1256,7 +1256,8 @@ table.ads_logs_info th {
 
 #ads_edit_stories_preview_container.premoderation {
     display: -ms-flexbox;
-    display: flex
+    display: flex;
+    cursor: pointer
 }
 
 #ads_edit_stories_preview_container.premoderation .ads_preview_stories_item {

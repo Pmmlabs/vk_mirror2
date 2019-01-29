@@ -829,6 +829,15 @@ input.BlockSearchInput {
     background: #e7edf2
 }
 
+.Dropdown__item_separator {
+    pointer-events: none;
+    margin: 4px 12px;
+    padding: 0;
+    height: 1px;
+    background: #dbe4ec;
+    content: ''
+}
+
 .Dropdown--t {
     -ms-flex-align: end;
     align-items: flex-end

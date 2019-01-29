@@ -3714,7 +3714,8 @@ td.ads_settings_notifications_label {
 }
 
 #ads_edit_stories_preview_container {
-    position: relative
+    position: relative;
+    cursor: pointer
 }
 
 .ads_preview_stories_item {
@@ -3754,10 +3755,26 @@ td.ads_settings_notifications_label {
     left: 44px
 }
 
+.ads_preview_stories_item_video_icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 23px;
+    height: 23px;
+    margin-top: -12px;
+    margin-left: -14px;
+    background-image: url('/images/ad_video_play.png');
+    background-size: contain;
+    z-index: 19;
+    border: 2px solid hsla(0, 0%, 100%, .8);
+    border-radius: 100px
+}
+
 .ads_preview_stories_item_owner_wrapper {
     position: absolute;
     left: 0;
     bottom: 0;
+    padding-top: 42px;
     padding-bottom: 10px;
     width: 100%;
     z-index: 20;
@@ -3769,7 +3786,7 @@ td.ads_settings_notifications_label {
 .ads_preview_stories_item_owner_photo_wrapper {
     margin: 0 auto;
     border-radius: 44px;
-    border: 2px solid #a3a3a3;
+    border: 2px solid #70c1ff;
     width: 38px
 }
 
@@ -3783,7 +3800,7 @@ td.ads_settings_notifications_label {
 
 .ads_preview_stories_item_owner_name {
     font-size: 12px;
-    color: #e0e0e0;
+    color: #99d3ff;
     text-align: center;
     text-shadow: 0 1px 6px rgba(0, 0, 0, .4);
     white-space: nowrap;
