@@ -39910,7 +39910,8 @@ body.apps_settingsPageBody {
  */
 
 .cp_attached_post .Voting {
-    margin: 7px 7px 0
+    margin: 7px 7px 0;
+    clear: both
 }
 
 

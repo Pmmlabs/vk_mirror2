@@ -126,8 +126,8 @@ var navMap = {
     'story(-?\\d+)_(\\d+)$': ['al_stories.php', ['stories.css', 'stories.js']],
     'narrative(-?\\d+)_(\\d+)$': ['al_stories.php', ['stories.css', 'stories.js']],
     'mask(-?\\d+)_(\\d+)$': ['al_masks.php', []],
-    '(bugtracker|bugs)($|/)': ['al_bugtracker.php', ['bugtracker.css', 'bugtracker.js']],
-    'bugtracker_adm($|/)': ['al_bugtracker_adm.php', ['bugtracker.css', 'bugtracker.js']],
+    '(bugtracker|bugs)($|/)': ['al_bugtracker.php', ['bugtracker.css', 'cmodules/web/bugtracker.js']],
+    'bugtracker_adm($|/)': ['al_bugtracker_adm.php', ['bugtracker.css', 'cmodules/web/bugtracker.js']],
     'datasets($|/)': ['datasets.php', []],
     'landings$': ['landings.php', []],
     'ach($|/)': ['achievements.php', ['achievements.css', 'achievements.js']],
@@ -368,9 +368,8 @@ var stVersions = {
     'meminfo.css': 29444330356,
     'groupinfo.css': 87708130900,
     'ownerinfo.css': 7546427815,
-    'bugtracker.js': 1258735500,
     'bugtracker.css': 21107329778,
-    'cmodules/web/bugtracker.js': 34713598380,
+    'cmodules/web/bugtracker.js': 36664532640,
     'login.css': 22080948291,
     'cmodules/web/login.js': 2483201193,
     'upload.js': 2558068015,
@@ -664,4 +663,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 870;
+var _rnd = 9459;
