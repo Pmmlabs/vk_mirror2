@@ -6,19 +6,19 @@
     function a(e, t, a) {
         function r(t, a) {
             re(o);
-            var i = getSize(cur.pvCont)[1],
+            var n = getSize(cur.pvCont)[1],
                 r = se(t);
-            cur.pvNarrowColumnWrap.appendChild(r), setStyle(r, "height", i), hide(cur.pvNarrowColumn), Le = {}, J = a, J.hash = e.pe_hash, Le.stickersListEl = geByClass1("pe_sticker_pack_list"), Le.tabs = geByClass("pe_tab"), Le.tabContents = geByClass("pe_tab_content"), Le.editPanel = r, extend(cur.lang, a.lang), each(J.stickerPacks, function(e, t) {
+            cur.pvNarrowColumnWrap.appendChild(r), setStyle(r, "height", n), hide(cur.pvNarrowColumn), Le = {}, J = a, J.hash = e.pe_hash, Le.stickersListEl = geByClass1("pe_sticker_pack_list"), Le.tabs = geByClass("pe_tab"), Le.tabContents = geByClass("pe_tab_content"), Le.editPanel = r, extend(cur.lang, a.lang), each(J.stickerPacks, function(e, t) {
                 each(t, function(e, t) {
-                    Pe[t.id] = t
+                    Be[t.id] = t
                 })
-            }), v(), Be = se("<div></div>"), cur.pvBottomInfo.appendChild(Be), J.edited && J.canEdit && !cur.shownAs1AprilEditor ? Be.appendChild(se('<a class="pe_restore_link" onclick="SPE.restoreOriginal()">' + getLang("photos_filtered_restore") + "</a>")) : J.canEdit || cur.shownAs1AprilEditor || Be.appendChild(se('<span class="pe_bottom_info">' + getLang("photos_will_be_saved_to_pe_album") + "</span>")), Be.appendChild(G = se('<a class="pe_delete_selected_btn" onclick="SPE.deleteSelected()"></a>')), U = geByClass1("_pe_save_btn"), cur.shownAs1AprilEditor && (hide(geByClass1("pe_tabs", "pv_box")), Le.info1April = ce("div", {
+            }), v(), Pe = se("<div></div>"), cur.pvBottomInfo.appendChild(Pe), J.edited && J.canEdit && !cur.shownAs1AprilEditor ? Pe.appendChild(se('<a class="pe_restore_link" onclick="SPE.restoreOriginal()">' + getLang("photos_filtered_restore") + "</a>")) : J.canEdit || cur.shownAs1AprilEditor || Pe.appendChild(se('<span class="pe_bottom_info">' + getLang("photos_will_be_saved_to_pe_album") + "</span>")), Pe.appendChild(G = se('<a class="pe_delete_selected_btn" onclick="SPE.deleteSelected()"></a>')), U = geByClass1("_pe_save_btn"), cur.shownAs1AprilEditor && (hide(geByClass1("pe_tabs", "pv_box")), Le.info1April = ce("div", {
                 className: "pe_1april_info",
                 innerHTML: e.pe_data.info_1april
             }), cur.pvBox.appendChild(Le.info1April), Le.stickersLimit1AprilMsg = ce("div", {
                 className: "pe_1april_stickers_limit",
                 innerHTML: e.pe_data.stickers_limit_1april.replace("{selected}", '<span id="pe_1april_selected_stickers_count"></span>').replace("{limit}", '<span class="bold">' + be + "</span>")
-            }), cur.pvBottomInfo.appendChild(Le.stickersLimit1AprilMsg)), this.openTab(ge("pe_tab_stickers")), n()
+            }), cur.pvBottomInfo.appendChild(Le.stickersLimit1AprilMsg)), this.openTab(ge("pe_tab_stickers")), i()
         }
         s(), V = t, Z = a, addClass(cur.pvCont, "pv_pe");
         var o = se('<div id="pe_font_preload">      <div style="font-family: \'ImpactPE\'">test</div>       <div style="font-family: \'Lobster\'">test</div>       <div style="font-family: \'RobotoPE\'">test</div>     </div>');
@@ -28,22 +28,22 @@
             hash: e.pe_hash
         }, {
             onDone: r.bind(this)
-        }), cur.shownAs1AprilEditor && i()
+        }), cur.shownAs1AprilEditor && n()
     }
 
-    function i() {
+    function n() {
         for (var e = cur.pvPhWidth < cur.pvCurData.width ? (cur.pvCurData.width - cur.pvPhWidth) / 2 : 0, t = (cur.pvPhHeight < 449 ? (cur.pvCurData.height - cur.pvPhHeight) / 2 : 0, cur.pvCurPhoto.faked_detected), a = 0; a < t.faces.length; a++) {
-            var i = t.faces[a],
-                n = ze[irand(0, ze.length - 1)],
-                r = Math.max(xe, Math.min(Se, i.width)),
-                s = E("sticker", i.x, i.y, extend(Pe[n], {
+            var n = t.faces[a],
+                i = ze[irand(0, ze.length - 1)],
+                r = Math.max(xe, Math.min(Se, n.width)),
+                s = E("sticker", n.x, n.y, extend(Be[i], {
                     size: [r, r],
                     packId: "editor"
                 })),
-                o = i.y0 - .7 * r,
-                l = i.x0 - e;
+                o = n.y0 - .7 * r,
+                l = n.x0 - e;
             e && (r -= e / 2), setStyle(s, {
-                transform: "rotate(" + i.rotate + "deg)",
+                transform: "rotate(" + n.rotate + "deg)",
                 width: r,
                 height: r,
                 top: o,
@@ -53,17 +53,17 @@
         for (var a = 0; a < t.ext.length; a++) {
             var c = t.ext[a];
             for (var d in c) {
-                var p, i = c[d],
+                var p, n = c[d],
                     l = 0,
                     o = 0,
                     h = 0;
-                if ("eyes" === d ? p = De[irand(0, De.length - 1)] : "nose" === d && (p = Te[irand(0, Te.length - 1)]), l = i.x, o = i.y, h = i.width, e && (h -= e / 2), !(30 > h)) {
-                    var s = E("sticker", 0, 0, extend(Pe[p], {
+                if ("eyes" === d ? p = De[irand(0, De.length - 1)] : "nose" === d && (p = Te[irand(0, Te.length - 1)]), l = n.x, o = n.y, h = n.width, e && (h -= e / 2), !(30 > h)) {
+                    var s = E("sticker", 0, 0, extend(Be[p], {
                         size: [r, r],
                         packId: "editor"
                     }));
                     setStyle(s, {
-                        transform: "rotate(" + i.rotate + "deg)",
+                        transform: "rotate(" + n.rotate + "deg)",
                         width: h,
                         height: h,
                         top: o,
@@ -74,7 +74,7 @@
         }
     }
 
-    function n() {
+    function i() {
         var e = z(!0).length > 0 || Ie.length > 0 || Le.textLayers.children.length > 0;
         if (toggleClass(U, "button_disabled", !e), cur.shownAs1AprilEditor) {
             var t = Le.stickerLayers.children.length;
@@ -85,7 +85,7 @@
     }
 
     function r() {
-        removeClass(cur.pvCont, "pv_pe"), show(cur.pvNarrowColumn), re(Le.editPanel), re(Le.canvasEl), re(de), Be && re(Be), show(domFC(cur.pvBottomInfo)), Z()
+        removeClass(cur.pvCont, "pv_pe"), show(cur.pvNarrowColumn), re(Le.editPanel), re(Le.canvasEl), re(de), Pe && re(Pe), show(domFC(cur.pvBottomInfo)), Z()
     }
 
     function s() {
@@ -94,20 +94,20 @@
 
     function o() {
         function e() {
-            n = Math.max(Math.min(0, n), s), setStyle(a, "left", n), toggle(t[0], 0 > n), toggle(t[1], n > s)
+            i = Math.max(Math.min(0, i), s), setStyle(a, "left", i), toggle(t[0], 0 > i), toggle(t[1], i > s)
         }
         var t = geByClass("pe_sticker_pack_tab_btn"),
             a = geByClass1("pe_sticker_packs_slider_cont"),
-            i = domPN(a),
-            n = intval(getStyle(a, "left")),
+            n = domPN(a),
+            i = intval(getStyle(a, "left")),
             r = 250,
-            s = -a.scrollWidth + getSize(i)[0];
-        addEvent(i, "mousewheel", function(t) {
-            n -= t.deltaY, e()
+            s = -a.scrollWidth + getSize(n)[0];
+        addEvent(n, "mousewheel", function(t) {
+            i -= t.deltaY, e()
         }), addEvent(t[0], "click", function(t) {
-            return n += r, e(), cancelEvent(t)
+            return i += r, e(), cancelEvent(t)
         }), addEvent(t[1], "click", function(t) {
-            return n -= r, e(), cancelEvent(t)
+            return i -= r, e(), cancelEvent(t)
         })
     }
 
@@ -133,7 +133,7 @@
 
     function c() {
         var e = te;
-        w(), re(e), n()
+        w(), re(e), i()
     }
 
     function d(e) {
@@ -141,12 +141,12 @@
     }
 
     function p(e, t, a) {
-        var i = e + "_" + t;
-        if (!Fe[i] || a) {
-            var n = vkImage();
-            n.crossOrigin = "anonymous", n.onload = function() {
+        var n = e + "_" + t;
+        if (!Fe[n] || a) {
+            var i = vkImage();
+            i.crossOrigin = "anonymous", i.onload = function() {
                 a && a(this)
-            }, n.src = Pe[e].sizes[t], Fe[i] = n
+            }, i.src = Be[e].sizes[t], Fe[n] = i
         }
     }
 
@@ -160,22 +160,22 @@
             removeClass(this, "pe_selected")
         }), addClass("pe_stickers_pack_tab_" + e, "pe_selected"), ae && ae.destroy(), Le.stickersListEl.innerHTML = "", setStyle(Le.stickersListEl, "height", getXY(cur.pvCont)[1] + getSize(cur.pvCont)[1] - getXY(Le.stickersListEl)[1] - getSize(geByClass1("pe_bottom_actions"))[1]);
         var a = 0,
-            i = 16;
+            n = 16;
         ae = new uiScroll(Le.stickersListEl, {
             onmoreThreshold: 200,
             onmore: function(t) {
-                var n = J.stickerPacks[e].slice(a, a + i);
-                each(n, function(e, a) {
+                var i = J.stickerPacks[e].slice(a, a + n);
+                each(i, function(e, a) {
                     t.content.appendChild(se('<div class="pe_sticker_preview" data-sticker-id="' + a.id + '"><img src="' + a.sizes[me] + '"/></div>'))
-                }), a += i
+                }), a += n
             }
         });
-        var n, r;
+        var i, r;
         removeEvent(Le.stickersListEl, "mousedown"), addEvent(Le.stickersListEl, "mousedown", function(a) {
-            var i = domClosest("pe_sticker_preview", a.target);
-            if (i && !(cur.shownAs1AprilEditor && Le.stickerLayers.children.length >= be)) {
-                var s = domData(i, "sticker-id"),
-                    o = Pe[s],
+            var n = domClosest("pe_sticker_preview", a.target);
+            if (n && !(cur.shownAs1AprilEditor && Le.stickerLayers.children.length >= be)) {
+                var s = domData(n, "sticker-id"),
+                    o = Be[s],
                     l = 1;
                 p(s, ke, function(e) {
                     l = e.width / e.height
@@ -184,7 +184,7 @@
                 cur.pvCont.appendChild(c);
                 var d = [a.pageX, a.pageY],
                     h = 0;
-                return n = function(e) {
+                return i = function(e) {
                     var t = [we * l, we];
                     cur.shownAs1AprilEditor && (t = [128 * l, 128]), setStyle(c, {
                         left: e.pageX - t[0] / 2,
@@ -192,15 +192,15 @@
                     });
                     var a = [e.pageX - d[0], e.pageY - d[1]];
                     h = Math.sqrt(a[0] * a[0] + a[1] * a[1])
-                }, addEvent(window, "mousemove", n), addEvent(window, "mouseup", r = function(a) {
-                    var i = getSize(geByTag1("img", c));
+                }, addEvent(window, "mousemove", i), addEvent(window, "mouseup", r = function(a) {
+                    var n = getSize(geByTag1("img", c));
                     re(c);
                     var s = g(a);
-                    i && i[0] || (i = [we, we], cur.shownAs1AprilEditor && t() && (i = [we / 2, we / 2])), o = extend({}, o, {
-                        size: i,
+                    n && n[0] || (n = [we, we], cur.shownAs1AprilEditor && t() && (n = [we / 2, we / 2])), o = extend({}, o, {
+                        size: n,
                         packId: e
-                    }), s[0] > 0 && s[0] < K[0] && s[1] > 0 && s[1] < K[1] ? E("sticker", s[0], s[1], o) : 5 > h && E("sticker", K[0] / 2, K[1] / 2, o), removeEvent(window, "mousemove", n), removeEvent(window, "mouseup", r)
-                }), n(a), cancelEvent(a)
+                    }), s[0] > 0 && s[0] < K[0] && s[1] > 0 && s[1] < K[1] ? E("sticker", s[0], s[1], o) : 5 > h && E("sticker", K[0] / 2, K[1] / 2, o), removeEvent(window, "mousemove", i), removeEvent(window, "mouseup", r)
+                }), i(a), cancelEvent(a)
             }
         })
     }
@@ -215,12 +215,12 @@
             marginTop: e.style.marginTop,
             marginLeft: e.offsetLeft
         }), K = t, cur.pvPhoto.appendChild(Le.canvasEl), Le.textEdits = cur.pvCont, Le.stickerLayers = geByClass1("pe_canvas_sticker_layers", Le.canvasEl), Le.textLayers = geByClass1("pe_canvas_text_layers", Le.canvasEl), Le.drawingCanvas = geByClass1("pe_drawing_canvas", Le.canvasEl);
-        var a, i;
+        var a, n;
         addEvent(Le.canvasEl, "mousedown", function(e) {
             return hasClass(e.target, "pe_textarea") ? void e.originalEvent.stopPropagation() : (cancelEvent(e), $ && $(e), a && removeEvent(window, "mousemove", a), addEvent(window, "mousemove", a = function(e) {
                 Q && Q(e)
-            }), i && removeEvent(window, "mouseup", i), addEvent(window, "mouseup", i = function(e) {
-                ee && ee(e), removeEvent(window, "mousemove", a), removeEvent(window, "mouseup", i)
+            }), n && removeEvent(window, "mouseup", n), addEvent(window, "mouseup", n = function(e) {
+                ee && ee(e), removeEvent(window, "mousemove", a), removeEvent(window, "mouseup", n)
             }), !1)
         })
     }
@@ -228,8 +228,8 @@
     function u(e, t) {
         if (t) return [e.offsetLeft, e.offsetTop];
         var a = getXY(Le.canvasEl),
-            i = getXY(e);
-        return [i[0] - a[0], i[1] - a[1]]
+            n = getXY(e);
+        return [n[0] - a[0], n[1] - a[1]]
     }
 
     function f(e) {
@@ -250,7 +250,7 @@
     }
 
     function w() {
-        P(), ie && (re(ie), te = !1), hide(G)
+        B(), ne && (re(ne), te = !1), hide(G)
     }
 
     function C() {
@@ -258,11 +258,11 @@
     }
 
     function k(e) {
-        if (w(), ie && re(ie), ie = se('       <div class="pe_layer_selection">         <div class="pe_layer_selection_handler" id="pe_nw"></div>         <div class="pe_layer_selection_handler" id="pe_ne"></div>         <div class="pe_layer_selection_handler" id="pe_se"></div>         <div class="pe_layer_selection_handler" id="pe_sw"></div>       </div>     '), e.appendChild(ie), te = e, y(te)) {
+        if (w(), ne && re(ne), ne = se('       <div class="pe_layer_selection">         <div class="pe_layer_selection_handler" id="pe_nw"></div>         <div class="pe_layer_selection_handler" id="pe_ne"></div>         <div class="pe_layer_selection_handler" id="pe_se"></div>         <div class="pe_layer_selection_handler" id="pe_sw"></div>       </div>     '), e.appendChild(ne), te = e, y(te)) {
             var t = m(te);
-            ne = parseInt(t.style.fontSize), le = t.style.fontFamily, oe = domData(t, "color-index");
+            ie = parseInt(t.style.fontSize), le = t.style.fontFamily, oe = domData(t, "color-index");
             var a = ge("pe_font_roboto");
-            le.toLowerCase().indexOf("impact") >= 0 && (a = ge("pe_font_impact")), le.toLowerCase().indexOf("lobster") >= 0 && (a = ge("pe_font_lobster")), radiobtn(a, 1, "pe_fonts"), pe.setValue((ne - Ee) / 100), A(ge("pe_text_color_picker"), oe)
+            le.toLowerCase().indexOf("impact") >= 0 && (a = ge("pe_font_impact")), le.toLowerCase().indexOf("lobster") >= 0 && (a = ge("pe_font_lobster")), radiobtn(a, 1, "pe_fonts"), pe.setValue((ie - Ee) / 100), A(ge("pe_text_color_picker"), oe)
         }
         G.innerHTML = y(te) ? getLang("photos_pe_delete_text") : getLang("photos_pe_delete_sticker"), show(G)
     }
@@ -271,19 +271,19 @@
         $ = function(e) {
             if (hasClass(e.target, "pe_layer_selection_handler")) {
                 var t, a = e.target.id.split("_")[1],
-                    i = gpeByClass("pe_canvas_layer", e.target),
-                    n = f(i),
-                    r = u(i, !0),
-                    s = [r[0] + n[0] / 2, r[1] + n[1] / 2];
+                    n = gpeByClass("pe_canvas_layer", e.target),
+                    i = f(n),
+                    r = u(n, !0),
+                    s = [r[0] + i[0] / 2, r[1] + i[1] / 2];
                 switch (a) {
                     case "se":
-                        t = [r[0] + n[0] - s[0], r[1] + n[1] - s[1]];
+                        t = [r[0] + i[0] - s[0], r[1] + i[1] - s[1]];
                         break;
                     case "sw":
-                        t = [r[0] - s[0], r[1] + n[1] - s[1]];
+                        t = [r[0] - s[0], r[1] + i[1] - s[1]];
                         break;
                     case "ne":
-                        t = [r[0] + n[0] - s[0], r[1] - s[1]];
+                        t = [r[0] + i[0] - s[0], r[1] - s[1]];
                         break;
                     case "nw":
                         t = [r[0] - s[0], r[1] - s[1]]
@@ -299,8 +299,8 @@
                     if (!y(te)) {
                         var d = Math.max(xe, Math.sqrt(r[0] * r[0] + r[1] * r[1])),
                             p = d / o,
-                            h = n[0] * p,
-                            _ = n[1] * p;
+                            h = i[0] * p,
+                            _ = i[1] * p;
                         cur.shownAs1AprilEditor && (h = Math.min(Se, h), _ = Math.min(Se, _)), extend(c, {
                             width: h,
                             height: _,
@@ -308,7 +308,7 @@
                             top: s[1] - _ / 2
                         })
                     }
-                    setStyle(i, c)
+                    setStyle(n, c)
                 }, void(ee = !1)
             }
             var l = e.target;
@@ -327,7 +327,7 @@
                 })
             }, ee = function(e) {
                 var t = _ ? Math.sqrt(_[0] * _[0] + _[1] * _[1]) : 0;
-                if (d && y(l) && 2 >= t) return w(), void B(l);
+                if (d && y(l) && 2 >= t) return w(), void P(l);
                 if (cur.shownAs1AprilEditor) {
                     var a = getSize(l);
                     (l.offsetTop < -a[1] | l.offsetLeft < -a[0] || l.offsetTop > cur.pvPhHeight || l.offsetLeft > cur.pvPhWidth) && c()
@@ -336,7 +336,7 @@
         }
     }
 
-    function E(e, a, i, r) {
+    function E(e, a, n, r) {
         var s = se('<div class="pe_canvas_layer"></div>');
         if (w(), "sticker" == e) {
             setStyle(s, "background-image", "url('" + r.sizes[me] + "')"), domData(s, "sticker-id", r.id), domData(s, "pack-id", r.packId);
@@ -344,7 +344,7 @@
                 l = [we * o, we];
             cur.shownAs1AprilEditor && t() && (l = [128 * o, 128]), setStyle(s, {
                 left: a - l[0] / 2,
-                top: i - l[1] / 2,
+                top: n - l[1] / 2,
                 width: l[0],
                 height: l[1]
             });
@@ -358,7 +358,7 @@
             var d = J.textPlaceholders[irand(0, J.textPlaceholders.length - 1)];
             s.innerHTML = '<span class="pe_layer_text_inner">' + d + "</span>", setStyle(m(s), {
                 fontFamily: le,
-                fontSize: ne,
+                fontSize: ie,
                 color: Ae[oe]
             }), setStyle(s, "visibility", "hidden"), domData(m(s), "color-index", oe), setTimeout(function() {
                 var e = getSize(s);
@@ -369,21 +369,21 @@
                 })
             }), addClass(s, "pe_canvas_text_layer"), Le.textLayers.appendChild(s)
         }
-        return n(), s
+        return i(), s
     }
 
     function b(e) {
         if (y(te)) {
             e || (e = {
                 fontFamily: le,
-                fontSize: ne,
+                fontSize: ie,
                 color: Ae[oe]
             });
             var t = m(te),
                 a = e.fontFamily ? e.fontFamily : t.style.fontFamily,
-                i = a.toLowerCase().indexOf("impact") >= 0,
-                n = a.toLowerCase().indexOf("lobster") >= 0;
-            setStyle(t, e), toggleClass(t, "pe_text_impact_style", i), toggleClass(t, "pe_text_lobster_style", n), de && (setStyle(de, e), toggleClass(de, "pe_text_impact_style", i), toggleClass(de, "pe_text_lobster_style", n), triggerEvent(de, "change"))
+                n = a.toLowerCase().indexOf("impact") >= 0,
+                i = a.toLowerCase().indexOf("lobster") >= 0;
+            setStyle(t, e), toggleClass(t, "pe_text_impact_style", n), toggleClass(t, "pe_text_lobster_style", i), de && (setStyle(de, e), toggleClass(de, "pe_text_impact_style", n), toggleClass(de, "pe_text_lobster_style", i), triggerEvent(de, "change"))
         }
     }
 
@@ -401,7 +401,7 @@
             fireChangeEventOnInit: !0,
             size: 2,
             onChange: function(e) {
-                e = 100 * e + Ee, ne = e, b({
+                e = 100 * e + Ee, ie = e, b({
                     fontSize: e
                 })
             },
@@ -423,10 +423,10 @@
     function L() {
         w();
         var e = E("text", 0, 0);
-        setTimeout(B.pbind(e), 5)
+        setTimeout(P.pbind(e), 5)
     }
 
-    function P() {
+    function B() {
         if (te && y(te)) {
             var e = geByClass1("pe_textarea", Le.textEdits);
             if (e) {
@@ -436,14 +436,14 @@
         }
     }
 
-    function B(e) {
+    function P(e) {
         var t = se('<textarea class="pe_textarea"></textarea>'),
             a = f(e),
-            i = u(e, !0),
-            n = m(e),
-            r = n.innerHTML;
+            n = u(e, !0),
+            i = m(e),
+            r = i.innerHTML;
         r = r.replace(/<\/?br>/g, "\n"), val(t, unclean(r));
-        var s = window.getComputedStyle(n),
+        var s = window.getComputedStyle(i),
             o = {
                 color: "white",
                 fontFamily: s.fontFamily,
@@ -452,8 +452,8 @@
         setStyle(t, extend({
             width: a[0] + 2,
             height: a[1],
-            left: i[0] + parseInt(Le.textEdits.style.paddingLeft) + parseInt(Le.canvasEl.style.marginLeft),
-            top: i[1] + parseInt(Le.canvasEl.style.marginTop)
+            left: n[0] + parseInt(Le.textEdits.style.paddingLeft) + parseInt(Le.canvasEl.style.marginLeft),
+            top: n[1] + parseInt(Le.canvasEl.style.marginTop)
         }, o)), Le.textEdits.appendChild(t), t.select(), t.focus();
         var l = !0;
         addEvent(t, "input paste change", function() {
@@ -462,12 +462,12 @@
                 if (!trim(e)) return l = !1, c();
                 e = clean(e).replace(/\n/g, "</br>") + (inArray(e[e.length - 1], ["\n", " "]) ? "&nbsp;" : "");
                 var a = se('<div class="pe_text_temp">' + e + "</div>"),
-                    i = m(te),
-                    n = window.getComputedStyle(i),
+                    n = m(te),
+                    i = window.getComputedStyle(n),
                     r = {
-                        fontSize: n.fontSize,
-                        fontFamily: n.fontFamily,
-                        letterSpacing: n.letterSpacing
+                        fontSize: i.fontSize,
+                        fontFamily: i.fontFamily,
+                        letterSpacing: i.letterSpacing
                     };
                 Le.canvasEl.appendChild(a), setStyle(a, r);
                 var s = getSize(a);
@@ -485,15 +485,15 @@
     }
 
     function F(e, t, a) {
-        function i(a) {
-            var i = a.target,
-                n = domData(i, "color-index");
-            A(e, n), t(Ae[n], n)
+        function n(a) {
+            var n = a.target,
+                i = domData(n, "color-index");
+            A(e, i), t(Ae[i], i)
         }
         e.children.length > 0 || (each(Ae, function(t, a) {
-            var i = "#FFFFFF" == a ? "pe_drawing_color_white" : "";
-            e.appendChild(se('<div class="pe_drawing_color ' + i + '" data-color-index="' + t + '" style="background-color: ' + a + '"></div>'))
-        }), removeEvent(e, "click"), addEvent(e, "click", i), addClass(e, "pe_drawing_colors_wrap"), addClass(e, "clear_fix"), i({
+            var n = "#FFFFFF" == a ? "pe_drawing_color_white" : "";
+            e.appendChild(se('<div class="pe_drawing_color ' + n + '" data-color-index="' + t + '" style="background-color: ' + a + '"></div>'))
+        }), removeEvent(e, "click"), addEvent(e, "click", n), addClass(e, "pe_drawing_colors_wrap"), addClass(e, "clear_fix"), n({
             target: e.children[a || 0]
         }))
     }
@@ -514,7 +514,7 @@
         }, Q = function(e) {
             a.push(g(e)), H()
         }, ee = function(e) {
-            n(), toggle(Le.undoDrawing, Ie.length > 0)
+            i(), toggle(Le.undoDrawing, Ie.length > 0)
         }, _e = _e || new Slider(geByClass1("pe_drawing_width_slider"), {
             value: .3,
             fireChangeEventOnInit: !0,
@@ -566,8 +566,8 @@
     function H(e, t) {
         var a = e;
         he || a || (he = Le.drawingCanvas.getContext("2d")), e = e || he, t = t || 1, e.lineJoin = e.lineCap = "round", a || e.clearRect(0, 0, e.canvas.width, e.canvas.height);
-        for (var i = 0, n = Ie.length; n > i; i++) {
-            var r = Ie[i];
+        for (var n = 0, i = Ie.length; i > n; n++) {
+            var r = Ie[n];
             e.lineWidth = r.width * t, e.strokeStyle = T(r.color, r.opacity), e.beginPath(), e.moveTo(r.path[0][0] * t, r.path[0][1] * t);
             for (var s = 0, o = r.path.length; o > s; s++) e.lineTo(r.path[s][0] * t, r.path[s][1] * t);
             e.stroke()
@@ -581,18 +581,18 @@
     }
 
     function N(e) {
-        for (var t = (cur.pvPhWidth < cur.pvCurData.width ? (cur.pvCurData.width - cur.pvPhWidth) / 2 : 0, cur.pvPhHeight < 449 ? (cur.pvCurData.height - cur.pvPhHeight) / 2 : 0, []), a = Le.stickerLayers.children, i = 0; i < a.length; i++) {
-            var n = a[i],
-                r = n.style.transform ? parseFloat(n.style.transform.match(/-?[\d.]+/)[0]) : 0,
+        for (var t = (cur.pvPhWidth < cur.pvCurData.width ? (cur.pvCurData.width - cur.pvPhWidth) / 2 : 0, cur.pvPhHeight < 449 ? (cur.pvCurData.height - cur.pvPhHeight) / 2 : 0, []), a = Le.stickerLayers.children, n = 0; n < a.length; n++) {
+            var i = a[n],
+                r = i.style.transform ? parseFloat(i.style.transform.match(/-?[\d.]+/)[0]) : 0,
                 s = cur.pvCurData.width / cur.pvPhWidth,
                 o = cur.pvCurData.height / cur.pvPhHeight;
             t.push({
-                packId: attr(n, "data-pack-id"),
-                stickerId: attr(n, "data-sticker-id").split("_")[1],
-                left: n.offsetLeft * s,
-                top: n.offsetTop * o,
-                width: n.offsetWidth * s,
-                height: n.offsetHeight * o,
+                packId: attr(i, "data-pack-id"),
+                stickerId: attr(i, "data-sticker-id").split("_")[1],
+                left: i.offsetLeft * s,
+                top: i.offsetTop * o,
+                width: i.offsetWidth * s,
+                height: i.offsetHeight * o,
                 rotate: r
             })
         }
@@ -624,20 +624,20 @@
                 curBox().hide()
             }).show(), unlockButton(e)
         }, t.onload = function() {
-            var e = t.width / K[0],
-                a = Le.stickerLayers.children;
-            if (a.length) {
+            var a = t.width / K[0],
+                n = Le.stickerLayers.children;
+            if (n.length) {
                 var i = new callHub(function() {
-                    R(t, Y)
-                }, a.length);
-                each(a, function() {
-                    var t = f(this)[0] * e,
-                        a = domData(this, "sticker-id");
-                    p(a, O(t), function() {
+                    R(t, Y.pbind(e))
+                }, n.length);
+                each(n, function() {
+                    var e = f(this)[0] * a,
+                        t = domData(this, "sticker-id");
+                    p(t, O(e), function() {
                         i.done()
                     })
                 })
-            } else R(t, Y)
+            } else R(t, Y.pbind(e))
         }, t.src = J.maxPhotoUrl
     }
 
@@ -648,29 +648,32 @@
         }), e
     }
 
-    function Y(e) {
-        var t = new FormData;
-        t.append("file0", e, encodeURIComponent("edited_" + irand(99999) + ".jpg"));
-        var a = J.upload.url,
+    function Y(e, t) {
+        var a = new FormData;
+        a.append("file0", t, encodeURIComponent("edited_" + irand(99999) + ".jpg"));
+        var n = J.upload.url,
             i = browser.msie && intval(browser.version) < 10 ? window.XDomainRequest : window.XMLHttpRequest,
-            n = new i;
-        n.open("POST", a, !0), n.onload = function(e) {
-            e = e.target.responseText;
-            var t = (parseJSON(e), z());
+            s = new i;
+        s.open("POST", n, !0), s.onload = function(t) {
+            t = t.target.responseText;
+            var a = (parseJSON(t), z());
             ajax.post("al_photos.php", {
                 act: "pe_save",
                 photo: J.photoId,
                 hash: J.hash,
-                _query: e,
-                stickers: t.length ? t.join(",") : null,
+                _query: t,
+                stickers: a.length ? a.join(",") : null,
                 need_copy: J.need_copy,
                 texts: W()
             }, {
-                onDone: function(e, t, a, i, n) {
-                    r(), V(t, a, i, n)
+                onDone: function(e, t, a, n, i) {
+                    r(), V(t, a, n, i)
+                },
+                onFail: function(t) {
+                    return unlockButton(e), showFastBox(getLang("global_error"), t), !0
                 }
             })
-        }, n.send(t)
+        }, s.send(a)
     }
 
     function j() {
@@ -681,47 +684,47 @@
             pid: e[1],
             hash: J.hash
         }, {
-            onDone: function(e, t, a, i) {
-                r(), V(e, t, a, i)
+            onDone: function(e, t, a, n) {
+                r(), V(e, t, a, n)
             }
         })
     }
 
     function R(e, t) {
         var a = se('<canvas width="' + e.width + '" height="' + e.height + '">'),
-            i = a.getContext("2d"),
-            n = e.width / K[0],
+            n = a.getContext("2d"),
+            i = e.width / K[0],
             r = browser.mozilla ? -5 : browser.chrome ? 7.778 : 0;
-        r *= n, i.drawImage(e, 0, 0), each(Le.stickerLayers.children, function() {
+        r *= i, n.drawImage(e, 0, 0), each(Le.stickerLayers.children, function() {
             var e = this;
-            i.save();
+            n.save();
             var t = f(e);
-            t[0] *= n, t[1] *= n;
+            t[0] *= i, t[1] *= i;
             var a = u(e, !0);
-            a[0] *= n, a[1] *= n;
+            a[0] *= i, a[1] *= i;
             var r = e.style.transform ? parseFloat(e.style.transform.match(/-?[\d.]+/)[0]) * Math.PI / 180 : 0;
-            i.translate(a[0], a[1]), i.translate(t[0] / 2, t[1] / 2), i.rotate(r), i.translate(-t[0] / 2, -t[1] / 2);
+            n.translate(a[0], a[1]), n.translate(t[0] / 2, t[1] / 2), n.rotate(r), n.translate(-t[0] / 2, -t[1] / 2);
             var s = domData(e, "sticker-id"),
                 o = h(s, O(t));
-            i.drawImage(o, 0, 0, t[0], t[1]), i.restore()
-        }), H(i, n), each(Le.textLayers.children, function() {
+            n.drawImage(o, 0, 0, t[0], t[1]), n.restore()
+        }), H(n, i), each(Le.textLayers.children, function() {
             var e = this;
-            i.save();
+            n.save();
             var t = f(e);
-            t[0] *= n, t[1] *= n;
+            t[0] *= i, t[1] *= i;
             var a = u(e, !0);
-            a[0] *= n, a[1] *= n;
+            a[0] *= i, a[1] *= i;
             var s = e.style.transform ? parseFloat(e.style.transform.match(/-?[\d.]+/)[0]) * Math.PI / 180 : 0;
-            i.translate(t[0] / 2, 0), i.translate(a[0], a[1]), i.translate(0, t[1] / 2), i.rotate(s), i.translate(0, -t[1] / 2);
+            n.translate(t[0] / 2, 0), n.translate(a[0], a[1]), n.translate(0, t[1] / 2), n.rotate(s), n.translate(0, -t[1] / 2);
             var o = m(e),
                 l = replaceEntities(o.innerHTML.replace(/<br>/g, "\n")).split("\n"),
-                c = parseInt(o.style.fontSize) * n,
+                c = parseInt(o.style.fontSize) * i,
                 d = o.style.fontFamily,
                 p = d.toLowerCase().indexOf("impact") >= 0,
                 h = d.toLowerCase().indexOf("lobster") >= 0;
-            i.textBaseline = "top", i.fillStyle = o.style.color, i.font = c + "px " + d, i.textAlign = "center", p && (i.strokeStyle = "black", i.lineWidth = 10, i.lineJoin = "round"), h && (i.shadowColor = "rgba(0, 0, 0, 0.6)", i.shadowBlur = 3, i.shadowOffsetX = 1, i.shadowOffsetY = 1);
-            for (var _ = 0; _ < l.length; _++) p && i.strokeText(l[_], 0, _ * c - r), i.fillText(l[_], 0, _ * c - r);
-            i.restore()
+            n.textBaseline = "top", n.fillStyle = o.style.color, n.font = c + "px " + d, n.textAlign = "center", p && (n.strokeStyle = "black", n.lineWidth = 10, n.lineJoin = "round"), h && (n.shadowColor = "rgba(0, 0, 0, 0.6)", n.shadowBlur = 3, n.shadowOffsetX = 1, n.shadowOffsetY = 1);
+            for (var _ = 0; _ < l.length; _++) p && n.strokeText(l[_], 0, _ * c - r), n.fillText(l[_], 0, _ * c - r);
+            n.restore()
         }), a.toBlob(t, "image/jpeg", 1)
     }
 
@@ -736,7 +739,7 @@
             r(), t.hide(), e()
         }, getLang("box_no"))
     }
-    var J, K, U, G, V, Z, $, Q, ee, te, ae, ie, ne, oe, le, de, pe, he, _e, ve, ue, fe, ye, me = t() ? 256 : 128,
+    var J, K, U, G, V, Z, $, Q, ee, te, ae, ne, ie, oe, le, de, pe, he, _e, ve, ue, fe, ye, me = t() ? 256 : 128,
         we = 128,
         Ce = t() ? 256 : 128,
         ke = 512,
@@ -745,8 +748,8 @@
         be = 10,
         Se = 260,
         Le = {},
-        Pe = {},
-        Be = "",
+        Be = {},
+        Pe = "",
         Ae = ["#E64646", "#FF9300", "#FFCB00", "#62DA37", "#00AEF9", "#CC74E1", "#000000", "#FFFFFF"],
         Fe = {},
         Ie = [],
