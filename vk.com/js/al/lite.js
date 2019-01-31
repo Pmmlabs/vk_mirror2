@@ -3283,6 +3283,14 @@ function getSize(elem, withoutBounds, notBounding) {
     return s;
 }
 
+function getW(el) {
+    return getSize(el)[0];
+}
+
+function getH(el) {
+    return getSize(el)[1];
+}
+
 // deprecated
 function _getSize(elem, withoutBounds, notBounding) {
     elem = ge(elem);

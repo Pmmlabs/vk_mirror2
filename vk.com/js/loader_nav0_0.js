@@ -159,7 +159,7 @@ var stVersions = {
     'uncommon.js': 1640247993,
     'uncommon.css': 14225203106,
     'filebutton.css': 1044306797,
-    'lite.js': 3977427646,
+    'lite.js': 1766659246,
     'lite.css': 64748290628,
     'rtl.css': 14759070690,
     'pagination.js': 358700184,
@@ -368,7 +368,7 @@ var stVersions = {
     'groupinfo.css': 87708130900,
     'ownerinfo.css': 7546427815,
     'bugtracker.css': 21107329778,
-    'cmodules/web/bugtracker.js': 35981050473,
+    'cmodules/web/bugtracker.js': 37807744024,
     'login.css': 22080948291,
     'cmodules/web/login.js': 2483201193,
     'upload.js': 2558068015,
@@ -663,4 +663,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 1895;
+var _rnd = 5657;
