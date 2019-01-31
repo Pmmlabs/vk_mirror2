@@ -16448,6 +16448,14 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     max-width: 110px
 }
 
+.audioPlaylists__item.audioPlaylists__item_explicit .audioPlaylists__itemTitle {
+    max-width: 110px
+}
+
+.audioPlaylists__item.audioPlaylists__item_explicit .audioPlaylists__itemTitle:after {
+    top: -2px
+}
+
 .audioPlaylists__itemAuthor,
 .audioPlaylists__itemStats,
 .audioPlaylists__itemSubtitle {
@@ -30332,6 +30340,7 @@ body.apps_settingsPageBody {
 .audioPlaylist__add:before,
 .audioPlaylist__play:before,
 .audioPlaylist__subtitle:after,
+.audioPlaylists__item_explicit .audioPlaylists__itemTitle:after,
 .audioPlaylistShortSnippet .audioPlaylist__add:before,
 .audioPlaylistShortSnippet .audioPlaylist__add_added:before,
 .audioPlaylistShortSnippet .audioPlaylist__play:before,
@@ -30356,6 +30365,7 @@ body.apps_settingsPageBody {
 .vk_2x .audioPlaylist__add:before,
 .vk_2x .audioPlaylist__play:before,
 .vk_2x .audioPlaylist__subtitle:after,
+.vk_2x.audioPlaylists__item_explicit .audioPlaylists__itemTitle:after,
 .vk_2x .audioPlaylistShortSnippet .audioPlaylist__add:before,
 .vk_2x .audioPlaylistShortSnippet .audioPlaylist__add_added:before,
 .vk_2x .audioPlaylistShortSnippet .audioPlaylist__play:before,
@@ -30697,6 +30707,7 @@ body.apps_settingsPageBody {
 }
 
 .Audio__title_explicit,
+.audioPlaylists__item_explicit .audioPlaylists__itemTitle,
 .r .audio_item_explicit .ai_title {
     padding: 0 24px 0 0;
     position: relative;
@@ -30709,6 +30720,7 @@ body.apps_settingsPageBody {
 }
 
 .Audio__title_explicit:after,
+.audioPlaylists__item_explicit .audioPlaylists__itemTitle:after,
 .r .audio_item_explicit .ai_title:after {
     content: "";
     position: absolute;
@@ -30907,17 +30919,6 @@ body.apps_settingsPageBody {
     margin-bottom: 0
 }
 
-.Audio_selected .Audio__title_explicit,
-.r .ai_current .ai_title {
-    padding: 0
-}
-
-.Audio_selected .Audio__title_explicit:after,
-.r .ai_current .ai_title:after {
-    content: none;
-    display: none
-}
-
 .Audio_selected_simple .Audio__texts_simple,
 .r .article_view .ai_current .ai_label,
 .r .msg_item .ai_current .ai_label,
@@ -30997,6 +30998,11 @@ body.apps_settingsPageBody {
 
 .Audio_hidden .Audio__playIcon:after {
     background-position: 0 0!important
+}
+
+.r .audio_item_explicit .ai_title:after {
+    top: -1px;
+    right: 0
 }
 
 .r .msg_medias_audios {
