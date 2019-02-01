@@ -386,6 +386,11 @@
     line-height: 16px
 }
 
+.bt_hform_sep {
+    border-bottom: 1px solid #e7e8ec;
+    margin: 12px 0 15px
+}
+
 .bt_hform_control {
     float: left
 }
@@ -2663,7 +2668,8 @@
 }
 
 .bt_prod_version_title__version {
-    float: left
+    float: left;
+    color: #000
 }
 
 .bt_prod_version_date,
@@ -4100,4 +4106,68 @@
 
 .bt_locked_tool_buttons * {
     visibility: collapse
+}
+
+.bt_assembly_row {
+    border-bottom: 1px solid #e7e8ec;
+    cursor: pointer;
+    padding: 12px 6px
+}
+
+.bt_assembly_row.bt_assembly_row_disabled {
+    background: #e6e9ed
+}
+
+.bt_assembly_row.bt_assembly_row_disabled:hover {
+    background: #cfdae6
+}
+
+.bt_assembly_row:hover {
+    background: #e7edf2
+}
+
+.bt_assembly_row:last-child {
+    border-bottom: 0 none
+}
+
+.bt_assembly_row_id {
+    float: left;
+    width: 150px
+}
+
+.bt_assembly_row_title {
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 350px;
+    white-space: nowrap
+}
+
+.bt_assembly_row_disabled .bt_assembly_row_title {
+    opacity: 0.7;
+    filter: alpha(opacity=70)
+}
+
+.bt_assembly_row_version {
+    float: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 150px;
+    white-space: nowrap
+}
+
+.bt_assembly_row_disabled .bt_assembly_row_version a {
+    color: #656565
+}
+
+.bt_assembly_row_no_version {
+    color: #939393
+}
+
+.bt_assembly_editor .bt_hform_label {
+    width: 120px
+}
+
+.bt_assembly_editor .text {
+    width: 280px
 }
