@@ -134,6 +134,7 @@ var uiTabs = {
             hasClass(t, "ui_tabs") || (t = gpeByClass("ui_tabs", t)), removeClass(t, "ui_tabs_loading")
         },
         showSearch: function(t, e) {
+            if (cur.viewAsBox) return cur.viewAsBox();
             if (checkEvent(e)) return !0;
             var i = gpeByClass("ui_tabs", t),
                 s = (domByClass(i, "ui_search"), domByClass(i, "_field"));

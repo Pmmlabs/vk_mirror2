@@ -1622,8 +1622,14 @@ AdsEdit.initCreatingPostForm = function(creatingPostBox, postOwnerId, wallOption
         window.onbeforeunload = cur.prevBefUnload;
     });
     creatingPostBox.setOptions({
+        onShow() {
+            cur.preventBoxHide = true;
+        },
         onHide: function() {
             window.onbeforeunload = cur.prevBefUnload;
+            if (boxQueue.count() > 1) {
+                cur.preventBoxHide = false;
+            }
         }
     });
 }

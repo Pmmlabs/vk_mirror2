@@ -810,22 +810,23 @@ var Video = {
         addClass(d, "video_deleted");
         var n = Video._showProgressPanel(d),
             c = "album" == a ? Video._getSectionAlbumId() : -2;
-        return cur.videoRecentlyRemoved[i + "_" + t] = !0, ajax.post("/al_video.php", {
-            act: "a_delete_video",
-            oid: i,
-            vid: t,
-            from: cur.oid,
-            pl_id: c,
-            hash: r
-        }, {
-            onDone: function(e) {
-                re(n), d.appendChild(se(e));
-                var o = data(d, "restoreTO");
-                clearTimeout(o), o = setTimeout(function() {
-                    re(geByClass1("_video_restore_act", d))
-                }, 6e4), data(d, "restoreTO", o)
-            }
-        }), Video._reinitSorters(!0), cancelEvent(e)
+        return cur.videoRecentlyRemoved || (cur.videoRecentlyRemoved = {}), cur.videoRecentlyRemoved[i + "_" + t] = !0, ajax.post("/al_video.php", {
+                act: "a_delete_video",
+                oid: i,
+                vid: t,
+                from: cur.oid,
+                pl_id: c,
+                hash: r
+            }, {
+                onDone: function(e) {
+                    re(n), d.appendChild(se(e));
+                    var o = data(d, "restoreTO");
+                    clearTimeout(o), o = setTimeout(function() {
+                        re(geByClass1("_video_restore_act", d))
+                    }, 6e4), data(d, "restoreTO", o)
+                }
+            }), Video._reinitSorters(!0),
+            cancelEvent(e)
     },
     restoreVideo: function(e, o, i, t, r) {
         var d = gpeByClass("_video_item", e),
