@@ -4263,7 +4263,6 @@ var Wall = {
             friends_only: !isAnon && isChecked('friends_only'),
             check_sign: Wall.needCheckSign(),
             status_export: !isAnon && isChecked('status_export'),
-            facebook_export: !isAnon && ge('facebook_export') ? (isChecked('facebook_export') ? 1 : 0) : '',
             close_comments: ge('close_comments') ? (isChecked('close_comments') ? 1 : 0) : '',
             mute_notifications: ge('mute_notifications') ? (isChecked('mute_notifications') ? 1 : 0) : '',
             mark_as_ads: isChecked('mark_as_ads') ? 1 : 0,

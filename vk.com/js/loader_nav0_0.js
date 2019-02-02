@@ -240,7 +240,7 @@ var stVersions = {
     'module.css': 20740605867,
     'owner_photo.js': 3368798011,
     'owner_photo.css': 19905697609,
-    'page.js': 1491106615,
+    'page.js': 3936481023,
     'page.css': 69244890021,
     'page_help.css': 21006089310,
     'public.css': 24909840916,
@@ -248,7 +248,7 @@ var stVersions = {
     'pages.css': 20118963637,
     'pages.js': 1162259210,
     'groups.css': 97921374394,
-    'cmodules/web/groups.js': 95828084319,
+    'cmodules/web/groups.js': 94738573844,
     'cmodules/web/groups_create.js': 3275450130,
     'groups_create.css': 16667276002,
     'cmodules/web/groups_list.js': 2447510571,
@@ -299,7 +299,7 @@ var stVersions = {
     'apps_check.css': 25244389318,
     'settings.js': 353467433,
     'settings.css': 25826307854,
-    'profile_edit.js': 1193102111,
+    'profile_edit.js': 1753790963,
     'profile_edit.css': 15605238135,
     'profile_edit_edu.js': 872687230,
     'profile_edit_job.js': 1688095335,
@@ -370,7 +370,7 @@ var stVersions = {
     'bugtracker.css': 22675513510,
     'cmodules/web/bugtracker.js': 42905705186,
     'login.css': 22080948291,
-    'cmodules/web/login.js': 2483201193,
+    'cmodules/web/login.js': 3309235128,
     'upload.js': 2558068015,
     'upload_photo_transform.js': 1497838791,
     'graffiti.js': 1826105362,
@@ -663,4 +663,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 562;
+var _rnd = 1797;

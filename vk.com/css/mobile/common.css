@@ -8535,6 +8535,10 @@ div.pm_item .pm_counter {
     color: #3c6a9e
 }
 
+.apps_feed_item .small_button {
+    color: #fff
+}
+
 .apps_feed_item .pi_img {
     width: 44px;
     height: 44px;
@@ -8556,11 +8560,18 @@ div.pm_item .pm_counter {
     display: -moz-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -moz-box-align: center;
-    -ms-flex-align: center;
-    align-items: center
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column
 }
 
 .apps_feed_item .pi_author {

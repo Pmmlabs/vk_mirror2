@@ -633,20 +633,6 @@ var ProfileEditor = {
             }
         })
     },
-    setUpFacebook: function(e, i, t, r) {
-        if (t && !cur.disableFbExport) return showBox(ProfileEditor.controller, {
-            act: "facebook_settings_box"
-        });
-        var a = "https://graph.facebook.com/v2.9/oauth/authorize?client_id=" + e + "&redirect_uri=" + i + "&scope=email,user_birthday,publish_actions&display=popup&state=" + r,
-            n = "scrollbars=0,resizable=1,menubar=0,location=0,left=" + (Math.floor(screen.width / 2) - 300) + ",top=" + (Math.floor(screen.height / 2) - 240) + ",width=600,height=400,toolbar=0,status=0",
-            o = window.open(a, "fb", n);
-        try {
-            o.focus()
-        } catch (s) {}
-        window.socialCallback = function(e) {
-            ge("export_service_3").innerHTML = '<img src="/images/upload.gif" />', ProfileEditor.fetchServiceName(3)
-        }
-    },
     setUpRSS: function(e) {
         showBox(ProfileEditor.controller, {
             act: "rss_settings_box",
@@ -736,7 +722,7 @@ var ProfileEditor = {
                 }, {
                     onDone: function(i) {
                         if (i && i.msg) {
-                            r.hide(), ge("export_service_" + e).innerHTML = i.msg, setTimeout(scrollToTop, 300);
+                            r.hide(), 3 === e ? re(gpeByClass("pedit_social_row", ge("export_service_" + e))) : ge("export_service_" + e).innerHTML = i.msg, setTimeout(scrollToTop, 300);
                             var t = curBox();
                             t && t.hide()
                         }
@@ -826,7 +812,7 @@ var ProfileEditor = {
         cur.section = "career", ProfileEditorJob.init(), ProfileEditor.initBeforeUnload()
     },
     initMilitary: function() {
-        cur.section = "military", ProfileEditorMil.init(), ProfileEditor.initBeforeUnload();
+        cur.section = "military", ProfileEditorMil.init(), ProfileEditor.initBeforeUnload()
     },
     initPersonal: function() {
         var e = cur.options;
