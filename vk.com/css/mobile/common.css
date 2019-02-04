@@ -13953,6 +13953,21 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     position: relative
 }
 
+.OwnerRow_artist .OwnerRow__img {
+    background-color: #ebedf0;
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%20opacity%3D%22.1%22%2F%3E%3Cpath%20d%3D%22m13.0127481%2014.5071369-6.09698577%205.0808215c-.70632675.5886056-1.7449414.541493-2.39507757-.1086432-.65013616-.6501361-.69724878-1.6887508-.10864315-2.3950775l5.0808215-6.0969858c.65889199%201.5895578%201.93032719%202.860993%203.51988499%203.519885zm2.4872519-1.5071369c-2.4852814%200-4.5-2.0147186-4.5-4.5%200-2.48528137%202.0147186-4.5%204.5-4.5s4.5%202.01471863%204.5%204.5c0%202.4852814-2.0147186%204.5-4.5%204.5z%22%20fill%3D%22%23afbac6%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+    -moz-background-size: 24px;
+    -o-background-size: 24px;
+    background-size: 24px;
+    background-repeat: no-repeat
+}
+
+.OwnerRow_artist .OwnerRow__img[style] {
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover
+}
+
 .OwnerRow__header {
     display: inline-block;
     vertical-align: top;

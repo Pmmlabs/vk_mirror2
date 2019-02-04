@@ -8791,8 +8791,15 @@ button.ui_load_more_btn {
     display: none
 }
 
+.audio_pl_snippet2.audio_pl__blocked.audio_pl__can_remove_from_club .audio_pl_snippet__action_btn_more,
 .audio_pl_snippet2.audio_pl__blocked.audio_pl__followed .audio_pl_snippet__action_btn_add {
-    display: block
+    display: inline-block
+}
+
+.audio_pl_snippet2.audio_pl__blocked.audio_pl__can_add_to_clubs .audio_pl_add_to_clubs,
+.audio_pl_snippet2.audio_pl__blocked .audio_pl_copy,
+.audio_pl_snippet2.audio_pl__blocked .audio_play_next_pl_menu_item {
+    display: none
 }
 
 .audio_pl_snippet2 .audio_pl_snippet__stub {
