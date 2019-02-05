@@ -1195,6 +1195,16 @@
     background-color: #afd4a9
 }
 
+.faq_categories_icons_small .faq_category_icon_new_small,
+.faq_categories_icons_big .faq_category_icon_new_big {
+    display: inline-block
+}
+
+.faq_category_icon_new_big,
+.faq_category_icon_new_small {
+    display: none
+}
+
 .faq_category_icon {
     float: left;
     width: 30px;
@@ -1204,6 +1214,12 @@
 
 .faq_category_icon div {
     margin: auto
+}
+
+.faq_category_icon .faq_category_icon_new {
+    background: #fff;
+    width: 30px;
+    height: 30px
 }
 
 .faq_category_icon .faq_category_icon_desktop {

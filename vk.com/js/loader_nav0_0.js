@@ -214,15 +214,15 @@ var stVersions = {
     'video.css': 23709515664,
     'videocat.js': 3590298689,
     'videocat.css': 18851852320,
-    'videoview.js': 30403472435,
+    'videoview.js': 29801849197,
     'videoview.css': 23997363238,
     'video_edit.js': 2135196486,
     'video_edit.css': 21623870710,
     'video_upload.js': 10965065854,
     'video_youtube.js': 458412745,
     'video_youtube.css': 13658414168,
-    'videoplayer.js': 80941655326,
-    'videoplayer.css': 45216398887,
+    'videoplayer.js': 85545073032,
+    'videoplayer.css': 46361942217,
     'translation.js': 3971934328,
     'translation.css': 16560977583,
     'reg.css': 887926110,
@@ -248,7 +248,8 @@ var stVersions = {
     'pages.css': 20118963637,
     'pages.js': 1162259210,
     'groups.css': 97921374394,
-    'cmodules/web/groups.js': 94738573844,
+    'cmodules/web/groups.js': 31210230563,
+    'cmodules/web/groups_admins.js': 90000402204,
     'cmodules/web/groups_create.js': 3275450130,
     'groups_create.css': 16667276002,
     'cmodules/web/groups_list.js': 2447510571,
@@ -358,7 +359,7 @@ var stVersions = {
     'helpdesk.css': 27352858053,
     'tickets.js': 3135622813,
     'tickets.css': 27485642178,
-    'faq.css': 23478257451,
+    'faq.css': 21191656112,
     'agents.js': 2789926745,
     'agents.css': 16048111805,
     'achievements.js': 3514956550,
@@ -663,4 +664,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 8406;
+var _rnd = 7370;

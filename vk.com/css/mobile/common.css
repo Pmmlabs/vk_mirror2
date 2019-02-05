@@ -1878,7 +1878,8 @@ input.wide_button {
         position: absolute;
         right: 0;
         top: -1px;
-        margin: 0
+        margin: 0;
+        height: 18px
     }
 }
 
@@ -50222,9 +50223,9 @@ a .BookmarkListItem__subtitle:hover {
     font-style: normal;
     padding: 4px 8px;
     background: rgba(0, 57, 115, .1);
-    -webkit-border-radius: 13px;
-    -moz-border-radius: 13px;
-    border-radius: 13px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
     color: #45678f;
     min-width: 10px;
     text-align: center;
@@ -50238,7 +50239,8 @@ a .BookmarkListItem__subtitle:hover {
         position: absolute;
         right: 0;
         top: -1px;
-        margin: 0
+        margin: 0;
+        height: 18px
     }
 }
 
