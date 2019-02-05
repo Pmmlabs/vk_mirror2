@@ -3024,6 +3024,14 @@ function domReplaceEl(oldEl, newEl) {
     return newEl;
 }
 
+function domChildIndex(child) {
+    let i = 0;
+    while ((child = domPS(child)) != null) {
+        i++;
+    }
+    return i;
+}
+
 function domClosestPositioned(el, opts) {
     opts = opts || {};
     var parent = opts.fromEl || domPN(el),
