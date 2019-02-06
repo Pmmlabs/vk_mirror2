@@ -5053,7 +5053,8 @@ div.top_result_baloon a {
 }
 
 .post .replies .audio_pl_snippet2:last-child,
-.search_results .post .audio_pl_snippet2:last-child {
+.search_results .post .audio_pl_snippet2:last-child,
+.wl_post .reply .audio_pl_snippet2:last-child {
     margin-bottom: 5px!important
 }
 

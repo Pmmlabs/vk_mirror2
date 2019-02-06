@@ -3848,6 +3848,10 @@ var Wall = {
                     }
                 }
             });
+
+            if (!hasClass(txt, 'submit_post_inited') && gpeByClass('test_posting_experiment', cur.postField)) {
+                statlogsValueEvent('test_posting_experiment_init', 1);
+            }
             addClass(txt, 'submit_post_inited')
 
             if (draft) {

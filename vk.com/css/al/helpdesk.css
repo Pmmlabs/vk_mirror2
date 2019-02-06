@@ -32,6 +32,39 @@
     padding: 0
 }
 
+.names-helpdesk-app {
+    margin-top: 15px;
+    margin-bottom: 15px
+}
+
+.names-helpdesk-app .names-helpdesk-app__list {
+    max-height: 220px
+}
+
+.names-helpdesk-app .names-helpdesk-app__header {
+    font-weight: 700;
+    color: #45688e
+}
+
+.names-helpdesk-app .names-helpdesk-app__list .names-helpdesk-app__list__verdicts {
+    background-color: #fafbfc
+}
+
+.names-helpdesk-app .names-helpdesk-app__edit-area {
+    margin-left: 20px;
+    margin-bottom: 10px
+}
+
+.names-helpdesk-app .names-helpdesk-app__edit-area .names-helpdesk-app__edit-area__input {
+    display: inline-block;
+    width: 300px
+}
+
+.names-helpdesk-app .names-helpdesk-app__edit-area .names-helpdesk-app__edit-area__button {
+    display: inline-block;
+    margin-left: 20px
+}
+
 .body_helpdesk .mention_tt_actions {
     display: none
 }
