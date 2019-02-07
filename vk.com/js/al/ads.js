@@ -794,8 +794,9 @@ Ads.createExportSubmitButton = function(elem, bindingId, topUnionId) {
             valueContainers.ads_types.value = val;
         }
 
-        if ((new Date(valueContainers.to_year.value, valueContainers.to_month.value, valueContainers.to_day.value)) <
-            (new Date(valueContainers.from_year.value, valueContainers.from_month.value, valueContainers.from_day.value))) {
+        // � js ������ ���������� � 0, ������� -1, � � php � 1, ������� -1 ������ ����� ��� �������� �������� ���
+        if ((new Date(valueContainers.to_year.value, valueContainers.to_month.value - 1, valueContainers.to_day.value)) <
+            (new Date(valueContainers.from_year.value, valueContainers.from_month.value - 1, valueContainers.from_day.value))) {
             showFastBox(getLang('ads_error_box_title'), getLang('ads_error_export_stat_invalid_period'));
             return;
         }

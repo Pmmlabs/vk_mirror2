@@ -1678,7 +1678,7 @@ input.wide_button {
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
-    background: #285180;
+    background: #28436e;
     padding: 6px 21px 7px 31px;
     line-height: 17px;
     color: #c6d8ec
@@ -1822,6 +1822,13 @@ input.wide_button {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     overflow: hidden;
     color: #45678f
+}
+
+._ios .lfm_item,
+._ios .mm_item {
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
 }
 
 @media (min-width: 882px) {

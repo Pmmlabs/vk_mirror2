@@ -8636,6 +8636,7 @@ AdsTargetingEditor.prototype.selectCriteriaPreset = function(criteriaPreset, cri
             continue;
         }
 
+        this.initUiCriterion(criterionName);
         this.onCriterionUpdate(criterionName, criterionValue, false, true);
 
         switch (criterionName) {

@@ -1687,7 +1687,7 @@ input.wide_button {
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
-    background: #285180;
+    background: #28436e;
     padding: 6px 21px 7px 31px;
     line-height: 17px;
     color: #c6d8ec
@@ -1833,6 +1833,15 @@ input.wide_button {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     overflow: hidden;
     color: #45678f
+}
+
+._ios .lfm_item,
+._ios .mm_item {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 600;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }
 
 @media (min-width: 882px) {
@@ -16124,10 +16133,15 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     padding-top: 20px;
     overflow: hidden;
     position: relative;
-    background-color: #222;
-    -webkit-border-radius: 4px 4px 0 0;
-    -moz-border-radius: 4px 4px 0 0;
-    border-radius: 4px 4px 0 0
+    background-color: #222
+}
+
+@media (min-width: 882px) {
+    .audioPlaylist__cell_cover {
+        -webkit-border-radius: 4px 4px 0 0;
+        -moz-border-radius: 4px 4px 0 0;
+        border-radius: 4px 4px 0 0
+    }
 }
 
 .audioPlaylist__cell_info {
@@ -25244,9 +25258,9 @@ figure[data-type="102"] .article_object_video_play {
         -webkit-border-radius: 4px;
         -moz-border-radius: 4px;
         border-radius: 4px;
-        -webkit-box-shadow: 0 1px 2px 0 #ced4dc;
-        -moz-box-shadow: 0 1px 2px 0 #ced4dc;
-        box-shadow: 0 1px 2px 0 #ced4dc
+        -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .12);
+        -moz-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .12);
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .12)
     }
     .ArtistPage .head_panel,
     .audioPlaylist .head_panel,
@@ -25442,9 +25456,9 @@ figure[data-type="102"] .article_object_video_play {
         -webkit-border-radius: 4px 4px 0 0;
         -moz-border-radius: 4px 4px 0 0;
         border-radius: 4px 4px 0 0;
-        -webkit-box-shadow: 0 1px 2px 0 #ced4dc;
-        -moz-box-shadow: 0 1px 2px 0 #ced4dc;
-        box-shadow: 0 1px 2px 0 #ced4dc
+        -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .12);
+        -moz-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .12);
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .12)
     }
 }
 
@@ -31403,7 +31417,7 @@ body.apps_settingsPageBody {
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
-    background: #285180;
+    background: #28436e;
     padding: 6px 21px 7px 31px;
     line-height: 17px
 }
@@ -31568,7 +31582,7 @@ body.apps_settingsPageBody {
         margin: 0 227px 0 0;
         position: absolute;
         top: 0;
-        right: 0;
+        right: 276px;
         z-index: 7
     }
     ._hfixed .mhi_create {
@@ -33350,7 +33364,6 @@ body.apps_settingsPageBody {
     font-weight: 600;
     color: #fff;
     padding: 0 4px;
-    top: 0px;
     margin-left: 50px;
     cursor: pointer
 }
@@ -33361,7 +33374,7 @@ body.apps_settingsPageBody {
 
 .m .vk__page_chatAdd .selected_users_next_button,
 .m .vk__page_chatAdd .selected_users_prev_button {
-    position: fixed;
+    position: absolute;
     top: 0;
     z-index: 10000;
     height: 44px;
@@ -33416,6 +33429,11 @@ body.apps_settingsPageBody {
         margin-left: 0;
         right: 0
     }
+}
+
+.m ._hfixed.vk__page_chatAdd .selected_users_next_button,
+.m ._hfixed.vk__page_chatAdd .selected_users_prev_button {
+    position: fixed
 }
 
 .m .vk__page_chatAdd_membersSelected .selected_users_next_button {
@@ -45722,7 +45740,7 @@ a .BookmarkListItem__subtitle:hover {
 
 @media (min-width: 882px) {
     .BookmarksTagsButton {
-        margin: 0 227px 0 0
+        right: 276px
     }
     ._hfixed .BookmarksTagsButton {
         left: 50%;
@@ -51791,19 +51809,6 @@ html.vk_appAuth_yes .vk__page_mail._ios {
     display: none
 }
 
-.ContentSeparator {
-    background: #ebedf0;
-    -webkit-box-shadow: 0 1px 0 #ebedf0, 0 1px 0 #ebedf0;
-    -moz-box-shadow: 0 1px 0 #ebedf0, 0 1px 0 #ebedf0;
-    box-shadow: 0 1px 0 #ebedf0, 0 1px 0 #ebedf0
-}
-
-.vk_2x .ContentSeparator {
-    -webkit-box-shadow: 0 -0.5px 0 #dedfe0, 0 0.5px 0 #dedfe0;
-    -moz-box-shadow: 0 -0.5px 0 #dedfe0, 0 0.5px 0 #dedfe0;
-    box-shadow: 0 -0.5px 0 #dedfe0, 0 0.5px 0 #dedfe0
-}
-
 body {
     padding-left: constant(safe-area-inset-left);
     padding-left: env(safe-area-inset-left);
@@ -56181,7 +56186,8 @@ img.wk_photo_right {
         height: auto;
         overflow: auto
     }
-    ._hfixed.lm_opened .qs_opened #l {
+    ._hfixed.lm_opened .qs_opened #l,
+    .lm_opened .qs_opened #l {
         position: static;
         width: 100%
     }
@@ -56220,7 +56226,8 @@ img.wk_photo_right {
         position: fixed;
         -webkit-backface-visibility: hidden;
         height: 43px;
-        z-index: 7
+        z-index: 7;
+        top: 0
     }
     .h ._hfixed #l .mhead,
     .h ._hfixed #m .mhead {
@@ -56331,7 +56338,8 @@ img.wk_photo_right {
     ._hfixed #mcont .m_search_items {
         padding-top: 0
     }
-    ._hfixed.lm_opened .qs_opened #l {
+    ._hfixed.lm_opened .qs_opened #l,
+    .lm_opened .qs_opened #l {
         position: static;
         width: 100%
     }
@@ -56369,10 +56377,14 @@ img.wk_photo_right {
         position: fixed;
         -webkit-backface-visibility: hidden;
         height: 43px;
-        z-index: 1
+        z-index: 1;
+        top: 0
     }
     .h ._hfixed #vk_head {
         height: 48px
+    }
+    #vk_head {
+        z-index: 1
     }
     ._hfixed #m .mhead {
         left: auto;
@@ -56395,7 +56407,9 @@ img.wk_photo_right {
         margin-left: 12px
     }
     ._hfixed._lm #m .mhead,
-    ._hfixed._lm.lm_opened #m .mhead {
+    ._hfixed._lm.lm_opened #m .mhead,
+    ._lm #m .mhead,
+    ._lm.lm_opened #m .mhead {
         position: static;
         margin-left: 0
     }
@@ -56431,6 +56445,9 @@ img.wk_photo_right {
     .h ._hfixed #vk_head {
         height: 48px
     }
+    #vk_head {
+        z-index: 1
+    }
     ._hfixed._lm #lm_cont {
         position: static;
         padding-top: 43px
@@ -56444,6 +56461,11 @@ img.wk_photo_right {
     }
     ._hfixed._lm #l .mhead .mhb_logo {
         position: fixed;
+        -webkit-backface-visibility: hidden;
+        z-index: 5
+    }
+    ._lm #l .mhead .mhb_logo {
+        position: absolute;
         -webkit-backface-visibility: hidden;
         z-index: 5
     }
@@ -56467,8 +56489,16 @@ img.wk_photo_right {
     ._hfixed._lm.lm_opened #m .mhead .mhb_logo {
         position: fixed;
         -webkit-backface-visibility: hidden;
-        width: 330px;
-        z-index: 7
+        width: 330px
+    }
+    ._lm #m .mhead .mhb_back,
+    ._lm #m .mhead .mhb_logo,
+    ._lm.lm_opened #m .mhead .mhb_back,
+    ._lm.lm_opened #m .mhead .mhb_logo {
+        position: absolute;
+        z-index: 7;
+        -webkit-backface-visibility: hidden;
+        width: 330px
     }
     ._hfixed._lm #m .mhead .mhb_logo,
     ._hfixed._lm.lm_opened #m .mhead .mhb_logo {
@@ -56496,6 +56526,9 @@ img.wk_photo_right {
     }
     ._hfixed .qs_opened #l .m_search_items .simple_item {
         margin: 0 10px
+    }
+    .qs_opened #l .m_search_items {
+        z-index: 7
     }
 }
 
