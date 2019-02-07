@@ -4,6 +4,7 @@
 
 #box_loader .loader,
 #layer_stl_text,
+.ap_layer .audio_pl_snippet2 .audio_focus .audio_row__counter:after,
 .audio_artist_snippet__cover,
 .audio_page_player2 .audio_control_btn .icon,
 .audio_page_player2 .audio_play,
@@ -4158,6 +4159,33 @@ div.top_result_baloon a {
 .ap_layer .audio_pl_snippet2.audio_pl__can_add_to_clubs .audio_pl_add_to_clubs,
 .ap_layer .audio_pl_snippet2.audio_pl__can_remove_from_club .audio_pl_remove_from_club {
     display: block
+}
+
+.ap_layer .audio_pl_snippet2 .audio_focus .audio_row__counter:after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: url(/images/audio/star_12.png);
+    left: 0;
+    top: 11px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ap_layer .audio_pl_snippet2 .audio_focus .audio_row__counter:after {
+        background-image: url(/images/audio/star_12_2x.png);
+        background-size: 12px 12px
+    }
+}
+
+.ap_layer .audio_pl_snippet2 .audio_focus:nth-child(n+10) .audio_row__counter:after {
+    left: -2px
+}
+
+.ap_layer .audio_pl_snippet2 .audio_focus:nth-child(n+100) .audio_row__counter:after {
+    left: -4px
 }
 
 .audio_pl_snippet2 .audio_pl_snippet__footer {

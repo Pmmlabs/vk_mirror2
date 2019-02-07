@@ -16752,6 +16752,32 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     opacity: 0
 }
 
+.audioPlaylist .ai_focus .ai_play:after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%20width%3D%2212%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22m0%200h12v12h-12z%22%20fill-rule%3D%22nonzero%22%2F%3E%3Cpath%20d%3D%22m5.46821991%201.44123415c.2491353-.58845047.81687635-.58818809%201.06581027.00004255l1.17908059%202.78616647%202.69345383.26473252c.627518.0616771.7977579.61717512.3147697%201.0284068l-2.11889788%201.80409801.78273427%202.9245619c.17066863.6376762-.28704934.9713711-.81660472.5881679l-2.56739092-1.85784628-2.56739092%201.85784628c-.52714156.3814565-.9871108.048901-.81660472-.5881679l.78273427-2.9245619-2.11889791-1.80409801c-.48587002-.41368541-.31662182-.96634993.31463744-1.02840631l2.692955-.2647328z%22%20fill%3D%22%23939393%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50%;
+    left: -1px;
+    top: 14px;
+    -webkit-transition: opacity 0.15s ease;
+    -moz-transition: opacity 0.15s ease;
+    -o-transition: opacity 0.15s ease;
+    transition: opacity 0.15s ease
+}
+
+.audioPlaylist .ai_focus:nth-child(n+10) .ai_play:after {
+    left: -4px
+}
+
+.audioPlaylist .ai_focus:nth-child(n+100) .ai_play:after {
+    left: -6px
+}
+
+.audioPlaylist .ai_focus.ai_current .ai_play:after {
+    opacity: 0
+}
+
 .audioPlaylist.wi_actions_opened {
     border: 0
 }
