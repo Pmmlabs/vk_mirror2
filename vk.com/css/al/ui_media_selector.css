@@ -21,6 +21,7 @@
 
 .medadd_h {
     font-size: 12.5px;
+    line-height: 12.5px;
     color: #5c5c5c;
     margin-top: 12px;
     font-weight: 700;
@@ -104,6 +105,15 @@
 
 input.medadd_poll_question {
     margin-top: 8px
+}
+
+.medadd_poll_question_warning {
+    display: inline-block;
+    font-size: 12.5px;
+    color: hsla(0, 0%, 40%, .7);
+    vertical-align: bottom;
+    font-weight: 400;
+    margin-left: 8px
 }
 
 .medadd_poll_answer,

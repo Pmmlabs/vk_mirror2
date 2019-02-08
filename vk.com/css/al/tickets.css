@@ -4087,12 +4087,15 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 }
 
 .tickets_new_extra_field {
-    margin: 20px 0
+    margin: 10px 0
 }
 
 .tickets_new_extra_field.tickets_new_extra_field_note {
-    color: #222;
-    line-height: 20px
+    color: #222
+}
+
+.tickets_new_extra_field.tickets_new_extra_field_short {
+    width: 50%
 }
 
 .tickets_new_extra_field__label {
@@ -4123,6 +4126,15 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 
 .tickets_new_extra_field__control_pad_left {
     padding-left: 137px
+}
+
+.tickets_new_extra_field__date {
+    float: left
+}
+
+.tickets_new_extra_field__time {
+    float: left;
+    margin-left: 10px
 }
 
 .tickets_new_extra_field__upload_btn {

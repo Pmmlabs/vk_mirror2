@@ -2373,7 +2373,7 @@ input.dev_section_search {
 
 .dev_labeled {
     float: left;
-    width: 400px
+    width: 460px
 }
 
 .dev_row {
@@ -2385,6 +2385,15 @@ input.dev_section_search {
 .dev_row_textarea {
     width: 303px;
     vertical-align: top
+}
+
+.dev_row_warning {
+    display: inline-block;
+    font-size: 12.5px;
+    color: hsla(0, 0%, 47%, .8);
+    margin-left: 5px;
+    vertical-align: middle;
+    margin-top: 5px
 }
 
 .dev_row_textarea {

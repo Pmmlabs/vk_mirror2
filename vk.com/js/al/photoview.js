@@ -199,7 +199,7 @@ var Photoview = {
             var o = Photoview.isPhotosList(),
                 e = nav.objLoc[0].match(/^faq(\d)+$/),
                 t = cur.translationBoxOpened;
-            cur.pvIsLightMode = 0 == nav.objLoc[0].indexOf("blog/") || e || inArray(nav.objLoc[0], ["blog", "about", "support", "helpdesk", "market", "bugtracker", "translation"]) || t, cur.pvShowBottomActions = !cur.pvIsLightMode || e || inArray(nav.objLoc[0], ["helpdesk", "support"]);
+            cur.pvIsLightMode = 0 == nav.objLoc[0].indexOf("blog/") || e || inArray(nav.objLoc[0], ["blog", "about", "support", "helpdesk", "market", "bugs", "translation"]) || t, cur.pvShowBottomActions = !cur.pvIsLightMode || e || inArray(nav.objLoc[0], ["helpdesk", "support"]);
             var r = "display: none",
                 a = (Photoview.canFullscreen() ? "" : r, cur.pvAlbumsShown ? cur.pvAlbumsData[cur.pvAlbumsShown].html : ""),
                 i = cur.pvAlbumShown ? cur.pvAlbumData[cur.pvAlbumShown].html : "",

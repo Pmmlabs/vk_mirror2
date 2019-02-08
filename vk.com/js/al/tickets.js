@@ -73,7 +73,7 @@ var Tickets = {
             e.tt && e.tt.hide && e.tt.hide()
         },
         doSaveTicket: function(e) {
-            ajax.post(cur.objLoc + "?act=save", e, {
+            ajax.post(cur.objLoc + "?act=a_save", e, {
                 onDone: function(t, a) {
                     0 == t ? showDoneBox(a) : 1 == t && Tickets.showAverageTime(a, Tickets.doSaveTicket.pbind(extend({}, e, {
                         force: 1
@@ -140,7 +140,7 @@ var Tickets = {
                         attachs: i,
                         browser: o,
                         section: cur.faqSection
-                    }, Tickets.getAudioFields(), Tickets.getPayFields(), Tickets.getFromObjLoc(["group_id", "app_id", "union_id", "from"]));
+                    }, Tickets.getAudioFields(), Tickets.getPayFields(), Tickets.getFromObjLoc(["id", "group_id", "app_id", "union_id", "from"]));
                 Tickets.doSaveTicket(s)
             }
         },
@@ -264,7 +264,7 @@ var Tickets = {
         },
         getReplyQueryData: function(e, t, a) {
             var i, o = {
-                    act: "add_comment",
+                    act: "a_add_comment",
                     ticket_id: cur.ticket_id,
                     text: e,
                     hash: t,
@@ -377,8 +377,7 @@ var Tickets = {
                 mrg = "-1px 0 0 -3px",
                 wdt = "530px",
                 picmrg = "0px";
-            return browser.mozilla ? (mrg = "-1px 0 0 -4px", picmrg = "8px") : browser.opera ? (mrg = "1px 0 0 -3px", picmrg = "4px") : browser.msie && (picmrg = "2px"), cur.editStarted = !0, ajax.post(cur.objLoc, {
-                act: "get_comment",
+            return browser.mozilla ? (mrg = "-1px 0 0 -4px", picmrg = "8px") : browser.opera ? (mrg = "1px 0 0 -3px", picmrg = "4px") : browser.msie && (picmrg = "2px"), cur.editStarted = !0, ajax.post(cur.objLoc + "?act=a_get_comment", {
                 ticket_id: cur.ticket_id || ticket_id,
                 cid: cid,
                 hash: hash
@@ -425,8 +424,7 @@ var Tickets = {
                         l = n[1];
                     ("photo" == c || "doc" == c) && o.push(c + "," + l)
                 }
-            return i || o.length ? void ajax.post(cur.objLoc, {
-                act: "edit_comment",
+            return i || o.length ? void ajax.post(cur.objLoc + "?act=a_edit_comment", {
                 ticket_id: a,
                 cid: e,
                 text: i,
@@ -454,8 +452,7 @@ var Tickets = {
             }) : void notaBene("reply" + e + "edit")
         },
         deleteComment: function(e, t, a) {
-            return ajax.post(cur.objLoc, {
-                act: "delete_comment",
+            return ajax.post(cur.objLoc + "?act=a_delete_comment", {
                 ticket_id: e,
                 reply_id: t,
                 hash: a
@@ -470,8 +467,7 @@ var Tickets = {
             }), !1
         },
         restoreComment: function(e, t, a) {
-            return ajax.post(cur.objLoc, {
-                act: "restore_comment",
+            return ajax.post(cur.objLoc + "?act=a_restore_comment", {
                 ticket_id: cur.ticket_id || a,
                 cid: e,
                 hash: t
@@ -486,8 +482,7 @@ var Tickets = {
             }), !1
         },
         rateComment: function(e, t, a) {
-            return cur.replyRating ? !1 : (cur.replyRating = !0, ajax.post("support", {
-                act: "rate_comment",
+            return cur.replyRating ? !1 : (cur.replyRating = !0, ajax.post("support?act=a_rate_comment", {
                 ticket_id: cur.ticket_id,
                 reply_id: e,
                 rate: t,
@@ -508,8 +503,7 @@ var Tickets = {
                 bodyStyle: "padding: 20px; line-height: 160%;",
                 width: 430
             }, getLang("support_delete_confirm"), getLang("support_delete_button"), function() {
-                ajax.post(cur.objLoc, {
-                    act: "delete",
+                ajax.post(cur.objLoc + "?act=a_delete", {
                     ticket_id: e,
                     hash: t
                 }, {
@@ -571,7 +565,7 @@ var Tickets = {
             }, 2e3)), scrollToTop(200), !0
         },
         closeTicketByAuthor: function(e) {
-            ajax.post("support?act=close_ticket_by_author", {
+            ajax.post("support?act=a_close_ticket_by_author", {
                 ticket_id: cur.ticket_id,
                 hash: e
             }, {
@@ -581,7 +575,7 @@ var Tickets = {
             })
         },
         reopenTicketByAuthor: function(e) {
-            return ajax.post("support?act=reopen_ticket_by_author", {
+            return ajax.post("support?act=a_reopen_ticket_by_author", {
                 ticket_id: cur.ticket_id,
                 hash: e
             }, {
@@ -1137,16 +1131,14 @@ var Tickets = {
             return i.target || (i.target = i.srcElement || document), "a" == i.target.tagName.toLowerCase() ? !0 : (toggle("tickets_faq_short_text" + e, !isVisible("tickets_faq_short_text" + e)), toggle("tickets_faq_full_text" + e, !isVisible("tickets_faq_full_text" + e)), isVisible("tickets_faq_full_text" + e) ? (addClass(a, "detailed"), vk.id && Tickets.setFAQclicked(e, t, 0, !1)) : (removeClass(a, "detailed"), Tickets.cancelFAQclicked(e)), !1)
         },
         setFAQclicked: function(e, t, a, i) {
-            i ? (clearTimeout(cur.faqViewTimeouts[e]), cur.faqViewTimeouts[e] = null, ajax.post("support", {
-                act: "faq_clicked",
+            i ? (clearTimeout(cur.faqViewTimeouts[e]), cur.faqViewTimeouts[e] = null, ajax.post("support?act=a_faq_clicked", {
                 faq_id: e,
                 hash: t,
                 from_new: a
             }, {
                 cache: 1
             })) : cur.faqViewTimeouts.hasOwnProperty(e) || (cur.faqViewTimeouts[e] = setTimeout(function() {
-                ajax.post("support", {
-                    act: "faq_clicked",
+                ajax.post("support?act=a_faq_clicked", {
                     faq_id: e,
                     hash: t,
                     from_new: a
@@ -1160,8 +1152,7 @@ var Tickets = {
         },
         rateFAQ: function(e, t, a, i, o) {
             if (!vk.id) return !1;
-            if (ajax.post("support", {
-                    act: "faq_rate",
+            if (ajax.post("support?act=a_faq_rate", {
                     faq_id: e,
                     val: t,
                     hash: a,
@@ -1181,8 +1172,7 @@ var Tickets = {
         rateFAQAdditional: function(e, t, a, i, o) {
             if (!vk.id) return !1;
             var s = ge("tickets_faq_unuseful" + e);
-            if (ajax.post("support", {
-                    act: "faq_rate_additional",
+            if (ajax.post("support?act=a_faq_rate_additional", {
                     faq_id: e,
                     additional_id: t,
                     hash: a
@@ -1194,8 +1184,7 @@ var Tickets = {
             }
         },
         cancelRateFAQ: function(e, t, a, i) {
-            return vk.id ? (ajax.post("support", {
-                act: "faq_rate",
+            return vk.id ? (ajax.post("support?act=a_faq_rate", {
                 faq_id: e,
                 val: t,
                 cancel: 1,
@@ -1203,8 +1192,7 @@ var Tickets = {
             }), hide("tickets_faq_useful" + e, "tickets_faq_unuseful" + e), show("tickets_faq_links" + e), i && i.stopPropagation(), !1) : !1
         },
         rateFAQUrgent: function(e, t, a) {
-            return vk.id ? (ajax.post("support", {
-                act: "faq_rate",
+            return vk.id ? (ajax.post("support?act=a_faq_rate", {
                 faq_id: e,
                 val: t,
                 hash: a,
@@ -1213,8 +1201,7 @@ var Tickets = {
         },
         cancelRateFAQUrgent: function(e, t, a) {
             if (!vk.id) return !1;
-            ajax.post("support", {
-                act: "faq_rate",
+            ajax.post("support?act=a_faq_rate", {
                 faq_id: e,
                 val: t,
                 cancel: 1,
@@ -1260,8 +1247,8 @@ var Tickets = {
             };
             return t && (a.ask = 1), a
         },
-        switchToPayForm: function(e, t) {
-            return lockButton("tickets_create_pay"), nav.go(Tickets.getFormQuery("new_pay", t), e)
+        switchToPayForm: function(e) {
+            return lockButton("tickets_create_pay"), nav.go(Tickets.getFormQuery("new_pay"), e)
         },
         switchToAdsForm: function(e, t) {
             return lockButton("tickets_create_ads"), nav.go(Tickets.getFormQuery("new_ads", t), e)
@@ -1291,11 +1278,10 @@ var Tickets = {
                 opacity: .6
             });
             var t = extend({
-                act: "get_faq",
                 q: e,
                 from: nav.objLoc.act
             }, Tickets.getFromObjLoc(["group_id", "app_id", "union_id"]));
-            cur.tlmd && cur.showAll && (delete cur.showAll, t.show_all = 1, cur.from_ads && (t.from = "ads")), ajax.post("support", t, {
+            cur.tlmd && cur.showAll && (delete cur.showAll, t.show_all = 1, cur.from_ads && (t.from = "ads")), ajax.post("support?act=a_get_faq", t, {
                 cache: 1,
                 hideProgress: removeClass.pbind("tickets_search", "loading"),
                 onDone: function(t, a) {
@@ -1414,7 +1400,7 @@ var Tickets = {
             else {
                 var s = uiSearch.getFieldEl("faq_search_form"),
                     r = "";
-                s && (r = s.value.trim(), r && (o.title = r))
+                s && (r = trim(val(s)), "" !== r && (o.title = r))
             }
             return t && (o.from = t), i && (o.bhash = i), nav.go(extend(o, Tickets.getFromObjLoc(["union_id", "app_id", "group_id"]))), !1
         },
@@ -1476,8 +1462,7 @@ var Tickets = {
             }
         },
         closeMobileNotice: function(e) {
-            slideUp("tickets_mobile_notice", 200), ajax.post("support", {
-                act: "hide_mobile_notice",
+            slideUp("tickets_mobile_notice", 200), ajax.post("support?act=a_hide_mobile_notice", {
                 hash: e
             })
         },
@@ -1563,6 +1548,12 @@ var Tickets = {
                     case "radio":
                         TicketsEF._initRadio(e, a, t);
                         break;
+                    case "date":
+                        TicketsEF._initDate(e, a);
+                        break;
+                    case "datetime":
+                        TicketsEF._initDatetime(e, a);
+                        break;
                     case "checkbox":
                         break;
                     case "hidden":
@@ -1582,7 +1573,7 @@ var Tickets = {
             }
         },
         _getType: function(e, t, a) {
-            return t ? a.length > 0 ? "select" : e && geByClass1("checkbox", e) ? "checkbox" : "plain" : e && geByClass1("radiobtn", e) ? "radio" : "hidden"
+            return t ? hasClass(t, "_date") ? geByClass1("_time", e) ? "datetime" : "date" : a.length > 0 ? "select" : e && geByClass1("checkbox", e) ? "checkbox" : "plain" : e && geByClass1("radiobtn", e) ? "radio" : "hidden"
         },
         _getDefinedType: function(e) {
             return data(e, "ef-type")
@@ -1619,6 +1610,23 @@ var Tickets = {
                 val: i ? intval(attr(i, "ef-value")) : "",
                 els: geByClass("radiobtn", e)
             }
+        },
+        _initDatetime: function(e, t, a) {
+            var i = geByClass1("_time", e);
+            new Datepicker(t, {
+                time: i,
+                width: 207
+            }), "" !== a && addEvent(e, "focus", function(t) {
+                Tickets.showTooltip(e, a, "extra_field", !0, !0)
+            })
+        },
+        _initDate: function(e, t) {
+            var a = attr(t, "placeholder").toString();
+            new Datepicker(t, {
+                width: 348
+            }), "" !== a && addEvent(e, "focus", function(t) {
+                Tickets.showTooltip(e, a, "extra_field", !0, !0)
+            })
         },
         radioClick: function(e) {
             var t = gpeByClass("_extra_field", e);
@@ -1664,6 +1672,8 @@ var Tickets = {
             var o = "";
             switch (i) {
                 case "plain":
+                case "date":
+                case "datetime":
                     o = trim(val(a));
                     break;
                 case "select":

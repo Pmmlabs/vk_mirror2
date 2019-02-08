@@ -1506,7 +1506,7 @@ var Page = {
                     }
                     previewEl.style.visibility = '';
 
-                    statlogsValueEvent('gif_play', 0, canPlayMp4 ? 'mp4' : 'gif');
+                    statlogsValueEvent('gif_play', 0, canPlayMp4 ? 'mp4' : 'gif', isAutoplay ? 1 : 0);
                 }
             };
 

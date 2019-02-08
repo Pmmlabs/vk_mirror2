@@ -734,12 +734,6 @@ a.page_post_thumb_wrap:hover {
     font-size: 30px
 }
 
-.media_voting_long_question .media_voting_question {
-    line-height: 32px;
-    max-height: 96px;
-    font-size: 24px
-}
-
 .im_msg_media.im_msg_media_poll .media_voting_question {
     line-height: 22px;
     max-height: 66px;

@@ -42081,6 +42081,24 @@ body.apps_settingsPageBody {
     color: #909499
 }
 
+.VotingForm__label_title {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.VotingForm__title,
+.VotingForm__count {
+    display: inline-block
+}
+
 
 /*!
  * Options section

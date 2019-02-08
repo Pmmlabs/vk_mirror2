@@ -1205,7 +1205,7 @@ var Dev = {
 
     reportError: function(address, title) {
         nav.go({
-            0: 'bugtracker',
+            0: 'bugs',
             act: 'add',
             product: 22,
             descr: address ? getLang('developers_mistake_title').replace('{title}', address) : getLang('developers_mistake'),
