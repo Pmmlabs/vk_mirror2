@@ -1622,7 +1622,7 @@ AdsEdit.initCreatingPostForm = function(creatingPostBox, postOwnerId, wallOption
         window.onbeforeunload = cur.prevBefUnload;
     });
     creatingPostBox.setOptions({
-        onShow() {
+        onShow: function() {
             cur.preventBoxHide = true;
         },
         onHide: function() {

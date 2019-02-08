@@ -12926,7 +12926,7 @@ a.Popup__headerCorner {
 
 .Btn_theme_small {
     height: 28px;
-    line-height: 26px;
+    line-height: 27px;
     padding: 0 10px;
     color: #fff;
     background: #5181b8
@@ -12943,7 +12943,7 @@ a.Popup__headerCorner {
 
 .Btn_theme_outline {
     height: 28px;
-    line-height: 26px;
+    line-height: 27px;
     padding: 0 10px;
     border: 1px solid #5181b8;
     color: #5181b8;
@@ -12983,7 +12983,7 @@ a.Popup__headerCorner {
 
 .Btn_theme_secondarySmall {
     height: 28px;
-    line-height: 26px;
+    line-height: 27px;
     padding: 0 10px;
     color: #306096;
     background: #e6ebf1
@@ -13069,7 +13069,7 @@ a.Popup__headerCorner {
 
 .Btn_size_small {
     height: 28px;
-    line-height: 26px;
+    line-height: 27px;
     padding: 0 10px;
     font-size: 14px
 }
@@ -14806,6 +14806,20 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     -moz-osx-font-smoothing: auto;
     white-space: nowrap;
     color: #6293cc
+}
+
+@media (min-width: 882px) {
+    .SnackbarItem {
+        width: 360px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        right: auto;
+        margin: 24px
+    }
+    .vk__page_mail .SnackbarItem {
+        bottom: 0
+    }
 }
 
 .AspectRatio {
@@ -40169,7 +40183,9 @@ body.apps_settingsPageBody {
 
 .Unfold {
     position: relative;
-    -webkit-user-select: none
+    -webkit-user-select: none;
+    min-width: 44px;
+    min-height: 44px
 }
 
 .Unfold__popup {
@@ -40453,6 +40469,11 @@ body.apps_settingsPageBody {
     -webkit-transform: translateZ(0px);
     -moz-transform: translateZ(0px);
     transform: translateZ(0px)
+}
+
+.ScrollViewsDisabled .ScrollView {
+    overflow: hidden!important;
+    -webkit-overflow-scrolling: auto!important
 }
 
 ._ios .ScrollView:before {
@@ -48966,7 +48987,7 @@ a .BookmarkListItem__subtitle:hover {
 
 .uMailWrite {
     position: relative;
-    z-index: 11;
+    z-index: 0;
     -webkit-transform: translateZ(0);
     -moz-transform: translateZ(0);
     transform: translateZ(0)
@@ -49103,7 +49124,22 @@ a .BookmarkListItem__subtitle:hover {
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .08);
     border: 1px solid #d9e0e6;
     cursor: pointer;
-    -webkit-tap-highlight-color: transparent
+    -webkit-tap-highlight-color: transparent;
+    -webkit-transition: opacity 0.2s linear, -webkit-transform 0.2s linear;
+    transition: opacity 0.2s linear, -webkit-transform 0.2s linear;
+    -moz-transition: transform 0.2s linear, opacity 0.2s linear, -moz-transform 0.2s linear;
+    -o-transition: transform 0.2s linear, opacity 0.2s linear, -o-transform 0.2s linear;
+    transition: transform 0.2s linear, opacity 0.2s linear;
+    transition: transform 0.2s linear, opacity 0.2s linear, -webkit-transform 0.2s linear, -moz-transform 0.2s linear, -o-transform 0.2s linear;
+    -webkit-transform: translateY(10px);
+    -moz-transform: translateY(10px);
+    -ms-transform: translateY(10px);
+    -o-transform: translateY(10px);
+    transform: translateY(10px);
+    -webkit-transform: translate3d(0, 10px, 0);
+    -moz-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0);
+    opacity: 0
 }
 
 .uMailWrite__toBottom:before {
@@ -49124,32 +49160,16 @@ a .BookmarkListItem__subtitle:hover {
 }
 
 .uMailWrite__toBottom_visible {
-    visibility: visible
-}
-
-@supports ((-webkit-transform: translateY(0)) or (-moz-transform: translateY(0)) or (-ms-transform: translateY(0)) or (-o-transform: translateY(0)) or (transform: translateY(0))) {
-    .uMailWrite__toBottom {
-        -webkit-transition: visibility 0.2s, opacity 0.2s linear, -webkit-transform 0.2s linear;
-        transition: visibility 0.2s, opacity 0.2s linear, -webkit-transform 0.2s linear;
-        -moz-transition: visibility 0.2s, transform 0.2s linear, opacity 0.2s linear, -moz-transform 0.2s linear;
-        -o-transition: visibility 0.2s, transform 0.2s linear, opacity 0.2s linear, -o-transform 0.2s linear;
-        transition: visibility 0.2s, transform 0.2s linear, opacity 0.2s linear;
-        transition: visibility 0.2s, transform 0.2s linear, opacity 0.2s linear, -webkit-transform 0.2s linear, -moz-transform 0.2s linear, -o-transform 0.2s linear;
-        -webkit-transform: translateY(10px);
-        -moz-transform: translateY(10px);
-        -ms-transform: translateY(10px);
-        -o-transform: translateY(10px);
-        transform: translateY(10px);
-        opacity: 0
-    }
-    .uMailWrite__toBottom_visible {
-        -webkit-transform: translateY(0);
-        -moz-transform: translateY(0);
-        -ms-transform: translateY(0);
-        -o-transform: translateY(0);
-        transform: translateY(0);
-        opacity: 1
-    }
+    visibility: visible;
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 0.99
 }
 
 .uMailWrite__toBottomValue {
@@ -49856,6 +49876,10 @@ a .BookmarkListItem__subtitle:hover {
     height: 100%
 }
 
+.uMailWrite__templatesEmpty[hidden] {
+    display: none
+}
+
 .uMailWrite__templatesEmptyInfo {
     max-width: 150px;
     font-size: 15px;
@@ -49868,6 +49892,16 @@ a .BookmarkListItem__subtitle:hover {
 .uMailWrite__templatesLoading {
     width: 100%;
     height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
     -moz-box-pack: center;
@@ -49875,8 +49909,15 @@ a .BookmarkListItem__subtitle:hover {
     justify-content: center
 }
 
-.uMailWrite__templatesLoading,
+.uMailWrite__templatesRows[hidden] {
+    display: none
+}
+
 .uMailWrite__templatesRow {
+    height: 60px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -49889,13 +49930,6 @@ a .BookmarkListItem__subtitle:hover {
     align-items: center
 }
 
-.uMailWrite__templatesRow {
-    height: 60px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box
-}
-
 .uMailWrite__templatesRow:not(:last-child) {
     border-bottom: 1px solid #d7d7d9
 }
@@ -49903,6 +49937,11 @@ a .BookmarkListItem__subtitle:hover {
 ._hover .uMailWrite__templatesRow:hover,
 ._touch .uMailWrite__templatesRow.hover {
     background-color: #eff3f6
+}
+
+.uMailWrite__templatesRow_hidden {
+    opacity: 0.3;
+    pointer-events: none
 }
 
 .uMailWrite__templatesRowContent {
@@ -49915,7 +49954,23 @@ a .BookmarkListItem__subtitle:hover {
     -ms-flex-negative: 1;
     flex-shrink: 1;
     width: 1px;
-    padding: 12px 0 12px 12px
+    padding: 12px 0 12px 12px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.uMailWrite__templatesRowContent,
+.uMailWrite__templatesRowMore {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex
 }
 
 .uMailWrite__templatesRowMore {
@@ -49926,11 +49981,6 @@ a .BookmarkListItem__subtitle:hover {
     height: 24px;
     margin-left: 12px;
     margin-right: 12px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
     -moz-box-align: center;
@@ -49957,14 +50007,16 @@ a .BookmarkListItem__subtitle:hover {
 
 .uMailWrite__templatesRowName {
     font-size: 15px;
-    height: 18px;
-    color: #000
+    line-height: 18px;
+    height: 20px;
+    color: #000;
+    margin-bottom: 1px;
+    margin-top: -1px
 }
 
 .uMailWrite__templatesRowName,
 .uMailWrite__templatesRowText {
     font-weight: 400;
-    line-height: 1;
     white-space: nowrap;
     overflow: hidden;
     -o-text-overflow: ellipsis;
@@ -49972,9 +50024,10 @@ a .BookmarkListItem__subtitle:hover {
 }
 
 .uMailWrite__templatesRowText {
-    margin-top: 4px;
+    margin-top: 2px;
     font-size: 13px;
-    height: 15px;
+    line-height: 15px;
+    height: 17px;
     color: #909499
 }
 
@@ -50281,7 +50334,29 @@ a .BookmarkListItem__subtitle:hover {
 }
 
 .uMessenger .mailScrap__items .msg {
-    margin-bottom: 2px
+    margin-bottom: 2px;
+    overflow: visible;
+    min-height: 40px
+}
+
+.uMessenger .mailScrap__items .msg__avatar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 12px
+}
+
+.uMessenger .mailScrap__items .msg__content {
+    overflow: hidden;
+    position: static
+}
+
+.uMessenger .mailScrap__items .medias_thumb {
+    position: static
+}
+
+.uMessenger .mailScrap__items .mi_date {
+    position: static;
+    margin-top: 1px
 }
 
 .uMessenger .mailScrap__items>.msg:last-child {

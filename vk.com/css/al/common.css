@@ -4442,6 +4442,39 @@ body.mac #layer_stl .fixed {
     line-height: 150%
 }
 
+.box_error.msg_unmargined,
+.box_msg.msg_unmargined,
+.box_msg_gray.msg_unmargined,
+.error.msg_unmargined,
+.info_msg.msg_unmargined,
+.msg.msg_unmargined,
+.ok_msg.msg_unmargined {
+    margin: 0
+}
+
+.box_error.msg_unmargined_tlr,
+.box_msg.msg_unmargined_tlr,
+.box_msg_gray.msg_unmargined_tlr,
+.error.msg_unmargined_tlr,
+.info_msg.msg_unmargined_tlr,
+.msg.msg_unmargined_tlr,
+.ok_msg.msg_unmargined_tlr {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0
+}
+
+.box_error.msg_unmargined_lr,
+.box_msg.msg_unmargined_lr,
+.box_msg_gray.msg_unmargined_lr,
+.error.msg_unmargined_lr,
+.info_msg.msg_unmargined_lr,
+.msg.msg_unmargined_lr,
+.ok_msg.msg_unmargined_lr {
+    margin-left: 0;
+    margin-right: 0
+}
+
 .error,
 .info_msg,
 .ok_msg {

@@ -983,14 +983,14 @@ var Tickets = {
                 });
             else {
                 hide("tickets_new_extra_field__upload_btn_" + e, "tickets_new_extra_field__example_" + e);
-                var p = ge("tickets_new_extra_field__uploaded_" + e);
-                addClass(p, "tickets_new_extra_field__uploaded_p"), cur.attachMediaIndexes || (cur.attachMediaIndexes = {}), cur.attachMediaIndexes[n] = i;
-                var u = '<div><div class="page_attach_progress_wrap">  <div id="upload' + n + '_progress" class="page_attach_progress"></div></div></div></div>' + (c ? '<div class="attach_label">' + c + "</div>" : "") + '<div class="progress_x" onmouseover="showTooltip(this, {text: \'' + getLang("dont_attach") + '\', shift: [6, 3, 3]})" onclick="Upload.terminateUpload(' + t + ", '" + (r || t) + "');\"></div>";
-                p.appendChild(ce("div", {
+                var u = ge("tickets_new_extra_field__uploaded_" + e);
+                addClass(u, "tickets_new_extra_field__uploaded_p"), cur.attachMediaIndexes || (cur.attachMediaIndexes = {}), cur.attachMediaIndexes[n] = i;
+                var p = '<div><div class="page_attach_progress_wrap">  <div id="upload' + n + '_progress" class="page_attach_progress"></div></div></div></div>' + (c ? '<div class="attach_label">' + c + "</div>" : "") + '<div class="progress_x" onmouseover="showTooltip(this, {text: \'' + getLang("dont_attach") + '\', shift: [6, 3, 3]})" onclick="Upload.terminateUpload(' + t + ", '" + (r || t) + "');\"></div>";
+                u.appendChild(ce("div", {
                     id: "upload" + n + "_progress_wrap",
-                    innerHTML: u,
+                    innerHTML: p,
                     className: "clear_fix upload_" + t + "_progress"
-                })), show(p), l = ge("upload" + n + "_progress"), l.full = !1, s ? setStyle(l, {
+                })), show(u), l = ge("upload" + n + "_progress"), l.full = !1, s ? setStyle(l, {
                     width: l.full ? intval(l.full * o) + "px" : s + "%"
                 }) : (setStyle(l, {
                     width: "1px"
@@ -1563,6 +1563,8 @@ var Tickets = {
                     case "radio":
                         TicketsEF._initRadio(e, a, t);
                         break;
+                    case "checkbox":
+                        break;
                     case "hidden":
                         break;
                     default:
@@ -1580,7 +1582,7 @@ var Tickets = {
             }
         },
         _getType: function(e, t, a) {
-            return t ? a.length > 0 ? "select" : "plain" : e && geByClass1("radiobtn", e) ? "radio" : "hidden"
+            return t ? a.length > 0 ? "select" : e && geByClass1("checkbox", e) ? "checkbox" : "plain" : e && geByClass1("radiobtn", e) ? "radio" : "hidden"
         },
         _getDefinedType: function(e) {
             return data(e, "ef-type")
@@ -1607,6 +1609,9 @@ var Tickets = {
         },
         _getRadioName: function(e) {
             return "efRadio" + e
+        },
+        _getCheckbox: function(e) {
+            return e.querySelector(".checkbox")
         },
         _initRadio: function(e, t, a) {
             var i = geByClass1("on", e);
@@ -1667,6 +1672,9 @@ var Tickets = {
                     break;
                 case "radio":
                     o = radioval(TicketsEF._getRadioName(t));
+                    break;
+                case "checkbox":
+                    o = isChecked(TicketsEF._getCheckbox(e));
                     break;
                 case "hidden":
                     o = data(e, "value")

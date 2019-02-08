@@ -128,6 +128,18 @@ body.dev .tickets_new_title {
     background-color: #f7f8fa
 }
 
+body.dev .tickets_new_title_white {
+    background-color: #fff
+}
+
+body.dev .tickets_new_title_white .tickets_input_title:disabled {
+    cursor: not-allowed
+}
+
+body.dev .tickets_new_title_white .tickets_title_label {
+    display: initial
+}
+
 body.dev .detailed .tickets_new_title {
     background-color: transparent
 }

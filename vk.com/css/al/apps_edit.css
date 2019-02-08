@@ -3215,6 +3215,75 @@ td.apps_edit_header {
     padding-top: 3px
 }
 
+.vk_app_status .apps_edit_check_link a {
+    font-weight: 500;
+    color: #42648b
+}
+
+.vk_app_status_msg {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-top: 31px;
+    padding-top: 18px;
+    border-top: 1px solid #e7e8ec;
+    line-height: 1
+}
+
+.vk_app_status_msg .text {
+    padding-top: 0
+}
+
+.vk_app_status_msg .text a {
+    display: block;
+    margin-bottom: 4px
+}
+
+.vk_app_status_msg .status_icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 20px
+}
+
+.app_info_msg .vk_app_status_msg .status_icon {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22m16%202c-7.7319865%200-14%206.2680135-14%2014s6.2680135%2014%2014%2014%2014-6.2680135%2014-14-6.2680135-14-14-14zm0-2c8.836556%200%2016%207.163444%2016%2016s-7.163444%2016-16%2016-16-7.163444-16-16%207.163444-16%2016-16zm5.7071068%2020.2928932c.3905243.3905243.3905243%201.0236893%200%201.4142136s-1.0236893.3905243-1.4142136%200l-5-5c-.1875364-.1875364-.2928932-.4418903-.2928932-.7071068v-8c0-.55228475.4477153-1%201-1s1%20.44771525%201%201v7.5857864z%22%20fill%3D%22%23ffa000%22%20transform%3D%22%22%2F%3E%3C%2Fsvg%3E')
+}
+
+.app_status_msg .vk_app_status_msg .status_icon {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22m16%202c-7.7319865%200-14%206.2680135-14%2014s6.2680135%2014%2014%2014%2014-6.2680135%2014-14-6.2680135-14-14-14zm0-2c8.836556%200%2016%207.163444%2016%2016s-7.163444%2016-16%2016-16-7.163444-16-16%207.163444-16%2016-16zm6.2928932%2010.2928932c.3905243-.39052427%201.0236893-.39052427%201.4142136%200%20.3905243.3905243.3905243%201.0236893%200%201.4142136l-9%209c-.3905243.3905243-1.0236893.3905243-1.4142136%200l-3.99999998-4c-.39052429-.3905243-.39052429-1.0236893%200-1.4142136s1.02368928-.3905243%201.41421358%200l3.2928932%203.2928932z%22%20fill%3D%22%234bb34b%22%20transform%3D%22%22%2F%3E%3C%2Fsvg%3E')
+}
+
+.app_add_msg .vk_app_status_msg .status_icon {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%20width%3D%2232%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22m16%202c-7.7319865%200-14%206.2680135-14%2014s6.2680135%2014%2014%2014%2014-6.2680135%2014-14-6.2680135-14-14-14zm0-2c8.836556%200%2016%207.163444%2016%2016s-7.163444%2016-16%2016-16-7.163444-16-16%207.163444-16%2016-16zm1%2017v4c0%20.5522847-.4477153%201-1%201s-1-.4477153-1-1v-4h-4c-.5522847%200-1-.4477153-1-1s.4477153-1%201-1h4v-4c0-.5522847.4477153-1%201-1s1%20.4477153%201%201v4h4c.5522847%200%201%20.4477153%201%201s-.4477153%201-1%201z%22%20fill%3D%22%234bb34b%22%20transform%3D%22%22%2F%3E%3C%2Fsvg%3E')
+}
+
+.flat_button_disabled {
+    opacity: 0.4
+}
+
+.vk_app_moderation_request .box_title_wrap.box_grey {
+    border-bottom-color: transparent
+}
+
+.vk_app_moderation_request .box_body {
+    padding-top: 0;
+    background-color: #f2f4f7
+}
+
+.vk_app_moderation_request .box_body h2 {
+    position: relative;
+    margin-top: -16px;
+    margin-bottom: 12px;
+    font-size: 28px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 0.4px;
+    text-align: center;
+    color: #222
+}
+
 .app_pay_label {
     height: 25px;
     width: 130px
@@ -5021,8 +5090,7 @@ input.apps_edit_input {
 
 .apps_edit_check_link a {
     font-weight: 700;
-    color: #4a7099;
-    font-size: 0.923em
+    color: #4a7099
 }
 
 .apps_edit_history {
@@ -5981,4 +6049,33 @@ input.execute_field_input {
     background: url(/images/blacktip.gif) 0 5px;
     background-position: left 0;
     overflow: hidden
+}
+
+body.dev .tickets_new_wrap_vk_app .tickets_new_title_white,
+body .tickets_new_wrap_vk_app .tickets_new_title_white {
+    padding-top: 0;
+    padding-bottom: 0
+}
+
+body.dev .tickets_new_wrap_vk_app .tickets_new_extra_field__radios .subheader,
+body .tickets_new_wrap_vk_app .tickets_new_extra_field__radios .subheader {
+    margin-top: 24px
+}
+
+body.dev .tickets_new_wrap_vk_app .tickets_new_extra_field_note,
+body .tickets_new_wrap_vk_app .tickets_new_extra_field_note {
+    margin-bottom: 10px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+body.dev .tickets_new_wrap_vk_app .tickets_new_extra_field_note+div,
+body .tickets_new_wrap_vk_app .tickets_new_extra_field_note+div {
+    margin: 10px 0
+}
+
+body.dev .tickets_new_wrap_vk_app .tickets_new_extra_field_note+div+div,
+body .tickets_new_wrap_vk_app .tickets_new_extra_field_note+div+div {
+    margin-top: 10px
 }

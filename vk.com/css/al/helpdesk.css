@@ -358,8 +358,17 @@ body.body_helpdesk_small_sb .left_menu_nav {
     color: #4e5966
 }
 
+.helpdesk_pattern_descr_row>b.helpdesk_pattern_descr_clickable {
+    cursor: pointer;
+    border-bottom: 1px dotted
+}
+
+.helpdesk_pattern_descr_row>b.helpdesk_pattern_descr_clickable:hover {
+    border-bottom: 0 none
+}
+
 .helpdesk_edit_pattern_box_labeled_row {
-    margin-bottom: 8px
+    margin-bottom: 14px
 }
 
 .helpdesk_edit_pattern_box_labeled_row .text {
@@ -375,14 +384,6 @@ body.body_helpdesk_small_sb .left_menu_nav {
 .helpdesk_edit_pattern_box_radios .radiobtn {
     margin-right: 10px;
     display: inline-block
-}
-
-.helpdesk_edit_pattern_box_label {
-    margin-bottom: 2px;
-    font-weight: 700;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #42648b
 }
 
 .helpdesk_edit_pattern_box_rows {
