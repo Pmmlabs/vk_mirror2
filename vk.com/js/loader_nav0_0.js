@@ -192,7 +192,7 @@ var stVersions = {
     'usorter.js': 362016183,
     'cmodules/web/photos_module.js': 12665138298,
     'photo_tagger_mode.js': 2604367346,
-    'photoview.js': 2181258942,
+    'photoview.js': 3249994703,
     'photoview.css': 26203316374,
     'fullscreen_pv.js': 2393839857,
     'fullscreen_pv.css': 15364294574,
@@ -667,4 +667,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 2954;
+var _rnd = 4915;
