@@ -5093,7 +5093,8 @@ var Wall = {
         var count = domData(showMore, 'count');
         var collapse = domData(showMore, 'collapse');
         var isPrev = hasClass(showMore, 'replies_prev');
-        var postEl = ge('post' + itemFullId);
+        var postEl = cur.wallLayer ? ge('wl_post') : ge('post' + itemFullId);
+        var isReply = hasClass('post' + itemFullId, 'reply');
 
         var params = {
             act: 'get_post_replies',
@@ -5104,40 +5105,26 @@ var Wall = {
             collapse: collapse,
         };
 
-        var reorderEl;
-
-        if (hasClass(postEl, 'reply')) {
-            var parentPostEl = gpeByClass('post', postEl);
-            var parentPostId = domData(parentPostEl, 'post-id');
-
-            reorderEl = ge('post_replies_reorder' + parentPostId);
-        } else {
-            reorderEl = ge('post_replies_reorder' + itemFullId);
-
+        if (!isReply) {
             var repliesEl = ge('replies' + itemFullId);
             var topRepliesIds = domData(repliesEl, 'top-ids');
 
             if (topRepliesIds) {
                 params.top_replies = topRepliesIds;
             }
+        } else if (!cur.wallLayer) {
+            postEl = gpeByClass('post', postEl);
         }
 
-        if (reorderEl) {
-            params.order = domData(reorderEl, 'order');
+        var heightBefore = postEl.offsetHeight;
+        var postId = domData(postEl, 'post-id');
+
+        params.order = wall.getRepliesOrder(postId);
+        var isThreadDescOrder = isReply && wall.isDescRepliesOrder(postId, params.order);
+
+        if (isThreadDescOrder) {
+            isPrev = !isPrev;
         }
-
-        // find closest reply
-        var nextItem = showMore;
-
-        do {
-            nextItem = isPrev ? domPS(nextItem) : domNS(nextItem);
-
-            if (nextItem && hasClass(nextItem, 'reply')) {
-                params['closest'] = domData(nextItem, 'post-id');
-                break;
-            }
-
-        } while (nextItem);
 
         var loader = ce('span', {
             className: 'progress_inline replies_next_loader'
@@ -5167,9 +5154,22 @@ var Wall = {
                     hasNew = true;
                 });
 
+                var needInsertBefore = (isPrev && !isThreadDescOrder) || (!isPrev && isThreadDescOrder);
+                var needFixScroll = false;
+                var scrollBefore;
                 var edgeEl;
 
-                if (isPrev) {
+                if (needInsertBefore) {
+                    if (!hasClass(ge('replies_wrap_deep' + itemFullId), 'replies_deep_has_short')) {
+                        var viewportHeight = (window.innerHeight || document.documentElement.clientHeight);
+                        var fixedHeaderHeight = getSize('page_header')[1];
+                        var shownBeforeEl = domNS(showMore) || domPN(showMore);
+                        var shownBeforeElY = getXY(shownBeforeEl)[1];
+
+                        scrollBefore = cur.wallLayer ? wkLayerWrap.scrollTop : scrollGetY();
+                        needFixScroll = cur.wallLayer ? shownBeforeElY < viewportHeight : shownBeforeElY < scrollBefore + viewportHeight - fixedHeaderHeight;
+                    }
+
                     edgeEl = domFC(fragment);
                     domInsertBefore(fragment, showMore);
                 } else {
@@ -5177,12 +5177,10 @@ var Wall = {
                     domInsertAfter(fragment, showMore);
                 }
 
-                wall.addReplyNames(names);
-                wall.addDeepRepliesBlock(itemFullId);
-
                 var num = intval(data.num);
                 var prevOffset = intval(data.offset);
                 var count = intval(data.count);
+
                 var newOffset = Math.max(0, prevOffset + (isPrev ? -num : num));
                 var restCount = count - newOffset;
                 var moreCount = 0;
@@ -5216,7 +5214,7 @@ var Wall = {
                     removeClass(newShowMore, 'replies_next_pre_deleted');
 
                     if (!collapse) {
-                        if (isPrev) {
+                        if (needInsertBefore) {
                             domInsertBefore(newShowMore, edgeEl);
                             val(newShowMore, getLang('wall_prev_n_replies', moreCount));
                         } else {
@@ -5231,28 +5229,23 @@ var Wall = {
 
                 removeClass(ge('replies_wrap_deep' + itemFullId), 'replies_deep_has_short');
 
-                Wall.updateMentionsIndex();
+                var heightChanged = postEl.offsetHeight - heightBefore;
 
-                var postEl = null;
-                var postId = '';
+                if (needFixScroll && heightChanged) {
+                    var newScroll = scrollBefore + heightChanged;
 
-                if (cur.wallLayer) {
-                    postEl = ge('wl_post');
-                    postId = domData(postEl, 'post-id');
-                } else {
-                    postEl = ge('post' + itemFullId);
-                    postId = itemFullId;
-
-                    var isReply = hasClass(postEl, 'reply');
-
-                    if (isReply) {
-                        postEl = gpeByClass('post', postEl);
-                        postId = domData(postEl, 'post-id');
+                    if (cur.wallLayer) {
+                        wkLayerWrap.scrollTop = newScroll;
+                    } else {
+                        scrollToY(newScroll, 0, false, true);
                     }
                 }
 
-                cur.wallMyOpened = cur.wallMyOpened || {};
+                wall.updateMentionsIndex();
+                wall.addReplyNames(names);
+                wall.addDeepRepliesBlock(itemFullId);
 
+                cur.wallMyOpened = cur.wallMyOpened || {};
                 cur.wallMyOpened[postId] = 1;
                 wall.repliesSideSetup(postId);
             },
@@ -6175,7 +6168,7 @@ var Wall = {
         var toReply = hasClass(toEl, 'reply');
         var postEl = toReply ? (gpeByClass('wl_post', toEl) || gpeByClass('post', toEl)) : toEl;
         var postId = domData(postEl, 'post-id');
-        var isBackOrder = wall.isBackRepliesOrder(postId);
+        var isBackOrder = wall.isDescRepliesOrder(postId);
         var deepActive = hasClass(postEl, 'deep_active');
 
         if (!deepActive) {
@@ -6243,7 +6236,7 @@ var Wall = {
 
         var postId = domData(postEl, 'post-id');
 
-        if (wall.isBackRepliesOrder(postId)) {
+        if (wall.isDescRepliesOrder(postId)) {
             wkLayerWrap.scrollTop = getSize(postEl)[1] - getSize('wl_replies_wrap')[1] - 30;
         } else {
             wkLayerWrap.scrollTop = wkLayerWrap.scrollHeight;
@@ -10650,6 +10643,7 @@ var Wall = {
             // Add short comment
         } else {
             var deepShort = ge('replies_short_deep' + rootId);
+            var isBackOrder = wall.isDescRepliesOrder(postId);
 
             if (deepShort) {
                 var countEl = geByClass1('replies_short_text_count', deepShort);
@@ -10670,6 +10664,10 @@ var Wall = {
 
                 if (deepRepliesFC) {
                     domInsertBefore(deepShort, deepRepliesFC);
+
+                    if (hasClass(deepRepliesFC, 'replies_next_deep')) {
+                        toggleClass(deepRepliesFC, 'replies_prev', isBackOrder);
+                    }
                 } else {
                     deepRepliesBLock.appendChild(deepShort);
 
@@ -10679,7 +10677,7 @@ var Wall = {
                         offset: 0,
                         count: 1,
                         text: getLang('wall_next_n_replies', 1),
-                        class: ' replies_next_deep',
+                        class: ' replies_next_deep' + (isBackOrder ? ' replies_prev' : ''),
                     }));
 
                     deepRepliesBLock.appendChild(showNextDeepReplies);
@@ -10704,7 +10702,7 @@ var Wall = {
         var repliesCount = domChildren(replies).length;
         var onePost = (pageCur.wallType === 'full');
         var needAddComment = !repliesCount || (repliesCount < 3 && (wallLayer || onePost));
-        var isBackOrder = wall.isBackRepliesOrder(postId);
+        var isBackOrder = wall.isDescRepliesOrder(postId);
 
         // Full comment
         if (needAddComment) {
@@ -11068,8 +11066,8 @@ var Wall = {
         return order || 'asc';
     },
 
-    isBackRepliesOrder: function(postId) {
-        var order = wall.getRepliesOrder(postId);
+    isDescRepliesOrder: function(postId, order) {
+        order = order || wall.getRepliesOrder(postId);
 
         return order === 'desc' || order === 'smart';
     },

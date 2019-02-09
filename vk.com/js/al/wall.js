@@ -197,7 +197,7 @@ var FullWall = {
         var r = ge("replies" + a);
         val(r, o);
         var n = ge("post" + a);
-        wall.incReplyCounter(n, 1, e), wall.isBackRepliesOrder(a) ? scrollToY(getXY(r)[1] - 30) : setTimeout(FullWall.scrollToEnd, 0), extend(cur.options.reply_names, t), nav.setLoc(extend(nav.objLoc, {
+        wall.incReplyCounter(n, 1, e), wall.isDescRepliesOrder(a) ? scrollToY(getXY(r)[1] - 30) : setTimeout(FullWall.scrollToEnd, 0), extend(cur.options.reply_names, t), nav.setLoc(extend(nav.objLoc, {
             offset: l || null
         }))
     },

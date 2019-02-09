@@ -6079,3 +6079,7 @@ body.dev .tickets_new_wrap_vk_app .tickets_new_extra_field_note+div+div,
 body .tickets_new_wrap_vk_app .tickets_new_extra_field_note+div+div {
     margin-top: 10px
 }
+
+.app_edit_cont_extra .apps_edit_table.app_type {
+    margin-bottom: 0
+}
