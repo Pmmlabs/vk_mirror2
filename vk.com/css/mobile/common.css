@@ -50353,28 +50353,7 @@ a .BookmarkListItem__subtitle:hover {
 
 .uMessenger .mailScrap__items .msg {
     margin-bottom: 2px;
-    overflow: visible;
     min-height: 40px
-}
-
-.uMessenger .mailScrap__items .msg__avatar {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 12px
-}
-
-.uMessenger .mailScrap__items .msg__content {
-    overflow: hidden;
-    position: static
-}
-
-.uMessenger .mailScrap__items .medias_thumb {
-    position: static
-}
-
-.uMessenger .mailScrap__items .mi_date {
-    position: static;
-    margin-top: 1px
 }
 
 .uMessenger .mailScrap__items>.msg:last-child {
