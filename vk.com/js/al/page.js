@@ -10912,7 +10912,7 @@ var Wall = {
 
             var replyBox = se(rs(wallTpl.reply_box, {
                 post_id: replyId,
-                owner_name: domData(field, 'owner-name') || '',
+                owner_name: clean(domData(field, 'owner-name') || ''),
                 owner_photo: domData(field, 'owner-photo') || '',
                 owner_href: domData(field, 'owner-href') || '',
                 can_reply_as_group: canReplyAsGroup ? canReplyAsGroup : '',

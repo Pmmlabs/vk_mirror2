@@ -758,7 +758,8 @@
     cursor: pointer
 }
 
-.feedback_row_wrap:hover .feedback_row_menu {
+.feedback_row_wrap:hover .feedback_row_menu,
+.feedback_row_wrap .feedback_type_83 .feedback_row_menu {
     opacity: 1;
     filter: none;
     visibility: visible
