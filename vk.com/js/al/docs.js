@@ -1,435 +1,793 @@
 var Docs = {
+
     init: function() {
-        if (extend(cur, {
-                module: "docs",
-                rmenu: ge("docs_rmenu"),
-                menuTypesList: ge("ui_rmenu_all_list"),
-                menuTagsList: ge("ui_rmenu_tag_list"),
-                menuTagsToggle: ge("ui_rmenu_tag_toggle"),
-                searchInput: ge("docs_search"),
-                searchReset: ge("docs_reset"),
-                listCont: ge("docs_list"),
-                summary: ge("docs_summary"),
-                titleEl: ge("docs_title"),
-                listMore: ge("docs_more"),
-                searchCont: ge("docs_search_list"),
-                searchSummary: ge("docs_search_summary"),
-                searchMore: ge("docs_search_more"),
-                searchBlock: ge("docs_search_list_block")
-            }), Docs.indexDocs(), setTimeout(elfocus.pbind(cur.searchInput), 0), extend(cur, {
-                list: {
-                    all: cur.docs
-                },
-                cache: {}
-            }), cur.nav.push(function(e, o, r, c) {
-                return o[0] != r[0] || (r.section == o.section || e.id) && r.type == o.type ? void 0 : (Docs.changed(r.section, r.type), nav.setLoc(r), !1)
-            }), addEvent(window, "scroll", Docs.scrollResize), cur.tpl.office365Notice) {
-            var e = intval(ls.get("docs_office_notice_shown"));
-            if (3 > e) {
-                var o = se(cur.tpl.office365Notice);
-                domInsertBefore(o, ge("docs_list")), ls.set("docs_office_notice_shown", e + 1)
+        extend(cur, {
+            module: 'docs',
+            rmenu: ge('docs_rmenu'),
+            menuTypesList: ge('ui_rmenu_all_list'),
+            menuTagsList: ge('ui_rmenu_tag_list'),
+            menuTagsToggle: ge('ui_rmenu_tag_toggle'),
+            searchInput: ge('docs_search'),
+            searchReset: ge('docs_reset'),
+            listCont: ge('docs_list'),
+            summary: ge('docs_summary'),
+            titleEl: ge('docs_title'),
+            listMore: ge('docs_more'),
+            searchCont: ge('docs_search_list'),
+            searchSummary: ge('docs_search_summary'),
+            searchMore: ge('docs_search_more'),
+            searchBlock: ge('docs_search_list_block')
+        });
+
+        Docs.indexDocs();
+        setTimeout(elfocus.pbind(cur.searchInput), 0);
+
+        extend(cur, {
+            list: {
+                all: cur.docs
+            },
+            cache: {}
+        });
+
+        cur.nav.push(function(changed, old, n, opts) {
+            if (old[0] == n[0]) {
+                if (n.section != old.section && !changed.id || n.type != old.type) {
+                    Docs.changed(n.section, n.type);
+                    nav.setLoc(n);
+                    return false;
+                }
+            }
+        });
+
+        addEvent(window, 'scroll', Docs.scrollResize);
+
+
+        if (cur.tpl.office365Notice) {
+            var noticeShown = intval(ls.get('docs_office_notice_shown'));
+            if (noticeShown < 3) {
+                var noticeEl = se(cur.tpl.office365Notice);
+                domInsertBefore(noticeEl, ge('docs_list'));
+                ls.set('docs_office_notice_shown', noticeShown + 1);
             }
         }
     },
-    changed: function(e, o) {
-        cur.section = e || "all", cur.type = o || "", Docs.getList(), cur.searchInput.setValue(""), uiSearch.onChanged(cur.searchInput, !0), Docs.updateList("", {
-            force: !0
-        }), cur.searchShown = 0
+
+    changed: function(section, type) {
+        cur.section = section || 'all';
+        cur.type = type || '';
+        Docs.getList();
+
+        cur.searchInput.setValue('');
+        uiSearch.onChanged(cur.searchInput, true);
+        Docs.updateList('', {
+            force: true
+        });
+        cur.searchShown = 0;
     },
+
     scrollResize: function() {
-        if (!browser.mobile) {
-            var e = cur.listMore,
-                o = cur.searchMore;
-            if (isVisible(e) || (e = o, isVisible(e))) {
-                var r = document.documentElement,
-                    c = window.innerHeight || r.clientHeight || bodyNode.clientHeight,
-                    s = scrollGetY(),
-                    t = getXY(e)[1];
-                (s + c > t || cur.searchOffset && s + 2 * c > t) && Docs.showMore()
-            }
+        if (browser.mobile) return;
+
+        var lnk = cur.listMore,
+            searchLnk = cur.searchMore;
+        if (!isVisible(lnk)) {
+            lnk = searchLnk;
+            if (!isVisible(lnk)) return;
+        }
+
+        var docEl = document.documentElement,
+            ch = window.innerHeight || docEl.clientHeight || bodyNode.clientHeight,
+            st = scrollGetY(),
+            lnkY = getXY(lnk)[1];
+
+        if (st + ch > lnkY || cur.searchOffset && (st + 2 * ch > lnkY)) {
+            Docs.showMore();
         }
     },
-    getList: function(e) {
-        var o;
-        if (e = e || cur.section, cur.searchStr ? (o = e + "_" + cur.type + "_" + cur.searchStr, cur.selection = {
-                re: new RegExp("(" + cur.searchStr.replace(cur.index.delimiter, "|").replace(/[\/\\\(\)\[\]\{\}\*,]/g, "").replace(/^\||\|$/g, "") + ")", "gi"),
+
+    getList: function(section) {
+        var key;
+        section = section || cur.section;
+        if (cur.searchStr) {
+            key = section + '_' + cur.type + '_' + cur.searchStr;
+            cur.selection = {
+                re: new RegExp('(' + cur.searchStr.replace(cur.index.delimiter, '|').replace(/[\/\\\(\)\[\]\{\}\*,]/g, '').replace(/^\||\|$/g, '') + ')', 'gi'),
                 val: '<span class="highlight">$1</span>'
-            }) : o = cur.type ? e + "_" + cur.type : e, cur.list[o]) return cur.found = cur.list[o].length, cur.list[o];
-        var r = cur.searchStr ? cur.index.search(cur.searchStr) : cur.docs;
-        return cur.list[o] = Docs.filterList(r), cur.found = cur.list[o].length, cur.list[o]
-    },
-    filterList: function(e) {
-        for (var o = [], r = e.length, c = 0; r > c; c++) {
-            var s = e[c];
-            ("all" == cur.section && (!cur.type || cur.type == s[9]) || "sent" == cur.section && 1 == s[5]) && o.push(s)
+            };
+        } else if (cur.type) {
+            key = section + '_' + cur.type;
+        } else {
+            key = section;
         }
-        return o
+
+        if (cur.list[key]) {
+            cur.found = cur.list[key].length;
+            return cur.list[key];
+        }
+
+        var list = (cur.searchStr) ? cur.index.search(cur.searchStr) : cur.docs;
+
+        cur.list[key] = Docs.filterList(list);
+        cur.found = cur.list[key].length;
+        return cur.list[key];
     },
+
+    filterList: function(input) {
+        var list = [];
+        var len = input.length;
+        for (var i = 0; i < len; i++) {
+            var doc = input[i];
+            if (cur.section == 'all' && (!cur.type || cur.type == doc[9]) || cur.section == 'sent' && doc[5] == 1) {
+                list.push(doc);
+            }
+        }
+        return list;
+    },
+
     indexDocs: function() {
-        cur.docs && (cur.index = new vkIndexer(cur.docs, function(e) {
-            return e[2] + " " + e[6]
-        }))
+        if (!cur.docs) return;
+
+        cur.index = new vkIndexer(cur.docs, function(obj) {
+            return obj[2] + ' ' + obj[6];
+        });
     },
+
     updateTypes: function() {
-        cur.docs && cur.typesChanged && (each(geByClass("_ui_rmenu_subitem", cur.menuTypesList), function() {
-            addClass(this, "ui_rmenu_item_hidden")
-        }), each(cur.docs, function() {
-            removeClass(geByClass1("_docs_type_" + this[9], cur.menuTypesList), "ui_rmenu_item_hidden")
-        }), delete cur.typesChanged)
+        if (!cur.docs || !cur.typesChanged) return;
+
+        each(geByClass('_ui_rmenu_subitem', cur.menuTypesList), function() {
+            addClass(this, 'ui_rmenu_item_hidden');
+        });
+        each(cur.docs, function() {
+            removeClass(geByClass1('_docs_type_' + this[9], cur.menuTypesList), 'ui_rmenu_item_hidden');
+        });
+        delete cur.typesChanged;
     },
-    updateTags: function(e) {
-        if (cur.tags && e) {
-            e = e.split(",");
-            for (var o in e) {
-                var r = trim(e[o]);
-                cur.tags[r] || (cur.tags[r] = !0, cur.menuTagsList.appendChild(se(rs(cur.tpl.tagItem, {
-                    label: r
-                }))), removeClass(cur.menuTagsToggle, "ui_rmenu_item_hidden"))
+
+    updateTags: function(tags) {
+        if (!cur.tags || !tags) return;
+
+        tags = tags.split(',');
+        for (var i in tags) {
+            var tag = trim(tags[i]);
+            if (!cur.tags[tag]) {
+                cur.tags[tag] = true;
+                cur.menuTagsList.appendChild(se(rs(cur.tpl.tagItem, {
+                    label: tag
+                })));
+                removeClass(cur.menuTagsToggle, 'ui_rmenu_item_hidden');
             }
         }
     },
+
     addDocBox: function() {
-        showBox("/docs.php", {
-            act: "add_box",
+        showBox('/docs.php', {
+            act: 'add_box',
             oid: cur.oid
         }, {
             params: {
-                bodyStyle: "padding: 0px; position: relative;"
+                bodyStyle: 'padding: 0px; position: relative;'
             }
-        })
-    },
-    addDoc: function(e) {
-        cur.docs && (e._order = (cur.docs[0] && cur.docs[0]._order || 0) - 1, cur.docs.unshift(e), Docs.showList(cur.docs.slice(0, cur.perPage)), scrollToTop(200), cur.index.add(e), Docs.updateTags(e[6]), cur.count += 1, cur.found += 1, cur.menuProgress = cur.typesChanged = !0, nav.go(nav.objLoc[0]))
-    },
-    drawList: function(e, o) {
-        o = o || cur.listCont;
-        for (var r in e) {
-            var c = e[r];
-            o.appendChild(se(Docs.getDocHTML(c)))
-        }
-        checkPageBlocks()
-    },
-    getDocHTML: function(e) {
-        var o = e[0],
-            r = e[1],
-            c = e[2],
-            s = c,
-            t = e[3],
-            a = e[4],
-            i = e[6],
-            n = e[7],
-            u = e[9] || 0,
-            d = e[10] ? e[10] : "",
-            l = "/doc" + a + "_" + o,
-            h = a == vk.id || n == vk.id || a == cur.oid && 0 > a && cur.groupAdmin,
-            p = "";
-        _ = "", cur.selection && (s = s.replace(cur.selection.re, cur.selection.val));
-        var i = e[6];
-        if (i) {
-            i = i.split(",");
-            for (var g in i) cur.selection && (i[g] = i[g].replace(cur.selection.re, cur.selection.val)), i[g] = rs(cur.tpl.tag, {
-                title: i[g]
-            });
-            i = rs(cur.tpl.tags, {
-                tags: i.join(", ")
-            })
-        }
-        var _ = e[8],
-            f = " docs_icon_type" + u,
-            p = rs(h ? cur.tpl.edit : cur.tpl.add, {
-                oid: a,
-                item_id: o
-            });
-        _ = rs(_ ? cur.tpl.thumb : cur.tpl.icon, {
-            oid: a,
-            item_id: o,
-            ext: r,
-            url: l,
-            thumb: _,
-            title: clean(s),
-            icon_class: f
         });
-        var m = rs(cur.tpl.itemAdditionalInfo, {
-            date: t,
-            actions: d,
-            tags: i
+    },
+
+    addDoc: function(doc) {
+        if (!cur.docs) {
+            return;
+        }
+
+        doc._order = (cur.docs[0] && cur.docs[0]._order || 0) - 1;
+        cur.docs.unshift(doc);
+        Docs.showList(cur.docs.slice(0, cur.perPage));
+        scrollToTop(200);
+        cur.index.add(doc);
+        Docs.updateTags(doc[6]);
+        cur.count += 1;
+        cur.found += 1;
+        cur.menuProgress = cur.typesChanged = true;
+        nav.go(nav.objLoc[0]);
+    },
+
+    drawList: function(list, cont) {
+        cont = cont || cur.listCont;
+        for (var i in list) {
+            var item = list[i];
+
+            cont.appendChild(se(Docs.getDocHTML(item)));
+        }
+        checkPageBlocks();
+    },
+
+    getDocHTML: function(item) {
+        // ��������� ���� �������� � hDocsList
+        var id = item[0],
+            ext = item[1],
+            titleAttr = item[2],
+            title = titleAttr,
+            dateStr = item[3],
+            oid = item[4],
+            tags = item[6],
+            mid = item[7],
+            type = (item[9] || 0),
+            licensedActions = item[10] ? item[10] : '',
+            url = '/doc' + oid + '_' + id,
+            canEdit = (oid == vk.id || mid == vk.id || (oid == cur.oid && oid < 0 && cur.groupAdmin)),
+            actions = '';
+        thumb = '';
+
+        if (cur.selection) {
+            title = title.replace(cur.selection.re, cur.selection.val);
+        }
+
+        var tags = item[6];
+        if (tags) {
+            tags = tags.split(',');
+            for (var i in tags) {
+                if (cur.selection) {
+                    tags[i] = tags[i].replace(cur.selection.re, cur.selection.val);
+                }
+                tags[i] = rs(cur.tpl.tag, {
+                    title: tags[i]
+                });
+            }
+            tags = rs(cur.tpl.tags, {
+                tags: tags.join(', ')
+            });
+        }
+        var thumb = item[8],
+            iconClass = ' docs_icon_type' + type,
+            actions = rs((canEdit ? cur.tpl.edit : cur.tpl.add), {
+                oid: oid,
+                item_id: id
+            });
+        thumb = rs((thumb ? cur.tpl.thumb : cur.tpl.icon), {
+            oid: oid,
+            item_id: id,
+            ext: ext,
+            url: url,
+            thumb: thumb,
+            title: clean(title),
+            icon_class: iconClass
         });
+
+
+        var docAdditionalInfo = rs(cur.tpl.itemAdditionalInfo, {
+            date: dateStr,
+            actions: licensedActions,
+            tags: tags,
+        });
+
         return rs(cur.tpl.item, {
-            oid: a,
-            item_id: o,
-            thumb: _,
-            actions: p,
-            title: s,
-            title_clean: c,
-            url: l,
-            additional_info: m
-        })
+            oid: oid,
+            item_id: id,
+            thumb: thumb,
+            actions: actions,
+            title: title,
+            title_clean: titleAttr,
+            url: url,
+            additional_info: docAdditionalInfo
+        });
     },
-    showList: function(e) {
-        if (cur.shown = e.length, cur.shown) {
+
+    showList: function(list) {
+        cur.shown = list.length;
+        if (cur.shown) {
             if (!cur.listCont) return;
-            cur.listCont.innerHTML = "", Docs.drawList(e)
+            cur.listCont.innerHTML = '';
+            Docs.drawList(list);
         }
-        cur.searchShown = 0
+
+        cur.searchShown = 0;
     },
+
     showMore: function() {
-        var e = Docs.getList();
-        if (e.length && cur.shown < e.length) {
-            var o = e.slice(cur.shown, cur.shown + cur.perPage);
-            cur.shown += o.length;
-            Docs.drawList(o);
-            cur.shown >= cur.found && addClass(cur.listMore, "unshown")
-        } else cur.searchStr && Docs.globalSearch(!!cur.searchShown)
+        var list = Docs.getList();
+        if (list.length && cur.shown < list.length) {
+            var insert = list.slice(cur.shown, cur.shown + cur.perPage);
+            cur.shown += insert.length;
+            var html = Docs.drawList(insert);
+            if (cur.shown >= cur.found) {
+                addClass(cur.listMore, 'unshown');
+            }
+        } else if (cur.searchStr) {
+            Docs.globalSearch(!!cur.searchShown);
+        }
     },
+
     globalSearch: function(more) {
-        if (clearTimeout(cur.searchTimeout), !cur.searchStr || cur.loadingDocs) return !1;
+        clearTimeout(cur.searchTimeout);
+        if (!cur.searchStr || cur.loadingDocs) return false;
+
         var searchStr = cur.searchStr;
         if (!more && cur.cache[cur.searchStr]) {
             var cache = cur.cache[cur.searchStr];
-            return Docs.processGlobalSearch(searchStr, !0, cache[0], cache[1], cache[2])
+            return Docs.processGlobalSearch(searchStr, true, cache[0], cache[1], cache[2]);
         }
-        return cur.searchTimeout = setTimeout(function() {
-            if (searchStr == cur.searchStr) {
-                var options = {
-                    onDone: function(list, shown, count) {
-                        try {
-                            var list = eval("(" + list + ")")
-                        } catch (e) {
-                            return !1
-                        }
-                        return Docs.processGlobalSearch(searchStr, !more, list, shown, count)
-                    },
-                    showProgress: function() {
-                        cur.loadingDocs = !0, more ? lockButton(cur.searchMore) : uiSearch.showProgress(cur.searchInput)
-                    },
-                    hideProgress: function() {
-                        cur.loadingDocs = !1, more ? unlockButton(cur.searchMore) : uiSearch.hideProgress(cur.searchInput)
+
+        cur.searchTimeout = setTimeout(function() {
+            if (searchStr != cur.searchStr) return;
+
+            var options = {
+                onDone: function(list, shown, count) {
+                    try {
+                        var list = eval('(' + list + ')');
+                    } catch (e) {
+                        return false;
                     }
-                };
-                ajax.post("/docs.php", {
-                    act: "search_docs",
-                    q: cur.searchStr,
-                    offset: more && cur.searchShown || 0,
-                    oid: cur.oid
-                }, options)
+                    return Docs.processGlobalSearch(searchStr, !more, list, shown, count)
+                },
+                showProgress: function() {
+                    cur.loadingDocs = true;
+                    if (more) {
+                        lockButton(cur.searchMore);
+                    } else {
+                        uiSearch.showProgress(cur.searchInput);
+                    }
+                },
+                hideProgress: function() {
+                    cur.loadingDocs = false;
+                    if (more) {
+                        unlockButton(cur.searchMore);
+                    } else {
+                        uiSearch.hideProgress(cur.searchInput);
+                    }
+                }
+            };
+
+            ajax.post('/docs.php', {
+                act: 'search_docs',
+                q: cur.searchStr,
+                offset: more && cur.searchShown || 0,
+                oid: cur.oid
+            }, options);
+        }, more ? 10 : 300);
+
+        return true;
+    },
+
+    processGlobalSearch: function(searchStr, clear, list, shown, count) {
+        if (searchStr != cur.searchStr) return false;
+
+        cur.searchCount = count;
+        toggle(cur.searchBlock, !clear || shown && list);
+        if (shown && list) {
+            if (clear) {
+                cur.searchCont.innerHTML = '';
+                cur.searchShown = 0;
             }
-        }, more ? 10 : 300), !0
+            Docs.drawList(list, cur.searchCont);
+            cur.searchShown = cur.searchShown + shown;
+        }
+        toggleClass(cur.searchMore, 'unshown', cur.searchShown >= count || cur.searchShown >= 1000 || !shown || !list);
+        Docs.drawSummary(true);
+        cur.cache[cur.searchStr] = [list, shown, count];
+
+        return true;
     },
-    processGlobalSearch: function(e, o, r, c, s) {
-        return e != cur.searchStr ? !1 : (cur.searchCount = s, toggle(cur.searchBlock, !o || c && r), c && r && (o && (cur.searchCont.innerHTML = "", cur.searchShown = 0), Docs.drawList(r, cur.searchCont), cur.searchShown = cur.searchShown + c), toggleClass(cur.searchMore, "unshown", cur.searchShown >= s || cur.searchShown >= 1e3 || !c || !r), Docs.drawSummary(!0), cur.cache[cur.searchStr] = [r, c, s], !0)
-    },
-    drawSummary: function(e) {
-        var o = Docs.getList().length,
-            r = cur.type ? "type" + cur.type : cur.section;
-        if (val(cur.summary, o ? langNumeric(o, "%s", !0) : ""), cur.sectionLabels[r] && val(cur.titleEl, cur.sectionLabels[r]), e) {
-            var c = cur.searchShown && cur.searchCount;
-            val(cur.searchSummary, c ? langNumeric(c, "%s", !0) : "")
+
+    drawSummary: function(updateSearch) {
+        var listCount = Docs.getList().length,
+            section = cur.type ? 'type' + cur.type : cur.section;
+        val(cur.summary, listCount ? langNumeric(listCount, '%s', true) : '');
+        if (cur.sectionLabels[section]) {
+            val(cur.titleEl, cur.sectionLabels[section]);
+        }
+        if (updateSearch) {
+            var searchCount = cur.searchShown && cur.searchCount;
+            val(cur.searchSummary, searchCount ? langNumeric(searchCount, '%s', true) : '');
         }
     },
-    updateList: function(e, o) {
-        if (o = o || {}, e == cur.searchStr && !o.force) return !1;
-        if (cur.menuProgress && "menu" !== o.from) {
-            var r = geByClass1("_docs_section_" + cur.section, cur.rmenu);
-            uiRightMenu.switchMenu(r), uiRightMenu.showProgress(r), delete cur.menuProgress
+
+    updateList: function(str, opts) {
+        opts = opts || {};
+        if (str == cur.searchStr && !opts.force) return false;
+
+        if (cur.menuProgress && opts.from !== 'menu') {
+            var item = geByClass1('_docs_section_' + cur.section, cur.rmenu);
+            uiRightMenu.switchMenu(item);
+            uiRightMenu.showProgress(item);
+            delete cur.menuProgress;
         }
-        Docs.updateTypes(), cur.searchStr = e, cur.selection = !1;
-        var c = Docs.getList();
-        return listLen = c.length, Docs.hideLoadProgress(), cur.searchStr || hide(cur.searchBlock), listLen || (cur.shown = 0, addClass(cur.listMore, "unshown"), cur.listCont.innerHTML = rs(cur.tpl.empty, {
-            text: cur.searchStr ? getLang("docs_empty_search").replace("%s", "<b>" + clean(cur.searchStr) + "</b>") : cur.oid < 0 ? getLang("docs_no_group_docs") : getLang("docs_no_user_docs")
-        })), (cur.searchStr || listLen) && (Docs.showList(c.slice(0, cur.perPage)), listLen && toggleClass(cur.listMore, "unshown", cur.found <= cur.shown), listLen < cur.perPage) ? (cur.searchStr && Docs.globalSearch(), Docs.drawSummary(), !0) : (hide(cur.searchBlock), Docs.drawSummary(), !0)
+
+        Docs.updateTypes();
+        cur.searchStr = str;
+        cur.selection = false;
+
+        var list = Docs.getList()
+        listLen = list.length;
+
+        Docs.hideLoadProgress();
+        if (!cur.searchStr) {
+            hide(cur.searchBlock);
+        }
+
+        if (!listLen) {
+            cur.shown = 0;
+            addClass(cur.listMore, 'unshown');
+            cur.listCont.innerHTML = rs(cur.tpl.empty, {
+                text: (cur.searchStr ? getLang('docs_empty_search').replace('%s', '<b>' + clean(cur.searchStr) + '</b>') : (cur.oid < 0 ? getLang('docs_no_group_docs') : getLang('docs_no_user_docs')))
+            });
+        }
+        if (cur.searchStr || listLen) {
+            Docs.showList(list.slice(0, cur.perPage));
+            if (listLen) {
+                toggleClass(cur.listMore, 'unshown', cur.found <= cur.shown);
+            }
+            if (listLen < cur.perPage) {
+                if (cur.searchStr) {
+                    Docs.globalSearch();
+                }
+                Docs.drawSummary();
+                return true;
+            }
+        }
+        hide(cur.searchBlock);
+        Docs.drawSummary();
+
+        return true;
     },
+
     hideLoadProgress: function() {
-        window.uiRightMenu && uiRightMenu.hideProgress(domFC(ge("narrow_column")))
+        window.uiRightMenu && uiRightMenu.hideProgress(domFC(ge('narrow_column')));
     },
-    editItem: function(e, o, r) {
-        return !showBox("/docs.php", {
-            act: "edit_box",
-            oid: o,
-            did: r
-        })
+
+    editItem: function(el, oid, did) {
+        return !showBox('/docs.php', {
+            act: 'edit_box',
+            oid: oid,
+            did: did
+        });
     },
-    downloadItem: function(e, o, r, c, s) {
-        if (checkEvent(s)) return !0;
-        var t = domClosest("_docs_item", e);
-        if (!t) return domClosest("_feed_notification", e) && cur && "notifications" == cur.section ? !1 : !0;
-        var a = geByClass1("docs_item_icon", t) || geByClass1("docs_item_thumb", t),
-            i = a.href,
-            n = trim(a.getAttribute("ext"));
-        return -1 == "jpg|gif|png|pdf|doc|docx|xls|xlsx|rtf|ppt|pptx".indexOf(n) ? location.href = i + (i.match(/\?/) ? "&" : "?") + "wnd=1&fragment=" + intval(c) : (c && (i = i + (i.match(/\?/) ? "&" : "?") + "fragment=1"), window.open(i)), cancelEvent(s)
+
+    /**
+     *
+     * @param el
+     * @param oid
+     * @param did
+     * @param fragment bool - ����������� �� �������� ����-�����, ���� ��� ������������ ����
+     * @param event
+     * @returns {*}
+     */
+    downloadItem: function(el, oid, did, fragment, event) {
+        if (checkEvent(event)) {
+            return true;
+        }
+        var item = domClosest('_docs_item', el);
+        if (!item) {
+            if (domClosest('_feed_notification', el) && cur && cur.section == 'notifications') { // ���, ����������� � ������� �� ����������� ����� � ������ ������������
+                return false;
+            }
+            return true;
+        }
+
+        var icon = geByClass1('docs_item_icon', item) || geByClass1('docs_item_thumb', item);
+        var href = icon.href;
+        var ext = trim(icon.getAttribute('ext'));
+        if ('jpg|gif|png|pdf|doc|docx|xls|xlsx|rtf|ppt|pptx'.indexOf(ext) == -1) {
+            location.href = href + (href.match(/\?/) ? '&' : '?') + 'wnd=1&fragment=' + intval(fragment);
+        } else {
+            if (fragment) {
+                href = href + (href.match(/\?/) ? '&' : '?') + 'fragment=1';
+            }
+            window.open(href);
+        }
+        return cancelEvent(event);
     },
-    addItem: function(e, o, r, c) {
+
+    addItem: function(el, oid, did, hash) {
         cur._addedDocsInfo = cur._addedDocsInfo || {};
-        var s = o + "_" + r,
-            t = cur._addedDocsInfo[s],
-            a = domClosest("_docs_item", e);
-        if (t) {
-            var i = {
-                act: "a_delete",
-                hash: c,
-                did: t[0],
-                oid: t[4]
+        var fullId = oid + '_' + did,
+            info = cur._addedDocsInfo[fullId],
+            docRow = domClosest('_docs_item', el);
+
+        if (!info) {
+            var params = {
+                act: 'a_add',
+                doc: fullId,
+                hash: hash,
+                to_id: (cur.groupAdmin ? cur.oid : vk.id)
             };
-            ajax.post("/docs.php", i, {
-                onDone: function() {
-                    if (delete cur._addedDocsInfo[s], i.to_id == cur.oid) {
-                        for (var e = cur.docs.length; e--;) {
-                            var o = cur.docs[e];
-                            o[0] == t[0] && (cur["item_restore" + t[0]] = [cur.docs.splice(e, 1)[0], e], cur.index.remove(cur["item_restore" + t[0]][0]), cur.typesChanged = !0)
+            ajax.post('/docs.php', params, {
+                onDone: function(text, tooltip, doc) {
+                    showDoneBox(text);
+                    cur._addedDocsInfo[fullId] = doc;
+
+                    if (params.to_id == cur.oid) {
+                        doc._order = (cur.docs[0] && cur.docs[0]._order || 0) - 1;
+                        cur.docs.unshift(doc)
+                        cur.index.add(doc);
+                        Docs.updateTags(doc[6]);
+                        cur.typesChanged = true;
+                        if (_tbLink && _tbLink.loc) {
+                            cur.__phinputs = cur.__phinputs || [];
+                            globalHistoryDestroy(_tbLink.loc);
                         }
-                        cur.count -= 1, cur.found -= 1, cur.list = {}
                     }
                 }
-            })
+            });
         } else {
-            var i = {
-                act: "a_add",
-                doc: s,
-                hash: c,
-                to_id: cur.groupAdmin ? cur.oid : vk.id
+            var params = {
+                act: 'a_delete',
+                hash: hash,
+                did: info[0],
+                oid: info[4]
             };
-            ajax.post("/docs.php", i, {
-                onDone: function(e, o, r) {
-                    showDoneBox(e), cur._addedDocsInfo[s] = r, i.to_id == cur.oid && (r._order = (cur.docs[0] && cur.docs[0]._order || 0) - 1, cur.docs.unshift(r), cur.index.add(r), Docs.updateTags(r[6]), cur.typesChanged = !0, _tbLink && _tbLink.loc && (cur.__phinputs = cur.__phinputs || [], globalHistoryDestroy(_tbLink.loc)))
+            ajax.post('/docs.php', params, {
+                onDone: function() {
+                    delete cur._addedDocsInfo[fullId];
+
+                    if (params.to_id == cur.oid) {
+                        var len = cur.docs.length;
+                        while (len--) {
+                            var item = cur.docs[len];
+                            if (item[0] == info[0]) {
+                                cur['item_restore' + info[0]] = [cur.docs.splice(len, 1)[0], len];
+                                cur.index.remove(cur['item_restore' + info[0]][0]);
+                                cur.typesChanged = true;
+                            }
+                        }
+
+                        cur.count -= 1;
+                        cur.found -= 1;
+                        cur.list = {};
+                    }
                 }
-            })
+            });
         }
-        return toggleClass(a, "doc_added", !t), Docs.rowActive(e, "add"), !1
+        toggleClass(docRow, 'doc_added', !info);
+        Docs.rowActive(el, 'add');
+        return false;
     },
-    deleteItem: function(e, o, r, c) {
-        var s = domClosest("_docs_item", e);
-        if (s) return e && window.tooltips && tooltips.destroy(e), ajax.post("/docs.php", {
-            act: "a_delete",
-            hash: c,
-            did: r,
-            oid: o
+
+    deleteItem: function(el, oid, did, hash) {
+        var doc = domClosest('_docs_item', el);
+        if (!doc) return;
+
+        // ����� ��������� ������� window.tooltips. �.� �������� ����� ���� ������������� �� ������-�������, ��� �� �����
+        // ������ showTooltip � �� ���������� ���������� ������� ����� stManager.
+        el && window.tooltips && tooltips.destroy(el);
+        ajax.post('/docs.php', {
+            act: 'a_delete',
+            hash: hash,
+            did: did,
+            oid: oid
         }, {
-            onDone: function(e) {
-                addClass(s, "docs_item_deleted");
-                var c = ge("docs_restore_row" + o + "_" + r);
-                c && (c.innerHTML = e);
-                for (var t = cur.docs.length; t--;) {
-                    var a = cur.docs[t];
-                    a[0] == r && (cur["item_restore" + r] = [cur.docs.splice(t, 1)[0], t], cur.index.remove(cur["item_restore" + r][0]), cur.typesChanged = !0)
+            onDone: function(text) {
+                addClass(doc, 'docs_item_deleted');
+                var restoreEl = ge('docs_restore_row' + oid + '_' + did);
+                if (restoreEl) {
+                    restoreEl.innerHTML = text;
                 }
-                cur.count -= 1, cur.found -= 1, cur.list = {}
+
+                var len = cur.docs.length;
+                while (len--) {
+                    var item = cur.docs[len];
+                    if (item[0] == did) {
+                        cur['item_restore' + did] = [cur.docs.splice(len, 1)[0], len];
+                        cur.index.remove(cur['item_restore' + did][0]);
+                        cur.typesChanged = true;
+                    }
+                }
+
+                cur.count -= 1;
+                cur.found -= 1;
+                cur.list = {};
             },
-            showProgress: addClass.pbind(s, "docs_item_loading"),
-            hideProgress: removeClass.pbind(s, "docs_item_loading")
-        }), !1
+            showProgress: addClass.pbind(doc, 'docs_item_loading'),
+            hideProgress: removeClass.pbind(doc, 'docs_item_loading')
+        });
+        return false;
     },
-    restoreItem: function(e, o, r, c) {
-        var s = domClosest("_docs_item", e);
-        if (s) return ajax.post("/docs.php", {
-            act: "a_restore",
-            hash: c,
-            did: r,
-            oid: o
+
+    restoreItem: function(el, oid, did, hash) {
+        var doc = domClosest('_docs_item', el);
+        if (!doc) return;
+
+        ajax.post('/docs.php', {
+            act: 'a_restore',
+            hash: hash,
+            did: did,
+            oid: oid
         }, {
-            onDone: function(e) {
-                removeClass(s, "docs_item_deleted");
-                var o = cur["item_restore" + r];
-                o && (cur.docs.splice(o[1], 0, o[0]), cur.index.add(o[0]), cur.typesChanged = !0, cur.count += 1, cur.found += 1)
+            onDone: function(text) {
+                removeClass(doc, 'docs_item_deleted');
+                var restore = cur['item_restore' + did];
+                if (restore) {
+                    cur.docs.splice(restore[1], 0, restore[0]);
+                    cur.index.add(restore[0]);
+                    cur.typesChanged = true;
+                    cur.count += 1;
+                    cur.found += 1;
+                }
             },
-            showProgress: addClass.pbind(s, "docs_item_loading"),
-            hideProgress: removeClass.pbind(s, "docs_item_loading")
-        }), !1
+            showProgress: addClass.pbind(doc, 'docs_item_loading'),
+            hideProgress: removeClass.pbind(doc, 'docs_item_loading')
+        });
+        return false;
     },
-    tagSearch: function(e, o) {
-        var r = trim(e.innerText || e.textContent);
-        return cur.searchInput.setValue(r), uiSearch.onChanged(cur.searchInput, !0), Docs.updateList(r, o), elfocus(cur.searchInput), scrollToTop(100), !1
+
+    tagSearch: function(obj, opts) {
+        var str = trim(obj.innerText || obj.textContent);
+        cur.searchInput.setValue(str);
+        uiSearch.onChanged(cur.searchInput, true);
+        Docs.updateList(str, opts);
+        elfocus(cur.searchInput);
+        scrollToTop(100);
+
+        return false;
     },
-    selectTag: function(e) {
-        return geByClass1("ui_rmenu_item_sel", cur.rmenu) == e ? !1 : (uiRightMenu.switchMenu(e), uiRightMenu.showProgress(e), cur.menuProgress = !0, cur.section = "all", cur.type = "", Docs.tagSearch(e, {
-            from: "menu"
-        }))
+
+    selectTag: function(obj) {
+        if (geByClass1('ui_rmenu_item_sel', cur.rmenu) == obj) return false;
+
+        uiRightMenu.switchMenu(obj);
+        uiRightMenu.showProgress(obj);
+        cur.menuProgress = true;
+        cur.section = 'all';
+        cur.type = '';
+        return Docs.tagSearch(obj, {
+            from: 'menu'
+        });
     },
-    addTag: function(e, o) {
-        var r = trim(e.innerText || e.textContent);
-        return o.selectItem([r, r])
+
+    addTag: function(obj, dd) {
+        var text = trim(obj.innerText || obj.textContent);
+        return dd.selectItem([text, text]);
     },
-    rowActive: function(e, o) {
-        var r, c = [12, 5, 5],
-            s = domClosest("_docs_item", e);
-        r = "delete" == o || s && hasClass(s, "doc_added") && "add" == o ? getLang("docs_remove_tt") : "edit" == o ? getLang("docs_edit_tt") : cur.groupAdmin ? getLang("docs_add_to_group_tt") : getLang("docs_add_tt"), r && showTooltip(e, {
-            text: function() {
-                return r
-            },
-            showdt: 500,
-            black: 1,
-            shift: c
-        })
+
+    rowActive: function(obj, type) {
+        var shift = [12, 5, 5],
+            ttText,
+            row = domClosest('_docs_item', obj);
+        if (type == 'delete' || row && hasClass(row, 'doc_added') && type == 'add') {
+            ttText = getLang('docs_remove_tt');
+        } else if (type == 'edit') {
+            ttText = getLang('docs_edit_tt');
+        } else {
+            ttText = cur.groupAdmin ? getLang('docs_add_to_group_tt') : getLang('docs_add_tt');
+        }
+        if (ttText) {
+            showTooltip(obj, {
+                text: function() {
+                    return ttText;
+                },
+                showdt: 500,
+                black: 1,
+                shift: shift
+            });
+        }
     },
-    filterMP3: function(e, o) {
-        var r = [];
-        return each(o, function() {
-            if ("mp3" !== this.name.substr(-3).toLowerCase()) r.push(this);
-            else {
-                var e = ge("docs_upload_error");
-                e ? (e.innerHTML = getLang("docs_upload_mp3_fail"), show(domPN(e))) : setTimeout(showFastBox({
-                    title: getLang("global_error")
-                }, getLang("docs_upload_mp3_fail")).hide, 4e3)
+
+    filterMP3: function(i, files) {
+        var filteredFiles = [];
+        each(files, function() {
+            if (this.name.substr(-3).toLowerCase() !== 'mp3') {
+                filteredFiles.push(this);
+            } else {
+                var errCont = ge('docs_upload_error');
+                if (errCont) {
+                    errCont.innerHTML = getLang('docs_upload_mp3_fail');
+                    show(domPN(errCont));
+                } else {
+                    setTimeout(showFastBox({
+                        title: getLang('global_error')
+                    }, getLang('docs_upload_mp3_fail')).hide, 4000);
+                }
             }
-        }), r
+        });
+        return filteredFiles;
     },
-    showFileTT: function(e, o, r) {
-        return clearTimeout(cur.fileTT), e && o && r ? void("gif" == o && (cur.fileTT = setTimeout(function() {
-            var o = r + "?wnd=1";
-            cur.fileTTImage = new vkImage, cur.fileTTImage.src = o, cur.fileTTImage.onload = function() {
-                cur.fileTTImage && cur.fileTTImage.getAttribute("src") == o && (cur.prevTT && cur.prevTT != e && cur.prevTT.tt && cur.prevTT.tt.hide(), clearTimeout(e.hidetimer), e.hidetimer = !1, cur.prevTT = e, showTooltip(e, {
-                    content: '<img class="docs_tt_image" src="' + o + '" align="center"/>',
-                    shift: [14, 7, 7],
-                    slide: 15,
-                    className: "docs_tt",
-                    dir: "auto",
-                    hasover: !1,
-                    nohideover: !0,
-                    showdt: 0
-                }))
-            }, stManager.add(["tooltips.js", "tooltips.css"])
-        }, 500))) : !1
+
+    showFileTT: function(obj, ext, url) {
+        clearTimeout(cur.fileTT);
+        if (!obj || !ext || !url) return false;
+
+        if (ext == 'gif') {
+            cur.fileTT = setTimeout(function() {
+                var href = url + '?wnd=1';
+
+                cur.fileTTImage = new vkImage();
+                cur.fileTTImage.src = href;
+                cur.fileTTImage.onload = function() {
+                    if (!cur.fileTTImage || cur.fileTTImage.getAttribute('src') != href) {
+                        return;
+                    }
+
+                    if (cur.prevTT && cur.prevTT != obj && cur.prevTT.tt) {
+                        cur.prevTT.tt.hide();
+                    }
+                    clearTimeout(obj.hidetimer);
+                    obj.hidetimer = false;
+                    cur.prevTT = obj;
+                    showTooltip(obj, {
+                        content: '<img class="docs_tt_image" src="' + href + '" align="center"/>',
+                        shift: [14, 7, 7],
+                        slide: 15,
+                        className: 'docs_tt',
+                        dir: 'auto',
+                        hasover: false,
+                        nohideover: true,
+                        showdt: 0
+                    });
+                }
+                stManager.add(['tooltips.js', 'tooltips.css']);
+            }, 500);
+        }
     },
+
     hideFileTT: function() {
-        clearTimeout(cur.fileTT), delete cur.fileTTImage
+        clearTimeout(cur.fileTT);
+        delete cur.fileTTImage;
     },
-    chooseSwitchTT: function(e) {
-        return showTooltip(e, {
+
+    chooseSwitchTT: function(el) {
+        return showTooltip(el, {
             text: function() {
-                return e.getAttribute("data-tt")
+                return el.getAttribute('data-tt');
             },
             black: 1,
             showdt: 500,
             shift: [3, 0, 0]
-        })
+        });
     },
-    chooseSwitch: function(e) {
-        if (hasClass(curBox().titleWrap, "box_loading")) return !1;
-        cur.docsChooseInput.setValue(""), uiSearch.onChanged(cur.docsChooseInput, !0), cur.docsTab = "user_docs" == cur.docsTab ? "group_docs" : "user_docs";
-        var o = cur.docsCurFilter;
-        ajax.post("/docs.php", {
-            act: "a_choose_doc_box",
+
+    chooseSwitch: function(obj) {
+        if (hasClass(curBox().titleWrap, 'box_loading')) return false;
+
+        cur.docsChooseInput.setValue('');
+        uiSearch.onChanged(cur.docsChooseInput, true);
+        cur.docsTab = (cur.docsTab == 'user_docs') ? 'group_docs' : 'user_docs';
+        var extFilter = cur.docsCurFilter
+        ajax.post('/docs.php', {
+            act: 'a_choose_doc_box',
             offset: 0,
             to_id: cur.docsToId,
             tab: cur.docsTab,
             switch_tab: 1,
-            ext_filter: o || ""
+            ext_filter: extFilter || ''
         }, {
-            onDone: function(o, r, c, s, t) {
-                cur.docsChooseRows.innerHTML = o, cur.docsChooseMore.innerHTML = s, toggle(cur.docsChooseMore, !c), cur.docsOffset = r, e.innerHTML = t
+            onDone: function(rows, newOffset, hideMore, moreStr, switchStr) {
+                cur.docsChooseRows.innerHTML = rows;
+                cur.docsChooseMore.innerHTML = moreStr;
+                toggle(cur.docsChooseMore, !hideMore);
+                cur.docsOffset = newOffset;
+                obj.innerHTML = switchStr;
             },
             showProgress: curBox().showCloseProgress,
             hideProgress: curBox().hideCloseProgress
-        })
+        });
     },
-    chooseUpdateList: function(e, o) {
-        o != cur.chooseDocsQuery && (clearTimeout(this.searchTimeout), this.searchTimeout = setTimeout(Docs.chooseDocsSearch.pbind(e), o ? 300 : 0))
+
+    chooseUpdateList: function(obj, str) {
+        if (str == cur.chooseDocsQuery) {
+            return;
+        }
+        clearTimeout(this.searchTimeout);
+        this.searchTimeout = setTimeout(Docs.chooseDocsSearch.pbind(obj), str ? 300 : 0);
     },
-    chooseDocsSearch: function(e) {
-        var o = trim(val(e));
-        o != cur.docsSearchStr && (cur.docsSearchStr = o, o ? (cur.docsOffset = 0, Docs.chooseMore()) : (cur.docsOffset = cur.docsStartOffset, cur.docsChooseRows.innerHTML = cur.docsStartHTML, toggle(cur.docsChooseMore, cur.docsStartMore)))
+
+    chooseDocsSearch: function(obj) {
+        var str = trim(val(obj));
+        if (str == cur.docsSearchStr) {
+            return;
+        }
+        cur.docsSearchStr = str;
+        if (str) {
+            cur.docsOffset = 0;
+            Docs.chooseMore();
+        } else {
+            cur.docsOffset = cur.docsStartOffset;
+            cur.docsChooseRows.innerHTML = cur.docsStartHTML;
+            toggle(cur.docsChooseMore, cur.docsStartMore);
+        }
     },
+
     chooseMore: function() {
-        return cur.docsChooseLoading ? !1 : void ajax.post("/docs.php", {
-            act: "a_choose_doc_box",
+        if (cur.docsChooseLoading) {
+            return false;
+        }
+        ajax.post('/docs.php', {
+            act: 'a_choose_doc_box',
             offset: cur.docsOffset,
             to_id: cur.docsToId,
             tab: cur.docsTab,
@@ -437,143 +795,271 @@ var Docs = {
             more: 1,
             ext_filter: cur.docsCurFilter
         }, {
-            onDone: function(e, o, r) {
-                0 == cur.docsOffset ? cur.docsChooseRows.innerHTML = e : cur.docsChooseRows.appendChild(cf(e)), cur.docsOffset = o, r && hide(cur.docsChooseMore)
+            onDone: function(rows, newOffset, hideMore) {
+                if (cur.docsOffset == 0) {
+                    cur.docsChooseRows.innerHTML = rows;
+                } else {
+                    cur.docsChooseRows.appendChild(cf(rows));
+                }
+                cur.docsOffset = newOffset;
+                if (hideMore) {
+                    hide(cur.docsChooseMore);
+                }
             },
             showProgress: function() {
-                cur.docsChooseLoading = !0, cur.docsOffset ? addClass(cur.docsChooseMore, "choose_loading") : uiSearch.showProgress(cur.docsChooseInput)
+                cur.docsChooseLoading = true;
+                if (cur.docsOffset) {
+                    addClass(cur.docsChooseMore, 'choose_loading');
+                } else {
+                    uiSearch.showProgress(cur.docsChooseInput);
+                }
             },
             hideProgress: function() {
-                cur.docsChooseLoading = !1, cur.docsOffset ? removeClass(cur.docsChooseMore, "choose_loading") : uiSearch.hideProgress(cur.docsChooseInput)
+                cur.docsChooseLoading = false;
+                if (cur.docsOffset) {
+                    removeClass(cur.docsChooseMore, 'choose_loading');
+                } else {
+                    uiSearch.hideProgress(cur.docsChooseInput);
+                }
             }
-        })
+        });
     },
+
     chooseScroll: function() {
-        var e = lastWindowHeight;
-        isVisible(cur.docsChooseMore) && e > getXY(cur.docsChooseMore, !0)[1] - (browser.msie6 ? 0 : scrollGetY()) - e && cur.docsChooseMore.click()
-    },
-    chooseDoc: function(e, o, r, c) {
-        if ("A" == c.target.tagName || "A" == c.target.parentNode.tagName) return !0;
-        var s = e && geByClass1("_docs_choose_attach", e);
-        if (void 0 !== e.selected) cur.lastAddMedia && (cur.lastAddMedia.unchooseMedia(e.selected), e.selected = void 0, removeClass(e, "docs_item_selected"), s && (s.innerHTML = getLang("global_add_media")));
-        else {
-            var t = cur.attachCount && cur.attachCount() || 0;
-            window.event = window.event || c, cur.chooseMedia("doc", o, r), window.event = void 0, (!cur.attachCount || cur.attachCount() > t) && cur.lastAddMedia && (e.selected = cur.lastAddMedia.chosenMedias.length - 1, addClass(e, "docs_item_selected"), s && (s.innerHTML = getLang("global_cancel")))
+        var bt = lastWindowHeight;
+
+        if (isVisible(cur.docsChooseMore) && (bt > getXY(cur.docsChooseMore, true)[1] - (browser.msie6 ? 0 : scrollGetY()) - bt)) {
+            cur.docsChooseMore.click();
         }
-        return cancelEvent(c)
     },
-    upload: function(e, o) {
-        return void 0 !== cur.uplId && window.Upload && Upload.checkFileApi() && Upload.checked && Upload.checked[cur.uplId] ? (cur.docsChooseUpload.click(), !1) : !0
+
+    chooseDoc: function(el, id, data, ev) {
+        if (ev.target.tagName == 'A' || ev.target.parentNode.tagName == 'A') {
+            return true;
+        }
+        var link = el && geByClass1('_docs_choose_attach', el);
+        if (el.selected !== undefined) {
+            if (cur.lastAddMedia) {
+                cur.lastAddMedia.unchooseMedia(el.selected);
+                el.selected = undefined;
+                removeClass(el, 'docs_item_selected');
+                link && (link.innerHTML = getLang('global_add_media'));
+            }
+        } else {
+            var cnt = cur.attachCount && cur.attachCount() || 0;
+            window.event = window.event || ev;
+            cur.chooseMedia('doc', id, data);
+            window.event = undefined;
+            if (!cur.attachCount || cur.attachCount() > cnt) {
+                if (cur.lastAddMedia) {
+                    el.selected = cur.lastAddMedia.chosenMedias.length - 1;
+                    addClass(el, 'docs_item_selected');
+                    link && (link.innerHTML = getLang('global_cancel'));
+                }
+            }
+        }
+        return cancelEvent(ev);
     },
-    chooseUploaded: function(e, o) {
-        var r = void 0 !== e.ind ? e.ind : e,
-            c = ((e.fileName ? e.fileName : e.filename || e).replace(/[&<>"']/g, ""), (e.fileName || e.filename).replace(/[&<>"']/g, "")),
-            s = c ? r + "_" + c : e;
-        ge("upload" + s + "_progress_wrap") && hide(geByClass1("progress_x", ge("upload" + s + "_progress_wrap"))), ajax.post("/docs.php", extend({
-            act: "a_save_doc",
-            from: "choose",
+
+    upload: function(obj, ev) {
+        if (cur.uplId !== undefined && window.Upload && Upload.checkFileApi() && Upload.checked && Upload.checked[cur.uplId]) {
+            cur.docsChooseUpload.click();
+            return false;
+        }
+        return true;
+    },
+
+    chooseUploaded: function(info, params) {
+        var i = info.ind !== undefined ? info.ind : info,
+            fileName = (info.fileName ? info.fileName : info.filename || info).replace(/[&<>"']/g, '');
+
+        var fname = (info.fileName || info.filename).replace(/[&<>"']/g, '');
+        var ind = fname ? i + '_' + fname : info;
+        if (ge('upload' + ind + '_progress_wrap')) {
+            hide(geByClass1('progress_x', ge('upload' + ind + '_progress_wrap')));
+        }
+
+        ajax.post('/docs.php', extend({
+            act: 'a_save_doc',
+            from: 'choose',
             from_place: cur.docsChooseFrom,
             imhash: cur.docsChooseImHash,
             blockPersonal: cur.docsChooseBlockPersonal,
             mail_add: cur.docsChooseMailAdd
-        }, o), {
-            onDone: function(e, o, r) {
-                cur.chooseMedia("doc", e + "_" + o, extend(r, {
-                    upload_ind: s
-                }))
+        }, params), {
+            onDone: function(oid, id, data) {
+                cur.chooseMedia('doc', oid + '_' + id, extend(data, {
+                    upload_ind: ind
+                }));
             },
-            onFail: Docs.chooseUploadFailed.pbind(e),
-            progress: "form" == Upload.types[r] ? box.progress : null
-        })
+            onFail: Docs.chooseUploadFailed.pbind(info),
+            progress: (Upload.types[i] == 'form') ? box.progress : null
+        });
     },
-    chooseUploadFailed: function(e, o) {
-        var r = void 0 !== e.ind ? e.ind : e,
-            c = (e.fileName ? e.fileName : e.filename || e).replace(/[&<>"']/g, "");
-        if ("fileApi" == Upload.types[r] && !Upload.options[r].wiki_editor) {
-            var s, t, a = (e.fileName || e.filename).replace(/[&<>"']/g, ""),
-                i = a ? r + "_" + a : e;
-            cur.imMedia || cur.imwMedia ? (re("upload" + i + "_progress_wrap"), s = (-3 == cur.peer ? cur.imwMedia : cur.imMedia).lnkId, cur.addMedia[s].unchooseMedia(!1)) : cur.addMedia && (re("upload" + i + "_progress_wrap"), s = (cur.attachMediaIndexes || {})[c], s && cur.addMedia[s].unchooseMedia(!1));
-            var n = !0;
-            o && "string" == typeof o.error && o.error.match(/ERR_UPLOAD_TERMINATED/) && (n = !1), t = o && "wrong_arch_file" == o.error ? getLang("docs_upload_arch_fail") : o && "wrong_mp3_file" == o.error ? getLang("docs_upload_mp3_fail") : getLang("docs_upload_fail"), n && setTimeout(showFastBox({
-                title: getLang("global_error")
-            }, t).hide, 4e3)
+
+    chooseUploadFailed: function(info, code) {
+        var i = info.ind !== undefined ? info.ind : info,
+            fileName = (info.fileName ? info.fileName : info.filename || info).replace(/[&<>"']/g, '');
+        if (Upload.types[i] == 'fileApi' && !Upload.options[i].wiki_editor) {
+            var fname = (info.fileName || info.filename).replace(/[&<>"']/g, '');
+            var lnkId, errMsg, ind = fname ? i + '_' + fname : info;
+            if (cur.imMedia || cur.imwMedia) {
+                re('upload' + ind + '_progress_wrap');
+                lnkId = (cur.peer == -3 ? cur.imwMedia : cur.imMedia).lnkId;
+                cur.addMedia[lnkId].unchooseMedia(false);
+            } else if (cur.addMedia) {
+                re('upload' + ind + '_progress_wrap');
+                lnkId = (cur.attachMediaIndexes || {})[fileName];
+                if (lnkId) cur.addMedia[lnkId].unchooseMedia(false);
+            }
+            var showBox = true;
+
+            if (code && typeof code.error === 'string' && code.error.match(/ERR_UPLOAD_TERMINATED/)) {
+                showBox = false;
+            }
+
+            if (code && code.error == 'wrong_arch_file') {
+                errMsg = getLang('docs_upload_arch_fail');
+            } else if (code && code.error == 'wrong_mp3_file') {
+                errMsg = getLang('docs_upload_mp3_fail');
+            } else {
+                errMsg = getLang('docs_upload_fail');
+            }
+            if (showBox) {
+                setTimeout(showFastBox({
+                    title: getLang('global_error')
+                }, errMsg).hide, 4000);
+            }
         }
-        curBox() && hide(curBox().progress), topError("Upload failed", {
+        if (curBox()) {
+            hide(curBox().progress);
+        }
+        topError('Upload failed', {
             dt: -1,
             type: 102,
-            url: (ge("file_uploader_form" + r) || {}).action
-        }), Upload.embed(r)
+            url: (ge('file_uploader_form' + i) || {}).action
+        });
+        Upload.embed(i);
     },
-    chooseUploadStart: function(e, o) {
-        var r = void 0 !== e.ind ? e.ind : e,
-            c = Upload.options[r],
-            s = Upload.types[r];
-        cur.docsChooseFiles[r] = o || e, "form" == s && (show(curBox().progress), curBox().changed = !0, geByClass1("file", cur.docsChooseUpload).disabled = !0), "flash" == s && (boxLayerWrap.visibilityHide = !0, cur.docsChooseIsFlash = !0), c.wiki_editor || (cur.notStarted && (boxQueue.hideLast(), delete cur.notStarted), Docs.chooseUploadProgress(e, 0, 0)), removeClass(boxLayerWrap, "dropbox_over")
+
+    chooseUploadStart: function(info, res) {
+        var i = info.ind !== undefined ? info.ind : info,
+            options = Upload.options[i];
+        var type = Upload.types[i];
+        cur.docsChooseFiles[i] = res || info;
+        if (type == 'form') {
+            show(curBox().progress);
+            curBox().changed = true;
+            geByClass1('file', cur.docsChooseUpload).disabled = true;
+        }
+        if (type == 'flash') {
+            boxLayerWrap.visibilityHide = true;
+            cur.docsChooseIsFlash = true;
+        }
+
+        if (!options.wiki_editor) {
+            if (cur.notStarted) {
+                boxQueue.hideLast();
+                delete cur.notStarted;
+            }
+            Docs.chooseUploadProgress(info, 0, 0);
+        }
+
+        removeClass(boxLayerWrap, 'dropbox_over');
     },
-    chooseUploadProgress: function(e, o, r) {
-        var c = void 0 !== e.ind ? e.ind : e;
-        if (void 0 === e.ind && (e = cur.docsChooseFiles[c]), Upload.options[c].wiki_editor) cur.docsChooseUploadArea.innerHTML = '<img src="/images/upload.gif"/>';
-        else {
-            var s = (cur.attachMediaIndexes || {})[c];
-            if (void 0 === s || s && cur.addMedia[s].chosenMedia || cur.imMedia) {
-                var t = {
-                    loaded: o,
-                    total: r
+
+    chooseUploadProgress: function(info, bytesLoaded, bytesTotal) {
+        var i = info.ind !== undefined ? info.ind : info;
+        if (info.ind === undefined) {
+            info = cur.docsChooseFiles[i];
+        }
+        if (Upload.options[i].wiki_editor) {
+            cur.docsChooseUploadArea.innerHTML = '<img src="/images/upload.gif"/>';
+        } else {
+            var lnkId = (cur.attachMediaIndexes || {})[i];
+            if (lnkId === undefined || lnkId && cur.addMedia[lnkId].chosenMedia || cur.imMedia) {
+                var data = {
+                    loaded: bytesLoaded,
+                    total: bytesTotal
                 };
-                (e.fileName || e.filename) && (t.fileName = (e.fileName || e.filename).replace(/[&<>"']/g, "")), cur.showMediaProgress("photo", c, t)
+                if (info.fileName || info.filename) {
+                    data.fileName = (info.fileName || info.filename).replace(/[&<>"']/g, '');
+                }
+                cur.showMediaProgress('photo', i, data);
             }
         }
     },
+
     chooseUploadComplete: function(info, res) {
-        var params, i = void 0 !== info.ind ? info.ind : info,
-            fileName = (info.fileName ? info.fileName : info).replace(/[&<>"']/g, "");
-        if (res) {
-            try {
-                params = eval("(" + res + ")")
-            } catch (e) {
-                params = q2ajx(res)
-            }
-            if (!params.file) return void Upload.onUploadError(info, params);
-            var options = Upload.options[i];
-            options && options.bugcomments_editor && (params.bugcomments_editor = options.bugcomments_editor), Docs.chooseUploaded(info, params)
+        var params, i = info.ind !== undefined ? info.ind : info,
+            fileName = (info.fileName ? info.fileName : info).replace(/[&<>"']/g, '');
+        if (!res) return;
+        try {
+            params = eval('(' + res + ')');
+        } catch (e) {
+            params = q2ajx(res);
         }
+        if (!params.file) {
+            Upload.onUploadError(info, params);
+            return;
+        }
+        var options = Upload.options[i];
+        if (options && options.bugcomments_editor) {
+            params.bugcomments_editor = options.bugcomments_editor;
+        }
+        Docs.chooseUploaded(info, params);
     },
+
     chooseHideFlashUploader: function() {
-        hasClass(boxLayerWrap, "box_layer_hidden") && (removeClass(boxLayerWrap, "box_layer_hidden"), hide(boxLayerWrap)), boxLayerWrap.visibilityHide = !1
-    },
-    onChooseDragEnter: function(e) {
-        boxLayerWrap.scrollTop = 0;
-        var o = curBox(),
-            r = o.bodyNode;
-        if (isVisible(cur.docsChooseRows)) o.bodyH = getSize(r)[1];
-        else if (void 0 !== o.bodyH) {
-            var c = getXY(r, !0)[1],
-                s = getSize(cur.docsChooseDropbox)[1],
-                t = getSize(domPN(cur.docsChooseDropbox))[1] - s;
-            setStyle(cur.docsChooseDropbox, "height", Math.min(lastWindowHeight - c - t, o.bodyH - t))
+        if (hasClass(boxLayerWrap, 'box_layer_hidden')) {
+            removeClass(boxLayerWrap, 'box_layer_hidden');
+            hide(boxLayerWrap);
         }
-        return cancelEvent(e)
+        boxLayerWrap.visibilityHide = false;
     },
+
+    onChooseDragEnter: function(ev) {
+        boxLayerWrap.scrollTop = 0;
+        var box = curBox(),
+            body = box.bodyNode;
+        if (isVisible(cur.docsChooseRows)) {
+            box.bodyH = getSize(body)[1];
+        } else if (box.bodyH !== undefined) {
+            var bodyY = getXY(body, true)[1],
+                dropboxH = getSize(cur.docsChooseDropbox)[1],
+                dropboxPad = getSize(domPN(cur.docsChooseDropbox))[1] - dropboxH;
+            setStyle(cur.docsChooseDropbox, 'height', Math.min(lastWindowHeight - bodyY - dropboxPad, box.bodyH - dropboxPad));
+        }
+        return cancelEvent(ev);
+    },
+
     onDragEnter: function() {
-        addClass(cur.docsChooseWrap, "dropbox_over"), addClass("box_layer_wrap", "box_layer_wrap--docs_upload")
+        addClass(cur.docsChooseWrap, 'dropbox_over');
+        addClass('box_layer_wrap', 'box_layer_wrap--docs_upload');
     },
+
     onDragOut: function() {
-        removeClass(cur.docsChooseWrap, "dropbox_over"), removeClass("box_layer_wrap", "box_layer_wrap--docs_upload")
+        removeClass(cur.docsChooseWrap, 'dropbox_over');
+        removeClass('box_layer_wrap', 'box_layer_wrap--docs_upload');
     },
-    hideOfficeNotice: function(e) {
-        ls.set("docs_office_notice_shown", 999), hide(domPN(e))
+
+    hideOfficeNotice: function(btn) {
+        ls.set('docs_office_notice_shown', 999);
+        hide(domPN(btn));
     },
-    claimHint: function(e) {
-        showTooltip(e, {
-            text: getLang("docs_claimed_doc_hint"),
+
+    claimHint: function(btn) {
+        showTooltip(btn, {
+            text: getLang('docs_claimed_doc_hint'),
             shift: [24, 3],
             black: 1,
-            className: "claim_hint_tooltip",
-            dir: "bottom"
-        })
+            className: 'claim_hint_tooltip',
+            dir: 'bottom'
+        });
     },
+
     _eof: 1
 };
 try {
-    stManager.done("docs.js")
+    stManager.done('docs.js');
 } catch (e) {}

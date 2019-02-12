@@ -1,36 +1,44 @@
 var Wiki = {
-    inBox: function(e, o) {
-        if (!checkEvent(o)) {
-            cur.wkBox && cur.wkBox.hide();
-            var a = cur.wkUrlInBox ? cur.wkUrlInBox : "/pages?act=in_box";
-            return cur.wkBox = showBox(a, e, {
-                params: {
-                    width: 657
-                }
-            }), cancelEvent(o)
+    inBox: function(params, event) {
+        if (checkEvent(event)) return;
+        if (cur.wkBox) cur.wkBox.hide();
+        var url = (cur.wkUrlInBox ? cur.wkUrlInBox : '/pages?act=in_box');
+        cur.wkBox = showBox(url, params, {
+            params: {
+                width: 657
+            }
+        });
+        return cancelEvent(event);
+    },
+    switchHider: function(el) {
+        var box = el.parentNode.parentNode;
+        if (hasClass(box, 'wk_hider_box')) {
+            box.className = box.className.replace('wk_hider_box', 'wk_hider_box_opened');
+        } else {
+            box.className = box.className.replace('wk_hider_box_opened', 'wk_hider_box');
         }
     },
-    switchHider: function(e) {
-        var o = e.parentNode.parentNode;
-        hasClass(o, "wk_hider_box") ? o.className = o.className.replace("wk_hider_box", "wk_hider_box_opened") : o.className = o.className.replace("wk_hider_box_opened", "wk_hider_box")
-    },
-    toHash: function(e, o) {
-        var a = extend(clone(nav.objLoc), {
-            f: o
+    toHash: function(obj, link) {
+        var loc = extend(clone(nav.objLoc), {
+            f: link
         });
-        e.href = "/" + nav.toStr(a), e.setAttribute("onmousedown", ""), e.onmousedown = null, delete e.onmousedown
+        obj.href = '/' + nav.toStr(loc);
+        obj.setAttribute('onmousedown', '');
+        obj.onmousedown = null;
+        delete obj.onmousedown;
     },
-    showIconTT: function(e, o) {
-        showTooltip(e, {
-            text: o,
-            slideX: vk.rtl ? -15 : 15,
+    showIconTT: function(el, text) {
+        showTooltip(el, {
+            text: text,
+            slideX: (vk.rtl ? -15 : 15),
             black: 1,
             asrtl: 1,
-            className: "tt_black_side",
+            className: 'tt_black_side',
             shift: [-25, -21, 0]
-        })
+        });
     }
-};
+}
+
 try {
-    stManager.done("wk.js")
+    stManager.done('wk.js');
 } catch (e) {}

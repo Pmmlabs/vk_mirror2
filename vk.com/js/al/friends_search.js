@@ -1,223 +1,310 @@
 var FriendsSearch = {
+
     submit: function() {
-        var e = ge("fsearch_email").value,
-            t = ge("fsearch_pass").value;
-        return /^.{1,40}@.{1,40}\..{1,4}$/.test(e) ? t ? (cur.inviteBox.showProgress(), ge("fsearch_inviter_form").submit(), void hide("fsearch_error")) : notaBene("fsearch_pass") : notaBene("fsearch_email")
-    },
-    checkResult: function(e, t, o) {
-        if (cur.inviteBox) {
-            cur.inviteBox.hideProgress();
-            try {
-                var r = ge("fsearch_inviter").contentWindow.location;
-                r.href, r.hash.replace("#", "")
-            } catch (i) {
-                debugLog(i.message)
-            }
-            var n = document.createElement("script");
-            n.type = "text/javascript", n.src = "http://" + e + ".vk.com/inviter.php?act=get_friends_list&hash=" + hash + "&skey=" + key + "&mid=" + t + "&vk=" + o + "&back=FriendsSearch.getEmailResult&v=" + Math.floor(1e4 * Math.random()), headNode.appendChild(n)
+        var email = ge('fsearch_email').value;
+        var pass = ge('fsearch_pass').value;
+        if (!/^.{1,40}@.{1,40}\..{1,4}$/.test(email)) {
+            return notaBene('fsearch_email');
         }
+        if (!pass) {
+            return notaBene('fsearch_pass');
+        }
+        cur.inviteBox.showProgress();
+        ge('fsearch_inviter_form').submit();
+        hide('fsearch_error');
     },
-    getEmailResult: function(e) {
-        if (!e || e.error) return FriendsSearch.showError(e.error), !1;
-        var t = [];
-        for (var o in e.list) t.push(o);
-        FriendsSearch.getList(1, t, {
-            hash: e.hash
+
+    checkResult: function(server, mid, vk) {
+        if (!cur.inviteBox) {
+            return;
+        }
+        cur.inviteBox.hideProgress();
+        try {
+            var loc = ge('fsearch_inviter').contentWindow.location;
+            var h = loc.href;
+            var skey = loc.hash.replace('#', '');
+        } catch (e) {
+            debugLog(e.message);
+        }
+
+        var elem = document.createElement('script');
+        elem.type = 'text/javascript';
+        elem.src = 'http://' + server + '.vk.com/inviter.php?act=get_friends_list&hash=' + hash + '&skey=' + key + '&mid=' + mid + '&vk=' + vk + '&back=FriendsSearch.getEmailResult&v=' + Math.floor(Math.random() * 10000);
+        headNode.appendChild(elem);
+    },
+
+    getEmailResult: function(data) {
+        if (!data || data.error) {
+            FriendsSearch.showError(data.error);
+            return false;
+        }
+        var list = [];
+        for (var i in data.list) {
+            list.push(i);
+        }
+        FriendsSearch.getList(1, list, {
+            hash: data.hash
         })
     },
-    getList: function(e, t, o) {
-        t = t.join("|");
-        var r = extend({
-            act: "save_friends",
-            service: e,
-            Ids: t
-        }, o);
-        ajax.post("al_friends.php", r, {
-            onDone: function(e, t) {
-                if (1 == t) return curBox().hide(), Friends.section("suggestions", function() {
-                    Friends.changeSummary(), nav.setLoc(extend(nav.objLoc, {
-                        section: "suggestions"
-                    }))
-                }, {
-                    m: 1
-                }), !0;
-                var o = ge("fsearch_results");
-                o.innerHTML = e, show(o), curBox().hideProgress()
+
+    getList: function(service, list, data) {
+        list = list.join('|');
+        var params = extend({
+            act: 'save_friends',
+            service: service,
+            Ids: list
+        }, data);
+
+        ajax.post('al_friends.php', params, {
+            onDone: function(text, res) {
+                if (res == 1) {
+                    curBox().hide();
+                    Friends.section('suggestions', function() {
+                        Friends.changeSummary();
+                        nav.setLoc(extend(nav.objLoc, {
+                            section: 'suggestions'
+                        }));
+                    }, {
+                        m: 1
+                    });
+                    return true;
+                }
+                var cont = ge('fsearch_results');
+                cont.innerHTML = text;
+                show(cont);
+                curBox().hideProgress();
             }
-        })
+        });
     },
+
     checkTwitter: function() {
-        showBox("al_profileEdit.php", {
-            act: "twitter_settings_box",
+        showBox('al_profileEdit.php', {
+            act: 'twitter_settings_box',
             import_friends: 1
         }, {
             params: {
                 width: 560
             }
-        })
+        });
     },
-    confirmImportContacts: function(e, t, o, r) {
-        var i, n, s;
-        switch (r) {
-            case "facebook":
-                i = getTemplate("friends_confirm_import_title", {
-                    service: "facebook",
-                    title: getLang("friends_import_facebook_header")
-                }), n = getTemplate("friends_confirm_import_body", {
-                    msg: getLang("profileEdit_facebook_import_desc")
-                }), s = getLang("profileEdit_auth_in_facebook");
+
+    confirmImportContacts: function(googleLang, state, type, service) {
+        var title, body, btn;
+        switch (service) {
+            case 'facebook':
+                title = getTemplate('friends_confirm_import_title', {
+                    service: 'facebook',
+                    title: getLang('friends_import_facebook_header')
+                });
+                body = getTemplate('friends_confirm_import_body', {
+                    msg: getLang('profileEdit_facebook_import_desc')
+                });
+                btn = getLang('profileEdit_auth_in_facebook');
                 break;
-            case "google":
-                i = getTemplate("friends_confirm_import_title", {
-                    service: "google",
-                    title: getLang("friends_import_google_header")
-                }), n = getTemplate("friends_confirm_import_body", {
-                    msg: getLang("profileEdit_google_import_desc")
-                }), s = getLang("profileEdit_auth_in_google");
+            case 'google':
+                title = getTemplate('friends_confirm_import_title', {
+                    service: 'google',
+                    title: getLang('friends_import_google_header')
+                });
+                body = getTemplate('friends_confirm_import_body', {
+                    msg: getLang('profileEdit_google_import_desc')
+                });
+                btn = getLang('profileEdit_auth_in_google');
                 break;
-            case "ok":
-                i = getTemplate("friends_confirm_import_title", {
-                    service: "ok",
-                    title: getLang("friends_import_odnoklassniki_header")
-                }), n = getTemplate("friends_confirm_import_body", {
-                    msg: getLang("profileEdit_ok_import_desc")
-                }), s = getLang("profileEdit_auth_in_ok")
+            case 'ok':
+                title = getTemplate('friends_confirm_import_title', {
+                    service: 'ok',
+                    title: getLang('friends_import_odnoklassniki_header')
+                });
+                body = getTemplate('friends_confirm_import_body', {
+                    msg: getLang('profileEdit_ok_import_desc')
+                });
+                btn = getLang('profileEdit_auth_in_ok');
+                break;
         }
-        var a = showFastBox({
-            title: i,
+        var box = showFastBox({
+            title: title,
             width: 560
-        }, n, s, function() {
-            return a.hide(), FriendsSearch.checkOAuth(e, t, o)
-        }, getLang("global_cancel"))
+        }, body, btn, function() {
+            box.hide();
+            return FriendsSearch.checkOAuth(googleLang, state, type);
+        }, getLang('global_cancel'));
     },
-    checkOAuth: function(e, t, o) {
-        var r = "https://" + location.host + "/friends?act=import_contacts&type=" + o;
-        if (1 == o) var i = "https://accounts.google.com/o/oauth2/auth?scope=https://www.googleapis.com/auth/contacts.readonly&response_type=code&redirect_uri=" + encodeURIComponent(r) + "&approval_prompt=force&state=" + t + "&client_id=841415684880-q8mkaiptra78d5aqgifo84qli993b1km.apps.googleusercontent.com&hl=" + e;
-        else if (3 == o) var i = "https://graph.facebook.com/v2.9/oauth/authorize?client_id=128749580520227&redirect_uri=" + encodeURIComponent(r) + "&display=popup&state=" + t;
-        else if (4 == o) var i = "http://www.odnoklassniki.ru/oauth/authorize?client_id=1258261760&scope=VALUABLE+ACCESS&response_type=code&redirect_uri=" + encodeURIComponent(r + "&state=" + t);
-        var n = "undefined" != typeof window.screenX ? window.screenX : window.screenLeft,
-            s = "undefined" != typeof window.screenY ? window.screenY : window.screenTop,
-            a = "undefined" != typeof window.outerWidth ? window.outerWidth : document.body.clientWidth,
-            c = "undefined" != typeof window.outerHeight ? window.outerHeight : document.body.clientHeight - 22,
-            d = 640,
-            h = 450,
-            p = parseInt(n + (a - d) / 2, 10),
-            u = parseInt(s + (c - h) / 2.5, 10),
-            f = "width=" + d + ",height=" + h + ",left=" + p + ",top=" + u,
-            l = window.open(i, "google_auth", f);
-        cur.importDone || (cur.importDone = {}), cur.importDone[o] = 0;
-        var _ = setInterval(function() {
-            l.closed ? (clearInterval(_), FriendsSearch.checkImportResult()) : cur.importDone[o] && clearInterval(_)
-        }, 500)
+
+    checkOAuth: function(googleLang, state, type) {
+        var redirectUri = 'https://' + location.host + '/friends?act=import_contacts&type=' + type;
+
+        if (type == 1) {
+            var oauthUrl = 'https://accounts.google.com/o/oauth2/auth?scope=https://www.googleapis.com/auth/contacts.readonly&response_type=code&redirect_uri=' + encodeURIComponent(redirectUri) + '&approval_prompt=force&state=' + state + '&client_id=841415684880-q8mkaiptra78d5aqgifo84qli993b1km.apps.googleusercontent.com&hl=' + googleLang;
+        } else if (type == 3) {
+            var oauthUrl = 'https://graph.facebook.com/v2.9/oauth/authorize?client_id=128749580520227&redirect_uri=' + encodeURIComponent(redirectUri) + '&display=popup&state=' + state;
+        } else if (type == 4) {
+            var oauthUrl = 'http://www.odnoklassniki.ru/oauth/authorize?client_id=1258261760&scope=VALUABLE+ACCESS&response_type=code&redirect_uri=' + encodeURIComponent(redirectUri + '&state=' + state);
+        }
+        var screenX = typeof window.screenX != 'undefined' ? window.screenX : window.screenLeft,
+            screenY = typeof window.screenY != 'undefined' ? window.screenY : window.screenTop,
+            outerWidth = typeof window.outerWidth != 'undefined' ? window.outerWidth : document.body.clientWidth,
+            outerHeight = typeof window.outerHeight != 'undefined' ? window.outerHeight : (document.body.clientHeight - 22),
+            width = 640,
+            height = 450,
+            left = parseInt(screenX + ((outerWidth - width) / 2), 10),
+            top = parseInt(screenY + ((outerHeight - height) / 2.5), 10);
+        var features = 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top;
+        var wnd = window.open(oauthUrl, 'google_auth', features);
+        if (!cur.importDone) cur.importDone = {};
+        cur.importDone[type] = 0;
+        var timer = setInterval(function() {
+            if (wnd.closed) {
+                clearInterval(timer);
+                FriendsSearch.checkImportResult();
+            } else if (cur.importDone[type]) {
+                clearInterval(timer);
+            }
+        }, 500);
     },
-    importDone: function(e) {
-        cur.importDone[e.type] = 1, e.error && setTimeout(showFastBox(getLang("global_error"), e.error).hide, 2e3)
+
+    importDone: function(data) {
+        cur.importDone[data.type] = 1;
+        if (data.error) {
+            setTimeout(showFastBox(getLang('global_error'), data.error).hide, 2000);
+        }
     },
+
     checkImportResult: function() {
-        showBox("al_friends.php", {
-            act: "check_contacts_import",
+        showBox('al_friends.php', {
+            act: 'check_contacts_import',
             from: cur.module
         }, {
             dark: 1,
             showProgress: function() {},
             onFail: function() {
-                return !0
+                return true;
             },
-            onDone: function(e) {
-                e.show()
+            onDone: function(newBox) {
+                newBox.show();
             },
-            preOnDone: !0
-        })
+            preOnDone: true
+        });
     },
+
     checkImportingLoop: function() {
-        var e = curBox();
+        var box = curBox();
         cur.importingInt = setInterval(function() {
-            showBox("al_friends.php", {
-                act: "check_contacts_import",
-                provider: "twitter",
+            showBox('al_friends.php', {
+                act: 'check_contacts_import',
+                provider: 'twitter',
                 from: cur.module
             }, {
                 dark: 1,
                 showProgress: function() {},
                 onFail: function() {
-                    return !0
+                    return true;
                 },
-                onDone: function(t) {
-                    e.hide(), clearInterval(cur.importingInt), t.show()
+                onDone: function(newBox) {
+                    box.hide();
+                    clearInterval(cur.importingInt);
+                    newBox.show();
                 },
-                preOnDone: !0
-            })
-        }, 500)
+                preOnDone: true
+            });
+        }, 500);
     },
-    showImportTT: function(e) {
-        stManager.add(["intro.css"], function() {
-            var t = ge("friends_summary");
-            showTooltip(t, {
-                content: '    <div id="intr_tt_pointer_left"></div>    <div id="intr_tt" style="width: 192px">      <div id="intr_hide" class="fl_r" onclick="ge(\'friends_summary\').tt.hide();" onmouseover="showTooltip(this, {text: \'' + e.hide + '\', black: 1, shift: [14, 4, 0]})"></div>      <div id="intr_header">' + e.header + '</div>      <div id="intr_text">' + e.text + "</div>    </div>",
+
+    showImportTT: function(lng) {
+        stManager.add(['intro.css'], function() {
+            var cont = ge('friends_summary');
+            showTooltip(cont, {
+                content: '\
+    <div id="intr_tt_pointer_left"></div>\
+    <div id="intr_tt" style="width: 192px">\
+      <div id="intr_hide" class="fl_r" onclick="ge(\'friends_summary\').tt.hide();" onmouseover="showTooltip(this, {text: \'' + lng.hide + '\', black: 1, shift: [14, 4, 0]})"></div>\
+      <div id="intr_header">' + lng.header + '</div>\
+      <div id="intr_text">' + lng.text + '</div>\
+    </div>',
                 slideX: 15,
-                className: "profile_intro_side_tt",
+                className: 'profile_intro_side_tt',
                 shift: [-454, 0, 0],
-                forcetodown: !0,
-                nohide: !0,
-                nohideover: !0
-            })
-        })
+                forcetodown: true,
+                nohide: true,
+                nohideover: true
+            });
+        });
     },
-    showError: function(e) {
-        var t = ge("fsearch_error");
-        t.innerHTML = e, show(t), curBox().hideProgress()
+
+    showError: function(error) {
+        var cont = ge('fsearch_error');
+        cont.innerHTML = error;
+        show(cont);
+        curBox().hideProgress();
     },
-    addImported: function(e, t, o, r) {
-        debugLog("onimport", arguments);
-        var i = curBox();
-        if (i) return ajax.post("al_friends.php", {
-            act: "add_imported",
-            hash: r.hash,
-            uids: e.join(",")
+
+    addImported: function(ids, inv, list, opts) {
+        debugLog('onimport', arguments);
+        var box = curBox();
+        if (!box) {
+            return;
+        }
+        ajax.post('al_friends.php', {
+            act: 'add_imported',
+            hash: opts.hash,
+            uids: ids.join(',')
         }, {
-            onDone: function(e) {
-                i.hide();
-                var t = ge("friends_import_msg");
-                t.className = "friends_import_success", t.innerHTML = e, setStyle(t, {
-                    backgroundColor: "#F4EBBD"
-                }), animate(t, {
-                    backgroundColor: "#F9F6E7"
-                }, 2e3)
+            onDone: function(text) {
+                box.hide();
+                var msg = ge('friends_import_msg');
+                msg.className = 'friends_import_success';
+                msg.innerHTML = text;
+                setStyle(msg, {
+                    backgroundColor: '#F4EBBD'
+                });
+                animate(msg, {
+                    backgroundColor: '#F9F6E7'
+                }, 2000);
             },
             onFail: function() {
-                i.hide();
-                var e = ge("friends_import_msg");
-                e.className = "friends_import_fail", e.innerHTML = text, setStyle(e, {
-                    backgroundColor: "#FACEBB"
-                }), animate(e, {
-                    backgroundColor: "#FFEFE8"
-                }, 2e3)
+                box.hide();
+                var msg = ge('friends_import_msg');
+                msg.className = 'friends_import_fail';
+                msg.innerHTML = text;
+                setStyle(msg, {
+                    backgroundColor: '#FACEBB'
+                });
+                animate(msg, {
+                    backgroundColor: '#FFEFE8'
+                }, 2000);
             },
-            showProgress: i.showProgress,
-            hideProgress: i.hideProgress
-        }), !1
+            showProgress: box.showProgress,
+            hideProgress: box.hideProgress
+        });
+        return false;
     },
-    addCancelled: function(e) {
-        return debugLog("why", arguments), ajax.post("al_friends.php", {
-            act: "cancel_imported",
-            hash: e.hash
+
+    addCancelled: function(opts) {
+        debugLog('why', arguments);
+        ajax.post('al_friends.php', {
+            act: 'cancel_imported',
+            hash: opts.hash
         }, {
             onDone: function() {}
-        }), !0
+        });
+        return true;
     },
+
     inviteBox: function() {
-        return showBox("invite.php", {
-            act: "invite_box"
+        showBox('invite.php', {
+            act: 'invite_box'
         }, {
-            stat: ["ui_controls.js", "selects.js", "ui_controls.css", "invite.js", "invite.css"],
+            stat: ['ui_controls.js', 'selects.js', 'ui_controls.css', 'invite.js', 'invite.css'],
             params: {
-                bodyStyle: "padding: 0px;",
+                bodyStyle: 'padding: 0px;',
                 dark: 1
             }
-        }), !1
+        });
+        return false;
     },
+
     __eof: 1
 };
 try {
-    stManager.done("friends_search.js")
+    stManager.done('friends_search.js');
 } catch (e) {}

@@ -1,139 +1,245 @@
 var Help = {
     initCCObjectionSelects: function() {
-        cur.citySelect = new CitySelect(ge("ccform_city"), ge("ccform_city_row"), {
+        cur.citySelect = new CitySelect(ge('ccform_city'), ge('ccform_city_row'), {
             width: 308,
-            progressBar: ge("ccform_progress"),
+            progressBar: ge('ccform_progress'),
             city: cur.selectData.city_val,
             country: cur.selectData.country
-        }), cur.countrySelect = new CountrySelect(ge("ccform_country"), ge("ccform_country_row"), {
+        });
+        cur.countrySelect = new CountrySelect(ge('ccform_country'), ge('ccform_country_row'), {
             width: 308,
-            progressBar: ge("ccform_progress"),
+            progressBar: ge('ccform_progress'),
             country: cur.selectData.country_val,
             citySelect: cur.citySelect
-        })
+        });
     },
-    showMsgBox: function(e, t, o) {
-        return setTimeout(showFastBox({
-            title: t,
+    showMsgBox: function(text, title, input) {
+        setTimeout(showFastBox({
+            title: title,
             onHide: function() {
-                o && ge(o).focus()
+                if (input) ge(input).focus();
             }
-        }, e).hide, 4e3), !1
+        }, text).hide, 4000);
+        return false;
     },
-    submitCCObjection: function(e, t, o, n) {
-        var c = ge("ccform_submit"),
-            i = {
-                act: "a_cc_objection",
-                claim_id: e,
-                content_type: t,
-                content_owner: o,
-                content_id: n,
-                name: ge("ccform_name").value,
-                email: ge("ccform_email").value,
-                country: cur.countrySelect.val(),
-                city: cur.citySelect.val(),
-                region: ge("ccform_region").value,
-                address: ge("ccform_address").value,
-                objections: ge("ccform_legality").value,
-                doc_mid: ge("ccform_doc_mid").value,
-                doc_photo: ge("ccform_doc_photo").value,
-                doc_server: ge("ccform_doc_server").value
-            };
-        return i.name.length < 5 ? (notaBene("ccform_name"), !1) : /^\s*[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9_\.\-]+\s*$/.test(i.email) ? i.country < 1 ? (cur.countrySelect.focus(), !1) : i.city < 1 ? (cur.citySelect.focus(), !1) : i.address < 9 ? (notaBene("ccform_address"), !1) : i.objections.length < 5 ? (notaBene("ccform_legality"), !1) : isChecked("ccobjection_agree_email") ? isChecked("ccobjection_agree_inform") ? isChecked("ccobjection_agree_rules") ? (lockButton(c), void ajax.post("/al_help.php", i, {
-            onDone: function(e) {
-                nav.go("/help?act=cc_objection_sent")
+    submitCCObjection: function(claim_id, content_type, content_owner, content_id) {
+        var btn = ge('ccform_submit');
+        var params = {
+            act: 'a_cc_objection',
+            claim_id: claim_id,
+            content_type: content_type,
+            content_owner: content_owner,
+            content_id: content_id,
+            name: ge('ccform_name').value,
+            email: ge('ccform_email').value,
+            country: cur.countrySelect.val(),
+            city: cur.citySelect.val(),
+            region: ge('ccform_region').value,
+            address: ge('ccform_address').value,
+            objections: ge('ccform_legality').value,
+            doc_mid: ge('ccform_doc_mid').value,
+            doc_photo: ge('ccform_doc_photo').value,
+            doc_server: ge('ccform_doc_server').value
+        };
+        if (params.name.length < 5) {
+            notaBene('ccform_name');
+            return false;
+        }
+        if (!(/^\s*[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9_\.\-]+\s*$/.test(params.email))) {
+            notaBene('ccform_email');
+            return false;
+        }
+        if (params.country < 1) {
+            cur.countrySelect.focus();
+            return false;
+        }
+        if (params.city < 1) {
+            cur.citySelect.focus();
+            return false;
+        }
+        if (params.address < 9) {
+            notaBene('ccform_address');
+            return false;
+        }
+        if (params.objections.length < 5) {
+            notaBene('ccform_legality');
+            return false;
+        }
+        if (!isChecked('ccobjection_agree_email')) {
+            return Help.showMsgBox(getLang('help_ccobjection_need_email'), getLang('global_error'));
+        }
+        if (!isChecked('ccobjection_agree_inform')) {
+            return Help.showMsgBox(getLang('help_ccobjection_need_inform'), getLang('global_error'));
+        }
+        if (!isChecked('ccobjection_agree_rules')) {
+            return Help.showMsgBox(getLang('help_ccobjection_need_rules'), getLang('global_error'));
+        }
+
+
+        lockButton(btn);
+        ajax.post('/al_help.php', params, {
+            onDone: function(result) {
+                nav.go('/help?act=cc_objection_sent');
             },
             onFail: function() {
-                unlockButton(c)
+                unlockButton(btn);
             }
-        })) : Help.showMsgBox(getLang("help_ccobjection_need_rules"), getLang("global_error")) : Help.showMsgBox(getLang("help_ccobjection_need_inform"), getLang("global_error")) : Help.showMsgBox(getLang("help_ccobjection_need_email"), getLang("global_error")) : (notaBene("ccform_email"), !1)
+        });
     },
     submitDocPhoto: function() {
-        var e = ge("doc_file_button");
-        lockButton(e), setTimeout(function() {
-            e.innerHTML = e.innerHTML
-        }, 0), ge("doc_upload_frame").uploadType = 0, document.doc_upload.submit()
+        var btn = ge('doc_file_button');
+        lockButton(btn);
+        setTimeout(function() {
+            btn.innerHTML = btn.innerHTML; // opera hack for redraw
+        }, 0);
+        ge('doc_upload_frame').uploadType = 0;
+        document.doc_upload.submit();
     },
-    uploadError: function(e) {
-        var t = "";
-        e ? 1 == e || 4 == e ? t = getLang("restore_not_uploaded") : 2 == e ? t = getLang("restore_bad_format") : 5 == e && (t = getLang("restore_bad_size")) : t = getLang("global_unknown_error"), setTimeout(showFastBox(getLang("global_error"), t).hide, 2e3);
-        var o = type ? "photo_" : "doc_",
-            n = ge(o + "file_button");
-        unlockButton(n)
+    uploadError: function(code) {
+        var err = '';
+        if (!code) {
+            err = getLang('global_unknown_error');
+        } else if (code == 1 || code == 4) {
+            err = getLang('restore_not_uploaded');
+        } else if (code == 2) {
+            err = getLang('restore_bad_format');
+        } else if (code == 5) {
+            err = getLang('restore_bad_size');
+        }
+        setTimeout(showFastBox(getLang('global_error'), err).hide, 2000);
+
+        var prefix = type ? 'photo_' : 'doc_';
+        var btn = ge(prefix + 'file_button');
+        unlockButton(btn);
     },
-    uploadComplete: function(e, t, o, n) {
-        var c = ge("doc_file_button");
-        unlockButton(c), ge("ccform_doc_mid").value = e, ge("ccform_doc_photo").value = t, ge("ccform_doc_server").value = o, show("doc_photos"), ge("doc_photos").innerHTML = '<div id="photo"><img id="photo_img" src="' + n + '" /><span onmouseover="this.className=\'over\';" onmouseout="this.className=\'\';" onclick="Help.deleteImage()" id="del_link">' + getLang("global_delete") + "</span></div>"
+    uploadComplete: function(mid, photo, server, thumb) {
+        var btn = ge('doc_file_button');
+        unlockButton(btn);
+        ge('ccform_doc_mid').value = mid;
+        ge('ccform_doc_photo').value = photo;
+        ge('ccform_doc_server').value = server;
+        show('doc_photos');
+        ge('doc_photos').innerHTML = '<div id="photo"><img id="photo_img" src="' + thumb + '" /><span onmouseover="this.className=\'over\';" onmouseout="this.className=\'\';" onclick="Help.deleteImage()" id="del_link">' + getLang('global_delete') + '</span></div>';
     },
     deleteImage: function() {
-        ge("ccform_doc_mid").value = "0", ge("ccform_doc_photo").value = "", ge("ccform_doc_server").value = "0", hide("doc_photos"), ge("doc_photos").innerHTML = ""
+        ge('ccform_doc_mid').value = '0';
+        ge('ccform_doc_photo').value = '';
+        ge('ccform_doc_server').value = '0';
+        hide('doc_photos');
+        ge('doc_photos').innerHTML = '';
     },
-    initSecurityTest: function(e) {
-        extend(cur, e), cur.doneQuestions = {}, cur.qLen = cur.doneLen = cur.doneRight = 0;
-        var t;
-        for (t in cur.questions) cur.qLen++;
-        for (t = 0; t < cur.questions.length; t++) radioBtns["s_test_answer_" + t] = {
-            val: 0,
-            els: geByClass("radiobtn", ge("help_question" + t), "div")
-        };
-        var o = ge("help_test_finish_btn");
-        setStyle("help_test_finish_btn_lock", {
-            height: o.clientHeight + 2,
-            width: o.clientWidth + 2
-        }), cur.after_ban && cur.nav.push(function(e, t, o, n) {
-            if (!(cur.leaving || cur.doneLen >= cur.qLen)) {
-                var c = showFastBox(getLang("global_warning"), getLang("help_sectest_away_warning"), getLang("help_sectest_away_skip"), function() {
-                    cur.leaving = !0, c.hide(), nav.go(o)
-                }, getLang("global_cancel"), function() {
-                    c.hide()
-                });
-                return !1
-            }
+
+
+    initSecurityTest: function(options) {
+        extend(cur, options);
+        cur.doneQuestions = {};
+        cur.qLen = cur.doneLen = cur.doneRight = 0;
+        var i;
+        for (i in cur.questions) cur.qLen++;
+        for (i = 0; i < cur.questions.length; i++) {
+            radioBtns['s_test_answer_' + i] = {
+                val: 0,
+                els: geByClass('radiobtn', ge('help_question' + i), 'div')
+            };
+        }
+
+        var btn = ge('help_test_finish_btn');
+        setStyle('help_test_finish_btn_lock', {
+            height: btn.clientHeight + 2,
+            width: btn.clientWidth + 2
+        });
+
+        if (!cur.after_ban) return;
+
+        cur.nav.push(function(changed, old, n, opts) {
+            if (cur.leaving || cur.doneLen >= cur.qLen) return;
+
+            var box = showFastBox(getLang('global_warning'), getLang('help_sectest_away_warning'), getLang('help_sectest_away_skip'), function() {
+                cur.leaving = true;
+                box.hide();
+                nav.go(n);
+            }, getLang('global_cancel'), function() {
+                box.hide();
+            });
+            return false;
+        });
+    },
+    stestRadioClick: function(question, answer) {
+        if (cur.doneQuestions[question] !== undefined) {
+            return;
+        }
+        var hintEl = ge('help_question_hint' + question),
+            qEl = ge('help_question' + question),
+            answersEl = geByClass1('help_answers', qEl),
+            answersLockEl = geByClass1('help_answers_lock', qEl),
+            result = cur.questions[question][answer],
+            hint = result[1],
+            right = result[0];
+
+        val(geByClass1('help_question_hint_text', hintEl, 'div'), hint);
+        toggleClass(hintEl, 'help_question_hint_wrong', !right);
+        cur.doneQuestions[question] = answer;
+        if (right) {
+            cur.doneRight++;
+        } else {
+            addClass(geByClass1('radiobtn', ge('help_answer' + question + '_' + answer), 'div'), 'on');
+        }
+        cur.doneLen++;
+        each(cur.questions[question], function(a) {
+            addClass('help_answer' + question + '_' + a, this[0] ? 'help_right_answer' : 'help_done_answer');
+        });
+        addClass('help_question_hint' + question + '_' + answer, 'help_done_question');
+        setStyle(answersLockEl, {
+            width: answersEl.offsetWidth,
+            height: answersEl.offsetHeight,
+            display: 'block'
         })
-    },
-    stestRadioClick: function(e, t) {
-        if (void 0 === cur.doneQuestions[e]) {
-            var o = ge("help_question_hint" + e),
-                n = ge("help_question" + e),
-                c = geByClass1("help_answers", n),
-                i = geByClass1("help_answers_lock", n),
-                r = cur.questions[e][t],
-                s = r[1],
-                a = r[0];
-            val(geByClass1("help_question_hint_text", o, "div"), s), toggleClass(o, "help_question_hint_wrong", !a), cur.doneQuestions[e] = t, a ? cur.doneRight++ : addClass(geByClass1("radiobtn", ge("help_answer" + e + "_" + t), "div"), "on"), cur.doneLen++, each(cur.questions[e], function(t) {
-                addClass("help_answer" + e + "_" + t, this[0] ? "help_right_answer" : "help_done_answer")
-            }), addClass("help_question_hint" + e + "_" + t, "help_done_question"), setStyle(i, {
-                width: c.offsetWidth,
-                height: c.offsetHeight,
-                display: "block"
-            }), show(o), cur.doneLen < cur.qLen ? (val("help_test_results_warn", getLang("help_sectest_cant_finish_X_done", cur.doneLen) + " " + getLang("help_sectest_cant_finish_X_remain", cur.qLen)), show("help_question" + (e + 1))) : hide("help_test_results_warn", "help_test_finish_btn_lock")
+        show(hintEl);
+
+        if (cur.doneLen < cur.qLen) {
+            val('help_test_results_warn', getLang('help_sectest_cant_finish_X_done', cur.doneLen) + ' ' + getLang('help_sectest_cant_finish_X_remain', cur.qLen))
+            show('help_question' + (question + 1));
+        } else {
+            hide('help_test_results_warn', 'help_test_finish_btn_lock');
         }
     },
-    stestFinish: function(e, t) {
-        lockButton(e), nav.go(t + "?r=" + (cur.doneRight || 0) + "&ab=" + (cur.after_ban ? 1 : 0), !1, {
-            onFail: unlockButton.pbind(e)
-        })
+    stestFinish: function(btn, test_page) {
+        lockButton(btn);
+        nav.go(test_page + '?r=' + (cur.doneRight || 0) + '&ab=' + (cur.after_ban ? 1 : 0), false, {
+            onFail: unlockButton.pbind(btn)
+        });
     },
-    initSecurityTestResults: function(e) {
-        extend(cur, e), window.VK && VK.init && VK.Widgets && VK.Widgets.Like ? Help.stestInitWLike() : (window.vkAsyncInit = Help.stestInitWLike, headNode.appendChild(ce("script", {
-            type: "text/javascript",
-            src: "/js/api/openapi.js?" + e.openapi_version
-        })))
+    initSecurityTestResults: function(options) {
+        extend(cur, options);
+
+        if (window.VK && VK.init && VK.Widgets && VK.Widgets.Like) {
+            Help.stestInitWLike();
+        } else {
+            window.vkAsyncInit = Help.stestInitWLike;
+            headNode.appendChild(ce('script', {
+                type: 'text/javascript',
+                src: '/js/api/openapi.js?' + options.openapi_version
+            }));
+        }
     },
     stestInitWLike: function() {
         VK.init({
             apiId: 1936057
-        }), VK.Widgets.Like("help_test_results_like", {
+        });
+        VK.Widgets.Like('help_test_results_like', {
             pageTitle: cur.like_title,
             pageDescription: cur.like_desc,
             pageUrl: cur.like_url,
             pageImage: cur.like_image,
             text: cur.like_text,
             width: 450,
-            base_domain: locProtocol + "//" + locHost + "/"
-        }, cur.like_page), delete window.vkAsyncInit
+            base_domain: locProtocol + '//' + locHost + '/'
+        }, cur.like_page);
+        delete window.vkAsyncInit;
     }
+
+
 };
 try {
-    stManager.done("help.js")
+    stManager.done('help.js');
 } catch (e) {}

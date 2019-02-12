@@ -4171,3 +4171,7 @@
 .bt_assembly_editor .text {
     width: 280px
 }
+
+.pull_right {
+    float: right
+}

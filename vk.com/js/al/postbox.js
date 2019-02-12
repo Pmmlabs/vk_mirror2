@@ -1,35 +1,44 @@
 var PostBox = {
-    mrg: function(e) {
+
+    mrg: function(v) {
         return vk.rtl ? {
-            marginRight: e
+            marginRight: v
         } : {
-            marginLeft: e
-        }
+            marginLeft: v
+        };
     },
-    show: function(e) {
-        wkcur.noClickHide = !1, cur.lang = extend(cur.lang || {}, e.lang), extend(cur, {
-            pbField: ge("pb_text"),
-            pbAva: ge("dark_box_ava"),
-            pbClubs: e.clubs,
-            pbMyHash: e.hash,
-            pbError: ge("pb_error"),
-            pbSent: !1,
-            pbSaved: ge("pb_saved"),
-            pbShown: !0
-        }), autosizeSetup(cur.pbField, {
+    show: function(opts) {
+        wkcur.noClickHide = false;
+
+        cur.lang = extend(cur.lang || {}, opts.lang);
+        extend(cur, {
+            pbField: ge('pb_text'),
+            pbAva: ge('dark_box_ava'),
+            pbClubs: opts.clubs,
+            pbMyHash: opts.hash,
+            pbError: ge('pb_error'),
+            pbSent: false,
+            pbSaved: ge('pb_saved'),
+            pbShown: true
+        });
+
+        autosizeSetup(cur.pbField, {
             minHeight: 80
-        }), setTimeout(elfocus.pbind(cur.pbField), 0), Wall.initComposer(cur.pbField, {
+        })
+        setTimeout(elfocus.pbind(cur.pbField), 0);
+
+        Wall.initComposer(cur.pbField, {
             lang: {
-                introText: getLang("profile_mention_start_typing"),
-                noResult: getLang("profile_mention_not_found")
+                introText: getLang('profile_mention_start_typing'),
+                noResult: getLang('profile_mention_not_found')
             },
             media: {
-                lnk: domFC(ge("pb_add_media")),
-                preview: ge("pb_media_preview"),
-                types: e.media,
+                lnk: domFC(ge('pb_add_media')),
+                preview: ge('pb_media_preview'),
+                types: opts.media,
                 options: {
                     limit: 10,
-                    toggleLnk: !0,
+                    toggleLnk: true,
                     editable: 1,
                     sortable: 1,
                     teWidth: 450,
@@ -40,124 +49,223 @@ var PostBox = {
             },
             checkLen: PostBox.postChanged
         }, function() {
-            var o = e.draft,
-                r = data(cur.pbField, "composer"),
-                d = cur.pbNoteAdded;
-            if ((o[0] || o[1]) && (val(cur.pbField, replaceEntities(o[0] || "")), (r || {}).addMedia)) {
-                for (var a in o[1] || []) cur.pbNoDraftSave = 1, r.addMedia.chooseMedia.apply(r.addMedia, o[1][a]);
-                d && (cur.pbNoDraftSave = 0, r.addMedia.chooseMedia("note", d.raw, d))
+            var draft = opts.draft,
+                composer = data(cur.pbField, 'composer'),
+                note = cur.pbNoteAdded;
+            if (!draft[0] && !draft[1]) return;
+
+            val(cur.pbField, replaceEntities(draft[0] || ''));
+            if (!(composer || {}).addMedia) return;
+            for (var i in (draft[1] || [])) {
+                cur.pbNoDraftSave = 1;
+                composer.addMedia.chooseMedia.apply(composer.addMedia, draft[1][i]);
+            }
+            if (note) {
+                cur.pbNoDraftSave = 0;
+                composer.addMedia.chooseMedia('note', note.raw, note);
             }
         });
-        var o = cur.postTo;
-        cur.postTo = !1, wkcur._hide.push(function() {
-            if (cur.pbShown = !1, cur.pbField) {
-                cur.pbAfterPost ? cur.pbAfterPost = !1 : PostBox.postChanged(!0);
-                var e = data(cur.pbField, "composer");
-                (e || {}).addMedia && (e.addMedia.onChange = function() {
-                    return !1
-                }), Wall.deinitComposer(cur.pbField), delete cur.pbField, cur.postTo = o, window.WideDropdown && WideDropdown.deinit("pb_club_dd")
+
+        var tmp = cur.postTo;
+        cur.postTo = false;
+        wkcur._hide.push(function() {
+            cur.pbShown = false;
+            if (!cur.pbField) return;
+            if (cur.pbAfterPost) {
+                cur.pbAfterPost = false;
+            } else {
+                PostBox.postChanged(true);
             }
-        })
+            var composer = data(cur.pbField, 'composer');
+            if ((composer || {}).addMedia) {
+                composer.addMedia.onChange = function() {
+                    return false;
+                };
+            }
+            Wall.deinitComposer(cur.pbField);
+            delete cur.pbField;
+            cur.postTo = tmp;
+            if (window.WideDropdown) {
+                WideDropdown.deinit('pb_club_dd');
+            }
+        });
     },
     send: function() {
-        if (cur.pbCustomSend) return void cur.pbCustomSend();
-        if (!buttonLocked("pb_send")) {
-            var e = isVisible("pb_choose_club"),
-                o = cur.pbMyHash,
-                r = 0,
-                d = cur.wdd && cur.wdd.pb_club_dd;
-            if (e) {
-                if (!d || !d.selCount) return elfocus("pb_club_inp");
-                for (var a in d.selected) r = intval(a.replace(/_$/, "")), o = d.selected[a][9]
-            }
-            var t = cur.pbField && data(cur.pbField, "composer"),
-                n = t ? Composer.getSendParams(t, PostBox.send) : {
-                    message: trim(val(cur.pbField))
-                };
-            return e ? extend(n, {
-                to_id: r,
-                official: 1,
-                signed: isChecked("pb_signed")
-            }) : extend(n, {
-                to_id: vk.id,
-                friends_only: isChecked("pb_friends_only"),
-                status_export: isChecked("pb_status_export"),
-                facebook_export: isChecked("pb_facebook_export")
-            }), n.message || n.attach1_type ? void(n.delayed || (cur.pbSent = !0, ajax.post("al_wall.php", Wall.fixPostParams(extend(n, {
-                act: "post",
-                from: "postbox",
-                hash: o
-            })), {
-                onDone: function(e) {
-                    WkView.hide(), showDoneBox(e)
-                },
-                onFail: function(e) {
-                    return cur.pbSent = !1, e ? (val(cur.pbError, e), cur.pbErrShown || (show(cur.pbError), cur.pbErrShown = !0), setTimeout(animate.pbind(cur.pbError, {
-                        backgroundColor: "#FCEBA7"
-                    }, 100, animate.pbind(cur.pbError, {
-                        backgroundColor: "#F4EBBD"
-                    }, 2e3)), 0), !0) : void 0
-                },
-                showProgress: lockButton.pbind("pb_send"),
-                hideProgress: unlockButton.pbind("pb_send")
-            }))) : elfocus(cur.pbField)
+        if (cur.pbCustomSend) {
+            cur.pbCustomSend();
+            return;
         }
+        if (buttonLocked('pb_send')) return;
+
+        var toClub = isVisible('pb_choose_club'),
+            hash = cur.pbMyHash,
+            toClubId = 0;
+        var dd = cur.wdd && cur.wdd['pb_club_dd'];
+        if (toClub) {
+            if (!dd || !dd.selCount) {
+                return elfocus('pb_club_inp');
+            }
+            for (var i in dd.selected) {
+                toClubId = intval(i.replace(/_$/, ''));
+                hash = dd.selected[i][9];
+            }
+        }
+        var composer = cur.pbField && data(cur.pbField, 'composer'),
+            params = composer ? Composer.getSendParams(composer, PostBox.send) : {
+                message: trim(val(cur.pbField))
+            };
+        if (toClub) {
+            extend(params, {
+                to_id: toClubId,
+                official: 1,
+                signed: isChecked('pb_signed')
+            });
+        } else {
+            extend(params, {
+                to_id: vk.id,
+                friends_only: isChecked('pb_friends_only'),
+                status_export: isChecked('pb_status_export'),
+                facebook_export: isChecked('pb_facebook_export')
+            });
+        }
+        if (!params.message && !params.attach1_type) {
+            return elfocus(cur.pbField);
+        }
+        if (params.delayed) {
+            return;
+        }
+        cur.pbSent = true;
+        ajax.post('al_wall.php', Wall.fixPostParams(extend(params, {
+            act: 'post',
+            from: 'postbox',
+            hash: hash
+        })), {
+            onDone: function(text) {
+                WkView.hide();
+                showDoneBox(text);
+            },
+            onFail: function(text) {
+                cur.pbSent = false;
+                if (!text) return;
+                val(cur.pbError, text);
+                if (!cur.pbErrShown) {
+                    show(cur.pbError);
+                    cur.pbErrShown = true;
+                }
+                setTimeout(animate.pbind(cur.pbError, {
+                    backgroundColor: '#FCEBA7'
+                }, 100, animate.pbind(cur.pbError, {
+                    backgroundColor: '#F4EBBD'
+                }, 2000)), 0);
+                return true;
+            },
+            showProgress: lockButton.pbind('pb_send'),
+            hideProgress: unlockButton.pbind('pb_send')
+        });
     },
-    postChanged: function(e) {
-        cur.pbNoDraftSave || (wkcur.noClickHide = !0), clearTimeout(cur.pbSaveDraftTO), e === !0 ? PostBox.saveDraft() : cur.pbSaveDraftTO = setTimeout(PostBox.saveDraft, 10 === e ? 10 : 3e3), cur.pbErrShown && (cur.pbErrShown = !1, hide(cur.pbError))
+    postChanged: function(force) {
+        if (!cur.pbNoDraftSave) wkcur.noClickHide = true;
+        clearTimeout(cur.pbSaveDraftTO);
+        if (force === true) {
+            PostBox.saveDraft();
+        } else {
+            cur.pbSaveDraftTO = setTimeout(PostBox.saveDraft, (force === 10) ? 10 : 3000);
+        }
+        if (cur.pbErrShown) {
+            cur.pbErrShown = false;
+            hide(cur.pbError);
+        }
     },
     saveDraft: function() {
-        if (!cur.pbDraftDisabled) {
-            if (cur.pbNoDraftSave) return void(cur.pbNoDraftSave = !1);
-            if (!cur.pbSent && cur.pbShown) {
-                var e = cur.pbField && data(cur.pbField, "composer"),
-                    o = e ? Composer.getSendParams(e, PostBox.postChanged.pbind(10), !0) : {
-                        message: trim(val(cur.pbField))
-                    };
-                o.delayed || ajax.post("al_wall.php", Wall.fixPostParams(extend(o, {
-                    act: "save_draft",
-                    hash: cur.pbMyHash
-                })), {
-                    onDone: function() {
-                        clearTimeout(cur.pbSavedTO), show(cur.pbSaved), animate(cur.pbSaved, {
-                            opacity: 1
-                        }, 100), cur.pbSavedTO = setTimeout(animate.pbind(cur.pbSaved, {
-                            opacity: 0
-                        }, 1e3, hide.pbind(cur.pbSaved)), 3e3)
-                    },
-                    onFail: function() {
-                        return !0
-                    }
-                })
-            }
+        if (cur.pbDraftDisabled) return;
+        if (cur.pbNoDraftSave) {
+            cur.pbNoDraftSave = false;
+            return;
         }
+        if (cur.pbSent || !cur.pbShown) return;
+        var composer = cur.pbField && data(cur.pbField, 'composer'),
+            params = composer ? Composer.getSendParams(composer, PostBox.postChanged.pbind(10), true) : {
+                message: trim(val(cur.pbField))
+            };
+        if (params.delayed) return;
+
+        ajax.post('al_wall.php', Wall.fixPostParams(extend(params, {
+            act: 'save_draft',
+            hash: cur.pbMyHash
+        })), {
+            onDone: function() {
+                clearTimeout(cur.pbSavedTO);
+                show(cur.pbSaved);
+                animate(cur.pbSaved, {
+                    opacity: 1
+                }, 100);
+                cur.pbSavedTO = setTimeout(animate.pbind(cur.pbSaved, {
+                    opacity: 0
+                }, 1000, hide.pbind(cur.pbSaved)), 3000);
+            },
+            onFail: function() {
+                return true;
+            }
+        });
     },
     showClubs: function() {
-        if (window.WideDropdown) {
-            hide("pb_choose_club_link", "pb_user_options"), show("pb_choose_club", "pb_cancel_club", "pb_club_options"), val("pb_send", getLang("wall_post_box_sendclub")), elfocus("pb_club_inp"), WideDropdown.init("pb_club_dd", {
-                defaultItems: cur.pbClubs,
-                noResult: getLang("like_club_not_found"),
-                img: cur.pbAva,
-                introText: getLang("like_club_choose"),
-                defImgText: val(cur.pbAva),
-                onChange: function(e) {
-                    var o = cur.wdd.pb_club_dd,
-                        r = (o.selCount, !0);
-                    return 1 == e && setTimeout(elfocus.pbind(cur.pbField), 0), r
+        if (!window.WideDropdown) return;
+
+        hide('pb_choose_club_link', 'pb_user_options');
+        show('pb_choose_club', 'pb_cancel_club', 'pb_club_options');
+        val('pb_send', getLang('wall_post_box_sendclub'));
+        elfocus('pb_club_inp');
+        WideDropdown.init('pb_club_dd', {
+            defaultItems: cur.pbClubs,
+            noResult: getLang('like_club_not_found'),
+            img: cur.pbAva,
+            introText: getLang('like_club_choose'),
+            defImgText: val(cur.pbAva),
+            onChange: function(act) {
+                var dd = cur.wdd['pb_club_dd'],
+                    sel = dd.selCount,
+                    peer = false,
+                    draft, ret = true;
+                if (act == 1) { // added
+                    setTimeout(elfocus.pbind(cur.pbField), 0);
                 }
-            }), cur.pbTo && each(cur.pbClubs, function(e, o) {
-                return o[0] == cur.pbTo ? (WideDropdown.select("pb_club_dd", !1, o), !1) : void 0
-            });
-            var e = cur.pbField && data(cur.pbField, "composer");
-            e && e.addMedia && hide(geByClass1("add_media_type_" + e.addMedia.lnkId + "_note", e.addMedia.menu.menuNode, "a")), cur.pbErrShown && (cur.pbErrShown = !1, hide(cur.pbError))
+                return ret;
+            }
+        });
+        if (cur.pbTo) {
+            each(cur.pbClubs, function(k, v) {
+                if (v[0] == cur.pbTo) {
+                    WideDropdown.select('pb_club_dd', false, v);
+                    return false;
+                }
+            })
+        }
+        var composer = cur.pbField && data(cur.pbField, 'composer');
+        if (composer && composer.addMedia) {
+            hide(geByClass1('add_media_type_' + composer.addMedia.lnkId + '_note', composer.addMedia.menu.menuNode, 'a'));
+        }
+        if (cur.pbErrShown) {
+            cur.pbErrShown = false;
+            hide(cur.pbError);
         }
     },
     hideClubs: function() {
-        show("pb_choose_club_link", "pb_user_options"), hide("pb_choose_club", "pb_cancel_club", "pb_club_options"), val("pb_send", getLang("wall_post_box_publish")), window.WideDropdown && WideDropdown.deselect("pb_club_dd");
-        var e = cur.pbField && data(cur.pbField, "composer");
-        e && e.addMedia && show(geByClass1("add_media_type_" + e.addMedia.lnkId + "_note", e.addMedia.menu.menuNode, "a")), cur.pbErrShown && (cur.pbErrShown = !1, hide(cur.pbError))
+        show('pb_choose_club_link', 'pb_user_options');
+        hide('pb_choose_club', 'pb_cancel_club', 'pb_club_options');
+        val('pb_send', getLang('wall_post_box_publish'));
+        window.WideDropdown && WideDropdown.deselect('pb_club_dd');
+        var composer = cur.pbField && data(cur.pbField, 'composer');
+        if (composer && composer.addMedia) {
+            show(geByClass1('add_media_type_' + composer.addMedia.lnkId + '_note', composer.addMedia.menu.menuNode, 'a'));
+        }
+        if (cur.pbErrShown) {
+            cur.pbErrShown = false;
+            hide(cur.pbError);
+        }
     }
+
 };
+
 try {
-    stManager.done("postbox.js")
+    stManager.done('postbox.js');
 } catch (e) {}

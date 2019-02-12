@@ -1,58 +1,76 @@
 var Offers = {
+
     init: function() {
-        cur.statusesDD = []
+        cur.statusesDD = [];
     },
-    edit: function(e) {
-        return showBox("offers.php", {
-            act: "edit",
-            offer_id: e
-        }), !1
+
+    edit: function(offerId) {
+        showBox('offers.php', {
+            act: 'edit',
+            offer_id: offerId
+        });
+        return false;
     },
-    preview: function(e) {
-        showBox("offers.php", {
-            act: "show",
+
+    preview: function(offerId) {
+        showBox('offers.php', {
+            act: 'show',
             preview: 1,
-            offer_id: e || 0
-        })
+            offer_id: offerId || 0
+        });
     },
+
     getSecret: function() {
-        ajax.post("offers.php", {
-            act: "show_secret",
+        ajax.post('offers.php', {
+            act: 'show_secret',
             offer_id: cur.offerId
         }, {
             onDone: function(title, html, js) {
                 var box = showFastBox(title, html);
-                eval(js)
+                eval(js);
             }
-        })
+        });
+        //showBox('offers.php', {act: 'show_secret', offer_id: cur.offerId});
     },
-    switchTab: function(e, o, s) {
-        if (s && (2 == s.button || s.ctrlKey)) return !1;
-        var r = ge("tab_" + e);
-        if (r) {
-            var t = geByClass("active_link", ge("offers_tabs"));
-            for (var f in t) removeClass(t[f], "active_link");
-            addClass(r, "active_link")
+
+    switchTab: function(tab, obj, ev) {
+        if (ev && (ev.button == 2 || ev.ctrlKey)) {
+            return false;
         }
-        return show("pages_progress"), hide("pages_right_link"), nav.go(o, s)
+        var el = ge('tab_' + tab);
+        if (el) {
+            var tabs = geByClass('active_link', ge('offers_tabs'));
+            for (var i in tabs) {
+                removeClass(tabs[i], 'active_link');
+            }
+            addClass(el, 'active_link');
+        }
+        show('pages_progress');
+        hide('pages_right_link');
+        return nav.go(obj, ev);
     },
-    gotoTable: function(e, o) {
-        var s = nav.fromStr(nav.strLoc);
-        return delete s.f, s.f = e, nav.go(nav.toStr(s), o), !1
+
+    gotoTable: function(t, ev) {
+        var objLoc = nav.fromStr(nav.strLoc);
+        delete(objLoc['f']);
+        objLoc['f'] = t;
+        nav.go(nav.toStr(objLoc), ev);
+        return false;
     },
+
     save: function() {
-        var e = {
-            act: "do_edit",
+        var params = {
+            act: 'do_edit',
             offer_id: cur.offerId,
-            title: val("offer_title"),
-            short_desc: val("offer_short_desc"),
-            desc: val("offer_desc"),
-            man: val("offer_man"),
-            link: val("offer_link"),
+            title: val('offer_title'),
+            short_desc: val('offer_short_desc'),
+            desc: val('offer_desc'),
+            man: val('offer_man'),
+            link: val('offer_link'),
             link_type: cur.uiLinkType.val(),
-            link_id: val("offer_link_id"),
+            link_id: val('offer_link_id'),
             complete_on_join: cur.uiJoinComplete.checked() ? 1 : 0,
-            tag: val("offer_tag"),
+            tag: val('offer_tag'),
             need_validation: cur.uiValidation.val(),
             country: cur.uiCountry.val(),
             city: cur.uiCity.val(),
@@ -62,218 +80,363 @@ var Offers = {
             browser: cur.uiBrowser.val(),
             operator: cur.uiOperator.val(),
             status: cur.uiStatus.val(),
-            percent: val("offer_percent")
+            percent: val('offer_percent')
         };
-        ge("offer_limit") && (e.limit = val("offer_limit")), ge("offer_day_limit") && (e.day_limit = val("offer_day_limit")), ge("offer_spent") && (e.spent = val("offer_spent")), ge("offer_cost_field") && (e.cost = val("offer_cost_field")), lockButton(ge("offers_save")), ajax.post("offers.php", e, {
-            onDone: function(e, o, s, r) {
-                debugLog(arguments), unlockButton(ge("offers_save"));
-                var t = ge("offers_msg");
-                if (removeClass(t, "offers_error"), t.innerHTML = e, show(t), setStyle(t, {
-                        backgroundColor: "#F4EBBD"
-                    }), animate(t, {
-                        backgroundColor: "#F9F6E7"
-                    }, 2e3), scrollToTop(200), o && (show("secret_field"), show("tab_test"), ge("offers_edit_hidden_secret").innerHTML = o), s) {
-                    cur.offerId = s, cur.deleteHash = r, nav.setLoc("offersdesk?act=edit&offer_id=" + s);
-                    var f = geByTag("a", ge("offers_tabs"));
-                    each(f, function() {
-                        this.href = (this.href || "").replace(/offer_id=([0-9]+)/, "offer_id=" + s)
-                    })
+        if (ge('offer_limit')) {
+            params.limit = val('offer_limit');
+        }
+        if (ge('offer_day_limit')) {
+            params.day_limit = val('offer_day_limit');
+        }
+        if (ge('offer_spent')) {
+            params.spent = val('offer_spent');
+        }
+        if (ge('offer_cost_field')) {
+            params.cost = val('offer_cost_field');
+        }
+        lockButton(ge('offers_save'))
+        ajax.post('offers.php', params, {
+            onDone: function(text, secret, offerId, deleteHash) {
+                debugLog(arguments);
+                unlockButton(ge('offers_save'));
+                var msg = ge('offers_msg');
+                removeClass(msg, 'offers_error');
+                msg.innerHTML = text;
+                show(msg);
+                setStyle(msg, {
+                    backgroundColor: '#F4EBBD'
+                });
+                animate(msg, {
+                    backgroundColor: '#F9F6E7'
+                }, 2000);
+                scrollToTop(200);
+
+                if (secret) {
+                    show('secret_field');
+                    show('tab_test');
+                    ge('offers_edit_hidden_secret').innerHTML = secret;
+                }
+
+                if (offerId) {
+                    cur.offerId = offerId;
+                    cur.deleteHash = deleteHash;
+                    nav.setLoc('offersdesk?act=edit&offer_id=' + offerId);
+                    var links = geByTag('a', ge('offers_tabs'));
+                    each(links, function() {
+                        this.href = (this.href || '').replace(/offer_id=([0-9]+)/, 'offer_id=' + offerId);
+                    });
                 }
             },
-            onFail: function(e) {
-                if ("offer_" == e.substr(0, 6)) notaBene(e);
-                else {
-                    var o = ge("offers_msg");
-                    addClass(o, "offers_error"), o.innerHTML = e, show(o), setStyle(o, {
-                        backgroundColor: "#FCEC42"
-                    }), animate(o, {
-                        backgroundColor: "#FFEFE8"
-                    }, 2e3), scrollToTop()
+            onFail: function(text) {
+                if (text.substr(0, 6) == 'offer_') {
+                    notaBene(text);
+                } else {
+                    var msg = ge('offers_msg');
+                    addClass(msg, 'offers_error');
+                    msg.innerHTML = text;
+                    show(msg);
+                    setStyle(msg, {
+                        backgroundColor: '#FCEC42'
+                    });
+                    animate(msg, {
+                        backgroundColor: '#FFEFE8'
+                    }, 2000);
+                    scrollToTop();
                 }
-                return unlockButton(ge("offers_save")), !0
+                unlockButton(ge('offers_save'));
+                return true;
             }
-        })
+        });
     },
+
     remove: function() {
-        var e = showFastBox(cur.lang.offers_remove, cur.lang.offers_remove_sure, getLang("box_yes"), function() {
-            e.showProgress(), ajax.post("offers.php", {
-                act: "do_delete",
+        var fbox = showFastBox(cur.lang['offers_remove'], cur.lang['offers_remove_sure'], getLang('box_yes'), function() {
+            fbox.showProgress();
+            ajax.post('offers.php', {
+                act: 'do_delete',
                 hash: cur.deleteHash,
                 offer_id: cur.offerId
             }, {
                 onDone: function() {
-                    e.showProgress(), nav.go("offersdesk")
+                    fbox.showProgress();
+                    nav.go('offersdesk');
                 }
-            })
-        }, getLang("box_no"))
+            });
+        }, getLang('box_no'));
     },
-    ddStatus: function(e, o, s) {
-        var r, t, f, n = o + "_" + s,
-            a = cur.statusesDD[n];
-        a || (3 == s ? (t = '<span class="offers_dd_title offers_dd_on_h"></span><span class="offers_dd_text">' + cur.lang.offers_statuses_on + "</span>", f = '<span class="offers_dd_title offers_dd_off"></span><span class="offers_dd_text">' + cur.lang.offers_statuses_off + "</span>", r = [{
-            i: 2,
-            l: f
-        }]) : 2 == s ? (t = '<span class="offers_dd_title offers_dd_off_h"></span><span class="offers_dd_text">' + cur.lang.offers_statuses_off + "</span>", f = '<span class="offers_dd_title offers_dd_on"></span><span class="offers_dd_text">' + cur.lang.offers_statuses_on + "</span>", r = [{
-            i: 3,
-            l: f
-        }]) : 1 == s ? (t = '<span class="offers_dd_title offers_dd_wait_h"></span><span class="offers_dd_text">' + cur.lang.offers_statuses_moderate + "</span>", f = '<span class="offers_dd_title offers_dd_off"></span><span class="offers_dd_text">' + cur.lang.offers_statuses_off + "</span>", r = [{
-            i: 0,
-            l: f
-        }]) : 0 == s && (t = '<span class="offers_dd_title offers_dd_off_h"></span><span class="offers_dd_text">' + cur.lang.offers_statuses_off + "</span>", f = '<span class="offers_dd_title offers_dd_wait"></span><span class="offers_dd_text">' + cur.lang.offers_statuses_moderate_send + "</span>", r = [{
-            i: 1,
-            l: f
-        }]), debugLog("create"), a = new DropdownMenu(r, {
-            target: e,
-            title: t,
-            showHover: !1,
-            offsetLeft: -1,
-            offsetTop: 0,
-            containerClass: "dd_menu_posts",
-            onSelect: function(e) {
-                a.destroy(), delete cur.statusesDD[n], Offers.changeStatus(o, a.val())
+
+    ddStatus: function(obj, offer_id, type) {
+        var key = offer_id + '_' + type;
+        var dd = cur.statusesDD[key],
+            options, title, label;
+        if (!dd) {
+            if (type == 3) {
+                title = '<span class="offers_dd_title offers_dd_on_h"></span><span class="offers_dd_text">' + cur.lang['offers_statuses_on'] + '</span>';
+                label = '<span class="offers_dd_title offers_dd_off"></span><span class="offers_dd_text">' + cur.lang['offers_statuses_off'] + '</span>';
+                options = [{
+                    i: 2,
+                    l: label
+                }];
+            } else if (type == 2) {
+                title = '<span class="offers_dd_title offers_dd_off_h"></span><span class="offers_dd_text">' + cur.lang['offers_statuses_off'] + '</span>';
+                label = '<span class="offers_dd_title offers_dd_on"></span><span class="offers_dd_text">' + cur.lang['offers_statuses_on'] + '</span>';
+                options = [{
+                    i: 3,
+                    l: label
+                }];
+            } else if (type == 1) {
+                title = '<span class="offers_dd_title offers_dd_wait_h"></span><span class="offers_dd_text">' + cur.lang['offers_statuses_moderate'] + '</span>';
+                label = '<span class="offers_dd_title offers_dd_off"></span><span class="offers_dd_text">' + cur.lang['offers_statuses_off'] + '</span>';
+                options = [{
+                    i: 0,
+                    l: label
+                }];
+            } else if (type == 0) {
+                title = '<span class="offers_dd_title offers_dd_off_h"></span><span class="offers_dd_text">' + cur.lang['offers_statuses_off'] + '</span>';
+                label = '<span class="offers_dd_title offers_dd_wait"></span><span class="offers_dd_text">' + cur.lang['offers_statuses_moderate_send'] + '</span>';
+                options = [{
+                    i: 1,
+                    l: label
+                }];
             }
-        }), cur.statusesDD[n] = a), debugLog(a), cur.dd = a, a.show(), addClass(a.header, "dd_wide"), addClass(a.body, "dd_wide")
+            debugLog('create');
+            dd = new DropdownMenu(options, {
+                target: obj,
+                title: title,
+                showHover: false,
+                offsetLeft: -1,
+                offsetTop: 0,
+                containerClass: 'dd_menu_posts',
+                onSelect: function(val) {
+                    dd.destroy();
+                    delete cur.statusesDD[key];
+                    Offers.changeStatus(offer_id, dd.val());
+                }
+            });
+            cur.statusesDD[key] = dd;
+        }
+        //dd.onInputClick();
+        debugLog(dd);
+        cur.dd = dd;
+        dd.show();
+        addClass(dd.header, 'dd_wide');
+        addClass(dd.body, 'dd_wide');
     },
-    changeStatus: function(e, o) {
-        var s = ge("offers_row_" + e);
-        s.innerHTML = '<img class="offers_center_upl" src="/images/upload.gif" />', ajax.post("offers.php", {
-            act: "do_change_status",
-            offer_id: e,
+
+    changeStatus: function(offer_id, val) {
+        var cont = ge('offers_row_' + offer_id);
+        cont.innerHTML = '<img class="offers_center_upl" src="/images/upload.gif" />';
+        ajax.post('offers.php', {
+            act: 'do_change_status',
+            offer_id: offer_id,
             hash: cur.hash,
-            status: o
+            status: val
         }, {
-            onDone: function(e) {
-                s.innerHTML = e
+            onDone: function(text) {
+                cont.innerHTML = text;
             }
-        })
+        });
     },
-    changeLimit: function(e, o, s) {
-        var r = getXY(e),
-            t = ge("offers_limit_box");
-        cur.limitOfferId = o, cur.limitObj = e, cur.limitDay = s, cur.startLimitBoxPos || (show(t), cur.startLimitBoxPos = getXY(t)), r[0] -= cur.startLimitBoxPos[0] + 18, r[1] -= cur.startLimitBoxPos[1] + 17, setStyle(t, {
-            marginLeft: r[0],
-            marginTop: r[1]
-        }), show(t);
-        var f = ge("offers_limit_input");
-        val(f, parseInt(e.innerHTML.replace(/<.*>/g, "")) || 0), f.focus(), setTimeout(function() {
+
+    changeLimit: function(obj, offer_id, per_day) {
+        var pos = getXY(obj);
+        var box = ge('offers_limit_box');
+
+        cur.limitOfferId = offer_id;
+        cur.limitObj = obj;
+        cur.limitDay = per_day;
+
+        if (!cur.startLimitBoxPos) {
+            show(box);
+            cur.startLimitBoxPos = getXY(box);
+        }
+        pos[0] -= cur.startLimitBoxPos[0] + 18;
+        pos[1] -= cur.startLimitBoxPos[1] + 17;
+
+        setStyle(box, {
+            marginLeft: pos[0],
+            marginTop: pos[1]
+        });
+        show(box);
+
+        var input = ge('offers_limit_input');
+        val(input, parseInt(obj.innerHTML.replace(/<.*>/g, '')) || 0);
+        input.focus();
+
+        setTimeout(function() {
             cur.onMouseClick = function(e) {
-                for (var o = e.target; o = o.parentNode;)
-                    if (o == t) return !1;
-                Offers.hideFocusBox()
+                var p = e.target;
+                while (p = p.parentNode) {
+                    if (p == box) {
+                        return false;
+                    }
+                }
+                Offers.hideFocusBox();
             }
-        }, 0)
+        }, 0);
     },
+
     hideFocusBox: function() {
-        hide("offers_limit_box"), cur.onMouseClick = !1
+        hide('offers_limit_box');
+        cur.onMouseClick = false;
     },
+
     saveLimit: function() {
-        var e = val("offers_limit_input");
-        e = parseInt(e), lockButton(ge("offers_limit_save_btn")), ajax.post("offers.php", {
-            act: "do_change_limit",
+        var value = val('offers_limit_input');
+        value = parseInt(value);
+        lockButton(ge('offers_limit_save_btn'));
+        ajax.post('offers.php', {
+            act: 'do_change_limit',
             offer_id: cur.limitOfferId,
             hash: cur.hash,
-            limit: e,
+            limit: value,
             per_day: cur.limitDay
         }, {
             onDone: function() {
-                if (e) {
-                    e = e.toString();
-                    for (var o = [], s = e.length - 3; s > -3; s -= 3) o.unshift(e.slice(s > 0 ? s : 0, s + 3));
-                    e = o.join('<span style="font-size:60%"> </span>'), cur.limitObj.innerHTML = e
-                } else cur.limitObj.innerHTML = cur.lang.offers_no_limit_set;
-                unlockButton(ge("offers_limit_save_btn")), Offers.hideFocusBox()
+                if (value) {
+                    value = value.toString();
+                    var c = [];
+                    for (var i = value.length - 3; i > -3; i -= 3) {
+                        c.unshift(value.slice(i > 0 ? i : 0, i + 3));
+                    }
+                    value = c.join('<span style="font-size:60%"> </span>');
+                    cur.limitObj.innerHTML = value;
+                } else {
+                    cur.limitObj.innerHTML = cur.lang['offers_no_limit_set'];
+                }
+                unlockButton(ge('offers_limit_save_btn'));
+                Offers.hideFocusBox();
             },
             onFail: function() {
-                unlockButton(ge("offers_limit_save_btn"))
+                unlockButton(ge('offers_limit_save_btn'));
             }
-        })
+        });
     },
-    addToBanBox: function(e, o) {
-        var s = getLang("offers_" + e + "_box_title");
-        return ge("offers_ban_box_input").setAttribute("placeholder", getLang("offers_" + e + "_input")), cur.options.banType = e, cur.banBox = showFastBox(s, ge("offers_ban_box").innerHTML, getLang("global_add"), function() {
-            Offers.searchToBan(o)
-        }, getLang("box_cancel")), !1
+
+    addToBanBox: function(type, offer_id) {
+        var title = getLang('offers_' + type + '_box_title');
+        ge('offers_ban_box_input').setAttribute('placeholder', getLang('offers_' + type + '_input'));
+        cur.options.banType = type;
+        cur.banBox = showFastBox(title, ge('offers_ban_box').innerHTML, getLang('global_add'), function() {
+            Offers.searchToBan(offer_id);
+        }, getLang('box_cancel'));
+        return false;
     },
-    searchToBan: function(e) {
-        var o = ge("offers_ban_box_input"),
-            s = trim(val(o)),
-            r = cur.options.banType;
-        return s ? (hide("offers_ban_box_error"), void ajax.post("offers.php", {
-            act: "search_blacklist",
-            type: r,
-            query: s,
-            offer_id: e,
+    searchToBan: function(offer_id) {
+        var searchEl = ge('offers_ban_box_input'),
+            query = trim(val(searchEl));
+        var type = cur.options.banType;
+        if (!query) {
+            searchEl.focus();
+            return;
+        }
+        hide('offers_ban_box_error');
+        ajax.post('offers.php', {
+            act: 'search_blacklist',
+            type: type,
+            query: query,
+            offer_id: offer_id,
             hash: cur.options.hash
         }, {
-            onDone: function(e, s, t) {
-                if (!e) return ge("offers_ban_box_error").innerHTML = s, void show("offers_ban_box_error");
-                if (val(o, ""), s && -1 != s && (ge("offers_" + r + "_summary").innerHTML = s), t) {
-                    var f = ce("div", {
-                            innerHTML: t
-                        }).firstChild,
-                        n = ge("offers_" + r);
-                    re(f.id), n.insertBefore(f, n.firstChild), hide("offers_" + r + "_empty")
+            onDone: function(result, summary, row) {
+                if (!result) {
+                    ge('offers_ban_box_error').innerHTML = summary;
+                    show('offers_ban_box_error');
+                    return;
                 }
-                cur.banBox.hide()
+
+                val(searchEl, '');
+                if (summary && summary != -1) {
+                    ge('offers_' + type + '_summary').innerHTML = summary;
+                }
+                if (row) {
+                    var rowEl = ce('div', {
+                            innerHTML: row
+                        }).firstChild,
+                        listEl = ge('offers_' + type);
+                    re(rowEl.id);
+                    listEl.insertBefore(rowEl, listEl.firstChild);
+                    hide('offers_' + type + '_empty');
+                }
+                cur.banBox.hide();
             },
             showProgress: function() {
-                cur.banBox.showProgress()
+                cur.banBox.showProgress();
             },
             hideProgress: function() {
-                cur.banBox.hideProgress()
+                cur.banBox.hideProgress();
             }
-        })) : void o.focus()
+        });
     },
-    addToBan: function(e, o, s, r) {
-        return ajax.post("offers.php", {
-            act: "a_add_to_bl",
-            type: e,
-            oid: o,
-            offer_id: s,
+    addToBan: function(type, oid, offer_id, link) {
+        ajax.post('offers.php', {
+            act: 'a_add_to_bl',
+            type: type,
+            oid: oid,
+            offer_id: offer_id,
             hash: cur.options.hash
         }, {
-            onDone: function(t) {
-                t && (ge("offers_" + e + "_summary").innerHTML = t), r.onclick = function() {
-                    return Offers.delFromBan(e, o, s, r), !1
-                }, r.innerHTML = getLang("offers_unban")
+            onDone: function(summary) {
+                if (summary) {
+                    ge('offers_' + type + '_summary').innerHTML = summary;
+                }
+                link.onclick = function() {
+                    Offers.delFromBan(type, oid, offer_id, link);
+                    return false;
+                };
+                link.innerHTML = getLang('offers_unban');
             },
-            onFail: function(e) {
-                return setTimeout(showFastBox(getLang("global_error"), e).hide, 2e3), !0
+            onFail: function(msg) {
+                setTimeout(showFastBox(getLang('global_error'), msg).hide, 2000);
+                return true;
             },
             showProgress: function() {
-                hide(r), show("offers_progress_" + e + o)
+                hide(link);
+                show('offers_progress_' + type + oid);
             },
             hideProgress: function() {
-                show(r), hide("offers_progress_" + e + o)
+                show(link);
+                hide('offers_progress_' + type + oid);
             }
-        }), !1
+        });
+        return false;
     },
-    delFromBan: function(e, o, s, r) {
-        return ajax.post("offers.php", {
-            act: "a_del_from_bl",
-            type: e,
-            oid: o,
-            offer_id: s,
+    delFromBan: function(type, oid, offer_id, link) {
+        ajax.post('offers.php', {
+            act: 'a_del_from_bl',
+            type: type,
+            oid: oid,
+            offer_id: offer_id,
             hash: cur.options.hash
         }, {
-            onDone: function(t) {
-                t && (ge("offers_" + e + "_summary").innerHTML = t), r.onclick = function() {
-                    return Offers.addToBan(e, o, s, r), !1
-                }, r.innerHTML = getLang("offers_reban")
+            onDone: function(summary) {
+                if (summary) {
+                    ge('offers_' + type + '_summary').innerHTML = summary;
+                }
+                link.onclick = function() {
+                    Offers.addToBan(type, oid, offer_id, link);
+                    return false;
+                };
+                link.innerHTML = getLang('offers_reban');
             },
-            onFail: function(e) {
-                return setTimeout(showFastBox(getLang("global_error"), e).hide, 2e3), !0
+            onFail: function(msg) {
+                setTimeout(showFastBox(getLang('global_error'), msg).hide, 2000);
+                return true;
             },
             showProgress: function() {
-                hide(r), show("offers_progress_" + e + o)
+                hide(link);
+                show('offers_progress_' + type + oid);
             },
             hideProgress: function() {
-                show(r), hide("offers_progress_" + e + o)
+                show(link);
+                hide('offers_progress_' + type + oid);
             }
-        }), !1
+        });
+        return false;
     },
+
     _eof: 1
 };
 try {
-    stManager.done("offers.js")
+    stManager.done('offers.js');
 } catch (e) {}

@@ -1,17 +1,42 @@
 var Health = {};
-Health.toggleDistributionGraph = function(e, t, a) {
-    var h = ge("health_distribution_graph_" + t),
-        s = ge("health_distribution_graph_" + a);
-    isVisible(h) ? (show(s), hide(h)) : (show(h), hide(s))
-}, Health.toggleSmallGraphs = function(e, t) {
-    function a(e, t) {
-        var a = t.getAttribute("src2");
-        a && (t.removeAttribute("src2"), t.setAttribute("src", a))
+
+Health.toggleDistributionGraph = function(event, graphBindingId1, graphBindingId2) {
+    var graph1 = ge('health_distribution_graph_' + graphBindingId1);
+    var graph2 = ge('health_distribution_graph_' + graphBindingId2);
+    if (isVisible(graph1)) {
+        show(graph2);
+        hide(graph1);
+    } else {
+        show(graph1);
+        hide(graph2);
     }
-    var h = e.target.parentNode.parentNode,
-        s = geByClass1("selected", h);
-    removeClass(s, "selected"), addClass(e.target, "selected"), nav.setLoc(e.target.getAttribute("href").replace(/^\//, "")), "count" === t ? (each(geByTag("img", ge("health_small_graphs_count")), a), show("health_small_graphs_count"), hide("health_small_graphs_time")) : (each(geByTag("img", ge("health_small_graphs_time")), a), show("health_small_graphs_time"), hide("health_small_graphs_count"))
-};
+}
+
+Health.toggleSmallGraphs = function(event, graphType) {
+    var tabsWrap = event.target.parentNode.parentNode;
+    var selectedTab = geByClass1('selected', tabsWrap);
+    removeClass(selectedTab, 'selected');
+    addClass(event.target, 'selected');
+    nav.setLoc(event.target.getAttribute('href').replace(/^\//, ''));
+    if (graphType === 'count') {
+        each(geByTag('img', ge('health_small_graphs_count')), showImage);
+        show('health_small_graphs_count');
+        hide('health_small_graphs_time');
+    } else {
+        each(geByTag('img', ge('health_small_graphs_time')), showImage);
+        show('health_small_graphs_time');
+        hide('health_small_graphs_count');
+    }
+
+    function showImage(k, v) {
+        var src = v.getAttribute('src2');
+        if (src) {
+            v.removeAttribute('src2');
+            v.setAttribute('src', src);
+        }
+    }
+}
+
 try {
-    stManager.done("health.js")
+    stManager.done('health.js');
 } catch (e) {}

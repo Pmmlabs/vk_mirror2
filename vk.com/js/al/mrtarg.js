@@ -1,137 +1,298 @@
 try {
-    ! function(t, e) {
-        t.RB = t.RB || function() {
-            function i() {
-                T = !0, l(!0)
+    (function(w, d) {
+        w.RB = w.RB || (function() {
+            var
+                // main flag,
+                enabled = !1,
+
+                // old opera focus flag
+                focused = !0,
+
+                // banners to inspect
+                banners = {},
+
+                // shortcuts
+                e = d.documentElement,
+
+                VE = (d.mozVisibilityState ? "mozvisibilitychange" : d.webkitVisibilityState ? "webkitvisibilitychange" : d.visibilityState ? "visibilitychange" : ""),
+
+                lastTimeStamp = 0,
+
+                // timing
+                tm;
+
+            // handlers
+            function onFocusIn() {
+                focused = !0;
+                C(!0);
             }
 
-            function n() {
-                T = !1
+            function onFocusOut() {
+                focused = !1;
             }
 
-            function r() {
-                e.hidden ? n() : i()
+            // using visibility could have profits when tab is not
+            function onVisibilityChange() {
+                if (!d.hidden) onFocusIn()
+                else onFocusOut()
             }
 
-            function o() {
-                l()
+            function onWindowScroll() {
+                C();
             }
 
-            function c() {
-                l()
+            function onWindowResize() {
+                C()
             }
 
-            function a(t) {
-                B = (new Date).getTime(), H[t] || (H[t] = {
-                    c: g(t)
-                }), d(), l(!0)
-            }
 
-            function l(t) {
-                for (var e in H) H[e] && f(H[e].c) >= 50 && s() && !H[e].t ? ! function(t) {
-                    H[t].t = setTimeout(function() {
-                        try {
-                            h(t)
-                        } catch (e) {}
-                    }, 1e3)
-                }(e) : H[e] && f(H[e].c) < 50 ? H[e].t && (clearTimeout(H[e].t), delete H[e].t) : H[e] && !s() ? H[e].t && (clearTimeout(H[e].t), delete H[e].t, clearTimeout(w), t = !1) : H[e] || u(e);
-                t && (clearTimeout(w), w = setTimeout(function() {
-                    l(!0)
-                }, 300))
-            }
-
-            function u(t, e) {
-                if (t && H[t]) return clearTimeout(H[t].t), H[t].t = null, void(e || (H[t].c = null, delete H[t]));
-                clearTimeout(w), w = null;
-                for (var t in H) H[t].t && u(t, !0)
-            }
-
-            function h(t, e) {
-                if (!g(t)) return void u(t);
-                if (H[t]) {
-                    if (e = H[t].c, !s()) return void u(t, !0);
-                    if (f(e) < 50) return void u(t, !0);
-                    (new Image).src = e.getAttribute("data-counter"), u(t), y(H) || m()
-                }
-            }
-
-            function s() {
-                return p || "function" != typeof e.hasFocus || (T = e.hasFocus()), T
-            }
-
-            function f(i) {
-                var n = {};
-                if (n.w = n.h = 1 / 0, !isNaN(e.body.clientWidth) && e.body.clientWidth > 0 && (n.w = e.body.clientWidth), !isNaN(e.body.clientHeight) && e.body.clientHeight > 0 && (n.h = e.body.clientHeight), W && W.clientWidth && !isNaN(W.clientWidth) && (n.w = W.clientWidth), W && W.clientHeight && !isNaN(W.clientHeight) && (n.h = W.clientHeight), t.innerWidth && !isNaN(t.innerWidth) && (n.w = Math.min(n.w, t.innerWidth)), t.innerHeight && !isNaN(t.innerHeight) && (n.h = Math.min(n.h, t.innerHeight)), n.h == 1 / 0 || n.h == 1 / 0) n = {
-                    E: ":-("
-                };
-                else {
-                    var r = i.getClientRects()[0];
-                    if (!r) return n = {
-                        p: 0
+            // I � inspect
+            function I(b_id) {
+                lastTimeStamp = new Date().getTime();
+                // adding the banner container to storage
+                if (!banners[b_id]) {
+                    banners[b_id] = {
+                        c: G(b_id)
                     };
-                    if (n.t = r.top, n.b = r.bottom, n.l = r.left, n.r = r.right, r.bottom < 0 || r.right < 0 || r.top > n.clientHeight || r.left > n.clientWidth) n = 0;
-                    else {
-                        var o = (r.right - r.left) * (r.bottom - r.top),
-                            c = Math.ceil(Math.max(0, r.left)),
-                            a = Math.floor(Math.min(n.w, r.right)),
-                            l = Math.ceil(Math.max(0, r.top)),
-                            u = Math.floor(Math.min(n.h, r.bottom)),
-                            h = (a - c) * (u - l);
-                        n = Math.round(h / o * 100)
+                }
+
+                // enabling anyway
+                on();
+                C(true);
+            }
+
+            // C � check viewability of banner with t, timeout after loading
+            function C(t) {
+                for (var id in banners) {
+                    if (banners[id] && getVA(banners[id].c) >= 50 && hasFocus() && !banners[id].t) {
+                        (function(_id) {
+                            banners[_id].t = setTimeout(function() {
+                                try {
+                                    P(_id)
+                                } catch (e) {}
+                            }, 1E3)
+                        }(id));
+                    } else if (banners[id] && getVA(banners[id].c) < 50) {
+                        if (banners[id].t) {
+                            clearTimeout(banners[id].t);
+                            delete banners[id].t;
+                        }
+                    } else if (banners[id] && !hasFocus()) {
+                        if (banners[id].t) {
+                            clearTimeout(banners[id].t);
+                            delete banners[id].t;
+                            clearTimeout(tm);
+                            t = false;
+                        }
+                    } else if (!banners[id]) {
+                        CL(id);
                     }
                 }
-                return n
+                if (t) {
+                    clearTimeout(tm);
+                    tm = setTimeout(function() {
+                        C(!0)
+                    }, 3e2);
+                }
             }
 
-            function d() {
-                M || (v(t, "resize", c), v(t, "scroll", o), p ? v(e, p, r) : (v(t, "blur", n), v(t, "focus", i)), M = !0)
+            // CL � Clear timers and stop listeners
+            function CL(id, onlyTM) {
+                if (id && banners[id]) {
+                    clearTimeout(banners[id].t);
+                    banners[id].t = null;
+                    if (!onlyTM) {
+                        banners[id].c = null;
+                        delete banners[id];
+                    }
+                    return;
+                }
+                clearTimeout(tm);
+                tm = null;
+                for (var id in banners) {
+                    if (banners[id].t) {
+                        CL(id, !0)
+                    }
+                }
             }
 
-            function m() {
-                b(t, "resize", c), b(t, "scroll", o), p && b(e, p, r), b(t, "focus", i), b(t, "blur", n), clearTimeout(w), M = !1
+
+            // P � pixel to send
+            function P(id, obj) {
+                if (!G(id)) {
+                    CL(id);
+
+                    // banner removed
+                    return
+                }
+
+                if (banners[id]) {
+                    obj = banners[id].c;
+                } else {
+                    return;
+                }
+
+                if (!hasFocus()) {
+                    CL(id, !0);
+                    return;
+                } else if (getVA(obj) < 50) {
+                    CL(id, !0);
+                    return;
+                }
+
+                new Image().src = obj.getAttribute('data-counter');
+
+
+                // remove banner from storage of inspectable items
+                CL(id);
+                // turn listeners off if banners are not present
+                if (!l(banners)) off();
             }
 
-            function g(t) {
-                return e.getElementById(t)
+            function hasFocus() {
+                if (!VE && typeof d.hasFocus === "function") focused = d.hasFocus();
+                return focused;
             }
 
-            function v(t, e, i) {
-                t.addEventListener ? t.addEventListener(e, i, !1) : t.attachEvent && t.attachEvent("on" + e, i)
+            function getVA(obj) {
+                var R = {};
+                R.w = R.h = Infinity;
+                if (!isNaN(d.body.clientWidth) && d.body.clientWidth > 0) {
+                    R['w'] = d.body.clientWidth;
+                }
+                if (!isNaN(d.body.clientHeight) && d.body.clientHeight > 0) {
+                    R['h'] = d.body.clientHeight;
+                }
+                if (!!e && !!e.clientWidth && !isNaN(e.clientWidth)) {
+                    R['w'] = e.clientWidth;
+                }
+                if (!!e && !!e.clientHeight && !isNaN(e.clientHeight)) {
+                    R['h'] = e.clientHeight;
+                }
+                if (!!w.innerWidth && !isNaN(w.innerWidth)) {
+                    R['w'] = Math.min(R['w'], w.innerWidth);
+                }
+                if (!!w.innerHeight && !isNaN(w.innerHeight)) {
+                    R['h'] = Math.min(R['h'], w.innerHeight);
+                }
+                if (R.h == Infinity || R.h == Infinity) {
+                    R = {
+                        "E": ":-("
+                    };
+                } else {
+                    var r = obj.getClientRects()[0];
+                    if (!r) {
+                        R = {
+                            "p": 0
+                        };
+                        return R;
+                    }
+                    R.t = r.top;
+                    R.b = r.bottom;
+                    R.l = r.left;
+                    R.r = r.right;
+                    if (r.bottom < 0 || r.right < 0 || r.top > R.clientHeight || r.left > R.clientWidth) {
+                        R = 0;
+                    } else {
+                        var totalObjectArea = (r.right - r.left) * (r.bottom - r.top),
+                            xMin = Math.ceil(Math.max(0, r.left)),
+                            xMax = Math.floor(Math.min(R.w, r.right)),
+                            yMin = Math.ceil(Math.max(0, r.top)),
+                            yMax = Math.floor(Math.min(R.h, r.bottom)),
+                            visibleObjectArea = (xMax - xMin) * (yMax - yMin);
+                        R = Math.round(visibleObjectArea / totalObjectArea * 100);
+                    }
+                }
+                return R;
             }
 
-            function b(t, e, i) {
-                t.removeEventListener ? t.removeEventListener(e, i, !1) : t.detachEvent && t.detachEvent("on" + e, i)
+            /** LISTENERS SWITCHERS **/
+
+            function on() {
+                if (enabled) return;
+                ev(w, 'resize', onWindowResize);
+                ev(w, 'scroll', onWindowScroll);
+                if (VE) ev(d, VE, onVisibilityChange);
+                else {
+                    ev(w, 'blur', onFocusOut);
+                    ev(w, 'focus', onFocusIn);
+                }
+                enabled = true;
             }
 
-            function y(t) {
-                var e, i = 0;
-                for (e in t) t.hasOwnProperty(e) && i++;
-                return i
+            function off() {
+                rm(w, 'resize', onWindowResize);
+                rm(w, 'scroll', onWindowScroll);
+                if (VE) rm(d, VE, onVisibilityChange);
+                rm(w, 'focus', onFocusIn);
+                rm(w, 'blur', onFocusOut);
+                clearTimeout(tm);
+                enabled = false;
             }
 
-            function N() {
-                var t = "mailru-visibility-check";
-                if (e.getElementsByClassName) return e.getElementsByClassName(t);
-                if (e.querySelectorAll) return e.querySelectorAll("." + t);
-                for (var i = [], n = e.getElementsByTagName("*"), r = new RegExp("(^|s)" + classname + "(s|$)"), o = 0; o < n.length; o++) r.test(n[o].className) && i.push(n[o]);
-                return i
+            /** UTILS **/
+            // G - get element by ID;
+            function G(E) {
+                return d.getElementById(E)
+            }
+            // ev - EVent to handle
+            function ev(elem, eventName, callback) {
+                elem.addEventListener ? elem.addEventListener(eventName, callback, !1) : elem.attachEvent && elem.attachEvent("on" + eventName, callback)
             }
 
-            function E() {
-                for (var t = N(), e = t.length - 1; e >= 0; e--) t[e].id && t[e].getAttribute("data-counter") && a(t[e].id)
+            function rm(elem, eventName, callback) {
+                elem.removeEventListener ? elem.removeEventListener(eventName, callback, !1) : elem.detachEvent && elem.detachEvent("on" + eventName, callback)
             }
-            var w, M = !1,
-                T = !0,
-                H = {},
-                W = e.documentElement,
-                p = e.mozVisibilityState ? "mozvisibilitychange" : e.webkitVisibilityState ? "webkitvisibilitychange" : e.visibilityState ? "visibilitychange" : "",
-                B = 0;
+            // obj length
+            function l(obj) {
+                var s = 0,
+                    key;
+                for (key in obj) {
+                    if (obj.hasOwnProperty(key)) s++
+                }
+                return s;
+            }
+
+            function getAdsContainers() {
+                var ADS_CLASS = "mailru-visibility-check";
+                if (d.getElementsByClassName) {
+                    return d.getElementsByClassName(ADS_CLASS);
+                } else if (d.querySelectorAll) {
+                    return d.querySelectorAll('.' + ADS_CLASS);
+                } else {
+                    var els = [];
+                    var tmp = d.getElementsByTagName("*");
+                    var regex = new RegExp("(^|\s)" + classname + "(\s|$)");
+                    for (var i = 0; i < tmp.length; i++) {
+                        if (regex.test(tmp[i].className)) {
+                            els.push(tmp[i]);
+                        }
+                    }
+                    return els;
+                }
+            }
+
+            function doCheck() {
+                var displayedBanners = getAdsContainers();
+                for (var k = displayedBanners.length - 1; k >= 0; k--) {
+                    if (displayedBanners[k].id && displayedBanners[k].getAttribute('data-counter')) {
+                        I(displayedBanners[k].id);
+                    }
+                }
+            }
+
+            /** PUBLIC INTERFACE **/
+
             return {
-                doCheck: E
+                doCheck: doCheck
+                // debug
+                // ,banners : banners
             }
-        }()
-    }(window, document)
+        }());
+
+    }(window, document))
 } catch (e) {}
+
 try {
-    stManager.done("mrtarg.js")
+    stManager.done('mrtarg.js');
 } catch (e) {}

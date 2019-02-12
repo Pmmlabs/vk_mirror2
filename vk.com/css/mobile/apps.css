@@ -2197,9 +2197,6 @@ input.wide_button {
 }
 
 .ni_body {
-    font-weight: 600;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     font-size: 14px;
     line-height: 20px
 }
@@ -2210,6 +2207,13 @@ input.wide_button {
 
 .ni_user {
     color: #3c6a9e
+}
+
+.ni_user,
+.ni_link {
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
 }
 
 .ni_pics {
@@ -7281,23 +7285,9 @@ div.pm_item .pm_counter {
     font-weight: 400
 }
 
-.place_panel {
-    background: #ebedf0;
-    margin: 0;
-    padding: 12px;
-    border: 0!important
-}
-
-@media (min-width: 882px) {
-    .place_panel {
-        background: #fff
-    }
-}
-
 .place_map_wrap {
     display: block;
     text-align: center;
-    border: 3px solid #fff;
     background: #fff;
     border: 1px solid #e6e7e8;
     padding: 3px;

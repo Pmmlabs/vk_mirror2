@@ -1,3 +1,3 @@
 try {
-    stManager.done("mail.js")
+    stManager.done('mail.js');
 } catch (e) {}

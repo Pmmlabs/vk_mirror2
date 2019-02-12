@@ -3,121 +3,180 @@ VideoEdit = {
         onDomReady(function() {
             VideoEdit.opts = {
                 onReorder: VideoEdit.onReorder
-            }, cur.albumFilters = ge("video_albums_list"), cur.albumFilters && extend(VideoEdit.opts, {
-                target: cur.albumFilters,
-                onDragOver: VideoEdit.onDragOver,
-                onDragOut: VideoEdit.onDragOut,
-                onMouseDown: VideoEdit.onDragStart,
-                onMouseUp: VideoEdit.onDragEnd
-            }), sorter.init(cur.vRows, VideoEdit.opts)
+            };
+            cur.albumFilters = ge('video_albums_list');
+            if (cur.albumFilters) {
+                extend(VideoEdit.opts, {
+                    target: cur.albumFilters,
+                    onDragOver: VideoEdit.onDragOver,
+                    onDragOut: VideoEdit.onDragOut,
+                    onMouseDown: VideoEdit.onDragStart,
+                    onMouseUp: VideoEdit.onDragEnd
+                });
+            }
+            sorter.init(cur.vRows, VideoEdit.opts);
         });
-        var e = [];
-        for (var o in cur.albums) e.push({
-            i: o,
-            l: cur.albums[o]
-        });
-        e.push({
+        var albumsList = [];
+        for (var i in cur.albums) {
+            albumsList.push({
+                i: i,
+                l: cur.albums[i]
+            });
+        }
+        albumsList.push({
             i: 0,
-            l: getLang("video_no_album")
-        }), cur.albumDDM = new DropdownMenu(e, {
-            showHover: !1,
-            onSelect: VideoEdit.onAlbumChange
-        }), cur.module = "video_edit"
-    },
-    onReorder: function(e, o, i) {
-        var r = e.id.replace("video_row", ""),
-            t = (o && o.id || "").replace("video_row", ""),
-            d = (i && i.id || "").replace("video_row", "");
-        ajax.post("al_video.php", {
-            act: "reorder_videos",
-            video: r,
-            before: t,
-            after: d
+            l: getLang('video_no_album')
         });
-        for (var a = cur.videoList[cur.vSection], n = !1, u = 0, s = a.length; s > u; u++)
-            if (a[u][0] + "_" + a[u][1] == r) {
-                n = a[u], a.splice(u, 1);
-                break
+        cur.albumDDM = new DropdownMenu(albumsList, {
+            showHover: false,
+            onSelect: VideoEdit.onAlbumChange
+        });
+        cur.module = 'video_edit';
+    },
+    onReorder: function(video, before, after) {
+        var video_id = video.id.replace('video_row', '');
+        var before_id = (before && before.id || '').replace('video_row', '');
+        var after_id = (after && after.id || '').replace('video_row', '');
+        ajax.post('al_video.php', {
+            act: 'reorder_videos',
+            video: video_id,
+            before: before_id,
+            after: after_id
+        });
+        var list = cur.videoList[cur.vSection];
+        var element = false;
+        for (var i = 0, len = list.length; i < len; i++) {
+            if (list[i][0] + '_' + list[i][1] == video_id) {
+                element = list[i];
+                list.splice(i, 1);
+                break;
             }
-        if (n)
-            for (var u = 0, s = a.length; s > u; u++) {
-                if (a[u][0] + "_" + a[u][1] == t) return void a.splice(u, 0, n);
-                if (a[u][0] + "_" + a[u][1] == d) return void a.splice(u + 1, 0, n)
+        }
+        if (!element) return;
+        for (var i = 0, len = list.length; i < len; i++) {
+            if (list[i][0] + '_' + list[i][1] == before_id) {
+                list.splice(i, 0, element);
+                return;
             }
-    },
-    onAdding: function() {
-        cur.VideoEditChanged ? (sorter.init(cur.vRows, VideoEdit.opts), cur.VideoEditChanged = !1) : sorter.added(cur.vRows)
-    },
-    onChanging: function() {
-        cur.VideoEditChanged = !0
-    },
-    showAlbumMenu: function(e, o) {
-        cur.albumDDM && o.id != cur.albumDDM.options.id && (cur.currentVideo = e, cur.albumDDM.hide(!1), cur.albumDDM.setOptions({
-            target: o,
-            title: o.innerHTML
-        }), cur.albumDDM.show())
-    },
-    onAlbumChange: function(e) {
-        if (cur.currentVideo) {
-            var o = parseInt(e.target.index || 0);
-            VideoEdit.moveVideo(cur.currentVideo, o)
+            if (list[i][0] + '_' + list[i][1] == after_id) {
+                list.splice(i + 1, 0, element);
+                return;
+            }
         }
     },
-    moveVideo: function(e, o, i) {
-        var r = ge("album_menu" + e);
-        r.innerHTML = '<img src="/images/upload.gif" />', ajax.post("al_video.php", {
-            act: "move_to_album",
-            vid: e,
-            album_id: o,
+    onAdding: function() {
+        if (cur.VideoEditChanged) {
+            sorter.init(cur.vRows, VideoEdit.opts);
+            cur.VideoEditChanged = false;
+        } else {
+            sorter.added(cur.vRows);
+        }
+    },
+    onChanging: function() {
+        cur.VideoEditChanged = true;
+    },
+    showAlbumMenu: function(vid, t) {
+        if (!cur.albumDDM) return;
+        //var t = ge('album_menu' + vid);
+        if (t.id == cur.albumDDM.options.id) {
+            return;
+        }
+        cur.currentVideo = vid;
+        cur.albumDDM.hide(false);
+        cur.albumDDM.setOptions({
+            target: t,
+            title: t.innerHTML
+        });
+        cur.albumDDM.show();
+    },
+    onAlbumChange: function(ev) {
+        if (!cur.currentVideo) return;
+        var albumId = parseInt(ev.target.index || 0);
+        VideoEdit.moveVideo(cur.currentVideo, albumId);
+    },
+    moveVideo: function(vid, albumId, callback) {
+        var element = ge('album_menu' + vid);
+        element.innerHTML = '<img src="/images/upload.gif" />';
+
+        ajax.post('al_video.php', {
+            act: 'move_to_album',
+            vid: vid,
+            album_id: albumId,
             oid: cur.oid,
             hash: cur.moveHash
         }, {
-            onDone: function(t) {
-                r.innerHTML = t;
-                var d = 0,
-                    a = cur.videoList.all;
-                for (var n in a) a[n][1] == e && (d = a[n][6], a[n][6] = o);
-                delete cur.videoList["album_" + d], delete cur.videoList["album_" + o], i && i()
+            onDone: function(text) {
+                element.innerHTML = text;
+                var oldAlbum = 0;
+                var list = cur.videoList['all'];
+                for (var i in list) {
+                    if (list[i][1] == vid) {
+                        oldAlbum = list[i][6];
+                        list[i][6] = albumId;
+                    }
+                }
+                delete cur.videoList['album_' + oldAlbum];
+                delete cur.videoList['album_' + albumId];
+                if (callback) {
+                    callback();
+                }
             }
-        })
+        });
     },
-    onDragOver: function(e, o) {
-        parseInt(e.id.substr(5));
-        clearTimeout(cur.dragOutTimeout), hasClass(o, "side_filter") && (hasClass(o, "cur_section") || addClass(o, "video_drag_over"), animate(e, {
-            opacity: .3
-        }, 300))
+    onDragOver: function(el, target) {
+        var id = parseInt(el.id.substr(5));
+        clearTimeout(cur.dragOutTimeout);
+        if (!hasClass(target, 'side_filter')) {
+            return;
+        }
+        if (!hasClass(target, 'cur_section')) {
+            addClass(target, 'video_drag_over');
+        }
+        animate(el, {
+            opacity: 0.3
+        }, 300);
     },
-    onDragOut: function(e, o) {
-        removeClass(o, "video_drag_over"), clearTimeout(cur.dragOutTimeout), cur.dragOutTimeout = setTimeout(function() {
-            animate(e, {
+    onDragOut: function(el, target) {
+        removeClass(target, 'video_drag_over');
+        clearTimeout(cur.dragOutTimeout);
+        cur.dragOutTimeout = setTimeout(function() {
+            animate(el, {
                 opacity: 1
-            }, 200)
-        }, 500)
+            }, 200);
+        }, 500);
     },
-    onDragStart: function(e) {
-        addClass(ge("page_body"), "no_overflow");
-        var o = ge("video_albums_list");
-        each(geByClass("side_filter", o), function(e, o) {
-            hasClass(o, "cur_section") || addClass(o, "video_drag_on")
-        })
+    onDragStart: function(el) {
+        addClass(ge('page_body'), 'no_overflow');
+        var listParent = ge('video_albums_list');
+        each(geByClass('side_filter', listParent), function(i, v) {
+            if (!hasClass(v, 'cur_section')) {
+                addClass(v, 'video_drag_on');
+            }
+        });
     },
-    onDragEnd: function(e, o) {
-        removeClass(ge("page_body"), "no_overflow");
-        var i = ge("video_albums_list");
-        if (each(geByClass("side_filter", i), function(e, o) {
-                removeClass(o, "video_drag_on")
-            }), hasClass(o, "side_filter")) {
-            var r = e.id.split("_"),
-                t = o.id.split("_");
-            if (!r[2] || !t[3]) return;
-            var d = r[2],
-                a = t[3];
-            VideoEdit.moveVideo(d, a, function() {
-                -1 != cur.vSection.indexOf("album_") && Video.section(cur.vSection)
-            })
+    onDragEnd: function(el, target) {
+        removeClass(ge('page_body'), 'no_overflow');
+        var listParent = ge('video_albums_list');
+        each(geByClass('side_filter', listParent), function(i, v) {
+            removeClass(v, 'video_drag_on');
+        });
+        if (hasClass(target, 'side_filter')) {
+            var row = el.id.split('_');
+            var targetRow = target.id.split('_');
+            if (!row[2] || !targetRow[3]) {
+                return;
+            }
+            var vid = row[2];
+            var albumId = targetRow[3];
+            VideoEdit.moveVideo(vid, albumId, function() {
+                if (cur.vSection.indexOf('album_') != -1) {
+                    Video.section(cur.vSection);
+                }
+            });
         }
     }
 };
+
 try {
-    stManager.done("video_edit.js")
+    stManager.done('video_edit.js');
 } catch (e) {}

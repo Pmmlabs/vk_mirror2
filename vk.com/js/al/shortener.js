@@ -1,115 +1,207 @@
 var Shortener = {
     init: function() {
-        setTimeout(elfocus.pbind("shorten_link")), window.addEventListener("scroll", this.onShortenedScrolled), cur.loadedCount = 20, cur.chunkSize = 20
+        setTimeout(elfocus.pbind('shorten_link'));
+        window.addEventListener("scroll", this.onShortenedScrolled);
+
+        cur.loadedCount = 20;
+        cur.chunkSize = 20;
     },
-    submitLink: function(e) {
-        var o = ge("shorten_error");
-        o.className = "shorten_error";
-        var t = 0,
-            n = document.getElementById("private_link");
-        n && "checkbox on" == n.className && (t = 1), ajax.post("/cc", {
-            act: "shorten",
-            link: val("shorten_link"),
-            hash: e,
-            "private": t
+
+    submitLink: function(hash) {
+        var e = ge('shorten_error');
+        e.className = 'shorten_error';
+
+        var privateFlag = 0;
+
+        var privateLink = document.getElementById('private_link');
+        if (privateLink && privateLink.className == 'checkbox on') {
+            privateFlag = 1;
+        }
+
+        ajax.post('/cc', {
+            act: 'shorten',
+            link: val('shorten_link'),
+            hash: hash,
+            private: privateFlag
         }, {
-            onDone: function(e, o) {
-                var t = ge("shorten_link");
-                t.value = e, t.select(), setTimeout(cur.selResult, 0), ge("last_shortened_block").innerHTML = o;
-                var c = "testClass",
-                    a = document.getElementById("last_shortened_block");
-                a.className += " " + c;
-                var i = new RegExp("(\\s|^)" + c + "(\\s|$)");
-                a.className = a.className.replace(i, " ");
-                a.offsetHeight;
-                cur.offset++, n && (n.className = "checkbox"), cur.loadedCount = 20, cur.allLoaded = !1, cur.isLoading = !1
-            },
-            onFail: function(e) {
-                if (e) {
-                    var o = ge("shorten_error");
-                    return o.className = "shorten_error_display", val("shorten_msg", e), isVisible(o) || slideDown(o, 200), !0
+            onDone: function(text, lastShortenedHtml) {
+                var input = ge('shorten_link');
+
+                input.value = text;
+                input.select();
+
+                setTimeout(cur.selResult, 0);
+
+                ge('last_shortened_block').innerHTML = lastShortenedHtml;
+
+                var testClass = "testClass";
+                var contentBlock = document.getElementById('last_shortened_block');
+                contentBlock.className += " " + testClass;
+                var reg = new RegExp('(\\s|^)' + testClass + '(\\s|$)');
+                contentBlock.className = contentBlock.className.replace(reg, ' ');
+
+                var height = contentBlock.offsetHeight;
+
+                cur.offset++;
+
+                if (privateLink) {
+                    privateLink.className = 'checkbox';
                 }
+
+                cur.loadedCount = 20;
+                cur.allLoaded = false;
+                cur.isLoading = false;
             },
-            showProgress: lockButton.pbind("shorten_btn"),
-            hideProgress: unlockButton.pbind("shorten_btn")
-        })
+            onFail: function(text) {
+                if (!text) return;
+
+                var e = ge('shorten_error');
+                e.className = 'shorten_error_display';
+                val('shorten_msg', text);
+                if (!isVisible(e)) {
+                    slideDown(e, 200);
+                }
+
+                return true;
+            },
+            showProgress: lockButton.pbind('shorten_btn'),
+            hideProgress: unlockButton.pbind('shorten_btn')
+        });
     },
-    deleteLastShortened: function(e, o, t, n) {
-        ajax.post("/cc", {
-            act: "delete",
-            key: o,
-            timestamp: t,
-            hash: n,
+
+    deleteLastShortened: function(event, key, timestamp, hash) {
+        ajax.post('/cc', {
+            act: 'delete',
+            key: key,
+            timestamp: timestamp,
+            hash: hash,
             count: cur.loadedCount
         }, {
-            onDone: function(e) {
-                ge("last_shortened_block").innerHTML = e
+            onDone: function(lastShortenedHtml) {
+                ge('last_shortened_block').innerHTML = lastShortenedHtml;
             },
             onFail: function() {
-                return !0
+                return true;
             }
-        }), e || (e = window.event), e.cancelBubble = !0, e.stopPropagation()
+        });
+
+        if (!event) {
+            event = window.event;
+        }
+        event.cancelBubble = true;
+        event.stopPropagation();
     },
+
     selResult: function() {
-        var e = ge("shorten_link");
-        if (e.createTextRange) {
-            var o = e.createTextRange();
-            o.collapse(!0), o.moveEnd("character", 0), o.moveStart("character", val(e).length), o.select()
-        } else e.setSelectionRange && e.setSelectionRange(0, val(e).length)
+        var s = ge('shorten_link');
+        if (s.createTextRange) {
+            var range = s.createTextRange();
+            range.collapse(true);
+            range.moveEnd('character', 0);
+            range.moveStart('character', val(s).length);
+            range.select();
+        } else if (s.setSelectionRange) {
+            s.setSelectionRange(0, val(s).length);
+        }
     },
-    highlightDeleteIcon: function(e) {
-        ge("delete_icon_" + e).style.opacity = Math.max(.5, ge("delete_icon_" + e).style.opacity)
+
+    highlightDeleteIcon: function(rowNumber) {
+        ge('delete_icon_' + rowNumber).style.opacity = Math.max(0.5, ge('delete_icon_' + rowNumber).style.opacity);
     },
-    showDeleteIcon: function(e, o, t) {
-        ge("delete_icon_" + o).style.opacity = 1, showTooltip(e, {
-            text: t,
+
+    showDeleteIcon: function(object, rowNumber, text) {
+        ge('delete_icon_' + rowNumber).style.opacity = 1.0;
+        showTooltip(object, {
+            text: text,
             black: 1,
             shift: [15, 11, 0]
         })
     },
-    showPrivateLinkTooltip: function(e, o) {
-        showTooltip(e, {
-            text: o,
+
+    showPrivateLinkTooltip: function(object, text) {
+        showTooltip(object, {
+            text: text,
             black: 1,
             shift: [15, 11, 0]
         })
     },
-    showLoadingMore: function(e) {
-        var o = document.createElement("div");
-        o.className = "load_more", e && e.appendChild(o)
+
+    showLoadingMore: function(lastShortenedList) {
+        var loadMore = document.createElement('div');
+        loadMore.className = 'load_more';
+
+        lastShortenedList && lastShortenedList.appendChild(loadMore);
     },
-    hideLoadingMore: function(e) {
-        e && e.removeChild(e.lastChild)
+
+    hideLoadingMore: function(lastShortenedList) {
+        lastShortenedList && lastShortenedList.removeChild(lastShortenedList.lastChild);
     },
+
     onShortenedScrolled: function() {
-        if (!cur.isLoading && !cur.allLoaded) {
-            var e = document.getElementById("page_body"),
-                o = document.getElementById("last_shortened_list");
-            document.body.scrollHeight - e.scrollHeight < 70 && window.innerHeight + window.scrollY >= document.body.offsetHeight && (cur.isLoading = !0, Shortener.showLoadingMore(o), ajax.post("/cc", {
-                act: "load_more",
+        if (cur.isLoading || cur.allLoaded) {
+            return;
+        }
+
+        var body = document.getElementById('page_body');
+        var lastShortenedList = document.getElementById('last_shortened_list');
+
+        if ((document.body.scrollHeight - body.scrollHeight < 70) && (window.innerHeight + window.scrollY >= document.body.offsetHeight)) {
+            cur.isLoading = true;
+
+            Shortener.showLoadingMore(lastShortenedList);
+
+            ajax.post('/cc', {
+                act: 'load_more',
                 offset: cur.loadedCount,
                 count: cur.chunkSize
             }, {
-                onDone: function(e, t) {
-                    Shortener.hideLoadingMore(o), t > 0 && (ge("last_shortened_list").innerHTML += e, cur.loadedCount += t), t < cur.chunkSize && (cur.allLoaded = !0), cur.isLoading = !1
+                onDone: function(html, count) {
+                    Shortener.hideLoadingMore(lastShortenedList);
+
+                    if (count > 0) {
+                        ge('last_shortened_list').innerHTML += html;
+                        cur.loadedCount += count;
+                    }
+
+                    if (count < cur.chunkSize) {
+                        cur.allLoaded = true;
+                    }
+
+                    cur.isLoading = false;
                 },
                 onFail: function() {
-                    Shortener.hideLoadingMore(o), cur.isLoading = !1
+                    Shortener.hideLoadingMore(lastShortenedList);
+
+                    cur.isLoading = false;
                 }
-            }))
+            });
         }
     },
+
     onPrivateLinkSwitched: function() {
-        checkbox = document.getElementById("private_link"), "checkbox on" == checkbox.className ? checkbox.className = "checkbox" : checkbox.className = "checkbox on"
+        checkbox = document.getElementById('private_link');
+
+        if (checkbox.className == 'checkbox on') {
+            checkbox.className = 'checkbox';
+        } else {
+            checkbox.className = 'checkbox on';
+        }
     },
-    showStats: function(e, o) {
-        if (!getSelection().toString())
-            if (e.ctrlKey || e.metaKey) {
-                var t = window.open(o, "_blank");
-                t.focus()
-            } else location.href = o
+
+    showStats: function(event, url) {
+        if (getSelection().toString()) {
+            return;
+        }
+
+        if (event.ctrlKey || event.metaKey) {
+            var win = window.open(url, '_blank');
+            win.focus();
+        } else {
+            location.href = url;
+        }
     }
 };
+
 try {
-    stManager.done("shortener.js")
+    stManager.done('shortener.js');
 } catch (e) {}

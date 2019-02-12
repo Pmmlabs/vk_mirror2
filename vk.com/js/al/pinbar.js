@@ -1,53 +1,71 @@
-window._iconAdd || (window._iconAdd = window.devicePixelRatio >= 2 ? "_2x" : ""), window.initPinBar = function(e, a, t) {
-    if (navigator.userAgent.toLowerCase().match(/msie (9|10)(\.?[0-9]*)*/)) {
-        window.lang = extend(window.lang || {}, t);
-        var n = {
-                applicationName: getLang("global_vkontakte"),
-                startURL: "/feed",
-                shortcutIcon: "/images/icons/pinbar_favicon_vk.ico?100",
-                taskIcon: "/images/" + (vk.intnat ? "favicon_vk" : "faviconnew") + _iconAdd + ".ico",
-                tasks: [{
-                    name: getLang("left_mynews"),
-                    action: "/feed"
-                }, {
-                    name: getLang("left_mymessages"),
-                    action: a || "/im"
-                }, {
-                    name: getLang("left_myfriends"),
-                    action: "/friends"
-                }, {
-                    name: getLang("left_mypage"),
-                    action: e || "/al_profile.php"
-                }]
-            },
-            o = {
-                meta: function(e, a) {
-                    return se('<meta name="' + e + '" content="' + a + '" />')
-                },
-                link: function(e, a) {
-                    return se('<link rel="' + e + '" href="' + a + '" />')
-                }
-            };
-        try {
-            var i = window.external;
-            bodyNode.onfocus = i.msSiteModeClearIconOverlay(), i.msSiteModeCreateJumpList(getLang("global_vkontakte")), i.msSiteModeClearJumpList();
-            for (var c, s = 0; s < n.tasks.length; s++) c = n.tasks[s], i.msSiteModeAddJumpListItem(c.name, c.action, n.taskIcon);
-            i.msSiteModeShowJumpList()
-        } catch (r) {
-            try {
-                console.error(r)
-            } catch (d) {}
-        }
-        setFavIcon(n.shortcutIcon, !0);
-        try {
-            headNode.appendChild(o.meta("application-name", n.applicationName)), headNode.appendChild(o.meta("msapplication-starturl", n.startURL))
-        } catch (r) {
-            try {
-                console.error(r)
-            } catch (d) {}
-        }
+if (!window._iconAdd) window._iconAdd = (window.devicePixelRatio >= 2 ? '_2x' : '');
+window.initPinBar = function(profile, mail, lng) {
+    if (!navigator.userAgent.toLowerCase().match(/msie (9|10)(\.?[0-9]*)*/)) {
+        return;
     }
-};
+    window.lang = extend(window.lang || {}, lng);
+
+    var options = {
+        applicationName: getLang('global_vkontakte'),
+        startURL: '/feed',
+        shortcutIcon: '/images/icons/pinbar_favicon_vk.ico?100',
+        taskIcon: '/images/' + (vk.intnat ? 'favicon_vk' : 'faviconnew') + _iconAdd + '.ico',
+        tasks: [{
+                name: getLang('left_mynews'),
+                action: '/feed'
+            },
+            {
+                name: getLang('left_mymessages'),
+                action: mail || '/im'
+            },
+            {
+                name: getLang('left_myfriends'),
+                action: '/friends'
+            },
+            {
+                name: getLang('left_mypage'),
+                action: profile || '/al_profile.php'
+            }
+        ]
+    };
+
+    var lib = {
+        meta: function(name, content) {
+            return se('<meta name="' + name + '" content="' + content + '" />');
+        },
+        link: function(rel, href) {
+            return se('<link rel="' + rel + '" href="' + href + '" />');
+        }
+    };
+
+    try {
+        var ext = window.external;
+        bodyNode.onfocus = ext.msSiteModeClearIconOverlay();
+        ext.msSiteModeCreateJumpList(getLang('global_vkontakte'));
+        ext.msSiteModeClearJumpList();
+        for (var i = 0, task; i < options.tasks.length; i++) {
+            task = options.tasks[i];
+            ext.msSiteModeAddJumpListItem(task.name, task.action, options.taskIcon);
+        }
+        ext.msSiteModeShowJumpList();
+    } catch (e) {
+        try {
+            console.error(e);
+        } catch (e2) {}
+    }
+
+    setFavIcon(options.shortcutIcon, true);
+
+    try {
+        headNode.appendChild(lib.meta('application-name', options.applicationName));
+        headNode.appendChild(lib.meta('msapplication-starturl', options.startURL));
+    } catch (e) {
+        try {
+            console.error(e);
+        } catch (e2) {}
+    }
+}
+
 try {
-    stManager.done("pinbar.js")
+    stManager.done('pinbar.js');
 } catch (e) {}

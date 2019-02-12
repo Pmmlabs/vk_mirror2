@@ -1,238 +1,299 @@
 var Achievements = {
-    updateSearch: function(e) {
-        clearTimeout(cur.achievementsSearchTimeout), cur.achievementsSearchTimeout = setTimeout(Achievements.doUpdateSearch.pbind(e), 300)
+    updateSearch: function(v) {
+        clearTimeout(cur.achievementsSearchTimeout);
+        cur.achievementsSearchTimeout = setTimeout(Achievements.doUpdateSearch.pbind(v), 300);
     },
-    doUpdateSearch: function(e) {
-        var o = ge("ach_list");
-        if (o) {
-            e = e.toLowerCase();
-            var a = domChildren(o),
-                t = null;
-            each(a, function(o, a) {
-                if (removeClass(a, "ach_list_row_last_visible"), e) {
-                    var s = val(geByClass1("_title", a)),
-                        c = -1 != s.toLowerCase().indexOf(e);
-                    toggle(a, c), c && (t = a)
-                } else show(a)
-            }), t && addClass(t, "ach_list_row_last_visible"), e ? nav.objLoc.q = e : delete nav.objLoc.q, nav.setLoc(nav.objLoc)
+    doUpdateSearch: function(v) {
+        var c = ge('ach_list');
+        if (!c) {
+            return;
         }
+        v = v.toLowerCase();
+        var children = domChildren(c),
+            lastVisEl = null;
+        each(children, function(i, el) {
+            removeClass(el, 'ach_list_row_last_visible');
+            if (!v) {
+                show(el);
+            } else {
+                var t = val(geByClass1('_title', el)),
+                    vis = t.toLowerCase().indexOf(v) != -1;
+                toggle(el, vis);
+                if (vis) {
+                    lastVisEl = el;
+                }
+            }
+        });
+        if (lastVisEl) {
+            addClass(lastVisEl, 'ach_list_row_last_visible');
+        }
+        if (v) {
+            nav.objLoc['q'] = v;
+        } else {
+            delete(nav.objLoc['q']);
+        }
+        nav.setLoc(nav.objLoc);
     },
-    save: function(e, o, a, t) {
-        var s = {
-            act: "save",
-            id: o,
-            hash: a,
-            title: trim(val("ach_title")),
-            descr: trim(val("ach_descr")),
-            lore: trim(val("ach_lore")),
-            photo_id: trim(val("ach_photo_id")),
+    save: function(btn, id, hash, andReturn) {
+        var params = {
+            act: 'save',
+            id: id,
+            hash: hash,
+            title: trim(val('ach_title')),
+            descr: trim(val('ach_descr')),
+            lore: trim(val('ach_lore')),
+            photo_id: trim(val('ach_photo_id')),
             parent_id: cur.achParentDD.val(),
-            weight: val("ach_weight"),
+            weight: val('ach_weight'),
             hidden: cur.achHiddenDD ? cur.achHiddenDD.val() : 0,
-            challenged: isChecked("ach_challenged") ? 1 : 0,
+            challenged: isChecked('ach_challenged') ? 1 : 0,
             grant_type: cur.achGrantTypeDD ? cur.achGrantTypeDD.val() : 0,
-            unlocked: isChecked("ach_unlocked") ? 1 : 0
+            unlocked: isChecked('ach_unlocked') ? 1 : 0
         };
-        return t && (s["return"] = 1), s.title ? void ajax.post("achievements.php", s, {
-            showProgress: lockButton.pbind(e),
-            hideProgress: unlockButton.pbind(e)
-        }) : notaBene("ach_title")
+        if (andReturn) {
+            params['return'] = 1;
+        }
+        if (!params.title) {
+            return notaBene('ach_title');
+        }
+        ajax.post('achievements.php', params, {
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn)
+        });
     },
-    addLink: function(e, o, a) {
-        var t = {
-            act: "add_link",
+    addLink: function(btn, aid, hash) {
+        var params = {
+            act: 'add_link',
             uid: cur.addAchLinkUserDD.val(),
-            public_note: trim(val("ach_link_public_note")),
-            ts_expire: trim(val("ach_link_ts_expire")),
-            aid: o,
-            hash: a
+            public_note: trim(val('ach_link_public_note')),
+            ts_expire: trim(val('ach_link_ts_expire')),
+            aid: aid,
+            hash: hash
         };
-        t.uid && ajax.post("achievements.php", t, {
-            showProgress: lockButton.pbind(e),
-            hideProgress: unlockButton.pbind(e),
-            onDone: function(e) {
-                if (e) {
-                    var o = ge("ach_links_list");
-                    o.insertBefore(se(e), o.firstChild), cur.addAchLinkUserDD.val(""), val("ach_link_public_note", ""), val("ach_link_ts_expire", 0)
-                } else notaBene()
+        if (!params.uid) {
+            return;
+        }
+        ajax.post('achievements.php', params, {
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn),
+            onDone: function(html) {
+                if (html) {
+                    var c = ge('ach_links_list');
+                    c.insertBefore(se(html), c.firstChild);
+                    cur.addAchLinkUserDD.val('');
+                    val('ach_link_public_note', '');
+                    val('ach_link_ts_expire', 0);
+                } else {
+                    notaBene();
+                }
             }
-        })
+        });
     },
-    removeLink: function(e, o, a, t) {
-        var s = gpeByClass("ach_links_list_row", e);
-        ajax.post("achievements.php", {
-            act: "remove_link",
-            uid: o,
-            aid: a,
-            hash: t
+    removeLink: function(btn, uid, aid, hash) {
+        var div = gpeByClass('ach_links_list_row', btn);
+        ajax.post('achievements.php', {
+            act: 'remove_link',
+            uid: uid,
+            aid: aid,
+            hash: hash
         }, {
-            showProgress: lockButton.pbind(e),
-            hideProgress: unlockButton.pbind(e),
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn),
             onDone: function() {
-                slideUp(s, 300, function() {
-                    re(s)
-                })
+                slideUp(div, 300, function() {
+                    re(div);
+                });
             }
-        })
+        });
     },
-    openEditLinkBox: function(e, o) {
-        cur.editLinkBox = showBox("/ach", {
-            act: "edit_link_box",
-            uid: e,
-            aid: o
+    openEditLinkBox: function(uid, aid) {
+        cur.editLinkBox = showBox('/ach', {
+            act: 'edit_link_box',
+            uid: uid,
+            aid: aid
         }, {
             params: {
                 width: 500
             }
-        })
+        });
     },
-    saveLink: function(e, o, a, t) {
-        ajax.post("/ach", {
-            act: "save_link",
-            uid: e,
-            aid: o,
-            hash: a,
-            note: val("ach_edit_link_note")
+    saveLink: function(uid, aid, hash, callback) {
+        ajax.post('/ach', {
+            act: 'save_link',
+            uid: uid,
+            aid: aid,
+            hash: hash,
+            note: val('ach_edit_link_note')
         }, {
             showProgress: cur.editLinkBox.showProgress,
             hideProgress: cur.editLinkBox.hideProgress,
-            onDone: t
-        })
+            onDone: callback
+        });
     },
-    updateLinkNote: function(e, o, a) {
-        var t = geByClass1("_note", "ach_links_list_row" + e + "_" + o);
-        val(t, a), cur.editLinkBox.hide()
+    updateLinkNote: function(uid, aid, note) {
+        var el = geByClass1('_note', 'ach_links_list_row' + uid + '_' + aid);
+        val(el, note);
+        cur.editLinkBox.hide();
     },
-    showTooltip: function(e, o, a) {
-        (!hasClass(e, "agent_ach_blur") || hasClass(e, "agent_ach_blur_ignore")) && showTooltip(e, {
-            dir: "top",
-            url: "ach",
+    showTooltip: function(el, aid, mid) {
+        if (hasClass(el, 'agent_ach_blur') && !hasClass(el, 'agent_ach_blur_ignore')) {
+            return;
+        }
+        showTooltip(el, {
+            dir: 'top',
+            url: 'ach',
             params: {
-                act: "tt",
-                id: o,
-                mid: a
+                act: 'tt',
+                id: aid,
+                mid: mid
             },
-            center: !0,
-            className: "ach_tt",
+            center: true,
+            className: 'ach_tt',
             shift: [0, -5, 0],
             onHide: function() {
-                removeClass("achievements", "achievements_opacity"), removeClass(e, "agent_ach_marked")
+                removeClass('achievements', 'achievements_opacity');
+                removeClass(el, 'agent_ach_marked');
             }
-        })
+        });
     },
-    loadMoreHistory: function(e) {
-        var o = ge("ach_history_rows"),
-            a = {
-                act: "history",
+    loadMoreHistory: function(btn) {
+        var container = ge('ach_history_rows'),
+            params = {
+                act: 'history',
                 load: 1,
-                last_id: attr(domLC(o), "log-id")
+                last_id: attr(domLC(container), 'log-id')
             };
-        each(["type", "aid", "uid", "who_uid"], function(e, o) {
-            nav.objLoc[o] && (a[o] = nav.objLoc[o])
-        }), ajax.post("/ach", a, {
-            showProgress: lockButton.pbind(e),
-            hideProgress: unlockButton.pbind(e),
-            onDone: function(a, t) {
-                each(sech(a), function(e, a) {
-                    o.appendChild(a)
-                }), toggle(e, t)
+
+        each(['type', 'aid', 'uid', 'who_uid'], function(i, k) {
+            if (nav.objLoc[k]) {
+                params[k] = nav.objLoc[k];
             }
-        })
+        });
+        ajax.post('/ach', params, {
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn),
+            onDone: function(html, hasMore) {
+                each(sech(html), function(i, el) {
+                    container.appendChild(el);
+                });
+                toggle(btn, hasMore);
+            }
+        });
     },
-    showProgressTT: function(e, o) {
-        showTooltip(e, {
+    showProgressTT: function(el, txt) {
+        showTooltip(el, {
             center: 1,
-            dir: "bottom",
-            text: o,
-            typeClass: "tt_black"
-        })
+            dir: 'bottom',
+            text: txt,
+            typeClass: 'tt_black'
+        });
     },
-    openRequestBox: function(e, o, a) {
-        cur.achRequestBox = showBox("ach", {
-            act: "request_box",
-            aid: a,
-            uid: o
+    openRequestBox: function(btn, uid, aid) {
+        cur.achRequestBox = showBox('ach', {
+            act: 'request_box',
+            aid: aid,
+            uid: uid
         }, {
             params: {
                 width: 620
             }
-        })
+        });
     },
-    sendRequest: function(e, o) {
-        ajax.post("/ach", {
-            act: "send_request",
-            uid: e,
-            aid: o,
-            note: val("ach_request_note")
+    sendRequest: function(uid, aid) {
+        ajax.post('/ach', {
+            act: 'send_request',
+            uid: uid,
+            aid: aid,
+            note: val('ach_request_note')
         }, {
             showProgress: cur.achRequestBox.showProgress,
             hideProgress: cur.achRequestBox.hideProgress,
-            onDone: function(e) {
-                val("ach_block_request", e), cur.achRequestBox.hide()
+            onDone: function(html) {
+                val('ach_block_request', html);
+                cur.achRequestBox.hide();
             }
-        })
+        });
     },
-    cancelRequest: function(e, o, a) {
-        ajax.post("/ach", {
-            act: "cancel_request",
-            uid: e,
-            aid: o,
-            hash: a
+    cancelRequest: function(uid, aid, hash) {
+        ajax.post('/ach', {
+            act: 'cancel_request',
+            uid: uid,
+            aid: aid,
+            hash: hash
         }, {
-            onDone: function(e) {
-                val("ach_block_request", e), cur.achRequestBox.hide()
+            onDone: function(html) {
+                val('ach_block_request', html);
+                cur.achRequestBox.hide();
             }
-        })
+        });
     },
-    processRequest: function(e, o, a, t, s) {
-        ajax.post("/ach", {
-            act: "process_request",
-            uid: o,
-            aid: a,
-            hash: t,
-            result: s
+    processRequest: function(btn, uid, aid, hash, result) {
+        ajax.post('/ach', {
+            act: 'process_request',
+            uid: uid,
+            aid: aid,
+            hash: hash,
+            result: result
         }, {
-            showProgress: lockButton.pbind(e),
-            hideProgress: unlockButton.pbind(e),
-            onDone: function(e) {
-                var t = ge("ach_request_row" + o + "_" + a),
-                    s = t.parentNode;
-                hasClass(t, "ach_request_row_closed") ? s.replaceChild(se(e), t) : (s = ge("ach_request_closed_rows"), re(t), s.insertBefore(se(e), s.firstChild), geByClass1("ach_request_row", "ach_request_new_rows") || show("ach_request_rows_empty"))
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn),
+            onDone: function(html) {
+                var el = ge('ach_request_row' + uid + '_' + aid),
+                    c = el.parentNode;
+                if (hasClass(el, 'ach_request_row_closed')) {
+                    c.replaceChild(se(html), el);
+                } else {
+                    c = ge('ach_request_closed_rows');
+                    re(el);
+                    c.insertBefore(se(html), c.firstChild);
+                    if (!geByClass1('ach_request_row', 'ach_request_new_rows')) {
+                        show('ach_request_rows_empty');
+                    }
+                }
             }
-        })
+        });
     },
     openChoosePhotoBox: function() {
-        cur.achChoosePhotoBox = showBox("/ach", {
-            act: "choose_photo_box",
-            current: val("ach_photo_id")
+        cur.achChoosePhotoBox = showBox('/ach', {
+            act: 'choose_photo_box',
+            current: val('ach_photo_id')
         }, {
             params: {
                 width: 800
             }
-        })
+        });
     },
-    choosePhoto: function(e, o) {
-        val("ach_photo_id", e), show("ach_form_image"), ge("ach_form_image__img").src = o, cur.achChoosePhotoBox.hide()
+    choosePhoto: function(photo, url) {
+        val('ach_photo_id', photo);
+        show('ach_form_image');
+        ge('ach_form_image__img').src = url;
+        cur.achChoosePhotoBox.hide();
     },
     applyHistoryFilters: function() {
-        var e = {
+        var objLoc = {
             0: nav.objLoc[0],
-            act: nav.objLoc.act
+            act: nav.objLoc['act']
         };
-        cur.achievementsAchDD.val() && (e.aid = cur.achievementsAchDD.val()), nav.go(e)
+        if (cur.achievementsAchDD.val()) {
+            objLoc['aid'] = cur.achievementsAchDD.val();
+        }
+        nav.go(objLoc);
     },
-    hideUnlocked: function(e) {
-        slideUp("agent_unlocked_achievements", 500, function() {
-            re("agent_unlocked_achievements");
-            var e = ge("achievements_top_notify");
-            val(e) || re(e)
-        }), ajax.post("ach", {
-            act: "hide_unlocked",
-            mid: e
-        })
+    hideUnlocked: function(mid) {
+        slideUp('agent_unlocked_achievements', 500, function() {
+            re('agent_unlocked_achievements');
+            var tn = ge('achievements_top_notify');
+            if (!val(tn)) {
+                re(tn);
+            }
+        });
+        ajax.post('ach', {
+            act: 'hide_unlocked',
+            mid: mid
+        });
     },
     _eof: 1
 };
 try {
-    stManager.done("achievements.js")
+    stManager.done('achievements.js');
 } catch (e) {}

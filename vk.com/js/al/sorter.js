@@ -1,302 +1,521 @@
 var sorter = {
-    sqr: function(e) {
-        return e * e
+    sqr: function(x) {
+        return x * x;
     },
-    evCoords: function(e, r) {
-        return browser.android ? [e.touches[0].pageX + (e.pageX || 0), e.touches[0].pageY + (e.pageY || 0) + (r.scrollNode && r.scrollNode.scrollTop || 0)] : [e.pageX, e.pageY + (r.scrollNode && r.scrollNode.scrollTop || 0)]
+    evCoords: function(ev, s) {
+        return browser.android ? [ev.touches[0].pageX + (ev.pageX || 0), ev.touches[0].pageY + (ev.pageY || 0) + (s.scrollNode && s.scrollNode.scrollTop || 0)] : [ev.pageX, ev.pageY + (s.scrollNode && s.scrollNode.scrollTop || 0)];
     },
+
     animstop: function() {
-        clearInterval(sorter.animtimer), sorter.animtimer = !1
+        clearInterval(sorter.animtimer);
+        sorter.animtimer = false;
     },
     animcache: {},
     animstep: function() {
-        var e = [],
-            r = !0;
-        for (var t in sorter.animcache)
-            if (0 != t) {
-                var o = sorter.animcache[t],
-                    s = o.el,
-                    n = Fx.Transitions.easeOutQuint,
-                    l = 200,
-                    a = vkNow();
-                o.t += a - o.prev, o.prev = a, o.t < l ? (r = !1, s.style.left = n(o.t, o.sx, o.dx, l) + "px", s.style.top = n(o.t, o.sy, o.dy, l) + "px") : (s.style.left = o.sx + o.dx + "px", s.style.top = o.sy + o.dy + "px", clearInterval(o.timer), e.push(s.id), o.h && o.h())
-            } else r = !1, scrollNode.scrollTop += Math.ceil(sorter.animcache[t] / 5);
-        for (var t in e) delete sorter.animcache[e[t]];
-        r && sorter.animstop()
+        var finished = [],
+            all = true;
+        for (var i in sorter.animcache) {
+            if (i == 0) {
+                all = false;
+                scrollNode.scrollTop += Math.ceil(sorter.animcache[i] / 5);
+                continue;
+            }
+            var a = sorter.animcache[i],
+                e = a.el,
+                f = Fx.Transitions.easeOutQuint,
+                dt = 200;
+            var prev = vkNow();
+            a.t += prev - a.prev;
+            a.prev = prev;
+            if (a.t < dt) {
+                all = false;
+                e.style.left = f(a.t, a.sx, a.dx, dt) + 'px';
+                e.style.top = f(a.t, a.sy, a.dy, dt) + 'px';
+                continue;
+            }
+            e.style.left = (a.sx + a.dx) + 'px';
+            e.style.top = (a.sy + a.dy) + 'px';
+            clearInterval(a.timer);
+            finished.push(e.id);
+            if (a.h) a.h();
+        }
+        for (var i in finished) {
+            delete(sorter.animcache[finished[i]]);
+        }
+        if (all) {
+            sorter.animstop();
+        }
     },
-    animate: function(e, r, t, o) {
-        if (browser.msie8) return setStyle(e, {
-            left: r,
-            top: t
-        }), void(o && o());
-        var s = intval(getStyle(e, "left")),
-            n = intval(getStyle(e, "top")),
-            l = {
-                t: 0,
-                sx: s,
-                sy: n,
-                dx: r - s,
-                dy: t - n,
-                h: o,
-                prev: vkNow()
-            };
-        return sorter.animcache[e.id] ? void extend(sorter.animcache[e.id], l) : (sorter.animcache[e.id] = extend(l, {
+    animate: function(e, x, y, handler) {
+        if (browser.msie8) {
+            setStyle(e, {
+                left: x,
+                top: y
+            });
+            if (handler) handler();
+            return;
+        }
+        var sx = intval(getStyle(e, 'left')),
+            sy = intval(getStyle(e, 'top'));
+        var anim = {
+            t: 0,
+            sx: sx,
+            sy: sy,
+            dx: x - sx,
+            dy: y - sy,
+            h: handler,
+            prev: vkNow()
+        };
+        if (sorter.animcache[e.id]) {
+            extend(sorter.animcache[e.id], anim);
+            return;
+        }
+        sorter.animcache[e.id] = extend(anim, {
             el: e
-        }), void(sorter.animtimer || (sorter.animtimer = setInterval(sorter.animstep, 13))))
-    },
-    mousedown: function(e) {
-        var r = e && e.touches && 1 == e.touches.length;
-        if (e && (2 == e.button || 3 == e.which || e.ctrlKey || e.metaKey) && !r) return !0;
-        if (!sorter.current) {
-            var t = this,
-                o = t.parentNode.sorter,
-                s = sorter.evCoords(e, o);
-            if (!("A" == e.target.tagName || "INPUT" == e.target.tagName || "TEXTAREA" == e.target.tagName || e.target.getAttribute("nosorthandle") || e.target.parentNode && "A" == e.target.parentNode.tagName)) return sorter.current = o, o.drag = t, addEvent(document, "mousemove drag touchmove", sorter.mousemove), addEvent(document, "mouseup touchend touchcancel", sorter.mouseup), browser.opera || browser.msie || browser.mozilla || browser.safari_mobile || browser.android || o.noscroll || (addEvent(sorter.scrollNode, "scroll", sorter.mousemove), o.scrollNode && o.scrollNode.scrollHeight > o.scrollNode.offsetHeight && addEvent(o.scrollNode, "scroll", sorter.mousemove)), extend(o, {
-                startX: s[0],
-                startY: s[1] + (browser.msie6 ? pageNode.scrollTop + (o.scrollNode && o.scrollNode.scrollTop || 0) : 0),
-                before: t.nextSibling ? t.nextSibling.nextSibling : !1,
-                after: t.helper.previousSibling,
-                startIndex: t.index
-            }), extend(sorter, {
-                lastX: s[0],
-                lastY: s[1],
-                lastS: scrollNode.scrollTop + (o.scrollNode && o.scrollNode.scrollTop || 0)
-            }), setStyle(t, {
-                zIndex: 13
-            }), addClass(t, "sort_taken"), window.Privacy && Privacy.hide(-1), o.onMouseDown && o.onMouseDown(t), cur.cancelClick = !1, r || cancelEvent(e)
+        });
+        if (!sorter.animtimer) {
+            sorter.animtimer = setInterval(sorter.animstep, 13);
         }
     },
-    mousemove: function(e) {
-        if (sorter.current) {
-            var r = sorter.current,
-                t = !0,
-                o = "scroll" == e.type ? [sorter.lastX, sorter.lastY + scrollNode.scrollTop + (r.scrollNode && r.scrollNode.scrollTop || 0) - sorter.lastS] : sorter.evCoords(e, r);
-            if ("scroll" == e.type) t = !1;
-            else {
-                sorter.lastX = o[0], sorter.lastY = o[1], sorter.lastS = scrollNode.scrollTop + (r.scrollNode && r.scrollNode.scrollTop || 0);
-                var s = o[1] - (browser.msie6 ? 0 : scrollNode.scrollTop + (r.scrollNode && r.scrollNode.scrollTop || 0));
-                browser.safari_mobile || browser.android || r.noscroll || (100 > s ? sorter.animcache[0] = s - 100 : s > lastWindowHeight - 100 ? sorter.animcache[0] = s + 100 - lastWindowHeight : sorter.animcache[0] && delete sorter.animcache[0], sorter.animcache[0] && !sorter.animtimer && (sorter.animtimer = setInterval(sorter.animstep, 13)))
+
+    mousedown: function(ev) {
+        var touch = ev && ev.touches && ev.touches.length == 1;
+        if (ev && (ev.button == 2 || ev.which == 3 || ev.ctrlKey || ev.metaKey) && !touch) {
+            return true;
+        }
+        if (sorter.current) return;
+
+        var el = this,
+            s = el.parentNode.sorter,
+            evc = sorter.evCoords(ev, s);
+        if (ev.target.tagName == 'A' || ev.target.tagName == 'INPUT' || ev.target.tagName == 'TEXTAREA' || ev.target.getAttribute('nosorthandle')) return;
+        if (ev.target.parentNode && ev.target.parentNode.tagName == 'A') return;
+
+        sorter.current = s;
+        s.drag = el;
+
+        addEvent(document, 'mousemove drag touchmove', sorter.mousemove);
+        addEvent(document, 'mouseup touchend touchcancel', sorter.mouseup);
+        if (!browser.opera && !browser.msie && !browser.mozilla && !browser.safari_mobile && !browser.android && !s.noscroll) {
+            addEvent(sorter.scrollNode, 'scroll', sorter.mousemove);
+            if (s.scrollNode && s.scrollNode.scrollHeight > s.scrollNode.offsetHeight) {
+                addEvent(s.scrollNode, 'scroll', sorter.mousemove);
             }
-            var n = r.drag,
-                l = o[0] - r.startX,
-                a = o[1] + (browser.msie6 ? pageNode.scrollTop : 0) - r.startY,
-                i = n.helper.offsetLeft,
-                d = n.helper.offsetTop,
-                c = i + l,
-                p = d + a;
-            if ((l > 10 || -10 > l || a > 10 || -10 > a) && (cur.cancelClick = !0), r._dragtargets)
-                for (var f in r._dragtargets.nodes) {
-                    var m = r._dragtargets.nodes[f],
-                        u = getXY(m),
-                        h = getSize(m),
-                        v = {
-                            x: o[0] - u[0],
-                            y: o[1] - u[1]
-                        };
-                    v.x > 0 && v.x < h[0] && v.y > 0 && v.y < h[1] ? m._dragover || (r._dragtargets.onDragOver && r._dragtargets.onDragOver(n, m), m._dragover = !0, r._dragtarget = m) : m._dragover && (r._dragtargets.onDragOut && r._dragtargets.onDragOut(n, m), m._dragover = !1, r._dragtarget = null)
+        }
+        extend(s, {
+            startX: evc[0],
+            startY: evc[1] + (browser.msie6 ? pageNode.scrollTop + (s.scrollNode && s.scrollNode.scrollTop || 0) : 0),
+            before: (el.nextSibling ? el.nextSibling.nextSibling : false),
+            after: el.helper.previousSibling,
+            startIndex: el.index
+        });
+        extend(sorter, {
+            lastX: evc[0],
+            lastY: evc[1],
+            lastS: scrollNode.scrollTop + (s.scrollNode && s.scrollNode.scrollTop || 0)
+        });
+        setStyle(el, {
+            zIndex: 13
+        });
+        addClass(el, 'sort_taken');
+
+        if (window.Privacy) Privacy.hide(-1);
+        if (s.onMouseDown) {
+            s.onMouseDown(el);
+        }
+
+        cur.cancelClick = false;
+
+        return touch || cancelEvent(ev);
+    },
+    mousemove: function(ev) {
+        if (!sorter.current) return;
+
+        var s = sorter.current;
+        var cancel = true,
+            evc = (ev.type == 'scroll') ? [sorter.lastX, sorter.lastY + scrollNode.scrollTop + (s.scrollNode && s.scrollNode.scrollTop || 0) - sorter.lastS] : sorter.evCoords(ev, s);
+        if (ev.type == 'scroll') {
+            cancel = false;
+        } else {
+            sorter.lastX = evc[0];
+            sorter.lastY = evc[1];
+            sorter.lastS = scrollNode.scrollTop + (s.scrollNode && s.scrollNode.scrollTop || 0);
+            var my = evc[1] - (browser.msie6 ? 0 : scrollNode.scrollTop + (s.scrollNode && s.scrollNode.scrollTop || 0));
+            if (!browser.safari_mobile && !browser.android && !s.noscroll) {
+                if (my < 100) {
+                    sorter.animcache[0] = my - 100;
+                } else if (my > lastWindowHeight - 100) {
+                    sorter.animcache[0] = my + 100 - lastWindowHeight;
+                } else if (sorter.animcache[0]) {
+                    delete(sorter.animcache[0]);
                 }
-            if (setStyle(n, {
-                    left: c,
-                    top: p
-                }), browser.msie8) {
-                n.offsetLeft
+                if (sorter.animcache[0] && !sorter.animtimer) {
+                    sorter.animtimer = setInterval(sorter.animstep, 13);
+                }
             }
-            if (c + n.w / 2 > i && p + n.h / 2 > d && c - n.w / 2 < i && p - n.h / 2 < d) return t ? cancelEvent(e) : !0;
-            for (var f = 0, g = 0, x = 1e9; f < r.elems.length; ++f) {
-                var w = r.elems[f],
-                    b = sorter.sqr(w.x - c) + sorter.sqr(w.y - p);
-                x > b && (g = f, x = b)
-            }
-            if (g == n.index) return t ? cancelEvent(e) : !0;
-            var y;
-            g < n.index ? (r.parent.insertBefore(n, r.elems[g].helper), y = -1) : g > n.index && (r.elems[g].nextSibling ? r.parent.insertBefore(n, r.elems[g].nextSibling) : r.parent.appendChild(n), y = 1), r.parent.insertBefore(n.helper, n), (g == r.elems.length - 1 ? addClass : removeClass)(n.helper, "sort_helper_last");
-            for (var f = n.index; f != g; f += y) {
-                var w = r.elems[f] = r.elems[f + y],
-                    i = w.helper.offsetLeft,
-                    d = w.helper.offsetTop;
-                extend(w, {
-                    index: w.index - y,
-                    x: i + w.w / 2,
-                    y: d + w.h / 2
-                }), sorter.animate(w, i, d)
-            }
-            return r.elems[g] = n, extend(n, {
-                index: g,
-                x: n.helper.offsetLeft + n.w / 2,
-                y: n.helper.offsetTop + n.h / 2
-            }), r.startX = o[0] - c + n.helper.offsetLeft, r.startY = o[1] + (browser.msie6 ? pageNode.scrollTop : 0) - p + n.helper.offsetTop, t ? cancelEvent(e) : !0
         }
+        var el = s.drag,
+            dx = evc[0] - s.startX,
+            dy = evc[1] + (browser.msie6 ? pageNode.scrollTop : 0) - s.startY;
+        var x = el.helper.offsetLeft,
+            y = el.helper.offsetTop,
+            nx = x + dx,
+            ny = y + dy;
+
+        if (dx > 10 || dx < -10 || dy > 10 || dy < -10) {
+            cur.cancelClick = true;
+        }
+
+        if (s._dragtargets) {
+            for (var i in s._dragtargets.nodes) {
+                var dragtarget = s._dragtargets.nodes[i];
+                var xy = getXY(dragtarget),
+                    sz = getSize(dragtarget);
+                var p1 = {
+                    x: (evc[0] - xy[0]),
+                    y: (evc[1] - xy[1])
+                };
+                if (p1.x > 0 && p1.x < sz[0] && p1.y > 0 && p1.y < sz[1]) {
+                    if (!dragtarget._dragover) {
+                        if (s._dragtargets.onDragOver) {
+                            s._dragtargets.onDragOver(el, dragtarget);
+                        }
+                        dragtarget._dragover = true;
+                        s._dragtarget = dragtarget;
+                    }
+                } else if (dragtarget._dragover) {
+                    if (s._dragtargets.onDragOut) {
+                        s._dragtargets.onDragOut(el, dragtarget);
+                    }
+                    dragtarget._dragover = false;
+                    s._dragtarget = null;
+                }
+            }
+        }
+
+        setStyle(el, {
+            left: nx,
+            top: ny
+        });
+        if (browser.msie8) { // force redraw
+            var temp = el.offsetLeft;
+        }
+        if (nx + el.w / 2 > x && ny + el.h / 2 > y && nx - el.w / 2 < x && ny - el.h / 2 < y) return cancel ? cancelEvent(ev) : true;
+
+        for (var i = 0, newind = 0, newdist = 1e9; i < s.elems.length; ++i) {
+            var e = s.elems[i],
+                dist = sorter.sqr(e.x - nx) + sorter.sqr(e.y - ny);
+            if (newdist > dist) {
+                newind = i;
+                newdist = dist;
+            }
+        }
+        if (newind == el.index) return cancel ? cancelEvent(ev) : true;
+
+        var d;
+        if (newind < el.index) {
+            s.parent.insertBefore(el, s.elems[newind].helper);
+            d = -1;
+        } else if (newind > el.index) {
+            if (s.elems[newind].nextSibling) {
+                s.parent.insertBefore(el, s.elems[newind].nextSibling);
+            } else {
+                s.parent.appendChild(el);
+            }
+            d = 1;
+        }
+        s.parent.insertBefore(el.helper, el);
+        (newind == s.elems.length - 1 ? addClass : removeClass)(el.helper, 'sort_helper_last');
+
+        for (var i = el.index; i != newind; i += d) {
+            var e = s.elems[i] = s.elems[i + d],
+                x = e.helper.offsetLeft,
+                y = e.helper.offsetTop;
+            extend(e, {
+                index: e.index - d,
+                x: x + e.w / 2,
+                y: y + e.h / 2
+            });
+            sorter.animate(e, x, y);
+        }
+        s.elems[newind] = el;
+        extend(el, {
+            index: newind,
+            x: el.helper.offsetLeft + el.w / 2,
+            y: el.helper.offsetTop + el.h / 2
+        });
+        s.startX = evc[0] - nx + el.helper.offsetLeft;
+        s.startY = evc[1] + (browser.msie6 ? pageNode.scrollTop : 0) - ny + el.helper.offsetTop;
+
+        return cancel ? cancelEvent(ev) : true;
     },
-    mouseup: function(e) {
-        if (sorter.current) {
-            var r = sorter.current,
-                t = r.drag;
-            if (setStyle(t, {
-                    zIndex: 12
-                }), sorter.animate(t, t.previousSibling.offsetLeft, t.previousSibling.offsetTop, function() {
-                    setStyle(t, {
-                        zIndex: ""
-                    }), removeClass(t, "sort_taken")
-                }), sorter.stop(), sorter.animcache[0] && (delete sorter.animcache[0], isEmpty(sorter.animcache) && sorter.animstop()), r.onMouseUp) {
-                var o = r._dragtarget;
-                if (o && (r._dragtargets.onDragOut && r._dragtargets.onDragOut(t, o), sorter.restore(r, t)), r.onMouseUp(t, o), delete r._dragtarget, o) return cancelEvent(e)
+    mouseup: function(ev) {
+        if (!sorter.current) return;
+
+        var s = sorter.current,
+            el = s.drag;
+        setStyle(el, {
+            zIndex: 12
+        });
+        sorter.animate(el, el.previousSibling.offsetLeft, el.previousSibling.offsetTop, function() {
+            setStyle(el, {
+                zIndex: ''
+            });
+            removeClass(el, 'sort_taken');
+        });
+
+        sorter.stop();
+
+        if (sorter.animcache[0]) {
+            delete(sorter.animcache[0]);
+            if (isEmpty(sorter.animcache)) {
+                sorter.animstop();
             }
-            var s = t.nextSibling ? t.nextSibling.nextSibling : !1,
-                n = t.helper.previousSibling;
-            return s == r.before && n == r.after || !r.onReorder || r.onReorder(t, s, n), delete r.startIndex, delete r.before, delete r.after, cancelEvent(e)
         }
+
+        if (s.onMouseUp) {
+            var target = s._dragtarget;
+            if (target) {
+                if (s._dragtargets.onDragOut) s._dragtargets.onDragOut(el, target);
+                sorter.restore(s, el);
+            }
+            s.onMouseUp(el, target);
+            delete(s._dragtarget);
+            if (target) {
+                return cancelEvent(ev);
+            }
+        }
+        var before = (el.nextSibling ? el.nextSibling.nextSibling : false),
+            after = el.helper.previousSibling;
+        if ((before != s.before || after != s.after) && s.onReorder) {
+            s.onReorder(el, before, after);
+        }
+        delete(s.startIndex);
+        delete(s.before);
+        delete(s.after);
+
+        return cancelEvent(ev);
     },
     stop: function() {
-        var e = sorter.current;
-        removeEvent(document, "mousemove drag touchmove", sorter.mousemove), removeEvent(document, "mouseup touchend touchcancel", sorter.mouseup), e.drag = sorter.current = !1
+        var s = sorter.current;
+        removeEvent(document, 'mousemove drag touchmove', sorter.mousemove);
+        removeEvent(document, 'mouseup touchend touchcancel', sorter.mouseup);
+        s.drag = sorter.current = false;
     },
-    restore: function(e, r) {
-        var t, o = e.startIndex;
-        o < r.index ? (e.parent.insertBefore(r, e.elems[o].helper), t = -1) : o > r.index && (e.elems[o].nextSibling ? e.parent.insertBefore(r, e.elems[o].nextSibling) : e.parent.appendChild(r), t = 1), e.parent.insertBefore(r.helper, r);
-        for (var s = r.index; s != o; s += t) {
-            var n = e.elems[s] = e.elems[s + t],
-                l = n.helper.offsetLeft,
-                a = n.helper.offsetTop;
-            extend(n, {
-                index: n.index - t,
-                x: l + n.w / 2,
-                y: a + n.h / 2
-            }), sorter.animate(n, l, a)
+    restore: function(s, el) {
+        var d, oldind = s.startIndex;
+        if (oldind < el.index) {
+            s.parent.insertBefore(el, s.elems[oldind].helper);
+            d = -1;
+        } else if (oldind > el.index) {
+            if (s.elems[oldind].nextSibling) {
+                s.parent.insertBefore(el, s.elems[oldind].nextSibling);
+            } else {
+                s.parent.appendChild(el);
+            }
+            d = 1;
         }
-        e.elems[o] = r, extend(r, {
-            index: o,
-            x: r.helper.offsetLeft + r.w / 2,
-            y: r.helper.offsetTop + r.h / 2
-        }), sorter.animate(r, r.helper.offsetLeft, r.helper.offsetTop), delete e.startIndex, delete e.before, delete e.after
-    },
-    shift: function(e) {
-        var r, t = e.sorter,
-            o = t.elems[t.elems.length - 1],
-            s = 0;
-        t.parent.insertBefore(o, t.elems[s].helper), r = -1, t.parent.insertBefore(o.helper, o);
-        for (var n = o.index; n != s; n += r) {
-            var l = t.elems[n] = t.elems[n + r],
-                a = l.helper.offsetLeft,
-                i = l.helper.offsetTop;
-            extend(l, {
-                index: l.index - r,
-                x: a + l.w / 2,
-                y: i + l.h / 2
-            }), l.style.left = a + "px", l.style.top = i + "px"
+        s.parent.insertBefore(el.helper, el);
+
+        for (var i = el.index; i != oldind; i += d) {
+            var e = s.elems[i] = s.elems[i + d],
+                x = e.helper.offsetLeft,
+                y = e.helper.offsetTop;
+            extend(e, {
+                index: e.index - d,
+                x: x + e.w / 2,
+                y: y + e.h / 2
+            });
+            sorter.animate(e, x, y);
         }
-        var a = o.helper.offsetLeft,
-            i = o.helper.offsetTop;
-        t.elems[s] = o, extend(o, {
-            index: s,
-            x: a + o.w / 2,
-            y: i + o.h / 2
-        }), o.style.left = a + "px", o.style.top = i + "px"
+        s.elems[oldind] = el;
+        extend(el, {
+            index: oldind,
+            x: el.helper.offsetLeft + el.w / 2,
+            y: el.helper.offsetTop + el.h / 2
+        });
+        sorter.animate(el, el.helper.offsetLeft, el.helper.offsetTop);
+        delete(s.startIndex);
+        delete(s.before);
+        delete(s.after);
     },
-    added: function(e) {
-        for (var r = e.sorter, t = r.elems.length, o = t ? e.sorter.elems[t - 1].nextSibling : e.firstChild, s = t; o && !o.getAttribute("stopsort"); o = o.nextSibling, ++s)
-            if (!o.getAttribute("skipsort")) {
-                r.elems.push(o);
-                var n = o.offsetLeft,
-                    l = o.offsetTop,
-                    a = getSize(o),
-                    i = {
-                        width: a[0],
-                        height: a[1] - r.dh
-                    };
-                extend(o, {
-                    helper: ce("div", {
-                        className: "sort_helper"
-                    }, i),
-                    x: n + a[0] / 2,
-                    w: a[0],
-                    y: l + a[1] / 2,
-                    h: a[1],
-                    index: s
+    shift: function(parent) { // move last to first place
+        var s = parent.sorter,
+            el = s.elems[s.elems.length - 1],
+            newind = 0,
+            d;
+
+        s.parent.insertBefore(el, s.elems[newind].helper);
+        d = -1;
+
+        s.parent.insertBefore(el.helper, el);
+
+        for (var i = el.index; i != newind; i += d) {
+            var e = s.elems[i] = s.elems[i + d],
+                x = e.helper.offsetLeft,
+                y = e.helper.offsetTop;
+            extend(e, {
+                index: e.index - d,
+                x: x + e.w / 2,
+                y: y + e.h / 2
+            });
+            e.style.left = x + 'px';
+            e.style.top = y + 'px';
+        }
+
+        var x = el.helper.offsetLeft,
+            y = el.helper.offsetTop;
+        s.elems[newind] = el;
+        extend(el, {
+            index: newind,
+            x: x + el.w / 2,
+            y: y + el.h / 2
+        });
+        el.style.left = x + 'px';
+        el.style.top = y + 'px';
+    },
+    added: function(parent) {
+        var s = parent.sorter,
+            l = s.elems.length;
+        var el = l ? parent.sorter.elems[l - 1].nextSibling : parent.firstChild;
+        for (var i = l; el && !el.getAttribute('stopsort'); el = el.nextSibling, ++i) {
+            if (el.getAttribute('skipsort')) continue;
+            s.elems.push(el);
+
+            var x = el.offsetLeft,
+                y = el.offsetTop,
+                sz = getSize(el);
+            var st = {
+                width: sz[0],
+                height: sz[1] - s.dh
+            }
+            extend(el, {
+                helper: ce('div', {
+                    className: 'sort_helper'
+                }, st),
+                x: x + sz[0] / 2,
+                w: sz[0],
+                y: y + sz[1] / 2,
+                h: sz[1],
+                index: i
+            });
+            var styles = {
+                // zIndex: 11,
+                left: x,
+                top: y,
+                width: getStyle(el, 'width'),
+                position: 'absolute'
+            };
+            if (!s.noMoveCursor) styles.cursor = 'move'
+
+            setStyle(el, styles);
+            parent.insertBefore(el.helper, el);
+            addEvent(el, 'mousedown touchstart', sorter.mousedown);
+        }
+    },
+
+    update: function(obj) {
+        if (!obj) return;
+        var parent = obj.parentNode,
+            s = parent.sorter;
+        var started = false;
+        for (var i in s.elems) {
+            var el = s.elems[i];
+            if (el == obj) {
+                started = true;
+            }
+            if (started) {
+                var x = el.helper.offsetLeft,
+                    y = el.helper.offsetTop,
+                    sz = getSize(el);
+                setStyle(el.helper, {
+                    height: sz[1] - s.dh
                 });
-                var d = {
-                    left: n,
-                    top: l,
-                    width: getStyle(o, "width"),
-                    position: "absolute"
-                };
-                r.noMoveCursor || (d.cursor = "move"), setStyle(o, d), e.insertBefore(o.helper, o), addEvent(o, "mousedown touchstart", sorter.mousedown)
-            }
-    },
-    update: function(e) {
-        if (e) {
-            var r = e.parentNode,
-                t = r.sorter,
-                o = !1;
-            for (var s in t.elems) {
-                var n = t.elems[s];
-                if (n == e && (o = !0), o) {
-                    var l = n.helper.offsetLeft,
-                        a = n.helper.offsetTop,
-                        i = getSize(n);
-                    setStyle(n.helper, {
-                        height: i[1] - t.dh
-                    }), extend(n, {
-                        x: l + i[0] / 2,
-                        w: i[0],
-                        y: a + i[1] / 2,
-                        h: i[1]
-                    });
-                    var d = {
-                        left: l,
-                        top: a,
-                        position: "absolute"
-                    };
-                    t.noMoveCursor || (d.cursor = "move"), setStyle(n, d)
+                extend(el, {
+                    x: x + sz[0] / 2,
+                    w: sz[0],
+                    y: y + sz[1] / 2,
+                    h: sz[1]
+                });
+                var styles = {
+                    // zIndex: 11,
+                    left: x,
+                    top: y,
+                    position: 'absolute'
                 }
+                if (!s.noMoveCursor) styles.cursor = 'move'
+
+                setStyle(el, styles);
             }
         }
     },
-    init: function(e, r) {
-        if (!browser.mobile || browser.safari_mobile || browser.android) {
-            sorter.scrollNode = browser.msie6 ? pageNode : window, e = ge(e);
-            var t = {
-                parent: e,
-                dh: r.dh || 0,
-                scrollNode: r.scrollNode,
-                noMoveCursor: r.noMoveCursor || 0,
-                elems: [],
-                stop: function() {
-                    sorter.current == t && sorter.stop();
-                    for (var e in t.elems) {
-                        var r = t.elems[e];
-                        sorter.animcache[r.id] && delete sorter.animcache[r.id]
+
+    init: function(parent, opts) {
+        if (browser.mobile && !browser.safari_mobile && !browser.android) return;
+
+        sorter.scrollNode = browser.msie6 ? pageNode : window;
+        parent = ge(parent);
+
+        var result = {
+            parent: parent,
+            dh: opts.dh || 0,
+            scrollNode: opts.scrollNode,
+            noMoveCursor: opts.noMoveCursor || 0,
+            elems: [],
+            stop: function() {
+                if (sorter.current == result) {
+                    sorter.stop();
+                }
+                for (var i in result.elems) {
+                    var ch = result.elems[i];
+                    if (sorter.animcache[ch.id]) {
+                        delete(sorter.animcache[ch.id]);
                     }
-                },
-                destroy: function() {
-                    t.stop();
-                    var e = t.parent;
-                    removeAttr(e, "sorter");
-                    for (var r in t.elems) {
-                        var o = t.elems[r];
-                        e.removeChild(o.helper), removeEvent(o, "mousedown touchstart", sorter.mousedown), setStyle(o, {
-                            position: "",
-                            margin: ""
-                        }), removeAttr(o, "helper")
-                    }
-                    sorter.animstop()
-                },
-                onReorder: r.onReorder,
-                noscroll: r.noscroll
-            };
-            r.onMouseDown && (t.onMouseDown = r.onMouseDown), r.onMouseUp && (t.onMouseUp = r.onMouseUp);
-            var o = {
-                nodes: []
-            };
-            if (r && r.target) {
-                var s = r.target.childNodes;
-                each(s, function(e, r) {
-                    1 == r.nodeType && o.nodes.push(r)
-                }), o.onDragOver = r.onDragOver, o.onDragOut = r.onDragOut, o.nodes.length > 0 && (t._dragtargets = o)
-            }
-            return e.sorter = t, sorter.added(e), t
+                }
+            },
+            destroy: function() {
+                result.stop();
+                var el = result.parent;
+                removeAttr(el, 'sorter');
+                for (var i in result.elems) {
+                    var ch = result.elems[i];
+                    el.removeChild(ch.helper);
+                    removeEvent(ch, 'mousedown touchstart', sorter.mousedown);
+                    setStyle(ch, {
+                        position: '',
+                        margin: ''
+                    });
+                    removeAttr(ch, 'helper');
+                }
+                sorter.animstop();
+            },
+            onReorder: opts.onReorder,
+            noscroll: opts.noscroll
         }
+        if (opts.onMouseDown) result.onMouseDown = opts.onMouseDown;
+        if (opts.onMouseUp) result.onMouseUp = opts.onMouseUp;
+        var dragtargets = {
+            nodes: []
+        };
+        if (opts && opts.target) {
+            var nodes = opts.target.childNodes;
+            each(nodes, function(i, v) {
+                if (v.nodeType == 1) {
+                    dragtargets.nodes.push(v);
+                }
+            });
+            dragtargets.onDragOver = opts.onDragOver;
+            dragtargets.onDragOut = opts.onDragOut;
+            if (dragtargets.nodes.length > 0) {
+                result._dragtargets = dragtargets;
+            }
+        }
+        parent.sorter = result;
+        sorter.added(parent);
+        return result;
     }
-};
+}
+
 try {
-    stManager.done("sorter.js")
+    stManager.done('sorter.js');
 } catch (e) {}

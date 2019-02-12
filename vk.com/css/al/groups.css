@@ -2986,11 +2986,14 @@ textarea.EditableLabel__textarea {
 }
 
 .group_ugc {
-    padding: 13px 15px;
-    font-size: 12.5px
+    padding: 12px 12px 11px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }
 
 .group_ugc__link {
+    color: #3670b3;
     line-height: 15px;
     display: -ms-flexbox;
     display: flex;

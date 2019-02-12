@@ -1,126 +1,176 @@
 var Gifts = {
-    deleteGift: function(o, t, i, e) {
-        e = e || {}, ajax.post("al_gifts.php", {
-            act: "delete",
-            mid: e.mid,
-            gift: i,
-            hash: e.hash
+    deleteGift: function(el, gift, giftData, opts) {
+        opts = opts || {};
+        ajax.post('al_gifts.php', {
+            act: 'delete',
+            mid: opts.mid,
+            gift: giftData,
+            hash: opts.hash
         }, {
-            onDone: function(o) {
-                var i = ge("gift" + t);
-                i && (domNS(domFC(i)) ? domNS(domFC(i)).innerHTML = o : (i.appendChild(ce("div", {
-                    className: "gift_deleted",
-                    innerHTML: o
-                })), hide(domFC(i)), window.Pagination && !curBox() && Pagination.recache(-1)))
-            },
-            showProgress: addClass.pbind(o, "gift_progress"),
-            hideProgress: removeClass.pbind(o, "gift_progress")
-        })
-    },
-    restoreGift: function(o, t, i, e) {
-        e = e || {}, ajax.post("al_gifts.php", {
-            act: "restore",
-            mid: e.mid,
-            gift: i,
-            hash: e.hash
-        }, {
-            onDone: function() {
-                var o = ge("gift" + t);
-                o && domNS(domFC(o)) && (re(domNS(domFC(o))), show(domFC(o)))
-            }
-        })
-    },
-    markSpamGift: function(o, t, i, e) {
-        e = e || {}, ajax.post("al_gifts.php", {
-            act: "mark_spam",
-            mid: e.mid,
-            gift: i,
-            hash: e.hash
-        }, {
-            onDone: function(o) {
-                ge("gift_mark_spam" + t).innerHTML = o
-            }
-        })
-    },
-    initGiftsBox: function(o, t) {
-        o.setOptions({
-            width: 638,
-            bodyStyle: "padding: 0",
-            grey: !0,
-            hideButtons: !0,
-            onShow: function() {
-                cur.gftbxWasScroll && (boxLayerWrap.scrollTop = cur.gftbxWasScroll, cur.gftbxWasScroll = !1)
-            }
-        }), t.lang && (cur.lang = extend(cur.lang || {}, t.lang)), extend(cur, {
-            gftbxOffset: t.offset,
-            gftbxAutoload: !0,
-            gftbxWasScroll: !1,
-            gftbxMid: t.mid
-        }), ajax.preload("al_gifts.php", {
-            act: "box",
-            mid: t.mid,
-            offset: t.offset
-        }, t.preload), window.uiScrollBox && uiScrollBox.init(o, {
-            onShow: function() {
-                addEvent(boxLayerWrap, "scroll", Gifts.onGiftsScroll), setTimeout(cur.chooseAudioScroll, 0)
-            },
-            onHide: function() {
-                removeEvent(boxLayerWrap, "scroll", Gifts.onGiftsScroll)
-            }
-        }), addEvent(boxLayerWrap, "scroll", Gifts.onGiftsScroll);
-        var i = boxLayerWrap.scrollTop;
-        elfocus(geByClass1("_scroll_node", o.bodyNode)), boxLayerWrap.scrollTop = i, onBodyResize(), Gifts.onGiftsScroll()
-    },
-    moreGifts: function() {
-        var o = ge("gifts_more_link");
-        buttonLocked(o) || (ajax.post("al_gifts.php", {
-            act: "box",
-            mid: cur.gftbxMid,
-            offset: cur.gftbxOffset
-        }, {
-            onDone: function(t, i, e) {
-                var s = ce("div", {
-                        innerHTML: t
-                    }),
-                    r = ge("gifts_rows");
-                if (r) {
-                    for (var a = domFC(s); a; a = domFC(s)) r.appendChild(a);
-                    cur.gftbxOffset = i, e ? Gifts.preloadGifts() : hide(o)
+            onDone: function(text) {
+                var p = ge('gift' + gift);
+                if (!p) return;
+                if (domNS(domFC(p))) {
+                    domNS(domFC(p)).innerHTML = text;
+                } else {
+                    p.appendChild(ce('div', {
+                        className: 'gift_deleted',
+                        innerHTML: text
+                    }));
+                    hide(domFC(p));
+                    if (window.Pagination && !curBox()) Pagination.recache(-1);
                 }
             },
-            showProgress: lockButton.pbind(o),
-            hideProgress: unlockButton.pbind(o),
+            showProgress: addClass.pbind(el, 'gift_progress'),
+            hideProgress: removeClass.pbind(el, 'gift_progress')
+        });
+    },
+    restoreGift: function(el, gift, giftData, opts) {
+        opts = opts || {};
+        ajax.post('al_gifts.php', {
+            act: 'restore',
+            mid: opts.mid,
+            gift: giftData,
+            hash: opts.hash
+        }, {
+            onDone: function() {
+                var p = ge('gift' + gift);
+                if (!p || !domNS(domFC(p))) return;
+                re(domNS(domFC(p)));
+                show(domFC(p));
+            }
+        });
+    },
+    markSpamGift: function(el, gift, giftData, opts) {
+        opts = opts || {};
+        ajax.post('al_gifts.php', {
+            act: 'mark_spam',
+            mid: opts.mid,
+            gift: giftData,
+            hash: opts.hash
+        }, {
+            onDone: function(text) {
+                ge('gift_mark_spam' + gift).innerHTML = text;
+            }
+        });
+    },
+    initGiftsBox: function(box, opts) {
+        box.setOptions({
+            width: 638,
+            bodyStyle: 'padding: 0',
+            grey: true,
+            hideButtons: true,
+            onShow: function() {
+                if (cur.gftbxWasScroll) {
+                    boxLayerWrap.scrollTop = cur.gftbxWasScroll;
+                    cur.gftbxWasScroll = false;
+                }
+            }
+        });
+        if (opts.lang) {
+            cur.lang = extend(cur.lang || {}, opts.lang);
+        }
+
+        extend(cur, {
+            gftbxOffset: opts.offset,
+            gftbxAutoload: true,
+            gftbxWasScroll: false,
+            gftbxMid: opts.mid
+        });
+
+        ajax.preload('al_gifts.php', {
+            act: 'box',
+            mid: opts.mid,
+            offset: opts.offset
+        }, opts.preload);
+
+        window.uiScrollBox && uiScrollBox.init(box, {
+            onShow: function() {
+                addEvent(boxLayerWrap, 'scroll', Gifts.onGiftsScroll);
+                setTimeout(cur.chooseAudioScroll, 0);
+            },
+            onHide: function() {
+                removeEvent(boxLayerWrap, 'scroll', Gifts.onGiftsScroll);
+                // cur.gftbxMid = cur.gftbxOffset = false;
+            }
+        });
+        addEvent(boxLayerWrap, 'scroll', Gifts.onGiftsScroll);
+
+        var oldScroll = boxLayerWrap.scrollTop;
+        elfocus(geByClass1('_scroll_node', box.bodyNode));
+        boxLayerWrap.scrollTop = oldScroll;
+
+        onBodyResize();
+        Gifts.onGiftsScroll();
+    },
+    moreGifts: function() {
+        var moreBtn = ge('gifts_more_link');
+        if (buttonLocked(moreBtn)) return;
+        ajax.post('al_gifts.php', {
+            act: 'box',
+            mid: cur.gftbxMid,
+            offset: cur.gftbxOffset
+        }, {
+            onDone: function(rows, newOffset, needMore) {
+                var el = ce('div', {
+                        innerHTML: rows
+                    }),
+                    cnt = ge('gifts_rows');
+                if (!cnt) return;
+
+                for (var e = domFC(el); e; e = domFC(el)) {
+                    cnt.appendChild(e);
+                }
+                cur.gftbxOffset = newOffset;
+                if (needMore) {
+                    Gifts.preloadGifts();
+                } else {
+                    hide(moreBtn);
+                }
+            },
+            showProgress: lockButton.pbind(moreBtn),
+            hideProgress: unlockButton.pbind(moreBtn),
             cache: 1
-        }), cur.gftbxAutoload = !0)
+        });
+        cur.gftbxAutoload = true;
     },
     preloadGifts: function() {
-        ajax.post("al_gifts.php", {
-            act: "box",
+        ajax.post('al_gifts.php', {
+            act: 'box',
             mid: cur.gftbxMid,
             offset: cur.gftbxOffset
         }, {
             cache: 1
-        })
+        });
     },
     onGiftsScroll: function() {
-        if (cur.gftbxAutoload) {
-            var o = lastWindowHeight,
-                t = ge("gifts_more_link");
-            isVisible(t) && o > getXY(t, !0)[1] && t.click()
+        if (!cur.gftbxAutoload) return;
+        var bt = lastWindowHeight,
+            objMore = ge('gifts_more_link');
+        if (isVisible(objMore) && (bt > getXY(objMore, true)[1])) {
+            objMore.click();
         }
     },
-    showGiftBox: function(o, t, i) {
-        return window.Profile ? Profile.showGiftBox(o, t, i) : (cur.gftbxWasScroll = boxLayerWrap.scrollTop, boxLayerWrap.scrollTop = 0, cur.viewAsBox ? cur.viewAsBox() : !showBox("al_gifts.php", {
-            act: "get_gift_box",
-            mid: o,
-            fr: o == vk.id ? 1 : 0,
-            ref: i
+    showGiftBox: function(mid, ev, ref) {
+        if (window.Profile) {
+            return Profile.showGiftBox(mid, ev, ref);
+        }
+        cur.gftbxWasScroll = boxLayerWrap.scrollTop;
+        boxLayerWrap.scrollTop = 0;
+        if (cur.viewAsBox) return cur.viewAsBox();
+
+        return !showBox('al_gifts.php', {
+            act: 'get_gift_box',
+            mid: mid,
+            fr: (mid == vk.id ? 1 : 0),
+            ref: ref
         }, {
-            stat: ["gifts.css", "wide_dd.js", "wide_dd.css"],
+            stat: ['gifts.css', 'wide_dd.js', 'wide_dd.css'],
             cache: 1
-        }, t))
+        }, ev);
     }
-};
+}
+
 try {
-    stManager.done("gifts.js")
+    stManager.done('gifts.js');
 } catch (e) {}

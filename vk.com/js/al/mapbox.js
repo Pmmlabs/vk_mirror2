@@ -1,4 +1,4 @@
-! function(t, e, i) {
+(function(t, e, i) {
     function n(i, s) {
         if (!e[i]) {
             if (!t[i]) {
@@ -19,7 +19,7 @@
     }
     for (var o = "function" == typeof require && require, s = 0; i.length > s; s++) n(i[s]);
     return n
-}({
+})({
     1: [function(t) {
         t("./leaflet"), t("./mapbox")
     }, {
@@ -78,8 +78,8 @@
         }
     }, {}],
     4: [function(t, e) {
-        ! function() {
-            ! function(t, i, n) {
+        (function() {
+            (function(t, i, n) {
                 var o = t.L,
                     s = {};
                 s.version = "0.6.2", "object" == typeof e && "object" == typeof e.exports ? e.exports = s : "function" == typeof define && define.amd && define(s), s.noConflict = function() {
@@ -789,9 +789,9 @@
                         },
                         removeLayer: function(t) {
                             var e = s.stamp(t);
-                            return this._layers[e] ? (this._loaded && (t.onRemove(this), this.fire("layerremove", {
+                            if (this._layers[e]) return this._loaded && (t.onRemove(this), this.fire("layerremove", {
                                 layer: t
-                            })), delete this._layers[e], this._zoomBoundLayers[e] && (delete this._zoomBoundLayers[e], this._updateZoomLevels()), this.options.zoomAnimation && s.TileLayer && t instanceof s.TileLayer && (this._tileLayersNum--, this._tileLayersToLoad--, t.off("load", this._onTileLayerLoad, this)), this) : void 0
+                            })), delete this._layers[e], this._zoomBoundLayers[e] && (delete this._zoomBoundLayers[e], this._updateZoomLevels()), this.options.zoomAnimation && s.TileLayer && t instanceof s.TileLayer && (this._tileLayersNum--, this._tileLayersToLoad--, t.off("load", this._onTileLayerLoad, this)), this
                         },
                         hasLayer: function(t) {
                             return t ? s.stamp(t) in this._layers : !1
@@ -2408,7 +2408,7 @@
                         getPathString: function() {
                             var t = this._point,
                                 e = this._radius;
-                            return this._checkIfEmpty() ? "" : s.Browser.svg ? "M" + t.x + "," + (t.y - e) + "A" + e + "," + e + ",0,1,1," + (t.x - .1) + "," + (t.y - e) + " z" : (t._round(), e = Math.round(e), "AL " + t.x + "," + t.y + " " + e + "," + e + " 0,23592600")
+                            return this._checkIfEmpty() ? "" : s.Browser.svg ? "M" + t.x + "," + (t.y - e) + "A" + e + "," + e + ",0,1,1," + (t.x - .1) + "," + (t.y - e) + " z" : (t._round(), e = Math.round(e), "AL " + t.x + "," + t.y + " " + e + "," + e + " 0," + 23592600)
                         },
                         getRadius: function() {
                             return this._mRadius
@@ -3007,8 +3007,7 @@
                             if (t.touches && 2 === t.touches.length && this._zooming) {
                                 var i = e.mouseEventToLayerPoint(t.touches[0]),
                                     n = e.mouseEventToLayerPoint(t.touches[1]);
-                                this._scale = i.distanceTo(n) / this._startDist,
-                                    this._delta = i._add(n)._divideBy(2)._subtract(this._startCenter), 1 !== this._scale && (this._moved || (s.DomUtil.addClass(e._mapPane, "leaflet-touching"), e.fire("movestart").fire("zoomstart"), this._moved = !0), s.Util.cancelAnimFrame(this._animRequest), this._animRequest = s.Util.requestAnimFrame(this._updateOnMove, this, !0, this._map._container), s.DomEvent.preventDefault(t))
+                                this._scale = i.distanceTo(n) / this._startDist, this._delta = i._add(n)._divideBy(2)._subtract(this._startCenter), 1 !== this._scale && (this._moved || (s.DomUtil.addClass(e._mapPane, "leaflet-touching"), e.fire("movestart").fire("zoomstart"), this._moved = !0), s.Util.cancelAnimFrame(this._animRequest), this._animRequest = s.Util.requestAnimFrame(this._updateOnMove, this, !0, this._map._container), s.DomEvent.preventDefault(t))
                             }
                         },
                         _updateOnMove: function() {
@@ -3682,8 +3681,8 @@
                             this.fire("locationfound", c)
                         }
                     })
-            }(window, document)
-        }()
+            })(window, document)
+        })()
     }, {}],
     3: [function(t, e) {
         window.L.Icon.Default.imagePath = "//api.tiles.mapbox.com/mapbox.js/v" + t("./package.json").version + "/images", L.mapbox = e.exports = {
@@ -3736,10 +3735,10 @@
         "../ext/sanitizer/html-sanitizer-bundle.js": 19
     }],
     18: [function(t, e, i) {
-        ! function() {
-            ! function(t, n) {
+        (function() {
+            (function(t, n) {
                 "object" == typeof i && i ? e.exports = n : "function" == typeof define && define.amd ? define(n) : t.Mustache = n
-            }(this, function() {
+            })(this, function() {
                 function t(t, e) {
                     return RegExp.prototype.test.call(t, e)
                 }
@@ -3993,10 +3992,10 @@
                     return L.render(t, e, i)
                 }, u.to_html = function(t, e, i, n) {
                     var o = u.render(t, e, i);
-                    return "function" != typeof n ? o : void n(o)
+                    return "function" != typeof n ? o : (n(o), void 0)
                 }, u
             }())
-        }()
+        })()
     }, {}],
     7: [function(t, e) {
         "use strict";
@@ -4006,42 +4005,41 @@
         e.exports = function(t) {
             var e, s = {};
             return s.getURL = function() {
-                    return e
-                }, s.setURL = function(t) {
-                    return e = n.jsonify(t), s
-                },
-                s.setID = function(t) {
-                    return i.strict(t, "string"), s.setURL(n.base() + t + "/geocode/{query}.json"), s
-                }, s.setTileJSON = function(t) {
-                    return i.strict(t, "object"), s.setURL(t.geocoder), s
-                }, s.queryURL = function(t) {
-                    if (i.strict(t, "string"), !s.getURL()) throw Error("Geocoding map ID not set");
-                    return L.Util.template(s.getURL(), {
-                        query: encodeURIComponent(t)
-                    })
-                }, s.query = function(t, e) {
-                    return i.strict(t, "string"), i.strict(e, "function"), o(s.queryURL(t), function(t, n) {
-                        if (n && n.results && n.results.length) {
-                            var o = {
-                                results: n.results,
-                                latlng: [n.results[0][0].lat, n.results[0][0].lon]
-                            };
-                            void 0 !== n.results[0][0].bounds && (o.bounds = n.results[0][0].bounds, o.lbounds = i.lbounds(o.bounds)), e(null, o)
-                        } else e(t || !0)
-                    }), s
-                }, s.reverseQuery = function(t, e) {
-                    function i(t) {
-                        return void 0 !== t.lat && void 0 !== t.lng ? t.lng + "," + t.lat : void 0 !== t.lat && void 0 !== t.lon ? t.lon + "," + t.lat : t[0] + "," + t[1]
-                    }
-                    var n = "";
-                    if (t.length && t[0].length) {
-                        for (var a = 0, r = []; t.length > a; a++) r.push(i(t[a]));
-                        n = r.join(";")
-                    } else n = i(t);
-                    return o(s.queryURL(n), function(t, i) {
-                        e(t, i)
-                    }), s
-                }, "string" == typeof t ? -1 == t.indexOf("/") ? s.setID(t) : s.setURL(t) : "object" == typeof t && s.setTileJSON(t), s
+                return e
+            }, s.setURL = function(t) {
+                return e = n.jsonify(t), s
+            }, s.setID = function(t) {
+                return i.strict(t, "string"), s.setURL(n.base() + t + "/geocode/{query}.json"), s
+            }, s.setTileJSON = function(t) {
+                return i.strict(t, "object"), s.setURL(t.geocoder), s
+            }, s.queryURL = function(t) {
+                if (i.strict(t, "string"), !s.getURL()) throw Error("Geocoding map ID not set");
+                return L.Util.template(s.getURL(), {
+                    query: encodeURIComponent(t)
+                })
+            }, s.query = function(t, e) {
+                return i.strict(t, "string"), i.strict(e, "function"), o(s.queryURL(t), function(t, n) {
+                    if (n && n.results && n.results.length) {
+                        var o = {
+                            results: n.results,
+                            latlng: [n.results[0][0].lat, n.results[0][0].lon]
+                        };
+                        void 0 !== n.results[0][0].bounds && (o.bounds = n.results[0][0].bounds, o.lbounds = i.lbounds(o.bounds)), e(null, o)
+                    } else e(t || !0)
+                }), s
+            }, s.reverseQuery = function(t, e) {
+                function i(t) {
+                    return void 0 !== t.lat && void 0 !== t.lng ? t.lng + "," + t.lat : void 0 !== t.lat && void 0 !== t.lon ? t.lon + "," + t.lat : t[0] + "," + t[1]
+                }
+                var n = "";
+                if (t.length && t[0].length) {
+                    for (var a = 0, r = []; t.length > a; a++) r.push(i(t[a]));
+                    n = r.join(";")
+                } else n = i(t);
+                return o(s.queryURL(n), function(t, i) {
+                    e(t, i)
+                }), s
+            }, "string" == typeof t ? -1 == t.indexOf("/") ? s.setID(t) : s.setURL(t) : "object" == typeof t && s.setTileJSON(t), s
         }
     }, {
         "./request": 21,
@@ -4062,7 +4060,7 @@
                 n = t["marker-symbol"] ? "-" + t["marker-symbol"] : "",
                 o = (t["marker-color"] || "7e7e7e").replace("#", "");
             return L.icon({
-                iconUrl: s.base() + "marker/pin-" + i.charAt(0) + n + "+" + o + (L.Browser.retina ? "@2x" : "") + ".png",
+                iconUrl: s.base() + "marker/" + "pin-" + i.charAt(0) + n + "+" + o + (L.Browser.retina ? "@2x" : "") + ".png",
                 iconSize: e[i],
                 iconAnchor: [e[i][0] / 2, e[i][1] / 2],
                 popupAnchor: [0, -e[i][1] / 2]
@@ -4278,7 +4276,7 @@
                 return i.href = "#", L.DomEvent.addListener(i, "click", this._share, this), L.DomEvent.disableClickPropagation(e), this._map.on("mousedown", this._clickOut, this), e
             },
             _clickOut: function() {
-                return this._popup ? (this._map.removeLayer(this._popup), void(this._popup = null)) : void 0
+                return this._popup ? (this._map.removeLayer(this._popup), this._popup = null, void 0) : void 0
             },
             _share: function(t) {
                 function e(t) {
@@ -4417,7 +4415,7 @@
                     if (r.z = t, this._tileShouldBeLoaded(r)) {
                         if (a in this._cache) {
                             if (!s) return;
-                            return void("function" == typeof this._cache[a] ? s(this._cache[a]) : this._cache[a].push(s))
+                            return "function" == typeof this._cache[a] ? s(this._cache[a]) : this._cache[a].push(s), void 0
                         }
                         this._cache[a] = [], s && this._cache[a].push(s), n(this._getTileURL(r), L.bind(function(t, e) {
                             var i = this._cache[a];
@@ -4592,7 +4590,7 @@
         }
     }, {}],
     19: [function(t, e) {
-        ! function() {
+        (function() {
             var t = function() {
                     function t(t) {
                         var e = ("" + t).match(d);
@@ -5577,27 +5575,26 @@
                             o = {};
                         o.name = n[1].toLowerCase(), o.eflags = e.ELEMENTS[o.name];
                         for (var s = t[i].substr(n[0].length), a = i + 1, r = t.length; r > a && ">" !== t[a]; a++) s += t[a];
-                        if (!(a >= r)) {
-                            for (var l = [];
-                                "" !== s;)
-                                if (n = W.exec(s)) {
-                                    if (n[4] && !n[5] || n[6] && !n[7]) {
-                                        for (var h = n[4] || n[6], c = !1, u = [s, t[a++]]; r > a; a++) {
-                                            if (c) {
-                                                if (">" === t[a]) break
-                                            } else t[a].indexOf(h) >= 0 && (c = !0);
-                                            u.push(t[a])
-                                        }
-                                        if (a >= r) break;
-                                        s = u.join("");
-                                        continue
+                        if (a >= r) return void 0;
+                        for (var l = [];
+                            "" !== s;)
+                            if (n = W.exec(s)) {
+                                if (n[4] && !n[5] || n[6] && !n[7]) {
+                                    for (var h = n[4] || n[6], c = !1, u = [s, t[a++]]; r > a; a++) {
+                                        if (c) {
+                                            if (">" === t[a]) break
+                                        } else t[a].indexOf(h) >= 0 && (c = !0);
+                                        u.push(t[a])
                                     }
-                                    var p = n[1].toLowerCase(),
-                                        d = n[2] ? g(n[3]) : "";
-                                    l.push(p, d), s = s.substr(n[0].length)
-                                } else s = s.replace(/^[\s\S][^a-z\s]*/, "");
-                            return o.attrs = l, o.next = a + 1, o
-                        }
+                                    if (a >= r) break;
+                                    s = u.join("");
+                                    continue
+                                }
+                                var p = n[1].toLowerCase(),
+                                    d = n[2] ? g(n[3]) : "";
+                                l.push(p, d), s = s.substr(n[0].length)
+                            } else s = s.replace(/^[\s\S][^a-z\s]*/, "");
+                        return o.attrs = l, o.next = a + 1, o
                     }
 
                     function g(t) {
@@ -5618,7 +5615,7 @@
                                     var l = e.ELEMENTS[o];
                                     if (!(l & e.eflags.FOLDABLE)) {
                                         var h = t(o, s);
-                                        if (!h) return void(n = !(l & e.eflags.EMPTY));
+                                        if (!h) return n = !(l & e.eflags.EMPTY), void 0;
                                         if ("object" != typeof h) throw Error("tagPolicy did not return object (old API?)");
                                         if (!("attribs" in h)) throw Error("tagPolicy gave no attribs");
                                         s = h.attribs;
@@ -5641,7 +5638,7 @@
                                 }
                             },
                             endTag: function(t, o) {
-                                if (n) return void(n = !1);
+                                if (n) return n = !1, void 0;
                                 if (e.ELEMENTS.hasOwnProperty(t)) {
                                     var s = e.ELEMENTS[t];
                                     if (!(s & (e.eflags.EMPTY | e.eflags.FOLDABLE))) {
@@ -5727,7 +5724,7 @@
                                     h = null, s && L(s, t, l, c, h);
                                     break;
                                 case e.atype.STYLE:
-                                    if (void 0 === D) {
+                                    if (D === void 0) {
                                         h = null, s && L(s, t, l, c, h);
                                         break
                                     }
@@ -5773,7 +5770,7 @@
 
                     function x(t, i, n) {
                         return function(o, s) {
-                            return e.ELEMENTS[o] & e.eflags.UNSAFE ? void(n && L(n, o, void 0, void 0, void 0)) : {
+                            return e.ELEMENTS[o] & e.eflags.UNSAFE ? (n && L(n, o, void 0, void 0, void 0), void 0) : {
                                 attribs: E(o, s, t, i, n)
                             }
                         }
@@ -5823,8 +5820,8 @@
                     return $.escapeAttrib = $.escapeAttrib = a, $.makeHtmlSanitizer = $.makeHtmlSanitizer = v, $.makeSaxParser = $.makeSaxParser = l, $.makeTagPolicy = $.makeTagPolicy = x, $.normalizeRCData = $.normalizeRCData = r, $.sanitize = $.sanitize = M, $.sanitizeAttribs = $.sanitizeAttribs = E, $.sanitizeWithPolicy = $.sanitizeWithPolicy = w, $.unescapeEntities = $.unescapeEntities = s, $
                 }(i),
                 o = n.sanitize;
-            i.ATTRIBS["*::style"] = 0, i.ELEMENTS.style = 0, i.ATTRIBS["a::target"] = 0, i.ELEMENTS.video = 0, i.ATTRIBS["video::src"] = 0, i.ATTRIBS["video::poster"] = 0, i.ATTRIBS["video::controls"] = 0, i.ELEMENTS.audio = 0, i.ATTRIBS["audio::src"] = 0, i.ATTRIBS["video::autoplay"] = 0, i.ATTRIBS["video::controls"] = 0, void 0 !== e && (e.exports = o)
-        }()
+            i.ATTRIBS["*::style"] = 0, i.ELEMENTS.style = 0, i.ATTRIBS["a::target"] = 0, i.ELEMENTS.video = 0, i.ATTRIBS["video::src"] = 0, i.ATTRIBS["video::poster"] = 0, i.ATTRIBS["video::controls"] = 0, i.ELEMENTS.audio = 0, i.ATTRIBS["audio::src"] = 0, i.ATTRIBS["video::autoplay"] = 0, i.ATTRIBS["video::controls"] = 0, e !== void 0 && (e.exports = o)
+        })()
     }, {}],
     24: [function(t, e) {
         "use strict";
@@ -5990,8 +5987,8 @@
             function s() {
                 void 0 === r.status || o(r.status) ? e.call(r, null, r) : e.call(r, r, null)
             }
-            if (void 0 === window.XMLHttpRequest) return e(Error("Browser not supported"));
-            if (void 0 === n) {
+            if (window.XMLHttpRequest === void 0) return e(Error("Browser not supported"));
+            if (n === void 0) {
                 var a = t.match(/^\s*https?:\/\/[^\/]*/);
                 n = a && a[0] !== location.protocol + "//" + location.domain + (location.port ? ":" + location.port : "")
             }
@@ -6006,10 +6003,10 @@
                 e.call(this, t, null), e = function() {}
             }, r.open("GET", t, !0), r.send(null), i
         }
-        void 0 !== e && (e.exports = i)
+        e !== void 0 && (e.exports = i)
     }, {}],
     26: [function(t, e, i) {
-        ! function(t) {
+        (function(t) {
             function e(t) {
                 if ("bug-string-char-index" == t) return "a" != "a" [0];
                 var e, i = '{"a":[1,true,false,null,"\\u0000\\b\\n\\f\\r\\t"]}',
@@ -6024,7 +6021,7 @@
                             }).toJSON = e;
                             try {
                                 r = "0" === o(0) && "0" === o(new Number) && '""' == o(new String) && o(a) === s && o(s) === s && o() === s && "1" === o(e) && "[1]" == o([e]) && "[null]" == o([s]) && "null" == o(null) && "[null,null,null]" == o([s, a, null]) && o({
-                                    a: [e, !0, !1, null, "\x00\b\n\f\r	"]
+                                    a: [e, !0, !1, null, "\0\b\n\f\r\t"]
                                 }) == i && "1" === o(null, e) && "[\n 1,\n 2\n]" == o([1, 2], null, 1) && '"-271821-04-20T00:00:00.000Z"' == o(new Date(-864e13)) && '"+275760-09-13T00:00:00.000Z"' == o(new Date(864e13)) && '"-000001-01-01T00:00:00.000Z"' == o(new Date(-621987552e5)) && '"1969-12-31T23:59:59.999Z"' == o(new Date(-1))
                             } catch (c) {
                                 r = !1
@@ -6040,7 +6037,7 @@
                                 var p = 5 == e.a.length && 1 === e.a[0];
                                 if (p) {
                                     try {
-                                        p = !u('"	"')
+                                        p = !u('"\t"')
                                     } catch (c) {}
                                     if (p) try {
                                         p = 1 !== u("01")
@@ -6216,7 +6213,7 @@
                             34: '"',
                             47: "/",
                             98: "\b",
-                            116: "	",
+                            116: "\t",
                             110: "\n",
                             102: "\f",
                             114: "\r"
@@ -6325,21 +6322,26 @@
             r && define(function() {
                 return l
             })
-        }(this)
+        })(this)
     }, {}]
-}, {}, [1]), L.HtmlIcon = L.Icon.extend({
+}, {}, [1]);
+
+//https://github.com/dwnoble/LeafletHtmlIcon
+L.HtmlIcon = L.Icon.extend({
     options: {},
-    initialize: function(t) {
-        L.Util.setOptions(this, t)
+    initialize: function(options) {
+        L.Util.setOptions(this, options);
     },
     createIcon: function() {
-        var t = document.createElement("div");
-        return t.innerHTML = this.options.html, t
+        var div = document.createElement('div');
+        div.innerHTML = this.options.html;
+        return div;
     },
     createShadow: function() {
-        return null
+        return null;
     }
 });
+
 try {
-    stManager.done("mapbox.js")
+    stManager.done('mapbox.js');
 } catch (e) {}

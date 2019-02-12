@@ -1,644 +1,1001 @@
 var Profile = {
-        toggleInfo: function(e) {
-            var i = ge("profile_full");
-            return toggle(i), toggleClass(e, "info_shown", isVisible(i)), !1
+        toggleInfo: function(el) {
+            var info = ge('profile_full');
+            toggle(info);
+            toggleClass(el, 'info_shown', isVisible(info));
+            return false;
         },
         showGroups: function(e) {
-            if (checkEvent(e) === !1) {
-                var i = ge("profile_groups_link");
-                return i.oldText = val(i), ajax.post("al_profile.php", {
-                    act: "groups",
-                    id: cur.oid
-                }, {
-                    onDone: function(e, o) {
-                        if (o) {
-                            val(i, e), i.onclick = Profile.hideGroups;
-                            var t = ge("profile_all_groups");
-                            val(t, o), show(t.parentNode)
-                        } else hide(i)
-                    },
-                    showProgress: function() {
-                        val(i, '<div class="progress" id="profile_groups_prg"></div>')
-                    },
-                    hideProgress: function() {
-                        val(i, i.oldText)
-                    },
-                    cache: 1
-                }), cancelEvent(e)
-            }
+            if (checkEvent(e) !== false) return;
+            var lnk = ge('profile_groups_link');
+            lnk.oldText = val(lnk);
+            ajax.post('al_profile.php', {
+                act: 'groups',
+                id: cur.oid
+            }, {
+                onDone: function(label, text) {
+                    if (text) {
+                        val(lnk, label);
+                        lnk.onclick = Profile.hideGroups;
+                        var pag = ge('profile_all_groups');
+                        val(pag, text);
+                        show(pag.parentNode);
+                    } else {
+                        hide(lnk);
+                    }
+                },
+                showProgress: function() {
+                    val(lnk, '<div class="progress" id="profile_groups_prg"></div>');
+                },
+                hideProgress: function() {
+                    val(lnk, lnk.oldText);
+                },
+                cache: 1
+            });
+            return cancelEvent(e);
         },
         hideGroups: function(e) {
-            if (checkEvent(e) === !1) {
-                var i = ge("profile_groups_link");
-                return val(i, i.oldText), i.onclick = Profile.showGroups, hide(ge("profile_all_groups").parentNode), cancelEvent(e)
-            }
+            if (checkEvent(e) !== false) return;
+            var lnk = ge('profile_groups_link');
+            val(lnk, lnk.oldText);
+            lnk.onclick = Profile.showGroups;
+            hide(ge('profile_all_groups').parentNode);
+            return cancelEvent(e);
         },
-        photoRemove: function(e, i, o) {
-            return cur.viewAsBox ? (cur.viewAsBox(), cancelEvent(o)) : (cur.hidingPh || (cur.hidingPh = {}), cur.hidingPh[i] ? cancelEvent(o) : (ajax.post("al_profile.php", {
-                act: "remove_photo",
-                photo_id: i,
+        photoRemove: function(lnk, photo_id, ev) {
+            if (cur.viewAsBox) {
+                cur.viewAsBox();
+                return cancelEvent(ev);
+            }
+            if (!cur.hidingPh) cur.hidingPh = {};
+            if (cur.hidingPh[photo_id]) return cancelEvent(ev);
+
+            ajax.post('al_profile.php', {
+                act: 'remove_photo',
+                photo_id: photo_id,
                 hash: cur.options.profph_hash
             }, {
-                onDone: function(e, i) {
-                    var o = ge("profile_photos_about") || ge("profile_photos_module").insertBefore(se('<div class="info_msg" id="profile_photos_about"><div class="msg_text"></div></div>'), ge("page_photos_module"));
-                    val(domFC(o), e), each(geByClass("ui_thumb_x_button", ge("page_photos_module")), function() {
-                        this.tt && this.tt.destroy && this.tt.destroy()
-                    }), val("page_photos_module", i), i || hide("profile_photos_module")
+                onDone: function(about, photos) {
+                    var msgEl = ge('profile_photos_about') || ge('profile_photos_module').insertBefore(se('<div class="info_msg" id="profile_photos_about"><div class="msg_text"></div></div>'), ge('page_photos_module'));
+                    val(domFC(msgEl), about);
+                    each(geByClass('ui_thumb_x_button', ge('page_photos_module')), function() {
+                        if (this.tt && this.tt.destroy) {
+                            this.tt.destroy();
+                        }
+                    });
+                    val('page_photos_module', photos);
+                    if (!photos) {
+                        hide('profile_photos_module');
+                    }
                 },
                 showProgress: function() {
-                    cur.hidingPh[i] = 1
+                    cur.hidingPh[photo_id] = 1;
                 },
                 hideProgress: function() {
-                    cur.hidingPh[i] = 0
+                    cur.hidingPh[photo_id] = 0;
                 }
-            }), cancelEvent(o)))
+            });
+            return cancelEvent(ev);
         },
-        photoReturn: function(e, i) {
-            return cur.viewAsBox ? cur.viewAsBox() : void ajax.post("al_profile.php", {
-                act: "return_photo",
-                photo_id: i,
+        photoReturn: function(lnk, photo_id) {
+            if (cur.viewAsBox) return cur.viewAsBox();
+
+            ajax.post('al_profile.php', {
+                act: 'return_photo',
+                photo_id: photo_id,
                 hash: cur.options.profph_hash
             }, {
-                onDone: function(e) {
-                    each(geByClass("ui_thumb_x_button", ge("page_photos_module")), function() {
-                        this.tt && this.tt.destroy && this.tt.destroy()
-                    }), val("page_photos_module", e), re("profile_photos_about")
+                onDone: function(photos) {
+                    each(geByClass('ui_thumb_x_button', ge('page_photos_module')), function() {
+                        if (this.tt && this.tt.destroy) {
+                            this.tt.destroy();
+                        }
+                    });
+                    val('page_photos_module', photos);
+                    re('profile_photos_about');
                 },
-                showProgress: addClass.pbind("profile_photos_about", "loading"),
-                hideProgress: removeClass.pbind("profile_photos_about", "loading")
-            })
+                showProgress: addClass.pbind('profile_photos_about', 'loading'),
+                hideProgress: removeClass.pbind('profile_photos_about', 'loading')
+            });
         },
-        editPhoto: function(e) {
-            return cur.viewAsBox ? cur.viewAsBox() : void showBox("/al_profile.php", extend(e || {}, {
-                act: "edit_photo"
+        editPhoto: function(newph) {
+            if (cur.viewAsBox) return cur.viewAsBox();
+
+            showBox('/al_profile.php', extend(newph || {}, {
+                act: 'edit_photo'
             }), {
                 params: {
-                    bodyStyle: "padding: 16px 7px"
+                    bodyStyle: 'padding: 16px 7px'
                 },
-                stat: ["tagger.js", "tagger.css"]
-            })
+                stat: ['tagger.js', 'tagger.css']
+            });
         },
         deletePhoto: function() {
-            return cur.viewAsBox ? cur.viewAsBox() : void showBox("al_profile.php", {
-                act: "delete_photo_box"
-            })
-        },
-        toggleFan: function(e, i, o, t) {
-            return cur.viewAsBox ? cur.viewAsBox() : (void 0 != cur.toggleFanAct && (o = cur.toggleFanAct), ajax.post("al_fans.php", {
-                act: o ? "be_fan" : "not_fan",
-                mid: cur.oid,
-                hash: i
-            }, {
-                onDone: function(i) {
-                    e.firstChild.nextSibling.innerHTML = i, cur.toggleFanAct = !o
-                },
-                progress: e.firstChild
-            }), void cancelEvent(t))
-        },
-        toggleFave: function(e, i, o, t) {
-            return cur.viewAsBox ? cur.viewAsBox() : (void 0 != cur.toggleFaveAct && (o = cur.toggleFaveAct), ajax.post("fave.php", {
-                act: o ? "addPerson" : "deletePerson",
-                mid: cur.oid,
-                hash: i
-            }, {
-                onDone: function(i) {
-                    val(e, i), cur.toggleFaveAct = !o
-                },
-                showProgress: window.Page && Page.actionsDropdownLock.pbind(e),
-                hideProgress: window.Page && Page.actionsDropdownUnlock.pbind(e)
-            }), void cancelEvent(t))
-        },
-        toggleFriend: function(e, i, o, t, r) {
             if (cur.viewAsBox) return cur.viewAsBox();
-            if (o) {
-                if (r !== !0 && cur.options.bannedhim) return showBox("al_profile.php", {
-                    act: "banned_him",
-                    action: "friend",
-                    mid: cur.oid
-                }).onContinue = Profile.toggleFriend.pbind(e, i, o, !1, !0), cancelEvent(t);
-                stManager.add(["tooltips.css", "tooltips.js"])
+
+            showBox('al_profile.php', {
+                act: 'delete_photo_box'
+            });
+        },
+        toggleFan: function(btn, hash, act, ev) {
+            if (cur.viewAsBox) {
+                return cur.viewAsBox();
             }
-            var s, n = ce("img", {
-                    src: "/images/upload" + (window.devicePixelRatio >= 2 ? "_2x" : "") + ".gif"
-                }, {
-                    width: 32
-                }),
-                a = e,
-                c = {
-                    act: o ? "add" : "remove",
-                    mid: cur.oid,
-                    hash: i,
-                    from: "profile"
+
+            if (cur.toggleFanAct != undefined) {
+                act = cur.toggleFanAct;
+            }
+            ajax.post('al_fans.php', {
+                act: act ? 'be_fan' : 'not_fan',
+                mid: cur.oid,
+                hash: hash
+            }, {
+                onDone: function(text) {
+                    btn.firstChild.nextSibling.innerHTML = text;
+                    cur.toggleFanAct = !act;
                 },
-                l = Wall.friendsRecommLogCheckVisited(cur.oid);
-            if (l && (c.ref = l), o) {
-                var s = Wall.friendsRecommLogGet(!0, cur.oid);
-                s.length && (Wall.friendsRecommLogClear(cur.oid), c.logs = s)
+                progress: btn.firstChild
+            });
+            cancelEvent(ev);
+        },
+        toggleFave: function(btn, hash, act, ev) {
+            if (cur.viewAsBox) {
+                return cur.viewAsBox();
             }
-            ajax.post("al_friends.php", c, {
-                onDone: function(e, i, t, r, s) {
-                    if (o && cur.onFriendAdd && cur.onFriendAdd(), !e) return nav.reload();
-                    var n = (ge("profile_am_subscribed") || {}).tt;
-                    n && n.hide && (n.hide({
-                        fasthide: 1
-                    }), n.destroy());
-                    var a = ge("friend_status");
-                    cleanElems(a.firstChild), e ? (show(a), val(a, e)) : hide(a), (i ? show : hide)("friend_remove"), s || cur.options.bannedhim ? nav.reload({
-                        noscroll: !0
-                    }) : t && (ajax.preload("al_friends.php", {
-                        act: "friend_tt",
+
+            if (cur.toggleFaveAct != undefined) {
+                act = cur.toggleFaveAct;
+            }
+            ajax.post('fave.php', {
+                act: act ? 'addPerson' : 'deletePerson',
+                mid: cur.oid,
+                hash: hash
+            }, {
+                onDone: function(text) {
+                    val(btn, text);
+                    cur.toggleFaveAct = !act;
+                },
+                showProgress: window.Page && Page.actionsDropdownLock.pbind(btn),
+                hideProgress: window.Page && Page.actionsDropdownUnlock.pbind(btn)
+            });
+            cancelEvent(ev);
+        },
+        toggleFriend: function(btn, hash, act, ev, sure) {
+            if (cur.viewAsBox) {
+                return cur.viewAsBox();
+            }
+
+            if (act) {
+                if (sure !== true && cur.options.bannedhim) {
+                    showBox('al_profile.php', {
+                        act: 'banned_him',
+                        action: 'friend',
                         mid: cur.oid
-                    }, [t, r]), setTimeout(Profile.friendTooltip, 0)), Profile.frDropdownClear()
+                    }).onContinue = Profile.toggleFriend.pbind(btn, hash, act, false, true);
+                    return cancelEvent(ev);
+                }
+                stManager.add(['tooltips.css', 'tooltips.js']);
+            }
+            var progress = ce('img', {
+                src: '/images/upload' + (window.devicePixelRatio >= 2 ? '_2x' : '') + '.gif'
+            }, {
+                width: 32
+            });
+            var cont = btn;
+            var params = {
+                act: act ? 'add' : 'remove',
+                mid: cur.oid,
+                hash: hash,
+                from: 'profile'
+            };
+            var midLogs;
+
+            var ref = Wall.friendsRecommLogCheckVisited(cur.oid);
+
+            if (ref) {
+                params.ref = ref;
+            }
+
+            if (act) {
+                var midLogs = Wall.friendsRecommLogGet(true, cur.oid);
+
+                if (midLogs.length) {
+                    Wall.friendsRecommLogClear(cur.oid);
+                    params.logs = midLogs;
+                }
+            }
+
+            ajax.post('al_friends.php', params, {
+                onDone: function(text, vis, ttText, ttScript, doReload) {
+                    if (act && cur.onFriendAdd) {
+                        cur.onFriendAdd();
+                    }
+                    if (!text) return nav.reload();
+                    var tt = (ge('profile_am_subscribed') || {}).tt;
+                    if (tt && tt.hide) {
+                        tt.hide({
+                            fasthide: 1
+                        });
+                        tt.destroy();
+                    }
+                    var fs = ge('friend_status');
+                    cleanElems(fs.firstChild);
+                    if (text) {
+                        show(fs);
+                        val(fs, text);
+                    } else {
+                        hide(fs);
+                    }
+                    (vis ? show : hide)('friend_remove');
+                    if (doReload || cur.options.bannedhim) {
+                        nav.reload({
+                            noscroll: true
+                        });
+                    } else if (ttText) {
+                        ajax.preload('al_friends.php', {
+                            act: 'friend_tt',
+                            mid: cur.oid
+                        }, [ttText, ttScript])
+                        setTimeout(Profile.friendTooltip, 0);
+                    }
+                    Profile.frDropdownClear();
                 },
                 showProgress: function() {
-                    "BUTTON" == e.tagName ? lockButton(e) : hasClass(e, "page_actions_item") ? window.Page && Page.actionsDropdownLock(e) : hasClass(domFC(e), "progress") ? show(domFC(e)) : a.replaceChild(n, a.firstChild)
+                    if (btn.tagName == 'BUTTON') lockButton(btn);
+                    else if (hasClass(btn, 'page_actions_item')) window.Page && Page.actionsDropdownLock(btn);
+                    else if (hasClass(domFC(btn), 'progress')) show(domFC(btn));
+                    else cont.replaceChild(progress, cont.firstChild);
                 },
                 hideProgress: function() {
-                    "BUTTON" == e.tagName ? unlockButton(e) : hasClass(e, "page_actions_item") ? window.Page && Page.actionsDropdownUnlock(e) : hasClass(domFC(e), "progress") ? hide(domFC(e)) : a.replaceChild(a.firstChild, n)
+                    if (btn.tagName == 'BUTTON') unlockButton(btn);
+                    else if (hasClass(btn, 'page_actions_item')) window.Page && Page.actionsDropdownUnlock(btn);
+                    else if (hasClass(domFC(btn), 'progress')) hide(domFC(btn));
+                    else cont.replaceChild(cont.firstChild, progress);
                 },
-                onFail: function(e) {
-                    return s && Wall.friendsRecommLogOnFail(s), e ? (showFastBox({
-                        title: getLang("global_error"),
-                        bodyStyle: "padding: 20px; line-height: 160%;"
-                    }, e), !0) : void 0
+                onFail: function(text) {
+                    if (midLogs) {
+                        Wall.friendsRecommLogOnFail(midLogs);
+                    }
+
+                    if (!text) return;
+
+                    showFastBox({
+                        title: getLang('global_error'),
+                        bodyStyle: 'padding: 20px; line-height: 160%;'
+                    }, text);
+                    return true;
                 }
-            }), cancelEvent(t)
+            });
+            cancelEvent(ev);
         },
         friendTTHide: function(e) {
-            var i = (ge("profile_am_subscribed") || {}).tt;
-            if (e)
-                for (var o = e.target; o; o = domPN(o))
-                    if (o.tagName && hasClass(o, "preq_tt")) return;
-            i && i.hide && i.hide({
-                fasthide: 1
-            }), removeEvent(document, "click", Profile.friendTTHide)
-        },
-        friendTooltip: function(e) {
-            if (!cur.viewAsBox) {
-                if (e) setTimeout(function() {
-                    removeEvent(document, "click", Profile.friendTTHide), addEvent(document, "click", Profile.friendTTHide)
-                }, 0);
-                else {
-                    var i = (ge("profile_am_subscribed") || {}).tt;
-                    if (i && i.hide && isVisible(i.container)) return i.hide({
-                        fasthide: 1
-                    }), void removeClass("profile_am_subscribed", "profile_frdd_active");
-                    addClass("profile_am_subscribed", "profile_frdd_active")
+            var tt = (ge('profile_am_subscribed') || {}).tt;
+            if (e) {
+                for (var el = e.target; el; el = domPN(el)) {
+                    if (el.tagName && hasClass(el, 'preq_tt')) {
+                        return;
+                    }
                 }
-                return showTooltip(ge("profile_am_subscribed"), {
-                    url: "al_friends.php",
-                    params: {
-                        act: "friend_tt",
-                        mid: cur.oid
-                    },
-                    cache: 1,
-                    slide: 15,
-                    hidedt: 1e3,
-                    shift: [27, -1, e ? 3 : 1],
-                    className: "preq_tt",
-                    forcetodown: !0,
-                    onHide: removeClass.pbind("profile_am_subscribed", "profile_frdd_active")
-                })
             }
+            if (tt && tt.hide) tt.hide({
+                fasthide: 1
+            });
+            removeEvent(document, 'click', Profile.friendTTHide);
         },
-        addRequestMessage: function(e, i) {
-            return !showBox("al_friends.php", {
-                act: "request_box",
+        friendTooltip: function(status) {
+            if (cur.viewAsBox) {
+                return;
+            }
+
+            if (status) {
+                setTimeout(function() {
+                    removeEvent(document, 'click', Profile.friendTTHide);
+                    addEvent(document, 'click', Profile.friendTTHide);
+                }, 0);
+            } else {
+                var tt = (ge('profile_am_subscribed') || {}).tt;
+                if (tt && tt.hide && isVisible(tt.container)) {
+                    tt.hide({
+                        fasthide: 1
+                    });
+                    removeClass('profile_am_subscribed', 'profile_frdd_active');
+                    return;
+                }
+                addClass('profile_am_subscribed', 'profile_frdd_active');
+            }
+            return showTooltip(ge('profile_am_subscribed'), {
+                url: 'al_friends.php',
+                params: {
+                    act: 'friend_tt',
+                    mid: cur.oid
+                },
+                cache: 1,
+                slide: 15,
+                hidedt: 1000,
+                shift: [27, -1, status ? 3 : 1],
+                className: 'preq_tt',
+                forcetodown: true,
+                onHide: removeClass.pbind('profile_am_subscribed', 'profile_frdd_active')
+            });
+        },
+        addRequestMessage: function(hash, e) {
+            return !showBox('al_friends.php', {
+                act: 'request_box',
                 mid: cur.oid
             }, {
                 params: {
-                    bodyStyle: "padding: 0px",
+                    bodyStyle: 'padding: 0px',
                     width: 502,
                     hideButtons: 1
                 }
-            }, i)
+            }, e);
         },
         frDropdownPreload: function(el, sh) {
-            !cur.viewAsBox && cur.oid && ajax.post("al_friends.php", {
-                act: "friend_dd",
+            if (cur.viewAsBox || !cur.oid) return;
+
+            ajax.post('al_friends.php', {
+                act: 'friend_dd',
                 mid: cur.oid
             }, {
                 onDone: function(html, js) {
-                    sh && (ge("page_actions_wrap") || (html && domPN(el).appendChild(se(html)), eval(js)))
+                    if (!sh) return;
+
+                    if (!ge('page_actions_wrap')) {
+                        html && domPN(el).appendChild(se(html));
+                        eval(js);
+                    }
                 },
                 cache: 1
-            })
+            });
         },
         frDropdownClear: function() {
-            ajax.preload("al_friends.php", {
-                act: "friend_dd",
+            ajax.preload('al_friends.php', {
+                act: 'friend_dd',
                 mid: cur.oid
-            }, !1)
+            }, false);
         },
-        frListsDDShow: function(e) {
-            var i = ge("page_actions_item_lists");
-            if (addClass(i, "page_actions_item_unfolded"), ge("page_actions_sublist")) return clearTimeout(cur.frListsDDHide), void show("page_actions_sublist");
-            cur.frListsCats || (cur.frListsCats = cur.options.curCats);
-            for (var o, t = [], r = cur.frListsCats, s = [28, 29, 27, 25, 26], n = 0; 5 > n; ++n) o = s[n], cur.options.publicLists[o] && t.push('<a class="page_actions_item page_actions_subitem' + (r & 1 << parseInt(o) ? " checked" : "") + '" onclick="Profile.frListsCheck(this, ' + o + ');">' + cur.options.publicLists[o] + "</a>");
-            for (var o in cur.options.userLists)
-                if (25 > o) {
-                    var a = cur.options.userLists[o];
-                    a.length > 20 && (a = trim(a.substr(0, 18)) + "..."), t.push('<a class="page_actions_item page_actions_subitem' + (r & 1 << parseInt(o) ? " checked" : "") + '" onclick="Profile.frListsCheck(this, ' + o + ');">' + a + "</a>")
+        frListsDDShow: function(ev) {
+            var obj = ge('page_actions_item_lists');
+            addClass(obj, 'page_actions_item_unfolded');
+            if (ge('page_actions_sublist')) {
+                clearTimeout(cur.frListsDDHide);
+                show('page_actions_sublist');
+                return;
+            }
+            if (!cur.frListsCats) {
+                cur.frListsCats = cur.options.curCats;
+            }
+
+            var elems = [];
+            var cats = cur.frListsCats;
+
+            var publicLists = [28, 29, 27, 25, 26];
+            for (var j = 0, i; j < 5; ++j) {
+                i = publicLists[j];
+                if (cur.options.publicLists[i]) {
+                    elems.push('<a class="page_actions_item page_actions_subitem' + ((cats & (1 << parseInt(i))) ? ' checked' : '') + '" onclick="Profile.frListsCheck(this, ' + i + ');">' + cur.options.publicLists[i] + '</a>');
                 }
-            t = se('<div id="page_actions_sublist" onmouseover="Profile.frListsDDShow(event);">' + t.join("") + "</div>"), i.parentNode.appendChild(t)
+            }
+            for (var i in cur.options.userLists) {
+                if (i < 25) {
+                    var lname = cur.options.userLists[i];
+                    if (lname.length > 20) {
+                        lname = trim(lname.substr(0, 18)) + '...';
+                    }
+                    elems.push('<a class="page_actions_item page_actions_subitem' + ((cats & (1 << parseInt(i))) ? ' checked' : '') + '" onclick="Profile.frListsCheck(this, ' + i + ');">' + lname + '</a>');
+                }
+            }
+            elems = se('<div id="page_actions_sublist" onmouseover="Profile.frListsDDShow(event);">' + elems.join('') + '</div>');
+            obj.parentNode.appendChild(elems);
         },
         frListsDDHide: function() {
-            clearTimeout(cur.frListsDDHide), cur.frListsDDHide = setTimeout(function() {
-                hide("page_actions_sublist"), removeClass("page_actions_item_lists", "page_actions_item_unfolded")
-            }, 150)
+            clearTimeout(cur.frListsDDHide);
+            cur.frListsDDHide = setTimeout(function() {
+                hide('page_actions_sublist');
+                removeClass('page_actions_item_lists', 'page_actions_item_unfolded');
+            }, 150);
         },
-        frListsCheck: function(e, i) {
-            var o = hasClass(e, "checked"),
-                t = parseInt(cur.frListsCats);
-            o ? t & 1 << i && (t -= 1 << i) : t & 1 << i || (t += 1 << i), cur.frListsCats = t, (o ? removeClass : addClass)(e, "checked"), cur.frListsTO && clearTimeout(cur.frListsTO), cur.frListsTO = setTimeout(function() {
-                ajax.post("al_friends.php", {
-                    act: "save_cats",
+        frListsCheck: function(obj, listId) {
+            var checked = hasClass(obj, 'checked');
+            var cats = parseInt(cur.frListsCats);
+            if (checked) {
+                if (cats & (1 << listId)) {
+                    cats -= (1 << listId);
+                }
+            } else {
+                if (!(cats & (1 << listId))) {
+                    cats += (1 << listId);
+                }
+            }
+            cur.frListsCats = cats;
+
+            (checked ? removeClass : addClass)(obj, 'checked');
+            if (cur.frListsTO) {
+                clearTimeout(cur.frListsTO);
+            }
+            cur.frListsTO = setTimeout(function() {
+                ajax.post('al_friends.php', {
+                    act: 'save_cats',
                     uid: cur.oid,
-                    cats: t,
+                    cats: cats,
                     hash: cur.options.catsHash
-                })
-            })
+                });
+            });
         },
         submitReqText: function() {
-            var e = trim(val("preq_input"));
-            if (!e) return elfocus("preq_input");
-            var i = cur.mfid ? cur.mfid : cur.oid;
-            ajax.post("al_friends.php", {
-                act: "request_text",
-                mid: i,
-                message: e,
+            var msg = trim(val('preq_input'));
+            if (!msg) return elfocus('preq_input');
+
+            var oid = cur.mfid ? cur.mfid : cur.oid;
+            ajax.post('al_friends.php', {
+                act: 'request_text',
+                mid: oid,
+                message: msg,
                 hash: cur.reqHash
             }, {
-                onDone: function(e) {
-                    if (curBox() && curBox().hide(), e) {
-                        var i = ge("preq_text");
-                        val(i, e), i && show(i.parentNode), i = ge("preq_input"), i && hide(i.parentNode)
+                onDone: function(text) {
+                    if (curBox()) curBox().hide();
+                    if (!text) return;
+
+                    var t = ge('preq_text');
+                    val(t, text);
+                    if (t) {
+                        show(t.parentNode);
+                    }
+                    t = ge('preq_input');
+                    if (t) {
+                        hide(t.parentNode);
                     }
                 },
-                showProgress: lockButton.pbind("preq_submit"),
-                hideProgress: unlockButton.pbind("preq_submit")
-            })
+                showProgress: lockButton.pbind('preq_submit'),
+                hideProgress: unlockButton.pbind('preq_submit')
+            });
         },
-        reqTextChanged: function(e) {
-            onCtrlEnter(e, Profile.submitReqText);
-            var i = ge("preq_input"),
-                o = trim(val(i)).replace(/\n\n\n+/g, "\n\n");
-            if (i.lastLen !== o.length) {
-                i.lastLen = o.length;
-                var t = function(e, i, o) {
-                        for (var t = {
-                                "&": 5,
-                                "<": 4,
-                                ">": 4,
-                                '"': 6,
-                                "\n": 4,
-                                "\r": 0,
-                                "!": 5,
-                                "'": 5
-                            }, r = 0, s = 0, n = !1, a = 0, c = e.length; c > a; a++) {
-                            var l = t[e.charAt(a)],
-                                d = e.charCodeAt(a);
-                            10 == d && ++s, r += void 0 !== l ? l : d > 128 && 192 > d || d > 1280 ? ("&#" + d + ";").length : 1, n === !1 && (i && r > i || o && s > o) && (n = a ? e.substr(0, a) : "")
-                        }
-                        return [r, s, n === !1 ? e : n]
-                    },
-                    r = 240,
-                    s = 4,
-                    n = t(o, r, s),
-                    a = n[0],
-                    c = n[1],
-                    l = ge("preq_warn");
-                n[2] !== o && (a > r ? a = r : c > 4 && (c = 4), val(i, n[2]), i.lastLen = trim(n[2]).length), a > r - 40 || c > s ? (a > r ? l.innerHTML = getLang("friends_exceeds_symbol_limit", a - r) : c > 4 ? l.innerHTML = getLang("friends_exceeds_lines_limit", c - 4) : l.innerHTML = getLang("text_N_symbols_remain", r - a), show(l)) : hide(l)
+        reqTextChanged: function(ev) {
+            onCtrlEnter(ev, Profile.submitReqText);
+            var field = ge('preq_input');
+            var v = trim(val(field)).replace(/\n\n\n+/g, '\n\n');
+            if (field.lastLen === v.length) return;
+            field.lastLen = v.length;
+            var countRealLen = function(text, max, maxbr) {
+                var spec = {
+                    '&': 5,
+                    '<': 4,
+                    '>': 4,
+                    '"': 6,
+                    "\n": 4,
+                    "\r": 0,
+                    '!': 5,
+                    "'": 5
+                };
+                var res = 0,
+                    brs = 0,
+                    good = false;
+                for (var i = 0, l = text.length; i < l; i++) {
+                    var k = spec[text.charAt(i)],
+                        c = text.charCodeAt(i);
+                    if (c == 10) ++brs;
+                    if (k !== undefined) res += k;
+                    else if ((c > 0x80 && c < 0xC0) || c > 0x500) res += ('&#' + c + ';').length;
+                    else res += 1;
+                    if (good === false && (max && res > max || maxbr && brs > maxbr)) good = i ? text.substr(0, i) : '';
+                }
+                return [res, brs, (good === false) ? text : good];
+            }
+            var maxLen = 240,
+                maxBrs = 4,
+                r = countRealLen(v, maxLen, maxBrs),
+                realLen = r[0],
+                brCount = r[1];
+            var warn = ge('preq_warn');
+            if (r[2] !== v) {
+                if (realLen > maxLen) {
+                    realLen = maxLen;
+                } else if (brCount > 4) {
+                    brCount = 4;
+                }
+                val(field, r[2]);
+                field.lastLen = trim(r[2]).length;
+            }
+            if (realLen > maxLen - 40 || brCount > maxBrs) {
+                if (realLen > maxLen) {
+                    warn.innerHTML = getLang('friends_exceeds_symbol_limit', realLen - maxLen);
+                } else if (brCount > 4) {
+                    warn.innerHTML = getLang('friends_exceeds_lines_limit', brCount - 4);
+                } else {
+                    warn.innerHTML = getLang('text_N_symbols_remain', maxLen - realLen);
+                }
+                show(warn);
+            } else {
+                hide(warn);
             }
         },
-        toggleBlacklist: function(e, i, o) {
-            return cur.viewAsBox ? cur.viewAsBox() : (ajax.post("al_settings.php", {
-                act: cur.options.bannedhim ? "a_del_from_bl" : "a_add_to_bl",
+        toggleBlacklist: function(btn, hash, ev) {
+            if (cur.viewAsBox) {
+                return cur.viewAsBox();
+            }
+
+            ajax.post('al_settings.php', {
+                act: cur.options.bannedhim ? 'a_del_from_bl' : 'a_add_to_bl',
                 id: cur.oid,
-                hash: i,
-                from: "profile"
+                hash: hash,
+                from: 'profile'
             }, {
-                onDone: function(i) {
-                    val(e, i), cur.options.bannedhim = !cur.options.bannedhim
+                onDone: function(text) {
+                    val(btn, text);
+                    cur.options.bannedhim = !cur.options.bannedhim;
                 },
-                showProgress: window.Page && Page.actionsDropdownLock.pbind(e),
-                hideProgress: window.Page && Page.actionsDropdownUnlock.pbind(e)
-            }), void cancelEvent(o))
+                showProgress: window.Page && Page.actionsDropdownLock.pbind(btn),
+                hideProgress: window.Page && Page.actionsDropdownUnlock.pbind(btn)
+            });
+            cancelEvent(ev);
         },
-        toggleFeedIgnored: function(e, i, o) {
-            return cur.viewAsBox ? cur.viewAsBox() : (ajax.post("al_feed.php", {
-                act: cur.options.ignoredhim ? "a_unignore_owner" : "a_ignore_owner",
+        toggleFeedIgnored: function(btn, hash, ev) {
+            if (cur.viewAsBox) {
+                return cur.viewAsBox();
+            }
+
+            ajax.post('al_feed.php', {
+                act: cur.options.ignoredhim ? 'a_unignore_owner' : 'a_ignore_owner',
                 owner_id: cur.oid,
-                hash: i,
-                from: "profile"
+                hash: hash,
+                from: 'profile'
             }, {
-                onDone: function(i) {
-                    val(e, i), cur.options.ignoredhim = !cur.options.ignoredhim
+                onDone: function(text) {
+                    val(btn, text);
+                    cur.options.ignoredhim = !cur.options.ignoredhim;
                 },
-                showProgress: window.Page && Page.actionsDropdownLock.pbind(e),
-                hideProgress: window.Page && Page.actionsDropdownUnlock.pbind(e)
-            }), void cancelEvent(o))
+                showProgress: window.Page && Page.actionsDropdownLock.pbind(btn),
+                hideProgress: window.Page && Page.actionsDropdownUnlock.pbind(btn)
+            });
+            cancelEvent(ev);
         },
-        showGiftBox: function(e, i, o) {
-            return cur.gftbxWasScroll = boxLayerWrap.scrollTop, boxLayerWrap.scrollTop = 0, cur.viewAsBox ? cur.viewAsBox() : !showBox("al_gifts.php", {
-                act: "get_gift_box",
-                mid: e,
-                fr: e == vk.id ? 1 : 0,
-                ref: o
-            }, {
-                stat: ["gifts.css", "wide_dd.js", "wide_dd.css"],
-                cache: 1
-            }, i)
-        },
-        showHideGiftsBox: function(e) {
+        showGiftBox: function(mid, ev, ref) {
+            cur.gftbxWasScroll = boxLayerWrap.scrollTop;
+            boxLayerWrap.scrollTop = 0;
             if (cur.viewAsBox) return cur.viewAsBox();
-            var i = getLang("profile_sure_hide_gifts").replace("{link}", '<a href="/settings">').replace("{/link}", "</a>").replace("{link1}", '<a href="/settings?act=privacy">').replace("{/link1}", "</a>"),
-                o = showFastBox({
-                    title: getLang("global_warning"),
-                    bodyStyle: "line-height: 160%;",
-                    width: 350
-                }, i, getLang("profile_gifts_hide_button"), function() {
-                    ajax.post("al_profile.php", {
-                        act: "hide_gifts",
-                        hash: cur.options.gifts_hash
-                    }, {
-                        onDone: function() {
-                            slideUp("profile_gifts", 200), o.hide()
-                        },
-                        progress: o.progress
-                    })
-                }, getLang("global_cancel"));
-            return cancelEvent(e), !1
+
+            return !showBox('al_gifts.php', {
+                act: 'get_gift_box',
+                mid: mid,
+                fr: (mid == vk.id ? 1 : 0),
+                ref: ref
+            }, {
+                stat: ['gifts.css', 'wide_dd.js', 'wide_dd.css'],
+                cache: 1
+            }, ev);
         },
-        showNewGift: function(e, i) {
-            var o = ge("profile_gifts");
-            if (o && e) {
-                var t = geByTag("img", geByClass1("module_body", o)),
-                    r = vkImage();
-                r.src = i || "/images/gift/" + e + "/" + (window.devicePixelRatio >= 2, "96") + ".png";
-                var s = function() {
-                    var e = t[0],
-                        i = e.parentNode,
-                        o = t.length;
-                    e && (addClass(r, "profile_gift_img"), e.parentNode.insertBefore(r, e), i.scrollLeft = e.offsetLeft, animate(i, {
+        showHideGiftsBox: function(ev) {
+            if (cur.viewAsBox) return cur.viewAsBox();
+            var msg = getLang('profile_sure_hide_gifts').replace('{link}', '<a href="/settings">').replace('{/link}', '</a>').replace('{link1}', '<a href="/settings?act=privacy">').replace('{/link1}', '</a>');
+
+            var box = showFastBox({
+                title: getLang('global_warning'),
+                bodyStyle: 'line-height: 160%;',
+                width: 350
+            }, msg, getLang('profile_gifts_hide_button'), function() {
+                ajax.post('al_profile.php', {
+                    act: 'hide_gifts',
+                    hash: cur.options.gifts_hash
+                }, {
+                    onDone: function() {
+                        slideUp('profile_gifts', 200);
+                        box.hide();
+                    },
+                    progress: box.progress
+                });
+            }, getLang('global_cancel'));
+            cancelEvent(ev);
+            return false;
+        },
+        showNewGift: function(giftId, src) {
+            var gifts = ge('profile_gifts');
+            if (!gifts || !giftId) return;
+            var images = geByTag('img', geByClass1('module_body', gifts)),
+                pic = vkImage();
+            pic.src = src || '/images/gift/' + giftId + '/' + (window.devicePixelRatio >= 2 ? '96' : '96') + '.png';
+            var onload = function() {
+                var firstPic = images[0],
+                    a = firstPic.parentNode,
+                    imgCount = images.length;
+                if (firstPic) {
+                    addClass(pic, 'profile_gift_img');
+                    firstPic.parentNode.insertBefore(pic, firstPic);
+                    a.scrollLeft = firstPic.offsetLeft;
+                    animate(a, {
                         scrollLeft: 0
                     }, 200, function() {
-                        o >= 3 && re(t[t.length - 1])
-                    }))
-                };
-                r.width ? s() : addEvent(r, "load", s)
+                        if (imgCount >= 3) re(images[images.length - 1]);
+                    })
+                }
+            };
+            if (!pic.width) {
+                addEvent(pic, 'load', onload);
+            } else {
+                onload();
             }
         },
-        declineFriend: function(e) {
-            return cur.viewAsBox ? cur.viewAsBox() : void ajax.post("al_friends.php", {
-                act: "remove",
-                mid: cur.oid,
-                hash: e
-            }, {
-                onDone: function(e) {
-                    hide("friend_request_actions")
-                }
-            })
-        },
-        processRelation: function(e, i, o, t) {
+        declineFriend: function(hash) {
             if (cur.viewAsBox) return cur.viewAsBox();
-            var r = (getXY(e), getXY(e.parentNode), ge("relation_progress" + i));
-            ajax.post("al_profile.php", {
-                act: "process_relation",
-                mid: i,
-                accept: t ? 1 : "",
-                full_shown: "",
-                hash: o
+            ajax.post('al_friends.php', {
+                act: 'remove',
+                mid: cur.oid,
+                hash: hash
             }, {
-                onDone: function(e) {
-                    val("relations_wrap", e)
+                onDone: function(text) {
+                    hide('friend_request_actions');
+                }
+            });
+        },
+        processRelation: function(el, mid, hash, accept) {
+            if (cur.viewAsBox) return cur.viewAsBox();
+
+            var pos = getXY(el),
+                parpos = getXY(el.parentNode);
+            var pr = ge('relation_progress' + mid);
+            ajax.post('al_profile.php', {
+                act: 'process_relation',
+                mid: mid,
+                accept: accept ? 1 : '',
+                full_shown: '',
+                hash: hash
+            }, {
+                onDone: function(info) {
+                    val('relations_wrap', info);
                 },
                 showProgress: function() {
-                    r.style.left = e.offsetLeft + Math.floor((e.offsetWidth - 32) / 2) + "px", show(r), e.style.visibility = "hidden"
+                    pr.style.left = (el.offsetLeft + Math.floor((el.offsetWidth - 32) / 2)) + 'px';
+                    show(pr);
+                    el.style.visibility = 'hidden';
                 },
                 hideProgress: function() {
-                    e.style.visibility = "visible", hide(r)
+                    el.style.visibility = 'visible';
+                    hide(pr);
                 }
-            })
+            });
         },
-        fansBox: function(e, i, o) {
-            return cur.viewAsBox ? cur.viewAsBox() : !showBox("al_fans.php", {
-                act: "box",
-                tab: o || "fans",
-                oid: e
+        fansBox: function(oid, ev, tab) {
+            if (cur.viewAsBox) return cur.viewAsBox();
+            return !showBox('al_fans.php', {
+                act: 'box',
+                tab: tab || 'fans',
+                oid: oid
             }, {
                 cache: 1,
-                stat: ["page_help.css", "fansbox.js"]
-            }, i)
+                stat: ['page_help.css', 'fansbox.js']
+            }, ev);
         },
-        giftsBox: function(e, i, o) {
-            return cur.viewAsBox ? cur.viewAsBox() : !showBox("al_gifts.php", {
-                act: "box",
-                tab: o || "received",
-                mid: e
+        giftsBox: function(mid, ev, tab) {
+            if (cur.viewAsBox) return cur.viewAsBox();
+            return !showBox('al_gifts.php', {
+                act: 'box',
+                tab: tab || 'received',
+                mid: mid
             }, {
                 cache: 1,
-                stat: ["gifts.css", "gifts.js"]
-            }, i)
+                stat: ['gifts.css', 'gifts.js']
+            }, ev);
         },
-        idolsBox: function(e, i) {
-            return Profile.fansBox(e, i, "idols")
+        idolsBox: function(oid, ev) {
+            return Profile.fansBox(oid, ev, 'idols');
         },
-        showClassHint: function(e) {
-            var i = ge("profile_class");
-            if (i) {
-                var o = cur.classhint = bodyNode.appendChild(ce("div", {
-                        id: "profile_class_hint",
-                        innerHTML: '<table cellspacing="0" cellpadding="0">  <tr>    <td rowspan="2"><div class="pointer"></div></td>    <td><div class="content">' + e + '</div></td>  </tr>  <tr><td><div class="bottom"></div></td></tr></table>'
-                    }, {
-                        display: "none"
-                    })),
-                    t = getXY(i),
-                    r = getSize(i);
-                o.style.opacity = 0, show(o);
-                var s = getSize(o),
-                    n = t[1] - Math.floor((s[1] - r[1]) / 2),
-                    a = t[0] + (vk.rtl ? -(s[0] + 10) : r[0] + 10);
-                o.style.left = a + (vk.rtl ? -10 : 10) + "px", o.style.top = n + "px";
-                var c = animate.pbind(o, {
-                        left: a,
-                        opacity: 1
-                    }, 500, !1),
-                    l = vkImage();
-                l.onload = c, l.src = "/images/classhint.gif", cur.destroy.push(function(e) {
-                    e.classhint && e.classhint.parentNode && (e.classhint.parentNode.removeChild(e.classhint), e.classhint = !1)
-                }), cur._back && cur._back.hide.push(function() {
-                    cur.classhint && cur.classhint.parentNode && (cur.classhint.parentNode.removeChild(cur.classhint), cur.classhint = !1)
-                })
+        showClassHint: function(text) {
+            var cl = ge('profile_class');
+            if (!cl) return;
+
+            var hint = cur.classhint = bodyNode.appendChild(ce('div', {
+                id: 'profile_class_hint',
+                innerHTML: '\
+<table cellspacing="0" cellpadding="0">\
+  <tr>\
+    <td rowspan="2"><div class="pointer"></div></td>\
+    <td><div class="content">' + text + '</div></td>\
+  </tr>\
+  <tr><td><div class="bottom"></div></td></tr>\
+</table>'
+            }, {
+                display: 'none'
+            }));
+
+            var xy = getXY(cl),
+                elsize = getSize(cl);
+
+            hint.style.opacity = 0;
+            show(hint);
+            var size = getSize(hint);
+
+            var top = xy[1] - Math.floor((size[1] - elsize[1]) / 2);
+            var newleft = xy[0] + (vk.rtl ? -(size[0] + 10) : (elsize[0] + 10));
+            hint.style.left = (newleft + (vk.rtl ? -10 : 10)) + 'px';
+            hint.style.top = top + 'px';
+
+            var showhint = animate.pbind(hint, {
+                    left: newleft,
+                    opacity: 1
+                }, 500, false),
+                img = vkImage();
+            img.onload = showhint;
+            img.src = '/images/classhint.gif';
+
+            cur.destroy.push(function(c) {
+                if (c.classhint && c.classhint.parentNode) {
+                    c.classhint.parentNode.removeChild(c.classhint);
+                    c.classhint = false;
+                }
+            });
+            if (cur._back) {
+                cur._back.hide.push(function() {
+                    if (cur.classhint && cur.classhint.parentNode) {
+                        cur.classhint.parentNode.removeChild(cur.classhint);
+                        cur.classhint = false;
+                    }
+                });
             }
         },
-        init: function(e) {
-            return extend(cur, {
-                module: "profile",
-                options: e,
-                oid: e.user_id,
-                postTo: e.user_id,
-                editing: !1,
-                viewAsWarn: e.view_as_warn,
-                viewAsBox: e.view_as ? function() {
-                    return setTimeout(showFastBox({
-                        title: getLang("global_warning"),
-                        bodyStyle: "padding: 20px; line-height: 160%;"
-                    }, cur.options.view_as).hide, 2e3), !1
-                } : !1,
-                _back: e.view_as ? !1 : {
-                    loc: e.loc,
+        init: function(opts) {
+            extend(cur, {
+                module: 'profile',
+                options: opts,
+                oid: opts.user_id,
+                postTo: opts.user_id,
+                editing: false,
+                viewAsWarn: opts.view_as_warn,
+                viewAsBox: opts.view_as ? function() {
+                    setTimeout(showFastBox({
+                        title: getLang('global_warning'),
+                        bodyStyle: 'padding: 20px; line-height: 160%;'
+                    }, cur.options.view_as).hide, 2000);
+                    return false;
+                } : false,
+                _back: opts.view_as ? false : {
+                    loc: opts.loc,
                     show: [],
                     hide: [],
-                    text: e.back
+                    text: opts.back
                 }
-            }), e.view_as && cur.nav.push(function(e, i, o, t) {
-                return cur._leave ? void(cur._leave = !1) : (showFastBox({
-                    title: getLang("global_warning"),
-                    bodyStyle: "padding: 20px; line-height: 160%;"
-                }, cur.viewAsWarn, getLang("global_continue"), function() {
-                    cur._leave = !0, nav.go(o)
-                }, getLang("global_cancel")), !1)
-            }), e.mail_cache && ajax.preload("al_im.php", {
-                act: "a_write_box",
-                to: cur.oid
-            }, e.mail_cache), ge("profile_wall") && wall.init(extend(e, {
-                automore: 1
-            })), e.class_hint && (cur.clHintTimer = setTimeout(Profile.showClassHint.pbind(e.class_hint), 1e3)), e.invite_hint && (cur.invHintTimer = setTimeout(function() {
-                var i = ge("top_invite_hint");
-                showTooltip(i, {
-                    text: e.invite_hint,
-                    slide: 30,
-                    shift: [vk.rtl ? -220 : 0, 0, 0],
-                    showdt: 0,
-                    showsp: 500,
-                    forcetodown: !0,
-                    className: "invite_tt"
-                }), cur.tsUpdated = Profile.inviteHintUpdate, stManager.add(["tooltips.css", "tooltips.js"], cur.tsUpdated)
-            }, 1e3)), (cur._back ? cur._back.hide : cur.destroy).push(function(e) {
-                clearTimeout((e || cur).clHintTimer), clearTimeout((e || cur).invHintTimer), Profile.friendTTHide(!0)
-            }), nav.objLoc.suggest && (delete nav.objLoc.suggest, Profile.suggestFriends()), setTimeout(function() {
-                window.FastChat && (window.curFastChat && curFastChat.inited || window.curNotifier && void 0 !== curNotifier.fc) && show("profile_fast_chat")
-            }, 100), cur.onPeerStatusChanged = function(e, i, o) {
-                if (e == cur.oid) {
-                    var t = geByClass1("_profile_online");
-                    "online" == i ? (o = intval(o), setStyle("profile_mobile_online", {
-                        display: o && 1 != o ? "inline" : "none"
-                    }), addClass(t, "is_online")) : "offline" == i && removeClass(t, "is_online")
+            });
+            if (opts.view_as) {
+                cur.nav.push(function(changed, old, n, opts) {
+                    if (cur._leave) {
+                        cur._leave = false;
+                        return;
+                    }
+                    showFastBox({
+                        title: getLang('global_warning'),
+                        bodyStyle: 'padding: 20px; line-height: 160%;'
+                    }, cur.viewAsWarn, getLang('global_continue'), function() {
+                        cur._leave = true;
+                        nav.go(n);
+                    }, getLang('global_cancel'));
+                    return false;
+                });
+            }
+            if (opts.mail_cache) {
+                ajax.preload('al_im.php', {
+                    act: 'a_write_box',
+                    to: cur.oid
+                }, opts.mail_cache)
+            }
+            if (ge('profile_wall')) {
+                wall.init(extend(opts, {
+                    automore: 1
+                }));
+            }
+            if (opts.class_hint) {
+                cur.clHintTimer = setTimeout(Profile.showClassHint.pbind(opts.class_hint), 1000);
+            }
+            if (opts.invite_hint) {
+                cur.invHintTimer = setTimeout(function() {
+                    var hint = ge('top_invite_hint');
+                    showTooltip(hint, {
+                        text: opts.invite_hint,
+                        slide: 30,
+                        shift: [vk.rtl ? -220 : 0, 0, 0],
+                        showdt: 0,
+                        showsp: 500,
+                        forcetodown: true,
+                        className: 'invite_tt'
+                    });
+                    cur.tsUpdated = Profile.inviteHintUpdate;
+                    stManager.add(['tooltips.css', 'tooltips.js'], cur.tsUpdated);
+                }, 1000);
+            }
+            (cur._back ? cur._back.hide : cur.destroy).push(function(c) {
+                clearTimeout((c || cur).clHintTimer);
+                clearTimeout((c || cur).invHintTimer);
+                Profile.friendTTHide(true);
+            });
+            if (nav.objLoc.suggest) {
+                delete nav.objLoc.suggest;
+                Profile.suggestFriends();
+            }
+
+            setTimeout(function() {
+                if (window.FastChat && (window.curFastChat && curFastChat.inited || window.curNotifier && curNotifier.fc !== undefined)) {
+                    show('profile_fast_chat');
                 }
-            }, browser.msie && intval(browser.version) < 11 ? void re(geByClass1("profile_1april_button_wrap", "narrow_column")) : (browser.opera && intval(browser.version) < 13 && re(geByClass1("profile_1april_button_wrap", "narrow_column")), e.stickers_1april && e.stickers_1april.length ? Profile.render1AprilStickers(e.stickers_1april) : addClass(geByClass1("page_avatar_wrap"), "no_stickers_1april"), void setTimeout(Wall.friendsRecommLogSend, 100))
+            }, 100);
+
+            cur.onPeerStatusChanged = function(peer, evType, evData) {
+                if (peer == cur.oid) {
+                    var online = geByClass1('_profile_online');
+                    if (evType == 'online') {
+                        evData = intval(evData);
+                        setStyle('profile_mobile_online', {
+                            display: (evData && evData != 1) ? 'inline' : 'none'
+                        });
+                        addClass(online, 'is_online');
+                    } else if (evType == 'offline') {
+                        removeClass(online, 'is_online');
+                    }
+                }
+            }
+
+            if (browser.msie && intval(browser.version) < 11) {
+                re(geByClass1('profile_1april_button_wrap', 'narrow_column'));
+                return;
+            }
+            if (browser.opera && intval(browser.version) < 13) {
+                re(geByClass1('profile_1april_button_wrap', 'narrow_column'));
+            }
+            if (opts.stickers_1april && opts.stickers_1april.length) {
+                Profile.render1AprilStickers(opts.stickers_1april);
+            } else {
+                addClass(geByClass1('page_avatar_wrap'), 'no_stickers_1april');
+            }
+
+            setTimeout(Wall.friendsRecommLogSend, 100);
         },
         inviteHintUpdate: function() {
-            var e = ge("top_invite_hint");
-            if (e && e.tt && e.tt.container) {
-                var i = isVisible("ts_wrap") ? ge("ts_settings") : ge("top_invite_link"),
-                    o = 0,
-                    t = 0;
-                vk.rtl ? t = 413 - i.parentNode.parentNode.offsetLeft - i.offsetWidth / 2 + "px" : o = i.parentNode.parentNode.offsetLeft + i.offsetWidth / 2 - 370 + "px", geByClass1("top_pointer", e.tt.container).style.margin = "0px " + t + " 0px " + o
+            var hint = ge('top_invite_hint');
+            if (!hint || !hint.tt || !hint.tt.container) return;
+            var lnk = isVisible('ts_wrap') ? ge('ts_settings') : ge('top_invite_link'),
+                l = 0,
+                r = 0;
+            if (vk.rtl) {
+                r = (413 - lnk.parentNode.parentNode.offsetLeft - (lnk.offsetWidth / 2)) + 'px';
+            } else {
+                l = (lnk.parentNode.parentNode.offsetLeft + (lnk.offsetWidth / 2) - 370) + 'px';
             }
+            geByClass1('top_pointer', hint.tt.container).style.margin = '0px ' + r + ' 0px ' + l;
         },
-        appStatusUpdate: function(e) {
-            if (cur.ciApp) {
-                var i = isChecked("currinfo_app");
-                ajax.post("al_apps.php", {
-                    act: "toggle_currinfo",
-                    hash: e,
-                    exp: i,
-                    id: cur.ciApp
-                }, {
-                    onDone: function(e) {
-                        vk.id == cur.oid && e && val("current_info", e)
-                    }
-                })
-            }
+        appStatusUpdate: function(hash) {
+            if (!cur.ciApp) return;
+
+            var exp = isChecked('currinfo_app');
+            ajax.post('al_apps.php', {
+                act: 'toggle_currinfo',
+                hash: hash,
+                exp: exp,
+                id: cur.ciApp
+            }, {
+                onDone: function(text) {
+                    if (vk.id != cur.oid || !text) return;
+                    val('current_info', text);
+                }
+            })
         },
         suggestFriends: function() {
             if (cur.viewAsBox) return cur.viewAsBox();
-            var e = showBox("al_friends.php", {
-                act: "select_friends_box",
-                from: "suggest_friends",
+
+            var box = showBox('al_friends.php', {
+                act: 'select_friends_box',
+                from: 'suggest_friends',
                 friend_id: cur.oid
             }, {
-                stat: ["privacy.js", "privacy.css", "indexer.js"]
+                stat: ['privacy.js', 'privacy.css', 'indexer.js']
             });
-            e.leaveOnSave = !0, cur.onFlistSave = function(i, o, t) {
-                ajax.post("al_friends.php", {
-                    act: "a_suggest_friends",
+            box.leaveOnSave = true;
+            cur.onFlistSave = function(ids, list, hash) {
+                //if (!ids || !ids.length) return;
+                ajax.post('al_friends.php', {
+                    act: 'a_suggest_friends',
                     mid: cur.oid,
-                    ids: i.join(","),
-                    hash: t
+                    ids: ids.join(','),
+                    hash: hash
                 }, {
-                    onDone: function(i) {
-                        e.hide(), showDoneBox(i)
+                    onDone: function(text) {
+                        box.hide();
+                        showDoneBox(text);
                     },
-                    showProgress: e.showProgress,
-                    hideProgress: e.hideProgress
-                })
+                    showProgress: box.showProgress,
+                    hideProgress: box.hideProgress
+                });
             }
         },
-        uploadPhotos: function(e, i) {
-            var o = (window.XMLHttpRequest || window.XDomainRequest) && (window.FormData || window.FileReader && (window.XMLHttpRequest && XMLHttpRequest.sendAsBinary || window.ArrayBuffer && window.Uint8Array && (window.MozBlobBuilder || window.WebKitBlobBuilder || window.BlobBuilder)));
-            if (!o || !i) return nav.go(e, i);
-            if (checkEvent(i)) return !0;
-            cur.onPhotoInputChange = function(o) {
-                return window.filesToUpload = o, nav.go(e, i)
-            };
-            var t = ge("page_upload_photos_input");
-            return t || (t = se('<input id="page_upload_photos_input" class="file page_upload_photos_input" type="file" onchange="cur.onPhotoInputChange(this.files);" multiple="true" accept="image/jpeg,image/png,image/gif" name="photo" />')), t.click(i), !1
+        uploadPhotos: function(el, event) {
+            var hasHTML5 = (window.XMLHttpRequest || window.XDomainRequest) && (window.FormData || window.FileReader && (window.XMLHttpRequest && XMLHttpRequest.sendAsBinary || window.ArrayBuffer && window.Uint8Array && (window.MozBlobBuilder || window.WebKitBlobBuilder || window.BlobBuilder)));
+
+            if (!hasHTML5 || !event) {
+                return nav.go(el, event);
+            }
+            if (checkEvent(event)) {
+                return true;
+            }
+
+            cur.onPhotoInputChange = function(files) {
+                window.filesToUpload = files;
+                return nav.go(el, event);
+            }
+
+            var input = ge('page_upload_photos_input');
+            if (!input) {
+                input = se('<input id="page_upload_photos_input" class="file page_upload_photos_input" type="file" onchange="cur.onPhotoInputChange(this.files);" multiple="true" accept="image/jpeg,image/png,image/gif" name="photo" />')
+            }
+
+            input.click(event);
+            return false;
         },
-        hideFillBlock: function(e, i, o, t) {
-            e.tt && e.tt.hide && e.tt.hide();
-            var r = gpeByClass("page_block", e);
-            return r && slideUp(r, 200, re.pbind(r)), ajax.post("/al_profile.php", {
-                act: "hide_rate_block",
-                type: o,
-                hash: t
-            }), cancelEvent(i), !1
+        hideFillBlock: function(el, event, type, hash) {
+            el.tt && el.tt.hide && el.tt.hide();
+            var block = gpeByClass('page_block', el);
+            block && slideUp(block, 200, re.pbind(block));
+            ajax.post('/al_profile.php', {
+                act: 'hide_rate_block',
+                type: type,
+                hash: hash
+            });
+            cancelEvent(event);
+            return false;
         },
-        showProfileBox: function(e, i) {
-            return showBox("al_places.php", {
-                act: "photos_box",
-                uid: e
+        showProfileBox: function(uid, event) {
+            showBox('al_places.php', {
+                act: 'photos_box',
+                uid: uid
             }, {
-                stat: ["maps.js", "places.js", "places.css", "ui_controls.js", "ui_controls.css"]
-            }), cancelEvent(i), !1
+                stat: ['maps.js', 'places.js', 'places.css', 'ui_controls.js', 'ui_controls.css']
+            });
+            cancelEvent(event);
+            return false;
         },
-        render1AprilStickers: function(e) {
-            var i = geByClass1("page_avatar_wrap", "profile");
-            addClass(i, "stickers_added_1april");
-            for (var o = geByClass("profile_1april_sticker", i), t = 0; t < o.length; t++) re(o[t]);
-            for (var t = 0; t < e.length; t++) {
-                var r = e[t],
-                    s = ce("div", {
-                        className: "profile_1april_sticker"
-                    });
-                i.appendChild(s), setStyle(s, {
-                    top: r.top,
-                    left: r.left,
-                    width: r.size ? r.size : r.width,
-                    height: r.size ? r.size : r.height,
-                    transform: "rotate(" + r.rotate + "deg)",
-                    backgroundImage: Stickers.getStickerUrl(r.stickerId, 512)
+        render1AprilStickers: function(stickers) {
+            var cont = geByClass1('page_avatar_wrap', 'profile');
+            addClass(cont, 'stickers_added_1april');
+
+            var stickersEls = geByClass('profile_1april_sticker', cont);
+            for (var i = 0; i < stickersEls.length; i++) {
+                re(stickersEls[i]);
+            }
+
+            for (var i = 0; i < stickers.length; i++) {
+                var sticker = stickers[i];
+                var el = ce('div', {
+                    className: 'profile_1april_sticker',
+                });
+                cont.appendChild(el);
+
+                setStyle(el, {
+                    top: sticker.top,
+                    left: sticker.left,
+                    width: sticker.size ? sticker.size : sticker.width,
+                    height: sticker.size ? sticker.size : sticker.height,
+                    transform: 'rotate(' + (sticker.rotate) + 'deg)',
+                    backgroundImage: Stickers.getStickerUrl(sticker.stickerId, 512),
                 })
             }
         },
-        show1AprilEditor: function(e, i, o) {
-            return cur.shownAs1AprilEditor = !0, cur.saveHash1AprilEditor = e, delete cur.pvData, showPhoto(i, "", {
+        show1AprilEditor: function(hash, photo_raw, btn) {
+            cur.shownAs1AprilEditor = true;
+            cur.saveHash1AprilEditor = hash;
+            delete cur.pvData;
+
+            return showPhoto(photo_raw, '', {
                 additional: {
                     open_pe: 1,
                     stickers_1april: 1
                 },
                 progress: 1,
                 showProgress: function() {
-                    lockButton(o)
+                    lockButton(btn)
                 },
                 hideProgress: function() {
-                    unlockButton(o)
+                    unlockButton(btn)
                 }
-            })
+            });
         }
     },
     profile = Profile;
+
 try {
-    stManager.done("profile.js")
+    stManager.done('profile.js');
 } catch (e) {}

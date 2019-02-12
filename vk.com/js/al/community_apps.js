@@ -1,71 +1,96 @@
 var CommunityApps = {
-    INSTALL_MARKET_PAGE: "add_community_app.php",
-    INSTALL_MARKET_ACT: "a_install_market_app",
-    showInstall: function(a, n) {
-        return cancelEvent(n), showApp(n, a, !0, null, null, {
-            install_community_app: 1
-        })
+    INSTALL_MARKET_PAGE: 'add_community_app.php',
+    INSTALL_MARKET_ACT: 'a_install_market_app',
+
+    showInstall: function(aid, e) {
+        cancelEvent(e);
+        return showApp(e, aid, true, null, null, {
+            'install_community_app': 1
+        });
     },
-    showManage: function(a, n, o) {
-        return cancelEvent(o), showApp(o, a, !1, null, n)
+    showManage: function(aid, gid, e) {
+        cancelEvent(e);
+        return showApp(e, aid, false, null, gid);
     },
-    attach: function(a, n, o, t, r, s) {
-        cur.gid ? GroupsEdit.app.attach(a, n, o, t, s) : Apps.addToMineGroups(a, n, "catalog", r)
+    attach: function(aid, hash, e, verified, fromGid, uncounted) {
+        if (cur.gid) {
+            GroupsEdit.app.attach(aid, hash, e, verified, uncounted);
+        } else {
+            Apps.addToMineGroups(aid, hash, 'catalog', fromGid)
+        }
     },
-    installMarket: function(a, n, o) {
-        return cur.gid ? this.installMarketToGroup(a, n, cur.gid) : (o && WkView && WkView.hide(), showBox("apps", {
-            act: "add_market_app_to_groups_box"
-        }, {
-            params: {
-                dark: 1,
-                width: 450,
-                bodyStyle: "padding: 22px 0 0"
-            },
-            onFail: function(a) {
-                return showFastBox(getLang("global_error"), a), !0
+    installMarket: function(btn, hash, fromBox) {
+        if (cur.gid) {
+            this.installMarketToGroup(btn, hash, cur.gid);
+        } else {
+            if (fromBox) {
+                WkView && WkView.hide();
             }
-        })), !1
+            showBox('apps', {
+                act: 'add_market_app_to_groups_box'
+            }, {
+                params: {
+                    dark: 1,
+                    width: 450,
+                    bodyStyle: 'padding: 22px 0 0'
+                },
+                onFail: function(error) {
+                    showFastBox(getLang('global_error'), error);
+                    return true;
+                }
+            });
+        }
+
+        return false;
     },
-    installMarketToGroup: function(a, n, o) {
+    installMarketToGroup: function(btn, hash, groupId) {
         ajax.post(this.INSTALL_MARKET_PAGE, {
             act: this.INSTALL_MARKET_ACT,
-            hash: n,
-            group_id: o
+            hash: hash,
+            group_id: groupId
         }, {
-            onDone: function(a) {
-                nav.go(a)
+            onDone: function(href) {
+                nav.go(href);
             },
-            onFail: function(a) {
-                return a = a || getLang("global_error"), curBox().hide(), showFastBox(getLang("global_error"), a), !0
+            onFail: function(rejection) {
+                rejection = rejection || getLang('global_error');
+                curBox().hide();
+                showFastBox(getLang('global_error'), rejection);
+                return true;
             },
-            showProgress: lockButton.pbind(a),
-            hideProgress: unlockButton.pbind(a)
-        })
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn)
+        });
     },
-    searchInp: ge("s_search"),
-    isSearch: !1,
-    searchStr: "",
-    onChangeQuery: function(a, n, o) {
-        if (a.length < 3 && (a = ""), !CommunityApps.isSearch && CommunityApps.searchStr !== a) {
-            var t = {
-                act: "community_apps_search",
-                q: a
+    searchInp: ge('s_search'),
+    isSearch: false,
+    searchStr: '',
+    onChangeQuery: function(query, suggestedQuery, fromHistory) {
+        if (query.length < 3) query = '';
+        if (!CommunityApps.isSearch && CommunityApps.searchStr !== query) {
+            var params = {
+                'act': 'community_apps_search',
+                'q': query
             };
-            CommunityApps.searchStr = a, ajax.post("al_apps.php", t, {
+            CommunityApps.searchStr = query;
+            ajax.post('al_apps.php', params, {
                 cache: 1,
-                onDone: function(a) {
-                    val(ge("apps_group_catalog_rows"), a)
+                onDone: function(html) {
+                    val(ge('apps_group_catalog_rows'), html);
                 },
                 showProgress: function() {
-                    CommunityApps.isSearch = !0, CommunityApps.searchInp && uiSearch.showProgress(CommunityApps.searchInp)
+                    CommunityApps.isSearch = true;
+                    CommunityApps.searchInp && uiSearch.showProgress(CommunityApps.searchInp);
                 },
                 hideProgress: function() {
-                    CommunityApps.isSearch = !1, CommunityApps.searchInp && uiSearch.hideProgress(CommunityApps.searchInp)
+                    CommunityApps.isSearch = false;
+                    CommunityApps.searchInp && uiSearch.hideProgress(CommunityApps.searchInp)
                 }
-            })
+            });
         }
     }
 };
+
 try {
-    stManager.done("community_apps.js")
+    stManager.done('community_apps.js');
 } catch (e) {}

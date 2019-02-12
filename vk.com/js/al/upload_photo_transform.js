@@ -1,37 +1,76 @@
 var UploadPhotoTransform = {};
-UploadPhotoTransform.init = function(o, t, n, a, r) {
-    return a = extend({}, a, r), a.optionsChanged = r, a.onUploadComplete && (a.onUploadComplete = UploadPhotoTransform.onUploadComplete.pbind(a.onUploadComplete)), Upload.init(o, t, n, a)
-}, UploadPhotoTransform.reinit = function(o) {
-    function t(t, n, a) {
-        var r = Upload.obj[o],
-            p = Upload.options[o],
-            e = p.optionsChanged;
-        Upload.deinit(o);
-        var i = UploadPhotoTransform.init(r, t, n, a, e);
-        a.onReinit && a.onReinit(o, i)
+
+UploadPhotoTransform.init = function(obj, uploadUrl, vars, options, optionsChanged) {
+
+    options = extend({}, options, optionsChanged);
+    options.optionsChanged = optionsChanged;
+
+    if (options.onUploadComplete) {
+        options.onUploadComplete = UploadPhotoTransform.onUploadComplete.pbind(options.onUploadComplete)
     }
-    var n = Upload.options[o].renew_url;
-    return n ? void ajax.post(n, {}, {
-        onDone: t
-    }) : void debugLog("UploadPhotoTransform.reinit no renew url")
-}, UploadPhotoTransform.onUploadComplete = function(o, t, n, a) {
-    var r;
-    try {
-        r = parseJSON(n)
-    } catch (p) {}
-    var e = void 0 !== t.ind ? t.ind : t,
-        i = r && (r.photo || r.renew);
-    o(t, n, a), i && setTimeout(function() {
-        UploadPhotoTransform.reinit(e)
-    }, 1)
-}, UploadPhotoTransform.getPhotoUrl = function(o, t, n, a) {
-    if (!(o && o.photo && t && n)) return void debugLog("UploadPhotoTransform.getPhotoUrl invalid params");
-    var r = {};
-    r.photo = o.photo, r.stored_photo_size_list = t, ajax.post("/al_photos.php?act=photo_transform_get_photo_url", r, {
-        onDone: n,
-        onFail: a
+
+    return Upload.init(obj, uploadUrl, vars, options);
+}
+
+UploadPhotoTransform.reinit = function(iUpload) {
+
+    var renewUrl = Upload.options[iUpload].renew_url;
+    if (!renewUrl) {
+        debugLog('UploadPhotoTransform.reinit no renew url');
+        return;
+    }
+
+    ajax.post(renewUrl, {}, {
+        onDone: onDoneRenewUrl
     })
-};
+
+    function onDoneRenewUrl(uploadUrlNew, varsNew, optionsNew) {
+        var objOld = Upload.obj[iUpload];
+        var optionsOld = Upload.options[iUpload];
+        var optionsChanged = optionsOld.optionsChanged;
+
+        Upload.deinit(iUpload);
+
+        var iUploadNew = UploadPhotoTransform.init(objOld, uploadUrlNew, varsNew, optionsNew, optionsChanged);
+        optionsNew.onReinit && optionsNew.onReinit(iUpload, iUploadNew);
+    }
+}
+
+UploadPhotoTransform.onUploadComplete = function(onUploadCompleteOriginal, info, result, errorAdd) {
+
+    var resultParsed;
+    try {
+        resultParsed = parseJSON(result);
+    } catch (e) {}
+    var iUpload = info.ind !== undefined ? info.ind : info;
+    var renewNeeded = (resultParsed && (resultParsed.photo || resultParsed.renew));
+
+    onUploadCompleteOriginal(info, result, errorAdd);
+
+    if (renewNeeded) {
+        setTimeout(function() {
+            UploadPhotoTransform.reinit(iUpload);
+        }, 1);
+    }
+}
+
+UploadPhotoTransform.getPhotoUrl = function(resultParsed, storedPhotoSizeList, onDone, onFail) {
+
+    if (!resultParsed || !resultParsed.photo || !storedPhotoSizeList || !onDone) {
+        debugLog('UploadPhotoTransform.getPhotoUrl invalid params');
+        return;
+    }
+
+    var ajaxParams = {};
+    ajaxParams.photo = resultParsed.photo;
+    ajaxParams.stored_photo_size_list = storedPhotoSizeList;
+
+    ajax.post('/al_photos.php?act=photo_transform_get_photo_url', ajaxParams, {
+        onDone: onDone,
+        onFail: onFail
+    });
+}
+
 try {
-    stManager.done("upload_photo_transform.js")
+    stManager.done('upload_photo_transform.js');
 } catch (e) {}

@@ -1,215 +1,302 @@
 var StoriesAdmin = {
-    init: function(e) {
-        StoriesAdmin.currentChannel = e
+    init: function(currentGroup) {
+        StoriesAdmin.currentChannel = currentGroup;
     },
-    addStoriesForm: function(e) {
-        StoriesAdmin.currentDialog = showBox("/al_stories_admin.php", {
-            act: "stories_upload_form",
+
+
+    addStoriesForm: function(event) {
+        StoriesAdmin.currentDialog = showBox('/al_stories_admin.php', {
+            act: 'stories_upload_form',
             channel_id: StoriesAdmin.currentChannel
         }, {
             params: {
-                hideButtons: !0
+                'hideButtons': true
+            }
+        });
+    },
+
+    hideStories: function(btn) {
+        var section = gpeByClass('_stories_list__section', btn);
+        addClass(section, 'stories_list__section--hidden');
+    },
+
+    showStories: function(btn) {
+        var section = gpeByClass('_stories_list__section', btn);
+        removeClass(section, 'stories_list__section--hidden');
+    },
+
+    setActiveChannel: function(channelId, tab, forceRenew) {
+        if (channelId == StoriesAdmin.currentChannel && !forceRenew) {
+            return;
+        }
+        var publicsList = ge('stories_admin_publics_list');
+        var tabs = geByClass('_public', publicsList);
+        each(tabs, function(idx, el) {
+            removeClass(el, 'public--selected');
+        });
+        StoriesAdmin.currentChannel = channelId;
+        if (!tab) {
+            tab = ge('stories_admin_group_' + channelId)
+        }
+        addClass(tab, 'public--selected');
+        var storiesContainer = ge('stories_admin__stories_block');
+        storiesContainer.innerHTML = '<div class="no_stories_msg"></div>';
+        var progressBar = geByClass1('no_stories_msg', storiesContainer);
+        showProgress(progressBar);
+        var requestedChannel = StoriesAdmin.currentChannel;
+
+        ajax.post('al_stories_admin.php', {
+            act: 'get_channel_stories',
+            channel: StoriesAdmin.currentChannel
+        }, {
+            onDone: function(html) {
+                if (requestedChannel != StoriesAdmin.currentChannel) { // �� ������ �������� ������������ �����
+                    return;
+                }
+                storiesContainer.innerHTML = html;
             }
         })
     },
-    hideStories: function(e) {
-        var n = gpeByClass("_stories_list__section", e);
-        addClass(n, "stories_list__section--hidden")
+
+    showStory: function(storyRaw, access_hash, expiredHash, event) {
+        cancelEvent(event);
+        showStory(storyRaw + '/' + storyRaw + '/hash=' + access_hash + ';expired_hash=' + expiredHash);
     },
-    showStories: function(e) {
-        var n = gpeByClass("_stories_list__section", e);
-        removeClass(n, "stories_list__section--hidden")
-    },
-    setActiveChannel: function(e, n, i) {
-        if (e != StoriesAdmin.currentChannel || i) {
-            var r = ge("stories_admin_publics_list"),
-                s = geByClass("_public", r);
-            each(s, function(e, n) {
-                removeClass(n, "public--selected")
-            }), StoriesAdmin.currentChannel = e, n || (n = ge("stories_admin_group_" + e)), addClass(n, "public--selected");
-            var o = ge("stories_admin__stories_block");
-            o.innerHTML = '<div class="no_stories_msg"></div>';
-            var t = geByClass1("no_stories_msg", o);
-            showProgress(t);
-            var a = StoriesAdmin.currentChannel;
-            ajax.post("al_stories_admin.php", {
-                act: "get_channel_stories",
-                channel: StoriesAdmin.currentChannel
-            }, {
-                onDone: function(e) {
-                    a == StoriesAdmin.currentChannel && (o.innerHTML = e)
-                }
-            })
-        }
-    },
-    showStory: function(e, n, i, r) {
-        cancelEvent(r), showStory(e + "/" + e + "/hash=" + n + ";expired_hash=" + i)
-    },
-    addChannelForm: function(e, n) {
-        StoriesAdmin.currentDialog = showBox("/al_stories_admin.php", {
-            act: "add_channel_box",
-            hash: e,
-            rhash: n
+
+    addChannelForm: function(hash, rhash) {
+        StoriesAdmin.currentDialog = showBox('/al_stories_admin.php', {
+            act: 'add_channel_box',
+            hash: hash,
+            rhash: rhash
         }, {
             params: {
-                width: 400,
-                hideButtons: !0
+                'width': 400,
+                'hideButtons': true
+            }
+        });
+    },
+
+    searchChannel: function(input, hash, rhash) {
+        var q = input.value.trim();
+        if (StoriesAdmin.__previousChannelSearchQuery == q) {
+            return;
+        }
+        StoriesAdmin.__previousChannelSearchQuery = q;
+
+        var ajaxId = (new Date).getTime();
+        StoriesAdmin.__last_ajax_id = ajaxId;
+        var inputWrapper = gpeByClass('stories_admin__search_container', input);
+        addClass(inputWrapper, 'ui_search_loading');
+
+        var form = ge('stories_admin__new_channel_form');
+        var htmlHandler = geByClass1('new_channel_form__result_handler', form);
+        htmlHandler.innerHTML = '';
+
+        ajax.post('al_stories_admin.php', {
+            act: 'get_channel',
+            query: q,
+            hash: hash,
+            rhash: rhash
+        }, {
+            onDone: function(html) {
+                if (ajaxId != StoriesAdmin.__last_ajax_id) { // �� ������ �������� ������������ �����
+                    return;
+                }
+                removeClass(inputWrapper, 'ui_search_loading');
+                disable(htmlHandler, false);
+                htmlHandler.innerHTML = html;
             }
         })
     },
-    searchChannel: function(e, n, i) {
-        var r = e.value.trim();
-        if (StoriesAdmin.__previousChannelSearchQuery != r) {
-            StoriesAdmin.__previousChannelSearchQuery = r;
-            var s = (new Date).getTime();
-            StoriesAdmin.__last_ajax_id = s;
-            var o = gpeByClass("stories_admin__search_container", e);
-            addClass(o, "ui_search_loading");
-            var t = ge("stories_admin__new_channel_form"),
-                a = geByClass1("new_channel_form__result_handler", t);
-            a.innerHTML = "", ajax.post("al_stories_admin.php", {
-                act: "get_channel",
-                query: r,
-                hash: n,
-                rhash: i
-            }, {
-                onDone: function(e) {
-                    s == StoriesAdmin.__last_ajax_id && (removeClass(o, "ui_search_loading"), disable(a, !1), a.innerHTML = e)
-                }
-            })
-        }
-    },
-    addChannel: function(e, n, i, r) {
-        lockButton(n), ajax.post("al_stories_admin.php", {
-            act: "add_channel",
-            channel: e,
-            hash: i,
-            rhash: r
+
+    addChannel: function(channel_id, btn, hash, rhash) {
+        lockButton(btn);
+        ajax.post('al_stories_admin.php', {
+            act: 'add_channel',
+            channel: channel_id,
+            hash: hash,
+            rhash: rhash
         }, {
-            onDone: function(n) {
+            onDone: function(html) {
                 StoriesAdmin._closeDialog();
-                var i = ge("stories_admin_publics_list"),
-                    r = geByClass1("_stories_publics__list_wrapper", i);
-                r.innerHTML = n, StoriesAdmin.setActiveChannel(e, null, !0)
+                var channelsMenu = ge('stories_admin_publics_list');
+                var channels = geByClass1('_stories_publics__list_wrapper', channelsMenu);
+                channels.innerHTML = html;
+                StoriesAdmin.setActiveChannel(channel_id, null, true);
             },
             onFail: function() {
-                StoriesAdmin._closeDialog()
+                StoriesAdmin._closeDialog();
             }
         })
+
     },
+
     _closeDialog: function() {
-        StoriesAdmin.currentDialog && (StoriesAdmin.currentDialog.hide(), StoriesAdmin.currentDialog = null)
+        if (!StoriesAdmin.currentDialog) {
+            return;
+        }
+        StoriesAdmin.currentDialog.hide();
+        StoriesAdmin.currentDialog = null;
     },
-    newStoryUploadFile: function(e, n, i, r) {
+
+    newStoryUploadFile: function(ownerId, inputEl, hash, rhash) {
         try {
-            var s = StoriesAdmin._validateForm()
-        } catch (o) {
-            return void showFastBox(getLang("stories_admin_error"), o.message)
+            var args = StoriesAdmin._validateForm();
+        } catch (e) {
+            showFastBox(getLang('stories_admin_error'), e.message);
+            return;
         }
-        var t = n.files;
-        if (!(t.length < 1)) {
-            var a = t[0],
-                _ = null;
-            if ("image/jpeg" == a.type || "image/png" == a.type) _ = "image";
-            else {
-                if ("video/mp4" != a.type && "video/quicktime" != a.type) return;
-                _ = "video"
-            }
-            s.act = "get_upload_link", s.type = _, s.owner_id = e, ajax.post("al_stories_admin.php", s, {
-                onDone: function(e) {
-                    try {
-                        StoriesAdmin._uploadStoryToLink(a, e, i, r)
-                    } catch (n) {
-                        console.log(n)
-                    }
-                },
-                onFail: function() {
-                    showFastBox("", getLang("stories_admin_no_connection"))
+
+        var files = inputEl.files;
+        if (files.length < 1) {
+            return;
+        }
+        var storyFile = files[0];
+        var fileType = null;
+        if (storyFile.type == 'image/jpeg' || storyFile.type == 'image/png') {
+            fileType = 'image';
+        } else if (storyFile.type == 'video/mp4' || storyFile.type == 'video/quicktime') {
+            fileType = 'video';
+        } else {
+            return;
+        }
+
+
+        args.act = 'get_upload_link';
+        args.type = fileType;
+        args.owner_id = ownerId;
+        ajax.post('al_stories_admin.php', args, {
+            onDone: function(link) {
+                try {
+                    StoriesAdmin._uploadStoryToLink(storyFile, link, hash, rhash);
+                } catch (e) {
+                    console.log(e);
                 }
-            });
-            var l = n.previousSibling;
-            l.innerHTML = "���������", lockButton(l)
-        }
+            },
+            onFail: function() {
+                showFastBox('', getLang('stories_admin_no_connection'));
+            }
+        });
+        var btn = inputEl.previousSibling;
+        btn.innerHTML = '���������';
+        lockButton(btn);
     },
+
     validateBeforeClick: function() {
         try {
-            StoriesAdmin._validateForm()
+            StoriesAdmin._validateForm();
         } catch (e) {
-            return showFastBox(getLang("stories_admin_error"), e.message), !1
+            showFastBox(getLang('stories_admin_error'), e.message);
+            return false;
         }
-        return !0
+        return true;
     },
+
     _validateForm: function() {
-        var e = {},
-            n = val("mask_id").trim(),
-            i = ge("link_text");
-        i = i.options[i.selectedIndex].value;
-        var r = val("link_url").trim(),
-            s = val("reply_to_story").trim(),
-            o = ge("is_ads").checked;
-        if (n) {
-            if (!/^-?[0-9]+_[0-9]+$/.test(n)) throw new Error(getLang("stories_admin_wrong_mask_id"));
-            e.mask_id = n
-        }
-        if (i) {
-            var t = new RegExp("^(https?://)?[-a-zA-Z0-9@:%._+~#=]{2,256}.[a-z]{2,6}.+");
-            if (!t.test(r)) throw new Error(getLang("stories_admin_wrong_url"));
-            e.link_text_key = i, e.link_url = r
-        }
-        if (s) {
-            if (s = s.match(/-?[0-9]+_[0-9]+/), !s[0]) throw new Error(getLang("stories_admin_wrong_story_id"));
-            e.reply_to_story = s[0]
-        }
-        return o && (e.is_ads = o), e
-    },
-    _uploadStoryToLink: function(e, n, i, r) {
-        var s = new FormData;
-        s.append("file", e), n += "&ajx=1";
-        var o = browser.msie && intval(browser.version) < 10 ? window.XDomainRequest : window.XMLHttpRequest,
-            t = new o;
-        t.open("POST", n, !0), t.onload = function(e) {
-            StoriesAdmin._successStoryUploadHandler(t, e, i, r)
-        }, t.upload.onprogress = function(e) {
-            StoriesAdmin._successStoryUploadProgressHandler(t, e)
-        }, t.send(s)
-    },
-    _successStoryUploadProgressHandler: function(e, n) {
-        4 === e.readyState
-    },
-    _successStoryUploadHandler: function(e, n, i, r) {
-        var s = null;
-        try {
-            s = JSON.parse(e.response)
-        } catch (o) {
-            return void showFastBox("", getLang("stories_admin_uploading_error"))
-        }
-        if (s.error) return void showFastBox(getLang("stories_admin_storage_error"), s.error.type);
-        var t = s.response.story;
-        ajax.post("al_stories_admin.php", {
-            act: "register_story",
-            owner_id: t.owner_id,
-            story_id: t.id,
-            hash: i,
-            rhash: r
-        }, {
-            onDone: function(e) {
-                StoriesAdmin.currentDialog.hide();
-                var n = ge("stories_admin__stories_block");
-                n.innerHTML = e
+        var result = {};
+        var maskId = val('mask_id').trim();
+        var linkText = ge('link_text');
+        linkText = linkText.options[linkText.selectedIndex].value;
+        var linkUrl = val('link_url').trim();
+        var replyToStory = val('reply_to_story').trim();
+        var is_ads = ge('is_ads').checked;
+
+        if (maskId) {
+            if (!/^-?[0-9]+_[0-9]+$/.test(maskId)) {
+                throw new Error(getLang('stories_admin_wrong_mask_id'));
             }
-        })
+            result.mask_id = maskId
+        }
+
+        if (linkText) {
+            var pattern = new RegExp('^(https?:\/\/)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}.+');
+            if (!pattern.test(linkUrl)) {
+                throw new Error(getLang('stories_admin_wrong_url'));
+            }
+            result.link_text_key = linkText;
+            result.link_url = linkUrl;
+        }
+
+        if (replyToStory) {
+            replyToStory = replyToStory.match(/-?[0-9]+_[0-9]+/);
+            if (!replyToStory[0]) {
+                throw new Error(getLang('stories_admin_wrong_story_id'));
+            }
+            result.reply_to_story = replyToStory[0];
+        }
+        if (is_ads) {
+            result.is_ads = is_ads;
+        }
+        return result;
     },
-    deleteStory: function(e, n, i, r) {
-        r.stopPropagation(), ajax.post("al_stories_admin.php", {
-            act: "delete_story",
-            story_raw_id: e,
-            hash: n,
-            rhash: i
+
+    /**
+     * @nsh
+     * @see ajax.post :)
+     */
+    _uploadStoryToLink: function(file, link, hash, rhash) {
+        var formData = new FormData();
+        formData.append('file', file);
+        link += '&ajx=1';
+        var XHR = (browser.msie && intval(browser.version) < 10) ? window.XDomainRequest : window.XMLHttpRequest;
+        var xhr = new XHR();
+        xhr.open('POST', link, true);
+        xhr.onload = function(event) {
+            StoriesAdmin._successStoryUploadHandler(xhr, event, hash, rhash)
+        };
+        xhr.upload.onprogress = function(event) {
+            StoriesAdmin._successStoryUploadProgressHandler(xhr, event)
+        };
+        xhr.send(formData);
+    },
+
+    _successStoryUploadProgressHandler: function(xhr, event) {
+        if (xhr.readyState === 4) {
+            return;
+        }
+    },
+
+    _successStoryUploadHandler: function(xhr, event, hash, rhash) {
+        var response = null;
+        try {
+            response = JSON.parse(xhr.response)
+        } catch (e) {
+            showFastBox('', getLang('stories_admin_uploading_error'));
+            return;
+        }
+        if (response.error) {
+            showFastBox(getLang('stories_admin_storage_error'), response.error.type);
+            return;
+        }
+        var story = response.response.story;
+        ajax.post('al_stories_admin.php', {
+            act: 'register_story',
+            owner_id: story.owner_id,
+            story_id: story.id,
+            hash: hash,
+            rhash: rhash
         }, {
-            onDone: this.setActiveChannel(this.currentChannel, null, !0)
-        })
+            onDone: function(html) {
+                StoriesAdmin.currentDialog.hide();
+                var storiesContainer = ge('stories_admin__stories_block');
+                storiesContainer.innerHTML = html;
+            }
+        });
+    },
+
+    deleteStory: function(story_raw_id, hash, rhash, event) {
+        event.stopPropagation();
+        ajax.post('al_stories_admin.php', {
+            act: 'delete_story',
+            story_raw_id: story_raw_id,
+            hash: hash,
+            rhash: rhash
+        }, {
+            onDone: this.setActiveChannel(this.currentChannel, null, true)
+        });
     }
 };
+
 try {
-    stManager.done("stories_admin.js")
+    stManager.done('stories_admin.js');
 } catch (e) {}

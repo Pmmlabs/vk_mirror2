@@ -1,1728 +1,2882 @@
 var Tickets = {
-        switchTab: function(e, t) {
-            if (checkEvent(t)) return !0;
-            var a = !1,
-                i = ge("tickets_page_tabs");
-            if (i ? (each(geByClass("page_tab_sel", ge("tickets_page_tabs")), function(e, t) {
-                    hasClass(t, "page_tab_sel") && (a = t, replaceClass(t, "page_tab_sel", "page_tab"))
-                }), replaceClass(ge(e + "_tab"), "page_tab", "page_tab_sel")) : (each(geByClass("active_link", ge("tickets_tabs")), function(e, t) {
-                    hasClass(t, "active_link") && (a = t, removeClass(t, "active_link"))
-                }), addClass(ge(e + "_tab"), "active_link")), "show" == e) return show("show_tab", "new_link"), hide("new_tab", "extra_tab"), !1;
-            if ("new" == e) {
-                hide("show_tab", "extra_tab", "new_link"), show("new_tab");
-                var o = ge(e + "_tab");
-                return i || (o = o.firstChild), cur.fromTopLink && (o += "&from=top"), nav.go(o, t, {
-                    onFail: function(t) {
-                        return hide("new_tab"), show("show_tab", "new_link"), i ? (replaceClass(ge(e + "_tab"), "page_tab_sel", "page_tab"), a && replaceClass(a, "page_tab", "page_tab_sel")) : (removeClass(ge(e + "_tab"), "active_link"), a && addClass(a, "active_link")), setTimeout(showFastBox({
-                            title: getLang("global_error"),
-                            dark: !0,
-                            bodyStyle: "padding: 20px; line-height: 160%;"
-                        }, t).hide, 2e3), !0
+
+    switchTab: function(name, evt) {
+        if (checkEvent(evt)) return true;
+        var oldTab = false;
+        var wide_tabs = ge('tickets_page_tabs');
+        if (wide_tabs) {
+            each(geByClass('page_tab_sel', ge('tickets_page_tabs')), function(i, v) {
+                if (hasClass(v, 'page_tab_sel')) {
+                    oldTab = v;
+                    replaceClass(v, 'page_tab_sel', 'page_tab');
+                }
+            });
+            replaceClass(ge(name + '_tab'), 'page_tab', 'page_tab_sel');
+        } else {
+            each(geByClass('active_link', ge('tickets_tabs')), function(i, v) {
+                if (hasClass(v, 'active_link')) {
+                    oldTab = v;
+                    removeClass(v, 'active_link');
+                }
+            });
+            addClass(ge(name + '_tab'), 'active_link');
+        }
+        if (name == 'show') {
+            show('show_tab', 'new_link');
+            hide('new_tab', 'extra_tab');
+            return false;
+        } else if (name == 'new') {
+            hide('show_tab', 'extra_tab', 'new_link');
+            show('new_tab');
+            var link = ge(name + '_tab');
+            if (!wide_tabs) {
+                link = link.firstChild;
+            }
+            if (cur.fromTopLink) {
+                link += '&from=top';
+            }
+            return nav.go(link, evt, {
+                onFail: function(text) {
+                    hide('new_tab');
+                    show('show_tab', 'new_link');
+                    if (wide_tabs) {
+                        replaceClass(ge(name + '_tab'), 'page_tab_sel', 'page_tab');
+                        if (oldTab) {
+                            replaceClass(oldTab, 'page_tab', 'page_tab_sel');
+                        }
+                    } else {
+                        removeClass(ge(name + '_tab'), 'active_link');
+                        if (oldTab) {
+                            addClass(oldTab, 'active_link');
+                        }
                     }
-                })
+                    setTimeout(showFastBox({
+                        title: getLang('global_error'),
+                        dark: true,
+                        bodyStyle: 'padding: 20px; line-height: 160%;'
+                    }, text).hide, 2000);
+                    return true;
+                }
+            });
+        } else if (name == 'extra') {
+            hide('show_tab', 'new_tab');
+            show('extra_tab', 'new_link');
+        } else {
+            hide('extra_tab', 'show_tab', 'new_tab');
+            show('new_link');
+            var link = ge(name + '_tab');
+            if (!wide_tabs) {
+                link = link.firstChild;
             }
-            if ("extra" != e) {
-                hide("extra_tab", "show_tab", "new_tab"), show("new_link");
-                var o = ge(e + "_tab");
-                return i || (o = o.firstChild), o = o.href, ("all_history" == e || "history" == e) && nav.objLoc.q && ge(e + "_tab").firstChild && (o += "&q=" + nav.objLoc.q), nav.go(o, t)
+            link = link.href;
+            if ((name == 'all_history' || name == 'history') && nav.objLoc.q && ge(name + '_tab').firstChild) {
+                link += '&q=' + nav.objLoc.q;
             }
-            hide("show_tab", "new_tab"), show("extra_tab", "new_link")
-        },
-        gotoTicket: function(e, t) {
-            return Tickets.switchTab("show", t), nav.go(e, t)
-        },
-        getBrowser: function() {
-            var e, t, a = !1,
-                i = ["opera_mini", "opera_mobile", "safari_mobile", "msie_mobile", "bada", "android", "ipad", "ipod", "iphone", "mozilla", "opera", "chrome", "safari", "msie10", "msie9", "msie8", "msie7", "msie6", "msie"];
-            for (var o in i)
-                if (window.browser[i[o]] === !0) {
-                    a = i[o];
-                    break
+            return nav.go(link, evt);
+        }
+    },
+
+    gotoTicket: function(el, evt) {
+        Tickets.switchTab('show', evt);
+        return nav.go(el, evt);
+    },
+    getBrowser: function() {
+        var _uan = false,
+            _uafull, browsersList = ['opera_mini', 'opera_mobile', 'safari_mobile', 'msie_mobile', 'bada', 'android', 'ipad', 'ipod', 'iphone', 'mozilla', 'opera', 'chrome', 'safari', 'msie10', 'msie9', 'msie8', 'msie7', 'msie6', 'msie'],
+            versions = ['opera_mini', 'opera_mobile', 'bada'],
+            version;
+        for (var i in browsersList) {
+            if (window.browser[browsersList[i]] === true) {
+                _uan = browsersList[i];
+                break;
+            }
+        }
+        if (window._ua && /yabrowser/i.test(_ua)) {
+            _uan = 'yabrowser';
+        }
+        if (_uan) {
+            if (window.browser && browser.msie && (!browser.version || browser.version < 10)) {
+                version = '';
+            } else {
+                var fixed_ver = (window._ua.match(/.+(?:mini|bada|mobi)[\/: ]([\d.]+)/) || [0, '0'])[1];
+                version = fixed_ver != '0' ? ' ' + fixed_ver : ' ' + window.browser.version;
+            }
+            _uafull = _uan + version;
+        } else {
+            _uafull = navigator.userAgent.toLowerCase();
+        }
+        var f = browser.flashfull;
+        _uafull += "|" + f.major + "." + f.minor + "." + f.rev;
+
+        return _uafull;
+    },
+    showTooltip: function(el, text, className, onLeft, disableMouseOut) {
+        showTooltip(el, {
+            dir: onLeft ? 'right' : 'left',
+            text: text,
+            slideX: onLeft ? -15 : 15,
+            className: 'tickets_side_tt ' + className,
+            shift: function() {
+                var containerSize = getSize(el.tt.container),
+                    inputSize = getSize(el);
+                var leftOffset = 0;
+                if (onLeft) {
+                    leftOffset = containerSize[0] + 7;
+                } else {
+                    leftOffset = -inputSize[0] - 7;
                 }
-            if (window._ua && /yabrowser/i.test(_ua) && (a = "yabrowser"), a) {
-                if (window.browser && browser.msie && (!browser.version || browser.version < 10)) t = "";
-                else {
-                    var s = (window._ua.match(/.+(?:mini|bada|mobi)[\/: ]([\d.]+)/) || [0, "0"])[1];
-                    t = "0" != s ? " " + s : " " + window.browser.version
+                return [leftOffset, 0, -(inputSize[1] + containerSize[1]) / 2];
+            },
+            forcetodown: true,
+            hasover: 1,
+            onCreate: function() {
+                if (disableMouseOut) {
+                    removeEvent(el, 'mouseout');
                 }
-                e = a + t
-            } else e = navigator.userAgent.toLowerCase();
-            var r = browser.flashfull;
-            return e += "|" + r.major + "." + r.minor + "." + r.rev
-        },
-        showTooltip: function(e, t, a, i, o) {
-            showTooltip(e, {
-                dir: i ? "right" : "left",
-                text: t,
-                slideX: i ? -15 : 15,
-                className: "tickets_side_tt " + a,
-                shift: function() {
-                    var t = getSize(e.tt.container),
-                        a = getSize(e),
-                        o = 0;
-                    return o = i ? t[0] + 7 : -a[0] - 7, [o, 0, -(a[1] + t[1]) / 2]
-                },
-                forcetodown: !0,
-                hasover: 1,
-                onCreate: function() {
-                    o && removeEvent(e, "mouseout")
-                }
-            })
-        },
-        hideTooltip: function(e) {
-            e.tt && e.tt.hide && e.tt.hide()
-        },
-        doSaveTicket: function(e) {
-            ajax.post(cur.objLoc + "?act=a_save", e, {
-                onDone: function(t, a) {
-                    0 == t ? showDoneBox(a) : 1 == t && Tickets.showAverageTime(a, Tickets.doSaveTicket.pbind(extend({}, e, {
+            }
+        });
+    },
+    hideTooltip: function(el) {
+        if (el.tt && el.tt.hide) {
+            el.tt.hide();
+        }
+    },
+    doSaveTicket: function(query) {
+        ajax.post(cur.objLoc + '?act=a_save', query, {
+            onDone: function(code, data) {
+                if (code == 0) {
+                    showDoneBox(data);
+                } else if (code == 1) {
+                    Tickets.showAverageTime(data, Tickets.doSaveTicket.pbind(extend({}, query, {
                         force: 1
-                    })))
-                },
-                showProgress: lockButton.pbind("tickets_send"),
-                hideProgress: unlockButton.pbind("tickets_send")
-            })
-        },
-        getFromObjLoc: function(e) {
-            var t = {};
-            return each(e, function(e, a) {
-                nav.objLoc[a] && (t[a] = nav.objLoc[a])
-            }), t
-        },
-        getAudioFields: function() {
-            var e = {};
-            if (cur.samples && cur.samples.audio || ge("audio_checking")) {
-                e.audio_html = ge("audio_checking").innerHTML;
-                var t = (cur.samples || {}).audio || "";
-                window.ag && window.sh && (e.audio_html = e.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (e.audio_html = e.audio_html.replace(/_info/g, "dwnl_info")), e.audio_orig = ce("div", {
-                    innerHTML: t.replace(/z9q2m/g, "audio")
-                }).innerHTML
-            }
-            return e
-        },
-        saveTicket: function(e) {
-            var t = trim(val("tickets_title")),
-                a = trim(val("tickets_text")),
-                i = !0;
-            t || (notaBene("tickets_title", !1, !i), i = !1);
-            var o = Tickets.getUploadAttachs();
-            a || cur.descriptionNotNeeded || o.length || (notaBene("tickets_text", !1, !i), i = !1);
-            var s = Tickets.getBrowser(),
-                r = extend({
-                    title: t,
-                    text: a,
-                    hash: e,
-                    attachs: o,
-                    browser: s,
-                    section: cur.faqSection
-                }, Tickets.getAudioFields(), Tickets.getFromObjLoc(["mid", "group_id", "app_id", "union_id", "from", "mobile", "bhash"]));
-            nav.objLoc.hasOwnProperty("hds") && (r.hds = nav.objLoc.hds), cur.fromFaqId && (r.faq = cur.fromFaqId), cur.from && (r.from = cur.from);
-            var n = TicketsEF.getValues();
-            if (n === !1 && (i = !1), !i) return !1;
-            if (extend(r, n), 39 == r.faqSection) {
-                var c = ls.get("support_outdated_left");
-                c && c.ts && Math.floor((new Date).getTime() / 1e3) - c.ts < 3600 && (r.outdated_ticket_id = c.id), ls.remove("support_outdated_left")
-            }
-            Tickets.doSaveTicket(r)
-        },
-        savePayTicket: function(e) {
-            var t = trim(val("tickets_title")),
-                a = trim(val("tickets_text"));
-            if (!t) return void notaBene("tickets_title");
-            var i = Tickets.getUploadAttachs();
-            if (!a && !i.length) return void notaBene("tickets_text");
-            if (Tickets.checkPayForm()) {
-                var o = Tickets.getBrowser(),
-                    s = extend({
-                        title: t,
-                        text: a,
-                        hash: e,
-                        attachs: i,
-                        browser: o,
-                        section: cur.faqSection
-                    }, Tickets.getAudioFields(), Tickets.getPayFields(), Tickets.getFromObjLoc(["id", "group_id", "app_id", "union_id", "from"]));
-                Tickets.doSaveTicket(s)
-            }
-        },
-        saveDMCATicket: function(e) {
-            if (Tickets.checkDMCAForm()) {
-                var t = Tickets.getUploadAttachs(),
-                    a = Tickets.getBrowser(),
-                    i = extend({
-                        hash: e,
-                        section: cur.faqSection,
-                        attachs: t,
-                        browser: a
-                    }, Tickets.getDMCAFields(), Tickets.getAudioFields());
-                Tickets.doSaveTicket(i)
-            }
-        },
-        checkDMCAForm: function() {
-            var e = Tickets.getDMCAFields(),
-                t = 1 == e.type,
-                a = t ? "_legal" : "",
-                i = !1;
-            return (!e.links || e.links.length < 9) && (notaBene("tickets_links"), i = !0), e.text || (notaBene("tickets_text"), i = !0), t ? (e.title || (notaBene("tickets_dmca_corp"), i = !0), (!e.address || e.address.length < 9) && (notaBene("tickets_dmca_address"), i = !0), (!e.real_address || e.real_address.length < 9) && (notaBene("tickets_dmca_real_address"), i = !0)) : (e.title || (notaBene("tickets_dmca_name"), i = !0), e.passport_series || (notaBene("tickets_dmca_passport_series"), i = !0), e.passport_number || (notaBene("tickets_dmca_passport_number"), i = !0), e.passport_date || (notaBene("tickets_dmca_passport_date"), i = !0), e.passport_issued_by || (notaBene("tickets_dmca_passport_issued_by"), i = !0)), (!e.phone_fax || e.phone_fax.length < 7) && (notaBene("tickets_dmca_phone_fax"), i = !0), /^\s*[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9_\.\-]+\s*$/.test(e.email) || (notaBene("tickets_dmca_email"), i = !0), t && ((!e.repr || e.repr.length < 5) && (notaBene("tickets_dmca_repr"), i = !0), (!e.post || e.post.length < 3) && (notaBene("tickets_dmca_post"), i = !0)), i ? !1 : isChecked("support_dmca_agree_owner" + a) ? isChecked("support_dmca_agree_unauthorized" + a) ? isChecked("support_dmca_agree_perjury" + a) ? isChecked("support_dmca_agree_email" + a) ? isChecked("support_dmca_agree_inform" + a) ? isChecked("support_dmca_agree_rules") ? !0 : Tickets.showMsgBox(getLang("help_ccform_need_rules"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_inform" : "help_ccform_natural_need_inform"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_email" : "help_ccform_natural_need_email"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_perjury" : "help_ccform_natural_need_perjury"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_unauthorized" : "help_ccform_natural_need_unauthorized"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_is_owner" : "help_ccform_natural_need_owner"), getLang("global_error"))
-        },
-        getDMCAFields: function() {
-            var e = {
-                text: trim(val("tickets_text")),
-                links: trim(val("tickets_links")),
-                type: cur.dmcaType,
-                phone_fax: trim(val("tickets_dmca_phone_fax")),
-                email: trim(val("tickets_dmca_email"))
-            };
-            1 == cur.dmcaType ? (e.title = trim(val("tickets_dmca_corp")), e.ogrn = trim(val("tickets_dmca_ogrn")), e.address = trim(val("tickets_dmca_address")), e.real_address = trim(val("tickets_dmca_real_address")), e.repr = trim(val("tickets_dmca_repr")), e.post = trim(val("tickets_dmca_post"))) : (e.title = trim(val("tickets_dmca_name")), e.passport_series = trim(val("tickets_dmca_passport_series")), e.passport_number = trim(val("tickets_dmca_passport_number")), e.passport_date = trim(val("tickets_dmca_passport_date")), e.passport_issued_by = trim(val("tickets_dmca_passport_issued_by")));
-            for (var t in e) "" === e[t] && delete e[t];
-            return e
-        },
-        showMsgBox: function(e, t, a) {
-            return setTimeout(showFastBox({
-                title: t,
-                dark: !0,
-                bodyStyle: "line-height: 160%;",
-                onHide: function() {
-                    a && ge(a).focus()
+                    })));
                 }
-            }, e).hide, 4e3), !1
-        },
-        checkPhone: function(e) {
-            ajax.post("support?act=a_check_phone", {
-                phone: e
-            }, {
-                cache: 1,
-                onDone: function(e) {
-                    cur.phone = e, val("tickets_number_from", e), e || notaBene("tickets_number_from")
+            },
+            showProgress: lockButton.pbind('tickets_send'),
+            hideProgress: unlockButton.pbind('tickets_send')
+        });
+    },
+    getFromObjLoc: function(fields) {
+        var a = {};
+        each(fields, function(i, field) {
+            if (nav.objLoc[field]) {
+                a[field] = nav.objLoc[field];
+            }
+        });
+        return a;
+    },
+    getAudioFields: function() {
+        var q = {};
+        if (cur.samples && cur.samples.audio || ge('audio_checking')) {
+            q.audio_html = ge('audio_checking').innerHTML;
+            var orig = (cur.samples || {}).audio || '';
+            if (window.ag && window.sh) {
+                q.audio_html = q.audio_html.replace(/_info/g, 'vkontakte_info');
+            }
+            if (window.dwnl_video || window.add_js) {
+                q.audio_html = q.audio_html.replace(/_info/g, 'dwnl_info');
+            }
+            q.audio_orig = ce('div', {
+                innerHTML: orig.replace(/z9q2m/g, 'audio')
+            }).innerHTML;
+        }
+        return q;
+    },
+    saveTicket: function(hash) {
+        var title = trim(val('tickets_title')),
+            text = trim(val('tickets_text')),
+            fieldsValid = true;
+        if (!title) {
+            notaBene('tickets_title', false, !fieldsValid);
+            fieldsValid = false;
+        }
+        var attachs = Tickets.getUploadAttachs();
+        if (!text && !cur.descriptionNotNeeded && !attachs.length) {
+            notaBene('tickets_text', false, !fieldsValid);
+            fieldsValid = false;
+        }
+        var _uafull = Tickets.getBrowser();
+        var query = extend({
+                title: title,
+                text: text,
+                hash: hash,
+                attachs: attachs,
+                browser: _uafull,
+                section: cur.faqSection
+            },
+            Tickets.getAudioFields(),
+            Tickets.getFromObjLoc(['mid', 'group_id', 'app_id', 'union_id', 'from', 'mobile', 'bhash'])
+        );
+        if (nav.objLoc.hasOwnProperty('hds')) {
+            query.hds = nav.objLoc['hds'];
+        }
+        if (cur.fromFaqId) {
+            query.faq = cur.fromFaqId;
+        }
+        if (cur['from']) {
+            query.from = cur['from'];
+        }
+
+        var efValues = TicketsEF.getValues();
+        if (efValues === false) {
+            fieldsValid = false;
+        }
+        if (!fieldsValid) {
+            return false;
+        }
+        extend(query, efValues);
+
+        if (query.faqSection == 39) {
+            var outdatedLeft = ls.get('support_outdated_left');
+            if (outdatedLeft) {
+                if (outdatedLeft.ts && Math.floor((new Date()).getTime() / 1000) - outdatedLeft.ts < 3600) {
+                    query.outdated_ticket_id = outdatedLeft.id;
                 }
-            })
-        },
-        checkPayForm: function() {
-            if (void 0 === cur.payType) return cur.showErrorTT(ge("tickets_payment_type"), getLang("support_no_payment_type"), [-200, "show" == cur.section ? -103 : -113, 0]), !1;
-            switch (cur.payType) {
-                case 0:
-                    if (!cur.phone) return notaBene("tickets_number_from"), !1;
-                    break;
-                case 1:
-                case 4:
-                    if (4 == cur.payType) {
-                        if (!floatval(val("tickets_pay_sum"))) return notaBene("tickets_pay_sum"), !1;
-                        if (!trim(val("tickets_organisation"))) return notaBene("tickets_organisation"), !1
-                    }
-                    var e = Tickets.getUploadAttachs();
-                    if (!e.length) {
-                        var t = 1 == cur.payType ? getLang("support_no_bill_photo") : getLang("support_no_payment_scan");
-                        return setTimeout(showFastBox({
-                            title: getLang("global_error"),
-                            dark: !0,
-                            bodyStyle: "padding: 20px; line-height: 160%;"
-                        }, t).hide, 2e3), !1
-                    }
-                    break;
-                case 2:
-                case 3:
-                case 5:
-                case 6:
-                case 8:
-                case 9:
-                case 7:
-                    if (2 == cur.payType) {
-                        if (void 0 === cur.paySystem) return cur.showPaySysTT(), !1;
-                        if (4 == cur.paySystem && !trim(val("tickets_paysystem_name"))) return notaBene("tickets_paysystem_name"), !1
-                    }
-                    if (!floatval(val("tickets_pay_sum"))) return notaBene("tickets_pay_sum"), !1;
-                    break;
-                default:
-                    return !1
             }
-            return !0
-        },
-        getPayFields: function() {
-            var e = {};
-            if (void 0 === cur.payType) return e;
-            switch (e.pay_type = cur.payType, cur.payType) {
-                case 0:
-                    e.pay_date = val("tickets_payment_date"), e.number_from = cur.phone, val("tickets_number_to") && (e.number_to = trim(val("tickets_number_to"))), val("tickets_sms_text") && (e.sms_text = trim(val("tickets_sms_text"))), val("tickets_payed_sum") && (e.payed_sum = trim(val("tickets_payed_sum")));
-                    break;
-                case 1:
-                    e.pay_date = val("tickets_payment_date"), e.pay_email = val("tickets_id_email");
-                    break;
-                case 2:
-                case 3:
-                    e.pay_date = val("tickets_payment_date"), e.pay_sum = floatval(val("tickets_pay_sum")), 2 == cur.payType && (4 == cur.paySystem ? e.pay_system_name = trim(val("tickets_paysystem_name")) : e.pay_system = cur.paySystem);
-                    break;
-                case 4:
-                    e.pay_day = val("tickets_payment_day"), e.pay_sum = floatval(val("tickets_pay_sum")), e.pay_org = trim(val("tickets_organisation"));
-                    break;
-                case 5:
-                case 6:
-                case 8:
-                case 9:
-                case 7:
-                    e.pay_date = val("tickets_payment_date"), e.pay_sum = floatval(val("tickets_pay_sum"))
+            ls.remove('support_outdated_left');
+        }
+        Tickets.doSaveTicket(query);
+    },
+
+    savePayTicket: function(hash) {
+        var title = trim(val('tickets_title')),
+            text = trim(val('tickets_text'));
+        if (!title) {
+            notaBene('tickets_title');
+            return;
+        }
+        var attachs = Tickets.getUploadAttachs();
+        if (!text && !attachs.length) {
+            notaBene('tickets_text');
+            return;
+        }
+        if (!Tickets.checkPayForm()) {
+            return;
+        }
+        var _uafull = Tickets.getBrowser();
+        var query = extend({
+                title: title,
+                text: text,
+                hash: hash,
+                attachs: attachs,
+                browser: _uafull,
+                section: cur.faqSection
+            },
+            Tickets.getAudioFields(),
+            Tickets.getPayFields(),
+            Tickets.getFromObjLoc(['id', 'group_id', 'app_id', 'union_id', 'from'])
+        );
+        Tickets.doSaveTicket(query);
+    },
+
+    saveDMCATicket: function(hash) {
+        if (!Tickets.checkDMCAForm()) {
+            return;
+        }
+        var attachs = Tickets.getUploadAttachs();
+        var _uafull = Tickets.getBrowser();
+        var query = extend({
+                hash: hash,
+                section: cur.faqSection,
+                attachs: attachs,
+                browser: _uafull
+            },
+            Tickets.getDMCAFields(),
+            Tickets.getAudioFields()
+        );
+        Tickets.doSaveTicket(query);
+    },
+
+    checkDMCAForm: function() {
+        var params = Tickets.getDMCAFields();
+        var legal = (params.type == 1),
+            suffix = legal ? '_legal' : '',
+            failed = false;
+        if (!params.links || params.links.length < 9) {
+            notaBene('tickets_links');
+            failed = true;
+        }
+        if (!params.text) {
+            notaBene('tickets_text');
+            failed = true;
+        }
+        if (legal) {
+            if (!params.title) {
+                notaBene('tickets_dmca_corp');
+                failed = true;
             }
-            return e
-        },
-        getReplyQueryData: function(e, t, a) {
-            var i, o = {
-                    act: "a_add_comment",
-                    ticket_id: cur.ticket_id,
-                    text: e,
-                    hash: t,
-                    attachs: a,
-                    hidden: isChecked("tickets_hidden"),
-                    copy_to_card: isChecked("copy_reply_to_card")
-                },
-                s = !1;
-            for (var r in window.browser)
-                if (window.browser[r] === !0) {
-                    s = r;
-                    break
+            if (!params.address || params.address.length < 9) {
+                notaBene('tickets_dmca_address');
+                failed = true;
+            }
+            if (!params.real_address || params.real_address.length < 9) {
+                notaBene('tickets_dmca_real_address');
+                failed = true;
+            }
+        } else {
+            if (!params.title) {
+                notaBene('tickets_dmca_name');
+                failed = true;
+            }
+            if (!params.passport_series) {
+                notaBene('tickets_dmca_passport_series');
+                failed = true;
+            }
+            if (!params.passport_number) {
+                notaBene('tickets_dmca_passport_number');
+                failed = true;
+            }
+            if (!params.passport_date) {
+                notaBene('tickets_dmca_passport_date');
+                failed = true;
+            }
+            if (!params.passport_issued_by) {
+                notaBene('tickets_dmca_passport_issued_by');
+                failed = true;
+            }
+        }
+        if (!params.phone_fax || params.phone_fax.length < 7) {
+            notaBene('tickets_dmca_phone_fax');
+            failed = true;
+        }
+        if (!(/^\s*[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9_\.\-]+\s*$/.test(params.email))) {
+            notaBene('tickets_dmca_email');
+            failed = true;
+        }
+        if (legal) {
+            if (!params.repr || params.repr.length < 5) {
+                notaBene('tickets_dmca_repr');
+                failed = true;
+            }
+            if (!params.post || params.post.length < 3) {
+                notaBene('tickets_dmca_post');
+                failed = true;
+            }
+        }
+        if (failed) {
+            return false;
+        }
+        if (!isChecked('support_dmca_agree_owner' + suffix)) {
+            return Tickets.showMsgBox(getLang(legal ? 'help_ccform_legal_need_is_owner' : 'help_ccform_natural_need_owner'), getLang('global_error'));
+        }
+        if (!isChecked('support_dmca_agree_unauthorized' + suffix)) {
+            return Tickets.showMsgBox(getLang(legal ? 'help_ccform_legal_need_unauthorized' : 'help_ccform_natural_need_unauthorized'), getLang('global_error'));
+        }
+        if (!isChecked('support_dmca_agree_perjury' + suffix)) {
+            return Tickets.showMsgBox(getLang(legal ? 'help_ccform_legal_need_perjury' : 'help_ccform_natural_need_perjury'), getLang('global_error'));
+        }
+        if (!isChecked('support_dmca_agree_email' + suffix)) {
+            return Tickets.showMsgBox(getLang(legal ? 'help_ccform_legal_need_email' : 'help_ccform_natural_need_email'), getLang('global_error'));
+        }
+        if (!isChecked('support_dmca_agree_inform' + suffix)) {
+            return Tickets.showMsgBox(getLang(legal ? 'help_ccform_legal_need_inform' : 'help_ccform_natural_need_inform'), getLang('global_error'));
+        }
+        if (!isChecked('support_dmca_agree_rules')) {
+            return Tickets.showMsgBox(getLang('help_ccform_need_rules'), getLang('global_error'));
+        }
+
+        return true;
+    },
+
+    getDMCAFields: function() {
+        var res = {
+            text: trim(val('tickets_text')),
+            links: trim(val('tickets_links')),
+            type: cur.dmcaType,
+            phone_fax: trim(val('tickets_dmca_phone_fax')),
+            email: trim(val('tickets_dmca_email'))
+        };
+        if (cur.dmcaType == 1) {
+            res.title = trim(val('tickets_dmca_corp'));
+            res.ogrn = trim(val('tickets_dmca_ogrn'));
+            res.address = trim(val('tickets_dmca_address'));
+            res.real_address = trim(val('tickets_dmca_real_address'));
+            res.repr = trim(val('tickets_dmca_repr'));
+            res.post = trim(val('tickets_dmca_post'));
+        } else {
+            res.title = trim(val('tickets_dmca_name'));
+            res.passport_series = trim(val('tickets_dmca_passport_series'));
+            res.passport_number = trim(val('tickets_dmca_passport_number'));
+            res.passport_date = trim(val('tickets_dmca_passport_date'));
+            res.passport_issued_by = trim(val('tickets_dmca_passport_issued_by'));
+        }
+        for (var i in res) {
+            if (res[i] === '') {
+                delete res[i];
+            }
+        }
+
+        return res;
+
+    },
+
+    showMsgBox: function(text, title, input) {
+        setTimeout(showFastBox({
+            title: title,
+            dark: true,
+            bodyStyle: 'line-height: 160%;',
+            onHide: function() {
+                if (input) ge(input).focus();
+            }
+        }, text).hide, 4000);
+        return false;
+    },
+
+    checkPhone: function(phone) {
+        ajax.post('support?act=a_check_phone', {
+            phone: phone
+        }, {
+            cache: 1,
+            onDone: function(real_phone) {
+                cur.phone = real_phone;
+                val('tickets_number_from', real_phone);
+                if (!real_phone) {
+                    notaBene('tickets_number_from');
                 }
-            i = s ? s + " " + window.browser.version : navigator.userAgent.toLowerCase();
-            var n = browser.flashfull;
-            if (i += "|" + n.major + "." + n.minor + "." + n.rev, o.browser = i, cur.samples && cur.samples.audio || ge("audio_checking")) {
-                o.audio_html = ge("audio_checking").innerHTML;
-                var c = (cur.samples || {}).audio || "";
-                window.ag && window.sh && (o.audio_html = o.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (o.audio_html = o.audio_html.replace(/_info/g, "dwnl_info")), o.audio_orig = ce("div", {
-                    innerHTML: c.replace(/z9q2m/g, "audio")
-                }).innerHTML
             }
-            if (cur.getReplyDataFields) {
-                var l = cur.getReplyDataFields();
-                if (l === !1) return !1;
-                extend(o, l)
+        })
+    },
+
+    checkPayForm: function() {
+        if (cur.payType === undefined) {
+            cur.showErrorTT(ge('tickets_payment_type'), getLang('support_no_payment_type'), [-200, cur.section == 'show' ? -103 : -113, 0]);
+            return false;
+        }
+        switch (cur.payType) {
+            case 0:
+                if (!cur.phone) {
+                    notaBene('tickets_number_from');
+                    return false;
+                }
+                break;
+            case 1:
+            case 4:
+                if (cur.payType == 4) {
+                    if (!floatval(val('tickets_pay_sum'))) {
+                        notaBene('tickets_pay_sum');
+                        return false;
+                    }
+                    if (!trim(val('tickets_organisation'))) {
+                        notaBene('tickets_organisation');
+                        return false;
+                    }
+                }
+                var attachs = Tickets.getUploadAttachs();
+                if (!attachs.length) {
+                    var msg = (cur.payType == 1) ? getLang('support_no_bill_photo') : getLang('support_no_payment_scan');
+                    setTimeout(showFastBox({
+                        title: getLang('global_error'),
+                        dark: true,
+                        bodyStyle: 'padding: 20px; line-height: 160%;'
+                    }, msg).hide, 2000);
+                    return false;
+                }
+                break;
+            case 2:
+            case 3:
+            case 5:
+            case 6:
+            case 8:
+            case 9:
+            case 7:
+                if (cur.payType == 2) {
+                    if (cur.paySystem === undefined) {
+                        cur.showPaySysTT();
+                        return false;
+                    } else if (cur.paySystem == 4 && !trim(val('tickets_paysystem_name'))) {
+                        notaBene('tickets_paysystem_name');
+                        return false;
+                    }
+                }
+                if (!floatval(val('tickets_pay_sum'))) {
+                    notaBene('tickets_pay_sum');
+                    return false;
+                }
+                break;
+            default:
+                return false;
+        }
+
+        return true;
+    },
+
+    getPayFields: function() {
+        var res = {};
+        if (cur.payType === undefined) {
+            return res;
+        }
+        res.pay_type = cur.payType;
+        switch (cur.payType) {
+            case 0:
+                res.pay_date = val('tickets_payment_date');
+                res.number_from = cur.phone;
+                if (val('tickets_number_to')) {
+                    res.number_to = trim(val('tickets_number_to'));
+                }
+                if (val('tickets_sms_text')) {
+                    res.sms_text = trim(val('tickets_sms_text'));
+                }
+                if (val('tickets_payed_sum')) {
+                    res.payed_sum = trim(val('tickets_payed_sum'));
+                }
+                break;
+            case 1:
+                res.pay_date = val('tickets_payment_date');
+                res.pay_email = val('tickets_id_email');
+                break;
+            case 2:
+            case 3:
+                res.pay_date = val('tickets_payment_date');
+                res.pay_sum = floatval(val('tickets_pay_sum'));
+                if (cur.payType == 2) {
+                    if (cur.paySystem == 4) {
+                        res.pay_system_name = trim(val('tickets_paysystem_name'));
+                    } else {
+                        res.pay_system = cur.paySystem;
+                    }
+                }
+                break;
+            case 4:
+                res.pay_day = val('tickets_payment_day');
+                res.pay_sum = floatval(val('tickets_pay_sum'));
+                res.pay_org = trim(val('tickets_organisation'));
+                break;
+            case 5:
+            case 6:
+            case 8:
+            case 9:
+            case 7:
+                res.pay_date = val('tickets_payment_date');
+                res.pay_sum = floatval(val('tickets_pay_sum'));
+                break;
+        }
+        return res;
+
+    },
+    getReplyQueryData: function(text, hash, attachs) {
+        var query = {
+            act: 'a_add_comment',
+            ticket_id: cur.ticket_id,
+            text: text,
+            hash: hash,
+            attachs: attachs,
+            hidden: isChecked('tickets_hidden'),
+            copy_to_card: isChecked('copy_reply_to_card')
+        };
+        var _ua = false,
+            _uafull;
+        for (var i in window.browser) {
+            if (window.browser[i] === true) {
+                _ua = i;
+                break;
             }
-            return o
-        },
-        removeReplyDraft: function() {
-            var e = "helpdesk_draft" + vk.id + "_" + cur.ticket_id;
-            ls.get(e) && (ls.set(e, !1), ls.remove(e))
-        },
-        getUploadAttachs: function() {
-            var e = [],
-                t = cur.ticketsNewMedia.chosenMedias;
-            return t && each(t, function(t, a) {
-                var i = a[0],
-                    o = a[1];
-                ("photo" == i || "doc" == i) && e.push(i + "," + o)
-            }), e
-        },
-        addTicketReply: function(e, t) {
-            if (ge("tickets_reply") && ge("tickets_reply").disabled) return !1;
-            var a = trim(val("tickets_reply")),
-                i = Tickets.getUploadAttachs();
-            if (!a && !i.length) return t && Helpdesk && Helpdesk.closeTicket(e), elfocus("tickets_reply");
-            if (cur.sendingAnswer) return !1;
-            cur.sendingAnswer = !0;
-            var o = Tickets.getReplyQueryData(a, e, i);
-            if (o === !1) return !1;
-            if (cur.checkedTickets) {
-                var s = [];
-                each(cur.checkedTickets, function(e, t) {
-                    s.push(e)
-                }), o.similar = s.join(",")
+        }
+        _uafull = _ua ? _ua + " " + window.browser.version : navigator.userAgent.toLowerCase();
+        var f = browser.flashfull;
+        _uafull += "|" + f.major + "." + f.minor + "." + f.rev;
+        query.browser = _uafull;
+        if (cur.samples && cur.samples.audio || ge('audio_checking')) {
+            query.audio_html = ge('audio_checking').innerHTML;
+            var orig = (cur.samples || {}).audio || '';
+            if (window.ag && window.sh) {
+                query.audio_html = query.audio_html.replace(/_info/g, 'vkontakte_info');
             }
-            Tickets.doSendReply(o), delete cur.photoUploadInd
-        },
-        addPayData: function(e) {
-            if (Tickets.checkPayForm() && !cur.sendingAnswer) {
-                var t = trim(val("tickets_reply")),
-                    a = Tickets.getUploadAttachs(),
-                    i = Tickets.getReplyQueryData(t, e, a);
-                extend(i, Tickets.getPayFields()), Tickets.doSendReply(i)
+            if (window.dwnl_video || window.add_js) {
+                query.audio_html = query.audio_html.replace(/_info/g, 'dwnl_info');
             }
-        },
-        checkVkPayForm: function() {
-            var e = val("tickets_vkpay_code"),
-                t = ge("tickets_vkpay_phone"),
-                a = !0;
-            if (e.match(/^\d{4}$/) || (notaBene("tickets_vkpay_code"), a = !1), t) {
-                var i = trim(val(t));
-                i.match(/^[\d\*]{10,}$/) || (notaBene("tickets_vkpay_phone"), a = !1)
+            query.audio_orig = ce('div', {
+                innerHTML: orig.replace(/z9q2m/g, 'audio')
+            }).innerHTML;
+        }
+        if (cur.getReplyDataFields) {
+            var replyData = cur.getReplyDataFields();
+            if (replyData === false) {
+                return false;
             }
-            return a
-        },
-        addVkPayData: function(e) {
-            if (!cur.sendingAnswer && Tickets.checkVkPayForm()) {
-                var t = Tickets.getReplyQueryData("", e, []);
-                extend(t, {
-                    ef: [val("tickets_vkpay_code"), val("tickets_vkpay_phone")]
-                }), Tickets.doSendReply(t)
+            extend(query, replyData);
+        }
+        return query;
+    },
+    removeReplyDraft: function() {
+        var draftKey = 'helpdesk_draft' + vk.id + '_' + cur.ticket_id;
+        if (ls.get(draftKey)) {
+            ls.set(draftKey, false);
+            ls.remove(draftKey);
+        }
+    },
+    getUploadAttachs: function() {
+        var attachs = [],
+            chosen = cur.ticketsNewMedia.chosenMedias;
+        if (chosen) {
+            each(chosen, function(i, att) {
+                var type = att[0],
+                    value = att[1];
+                if (type == 'photo' || type == 'doc') {
+                    attachs.push(type + ',' + value);
+                }
+            });
+        }
+        return attachs;
+    },
+    addTicketReply: function(hash, isCtrlEnter) {
+        if (ge('tickets_reply') && ge('tickets_reply').disabled) {
+            return false;
+        }
+        var text = trim(val('tickets_reply')),
+            attachs = Tickets.getUploadAttachs();
+        if (!text && !attachs.length) {
+            if (isCtrlEnter && Helpdesk) {
+                Helpdesk.closeTicket(hash);
             }
-        },
-        doSendReply: function(query) {
-            Tickets.removeReplyDraft(), cur.sendingAnswer = !0, ajax.post(cur.objLoc, query, {
-                onDone: function(content, script) {
-                    cur.sendingAnswer = !1, content && val("tickets_content", content), script && eval(script)
-                },
-                onFail: function() {
-                    cur.sendingAnswer = !1
-                },
-                showProgress: lockButton.pbind("tickets_send"),
-                hideProgress: unlockButton.pbind("tickets_send")
-            })
-        },
-        checkTextLength: function(e, t, a, i) {
-            var o = trim(e.value).replace(/\n\n\n+/g, "\n\n");
-            if (e.lastLen !== o.length) {
-                var s = e.lastLen = o.length,
-                    r = s - o.replace(/\n/g, "").length;
-                i = i || 10, a = ge(a), s > t - 100 || r > i || ("dmca" == cur.objLoc || "new_dmca" == nav.objLoc.act) && s > 0 ? (show(a), s > t ? a.innerHTML = getLang("text_exceeds_symbol_limit", s - t) : r > i ? a.innerHTML = getLang("global_recommended_lines", r - i) : a.innerHTML = getLang("text_N_symbols_remain", t - s)) : hide(a)
+            return elfocus('tickets_reply');
+        }
+        if (cur.sendingAnswer) {
+            return false;
+        }
+        cur.sendingAnswer = true;
+        var query = Tickets.getReplyQueryData(text, hash, attachs);
+        if (query === false) {
+            return false;
+        }
+        if (cur.checkedTickets) {
+            var tickets = [];
+            each(cur.checkedTickets, function(i, v) {
+                tickets.push(i);
+            });
+            query.similar = tickets.join(',');
+        }
+        Tickets.doSendReply(query);
+        delete cur.photoUploadInd;
+    },
+    addPayData: function(hash) {
+        if (!Tickets.checkPayForm() || cur.sendingAnswer) {
+            return;
+        }
+        var text = trim(val('tickets_reply')),
+            attachs = Tickets.getUploadAttachs();
+        var query = Tickets.getReplyQueryData(text, hash, attachs);
+        extend(query, Tickets.getPayFields());
+        Tickets.doSendReply(query);
+    },
+    checkVkPayForm: function() {
+        var code = val('tickets_vkpay_code'),
+            phoneInp = ge('tickets_vkpay_phone'),
+            ok = true;
+        if (!code.match(/^\d{4}$/)) {
+            notaBene('tickets_vkpay_code');
+            ok = false;
+        }
+        if (phoneInp) {
+            var phone = trim(val(phoneInp));
+            if (!phone.match(/^[\d\*]{10,}$/)) {
+                notaBene('tickets_vkpay_phone');
+                ok = false;
             }
-        },
-        editComment: function(cid, hash, ticket_id) {
-            if (cur.editStarted) return !1;
-            cur.editing && this.cancelEditComment(cur.editing);
-            var cont = geByClass1("tickets_reply_text", ge("reply" + cid)),
-                mrg = "-1px 0 0 -3px",
-                wdt = "530px",
-                picmrg = "0px";
-            return browser.mozilla ? (mrg = "-1px 0 0 -4px", picmrg = "8px") : browser.opera ? (mrg = "1px 0 0 -3px", picmrg = "4px") : browser.msie && (picmrg = "2px"), cur.editStarted = !0, ajax.post(cur.objLoc + "?act=a_get_comment", {
-                ticket_id: cur.ticket_id || ticket_id,
-                cid: cid,
+        }
+        return ok;
+    },
+    addVkPayData: function(hash) {
+        if (cur.sendingAnswer || !Tickets.checkVkPayForm()) {
+            return;
+        }
+        var query = Tickets.getReplyQueryData('', hash, []);
+        extend(query, {
+            ef: [
+                val('tickets_vkpay_code'),
+                val('tickets_vkpay_phone')
+            ]
+        });
+        Tickets.doSendReply(query);
+    },
+    doSendReply: function(query) {
+        Tickets.removeReplyDraft();
+        cur.sendingAnswer = true;
+        ajax.post(cur.objLoc, query, {
+            onDone: function(content, script) {
+                cur.sendingAnswer = false;
+                if (content) {
+                    val('tickets_content', content);
+                }
+                if (script) {
+                    eval(script);
+                }
+            },
+            onFail: function() {
+                cur.sendingAnswer = false;
+            },
+            showProgress: lockButton.pbind('tickets_send'),
+            hideProgress: unlockButton.pbind('tickets_send')
+        });
+    },
+    checkTextLength: function(el, maxLen, warn, maxLines) {
+        var v = trim(el.value).replace(/\n\n\n+/g, '\n\n');
+        if (el.lastLen === v.length) return;
+
+        var realLen = el.lastLen = v.length;
+        var brCount = realLen - v.replace(/\n/g, '').length;
+        maxLines = maxLines || 10;
+
+        warn = ge(warn);
+        if (realLen > maxLen - 100 || brCount > maxLines || (cur.objLoc == 'dmca' || nav.objLoc.act == 'new_dmca') && realLen > 0) {
+            show(warn);
+            if (realLen > maxLen) {
+                warn.innerHTML = getLang('text_exceeds_symbol_limit', realLen - maxLen);
+            } else if (brCount > maxLines) {
+                warn.innerHTML = getLang('global_recommended_lines', brCount - maxLines);
+            } else {
+                warn.innerHTML = getLang('text_N_symbols_remain', maxLen - realLen);
+            }
+        } else {
+            hide(warn);
+        }
+    },
+    editComment: function(cid, hash, ticket_id) {
+        if (cur.editStarted) return false;
+        if (cur.editing) {
+            this.cancelEditComment(cur.editing);
+        }
+        var cont = geByClass1('tickets_reply_text', ge('reply' + cid));
+        var mrg = '-1px 0 0 -3px',
+            wdt = '530px',
+            picmrg = '0px';
+        if (browser.mozilla) {
+            mrg = '-1px 0 0 -4px';
+            picmrg = '8px';
+        } else if (browser.opera) {
+            mrg = '1px 0 0 -3px';
+            picmrg = '4px';
+        } else if (browser.msie) {
+            picmrg = '2px';
+        }
+
+        cur.editStarted = true;
+        ajax.post(cur.objLoc + '?act=a_get_comment', {
+            ticket_id: cur.ticket_id || ticket_id,
+            cid: cid,
+            hash: hash
+        }, {
+            onDone: function(html, cur_data, attachs) {
+                var canAttach = true;
+                if (cur_data) {
+                    if (cur_data.lang) {
+                        cur.lang = extend(cur.lang || {}, cur_data.lang);
+                        delete cur_data.lang;
+                    }
+                    if (cur_data.script) {
+                        eval(cur_data.script);
+                        delete cur_data.script;
+                    }
+                    if (cur_data.noAttaches) {
+                        canAttach = false;
+                        delete cur_data.noAttaches;
+                    }
+                    extend(cur, cur_data);
+                }
+                delete cur.editStarted;
+                cont.parentNode.insertBefore(se(html), cont);
+                if (canAttach) {
+                    var attachOpts = {
+                        limit: 5,
+                        oneClick: cur.oneClickUpload,
+                        target: 'edit'
+                    };
+                    if (cur.addScreenShot) {
+                        attachOpts.photoCallback = cur.addScreenShot;
+                    }
+                    cur.ticketsEditMedia = Tickets.initAddMedia(ge('tis_add_lnk_edit').firstChild, 'tis_preview_edit', cur.mediaTypes, attachOpts);
+                }
+
+                var textDiv = geByClass1('tickets_reply_text', ge('reply' + cid)),
+                    replyInput = ge('reply' + cid + 'edit');
+                setStyle(replyInput, 'height', getSize(textDiv)[1]);
+                hide(textDiv);
+                hide(geByClass1('tickets_reply_actions', ge('reply' + cid)));
+                hide('attachs' + cid);
+
+                show('tickets_reply_edit' + cid);
+
+                autosizeSetup(replyInput, {
+                    minHeight: 34
+                });
+
+                setTimeout(function() {
+                    cur.editing = cid;
+                    if (canAttach) {
+                        for (var i in attachs) {
+                            cur.ticketsEditMedia.chooseMedia(attachs[i][0], attachs[i][1], attachs[i][2]);
+                        }
+                    }
+                    elfocus(replyInput);
+                }, 0);
+            },
+            onFail: function(error) {
+                delete cur.editStarted;
+                hide('reply_actions' + cid);
+                return Tickets.showError(error);
+            }
+        });
+        return false;
+    },
+
+    saveComment: function(event, cid, hash, ticket_id) {
+        if (event && event.keyCode == 27) {
+            this.cancelEditComment(cur.editing);
+            return;
+        }
+        if (event && (event.ctrlKey || event.metaKey && browser.mac) && (event.keyCode == 10 || event.keyCode == 13)) this.doSaveComment(cid, hash, ticket_id);
+    },
+
+    cancelEditComment: function(cid) {
+        show(geByClass1('tickets_reply_text', ge('reply' + cid)));
+        show(geByClass1('tickets_reply_actions', ge('reply' + cid)));
+        show('attachs' + cid);
+        re('tickets_reply_edit' + cid);
+        delete cur.editing;
+    },
+
+    doSaveComment: function(cid, hash, ticket_id) {
+        var v = trim(val('reply' + cid + 'edit'));
+        var attachs = [],
+            chosen = cur.ticketsEditMedia && cur.ticketsEditMedia.chosenMedias || [];
+        if (chosen) {
+            for (var i in chosen) {
+                var att = chosen[i],
+                    type = att[0],
+                    value = att[1];
+                if (type == 'photo' || type == 'doc') {
+                    attachs.push(type + ',' + value);
+                }
+            }
+        }
+        if (!v && !attachs.length) {
+            notaBene('reply' + cid + 'edit');
+            return;
+        }
+        ajax.post(cur.objLoc + '?act=a_edit_comment', {
+            ticket_id: ticket_id,
+            cid: cid,
+            text: v,
+            attachs: attachs,
+            hash: hash
+        }, {
+            onDone: function(text, attachs) {
+                var cont = geByClass1('tickets_reply_text', ge('reply' + cid)),
+                    acts = geByClass1('tickets_reply_actions', ge('reply' + cid));
+                val(cont, text);
+                show(geByClass1('tickets_reply_text', ge('reply' + cid)));
+                show(acts);
+                show('attachs' + cid);
+                if (attachs !== 0) {
+                    if (attachs) {
+                        var attNode = ge('attachs' + cid);
+                        if (!attNode) {
+                            attNode = acts.parentNode.insertBefore(ce('div', {
+                                id: 'attachs' + cid,
+                                className: 'clear_fix tr_attachs'
+                            }), acts);
+                        }
+                        val(attNode, attachs);
+                    } else {
+                        re('attachs' + cid);
+                    }
+                }
+                re('tickets_reply_edit' + cid);
+                delete cur.editing;
+            },
+            onFail: function(error) {
+                hide('reply_actions' + cid);
+                return Tickets.showError(error);
+            },
+            showProgress: lockButton.pbind('save_butn' + cid),
+            hideProgress: unlockButton.pbind('save_butn' + cid)
+        });
+    },
+    deleteComment: function(ticketId, replyId, hash) {
+        ajax.post(cur.objLoc + '?act=a_delete_comment', {
+            ticket_id: ticketId,
+            reply_id: replyId,
+            hash: hash
+        }, {
+            onDone: function(res) {
+                var cont = domFC(ge('reply' + replyId));
+                if (cont) {
+                    if (!cur.deletedComments) cur.deletedComments = [];
+                    cur.deletedComments[replyId] = val(cont);
+                    val(cont, res);
+                }
+            },
+            onFail: function(error) {
+                hide('reply_actions' + replyId);
+                return Tickets.showError(error);
+            }
+        });
+        return false;
+    },
+    restoreComment: function(cid, hash, ticket_id) {
+        ajax.post(cur.objLoc + '?act=a_restore_comment', {
+            ticket_id: cur.ticket_id || ticket_id,
+            cid: cid,
+            hash: hash
+        }, {
+            onDone: function(res) {
+                var cont = ge('reply' + cid).firstChild;
+                if (cont) {
+                    val(cont, cur.deletedComments[cid]);
+                }
+            },
+            onFail: function(error) {
+                hide('reply_actions' + cid);
+                return Tickets.showError(error);
+            }
+        });
+        return false;
+    },
+    rateComment: function(reply_id, rate, hash) {
+        if (cur.replyRating) return false;
+        cur.replyRating = true;
+        ajax.post('support?act=a_rate_comment', {
+            ticket_id: cur.ticket_id,
+            reply_id: reply_id,
+            rate: rate,
+            hash: hash
+        }, {
+            onDone: function(text) {
+                delete cur.replyRating;
+                ge('reply_actions' + reply_id).innerHTML = text;
+            },
+            onFail: function() {
+                delete cur.replyRating;
+            }
+        });
+        return false;
+    },
+    deleteTicket: function(ticket_id, hash) {
+        var box = showFastBox({
+            title: getLang('support_delete_title'),
+            dark: true,
+            bodyStyle: 'padding: 20px; line-height: 160%;',
+            width: 430
+        }, getLang('support_delete_confirm'), getLang('support_delete_button'), function() {
+            ajax.post(cur.objLoc + '?act=a_delete', {
+                ticket_id: ticket_id,
                 hash: hash
             }, {
-                onDone: function(html, cur_data, attachs) {
-                    var canAttach = !0;
-                    if (cur_data && (cur_data.lang && (cur.lang = extend(cur.lang || {}, cur_data.lang), delete cur_data.lang), cur_data.script && (eval(cur_data.script), delete cur_data.script), cur_data.noAttaches && (canAttach = !1, delete cur_data.noAttaches), extend(cur, cur_data)), delete cur.editStarted, cont.parentNode.insertBefore(se(html), cont), canAttach) {
-                        var attachOpts = {
-                            limit: 5,
-                            oneClick: cur.oneClickUpload,
-                            target: "edit"
-                        };
-                        cur.addScreenShot && (attachOpts.photoCallback = cur.addScreenShot), cur.ticketsEditMedia = Tickets.initAddMedia(ge("tis_add_lnk_edit").firstChild, "tis_preview_edit", cur.mediaTypes, attachOpts)
-                    }
-                    var textDiv = geByClass1("tickets_reply_text", ge("reply" + cid)),
-                        replyInput = ge("reply" + cid + "edit");
-                    setStyle(replyInput, "height", getSize(textDiv)[1]), hide(textDiv), hide(geByClass1("tickets_reply_actions", ge("reply" + cid))), hide("attachs" + cid), show("tickets_reply_edit" + cid), autosizeSetup(replyInput, {
-                        minHeight: 34
-                    }), setTimeout(function() {
-                        if (cur.editing = cid, canAttach)
-                            for (var e in attachs) cur.ticketsEditMedia.chooseMedia(attachs[e][0], attachs[e][1], attachs[e][2]);
-                        elfocus(replyInput)
-                    }, 0)
-                },
-                onFail: function(e) {
-                    return delete cur.editStarted, hide("reply_actions" + cid), Tickets.showError(e)
+                progress: box.progress,
+                onFail: function(text) {
+                    box.hide();
                 }
-            }), !1
-        },
-        saveComment: function(e, t, a, i) {
-            return e && 27 == e.keyCode ? void this.cancelEditComment(cur.editing) : void(e && (e.ctrlKey || e.metaKey && browser.mac) && (10 == e.keyCode || 13 == e.keyCode) && this.doSaveComment(t, a, i))
-        },
-        cancelEditComment: function(e) {
-            show(geByClass1("tickets_reply_text", ge("reply" + e))), show(geByClass1("tickets_reply_actions", ge("reply" + e))), show("attachs" + e), re("tickets_reply_edit" + e), delete cur.editing
-        },
-        doSaveComment: function(e, t, a) {
-            var i = trim(val("reply" + e + "edit")),
-                o = [],
-                s = cur.ticketsEditMedia && cur.ticketsEditMedia.chosenMedias || [];
-            if (s)
-                for (var r in s) {
-                    var n = s[r],
-                        c = n[0],
-                        l = n[1];
-                    ("photo" == c || "doc" == c) && o.push(c + "," + l)
-                }
-            return i || o.length ? void ajax.post(cur.objLoc + "?act=a_edit_comment", {
-                ticket_id: a,
-                cid: e,
-                text: i,
-                attachs: o,
-                hash: t
-            }, {
-                onDone: function(t, a) {
-                    var i = geByClass1("tickets_reply_text", ge("reply" + e)),
-                        o = geByClass1("tickets_reply_actions", ge("reply" + e));
-                    if (val(i, t), show(geByClass1("tickets_reply_text", ge("reply" + e))), show(o), show("attachs" + e), 0 !== a)
-                        if (a) {
-                            var s = ge("attachs" + e);
-                            s || (s = o.parentNode.insertBefore(ce("div", {
-                                id: "attachs" + e,
-                                className: "clear_fix tr_attachs"
-                            }), o)), val(s, a)
-                        } else re("attachs" + e);
-                    re("tickets_reply_edit" + e), delete cur.editing
-                },
-                onFail: function(t) {
-                    return hide("reply_actions" + e), Tickets.showError(t)
-                },
-                showProgress: lockButton.pbind("save_butn" + e),
-                hideProgress: unlockButton.pbind("save_butn" + e)
-            }) : void notaBene("reply" + e + "edit")
-        },
-        deleteComment: function(e, t, a) {
-            return ajax.post(cur.objLoc + "?act=a_delete_comment", {
-                ticket_id: e,
-                reply_id: t,
-                hash: a
-            }, {
-                onDone: function(e) {
-                    var a = domFC(ge("reply" + t));
-                    a && (cur.deletedComments || (cur.deletedComments = []), cur.deletedComments[t] = val(a), val(a, e))
-                },
-                onFail: function(e) {
-                    return hide("reply_actions" + t), Tickets.showError(e)
-                }
-            }), !1
-        },
-        restoreComment: function(e, t, a) {
-            return ajax.post(cur.objLoc + "?act=a_restore_comment", {
-                ticket_id: cur.ticket_id || a,
-                cid: e,
-                hash: t
-            }, {
-                onDone: function(t) {
-                    var a = ge("reply" + e).firstChild;
-                    a && val(a, cur.deletedComments[e])
-                },
-                onFail: function(t) {
-                    return hide("reply_actions" + e), Tickets.showError(t)
-                }
-            }), !1
-        },
-        rateComment: function(e, t, a) {
-            return cur.replyRating ? !1 : (cur.replyRating = !0, ajax.post("support?act=a_rate_comment", {
-                ticket_id: cur.ticket_id,
-                reply_id: e,
-                rate: t,
-                hash: a
-            }, {
-                onDone: function(t) {
-                    delete cur.replyRating, ge("reply_actions" + e).innerHTML = t
-                },
-                onFail: function() {
-                    delete cur.replyRating
-                }
-            }), !1)
-        },
-        deleteTicket: function(e, t) {
-            var a = showFastBox({
-                title: getLang("support_delete_title"),
-                dark: !0,
-                bodyStyle: "padding: 20px; line-height: 160%;",
-                width: 430
-            }, getLang("support_delete_confirm"), getLang("support_delete_button"), function() {
-                ajax.post(cur.objLoc + "?act=a_delete", {
-                    ticket_id: e,
-                    hash: t
-                }, {
-                    progress: a.progress,
-                    onFail: function(e) {
-                        a.hide()
-                    }
-                })
-            }, getLang("global_cancel"));
-            return !1
-        },
-        showMsg: function(e) {
-            var t = ge("tickets_msg");
-            if (!t) {
-                var a;
-                switch (cur.section) {
-                    case "list":
-                        a = ge("tickets_list");
-                        break;
-                    case "new_faq":
-                        a = ge("tickets_faq_msg"), show("tickets_faq_msg");
-                        break;
-                    case "show":
-                    default:
-                        a = ge("tickets_reply_rows")
-                }
-                a && (t = a.insertBefore(ce("div", {
-                    id: "tickets_msg",
-                    className: "msg"
-                }), a.firstChild))
-            }
-            return re("tickets_error"), t && (t.innerHTML = e, t.style.backgroundColor = "#F4EBBD", animate(t, {
-                backgroundColor: "#F9F6E7"
-            }, 2e3)), !0
-        },
-        showError: function(e) {
-            var t = ge("tickets_error");
-            if (!t) {
-                var a;
-                switch (cur.section) {
-                    case "list":
-                        a = ge("tickets_list");
-                        break;
-                    case "new_faq":
-                        a = ge("tickets_faq_msg"), show("tickets_faq_msg");
-                        break;
-                    case "history":
-                    case "show":
-                    default:
-                        a = ge("tickets_reply_rows")
-                }
-                a && (t = a.insertBefore(ce("div", {
-                    id: "tickets_error",
-                    className: "error"
-                }), a.firstChild))
-            }
-            return re("tickets_msg"), hide("tickets_progress"), t && (t.innerHTML = e, t.style.backgroundColor = "#FACEBB", animate(t, {
-                backgroundColor: "#FFEFE8"
-            }, 2e3)), scrollToTop(200), !0
-        },
-        closeTicketByAuthor: function(e) {
-            ajax.post("support?act=a_close_ticket_by_author", {
-                ticket_id: cur.ticket_id,
-                hash: e
-            }, {
-                onDone: addClass.pbind("tickets_thank_you_form", "you_re_welcome"),
-                showProgress: addClass.pbind("tickets_thank_you_form", "processing"),
-                hideProgress: removeClass.pbind("tickets_thank_you_form", "processing")
-            })
-        },
-        reopenTicketByAuthor: function(e) {
-            return ajax.post("support?act=a_reopen_ticket_by_author", {
-                ticket_id: cur.ticket_id,
-                hash: e
-            }, {
-                onDone: removeClass.pbind("tickets_thank_you_form", "you_re_welcome"),
-                showProgress: addClass.pbind("tickets_thank_you_form", "processing"),
-                hideProgress: removeClass.pbind("tickets_thank_you_form", "processing")
-            }), !1
-        },
-        showPostField: function() {
-            hide("tickets_thank_you_form"), addClass("tickets_post_form__panel", "tickets_post_form__panel_shown"), show("tickets_post_field"), autosizeSetup("tickets_reply", {
-                minHeight: 50,
-                maxHeight: 500
-            }), elfocus("tickets_reply")
-        },
-        hidePostField: function() {
-            show("tickets_thank_you_form"), hide("tickets_post_field")
-        },
-        showAllReplies: function() {
-            var link = ge("show_all_replies_link"),
-                pr = geByClass1("progress", link),
-                label = geByClass1("label", link);
-            return hide(label), show(pr), ajax.post(cur.objLoc, {
-                act: "show",
-                id: cur.ticket_id,
-                all: 1
-            }, {
-                onDone: function(content, script) {
-                    content && val("tickets_reply_rows", content), script && eval(script)
-                },
-                onFail: function() {
-                    show(label), hide(pr)
-                }
-            }), !1
-        },
-        showPhoto: function(e, t, a) {
-            var i = curBox();
-            if (!i) return showPhoto(e, t, a);
-            var o = [];
-            each(geByTag("button", i.bodyNode.nextElementSibling), function() {
-                o.push([this.innerHTML, this.onclick, hasClass(this, "flat_button") ? "yes" : "no"])
-            }), cur.boxBackup = {
-                body: document.createDocumentFragment(),
-                width: getSize(i.bodyNode.parentNode)[0],
-                hideButtons: !isVisible(i.bodyNode.nextElementSibling),
-                bodyStyle: i.bodyNode.getAttribute("style"),
-                title: val(geByClass1("box_title", i.bodyNode.previousElementSibling)),
-                btns: o
-            };
-            var s = i.bodyNode;
-            return cur.scrollTopBack = boxLayerWrap.scrollTop, a.onShow = function() {
-                for (; s.firstChild;) cur.boxBackup.body.appendChild(s.firstChild)
-            }, a.onHide = function() {
-                box = showFastBox("", ""), box.setOptions({
-                    hideButtons: cur.boxBackup.hideButtons,
-                    title: cur.boxBackup.title,
-                    bodyStyle: cur.boxBackup.bodyStyle,
-                    width: cur.boxBackup.width
-                }), box.bodyNode.appendChild(cur.boxBackup.body), cur.boxBackup.btns && (box.removeButtons(), each(cur.boxBackup.btns.reverse(), function() {
-                    box.addButton.apply(box, this)
-                })), box.setOptions({}), boxLayerWrap.scrollTop = cur.scrollTopBack
-            }, showPhoto(e, t, a)
-        },
-        showAddScreenBox: function(e) {
-            var t = {
-                title: getLang("support_adding_screen"),
-                width: 450,
-                bodyStyle: "padding: 0px",
-                dark: 1
-            };
-            return e && (t.onShow = e), showFastBox(t, cur.screenBox)
-        },
-        showAddDocBox: function(e) {
-            var t = {
-                title: getLang("support_adding_doc"),
-                width: 450,
-                bodyStyle: "padding: 0px",
-                dark: 1
-            };
-            return e && (t.onShow = e), showFastBox(t, cur.docBox)
-        },
-        showAddExtraFieldFileBox: function(e, t) {
-            return showFastBox({
-                onShow: Tickets.initExtraFieldUpload.pbind("tis_add_data", {
-                    hideOnStart: !0,
-                    fieldIndex: e,
-                    withSize: t
-                }),
-                title: getLang("support_adding_image"),
-                width: 460,
-                bodyStyle: "padding: 0px",
-                dark: 1,
-                hideButtons: !0
-            }, cur.extraFieldsBox)
-        },
-        choosePhotoUploaded: function(e, t, a) {
-            var i = void 0 !== e.ind ? e.ind : e,
-                o = (e.fileName || e).replace(/[&<>"']/g, ""),
-                s = e.fileName ? i + "_" + e.fileName : e,
-                r = ge("upload" + s + "_progress_wrap");
-            r && hide(geByClass1("progress_x", r)), ajax.post("al_photos.php", extend({
-                act: "choose_uploaded_support"
-            }, t), {
-                onDone: function(e, t) {
-                    a.chooseMedia("photo", e, extend(t, {
-                        upload_ind: i + "_" + o
-                    }))
-                },
-                onFail: Tickets.chooseFail.pbind(a, e)
-            })
-        },
-        chooseDocUploaded: function(e, t, a) {
-            var i = void 0 !== e.ind ? e.ind : e,
-                o = e.fileName ? i + "_" + e.fileName : e,
-                s = ge("upload" + o + "_progress_wrap");
-            s && hide(geByClass1("progress_x", s)), ajax.post("docs.php", extend({
-                act: "a_save_doc",
-                from: "choose",
-                support_hash: cur.uploadDocData.support_hash
-            }, t), {
-                onDone: function(e, t, i) {
-                    re("upload" + o + "_progress_wrap");
-                    var s = curBox();
-                    s && (cur.preventBoxHide = !0), a.chooseMedia("doc", e + "_" + t, i), s && (cur.preventBoxHide = !1)
-                },
-                onFail: Tickets.chooseFail.pbind(a, e)
-            })
-        },
-        chooseExtraFieldUploaded: function(e, t, a) {
-            var i = void 0 !== t.ind ? t.ind : t,
-                o = (t.fileName || t).replace(/[&<>"']/g, ""),
-                s = t.fileName ? i + "_" + t.fileName : t,
-                r = ge("upload" + s + "_progress_wrap");
-            r && hide(geByClass1("progress_x", r)), ajax.post("al_photos.php", extend({
-                act: "choose_uploaded_support"
-            }, a), {
-                onDone: function(t, a) {
-                    Tickets.chooseExtraFieldComplete(e, t, extend(a, {
-                        upload_ind: i + "_" + o
-                    }))
-                },
-                onFail: function(e) {
-                    Tickets.chooseFail(null, t, e)
-                },
-                hideProgress: removeClass.pbind("tickets_new_extra_field__uploaded_" + e, "tickets_new_extra_field__uploaded_p")
-            })
-        },
-        removeExtraFieldFile: function(e, t) {
-            var a = e.target.parentNode;
-            a.tt && a.tt.hide && a.tt.hide();
-            var i = ge("tickets_new_extra_field__uploaded_" + t);
-            removeClass(i, "tickets_new_extra_field__uploaded_c"), removeClass(i, "tickets_new_extra_field__uploaded_p"), re("tickets_new_extra_field__file_" + t), hide("tis_add_lnk"), show("tickets_new_extra_field__upload_btn_" + t, "tickets_new_extra_field__example_" + t), data(ge("tickets_new_extra_field_" + t), "value", "")
-        },
-        allExtraFieldFilesUploaded: function() {
-            var e = !0,
-                t = ge("tickets_new_extra_fields"),
-                a = t ? geByClass("_ef_file", t) : [];
-            return each(a, function(t, a) {
-                var i = data(a, "value");
-                return i ? void 0 : (e = !1, !1)
-            }), e
-        },
-        chooseExtraFieldComplete: function(e, t, a) {
-            if (void 0 === a.upload_ind) return !1;
-            isObject(a) || (a = {
-                thumb_m: a[0] || "",
-                thumb_s: a[1] || "",
-                list: a[2] || "",
-                view_opts: a[3] || "",
-                upload_ind: a.upload_ind || void 0
-            }), vkImage().src = a.thumb_m;
-            var i = "<div onclick=\"return Tickets.showPhoto('" + t + "', '" + a.list + "', " + a.view_opts.replace(/"/g, "&quot;") + ');" class="fl_l page_preview_photo"><img class="page_preview_photo" src="' + a.thumb_m + '" /></div>',
-                o = se('<div class="page_preview_photo_wrap" id="tickets_new_extra_field__file_' + e + '">' + i + '<div class="page_media_x_wrap inl_bl" ' + (browser.msie ? "title" : "tootltip") + '="' + getLang("dont_attach") + '" onmouseover="if (browser.msie) return; showTooltip(this, {text: this.getAttribute(\'tootltip\'), shift: [13, 3, 3], black: 1})"><div class="page_media_x" onclick="Tickets.removeExtraFieldFile(event, ' + e + ');"></div></div></div>');
-            re("upload" + a.upload_ind + "_progress_wrap"), data(ge("tickets_new_extra_field_" + e), "value", t);
-            var s = ge("tickets_new_extra_field__uploaded_" + e);
-            return s.appendChild(o), removeClass(s, "tickets_new_extra_field__uploaded_p"), addClass(s, "tickets_new_extra_field__uploaded_c"), cur.fileApiUploadStarted || boxQueue.hideLast(), cur.lastPostMsg = !1, void 0 !== a.upload_ind && delete a.upload_ind, Tickets.allExtraFieldFilesUploaded() && show("tis_add_lnk"), !1
-        },
-        chooseFail: function(e, t, a) {
-            var i = void 0 !== t.ind ? t.ind : t;
-            (t.fileName || t).replace(/[&<>"']/g, "");
-            if ("fileApi" == Upload.types[i] && !Upload.options[i].wiki_editor) {
-                var o = t.fileName ? i + "_" + t.fileName : t;
-                e && re("upload" + o + "_progress_wrap")
-            }
-            var s = "",
-                r = (Upload.options[i] || {}).type || "";
-            "doc" == r ? s = getLang("support_upload_fail") : "photo" == r && (s = getLang("support_photo_upload_fail")), s && setTimeout(showFastBox({
-                title: getLang("global_error"),
-                dark: 1,
-                bodyStyle: "padding: 20px; line-height: 160%;"
-            }, s).hide, 4e3), topError("Upload failed", {
-                dt: -1,
-                type: 102,
-                url: (ge("file_uploader_form" + i) || {}).action
-            }), Upload.embed(i)
-        },
-        initPhotoUpload: function(el, params) {
-            if (el = ge(el)) {
-                var uploadData = cur.uploadPhotoData,
-                    opts = (uploadData || {}).options,
-                    addMedia;
-                switch (params.target) {
-                    case "auto":
-                        addMedia = cur.ticketsAutoMedia, uploadData = cur.autoUploadData, opts = uploadData.options;
-                        break;
-                    case "template":
-                        addMedia = cur.ticketsTemplateMedia, uploadData = cur.templateUploadData, opts = uploadData.options;
-                        break;
-                    case "edit":
-                        addMedia = cur.ticketsEditMedia;
-                        break;
-                    case "new":
-                    default:
-                        addMedia = cur.ticketsNewMedia
-                }
-                if (addMedia) return Upload.init(el, uploadData.url, uploadData.vars, {
-                    file_name: "photo",
-                    file_size_limit: 5242880,
-                    file_types_description: "Image files (*.jpg, *.jpeg, *.png, *.gif)",
-                    file_types: "*.jpg;*.JPG;*.jpeg;*.JPEG;*.png;*.PNG;*.gif;*.GIF",
-                    accept: "image/jpeg,image/png,image/gif",
-                    file_match: ".(gif|jpg|jpeg|png)$",
-                    lang: opts.lang,
-                    onUploadStart: function(e, t) {
-                        var a = void 0 !== e.ind ? e.ind : e,
-                            i = Upload.options[a];
-                        "form" == Upload.types[a] && (geByClass1("file", el).disabled = !0), "fileApi" == Upload.types[a] && (cur.notStarted && (params && params.hideOnStart && boxQueue.hideLast(), delete cur.notStarted), i.multi_progress && this.onUploadProgress(e, 0, 0))
-                    },
-                    onUploadComplete: function(info, res) {
-                        var params;
-                        try {
-                            params = eval("(" + res + ")")
-                        } catch (e) {
-                            params = q2ajx(res)
-                        }
-                        return params.photos ? void Tickets.choosePhotoUploaded(info, params, addMedia) : void Upload.onUploadError(info)
-                    },
-                    onUploadProgress: function(e, t, a) {
-                        var i = void 0 !== e.ind ? e.ind : e;
-                        if ("fileApi" == Upload.types[i]) {
-                            var o = (cur.attachMediaIndexes || {})[i];
-                            if (void 0 === o || o && cur.addMedia[o].chosenMedia) {
-                                var s = {
-                                    loaded: t,
-                                    total: a
-                                };
-                                e.fileName && (s.fileName = e.fileName.replace(/[&<>"']/g, "")), addMedia.showMediaProgress("photo", i, s)
-                            }
-                        } else if ("flash" == Upload.types[i]) {
-                            if (!ge("form" + i + "_progress")) {
-                                for (var r = Upload.obj[i], n = getSize(r)[1], c = n / 2 + 10, l = r.firstChild; l;) 1 == l.nodeType && (l.id == "uploader" + i && browser.msie ? setStyle(l, {
-                                    position: "relative",
-                                    left: "-5000px"
-                                }) : setStyle(l, {
-                                    visibility: "hidden"
-                                })), l = l.nextSibling;
-                                r.appendChild(ce("div", {
-                                    innerHTML: '<div class="tickets_progress_wrap">            <div id="form' + i + '_progress" class="tickets_progress" style="width: 0%;"></div>          </div></div>'
-                                }, {
-                                    height: c + "px",
-                                    marginTop: -c + "px"
-                                }))
-                            }
-                            var d = intval(t / a * 100);
-                            setStyle(ge("form" + i + "_progress"), {
-                                width: d + "%"
-                            })
-                        }
-                    },
-                    onUploadError: Tickets.chooseFail.pbind(addMedia),
-                    onUploadCompleteAll: function(e) {
-                        var t = void 0 !== e.ind ? e.ind : e;
-                        "fileApi" !== Upload.types[t] && (params.hideOnStart ? boxQueue.hideLast() : Upload.embed(t))
-                    },
-                    multiple: 1,
-                    multi_progress: 1,
-                    max_files: params && params.max_files || 5,
-                    max_files_hide_last: 1,
-                    clear: 1,
-                    type: "photo",
-                    max_attempts: 3,
-                    file_input: cur.uploadInput,
-                    server: opts.server,
-                    error: opts.default_error,
-                    error_hash: opts.error_hash,
-                    dropbox: "tis_dropbox"
-                })
-            }
-        },
-        initDocUpload: function(el, params) {
-            if (el = ge(el)) {
-                var uploadData = params.uploadData || cur.uploadDocData,
-                    opts = uploadData.options,
-                    addMedia;
-                switch (params.target) {
-                    case "auto":
-                        addMedia = cur.ticketsAutoMedia;
-                        break;
-                    case "template":
-                        addMedia = cur.ticketsTemplateMedia;
-                        break;
-                    case "edit":
-                        addMedia = cur.ticketsEditMedia;
-                        break;
-                    case "new":
-                    default:
-                        addMedia = cur.ticketsNewMedia
-                }
-                if (addMedia) return Upload.init(el, uploadData.url, uploadData.vars, {
-                    file_name: "file",
-                    file_size_limit: 209715200,
-                    file_types_description: "Documents",
-                    file_types: "*.*;",
-                    file_disallowed_types: params.disallowedFileTypes ? params.disallowedFileTypes : !1,
-                    lang: opts.lang,
-                    onUploadStart: function(e, t) {
-                        var a = void 0 !== e.ind ? e.ind : e,
-                            i = Upload.options[a];
-                        "form" == Upload.types[a] && (geByClass1("file", el).disabled = !0), "fileApi" == Upload.types[a] && (cur.notStarted && (params && params.hideOnStart && boxQueue.hideLast(), delete cur.notStarted), i.multi_progress && this.onUploadProgress(e, 0, 0))
-                    },
-                    onUploadComplete: function(info, res) {
-                        var fileName = (info.fileName || info).replace(/[&<>"']/g, ""),
-                            params;
-                        try {
-                            params = eval("(" + res + ")")
-                        } catch (e) {
-                            params = q2ajx(res)
-                        }
-                        return params.file ? void Tickets.chooseDocUploaded(info, params, addMedia) : void Upload.onUploadError(info)
-                    },
-                    onUploadProgress: function(e, t, a) {
-                        var i = void 0 !== e.ind ? e.ind : e;
-                        if ("fileApi" == Upload.types[i]) {
-                            var o = (cur.attachMediaIndexes || {})[i];
-                            if (void 0 === o || o && cur.addMedia[o].chosenMedia) {
-                                var s = {
-                                    loaded: t,
-                                    total: a
-                                };
-                                e.fileName && (s.fileName = e.fileName.replace(/[&<>"']/g, "")), addMedia.showMediaProgress("doc", i, s)
-                            }
-                        } else if ("flash" == Upload.types[i]) {
-                            if (!ge("form" + i + "_progress")) {
-                                for (var r = Upload.obj[i], n = getSize(r)[1], c = n / 2 + 10, l = r.firstChild; l;) 1 == l.nodeType && (l.id == "uploader" + i && browser.msie ? setStyle(l, {
-                                    position: "relative",
-                                    left: "-5000px"
-                                }) : setStyle(l, {
-                                    visibility: "hidden"
-                                })), l = l.nextSibling;
-                                r.appendChild(ce("div", {
-                                    innerHTML: '<div class="tickets_progress_wrap">            <div id="form' + i + '_progress" class="tickets_progress" style="width: 0%;"></div>          </div></div>'
-                                }, {
-                                    height: c + "px",
-                                    marginTop: -c + "px"
-                                }))
-                            }
-                            var d = intval(t / a * 100);
-                            setStyle(ge("form" + i + "_progress"), {
-                                width: d + "%"
-                            })
-                        }
-                    },
-                    onCheckComplete: params && params.onCheckComplete || !1,
-                    onUploadError: Tickets.chooseFail.pbind(addMedia),
-                    onUploadCompleteAll: function(e) {
-                        var t = void 0 !== e.ind ? e.ind : e;
-                        "fileApi" !== Upload.types[t] && (params.hideOnStart ? boxQueue.hideLast() : Upload.embed(t))
-                    },
-                    multiple: 1,
-                    multi_progress: 1,
-                    max_files: params && params.max_files || 5,
-                    max_files_hide_last: 1,
-                    clear: 1,
-                    type: "doc",
-                    max_attempts: 3,
-                    file_input: cur.uploadInput,
-                    server: opts.server,
-                    error: opts.default_error,
-                    error_hash: opts.error_hash,
-                    dropbox: "tis_dropbox"
-                })
-            }
-        },
-        showExtraFieldProgress: function(e, t, a, i) {
-            var o = a.loaded / a.total,
-                s = intval(100 * o),
-                r = (a.fileName || a.name || "").replace(/[&<>"']/g, ""),
-                n = r ? t + "_" + r : t,
-                c = r ? r.length > 33 ? r.substr(0, 30) + "..." : r : "",
-                l = ge("upload" + n + "_progress");
-            if (l)
-                if (show(l), l.full) {
-                    var d = a(l, "tween"),
-                        _ = intval(l.full * o);
-                    d && d.isTweening ? d.to.width = _ : animate(l, {
-                        width: _ + "px"
-                    }, 500)
-                } else setStyle(l, {
-                    width: s + "%"
-                });
-            else {
-                hide("tickets_new_extra_field__upload_btn_" + e, "tickets_new_extra_field__example_" + e);
-                var u = ge("tickets_new_extra_field__uploaded_" + e);
-                addClass(u, "tickets_new_extra_field__uploaded_p"), cur.attachMediaIndexes || (cur.attachMediaIndexes = {}), cur.attachMediaIndexes[n] = i;
-                var p = '<div><div class="page_attach_progress_wrap">  <div id="upload' + n + '_progress" class="page_attach_progress"></div></div></div></div>' + (c ? '<div class="attach_label">' + c + "</div>" : "") + '<div class="progress_x" onmouseover="showTooltip(this, {text: \'' + getLang("dont_attach") + '\', shift: [6, 3, 3]})" onclick="Upload.terminateUpload(' + t + ", '" + (r || t) + "');\"></div>";
-                u.appendChild(ce("div", {
-                    id: "upload" + n + "_progress_wrap",
-                    innerHTML: p,
-                    className: "clear_fix upload_" + t + "_progress"
-                })), show(u), l = ge("upload" + n + "_progress"), l.full = !1, s ? setStyle(l, {
-                    width: l.full ? intval(l.full * o) + "px" : s + "%"
-                }) : (setStyle(l, {
-                    width: "1px"
-                }), hide(l))
-            }
-        },
-        initExtraFieldUpload: function(el, params) {
-            if (el = ge(el)) {
-                var about = ge("tis_about");
-                about && (about.innerHTML = getLang(params.withSize ? "support_extra_field_limits_photo" : "support_extra_field_limits"));
-                var uploadData = cur.uploadExtraFieldsData,
-                    opts = uploadData.options,
-                    fieldIndex = params.fieldIndex;
-                return Upload.init(el, uploadData.url, uploadData.vars, {
-                    file_name: "file",
-                    file_size_limit: 10485760,
-                    file_types_description: "Image files (*.jpg, *.jpeg, *.png)",
-                    file_types: "*.jpg;*.JPG;*.jpeg;*.JPEG;*.png;*.PNG",
-                    accept: "image/jpeg,image/png",
-                    file_match: ".(jpg|jpeg|png)$",
-                    lang: opts.lang,
-                    onUploadStart: function(e, t) {
-                        var a = void 0 !== e.ind ? e.ind : e,
-                            i = Upload.options[a];
-                        "form" == Upload.types[a] && (geByClass1("file", el).disabled = !0), "fileApi" == Upload.types[a] && (cur.notStarted && (params && params.hideOnStart && boxQueue.hideLast(), delete cur.notStarted), i.multi_progress && this.onUploadProgress(e, 0, 0))
-                    },
-                    onUploadComplete: function(info, res) {
-                        var params;
-                        try {
-                            params = eval("(" + res + ")")
-                        } catch (e) {
-                            params = q2ajx(res)
-                        }
-                        return params.photos ? void Tickets.chooseExtraFieldUploaded(fieldIndex, info, params) : void Upload.onUploadError(info)
-                    },
-                    onUploadProgress: function(e, t, a) {
-                        var i = void 0 !== e.ind ? e.ind : e;
-                        if ("fileApi" == Upload.types[i]) {
-                            var o = (cur.attachMediaIndexes || {})[i],
-                                s = {
-                                    loaded: t,
-                                    total: a
-                                };
-                            e.fileName && (s.fileName = e.fileName.replace(/[&<>"']/g, "")), Tickets.showExtraFieldProgress(fieldIndex, i, s, o)
-                        } else if ("flash" == Upload.types[i]) {
-                            if (!ge("form" + i + "_progress")) {
-                                for (var r = Upload.obj[i], n = getSize(r)[1], c = n / 2 + 10, l = r.firstChild; l;) 1 == l.nodeType && (l.id == "uploader" + i && browser.msie ? setStyle(l, {
-                                    position: "relative",
-                                    left: "-5000px"
-                                }) : setStyle(l, {
-                                    visibility: "hidden"
-                                })), l = l.nextSibling;
-                                r.appendChild(ce("div", {
-                                    innerHTML: '<div class="tickets_progress_wrap">          <div id="form' + i + '_progress" class="tickets_progress" style="width: 0%;"></div>        </div></div>'
-                                }, {
-                                    height: c + "px",
-                                    marginTop: -c + "px"
-                                }))
-                            }
-                            var d = intval(t / a * 100);
-                            setStyle(ge("form" + i + "_progress"), {
-                                width: d + "%"
-                            })
-                        }
-                    },
-                    onCheckComplete: !1,
-                    onUploadError: function() {},
-                    onUploadCompleteAll: function(e) {
-                        var t = void 0 !== e.ind ? e.ind : e;
-                        "fileApi" !== Upload.types[t] && (params.hideOnStart ? boxQueue.hideLast() : Upload.embed(t))
-                    },
-                    multiple: !1,
-                    multi_progress: 1,
-                    clear: 1,
-                    type: "photo",
-                    max_attempts: 3,
-                    file_input: null,
-                    server: opts.server,
-                    error: opts.default_error,
-                    error_hash: opts.error_hash,
-                    dropbox: "tis_dropbox"
-                })
-            }
-        },
-        __getFormUploadIds: function(e) {
-            switch (e) {
-                case "auto":
-                    return ["tis_upload_auto", "tis_uploader_auto"];
-                case "template":
-                    return ["tis_upload_template", "tis_uploader_template"];
-                case "edit":
-                    return ["tis_upload_edit", "tis_uploader_edit"];
-                case "new":
+            });
+        }, getLang('global_cancel'));
+        return false;
+    },
+    showMsg: function(text) {
+        var msg = ge('tickets_msg');
+        if (!msg) {
+            var parent;
+            switch (cur.section) {
+                case 'list':
+                    parent = ge('tickets_list');
+                    break;
+                case 'new_faq':
+                    parent = ge('tickets_faq_msg');
+                    show('tickets_faq_msg');
+                    break;
+                case 'show':
                 default:
-                    return ["tis_upload", "tis_uploader"]
+                    parent = ge('tickets_reply_rows');
+                    break;
             }
-        },
-        __photoMediaHandler: function(e) {
-            var t = e.target || "new";
-            stManager.add("upload.js", function() {
-                e.photoCallback ? (cur.lastMediaTarget = t, e.photoCallback()) : e.oneClick ? ge("tickets_photo_input" + t).click() : Tickets.showAddScreenBox(Tickets.initPhotoUpload.pbind("tis_add_data", {
-                    hideOnStart: !0,
-                    target: t
-                }))
-            })
-        },
-        __docMediaHandler: function(e) {
-            var t = e.target || "new";
-            stManager.add("upload.js", function() {
-                e.docCallback ? (cur.lastMediaTarget = t, e.docCallback()) : e.oneClick ? ge("tickets_doc_input" + t).click() : Tickets.showAddDocBox(Tickets.initDocUpload.pbind("tis_add_data", {
-                    hideOnStart: !0,
-                    target: t,
+            if (parent) {
+                msg = parent.insertBefore(ce('div', {
+                    id: 'tickets_msg',
+                    className: 'msg'
+                }), parent.firstChild);
+            }
+        }
+        re('tickets_error');
+        if (msg) {
+            msg.innerHTML = text;
+            msg.style.backgroundColor = '#F4EBBD';
+            animate(msg, {
+                backgroundColor: '#F9F6E7'
+            }, 2000);
+        }
+        return true;
+    },
+    showError: function(error) {
+        var err = ge('tickets_error');
+        if (!err) {
+            var parent;
+            switch (cur.section) {
+                case 'list':
+                    parent = ge('tickets_list');
+                    break;
+                case 'new_faq':
+                    parent = ge('tickets_faq_msg');
+                    show('tickets_faq_msg');
+                    break;
+                case 'history':
+                case 'show':
+                default:
+                    parent = ge('tickets_reply_rows');
+                    break;
+            }
+            if (parent) {
+                err = parent.insertBefore(ce('div', {
+                    id: 'tickets_error',
+                    className: 'error'
+                }), parent.firstChild);
+            }
+        }
+        re('tickets_msg');
+        hide('tickets_progress');
+        if (err) {
+            err.innerHTML = error;
+            err.style.backgroundColor = '#FACEBB';
+            animate(err, {
+                backgroundColor: '#FFEFE8'
+            }, 2000);
+        }
+        scrollToTop(200);
+        return true;
+    },
+    closeTicketByAuthor: function(hash) {
+        ajax.post('support?act=a_close_ticket_by_author', {
+            ticket_id: cur.ticket_id,
+            hash: hash
+        }, {
+            onDone: addClass.pbind('tickets_thank_you_form', 'you_re_welcome'),
+            showProgress: addClass.pbind('tickets_thank_you_form', 'processing'),
+            hideProgress: removeClass.pbind('tickets_thank_you_form', 'processing')
+        });
+    },
+    reopenTicketByAuthor: function(hash) {
+        ajax.post('support?act=a_reopen_ticket_by_author', {
+            ticket_id: cur.ticket_id,
+            hash: hash
+        }, {
+            onDone: removeClass.pbind('tickets_thank_you_form', 'you_re_welcome'),
+            showProgress: addClass.pbind('tickets_thank_you_form', 'processing'),
+            hideProgress: removeClass.pbind('tickets_thank_you_form', 'processing')
+        });
+        return false;
+    },
+    showPostField: function() {
+        hide('tickets_thank_you_form');
+        addClass('tickets_post_form__panel', 'tickets_post_form__panel_shown');
+        show('tickets_post_field');
+        autosizeSetup('tickets_reply', {
+            minHeight: 50,
+            maxHeight: 500
+        });
+        elfocus('tickets_reply');
+    },
+    hidePostField: function() {
+        show('tickets_thank_you_form');
+        hide('tickets_post_field');
+    },
+    showAllReplies: function() {
+        var link = ge('show_all_replies_link'),
+            pr = geByClass1('progress', link),
+            label = geByClass1('label', link);
+        hide(label);
+        show(pr);
+        ajax.post(cur.objLoc, {
+            act: 'show',
+            id: cur.ticket_id,
+            all: 1
+        }, {
+            onDone: function(content, script) {
+                if (content) {
+                    val('tickets_reply_rows', content);
+                }
+                if (script) {
+                    eval(script);
+                }
+            },
+            onFail: function() {
+                show(label);
+                hide(pr);
+            }
+        });
+        return false;
+    },
+    showPhoto: function(photoRaw, listId, opts) {
+        var cbox = curBox();
+        if (!cbox) {
+            return showPhoto(photoRaw, listId, opts);
+        }
+        var btns = [];
+        each(geByTag('button', cbox.bodyNode.nextElementSibling), function() {
+            btns.push([this.innerHTML, this.onclick, hasClass(this, 'flat_button') ? 'yes' : 'no']);
+        });
+        cur.boxBackup = {
+            body: document.createDocumentFragment(),
+            width: getSize(cbox.bodyNode.parentNode)[0],
+            hideButtons: !isVisible(cbox.bodyNode.nextElementSibling),
+            bodyStyle: cbox.bodyNode.getAttribute('style'),
+            title: val(geByClass1('box_title', cbox.bodyNode.previousElementSibling)),
+            btns: btns
+        };
+        var boxBody = cbox.bodyNode;
+        cur.scrollTopBack = boxLayerWrap.scrollTop;
+        opts.onShow = function() {
+            while (boxBody.firstChild) {
+                cur.boxBackup.body.appendChild(boxBody.firstChild);
+            }
+        }
+        opts.onHide = function() {
+            box = showFastBox('', '');
+            box.setOptions({
+                hideButtons: cur.boxBackup.hideButtons,
+                title: cur.boxBackup.title,
+                bodyStyle: cur.boxBackup.bodyStyle,
+                width: cur.boxBackup.width
+            });
+            box.bodyNode.appendChild(cur.boxBackup.body);
+            if (cur.boxBackup.btns) {
+                box.removeButtons();
+                each(cur.boxBackup.btns.reverse(), function() {
+                    box.addButton.apply(box, this);
+                });
+            }
+            box.setOptions({}); // clear box coords
+            boxLayerWrap.scrollTop = cur.scrollTopBack;
+        }
+        return showPhoto(photoRaw, listId, opts);
+    },
+    showAddScreenBox: function(onShow) {
+        var opts = {
+            title: getLang('support_adding_screen'),
+            width: 450,
+            bodyStyle: 'padding: 0px',
+            dark: 1
+        };
+        if (onShow) {
+            opts.onShow = onShow;
+        }
+        return showFastBox(opts, cur.screenBox);
+    },
+    showAddDocBox: function(onShow) {
+        var opts = {
+            title: getLang('support_adding_doc'),
+            width: 450,
+            bodyStyle: 'padding: 0px',
+            dark: 1
+        };
+        if (onShow) {
+            opts.onShow = onShow;
+        }
+        return showFastBox(opts, cur.docBox);
+    },
+    showAddExtraFieldFileBox: function(index, withSize) {
+        return showFastBox({
+            onShow: Tickets.initExtraFieldUpload.pbind('tis_add_data', {
+                hideOnStart: true,
+                fieldIndex: index,
+                withSize: withSize
+            }),
+            title: getLang('support_adding_image'),
+            width: 460,
+            bodyStyle: 'padding: 0px',
+            dark: 1,
+            hideButtons: true
+        }, cur.extraFieldsBox);
+    },
+    choosePhotoUploaded: function(info, params, addMedia) {
+        var i = info.ind !== undefined ? info.ind : info,
+            fileName = (info.fileName || info).replace(/[&<>"']/g, ''),
+            ind = info.fileName ? i + '_' + info.fileName : info,
+            prg = ge('upload' + ind + '_progress_wrap');
+
+        prg && hide(geByClass1('progress_x', prg));
+        ajax.post('al_photos.php', extend({
+            act: 'choose_uploaded_support'
+        }, params), {
+            onDone: function(media, data) {
+                addMedia.chooseMedia('photo', media, extend(data, {
+                    upload_ind: i + '_' + fileName
+                }));
+            },
+            onFail: Tickets.chooseFail.pbind(addMedia, info)
+        });
+    },
+    chooseDocUploaded: function(info, params, addMedia) {
+        var i = info.ind !== undefined ? info.ind : info,
+            ind = info.fileName ? i + '_' + info.fileName : info,
+            prg = ge('upload' + ind + '_progress_wrap');
+
+        prg && hide(geByClass1('progress_x', prg));
+        ajax.post('docs.php', extend({
+            act: 'a_save_doc',
+            from: 'choose',
+            support_hash: cur.uploadDocData.support_hash
+        }, params), {
+            onDone: function(oid, id, data) {
+                re('upload' + ind + '_progress_wrap');
+                var insideBox = curBox();
+                if (insideBox) {
+                    cur.preventBoxHide = true;
+                }
+                addMedia.chooseMedia('doc', oid + '_' + id, data);
+                if (insideBox) {
+                    cur.preventBoxHide = false;
+                }
+            },
+            onFail: Tickets.chooseFail.pbind(addMedia, info)
+        });
+    },
+    chooseExtraFieldUploaded: function(fieldIndex, info, params) {
+        var i = info.ind !== undefined ? info.ind : info,
+            fileName = (info.fileName || info).replace(/[&<>"']/g, ''),
+            ind = info.fileName ? i + '_' + info.fileName : info,
+            prg = ge('upload' + ind + '_progress_wrap');
+
+        prg && hide(geByClass1('progress_x', prg));
+        ajax.post('al_photos.php', extend({
+            act: 'choose_uploaded_support'
+        }, params), {
+            onDone: function(media, data) {
+                Tickets.chooseExtraFieldComplete(fieldIndex, media, extend(data, {
+                    upload_ind: i + '_' + fileName
+                }));
+            },
+            onFail: function(code) {
+                Tickets.chooseFail(null, info, code);
+            },
+            hideProgress: removeClass.pbind('tickets_new_extra_field__uploaded_' + fieldIndex, 'tickets_new_extra_field__uploaded_p')
+        });
+    },
+    removeExtraFieldFile: function(evt, fieldIndex) {
+        var p = evt.target.parentNode;
+        if (p.tt && p.tt.hide) {
+            p.tt.hide();
+        }
+        var c = ge('tickets_new_extra_field__uploaded_' + fieldIndex);
+        removeClass(c, 'tickets_new_extra_field__uploaded_c');
+        removeClass(c, 'tickets_new_extra_field__uploaded_p');
+        re('tickets_new_extra_field__file_' + fieldIndex);
+        hide('tis_add_lnk');
+        show('tickets_new_extra_field__upload_btn_' + fieldIndex, 'tickets_new_extra_field__example_' + fieldIndex);
+        data(ge('tickets_new_extra_field_' + fieldIndex), 'value', '');
+    },
+    allExtraFieldFilesUploaded: function() {
+        var result = true,
+            efContainer = ge('tickets_new_extra_fields'),
+            efFileRows = efContainer ? geByClass('_ef_file', efContainer) : [];
+        each(efFileRows, function(i, container) {
+            var v = data(container, 'value');
+            if (!v) {
+                result = false;
+                return false;
+            }
+        });
+        return result;
+    },
+    chooseExtraFieldComplete: function(fieldIndex, media, uplData) {
+        if (uplData.upload_ind === undefined) {
+            return false;
+        }
+
+        if (!isObject(uplData)) {
+            uplData = {
+                thumb_m: uplData[0] || '',
+                thumb_s: uplData[1] || '',
+                list: uplData[2] || '',
+                view_opts: uplData[3] || '',
+                upload_ind: uplData.upload_ind || undefined
+            };
+        }
+        vkImage().src = uplData.thumb_m;
+        var preview = '<div onclick="return Tickets.showPhoto(\'' + media + '\', \'' + uplData.list + '\', ' + uplData.view_opts.replace(/"/g, '&quot;') + ');" class="fl_l page_preview_photo"><img class="page_preview_photo" src="' + uplData.thumb_m + '" /></div>';
+
+        var mediaEl = se('<div class="page_preview_photo_wrap" id="tickets_new_extra_field__file_' + fieldIndex + '">' + preview + '<div class="page_media_x_wrap inl_bl" ' + (browser.msie ? 'title' : 'tootltip') + '="' + getLang('dont_attach') + '" onmouseover="if (browser.msie) return; showTooltip(this, {text: this.getAttribute(\'tootltip\'), shift: [13, 3, 3], black: 1})"><div class="page_media_x" onclick="Tickets.removeExtraFieldFile(event, ' + fieldIndex + ');"></div></div></div>');
+
+        re('upload' + uplData.upload_ind + '_progress_wrap');
+        data(ge('tickets_new_extra_field_' + fieldIndex), 'value', media);
+        var container = ge('tickets_new_extra_field__uploaded_' + fieldIndex);
+        container.appendChild(mediaEl);
+        removeClass(container, 'tickets_new_extra_field__uploaded_p');
+        addClass(container, 'tickets_new_extra_field__uploaded_c');
+
+        if (!cur.fileApiUploadStarted) {
+            boxQueue.hideLast();
+        }
+
+        cur.lastPostMsg = false;
+        if (uplData.upload_ind !== undefined) {
+            delete uplData.upload_ind;
+        }
+        if (Tickets.allExtraFieldFilesUploaded()) {
+            show('tis_add_lnk');
+        }
+        return false;
+    },
+    chooseFail: function(addMedia, info, code) {
+        var i = info.ind !== undefined ? info.ind : info,
+            fileName = (info.fileName || info).replace(/[&<>"']/g, '');
+        if (Upload.types[i] == 'fileApi' && !Upload.options[i].wiki_editor) {
+            var lnkId, ind = info.fileName ? i + '_' + info.fileName : info;
+            if (addMedia) {
+                re('upload' + ind + '_progress_wrap');
+            }
+        }
+        var msg = '',
+            type = (Upload.options[i] || {}).type || '';
+        if (type == 'doc') {
+            msg = getLang('support_upload_fail');
+        } else if (type == 'photo') {
+            msg = getLang('support_photo_upload_fail');
+        }
+        if (msg) {
+            setTimeout(showFastBox({
+                title: getLang('global_error'),
+                dark: 1,
+                bodyStyle: 'padding: 20px; line-height: 160%;'
+            }, msg).hide, 4000);
+        }
+        topError('Upload failed', {
+            dt: -1,
+            type: 102,
+            url: (ge('file_uploader_form' + i) || {}).action
+        });
+        Upload.embed(i);
+    },
+
+    initPhotoUpload: function(el, params) {
+        el = ge(el);
+        if (!el) {
+            return;
+        }
+
+        var uploadData = cur.uploadPhotoData,
+            opts = (uploadData || {}).options,
+            addMedia;
+        switch (params.target) {
+            case 'auto':
+                addMedia = cur.ticketsAutoMedia;
+                uploadData = cur.autoUploadData;
+                opts = uploadData.options;
+                break;
+            case 'template':
+                addMedia = cur.ticketsTemplateMedia;
+                uploadData = cur.templateUploadData;
+                opts = uploadData.options;
+                break;
+            case 'edit':
+                addMedia = cur.ticketsEditMedia;
+                break;
+            case 'new':
+            default:
+                addMedia = cur.ticketsNewMedia;
+                break;
+        }
+        if (!addMedia) {
+            return;
+        }
+        return Upload.init(el, uploadData.url, uploadData.vars, {
+            file_name: 'photo',
+
+            file_size_limit: 1024 * 1024 * 5, // 5Mb
+            file_types_description: 'Image files (*.jpg, *.jpeg, *.png, *.gif)',
+            file_types: '*.jpg;*.JPG;*.jpeg;*.JPEG;*.png;*.PNG;*.gif;*.GIF',
+            accept: 'image/jpeg,image/png,image/gif',
+            file_match: '\.(gif|jpg|jpeg|png)$',
+            lang: opts.lang,
+
+            onUploadStart: function(info, res) {
+                var i = info.ind !== undefined ? info.ind : info,
+                    options = Upload.options[i];
+                if (Upload.types[i] == 'form') {
+                    geByClass1('file', el).disabled = true;
+                }
+                if (Upload.types[i] == 'fileApi') {
+                    if (cur.notStarted) {
+                        if (params && params.hideOnStart) boxQueue.hideLast();
+                        delete cur.notStarted;
+                    }
+                    if (options.multi_progress) this.onUploadProgress(info, 0, 0);
+                }
+            },
+            onUploadComplete: function(info, res) {
+                var params;
+                try {
+                    params = eval('(' + res + ')');
+                } catch (e) {
+                    params = q2ajx(res);
+                }
+                if (!params.photos) {
+                    Upload.onUploadError(info);
+                    return;
+                }
+                Tickets.choosePhotoUploaded(info, params, addMedia);
+            },
+            onUploadProgress: function(info, bytesLoaded, bytesTotal) {
+                var i = info.ind !== undefined ? info.ind : info;
+                if (Upload.types[i] == 'fileApi') {
+                    var lnkId = (cur.attachMediaIndexes || {})[i];
+                    if (lnkId === undefined || lnkId && cur.addMedia[lnkId].chosenMedia) {
+                        var data = {
+                            loaded: bytesLoaded,
+                            total: bytesTotal
+                        };
+                        if (info.fileName) {
+                            data.fileName = info.fileName.replace(/[&<>"']/g, '');
+                        }
+                        addMedia.showMediaProgress('photo', i, data);
+                    }
+                } else if (Upload.types[i] == 'flash') {
+                    if (!ge('form' + i + '_progress')) {
+                        var obj = Upload.obj[i],
+                            objHeight = getSize(obj)[1],
+                            tm = objHeight / 2 + 10;
+                        var node = obj.firstChild;
+                        while (node) {
+                            if (node.nodeType == 1) {
+                                if (node.id == 'uploader' + i && browser.msie) {
+                                    setStyle(node, {
+                                        position: 'relative',
+                                        left: '-5000px'
+                                    });
+                                } else {
+                                    setStyle(node, {
+                                        visibility: 'hidden'
+                                    });
+                                }
+                            }
+                            node = node.nextSibling;
+                        }
+                        obj.appendChild(ce('div', {
+                            innerHTML: '<div class="tickets_progress_wrap">\
+            <div id="form' + i + '_progress" class="tickets_progress" style="width: 0%;"></div>\
+          </div></div>'
+                        }, {
+                            height: tm + 'px',
+                            marginTop: -tm + 'px'
+                        }));
+                    }
+                    var percent = intval(bytesLoaded / bytesTotal * 100);
+                    setStyle(ge('form' + i + '_progress'), {
+                        width: percent + '%'
+                    });
+                }
+            },
+            onUploadError: Tickets.chooseFail.pbind(addMedia),
+            onUploadCompleteAll: function(info) {
+                var i = info.ind !== undefined ? info.ind : info;
+                if (Upload.types[i] !== 'fileApi') {
+                    if (params.hideOnStart) {
+                        boxQueue.hideLast();
+                    } else {
+                        Upload.embed(i);
+                    }
+                }
+            },
+
+            multiple: 1,
+            multi_progress: 1,
+            max_files: params && params.max_files || 5,
+            max_files_hide_last: 1,
+            clear: 1,
+            type: 'photo',
+            max_attempts: 3,
+            file_input: cur.uploadInput,
+            server: opts.server,
+            error: opts.default_error,
+            error_hash: opts.error_hash,
+            dropbox: 'tis_dropbox'
+        });
+    },
+
+    initDocUpload: function(el, params) {
+        el = ge(el);
+        if (!el) return;
+
+        var uploadData = params.uploadData || cur.uploadDocData,
+            opts = uploadData.options,
+            addMedia;
+        switch (params.target) {
+            case 'auto':
+                addMedia = cur.ticketsAutoMedia;
+                break;
+            case 'template':
+                addMedia = cur.ticketsTemplateMedia;
+                break;
+            case 'edit':
+                addMedia = cur.ticketsEditMedia;
+                break;
+            case 'new':
+            default:
+                addMedia = cur.ticketsNewMedia;
+                break;
+        }
+        if (!addMedia) {
+            return;
+        }
+        return Upload.init(el, uploadData.url, uploadData.vars, {
+            file_name: 'file',
+
+            file_size_limit: 1024 * 1024 * 200, // 200Mb
+            file_types_description: 'Documents',
+            file_types: '*.*;',
+            file_disallowed_types: params.disallowedFileTypes ? params.disallowedFileTypes : false,
+            lang: opts.lang,
+
+            onUploadStart: function(info, res) {
+                var i = info.ind !== undefined ? info.ind : info,
+                    options = Upload.options[i];
+                if (Upload.types[i] == 'form') {
+                    geByClass1('file', el).disabled = true;
+                }
+                if (Upload.types[i] == 'fileApi') {
+                    if (cur.notStarted) {
+                        if (params && params.hideOnStart) boxQueue.hideLast();
+                        delete cur.notStarted;
+                    }
+                    if (options.multi_progress) this.onUploadProgress(info, 0, 0);
+                }
+            },
+            onUploadComplete: function(info, res) {
+                var fileName = (info.fileName || info).replace(/[&<>"']/g, ''),
+                    params;
+                try {
+                    params = eval('(' + res + ')');
+                } catch (e) {
+                    params = q2ajx(res);
+                }
+                if (!params.file) {
+                    Upload.onUploadError(info);
+                    return;
+                }
+                Tickets.chooseDocUploaded(info, params, addMedia);
+            },
+            onUploadProgress: function(info, bytesLoaded, bytesTotal) {
+                var i = info.ind !== undefined ? info.ind : info;
+                if (Upload.types[i] == 'fileApi') {
+                    var lnkId = (cur.attachMediaIndexes || {})[i];
+                    if (lnkId === undefined || lnkId && cur.addMedia[lnkId].chosenMedia) {
+                        var data = {
+                            loaded: bytesLoaded,
+                            total: bytesTotal
+                        };
+                        if (info.fileName) {
+                            data.fileName = info.fileName.replace(/[&<>"']/g, '');
+                        }
+                        addMedia.showMediaProgress('doc', i, data);
+                    }
+                } else if (Upload.types[i] == 'flash') {
+                    if (!ge('form' + i + '_progress')) {
+                        var obj = Upload.obj[i],
+                            objHeight = getSize(obj)[1],
+                            tm = objHeight / 2 + 10;
+                        var node = obj.firstChild;
+                        while (node) {
+                            if (node.nodeType == 1) {
+                                if (node.id == 'uploader' + i && browser.msie) {
+                                    setStyle(node, {
+                                        position: 'relative',
+                                        left: '-5000px'
+                                    });
+                                } else {
+                                    setStyle(node, {
+                                        visibility: 'hidden'
+                                    });
+                                }
+                            }
+                            node = node.nextSibling;
+                        }
+                        obj.appendChild(ce('div', {
+                            innerHTML: '<div class="tickets_progress_wrap">\
+            <div id="form' + i + '_progress" class="tickets_progress" style="width: 0%;"></div>\
+          </div></div>'
+                        }, {
+                            height: tm + 'px',
+                            marginTop: -tm + 'px'
+                        }));
+                    }
+                    var percent = intval(bytesLoaded / bytesTotal * 100);
+                    setStyle(ge('form' + i + '_progress'), {
+                        width: percent + '%'
+                    });
+                }
+            },
+            onCheckComplete: params && params.onCheckComplete || false,
+            onUploadError: Tickets.chooseFail.pbind(addMedia),
+            onUploadCompleteAll: function(info) {
+                var i = info.ind !== undefined ? info.ind : info;
+                if (Upload.types[i] !== 'fileApi') {
+                    if (params.hideOnStart) {
+                        boxQueue.hideLast();
+                    } else {
+                        Upload.embed(i);
+                    }
+                }
+            },
+
+            multiple: 1,
+            multi_progress: 1,
+            max_files: params && params.max_files || 5,
+            max_files_hide_last: 1,
+            clear: 1,
+            type: 'doc',
+            max_attempts: 3,
+            file_input: cur.uploadInput,
+            server: opts.server,
+            error: opts.default_error,
+            error_hash: opts.error_hash,
+            dropbox: 'tis_dropbox'
+        });
+    },
+
+    showExtraFieldProgress: function(index, i, data, lnkId) {
+        var frac = data.loaded / data.total,
+            percent = intval(frac * 100),
+            fileName = (data.fileName || data.name || '').replace(/[&<>"']/g, ''),
+            ind = fileName ? i + '_' + fileName : i,
+            label = fileName ? (fileName.length > 33 ? fileName.substr(0, 30) + '...' : fileName) : '';
+
+        var prg = ge('upload' + ind + '_progress');
+        if (!prg) {
+            hide('tickets_new_extra_field__upload_btn_' + index, 'tickets_new_extra_field__example_' + index);
+            var container = ge('tickets_new_extra_field__uploaded_' + index);
+            addClass(container, 'tickets_new_extra_field__uploaded_p');
+            if (!cur.attachMediaIndexes) cur.attachMediaIndexes = {};
+            cur.attachMediaIndexes[ind] = lnkId;
+
+            var progress = '\
+<div><div class="page_attach_progress_wrap">\
+  <div id="upload' + ind + '_progress" class="page_attach_progress"></div>\
+</div></div></div>' + (label ? '<div class="attach_label">' + label + '</div>' : '') + '<div class="progress_x" onmouseover="showTooltip(this, {text: \'' + getLang('dont_attach') + '\', shift: [6, 3, 3]})" onclick="Upload.terminateUpload(' + i + ', \'' + (fileName || i) + '\');"></div>';
+
+            container.appendChild(ce('div', {
+                id: 'upload' + ind + '_progress_wrap',
+                innerHTML: progress,
+                className: 'clear_fix upload_' + i + '_progress'
+            }));
+            show(container);
+            prg = ge('upload' + ind + '_progress');
+            prg.full = false;
+
+            if (percent) {
+                setStyle(prg, {
+                    width: prg.full ? (intval(prg.full * frac) + 'px') : percent + '%'
+                })
+            } else {
+                setStyle(prg, {
+                    width: '1px'
+                });
+                hide(prg);
+            }
+        } else {
+            show(prg);
+            if (prg.full) {
+                var tw = data(prg, 'tween'),
+                    w = intval(prg.full * frac);
+                if (tw && tw.isTweening) {
+                    tw.to.width = w;
+                } else {
+                    animate(prg, {
+                        width: w + 'px'
+                    }, 500);
+                }
+            } else {
+                setStyle(prg, {
+                    width: percent + '%'
+                });
+            }
+        }
+    },
+
+    initExtraFieldUpload: function(el, params) {
+        el = ge(el);
+        if (!el) return;
+        var about = ge('tis_about');
+        if (about) {
+            about.innerHTML = getLang(params.withSize ? 'support_extra_field_limits_photo' : 'support_extra_field_limits');
+        }
+        var uploadData = cur.uploadExtraFieldsData,
+            opts = uploadData.options,
+            fieldIndex = params.fieldIndex;
+
+        return Upload.init(el, uploadData.url, uploadData.vars, {
+            file_name: 'file',
+
+            file_size_limit: 1024 * 1024 * 10, // 10Mb
+            file_types_description: 'Image files (*.jpg, *.jpeg, *.png)',
+            file_types: '*.jpg;*.JPG;*.jpeg;*.JPEG;*.png;*.PNG',
+            accept: 'image/jpeg,image/png',
+            file_match: '\.(jpg|jpeg|png)$',
+            lang: opts.lang,
+
+            onUploadStart: function(info, res) {
+                var i = info.ind !== undefined ? info.ind : info,
+                    options = Upload.options[i];
+                if (Upload.types[i] == 'form') {
+                    geByClass1('file', el).disabled = true;
+                }
+                if (Upload.types[i] == 'fileApi') {
+                    if (cur.notStarted) {
+                        if (params && params.hideOnStart) boxQueue.hideLast();
+                        delete cur.notStarted;
+                    }
+                    if (options.multi_progress) this.onUploadProgress(info, 0, 0);
+                }
+            },
+            onUploadComplete: function(info, res) {
+                var params;
+                try {
+                    params = eval('(' + res + ')');
+                } catch (e) {
+                    params = q2ajx(res);
+                }
+                if (!params.photos) {
+                    Upload.onUploadError(info);
+                    return;
+                }
+                Tickets.chooseExtraFieldUploaded(fieldIndex, info, params);
+            },
+            onUploadProgress: function(info, bytesLoaded, bytesTotal) {
+                var i = info.ind !== undefined ? info.ind : info;
+                if (Upload.types[i] == 'fileApi') {
+                    var lnkId = (cur.attachMediaIndexes || {})[i];
+                    //if (lnkId === undefined || lnkId) { //  && cur.addMedia[lnkId].chosenMedia
+                    var data = {
+                        loaded: bytesLoaded,
+                        total: bytesTotal
+                    };
+                    if (info.fileName) {
+                        data.fileName = info.fileName.replace(/[&<>"']/g, '');
+                    }
+
+                    Tickets.showExtraFieldProgress(fieldIndex, i, data, lnkId);
+                } else if (Upload.types[i] == 'flash') {
+                    if (!ge('form' + i + '_progress')) {
+                        var obj = Upload.obj[i],
+                            objHeight = getSize(obj)[1],
+                            tm = objHeight / 2 + 10;
+                        var node = obj.firstChild;
+                        while (node) {
+                            if (node.nodeType == 1) {
+                                if (node.id == 'uploader' + i && browser.msie) {
+                                    setStyle(node, {
+                                        position: 'relative',
+                                        left: '-5000px'
+                                    });
+                                } else {
+                                    setStyle(node, {
+                                        visibility: 'hidden'
+                                    });
+                                }
+                            }
+                            node = node.nextSibling;
+                        }
+                        obj.appendChild(ce('div', {
+                            innerHTML: '<div class="tickets_progress_wrap">\
+          <div id="form' + i + '_progress" class="tickets_progress" style="width: 0%;"></div>\
+        </div></div>'
+                        }, {
+                            height: tm + 'px',
+                            marginTop: -tm + 'px'
+                        }));
+                    }
+                    var percent = intval(bytesLoaded / bytesTotal * 100);
+                    setStyle(ge('form' + i + '_progress'), {
+                        width: percent + '%'
+                    });
+                }
+            },
+            onCheckComplete: false,
+            onUploadError: function() {},
+            onUploadCompleteAll: function(info) {
+                var i = info.ind !== undefined ? info.ind : info;
+                if (Upload.types[i] !== 'fileApi') {
+                    if (params.hideOnStart) {
+                        boxQueue.hideLast();
+                    } else {
+                        Upload.embed(i);
+                    }
+                }
+            },
+            multiple: false,
+            multi_progress: 1,
+            clear: 1,
+            type: 'photo',
+            max_attempts: 3,
+            file_input: null,
+            server: opts.server,
+            error: opts.default_error,
+            error_hash: opts.error_hash,
+            dropbox: 'tis_dropbox'
+        });
+    },
+    __getFormUploadIds: function(target) {
+        switch (target) {
+            case 'auto':
+                return ['tis_upload_auto', 'tis_uploader_auto'];
+            case 'template':
+                return ['tis_upload_template', 'tis_uploader_template'];
+            case 'edit':
+                return ['tis_upload_edit', 'tis_uploader_edit'];
+            case 'new':
+            default:
+                return ['tis_upload', 'tis_uploader'];
+        }
+    },
+    __photoMediaHandler: function(opts) {
+        var target = opts.target || 'new';
+        stManager.add('upload.js', function() {
+            if (opts.photoCallback) {
+                //cur.lastAddMedia = addMedia;
+                cur.lastMediaTarget = target;
+                opts.photoCallback();
+            } else if (opts.oneClick) {
+                ge('tickets_photo_input' + target).click();
+            } else {
+                Tickets.showAddScreenBox(Tickets.initPhotoUpload.pbind('tis_add_data', {
+                    hideOnStart: true,
+                    target: target
+                }));
+            }
+        });
+    },
+    __docMediaHandler: function(opts) {
+        var target = opts.target || 'new';
+        stManager.add('upload.js', function() {
+            if (opts.docCallback) {
+                cur.lastMediaTarget = target;
+                opts.docCallback();
+            } else if (opts.oneClick) {
+                ge('tickets_doc_input' + target).click();
+            } else {
+                Tickets.showAddDocBox(Tickets.initDocUpload.pbind('tis_add_data', {
+                    hideOnStart: true,
+                    target: target,
                     disallowedFileTypes: cur.disallowedFileTypes
-                }))
-            })
-        },
-        initAddMedia: function(e, t, a, i) {
-            var o = new MediaSelector(e, t, a, extend(i, {
-                disabledTypes: ["share", "page"],
-                mediaHandlers: {
-                    photo: Tickets.__photoMediaHandler,
-                    doc: Tickets.__docMediaHandler
+                }));
+            }
+        });
+    },
+    initAddMedia: function(lnk, previewId, mediaTypes, opts) {
+        var addMedia = new MediaSelector(lnk, previewId, mediaTypes, extend(opts, {
+            disabledTypes: ["share", "page"],
+            mediaHandlers: {
+                photo: Tickets.__photoMediaHandler,
+                doc: Tickets.__docMediaHandler
+            }
+        }));
+        if (opts.oneClick) {
+            Tickets.__initOneClickMediaUpload('photo', opts, Tickets.initPhotoUpload);
+            Tickets.__initOneClickMediaUpload('doc', opts, Tickets.initDocUpload);
+        }
+        return addMedia;
+    },
+    __initOneClickMediaUpload: function(type, opts, uploadCallback) {
+        var target = opts.target || 'new',
+            uploadInfo = Tickets.__getFormUploadIds(target),
+            inputId = 'tickets_' + type + '_input' + target,
+            inp = ge(inputId);
+
+        if (!inp) {
+            ge(uploadInfo[0]).appendChild(ce('input', {
+                type: 'file',
+                multiple: 'true',
+                id: inputId,
+                onchange: function() {
+                    data(this, 'changed', true);
+                    cur.uploadInput = this;
+                    uploadCallback(uploadInfo[1], {
+                        target: target
+                    });
                 }
             }));
-            return i.oneClick && (Tickets.__initOneClickMediaUpload("photo", i, Tickets.initPhotoUpload), Tickets.__initOneClickMediaUpload("doc", i, Tickets.initDocUpload)), o
-        },
-        __initOneClickMediaUpload: function(e, t, a) {
-            var i = t.target || "new",
-                o = Tickets.__getFormUploadIds(i),
-                s = "tickets_" + e + "_input" + i,
-                r = ge(s);
-            r || ge(o[0]).appendChild(ce("input", {
-                type: "file",
-                multiple: "true",
-                id: s,
-                onchange: function() {
-                    data(this, "changed", !0), cur.uploadInput = this, a(o[1], {
-                        target: i
-                    })
-                }
-            }))
-        },
-        toggleFAQRow: function(e, t, a, i) {
-            return i.target || (i.target = i.srcElement || document), "a" == i.target.tagName.toLowerCase() ? !0 : (toggle("tickets_faq_short_text" + e, !isVisible("tickets_faq_short_text" + e)), toggle("tickets_faq_full_text" + e, !isVisible("tickets_faq_full_text" + e)), isVisible("tickets_faq_full_text" + e) ? (addClass(a, "detailed"), vk.id && Tickets.setFAQclicked(e, t, 0, !1)) : (removeClass(a, "detailed"), Tickets.cancelFAQclicked(e)), !1)
-        },
-        setFAQclicked: function(e, t, a, i) {
-            i ? (clearTimeout(cur.faqViewTimeouts[e]), cur.faqViewTimeouts[e] = null, ajax.post("support?act=a_faq_clicked", {
-                faq_id: e,
-                hash: t,
-                from_new: a
+        }
+    },
+    toggleFAQRow: function(id, hash, el, evt) {
+        if (!evt.target) {
+            evt.target = evt.srcElement || document;
+        }
+        if (evt.target.tagName.toLowerCase() == 'a') return true;
+        toggle('tickets_faq_short_text' + id, !isVisible('tickets_faq_short_text' + id));
+        toggle('tickets_faq_full_text' + id, !isVisible('tickets_faq_full_text' + id));
+        if (isVisible('tickets_faq_full_text' + id)) {
+            addClass(el, 'detailed');
+            if (vk.id) {
+                Tickets.setFAQclicked(id, hash, 0, false);
+            }
+        } else {
+            removeClass(el, 'detailed');
+            Tickets.cancelFAQclicked(id);
+        }
+        return false;
+    },
+    setFAQclicked: function(id, hash, fromNew, now) {
+        if (now) {
+            clearTimeout(cur.faqViewTimeouts[id]);
+            cur.faqViewTimeouts[id] = null;
+            ajax.post('support?act=a_faq_clicked', {
+                faq_id: id,
+                hash: hash,
+                from_new: fromNew
             }, {
                 cache: 1
-            })) : cur.faqViewTimeouts.hasOwnProperty(e) || (cur.faqViewTimeouts[e] = setTimeout(function() {
-                ajax.post("support?act=a_faq_clicked", {
-                    faq_id: e,
-                    hash: t,
-                    from_new: a
+            });
+        } else if (!cur.faqViewTimeouts.hasOwnProperty(id)) {
+            cur.faqViewTimeouts[id] = setTimeout(function() {
+                ajax.post('support?act=a_faq_clicked', {
+                    faq_id: id,
+                    hash: hash,
+                    from_new: fromNew
                 }, {
                     cache: 1
-                })
-            }, 1500))
-        },
-        cancelFAQclicked: function(e) {
-            cur.faqViewTimeouts[e] && (clearTimeout(cur.faqViewTimeouts[e]), delete cur.faqViewTimeouts[e])
-        },
-        rateFAQ: function(e, t, a, i, o) {
-            if (!vk.id) return !1;
-            if (ajax.post("support?act=a_faq_rate", {
-                    faq_id: e,
-                    val: t,
-                    hash: a,
-                    from_new: i
-                }), Tickets.setFAQclicked(e, a, i, !0), !o)
-                if (hide("tickets_faq_links" + e), t > 0) show("tickets_faq_useful" + e);
-                else {
-                    var s = ge("tickets_faq_unuseful" + e),
-                        r = geByClass1("help_table_question_rated_additional__btns", s);
-                    show(s, geByClass1("help_table_question_rated_additional", s)), hide(r, geByClass1("help_table_question__rated_final", s), geByClass1("help_table_question__rated_no_perm", s)), slideDown(r, 200)
-                }
-            return !1
-        },
-        getAskQuestionData: function(e) {
-            return "faq_dislike" == e && cur.askQuestionFaqDislike ? cur.askQuestionFaqDislike : cur.askQuestion
-        },
-        rateFAQAdditional: function(e, t, a, i, o) {
-            if (!vk.id) return !1;
-            var s = ge("tickets_faq_unuseful" + e);
-            if (ajax.post("support?act=a_faq_rate_additional", {
-                    faq_id: e,
-                    additional_id: t,
-                    hash: a
-                }), hide(geByClass1("help_table_question_rated_additional", s)), show(geByClass1("help_table_question__rated_final", s)), 2 == t) {
-                var r = Tickets.getAskQuestionData("faq_dislike");
-                r.permission ? Tickets.tryAskQuestion(function() {
-                    Tickets.goToForm(e, "dislike", i, o)
-                }, "faq_dislike") : cur.isFaqTutorial && 2 != t || (hide(geByClass1("help_table_question__rated_final__t", s)), show(geByClass1("help_table_question__rated_no_perm", s)))
-            }
-        },
-        cancelRateFAQ: function(e, t, a, i) {
-            return vk.id ? (ajax.post("support?act=a_faq_rate", {
-                faq_id: e,
-                val: t,
-                cancel: 1,
-                hash: a
-            }), hide("tickets_faq_useful" + e, "tickets_faq_unuseful" + e), show("tickets_faq_links" + e), i && i.stopPropagation(), !1) : !1
-        },
-        rateFAQUrgent: function(e, t, a) {
-            return vk.id ? (ajax.post("support?act=a_faq_rate", {
-                faq_id: e,
-                val: t,
-                hash: a,
-                from_new: 1
-            }), Tickets.setFAQclicked(e, a, 1, !0), hide("tickets_faq_urgent_links" + e), t > 0 ? (show("tickets_faq_useful" + e), slideUp("tickets_new_wrap", 450)) : show("tickets_faq_unuseful" + e), !1) : !1
-        },
-        cancelRateFAQUrgent: function(e, t, a) {
-            if (!vk.id) return !1;
-            ajax.post("support?act=a_faq_rate", {
-                faq_id: e,
-                val: t,
-                cancel: 1,
-                hash: a
-            }), hide("tickets_faq_useful" + e, "tickets_faq_unuseful" + e), show("tickets_faq_urgent_links" + e);
-            var i = ge("tickets_new_wrap");
-            return isVisible(i) || slideDown(i, 500), !1
-        },
-        showAverageTime: function(e, t) {
-            if (cur.timeShown) return void Tickets.toggleDetailedForm();
-            var a = getLang("support_wait_message").replace(/\{time\}/g, e) + '<div class="tickets_wait_img"><img src="/images/pics/support_wait.png" /></div>',
-                i = showFastBox({
-                    title: getLang("support_average_wait_time"),
-                    width: 430,
-                    dark: !0,
-                    bodyStyle: "padding: 20px; line-height: 160%;"
-                }, a, getLang("support_ask_question"), function() {
-                    i.hide(), cur.timeShown = !0, t()
-                }, getLang("support_back_to_faq"))
-        },
-        toggleDetailedForm: function(e) {
-            var t = ge("tickets_title");
-            if (toggleClass(ge("tickets_content"), "detailed"), isVisible("tickets_detailed_form")) t.setAttribute("placeholder", getLang("support_please_add_title")), removeClass(ge("tickets_search_reset"), "shown"), e && ge("tickets_text").focus();
-            else {
-                t.setAttribute("placeholder", getLang("support_title_msg"));
-                var a = trim(ge("tickets_title").value);
-                a && addClass(ge("tickets_search_reset"), "shown"), cur.toggleCanceled = !0, delete cur.toggled, Tickets.searchFAQ(a), t.focus()
-            }
-            placeholderSetup(ge("tickets_title"), {
-                back: !0,
-                reload: !0
-            })
-        },
-        getSearchQuery: function() {
-            var e = ge("tickets_title") || ge("faq_search_form__title");
-            return e ? e.value : ""
-        },
-        getFormQuery: function(e, t) {
-            var a = {
-                0: "support",
-                act: e,
-                title: Tickets.getSearchQuery()
-            };
-            return t && (a.ask = 1), a
-        },
-        switchToPayForm: function(e) {
-            return lockButton("tickets_create_pay"), nav.go(Tickets.getFormQuery("new_pay"), e)
-        },
-        switchToAdsForm: function(e, t) {
-            return lockButton("tickets_create_ads"), nav.go(Tickets.getFormQuery("new_ads", t), e)
-        },
-        switchToNameForm: function(e, t) {
-            return lockButton("tickets_create_name"), nav.go(Tickets.getFormQuery("new_name", t), e)
-        },
-        switchToApiForm: function(e, t) {
-            return lockButton("tickets_create_api"), nav.go(Tickets.getFormQuery("new_api", t), e)
-        },
-        switchToMobileForm: function(e, t) {
-            return lockButton("tickets_create_mobile"), nav.go(Tickets.getFormQuery("new_mobile", t), e)
-        },
-        updateFAQ: function(e, t) {
-            clearTimeout(cur.faqTimeout), cur.faqTimeout = setTimeout(function() {
-                var e = t.value,
-                    a = trim(e),
-                    i = a.split(" "),
-                    o = ge("tickets_text");
-                e.length >= 70 && o && !o.value && !cur.flood && (isVisible("tickets_detailed_form") || (Tickets.toggleDetailedForm(), t.value = "", o.focus(), o.value = e)), isVisible("tickets_detailed_form") || a == cur.searchStr && (i.length < 4 || 4 == i.length && " " != e[e.length - 1]) || (a ? addClass(ge("tickets_search_reset"), "shown") : removeClass(ge("tickets_search_reset"), "shown"), cur.searchStr = a, clearTimeout(cur.searchFAQTimeout), cur.searchFAQTimeout = setTimeout(function() {
-                    Tickets.searchFAQ(cur.searchStr)
-                }.bind(this), 300), browser.mobile || scrollToTop())
-            }.bind(this), 10)
-        },
-        searchFAQ: function(e) {
-            " " == e[e.length - 1] && (e[e.length - 1] = "_"), addClass(ge("tickets_search"), "loading"), setStyle(ge("tickets_search_reset"), {
-                opacity: .6
-            });
-            var t = extend({
-                q: e,
-                from: nav.objLoc.act
-            }, Tickets.getFromObjLoc(["group_id", "app_id", "union_id"]));
-            cur.tlmd && cur.showAll && (delete cur.showAll, t.show_all = 1, cur.from_ads && (t.from = "ads")), ajax.post("support?act=a_get_faq", t, {
-                cache: 1,
-                hideProgress: removeClass.pbind("tickets_search", "loading"),
-                onDone: function(t, a) {
-                    var i = val("tickets_title"),
-                        o = trim(i).split(" "),
-                        s = !1;
-                    if (cur.toggleCanceled || !(o.length > 4 || 4 == o.length && " " == i[i.length - 1]) || cur.flood || (s = !0), t ? val("tickets_faq_list", ce("div", {
-                            innerHTML: t
-                        }).firstChild.innerHTML) : (a && val("tickets_faq_button", a), s && (cur.toggled = !0, Tickets.toggleDetailedForm())), cur.tlmd) {
-                        if (e ? extend(nav.objLoc, {
-                                q: e
-                            }) : delete nav.objLoc.q, "faq" == nav.objLoc.act) {
-                            var r = e ? e : getLang("support_page_title");
-                            vk.id || (r += " | " + getLang("global_vkontakte")), document.title = r
-                        }
-                        nav.setLoc(nav.objLoc)
-                    }
-                }
-            })
-        },
-        clearSearch: function(e, t) {
-            var a = ge("tickets_title");
-            setStyle(e, {
-                opacity: .6
-            }), a.value = "", ge("tickets_title").focus(), Tickets.updateFAQ(t, a)
-        },
-        checkOut: function(e, t) {
-            checkbox(e.firstChild)
-        },
-        getCheckedArr: function() {
-            var e = [];
-            return isObject(cur.checkedTickets) && each(cur.checkedTickets, function(t, a) {
-                e.push(t)
-            }), e
-        },
-        updateChecked: function() {
-            if (ge("tickets_search_options")) {
-                var e = Tickets.getCheckedArr(),
-                    t = e.length,
-                    a = ge("tickets_all_search"),
-                    i = ge("tickets_all_selected");
-                t ? (isVisible(a) && slideUp(a, 200), ge("t_n_marked").innerHTML = langNumeric(t, cur.lang.x_tickets_checked, !0), isVisible(i) || slideDown(i, 200)) : (isVisible(a) || slideDown(a, 200), isVisible(i) && slideUp(i, 200))
-            }
-        },
-        checkChange: function(e, t) {
-            var a = geByClass1("checkbox", e);
-            cur.checkedTickets[t] ? (delete cur.checkedTickets[t], checkbox(a, 0)) : (cur.checkedTickets[t] = !0, checkbox(a, 1)), this.updateChecked()
-        },
-        saveDraft: function(e, t) {
-            var a = ge("tickets_reply");
-            if (!browser.mobile && a && !a.disabled && cur.canUseDrafts) {
-                for (var i = val(a), o = {
-                        txt: trim(i),
-                        medias: []
-                    }, s = (cur.ticketsNewMedia || {}).chosenMedias || [], r = 0, n = s.length; n > r; ++r) s[r] && o.medias.push([s[r][0], s[r][1]]);
-                o.medias.length || o.txt.length || (o = !1), ls.set("helpdesk_draft" + vk.id + "_" + e, o), a && cur.ticketsNewMedia && ("paste" == t || "keyup" == t) && cur.ticketsNewMedia.checkMessageURLs(i, "keyup" != t)
-            }
-        },
-        listToggleQuestion: function(e, t, a) {
-            if (checkEvent(e)) return !0;
-            var i = e.target.parentNode,
-                o = geByClass1("help_table_question__ans", i);
-            return isVisible(o) ? (removeClass(i, "help_table_question_visible"), slideUp(o, 200), Tickets.cancelFAQclicked(t)) : (addClass(i, "help_table_question_visible"), slideDown(o, 200), Tickets.setFAQclicked(t, a, 1, !1)), !1
-        },
-        listToggleUnusefulButton: function(e) {
-            toggle(ge("tickets_unuseful"), e)
-        },
-        listShowAltButton: function(e) {
-            each(geByClass("secondary", ge("help_table_questions_btn")), function(t, a) {
-                "" == e || a.id != e ? hide(a) : show(a)
-            })
-        },
-        updateSearchSuggests: function(e) {
-            el = this, e = trim(e);
-            var t = ge("faq_search_form");
-            return t.hideTimeout && (clearTimeout(t.hideTimeout), t.hideTimeout = null), t.searchTimeout && (clearTimeout(t.searchTimeout), t.searchTimeout = null), e ? void(t.searchTimeout = setTimeout(function() {
-                var a = ge("faq_search_form_suggests");
-                a || (a = ce("div", {
-                    id: "faq_search_form_suggests",
-                    className: "tickets_suggests"
-                }), t.appendChild(a), hide(a)), ajax.post("support?act=a_load_faq_suggests", {
-                    q: e,
-                    section: cur.searchSection,
-                    union_id: nav.objLoc.union_id
-                }, {
-                    cache: 1,
-                    onDone: function(i) {
-                        i && (show(a), addClass(t, "faq_search_form_with_suggests", e)), val(a, i)
-                    },
-                    showProgress: uiSearch.showProgress.pbind(el),
-                    hideProgress: uiSearch.hideProgress.pbind(el)
-                })
-            }, 200)) : (removeClass(t, "faq_search_form_with_suggests", e), void hide("faq_search_form_suggests"))
-        },
-        hideSearchSuggests: function() {
-            var e = ge("faq_search_form");
-            e.hideTimeout = setTimeout(function() {
-                clearTimeout(e.hideTimeout), e.hideTimeout = null, hide("faq_search_form_suggests"), removeClass(e, "faq_search_form_with_suggests")
-            }, 500)
-        },
-        goToSearchResult: function(e, t) {
-            if (t = trim(t), t || "faqs" == nav.objLoc.act) {
-                var a = {
-                    0: cur.objLoc,
-                    act: cur.faqsAct
-                };
-                t && (a.q = t), nav.objLoc.union_id && (a.union_id = nav.objLoc.union_id), nav.go(a)
-            }
-        },
-        goToForm: function(e, t, a, i) {
-            var o = {
-                0: "support",
-                act: a
-            };
-            if (e) o.id = e;
-            else {
-                var s = uiSearch.getFieldEl("faq_search_form"),
-                    r = "";
-                s && (r = trim(val(s)), "" !== r && (o.title = r))
-            }
-            return t && (o.from = t), i && (o.bhash = i), nav.go(extend(o, Tickets.getFromObjLoc(["union_id", "app_id", "group_id"]))), !1
-        },
-        listScrollToQuestion: function(e) {
-            var t = null;
-            if (e && (t = ge("help_table_question_" + e)), t) {
-                scrollToY(getXY(t)[1] - 10), hasClass(t, "help_table_question_visible") || addClass(t, "help_table_question_visible");
-                var a = geByClass1("help_table_question__ans", t);
-                isVisible(a) || show(a)
-            }
-        },
-        tryAskQuestion: function(e, t) {
-            var a = 2,
-                i = Tickets.getAskQuestionData(t);
-            if (i && (a = i.permission), a) {
-                if (1 == a) return Tickets.showAverageTime(i.time, e), !1;
-                e()
-            } else setTimeout(showFastBox({
-                dark: 1,
-                bodyStyle: "line-height: 160%;",
-                title: getLang("global_error")
-            }, getLang("support_flood_error")).hide, 4e3);
-            return !1
-        },
-        listNotFoundVisible: function() {
-            return hasClass("help_table_questions", "help_table_questions_not_found")
-        },
-        listHideNotFound: function() {
-            removeClass("help_table_questions", "help_table_questions_not_found")
-        },
-        loadTickets: function() {
-            var e = ge("tickets_list_load_more"),
-                t = getXY(e)[1],
-                a = scrollGetY(),
-                i = t >= a && t <= a + window.innerHeight;
-            if (i && !cur.ticketsLoading && cur.ticketsLoadMore) {
-                var o = {
-                    act: "",
-                    offset: cur.ticketsOffset,
-                    load: 1
-                };
-                nav.objLoc.union_id && (o.union_id = nav.objLoc.union_id), nav.objLoc.app_id && (o.app_id = nav.objLoc.app_id), ajax.post("support", o, {
-                    showProgress: function() {
-                        addClass(e, "tickets_list_load_more_loading"), cur.ticketsLoading = !0
-                    },
-                    hideProgress: function() {
-                        removeClass(e, "tickets_list_load_more_loading"), cur.ticketsLoading = !1
-                    },
-                    onDone: function(e, t, a) {
-                        cur.ticketsOffset = t, cur.ticketsLoadMore = a;
-                        var i = ge("tickets_list");
-                        removeClass(i.lastChild, "last");
-                        var o = sech(e);
-                        each(o, function(e, t) {
-                            i.appendChild(t)
-                        }), Tickets.loadTickets()
-                    }
-                })
-            }
-        },
-        closeMobileNotice: function(e) {
-            slideUp("tickets_mobile_notice", 200), ajax.post("support?act=a_hide_mobile_notice", {
-                hash: e
-            })
-        },
-        listClearCache: function() {
-            var e = nav.objLoc;
-            e.cc = 1, nav.go(e)
-        },
-        storeOutdatedLeft: function(e) {
-            ls.set("support_outdated_left", {
-                id: e,
-                ts: Math.floor((new Date).getTime() / 1e3)
-            }), console.log("Win")
-        },
-        tutorialOpen: function(e, t) {
-            var a = cur.chosenTutorialFaqId ? ge("help_table_question_" + cur.chosenTutorialFaqId) : null;
-            a ? show("support_tutorial_container") : slideDown("support_tutorial_container", 300), e.parentNode.replaceChild(ce("span", {
-                innerHTML: e.innerHTML
-            }), e), ajax.post("support?act=a_open_tutorial", {
-                hash: t
-            }), a && scrollToY(getXY(a)[1])
-        },
-        tutorialSelect: function(btn, id, noActions) {
-            cur.tutorialProcessing || ajax.post("support?act=tutorial", {
-                id: id,
-                load: 1,
-                ban: nav.objLoc.ban || 0,
-                no_actions: noActions
-            }, {
-                showProgress: function() {
-                    cur.tutorialProcessing = !0, lockButton(btn)
-                },
-                hideProgress: function() {
-                    cur.tutorialProcessing = !1, unlockButton(btn)
-                },
-                onDone: function(html, js) {
-                    var el = ge("support_tutorial_container") || ge("content");
-                    val(el, html), js && eval(js), scrollToY(getXY("help_table_question_" + id)[1])
-                }
-            })
-        },
-        showTicketLockedTT: function(e, t) {
-            showTooltip(e, {
-                dir: "bottom",
-                text: t,
-                typeClass: "tt_black",
-                shift: [15, 10, 0]
-            })
-        },
-        toggleQuestionHider: function(e) {
-            var t = domPN(domPN(e)),
-                a = geByClass1("wk_hider_body", t);
-            toggleClass(t, "wk_hider_box"), toggleClass(t, "wk_hider_box_opened"), hasClass(t, "wk_hider_box_opened") ? slideDown(a, 200) : slideUp(a, 200)
-        },
-        payoutFormTT: function(e, t) {
-            showTooltip(e, {
-                text: t,
-                dir: "bottom",
-                forcetoup: !0
-            })
-        },
-        _eof: 1
-    },
-    TicketsEF = {
-        _getInput: function(e) {
-            return ge("tickets_new_extra_field_" + e + "_inp")
-        },
-        _getValues: function(e) {
-            return cur.extraFieldsValues[e]
-        },
-        init: function() {
-            TicketsEF._runOverAll(function(e, t) {
-                var a = TicketsEF._getInput(t),
-                    i = cur.extraFieldsNotes[t],
-                    o = TicketsEF._getValues(t),
-                    s = TicketsEF._getType(e, a, o);
-                switch (data(e, "ef-type", s), s) {
-                    case "plain":
-                        TicketsEF._initPlain(e, a, i);
-                        break;
-                    case "select":
-                        TicketsEF._initSelect(e, a, i, o);
-                        break;
-                    case "radio":
-                        TicketsEF._initRadio(e, a, t);
-                        break;
-                    case "date":
-                        TicketsEF._initDate(e, a);
-                        break;
-                    case "datetime":
-                        TicketsEF._initDatetime(e, a);
-                        break;
-                    case "checkbox":
-                        break;
-                    case "hidden":
-                        break;
-                    default:
-                        console.log("Failed to define type of field=%s", t)
-                }
-            }), TicketsEF._checkBlocking()
-        },
-        _runOverAll: function(e) {
-            if (e) {
-                var t = ge("tickets_new_extra_fields"),
-                    a = t ? geByClass("_extra_field", t) : [];
-                each(a, function(t, a) {
-                    e(a, attr(a, "ef-index"))
-                })
-            }
-        },
-        _getType: function(e, t, a) {
-            return t ? hasClass(t, "_date") ? geByClass1("_time", e) ? "datetime" : "date" : a.length > 0 ? "select" : e && geByClass1("checkbox", e) ? "checkbox" : "plain" : e && geByClass1("radiobtn", e) ? "radio" : "hidden"
-        },
-        _getDefinedType: function(e) {
-            return data(e, "ef-type")
-        },
-        _initPlain: function(e, t, a) {
-            return t ? void(a && "" !== a && (addEvent(t, "focus", function(e) {
-                var t = e.target;
-                Tickets.showTooltip(t, a, "extra_field", !0, !0)
-            }), addEvent(t, "blur", Tickets.hideTooltip.pbind(t)))) : void data(e, "value", "")
-        },
-        _initSelect: function(e, t, a, i) {
-            if (!t) return void data(e, "value", "");
-            var o = attr(t, "placeholder"),
-                s = new Dropdown(t, i, {
-                    introText: o,
-                    placeholder: o,
-                    width: getSize(t)[0],
-                    big: 1,
-                    autocomplete: !0,
-                    multiselect: !1,
-                    zeroPlaceholder: !0
                 });
-            data(e, "dd", s)
-        },
-        _getRadioName: function(e) {
-            return "efRadio" + e
-        },
-        _getCheckbox: function(e) {
-            return e.querySelector(".checkbox")
-        },
-        _initRadio: function(e, t, a) {
-            var i = geByClass1("on", e);
-            window.radioBtns[TicketsEF._getRadioName(a)] = {
-                val: i ? intval(attr(i, "ef-value")) : "",
-                els: geByClass("radiobtn", e)
-            }
-        },
-        _initDatetime: function(e, t, a) {
-            var i = geByClass1("_time", e);
-            new Datepicker(t, {
-                time: i,
-                width: 207
-            }), "" !== a && addEvent(e, "focus", function(t) {
-                Tickets.showTooltip(e, a, "extra_field", !0, !0)
-            })
-        },
-        _initDate: function(e, t) {
-            var a = attr(t, "placeholder").toString();
-            new Datepicker(t, {
-                width: 348
-            }), "" !== a && addEvent(e, "focus", function(t) {
-                Tickets.showTooltip(e, a, "extra_field", !0, !0)
-            })
-        },
-        radioClick: function(e) {
-            var t = gpeByClass("_extra_field", e);
-            t && (radiobtn(e, attr(e, "ef-value"), TicketsEF._getRadioName(attr(t, "ef-index"))), TicketsEF._checkBlocking(), TicketsEF._checkVisible())
-        },
-        _checkBlocking: function() {
-            var e = !1;
-            TicketsEF._runOverAll(function(t, a) {
-                isVisible(t) && TicketsEF._isBlocking(t, a) && (e = !0)
-            }), toggle("tickets_new_controls", !e)
-        },
-        _checkVisible: function() {
-            TicketsEF._runOverAll(function(e, t) {
-                var a = cur.extraFieldsVisible[t];
-                if (a) {
-                    var i = !0;
-                    each(a, function(e, t) {
-                        if ("_" !== e) {
-                            var a = TicketsEF._getValueByIndex(e);
-                            "" !== a && inArray(intval(a), t) || (i = !1)
-                        }
-                    }), toggle(e, i)
-                }
-            })
-        },
-        _isBlocking: function(e, t) {
-            var a = TicketsEF._getInput(t),
-                i = TicketsEF._getValues(t),
-                o = TicketsEF._getDefinedType(e, a, i);
-            if ("radio" == o) {
-                var s = intval(radioval(TicketsEF._getRadioName(t))),
-                    r = cur.extraFieldsBlocking[t];
-                return inArray(s, r)
-            }
-            return !1
-        },
-        _getValueByIndex: function(e) {
-            var t = ge("tickets_new_extra_field_" + e),
-                a = TicketsEF._getInput(e);
-            return t ? TicketsEF._getValue(t, e, a, TicketsEF._getDefinedType(t, a, TicketsEF._getValues(e))) : ""
-        },
-        _getValue: function(e, t, a, i) {
-            var o = "";
-            switch (i) {
-                case "plain":
-                case "date":
-                case "datetime":
-                    o = trim(val(a));
-                    break;
-                case "select":
-                    var s = e ? data(e, "dd") : null;
-                    s && (o = s.val());
-                    break;
-                case "radio":
-                    o = radioval(TicketsEF._getRadioName(t));
-                    break;
-                case "checkbox":
-                    o = isChecked(TicketsEF._getCheckbox(e));
-                    break;
-                case "hidden":
-                    o = data(e, "value")
-            }
-            return o
-        },
-        _getNotableBlock: function(e, t, a) {
-            var i = t;
-            switch (a) {
-                case "select":
-                    var o = data(e, "dd");
-                    o && (i = o.container);
-                    break;
-                case "radio":
-                case "hidden":
-                    i = e
-            }
-            return i
-        },
-        getValues: function() {
-            var e = {},
-                t = !0;
-            return TicketsEF._runOverAll(function(a, i) {
-                var o = TicketsEF._getInput(i),
-                    s = hasClass(a, "_ef_required"),
-                    r = hasClass(a, "_ef_check_url");
-                if (isVisible(a) && !hasClass(a, "_ef_note")) {
-                    var n = TicketsEF._getDefinedType(a, o, TicketsEF._getValues(i)),
-                        c = TicketsEF._getValue(a, i, o, n);
-                    if (s && ("" === c || r && -1 == c.indexOf("vk.com") || TicketsEF._isBlocking(a, i))) {
-                        var l = TicketsEF._getNotableBlock(a, o, n);
-                        l && notaBene(l, !1, !t), t = !1
-                    }
-                    e["extra_field_" + i] = c
-                }
-            }), t ? e : !1
+            }, 1500);
         }
-    };
+    },
+
+    cancelFAQclicked: function(id) {
+        if (cur.faqViewTimeouts[id]) {
+            clearTimeout(cur.faqViewTimeouts[id]);
+            delete cur.faqViewTimeouts[id];
+        }
+    },
+    rateFAQ: function(id, val, hash, fromNew, quiet) {
+        if (!vk.id) return false;
+        ajax.post('support?act=a_faq_rate', {
+            faq_id: id,
+            val: val,
+            hash: hash,
+            from_new: fromNew
+        });
+        Tickets.setFAQclicked(id, hash, fromNew, true);
+
+        if (!quiet) {
+            hide('tickets_faq_links' + id);
+            if (val > 0) {
+                show('tickets_faq_useful' + id);
+            } else {
+                var b = ge('tickets_faq_unuseful' + id),
+                    btns = geByClass1('help_table_question_rated_additional__btns', b);
+                show(b, geByClass1('help_table_question_rated_additional', b));
+                hide(btns, geByClass1('help_table_question__rated_final', b), geByClass1('help_table_question__rated_no_perm', b));
+                slideDown(btns, 200);
+            }
+        }
+        return false;
+    },
+    getAskQuestionData: function(from) {
+        if (from == 'faq_dislike' && cur.askQuestionFaqDislike) {
+            return cur.askQuestionFaqDislike;
+        }
+        return cur.askQuestion;
+    },
+    rateFAQAdditional: function(id, additionalId, hash, act, bhash) {
+        if (!vk.id) {
+            return false;
+        }
+        var b = ge('tickets_faq_unuseful' + id);
+        ajax.post('support?act=a_faq_rate_additional', {
+            faq_id: id,
+            additional_id: additionalId,
+            hash: hash
+        });
+        hide(geByClass1('help_table_question_rated_additional', b));
+        show(geByClass1('help_table_question__rated_final', b));
+        if (additionalId == 2) {
+            var askQuestion = Tickets.getAskQuestionData('faq_dislike');
+            if (askQuestion.permission) {
+                Tickets.tryAskQuestion(function() {
+                    Tickets.goToForm(id, 'dislike', act, bhash);
+                }, 'faq_dislike');
+            } else if (!cur.isFaqTutorial || additionalId == 2) {
+                hide(geByClass1('help_table_question__rated_final__t', b));
+                show(geByClass1('help_table_question__rated_no_perm', b));
+            }
+        }
+    },
+    cancelRateFAQ: function(id, val, hash, evt) {
+        if (!vk.id) return false;
+        ajax.post('support?act=a_faq_rate', {
+            faq_id: id,
+            val: val,
+            cancel: 1,
+            hash: hash
+        });
+        hide('tickets_faq_useful' + id, 'tickets_faq_unuseful' + id);
+        show('tickets_faq_links' + id);
+        if (evt) {
+            evt.stopPropagation();
+        }
+        return false;
+    },
+    rateFAQUrgent: function(id, val, hash) {
+        if (!vk.id) return false;
+        ajax.post('support?act=a_faq_rate', {
+            faq_id: id,
+            val: val,
+            hash: hash,
+            from_new: 1
+        });
+        Tickets.setFAQclicked(id, hash, 1, true);
+        hide('tickets_faq_urgent_links' + id);
+        if (val > 0) {
+            show('tickets_faq_useful' + id);
+            slideUp('tickets_new_wrap', 450);
+        } else {
+            show('tickets_faq_unuseful' + id);
+        }
+        return false;
+    },
+    cancelRateFAQUrgent: function(id, val, hash) {
+        if (!vk.id) return false;
+        ajax.post('support?act=a_faq_rate', {
+            faq_id: id,
+            val: val,
+            cancel: 1,
+            hash: hash
+        });
+        hide('tickets_faq_useful' + id, 'tickets_faq_unuseful' + id);
+        show('tickets_faq_urgent_links' + id);
+        var form = ge('tickets_new_wrap');
+        if (!isVisible(form)) {
+            slideDown(form, 500);
+        }
+        return false;
+    },
+    showAverageTime: function(time, confirmCallback) {
+        if (cur.timeShown) {
+            Tickets.toggleDetailedForm();
+            return;
+        }
+        var msg = getLang('support_wait_message').replace(/\{time\}/g, time) + '<div class="tickets_wait_img"><img src="/images/pics/support_wait.png" /></div>';
+        var box = showFastBox({
+            title: getLang('support_average_wait_time'),
+            width: 430,
+            dark: true,
+            bodyStyle: 'padding: 20px; line-height: 160%;'
+        }, msg, getLang('support_ask_question'), function() {
+            box.hide();
+            cur.timeShown = true;
+            confirmCallback();
+        }, getLang('support_back_to_faq'));
+    },
+    toggleDetailedForm: function(force) {
+        var title = ge('tickets_title');
+        toggleClass(ge('tickets_content'), 'detailed');
+        if (isVisible('tickets_detailed_form')) {
+            title.setAttribute('placeholder', getLang('support_please_add_title'));
+            removeClass(ge('tickets_search_reset'), 'shown');
+            if (force) ge('tickets_text').focus();
+        } else {
+            title.setAttribute('placeholder', getLang('support_title_msg'));
+            var str = trim(ge('tickets_title').value);
+            if (str) {
+                addClass(ge('tickets_search_reset'), 'shown');
+            }
+            cur.toggleCanceled = true;
+            delete cur.toggled;
+            Tickets.searchFAQ(str);
+            title.focus();
+        }
+        placeholderSetup(ge('tickets_title'), {
+            back: true,
+            reload: true
+        });
+    },
+
+    getSearchQuery: function() {
+        var input = ge('tickets_title') || ge('faq_search_form__title');
+        return input ? input.value : '';
+    },
+
+    getFormQuery: function(act, ask) {
+        var q = {
+            0: 'support',
+            act: act,
+            title: Tickets.getSearchQuery()
+        };
+        if (ask) q['ask'] = 1;
+        return q;
+    },
+
+    switchToPayForm: function(event) {
+        lockButton('tickets_create_pay');
+        return nav.go(Tickets.getFormQuery('new_pay'), event);
+    },
+
+    switchToAdsForm: function(event, ask) {
+        lockButton('tickets_create_ads');
+        return nav.go(Tickets.getFormQuery('new_ads', ask), event);
+    },
+
+    switchToNameForm: function(event, ask) {
+        lockButton('tickets_create_name');
+        return nav.go(Tickets.getFormQuery('new_name', ask), event);
+    },
+
+    switchToApiForm: function(event, ask) {
+        lockButton('tickets_create_api');
+        return nav.go(Tickets.getFormQuery('new_api', ask), event);
+    },
+
+    switchToMobileForm: function(event, ask) {
+        lockButton('tickets_create_mobile');
+        return nav.go(Tickets.getFormQuery('new_mobile', ask), event);
+    },
+
+    updateFAQ: function(e, obj) {
+        clearTimeout(cur.faqTimeout);
+        cur.faqTimeout = setTimeout((function() {
+            var origStr = obj.value,
+                str = trim(origStr),
+                words = str.split(' '),
+                textInput = ge('tickets_text');
+
+            if (origStr.length >= 70 && textInput && !textInput.value && !cur.flood) {
+                if (!isVisible('tickets_detailed_form')) {
+                    Tickets.toggleDetailedForm();
+                    obj.value = '';
+                    textInput.focus();
+                    textInput.value = origStr;
+                }
+            }
+            if (isVisible('tickets_detailed_form')) {
+                return;
+            }
+            if (str == cur.searchStr && (words.length < 4 || words.length == 4 && origStr[origStr.length - 1] != ' ')) {
+                return;
+            }
+            if (str) {
+                addClass(ge('tickets_search_reset'), 'shown');
+            } else {
+                removeClass(ge('tickets_search_reset'), 'shown');
+            }
+            cur.searchStr = str;
+            clearTimeout(cur.searchFAQTimeout);
+            cur.searchFAQTimeout = setTimeout((function() {
+                Tickets.searchFAQ(cur.searchStr);
+            }).bind(this), 300);
+
+            if (!browser.mobile) scrollToTop();
+        }).bind(this), 10);
+    },
+
+    searchFAQ: function(v) {
+        if (v[v.length - 1] == ' ') {
+            v[v.length - 1] = '_';
+        }
+        addClass(ge('tickets_search'), 'loading');
+        setStyle(ge('tickets_search_reset'), {
+            opacity: .6
+        });
+        var query = extend({
+            q: v,
+            from: nav.objLoc.act
+        }, Tickets.getFromObjLoc(['group_id', 'app_id', 'union_id']));
+
+        if (cur.tlmd && cur.showAll) {
+            delete cur.showAll;
+            query.show_all = 1;
+            if (cur.from_ads) {
+                query.from = 'ads';
+            }
+        }
+        ajax.post('support?act=a_get_faq', query, {
+            cache: 1,
+            hideProgress: removeClass.pbind('tickets_search', 'loading'),
+            onDone: function(cont, button) {
+                var origStr = val('tickets_title'),
+                    words = trim(origStr).split(' '),
+                    needToggle = false;
+                if (!cur.toggleCanceled && (words.length > 4 || words.length == 4 && origStr[origStr.length - 1] == ' ') && !cur.flood) needToggle = true;
+                if (cont) {
+                    val('tickets_faq_list', ce('div', {
+                        innerHTML: cont
+                    }).firstChild.innerHTML);
+                } else {
+                    if (button) {
+                        val('tickets_faq_button', button);
+                    }
+                    if (needToggle) {
+                        cur.toggled = true;
+                        Tickets.toggleDetailedForm();
+                    }
+                }
+                if (cur.tlmd) {
+                    if (v) {
+                        extend(nav.objLoc, {
+                            q: v
+                        });
+                    } else {
+                        delete nav.objLoc.q;
+                    }
+                    if (nav.objLoc.act == 'faq') {
+                        var title = v ? v : getLang('support_page_title');
+                        if (!vk.id) {
+                            title += ' | ' + getLang('global_vkontakte');
+                        }
+                        document.title = title;
+                    }
+                    nav.setLoc(nav.objLoc);
+                }
+            }
+        });
+    },
+
+    clearSearch: function(el, event) {
+        var field = ge('tickets_title');
+        setStyle(el, {
+            opacity: .6
+        });
+        field.value = '';
+        ge('tickets_title').focus();
+        Tickets.updateFAQ(event, field);
+    },
+    checkOut: function(el, mid) {
+        checkbox(el.firstChild);
+    },
+    getCheckedArr: function() {
+        var tickets = [];
+        if (isObject(cur.checkedTickets)) {
+            each(cur.checkedTickets, function(i, v) {
+                tickets.push(i)
+            });
+        }
+        return tickets;
+    },
+    updateChecked: function() {
+        if (ge('tickets_search_options')) {
+            var tickets = Tickets.getCheckedArr(),
+                c = tickets.length;
+            var tSearch = ge('tickets_all_search'),
+                tSelected = ge('tickets_all_selected');
+
+            if (c) {
+                if (isVisible(tSearch)) {
+                    slideUp(tSearch, 200);
+                }
+                ge('t_n_marked').innerHTML = langNumeric(c, cur.lang.x_tickets_checked, true);
+                if (!isVisible(tSelected)) {
+                    slideDown(tSelected, 200);
+                }
+            } else {
+                if (!isVisible(tSearch)) {
+                    slideDown(tSearch, 200);
+                }
+                if (isVisible(tSelected)) {
+                    slideUp(tSelected, 200);
+                }
+            }
+        }
+    },
+    checkChange: function(el, mid) {
+        var chb = geByClass1('checkbox', el);
+        if (cur.checkedTickets[mid]) {
+            delete cur.checkedTickets[mid];
+            checkbox(chb, 0);
+        } else {
+            cur.checkedTickets[mid] = true;
+            checkbox(chb, 1);
+        }
+        this.updateChecked();
+    },
+    saveDraft: function(ticket_id, evType) {
+        var txt = ge('tickets_reply');
+        if (browser.mobile || !txt || txt.disabled || !cur.canUseDrafts) return;
+
+        var message = val(txt),
+            data = {
+                txt: trim(message),
+                medias: []
+            },
+            m = (cur.ticketsNewMedia || {}).chosenMedias || [];
+
+        for (var i = 0, l = m.length; i < l; ++i) {
+            if (m[i]) data.medias.push([m[i][0], m[i][1]]);
+        }
+        if (!data.medias.length && !data.txt.length) {
+            data = false;
+        }
+        ls.set('helpdesk_draft' + vk.id + '_' + ticket_id, data);
+
+        if (txt && cur.ticketsNewMedia && (evType == 'paste' || evType == 'keyup')) {
+            cur.ticketsNewMedia.checkMessageURLs(message, evType != 'keyup');
+        }
+    },
+    listToggleQuestion: function(e, id, hash) {
+        if (checkEvent(e)) {
+            return true;
+        }
+        var question = e.target.parentNode;
+        var ans = geByClass1('help_table_question__ans', question);
+
+        if (isVisible(ans)) {
+            removeClass(question, 'help_table_question_visible');
+            slideUp(ans, 200);
+            Tickets.cancelFAQclicked(id);
+        } else {
+            addClass(question, 'help_table_question_visible');
+            slideDown(ans, 200);
+            Tickets.setFAQclicked(id, hash, 1, false);
+        }
+        return false;
+    },
+    listToggleUnusefulButton: function(v) {
+        toggle(ge('tickets_unuseful'), v);
+    },
+    listShowAltButton: function(altButtonId) {
+        each(geByClass('secondary', ge('help_table_questions_btn')), function(i, e) {
+            if (altButtonId == '' || e.id != altButtonId) {
+                hide(e);
+            } else {
+                show(e);
+            }
+        });
+    },
+    updateSearchSuggests: function(v) {
+        el = this;
+        v = trim(v);
+        var form = ge('faq_search_form');
+        if (form.hideTimeout) {
+            clearTimeout(form.hideTimeout);
+            form.hideTimeout = null;
+        }
+        if (form.searchTimeout) {
+            clearTimeout(form.searchTimeout);
+            form.searchTimeout = null;
+        }
+        if (!v) {
+            removeClass(form, 'faq_search_form_with_suggests', v);
+            hide('faq_search_form_suggests');
+            return;
+        }
+        form.searchTimeout = setTimeout(function() {
+            var suggests = ge('faq_search_form_suggests');
+            if (!suggests) {
+                suggests = ce('div', {
+                    id: 'faq_search_form_suggests',
+                    className: 'tickets_suggests'
+                });
+                form.appendChild(suggests);
+                hide(suggests);
+            }
+            ajax.post('support?act=a_load_faq_suggests', {
+                q: v,
+                section: cur.searchSection,
+                union_id: nav.objLoc['union_id']
+            }, {
+                cache: 1,
+                onDone: function(html) {
+                    if (html) {
+                        show(suggests);
+                        addClass(form, 'faq_search_form_with_suggests', v);
+                    }
+                    val(suggests, html);
+                },
+                showProgress: uiSearch.showProgress.pbind(el),
+                hideProgress: uiSearch.hideProgress.pbind(el)
+            });
+        }, 200);
+    },
+    hideSearchSuggests: function() {
+        var form = ge('faq_search_form');
+        form.hideTimeout = setTimeout(function() {
+            clearTimeout(form.hideTimeout);
+            form.hideTimeout = null;
+            hide('faq_search_form_suggests');
+            removeClass(form, 'faq_search_form_with_suggests');
+        }, 500);
+    },
+    goToSearchResult: function(el, val) {
+        val = trim(val);
+        if (val || nav.objLoc['act'] == 'faqs') {
+            var objLoc = {
+                0: cur.objLoc,
+                act: cur.faqsAct
+            };
+            if (val) {
+                objLoc['q'] = val;
+            }
+            if (nav.objLoc['union_id']) {
+                objLoc['union_id'] = nav.objLoc['union_id'];
+            }
+            nav.go(objLoc);
+        }
+    },
+    goToForm: function(from_faq_id, from, act, bhash) {
+        var urlParams = '',
+            n = {
+                0: 'support',
+                act: act
+            };
+        if (from_faq_id) {
+            n['id'] = from_faq_id;
+        } else {
+            var titleInput = uiSearch.getFieldEl('faq_search_form'),
+                title = '';
+            if (titleInput) {
+                title = trim(val(titleInput));
+                if (title !== '') {
+                    n['title'] = title;
+                }
+            }
+        }
+        if (from) {
+            n['from'] = from;
+        }
+        if (bhash) {
+            n['bhash'] = bhash;
+        }
+        nav.go(extend(n, Tickets.getFromObjLoc(['union_id', 'app_id', 'group_id'])));
+        return false;
+    },
+    listScrollToQuestion: function(questionId) {
+        var question = null;
+        if (questionId) {
+            question = ge('help_table_question_' + questionId);
+        }
+        if (question) {
+            scrollToY(getXY(question)[1] - 10);
+            if (!hasClass(question, 'help_table_question_visible')) {
+                addClass(question, 'help_table_question_visible');
+            }
+            var ans = geByClass1('help_table_question__ans', question);
+            if (!isVisible(ans)) {
+                show(ans);
+            }
+        }
+    },
+    tryAskQuestion: function(callback, from) {
+        var s = 2,
+            askQuestion = Tickets.getAskQuestionData(from);
+
+        if (askQuestion) {
+            s = askQuestion.permission;
+        }
+        if (!s) {
+            setTimeout(showFastBox({
+                dark: 1,
+                bodyStyle: 'line-height: 160%;',
+                title: getLang('global_error')
+            }, getLang('support_flood_error')).hide, 4000);
+        } else if (s == 1) {
+            Tickets.showAverageTime(askQuestion.time, callback);
+            return false;
+        } else {
+            callback();
+        }
+        return false;
+    },
+    listNotFoundVisible: function() {
+        return hasClass('help_table_questions', 'help_table_questions_not_found');
+    },
+    listHideNotFound: function() {
+        removeClass('help_table_questions', 'help_table_questions_not_found');
+    },
+    loadTickets: function() {
+        var progress = ge('tickets_list_load_more'),
+            progressY = getXY(progress)[1],
+            screenY = scrollGetY();
+
+        var inScreen = screenY <= progressY && progressY <= screenY + window.innerHeight;
+        if (!inScreen || cur.ticketsLoading || !cur.ticketsLoadMore) {
+            return;
+        }
+        var params = {
+            act: '',
+            offset: cur.ticketsOffset,
+            load: 1
+        };
+        if (nav.objLoc['union_id']) {
+            params['union_id'] = nav.objLoc['union_id'];
+        }
+        if (nav.objLoc['app_id']) {
+            params['app_id'] = nav.objLoc['app_id'];
+        }
+        ajax.post('support', params, {
+            showProgress: function() {
+                addClass(progress, 'tickets_list_load_more_loading');
+                cur.ticketsLoading = true;
+            },
+            hideProgress: function() {
+                removeClass(progress, 'tickets_list_load_more_loading');
+                cur.ticketsLoading = false;
+            },
+            onDone: function(rows, newOffset, loadMore) {
+                cur.ticketsOffset = newOffset;
+                cur.ticketsLoadMore = loadMore;
+                var l = ge('tickets_list');
+                removeClass(l.lastChild, 'last');
+                var rowsArr = sech(rows);
+                each(rowsArr, function(i, el) {
+                    l.appendChild(el);
+                });
+                Tickets.loadTickets();
+            }
+        });
+    },
+    closeMobileNotice: function(hash) {
+        slideUp('tickets_mobile_notice', 200);
+        ajax.post('support?act=a_hide_mobile_notice', {
+            hash: hash
+        });
+    },
+    listClearCache: function() {
+        var obj = nav.objLoc;
+        obj['cc'] = 1;
+        nav.go(obj);
+    },
+    storeOutdatedLeft: function(ticket_id) {
+        ls.set('support_outdated_left', {
+            id: ticket_id,
+            ts: Math.floor((new Date()).getTime() / 1000)
+        });
+        console.log('Win');
+    },
+    tutorialOpen: function(btn, hash) {
+        var chosenFaq = cur.chosenTutorialFaqId ? ge('help_table_question_' + cur.chosenTutorialFaqId) : null;
+        if (chosenFaq) {
+            show('support_tutorial_container');
+        } else {
+            slideDown('support_tutorial_container', 300);
+        }
+        btn.parentNode.replaceChild(ce('span', {
+            innerHTML: btn.innerHTML
+        }), btn);
+        ajax.post('support?act=a_open_tutorial', {
+            hash: hash
+        });
+        if (chosenFaq) {
+            scrollToY(getXY(chosenFaq)[1]);
+        }
+    },
+    tutorialSelect: function(btn, id, noActions) {
+        if (cur.tutorialProcessing) {
+            return;
+        }
+        ajax.post('support?act=tutorial', {
+            id: id,
+            load: 1,
+            ban: nav.objLoc['ban'] || 0,
+            no_actions: noActions
+        }, {
+            showProgress: function() {
+                cur.tutorialProcessing = true;
+                lockButton(btn);
+            },
+            hideProgress: function() {
+                cur.tutorialProcessing = false;
+                unlockButton(btn);
+            },
+            onDone: function(html, js) {
+                var el = ge('support_tutorial_container') || ge('content');
+                val(el, html);
+                if (js) {
+                    eval(js);
+                }
+                scrollToY(getXY('help_table_question_' + id)[1]);
+            }
+        });
+    },
+    showTicketLockedTT: function(el, text) {
+        showTooltip(el, {
+            dir: 'bottom',
+            text: text,
+            typeClass: 'tt_black',
+            shift: [15, 10, 0]
+        });
+    },
+    toggleQuestionHider: function(btn) {
+        var pn = domPN(domPN(btn)),
+            body = geByClass1('wk_hider_body', pn);
+        toggleClass(pn, 'wk_hider_box');
+        toggleClass(pn, 'wk_hider_box_opened');
+        if (hasClass(pn, 'wk_hider_box_opened')) {
+            slideDown(body, 200);
+        } else {
+            slideUp(body, 200);
+        }
+    },
+    payoutFormTT: function(el, txt) {
+        showTooltip(el, {
+            text: txt,
+            dir: 'bottom',
+            forcetoup: true
+        });
+    },
+    _eof: 1
+};
+
+var TicketsEF = {
+    _getInput: function(index) {
+        return ge('tickets_new_extra_field_' + index + '_inp');
+    },
+    _getValues: function(index) {
+        return cur.extraFieldsValues[index];
+    },
+    init: function() {
+        TicketsEF._runOverAll(function(container, index) {
+            var inp = TicketsEF._getInput(index),
+                efNote = cur.extraFieldsNotes[index],
+                efValues = TicketsEF._getValues(index);
+            var type = TicketsEF._getType(container, inp, efValues);
+            data(container, 'ef-type', type);
+            switch (type) {
+                case 'plain':
+                    TicketsEF._initPlain(container, inp, efNote);
+                    break;
+                case 'select':
+                    TicketsEF._initSelect(container, inp, efNote, efValues);
+                    break;
+                case 'radio':
+                    TicketsEF._initRadio(container, inp, index);
+                    break;
+                case 'date':
+                    TicketsEF._initDate(container, inp);
+                    break;
+                case 'datetime':
+                    TicketsEF._initDatetime(container, inp);
+                    break;
+                case 'checkbox':
+                    break;
+                case 'hidden':
+                    break;
+                default:
+                    console.log('Failed to define type of field=%s', index);
+                    break;
+            }
+        });
+        TicketsEF._checkBlocking();
+    },
+    _runOverAll: function(callback) {
+        if (!callback) {
+            return;
+        }
+        var efContainer = ge('tickets_new_extra_fields'),
+            efRows = efContainer ? geByClass('_extra_field', efContainer) : [];
+        each(efRows, function(k, container) {
+            callback(container, attr(container, 'ef-index'));
+        });
+    },
+    _getType: function(container, inp, values) {
+        if (inp) {
+            if (hasClass(inp, '_date')) {
+                if (geByClass1('_time', container)) {
+                    return 'datetime';
+                }
+                return 'date';
+            }
+            if (values.length > 0) {
+                return 'select';
+            } else if (container && geByClass1('checkbox', container)) {
+                return 'checkbox';
+            } else {
+                return 'plain';
+            }
+        } else if (container && geByClass1('radiobtn', container)) {
+            return 'radio';
+        }
+        return 'hidden';
+    },
+    _getDefinedType: function(container) {
+        return data(container, 'ef-type');
+    },
+    _initPlain: function(container, inp, note) {
+        if (!inp) {
+            data(container, 'value', '');
+            return;
+        }
+        if (!note || note === '') {
+            return;
+        }
+        addEvent(inp, 'focus', function(event) {
+            var inp = event.target;
+            Tickets.showTooltip(inp, note, 'extra_field', true, true);
+        });
+        addEvent(inp, 'blur', Tickets.hideTooltip.pbind(inp));
+    },
+    _initSelect: function(container, inp, note, values) {
+        if (!inp) {
+            data(container, 'value', '');
+            return;
+        }
+        var placeholder = attr(inp, 'placeholder'),
+            dd = new Dropdown(inp, values, {
+                introText: placeholder,
+                placeholder: placeholder,
+                width: getSize(inp)[0],
+                big: 1,
+                autocomplete: true,
+                multiselect: false,
+                zeroPlaceholder: true
+            });
+        data(container, 'dd', dd);
+    },
+    _getRadioName: function(index) {
+        return 'efRadio' + index;
+    },
+    _getCheckbox: function(container) {
+        return container.querySelector('.checkbox');
+    },
+    _initRadio: function(container, inp, index) {
+        var selectedEl = geByClass1('on', container);
+        window.radioBtns[TicketsEF._getRadioName(index)] = {
+            val: selectedEl ? intval(attr(selectedEl, 'ef-value')) : '',
+            els: geByClass('radiobtn', container)
+        };
+    },
+    _initDatetime: function(container, inp, note) {
+        var timeEl = geByClass1('_time', container);
+        new Datepicker(inp, {
+            time: timeEl,
+            width: 207
+        });
+        if (note !== '') {
+            addEvent(container, 'focus', function(event) {
+                Tickets.showTooltip(container, note, 'extra_field', true, true);
+            });
+        }
+    },
+    _initDate: function(container, inp) {
+        var note = attr(inp, 'placeholder').toString();
+        new Datepicker(inp, {
+            width: 348
+        });
+        if (note !== '') {
+            addEvent(container, 'focus', function(event) {
+                Tickets.showTooltip(container, note, 'extra_field', true, true);
+            });
+        }
+    },
+    radioClick: function(el) {
+        var container = gpeByClass('_extra_field', el);
+        if (!container) {
+            return;
+        }
+        radiobtn(el, attr(el, 'ef-value'), TicketsEF._getRadioName(attr(container, 'ef-index')));
+        TicketsEF._checkBlocking();
+        TicketsEF._checkVisible();
+    },
+    _checkBlocking: function() {
+        var needToBlock = false;
+        TicketsEF._runOverAll(function(container, index) {
+            if (!isVisible(container)) {
+                return;
+            }
+            if (TicketsEF._isBlocking(container, index)) {
+                needToBlock = true;
+            }
+        });
+        toggle('tickets_new_controls', !needToBlock);
+    },
+    _checkVisible: function() {
+        TicketsEF._runOverAll(function(container, index) {
+            var visibleRequired = cur.extraFieldsVisible[index];
+            if (!visibleRequired) {
+                return;
+            }
+            var setVisible = true;
+            each(visibleRequired, function(fieldIndex, visibleValues) {
+                if (fieldIndex === '_') {
+                    return;
+                }
+                var fieldV = TicketsEF._getValueByIndex(fieldIndex);
+                if (fieldV === '' || !inArray(intval(fieldV), visibleValues)) {
+                    setVisible = false;
+                }
+            });
+            toggle(container, setVisible);
+        });
+    },
+    _isBlocking: function(container, index) {
+        var inp = TicketsEF._getInput(index),
+            values = TicketsEF._getValues(index),
+            type = TicketsEF._getDefinedType(container, inp, values);
+        if (type == 'radio') {
+            var v = intval(radioval(TicketsEF._getRadioName(index))),
+                blocking = cur.extraFieldsBlocking[index];
+            return inArray(v, blocking);
+        }
+        return false;
+    },
+    _getValueByIndex: function(index) {
+        var container = ge('tickets_new_extra_field_' + index),
+            inp = TicketsEF._getInput(index);
+        if (!container) {
+            return '';
+        }
+        return TicketsEF._getValue(container, index, inp, TicketsEF._getDefinedType(container, inp, TicketsEF._getValues(index)));
+    },
+    _getValue: function(container, index, inp, type) {
+        var v = '';
+        switch (type) {
+            case 'plain':
+            case 'date':
+            case 'datetime':
+                v = trim(val(inp));
+                break;
+            case 'select':
+                var dd = container ? data(container, 'dd') : null;
+                if (dd) {
+                    v = dd.val();
+                }
+                break;
+            case 'radio':
+                v = radioval(TicketsEF._getRadioName(index));
+                break;
+            case 'checkbox':
+                v = isChecked(TicketsEF._getCheckbox(container));
+                break;
+            case 'hidden':
+                v = data(container, 'value');
+                break;
+        }
+        return v;
+    },
+    _getNotableBlock: function(container, inp, type) {
+        var block = inp;
+        switch (type) {
+            case 'select':
+                var dd = data(container, 'dd');
+                if (dd) {
+                    block = dd.container;
+                }
+                break;
+            case 'radio':
+            case 'hidden':
+                block = container;
+                break;
+        }
+        return block;
+    },
+    /**
+     * @returns {boolean|object}
+     */
+    getValues: function() {
+        var query = {},
+            fieldsValid = true;
+        TicketsEF._runOverAll(function(container, index) {
+            var inp = TicketsEF._getInput(index),
+                required = hasClass(container, '_ef_required'),
+                checkUrl = hasClass(container, '_ef_check_url');
+
+            if (!isVisible(container) || hasClass(container, '_ef_note')) {
+                return;
+            }
+            var type = TicketsEF._getDefinedType(container, inp, TicketsEF._getValues(index)),
+                v = TicketsEF._getValue(container, index, inp, type);
+
+            if (required && (v === '' || (checkUrl && v.indexOf('vk.com') == -1) || TicketsEF._isBlocking(container, index))) {
+                var notableBlock = TicketsEF._getNotableBlock(container, inp, type);
+                if (notableBlock) {
+                    notaBene(notableBlock, false, !fieldsValid);
+                }
+                fieldsValid = false;
+            }
+            query['extra_field_' + index] = v;
+        });
+        return fieldsValid ? query : false;
+    }
+};
 try {
-    stManager.done("tickets.js")
+    stManager.done('tickets.js');
 } catch (e) {}

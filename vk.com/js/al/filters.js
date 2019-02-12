@@ -1,475 +1,955 @@
 var Filters = {
-    init: function(e, t, r, i, l, u, o) {
-        stManager.add(["btagger.css", "btagger.js"]), cur.settingsMoreShown = !1, cur.pvTagger && window.Phototag && Phototag.stopTag(), cur.cropActs = ge("pv_crop_actions");
-        var s = {
-                allowScriptAccess: "always",
-                bgcolor: "#FFFFFF",
-                wmode: "opaque",
-                scale: "noscale",
-                quality: "best",
-                salign: "tl"
-            },
-            c = curBox();
-        c && c.setOptions({
-            onHideAttempt: function() {
-                return cur.startedCrop = !1, cur.filtersBlur = 0, cur.blurShown = !1, cur.lastCrop = !1, cur.filtersAmount = !1, cur.amountSize = !1, !0
-            }
-        }), cur.filterPhoto = u, cur.filterHash = o;
-        var a = renderFlash("pv_filter_cont", e, s, t);
-        if (!a) return hide("pv_filter_wrap"), hide("pv_filter_roll"), show("pv_other_settings"), hide(geByClass1("pv_change_setting", c.bodyNode)), void setStyle(ge("pv_filter_panel"), {
-            marginTop: 10
-        });
-        if (cur.filtersFont = ls.get("filter_font"), void 0 == cur.filtersFont ? cur.filtersFont = 1 : ge("pv_filter_font").className = "pv_filter_font pv_filter_font" + cur.filtersFont, cur.filterFl = ge("pv_filter_embed"), cur.filterApplied = 0, cur.filterSaveOptions = r, cur.filterParams = i, cur.customOpts = l, cur.filterUnderLeft = 0, cur.filterParams.disableCrop) {
-            var n = geByClass1("pv_filter_crop", ge("pv_filters_cont"));
-            hide(n), addClass(n.parentNode, "pv_filter_no_crop")
+
+    init: function(opts, vars, filterSaveOptions, filterParams, customOpts, photo, hash) {
+        stManager.add(['btagger.css', 'btagger.js']);
+        cur.settingsMoreShown = false;
+
+        if (cur.pvTagger && window.Phototag) {
+            Phototag.stopTag();
         }
-        var p = {
-            onComplete: function(e) {
-                if (e) {
-                    var t = parseJSON(e);
-                    t && ("album_photo" == t.bwact ? Filters.save(e) : Filters.save(t))
+
+        cur.cropActs = ge('pv_crop_actions');
+        var params = {
+            'allowScriptAccess': 'always',
+            'bgcolor': '#FFFFFF',
+            'wmode': 'opaque',
+            'scale': 'noscale',
+            'quality': 'best',
+            'salign': 'tl'
+        };
+        var box = curBox();
+        if (box) {
+            box.setOptions({
+                onHideAttempt: function() {
+                    cur.startedCrop = false;
+                    cur.filtersBlur = 0;
+                    cur.blurShown = false;
+                    cur.lastCrop = false;
+                    cur.filtersAmount = false;
+                    cur.amountSize = false;
+                    return true;
+                }
+            });
+        }
+        cur.filterPhoto = photo;
+        cur.filterHash = hash;
+
+        var res = renderFlash('pv_filter_cont', opts, params, vars);
+        if (!res) {
+            hide('pv_filter_wrap');
+            hide('pv_filter_roll');
+            show('pv_other_settings');
+            hide(geByClass1('pv_change_setting', box.bodyNode));
+            setStyle(ge('pv_filter_panel'), {
+                marginTop: 10
+            });
+            return;
+        }
+        cur.filtersFont = ls.get('filter_font');
+        if (cur.filtersFont == undefined) {
+            cur.filtersFont = 1;
+        } else {
+            ge('pv_filter_font').className = 'pv_filter_font pv_filter_font' + cur.filtersFont;
+        }
+        cur.filterFl = ge('pv_filter_embed');
+        cur.filterApplied = 0;
+        cur.filterSaveOptions = filterSaveOptions;
+        cur.filterParams = filterParams;
+        cur.customOpts = customOpts;
+        cur.filterUnderLeft = 0;
+
+        if (cur.filterParams.disableCrop) {
+            var cr = geByClass1('pv_filter_crop', ge('pv_filters_cont'));
+            hide(cr);
+            addClass(cr.parentNode, 'pv_filter_no_crop');
+        }
+
+        var callbacks = {
+            onComplete: function(str) {
+                if (!str) {
+                    return;
+                }
+                var info = parseJSON(str);
+                if (!info) {
+                    return;
+                }
+                if (info.bwact == 'album_photo') { // signed
+                    Filters.save(str);
+                } else {
+                    Filters.save(info);
                 }
             },
-            setSize: function(e, t) {
-                cur.preventCrop = 200 > e || 200 > t, setStyle(cur.filterFl, {
-                    height: t + "px"
-                }), cur.filterUnderLeft = (604 - e) / 2, setStyle(ge("pv_filter_under"), {
-                    height: t + "px",
-                    padding: "0px " + cur.filterUnderLeft + "px",
-                    width: e + "px"
-                }), setStyle(ge("pv_filter_photo_inner"), {
-                    width: e + "px",
-                    height: t + "px"
-                }), 150 > t ? hide("pv_filters_cont") : show("pv_filters_cont")
+            setSize: function(width, height) {
+                cur.preventCrop = (width < 200 || height < 200);
+                setStyle(cur.filterFl, {
+                    height: height + 'px'
+                });
+                cur.filterUnderLeft = ((604 - width) / 2);
+                setStyle(ge('pv_filter_under'), {
+                    height: height + 'px',
+                    padding: '0px ' + cur.filterUnderLeft + 'px',
+                    width: width + 'px'
+                });
+                setStyle(ge('pv_filter_photo_inner'), {
+                    width: width + 'px',
+                    height: height + 'px'
+                });
+                if (height < 150) {
+                    hide('pv_filters_cont');
+                } else {
+                    show('pv_filters_cont');
+                }
             },
             startCrop: function() {
-                if (cur.preventCrop) return showDoneBox("<center>" + getLang("photos_too_small") + "</center>"), !1;
-                var e = function(e) {
-                        var t = {
-                            marginTop: e.t + e.h / 2 - 25
-                        };
-                        vk.rtl ? t.marginRight = e.r + e.w / 2 - 50 + cur.filterUnderLeft : t.marginLeft = e.l + e.w / 2 - 50 + cur.filterUnderLeft, setStyle(cur.cropActs, t), fadeIn(cur.cropActs, 150)
-                    },
-                    t = {
-                        onStart: e,
-                        onMove: e,
-                        onMoveStart: function(e) {
-                            var t = {
-                                marginTop: e.t + e.h / 2 - 25
-                            };
-                            vk.rtl ? t.marginRight = e.r + e.w / 2 - 50 + cur.filterUnderLeft : t.marginLeft = e.l + e.w / 2 - 50 + cur.filterUnderLeft, setStyle(cur.cropActs, t), fadeOut(cur.cropActs, 150)
-                        }
+                if (cur.preventCrop) {
+                    showDoneBox('<center>' + getLang('photos_too_small') + '</center>');
+                    return false;
+                }
+                var move = function(s) {
+                    var params = {
+                        marginTop: s.t + (s.h / 2) - 25
                     };
-                cur.lastCrop && (t.s = cur.lastCrop), cur.btagger = new BTagger("pv_filter_photo_inner", t), fadeOut(ge("pv_filters_cont"), 150)
+                    if (vk.rtl) {
+                        params.marginRight = s.r + (s.w / 2) - 50 + cur.filterUnderLeft;
+                    } else {
+                        params.marginLeft = s.l + (s.w / 2) - 50 + cur.filterUnderLeft;
+                    }
+                    setStyle(cur.cropActs, params);
+                    fadeIn(cur.cropActs, 150);
+                }
+                var taggerOpts = {
+                    onStart: move,
+                    onMove: move,
+                    onMoveStart: function(s) {
+                        var params = {
+                            marginTop: s.t + (s.h / 2) - 25
+                        };
+                        if (vk.rtl) {
+                            params.marginRight = s.r + (s.w / 2) - 50 + cur.filterUnderLeft;
+                        } else {
+                            params.marginLeft = s.l + (s.w / 2) - 50 + cur.filterUnderLeft;
+                        }
+                        setStyle(cur.cropActs, params);
+                        fadeOut(cur.cropActs, 150);
+                    }
+                }
+                if (cur.lastCrop) {
+                    taggerOpts.s = cur.lastCrop;
+                }
+                cur.btagger = new BTagger('pv_filter_photo_inner', taggerOpts)
+                fadeOut(ge('pv_filters_cont'), 150);
             },
-            textSize: function(e, t) {
-                cur.textHeight = t, Filters.onTextResize()
+            textSize: function(w, h) {
+                cur.textHeight = h;
+                Filters.onTextResize();
             },
             onInit: function() {
-                i.settings && Filters.fromStr(i.settings)
+                if (filterParams.settings) {
+                    Filters.fromStr(filterParams.settings);
+                }
             }
         };
         if (cur.pvPhoto && cur.pvPhoto.firstChild) {
-            var v = getSize(cur.pvPhoto.firstChild);
-            v[0] > 604 && (v[1] = 604 * v[1] / v[0], v[0] = 604), p.setSize(v[0], v[1])
+            var size = getSize(cur.pvPhoto.firstChild);
+            if (size[0] > 604) {
+                size[1] = size[1] * 604 / size[0];
+                size[0] = 604;
+            }
+            callbacks.setSize(size[0], size[1]);
         }
-        cur.filtersCallback = function(e) {
-            method = e.shift(), p[method] ? p[method].apply(this, e) : debugLog("method " + method + " not found")
-        }, autosizeSetup("pv_filter_text_ta", {
+
+        cur.filtersCallback = function(args) {
+            method = args.shift();
+            if (callbacks[method]) {
+                callbacks[method].apply(this, args);
+            } else {
+                debugLog('method ' + method + ' not found');
+            }
+        }
+
+        autosizeSetup('pv_filter_text_ta', {
             maxHeight: 300,
             onResize: Filters.onTextResize
         })
     },
-    filtersAct: function(e, t) {
-        cssAnim(e, {
-            opacity: t ? 1 : .85
+
+    filtersAct: function(obj, state) {
+        cssAnim(obj, {
+            opacity: state ? 1 : 0.85
         }, {
             duration: 100
-        })
+        });
     },
-    showMoreSettings: function(e) {
-        cur.settingsMoreShown ? (slideUp("pv_other_settings", 200), cur.settingsMoreShown = !1, e.innerHTML = getLang("photos_change_setting")) : (slideDown("pv_other_settings", 200), cur.settingsMoreShown = !0, e.innerHTML = getLang("photos_hide_change_setting"))
+
+    showMoreSettings: function(obj) {
+        if (!cur.settingsMoreShown) {
+            slideDown('pv_other_settings', 200);
+            cur.settingsMoreShown = true;
+            obj.innerHTML = getLang('photos_hide_change_setting');
+        } else {
+            slideUp('pv_other_settings', 200);
+            cur.settingsMoreShown = false;
+            obj.innerHTML = getLang('photos_change_setting');
+        }
     },
-    filterCrop: function(e) {
-        return cur.startedCrop || (cur.startedCrop = !0, cur.filterParams.disableCrop) ? void 0 : (stManager.add(["btagger.css", "btagger.js"], function() {
-            cur.filterFl.originalCrop(), cur.filterCropped = !1
-        }), cancelEvent(e))
+
+    filterCrop: function(ev) {
+        if (cur.startedCrop) {
+            return;
+        }
+        cur.startedCrop = true;
+        if (cur.filterParams.disableCrop) return;
+        stManager.add(['btagger.css', 'btagger.js'], function() {
+            cur.filterFl.originalCrop();
+            cur.filterCropped = false;
+        });
+        return cancelEvent(ev);
     },
+
     doCrop: function() {
-        cur.startedCrop = !1, cur.lastCrop = cur.btagger.getOpts(), Filters.cancelCrop(), cur.filterFl.crop(cur.lastCrop), cur.fBlurPos = !1, cur.filterCropped = !0
+        cur.startedCrop = false;
+        cur.lastCrop = cur.btagger.getOpts();
+        Filters.cancelCrop();
+        cur.filterFl.crop(cur.lastCrop);
+        cur.fBlurPos = false;
+        cur.filterCropped = true;
     },
+
     cancelCrop: function() {
-        cur.startedCrop = !1, fadeOut(cur.cropActs, 150), cur.lastCrop = cur.btagger.getOpts(), cur.btagger.hide(), fadeIn(ge("pv_filters_cont"), 150)
+        cur.startedCrop = false;
+        fadeOut(cur.cropActs, 150);
+        cur.lastCrop = cur.btagger.getOpts();
+        cur.btagger.hide();
+        fadeIn(ge('pv_filters_cont'), 150);
     },
+
     hideBlur: function() {
-        debugLog("hideBlur");
-        var e = ge("pv_filter_blur_sl"),
-            t = ge("pv_filter_under");
+        debugLog('hideBlur');
+        var blurCont = ge('pv_filter_blur_sl');
+        var under = ge('pv_filter_under');
         setTimeout(function() {
-            if (debugLog("hideBlurDoing"), !cur.blurShown) return !0;
-            var r = {
+            debugLog('hideBlurDoing');
+            if (!cur.blurShown) {
+                return true;
+            }
+            var params = {
                 opacity: 0,
                 width: 0
             };
-            r[vk.rtl ? "marginRight" : "marginLeft"] = 24, isVisible(ge("pv_filters_cont")) ? cssAnim(e, r, {
-                duration: 100
-            }, function() {
-                hide(e)
-            }) : setStyle(e, r), cur.blurShown = !1, removeClass(t, "pv_filter_pointer"), removeEvent(t, "click mousemove", Filters.setBlurPos), removeEvent(t, "mousedown")
-        }, 0)
+            params[vk.rtl ? 'marginRight' : 'marginLeft'] = 24;
+            if (isVisible(ge('pv_filters_cont'))) {
+                cssAnim(blurCont, params, {
+                    duration: 100
+                }, function() {
+                    hide(blurCont);
+                });
+            } else {
+                setStyle(blurCont, params);
+            }
+            /*cur.filtersBlur = 0;
+            cur.filterFl.setBlur(cur.blurType || 1, cur.filtersBlur, 0, 0);*/
+            cur.blurShown = false;
+            removeClass(under, 'pv_filter_pointer');
+            removeEvent(under, 'click mousemove', Filters.setBlurPos);
+            removeEvent(under, 'mousedown');
+        }, 0);
     },
-    showBlur: function(e) {
-        var t = ge("pv_filter_blur_sl"),
-            r = ge("pv_filter_under");
-        if (cur.blurShown) return !0;
-        show(t);
-        var i = {
+
+    showBlur: function(ev) {
+        var blurCont = ge('pv_filter_blur_sl');
+        var under = ge('pv_filter_under');
+        if (cur.blurShown) {
+            return true;
+        }
+        show(blurCont);
+        var params = {
             width: 100,
             opacity: 1
-        };
-        i[vk.rtl ? "marginRight" : "marginLeft"] = 40, cssAnim(t, i, {
+        }
+        params[vk.rtl ? 'marginRight' : 'marginLeft'] = 40;
+        cssAnim(blurCont, params, {
             duration: 100
-        }, function() {}), cur.blurShown = !0, Filters.setBlur(), addClass(r, "pv_filter_pointer"), addEvent(r, "mousedown mousemove", Filters.setBlurPos);
-        var l = function() {
-            cur.mouseDown = !1, removeEvent(window, "mouseup", l)
+        }, function() {});
+        cur.blurShown = true;
+        Filters.setBlur();
+        addClass(under, 'pv_filter_pointer');
+        addEvent(under, 'mousedown mousemove', Filters.setBlurPos);
+        var onMouseUp = function() {
+            cur.mouseDown = false;
+            removeEvent(window, 'mouseup', onMouseUp);
         };
-        return addEvent(r, "mousedown", function() {
-            cur.mouseDown = !0, addEvent(window, "mouseup", l)
-        }), addEvent(r, "mouseup", function() {
-            cur.mouseDown = !1
-        }), elfocus("pv_focus_blur"), cancelEvent(e)
+        addEvent(under, 'mousedown', function() {
+            cur.mouseDown = true;
+            addEvent(window, 'mouseup', onMouseUp);
+        });
+        addEvent(under, 'mouseup', function() {
+            cur.mouseDown = false;
+        });
+        elfocus('pv_focus_blur');
+        return cancelEvent(ev);
     },
+
     hideText: function() {
-        var e = ge("pv_filter_text_sl");
+        var textCont = ge('pv_filter_text_sl')
         setTimeout(function() {
-            if (!cur.textShown) return !1;
-            var t = {
+            if (!cur.textShown) {
+                return false;
+            }
+            var params = {
                 opacity: 0,
                 width: 0
             };
-            t[vk.rtl ? "marginRight" : "marginLeft"] = 24, isVisible(ge("pv_filters_cont")) ? cssAnim(e, t, {
-                duration: 100
-            }, function() {
-                hide(e)
-            }) : setStyle(e, t), cur.textShown = !1
-        }, 0)
+            params[vk.rtl ? 'marginRight' : 'marginLeft'] = 24;
+            if (isVisible(ge('pv_filters_cont'))) {
+                cssAnim(textCont, params, {
+                    duration: 100
+                }, function() {
+                    hide(textCont);
+                });
+            } else {
+                setStyle(textCont, params);
+            }
+            cur.textShown = false;
+        }, 0);
     },
-    showText: function(e) {
-        if (cur.textShown) return Filters.hideText(), !0;
-        var t = ge("pv_filter_text_sl");
-        show(t);
-        var r = {
+
+    showText: function(ev) {
+        if (cur.textShown) {
+            Filters.hideText();
+            return true;
+        }
+        var textCont = ge('pv_filter_text_sl')
+        show(textCont);
+        var params = {
             width: 215,
             opacity: 1
-        };
-        return r[vk.rtl ? "marginRight" : "marginLeft"] = 40, cssAnim(t, r, {
+        }
+        params[vk.rtl ? 'marginRight' : 'marginLeft'] = 40;
+        cssAnim(textCont, params, {
             duration: 100
         }, function() {
-            elfocus("pv_filter_text_ta")
-        }), cur.textShown = !0, cancelEvent(e)
+            elfocus('pv_filter_text_ta');
+        });
+        cur.textShown = true;
+        return cancelEvent(ev);
     },
-    switchFont: function(e, t) {
-        return cur.filtersFont = parseInt(cur.filtersFont) ? 0 : 1, Filters.updateText(!1, t), ls.set("filter_font", cur.filtersFont), e.className = "pv_filter_font pv_filter_font" + cur.filtersFont, cancelEvent(t)
+
+    switchFont: function(btn, ev) {
+        cur.filtersFont = parseInt(cur.filtersFont) ? 0 : 1;
+        Filters.updateText(false, ev);
+        ls.set('filter_font', cur.filtersFont);
+        btn.className = 'pv_filter_font pv_filter_font' + cur.filtersFont;
+        return cancelEvent(ev);
     },
-    updateText: function(e, t) {
-        t && t.keyCode == KEY.RETURN && (t.ctrlKey || t.metaKey) && Filters.showText(t), setTimeout(function() {
-            var t = ge("pv_filter_text_ta"),
-                r = val(t) || "";
-            return r.length > 140 && (r = r.substr(0, 140), val(t, r)), cur.filterText = r, cur.filterFl.setText ? void cur.filterFl.setText(r, cur.filtersFont, e || 0) : !1
-        }, 0)
-    },
-    onTextResize: function() {
-        var e = ge("pv_filter_text_sl"),
-            t = getSize(e),
-            r = cur.filterParams.disableCrop ? 34 : 4;
-        setStyle(e, {
-            marginTop: Math.min(105 - cur.textHeight - t[1], r)
-        })
-    },
-    showSetts: function() {},
-    hideSetts: function() {},
-    startSlideEdit: function(e, t, r) {
-        var i = geByClass1("pv_blur_line", e),
-            l = r.pageX - getXY(geByClass1("pv_blur_back", e))[0];
-        vk.rtl && (l = 86 - l);
-        var u = r.pageX;
-        if (1 == t) {
-            var o = 0,
-                s = 82;
-            if (l > 86) return Filters.changeBlurType(ge("pv_blur_switch"), r)
-        } else {
-            if (!hasClass(e, "pv_level_shown")) return !0;
-            var o = 3,
-                s = 66
+
+    updateText: function(force, ev) {
+        if (ev && ev.keyCode == KEY.RETURN && (ev.ctrlKey || ev.metaKey)) {
+            Filters.showText(ev);
         }
-        cur.fBg = bodyNode.appendChild(ce("div", {
-            className: "pv_filter_bg no_select"
+        setTimeout(function() {
+            var ta = ge('pv_filter_text_ta');
+            var txt = val(ta) || '';
+            if (txt.length > 140) {
+                txt = txt.substr(0, 140);
+                val(ta, txt);
+            }
+            cur.filterText = txt;
+            if (!cur.filterFl.setText) {
+                return false;
+            }
+            cur.filterFl.setText(txt, cur.filtersFont, force || 0);
+        }, 0);
+    },
+
+    onTextResize: function() {
+        var textCont = ge('pv_filter_text_sl');
+        var size = getSize(textCont);
+        var minTop = cur.filterParams.disableCrop ? 34 : 4;
+        setStyle(textCont, {
+            marginTop: Math.min(105 - cur.textHeight - size[1], minTop)
+        });
+    },
+
+    showSetts: function() {
+        /*if (cur.blurShown) {
+          cssAnim(ge('pv_filter_blur_sl'), {opacity: 1}, {duration: 200});
+        }*/
+    },
+
+    hideSetts: function() {
+        /*if (cur.blurShown && !cur.fBg) {
+          cssAnim(ge('pv_filter_blur_sl'), {opacity: 0}, {duration: 200});
+        }*/
+    },
+
+    startSlideEdit: function(obj, type, evSt) {
+        var line = geByClass1('pv_blur_line', obj);
+        var x = evSt.pageX - getXY(geByClass1('pv_blur_back', obj))[0];
+        if (vk.rtl) {
+            x = 86 - x;
+        }
+        var posx = evSt.pageX;
+        if (type == 1) {
+            var lineMin = 0;
+            var lineMax = 82;
+            if (x > 86) {
+                return Filters.changeBlurType(ge('pv_blur_switch'), evSt);
+            }
+        } else {
+            if (!hasClass(obj, 'pv_level_shown')) {
+                return true;
+            }
+            var lineMin = 3;
+            var lineMax = 66;
+        }
+        cur.fBg = bodyNode.appendChild(ce('div', {
+            className: 'pv_filter_bg no_select'
         }, {
             width: Math.max(intval(window.innerWidth), intval(document.documentElement.clientWidth)),
             height: Math.max(intval(window.innerHeight), intval(document.documentElement.clientHeight)),
-            cursor: "pointer"
-        })), setStyle(i, {
-            width: Math.min(Math.max(l, o), s)
-        }), addClass(e, "pv_filter_down");
-        var c = intval(getStyle(i, "width"));
-        return addEvent(cur.fBg, "mousemove", function(r) {
-            var l = u - r.pageX;
-            return vk.rtl && (l = -l), setStyle(i, {
-                width: Math.max(Math.min(c - l, s), o)
-            }), 1 == t ? Filters.setBlur() : 2 == t && Filters.setAmount(e), cancelEvent(r)
-        }), addEvent(cur.fBg, "mouseup", function(t) {
-            removeEvent(cur.fBg, "mouseup"), removeEvent(cur.fBg, "mousemove"), re(cur.fBg), cur.fBg = !1, removeClass(e, "pv_filter_down")
-        }), 1 == t ? Filters.setBlur() : 2 == t && Filters.setAmount(e), cancelEvent(r)
+            cursor: 'pointer'
+        }));
+        setStyle(line, {
+            width: Math.min(Math.max(x, lineMin), lineMax)
+        });
+        addClass(obj, 'pv_filter_down');
+        var stW = intval(getStyle(line, 'width'));
+        addEvent(cur.fBg, 'mousemove', function(ev) {
+            var diffx = posx - ev.pageX;
+            if (vk.rtl) {
+                diffx = -diffx;
+            }
+            setStyle(line, {
+                width: Math.max(Math.min(stW - diffx, lineMax), lineMin)
+            });
+            if (type == 1) {
+                Filters.setBlur();
+            } else if (type == 2) {
+                Filters.setAmount(obj);
+            }
+            return cancelEvent(ev);
+        });
+        addEvent(cur.fBg, 'mouseup', function(ev) {
+            removeEvent(cur.fBg, 'mouseup');
+            removeEvent(cur.fBg, 'mousemove');
+            re(cur.fBg);
+            cur.fBg = false;
+            removeClass(obj, 'pv_filter_down');
+        });
+        if (type == 1) {
+            Filters.setBlur();
+        } else if (type == 2) {
+            Filters.setAmount(obj);
+        }
+        return cancelEvent(evSt);
     },
-    changeBlurType: function(e) {
-        return cur.blurType = (cur.blurType || 1) + 1, cur.blurType > 2 && (cur.blurType = 1), setStyle(ge("pv_blur_switch"), {
-            backgroundPosition: "0px " + (-34 - 9 * cur.blurType) + "px"
-        }), Filters.setBlur(), cancelEvent(e)
+
+    changeBlurType: function(ev) {
+        cur.blurType = (cur.blurType || 1) + 1;
+        if (cur.blurType > 2) {
+            cur.blurType = 1;
+        }
+        setStyle(ge('pv_blur_switch'), {
+            backgroundPosition: '0px ' + (-34 - cur.blurType * 9) + 'px'
+        });
+        Filters.setBlur();
+        return cancelEvent(ev);
     },
+
     setBlur: function() {
-        var e = getSize("pv_blur_back")[0],
-            t = getSize("pv_blur_line")[0];
-        cur.filtersBlur = t / e * 100;
-        getSize(ge("pv_filter_under"));
-        cur.fBlurPos || (cur.fBlurPos = [.5, .5]), debugLog("set blur", cur.fBlurPos), cur.blurTimeout || (cur.blurTimeout = setTimeout(function() {
-            cur.filterFl.setBlur(cur.blurType || 1, cur.filtersBlur, cur.fBlurPos[0], cur.fBlurPos[1]), cur.blurTimeout = !1
-        }, 5))
+        var maxSize = getSize('pv_blur_back')[0];
+        var size = getSize('pv_blur_line')[0];
+        cur.filtersBlur = (size / maxSize) * 100;
+        var underSize = getSize(ge('pv_filter_under'));
+        if (!cur.fBlurPos) {
+            cur.fBlurPos = [0.5, 0.5];
+        }
+
+        debugLog('set blur', cur.fBlurPos);
+        if (cur.blurTimeout) {
+            return;
+        }
+        cur.blurTimeout = setTimeout(function() {
+            cur.filterFl.setBlur(cur.blurType || 1, cur.filtersBlur, cur.fBlurPos[0], cur.fBlurPos[1]);
+            cur.blurTimeout = false;
+        }, 5);
     },
-    setAmount: function(e, t) {
-        var r = getSize(geByClass1("pv_blur_back", e))[0];
-        return cur.amountSize = getSize(geByClass1("pv_blur_line", e))[0], cur.filtersAmount = cur.amountSize / r, cur.filtersAmount = .8 - .8 * cur.filtersAmount, t ? void cur.filterFl.setAmount(cur.filtersAmount) : void(cur.amountTimeout || (cur.amountTimeout = setTimeout(function() {
-            cur.filterFl.setAmount(cur.filtersAmount), cur.amountTimeout = !1
-        }, 5)))
+
+    setAmount: function(obj, fast) {
+        var maxSize = getSize(geByClass1('pv_blur_back', obj))[0];
+        cur.amountSize = getSize(geByClass1('pv_blur_line', obj))[0];
+        cur.filtersAmount = cur.amountSize / maxSize;
+        cur.filtersAmount = 0.8 - cur.filtersAmount * 0.8;
+        if (fast) {
+            cur.filterFl.setAmount(cur.filtersAmount);
+            return;
+        }
+        if (cur.amountTimeout) {
+            return;
+        }
+        cur.amountTimeout = setTimeout(function() {
+            cur.filterFl.setAmount(cur.filtersAmount);
+            cur.amountTimeout = false;
+        }, 5);
     },
-    setBlurPos: function(e) {
-        if ("mousemove" == e.type && !cur.mouseDown) return cancelEvent(e);
-        var t = ge("pv_filter_under"),
-            r = getXY(t),
-            i = getSize(t);
-        return cur.fBlurPos = [(e.pageX - r[0]) / i[0], (e.pageY - r[1]) / i[1]], Filters.setBlur(), elfocus("pv_focus_blur"), cancelEvent(e)
+
+    setBlurPos: function(ev) {
+        if (ev.type == 'mousemove' && !cur.mouseDown) {
+            return cancelEvent(ev);
+        }
+        var under = ge('pv_filter_under');
+        var offset = getXY(under);
+        var underSize = getSize(under);
+        cur.fBlurPos = [(ev.pageX - offset[0]) / underSize[0], (ev.pageY - offset[1]) / underSize[1]];
+        Filters.setBlur();
+        elfocus('pv_focus_blur');
+        return cancelEvent(ev);
     },
+
     applyCustom: function() {
-        (cur.filterApplied || cur.filtersBlur) && (cur.filterFl.restoreOriginal(), cur.filterApplied = 0), cur.customOpts[cur.customNum][0] = val("pv_fl_brightness"), cur.customOpts[cur.customNum][1] = val("pv_fl_contrast"), cur.customOpts[cur.customNum][2] = val("pv_fl_saturation"), cur.customOpts[cur.customNum][3] = val("pv_fl_sepia"), cur.customOpts[cur.customNum][4] = val("pv_fl_vig1"), cur.customOpts[cur.customNum][5] = val("pv_fl_vig2"), cur.customOpts[cur.customNum][6] = val("pv_fl_color1"), cur.customOpts[cur.customNum][7] = val("pv_fl_color2"), cur.customOpts[cur.customNum][8] = val("pv_fl_color3");
-        var e = cur.customOpts[cur.customNum];
-        cur.filterFl.addFilter("brightness", e[0]), cur.filterFl.addFilter("contrast", e[1]), cur.filterFl.addFilter("saturation", e[2]), cur.filterFl.addFilter("sepia", e[3]), cur.filterFl.addFilter("vignette", e[4], e[5]), cur.filterFl.addFilter("color", e[6], e[7], e[8]), cur.filterApplied = -1, cur.filterFl.applyFilter(!0), clearTimeout(cur.saveCustomTimeout), cur.saveCustomTimeout = setTimeout(Filters.saveCustom, 1e3)
+        if (cur.filterApplied || cur.filtersBlur) {
+            cur.filterFl.restoreOriginal();
+            cur.filterApplied = 0;
+        }
+        cur.customOpts[cur.customNum][0] = val('pv_fl_brightness')
+        cur.customOpts[cur.customNum][1] = val('pv_fl_contrast')
+        cur.customOpts[cur.customNum][2] = val('pv_fl_saturation')
+        cur.customOpts[cur.customNum][3] = val('pv_fl_sepia')
+        cur.customOpts[cur.customNum][4] = val('pv_fl_vig1')
+        cur.customOpts[cur.customNum][5] = val('pv_fl_vig2')
+        cur.customOpts[cur.customNum][6] = val('pv_fl_color1')
+        cur.customOpts[cur.customNum][7] = val('pv_fl_color2')
+        cur.customOpts[cur.customNum][8] = val('pv_fl_color3')
+        var flOpts = cur.customOpts[cur.customNum];
+        cur.filterFl.addFilter('brightness', flOpts[0]);
+        cur.filterFl.addFilter('contrast', flOpts[1]);
+        cur.filterFl.addFilter('saturation', flOpts[2]);
+        cur.filterFl.addFilter('sepia', flOpts[3]);
+        cur.filterFl.addFilter('vignette', flOpts[4], flOpts[5]);
+        cur.filterFl.addFilter('color', flOpts[6], flOpts[7], flOpts[8]);
+
+        cur.filterApplied = -1;
+        cur.filterFl.applyFilter(true);
+
+        clearTimeout(cur.saveCustomTimeout);
+        cur.saveCustomTimeout = setTimeout(Filters.saveCustom, 1000);
     },
-    saveCustom: function(e) {
-        var t = {
-            act: "save_custom_filters",
-            share: e ? 1 : 0,
+
+    saveCustom: function(share) {
+        var saveParams = {
+            act: 'save_custom_filters',
+            share: share ? 1 : 0,
             num: cur.customNum
         };
-        for (i in cur.customOpts) t["filter_" + i] = cur.customOpts[i].join(",");
-        ajax.post("al_photos.php", t, {})
+        for (i in cur.customOpts) {
+            saveParams['filter_' + i] = cur.customOpts[i].join(',');
+        }
+        ajax.post('al_photos.php', saveParams, {})
     },
-    hideLevels: function(e) {
-        var t = geByClass("pv_filter_level", ge("pv_filter_roll"));
-        for (var r in t) hasClass(t[r], "pv_level_shown") || t[r].parentNode == e || cssAnim(t[r], {
-            height: 0,
-            marginTop: 0,
-            opacity: 0
-        }, {
-            duration: 200
-        })
+
+    hideLevels: function(obj) {
+        var filterLevel = geByClass('pv_filter_level', ge('pv_filter_roll'))
+        for (var i in filterLevel) {
+            if (!hasClass(filterLevel[i], 'pv_level_shown') && filterLevel[i].parentNode != obj) {
+                cssAnim(filterLevel[i], {
+                    height: 0,
+                    marginTop: 0,
+                    opacity: 0
+                }, {
+                    duration: 200
+                });
+            }
+        }
     },
-    getLevelCont: function(e, t) {
-        var r = geByClass1("pv_filter_level", e);
-        if (!r) {
-            var r = ce("div", {
-                className: "pv_filter_level",
+
+    getLevelCont: function(obj, txt) {
+        var filterLevel = geByClass1('pv_filter_level', obj)
+        if (!filterLevel) {
+            var filterLevel = ce('div', {
+                className: 'pv_filter_level',
                 innerHTML: '<div class="pv_filter_level_txt"></div><div class="pv_blur_back"><div class="pv_blur_line" style="width: 36px;"><div class="pv_blur_slider"></div></div></div>'
             });
-            e.appendChild(r), addEvent(r, "mousedown", Filters.startSlideEdit.pbind(r, 2))
+            obj.appendChild(filterLevel);
+            addEvent(filterLevel, 'mousedown', Filters.startSlideEdit.pbind(filterLevel, 2));
         }
-        var i = geByClass1("pv_filter_level_txt", e);
-        return i.innerHTML = t, r
+        var filterLevelText = geByClass1('pv_filter_level_txt', obj)
+        filterLevelText.innerHTML = txt;
+        return filterLevel;
     },
-    showLevel: function(e) {
-        var t = Filters.getLevelCont(e);
-        removeClass(t, "pv_level_before_hide"), show(t), addClass(t, "pv_level_shown");
-        var r = geByClass1("pv_blur_line", e);
-        setStyle(r, {
+
+    showLevel: function(obj) {
+        var filterLevel = Filters.getLevelCont(obj);
+        removeClass(filterLevel, 'pv_level_before_hide');
+        show(filterLevel);
+        addClass(filterLevel, 'pv_level_shown');
+        var line = geByClass1('pv_blur_line', obj);
+        setStyle(line, {
             width: cur.amountSize
-        }), cssAnim(t, {
+        });
+        cssAnim(filterLevel, {
             height: 15,
             marginTop: -15,
             opacity: 1
         }, {
             duration: 250
-        })
+        });
     },
-    fromStr: function(e) {
-        var t = e.split("/");
-        if ("f" != t[0] && "p" != t[0]) {
-            var r = t[0].split(","),
-                i = intval(r[0]),
-                l = intval(r[1]);
-            cur.filtersAmount = l / 100;
-            var u = t[2].split(",");
-            t[2] && u && u.length && (cur.lastCrop = {
-                t: intval(u[0]),
-                l: intval(u[1]),
-                w: intval(u[2]),
-                h: intval(u[3])
-            }, cur.filterFl.crop(cur.lastCrop), cur.filterCropped = !0);
-            var o = t[3];
-            o && (cur.filterText = replaceEntities(o), void 0 == t[4] && (t[4] = "1"), cur.filtersFont = t[4], ge("pv_filter_font").className = "pv_filter_font pv_filter_font" + cur.filtersFont, val("pv_filter_text_ta", cur.filterText), ge("pv_filter_text_ta").autosize.update(), Filters.updateText(1));
-            var s = t[1].split(",");
-            t[1] && s && (cur.filtersBlur = intval(s[0]), cur.blurType = intval(s[1]), cur.fBlurPos = [intval(s[2]) / 100, intval(s[3]) / 100], debugLog("blur here", cur.filtersBlur, cur.fBlurPos), cur.filterFl.setBlur(cur.blurType || 1, cur.filtersBlur, cur.fBlurPos[0], cur.fBlurPos[1])), i && l && (cur.amountSize = 66 * (.8 - cur.filtersAmount) / .8, debugLog("amount", cur.filtersAmount), Filters.applyFilter(i, !0), cur.filterFl.setAmount(cur.filtersAmount))
+
+    fromStr: function(str) {
+        var params = str.split('/');
+
+        if (params[0] == 'f' || params[0] == 'p') {
+            return;
+        }
+
+        var fl = params[0].split(',');
+        var filterNum = intval(fl[0]);
+        var amount = intval(fl[1]);
+        cur.filtersAmount = amount / 100;
+
+        var cr = params[2].split(',');
+        if (params[2] && cr && cr.length) {
+            cur.lastCrop = {
+                t: intval(cr[0]),
+                l: intval(cr[1]),
+                w: intval(cr[2]),
+                h: intval(cr[3])
+            };
+            cur.filterFl.crop(cur.lastCrop);
+            cur.filterCropped = true;
+        }
+
+        var t = params[3];
+        if (t) {
+            cur.filterText = replaceEntities(t);
+            if (params[4] == undefined) {
+                params[4] = '1';
+            }
+            cur.filtersFont = params[4];
+            ge('pv_filter_font').className = 'pv_filter_font pv_filter_font' + cur.filtersFont;
+            val('pv_filter_text_ta', cur.filterText);
+            ge('pv_filter_text_ta').autosize.update();
+            Filters.updateText(1);
+        }
+
+        var bl = params[1].split(',');
+        if (params[1] && bl) {
+            cur.filtersBlur = intval(bl[0]);
+            cur.blurType = intval(bl[1]);
+            cur.fBlurPos = [intval(bl[2]) / 100, intval(bl[3]) / 100];
+            debugLog('blur here', cur.filtersBlur, cur.fBlurPos);
+            cur.filterFl.setBlur(cur.blurType || 1, cur.filtersBlur, cur.fBlurPos[0], cur.fBlurPos[1]);
+        }
+
+        if (filterNum && amount) {
+            cur.amountSize = 66 * (0.8 - cur.filtersAmount) / 0.8;
+            debugLog('amount', cur.filtersAmount);
+            Filters.applyFilter(filterNum, true);
+            cur.filterFl.setAmount(cur.filtersAmount);
         }
     },
+
     toStr: function() {
-        var e = (cur.filterApplied ? cur.filterApplied + "," + intval(100 * cur.filtersAmount) : "") + "/";
-        return cur.filtersBlur && (e += intval(cur.filtersBlur) + "," + intval(cur.blurType || 1) + "," + intval(100 * cur.fBlurPos[0]) + "," + intval(100 * cur.fBlurPos[1])), e += "/", cur.filterCropped && cur.lastCrop && cur.lastCrop.w && cur.lastCrop.h && (e += cur.lastCrop.t + "," + cur.lastCrop.l + "," + cur.lastCrop.w + "," + cur.lastCrop.h), cur.filterText && (e += "/" + cur.filterText.replace("/", "&#47;") + "/" + cur.filtersFont), e.match(/^\/*$/) && (e = ""), e
-    },
-    applyFilter: function(e, t) {
-        var r = ge("pv_filter_btn_" + e);
-        debugLog("applyFilter", e, r);
-        var i = geByClass1("pv_filter_sel", ge("pv_filter_panel"));
-        if (i != r) {
-            removeClass(i, "pv_filter_sel"), addClass(r, "pv_filter_sel");
-            var l = geByClass1("pv_level_shown", ge("pv_filter_panel"));
-            l && (addClass(l, "pv_level_before_hide"), removeClass(l, "pv_level_shown")), Filters.hideLevels(r), e && (Filters.showLevel(r), cur.filtersAmount || Filters.setAmount(r, !0))
+        var str = (cur.filterApplied ? cur.filterApplied + ',' + intval(cur.filtersAmount * 100) : '') + '/';
+        if (cur.filtersBlur) {
+            str += intval(cur.filtersBlur) + ',' + intval(cur.blurType || 1) + ',' + intval(cur.fBlurPos[0] * 100) + ',' + intval(cur.fBlurPos[1] * 100);
         }
-        if (cur.filterApplied == e) return !1;
-        switch ((cur.filterApplied || cur.filtersBlur) && (cur.filterFl.restoreOriginal(), cur.filterApplied = 0), e) {
+        str += '/';
+        if (cur.filterCropped && cur.lastCrop && cur.lastCrop.w && cur.lastCrop.h) {
+            str += cur.lastCrop.t + ',' + cur.lastCrop.l + ',' + cur.lastCrop.w + ',' + cur.lastCrop.h;
+        }
+        if (cur.filterText) {
+            str += '/' + cur.filterText.replace('/', '&#47;') + '/' + cur.filtersFont;
+        }
+        if (str.match(/^\/*$/)) {
+            str = '';
+        }
+        return str;
+    },
+
+    applyFilter: function(num, noAnim) {
+        var obj = ge('pv_filter_btn_' + num);
+        debugLog('applyFilter', num, obj);
+        var prev = geByClass1('pv_filter_sel', ge('pv_filter_panel'));
+        if (prev != obj) {
+            removeClass(prev, 'pv_filter_sel');
+            addClass(obj, 'pv_filter_sel');
+            var prev_lev = geByClass1('pv_level_shown', ge('pv_filter_panel'));
+            if (prev_lev) {
+                addClass(prev_lev, 'pv_level_before_hide');
+                removeClass(prev_lev, 'pv_level_shown');
+            }
+            Filters.hideLevels(obj);
+            if (num) {
+                Filters.showLevel(obj);
+                if (!cur.filtersAmount) {
+                    Filters.setAmount(obj, true);
+                }
+            }
+        }
+        if (cur.filterApplied == num) {
+            return false;
+        }
+        if (cur.filterApplied || cur.filtersBlur) {
+            cur.filterFl.restoreOriginal();
+            cur.filterApplied = 0;
+        }
+        switch (num) {
             case 0:
+                // do nothing
                 break;
-            case 8:
-                cur.filterFl.addFilter("pro"), cur.filterFl.addFilter("vignette", 20, 70);
+            case 8: // 90-th style
+                cur.filterFl.addFilter('pro');
+                cur.filterFl.addFilter('vignette', 20, 70);
                 break;
-            case 10:
-                cur.filterFl.addFilter("sepia", 30), cur.filterFl.addFilter("vignette", 25, 80), cur.filterFl.addFilter("saturation", -30), cur.filterFl.addFilter("contrast", 30);
+            case 10: // Toasts
+                cur.filterFl.addFilter('sepia', 30);
+                cur.filterFl.addFilter('vignette', 25, 80);
+                cur.filterFl.addFilter('saturation', -30);
+                cur.filterFl.addFilter('contrast', 30);
                 break;
             case 13:
-                cur.filterFl.addFilter("color", 95, 105, 145), cur.filterFl.addFilter("sepia", 30), cur.filterFl.addFilter("contrast", 20), cur.filterFl.addFilter("vignette", 15, 60);
+                cur.filterFl.addFilter('color', 95, 105, 145);
+                cur.filterFl.addFilter('sepia', 30);
+                cur.filterFl.addFilter('contrast', 20);
+                cur.filterFl.addFilter('vignette', 15, 60);
                 break;
             case 21:
-                cur.filterFl.addFilter("color", 125, 115, 95), cur.filterFl.addFilter("sepia", 40), cur.filterFl.addFilter("saturation", -20), cur.filterFl.addFilter("vignette", 40, 70), cur.filterFl.addFilter("contrast", -10);
+                cur.filterFl.addFilter('color', 125, 115, 95);
+                cur.filterFl.addFilter('sepia', 40);
+                cur.filterFl.addFilter('saturation', -20);
+                cur.filterFl.addFilter('vignette', 40, 70);
+                cur.filterFl.addFilter('contrast', -10);
                 break;
             case 22:
-                cur.filterFl.addFilter("color", 125, 110, 95), cur.filterFl.addFilter("vignette", 30, 80), cur.filterFl.addFilter("contrast", 15), cur.filterFl.addFilter("saturation", -100), cur.filterFl.addFilter("sepia", 100);
+                cur.filterFl.addFilter('color', 125, 110, 95);
+                cur.filterFl.addFilter('vignette', 30, 80);
+                cur.filterFl.addFilter('contrast', 15);
+                cur.filterFl.addFilter('saturation', -100);
+                cur.filterFl.addFilter('sepia', 100);
                 break;
-            case 23:
-                cur.filterFl.addFilter("color", 110, 95, 105), cur.filterFl.addFilter("sepia", 50), cur.filterFl.addFilter("vignette", 30, 65), cur.filterFl.addFilter("saturation", -60), cur.filterFl.addFilter("contrast", 40);
+            case 23: // Toasts
+                cur.filterFl.addFilter('color', 110, 95, 105);
+                cur.filterFl.addFilter('sepia', 50);
+                cur.filterFl.addFilter('vignette', 30, 65);
+                cur.filterFl.addFilter('saturation', -60);
+                cur.filterFl.addFilter('contrast', 40);
                 break;
             case 24:
-                cur.filterFl.addFilter("pro", 2), cur.filterFl.addFilter("vignette", 20, 65), cur.filterFl.addFilter("contrast", 15), cur.filterFl.addFilter("brightness", 15), cur.filterFl.addFilter("vignette", 30, 65);
+                cur.filterFl.addFilter('pro', 2);
+                cur.filterFl.addFilter('vignette', 20, 65);
+                cur.filterFl.addFilter('contrast', 15);
+                cur.filterFl.addFilter('brightness', 15);
+                cur.filterFl.addFilter('vignette', 30, 65);
                 break;
             case 25:
-                cur.filterFl.addFilter("pro", 3), cur.filterFl.addFilter("vignette", 20, 65);
+                cur.filterFl.addFilter('pro', 3);
+                cur.filterFl.addFilter('vignette', 20, 65);
+                //cur.filterFl.addFilter('vignette', 20, 65);
                 break;
             case 26:
-                cur.filterFl.addFilter("pro", 4), cur.filterFl.addFilter("vignette", 20, 60)
+                cur.filterFl.addFilter('pro', 4);
+                cur.filterFl.addFilter('vignette', 20, 60);
+                break;
         }
-        cur.filterApplied = e, cur.filterFl.applyFilter(!t)
+
+        cur.filterApplied = num;
+        cur.filterFl.applyFilter(!noAnim);
     },
-    savePhotoFilter: function(e) {
-        lockButton(e), cur.filterApplied || cur.filterCropped || cur.filtersBlur || cur.filterText ? cur.filterFl.saveBigPhoto(cur.filterSaveOptions) : Filters.save()
-    },
-    changeThumbs: function(e, t) {
-        if (e) {
-            var r = [ge("photo_row" + cur.filterPhoto), ge("photos_add_thumb" + cur.filterPhoto)],
-                i = geByClass("page_post_thumb_wrap");
-            i.push.apply(i, geByClass("page_preview_photo")), i.push.apply(i, geByClass("im_preview_photo")), i.push.apply(i, geByClass("photo"));
-            for (var l in i) {
-                var u = i[l].getAttribute("onclick");
-                u && -1 != u.indexOf("'" + cur.filterPhoto + "'") && r.push(i[l])
-            }
-            for (var l in r)
-                if (r[l]) {
-                    var o = geByTag1("img", r[l]);
-                    o && (o.src = e, setStyle(o, {
-                        height: "auto"
-                    }))
-                }
-            if (cur.pvNoTemp || (cur.pvNoTemp = {}), cur.pvNoTemp[cur.filterPhoto] = !0, window.ThumbsEdit && t) {
-                var s = ThumbsEdit.cache();
-                for (var l in s) {
-                    var c = s[l].previews || [],
-                        a = !1;
-                    for (var n in c) "photo" == c[n].type && c[n].photo.id == "photo" + cur.filterPhoto && (c[n].photo.sizes = t, a = !0);
-                    a && ThumbsEdit.refresh(l)
-                }
-            }
+
+    savePhotoFilter: function(obj) {
+        lockButton(obj);
+        if (cur.filterApplied || cur.filterCropped || cur.filtersBlur || cur.filterText) {
+            cur.filterFl.saveBigPhoto(cur.filterSaveOptions);
+        } else {
+            Filters.save();
         }
     },
-    save: function(e) {
-        var t = {
-            act: "save_desc",
+
+    changeThumbs: function(thumb, sizes) {
+        if (thumb) {
+            var rows = [ge('photo_row' + cur.filterPhoto), ge('photos_add_thumb' + cur.filterPhoto)];
+            var childs = geByClass('page_post_thumb_wrap')
+            childs.push.apply(childs, geByClass('page_preview_photo'));
+            childs.push.apply(childs, geByClass('im_preview_photo'));
+            childs.push.apply(childs, geByClass('photo'));
+            for (var i in childs) {
+                var oncl = childs[i].getAttribute('onclick');
+                if (oncl && oncl.indexOf("'" + cur.filterPhoto + "'") != -1) {
+                    rows.push(childs[i]);
+                }
+            }
+            for (var i in rows) {
+                if (rows[i]) {
+                    var img = geByTag1('img', rows[i]);
+                    if (img) {
+                        img.src = thumb;
+                        setStyle(img, {
+                            height: 'auto'
+                        });
+                    }
+                }
+            }
+            if (!cur.pvNoTemp) cur.pvNoTemp = {};
+            cur.pvNoTemp[cur.filterPhoto] = true;
+            if (window.ThumbsEdit && sizes) {
+                var c = ThumbsEdit.cache();
+                for (var i in c) {
+                    var p = c[i].previews || [],
+                        found = false;
+                    for (var j in p) {
+                        if (p[j].type == 'photo' && p[j].photo.id == 'photo' + cur.filterPhoto) {
+                            p[j].photo.sizes = sizes;
+                            found = true;
+                        }
+                    }
+                    if (found) ThumbsEdit.refresh(i);
+                }
+            }
+        }
+    },
+
+    save: function(info) {
+        var query = {
+            act: 'save_desc',
             photo: cur.filterPhoto,
             hash: cur.filterHash,
             aid: cur.pvMoveToAlbum.val(),
-            cover: isChecked("pv_cover_check"),
-            text: ge("pv_sett_desc").value,
+            cover: isChecked('pv_cover_check'),
+            text: ge('pv_sett_desc').value,
             filter_num: cur.filterApplied,
             conf: Filters.toStr()
         };
-        e && (e.hash ? extend(t, {
-            filter_hash: e.hash,
-            filter_aid: e.aid,
-            filter_server: e.server,
-            filter_photo: e.photos_list
-        }) : t._query = e), ajax.post("al_photos.php", t, {
-            onDone: function(e, r, i, l, u) {
+        if (info) {
+            if (info.hash) {
+                extend(query, {
+                    filter_hash: info['hash'],
+                    filter_aid: info['aid'],
+                    filter_server: info['server'],
+                    filter_photo: info['photos_list']
+                });
+            } else {
+                query._query = info;
+            }
+        }
+        ajax.post('al_photos.php', query, {
+            onDone: function(text, album, photoObj, thumb, sizes) {
                 if (cur.webcamPhotoMedia) {
-                    l && u && (cur.uploadPhotoData.editable.sizes = u, cur.uploadPhotoData.thumb_m = cur.uploadPhotoData.thumb_s = l), photos.onFiltersSave();
-                    var o = curBox();
-                    return void(o && o.hide())
+                    if (thumb && sizes) {
+                        cur.uploadPhotoData.editable.sizes = sizes;
+                        cur.uploadPhotoData.thumb_m = cur.uploadPhotoData.thumb_s = thumb;
+                    }
+                    photos.onFiltersSave();
+                    var box = curBox();
+                    if (box) {
+                        box.hide();
+                    }
+                    return;
                 }
-                var s = cur.pvListId,
-                    c = cur.pvIndex,
-                    a = cur.pvData[s];
-                if (!a) return nav.reload();
-                var n = a[c];
-                unlockButton(ge("pv_filter_save"));
-                var o = curBox();
-                if (o && o.hide(), n.desc = e, r && (n.album = r), "album" == s.substr(0, 5)) {
-                    var p = intval(s.split("_")[1]);
-                    n.moved = t.aid != p
+
+                var listId = cur.pvListId,
+                    index = cur.pvIndex;
+                var listRow = cur.pvData[listId];
+                if (!listRow) {
+                    return nav.reload();
                 }
-                n.pe_type = Photoview.PE_V1;
-                var v = cur.pvShown && s == cur.pvListId && c == cur.pvIndex;
-                if (i && l && (Filters.changeThumbs(l, u), delete n.x_, delete n.x_src, delete n.y_, delete n.y_src, delete n.z_, delete n.z_src, extend(n, i)), v) {
-                    var f = domFC(cur.pvDesc);
-                    val(f, e || '<span class="pv_desc_edit">' + getLang("photos_edit_desc") + "</span>"), f.onmouseover = e ? Photoview.descTT.pbind(f) : function() {}, r && ge("pv_album") && (ge("pv_album").innerHTML = r), cur.pvCurData = Photoview.genData(n, vk.pvbig ? cur.pvVeryBig ? (cur.pvVeryBig > 1, "z") : "y" : "x"), domFC(cur.pvPhoto).src = Photoview.blank, setTimeout(Photoview.show.pbind(cur.pvListId, cur.pvIndex), 0)
+                var ph = listRow[index];
+                unlockButton(ge('pv_filter_save'));
+                var box = curBox();
+                if (box) {
+                    box.hide();
+                }
+
+                ph.desc = text;
+                if (album) ph.album = album;
+                if (listId.substr(0, 5) == 'album') {
+                    var listAid = intval(listId.split('_')[1]);
+                    ph.moved = (query.aid != listAid);
+                }
+
+                ph.pe_type = Photoview.PE_V1;
+
+                var shown = cur.pvShown && listId == cur.pvListId && index == cur.pvIndex;
+                if (photoObj && thumb) {
+                    Filters.changeThumbs(thumb, sizes);
+                    delete ph.x_;
+                    delete ph.x_src;
+                    delete ph.y_;
+                    delete ph.y_src;
+                    delete ph.z_;
+                    delete ph.z_src;
+                    extend(ph, photoObj);
+                }
+                if (shown) {
+                    var d = domFC(cur.pvDesc);
+                    val(d, text || ('<span class="pv_desc_edit">' + getLang('photos_edit_desc') + '</span>'));
+                    d.onmouseover = text ? Photoview.descTT.pbind(d) : function() {};
+                    if (album && ge('pv_album')) ge('pv_album').innerHTML = album;
+
+                    cur.pvCurData = Photoview.genData(ph, vk.pvbig ? (cur.pvVeryBig ? (cur.pvVeryBig > 1 ? 'z' : 'z') : 'y') : 'x');
+                    domFC(cur.pvPhoto).src = Photoview.blank;
+
+                    setTimeout(Photoview.show.pbind(cur.pvListId, cur.pvIndex), 0);
                 }
             }
-        })
+        });
     },
-    restoreOriginal: function(e, t, r, i) {
-        ajax.post("al_photos.php", {
-            act: "restore_original",
-            oid: t,
-            pid: r,
-            hash: i
+
+    restoreOriginal: function(obj, oid, pid, hash) {
+        ajax.post('al_photos.php', {
+            act: 'restore_original',
+            oid: oid,
+            pid: pid,
+            hash: hash
         }, {
-            onDone: function(e, t, r) {
-                var i = cur.pvListId,
-                    l = cur.pvIndex,
-                    u = cur.pvData[i][l],
-                    o = cur.pvShown && i == cur.pvListId && l == cur.pvIndex;
-                extend(u, e), u.pe_type && (u.pe_type = Photoview.PE_V1 | Photoview.PE_V2 | Photoview.PE_V3);
-                var s = curBox();
-                s && s.hide(), Filters.changeThumbs(t, r), o && (cur.pvCurData = Photoview.genData(u, vk.pvbig ? cur.pvVeryBig ? (cur.pvVeryBig > 1, "z") : "y" : "x"), cur.pvPhoto.firstChild.src = cur.pvCurData.src, setTimeout(Photoview.show.pbind(cur.pvListId, cur.pvIndex), 0))
+            onDone: function(photoObj, thumb, sizes) {
+                var listId = cur.pvListId,
+                    index = cur.pvIndex,
+                    ph = cur.pvData[listId][index];
+                var shown = cur.pvShown && listId == cur.pvListId && index == cur.pvIndex;
+                extend(ph, photoObj);
+
+                if (ph.pe_type) {
+                    ph.pe_type = Photoview.PE_V1 | Photoview.PE_V2 | Photoview.PE_V3;
+                }
+
+                var box = curBox();
+                if (box) {
+                    box.hide();
+                }
+                Filters.changeThumbs(thumb, sizes);
+                if (shown) {
+                    cur.pvCurData = Photoview.genData(ph, vk.pvbig ? (cur.pvVeryBig ? (cur.pvVeryBig > 1 ? 'z' : 'z') : 'y') : 'x');
+                    cur.pvPhoto.firstChild.src = cur.pvCurData.src;
+
+                    setTimeout(Photoview.show.pbind(cur.pvListId, cur.pvIndex), 0);
+                }
             },
             loader: 1
-        })
+        });
     },
-    showName: function(e, t) {
-        cur.tooltipObj && cur.tooltipObj && Filters.hideLevels(e), cur.tooltipObj = e;
-        var r = Filters.getLevelCont(e, t);
-        show(r), removeClass(r, "pv_level_before_hide"), cssAnim(r, {
+
+    showName: function(obj, txt) {
+        if (cur.tooltipObj && cur.tooltipObj) {
+            Filters.hideLevels(obj);
+        }
+        cur.tooltipObj = obj;
+
+        var filterLevel = Filters.getLevelCont(obj, txt);
+        show(filterLevel);
+        removeClass(filterLevel, 'pv_level_before_hide');
+        cssAnim(filterLevel, {
             height: 15,
             marginTop: -15,
             opacity: 1
         }, {
             duration: 300,
-            func: "ease-out"
-        })
+            func: 'ease-out'
+        });
     },
+
     eof: 1
 };
 try {
-    stManager.done("filters.js")
+    stManager.done('filters.js');
 } catch (e) {}

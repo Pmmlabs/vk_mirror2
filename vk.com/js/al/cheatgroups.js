@@ -1,93 +1,99 @@
 var Cheatgroups = {
-    getPage: function(o) {
-        var h = nav.objLoc;
-        o ? h.offset = o : h.offset && delete h.offset, nav.go(h)
+    getPage: function(offset) {
+        var obj = nav.objLoc;
+        if (offset) {
+            obj.offset = offset;
+        } else if (obj.offset) {
+            delete obj['offset'];
+        }
+        nav.go(obj);
     },
-    goodChildGroup: function(o, h) {
-        showBox("cheatgroups.php", {
-            act: "a_good_child_group_box",
-            gid: o,
-            hash: h
+    goodChildGroup: function(gid, hash) {
+        showBox('cheatgroups.php', {
+            act: 'a_good_child_group_box',
+            gid: gid,
+            hash: hash
         }, {
             params: {
                 width: 350
             }
-        })
+        });
     },
-    notGoodChildGroup: function(o, h) {
-        showBox("cheatgroups.php", {
-            act: "a_not_good_child_group_box",
-            gid: o,
-            hash: h
+    notGoodChildGroup: function(gid, hash) {
+        showBox('cheatgroups.php', {
+            act: 'a_not_good_child_group_box',
+            gid: gid,
+            hash: hash
         }, {
             params: {
                 width: 350
             }
-        })
+        });
     },
-    blockChildGroup: function(o, h) {
-        showBox("cheatgroups.php", {
-            act: "a_block_child_group_box",
-            gid: o,
-            hash: h
+    blockChildGroup: function(gid, hash) {
+        showBox('cheatgroups.php', {
+            act: 'a_block_child_group_box',
+            gid: gid,
+            hash: hash
         }, {
             params: {
                 width: 350
             }
-        })
+        });
     },
-    unblockChildGroup: function(o, h) {
-        showBox("cheatgroups.php", {
-            act: "a_unblock_child_group_box",
-            gid: o,
-            hash: h
+    unblockChildGroup: function(gid, hash) {
+        showBox('cheatgroups.php', {
+            act: 'a_unblock_child_group_box',
+            gid: gid,
+            hash: hash
         }, {
             params: {
                 width: 350
             }
-        })
+        });
     },
-    commentChildGroup: function(o, h) {
-        showBox("cheatgroups.php", {
-            act: "a_comment_child_group_box",
-            gid: o,
-            hash: h
+    commentChildGroup: function(gid, hash) {
+        showBox('cheatgroups.php', {
+            act: 'a_comment_child_group_box',
+            gid: gid,
+            hash: hash
         }, {
             params: {
                 width: 350
             }
-        })
+        });
     },
-    archiveChildGroup: function(o, h) {
-        ajax.post("cheatgroups.php", {
-            act: "a_archive_child_group",
-            gid: o,
-            hash: h
+    archiveChildGroup: function(gid, hash) {
+        ajax.post('cheatgroups.php', {
+            act: 'a_archive_child_group',
+            gid: gid,
+            hash: hash
         }, {
-            onDone: function(h) {
-                Cheatgroups.onOptionUsed(o, h)
+            onDone: function(text) {
+                Cheatgroups.onOptionUsed(gid, text);
             }
-        })
+        });
     },
-    unArchiveChildGroup: function(o, h) {
-        ajax.post("cheatgroups.php", {
-            act: "a_unarchive_child_group",
-            gid: o,
-            hash: h
+    unArchiveChildGroup: function(gid, hash) {
+        ajax.post('cheatgroups.php', {
+            act: 'a_unarchive_child_group',
+            gid: gid,
+            hash: hash
         }, {
-            onDone: function(h) {
-                Cheatgroups.onOptionUsed(o, h)
+            onDone: function(text) {
+                Cheatgroups.onOptionUsed(gid, text);
             }
-        })
+        });
     },
-    onOptionUsed: function(o, h) {
-        val("inv" + o, h), hide("cheatgroups_row_options_list" + o)
+    onOptionUsed: function(gid, text) {
+        val('inv' + gid, text);
+        hide('cheatgroups_row_options_list' + gid);
     },
-    onDoneCommentChildGroup: function(o, h) {
-        val("childGroup" + o + "_comments", h)
+    onDoneCommentChildGroup: function(gid, comments) {
+        val('childGroup' + gid + '_comments', comments);
     },
     _eof: 1
 };
 try {
-    stManager.done("cheatgroups.js")
+    stManager.done('cheatgroups.js');
 } catch (e) {}

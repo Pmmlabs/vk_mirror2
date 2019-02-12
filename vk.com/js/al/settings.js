@@ -1,1630 +1,2568 @@
 var Settings = {
+
     MAX_LEFT_GROUPS: 5,
-    go: function(t, e) {
-        var s = Settings.getsect(),
-            o = checkEvent(e);
-        return o === !1 && (s.className = "", t.parentNode.className = "active_link"), nav.go(t, e)
+
+    go: function(el, ev) {
+        var current = Settings.getsect();
+        var result = checkEvent(ev);
+        if (result === false) {
+            current.className = '';
+            el.parentNode.className = 'active_link';
+        }
+        return nav.go(el, ev);
     },
     getsect: function() {
-        for (var t = ge("settings_filters").firstChild; !hasClass(t, "active_link");) t = t.nextSibling;
-        return t
-    },
-    showMsg: function(t, e) {
-        e || (e = ge("settings_result")), t ? (showMsg(e, t, "ok_msg", !0), show(e)) : hide(e), scrollToTop(0)
-    },
-    showError: function(t, e) {
-        t = t || getLang("global_unknown_error");
-        var s = e ? ge("settings_error_" + e) : ge("settings_result");
-        showMsg(s, t, "error", !0), show(s), e || scrollToTop(0)
-    },
-    toggleBlock: function(t, e) {
-        if (t && t.target) {
-            var s = t.target;
-            o = hasClass(s, "settings_line") ? s : gpeByClass("settings_line", s)
-        } else {
-            t = ge(t);
-            var s = geByClass1("settings_right_control", t),
-                o = hasClass(t, "settings_line") ? t : gpeByClass("settings_line", t)
+        var current = ge('settings_filters').firstChild
+        for (; !hasClass(current, 'active_link');) {
+            current = current.nextSibling;
         }
-        o && geByClass1("settings_change_block", o) && (!hasClass(o, "unfolded") || hasClass(s, "settings_right_control")) && (cur.changingSetting && cur.changingSetting != o && (removeClass(cur.changingSetting, "unfolded"), window.tooltips && tooltips.hideAll()), toggleClass(o, "unfolded"), cur.changingSetting = o, e && elfocus(e))
+        return current;
     },
-    savePrivacyKey: function(t) {
-        if ("friends" == t) return void(window.uiPageBlock && uiPageBlock.showSaved("privacy_friends_hide"));
-        var e, s = {
-            key: t,
-            val: Privacy.getValue(t),
+    showMsg: function(msg, el) {
+        if (!el) el = ge('settings_result');
+        if (!msg) {
+            hide(el);
+        } else {
+            showMsg(el, msg, 'ok_msg', true);
+            show(el);
+        }
+        scrollToTop(0);
+    },
+    showError: function(msg, section) {
+        msg = msg || getLang('global_unknown_error');
+        var el = section ? ge('settings_error_' + section) : ge('settings_result');
+        showMsg(el, msg, 'error', true);
+        show(el);
+        if (!section) {
+            scrollToTop(0);
+        }
+    },
+    toggleBlock: function(ev, input) {
+        if (ev && ev.target) {
+            var el = ev.target;
+            bl = hasClass(el, 'settings_line') ? el : gpeByClass('settings_line', el);
+        } else {
+            ev = ge(ev);
+            var el = geByClass1('settings_right_control', ev),
+                bl = hasClass(ev, 'settings_line') ? ev : gpeByClass('settings_line', ev);
+        }
+        if (!bl || !geByClass1('settings_change_block', bl) || hasClass(bl, 'unfolded') && !hasClass(el, 'settings_right_control')) {
+            return;
+        }
+        if (cur.changingSetting && cur.changingSetting != bl) {
+            removeClass(cur.changingSetting, 'unfolded');
+            if (window.tooltips) {
+                tooltips.hideAll();
+            }
+        }
+        toggleClass(bl, 'unfolded');
+        cur.changingSetting = bl;
+        if (input) {
+            elfocus(input);
+        }
+    },
+
+    savePrivacyKey: function(key) {
+        if (key == 'friends') {
+            window.uiPageBlock && uiPageBlock.showSaved('privacy_friends_hide');
+            return;
+        }
+        var url, params = {
+            key: key,
+            val: Privacy.getValue(key),
             hash: cur.options.hash
         };
-        if ("search_access" == t || "updates" == t || "company_messages" == t || "profile_closed" == t) {
-            if ("updates" == t) {
-                var o = Privacy.getValue(t);
-                if ("0" != o.substr(0, 1)) {
-                    var n = o.substr(2);
-                    n.length || (ge("privacy_header").innerHTML = ge("privacy_edit_updates").innerHTML = getLang("settings_updates_no_news"))
+
+        if (key == 'search_access' || key == 'updates' || key == 'company_messages' || key == 'profile_closed') {
+            if (key == 'updates') {
+                var val = Privacy.getValue(key);
+                if (val.substr(0, 1) != '0') {
+                    var items = val.substr(2);
+                    if (!items.length) {
+                        ge('privacy_header').innerHTML = ge('privacy_edit_updates').innerHTML = getLang('settings_updates_no_news');
+                    }
                 }
             }
-            e = "al_settings.php", s.act = "a_save_special"
-        } else e = "al_friends.php", s.act = "save_privacy";
-        clearTimeout(cur["privacy_timer_" + t]), cur["privacy_timer_" + t] = setTimeout(ajax.post.pbind(e, s, {
-            onDone: function(e) {
-                return e ? nav.reload({
-                    preventScroll: !0,
-                    onDone: function(t) {
-                        Settings.savePrivacyShowSaved(t), updateNarrow()
-                    }.pbind(t)
-                }) : void Settings.savePrivacyShowSaved(t)
+            url = 'al_settings.php';
+            params.act = 'a_save_special';
+        } else {
+            url = 'al_friends.php';
+            params.act = 'save_privacy';
+        }
+
+        clearTimeout(cur['privacy_timer_' + key]);
+        cur['privacy_timer_' + key] = setTimeout(ajax.post.pbind(url, params, {
+            onDone: function(needReload) {
+                if (needReload) {
+                    return nav.reload({
+                        preventScroll: true,
+                        onDone: function(key) {
+                            Settings.savePrivacyShowSaved(key);
+                            updateNarrow();
+                        }.pbind(key)
+                    });
+                }
+                Settings.savePrivacyShowSaved(key);
             }
-        }), 500)
+        }), 500);
     },
-    savePrivacyShowSaved: function(t) {
-        window.uiPageBlock && uiPageBlock.showSaved("privacy_edit_" + t)
+    savePrivacyShowSaved: function(key) {
+        window.uiPageBlock && uiPageBlock.showSaved('privacy_edit_' + key);
     },
     initPrivacy: function() {
-        if (cur.onPrivacyChanged = Settings.savePrivacyKey, cur.privacyNeedConfirm = function(t, e, s) {
-                if ("profile_closed" === t && intval(e)) {
-                    var o = new MessageBox({
-                        title: getLang("settings_closed_profile_confirm_title")
-                    });
-                    return o.content(getLang("settings_closed_profile_confirm_text")), o.removeButtons().addButton(getLang("settings_closed_profile_confirm_btn"), function() {
-                        s(), o.hide()
-                    }), o.addButton(getLang("global_cancel"), o.hide, "no"), void o.show()
-                }
-                s()
-            }, nav.objLoc.hl) {
-            var t = geByClass1("_" + nav.objLoc.hl);
-            Settings.scrollHighlightPrivacy(t)
+        cur.onPrivacyChanged = Settings.savePrivacyKey;
+        cur.privacyNeedConfirm = function(key, val, cb) {
+            if (key === 'profile_closed' && intval(val)) {
+                var box = new MessageBox({
+                    title: getLang('settings_closed_profile_confirm_title')
+                });
+                box.content(getLang('settings_closed_profile_confirm_text'));
+                box.removeButtons().addButton(getLang('settings_closed_profile_confirm_btn'), function() {
+                    cb();
+                    box.hide();
+                });
+                box.addButton(getLang('global_cancel'), box.hide, 'no');
+                box.show();
+                return;
+            } else {
+                cb();
+            }
+        };
+        if (nav.objLoc.hl) {
+            var hl = geByClass1('_' + nav.objLoc.hl);
+            Settings.scrollHighlightPrivacy(hl);
         }
     },
-    highlightPrivacy: function(t) {
-        t = ge(t), t && (addClass(t, "setting_row_selected"), setTimeout(function() {
-            addClass(t, "setting_row_animated"), setTimeout(function() {
-                removeClass(t, "setting_row_selected"), removeClass(t, "setting_row_animated")
-            }, 1e3)
-        }, 1500))
+    highlightPrivacy: function(el) {
+        el = ge(el);
+        if (!el) return;
+
+        addClass(el, 'setting_row_selected');
+        setTimeout(function() {
+            addClass(el, 'setting_row_animated');
+            setTimeout(function() {
+                removeClass(el, 'setting_row_selected');
+                removeClass(el, 'setting_row_animated');
+            }, 1000);
+        }, 1500);
     },
-    scrollHighlightPrivacy: function(t) {
-        t = ge(t), t && setTimeout(function() {
-            var e = getXY(t)[1],
-                s = getSize("page_header")[1],
-                o = scrollGetY(),
-                n = clientHeight();
-            s + o > e || e > o + n ? (scrollToY(e), setTimeout(Settings.highlightPrivacy.pbind(t), 300)) : Settings.highlightPrivacy(t)
-        }, 0)
+    scrollHighlightPrivacy: function(el) {
+        el = ge(el);
+
+        if (!el) return;
+
+        setTimeout(function() {
+            var top = getXY(el)[1];
+            var head = getSize('page_header')[1];
+            var st = scrollGetY();
+            var client = clientHeight();
+
+            if (top < head + st || top > st + client) {
+                scrollToY(top);
+                setTimeout(Settings.highlightPrivacy.pbind(el), 300);
+            } else {
+                Settings.highlightPrivacy(el);
+            }
+        }, 0);
     },
-    initSearchBox: function(t, e, s) {
-        extend(cur, e), s && ajax.preload(cur.searchBoxAddress, cur.searchBoxParams, s), window.uiScrollBox && uiScrollBox.init(t, {
+
+    initSearchBox: function(box, params, preload) {
+        extend(cur, params);
+        if (preload) {
+            ajax.preload(cur.searchBoxAddress, cur.searchBoxParams, preload);
+        }
+
+        window.uiScrollBox && uiScrollBox.init(box, {
             onShow: function() {
-                addEvent(boxLayerWrap, "scroll", Settings.boxScrollResize), setTimeout(Settings.boxScrollResize, 0)
+                addEvent(boxLayerWrap, 'scroll', Settings.boxScrollResize);
+                setTimeout(Settings.boxScrollResize, 0);
             },
             onHide: function() {
-                removeEvent(boxLayerWrap, "scroll", Settings.boxScrollResize)
+                removeEvent(boxLayerWrap, 'scroll', Settings.boxScrollResize);
             }
-        }), addEvent(boxLayerWrap, "scroll", Settings.boxScrollResize), Settings.boxScrollResize()
+        });
+        addEvent(boxLayerWrap, 'scroll', Settings.boxScrollResize);
+        Settings.boxScrollResize();
     },
     boxScrollResize: function() {
-        if (!browser.mobile) {
-            var t = lastWindowHeight,
-                e = ge(cur.boxMoreLink);
-            e && isVisible(e) && t > getXY(e, !0)[1] && cur.boxShowMore()
+        if (browser.mobile) {
+            return;
+        }
+
+        var bt = lastWindowHeight;
+        var moreLink = ge(cur.boxMoreLink);
+
+        if (moreLink && isVisible(moreLink) && (bt > getXY(moreLink, true)[1])) {
+            cur.boxShowMore();
         }
     },
-    moreSearchBoxLoaded: function(t, e, s) {
-        cur.loading = !1, cur.searchBoxParams.offset = e;
-        var o = cur.boxRows,
-            n = ce("div", {
-                innerHTML: t
-            });
-        for (toggle(cur.boxMoreLink, s); n.firstChild;) o.appendChild(n.firstChild)
+    moreSearchBoxLoaded: function(rows, offset, showMore) {
+        cur.loading = false;
+        cur.searchBoxParams.offset = offset;
+
+        var cont = cur.boxRows;
+        var rowsContainer = ce('div', {
+            innerHTML: rows
+        });
+
+        toggle(cur.boxMoreLink, showMore);
+        while (rowsContainer.firstChild) {
+            cont.appendChild(rowsContainer.firstChild);
+        }
     },
-    moreSearchBox: function(t, e, s) {
-        var o = cur.boxMoreLink;
-        if ((t || isVisible(o) && !hasClass(o, "loading")) && (!t || s != cur.searchBoxParams.q)) {
-            if (cur.loading) return void(cur.loading = 2);
-            t && (cur.oldBoxParams = {
+    moreSearchBox: function(force, input, str) {
+        var more = cur.boxMoreLink;
+        if (!force && (!isVisible(more) || hasClass(more, 'loading')) || force && str == cur.searchBoxParams.q) return;
+        if (cur.loading) {
+            cur.loading = 2;
+            return;
+        }
+
+        if (force) {
+            cur.oldBoxParams = {
                 q: cur.searchBoxParams.q,
                 offset: cur.searchBoxParams.offset
-            }, extend(cur.searchBoxParams, {
-                q: s,
+            };
+            extend(cur.searchBoxParams, {
+                q: str,
                 offset: 0
-            })), ajax.post(cur.searchBoxAddress, cur.searchBoxParams, {
-                onDone: function(s, o, n, i) {
-                    if (t) {
-                        if (i) return extend(cur.searchBoxParams, cur.oldBoxParams), val(e, cur.oldBoxParams.q), void(cur.searchBoxFound && cur.searchBoxFound(i));
-                        cur.boxRows.innerHTML = s ? "" : cur.boxNoRowsTpl, curBox().tbToTop()
+            });
+        }
+        ajax.post(cur.searchBoxAddress, cur.searchBoxParams, {
+            onDone: function(rows, offset, showMore, mid) {
+                if (force) {
+                    if (mid) {
+                        extend(cur.searchBoxParams, cur.oldBoxParams);
+                        val(input, cur.oldBoxParams.q);
+                        cur.searchBoxFound && cur.searchBoxFound(mid);;
+                        return;
                     }
-                    Settings.moreSearchBoxLoaded.apply(window, arguments)
-                },
-                onFail: function() {
-                    return cur.loading = 0, !0
-                },
-                showProgress: function() {
-                    addClass(o, "loading")
-                },
-                hideProgress: function() {
-                    removeClass(o, "loading")
+                    cur.boxRows.innerHTML = rows ? '' : cur.boxNoRowsTpl;
+                    curBox().tbToTop();
                 }
-            })
+                Settings.moreSearchBoxLoaded.apply(window, arguments);
+            },
+            onFail: function() {
+                cur.loading = 0;
+                return true;
+            },
+            showProgress: function() {
+                addClass(more, 'loading')
+            },
+            hideProgress: function() {
+                removeClass(more, 'loading');
+            }
+        });
+    },
+    moreSearchBoxChange: function(q, ev) {
+        if (ev && ev.type == 'paste') {
+            Settings.moreSearchBox(true, curBox().tbSearchField, q);
+        } else if (!q.length) {
+            Settings.moreSearchBox(true, curBox().tbSearchField, '');
         }
     },
-    moreSearchBoxChange: function(t, e) {
-        e && "paste" == e.type ? Settings.moreSearchBox(!0, curBox().tbSearchField, t) : t.length || Settings.moreSearchBox(!0, curBox().tbSearchField, "")
-    },
+
     initBlacklist: function() {
-        ge("settings_bl_msg") && setTimeout(removeClass.pbind(ge("settings_bl_msg"), "msg_appear"), 0), elfocus("settings_bl_search")
-    },
-    searchBlacklist: function(t) {
-        t && (t = t.toLowerCase());
-        var e = ge("settings_bl_empty"),
-            s = getLang("settings_blacklist_not_found_by_query"),
-            o = ge("settings_bl_list"),
-            n = geByClass("settings_bl_row", o),
-            i = 0;
-        for (var a in n) {
-            var r = n[a];
-            if (t) {
-                var c = geByClass1("settings_bl_name", r),
-                    u = val(geByTag1("a", c)) || val(geByClass1("name_label"));
-                u.toLowerCase().indexOf(t) > -1 ? (show(r), i++) : hide(r)
-            } else show(r), i++
+        if (ge('settings_bl_msg')) {
+            setTimeout(removeClass.pbind(ge('settings_bl_msg'), 'msg_appear'), 0);
         }
-        if (t && !i) {
-            var l = s.split("{query}").join("<b>" + t.replace(/([<>&#]*)/g, "") + "</b>");
-            e.innerHTML = l, show(e), hide("settings_bl_noempty")
-        } else hide(e), show("settings_bl_noempty")
+        elfocus('settings_bl_search');
     },
-    doAddToBlacklist: function(t, e) {
-        ajax.post("al_settings.php", {
-            act: "search_blacklist",
-            query: t,
+    searchBlacklist: function(str) {
+        if (str) {
+            str = str.toLowerCase();
+        }
+        var emptyCont = ge('settings_bl_empty'),
+            notFoundMsg = getLang('settings_blacklist_not_found_by_query'),
+            cont = ge('settings_bl_list'),
+            rows = geByClass('settings_bl_row', cont),
+            shownCount = 0;
+        for (var i in rows) {
+            var row = rows[i];
+            if (str) {
+                var nameElement = geByClass1('settings_bl_name', row);
+                var name = val(geByTag1('a', nameElement)) || val(geByClass1('name_label'));
+                if (name.toLowerCase().indexOf(str) > -1) {
+                    show(row);
+                    shownCount++;
+                } else {
+                    hide(row);
+                }
+            } else {
+                show(row);
+                shownCount++;
+            }
+        }
+        if (str && !shownCount) {
+            var msg = notFoundMsg.split('{query}').join('<b>' + str.replace(/([<>&#]*)/g, '') + '</b>');
+            emptyCont.innerHTML = msg;
+            show(emptyCont);
+            hide('settings_bl_noempty');
+        } else {
+            hide(emptyCont);
+            show('settings_bl_noempty');
+        }
+    },
+    doAddToBlacklist: function(query, input) {
+        ajax.post('al_settings.php', {
+            act: 'search_blacklist',
+            query: query,
             hash: cur.options.blacklist_hash
         }, {
-            onDone: function(t, e, s) {
-                curBox().emit("success", s), curBox().hide();
-                var o = ge("settings_bl_summary");
-                t && -1 != t && o && (o.innerHTML = langNumeric(t, "%s", !0));
-                var n = ce("div", {
-                        innerHTML: e
+            onDone: function(summary, row, result) {
+                curBox().emit('success', result);
+                curBox().hide();
+                var el = ge('settings_bl_summary');
+                if (summary && summary != -1 && el) {
+                    el.innerHTML = langNumeric(summary, '%s', true);
+                }
+                var rowEl = ce('div', {
+                        innerHTML: row
                     }).firstChild,
-                    i = ge("settings_bl_list");
-                re(n.id), i && (i.insertBefore(n, i.firstChild), show("settings_bl_noempty"), hide("settings_bl_empty"), showMsg("settings_bl_result", s, "ok_msg", !0))
+                    listEl = ge('settings_bl_list');
+                re(rowEl.id);
+                if (listEl) {
+                    listEl.insertBefore(rowEl, listEl.firstChild);
+                    show('settings_bl_noempty');
+                    hide('settings_bl_empty');
+                    showMsg('settings_bl_result', result, 'ok_msg', true);
+                }
             },
-            onFail: function(t) {
-                return showMsg("settings_search_rows", t, "error", !0), !0
+            onFail: function(msg) {
+                showMsg('settings_search_rows', msg, 'error', true);
+                return true;
             },
             showProgress: function() {
-                "BUTTON" == e.tagName ? lockButton(e) : uiSearch.showProgress(e)
+                if (input.tagName == 'BUTTON') {
+                    lockButton(input);
+                } else {
+                    uiSearch.showProgress(input);
+                }
             },
             hideProgress: function() {
-                "BUTTON" == e.tagName ? unlockButton(e) : uiSearch.hideProgress(e)
+                if (input.tagName == 'BUTTON') {
+                    unlockButton(input);
+                } else {
+                    uiSearch.hideProgress(input);
+                }
             }
-        })
+        });
     },
     addToBlacklist: function() {
-        return showBox("al_settings.php", {
-            act: "blacklist_box"
+        showBox('al_settings.php', {
+            act: 'blacklist_box'
         }, {
             params: {
-                dark: !0
+                dark: true
             }
-        }), !1
-    },
-    addToBl: function(t, e, s) {
-        ajax.post("al_settings.php", {
-            act: "a_add_to_bl",
-            id: t,
-            hash: e,
-            from: "settings"
-        }, {
-            onDone: function(o) {
-                o && (ge("settings_bl_summary").innerHTML = langNumeric(o, "%s", !0)), hide("settings_bl_label" + t), s.onclick = function() {
-                    return Settings.delFromBl(t, e, s), !1
-                }, s.innerHTML = getLang("settings_remove")
-            },
-            onFail: function(t) {
-                return setTimeout(showFastBox({
-                    title: getLang("global_error"),
-                    dark: 1,
-                    bodyStyle: "padding: 20px; line-height: 160%;"
-                }, t).hide, 2e3), !0
-            },
-            showProgress: function() {
-                hide(s), show("settings_progress" + t)
-            },
-            hideProgress: function() {
-                show(s), hide("settings_progress" + t)
-            }
-        })
-    },
-    delFromBl: function(t, e, s) {
-        ajax.post("al_settings.php", {
-            act: "a_del_from_bl",
-            id: t,
-            hash: e,
-            from: "settings"
-        }, {
-            onDone: function(o) {
-                ge("settings_bl_summary").innerHTML = o ? langNumeric(o, "%s", !0) : "", setStyle("settings_bl_label" + t, "display", "inline"), s.onclick = function() {
-                    return Settings.addToBl(t, e, s), !1
-                }, s.innerHTML = getLang("settings_restore_blacklist")
-            },
-            onFail: function(t) {
-                return setTimeout(showFastBox({
-                    title: getLang("global_error"),
-                    dark: 1,
-                    bodyStyle: "padding: 20px; line-height: 160%;"
-                }, t).hide, 2e3), !0
-            },
-            showProgress: function() {
-                hide(s), show("settings_progress" + t)
-            },
-            hideProgress: function() {
-                show(s), hide("settings_progress" + t)
-            }
-        })
-    },
-    delTopFromBl: function(t, e, s) {
-        var o = ce("img", {
-            src: "/images/upload.gif"
         });
-        ajax.post("al_settings.php", {
-            act: "a_del_from_bl",
-            id: t,
-            hash: e,
-            from: "settings"
+        return false;
+    },
+    addToBl: function(mid, hash, link) {
+        ajax.post('al_settings.php', {
+            act: 'a_add_to_bl',
+            id: mid,
+            hash: hash,
+            from: 'settings'
         }, {
-            onDone: function(s) {
-                s && (ge("settings_bl_summary").innerHTML = s ? langNumeric(s, "%s", !0) : ""), setStyle("settings_bl_label" + t, "display", "inline");
-                var o = geByTag1("a", geByClass1("settings_bl_action", ge("settings_bl_row" + t)));
-                o.onclick = function() {
-                    return Settings.addToBl(t, e, o), !1
-                }, o.innerHTML = getLang("settings_restore_blacklist"), hide("settings_bl_result")
+            onDone: function(summary) {
+                if (summary) {
+                    ge('settings_bl_summary').innerHTML = langNumeric(summary, '%s', true);
+                }
+                hide('settings_bl_label' + mid);
+                link.onclick = function() {
+                    Settings.delFromBl(mid, hash, link);
+                    return false;
+                };
+                link.innerHTML = getLang('settings_remove');
+            },
+            onFail: function(msg) {
+                setTimeout(showFastBox({
+                    title: getLang('global_error'),
+                    dark: 1,
+                    bodyStyle: 'padding: 20px; line-height: 160%;'
+                }, msg).hide, 2000);
+                return true;
             },
             showProgress: function() {
-                s.parentNode.replaceChild(o, s)
+                hide(link);
+                show('settings_progress' + mid);
             },
             hideProgress: function() {
-                o.parentNode.replaceChild(s, o)
+                show(link);
+                hide('settings_progress' + mid);
             }
-        })
+        });
     },
-    saveSmsNotify: function(t) {
-        lockButton(t);
-        var e = {
-            act: "a_save_sms_notify",
-            hash: cur.options.notify_hash
-        };
-        each(cur.options.notify_sms_keys, function(t, s) {
-            e[s] = Privacy.getValue(s)
-        }), e.smsenabled = isChecked("smsenabled") ? 1 : 0, isChecked("daytime") ? (e.daytime_from = ge("daytime_from").value, e.daytime_to = ge("daytime_to").value) : (e.daytime_from = 0, e.daytime_to = 0), val("settings_notify_sms_result", ""), ajax.post("al_settings.php", e, {
-            onDone: function(e, s, o) {
-                unlockButton(t), s && o ? showFastBox({
-                    title: e,
-                    dark: 1,
-                    bodyStyle: "padding: 20px; line-height: 160%;"
-                }, s, getLang("settings_subscribe_to_service_btn"), function() {
-                    window.open(o), curBox().hide()
-                }, getLang("box_cancel"), function() {
-                    checkbox("smsenabled", 0), Settings.smsNotifyCheck(), Settings.saveSmsNotify(), curBox().hide()
-                }) : showMsg("settings_notify_sms_result", e, "ok_msg", !0)
+    delFromBl: function(mid, hash, link) {
+        ajax.post('al_settings.php', {
+            act: 'a_del_from_bl',
+            id: mid,
+            hash: hash,
+            from: 'settings'
+        }, {
+            onDone: function(summary) {
+                ge('settings_bl_summary').innerHTML = summary ? langNumeric(summary, '%s', true) : '';
+                setStyle('settings_bl_label' + mid, 'display', 'inline');
+                link.onclick = function() {
+                    Settings.addToBl(mid, hash, link);
+                    return false;
+                };
+                link.innerHTML = getLang('settings_restore_blacklist');
             },
-            onFail: function(e) {
-                unlockButton(t), checkbox("smsenabled", 0), Settings.smsNotifyCheck(), Settings.saveSmsNotify()
+            onFail: function(msg) {
+                setTimeout(showFastBox({
+                    title: getLang('global_error'),
+                    dark: 1,
+                    bodyStyle: 'padding: 20px; line-height: 160%;'
+                }, msg).hide, 2000);
+                return true;
+            },
+            showProgress: function() {
+                hide(link);
+                show('settings_progress' + mid);
+            },
+            hideProgress: function() {
+                show(link);
+                hide('settings_progress' + mid);
             }
-        })
+        });
     },
-    updateInstantSounds: function(t) {
-        toggleClass(geByClass1("_ui_toggler", t), "on"), ls.set("sound_notify_off", hasClass(geByClass1("_settings_isounds"), "on") ? 0 : 1), uiPageBlock.showSaved(t)
-    },
-    saveSiteNotify: function(t) {
-        toggleClass(geByClass1("_ui_toggler", t), "on");
-        var e = {
-            act: "a_save_site_notify",
-            hash: cur.options.notify_hash,
-            ienable: hasClass(geByClass1("_settings_ienable"), "on") ? 1 : 0,
-            itexts: hasClass(geByClass1("_settings_itexts"), "on") ? 1 : 0
-        };
-        each(geByClass("_settings_nf_bt"), function(t, s) {
-            e["nf_bt_" + s.getAttribute("data-id")] = +hasClass(s, "on")
-        }), cur.options.notify_privacy_keys && cur.options.notify_privacy_keys.forEach(function(t) {
-            e["nf_" + t] = 0 | Privacy.getValue(t)
-        }), clearTimeout(cur.instantNotifyTO), clearTimeout(cur.instantNotifySaveTO), cur.instantNotifyTO = setTimeout(ajax.post.pbind("al_settings.php", e, {
-            onDone: function() {
-                cur.instantNotifySaveTO = setTimeout(window.uiPageBlock && uiPageBlock.showSaved.pbind(t), 1e3)
+    delTopFromBl: function(mid, hash, link) {
+        var progress = ce('img', {
+            src: '/images/upload.gif'
+        });
+        ajax.post('al_settings.php', {
+            act: 'a_del_from_bl',
+            id: mid,
+            hash: hash,
+            from: 'settings'
+        }, {
+            onDone: function(summary) {
+                if (summary) {
+                    ge('settings_bl_summary').innerHTML = summary ? langNumeric(summary, '%s', true) : '';;
+                }
+                setStyle('settings_bl_label' + mid, 'display', 'inline');
+                var rightLnk = geByTag1('a', geByClass1('settings_bl_action', ge('settings_bl_row' + mid)));
+                rightLnk.onclick = function() {
+                    Settings.addToBl(mid, hash, rightLnk);
+                    return false;
+                };
+                rightLnk.innerHTML = getLang('settings_restore_blacklist');
+                hide('settings_bl_result');
+            },
+            showProgress: function() {
+                link.parentNode.replaceChild(progress, link);
+            },
+            hideProgress: function() {
+                progress.parentNode.replaceChild(link, progress);
             }
-        }), 500), TopNotifier && TopNotifier.invalidate()
+        });
     },
-    saveGroupNotify: function(t, e) {
-        if (hasClass(geByClass1("_ui_toggler", t), "ui_toggler_disable")) return !1;
-        toggleClass(geByClass1("_ui_toggler", t), "on");
-        var s = {
-            act: "a_save_group_notify",
-            hash: cur.options.notify_hash,
-            gid: e
-        };
-        each(geByClass("ui_toggler", domClosest("wide_column", t)), function(t, e) {
-            s[e.getAttribute("data-id")] = +hasClass(e, "on")
-        }), clearTimeout(cur.instantNotifyTO), clearTimeout(cur.instantNotifySaveTO), cur.instantNotifyTO = setTimeout(ajax.post.pbind("al_settings.php", s, {
-            onDone: function() {
-                cur.instantNotifySaveTO = setTimeout(window.uiPageBlock && uiPageBlock.showSaved.pbind(t), 1e3)
-            }
-        }), 500), TopNotifier && TopNotifier.invalidate()
-    },
-    checkboxSiteNotify: function(t, e) {
-        e.target && hasClass(e.target, "item_sel") || (checkbox(t), Settings.saveSiteNotify(t))
-    },
-    saveMailNotify: function(t) {
-        var e = {
-            act: "a_save_mail_notify",
+
+    saveSmsNotify: function(btn) {
+        lockButton(btn);
+
+        var params = {
+            act: 'a_save_sms_notify',
             hash: cur.options.notify_hash
         };
-        e.mail_period = Privacy.getValue("mail_period"), each(cur.options.notify_mail_keys, function(t, s) {
-            e[s] = isChecked(s) ? 1 : 0
-        }), clearTimeout(cur.mailNotifyTO), cur.mailNotifyTO = setTimeout(ajax.post.pbind("al_settings.php", e, {
-            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind(t)
-        }), 500)
+        each(cur.options.notify_sms_keys, function(k, v) {
+            params[v] = Privacy.getValue(v);
+        });
+        params.smsenabled = isChecked('smsenabled') ? 1 : 0;
+        if (isChecked('daytime')) {
+            params.daytime_from = ge("daytime_from").value;
+            params.daytime_to = ge("daytime_to").value;
+        } else {
+            params.daytime_from = 0;
+            params.daytime_to = 0;
+        }
+        val('settings_notify_sms_result', '');
+        ajax.post('al_settings.php', params, {
+            onDone: function(result, html, href) {
+                unlockButton(btn);
+                if (html && href) {
+                    showFastBox({
+                        title: result,
+                        dark: 1,
+                        bodyStyle: 'padding: 20px; line-height: 160%;'
+                    }, html, getLang('settings_subscribe_to_service_btn'), function() {
+                        window.open(href);
+                        curBox().hide();
+                    }, getLang('box_cancel'), function() {
+                        checkbox('smsenabled', 0);
+                        Settings.smsNotifyCheck();
+                        Settings.saveSmsNotify();
+                        curBox().hide();
+                    });
+                } else {
+                    showMsg('settings_notify_sms_result', result, 'ok_msg', true);
+                }
+            },
+            onFail: function(msg) {
+                unlockButton(btn);
+                checkbox('smsenabled', 0);
+                Settings.smsNotifyCheck();
+                Settings.saveSmsNotify();
+            }
+        });
     },
-    saveNotifyPrivacyKey: function(t) {
-        "mail_period" == t ? (Settings.saveMailNotify("privacy_edit_" + t), 3 == Privacy.getValue(t) ? hide("mail_options") : show("mail_options")) : cur.options.notify_privacy_keys && ~cur.options.notify_privacy_keys.indexOf(t) ? Settings.saveSiteNotify("privacy_edit_" + t) : "sms_pm_notify" == t && (0 != Privacy.getValue(t) ? hide("sms_pm_privacy_row") : show("sms_pm_privacy_row"))
+
+    updateInstantSounds: function(el) {
+        toggleClass(geByClass1('_ui_toggler', el), 'on');
+        ls.set('sound_notify_off', hasClass(geByClass1('_settings_isounds'), 'on') ? 0 : 1);
+        uiPageBlock.showSaved(el);
     },
+
+    saveSiteNotify: function(el) {
+        toggleClass(geByClass1('_ui_toggler', el), 'on');
+
+        var params = {
+            act: 'a_save_site_notify',
+            hash: cur.options.notify_hash,
+            ienable: hasClass(geByClass1('_settings_ienable'), 'on') ? 1 : 0,
+            itexts: hasClass(geByClass1('_settings_itexts'), 'on') ? 1 : 0
+        };
+
+        each(geByClass('_settings_nf_bt'), function(i, v) {
+            params['nf_bt_' + v.getAttribute('data-id')] = +hasClass(v, 'on');
+        });
+
+        cur.options.notify_privacy_keys && cur.options.notify_privacy_keys.forEach(function(v) {
+            params['nf_' + v] = Privacy.getValue(v) | 0;
+        });
+
+        clearTimeout(cur.instantNotifyTO);
+        clearTimeout(cur.instantNotifySaveTO);
+        cur.instantNotifyTO = setTimeout(ajax.post.pbind('al_settings.php', params, {
+            onDone: function() {
+                cur.instantNotifySaveTO = setTimeout(window.uiPageBlock && uiPageBlock.showSaved.pbind(el), 1000);
+            }
+        }), 500);
+        TopNotifier && TopNotifier.invalidate();
+    },
+
+    saveGroupNotify: function(el, gid) {
+        if (hasClass(geByClass1('_ui_toggler', el), 'ui_toggler_disable')) {
+            return false;
+        }
+        toggleClass(geByClass1('_ui_toggler', el), 'on');
+
+        var params = {
+            act: 'a_save_group_notify',
+            hash: cur.options.notify_hash,
+            gid: gid,
+        };
+
+        each(geByClass('ui_toggler', domClosest('wide_column', el)), function(i, v) {
+            params[v.getAttribute('data-id')] = +hasClass(v, 'on');
+        });
+
+        clearTimeout(cur.instantNotifyTO);
+        clearTimeout(cur.instantNotifySaveTO);
+        cur.instantNotifyTO = setTimeout(ajax.post.pbind('al_settings.php', params, {
+            onDone: function() {
+                cur.instantNotifySaveTO = setTimeout(window.uiPageBlock && uiPageBlock.showSaved.pbind(el), 1000);
+            }
+        }), 500);
+        TopNotifier && TopNotifier.invalidate();
+    },
+    checkboxSiteNotify: function(el, ev) {
+        if (ev.target && hasClass(ev.target, 'item_sel')) {
+            return;
+        }
+        checkbox(el);
+        Settings.saveSiteNotify(el);
+    },
+
+    saveMailNotify: function(el) {
+        var params = {
+            act: 'a_save_mail_notify',
+            hash: cur.options.notify_hash
+        };
+        params.mail_period = Privacy.getValue('mail_period');
+        each(cur.options.notify_mail_keys, function(k, v) {
+            params[v] = isChecked(v) ? 1 : 0;
+        });
+
+        clearTimeout(cur.mailNotifyTO);
+        cur.mailNotifyTO = setTimeout(ajax.post.pbind('al_settings.php', params, {
+            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind(el)
+        }), 500);
+    },
+
+    saveNotifyPrivacyKey: function(key) {
+        if (key == 'mail_period') {
+            Settings.saveMailNotify('privacy_edit_' + key);
+            if (Privacy.getValue(key) == 3) {
+                hide('mail_options');
+            } else {
+                show('mail_options');
+            }
+        } else if (cur.options.notify_privacy_keys && ~cur.options.notify_privacy_keys.indexOf(key)) {
+            Settings.saveSiteNotify('privacy_edit_' + key);
+        } else if (key == 'sms_pm_notify') {
+            if (Privacy.getValue(key) != 0) {
+                hide('sms_pm_privacy_row');
+            } else {
+                show('sms_pm_privacy_row');
+            }
+        }
+    },
+
     initNotify: function() {
         cur.options.msg && Settings.showMsg(cur.options.msg);
-        var t = geByClass1("_settings_isounds");
-        toggleClass(t, "on", !ls.get("sound_notify_off")), removeClassDelayed(t, "no_transition"), cur.reloadOnMailBind = !0, cur.onPrivacyChanged = Settings.saveNotifyPrivacyKey;
-        for (var e = [], s = 24; s--;) e.unshift((10 > s ? "0" : "") + s + ":00");
-        void 0 !== cur.options.time_from && new Dropdown(ge("daytime_from"), e, {
-            selectedItems: cur.options.time_from
-        }), void 0 !== cur.options.time_to && new Dropdown(ge("daytime_to"), e, {
-            selectedItems: cur.options.time_to
-        })
+
+        var isounds_toggler = geByClass1('_settings_isounds');
+        toggleClass(isounds_toggler, 'on', !ls.get('sound_notify_off'));
+        removeClassDelayed(isounds_toggler, 'no_transition');
+
+        cur.reloadOnMailBind = true;
+        cur.onPrivacyChanged = Settings.saveNotifyPrivacyKey;
+
+        var daytime_options = [],
+            daytime_hour = 24;
+        while (daytime_hour--) {
+            daytime_options.unshift((daytime_hour < 10 ? '0' : '') + daytime_hour + ':00');
+        }
+
+        cur.options.time_from !== void 0 && new Dropdown(ge("daytime_from"), daytime_options, {
+            selectedItems: cur.options.time_from,
+        });
+        cur.options.time_to !== void 0 && new Dropdown(ge("daytime_to"), daytime_options, {
+            selectedItems: cur.options.time_to,
+        });
     },
     smsNotifyCheck: function() {
-        isChecked("smsenabled") ? (slideDown(ge("sms_options"), 200), show("sms_options_msg")) : isVisible("sms_options") && (hide("sms_options_msg"), slideUp(ge("sms_options"), 200))
+        if (isChecked('smsenabled')) {
+            slideDown(ge("sms_options"), 200);
+            show('sms_options_msg');
+        } else {
+            if (isVisible('sms_options')) {
+                hide('sms_options_msg');
+                slideUp(ge("sms_options"), 200);
+            }
+        }
     },
     smsDayTimeCheck: function() {
-        isChecked("daytime") ? slideDown(ge("daytime_from_to"), 200) : slideUp(ge("daytime_from_to"), 200)
+        if (isChecked('daytime')) {
+            slideDown(ge("daytime_from_to"), 200);
+        } else {
+            slideUp(ge("daytime_from_to"), 200);
+        }
     },
-    smsUnsubscribe: function(t, e, s, o) {
-        var n = '<a href="' + t.href + '">' + t.innerHTML + "</a>",
-            i = 1;
-        if (0 > e) {
-            i = o ? 3 : 2;
-            var a = o ? getLang("settings_confirm_unsubscribe_event_msg") : getLang("settings_confirm_unsubscribe_group_msg")
-        } else var a = getLang("settings_confirm_unsubscribe_fan_msg");
-        return a = a.replace("{name}", n), showFastBox({
-            title: getLang("settings_confirm_unsubscribe_title"),
+    smsUnsubscribe: function(lnk, oid, hash, ev) {
+        var name = '<a href="' + lnk.href + '">' + lnk.innerHTML + '</a>',
+            row = 1;
+        if (oid < 0) {
+            row = ev ? 3 : 2;
+            var msg = ev ? getLang('settings_confirm_unsubscribe_event_msg') : getLang('settings_confirm_unsubscribe_group_msg');
+        } else {
+            var msg = getLang('settings_confirm_unsubscribe_fan_msg');
+        }
+        msg = msg.replace('{name}', name);
+        showFastBox({
+            title: getLang('settings_confirm_unsubscribe_title'),
             dark: 1,
-            bodyStyle: "padding: 20px; line-height: 160%;"
-        }, a, getLang("box_yes"), function() {
-            ajax.post("/settings", {
-                act: "a_sms_unsubscribe",
-                hash: s,
-                oid: e,
-                row: i
+            bodyStyle: 'padding: 20px; line-height: 160%;'
+        }, msg, getLang('box_yes'), function() {
+            ajax.post('/settings', {
+                act: 'a_sms_unsubscribe',
+                hash: hash,
+                oid: oid,
+                row: row
             }, {
                 onDone: function(t) {
-                    var e = ge("sms_subscribes_row" + i);
-                    t ? e.innerHTML = t : hide(e.parentNode), curBox().hide()
+                    var el = ge('sms_subscribes_row' + row);
+                    if (t) {
+                        el.innerHTML = t;
+                    } else {
+                        hide(el.parentNode);
+                    }
+                    curBox().hide();
                 },
                 progress: curBox().progress
-            })
-        }, getLang("box_no")), !1
+            });
+        }, getLang('box_no'));
+        return false;
     },
-    checkPIN: function(t) {
-        var e = t.value.replace(/[^0-9]/g, "");
-        t.value != e && (t.value = e)
+
+    checkPIN: function(o) {
+        var v = o.value.replace(/[^0-9]/g, "");
+        if (o.value != v) o.value = v;
     },
-    updatePIN: function(t) {
-        lockButton(ge("pin_btn")), val("settings_pin_result", "");
-        var e = {
-            act: "a_change_pin",
-            pin: ge("pin").value,
-            hash: t
+    updatePIN: function(hash) {
+        lockButton(ge('pin_btn'));
+        val('settings_pin_result', '');
+        var params = {
+            act: 'a_change_pin',
+            pin: ge('pin').value,
+            hash: hash
         };
-        ajax.post("al_settings.php", e, {
-            onDone: function(t) {
-                unlockButton(ge("pin_btn")), val("settings_pin_value", e.pin), showMsg("settings_pin_result", t, "ok_msg", !0)
+        ajax.post('al_settings.php', params, {
+            onDone: function(result) {
+                unlockButton(ge('pin_btn'));
+                val('settings_pin_value', params.pin);
+                showMsg('settings_pin_result', result, 'ok_msg', true);
             },
-            onFail: function(t) {
-                return unlockButton(ge("pin_btn")), showMsg("settings_pin_result", t, "error", !0), !0
+            onFail: function(result) {
+                unlockButton(ge('pin_btn'));
+                showMsg('settings_pin_result', result, 'error', true);
+                return true;
             }
-        })
+        });
     },
-    getAdminSelectShowCt: function(t) {
-        return Object.keys(t).filter(function(e) {
-            return t[e]
-        }).length
+
+    getAdminSelectShowCt: function(data) {
+        return Object.keys(data).filter(function(key) {
+            return data[key];
+        }).length;
     },
-    initMenuBox: function(t, e, s) {
-        this.initMenuEvents(t), t.setOptions({
+
+    initMenuBox: function(box, type, settings) {
+        this.initMenuEvents(box);
+        box.setOptions({
             onHide: function() {
-                cur.adminGroupsDirty && (window.Notifier && Notifier.resetCommConnection(), ajax.post("al_settings.php", {
-                    act: "a_get_left_menu"
-                }, {
-                    onDone: function(t) {
-                        geByTag1("ol", ge("side_bar")).innerHTML = t
+                if (cur.adminGroupsDirty) {
+                    if (window.Notifier) {
+                        Notifier.resetCommConnection();
                     }
-                })), 2 == e && isFunction(cur.settingsBoxSetLeftMenuAppCallback) && cur.settingsBoxSetLeftMenuAppCallback(!1)
+                    ajax.post('al_settings.php', {
+                        act: 'a_get_left_menu'
+                    }, {
+                        onDone: function(lm) {
+                            geByTag1('ol', ge('side_bar')).innerHTML = lm;
+                        }
+                    });
+                }
+                type == 2 && isFunction(cur.settingsBoxSetLeftMenuAppCallback) && cur.settingsBoxSetLeftMenuAppCallback(false);
             }
-        }), cur.menuSettings = s, this.updateMenuBoxCount(e)
+        });
+
+        cur.menuSettings = settings;
+        this.updateMenuBoxCount(type);
     },
-    initMenuEvents: function(t) {
-        var e = geByClass1("olist", t.bodyNode),
-            s = geByClass1("summary_tabs", t.bodyNode);
-        setStyle(s, "display", "inline-block");
-        var o = getSize(s)[0] + parseInt(getStyle(s, "marginLeft")) + parseInt(getStyle(s, "marginRight"));
-        o > 450 && t.setOptions({
-            width: Math.ceil(o)
-        }), setStyle(s, "display", null), addEvent(e, "scroll", this.onMenuBoxScroll.pbind(t, e)), this.onMenuBoxScroll(t, e)
+
+    initMenuEvents: function(box) {
+        var scrollNode = geByClass1('olist', box.bodyNode),
+            tabs = geByClass1('summary_tabs', box.bodyNode);
+
+        setStyle(tabs, 'display', 'inline-block');
+        var w = getSize(tabs)[0] + parseInt(getStyle(tabs, 'marginLeft')) + parseInt(getStyle(tabs, 'marginRight'));
+        if (w > 450) {
+            box.setOptions({
+                width: Math.ceil(w)
+            });
+        }
+        setStyle(tabs, 'display', null);
+        addEvent(scrollNode, 'scroll', this.onMenuBoxScroll.pbind(box, scrollNode));
+        this.onMenuBoxScroll(box, scrollNode);
     },
-    onMenuBoxScroll: function(t, e) {
-        var s = domPN(t.bodyNode),
-            o = e.scrollHeight,
-            n = e.scrollTop,
-            i = e.offsetHeight || e.clientHeight;
-        toggleClass(s, "olist_topsh", n > 0), toggleClass(s, "olist_botsh", o > n + i)
+
+    onMenuBoxScroll: function(box, scrollNode) {
+        var bodyWrap = domPN(box.bodyNode),
+            sh = scrollNode.scrollHeight,
+            st = scrollNode.scrollTop,
+            h = scrollNode.offsetHeight || scrollNode.clientHeight;
+
+        toggleClass(bodyWrap, 'olist_topsh', st > 0);
+        toggleClass(bodyWrap, 'olist_botsh', st + h < sh);
     },
-    updateMenuBoxCount: function(t) {
-        var e = curBox(),
-            s = cur.menuSettings[t] || {},
-            o = Settings.getAdminSelectShowCt(s),
-            n = "";
-        (1 == t || 2 == t) && (n = '<span class="settings_menu_box_counter">' + getLang("settings_admin_groups_left").replace("{count}", o).replace("{amt}", Settings.MAX_LEFT_GROUPS) + "</span>"), e.setControlsText(n)
+
+    updateMenuBoxCount: function(type) {
+        var box = curBox(),
+            settings = cur.menuSettings[type] || {},
+            ct = Settings.getAdminSelectShowCt(settings),
+            text = '';
+
+        if (type == 1 || type == 2) {
+            text = '<span class="settings_menu_box_counter">' + getLang('settings_admin_groups_left').replace('{count}', ct).replace('{amt}', Settings.MAX_LEFT_GROUPS) + '</span>';
+        }
+        box.setControlsText(text);
     },
-    toggleMenuBoxRow: function(t, e, s) {
-        var o = cur.menuSettings[e] || {},
-            n = Settings.getAdminSelectShowCt(o),
-            i = o[s];
-        return curBox().changed = !0, (1 == e || 2 == e) && (toggleClass(gpeByClass("olist_section", t), "settings_menu_rows_disabled", !i && n >= Settings.MAX_LEFT_GROUPS - 1), !i && n >= Settings.MAX_LEFT_GROUPS) ? !1 : (toggleClass(t, "olist_item_wrap_on", !i), o[s] = i ? 0 : 1, Settings.updateMenuBoxCount(e), !1)
+
+    toggleMenuBoxRow: function(el, type, id) {
+        var settings = cur.menuSettings[type] || {},
+            ct = Settings.getAdminSelectShowCt(settings),
+            value = settings[id];
+
+        // cur.adminGroupsDirty = true;
+        curBox().changed = true;
+
+        if (type == 1 || type == 2) {
+            toggleClass(gpeByClass('olist_section', el), 'settings_menu_rows_disabled', !value && ct >= Settings.MAX_LEFT_GROUPS - 1);
+
+            if (!value && ct >= Settings.MAX_LEFT_GROUPS) {
+                return false;
+            }
+        }
+
+        toggleClass(el, 'olist_item_wrap_on', !value);
+        settings[id] = value ? 0 : 1;
+        Settings.updateMenuBoxCount(type);
+        return false;
     },
-    switchMenuBoxSection: function(t, e) {
-        var s = curBox();
-        each(geByClass("olist_section", s.bodyNode), function() {
-            hide(this)
-        }), show("settings_menu_" + e), geByClass1("olist", s.bodyNode).scrollTop = 0, Settings.updateMenuBoxCount(e)
+
+    switchMenuBoxSection: function(el, section) {
+        var box = curBox();
+        each(geByClass('olist_section', box.bodyNode), function() {
+            hide(this);
+        });
+        show('settings_menu_' + section);
+        geByClass1('olist', box.bodyNode).scrollTop = 0;
+        Settings.updateMenuBoxCount(section);
     },
-    saveMenu: function(t, e) {
-        for (var s = curBox(), o = [], n = [], i = [], a = [], r = {
-                hash: t,
-                act: "a_change_services"
-            }, c = !1, u = 0; 3 >= u; u++) {
-            var l = cur.menuSettings[u] || {};
-            each(l, function(t, e) {
-                switch (u) {
+
+    saveMenu: function(hash, btn) {
+        var box = curBox(),
+            apps = [],
+            groups = [],
+            apps_all = [],
+            service_hidden = [],
+            params = {
+                hash: hash,
+                act: 'a_change_services'
+            },
+            app_is_added = false;
+        for (var type = 0; type <= 3; type++) {
+            var settings = cur.menuSettings[type] || {};
+            each(settings, function(name, selected) {
+                switch (type) {
                     case 1:
-                        e && n.push(t);
+                        if (selected) {
+                            groups.push(name);
+                        }
                         break;
                     case 2:
-                        i.push(t), e && (cur.aid == t && (c = !0), o.push(t));
+                        apps_all.push(name);
+                        if (selected) {
+                            if (cur.aid == name) app_is_added = true;
+                            apps.push(name);
+                        }
                         break;
                     case 3:
-                        e || a.push(t);
+                        if (!selected) {
+                            service_hidden.push(name);
+                        }
                         break;
                     default:
-                        r[t] = e
+                        params[name] = selected;
                 }
-            })
+            });
+        };
+        if (apps_all.length) {
+            params.apps_all = apps_all.join(',');
+            params.apps_on = apps.join(',');
         }
-        i.length && (r.apps_all = i.join(","), r.apps_on = o.join(",")), r.groups_list = n.join(","), r.service_hidden = a.join(","), ajax.post("al_settings.php", r, {
-            onDone: function(t) {
-                geByTag1("ol", ge("side_bar")).innerHTML = t, window.uiPageBlock && uiPageBlock.showSaved("settings_services"), isFunction(cur.settingsBoxSetLeftMenuAppCallback) && cur.settingsBoxSetLeftMenuAppCallback(c), s.hide(), window.Apps && Apps.updateAddToMenuAction()
+        params.groups_list = groups.join(',');
+        params.service_hidden = service_hidden.join(',');
+        ajax.post('al_settings.php', params, {
+            onDone: function(html) {
+                geByTag1('ol', ge('side_bar')).innerHTML = html;
+                window.uiPageBlock && uiPageBlock.showSaved('settings_services');
+                isFunction(cur.settingsBoxSetLeftMenuAppCallback) && cur.settingsBoxSetLeftMenuAppCallback(app_is_added);
+                box.hide();
+                window.Apps && Apps.updateAddToMenuAction();
             },
-            showProgress: lockButton.pbind(e),
-            hideProgress: unlockButton.pbind(e)
-        })
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn)
+        });
     },
+
     giftsCheck: function() {
-        clearTimeout(cur.giftsUpdateTO), cur.giftsUpdateTO = setTimeout(Settings.giftsSubmit, 200)
+        clearTimeout(cur.giftsUpdateTO);
+        cur.giftsUpdateTO = setTimeout(Settings.giftsSubmit, 200);
     },
     giftsSubmit: function() {
-        ajax.post("/al_profile.php", {
-            act: "hide_gifts",
+        ajax.post('/al_profile.php', {
+            act: 'hide_gifts',
             hash: cur.options.hide_gifts_hash,
-            shown: ge("settings_hide_gifts").checked ? 0 : 1
+            shown: ge('settings_hide_gifts').checked ? 0 : 1
         }, {
-            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
-        })
+            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind('cposts')
+        });
     },
+
     gifCheck: function() {
-        clearTimeout(cur.gifUpdateTO), cur.gifUpdateTO = setTimeout(Settings.gifSubmit, 200)
+        clearTimeout(cur.gifUpdateTO);
+        cur.gifUpdateTO = setTimeout(Settings.gifSubmit, 200);
     },
     gifSubmit: function() {
-        ajax.post("/al_settings.php", {
-            act: "a_change_autoplay_gif",
+        ajax.post('/al_settings.php', {
+            act: 'a_change_autoplay_gif',
             hash: cur.options.gif_autoplay_hash,
-            no_autoplay: ge("settings_gif_autoplay").checked ? 0 : 1
+            no_autoplay: ge('settings_gif_autoplay').checked ? 0 : 1
         }, {
-            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
-        })
+            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind('cposts')
+        });
     },
+
     accessCheck: function() {
-        clearTimeout(cur.accessUpdateTO), cur.accessUpdateTO = setTimeout(Settings.accessSubmit, 200)
+        clearTimeout(cur.accessUpdateTO);
+        cur.accessUpdateTO = setTimeout(Settings.accessSubmit, 200);
     },
     accessSubmit: function() {
-        ajax.post("/al_settings.php", {
-            act: "a_toggle_access_mode",
+        ajax.post('/al_settings.php', {
+            act: 'a_toggle_access_mode',
             hash: cur.options.a11y_hash,
-            mode: intval(ge("settings_a11y").checked)
+            mode: intval(ge('settings_a11y').checked)
         }, {
-            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("settings_a11y")
-        })
+            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind('settings_a11y')
+        });
     },
+
     stickersHintsCheck: function() {
-        clearTimeout(cur.stickersHintsTO), cur.stickersHintsTO = setTimeout(Settings.stickersHintsSubmit, 200)
+        clearTimeout(cur.stickersHintsTO);
+        cur.stickersHintsTO = setTimeout(Settings.stickersHintsSubmit, 200);
     },
     stickersHintsSubmit: function() {
-        ajax.post("/al_settings.php", {
-            act: "a_change_stickers_hints",
+        ajax.post('/al_settings.php', {
+            act: 'a_change_stickers_hints',
             hash: cur.options.stickers_hints_hash,
-            hints: ge("settings_stickers_hints").checked ? 1 : 0
+            hints: ge('settings_stickers_hints').checked ? 1 : 0
         }, {
             onDone: function() {
-                window.uiPageBlock && uiPageBlock.showSaved("cposts"), window.Emoji && Emoji.updateTabs.apply(window, arguments)
+                window.uiPageBlock && uiPageBlock.showSaved('cposts');
+                window.Emoji && Emoji.updateTabs.apply(window, arguments);
             }
-        })
+        });
     },
+
     videoCheck: function() {
-        clearTimeout(cur.videoUpdateTO), cur.videoUpdateTO = setTimeout(Settings.videoSubmit, 200)
+        clearTimeout(cur.videoUpdateTO);
+        cur.videoUpdateTO = setTimeout(Settings.videoSubmit, 200);
     },
     videoSubmit: function() {
-        ajax.post("/al_settings.php", {
-            act: "a_change_autoplay_video",
+        ajax.post('/al_settings.php', {
+            act: 'a_change_autoplay_video',
             hash: cur.options.video_autoplay_hash,
-            video_autoplay: ge("settings_video_autoplay").checked ? 1 : 0
+            video_autoplay: ge('settings_video_autoplay').checked ? 1 : 0
         }, {
-            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
-        })
+            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind('cposts')
+        });
     },
+
     videostartCheck: function() {
-        clearTimeout(cur.videostartUpdateTO), cur.videostartUpdateTO = setTimeout(Settings.videostartSubmit, 200)
+        clearTimeout(cur.videostartUpdateTO);
+        cur.videostartUpdateTO = setTimeout(Settings.videostartSubmit, 200);
     },
     videostartSubmit: function() {
-        ajax.post("/al_settings.php", {
-            act: "a_change_autostart_video",
+        ajax.post('/al_settings.php', {
+            act: 'a_change_autostart_video',
             hash: cur.options.video_autostart_hash,
-            video_autostart: ge("settings_video_autostart").checked ? 1 : 0
+            video_autostart: ge('settings_video_autostart').checked ? 1 : 0
         }, {
-            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
-        })
+            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind('cposts')
+        });
     },
-    drCheck: function() {
-        clearTimeout(cur.drUpdateTO), cur.drUpdateTO = setTimeout(Settings.drSubmit, 200)
+
+    drCheck: function() { // disable rights
+        clearTimeout(cur.drUpdateTO);
+        cur.drUpdateTO = setTimeout(Settings.drSubmit, 200);
     },
-    drSubmit: function() {
-        ajax.post("/al_settings.php", {
-            act: "a_change_dr",
+    drSubmit: function() { // disable rights
+        ajax.post('/al_settings.php', {
+            act: 'a_change_dr',
             hash: cur.options.dr_hash,
-            dr: ge("settings_dr").checked ? 1 : 0
+            dr: ge('settings_dr').checked ? 1 : 0
         }, {
             onDone: nav.reload.pbind()
-        })
+        });
     },
+
     externalAuthCheck: function() {
-        clearTimeout(cur.externalAuthUpdateTO), cur.externalAuthUpdateTO = setTimeout(function() {
-            ajax.post("al_settings.php", {
-                act: "a_change_external_auth",
+        clearTimeout(cur.externalAuthUpdateTO);
+        cur.externalAuthUpdateTO = setTimeout(function() {
+            ajax.post('al_settings.php', {
+                act: 'a_change_external_auth',
                 hash: cur.options.external_auth_hash,
-                state: ge("settings_external_auth").checked ? 1 : 0
+                state: ge('settings_external_auth').checked ? 1 : 0
             }, {
-                onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
-            })
-        }, 200)
+                onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind('cposts')
+            });
+        }, 200);
     },
+
     videoadsCheck: function() {
-        clearTimeout(cur.videoadsUpdateTO), cur.videoadsUpdateTO = setTimeout(Settings.videoadsSubmit, 200)
+        clearTimeout(cur.videoadsUpdateTO);
+        cur.videoadsUpdateTO = setTimeout(Settings.videoadsSubmit, 200);
     },
     videoadsSubmit: function() {
-        ajax.post("/al_settings.php", {
-            act: "a_change_ads_video",
+        ajax.post('/al_settings.php', {
+            act: 'a_change_ads_video',
             hash: cur.options.video_ads_hash,
-            video_ads: ge("settings_video_ads").checked ? 1 : 0
+            video_ads: ge('settings_video_ads').checked ? 1 : 0
         }, {
-            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
-        })
+            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind('cposts')
+        });
     },
-    microblogCheck: function(t) {
-        hasClass(ge("settings_" + t), "disabled") || ge("settings_" + t).disabled || (clearTimeout(cur.microblogUpdateTO), cur.microblogUpdateTO = setTimeout(Settings.microblogSubmit, 200))
+
+    microblogCheck: function(id) {
+        if (hasClass(ge('settings_' + id), 'disabled') || ge('settings_' + id).disabled) return;
+
+        clearTimeout(cur.microblogUpdateTO);
+        cur.microblogUpdateTO = setTimeout(Settings.microblogSubmit, 200);
     },
     microblogSubmit: function() {
-        var t = {
-            act: "a_change_microblog",
+        var params = {
+            act: 'a_change_microblog',
             hash: cur.options.microblog_hash
         };
-        each(["status_default", "no_wall_replies"], function(e, s) {
-            var o = ge("settings_" + s);
-            o && (t[s] = o.checked ? 1 : 0)
-        }), ajax.post("/al_settings.php", t, {
-            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
-        })
+        each(['status_default', 'no_wall_replies'], function(k, v) {
+            var el = ge('settings_' + v);
+            if (el) {
+                params[v] = el.checked ? 1 : 0;
+            }
+        });
+        ajax.post('/al_settings.php', params, {
+            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind('cposts')
+        });
     },
+
     photoTagFriendsCheck: function() {
-        clearTimeout(cur.photoAutoTagFriendsUpdateTO), cur.photoAutoTagFriendsUpdateTO = setTimeout(Settings.photoTagFriendsSubmit, 200)
+        clearTimeout(cur.photoAutoTagFriendsUpdateTO);
+        cur.photoAutoTagFriendsUpdateTO = setTimeout(Settings.photoTagFriendsSubmit, 200);
     },
     photoTagFriendsSubmit: function() {
-        ajax.post("/al_settings.php", {
-            act: "a_change_autotag_friends",
+        ajax.post('/al_settings.php', {
+            act: 'a_change_autotag_friends',
             hash: cur.options.autotag_friends_hash,
-            autotag_friends: ge("settings_autotag_friends").checked ? 1 : 0
+            autotag_friends: ge('settings_autotag_friends').checked ? 1 : 0
         }, {
-            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
-        })
+            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind('cposts')
+        });
     },
-    OTPAuthEnable: function(t) {
-        return showBox("al_settings.php", {
-            act: "otp_auth_box",
-            confirm: t,
+
+    OTPAuthEnable: function(confirm) {
+        showBox('al_settings.php', {
+            act: 'otp_auth_box',
+            confirm: confirm,
             hash: cur.options.otp_hash
         }, {
             params: {
-                dark: !0
+                dark: true
             }
-        }), !1
+        });
+        return false;
     },
-    OTPAuthAppSet: function(t) {
-        var e = {
-            act: "otp_auth_app_box"
+    OTPAuthAppSet: function(hash) {
+        var params = {
+            act: 'otp_auth_app_box'
         };
-        return t ? (curBox().hide(), e.force = 1, e.hash = t) : e.hash = cur.options.otp_hash, showBox("al_settings.php", e), !1
+        if (hash) {
+            curBox().hide();
+            params.force = 1;
+            params.hash = hash;
+        } else {
+            params.hash = cur.options.otp_hash;
+        }
+        showBox('al_settings.php', params);
+        return false;
     },
-    OTPAuthDisable: function(t) {
-        if (buttonLocked(t)) return !1;
-        var e = {
-            act: "a_otp_auth_save",
-            type: "otp_auth",
+    OTPAuthDisable: function(btn) {
+        if (buttonLocked(btn)) {
+            return false;
+        }
+        var params = {
+            act: 'a_otp_auth_save',
+            type: 'otp_auth',
             hash: cur.options.otp_hash
         };
-        ajax.post("al_settings.php", e, {
-            showProgress: lockButton.pbind(t),
-            hideProgress: unlockButton.pbind(t)
-        })
+        ajax.post('al_settings.php', params, {
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn)
+        });
     },
     OTPAuthAppDisable: function() {
-        if (Settings.otpAuthAppDisabling) return !1;
-        Settings.otpAuthAppDisabling = !0, curBox().showProgress();
-        var t = {
-            act: "a_otp_auth_save",
-            type: "otp_auth_by_app",
+        if (Settings.otpAuthAppDisabling) return false;
+        Settings.otpAuthAppDisabling = true;
+
+        curBox().showProgress();
+        var params = {
+            act: 'a_otp_auth_save',
+            type: 'otp_auth_by_app',
             hash: cur.options.otp_hash
         };
-        ajax.post("al_settings.php", t, {
+        ajax.post('al_settings.php', params, {
             onDone: function() {
-                Settings.otpAuthAppDisabling = !1, addClass("settings_otp_auth_app_set", "settings_otp_app_disabled"), val("settings_otp_auth_app_set_link", getLang("settings_otp_auth_by_app_enable")), curBox().hide()
+                Settings.otpAuthAppDisabling = false;
+                addClass('settings_otp_auth_app_set', 'settings_otp_app_disabled');
+                val('settings_otp_auth_app_set_link', getLang('settings_otp_auth_by_app_enable'));
+                curBox().hide();
             }
-        })
+        });
     },
-    OTPAuthShowReserveCodes: function(t, e) {
-        return showBox("al_settings.php", {
-            act: "otp_auth_reserve_codes_box",
-            hash: t,
-            force_new: e ? 1 : 0
+    OTPAuthShowReserveCodes: function(hash, forceNew) {
+        showBox('al_settings.php', {
+            act: 'otp_auth_reserve_codes_box',
+            hash: hash,
+            force_new: forceNew ? 1 : 0
         }, {
             params: {
-                dark: !0
+                dark: true
             }
-        }), !1
+        });
+        return false;
     },
-    OTPAuthGetTrusted: function(t) {
-        var e = ge("settings_otp_auth_trusted");
-        if (e && isVisible(e) && (t || geByTag1("img", e))) {
-            var s = vk.loginscheme != location.protocol.substr(0, location.protocol.length - 1) ? 1 : 0;
-            ajax.post(vk.loginscheme + "://" + location.host + "/al_login.php", {
-                act: "is_trusted_browser",
-                _http: s
+    OTPAuthGetTrusted: function(force) {
+        var el = ge('settings_otp_auth_trusted');
+        if (!el || !isVisible(el)) return;
+        if (force || geByTag1('img', el)) {
+            var _frm = vk.loginscheme != location.protocol.substr(0, location.protocol.length - 1) ? 1 : 0;
+            ajax.post(vk.loginscheme + '://' + location.host + '/al_login.php', {
+                act: 'is_trusted_browser',
+                _http: _frm
             }, {
-                frame: s,
-                onDone: function(t) {
-                    e.innerHTML = t
+                frame: _frm,
+                onDone: function(msg) {
+                    el.innerHTML = msg;
                 }
-            })
+            });
         }
     },
-    OTPAuthClearTrusted: function(t, e, s) {
-        function o() {
-            if (!e && cur.options.otp_reset_hash) return cur.onReLoginDoneCallback = function() {
-                ge("settings_reset_sessions_link").parentNode.innerHTML = '<div class="settings_labeled_notice">' + getLang("setting_all_sessions_reset") + "</div>"
-            }, Settings.reset_sessions = !1, Settings.resetAllSessions(t, '<input name="otp_reset_hash" value="' + cur.options.otp_reset_hash + '" type="hidden" />', t.getAttribute("complete"), cur.options.logout_hash), void(n && n.hide());
-            var o = ce("img", {
-                    src: "/images/upload" + (window.devicePixelRatio >= 2 ? "_2x" : "") + ".gif"
-                }, {
-                    width: 32
-                }),
-                i = vk.loginscheme != location.protocol.substr(0, location.protocol.length - 1) ? 1 : 0;
-            ajax.post(vk.loginscheme + "://" + location.host + "/al_login.php", {
-                act: "clear_trusted_browsers",
-                only_cur: e,
-                hash: s,
-                _http: i
-            }, {
-                frame: i,
-                onDone: function(e) {
-                    n && n.hide(), t.parentNode.innerHTML = '<div class="settings_labeled_notice">' + t.getAttribute("complete") + "</div>"
-                },
-                showProgress: function() {
-                    n ? n.showProgress() : t.parentNode.replaceChild(o, t)
-                },
-                hideProgress: function() {
-                    n ? n.hideProgress() : o.parentNode.replaceChild(t, o)
+    OTPAuthClearTrusted: function(link, onlyCur, hash) {
+        var box = false;
+        var confirm = link.getAttribute('confirm');
+        if (confirm) {
+            confirm = confirm.split('<!!>');
+            box = showFastBox({
+                title: confirm[0],
+                dark: 1,
+                bodyStyle: 'padding: 20px;'
+            }, confirm[1], (confirm.length > 2 ? confirm[2] : getLang('box_yes')), doClear);
+        } else {
+            doClear();
+        }
+
+        function doClear() {
+            if (!onlyCur && cur.options.otp_reset_hash) {
+                cur.onReLoginDoneCallback = function() {
+                    ge('settings_reset_sessions_link').parentNode.innerHTML = '<div class="settings_labeled_notice">' + getLang('setting_all_sessions_reset') + '</div>';
                 }
-            })
-        }
-        var n = !1,
-            i = t.getAttribute("confirm");
-        i ? (i = i.split("<!!>"), n = showFastBox({
-            title: i[0],
-            dark: 1,
-            bodyStyle: "padding: 20px;"
-        }, i[1], i.length > 2 ? i[2] : getLang("box_yes"), o)) : o()
-    },
-    OTPAppPasswords: function() {
-        return showBox("al_settings.php", {
-            act: "otp_auth_app_passwords_box"
-        }, {
-            params: {
-                dark: !0
+                Settings.reset_sessions = false;
+                Settings.resetAllSessions(link, '<input name="otp_reset_hash" value="' + cur.options.otp_reset_hash + '" type="hidden" />', link.getAttribute('complete'), cur.options.logout_hash);
+                if (box) box.hide();
+                return;
             }
-        }), !1
-    },
-    OTPCreateAppPassword: function(t, e) {
-        if (!isButtonLocked(t)) {
-            var s = val("settings_app_password_name");
-            if (!s.length) return void notaBene("settings_app_password_name");
-            val("settings_app_passwords_error", ""), ajax.post("al_settings.php", {
-                act: "a_otp_auth_create_app_password",
-                name: s,
-                hash: e
-            }, {
-                onDone: function(t, e, s) {
-                    showFastBox({
-                        title: t,
-                        width: 450
-                    }, e), ge("settings_app_passwords_table_wrap").innerHTML = s, hide("settings_app_passwords_empty"), val("settings_app_password_name", "")
-                },
-                onFail: function(t) {
-                    return t && showMsg("settings_app_passwords_error", t, "error", !0), !0
-                },
-                showProgress: lockButton.pbind(t),
-                hideProgress: unlockButton.pbind(t)
-            })
-        }
-    },
-    OTPRemoveAppPassword: function(t, e, s) {
-        return ajax.post("al_settings.php", {
-            act: "a_otp_auth_remove_app_password",
-            id: e,
-            hash: s
-        }, {
-            onDone: function() {
-                re("settings_app_password" + e), geByTag("tr", "settings_app_passwords_table_wrap").length <= 1 && (ge("settings_app_passwords_table_wrap").innerHTML = "", show("settings_app_passwords_empty"))
-            },
-            showProgress: function() {
-                showProgress(t.parentNode), hide(t)
-            },
-            hideProgress: function() {
-                hideProgress(t.parentNode), show(t)
-            }
-        }), !1
-    },
-    passwordDone: function(t, e) {
-        re(cur.pwchFrame), unlockButton(cur.pwchDestroy), cur.pwchFrame = !1;
-        var s, o = "settings_new_pwd";
-        switch (t) {
-            case 1:
-                s = "settings_cant_set_this_password";
-                break;
-            case -2:
-                s = "settings_oldpwd_notcorr", o = "settings_old_pwd";
-                break;
-            case 2:
-                return hide("settings_error_pwd"), val(geByClass1("settings_labeled_text", "chgpass"), getLang("settings_pass_update_just_now")), val("settings_old_pwd", ""), val("settings_new_pwd", ""), val("settings_confirm_pwd", ""), Settings.toggleBlock("chgpass"), Settings.showMsg(getLang("settings_pass_success")), void(cur.pwchCaptchaBox && (cur.pwchCaptchaBox.hide(), cur.pwchCaptchaBox = !1));
-            case -1:
-                return void(cur.pwchCaptchaBox = showCaptchaBox(e, 1, cur.pwchCaptchaBox, {
-                    onSubmit: Settings.passwordSubmit.pbind(cur.pwchDestroy),
-                    onDestroy: function() {}
-                }));
-            default:
-                s = "settings_cant_change_password"
-        }
-        cur.pwchCaptchaBox && (cur.pwchCaptchaBox.hide(), cur.pwchCaptchaBox = !1), Settings.showError(getLang(s), "pwd"), notaBene(o)
-    },
-    passwordSubmit: function(t, e, s) {
-        var o = val("settings_old_pwd"),
-            n = val("settings_new_pwd"),
-            i = val("settings_confirm_pwd"),
-            a = ge("settings_pwd_tt_place").tt;
-        if (!cur.pwchFrame) {
-            if (!o) return void notaBene("settings_old_pwd");
-            if (!n) return void notaBene("settings_new_pwd");
-            if (!i) return void notaBene("settings_confirm_pwd");
-            if (a && a.hide({
-                    fasthide: !0
-                }), n.match(/\s/)) return Settings.showError(getLang("settings_pwd_bad"), "pwd"), notaBene("settings_new_pwd"), void(a && setTimeout(a.show, 10));
-            if (n.length < 6) return Settings.showError(getLang("settings_pwd_bad"), "pwd"), notaBene("settings_new_pwd"), void(a && setTimeout(a.show, 10));
-            if (i != n) return Settings.showError(getLang("settings_newpwd_notcorr"), "pwd"), notaBene("settings_confirm_pwd"), void(a && setTimeout(a.show, 10));
-            cur.pwchDestroy || cur.destroy.push(function(t) {
-                re(t.pwchFrame)
-            }), cur.pwchDestroy = t, curBox() || lockButton(cur.pwchDestroy);
-            var r = {
-                act: "changepass",
-                _origin: locProtocol + "//" + locHost,
-                pass: o,
-                new_pass: n
-            };
-            e && s && (r.captcha_sid = e, r.captcha_key = s), r.phash = cur.options.phash, cur.pwchDone = Settings.passwordDone, cur.pwchFrame = utilsNode.appendChild(ce("iframe", {
-                src: vk.loginscheme + "://login.vk.com/?" + ajx2q(r)
-            }))
-        }
-    },
-    mailSubmit: function(t, e) {
-        var s;
-        if (e) s = "", re(t);
-        else {
-            if (s = trim(val("settings_new_mail")), !s) return void notaBene("settings_new_mail");
-            lockButton(t)
-        }
-        var o = {
-            act: "a_bind_mail",
-            email: s,
-            is_new: 1,
-            hash: cur.options.mail_hash
-        };
-        return ge("settings_new_mail").blur(), hide("settings_error_mail"), ajax.post("al_settings.php", o, {
-            onDone: function(e, s) {
-                if (unlockButton(t), s) {
-                    var o = ge("chgmail");
-                    o.parentNode.replaceChild(se(s), o)
-                }
-                ge("settings_new_mail").value = "", showDoneBox(e, {
-                    out: 4e3,
-                    w: 400
-                })
-            },
-            onFail: function(e) {
-                return unlockButton(t), isUndefined(e) || Settings.showError(e, "mail"), !0
-            }
-        }), !1
-    },
-    phoneSubmit: function() {
-        var t = {
-            act: "change_phone_box",
-            hash: cur.options.phone_hash
-        };
-        showBox("activation.php", t)
-    },
-    regionalSubmit: function(t) {
-        var e = (ge("timezone") || {}).value,
-            s = {
-                act: "a_change_regional",
-                timeoffset: e,
-                hash: cur.options.regional_hash || cur.options.regional_hashes[e]
-            };
-        lockButton(t), ajax.post("al_settings.php", s, {
-            onDone: function(e) {
-                unlockButton(t), Settings.showMsg(e)
-            },
-            onFail: function(e) {
-                return unlockButton(t), Settings.showError(e), !0
-            }
-        })
-    },
-    reset_sessions: !1,
-    resetAllSessions: function(t, e, s, o) {
-        if (Settings.reset_sessions) return !1;
-        Settings.reset_sessions = !0;
-        var n = bodyNode.appendChild(ce("div", {
-                innerHTML: '<form action="' + vk.loginscheme + '://login.vk.com/" method="POST" target="reset_sessions_frame">  <input name="_origin" value="' + (locProtocol + "//" + locHost) + '" type="hidden" />  <input name="role" value="al_frame" type="hidden" />  <input name="ip_h" value="' + vk.ip_h + '" type="hidden" />  <input name="reset_hash" value="' + cur.options.reset_hash + '" type="hidden" />' + (void 0 !== e ? e : "") + '</form><iframe class="upload_frame" name="reset_sessions_frame"></iframe>'
-            })),
-            i = n.firstChild,
-            a = i.nextSibling,
-            r = ce("img", {
-                src: "/images/upload" + (window.devicePixelRatio >= 2 ? "_2x" : "") + ".gif"
+
+            var progress = ce('img', {
+                src: '/images/upload' + (window.devicePixelRatio >= 2 ? '_2x' : '') + '.gif'
             }, {
                 width: 32
             });
-        return window.onReLoginDone = function(e, i) {
-            try {
-                var c = a.contentWindow.location.href;
-                if (c.match(/&hash=/) && !c.match(/&hash=[a-z0-9_]+/)) return location.href = base_domain + "login.php?op=logout&hash=" + o, !1;
-                re(n)
-            } catch (u) {
-                return
+            var _frm = vk.loginscheme != location.protocol.substr(0, location.protocol.length - 1) ? 1 : 0;
+            ajax.post(vk.loginscheme + '://' + location.host + '/al_login.php', {
+                act: 'clear_trusted_browsers',
+                only_cur: onlyCur,
+                hash: hash,
+                _http: _frm
+            }, {
+                frame: _frm,
+                onDone: function(msg) {
+                    if (box) box.hide();
+                    link.parentNode.innerHTML = '<div class="settings_labeled_notice">' + link.getAttribute('complete') + '</div>';
+                },
+                showProgress: function() {
+                    if (box) box.showProgress();
+                    else link.parentNode.replaceChild(progress, link);
+                },
+                hideProgress: function() {
+                    if (box) box.hideProgress();
+                    else progress.parentNode.replaceChild(link, progress);
+                }
+            });
+        }
+    },
+    OTPAppPasswords: function() {
+        showBox('al_settings.php', {
+            act: 'otp_auth_app_passwords_box'
+        }, {
+            params: {
+                dark: true
             }
-            cur.options.reset_hash = i, t ? t !== !0 && r.parentNode.replaceChild(ce("div", {
-                className: "settings_labeled_notice",
-                innerHTML: s ? s : getLang("setting_all_sessions_reset")
-            }), r) : (box = curBox(), box && (box.hideProgress(), box.setControlsText(getLang("setting_all_sessions_reset"))), j = 0, each(ge("activity_history").childNodes, function(t, e) {
-                1 == e.nodeType && (j > 0 && !hasClass(e, "settings_old_session") && (addClass(e, "settings_old_session"), re(geByClass1("settings_cur_session", e))), j++)
-            })), isFunction(cur.onReLoginDoneCallback) && cur.onReLoginDoneCallback(), Settings.reset_sessions = !1
-        }, t ? t !== !0 && t.parentNode.replaceChild(r, t) : curBox().showProgress(), i.submit(), !1
+        });
+        return false;
     },
-    ipTTClick: function(t, e) {
+    OTPCreateAppPassword: function(btn, hash) {
+        if (isButtonLocked(btn)) {
+            return;
+        }
+        var name = val('settings_app_password_name');
+        if (!name.length) {
+            notaBene('settings_app_password_name');
+            return;
+        }
+        val('settings_app_passwords_error', '');
+        ajax.post('al_settings.php', {
+            act: 'a_otp_auth_create_app_password',
+            name: name,
+            hash: hash
+        }, {
+            onDone: function(title, html, table) {
+                showFastBox({
+                    title: title,
+                    width: 450
+                }, html);
+                ge('settings_app_passwords_table_wrap').innerHTML = table;
+                hide('settings_app_passwords_empty');
+                val('settings_app_password_name', '');
+            },
+            onFail: function(msg) {
+                if (msg) {
+                    showMsg('settings_app_passwords_error', msg, 'error', true);
+                }
+                return true;
+            },
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn)
+        });
+    },
+    OTPRemoveAppPassword: function(link, id, hash) {
+        ajax.post('al_settings.php', {
+            act: 'a_otp_auth_remove_app_password',
+            id: id,
+            hash: hash
+        }, {
+            onDone: function() {
+                re('settings_app_password' + id);
+                if (geByTag('tr', 'settings_app_passwords_table_wrap').length <= 1) {
+                    ge('settings_app_passwords_table_wrap').innerHTML = '';
+                    show('settings_app_passwords_empty');
+                }
+            },
+            showProgress: function() {
+                showProgress(link.parentNode);
+                hide(link);
+            },
+            hideProgress: function() {
+                hideProgress(link.parentNode);
+                show(link);
+            }
+        });
+        return false;
+    },
+
+    passwordDone: function(r, csid) {
+        re(cur.pwchFrame);
+        unlockButton(cur.pwchDestroy);
+        cur.pwchFrame = false;
+        var err, inp = 'settings_new_pwd';
+        switch (r) {
+            case 1:
+                err = 'settings_cant_set_this_password';
+                break;
+            case -2:
+                err = 'settings_oldpwd_notcorr';
+                inp = 'settings_old_pwd';
+                break;
+            case 2:
+                hide('settings_error_pwd');
+                val(geByClass1('settings_labeled_text', 'chgpass'), getLang('settings_pass_update_just_now'));
+                val('settings_old_pwd', '');
+                val('settings_new_pwd', '');
+                val('settings_confirm_pwd', '');
+                Settings.toggleBlock('chgpass');
+                Settings.showMsg(getLang('settings_pass_success'));
+                if (cur.pwchCaptchaBox) {
+                    cur.pwchCaptchaBox.hide();
+                    cur.pwchCaptchaBox = false;
+                }
+                return;
+                break;
+            case -1:
+                cur.pwchCaptchaBox = showCaptchaBox(csid, 1, cur.pwchCaptchaBox, {
+                    onSubmit: Settings.passwordSubmit.pbind(cur.pwchDestroy),
+                    onDestroy: function() {}
+                });
+                return;
+                break;
+            default:
+                err = 'settings_cant_change_password';
+                break;
+        }
+        if (cur.pwchCaptchaBox) {
+            cur.pwchCaptchaBox.hide();
+            cur.pwchCaptchaBox = false;
+        }
+        Settings.showError(getLang(err), 'pwd');
+        notaBene(inp);
+    },
+    passwordSubmit: function(btn, sid, key) {
+        var oldPwd = val('settings_old_pwd'),
+            newPwd = val('settings_new_pwd'),
+            confPwd = val('settings_confirm_pwd'),
+            tt = ge('settings_pwd_tt_place').tt;
+        if (cur.pwchFrame) return;
+        if (!oldPwd) {
+            notaBene('settings_old_pwd');
+            return;
+        }
+        if (!newPwd) {
+            notaBene('settings_new_pwd');
+            return;
+        }
+        if (!confPwd) {
+            notaBene('settings_confirm_pwd');
+            return;
+        }
+        if (tt) tt.hide({
+            fasthide: true
+        });
+        if (newPwd.match(/\s/)) {
+            Settings.showError(getLang('settings_pwd_bad'), 'pwd');
+            notaBene('settings_new_pwd');
+            if (tt) setTimeout(tt.show, 10);
+            return;
+        }
+        if (newPwd.length < 6) {
+            Settings.showError(getLang('settings_pwd_bad'), 'pwd');
+            notaBene('settings_new_pwd');
+            if (tt) setTimeout(tt.show, 10);
+            return;
+        }
+        if (confPwd != newPwd) {
+            Settings.showError(getLang('settings_newpwd_notcorr'), 'pwd');
+            notaBene('settings_confirm_pwd');
+            if (tt) setTimeout(tt.show, 10);
+            return;
+        }
+
+        if (!cur.pwchDestroy) {
+            cur.destroy.push(function(c) {
+                re(c.pwchFrame);
+            });
+        }
+        cur.pwchDestroy = btn;
+        if (!curBox()) {
+            lockButton(cur.pwchDestroy);
+        }
+
+        var params = {
+            act: 'changepass',
+            _origin: locProtocol + '//' + locHost,
+            pass: oldPwd,
+            new_pass: newPwd
+        };
+        if (sid && key) {
+            params.captcha_sid = sid;
+            params.captcha_key = key;
+        }
+        params.phash = cur.options.phash;
+        cur.pwchDone = Settings.passwordDone;
+        cur.pwchFrame = utilsNode.appendChild(ce('iframe', {
+            src: vk.loginscheme + '://login.vk.com/?' + ajx2q(params)
+        }));
+    },
+
+    mailSubmit: function(btn, resend) {
+        var newMail;
+        if (!resend) {
+            newMail = trim(val('settings_new_mail'));
+            if (!newMail) {
+                notaBene('settings_new_mail');
+                return;
+            }
+            lockButton(btn);
+        } else {
+            newMail = '';
+            re(btn);
+        }
+        var params = {
+            act: 'a_bind_mail',
+            email: newMail,
+            is_new: 1,
+            hash: cur.options.mail_hash
+        };
+        ge('settings_new_mail').blur();
+        hide('settings_error_mail');
+        ajax.post('al_settings.php', params, {
+            onDone: function(msg, html) {
+                unlockButton(btn);
+                if (html) {
+                    var oldBl = ge('chgmail');
+                    oldBl.parentNode.replaceChild(se(html), oldBl);
+                }
+                ge('settings_new_mail').value = '';
+                showDoneBox(msg, {
+                    out: 4000,
+                    w: 400
+                });
+            },
+            onFail: function(msg) {
+                unlockButton(btn);
+
+                if (!isUndefined(msg)) {
+                    Settings.showError(msg, 'mail');
+                }
+
+                return true;
+            }
+        });
+        return false;
+    },
+
+    phoneSubmit: function() {
+        var params = {
+            act: 'change_phone_box',
+            hash: cur.options.phone_hash
+        };
+        showBox('activation.php', params);
+    },
+
+    regionalSubmit: function(btn) {
+        var tz = (ge('timezone') || {}).value; //cur.uiTZ.val();
+        var params = {
+            act: 'a_change_regional',
+            timeoffset: tz,
+            hash: cur.options.regional_hash || cur.options.regional_hashes[tz]
+        };
+        lockButton(btn);
+        ajax.post('al_settings.php', params, {
+            onDone: function(msg) {
+                unlockButton(btn);
+                Settings.showMsg(msg);
+            },
+            onFail: function(msg) {
+                unlockButton(btn);
+                Settings.showError(msg);
+                return true;
+            }
+        });
+    },
+
+    reset_sessions: false,
+    resetAllSessions: function(not_history_box_lnk, addParams, doneMsg, logoutHash) {
+        if (Settings.reset_sessions) return false;
+        Settings.reset_sessions = true;
+
+        var cont = bodyNode.appendChild(ce('div', {
+            innerHTML: '\
+<form action="' + vk.loginscheme + '://login.vk.com/" method="POST" target="reset_sessions_frame">\
+  <input name="_origin" value="' + (locProtocol + '//' + locHost) + '" type="hidden" />\
+  <input name="role" value="al_frame" type="hidden" />\
+  <input name="ip_h" value="' + vk.ip_h + '" type="hidden" />\
+  <input name="reset_hash" value="' + cur.options.reset_hash + '" type="hidden" />' + (addParams !== undefined ? addParams : '') + '\
+</form><iframe class="upload_frame" name="reset_sessions_frame"></iframe>'
+        }));
+        var iform = cont.firstChild,
+            iframe = iform.nextSibling,
+            to = 0;
+        var progress = ce('img', {
+            src: '/images/upload' + (window.devicePixelRatio >= 2 ? '_2x' : '') + '.gif'
+        }, {
+            width: 32
+        });
+        window.onReLoginDone = function(data, reset_hash) {
+            try {
+                var href = iframe.contentWindow.location.href;
+                if (href.match(/&hash=/)) {
+                    if (!href.match(/&hash=[a-z0-9_]+/)) {
+                        location.href = base_domain + 'login.php?op=logout&hash=' + logoutHash;
+                        return false;
+                    }
+                }
+                re(cont);
+            } catch (e) {
+                return;
+            }
+            cur.options.reset_hash = reset_hash;
+            if (!not_history_box_lnk) {
+                box = curBox();
+                if (box) {
+                    box.hideProgress();
+                    box.setControlsText(getLang('setting_all_sessions_reset'));
+                }
+                j = 0;
+                each(ge('activity_history').childNodes, function(i, el) {
+                    if (el.nodeType == 1) {
+                        if (j > 0 && !hasClass(el, 'settings_old_session')) {
+                            addClass(el, 'settings_old_session');
+                            re(geByClass1('settings_cur_session', el));
+                        }
+                        j++;
+                    }
+                });
+            } else if (not_history_box_lnk !== true) {
+                progress.parentNode.replaceChild(ce('div', {
+                    className: 'settings_labeled_notice',
+                    innerHTML: (doneMsg ? doneMsg : getLang('setting_all_sessions_reset'))
+                }), progress);
+            }
+            if (isFunction(cur.onReLoginDoneCallback)) {
+                cur.onReLoginDoneCallback();
+            }
+            Settings.reset_sessions = false;
+        }
+        /*
+        if (browser.msie) {
+          to = setInterval(function(){
+            if (iframe.firstChild.nextSibling.document.readyState == 'complete') {
+              onload();
+            }
+          }, 200);
+        } else {
+          iframe.onload = onload;
+        }
+        */
+        if (!not_history_box_lnk) {
+            curBox().showProgress();
+        } else if (not_history_box_lnk !== true) {
+            not_history_box_lnk.parentNode.replaceChild(progress, not_history_box_lnk);
+        }
+        iform.submit();
+        return false;
+    },
+    ipTTClick: function(el, e) {
         cancelEvent(e);
-        var s = document.createRange();
-        s.selectNodeContents(t);
-        var o = getSelection();
-        o.removeAllRanges(), o.addRange(s), document.execCommand("copy"), o.removeAllRanges()
+
+        var range = document.createRange();
+        range.selectNodeContents(el);
+
+        var selection = getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+
+        document.execCommand('copy');
+
+        selection.removeAllRanges();
     },
-    showUserClientTT: function(t, e) {
-        var s = "";
-        hasClass(t.parentNode.parentNode, "settings_old_session") && (s = '<div style="font-weight:bold; margin-bottom:5px;">' + getLang("settings_session_terminated") + "</div>"), cur.options.ua_tooltips[e] && (s += cur.options.ua_tooltips[e]), s && showTooltip(t, {
-            text: s,
-            dir: "auto",
+    showUserClientTT: function(el, i) {
+        var text = '';
+        if (hasClass(el.parentNode.parentNode, 'settings_old_session')) text = '<div style="font-weight:bold; margin-bottom:5px;">' + getLang('settings_session_terminated') + '</div>';
+        if (cur.options.ua_tooltips[i]) {
+            text += cur.options.ua_tooltips[i];
+        }
+        if (!text) return;
+        showTooltip(el, {
+            text: text,
+            dir: 'auto',
             slide: 15,
-            className: "settings_user_client_tt",
+            className: 'settings_user_client_tt',
             hasover: 1
-        })
+        });
     },
     disabledPrivacy: function() {
-        var t = geByClass1("settings_privacy_add_replies_view", ge("content"));
-        t && showTooltip(t, {
-            black: !0,
+        var el = geByClass1('settings_privacy_add_replies_view', ge('content'));
+        if (el) showTooltip(el, {
+            black: true,
             hasover: 1,
-            className: "settings_comments_disabled_tt",
+            className: 'settings_comments_disabled_tt',
             shift: [0, 5],
-            text: getLang("settings_comments_disabled_tt").replace("{link}", '<a href="/settings?f=cposts" onclick="return nav.go(this, event, {nocur: true})">').replace("{/link}", "</a>")
-        })
+            text: getLang('settings_comments_disabled_tt').replace('{link}', '<a href="/settings?f=cposts" onclick="return nav.go(this, event, {nocur: true})">').replace('{/link}', '</a>')
+        });
     },
-    checkAddress: function(t) {
-        cur.addrUnchecked = 0, clearTimeout(cur.addressCheckTO), cur.lastAddress != val("settings_addr") && (cur.addressCheckTO = setTimeout(Settings.doCheckAddress, t || 0))
+
+    checkAddress: function(timeout) {
+        cur.addrUnchecked = 0;
+        clearTimeout(cur.addressCheckTO);
+        if (cur.lastAddress == val('settings_addr')) return;
+        cur.addressCheckTO = setTimeout(Settings.doCheckAddress, timeout || 0);
     },
     doCheckAddress: function() {
-        var t = ge("settings_address_submit"),
-            e = t;
-        cur.lastAddress = val("settings_addr"), ajax.post("al_settings.php", {
-            act: "a_check_address",
+        var btnWEl = ge('settings_address_submit'),
+            btnEl = btnWEl;
+
+        cur.lastAddress = val('settings_addr');
+        ajax.post('al_settings.php', {
+            act: 'a_check_address',
             name: cur.lastAddress
         }, {
-            onDone: function(t) {
-                cur.addrChecked = 1, disableButton(e, !1), e.innerHTML = t
+            onDone: function(msg) {
+                cur.addrChecked = 1;
+                disableButton(btnEl, false);
+                btnEl.innerHTML = msg;
             },
-            onFail: function(t) {
-                return cur.addrChecked = -1, e.innerHTML = t, disableButton(e, !0), !0
+            onFail: function(msg) {
+                cur.addrChecked = -1;
+                btnEl.innerHTML = msg;
+                disableButton(btnEl, true);
+                return true;
             },
             showProgress: function() {
-                lockButton(e), disableButton(e, !1)
+                lockButton(btnEl);
+                disableButton(btnEl, false);
             },
             hideProgress: function() {
-                unlockButton(e)
+                unlockButton(btnEl);
             }
-        })
+        });
     },
-    addressSubmit: function(t) {
-        if (1 != cur.addrChecked) return void notaBene("settings_addr");
-        var e = {
-            act: "a_change_address",
+    addressSubmit: function(btn) {
+        if (cur.addrChecked != 1) {
+            notaBene('settings_addr');
+            return;
+        }
+        var params = {
+            act: 'a_change_address',
             hash: cur.options.address_hash,
-            name: val("settings_addr")
+            name: val('settings_addr')
         };
-        lockButton(t), ajax.post("al_settings.php", e, {
-            onDone: function(e) {
-                unlockButton(t), Settings.showMsg(e)
+        lockButton(btn);
+        ajax.post('al_settings.php', params, {
+            onDone: function(msg) {
+                unlockButton(btn);
+                Settings.showMsg(msg);
             },
-            onFail: function(e) {
-                return unlockButton(t), e && Settings.showError(e, "addr"), !0
+            onFail: function(msg) {
+                unlockButton(btn);
+                if (msg) {
+                    Settings.showError(msg, 'addr');
+                }
+                return true;
             }
-        })
+        });
     },
+
+    /* General options*/
     init: function() {
-        cur.checkboxResultsTOs = {}, cur.module = "settings", cur.options.msg && Settings.showMsg(cur.options.msg), each({
-            settings_status_default: getLang("settings_status_default_about"),
-            settings_no_wall_replies: getLang("settings_no_wall_replies_about"),
-            settings_video_autoplay: getLang("settings_video_autoplay")
-        }, function(t, e) {
-            t = domQuery1('label[for="' + t + '"]'), t && (t.onmouseover = function() {
+        cur.checkboxResultsTOs = {};
+        cur.module = 'settings';
+        if (cur.options.msg) {
+            Settings.showMsg(cur.options.msg);
+        }
+        each({
+            'settings_status_default': getLang('settings_status_default_about'),
+            'settings_no_wall_replies': getLang('settings_no_wall_replies_about'),
+            'settings_video_autoplay': getLang('settings_video_autoplay')
+        }, function(el, text) {
+            el = domQuery1('label[for="' + el + '"]');
+            if (!el) return;
+            el.onmouseover = function() {
                 showTooltip(this, {
                     shift: [-20, 8, 8],
-                    dir: "auto",
-                    text: e,
+                    dir: 'auto',
+                    text: text,
                     slide: 15,
-                    className: "settings_tt",
+                    className: 'settings_tt',
                     hasover: 1
-                })
-            })
+                });
+            };
         });
-        var t = ge("settings_pwd_tt_place");
-        each([ge("settings_new_pwd"), ge("settings_confirm_pwd")], function() {
-            this && (this.onfocus = function() {
-                showTooltip(t, {
-                    text: getLang("settings_password_about"),
-                    dir: "left",
+
+        var pwdTtEl = ge('settings_pwd_tt_place');
+        each([ge('settings_new_pwd'), ge('settings_confirm_pwd')], function() {
+            if (!this) return;
+            this.onfocus = function() {
+                showTooltip(pwdTtEl, {
+                    text: getLang('settings_password_about'),
+                    dir: 'left',
                     slideX: 15,
-                    className: "settings_pwd_tt",
+                    className: 'settings_pwd_tt',
                     shift: [-12, -15, 0],
                     onCreate: function() {
-                        removeEvent(t, "mouseout")
+                        removeEvent(pwdTtEl, 'mouseout');
                     }
-                })
-            }, this.onblur = function() {
-                t.tt && t.tt.hide && t.tt.hide()
-            })
+                });
+            };
+            this.onblur = function() {
+                if (!pwdTtEl.tt || !pwdTtEl.tt.hide) return;
+                pwdTtEl.tt.hide();
+            }
         });
-        var e = ge("settings_addr");
-        e.onfocus = function() {
-            showTooltip(e, {
-                text: getLang("settings_addr_intro"),
-                dir: "auto",
+
+        /* Change address hint */
+        var addrEl = ge('settings_addr');
+        addrEl.onfocus = function() {
+            showTooltip(addrEl, {
+                text: getLang('settings_addr_intro'),
+                dir: 'auto',
                 slide: 15,
-                className: "settings_toup_tt",
-                shift: [getSize("prefix_input_prefix")[0], 10],
+                className: 'settings_toup_tt',
+                shift: [getSize('prefix_input_prefix')[0], 10],
                 onCreate: function() {
-                    removeEvent(e, "mouseout"), e.onblur = function() {
-                        e.tt.hide()
+                    removeEvent(addrEl, 'mouseout');
+                    addrEl.onblur = function() {
+                        addrEl.tt.hide();
                     }
                 }
-            })
-        }, cur.lastAddress = val(e);
-        var s = ge("settings_new_mail");
-        s && (s.onfocus = function() {
-            showTooltip(s, {
-                text: getLang("settings_email_about"),
-                dir: "auto",
+            });
+        };
+        cur.lastAddress = val(addrEl);
+
+        /* Change email hint */
+        var mailEl = ge('settings_new_mail');
+        if (mailEl) mailEl.onfocus = function() {
+            showTooltip(mailEl, {
+                text: getLang('settings_email_about'),
+                dir: 'auto',
                 slide: 15,
-                className: "settings_toup_tt",
+                className: 'settings_toup_tt',
                 shift: [0, 10],
                 onCreate: function() {
-                    removeEvent(s, "mouseout"), s.onblur = function() {
-                        s.tt.hide()
+                    removeEvent(mailEl, 'mouseout');
+                    mailEl.onblur = function() {
+                        mailEl.tt.hide();
                     }
                 }
-            })
-        }), extend(cur, {
-            validationLastCallback: function(t) {
-                curBox() && curBox().hide(), t ? Settings.phoneSubmit() : elfocus("settings_new_phone")
+            });
+        };
+
+        extend(cur, {
+            validationLastCallback: function(res) {
+                if (curBox()) curBox().hide();
+                if (res) {
+                    Settings.phoneSubmit();
+                } else {
+                    elfocus('settings_new_phone');
+                }
             }
-        }), setTimeout(function() {
+        });
+
+        setTimeout(function() {
             if (nav.objLoc.f) {
-                var t = ge(nav.objLoc.f.split(",")[0]);
-                t && hasClass(t, "settings_line") && Settings.toggleBlock(domFC(t))
+                var blockEl = ge(nav.objLoc.f.split(',')[0]);
+                if (blockEl && hasClass(blockEl, 'settings_line')) {
+                    Settings.toggleBlock(domFC(blockEl));
+                }
             }
-        }, 100), cur.destroy.push(function() {
-            window.onLoginDone = nav.reload
-        })
+        }, 100);
+
+        cur.destroy.push(function() {
+            window.onLoginDone = nav.reload;
+        });
     },
-    emailPosts: function(t, e) {
-        ajax.post("al_settings.php", {
-            act: "send_email_post",
-            hash: t
+
+    emailPosts: function(hash, obj) {
+
+        ajax.post('al_settings.php', {
+            act: 'send_email_post',
+            hash: hash
         }, {
-            onDone: function(t, s) {
-                ge("settings_email_post_msg").innerHTML = t, setStyle(ge("settings_email_post_msg"), {
-                    borderColor: "#D4BC4C",
-                    backgroundColor: "#F9F6E7"
-                }), animate(ge("settings_email_post_msg"), {
-                    borderColor: "#B9C4DA",
-                    backgroundColor: "#FFFFFF"
-                }, 3e3), e.innerHTML = s
+            onDone: function(text, label) {
+                ge('settings_email_post_msg').innerHTML = text;
+                setStyle(ge('settings_email_post_msg'), {
+                    borderColor: '#D4BC4C',
+                    backgroundColor: '#F9F6E7'
+                });
+                animate(ge('settings_email_post_msg'), {
+                    borderColor: '#B9C4DA',
+                    backgroundColor: '#FFFFFF'
+                }, 3000);
+                obj.innerHTML = label;
             },
             showProgress: function() {
-                lockButton(e)
+                lockButton(obj);
             },
             hideProgress: function() {
-                unlockButton(e)
+                unlockButton(obj);
             }
-        })
+        });
     },
-    showPaymentsMethods: function(t, e, s) {
-        return ajax.post("al_settings.php", {
-            act: "a_payments_methods",
-            money_transfer: s ? 1 : 0,
-            hash: e
+
+    showPaymentsMethods: function(lnk, hash, isMoneyTransfer) {
+        ajax.post('al_settings.php', {
+            act: 'a_payments_methods',
+            money_transfer: isMoneyTransfer ? 1 : 0,
+            hash: hash
         }, {
-            onDone: function(e) {
-                if (s) return cur.autoacceptCards = e.cards, cur.autoacceptCardSelected = e.cardSeleceted, void Settings.initAutoAcceptDD(e.cards, e.cardSeleceted);
-                var o = ce("div", {
-                    innerHTML: e,
-                    className: "unshown"
+            onDone: function(response) {
+                if (isMoneyTransfer) {
+                    cur.autoacceptCards = response.cards;
+                    cur.autoacceptCardSelected = response.cardSeleceted;
+                    Settings.initAutoAcceptDD(response.cards, response.cardSeleceted);
+                    return;
+                }
+                var el = ce('div', {
+                    innerHTML: response,
+                    className: 'unshown'
                 });
-                t.parentNode.replaceChild(o, t), slideDown(o, 100)
+                lnk.parentNode.replaceChild(el, lnk);
+                slideDown(el, 100);
             },
-            stat: s ? ["ui_controls.js", "ui_controls.css"] : []
-        }), !1
+            stat: isMoneyTransfer ? ['ui_controls.js', 'ui_controls.css'] : []
+        });
+        return false;
     },
-    initAutoAcceptDD: function(t, e) {
-        cur.autoacceptCardDD = new InlineDropdown("settings_p2p_receive_card", {
-            items: t,
-            selected: e,
-            withArrow: !0,
-            onSelect: function(t) {
-                -1 == t ? Settings.bindMoneyTransferCard() : t != cur.autoacceptCardSelected && (hash = cur.autoacceptCardDD.getSelected()[2], Settings.saveMoneyTransferCard(t, hash), cur.autoacceptCardSelected = t)
+    initAutoAcceptDD: function(cards, cardSeleceted) {
+        cur.autoacceptCardDD = new InlineDropdown('settings_p2p_receive_card', {
+            items: cards,
+            selected: cardSeleceted,
+            withArrow: true,
+            onSelect: function(v) {
+                if (v == -1) {
+                    Settings.bindMoneyTransferCard();
+                } else if (v != cur.autoacceptCardSelected) {
+                    hash = cur.autoacceptCardDD.getSelected()[2];
+                    Settings.saveMoneyTransferCard(v, hash);
+                    cur.autoacceptCardSelected = v;
+                }
             }
-        })
+        });
     },
-    saveMoneyTransferCard: function(t, e) {
-        ajax.post("al_payments.php", {
-            act: "a_remember_money_transfer_accept_card",
-            card_id: t,
-            hash: e,
-            from: "settings"
+    saveMoneyTransferCard: function(card, hash) {
+        ajax.post('al_payments.php', {
+            act: 'a_remember_money_transfer_accept_card',
+            card_id: card,
+            hash: hash,
+            from: 'settings'
         }, {
-            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("settings_p2p_receive_card")
-        })
+            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind('settings_p2p_receive_card')
+        });
     },
     bindMoneyTransferCard: function() {
-        return showBox("al_payments.php", {
-            act: "promo_box",
-            type: "card_bind"
+        showBox('al_payments.php', {
+            act: 'promo_box',
+            type: 'card_bind'
         }, {
-            stat: ["ui_controls.js", "ui_controls.css"]
-        }), !1
+            stat: ['ui_controls.js', 'ui_controls.css']
+        });
+        return false;
     },
-    deletePaymentMethod: function(t, e, s, o) {
-        if (!o) return void(cur.confirmBox = showFastBox({
-            title: cur.lang.global_action_confirmation,
-            dark: 1,
-            forceNoBtn: 1,
-            bodyStyle: "padding: 20px; line-height: 160%;"
-        }, cur.lang.settings_delete_payment_method_confirm, getLang("global_delete"), function() {
-            Settings.deletePaymentMethod(t, e, s, !0)
-        }, getLang("global_cancel")));
-        var n = t.parentNode;
-        return ajax.post("al_payments.php", {
-            act: "a_del_instant_method",
-            type: e,
-            hash: s
+    deletePaymentMethod: function(lnk, type, hash, force) {
+        if (!force) {
+            cur.confirmBox = showFastBox({
+                title: cur.lang['global_action_confirmation'],
+                dark: 1,
+                forceNoBtn: 1,
+                bodyStyle: 'padding: 20px; line-height: 160%;'
+            }, cur.lang['settings_delete_payment_method_confirm'], getLang('global_delete'), function() {
+                Settings.deletePaymentMethod(lnk, type, hash, true);
+            }, getLang('global_cancel'));
+            return;
+        }
+        var row = lnk.parentNode;
+        ajax.post('al_payments.php', {
+            act: 'a_del_instant_method',
+            type: type,
+            hash: hash
         }, {
-            onDone: function(t) {
-                n.innerHTML = t
+            onDone: function(msg) {
+                row.innerHTML = msg;
             },
-            onFail: function(t) {
-                return n.innerHTML = t, !0
+            onFail: function(msg) {
+                row.innerHTML = msg;
+                return true;
             },
             showProgress: function() {
-                cur.confirmBox.showProgress()
+                cur.confirmBox.showProgress();
             },
             hideProgress: function() {
-                cur.confirmBox.hide()
+                cur.confirmBox.hide();
             }
-        }), !1
+        });
+        return false;
     },
-    showNextPaymentsHistory: function(t, e) {
-        if (!buttonLocked(t)) {
-            lockButton(t), e || (e = "votes"), void 0 === cur.historyOffset[e] && (cur.historyOffset[e] = 5);
-            var s, o, n = cur.historyOffset[e];
-            return "transfer" === e ? (s = {
-                act: "a_transfer_history",
-                offset: n
-            }, o = "settings_transfer_history") : "subscriptions" === e ? (s = {
-                act: "a_payments_subsciptions",
-                offset: n
-            }, o = "settings_payments_subscriptions") : (s = {
-                act: "a_votes_history",
-                offset: n
-            }, o = "settings_votes_history"), ajax.post("al_settings.php", s, {
-                onDone: function(s, n) {
-                    var a = ge(o).tBodies[0];
-                    if (s)
-                        if (unlockButton(t), cur.historyOffset[e] ? cur.historyOffset[e] += 100 : (a.innerHTML = "", cur.historyOffset[e] = 5), browser.msie) {
-                            var r = se("<table>" + s + "</table>"),
-                                c = geByTag("tr", r);
-                            for (i in c) 1 == c[i].nodeType && a.appendChild(c[i])
-                        } else a.insertAdjacentHTML("beforeEnd", s);
-                    (!s || n) && (addClass(a.lastChild, "settings_votes_history_last"), hide(t))
+    showNextPaymentsHistory: function(btn, section) {
+        if (buttonLocked(btn)) return;
+        lockButton(btn);
+        if (!section) section = 'votes';
+        if (cur.historyOffset[section] === undefined) {
+            cur.historyOffset[section] = 5;
+        }
+        var offset = cur.historyOffset[section];
+        var params, table;
+        if (section === 'transfer') {
+            params = {
+                act: 'a_transfer_history',
+                offset: offset
+            };
+            table = 'settings_transfer_history';
+        } else if (section === 'subscriptions') {
+            params = {
+                act: 'a_payments_subsciptions',
+                offset: offset
+            };
+            table = 'settings_payments_subscriptions';
+        } else {
+            params = {
+                act: 'a_votes_history',
+                offset: offset
+            };
+            table = 'settings_votes_history';
+        }
+        ajax.post('al_settings.php', params, {
+            onDone: function(html, last) {
+                var tbl = ge(table).tBodies[0];
+                if (html) {
+                    unlockButton(btn);
+                    if (!cur.historyOffset[section]) {
+                        tbl.innerHTML = '';
+                        cur.historyOffset[section] = 5;
+                    } else {
+                        cur.historyOffset[section] += 100;
+                    }
+                    if (!browser.msie) {
+                        tbl.insertAdjacentHTML('beforeEnd', html);
+                    } else {
+                        var t = se('<table>' + html + '</table>');
+                        var rows = geByTag('tr', t);
+                        for (i in rows) {
+                            if (rows[i].nodeType == 1) tbl.appendChild(rows[i]);
+                        }
+                    }
+                    //tbl.innerHTML += html;
                 }
-            }), !1
+                if (!html || last) {
+                    addClass(tbl.lastChild, 'settings_votes_history_last');
+                    hide(btn);
+                }
+            }
+        });
+        return false;
+    },
+    switchPaymentsHistoryTab: function(el, section, ev) {
+        if (checkEvent(ev)) {
+            return true;
         }
+        var loc = clone(nav.objLoc);
+        uiTabs.switchTab(el);
+        if (section === 'transfer') {
+            hide('settings_votes_history_wrap', 'settings_payments_subscriptions_wrap');
+            show('settings_transfer_history_wrap', 'settings_payments_transfer_msg');
+            loc.section = section;
+        } else if (section === 'subscriptions') {
+            hide('settings_votes_history_wrap', 'settings_transfer_history_wrap', 'settings_payments_transfer_msg');
+            show('settings_payments_subscriptions_wrap');
+            loc.section = section;
+        } else {
+            hide('settings_transfer_history_wrap', 'settings_payments_subscriptions_wrap', 'settings_payments_transfer_msg');
+            show('settings_votes_history_wrap');
+            delete loc.section;
+        }
+        nav.setLoc(loc);
+        return false;
     },
-    switchPaymentsHistoryTab: function(t, e, s) {
-        if (checkEvent(s)) return !0;
-        var o = clone(nav.objLoc);
-        return uiTabs.switchTab(t), "transfer" === e ? (hide("settings_votes_history_wrap", "settings_payments_subscriptions_wrap"), show("settings_transfer_history_wrap", "settings_payments_transfer_msg"), o.section = e) : "subscriptions" === e ? (hide("settings_votes_history_wrap", "settings_transfer_history_wrap", "settings_payments_transfer_msg"), show("settings_payments_subscriptions_wrap"), o.section = e) : (hide("settings_transfer_history_wrap", "settings_payments_subscriptions_wrap", "settings_payments_transfer_msg"), show("settings_votes_history_wrap"), delete o.section), nav.setLoc(o), !1
-    },
-    moneyTransferCancel: function(t, e, s, o, n) {
-        var i, a, r = domClosest("_row", t),
-            c = geByClass1("_status", r);
-        return n ? (2 !== n && (addClass(r, "settings_history_row_progress"), cur.confirmBox && cur.confirmBox.hide()), void ajax.post("al_payments.php?act=a_cancel_money_transfer", {
-            tx_id: e,
-            hash: s
-        }, {
-            onDone: function(t, i) {
-                return 0 === t ? (2 !== n && (val(c, getLang("settings_transfer_status_cancelling")), removeClass(c, "settings_transfer_receive")), void setTimeout(Settings.moneyTransferCancel.pbind(r, e, s, o, 2), 2e3)) : (removeClass(r, "settings_history_row_progress"), val(c, getLang("settings_transfer_status_cancelled")), removeClass(c, "settings_transfer_receive"), addClass(c, "settings_transfer_status_cancelled"), void TopNotifier.invalidate())
-            },
-            onFail: function(t) {
-                return removeClass(r, "settings_history_row_progress"), setTimeout(showFastBox(getLang("global_error"), t).hide, 2e3), !0
+    moneyTransferCancel: function(elem, txId, hash, decline, force) {
+        var tr = domClosest('_row', elem),
+            status = geByClass1('_status', tr),
+            confirmText, confirmBtn;
+        if (!force) {
+            if (decline) {
+                confirmText = getLang('settings_transfer_decline_confirm');
+                confirmBtn = getLang('settings_transfer_decline_btn');
+            } else {
+                confirmText = getLang('settings_transfer_cancel_confirm');
+                confirmBtn = getLang('settings_transfer_cancel_btn');
             }
-        })) : (o ? (i = getLang("settings_transfer_decline_confirm"), a = getLang("settings_transfer_decline_btn")) : (i = getLang("settings_transfer_cancel_confirm"), a = getLang("settings_transfer_cancel_btn")), void(cur.confirmBox = showFastBox(getLang("global_action_confirmation"), i, a, Settings.moneyTransferCancel.pbind(t, e, s, o, 1), getLang("global_cancel"))))
+            cur.confirmBox = showFastBox(getLang('global_action_confirmation'), confirmText, confirmBtn, Settings.moneyTransferCancel.pbind(elem, txId, hash, decline, 1), getLang('global_cancel'));
+            return;
+        }
+        if (force !== 2) {
+            addClass(tr, 'settings_history_row_progress');
+            if (cur.confirmBox) cur.confirmBox.hide();
+        }
+        ajax.post('al_payments.php?act=a_cancel_money_transfer', {
+            tx_id: txId,
+            hash: hash
+        }, {
+            onDone: function(result, text) {
+                if (result === 0) {
+                    if (force !== 2) {
+                        val(status, getLang('settings_transfer_status_cancelling'));
+                        removeClass(status, 'settings_transfer_receive')
+                    }
+                    setTimeout(Settings.moneyTransferCancel.pbind(tr, txId, hash, decline, 2), 2000);
+                    return;
+                }
+                removeClass(tr, 'settings_history_row_progress');
+                val(status, getLang('settings_transfer_status_cancelled'));
+                removeClass(status, 'settings_transfer_receive')
+                addClass(status, 'settings_transfer_status_cancelled');
+                TopNotifier.invalidate();
+            },
+            onFail: function(msg) {
+                removeClass(tr, 'settings_history_row_progress');
+                setTimeout(showFastBox(getLang('global_error'), msg).hide, 2000);
+                return true;
+            }
+        });
     },
-    moneyTransferRepeat: function(t, e) {
-        return showBox("al_payments.php?act=money_transfer_box", {
-            repeat_id: t,
-            hash: e
-        }), !1
+    moneyTransferRepeat: function(txId, hash) {
+        showBox('al_payments.php?act=money_transfer_box', {
+            repeat_id: txId,
+            hash: hash
+        });
+        return false;
     },
-    paymentsSubscriptionBox: function(t, e, s, o) {
-        if (o) {
-            var n = domClosest("_row", o);
-            cur.onSubscriptionDone = function(t) {
-                var e = geByClass1("settings_history_amount", n);
-                val(e, t.status), removeClass(e, "settings_history_btn"), val(geByClass1("settings_history_actions", n), t.actions)
+    paymentsSubscriptionBox: function(aid, item, hash, elem) {
+        if (elem) {
+            var tr = domClosest('_row', elem);
+            cur.onSubscriptionDone = function(data) {
+                var field = geByClass1('settings_history_amount', tr);
+                val(field, data.status);
+                removeClass(field, 'settings_history_btn');
+                val(geByClass1('settings_history_actions', tr), data.actions);
             }
         }
-        showBox("al_apps.php?act=show_subscription_box", {
-            aid: t,
-            item: e,
-            action: "create",
-            hash: s
+
+        showBox('al_apps.php?act=show_subscription_box', {
+            aid: aid,
+            item: item,
+            action: 'create',
+            hash: hash
         }, {
-            onFail: function(t) {
-                return setTimeout(showFastBox(getLang("global_error"), t).hide, 2e3), !0
+            onFail: function(msg) {
+                setTimeout(showFastBox(getLang('global_error'), msg).hide, 2000);
+                return true;
             }
-        })
+        });
     },
-    paymentsSubscriptionCancel: function(t, e, s, o, n) {
-        var i = domClosest("_row", t);
-        return n ? (addClass(i, "settings_history_row_progress"), cur.confirmBox && cur.confirmBox.hide(), void ajax.post("al_apps.php?act=a_cancel_subscription", {
-            aid: e,
-            subscription_id: s,
-            hash: o,
-            from: "settings"
+    paymentsSubscriptionCancel: function(elem, aid, subscriptionId, hash, force) {
+        var tr = domClosest('_row', elem);
+        if (!force) {
+            cur.confirmBox = showFastBox(getLang('global_action_confirmation'), getLang('settings_subscription_cancel_confirm'), getLang('settings_subscription_cancel_btn'), Settings.paymentsSubscriptionCancel.pbind(elem, aid, subscriptionId, hash, 1), getLang('global_cancel'));
+            return;
+        }
+        addClass(tr, 'settings_history_row_progress');
+        if (cur.confirmBox) cur.confirmBox.hide();
+        ajax.post('al_apps.php?act=a_cancel_subscription', {
+            aid: aid,
+            subscription_id: subscriptionId,
+            hash: hash,
+            from: 'settings'
         }, {
-            onDone: function(t, e) {
-                return removeClass(i, "settings_history_row_progress"), t ? (val(geByClass1("settings_history_amount", i), t), void val(geByClass1("settings_history_actions", i), e)) : void addClass(i, "settings_history_row_deleted")
+            onDone: function(status, actions) {
+                removeClass(tr, 'settings_history_row_progress');
+                if (!status) {
+                    addClass(tr, 'settings_history_row_deleted')
+                    return;
+                }
+                val(geByClass1('settings_history_amount', tr), status);
+                val(geByClass1('settings_history_actions', tr), actions);
             },
-            onFail: function(t) {
-                return removeClass(i, "settings_history_row_progress"), setTimeout(showFastBox(getLang("global_error"), t).hide, 2e3), !0
+            onFail: function(msg) {
+                removeClass(tr, 'settings_history_row_progress');
+                setTimeout(showFastBox(getLang('global_error'), msg).hide, 2000);
+                return true;
             }
-        })) : void(cur.confirmBox = showFastBox(getLang("global_action_confirmation"), getLang("settings_subscription_cancel_confirm"), getLang("settings_subscription_cancel_btn"), Settings.paymentsSubscriptionCancel.pbind(t, e, s, o, 1), getLang("global_cancel")))
+        });
     },
-    paymentsSubscriptionReactivate: function(t, e, s, o) {
-        var n = domClosest("_row", t);
-        cur.onSubscriptionDone = function(t) {
-            val(geByClass1("settings_history_amount", n), t.status), val(geByClass1("settings_history_actions", n), t.actions)
-        }, showBox("al_apps.php?act=show_subscription_box", {
-            aid: e,
-            subscription_id: s,
-            action: "resume",
-            hash: o
+    paymentsSubscriptionReactivate: function(elem, aid, subscriptionId, hash) {
+        var tr = domClosest('_row', elem);
+        cur.onSubscriptionDone = function(data) {
+            val(geByClass1('settings_history_amount', tr), data.status);
+            val(geByClass1('settings_history_actions', tr), data.actions);
+        }
+
+        showBox('al_apps.php?act=show_subscription_box', {
+            aid: aid,
+            subscription_id: subscriptionId,
+            action: 'resume',
+            hash: hash
         }, {
-            onFail: function(t) {
-                return setTimeout(showFastBox(getLang("global_error"), t).hide, 2e3), !0
+            onFail: function(msg) {
+                setTimeout(showFastBox(getLang('global_error'), msg).hide, 2000);
+                return true;
             }
-        })
+        });
     },
-    initAppOrdersDD: function(t, e, s) {
-        cur.appOrdersDD = new InlineDropdown("settings_app_orders", {
-            items: t,
-            selected: e,
+    initAppOrdersDD: function(items, selected, hash) {
+        cur.appOrdersDD = new InlineDropdown('settings_app_orders', {
+            items: items,
+            selected: selected,
             onShow: function() {
-                if (cur.appOrdersDD) {
-                    var t = 250;
-                    showTooltip(cur.appOrdersDD._els.popupHeader, {
-                        text: getLang("settings_payments_app_orders_tt"),
-                        width: t,
-                        slideX: -15,
-                        className: "pedit_tt",
-                        nohide: !0,
-                        asrtl: !0,
-                        shift: [t + 13, -15, -15],
-                        dir: "left"
-                    })
-                }
+                if (!cur.appOrdersDD) return;
+                var ttWidth = 250;
+                showTooltip(cur.appOrdersDD._els.popupHeader, {
+                    text: getLang('settings_payments_app_orders_tt'),
+                    width: ttWidth,
+                    slideX: -15,
+                    className: 'pedit_tt',
+                    nohide: true,
+                    asrtl: true,
+                    shift: [ttWidth + 13, -15, -15],
+                    dir: 'left'
+                });
             },
             onHide: function() {
-                cur.appOrdersDD && cur.appOrdersDD._els.popupHeader.tt && cur.appOrdersDD._els.popupHeader.tt.destroy()
+                if (!cur.appOrdersDD) return;
+                cur.appOrdersDD._els.popupHeader.tt && cur.appOrdersDD._els.popupHeader.tt.destroy();
             },
-            onSelect: function(t) {
-                Settings.toggleAppOrders(t && "0" !== t, s)
+            onSelect: function(val) {
+                Settings.toggleAppOrders(val && val !== '0', hash)
             }
-        })
+        });
     },
-    toggleAppOrders: function(t, e) {
-        ajax.post("al_payments.php?act=a_toggle_app_orders", {
-            autoconfirm: t,
-            hash: e
+    toggleAppOrders: function(val, hash) {
+        ajax.post('al_payments.php?act=a_toggle_app_orders', {
+            autoconfirm: val,
+            hash: hash
         }, {
-            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("settings_app_orders")
-        })
+            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind('settings_app_orders')
+        });
     },
+
     initApps: function(opts, appTpl) {
         extend(cur, {
-            aSearch: ge("s_search"),
-            lShowMoreButton: ge("ui_apps_load_more"),
-            lContent: ge("settings_apps_list"),
-            aEmptyCont: ge("settings_apps_empty"),
-            aSummaryCounter: geByClass1("page_block_header_count", "wide_column"),
+            aSearch: ge('s_search'),
+            lShowMoreButton: ge('ui_apps_load_more'),
+            lContent: ge('settings_apps_list'),
+            aEmptyCont: ge('settings_apps_empty'),
+            aSummaryCounter: geByClass1('page_block_header_count', 'wide_column'),
+
             onSilentLoad: {},
-            apps: {},
+            apps: {}, // indexed apps
             deletedApps: {},
             appTpl: appTpl || function() {
-                return ""
+                return ''
             }
-        }), extend(cur, opts), cur.defaultCount = cur.shownApps, cur.appTpl = appTpl || function() {
-            return ""
-        }, Settings.scrollNode = browser.msie6 ? pageNode : window, addEvent(Settings.scrollNode, "scroll", Settings.scrollCheckApps.bind(this)), setTimeout(function() {
+        });
+        extend(cur, opts);
+        cur.defaultCount = cur.shownApps;
+        cur.appTpl = appTpl || function() {
+            return ''
+        };
+
+        Settings.scrollNode = browser.msie6 ? pageNode : window;
+        addEvent(Settings.scrollNode, 'scroll', Settings.scrollCheckApps.bind(this));
+        setTimeout(function() {
             cur.destroy.push(function() {
-                removeEvent(Settings.scrollNode, "scroll", Settings.scrollCheckApps.bind(this))
-            })
-        }, 0), cur.silent = !0, ajax.post("/al_settings.php", {
-            act: "load_apps_silent"
+                removeEvent(Settings.scrollNode, 'scroll', Settings.scrollCheckApps.bind(this));
+            });
+        }, 0);
+
+        cur.silent = true;
+        ajax.post('/al_settings.php', {
+            act: 'load_apps_silent'
         }, {
             cache: 1,
             local: 1,
             onDone: function(data) {
-                return (data = eval("(" + data + ")")) ? (void 0 === cur.searchOffset && (cur.searchOffset = 0), cur.curList = "all", cur.appsList = data[cur.curList] ? data : {
+                data = eval('(' + data + ')');
+                if (!data) return cur.silent = false;
+                if (cur.searchOffset === void(0)) cur.searchOffset = 0;
+                cur.curList = 'all';
+                cur.appsList = data[cur.curList] ? data : {
                     all: []
-                }, cur.appsCount = cur.appsList.all.length, void this.indexApp(function() {
-                    if (cur.silent = !1, cur.onSilentLoad)
-                        for (var t in cur.onSilentLoad) isFunction(cur.onSilentLoad[t]) && cur.onSilentLoad[t]()
-                })) : cur.silent = !1
+                };
+                cur.appsCount = cur.appsList.all.length;
+
+                this.indexApp(function() {
+                    cur.silent = false;
+                    if (cur.onSilentLoad)
+                        for (var i in cur.onSilentLoad) isFunction(cur.onSilentLoad[i]) && cur.onSilentLoad[i]();
+                });
             }.bind(this)
-        })
+        });
     },
-    isDelayedOnSilentLoad: function t(e, s) {
-        return cur.silent ? (t.count = t.count || 0, t.count++, cur.onSilentLoad[e || "key_" + t.count] = s, !0) : void 0
+    isDelayedOnSilentLoad: function mem(key, handler) {
+        if (!cur.silent) return;
+        mem.count = mem.count || 0;
+        mem.count++;
+        cur.onSilentLoad[key || 'key_' + mem.count] = handler;
+        return true;
     },
-    indexApp: function(t) {
-        cur.appsIndex = new vkIndexer(cur.appsList.all, function(t) {
+    indexApp: function(callback) {
+        cur.appsIndex = new vkIndexer(cur.appsList['all'], function(obj) {
             try {
-                return cur.apps[parseInt(t[0])] = t, t[3]
+                cur.apps[parseInt(obj[0])] = obj;
+                return obj[3];
             } catch (e) {
-                return ""
+                return '';
             }
-        }, t)
+        }, callback);
     },
     scrollCheckApps: function() {
-        this.isDelayedOnSilentLoad("scrollCheck", this.scrollCheckApps.bind(this)) || !browser.mobile && !cur.isAppsLoading && !cur.disableAutoMore && isVisible(cur.lShowMoreButton) && (window.innerHeight || document.documentElement.clientHeight || bodyNode.clientHeight) + scrollGetY() + 400 >= cur.lShowMoreButton.offsetTop && this.showAppsRows()
+        if (this.isDelayedOnSilentLoad('scrollCheck', this.scrollCheckApps.bind(this))) return;
+        if (!browser.mobile &&
+            !cur.isAppsLoading &&
+            !cur.disableAutoMore &&
+            isVisible(cur.lShowMoreButton) &&
+            (window.innerHeight || document.documentElement.clientHeight || bodyNode.clientHeight) + scrollGetY() + 400 >= cur.lShowMoreButton.offsetTop
+        ) this.showAppsRows();
     },
     showAppsRows: function() {
-        if (!this.isDelayedOnSilentLoad("showAppsRows", this.showAppsRows.bind(this)) && cur.defaultCount && cur.shownApps < cur.appsCount) {
-            var t = clean(cur.searchStr),
-                e = "",
-                s = cur.appsList[cur.curList] || [],
-                o = s.length;
-            if (s = this.filterApps(s.slice(cur.shownApps)).slice(0, cur.defaultCount), s.length && cur.appTpl) {
-                var n = [];
-                each(s, function(t, e) {
-                    e = clone(e), cur.selection && (e[3] = e[3].replace(cur.selection.re, cur.selection.val)), n.push(cur.appTpl(e, t == s.length - 1, !1))
-                }.bind(this)), e = n.join("")
+        if (this.isDelayedOnSilentLoad('showAppsRows', this.showAppsRows.bind(this))) return;
+        if (cur.defaultCount && cur.shownApps < cur.appsCount) {
+            var query = clean(cur.searchStr),
+                html = '',
+                list = cur.appsList[cur.curList] || [];
+            var total = list.length;
+            list = this.filterApps(list.slice(cur.shownApps)).slice(0, cur.defaultCount);
+            if (list.length && cur.appTpl) {
+                var apps = [];
+                each(list, function(i, app) {
+                    app = clone(app);
+
+                    // highlight search query in app name
+                    if (cur.selection) app[3] = app[3].replace(cur.selection.re, cur.selection.val);
+                    apps.push(cur.appTpl(app, i == list.length - 1, false));
+                }.bind(this));
+                html = apps.join('');
             }
-            if (cur.shownApps) e && cur.lContent.appendChild(cf(e));
-            else if (e) cur.lContent.innerHTML = e, cur.aSummaryCounter && (cur.aSummaryCounter.innerHTML = langNumeric(o, "%s", !0)), show("settings_apps_noempty"), hide(cur.aEmptyCont);
-            else {
-                var i = getLang("settings_apps_not_found_by_query").split("{query}").join("<b>" + t.replace(/([<>&#]*)/g, "") + "</b>");
-                cur.aEmptyCont.innerHTML = i, cur.aSummaryCounter && (cur.aSummaryCounter.innerHTML = ""), show(cur.aEmptyCont), hide("settings_apps_noempty")
+            if (!cur.shownApps) { // first request
+                if (html) { // normal result
+                    cur.lContent.innerHTML = html;
+                    if (cur.aSummaryCounter) cur.aSummaryCounter.innerHTML = langNumeric(total, '%s', true);
+                    show('settings_apps_noempty');
+                    hide(cur.aEmptyCont);
+                } else { // empty result
+                    var msg = getLang('settings_apps_not_found_by_query').split('{query}').join('<b>' + query.replace(/([<>&#]*)/g, '') + '</b>');
+                    cur.aEmptyCont.innerHTML = msg;
+                    if (cur.aSummaryCounter) cur.aSummaryCounter.innerHTML = '';
+                    show(cur.aEmptyCont);
+                    hide('settings_apps_noempty');
+                }
+            } else if (html) { // futrher requests
+                cur.lContent.appendChild(cf(html));
             }
-            cur.shownApps += cur.defaultCount, cur.shownApps >= cur.appsCount ? hide(cur.lShowMoreButton) : (show(cur.lShowMoreButton), this.scrollCheckApps()), cur.aSearch && uiSearch.hideProgress(cur.aSearch)
+            cur.shownApps += cur.defaultCount;
+            if (cur.shownApps >= cur.appsCount) { // done
+                hide(cur.lShowMoreButton);
+            } else {
+                show(cur.lShowMoreButton);
+                this.scrollCheckApps();
+            }
+            cur.aSearch && uiSearch.hideProgress(cur.aSearch);
         }
     },
-    filterApps: function(t) {
-        for (var e = t.length, s = [], o = 0; e > o; o++) {
-            var n = t[o];
-            cur.apps && cur.apps[n[0]] && !cur.apps[n[0]].deleted && s.push(n)
-        }
-        return s
-    },
-    searchApps: function(t) {
-        if (!this.isDelayedOnSilentLoad("searchApps", this.searchApps.bind(this, t))) {
-            if (t && " " == t[t.length - 1] && (t[t.length - 1] = "_"), t.length < 2 && (t = ""), cur.ignoreEqual || cur.searchStr !== t) {
-                if (cur.searchStr = t || "", t) {
-                    var e = cur.appsIndex.search(clean(t));
-                    cur.curList = "all_search_" + t, cur.appsList[cur.curList] = e, t += " " + (parseLatin(t) || ""), t = trim(escapeRE(t).split("&").join("&amp;")), cur.selection = {
-                        re: new RegExp("(" + t.replace(cur.appsIndex.delimiter, "|") + ")", "gi"),
-                        val: '<em class="highlight">$1</em>'
-                    }
-                } else cur.curList = "all", cur.selection = !1;
-                window.tooltips && tooltips.hideAll(), cur.aSearch && uiSearch.showProgress(cur.aSearch), this.scrollToSearch(), hide(cur.lShowMoreButton), cur.loadMore = 1, cur.shownApps = cur.searchOffset = 0, this.showAppsRows()
+    filterApps: function(arr) {
+        var len = arr.length,
+            res = [];
+        for (var i = 0; i < len; i++) {
+            var t = arr[i];
+            if (cur.apps && cur.apps[t[0]] && !cur.apps[t[0]].deleted) {
+                res.push(t);
             }
-            delete cur.ignoreEqual
         }
+        return res;
     },
-    showAppSettings: function(t) {
-        window.tooltips && tooltips.hideAll(), showBox("/al_apps.php", {
-            act: "settings_box_info",
-            aid: t,
-            from: "profile_settings"
-        }, {
-            stat: ["apps.css"],
-            dark: 1
-        })
+    searchApps: function(query) {
+        if (this.isDelayedOnSilentLoad('searchApps', this.searchApps.bind(this, query))) return;
+
+        if (query && query[query.length - 1] == ' ') {
+            query[query.length - 1] = '_';
+        }
+
+        // add query minimum size
+        if (query.length < 2) query = '';
+
+        if (cur.ignoreEqual || cur.searchStr !== query) {
+            cur.searchStr = query || '';
+
+            if (query) {
+                var res = cur.appsIndex.search(clean(query));
+                cur.curList = 'all_search_' + query;
+                cur.appsList[cur.curList] = res;
+                query += ' ' + (parseLatin(query) || '');
+                query = trim(escapeRE(query).split('&').join('&amp;'));
+                cur.selection = {
+                    re: new RegExp('(' + query.replace(cur.appsIndex.delimiter, '|') + ')', 'gi'),
+                    val: '<em class="highlight">$1</em>'
+                };
+            } else {
+                cur.curList = 'all';
+                cur.selection = false;
+            }
+
+            // start preparing new content
+            window.tooltips && tooltips.hideAll();
+            cur.aSearch && uiSearch.showProgress(cur.aSearch);
+            this.scrollToSearch();
+            hide(cur.lShowMoreButton);
+            cur.loadMore = 1;
+            cur.shownApps = cur.searchOffset = 0;
+            this.showAppsRows();
+        }
+        delete cur.ignoreEqual;
     },
-    removeApp: function(t, e, s, o) {
-        if (o && cancelEvent(o), this.removingApp) return !1;
-        if (this.isDelayedOnSilentLoad("removeApp" + t, this.removeApp.bind(this, t, e, s))) return !1;
+    showAppSettings: function(aid) {
         window.tooltips && tooltips.hideAll();
-        var n = ge("app" + t),
-            i = "profile_settings",
-            a = function() {
-                ajax.post("/al_apps.php", {
-                    act: "quit",
-                    id: t,
-                    hash: e,
-                    from: i
-                }, {
-                    onDone: function(e) {
-                        window.appsListChanged = !0, cur.apps[t] && (cur.appsIndex.remove(cur.apps[t]), cur.apps[t].deleted = !0), cur.deletedApps[t] = {
-                            from: i,
-                            html: n.innerHTML
-                        }, n && n.appendChild(cf(e.html)), addClass(n, "deleted")
-                    }.bind(this),
-                    showProgress: function() {
-                        addClass(n, "loading"), this.removingApp = !0
-                    }.bind(this),
-                    hideProgress: function() {
-                        removeClass(n, "loading"), this.removingApp = !1
-                    }.bind(this)
-                })
-            }.bind(this);
-        a()
-    },
-    restoreApp: function(t, e) {
-        if (this.restoringApp) return !1;
-        var s = ge("app" + t);
-        return ajax.post("/al_apps.php", {
-            act: "join",
-            id: t,
-            hash: e,
-            restore: 1,
-            from: "al_apps",
-            section: "settings"
+        showBox('/al_apps.php', {
+            act: 'settings_box_info',
+            aid: aid,
+            from: 'profile_settings'
         }, {
-            onDone: function(e) {
-                cur.deletedApps[t] && (s.innerHTML = cur.deletedApps[t].html, delete cur.deletedApps[t]), cur.apps[t] && (delete cur.apps[t].deleted, cur.appsIndex.add(cur.apps[t])), removeClass(s, "deleted")
+            stat: ['apps.css'],
+            dark: 1
+        });
+    },
+    removeApp: function(aid, hash, recent, event) {
+        event && cancelEvent(event);
+        if (this.removingApp) return false;
+        if (this.isDelayedOnSilentLoad('removeApp' + aid, this.removeApp.bind(this, aid, hash, recent))) return false;
+        window.tooltips && tooltips.hideAll();
+        var wrap = ge('app' + aid),
+            from = 'profile_settings',
+            doRemoveApp = function() {
+                ajax.post(
+                    '/al_apps.php', {
+                        act: 'quit',
+                        id: aid,
+                        hash: hash,
+                        from: from
+                    }, {
+                        onDone: function(result) {
+                            window.appsListChanged = true;
+                            if (cur.apps[aid]) {
+                                cur.appsIndex.remove(cur.apps[aid]);
+                                cur.apps[aid].deleted = true;
+                            }
+                            cur.deletedApps[aid] = {
+                                from: from,
+                                html: wrap.innerHTML
+                            };
+                            wrap && wrap.appendChild(cf(result.html));
+                            addClass(wrap, 'deleted');
+                        }.bind(this),
+                        showProgress: function() {
+                            addClass(wrap, 'loading');
+                            this.removingApp = true;
+                        }.bind(this),
+                        hideProgress: function() {
+                            removeClass(wrap, 'loading');
+                            this.removingApp = false;
+                        }.bind(this)
+                    });
+            }.bind(this);
+
+        doRemoveApp();
+    },
+    restoreApp: function(aid, hash) {
+        if (this.restoringApp) return false;
+        var wrap = ge('app' + aid);
+        ajax.post('/al_apps.php', {
+            act: 'join',
+            id: aid,
+            hash: hash,
+            restore: 1,
+            from: 'al_apps',
+            section: 'settings'
+        }, {
+            onDone: function(result) {
+                if (cur.deletedApps[aid]) {
+                    wrap.innerHTML = cur.deletedApps[aid].html;
+                    delete cur.deletedApps[aid];
+                }
+                if (cur.apps[aid]) {
+                    delete cur.apps[aid].deleted;
+                    cur.appsIndex.add(cur.apps[aid]);
+                }
+                removeClass(wrap, 'deleted');
             }.bind(this),
             showProgress: function() {
-                this.restoringApp = !0, addClass(s, "loading")
+                this.restoringApp = true;
+                addClass(wrap, 'loading');
             }.bind(this),
             hideProgress: function() {
-                this.restoringApp = !1, removeClass(s, "loading")
+                this.restoringApp = false;
+                removeClass(wrap, 'loading');
             }.bind(this)
-        }), !1
+        });
+        return false;
     },
-    ttCommon: function(t, e, s, o, n) {
-        return o && cancelEvent(o), s ? showTooltip(t, {
-            center: s,
-            shift: n || [0, 8, 8],
-            black: 1,
-            text: e
-        }) : showTitle(t, e, n)
+
+    ttCommon: function(obj, text, center, event, shift) {
+        event && cancelEvent(event);
+        if (center) {
+            return showTooltip(obj, {
+                center: center,
+                shift: shift || [0, 8, 8],
+                black: 1,
+                text: text
+            });
+        } else {
+            return showTitle(obj, text, shift);
+        }
     },
     scrollToSearch: function() {
-        var t = ge("page_header_cont"),
-            e = ge("settings_search_wrap");
-        if (e && t) {
-            var s = getXY(domPN(e))[1] - getSize(t)[1];
-            scrollNode.scrollTop > s && scrollToY(s, 200)
+        var pHeader = ge('page_header_cont'),
+            searchWrap = ge('settings_search_wrap');
+        if (searchWrap && pHeader) {
+            var top = getXY(domPN(searchWrap))[1] - getSize(pHeader)[1];
+            scrollNode.scrollTop > top && scrollToY(top, 200);
         }
     },
+
     deactivateBox: function() {
-        return showBox("al_settings.php", {
-            act: "deactivate_box"
+        showBox('al_settings.php', {
+            act: 'deactivate_box'
         }, {
             params: {
-                dark: !0
+                dark: true
             }
-        }), !1
+        });
+        return false;
     },
-    showValidateDevices: function(t, e) {
-        return ajax.post("al_settings.php", {
-            act: "a_validate_devices",
-            hash: e
+
+    showValidateDevices: function(lnk, hash) {
+        ajax.post('al_settings.php', {
+            act: 'a_validate_devices',
+            hash: hash
         }, {
-            onDone: function(e) {
+            onDone: function(html) {
                 tooltips.hideAll();
-                var s = ce("div", {
-                    innerHTML: e,
-                    className: "unshown"
+                var el = ce('div', {
+                    innerHTML: html,
+                    className: 'unshown'
                 });
-                t.parentNode.replaceChild(s, t), slideDown(s, 100)
+                lnk.parentNode.replaceChild(el, lnk);
+                slideDown(el, 100);
             }
-        }), !1
+        });
+        return false;
     },
-    deleteValidateDevice: function(t, e, s, o) {
-        if (!o) return void(cur.confirmBox = showFastBox({
-            title: cur.lang.global_action_confirmation,
-            dark: 1,
-            forceNoBtn: 1,
-            bodyStyle: "padding: 20px; line-height: 160%;"
-        }, cur.lang.settings_delete_validate_device_confirm, getLang("global_delete"), function() {
-            Settings.deleteValidateDevice(t, e, s, !0)
-        }, getLang("global_cancel")));
-        var n = t.parentNode;
-        return ajax.post("al_settings.php", {
-            act: "a_del_validate_device",
-            i: e,
-            hash: s
+    deleteValidateDevice: function(lnk, index, hash, force) {
+        if (!force) {
+            cur.confirmBox = showFastBox({
+                title: cur.lang['global_action_confirmation'],
+                dark: 1,
+                forceNoBtn: 1,
+                bodyStyle: 'padding: 20px; line-height: 160%;'
+            }, cur.lang['settings_delete_validate_device_confirm'], getLang('global_delete'), function() {
+                Settings.deleteValidateDevice(lnk, index, hash, true);
+            }, getLang('global_cancel'));
+            return;
+        }
+        var row = lnk.parentNode;
+        ajax.post('al_settings.php', {
+            act: 'a_del_validate_device',
+            i: index,
+            hash: hash
         }, {
-            onDone: function(t) {
-                n.innerHTML = t
+            onDone: function(msg) {
+                row.innerHTML = msg;
             },
-            onDone: function(t) {
-                return n.innerHTML = t, !0
+            onDone: function(msg) {
+                row.innerHTML = msg;
+                return true;
             },
             showProgress: function() {
-                cur.confirmBox.showProgress()
+                cur.confirmBox.showProgress();
             },
             hideProgress: function() {
-                cur.confirmBox.hide()
+                cur.confirmBox.hide();
             }
-        }), !1
+        });
+        return false;
     },
-    showNotifySubscriptions: function(t) {
-        return hasClass(t, "settings_no_subscriptions") ? !1 : (showBox("al_settings.php", {
-            act: "notify_subscriptions_box"
+
+    showNotifySubscriptions: function(el) {
+        if (hasClass(el, 'settings_no_subscriptions')) return false;
+        showBox('al_settings.php', {
+            act: 'notify_subscriptions_box'
         }, {
-            stat: ["indexer.js"]
-        }), !1)
+            stat: ['indexer.js']
+        });
+        return false;
     },
-    notifySubscriptionsInit: function(t, e, s) {
-        s.onListClick = Settings.notifySubscriptionToggle, cur.subsOList = new OList(t, e, {}, s), t.removeButtons().addButton(getLang("global_close"), function() {
-            t.hide(200)
-        }, "yes")
+    notifySubscriptionsInit: function(box, owners, options) {
+        options.onListClick = Settings.notifySubscriptionToggle;
+
+        cur.subsOList = new OList(box, owners, {}, options);
+        box.removeButtons().addButton(getLang('global_close'), function() {
+            box.hide(200);
+        }, 'yes');
     },
-    notifySubscriptionToggle: function(t, e) {
-        var s = t.id.match(/-?\d+/)[0],
-            o = !1,
-            n = 0,
-            i = geByClass1("_subscriptions_count");
-        each(cur.subsOList.owners, function(t, e) {
-            cur.subsOList.selected[e[0]] || n++, o === !1 && this[0] == s && (o = this[4])
-        }), i && (toggleClass(i, "settings_no_subscriptions", !n), val(i, n ? getLang("settings_notify_subscriptions_count", n) : getLang("settings_notify_no_subscriptions"))), ajax.post("/al_wall.php", {
-            act: "a_toggle_posts_subscription",
-            subscribe: e ? 1 : 0,
-            oid: s,
-            hash: o
+    notifySubscriptionToggle: function(target, checked) {
+        var id = target.id.match(/-?\d+/)[0],
+            hash = false,
+            count = 0,
+            countNode = geByClass1('_subscriptions_count');
+
+        each(cur.subsOList.owners, function(k, v) {
+            if (!cur.subsOList.selected[v[0]]) count++;
+            if (hash === false && this[0] == id) {
+                hash = this[4];
+            }
+        });
+
+        if (countNode) {
+            toggleClass(countNode, 'settings_no_subscriptions', !count);
+            val(countNode, count ? getLang('settings_notify_subscriptions_count', count) : getLang('settings_notify_no_subscriptions'));
+        }
+
+        ajax.post('/al_wall.php', {
+            act: 'a_toggle_posts_subscription',
+            subscribe: checked ? 1 : 0,
+            oid: id,
+            hash: hash
         }, {
-            showProgress: addClass.pbind(t, "olist_item_loading"),
-            hideProgress: removeClass.pbind(t, "olist_item_loading")
-        })
+            showProgress: addClass.pbind(target, 'olist_item_loading'),
+            hideProgress: removeClass.pbind(target, 'olist_item_loading')
+        });
     },
-    showGroupNotifySources: function(t, e) {
-        return cancelEvent(t), showBox("al_settings.php", {
-            act: "group_notify_sources_box",
-            source: e
+    showGroupNotifySources: function(e, source) {
+        cancelEvent(e);
+        showBox('al_settings.php', {
+            act: 'group_notify_sources_box',
+            source: source
         }, {
             params: {
                 dark: 1,
                 width: 450,
-                bodyStyle: "padding: 0",
-                containerClass: "group_notify_sources_box flist_list_radio"
+                bodyStyle: 'padding: 0',
+                containerClass: 'group_notify_sources_box flist_list_radio'
             }
-        }), !1
+        });
+        return false;
     },
-    initShowGroupNotifySourcesBox: function(t, e) {
-        cur = cur || {}, extend(cur, e), t.removeButtons(), t.addButton(e.okBtnText, this.groupNotifyPopupSubmit.bind(this)), extend(cur, {
+    initShowGroupNotifySourcesBox: function(box, settings) {
+        cur = cur || {};
+        extend(cur, settings);
+        box.removeButtons();
+        box.addButton(settings.okBtnText, this.groupNotifyPopupSubmit.bind(this)); // ����������
+        extend(cur, {
             popupSubmitBtnEl: curBox().btns.ok[0],
             popupSelectedGroup: 0,
-            popupGroupsWrapperEl: geByClass1("_add_community_app_groups"),
-            popupContentEl: geByClass1("_add_community_app_content")
-        }), disableButton(cur.popupSubmitBtnEl, !0), cur.popupGroupsEls = geByClass("flist_item", cur.popupGroupsWrapperEl, "div"), 1 === cur.popupGroupsEls.length && this.groupNotifyPopup(cur.popupGroupsEls[0]), each(cur.popupGroupsEls, function(t, e) {
-            addEvent(e, "click", this.groupNotifyPopup.bind(this, e))
-        }.bind(this))
+            popupGroupsWrapperEl: geByClass1('_add_community_app_groups'),
+            popupContentEl: geByClass1('_add_community_app_content')
+        });
+
+        disableButton(cur.popupSubmitBtnEl, true);
+        cur.popupGroupsEls = geByClass('flist_item', cur.popupGroupsWrapperEl, 'div');
+        cur.popupGroupsEls.length === 1 && this.groupNotifyPopup(cur.popupGroupsEls[0]);
+        each(cur.popupGroupsEls, function(k, v) {
+            addEvent(v, 'click', this.groupNotifyPopup.bind(this, v));
+        }.bind(this));
     },
-    groupNotifyPopup: function(t) {
-        var e = "flist_item_checked",
-            s = intval(t.getAttribute("data-id"));
-        trim(t.getAttribute("data-link"));
-        cur.popupSelectedGroup = s, each(cur.popupGroupsEls, function(s, o) {
-            (o === t ? addClass : removeClass)(o.parentNode, e)
-        }), disableButton(cur.popupSubmitBtnEl, 0 === cur.popupSelectedGroup)
+    groupNotifyPopup: function(el) {
+        var checkedClass = 'flist_item_checked',
+            gid = intval(el.getAttribute('data-id')),
+            link = trim(el.getAttribute('data-link'));
+        cur.popupSelectedGroup = gid;
+        each(cur.popupGroupsEls, function(k, v) {
+            (v === el ? addClass : removeClass)(v.parentNode, checkedClass);
+        });
+        disableButton(cur.popupSubmitBtnEl, cur.popupSelectedGroup === 0);
     },
     groupNotifyPopupSubmit: function() {
-        var t = cur.popupSelectedGroup;
-        isVisible(cur.popupSubmitBtnEl) && !buttonLocked(cur.popupSubmitBtnEl) && 0 !== t && TopNotifier.addNewSource(t, cur.popup_hash, 2)
+        var gid = cur.popupSelectedGroup;
+        if (isVisible(cur.popupSubmitBtnEl) && !buttonLocked(cur.popupSubmitBtnEl) && gid !== 0) {
+            TopNotifier.addNewSource(gid, cur.popup_hash, 2);
+        }
     },
-    delGroupNotifySource: function(t, e, s, o) {
-        cancelEvent(t);
-        var n = showFastBox(getLang("settings_group_notify_disable_title"), getLang("settings_group_notify_disable_text"), getLang("settings_group_notify_disable_yes"), function() {
-            n.hide(), ajax.post("al_settings.php", {
-                act: "a_group_notify_del_source",
-                gid: e,
-                hash: s
-            }, {
-                onDone: function(t) {
-                    e == o ? (TopNotifier && TopNotifier.changeSource("", null, null), nav.go("/settings?act=notify")) : nav.reload()
-                },
-                showProgress: lockButton.pbind(cur.popupSubmitBtnEl),
-                hideProgress: unlockButton.pbind(cur.popupSubmitBtnEl)
-            })
-        }, getLang("global_cancel"))
+    delGroupNotifySource: function(event, gid, hash, selected_gid) {
+        cancelEvent(event);
+        var delGroupNotifySourceConfirmBox = showFastBox(
+            getLang('settings_group_notify_disable_title'),
+            getLang('settings_group_notify_disable_text'),
+            getLang('settings_group_notify_disable_yes'),
+            function() {
+                delGroupNotifySourceConfirmBox.hide();
+                ajax.post('al_settings.php', {
+                    act: 'a_group_notify_del_source',
+                    gid: gid,
+                    hash: hash,
+                }, {
+                    onDone: function(html) {
+                        if (gid == selected_gid) {
+                            TopNotifier && TopNotifier.changeSource('', null, null);
+                            nav.go('/settings?act=notify');
+                        } else {
+                            nav.reload();
+                        }
+                    },
+                    showProgress: lockButton.pbind(cur.popupSubmitBtnEl),
+                    hideProgress: unlockButton.pbind(cur.popupSubmitBtnEl)
+                });
+            }, getLang('global_cancel'));
     },
-    addSourcePopup: function(t) {
-        hide(geByClass1("notify_sources")), TopNotifier && TopNotifier.hide(), this.showGroupNotifySources(t, "popup")
+    addSourcePopup: function(event) {
+        hide(geByClass1('notify_sources'));
+        TopNotifier && TopNotifier.hide();
+        this.showGroupNotifySources(event, 'popup')
     },
-    groupNotify_disabledSetting: function(t) {
-        showTitle(t, getLang("settings_group_notify_disable_tooltip"), null, {
+    groupNotify_disabledSetting: function(elem) {
+        showTitle(elem, getLang('settings_group_notify_disable_tooltip'), null, {
             shift: [-17, 14],
-            className: "settings_group_notifications_disable_tooltip",
-            needLeft: 1
-        })
+            className: 'settings_group_notifications_disable_tooltip',
+            needLeft: 1,
+        });
     }
 };
+
 try {
-    stManager.done("settings.js")
+    stManager.done('settings.js');
 } catch (e) {}

@@ -1,400 +1,808 @@
-! function() {
-    var e = {
-        _textEvent: function(t) {
-            var d = t.target,
-                i = d.dd,
-                s = cur.wdd[i];
-            switch (t.type) {
-                case "focus":
-                    d.focused = !0, (!d.active || s.opts.noMultiSelect && s.chosen && s.chosen[1] == val(d)) && (val(d, ""), d.style.color = "", d.active = 1, d.phd = !1), e._updateTextInput(s), e._updateList(s), s.opts.onTextFocus && s.opts.onTextFocus();
+(function() {
+
+    var wdd = {
+        _textEvent: function(e) {
+            var el = e.target,
+                id = el.dd,
+                dd = cur.wdd[id];
+            switch (e.type) {
+                case 'focus':
+                    el.focused = true;
+                    if (!el.active || dd.opts.noMultiSelect && dd.chosen && dd.chosen[1] == val(el)) {
+                        val(el, '');
+                        el.style.color = '';
+                        el.active = 1;
+                        el.phd = false;
+                    }
+
+                    wdd._updateTextInput(dd);
+                    wdd._updateList(dd);
+                    if (dd.opts.onTextFocus) dd.opts.onTextFocus();
                     break;
-                case "blur":
-                    d.focused = !1, (d.active = !d.phd && d.value ? 1 : "") ? s.over && s.opts.chooseOnBlur && s.opts.chooseOnBlur(s.over) && (e.select(i), hide(d), s.full || show(s.add)) : isEmpty(s.selected) && !s.chosen ? (val(d, d.ph), d.style.color = "#777", d.phd = !0) : s.chosen && !val(d) ? val(d, "INPUT" == d.tagName ? unclean(s.chosen[1]) : s.chosen[1]) : (hide(d), s.full || show(s.add)), e._hideList(s), s.opts.onTextBlur && s.opts.onTextBlur();
+
+                case 'blur':
+                    el.focused = false;
+                    if (!(el.active = (!el.phd && el.value) ? 1 : '')) { // not val(el)
+                        if (isEmpty(dd.selected) && !dd.chosen) {
+                            val(el, el.ph);
+                            el.style.color = '#777';
+                            el.phd = true;
+                        } else if (dd.chosen && !val(el)) {
+                            val(el, (el.tagName == 'INPUT' ? unclean(dd.chosen[1]) : dd.chosen[1]));
+                        } else {
+                            hide(el);
+                            if (!dd.full) show(dd.add);
+                        }
+                    } else if (dd.over && dd.opts.chooseOnBlur && dd.opts.chooseOnBlur(dd.over)) {
+                        wdd.select(id);
+                        hide(el);
+                        if (!dd.full) show(dd.add);
+                    }
+
+                    wdd._hideList(dd);
+                    if (dd.opts.onTextBlur) dd.opts.onTextBlur();
                     break;
-                case "keydown":
-                case "keypress":
-                    clearTimeout(s.updateTimer), s.updateTimer = setTimeout(e._updateList.pbind(s, !1), 0);
-                    var d = ge("wddi" + s.over + "_" + i);
-                    if (t.keyCode == KEY.UP) return d && domPS(d) && e.over(i, domPS(d).id.replace(/^wddi/, "").replace(new RegExp("_" + i + "$", ""), ""), !0), t.canceled = !0, cancelEvent(t);
-                    if (t.keyCode == KEY.DOWN) return d && domNS(d) && e.over(i, domNS(d).id.replace(/^wddi/, "").replace(new RegExp("_" + i + "$", ""), ""), !0), t.canceled = !0, cancelEvent(t);
-                    if (t.keyCode == KEY.RETURN) return e.select(i), t.canceled = !0, cancelEvent(t);
-                    if (t.keyCode == KEY.ESC) return s.text.blur(), t.canceled = !0, cancelEvent(t)
+
+                case 'keydown':
+                case 'keypress':
+                    clearTimeout(dd.updateTimer);
+                    dd.updateTimer = setTimeout(wdd._updateList.pbind(dd, false), 0);
+
+                    var el = ge('wddi' + dd.over + '_' + id);
+                    if (e.keyCode == KEY.UP) {
+                        if (el && domPS(el)) {
+                            wdd.over(id, domPS(el).id.replace(/^wddi/, '').replace(new RegExp('_' + id + '$', ''), ''), true);
+                        }
+                        e.canceled = true;
+                        return cancelEvent(e);
+                    } else if (e.keyCode == KEY.DOWN) {
+                        if (el && domNS(el)) {
+                            wdd.over(id, domNS(el).id.replace(/^wddi/, '').replace(new RegExp('_' + id + '$', ''), ''), true);
+                        }
+                        e.canceled = true;
+                        return cancelEvent(e);
+                    } else if (e.keyCode == KEY.RETURN) {
+                        wdd.select(id);
+                        e.canceled = true;
+                        return cancelEvent(e);
+                    } else if (e.keyCode == KEY.ESC) {
+                        dd.text.blur();
+                        e.canceled = true;
+                        return cancelEvent(e);
+                    }
+                    break;
             }
         },
         _getTextValue: function() {
-            return this.active ? this.value : ""
+            return this.active ? this.value : '';
         },
-        _widenTextInput: function(t) {
-            vk.rtl ? t.text.style.width = Math.max((t.text.offsetTop > 20 ? t.fullWidth : t.partWidth) - t.fullWidth + (t.text.offsetLeft + t.text.offsetWidth) - 2, t.addWidth) - t.textDelta + "px" : t.text.style.width = Math.max((t.text.offsetTop > 20 ? t.fullWidth : t.partWidth) - (t.text.offsetLeft - t.textOffset) - 2, t.addWidth) - t.textDelta + "px", e._showList(t)
-        },
-        _updateTextInput: function(t) {
-            t.addWidth && (t.text.style.width = t.addWidth - t.textDelta + "px", setTimeout(e._widenTextInput.pbind(t), 0))
-        },
-        _focusText: function(t) {
-            t.full || t.disabled || (hide(t.add), show(t.text), e._updateTextInput(t), setTimeout(elfocus.pbind(t.text), 0))
-        },
-        _clickEvent: function(t, d) {
-            if (d.target != t.arrow) {
-                if (d.target == t.text.parentNode) return e._focusText(t);
-                for (var i = d.target; i && i != t.text.parentNode; i = i.parentNode)
-                    if (i == t.add) return e._focusText(t)
+        _widenTextInput: function(dd) {
+            if (vk.rtl) {
+                dd.text.style.width = (Math.max((dd.text.offsetTop > 20 ? dd.fullWidth : dd.partWidth) - dd.fullWidth + (dd.text.offsetLeft + dd.text.offsetWidth) - 2, dd.addWidth) - dd.textDelta) + 'px';
+            } else {
+                dd.text.style.width = (Math.max((dd.text.offsetTop > 20 ? dd.fullWidth : dd.partWidth) - (dd.text.offsetLeft - dd.textOffset) - 2, dd.addWidth) - dd.textDelta) + 'px';
             }
+            wdd._showList(dd);
         },
-        _arrDownEvent: function(t, d) {
-            isVisible(t.listWrap) ? e._hideList(t) : e._focusText(t)
+        _updateTextInput: function(dd) {
+            if (!dd.addWidth) return;
+            dd.text.style.width = (dd.addWidth - dd.textDelta) + 'px';
+            setTimeout(wdd._widenTextInput.pbind(dd), 0);
         },
-        _afterInit: function(t) {
-            e._index(t), browser.opera_mobile || e._textEvent({
-                target: t.text,
-                type: t.text.focused ? "focus" : "blur"
-            }), extend(t, {
-                addWidth: getSize(t.add)[0],
-                textDelta: getSize(t.text)[0] - intval(getStyle(t.text, "width")),
-                fullWidth: getSize(domPN(t.text))[0] - 4,
-                textOffset: t.text.offsetLeft
-            }), t.partWidth = t.fullWidth - getSize(t.arrow)[0], t.text.focused ? e._updateList(t) : e._updateTextInput(t), addEvent(t.text.parentNode, "click", e._clickEvent.pbind(t)), addEvent(t.arrow, "mousedown", e._arrDownEvent.pbind(t)), t.opts.noMultiSelect && t.opts.chosen && e.choose(t.id, !1, t.opts.chosen, !0)
-        },
-        _updateList: function(t, d, i) {
-            if (t.cache[""]) {
-                if (i = void 0 !== i ? i : trim(val(t.text)), t.lastQ === i && !d) return void e._showList(t);
-                t.lastQ = i, clearTimeout(t.requestTimer);
-                var s = t.opts.custom,
-                    r = s && s(i);
-                r ? e._renderList(t, r) : (r = t.cache[i], r ? e._renderList(t, r, !0) : (r = e._search(t, i), e._renderList(t, r, !t.opts.url), t.opts.url && (t.requestTimer = setTimeout(e._requestList.pbind(t), t.opts.requestWait))))
+        _focusText: function(dd) {
+            if (dd.full || dd.disabled) {
+                return;
             }
+            hide(dd.add);
+            show(dd.text);
+            wdd._updateTextInput(dd);
+            setTimeout(elfocus.pbind(dd.text), 0);
         },
-        _index: function(t) {
-            var d, i, s = t.opts.defaultItems,
-                r = t.opts.items,
-                a = [];
-            for (d = 0, i = s.length; i > d; ++d) a.push(d);
-            for (t.cache[""] = a, d = 0, i = r.length; i > d; ++d) e._indexItem(t, d, r[d])
-        },
-        _indexItem: function(e, t, d) {
-            var i, s, r, a = "",
-                n = e.opts.searchKeys,
-                o = {};
-            for (i = 0, r = n.length; r > i; ++i) a += " " + (d[n[i]] || "").replace(e.opts.delimeter, " ").replace(/<[^>]*>/g, "");
-            for (a += (parseLatin(a) || "") + (parseCyr(a) || ""), a = trim(a.toLowerCase()).split(/\s+/), i = 0; i < a.length; i++)
-                for (s = 1; s <= e.opts.wholeIndex; s++) {
-                    var l = a[i].substr(0, s);
-                    o[l] || (e.index[l] || (e.index[l] = []), e.index[l].push(t), o[l] = 1)
-                }
-        },
-        _search: function(e, t) {
-            if (t = trim(t.toLowerCase().replace(e.opts.delimeter, " ")), !t) return e.cache[""];
-            var d = e.opts.wholeIndex;
-            if (t.length <= d && -1 == t.indexOf(" ")) return e.index[t] || [];
-            t = t.split(" ");
-            var i, s, r, a = 0,
-                n = "";
-            for (i = 0, s = t.length; s > i; ++i) {
-                var o = t[i].substr(0, d),
-                    l = e.index[o];
-                if ((!n || !l || l.length < a) && (a = l ? l.length : 0, n = o), !a) return []
+
+        _clickEvent: function(dd, e) {
+            if (e.target == dd.arrow) return;
+            if (e.target == dd.text.parentNode) {
+                return wdd._focusText(dd);
             }
-            var r = [],
-                c = e.opts.searchKeys,
-                u = c.length,
-                p = t.length;
-            for (i = 0, s = e.index[n].length; s > i; ++i) {
-                for (var f = e.index[n][i], _ = e.opts.items[f], v = !1, h = "", m = 0; u > m; ++m) h += " " + (_[c[m]] || "").replace(e.opts.delimeter, " ").replace(/<[^>]*>/g, "");
-                for (h += (parseLatin(h) || "") + (parseCyr(h) || ""), h = h.toLowerCase(), m = 0; p > m; ++m)
-                    if (-1 == h.indexOf(" " + t[m])) {
-                        v = !0;
-                        break
-                    }
-                v || r.push(f)
-            }
-            return r
-        },
-        _requestList: function(t) {
-            var d = trim(val(t.text));
-            d && ajax.post(t.opts.url, extend({
-                str: d
-            }, t.opts.params || {}), {
-                onDone: function(i) {
-                    t.cache[d] = e._search(t, d).concat(i), e._renderList(t, i, !0, !0)
-                }
-            })
-        },
-        _renderList: function(t, d, i, s) {
-            var r = [],
-                a = 0,
-                n = t.lastQ,
-                o = e._highlight,
-                l = t.opts.itemMark;
-            t.outdated && (s = !1), s ? a = (t.list.__uiScroll__ ? t.list.__uiScroll__.content : t.list).childNodes.length : (t.shown = {}, a = 0);
-            for (var c = 0, u = d.length; u > c; ++c) {
-                var p = d[c];
-                isArray(p) || (p = t.opts.items[p]);
-                var f = p[0] + "",
-                    _ = f + "_",
-                    v = "";
-                if (!(t.selected[_] || t.shown[_] || t.selCount && p[8] > 0)) {
-                    t.shown[_] = p;
-                    var v, h = isArray(p[3]) ? "" : " " + onlinePlatformClass(l(p)),
-                        m = p[3] ? '<b class="fl_l wddi_thumb' + h + '"><img class="wddi_img" src="' + (isArray(p[3]) ? "/images/community_" + (window.devicePixelRatio >= 2 ? 100 : 50) + ".png" : p[3]) + '" /></b>' : "";
-                    a ? v = "wddi" : (v = "wddi_over", t.over = f);
-                    var x = n && o(p[1] || "", n) || p[1] || "",
-                        w = n && o(p[2] || "", n) || p[2] || "";
-                    r.push('<div class="' + v + '" onmousedown="WideDropdown.over(\'' + t.id + "', '" + clean(f) + "'); WideDropdown.select('" + t.id + "', event)\" onmousemove=\"WideDropdown.over('" + t.id + "', '" + clean(f) + '\')" id="wddi' + f + "_" + t.id + '" onclick="">  <div class="wddi_data">' + m + '    <div class="wddi_text">' + x + '</div>    <div class="wddi_sub">' + w + "</div>  </div></div>"), ++a
-                }
-            }
-            r = r.join(""), !a && i && (r = '<div class="wddi_no">' + (n ? t.opts.noResult : t.opts.introText) + "</div>"), s ? (t.list.__uiScroll__ ? t.list.__uiScroll__.content : t.list).innerHTML += r : r ? (t.outdated = !1, (t.list.__uiScroll__ ? t.list.__uiScroll__.content : t.list).innerHTML = r) : t.outdated = !0, t.outdated || (t.list.style.height = a > 5 ? "242px" : "", e._showList(t), t.scroll && t.scroll.scrollTop(), setTimeout(e._checkScroll.pbind(t), 0)), e._updatePos(t)
-        },
-        _highlight: function(e, t) {
-            var d = [escapeRE(t)],
-                i = parseLatin(t),
-                s = parseCyr(t);
-            null !== i && d.push(escapeRE(i)), null !== s && d.push(escapeRE(s));
-            var r = new RegExp("(?![^&;]+;)(?!<[^<>]*)((\\(*)(" + d.join("|") + "))(?![^<>]*>)(?![^&;]+;)", "gi");
-            return e.replace(r, '$2<span class="wdd_hl">$3</span>')
-        },
-        _checkScroll: function(e) {
-            void 0 === e.scroll && (e.scroll = !1, stManager.add(["ui_common.css", "ui_common.js"], function() {
-                e.scroll = new uiScroll(e.list, {
-                    global: !0
-                })
-            }))
-        },
-        _updatePos: function(e) {
-            var t = e.opts.toup ? -getSize(e.listWrap)[1] - (e.opts.input && getSize(e.opts.input)[1] || 0) : getSize(e.listWrap.parentNode)[1];
-            e.listWrap.style.marginTop = t + "px"
-        },
-        _showList: function(t) {
-            t.text.focused && !t.disabled && (isVisible(t.listWrap) || (ge(t.listWrap).style.display = "block", t.scroll && t.scroll.update(), e._updateList(t, !0)), e._updatePos(t), addClass(t.container, "wdd_focused"))
-        },
-        _hideList: function(e) {
-            hide(e.listWrap), removeClass(e.container, "wdd_focused")
-        },
-        _updateImgs: function(e, t) {
-            var d = e.img;
-            if (e.img) {
-                t = e.opts.noAnim ? e.opts.noAnim : t;
-                var i, s = 0,
-                    r = [],
-                    a = [],
-                    n = 0;
-                for (var o in e.selected) {
-                    var l = e.selected[o],
-                        c = l[3],
-                        u = l[4],
-                        p = l[5],
-                        f = l[6];
-                    if (isArray(c))
-                        for (var d, _ = 0, v = c.length; v > _; ++_) d = clone(l), d[0] = f[_], d[3] = c[_], d[4] = u[_], d[5] = p[_], a.push(d);
-                    else a.push(l)
-                }
-                n = a.length;
-                for (var o in a) {
-                    var h, i, m, x, w, l = a[o],
-                        c = l[3],
-                        u = l[4];
-                    if (n > 3 ? (++s, h = "wdd_img_tiny " + (1 == s || 4 == s ? "fl_l" : "fl_r")) : h = 3 == n ? s++ ? "wdd_img_tiny fl_r" : "wdd_img_half fl_l" : 2 == n ? "wdd_img_half " + (s++ ? "fl_r" : "fl_l") : "wdd_img_full", r.push(u ? '<a href="' + u + '" class="' + h + '">' : '<div class="' + h + '">'), r.push('<img class="wdd_img" src="' + c + '" />'), r.push(u ? "</a>" : "</div>"), s >= 4) break
-                }
-                if (i = r.join("") || e.opts.defImgText || "", e.imgRand = !1, t === !0) val(e.img, i);
-                else {
-                    for (x = ce("div", {
-                            className: "wdd_img_layer",
-                            innerHTML: i
-                        }), w = e.imgRand = Math.random(), m = domFC(e.img); m && "wdd_img_layer" == m.className;) m = domNS(m);
-                    animate(m ? e.img.insertBefore(x, m) : e.img.appendChild(x), {
-                        opacity: 1
-                    }, 150, function() {
-                        e.imgRand === w && val(e.img, i)
-                    })
+            for (var el = e.target; el && el != dd.text.parentNode; el = el.parentNode) {
+                if (el == dd.add) {
+                    return wdd._focusText(dd);
                 }
             }
         },
-        init: function(t, d) {
-            if (!(t = ge(t))) return !1;
-            stManager.add(["notifier.css", "notifier.js"]);
-            var i = t.id;
-            if (!t.id) return !1;
-            if (cur.wdd) {
-                if (cur.wdd[i]) return !1
-            } else cur.wdd = {};
-            d = extend({
-                cacheLength: 1e4,
-                requestWait: 300,
-                wholeIndex: 2,
-                maxItems: 29,
-                noAnim: !1,
-                searchKeys: [1],
-                defaultItems: d.items || [],
-                items: d.defaultItems || [],
-                itemMark: function(e) {
-                    return intval(e[5])
-                }
-            }, d || {});
-            var s = {
-                id: i,
-                container: t,
-                text: geByClass1("wdd_text", t),
-                arrow: geByClass1("wdd_arr", t),
-                img: d.img && ge(d.img),
-                opts: d,
-                selected: {},
-                selCount: 0,
-                index: {},
-                delimeter: /[\s\(\)\.,\-]+/g,
-                cache: {}
-            };
-            return (s.text.ph = s.text.getAttribute("placeholder") || "") && t.setAttribute("placeholder", ""), s.text.dd = i, d.toup && addClass(t, "wdd_toup"), s.add = t.insertBefore(ce("div", {
-                className: "wdd_add fl_l",
-                innerHTML: '<div class="wdd_add2">  <table cellspacing="0" cellpadding="0"><tr>    <td><div class="wdd_add3">      <nobr>' + getLang("global_add") + '</nobr>    </div></td>    <td><div class="wdd_add_plus" onmousedown="WideDropdown.focus(\'' + i + "')\"></div></td>  </table></div>"
-            }), s.text), s.bubbles = t.insertBefore(ce("div", {
-                className: "wdd_bubbles"
-            }), s.add), s.listWrap = t.insertBefore(ce("div", {
-                className: "wdd_lwrap",
-                innerHTML: '<div class="wdd_list"></div>'
-            }, {
-                display: "none",
-                width: d.width || getSize(t)[0]
-            }), t.firstChild), s.list = geByClass1("wdd_list", s.listWrap), browser.opera_mobile || (s.text.active = val(s.text) ? 1 : "", s.text.getValue = e._getTextValue.bind(s.text), addEvent(s.text, "focus blur " + (browser.opera ? "keypress" : "keydown"), e._textEvent)), setTimeout(e._afterInit.pbind(s), 0), cur.wdd[i] = s
-        },
-        initSelect: function(t, d) {
-            if (!(t = ge(t))) return !1;
-            stManager.add(["notifier.css", "notifier.js"]);
-            var i = t.id;
-            if (!t.id) return !1;
-            if (cur.wdd) {
-                if (cur.wdd[i]) return !1
-            } else cur.wdd = {};
-            d = extend({
-                cacheLength: 1e4,
-                requestWait: 300,
-                wholeIndex: 2,
-                maxItems: 29,
-                searchKeys: [1],
-                defaultItems: d.items || [],
-                items: d.defaultItems || [],
-                itemMark: function(e) {
-                    return intval(e[5])
-                }
-            }, d || {});
-            var s = {
-                id: i,
-                container: t,
-                text: d.text || geByClass1("wdd_text", t),
-                opts: d,
-                selected: {},
-                selCount: 0,
-                index: {},
-                delimeter: /[\s\(\)\.,\-]+/g,
-                cache: {}
-            };
-            return s.text.dd = i, d.toup && addClass(t, "wdd_toup"), s.listWrap = t.insertBefore(ce("div", {
-                className: "wdd_lwrap",
-                innerHTML: '<div class="wdd_list"></div>'
-            }, {
-                display: "none",
-                width: d.width || getSize(t)[0]
-            }), t.firstChild), s.list = geByClass1("wdd_list", s.listWrap), setTimeout(e._index.pbind(s), 0), cur.wdd[i] = s
-        },
-        deinit: function(e, t) {
-            if (t || (t = cur), !t.wdd || !(e = ge(e))) return !1;
-            var d = e.id;
-            if (!e.id) return !1;
-            var i = t.wdd[d];
-            return i ? (cleanElems(i.text, domPN(i.text)), delete t.wdd[d], !0) : !1
-        },
-        items: function(t, d, i) {
-            var s = cur.wdd[t];
-            i || (i = d), extend(s, {
-                index: {},
-                cache: {}
-            }), extend(s.opts, {
-                defaultItems: d || [],
-                items: i || []
-            }), e._index(s), e._updateList(s, !0)
-        },
-        over: function(e, t, d) {
-            var i = cur.wdd[e];
-            if (i.over != t) {
-                i.over && replaceClass("wddi" + i.over + "_" + e, "wddi_over", "wddi"), i.over = t;
-                var s = ge("wddi" + i.over + "_" + e);
-                replaceClass(s, "wddi", "wddi_over"), d && i.scroll && i.scroll.scrollIntoView(s.firstElementChild || s)
+        _arrDownEvent: function(dd, e) {
+            if (isVisible(dd.listWrap)) {
+                wdd._hideList(dd);
+            } else {
+                wdd._focusText(dd);
             }
         },
-        choose: function(t, d, i, s) {
-            var r = cur.wdd[t],
-                a = i ? i[0] : r.over,
-                n = a + "_";
-            if (i || (i = r.shown[n]), void 0 !== a && i) {
-                if (r.over = !1, r.opts.onItemSelect && r.opts.onItemSelect(i) === !1) return d && cancelEvent(d);
-                r.chosen = i, val(r.text, "INPUT" == r.text.tagName ? unclean(i[1]) : i[1]), r.text.style.color = "", r.text.blur(), e._textEvent({
-                    target: r.text,
-                    type: r.text.focused ? "focus" : "blur"
+        _afterInit: function(dd) {
+            wdd._index(dd);
+            if (!browser.opera_mobile) {
+                wdd._textEvent({
+                    target: dd.text,
+                    type: dd.text.focused ? 'focus' : 'blur'
                 });
-                var o = r.opts.onChange && !s ? r.opts.onChange(1, a) : !0,
-                    l = 1 === o;
-                return 0 !== o && setTimeout(e._updateImgs.pbind(r, l), 0), d && cancelEvent(d)
+            }
+            extend(dd, {
+                addWidth: getSize(dd.add)[0],
+                textDelta: getSize(dd.text)[0] - intval(getStyle(dd.text, 'width')),
+                fullWidth: getSize(domPN(dd.text))[0] - 4,
+                textOffset: dd.text.offsetLeft
+            });
+            dd.partWidth = dd.fullWidth - getSize(dd.arrow)[0];
+            if (dd.text.focused) {
+                wdd._updateList(dd);
+            } else {
+                wdd._updateTextInput(dd);
+            }
+            addEvent(dd.text.parentNode, 'click', wdd._clickEvent.pbind(dd));
+            addEvent(dd.arrow, 'mousedown', wdd._arrDownEvent.pbind(dd));
+
+            if (dd.opts.noMultiSelect && dd.opts.chosen) {
+                wdd.choose(dd.id, false, dd.opts.chosen, true);
             }
         },
-        select: function(t, d, i) {
-            var s = cur.wdd[t],
-                r = i ? i[0] : s.over,
-                a = r + "_";
-            if (s.opts.noMultiSelect) return this.choose(t, d, i);
-            if (i || (i = s.shown[a]), void 0 !== r && !s.selected[a] && i) {
-                if (s.over = !1, s.opts.onItemSelect && s.opts.onItemSelect(i) === !1) return d && cancelEvent(d);
-                s.selected[a] = i, ++s.selCount, s.full = s.opts.maxItems && s.selCount >= s.opts.maxItems || i[8] > 0, s.bubbles.appendChild(ce("div", {
-                    id: "wddb" + a + t,
-                    className: "summary_tab_sel fl_l",
-                    innerHTML: '<div class="summary_tab2">  <table cellspacing="0" cellpadding="0"><tr>    <td><div class="summary_tab3">      <nobr>' + i[1] + '</nobr>    </div></td>    <td><div class="summary_tab_x" onmousedown="WideDropdown.deselect(\'' + t + "', '" + clean(r + "") + "', event)\"></div></td>  </table></div>"
-                })), val(s.text, ""), s.text.blur(), e._textEvent({
-                    target: s.text,
-                    type: s.text.focused ? "focus" : "blur"
-                }), s.full ? (hide(s.add), s.arrow.style.visibility = "hidden") : e._updateList(s, !0);
-                var n = s.opts.onChange ? s.opts.onChange(1, r) : !0,
-                    o = 1 === n;
-                return 0 !== n && setTimeout(e._updateImgs.pbind(s, o), 0), d && cancelEvent(d)
+
+        _updateList: function(dd, force, q) {
+            if (!dd.cache['']) return;
+
+            q = q !== undefined ? q : trim(val(dd.text));
+            if (dd.lastQ === q && !force) {
+                wdd._showList(dd);
+                return;
             }
-        },
-        updimgs: function(t) {
-            var d = cur.wdd[t],
-                i = d.opts.onChange ? d.opts.onChange(0) : !0,
-                s = 1 === i;
-            0 !== i && setTimeout(e._updateImgs.pbind(d, s), 0)
-        },
-        deselect: function(t, d, i) {
-            var s = cur.wdd[t]; {
-                if (!s.disabled) {
-                    if (void 0 === d) {
-                        s.selCount = s.full = 0, s.arrow.style.visibility = "hidden";
-                        for (var r in s.selected) delete s.selected[r];
-                        val(s.bubbles, ""), s.text.blur(), hide(s.add), show(s.text), s.text.style.width = s.partWidth - s.textDelta - 2 + "px", e._updateList(s, !0), e._updateImgs(s)
-                    } else {
-                        var a = d + "_";
-                        if (!s.selected[a]) return;
-                        delete s.selected[a], re("wddb" + a + t), s.selCount && --s.selCount, s.full = 0, s.arrow.style.visibility = "", s.text.blur(), s.selCount ? (show(s.add), hide(s.text)) : (hide(s.add), show(s.text), e._updateTextInput(s)), e._updateList(s, !0)
+            dd.lastQ = q;
+            clearTimeout(dd.requestTimer);
+
+            var custom = dd.opts.custom,
+                data = custom && custom(q);
+            if (data) {
+                wdd._renderList(dd, data);
+            } else {
+                data = dd.cache[q];
+                if (data) {
+                    wdd._renderList(dd, data, true);
+                } else {
+                    data = wdd._search(dd, q);
+                    wdd._renderList(dd, data, !dd.opts.url);
+                    if (dd.opts.url) {
+                        dd.requestTimer = setTimeout(wdd._requestList.pbind(dd), dd.opts.requestWait);
                     }
-                    var n = s.opts.onChange ? s.opts.onChange(-1, d) : !0,
-                        o = 1 === n;
-                    return 0 !== n && setTimeout(e._updateImgs.pbind(s, o), 0), i ? cancelEvent(i) : void 0
                 }
-                if (i) return cancelEvent(i)
             }
         },
-        focus: function(t) {
-            e._focusText(cur.wdd[t])
+        _index: function(dd) {
+            var def = dd.opts.defaultItems,
+                items = dd.opts.items,
+                defIds = [],
+                i, l;
+            for (i = 0, l = def.length; i < l; ++i) {
+                defIds.push(i);
+            }
+            dd.cache[''] = defIds;
+
+            for (i = 0, l = items.length; i < l; ++i) {
+                wdd._indexItem(dd, i, items[i]);
+            }
         },
-        clear: function(t) {
-            var d = cur.wdd[t];
-            val(d.text, ""), d.text.blur(), e._textEvent({
-                target: d.text,
-                type: d.text.focused ? "focus" : "blur"
-            }), e._updateList(d, !0)
+        _indexItem: function(dd, k, v) {
+            var i, j, l, words = '',
+                keys = dd.opts.searchKeys,
+                indexedKeys = {};
+            for (i = 0, l = keys.length; i < l; ++i) {
+                words += ' ' + (v[keys[i]] || '').replace(dd.opts.delimeter, ' ').replace(/<[^>]*>/g, '');
+            }
+            words += (parseLatin(words) || '') + (parseCyr(words) || '');
+            words = trim(words.toLowerCase()).split(/\s+/);
+            for (i = 0; i < words.length; i++) {
+                for (j = 1; j <= dd.opts.wholeIndex; j++) {
+                    var key = words[i].substr(0, j);
+                    if (indexedKeys[key]) continue;
+                    if (!dd.index[key]) dd.index[key] = [];
+                    dd.index[key].push(k);
+                    indexedKeys[key] = 1;
+                }
+            }
         },
-        disable: function(t, d) {
-            var i = cur.wdd[t];
-            d && !i.disabled ? (i.disabled = !0, addClass(t, "wdd_disabled")) : !d && i.disabled && (i.disabled = !1, removeClass(t, "wdd_disabled"), e._updateList(i, !0))
+        _search: function(dd, q) {
+            q = trim(q.toLowerCase().replace(dd.opts.delimeter, ' '));
+            if (!q) {
+                return dd.cache[''];
+            }
+
+            var whole = dd.opts.wholeIndex;
+            if (q.length <= whole && q.indexOf(' ') == -1) {
+                return dd.index[q] || [];
+            }
+
+            q = q.split(' ');
+            var minSize = 0,
+                minQ = '',
+                i, l, res;
+            for (i = 0, l = q.length; i < l; ++i) {
+                var part = q[i].substr(0, whole);
+                var items = dd.index[part];
+                if (!minQ || !items || items.length < minSize) {
+                    minSize = items ? items.length : 0;
+                    minQ = part;
+                }
+                if (!minSize) return [];
+            }
+
+            var res = [],
+                keys = dd.opts.searchKeys,
+                len = keys.length,
+                qlen = q.length;
+            for (i = 0, l = dd.index[minQ].length; i < l; ++i) {
+                var v = dd.index[minQ][i],
+                    item = dd.opts.items[v];
+                var fail = false,
+                    words = '',
+                    key;
+                for (var j = 0; j < len; ++j) {
+                    words += ' ' + (item[keys[j]] || '').replace(dd.opts.delimeter, ' ').replace(/<[^>]*>/g, '');
+                }
+                words += (parseLatin(words) || '') + (parseCyr(words) || '');
+                words = words.toLowerCase();
+                for (j = 0; j < qlen; ++j) {
+                    if (words.indexOf(' ' + q[j]) == -1) {
+                        fail = true;
+                        break;
+                    }
+                }
+                if (!fail) {
+                    res.push(v);
+                }
+            }
+            return res;
+        },
+        _requestList: function(dd) {
+            var q = trim(val(dd.text));
+            if (!q) return;
+
+            ajax.post(dd.opts.url, extend({
+                str: q
+            }, dd.opts.params || {}), {
+                onDone: function(data) {
+                    dd.cache[q] = wdd._search(dd, q).concat(data);
+                    wdd._renderList(dd, data, true, true);
+                }
+            });
+        },
+        _renderList: function(dd, data, showEmpty, append) {
+            var html = [],
+                shown = 0,
+                q = dd.lastQ,
+                hl = wdd._highlight,
+                markfn = dd.opts.itemMark;
+            if (dd.outdated) append = false;
+            if (append) {
+                shown = (dd.list.__uiScroll__ ? dd.list.__uiScroll__.content : dd.list).childNodes.length;
+            } else {
+                dd.shown = {};
+                shown = 0;
+            }
+            for (var i = 0, l = data.length; i < l; ++i) {
+                var item = data[i];
+                if (!isArray(item)) {
+                    item = dd.opts.items[item];
+                }
+
+                var id = item[0] + '',
+                    id_ = id + '_',
+                    cl = '';
+                if (dd.selected[id_] || dd.shown[id_] || dd.selCount && item[8] > 0) continue;
+                dd.shown[id_] = item;
+
+                var onlineClass = isArray(item[3]) ? '' : ' ' + onlinePlatformClass(markfn(item));
+                var img = item[3] ? '<b class="fl_l wddi_thumb' + onlineClass + '"><img class="wddi_img" src="' + (isArray(item[3]) ? '/images/community_' + (window.devicePixelRatio >= 2 ? 100 : 50) + '.png' : item[3]) + '" /></b>' : '',
+                    cl;
+                if (shown) {
+                    cl = 'wddi';
+                } else {
+                    cl = 'wddi_over';
+                    dd.over = id;
+                }
+                var text = q && hl(item[1] || '', q) || (item[1] || ''),
+                    sub = q && hl(item[2] || '', q) || (item[2] || '');
+                html.push('\
+<div class="' + cl + '" onmousedown="WideDropdown.over(\'' + dd.id + '\', \'' + clean(id) + '\'); WideDropdown.select(\'' + dd.id + '\', event)" onmousemove="WideDropdown.over(\'' + dd.id + '\', \'' + clean(id) + '\')" id="wddi' + id + '_' + dd.id + '" onclick="">\
+  <div class="wddi_data">' + img + '\
+    <div class="wddi_text">' + text + '</div>\
+    <div class="wddi_sub">' + sub + '</div>\
+  </div>\
+</div>');
+                ++shown;
+            }
+            html = html.join('');
+            if (!shown && showEmpty) {
+                html = '<div class="wddi_no">' + (q ? dd.opts.noResult : dd.opts.introText) + '</div>';
+            }
+            if (append) {
+                (dd.list.__uiScroll__ ? dd.list.__uiScroll__.content : dd.list).innerHTML += html;
+            } else if (html) {
+                dd.outdated = false;
+                (dd.list.__uiScroll__ ? dd.list.__uiScroll__.content : dd.list).innerHTML = html;
+            } else {
+                dd.outdated = true;
+            }
+            if (!dd.outdated) {
+                dd.list.style.height = (shown > 5) ? '242px' : '';
+                wdd._showList(dd);
+                dd.scroll && dd.scroll.scrollTop();
+                setTimeout(wdd._checkScroll.pbind(dd), 0);
+            }
+            wdd._updatePos(dd);
+        },
+        _highlight: function(label, q) {
+            var terms = [escapeRE(q)],
+                termRus = parseLatin(q),
+                termLat = parseCyr(q);
+
+            if (termRus !== null) {
+                terms.push(escapeRE(termRus));
+            }
+            if (termLat !== null) {
+                terms.push(escapeRE(termLat));
+            }
+            var re = new RegExp('(?![^&;]+;)(?!<[^<>]*)((\\(*)(' + terms.join('|') + '))(?![^<>]*>)(?![^&;]+;)', 'gi');
+            return label.replace(re, '$2<span class="wdd_hl">$3</span>');
+        },
+        _checkScroll: function(dd) {
+            if (dd.scroll === void 0) {
+                dd.scroll = false;
+                stManager.add(['ui_common.css', 'ui_common.js'], function() {
+                    dd.scroll = new uiScroll(dd.list, {
+                        global: true
+                    });
+                });
+            }
+        },
+        _updatePos: function(dd) {
+            var mt = dd.opts.toup ? -getSize(dd.listWrap)[1] - (dd.opts.input && getSize(dd.opts.input)[1] || 0) : getSize(dd.listWrap.parentNode)[1];
+            dd.listWrap.style.marginTop = mt + 'px';
+        },
+        _showList: function(dd) {
+            if (!dd.text.focused || dd.disabled) return;
+            if (!isVisible(dd.listWrap)) {
+                ge(dd.listWrap).style.display = 'block';
+                dd.scroll && dd.scroll.update();
+                wdd._updateList(dd, true);
+            }
+            wdd._updatePos(dd);
+            addClass(dd.container, 'wdd_focused');
+        },
+        _hideList: function(dd) {
+            hide(dd.listWrap);
+            removeClass(dd.container, 'wdd_focused');
+        },
+        _updateImgs: function(dd, noAnim) {
+            var el = dd.img;
+            if (!dd.img) return;
+
+            noAnim = dd.opts.noAnim ? dd.opts.noAnim : noAnim;
+
+            var i = 0,
+                text = [],
+                imgs = [],
+                cnt = 0,
+                t;
+            for (var k in dd.selected) {
+                var item = dd.selected[k],
+                    img = item[3],
+                    href = item[4],
+                    onl = item[5],
+                    ids = item[6]; // item[7] is custom
+                if (isArray(img)) {
+                    for (var j = 0, l = img.length, el; j < l; ++j) {
+                        el = clone(item);
+                        el[0] = ids[j]; // for online status
+                        el[3] = img[j];
+                        el[4] = href[j];
+                        el[5] = onl[j];
+                        imgs.push(el);
+                    }
+                } else {
+                    imgs.push(item);
+                }
+            }
+            cnt = imgs.length;
+            for (var k in imgs) {
+                var item = imgs[k],
+                    img = item[3],
+                    href = item[4],
+                    cl, t, n, o, r;
+                if (cnt > 3) {
+                    ++i;
+                    cl = 'wdd_img_tiny ' + ((i == 1 || i == 4) ? 'fl_l' : 'fl_r');
+                } else if (cnt == 3) {
+                    cl = (i++ ? 'wdd_img_tiny fl_r' : 'wdd_img_half fl_l');
+                } else if (cnt == 2) {
+                    cl = 'wdd_img_half ' + (i++ ? 'fl_r' : 'fl_l');
+                } else {
+                    cl = 'wdd_img_full';
+                }
+                text.push(href ? ('<a href="' + href + '" class="' + cl + '">') : '<div class="' + cl + '">');
+                text.push('<img class="wdd_img" src="' + img + '" />');
+                text.push(href ? '</a>' : '</div>');
+                if (i >= 4) break;
+            }
+            t = text.join('') || dd.opts.defImgText || '';
+            dd.imgRand = false;
+            if (noAnim === true) {
+                val(dd.img, t);
+            } else {
+                o = ce('div', {
+                    className: 'wdd_img_layer',
+                    innerHTML: t
+                });
+                r = dd.imgRand = Math.random();
+                for (n = domFC(dd.img); n && n.className == 'wdd_img_layer';) n = domNS(n);
+                animate(n ? dd.img.insertBefore(o, n) : dd.img.appendChild(o), {
+                    opacity: 1
+                }, 150, function() {
+                    if (dd.imgRand === r) {
+                        val(dd.img, t);
+                    }
+                });
+            }
+        },
+
+        init: function(el, opts) {
+            if (!(el = ge(el))) return false;
+
+            stManager.add(['notifier.css', 'notifier.js']); // for black scrollbar
+
+            var id = el.id;
+            if (!el.id) return false;
+
+            if (!cur.wdd) {
+                cur.wdd = {};
+            } else if (cur.wdd[id]) {
+                return false;
+            }
+
+            opts = extend({ // defaults
+                cacheLength: 10000,
+                requestWait: 300,
+                wholeIndex: 2,
+                maxItems: 29,
+                noAnim: false,
+                searchKeys: [1],
+                defaultItems: opts.items || [],
+                items: opts.defaultItems || [],
+                itemMark: function(item) {
+                    return intval(item[5]);
+                }
+            }, opts || {});
+
+            var dd = {
+                id: id,
+                container: el,
+                text: geByClass1('wdd_text', el),
+                arrow: geByClass1('wdd_arr', el),
+                img: opts.img && ge(opts.img),
+                opts: opts,
+                selected: {},
+                selCount: 0,
+                index: {},
+                delimeter: /[\s\(\)\.,\-]+/g,
+                cache: {}
+            };
+            if (dd.text.ph = dd.text.getAttribute('placeholder') || '') {
+                el.setAttribute('placeholder', '');
+            }
+            dd.text.dd = id;
+            if (opts.toup) {
+                addClass(el, 'wdd_toup');
+            }
+
+            dd.add = el.insertBefore(ce('div', {
+                className: 'wdd_add fl_l',
+                innerHTML: '\
+<div class="wdd_add2">\
+  <table cellspacing="0" cellpadding="0"><tr>\
+    <td><div class="wdd_add3">\
+      <nobr>' + getLang('global_add') + '</nobr>\
+    </div></td>\
+    <td><div class="wdd_add_plus" onmousedown="WideDropdown.focus(\'' + id + '\')"></div></td>\
+  </table>\
+</div>'
+            }), dd.text);
+            dd.bubbles = el.insertBefore(ce('div', {
+                className: 'wdd_bubbles'
+            }), dd.add);
+            dd.listWrap = el.insertBefore(ce('div', {
+                className: 'wdd_lwrap',
+                innerHTML: '<div class="wdd_list"></div>'
+            }, {
+                display: 'none',
+                width: opts.width || getSize(el)[0]
+            }), el.firstChild);
+            dd.list = geByClass1('wdd_list', dd.listWrap);
+
+            if (!browser.opera_mobile) {
+                dd.text.active = val(dd.text) ? 1 : '';
+                dd.text.getValue = wdd._getTextValue.bind(dd.text);
+                addEvent(dd.text, 'focus blur ' + (browser.opera ? 'keypress' : 'keydown'), wdd._textEvent)
+            }
+
+            setTimeout(wdd._afterInit.pbind(dd), 0);
+
+            return (cur.wdd[id] = dd);
+        },
+        initSelect: function(el, opts) {
+            if (!(el = ge(el))) return false;
+
+            stManager.add(['notifier.css', 'notifier.js']); // for black scrollbar
+
+            var id = el.id;
+            if (!el.id) return false;
+
+            if (!cur.wdd) {
+                cur.wdd = {};
+            } else if (cur.wdd[id]) {
+                return false;
+            }
+
+            opts = extend({ // defaults
+                cacheLength: 10000,
+                requestWait: 300,
+                wholeIndex: 2,
+                maxItems: 29,
+                searchKeys: [1],
+                defaultItems: opts.items || [],
+                items: opts.defaultItems || [],
+                itemMark: function(item) {
+                    return intval(item[5]);
+                }
+            }, opts || {});
+
+            var dd = {
+                id: id,
+                container: el,
+                text: opts.text || geByClass1('wdd_text', el),
+                opts: opts,
+                selected: {},
+                selCount: 0,
+                index: {},
+                delimeter: /[\s\(\)\.,\-]+/g,
+                cache: {}
+            };
+            dd.text.dd = id;
+            if (opts.toup) {
+                addClass(el, 'wdd_toup');
+            }
+
+            dd.listWrap = el.insertBefore(ce('div', {
+                className: 'wdd_lwrap',
+                innerHTML: '<div class="wdd_list"></div>'
+            }, {
+                display: 'none',
+                width: opts.width || getSize(el)[0]
+            }), el.firstChild);
+            dd.list = geByClass1('wdd_list', dd.listWrap);
+
+            setTimeout(wdd._index.pbind(dd), 0);
+
+            return (cur.wdd[id] = dd);
+        },
+        deinit: function(el, c) {
+            if (!c) c = cur;
+            if (!c.wdd || !(el = ge(el))) return false;
+
+            var id = el.id;
+            if (!el.id) return false;
+
+            var dd = c.wdd[id];
+            if (!dd) return false;
+
+            cleanElems(dd.text, domPN(dd.text));
+            delete(c.wdd[id]);
+
+            return true;
+        },
+        items: function(id, def, list) {
+            var dd = cur.wdd[id];
+            if (!list) list = def;
+            extend(dd, {
+                index: {},
+                cache: {}
+            });
+            extend(dd.opts, {
+                defaultItems: def || [],
+                items: list || []
+            });
+            wdd._index(dd);
+            wdd._updateList(dd, true);
+        },
+        over: function(id, item, keys) {
+            var dd = cur.wdd[id];
+            if (dd.over == item) return;
+            dd.over && replaceClass('wddi' + dd.over + '_' + id, 'wddi_over', 'wddi');
+            dd.over = item;
+            var el = ge('wddi' + dd.over + '_' + id);
+            replaceClass(el, 'wddi', 'wddi_over');
+            keys && dd.scroll && dd.scroll.scrollIntoView(el.firstElementChild || el);
+        },
+        choose: function(id, e, item, noFire) {
+            var dd = cur.wdd[id],
+                sel = item ? item[0] : dd.over,
+                sel_ = sel + '_';
+            if (!item) item = dd.shown[sel_];
+            if (sel === undefined || !item) return;
+
+            dd.over = false;
+
+            if (dd.opts.onItemSelect && dd.opts.onItemSelect(item) === false) {
+                return e && cancelEvent(e);
+            }
+
+            dd.chosen = item;
+
+            val(dd.text, (dd.text.tagName == 'INPUT' ? unclean(item[1]) : item[1]));
+            dd.text.style.color = '';
+            dd.text.blur();
+            wdd._textEvent({
+                target: dd.text,
+                type: dd.text.focused ? 'focus' : 'blur'
+            });
+
+            var res = dd.opts.onChange && !noFire ? dd.opts.onChange(1, sel) : true,
+                noAnim = (res === 1);
+            if (res !== 0) {
+                setTimeout(wdd._updateImgs.pbind(dd, noAnim), 0);
+            }
+
+            return e && cancelEvent(e);
+        },
+        select: function(id, e, item) {
+            var dd = cur.wdd[id],
+                sel = item ? item[0] : dd.over,
+                sel_ = sel + '_';
+            if (dd.opts.noMultiSelect) {
+                return this.choose(id, e, item);
+            }
+            if (!item) item = dd.shown[sel_];
+            if (sel === undefined || dd.selected[sel_] || !item) return;
+
+            dd.over = false;
+
+            if (dd.opts.onItemSelect && dd.opts.onItemSelect(item) === false) {
+                return e && cancelEvent(e);
+            }
+
+            dd.selected[sel_] = item;
+            ++dd.selCount;
+            dd.full = (dd.opts.maxItems && dd.selCount >= dd.opts.maxItems || item[8] > 0);
+
+            dd.bubbles.appendChild(ce('div', {
+                id: 'wddb' + sel_ + id,
+                className: 'summary_tab_sel fl_l',
+                innerHTML: '\
+<div class="summary_tab2">\
+  <table cellspacing="0" cellpadding="0"><tr>\
+    <td><div class="summary_tab3">\
+      <nobr>' + item[1] + '</nobr>\
+    </div></td>\
+    <td><div class="summary_tab_x" onmousedown="WideDropdown.deselect(\'' + id + '\', \'' + clean(sel + '') + '\', event)"></div></td>\
+  </table>\
+</div>'
+            }));
+
+            val(dd.text, '');
+            dd.text.blur();
+            wdd._textEvent({
+                target: dd.text,
+                type: dd.text.focused ? 'focus' : 'blur'
+            });
+            if (dd.full) {
+                hide(dd.add);
+                dd.arrow.style.visibility = 'hidden';
+            } else {
+                wdd._updateList(dd, true);
+            }
+
+            var res = dd.opts.onChange ? dd.opts.onChange(1, sel) : true,
+                noAnim = (res === 1);
+            if (res !== 0) {
+                setTimeout(wdd._updateImgs.pbind(dd, noAnim), 0);
+            }
+
+            return e && cancelEvent(e);
+        },
+        updimgs: function(id) {
+            var dd = cur.wdd[id],
+                res = dd.opts.onChange ? dd.opts.onChange(0) : true,
+                noAnim = (res === 1);
+            if (res !== 0) {
+                setTimeout(wdd._updateImgs.pbind(dd, noAnim), 0);
+            }
+        },
+        deselect: function(id, sel, e) {
+            var dd = cur.wdd[id];
+            if (dd.disabled) {
+                if (e) return cancelEvent(e);
+                return;
+            }
+            if (sel === undefined) {
+                dd.selCount = dd.full = 0;
+                dd.arrow.style.visibility = 'hidden';
+                for (var i in dd.selected) {
+                    delete(dd.selected[i]);
+                }
+                val(dd.bubbles, '');
+                dd.text.blur();
+                hide(dd.add);
+                show(dd.text);
+                dd.text.style.width = (dd.partWidth - dd.textDelta - 2) + 'px';
+                wdd._updateList(dd, true);
+                wdd._updateImgs(dd);
+            } else {
+                var sel_ = sel + '_';
+                if (!dd.selected[sel_]) return;
+
+                delete(dd.selected[sel_]);
+                re('wddb' + sel_ + id);
+
+                if (dd.selCount) {
+                    --dd.selCount;
+                }
+                dd.full = 0;
+                dd.arrow.style.visibility = '';
+
+                dd.text.blur();
+                if (dd.selCount) {
+                    show(dd.add);
+                    hide(dd.text)
+                } else {
+                    hide(dd.add);
+                    show(dd.text);
+                    wdd._updateTextInput(dd);
+                }
+
+                wdd._updateList(dd, true);
+            }
+
+            var res = dd.opts.onChange ? dd.opts.onChange(-1, sel) : true,
+                noAnim = (res === 1);
+            if (res !== 0) {
+                setTimeout(wdd._updateImgs.pbind(dd, noAnim), 0);
+            }
+
+            if (e) return cancelEvent(e);
+        },
+        focus: function(id) {
+            wdd._focusText(cur.wdd[id]);
+        },
+        clear: function(id) {
+            var dd = cur.wdd[id];
+            val(dd.text, '');
+            dd.text.blur();
+            wdd._textEvent({
+                target: dd.text,
+                type: dd.text.focused ? 'focus' : 'blur'
+            });
+            wdd._updateList(dd, true);
+        },
+        disable: function(id, value) {
+            var dd = cur.wdd[id];
+            if (value && !dd.disabled) {
+                dd.disabled = true;
+                addClass(id, 'wdd_disabled');
+            } else if (!value && dd.disabled) {
+                dd.disabled = false;
+                removeClass(id, 'wdd_disabled');
+                wdd._updateList(dd, true);
+            }
         }
     };
-    window.WideDropdown = e
-}();
+
+    window.WideDropdown = wdd;
+})();
+
 try {
-    stManager.done("wide_dd.js")
+    stManager.done('wide_dd.js');
 } catch (e) {}

@@ -1,744 +1,1111 @@
 var AppsCheck = {
+
     init: function() {
         extend(cur, {
-            aTabs: ge("apps_tabs"),
-            aSubTabs: ge("apps_subtabs")
-        }), uiTabs.hideProgress(cur.aTabs), uiTabs.hideProgress(cur.aSubTabs), "reports" != cur.section && val("tab_counter_" + cur.section, cur.totalCount && cur.totalCount < 100 ? cur.totalCount : ""), cur.nav.push(function(e, o, t) {
-            return void 0 === e[0] && e.act ? (this.switchSection(t.act), !1) : void 0
-        }.bind(this)), "comments" == cur.section && (each(geByTag("textarea", ge("apps_check_content")), function() {
-            placeholderSetup(this, {
-                back: !0
-            })
-        }), removeEvent(document, "click", this.hideEditPostReply), addEvent(document, "click", this.hideEditPostReply))
-    },
-    switchNavTab: function(e, o, t) {
-        if (e != cur.section) {
-            var n = ge("nav_tab_" + e);
-            if (n) {
-                var a = geByClass("app_tab_selected", ge("apps_nav_tabs"));
-                for (var c in a) a[c].className = "app_tab";
-                n.className = "app_tab_selected"
+            aTabs: ge('apps_tabs'),
+            aSubTabs: ge('apps_subtabs')
+        });
+
+        uiTabs.hideProgress(cur.aTabs);
+        uiTabs.hideProgress(cur.aSubTabs);
+        cur.section != 'reports' && val('tab_counter_' + cur.section, cur.totalCount && cur.totalCount < 100 ? cur.totalCount : '');
+
+        cur.nav.push((function(changed, old, n) {
+            if (changed[0] === undefined && changed['act']) {
+                this.switchSection(n['act']);
+                return false;
             }
-            return show("apps_check_progress"), nav.change({
-                act: e
-            }), !1
+        }).bind(this));
+
+        if (cur.section == 'comments') {
+            each(geByTag('textarea', ge('apps_check_content')), function() {
+                placeholderSetup(this, {
+                    back: true
+                });
+            });
+            removeEvent(document, 'click', this.hideEditPostReply);
+            addEvent(document, 'click', this.hideEditPostReply);
         }
     },
+
+    switchNavTab: function(tab, event, noCache) {
+        if (tab == cur.section) return;
+        var el = ge('nav_tab_' + tab);
+        if (el) {
+            var tabs = geByClass('app_tab_selected', ge('apps_nav_tabs'));
+            for (var i in tabs) {
+                tabs[i].className = 'app_tab';
+            }
+            el.className = 'app_tab_selected';
+        }
+        show('apps_check_progress');
+        nav.change({
+            act: tab
+        });
+        return false;
+    },
+
     switchSection: function(act) {
-        ajax.post("apps_check", {
+        ajax.post('apps_check', {
             act: act,
             load: 1
         }, {
             onDone: function(content, script, summary, title, nav_tabs) {
-                if (hide("apps_check_progress"), ge("apps_check_content").innerHTML = content, script) try {
-                    eval(script)
-                } catch (e) {
-                    console.error(e.stack), console.log(script)
+                hide('apps_check_progress');
+                ge('apps_check_content').innerHTML = content;
+                if (script) {
+                    try {
+                        eval(script);
+                    } catch (e) {
+                        console.error(e.stack);
+                        console.log(script);
+                    }
                 }
-                summary && (ge("apps_summary").innerHTML = summary), title && setDocumentTitle(replaceEntities(stripHTML(title))), nav_tabs ? (ge("apps_nav_tabs").innerHTML = nav_tabs, show("apps_nav_tabs")) : (ge("apps_nav_tabs").innerHTML = "", hide("apps_nav_tabs")), AppsCheck.hideError(), "requests" != act ? extend(nav.objLoc, {
-                    act: act
-                }) : delete nav.objLoc.act, delete nav.objLoc.mid, delete nav.objLoc.offset, nav.setLoc(nav.objLoc);
+                if (summary) ge('apps_summary').innerHTML = summary;
+                if (title) setDocumentTitle(replaceEntities(stripHTML(title)));
+                if (nav_tabs) {
+                    ge('apps_nav_tabs').innerHTML = nav_tabs;
+                    show('apps_nav_tabs');
+                } else {
+                    ge('apps_nav_tabs').innerHTML = '';
+                    hide('apps_nav_tabs');
+                }
+                AppsCheck.hideError();
+                if (act != 'requests') {
+                    extend(nav.objLoc, {
+                        act: act
+                    });
+                } else {
+                    delete nav.objLoc.act;
+                }
+                delete nav.objLoc.mid;
+                delete nav.objLoc.offset;
+                nav.setLoc(nav.objLoc);
                 var box = curBox();
-                box && box.hide()
+                if (box) {
+                    box.hide();
+                }
             },
             onFail: AppsCheck.showError
-        })
+        });
     },
-    showError: function(e) {
-        hide("apps_check_progress");
-        var o = ge("apps_check_error");
-        return show("apps_check_error_wrap"), cur.errorShown = !0, o.innerHTML = e, scrollToTop(200), !0
+
+    showError: function(error) {
+        hide('apps_check_progress');
+        var checkError = ge('apps_check_error');
+        show('apps_check_error_wrap');
+        cur.errorShown = true;
+        checkError.innerHTML = error;
+        scrollToTop(200);
+        return true;
     },
+
     hideError: function() {
-        cur.errorShown && (hide("apps_check_error_wrap"), cur.errorShown = !1)
+        if (cur.errorShown) {
+            hide('apps_check_error_wrap');
+            cur.errorShown = false;
+        }
     },
+
     changeSummary: function() {
-        var e = ge("apps_summary");
-        if ("blocked" == cur.section || "requests" == cur.section || "comments" == cur.section || "reports" == cur.section) {
-            var o = cur.totalCount ? langNumeric(cur.totalCount, cur.summaryLang.n_requests, !0) : cur.summaryLang.no_requests;
-            if (cur.editAnswers && (o += cur.editAnswers), "reports" == cur.section) {
-                var t = cur.all_reports ? cur.summaryLang.unverified_apps : cur.summaryLang.all_apps;
-                o += '<span class="divider">|</span><span class="app_check_actions"><a href="#" onclick="AppsCheck.switchReports(); return false;">' + t + "</a></span>"
+        var sum = ge('apps_summary');
+        if (cur.section == 'blocked' || cur.section == 'requests' || cur.section == 'comments' || cur.section == 'reports') {
+            var res = cur.totalCount ? langNumeric(cur.totalCount, cur.summaryLang['n_requests'], true) : cur.summaryLang['no_requests'];
+            if (cur.editAnswers) res += cur.editAnswers;
+            if (cur.section == 'reports') {
+                var label = cur.all_reports ? cur.summaryLang['unverified_apps'] : cur.summaryLang['all_apps'];
+                res += '<span class="divider">|</span><span class="app_check_actions"><a href="#" onclick="AppsCheck.switchReports(); return false;">' + label + '</a></span>'
             }
-            e.innerHTML = o, ge("tab_counter_" + cur.section) && (ge("tab_counter_" + cur.section).innerHTML = cur.tabCount ? "+" + cur.tabCount : "", toggleClass(ge("tab_" + cur.section), "count", !!cur.tabCount))
+            sum.innerHTML = res;
+            if (ge('tab_counter_' + cur.section)) {
+                ge('tab_counter_' + cur.section).innerHTML = (cur.tabCount) ? '+' + cur.tabCount : '';
+                toggleClass(ge('tab_' + cur.section), 'count', !!cur.tabCount);
+            }
         }
     },
-    changeAutoAnswer: function(e) {
-        var o = unclean(cur.autoanswers[e]);
-        if ("comments" == cur.section) {
+
+    changeAutoAnswer: function(id) {
+        var val = unclean(cur.autoanswers[id]);
+        if (cur.section == 'comments') {
             if (cur.editing) {
-                var t = ge("reply_field" + cur.editing);
-                t.value = o, t.focus()
+                var field = ge('reply_field' + cur.editing);
+                field.value = val;
+                field.focus();
             }
-        } else ge("decline_comment").value = o
-    },
-    actsOver: function(e) {
-        if (vk.id) {
-            var o = ge("actions" + e);
-            o && (o.timeout ? (clearTimeout(o.timeout), removeAttr(o, "timeout")) : fadeIn(o, 200))
+        } else {
+            ge('decline_comment').value = val;
         }
     },
-    actsOut: function(e) {
-        if (vk.id) {
-            var o = ge("actions" + e);
-            o && (o.timeout = setTimeout(function() {
-                removeAttr(o, "timeout"), fadeOut(o, 200)
-            }, 1))
+
+    actsOver: function(post) {
+        if (!vk.id) return;
+        var acts = ge('actions' + post);
+        if (!acts) return;
+        if (acts.timeout) {
+            clearTimeout(acts.timeout);
+            removeAttr(acts, 'timeout');
+        } else {
+            fadeIn(acts, 200);
         }
     },
-    declineRequest: function(e, o) {
-        return o = o || "", !showBox("apps_check", {
-            act: "decline_box",
-            aid: e,
+
+    actsOut: function(post) {
+        if (!vk.id) return;
+        var acts = ge('actions' + post);
+        if (!acts) return;
+        acts.timeout = setTimeout(function() {
+            removeAttr(acts, 'timeout');
+            fadeOut(acts, 200);
+        }, 1);
+    },
+
+    declineRequest: function(id, platform) {
+        platform = platform || '';
+        return !showBox('apps_check', {
+            act: 'decline_box',
+            aid: id,
             from: cur.section,
-            platform: o
+            platform: platform
         }, {
             cache: 1,
             params: {
-                width: "500px"
+                width: '500px'
             }
-        })
+        });
     },
-    doDeclineRequest: function(e, o, t) {
-        cur.deletingRequest || (cur.deletingRequest = !0, o.showProgress(), t = t || "", ajax.post("apps_check", {
-            act: "reports" == cur.section ? "disable" : "a_decline_request",
-            aid: e,
+
+    doDeclineRequest: function(id, box, platform) {
+        if (cur.deletingRequest) return;
+        cur.deletingRequest = true;
+        box.showProgress();
+        platform = platform || '';
+        ajax.post('apps_check', {
+            act: (cur.section == 'reports') ? 'disable' : 'a_decline_request',
+            aid: id,
             rule: cur.selectedRules,
-            platform: t,
-            comment: ge("decline_comment").value,
+            platform: platform,
+            comment: ge('decline_comment').value,
             hash: cur.hashes.decline_hash,
-            do_return: isChecked("return_check")
+            do_return: isChecked('return_check')
         }, {
-            onDone: function(t, n) {
-                delete cur.deletingRequest, o && o.hide(), n && setTimeout(showFastBox({
-                    title: t
-                }, n, getLang("global_close")).hide, 2e3), slideUp(ge("app" + e), 200, function() {
-                    if (re("app" + e), cur.totalCount--, cur.tabCount--, AppsCheck.changeSummary(), !cur.totalCount) {
-                        var o = cur.summaryLang.no_requests_msg;
-                        ge("apps_check_content").innerHTML = '<div class="no_rows" id="no_apps">' + o + "</div>"
+            onDone: function(title, text) {
+                delete cur.deletingRequest;
+                if (box) box.hide();
+                if (text) setTimeout(showFastBox({
+                    title: title
+                }, text, getLang('global_close')).hide, 2000);
+                slideUp(ge('app' + id), 200, function() {
+                    re('app' + id);
+                    cur.totalCount--;
+                    cur.tabCount--;
+                    AppsCheck.changeSummary();
+                    if (!cur.totalCount) {
+                        var msg = cur.summaryLang['no_requests_msg'];
+                        ge('apps_check_content').innerHTML = '<div class="no_rows" id="no_apps">' + msg + '</div>';
                     }
-                })
+                });
             },
             onFail: function() {
-                delete cur.deletingRequest, o && o.hide()
+                delete cur.deletingRequest;
+                if (box) box.hide();
             }
-        }))
+        });
     },
-    approveRequest: function(e, o) {
-        return o = o || "", !showBox("apps_check", {
-            act: "approve_box",
-            aid: e,
-            platform: o
+
+    approveRequest: function(id, platform) {
+        platform = platform || '';
+        return !showBox('apps_check', {
+            act: 'approve_box',
+            aid: id,
+            platform: platform
         }, {
             cache: 1
-        })
+        });
     },
-    changeType: function(e, o, t) {
-        o.innerHTML = '<img src="/images/upload.gif" />';
-        var n = {
-            act: "change_type",
-            aid: e,
+
+    changeType: function(aid, obj, newType) {
+        obj.innerHTML = '<img src="/images/upload.gif" />';
+        var params = {
+            act: 'change_type',
+            aid: aid,
             hash: cur.hashes.approve_hash
         };
-        t && (n.new_type = t), ajax.post("apps_check", n, {
-            onDone: function(e) {
-                o.innerHTML = e
+        if (newType) {
+            params['new_type'] = newType;
+        }
+        ajax.post('apps_check', params, {
+            onDone: function(text) {
+                obj.innerHTML = text;
             }
-        })
+        });
     },
-    doApproveRequest: function(e, o, t) {
-        cur.approvingRequest || (cur.approvingRequest = !0, o.showProgress(), t = t || "", ajax.post("apps_check", {
-            act: "a_approve_request",
-            aid: e,
+
+    doApproveRequest: function(id, box, platform) {
+        if (cur.approvingRequest) return;
+        cur.approvingRequest = true;
+        box.showProgress();
+        platform = platform || '';
+        ajax.post('apps_check', {
+            act: 'a_approve_request',
+            aid: id,
             hash: cur.hashes.approve_hash,
-            platform: t
+            platform: platform
         }, {
             onDone: function() {
-                delete cur.approvingRequest, o && o.hide(), slideUp(ge("app" + e), 200, function() {
-                    if (re("app" + e), cur.totalCount--, cur.tabCount--, AppsCheck.changeSummary(), !cur.totalCount) {
-                        var o = cur.summaryLang.no_requests_msg;
-                        ge("apps_check_content").innerHTML = '<div class="no_rows" id="no_apps">' + o + "</div>"
+                delete cur.approvingRequest;
+                if (box) box.hide();
+                slideUp(ge('app' + id), 200, function() {
+                    re('app' + id);
+                    cur.totalCount--;
+                    cur.tabCount--;
+                    AppsCheck.changeSummary();
+                    if (!cur.totalCount) {
+                        var msg = cur.summaryLang['no_requests_msg'];
+                        ge('apps_check_content').innerHTML = '<div class="no_rows" id="no_apps">' + msg + '</div>';
                     }
-                })
+                });
             },
             onFail: function() {
-                delete cur.approvingRequest, o && o.hide()
+                delete cur.approvingRequest;
+                if (box) box.hide();
             }
-        }))
+        });
     },
-    showReplies: function(e, o, t, n) {
-        buttonLocked(n) || (lockButton(n), ajax.post("apps_check", {
-            act: "a_get_comments",
-            id: e,
-            count: o,
-            comments_only: t,
+
+    showReplies: function(id, count, comments_only, btn) {
+        if (buttonLocked(btn)) return;
+        lockButton(btn);
+        ajax.post('apps_check', {
+            act: 'a_get_comments',
+            id: id,
+            count: count,
+            comments_only: comments_only,
             from: cur.section,
             hash: cur.hashes.comments_hash
         }, {
             cache: 1,
-            onDone: function(o) {
-                val("app_comments" + e, o)
+            onDone: function(replies) {
+                val('app_comments' + id, replies);
             },
-            onFail: unlockButton.pbind(n)
-        }))
+            onFail: unlockButton.pbind(btn)
+        });
     },
-    hideRow: function(e) {
-        slideUp(ge("app" + e), 200, function() {
-            if (re("app" + e), cur.totalCount--, cur.tabCount--, AppsCheck.changeSummary(), !cur.totalCount) {
-                var o = cur.summaryLang.no_requests_msg;
-                ge("apps_check_content").innerHTML = '<div class="no_rows" id="no_apps">' + o + "</div>"
+
+    hideRow: function(id) {
+        slideUp(ge('app' + id), 200, function() {
+            re('app' + id);
+            cur.totalCount--;
+            cur.tabCount--;
+            AppsCheck.changeSummary();
+            if (!cur.totalCount) {
+                var msg = cur.summaryLang['no_requests_msg'];
+                ge('apps_check_content').innerHTML = '<div class="no_rows" id="no_apps">' + msg + '</div>';
             }
-        }), ajax.post("apps_check", {
-            act: "a_hide_comment",
-            id: e,
+        });
+        ajax.post('apps_check', {
+            act: 'a_hide_comment',
+            id: id,
             hash: cur.hashes.hide_row_hash
-        })
+        });
     },
-    showEditReply: function(e) {
-        var o = ge("reply_field" + e);
-        return cur.editing === e ? void elfocus(o) : (autosizeSetup(o, {
+
+    showEditReply: function(post) {
+        var rf = ge('reply_field' + post);
+        if (cur.editing === post) {
+            elfocus(rf);
+            return;
+        }
+        autosizeSetup(rf, {
             minHeight: 32
-        }), this.hideEditPostReply(), show("replies_wrap" + e, "comm_answers" + e), hide("reply_link" + e), ge("reply_button" + e).onclick = this.sendReply.pbind(e), cur.editing = e, void elfocus(o))
+        });
+        this.hideEditPostReply();
+        show('replies_wrap' + post, 'comm_answers' + post);
+        hide('reply_link' + post);
+        ge('reply_button' + post).onclick = this.sendReply.pbind(post);
+        cur.editing = post;
+        elfocus(rf);
     },
+
     hideEditPostReply: function(e) {
-        if (cur.editing !== !1 && !isVisible(boxLayerBG) && !isVisible(layerBG)) {
-            var o = e && e.target ? e.target : {},
-                t = o.id;
-            if (cur.editing && (!e || !hasClass(o, "reply_link") && t != "reply_field" + cur.editing && "reply_to_link" != o.className)) {
-                var n = cur.editing;
-                cur.editing = !1;
-                var a = ge("reply_field" + n),
-                    c = trim(val(a));
-                if (browser.opera_mobile || browser.safari_mobile || c) return;
-                hide("comm_answers" + n);
-                var s = ge("reply_link" + n);
-                s && (show(s), hide("replies_wrap" + n)), a.blur(), a.active || setStyle(a, {
-                    height: 14
-                }), a.phonblur && a.phonblur()
+        if (cur.editing === false || isVisible(boxLayerBG) || isVisible(layerBG)) return;
+        var el = (e && e.target) ? e.target : {};
+        var id = el.id;
+        if (cur.editing) {
+            if (!e || !hasClass(el, 'reply_link') && id != 'reply_field' + cur.editing && el.className != 'reply_to_link') {
+                var post = cur.editing;
+                cur.editing = false;
+                var rf = ge('reply_field' + post),
+                    v = trim(val(rf));
+                if (browser.opera_mobile || browser.safari_mobile || v) return;
+                hide('comm_answers' + post);
+                var replyLink = ge('reply_link' + post);
+                if (replyLink) {
+                    show(replyLink);
+                    hide('replies_wrap' + post);
+                }
+                rf.blur();
+                if (!rf.active) {
+                    setStyle(rf, {
+                        height: 14
+                    });
+                }
+                if (rf.phonblur) rf.phonblur();
             }
         }
     },
-    checkTextLen: function(e, o, t) {
-        var n = trim(e.value).replace(/\n\n\n+/g, "\n\n");
-        if (e.lastLen !== n.length || t) {
-            var a = e.lastLen = n.length,
-                c = cur.options.max_post_len,
-                s = a - n.replace(/\n/g, "").length;
-            o = ge(o), a > c - 100 || s > 4 ? (show(o), a > c ? o.innerHTML = getLang("global_recommended_exceeded", a - c) : s > 4 ? o.innerHTML = getLang("global_recommended_lines", s - 4) : o.innerHTML = getLang("text_N_symbols_remain", c - a)) : hide(o)
+
+    checkTextLen: function(inp, warn, force) {
+        var val = trim(inp.value).replace(/\n\n\n+/g, '\n\n');
+        if (inp.lastLen === val.length && !force) return;
+
+        var realLen = inp.lastLen = val.length,
+            maxLen = cur.options.max_post_len;
+        var brCount = realLen - val.replace(/\n/g, '').length;
+
+        warn = ge(warn);
+        if (realLen > maxLen - 100 || brCount > 4) {
+            show(warn);
+            if (realLen > maxLen) {
+                warn.innerHTML = getLang('global_recommended_exceeded', realLen - maxLen);
+            } else if (brCount > 4) {
+                warn.innerHTML = getLang('global_recommended_lines', brCount - 4);
+            } else {
+                warn.innerHTML = getLang('text_N_symbols_remain', maxLen - realLen);
+            }
+        } else {
+            hide(warn);
         }
     },
-    sendReply: function(e) {
-        ajax.post("apps_check", {
-            act: "a_post_comment",
-            id: e,
-            msg: ge("reply_field" + e).getValue(),
+
+    sendReply: function(id) {
+        ajax.post('apps_check', {
+            act: 'a_post_comment',
+            id: id,
+            msg: ge('reply_field' + id).getValue(),
             hash: cur.hashes.post_comment_hash
         }, {
-            onDone: function(o) {
-                var t = ge("reply_field" + e);
-                t.value = "", t.blur(), t.phonblur(), AppsCheck.hideEditPostReply(), hide("reply_warn" + e), ge("app_comments" + e).innerHTML += o
+            onDone: function(comment) {
+                var rf = ge('reply_field' + id);
+                rf.value = '';
+                rf.blur();
+                rf.phonblur();
+                AppsCheck.hideEditPostReply();
+                hide('reply_warn' + id);
+                ge('app_comments' + id).innerHTML += comment;
             },
             showProgress: function() {
-                lockButton(ge("reply_button" + e))
+                lockButton(ge('reply_button' + id));
             },
             hideProgress: function() {
-                unlockButton(ge("reply_button" + e))
+                unlockButton(ge('reply_button' + id));
             }
-        })
+        });
     },
-    getCommentsPage: function(e) {
-        return ajax.post("apps_check", {
+
+    getCommentsPage: function(offset) {
+        ajax.post('apps_check', {
             act: cur.section,
             mid: cur.mid,
-            offset: e,
+            offset: offset,
             load: 1
         }, {
             cache: 1,
-            onDone: function(o, t, n) {
-                o && (ge("apps_check_content").innerHTML = o, n && (ge("apps_summary").innerHTML = n), nav.setLoc(extend(nav.objLoc, {
-                    offset: e
-                })))
+            onDone: function(res, script, summary) {
+                if (res) {
+                    ge('apps_check_content').innerHTML = res;
+                    if (summary) ge('apps_summary').innerHTML = summary;
+                    nav.setLoc(extend(nav.objLoc, {
+                        offset: offset
+                    }));
+                }
             },
             showProgress: function() {
-                show("apps_check_progress"), show("page_bottom_progress")
+                show('apps_check_progress');
+                show('page_bottom_progress');
             },
             hideProgress: function() {
-                hide("apps_check_progress"), hide("page_bottom_progress")
+                hide('apps_check_progress');
+                hide('page_bottom_progress');
             }
-        }), !1
+        });
+        return false;
     },
-    startCheck: function(e, o, t, n) {
-        cur.shownApp && this.finishCheck(cur.shownApp), n && buttonLocked(n) || (lockButton(n), cur.shownApp = e, ajax.post("apps_check", {
-            act: "start_check",
+
+    startCheck: function(app_id, width, height, obj) {
+        if (cur.shownApp) {
+            this.finishCheck(cur.shownApp);
+        }
+        if (obj && buttonLocked(obj)) return;
+        lockButton(obj);
+        cur.shownApp = app_id;
+        ajax.post('apps_check', {
+            act: 'start_check',
             uid: cur.viewer_id,
-            app_id: e,
+            app_id: app_id,
             hash: cur.hashes.check_hash
         }, {
-            onDone: function(a) {
-                if (unlockButton(n), a.length) showFastBox({
-                    onHide: AppsCheck.finishCheck.bind(AppsCheck, e)
-                }, a, getLang("global_cancel"));
-                else {
-                    var c, s = window,
-                        r = document.documentElement;
-                    if (s.pageNode) {
-                        var i = Math.max(intval(s.innerHeight), intval(r.clientHeight)) - 200;
-                        c = Math.min(t, i)
-                    } else c = t;
+            onDone: function(text) {
+                unlockButton(obj);
+                if (!text.length) {
+                    var w = window,
+                        de = document.documentElement,
+                        h;
+                    if (w.pageNode) {
+                        var maxHeight = Math.max(intval(w.innerHeight), intval(de.clientHeight)) - 200;
+                        h = Math.min(height, maxHeight);
+                    } else {
+                        h = height;
+                    }
                     showFastBox({
-                        width: o + sbWidth() + 1,
-                        bodyStyle: "padding: 0px;",
-                        onHide: AppsCheck.finishCheck.bind(AppsCheck, e)
-                    }, '<iframe src="app' + e + '?check=1" style="vertical-align: top;width: 100%; height: ' + c + 'px; border: none; overflow-x: hidden" frameborder="0" />', getLang("global_cancel"))
+                        width: width + sbWidth() + 1,
+                        bodyStyle: 'padding: 0px;',
+                        onHide: AppsCheck.finishCheck.bind(AppsCheck, app_id)
+                    }, '<iframe src="app' + app_id + '?check=1" style="vertical-align: top;width: 100%; height: ' + h + 'px; border: none; overflow-x: hidden" frameborder="0" />', getLang('global_cancel'));
+                } else {
+                    showFastBox({
+                        onHide: AppsCheck.finishCheck.bind(AppsCheck, app_id)
+                    }, text, getLang('global_cancel'));
                 }
             }
-        }))
+        });
     },
-    startCheckStandalone: function(e, o, t) {
-        cur.shownApp && this.finishCheck(cur.shownApp), cur.shownApp = e, showBox("apps_check", {
-            act: "start_check",
-            app_id: e,
-            platform: o,
+    startCheckStandalone: function(app_id, platform, obj) {
+        if (cur.shownApp) {
+            this.finishCheck(cur.shownApp);
+        }
+        cur.shownApp = app_id;
+        showBox('apps_check', {
+            act: 'start_check',
+            app_id: app_id,
+            platform: platform,
             uid: cur.viewer_id,
             hash: cur.hashes.check_hash
         }, {
             params: {
-                width: "400px",
-                bodyStyle: "padding: 20px; line-height: 160%;",
+                width: '400px',
+                bodyStyle: 'padding: 20px; line-height: 160%;',
                 dark: 1,
                 onHide: function() {
-                    AppsCheck.finishCheck(e)
+                    AppsCheck.finishCheck(app_id);
                 }
             }
-        })
+        });
     },
-    finishCheck: function(e) {
-        ajax.post("apps_check", {
-            act: "finish_check",
+
+    finishCheck: function(app_id) {
+        ajax.post('apps_check', {
+            act: 'finish_check',
             uid: cur.viewer_id,
             hash: cur.hashes.check_hash
         }, {
-            onDone: function(o) {
-                cur.shownApp == e && delete cur.shownApp
+            onDone: function(text) {
+                if (cur.shownApp == app_id) delete cur.shownApp;
             }
-        })
+        });
     },
-    toBlackList: function(e, o) {
-        cur.addingToBlacklist || (cur.addingToBlacklist = !0, ajax.post("apps_check", {
-            act: "to_blacklist",
-            id: e,
+
+    toBlackList: function(uid, id) {
+        if (cur.addingToBlacklist) return;
+        cur.addingToBlacklist = true;
+        ajax.post('apps_check', {
+            act: 'to_blacklist',
+            id: uid,
             hash: cur.hashes.blacklist_hash
         }, {
-            onDone: function(e) {
-                delete cur.addingToBlacklist, e && (ge("actions" + o).innerHTML = e)
+            onDone: function(text) {
+                delete cur.addingToBlacklist;
+                if (text) {
+                    ge('actions' + id).innerHTML = text;
+                }
             }
-        }))
+        });
     },
-    uncomplainApp: function(e) {
-        cur.box = showFastBox("", cur.summaryLang.uncomplain_text, cur.summaryLang.uncomplain_ok, function() {
-            AppsCheck.doUncomplainApp(e)
-        }, getLang("global_cancel"))
+
+    uncomplainApp: function(id) {
+        cur.box = showFastBox('', cur.summaryLang['uncomplain_text'], cur.summaryLang['uncomplain_ok'], function() {
+            AppsCheck.doUncomplainApp(id);
+        }, getLang('global_cancel'));
     },
-    doUncomplainApp: function(e) {
-        var o = curBox();
-        o.showProgress(), ajax.post("apps_check", {
-            act: "uncomplain",
-            id: e,
+
+    doUncomplainApp: function(id) {
+        var box = curBox();
+        box.showProgress();
+        ajax.post('apps_check', {
+            act: 'uncomplain',
+            id: id,
             hash: cur.hashes.uncomplain_hash
         }, {
-            onDone: function(t, n) {
-                o.hide(), setTimeout(showFastBox({
-                    title: t
-                }, n, getLang("global_close")).hide, 2e3), slideUp(ge("app" + e), 200, function() {
-                    if (re("app" + e), cur.totalCount--, cur.tabCount--, AppsCheck.changeSummary(), !cur.totalCount) {
-                        var o = cur.summaryLang.no_requests_msg;
-                        ge("apps_check_content").innerHTML = '<div class="no_rows" id="no_apps">' + o + "</div>"
+            onDone: function(title, text) {
+                box.hide();
+                setTimeout(showFastBox({
+                    title: title
+                }, text, getLang('global_close')).hide, 2000);
+                slideUp(ge('app' + id), 200, function() {
+                    re('app' + id);
+                    cur.totalCount--;
+                    cur.tabCount--;
+                    AppsCheck.changeSummary();
+                    if (!cur.totalCount) {
+                        var msg = cur.summaryLang['no_requests_msg'];
+                        ge('apps_check_content').innerHTML = '<div class="no_rows" id="no_apps">' + msg + '</div>';
                     }
-                })
+                });
             }
-        })
+        });
     },
+
+    /* Autoanswers */
+
     editAutoanswers: function() {
-        return !showBox("apps_check", {
-            act: "edit_autoanswers_box",
+        return !showBox('apps_check', {
+            act: 'edit_autoanswers_box',
             from: cur.section
-        }, {})
+        }, {});
     },
-    removeAutoanswer: function(e) {
-        cur.removingAutoAnswer || (cur.removingAutoAnswer = !0, ajax.post("apps_check", {
-            act: "a_delete_autoanswer",
-            id: e,
+
+    removeAutoanswer: function(id) {
+        if (cur.removingAutoAnswer) return;
+        cur.removingAutoAnswer = true;
+        ajax.post('apps_check', {
+            act: 'a_delete_autoanswer',
+            id: id,
             hash: cur.hashes.autoanswers_hash
         }, {
-            onDone: function(o) {
-                delete cur.removingAutoAnswer, cur.deletedAutoanswers || (cur.deletedAutoanswers = []), cur.deletedAutoanswers[e] = ge("autoanswer_row" + e).innerHTML, o && (ge("autoanswer_row" + e).innerHTML = o)
+            onDone: function(text) {
+                delete cur.removingAutoAnswer;
+                if (!cur.deletedAutoanswers) cur.deletedAutoanswers = [];
+                cur.deletedAutoanswers[id] = ge('autoanswer_row' + id).innerHTML;
+                if (text) {
+                    ge('autoanswer_row' + id).innerHTML = text;
+                }
             },
             onFail: function() {
-                delete cur.removingAutoAnswer
+                delete cur.removingAutoAnswer;
             },
             showProgress: function() {
-                curBox().showProgress()
+                curBox().showProgress();
             },
             hideProgress: function() {
-                curBox().hideProgress()
+                curBox().hideProgress();
             }
-        }))
+        });
     },
-    restoreAutoanswer: function(e) {
-        cur.restoringAutoAnswer || (cur.restoringAutoAnswer = !0, ajax.post("apps_check", {
-            act: "a_restore_autoanswer",
-            id: e,
+
+    restoreAutoanswer: function(id) {
+        if (cur.restoringAutoAnswer) return;
+        cur.restoringAutoAnswer = true;
+        ajax.post('apps_check', {
+            act: 'a_restore_autoanswer',
+            id: id,
             hash: cur.hashes.autoanswers_hash
         }, {
             onDone: function() {
-                delete cur.restoringAutoAnswer, cur.deletedAutoanswers && cur.deletedAutoanswers[e] && (ge("autoanswer_row" + e).innerHTML = cur.deletedAutoanswers[e], delete cur.deletedAutoanswers[e])
+                delete cur.restoringAutoAnswer;
+                if (cur.deletedAutoanswers && cur.deletedAutoanswers[id]) {
+                    ge('autoanswer_row' + id).innerHTML = cur.deletedAutoanswers[id];
+                    delete cur.deletedAutoanswers[id];
+                }
             },
             onFail: function() {
-                delete cur.restoringAutoAnswer
+                delete cur.restoringAutoAnswer;
             },
             showProgress: function() {
-                curBox().showProgress()
+                curBox().showProgress();
             },
             hideProgress: function() {
-                curBox().hideProgress()
+                curBox().hideProgress();
             }
-        }))
+        });
     },
-    editAutoanswer: function(e) {
-        if (!cur.editingAutoAnswer) {
-            cur.editingAutoAnswer = !0;
-            var o = ge("answer_content" + e).value;
-            ajax.post("apps_check", {
-                act: "a_edit_autoanswer",
-                from: cur.section,
-                id: e,
-                text: o,
-                hash: cur.hashes.autoanswers_hash
-            }, {
-                onDone: function(t) {
-                    delete cur.editingAutoAnswer, slideUp("edit_autoanswer" + e, 200, function() {
-                        cur.autoanswers[e] = o, t && (curBox().bodyNode.innerHTML = t, placeholderSetup("add_answer_text", {
-                            back: !0
-                        }), placeholderSetup("add_answer_label", {
-                            back: !0
-                        }))
-                    })
-                },
-                onFail: function() {
-                    delete cur.editingAutoAnswer
-                },
-                showProgress: function() {
-                    curBox().showProgress()
-                },
-                hideProgress: function() {
-                    curBox().hideProgress()
-                }
-            })
-        }
-    },
-    addAutoanswer: function(e) {
-        if (!cur.addingAutoAnswer) {
-            var o = ge("add_answer_label").value,
-                t = ge("add_answer_text").value;
-            if (!o || !t) {
-                var n = o ? ge("add_answer_text") : ge("add_answer_label");
-                return notaBene(n), void n.focus()
+
+    editAutoanswer: function(id) {
+        if (cur.editingAutoAnswer) return;
+        cur.editingAutoAnswer = true;
+        var new_label = ge('answer_content' + id).value;
+        ajax.post('apps_check', {
+            act: 'a_edit_autoanswer',
+            from: cur.section,
+            id: id,
+            text: new_label,
+            hash: cur.hashes.autoanswers_hash
+        }, {
+            onDone: function(text) {
+                delete cur.editingAutoAnswer;
+                slideUp('edit_autoanswer' + id, 200, function() {
+                    cur.autoanswers[id] = new_label;
+                    if (text) {
+                        curBox().bodyNode.innerHTML = text;
+                        placeholderSetup('add_answer_text', {
+                            back: true
+                        });
+                        placeholderSetup('add_answer_label', {
+                            back: true
+                        });
+                    }
+                });
+            },
+            onFail: function() {
+                delete cur.editingAutoAnswer;
+            },
+            showProgress: function() {
+                curBox().showProgress();
+            },
+            hideProgress: function() {
+                curBox().hideProgress();
             }
-            cur.addingAutoAnswer = !0, ajax.post("apps_check", {
-                act: "a_add_autoanswer",
-                from: cur.section,
-                name: o,
-                text: t,
-                hash: cur.hashes.autoanswers_hash
-            }, {
-                onDone: function(e, o) {
-                    delete cur.addingAutoAnswer, slideUp("edit_autoanswer0", 200, function() {
-                        cur.autoanswers[o] = t, e && (curBox().bodyNode.innerHTML = e, placeholderSetup("add_answer_text", {
-                            back: !0
-                        }), placeholderSetup("add_answer_label", {
-                            back: !0
-                        }))
-                    })
-                },
-                onFail: function() {
-                    delete cur.addingAutoAnswer
-                },
-                showProgress: function() {
-                    curBox().showProgress()
-                },
-                hideProgress: function() {
-                    curBox().hideProgress()
-                }
-            })
+        });
+    },
+
+    addAutoanswer: function(id) {
+        if (cur.addingAutoAnswer) return;
+        var name = ge('add_answer_label').value;
+        var cont = ge('add_answer_text').value;
+        if (!name || !cont) {
+            var el = name ? ge('add_answer_text') : ge('add_answer_label');
+            notaBene(el);
+            el.focus();
+            return;
         }
+        cur.addingAutoAnswer = true;
+        ajax.post('apps_check', {
+            act: 'a_add_autoanswer',
+            from: cur.section,
+            name: name,
+            text: cont,
+            hash: cur.hashes.autoanswers_hash
+        }, {
+            onDone: function(res, id) {
+                delete cur.addingAutoAnswer;
+                slideUp('edit_autoanswer0', 200, function() {
+                    cur.autoanswers[id] = cont;
+                    if (res) {
+                        curBox().bodyNode.innerHTML = res;
+                        placeholderSetup('add_answer_text', {
+                            back: true
+                        });
+                        placeholderSetup('add_answer_label', {
+                            back: true
+                        });
+                    }
+                });
+            },
+            onFail: function() {
+                delete cur.addingAutoAnswer;
+            },
+            showProgress: function() {
+                curBox().showProgress();
+            },
+            hideProgress: function() {
+                curBox().hideProgress();
+            }
+        });
     },
-    cancelAutoanswer: function(e) {
-        slideUp("edit_autoanswer" + e, 200, function() {
-            cur.autoanswers[e] ? ge("answer_content" + e) && (ge("answer_content" + e).value = unclean(cur.autoanswers[e])) : ge("answer_content" + e) && (ge("answer_content" + e).value = "")
-        })
+
+    cancelAutoanswer: function(id) {
+        slideUp('edit_autoanswer' + id, 200, function() {
+            if (cur.autoanswers[id]) {
+                if (ge('answer_content' + id)) ge('answer_content' + id).value = unclean(cur.autoanswers[id]);
+            } else {
+                if (ge('answer_content' + id)) ge('answer_content' + id).value = '';
+            }
+        });
     },
+
     switchReports: function() {
-        show("apps_check_progress"), ajax.post("apps_check", {
-            act: "reports",
+        show('apps_check_progress');
+        ajax.post('apps_check', {
+            act: 'reports',
             all: 1 - cur.all_reports,
             load: 1
         }, {
             onDone: function(content, script, summary, title) {
-                hide("apps_check_progress"), ge("apps_check_content").innerHTML = content, script && eval(script), summary && (ge("apps_summary").innerHTML = summary), title && setDocumentTitle(replaceEntities(stripHTML(title))), AppsCheck.hideError()
+                hide('apps_check_progress');
+                ge('apps_check_content').innerHTML = content;
+                if (script) eval(script);
+                if (summary) ge('apps_summary').innerHTML = summary;
+                if (title) setDocumentTitle(replaceEntities(stripHTML(title)));
+                AppsCheck.hideError();
             },
             onFail: AppsCheck.showError
-        })
+        });
     },
+
+    /* Collections box */
+
     collectionPhotoDeinitUpload: function() {
-        cur.collectionPhotoUploadOptions && each(cur.collectionPhotoUploadOptions, function(e, o) {
-            o.upload && Upload.deinit(o.upload), delete o.upload, delete o.cont
-        })
+        if (!cur.collectionPhotoUploadOptions) return;
+        each(cur.collectionPhotoUploadOptions, function(k, v) {
+            v.upload && Upload.deinit(v.upload);
+            delete v.upload;
+            delete v.cont;
+        });
     },
-    collectionPhotoUploadError: function(e, o) {
-        o.match(/^ERR_[A-Z0-9_]+(\:|$)/) || (o = 'ERR_CLIENT_BAD_ERROR: error "' + clean(o.toString()) + '"');
-        var t = o.match(/^(ERR_[A-Z0-9_]+)(\:\s*|$)([\S\s]*)\s*$/),
-            n = t[1],
-            a = null,
-            c = ge("apps_collection_error");
-        switch (n) {
-            case "ERR_UPLOAD_FILE_NOT_SUPPORTED":
-                a = getLang("apps_check_collection_photo_not_supported");
+
+    collectionPhotoUploadError: function(upload, err) {
+        if (!err.match(/^ERR_[A-Z0-9_]+(\:|$)/)) err = 'ERR_CLIENT_BAD_ERROR: error "' + clean(err.toString()) + '"';
+        var e = err.match(/^(ERR_[A-Z0-9_]+)(\:\s*|$)([\S\s]*)\s*$/),
+            code = e[1],
+            msg = null,
+            el = ge('apps_collection_error');
+
+        switch (code) {
+            case 'ERR_UPLOAD_FILE_NOT_SUPPORTED':
+                msg = getLang('apps_check_collection_photo_not_supported');
                 break;
-            case "ERR_UPLOAD_FILE_NOT_UPLOADED":
-            case "ERR_UPLOAD_BAD_IMAGE_SIZE":
-                a = getLang("apps_check_collection_photo_bad_size");
+            case 'ERR_UPLOAD_FILE_NOT_UPLOADED':
+            case 'ERR_UPLOAD_BAD_IMAGE_SIZE':
+                msg = getLang('apps_check_collection_photo_bad_size');
                 break;
-            case "ERR_STORAGE_ENGINE_NOT_CONNECTED":
-            case "ERR_STORAGE_ENGINE_SAVE_FAILED":
-                a = getLang("apps_check_collection_photo_failed");
+            case 'ERR_STORAGE_ENGINE_NOT_CONNECTED':
+            case 'ERR_STORAGE_ENGINE_SAVE_FAILED':
+                msg = getLang('apps_check_collection_photo_failed');
                 break;
             default:
-                a = getLang("global_unknown_error")
+                msg = getLang('global_unknown_error')
+                break;
         }
-        val(c, a), isVisible(c) || slideDown(c, 150)
+
+        val(el, msg);
+        if (!isVisible(el)) {
+            slideDown(el, 150);
+        }
     },
+
     collectionPhotoUploadInit: function() {
-        if (curBox() && cur.collectionPhotoUploadOptions) {
-            var e = curBox();
-            e.setOptions({
-                onClean: AppsCheck.collectionPhotoDeinitUpload
-            }), each(cur.collectionPhotoUploadOptions, function(o, t) {
-                t.upload || (t.lang = o, t.cont = geByClass1("_apps_check_collection_photo_upload_" + o), t.img = geByClass1("_apps_check_collection_photo_" + o), t.cont && (debugLog("Init upload " + t.lang), t.upload = Upload.init(t.cont, t.options.url, {}, {
-                    file_name: "photo",
-                    file_size_limit: 5242880,
-                    file_types_description: "Image files (*.jpg, *.jpeg, *.png, *.gif)",
-                    file_types: "*.jpg;*.JPG;*.jpeg;*.JPEG;*.png;*.PNG;*.gif;*.GIF;*.bmp;*.BMP",
-                    lang: t.options.lang,
-                    clear: 1,
-                    type: "photo",
-                    noFlash: 1,
-                    max_attempts: 3,
-                    signed: 1,
-                    static_url: t.options.static_url,
-                    check_url: t.options.check_url,
-                    base_url: t.options.base_url,
-                    buttonClass: "secondary apps_check_collection_photo_upload_btn",
-                    onUploadStart: function(o, n) {
-                        e.changed = !0, lockButton(geByTag1("button", t.cont))
-                    },
-                    onUploadComplete: function(e, o) {
-                        var n = parseJSON(o) || {};
-                        if (n.error) AppsCheck.collectionPhotoUploadError(t, n.error);
-                        else if (n.photo && n.photo.sizes) {
-                            t.res = o;
-                            var a = n.photo.sizes[isRetina() ? 1 : 0];
-                            t.img.src = t.options.static_url + "v" + a[1] + "/" + a[2] + "/" + a[3] + ".jpg", isVisible("apps_collection_error") && slideUp("apps_collection_error", 150)
-                        } else {
-                            var c = o === !1 ? "[FALSE]" : null === o ? "[NULL]" : void 0 === o ? "[UNDEFINED]" : "&laquo;" + clean(o.toString().substr(0, 1024)) + "&raquo;";
-                            AppsCheck.collectionPhotoUploadError(t, "ERR_CLIENT_BAD_RESPONSE: bad upload collection photo response, recv " + c)
-                        }
-                        unlockButton(geByTag1("button", t.cont))
+        if (!curBox() || !cur.collectionPhotoUploadOptions) return;
+        var box = curBox();
+
+        box.setOptions({
+            onClean: AppsCheck.collectionPhotoDeinitUpload
+        });
+
+        each(cur.collectionPhotoUploadOptions, function(k, v) {
+            if (v.upload) return;
+            v.lang = k;
+            v.cont = geByClass1('_apps_check_collection_photo_upload_' + k);
+            v.img = geByClass1('_apps_check_collection_photo_' + k);
+            if (!v.cont) return;
+
+            debugLog('Init upload ' + v.lang);
+
+            v.upload = Upload.init(v.cont, v.options.url, {}, {
+                file_name: 'photo',
+
+                file_size_limit: 1024 * 1024 * 5, // 5Mb
+                file_types_description: 'Image files (*.jpg, *.jpeg, *.png, *.gif)',
+                file_types: '*.jpg;*.JPG;*.jpeg;*.JPEG;*.png;*.PNG;*.gif;*.GIF;*.bmp;*.BMP',
+
+                lang: v.options.lang,
+
+                clear: 1,
+                type: 'photo',
+                noFlash: 1,
+                max_attempts: 3,
+                signed: 1,
+                static_url: v.options.static_url,
+                check_url: v.options.check_url,
+                base_url: v.options.base_url,
+                buttonClass: "secondary apps_check_collection_photo_upload_btn",
+
+                onUploadStart: function(i, res) {
+                    box.changed = true;
+                    lockButton(geByTag1('button', v.cont));
+                },
+
+                onUploadComplete: function(i, res) {
+                    var obj = parseJSON(res) || {};
+                    if (obj.error) {
+                        AppsCheck.collectionPhotoUploadError(v, obj.error);
+                    } else if (!obj.photo || !obj.photo.sizes) {
+                        var txt = (res === false) ? '[FALSE]' : ((res === null) ? '[NULL]' : ((res === undefined) ? '[UNDEFINED]' : ('&laquo;' + clean(res.toString().substr(0, 1024)) + '&raquo;')));
+                        AppsCheck.collectionPhotoUploadError(v, 'ERR_CLIENT_BAD_RESPONSE: bad upload collection photo response, recv ' + txt);
+                    } else {
+                        v.res = res;
+                        var size = obj.photo.sizes[isRetina() ? 1 : 0];
+                        v.img.src = v.options.static_url + 'v' + size[1] + '/' + size[2] + '/' + size[3] + '.jpg';
+                        isVisible('apps_collection_error') && slideUp('apps_collection_error', 150);
                     }
-                })))
-            })
-        }
+                    unlockButton(geByTag1('button', v.cont));
+                }
+            });
+        });
     },
+
     addCollection: function() {
-        return !showBox("/apps_check", {
-            act: "edit_collection_box",
+        return !showBox('/apps_check', {
+            act: 'edit_collection_box',
             type: cur.type
         }, {
             params: {
                 width: 570
             }
-        })
+        });
     },
-    editCollection: function(e) {
-        return !showBox("/apps_check", {
-            act: "edit_collection_box",
-            collection_id: e
+
+    editCollection: function(collectionId) {
+        return !showBox('/apps_check', {
+            act: 'edit_collection_box',
+            collection_id: collectionId
         }, {
             params: {
                 width: 570
             }
+        });
+    },
+
+    saveCollection: function(collectionId, hash, btn) {
+        var box = curBox();
+        if (!box || buttonLocked(btn)) return;
+
+        if (!val('apps_check_collection_title')) {
+            notaBene('apps_check_collection_title');
+            return;
+        }
+
+        var photos = {};
+        each(cur.collectionPhotoUploadOptions || {}, function(k, v) {
+            if (v.res) photos['photo_' + k] = v.res;
+        });
+
+        ajax.post('/apps_check', extend({
+            act: 'a_save_collection',
+            collection_id: collectionId,
+            hash: hash,
+            title: val('apps_check_collection_title'),
+            type: cur.type,
+            photos: photos,
+            language: cur.languageDD.val(),
+            sex: radioval('sex'),
+            min_age: cur.minAgeDD.val(),
+            max_age: cur.maxAgeDD.val()
+        }, photos), {
+            onDone: function(html, script) {
+                AppsCheck.updateCollections(html, script);
+                box.hide();
+            },
+            onFail: function(msg) {
+                val('apps_collection_error', msg);
+                if (!isVisible('apps_collection_error')) {
+                    slideDown('apps_collection_error', 150);
+                }
+                return true;
+            },
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn)
         })
     },
-    saveCollection: function(e, o, t) {
-        var n = curBox();
-        if (n && !buttonLocked(t)) {
-            if (!val("apps_check_collection_title")) return void notaBene("apps_check_collection_title");
-            var a = {};
-            each(cur.collectionPhotoUploadOptions || {}, function(e, o) {
-                o.res && (a["photo_" + e] = o.res)
-            }), ajax.post("/apps_check", extend({
-                act: "a_save_collection",
-                collection_id: e,
-                hash: o,
-                title: val("apps_check_collection_title"),
-                type: cur.type,
-                photos: a,
-                language: cur.languageDD.val(),
-                sex: radioval("sex"),
-                min_age: cur.minAgeDD.val(),
-                max_age: cur.maxAgeDD.val()
-            }, a), {
-                onDone: function(e, o) {
-                    AppsCheck.updateCollections(e, o), n.hide()
-                },
-                onFail: function(e) {
-                    return val("apps_collection_error", e), isVisible("apps_collection_error") || slideDown("apps_collection_error", 150), !0
-                },
-                showProgress: lockButton.pbind(t),
-                hideProgress: unlockButton.pbind(t)
-            })
-        }
-    },
+
+    /* Collections page */
+
     updateCollections: function(html, script) {
-        var list = ge("apps_collection_rows");
-        list && list.sorter && list.sorter.destroy(), html && (ge("apps_check_content").innerHTML = html), script && eval(script), AppsCheck.toggleCollections(ge("apps_toggle_collections"), !!cur.onlyEnabled)
+        var list = ge('apps_collection_rows');
+        if (list && list.sorter) {
+            list.sorter.destroy();
+        }
+        if (html) {
+            ge('apps_check_content').innerHTML = html;
+        }
+        if (script) {
+            eval(script);
+        }
+        AppsCheck.toggleCollections(ge('apps_toggle_collections'), !!cur.onlyEnabled);
     },
-    toggleCollections: function(e, o) {
-        cur.onlyEnabled = o;
-        var t = ge("apps_collection_rows");
-        t && t.sorter && t.sorter.destroy(), window.tooltips && tooltips.hideAll(), (o ? addClass : removeClass)(t, "no_disabled");
-        var n = 0,
-            a = geByClass("apps_collection_row_wrap", t);
-        for (var c in a) setStyle(a[c], {
-            zIndex: null,
-            left: null,
-            top: null,
-            width: null,
-            cursor: null
-        }), o && hasClass(a[c], "disabled") ? a[c].setAttribute("skipsort", 1) : (a[c].removeAttribute("skipsort"), n++);
-        return val(e, o ? getLang("apps_all_collections") : getLang("apps_only_enabled_collections")), toggle("no_apps", !n), !1
+
+    toggleCollections: function(el, enabled) {
+        cur.onlyEnabled = enabled;
+
+        var list = ge('apps_collection_rows');
+        if (list && list.sorter) list.sorter.destroy();
+        if (window.tooltips) tooltips.hideAll();
+
+        (enabled ? addClass : removeClass)(list, 'no_disabled');
+
+        var cnt = 0,
+            rows = geByClass('apps_collection_row_wrap', list);
+        for (var i in rows) {
+            setStyle(rows[i], {
+                zIndex: null,
+                left: null,
+                top: null,
+                width: null,
+                cursor: null
+            });
+            if (!enabled || !hasClass(rows[i], 'disabled')) {
+                rows[i].removeAttribute('skipsort');
+                cnt++;
+            } else {
+                rows[i].setAttribute('skipsort', 1);
+            }
+        }
+        if (cnt > 1) {
+            //sorter.init(list, {onReorder: cur.reorderApps, dh: 0});
+        }
+
+        val(el, enabled ? getLang('apps_all_collections') : getLang('apps_only_enabled_collections'));
+        toggle('no_apps', !cnt);
+        return false;
     },
-    deleteCollection: function(e, o) {
+
+    deleteCollection: function(collectionId, hash) {
         return !showFastBox({
-            title: getLang("apps_delete_collection_title"),
+            title: getLang('apps_delete_collection_title'),
             dark: 1,
-            bodyStyle: "padding: 20px; linne-height: 140%;"
-        }, getLang("apps_delete_collection_confirm"), getLang("global_delete"), function(t) {
-            ajax.post("/apps_check", {
-                act: "a_delete_collection",
-                collection_id: e,
-                hash: o,
+            bodyStyle: 'padding: 20px; linne-height: 140%;'
+        }, getLang('apps_delete_collection_confirm'), getLang('global_delete'), function(btn) {
+            ajax.post('/apps_check', {
+                act: 'a_delete_collection',
+                collection_id: collectionId,
+                hash: hash,
                 type: cur.type
             }, {
-                onDone: function(e, o) {
-                    AppsCheck.updateCollections(e, o), curBox().hide()
+                onDone: function(html, script) {
+                    AppsCheck.updateCollections(html, script);
+                    curBox().hide();
                 },
-                showProgress: lockButton.pbind(t),
-                hideProgress: unlockButton.pbind(t)
+                showProgress: lockButton.pbind(btn),
+                hideProgress: unlockButton.pbind(btn)
             })
-        }, getLang("global_cancel"))
+        }, getLang('global_cancel'));
     },
-    enableCollection: function(e, o, t) {
-        ajax.post("/apps_check", {
-            act: "a_enable_collection",
-            collection_id: e,
-            enable: o,
-            hash: t,
+
+    enableCollection: function(collectionId, enable, hash) {
+        ajax.post('/apps_check', {
+            act: 'a_enable_collection',
+            collection_id: collectionId,
+            enable: enable,
+            hash: hash,
             type: cur.type
         }, {
             onDone: AppsCheck.updateCollections
-        })
+        });
     },
+
     addCollectionApp: function() {
-        var e = val(cur.aSearch);
-        return e ? void showBox("apps_check", {
-            act: "add_collection_app_box",
-            lnk: e,
+        var lnk = val(cur.aSearch);
+        if (!lnk) {
+            return notaBene(cur.aSearch);
+        }
+        showBox('apps_check', {
+            act: 'add_collection_app_box',
+            lnk: lnk,
             id: intval(cur.listId)
         }, {
-            onFail: function(e) {
-                return showDoneBox(e), notaBene(cur.aSearch), !0
+            onFail: function(err) {
+                showDoneBox(err)
+                notaBene(cur.aSearch);
+                return true;
             }
-        }) : notaBene(cur.aSearch)
+        });
     },
-    removeCollectionApp: function(e, o, t, n) {
-        n && cancelEvent(n), ajax.post("apps_check", {
-            act: "a_remove_from_collection",
-            id: e,
+
+    removeCollectionApp: function(collection_id, aid, hash, event) {
+        event && cancelEvent(event);
+        ajax.post('apps_check', {
+            act: 'a_remove_from_collection',
+            id: collection_id,
             edit: 1,
-            aid: o,
-            hash: t
+            aid: aid,
+            hash: hash
         }, {
-            onDone: function(e) {
-                var o = ge("apps_list_content");
-                o.sorter && o.sorter.destroy(), o.innerHTML = e, cur.sorter && geByClass("apps_cat_row", ge("apps_search_content")).length && (cur.sorter = qsorter.init("apps_search_content", {
-                    onReorder: cur.reorderApps,
-                    xsize: 5,
-                    width: 154,
-                    height: 226
-                }))
+            onDone: function(html) {
+                var list = ge('apps_list_content');
+                if (list.sorter) {
+                    list.sorter.destroy();
+                }
+                list.innerHTML = html;
+                if (cur.sorter && geByClass('apps_cat_row', ge('apps_search_content')).length) {
+                    cur.sorter = qsorter.init('apps_search_content', {
+                        onReorder: cur.reorderApps,
+                        xsize: 5,
+                        width: 154,
+                        height: 226
+                    });
+                }
             },
-            onFail: function(e) {
-                return showDoneBox(e), !0
+            onFail: function(err) {
+                showDoneBox(err);
+                return true;
             }
-        })
+        });
     },
+
     addFeatured: function() {
-        var e = val(cur.input);
-        return e ? void showBox("apps_check", {
-            act: "add_featured_box",
-            lnk: e
+        var lnk = val(cur.input);
+        if (!lnk) {
+            return notaBene(cur.input);
+        }
+        showBox('apps_check', {
+            act: 'add_featured_box',
+            lnk: lnk
         }, {
             onFail: function() {
-                return notaBene(cur.input), !0
+                notaBene(cur.input);
+                return true;
             }
-        }) : notaBene(cur.input)
+        });
     },
-    actFeatured: function(e, o, t, n, a, c) {
-        var s = o.innerHTML;
-        o.innerHTML = '<img src="/images/upload.gif" />', ajax.post("apps_check", {
-            act: "a_" + e + "_featured",
-            aid: t,
-            hash: n
+
+    actFeatured: function(act, obj, aid, hash, fullObj, reload) {
+        var back = obj.innerHTML;
+        obj.innerHTML = '<img src="/images/upload.gif" />';
+        ajax.post('apps_check', {
+            act: 'a_' + act + '_featured',
+            aid: aid,
+            hash: hash
         }, {
-            onDone: function(e) {
-                2 == c ? uiTabs.goTab(domFC(ge("subtab_featured"))) : c ? nav.reload() : (a || o).innerHTML = e
+            onDone: function(text) {
+                if (reload == 2) {
+                    uiTabs.goTab(domFC(ge('subtab_featured')))
+                } else if (reload) {
+                    nav.reload();
+                } else {
+                    (fullObj || obj).innerHTML = text;
+                }
             },
-            onFail: function(e) {
-                return o.innerHTML = s, setTimeout(showFastBox(getLang("global_error"), e).hide, __debugMode ? 3e4 : 3e3), !0
+            onFail: function(text) {
+                obj.innerHTML = back;
+                setTimeout(showFastBox(getLang('global_error'), text).hide, __debugMode ? 30000 : 3000);
+                return true;
             }
-        })
+        });
     },
+
     showStat: function(aid, type, obj) {
-        var hideStat = obj.getAttribute("stat");
-        hideStat ? (obj.innerHTML = hideStat, hide("apps_check_" + aid + "_graph"), obj.setAttribute("stat", "")) : (obj.setAttribute("stat", obj.innerHTML), obj.innerHTML = '<img src="/images/upload.gif"/>', ajax.post("apps_check", {
-            act: "a_featured_stat",
-            aid: aid
-        }, {
-            onDone: function(html, js, hideText) {
-                ge("apps_check_" + aid + "_graph").innerHTML = html, eval(js), obj.innerHTML = hideText, show("apps_check_" + aid + "_graph")
-            }
-        }))
+        var hideStat = obj.getAttribute('stat');
+        if (hideStat) {
+            obj.innerHTML = hideStat;
+            hide('apps_check_' + aid + '_graph');
+            obj.setAttribute('stat', '');
+        } else {
+            obj.setAttribute('stat', obj.innerHTML)
+            obj.innerHTML = '<img src="/images/upload.gif"/>';
+            ajax.post('apps_check', {
+                act: 'a_featured_stat',
+                aid: aid
+            }, {
+                onDone: function(html, js, hideText) {
+                    ge('apps_check_' + aid + '_graph').innerHTML = html;
+                    eval(js);
+                    obj.innerHTML = hideText;
+                    show('apps_check_' + aid + '_graph');
+                }
+            });
+        }
     },
-    showAdsStat: function(e) {
-        var o = {};
-        o.app_id = e;
-        var t = {
+
+    showAdsStat: function(appId) {
+        var ajaxParams = {};
+        ajaxParams.app_id = appId;
+        var boxOptions = {
             params: {}
         };
-        t.cache = 1, showBox("/apps_check?act=ads_stat", o, t)
+        boxOptions.cache = 1;
+
+        showBox('/apps_check?act=ads_stat', ajaxParams, boxOptions);
     },
+
     _eof: 1
 };
 try {
-    stManager.done("apps_check.js")
+    stManager.done('apps_check.js');
 } catch (e) {}

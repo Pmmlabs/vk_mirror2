@@ -1,80 +1,107 @@
 var Language = {
     init: function() {
-        cur.languagesListSearch = new vkIndexer(cur.languagesList, function(a) {
-            return replaceEntities(a.name) + " " + a.name_rus + " " + a.name_eng
-        }), cur.destroy.push(function() {
-            delete cur.languagesListSearch
-        }), elfocus("language_search_form")
+        cur.languagesListSearch = new vkIndexer(cur.languagesList, function(row) {
+            return replaceEntities(row.name) + ' ' + row.name_rus + ' ' + row.name_eng;
+        });
+        cur.destroy.push(function() {
+            delete cur.languagesListSearch;
+        });
+        elfocus('language_search_form');
     },
-    makeResults: function(a, e) {
-        if (a.length) {
-            var n = {},
-                t = 0,
-                l = "",
-                g = !1,
-                o = Math.ceil(a.length / cur.columnsNum);
-            if (e) {
-                e += " " + (parseLatin(e) || ""), e = trim(escapeRE(e.replace(/[,]/g, "")));
-                var s = e.replace(cur.languagesListSearch.delimiter, "|").replace(/(^\||\|$|\?)/g, ""),
-                    g = new RegExp("(" + s + ")", "gi")
+    makeResults: function(langs, str) {
+        if (langs.length) {
+            var columns = {},
+                i = 0,
+                result = '',
+                langReplace = false,
+                maxRows = Math.ceil(langs.length / cur.columnsNum);
+            if (str) {
+                str += ' ' + (parseLatin(str) || '');
+                str = trim(escapeRE(str.replace(/[,]/g, '')));
+                var match = str.replace(cur.languagesListSearch.delimiter, '|').replace(/(^\||\|$|\?)/g, ''),
+                    langReplace = new RegExp('(' + match + ')', 'gi');
             }
-            return each(a, function(a, l) {
-                var s = Math.floor(t / o);
-                n["column_" + s] || (n["column_" + s] = "");
-                var r = clone(l);
-                e && (r.name = replaceEntities(r.name), r.name = r.name.replace(g, '<span class="language_name_hl">$1</span>')), n["column_" + s] += getTemplate("langRow", r), t++
-            }), each(n, function(a, e) {
-                l += getTemplate("langColumn", {
-                    column: e
-                })
-            }), l
+            each(langs, function(k, v) {
+                var column = Math.floor(i / maxRows);
+                if (!columns['column_' + column]) {
+                    columns['column_' + column] = '';
+                }
+                var row = clone(v);
+
+                if (str) {
+                    row.name = replaceEntities(row.name);
+                    row.name = row.name.replace(langReplace, '<span class="language_name_hl">$1</span>');
+                }
+                columns['column_' + column] += getTemplate('langRow', row);
+                i++;
+            });
+            each(columns, function(k, v) {
+                result += getTemplate('langColumn', {
+                    column: v
+                });
+            });
+            return result;
         }
-        return ""
+        return '';
     },
-    search: function(a) {
-        var e = ge("all_languages_list");
-        if (a = trim(a), a.length > 0) var n = cur.languagesListSearch.search(a);
-        else var n = cur.languagesList;
-        window.tooltips && tooltips.destroyAll();
-        var t = Language.makeResults(n, a);
-        toggle("languages_not_found", !t), toggle(e, t), val(e, t)
+    search: function(str) {
+        var languagesList = ge('all_languages_list');
+        str = trim(str);
+        if (str.length > 0) {
+            var searchResults = cur.languagesListSearch.search(str);
+        } else {
+            var searchResults = cur.languagesList;
+        }
+        if (window.tooltips) {
+            tooltips.destroyAll();
+        }
+        var results = Language.makeResults(searchResults, str);
+        toggle('languages_not_found', !results);
+        toggle(languagesList, results);
+        val(languagesList, results);
     },
-    showEngName: function(a) {
-        showTooltip(a, {
-            text: attr(a, "data-eng-name"),
+    showEngName: function(el) {
+        showTooltip(el, {
+            text: attr(el, 'data-eng-name'),
             black: 1,
             shift: [0, 0, -30]
-        })
+        });
     },
-    changeLang: function(a, e, n) {
-        return hasClass(a, "language_selected") ? !1 : void ajax.post("al_index.php", {
-            act: "change_lang",
-            lang_id: e,
-            hash: n
+    changeLang: function(el, langId, hash) {
+        if (hasClass(el, 'language_selected')) {
+            return false;
+        }
+        ajax.post('al_index.php', {
+            act: 'change_lang',
+            lang_id: langId,
+            hash: hash
         }, {
             onDone: topMsg
-        })
+        });
     },
-    showBetaTooltip: function(a, e) {
-        cancelEvent(e), showTooltip(a, {
-            text: getLang("global_language_beta_version"),
+    showBetaTooltip: function(el, ev) {
+        cancelEvent(ev);
+        showTooltip(el, {
+            text: getLang('global_language_beta_version'),
             black: 1,
             shift: [16, 4, 0]
-        })
+        });
     },
     showOtherLanguages: function() {
-        curBox().hide(), showBox("lang.php", {
-            act: "lang_dialog",
+        curBox().hide();
+        showBox('lang.php', {
+            act: 'lang_dialog',
             all: 1
         }, {
             params: {
-                dark: !0,
-                bodyStyle: "padding: 0px"
+                dark: true,
+                bodyStyle: 'padding: 0px'
             },
-            noreload: !0
-        })
+            noreload: true
+        });
     }
 };
+
 try {
-    stManager.done("language.js")
+    stManager.done('language.js');
 } catch (e) {}

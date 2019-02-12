@@ -2210,9 +2210,6 @@ input.wide_button {
 }
 
 .ni_body {
-    font-weight: 500;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
     font-size: 14px;
     line-height: 20px
 }
@@ -2223,6 +2220,13 @@ input.wide_button {
 
 .ni_user {
     color: #3c6a9e
+}
+
+.ni_user,
+.ni_link {
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }
 
 .ni_pics {
@@ -7296,23 +7300,9 @@ div.pm_item .pm_counter {
     font-weight: 400
 }
 
-.place_panel {
-    background: #ebedf0;
-    margin: 0;
-    padding: 12px;
-    border: 0!important
-}
-
-@media (min-width: 882px) {
-    .place_panel {
-        background: #fff
-    }
-}
-
 .place_map_wrap {
     display: block;
     text-align: center;
-    border: 3px solid #fff;
     background: #fff;
     border: 1px solid #e6e7e8;
     padding: 3px;
@@ -25372,6 +25362,10 @@ figure[data-type="102"] .article_object_video_play {
     border-radius: 0 0 4px 4px
 }
 
+.PageBlock_comments .upanel a[name]+.wall_item {
+    margin-top: 0
+}
+
 .basisGroup>.PageBlock:first-child,
 .basisProfile .ipanel>.PageBlock:first-child {
     padding-bottom: 4px
@@ -28003,6 +27997,10 @@ a.feedBlocks__article:hover {
     border-bottom: 1px solid #d7d8d9
 }
 
+.Friends .Friends__item_request:last-child {
+    border-bottom: none
+}
+
 @supports ((-webkit-transform: scale(0.5)) or (-moz-transform: scale(0.5)) or (-ms-transform: scale(0.5)) or (-o-transform: scale(0.5)) or (transform: scale(0.5))) {
     .Friends .Friends__item_request {
         position: relative;
@@ -28021,7 +28019,7 @@ a.feedBlocks__article:hover {
         -o-transform: scaleY(0.5);
         transform: scaleY(0.5)
     }
-    .Friends .Friends__item_request:after:after:last-child {
+    .Friends .Friends__item_request:last-child:after {
         content: '';
         display: none
     }
@@ -30268,7 +30266,9 @@ a.feedBlocks__article:hover {
 }
 
 .vk__page_newCreatePost .cp_buttons_block .Unfold {
-    -webkit-tap-highlight-color: transparent
+    -webkit-tap-highlight-color: transparent;
+    min-width: 0;
+    min-height: 0
 }
 
 .vk__page_newCreatePost .cp_buttons_block .Unfold__trigger {
@@ -40874,9 +40874,11 @@ body.apps_settingsPageBody {
 }
 
 .Bell__counter {
+    display: block;
     color: #fff;
     font-size: 14px;
     font-weight: 500;
+    font-style: normal;
     padding-right: 6px;
     margin-left: -6px;
     line-height: 44px
@@ -43364,7 +43366,7 @@ body.apps_settingsPageBody {
     -moz-border-radius: 16px;
     border-radius: 16px;
     background: #fff;
-    z-index: 20;
+    z-index: 53;
     padding: 8px 10px 8px 34px
 }
 
@@ -55968,8 +55970,11 @@ img.wk_photo_right {
         -moz-box-sizing: border-box;
         box-sizing: border-box;
         width: 50%;
-        padding: 3px 4px 4px 3px;
+        padding: 0 5px 10px 0;
         border-bottom: none!important
+    }
+    .album_item:nth-child(2n) {
+        padding: 0 0 10px 5px
     }
 }
 
@@ -56539,7 +56544,8 @@ img.wk_photo_right {
     ._lm #l .mhead .mhb_logo {
         position: absolute;
         -webkit-backface-visibility: hidden;
-        z-index: 5
+        z-index: 5;
+        width: 247px
     }
     body._hfixed #l .mhb_logo {
         width: 247px

@@ -1,311 +1,730 @@
-function photoTagger(t, e) {
-    if (t = ge(t), !t) return !1;
-    var i, n, h, a, r, o, s, d, l, c, g = 0,
-        f = t.parentNode,
-        v = Math.abs,
-        w = Math.min,
-        p = Math.max,
-        u = Math.floor,
-        m = Math.ceil,
-        y = (Math.round, function(t) {
-            return 0 > t ? -1 : 1
-        }),
-        x = intval(e.zstart),
-        E = intval(e.square),
-        z = 0,
-        N = intval(e.minw) || 30,
-        S = intval(e.minh) || 30,
-        C = intval(e.defw) || p(N, 100),
-        M = intval(e.defh) || p(S, 100),
-        T = vkImage(),
-        b = E ? 1 : floatval(e.mina),
-        A = E ? 1 : floatval(e.maxa);
-    b > 0 && A > 0 && b > A && (A = b), t.src && (T.src = t.src);
-    var _, I, L, X, Y, H, O, q, F = {},
-        R = 0,
-        W = 0,
-        j = {},
-        k = function(t, e) {
-            j = extend(j, t), each(t, function(t) {
-                var e = this + ("left" == t ? h : "top" == t ? a : 0);
-                _.style[t] = e + "px"
-            }), I.style.marginLeft = -t.left + "px", I.style.marginTop = -t.top + "px", each(F, function(e) {
-                if (e.length < 2) "n" == e || "s" == e ? (this.style.left = h + t.left + intval(t.width / 2) - 5 + "px", this.style.top = a + t.top + ("n" == e ? 0 : t.height) - 5 + "px") : (this.style.left = h + t.left + ("w" == e ? 0 : t.width) - 5 + "px", this.style.top = a + t.top + intval(t.height / 2) - 5 + "px");
-                else {
-                    var i = e.charAt(0),
-                        n = e.charAt(1);
-                    this.style.left = h + t.left + ("w" == n ? 0 : t.width) - 5 + "px", this.style.top = a + t.top + ("n" == i ? 0 : t.height) - 5 + "px"
+function photoTagger(elem, opts) {
+    elem = ge(elem);
+    if (!elem) return false;
+    var inittries = 0,
+        node = elem.parentNode;
+
+    var mabs = Math.abs,
+        mmin = Math.min,
+        mmax = Math.max,
+        mfloor = Math.floor,
+        mceil = Math.ceil,
+        mround = Math.round,
+        msign = function(v) {
+            return v < 0 ? -1 : 1;
+        }
+
+    var zstart = intval(opts.zstart),
+        square = intval(opts.square),
+        rot = 0;
+    var minw = intval(opts.minw) || 30,
+        minh = intval(opts.minh) || 30;
+    var defw = intval(opts.defw) || mmax(minw, 100),
+        defh = intval(opts.defh) || mmax(minh, 100),
+        defw2, defh2;
+    var addX, addY, preview50, preview100, bg, img = vkImage();
+    var swidth, sheight, srect, mina = square ? 1 : floatval(opts.mina),
+        maxa = square ? 1 : floatval(opts.maxa);
+    if (mina > 0 && maxa > 0 && mina > maxa) maxa = mina;
+    if (elem.src) {
+        img.src = elem.src;
+    }
+
+    var tagframe, tagimg, tagfaded, taghandles = {};
+    var width = 0,
+        height = 0,
+        rect = {}
+
+    var showRect = function(r, noUpdate) {
+        rect = extend(rect, r);
+        each(r, function(i) {
+            var v = this + (i == 'left' ? addX : (i == 'top' ? addY : 0));
+            tagframe.style[i] = v + 'px';
+        });
+        tagimg.style.marginLeft = -r.left + 'px';
+        tagimg.style.marginTop = -r.top + 'px';
+        each(taghandles, function(i) {
+            if (i.length < 2) { // n, w, e, s
+                if (i == 'n' || i == 's') {
+                    this.style.left = (addX + r.left + intval(r.width / 2) - 5) + 'px';
+                    this.style.top = (addY + r.top + (i == 'n' ? 0 : r.height) - 5) + 'px';
+                } else {
+                    this.style.left = (addX + r.left + (i == 'w' ? 0 : r.width) - 5) + 'px';
+                    this.style.top = (addY + r.top + intval(r.height / 2) - 5) + 'px';
                 }
-            }), e || (r && (r.style.width = m(50 * R / t.width) + "px", r.style.height = m(50 * W / t.height) + "px", r.style.marginLeft = -u(50 * t.left / t.width) + "px", r.style.marginTop = -u(50 * t.top / t.width) + "px"), o && (o.style.width = m(100 * R / t.width) + "px", o.style.height = m(100 * W / t.height) + "px", o.style.marginLeft = -u(100 * t.left / t.width) + "px", o.style.marginTop = -u(100 * t.top / t.width) + "px"))
-        },
-        B = 0,
-        D = function(t, e) {
-            return [w(R, p(0, t - q[0])), w(W, p(0, e - q[1]))]
-        },
-        G = function() {
-            var t = Math.max(intval(window.innerWidth), intval(document.documentElement.clientWidth)),
-                e = Math.max(intval(window.innerHeight), intval(document.documentElement.clientHeight));
-            s.style.width = t + "px", s.style.height = e + "px"
-        },
-        J = function(t) {
-            t || (t = B);
-            var e = ["n", "ne", "e", "se", "s", "sw", "w", "nw"];
-            switch (z) {
-                case 1:
-                    return e[(e.indexOf(t) + 2) % 8];
-                case 2:
-                    return e[(e.indexOf(t) + 4) % 8];
-                case 3:
-                    return e[(e.indexOf(t) + 6) % 8];
-                default:
-                    return t
+            } else { // nw, ne, sw, se
+                var a = i.charAt(0),
+                    b = i.charAt(1);
+                this.style.left = (addX + r.left + ((b == 'w') ? 0 : r.width) - 5) + 'px';
+                this.style.top = (addY + r.top + ((a == 'n') ? 0 : r.height) - 5) + 'px';
             }
-        },
-        K = function(t) {
-            B && (1 == B || B == r || B == o ? t = "move" : 2 == B ? t = "crosshair" : B.length && (t = J() + "-resize"), s.style.cursor = t)
-        },
-        P = function(t) {
-            switch (z) {
-                case 1:
-                    return [q[0] + t.pageY - q[1] + u((R - W) / 2), q[1] - t.pageX + q[0] + u((R + W) / 2)];
-                case 2:
-                    return [q[0] + (q[0] + R - t.pageX), q[1] + (q[1] + W - t.pageY)];
-                case 3:
-                    return [q[0] - t.pageY + q[1] + u((R + W) / 2), q[1] + t.pageX - q[0] - u((R - W) / 2)];
-                default:
-                    return [t.pageX, t.pageY]
+        });
+        if (!noUpdate) {
+            if (preview50) {
+                preview50.style.width = mceil(width * 50 / r.width) + 'px';
+                preview50.style.height = mceil(height * 50 / r.height) + 'px';
+                preview50.style.marginLeft = -mfloor(r.left * 50 / r.width) + 'px';
+                preview50.style.marginTop = -mfloor(r.top * 50 / r.width) + 'px';
             }
-        },
-        Q = function(t) {
-            var e = getXY(t);
-            if (1 == z || 3 == z) {
-                var i = (R - W) / 2;
-                e = [e[0] - i, e[1] + i]
-            }
-            return e
-        },
-        U = function(i) {
-            return q = Q(t), X = P(i), O = extend({}, j), d = l = c = !1, i.target == I ? B = 1 : i.target == L || i.target == t ? B = 2 : i.target == r || i.target == o ? (B = i.target, j.width && j.height || k({
-                left: 0,
-                top: 0,
-                width: w(100, w(R, W)),
-                height: w(100, w(R, W))
-            })) : each(F, function(t) {
-                if (i.target == this) {
-                    B = t;
-                    var e = X[0] - q[0],
-                        n = X[1] - q[1],
-                        h = [t.charAt(0), t.length > 1 ? t.charAt(1) : t.charAt(0)];
-                    X[0] = j.left + ("w" == h[1] ? 0 : j.width), X[1] = j.top + ("n" == h[0] ? 0 : j.height), Y = X[0] - e, H = X[1] - n
-                }
-            }), B ? (e.onStart && e.onStart(), 2 != B && B != r && B != o && each(F, function() {
-                setStyle(this, "opacity", .7)
-            }), show(s), K(), removeEvent(t, "mousedown", U), addEvent(bodyNode, "mouseup dragend", Z), addEvent(bodyNode, "mousemove", V), cancelEvent(i)) : void 0
-        },
-        V = function(e) {
-            if (window.getSelection) {
-                var i = window.getSelection();
-                i.removeAllRanges && i.removeAllRanges()
-            }
-            var n = P(e);
-            if (1 == B) {
-                var h = O.left + (n[0] - X[0]),
-                    a = O.top + (n[1] - X[1]);
-                h = w(R - j.width, p(0, h)), a = w(W - j.height, p(0, a)), k(extend(j, {
-                    left: h,
-                    top: a
-                }))
-            } else if (2 == B) v(n[0] - X[0]) > 3 && v(n[1] - X[1]) > 3 && (B = 3, K(), q = Q(t), X[0] -= q[0], X[1] -= q[1], show(_, L), each(F, function() {
-                show(this), setStyle(this, "opacity", .7)
-            }));
-            else if (B == r || B == o) {
-                var s = B == r ? 50 : 100,
-                    h = O.left - u((n[0] - X[0]) * j.width / s),
-                    a = O.top - u((n[1] - X[1]) * j.height / s);
-                h = w(R - j.width, p(0, h)), a = w(W - j.height, p(0, a)), k(extend(j, {
-                    left: h,
-                    top: a
-                }))
-            } else if (B.length) {
-                var d = D(n[0] + Y, n[1] + H);
-                n[0] = d[0], n[1] = d[1];
-                var l = n[0] - X[0],
-                    c = n[1] - X[1];
-                if (!l && !c) return cancelEvent(e);
-                var h = j.left,
-                    a = j.top,
-                    g = j.width,
-                    f = j.height,
-                    x = 0,
-                    E = 0;
-                2 == B.length ? (x = "n" == B.charAt(0) ? -1 : 1, E = "w" == B.charAt(1) ? -1 : 1) : (x = "n" == B ? -1 : "s" == B ? 1 : 0, E = "w" == B ? -1 : "e" == B ? 1 : 0), x && f + y(x) * c < S / 2 && (x = -x, X[1] = j.top + (x > 0 ? j.height : 0), c = n[1] - X[1]), E && g + y(E) * l < N / 2 && (E = -E, X[0] = j.left + (E > 0 ? j.width : 0), l = n[0] - X[0]), vsign = x ? y(x) : 0, hsign = E ? y(E) : 0, b > 0 && g + hsign * l < (f + vsign * c) * b && (E ? l = hsign * m((f + vsign * c) * b - g) : c = vsign * u(g / b - f)), A > 0 && g + hsign * l > (f + vsign * c) * A && (x ? c = vsign * m((g + hsign * l) / A - f) : l = hsign * u(f * A - g)), x && (f += y(x) * c, S > f ? (a -= x > 0 ? 0 : S - f - c, f = S) : a += x > 0 ? 0 : c), E && (g += y(E) * l, N > g ? (h -= E > 0 ? 0 : N - g - l, g = N) : h += E > 0 ? 0 : l);
-                var C = 0,
-                    M = 0,
-                    T = 0,
-                    I = 0;
-                0 > h ? (C = h, h = 0) : g > R - h && (C = R - h - g), C && (g += C, b > 0 && b * f > g && (I = u(g / b) - f, f += I, a -= x > 0 ? 0 : I)), 0 > a ? (M = a, a = 0) : f > W - a && (M = W - a - f), M && (f += M, A > 0 && g > A * f && (T = u(f * A) - g, g += T, h -= E > 0 ? 0 : T)), k({
-                    left: h,
-                    top: a,
-                    width: g,
-                    height: f
-                }), X[0] = j.left + (E > 0 ? j.width : 0), X[1] = j.top + (x > 0 ? j.height : 0), x = x > 0 ? "s" : 0 > x ? "n" : "", E = E > 0 ? "e" : 0 > E ? "w" : "", B != x + E && (B = x + E, K())
-            }
-            return 3 == B && (n[0] -= q[0], n[1] -= q[1], n[0] = w(R, p(0, n[0])), n[1] = w(W, p(0, n[1])), K((y((X[0] - n[0]) * (X[1] - n[1]) * (.5 - z % 2)) > 0 ? "nw" : "ne") + "-resize"), k({
-                left: X[0] > n[0] ? n[0] : X[0],
-                top: X[1] > n[1] ? n[1] : X[1],
-                width: v(X[0] - n[0]),
-                height: v(X[1] - n[1])
-            }, !0)), cancelEvent(e)
-        },
-        Z = function(h) {
-            q = Q(t);
-            var a, r = P(h);
-            if (2 == B) {
-                r[0] -= q[0], r[1] -= q[1];
-                var o = w(R - C, p(0, r[0] - i)),
-                    d = w(W - M, p(0, r[1] - n));
-                k({
-                    left: o,
-                    top: d,
-                    width: C,
-                    height: M
-                })
-            } else if (3 == B) {
-                r[0] -= q[0], r[1] -= q[1], r[0] > X[0] && (a = r[0], r[0] = X[0], X[0] = a), r[1] > X[1] && (a = r[1], r[1] = X[1], X[1] = a);
-                var l = X[0] - r[0],
-                    c = X[1] - r[1];
-                if (r[0] < 0 && (l += r[0], r[0] = 0), r[1] < 0 && (c += r[1], r[1] = 0), l = w(l, R - r[0]), c = w(c, W - r[1]), b > 0 && c * b > l) {
-                    var g, f, v = m(c * b) - l,
-                        y = intval(v / 2);
-                    r[0] -= y, l += v, g = r[0] < 0 ? r[0] : 0, r[0] -= g, r[0] + l + g > R && (g = R - l - r[0]), g && (f = u(g / b), l += g, r[1] -= intval(f / 2), c += f)
-                } else if (A > 0 && l > c * A) {
-                    var g, f, v = m(l / A) - c,
-                        y = intval(v / 2);
-                    r[1] -= y, c += v, f = r[1] < 0 ? r[1] : 0, r[1] -= f, r[1] + c + f > W && (f = W - c - r[1]), f && (g = u(f * A), c += f, r[0] -= intval(g / 2), l += g)
-                }
-                if (N > l) {
-                    var v = N - l,
-                        y = intval(v / 2);
-                    r[0] -= y, l += v, r[0] = w(R - l, p(0, r[0]))
-                }
-                if (S > c) {
-                    var v = S - c,
-                        y = intval(v / 2);
-                    r[1] -= y, c = S, r[1] = w(W - c, p(0, r[1]))
-                }
-                k({
-                    left: r[0],
-                    top: r[1],
-                    width: l,
-                    height: c
-                })
-            }
-            return show(_, L), each(F, function() {
-                fadeTo(this, 200, .3)
-            }), hide(s), B = 0, removeEvent(bodyNode, "mousemove", V), removeEvent(bodyNode, "mouseup", Z), removeEvent(bodyNode, "dragend", Z), e.onFinish && e.onFinish(), cancelEvent(h)
-        };
-    return function() {
-        if (R = T.width, W = T.height, !R || !W) return void(++g < 50 && setTimeout(arguments.callee, 100));
-        var d = getSize(t);
-        if (R = d[0], W = d[1], f.style.position = "relative", h = t.offsetLeft, a = t.offsetTop, C = w(R, C), i = intval(C / 2), M = w(W, M), n = intval(M / 2), N = w(N, C), S = w(S, M), b > 0 && S * b > N ? N = m(S * b) : A > 0 && N > S * A && (S = m(N / A)), E && (e.preview50 && (r = ge(e.preview50).appendChild(ce("img", {
-                src: t.src
-            })), addEvent(r, "mousedown", U)), e.preview100 && (o = ge(e.preview100).appendChild(ce("img", {
-                src: t.src
-            })), addEvent(o, "mousedown", U))), s = bodyNode.appendChild(ce("div", {
-                className: "tag_bg fixed"
-            })), addEvent(window, "resize", G), G(), t.style.zIndex = x + 20, _ = f.appendChild(ce("div", {
-                className: "tag_frame",
-                innerHTML: '<div class="tag_frame_inner"><img src="' + t.src + '" style="width: ' + R + "px; height: " + W + 'px;" /></div>'
-            }, {
-                cursor: "move",
-                zIndex: x + 40,
-                left: 0,
-                top: 0
-            })), I = geByTag1("img", _), L = f.appendChild(ce("div", {
-                className: "tag_faded"
-            }, {
-                cursor: "crosshair",
-                left: h,
-                top: a,
-                width: R,
-                height: W,
-                zIndex: x + 30
-            })), each(["nw", "n", "ne", "w", "e", "sw", "s", "se"], function() {
-                var t = this.toString();
-                e.square && t.length < 2 || (F[t] = f.appendChild(ce("div", {
-                    className: "tag_frame_handle " + t
-                }, {
-                    cursor: t + "-resize",
-                    zIndex: x + 50
-                })))
-            }), addEvent(f, "mousedown", U), E && e.crop) {
-            for (var l = e.crop.split(","), c = 0; 3 > c; ++c) l[c] = intval(l[c]);
-            l[2] < N && (l[2] = N), e.rect = {
-                left: l[0],
-                top: l[1],
-                width: l[2],
-                height: l[2]
+            if (preview100) {
+                preview100.style.width = mceil(width * 100 / r.width) + 'px';
+                preview100.style.height = mceil(height * 100 / r.height) + 'px';
+                preview100.style.marginLeft = -mfloor(r.left * 100 / r.width) + 'px';
+                preview100.style.marginTop = -mfloor(r.top * 100 / r.width) + 'px';
             }
         }
-        e.rect ? (k(e.rect), show(L, _), each(F, function() {
-            show(this)
-        })) : (t.style.cursor = "crosshair", addEvent(t, "mousedown", U))
-    }(), {
+    }
+
+    var action = 0,
+        start, adjX, adjY, startRect, elemXY;
+
+    var adjustPos = function(x, y) {
+        return [mmin(width, mmax(0, x - elemXY[0])), mmin(height, mmax(0, y - elemXY[1]))];
+    }
+
+    var winResize = function() {
+        var dwidth = Math.max(intval(window.innerWidth), intval(document.documentElement.clientWidth));
+        var dheight = Math.max(intval(window.innerHeight), intval(document.documentElement.clientHeight));
+        bg.style.width = dwidth + 'px';
+        bg.style.height = dheight + 'px';
+    }
+
+    var cursorAct = function(a) {
+        if (!a) a = action;
+        var dirs = ['n', 'ne', 'e', 'se', 's', 'sw', 'w', 'nw'];
+        switch (rot) {
+            case 1:
+                return dirs[(dirs.indexOf(a) + 2) % 8];
+            case 2:
+                return dirs[(dirs.indexOf(a) + 4) % 8];
+            case 3:
+                return dirs[(dirs.indexOf(a) + 6) % 8];
+            default:
+                return a;
+        }
+    }
+
+    var updateCursor = function(c) {
+        if (action) {
+            if (action == 1 || action == preview50 || action == preview100) {
+                c = 'move';
+            } else if (action == 2) {
+                c = 'crosshair';
+            } else if (action.length) {
+                c = cursorAct() + '-resize';
+            }
+            bg.style.cursor = c;
+        }
+    }
+
+    var cursorXY = function(e) {
+        switch (rot) {
+            case 1:
+                return [
+                    elemXY[0] + e.pageY - elemXY[1] + mfloor((width - height) / 2),
+                    elemXY[1] - e.pageX + elemXY[0] + mfloor((width + height) / 2)
+                ];
+            case 2:
+                return [
+                    elemXY[0] + (elemXY[0] + width - e.pageX),
+                    elemXY[1] + (elemXY[1] + height - e.pageY)
+                ];
+            case 3:
+                return [
+                    elemXY[0] - e.pageY + elemXY[1] + mfloor((width + height) / 2),
+                    elemXY[1] + e.pageX - elemXY[0] - mfloor((width - height) / 2)
+                ];
+            default:
+                return [e.pageX, e.pageY];
+        }
+    }
+    var oldXY = function(el) {
+        var xy = getXY(el);
+        if (rot == 1 || rot == 3) {
+            var diff = (width - height) / 2;
+            xy = [xy[0] - diff, xy[1] + diff];
+        }
+        return xy;
+    }
+
+    var mouseDown = function(e) {
+        elemXY = oldXY(elem);
+        start = cursorXY(e);
+        startRect = extend({}, rect);
+        swidth = sheight = srect = false;
+
+        if (e.target == tagimg) {
+            action = 1;
+        } else if (e.target == tagfaded || e.target == elem) {
+            action = 2;
+        } else if (e.target == preview50 || e.target == preview100) {
+            action = e.target;
+            if (!rect.width || !rect.height) {
+                showRect({
+                    left: 0,
+                    top: 0,
+                    width: mmin(100, mmin(width, height)),
+                    height: mmin(100, mmin(width, height))
+                });
+            }
+        } else {
+            each(taghandles, function(i) {
+                if (e.target == this) {
+                    action = i;
+                    var x = start[0] - elemXY[0],
+                        y = start[1] - elemXY[1];
+                    var vh = [i.charAt(0), (i.length > 1) ? i.charAt(1) : i.charAt(0)];
+                    start[0] = rect.left + (vh[1] == 'w' ? 0 : rect.width);
+                    start[1] = rect.top + (vh[0] == 'n' ? 0 : rect.height);
+                    adjX = start[0] - x;
+                    adjY = start[1] - y;
+                }
+            });
+        }
+        if (action) {
+            if (opts.onStart) opts.onStart();
+            if (action != 2 && action != preview50 && action != preview100) {
+                each(taghandles, function() {
+                    setStyle(this, 'opacity', 0.7);
+                });
+            }
+            show(bg);
+            updateCursor();
+            removeEvent(elem, 'mousedown', mouseDown);
+            addEvent(bodyNode, 'mouseup dragend', mouseUp);
+            addEvent(bodyNode, 'mousemove', mouseMove);
+            return cancelEvent(e);
+        }
+    }
+
+    var mouseMove = function(e) {
+        if (window.getSelection) {
+            var sel = window.getSelection();
+            if (sel.removeAllRanges) sel.removeAllRanges();
+        }
+        var c = cursorXY(e);
+        if (action == 1) {
+            var nx = startRect.left + (c[0] - start[0]);
+            var ny = startRect.top + (c[1] - start[1]);
+            nx = mmin(width - rect.width, mmax(0, nx));
+            ny = mmin(height - rect.height, mmax(0, ny));
+            showRect(extend(rect, {
+                left: nx,
+                top: ny
+            }));
+        } else if (action == 2) {
+            if (mabs(c[0] - start[0]) > 3 && mabs(c[1] - start[1]) > 3) {
+                action = 3;
+                updateCursor();
+                elemXY = oldXY(elem);
+                start[0] -= elemXY[0];
+                start[1] -= elemXY[1];
+                show(tagframe, tagfaded);
+                each(taghandles, function() {
+                    show(this);
+                    setStyle(this, 'opacity', 0.7);
+                });
+            }
+        } else if (action == preview50 || action == preview100) {
+            var s = (action == preview50) ? 50 : 100;
+            var nx = startRect.left - mfloor((c[0] - start[0]) * rect.width / s);
+            var ny = startRect.top - mfloor((c[1] - start[1]) * rect.height / s);
+            nx = mmin(width - rect.width, mmax(0, nx));
+            ny = mmin(height - rect.height, mmax(0, ny));
+            showRect(extend(rect, {
+                left: nx,
+                top: ny
+            }));
+        } else if (action.length) {
+            var xy = adjustPos(c[0] + adjX, c[1] + adjY);
+            c[0] = xy[0];
+            c[1] = xy[1];
+            var dx = c[0] - start[0],
+                dy = c[1] - start[1];
+            if (!dx && !dy) return cancelEvent(e);
+
+            var nx = rect.left,
+                ny = rect.top,
+                nw = rect.width,
+                nh = rect.height;
+
+            var ver = 0,
+                hor = 0; // Where are we moving
+            if (action.length == 2) {
+                ver = (action.charAt(0) == 'n') ? -1 : 1;
+                hor = (action.charAt(1) == 'w') ? -1 : 1;
+            } else {
+                ver = (action == 'n' ? -1 : (action == 's' ? 1 : 0));
+                hor = (action == 'w' ? -1 : (action == 'e' ? 1 : 0));
+            }
+            if (ver && (nh + msign(ver) * dy < minh / 2)) { // If we change verti direction
+                ver = -ver;
+                start[1] = rect.top + (ver > 0 ? rect.height : 0);
+                dy = c[1] - start[1];
+            }
+            if (hor && (nw + msign(hor) * dx < minw / 2)) { // If we change horiz direction
+                hor = -hor;
+                start[0] = rect.left + (hor > 0 ? rect.width : 0);
+                dx = c[0] - start[0];
+            }
+            vsign = ver ? msign(ver) : 0;
+            hsign = hor ? msign(hor) : 0;
+
+            if (mina > 0 && (nw + hsign * dx) < (nh + vsign * dy) * mina) { // min and max aspect
+                if (hor) {
+                    dx = hsign * mceil((nh + vsign * dy) * mina - nw);
+                } else {
+                    dy = vsign * mfloor(nw / mina - nh);
+                }
+            }
+            if (maxa > 0 && (nw + hsign * dx) > (nh + vsign * dy) * maxa) {
+                if (ver) {
+                    dy = vsign * mceil((nw + hsign * dx) / maxa - nh);
+                } else {
+                    dx = hsign * mfloor(nh * maxa - nw);
+                }
+            }
+            if (ver) {
+                nh += msign(ver) * dy;
+                if (nh < minh) { // If trying to get less, than minimum
+                    ny -= (ver > 0) ? 0 : (minh - nh - dy);
+                    nh = minh;
+                } else {
+                    ny += (ver > 0) ? 0 : dy;
+                }
+            }
+            if (hor) {
+                nw += msign(hor) * dx;
+                if (nw < minw) { // If trying to get less, than minimum
+                    nx -= (hor > 0) ? 0 : (minw - nw - dx);
+                    nw = minw;
+                } else {
+                    nx += (hor > 0) ? 0 : dx;
+                }
+            }
+            var corx = 0,
+                cory = 0,
+                corax = 0,
+                coray = 0;
+            if (nx < 0) { // What is the amount of correction
+                corx = nx;
+                nx = 0;
+            } else if (nw > width - nx) {
+                corx = width - nx - nw;
+            }
+            if (corx) {
+                nw += corx;
+                if (mina > 0 && nw < mina * nh) { // min and max aspect (width / height)
+                    coray = mfloor(nw / mina) - nh;
+                    nh += coray;
+                    ny -= (ver > 0) ? 0 : coray;
+                }
+            }
+            if (ny < 0) { // What is the amount of correction
+                cory = ny;
+                ny = 0;
+            } else if (nh > height - ny) {
+                cory = height - ny - nh;
+            }
+            if (cory) {
+                nh += cory;
+                if (maxa > 0 && nw > maxa * nh) { // min and max aspect (width / height)
+                    corax = mfloor(nh * maxa) - nw;
+                    nw += corax;
+                    nx -= (hor > 0) ? 0 : corax;
+                }
+            }
+
+            showRect({
+                left: nx,
+                top: ny,
+                width: nw,
+                height: nh
+            });
+
+            start[0] = rect.left + (hor > 0 ? rect.width : 0);
+            start[1] = rect.top + (ver > 0 ? rect.height : 0);
+
+            ver = (ver > 0 ? 's' : (ver < 0 ? 'n' : ''));
+            hor = (hor > 0 ? 'e' : (hor < 0 ? 'w' : ''));
+            if (action != ver + hor) {
+                action = ver + hor;
+                updateCursor();
+            }
+        }
+        if (action == 3) {
+            c[0] -= elemXY[0];
+            c[1] -= elemXY[1];
+            c[0] = mmin(width, mmax(0, c[0]));
+            c[1] = mmin(height, mmax(0, c[1]));
+            updateCursor((msign((start[0] - c[0]) * (start[1] - c[1]) * (0.5 - rot % 2)) > 0 ? 'nw' : 'ne') + '-resize');
+            showRect({
+                left: start[0] > c[0] ? c[0] : start[0],
+                top: start[1] > c[1] ? c[1] : start[1],
+                width: mabs(start[0] - c[0]),
+                height: mabs(start[1] - c[1])
+            }, true);
+        }
+        return cancelEvent(e);
+    }
+
+    var mouseUp = function(e) {
+        elemXY = oldXY(elem);
+        var c = cursorXY(e),
+            t;
+        if (action == 2) {
+            c[0] -= elemXY[0];
+            c[1] -= elemXY[1];
+            var x = mmin(width - defw, mmax(0, c[0] - defw2));
+            var y = mmin(height - defh, mmax(0, c[1] - defh2));
+            showRect({
+                left: x,
+                top: y,
+                width: defw,
+                height: defh
+            });
+        } else if (action == 3) {
+            c[0] -= elemXY[0];
+            c[1] -= elemXY[1];
+            if (c[0] > start[0]) {
+                t = c[0];
+                c[0] = start[0];
+                start[0] = t;
+            }
+            if (c[1] > start[1]) {
+                t = c[1];
+                c[1] = start[1];
+                start[1] = t;
+            }
+            var w = start[0] - c[0],
+                h = start[1] - c[1];
+            if (c[0] < 0) {
+                w += c[0];
+                c[0] = 0;
+            }
+            if (c[1] < 0) {
+                h += c[1];
+                c[1] = 0;
+            }
+            w = mmin(w, width - c[0]);
+            h = mmin(h, height - c[1]);
+            if (mina > 0 && w < h * mina) { // min and max aspect (width / height)
+                var d = mceil(h * mina) - w,
+                    d2 = intval(d / 2),
+                    corx, cory;
+                c[0] -= d2;
+                w += d;
+
+                corx = (c[0] < 0 ? c[0] : 0);
+                c[0] -= corx;
+                if (c[0] + w + corx > width) {
+                    corx = width - w - c[0];
+                }
+                if (corx) {
+                    cory = mfloor(corx / mina);
+                    w += corx;
+                    c[1] -= intval(cory / 2);
+                    h += cory;
+                }
+            } else if (maxa > 0 && w > h * maxa) {
+                var d = mceil(w / maxa) - h,
+                    d2 = intval(d / 2),
+                    corx, cory;
+                c[1] -= d2;
+                h += d;
+
+                cory = (c[1] < 0 ? c[1] : 0);
+                c[1] -= cory;
+                if (c[1] + h + cory > height) {
+                    cory = height - h - c[1];
+                }
+                if (cory) {
+                    corx = mfloor(cory * maxa);
+                    h += cory;
+                    c[0] -= intval(corx / 2);
+                    w += corx;
+                }
+            }
+            if (w < minw) {
+                var d = minw - w,
+                    d2 = intval(d / 2);
+                c[0] -= d2;
+                w += d;
+
+                c[0] = mmin(width - w, mmax(0, c[0]));
+            }
+            if (h < minh) {
+                var d = minh - h,
+                    d2 = intval(d / 2);
+                c[1] -= d2;
+                h = minh;
+
+                c[1] = mmin(height - h, mmax(0, c[1]));
+            }
+            showRect({
+                left: c[0],
+                top: c[1],
+                width: w,
+                height: h
+            });
+        }
+        show(tagframe, tagfaded);
+        each(taghandles, function() {
+            fadeTo(this, 200, 0.3);
+        });
+        hide(bg);
+        action = 0;
+
+        removeEvent(bodyNode, 'mousemove', mouseMove);
+        removeEvent(bodyNode, 'mouseup', mouseUp);
+        removeEvent(bodyNode, 'dragend', mouseUp);
+
+        if (opts.onFinish) opts.onFinish();
+
+        return cancelEvent(e);
+    };
+
+    (function() {
+        width = img.width;
+        height = img.height;
+
+        if (!width || !height) {
+            if (++inittries < 50) setTimeout(arguments.callee, 100);
+            return;
+        }
+        var s = getSize(elem);
+        width = s[0];
+        height = s[1];
+
+        node.style.position = 'relative';
+
+        addX = elem.offsetLeft;
+        addY = elem.offsetTop;
+
+        defw = mmin(width, defw);
+        defw2 = intval(defw / 2);
+        defh = mmin(height, defh);
+        defh2 = intval(defh / 2);
+        minw = mmin(minw, defw);
+        minh = mmin(minh, defh);
+        if (mina > 0 && minw < minh * mina) { // min and max aspect (width / height)
+            minw = mceil(minh * mina);
+        } else if (maxa > 0 && minw > minh * maxa) {
+            minh = mceil(minw / maxa);
+        }
+        if (square) {
+            if (opts.preview50) {
+                preview50 = ge(opts.preview50).appendChild(ce('img', {
+                    src: elem.src
+                }));
+                addEvent(preview50, 'mousedown', mouseDown);
+            }
+            if (opts.preview100) {
+                preview100 = ge(opts.preview100).appendChild(ce('img', {
+                    src: elem.src
+                }));
+                addEvent(preview100, 'mousedown', mouseDown);
+            }
+        }
+
+        bg = bodyNode.appendChild(ce('div', {
+            className: 'tag_bg fixed'
+        }));
+        addEvent(window, 'resize', winResize);
+        winResize();
+
+        elem.style.zIndex = zstart + 20;
+
+        tagframe = node.appendChild(ce('div', {
+            className: 'tag_frame',
+            innerHTML: '<div class="tag_frame_inner"><img src="' + elem.src + '" style="width: ' + width + 'px; height: ' + height + 'px;" /></div>'
+        }, {
+            cursor: 'move',
+            zIndex: zstart + 40,
+            left: 0,
+            top: 0
+        }));
+        tagimg = geByTag1('img', tagframe);
+        tagfaded = node.appendChild(ce('div', {
+            className: 'tag_faded'
+        }, {
+            cursor: 'crosshair',
+            left: addX,
+            top: addY,
+            width: width,
+            height: height,
+            zIndex: zstart + 30
+        }));
+
+        each(['nw', 'n', 'ne', 'w', 'e', 'sw', 's', 'se'], function() {
+            var s = this.toString();
+            if (opts.square && s.length < 2) return;
+            taghandles[s] = node.appendChild(ce('div', {
+                className: 'tag_frame_handle ' + s
+            }, {
+                cursor: s + '-resize',
+                zIndex: zstart + 50
+            }));
+        });
+
+        addEvent(node, 'mousedown', mouseDown);
+
+        if (square && opts.crop) {
+            var d = opts.crop.split(',');
+            for (var i = 0; i < 3; ++i) {
+                d[i] = intval(d[i]);
+            }
+            if (d[2] < minw) {
+                d[2] = minw;
+            }
+            opts.rect = {
+                left: d[0],
+                top: d[1],
+                width: d[2],
+                height: d[2]
+            };
+        }
+
+        if (opts.rect) {
+            showRect(opts.rect);
+            show(tagfaded, tagframe);
+            each(taghandles, function() {
+                show(this);
+            });
+        } else {
+            elem.style.cursor = 'crosshair';
+            addEvent(elem, 'mousedown', mouseDown);
+        }
+    })();
+
+    return {
         destroy: function() {
-            cleanElems(f, t, _, L, r, o), bodyNode.removeChild(s), f.removeChild(_), f.removeChild(L), each(["nw", "n", "ne", "w", "e", "sw", "s", "se"], function() {
-                var t = this.toString();
-                F[t] && f.removeChild(F[t])
-            }), setStyle(t, {
-                cursor: "",
-                zIndex: ""
-            }), removeEvent(t, "mousedown", U), removeEvent(window, "resize", G), each(F, function() {
-                cleanElems(this)
-            })
+            cleanElems(node, elem, tagframe, tagfaded, preview50, preview100);
+            bodyNode.removeChild(bg);
+            node.removeChild(tagframe);
+            node.removeChild(tagfaded);
+            each(['nw', 'n', 'ne', 'w', 'e', 'sw', 's', 'se'], function() {
+                var s = this.toString();
+                if (taghandles[s]) {
+                    node.removeChild(taghandles[s]);
+                }
+            });
+            setStyle(elem, {
+                cursor: '',
+                zIndex: ''
+            });
+            removeEvent(elem, 'mousedown', mouseDown);
+            removeEvent(window, 'resize', winResize);
+            each(taghandles, function() {
+                cleanElems(this);
+            });
         },
         reset: function() {
-            j = {}, hide(L, _), each(F, function() {
-                hide(this)
-            }), t.style.cursor = "crosshair", removeEvent(t, "mousedown", U), addEvent(t, "mousedown", U)
+            rect = {};
+            hide(tagfaded, tagframe);
+            each(taghandles, function() {
+                hide(this);
+            });
+            elem.style.cursor = 'crosshair';
+            removeEvent(elem, 'mousedown', mouseDown);
+            addEvent(elem, 'mousedown', mouseDown);
         },
-        resize: function(e, r) {
-            d || (d = R, l = W, c = clone(j));
-            var o = e / d,
-                s = r / l;
-            R = e, W = r, C = w(R, C), i = intval(C / 2), M = w(W, M), n = intval(M / 2), N = w(N, C), S = w(S, M), b > 0 && S * b > N ? N = m(S * b) : A > 0 && N > S * A && (S = m(N / A)), h = t.offsetLeft, a = t.offsetTop, setStyle(L, {
-                left: h,
-                top: a,
-                width: e,
-                height: r
-            }), setStyle(I, {
-                width: e,
-                height: r
-            }), j.width && (j.left = u(o * c.left), j.width = u(o * c.width), j.top = u(s * c.top), j.height = u(s * c.height), j.width < N && (j.width = N), j.height < S && (j.height = S), k(j))
-        },
-        rotate: function(t) {
-            if (t % 2) {
-                var e = b;
-                b = 1 / A, A = 1 / e, e = N, N = S, S = e, j.width && (j.width < N && (j.left = p(0, j.left - u((N - j.width) / 2)), j.width = N), j.height < S && (j.top = p(0, j.top - u((S - j.height) / 2)), j.height = S), j.width < j.height * b && (j.height = u(j.width / b)), j.width > j.height * A && (j.width = u(j.height * A)), k(j))
+        resize: function(w, h) {
+            if (!swidth) {
+                swidth = width;
+                sheight = height;
+                srect = clone(rect);
             }
-            z = (z + t) % 4, each(F, function(t) {
-                this.style.cursor = J(t) + "-resize"
-            })
+            var cx = w / swidth,
+                cy = h / sheight;
+            width = w;
+            height = h;
+            defw = mmin(width, defw);
+            defw2 = intval(defw / 2);
+            defh = mmin(height, defh);
+            defh2 = intval(defh / 2);
+            minw = mmin(minw, defw);
+            minh = mmin(minh, defh);
+            if (mina > 0 && minw < minh * mina) { // min and max aspect (width / height)
+                minw = mceil(minh * mina);
+            } else if (maxa > 0 && minw > minh * maxa) {
+                minh = mceil(minw / maxa);
+            }
+            addX = elem.offsetLeft;
+            addY = elem.offsetTop;
+
+            setStyle(tagfaded, {
+                left: addX,
+                top: addY,
+                width: w,
+                height: h
+            });
+            setStyle(tagimg, {
+                width: w,
+                height: h
+            });
+            if (rect.width) {
+                rect.left = mfloor(cx * srect.left);
+                rect.width = mfloor(cx * srect.width);
+                rect.top = mfloor(cy * srect.top);
+                rect.height = mfloor(cy * srect.height);
+                if (rect.width < minw) {
+                    rect.width = minw;
+                }
+                if (rect.height < minh) {
+                    rect.height = minh;
+                }
+                showRect(rect);
+            }
+        },
+        rotate: function(c) {
+            if (c % 2) {
+                var tmp = mina;
+                mina = 1 / maxa;
+                maxa = 1 / tmp;
+                tmp = minw;
+                minw = minh;
+                minh = tmp;
+                if (rect.width) {
+                    if (rect.width < minw) {
+                        rect.left = mmax(0, rect.left - mfloor((minw - rect.width) / 2));
+                        rect.width = minw;
+                    }
+                    if (rect.height < minh) {
+                        rect.top = mmax(0, rect.top - mfloor((minh - rect.height) / 2));
+                        rect.height = minh;
+                    }
+                    if (rect.width < rect.height * mina) {
+                        rect.height = mfloor(rect.width / mina);
+                    }
+                    if (rect.width > rect.height * maxa) {
+                        rect.width = mfloor(rect.height * maxa);
+                    }
+                    showRect(rect);
+                }
+            }
+            rot = (rot + c) % 4;
+            each(taghandles, function(i) {
+                this.style.cursor = cursorAct(i) + '-resize';
+            });
         },
         result: function() {
-            var t = R,
-                e = W;
-            switch (z) {
+            var w = width,
+                h = height;
+            switch (rot) {
                 case 1:
-                    return [e - j.top - j.height, j.left, j.height, j.width];
+                    return [h - rect.top - rect.height, rect.left, rect.height, rect.width];
                 case 2:
-                    return [t - j.left - j.width, e - j.top - j.height, j.width, j.height];
+                    return [w - rect.left - rect.width, h - rect.top - rect.height, rect.width, rect.height];
                 case 3:
-                    return [j.top, t - j.left - j.width, j.height, j.width];
+                    return [rect.top, w - rect.left - rect.width, rect.height, rect.width];
                 default:
-                    return [j.left, j.top, j.width, j.height]
+                    return [rect.left, rect.top, rect.width, rect.height];
             }
         }
     }
 }
+
 try {
-    stManager.done("tagger.js")
+    stManager.done('tagger.js');
 } catch (e) {}

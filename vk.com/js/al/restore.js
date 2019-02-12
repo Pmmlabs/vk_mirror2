@@ -1,43 +1,64 @@
 var Restore = {
     maxPhotosWithType: 1,
     maxPhotos: 2,
+
     requestTypeFull: 0,
     requestTypeSimple: 4,
+
     onlineNoOwner: 1,
     onlineOwner: 2,
-    submitAuthCode: function(e) {
-        var o = ge("authBtn"),
-            t = ge("code_input"),
-            r = trim(val(t));
-        return r.length < 5 ? notaBene(t) : void ajax.post("login?act=a_auth_by_code", {
-            hash: e,
-            code: r
+
+    submitAuthCode: function(hash) {
+        var btn = ge('authBtn'),
+            codeInput = ge('code_input'),
+            code = trim(val(codeInput));
+
+        if (code.length < 5) {
+            return notaBene(codeInput);
+        }
+
+        ajax.post('login?act=a_auth_by_code', {
+            hash: hash,
+            code: code
         }, {
-            onDone: function(e, t) {
-                showMsg("error", e, "error", !0), t && disableButton(o, !0)
+            onDone: function(msg, disable) {
+                showMsg('error', msg, 'error', true);
+                if (disable) {
+                    disableButton(btn, true);
+                }
             },
-            showProgress: lockButton.pbind(o),
-            hideProgress: unlockButton.pbind(o)
-        })
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn)
+        });
     },
-    submitInstantAuthAsk: function(e, o) {
-        cur.authAskSureBox.hide(), cur.resetPasswordIA = o, Restore.submitForgotPassword(e)
+
+    submitInstantAuthAsk: function(hash, ia) {
+        cur.authAskSureBox.hide();
+        cur.resetPasswordIA = ia;
+        Restore.submitForgotPassword(hash);
     },
+
     submitForgotPassword: function(hash) {
-        var btn = ge("submitBtn"),
-            loginInput = ge("login_input"),
-            lastNameInput = ge("lastname_input");
+        var btn = ge('submitBtn'),
+            loginInput = ge('login_input'),
+            lastNameInput = ge('lastname_input');
         if (loginInput) {
             var login = val(loginInput);
-            if (login.length < 3) return notaBene(loginInput);
-            cur.restoreForgotPassParams.login = login
+            if (login.length < 3) {
+                return notaBene(loginInput);
+            }
+            cur.restoreForgotPassParams.login = login;
         }
+
         if (lastNameInput) {
             var lastName = val(lastNameInput);
-            if (lastName.length < 1) return elfocus("lastname_input");
-            cur.restoreForgotPassParams.lastName = lastName
+            if (lastName.length < 1) {
+                return elfocus('lastname_input');
+            }
+            cur.restoreForgotPassParams.lastName = lastName;
         }
-        ajax.post("login?act=a_forgot", {
+
+        ajax.post('login?act=a_forgot', {
             login: cur.restoreForgotPassParams.login,
             lname: cur.restoreForgotPassParams.lastName,
             hash: cur.resetPasswordTHash,
@@ -45,535 +66,1029 @@ var Restore = {
             sure: hash
         }, {
             onDone: function(result, content, script) {
-                result = intval(result), 0 === result ? showMsg("error", content, "error", !0) : 1 === result && ("" !== content && (val("forgot_panel", content), showBackLink("/restore"), hide(geByClass1("top_nav_link", ge("top_links"))), show("top_links")), "" !== script && eval(script))
+                result = intval(result);
+                if (result === 0) {
+                    showMsg('error', content, 'error', true);
+                } else if (result === 1) {
+                    if (content !== '') {
+                        val('forgot_panel', content);
+                        showBackLink('/restore');
+                        hide(geByClass1('top_nav_link', ge('top_links')));
+                        show('top_links');
+                    }
+                    if (script !== '') {
+                        eval(script);
+                    }
+                }
             },
             showProgress: lockButton.pbind(btn),
             hideProgress: unlockButton.pbind(btn)
-        })
+        });
     },
-    submitForgotPasswordByPhone: function(e, o, t) {
-        var r = ge("submitBtn"),
-            s = val("password"),
-            n = val("password2"),
-            a = null;
-        if ("" === e) {
-            if (e = trim(val("phone_login")), "" === e) return notaBene("phone_login");
-            a = 1
+    submitForgotPasswordByPhone: function(login, hash, shash) {
+        var btn = ge('submitBtn'),
+            password = val('password'),
+            password2 = val('password2'),
+            manually = null;
+        if (login === '') {
+            login = trim(val('phone_login'));
+            if (login === '') {
+                return notaBene('phone_login');
+            }
+            manually = 1;
         }
-        return s.length ? n.length ? void ajax.post("login?act=a_forgot_by_phone", {
-            hash: o,
-            shash: t,
-            login: e,
-            password: s,
-            password2: n,
-            manually: a
+
+        if (!password.length) {
+            return notaBene('password');
+        } else if (!password2.length) {
+            return notaBene('password2');
+        }
+
+        ajax.post('login?act=a_forgot_by_phone', {
+            hash: hash,
+            shash: shash,
+            login: login,
+            password: password,
+            password2: password2,
+            manually: manually
         }, {
-            onDone: function(e, o) {
-                1 == e ? val("restore_password_form", o) : (val("error", o), show("error"))
+            onDone: function(code, message) {
+                if (code == 1) {
+                    val('restore_password_form', message);
+                } else {
+                    val('error', message);
+                    show('error');
+                }
             },
-            showProgress: lockButton.pbind(r),
-            hideProgress: unlockButton.pbind(r)
-        }) : notaBene("password2") : notaBene("password")
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn)
+        });
     },
-    initForgotPassword: function(e) {
-        showBackLink(), cur.oldLd = window.onLoginDone, cur.restoreForgotPassParams = {}, window.onLoginDone = function() {
-            nav.go("/", {
-                force: !0,
-                noback: !0
-            })
-        }, cur.destroy.push(function(e) {
-            window.onLoginDone = e.oldLd, delete cur.restoreForgotPassParams
-        }), elfocus("login_input")
+    initForgotPassword: function(hash) {
+        showBackLink();
+        cur.oldLd = window.onLoginDone;
+        cur.restoreForgotPassParams = {};
+        window.onLoginDone = function() {
+            nav.go('/', {
+                force: true,
+                noback: true
+            });
+        };
+        cur.destroy.push(function(c) {
+            window.onLoginDone = c.oldLd;
+            delete cur.restoreForgotPassParams;
+        });
+        elfocus('login_input');
     },
-    showMsgBox: function(e, o, t) {
+    showMsgBox: function(text, title, input) {
         setTimeout(showFastBox({
-            title: o,
+            title: title,
             width: 440,
             onHide: function() {
-                t && ge(t).focus()
+                if (input) ge(input).focus();
             }
-        }, e).hide, 8e3)
+        }, text).hide, 8000);
     },
-    closeRequest: function(e) {
-        lockButton(e);
-        var o = {
-            act: "a_cancel_request_by_author",
+    closeRequest: function(el) {
+        lockButton(el);
+        var query = {
+            act: 'a_cancel_request_by_author',
             hash: cur.options.cancel_hash,
             rhash: cur.options.hash,
             rid: cur.options.request_id
         };
-        ajax.post("al_restore.php", o, {
-            onDone: function(o) {
-                unlockButton(e), curBox().hide()
+        ajax.post('al_restore.php', query, {
+            onDone: function(res) {
+                unlockButton(el);
+                curBox().hide();
             }
-        })
+        });
     },
     closeRequestBox: function() {
-        showFastBox(getLang("global_box_confirm_title"), getLang("restore_you_sure_want_cancel_request"), getLang("box_no"), !1, getLang("box_yes"), Restore.closeRequest)
+        showFastBox(getLang('global_box_confirm_title'), getLang('restore_you_sure_want_cancel_request'), getLang('box_no'), false, getLang('box_yes'), Restore.closeRequest);
     },
-    showResult: function(e, o, t, r) {
-        cur.wasShown && cur.wasShown != e && hide(cur.wasShown), ajax.post("al_index.php", {
-            act: "restore_log",
-            id: e,
-            text: o,
-            value: t ? t.value : "none"
-        }), cur.wasShown = e;
-        var s = ge(e);
-        return val(s, o), isVisible(s) || show(s), setTimeout(function() {
-            r ? scrollToY(getXY(t)[1] - 100, 200) : scrollToY(getXY(s)[1] - 20, 200), setTimeout(elfocus.pbind(t), 201)
-        }, 1), !1
+    showResult: function(id, text, input, scrollToInput) {
+        if (cur.wasShown && cur.wasShown != id) hide(cur.wasShown);
+        ajax.post('al_index.php', {
+            act: 'restore_log',
+            id: id,
+            text: text,
+            value: input ? input.value : 'none'
+        });
+        cur.wasShown = id;
+
+        var el = ge(id);
+        val(el, text);
+        if (!isVisible(el)) {
+            show(el);
+        }
+        setTimeout(function() {
+            scrollToInput ? scrollToY(getXY(input)[1] - 100, 200) : scrollToY(getXY(el)[1] - 20, 200);
+            setTimeout(elfocus.pbind(input), 201);
+        }, 1);
+        return false;
     },
-    checkPhoneOnBlur: function(e) {
-        var o = e;
-        if (phone = ge(o).value.replace(/[^0-9]/g, ""), !isVisible(o) || /^[1-9][0-9]{6,14}$/.test(phone)) {
-            var t = function(e, o) {
-                var t = "request_phone_check_res";
-                return 2 === e ? (cur.wasShown && cur.wasShown != t && hide(cur.wasShown), cur.wasShown = t, val(t, o), isVisible(t) || setTimeout(function() {
-                    slideDown(t, 150)
-                }, 50), cur.checkedPhones[phone] = [e, o]) : isVisible(t) && slideUp(t, 200), 3 != e || cur.restoreNoEmailAccess ? void Restore.checkedPasswordStatus() : (hide("submit_wrapper"), Restore.changeFormStep("phones", "back_link"))
-            };
-            cur.checkedPhones = cur.checkedPhones || {}, phone in cur.checkedPhones ? t(cur.checkedPhones[phone][0], cur.checkedPhones[phone][1]) : ajax.post("restore?act=a_check_phone", {
+
+    checkPhoneOnBlur: function(el) {
+        var phone_inp = el;
+        phone = ge(phone_inp).value.replace(/[^0-9]/g, '');
+        if (isVisible(phone_inp) && !(/^[1-9][0-9]{6,14}$/.test(phone))) {
+            return;
+        }
+
+        var done = function(res, text) {
+            var infoNodeId = 'request_phone_check_res';
+            if (res === 2) {
+                if (cur.wasShown && cur.wasShown != infoNodeId) {
+                    hide(cur.wasShown);
+                }
+                cur.wasShown = infoNodeId;
+                val(infoNodeId, text);
+                if (!isVisible(infoNodeId)) {
+                    setTimeout(function() {
+                        slideDown(infoNodeId, 150);
+                    }, 50);
+                }
+                cur.checkedPhones[phone] = [res, text];
+            } else {
+                if (isVisible(infoNodeId)) {
+                    slideUp(infoNodeId, 200);
+                }
+            }
+            if (res == 3 && !cur.restoreNoEmailAccess) {
+                hide('submit_wrapper');
+                return Restore.changeFormStep('phones', 'back_link');
+            }
+            Restore.checkedPasswordStatus();
+        };
+        cur.checkedPhones = cur.checkedPhones || {};
+        if (phone in cur.checkedPhones) {
+            done(cur.checkedPhones[phone][0], cur.checkedPhones[phone][1]);
+        } else {
+            ajax.post('restore?act=a_check_phone', {
                 hash: cur.options.fhash,
                 phone: phone
             }, {
-                onDone: t
-            })
+                onDone: done
+            });
         }
     },
     checkEmailOnBlur: function() {
-        var e = val("login");
-        e && /^\s*[a-zA-Z0-9_\.]+@[a-zA-Z0-9_\.]+\s*$/.test(e) && (cur.restoreNoEmailAccess || ajax.post("restore?act=a_check_email", {
-            hash: cur.options.fhash,
-            email: e
-        }, {
-            onDone: function(e) {
-                return e ? (hide("submit_wrapper"), Restore.changeFormStep("phones", "back_link")) : void 0
-            }
-        }))
+        var email = val('login');
+        if (!email) {
+            return;
+        }
+        if (!(/^\s*[a-zA-Z0-9_\.]+@[a-zA-Z0-9_\.]+\s*$/.test(email))) {
+            return;
+        }
+        if (!cur.restoreNoEmailAccess) {
+            ajax.post('restore?act=a_check_email', {
+                hash: cur.options.fhash,
+                email: email
+            }, {
+                onDone: function(ask) {
+                    if (ask) {
+                        hide('submit_wrapper');
+                        return Restore.changeFormStep('phones', 'back_link');
+                    }
+                }
+            });
+        }
     },
-    getUploadedPhotosIds: function(e) {
-        var o = [];
-        return each(cur.images, function(t, r) {
-            (e || !r.deleted) && o.push(r.id)
-        }), o
+    getUploadedPhotosIds: function(withDeleted) {
+        var r = [];
+        each(cur.images, function(i, img) {
+            if (withDeleted || !img.deleted) {
+                r.push(img.id);
+            }
+        });
+        return r;
     },
     submitDocPhoto: function() {
-        return Restore.checkFile(0)
+        return Restore.checkFile(0);
     },
     submitPersonalPhoto: function() {
-        return Restore.checkFile(1)
+        return Restore.checkFile(1);
     },
-    checkFile: function(e, o) {
-        if (!o) {
-            var t, r;
-            t = 1 == e ? val("photo_input") : val("doc_input");
+    checkFile: function(type, accept) {
+        if (!accept) {
+            var name, btn;
+            if (type == 1) {
+                name = val('photo_input');
+            } else {
+                name = val('doc_input');
+            }
             try {
-                var s = new RegExp(cur.screenshot_regex, "gi");
-                if (s.test(t)) {
-                    var n = new MessageBox({
-                        title: getLang("global_action_confirmation")
-                    }).addButton(getLang("restore_no_other_photo"));
-                    return void n.addButton(getLang("box_yes"), function() {
-                        Restore.checkFile(e, !0), n.hide()
-                    }, "gray").content(getLang("restore_screenshoot_confirm_box_text")).show()
+                var regex = new RegExp(cur.screenshot_regex, 'gi');
+                if (regex.test(name)) {
+                    var box = new MessageBox({
+                            title: getLang('global_action_confirmation')
+                        })
+                        .addButton(getLang('restore_no_other_photo'));
+                    box.addButton(getLang('box_yes'), function() {
+                            Restore.checkFile(type, true);
+                            box.hide();
+                        }, 'gray')
+                        .content(getLang('restore_screenshoot_confirm_box_text')).show();
+                    return;
+                } else {
+                    var regex = new RegExp(cur.scan_regex, 'gi');
+                    if (regex.test(name)) {
+                        return Restore.showMsgBox(getLang('restore_scan_error_msg'), getLang('global_error'));
+                    }
+
                 }
-                var s = new RegExp(cur.scan_regex, "gi");
-                if (s.test(t)) return Restore.showMsgBox(getLang("restore_scan_error_msg"), getLang("global_error"))
-            } catch (a) {}
+            } catch (e) {}
         }
-        r = 1 == e ? ge("photo_file_button") : ge("doc_file_button"), lockButton(r);
-        var i = 1 == e ? "photo_upload_ids" : "doc_upload_ids";
-        val(i, Restore.getUploadedPhotosIds(!0).join(",")), lockButton("restore_extend_request_button"), cur.restoreTTLTimeout && clearTimeout(cur.restoreTTLTimeout), 1 == e ? document.photo_upload.submit() : document.doc_upload.submit()
+
+        if (type == 1) {
+            btn = ge('photo_file_button');
+        } else {
+            btn = ge('doc_file_button');
+        }
+        lockButton(btn);
+        var id = (type == 1 ? 'photo_upload_ids' : 'doc_upload_ids');
+        val(id, Restore.getUploadedPhotosIds(true).join(','));
+
+        lockButton('restore_extend_request_button');
+        if (cur.restoreTTLTimeout) {
+            clearTimeout(cur.restoreTTLTimeout);
+        }
+        if (type == 1) {
+            document.photo_upload.submit();
+        } else {
+            document.doc_upload.submit();
+        }
     },
-    uploadError: function(e, o) {
-        unlockButton("restore_extend_request_button"), cur.regenerateHash && cur.regenerateHash();
-        var t = "",
-            r = 4e3;
-        e ? 1 == e || 4 == e ? t = getLang("restore_not_uploaded") : 2 == e ? t = getLang("restore_bad_format") : 5 == e ? t = getLang("restore_bad_size") : 7 == e ? (t = getLang("restore_too_small_image"), r = 8e3) : 8 == e ? (t = getLang("restore_photo_already_attached"), r = 8e3) : 9 == e ? (t = getLang("restore_photo_incorrect"), r = 8e3) : 10 == e && (t = getLang("support_mobile_restore_no_face_found"), r = 0) : t = getLang("global_unknown_error"), r ? setTimeout(showFastBox({
-            title: getLang("global_error"),
-            width: 470
-        }, t).hide, r) : showFastBox({
-            title: getLang("global_error"),
-            width: 470
-        }, t);
-        var s = o ? "photo_" : "doc_",
-            n = ge(s + "file_button");
-        unlockButton(n)
+    uploadError: function(code, type) {
+        unlockButton('restore_extend_request_button');
+        if (cur.regenerateHash) {
+            cur.regenerateHash();
+        }
+        var err = '',
+            timeout = 4000;
+        if (!code) {
+            err = getLang('global_unknown_error');
+        } else if (code == 1 || code == 4) {
+            err = getLang('restore_not_uploaded');
+        } else if (code == 2) {
+            err = getLang('restore_bad_format');
+        } else if (code == 5) {
+            err = getLang('restore_bad_size');
+        } else if (code == 7) {
+            err = getLang('restore_too_small_image');
+            timeout = 8000;
+        } else if (code == 8) {
+            err = getLang('restore_photo_already_attached');
+            timeout = 8000;
+        } else if (code == 9) {
+            err = getLang('restore_photo_incorrect');
+            timeout = 8000;
+        } else if (code == 10) {
+            err = getLang('support_mobile_restore_no_face_found');
+            timeout = 0;
+        }
+        if (timeout) {
+            setTimeout(showFastBox({
+                title: getLang('global_error'),
+                width: 470
+            }, err).hide, timeout);
+        } else {
+            showFastBox({
+                title: getLang('global_error'),
+                width: 470
+            }, err);
+        }
+
+        var prefix = type ? 'photo_' : 'doc_';
+        var btn = ge(prefix + 'file_button');
+        unlockButton(btn);
     },
-    uploadComplete: function(e, o, t, r, s, n) {
-        var a = r ? "photo" : "doc",
-            i = a + "_",
-            u = ge(i + "file_button") || ge("restore_extend_request_button");
-        unlockButton(u);
-        var l = cur.images.length,
-            c = !0;
-        each(cur.images, function(e, o) {
-            return o.type == r && o.deleted ? (l = e, c = !1, !1) : void 0
-        }), cur.images[l] = {
-            id: o,
-            hash: t,
-            type: r
-        }, ++cur.images_count[r];
-        var _ = 2 == n || 3 == n ? Restore.maxPhotosWithType : Restore.maxPhotos;
-        ge(i + "input").disabled = cur.images_count[r] >= _, ge(i + "input").disabled && 3 != n && hide(i + "upload"), show(i + "photos"), s = s.split("%index%").join(l).split("%type%").join(r);
-        var h = se(s),
-            d = ge(i + "photos");
-        d && (c ? d.appendChild(h) : domReplaceEl(d, h)), hide("simple_request_incorrect"), 3 == n ? Restore.extendRequest(ge("restore_extend_request_button")) : Restore.changeFullRequestButton(!0)
+    uploadComplete: function(photo, photo_id, photo_hash, type, html, photoType) {
+        var step = type ? 'photo' : 'doc',
+            prefix = step + '_';
+        var btn = ge(prefix + 'file_button') || ge('restore_extend_request_button');
+        unlockButton(btn);
+
+        var index = cur.images.length,
+            newOne = true;
+        each(cur.images, function(ind, img) {
+            if (img.type == type && img.deleted) {
+                index = ind;
+                newOne = false;
+                return false;
+            }
+        });
+
+        cur.images[index] = {
+            id: photo_id,
+            hash: photo_hash,
+            type: type
+        };
+        ++cur.images_count[type];
+
+        var photosLimit = photoType == 2 || photoType == 3 ? Restore.maxPhotosWithType : Restore.maxPhotos;
+        ge(prefix + 'input').disabled = (cur.images_count[type] >= photosLimit);
+        if (ge(prefix + 'input').disabled && photoType != 3) {
+            hide(prefix + 'upload');
+        }
+
+        show(prefix + 'photos');
+        html = html.split('%index%').join(index).split('%type%').join(type);
+        var imageNode = se(html),
+            imageContainer = ge(prefix + 'photos');
+
+        if (imageContainer) {
+            if (newOne) {
+                imageContainer.appendChild(imageNode);
+            } else {
+                domReplaceEl(imageContainer, imageNode);
+            }
+        }
+        hide('simple_request_incorrect');
+        if (photoType == 3) {
+            Restore.extendRequest(ge('restore_extend_request_button'));
+        } else {
+            Restore.changeFullRequestButton(true);
+        }
     },
-    deleteImage: function(e, o, t) {
-        var r = e ? "photo" : "doc",
-            s = r + "_";
-        if (cur.images[o].deleted) {
-            if (cur.images_count[e] >= 2) return;
-            cur.images[o].deleted = !1, removeClass("photo_img" + o, "restore_uploaded_image__img_removed");
-            var n = 2 == t || 3 == t ? Restore.maxPhotosWithType : Restore.maxPhotos;
-            ++cur.images_count[e] >= n && (ge(s + "input").disabled = !0, hide(s + "upload")), val("del_link" + o, getLang("global_delete")), show("restore_roll_button_" + r)
-        } else cur.images[o].deleted = !0, addClass("photo_img" + o, "restore_uploaded_image__img_removed"), --cur.images_count[e], ge(s + "input").disabled = !1, show(s + "upload"), val("del_link" + o, getLang("global_dont_delete")), cur.images_count[e] || hide("restore_roll_button_" + r)
+    deleteImage: function(type, index, photoType) {
+        var step = type ? 'photo' : 'doc',
+            prefix = step + '_';
+        if (cur.images[index].deleted) {
+            if (cur.images_count[type] >= 2) {
+                return;
+            }
+            cur.images[index].deleted = false;
+            removeClass('photo_img' + index, 'restore_uploaded_image__img_removed');
+
+            var photosLimit = photoType == 2 || photoType == 3 ? Restore.maxPhotosWithType : Restore.maxPhotos;
+            if (++cur.images_count[type] >= photosLimit) {
+                ge(prefix + 'input').disabled = true;
+                hide(prefix + 'upload');
+            }
+            val('del_link' + index, getLang('global_delete'));
+            show('restore_roll_button_' + step);
+        } else {
+            cur.images[index].deleted = true;
+            addClass('photo_img' + index, 'restore_uploaded_image__img_removed');
+
+            --cur.images_count[type];
+            ge(prefix + 'input').disabled = false;
+            show(prefix + 'upload');
+            val('del_link' + index, getLang('global_dont_delete'));
+            if (!cur.images_count[type]) {
+                hide('restore_roll_button_' + step);
+            }
+        }
     },
     checkedPasswordStatus: function() {
         if (cur.restorePasswordChecked) {
-            var e = val("old_password");
-            cur.restorePasswordChecked[e] && 1 !== cur.restorePasswordChecked[e] && Restore.toFullRequest(!1, 1)
+            var password = val('old_password');
+            if (cur.restorePasswordChecked[password] && cur.restorePasswordChecked[password] !== 1) {
+                Restore.toFullRequest(false, 1);
+            }
         }
     },
-    checkPassword: function(e) {
-        e.timeout && clearTimeout(e.timeout), e.timeout = setTimeout(function() {
-            var e = val("old_password");
-            cur.restorePasswordChecked || (cur.restorePasswordChecked = {});
-            var o = isVisible("new_phone_wrap") ? "new_phone" : "phone",
-                t = val(o).replace(/[^0-9]/g, "");
-            e.length > 0 && !cur.restorePasswordChecked[e] && ajax.post("restore?act=a_check_password", {
-                hash: cur.options.fhash,
-                password: e
-            }, {
-                onDone: function(o) {
-                    cur.restorePasswordChecked[e] = o, 1 !== o && t && Restore.toFullRequest(!1, 1)
-                }
-            })
-        }, 400)
+    checkPassword: function(el) {
+        if (el.timeout) {
+            clearTimeout(el.timeout);
+        }
+        el.timeout = setTimeout(function() {
+            var password = val('old_password');
+            if (!cur.restorePasswordChecked) {
+                cur.restorePasswordChecked = {};
+            }
+            var phoneInput = isVisible('new_phone_wrap') ? 'new_phone' : 'phone';
+            var phone = val(phoneInput).replace(/[^0-9]/g, '');
+            if (password.length > 0 && !cur.restorePasswordChecked[password]) {
+                ajax.post('restore?act=a_check_password', {
+                    hash: cur.options.fhash,
+                    password: password
+                }, {
+                    onDone: function(res) {
+                        cur.restorePasswordChecked[password] = res;
+                        if (res !== 1 && phone) {
+                            Restore.toFullRequest(false, 1);
+                        }
+                    }
+                });
+            }
+        }, 400);
     },
     submitPageLink: function() {
-        var e = ge("submitBtn"),
-            o = val("link");
-        return o ? (hide("error"), void ajax.post("al_restore.php?act=a_profile_link", {
-            link: o
+        var btn = ge('submitBtn'),
+            link = val('link');
+        if (!link) {
+            elfocus('link');
+            return;
+        }
+        hide('error');
+        ajax.post('al_restore.php?act=a_profile_link', {
+            link: link
         }, {
-            onDone: function(e) {
-                val("error", e), show("error")
+            onDone: function(msg) {
+                val('error', msg);
+                show('error');
             },
-            showProgress: lockButton.pbind(e),
-            hideProgress: unlockButton.pbind(e)
-        })) : void elfocus("link")
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn)
+        });
     },
     usePhoneAsLogin: function() {
-        var e = ge("usePhoneBtn");
-        lockButton(e);
-        var o = {
-            act: "a_new_email",
+        var btn = ge('usePhoneBtn');
+        lockButton(btn);
+        var params = {
+            act: 'a_new_email',
             rid: cur.options.request_id,
             hash: cur.options.lhash,
             login: -1
         };
-        ajax.post("al_restore.php", o, {
-            onDone: function(o) {
-                o ? (unlockButton(e), Restore.showMsgBox(o, getLang("global_error"))) : nav.reload()
+        ajax.post('al_restore.php', params, {
+            onDone: function(msg) {
+                if (msg) {
+                    unlockButton(btn);
+                    Restore.showMsgBox(msg, getLang('global_error'));
+                } else {
+                    nav.reload();
+                }
             },
             onFail: function() {
-                unlockButton(e)
+                unlockButton(btn);
             }
-        })
+        });
     },
     useAnotherEmail: function() {
-        var e = ge("anotherEmailBtn"),
-            o = ge("login").value;
-        if (!/^\s*[a-zA-Z0-9_\.]+@[a-zA-Z0-9_\.]+\s*$/.test(o)) return void Restore.showMsgBox(getLang("restore_error_email"), getLang("global_error"), "login");
-        lockButton(e);
-        var t = {
-            act: "a_new_email",
+        var btn = ge('anotherEmailBtn');
+        var login = ge('login').value;
+        if (!(/^\s*[a-zA-Z0-9_\.]+@[a-zA-Z0-9_\.]+\s*$/.test(login))) {
+            Restore.showMsgBox(getLang('restore_error_email'), getLang('global_error'), 'login');
+            return;
+        }
+        lockButton(btn);
+        var params = {
+            act: 'a_new_email',
             rid: cur.options.request_id,
             hash: cur.options.lhash,
-            login: o
+            login: login
         };
-        ajax.post("al_restore.php", t, {
-            onDone: function(o) {
-                unlockButton(e), Restore.showMsgBox(o, getLang("global_error"))
+        ajax.post('al_restore.php', params, {
+            onDone: function(msg) {
+                unlockButton(btn);
+                Restore.showMsgBox(msg, getLang('global_error'));
             },
             onFail: function() {
-                unlockButton(e)
+                unlockButton(btn);
             }
-        })
+        });
     },
-    extendRequest: function(e, o) {
-        var t = {
+    extendRequest: function(btn, force) {
+        var params = {
             rid: cur.options.request_id,
             hash: cur.options.phash,
-            comment: val("comment"),
+            comment: val('comment'),
             images: []
         };
-        o === !0 && (t.force = 1);
-        for (var r = 0; r < cur.images.length; ++r) cur.images[r].deleted || t.images.push(cur.images[r].hash);
-        if (!trim(t.comment).length && ge("comment") && !t.images.length) return void elfocus("comment");
-        if (cur.restoreTTLTimeout && clearTimeout(cur.restoreTTLTimeout), !t.images.length && cur.restorePhotosRequested && !o) {
-            var s = {
-                title: getLang("global_warning"),
+        if (force === true) {
+            params['force'] = 1;
+        }
+        for (var i = 0; i < cur.images.length; ++i) {
+            if (!cur.images[i].deleted) {
+                params.images.push(cur.images[i].hash);
+            }
+        }
+        if ((!trim(params.comment).length && ge('comment')) && !params.images.length) {
+            elfocus('comment');
+            return;
+        }
+        if (cur.restoreTTLTimeout) {
+            clearTimeout(cur.restoreTTLTimeout);
+        }
+        if (!params.images.length && cur.restorePhotosRequested && !force) {
+            var boxOpts = {
+                title: getLang('global_warning'),
                 width: 620
             };
-            return void(cur.restoreConfirmNoPhotos = showFastBox(s, getLang("restore_extend_no_photos_are_you_sure"), getLang("restore_extend"), function() {
-                cur.regenerateHash && cur.regenerateHash(), cur.restoreConfirmNoPhotos.hide()
-            }, getLang("restore_dont_extend_with_photos"), function() {
-                cur.restoreConfirmNoPhotos.hide(), Restore.extendRequest(e, !0)
-            }))
+            cur.restoreConfirmNoPhotos = showFastBox(boxOpts, getLang('restore_extend_no_photos_are_you_sure'), getLang('restore_extend'), function() {
+                if (cur.regenerateHash) {
+                    cur.regenerateHash();
+                }
+                cur.restoreConfirmNoPhotos.hide();
+            }, getLang('restore_dont_extend_with_photos'), function() {
+                cur.restoreConfirmNoPhotos.hide();
+                Restore.extendRequest(btn, true);
+            });
+            return;
         }
-        cur.selfieHash && Restore.deleteImage(1, 0, 3), ajax.post("al_restore.php?act=a_extend", t, {
-            showProgress: lockButton.pbind(e),
-            hideProgress: unlockButton.pbind(e),
-            onDone: function(e, o) {
-                0 == e ? Restore.showMsgBox(o, getLang("global_error")) : 1 == e ? (val("request_result_msg", o), hide("request_result_wrap"), show("request_result_msg")) : 2 == e && notaBene("comment")
+        if (cur.selfieHash) {
+            Restore.deleteImage(1, 0, 3);
+        }
+        ajax.post('al_restore.php?act=a_extend', params, {
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn),
+            onDone: function(result, msg) {
+                if (result == 0) {
+                    Restore.showMsgBox(msg, getLang('global_error'));
+                } else if (result == 1) {
+                    val('request_result_msg', msg);
+                    hide('request_result_wrap');
+                    show('request_result_msg');
+                } else if (result == 2) {
+                    notaBene('comment');
+                }
             },
             onFail: function() {
-                cur.regenerateHash && cur.regenerateHash()
+                if (cur.regenerateHash) {
+                    cur.regenerateHash();
+                }
             }
-        })
+        });
     },
     noEmailAccessSimpleRequest: function() {
-        hide("restore_roll_back_link"), show("submit_wrapper"), cur.restoreNoEmailAccess = 1
+        hide('restore_roll_back_link');
+        show('submit_wrapper');
+        cur.restoreNoEmailAccess = 1;
     },
     submitSimpleRequest: function() {
-        var e, o, t, r, s, n = ge("submitBtn");
-        e = val("login");
-        var a = isVisible("new_phone_wrap") ? "new_phone" : "phone";
-        if (r = val(a).replace(/[^0-9\*]/g, ""), r && Restore.checkedPasswordStatus(), isVisible("email_wrap") && !/^\s*$/.test(e) && !/^\s*[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9_\.\-]+\s*$/.test(e) && !/^\s*[a-zA-Z0-9_]{6,32}\s*$/.test(e)) return Restore.showResult("request_email_res", getLang("restore_login_error"), "login");
-        if (o = val("email"), t = val("old_phone").replace(/[^0-9]/g, ""), !/^\s*$/.test(t) && !/^[1-9][0-9]{6,14}$/.test(t)) return Restore.showResult("request_phone_res", getLang("restore_old_phone_error"), "old_phone");
-        if (isVisible(a) && !/^[1-9][0-9\*]{6,14}$/.test(r)) return Restore.showResult("request_phone_res", getLang("restore_phone_error"), a);
-        if (cur.checkedPhones && cur.checkedPhones[r] && 2 == cur.checkedPhones[r][0]) return Restore.showResult("request_email_res", cur.checkedPhones[r][1], a, !0);
-        if (!isVisible("new_phone_wrap") && !e && !t) {
-            var i = getLang("restore_need_email_or_phone");
-            return i += "<br>" + getLang("restore_need_email_or_phone_desc"), Restore.showResult("request_phone_res", i, "old_phone")
+        var btn = ge('submitBtn'),
+            login, email, old_phone, phone, password;
+        login = val('login');
+        var phoneInp = isVisible('new_phone_wrap') ? 'new_phone' : 'phone';
+        phone = val(phoneInp).replace(/[^0-9\*]/g, '');
+        if (phone) {
+            Restore.checkedPasswordStatus();
         }
-        return (s = val("old_password")) ? (cur.validationLastCallback = function(e) {
-            hide("request_phone_res"), e ? Restore.submitSimpleRequest() : elfocus("phone")
-        }, void ajax.post("restore?act=a_request", {
+        if (isVisible('email_wrap') && !(/^\s*$/.test(login))) {
+            if (!(/^\s*[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9_\.\-]+\s*$/.test(login))) {
+                if (!(/^\s*[a-zA-Z0-9_]{6,32}\s*$/.test(login))) {
+                    return Restore.showResult('request_email_res', getLang('restore_login_error'), 'login');
+                }
+            }
+        }
+        email = val('email');
+        old_phone = val('old_phone').replace(/[^0-9]/g, '');
+        if (!(/^\s*$/.test(old_phone))) {
+            if (!(/^[1-9][0-9]{6,14}$/.test(old_phone))) {
+                return Restore.showResult('request_phone_res', getLang('restore_old_phone_error'), 'old_phone');
+            }
+        }
+        if (isVisible(phoneInp) && !(/^[1-9][0-9\*]{6,14}$/.test(phone))) {
+            return Restore.showResult('request_phone_res', getLang('restore_phone_error'), phoneInp);
+        }
+        if (cur.checkedPhones && cur.checkedPhones[phone] && cur.checkedPhones[phone][0] == 2) {
+            return Restore.showResult('request_email_res', cur.checkedPhones[phone][1], phoneInp, true);
+        }
+        if (!isVisible('new_phone_wrap')) {
+            if (!login && !old_phone) {
+                var text = getLang('restore_need_email_or_phone');
+                text += '<br>' + getLang('restore_need_email_or_phone_desc');
+                return Restore.showResult('request_phone_res', text, 'old_phone')
+            }
+        }
+        password = val('old_password');
+        if (!password) {
+            return Restore.showResult('request_old_password_res', getLang('restore_need_old_password') + '<br>' + getLang('restore_need_old_password_desc'), 'old_password');
+        }
+        cur.validationLastCallback = function(res) {
+            hide('request_phone_res');
+            if (res) {
+                Restore.submitSimpleRequest();
+            } else {
+                elfocus('phone');
+            }
+        };
+
+        ajax.post('restore?act=a_request', {
             hash: cur.options.fhash,
-            login: e,
-            email: o,
-            phone: r,
-            old_phone: t,
-            password: s,
+            login: login,
+            email: email,
+            phone: phone,
+            old_phone: old_phone,
+            password: password,
             no_email_access: cur.restoreNoEmailAccess || 0
         }, {
-            onDone: function(e, o, t, r, s, n) {
-                var a = intval(e);
-                return 0 == a && (n = t), -4 == a ? Restore.toFullRequest(!1, 1) : "back_link" == n ? (hide("submit_wrapper"), Restore.changeFormStep("phones", "back_link")) : void Restore.processSubmitResult(e, o, t, r, s)
+            onDone: function(result, msg, msgContainerId, input, errorType, step) {
+                var code = intval(result);
+                if (code == 0) {
+                    step = msgContainerId;
+                }
+                if (code == -4) {
+                    return Restore.toFullRequest(false, 1);
+                }
+                if (step == 'back_link') {
+                    hide('submit_wrapper');
+                    return Restore.changeFormStep('phones', 'back_link');
+                }
+                Restore.processSubmitResult(result, msg, msgContainerId, input, errorType);
             },
-            showProgress: lockButton.pbind(n),
-            hideProgress: unlockButton.pbind(n)
-        })) : Restore.showResult("request_old_password_res", getLang("restore_need_old_password") + "<br>" + getLang("restore_need_old_password_desc"), "old_password")
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn)
+        });
     },
-    processSubmitResult: function(e, o, t, r, s, n) {
-        var a = intval(e);
-        if (-2 == a) {
-            var i, u;
-            return n ? (i = ge("restore_submit_full_request"), u = Restore.submitFullRequest) : (i = ge("submitBtn"), u = Restore.submitSimpleRequest), lockButton(i), setTimeout(u, 1e3)
-        } - 3 == a ? ("login" == s && (o += "<br>" + getLang("restore_need_email_or_phone_desc")), Restore.showResult(t, o, r)) : (isVisible("simple_request_incorrect") && hide("simple_request_incorrect"), Restore.showResult("request_phone_res", o, r))
-    },
-    toFullRequest: function(e, o) {
-        if (isVisible("new_phone_wrap")) var t = val("new_phone").replace(/[^0-9]/g, "");
-        else var t = val("phone").replace(/[^0-9]/g, "");
-        var r = {
-            act: "return_page",
-            full: 1
-        };
-        e && (r.mid = e), t && (r.phone = t), o && (r.m = o), nav.change(r)
-    },
-    infoCheckSubmit: function(e) {
-        var o = trim(val("page_link")),
-            t = val("phone").replace(/[^0-9]/g, ""),
-            r = ge("restore_info_error");
-        return o.length ? t.length ? (hide(r), removeClass(r, "restore_info_error_big_text"), void ajax.post("/restore", {
-            act: "a_check_info",
-            link: o,
-            phone: t
-        }, {
-            showProgress: lockButton.pbind(e),
-            hideProgress: unlockButton.pbind(e),
-            onDone: function(e, o, t) {
-                1 != e && o && (val(r, o), -1 == e && addClass(r, "restore_info_error_big_text"), show(r), t && notaBene(t))
+    processSubmitResult: function(result, msg, msgContainerId, input, errorType, full) {
+        var code = intval(result);
+        if (code == -2) {
+            var btn, callback;
+            if (full) {
+                btn = ge('restore_submit_full_request');
+                callback = Restore.submitFullRequest;
+            } else {
+                btn = ge('submitBtn');
+                callback = Restore.submitSimpleRequest;
             }
-        })) : notaBene("phone") : notaBene("page_link")
-    },
-    initCheckInfo: function() {
-        Restore.initFormTT(ge("page_link"), "restore_info_page_link_tooltip")
-    },
-    initResendCounter: function(e) {
-        var o = ge("resend_sms_button");
-        if (e > 0) {
-            addClass(o, "button_disabled"), o.time = e;
-            var t = function() {
-                if (o.time <= 1) return removeClass(o, "button_disabled"), val(o, getLang("restore_resend_sms_data")), void clearInterval(o.timeInterval);
-                o.time -= 1;
-                var e = formatTime(o.time);
-                val(o, getLang("restore_can_resend_sms_after").replace("{time}", e))
-            };
-            t(), o.timeInterval = setInterval(t, 1e3)
+            lockButton(btn);
+            return setTimeout(callback, 1000);
+        } else if (code == -3) {
+            if (errorType == 'login') {
+                msg += '<br>' + getLang('restore_need_email_or_phone_desc');
+            }
+            Restore.showResult(msgContainerId, msg, input);
+        } else {
+            if (isVisible('simple_request_incorrect')) {
+                hide('simple_request_incorrect');
+            }
+            Restore.showResult('request_phone_res', msg, input);
         }
     },
-    resendSMS: function(e) {
-        hasClass(e, "button_disabled") || (lockButton(e), ajax.post("al_restore.php", {
-            act: "a_resend_sms",
+    toFullRequest: function(mid, msg) {
+        if (!isVisible('new_phone_wrap')) {
+            var phone = val('phone').replace(/[^0-9]/g, '');
+        } else {
+            var phone = val('new_phone').replace(/[^0-9]/g, '');
+        }
+        var query = {
+            act: 'return_page',
+            full: 1
+        };
+        if (mid) {
+            query.mid = mid;
+        }
+        if (phone) {
+            query.phone = phone;
+        }
+        if (msg) {
+            query.m = msg;
+        }
+        nav.change(query);
+    },
+    infoCheckSubmit: function(btn) {
+        var link = trim(val('page_link')),
+            phone = val('phone').replace(/[^0-9]/g, ''),
+            errorBlock = ge('restore_info_error');
+        if (!link.length) {
+            return notaBene('page_link');
+        }
+        if (!phone.length) {
+            return notaBene('phone');
+        }
+        hide(errorBlock);
+        removeClass(errorBlock, 'restore_info_error_big_text');
+        ajax.post('/restore', {
+            act: 'a_check_info',
+            link: link,
+            phone: phone
+        }, {
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn),
+            onDone: function(type, text, input) {
+                if (type != 1 && text) {
+                    val(errorBlock, text);
+                    if (type == -1) {
+                        addClass(errorBlock, 'restore_info_error_big_text');
+                    }
+                    show(errorBlock);
+                    if (input) {
+                        notaBene(input);
+                    }
+                }
+            }
+        });
+    },
+    initCheckInfo: function() {
+        Restore.initFormTT(ge('page_link'), 'restore_info_page_link_tooltip');
+    },
+    initResendCounter: function(time) {
+        var btn = ge('resend_sms_button');
+        if (time > 0) {
+            addClass(btn, 'button_disabled');
+            btn.time = time;
+            var updateTime = function() {
+                if (btn.time <= 1) {
+                    removeClass(btn, 'button_disabled');
+                    val(btn, getLang('restore_resend_sms_data'));
+                    clearInterval(btn.timeInterval);
+                    return;
+                }
+                btn.time -= 1;
+                var time = formatTime(btn.time);
+                val(btn, getLang('restore_can_resend_sms_after').replace('{time}', time));
+            };
+            updateTime();
+            btn.timeInterval = setInterval(updateTime, 1000);
+        }
+    },
+    resendSMS: function(el) {
+        if (hasClass(el, 'button_disabled')) {
+            return;
+        }
+        lockButton(el);
+        ajax.post('al_restore.php', {
+            act: 'a_resend_sms',
             hash: cur.resend_hash,
             id: cur.rid
         }, {
-            onDone: function(o, t, r, s) {
-                unlockButton(e), 1 == o ? (r && Restore.initResendCounter(r), 0 == t && hide(e), s && (addClass("resend_success", "active"), setTimeout(removeClass.pbind("resend_success", "active"), 1e4))) : hide(e)
+            onDone: function(status, can_try, time, success_msg) {
+                unlockButton(el);
+                if (status == 1) {
+                    if (time) {
+                        Restore.initResendCounter(time);
+                    }
+                    if (can_try == 0) {
+                        hide(el);
+                    }
+                    if (success_msg) {
+                        addClass('resend_success', 'active');
+                        setTimeout(removeClass.pbind('resend_success', 'active'), 10000);
+                    }
+                } else {
+                    hide(el);
+                }
             }
-        }))
+        });
     },
     initTimeButton: function() {
-        cur.resend_counter > 0 && Restore.initResendCounter(cur.resend_counter)
+        if (cur.resend_counter > 0) {
+            Restore.initResendCounter(cur.resend_counter);
+        }
     },
     initRequest: function() {
         extend(cur, {
             images: [],
             images_count: [0, 0],
-            request_id: !1,
-            request_hash: !1
+            request_id: false,
+            request_hash: false
         });
-        var e = cur.options.request_type,
-            o = e == Restore.requestTypeFull ? "new_phone" : "phone",
-            t = ge("comment"),
-            r = ge(o),
-            s = ge("old_phone"),
-            n = ge("login"),
-            a = ge("old_password"),
-            i = ge("new_phone");
-        placeholderSetup(t, {
-            back: !0
-        }), Restore.initFormTT(t, "restore_lost_phone_your_comment_short"), isVisible(r) && Restore.initFormTT(r, "restore_form_available_phone_tooltip"), e == Restore.requestTypeSimple && isVisible(i) && Restore.initFormTT(i, "restore_form_available_phone_tooltip"), isVisible(s) && Restore.initFormTT(s, "restore_form_old_phone_tooltip"), isVisible(n) && Restore.initFormTT(n, "restore_form_old_email_tooltip"), isVisible(a) && Restore.initFormTT(a, "restore_about_old_password"), cur.destroy.push(function() {
-            delete cur.requestStep, delete cur.requestParams, delete cur.restoreNoEmailAccess
-        })
+        var request_type = cur.options.request_type;
+        var phone_id = request_type == Restore.requestTypeFull ? 'new_phone' : 'phone';
+        var cmt = ge('comment'),
+            phoneField = ge(phone_id),
+            oldPhoneField = ge('old_phone'),
+            loginField = ge('login'),
+            oldPassField = ge('old_password'),
+            newPhoneField = ge('new_phone');
+        placeholderSetup(cmt, {
+            back: true
+        });
+        Restore.initFormTT(cmt, 'restore_lost_phone_your_comment_short');
+        if (isVisible(phoneField)) {
+            Restore.initFormTT(phoneField, 'restore_form_available_phone_tooltip');
+        }
+        if (request_type == Restore.requestTypeSimple && isVisible(newPhoneField)) {
+            Restore.initFormTT(newPhoneField, 'restore_form_available_phone_tooltip');
+        }
+        if (isVisible(oldPhoneField)) {
+            Restore.initFormTT(oldPhoneField, 'restore_form_old_phone_tooltip');
+        }
+        if (isVisible(loginField)) {
+            Restore.initFormTT(loginField, 'restore_form_old_email_tooltip');
+        }
+        if (isVisible(oldPassField)) {
+            Restore.initFormTT(oldPassField, 'restore_about_old_password');
+        }
+        cur.destroy.push(function() {
+            delete cur.requestStep;
+            delete cur.requestParams;
+            delete cur.restoreNoEmailAccess;
+        });
     },
-    initFormTT: function(e, o) {
-        addEvent(e, "focus", showTooltip.pbind(e, {
-            dir: "right",
-            text: getLang(o),
+
+    initFormTT: function(el, langKey) {
+        addEvent(el, 'focus', showTooltip.pbind(el, {
+            dir: 'right',
+            text: getLang(langKey),
             shift: function() {
-                var o = Math.round((getSize(e.tt.container)[1] + getSize(e)[1]) / 2);
-                return [225, -o, 0]
+                var h = Math.round((getSize(el.tt.container)[1] + getSize(el)[1]) / 2);
+                return [225, -h, 0];
             },
             width: 215,
             slideX: -15,
             hasover: 1,
-            forcetoup: !0,
-            nohide: !0
-        })), addEvent(e, "blur", function() {
-            e.tthide && e.tthide()
-        })
+            forcetoup: true,
+            nohide: true
+        }));
+        addEvent(el, 'blur', function() {
+            if (el.tthide) el.tthide();
+        });
     },
-    changeFormStep: function(e, o) {
-        var t = "restore_roll_";
-        removeClass(t + e, "_restore_roll_active"), cur.requestStep = o, "back_link" == e && hide(t + e);
-        var r = ge(t + o);
-        if (show(r), removeClass(r, "restore_roll_colored"), scrollToY(getXY(r)[1], 400), removeClass("restore_roll_" + o, "restore_roll_hidden"), addClass(r, "_restore_roll_active"), "comment" == o) {
-            var s = ge("comment");
-            autosizeSetup(s, {
+    changeFormStep: function(oldStep, newStep) {
+        var prefix = 'restore_roll_';
+        removeClass(prefix + oldStep, '_restore_roll_active');
+        cur.requestStep = newStep;
+        if (oldStep == 'back_link') {
+            hide(prefix + oldStep);
+        }
+        var newRoll = ge(prefix + newStep);
+        show(newRoll);
+        removeClass(newRoll, 'restore_roll_colored');
+        scrollToY(getXY(newRoll)[1], 400);
+        removeClass('restore_roll_' + newStep, 'restore_roll_hidden');
+        addClass(newRoll, '_restore_roll_active');
+        if (newStep == 'comment') {
+            var cmt = ge('comment');
+            autosizeSetup(cmt, {
                 minHeight: 55,
                 maxHeight: 300
-            }), addEvent(s, "focus keyup", function(e) {
-                s.timeout && clearTimeout(s.timeout), s.timeout = setTimeout(function() {
+            });
+            addEvent(cmt, 'focus keyup', function(ev) {
+                if (cmt.timeout) {
+                    clearTimeout(cmt.timeout);
+                }
+                cmt.timeout = setTimeout(function() {
                     try {
-                        var e = val(s),
-                            o = new RegExp(cur.delete_regex, "gi");
-                        if (o.test(e)) var t = cur.goto_support;
-                        else var t = getLang("restore_lost_phone_your_comment_short");
-                        val(s.tt.container, '<div class="wrapped"><div class="tt_text">' + t + "</div></div>")
-                    } catch (r) {}
-                }, 300)
-            })
+                        var cmt_text = val(cmt),
+                            regex = new RegExp(cur.delete_regex, 'gi');
+                        if (regex.test(cmt_text)) {
+                            var text = cur.goto_support;
+                        } else {
+                            var text = getLang('restore_lost_phone_your_comment_short');
+                        }
+                        val(cmt.tt.container, '<div class="wrapped"><div class="tt_text">' + text + '</div></div>');
+                    } catch (e) {}
+                }, 300);
+            });
         }
     },
     checkSimpleRequestFields: function() {
-        var e = val("old_phone").replace(/[^0-9]/g, "");
-        if (!/^\s*$/.test(e) && !/^[1-9][0-9]{6,14}$/.test(e)) return Restore.showResult("request_phone_res", getLang("restore_old_phone_error"), "old_phone");
-        var o = isVisible("new_phone_wrap") ? "new_phone" : "phone",
-            t = val(o).replace(/[^0-9]/g, "");
-        return isVisible(o) && !t ? (notaBene(o), !1) : isVisible(o) && !/^[1-9][0-9]{6,14}$/.test(t) ? Restore.showResult("request_phone_res", getLang("restore_phone_error"), o) : (Restore.checkedPasswordStatus(), cur.checkedPhones && cur.checkedPhones[t] && 2 == cur.checkedPhones[t][0] ? Restore.showResult("request_email_res", cur.checkedPhones[t][1], o, !0) : !0)
-    },
-    checkSimpleRequestPhone: function(e) {
-        e && !cur.restoreNoEmailAccess && (clearTimeout(e.timeout), e.timeout = setTimeout(function() {
-            Restore.checkSimpleRequestFields(e) && Restore.checkPhoneOnBlur(e)
-        }, 1e3))
-    },
-    submitFullRequest: function(e) {
-        var o = "new_phone",
-            t = ge("restore_submit_full_request");
-        if (cur.requestParams || (cur.requestParams = {}, cur.requestStep = "phones"), "phones" == cur.requestStep) {
-            var r = val(o).replace(/[^0-9\*]/g, "");
-            if (!r) return notaBene(o);
-            if (!/^[1-9][0-9\*]{6,14}$/.test(r)) return Restore.showResult("request_phone_res", getLang("restore_phone_error"), o);
-            cur.requestParams.phone = r
+        var old_phone = val('old_phone').replace(/[^0-9]/g, '');
+        if (!(/^\s*$/.test(old_phone))) {
+            if (!(/^[1-9][0-9]{6,14}$/.test(old_phone))) {
+                return Restore.showResult('request_phone_res', getLang('restore_old_phone_error'), 'old_phone');
+            }
         }
-        if ("back_link" == cur.requestStep && e) return Restore.changeFormStep("back_link", "photo");
-        if ("photo" == cur.requestStep && cur.images_count[1] < 1) return Restore.showResult("request_photo_res", getLang("restore_photo_error") + "<br>" + getLang("restore_attention"));
-        if ("doc" == cur.requestStep && cur.images_count[0] < 1) return Restore.showResult("request_doc_res", getLang("restore_doc_error") + "<br>" + getLang("restore_attention"));
-        if ("doc" == cur.requestStep || "photo" == cur.requestStep) {
-            var s = [];
-            each(cur.images, function(e, o) {
-                o.deleted || s.push(o.hash)
-            }), cur.requestParams.images = s
+        var phoneInp = isVisible('new_phone_wrap') ? 'new_phone' : 'phone',
+            phone = val(phoneInp).replace(/[^0-9]/g, '');
+        if (isVisible(phoneInp) && !phone) {
+            notaBene(phoneInp);
+            return false;
         }
-        if ("doc" == cur.requestStep) return Restore.changeFullRequestButton(!0, getLang("restore_submit")), Restore.changeFormStep("doc", "comment");
-        "comment" == cur.requestStep && (cur.requestParams.comment = val("comment"));
-        var n = extend({
+        if (isVisible(phoneInp) && !(/^[1-9][0-9]{6,14}$/.test(phone))) {
+            return Restore.showResult('request_phone_res', getLang('restore_phone_error'), phoneInp);
+        }
+        Restore.checkedPasswordStatus();
+        if (cur.checkedPhones && cur.checkedPhones[phone] && cur.checkedPhones[phone][0] == 2) {
+            return Restore.showResult('request_email_res', cur.checkedPhones[phone][1], phoneInp, true);
+        }
+        return true;
+    },
+    checkSimpleRequestPhone: function(el) {
+        if (el && !cur.restoreNoEmailAccess) {
+            clearTimeout(el.timeout);
+            el.timeout = setTimeout(function() {
+                if (Restore.checkSimpleRequestFields(el)) {
+                    Restore.checkPhoneOnBlur(el);
+                }
+            }, 1000);
+        }
+    },
+    submitFullRequest: function(no_email_access) {
+        var phoneInput = 'new_phone',
+            btn = ge('restore_submit_full_request');
+        if (!cur.requestParams) {
+            cur.requestParams = {};
+            cur.requestStep = 'phones';
+        }
+        if (cur.requestStep == 'phones') {
+            var phone = val(phoneInput).replace(/[^0-9\*]/g, '');
+            if (!phone) {
+                return notaBene(phoneInput);
+            }
+            if (!(/^[1-9][0-9\*]{6,14}$/.test(phone))) {
+                return Restore.showResult('request_phone_res', getLang('restore_phone_error'), phoneInput);
+            }
+            cur.requestParams.phone = phone;
+        }
+        if (cur.requestStep == 'back_link' && no_email_access) {
+            return Restore.changeFormStep('back_link', 'photo');
+        }
+        if (cur.requestStep == 'photo') {
+            if (cur.images_count[1] < 1) {
+                return Restore.showResult('request_photo_res', getLang('restore_photo_error') + '<br>' + getLang('restore_attention'));
+            }
+        }
+        if (cur.requestStep == 'doc') {
+            if (cur.images_count[0] < 1) {
+                return Restore.showResult('request_doc_res', getLang('restore_doc_error') + '<br>' + getLang('restore_attention'));
+            }
+        }
+        if (cur.requestStep == 'doc' || cur.requestStep == 'photo') {
+            var images = [];
+            each(cur.images, function(i, img) {
+                if (!img['deleted']) {
+                    images.push(img['hash']);
+                }
+            });
+            cur.requestParams.images = images;
+        }
+        if (cur.requestStep == 'doc') {
+            Restore.changeFullRequestButton(true, getLang('restore_submit'));
+            return Restore.changeFormStep('doc', 'comment');
+        }
+
+        if (cur.requestStep == 'comment') {
+            cur.requestParams.comment = val('comment');
+        }
+        var params = extend({
             hash: cur.options.fhash
         }, cur.requestParams);
-        ajax.post("restore?act=a_request", n, {
-            onDone: function(e, o, t, r, s, n) {
-                var a = intval(e);
-                if (0 == a && (n = t), 1 == a) return val("request_result", o), show("request_result"), hide("request_form"), void scrollToTop();
-                if (-5 == a) {
-                    var i = new MessageBox({
-                        title: getLang("global_action_confirmation")
-                    });
-                    return i.addButton(getLang("restore_last_online_yes"), function() {
-                        cur.requestParams.no_online = Restore.onlineOwner, i.hide(), Restore.submitFullRequest()
-                    }), i.addButton(getLang("restore_last_online_no"), function() {
-                        cur.requestParams.no_online = Restore.onlineNoOwner, i.hide(), Restore.submitFullRequest()
-                    }, "gray"), void i.content(getLang("restore_last_online_modal")).show()
+        ajax.post('restore?act=a_request', params, {
+            onDone: function(result, msg, msgContainerId, input, errorType, step) {
+                var code = intval(result);
+                if (code == 0) {
+                    step = msgContainerId;
                 }
-                return "back_link" == n ? (Restore.changeFullRequestButton(!1), Restore.changeFormStep("phones", "back_link")) : "photo" == n ? (Restore.changeFullRequestButton(!1), Restore.changeFormStep("phones", "photo")) : "doc" == n ? (Restore.changeFullRequestButton(!1), Restore.changeFormStep("photo", "doc")) : (-3 == a && hide("simple_request_incorrect"), void Restore.processSubmitResult(e, o, t, r, s, !0))
+                if (code == 1) {
+                    val('request_result', msg);
+                    show('request_result');
+                    hide('request_form');
+                    scrollToTop();
+                    return;
+                }
+                if (code == -5) {
+                    var box = new MessageBox({
+                        title: getLang('global_action_confirmation')
+                    });
+                    box.addButton(getLang('restore_last_online_yes'), function() {
+                        cur.requestParams.no_online = Restore.onlineOwner;
+                        box.hide();
+                        Restore.submitFullRequest();
+                    });
+                    box.addButton(getLang('restore_last_online_no'), function() {
+                        cur.requestParams.no_online = Restore.onlineNoOwner;
+                        box.hide();
+                        Restore.submitFullRequest();
+                    }, 'gray');
+                    box.content(getLang('restore_last_online_modal')).show();
+                    return;
+                }
+                if (step == 'back_link') {
+                    Restore.changeFullRequestButton(false);
+                    return Restore.changeFormStep('phones', 'back_link');
+                } else if (step == 'photo') {
+                    Restore.changeFullRequestButton(false);
+                    return Restore.changeFormStep('phones', 'photo');
+                } else if (step == 'doc') {
+                    Restore.changeFullRequestButton(false);
+                    return Restore.changeFormStep('photo', 'doc');
+                }
+                if (code == -3) {
+                    hide('simple_request_incorrect');
+                }
+                Restore.processSubmitResult(result, msg, msgContainerId, input, errorType, true);
             },
-            showProgress: lockButton.pbind(t),
-            hideProgress: unlockButton.pbind(t)
-        })
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn)
+        });
     },
-    resetPasswordByEmail: function(e) {
-        val("new_phone").replace(/[^0-9]/g, "");
-        ajax.post("/login?act=a_forgot", {
-            login: val("login"),
+    resetPasswordByEmail: function(el) {
+        var phone = val('new_phone').replace(/[^0-9]/g, '');
+        ajax.post('/login?act=a_forgot', {
+            login: val('login'),
             sure: cur.options.fhash,
             hash: cur.resetPasswordTHash,
             from_request: 1
         }, {
-            showProgress: lockButton.pbind(e),
-            hideProgress: unlockButton.pbind(e),
-            onDone: function(o, t) {
-                1 == o ? (hide(e), val("reset_password_button", t)) : Restore.showResult("restore_back_link_error", t)
+            showProgress: lockButton.pbind(el),
+            hideProgress: unlockButton.pbind(el),
+            onDone: function(code, message) {
+                if (code == 1) {
+                    hide(el);
+                    val('reset_password_button', message);
+                } else {
+                    Restore.showResult('restore_back_link_error', message);
+                }
             }
-        })
+        });
     },
-    changeFullRequestButton: function(e, o) {
-        toggle("restore_roll_button", e), o && val("restore_submit_full_request", o)
+    changeFullRequestButton: function(display, text) {
+        toggle('restore_roll_button', display);
+        if (text) {
+            val('restore_submit_full_request', text);
+        }
     },
-    activate: function(e, o, t) {
-        isButtonLocked(e) || ajax.post("restore?act=a_activate", {
-            id: o,
-            hash: t
+    activate: function(btn, id, hash) {
+        if (isButtonLocked(btn)) {
+            return;
+        }
+        ajax.post('restore?act=a_activate', {
+            id: id,
+            hash: hash
         }, {
-            showProgress: lockButton.pbind(e),
-            hideProgress: unlockButton.pbind(e)
-        })
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn)
+        });
     }
 };
+
 try {
-    stManager.done("restore.js")
+    stManager.done('restore.js');
 } catch (e) {}

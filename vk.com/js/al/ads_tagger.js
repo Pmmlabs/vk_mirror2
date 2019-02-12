@@ -1,277 +1,605 @@
-function adsPhotoTagger(t, e) {
-    if (t = ge(t), !t || !t.src) return !1;
-    var i, n, h, a, o, s = 0,
-        r = t.parentNode,
-        l = Math.abs,
-        c = Math.min,
-        d = Math.max,
-        f = Math.floor,
-        g = Math.ceil,
-        v = function(t) {
-            return 0 > t ? -1 : 1
-        },
-        p = function() {
-            var t = 1e-8;
-            return function(e, i) {
-                return l(e - i) < t ? 0 : i > e ? -1 : 1
-            }
-        }(),
-        w = document.body,
-        u = intval(e.zstart),
-        m = intval(e.minw) || 30,
-        x = intval(e.minh) || 30,
-        y = intval(e.maxw) || 100,
-        E = intval(e.maxh) || 100,
-        z = Number(e.minr) || 1,
-        b = Number(e.maxr) || 1,
-        N = intval(e.defw) || 100,
-        _ = intval(e.defh) || 100,
-        A = vkImage(),
-        I = [],
-        M = [];
-    A.src = t.src;
-    var C, T, X, Y, S, L, H, R, W, Z = {},
-        j = {},
-        k = 0,
-        F = 0,
-        P = {},
-        q = function(t, i) {
-            if (P = extend(P, t), each(t, function(t) {
-                    var e = this + ("left" == t ? h : "top" == t ? a : 0);
-                    C.style[t] = e + "px"
-                }), T.style.marginLeft = -t.left + "px", T.style.marginTop = -t.top + "px", each(Z, function(e) {
-                    if (e.length < 2) "n" == e || "s" == e ? (this.style.left = h + t.left + intval(t.width / 2) - 5 + "px", this.style.top = a + t.top + ("n" == e ? 0 : t.height) - 5 + "px") : (this.style.left = h + t.left + ("w" == e ? 0 : t.width) - 5 + "px", this.style.top = a + t.top + intval(t.height / 2) - 5 + "px");
-                    else {
-                        var i = e.charAt(0),
-                            n = e.charAt(1);
-                        this.style.left = h + t.left + ("w" == n ? 0 : t.width) - 5 + "px", this.style.top = a + t.top + ("n" == i ? 0 : t.height) - 5 + "px"
-                    }
-                }), each(j, function(i) {
-                    var n, o = e.safeZones[i];
-                    n = "top" == i || "bottom" == i ? o / _ * t.height : o / N * t.width, this.style.left = h + t.left + ("right" == i ? t.width - n : 0) + "px", this.style.top = a + t.top + ("bottom" == i ? t.height - n : 0) + "px", this.style.width = ("left" == i || "right" == i ? n : t.width) + "px", this.style.height = ("top" == i || "bottom" == i ? n : t.height) + "px"
-                }), !i)
-                for (var n in I)
-                    if (I[n]) {
-                        var o = I[n],
-                            s = M[n].width,
-                            r = M[n].height,
-                            l = (o.parentNode, t.width / t.height),
-                            c = d(s, intval(r * l)),
-                            v = d(r, intval(c / l)),
-                            p = t.left + t.width / 2,
-                            w = t.top + t.height / 2;
-                        o.style.width = g(k * c / t.width) + "px", o.style.height = g(F * v / t.height) + "px", o.style.marginLeft = -f(p * c / t.width - s / 2) + "px", o.style.marginTop = -f(w * v / t.height - r / 2) + "px"
-                    }
-        },
-        B = 0,
-        D = function(t, e) {
-            return [c(k, d(0, t - W[0])), c(F, d(0, e - W[1]))]
-        },
-        G = function() {
-            var t = Math.max(intval(window.innerWidth), intval(document.documentElement.clientWidth)),
-                e = Math.max(intval(window.innerHeight), intval(document.documentElement.clientHeight));
-            o.style.width = t + "px", o.style.height = e + "px"
-        },
-        J = function(t) {
-            B && (1 == B || 0 > B ? t = "move" : 2 == B ? t = "crosshair" : B.length && (t = B + "-resize"), o.style.cursor = t)
-        },
-        K = function(e) {
-            Y = e.pageX, S = e.pageY, W = getXY(t), R = extend({}, P);
-            return e.target == T || hasClass(e.target, "tag_frame_zone") ? B = 1 : e.target == X || e.target == t ? B = 2 : "preview" == e.target.className ? B = -1 - e.target.id.substring(4) : each(Z, function(t) {
-                if (e.target == this) {
-                    B = t;
-                    var i = Y - W[0],
-                        n = S - W[1],
-                        h = [t.charAt(0), t.length > 1 ? t.charAt(1) : t.charAt(0)];
-                    Y = P.left + ("w" == h[1] ? 0 : P.width), S = P.top + ("n" == h[0] ? 0 : P.height);
-                    var a = Y,
-                        o = S;
-                    1 == t.length && ("s" == t || "n" == t ? a -= g(P.width / 2) : o -= g(P.height / 2)), L = a - i, H = o - n
-                }
-            }), B ? ((2 != B && B >= 0 || B.length) && each(Z, function() {
-                setStyle(this, "opacity", .7)
-            }), show(o), J(), addEvent(w, "mousemove", O), addEvent(w, "mouseup", Q), addEvent(w, "dragend", Q), cancelEvent(e)) : void 0
-        },
-        O = function(e) {
-            if (window.getSelection) {
-                var i = window.getSelection();
-                i.removeAllRanges && i.removeAllRanges()
-            }
-            var n = e.pageX,
-                h = e.pageY;
-            if (1 == B) {
-                var a = R.left + (n - Y),
-                    o = R.top + (h - S);
-                a = c(k - P.width, d(0, a)), o = c(F - P.height, d(0, o)), q(extend(P, {
-                    left: a,
-                    top: o
-                }))
-            } else if (2 == B) l(n - Y) > 3 && l(h - S) > 3 && (B = 3, J(), W = getXY(t), Y -= W[0], S -= W[1], show(C, X), each(Z, function() {
-                show(this), setStyle(this, "opacity", .7)
-            }));
-            else if (0 > B) {
-                var s = -(B + 1),
-                    r = M[s].width,
-                    w = M[s].height,
-                    a = R.left - f((n - Y) * P.width / r),
-                    o = R.top - f((h - S) * P.height / w);
-                a = c(k - P.width, d(0, a)), o = c(F - P.height, d(0, o)), q(extend(P, {
-                    left: a,
-                    top: o
-                }))
-            } else if (B.length) {
-                var u = D(n + L, h + H);
-                n = u[0], h = u[1];
-                var a = P.left,
-                    o = P.top,
-                    N = P.width,
-                    _ = P.height,
-                    A = 0,
-                    I = 0;
-                2 == B.length ? (A = "n" == B.charAt(0) ? -1 : 1, I = "w" == B.charAt(1) ? -1 : 1) : (A = "n" == B ? -1 : "s" == B ? 1 : 0, I = "w" == B ? -1 : "e" == B ? 1 : 0), Y = a + N * (0 > I), S = o + _ * (0 > A), (a > n || n > a + N) && l(n - Y) < l(n - (a + N * (I >= 0))) && (Y += d(m, intval(_ * z)) * I, I *= -1), (o > h || h > o + _) && l(h - S) < l(h - (o + _ * (A >= 0))) && (S += d(x, intval(N / b)) * A, A *= -1);
-                var T = l(I) * l(n - Y),
-                    j = l(A) * l(h - S);
-                if (I || (T = P.width), A || (j = P.height), !T && !j) return cancelEvent(e);
-                T = d(T, m), j = d(j, x);
-                var G = c(y, I >= 0 ? k - Y : Y),
-                    K = c(E, A >= 0 ? F - S : S);
-                T = c(T, G), j = c(j, K), a = I >= 0 ? Y : Y - T, o = A >= 0 ? S : S - j;
-                var O, Q = 0,
-                    U = 0,
-                    V = c(a, k - a - T),
-                    $ = c(o, F - o - j),
-                    tt = T / j;
-                p(tt, z) < 0 ? 0 == I ? (O = c(G, j * z), Q = (T - O) / 2, Q = v(Q) * c(g(l(Q)), V), T = c(T - 2 * Q, G), j = T / z) : 0 == A ? (O = d(T / z, x), U = (j - O) / 2, U = v(U) * g(l(U)), j = d(j - 2 * U, x), T = j * z) : (T = c(j * z, G), j = T / z) : p(tt, b) > 0 && (0 == I ? (O = d(j * b, m), Q = (T - O) / 2, Q = v(Q) * g(l(Q)), T = d(T - 2 * Q, m), j = T / b) : 0 == A ? (O = c(K, T / b), U = (j - O) / 2, U = v(U) * c(g(l(U)), $), j = c(j - 2 * U, K), T = j * b) : (j = c(T / b, K), T = j * b)), T = intval(T), j = intval(j), a = I >= 0 ? Y : Y - T, o = A >= 0 ? S : S - j, a += Q, o += U, q({
-                    left: a,
-                    top: o,
-                    width: T,
-                    height: j
-                }), A = A > 0 ? "s" : 0 > A ? "n" : "", I = I > 0 ? "e" : 0 > I ? "w" : "", B != A + I && (B = A + I, J())
-            }
-            return 3 == B && (n -= W[0], h -= W[1], n = c(k, d(0, n)), h = c(F, d(0, h)), J(v((Y - n) * (S - h)) > 0 ? "nw-resize" : "ne-resize"), q({
-                left: Y > n ? n : Y,
-                top: S > h ? h : S,
-                width: l(Y - n),
-                height: l(S - h)
-            }, !0)), cancelEvent(e)
-        },
-        Q = function(e) {
-            var h, a = e.pageX,
-                s = e.pageY;
-            if (W = getXY(t), 2 == B) {
-                a -= W[0], s -= W[1];
-                var r = c(k - N, d(0, a - i)),
-                    l = c(F - _, d(0, s - n));
-                q({
-                    left: r,
-                    top: l,
-                    width: N,
-                    height: _
-                })
-            } else if (3 == B) {
-                a -= W[0], s -= W[1], a > Y && (h = a, a = Y, Y = h), s > S && (h = s, s = S, S = h);
-                var f = Y - a,
-                    g = S - s;
-                if (0 > a && (f += a, a = 0), 0 > s && (g += s, s = 0), f = c(f, k - a), g = c(g, F - s), m > f) {
-                    var v = m - f,
-                        u = intval(v / 2);
-                    a -= u, f = m, a = c(k - f, d(0, a))
-                }
-                if (x > g) {
-                    var v = x - g,
-                        u = intval(v / 2);
-                    s -= u, g = x, s = c(F - g, d(0, s))
-                }
-                var y = k - a,
-                    E = F - s,
-                    A = f / g;
-                p(A, z) < 0 ? (f = c(g * z, y), g = f / z) : p(A, b) > 0 && (g = c(f / b, E), f = g * b), q({
-                    left: a,
-                    top: s,
-                    width: f,
-                    height: g
-                })
-            }
-            return show(C, X), each(Z, function() {
-                fadeTo(this, 200, .3)
-            }), each(j, function() {
-                show(this)
-            }), hide(o), B = 0, removeEvent(w, "mousemove", O), removeEvent(w, "mouseup", Q), removeEvent(w, "dragend", Q), cancelEvent(e)
+function adsPhotoTagger(elem, options) {
+    elem = ge(elem);
+    if (!elem || !elem.src) return false;
+    var initTries = 0,
+        node = elem.parentNode;
+
+    var mabs = Math.abs,
+        mmin = Math.min,
+        mmax = Math.max,
+        mfloor = Math.floor,
+        mceil = Math.ceil,
+        msign = function(v) {
+            return v < 0 ? -1 : 1;
         };
-    return function() {
-        if (!(0 > s)) {
-            if (k = A.width, F = A.height, !k || !F) return void(++s < 3e3 && setTimeout(arguments.callee, 100));
-            if (r.style.position = "relative", h = t.offsetLeft, a = t.offsetTop, N = c(k, N), i = intval(N / 2), _ = c(F, _), n = intval(_ / 2), m = c(m, N), x = c(x, _), e.icons)
-                for (var l in e.icons) e.icons[l] && e.icons[l].width && e.icons[l].height && e.icons[l].box && (M.push({
-                    width: e.icons[l].width,
-                    height: e.icons[l].height
-                }), I.push(ge(e.icons[l].box).appendChild(ce("img", {
-                    src: t.src,
-                    className: "preview"
-                }))), ge(e.icons[l].box).style.overflow = "hidden", I[I.length - 1].style.cursor = "move", addEvent(I[I.length - 1], "mousedown", K));
-            if (o = w.appendChild(ce("div", {
-                    className: "tag_bg"
-                }, {
-                    position: "fixed"
-                })), addEvent(window, "resize", G), G(), r.style.zIndex = u + 10, t.style.zIndex = u + 20, C = r.appendChild(ce("div", {
-                    className: "tag_frame",
-                    innerHTML: '<img src="' + t.src + '" />'
-                }, {
-                    cursor: "move",
-                    zIndex: u + 40
-                })), T = C.firstChild, X = r.appendChild(ce("div", {
-                    className: "tag_faded"
-                }, {
-                    cursor: "crosshair",
-                    left: h,
-                    top: a,
-                    width: k,
-                    height: F,
-                    zIndex: u + 30
-                })), each(["nw", "n", "ne", "w", "e", "sw", "s", "se"], function() {
-                    var t = this.toString();
-                    z == b && t.length < 2 || (Z[t] = r.appendChild(ce("div", {
-                        className: "tag_frame_handle " + t
-                    }, {
-                        cursor: t + "-resize",
-                        zIndex: u + 50
-                    })))
-                }), each(e.safeZones || {}, function(t) {
-                    j[t] = r.appendChild(ce("div", {
-                        className: "tag_frame_zone zone_" + t
-                    }, {
-                        zIndex: u + 45
-                    })), addEvent(j[t], "mousedown", K)
-                }), addEvent(r, "mousedown", K), e.crop) {
-                for (var d = e.crop.split(","), l = 0; l < d.length; ++l) d[l] = intval(d[l]);
-                d[3] || (d[3] = d[2]), d[2] < m && (d[2] = m), d[3] < x && (d[3] = x), e.rect = {
-                    left: d[0],
-                    top: d[1],
-                    width: d[2],
-                    height: d[3]
+    var dblcmp = (function() {
+        var eps = 1e-8;
+        return function(a, b) {
+            if (mabs(a - b) < eps) return 0;
+            return a < b ? -1 : 1;
+        }
+    })();
+
+    var bodyNode = document.body;
+
+    var zstart = intval(options.zstart);
+    var minw = intval(options.minw) || 30,
+        minh = intval(options.minh) || 30;
+    var maxw = intval(options.maxw) || 100,
+        maxh = intval(options.maxh) || 100;
+    var minr = Number(options.minr) || 1,
+        maxr = Number(options.maxr) || 1; // min/max ratio
+    var defw = intval(options.defw) || 100,
+        defh = intval(options.defh) || 100,
+        defw2, defh2;
+    var addX, addY, bg, img = vkImage();
+    var icons = [],
+        iconParams = [];
+    img.src = elem.src;
+
+    var tagframe, tagimg, tagfaded, taghandles = {},
+        tagzones = {};
+    var width = 0,
+        height = 0,
+        rect = {}
+
+    var showRect = function(r, noUpdate) {
+        rect = extend(rect, r);
+        each(r, function(i) {
+            var v = this + (i == 'left' ? addX : (i == 'top' ? addY : 0));
+            tagframe.style[i] = v + 'px';
+        });
+        tagimg.style.marginLeft = -r.left + 'px';
+        tagimg.style.marginTop = -r.top + 'px';
+        each(taghandles, function(i) {
+            if (i.length < 2) { // n, w, e, s
+                if (i == 'n' || i == 's') {
+                    this.style.left = (addX + r.left + intval(r.width / 2) - 5) + 'px';
+                    this.style.top = (addY + r.top + (i == 'n' ? 0 : r.height) - 5) + 'px';
+                } else {
+                    this.style.left = (addX + r.left + (i == 'w' ? 0 : r.width) - 5) + 'px';
+                    this.style.top = (addY + r.top + intval(r.height / 2) - 5) + 'px';
+                }
+            } else { // nw, ne, sw, se
+                var a = i.charAt(0),
+                    b = i.charAt(1);
+                this.style.left = (addX + r.left + ((b == 'w') ? 0 : r.width) - 5) + 'px';
+                this.style.top = (addY + r.top + ((a == 'n') ? 0 : r.height) - 5) + 'px';
+            }
+        });
+        each(tagzones, function(i) {
+            var defgap = options.safeZones[i],
+                gap;
+            if (i == 'top' || i == 'bottom') {
+                gap = (defgap / defh) * r.height;
+            } else {
+                gap = (defgap / defw) * r.width;
+            }
+            this.style.left = (addX + r.left + (i == 'right' ? (r.width - gap) : 0)) + 'px';
+            this.style.top = (addY + r.top + (i == 'bottom' ? (r.height - gap) : 0)) + 'px';
+            this.style.width = ((i == 'left' || i == 'right') ? gap : r.width) + 'px';
+            this.style.height = ((i == 'top' || i == 'bottom') ? gap : r.height) + 'px';
+        });
+        if (!noUpdate) {
+            for (var i in icons) {
+                if (!icons[i]) continue;
+                var icon = icons[i],
+                    iconw = iconParams[i].width,
+                    iconh = iconParams[i].height;
+                var bbox = icon.parentNode,
+                    ratio = r.width / r.height,
+                    boxw = mmax(iconw, intval(iconh * ratio)),
+                    boxh = mmax(iconh, intval(boxw / ratio)),
+                    rcenterx = (r.left + r.width / 2),
+                    rcentery = (r.top + r.height / 2);
+
+                icon.style.width = mceil(width * boxw / r.width) + 'px';
+                icon.style.height = mceil(height * boxh / r.height) + 'px';
+                icon.style.marginLeft = -mfloor(rcenterx * boxw / r.width - iconw / 2) + 'px';
+                icon.style.marginTop = -mfloor(rcentery * boxh / r.height - iconh / 2) + 'px';
+            }
+        }
+    }
+
+    var action = 0,
+        startX, startY, adjX, adjY, startRect, elemXY;
+
+    var adjustPos = function(x, y) {
+        return [mmin(width, mmax(0, x - elemXY[0])), mmin(height, mmax(0, y - elemXY[1]))];
+    }
+
+    var resize = function() {
+        var dwidth = Math.max(intval(window.innerWidth), intval(document.documentElement.clientWidth));
+        var dheight = Math.max(intval(window.innerHeight), intval(document.documentElement.clientHeight));
+        bg.style.width = dwidth + 'px';
+        bg.style.height = dheight + 'px';
+    }
+
+    var updateCursor = function(cur) {
+        if (action) {
+            if (action == 1 || action < 0) {
+                cur = 'move';
+            } else if (action == 2) {
+                cur = 'crosshair';
+            } else if (action.length) {
+                cur = action + '-resize';
+            }
+            bg.style.cursor = cur;
+        }
+    }
+
+    var mouseDown = function(e) {
+        startX = e.pageX;
+        startY = e.pageY;
+        elemXY = getXY(elem);
+        startRect = extend({}, rect);
+        var cur = false;
+
+        if (e.target == tagimg || hasClass(e.target, 'tag_frame_zone')) {
+            action = 1;
+        } else if (e.target == tagfaded || e.target == elem) {
+            action = 2;
+        } else if (e.target.className == 'preview') {
+            action = -1 - e.target.id.substring(4); // id is 'icon<#id>'
+        } else {
+            each(taghandles, function(i) {
+                if (e.target == this) {
+                    action = i;
+                    var x = startX - elemXY[0],
+                        y = startY - elemXY[1];
+                    var vh = [i.charAt(0), (i.length > 1) ? i.charAt(1) : i.charAt(0)];
+                    startX = rect.left + (vh[1] == 'w' ? 0 : rect.width);
+                    startY = rect.top + (vh[0] == 'n' ? 0 : rect.height);
+                    var tagX = startX,
+                        tagY = startY;
+                    if (i.length == 1) {
+                        if (i == 's' || i == 'n') {
+                            tagX -= mceil(rect.width / 2.0);
+                        } else {
+                            tagY -= mceil(rect.height / 2.0);
+                        }
+                    }
+                    adjX = tagX - x;
+                    adjY = tagY - y;
+                }
+            });
+        }
+        if (action) {
+            if ((action != 2 && action >= 0) || action.length) {
+                each(taghandles, function() {
+                    setStyle(this, 'opacity', 0.7);
+                });
+            }
+            show(bg);
+            updateCursor();
+            addEvent(bodyNode, 'mousemove', mouseMove);
+            addEvent(bodyNode, 'mouseup', mouseUp);
+            addEvent(bodyNode, 'dragend', mouseUp);
+            return cancelEvent(e);
+        }
+    }
+
+    var mouseMove = function(e) {
+        if (window.getSelection) {
+            var sel = window.getSelection();
+            if (sel.removeAllRanges) sel.removeAllRanges();
+        }
+        var cx = e.pageX,
+            cy = e.pageY;
+        if (action == 1) {
+            var nx = startRect.left + (cx - startX);
+            var ny = startRect.top + (cy - startY);
+            nx = mmin(width - rect.width, mmax(0, nx));
+            ny = mmin(height - rect.height, mmax(0, ny));
+            showRect(extend(rect, {
+                left: nx,
+                top: ny
+            }));
+        } else if (action == 2) {
+            if (mabs(cx - startX) > 3 && mabs(cy - startY) > 3) {
+                action = 3;
+                updateCursor();
+                elemXY = getXY(elem);
+                startX -= elemXY[0];
+                startY -= elemXY[1];
+                show(tagframe, tagfaded);
+                each(taghandles, function() {
+                    show(this);
+                    setStyle(this, 'opacity', 0.7);
+                });
+            }
+        } else if (action < 0) {
+            var iconn = -(action + 1),
+                cw = iconParams[iconn].width,
+                ch = iconParams[iconn].height;
+            var nx = startRect.left - mfloor((cx - startX) * rect.width / cw);
+            var ny = startRect.top - mfloor((cy - startY) * rect.height / ch);
+            nx = mmin(width - rect.width, mmax(0, nx));
+            ny = mmin(height - rect.height, mmax(0, ny));
+            showRect(extend(rect, {
+                left: nx,
+                top: ny
+            }));
+        } else if (action.length) {
+            var xy = adjustPos(cx + adjX, cy + adjY);
+            cx = xy[0];
+            cy = xy[1];
+
+            var nx = rect.left,
+                ny = rect.top,
+                nw = rect.width,
+                nh = rect.height;
+
+            var ver = 0,
+                hor = 0; // Where are we moving
+            if (action.length == 2) {
+                ver = (action.charAt(0) == 'n') ? -1 : 1;
+                hor = (action.charAt(1) == 'w') ? -1 : 1;
+            } else {
+                ver = (action == 'n' ? -1 : (action == 's' ? 1 : 0));
+                hor = (action == 'w' ? -1 : (action == 'e' ? 1 : 0));
+            }
+
+            startX = nx + nw * (hor < 0);
+            startY = ny + nh * (ver < 0);
+
+            if ((cx < nx || cx > nx + nw) && mabs(cx - startX) < mabs(cx - (nx + nw * (hor >= 0)))) {
+                startX = startX + mmax(minw, intval(nh * minr)) * hor;
+                hor *= -1;
+            }
+            if ((cy < ny || cy > ny + nh) && mabs(cy - startY) < mabs(cy - (ny + nh * (ver >= 0)))) {
+                startY = startY + mmax(minh, intval(nw / maxr)) * ver;
+                ver *= -1;
+            }
+
+            var dx = mabs(hor) * mabs(cx - startX),
+                dy = mabs(ver) * mabs(cy - startY);
+            if (!hor) dx = rect.width;
+            if (!ver) dy = rect.height;
+            if (!dx && !dy) return cancelEvent(e);
+
+            dx = mmax(dx, minw);
+            dy = mmax(dy, minh);
+
+            var curmaxw = mmin(maxw, hor >= 0 ? width - startX : startX),
+                curmaxh = mmin(maxh, ver >= 0 ? height - startY : startY);
+
+            dx = mmin(dx, curmaxw);
+            dy = mmin(dy, curmaxh);
+
+            nx = hor >= 0 ? startX : startX - dx;
+            ny = ver >= 0 ? startY : startY - dy;
+
+            var movex = 0,
+                movey = 0,
+                tmp;
+            var maxmvx = mmin(nx, width - nx - dx),
+                maxmvy = mmin(ny, height - ny - dy);
+
+            var curRatio = dx / dy;
+            if (dblcmp(curRatio, minr) < 0) {
+                if (hor == 0) {
+                    tmp = mmin(curmaxw, dy * minr);
+                    movex = (dx - tmp) / 2;
+                    movex = msign(movex) * mmin(mceil(mabs(movex)), maxmvx);
+                    dx = mmin(dx - 2 * movex, curmaxw);
+                    dy = dx / minr;
+                } else if (ver == 0) {
+                    tmp = mmax(dx / minr, minh);
+                    movey = (dy - tmp) / 2;
+                    movey = msign(movey) * mceil(mabs(movey));
+                    dy = mmax(dy - 2 * movey, minh);
+                    dx = dy * minr;
+                } else {
+                    dx = mmin(dy * minr, curmaxw);
+                    dy = dx / minr;
+                }
+            } else if (dblcmp(curRatio, maxr) > 0) {
+                if (hor == 0) {
+                    tmp = mmax(dy * maxr, minw);
+                    movex = (dx - tmp) / 2;
+                    movex = msign(movex) * mceil(mabs(movex));
+                    dx = mmax(dx - 2 * movex, minw);
+                    dy = dx / maxr;
+                } else if (ver == 0) {
+                    tmp = mmin(curmaxh, dx / maxr);
+                    movey = (dy - tmp) / 2;
+                    movey = msign(movey) * mmin(mceil(mabs(movey)), maxmvy);
+                    dy = mmin(dy - 2 * movey, curmaxh);
+                    dx = dy * maxr;
+                } else {
+                    dy = mmin(dx / maxr, curmaxh);
+                    dx = dy * maxr;
                 }
             }
-            e.rect ? (q(e.rect), show(X, C), each(Z, function() {
-                show(this)
-            }), each(j, function() {
-                show(this)
-            })) : (t.style.cursor = "crosshair", addEvent(t, "mousedown", K)), isFunction(e.onInit) && e.onInit()
+            dx = intval(dx);
+            dy = intval(dy);
+
+            nx = hor >= 0 ? startX : startX - dx;
+            ny = ver >= 0 ? startY : startY - dy;
+
+            nx += movex;
+            ny += movey;
+
+            showRect({
+                left: nx,
+                top: ny,
+                width: dx,
+                height: dy
+            });
+
+            ver = (ver > 0 ? 's' : (ver < 0 ? 'n' : ''));
+            hor = (hor > 0 ? 'e' : (hor < 0 ? 'w' : ''));
+            if (action != ver + hor) {
+                action = ver + hor;
+                updateCursor();
+            }
         }
-    }(), {
+        if (action == 3) {
+            cx -= elemXY[0];
+            cy -= elemXY[1];
+            cx = mmin(width, mmax(0, cx));
+            cy = mmin(height, mmax(0, cy));
+            updateCursor(msign((startX - cx) * (startY - cy)) > 0 ? 'nw-resize' : 'ne-resize');
+            showRect({
+                left: startX > cx ? cx : startX,
+                top: startY > cy ? cy : startY,
+                width: mabs(startX - cx),
+                height: mabs(startY - cy)
+            }, true);
+        }
+        return cancelEvent(e);
+    }
+
+    var mouseUp = function(e) {
+        var cx = e.pageX,
+            cy = e.pageY,
+            t;
+        elemXY = getXY(elem);
+        if (action == 2) {
+            cx -= elemXY[0];
+            cy -= elemXY[1];
+            var x = mmin(width - defw, mmax(0, cx - defw2));
+            var y = mmin(height - defh, mmax(0, cy - defh2));
+            showRect({
+                left: x,
+                top: y,
+                width: defw,
+                height: defh
+            });
+        } else if (action == 3) {
+            cx -= elemXY[0];
+            cy -= elemXY[1];
+            if (cx > startX) {
+                t = cx;
+                cx = startX;
+                startX = t;
+            }
+            if (cy > startY) {
+                t = cy;
+                cy = startY;
+                startY = t;
+            }
+            var w = startX - cx,
+                h = startY - cy;
+            if (cx < 0) {
+                w += cx;
+                cx = 0;
+            }
+            if (cy < 0) {
+                h += cy;
+                cy = 0;
+            }
+            w = mmin(w, width - cx);
+            h = mmin(h, height - cy);
+
+            if (w < minw) {
+                var d = minw - w,
+                    d2 = intval(d / 2);
+                cx -= d2;
+                w = minw;
+                cx = mmin(width - w, mmax(0, cx));
+            }
+            if (h < minh) {
+                var d = minh - h,
+                    d2 = intval(d / 2);
+                cy -= d2;
+                h = minh;
+                cy = mmin(height - h, mmax(0, cy));
+            }
+
+            var curmaxw = width - cx,
+                curmaxh = height - cy;
+            var curRatio = w / h;
+            if (dblcmp(curRatio, minr) < 0) {
+                w = mmin(h * minr, curmaxw);
+                h = w / minr;
+            } else if (dblcmp(curRatio, maxr) > 0) {
+                h = mmin(w / maxr, curmaxh);
+                w = h * maxr;
+            }
+            showRect({
+                left: cx,
+                top: cy,
+                width: w,
+                height: h
+            });
+        }
+        show(tagframe, tagfaded);
+        each(taghandles, function() {
+            fadeTo(this, 200, 0.3);
+        });
+        each(tagzones, function() {
+            show(this);
+        });
+        hide(bg);
+        action = 0;
+        removeEvent(bodyNode, 'mousemove', mouseMove);
+        removeEvent(bodyNode, 'mouseup', mouseUp);
+        removeEvent(bodyNode, 'dragend', mouseUp);
+        return cancelEvent(e);
+    };
+
+    (function() {
+        if (initTries < 0) {
+            return;
+        }
+
+        width = img.width;
+        height = img.height;
+
+        if (!width || !height) {
+            if (++initTries < 3000) setTimeout(arguments.callee, 100);
+            return;
+        }
+
+        node.style.position = 'relative';
+
+        addX = elem.offsetLeft;
+        addY = elem.offsetTop;
+
+        defw = mmin(width, defw);
+        defw2 = intval(defw / 2);
+        defh = mmin(height, defh);
+        defh2 = intval(defh / 2);
+        minw = mmin(minw, defw);
+        minh = mmin(minh, defh);
+
+        if (options.icons) {
+            for (var i in options.icons) {
+                if (!options.icons[i] || !options.icons[i].width || !options.icons[i].height || !options.icons[i].box) continue;
+                iconParams.push({
+                    width: options.icons[i].width,
+                    height: options.icons[i].height
+                });
+                icons.push(ge(options.icons[i].box).appendChild(ce('img', {
+                    src: elem.src,
+                    className: 'preview'
+                })));
+
+                ge(options.icons[i].box).style.overflow = 'hidden';
+                icons[icons.length - 1].style.cursor = 'move';
+                addEvent(icons[icons.length - 1], 'mousedown', mouseDown);
+            }
+        }
+
+        bg = bodyNode.appendChild(ce('div', {
+            className: 'tag_bg'
+        }, {
+            position: 'fixed'
+        }));
+        addEvent(window, 'resize', resize);
+        resize();
+
+        node.style.zIndex = zstart + 10;
+        elem.style.zIndex = zstart + 20;
+
+        tagframe = node.appendChild(ce('div', {
+            className: 'tag_frame',
+            innerHTML: '<img src="' + elem.src + '" />'
+        }, {
+            cursor: 'move',
+            zIndex: zstart + 40
+        }));
+        tagimg = tagframe.firstChild;
+        tagfaded = node.appendChild(ce('div', {
+            className: 'tag_faded'
+        }, {
+            cursor: 'crosshair',
+            left: addX,
+            top: addY,
+            width: width,
+            height: height,
+            zIndex: zstart + 30
+        }));
+
+        each(['nw', 'n', 'ne', 'w', 'e', 'sw', 's', 'se'], function() {
+            var s = this.toString();
+            if (minr == maxr && s.length < 2) return;
+            taghandles[s] = node.appendChild(ce('div', {
+                className: 'tag_frame_handle ' + s
+            }, {
+                cursor: s + '-resize',
+                zIndex: zstart + 50
+            }));
+        });
+
+        each(options.safeZones || {}, function(k) {
+            tagzones[k] = node.appendChild(ce('div', {
+                className: 'tag_frame_zone zone_' + k
+            }, {
+                zIndex: zstart + 45
+            }));
+            addEvent(tagzones[k], 'mousedown', mouseDown);
+        });
+
+        addEvent(node, 'mousedown', mouseDown);
+
+        if (options.crop) {
+            var d = options.crop.split(',');
+            for (var i = 0; i < d.length; ++i) {
+                d[i] = intval(d[i]);
+            }
+            if (!d[3]) {
+                d[3] = d[2];
+            }
+            if (d[2] < minw) {
+                d[2] = minw;
+            }
+            if (d[3] < minh) {
+                d[3] = minh;
+            }
+            options.rect = {
+                left: d[0],
+                top: d[1],
+                width: d[2],
+                height: d[3]
+            };
+        }
+
+        if (options.rect) {
+            showRect(options.rect);
+            show(tagfaded, tagframe);
+            each(taghandles, function() {
+                show(this);
+            });
+            each(tagzones, function() {
+                show(this);
+            });
+        } else {
+            elem.style.cursor = 'crosshair';
+            addEvent(elem, 'mousedown', mouseDown);
+        }
+
+        if (isFunction(options.onInit)) {
+            options.onInit();
+        }
+    })();
+
+    return {
         destroy: function() {
-            s = -1, t.style.cursor = "default", cleanElems(r, t);
-            for (var e in I) I[e] && cleanElems(I[e]);
-            each(Z, function() {
-                cleanElems(this)
-            }), each(j, function() {
-                cleanElems(this)
-            }), removeEvent(window, "resize", G)
+            initTries = -1;
+            elem.style.cursor = 'default';
+            cleanElems(node, elem);
+            for (var i in icons) {
+                if (icons[i]) {
+                    cleanElems(icons[i]);
+                }
+            }
+            each(taghandles, function() {
+                cleanElems(this);
+            });
+            each(tagzones, function() {
+                cleanElems(this);
+            });
+            removeEvent(window, 'resize', resize);
         },
         result: function() {
-            return [P.left, P.top, P.width, P.height]
+            return [rect.left, rect.top, rect.width, rect.height];
         }
     }
 }
+
 try {
-    stManager.done("ads_tagger.js")
+    stManager.done('ads_tagger.js');
 } catch (e) {}

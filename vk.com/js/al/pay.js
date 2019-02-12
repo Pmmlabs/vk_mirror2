@@ -1,147 +1,313 @@
 var Pay = {
-    navTo: function(r, e, o, a, n) {
-        (n || !isVisible(cur.payBox.progress)) && (extend(r, {
+    navTo: function(params, onDone, onFail, wait, ignore) {
+        if (!ignore && isVisible(cur.payBox.progress)) return;
+
+        extend(params, {
             merchant_id: cur.payMerchantId,
             order_hash: cur.payOrderHash,
             order_id: cur.payOrderId,
             layout: cur.payLayout
-        }), hide("pay_error"), a || (a = 1, cur.payNavTimer && clearTimeout(cur.payNavTimer)), show(cur.payBox.progress), hide("pay_back_link"), ajax.post(cur.payUrl, r, {
-            onDone: function(n, c) {
-                e && e(), "not_ready" == n ? (show(cur.payBox.progress), clearTimeout(cur.payNavTimer), cur.payNavTimer = setTimeout(function() {
-                    Pay.navTo(r, e, o, a + 1, !0)
-                }, 1e3 * a)) : (hide(cur.payBox.progress), clearTimeout(cur.payNavTimer), cur.payNavTimer = 0, Pay.received(n, c))
-            },
-            onFail: function(n) {
-                return o && o(), n ? Pay.showError(n) : (show(cur.payBox.progress), clearTimeout(cur.payNavTimer), cur.payNavTimer = setTimeout(function() {
-                    Pay.navTo(r, e, o, a + 1, !0)
-                }, 1e3 * a)), !0
+        });
+
+        hide('pay_error');
+        if (!wait) {
+            wait = 1;
+            if (cur.payNavTimer) {
+                clearTimeout(cur.payNavTimer);
             }
-        }))
+        }
+
+        show(cur.payBox.progress);
+        hide('pay_back_link');
+
+        ajax.post(cur.payUrl, params, {
+            onDone: function(html, script) {
+                if (onDone) onDone();
+                if (html == 'not_ready') {
+                    show(cur.payBox.progress);
+                    clearTimeout(cur.payNavTimer);
+                    cur.payNavTimer = setTimeout(function() {
+                        Pay.navTo(params, onDone, onFail, wait + 1, true);
+                    }, wait * 1000);
+                } else {
+                    hide(cur.payBox.progress);
+                    clearTimeout(cur.payNavTimer);
+                    cur.payNavTimer = 0;
+                    Pay.received(html, script);
+                }
+            },
+            onFail: function(text) {
+                if (onFail) onFail();
+                if (text) {
+                    Pay.showError(text);
+                } else {
+                    show(cur.payBox.progress);
+                    clearTimeout(cur.payNavTimer);
+                    cur.payNavTimer = setTimeout(function() {
+                        Pay.navTo(params, onDone, onFail, wait + 1, true);
+                    }, wait * 1000);
+                }
+                return true;
+            }
+        });
     },
-    showError: function(r) {
-        ge("pay_box_error") ? (ge("pay_box_error").innerHTML = r, show("pay_box_error")) : ge("pay_error") ? (ge("pay_error").innerHTML = r, show("pay_error")) : ge("pay_merchant_error") && (ge("pay_merchant_error").innerHTML = r, show("pay_merchant_error"), Pay.payDoResize()), hide(cur.payBox.progress), cur.payConfirmBox && cur.payConfirmBox.isVisible() && (hide("pay_retry_msg"), ge("pay_confirm_phone") ? elfocus("pay_confirm_phone") : ge("pay_confirm_code") && elfocus("pay_confirm_code"))
-    },
-    received: function(html, script) {
-        if (cur.payNotEnoughTimer && (clearTimeout(cur.payNotEnoughTimer), cur.payNotEnoughTimer = 0), trim(html).length && (ge("pay_container").innerHTML = html), trim(script).length) {
-            var box = cur.payBox;
-            eval(script)
+
+    showError: function(error) {
+        if (ge('pay_box_error')) {
+            ge('pay_box_error').innerHTML = error;
+            show('pay_box_error');
+        } else if (ge('pay_error')) {
+            ge('pay_error').innerHTML = error;
+            show('pay_error');
+        } else if (ge('pay_merchant_error')) {
+            ge('pay_merchant_error').innerHTML = error;
+            show('pay_merchant_error');
+            Pay.payDoResize();
+        }
+        hide(cur.payBox.progress);
+        if (cur.payConfirmBox && cur.payConfirmBox.isVisible()) {
+            hide('pay_retry_msg');
+            if (ge('pay_confirm_phone')) {
+                elfocus('pay_confirm_phone');
+            } else if (ge('pay_confirm_code')) {
+                elfocus('pay_confirm_code');
+            }
         }
     },
-    agreementChanged: function(r) {
-        isChecked(r) ? Pay.initPaymentButtons() : cur.payBox.removeButtons().addButton(getLang("global_close"), Pay.cancel)
+
+    received: function(html, script) {
+        if (cur.payNotEnoughTimer) {
+            clearTimeout(cur.payNotEnoughTimer);
+            cur.payNotEnoughTimer = 0;
+        }
+        if (trim(html).length) {
+            ge('pay_container').innerHTML = html;
+        }
+        if (trim(script).length) {
+            var box = cur.payBox;
+            eval(script);
+        }
     },
-    showAgreement: function(r) {
-        var e = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.offsetHeight;
-        return !showBox("merchants.php", {
-            act: "agreement",
+
+    agreementChanged: function(el) {
+        if (isChecked(el)) {
+            Pay.initPaymentButtons();
+        } else {
+            cur.payBox.removeButtons().addButton(getLang('global_close'), Pay.cancel);
+        }
+    },
+
+    showAgreement: function(ev) {
+        var windowHeight = window.innerHeight ? window.innerHeight : (document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.offsetHeight);
+        return !showBox('merchants.php', {
+            act: 'agreement',
             id: cur.payMerchantId
         }, {
-            stat: ["wk.css", "wk.js"],
+            stat: ['wk.css', 'wk.js'],
             params: {
-                bodyStyle: "overflow: auto; padding: 0px; height: " + (e - 270) + "px",
+                bodyStyle: 'overflow: auto; padding: 0px; height: ' + (windowHeight - 270) + 'px',
                 width: 643,
-                height: e - 200
+                height: (windowHeight - 200)
             }
-        }, r)
+        }, ev);
+        var cb = ge('pay_agreement_check');
+        checkbox(cb);
     },
-    makePayment: function(r, e) {
-        var o = isChecked("status_export") ? 0 : 1,
-            a = cur.payConfirmBox && cur.payConfirmBox.isVisible() ? cur.payConfirmBox.progress : cur.payBox.progress;
-        if (!isVisible(a)) {
-            hide("pay_error", "pay_box_error");
-            var n = {
-                act: "lock",
-                hash: cur.payConfirmHash,
-                merchant_id: cur.payMerchantId,
-                order_id: cur.payOrderId,
-                order_hash: cur.payOrderHash,
-                show_in_box: !0,
-                layout: cur.payLayout,
-                donation: cur.payDonation
-            };
-            r ? n.other_phone = 1 : e ? (n.retry_phone = 1, cur.payConfirmPhone && (n.confirm_phone = cur.payConfirmPhone)) : ge("pay_confirm_code") && ge("pay_confirm_code").value ? n.confirm_code = ge("pay_confirm_code").value : ge("pay_confirm_phone") && (cur.payConfirmPhone = n.confirm_phone = ge("pay_confirm_phone").value), ajax.post(cur.payUrl, n, {
-                onDone: function(n, c, i) {
-                    switch (n) {
-                        case -1:
-                            show(a), setTimeout(function() {
-                                hide(a), Pay.makePayment(r, e)
-                            }, 1e3);
-                            break;
-                        case 0:
-                            Pay.received(c, i);
-                            break;
-                        case 1:
-                            cur.payConfirmBox && cur.payConfirmBox.hide(), cur.payConfirmHtml = c, cur.payConfirmScript = i, c = "";
-                        case 2:
-                            cur.payConfirmBox && cur.payConfirmBox.isVisible() || (cur.payConfirmBox = showFastBox(cur.payConfirmTitle, cur.payConfirmHtml, getLang("box_send"), Pay.makePayment.pbind(!1, !1), getLang("global_cancel")), cur.payConfirmBox.evalBox(cur.payConfirmScript)), c && Pay.showError(c);
-                            break;
-                        case 3:
-                            cur.payConfirmCallbackId = intval(c), cur.payConfirmBox && cur.payConfirmBox.hide(), cur.payBox.removeButtons().addButton(getLang("global_cancel"), Pay.cancel), cur.payBox.setControlsText("");
-                            var c = '<div id="pay_process_info"><div class="pay_process_please">' + cur.payPleaseWait + '<br><br><img src="images/progress7.gif" /><br><br>' + cur.payInProgress + "</div><br><br>" + cur.payHistory + "</div>",
-                                i = "";
-                            Pay.received(c, i), Pay.navTo({
-                                act: "pay",
-                                order_id: cur.payOrderId,
-                                callback_id: cur.payConfirmCallbackId,
-                                show_in_box: !0,
-                                donation: cur.payDonation,
-                                url: cur.paySiteUrl,
-                                doexport: o
-                            })
-                    }
-                },
-                onFail: function(r) {
-                    return r ? (Pay.showError(r), !0) : void 0
-                }
-            })
+
+    makePayment: function(otherPhone, retryPhone) {
+        var statusExport = isChecked('status_export') ? 0 : 1;
+
+        var progress = (cur.payConfirmBox && cur.payConfirmBox.isVisible()) ? cur.payConfirmBox.progress : cur.payBox.progress;
+        if (isVisible(progress)) return;
+
+        hide('pay_error', 'pay_box_error');
+        var params = {
+            act: 'lock',
+            hash: cur.payConfirmHash,
+            merchant_id: cur.payMerchantId,
+            order_id: cur.payOrderId,
+            order_hash: cur.payOrderHash,
+            show_in_box: true,
+            layout: cur.payLayout,
+            donation: cur.payDonation
+        };
+        if (otherPhone) {
+            params.other_phone = 1;
+        } else if (retryPhone) {
+            params.retry_phone = 1;
+            if (cur.payConfirmPhone) {
+                params.confirm_phone = cur.payConfirmPhone;
+            }
+        } else if (ge('pay_confirm_code') && ge('pay_confirm_code').value) {
+            params.confirm_code = ge('pay_confirm_code').value;
+        } else if (ge('pay_confirm_phone')) {
+            cur.payConfirmPhone = params.confirm_phone = ge('pay_confirm_phone').value;
         }
+
+        ajax.post(cur.payUrl, params, {
+            onDone: function(result, html, script) {
+                switch (result) {
+                    case -1:
+                        show(progress);
+                        setTimeout(function() {
+                            hide(progress);
+                            Pay.makePayment(otherPhone, retryPhone);
+                        }, 1000);
+                        break;
+
+                    case 0:
+                        Pay.received(html, script);
+                        break;
+
+                    case 1:
+                        if (cur.payConfirmBox) cur.payConfirmBox.hide();
+
+                        cur.payConfirmHtml = html;
+                        cur.payConfirmScript = script;
+                        html = '';
+                    case 2:
+                        if (!cur.payConfirmBox || !cur.payConfirmBox.isVisible()) {
+                            cur.payConfirmBox = showFastBox(cur.payConfirmTitle, cur.payConfirmHtml, getLang('box_send'), Pay.makePayment.pbind(false, false), getLang('global_cancel'));
+                            cur.payConfirmBox.evalBox(cur.payConfirmScript);
+                        }
+                        if (html) {
+                            Pay.showError(html);
+                        }
+                        break;
+
+                    case 3:
+                        cur.payConfirmCallbackId = intval(html);
+                        if (cur.payConfirmBox) {
+                            cur.payConfirmBox.hide();
+                        }
+
+                        cur.payBox.removeButtons().addButton(getLang('global_cancel'), Pay.cancel);
+                        cur.payBox.setControlsText('');
+
+                        var html = '<div id="pay_process_info"><div class="pay_process_please">' + cur.payPleaseWait + '<br><br><img src="images/progress7.gif" /><br><br>' + cur.payInProgress + '</div><br><br>' + cur.payHistory + '</div>';
+                        var script = '';
+                        Pay.received(html, script);
+
+                        Pay.navTo({
+                            act: 'pay',
+                            order_id: cur.payOrderId,
+                            callback_id: cur.payConfirmCallbackId,
+                            show_in_box: true,
+                            donation: cur.payDonation,
+                            url: cur.paySiteUrl,
+                            doexport: statusExport
+                        });
+
+                        break;
+                }
+            },
+            onFail: function(text) {
+                if (text) {
+                    Pay.showError(text);
+                    return true;
+                }
+            }
+        });
     },
+
     initPaymentButtons: function() {
-        cur.payBox.removeButtons().addButton(getLang("global_cancel"), Pay.cancel, "no"), cur.payBox.addButton(cur.payBtnLabel, Pay.makePayment)
+        cur.payBox.removeButtons().addButton(getLang('global_cancel'), Pay.cancel, 'no');
+        cur.payBox.addButton(cur.payBtnLabel, Pay.makePayment);
     },
+
     checkMoney: function() {
         ajax.post(cur.payUrl, {
-            act: "money",
+            act: 'money',
             money: cur.payMoney,
             merchant_id: cur.payMerchantId,
             order_id: cur.payOrderId,
             order_hash: cur.payOrderHash,
-            show_in_box: !0,
+            show_in_box: true,
             layout: cur.payLayout
         }, {
-            onDone: function(r, e, o, a) {
-                return cur.payMoney = r, e && (ge("pay_you_will_msg").innerHTML = e, ge("pay_will_be_left").innerHTML = o, !a) ? void hide("pay_error", "pay_box_error") : (cur.payWaitFor = 5e3, void(cur.payNotEnoughTimer = setTimeout(Pay.checkMoney, cur.payWaitFor)))
+            onDone: function(money, youWill, willBeLeft, notEnough) {
+                cur.payMoney = money;
+                if (youWill) {
+                    ge('pay_you_will_msg').innerHTML = youWill;
+                    ge('pay_will_be_left').innerHTML = willBeLeft;
+                    if (!notEnough) {
+                        hide('pay_error', 'pay_box_error');
+                        return;
+                    }
+                }
+                cur.payWaitFor = 5000;
+                cur.payNotEnoughTimer = setTimeout(Pay.checkMoney, cur.payWaitFor);
             },
-            onFail: function(r) {
-                return r ? Pay.showError(r) : (cur.payWaitFor *= 2, cur.payNotEnoughTimer = setTimeout(Pay.checkMoney, cur.payWaitFor)), !0
+            onFail: function(text) {
+                if (text) {
+                    Pay.showError(text);
+                } else {
+                    cur.payWaitFor *= 2;
+                    cur.payNotEnoughTimer = setTimeout(Pay.checkMoney, cur.payWaitFor);
+                }
+                return true;
+            }
+        });
+    },
+
+    successFinish: function() {
+        clearTimeout(cur.paySuccessTimer);
+        cur.payBox.setOptions({
+            onHide: function() {
+                if (cur.onMerchantPaymentSuccess) {
+                    cur.onMerchantPaymentSuccess(cur.payMerchantOrderId);
+                } else {
+                    debugLog('no cur.onMerchantPaymentSuccess handler')
+                }
             }
         })
+        cur.payBox.hide();
     },
-    successFinish: function() {
-        clearTimeout(cur.paySuccessTimer), cur.payBox.setOptions({
-            onHide: function() {
-                cur.onMerchantPaymentSuccess ? cur.onMerchantPaymentSuccess(cur.payMerchantOrderId) : debugLog("no cur.onMerchantPaymentSuccess handler")
-            }
-        }), cur.payBox.hide()
+
+    showCongrats: function(text) {
+        hide('pay_text_logged');
+        show('pay_text_success');
+        hide('pay_text_logged', 'pay_text_success_publish');
+        cur.paySuccessTimer = setTimeout(Pay.successFinish, 4000);
+        cur.destroy.push(function() {
+            clearTimeout(cur.paySuccessTimer);
+        });
+
+        ge('pay_process_info').innerHTML = '<div class="pay_process_please">' + text + '</div>';
+        cur.payBox.removeButtons().addButton(getLang('global_close'), Pay.successFinish);
     },
-    showCongrats: function(r) {
-        hide("pay_text_logged"), show("pay_text_success"), hide("pay_text_logged", "pay_text_success_publish"), cur.paySuccessTimer = setTimeout(Pay.successFinish, 4e3), cur.destroy.push(function() {
-            clearTimeout(cur.paySuccessTimer)
-        }), ge("pay_process_info").innerHTML = '<div class="pay_process_please">' + r + "</div>", cur.payBox.removeButtons().addButton(getLang("global_close"), Pay.successFinish)
+
+    payResizeShow: function(el) {
+        if (cur.payShowInBox) {
+            return;
+        }
+        // show resize for popup here
     },
-    payResizeShow: function(r) {
-        cur.payShowInBox
+
+    payResizeHide: function(el) {
+        if (cur.payShowInBox) {
+            return;
+        }
+        // hide resize for popup here
     },
-    payResizeHide: function(r) {
-        cur.payShowInBox
+
+    payDoResize: function(el) {
+        if (cur.payShowInBox) {
+            return;
+        }
+        // hide resize for popup here
     },
-    payDoResize: function(r) {
-        cur.payShowInBox
-    },
+
     cancel: function() {
-        cur.onMerchantPaymentCancel && cur.onMerchantPaymentCancel(), cur.payBox.hide()
+        if (cur.onMerchantPaymentCancel) {
+            cur.onMerchantPaymentCancel();
+        }
+        cur.payBox.hide();
     }
-};
+
+
+}
+
 try {
-    stManager.done("pay.js")
+    stManager.done('pay.js');
 } catch (e) {}

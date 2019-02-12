@@ -1,3 +1,3 @@
 try {
-    stManager.done("im.js")
+    stManager.done('im.js');
 } catch (e) {}
