@@ -169,7 +169,7 @@ var stVersions = {
     'blog.css': 18748353949,
     'blog.js': 3939164531,
     'html5audio.js': 976782859,
-    'audioplayer.js': 198124354592,
+    'audioplayer.js': 206602314205,
     'audioplayer.css': 20097009041,
     'audio_html5.js': 287741914,
     'audio.js': 3486553047,
@@ -224,7 +224,7 @@ var stVersions = {
     'video_upload.js': 10965065854,
     'video_youtube.js': 458412745,
     'video_youtube.css': 13658414168,
-    'videoplayer.js': 89891887359,
+    'videoplayer.js': 88444730195,
     'videoplayer.css': 46361942217,
     'translation.js': 3971934328,
     'translation.css': 16560977583,
@@ -252,7 +252,7 @@ var stVersions = {
     'pages.js': 1162259210,
     'groups.css': 96077730250,
     'cmodules/web/groups.js': 31236799959,
-    'cmodules/web/groups_admins.js': 88273808846,
+    'cmodules/web/groups_admins.js': 88025977020,
     'cmodules/web/groups_create.js': 3275450130,
     'groups_create.css': 16667276002,
     'cmodules/web/groups_list.js': 2447510571,
@@ -550,10 +550,10 @@ var stVersions = {
     'article.css': 30300704153,
     'article_editor.css': 33939520800,
     'cmodules/web/article.js': 44200682216,
-    'cmodules/web/article_layer.js': 35874844243,
+    'cmodules/web/article_layer.js': 36380347623,
     'article_view.js': 8333505009,
     'author_page.css': 33415092105,
-    'cmodules/web/author_page.js': 77845124032,
+    'cmodules/web/author_page.js': 77597292206,
     'bookmarks.css': 15751437085,
     'cmodules/web/bookmarks.js': 3575362821,
     'sf.css': 16243233392,
@@ -594,7 +594,7 @@ var stVersions = {
     'reports.css': 77152671627,
     'cmodules/web/raven_logger.js': 6829821831,
     'cmodules/web/add_to_community_app.js': 397597546,
-    'cmodules/web/groups_edit_addresses.js': 77802184414,
+    'cmodules/web/groups_edit_addresses.js': 77554352588,
     'addresses.css': 25883647076,
     'cmodules/web/addresses.js': 19853316261,
     'cmodules/web/groups_edit_cta_button.js': 89320519,
@@ -603,11 +603,11 @@ var stVersions = {
     'ui_gallery.css': 16868990295,
     'cmodules/web/ui_components.js': 3224689059,
     'apps_feed_blocks.css': 17377536584,
-    'cmodules/web/landing_transparency.js': 106637658423,
+    'cmodules/web/landing_transparency.js': 106389826597,
     'landings/transparency.css': 96568138007,
     'cmodules/web/emoji.js': 10126080658,
-    'cmodules/web/apps_achievements.js': 80636776786,
-    'cmodules/web/payments.js': 51052322237,
+    'cmodules/web/apps_achievements.js': 80388944960,
+    'cmodules/web/payments.js': 50804490411,
     'lang': 6933
 };
 var stTypes = {
@@ -667,4 +667,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 7726;
+var _rnd = 102;
