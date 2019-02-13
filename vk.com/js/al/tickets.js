@@ -2532,23 +2532,6 @@ var Tickets = {
         });
         console.log('Win');
     },
-    tutorialOpen: function(btn, hash) {
-        var chosenFaq = cur.chosenTutorialFaqId ? ge('help_table_question_' + cur.chosenTutorialFaqId) : null;
-        if (chosenFaq) {
-            show('support_tutorial_container');
-        } else {
-            slideDown('support_tutorial_container', 300);
-        }
-        btn.parentNode.replaceChild(ce('span', {
-            innerHTML: btn.innerHTML
-        }), btn);
-        ajax.post('support?act=a_open_tutorial', {
-            hash: hash
-        });
-        if (chosenFaq) {
-            scrollToY(getXY(chosenFaq)[1]);
-        }
-    },
     tutorialSelect: function(btn, id, noActions) {
         if (cur.tutorialProcessing) {
             return;

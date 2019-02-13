@@ -2177,7 +2177,7 @@ input.wide_button {
 }
 
 .ni_cont .ni_pics {
-    margin: 8px 0 12px
+    margin: 8px -24px 12px 0
 }
 
 @media (min-width: 882px) {
@@ -2217,7 +2217,9 @@ input.wide_button {
 }
 
 .ni_pics {
-    margin: 8px 0 12px 44px
+    margin: 8px -24px 12px 44px;
+    max-height: 40px;
+    overflow: hidden
 }
 
 .ni_app_img,

@@ -8559,7 +8559,8 @@ button.ui_load_more_btn {
     line-height: 24px;
     padding: 0 24px 0 30px;
     position: relative;
-    vertical-align: middle
+    vertical-align: middle;
+    outline: none
 }
 
 .audio_pl_snippet2 .audio_pl_snippet__action_btn:before {
@@ -9251,7 +9252,7 @@ button.ui_load_more_btn {
     outline: none;
     border: none;
     vertical-align: top;
-    z-index: 10
+    z-index: 4
 }
 
 .audio_artist_snippet__play:before {

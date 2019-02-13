@@ -2190,7 +2190,7 @@ input.wide_button {
 }
 
 .ni_cont .ni_pics {
-    margin: 8px 0 12px
+    margin: 8px -24px 12px 0
 }
 
 @media (min-width: 882px) {
@@ -2230,7 +2230,9 @@ input.wide_button {
 }
 
 .ni_pics {
-    margin: 8px 0 12px 44px
+    margin: 8px -24px 12px 44px;
+    max-height: 40px;
+    overflow: hidden
 }
 
 .ni_app_img,
@@ -11403,18 +11405,6 @@ img[src^="/images/mobile/places/"] {
     background-image: none!important
 }
 
-.blog_body,
-.blog_body #l .main_menu,
-.blog_body #mcont,
-.blog_body .left_footer_menu {
-    background: #fafbfc!important
-}
-
-.blog_about_footer,
-.blog_body #mcont {
-    font-family: Helvetica Neue, sans-serif
-}
-
 .blog_body .zpv_bottom_body {
     display: none
 }
@@ -11639,12 +11629,13 @@ img[src^="/images/mobile/places/"] {
 
 .blog_about_header_nav_link {
     float: right;
-    font-size: 13px;
+    font-size: 17px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
     color: #fff;
-    letter-spacing: -0.1px;
-    font-weight: 700;
     line-height: 48px;
-    padding: 0px 20px;
+    padding: 0 10px;
     height: 48px
 }
 
@@ -11800,11 +11791,8 @@ img[src^="/images/mobile/places/"] {
     vertical-align: middle
 }
 
-.blog_post {
-    background: #fff;
-    border: 1px solid #e8eaed;
-    border-width: 1px 0px;
-    margin-top: 13px
+.blog_post:first-child {
+    margin-top: 0
 }
 
 .blog_post_head {
@@ -25213,6 +25201,7 @@ figure[data-type="102"] .article_object_video_play {
 .AudioShowcase,
 .basis__content .al_loading,
 .basisDialogs,
+.blog_post,
 .BookmarksItem,
 .FeedItem,
 .GroupsInvite,
@@ -25241,6 +25230,7 @@ figure[data-type="102"] .article_object_video_play {
     .AudioShowcase,
     .basis__content .al_loading,
     .basisDialogs,
+    .blog_post,
     .BookmarksItem,
     .FeedItem,
     .GroupsInvite,
@@ -25362,7 +25352,8 @@ figure[data-type="102"] .article_object_video_play {
     border-radius: 0 0 4px 4px
 }
 
-.PageBlock_comments .upanel a[name]+.wall_item {
+.PageBlock_comments .upanel a[name]+.wall_item,
+.vk__page_feed .upanel a[name]+.wall_item {
     margin-top: 0
 }
 
@@ -25511,6 +25502,7 @@ figure[data-type="102"] .article_object_video_play {
     z-index: 2
 }
 
+.blog_post,
 .PageBlock_row {
     margin: 10px 0
 }
@@ -31265,6 +31257,10 @@ a.feedBlocks__article:hover {
 body.apps_settingsPageBody {
     background: #fff;
     padding: 0
+}
+
+body.apps_settingsPageBody .basis__content {
+    background: #fff
 }
 
 .apps_gameSettingsPage {
@@ -56056,7 +56052,8 @@ img.wk_photo_right {
         display: none
     }
     ._lm #m .mhb_logo .mh_header {
-        display: block
+        display: block;
+        margin: 0
     }
     body #l .ip_user_link .op_fcont,
     body #l .mm_label,
@@ -56580,7 +56577,7 @@ img.wk_photo_right {
     }
     ._hfixed._lm #m .mhead .mhb_logo,
     ._hfixed._lm.lm_opened #m .mhead .mhb_logo {
-        width: 381px
+        width: 316px
     }
     ._hfixed._lm .qs_enabled.qs_opened #m .mhb_back,
     ._hfixed._lm .qs_enabled.qs_opened #m .mhb_logo {

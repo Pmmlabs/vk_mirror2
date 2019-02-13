@@ -2862,10 +2862,6 @@ a.tickets_question_row_tt_unread {
     display: none
 }
 
-ul.t0#tickets_tabs #extra_tab .tab_word {
-    max-width: 150px
-}
-
 .tickets_suggests {
     position: relative
 }

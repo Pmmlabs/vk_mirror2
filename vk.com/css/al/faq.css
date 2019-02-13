@@ -1020,6 +1020,11 @@
     display: none
 }
 
+.faq_tutorials_row_disable,
+.faq_tutorials_row_enable {
+    width: 105px
+}
+
 .faq_tutorials_row_disabled .faq_tutorials_row_enable {
     display: inline-block
 }
@@ -1028,7 +1033,7 @@
     display: none
 }
 
-.faq_tutorials_row_disabled .faq_tutorials_row__name {
+.faq_tutorials_row_disabled .faq_tutorials_row__name>a {
     color: #939393
 }
 
