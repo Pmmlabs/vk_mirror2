@@ -49,8 +49,8 @@
 .apps_settings_row_wrap.loading .apps_settings_action_remove,
 .apps_vkPayPageBlock .app_container:after,
 .apps_win_instr_head:before,
-.appsCollectionNyBanner,
-.appsCollectionNyBanner .app_rate,
+.appsCollectionBanner,
+.appsCollectionBanner .app_rate,
 .AppsSalesProduct .app_rate,
 .media-photo-thumb-background,
 .media-video-play,
@@ -7315,12 +7315,33 @@ td.apps_cat_new_h {
 }
 
 .apps_vkPayPromo {
+    position: relative;
     overflow: hidden
 }
 
 .apps_vkPayPromo__img {
     display: block;
     width: 100%
+}
+
+.apps_vkPayPromo__hide {
+    position: absolute;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20opacity%3D%22.1%22%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20d%3D%22M12%2010.586l4.293-4.293a1%201%200%200%201%201.414%201.414L13.414%2012l4.293%204.293a1%201%200%200%201-1.414%201.414L12%2013.414l-4.293%204.293a1%201%200%201%201-1.414-1.414L10.586%2012%206.293%207.707a1%201%200%200%201%201.414-1.414L12%2010.586z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50%;
+    height: 24px;
+    width: 24px;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    display: block;
+    opacity: 0.75;
+    -o-transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease
+}
+
+.apps_vkPayPromo__hide:hover {
+    opacity: 1
 }
 
 .vk_app_modal_outer {
@@ -7618,33 +7639,33 @@ td.apps_cat_new_h {
     padding-right: 25px
 }
 
-.appsCollectionNyBanner {
+.appsCollectionBanner {
     padding-top: 48px;
     padding-bottom: 30px;
-    background: url(/images/apps/ny2019/banner_background.png) no-repeat 50% #5181b8;
+    background: url(/images/apps/banner/valentine.png) no-repeat 50% #aa65f0;
     color: #fff
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
-    .appsCollectionNyBanner {
-        background-image: url(/images/apps/ny2019/banner_background_2x.png);
+    .appsCollectionBanner {
+        background-image: url(/images/apps/banner/valentine_2x.png);
         background-size: 795px 420px
     }
 }
 
-.appsCollectionNyBanner__header {
+.appsCollectionBanner__header {
     text-align: center;
     margin-bottom: 18px
 }
 
-.appsCollectionNyBanner__footer {
+.appsCollectionBanner__footer {
     margin-top: 8px;
     text-align: center
 }
 
-.appsCollectionNyBanner__title {
+.appsCollectionBanner__title {
     color: #fff;
     font-size: 28px;
     font-weight: 700;
@@ -7652,19 +7673,19 @@ td.apps_cat_new_h {
     margin-bottom: 12px
 }
 
-.appsCollectionNyBanner__desc {
+.appsCollectionBanner__desc {
     font-size: 16px;
     line-height: 1.38
 }
 
-.appsCollectionNyBanner__allLink {
+.appsCollectionBanner__allLink {
     display: inline-block;
     position: relative;
     font-size: 13px;
     color: #fff
 }
 
-.appsCollectionNyBanner__allLink:after {
+.appsCollectionBanner__allLink:after {
     content: '';
     display: inline-block;
     width: 8px;
@@ -7679,50 +7700,50 @@ td.apps_cat_new_h {
     opacity: 0.5
 }
 
-.appsCollectionNyBanner__allLink:hover:after {
+.appsCollectionBanner__allLink:hover:after {
     -o-transform: translateX(2px);
     transform: translateX(2px)
 }
 
-.appsCollectionNyBanner .app_link {
+.appsCollectionBanner .app_link {
     color: #fff
 }
 
-.appsCollectionNyBanner .app_cat_link {
+.appsCollectionBanner .app_cat_link {
     color: #fff;
     opacity: 0.64
 }
 
-.appsCollectionNyBanner .app_cat_name {
+.appsCollectionBanner .app_cat_name {
     color: #fff
 }
 
-.appsCollectionNyBanner .app_rate {
+.appsCollectionBanner .app_rate {
     background: url(/images/apps/ny2019/white_stars.png) no-repeat 50%
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
-    .appsCollectionNyBanner .app_rate {
+    .appsCollectionBanner .app_rate {
         background-image: url(/images/apps/ny2019/white_stars_2x.png);
         background-size: 9px 31px
     }
 }
 
-.appsCollectionNyBanner .app_rate.full {
+.appsCollectionBanner .app_rate.full {
     background-position: 0 0
 }
 
-.appsCollectionNyBanner .app_rate.half {
+.appsCollectionBanner .app_rate.half {
     background-position: 0 -11px
 }
 
-.appsCollectionNyBanner .app_rate.empty {
+.appsCollectionBanner .app_rate.empty {
     background-position: 0 -22px
 }
 
-.appsCollectionNyBanner .app_rate.stats {
+.appsCollectionBanner .app_rate.stats {
     background-position: 0 0;
     cursor: default;
     height: 9px

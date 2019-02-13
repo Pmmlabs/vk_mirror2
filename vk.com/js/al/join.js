@@ -125,7 +125,7 @@ var Join = {
     },
 
     isPhoneCall: function() {
-        return cur.validationType == 3;
+        return cur.validationType == 3 || cur.validationType == 4;
     },
     phoneDone: function(phone, cntr) {
         if (phone) {
@@ -150,6 +150,7 @@ var Join = {
         if (Join.isPhoneCall()) {
             val(ge('join_called_phone_prefix').firstChild, '');
             val('join_called_phone', '');
+            hide('join_code_row');
             slideDown('join_called_phone_row', 150, elfocus.pbind('join_called_phone'));
         } else {
             if (isVisible('join_called_phone_row')) {
@@ -566,7 +567,7 @@ var Join = {
     },
     resendUpdate: function() {
         var resendTime, resendText;
-        if (Join.isPhoneCall()) {
+        if (Join.isPhoneCall() && cur.validationType != 4) {
             resendTime = 'join_send_code_via_sms_time';
             resendText = 'join_send_code_via_sms';
         } else {
@@ -643,10 +644,15 @@ var Join = {
             hash: cur.hash
         }, {
             progress: curBox().progress,
-            onDone: function(text) {
+            onDone: function(text, type) {
                 curBox().hide();
+                cur.validationType = type;
+                if (Join.isPhoneCall()) {
+                    Join.phoneDone();
+                } else {
+                    elfocus('join_code');
+                }
                 Join.showMsg('join_submit_result', text);
-                elfocus('join_code');
             }
         });
     },
