@@ -2602,6 +2602,9 @@ var Wall = {
             cur.wallNextFrom = 0;
             cur.wallTopNextFrom = 0;
             cur.wallArchiveNextFrom = 0;
+            cur.wallArchiveRestored = 0;
+            cur.wallArchiveArchived = 0;
+            cur.wallArchiveRolledback = 0;
 
             if (type === 'top') {
                 delete cur.wallTopFinished;
@@ -6361,6 +6364,54 @@ var Wall = {
         return false;
     },
 
+    isArchiveWall: function() {
+        return cur.pgParams && cur.pgParams.archive || cur.module === 'wall_archive';
+    },
+
+    rollbackPostsArchiveState: function(linkEl, postRaw, hash) {
+        if (!Wall.isArchiveWall() || linkLocked(linkEl)) {
+            return;
+        }
+
+        var postId = intval(postRaw.split('_')[1]);
+
+        ajax.post('al_wall_archive.php', {
+            act: 'a_rollback_state',
+            from: ge('page_wall_more_tab') ? 'profile' : 'wall',
+            postId: postId,
+            hash: hash,
+        }, {
+            onDone: function(msg) {
+                cur.wallArchiveRolledback = true;
+                Wall.postShowDeletedMessage(postRaw, msg);
+            },
+            showProgress: lockLink(linkEl),
+            hideProgress: unlockLink(linkEl),
+        });
+    },
+
+    restoreLastRollbackPostsArchiveState: function(linkEl, postRaw, hash) {
+        if (!Wall.isArchiveWall() || linkLocked(linkEl)) {
+            return;
+        }
+
+        var postId = intval(postRaw.split('_')[1]);
+
+        ajax.post('al_wall_archive.php', {
+            act: 'a_restore_last_rollback',
+            from: ge('page_wall_more_tab') ? 'profile' : 'wall',
+            postId: postId,
+            hash: hash,
+        }, {
+            onDone: function(msg) {
+                delete cur.wallArchiveRolledback;
+                Wall.postShowDeletedMessage(postRaw, msg);
+            },
+            showProgress: lockLink(linkEl),
+            hideProgress: unlockLink(linkEl),
+        });
+    },
+
     postSetArchiveState: function(actionEl, postRaw, hash, state, isRollback) {
         if (actionsMenuItemLocked(actionEl) || linkLocked(actionEl)) {
             return;
@@ -6368,26 +6419,38 @@ var Wall = {
 
         var postId = intval(postRaw.split('_')[1]);
         var isActionMenuItem = hasClass(actionEl, 'ui_actions_menu_item');
-        var isArchiveWall = cur.pgParams && cur.pgParams.archive || cur.module === 'wall_archive';
         var localCur = cur.wallLayer ? wkcur : cur;
 
         if (localCur) {
             if (!localCur.wallMyDeleted) {
                 localCur.wallMyDeleted = {};
             }
-            localCur.wallMyDeleted[postRaw] = !isArchiveWall === !state ? 0 : 1;
+            localCur.wallMyDeleted[postRaw] = !Wall.isArchiveWall() === !state ? 0 : 1;
         }
+
+        var extended = !isRollback && (Wall.isArchiveWall() ? cur.wallArchiveRestored >= 3 && !cur.wallArchiveRolledback : !cur.wallArchiveArchived);
 
         ajax.post('al_wall_archive.php', {
             act: 'a_set_state',
             from: ge('page_wall_more_tab') ? 'profile' : (cur.pid ? 'post' : 'wall'),
             hash: hash,
-            state: state ? 1 : 0,
+            state: state ? 1 : undefined,
+            extended: extended ? 1 : undefined,
             postId: postId,
         }, {
             onDone: function(msg, js) {
-                if (isArchiveWall) {
+                if (Wall.isArchiveWall()) {
                     state = !state;
+
+                    if (!isRollback) {
+                        if (!cur.wallArchiveRestored) {
+                            cur.wallArchiveRestored = 0;
+                        }
+                        cur.wallArchiveRestored++;
+                    }
+                }
+                if (state) {
+                    cur.wallArchiveArchived = true;
                 }
                 if (isRollback ? Wall.postHideDeletedMessage(postRaw) : Wall.postShowDeletedMessage(postRaw, msg)) {
                     if (cur.wallType == 'full_own' || cur.wallType == 'full_all') {
@@ -6402,14 +6465,15 @@ var Wall = {
                     }
 
                     var postEl = ge('post' + postRaw);
-                    if (hasClass(postEl, 'suggest')) {
-                        Wall.suggestUpdate(state ? -1 : 1);
-                    } else if (cur.wallType == 'own' || cur.wallType == 'all') {
+                    if (cur.wallType == 'own' || cur.wallType == 'all' || cur.wallType == 'archive') {
                         if (hasClass(postEl, 'own')) {
                             state ? ++cur.deletedCnts.own : --cur.deletedCnts.own;
                         }
                         if (hasClass(postEl, 'all')) {
                             state ? ++cur.deletedCnts.all : --cur.deletedCnts.all;
+                        }
+                        if (Wall.isArchiveWall()) {
+                            state ? --cur.deletedCnts.archive : ++cur.deletedCnts.archive;
                         }
                         Wall.update();
                     }
@@ -6476,9 +6540,12 @@ var Wall = {
                     Wall.suggestUpdate(-1);
                 } else if (hasClass(r, 'postponed')) {
                     wall.postponeUpdateCount();
-                } else if (cur.wallType == 'own' || cur.wallType == 'all') {
+                } else if (cur.wallType == 'own' || cur.wallType == 'all' || cur.wallType == 'archive') {
                     if (hasClass(r, 'own')) ++cur.deletedCnts.own;
                     if (hasClass(r, 'all')) ++cur.deletedCnts.all;
+                    if (Wall.isArchiveWall()) {
+                        ++cur.deletedCnts.archive;
+                    }
                     Wall.update();
                 }
             },
@@ -6660,9 +6727,16 @@ var Wall = {
                     Wall.suggestUpdate(1);
                 } else if (hasClass(postEl, 'postponed')) {
                     wall.postponeUpdateCount();
-                } else if (cur.wallType == 'own' || cur.wallType == 'all') {
-                    if (hasClass(postEl, 'own')) --cur.deletedCnts.own;
-                    if (hasClass(postEl, 'all')) --cur.deletedCnts.all;
+                } else if (cur.wallType == 'own' || cur.wallType == 'all' || cur.wallType == 'archive') {
+                    if (hasClass(postEl, 'own')) {
+                        --cur.deletedCnts.own;
+                    }
+                    if (hasClass(postEl, 'all')) {
+                        --cur.deletedCnts.all;
+                    }
+                    if (Wall.isArchiveWall()) {
+                        --cur.deletedCnts.archive;
+                    }
                     Wall.update();
                 }
             }
@@ -8437,6 +8511,12 @@ var Wall = {
             if (ev_ver != cur.options.qversion) {
                 return;
             }
+            if (Wall.isArchiveWall() ? ev_type === 'archive_post' : ev_type === 'reveal_post') {
+                ev_type = 'res_post';
+            }
+            if (Wall.isArchiveWall() ? ev_type === 'reveal_post' : ev_type === 'archive_post') {
+                ev_type = 'del_post';
+            }
             switch (ev_type) {
                 case 'new_post':
                     {
@@ -8604,28 +8684,27 @@ var Wall = {
                         break;
                     }
                 case 'del_post':
-                    {
-                        if (!isVisible(el)) break;
-
-                        if (!cur.wallMyDeleted[post_id] && !onepost) {
-                            updH -= el.offsetHeight + mt;
-                            updY = getXY(el, fixed)[1];
-                            revertLastInlineVideo(el);
-                            addClass(el, 'unshown');
-                            if (!fullWall && !layerpost) {
-                                val('page_wall_count_all', intval(val('page_wall_count_all')) - 1);
-                                if (ev[3]) {
-                                    val('page_wall_count_own', intval(val('page_wall_count_own')) - 1);
-                                }
+                    if (el && isVisible(el) && !cur.wallMyDeleted[post_id] && !onepost) {
+                        updH -= el.offsetHeight + mt;
+                        updY = getXY(el, fixed)[1];
+                        revertLastInlineVideo(el);
+                        addClass(el, 'unshown');
+                        if (!fullWall && !layerpost) {
+                            val('page_wall_count_all', intval(val('page_wall_count_all')) - 1);
+                            if (ev[3]) {
+                                val('page_wall_count_own', intval(val('page_wall_count_own')) - 1);
+                            }
+                            if (Wall.isArchiveWall()) {
+                                val('page_wall_count_archive', intval(val('page_wall_count_archive')) - 1);
                             }
                         }
-                        break;
                     }
+                    break;
                 case 'res_post':
-                    {
-                        if (!el || isVisible(el)) break;
-                        if (cur.wallRnd == ev[4]) removeClass(el, 'unshown');
-
+                    if (el && !isVisible(el)) {
+                        if (cur.wallRnd == ev[4] || Wall.isArchiveWall()) {
+                            removeClass(el, 'unshown');
+                        }
                         if (fullWall) {
                             cur.pgOffset++;
                         } else {
@@ -8633,9 +8712,12 @@ var Wall = {
                             if (ev[3]) {
                                 val('page_wall_count_own', intval(val('page_wall_count_own')) + 1);
                             }
+                            if (Wall.isArchiveWall()) {
+                                val('page_wall_count_archive', intval(val('page_wall_count_archive')) + 1);
+                            }
                         }
-                        break;
                     }
+                    break;
                 case 'new_reply':
                     {
                         if (!el || cur.wallMyReplied[post_id] ||
@@ -9037,7 +9119,8 @@ var Wall = {
             wallUploadOpts: opts.upload || false,
             deletedCnts: {
                 own: 0,
-                all: 0
+                all: 0,
+                archive: 0
             },
             posterFeatureTooltip: opts.poster_feature_tooltip,
             posterFeatureTooltipHash: opts.poster_feature_tooltip_hash
@@ -10964,9 +11047,18 @@ var Wall = {
 
         if (!pageCur['postRepliesReorderTT' + postId]) {
             var wrapEl = domPN(el);
-            var content = se(rs(pageCur.wallTpl.replies_reorder_tooltip || '', {
+            var hideSmart = domData(el, 'hide-smart') || false;
+            var template_tooltip;
+            if (hideSmart) {
+                template_tooltip = pageCur.wallTpl.replies_reorder_tooltip;
+            } else {
+                template_tooltip = pageCur.wallTpl.replies_reorder_tooltip_with_smart;
+            }
+
+            var content = se(rs(template_tooltip || '', {
                 postId: postId
             }));
+
             var buttons = geByClass('radiobtn', content);
             var currentValue = domData(el, 'order') || 'asc';
 
@@ -11069,7 +11161,7 @@ var Wall = {
     isDescRepliesOrder: function(postId, order) {
         order = order || wall.getRepliesOrder(postId);
 
-        return order === 'desc' || order === 'smart';
+        return order === 'desc';
     },
 }
 

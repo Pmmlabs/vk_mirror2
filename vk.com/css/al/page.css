@@ -4407,8 +4407,10 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 
 .wall_module .wall_posts.all>.all~.all,
 .wall_module .wall_posts.all>.all~.all_ads_promoted_post,
+.wall_module .wall_posts.all>.post:not(.unshown)~.post.unshown+.post:not(.unshown),
 .wall_module .wall_posts.own>.own~.own,
 .wall_module .wall_posts.own>.own~.own_ads_promoted_post,
+.wall_module .wall_posts.own>.post:not(.unshown)~.post.unshown+.post:not(.unshown),
 .wall_module .wall_posts.postponed>.postponed~.postponed,
 .wall_module .wall_posts.suggested>.suggest~.suggest,
 .wall_module .wall_posts_search>.post~.post {
@@ -4933,6 +4935,16 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 .wall_module .dld {
     padding: 22px 25px;
     color: #939393
+}
+
+.wall_module .dld_text {
+    color: #000;
+    line-height: 1.462
+}
+
+.wall_module .dld_info {
+    padding-top: 6px;
+    line-height: 1.462
 }
 
 .page_upload_photos_input {

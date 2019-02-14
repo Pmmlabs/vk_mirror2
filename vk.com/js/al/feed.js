@@ -456,6 +456,14 @@ var Feed = {
         if (!cur.options || ev_ver != cur.options.qversion) {
             return 0;
         }
+
+        if (Wall.isArchiveWall() ? ev_type === 'archive_post' : ev_type === 'reveal_post') {
+            ev_type = 'res_post';
+        }
+        if (Wall.isArchiveWall() ? ev_type === 'reveal_post' : ev_type === 'archive_post') {
+            ev_type = 'del_post';
+        }
+
         switch (ev_type) {
             case 'new_post':
                 {

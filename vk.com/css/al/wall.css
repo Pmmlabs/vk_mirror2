@@ -19,6 +19,7 @@
     border-radius: 0 0 2px 2px
 }
 
+.wall_module .page_wall_posts .page_block:not(.unshown)~.page_block.unshown+.page_block:not(.unshown),
 .wall_module .page_wall_posts .page_block~.page_block {
     margin: 15px 0 0;
     border-radius: 2px
