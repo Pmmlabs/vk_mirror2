@@ -536,6 +536,10 @@ ul {
     clear: both
 }
 
+.vk_header_tabs .pcont.pcont_static {
+    position: static
+}
+
 .service_msg_page {
     padding: 12px 10px;
     border-bottom: 1px solid #efefef
@@ -556,6 +560,12 @@ ul {
 .basisProfile .service_msg_box {
     margin: 0 -1px 10px;
     padding: 0 7px
+}
+
+.basisGroup .wall_posts .service_msg_box,
+.basisProfile .wall_posts .service_msg_box {
+    margin-left: 0;
+    margin-right: 0
 }
 
 @media (min-width: 882px) {
