@@ -64,7 +64,7 @@ var navMap = {
     'students_verification($|/)': ['students_verification.php', []],
     'restore2($|/)': ['restore2.php', ['internal/restore2.css', 'sorter.js']],
     'datababes($|/)': ['datababes.php', []],
-    '(support($|/)|tutorial|faq\\d+)': ['al_tickets.php', ['tickets.css', 'cmodules/web/support.js']],
+    '(support($|/)|tutorial($|/)|faq\\d+)': ['al_tickets.php', ['tickets.css', 'cmodules/web/support.js']],
     'aovk($|/)': ['al_helpdesk.php', ['tickets.css', 'tickets.js', 'helpdesk.css', 'cmodules/internal/helpdesk.js']],
     'helpdesk($|/)': ['al_helpdesk.php', ['tickets.css', 'cmodules/web/support.js', 'helpdesk.css', 'cmodules/internal/helpdesk.js']],
     'helpdesk_mng($|/)': ['al_helpdesk_mng.php', ['internal/helpdesk_mng.css', 'internal/helpdesk_mng.js']],
@@ -359,7 +359,7 @@ var stVersions = {
     'docs.css': 23113297779,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 16070378317,
-    'helpdesk.css': 32017763945,
+    'helpdesk.css': 30075122375,
     'cmodules/web/support.js': 12781815619,
     'tickets.js': 676094159,
     'tickets.css': 29165457964,
@@ -374,7 +374,7 @@ var stVersions = {
     'ownerinfo.css': 7546427815,
     'bugtracker.css': 24803193118,
     'cmodules/web/bugtracker.js': 42612204984,
-    'login.css': 22080948291,
+    'login.css': 20824795220,
     'cmodules/web/login.js': 2785113256,
     'upload.js': 2558068015,
     'upload_photo_transform.js': 1497838791,
@@ -668,4 +668,4 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 3997;
+var _rnd = 8717;

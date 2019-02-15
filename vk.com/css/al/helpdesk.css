@@ -12,11 +12,13 @@
 .helpdesk_marked_user_row_processing .helpdesk_marked_user_row_marks,
 .helpdesk_mobile_ticket,
 .helpdesk_settings_button,
+.helpdesk_user_data_settings_button,
 .helpdesk_user_marks.helpdesk_user_marks_processing {
     -ms-high-contrast-adjust: none
 }
 
-.helpdesk_settings_button {
+.helpdesk_settings_button,
+.helpdesk_user_data_settings_button {
     -o-transition: opacity 0.2s ease;
     transition: opacity 0.2s ease
 }
@@ -152,6 +154,31 @@ body.body_helpdesk_small_sb .left_menu_nav {
 }
 
 .helpdesk_settings_button:hover {
+    opacity: 1;
+    filter: none
+}
+
+.helpdesk_user_data_settings_button {
+    background: url(/images/icons/common.png?6) no-repeat 0 -60px;
+    float: right;
+    margin: 3px 0 0 4px;
+    width: 14px;
+    height: 14px;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    cursor: pointer
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .helpdesk_user_data_settings_button {
+        background-image: url(/images/icons/common_2x.png?6);
+        background-size: 32px 232px
+    }
+}
+
+.helpdesk_user_data_settings_button:hover {
     opacity: 1;
     filter: none
 }
@@ -2745,6 +2772,10 @@ body.body_helpdesk_small_sb .left_menu_nav {
     margin-top: 10px;
     margin-right: 10px;
     float: left
+}
+
+.helpdesk_user_box_data_checkboxes .checkbox {
+    padding: 5px
 }
 
 .helpdesk_new_question_section {

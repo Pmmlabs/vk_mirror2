@@ -14783,7 +14783,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     white-space: nowrap;
-    color: #6293cc
+    color: #6293cc;
+    vertical-align: middle
 }
 
 @media (min-width: 882px) {
