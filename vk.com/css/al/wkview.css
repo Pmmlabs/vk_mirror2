@@ -827,7 +827,7 @@ svg+.wk_voting_avatar+.wk_voting_avatar+.wk_voting_avatar+.wk_voting_avatar+.wk_
     -moz-osx-font-smoothing: auto;
     border-top: 1px solid #e7e8ec;
     padding: 16px 25px;
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 4px 4px
 }
 
 .wl_reply_form_wrap {
@@ -840,7 +840,7 @@ svg+.wk_voting_avatar+.wk_voting_avatar+.wk_voting_avatar+.wk_voting_avatar+.wk_
 
 .wl_reply_form_wrap .reply_box div.submit_post_field,
 .wl_reply_form_wrap .reply_box div.submit_post_field[contenteditable=true] {
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 4px 4px
 }
 
 .wl_reply_form_wrap .reply_box div.submit_post_field,
@@ -907,7 +907,7 @@ body.mac .wl_reply_form_fixed {
     font-size: 12.5px;
     border-top: 1px solid #e7e8ec;
     padding: 16px 25px;
-    border-radius: 0 0 2px 2px;
+    border-radius: 0 0 4px 4px;
     margin: 20px -25px 0
 }
 

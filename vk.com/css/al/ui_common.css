@@ -466,7 +466,7 @@ a.ui_box_header_link {
 .ui_tabs_header,
 .ui_tabs_sub_header {
     font-size: 14px;
-    border-radius: 2px 2px 0 0
+    border-radius: 4px 4px 0 0
 }
 
 .ui_tabs_header {
@@ -898,7 +898,7 @@ body.sf .ui_rmenu_count {
 
 .ui_filters_sibling {
     margin-top: 1px;
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 4px 4px
 }
 
 .ui_search {
@@ -941,7 +941,7 @@ body.mac .ui_search.ui_search_fixed {
 }
 
 .page_block>.ui_search:first-child {
-    border-radius: 2px 2px 0 0
+    border-radius: 4px 4px 0 0
 }
 
 input.ui_search_field,
@@ -1328,7 +1328,7 @@ input.ui_search_field:focus~.placeholder .ph_content {
     top: 0;
     left: 0;
     right: 0;
-    border-radius: 2px 2px 0 0;
+    border-radius: 4px 4px 0 0;
     display: none
 }
 

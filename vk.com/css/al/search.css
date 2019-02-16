@@ -43,7 +43,7 @@
 }
 
 .search_filters_minimized.ui_rmenu_item_expanded {
-    border-radius: 2px 2px 0 0
+    border-radius: 4px 4px 0 0
 }
 
 .search_filters_minimized_text {
@@ -277,7 +277,7 @@ body.mac #filter_form {
 
 .search_auto_rows.page_block {
     margin-top: 0;
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 4px 4px
 }
 
 .search_auto_results {
@@ -325,7 +325,7 @@ body.mac #filter_form {
 
 .search_auto_results .page_block.no_rows {
     margin-top: 0;
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 4px 4px
 }
 
 .search_statuses_results {
@@ -335,7 +335,7 @@ body.mac #filter_form {
 .search_statuses_results .page_block:first-child,
 .search_results.page_block {
     margin-top: 0;
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 4px 4px
 }
 
 .search_audio_results {

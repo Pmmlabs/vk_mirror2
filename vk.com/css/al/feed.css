@@ -449,7 +449,7 @@
 
 .feed_search_wrap {
     display: none;
-    border-radius: 2px 2px 0 0
+    border-radius: 4px 4px 0 0
 }
 
 .feed_search_shown .feed_search_wrap {
@@ -460,7 +460,7 @@
 .feed_search_shown .feed_found_photos,
 .feed_search_shown .feed_row:first-child .post {
     margin-top: 0;
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 4px 4px
 }
 
 .feed_submit_only_shown .feed_post_field_wrap:not(.hide),
@@ -495,7 +495,7 @@
 }
 
 .feed_new_posts {
-    border-radius: 2px 2px 0 0;
+    border-radius: 4px 4px 0 0;
     color: #42648b;
     border-bottom: 1px solid #e7e8ec;
     text-align: center;
@@ -532,12 +532,12 @@
 
 .feed_has_new .feed_row .page_block {
     margin-top: 0;
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 4px 4px
 }
 
 .feed_has_new .feed_row~.feed_row .page_block {
     margin: 15px 0 0;
-    border-radius: 2px
+    border-radius: 4px
 }
 
 .feed_row_unshown,

@@ -12466,6 +12466,13 @@ img[src^="/images/mobile/places/"] {
     background: rgba(0, 0, 0, .08)
 }
 
+.Row_style_withHover.hover,
+.Row_style_withHover:hover {
+    cursor: pointer;
+    text-decoration: none;
+    background-color: #e9edf1
+}
+
 .Row__go {
     position: absolute;
     top: 50%;

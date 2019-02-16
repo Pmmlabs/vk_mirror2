@@ -1884,7 +1884,7 @@ body.dev #tickets_search_reset {
 }
 
 .faq_search_form {
-    border-radius: 2px;
+    border-radius: 4px;
     box-shadow: 0 0 0 1px rgba(193, 201, 209, .65);
     margin: 20px 0 18px
 }
@@ -1895,7 +1895,7 @@ body.dev #tickets_search_reset {
 }
 
 .faq_search_form.faq_search_form_with_suggests {
-    border-radius: 2px 2px 0 0
+    border-radius: 4px 4px 0 0
 }
 
 .faq_search_form .ui_search_field {

@@ -2056,21 +2056,19 @@ var Photoview = {
 
         report: function(hash, reason) {
             var ids = cur.pvCurPhoto.id.split('_');
-            ajax.post('reports.php', {
-                act: 'new_report',
-                type: 'photo',
-                reason: reason,
-                hash: hash,
-                oid: ids[0],
-                item_id: ids[1]
+
+            var onDone = function() {
+                var menuItemEl = ge('pv_more_act_spam');
+                val(menuItemEl, getLang('global_report_sent'));
+
+                re(geByClass1('pv_more_acts_hidden'));
+                cur.pvMoreActionsTooltip.updatePosition();
+                cur.pvMoreActionsTooltip.show();
+            };
+
+            stManager.add([jsc('web/reports.js'), 'reports.css'], function() {
+                window.showReportReasonDescriptionPopup('photo', parseInt(ids[0]), parseInt(ids[1]), parseInt(reason), hash, onDone);
             });
-
-            var menuItemEl = ge('pv_more_act_spam');
-            val(menuItemEl, getLang('global_report_sent'));
-
-            re(geByClass1('pv_more_acts_hidden'));
-            cur.pvMoreActionsTooltip.updatePosition();
-            cur.pvMoreActionsTooltip.show();
         },
 
         showShare: function() {

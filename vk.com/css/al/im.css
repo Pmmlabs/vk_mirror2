@@ -3348,7 +3348,7 @@ img.im_photo_thumb {
 .im_stickers_store_wrap {
     position: relative;
     overflow: hidden;
-    border-radius: 2px
+    border-radius: 4px
 }
 
 .im_stickers_store_wrap .ui_tabs {
@@ -3545,7 +3545,7 @@ img.im_photo_thumb {
 }
 
 .box_body .im_stickers_banners_wrap .isb_arrow_left {
-    border-radius: 2px 0 0 0
+    border-radius: 4px 0 0 0
 }
 
 .im_stickers_banners_wrap .isb_arrow_right {
@@ -3563,7 +3563,7 @@ img.im_photo_thumb {
 }
 
 .box_body .im_stickers_banners_wrap .isb_arrow_right {
-    border-radius: 0 2px 0 0
+    border-radius: 0 4px 0 0
 }
 
 .im_stickers_banners_wrap .isb_arrow_hidden {
@@ -3598,7 +3598,7 @@ img.im_photo_thumb {
     width: 296px;
     margin: 8px;
     background: #fff;
-    border-radius: 2px;
+    border-radius: 4px;
     box-shadow: 0 0 1px rgba(0, 0, 0, .08), 0 1px 2px rgba(0, 0, 0, .06);
     -o-transition: top 0.1s ease-out;
     transition: top 0.1s ease-out
@@ -3630,7 +3630,7 @@ img.im_photo_thumb {
 
 .im_sticker_bl_demo_thumb {
     vertical-align: top;
-    border-radius: 2px 2px 0 0
+    border-radius: 4px 4px 0 0
 }
 
 .im_sticker_bl_info {
@@ -4149,7 +4149,7 @@ img.im_photo_thumb {
 }
 
 .im-page_classic.im-page .im-page--history_loading {
-    border-radius: 2px;
+    border-radius: 4px;
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8
 }
 
@@ -4237,13 +4237,13 @@ img.im_photo_thumb {
     background: #fff;
     height: auto;
     margin-bottom: 15px;
-    border-radius: 2px;
+    border-radius: 4px;
     padding-bottom: 45px
 }
 
 .im-page_classic.im-page .im-page--dialogs-search {
     box-shadow: 0 0 0 1px #e3e4e8;
-    border-radius: 2px 2px 0 0
+    border-radius: 4px 4px 0 0
 }
 
 .im-page_classic.im-page .im-page-history-w,
@@ -4437,7 +4437,7 @@ img.im_photo_thumb {
     padding: 0 1px;
     box-sizing: border-box;
     box-shadow: none;
-    border-radius: 2px 2px 0 0
+    border-radius: 4px 4px 0 0
 }
 
 .im-page_classic.im-page.im-page_history-show .im-page--history {
@@ -4457,8 +4457,8 @@ img.im_photo_thumb {
 }
 
 .im-page_classic.im-page .im-page--history_invite .im-invitation {
-    border-top-left-radius: 2px;
-    border-bottom-left-radius: 2px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
     min-height: 520px
 }
 
@@ -4480,7 +4480,7 @@ img.im_photo_thumb {
     padding: 14px 20px 14px 15px;
     line-height: 20px;
     background: #fff;
-    border-radius: 2px;
+    border-radius: 4px;
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8
 }
 
@@ -5502,7 +5502,7 @@ img.im_photo_thumb {
     display: none;
     cursor: pointer;
     background: #fdf0f0;
-    border-radius: 2px;
+    border-radius: 4px;
     border: solid 1px #f2cecf;
     margin: 8px 20px 16px;
     padding: 15px
@@ -5717,7 +5717,7 @@ img.im_photo_thumb {
 
 .im-page--dialogs-search.ui_search {
     border-bottom: 0;
-    border-top-left-radius: 2px
+    border-top-left-radius: 4px
 }
 
 .im-page--dialogs-search .ui_search_reset {
@@ -6258,7 +6258,7 @@ img.im_photo_thumb {
     padding-left: 26px;
     padding-right: 0px;
     border-top: 0;
-    border-radius: 0 0 2px 2px;
+    border-radius: 0 0 4px 4px;
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8
 }
 
@@ -6344,7 +6344,7 @@ img.im_photo_thumb {
     border: solid 1px #edeef0;
     border-top: solid 15px #edeef0;
     border-left: solid 1px #edeef0;
-    border-radius: 2px 2px 0 0
+    border-radius: 4px 4px 0 0
 }
 
 .im-page--chat-header-in {
@@ -11290,7 +11290,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 .im-page_classic .im-page--top-notice {
     padding: 20px;
     margin: 0 0 15px;
-    border-radius: 2px;
+    border-radius: 4px;
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
     border-bottom: none;
     background: #fff;
@@ -11428,7 +11428,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 .im-aside-notice {
     position: relative;
     background: #fff;
-    border-radius: 2px;
+    border-radius: 4px;
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
     margin: 15px 0 0;
     padding: 112px 15px 12px;
@@ -11675,7 +11675,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .im-audio-message-input.im-chat-input_classic {
     border-top: 0;
-    border-radius: 0 0 2px 2px;
+    border-radius: 0 0 4px 4px;
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8
 }
 

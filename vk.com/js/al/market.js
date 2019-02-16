@@ -1377,17 +1377,14 @@ var Market = {
         });
     },
     reportFromDD: function(hash, reason) {
-        ajax.post('reports.php', {
-            act: 'new_report',
-            type: 'market',
-            reason: reason,
-            hash: hash,
-            oid: cur.mkOptions.itemOwnerId,
-            item_id: cur.mkOptions.itemId
-        }, {
-            onDone: function(text) {
-                showDoneBox(text);
-            }
+        var onDone = function(responseText) {
+            var actions = document.querySelector('._like_market' + cur.mkOptions.itemOwnerId + '_' + cur.mkOptions.itemId);
+            var reportButton = actions.querySelector('.ui_actions_menu');
+            reportButton.innerHTML = '<a class="ui_actions_menu_item" tabIndex="0" role="link">' + responseText + '</a>'
+        }
+
+        stManager.add([jsc('web/reports.js'), 'reports.css'], function() {
+            window.showReportReasonDescriptionPopup('market', cur.mkOptions.itemOwnerId, cur.mkOptions.itemId, parseInt(reason), hash, onDone);
         });
     },
 

@@ -3285,7 +3285,7 @@ a.page_block_header:hover .apps_cat_header_link:after {
 
 .apps_options_bar {
     background: #fafbfc;
-    border-radius: 2px 2px 0 0;
+    border-radius: 4px 4px 0 0;
     display: table;
     box-sizing: border-box;
     width: 100%;
@@ -3364,7 +3364,7 @@ a.page_block_header:hover .apps_cat_header_link:after {
 
 .apps_footer {
     background: #fafbfc;
-    border-radius: 0 0 2px 2px;
+    border-radius: 0 0 4px 4px;
     border-top: 1px solid #e7e8ec;
     display: table;
     box-sizing: border-box;

@@ -84,7 +84,7 @@ body.body_helpdesk_small_sb .side_bar_inner {
 }
 
 body.body_helpdesk_small_sb .side_bar_inner ol li a:hover {
-    border-radius: 2px;
+    border-radius: 4px;
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
     -o-transition: width 200ms linear;
     transition: width 200ms linear;

@@ -8036,15 +8036,12 @@ var Wall = {
                 is_board: isBoard,
                 hash: hash
             }, {
-                onDone: function(html, js) {
+                onDone: function(html) {
                     var newEl = cf(html);
                     if (hasClass(votingEl, 'media_voting_board')) {
                         addClass(domFC(newEl), 'media_voting_board');
                     }
                     domReplaceEl(votingEl, newEl);
-                    if (js) {
-                        eval(js);
-                    }
                     if (vk.widget && window.WPoll) {
                         window.WPoll.resizeWidget();
                     }

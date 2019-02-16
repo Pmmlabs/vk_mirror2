@@ -609,7 +609,7 @@
 .apps_collection_row_wrap.sort_taken .apps_collection_row {
     background: #fff;
     box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
-    border-radius: 2px
+    border-radius: 4px
 }
 
 .apps_collection_row_wrap.sort_taken .apps_collection_row:before {

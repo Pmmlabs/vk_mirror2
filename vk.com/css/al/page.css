@@ -876,7 +876,7 @@
 
 .wall_module .replies_wrap,
 .wall_module .wl_replies {
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 4px 4px
 }
 
 .wall_module .replies_wrap:after {
@@ -1155,7 +1155,7 @@
 
 .wall_module .reply_box,
 .wall_module .reply_fakebox_wrap {
-    border-radius: 0 0 2px 2px;
+    border-radius: 0 0 4px 4px;
     border-top: 1px solid #e7e8ec;
     margin-top: -1px;
     background-color: #fff
@@ -1317,7 +1317,7 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     padding: 16px 20px 16px 12px;
     padding-left: 16px;
     border: 0;
-    border-radius: 0 0 2px 2px;
+    border-radius: 0 0 4px 4px;
     line-height: 1.462;
     margin-left: 48px;
     background: #fff;
@@ -4347,7 +4347,7 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 }
 
 .wall_module>.podcast_recommend_block.page_block:first-child {
-    border-radius: 2px
+    border-radius: 4px
 }
 
 .group_info .short_text,
@@ -4381,11 +4381,11 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 }
 
 .wall_module>.page_block:first-child {
-    border-radius: 2px 2px 0 0
+    border-radius: 4px 4px 0 0
 }
 
 .wall_module>.page_block:first-child:last-child {
-    border-radius: 2px
+    border-radius: 4px
 }
 
 .wall_module .wall_posts.all>.all,
@@ -4402,7 +4402,7 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 .wall_module .wall_posts.suggested>.suggest,
 .wall_module .wall_posts_search>.post {
     margin-top: 0;
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 4px 4px
 }
 
 .wall_module .wall_posts.all>.all~.all,
@@ -4415,7 +4415,7 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 .wall_module .wall_posts.suggested>.suggest~.suggest,
 .wall_module .wall_posts_search>.post~.post {
     margin-top: 15px;
-    border-radius: 2px
+    border-radius: 4px
 }
 
 .wall_module .more_link {
@@ -7539,7 +7539,7 @@ a.choose:hover {
     text-align: center;
     padding: 13px 25px 14px;
     color: #55677d;
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 4px 4px
 }
 
 .choose_more_btn:hover {
@@ -8178,7 +8178,7 @@ div.submit_post_field~.placeholder .ph_input {
     max-height: 52px;
     padding: 16px 20px 16px 12px;
     border: 0;
-    border-radius: 2px;
+    border-radius: 4px;
     line-height: 1.462;
     word-wrap: break-word;
     resize: none
@@ -8230,7 +8230,7 @@ div.submit_post_field[contenteditable=true]>p {
     background: #fafbfc;
     border-top: 1px solid #e7e8ec;
     padding: 13px 20px 12px;
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 4px 4px
 }
 
 .submit_post .addpost_button_wrap {
@@ -8536,7 +8536,7 @@ div.submit_post_field[contenteditable=true]>p {
 
 .submit_post_box {
     position: relative;
-    border-radius: 2px
+    border-radius: 4px
 }
 
 .submit_post_box:before {
@@ -9322,7 +9322,7 @@ div.submit_post_field[contenteditable=true]>p {
     padding: 11px 0;
     margin: 0 20px;
     border-top: 1px solid #e7e8ec;
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 4px 4px
 }
 
 .post_full_like_wrap .post_like,
@@ -10060,7 +10060,7 @@ textarea.page_poll_export_code {
 
 .page_cover {
     height: 200px;
-    border-radius: 2px 2px 0 0;
+    border-radius: 4px 4px 0 0;
     background-position: 50%;
     background-size: cover
 }

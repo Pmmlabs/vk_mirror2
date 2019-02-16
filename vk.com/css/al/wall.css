@@ -16,13 +16,13 @@
 .wall_module .page_wall_posts .page_block,
 .wall_module .page_wall_posts .page_block.unshown+.page_block {
     margin-top: 0;
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 4px 4px
 }
 
 .wall_module .page_wall_posts .page_block:not(.unshown)~.page_block.unshown+.page_block:not(.unshown),
 .wall_module .page_wall_posts .page_block~.page_block {
     margin: 15px 0 0;
-    border-radius: 2px
+    border-radius: 4px
 }
 
 .wall_more_comments_wrap {
