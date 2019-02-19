@@ -1,49 +1,53 @@
 ﻿! function(e) {
-    function n(t) {
-        if (o[t]) return o[t].exports;
-        var r = o[t] = {
+    var n = {};
+
+    function o(t) {
+        if (n[t]) return n[t].exports;
+        var r = n[t] = {
             i: t,
             l: !1,
             exports: {}
         };
-        return e[t].call(r.exports, r, r.exports, n), r.l = !0, r.exports
+        return e[t].call(r.exports, r, r.exports, o), r.l = !0, r.exports
     }
-    var o = {};
-    return n.m = e, n.c = o, n.d = function(e, o, t) {
-        n.o(e, o) || Object.defineProperty(e, o, {
+    o.m = e, o.c = n, o.d = function(e, n, t) {
+        o.o(e, n) || Object.defineProperty(e, n, {
             enumerable: !0,
             get: t
         })
-    }, n.r = function(e) {
+    }, o.r = function(e) {
         "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
             value: "Module"
         }), Object.defineProperty(e, "__esModule", {
             value: !0
         })
-    }, n.t = function(e, o) {
-        if (1 & o && (e = n(e)), 8 & o) return e;
-        if (4 & o && "object" == typeof e && e && e.__esModule) return e;
+    }, o.t = function(e, n) {
+        if (1 & n && (e = o(e)), 8 & n) return e;
+        if (4 & n && "object" == typeof e && e && e.__esModule) return e;
         var t = Object.create(null);
-        if (n.r(t), Object.defineProperty(t, "default", {
+        if (o.r(t), Object.defineProperty(t, "default", {
                 enumerable: !0,
                 value: e
-            }), 2 & o && "string" != typeof e)
-            for (var r in e) n.d(t, r, function(n) {
+            }), 2 & n && "string" != typeof e)
+            for (var r in e) o.d(t, r, function(n) {
                 return e[n]
             }.bind(null, r));
         return t
-    }, n.n = function(e) {
-        var o = e && e.__esModule ? function() {
-            return e["default"]
+    }, o.n = function(e) {
+        var n = e && e.__esModule ? function() {
+            return e.default
         } : function() {
             return e
         };
-        return n.d(o, "a", o), o
-    }, n.o = function(e, n) {
+        return o.d(n, "a", n), n
+    }, o.o = function(e, n) {
         return Object.prototype.hasOwnProperty.call(e, n)
-    }, n.p = "", n(n.s = 690)
+    }, o.p = "", o(o.s = 90)
 }({
-    51: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+    90: function(e, n, o) {
+        e.exports = o("ERMh")
+    },
+    ERMh: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
         "use strict";
         __webpack_require__.r(__webpack_exports__), window.LandingDonorsDay = {
             BLOOD_LINES: [{
@@ -110,9 +114,10 @@
                     var o = this.BLOOD_LINES[n];
                     this.renderBloodLine(o), wkcur.legacyBrowser && !o.memAvaCircle && 2 !== n && (wkcur.animLine = n, this.animateIcon(!0))
                 }
-                return wkcur.legacyBrowser ? (wkcur.animLine = -1, void this.animateIcon(!0)) : void(wkcur.timer = setTimeout(function() {
+                if (wkcur.legacyBrowser) return wkcur.animLine = -1, void this.animateIcon(!0);
+                wkcur.timer = setTimeout(function() {
                     clearTimeout(wkcur.timer), e.startAnimation()
-                }, 1e3))
+                }, 1e3)
             },
             renderBloodLine: function(e, n) {
                 var o = this,
@@ -128,7 +133,7 @@
                     var s = this.getAnimationDuration(e.length);
                     e.memAvaCircle && (s *= .8);
                     var d = '<animate\n          attributeType="CSS"\n          attributeName="stroke-dashoffset"\n          dur="' + s + 'ms"\n          from="' + e.length + '"\n          to="0"\n          fill="freeze"\n        />';
-                    e.memAvaCircle && (d += '<animateTransform\n            xmlns="http://www.w3.org/2000/svg"\n            attributeName="transform"\n            attributeType="XML"\n            type="rotate"\n            dur="' + 1.5 * s + 'ms"\n            from="90 77 77"\n            to="-180 77 77"\n            fill="freeze"\n          />'), t = t.replace("<path", '<path stroke-dasharray="' + e.length + " " + e.length + '" stroke-dashoffset="' + e.length + '" id="donors_day_anim_path' + wkcur.animLine + '"'), t = t.replace("<circle", '<circle stroke-dasharray="' + e.length + " " + e.length + '" stroke-dashoffset="' + e.length + '" id="donors_day_anim_path' + wkcur.animLine + '"'), t = t.replace("/></svg>", ">" + d + "</path></svg>"), 3 === wkcur.animLine && (s *= .8), wkcur.timer = setTimeout(function() {
+                    e.memAvaCircle && (d += '<animateTransform\n            xmlns="http://www.w3.org/2000/svg"\n            attributeName="transform"\n            attributeType="XML"\n            type="rotate"\n            dur="' + 1.5 * s + 'ms"\n            from="90 77 77"\n            to="-180 77 77"\n            fill="freeze"\n          />'), t = (t = (t = t.replace("<path", '<path stroke-dasharray="' + e.length + " " + e.length + '" stroke-dashoffset="' + e.length + '" id="donors_day_anim_path' + wkcur.animLine + '"')).replace("<circle", '<circle stroke-dasharray="' + e.length + " " + e.length + '" stroke-dashoffset="' + e.length + '" id="donors_day_anim_path' + wkcur.animLine + '"')).replace("/></svg>", ">" + d + "</path></svg>"), 3 === wkcur.animLine && (s *= .8), wkcur.timer = setTimeout(function() {
                         o.nextAnimation()
                     }, s)
                 }
@@ -152,7 +157,8 @@
                 })
             },
             nextAnimation: function(e) {
-                return e || -1 === [1, 4].indexOf(wkcur.animLine) ? (wkcur.animLine++, void this.animateLine()) : this.animateIcon()
+                if (!e && -1 !== [1, 4].indexOf(wkcur.animLine)) return this.animateIcon();
+                wkcur.animLine++, this.animateLine()
             },
             animateLine: function() {
                 var e = this.BLOOD_LINES[wkcur.animLine];
@@ -193,9 +199,7 @@
                         val: e.blood_type,
                         els: geByClass("radiobtn", "donors_day_blood_type_options")
                     }
-                });
-                var n = new vkImage;
-                n.src = "/images/landings/donors_day/snippet_bg.png"
+                }), (new vkImage).src = "/images/landings/donors_day/snippet_bg.png"
             },
             saveData: function(e) {
                 if (!isButtonLocked(e)) {
@@ -209,7 +213,8 @@
                         api_view: cur.donorsDayApiViewHash
                     };
                     lockButton(e), LandingDonorsDay.renderSnippet(n.group, n.type, function(o) {
-                        return o ? (n.media = o, void ajax.post("landings.php", extend(n, o), {
+                        if (!o) return unlockButton(e), topError(getLang("global_error_occured"), 3);
+                        n.media = o, ajax.post("landings.php", extend(n, o), {
                             onDone: function(e) {
                                 cur.donorsDayIsMob ? location.reload() : (curBox().hide(), window.wkcur && "donors_day" === wkcur.wkRaw && wkcur.shown && WkView.hide(!1, !0), showWiki({
                                     w: "donors_day"
@@ -217,7 +222,7 @@
                             },
                             showProgress: lockButton.pbind(e),
                             hideProgress: unlockButton.pbind(e)
-                        })) : (unlockButton(e), topError(getLang("global_error_occured"), 3))
+                        })
                     })
                 }
             },
@@ -238,32 +243,29 @@
             },
             renderSnippet: function(e, n, o) {
                 var t = this,
-                    r = 4,
-                    a = 510 * r,
-                    i = 228 * r,
-                    s = new vkImage;
-                s.onload = function() {
-                    var d = ce("canvas", {
-                        width: a,
-                        height: i
+                    r = new vkImage;
+                r.onload = function() {
+                    var a = ce("canvas", {
+                        width: 2040,
+                        height: 912
                     }, {});
-                    ge("donors_day_canvas_helper").appendChild(d);
-                    var l = d.getContext("2d");
-                    l.direction = "ltr", l.drawImage(s, 0, 0, a, i), l.textBaseline = "top", l.imageSmoothingEnabled = !0, l.font = "normal " + 30 * r + "px Open Sans", l.textAlign = "left", l.fillStyle = "#fff";
-                    var _ = unclean(cur.donorsDayUserName);
-                    _.length > 27 && (_ = cur.donorsDayUserName.substr(0, 27) + "..");
-                    var c = l.measureText(_).width;
-                    l.fillText(_, a / 2 - c / 2, 75 * r), l.font = "normal " + 20 * r + "px Open Sans", l.textAlign = "left", l.fillStyle = "rgba(255,255,255,0.8)";
-                    var u = unclean(cur.lang.landings_donors_day_snippet_caption_line1.replace("%s", e)),
-                        g = l.measureText(u).width;
-                    l.fillText(u, a / 2 - g / 2, 123 * r);
-                    var h = 1 == intval(n) ? cur.lang.landings_donors_day_snippet_caption_line2_plus : cur.lang.landings_donors_day_snippet_caption_line2_minus;
-                    h = unclean(h);
-                    var p = l.measureText(h).width;
-                    l.fillText(h, a / 2 - p / 2, 150 * r);
-                    var w = d.toDataURL("image/png", .99);
-                    w = w.substr(w.indexOf("base64,", 0) + 7), t.uploadSnippetPhoto(w, o)
-                }, s.src = "/images/landings/donors_day/snippet_bg.png"
+                    ge("donors_day_canvas_helper").appendChild(a);
+                    var i = a.getContext("2d");
+                    i.direction = "ltr", i.drawImage(r, 0, 0, 2040, 912), i.textBaseline = "top", i.imageSmoothingEnabled = !0, i.font = "normal 120px Open Sans", i.textAlign = "left", i.fillStyle = "#fff";
+                    var s = unclean(cur.donorsDayUserName);
+                    s.length > 27 && (s = cur.donorsDayUserName.substr(0, 27) + "..");
+                    var d = i.measureText(s).width;
+                    i.fillText(s, 1020 - d / 2, 300), i.font = "normal 80px Open Sans", i.textAlign = "left", i.fillStyle = "rgba(255,255,255,0.8)";
+                    var l = unclean(cur.lang.landings_donors_day_snippet_caption_line1.replace("%s", e)),
+                        _ = i.measureText(l).width;
+                    i.fillText(l, 1020 - _ / 2, 492);
+                    var c = 1 == intval(n) ? cur.lang.landings_donors_day_snippet_caption_line2_plus : cur.lang.landings_donors_day_snippet_caption_line2_minus;
+                    c = unclean(c);
+                    var u = i.measureText(c).width;
+                    i.fillText(c, 1020 - u / 2, 600);
+                    var g = a.toDataURL("image/png", .99);
+                    g = g.substr(g.indexOf("base64,", 0) + 7), t.uploadSnippetPhoto(g, o)
+                }, r.src = "/images/landings/donors_day/snippet_bg.png"
             },
             uploadSnippetPhoto: function uploadSnippetPhoto(base64, callback) {
                 var XHR = browser.msie && intval(browser.version) < 10 ? window.XDomainRequest : window.XMLHttpRequest,
@@ -302,8 +304,5 @@
         try {
             stManager.done("landing_donors_day.js")
         } catch (e) {}
-    },
-    690: function(e, n, o) {
-        e.exports = o(51)
     }
 });

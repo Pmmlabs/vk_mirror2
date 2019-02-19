@@ -1,55 +1,58 @@
 ﻿! function(e) {
-    function t(a) {
-        if (n[a]) return n[a].exports;
-        var r = n[a] = {
+    var t = {};
+
+    function n(a) {
+        if (t[a]) return t[a].exports;
+        var r = t[a] = {
             i: a,
             l: !1,
             exports: {}
         };
-        return e[a].call(r.exports, r, r.exports, t), r.l = !0, r.exports
+        return e[a].call(r.exports, r, r.exports, n), r.l = !0, r.exports
     }
-    var n = {};
-    return t.m = e, t.c = n, t.d = function(e, n, a) {
-        t.o(e, n) || Object.defineProperty(e, n, {
+    n.m = e, n.c = t, n.d = function(e, t, a) {
+        n.o(e, t) || Object.defineProperty(e, t, {
             enumerable: !0,
             get: a
         })
-    }, t.r = function(e) {
+    }, n.r = function(e) {
         "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
             value: "Module"
         }), Object.defineProperty(e, "__esModule", {
             value: !0
         })
-    }, t.t = function(e, n) {
-        if (1 & n && (e = t(e)), 8 & n) return e;
-        if (4 & n && "object" == typeof e && e && e.__esModule) return e;
+    }, n.t = function(e, t) {
+        if (1 & t && (e = n(e)), 8 & t) return e;
+        if (4 & t && "object" == typeof e && e && e.__esModule) return e;
         var a = Object.create(null);
-        if (t.r(a), Object.defineProperty(a, "default", {
+        if (n.r(a), Object.defineProperty(a, "default", {
                 enumerable: !0,
                 value: e
-            }), 2 & n && "string" != typeof e)
-            for (var r in e) t.d(a, r, function(t) {
+            }), 2 & t && "string" != typeof e)
+            for (var r in e) n.d(a, r, function(t) {
                 return e[t]
             }.bind(null, r));
         return a
-    }, t.n = function(e) {
-        var n = e && e.__esModule ? function() {
-            return e["default"]
+    }, n.n = function(e) {
+        var t = e && e.__esModule ? function() {
+            return e.default
         } : function() {
             return e
         };
-        return t.d(n, "a", n), n
-    }, t.o = function(e, t) {
+        return n.d(t, "a", t), t
+    }, n.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, t.p = "", t(t.s = 314)
+    }, n.p = "", n(n.s = 88)
 }({
-    154: function(e, t, n) {
+    88: function(e, t, n) {
+        e.exports = n("u+vw")
+    },
+    "u+vw": function(e, t, n) {
         "use strict";
         n.r(t);
         var a = {
             setTabContentHeight: function() {
-                var e = geByClass("ads_case_block_tabs");
-                e.forEach(function(e) {
+                geByClass("ads_case_block_tabs").forEach(function(e) {
                     var t = geByClass("ads_case_tab_content", e),
                         n = [];
                     t.forEach(function(e) {
@@ -77,9 +80,6 @@
         window.LandingAdsCase = window.LandingAdsCase || a;
         try {
             stManager.done(jsc("web/landing_ads_case.js"))
-        } catch (r) {}
-    },
-    314: function(e, t, n) {
-        e.exports = n(154)
+        } catch (e) {}
     }
 });

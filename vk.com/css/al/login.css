@@ -271,11 +271,6 @@
     transition-timing-function: cubic-bezier(0, 1, 0.5, 1)
 }
 
-.login_blocked_wrap .page_block .content .tutorial_finish_appeal.closed {
-    max-height: 0px;
-    margin-bottom: 0px
-}
-
 .login_blocked_wrap .page_block .footer {
     border-top: 1px solid #e7e8ec;
     margin-top: 25px;

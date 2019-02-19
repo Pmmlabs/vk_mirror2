@@ -42,12 +42,12 @@
         return t.d(o, "a", o), o
     }, t.o = function(e, o) {
         return Object.prototype.hasOwnProperty.call(e, o)
-    }, t.p = "", t(t.s = 242)
+    }, t.p = "", t(t.s = 141)
 }({
-    242: function(e, o, t) {
-        e.exports = t(350)
+    141: function(e, o, t) {
+        e.exports = t("kWI1")
     },
-    350: function(e, o, t) {
+    kWI1: function(e, o, t) {
         "use strict";
         t.r(o), window.WAllowMessagesFromCommunity = {
             init: function(e) {

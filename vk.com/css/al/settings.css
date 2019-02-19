@@ -2423,3 +2423,7 @@ span.page_block_header_group_notify_settings a {
 #settings_payments_transfer_msg .settings_payments_transfer_msg_buttons button:first-child {
     margin-right: 6px
 }
+
+.settings_replies_order {
+    text-transform: lowercase
+}

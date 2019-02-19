@@ -1,52 +1,53 @@
 ﻿! function(t) {
-    function e(a) {
-        if (r[a]) return r[a].exports;
-        var o = r[a] = {
+    var e = {};
+
+    function r(a) {
+        if (e[a]) return e[a].exports;
+        var o = e[a] = {
             i: a,
             l: !1,
             exports: {}
         };
-        return t[a].call(o.exports, o, o.exports, e), o.l = !0, o.exports
+        return t[a].call(o.exports, o, o.exports, r), o.l = !0, o.exports
     }
-    var r = {};
-    return e.m = t, e.c = r, e.d = function(t, r, a) {
-        e.o(t, r) || Object.defineProperty(t, r, {
+    r.m = t, r.c = e, r.d = function(t, e, a) {
+        r.o(t, e) || Object.defineProperty(t, e, {
             enumerable: !0,
             get: a
         })
-    }, e.r = function(t) {
+    }, r.r = function(t) {
         "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(t, Symbol.toStringTag, {
             value: "Module"
         }), Object.defineProperty(t, "__esModule", {
             value: !0
         })
-    }, e.t = function(t, r) {
-        if (1 & r && (t = e(t)), 8 & r) return t;
-        if (4 & r && "object" == typeof t && t && t.__esModule) return t;
+    }, r.t = function(t, e) {
+        if (1 & e && (t = r(t)), 8 & e) return t;
+        if (4 & e && "object" == typeof t && t && t.__esModule) return t;
         var a = Object.create(null);
-        if (e.r(a), Object.defineProperty(a, "default", {
+        if (r.r(a), Object.defineProperty(a, "default", {
                 enumerable: !0,
                 value: t
-            }), 2 & r && "string" != typeof t)
-            for (var o in t) e.d(a, o, function(e) {
+            }), 2 & e && "string" != typeof t)
+            for (var o in t) r.d(a, o, function(e) {
                 return t[e]
             }.bind(null, o));
         return a
-    }, e.n = function(t) {
-        var r = t && t.__esModule ? function() {
-            return t["default"]
+    }, r.n = function(t) {
+        var e = t && t.__esModule ? function() {
+            return t.default
         } : function() {
             return t
         };
-        return e.d(r, "a", r), r
-    }, e.o = function(t, e) {
+        return r.d(e, "a", e), e
+    }, r.o = function(t, e) {
         return Object.prototype.hasOwnProperty.call(t, e)
-    }, e.p = "", e(e.s = 457)
+    }, r.p = "", r(r.s = 98)
 }({
-    457: function(t, e, r) {
-        t.exports = r(727)
+    98: function(t, e, r) {
+        t.exports = r("u/fZ")
     },
-    727: function(t, e, r) {
+    "u/fZ": function(t, e, r) {
         "use strict";
         r.r(e), window.MrTruth = {
             init: function() {

@@ -1709,6 +1709,8 @@ var Settings = {
             }
         });
 
+        Settings.initRepliesOrder();
+
         setTimeout(function() {
             if (nav.objLoc.f) {
                 var blockEl = ge(nav.objLoc.f.split(',')[0]);
@@ -2560,7 +2562,27 @@ var Settings = {
             className: 'settings_group_notifications_disable_tooltip',
             needLeft: 1,
         });
-    }
+    },
+
+    initRepliesOrder: function() {
+        var repliesOrderSettingsEl = ge('settings_replies_order');
+
+        if (!repliesOrderSettingsEl || !cur.options.replies_order_items) {
+            return;
+        }
+
+        cur.repliesReorderDD = new InlineDropdown(repliesOrderSettingsEl, {
+            items: cur.options.replies_order_items,
+            selected: cur.options.replies_order_cur || cur.options.replies_order_items[0][0],
+            onSelect: function(value) {
+                ajax.post('al_settings.php', {
+                    act: 'change_replies_order',
+                    order: value,
+                    hash: cur.options.replies_order_hash,
+                });
+            }
+        });
+    },
 };
 
 try {

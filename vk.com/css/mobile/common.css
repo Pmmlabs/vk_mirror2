@@ -25521,11 +25521,15 @@ figure[data-type="102"] .article_object_video_play {
 }
 
 .blog_post,
-.PageBlock_row {
+.PageBlock_row,
+.r .wall_item.informer.wi_head,
+.recommends_link {
     margin: 10px 0
 }
 
-.PageBlock_row:first-child {
+.PageBlock_row:first-child,
+.r .wall_item.informer.wi_head:first-child,
+.recommends_link:first-child {
     margin: 0 0 10px
 }
 
