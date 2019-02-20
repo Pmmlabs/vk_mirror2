@@ -242,6 +242,7 @@ var Join = {
                 cur.validationType = type;
                 cur.resendDelay = resendDelay;
                 Join.phoneDone(phoneInputVal, cntr);
+                Join.resendUpdate();
             },
             onFail: function(text) {
                 if (!text) return;
@@ -577,6 +578,9 @@ var Join = {
         if (cur.resendDelay > 0) {
             val('join_resend', getLang(resendTime).replace('%s', Math.floor(cur.resendDelay / 60) + ':' + (cur.resendDelay % 60 < 10 ? '0' : '') + (cur.resendDelay % 60)));
             cur.resendDelay--;
+        } else if (cur.resendDelay == -1) {
+            val('join_resend', '');
+            clearInterval(cur.resendInt);
         } else {
             val('join_resend', '<a id="join_resend_lnk" onclick="return Join.noCode()">' + getLang(resendText) + '</a>');
             clearInterval(cur.resendInt);

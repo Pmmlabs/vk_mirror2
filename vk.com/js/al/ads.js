@@ -933,6 +933,105 @@ Ads.createStaticDatePicker = function(elem, bindingId, classid, defaultDate, mod
     cur.exportUi[classid] = new Datepicker(elem, params);
 }
 
+Ads.createStaticDateRange = function(elem, containerID) {
+    var months = [];
+    for (var i = 0; i < 13; i++) {
+        months.push(getLang('month' + i + 'sm_of'));
+    }
+
+    function toOldForm(range) {
+        var startDate = range.startDate;
+        var endDate = range.endDate;
+        cur.exportParamsData = {};
+        cur.exportParamsData.start_time = {
+            day: startDate.getDate(),
+            month: startDate.getMonth() + 1,
+            year: startDate.getFullYear(),
+        };
+        cur.exportParamsData.stop_time = {
+            day: endDate.getDate(),
+            month: endDate.getMonth() + 1,
+            year: endDate.getFullYear(),
+        }
+    };
+
+    function getStrRange(range) {
+        var startDate = range.startDate;
+        var endDate = range.endDate;
+        var startShort = langDate(startDate, getLang('global_short_date', 'raw'), 0, months, false);
+        var endShort = langDate(endDate, getLang('global_short_date', 'raw'), 0, months, false);
+        var startYears = langDate(startDate, ["", "{day} {month} {year}"], 0, months, false);
+        var endYears = langDate(endDate, ["", "{day} {month} {year}"], 0, months, false);
+        var start = langDate(startDate, ["", "{day} {month}"], 0, months, false);
+        var end = langDate(endDate, ["", "{day} {month}"], 0, months, false);
+        if (/\d/.test(startShort[0]) || /\d/.test(endShort[0])) {
+            if (startDate.getYear() !== endDate.getYear()) {
+                return startYears === endYears ? startYears : (startYears + ' - ' + endYears);
+            }
+            return start === end ? start : (start + ' - ' + end);
+        }
+        return startShort === endShort ? startShort : (startShort + ' - ' + endShort);
+    };
+
+    var dateRange = {
+        startDate: new Date(),
+        endDate: new Date(),
+    };
+    toOldForm(dateRange);
+    elem.innerHTML = getStrRange(dateRange);
+
+    //Container
+    var container = document.createElement('div');
+
+    document.body.appendChild(container);
+
+    var height = elem.getBoundingClientRect().height;
+    var left = elem.getBoundingClientRect().left;
+    var top = elem.getBoundingClientRect().top;
+    container.id = containerID;
+    container.style.top = top + height + 'px';
+    container.style.left = left + 'px';
+    container.style.position = 'absolute';
+
+    //Render
+    var datePickerVisible = false;
+
+    function onDone(range) {
+        var startDate = range.startDate;
+        var endDate = range.endDate;
+        dateRange = {
+            startDate: startDate,
+            endDate: endDate
+        };
+        toOldForm(range);
+        elem.innerHTML = getStrRange(range);
+        AdsComponents.unmountDatePicker(container);
+    }
+
+    function onClose() {
+        AdsComponents.unmountDatePicker(container);
+    }
+
+    function render() {
+        if (!datePickerVisible) {
+            AdsComponents.renderDatePicker(container, {
+                onClose,
+                onDone,
+                ranges: {
+                    range1: dateRange
+                },
+                minDate: new Date(2005, 0)
+            }, );
+            datePickerVisible = true;
+        } else {
+            AdsComponents.unmountDatePicker(container);
+            datePickerVisible = false;
+        }
+    }
+
+    elem.addEventListener('click', render)
+}
+
 Ads.openInnerTable = function(id, bindingId) {
     if (!id) id = 'acl';
 

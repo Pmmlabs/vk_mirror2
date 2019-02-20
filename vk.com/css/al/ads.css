@@ -256,6 +256,571 @@
     user-select: none
 }
 
+.static-ranges {
+    min-width: 179px;
+    padding: 0;
+    margin: 0;
+    border-right: 1px solid #ebecef
+}
+
+.static-ranges_item {
+    list-style: none;
+    cursor: pointer;
+    padding: 0
+}
+
+.static-ranges_item:first-of-type {
+    margin-top: 7px
+}
+
+.static-range_radio {
+    display: none
+}
+
+.static-ranges_label {
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 12.5px;
+    color: #2a5885;
+    position: relative;
+    padding: 7px 20px 7px 27px
+}
+
+.static-range_radio:checked+.static-ranges_label {
+    background: #f0f2f5
+}
+
+.static-range_radio:checked+.static-ranges_label:before {
+    display: block;
+    content: ' ';
+    height: 15px;
+    width: 11px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2011%2011%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2053%20(72520)%20-%20https%3A%2F%2Fsketchapp.com%20--%3E%0A%20%20%20%20%3Ctitle%3Eadded%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cg%20id%3D%22added%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle-2%22%20opacity%3D%220.5%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2211%22%20height%3D%2211%22%20rx%3D%220.89%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpolyline%20id%3D%22Path-4%22%20stroke%3D%22%232A5885%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20points%3D%222.29166667%205.95833333%204.125%207.79166667%208.70833333%203.20833333%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") 50% no-repeat;
+    position: absolute;
+    left: 12px
+}
+
+.date-picker_inputs {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.date-picker_input {
+    border: 1px solid #d3d9de;
+    border-radius: 2px;
+    padding: 5px 10px;
+    margin: 0 5px;
+    width: 90px;
+    font-size: 13px
+}
+
+.date-picker_input:focus,
+.date-picker_input__focused {
+    border: 2px solid #5181b8;
+    outline: none
+}
+
+.date-picker_input-label {
+    color: #656565
+}
+
+.date-picker_input-delimeter {
+    display: inline-block;
+    width: 7px;
+    height: 1px;
+    background: #000
+}
+
+.date-picker_panel {
+    position: relative;
+    border-bottom: 1px solid #ebecef;
+    padding: 12px
+}
+
+.panel_button-month-offset_minus,
+.panel_button-month-offset_plus {
+    position: absolute;
+    bottom: -29px;
+    height: 10px;
+    width: 6px;
+    margin: 3px;
+    border: none;
+    cursor: pointer
+}
+
+.panel_button-month-offset_minus {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%206%2010%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%22100%25%22%20width%3D%22100%25%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M1%201L5%205L1%209%22%20id%3D%22arrow%22%20stroke%3D%22%23656565%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate(180)translate(-6%2C-10)%22%2F%3E%0A%3C%2Fsvg%3E") 50% no-repeat
+}
+
+.panel_button-month-offset_plus {
+    right: 12px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%206%2010%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%22100%25%22%20width%3D%22100%25%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M1%201L5%205L1%209%22%20id%3D%22arrow%22%20stroke%3D%22%23656565%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E") 50% no-repeat
+}
+
+.Button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: 12.5px;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    line-height: 15px;
+    outline: none;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-radius: 0;
+    -webkit-appearance: none;
+    display: inline-block;
+    vertical-align: top;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.Button+.Button {
+    margin: 0 0 0 10px
+}
+
+.Button--primary {
+    background: #5181b8;
+    color: #fff;
+    border-radius: 4px
+}
+
+.Button--primary:not(.Button--disabled):focus,
+.Button--primary:not(.Button--disabled):hover {
+    background: #5b88bd
+}
+
+.Button--primary:not(.Button--disabled):active {
+    background-color: #4872a3
+}
+
+.Button--secondary {
+    background: #e5ebf1;
+    color: #55677d;
+    border-radius: 4px
+}
+
+.Button--secondary:not(.Button--disabled):focus,
+.Button--secondary:not(.Button--disabled):hover {
+    background: #dfe6ed
+}
+
+.Button--secondary:not(.Button--disabled):active {
+    background-color: #dae2ea
+}
+
+.Button--negative {
+    background: #e64646;
+    color: #fff;
+    border-radius: 4px
+}
+
+.Button--negative:not(.Button--disabled):focus,
+.Button--negative:not(.Button--disabled):hover {
+    background: #eb5050
+}
+
+.Button--negative:not(.Button--disabled):active {
+    background-color: #db3b3b
+}
+
+.Button--positive {
+    background: #4bb34b;
+    color: #fff;
+    border-radius: 4px
+}
+
+.Button--positive:not(.Button--disabled):focus,
+.Button--positive:not(.Button--disabled):hover {
+    background: #51b851
+}
+
+.Button--positive:not(.Button--disabled):active {
+    background-color: #43a843
+}
+
+.Button--tertiary {
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 4px;
+    color: #55677d;
+    background: transparent
+}
+
+.Button--tertiary:not(.Button--disabled):focus,
+.Button--tertiary:not(.Button--disabled):hover {
+    background: #e5ebf1
+}
+
+.Button--tertiary:not(.Button--disabled):active {
+    background-color: #dae2ea
+}
+
+.Button--link {
+    display: inline-block;
+    color: #2a5885
+}
+
+.Button--link:not(.Button--disabled):focus,
+.Button--link:not(.Button--disabled):hover {
+    text-decoration: underline
+}
+
+.Button--size-s:not(.Button--link) {
+    padding: 5px 16px 6px
+}
+
+.Button--size-s:not(.Button--disabled):not(.Button--link):active {
+    padding: 6px 16px 5px
+}
+
+.Button--size-m:not(.Button--link) {
+    padding: 7px 16px 8px
+}
+
+.Button--size-m:not(.Button--disabled):not(.Button--link):active {
+    padding: 8px 16px 7px
+}
+
+.Button--mobile,
+.Button--wide {
+    display: block;
+    width: 100%
+}
+
+.Button--mobile {
+    padding: 14px 0 15px;
+    background: #fff;
+    font-size: 13px;
+    line-height: 15px;
+    box-shadow: 0 1px 0 #e3e4e8, 0 -1px 0 #e3e4e8
+}
+
+.Button--mobile:hover {
+    background: #fafbfc
+}
+
+.Button--mobile:not(.Button--disabled):active {
+    padding: 15px 0 14px
+}
+
+.Button--wide+.Button--wide {
+    margin: 10px 0 0
+}
+
+.Button--disabled {
+    opacity: .5;
+    cursor: default
+}
+
+.Button--overflow {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+.date-picker_footer {
+    height: 58px;
+    width: 100%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -ms-flex-align: center;
+    align-items: center;
+    border-top: 1px solid #ebecef;
+    padding: 0 10px
+}
+
+.date-picker_footer__close,
+.date-picker_footer__done {
+    padding: 7px 16px;
+    border-radius: 4px;
+    margin: 14px 10px 14px 0;
+    border: none
+}
+
+.date-picker_footer__close {
+    background: #e5ebf1;
+    color: #55677d
+}
+
+.date-picker_footer__done {
+    background-color: #5181b8;
+    color: #fff
+}
+
+.date-picker {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 673px;
+    border-radius: 4px;
+    border: 1px solid #ebecef;
+    background: #fff;
+    position: absolute;
+    z-index: 100
+}
+
+.date-picker,
+.rdrMonths {
+    display: -ms-flexbox;
+    display: flex
+}
+
+.rdrMonths {
+    margin: 12px
+}
+
+.rdrMonthsVertical {
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.rdrMonthsHorizontal {
+    -ms-flex-direction: row;
+    flex-direction: row
+}
+
+.rdrMonth {
+    width: 224px
+}
+
+.rdrMonth:first-of-type {
+    margin-right: 20px
+}
+
+.rdrWeekDays {
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 4px;
+    font-size: 10px
+}
+
+.rdrWeekDay {
+    -ms-flex-preferred-size: calc(14.28571429%);
+    flex-basis: calc(14.28571429%);
+    box-sizing: inherit;
+    text-align: center;
+    color: #b2b2b2
+}
+
+.rdrDays {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    font-size: 12px
+}
+
+.rdrDays,
+.rdrDay {
+    -o-transition: color;
+    transition: color;
+    color: #000
+}
+
+.rdrDay {
+    box-sizing: inherit;
+    width: calc(14.28571429%);
+    height: calc(14.28571429%);
+    position: relative;
+    font: inherit;
+    cursor: pointer
+}
+
+.rdrDayNumber span {
+    color: #1d2429;
+    font-weight: 400
+}
+
+.rdrDayNumber {
+    display: block;
+    position: relative
+}
+
+.rdrDayEndPreview,
+.rdrDayInPreview,
+.rdrDayStartPreview,
+.rdrEndEdge,
+.rdrInRange,
+.rdrSelected,
+.rdrStartEdge {
+    pointer-events: none
+}
+
+.rdrDateRangePickerWrapper {
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.rdrStaticRanges {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.rdrCalendarWrapper {
+    color: #000;
+    font-size: 12px
+}
+
+.rdrDay {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 0;
+    padding: 0;
+    height: 32px;
+    text-align: center
+}
+
+.rdrDay:focus {
+    outline: 0
+}
+
+.rdrDayNumber {
+    outline: 0;
+    font-weight: 300;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 5px;
+    bottom: 5px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.rdrDayToday .rdrDayNumber span {
+    font-weight: 500;
+    color: #3b70ac
+}
+
+.rdrEndEdge,
+.rdrInRange,
+.rdrSelected,
+.rdrStartEdge,
+.rdrDayEndPreview,
+.rdrDayInPreview,
+.rdrDayStartPreview {
+    background-color: #ebecef;
+    display: block;
+    height: 32px;
+    width: 32px
+}
+
+.rdrDayEndPreview,
+.rdrDayInPreview,
+.rdrDayStartPreview {
+    position: absolute;
+    top: 0
+}
+
+.rdrDayEndPreview,
+.rdrDayStartPreview,
+.rdrDay:hover .rdrInRange {
+    background-color: #d6e0ea
+}
+
+.rdrDay:hover {
+    background-color: #e3ebf3
+}
+
+.rdrSelected {
+    border-radius: 1.042em
+}
+
+.rdrEndEdge,
+.rdrStartEdge {
+    background-color: #5181b8
+}
+
+.rdrDayHovered {
+    background-color: red
+}
+
+.rdrDay:hover .rdrEndEdge,
+.rdrDay:hover .rdrStartEdge {
+    background-color: #5181b8
+}
+
+.rdrEndEdge~.rdrDayNumber span,
+.rdrStartEdge~.rdrDayNumber span {
+    color: #fff
+}
+
+.rdrEndEdge+.rdrDayEndPreview,
+.rdrEndEdge+.rdrDayInPreview,
+.rdrEndEdge+.rdrDayStartPreview,
+.rdrStartEdge+.rdrDayEndPreview,
+.rdrStartEdge+.rdrDayInPreview,
+.rdrStartEdge+.rdrDayStartPreview,
+.rdrStartEdge.rdrEndEdge+.rdrDayEndPreview,
+.rdrStartEdge.rdrEndEdge+.rdrDayStartPreview {
+    display: none
+}
+
+.rdrDefinedRangesWrapper {
+    font-size: 12px;
+    width: 226px;
+    border-right: solid 1px #eff2f7;
+    background: #fff
+}
+
+.rdrInputRanges {
+    display: none
+}
+
+.rdrStaticRange {
+    border: 0;
+    cursor: pointer;
+    display: block;
+    outline: 0;
+    border-bottom: 1px solid #eff2f7;
+    padding: 0;
+    background: #fff
+}
+
+.rdrStaticRangeLabel {
+    display: block;
+    outline: 0;
+    line-height: 18px;
+    padding: 10px 20px;
+    text-align: left
+}
+
+.rdrDayPassive {
+    visibility: hidden
+}
+
+.rdrMonthName {
+    font-weight: 500;
+    font-size: 14px;
+    color: #000;
+    text-align: center;
+    margin-bottom: 12px
+}
+
+.rdrDayDisabled span {
+    color: #b2b2b2
+}
+
 ul.ads_listing {
     padding: 0 0 0 30px;
     margin: 0 0 15px
@@ -4605,4 +5170,18 @@ td.ads_settings_notifications_label {
     height: 100%;
     border: none;
     border-radius: 4px
+}
+
+.ads_stat_date_range {
+    display: inline;
+    font-size: 13px;
+    box-sizing: border-box;
+    border: 1px solid #e3e4e8;
+    position: relative;
+    border-radius: 4px;
+    background-color: #f8f8f9;
+    background-image: url('data:image/svg+xml;charset=utf-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20width%3D%2215px%22%20height%3D%2211px%22%20viewBox%3D%220%200%2015%2011%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2053%20(72520)%20-%20https%3A%2F%2Fsketchapp.com%20--%3E%0A%20%20%20%20%3Ctitle%3Eico%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cg%20id%3D%22Date-picker%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22%D0%92%D1%8B%D0%B1%D0%BE%D1%80-%D0%B4%D0%B0%D1%82%D1%8B%22%20transform%3D%22translate(-7270.000000%2C%20-333.000000)%22%20fill%3D%22%2391989E%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Select%2FNormal%22%20transform%3D%22translate(7199.000000%2C%20324.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22ico%22%20transform%3D%22translate(71.000000%2C%209.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%224%22%20y%3D%220%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%228%22%20y%3D%220%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%220%22%20y%3D%224%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%224%22%20y%3D%224%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%228%22%20y%3D%224%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%220%22%20y%3D%228%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%224%22%20y%3D%228%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%2212%22%20y%3D%220%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%2212%22%20y%3D%224%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%228%22%20y%3D%228%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px bottom 50%;
+    padding: 5px 33px 5px 10px
 }

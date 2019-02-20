@@ -236,7 +236,7 @@ var stVersions = {
     'index.css': "2720580537322",
     'index.js': "344237255968",
     'join.css': "7024422009685",
-    'join.js': "961572743654",
+    'join.js': "96626372089",
     'intro.css': "2118186254236",
     'post.css': "126938012535",
     'playground.css': "1182325958",
@@ -250,14 +250,14 @@ var stVersions = {
     'cmodules/web/public.js': "184abe30760532dc4d4d2",
     'pages.css': "5223340669465",
     'pages.js': "421162259168",
-    'groups.css': "12199299436009",
-    'cmodules/web/groups.js': "108a41b5b1b8dc7af6583",
+    'groups.css': "121102350756686",
+    'cmodules/web/groups.js': "1a58ac84e506ce15b85ed",
     'cmodules/web/groups_admins.js': "1b3c271fc5ca6f546aa12",
     'cmodules/web/groups_create.js': "12791e0c35701ae8c90ac",
     'groups_create.css': "118022892959",
     'cmodules/web/groups_list.js': "6335b050ed568b0ebe5b60",
     'cmodules/web/GroupsEdit.js': "13c3c2fa57a4922d5f71fb",
-    'groups_edit.css': "9056321144998",
+    'groups_edit.css': "9056957211650",
     'cmodules/web/groups_edit.js': "1a8089862259b3e20ea92",
     'profile.css': "22724187727385",
     'profile.js': "2193988525344",
@@ -295,7 +295,7 @@ var stVersions = {
     'feed.css': "24222507674437",
     'privacy.js': "100711404989",
     'privacy.css': "5216348461514",
-    'apps.css': "22454074629401",
+    'apps.css': "22452424325274",
     'apps.js': 293,
     'apps_edit.js': 117,
     'apps_edit.css': "12396709528724",
@@ -394,9 +394,9 @@ var stVersions = {
     'call.css': "153256039646",
     'aes_light.css': "5225704700939",
     'aes_light.js': "94725879315",
-    'ads.css': "9748821479833",
+    'ads.css': "9760964311832",
     'ads_bonus.css': "11294533290",
-    'ads.js': "741011890781",
+    'ads.js': "742974366622",
     'ads_payments.js': "61483293783",
     'ads_edit.css': "44110964420419",
     'ads_edit.js': "1453047280278",
@@ -412,7 +412,7 @@ var stVersions = {
     'mrtarg.css': "13142794553",
     'cmodules/web/ads_edit_easy.js': "146562337f4a855c6af92",
     'cmodules/web/ads_edit_components.js': "144625250f6f17feef989",
-    'cmodules/web/ads_components.js': "1d4ae90b5b69777df5bab",
+    'cmodules/web/ads_components.js': "194a3981bd722fb9790be",
     'health.css': "112251304980",
     'health.js': "52993570134",
     'pinbar.js': "6284788786",
@@ -609,7 +609,7 @@ var stVersions = {
     'cmodules/web/emoji.js': "16866004d8348cdde6450",
     'cmodules/web/apps_achievements.js': "13ca5e0f64032666335bf",
     'cmodules/web/payments.js': "1bcf07fe01a17278eab1c",
-    'lang': 6943,
+    'lang': 6946,
     'cmodules/bundles/075e72e66ff59d27b023e4956acea75e.js': "9a7e5d4af7beace21ea3",
     'cmodules/bundles/26c7804abc36bc7348ed5a4dec71c384.js': "e7448c0f1e66864f575a",
     'cmodules/bundles/2cef5b3f9a64edf4ceb55724b65cbe10.js': "dbfacc6632d33c577568",
@@ -624,7 +624,7 @@ var stVersions = {
     'cmodules/bundles/e29a79c869c61e1e682c26175bc86230.js': "9bd3d015ff5f885e43e7",
     'cmodules/bundles/f142e27887a3349c11c4a56ac158140e.js': "5506783b12026f18dc22",
     'cmodules/sw/sw_mobile.js': "e01666aa64f579347403",
-    'cmodules/web/apps.js': "5de6c32363423cce95a4",
+    'cmodules/web/apps.js': "ba217906071826e25ba7",
     'cmodules/web/apps_connect.js': "550a3d4e9a076f0c26b7",
     'cmodules/web/apps_edit.js': "54585f195f0081a7092f",
     'cmodules/web/article_editor_layer.js': "c5a68dfb383267b91ed0",
@@ -640,7 +640,7 @@ var stVersions = {
     'cmodules/web/group_online_im.js': "3ea5093694914d600ab4",
     'cmodules/web/group_online_info.js': "25e4032e811fbe862994",
     'cmodules/web/groups_edit_stories.js': "b2e866bfa64e87629f75",
-    'cmodules/web/imn.js': "7f3d2168ae78dfcbf7d1",
+    'cmodules/web/imn.js': "5a8cc2e18fc78e6b5a2a",
     'cmodules/web/landing_aes.js': "36a1abbebf007b178ddf",
     'cmodules/web/landing_donors_day.js': "af8b55eed04fa9f4f3f0",
     'cmodules/web/landings_api.js': "ecfb827f0b8783249839",
@@ -650,7 +650,7 @@ var stVersions = {
     'cmodules/web/likes.js': "a8b896cb99f73aea5d6d",
     'cmodules/web/mr_truth.js': "537bd85a49146339c9f6",
     'cmodules/web/music_2018.js': "ac5f70e1431057f5269a",
-    'cmodules/web/notifier.js': "e69c9e4fae6782c17e10",
+    'cmodules/web/notifier.js': "bfbae03d64516db894ca",
     'cmodules/web/old_places_admin.js': "3595188d3e043a69777b",
     'cmodules/web/playground.js': "3de86476f62f95a328e2",
     'cmodules/web/rich_dropdown.js': "8f6a972f55e94b2a37a2",
@@ -663,7 +663,7 @@ var stVersions = {
     'cmodules/web/videoview.js': "e3f411ef946ecd698fb1",
     'cmodules/web/voice_message_player.js': "a0c981fa86501fea5e96",
     'cmodules/web/wk_editor.js': "1ecf0c246d8a4ec072df",
-    'cmodules/web/writebox.js': "996abf154cfda758d4f1"
+    'cmodules/web/writebox.js': "f073bf9ab1bedbfdba10"
 };
 var stTypes = {
     fromLib: {
@@ -722,7 +722,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 4148;
+var _rnd = 5886;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/9305f5418f2d9183dad188e98aaf94c7.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/7f81047508570d6456c7d33e2e3c0bc3.js"],
