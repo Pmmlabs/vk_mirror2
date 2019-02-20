@@ -2781,3 +2781,15 @@ body.body_helpdesk_small_sb .left_menu_nav {
 .helpdesk_new_question_section {
     margin-top: 10px
 }
+
+.helpdesk__my_answer_passes .idd_wrap {
+    display: inline-block
+}
+
+.helpdesk__my_answer_passes .idd_wrap .idd_arrow {
+    padding-right: 0px
+}
+
+.helpdesk__my_answer_passes .idd_wrap .idd_selected_value {
+    color: #555
+}

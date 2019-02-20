@@ -13078,6 +13078,7 @@ a.Popup__headerCorner {
 
 .FloatBtn {
     height: 24px;
+    max-width: 80%;
     visibility: hidden;
     position: fixed;
     color: #fff;
@@ -13148,6 +13149,14 @@ a.Popup__headerCorner {
 
 .vk_2x .FloatBtn__close {
     background-image: url(/images/mobile/button_close_2x.png)
+}
+
+.FloatBtn_nowrap {
+    white-space: nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis
 }
 
 .Label {

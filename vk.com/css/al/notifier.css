@@ -26,7 +26,6 @@
 .fc_msg_att_icon_voting,
 .fc_msg_att_icon_wall,
 .fc_tab_attach .media_selector .ms_item_more,
-.notifier_close_wrap:before,
 .notify_tt_thumb,
 .sticker_hints_arrow,
 .ui_scroll_default_theme.ui_scroll_emoji_theme>.ui_scroll_overflow>.ui_scroll_shadow_bottom,
@@ -15154,18 +15153,9 @@ span.fc_contact_photo.online.mobile:after {
 .notifier_close_wrap:before {
     display: block;
     content: '';
-    background: url(/images/icons/common.png?6) no-repeat 0 -175px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2210%22%20height%3D%2210%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%203.727L8.464.264a.9.9%200%201%201%201.272%201.272L6.273%205l3.463%203.464a.9.9%200%201%201-1.272%201.272L5%206.273%201.536%209.736A.9.9%200%201%201%20.264%208.464L3.727%205%20.264%201.536A.9.9%200%201%201%201.536.264L5%203.727z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fsvg%3E') no-repeat;
     height: 10px;
     width: 10px
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .notifier_close_wrap:before {
-        background-image: url(/images/icons/common_2x.png?6);
-        background-size: 32px 232px
-    }
 }
 
 .notifier_baloon_body {
@@ -15208,7 +15198,7 @@ span.fc_contact_photo.online.mobile:after {
 
 .notifier_add_image {
     max-width: 50px;
-    max-height: 80px;
+    max-height: 50px;
     border-radius: 2px
 }
 
@@ -18277,4 +18267,10 @@ div.chat_tab_img {
     display: none;
     border: none;
     margin: 2px
+}
+
+.notifier_baloon .page_verified {
+    margin-left: 4px;
+    margin-right: 2px;
+    padding: 2px 0 2px 16px
 }

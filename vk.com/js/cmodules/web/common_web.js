@@ -7470,6 +7470,10 @@
                         case "podcast":
                             return stManager.add([jsc("web/podcast.js"), "page.css"], function() {
                                 Podcast.show(null, c[2], null, "url")
+                            }), !1;
+                        case "apps_achievements":
+                            return stManager.add([jsc("web/apps_achievements.js")], function() {
+                                window.AppsAchievementsPage.showFriendAchievements(c[2])
                             }), !1
                     }
                 }

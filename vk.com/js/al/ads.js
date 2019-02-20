@@ -966,11 +966,11 @@ Ads.createStaticDateRange = function(elem, containerID) {
         var end = langDate(endDate, ["", "{day} {month}"], 0, months, false);
         if (/\d/.test(startShort[0]) || /\d/.test(endShort[0])) {
             if (startDate.getYear() !== endDate.getYear()) {
-                return startYears === endYears ? startYears : (startYears + ' - ' + endYears);
+                return startYears === endYears ? startYears : (startYears + ' � ' + endYears);
             }
-            return start === end ? start : (start + ' - ' + end);
+            return start === end ? start : (start + ' � ' + end);
         }
-        return startShort === endShort ? startShort : (startShort + ' - ' + endShort);
+        return startShort === endShort ? startShort : (startShort + ' � ' + endShort);
     };
 
     var dateRange = {
@@ -1006,10 +1006,12 @@ Ads.createStaticDateRange = function(elem, containerID) {
         toOldForm(range);
         elem.innerHTML = getStrRange(range);
         AdsComponents.unmountDatePicker(container);
+        datePickerVisible = false;
     }
 
     function onClose() {
         AdsComponents.unmountDatePicker(container);
+        datePickerVisible = false;
     }
 
     function render() {
@@ -1029,7 +1031,7 @@ Ads.createStaticDateRange = function(elem, containerID) {
         }
     }
 
-    elem.addEventListener('click', render)
+    elem.addEventListener('click', render);
 }
 
 Ads.openInnerTable = function(id, bindingId) {

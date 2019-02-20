@@ -257,7 +257,7 @@
 }
 
 .static-ranges {
-    min-width: 179px;
+    min-width: 185px;
     padding: 0;
     margin: 0;
     border-right: 1px solid #ebecef
@@ -283,7 +283,8 @@
     font-size: 12.5px;
     color: #2a5885;
     position: relative;
-    padding: 7px 20px 7px 27px
+    padding: 7px 20px 7px 27px;
+    cursor: inherit
 }
 
 .static-range_radio:checked+.static-ranges_label {
@@ -298,6 +299,10 @@
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2011%2011%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2053%20(72520)%20-%20https%3A%2F%2Fsketchapp.com%20--%3E%0A%20%20%20%20%3Ctitle%3Eadded%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cg%20id%3D%22added%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle-2%22%20opacity%3D%220.5%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2211%22%20height%3D%2211%22%20rx%3D%220.89%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpolyline%20id%3D%22Path-4%22%20stroke%3D%22%232A5885%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20points%3D%222.29166667%205.95833333%204.125%207.79166667%208.70833333%203.20833333%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") 50% no-repeat;
     position: absolute;
     left: 12px
+}
+
+.static-ranges_label:hover {
+    background-color: #f0f2f5
 }
 
 .date-picker_inputs {
@@ -527,6 +532,9 @@
 }
 
 .date-picker_footer {
+    position: absolute;
+    bottom: 0;
+    box-sizing: border-box;
     height: 58px;
     width: 100%;
     display: -ms-flexbox;
@@ -558,13 +566,11 @@
 }
 
 .date-picker {
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    width: 673px;
+    position: absolute;
+    padding-bottom: 57px;
     border-radius: 4px;
     border: 1px solid #ebecef;
     background: #fff;
-    position: absolute;
     z-index: 100
 }
 
@@ -627,6 +633,7 @@
 }
 
 .rdrDay {
+    background: #fff;
     box-sizing: inherit;
     width: calc(14.28571429%);
     height: calc(14.28571429%);
@@ -5173,15 +5180,25 @@ td.ads_settings_notifications_label {
 }
 
 .ads_stat_date_range {
+    position: relative;
     display: inline;
     font-size: 13px;
     box-sizing: border-box;
     border: 1px solid #e3e4e8;
-    position: relative;
     border-radius: 4px;
     background-color: #f8f8f9;
     background-image: url('data:image/svg+xml;charset=utf-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20width%3D%2215px%22%20height%3D%2211px%22%20viewBox%3D%220%200%2015%2011%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2053%20(72520)%20-%20https%3A%2F%2Fsketchapp.com%20--%3E%0A%20%20%20%20%3Ctitle%3Eico%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cg%20id%3D%22Date-picker%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22%D0%92%D1%8B%D0%B1%D0%BE%D1%80-%D0%B4%D0%B0%D1%82%D1%8B%22%20transform%3D%22translate(-7270.000000%2C%20-333.000000)%22%20fill%3D%22%2391989E%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Select%2FNormal%22%20transform%3D%22translate(7199.000000%2C%20324.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22ico%22%20transform%3D%22translate(71.000000%2C%209.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%224%22%20y%3D%220%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%228%22%20y%3D%220%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%220%22%20y%3D%224%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%224%22%20y%3D%224%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%228%22%20y%3D%224%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%220%22%20y%3D%228%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%224%22%20y%3D%228%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%2212%22%20y%3D%220%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%2212%22%20y%3D%224%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%228%22%20y%3D%228%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
     background-repeat: no-repeat;
     background-position: right 10px bottom 50%;
-    padding: 5px 33px 5px 10px
+    padding: 5px 33px 5px 10px;
+    cursor: pointer
+}
+
+.ads_stat_date_range:hover {
+    background-color: #f0f2f5
+}
+
+.ads_stat_date_range:active {
+    color: #000;
+    background-color: #eceef2
 }

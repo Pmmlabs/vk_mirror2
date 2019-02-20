@@ -720,6 +720,21 @@
     display: none
 }
 
+.Stub {
+    height: 100%;
+    min-height: 60px;
+    color: #939393;
+    font-size: 13px;
+    line-height: 18px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
+}
+
 .appAchievementsIllustration {
     width: 100%;
     height: 200px;
@@ -749,6 +764,10 @@
 
 .appAchievementsHeader__menu {
     position: relative
+}
+
+.appAchievementsHeader__lockedButton {
+    margin: 7px 0 14px
 }
 
 .appAchievementsHeader .ui_actions_menu_icons {
@@ -788,8 +807,41 @@
     color: #656565
 }
 
+.appAchievementsAchievementsList__lockedFooter {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3
+}
+
+.appAchievementsAchievementsList__lockedFooterBlur {
+    height: 100px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%22100%22%20viewBox%3D%220%200%2010%20100%22%20width%3D%2210%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%2250%25%22%20x2%3D%2250%25%22%20y1%3D%220%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%220%22%2F%3E%3Cstop%20offset%3D%22.0862099125%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%22.015686%22%2F%3E%3Cstop%20offset%3D%22.165597668%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%22.054902%22%2F%3E%3Cstop%20offset%3D%22.239300292%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%22.117647%22%2F%3E%3Cstop%20offset%3D%22.308454811%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%22.2%22%2F%3E%3Cstop%20offset%3D%22.374198251%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%22.290196%22%2F%3E%3Cstop%20offset%3D%22.437667639%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%22.392157%22%2F%3E%3Cstop%20offset%3D%22.5%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%22.501961%22%2F%3E%3Cstop%20offset%3D%22.562332361%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%22.607843%22%2F%3E%3Cstop%20offset%3D%22.625801749%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%22.709804%22%2F%3E%3Cstop%20offset%3D%22.691545189%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%22.8%22%2F%3E%3Cstop%20offset%3D%22.760699709%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%22.882353%22%2F%3E%3Cstop%20offset%3D%22.834402332%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%22.945098%22%2F%3E%3Cstop%20offset%3D%22.913790087%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%22.984314%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23fff%22%2F%3E%3C%2FlinearGradient%3E%3Cpath%20d%3D%22m8500%201164h10v100h-10z%22%20fill%3D%22url(%23a)%22%20transform%3D%22translate(-8500%20-1164)%22%2F%3E%3C%2Fsvg%3E')
+}
+
+.appAchievementsAchievementsList__lockedFooterText {
+    height: 92px;
+    padding-top: 14px;
+    line-height: 1.46;
+    font-size: 13px;
+    text-align: center;
+    background: #fff;
+    color: #656565
+}
+
 .appAchievementsAchievementsList__empty.opened_empty .appAchievementsAchievementsList__emptyImg_opened,
 .appAchievementsAchievementsList__empty.closed_empty .appAchievementsAchievementsList__emptyImg_closed {
+    display: block
+}
+
+.appAchievementsAchievementsList.locked {
+    overflow: hidden;
+    max-height: 485px
+}
+
+.appAchievementsAchievementsList.locked .appAchievementsAchievementsList__lockedFooter {
     display: block
 }
 
@@ -848,8 +900,61 @@
 }
 
 .appAchievementsAchievement svg {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
     display: block;
     position: relative
+}
+
+.appAchievementsAchievement__friends {
+    margin-top: 8px;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.appAchievementsAchievement__friendIcons {
+    display: inline-block;
+    -ms-flex-negative: 0;
+    flex-shrink: 0
+}
+
+.appAchievementsAchievement__friendIcon {
+    display: inline-block;
+    position: relative;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    left: 8px;
+    margin-left: -8px;
+    vertical-align: middle
+}
+
+.appAchievementsAchievement__openedFriends {
+    display: inline-block;
+    margin-left: 12px;
+    color: #656565;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.appAchievementsAchievement__friendLink {
+    display: inline-block
+}
+
+.appAchievementsAchievement__friendLink:hover {
+    text-decoration: none
+}
+
+.appAchievementsAchievement__friendLink:first-child>.appAchievementsAchievement__friendIcon {
+    z-index: 2
+}
+
+.appAchievementsAchievement__friendLink:nth-child(2)>.appAchievementsAchievement__friendIcon {
+    z-index: 1
 }
 
 .appAchievementsAchievement.hide {
@@ -870,7 +975,7 @@
     transform: scale(0.5)
 }
 
-.appAchievementsAchievement.open .appAchievementsAchievement__resDesc {
+.appAchievementsAchievement.open .appAchievementsAchievement__restDesc {
     display: none
 }
 
@@ -880,7 +985,8 @@
     color: #4bb34b
 }
 
-.appAchievementsAchievement.closed .appAchievementsAchievement__state {
+.appAchievementsAchievement.closed .appAchievementsAchievement__state,
+.appAchievementsAchievement.no_rest .appAchievementsAchievement__restDesc {
     display: none
 }
 
@@ -1091,6 +1197,122 @@
         background-image: url(/images/apps/achievements/level_5_right_bg_2x.png);
         background-size: 348px 148px
     }
+}
+
+.apps_stickerAchievementsBox .box_body {
+    padding: 0
+}
+
+.appAchievementsAchievementsList.layer {
+    padding: 15px
+}
+
+.appAchievementsAchievement.layer {
+    width: 304px;
+    padding: 15px 10px
+}
+
+.appAchievementsAchievement.layer .appAchievementsAchievement__name {
+    display: inline-block;
+    max-width: 152px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+.appAchievementsAchievement.layer .appAchievementsAchievement__desc,
+.appAchievementsAchievement.layer .appAchievementsAchievement__restDesc {
+    max-width: 152px
+}
+
+.appAchievementsLeaderBoard {
+    display: -ms-flexbox;
+    display: flex;
+    width: 444px;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin: 30px auto 40px;
+    padding: 0
+}
+
+.appAchievementsLeaderBoardItem {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding: 0;
+    margin-right: 16px
+}
+
+.appAchievementsLeaderBoardItem__ava {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    vertical-align: middle
+}
+
+.appAchievementsLeaderBoardItem__avaLink {
+    position: relative;
+    display: block;
+    margin-bottom: 18px
+}
+
+.appAchievementsLeaderBoardItem__avaLink:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 20px;
+    bottom: -10px;
+    left: 50%;
+    margin-left: -8px
+}
+
+.appAchievementsLeaderBoardItem__name {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 2px
+}
+
+.appAchievementsLeaderBoardItem__opened {
+    display: inline-block;
+    max-width: 76px;
+    width: 76px;
+    font-size: 12.5px;
+    line-height: 1.36;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: #656565
+}
+
+.appAchievementsLeaderBoardItem:last-child {
+    margin-right: 0
+}
+
+.appAchievementsLeaderBoardItem.place_0 .appAchievementsLeaderBoardItem__avaLink:after {
+    display: none
+}
+
+.appAchievementsLeaderBoardItem.place_1 .appAchievementsLeaderBoardItem__avaLink:after {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2216%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient%20x1%3D%2217.291%25%22%20y1%3D%22100%25%22%20x2%3D%2282.709%25%22%20y2%3D%220%25%22%20id%3D%22a%22%3E%3Cstop%20stop-color%3D%22%23FFBE3D%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23FFA51F%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cg%20fill-rule%3D%22nonzero%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M2.564%200h10.872c.892%200%201.215.093%201.54.267.327.174.583.43.757.756.174.326.267.65.267%201.54v15.719a1.5%201.5%200%200%201-2.293%201.273l-4.978-3.1c-.283-.177-.396-.223-.53-.253a.89.89%200%200%200-.398%200c-.134.03-.247.076-.53.252l-4.978%203.1A1.5%201.5%200%200%201%200%2018.283V2.564c0-.892.093-1.215.267-1.54.174-.327.43-.583.756-.757C1.35.093%201.673%200%202.563%200z%22%20fill%3D%22url(%23a)%22%2F%3E%3Cpath%20d%3D%22M7.54%205.881l-.605.41a2.158%202.158%200%200%201-.363.192.806.806%200%200%201-.288.055.637.637%200%200%201-.657-.657c0-.284.171-.534.513-.749l.94-.628c.437-.28.852-.42%201.244-.42.338%200%20.61.105.815.316.206.212.308.492.308.842v5.819c0%20.326-.081.577-.245.752-.163.175-.394.262-.694.262-.303%200-.537-.088-.7-.265-.163-.177-.245-.427-.245-.75V5.882H7.54z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50%
+}
+
+.appAchievementsLeaderBoardItem.place_2 .appAchievementsLeaderBoardItem__avaLink:after {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2216%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient%20x1%3D%2282.709%25%22%20y1%3D%220%25%22%20x2%3D%2217.291%25%22%20y2%3D%22100%25%22%20id%3D%22a%22%3E%3Cstop%20stop-color%3D%22%23CCD6D8%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%2394A2AB%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cg%20fill-rule%3D%22nonzero%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M2.564%200h10.872c.892%200%201.215.093%201.54.267.327.174.583.43.757.756.174.326.267.65.267%201.54v15.719a1.5%201.5%200%200%201-2.293%201.273l-4.978-3.1c-.283-.177-.396-.223-.53-.253a.89.89%200%200%200-.398%200c-.134.03-.247.076-.53.252l-4.978%203.1A1.5%201.5%200%200%201%200%2018.283V2.564c0-.892.093-1.215.267-1.54.174-.327.43-.583.756-.757C1.35.093%201.673%200%202.563%200z%22%20fill%3D%22url(%23a)%22%2F%3E%3Cpath%20d%3D%22M5.351%2011.2c0-.174.056-.348.167-.522.112-.175.311-.405.6-.689L8.11%207.938c.311-.319.535-.592.671-.818.137-.227.205-.448.205-.663a.893.893%200%200%200-.28-.683c-.186-.174-.43-.262-.734-.262-.246%200-.46.063-.64.188-.18.124-.334.315-.46.573-.128.196-.252.335-.375.418a.756.756%200%200%201-.432.123.764.764%200%200%201-.556-.21.72.72%200%200%201-.216-.539c0-.353.122-.69.368-1.01.246-.321.582-.579%201.009-.773a3.355%203.355%200%200%201%201.405-.29c.523%200%20.992.098%201.41.296.416.198.742.47.979.818.236.348.354.739.354%201.173%200%20.407-.106.802-.317%201.187-.211.384-.557.812-1.037%201.284l-1.642%201.66v.08h2.397c.269%200%20.48.069.636.205a.701.701%200%200%201%20.234.556c0%20.234-.077.418-.23.55-.154.133-.367.199-.64.199H6.279c-.28%200-.505-.073-.674-.219a.73.73%200%200%201-.254-.582z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50%
+}
+
+.appAchievementsLeaderBoardItem.place_3 .appAchievementsLeaderBoardItem__avaLink:after {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2216%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient%20x1%3D%2282.709%25%22%20y1%3D%220%25%22%20x2%3D%2217.291%25%22%20y2%3D%22100%25%22%20id%3D%22a%22%3E%3Cstop%20stop-color%3D%22%23D69F56%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23AD6D23%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cg%20fill-rule%3D%22nonzero%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M2.564%200h10.872c.892%200%201.215.093%201.54.267.327.174.583.43.757.756.174.326.267.65.267%201.54v15.719a1.5%201.5%200%200%201-2.293%201.273l-4.978-3.1c-.283-.177-.396-.223-.53-.253a.89.89%200%200%200-.398%200c-.134.03-.247.076-.53.252l-4.978%203.1A1.5%201.5%200%200%201%200%2018.283V2.564c0-.892.093-1.215.267-1.54.174-.327.43-.583.756-.757C1.35.093%201.673%200%202.563%200z%22%20fill%3D%22url(%23a)%22%2F%3E%3Cpath%20d%3D%22M5.17%2010.318a.74.74%200%200%201%20.204-.54c.137-.14.31-.21.522-.21.138%200%20.268.036.389.107.12.071.246.187.377.349.353.476.808.714%201.365.714.38%200%20.685-.092.914-.276a.9.9%200%200%200%20.343-.738c0-.2-.052-.377-.156-.533a1.023%201.023%200%200%200-.44-.363%201.565%201.565%200%200%200-.655-.13h-.466a.657.657%200%200%201-.496-.204.723.723%200%200%201-.196-.521c0-.204.065-.374.196-.51a.657.657%200%200%201%20.496-.205h.449c.204%200%20.388-.04.553-.12a.969.969%200%200%200%20.389-.332.833.833%200%200%200%20.141-.476.819.819%200%200%200-.138-.47.92.92%200%200%200-.39-.319%201.344%201.344%200%200%200-.567-.115c-.245%200-.47.056-.67.167-.202.111-.392.284-.568.519-.2.26-.45.391-.75.391A.758.758%200%200%201%205.47%206.3a.691.691%200%200%201-.213-.522c0-.315.124-.608.372-.881.247-.273.585-.492%201.01-.657a3.844%203.844%200%200%201%201.401-.248c.553%200%201.047.09%201.48.268.435.179.773.428%201.015.75.242.32.363.684.363%201.091%200%20.277-.064.54-.19.79a1.76%201.76%200%200%201-.516.619c-.217.163-.456.26-.717.29v.127c.31.024.592.12.844.291.251.171.45.395.593.672.144.276.216.58.216.91%200%20.457-.131.866-.394%201.227-.264.361-.63.643-1.1.844-.471.202-1.006.303-1.606.303a3.928%203.928%200%200%201-1.44-.257c-.438-.17-.784-.398-1.037-.682-.254-.285-.38-.59-.38-.916z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50%
+}
+
+.appAchievementsLeaderBoardItem.place_4 .appAchievementsLeaderBoardItem__avaLink:after {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2216%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient%20x1%3D%2282.709%25%22%20y1%3D%220%25%22%20x2%3D%2217.291%25%22%20y2%3D%22100%25%22%20id%3D%22a%22%3E%3Cstop%20stop-color%3D%22%23444%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23222%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cg%20fill-rule%3D%22nonzero%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M2.564%200h10.872c.892%200%201.215.093%201.54.267.327.174.583.43.757.756.174.326.267.65.267%201.54v15.719a1.5%201.5%200%200%201-2.293%201.273l-4.978-3.1c-.283-.177-.396-.223-.53-.253a.89.89%200%200%200-.398%200c-.134.03-.247.076-.53.252l-4.978%203.1A1.5%201.5%200%200%201%200%2018.283V2.564c0-.892.093-1.215.267-1.54.174-.327.43-.583.756-.757C1.35.093%201.673%200%202.563%200z%22%20fill%3D%22url(%23a)%22%2F%3E%3Cpath%20d%3D%22M5.881%2010.652c-.342%200-.606-.087-.792-.26-.186-.172-.28-.418-.28-.737%200-.142.02-.283.061-.424.04-.14.116-.329.228-.567a30.77%2030.77%200%200%201%202.074-3.538c.196-.28.38-.5.553-.66.173-.159.353-.274.542-.345.188-.071.403-.107.645-.107.465%200%20.833.115%201.106.343.273.229.41.539.41.93v3.86h.247c.234%200%20.422.071.562.211.14.14.21.326.21.556%200%20.227-.068.406-.205.539-.136.132-.325.199-.567.199h-.248v.472c0%20.292-.08.524-.242.695-.161.17-.378.256-.65.256-.274%200-.489-.085-.646-.254-.158-.169-.236-.401-.236-.697v-.472H5.88zm2.772-5.076H8.56a39.65%2039.65%200%200%200-1.03%201.731c-.454.793-.79%201.393-1.01%201.8v.04h2.133V5.577z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50%
+}
+
+.appAchievementsLeaderBoardItem.place_5 .appAchievementsLeaderBoardItem__avaLink:after {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2216%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient%20x1%3D%2282.709%25%22%20y1%3D%220%25%22%20x2%3D%2217.291%25%22%20y2%3D%22100%25%22%20id%3D%22a%22%3E%3Cstop%20stop-color%3D%22%23444%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23222%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cg%20fill-rule%3D%22nonzero%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M2.564%200h10.872c.892%200%201.215.093%201.54.267.327.174.583.43.757.756.174.326.267.65.267%201.54v15.719a1.5%201.5%200%200%201-2.293%201.273l-4.978-3.1c-.283-.177-.396-.223-.53-.253a.89.89%200%200%200-.398%200c-.134.03-.247.076-.53.252l-4.978%203.1A1.5%201.5%200%200%201%200%2018.283V2.564c0-.892.093-1.215.267-1.54.174-.327.43-.583.756-.757C1.35.093%201.673%200%202.563%200z%22%20fill%3D%22url(%23a)%22%2F%3E%3Cpath%20d%3D%22M5.207%2010.387c0-.23.07-.426.21-.585.14-.16.324-.24.55-.24a.82.82%200%200%201%20.378.087%201.1%201.1%200%200%201%20.331.277c.2.246.407.427.623.544.215.117.453.176.714.176.25%200%20.473-.054.671-.161.198-.108.353-.258.464-.45.111-.192.167-.413.167-.662%200-.238-.053-.45-.158-.634a1.098%201.098%200%200%200-.444-.43%201.34%201.34%200%200%200-.642-.152%201.6%201.6%200%200%200-.545.1%202.24%202.24%200%200%200-.539.286%201.586%201.586%200%200%201-.374.228%201.016%201.016%200%200%201-.85-.058.838.838%200%200%201-.34-.349.945.945%200%200%201-.1-.507l.19-2.8c.042-.618.422-.928%201.14-.928h3.273c.276%200%20.49.068.64.202.15.135.224.323.224.565%200%20.238-.074.421-.222.55-.148.129-.362.193-.642.193H7.034l-.127%201.706h.098c.138-.181.351-.326.64-.435.287-.11.6-.165.938-.165.504%200%20.947.108%201.331.323.385.215.683.517.896.905.214.388.32.837.32%201.348%200%20.568-.129%201.068-.386%201.498-.257.43-.623.763-1.098%201-.474.236-1.024.354-1.65.354-.515%200-.985-.084-1.412-.25-.426-.168-.762-.389-1.008-.663-.246-.275-.369-.566-.369-.873z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50%
 }
 
 .AppsSalesProduct {
