@@ -1017,13 +1017,13 @@ Ads.createStaticDateRange = function(elem, containerID) {
     function render() {
         if (!datePickerVisible) {
             AdsComponents.renderDatePicker(container, {
-                onClose,
-                onDone,
+                onClose: onClose,
+                onDone: onDone,
                 ranges: {
                     range1: dateRange
                 },
                 minDate: new Date(2005, 0)
-            }, );
+            });
             datePickerVisible = true;
         } else {
             AdsComponents.unmountDatePicker(container);

@@ -2,7 +2,6 @@
     display: none
 }
 
-.cal_table .month_arr .arr,
 .datepicker_text {
     -ms-high-contrast-adjust: none
 }
@@ -19,14 +18,12 @@
 }
 
 .cal_table {
-    width: 212px;
+    width: 280px;
     color: #000;
     text-align: center;
-    border: 1px solid #c5d0db;
-    border-radius: 3px;
+    border-radius: 6px;
     font-size: 12.5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
-    background-color: #fff;
     -ms-user-select: none;
     user-select: none;
     -o-user-select: none;
@@ -35,24 +32,63 @@
     -webkit-user-select: none
 }
 
+.cal_table>thead {
+    display: block;
+    border: 0 solid #5181b8;
+    border-width: 1px 1px 0;
+    border-radius: 6px 6px 0 0;
+    background-color: #5181b8;
+    overflow: hidden
+}
+
+.cal_table>tbody {
+    display: block;
+    border: 0 solid #cfd9e1;
+    border-width: 0 1px 1px;
+    border-radius: 0 0 6px 6px;
+    background-color: #fff;
+    overflow: hidden
+}
+
+.cal_table>tbody>tr:last-of-type>td:first-of-type {
+    border-bottom-left-radius: 6px
+}
+
+.cal_table>tbody>tr:last-of-type>td:last-of-type {
+    border-bottom-right-radius: 6px
+}
+
 .cal_table_head {
-    width: 212px;
-    margin: -1px -1px 0;
-    border-radius: 3px 3px 0 0;
+    width: 280px;
     overflow: hidden
 }
 
 .cal_table .month {
+    text-align: center;
+    background-color: #5181b8;
     height: 32px;
     line-height: 32px;
     font-weight: 500;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
     color: #fff;
     width: 100%
 }
 
 .cal_table .month,
+.cal_table .month .year {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.cal_table .month .year {
+    font-weight: 400;
+    color: #cee0f5
+}
+
+.cal_table .cal_table_head .month {
+    text-align: left;
+    padding-left: 9px
+}
+
 .cal_table .month_arr {
     text-align: center;
     background-color: #5181b8
@@ -60,69 +96,83 @@
 
 .cal_table .month_arr .arr {
     display: block;
-    width: 32px;
+    width: 30px;
     height: 32px;
-    background: url(/images/icons/back_fwd.gif?1) no-repeat
+    opacity: 0.8;
+    cursor: pointer
 }
 
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .cal_table .month_arr .arr {
-        background-image: url(/images/icons/back_fwd_2x.gif?1);
-        background-size: 15px 67px
-    }
+.cal_table .month_arr .arr:hover {
+    opacity: 1
 }
 
 .cal_table .month_arr .arr.left {
-    background-position: 6px -27px
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2232%22%20viewBox%3D%220%200%2030%2032%22%20width%3D%2230%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22m0%200h30v32h-30z%22%20opacity%3D%22.1%22%2F%3E%3Cpath%20d%3D%22m17%2021-4-5%204-5%22%20stroke%3D%22%23fff%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%222%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') 50% no-repeat
 }
 
 .cal_table .month_arr .arr.right {
-    background-position: 11px -47px
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2232%22%20viewBox%3D%220%200%2030%2032%22%20width%3D%2230%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22matrix(-1%200%200%201%2030%200)%22%3E%3Cpath%20d%3D%22m0%200h30v32h-30z%22%20opacity%3D%22.1%22%2F%3E%3Cpath%20d%3D%22m17%2021-4-5%204-5%22%20stroke%3D%22%23fff%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%222%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') 50% no-repeat
 }
 
 .cal_table .daysofweek {
     text-align: center;
-    background-color: #ebf0f5;
-    color: #8996a3
+    background-color: #5181b8;
+    color: #cee0f5;
+    height: 40px;
+    line-height: 40px
 }
 
 .cal_table .day,
 .cal_table .daysofweek {
-    height: 30px;
-    line-height: 30px;
-    width: 30px;
+    width: 40px;
     box-sizing: border-box
 }
 
 .cal_table .day {
-    cursor: pointer
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    background-color: #fff
 }
 
-.cal_table .day.hover {
-    background-color: #edf0f5
+.cal_table .day:hover:not(.inactive_day) {
+    background-color: #f0f2f5
 }
 
 .cal_table .day.sel,
-.cal_table .day.sel.hover {
-    background-color: #f2f6fa;
-    border: 1px solid #98b0cd;
-    line-height: 28px
+.cal_table .day.sel:hover {
+    background-color: #5181b8;
+    color: #fff;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }
 
 .cal_table.disabled .day {
     cursor: auto
 }
 
-.cal_table .today {
-    font-weight: 700;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+.cal_table .month_selector .day {
+    width: 140px
 }
 
-.cal_table .past_day {
-    color: #939393
+.cal_table .today {
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    box-shadow: inset 0px 0px 0px 1px #d3d9de;
+    background: #f5f7fa;
+    color: #222
+}
+
+.cal_table .inactive_day {
+    color: #939393;
+    cursor: default
+}
+
+.cal_table .next_month_day,
+.cal_table .prev_month_day {
+    background-color: #f5f7fa
 }
 
 .datepicker_control {

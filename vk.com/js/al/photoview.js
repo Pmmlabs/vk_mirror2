@@ -2737,7 +2737,6 @@ var Photoview = {
                 act: 'post_comment',
                 photo: ph.id,
                 hash: ph.hash,
-                fromview: 1,
                 from_group: replyAsGroup && (domData(domClosest('_submit_post_box', ge(replyAsGroup)), 'from-oid')) < 0 ? 1 : '',
                 reply_to: (cur.reply_to || {})[1]
             })), {

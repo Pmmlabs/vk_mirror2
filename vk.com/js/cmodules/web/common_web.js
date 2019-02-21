@@ -69,7 +69,7 @@
     a.push = t, a = a.slice();
     for (var s = 0; s < a.length; s++) t(a[s]);
     var d = c;
-    r.push([70, "7f81047508570d6456c7d33e2e3c0bc3", "b459a6fdd4abe926f4e4ca100471ca63", "075e72e66ff59d27b023e4956acea75e"]), o()
+    r.push([71, "7f81047508570d6456c7d33e2e3c0bc3", "b459a6fdd4abe926f4e4ca100471ca63", "075e72e66ff59d27b023e4956acea75e"]), o()
 }({
     "+rLv": function(e, t, o) {
         e.exports = o("dyZX").document && document.documentElement
@@ -773,7 +773,7 @@
     "4R4u": function(e, t) {
         e.exports = "constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")
     },
-    70: function(e, t, o) {
+    71: function(e, t, o) {
         e.exports = o("g42W")
     },
     "8oxB": function(e, t) {
@@ -2736,7 +2736,7 @@
                 module: cur.module
             }, e);
             Object(_utils_common__WEBPACK_IMPORTED_MODULE_2__.H)(n.module) || (n._nol = JSON.stringify(nav.objLoc));
-            var i = ["videoview.js"];
+            var i = ["videoview.js", "videoview.css"];
 
             function r(e, o) {
                 Object(_utils_common__WEBPACK_IMPORTED_MODULE_2__.v)(t) && t(e, o)
@@ -4373,7 +4373,9 @@
                     id: "stories_loader",
                     innerHTML: Object(_.f)("stories_loader_pr", "pr_baw pr_medium") + '<div class="back"></div>'
                 }))
-            }, 1e3), stManager.add(["stories.js", "stories.css", jsc("web/emoji.js")], function() {
+            }, 1e3);
+            var o = ["stories.js", "stories.css", jsc("web/emoji.js"), "videoview.js", "videoplayer.js", "videoplayer.css", "hls.min.js"];
+            stManager.add(o, function() {
                 var o = window.Stories;
                 clearTimeout(s), Object(a.Fa)("stories_loader"), o.show(e, t)
             })

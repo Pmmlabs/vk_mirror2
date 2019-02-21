@@ -56,7 +56,7 @@
         place.innerHTML = '<div></div>';
         place = place.firstChild;
         var mode = (modes[params.mode] || params.mode || 'd').toString().replace(/(this|next|prev)/, '');
-        var hideNextMonth = params.hideNextMonth && true;
+        var hideAnotherMonth = params.hideAnotherMonth && true;
 
         var parseDay = this.parseDay = function(day) {
             day = day.toString();
@@ -107,6 +107,8 @@
         this.getMonth = function(m, y, noheight, monthsel) {
             var mn = l.mn;
             var oD = new Date(y, m - 1, 1);
+            var lD = new Date(y, m, 0);
+            var prev_lD = new Date(y, m - 1, 0);
             oD.od = oD.getDay();
             if (oD.od == 0) {
                 oD.od = 7;
@@ -126,10 +128,11 @@
 
             var d_y = oD.getFullYear();
             dim[1] = (((d_y % 100 != 0) && (d_y % 4 == 0)) || (d_y % 400 == 0)) ? 29 : 28;
-            var t = [];
+            var th = [];
+            var tb = [];
             var t2 = [];
 
-            var tbl = '<table class="%cls%" cols="%cols%" cellpadding="0" border="0" cellspacing="0"><tbody>%rows%</tbody></table>';
+            var tbl = '<table class="%cls%" cols="%cols%" cellpadding="0" border="0" cellspacing="0">%rows%</table>';
             var headerNormal;
             var headerDisabled;
 
@@ -141,18 +144,19 @@
 
                     headerNormal = '' +
                         '<tr>' +
-                        '<td class="month_arr"><a class="arr left" onclick="return cals.getMonth(' + guid + ',1,' + lastYear + ');"></a></td>' +
                         '<td align="center" class="month">' + y + '</td>' +
+                        '<td class="month_arr"><a class="arr left" onclick="return cals.getMonth(' + guid + ',1,' + lastYear + ');"></a></td>' +
                         '<td class="month_arr"><a class="arr right" onclick="return cals.getMonth(' + guid + ',1,' + nextYear + ');"></a></td>' +
                         '</tr>';
 
-                    t.push('<tr><td colspan="2">');
-                    t.push(rs(tbl, {
+                    th.push('<tr><td colspan="2">');
+                    th.push(rs(tbl, {
                         cls: 'cal_table_head',
                         cols: '3',
                         rows: headerNormal
                     }));
-                    t.push('</td></tr><tr>');
+                    th.push('</td></tr>');
+                    tb.push('<tr>');
                     for (var i = 1; i <= 12; i++) {
                         leftStyle = "";
                         if (i % 2 == 1) {
@@ -162,22 +166,22 @@
                         clDay = (i == selDay) ? 'day sel' : 'day';
                         curDate = new Date(y, i - 1, 1);
                         if (!params.pastActive && curDate < todayDate || params.pastActive && curDate > todayDate) {
-                            clDay += ' past_day';
+                            clDay += ' inactive_day';
                         }
                         if (params.activePeriod && curDate > futureDate) {
-                            clDay += ' past_day';
+                            clDay += ' inactive_day';
                         }
                         if (curDate.getTime() == todayDate.getTime()) {
                             clDay += ' today';
                         }
-                        t.push('<td class="' + clDay + leftStyle + '" style="width:50%" id="day' + i + '_' + rnd + '" onclick="return cals.getDay(' + guid + ', 1, ' + i + ', ' + y + ');" onmouseover="addClass(this, \'hover\')"  onmouseout="removeClass(this, \'hover\')">' + mn[i - 1] + '</td>');
+                        tb.push('<td class="' + clDay + leftStyle + '" style="width:50%" id="day' + i + '_' + rnd + '" onclick="return cals.getDay(' + guid + ', 1, ' + i + ', ' + y + ');"' + mn[i - 1] + '</td>');
                     }
-                    t.push('</tr>');
+                    tb.push('</tr>');
 
                     t2.push(rs(tbl, {
                         cls: 'cal_table',
                         cols: '2',
-                        rows: t.join('')
+                        rows: '<thead>' + th.join('') + '</thead><tbody>' + tb.join('') + '</tbody>'
                     }));
 
                     if (!noheight) place.style.height = place.offsetHeight + "px";
@@ -187,7 +191,11 @@
                     break;
 
                 default:
+                    var selDayPresent = false;
                     var selDay = (y == day.y && m == day.m) ? day.d : 0;
+                    if (selDay > 0) {
+                        selDayPresent = true;
+                    }
 
                     if (m == 12) {
                         nextMonth = 1;
@@ -204,36 +212,45 @@
                         lastYear = y;
                     }
 
-                    var monthYear = monthFormat.replace('{month}', mn[m - 1]).replace('{year}', y);
+                    if (nextMonth == day.m) {
+                        selDay = day.d + lD.getDate();
+                        selDayPresent = true;
+                    }
+                    if (lastMonth == day.m) {
+                        selDay = day.d - prev_lD.getDate();
+                        selDayPresent = true;
+                    }
+
+                    var monthYear = monthFormat.replace('{month}', mn[m - 1]).replace('{year}', '<span class="year">' + y + '</span>');
                     var calClass = 'cal_table' + (disabled ? ' disabled' : '') + (monthsel ? ' unshown' : '');
-                    var hoverEl = (mode === 'w') ? 'this.parentNode' : 'this';
 
                     var headerNormal = '' +
                         '<tr>' +
+                        '<td class="month"><a class="cal_month_sel" onclick="return cals.getMonth(' + guid + ',' + m + ',' + y + ',1);">' + monthYear + '</a></td>' +
                         '<td class="month_arr"><a class="arr left" onclick="return cals.getMonth(' + guid + ',' + lastMonth + ',' + lastYear + ');"></a></td>' +
-                        '<td align="center" class="month"><a class="cal_month_sel" onclick="return cals.getMonth(' + guid + ',' + m + ',' + y + ',1);">' + monthYear + '</a></td>' +
                         '<td class="month_arr"><a class="arr right" onclick="return cals.getMonth(' + guid + ',' + nextMonth + ',' + nextYear + ');"></a></td>' +
                         '</tr>';
                     var headerDisabled = '' +
                         '<tr>' +
+                        '<td class="month">' + monthYear + '</td>' +
                         '<td class="month_arr"><span class="arr left"></span></td>' +
-                        '<td align="center" class="month">' + monthYear + '</td>' +
                         '<td class="month_arr"><span class="arr right"></span></td>' +
                         '</tr>';
 
-                    t.push('<tr><td colspan="7">');
-                    t.push(rs(tbl, {
+                    th.push('<tr><td colspan="7">');
+                    th.push(rs(tbl, {
                         cls: 'cal_table_head',
                         cols: '3',
                         rows: disabled ? headerDisabled : headerNormal
                     }));
-                    t.push('</td></tr><tr>');
+                    th.push('</td></tr><tr>');
 
                     for (var s = 0; s < 7; s++) {
-                        t.push('<td class="daysofweek">' + l.days[s] + '</td>');
+                        th.push('<td class="daysofweek">' + l.days[s] + '</td>');
                     }
-                    t.push('</tr><tr>');
+                    th.push('</tr>');
 
+                    tb.push('<tr>');
                     var dayPos = [];
 
                     for (var i = 1; i <= 42; i++) {
@@ -252,16 +269,16 @@
                         }
 
                         clDay = leftStyle;
-                        if (x >= selDay && x < selDay + lim) {
+                        if (selDay > 0 && x >= selDay && x < selDay + lim) {
                             clDay += ' day sel';
                         } else {
                             clDay += ' day';
                         }
                         if (!params.pastActive && curDate < todayDate || params.pastActive && curDate > todayDate) {
-                            clDay += ' past_day';
+                            clDay += ' inactive_day';
                         }
                         if (params.activePeriod && curDate > futureDate) {
-                            clDay += ' past_day';
+                            clDay += ' inactive_day';
                         }
                         if (curDate.getTime() == todayDate.getTime()) {
                             clDay += ' today';
@@ -269,31 +286,62 @@
 
                         if (x > 0) {
                             dayPos[i] = x1;
-                            t.push('<td id="day' + x + '_' + rnd + '" class="' + clDay + '" onclick="return cals.getDay(' + guid + ', ' + x1 + ', ' + m + ', ' + y + ');" onmouseover="addClass(' + hoverEl + ', \'hover\')"  onmouseout="removeClass(' + hoverEl + ', \'hover\')">' + x + '</td>');
+                            tb.push('<td id="day' + x + '_' + rnd + '" class="' + clDay + '" onclick="return cals.getDay(' + guid + ', ' + x1 + ', ' + m + ', ' + y + ');">' + x + '</td>');
                         } else {
                             if (i != 36) {
                                 if (!dontDoLine) {
                                     if (mode === 'w') dayPos[i] = x1;
-                                    date = (i > 7 && !hideNextMonth) ? curDate.getDate() : '&nbsp';
-                                    t.push('<td class="day no_month_day' + leftStyle + '">' + date + '</td>');
+                                    if (hideAnotherMonth) {
+                                        date = '&nbsp';
+                                        tb.push('<td class="day no_month_day' + leftStyle + '">' + date + '</td>');
+                                    } else {
+                                        dayPos[i] = x1;
+                                        date = curDate.getDate();
+                                        var isPrev = i <= 7;
+                                        if (isPrev) {
+                                            clDay += ' prev_month_day';
+                                            clDay += selDayPresent && (prev_lD.getDate() + selDay === date) ? ' sel' : '';
+                                        } else {
+                                            clDay += ' next_month_day';
+                                            clDay += selDayPresent && (selDay - lD.getDate() === date) ? ' sel' : '';
+                                        }
+                                        // calc month and year
+                                        var cm = (isPrev ? m - 1 : m + 1),
+                                            cy = y;
+                                        if (cm < 1) {
+                                            cm = 12 + cm;
+                                            cy = y - 1;
+                                        }
+                                        if (cm > 12) {
+                                            cm = cm - 12;
+                                            cy = y + 1;
+                                        }
+
+                                        tb.push('<td id="day' + x + '_' + rnd + '" class="' + clDay + '" onclick="return cals.getDay(' + guid + ', ' + date + ', ' + cm + ', ' + cy + ');" >' + date + '</td>');
+                                    }
                                 }
                             } else {
                                 dontDoLine = true;
                             }
                         }
                         if ((i % 7 == 0) && (i < 36)) {
-                            t.push('</tr><tr>');
+                            tb.push('</tr><tr>');
                         }
                     }
-                    t.push('</tr>' + addRows);
+                    tb.push('</tr>' + addRows);
+
+                    //join body parts, replace empty rows
+                    tb = tb.join('').replace('<tr></tr>', '');
 
                     t2.push(rs(tbl, {
                         cls: calClass,
                         cols: '7',
-                        rows: t.join('')
+                        rows: '<thead>' + th.join('') + '</thead><tbody>' + tb + '</tbody>'
                     }));
 
-                    t = [];
+                    // Build table for month selection
+                    th = [];
+                    tb = [];
 
                     todayDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
 
@@ -302,49 +350,51 @@
 
                     headerNormal = '' +
                         '<tr>' +
+                        '<td class="month"><a class="cal_month_sel" onclick="return cals.getMonth(' + guid + ',' + m + ',' + y + ');">' + y + '</a></td>' +
                         '<td class="month_arr"><a class="arr left" onclick="return cals.getMonth(' + guid + ',' + m + ',' + (y - 1) + ',1);"></a></td>' +
-                        '<td align="center" class="month"><a class="cal_month_sel" onclick="return cals.getMonth(' + guid + ',' + m + ',' + y + ');">' + y + '</a></td>' +
                         '<td class="month_arr"><a class="arr right" onclick="return cals.getMonth(' + guid + ',' + m + ',' + (y + 1) + ',1);"></a></td>' +
                         '</tr>';
                     headerDisabled = '' +
                         '<tr>' +
+                        '<td class="month">' + y + '</td>' +
                         '<td class="month_arr"><span class="arr left"></span></td>' +
-                        '<td align="center" class="month">' + y + '</td>' +
                         '<td class="month_arr"><span class="arr right"></span></td>' +
                         '</tr>';
 
-                    t.push('<tr><td colspan="2">');
-                    t.push(rs(tbl, {
+                    th.push('<tr><td colspan="2">');
+                    th.push(rs(tbl, {
                         cls: 'cal_table_head',
                         cols: '3',
                         rows: disabled ? headerDisabled : headerNormal
                     }));
-                    t.push('</td></tr><tr>');
+                    th.push('</td></tr>');
+
+                    tb.push('<tr>');
                     for (var i = 1; i <= 12; i++) {
                         leftStyle = '';
                         if (i % 2 == 1) {
-                            if (i > 1) t.push('</tr><tr>');
+                            if (i > 1) tb.push('</tr><tr>');
                             leftStyle = ' day_left';
                         }
-                        clDay = (i == selDay) ? 'day sel' : 'day';
+                        clDay = 'day ';
                         curDate = new Date(y, i - 1, 1);
                         if (!params.pastActive && curDate < todayDate || params.pastActive && curDate > todayDate) {
-                            clDay += ' past_day';
+                            clDay += ' inactive_day';
                         }
                         if (params.activePeriod && curDate > futureDate) {
-                            clDay += ' past_day';
+                            clDay += ' inactive_day';
                         }
                         if (curDate.getTime() == todayDate.getTime()) {
                             clDay += ' today';
                         }
-                        t.push('<td class="' + clDay + leftStyle + '" style="width:50%" id="day' + i + '_' + rnd + '" onclick="return cals.getMonth(' + guid + ', ' + i + ', ' + y + ');" onmouseover="addClass(this, \'hover\')"  onmouseout="removeClass(this, \'hover\')">' + mn[i - 1] + '</td>');
+                        tb.push('<td class="' + clDay + leftStyle + '" id="day' + i + '_' + rnd + '" onclick="return cals.getMonth(' + guid + ', ' + i + ', ' + y + ');">' + mn[i - 1] + '</td>');
                     }
-                    t.push('</tr>' + addRowsM);
+                    tb.push('</tr>' + addRowsM);
 
                     t2.push(rs(tbl, {
                         cls: calClass,
                         cols: '2',
-                        rows: t.join('')
+                        rows: '<thead>' + th.join('') + '</thead><tbody class="month_selector">' + tb.join('') + '</tbody>'
                     }));
 
                     val(place, t2.join(''));
@@ -399,7 +449,8 @@
             activePeriod: false,
             pastActive: false,
             onUpdate: function(d, m) {},
-            onMonthSelect: function() {}
+            onMonthSelect: function() {},
+            hideAnotherMonth: false
         };
 
         options = extend({}, defaults, options);
@@ -453,7 +504,7 @@
                 mode: mode,
                 addRows: addRows,
                 addRowsM: addRowsM,
-                hideNextMonth: true,
+                hideAnotherMonth: options.hideAnotherMonth,
                 pastActive: options.pastActive,
                 activePeriod: options.activePeriod,
                 onMonthSelect: checkCalendarTop,

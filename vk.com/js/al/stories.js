@@ -820,18 +820,9 @@ window.Stories = {
                 }
 
                 for (var owner_id in owners) {
-                    /*var seen = 1;
-                    for(var j = 0; j < wkcur.globalStories[owner_id].length; j++) {
-                      if (!wkcur.globalStories[owner_id][j].seen) {
-                        seen = 0;
-                        break;
-                      }
-                    }
-                    if (seen) {*/
                     removeClass('feed_story_' + owner_id, 'story_feed_new_item');
-                    //}
                 }
-            }
+            },
         });
     },
     showAnswerForm: function() {

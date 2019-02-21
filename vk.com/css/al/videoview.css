@@ -2753,7 +2753,7 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
 .mv_chat_message {
     position: relative;
     overflow: hidden;
-    padding: 7px 17px 7px 10px
+    padding: 7px 25px 7px 10px
 }
 
 .mv_chat_message_author_thumb {
@@ -2814,16 +2814,18 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     overflow: hidden;
     text-overflow: ellipsis;
     display: inline-block;
-    vertical-align: top
+    vertical-align: top;
+    vertical-align: middle
 }
 
 .mv_chat_admin_message .mv_chat_message_author_name {
-    height: 19px;
-    line-height: 19px;
-    border-radius: 9.5px;
+    height: 18px;
+    line-height: 18px;
+    border-radius: 9px;
     padding: 0 6px;
     background: #6590c7;
-    color: #fff
+    color: #fff;
+    margin-top: 1px
 }
 
 .mv_chat_admin_message .mv_chat_message_author_name:after {
@@ -2837,7 +2839,7 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
 
 .mv_chat_message_content {
     margin-left: 33px;
-    margin-top: 3px;
+    margin-top: 2px;
     line-height: 1.3
 }
 
@@ -2849,6 +2851,7 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     display: inline;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    vertical-align: middle;
     color: #fff
 }
 

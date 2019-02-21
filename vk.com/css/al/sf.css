@@ -951,7 +951,7 @@ body.sf .mention_tt_actions {
     color: #999
 }
 
-.sf_stats_cal .past_day,
+.sf_stats_cal .inactive_day,
 .sf_stats_cal .sel,
 .sf_stats_cal .today {
     color: #000

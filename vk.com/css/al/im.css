@@ -3974,8 +3974,9 @@ img.im_photo_thumb {
 }
 
 .im_cal_clear {
-    background: #ebf0f5;
-    padding: 5px 0px
+    border-top: 1px solid #e7e8ec;
+    background: #fafbfc;
+    padding: 4px 0px
 }
 
 .im_cal_clear_lnk {
@@ -3987,9 +3988,8 @@ img.im_photo_thumb {
     outline: 0;
     padding: 0;
     line-height: 1;
-    font-size: 12px;
     display: block;
-    padding: 5px 0px;
+    padding: 9px 0px;
     text-align: center;
     margin: 0px auto
 }
@@ -7163,20 +7163,9 @@ img.im_photo_thumb {
     display: none
 }
 
-.im-search--date-input .cal_table .day {
-    color: #939393;
-    pointer-events: none
-}
-
 .im-search--date-input .cal_div {
     z-index: 102;
     margin-top: 16px
-}
-
-.im-search--date-input .cal_table .past_day.day,
-.im-search--date-input .cal_table .today.day {
-    color: #000;
-    pointer-events: all
 }
 
 .im-search--date-input .datepicker_control {

@@ -1509,6 +1509,16 @@ input.wide_button {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
 }
 
+.n .hb_wrap {
+    padding-bottom: inherit;
+    overflow: hidden;
+    padding: 2px
+}
+
+.n .layout__leftMenu .hb_wrap {
+    padding: 0
+}
+
 ._hover a.hb_wrap:hover {
     text-decoration: none
 }
@@ -2078,6 +2088,9 @@ input.wide_button {
     ._lm #mfoot {
         display: none!important
     }
+    .n ._lm #mfoot {
+        display: block!important
+    }
 }
 
 .footer_menu {
@@ -2291,22 +2304,6 @@ input.wide_button {
     border-bottom: 1px solid #fff
 }
 
-.show_more_loading {
-    background: none
-}
-
-.show_more_loading .i_loading {
-    background-image: url('/images/mobile/oupload.gif');
-    -moz-background-size: 29px 7px!important;
-    -o-background-size: 29px 7px!important;
-    background-size: 29px 7px!important;
-    background-position: 50%
-}
-
-.vk_2x .show_more_loading .i_loading {
-    background-image: url('/images/mobile/oupload_2x.gif')
-}
-
 .bottom_btn_wrap {
     position: relative;
     padding: 0 10px 10px
@@ -2349,6 +2346,22 @@ input.wide_button {
     margin-bottom: 0;
     border-top: 1px solid #fff;
     border-bottom: 1px solid #efefef
+}
+
+.show_more_loading {
+    background: none
+}
+
+.show_more_loading .i_loading {
+    background-image: url('/images/mobile/oupload.gif');
+    -moz-background-size: 29px 7px!important;
+    -o-background-size: 29px 7px!important;
+    background-size: 29px 7px!important;
+    background-position: 50%
+}
+
+.vk_2x .show_more_loading .i_loading {
+    background-image: url('/images/mobile/oupload_2x.gif')
 }
 
 .head_panel {
@@ -9956,6 +9969,11 @@ only screen and (min-device-pixel-ratio: 2) {
     min-height: 100%
 }
 
+.no_header #mhead,
+.no_header #vk_head {
+    display: none
+}
+
 .body_only #mcont {
     border: none;
     -webkit-box-shadow: none;
@@ -10096,6 +10114,11 @@ only screen and (min-device-pixel-ratio: 2) {
 .qs_opened .m_search_cont,
 .qs_opened .mfoot {
     display: none
+}
+
+.n .qs_opened .m_search_cont,
+.n .qs_opened .mfoot {
+    display: block
 }
 
 @media (min-width: 882px) {

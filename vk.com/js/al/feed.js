@@ -1214,14 +1214,8 @@ var Feed = {
         if (from > 1) {
             toggleClass(cur.feedEls.wrap, 'feed_submit_shown', inArray(newSection, cur.options.feed_types.tabs.concat(['list', 'likes'])));
 
-            if (hasClass(cur.feedEls.wrap, 'test_posting_experiment_f')) {
-                toggleClass(cur.feedEls.wrap, 'feed_submit_only_shown', newSection === 'recommended');
-            } else if (hasClass(cur.feedEls.wrap, 'test_posting_experiment_g')) {
-                toggleClass(cur.feedEls.wrap, 'feed_submit_only_shown', newSection === 'search');
-            } else if (hasClass(cur.feedEls.wrap, 'test_posting_experiment_h')) {
-                toggleClass(cur.feedEls.wrap, 'feed_submit_only_shown', newSection === 'updates');
-            } else if (hasClass(cur.feedEls.wrap, 'test_posting_experiment_i')) {
-                toggleClass(cur.feedEls.wrap, 'feed_submit_only_shown', newSection === 'comments');
+            if (hasClass(cur.feedEls.wrap, 'test_posting_experiment_b1') || hasClass(cur.feedEls.wrap, 'test_posting_experiment_b2')) {
+                toggleClass(cur.feedEls.wrap, 'feed_submit_only_shown', ~['recommended', 'search', 'updates', 'comments'].indexOf(newSection));
             }
 
             var showSearch = inArray(newSection, ['articles_search', 'articles', 'search', 'photos_search', 'photos']);

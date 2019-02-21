@@ -1518,6 +1518,16 @@ input.wide_button {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
 }
 
+.n .hb_wrap {
+    padding-bottom: inherit;
+    overflow: hidden;
+    padding: 2px
+}
+
+.n .layout__leftMenu .hb_wrap {
+    padding: 0
+}
+
 ._hover a.hb_wrap:hover {
     text-decoration: none
 }
@@ -2091,6 +2101,9 @@ input.wide_button {
     ._lm #mfoot {
         display: none!important
     }
+    .n ._lm #mfoot {
+        display: block!important
+    }
 }
 
 .footer_menu {
@@ -2304,22 +2317,6 @@ input.wide_button {
     border-bottom: 1px solid #fff
 }
 
-.show_more_loading {
-    background: none
-}
-
-.show_more_loading .i_loading {
-    background-image: url('/images/mobile/oupload.gif');
-    -moz-background-size: 29px 7px!important;
-    -o-background-size: 29px 7px!important;
-    background-size: 29px 7px!important;
-    background-position: 50%
-}
-
-.vk_2x .show_more_loading .i_loading {
-    background-image: url('/images/mobile/oupload_2x.gif')
-}
-
 .bottom_btn_wrap {
     position: relative;
     padding: 0 10px 10px
@@ -2362,6 +2359,22 @@ input.wide_button {
     margin-bottom: 0;
     border-top: 1px solid #fff;
     border-bottom: 1px solid #efefef
+}
+
+.show_more_loading {
+    background: none
+}
+
+.show_more_loading .i_loading {
+    background-image: url('/images/mobile/oupload.gif');
+    -moz-background-size: 29px 7px!important;
+    -o-background-size: 29px 7px!important;
+    background-size: 29px 7px!important;
+    background-position: 50%
+}
+
+.vk_2x .show_more_loading .i_loading {
+    background-image: url('/images/mobile/oupload_2x.gif')
 }
 
 .head_panel {
@@ -9971,6 +9984,11 @@ only screen and (min-device-pixel-ratio: 2) {
     min-height: 100%
 }
 
+.no_header #mhead,
+.no_header #vk_head {
+    display: none
+}
+
 .body_only #mcont {
     border: none;
     -webkit-box-shadow: none;
@@ -10111,6 +10129,11 @@ only screen and (min-device-pixel-ratio: 2) {
 .qs_opened .m_search_cont,
 .qs_opened .mfoot {
     display: none
+}
+
+.n .qs_opened .m_search_cont,
+.n .qs_opened .mfoot {
+    display: block
 }
 
 @media (min-width: 882px) {
@@ -11633,7 +11656,7 @@ img[src^="/images/mobile/places/"] {
 .blog_about_header_logo {
     float: left;
     background: url(/images/blog/m_about_logo.png) 50% no-repeat;
-    height: 43px;
+    height: 48px;
     width: 50px
 }
 
@@ -13040,6 +13063,7 @@ a.Popup__headerCorner {
 }
 
 .Btn_theme_regular .BookmarksItem .ai_menu_toggle_button,
+.Btn_theme_regular .GlobalSearchHeader .i_search,
 .Btn_theme_regular .Icon,
 .Btn_theme_regular .m .vk__page_chatAdd .basis .lvi.mlvi,
 .Btn_theme_regular .m .vk__page_chatSettings .basis .lvi.mlvi,
@@ -14069,6 +14093,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .BookmarkListItem__tags .BookmarksTags:before,
 .BookmarksItem .ai_menu_toggle_button.Owner__tags_icon,
+.GlobalSearchHeader .i_search.Owner__tags_icon,
 .Icon.Owner__tags_icon,
 .m .vk__page_chatAdd .basis .lvi.mlvi.Owner__tags_icon,
 .m .vk__page_chatSettings .basis .lvi.mlvi.Owner__tags_icon,
@@ -14405,6 +14430,10 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     top: 0
 }
 
+.vk_custom_scroll .basis__content .HeaderBtn {
+    visibility: hidden
+}
+
 
 /*!
  * Desktop view adjustments
@@ -14536,7 +14565,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 @media (min-width: 882px) {
     .h .vk_header_tabs #m #mcont.basis__content {
         margin: -10px 0 0;
-        padding: 10px 0
+        padding: 10px 0!important
     }
     .h .vk_header_tabs #m #mcont.basis__content .bl_cont .PageBlock:first-child,
     .h .vk_header_tabs #m #mcont.basis__content .bl_cont a[name]+.wall_item,
@@ -14757,6 +14786,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     display: none
 }
 
+.n .SnackbarItem,
 .vk__page_mail .SnackbarItem {
     bottom: 44px
 }
@@ -19796,6 +19826,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .dropdown_icon .dropdown__item_toggler .BookmarksItem .ai_menu_toggle_button,
+.dropdown_icon .dropdown__item_toggler .GlobalSearchHeader .i_search,
 .dropdown_icon .dropdown__item_toggler .Icon,
 .dropdown_icon .dropdown__item_toggler .m .vk__page_chatAdd .basis .lvi.mlvi,
 .dropdown_icon .dropdown__item_toggler .m .vk__page_chatSettings .basis .lvi.mlvi,
@@ -23832,7 +23863,18 @@ figure[data-type="102"] .article_object_video_play {
     z-index: 9999
 }
 
+@media (min-width: 882px) {
+    .BottomMenu {
+        display: none
+    }
+}
+
+.messenger_noPullToRefresh .BottomMenu {
+    display: none
+}
+
 .BottomMenu__fixed {
+    border-bottom: 1px solid #ebedf0;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -23840,8 +23882,18 @@ figure[data-type="102"] .article_object_video_play {
     z-index: 16
 }
 
+.BottomMenu_hidden .BottomMenu__fixed {
+    display: none
+}
+
 .BottomMenu__offset {
     height: 48px
+}
+
+@media (min-width: 882px) {
+    .BottomMenu__offset {
+        display: none
+    }
 }
 
 .BottomMenu__table {
@@ -23850,7 +23902,9 @@ figure[data-type="102"] .article_object_video_play {
     background: #fff;
     -webkit-box-shadow: 0 -2px 6px 2px rgba(0, 0, 0, .06);
     -moz-box-shadow: 0 -2px 6px 2px rgba(0, 0, 0, .06);
-    box-shadow: 0 -2px 6px 2px rgba(0, 0, 0, .06)
+    box-shadow: 0 -2px 6px 2px rgba(0, 0, 0, .06);
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom)
 }
 
 .BottomMenu__row {
@@ -23864,13 +23918,70 @@ figure[data-type="102"] .article_object_video_play {
     line-height: 0
 }
 
+.BottomMenu__link {
+    display: block;
+    min-width: 28px;
+    height: 28px;
+    padding: 10px 0;
+    -webkit-tap-highlight-color: transparent
+}
+
 .BottomMenu__icon {
-    display: inline-block;
+    display: block;
     position: relative;
     width: 28px;
     height: 28px;
-    background: #95a0ad;
-    margin: 10px
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-image: url('/images/mobile/skins/icon/tabbar.png');
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin: auto
+}
+
+.vk_2x .BottomMenu__icon {
+    background-image: url('/images/mobile/skins/icon/tabbar_2x.png')
+}
+
+.BottomMenu__icon_feed {
+    background-position: 0 0
+}
+
+.BottomMenu__icon_feed.BottomMenu__icon_active {
+    background-position: 0 -28px
+}
+
+.BottomMenu__icon_recommend {
+    background-position: 0 -56px
+}
+
+.BottomMenu__icon_recommend.BottomMenu__icon_active {
+    background-position: 0 -84px
+}
+
+.BottomMenu__icon_messages {
+    background-position: 0 -112px
+}
+
+.BottomMenu__icon_messages.BottomMenu__icon_active {
+    background-position: 0 -140px
+}
+
+.BottomMenu__icon_notification {
+    background-position: 0 -168px
+}
+
+.BottomMenu__icon_notification.BottomMenu__icon_active {
+    background-position: 0 -196px
+}
+
+.BottomMenu__icon_menu {
+    background-position: 0 -224px
+}
+
+.BottomMenu__icon_menu.BottomMenu__icon_active {
+    background-position: 0 -252px
 }
 
 .BottomMenu__counter {
@@ -23882,17 +23993,110 @@ figure[data-type="102"] .article_object_video_play {
     background: #ff3347;
     font-size: 12px;
     font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
     line-height: 18px;
     text-align: center;
-    color: #fafafa;
+    color: #fff;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     padding: 0 4px;
     position: absolute;
-    top: -3px;
-    right: -9px;
-    -webkit-font-smoothing: antialiased
+    top: 0;
+    left: 16px
+}
+
+.BottomMenu__preloader {
+    border-bottom: 0!important;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1
+}
+
+@media (min-width: 882px) {
+    .BottomMenu__preloader {
+        position: static
+    }
+}
+
+.BottomMenu__updateButton {
+    text-align: center;
+    height: 48px;
+    padding: 0 0 12px;
+    background: #ebedf0;
+    position: relative;
+    overflow: hidden
+}
+
+.BottomMenu__updateButton,
+.vk_custom_scroll .BottomMenu__updateButton {
+    height: auto;
+    padding: 0
+}
+
+.BottomMenu__updateButton_container {
+    margin: 12px 0 0;
+    position: relative;
+    z-index: 1;
+    position: fixed;
+    top: 48px;
+    left: 0;
+    right: 0;
+    margin: 12px;
+    z-index: 7
+}
+
+.BottomMenu__updateButton_icon {
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 20px;
+    height: 20px
+}
+
+.BottomMenu__updateButton_wrap {
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    border-radius: 18px;
+    background-color: #528bcc;
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .15);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .15);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .15);
+    font-weight: 500;
+    line-height: 18px;
+    display: inline-block;
+    vertical-align: top;
+    padding: 9px 16px 9px 32px;
+    color: #fff;
+    position: relative
+}
+
+.vk_custom_scroll .vk_header_tabs .al_loading {
+    top: 87px
+}
+
+.vk_js_yes .vk_custom_scroll.vk__page_mail .al_loading {
+    top: -49px
+}
+
+.vk_custom_scroll .qs_loading,
+.vk_js_yes .vk_custom_scroll:not(.vk__page_mail) .qs_loading {
+    top: 48px
+}
+
+.vk_custom_scroll .vk_header_tabs .qs_loading {
+    top: 88px
 }
 
 .recaptcha_box {
@@ -24294,6 +24498,7 @@ figure[data-type="102"] .article_object_video_play {
 }
 
 .album_cnt .BookmarksItem .ai_menu_toggle_button,
+.album_cnt .GlobalSearchHeader .i_search,
 .album_cnt .Icon,
 .album_cnt .m .vk__page_chatAdd .basis .lvi.mlvi,
 .album_cnt .m .vk__page_chatSettings .basis .lvi.mlvi,
@@ -25570,6 +25775,82 @@ figure[data-type="102"] .article_object_video_play {
     -webkit-border-radius: 0 0 4px 4px;
     -moz-border-radius: 0 0 4px 4px;
     border-radius: 0 0 4px 4px
+}
+
+.GlobalSearchHeader {
+    overflow: hidden;
+    width: 100%
+}
+
+.GlobalSearchHeader .hp_block {
+    padding: 0
+}
+
+.GlobalSearchHeader .qsearch {
+    position: relative
+}
+
+.GlobalSearchHeader .row_table_main_column {
+    padding: 0
+}
+
+.GlobalSearchHeader .row_table_last_column {
+    padding-left: 5px;
+    display: none
+}
+
+.GlobalSearchHeader .textfield {
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    padding: 7px 29px 7px 31px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    display: block
+}
+
+.GlobalSearchHeader .qsearch .input_loading,
+.GlobalSearchHeader .textfield {
+    background: #28436e;
+    border: none;
+    -webkit-font-smoothing: antialiased
+}
+
+.GlobalSearchHeader .iwrap {
+    margin: 0 60px 0 0
+}
+
+.GlobalSearchHeader .textfield::-webkit-input-placeholder {
+    color: #92b2d6
+}
+
+.GlobalSearchHeader .textfield:-moz-placeholder {
+    color: #92b2d6
+}
+
+.GlobalSearchHeader .textfield:-ms-input-placeholder {
+    color: #92b2d6
+}
+
+.GlobalSearchHeader .i_search {
+    position: absolute;
+    left: 6px;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    opacity: 0.7
+}
+
+.n .qs_opened .pcont {
+    display: none
+}
+
+@media (min-width: 882px) {
+    .n .qs_opened .pcont {
+        display: block
+    }
 }
 
 .basis__headerWithUser {
@@ -29871,7 +30152,8 @@ a.feedBlocks__article:hover {
 }
 
 .feedAssistanceImportContacts {
-    padding-bottom: 4px
+    padding-bottom: 4px;
+    overflow: hidden
 }
 
 .feedAssistanceImportContacts__serviceRow {
@@ -29964,20 +30246,28 @@ a.feedBlocks__article:hover {
 }
 
 .feedAssistanceImportContacts__info {
-    padding-right: 25px
+    padding-right: 25px;
+    min-width: 0
 }
 
 .feedAssistanceImportContacts__name {
     font-size: 15px;
     font-weight: 500;
-    text-align: left;
     color: #222;
     margin-bottom: 3px
 }
 
+.feedAssistanceImportContacts__name,
+.feedAssistanceImportContacts__desc {
+    text-align: left;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
 .feedAssistanceImportContacts__desc {
     font-size: 14px;
-    text-align: left;
     color: #909499
 }
 
@@ -30236,10 +30526,6 @@ a.feedBlocks__article:hover {
     padding-bottom: 0
 }
 
-._lm.vk__page_newCreatePost #m .mcont {
-    overflow: visible
-}
-
 .vk__page_newCreatePost .slim_header {
     font-size: 14px;
     font-weight: 500
@@ -30394,6 +30680,7 @@ a.feedBlocks__article:hover {
 }
 
 .vk__page_newCreatePost .uMailWrite__attachments .medias_audio .medias_link_icon .BookmarksItem .ai_menu_toggle_button,
+.vk__page_newCreatePost .uMailWrite__attachments .medias_audio .medias_link_icon .GlobalSearchHeader .i_search,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_audio .medias_link_icon .Icon,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_audio .medias_link_icon .m .vk__page_chatAdd .basis .lvi.mlvi,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_audio .medias_link_icon .m .vk__page_chatSettings .basis .lvi.mlvi,
@@ -30404,6 +30691,7 @@ a.feedBlocks__article:hover {
 .vk__page_newCreatePost .uMailWrite__attachments .medias_audio .medias_link_icon .pm_item .i_money.i_icon,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_audio .medias_link_icon .vk__page_redesign .basis .ii_btn,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_link_icon .BookmarksItem .ai_menu_toggle_button,
+.vk__page_newCreatePost .uMailWrite__attachments .medias_link_icon .GlobalSearchHeader .i_search,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_link_icon .Icon,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_link_icon .m .vk__page_chatAdd .basis .lvi.mlvi,
 .vk__page_newCreatePost .uMailWrite__attachments .medias_link_icon .m .vk__page_chatSettings .basis .lvi.mlvi,
@@ -31173,6 +31461,7 @@ a.feedBlocks__article:hover {
     justify-content: center
 }
 
+.n .vk__page_login .mhead .mhb_logo,
 .vk__page_login .mhead .mhb_logo {
     display: inline-block;
     width: auto
@@ -31525,7 +31814,8 @@ body.apps_settingsPageBody .basis__content {
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    margin-top: -15px
+    margin-top: -15px;
+    display: block
 }
 
 .h .mhi_back.mhi_back.mhi_back {
@@ -31561,6 +31851,9 @@ body.apps_settingsPageBody .basis__content {
     .h .mhb_back.mhb_back.mhb_back {
         padding-left: 12px!important
     }
+    .n.h .mhb_back.mhb_back.mhb_back {
+        padding-left: 16px!important
+    }
     .h .mh_header.mh_header.mh_header:not(#zpv_summary) {
         padding-left: 0!important
     }
@@ -31579,8 +31872,14 @@ body.apps_settingsPageBody .basis__content {
         left: 48px;
         right: 87px
     }
+    .n.h .mhb_back.mhb_back.mhb_back {
+        left: 0
+    }
     .h .mhb_back.mhb_back.mhb_back .tabs_block {
-        margin-right: -37px
+        margin-right: -81px
+    }
+    .n .mhb_back.mhb_back.mhb_back {
+        padding-left: 16px!important
     }
     .h .mhi_back:before {
         background-color: #5181b8
@@ -31602,7 +31901,6 @@ body.apps_settingsPageBody .basis__content {
 }
 
 .h #header_msgs {
-    padding: 0!important;
     max-height: 44px!important;
     min-width: 44px;
     margin-left: 0px!important;
@@ -31610,7 +31908,8 @@ body.apps_settingsPageBody .basis__content {
 }
 
 .h .mhi_create,
-.h .mhi_notify {
+.h .mhi_notify,
+.header__gear {
     padding: 0!important;
     margin: 0;
     background: none!important;
@@ -31619,6 +31918,7 @@ body.apps_settingsPageBody .basis__content {
 }
 
 @media (min-width: 882px) {
+    .header__gear,
     .mhi_create {
         margin: 0 227px 0 0;
         position: absolute;
@@ -31626,22 +31926,47 @@ body.apps_settingsPageBody .basis__content {
         right: 276px;
         z-index: 7
     }
+    ._hfixed .header__gear,
     ._hfixed .mhi_create {
         left: 50%;
         margin: 0 0 0 124px;
         right: auto
     }
+    ._hfixed .header__center+.header__right .header__gear,
     ._hfixed .header__center+.header__right .mhi_create,
+    .vk_flex_yes ._hfixed .header__center+.header__right .header__gear,
     .vk_flex_yes ._hfixed .header__center+.header__right .mhi_create {
         position: fixed
     }
+    .mhb_back+.header__gear,
     .mhb_back+.mhi_create,
+    .qs_opened .mhb_back.header__center+.header__right .header__gear,
     .qs_opened .mhb_back.header__center+.header__right .mhi_create {
         display: none
     }
+    .mhb_back.header__center+.header__right .header__gear,
     .mhb_back.header__center+.header__right .mhi_create {
         display: block
     }
+}
+
+.header__gear {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0
+}
+
+._hfixed .header__gear {
+    position: fixed
+}
+
+.mhb_back+.header__gear {
+    display: block
+}
+
+.qs_opened .mhb_back+.header__gear {
+    display: none
 }
 
 .h .mhi_create:before,
@@ -31663,6 +31988,11 @@ body.apps_settingsPageBody .basis__content {
     background-image: url('/images/mobile/skins/icon/header_2x.png?5')
 }
 
+.n .mhi_create:before {
+    background-position: 0 -554px
+}
+
+.h .header__gear,
 .h .mhi_create {
     padding: 2px!important
 }
@@ -31747,6 +32077,19 @@ body.apps_settingsPageBody .basis__content {
     display: none
 }
 
+.n .header__gear {
+    padding: 2px
+}
+
+.header__cancel {
+    font-size: 15px;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    color: #fff;
+    margin: 0 10px
+}
+
 @media (min-width: 882px) {
     .h .basis__header .mhb_logo .mh_header {
         padding-top: 15px!important;
@@ -31817,7 +32160,16 @@ body.apps_settingsPageBody .basis__content {
         -ms-flex-positive: 1;
         flex-grow: 1
     }
+    .vk .header__title-inner {
+        min-width: 0
+    }
     .vk .header__center.header__center.header__center.header__center {
+        padding-left: 0!important
+    }
+    .n.vk .header__center.header__center.header__center.header__center .header__title-inner:first-child {
+        padding-left: 16px!important
+    }
+    .n.vk .header__center.header__center.header__center.header__center .header__title-inner:first-child .header__title {
         padding-left: 0!important
     }
     .vk .header__back {
@@ -31895,6 +32247,7 @@ body.apps_settingsPageBody .basis__content {
         -ms-flex-negative: 0;
         flex-shrink: 0
     }
+    .n.vk.vk_flex_yes .header__center,
     .vk.vk_flex_yes .header__center {
         position: relative;
         left: 0!important;
@@ -31904,6 +32257,7 @@ body.apps_settingsPageBody .basis__content {
         z-index: 2;
         margin-left: -48px
     }
+    .n.vk .header__back,
     .vk .header__back.mh_noleftmenu {
         margin-left: 0
     }
@@ -31935,11 +32289,31 @@ body.apps_settingsPageBody .basis__content {
     .vk .header__back {
         margin-left: 1px
     }
+    .n.vk .header__right:last-child,
+    .n.vk .header__wrapper-bookmarks {
+        position: fixed;
+        margin: 0 0 0 190px;
+        left: 50%;
+        top: 0;
+        z-index: 7
+    }
+}
+
+@media (min-width: 320px) and (min-width: 882px) {
+    .n .qs_opened .header__right:last-child {
+        display: none
+    }
 }
 
 @media (min-width: 320px) and (max-width: 881px) {
     .vk__page_feed a.mhb_back {
         margin-left: -10px!important
+    }
+    .n.vk__page_feed .mhb_back {
+        margin-left: 0px!important
+    }
+    .n.vk__page_feed .header__title.header__title.header__title {
+        padding-left: 0!important
     }
 }
 
@@ -36178,6 +36552,10 @@ body.apps_settingsPageBody .basis__content {
     background: initial!important
 }
 
+.n.r .vk__page_feed .mhb_back {
+    padding-left: 16px!important
+}
+
 .r .vk__page_feed .mh_header {
     padding-left: 0;
     background-image: none!important
@@ -36242,26 +36620,38 @@ body.apps_settingsPageBody .basis__content {
     right: 4px
 }
 
-@media (max-width: 374px) {
-    .r .vk__page_feed .hb_wrap .tabs_block {
-        left: -22px;
-        right: -22px
-    }
-}
-
-@media (max-width: 330px) {
-    .r .vk__page_feed .hb_wrap .tabs_block {
-        top: 38px;
-        left: -32px;
-        right: -44px
-    }
+.n.r .vk__page_feed .tabs_block {
+    left: 16px
 }
 
 @media (max-width: 300px) {
     .r .vk__page_feed .hb_wrap .tabs_block {
         top: 43px;
-        left: -48px;
-        right: -55px;
+        left: 0px;
+        right: -100%;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0
+    }
+    .n.r .vk__page_feed .hb_wrap .tabs_block {
+        left: 0
+    }
+    .r .vk__page_feed .tabs_block .tab_item {
+        font-size: 13px
+    }
+    .r .vk__page_feed .TopMenu__switcher {
+        margin-top: -6px
+    }
+}
+
+@media (max-width: 319px) {
+    .n.r .vk__page_feed .hb_wrap .tabs_block {
+        top: 43px;
+        left: 0;
+        right: -48px;
         border-left: none;
         border-right: none;
         border-top: none;
@@ -37987,7 +38377,6 @@ body.apps_settingsPageBody .basis__content {
     height: 20px;
     padding: 0 6px;
     line-height: 20px;
-    min-width: 8px;
     font-weight: 600;
     font-size: 12px;
     -webkit-border-radius: 10px;
@@ -38171,6 +38560,7 @@ body.apps_settingsPageBody .basis__content {
 #psm_selected .lvi,
 #publish_items_selected .lvi,
 .BookmarksItem .ai_menu_toggle_button,
+.GlobalSearchHeader .i_search,
 .Icon,
 .m .vk__page_chatAdd .basis .lvi.mlvi,
 .m .vk__page_chatSettings .basis .lvi.mlvi,
@@ -38211,6 +38601,7 @@ body.apps_settingsPageBody .basis__content {
 .BookmarksItem_article .BookmarkListItem__image_empty:before,
 .BookmarksItem_link .BookmarkListItem__image_empty:before,
 .BookmarksTags:before,
+.GlobalSearchHeader .i_search:before,
 .Groups .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
 .GroupsInvite .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
 .GroupsNear .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
@@ -38234,6 +38625,95 @@ body.apps_settingsPageBody .basis__content {
     -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat
+}
+
+.Icon_menu_apps,
+.Icon_menu_birthday,
+.Icon_menu_fave,
+.Icon_menu_friends,
+.Icon_menu_groups,
+.Icon_menu_likes,
+.Icon_menu_music,
+.Icon_menu_photos,
+.Icon_menu_support,
+.Icon_menu_transfers,
+.Icon_menu_video {
+    width: 24px;
+    height: 24px
+}
+
+.Icon_menu_apps:before,
+.Icon_menu_birthday:before,
+.Icon_menu_fave:before,
+.Icon_menu_friends:before,
+.Icon_menu_groups:before,
+.Icon_menu_likes:before,
+.Icon_menu_music:before,
+.Icon_menu_photos:before,
+.Icon_menu_support:before,
+.Icon_menu_transfers:before,
+.Icon_menu_video:before {
+    width: 24px;
+    height: 24px;
+    background-image: url('/images/mobile/skins/icon/menu.png?4')
+}
+
+.vk_2x .Icon_menu_apps:before,
+.vk_2x .Icon_menu_birthday:before,
+.vk_2x .Icon_menu_fave:before,
+.vk_2x .Icon_menu_friends:before,
+.vk_2x .Icon_menu_groups:before,
+.vk_2x .Icon_menu_likes:before,
+.vk_2x .Icon_menu_music:before,
+.vk_2x .Icon_menu_photos:before,
+.vk_2x .Icon_menu_support:before,
+.vk_2x .Icon_menu_transfers:before,
+.vk_2x .Icon_menu_video:before {
+    background-image: url('/images/mobile/skins/icon/menu_2x.png?4')
+}
+
+.Icon_menu_friends:before {
+    background-position: 0 0px
+}
+
+.Icon_menu_groups:before {
+    background-position: 0 -24px
+}
+
+.Icon_menu_photos:before {
+    background-position: 0 -48px
+}
+
+.Icon_menu_music:before {
+    background-position: 0 -72px
+}
+
+.Icon_menu_video:before {
+    background-position: 0 -96px
+}
+
+.Icon_menu_apps:before {
+    background-position: 0 -120px
+}
+
+.Icon_menu_fave:before {
+    background-position: 0 -144px
+}
+
+.Icon_menu_transfers:before {
+    background-position: 0 -168px
+}
+
+.Icon_menu_support:before {
+    background-position: 0 -216px
+}
+
+.Icon_menu_birthday:before {
+    background-position: 0 -240px
+}
+
+.Icon_menu_likes:before {
+    background-position: 0 -264px
 }
 
 .BookmarksItem_full.BookmarksItem_link .ai_menu_toggle_button,
@@ -39016,6 +39496,7 @@ body.apps_settingsPageBody .basis__content {
 #publish_items_selected .lvi.mlvi,
 #publish_items_selected .lvi.vkmobilelvi,
 .BookmarksItem_compact .ai_menu_toggle_button,
+.GlobalSearchHeader .i_search,
 .Icon_arrowDown,
 .Icon_audioMini,
 .Icon_cardSmall,
@@ -39083,6 +39564,7 @@ body.apps_settingsPageBody .basis__content {
 .BookmarkListItem__tags .BookmarksTags:before,
 .BookmarksItem_compact .ai_menu_toggle_button:before,
 .BookmarksTags:before,
+.GlobalSearchHeader .i_search:before,
 .Groups .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
 .GroupsInvite .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
 .GroupsNear .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
@@ -39158,6 +39640,7 @@ body.apps_settingsPageBody .basis__content {
 .vk_2x .BookmarkListItem__tags .BookmarksTags:before,
 .vk_2x .BookmarksItem_compact .ai_menu_toggle_button:before,
 .vk_2x .BookmarksTags:before,
+.vk_2x .GlobalSearchHeader .i_search:before,
 .vk_2x .Groups .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
 .vk_2x .GroupsInvite .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
 .vk_2x .GroupsNear .GroupsInvite__item .si_msg .service_msg.service_msg_ok:before,
@@ -39305,6 +39788,7 @@ body.apps_settingsPageBody .basis__content {
     background-position: 0 -532px
 }
 
+.GlobalSearchHeader .i_search:before,
 .head_search .i_search,
 .Icon_inputSearch:before {
     background-position: 0 -552px
@@ -40580,6 +41064,7 @@ body.apps_settingsPageBody .basis__content {
 }
 
 .Popup__button .BookmarksItem .ai_menu_toggle_button,
+.Popup__button .GlobalSearchHeader .i_search,
 .Popup__button .Icon,
 .Popup__button .m .vk__page_chatAdd .basis .lvi.mlvi,
 .Popup__button .m .vk__page_chatSettings .basis .lvi.mlvi,
@@ -40786,6 +41271,12 @@ body.apps_settingsPageBody .basis__content {
     min-height: -webkit-calc(100vh - 88px);
     min-height: -moz-calc(100vh - 88px);
     min-height: calc(100vh - 88px)
+}
+
+.vk_custom_scroll .vk_header_tabs .SplashScreen {
+    min-height: -webkit-calc(100vh - 88px - 48px);
+    min-height: -moz-calc(100vh - 88px - 48px);
+    min-height: calc(100vh - 88px - 48px)
 }
 
 .SplashScreen_transparent {
@@ -41457,6 +41948,64 @@ body.apps_settingsPageBody .basis__content {
 
 .PrivacyPolicy__buttonRow {
     padding-top: 8px
+}
+
+.RecommendHeader {
+    width: 100%
+}
+
+.header__title .RecommendHeader {
+    width: auto;
+    margin: 0 0 0 8px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0
+}
+
+@media (min-width: 882px) {
+    .header__title .RecommendHeader {
+        right: -275px
+    }
+}
+
+.RecommendHeader__row {
+    display: table;
+    width: 100%
+}
+
+.RecommendHeader__col {
+    display: table-cell;
+    vertical-align: middle
+}
+
+.RecommendHeader__col_search {
+    padding: 8px 0 8px 8px;
+    width: 100%
+}
+
+.header__title .RecommendHeader__col_search {
+    padding: 8px 0
+}
+
+.RecommendHeader__col_friends {
+    width: 44px;
+    height: 44px;
+    padding: 2px
+}
+
+.RecommendHeader__col_friends .BookmarksItem .ai_menu_toggle_button,
+.RecommendHeader__col_friends .GlobalSearchHeader .i_search,
+.RecommendHeader__col_friends .Icon,
+.RecommendHeader__col_friends .m .vk__page_chatAdd .basis .lvi.mlvi,
+.RecommendHeader__col_friends .m .vk__page_chatSettings .basis .lvi.mlvi,
+.RecommendHeader__col_friends .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
+.RecommendHeader__col_friends .OwnerColumn__online,
+.RecommendHeader__col_friends .OwnerRow__online,
+.RecommendHeader__col_friends .pm_item .i_gift.i_icon,
+.RecommendHeader__col_friends .pm_item .i_money.i_icon,
+.RecommendHeader__col_friends .vk__page_redesign .basis .ii_btn {
+    margin: auto
 }
 
 .Voting {
@@ -42678,6 +43227,10 @@ body.apps_settingsPageBody .basis__content {
 
 .SettingsMenu__itemTitle {
     color: #000
+}
+
+.SettingsMenu__item_link .SettingsMenu__itemTitle {
+    color: #306096
 }
 
 .vk_flex_no .SettingsMenu__itemIcon,
@@ -45792,18 +46345,13 @@ a .BookmarkListItem__subtitle:hover {
 
 .BookmarksTagsButton {
     padding: 2px;
+    display: block;
     height: 44px;
     width: 44px;
     position: absolute;
     top: 0;
     right: 0;
     z-index: 7
-}
-
-@media (min-width: 320px) and (max-width: 881px) {
-    .vk_flex_yes .header__center+.BookmarksTagsButton {
-        position: relative
-    }
 }
 
 @media (min-width: 882px) {
@@ -45817,7 +46365,8 @@ a .BookmarkListItem__subtitle:hover {
     }
     ._hfixed .header__center+.BookmarksTagsButton,
     .vk_flex_yes ._hfixed .header__center+.BookmarksTagsButton {
-        position: fixed
+        position: fixed;
+        z-index: 9
     }
     .mhb_back+.BookmarksTagsButton,
     .qs_opened .mhb_back.header__center+.BookmarksTagsButton {
@@ -45869,6 +46418,7 @@ a .BookmarkListItem__subtitle:hover {
 
 .Bookmarks__tagsRemove,
 .Bookmarks__tagsRemove .BookmarksItem .ai_menu_toggle_button,
+.Bookmarks__tagsRemove .GlobalSearchHeader .i_search,
 .Bookmarks__tagsRemove .Icon,
 .Bookmarks__tagsRemove .m .vk__page_chatAdd .basis .lvi.mlvi,
 .Bookmarks__tagsRemove .m .vk__page_chatSettings .basis .lvi.mlvi,
@@ -45890,6 +46440,7 @@ a .BookmarkListItem__subtitle:hover {
 }
 
 .Bookmarks__tagsRemove .BookmarksItem .ai_menu_toggle_button,
+.Bookmarks__tagsRemove .GlobalSearchHeader .i_search,
 .Bookmarks__tagsRemove .Icon,
 .Bookmarks__tagsRemove .m .vk__page_chatAdd .basis .lvi.mlvi,
 .Bookmarks__tagsRemove .m .vk__page_chatSettings .basis .lvi.mlvi,
@@ -45917,6 +46468,7 @@ a .BookmarkListItem__subtitle:hover {
 }
 
 .Bookmarks__tagsSelectItem .BookmarksItem .ai_menu_toggle_button,
+.Bookmarks__tagsSelectItem .GlobalSearchHeader .i_search,
 .Bookmarks__tagsSelectItem .Icon,
 .Bookmarks__tagsSelectItem .m .vk__page_chatAdd .basis .lvi.mlvi,
 .Bookmarks__tagsSelectItem .m .vk__page_chatSettings .basis .lvi.mlvi,
@@ -46067,6 +46619,7 @@ a .BookmarkListItem__subtitle:hover {
 }
 
 .BookmarksPopup__createButton .BookmarksItem .ai_menu_toggle_button,
+.BookmarksPopup__createButton .GlobalSearchHeader .i_search,
 .BookmarksPopup__createButton .Icon,
 .BookmarksPopup__createButton .m .vk__page_chatAdd .basis .lvi.mlvi,
 .BookmarksPopup__createButton .m .vk__page_chatSettings .basis .lvi.mlvi,
@@ -47079,7 +47632,8 @@ a .BookmarkListItem__subtitle:hover {
     position: relative;
     margin-left: -17px;
     top: 0;
-    left: 64px
+    left: 64px;
+    z-index: 1
 }
 
 .convo__online_desktop {
@@ -47897,6 +48451,7 @@ a .BookmarkListItem__subtitle:hover {
 }
 
 .comment_item .mi_forwarded .BookmarksItem .ai_menu_toggle_button:not(.Icon_revote),
+.comment_item .mi_forwarded .GlobalSearchHeader .i_search:not(.Icon_revote),
 .comment_item .mi_forwarded .Icon:not(.Icon_revote),
 .comment_item .mi_forwarded .m .vk__page_chatAdd .basis .lvi.mlvi:not(.Icon_revote),
 .comment_item .mi_forwarded .m .vk__page_chatSettings .basis .lvi.mlvi:not(.Icon_revote),
@@ -47907,6 +48462,7 @@ a .BookmarkListItem__subtitle:hover {
 .comment_item .mi_forwarded .pm_item .i_money.i_icon:not(.Icon_revote),
 .comment_item .mi_forwarded .vk__page_redesign .basis .ii_btn:not(.Icon_revote),
 .msg__text .mi_forwarded .BookmarksItem .ai_menu_toggle_button:not(.Icon_revote),
+.msg__text .mi_forwarded .GlobalSearchHeader .i_search:not(.Icon_revote),
 .msg__text .mi_forwarded .Icon:not(.Icon_revote),
 .msg__text .mi_forwarded .m .vk__page_chatAdd .basis .lvi.mlvi:not(.Icon_revote),
 .msg__text .mi_forwarded .m .vk__page_chatSettings .basis .lvi.mlvi:not(.Icon_revote),
@@ -47943,6 +48499,15 @@ a .BookmarkListItem__subtitle:hover {
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0;
+    width: 48px
+}
+
+.n .mailHat__left {
+    width: auto;
+    min-width: 6px
+}
+
+.n .mailHat_forwarding .mailHat__left {
     width: 48px
 }
 
@@ -48612,6 +49177,10 @@ a .BookmarkListItem__subtitle:hover {
     padding: 10px
 }
 
+.n .mailFilter__create {
+    padding: 2px
+}
+
 .mailFilter__clear,
 .mailFilter_hasQuery .mailFilter__create {
     display: none
@@ -48655,6 +49224,9 @@ a .BookmarkListItem__subtitle:hover {
     }
     .mailFilter__clear {
         opacity: 0
+    }
+    .n .mailFilter__clear {
+        opacity: 1
     }
 }
 
@@ -48907,6 +49479,7 @@ a .BookmarkListItem__subtitle:hover {
 }
 
 .MailTemplatePage__SaveButton.Btn_loading .BookmarksItem .ai_menu_toggle_button,
+.MailTemplatePage__SaveButton.Btn_loading .GlobalSearchHeader .i_search,
 .MailTemplatePage__SaveButton.Btn_loading .Icon,
 .MailTemplatePage__SaveButton.Btn_loading .m .vk__page_chatAdd .basis .lvi.mlvi,
 .MailTemplatePage__SaveButton.Btn_loading .m .vk__page_chatSettings .basis .lvi.mlvi,
@@ -49040,6 +49613,87 @@ a .BookmarkListItem__subtitle:hover {
     -ms-flex-negative: 1;
     flex-shrink: 1;
     margin: 0 6px
+}
+
+.MainMenu {
+    margin: 0 0 12px
+}
+
+@media (min-width: 882px) {
+    .MainMenu {
+        display: none
+    }
+}
+
+.MainMenu__menuItem {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-left: 16px;
+    padding-right: 16px
+}
+
+.MainMenu__menuItemIcon {
+    margin-right: 18px
+}
+
+.MainMenu__menuItemTitle {
+    color: #000;
+    width: 100%
+}
+
+.vk_flex_no .MainMenu__menuItemCount,
+.vk_flex_no .MainMenu__menuItemIcon,
+.vk_flex_no .MainMenu__menuItemTitle {
+    display: table-cell;
+    vertical-align: middle
+}
+
+.vk_flex_no .MainMenu__menuItemTitle {
+    padding-left: 12px
+}
+
+.MainMenu .Player .audio_item {
+    padding: 0;
+    border: 0
+}
+
+.MainMenu .Player .audio_item:last-child {
+    margin: 0
+}
+
+.MainMenu .Birthday__item {
+    padding: 0;
+    position: relative
+}
+
+.MainMenu .Birthday__item .OwnerRow {
+    margin: 0 34px 0 0
+}
+
+.MainMenu .Birthday__item .BookmarksItem .ai_menu_toggle_button,
+.MainMenu .Birthday__item .GlobalSearchHeader .i_search,
+.MainMenu .Birthday__item .Icon,
+.MainMenu .Birthday__item .m .vk__page_chatAdd .basis .lvi.mlvi,
+.MainMenu .Birthday__item .m .vk__page_chatSettings .basis .lvi.mlvi,
+.MainMenu .Birthday__item .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
+.MainMenu .Birthday__item .OwnerColumn__online,
+.MainMenu .Birthday__item .OwnerRow__online,
+.MainMenu .Birthday__item .pm_item .i_gift.i_icon,
+.MainMenu .Birthday__item .pm_item .i_money.i_icon,
+.MainMenu .Birthday__item .vk__page_redesign .basis .ii_btn {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto
 }
 
 .uMailWrite {
@@ -50438,7 +51092,27 @@ a .BookmarkListItem__subtitle:hover {
     bottom: 0
 }
 
-.uMessenger_view_dialog .messenger__layer_convo,
+.uMessenger_view_dialog .messenger__layer_convo {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.n .messenger__layer_main:after {
+    content: "";
+    height: 48px;
+    display: block
+}
+
+@media (min-width: 882px) {
+    .n .messenger__layer_main:after {
+        content: none;
+        display: none
+    }
+}
+
 .uMessenger_view_searchPeers .messenger__layer_main {
     display: -webkit-box;
     display: -webkit-flex;
@@ -50584,7 +51258,9 @@ html.vk_appAuth_yes .vk__page_mail._ios {
 }
 
 .vk__page_mail .basis__footer,
-.vk__page_mail .basis__header {
+.vk__page_mail .basis__header,
+.n .vk__page_mail .basis__footer,
+.n .vk__page_mail .basis__header {
     display: none
 }
 
@@ -50614,6 +51290,9 @@ html.vk_appAuth_yes .vk__page_mail._ios {
     }
     .vk__page_mail .mailHat__folder {
         margin-left: -47px
+    }
+    .n .vk__page_mail .mailHat__folder {
+        margin-left: 0
     }
 }
 
@@ -51271,6 +51950,7 @@ html.vk_appAuth_yes .vk__page_mail._ios {
 }
 
 .vk__page_publish .cp_inline_attach_btn input[disabled]+.BookmarksItem .ai_menu_toggle_button,
+.vk__page_publish .cp_inline_attach_btn input[disabled]+.GlobalSearchHeader .i_search,
 .vk__page_publish .cp_inline_attach_btn input[disabled]+.Icon,
 .vk__page_publish .cp_inline_attach_btn input[disabled]+.m .vk__page_chatAdd .basis .lvi.mlvi,
 .vk__page_publish .cp_inline_attach_btn input[disabled]+.m .vk__page_chatSettings .basis .lvi.mlvi,
@@ -51918,6 +52598,62 @@ html.vk_appAuth_yes .vk__page_mail._ios {
 
 .selected_all .inline_item:not(.inline_item_selected) .ii_body:before {
     display: none
+}
+
+.vk_js_yes .vk_custom_scroll:not(.vk__page_mail) {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0
+}
+
+.vk_js_yes .vk_custom_scroll:not(.vk__page_mail) .basis__content {
+    position: fixed;
+    left: 0;
+    bottom: 48px;
+    top: 0;
+    right: 0;
+    padding: 47px 0 0!important
+}
+
+@media (min-width: 882px) {
+    .vk_js_yes .vk_custom_scroll:not(.vk__page_mail) .basis__content {
+        position: static;
+        padding: 0!important
+    }
+}
+
+@media (min-width: 882px) {
+    .vk_js_yes .vk_custom_scroll:not(.vk__page_mail) {
+        position: static
+    }
+}
+
+.vk_js_yes .vk_custom_scroll:not(.vk__page_mail).body_only .basis__content {
+    bottom: 0
+}
+
+.vk_js_yes .vk_custom_scroll.vk__page_mail .basis__content {
+    overflow: visible;
+    -webkit-overflow-scrolling: auto
+}
+
+.vk_js_yes .vk_custom_scroll.vk_header_tabs:not(.vk__page_mail) .basis__content {
+    padding: 87px 0 0!important
+}
+
+.n .vk__page_search .pcont .head_panel {
+    display: none
+}
+
+@media (min-width: 882px) {
+    .n .vk__page_search .RecommendHeader {
+        display: none
+    }
+    .n .vk__page_search .pcont .head_panel {
+        display: block
+    }
 }
 
 body {
@@ -52957,6 +53693,12 @@ body {
     }
     .lm_opened #m {
         margin-left: -36px
+    }
+    .n #l {
+        margin-right: 0px
+    }
+    .n .lm_opened #m {
+        margin-left: 0px
     }
     #l {
         margin-right: 0
@@ -56597,7 +57339,7 @@ img.wk_photo_right {
     ._hfixed._lm #mcont,
     ._hfixed._lm.lm_opened #mcont,
     ._hfixed._lm.vk_header_tabs #mcont {
-        padding-top: 0
+        padding-top: 0!important
     }
     ._hfixed._lm #m .mhead .mhb_back,
     ._hfixed._lm #m .mhead .mhb_logo,
@@ -56645,6 +57387,19 @@ img.wk_photo_right {
     }
     .qs_opened #l .m_search_items {
         z-index: 7
+    }
+    .n #mcont.ScrollView {
+        overflow: visible!important;
+        -webkit-overflow-scrolling: unset!important;
+        -webkit-transform: none!important;
+        -moz-transform: none!important;
+        -ms-transform: none!important;
+        -o-transform: none!important;
+        transform: none!important
+    }
+    .n #mcont.ScrollView:after,
+    .n #mcont.ScrollView:before {
+        content: none!important
     }
 }
 

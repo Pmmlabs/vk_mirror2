@@ -254,9 +254,11 @@
                         } else if (lngcode && lngcode != 'ru' && lngcode != 'br') {
                             lng = 'en_US';
                         }
+                        var apiKey = '5567f562-b9ff-41b8-86b7-1549d0d460fe';
                         headNode.appendChild(ce('script', {
                             type: 'text/javascript',
-                            src: (window.locProtocol || 'http:') + '//api-maps.yandex.ru/2.1.64/?lang=' + lng + '&onload=yandex2MapInit&load=package.standard'
+                            src: 'https://enterprise.api-maps.yandex.ru/2.1.64/?lang=' + lng +
+                                '&onload=yandex2MapInit&load=package.standard&apikey=' + apiKey,
                         }));
                     }
                 }

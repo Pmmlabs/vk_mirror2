@@ -30,9 +30,11 @@ var Places = {
                 } else if (cur.vkLngCode == 'ru') {
                     langCode = 'ru_RU';
                 }
+                var apiKey = '5567f562-b9ff-41b8-86b7-1549d0d460fe';
                 headNode.appendChild(ce('script', {
                     type: 'text/javascript',
-                    src: (window.locProtocol || 'http:') + '//api-maps.yandex.ru/2.1/?lang=' + langCode + '&onload=yandexMapInit&load=package.standard'
+                    src: 'https://enterprise.api-maps.yandex.ru/2.1/?lang=' + langCode +
+                        '&onload=yandexMapInit&load=package.standard&apikey=' + apiKey,
                 }));
                 return false;
             }

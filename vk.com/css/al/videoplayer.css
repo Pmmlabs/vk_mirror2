@@ -35,6 +35,12 @@
     user-select: none
 }
 
+.stories_item_cont_wrap .videoplayer {
+    left: 0;
+    position: absolute;
+    top: 0
+}
+
 .videoplayer_media,
 .videoplayer_media_provider {
     position: absolute;

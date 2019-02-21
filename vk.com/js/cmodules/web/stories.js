@@ -1,16 +1,16 @@
 ﻿! function(t) {
     function e(e) {
-        for (var o, n, a = e[0], d = e[1], c = e[2], h = 0, u = []; h < a.length; h++) n = a[h], i[n] && u.push(i[n][0]), i[n] = 0;
-        for (o in d) Object.prototype.hasOwnProperty.call(d, o) && (t[o] = d[o]);
-        for (l && l(e); u.length;) u.shift()();
-        return s.push.apply(s, c || []), r()
+        for (var o, n, a = e[0], c = e[1], l = e[2], h = 0, u = []; h < a.length; h++) n = a[h], i[n] && u.push(i[n][0]), i[n] = 0;
+        for (o in c) Object.prototype.hasOwnProperty.call(c, o) && (t[o] = c[o]);
+        for (d && d(e); u.length;) u.shift()();
+        return s.push.apply(s, l || []), r()
     }
 
     function r() {
         for (var t, e = 0; e < s.length; e++) {
             for (var r = s[e], o = !0, a = 1; a < r.length; a++) {
-                var d = r[a];
-                0 !== i[d] && (o = !1)
+                var c = r[a];
+                0 !== i[c] && (o = !1)
             }
             o && (s.splice(e--, 1), t = n(n.s = r[0]))
         }
@@ -65,13 +65,13 @@
         return Object.prototype.hasOwnProperty.call(t, e)
     }, n.p = "";
     var a = window.webpackJsonp = window.webpackJsonp || [],
-        d = a.push.bind(a);
+        c = a.push.bind(a);
     a.push = e, a = a.slice();
-    for (var c = 0; c < a.length; c++) e(a[c]);
-    var l = d;
-    s.push([121, "7f81047508570d6456c7d33e2e3c0bc3", "9305f5418f2d9183dad188e98aaf94c7", "935deb04b1bad6a4f7d908fabaf88a22"]), r()
+    for (var l = 0; l < a.length; l++) e(a[l]);
+    var d = c;
+    s.push([122, "7f81047508570d6456c7d33e2e3c0bc3", "9305f5418f2d9183dad188e98aaf94c7", "935deb04b1bad6a4f7d908fabaf88a22"]), r()
 }({
-    121: function(t, e, r) {
+    122: function(t, e, r) {
         t.exports = r("EJ7F")
     },
     "16Al": function(t, e, r) {
@@ -121,13 +121,13 @@
             s = r("E2g8"),
             n = s.Promise,
             a = {},
-            d = {},
-            c = [],
-            l = !1,
+            c = {},
+            l = [],
+            d = !1,
             h = !1;
 
         function u(t, e, r) {
-            var o = d[t];
+            var o = c[t];
             if (o)
                 for (var i = 0; i < o.length; i++) {
                     var s = o[i];
@@ -136,14 +136,14 @@
         }
 
         function p(t, e) {
-            l.postMessage({
+            d.postMessage({
                 cmd: "load",
                 url: t
             })
         }
 
         function _(t) {
-            return l || ((l = new Worker("/js/al/stories_loader_worker.js")).onmessage = function(t) {
+            return d || ((d = new Worker("/js/al/stories_loader_worker.js")).onmessage = function(t) {
                 var e = t.data;
                 switch (e.type) {
                     case "loaded":
@@ -154,7 +154,7 @@
                         break;
                     case "inited":
                         h = !0;
-                        for (var r = 0; r < c.length; r++) p(c[r])
+                        for (var r = 0; r < l.length; r++) p(l[r])
                 }
             }), new n(function(e, r) {
                 if (t || e(""), a[t]) return e(a[t]);
@@ -163,13 +163,13 @@
                 }(t)) {
                     case "video":
                     case "image":
-                        d[t] || (d[t] = []);
-                        var o = 0 === d[t].length;
-                        if (d[t].push({
+                        c[t] || (c[t] = []);
+                        var o = 0 === c[t].length;
+                        if (c[t].push({
                                 resolve: e,
                                 reject: r
                             }), !o) return;
-                        h ? p(t) : c.push(t);
+                        h ? p(t) : l.push(t);
                         break;
                     default:
                         vk.dev && console.error("wrong media url")
@@ -246,7 +246,7 @@
             cur.storyLayer && cur.storyLayer.pauseLayer(), cur.storyLayer = t, ge("stories_layers_background") || (bodyNode.appendChild(ce("div", {
                 id: "stories_layers_background",
                 className: "stories_layers_background"
-            })), layerQueue.hide(), layerQueue.push(), layers.fullhide = E, addEvent(window, "visibilitychange", L.visibilitychange, void 0, void 0, !0), addEvent(window, "resize", L.resize), addEvent(document, "keydown", L.keydown), addEvent(document, "keyup", L.keyup)), t.animateStory("expand", e.fromEl), b.push(t), t.length > 1 && addClass(t.layerEl, "no_fill_bg"), addClass(bodyNode, "stories_layer_shown"), cancelStackPush("stories_layer_close" + b.length, function(e) {
+            })), layerQueue.hide(), layerQueue.push(), layers.fullhide = E, addEvent(window, "visibilitychange", T.visibilitychange, void 0, void 0, !0), addEvent(window, "resize", T.resize), addEvent(document, "keydown", T.keydown), addEvent(document, "keyup", T.keyup)), t.animateStory("expand", e.fromEl), b.push(t), t.length > 1 && addClass(t.layerEl, "no_fill_bg"), addClass(bodyNode, "stories_layer_shown"), cancelStackPush("stories_layer_close" + b.length, function(e) {
                 var o = r[0] && r[0].isCloseBtnClick;
                 b.length > 1 && !o ? t.back(!0) : (t.hideAllLayers = o, t.hide(!1, !0))
             })
@@ -258,21 +258,21 @@
 
         function E(t) {
             for (var e = arguments.length > 1 && void 0 !== arguments[1] && arguments[1], r = 0; r < b.length; r++) b[r].hide(!0);
-            if (layers.fullhide = !1, removeClass(bodyNode, "stories_layer_shown"), re("stories_layers_background"), removeEvent(window, "visibilitychange", L.visibilitychange), removeEvent(window, "resize", L.resize), removeEvent(document, "keydown", L.keydown), removeEvent(document, "keyup", L.keyup), e) {
+            if (layers.fullhide = !1, removeClass(bodyNode, "stories_layer_shown"), re("stories_layers_background"), removeEvent(window, "visibilitychange", T.visibilitychange), removeEvent(window, "resize", T.resize), removeEvent(document, "keydown", T.keydown), removeEvent(document, "keyup", T.keyup), e) {
                 var o = nav.objLoc;
                 delete o.w, nav.setLoc(o)
             }
             cur.needUpdateFeedStories && Stories.updateFeedStories(), b = []
         }
 
-        function T() {
+        function L() {
             return b[b.length - 2]
         }
 
         function C(t) {
             for (var e = 0; e < b.length; e++) b[e].onReplyDeleted(t)
         }
-        var L = {
+        var T = {
                 visibilitychange: function(t) {
                     cur.storyLayer && cur.storyLayer.onVisibilityChange(t)
                 },
@@ -325,14 +325,14 @@
                     s = r.report_hash,
                     n = r.can_remove,
                     a = r.can_share,
-                    d = r.narrative,
-                    c = t.data.can_blacklist,
-                    l = o.split("_").map(function(t) {
+                    c = r.narrative,
+                    l = t.data.can_blacklist,
+                    d = o.split("_").map(function(t) {
                         return intval(t)
                     }),
-                    h = B(l, 1)[0],
-                    u = d && !d.is_cover;
-                c && !u && e.push({
+                    h = B(d, 1)[0],
+                    u = c && !c.is_cover;
+                l && !u && e.push({
                     label: Object(x.b)("stories_add_blacklist_button"),
                     onClick: function() {
                         return t._addToBlacklist()
@@ -344,8 +344,8 @@
                         return t._hideReply()
                     }
                 });
-                d && e.push({
-                    label: d.is_bookmarked ? Object(x.b)("stories_narrative_remove_bookmark_button") : Object(x.b)("stories_narrative_add_bookmark_button"),
+                c && e.push({
+                    label: c.is_bookmarked ? Object(x.b)("stories_narrative_remove_bookmark_button") : Object(x.b)("stories_narrative_add_bookmark_button"),
                     onClick: function() {
                         return t._sendNarrativeBookmarkButtonDidPress()
                     }
@@ -356,16 +356,16 @@
                         return t.shareBox()
                     }
                 });
-                d && d.can_edit && e.push({
+                c && c.can_edit && e.push({
                     label: Object(x.b)("stories_narrative_edit_button"),
                     onClick: function() {
                         return t._sendNarrativeEditButtonDidPress()
                     }
                 });
                 n && t.getOwnerId() < 0 && e.push({
-                    label: d ? Object(x.b)("global_narrative_delete") : Object(x.b)("global_delete"),
+                    label: c ? Object(x.b)("global_narrative_delete") : Object(x.b)("global_delete"),
                     onClick: function() {
-                        return d ? t.removeNarrativeBox() : t.removeStoryBox()
+                        return c ? t.removeNarrativeBox() : t.removeStoryBox()
                     }
                 });
                 s && e.push({
@@ -411,40 +411,41 @@
             })))
         }
 
-        function O(t) {
+        function j(t) {
             var e = t.story,
                 r = e.getReplies(),
                 i = e.getViews() || "",
                 s = e.getCurStoryData(),
                 n = s.can_manage,
                 a = s.narrative,
-                d = r.count || "",
-                c = a && !a.is_cover,
-                l = !(!n || !i);
-            if (c || !i && !d) return null;
+                c = r.count || "",
+                l = a && !a.is_cover,
+                d = !(!n || !i),
+                h = e.isActiveLive();
+            if (l || h || !i && !c) return null;
             return o.createElement("div", {
                 className: "stories_button views _views_button",
                 onClick: function(t) {
                     e.showFeedbackTooltip(), t.stopPropagation()
                 }
-            }, l && o.createElement("div", {
+            }, d && o.createElement("div", {
                 className: "stories_button_views"
-            }, i), d && o.createElement("div", {
+            }, i), c && o.createElement("div", {
                 className: "stories_button_replies",
                 dangerouslySetInnerHTML: {
-                    __html: langNumeric(d, "%s", !0)
+                    __html: langNumeric(c, "%s", !0)
                 }
             }))
         }
-        var I = window,
-            j = I.getLang,
-            F = I.showTooltip,
-            N = I.trim,
-            A = I.addEvent,
-            R = I.removeEvent,
-            D = I.cancelEvent,
-            M = I.isObject,
-            H = I.showNarrative,
+        var N = window,
+            F = N.getLang,
+            O = N.showTooltip,
+            I = N.trim,
+            A = N.addEvent,
+            D = N.removeEvent,
+            R = N.cancelEvent,
+            M = N.isObject,
+            H = N.showNarrative,
             W = function(t) {
                 function e(r) {
                     ! function(t, e) {
@@ -488,7 +489,7 @@
                     }, o.createElement("div", {
                         className: "stories_story_bottom_controls",
                         ref: "controls"
-                    }, o.createElement(O, {
+                    }, o.createElement(j, {
                         story: t
                     }), this._renderMessageForm(), this._renderLink(), this._renderMask(), this._renderShare(), this._renderRemove(), o.createElement(P, {
                         story: t
@@ -518,11 +519,11 @@
                     return this.props.story.getCurStoryData().mask_id ? o.createElement("div", {
                         className: "stories_button mask _mask_button",
                         onMouseOver: function(t) {
-                            return F(t.target, {
+                            return O(t.target, {
                                 black: 1,
                                 center: 1,
                                 shift: [1, 13, 0],
-                                text: j("stories_mask_tooltip")
+                                text: F("stories_mask_tooltip")
                             })
                         },
                         onClick: this._maskButtonDidPress.bind(this)
@@ -531,11 +532,11 @@
                     return !0 !== this.props.story.getCurStoryData().can_share ? "" : o.createElement("div", {
                         className: "stories_button share _share_button",
                         onMouseOver: function(t) {
-                            return F(t.target, {
+                            return O(t.target, {
                                 black: 1,
                                 center: 1,
                                 shift: [1, 13, 0],
-                                text: j("stories_share")
+                                text: F("stories_share")
                             })
                         },
                         onClick: this._shareButtonDidPress.bind(this)
@@ -545,11 +546,11 @@
                     return !t.getCurStoryData().can_remove || t.getOwnerId() < 0 ? "" : o.createElement("div", {
                         className: "stories_button remove _remove_button",
                         onMouseOver: function(t) {
-                            return F(t.target, {
+                            return O(t.target, {
                                 black: 1,
                                 center: 1,
                                 shift: [1, 13, 0],
-                                text: j("global_delete")
+                                text: F("global_delete")
                             })
                         },
                         onClick: this._removeButtonDidPress.bind(this)
@@ -558,7 +559,7 @@
                     var t = this.props.story.getCurStoryData(),
                         e = t.link,
                         r = t.can_comment;
-                    return !(M(e) || !r)
+                    return !(M(e) || !r || this.props.story.isLiveEnded())
                 }, e.prototype._renderMessageForm = function() {
                     var t = this,
                         e = this.props.story;
@@ -571,7 +572,7 @@
                         contentEditable: !0,
                         ref: "messageInput",
                         className: "stories_send_form_text",
-                        placeholder: j("stories_answer_placeholder"),
+                        placeholder: F("stories_answer_placeholder"),
                         onFocus: this._sendFormDidFocus.bind(this),
                         onBlur: this._sendFormDidBlur.bind(this),
                         onKeyUp: function() {
@@ -593,7 +594,7 @@
                             return Emoji.hide(t.refs.smileButton, e.nativeEvent)
                         },
                         onMouseDown: function(t) {
-                            return D(t.nativeEvent)
+                            return R(t.nativeEvent)
                         }
                     }), o.createElement("div", {
                         className: w("stories_send_form_button send", {
@@ -622,9 +623,9 @@
                         onEmojiAdded: function() {
                             return t._emojiDidKeyAction()
                         }
-                    }), A(this.refs.smileButton, "click", D), placeholderInit(this.refs.messageInput, {
+                    }), A(this.refs.smileButton, "click", R), placeholderInit(this.refs.messageInput, {
                         editable: !0
-                    })) : this.emojiId && !this.refs.messageInput && (R(this.refs.smileButton, "click", D), Emoji.destroy(this.emojiId), delete this.emojiId)
+                    })) : this.emojiId && !this.refs.messageInput && (D(this.refs.smileButton, "click", R), Emoji.destroy(this.emojiId), delete this.emojiId)
                 }, e.prototype._leftSideIsEmpty = function() {
                     var t = this.props.story,
                         e = this.props.story.getCurStoryData(),
@@ -634,7 +635,7 @@
                         s = e.narrative,
                         n = t.getReplies(),
                         a = t.getViews();
-                    return !(a && 0 !== parseInt(a) && !s || n.count && r || M(o) || i)
+                    return !(a && 0 !== parseInt(a) && !s) && (!n.count || !r) && !M(o) && !i || t.isLiveEnded()
                 }, e.prototype._sendFormDidFocus = function() {
                     var t = this.props.story;
                     this.setState({
@@ -645,7 +646,7 @@
                         sendFormFocused: !1
                     }), this._emojiDidKeyAction()
                 }, e.prototype._emojiDidKeyAction = function() {
-                    var t = N(Emoji.editableVal(this.refs.messageInput));
+                    var t = I(Emoji.editableVal(this.refs.messageInput));
                     this.setState({
                         sendFormHasText: t.length > 0
                     }), this.refs.messageInput.check()
@@ -685,7 +686,7 @@
                     })
                 }, e
             }(o.Component);
-        var U = function() {
+        var K = function() {
             function t(e, r) {
                 ! function(t, e) {
                     if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
@@ -749,7 +750,7 @@
                             className: "narrative-preview",
                             onclick: function(t) {
                                 var r = t.target;
-                                Stories.show(e.raw_id + "/" + o, {
+                                Stories.show(cur.storyLayer.getBlockKey(e) + "/" + o, {
                                     fromEl: r,
                                     narrativeId: e.narrative.id,
                                     source: "narrative_recommendations"
@@ -841,6 +842,102 @@
             }, t
         }();
         var V = function(t) {
+            function e(r, o, i) {
+                ! function(t, e) {
+                    if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+                }(this, e);
+                var s = function(t, e) {
+                    if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+                    return !e || "object" != typeof e && "function" != typeof e ? t : e
+                }(this, t.call(this, r, o, i));
+                return s.wrapEl = i, s.videoRaw = s.data.video.owner_id + "_" + s.data.video.video_id, s
+            }
+            return function(t, e) {
+                if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
+                t.prototype = Object.create(e && e.prototype, {
+                    constructor: {
+                        value: t,
+                        enumerable: !1,
+                        writable: !0,
+                        configurable: !0
+                    }
+                }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
+            }(e, t), e.prototype.render = function() {
+                var e = this;
+                t.prototype.render.call(this), this.el = ce("div", {
+                    className: "stories_live"
+                });
+                var r = ce("div", {
+                    className: "stories_live_player"
+                }, {
+                    height: "100%",
+                    width: "100%"
+                });
+                return this.el.appendChild(r), this.chatEl = se('\n      <div class="stories_live_chat">\n        <div class="mv_chat_messages_wrap">\n          <div class="mv_chat_messages"></div>\n        </div>\n        <div class="mv_chat_stickers_wrap"></div>\n      </div>\n    '), this.el.appendChild(this.chatEl), window.mvcur && window.mvcur.player && Videoview.hide(!1, !0), setTimeout(function() {
+                    showInlineVideo(e.videoRaw, "", {
+                        autoplay: 1,
+                        module: "story",
+                        onLoaded: function() {
+                            e._onPlayerInited()
+                        }
+                    }, !1, r)
+                }), this.el
+            }, e.prototype.destroy = function() {
+                t.prototype.destroy.call(this), this._resetTimer(), window.mvcur = {}, this.player && (this.player.destroy(), VideoChat.destroy()), cur.storyLayer._sendNavigationStatEvents("live_player_close"), delete this.el
+            }, e.prototype.getContainer = function() {
+                return this.el || this.render()
+            }, e.prototype.onLiveEnded = function() {
+                var t = this;
+                this.liveEnded = !0, hide(geByClass1("_error_msg", geByClass1("videoplayer_error")));
+                var e = this.mvData.oid < 0 ? getLang("stories_live_ended_desc_club") : langSex(this.mvData.author_sex, getLang("stories_live_ended_desc_user", "raw"));
+                e = e.replace("{name}", this.mvData.md_author);
+                var r = this.mvData.oid < 0 ? getLang("stories_live_ended_open_club") : getLang("stories_live_ended_open_user");
+                hide(this.chatEl), hide(domByClass(this.player.ui.thumb, "videoplayer_big_play_btn"));
+                var o = cur.storyLayer.storiesBlocks.length > 1;
+                this.el.appendChild(se('\n    <div class="stories_live_end">\n      <div class="stories_live_end_author_photo" style="background-image: url(' + this.mvData.author_photo + ')"></div>\n      <div class="stories_live_end_title">' + getLang("stories_live_ended_title") + '</div>\n      <div class="stories_live_end_desc">' + e + '</div>\n      <a href="' + this.mvData.author_href + '" class="stories_live_end_open_owner">' + r + '</a>\n      <div class="stories_live_end_timer" onclick="cur.storyLayer.nextStory()" style="' + (o ? "" : "display: none;") + '">\n        <canvas class="_timer_canvas" width="100" height="100"></canvas>\n        <div class="stories_live_end_timer_text">' + getLang("stories_live_ended_watch_next") + "</div>\n      </div>\n    </div>\n    ")), o && setTimeout(function() {
+                    t._startTimer()
+                })
+            }, e.prototype.pause = function() {}, e.prototype.play = function() {
+                this.player && !this.liveEnded && (t.prototype.play.call(this), this.player && this.player.play())
+            }, e.prototype.sendMessage = function(t) {
+                ajax.post("al_video.php?act=post_comment", {
+                    comment: t,
+                    video: this.videoRaw,
+                    hash: this.mvData.hash,
+                    videoviewer: 1
+                })
+            }, e.prototype.volumeUpdate = function() {
+                this.player.setVolume(m())
+            }, e.prototype._onCanPlay = function() {
+                t.prototype._onCanPlay.call(this), setStyle(this.el, "opacity", 1)
+            }, e.prototype._onPlayerInited = function() {
+                this._onCanPlay(), this.player = window.cur.videoInlinePlayer, this.play(), cur.storyLayer._sendNavigationStatEvents("live_player_show"), browser.safari && this.player.toggleMute(!0, !1), this.mvData = Videoview.getMvData(), window.mvcur = {
+                    chatMode: !0,
+                    mvData: this.mvData,
+                    mvShown: !0,
+                    queueKey: this.mvData.queue_params.key,
+                    qversion: this.mvData.qversion
+                }, VideoChat.init(this.chatEl, {
+                    scrollHidden: !0
+                }), Videoview.queueCheckUpdates(this.mvData.queue_params)
+            }, e.prototype._startTimer = function() {
+                var t = this;
+                if (window.CanvasRenderingContext2D) {
+                    var e = domByClass(this.el, "_timer_canvas"),
+                        r = e.getContext("2d");
+                    r.lineWidth = 6, r.lineCap = "round", r.strokeStyle = "#fff";
+                    var o = Date.now();
+                    show(e), this.timerInProgress = !0,
+                        function e() {
+                            var i = (Date.now() - o) / 5e3;
+                            i < 1 ? (r.clearRect(0, 0, 100, 100), r.beginPath(), r.arc(50, 50, 47, -Math.PI / 2, -Math.PI / 2 + 2 * Math.PI * i), r.stroke(), t._nextTO = setTimeout(e, 16)) : cur.storyLayer.nextStory()
+                        }()
+                }
+            }, e.prototype._resetTimer = function() {
+                window.CanvasRenderingContext2D && (clearTimeout(this._nextTO), this.timerInProgress = !1, hide(domByClass(this.el, "_timer_canvas")))
+            }, e
+        }(K);
+        var U = function(t) {
             function e() {
                 return function(t, e) {
                         if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
@@ -904,8 +1001,8 @@
             }, e.prototype.volumeUpdate = function() {
                 this.video.volume = m()
             }, e
-        }(U);
-        var K = function(t) {
+        }(K);
+        var z = function(t) {
                 function e(r, o) {
                     ! function(t, e) {
                         if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
@@ -957,9 +1054,9 @@
                 }, e.prototype._onCanPlay = function() {
                     this.startTs = Date.now(), t.prototype._onCanPlay.call(this), setStyle(this.photo, "opacity", 1)
                 }, e
-            }(U),
-            z = "stories_manage",
-            Y = function() {
+            }(K),
+            Y = "stories_manage",
+            q = function() {
                 return function(t, e) {
                     if (Array.isArray(t)) return t;
                     if (Symbol.iterator in Object(t)) return function(t, e) {
@@ -985,45 +1082,43 @@
             }();
         var X = window,
             G = X.radioBtns,
-            q = X.getLang,
-            Q = X.lockButton,
-            J = X.unlockButton,
-            $ = X.removeEvent,
-            Z = X.addEvent,
-            tt = X.addClass,
-            et = X.removeClass,
-            rt = X.toggleClass,
-            ot = X.geByClass1,
-            it = X.geByClass,
-            st = X.ge,
-            nt = X.se,
-            at = X.domQuery,
-            dt = X.curBox,
-            ct = X.showBox,
-            lt = X.extend,
-            ht = function() {
+            Q = X.getLang,
+            J = X.lockButton,
+            $ = X.unlockButton,
+            Z = X.removeEvent,
+            tt = X.addEvent,
+            et = X.addClass,
+            rt = X.removeClass,
+            ot = X.toggleClass,
+            it = X.geByClass1,
+            st = X.geByClass,
+            nt = X.ge,
+            at = X.se,
+            ct = X.domQuery,
+            lt = X.curBox,
+            dt = X.showBox,
+            ht = X.extend,
+            ut = function() {
                 function t(e, r) {
                     ! function(t, e) {
                         if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
                     }(this, t), this.data = e, this.opts = r, this.id = r.id, this.isActive = !1, this.story = !1, this.index = 0, this.preloadedStories = {}, this.layer = r.layer
                 }
                 return t.prototype.destroy = function() {
-                    this._destroyStory(), $(ot("stories_item_cont", this.contWrap)), $(ot("stories_reply_to", this.replyToWrap)), $(this.shareButton), delete this.shareButton, $(this.followBtn), delete this.followBtn, $(this.answersEl), delete this.answersEl, clearTimeout(this.showMessageTimer);
-                    for (var t = it("stories_time_line", this.timeLineEl), e = 0; e < t.length; e++) $(t[e]);
-                    $(this.viewsButton), $(ot("stories_feedback_close", this.wrapEl)), $(ot("stories_link", this.wrapEl)), delete this.contWrap, delete this.backButton, delete this.replyToWrap, delete this.dateEl, delete this.replyToWrap, delete this.timeLineEl, delete this.authorButtons, delete this.inlineLoader, this.wrapEl && this.wrapEl.parentNode && this.wrapEl.parentNode.removeChild(this.wrapEl), delete this.wrapEl;
+                    this._destroyStory(), Z(it("stories_item_cont", this.contWrap)), Z(it("stories_reply_to", this.replyToWrap)), Z(this.shareButton), delete this.shareButton, Z(this.followBtn), delete this.followBtn, Z(this.answersEl), delete this.answersEl, clearTimeout(this.showMessageTimer);
+                    for (var t = st("stories_time_line", this.timeLineEl), e = 0; e < t.length; e++) Z(t[e]);
+                    Z(this.viewsButton), Z(it("stories_feedback_close", this.wrapEl)), Z(it("stories_link", this.wrapEl)), delete this.contWrap, delete this.backButton, delete this.replyToWrap, delete this.descEl, delete this.replyToWrap, delete this.timeLineEl, delete this.authorButtons, delete this.inlineLoader, this.wrapEl && this.wrapEl.parentNode && this.wrapEl.parentNode.removeChild(this.wrapEl), delete this.wrapEl;
                     for (var r = !1, o = 0; o < this.data.items.length; o++)
                         if (this.data.items[o].unread) {
                             r = !0;
                             break
                         }
-                    var i = T();
-                    !r && i && i.activeStory && et(at("#feed_story_" + this.getOwnerId(), i.activeStory.wrapEl)[0], "story_feed_new_item")
+                    var i = L();
+                    !r && i && i.activeStory && rt(ct("#feed_story_" + this.layer.getBlockKey(this.data), i.activeStory.wrapEl)[0], "story_feed_new_item")
                 }, t.prototype._destroyTimeLine = function() {
-                    for (var t = it("stories_time_line", this.timeLineEl), e = 0; e < t.length; e++) $(t[e])
+                    for (var t = st("stories_time_line", this.timeLineEl), e = 0; e < t.length; e++) Z(t[e])
                 }, t.prototype.getOwnerId = function() {
                     return this.data.author.id
-                }, t.prototype.getOwnerIndex = function() {
-                    return this.data.author.index
                 }, t.prototype.getIndex = function() {
                     return this.index
                 }, t.prototype.isLastStory = function() {
@@ -1032,8 +1127,8 @@
                     return !!this.story && this.story.getId()
                 }, t.prototype.getReadHash = function() {
                     return this.data.read_hash
-                }, t.prototype.isAuthor = function() {
-                    return this.data.author.id === vk.id
+                }, t.prototype.getType = function() {
+                    return this.data.type
                 }, t.prototype.render = function() {
                     this.wrapEl = ce("div", {
                         className: "stories_item"
@@ -1043,7 +1138,7 @@
                     var t = ce("div", {
                         className: "stories_item_cont"
                     });
-                    return Z(t, "mousedown", this._onMouseDownHandle.bind(this)), Z(t, "mouseup", this._onMouseUpHandle.bind(this)), this.contWrap.appendChild(t), t.appendChild(this._renderAuthor()), this.contWrap.appendChild(ce("div", {
+                    return tt(t, "mousedown", this._onMouseDownHandle.bind(this)), tt(t, "mouseup", this._onMouseUpHandle.bind(this)), this.contWrap.appendChild(t), t.appendChild(this._renderAuthor()), this.contWrap.appendChild(ce("div", {
                         className: "stories_bottom_wrap"
                     })), this.contWrap.appendChild(this._renderPreview()), this.indexToUnread(), cur.noStoriesBack || (this.backButton = ce("div", {
                         className: "stories_item_back"
@@ -1054,26 +1149,26 @@
                         innerHTML: getProgressHtml()
                     })), t.appendChild(ce("div", {
                         className: "stories_play_button video_thumb_play"
-                    })), this._initTimeLine(), rt(this.wrapEl, "multi_stories", this.data.items.length > 1), this.wrapEl
+                    })), this.isActiveLive() ? et(this.wrapEl, "live") : this._initTimeLine(), ot(this.wrapEl, "multi_stories", this.data.items.length > 1), this.wrapEl
                 }, t.prototype.updateBottom = function(t) {
-                    var e = ot("stories_bottom_wrap", this.wrapEl);
+                    var e = it("stories_bottom_wrap", this.wrapEl);
                     !this.isActive || t || this.story.isNarrativeMetaStory ? (i.unmountComponentAtNode(e), val(e, "")) : i.render(o.createElement(W, {
                         story: this
                     }), e)
                 }, t.prototype._canForceDeleteStories = function() {
                     return this.data.moder_remove_hash && !this.data.items[0].is_deleted
                 }, t.prototype._initTimeLine = function() {
-                    this.timeLineEl && (this._destroyTimeLine(), re(this.timeLineEl)), ot("stories_item_cont", this.contWrap).appendChild(this._renderTimeLine())
+                    this.timeLineEl && (this._destroyTimeLine(), re(this.timeLineEl)), it("stories_item_cont", this.contWrap).appendChild(this._renderTimeLine())
                 }, t.prototype._isActionsShown = function() {
                     var t = domClosest("_ui_menu_wrap", this.wrapEl);
                     return hasClass(t, "shown")
                 }, t.prototype._renderPreview = function() {
-                    return nt('<div class="stories_preview"></div>')
+                    return at('<div class="stories_preview"></div>')
                 }, t.prototype._renderMessage = function(t) {
-                    return nt('<div class="stories_message">\n  <div class="stories_message_text">' + t + "</div>\n</div>")
+                    return at('<div class="stories_message">\n  <div class="stories_message_text">' + t + "</div>\n</div>")
                 }, t.prototype._showMessage = function(t) {
                     var e = this;
-                    re(ot("stories_message", this.contWrap));
+                    re(it("stories_message", this.contWrap));
                     var r = this._renderMessage(t);
                     return this.contWrap.appendChild(r), clearTimeout(this.showMessageTimer), new Promise(function(t) {
                         e.showMessageTimer = setTimeout(function() {
@@ -1084,7 +1179,7 @@
                     var r = this,
                         o = this.index,
                         i = this.data.items[o].preview_url;
-                    i !== this.curPreviewUrl && i && (e = e || function() {}, t = t || ot("stories_preview", this.contWrap), _(i).then(function(s) {
+                    i !== this.curPreviewUrl && i && (e = e || function() {}, t = t || it("stories_preview", this.contWrap), _(i).then(function(s) {
                         o === r.index && i !== r.curPreviewUrl && (r.curPreviewUrl = i, setStyle(t, "backgroundImage", "url(" + s + ")")), setStyle(t, "opacity", 1), setTimeout(e, 0)
                     }))
                 }, t.prototype.getPreview = function() {
@@ -1097,15 +1192,15 @@
                         i = t.verify,
                         s = this.data && this.data.items[0] && this.data.items[0].narrative,
                         n = void 0;
-                    this.data.is_narrative && s && !s.is_cover ? n = '\n      <div>\n          <div class="stories_narrative_title">' + s.title + '</div>\n          <span class="stories_narrative_author"><a href="' + r + '" class="stories_narrative_author_link">' + o + "</a> · " + q("global_type_narrative") + "</span>\n      </div>" : n = '\n      <div class="stories_author_cont">\n        ' + ('<a href="' + r + '" class="stories_author_photo_wrap"><img src="' + e + '" class="stories_author_photo" /></a>') + '\n        <a href="' + r + '" class="stories_author_name"><span>' + o + "</span></a>\n        " + (i || "") + '\n        <div class="stories_date"></div>\n      </div>';
-                    var a = nt('\n      <div class="stories_author">\n        <div class="stories_author_cont_wrap">\n          <div class="stories_author_inner">' + n + '</div>\n          <div class="stories_author_buttons"></div>\n         </div>\n      </div>\n    ');
-                    return !0 === this.data.hide_owner && val(ot("stories_author_cont", a), ""), rt(this.wrapEl, "hide_owner", !0 === this.data.hide_owner), this.dateEl = ot("stories_date", a), this.authorButtons = ot("stories_author_buttons", a), a
+                    this.data.is_narrative && s && !s.is_cover ? n = '\n      <div>\n          <div class="stories_narrative_title">' + s.title + '</div>\n          <span class="stories_narrative_author"><a href="' + r + '" class="stories_narrative_author_link">' + o + "</a> · " + Q("global_type_narrative") + "</span>\n      </div>" : n = '\n      <div class="stories_author_cont">\n        ' + ('<a href="' + r + '" class="stories_author_photo_wrap"><img src="' + e + '" class="stories_author_photo" /></a>') + '\n        <a href="' + r + '" class="stories_author_name"><span>' + o + "</span></a>\n        " + (i || "") + '\n        <div class="stories_desc"></div>\n      </div>';
+                    var a = at('\n      <div class="stories_author">\n        <div class="stories_author_cont_wrap">\n          <div class="stories_author_inner">' + n + '</div>\n          <div class="stories_author_buttons"></div>\n         </div>\n      </div>\n    ');
+                    return !0 === this.data.hide_owner && val(it("stories_author_cont", a), ""), ot(this.wrapEl, "hide_owner", !0 === this.data.hide_owner), this.descEl = it("stories_desc", a), this.authorButtons = it("stories_author_buttons", a), a
                 }, t.prototype._renderFollowButton = function() {
                     var t = this;
                     return this.followBtn = ce("div", {
                         className: "stories_author_button stories_follow"
-                    }), Z(this.followBtn, "click", this._onFollowBtnClick.bind(this)), Z(this.followBtn, "mouseover", function() {
-                        var e = hasClass(t.followBtn, "followed") ? q("stories_unfollow") : q("stories_follow");
+                    }), tt(this.followBtn, "click", this._onFollowBtnClick.bind(this)), tt(this.followBtn, "mouseover", function() {
+                        var e = hasClass(t.followBtn, "followed") ? Q("stories_unfollow") : Q("stories_follow");
                         showTooltip(t.followBtn, {
                             black: 1,
                             center: 1,
@@ -1122,7 +1217,7 @@
                         var o = ce("div", {
                             className: "stories_time_line_item"
                         });
-                        Z(o, "click", function() {
+                        tt(o, "click", function() {
                             t.layer._sendNavigationStatEvents("go_to_story_click"), t.changeStory(r)
                         });
                         var i = ce("div", {
@@ -1137,25 +1232,26 @@
                 }, t.prototype.isLoaded = function() {
                     return !this.story || this.story.isLoaded()
                 }, t.prototype._onMouseDownHandle = function(t) {
-                    this.isActive && (this.isLocked() || !hasClass(t.target, "stories_item_cont") && !hasClass(t.target, "stories_item_back") || this.downTs || (this.downTs = vkNow(), this.story && this.story.pause(), tt(this.wrapEl, "paused")))
+                    this.isActive && (this.isLocked() || !hasClass(t.target, "stories_item_cont") && !hasClass(t.target, "stories_item_back") || this.downTs || (this.downTs = vkNow(), this.story && this.story.pause(), et(this.wrapEl, "paused")))
                 }, t.prototype._onMouseUpHandle = function(t) {
                     var e = this.downTs;
                     delete this.downTs;
                     var r = !(vkNow() - e < 200 && !this.formLocked && !hasClass(this.wrapEl, "autoplay_failed"));
                     if (this.isActive && hasClass(t.target, "stories_item_back") && !r) return this.layer._sendNavigationStatEvents("go_to_previous_story"), this.prevStory();
                     if (hasClass(t.target, "stories_item_cont") || hasClass(t.target, "stories_item_back")) {
-                        if (this._feedbackTTShown && this.hideFeedbackTooltip(), et(this.wrapEl, "paused"), !this.isActive) return this.id >= this.layer.activeStory.id ? (this.layer._markStoryAsSkipped(), this.layer._sendNavigationStatEvents("go_to_next_author")) : this.layer._sendNavigationStatEvents("go_to_previous_author"), void this.opts.onSelect(this);
+                        if (this._feedbackTTShown && this.hideFeedbackTooltip(), rt(this.wrapEl, "paused"), !this.isActive) return this.id >= this.layer.activeStory.id ? (this.layer._markStoryAsSkipped(), this.layer._sendNavigationStatEvents("go_to_next_author")) : this.layer._sendNavigationStatEvents("go_to_previous_author"), void this.opts.onSelect(this);
                         if (!r) return this.layer._sendNavigationStatEvents("go_to_next_story_tap"), void this._onPlayEnd();
                         e && this.layer._sendNavigationStatEvents("pause_long_tap"), this.isPaused() && this.playStory()
                     }
                 }, t.prototype.isLocked = function() {
-                    return !!(dt() || this._getSendText() || !this.isActive || this.formLocked || this._feedbackTTShown || document.hidden || this._getSendText() || this._isActionsShown() || isVisible(this.inlineLoader) || hasClass(this.wrapEl, "hiding_reply"))
+                    return !!(lt() || this._getSendText() || !this.isActive || this.formLocked || this._feedbackTTShown || document.hidden || this._getSendText() || this._isActionsShown() || isVisible(this.inlineLoader) || hasClass(this.wrapEl, "hiding_reply"))
                 }, t.prototype.autoResumeStory = function() {
                     this.audioPlaying || this.story.isNarrativeMetaStory || cur.narrativeCoverTooltip && cur.narrativeCoverTooltip.isShown() || this.playStory()
                 }, t.prototype.playStory = function() {
-                    this.isLocked() || (et(this.wrapEl, "paused"), this.story || this._initStory(), this.story.play(), delete this.downTs)
+                    var t = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
+                    this.isLocked() || (rt(this.wrapEl, "paused"), this.story && !t || this._initStory(), this.story.play(), delete this.downTs)
                 }, t.prototype.pauseStory = function(t) {
-                    this.story && (this.isPaused() || (t && tt(this.wrapEl, "paused"), this.story.pause()))
+                    this.story && (this.isPaused() || (t && et(this.wrapEl, "paused"), this.story.pause()))
                 }, t.prototype.changeStory = function(t) {
                     if (this.index !== t && !this.formLocked) {
                         this._destroyStory(), this.index = t, cur.narrativeCoverTooltip && cur.narrativeCoverTooltip.hide();
@@ -1165,9 +1261,13 @@
                 }, t.prototype.getWrap = function() {
                     return this.wrapEl
                 }, t.prototype.stop = function() {
-                    this._destroyFeedBackTT(), this.isActive = !1, this._destroyStory(), this._stopLoader(), val(ot("stories_send_form_text", this.wrapEl), ""), this._unlockSendForm(), et(this.wrapEl, "autoplay_failed")
+                    this._destroyFeedBackTT(), this.isActive = !1, this._destroyStory(), this._stopLoader(), val(it("stories_send_form_text", this.wrapEl), ""), this._unlockSendForm(), rt(this.wrapEl, "autoplay_failed")
                 }, t.prototype.getCurStoryData = function() {
                     return this.data.items[this.index]
+                }, t.prototype.isActiveLive = function() {
+                    return "live" === this.getCurStoryData().type
+                }, t.prototype.isLiveEnded = function() {
+                    return this.isActiveLive() && this.story.liveEnded
                 }, t.prototype._initStory = function() {
                     var t = this.getCurStoryData(),
                         e = t.type;
@@ -1181,17 +1281,17 @@
                         onLongLoading: this._showLoader.bind(this),
                         onAutoPlayFail: this._onAutoPlayFail.bind(this)
                     };
-                    "video" === e ? (this.story = new V(t, r), m() > 0 && this.opts.onVideoPlay(), tt(this.wrapEl, "video")) : "photo" === e && (this.story = new K(t, r), this.opts.onVideoEnd(), et(this.wrapEl, "video"));
-                    this.fillTimeLine(), val(this.dateEl, t.is_ads ? q("stories_is_ad") : this.story.getDate()), this.opts.onStartStory(), rt(this.wrapEl, "stories_can_comment", !0 === t.can_comment), t.reply_to && this.replyToWrap.appendChild(this._renderReplyTo()), this.data.author.can_follow && !this.data.is_promo && this.authorButtons.appendChild(this._renderFollowButton()), this.story.isNarrativeMetaStory = t.isNarrativeMetaStory, this._destroyFeedBackTT(), this.story.isNarrativeMetaStory || (this.updateBottom(), this.contWrap.appendChild(this.story.render())), this.story.data && this.story.data.narrative && this.story.data.narrative.is_cover && (this.contWrap.appendChild(this.story.renderNarrativeCover()), this._createNarrativeCoverTooltip()), this.story.isNarrativeMetaStory && !this.story.failed && (re(ot("stories_photo", this.contWrap)), re(ot("stories_video", this.contWrap)), tt(this.contWrap, "stories_item_cont_wrap_meta_story"), this.contWrap.appendChild(this.story.renderNarrativeMetaStory()), this.story._onCanPlay())
+                    ("live" === e ? this.story = new V(t, r, this.wrapEl) : ("video" === e ? (this.story = new U(t, r), et(this.wrapEl, "video")) : (this.story = new z(t, r), this.opts.onVideoEnd(), rt(this.wrapEl, "video")), val(this.descEl, t.is_ads ? Q("stories_is_ad") : this.story.getDate()), this.fillTimeLine()), "live" === e || "video" === e) && (m() > 0 && this.opts.onVideoPlay());
+                    this.opts.onStartStory(), ot(this.wrapEl, "stories_can_comment", !0 === t.can_comment), t.reply_to && this.replyToWrap.appendChild(this._renderReplyTo()), !this.data.author.can_follow || this.data.is_promo || this.isActiveLive() || this.authorButtons.appendChild(this._renderFollowButton()), this.story.isNarrativeMetaStory = t.isNarrativeMetaStory, this._destroyFeedBackTT(), this.story.isNarrativeMetaStory || (this.updateBottom(), this.contWrap.appendChild(this.story.render())), this.story.data && this.story.data.narrative && this.story.data.narrative.is_cover && (this.contWrap.appendChild(this.story.renderNarrativeCover()), this._createNarrativeCoverTooltip()), this.story.isNarrativeMetaStory && !this.story.failed && (re(it("stories_photo", this.contWrap)), re(it("stories_video", this.contWrap)), et(this.contWrap, "stories_item_cont_wrap_meta_story"), this.contWrap.appendChild(this.story.renderNarrativeMetaStory()), this.story._onCanPlay())
                 }, t.prototype._createNarrativeCoverTooltip = function() {
                     var t = this,
-                        e = st("stories_narrative_cover_photo");
+                        e = nt("stories_narrative_cover_photo");
                     cur.narrativeCoverTooltip = new ElementTooltip(e, {
                         appendTo: geByTag1("body"),
                         autoShow: !1,
                         content: ce("div", {
                             className: "narrative_show_tt__inner",
-                            innerHTML: q("stories_narrative_show"),
+                            innerHTML: Q("stories_narrative_show"),
                             customShow: !0,
                             onclick: function() {
                                 cur.narrativeCoverTooltip.hide(), showNarrative(t.story.data.narrative.owner_id + "_" + t.story.data.narrative.id, {
@@ -1203,11 +1303,11 @@
                         forceSide: "top",
                         type: ElementTooltip.TYPE_VERTICAL,
                         cls: "narrative_show_tt"
-                    }), Z(e, "click", this._showNarrativeCoverTooltip.bind(this))
+                    }), tt(e, "click", this._showNarrativeCoverTooltip.bind(this))
                 }, t.prototype._showNarrativeCoverTooltip = function(t) {
                     var e = cur.narrativeCoverTooltip,
                         r = getSize(e._ttel),
-                        o = Y(r, 2),
+                        o = q(r, 2),
                         i = o[0],
                         s = o[1];
                     if (!e.isShown()) return e.hide(), void this.playStory();
@@ -1241,22 +1341,22 @@
                     r > -1 ? (this.index = r, this._setPreview()) : this.indexToUnread()
                 }, t.prototype.fillTimeLine = function() {
                     for (var t = this.timeLineEl, e = 0; e < t.children.length; e++) {
-                        var r = ot("stories_time_line_item_cont_active", t.children[e]);
+                        var r = it("stories_time_line_item_cont_active", t.children[e]);
                         e === this.index && (this.currentTimeLineEl = r);
                         var o = e < this.index ? 100 : 0;
                         setStyle(r, "transform", "translateX(" + o + "%)")
                     }
                 }, t.prototype._destroyStory = function() {
                     if (this.story) {
-                        this.updateBottom(!0), window.tooltips && tooltips.hideAll(), this._resetErrors(), this._destroyFeedBackTT(), this.story.pause(), cur.narrativeCoverTooltip && cur.narrativeCoverTooltip.hide(), et(this.contWrap, "stories_item_cont_wrap_meta_story"), re(ot("narrative-meta-story", this.contWrap)), et(this.contWrap, "stories_narrative_cover_blur"), re(ot("stories_narrative_cover", this.contWrap)), cancelAnimationFrame(this.timeLineAnim);
+                        this.updateBottom(!0), window.tooltips && tooltips.hideAll(), this._resetErrors(), this._destroyFeedBackTT(), this.story.pause(), cur.narrativeCoverTooltip && cur.narrativeCoverTooltip.hide(), rt(this.contWrap, "stories_item_cont_wrap_meta_story"), re(it("narrative-meta-story", this.contWrap)), rt(this.contWrap, "stories_narrative_cover_blur"), re(it("stories_narrative_cover", this.contWrap)), cancelAnimationFrame(this.timeLineAnim);
                         try {
                             this.contWrap.removeChild(this.story.getContainer()), this.story.destroy()
                         } catch (t) {}
-                        this._replyHideEnd(), $(this.followBtn), val(this.authorButtons, ""), $(this.answersEl), $(ot("stories_reply_to", this.replyToWrap)), val(this.replyToWrap, ""), this.hideInlineLoader(), delete this.story
+                        this._replyHideEnd(), Z(this.followBtn), val(this.authorButtons, ""), Z(this.answersEl), Z(it("stories_reply_to", this.replyToWrap)), val(this.replyToWrap, ""), this.hideInlineLoader(), delete this.story
                     }
                 }, t.prototype._timeLineUpdate = function() {
                     var t = this.story;
-                    if (t && !t.isPaused()) {
+                    if (t && !t.isPaused() && !this.isActiveLive()) {
                         var e = t.getCurrentTime(),
                             r = t.getDuration(),
                             o = Math.max(0, Math.min(100, e / r * 100));
@@ -1270,7 +1370,7 @@
                         this.layer._sendViewerStartTime(this.getRawId(), t), this._loadingStartTime = 0
                     }
                 }, t.prototype._onPlay = function() {
-                    this._resetErrors(), this._stopLoader(), this._timeLineUpdate(), this.preloadNextStory(), this.opts.onPlayStory(), et(this.wrapEl, "animate_story"), et(this.wrapEl, "autoplay_failed"), this.data.items[this.getIndex()].unread = !1, this._updateFeedStoryPreview()
+                    this._resetErrors(), this._stopLoader(), this._timeLineUpdate(), this.preloadNextStory(), this.opts.onPlayStory(), rt(this.wrapEl, "animate_story"), rt(this.wrapEl, "autoplay_failed"), this.data.items[this.getIndex()].unread = !1, this._updateFeedStoryPreview()
                 }, t.prototype._onPause = function() {
                     cancelAnimationFrame(this.timeLineAnim)
                 }, t.prototype._onPlayEnd = function() {
@@ -1295,11 +1395,11 @@
                 }, t.prototype.removeStoryBox = function() {
                     var t = this;
                     this.pauseStory(), showFastBox({
-                        title: q("global_warning"),
+                        title: Q("global_warning"),
                         onHide: function() {
                             t.playStory()
                         }
-                    }, q("stories_remove_warning"), q("stories_remove_confirm"), this.removeStory.bind(this), q("global_cancel"))
+                    }, Q("stories_remove_warning"), Q("stories_remove_confirm"), this.removeStory.bind(this), Q("global_cancel"))
                 }, t.prototype.removeStory = function(t) {
                     var e = this;
                     this.pauseStory();
@@ -1312,19 +1412,19 @@
                         moder_remove_hash: this.data.moder_remove_hash
                     }, {
                         onDone: function(t) {
-                            window.cur.module === z && window.GeStories.storyDidRemove(o, t), dt().hide(), e._popStoryAndClearList(r)
+                            window.cur.module === Y && window.GeStories.storyDidRemove(o, t), lt().hide(), e._popStoryAndClearList(r)
                         },
-                        showProgress: Q.pbind(t),
-                        hideProgress: J.pbind(t)
+                        showProgress: J.pbind(t),
+                        hideProgress: $.pbind(t)
                     })
                 }, t.prototype.removeNarrativeBox = function() {
                     var t = this;
                     this.pauseStory(), showFastBox({
-                        title: q("global_warning"),
+                        title: Q("global_warning"),
                         onHide: function() {
                             t.playStory()
                         }
-                    }, q("stories_narrative_remove_warning"), q("stories_remove_confirm"), this.removeNarrative.bind(this), q("global_cancel"))
+                    }, Q("stories_narrative_remove_warning"), Q("stories_remove_confirm"), this.removeNarrative.bind(this), Q("global_cancel"))
                 }, t.prototype.removeNarrative = function(t) {
                     var e = this;
                     this.pauseStory();
@@ -1337,10 +1437,10 @@
                         moder_remove_hash: this.data.moder_remove_hash
                     }, {
                         onDone: function() {
-                            dt().hide(), e._popCoverAndCleanNarrativeList(r)
+                            lt().hide(), e._popCoverAndCleanNarrativeList(r)
                         },
-                        showProgress: Q.pbind(t),
-                        hideProgress: J.pbind(t)
+                        showProgress: J.pbind(t),
+                        hideProgress: $.pbind(t)
                     })
                 }, t.prototype._popCoverAndCleanNarrativeList = function(t) {
                     if (t.is_cover) this._popStoryAndClearList(this.getIndex());
@@ -1361,7 +1461,7 @@
                         hash: e.bookmark_hash
                     }, {
                         onDone: function(r) {
-                            showDoneBox(r || q("stories_narrative_bookmark_deleted"), {
+                            showDoneBox(r || Q("stories_narrative_bookmark_deleted"), {
                                 className: "stories_done_msg"
                             }), e.is_bookmarked = !e.is_bookmarked, t.updateBottom()
                         }
@@ -1375,14 +1475,14 @@
                     var e = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
                     this.data.items.splice(t, 1), this.opts.removeList();
                     var r = this.data.items.length;
-                    r ? (this._initTimeLine(), r > t ? this.isActive && (this._initStory(), this._setPreview(!1, this.playStory.bind(this))) : this.isActive && this.nextStory()) : this._remove(e)
+                    r ? (this._initTimeLine(), r > t ? this.isActive && this.playStory(!0) : this.isActive && this.nextStory()) : this._remove(e)
                 }, t.prototype._remove = function(t, e) {
                     this.opts.onStoryRemoved(t, e)
                 }, t.prototype.shareBox = function() {
                     var t = this,
                         e = this.getCurStoryData().narrative,
                         r = void 0;
-                    r = e ? "narrative" + e.raw_id : "story" + this.story.getId(), this.pauseStory(), ct("like.php", {
+                    r = e ? "narrative" + e.raw_id : "story" + this.story.getId(), this.pauseStory(), dt("like.php", {
                         act: "publish_box",
                         object: r,
                         from: "wkview"
@@ -1400,6 +1500,7 @@
                     var r = this,
                         o = this._getSendText();
                     if (!o || !this.story) return cancelEvent(t);
+                    if (this.isActiveLive()) return this.story.sendMessage(o), void this._onAnswerSended(e);
                     var i = this.story.data.narrative,
                         s = void 0;
                     s = i ? "narrative:" + i.raw_id : "story:" + this.story.getId(), this.layer._sendNavigationStatEvents("comment_send"), ajax.post("al_im.php", {
@@ -1411,27 +1512,30 @@
                         to: this.getOwnerId()
                     }, {
                         onDone: function() {
-                            r._showMessage(q("stories_answer_sent")).then(function() {
-                                r._unlockSendForm(), r.playStory()
-                            }), val(ot("stories_send_form_text", r.wrapEl), ""), r._blurSendForm(), r.updateFeedbackTTPos(), r.pauseStory(), e && e()
+                            r._onAnswerSended(e)
                         },
                         showProgress: function() {
-                            val(r.sendFormButton, r._getLoaderHtml()), tt(r.sendFormButton, "sending")
+                            val(r.sendFormButton, r._getLoaderHtml()), et(r.sendFormButton, "sending")
                         },
                         hideProgress: function() {
-                            val(r.sendFormButton, ""), et(r.sendFormButton, "sending")
+                            val(r.sendFormButton, ""), rt(r.sendFormButton, "sending")
                         }
                     })
+                }, t.prototype._onAnswerSended = function(t) {
+                    var e = this;
+                    this.isActiveLive() || this._showMessage(Q("stories_answer_sent")).then(function() {
+                        e._unlockSendForm(), e.playStory()
+                    }), val(it("stories_send_form_text", this.wrapEl), ""), this._blurSendForm(), this.updateFeedbackTTPos(), this.pauseStory(), t && t()
                 }, t.prototype._onSendFormFocus = function() {
                     var t = this;
                     this.pauseStory(), this.formLocked = !0, cancelStackPush("stories_form_focus", function() {
                         Emoji.shown || (t._resetFendForm(), t._blurSendForm()), t.updateFeedbackTTPos()
                     })
                 }, t.prototype._blurSendForm = function() {
-                    var t = ot("stories_send_form_text", this.wrapEl);
+                    var t = it("stories_send_form_text", this.wrapEl);
                     t && t.blur()
                 }, t.prototype._getSendText = function() {
-                    var t = Emoji.editableVal(ot("stories_send_form_text", this.wrapEl));
+                    var t = Emoji.editableVal(it("stories_send_form_text", this.wrapEl));
                     return trim(t)
                 }, t.prototype._onSendFormBlur = function() {
                     this._getSendText() || this._resetFendForm()
@@ -1440,9 +1544,9 @@
                 }, t.prototype._unlockSendForm = function() {
                     this.formLocked && (this.formLocked = !1)
                 }, t.prototype._resetFendForm = function() {
-                    this._unlockSendForm(), this.playStory(), val(ot("stories_send_form_text", this.wrapEl), "")
+                    this._unlockSendForm(), this.playStory(), val(it("stories_send_form_text", this.wrapEl), "")
                 }, t.prototype._emojiOnKeyAction = function() {
-                    this._getSendText() ? tt(this.sendFormButton, "active") : et(this.sendFormButton, "active")
+                    this._getSendText() ? et(this.sendFormButton, "active") : rt(this.sendFormButton, "active")
                 }, t.prototype._getLoaderHtml = function() {
                     return '<svg class="stories_view_loader_circular" viewBox="25 25 50 50">\n      <circle class="stories_view_loader_circular_path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>\n    </svg>'
                 }, t.prototype.preloadNextStory = function(t) {
@@ -1456,11 +1560,11 @@
                     }
                 }, t.prototype._addToBlacklist = function() {
                     cur.storyLayer && cur.storyLayer.pauseStory(), showFastBox({
-                        title: q("stories_add_blacklist_title"),
+                        title: Q("stories_add_blacklist_title"),
                         onHide: function() {
                             cur.storyLayer && cur.storyLayer.playStory()
                         }
-                    }, this.getOwnerId() < 0 ? q("stories_add_blacklist_message_group") : q("stories_add_blacklist_message"), q("stories_add_blacklist_button"), this._doAddToBlacklist.bind(this), q("global_cancel"))
+                    }, this.getOwnerId() < 0 ? Q("stories_add_blacklist_message_group") : Q("stories_add_blacklist_message"), Q("stories_add_blacklist_button"), this._doAddToBlacklist.bind(this), Q("global_cancel"))
                 }, t.prototype._doAddToBlacklist = function(t) {
                     var e = this;
                     ajax.post("al_stories.php", {
@@ -1470,14 +1574,14 @@
                         source_story: this.getRawId()
                     }, {
                         onDone: function() {
-                            e.data.can_blacklist = !1, dt().hide(), e.opts.removeList(), e._remove()
+                            e.data.can_blacklist = !1, lt().hide(), e.opts.removeList(), e._remove()
                         },
-                        showProgress: Q.pbind(t),
-                        hideProgress: J.pbind(t)
+                        showProgress: J.pbind(t),
+                        hideProgress: $.pbind(t)
                     })
                 }, t.prototype._resetErrors = function() {
-                    var t = ot("stories_error_wrap", this.contWrap);
-                    t && ($(ot("stories_error_button", t)), re(t)), et(this.wrapEl, "failed"), et(this.wrapEl, "fatal_error")
+                    var t = it("stories_error_wrap", this.contWrap);
+                    t && (Z(it("stories_error_button", t)), re(t)), rt(this.wrapEl, "failed"), rt(this.wrapEl, "fatal_error")
                 }, t.prototype._showError = function(t) {
                     var e = this;
                     if (this.contWrap) {
@@ -1486,30 +1590,30 @@
                             i = void 0;
                         switch (t) {
                             case "load":
-                                o = q("stories_error_cant_load"), i = ce("div", {
+                                o = Q("stories_error_cant_load"), i = ce("div", {
                                     className: "stories_error_button",
-                                    innerHTML: q("stories_try_again")
-                                }), Z(i, "click", function() {
+                                    innerHTML: Q("stories_try_again")
+                                }), tt(i, "click", function() {
                                     e._destroyStory(), e.playStory()
                                 });
                                 break;
                             case "expired":
-                                o = q("stories_error_expired");
+                                o = Q("stories_error_expired");
                                 break;
                             case "deleted":
-                                o = q("stories_error_deleted");
+                                o = Q("stories_error_deleted");
                                 break;
                             case "private":
-                                o = q("stories_error_private");
+                                o = Q("stories_error_private");
                                 break;
                             case "deleted-narrative":
-                                o = q("stories_error_deleted_narrative");
+                                o = Q("stories_error_deleted_narrative");
                                 break;
                             case "private-narrative":
-                                o = q("stories_error_private_narrative");
+                                o = Q("stories_error_private_narrative");
                                 break;
                             default:
-                                o = q("global_unknown_error")
+                                o = Q("global_unknown_error")
                         }
                         this._resetErrors(), this._stopLoader();
                         var s = ce("div", {
@@ -1526,12 +1630,12 @@
                         })), a.appendChild(ce("div", {
                             className: "stories_error_caption",
                             innerHTML: o
-                        })), i && a.appendChild(i), s.appendChild(n), this.contWrap.appendChild(s), tt(this.wrapEl, "failed"), inArray(t, ["expired", "deleted", "private", "deleted-narrative", "private-narrative"]) && tt(this.wrapEl, "fatal_error")
+                        })), i && a.appendChild(i), s.appendChild(n), this.contWrap.appendChild(s), et(this.wrapEl, "failed"), inArray(t, ["expired", "deleted", "private", "deleted-narrative", "private-narrative"]) && et(this.wrapEl, "fatal_error")
                     }
                 }, t.prototype._stopLoader = function() {
                     var t = this;
                     setTimeout(function() {
-                        re(ot("stories_loader", t.contWrap))
+                        re(it("stories_loader", t.contWrap))
                     }, 0)
                 }, t.prototype._showLoader = function() {
                     if (this._stopLoader(), this.isActive && (!this.isLoaded() || this.isPaused()) && this.contWrap) {
@@ -1555,7 +1659,7 @@
                             from: "stories"
                         }, {
                             onDone: function() {
-                                t.data.author.can_follow && t._sendStatEvent("follow"), t.data.author.can_follow = !t.data.author.can_follow, rt(t.followBtn, "followed", !t.data.author.can_follow), t._showMessage(q(t.data.author.can_follow ? "stories_unfollowed" : "stories_followed")).then(function() {
+                                t.data.author.can_follow && t._sendStatEvent("follow"), t.data.author.can_follow = !t.data.author.can_follow, ot(t.followBtn, "followed", !t.data.author.can_follow), t._showMessage(Q(t.data.author.can_follow ? "stories_unfollowed" : "stories_followed")).then(function() {
                                     return t.playStory()
                                 }), window.tooltips && tooltips.destroy(t.followBtn), triggerEvent(t.followBtn, "mouseover")
                             },
@@ -1569,11 +1673,11 @@
                     }
                 }, t.prototype._getDimensions = function() {
                     var t = getSize(this.wrapEl),
-                        e = Y(t, 2),
+                        e = q(t, 2),
                         r = e[0],
                         o = e[1],
                         i = getXY(this.wrapEl),
-                        s = Y(i, 2),
+                        s = q(i, 2),
                         n = s[0];
                     return {
                         width: r,
@@ -1582,7 +1686,7 @@
                         left: n - scrollGetX()
                     }
                 }, t.prototype.markAsActive = function() {
-                    this.isActive = !0, tt(this.wrapEl, "animate_story")
+                    this.isActive = !0, et(this.wrapEl, "animate_story")
                 }, t.prototype._renderReplyTo = function() {
                     var t = this,
                         e = this.getCurStoryData().reply_to,
@@ -1592,18 +1696,18 @@
                         s = e.can_view_deleted,
                         n = e.is_deleted,
                         a = e.is_private,
-                        d = e.raw_id,
-                        c = nt('<div class="stories_reply_to" style="background-image: url(' + o + ')">\n  <div class="stories_reply_to_error_msg"></div>\n  <div class="stories_reply_to_owner_name_wrap">\n    <div class="stories_reply_to_owner_name">' + i + "</div>\n  </div>\n</div>");
-                    if (Z(c, "click", function() {
+                        c = e.raw_id,
+                        l = at('<div class="stories_reply_to" style="background-image: url(' + o + ')">\n  <div class="stories_reply_to_error_msg"></div>\n  <div class="stories_reply_to_owner_name_wrap">\n    <div class="stories_reply_to_owner_name">' + i + "</div>\n  </div>\n</div>");
+                    if (tt(l, "click", function() {
                             t.layer._sendNavigationStatEvents("open_parent_story");
-                            var e = T();
-                            b.length > 1 && e.getStoryRaw() === d ? cancelStackPop() : showStory(r, {
-                                fromEl: c,
+                            var e = L();
+                            b.length > 1 && e.getStoryRaw() === c ? cancelStackPop() : showStory(r, {
+                                fromEl: l,
                                 source: "reply_story"
                             })
-                        }), s) return c;
-                    var l = !1;
-                    return n ? (tt(c, "deleted"), l = q("stories_deleted_story")) : a && (tt(c, "private"), l = q("stories_private_story")), l && (val(ot("stories_reply_to_error_msg", c), l), re(ot("stories_reply_to_owner_name_wrap", c))), c
+                        }), s) return l;
+                    var d = !1;
+                    return n ? (et(l, "deleted"), d = Q("stories_deleted_story")) : a && (et(l, "private"), d = Q("stories_private_story")), d && (val(it("stories_reply_to_error_msg", l), d), re(it("stories_reply_to_owner_name_wrap", l))), l
                 }, t.prototype.sendMask = function() {
                     var t = this;
                     if (!this._maskSending) {
@@ -1621,7 +1725,7 @@
                                     onHide: function() {
                                         t.playStory()
                                     }
-                                }, o, i) : t._showMessage(q("stories_mask_sent")).then(function() {
+                                }, o, i) : t._showMessage(Q("stories_mask_sent")).then(function() {
                                     return t.playStory()
                                 })
                             },
@@ -1634,7 +1738,7 @@
                         })
                     }
                 }, t.prototype._getFeedbackTTElem = function() {
-                    return ot("stories_answers_tt_arrow", this.wrapEl) || ot("_views_button", this.wrapEl)
+                    return it("stories_answers_tt_arrow", this.wrapEl) || it("_views_button", this.wrapEl)
                 }, t.prototype._destroyFeedBackTT = function() {
                     var t = this._getFeedbackTTElem();
                     t && t.tt && t.tt.destroy(), this._feedbackTTShown = !1, this._feedbackTTLoaded = !1
@@ -1646,7 +1750,7 @@
                 }, t.prototype.updateFeedbackTTArrow = function() {
                     var t = this._getFeedbackTTElem();
                     if (hasClass(t, "stories_answers_tt_arrow")) {
-                        var e = ot("stories_feedback_tt_arrow", this.wrapEl),
+                        var e = it("stories_feedback_tt_arrow", this.wrapEl),
                             r = t.offsetLeft + getSize(t)[0] / 2 - getSize(e)[0] / 2 - 1;
                         setStyle(e, "left", r + "px")
                     }
@@ -1674,14 +1778,14 @@
                                 slide: 15,
                                 zIndex: 100,
                                 shift: [o, 19, 0],
-                                appendEl: ot("stories_bottom_wrap", this.wrapEl),
+                                appendEl: it("stories_bottom_wrap", this.wrapEl),
                                 onHide: function() {
                                     t._feedbackTTShown = !1
                                 },
                                 onShowStart: function() {
                                     t.isActive && (t._feedbackTTShown = !0, t._feedbackTTLoaded ? t._feedbackRequestEnd && (t.feedbackScroll.update(), t._feedbackTooltipInitHeaders(), tooltips.rePositionTT(r.tt), t._onFeedbackScroll(), setTimeout(function() {
                                         return tooltips.rePositionTT(r.tt)
-                                    }, 200)) : (ot("stories_feedback_tt", t.wrapEl).appendChild(nt('<div class="stories_feedback_tt_arrow"></div>')), t._feedbackTTLoaded = !0, t._feedbackRequestEnd = !1, t._feedbackTooltipHeadersInited = !1, Z(ot("stories_feedback_close", t.wrapEl), "click", function() {
+                                    }, 200)) : (it("stories_feedback_tt", t.wrapEl).appendChild(at('<div class="stories_feedback_tt_arrow"></div>')), t._feedbackTTLoaded = !0, t._feedbackRequestEnd = !1, t._feedbackTooltipHeadersInited = !1, tt(it("stories_feedback_close", t.wrapEl), "click", function() {
                                         return t.showFeedbackTooltip()
                                     }), setTimeout(function() {
                                         ajax.post("al_stories.php", {
@@ -1691,8 +1795,8 @@
                                             onDone: function(e, o, i, s, n) {
                                                 if (t.isActive) {
                                                     t.story.setViews(s), t.story.setReplies(n), t._feedbackRequestEnd = !0;
-                                                    var a = ot("stories_feedback_content", t.wrapEl);
-                                                    val(a, e), t.feedbackScroll = new uiScroll(ot("stories_feedback_content", t.wrapEl), {
+                                                    var a = it("stories_feedback_content", t.wrapEl);
+                                                    val(a, e), t.feedbackScroll = new uiScroll(it("stories_feedback_content", t.wrapEl), {
                                                         theme: "default emoji no_transition",
                                                         onmore: function() {
                                                             return t._onMoreFeedBack()
@@ -1700,9 +1804,9 @@
                                                         onscroll: function() {
                                                             return t._onFeedbackScroll()
                                                         }
-                                                    }), t.feedbackScroll.scrollTop(0), tt(t.feedbackScroll.container, "ui_scroll_shadow_bottom_visible"), ot("ui_scroll_overflow", t.feedbackScroll.container).appendChild(ce("div", {
+                                                    }), t.feedbackScroll.scrollTop(0), et(t.feedbackScroll.container, "ui_scroll_shadow_bottom_visible"), it("ui_scroll_overflow", t.feedbackScroll.container).appendChild(ce("div", {
                                                         className: "ui_scroll_shadow_bottom"
-                                                    })), t.feedbackNextFrom = o, r.tt.shown && t._feedbackTooltipInitHeaders(), t.updateBottom(), t.updateFeedbackTTPos(), cur = lt(cur, i), t.updateFeedbackTTArrow()
+                                                    })), t.feedbackNextFrom = o, r.tt.shown && t._feedbackTooltipInitHeaders(), t.updateBottom(), t.updateFeedbackTTPos(), cur = ht(cur, i), t.updateFeedbackTTArrow()
                                                 }
                                             }
                                         })
@@ -1716,9 +1820,9 @@
                 }, t.prototype._feedbackTooltipInitHeaders = function() {
                     if (!this._feedbackTooltipHeadersInited) {
                         this._feedbackTooltipHeadersInited = !0;
-                        var t = ot("stories_feedback_content", this.wrapEl),
-                            e = ot("stories_feedback_headers", this.wrapEl),
-                            r = it("stories_feedback_title", t);
+                        var t = it("stories_feedback_content", this.wrapEl),
+                            e = it("stories_feedback_headers", this.wrapEl),
+                            r = st("stories_feedback_title", t);
                         show(r[0]), this.feedbackHeaders = [];
                         for (var o = r.length + 1, i = 0; i < r.length; i++) {
                             var s = r[i],
@@ -1738,7 +1842,7 @@
                         setStyle(t, "margin-top", r[0].offsetHeight), hide(r[0])
                     }
                 }, t.prototype.feedbackTooltipReInitHeaders = function() {
-                    this._feedbackTooltipHeadersInited && (this._feedbackTooltipHeadersInited = !1, this.feedbackHeaders = [], val(ot("stories_feedback_headers", this.wrapEl), ""), this._feedbackTooltipInitHeaders())
+                    this._feedbackTooltipHeadersInited && (this._feedbackTooltipHeadersInited = !1, this.feedbackHeaders = [], val(it("stories_feedback_headers", this.wrapEl), ""), this._feedbackTooltipInitHeaders())
                 }, t.prototype._onFeedbackScroll = function() {
                     if (this._feedbackTooltipHeadersInited)
                         for (var t = this.feedbackScroll.data.scrollTop, e = !1, r = 0, o = this.feedbackHeaders.length - 1; o >= 0; o--) {
@@ -1746,12 +1850,12 @@
                                 s = i.top,
                                 n = i.height,
                                 a = i.el,
-                                d = s,
-                                c = t;
-                            e && (c -= r - (d += n));
-                            var l = c >= s - n;
-                            a.classList.toggle("active", !e && l && c > 0), l && (e = !0), r = s;
-                            var h = -Math.min(c, d);
+                                c = s,
+                                l = t;
+                            e && (l -= r - (c += n));
+                            var d = l >= s - n;
+                            a.classList.toggle("active", !e && d && l > 0), d && (e = !0), r = s;
+                            var h = -Math.min(l, c);
                             a.style.transform = "translateY(" + h + "px)"
                         }
                 }, t.prototype._onMoreFeedBack = function() {
@@ -1763,7 +1867,7 @@
                     }, {
                         onDone: function(e, r) {
                             t.feedbackNextFrom = r, r && (t.feedbackLoadingMore = !1);
-                            for (var o = ot("stories_feedback_views", t.wrapEl), i = ce("div", {
+                            for (var o = it("stories_feedback_views", t.wrapEl), i = ce("div", {
                                     innerHTML: e
                                 }), s = void 0; s = i.firstChild;) o.appendChild(s)
                         }
@@ -1775,30 +1879,30 @@
                 }, t.prototype.volumeUpdate = function() {
                     this.story && this.story.volumeUpdate && this.story.volumeUpdate()
                 }, t.prototype._onAutoPlayFail = function() {
-                    tt(this.wrapEl, "autoplay_failed")
+                    et(this.wrapEl, "autoplay_failed")
                 }, t.prototype._hideReply = function() {
                     var t = this;
                     showFastBox({
-                        title: q("global_warning"),
+                        title: Q("global_warning"),
                         onHide: function() {
                             t.autoResumeStory()
                         }
-                    }, q("stories_hide_reply_warning"), q("global_continue"), this._doHideReply.bind(this), q("global_cancel"))
+                    }, Q("stories_hide_reply_warning"), Q("global_continue"), this._doHideReply.bind(this), Q("global_cancel"))
                 }, t.prototype._doHideReply = function() {
                     var t = this;
-                    this.pauseStory(), tt(this.wrapEl, "hiding_reply"), dt().hide();
+                    this.pauseStory(), et(this.wrapEl, "hiding_reply"), lt().hide();
                     var e = this.getIndex(),
                         r = this.data.author.gender,
-                        o = nt('<div class="stories_hide_reply_wrap loading">\n  <div class="stories_inline_loader">' + getProgressHtml() + '</div>\n  <div class="stories_hide_reply_cont">\n    <div class="stories_hide_reply_icon"></div>\n    <div class="stories_hide_reply_info">' + q("stories_reply_hidden") + '</div>\n    <div class="stories_hide_reply_continue_button _stories_reply_continue">' + q("stories_hide_reply_continue") + '</div>\n  </div>\n  <div class="stories_hide_reply_other_actions">\n    <div class="stories_hide_reply_other_action _stories_hide_replies">' + langSex(r, window.lang.stories_hide_all_replies) + '</div>\n    <div></div>\n    <div class="stories_hide_reply_other_action _stories_reply_ban">' + q("stories_reply_add_to_blacklist") + "</div>\n  </div>\n</div>");
-                    Z(ot("_stories_reply_restore", o), "click", this._restoreReply.bind(this)), Z(ot("_stories_reply_continue", o), "click", function() {
+                        o = at('<div class="stories_hide_reply_wrap loading">\n  <div class="stories_inline_loader">' + getProgressHtml() + '</div>\n  <div class="stories_hide_reply_cont">\n    <div class="stories_hide_reply_icon"></div>\n    <div class="stories_hide_reply_info">' + Q("stories_reply_hidden") + '</div>\n    <div class="stories_hide_reply_continue_button _stories_reply_continue">' + Q("stories_hide_reply_continue") + '</div>\n  </div>\n  <div class="stories_hide_reply_other_actions">\n    <div class="stories_hide_reply_other_action _stories_hide_replies">' + langSex(r, window.lang.stories_hide_all_replies) + '</div>\n    <div></div>\n    <div class="stories_hide_reply_other_action _stories_reply_ban">' + Q("stories_reply_add_to_blacklist") + "</div>\n  </div>\n</div>");
+                    tt(it("_stories_reply_restore", o), "click", this._restoreReply.bind(this)), tt(it("_stories_reply_continue", o), "click", function() {
                         return t._replyHideEnd(e)
-                    }), Z(ot("_stories_hide_replies", o), "click", this._hideAllReplies.bind(this)), Z(ot("_stories_reply_ban", o), "click", this._ban.bind(this)), this.contWrap.appendChild(o), ajax.post("al_stories.php", {
+                    }), tt(it("_stories_hide_replies", o), "click", this._hideAllReplies.bind(this)), tt(it("_stories_reply_ban", o), "click", this._ban.bind(this)), this.contWrap.appendChild(o), ajax.post("al_stories.php", {
                         act: "hide_reply",
                         raw_id: this.getRawId(),
                         hash: this.data.reply_hide_hash
                     }, {
                         onDone: function() {
-                            t.opts.removeList(), cur.needUpdateFeedStories = !0, et(o, "loading")
+                            t.opts.removeList(), cur.needUpdateFeedStories = !0, rt(o, "loading")
                         },
                         onFail: function() {
                             t._resetReplyHide(), t.playStory()
@@ -1807,7 +1911,7 @@
                 }, t.prototype._restoreReply = function(t) {
                     var e = this;
                     cancelEvent(t);
-                    var r = ot("stories_hide_reply_wrap", this.contWrap);
+                    var r = it("stories_hide_reply_wrap", this.contWrap);
                     ajax.post("al_stories.php", {
                         act: "restore_reply",
                         raw_id: this.getRawId(),
@@ -1817,19 +1921,19 @@
                             e._resetReplyHide(), e.playStory()
                         },
                         showProgress: function() {
-                            return tt(r, "loading")
+                            return et(r, "loading")
                         },
                         hideProgress: function() {
-                            return et(r, "loading")
+                            return rt(r, "loading")
                         }
                     })
                 }, t.prototype._resetReplyHide = function() {
-                    re(ot("stories_hide_reply_wrap", this.contWrap)), et(this.wrapEl, "hiding_reply")
+                    re(it("stories_hide_reply_wrap", this.contWrap)), rt(this.wrapEl, "hiding_reply")
                 }, t.prototype._hideAllReplies = function() {
                     var t = this.data.author.first_name_gen;
                     showFastBox({
-                        title: q("global_warning")
-                    }, q("stories_delete_all_replies_confirm").replace("{name}", t), q("global_continue"), this._doHideAllReplies.bind(this), q("global_cancel"))
+                        title: Q("global_warning")
+                    }, Q("stories_delete_all_replies_confirm").replace("{name}", t), Q("global_continue"), this._doHideAllReplies.bind(this), Q("global_cancel"))
                 }, t.prototype._doHideAllReplies = function(t) {
                     var e = this;
                     ajax.post("al_stories.php", {
@@ -1838,18 +1942,18 @@
                         hash: this.data.reply_hide_hash
                     }, {
                         onDone: function() {
-                            dt().hide(), e.opts.removeList(), e.data.items = [];
-                            var t = ot("_stories_hide_replies", e.contWrap);
-                            val(t, q("stories_all_replies_hidden")), tt(t, "disabled")
+                            lt().hide(), e.opts.removeList(), e.data.items = [];
+                            var t = it("_stories_hide_replies", e.contWrap);
+                            val(t, Q("stories_all_replies_hidden")), et(t, "disabled")
                         },
-                        showProgress: Q.pbind(t),
-                        hideProgress: J.pbind(t)
+                        showProgress: J.pbind(t),
+                        hideProgress: $.pbind(t)
                     })
                 }, t.prototype._ban = function() {
                     var t = this.data.author.first_name_gen;
                     showFastBox({
-                        title: q("global_warning")
-                    }, q("stories_ban_confirm").replace("{name}", t), q("global_continue"), this._doBan.bind(this), q("global_cancel"))
+                        title: Q("global_warning")
+                    }, Q("stories_ban_confirm").replace("{name}", t), Q("global_continue"), this._doBan.bind(this), Q("global_cancel"))
                 }, t.prototype._doBan = function(t) {
                     var e = this;
                     ajax.post("al_stories.php", {
@@ -1858,26 +1962,26 @@
                         hash: this.data.stories_ban_hash
                     }, {
                         onDone: function() {
-                            dt().hide(), e.opts.removeList(), e.data.items = [];
-                            var t = ot("_stories_reply_ban", e.contWrap);
-                            val(t, q("stories_banned")), tt(t, "disabled")
+                            lt().hide(), e.opts.removeList(), e.data.items = [];
+                            var t = it("_stories_reply_ban", e.contWrap);
+                            val(t, Q("stories_banned")), et(t, "disabled")
                         },
-                        showProgress: Q.pbind(t),
-                        hideProgress: J.pbind(t)
+                        showProgress: J.pbind(t),
+                        hideProgress: $.pbind(t)
                     })
                 }, t.prototype._replyHideEnd = function() {
                     var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : void 0;
-                    ot("stories_hide_reply_wrap", this.contWrap) && (this.data.items.length <= 1 && C(this.getOwnerId()), this._resetReplyHide(), this._removeStoryFromMemoryByIndex(t || this.getIndex(), !isNumeric(t)))
+                    it("stories_hide_reply_wrap", this.contWrap) && (this.data.items.length <= 1 && C(this.getOwnerId()), this._resetReplyHide(), this._removeStoryFromMemoryByIndex(t || this.getIndex(), !isNumeric(t)))
                 }, t.prototype._feedbackRemoveReplyFromDom = function(t) {
-                    var e = ot("stories_feedback_content", this.wrapEl);
+                    var e = it("stories_feedback_content", this.wrapEl);
                     if (e) {
                         var r = e.querySelector("#feed_story_" + t);
-                        r && tt(r, "removed")
+                        r && et(r, "removed")
                     }
                 }, t.prototype.onReplyDeleted = function(t) {
                     this._feedbackRemoveReplyFromDom(t)
                 }, t.prototype._updateFeedStoryPreview = function() {
-                    var t = st("feed_story_" + this.getOwnerId());
+                    var t = nt("feed_story_" + this.layer.getBlockKey(this.data));
                     if (t && !hasClass(t, "stories_feed_reply_item")) {
                         var e = this.indexToUnread(!0),
                             r = this.data.items[e];
@@ -1885,31 +1989,33 @@
                     }
                 }, t.prototype._sendStatEvent = function(t) {
                     var e = this.getCurStoryData();
-                    ajax.post("al_stories.php", lt({
+                    ajax.post("al_stories.php", ht({
                         act: "stat",
                         source_story: this.getRawId()
                     }, e.stats[t]))
                 }, t.prototype.report = function() {
                     var t = this,
-                        e = this.getCurStoryData().narrative ? "narrative" : "story",
-                        r = ct("al_stories.php", {
-                            act: "report_box",
-                            type: e
-                        }, {
-                            onDone: function() {
-                                var t = it("radiobtn", "stories_report");
-                                G.stories_report = {
-                                    val: 0,
-                                    els: t
-                                }
-                            },
-                            params: {
-                                onClean: function() {
-                                    delete G.stories_report, t.playStory()
-                                }
+                        e = this.getCurStoryData(),
+                        r = "story";
+                    this.isActiveLive() ? r = "live" : e.narrative && (r = "narrative");
+                    var o = dt("al_stories.php", {
+                        act: "report_box",
+                        type: r
+                    }, {
+                        onDone: function() {
+                            var t = st("radiobtn", "stories_report");
+                            G.stories_report = {
+                                val: 0,
+                                els: t
                             }
-                        });
-                    r.removeButtons(), r.addButton(q("box_send"), this._sendReportButtonDidPress.bind(this)), r.addButton(q("global_cancel"), !1, "no")
+                        },
+                        params: {
+                            onClean: function() {
+                                delete G.stories_report, t.playStory()
+                            }
+                        }
+                    });
+                    o.removeButtons(), o.addButton(Q("box_send"), this._sendReportButtonDidPress.bind(this)), o.addButton(Q("global_cancel"), !1, "no")
                 }, t.prototype._sendReportButtonDidPress = function(t) {
                     var e = this,
                         r = this.index,
@@ -1918,28 +2024,32 @@
                         s = o.report_hash,
                         n = !!i,
                         a = void 0,
-                        d = void 0;
-                    n ? (a = i.raw_id, d = i.report_hash) : (a = this.getRawId(), d = s), ajax.post("al_stories.php", {
+                        c = void 0;
+                    n ? (a = i.raw_id, c = i.report_hash) : (a = this.getRawId(), c = s), ajax.post("al_stories.php", {
                         act: "report",
                         type: n ? "narrative" : "story",
                         item_raw: a,
                         reason: G.stories_report.val,
-                        hash: d
+                        hash: c
                     }, {
                         onDone: function() {
-                            dt().hide(), n ? e._popCoverAndCleanNarrativeList(i) : e._popStoryAndClearList(r), showDoneBox(q("stories_report_sent"), {
+                            lt().hide(), n ? e._popCoverAndCleanNarrativeList(i) : e._popStoryAndClearList(r), showDoneBox(Q("stories_report_sent"), {
                                 className: "stories_done_msg"
                             })
                         },
-                        showProgress: Q.pbind(t),
-                        hideProgress: J.pbind(t)
+                        showProgress: J.pbind(t),
+                        hideProgress: $.pbind(t)
                     })
+                }, t.prototype.onLiveEnded = function(t) {
+                    this.isActiveLive() && (this.data.items[this.index].can_share = !t, this.story.onLiveEnded(), this.updateBottom())
+                }, t.prototype.updateLiveViewersCount = function(t) {
+                    val(this.descEl, t)
                 }, t
             }(),
-            ut = "user_personal_card",
-            pt = "group_personal_card",
-            _t = r("Tn+0"),
-            yt = function() {
+            pt = "user_personal_card",
+            _t = "group_personal_card",
+            yt = r("Tn+0"),
+            vt = function() {
                 return function(t, e) {
                     if (Array.isArray(t)) return t;
                     if (Symbol.iterator in Object(t)) return function(t, e) {
@@ -1963,9 +2073,9 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }();
-        var vt = [];
         var ft = [];
-        var mt = function() {
+        var mt = [];
+        var gt = function() {
             return function(t, e) {
                 if (Array.isArray(t)) return t;
                 if (Symbol.iterator in Object(t)) return function(t, e) {
@@ -1989,7 +2099,7 @@
                 throw new TypeError("Invalid attempt to destructure non-iterable instance")
             }
         }();
-        var gt = function() {
+        var wt = function() {
                 function t(e, r, o, i, s) {
                     ! function(t, e) {
                         if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
@@ -1997,7 +2107,7 @@
                     try {
                         window.Videoview && Videoview.togglePlay(!1)
                     } catch (t) {}
-                    this.initDOM(), this.show(), s && s.narrativeId && (e = s.narrativeId.toString()), this._init(e, r, o, i), addClass(this.layerEl, "shown"), this._source = s.source, this._initViewerSource(), this._sendOpeningEvents(), s.isOpenNarrativeFromFeed && (this.isOpenNarrativeFromFeed = s.isOpenNarrativeFromFeed)
+                    this.initDOM(), this.show(), e = this.getBlockKey(e, o), this._init(e, r, o, i), addClass(this.layerEl, "shown"), this._source = s.source, this._initViewerSource(), this._sendOpeningEvents(), s.isOpenNarrativeFromFeed && (this.isOpenNarrativeFromFeed = s.isOpenNarrativeFromFeed)
                 }
                 return t.prototype._sendOpeningEvents = function() {
                     if (this._source) {
@@ -2016,9 +2126,7 @@
                         t && this._sendNavigationStatEvents(t)
                     }
                 }, t.prototype._init = function(t, e, r, o) {
-                    var i = t.split("_"),
-                        s = mt(i, 1)[0];
-                    return this.storyIndex = intval(s), this.storyRaw = t, this.parseExtra(o), this.list = e, this.storiesList = r, this.initStories()
+                    return this.blockKey = t, this.storyRaw = parseInt(t), this.parseExtra(o), this.list = e, this.storiesList = r, this.initStories()
                 }, t.prototype._destroyStories = function() {
                     for (var t in this.renderedStories) {
                         if (this.renderedStories.hasOwnProperty(t)) this.renderedStories[t].story.destroy()
@@ -2049,7 +2157,7 @@
                 }, t.prototype.show = function() {
                     onBodyResize()
                 }, t.prototype.hide = function(t) {
-                    addClass(this.layerEl, "stories_layer_hiding"), !this.hideAllLayers && k(), this._source && this._source.indexOf("narrative") > -1 && this._sendNavigationStatEvents("narrative_close"), !0 !== t && this.activeStory ? this.animateStory("minimize").then(this.doHide.bind(this)) : this.doHide(t), removeClass(this.layerEl, "shown"), this.activeStory && this.activeStory.pauseStory()
+                    addClass(this.layerEl, "stories_layer_hiding"), !this.hideAllLayers && k(), this._source && this._source.indexOf("narrative") > -1 && this._sendNavigationStatEvents("narrative_close"), this.activeStory.isActiveLive() && this._sendNavigationStatEvents("live_player_close"), !0 !== t && this.activeStory ? this.animateStory("minimize").then(this.doHide.bind(this)) : this.doHide(t), removeClass(this.layerEl, "shown"), this.activeStory && this.activeStory.pauseStory()
                 }, t.prototype.doHide = function(t) {
                     this._readStories(), this.destroy(), !t && (b.pop(), cur.storyLayer = b[b.length - 1], cur.storyLayer ? cur.storyLayer.resumeLayer() : (layerQueue.hide(), layerQueue.clear())), "group_stories" === this.list && Stories.groupStoriesBlockUpdate()
                 }, t.prototype.back = function() {
@@ -2060,30 +2168,31 @@
                 }, t.prototype._renderStories = function() {
                     for (var t = this, e = [], r = 0; r < this.storiesList.length; r++) this.storiesList[r] && e.push(this.storiesList[r]);
                     var o = this._getScreenStoriesCount(),
-                        i = this._getCurStoryPos(e.map(function(t) {
-                            return t.author.index
+                        i = this._getCurStoryPos(e.map(function(e) {
+                            return t.getBlockKey(e)
                         })),
                         s = Math.floor(o / 2),
                         n = e.slice(Math.max(0, i - s)).slice(0, o),
-                        a = n.map(function(t) {
-                            return t.author.index
+                        a = n.map(function(e) {
+                            return t.getBlockKey(e)
                         });
-                    for (var d in this.renderedStories)
-                        if (this.renderedStories.hasOwnProperty(d)) {
-                            var c = this.renderedStories[d]; - 1 === a.indexOf(parseInt(d)) && (c.story.destroy(), delete this.renderedStories[d])
+                    for (var c in this.renderedStories)
+                        if (this.renderedStories.hasOwnProperty(c)) {
+                            var l = this.renderedStories[c]; - 1 === a.indexOf(c) && (l.story.destroy(), delete this.renderedStories[c])
                         }
-                    var l = void 0;
+                    var d = void 0;
                     if (n.map(function(e, r) {
-                            var o = e.author.index;
+                            var o = t.getBlockKey(e);
                             if (!t.renderedStories[o]) {
-                                var i = t.storiesOwners.indexOf(o),
-                                    n = new ht(e, {
+                                var i = t.storiesBlocks.indexOf(o),
+                                    n = e.author.id,
+                                    a = new ut(e, {
                                         id: r,
                                         layer: t,
                                         onSelect: t._onSelectStory.bind(t),
                                         onStoriesEnd: t._onStoriesEnd.bind(t, i),
                                         onStoryRemoved: function(e, r) {
-                                            return t._onStoryRemoved(i, e, r)
+                                            return t._onStoryRemoved(n, i, e, r)
                                         },
                                         playPrevOwner: t._playPrevOwner.bind(t, i),
                                         onPlayStory: t._onPlayStory.bind(t, i),
@@ -2094,56 +2203,65 @@
                                             return Stories.removeList(t.list)
                                         }
                                     });
-                                r <= s && t.stories.children[r] ? t.stories.insertBefore(n.render(), t.stories.children[r]) : t.stories.appendChild(n.render()), t.renderedStories[o] = {
-                                    story: n,
+                                r <= s && t.stories.children[r] ? t.stories.insertBefore(a.render(), t.stories.children[r]) : t.stories.appendChild(a.render()), t.renderedStories[o] = {
+                                    story: a,
                                     index: i
-                                }, e.author.index === t.storyIndex && (l = n)
+                                }, o === t.blockKey && (d = a)
                             }
-                        }), !l) {
-                        var h = n[0];
-                        l = this.renderedStories[h.author.index].story
+                        }), !d) {
+                        var h = n[0],
+                            u = this.getBlockKey(h);
+                        d = this.renderedStories[u].story
                     }
                     return {
-                        activeStory: l
+                        activeStory: d
                     }
                 }, t.prototype._getScreenStoriesCount = function() {
                     return 2 * Math.floor(window.innerWidth / (.563 * window.innerHeight)) + 1
                 }, t.prototype._getCurStoryPos = function(t) {
-                    return (t || this.storiesOwners).indexOf(this.storyIndex)
+                    return (t || this.storiesBlocks).indexOf(this.blockKey)
+                }, t.prototype.getBlockKey = function(t) {
+                    var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [];
+                    if (e.length) {
+                        for (var r = 0; r < e.length; r++)
+                            if (e[r].author.id === +t) return this.getBlockKey(e[r]);
+                        return t
+                    }
+                    return t.hasOwnProperty("data") && (t = t.data), t.items && t.items.length && "live" === t.items[0].type ? t.author.id + "live" : t.narrative || t.is_narrative ? (t.author ? t.author.id : t.narrative.owner_id) + "narrative" + (t.items ? t.items[0].narrative.id : t.narrative.id) : "" + t.author.id
                 }, t.prototype.initStories = function() {
                     var t = this;
                     return new Promise(function(e) {
-                        t.storiesOwners = t.storiesList.map(function(t) {
-                            return t.author.index
+                        t.storiesBlocks = t.storiesList.map(function(e) {
+                            return t.getBlockKey(e)
                         });
                         var r = !1,
-                            o = t.storiesOwners.indexOf(t.storyIndex);
+                            o = t.storiesBlocks.indexOf(t.blockKey);
                         if (o > -1) {
                             var i = t.storiesList[o];
-                            i.author.index === t.storyIndex && (r = i.items[i.items.length - 1].unread)
+                            t.getBlockKey(i) === t.blockKey && (r = i.items[i.items.length - 1].unread)
                         }
                         if (r && "replies" === t.list.substr(0, 7) && (r = !1), r) {
                             for (var s = [], n = 0; n < t.storiesList.length; n++) {
                                 var a = t.storiesList[n],
-                                    d = a.items[a.items.length - 1];
-                                a.is_narrative && !d.isNarrativeMetaStory && a.items.push({
+                                    c = a.items[a.items.length - 1];
+                                a.is_narrative && !c.isNarrativeMetaStory && a.items.push({
                                     type: "photo",
-                                    raw_id: d.raw_id,
-                                    narrative: d.narrative,
+                                    raw_id: c.raw_id,
+                                    narrative: c.narrative,
                                     isNarrativeMetaStory: !0
                                 }), a.items[a.items.length - 1].unread && s.push(a)
                             }
-                            s.length && (t.storiesList = s, t.storiesOwners = t.storiesList.map(function(t) {
-                                return t.author.index
+                            s.length && (t.storiesList = s, t.storiesBlocks = t.storiesList.map(function(e) {
+                                return t.getBlockKey(e)
                             }))
                         }
                         t.renderedStories = {};
-                        var c = t._renderStories().activeStory;
-                        t.scrollToStory(c, !0), 1 === t.storiesList.length && addClass(t.stories, "one_story"), t._startFirstStory(c, t.extra.story_id), addClass(t.stories, "inited"), e()
+                        var l = t._renderStories().activeStory;
+                        t.scrollToStory(l, !0), 1 === t.storiesList.length && addClass(t.stories, "one_story"), t._startFirstStory(l, t.extra.story_id), addClass(t.stories, "inited"), e()
                     })
                 }, t.prototype._startFirstStory = function(t, e) {
                     var r = this;
-                    this.activeStory = t, this.storyIndex = t.getOwnerIndex(), addClass(t.getWrap(), "active"), this.scrollToStory(), t.indexToStoryById(e || this.storyRaw), this._startActiveStory(), setTimeout(function() {
+                    this.activeStory = t, this.blockKey = this.getBlockKey(t), addClass(t.getWrap(), "active"), this.scrollToStory(), t.indexToStoryById(e || this.storyRaw), this._startActiveStory(), setTimeout(function() {
                         addClass(r.stories, "animated"), r.inited = !0, "open" === r.extra.replies && r.activeStory.showFeedbackTooltip()
                     })
                 }, t.prototype._markReadRestStories = function(t) {
@@ -2151,7 +2269,7 @@
                 }, t.prototype._onSelectStory = function(t) {
                     var e = this,
                         r = void 0;
-                    this.activeStory && (r = this.activeStory.getWrap(), this.activeStory.stop()), t.id - this.activeStory.id > 0 && this._markReadRestStories(this.activeStory), this.activeStory = t, t.indexToUnread(), t.fillTimeLine(), this.storyIndex = t.getOwnerIndex(), clearTimeout(this.timer), addClass(this.stories, "animated"), this.timer = setTimeout(function() {
+                    this.activeStory && (r = this.activeStory.getWrap(), this.activeStory.stop()), t.id - this.activeStory.id > 0 && this._markReadRestStories(this.activeStory), this.activeStory = t, t.indexToUnread(), t.isActiveLive() || t.fillTimeLine(), this.blockKey = this.getBlockKey(t), clearTimeout(this.timer), addClass(this.stories, "animated"), this.timer = setTimeout(function() {
                         removeClass(r, "active"), addClass(t.getWrap(), "active"), e.scrollToStory(), e.timer = setTimeout(function() {
                             e.activeStory && t.id !== e.activeStory.id || !e.activeStory || (t.indexToUnread(), e._startActiveStory(), e._renderStories(), e.scrollToStory(t, !0))
                         }, 200)
@@ -2200,7 +2318,7 @@
                 }, t.prototype._markReadPrevStories = function(t) {
                     this._markReadStoriesInRange(t, 0, t.index)
                 }, t.prototype._updateBadge = function(t) {
-                    var e = ge("feed_story_" + t.getOwnerId()),
+                    var e = ge("feed_story_" + this.getBlockKey(t)),
                         r = geByClass1("_stories_feed_item_replies", e);
                     if (hasClass(e, "story_feed_new_item") || "" !== val(r)) {
                         var o = t.data.items || [],
@@ -2220,10 +2338,13 @@
                     r && r.preloadNextStory(r.getIndex())
                 }, t.prototype._getStoryInstanceByIndex = function(t) {
                     var e = this.storiesList[t];
-                    return !!e && this.renderedStories[e.author.index].story
-                }, t.prototype._onStoryRemoved = function(t, e, r) {
-                    this.storiesList[t] = !1, !e && this._onStoriesEnd(t), Stories.updateFeedStories(null, {
-                        cb: r
+                    if (!e) return !1;
+                    var r = this.getBlockKey(e);
+                    return this.renderedStories[r].story
+                }, t.prototype._onStoryRemoved = function(t, e, r, o) {
+                    for (var i = 0; i < this.storiesList.length; i++) this.storiesList[i] && this.storiesList[i].author.id === t && (this.storiesList[i] = !1);
+                    !r && this._onStoriesEnd(e), Stories.updateFeedStories(null, {
+                        cb: o
                     })
                 }, t.prototype.onVisibilityChange = function() {
                     "visible" === document.visibilityState ? cur.storyLayer && cur.storyLayer.playStory() : cur.storyLayer && cur.storyLayer.pauseStory()
@@ -2236,7 +2357,7 @@
                     this.activeStory && this.activeStory.autoResumeStory()
                 }, t.prototype._onLayerClick = function(t) {
                     var e = hasClass(t.target, "stories_layer_close");
-                    (hasClass(t.target, "stories_layer_cont") || e) && (e ? this.isCloseBtnClick = !0 : this.storiesOwners.length - 1 === this._getCurStoryPos() && (this._markReadRestStories(this.activeStory), this._markStoryAsSkipped()), cancelStackPop())
+                    (hasClass(t.target, "stories_layer_cont") || e) && (e ? this.isCloseBtnClick = !0 : this.storiesBlocks.length - 1 === this._getCurStoryPos() && (this._markReadRestStories(this.activeStory), this._markStoryAsSkipped()), cancelStackPop())
                 }, t.prototype._checkKeyEvents = function(t) {
                     return !(attr(t.target, "contenteditable") || inArray(t.target.tagName, ["INPUT", "TEXTAREA"]) || curBox())
                 }, t.prototype.onKeyDown = function(t) {
@@ -2266,7 +2387,7 @@
                 }, t.prototype.changeStory = function(t) {
                     this.activeStory && this.activeStory.changeStory(t)
                 }, t.prototype._readStories = function() {
-                    if (this.storiesToRead.length || ft.length || vt.length) {
+                    if (this.storiesToRead.length || mt.length || ft.length) {
                         var t, e, r = this._getSource(),
                             o = this.storiesToRead.join(","),
                             i = this.storiesSkip.join(",");
@@ -2275,12 +2396,12 @@
                             stories: o,
                             source: r,
                             stories_skip: i,
-                            navigation_stats: (e = vt.map(function(t) {
+                            navigation_stats: (e = ft.map(function(t) {
                                 return [t.ownerId, t.storyId, t.source, t.action].join(",")
-                            }).join(";"), vt = [], e),
-                            loading_stats: (t = ft.map(function(t) {
+                            }).join(";"), ft = [], e),
+                            loading_stats: (t = mt.map(function(t) {
                                 return [t.ownerId, t.storyId, t.source, t.time].join(",")
-                            }).join(";"), ft = [], t),
+                            }).join(";"), mt = [], t),
                             connection_type: function() {
                                 var t = navigator.connection;
                                 if (!t) return "";
@@ -2304,7 +2425,7 @@
                 }, t.prototype._getSource = function() {
                     if (this._source) return this._source;
                     var t = this.list;
-                    return -1 !== [ut, pt, z, _t.b].indexOf(cur.module) && (t = cur.module), 0 === t.indexOf("replies") && (t = "reply"), t
+                    return -1 !== [pt, _t, Y, yt.b].indexOf(cur.module) && (t = cur.module), 0 === t.indexOf("replies") && (t = "reply"), t
                 }, t.prototype._sendNavigationStatEvents = function(t) {
                     var e = this.getStoryRaw() || this.activeStory.getCurStoryData().raw_id;
                     e && (this._updateLastStoryOpenAction(t), function(t) {
@@ -2312,17 +2433,17 @@
                             r = t.source,
                             o = t.action,
                             i = e.split("_"),
-                            s = yt(i, 2),
+                            s = vt(i, 2),
                             n = s[0],
                             a = s[1];
                         "reply" === r && (r = "replies_list");
-                        var d = {
+                        var c = {
                             ownerId: n,
                             storyId: a,
                             source: r,
                             action: o
                         };
-                        vt.push(d)
+                        ft.push(c)
                     }({
                         storyRawId: e,
                         source: this._getSource(),
@@ -2362,14 +2483,14 @@
                             r = t.source,
                             o = t.time,
                             i = e.split("_"),
-                            s = yt(i, 2),
+                            s = vt(i, 2),
                             n = {
                                 ownerId: s[0],
                                 storyId: s[1],
                                 source: r,
                                 time: o
                             };
-                        ft.push(n)
+                        mt.push(n)
                     }({
                         storyRawId: t,
                         source: this.viewerSource,
@@ -2391,7 +2512,7 @@
                     for (var o in r)
                         if (r.hasOwnProperty(o)) {
                             var i = r[o].split("="),
-                                s = mt(i, 2),
+                                s = gt(i, 2),
                                 n = s[0],
                                 a = s[1];
                             e[n] = a
@@ -2399,7 +2520,7 @@
                     this.extra = e
                 }, t.prototype.getAnimateFromElem = function() {
                     if (!this.hideAllLayers) {
-                        var t = this.activeStory.getOwnerId();
+                        var t = this.getBlockKey(this.activeStory);
                         if (hasClass(this.animateFromEl, "stories_feed_reply_item")) {
                             var e = domQuery("#feed_story_" + t, domPN(this.animateFromEl))[0];
                             if (e) return e
@@ -2425,20 +2546,20 @@
                         }
                         removeClass(i, "stories_feed_item_ava_animate");
                         var n = getXY(i),
-                            a = mt(n, 2),
-                            d = a[0],
-                            c = a[1],
-                            l = getSize(i),
+                            a = gt(n, 2),
+                            c = a[0],
+                            l = a[1],
+                            d = getSize(i),
                             h = window.innerHeight,
                             u = Math.min(540, Math.max(320, .563 * h)),
                             p = 1.78 * u,
                             _ = Math.max(0, (h - p) / 2),
                             y = Math.max(0, (window.innerWidth - u) / 2);
-                        d = y - d + u / 2 - l[0] / 2 + scrollGetX(), c = _ - c + p / 2 - l[1] / 2 + scrollGetY(), d = -d, c = -c;
+                        c = y - c + u / 2 - d[0] / 2 + scrollGetX(), l = _ - l + p / 2 - d[1] / 2 + scrollGetY(), c = -c, l = -l;
                         var v = {};
-                        "expand" === t && (v.transform = "translate(" + d + "px, " + c + "px) scale(0)", r.animateFromEl = e), setStyle(r.activeStory.wrapEl, v), "minimize" === t && setStyle(i, "transform", "scale(0)"), r.animationTimer = setTimeout(function() {
+                        "expand" === t && (v.transform = "translate(" + c + "px, " + l + "px) scale(0)", r.animateFromEl = e), setStyle(r.activeStory.wrapEl, v), "minimize" === t && setStyle(i, "transform", "scale(0)"), r.animationTimer = setTimeout(function() {
                             addClass(r.stories, "animated"), addClass(i, "stories_feed_item_ava_animate"), r.animationTimer = setTimeout(function() {
-                                "expand" === t ? (setStyle("stories_layers_background", "opacity", 1), setStyle(r.activeStory.wrapEl, "transform", "translate(0, 0) scale(1)")) : (setStyle(r.activeStory.wrapEl, "transform", "translate(" + d + "px, " + c + "px) scale(0.01)"), setStyle(i, "transform", "scale(1)")), r.animationTimer = setTimeout(function() {
+                                "expand" === t ? (setStyle("stories_layers_background", "opacity", 1), setStyle(r.activeStory.wrapEl, "transform", "translate(0, 0) scale(1)")) : (setStyle(r.activeStory.wrapEl, "transform", "translate(" + c + "px, " + l + "px) scale(0.01)"), setStyle(i, "transform", "scale(1)")), r.animationTimer = setTimeout(function() {
                                     o(), "expand" === t ? (setStyle(r.activeStory.wrapEl, "transform", ""), removeClass(r.layerEl, "animation"), removeClass(r.stories, "animated"), r.playStory(), b.length > 1 && (b[b.length - 2].setLayerVisibility(!1), b[b.length - 1].showBackButton())) : (removeClass(i, "stories_feed_item_ava_animate"), setStyle(i, "transform", ""))
                                 }, 330)
                             }, 30)
@@ -2460,16 +2581,16 @@
                     var r = geByClass1("stories_volume_control_slide", this.volumeControl),
                         o = geByClass1("stories_volume_control_slide_indicator", r),
                         i = getXY(r),
-                        s = mt(i, 1)[0],
+                        s = gt(i, 1)[0],
                         n = getSize(r),
-                        a = mt(n, 1)[0],
-                        d = function(t) {
+                        a = gt(n, 1)[0],
+                        c = function(t) {
                             var r = Math.max(0, Math.min(t.pageX - s, a)) / a * 100;
                             setStyle(o, "width", r + "%"), g(r / 100), e.activeStory.volumeUpdate()
                         };
-                    addEvent(window, "mousemove", d), addEvent(window, "mouseup", function t() {
-                        removeEvent(window, "mousemove", d), removeEvent(window, "mouseup", t), e._updateVolumeButton(), removeClass(e.volumeControlContainer, "changing")
-                    }), d(t)
+                    addEvent(window, "mousemove", c), addEvent(window, "mouseup", function t() {
+                        removeEvent(window, "mousemove", c), removeEvent(window, "mouseup", t), e._updateVolumeButton(), removeClass(e.volumeControlContainer, "changing")
+                    }), c(t)
                 }, t.prototype._updateVolumeButton = function() {
                     var t = 100 * m();
                     toggleClass(this.volumeControl, "low", t > 0 && t < 50), toggleClass(this.volumeControl, "high", t >= 50);
@@ -2486,10 +2607,10 @@
                     this.storiesSkip.push(this.getStoryRaw())
                 }, t
             }(),
-            wt = r("zxIV"),
-            bt = r("4+be"),
-            St = r("t7n3"),
-            kt = function() {
+            bt = r("zxIV"),
+            St = r("4+be"),
+            kt = r("t7n3"),
+            Et = function() {
                 return function(t, e) {
                     if (Array.isArray(t)) return t;
                     if (Symbol.iterator in Object(t)) return function(t, e) {
@@ -2513,19 +2634,19 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }(),
-            Et = s.Promise,
-            Tt = {
+            Lt = s.Promise,
+            Ct = {
                 show: function(t) {
                     var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
                     if (t.match(/story/) && (t = this._parseList(t)), cur.storyLayer && cur.storyLayer.list === t.split("/")[1]) return !1;
                     this.getList(t).then(function(t) {
-                        var r = t.storyOwner,
+                        var r = t.blockKey,
                             o = t.list,
                             i = t.items,
                             s = t.extra;
-                        S(new gt(r, o, i, s, e), e)
+                        S(new wt(r, o, i, s, e), e)
                     }).catch(function(t) {
-                        vk.dev && debugLog(t), showFastBox(Object(bt.d)("global_error"), Object(bt.d)("global_unknown_error"))
+                        vk.dev && debugLog(t), showFastBox(Object(St.d)("global_error"), Object(St.d)("global_unknown_error"))
                     })
                 },
                 _getUnreadStory: function(t, e) {
@@ -2543,28 +2664,28 @@
                     return r
                 },
                 getList: function(t, e) {
-                    return new Et(function(r, o) {
+                    return new Lt(function(r, o) {
                         var i = t.split("/"),
-                            s = kt(i, 3),
+                            s = Et(i, 3),
                             n = s[0],
                             a = s[1],
-                            d = s[2],
-                            c = {
-                                storyOwner: n,
+                            c = s[2],
+                            l = {
+                                blockKey: n,
                                 list: a,
-                                extra: d
+                                extra: c
                             },
-                            l = Tt._getList(a);
-                        isArray(l) ? (c.items = l, r(c)) : ajax.post("al_stories.php", {
+                            d = Ct._getList(a);
+                        isArray(d) ? (l.items = d, r(l)) : ajax.post("al_stories.php", {
                             act: "get_list",
                             list: a,
                             story_raw: n,
-                            extra: d,
-                            from_manage: window.cur.module === z ? 1 : 0
+                            extra: c,
+                            from_manage: window.cur.module === Y ? 1 : 0
                         }, {
                             loader: !e,
                             onDone: function(t) {
-                                cur["stories_list_" + a] = t.list, c.items = t.list, t.recommendations && (cur["stories_list_" + a + "_recommendations"] = t.recommendations), r(c)
+                                cur["stories_list_" + a] = t.list, l.items = t.list, t.recommendations && (cur["stories_list_" + a + "_recommendations"] = t.recommendations), r(l)
                             },
                             onFail: function() {
                                 return o(), !0
@@ -2583,7 +2704,7 @@
                 },
                 _parseList: function(t) {
                     var e = (t = decodeURIComponent(t)).match(/^story(-?\d+)_(\d+)(\/([a-z0-9\_\-]+))?(\/([a-z0-9\_\=\;\-]+))?$/i),
-                        r = kt(e, 7),
+                        r = Et(e, 7),
                         o = r[1],
                         i = r[2],
                         s = r[4],
@@ -2592,17 +2713,17 @@
                     return t.match(/from_feed\=1/) ? s = "feed" : t.match(/profile\=1/) ? s = "profile" : s || (s = a), a + "/" + s + "/" + n
                 },
                 initFeed: function() {
-                    var t = Object(wt.F)("stories_feed_items_container");
+                    var t = Object(bt.F)("stories_feed_items_container");
 
                     function e() {
-                        addEvent(t, browserFeatures.wheelEvent, Tt.feedMouseWheel)
+                        addEvent(t, browserFeatures.wheelEvent, Ct.feedMouseWheel)
                     }
 
                     function r() {
-                        removeEvent(t, browserFeatures.wheelEvent, Tt.feedMouseWheel)
+                        removeEvent(t, browserFeatures.wheelEvent, Ct.feedMouseWheel)
                     }
-                    Tt.updateFeedArrows(), addEvent(t, "mouseenter", e), addEvent(t, "mouseleave", r), cur.destroy.push(function() {
-                        removeEvent(t, browserFeatures.wheelEvent, Tt.feedMouseWheel), removeEvent(t, "mouseenter", e), removeEvent(t, "mouseleave", r)
+                    Ct.updateFeedArrows(), addEvent(t, "mouseenter", e), addEvent(t, "mouseleave", r), cur.destroy.push(function() {
+                        removeEvent(t, browserFeatures.wheelEvent, Ct.feedMouseWheel), removeEvent(t, "mouseenter", e), removeEvent(t, "mouseleave", r)
                     })
                 },
                 feedNext: function() {
@@ -2612,8 +2733,8 @@
                     return this.feedPaging("prev")
                 },
                 feedPaging: function(t, e) {
-                    var r = Object(wt.H)("stories_feed_wrap"),
-                        o = Object(wt.F)("stories_feed_items"),
+                    var r = Object(bt.H)("stories_feed_wrap"),
+                        o = Object(bt.F)("stories_feed_items"),
                         i = getSize(r)[0],
                         s = cur.storiesPos || 0;
                     if (isNumeric(t)) s += t;
@@ -2621,25 +2742,25 @@
                         var n = i - 100;
                         "next" === t ? s += n : s -= n
                     }
-                    cur.storiesPos = Math.max(0, Math.min(s, o.scrollWidth - i)), e ? Object(wt.Ha)(o, "animated") : Object(wt.a)(o, "animated"), setStyle(o, "transform", "translateX(-" + cur.storiesPos + "px)"), Tt.updateFeedArrows()
+                    cur.storiesPos = Math.max(0, Math.min(s, o.scrollWidth - i)), e ? Object(bt.Ha)(o, "animated") : Object(bt.a)(o, "animated"), setStyle(o, "transform", "translateX(-" + cur.storiesPos + "px)"), Ct.updateFeedArrows()
                 },
                 feedScrollToOwner: function(t) {
-                    var e = Object(wt.F)("stories_feed_items").offsetWidth,
-                        r = Object(wt.F)("feed_story_" + t);
+                    var e = Object(bt.F)("stories_feed_items").offsetWidth,
+                        r = Object(bt.F)("feed_story_" + t);
                     if (r) {
                         var o = r.offsetWidth,
                             i = r.offsetLeft;
-                        cur.storiesPos = i - e + e / 2 + o / 2, Tt.feedPaging(0, !0)
+                        cur.storiesPos = i - e + e / 2 + o / 2, Ct.feedPaging(0, !0)
                     }
                 },
                 updateFeedStories: function(t, e) {
                     var r = this;
-                    if (t = t || "news", Object(wt.F)("stories_feed_items"))
+                    if (t = t || "news", Object(bt.F)("stories_feed_items"))
                         if ("news" === t) {
                             var o = function(t, o) {
                                 e && e.cb && e.cb(), r._setList("feed", o);
-                                var i = Object(wt.F)("stories_feed_items");
-                                i && (t ? (setStyle(i, "transform", "translateX(0px)"), Object(wt.Ya)(i, t), i.children.length < 6 ? Object(wt.a)("stories_feed_wrap", "stories_feed_not_nav_buttons") : Object(wt.Ha)("stories_feed_wrap", "stories_feed_not_nav_buttons")) : re("stories_feed_wrap"), cur.storiesPos = 0, Tt.updateFeedArrows(), show("stories_feed_wrap"))
+                                var i = Object(bt.F)("stories_feed_items");
+                                i && (t ? (setStyle(i, "transform", "translateX(0px)"), Object(bt.Ya)(i, t), i.children.length < 6 ? Object(bt.a)("stories_feed_wrap", "stories_feed_not_nav_buttons") : Object(bt.Ha)("stories_feed_wrap", "stories_feed_not_nav_buttons")) : re("stories_feed_wrap"), cur.storiesPos = 0, Ct.updateFeedArrows(), show("stories_feed_wrap"))
                             };
                             if (e && e.stories) {
                                 var i = e.stories;
@@ -2655,16 +2776,16 @@
                     if (!hasClass("stories_feed_wrap", "stories_feed_not_nav_buttons")) {
                         cancelEvent(t);
                         var e = Math.abs(t.deltaY) > Math.abs(t.deltaX) ? t.deltaY : t.deltaX;
-                        Tt.feedPaging(e, 1)
+                        Ct.feedPaging(e, 1)
                     }
                 },
                 updateFeedArrows: function() {
-                    var t = Object(wt.F)("stories_feed_items");
+                    var t = Object(bt.F)("stories_feed_items");
                     if (t) {
                         cur.storiesPos || (cur.storiesPos = 0);
-                        var e = Object(wt.H)("stories_feed_wrap").offsetWidth,
+                        var e = Object(bt.H)("stories_feed_wrap").offsetWidth,
                             r = t.scrollWidth - e;
-                        0 === cur.storiesPos ? Object(wt.a)("stories_feed_arrow_left", "disabled") : Object(wt.Ha)("stories_feed_arrow_left", "disabled"), cur.storiesPos === r || r <= 0 ? Object(wt.a)("stories_feed_arrow_right", "disabled") : Object(wt.Ha)("stories_feed_arrow_right", "disabled")
+                        0 === cur.storiesPos ? Object(bt.a)("stories_feed_arrow_left", "disabled") : Object(bt.Ha)("stories_feed_arrow_left", "disabled"), cur.storiesPos === r || r <= 0 ? Object(bt.a)("stories_feed_arrow_right", "disabled") : Object(bt.Ha)("stories_feed_arrow_right", "disabled")
                     }
                 },
                 showBlackList: function() {
@@ -2684,7 +2805,7 @@
                 blackListItemClick: function(t, e) {
                     cancelEvent(e);
                     var r = intval(attr(t, "data-id"));
-                    cur.storiesBlackListShown[r] ? (delete cur.storiesBlackListShown[r], Object(wt.Ha)(t, "olist_item_wrap_on")) : (cur.storiesBlackListShown[r] = 1, Object(wt.a)(t, "olist_item_wrap_on"))
+                    cur.storiesBlackListShown[r] ? (delete cur.storiesBlackListShown[r], Object(bt.Ha)(t, "olist_item_wrap_on")) : (cur.storiesBlackListShown[r] = 1, Object(bt.a)(t, "olist_item_wrap_on"))
                 },
                 saveBlackList: function(t) {
                     var e = Object.keys(cur.storiesBlackListShown);
@@ -2694,7 +2815,7 @@
                         list: e.join(",")
                     }, {
                         onDone: function() {
-                            curBox().hide(), Tt.updateFeedStories()
+                            curBox().hide(), Ct.updateFeedStories()
                         },
                         showProgress: lockButton.pbind(t),
                         hideProgress: unlockButton.pbind(t)
@@ -2709,13 +2830,13 @@
                         if (t)
                             for (var i = 0; i < t.length; i++) o.push(t.substr(i, 1));
                         for (var s = new RegExp(o.join(".*?"), "i"), n = "", a = 0; a < r.length; a++) {
-                            var d = r[a],
-                                c = t ? d.name.replace(s, function(t) {
+                            var c = r[a],
+                                l = t ? c.name.replace(s, function(t) {
                                     return "<em>" + t + "</em>"
-                                }) : d.name;
-                            n += cur.storiesBlackList.tpl.replace(/\{id\}/g, d.id).replace("{photo}", d.photo).replace("{name}", c).replace("{href}", d.href).replace("{class_name}", cur.storiesBlackListShown[d.id] ? " olist_item_wrap_on" : "")
+                                }) : c.name;
+                            n += cur.storiesBlackList.tpl.replace(/\{id\}/g, c.id).replace("{photo}", c.photo).replace("{name}", l).replace("{href}", c.href).replace("{class_name}", cur.storiesBlackListShown[c.id] ? " olist_item_wrap_on" : "")
                         }
-                        n || (n = '<div class="no_rows">' + Object(bt.d)("global_search_not_found").replace("{search}", clean(e)) + "</div>"), Object(wt.Ya)(Object(wt.H)("olist", "stories_black_list_result"), n)
+                        n || (n = '<div class="no_rows">' + Object(St.d)("global_search_not_found").replace("{search}", clean(e)) + "</div>"), Object(bt.Ya)(Object(bt.H)("olist", "stories_black_list_result"), n)
                     }
                 },
                 blackListInit: function(t) {
@@ -2728,37 +2849,47 @@
                     }).removeButtons(), cur.storiesBlackList.users.length ? (cur.storiesBlacklistLastQ = !1, cur.storiesIndexer = new vkIndexer(cur.storiesBlackList.users, function(t) {
                         return t.name
                     }, function() {
-                        Tt.blacklistUpdateUsers("")
-                    }), uiSearch.init("stories_blacklist"), uiSearch.focus("stories_blacklist"), curBox().addButton(Object(bt.d)("global_save"), Tt.saveBlackList).addButton(Object(bt.d)("global_cancel"), void 0, "no")) : curBox().addButton(Object(bt.d)("global_close"))
+                        Ct.blacklistUpdateUsers("")
+                    }), uiSearch.init("stories_blacklist"), uiSearch.focus("stories_blacklist"), curBox().addButton(Object(St.d)("global_save"), Ct.saveBlackList).addButton(Object(St.d)("global_cancel"), void 0, "no")) : curBox().addButton(Object(St.d)("global_close"))
                 },
                 preloadUrl: function(t) {
                     _(t)
                 },
                 showNextRepliesChunk: function(t) {
                     var e = gpeByClass("stories_feedback_replies_items", t);
-                    Object(wt.Ha)(Object(wt.H)("stories_replies_chunk_hidden", e), "stories_replies_chunk_hidden");
-                    var r = Object(wt.H)("stories_replies_chunk_hidden", e);
-                    r ? Object(wt.Ya)(t, langNumeric(Object(bt.d)("stories_replies_more_button", intval(attr(r, "data-size"))))) : re(t), cur.storyLayer && cur.storyLayer.activeStory && cur.storyLayer.activeStory.feedbackTooltipReInitHeaders(), cur.storyLayer && cur.storyLayer.activeStory && cur.storyLayer.activeStory.updateFeedbackTTPos()
+                    Object(bt.Ha)(Object(bt.H)("stories_replies_chunk_hidden", e), "stories_replies_chunk_hidden");
+                    var r = Object(bt.H)("stories_replies_chunk_hidden", e);
+                    r ? Object(bt.Ya)(t, langNumeric(Object(St.d)("stories_replies_more_button", intval(attr(r, "data-size"))))) : re(t), cur.storyLayer && cur.storyLayer.activeStory && cur.storyLayer.activeStory.feedbackTooltipReInitHeaders(), cur.storyLayer && cur.storyLayer.activeStory && cur.storyLayer.activeStory.updateFeedbackTTPos()
                 },
                 groupStoriesBlockUpdate: function() {
-                    var t = Tt._getList("group_stories"),
+                    var t = Ct._getList("group_stories"),
                         e = t && t[0] && t[0].items;
                     if (e) {
                         for (var r = 0, o = 0; o < e.length; o++) {
                             e[o].unread && r++
                         }
-                        var i = Object(wt.H)("stories_groups_block_stories_wrap"),
-                            s = Object(wt.H)("stories_groups_block_stories_button", i);
-                        Object(wt.Va)(i, "has_unread", r > 0), Object(wt.Va)(i, "has_stories", e.length > 0), Object(wt.Va)(s, "has_stories", e.length > 0);
-                        var n = Object(St.d)(cur.storiesPreviews),
+                        var i = Object(bt.H)("stories_groups_block_stories_wrap"),
+                            s = Object(bt.H)("stories_groups_block_stories_button", i);
+                        Object(bt.Va)(i, "has_unread", r > 0), Object(bt.Va)(i, "has_stories", e.length > 0), Object(bt.Va)(s, "has_stories", e.length > 0);
+                        var n = Object(kt.d)(cur.storiesPreviews),
                             a = n.splice(n.length - r, 3);
                         a.length < 3 && (a = a.concat(n.slice(0, 3 - a.length))), a.reverse();
-                        for (var d = "", c = a.length - 1; c >= 0; c--) d += cur.storiesPreviewsRowHtml.replace("{url}", a[c]);
-                        Object(wt.Ya)(Object(wt.H)("stories_groups_block_stories_rows", i), d)
+                        for (var c = "", l = a.length - 1; l >= 0; l--) c += cur.storiesPreviewsRowHtml.replace("{url}", a[l]);
+                        Object(bt.Ya)(Object(bt.H)("stories_groups_block_stories_rows", i), c)
                     }
+                },
+                isLiveShown: function(t) {
+                    return !!(cur.storyLayer && cur.storyLayer.activeStory && cur.storyLayer.activeStory.isActiveLive()) && cur.storyLayer.activeStory.story.videoRaw === t
+                },
+                activeLiveEnded: function(t) {
+                    cur.storyLayer.activeStory.onLiveEnded(t)
+                },
+                updateLiveViewersCount: function(t) {
+                    var e = t ? Object(St.d)("stories_live_N_watching", t, !0) : "";
+                    cur.storyLayer.activeStory.updateLiveViewersCount(e)
                 }
             };
-        window.Stories = Tt;
+        window.Stories = Ct;
         try {
             stManager.done("stories.js")
         } catch (t) {}
@@ -2777,12 +2908,12 @@
             var e = arguments.length > 1 && void 0 !== arguments[1] && arguments[1],
                 r = arguments[2],
                 a = "number" == typeof e,
-                d = t + (e || a ? ".raw" : "");
-            if (void 0 === i[d]) {
-                var c = e || a ? s(t, "raw") : s(t);
-                "string" == typeof c ? i[d] = Object(o.a)(c) : Array.isArray(c) && (i[d] = c.map(o.a))
+                c = t + (e || a ? ".raw" : "");
+            if (void 0 === i[c]) {
+                var l = e || a ? s(t, "raw") : s(t);
+                "string" == typeof l ? i[c] = Object(o.a)(l) : Array.isArray(l) && (i[c] = l.map(o.a))
             }
-            return a ? n(e, i[d], r) : i[d] || ""
+            return a ? n(e, i[c], r) : i[c] || ""
         }
         e.a = {
             getLang: a
@@ -2826,9 +2957,9 @@
         }), r.d(e, "a", function() {
             return a
         }), r.d(e, "b", function() {
-            return d
-        }), r.d(e, "d", function() {
             return c
+        }), r.d(e, "d", function() {
+            return l
         });
         var o = function() {
                 return function(t, e) {
@@ -2882,20 +3013,20 @@
             })
         }
 
-        function d(t) {
+        function c(t) {
             return n(t).replace(/[\u00A0-\u9999<>\&]/gim, function(t) {
                 return "&#" + t.charCodeAt(0) + ";"
             })
         }
 
-        function c(t) {
+        function l(t) {
             var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {},
                 r = e.lineBreak,
                 o = void 0 !== r && r,
                 s = e.convertEmoji,
-                d = void 0 === s || s,
-                c = a(t);
-            return c = c.replace(/\n\r/gi, "\n"), "oneline" === o ? c = c.replace(/<br>/gi, " ").replace(/\n/gi, " ") : "html" === o && (c = c.replace(/\n/gi, "<br>")), c = n(c), d && (c = i.emojiToHTML(c, !0)), c
+                c = void 0 === s || s,
+                l = a(t);
+            return l = l.replace(/\n\r/gi, "\n"), "oneline" === o ? l = l.replace(/<br>/gi, " ").replace(/\n/gi, " ") : "html" === o && (l = l.replace(/\n/gi, "<br>")), l = n(l), c && (l = i.emojiToHTML(l, !0)), l
         }
     }
 });
