@@ -460,7 +460,7 @@ var FullWall = {
                 cur.wallDP = new Datepicker(ge('wall_datesearch'), {
                     width: 140,
                     resfmt: 'plain',
-                    addRows: nav.objLoc.day ? '<tr><td class="wall_cal_clear" colspan="7"><a onclick="uiSearch.showProgress(\'wall_search\'); nav.change({day: false, offset: false, search: nav.objLoc.q ? false : 1})" id="wall_cal_clear_lnk">' + getLang('wall_clear_date_filter') + '</a></td></tr>' : '',
+                    addRows: nav.objLoc.day ? '<tr><td class="cal_clear" colspan="7"><a onclick="uiSearch.showProgress(\'wall_search\'); nav.change({day: false, offset: false, search: nav.objLoc.q ? false : 1})" id="wall_cal_clear_lnk">' + getLang('wall_clear_date_filter') + '</a></td></tr>' : '',
                     onUpdate: function() {
                         if (cur.wallSD != val('wall_datesearch')) {
                             var nd = val('wall_datesearch').split('.');
@@ -471,7 +471,9 @@ var FullWall = {
                                 offset: false
                             });
                         }
-                    }
+                    },
+                    pastActive: true,
+                    noFuture: true
                 });
             }
             triggerEvent(geByClass1('datepicker_control', ge('wall_datesearch_cont')), 'mousedown', false, true);

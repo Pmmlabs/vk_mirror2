@@ -2889,7 +2889,7 @@
                 act: "a_write_box",
                 to: t
             }, {
-                stat: ["writebox.js", "writebox.css", "wide_dd.css", "page.css", jsc("web/emoji.js"), "notifier.css"],
+                stat: ["writebox.js", "writebox.css", "wide_dd.css", "page.css", "post.css", jsc("web/emoji.js"), "notifier.css"],
                 cache: 1
             }, e);
             return o && Object(_dom_events__WEBPACK_IMPORTED_MODULE_3__.c)(e), window.WriteBox && WriteBox.extractEmoji(), !o
@@ -6966,7 +6966,7 @@
                         height: s[1]
                     }
                 }
-                var d = Object(n.T)("audio_layer_container", this._ttel),
+                var d = this._opts.getWrapEl ? this._opts.getWrapEl(this) : Object(n.T)("audio_layer_container", this._ttel),
                     u = d || Object(n.p)(this._ttel),
                     l = u !== bodyNode ? Object(n.Q)(u) : [Object(_.d)(), Object(_.e)() + Object(a.d)()],
                     p = u !== bodyNode ? Object(n.N)(u) : [window.innerWidth, window.innerHeight],
@@ -6990,7 +6990,7 @@
                     if (!o && this._prevSide && this._opts.preventSideChange) o = this._prevSide;
                     else if (!o)
                         if (this._opts.type === e.TYPE_VERTICAL) {
-                            var v = Object(n.V)(bodyNode, "body_im") ? 60 : this._opts.bottomGap || 0,
+                            var v = Object(n.V)(bodyNode, "body_im") ? this._opts.bottomGap || 60 : this._opts.bottomGap || 0,
                                 E = r.top - l[1] > b[1] + f - w[1],
                                 g = Object(_.e)() + p[1] - (r.top + r.height + f) - v > b[1];
                             o = "top" === this._opts.defaultSide ? E ? "top" : "bottom" : g ? "bottom" : "top"

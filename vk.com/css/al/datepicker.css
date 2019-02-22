@@ -145,7 +145,8 @@
     color: #fff;
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto
+    -moz-osx-font-smoothing: auto;
+    box-shadow: none
 }
 
 .cal_table.disabled .day {
@@ -246,4 +247,12 @@
 .timepicker_dots {
     float: left;
     padding: 7px 4px 8px
+}
+
+.cal_clear {
+    border-top: 1px solid #e7e8ec;
+    background: #fafbfc;
+    height: 40px;
+    line-height: 40px;
+    box-sizing: border-box
 }

@@ -962,6 +962,7 @@ AdsModer.periodRangeInit = function(periodType, fromYear, fromMonth, fromDay, to
         day: fromDay,
         width: 130,
         pastActive: true,
+        noFuture: true,
         onUpdate: function(date, mode) {
             fromYear = date.y;
             fromMonth = date.m;
@@ -976,6 +977,7 @@ AdsModer.periodRangeInit = function(periodType, fromYear, fromMonth, fromDay, to
         day: toDay,
         width: 130,
         pastActive: true,
+        noFuture: true,
         onUpdate: function(date, mode) {
             toYear = date.y;
             toMonth = date.m;

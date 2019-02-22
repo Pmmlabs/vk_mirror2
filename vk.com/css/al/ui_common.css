@@ -902,6 +902,7 @@ body.sf .ui_rmenu_count {
 }
 
 .ui_search {
+    z-index: 3;
     border-bottom: 1px solid #e7e8ec;
     background-color: #fff;
     position: relative

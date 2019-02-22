@@ -779,13 +779,26 @@
                     re(rowAlreadyActionsEl), setStyle(rowDurationEl, "visibility", "hidden"), rowInfoEl.appendChild(actionsEl);
                     var moreActionsBtnEl = geByClass1("_audio_row__action_more", actionsEl);
                     if (moreActions.length && moreActionsBtnEl) {
-                        var moreActionsContentEls = se('<div class="_audio_row__more_actions audio_row__more_actions"></div>'),
+                        var classicImEl = gpeByClass("im-page_classic", audioEl),
+                            imWEl = gpeByClass("_im_peer_history_w", audioEl),
+                            imEl = gpeByClass("_im_peer_history", audioEl),
+                            imWrapEl = gpeByClass("_im_chat_body_abs", audioEl),
+                            moreActionsContentEls = se('<div class="_audio_row__more_actions audio_row__more_actions"></div>'),
+                            extendedOptions = imEl ? {
+                                getWrapEl: function() {
+                                    return classicImEl ? null : imWrapEl
+                                },
+                                appendTo: imEl
+                            } : {
+                                appendToParent: !0
+                            },
+                            tooltipGap = 150,
                             moreTooltip = new ElementTooltip(moreActionsBtnEl, extend({
                                 cls: "_audio_row__tt",
                                 defaultSide: "bottom",
                                 rightShift: 20,
                                 content: moreActionsContentEls,
-                                bottomGap: 150,
+                                bottomGap: classicImEl && imWEl ? parseInt(getStyle(imWEl, "border-bottom-width")) + 30 + tooltipGap : tooltipGap,
                                 preventSideChange: !0,
                                 autoShow: !0,
                                 onFirstTimeShow: function(t, e) {
@@ -796,9 +809,7 @@
                                 onHide: function() {
                                     data(audioEl, "leaved") && AudioUtils.onRowLeave(audioEl)
                                 }
-                            }, {
-                                appendToParent: !0
-                            }));
+                            }, extendedOptions));
                         each(moreActions, function(t, e) {
                             var i = se(rs(AudioUtils.AUDIO_ROW_ACTION_ROW_ITEM, e));
                             if ("add_to_playlist" == e[0]) {
@@ -3839,9 +3850,9 @@
                         x = 0 | a[8],
                         R = 8191 & x,
                         U = x >>> 13,
-                        N = 0 | a[9],
-                        B = 8191 & N,
-                        j = N >>> 13,
+                        B = 0 | a[9],
+                        N = 8191 & B,
+                        j = B >>> 13,
                         F = 0 | s[0],
                         V = 8191 & F,
                         H = F >>> 13,
@@ -3890,26 +3901,26 @@
                     var Et = (u + (r = r + Math.imul(c, dt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(c, ut) | 0) + Math.imul(l, dt) | 0)) << 13) | 0;
                     u = ((o = o + Math.imul(l, ut) | 0) + (n >>> 13) | 0) + (Et >>> 26) | 0, Et &= 67108863, r = Math.imul(R, V), n = (n = Math.imul(R, H)) + Math.imul(U, V) | 0, o = Math.imul(U, H), r = r + Math.imul(L, X) | 0, n = (n = n + Math.imul(L, z) | 0) + Math.imul(O, X) | 0, o = o + Math.imul(O, z) | 0, r = r + Math.imul(C, Y) | 0, n = (n = n + Math.imul(C, K) | 0) + Math.imul(k, Y) | 0, o = o + Math.imul(k, K) | 0, r = r + Math.imul(I, Z) | 0, n = (n = n + Math.imul(I, J) | 0) + Math.imul(T, Z) | 0, o = o + Math.imul(T, J) | 0, r = r + Math.imul(E, $) | 0, n = (n = n + Math.imul(E, tt) | 0) + Math.imul(P, $) | 0, o = o + Math.imul(P, tt) | 0, r = r + Math.imul(m, it) | 0, n = (n = n + Math.imul(m, rt) | 0) + Math.imul(A, it) | 0, o = o + Math.imul(A, rt) | 0, r = r + Math.imul(b, ot) | 0, n = (n = n + Math.imul(b, at) | 0) + Math.imul(g, ot) | 0, o = o + Math.imul(g, at) | 0, r = r + Math.imul(p, dt) | 0, n = (n = n + Math.imul(p, ut) | 0) + Math.imul(_, dt) | 0, o = o + Math.imul(_, ut) | 0;
                     var Pt = (u + (r = r + Math.imul(c, ct) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(c, lt) | 0) + Math.imul(l, ct) | 0)) << 13) | 0;
-                    u = ((o = o + Math.imul(l, lt) | 0) + (n >>> 13) | 0) + (Pt >>> 26) | 0, Pt &= 67108863, r = Math.imul(B, V), n = (n = Math.imul(B, H)) + Math.imul(j, V) | 0, o = Math.imul(j, H), r = r + Math.imul(R, X) | 0, n = (n = n + Math.imul(R, z) | 0) + Math.imul(U, X) | 0, o = o + Math.imul(U, z) | 0, r = r + Math.imul(L, Y) | 0, n = (n = n + Math.imul(L, K) | 0) + Math.imul(O, Y) | 0, o = o + Math.imul(O, K) | 0, r = r + Math.imul(C, Z) | 0, n = (n = n + Math.imul(C, J) | 0) + Math.imul(k, Z) | 0, o = o + Math.imul(k, J) | 0, r = r + Math.imul(I, $) | 0, n = (n = n + Math.imul(I, tt) | 0) + Math.imul(T, $) | 0, o = o + Math.imul(T, tt) | 0, r = r + Math.imul(E, it) | 0, n = (n = n + Math.imul(E, rt) | 0) + Math.imul(P, it) | 0, o = o + Math.imul(P, rt) | 0, r = r + Math.imul(m, ot) | 0, n = (n = n + Math.imul(m, at) | 0) + Math.imul(A, ot) | 0, o = o + Math.imul(A, at) | 0, r = r + Math.imul(b, dt) | 0, n = (n = n + Math.imul(b, ut) | 0) + Math.imul(g, dt) | 0, o = o + Math.imul(g, ut) | 0, r = r + Math.imul(p, ct) | 0, n = (n = n + Math.imul(p, lt) | 0) + Math.imul(_, ct) | 0, o = o + Math.imul(_, lt) | 0;
+                    u = ((o = o + Math.imul(l, lt) | 0) + (n >>> 13) | 0) + (Pt >>> 26) | 0, Pt &= 67108863, r = Math.imul(N, V), n = (n = Math.imul(N, H)) + Math.imul(j, V) | 0, o = Math.imul(j, H), r = r + Math.imul(R, X) | 0, n = (n = n + Math.imul(R, z) | 0) + Math.imul(U, X) | 0, o = o + Math.imul(U, z) | 0, r = r + Math.imul(L, Y) | 0, n = (n = n + Math.imul(L, K) | 0) + Math.imul(O, Y) | 0, o = o + Math.imul(O, K) | 0, r = r + Math.imul(C, Z) | 0, n = (n = n + Math.imul(C, J) | 0) + Math.imul(k, Z) | 0, o = o + Math.imul(k, J) | 0, r = r + Math.imul(I, $) | 0, n = (n = n + Math.imul(I, tt) | 0) + Math.imul(T, $) | 0, o = o + Math.imul(T, tt) | 0, r = r + Math.imul(E, it) | 0, n = (n = n + Math.imul(E, rt) | 0) + Math.imul(P, it) | 0, o = o + Math.imul(P, rt) | 0, r = r + Math.imul(m, ot) | 0, n = (n = n + Math.imul(m, at) | 0) + Math.imul(A, ot) | 0, o = o + Math.imul(A, at) | 0, r = r + Math.imul(b, dt) | 0, n = (n = n + Math.imul(b, ut) | 0) + Math.imul(g, dt) | 0, o = o + Math.imul(g, ut) | 0, r = r + Math.imul(p, ct) | 0, n = (n = n + Math.imul(p, lt) | 0) + Math.imul(_, ct) | 0, o = o + Math.imul(_, lt) | 0;
                     var St = (u + (r = r + Math.imul(c, pt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(c, _t) | 0) + Math.imul(l, pt) | 0)) << 13) | 0;
-                    u = ((o = o + Math.imul(l, _t) | 0) + (n >>> 13) | 0) + (St >>> 26) | 0, St &= 67108863, r = Math.imul(B, X), n = (n = Math.imul(B, z)) + Math.imul(j, X) | 0, o = Math.imul(j, z), r = r + Math.imul(R, Y) | 0, n = (n = n + Math.imul(R, K) | 0) + Math.imul(U, Y) | 0, o = o + Math.imul(U, K) | 0, r = r + Math.imul(L, Z) | 0, n = (n = n + Math.imul(L, J) | 0) + Math.imul(O, Z) | 0, o = o + Math.imul(O, J) | 0, r = r + Math.imul(C, $) | 0, n = (n = n + Math.imul(C, tt) | 0) + Math.imul(k, $) | 0, o = o + Math.imul(k, tt) | 0, r = r + Math.imul(I, it) | 0, n = (n = n + Math.imul(I, rt) | 0) + Math.imul(T, it) | 0, o = o + Math.imul(T, rt) | 0, r = r + Math.imul(E, ot) | 0, n = (n = n + Math.imul(E, at) | 0) + Math.imul(P, ot) | 0, o = o + Math.imul(P, at) | 0, r = r + Math.imul(m, dt) | 0, n = (n = n + Math.imul(m, ut) | 0) + Math.imul(A, dt) | 0, o = o + Math.imul(A, ut) | 0, r = r + Math.imul(b, ct) | 0, n = (n = n + Math.imul(b, lt) | 0) + Math.imul(g, ct) | 0, o = o + Math.imul(g, lt) | 0;
+                    u = ((o = o + Math.imul(l, _t) | 0) + (n >>> 13) | 0) + (St >>> 26) | 0, St &= 67108863, r = Math.imul(N, X), n = (n = Math.imul(N, z)) + Math.imul(j, X) | 0, o = Math.imul(j, z), r = r + Math.imul(R, Y) | 0, n = (n = n + Math.imul(R, K) | 0) + Math.imul(U, Y) | 0, o = o + Math.imul(U, K) | 0, r = r + Math.imul(L, Z) | 0, n = (n = n + Math.imul(L, J) | 0) + Math.imul(O, Z) | 0, o = o + Math.imul(O, J) | 0, r = r + Math.imul(C, $) | 0, n = (n = n + Math.imul(C, tt) | 0) + Math.imul(k, $) | 0, o = o + Math.imul(k, tt) | 0, r = r + Math.imul(I, it) | 0, n = (n = n + Math.imul(I, rt) | 0) + Math.imul(T, it) | 0, o = o + Math.imul(T, rt) | 0, r = r + Math.imul(E, ot) | 0, n = (n = n + Math.imul(E, at) | 0) + Math.imul(P, ot) | 0, o = o + Math.imul(P, at) | 0, r = r + Math.imul(m, dt) | 0, n = (n = n + Math.imul(m, ut) | 0) + Math.imul(A, dt) | 0, o = o + Math.imul(A, ut) | 0, r = r + Math.imul(b, ct) | 0, n = (n = n + Math.imul(b, lt) | 0) + Math.imul(g, ct) | 0, o = o + Math.imul(g, lt) | 0;
                     var It = (u + (r = r + Math.imul(p, pt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(p, _t) | 0) + Math.imul(_, pt) | 0)) << 13) | 0;
-                    u = ((o = o + Math.imul(_, _t) | 0) + (n >>> 13) | 0) + (It >>> 26) | 0, It &= 67108863, r = Math.imul(B, Y), n = (n = Math.imul(B, K)) + Math.imul(j, Y) | 0, o = Math.imul(j, K), r = r + Math.imul(R, Z) | 0, n = (n = n + Math.imul(R, J) | 0) + Math.imul(U, Z) | 0, o = o + Math.imul(U, J) | 0, r = r + Math.imul(L, $) | 0, n = (n = n + Math.imul(L, tt) | 0) + Math.imul(O, $) | 0, o = o + Math.imul(O, tt) | 0, r = r + Math.imul(C, it) | 0, n = (n = n + Math.imul(C, rt) | 0) + Math.imul(k, it) | 0, o = o + Math.imul(k, rt) | 0, r = r + Math.imul(I, ot) | 0, n = (n = n + Math.imul(I, at) | 0) + Math.imul(T, ot) | 0, o = o + Math.imul(T, at) | 0, r = r + Math.imul(E, dt) | 0, n = (n = n + Math.imul(E, ut) | 0) + Math.imul(P, dt) | 0, o = o + Math.imul(P, ut) | 0, r = r + Math.imul(m, ct) | 0, n = (n = n + Math.imul(m, lt) | 0) + Math.imul(A, ct) | 0, o = o + Math.imul(A, lt) | 0;
+                    u = ((o = o + Math.imul(_, _t) | 0) + (n >>> 13) | 0) + (It >>> 26) | 0, It &= 67108863, r = Math.imul(N, Y), n = (n = Math.imul(N, K)) + Math.imul(j, Y) | 0, o = Math.imul(j, K), r = r + Math.imul(R, Z) | 0, n = (n = n + Math.imul(R, J) | 0) + Math.imul(U, Z) | 0, o = o + Math.imul(U, J) | 0, r = r + Math.imul(L, $) | 0, n = (n = n + Math.imul(L, tt) | 0) + Math.imul(O, $) | 0, o = o + Math.imul(O, tt) | 0, r = r + Math.imul(C, it) | 0, n = (n = n + Math.imul(C, rt) | 0) + Math.imul(k, it) | 0, o = o + Math.imul(k, rt) | 0, r = r + Math.imul(I, ot) | 0, n = (n = n + Math.imul(I, at) | 0) + Math.imul(T, ot) | 0, o = o + Math.imul(T, at) | 0, r = r + Math.imul(E, dt) | 0, n = (n = n + Math.imul(E, ut) | 0) + Math.imul(P, dt) | 0, o = o + Math.imul(P, ut) | 0, r = r + Math.imul(m, ct) | 0, n = (n = n + Math.imul(m, lt) | 0) + Math.imul(A, ct) | 0, o = o + Math.imul(A, lt) | 0;
                     var Tt = (u + (r = r + Math.imul(b, pt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(b, _t) | 0) + Math.imul(g, pt) | 0)) << 13) | 0;
-                    u = ((o = o + Math.imul(g, _t) | 0) + (n >>> 13) | 0) + (Tt >>> 26) | 0, Tt &= 67108863, r = Math.imul(B, Z), n = (n = Math.imul(B, J)) + Math.imul(j, Z) | 0, o = Math.imul(j, J), r = r + Math.imul(R, $) | 0, n = (n = n + Math.imul(R, tt) | 0) + Math.imul(U, $) | 0, o = o + Math.imul(U, tt) | 0, r = r + Math.imul(L, it) | 0, n = (n = n + Math.imul(L, rt) | 0) + Math.imul(O, it) | 0, o = o + Math.imul(O, rt) | 0, r = r + Math.imul(C, ot) | 0, n = (n = n + Math.imul(C, at) | 0) + Math.imul(k, ot) | 0, o = o + Math.imul(k, at) | 0, r = r + Math.imul(I, dt) | 0, n = (n = n + Math.imul(I, ut) | 0) + Math.imul(T, dt) | 0, o = o + Math.imul(T, ut) | 0, r = r + Math.imul(E, ct) | 0, n = (n = n + Math.imul(E, lt) | 0) + Math.imul(P, ct) | 0, o = o + Math.imul(P, lt) | 0;
+                    u = ((o = o + Math.imul(g, _t) | 0) + (n >>> 13) | 0) + (Tt >>> 26) | 0, Tt &= 67108863, r = Math.imul(N, Z), n = (n = Math.imul(N, J)) + Math.imul(j, Z) | 0, o = Math.imul(j, J), r = r + Math.imul(R, $) | 0, n = (n = n + Math.imul(R, tt) | 0) + Math.imul(U, $) | 0, o = o + Math.imul(U, tt) | 0, r = r + Math.imul(L, it) | 0, n = (n = n + Math.imul(L, rt) | 0) + Math.imul(O, it) | 0, o = o + Math.imul(O, rt) | 0, r = r + Math.imul(C, ot) | 0, n = (n = n + Math.imul(C, at) | 0) + Math.imul(k, ot) | 0, o = o + Math.imul(k, at) | 0, r = r + Math.imul(I, dt) | 0, n = (n = n + Math.imul(I, ut) | 0) + Math.imul(T, dt) | 0, o = o + Math.imul(T, ut) | 0, r = r + Math.imul(E, ct) | 0, n = (n = n + Math.imul(E, lt) | 0) + Math.imul(P, ct) | 0, o = o + Math.imul(P, lt) | 0;
                     var Mt = (u + (r = r + Math.imul(m, pt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(m, _t) | 0) + Math.imul(A, pt) | 0)) << 13) | 0;
-                    u = ((o = o + Math.imul(A, _t) | 0) + (n >>> 13) | 0) + (Mt >>> 26) | 0, Mt &= 67108863, r = Math.imul(B, $), n = (n = Math.imul(B, tt)) + Math.imul(j, $) | 0, o = Math.imul(j, tt), r = r + Math.imul(R, it) | 0, n = (n = n + Math.imul(R, rt) | 0) + Math.imul(U, it) | 0, o = o + Math.imul(U, rt) | 0, r = r + Math.imul(L, ot) | 0, n = (n = n + Math.imul(L, at) | 0) + Math.imul(O, ot) | 0, o = o + Math.imul(O, at) | 0, r = r + Math.imul(C, dt) | 0, n = (n = n + Math.imul(C, ut) | 0) + Math.imul(k, dt) | 0, o = o + Math.imul(k, ut) | 0, r = r + Math.imul(I, ct) | 0, n = (n = n + Math.imul(I, lt) | 0) + Math.imul(T, ct) | 0, o = o + Math.imul(T, lt) | 0;
+                    u = ((o = o + Math.imul(A, _t) | 0) + (n >>> 13) | 0) + (Mt >>> 26) | 0, Mt &= 67108863, r = Math.imul(N, $), n = (n = Math.imul(N, tt)) + Math.imul(j, $) | 0, o = Math.imul(j, tt), r = r + Math.imul(R, it) | 0, n = (n = n + Math.imul(R, rt) | 0) + Math.imul(U, it) | 0, o = o + Math.imul(U, rt) | 0, r = r + Math.imul(L, ot) | 0, n = (n = n + Math.imul(L, at) | 0) + Math.imul(O, ot) | 0, o = o + Math.imul(O, at) | 0, r = r + Math.imul(C, dt) | 0, n = (n = n + Math.imul(C, ut) | 0) + Math.imul(k, dt) | 0, o = o + Math.imul(k, ut) | 0, r = r + Math.imul(I, ct) | 0, n = (n = n + Math.imul(I, lt) | 0) + Math.imul(T, ct) | 0, o = o + Math.imul(T, lt) | 0;
                     var Ct = (u + (r = r + Math.imul(E, pt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(E, _t) | 0) + Math.imul(P, pt) | 0)) << 13) | 0;
-                    u = ((o = o + Math.imul(P, _t) | 0) + (n >>> 13) | 0) + (Ct >>> 26) | 0, Ct &= 67108863, r = Math.imul(B, it), n = (n = Math.imul(B, rt)) + Math.imul(j, it) | 0, o = Math.imul(j, rt), r = r + Math.imul(R, ot) | 0, n = (n = n + Math.imul(R, at) | 0) + Math.imul(U, ot) | 0, o = o + Math.imul(U, at) | 0, r = r + Math.imul(L, dt) | 0, n = (n = n + Math.imul(L, ut) | 0) + Math.imul(O, dt) | 0, o = o + Math.imul(O, ut) | 0, r = r + Math.imul(C, ct) | 0, n = (n = n + Math.imul(C, lt) | 0) + Math.imul(k, ct) | 0, o = o + Math.imul(k, lt) | 0;
+                    u = ((o = o + Math.imul(P, _t) | 0) + (n >>> 13) | 0) + (Ct >>> 26) | 0, Ct &= 67108863, r = Math.imul(N, it), n = (n = Math.imul(N, rt)) + Math.imul(j, it) | 0, o = Math.imul(j, rt), r = r + Math.imul(R, ot) | 0, n = (n = n + Math.imul(R, at) | 0) + Math.imul(U, ot) | 0, o = o + Math.imul(U, at) | 0, r = r + Math.imul(L, dt) | 0, n = (n = n + Math.imul(L, ut) | 0) + Math.imul(O, dt) | 0, o = o + Math.imul(O, ut) | 0, r = r + Math.imul(C, ct) | 0, n = (n = n + Math.imul(C, lt) | 0) + Math.imul(k, ct) | 0, o = o + Math.imul(k, lt) | 0;
                     var kt = (u + (r = r + Math.imul(I, pt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(I, _t) | 0) + Math.imul(T, pt) | 0)) << 13) | 0;
-                    u = ((o = o + Math.imul(T, _t) | 0) + (n >>> 13) | 0) + (kt >>> 26) | 0, kt &= 67108863, r = Math.imul(B, ot), n = (n = Math.imul(B, at)) + Math.imul(j, ot) | 0, o = Math.imul(j, at), r = r + Math.imul(R, dt) | 0, n = (n = n + Math.imul(R, ut) | 0) + Math.imul(U, dt) | 0, o = o + Math.imul(U, ut) | 0, r = r + Math.imul(L, ct) | 0, n = (n = n + Math.imul(L, lt) | 0) + Math.imul(O, ct) | 0, o = o + Math.imul(O, lt) | 0;
+                    u = ((o = o + Math.imul(T, _t) | 0) + (n >>> 13) | 0) + (kt >>> 26) | 0, kt &= 67108863, r = Math.imul(N, ot), n = (n = Math.imul(N, at)) + Math.imul(j, ot) | 0, o = Math.imul(j, at), r = r + Math.imul(R, dt) | 0, n = (n = n + Math.imul(R, ut) | 0) + Math.imul(U, dt) | 0, o = o + Math.imul(U, ut) | 0, r = r + Math.imul(L, ct) | 0, n = (n = n + Math.imul(L, lt) | 0) + Math.imul(O, ct) | 0, o = o + Math.imul(O, lt) | 0;
                     var Dt = (u + (r = r + Math.imul(C, pt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(C, _t) | 0) + Math.imul(k, pt) | 0)) << 13) | 0;
-                    u = ((o = o + Math.imul(k, _t) | 0) + (n >>> 13) | 0) + (Dt >>> 26) | 0, Dt &= 67108863, r = Math.imul(B, dt), n = (n = Math.imul(B, ut)) + Math.imul(j, dt) | 0, o = Math.imul(j, ut), r = r + Math.imul(R, ct) | 0, n = (n = n + Math.imul(R, lt) | 0) + Math.imul(U, ct) | 0, o = o + Math.imul(U, lt) | 0;
+                    u = ((o = o + Math.imul(k, _t) | 0) + (n >>> 13) | 0) + (Dt >>> 26) | 0, Dt &= 67108863, r = Math.imul(N, dt), n = (n = Math.imul(N, ut)) + Math.imul(j, dt) | 0, o = Math.imul(j, ut), r = r + Math.imul(R, ct) | 0, n = (n = n + Math.imul(R, lt) | 0) + Math.imul(U, ct) | 0, o = o + Math.imul(U, lt) | 0;
                     var Lt = (u + (r = r + Math.imul(L, pt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(L, _t) | 0) + Math.imul(O, pt) | 0)) << 13) | 0;
-                    u = ((o = o + Math.imul(O, _t) | 0) + (n >>> 13) | 0) + (Lt >>> 26) | 0, Lt &= 67108863, r = Math.imul(B, ct), n = (n = Math.imul(B, lt)) + Math.imul(j, ct) | 0, o = Math.imul(j, lt);
+                    u = ((o = o + Math.imul(O, _t) | 0) + (n >>> 13) | 0) + (Lt >>> 26) | 0, Lt &= 67108863, r = Math.imul(N, ct), n = (n = Math.imul(N, lt)) + Math.imul(j, ct) | 0, o = Math.imul(j, lt);
                     var Ot = (u + (r = r + Math.imul(R, pt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(R, _t) | 0) + Math.imul(U, pt) | 0)) << 13) | 0;
                     u = ((o = o + Math.imul(U, _t) | 0) + (n >>> 13) | 0) + (Ot >>> 26) | 0, Ot &= 67108863;
-                    var xt = (u + (r = Math.imul(B, pt)) | 0) + ((8191 & (n = (n = Math.imul(B, _t)) + Math.imul(j, pt) | 0)) << 13) | 0;
+                    var xt = (u + (r = Math.imul(N, pt)) | 0) + ((8191 & (n = (n = Math.imul(N, _t)) + Math.imul(j, pt) | 0)) << 13) | 0;
                     return u = ((o = Math.imul(j, _t)) + (n >>> 13) | 0) + (xt >>> 26) | 0, xt &= 67108863, d[0] = yt, d[1] = bt, d[2] = gt, d[3] = vt, d[4] = mt, d[5] = At, d[6] = wt, d[7] = Et, d[8] = Pt, d[9] = St, d[10] = It, d[11] = Tt, d[12] = Mt, d[13] = Ct, d[14] = kt, d[15] = Dt, d[16] = Lt, d[17] = Ot, d[18] = xt, 0 !== u && (d[19] = u, i.length++), i
                 };
 
@@ -5512,11 +5523,11 @@
                     x = y(k, C),
                     R = e[M - 14],
                     U = e[M - 14 + 1],
-                    N = e[M - 32],
-                    B = e[M - 32 + 1],
+                    B = e[M - 32],
+                    N = e[M - 32 + 1],
                     j = L + U | 0,
                     F = D + R + b(j, L) | 0;
-                F = (F = F + O + b(j = j + x | 0, x) | 0) + N + b(j = j + B | 0, B) | 0, e[M] = F, e[M + 1] = j
+                F = (F = F + O + b(j = j + x | 0, x) | 0) + B + b(j = j + N | 0, N) | 0, e[M] = F, e[M + 1] = j
             }
             for (var V = 0; V < 160; V += 2) {
                 F = e[V], j = e[V + 1];
@@ -8155,8 +8166,11 @@
             }
             if (hasClass(e.target.parentNode, "audio_row__performers")) {
                 if (checkEvent(e) || vk.widget) return !0;
-                var s = domData(e.target, "performer");
-                return !s || (r.a.audioSearchPerformer(e.target, s, e), cancelEvent(e))
+                if (!gpeByClass("_ape_audio_item", e.target)) {
+                    var s = domData(e.target, "performer");
+                    if (s) return r.a.audioSearchPerformer(e.target, s, e), cancelEvent(e)
+                }
+                return !0
             }
             var d = cur.cancelClick || e && (hasClass(e.target, "audio_lyrics") || domClosest("_audio_duration_wrap", e.target) || domClosest("_audio_inline_player", e.target) || domClosest("audio_performer", e.target)),
                 u = hasClass(e.target, "slider") || domClosest("slider", e.target),
@@ -11883,18 +11897,18 @@
                 var x = D,
                     R = L,
                     U = I(b, g),
-                    N = T(b, g),
-                    B = m(b, g, v, M, C),
+                    B = T(b, g),
+                    N = m(b, g, v, M, C),
                     j = A(b, g, v, M, C, k),
                     F = this.k[O],
                     V = this.k[O + 1],
                     H = i[O],
                     q = i[O + 1],
-                    X = _(x, R, U, N, B, j, F, V, H, q),
-                    z = y(x, R, U, N, B, j, F, V, H, q);
-                x = P(r, n), R = S(r, n), U = w(r, n, a, s, d), N = E(r, n, a, s, d, u);
-                var W = c(x, R, U, N),
-                    Y = l(x, R, U, N);
+                    X = _(x, R, U, B, N, j, F, V, H, q),
+                    z = y(x, R, U, B, N, j, F, V, H, q);
+                x = P(r, n), R = S(r, n), U = w(r, n, a, s, d), B = E(r, n, a, s, d, u);
+                var W = c(x, R, U, B),
+                    Y = l(x, R, U, B);
                 D = C, L = k, C = v, k = M, v = b, M = g, b = c(h, p, X, z), g = l(p, p, X, z), h = d, p = u, d = a, u = s, a = r, s = n, r = c(X, z, W, Y), n = l(X, z, W, Y)
             }
             f(this.h, 0, r, n), f(this.h, 2, a, s), f(this.h, 4, d, u), f(this.h, 6, h, p), f(this.h, 8, b, g), f(this.h, 10, v, M), f(this.h, 12, C, k), f(this.h, 14, D, L)
@@ -12426,7 +12440,7 @@
                 return o || R(t, 0, i, 4), n.write(t, e, i, r, 23, 4), i + 4
             }
 
-            function N(t, e, i, r, o) {
+            function B(t, e, i, r, o) {
                 return o || R(t, 0, i, 8), n.write(t, e, i, r, 52, 8), i + 8
             }
             d.prototype.slice = function(t, e) {
@@ -12543,9 +12557,9 @@
             }, d.prototype.writeFloatBE = function(t, e, i) {
                 return U(this, t, e, !1, i)
             }, d.prototype.writeDoubleLE = function(t, e, i) {
-                return N(this, t, e, !0, i)
+                return B(this, t, e, !0, i)
             }, d.prototype.writeDoubleBE = function(t, e, i) {
-                return N(this, t, e, !1, i)
+                return B(this, t, e, !1, i)
             }, d.prototype.copy = function(t, e, i, r) {
                 if (i || (i = 0), r || 0 === r || (r = this.length), e >= t.length && (e = t.length), e || (e = 0), r > 0 && r < i && (r = i), r === i) return 0;
                 if (0 === t.length || 0 === this.length) return 0;
@@ -12581,7 +12595,7 @@
                 }
                 return this
             };
-            var B = /[^+\/0-9A-Za-z-_]/g;
+            var N = /[^+\/0-9A-Za-z-_]/g;
 
             function j(t) {
                 return t < 16 ? "0" + t.toString(16) : t.toString(16)
@@ -12632,7 +12646,7 @@
                 return r.toByteArray(function(t) {
                     if ((t = function(t) {
                             return t.trim ? t.trim() : t.replace(/^\s+|\s+$/g, "")
-                        }(t).replace(B, "")).length < 2) return "";
+                        }(t).replace(N, "")).length < 2) return "";
                     for (; t.length % 4 != 0;) t += "=";
                     return t
                 }(t))

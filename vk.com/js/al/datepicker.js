@@ -160,7 +160,7 @@
                     for (var i = 1; i <= 12; i++) {
                         leftStyle = "";
                         if (i % 2 == 1) {
-                            if (i > 1) t.push('</tr><tr>');
+                            if (i > 1) tb.push('</tr><tr>');
                             leftStyle = ' day_left';
                         }
                         clDay = (i == selDay) ? 'day sel' : 'day';
@@ -174,14 +174,14 @@
                         if (curDate.getTime() == todayDate.getTime()) {
                             clDay += ' today';
                         }
-                        tb.push('<td class="' + clDay + leftStyle + '" style="width:50%" id="day' + i + '_' + rnd + '" onclick="return cals.getDay(' + guid + ', 1, ' + i + ', ' + y + ');"' + mn[i - 1] + '</td>');
+                        tb.push('<td class="' + clDay + leftStyle + '" id="day' + i + '_' + rnd + '" onclick="return cals.getDay(' + guid + ', 1, ' + i + ', ' + y + ');">' + mn[i - 1] + '</td>');
                     }
                     tb.push('</tr>');
 
                     t2.push(rs(tbl, {
                         cls: 'cal_table',
                         cols: '2',
-                        rows: '<thead>' + th.join('') + '</thead><tbody>' + tb.join('') + '</tbody>'
+                        rows: '<thead>' + th.join('') + '</thead><tbody class="month_selector">' + tb.join('') + '</tbody>'
                     }));
 
                     if (!noheight) place.style.height = place.offsetHeight + "px";

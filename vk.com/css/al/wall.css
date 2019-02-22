@@ -93,21 +93,6 @@
     margin: 33px 0 0 -172px
 }
 
-#wall_datesearch_datepicker_container .cal_table .day {
-    color: #939393
-}
-
-#wall_datesearch_datepicker_container .cal_table .inactive_day,
-#wall_datesearch_datepicker_container .cal_table .today {
-    color: #000
-}
-
-.wall_cal_clear {
-    background: #5181b8;
-    height: 40px;
-    line-height: 40px
-}
-
 #wall_cal_clear_lnk {
     display: block
 }

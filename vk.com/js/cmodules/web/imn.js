@@ -8990,7 +8990,7 @@
             var i = geByClass1(Vo, e),
                 o = geByClass1(Qo, e),
                 a = function(e, t, n, r) {
-                    var i = '<td class="im_cal_clear" colspan="7"><button type="button" class="im_cal_clear_lnk _im_clear_date">' + getLang("wall_clear_date_filter") + "</button></td>";
+                    var i = '<td class="cal_clear" colspan="7"><button type="button" class="im_cal_clear_lnk _im_clear_date">' + getLang("wall_clear_date_filter") + "</button></td>";
                     return new Promise(function(e) {
                         stManager.add(["ui_controls.js", "datepicker.js", "datepicker.css"], function() {
                             var t = new Datepicker(n, {
@@ -8999,7 +8999,8 @@
                                 addRows: '<tr id="im_day_clear">' + i + "</tr>",
                                 addRowsM: '<tr id="im_month_clear">' + i + "</tr>",
                                 onUpdate: r,
-                                pastActive: !0
+                                pastActive: !0,
+                                noFuture: !0
                             });
                             e(t)
                         })

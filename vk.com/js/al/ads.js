@@ -910,6 +910,7 @@ Ads.createStaticDatePicker = function(elem, bindingId, classid, defaultDate, mod
         year: defaultDate.year,
         width: 155,
         pastActive: true,
+        noFuture: true,
         onUpdate: function(d, m) {
             if (m == 'h') {
                 cur.exportParamsData[classid].day = defaultDate.day;
