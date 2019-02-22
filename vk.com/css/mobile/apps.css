@@ -1639,6 +1639,7 @@ input.wide_button {
     padding-right: 25px
 }
 
+.h .mhb_logo .mh_header,
 .mhb_logo .mh_header {
     display: none
 }
@@ -9893,17 +9894,21 @@ only screen and (min-device-pixel-ratio: 2) {
     padding: 3px 0 0
 }
 
-.oauth_access_email_denied .oauth_access_email_item {
+.oauth_access_email_denied .oauth_access_email_item,
+.oauth_access_phone_denied .oauth_access_phone_item {
     text-decoration: line-through;
     color: #ccc
 }
 
-.oauth_access_email_denied .oauth_access_item_deny,
-.oauth_access_item_allow {
+.oauth_access_email_denied .oauth_access_email_item_deny,
+.oauth_access_email_item_allow,
+.oauth_access_phone_denied .oauth_access_phone_item_deny,
+.oauth_access_phone_item_allow {
     display: none
 }
 
-.oauth_access_email_denied .oauth_access_item_allow {
+.oauth_access_email_denied .oauth_access_email_item_allow,
+.oauth_access_phone_denied .oauth_access_phone_item_allow {
     display: block
 }
 

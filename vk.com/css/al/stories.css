@@ -235,6 +235,21 @@
     z-index: auto
 }
 
+.live.active .stories_item_cont .stories_author_photo_wrap {
+    border-radius: 50%;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .32)
+}
+
+.live.active .stories_item_cont .stories_author_photo_wrap:after {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20width%3D%2240%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%22100%25%22%20x2%3D%22.625797%25%22%20y1%3D%22100%25%22%20y2%3D%22.625797%25%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fc1e7b%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23fa3349%22%2F%3E%3C%2FlinearGradient%3E%3Cpath%20d%3D%22m20%2038c9.9411255%200%2018-8.0588745%2018-18s-8.0588745-18-18-18-18%208.0588745-18%2018%208.0588745%2018%2018%2018zm0%202c-11.045695%200-20-8.954305-20-20s8.954305-20%2020-20%2020%208.954305%2020%2020-8.954305%2020-20%2020z%22%20fill%3D%22url(%23a)%22%2F%3E%3C%2Fsvg%3E');
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    content: ''
+}
+
 .stories_item.paused .stories_item_cont {
     opacity: 0;
     -o-transition-delay: 300ms;
@@ -338,6 +353,10 @@
     box-sizing: border-box;
     pointer-events: none;
     border-radius: 7px 7px 0 0
+}
+
+.live .stories_author {
+    padding: 7px 18px
 }
 
 .stories_item.active .stories_author {
@@ -491,6 +510,10 @@
     display: -ms-inline-flexbox;
     display: inline-flex;
     overflow: hidden
+}
+
+.live .stories_author_name {
+    margin-left: 16px
 }
 
 .stories_item.paused .stories_author_name {

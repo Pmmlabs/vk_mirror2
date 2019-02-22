@@ -849,6 +849,15 @@ textarea.EditableLabel__textarea {
     opacity: .8
 }
 
+.ListItem.ListItem--narrow {
+    padding: 0 15px 0 0
+}
+
+.ListItem.ListItem--narrow:before {
+    left: 0;
+    right: 15px
+}
+
 .Avatar {
     width: 34px;
     height: 34px;

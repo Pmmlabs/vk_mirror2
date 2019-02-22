@@ -601,102 +601,103 @@
                 val("lead_forms_step_info", r)
             },
             sendForm: function(e, t) {
+                var r = arguments.length > 2 && void 0 !== arguments[2] && arguments[2];
                 t = t || !1;
-                for (var r = cur.leadFormConfig, a = [], o = !1, s = 0; s < r.step2.questions.length; s++) {
-                    var n = r.step2.questions[s],
-                        i = "lead_forms_view_input_" + n,
-                        l = "lead_form_view_sensitive_input_wrapper_" + n,
-                        _ = trim(val(i)),
-                        d = "edit",
-                        u = ge(l);
-                    u && (d = domData(u, "state")), _ || "edit" !== d ? ("email" !== n || "edit" !== d || this.validateEmail(_)) && ("phone_number" !== n || "edit" !== d || this.validatePhone(_)) && ("birthday" !== n || this.validateBirthday(_)) ? a.push({
-                        question: n,
-                        value: _
-                    }) : (notaBene(i, !1, o), o = !0) : (notaBene(i, !1, o), o = !0)
+                for (var a = cur.leadFormConfig, o = [], s = !1, n = 0; n < a.step2.questions.length; n++) {
+                    var i = a.step2.questions[n],
+                        l = "lead_forms_view_input_" + i,
+                        _ = "lead_form_view_sensitive_input_wrapper_" + i,
+                        d = trim(val(l)),
+                        u = "edit",
+                        p = ge(_);
+                    p && (u = domData(p, "state")), d || "edit" !== u ? ("email" !== i || "edit" !== u || this.validateEmail(d)) && ("phone_number" !== i || "edit" !== u || this.validatePhone(d)) && ("birthday" !== i || this.validateBirthday(d)) ? o.push({
+                        question: i,
+                        value: d
+                    }) : (notaBene(l, !1, s), s = !0) : (notaBene(l, !1, s), s = !0)
                 }
-                for (var p = 0; p < r.step2.custom_questions.length; p++) {
-                    var c = r.step2.custom_questions[p],
-                        m = void 0,
+                for (var c = 0; c < a.step2.custom_questions.length; c++) {
+                    var m = a.step2.custom_questions[c],
                         f = void 0,
-                        g = geByClass1("_custom_question_" + p),
-                        h = void 0;
-                    switch (c.type) {
+                        g = void 0,
+                        h = geByClass1("_custom_question_" + c),
+                        v = void 0;
+                    switch (m.type) {
                         case "input":
                         case "textarea":
-                            f = ge("lead_forms_view_input_custom_question_" + p), m = trim(val(f));
+                            g = ge("lead_forms_view_input_custom_question_" + c), f = trim(val(g));
                             break;
                         case "radio":
-                            m = {}, 0 !== (h = window.radioBtns["custom_question_" + p].val) && (m[h] = replaceEntities(c.options[h]));
+                            f = {}, 0 !== (v = window.radioBtns["custom_question_" + c].val) && (f[v] = replaceEntities(m.options[v]));
                             break;
                         case "checkbox":
-                            m = {};
-                            for (var v = geByClass("checkbox", g), y = 0; y < v.length; y++)
-                                if (hasClass(v[y], "on")) {
-                                    var w = attr(v[y], "data-key");
-                                    w in c.options && (m[w] = replaceEntities(c.options[w]))
+                            f = {};
+                            for (var y = geByClass("checkbox", h), w = 0; w < y.length; w++)
+                                if (hasClass(y[w], "on")) {
+                                    var C = attr(y[w], "data-key");
+                                    C in m.options && (f[C] = replaceEntities(m.options[C]))
                                 }
                             break;
                         case "select":
-                            m = {}, (h = ge("lead_forms_custom_question_select_" + p).value) in c.options && (m[h] = replaceEntities(c.options[h]))
+                            f = {}, (v = ge("lead_forms_custom_question_select_" + c).value) in m.options && (f[v] = replaceEntities(m.options[v]))
                     }
-                    "" !== m && Object.keys(m).length ? a.push({
-                        question: "custom_" + p,
-                        value: m
-                    }) : (inArray(c.type, ["input", "textarea"]) ? (notaBene(f, !1, o), o || LeadFormsApp.scrollToEl(f)) : LeadFormsApp.titleError(geByClass1("lead_form_view_labeled_row_label", g), o), o = !0)
+                    "" !== f && Object.keys(f).length ? o.push({
+                        question: "custom_" + c,
+                        value: f
+                    }) : (inArray(m.type, ["input", "textarea"]) ? (notaBene(g, !1, s), s || LeadFormsApp.scrollToEl(g)) : LeadFormsApp.titleError(geByClass1("lead_form_view_labeled_row_label", h), s), s = !0)
                 }
-                var C = geByClass1("lead_form_view_policy");
-                if (!hasClass(C, "on")) return LeadFormsApp.titleError(C, o);
+                var b = geByClass1("lead_form_view_policy");
+                if (!hasClass(b, "on") && !r) return LeadFormsApp.titleError(b, s);
 
-                function b(e) {
+                function k(e) {
                     for (var t = 0, r = 0; r < e.length; r++) {
                         var a = parseInt(e.substr(r, 1));
                         r % 2 == 0 && (a *= 2) > 9 && (a = 1 + a % 10), t += a
                     }
                     return t % 10 == 0
                 }
-                var k = !1,
-                    S = !0,
-                    F = !1,
-                    E = void 0;
+                var S = !1,
+                    F = !0,
+                    E = !1,
+                    A = void 0;
                 try {
-                    for (var A, B = a[Symbol.iterator](); !(S = (A = B.next()).done); S = !0) {
-                        var x = A.value;
-                        if (x.question === "custom_" + r.step2.validate_passport && !x.value.match(/^\d{10}$/)) {
-                            o = !0;
-                            var q = ge("lead_forms_view_input_custom_question_" + r.step2.validate_passport);
-                            notaBene(q), LeadFormsApp.scrollToEl(q);
-                            break
-                        }
-                        if (x.question === "custom_" + r.step2.validate_passport_issue_date && !this.validateBirthday(x.value)) {
-                            o = !0;
-                            var D = ge("lead_forms_view_input_custom_question_" + r.step2.validate_passport_issue_date);
+                    for (var B, x = o[Symbol.iterator](); !(F = (B = x.next()).done); F = !0) {
+                        var q = B.value;
+                        if (q.question === "custom_" + a.step2.validate_passport && !q.value.match(/^\d{10}$/)) {
+                            s = !0;
+                            var D = ge("lead_forms_view_input_custom_question_" + a.step2.validate_passport);
                             notaBene(D), LeadFormsApp.scrollToEl(D);
                             break
                         }
-                        if (x.question === "custom_" + r.step2.validate_card) {
-                            var T = ge("lead_forms_view_input_custom_question_" + r.step2.validate_card);
-                            if (!x.value.match(/^\d{16,18}$/)) {
-                                o = !0, notaBene(T), LeadFormsApp.scrollToEl(T);
+                        if (q.question === "custom_" + a.step2.validate_passport_issue_date && !this.validateBirthday(q.value)) {
+                            s = !0;
+                            var T = ge("lead_forms_view_input_custom_question_" + a.step2.validate_passport_issue_date);
+                            notaBene(T), LeadFormsApp.scrollToEl(T);
+                            break
+                        }
+                        if (q.question === "custom_" + a.step2.validate_card) {
+                            var L = ge("lead_forms_view_input_custom_question_" + a.step2.validate_card);
+                            if (!q.value.match(/^\d{16,18}$/)) {
+                                s = !0, notaBene(L), LeadFormsApp.scrollToEl(L);
                                 break
                             }
-                            if (!b(x.value)) {
-                                o = !0, notaBene(T), LeadFormsApp.scrollToEl(T);
+                            if (!k(q.value)) {
+                                s = !0, notaBene(L), LeadFormsApp.scrollToEl(L);
                                 break
                             }
-                            k = x.value
+                            S = q.value
                         }
                     }
-                } catch (o) {
-                    F = !0, E = o
+                } catch (s) {
+                    E = !0, A = s
                 } finally {
                     try {
-                        !S && B.return && B.return()
+                        !F && x.return && x.return()
                     } finally {
-                        if (F) throw E
+                        if (E) throw A
                     }
                 }
 
-                function L() {
+                function N() {
                     if (t) return r = ge("lead_forms_view_form_preview_error"), show(r), setTimeout(function() {
                         hide(r)
                     }, 5e3), !1;
@@ -704,7 +705,7 @@
                     ajax.post("/lead_forms_app.php", {
                         act: "send_form",
                         hash: cur.leadFormSendHash,
-                        questions: JSON.stringify(a),
+                        questions: JSON.stringify(o),
                         group_id: cur.leadFormGroupId,
                         form_id: cur.leadFormId,
                         ad_id: cur.leadFormAdId,
@@ -718,20 +719,20 @@
                         hideProgress: unlockButton.pbind(e)
                     })
                 }
-                o || (r.step2.validate_card && k ? ajax.plainpost("https://paymentcard.yamoney.ru/gates/card/storeCard", {
-                    skr_destinationCardNumber: k,
+                s || (a.step2.validate_card && S ? ajax.plainpost("https://paymentcard.yamoney.ru/gates/card/storeCard", {
+                    skr_destinationCardNumber: S,
                     skr_responseFormat: "json"
                 }, function(e) {
                     var t = JSON.parse(e);
                     if (t && "success" === t.storeCard.reason && t.storeCard.skr_destinationCardSynonim) {
-                        for (var o = 0; o < a.length; ++o) a[o].question === "custom_" + r.step2.validate_card && (a[o].value = t.storeCard.skr_destinationCardSynonim);
-                        L()
+                        for (var r = 0; r < o.length; ++r) o[r].question === "custom_" + a.step2.validate_card && (o[r].value = t.storeCard.skr_destinationCardSynonim);
+                        N()
                     } else {
                         debugLog("Error storing card", e);
-                        var s = ge("lead_forms_view_input_custom_question_" + r.step2.validate_card);
+                        var s = ge("lead_forms_view_input_custom_question_" + a.step2.validate_card);
                         notaBene(s), LeadFormsApp.scrollToEl(s)
                     }
-                }, void 0, !1, void 0, void 0, !0) : L())
+                }, void 0, !1, void 0, void 0, !0) : N())
             },
             titleError: function(e, t) {
                 addClass(e, "mark_as_error"), setTimeout(function() {

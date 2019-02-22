@@ -34,37 +34,63 @@
     padding: 0
 }
 
-.names-helpdesk-app {
+.NamesHelpdeskApp {
     margin-top: 15px;
     margin-bottom: 15px
 }
 
-.names-helpdesk-app .names-helpdesk-app__list {
-    max-height: 220px
+.NamesHelpdeskApp .NamesHelpdeskApp__subapp {
+    display: inline-block;
+    vertical-align: top;
+    max-height: 300px
 }
 
-.names-helpdesk-app .names-helpdesk-app__header {
+.NamesHelpdeskApp .NamesHelpdeskApp__subapp.NamesHelpdeskApp__subapp--separator {
+    border-left: 1px solid #e7e8ec;
+    margin: 0 20px;
+    height: 300px
+}
+
+.NamesHelpdeskApp .NamesHelpdeskApp__subapp.NamesHelpdeskApp__subapp--change {
+    width: 500px
+}
+
+.NamesHelpdeskApp .NamesHelpdeskApp__subapp.NamesHelpdeskApp__subapp--friends {
+    width: 200px
+}
+
+.NamesHelpdeskApp .NamesHelpdeskApp__list {
+    max-height: 230px;
+    margin: 10px 0
+}
+
+.NamesHelpdeskApp .NamesHelpdeskApp__header {
     font-weight: 700;
     color: #45688e
 }
 
-.names-helpdesk-app .names-helpdesk-app__list .names-helpdesk-app__list__verdicts {
+.NamesHelpdeskApp .NamesHelpdeskApp__list__inner {
     background-color: #fafbfc
 }
 
-.names-helpdesk-app .names-helpdesk-app__edit-area {
-    margin-left: 20px;
+.NamesHelpdeskApp .NamesHelpdeskApp__edit-area {
+    margin-left: 6px;
     margin-bottom: 10px
 }
 
-.names-helpdesk-app .names-helpdesk-app__edit-area .names-helpdesk-app__edit-area__input {
+.NamesHelpdeskApp .NamesHelpdeskApp__edit-area .NamesHelpdeskApp__edit-area__input {
     display: inline-block;
-    width: 300px
+    width: 360px
 }
 
-.names-helpdesk-app .names-helpdesk-app__edit-area .names-helpdesk-app__edit-area__button {
+.NamesHelpdeskApp .NamesHelpdeskApp__edit-area .NamesHelpdeskApp__edit-area__button {
     display: inline-block;
     margin-left: 20px
+}
+
+.NamesHelpdeskApp .NamesHelpdeskApp__friendsList {
+    max-height: 275px;
+    margin: 10px 0
 }
 
 .body_helpdesk .mention_tt_actions {
@@ -2751,7 +2777,7 @@ body.body_helpdesk_small_sb .left_menu_nav {
 .helpdesk_ml_ticket_action_label {
     display: inline-block;
     vertical-align: middle;
-    width: 90px
+    width: 80px
 }
 
 .helpdesk_jedi_form {

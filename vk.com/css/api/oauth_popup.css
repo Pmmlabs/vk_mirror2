@@ -257,7 +257,8 @@ html {
     background-position: 0 -440px
 }
 
-.apps_deny_email {
+.apps_deny_email,
+.apps_deny_phone {
     background-color: #b2b7c2
 }
 
@@ -269,7 +270,8 @@ html {
     background-position: 0 -520px
 }
 
-.apps_access_phone {
+.apps_access_phone,
+.apps_deny_phone {
     background-position: 0 -560px
 }
 
