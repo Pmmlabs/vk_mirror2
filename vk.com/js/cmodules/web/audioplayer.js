@@ -2062,34 +2062,41 @@
                         i && i(_this2, e)
                     })
                 };
-                return this.hasMore() ? searchParams && this.getType() === AudioPlaylist.TYPE_SEARCH && !searchParams.globalQuery ? onDone && onDone(this) : (this._onDoneLoading = this._onDoneLoading || [], this._onDoneLoading.push(onDone), this._loadingAll ? void 0 : needAll ? (this._loadingAll = !0, void Object(_playlist_loadAllPlaylistAudios__WEBPACK_IMPORTED_MODULE_1__.a)(this, callOnDones)) : (offset = this.getNextOffset(), offset === this.getLocalFoundCount() && (offset -= this.getLocalFoundCount()), offset || clearTimeout(this._sendSearchStatsTimeout), void ajax.post("al_audio.php", {
-                    act: "load_section",
-                    type: this.getType(),
-                    owner_id: cur.audioPage && this.getType() === AudioPlaylist.TYPE_SEARCH ? cur.audioPage.getOwnerId() : this.getOwnerId(),
-                    playlist_id: this.getPlaylistId(),
-                    offset: offset,
-                    access_hash: this.getAccessHash(),
-                    search_q: searchParams ? searchParams.globalQuery : null,
-                    search_performer: searchParams ? searchParams.performer : null,
-                    search_lyrics: searchParams ? searchParams.lyrics : null,
-                    search_sort: searchParams ? searchParams.sort : null,
-                    search_history: searchParams ? intval(searchParams.fromHistory) : null,
-                    search_qid: this.getSearchQid(),
-                    feed_from: this.getFeedFrom(),
-                    feed_offset: this.getFeedOffset(),
-                    shuffle: this.getShuffle(),
-                    post_id: this.getPostId(),
-                    wall_query: this.getWallQuery(),
-                    wall_type: this.getWallType(),
-                    claim: intval(nav.objLoc.claim),
-                    track_type: trackType
-                }, {
-                    onDone: function onDone(loadedPlaylist, tpl, langs, templatesScript) {
-                        addTemplates({
-                            audio_playlist_snippet: tpl
-                        }), extend(cur.lang, langs), templatesScript && eval(templatesScript), _this2._loadingAll && !needAll || (getAudioPlayer().mergePlaylistData(_this2, loadedPlaylist), callOnDones(), getAudioPlayer().saveStateCurrentPlaylist(), offset || (clearTimeout(_this2._sendSearchStatsTimeout), _this2._sendSearchStatsTimeout = setTimeout(_this2.sendSearchStats.bind(_this2, "search_view"), 3e3), _this2._searchPlayStatsSent = !1))
-                    }
-                }))) : onDone && onDone(this)
+                if (!this.hasMore()) return onDone && onDone(this);
+                if (searchParams && this.getType() === AudioPlaylist.TYPE_SEARCH && !searchParams.globalQuery) return onDone && onDone(this);
+                if (this._onDoneLoading = this._onDoneLoading || [], this._onDoneLoading.push(onDone), !this._loadingAll) {
+                    if (needAll) return this._loadingAll = !0, void Object(_playlist_loadAllPlaylistAudios__WEBPACK_IMPORTED_MODULE_1__.a)(this, callOnDones);
+                    offset = this.getNextOffset(), offset === this.getLocalFoundCount() && (offset -= this.getLocalFoundCount()), offset || clearTimeout(this._sendSearchStatsTimeout);
+                    var ownerId = cur.audioPage && this.getType() === AudioPlaylist.TYPE_SEARCH ? cur.audioPage.getOwnerId() : this.getOwnerId();
+                    ajax.post("al_audio.php", {
+                        act: "load_section",
+                        type: this.getType(),
+                        owner_id: ownerId,
+                        playlist_id: this.getPlaylistId(),
+                        offset: offset,
+                        access_hash: this.getAccessHash(),
+                        search_q: searchParams ? searchParams.globalQuery : null,
+                        search_performer: searchParams ? searchParams.performer : null,
+                        search_lyrics: searchParams ? searchParams.lyrics : null,
+                        search_sort: searchParams ? searchParams.sort : null,
+                        search_history: searchParams ? intval(searchParams.fromHistory) : null,
+                        search_qid: this.getSearchQid(),
+                        feed_from: this.getFeedFrom(),
+                        feed_offset: this.getFeedOffset(),
+                        shuffle: this.getShuffle(),
+                        post_id: this.getPostId(),
+                        wall_query: this.getWallQuery(),
+                        wall_type: this.getWallType(),
+                        claim: intval(nav.objLoc.claim),
+                        track_type: trackType
+                    }, {
+                        onDone: function onDone(loadedPlaylist, tpl, langs, templatesScript) {
+                            addTemplates({
+                                audio_playlist_snippet: tpl
+                            }), extend(cur.lang, langs), templatesScript && eval(templatesScript), _this2._loadingAll && !needAll || (getAudioPlayer().mergePlaylistData(_this2, loadedPlaylist), callOnDones(), getAudioPlayer().saveStateCurrentPlaylist(), offset || (clearTimeout(_this2._sendSearchStatsTimeout), _this2._sendSearchStatsTimeout = setTimeout(_this2.sendSearchStats.bind(_this2, "search_view"), 3e3), _this2._searchPlayStatsSent = !1))
+                        }
+                    })
+                }
             }, AudioPlaylist.prototype.mergeWith = function(t) {
                 var e = this;
                 if (!isObject(this._ref)) {

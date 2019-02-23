@@ -449,13 +449,16 @@
 
 .feed_search_wrap {
     display: none;
-    border-radius: 4px 4px 0 0
+    border-radius: 4px 4px 0 0;
+    border-bottom: 0
 }
 
 .feed_search_shown .feed_search_wrap {
     display: block
 }
 
+.feed_search_shown .feed_search_wrap+.feed_app_widget,
+.feed_search_shown .feed_search_wrap+.feed_app_widget:empty+.feed_empty,
 .feed_search_shown .feed_search_wrap+.feed_empty,
 .feed_search_shown .feed_found_photos,
 .feed_search_shown .feed_row:first-child .post {

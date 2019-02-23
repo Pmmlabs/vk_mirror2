@@ -844,6 +844,12 @@ var Page = {
                     return 'rr';
                 case 'feed_friends_top':
                     return 'tr';
+                case 'feed_podcasts':
+                    return 'h';
+                case 'feed_podcasts_top':
+                    return 'h';
+                case 'feed_podcasts_recent':
+                    return 'h';
                 case 'feed_groups':
                     return 'rg';
                 case 'feed_groups_recent':

@@ -2669,23 +2669,22 @@ var Video = {
     },
     uploadVideoBox: function() {
         if (cur.uploadBanned) {
-            setTimeout(showFastBox({
-                title: getLang('video_no_upload_title'),
-                dark: 1,
-                bodyStyle: 'padding: 20px; line-height: 160%;'
-            }, getLang('video_claims_no_upload')).hide, 5000);
+            showFastBox({
+                title: getLang('video_no_upload_title')
+            }, getLang('video_claims_no_upload'));
             return false;
         }
+
         var box = showTabbedBox('al_video.php', {
             act: 'upload_box',
-            oid: cur.oid
+            oid: cur.oid,
         }, {
             stat: ['video_edit.css', 'privacy.css', 'privacy.js'],
             params: {
                 bodyStyle: 'position: relative;',
                 dark: 1,
-                hideButtons: 1
-            }
+                hideButtons: 1,
+            },
         });
         return false;
     },

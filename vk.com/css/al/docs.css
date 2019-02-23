@@ -33,12 +33,12 @@
 }
 
 .docs_add_box {
-    padding: 2px 25px
+    margin: -20px 0
 }
 
 .docs_add_box .error {
     display: none;
-    margin: 18px 0 -3px
+    margin: 20px 0 -3px
 }
 
 .docs_type_info {
@@ -55,7 +55,7 @@
 }
 
 .docs_add_upload_btn {
-    margin: 13px 0 23px;
+    margin: 15px 0 25px;
     text-align: center
 }
 

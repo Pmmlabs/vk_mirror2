@@ -2557,7 +2557,7 @@ var Feed = {
             } else if (cur.section == 'photos') {
                 res.module = cur.subsection ? 'feed_photos_' + cur.subsection : 'feed_photos';
             } else if (cur.section == 'podcasts') {
-                res.module = cur.subsection ? 'feed_pods_' + cur.subsection : 'feed_pods';
+                res.module = cur.subsection ? 'feed_podcasts_' + cur.subsection : 'feed_podcasts';
             } else if (cur.section == 'list') {
                 res.module = cur.subsection ? 'feed_list_' + cur.subsection : 'feed_list';
             } else {

@@ -163,11 +163,7 @@ var Docs = {
     addDocBox: function() {
         showBox('/docs.php', {
             act: 'add_box',
-            oid: cur.oid
-        }, {
-            params: {
-                bodyStyle: 'padding: 0px; position: relative;'
-            }
+            oid: cur.oid,
         });
     },
 
