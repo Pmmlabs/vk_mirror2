@@ -937,7 +937,7 @@ Ads.createStaticDatePicker = function(elem, bindingId, classid, defaultDate, mod
 Ads.createStaticDateRange = function(elem, containerID) {
     var months = [];
     for (var i = 0; i < 13; i++) {
-        months.push(getLang('month' + i + 'sm_of'));
+        months.push(getLang('month' + i + '_of'));
     }
 
     function toOldForm(range) {
@@ -975,7 +975,7 @@ Ads.createStaticDateRange = function(elem, containerID) {
     };
 
     var dateRange = {
-        startDate: new Date(),
+        startDate: new Date(new Date().getFullYear(), new Date().getMonth()),
         endDate: new Date(),
     };
     toOldForm(dateRange);
@@ -984,19 +984,14 @@ Ads.createStaticDateRange = function(elem, containerID) {
     //Container
     var container = document.createElement('div');
 
-    document.body.appendChild(container);
+    var globalWrapper = ge('ads_page_wrap2');
+    globalWrapper.appendChild(container);
 
-    var height = elem.getBoundingClientRect().height;
-    var left = elem.getBoundingClientRect().left;
-    var top = elem.getBoundingClientRect().top;
     container.id = containerID;
-    container.style.top = top + height + 'px';
-    container.style.left = left + 'px';
+    container.className = containerID;
     container.style.position = 'absolute';
 
     //Render
-    var datePickerVisible = false;
-
     function onDone(range) {
         var startDate = range.startDate;
         var endDate = range.endDate;
@@ -1007,16 +1002,19 @@ Ads.createStaticDateRange = function(elem, containerID) {
         toOldForm(range);
         elem.innerHTML = getStrRange(range);
         AdsComponents.unmountDatePicker(container);
-        datePickerVisible = false;
     }
 
     function onClose() {
         AdsComponents.unmountDatePicker(container);
-        datePickerVisible = false;
     }
 
-    function render() {
-        if (!datePickerVisible) {
+    function render(event) {
+        var height = elem.getBoundingClientRect().height;
+        var left = elem.getBoundingClientRect().left - globalWrapper.getBoundingClientRect().left;
+        var top = elem.getBoundingClientRect().top - globalWrapper.getBoundingClientRect().top;
+        container.style.top = top + height + 'px';
+        container.style.left = left + 'px';
+        if (!container.firstChild) {
             AdsComponents.renderDatePicker(container, {
                 onClose: onClose,
                 onDone: onDone,
@@ -1025,11 +1023,11 @@ Ads.createStaticDateRange = function(elem, containerID) {
                 },
                 minDate: new Date(2005, 0)
             });
-            datePickerVisible = true;
         } else {
             AdsComponents.unmountDatePicker(container);
-            datePickerVisible = false;
         }
+
+        event.stopPropagation();
     }
 
     elem.addEventListener('click', render);
@@ -1344,6 +1342,15 @@ Ads.createStaticDropdown = function(elem, bindingId, values, params) {
                     var modes = ['d', 'm', 'h'];
                     cur.exportUi['start_time'].setMode(modes[i]);
                     cur.exportUi['stop_time'].setMode(modes[i]);
+                    if (geByClass('ads_export_date_range').length) {
+                        if (i) {
+                            geByClass('ads_export_date_row').forEach(show);
+                            geByClass('ads_export_date_range').forEach(hide);
+                        } else {
+                            geByClass('ads_export_date_row').forEach(hide);
+                            geByClass('ads_export_date_range').forEach(show);
+                        }
+                    }
                 } else
                     //
                     // client_choose

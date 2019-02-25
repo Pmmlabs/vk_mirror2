@@ -8622,28 +8622,28 @@
                     hideProgress: unlockButton.pbind(n)
                 }))
             },
-            apiCallProcess: function(e, t, n, r, i, a, o) {
-                if (isButtonLocked(o)) return !1;
-                var s = function() {
+            apiCallProcess: function(e, t, n, r, i, a, o, s) {
+                if (isButtonLocked(s)) return !1;
+                var c = function() {
                     ajax.post("/al_feed.php", {
                         act: "a_api_call",
                         hash: cur.topNotifyHash,
                         query: e
                     }, {
                         onDone: function(e) {
-                            var r = domPN(o);
+                            var r = domPN(s);
                             val(r, '<div class="feedback_apicallText">' + (n ? '<div class="feedback_apicallIcon ' + n + 'Icon"></div>' : "") + t + "</div>")
                         },
                         onFail: function(e) {
                             if (e) return setTimeout(showFastBox(getLang("global_error"), e).hide, 3e3), !0
                         },
-                        showProgress: lockButton.pbind(o),
-                        hideProgress: unlockButton.pbind(o)
+                        showProgress: lockButton.pbind(s),
+                        hideProgress: unlockButton.pbind(s)
                     })
                 };
-                return r ? cur.confirmBox = showFastBox(getLang("global_action_confirmation"), r, i, function() {
-                    s(), cur.confirmBox.hide()
-                }, a) : s(), !0
+                return i ? (r = r || getLang("global_action_confirmation"), cur.confirmBox = showFastBox(r, i, a, function() {
+                    c(), cur.confirmBox.hide()
+                }, o)) : c(), !0
             },
             grProcess: function(e, t, n, r) {
                 if (!(hasClass(n, "flat_button") && isButtonLocked(n) || domFC(n) && "progress_inline" == domFC(n))) {
