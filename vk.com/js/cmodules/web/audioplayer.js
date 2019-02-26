@@ -8417,9 +8417,9 @@
                 reason: AudioPlayer.REJECT_REASON_UNKNOWN
             }
         }, AudioPlayer.prototype._adsFetchAd = function(t, e, i, r, n) {
-            this._loadAdman(function() {
-                if (!window.AdmanHTML) return this._adsSendAdEvent("no_adman", e), r && r();
-                var o = {
+            this._loadAdman(function(o) {
+                if (!window.AdmanHTML) return this._adsSendAdEvent("no_adman", e, AudioPlayer.AD_TYPE, o), r && r();
+                var a = {
                     my: 101,
                     my_playlists: 101,
                     audio_feed: 109,
@@ -8443,7 +8443,7 @@
                     other: 114
                 };
                 this._adman = new AdmanHTML;
-                var a = {
+                var s = {
                     _SITEID: 276,
                     ver: 251116,
                     vk_id: vk.id,
@@ -8452,9 +8452,9 @@
                         for (var i = (t >>> 0).toString(16), r = e.toString(16); r.length < 8;) r = "0" + r;
                         return i + r
                     }(t.ownerId, t.id),
-                    vk_catid: o[e] || o.other
+                    vk_catid: a[e] || a.other
                 };
-                extend(a, t.ads || {}), nav.objLoc.preview && (a.preview = intval(nav.objLoc.preview)), cur.adsPreview && (a.preview = 1), this._adman.setDebug(!!a.preview), this._adman.onError(function() {
+                extend(s, t.ads || {}), nav.objLoc.preview && (s.preview = intval(nav.objLoc.preview)), cur.adsPreview && (s.preview = 1), this._adman.setDebug(!!s.preview), this._adman.onError(function() {
                     r && r()
                 }), this._adman.onReady(function() {
                     if (this._adman) {
@@ -8464,7 +8464,7 @@
                 }.bind(this)), this._adman.init({
                     slot: 3514,
                     wrapper: se("<div></div>"),
-                    params: a,
+                    params: s,
                     browser: {
                         adBlock: !!window.abp,
                         mobile: !1
@@ -8472,14 +8472,18 @@
                 }), this._adsSendAdEvent("requested", e)
             }.bind(this))
         }, AudioPlayer.prototype._loadAdman = function(t) {
-            if (this._admadLoaded) return t && t();
+            var e = this,
+                i = function(e) {
+                    return t && t(e)
+                };
+            if (this._admanLoaded) return i();
             loadScript("//ad.mail.ru/static/admanhtml/rbadman-html5.min.js", {
                 onLoad: function() {
-                    this._admadLoaded = !0, t && t()
-                }.bind(this),
+                    e._admanLoaded = !0, i()
+                },
                 onError: function() {
-                    this._admadLoaded = !0, t && t()
-                }.bind(this)
+                    window.abp ? (e._admanLoaded = !0, i()) : (e._admanRetry = e._admanRetry ? e._admanRetry + 1 : 1, e._admanRetry >= 3 && (e._admanLoaded = !0), i("script_load_fail"))
+                }
             })
         }, AudioPlayer.prototype._podcastUpdateState = function(t, e, i, r, n) {
             var o = this._podcastGetStates(),

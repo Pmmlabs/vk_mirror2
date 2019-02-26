@@ -6177,7 +6177,7 @@ var Wall = {
         var toReply = hasClass(toEl, 'reply');
         var postEl = toReply ? (gpeByClass('wl_post', toEl) || gpeByClass('post', toEl)) : toEl;
         var postId = domData(postEl, 'post-id');
-        var isBackOrder = wall.isDescRepliesOrder(postId);
+        var isBackOrder = !toReply && wall.isDescRepliesOrder(postId);
         var deepActive = hasClass(postEl, 'deep_active');
 
         if (!deepActive) {

@@ -3232,7 +3232,7 @@
                     u = Math.floor(r.countPerImage / r.countPerRow);
                 s === Math.floor(r.countTotal / r.countPerImage) && (u = Math.floor(r.countTotal % r.countPerImage / r.countPerRow), r.countTotal % r.countPerImage % r.countPerRow > 0 && u++);
                 var h = r.countPerRow;
-                s === Math.floor(r.countTotal / r.countPerImage) && (h = Math.min(r.countPerRow, r.countTotal));
+                s === Math.floor(r.countTotal / r.countPerImage) && r.countTotal % r.countPerImage > 0 && (h = Math.min(r.countPerRow, r.countTotal % r.countPerImage));
                 var c = this.frameWidth * h,
                     d = this.frameHeight * u,
                     p = -l * this.frameWidth,

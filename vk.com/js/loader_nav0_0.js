@@ -170,7 +170,7 @@ var stVersions = {
     'blog.css': 21688912644,
     'blog.js': 3939164531,
     'html5audio.js': 976782859,
-    'audioplayer.js': "173a5a22fdc10d056615b02",
+    'audioplayer.js': "173114b7c520f05076559cf",
     'audioplayer.css': 21957218329,
     'audio_html5.js': 287741914,
     'audio.js': "269c00c626e630dfeb72a91",
@@ -225,7 +225,7 @@ var stVersions = {
     'video_upload.js': "472c16dc3053a8c699b0dd",
     'video_youtube.js': 458412745,
     'video_youtube.css': 15518623456,
-    'videoplayer.js': "6a5e717beb80a0d0fbba7",
+    'videoplayer.js': "6bdc1065633c968dbe792",
     'videoplayer.css': 49445047460,
     'translation.js': 3971934328,
     'translation.css': 18421186871,
@@ -244,7 +244,7 @@ var stVersions = {
     'module.css': 26429148967,
     'owner_photo.js': 3368798011,
     'owner_photo.css': 18487321623,
-    'page.js': 1684643654,
+    'page.js': 1895881786,
     'page.css': 78781552966,
     'page_help.css': 26694632410,
     'public.css': 30598384016,
@@ -363,7 +363,7 @@ var stVersions = {
     'helpdesk.css': 34773913435,
     'cmodules/web/support.js': "1848153692fb078f9e1f7",
     'tickets.js': 676094159,
-    'tickets.css': 33593326586,
+    'tickets.css': 32147273538,
     'faq.css': 23024330140,
     'agents.js': 2789926745,
     'agents.css': 17908321093,
@@ -629,7 +629,7 @@ var stVersions = {
     'cmodules/web/article_editor_layer.js': '8a994e6033270b984cb6',
     'cmodules/web/article_view.js': '8f735dbf87e67ebea1ed',
     'cmodules/web/audio.js': 'c00c626e630dfeb72a91',
-    'cmodules/web/audioplayer.js': 'a5a22fdc10d056615b02',
+    'cmodules/web/audioplayer.js': '114b7c520f05076559cf',
     'cmodules/web/bugtracker_adm.js': '46f661e764dccc6c690c',
     'cmodules/web/bugtracker_testrun.js': '73be2259ea42bb3b175d',
     'cmodules/web/clipboard.js': '9a2c71c363e7373dc371',
@@ -658,7 +658,7 @@ var stVersions = {
     'cmodules/web/text_editor.js': 'f06c76dadbdc8f8cc0d0',
     'cmodules/web/ugcform.js': '1415843a15e7a6b75f51',
     'cmodules/web/video_upload.js': '2c16dc3053a8c699b0dd',
-    'cmodules/web/videoplayer.js': 'a5e717beb80a0d0fbba7',
+    'cmodules/web/videoplayer.js': 'bdc1065633c968dbe792',
     'cmodules/web/videoview.js': '56a14957fd256b474f1b',
     'cmodules/web/voice_message_player.js': '543b52016d3025711298',
     'cmodules/web/wk_editor.js': 'f30303d755aaf615f01d',
@@ -721,7 +721,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 8256;
+var _rnd = 6580;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/9305f5418f2d9183dad188e98aaf94c7.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
