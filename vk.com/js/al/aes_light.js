@@ -524,10 +524,18 @@
             // Is visible
             result = (result && isVisible('side_bar') && !layers.visible && !isVisible('left_friends'));
             // Is reasonable
-            result = (result && !vk.no_ads && (vk.loaded || initialAjax));
+            result = (result && !AdsLight.isNoAds() && (vk.loaded || initialAjax));
         }
 
         return result;
+    }
+
+    AdsLight.isNoAds = function() {
+        return (vk.no_ads || AdsLight.isNoAdsForce());
+    }
+
+    AdsLight.isNoAdsForce = function() {
+        return (window.cur && window.cur.no_left_ads);
     }
 
     AdsLight.getAjaxParams = function(ajaxParams, ajaxOptions) {
@@ -662,7 +670,7 @@
             return;
         }
 
-        if (!canUpdateBlock && (force != 'force_hard')) {
+        if (!canUpdateBlock && (force != 'force_hard') && !AdsLight.isNoAdsForce()) {
             return;
         }
 
@@ -1020,7 +1028,7 @@
         }
 
         if (!adsHtml) {
-            if (vk.no_ads) {
+            if (AdsLight.isNoAds()) {
                 adsHtml = '';
             } else if (vk__adsLight.adsSection === 'im' && __seenAds == 0) {
                 adsHtml = '';

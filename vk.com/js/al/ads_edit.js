@@ -3649,7 +3649,9 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
             var paramNameOriginal = paramName.substr(1);
             var remainElem = ge(this.options.targetIdPrefix + paramNameOriginal + '_remain_length');
             var remainLength = this.params[paramNameOriginal].max_length - this.params[paramNameOriginal].value.length;
-            remainElem.innerHTML = remainLength;
+            if (remainElem) {
+                remainElem.innerHTML = remainLength;
+            }
             break;
         case 'category1_id':
             var value = ((this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_APP && this.params.link_id.app_game_links_ids[this.params.link_id.value]) ? 125 : 0);
@@ -4371,6 +4373,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 }
 
                 this.updateUiParam('title');
+                this.updateUiParam('_title');
                 this.updateUiParam('link_title');
                 this.updateUiParam('link_button');
                 this.updateUiParam('description');

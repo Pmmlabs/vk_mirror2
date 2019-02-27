@@ -7605,20 +7605,10 @@ td.apps_cat_new_h {
 
 .vk_app_modal_container {
     position: absolute;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -ms-flex-align: center;
-    align-items: center;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    padding: 32px;
     top: 103px;
     right: auto;
     box-sizing: border-box;
     width: 400px;
-    min-height: 294px;
     border-radius: 8px;
     background-color: #fff;
     left: 50%;
@@ -7628,6 +7618,76 @@ td.apps_cat_new_h {
     opacity: 0;
     -o-transition: all .3s;
     transition: all .3s
+}
+
+.vk_app_modal_container--flex {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 32px;
+    min-height: 294px
+}
+
+.vk_app_modal_container .box_body {
+    padding-bottom: 0
+}
+
+.vk_app_modal_container .box_body p {
+    text-align: left;
+    color: #000
+}
+
+.vk_app_modal_container .box_title_wrap {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    text-align: left
+}
+
+.vk_app_modal_container .box_title_wrap .box_x_button {
+    float: none
+}
+
+.vk_app_modal_container .vk_app_modal_scopes {
+    text-align: left
+}
+
+.vk_app_modal_container .scopes_list {
+    color: #000
+}
+
+.vk_app_modal_container .scope_row label {
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 1.46;
+    letter-spacing: -0.1px
+}
+
+.vk_app_modal_container .scope_row input[type=checkbox]+label:before {
+    display: block;
+    content: '';
+    float: left;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2215%22%20height%3D%2215%22%20viewBox%3D%220%200%2015%2015%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Crect%20id%3D%22a%22%20width%3D%2215%22%20height%3D%2215%22%20rx%3D%223%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cuse%20fill%3D%22%23FFF%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Crect%20width%3D%2214%22%20height%3D%2214%22%20x%3D%22.5%22%20y%3D%22.5%22%20stroke%3D%22%23C1C9D1%22%20rx%3D%223%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 0;
+    margin: 2px 7px 0 0;
+    width: 15px;
+    height: 15px
+}
+
+.vk_app_modal_container .scope_row input[type=checkbox]:disabled+label,
+.vk_app_modal_container .scope_row input[type=checkbox]:disabled+label:before {
+    cursor: default;
+    opacity: 0.5;
+    filter: alpha(opacity=50)
+}
+
+.vk_app_modal_container .scope_row input[type=checkbox]:checked+label:before {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2215%22%20height%3D%2215%22%20viewBox%3D%220%200%2015%2015%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2215%22%20height%3D%2215%22%20fill%3D%22%235181B8%22%20rx%3D%223%22%2F%3E%3Cpath%20stroke%3D%22%23FFF%22%20stroke-width%3D%221.7%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M4%207.5L6.5%2010%2011%204.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .vk_app_modal_container img {
@@ -7705,6 +7765,11 @@ td.apps_cat_new_h {
     margin-top: 24px
 }
 
+.vk_app_modal_btns.box_controls {
+    -ms-flex-pack: end;
+    justify-content: flex-end
+}
+
 .vk_app_modal_btn {
     border-radius: 4px;
     border: none;
@@ -7715,7 +7780,10 @@ td.apps_cat_new_h {
     font-stretch: normal;
     line-height: normal;
     letter-spacing: normal;
-    text-align: center
+    text-align: center;
+    -o-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
+    cursor: pointer
 }
 
 .vk_app_modal_btn:last-child {
@@ -7727,9 +7795,31 @@ td.apps_cat_new_h {
     background-color: #e5ebf1
 }
 
+.vk_app_modal_btn--deny:hover {
+    background-color: #dce3ea
+}
+
 .vk_app_modal_btn--success {
     color: #fff;
     background-color: #5181b8
+}
+
+.vk_app_modal_btn--success:hover {
+    background-color: #5b88bd
+}
+
+.vk_app_modal_btn--transparent {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 0!important;
+    color: #2a5885;
+    -o-transition: color .3s ease;
+    transition: color .3s ease
+}
+
+.vk_app_modal_btn--transparent:hover {
+    text-decoration: underline;
+    color: #5181b8
 }
 
 .vk_app_vk_pay_wrapper {
