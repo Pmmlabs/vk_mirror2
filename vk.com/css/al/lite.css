@@ -4188,6 +4188,15 @@ div.top_result_baloon a {
     left: -4px
 }
 
+.audio_pl_snippet2 .audio_pl_snippet__info_link {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0
+}
+
+.ap_layer .audio_pl_snippet2 .audio_pl_snippet__info_link,
 .audio_pl_snippet2 .audio_pl_snippet__footer {
     display: none
 }
@@ -4206,7 +4215,8 @@ div.top_result_baloon a {
     color: #818181;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
+    z-index: 1
 }
 
 .audio_pl_snippet2 .audio_pl_snippet__stats {
@@ -4385,7 +4395,8 @@ div.top_result_baloon a {
     -ms-flex-direction: row;
     flex-direction: row;
     -ms-flex-align: center;
-    align-items: center
+    align-items: center;
+    position: relative
 }
 
 .pv_comments .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__info {
@@ -4440,6 +4451,10 @@ div.top_result_baloon a {
     border-bottom: 1px solid #e7e8ec;
     position: relative;
     box-sizing: border-box
+}
+
+.audio_pl_snippet2 .audio_pl_snippet__header>.audio_pl_snippet__action_btn {
+    z-index: 1
 }
 
 .audio_pl_snippet2 .audio_pl_snippet__header_inner {
@@ -4556,7 +4571,9 @@ div.top_result_baloon a {
 }
 
 .audio_pl_snippet2 .audio_pl_snippet__info_inner {
-    max-width: 100%
+    max-width: 100%;
+    position: relative;
+    z-index: 1
 }
 
 .audio_pl_snippet2 .audio_pl_snippet__info_author,
@@ -4567,7 +4584,8 @@ div.top_result_baloon a {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 100%
+    max-width: 100%;
+    position: relative
 }
 
 .audio_pl_snippet2 .audio_pl_snippet__info_author .dvd:before,
@@ -4647,7 +4665,8 @@ div.top_result_baloon a {
 
 .audio_pl_snippet2 .audio_pl_snippet__actions {
     font-size: 0;
-    min-width: 100%
+    min-width: 100%;
+    z-index: 1
 }
 
 .audio_pl_snippet2 .audio_pl_snippet__button_play {
@@ -4664,18 +4683,23 @@ div.top_result_baloon a {
     transition: opacity 80ms linear
 }
 
-.audio_pl_snippet2 .audio_pl_snippet__button_play:before {
+.audio_pl_snippet2 .audio_pl_snippet__button_play_circle {
     content: '';
     width: 44px;
     height: 44px;
     top: 53px;
     left: 53px;
     display: block;
-    opacity: .8;
     position: absolute;
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%23FFFFFF%22%2F%3E%3Cpath%20fill%3D%22%23222222%22%20d%3D%22M9.84335571%2C16.7896383%20C9.37758321%2C17.088598%209%2C16.885726%209%2C16.3263902%20L9%2C7.6574922%20C9%2C7.10268766%209.37902442%2C6.89620947%209.84335571%2C7.19424408%20L16.733151%2C11.6165123%20C17.0561878%2C11.8238559%2017.0599966%2C12.1575817%2016.733151%2C12.3673701%20L9.84335571%2C16.7896383%20Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
     background-repeat: no-repeat;
-    background-size: contain
+    background-size: contain;
+    -o-transition: opacity 80ms linear;
+    transition: opacity 80ms linear
+}
+
+.audio_pl_snippet2 .audio_pl_snippet__button_play_circle:hover {
+    opacity: .8
 }
 
 .audio_pl_snippet2 .audio_pl_snippet__button_play:hover {
@@ -4686,7 +4710,7 @@ div.top_result_baloon a {
     display: block
 }
 
-.audio_pl_snippet2.audio_pl__playing .audio_pl_snippet__button_play:before {
+.audio_pl_snippet2.audio_pl__playing .audio_pl_snippet__button_play_circle {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%23FFFFFF%22%2F%3E%3Cpath%20fill%3D%22%23222222%22%20d%3D%22M8%2C7.59559822%20C8%2C7.26665841%208.27685547%2C7%208.60709476%2C7%20L10.3929052%2C7%20C10.7281944%2C7%2011%2C7.26747584%2011%2C7.59559822%20L11%2C16.4044018%20C11%2C16.7333416%2010.7231445%2C17%2010.3929052%2C17%20L8.60709476%2C17%20C8.27180558%2C17%208%2C16.7325242%208%2C16.4044018%20L8%2C7.59559822%20Z%20M13%2C7.59559822%20C13%2C7.26665841%2013.2768555%2C7%2013.6070948%2C7%20L15.3929052%2C7%20C15.7281944%2C7%2016%2C7.26747584%2016%2C7.59559822%20L16%2C16.4044018%20C16%2C16.7333416%2015.7231445%2C17%2015.3929052%2C17%20L13.6070948%2C17%20C13.2718056%2C17%2013%2C16.7325242%2013%2C16.4044018%20L13%2C7.59559822%20Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 

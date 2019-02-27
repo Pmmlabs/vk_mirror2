@@ -1192,6 +1192,10 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
     box-sizing: border-box
 }
 
+._snippet_video .video_choose_upload_area {
+    width: 100%
+}
+
 .video_choose_upload_area:hover {
     background: #e9ebf0;
     text-decoration: none
@@ -1284,6 +1288,10 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
     padding-left: 0;
     text-align: center;
     box-sizing: border-box
+}
+
+._snippet_video .video_add_external {
+    display: none
 }
 
 .video_add_external:hover {

@@ -998,6 +998,20 @@ var Settings = {
         });
     },
 
+    vkPayEndpointCheck: function() {
+        clearTimeout(cur.vkPayEndpointUpdateTO);
+        cur.vkPayEndpointUpdateTO = setTimeout(Settings.vkPayEndpointSubmit, 200);
+    },
+    vkPayEndpointSubmit: function() {
+        ajax.post('/al_settings.php', {
+            act: 'a_change_vk_pay_endpoint',
+            hash: cur.options.vk_pay_endpoint_hash,
+            vk_pay_endpoint: ge('settings_vk_pay_endpoint').checked ? 1 : 0
+        }, {
+            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind('cposts')
+        });
+    },
+
     microblogCheck: function(id) {
         if (hasClass(ge('settings_' + id), 'disabled') || ge('settings_' + id).disabled) return;
 
