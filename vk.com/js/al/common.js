@@ -5267,7 +5267,6 @@ function updateOtherCounters(url, referrer) {
     });
     referrer = toClean.referrer;
     url = toClean.url;
-    vkImage().src = locProtocol + '//counter.yadro.ru/hit?r' + escape(referrer) + (window.screen === undefined ? '' : ';s' + screen.width + '*' + screen.height + '*' + (screen.colorDepth ? screen.colorDepth : screen.pixelDepth)) + ';u' + escape(url) + ';' + Math.random() + '';
     vkImage().src = locProtocol + '//www.tns-counter.ru/V13a***R>' + referrer.replace(/\*/g, '%2a') + '*vk_com/ru/UTF-8/tmsec=vksite_total/' + Math.round(Math.random() * 1E9);
     if (vk.tnsPixelType == 'unauth') {
         vkImage().src = locProtocol + '//www.tns-counter.ru/V13a****vk_ad/ru/UTF-8/tmsec=vkad_cid1015708-posid1184674/' + Math.round(Math.random() * 1E9);

@@ -12080,6 +12080,13 @@ button.wall_block_app_btn {
     color: #828282
 }
 
+.page_actions_item.red_bold_centered {
+    pointer-events: none;
+    color: red;
+    font-weight: 700;
+    text-align: center
+}
+
 .page_actions_item.page_actions_item_lock {
     color: transparent;
     pointer-events: none
@@ -13817,7 +13824,7 @@ button.wall_block_app_btn {
     margin-top: 15px
 }
 
-.hint_icon.vk_testers_hint {
+.hint_icon.profile_action {
     margin: 0.4em 7px 0;
     height: 1em;
     display: inline-block;

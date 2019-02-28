@@ -161,6 +161,31 @@
     text-align: center
 }
 
+.employee_info_module .module_body {
+    padding: 5px 15px 8px
+}
+
+.employee_info_module .module_body .employee_more {
+    display: none
+}
+
+.employee_info_module .option {
+    padding: 8px 0
+}
+
+.employee_info_module .option .option_key {
+    color: #939393
+}
+
+.employee_info_module .option .option_value {
+    color: #000
+}
+
+.employee_info_module .option .employee_busyness {
+    color: #e64646;
+    font-weight: 500
+}
+
 .people_module .module_body {
     padding: 6px 10px 8px
 }

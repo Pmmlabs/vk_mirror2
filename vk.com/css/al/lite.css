@@ -4277,6 +4277,10 @@ div.top_result_baloon a {
     display: none!important
 }
 
+.audio_pl_snippet2.audio_pl_snippet_no_list.audio_pl_snippet_embed.audio_pl_snippet_small .audio_pl_snippet__body {
+    padding: 0
+}
+
 .audio_pl_snippet2.audio_pl_snippet_no_share .audio_pl_snippet__action_btn_share {
     display: none
 }
@@ -6985,8 +6989,8 @@ div.top_result_baloon a {
 }
 
 .audio_pl_attach_preview .audio_pl_attach_preview__cover {
-    width: 64px;
-    height: 64px;
+    width: 62px;
+    height: 62px;
     float: left;
     position: relative
 }

@@ -1086,6 +1086,20 @@ var Restore = {
             showProgress: lockButton.pbind(btn),
             hideProgress: unlockButton.pbind(btn)
         });
+    },
+    showCancelBox: function(requestId, cancelHash, settings) {
+        showBox('/restore?act=cancel_box', {
+            settings: settings,
+            req_id: requestId,
+            hash: cancelHash
+        }, {
+            onDone: function(box, result) {
+                if (!result) {
+                    box.hide();
+                    showDoneBox(getLang('restore_cancel_by_owner_success'), nav.reload);
+                }
+            }
+        });
     }
 };
 
