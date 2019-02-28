@@ -1773,6 +1773,10 @@ a:not(.top_nav_btn) .fifa_confettiLink:hover {
     text-align: right
 }
 
+.ta_j {
+    text-align: justify
+}
+
 .ta_c {
     text-align: center
 }
@@ -11946,4 +11950,8 @@ button.ui_load_more_btn {
     background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2212px%22%20height%3D%2210px%22%20viewBox%3D%220%200%2012%2010%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20id%3D%22%D0%9C%D0%B0%D1%81%D1%82%D0%B5%D1%80%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20id%3D%22addToPlaylist%22%20stroke-width%3D%221.5%22%20stroke%3D%22%23cdcdcd%22%3E%3Cg%20id%3D%22tooltip-copy-2%22%3E%3Cg%20id%3D%22Group-5-Copy-18%22%3E%3Cg%20id%3D%22Group-2%22%20transform%3D%22translate(-708.000000%2C%20-772.000000)%20translate(700.000000%2C%20602.000000)%20translate(1.000000%2C%20160.000000)%20translate(8.000000%2C%2011.000000)%22%3E%3Cpolyline%20id%3D%22Path-12%22%20points%3D%220%205.33333333%202.5%208%2010%200%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E');
     background-repeat: no-repeat;
     background-position: 12px 8px
+}
+
+.uppercase {
+    text-transform: uppercase
 }

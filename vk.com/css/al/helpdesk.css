@@ -2808,6 +2808,174 @@ body.body_helpdesk_small_sb .left_menu_nav {
     margin-top: 10px
 }
 
+.helpdesk_ml_feed__title {
+    margin-bottom: 8px
+}
+
+.helpdesk_ml_feed__title_rates {
+    font-size: 11px
+}
+
+.helpdesk_ml_feed__title_rates span {
+    color: #000
+}
+
+.helpdesk_ml_ticket__text_question .ticker_title {
+    margin-bottom: 5px;
+    display: block
+}
+
+.helpdesk_ml_feed__bottom_divider {
+    border-bottom: 1px solid #e7e8ec;
+    margin-bottom: 15px;
+    padding-bottom: 15px
+}
+
+.helpdesk_ml_feed__ticket {
+    position: relative;
+    padding: 15px;
+    background: #fff;
+    margin: 10px 0 0;
+    border-radius: 4px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8
+}
+
+.helpdesk_ml_feed__ticket:last-child {
+    border-bottom: 0 none
+}
+
+.helpdesk_ml_feed__tickets_al {
+    background: #edeef0
+}
+
+.helpdesk_ml_feed__tickets_al .tickets_list {
+    padding: 0
+}
+
+.helpdesk_ml_feed__tickets_al .tickets_summary {
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    background: #fff;
+    border-bottom: 0 none;
+    padding: 15px 20px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px
+}
+
+.helpdesk_ml_feed__page .tickets_summary_extra {
+    margin: -2px 0 -10px;
+    position: relative;
+    top: 0
+}
+
+.helpdesk_ml_feed__page .pg_lnk_sel .pg_in {
+    border-bottom: none
+}
+
+.helpdesk_ml_feed__page .pg_lnk .pg_in {
+    -o-transition: color 0.5s;
+    transition: color 0.5s
+}
+
+.helpdesk_ml_feed__page .pg_lnk:hover {
+    padding-bottom: 0;
+    border-bottom: none;
+    text-decoration: none
+}
+
+.helpdesk_ml_feed__page .pg_lnk:hover>.pg_in {
+    color: #2b2f33
+}
+
+.helpdesk_ml_feed__page .tickets_all_search {
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8
+}
+
+.helpdesk_ml_feed__page .tickets_all_search .ui_search {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #e7e8ec;
+    z-index: 1
+}
+
+.helpdesk_ml_feed__page .page_block_h2 {
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8
+}
+
+.helpdesk_ml_feed__page .tickets_all_search_bar {
+    padding: 0
+}
+
+.helpdesk_ml_feed__page .helpdesk_ml_ticket__action .flat_button {
+    margin-left: 7px
+}
+
+.helpdesk_ml_feed__page .helpdesk_ml_ticket__action .flat_button:first-child {
+    margin-left: 0
+}
+
+.helpdesk_ml_feed__page .tickets_extra_fields {
+    border-top: none;
+    margin-top: 5px;
+    margin-bottom: -3px
+}
+
+.has_no_shadow {
+    box-shadow: none
+}
+
+.helpdesk_ml_feed__search_options {
+    padding: 20px;
+    background: #fff
+}
+
+.dropdown_control {
+    display: inline-block;
+    margin-left: 7px;
+    text-align: center
+}
+
+.dropdown_control:first-child {
+    margin-left: 0
+}
+
+.dropdown_control .subheader {
+    position: relative;
+    top: -11px;
+    margin: 0 7px 0 0;
+    text-align: left;
+    color: #656565
+}
+
+.helpdesk_ml_feed__resolved_place {
+    display: none;
+    position: absolute;
+    width: 100%;
+    margin-top: -15px;
+    z-index: 15;
+    left: 0;
+    height: 48px;
+    bottom: 0px;
+    background: #fff
+}
+
+.helpdesk_ml_feed__resolved_place .flat_button {
+    position: absolute;
+    bottom: 15px;
+    margin-left: 15px
+}
+
+.helpdesk_ml_ticket__text_answer {
+    width: 100%;
+    position: relative;
+    top: -16px;
+    left: -2%;
+    background: #e5ebf1;
+    color: #55677d;
+    padding: 15px;
+    margin-bottom: -13px
+}
+
 .helpdesk__my_answer_passes .idd_wrap {
     display: inline-block
 }
@@ -2818,4 +2986,17 @@ body.body_helpdesk_small_sb .left_menu_nav {
 
 .helpdesk__my_answer_passes .idd_wrap .idd_selected_value {
     color: #555
+}
+
+.helpdesk_info_tt_priority_change_checkboxes {
+    padding-bottom: 26px
+}
+
+.helpdesk_info_tt_change_priority_label {
+    cursor: pointer;
+    color: #2a5885
+}
+
+.helpdesk_info_tt_change_priority_label:hover {
+    text-decoration: underline
 }

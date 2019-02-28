@@ -158,7 +158,7 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 2660709036,
     'common.js': 1162,
-    'common.css': 68930395549,
+    'common.css': 67937199005,
     'cmodules/web/common_web.js': "339ba17b0123755d02c11c",
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
@@ -361,7 +361,7 @@ var stVersions = {
     'docs.css': 23163727792,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 17930587605,
-    'helpdesk.css': 33150448762,
+    'helpdesk.css': 31975902933,
     'cmodules/web/support.js': "1848153692fb078f9e1f7",
     'tickets.js': 676094159,
     'tickets.css': 30523808865,
@@ -723,7 +723,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 8031;
+var _rnd = 5935;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/9305f5418f2d9183dad188e98aaf94c7.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
