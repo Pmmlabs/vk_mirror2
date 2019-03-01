@@ -6704,8 +6704,9 @@
                     for (var t = this._currentAudioEl.played, e = 0, i = 0; i < t.length; i++) e += t.end(i) - t.start(i);
                     return e
                 }, t.prototype._setAudioNodeUrl = function(t, e) {
-                    var i = f(e);
-                    data(t, "setUrlTime", i == l ? 0 : vkNow()), this._currentHls && t === this._currentAudioEl && (this._currentHls.destroy(), this._currentHls = null), this._isHlsUrl(i) ? this._initHls(t, i) : t.src = i
+                    var i = f(e),
+                        r = i === l;
+                    data(t, "setUrlTime", r ? 0 : vkNow()), this._currentHls && (t === this._currentAudioEl || r) && (this._currentHls.destroy(), this._currentHls = null), this._isHlsUrl(i) ? this._initHls(t, i) : t.src = i
                 }, t.prototype._isHlsUrl = function(t) {
                     return /\.m3u8/.test(f(t))
                 }, t.prototype._initHls = function(t, e) {

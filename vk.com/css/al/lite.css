@@ -6741,6 +6741,11 @@ div.top_result_baloon a {
     display: none!important
 }
 
+.ui_search.audio_search {
+    position: relative;
+    z-index: 4
+}
+
 .audio_search_focused .audio_performer>em,
 .audio_search_focused .audio_title>em {
     background-color: #e7edf2

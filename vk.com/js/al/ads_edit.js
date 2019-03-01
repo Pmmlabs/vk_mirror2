@@ -45,6 +45,7 @@ AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE = 'd';
 AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON = 'i';
 AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD = 't';
 AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD_ICON = 'n';
+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_STORY_PROMO_ICON = 'c';
 
 AdsEdit.ADS_AD_CHECK_GROUP_PURPOSE_LINK_OBJECT = 'link_object';
 AdsEdit.ADS_AD_CHECK_GROUP_PURPOSE_CRITERIA = 'criteria';
@@ -55,6 +56,8 @@ AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_APPS_WITH_BUDGET = 2;
 AdsEdit.ADS_CAMPAIGN_TYPE_UI_EASY_PROMOTE_AUTO = 3; // see ads_edit_easy.js
 
 AdsEdit.ADS_GEO_CIRCLE_TYPE_MASK_ONLINE = 1;
+
+AdsEdit.ADS_AD_PLATFORM_STORIES_NO_PROMO = (1 << 4);
 
 AdsEdit.init = function() {
     cur.toClean = {};
@@ -883,7 +886,7 @@ AdsEdit.showCropPhotoBox = function(uploadPhoto, formatPhotoSize) {
     var successCrop = {
         success: false
     };
-    var isIcon = inArray(formatPhotoSize, [AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD_ICON]);
+    var isIcon = inArray(formatPhotoSize, [AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD_ICON, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_STORY_PROMO_ICON]);
 
     var ajaxParams = {};
     ajaxParams.format_photo_size = formatPhotoSize;
@@ -2432,7 +2435,8 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
             AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE,
             AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON,
             AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD,
-            AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD_ICON
+            AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD_ICON,
+            AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_STORY_PROMO_ICON
         ];
         for (var i in formatPhotoSizes) {
             this.params.photo['value_' + formatPhotoSizes[i]] = '';
@@ -4066,7 +4070,7 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
             }
             ge('ads_edit_value_header_view').innerHTML = headerTitle;
             toggleClass('ads_edit_ad_row_upload_photo', 'unshown', !!(inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST, AdsEdit.ADS_AD_FORMAT_TYPE_STORY])));
-            toggleClass('ads_edit_ad_row_upload_photo_icon', 'unshown', (this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD));
+            toggleClass('ads_edit_ad_row_upload_photo_icon', 'unshown', (this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD) && !this.isStoryPromo());
             break;
         case 'title':
             this.initUiParam(paramName);
@@ -4423,6 +4427,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 this.updatePhotoData();
                 this.updatePhotoData(AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON);
                 this.updatePhotoData(AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD_ICON);
+                this.updatePhotoData(AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_STORY_PROMO_ICON);
                 this.updatePreview('photo_icon');
 
                 this.updateTips();
@@ -5314,6 +5319,10 @@ AdsViewEditor.prototype.getLinkInfo = function(link) {
     return linkInfo;
 }
 
+AdsViewEditor.prototype.isStoryPromo = function() {
+    return (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_STORY) && !(this.params.platform.value & AdsEdit.ADS_AD_PLATFORM_STORIES_NO_PROMO);
+}
+
 AdsViewEditor.prototype.getParams = function() {
     var isAdaptiveAd = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD);
     var isStory = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_STORY);
@@ -5322,9 +5331,20 @@ AdsViewEditor.prototype.getParams = function() {
     for (var paramName in this.params) {
         params[paramName] = this.params[paramName].value;
     }
+
     params.link_complete = (this.params.link_type.complete ? 1 : 0);
     params.link_subtype = this.params.link_type.subvalue;
-    params.photo_icon = this.params.photo['value_' + (isAdaptiveAd ? AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD_ICON : AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON)];
+
+    var photoIconSize;
+    if (this.isStoryPromo()) {
+        photoIconSize = AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_STORY_PROMO_ICON;
+    } else if (isAdaptiveAd) {
+        photoIconSize = AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD_ICON;
+    } else {
+        photoIconSize = AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON;
+    }
+
+    params.photo_icon = this.params.photo['value_' + photoIconSize];
     var weeklyScheduleTargetEl = ge(this.options.targetIdPrefix + 'weekly_schedule');
     if (weeklyScheduleTargetEl) {
         params.weekly_schedule = weeklyScheduleTargetEl.value;
@@ -5367,7 +5387,7 @@ AdsViewEditor.prototype.getFormatPhotoSize = function(isIcon) {
         case AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD:
             return isIcon ? AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD_ICON : AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD;
         case AdsEdit.ADS_AD_FORMAT_TYPE_STORY:
-            return AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_UNKNOWN; // No photo needed for a story
+            return (isIcon && this.isStoryPromo()) ? AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_STORY_PROMO_ICON : AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_UNKNOWN; // No photo needed for a story
         default:
             return AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_UNKNOWN;
     }
@@ -5388,7 +5408,7 @@ AdsViewEditor.prototype.updatePhotoData = function(formatPhotoSize) {
     var valueBySize = 'value_' + formatPhotoSize;
     var boxClassesBySize = 'box_classes_' + formatPhotoSize;
 
-    if (formatPhotoSize === formatPhotoSizeCur && !inArray(formatPhotoSize, [AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD_ICON])) {
+    if (formatPhotoSize === formatPhotoSizeCur && !inArray(formatPhotoSize, [AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD_ICON, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_STORY_PROMO_ICON])) {
         this.params.photo.value = this.params.photo[valueBySize];
         this.params.photo.box_classes = this.params.photo[boxClassesBySize];
         this.params.photo_link.value = this.params.photo_link[valueBySize];
@@ -5439,7 +5459,7 @@ AdsViewEditor.prototype.updatePhotoLink = function(formatPhotoSize) {
 }
 
 AdsViewEditor.prototype.loadPhotoLink = function(formatPhotoSize, delayed) {
-    var isIcon = inArray(formatPhotoSize, [AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD_ICON]);
+    var isIcon = inArray(formatPhotoSize, [AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD_ICON, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_STORY_PROMO_ICON]);
 
     if (!delayed && this.params.photo_link['value_' + formatPhotoSize]) {
         var imageObject = vkImage();
@@ -5790,6 +5810,7 @@ AdsViewEditor.prototype.completeLink = function() {
         this.setPhotoData(AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE);
         this.setPhotoData(AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON);
         this.setPhotoData(AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD_ICON);
+        this.setPhotoData(AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_STORY_PROMO_ICON);
 
         this.params.format_type.hidden = !!(inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE, AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW, AdsEdit.ADS_AD_LINK_TYPE_POST_STEALTH]));
         this.updateUiParamVisibility('format_type');
@@ -6327,7 +6348,16 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
             break;
         case 'photo_icon':
             var isAdaptiveAd = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD);
-            var photoIconSize = isAdaptiveAd ? AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD_ICON : AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON;
+
+            var photoIconSize;
+            if (this.isStoryPromo()) {
+                photoIconSize = AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_STORY_PROMO_ICON;
+            } else if (isAdaptiveAd) {
+                photoIconSize = AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD_ICON;
+            } else {
+                photoIconSize = AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON;
+            }
+
             this.preview[previewParamName].src = (this.params.photo['value_' + photoIconSize] ? this.params.photo_link['value_' + photoIconSize] : this.params.photo_link['value_default_' + photoIconSize]);
             break;
         case 'play':

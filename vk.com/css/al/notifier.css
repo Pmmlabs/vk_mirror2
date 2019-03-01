@@ -15120,7 +15120,8 @@ span.fc_contact_photo.online.mobile:after {
 }
 
 .notifier_baloon_head {
-    padding: 10px 12px 0
+    padding: 10px 12px 0;
+    position: relative
 }
 
 .notifier_baloon_title {
@@ -15136,10 +15137,11 @@ span.fc_contact_photo.online.mobile:after {
 }
 
 .notifier_close_wrap {
-    float: right;
     display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
     padding: 12px;
-    margin: -10px -12px -11px 12px;
     opacity: 0.65;
     filter: alpha(opacity=65);
     outline: none
