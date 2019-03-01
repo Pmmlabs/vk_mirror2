@@ -3000,3 +3000,9 @@ body.body_helpdesk_small_sb .left_menu_nav {
 .helpdesk_info_tt_change_priority_label:hover {
     text-decoration: underline
 }
+
+.helpdesk_ml_priority {
+    display: inline-block;
+    cursor: pointer;
+    border-bottom: 1px dashed #939393
+}

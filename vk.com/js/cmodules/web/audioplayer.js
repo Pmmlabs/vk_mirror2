@@ -7266,7 +7266,7 @@
                 function t(e) {
                     ! function(t, e) {
                         if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                    }(this, t), this.playerAdapter = e, this.listenedData = null, this.sendTimeout = null, this.currentAudioId = null, this.currentAudioTrackCode = null, this.pausedAudioId = null, this.playlistChanged = !1, this.currentPosition = 0, this.currentListened = 0, this.playedTime = 0, this.adsCompleted = !1, this.listenedDelta = 0, this.debug = e.isDebug(), this.onVolume = S(this.onVolume.bind(this), M), this.playerAdapter.listenPlay(this.onPlay, this), this.playerAdapter.listenPause(this.onPause, this), this.playerAdapter.listenProgress(this.onProgress, this), this.playerAdapter.listenVolume(this.onVolume, this), this.playerAdapter.listenSeek(this.onSeek, this), this.playerAdapter.listenPlaylistChanged(this.onPlaylistChanged, this), this.playerAdapter.listenEnded(this.onEnded, this), this.playerAdapter.listenPlayNext(this.onPlayNext, this), this.playerAdapter.listenAdCompleted(this.onAdCompleted, this), this.onPageClose = this.onPageClose.bind(this), addEvent(window, "beforeunload", this.onPageClose)
+                    }(this, t), this.playerAdapter = e, this.listenedData = null, this.sendTimeout = null, this.currentAudioId = null, this.currentAudioTrackCode = null, this.pausedAudioId = null, this.playlistChanged = !1, this.currentPosition = 0, this.currentListened = 0, this.playedTime = 0, this.adsCompleted = !1, this.debug = e.isDebug(), this.onVolume = S(this.onVolume.bind(this), M), this.playerAdapter.listenPlay(this.onPlay, this), this.playerAdapter.listenPause(this.onPause, this), this.playerAdapter.listenProgress(this.onProgress, this), this.playerAdapter.listenVolume(this.onVolume, this), this.playerAdapter.listenSeek(this.onSeek, this), this.playerAdapter.listenPlaylistChanged(this.onPlaylistChanged, this), this.playerAdapter.listenEnded(this.onEnded, this), this.playerAdapter.listenPlayNext(this.onPlayNext, this), this.playerAdapter.listenAdCompleted(this.onAdCompleted, this), this.onPageClose = this.onPageClose.bind(this), addEvent(window, "beforeunload", this.onPageClose)
                 }
                 return t.prototype.canOperate = function() {
                     return !this.playerAdapter.isPodcast() && !this.playerAdapter.isAdPlaying() && this.playerAdapter.useNewStats()
@@ -7290,8 +7290,6 @@
                     }
                 }, t.prototype.getListenedTime = function() {
                     return Math.round(this.playerAdapter.getListenedTime()) || 0
-                }, t.prototype.getListenedTimeSegment = function(t) {
-                    return void 0 === t ? Math.max(this.getListenedTime() - this.listenedDelta, 0) : Math.max(t - this.listenedDelta, 0)
                 }, t.prototype.getPlaySubtype = function() {
                     if (this.playerAdapter.isAutoPlayed()) return "auto";
                     var t = this.playerAdapter.getSequence();
@@ -7308,7 +7306,7 @@
                             type: "start",
                             subtype: this.getPlaySubtype(),
                             position: this.currentPosition,
-                            listened: 0
+                            listened: i
                         }), this.pausedAudioId = null, this.playlistChanged = !1
                     }
                 }, t.prototype.onPause = function() {
@@ -7319,7 +7317,7 @@
                             t.sendCurrentAudioEvent({
                                 type: "stop",
                                 subtype: e ? "queue" === e ? "queue" : "interruption" : "pause"
-                            }), t.listenedDelta = t.playerAdapter.getListenedTime()
+                            })
                         }
                     }))
                 }, t.prototype.onProgress = function() {
@@ -7347,7 +7345,7 @@
                 }, t.prototype.onPlaylistChanged = function() {
                     this.canOperate() && (this.playlistChanged = !0)
                 }, t.prototype.onEnded = function() {
-                    this.listenedData && this.playerAdapter.isLastTrack() && (this.listenedData.end_stream_reason = "session_end"), this.playerAdapter.isRepeatCurrentAudio() ? (this.collectListenedData(), this.listenedDelta = this.getListenedTime(), this.sendListenedData()) : this.sendListenedDataDelayed(150)
+                    this.listenedData && this.playerAdapter.isLastTrack() && (this.listenedData.end_stream_reason = "session_end"), this.playerAdapter.isRepeatCurrentAudio() ? (this.collectListenedData(), this.sendListenedData()) : this.sendListenedDataDelayed(150)
                 }, t.prototype.onPlayNext = function(t, e) {
                     if (this.canOperate()) {
                         var i = e.split("_"),
@@ -7375,14 +7373,14 @@
                             type: "stop",
                             subtype: r,
                             position: this.currentPosition,
-                            listened: this.getListenedTimeSegment(this.currentListened),
+                            listened: this.currentListened,
                             trackCode: e,
                             playlistId: i,
                             ownerId: s,
                             audioId: d
                         })
                     }
-                    this.collectListenedDataSwitch(), this.sendListenedData(), this.listenedDelta = 0
+                    this.collectListenedDataSwitch(), this.sendListenedData()
                 }, t.prototype.onPageClose = function() {
                     this.playerAdapter.isPlaying() && (this.sendCurrentAudioEvent({
                         type: "stop",
@@ -7395,13 +7393,13 @@
                             e = this.getListenedTime(),
                             i = this.playerAdapter.getSequence(),
                             r = null;
-                        i && !t ? r = i > 0 ? "next_btn" : "prev" : this.playlistChanged && (r = "playlist_change"), !r && t && (r = "playlist_next"), this.listenedData.end_stream_reason = r || "unknown", e && (this.listenedData.listened = this.getListenedTimeSegment(e))
+                        i && !t ? r = i > 0 ? "next_btn" : "prev" : this.playlistChanged && (r = "playlist_change"), !r && t && (r = "playlist_next"), this.listenedData.end_stream_reason = r || "unknown", e && (this.listenedData.listened = e)
                     }
                 }, t.prototype.collectListenedData = function() {
                     if (this.canOperate()) {
                         var t = this.playerAdapter.getAudioId(),
                             e = this.playerAdapter.getAudioTrackCode(),
-                            i = this.getListenedTimeSegment();
+                            i = this.getListenedTime();
                         if (i) {
                             var r = {
                                 audio_id: t,
@@ -7438,7 +7436,7 @@
                         repeat: this.playerAdapter.isRepeatCurrentAudio() ? 1 : this.playerAdapter.isRepeatAll() ? 2 : 0,
                         volume: this.playerAdapter.getVolume(),
                         position: this.playerAdapter.getProgressInSeconds(),
-                        listened: this.getListenedTimeSegment(),
+                        listened: this.getListenedTime(),
                         playlistId: this.playerAdapter.getPlaylistId()
                     }, this.getEnvParams(), this.getCurrentAudioParams(), t))
                 }, t.prototype.sendAudioEvent = function(t) {

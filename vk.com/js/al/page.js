@@ -3858,9 +3858,6 @@ var Wall = {
                 }
             });
 
-            if (!hasClass(txt, 'submit_post_inited') && gpeByClass('test_posting_experiment', cur.postField)) {
-                statlogsValueEvent('test_posting_experiment_init', 1);
-            }
             addClass(txt, 'submit_post_inited')
 
             if (draft) {
@@ -9272,10 +9269,6 @@ var Wall = {
         }
         Wall.updateMentionsIndex();
 
-        if (cur.wallAdsReplacedFeatureTooltip && Wall.isFormPostingInTestMode()) {
-            Wall.showAdsReplacedTooltip();
-        }
-
         if (opts.top_wall_feature_tooltip) {
             setTimeout(function() {
                 Wall.showTopWallTooltip(opts.top_wall_feature_tooltip_hash);
@@ -10159,10 +10152,6 @@ var Wall = {
                 el.post_author_data_tt.show();
             }
         })
-    },
-
-    isFormPostingInTestMode: function() {
-        return hasClass('submit_post_box', 'test_posting_experiment_b');
     },
 
     hideAdsReplacedTT: function() {

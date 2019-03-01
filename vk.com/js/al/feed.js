@@ -1213,10 +1213,7 @@ var Feed = {
 
         if (from > 1) {
             toggleClass(cur.feedEls.wrap, 'feed_submit_shown', inArray(newSection, cur.options.feed_types.tabs.concat(['list', 'likes'])));
-
-            if (hasClass(cur.feedEls.wrap, 'test_posting_experiment_b1') || hasClass(cur.feedEls.wrap, 'test_posting_experiment_b2')) {
-                toggleClass(cur.feedEls.wrap, 'feed_submit_only_shown', ~['recommended', 'search', 'updates', 'comments'].indexOf(newSection));
-            }
+            toggleClass(cur.feedEls.wrap, 'feed_submit_only_shown', ~['recommended', 'search', 'updates', 'comments'].indexOf(newSection));
 
             var showSearch = inArray(newSection, ['articles_search', 'articles', 'search', 'photos_search', 'photos']);
             toggleClass(cur.feedEls.wrap, 'feed_search_shown', showSearch);
@@ -1264,6 +1261,9 @@ var Feed = {
     // from: 3 - init, 2 - navigation, undefined - other
     applyOptions: function(options, from) {
         from = from || 0;
+        if (options.no_left_ads) {
+            cur.no_left_ads = true;
+        }
         if (options.owner) {
             cur.owner = options.owner;
         }

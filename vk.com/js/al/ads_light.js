@@ -670,7 +670,7 @@
             return;
         }
 
-        if (!canUpdateBlock && (force != 'force_hard') && !AdsLight.isNoAdsForce()) {
+        if (!canUpdateBlock && ((force != 'force_hard') || AdsLight.isNoAdsForce())) {
             return;
         }
 

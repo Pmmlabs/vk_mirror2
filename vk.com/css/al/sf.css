@@ -947,16 +947,6 @@ body.sf .mention_tt_actions {
     z-index: 5
 }
 
-.sf_stats_cal .day {
-    color: #999
-}
-
-.sf_stats_cal .inactive_day,
-.sf_stats_cal .sel,
-.sf_stats_cal .today {
-    color: #000
-}
-
 #sf_stats_prev.over {
     opacity: 1
 }
