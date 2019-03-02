@@ -1921,3 +1921,45 @@ a.ads_ad_box2:hover {
     padding-top: 15px;
     box-sizing: border-box
 }
+
+#ads_special_promo_wrap {
+    margin: 15px 0 0
+}
+
+.ads_special_promo_link:hover {
+    text-decoration: none
+}
+
+.ads_special_promo_citymobil {
+    width: 230px;
+    height: 129px;
+    margin: 0 0 7px;
+    border-radius: 4px;
+    background-size: cover
+}
+
+.ads_special_promo_citymobil_moscow {
+    background-image: url("/images/ads/special_projects/ads_special_projects_citymobil_moscow.jpg")
+}
+
+.ads_special_promo_citymobil_yaroslavl {
+    background-image: url("/images/ads/special_projects/ads_special_projects_citymobil_yaroslavl.jpg")
+}
+
+.ads_special_promo_citymobil:before {
+    display: block;
+    content: "";
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid #001134;
+    border-radius: inherit;
+    opacity: 0.1
+}
+
+.ads_special_promo_citymobil_domain {
+    color: #939699;
+    font-size: 12px;
+    line-height: 1.08;
+    letter-spacing: -0.1px
+}

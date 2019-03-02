@@ -681,7 +681,7 @@
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%22944%201152%208%204%22%3E%3Cpath%20d%3D%22M945.2%201152.2C944.9%201152%20944.5%201152%20944.3%201152.3%20944.1%201152.6%20944.1%201153%20944.4%201153.2L947.6%201155.8C947.8%201156%20948.2%201156%20948.4%201155.8L951.6%201153.2C951.9%201153%20951.9%201152.6%20951.7%201152.3%20951.5%201152%20951.1%201152%20950.8%201152.2L948%201154.5%20945.2%201152.2Z%22%20fill%3D%22%2392A0B1%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat
 }
 
-.ui_tooltipMenu__list {
+.ui_tooltipMenu__list>.ui_tooltipMenu__items {
     text-align: left;
     list-style: none;
     margin: 0;
@@ -718,6 +718,31 @@
 .ui_tooltipMenu__tooltip .eltt_arrow_back,
 .ui_tooltipMenu__list_unshown {
     display: none
+}
+
+.ui_tooltipMenu__item_not_found {
+    padding: 24px;
+    text-align: center;
+    font-size: 12px;
+    color: #939393;
+    display: block
+}
+
+.ui_tooltipMenu .ui_search {
+    border-radius: 8px 8px 0 0
+}
+
+.ui_tooltipMenu .ui_search input.ui_search_field {
+    padding: 11px;
+    padding-left: 0;
+    margin-left: 0;
+    background-image: none
+}
+
+.ui_tooltipMenu_title {
+    font-size: 11px;
+    color: #939393;
+    margin-top: 1px
 }
 
 .Stub {

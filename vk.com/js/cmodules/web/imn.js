@@ -69,7 +69,7 @@
     s.push = t, s = s.slice();
     for (var l = 0; l < s.length; l++) t(s[l]);
     var u = c;
-    i.push([89, "common", "9305f5418f2d9183dad188e98aaf94c7", "d50053c34a96832eac5b08e37daecda0"]), n()
+    i.push([89, "common", "3f6ca25f0583c2970408ef8edec7a8b0", "d50053c34a96832eac5b08e37daecda0"]), n()
 }({
     "+/AQ": function(e, t, n) {
         "use strict";
@@ -17553,281 +17553,281 @@
         }), n.d(t, "F", function() {
             return oe
         }), n.d(t, "h", function() {
-            return ce
+            return se
         }), n.d(t, "Wa", function() {
-            return ue
+            return le
         }), n.d(t, "Xa", function() {
-            return de
+            return ue
         }), n.d(t, "T", function() {
-            return fe
+            return de
         }), n.d(t, "eb", function() {
-            return me
+            return fe
         }), n.d(t, "Ya", function() {
-            return pe
+            return me
         }), n.d(t, "zc", function() {
-            return ge
+            return pe
         }), n.d(t, "Pb", function() {
-            return he
+            return ge
         }), n.d(t, "Gc", function() {
-            return _e
+            return he
         }), n.d(t, "Lb", function() {
-            return ye
+            return ve
         }), n.d(t, "D", function() {
-            return je
+            return ye
         }), n.d(t, "C", function() {
-            return Oe
+            return je
         }), n.d(t, "j", function() {
-            return we
+            return Oe
         }), n.d(t, "t", function() {
-            return ke
+            return we
         }), n.d(t, "E", function() {
-            return Ce
+            return ke
         }), n.d(t, "pb", function() {
-            return Se
+            return Ce
         }), n.d(t, "Pa", function() {
-            return Ee
+            return Se
         }), n.d(t, "g", function() {
-            return Ie
+            return Ee
         }), n.d(t, "Sb", function() {
-            return xe
+            return Ie
         }), n.d(t, "Vb", function() {
-            return Te
+            return xe
         }), n.d(t, "Rb", function() {
-            return Pe
+            return Te
         }), n.d(t, "Cb", function() {
-            return Me
+            return Pe
         }), n.d(t, "Db", function() {
-            return Le
+            return Me
         }), n.d(t, "Ua", function() {
-            return Be
+            return Le
         }), n.d(t, "Ib", function() {
-            return Ne
+            return De
         }), n.d(t, "Eb", function() {
-            return Ae
+            return Ne
         }), n.d(t, "Fb", function() {
-            return He
+            return Ae
         }), n.d(t, "bb", function() {
-            return Re
+            return He
         }), n.d(t, "Ia", function() {
-            return Fe
+            return Re
         }), n.d(t, "Gb", function() {
-            return qe
+            return Fe
         }), n.d(t, "X", function() {
-            return Ue
+            return qe
         }), n.d(t, "Y", function() {
-            return ze
+            return Ue
         }), n.d(t, "m", function() {
-            return We
+            return ze
         }), n.d(t, "v", function() {
-            return Ke
+            return We
         }), n.d(t, "Hb", function() {
-            return Qe
+            return Ve
         }), n.d(t, "Ka", function() {
-            return Xe
+            return Qe
         }), n.d(t, "Ea", function() {
-            return Ye
+            return Xe
         }), n.d(t, "nb", function() {
-            return Je
+            return Ye
         }), n.d(t, "mb", function() {
-            return Ge
+            return Je
         }), n.d(t, "lb", function() {
-            return Ze
+            return Ge
         }), n.d(t, "ob", function() {
-            return $e
+            return Ze
         }), n.d(t, "wb", function() {
-            return et
+            return $e
         }), n.d(t, "xb", function() {
-            return tt
+            return et
         }), n.d(t, "f", function() {
-            return rt
+            return nt
         }), n.d(t, "gb", function() {
-            return at
+            return rt
         }), n.d(t, "Nb", function() {
-            return it
+            return at
         }), n.d(t, "Mb", function() {
-            return ot
+            return it
         }), n.d(t, "K", function() {
-            return st
+            return ot
         }), n.d(t, "cb", function() {
-            return ct
+            return st
         }), n.d(t, "B", function() {
-            return lt
+            return ct
         }), n.d(t, "I", function() {
-            return ut
+            return lt
         }), n.d(t, "qc", function() {
-            return dt
+            return ut
         }), n.d(t, "Ga", function() {
-            return ft
+            return dt
         }), n.d(t, "i", function() {
-            return mt
+            return ft
         }), n.d(t, "Ha", function() {
-            return pt
+            return mt
         }), n.d(t, "s", function() {
-            return gt
+            return pt
         }), n.d(t, "Ra", function() {
-            return ht
+            return gt
         }), n.d(t, "pc", function() {
-            return _t
+            return ht
         }), n.d(t, "Ca", function() {
-            return vt
+            return bt
         }), n.d(t, "zb", function() {
-            return yt
+            return vt
         }), n.d(t, "kc", function() {
-            return jt
+            return yt
         }), n.d(t, "Yb", function() {
-            return Ot
+            return jt
         }), n.d(t, "Ub", function() {
-            return wt
+            return Ot
         }), n.d(t, "G", function() {
-            return kt
+            return wt
         }), n.d(t, "sc", function() {
-            return Ct
+            return kt
         }), n.d(t, "xc", function() {
-            return St
+            return Ct
         }), n.d(t, "Ta", function() {
-            return Et
+            return St
         }), n.d(t, "J", function() {
-            return It
+            return Et
         }), n.d(t, "Qb", function() {
-            return xt
+            return It
         }), n.d(t, "P", function() {
-            return Tt
+            return xt
         }), n.d(t, "db", function() {
-            return Pt
+            return Tt
         }), n.d(t, "w", function() {
-            return Mt
+            return Pt
         }), n.d(t, "yb", function() {
-            return Lt
+            return Mt
         }), n.d(t, "lc", function() {
-            return Bt
+            return Lt
         }), n.d(t, "Tb", function() {
-            return Dt
+            return Bt
         }), n.d(t, "V", function() {
-            return Nt
+            return Dt
         }), n.d(t, "Dc", function() {
-            return At
+            return Nt
         }), n.d(t, "q", function() {
-            return Ht
+            return At
         }), n.d(t, "rc", function() {
-            return Rt
+            return Ht
         }), n.d(t, "Ab", function() {
-            return Ft
+            return Rt
         }), n.d(t, "H", function() {
-            return qt
+            return Ft
         }), n.d(t, "o", function() {
-            return Ut
+            return qt
         }), n.d(t, "uc", function() {
-            return Wt
+            return zt
         }), n.d(t, "ic", function() {
-            return Kt
+            return Wt
         }), n.d(t, "Va", function() {
-            return Vt
+            return Kt
         }), n.d(t, "O", function() {
-            return Qt
+            return Vt
         }), n.d(t, "hb", function() {
-            return Xt
+            return Qt
         }), n.d(t, "gc", function() {
-            return Yt
+            return Xt
         }), n.d(t, "y", function() {
-            return Jt
+            return Yt
         }), n.d(t, "ub", function() {
-            return Gt
+            return Jt
         }), n.d(t, "ac", function() {
-            return Zt
+            return Gt
         }), n.d(t, "Bc", function() {
-            return $t
+            return Zt
         }), n.d(t, "W", function() {
-            return en
+            return $t
         }), n.d(t, "u", function() {
-            return tn
+            return en
         }), n.d(t, "cc", function() {
-            return nn
+            return tn
         }), n.d(t, "vc", function() {
-            return rn
+            return nn
         }), n.d(t, "fc", function() {
-            return an
+            return rn
         }), n.d(t, "wc", function() {
-            return on
+            return an
         }), n.d(t, "l", function() {
-            return sn
+            return on
         }), n.d(t, "Zb", function() {
-            return cn
+            return sn
         }), n.d(t, "hc", function() {
-            return ln
+            return cn
         }), n.d(t, "Ac", function() {
-            return un
+            return ln
         }), n.d(t, "U", function() {
-            return dn
+            return un
         }), n.d(t, "Z", function() {
-            return fn
+            return dn
         }), n.d(t, "M", function() {
-            return mn
+            return fn
         }), n.d(t, "rb", function() {
-            return pn
+            return mn
         }), n.d(t, "Da", function() {
-            return gn
+            return pn
         }), n.d(t, "Bb", function() {
-            return hn
+            return gn
         }), n.d(t, "sb", function() {
-            return _n
+            return hn
         }), n.d(t, "kb", function() {
-            return bn
+            return _n
         }), n.d(t, "ab", function() {
-            return vn
+            return bn
         }), n.d(t, "nc", function() {
-            return yn
+            return vn
         }), n.d(t, "Za", function() {
-            return jn
+            return yn
         }), n.d(t, "mc", function() {
-            return On
+            return jn
         }), n.d(t, "Q", function() {
-            return wn
+            return On
         }), n.d(t, "N", function() {
-            return kn
+            return wn
         }), n.d(t, "L", function() {
-            return Sn
+            return Cn
         }), n.d(t, "tc", function() {
-            return En
+            return Sn
         }), n.d(t, "ib", function() {
-            return In
+            return En
         }), n.d(t, "Ba", function() {
-            return xn
+            return In
         }), n.d(t, "Aa", function() {
-            return Tn
+            return xn
         }), n.d(t, "ec", function() {
-            return Pn
+            return Tn
         }), n.d(t, "dc", function() {
-            return Mn
+            return Pn
         }), n.d(t, "r", function() {
-            return Ln
+            return Mn
         }), n.d(t, "R", function() {
-            return Bn
+            return Ln
         }), n.d(t, "Fc", function() {
-            return Dn
+            return Bn
         }), n.d(t, "S", function() {
-            return Nn
+            return Dn
         }), n.d(t, "k", function() {
-            return An
+            return Nn
         }), n.d(t, "Fa", function() {
-            return Hn
+            return An
         }), n.d(t, "Wb", function() {
-            return Rn
+            return Hn
         }), n.d(t, "z", function() {
-            return Fn
+            return Rn
         }), n.d(t, "jc", function() {
-            return qn
+            return Fn
         }), n.d(t, "La", function() {
-            return Un
+            return qn
         }), n.d(t, "n", function() {
-            return zn
+            return Un
         }), n.d(t, "A", function() {
-            return Wn
+            return zn
         }), n.d(t, "x", function() {
-            return Kn
+            return Wn
         }), n.d(t, "Cc", function() {
-            return Vn
+            return Kn
         }), n.d(t, "tb", function() {
-            return Qn
+            return Vn
         });
         var r = n("BxOC"),
             a = n("nyd8"),
@@ -17971,7 +17971,7 @@
         }
 
         function D(e) {
-            return "string" == typeof e ? se("<div>" + e + "</div>") : e
+            return "string" == typeof e ? Object(b.Ma)("<div>" + e + "</div>") : e
         }
 
         function N(e) {
@@ -18009,7 +18009,7 @@
                         extend(i.tabs[e], a), i.tabs[e].lastmsg = d, i.tabs[e].lastmsg_meta = f
                     }
                 } else extend(i.tabs[e], a);
-                return i.admins = extend(i.admins, s), i.imQueue(e, !1), Dn(), R(e, i)
+                return i.admins = extend(i.admins, s), i.imQueue(e, !1), Bn(), R(e, i)
             }).catch(function(e) {
                 return Object(p.a)("loadPeer", e)
             })
@@ -18065,7 +18065,7 @@
         }
 
         function K(e, t, n, r) {
-            if (Nt(r)) throw Object(l.ac)(), new Error("Cant change peer while loading something");
+            if (Dt(r)) throw Object(l.ac)(), new Error("Cant change peer while loading something");
             var a = r.gid ? "gim" + r.gid : "im";
             if (r.prevPeer = r.peer, r.peer = e, r.msgid = t || "", r.currentEntryPoint = n, cur.peer = e, I({
                     sel: e ? Object(l.H)(e) : null,
@@ -18073,7 +18073,7 @@
                     email: "",
                     0: a
                 }), 0 != r.prevPeer && z(r.prevPeer, r, !0), 0 !== e) {
-                Object(l.bb)(r, e) && z(e, r, !0), $t(r.tabbedPeers.map(function(e) {
+                Object(l.bb)(r, e) && z(e, r, !0), Zt(r.tabbedPeers.map(function(e) {
                     return e.peer
                 }).indexOf(e) < 0 ? [{
                     peer: e,
@@ -18081,8 +18081,8 @@
                 }].concat(r.tabbedPeers) : r.tabbedPeers.map(function(t) {
                     return t.peer == e && "perm" !== t.type && (t.type = "perm"), t
                 }), !1, r)
-            } else $t(r.tabbedPeers, !1, r);
-            return x(), We(r.prevPeer, r)
+            } else Zt(r.tabbedPeers, !1, r);
+            return x(), ze(r.prevPeer, r)
         }
 
         function V(e) {
@@ -18109,7 +18109,7 @@
                             }
                         }), t(a)
                     }
-                    r.membersLoaded ? a() : Cn(e.peer, e).then(a)
+                    r.membersLoaded ? a() : kn(e.peer, e).then(a)
                 })
             }
         }
@@ -18242,7 +18242,7 @@
         function ne(e, t, n, r) {
             var a = arguments.length > 4 && void 0 !== arguments[4] && arguments[4];
             t.deletedDialog || (e.dialog_tabs = Object.keys(e.dialog_tabs).reduce(function(e, i) {
-                return !n && !qt(i)(t) || a && !a(i, e[i], t) || (e[i] = Object(s.a)(r(e[i], i))), e
+                return !n && !Ft(i)(t) || a && !a(i, e[i], t) || (e[i] = Object(s.a)(r(e[i], i))), e
             }, e.dialog_tabs))
         }
 
@@ -18254,7 +18254,7 @@
                     peer: e,
                     type: "temp"
                 };
-                $t(t.tabbedPeers.concat([n]), !1, t)
+                Zt(t.tabbedPeers.concat([n]), !1, t)
             }
         }
 
@@ -18282,12 +18282,12 @@
             return a && a.messageId == e.messageId && (n.pinned = e), Promise.resolve(t)
         }
 
-        function ce(e, t) {
+        function se(e, t) {
             var n = e.flags & i.m,
                 r = e.peerId;
             if (Object(l.bb)(t, r)) {
                 var a = t.tabs[r];
-                if (a.deletedDialog = !1, !t.msg_local_ids_sort && e.local ? t.msg_local_ids_sort = j({}, e.messageId, 0) : e.local && (t.msg_local_ids_sort[e.messageId] = Object.keys(t.msg_local_ids_sort).length), n ? a.unread = 0 : (a.lastmsg == e.messageId && a.unread ? le(t, 1, e.peerId) : (!a.unread && le(t, 1, e.peerId), a.unread++), re(e.peerId, t)), Object(l.Oa)(t, r)) {
+                if (a.deletedDialog = !1, !t.msg_local_ids_sort && e.local ? t.msg_local_ids_sort = j({}, e.messageId, 0) : e.local && (t.msg_local_ids_sort[e.messageId] = Object.keys(t.msg_local_ids_sort).length), n ? a.unread = 0 : (a.lastmsg == e.messageId && a.unread ? ce(t, 1, e.peerId) : (!a.unread && ce(t, 1, e.peerId), a.unread++), re(e.peerId, t)), Object(l.Oa)(t, r)) {
                     var o = D(a.history);
                     a.skipped > 0 && a.skipped++, a.offset++, a.msgs[e.messageId] = extend(!0, {}, e), a.history = Object(l.x)(t, e, o, !0, !0, !0), Object(f.k)(e) && (a.blocked_community = 0, Q(t))
                 }
@@ -18295,32 +18295,32 @@
                     var s = a.typing.userIds.indexOf(e.userId);
                     s >= 0 && a.typing.userIds.splice(s, 1)
                 }
-                return a.lastmsg = e.messageId, a.lastmsg_meta = e, z(e.peerId, t), ne(t, a, !1, ae.bind(null, r), zt.bind(null, t)), Promise.resolve(t)
+                return a.lastmsg = e.messageId, a.lastmsg_meta = e, z(e.peerId, t), ne(t, a, !1, ae.bind(null, r), Ut.bind(null, t)), Promise.resolve(t)
             }
             return H(r, 0, 0, 0, t).then(function(t) {
-                return ne(t, t.tabs[r], !1, ae.bind(null, r), zt.bind(null, t)), z(e.peerId, t), n || re(e.peerId, t), t
+                return ne(t, t.tabs[r], !1, ae.bind(null, r), Ut.bind(null, t)), z(e.peerId, t), n || re(e.peerId, t), t
             })
         }
 
-        function le(e, t, n) {
+        function ce(e, t, n) {
             e.cur_unread_cnt || (e.cur_unread_cnt = {}), -1 === t && delete e.cur_unread_cnt[n], e.unread_cnt += t
         }
 
-        function ue(e, t) {
+        function le(e, t) {
             if (Object(l.Oa)(t, e.peerId)) {
                 var n = t.tabs[e.peerId],
                     r = n.unread;
-                if (t = J(t, e.peerId, e.upToId, 0), null != e.unread ? n.unread = e.unread : n.unread = e.upToId >= n.lastmsg ? 0 : Object(d.b)(e.peerId, t) + (n.unread > 0 ? +n.skipped : 0), r > 0 && !n.unread && le(t, -1, e.peerId), !n.skipped) {
+                if (t = J(t, e.peerId, e.upToId, 0), null != e.unread ? n.unread = e.unread : n.unread = e.upToId >= n.lastmsg ? 0 : Object(d.b)(e.peerId, t) + (n.unread > 0 ? +n.skipped : 0), r > 0 && !n.unread && ce(t, -1, e.peerId), !n.skipped) {
                     var a = D(n.history);
                     n.history = Object(l.pb)(t, a, e.peerId)
                 }
-            } else Object(l.bb)(t, e.peerId) && (t.tabs[e.peerId].unread > 0 && le(t, -1, e.peerId), t.tabs[e.peerId].unread = 0, t.tabs[e.peerId].in_up_to = e.upToId);
+            } else Object(l.bb)(t, e.peerId) && (t.tabs[e.peerId].unread > 0 && ce(t, -1, e.peerId), t.tabs[e.peerId].unread = 0, t.tabs[e.peerId].in_up_to = e.upToId);
             return Object(l.bb)(t, e.peerId) && (t.dialog_tabs[u.m] = t.dialog_tabs[u.m].filter(function(t) {
                 return intval(t) !== e.peerId
-            })), 0 !== t.unread_cnt || t.active_tab !== u.m || t.gid ? Promise.resolve(t) : Ut(u.h, t)
+            })), 0 !== t.unread_cnt || t.active_tab !== u.m || t.gid ? Promise.resolve(t) : qt(u.h, t)
         }
 
-        function de(e, t) {
+        function ue(e, t) {
             var n = t.tabs[e.peerId];
             if (Object(l.bb)(t, e.peerId) && J(t, e.peerId, e.upToId, i.m), Object(l.Oa)(t, e.peerId)) {
                 var r = D(n.history);
@@ -18329,11 +18329,11 @@
             return Promise.resolve(t)
         }
 
-        function fe(e, t, n, r, a) {
+        function de(e, t, n, r, a) {
             return a.text = {}, a.imQueue = e, a.imQueueResend = t, a.imQueueSet = n, a.imQueueComplete = r, Promise.resolve(a)
         }
 
-        function me(e, t, n) {
+        function fe(e, t, n) {
             function r(e, t) {
                 return {
                     id: e.messageId,
@@ -18347,7 +18347,7 @@
                 var a = e[0],
                     i = Object(d.m)(n, t, a),
                     o = Object(d.d)(n, t, a);
-                return !1 === o ? n.set(pt.bind(null, j({}, t, [i.userId]))).then(function(n) {
+                return !1 === o ? n.set(mt.bind(null, j({}, t, [i.userId]))).then(function(n) {
                     var o = Object(d.d)(n, t, a);
                     return {
                         msgIds: e,
@@ -18363,7 +18363,7 @@
             })
         }
 
-        function pe(e, t) {
+        function me(e, t) {
             Object(l.lb)(t, e);
             var n = t.tabs[t.peer];
             return t.tabs = Object.keys(e).reduce(function(n, r) {
@@ -18373,7 +18373,7 @@
             }, t.tabs), n && (t.tabs[t.peer] = n), Promise.resolve(t)
         }
 
-        function ge(e, t, n, r) {
+        function pe(e, t, n, r) {
             var a = Object(d.t)(r, e);
             if (a) {
                 var i = !1 !== t ? mobPlatforms[t] ? 1 : 0 : a.last_seen[2];
@@ -18382,12 +18382,12 @@
             return Promise.resolve(r)
         }
 
-        function he(e, t, n) {
+        function ge(e, t, n) {
             var r = Object(d.t)(n, e.peerId);
             return r && (e.ts = Date.now() / 1e3, r.activity || (r.activity = {}), r.activity[t] = e, r.typing === C && (r.typing = e)), Promise.resolve(n)
         }
 
-        function _e(e, t, n) {
+        function he(e, t, n) {
             var r = e.peerId;
             return Object(o.c)(k + 2).then(function() {
                 if (Object(l.bb)(n, r)) {
@@ -18399,7 +18399,7 @@
             })
         }
 
-        function be(e) {
+        function _e(e) {
             var t = {},
                 n = e.find(function(e) {
                     return "poll" === e[0]
@@ -18411,13 +18411,13 @@
             return t
         }
 
-        function ve(e) {
+        function be(e) {
             return e.map(function(e) {
                 var t = "audiomsg" === e[2] ? "audio_message" : e[2];
                 return e[0] + ":" + e[1] + ":" + t
             }).join(",")
         }
-        var ye = function(e, t, n, a) {
+        var ve = function(e, t, n, a) {
                 var i = Date.now() + rand(0, 100).toFixed(0),
                     o = a.ref_id,
                     s = a.ref_source;
@@ -18435,7 +18435,7 @@
                         ref: o,
                         msg: t.message,
                         payload: t.payload,
-                        media: ve(t.attaches),
+                        media: be(t.attaches),
                         guid: i,
                         share_url: t.share_url,
                         cancelled_shares: t.cancelled_shares,
@@ -18443,7 +18443,7 @@
                         gid: n.hidegid ? void 0 : a.gid,
                         entrypoint: a.currentEntryPoint || "",
                         sticker_referrer: t.sticker_referrer
-                    }, n.external, be(t.attaches));
+                    }, n.external, _e(t.attaches));
                 return Object(r.b)(w, u, 2e4).then(function(e) {
                     var t = y(e, 1)[0];
                     return l(), a.version !== t.version && nav.reload({
@@ -18453,15 +18453,15 @@
                     throw Object(_.h)(a, e, "send", "server_send"), e
                 })
             },
-            je = B(function(e, t) {
+            ye = B(function(e, t) {
                 var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
                     r = arguments[3],
                     a = r.tabs[e];
-                return ye(e, t, v({
+                return ve(e, t, v({
                     hash: a.hash
                 }, n), r)
             }),
-            Oe = B(function(e, t, n) {
+            je = B(function(e, t, n) {
                 var a = t.attaches.length > 0,
                     i = Object(_.k)(n, "edit", "server", a);
                 return Object(r.b)(w, Object.assign({
@@ -18471,10 +18471,10 @@
                     peerId: e.peerId,
                     gid: n.gid,
                     msg: t.origText,
-                    media: ve(t.attaches),
+                    media: be(t.attaches),
                     share_url: t.share_url,
                     cancelled_shares: t.cancelled_shares
-                }, be(t.attaches)), 2e4).then(function(e) {
+                }, _e(t.attaches)), 2e4).then(function(e) {
                     y(e, 1)[0];
                     return i(), n
                 }).catch(function(e) {
@@ -18482,7 +18482,7 @@
                 })
             });
 
-        function we(e, t) {
+        function Oe(e, t) {
             if (t.selectedMessages || (t.selectedMessages = []), 1 === e.length && inArray(e[0], t.selectedMessages)) t.selectedMessages = t.selectedMessages.filter(function(t) {
                 return t !== e[0]
             });
@@ -18495,15 +18495,15 @@
             return Promise.resolve(t)
         }
 
+        function we(e) {
+            return e.selectedMessages = [], Promise.resolve(e)
+        }
+
         function ke(e) {
             return e.selectedMessages = [], Promise.resolve(e)
         }
 
-        function Ce(e) {
-            return e.selectedMessages = [], Promise.resolve(e)
-        }
-
-        function Se(e, t) {
+        function Ce(e, t) {
             if (Object(l.Oa)(t, e.peerId)) {
                 var n = t.tabs[e.peerId],
                     r = t.imQueue(e.peerId).filter(function(t) {
@@ -18514,7 +18514,7 @@
             return Promise.resolve(t)
         }
 
-        function Ee(e, t) {
+        function Se(e, t) {
             var n = Object(_.k)(t, "unknown", "attach"),
                 a = {
                     act: "a_get_media",
@@ -18524,13 +18524,13 @@
             return Object(o.d)(r.b, 3, function(e) {
                 return e * e
             })(w, a).then(function(r) {
-                return n(), Ie(e, r, t)
+                return n(), Ee(e, r, t)
             }).catch(function(n) {
-                return Object(_.h)(t, n, "unknown", "server_load_attach"), Ie(e, null, t)
+                return Object(_.h)(t, n, "unknown", "server_load_attach"), Ee(e, null, t)
             })
         }
 
-        function Ie(e, t, n) {
+        function Ee(e, t, n) {
             var r = n.tabs[e.peerId];
             return r.mediacontent || (r.mediacontent = {}), r.mediacontent[e.messageId] = t || [getTemplate("im_retry_link")],
                 function(e, t) {
@@ -18539,17 +18539,17 @@
                 }(e, n)
         }
 
-        function xe(e, t, n) {
+        function Ie(e, t, n) {
             var r = Object(l.I)(t),
                 a = n.tabs[e];
             return a.searchDay = r, a.searchOffset = 0, a.searchAllLoaded = !1, Promise.resolve(n)
         }
 
-        function Te(e, t, n) {
-            return n.tabs[t].searchText = e, Ve(t, n), n
+        function xe(e, t, n) {
+            return n.tabs[t].searchText = e, Ke(t, n), n
         }
 
-        function Pe(e, t, n) {
+        function Te(e, t, n) {
             if (t) {
                 var r = n.tabs[t];
                 r.searchText = e, r.searchOffset = 0, r.searchAllLoaded = !1
@@ -18557,7 +18557,7 @@
             return Promise.resolve(n)
         }
 
-        function Me(e, t, n, a, i) {
+        function Pe(e, t, n, a, i) {
             return Object(r.b)(w, {
                 act: "a_hints",
                 str: e,
@@ -18570,7 +18570,7 @@
                     r = t[1];
                 return A(t[2], i), r.forEach(function(e) {
                     return Object(m.a)(i, e)
-                }), pe(n, i), Object.keys(n).sort(function(e, t) {
+                }), me(n, i), Object.keys(n).sort(function(e, t) {
                     return n[e].order - n[t].order
                 }).map(function(e) {
                     return n[e]
@@ -18578,8 +18578,8 @@
             })
         }
 
-        function Le(e, t, n, r) {
-            return Me(e, t, n, {}, r).then(function(e) {
+        function Me(e, t, n, r) {
+            return Pe(e, t, n, {}, r).then(function(e) {
                 return e.map(function(e) {
                     return {
                         peerId: e.peerId,
@@ -18592,7 +18592,7 @@
             })
         }
 
-        function Be(e) {
+        function Le(e) {
             var t = {
                 peerId: e[0],
                 name: e[1],
@@ -18608,27 +18608,27 @@
             }), t
         }
 
-        function De(e) {
+        function Be(e) {
             return function(t, n) {
                 return e(n).then(function(e) {
-                    var r = (t ? e.search(t) : e.list).map(Be);
+                    var r = (t ? e.search(t) : e.list).map(Le);
                     return n.mapped_index || (n.mapped_index = {}), r.forEach(function(e) {
                         n.mapped_index[e.peerId] = e
                     }), r
                 })
             }
         }
-        var Ne = De(function(e) {
+        var De = Be(function(e) {
                 return e.topConvTree
             }),
-            Ae = De(function(e) {
+            Ne = Be(function(e) {
                 return e.imTopConvTree
             }),
-            He = De(function(e) {
+            Ae = Be(function(e) {
                 return e.hintsTree
             });
 
-        function Re(e, t) {
+        function He(e, t) {
             var n = void 0,
                 a = void 0,
                 i = void 0;
@@ -18668,7 +18668,7 @@
             })
         }
 
-        function Fe(e) {
+        function Re(e) {
             var t = e.active_tab,
                 n = void 0;
             return n = e.dialog_tabs[t].length > 0 ? Math.min.apply(null, e.dialog_tabs[t].map(function(t) {
@@ -18686,10 +18686,10 @@
                     s = r[3];
                 return o.forEach(function(t) {
                     return Object(m.a)(e, t)
-                }), A(s, e), pe(i, e), e.dialog_tabs[t] = e.dialog_tabs[t].concat(Object.keys(i).map(intval)), e.dialog_tabs_all[t] = !a.has_more, Promise.resolve(e)
+                }), A(s, e), me(i, e), e.dialog_tabs[t] = e.dialog_tabs[t].concat(Object.keys(i).map(intval)), e.dialog_tabs_all[t] = !a.has_more, Promise.resolve(e)
             })
         }
-        var qe = B(function(e, t) {
+        var Fe = B(function(e, t) {
             return Object(r.b)(w, {
                 act: "a_search",
                 q: e,
@@ -18714,15 +18714,15 @@
             })
         });
 
-        function Ue(e, t) {
+        function qe(e, t) {
             return t.tabs[e].searchAllLoaded
         }
 
-        function ze(e, t) {
+        function Ue(e, t) {
             return !(t.peer !== e || !Object(l.Oa)(t, e)) && t.tabs[e].inplaceSearch
         }
 
-        function We(e, t) {
+        function ze(e, t) {
             if (Object(l.Oa)(t, e)) {
                 var n = t.tabs[e];
                 delete n.inplaceSearch, delete n.searchOffset, delete n.searchAllLoaded, delete n.searchText, delete n.searchDay, I({
@@ -18732,7 +18732,7 @@
             return Promise.resolve(t)
         }
 
-        function Ke(e, t) {
+        function We(e, t) {
             if (Object(l.Oa)(t, e)) {
                 var n = t.tabs[e];
                 delete n.searchDay, n.searchOffset = 0, n.searchAllLoaded = !1
@@ -18740,13 +18740,13 @@
             return Promise.resolve(t)
         }
 
-        function Ve(e, t) {
+        function Ke(e, t) {
             return t.tabs[e].inplaceSearch = !0, Promise.resolve(t)
         }
-        var Qe = B(function(e, t) {
+        var Ve = B(function(e, t) {
             var n = t.tabs[e],
                 a = "";
-            if (Ve(e, t), n.searchDay && (a = "day:" + n.searchDay), !a && !n.searchText) return Promise.reject();
+            if (Ke(e, t), n.searchDay && (a = "day:" + n.searchDay), !a && !n.searchText) return Promise.reject();
             var i = "in:" + e + " " + a + " " + (n.searchText || "");
             return I({
                 st: n.searchText
@@ -18766,7 +18766,7 @@
             })
         });
 
-        function Xe(e) {
+        function Qe(e) {
             return Object(r.b)(w, {
                 act: "a_important",
                 offset: e,
@@ -18774,7 +18774,7 @@
             })
         }
 
-        function Ye(e, t) {
+        function Xe(e, t) {
             var n = Object(d.t)(e, t);
             return Object(r.b)(w, {
                 act: "a_load_lastmsg",
@@ -18788,11 +18788,11 @@
                 var s = y(o, 3);
                 n.unread = s[0], n.in_up_to = s[1], n.out_up_to = s[2], n.unread || (e.get().dialog_tabs[u.m] = e.get().dialog_tabs[u.m].filter(function(e) {
                     return e != t
-                })), ne(e.get(), n, !1, ae.bind(null, t), zt.bind(null, e.get()))
+                })), ne(e.get(), n, !1, ae.bind(null, t), Ut.bind(null, e.get()))
             })
         }
 
-        function Je(e, t, n) {
+        function Ye(e, t, n) {
             if (Object(l.Oa)(n, t)) {
                 var r = n.tabs[t];
                 r.deleted = r.deleted ? r.deleted.concat(e) : e
@@ -18800,7 +18800,7 @@
             return Promise.resolve(n)
         }
 
-        function Ge(e, t, n) {
+        function Je(e, t, n) {
             if (Object(l.Oa)(n, t)) {
                 var r = n.tabs[t];
                 r.history = Object(l.mb)(e, D(r.history)), r.offset -= e.filter(function(e) {
@@ -18813,7 +18813,7 @@
             }
             return Promise.resolve(n)
         }
-        var Ze = B(function(e, t, n, a, i) {
+        var Ge = B(function(e, t, n, a, i) {
             return Object(r.b)(w, {
                 act: "a_mark",
                 peer: t,
@@ -18824,7 +18824,7 @@
             })
         });
 
-        function $e(e, t, n, r) {
+        function Ze(e, t, n, r) {
             if (Object(l.Oa)(r, t)) {
                 var a = r.tabs[t];
                 a.deleted = a.deleted ? a.deleted.concat(e) : e, a.history = Object(l.nb)(e, t, n, D(a.history)), a.offset -= e.filter(function(e) {
@@ -18834,7 +18834,7 @@
             return Promise.resolve(r)
         }
 
-        function et(e, t, n) {
+        function $e(e, t, n) {
             if (Object(l.Oa)(n, t)) {
                 var r = n.tabs[t];
                 r.deleted && (r.deleted = r.deleted.filter(function(t) {
@@ -18844,7 +18844,7 @@
             return Promise.resolve(n)
         }
 
-        function tt(e, t, n, a) {
+        function et(e, t, n, a) {
             return Object(r.b)(w, {
                 act: "a_restore",
                 id: e,
@@ -18853,7 +18853,7 @@
                 gid: a
             })
         }
-        var nt = B(function(e, t, n) {
+        var tt = B(function(e, t, n) {
                 return Object(l.fc)(n.tabs[e]) ? Promise.resolve(n) : (n.tabs[e].lastTyping = Date.now(), Object(r.b)(w, {
                     act: "a_activity",
                     type: t,
@@ -18866,7 +18866,7 @@
                     return n
                 }))
             }),
-            rt = B(function(e, t) {
+            nt = B(function(e, t) {
                 return Object(r.b)(w, {
                     act: "a_accept_message_request",
                     user_id: e,
@@ -18877,7 +18877,7 @@
                     return t
                 })
             }),
-            at = B(function(e, t) {
+            rt = B(function(e, t) {
                 return Object(r.b)(w, {
                     act: "a_reject_message_request",
                     user_id: e,
@@ -18887,37 +18887,37 @@
                         return t.filter(function(t) {
                             return t !== e
                         })
-                    }), $t(t.tabbedPeers.filter(function(t) {
+                    }), Zt(t.tabbedPeers.filter(function(t) {
                         return t.peer !== e
                     }), !0, t), t.tabs[e].unread = 0, t.tabs[e].lastmsg = !1, t.tabs[e].lastmsg_meta = null, t
                 })
             }),
-            it = B(function(e, t) {
-                return nt(e, C, t)
+            at = B(function(e, t) {
+                return tt(e, C, t)
             }),
-            ot = B(function(e, t) {
-                return nt(e, S, t)
+            it = B(function(e, t) {
+                return tt(e, S, t)
             });
 
-        function st(e, t, n, r) {
+        function ot(e, t, n, r) {
             return t && (r.pendingForward = null, e || (e = {
                 msgIds: []
             }), t.addAttach(n ? "reply" : "mail", e.msgIds.join(";"), e.object || null)), Promise.resolve(r)
         }
 
-        function ct(e, t) {
+        function st(e, t) {
             return t.pendingForward = e, Promise.resolve(t)
         }
 
-        function lt(e, t, n) {
+        function ct(e, t, n) {
             if (Object(l.bb)(n, e)) {
                 n.blockedFlagUpdates || (n.blockedFlagUpdates = {}), n.blockedFlagUpdates[e] = !0, ne(n, n.tabs[e], !0, function(t) {
                     return t.filter(function(t) {
                         return t !== e
                     })
-                }), n.tabs[e].unread > 0 && le(n, -1, e);
+                }), n.tabs[e].unread > 0 && ce(n, -1, e);
                 var r = n.tabs[e];
-                return r.deletedDialog = !0, $t(n.tabbedPeers.filter(function(t) {
+                return r.deletedDialog = !0, Zt(n.tabbedPeers.filter(function(t) {
                     return t.peer !== e
                 }), !0, n), t.then(function(t) {
                     var a = y(t, 2);
@@ -18926,8 +18926,8 @@
                 })
             }
         }
-        var ut = B(function(e, t) {
-                return lt(e, Object(r.b)("al_im.php", {
+        var lt = B(function(e, t) {
+                return ct(e, Object(r.b)("al_im.php", {
                     act: "a_flush_history",
                     id: e,
                     from: "im",
@@ -18935,7 +18935,7 @@
                     hash: t.tabs[e].hash
                 }), t)
             }),
-            dt = B(function(e, t, n) {
+            ut = B(function(e, t, n) {
                 return Object(r.b)(w, {
                     act: "a_set_chat_title",
                     peer: e,
@@ -18946,7 +18946,7 @@
                     return n
                 })
             }),
-            ft = B(function(e, t) {
+            dt = B(function(e, t) {
                 return Object(r.b)(w, {
                     act: "a_load_chat_info",
                     peer: e,
@@ -18957,7 +18957,7 @@
                     return t.tabs[e] = extend(t.tabs[e], r), t
                 })
             });
-        var mt = B(function(e, t, n) {
+        var ft = B(function(e, t, n) {
             return Object(r.b)(w, {
                 act: "a_add_chat_members",
                 peer: e,
@@ -18969,7 +18969,7 @@
             })
         });
 
-        function pt(e, t) {
+        function mt(e, t) {
             if (isEmpty(e)) return Promise.resolve(t);
             var n = Object.keys(e).map(function(t) {
                 return t + ":" + e[t].join(",")
@@ -18984,7 +18984,7 @@
             })
         }
 
-        function gt(e, t, n) {
+        function pt(e, t, n) {
             var r = {},
                 a = n.get();
 
@@ -19016,11 +19016,11 @@
             }
         }
 
-        function ht(e, t, n) {
+        function gt(e, t, n) {
             var a = e.needMembers,
                 i = e.needAdminIds,
                 o = e.needPeers;
-            return t.pause(), Promise.all([pt(a, n), function(e, t) {
+            return t.pause(), Promise.all([mt(a, n), function(e, t) {
                 return 0 === e.length ? Promise.resolve(t) : Object(r.b)(w, {
                     act: "a_get_admin",
                     admins: e.join(","),
@@ -19039,7 +19039,7 @@
                 return n
             })
         }
-        var _t = B(function(e, t) {
+        var ht = B(function(e, t) {
             return e.kludges.source_act === l.d ? (delete t.tabs[e.peerId].photo, delete t.tabs[e.peerId].photoLarge, Promise.resolve(t)) : Object(r.b)(w, {
                 act: "a_get_chat_photo",
                 msg_id: e.messageId
@@ -19057,26 +19057,26 @@
             })
         });
 
-        function bt(e, t, n, r) {
+        function _t(e, t, n, r) {
             return t !== vk.id ? Promise.resolve(r) : (Object(l.bb)(r, n) && r.peer == n && (r = Q(r)), Promise.resolve(r))
         }
-        var vt = B(function(e, t) {
+        var bt = B(function(e, t) {
                 return Object(r.b)(w, {
                     act: "a_leave_chat",
                     chat: e - 2e9,
                     gid: t.gid,
                     hash: t.tabs[e].hash
-                }).then(bt.bind(null, l.c, vk.id, e, t))
+                }).then(_t.bind(null, l.c, vk.id, e, t))
             }),
-            yt = B(function(e, t) {
+            vt = B(function(e, t) {
                 return Object(r.b)(w, {
                     act: "a_return_to_chat",
                     chat: e - 2e9,
                     gid: t.gid,
                     hash: t.tabs[e].hash
-                }).then(bt.bind(null, l.b, vk.id, e, t))
+                }).then(_t.bind(null, l.b, vk.id, e, t))
             }),
-            jt = B(function(e, t, n) {
+            yt = B(function(e, t, n) {
                 return Object(r.b)(w, {
                     act: "a_mute",
                     peer: e,
@@ -19089,21 +19089,21 @@
                         act: r,
                         peer: e
                     }), n
-                }).then(Ot.bind(null, e, t))
+                }).then(jt.bind(null, e, t))
             });
 
-        function Ot(e, t, n) {
+        function jt(e, t, n) {
             var r = n.mutedPeers.filter(function(t) {
                 return t !== e
             });
             return t && r.push(e), n.mutedPeers = r, cur.mutedPeers = n.mutedPeers, Q(n)
         }
 
-        function wt(e, t) {
+        function Ot(e, t) {
             return t.stack = e, Promise.resolve(t)
         }
-        var kt = B(function(e, t, n, a) {
-            return Ct(e, n, t, a), Object(r.b)(w, {
+        var wt = B(function(e, t, n, a) {
+            return kt(e, n, t, a), Object(r.b)(w, {
                 act: "a_mark_important",
                 ids: e,
                 val: t ? 1 : 0,
@@ -19116,7 +19116,7 @@
             })
         });
 
-        function Ct(e, t, n, r) {
+        function kt(e, t, n, r) {
             if (Object(l.Oa)(r, t)) {
                 var a = r.tabs[t];
                 e.filter(function(e) {
@@ -19130,11 +19130,11 @@
             return Promise.resolve(r)
         }
 
-        function St(e, t, n) {
+        function Ct(e, t, n) {
             return n.importants || (n.importants = {}), (n.importants[t] || 0) !== e && (n.important_cnt += e, n.importants[t] = e), Promise.resolve(n)
         }
 
-        function Et(e, t) {
+        function St(e, t) {
             return Object(r.b)(w, {
                 act: "a_spam",
                 offset: e,
@@ -19143,7 +19143,7 @@
             })
         }
 
-        function It(e, t) {
+        function Et(e, t) {
             return Object(r.b)(w, {
                 act: "a_flush_spam",
                 gid: t,
@@ -19151,11 +19151,11 @@
             })
         }
 
-        function xt(e, t, n) {
+        function It(e, t, n) {
             return n.creationType = e, n.creationFilter = t, Promise.resolve(n)
         }
 
-        function Tt(e, t) {
+        function xt(e, t) {
             return Object(r.b)(w, {
                 act: "a_owner_photo",
                 photo: JSON.parse(e).data[0],
@@ -19163,10 +19163,10 @@
             })
         }
 
-        function Pt(e, t) {
+        function Tt(e, t) {
             return t.next_chat_avatar = e, Promise.resolve(t)
         }
-        var Mt = B(function(e, t, n, a) {
+        var Pt = B(function(e, t, n, a) {
             return a.creating = !0, a.longpoll.pause(), Object(r.b)(w, {
                 act: "a_multi_start",
                 hash: a.writeHash,
@@ -19194,7 +19194,7 @@
             })
         });
 
-        function Lt(e) {
+        function Mt(e) {
             var t = void 0;
             e.resync_in_process = new Promise(function(e) {
                 t = e
@@ -19228,7 +19228,7 @@
                         tabs: j({}, p, e.tabs[p]),
                         oCache: {}
                     };
-                    g = pe(j({}, p, i[p]), h)
+                    g = me(j({}, p, i[p]), h)
                 }
                 return g.then(function(n) {
                     e.tabs = i, e.admins = extend(e.admins, d), n && (e.tabs[p] = n.tabs[p], e.tabs[p].history = Object(l.Hb)(p, e, D(e.tabs[p].history))), e.loadingDialogs = !1, e.mutedPeers = c.mutedPeers, e.lastDialogsOptions = {
@@ -19240,35 +19240,35 @@
                     return Object.keys(e.dialog_tabs).filter(function(e) {
                         return e != a
                     }).forEach(function(t) {
-                        a == u.h ? e.dialog_tabs[t] = r.filter(qt(t)).map(function(e) {
+                        a == u.h ? e.dialog_tabs[t] = r.filter(Ft(t)).map(function(e) {
                             return e.peerId
                         }) : e.dialog_tabs[t] = []
-                    }), delete e.resync_in_process, setTimeout(t.bind(null, !0), 0), At(intval(c.unread), e)
+                    }), delete e.resync_in_process, setTimeout(t.bind(null, !0), 0), Nt(intval(c.unread), e)
                 })
             }).catch(function(t) {
-                return Object(s.i)("Resync error: " + t.message + " " + t.stack, "error"), Object(o.c)(2).then(Lt.bind(null, e))
+                return Object(s.i)("Resync error: " + t.message + " " + t.stack, "error"), Object(o.c)(2).then(Mt.bind(null, e))
             })
         }
 
-        function Bt(e, t) {
+        function Lt(e, t) {
             return t.lockedSending = e, Promise.resolve(t)
         }
 
-        function Dt(e, t, n) {
+        function Bt(e, t, n) {
             return e && !n.delayed_message ? (n.delayed_message = e, n.delayed_ts = t) : e || (n.delayed_message = e, n.delayed_ts = t), Promise.resolve(n)
         }
 
-        function Nt(e) {
+        function Dt(e) {
             return !!e.textMediaSelector.urlAttachmentLoading || !!(window.Upload && Upload.options && Upload.isSomethingUploading) && Object.keys(Upload.options).filter(function(e) {
                 return Upload.isSomethingUploading(e)
             }).length > 0
         }
 
-        function At(e, t) {
+        function Nt(e, t) {
             return t.unread_cnt = e, t.dialog_tab_cts[u.m] = e, Promise.resolve(t)
         }
 
-        function Ht(e, t) {
+        function At(e, t) {
             return t.ctrl_submit = !!e, Object(r.b)(w, {
                 act: "a_save_ctrl_submit",
                 to: t.peer,
@@ -19279,7 +19279,7 @@
             })
         }
 
-        function Rt(e, t, n) {
+        function Ht(e, t, n) {
             n.cur_unread_cnt || (n.cur_unread_cnt = {}), t && !inArray(e, n.mutedPeers) && (n.cur_unread_cnt[e] = !0);
             var r = document.title,
                 a = window.devicePixelRatio >= 2 ? "_2x" : "";
@@ -19297,11 +19297,11 @@
             return Promise.resolve(n)
         }
 
-        function Ft(e, t, n, r, a) {
+        function Rt(e, t, n, r, a) {
             return Object(l.Oa)(a, e) && (a.tabs[e].scrollTop = intval(t), a.tabs[e].scrollBottom = intval(n), a.tabs[e].contHeight = intval(r)), Promise.resolve(a)
         }
 
-        function qt(e) {
+        function Ft(e) {
             return e === u.h ? function(e) {
                 return !Object(l.fc)(e)
             } : e === u.m ? function(e) {
@@ -19311,7 +19311,7 @@
             }
         }
 
-        function Ut(e, t) {
+        function qt(e, t) {
             t.active_tab = e, Object(a.b)({
                 tab: e === u.h ? null : e
             });
@@ -19320,14 +19320,14 @@
                 var r = t.dialog_tabs[e];
                 n = t.dialog_tabs[u.h].map(function(e) {
                     return t.tabs[e]
-                }).filter(qt(e)).map(function(e) {
+                }).filter(Ft(e)).map(function(e) {
                     return e.peerId
                 }), t.dialog_tabs[e] = r.length >= n.length ? r : n
             }
             return Promise.resolve(t)
         }
 
-        function zt(e, t, n, r) {
+        function Ut(e, t, n, r) {
             var a = e.dialog_tabs_all;
             return !(!a[u.h] && !a[t]) || (n.filter(function(e) {
                 return e === r.peerId
@@ -19338,7 +19338,7 @@
             }).length > 0))
         }
 
-        function Wt(e, t, n, r, a) {
+        function zt(e, t, n, r, a) {
             if (Object(l.bb)(a, e)) {
                 var o = a.tabs[e];
                 return n === i.L && (t ^= o.folders),
@@ -19353,14 +19353,14 @@
                     }), n === i.T ? a.tabs[e].folders |= t : n === i.P ? a.tabs[e].folders &= ~t : a.tabs[e].folders = t ^= o.folders, ne(a, a.tabs[e], !0, function(t, n) {
                         return t.concat([e]).map(function(e) {
                             return a.tabs[e]
-                        }).filter(qt(n)).map(function(e) {
+                        }).filter(Ft(n)).map(function(e) {
                             return e.peerId
                         })
-                    }, zt.bind(null, a)), Promise.resolve(a)
+                    }, Ut.bind(null, a)), Promise.resolve(a)
             }
-            return H(e, 0, 0, 0, a).then(Wt.bind(null, e, t, n, a))
+            return H(e, 0, 0, 0, a).then(zt.bind(null, e, t, n, a))
         }
-        var Kt = B(function(e, t) {
+        var Wt = B(function(e, t) {
                 var n = u.j[u.i],
                     a = t.tabs[e].folders & n,
                     o = a ? i.Ya : i.cb;
@@ -19374,7 +19374,7 @@
                     return t
                 })
             }),
-            Vt = B(function(e, t, n) {
+            Kt = B(function(e, t, n) {
                 var a = u.j[u.n];
                 return n.longpoll.push([i.Ya([0, e, a, !0]), i.Pa([6, e, t])]), Object(r.b)(w, {
                     act: "a_mark_answered",
@@ -19387,14 +19387,14 @@
                 })
             });
 
-        function Qt(e) {
+        function Vt(e) {
             return Object(r.b)(w, {
                 act: "a_get_mutex_key",
                 gid: e
             })
         }
 
-        function Xt(e, t) {
+        function Qt(e, t) {
             return A(j({}, e, {
                 free: !0
             }), t), Object(r.b)(w, {
@@ -19406,11 +19406,11 @@
             })
         }
 
-        function Yt(e, t) {
+        function Xt(e, t) {
             var n = ls.get("comm_mute_" + t.gid) ? 1 : 0;
             return e && (n ^= 1), ls.set("comm_mute_" + t.gid, n), t.mute = n, Promise.resolve(t)
         }
-        var Jt = B(function(e, t) {
+        var Yt = B(function(e, t) {
             return ne(t, t.tabs[e], !0, function(t) {
                 return t.filter(function(t) {
                     return t !== e
@@ -19421,13 +19421,13 @@
                 gid: t.gid,
                 hash: t.tabs[e].hash
             }).then(function(n) {
-                return n[0] ? ($t(t.tabbedPeers.filter(function(t) {
+                return n[0] ? (Zt(t.tabbedPeers.filter(function(t) {
                     return t.peer !== e
-                }), !0, t), t.tabs[e].unread = 0, t.tabs[e].lastmsg = !1, t.tabs[e].lastmsg_meta = null) : (t.tabs[e].deletedDialog = !1, ne(t, t.tabs[e], !1, ae.bind(null, e), zt.bind(null, t))), n
+                }), !0, t), t.tabs[e].unread = 0, t.tabs[e].lastmsg = !1, t.tabs[e].lastmsg_meta = null) : (t.tabs[e].deletedDialog = !1, ne(t, t.tabs[e], !1, ae.bind(null, e), Ut.bind(null, t))), n
             })
         });
 
-        function Gt(e, t, n, a) {
+        function Jt(e, t, n, a) {
             return Object(r.b)(w, {
                 act: "a_restore_dialog",
                 hash: t,
@@ -19441,7 +19441,7 @@
             })
         }
 
-        function Zt(e, t, n) {
+        function Gt(e, t, n) {
             return Object(r.b)(w, {
                 act: "a_spam_dialog",
                 peer: e,
@@ -19450,7 +19450,7 @@
             })
         }
 
-        function $t(e, t, n) {
+        function Zt(e, t, n) {
             return n.tabbedPeers = e, Object(l.Ia)(n) && (I({
                 peers: n.tabbedPeers.filter(function(e) {
                     var t = e.peer,
@@ -19466,25 +19466,25 @@
             }), t && x()), Promise.resolve(n)
         }
 
-        function en(e) {
-            return !e.peer || (ze(e.peer, e) ? Ue(e.peer, e) : !!Object(l.Oa)(e, e.peer) && e.tabs[e.peer].allShown)
+        function $t(e) {
+            return !e.peer || (Ue(e.peer, e) ? qe(e.peer, e) : !!Object(l.Oa)(e, e.peer) && e.tabs[e.peer].allShown)
         }
 
-        function tn(e, t) {
+        function en(e, t) {
             var n = t.tabs[e];
             return Object(l.Oa)(t, e) && (n.skipped = null, n.msgs = null, n.offset = null, n.allShown = null, n.history = null), Promise.resolve(t)
         }
 
-        function nn(e, t) {
+        function tn(e, t) {
             var n = t.tabs[e];
             return Object(l.Oa)(t, e) && (n.history = N(n.history)), Promise.resolve(t)
         }
 
-        function rn(e, t) {
+        function nn(e, t) {
             return t.go_to_end_visible = e, Promise.resolve(t)
         }
 
-        function an(e, t, n) {
+        function rn(e, t, n) {
             if (!Object(l.Ka)(t)) return Promise.resolve(n);
             var a = Object(d.t)(n, t);
             return a.blocked_community = !e, Object(r.b)(w, {
@@ -19497,7 +19497,7 @@
             })
         }
 
-        function on(e, t) {
+        function an(e, t) {
             if (0 !== t.peer && Object(l.Oa)(t, t.peer)) {
                 var n = Object(d.t)(t, t.peer);
                 n.history = D(n.history), e(n.history)
@@ -19505,31 +19505,31 @@
             return Promise.resolve(t)
         }
 
-        function sn(e) {
+        function on(e) {
             return e.audio_msg.isRecording = !1, Promise.resolve(e)
         }
 
-        function cn(e, t) {
+        function sn(e, t) {
             return t.voice_message_available = e, Promise.resolve(t)
         }
 
-        function ln(e) {
+        function cn(e) {
             I({
                 act: e ? "create" : null
             }), x()
         }
 
-        function un() {
+        function ln() {
             var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : null;
             I({
                 q: e
             }), x()
         }
 
-        function dn(e) {
+        function un(e) {
             return void 0 === e.chatResizeInitialized && (e.chatResizeInitialized = !0, Object(l.U)() > window.clientHeight() && Object(l.Jb)(0)), Promise.resolve(e)
         }
-        var fn = B(function(e, t, n) {
+        var dn = B(function(e, t, n) {
             return Object(r.b)(w, {
                 act: "a_join_chat",
                 chat_id: e,
@@ -19543,18 +19543,18 @@
                     o = t[3];
                 return i.forEach(function(e) {
                     return Object(m.a)(n, e)
-                }), n.tabs[r] = a, ne(n, a, !1, ae.bind(null, r), zt.bind(null, n)), n.admins = extend(n.admins, o), [r]
+                }), n.tabs[r] = a, ne(n, a, !1, ae.bind(null, r), Ut.bind(null, n)), n.admins = extend(n.admins, o), [r]
             })
         });
 
-        function mn(e, t) {
+        function fn(e, t) {
             return Object(r.b)(w, {
                 act: "a_get_link",
                 gid: t.gid,
                 chat_id: e
             })
         }
-        var pn = B(function(e, t) {
+        var mn = B(function(e, t) {
             var n = t.tabs[e];
             return Object(r.b)(w, {
                 act: "a_reset_link",
@@ -19565,39 +19565,39 @@
             })
         });
 
-        function gn(e) {
+        function pn(e) {
             return T({
                 invite_chat_id: null,
                 invite_hash: null
             }), e.invitation = void 0, Promise.resolve(e)
         }
 
-        function hn(e, t) {
+        function gn(e, t) {
             var n = Object(s.a)([e].concat(t.select(c.b))).slice(0, 500);
             t.update(c.b, n)
         }
 
-        function _n(e) {
+        function hn(e) {
             e.update(c.b, [])
         }
 
-        function bn(e, t) {
+        function _n(e, t) {
             var n = t.select(c.b).filter(function(t) {
                 return t !== e
             });
             return t.update(c.b, n), n
         }
 
-        function vn(e, t, n) {
+        function bn(e, t, n) {
             var r = n.tabs[t],
                 a = Object(d.m)(n, t, e);
             return r.data.kicked || r.data.closed || a.kludges.source_act || (r.pinned = a), Promise.resolve(n)
         }
 
-        function yn(e, t) {
+        function vn(e, t) {
             return t.tabs[e].pinned = null, Promise.resolve(t)
         }
-        var jn = B(function(e, t, n) {
+        var yn = B(function(e, t, n) {
                 var a = n.tabs[t];
                 return a.data.kicked || a.data.closed ? Promise.resolve(n) : Object(r.b)(w, {
                     act: "a_pin_message",
@@ -19610,7 +19610,7 @@
                     return n.tabs[t] = Object.assign({}, a, r), n
                 })
             }),
-            On = B(function(e, t) {
+            jn = B(function(e, t) {
                 var n = t.tabs[e];
                 return n.data.kicked || n.data.closed ? Promise.resolve(t) : Object(r.b)(w, {
                     act: "a_unpin_message",
@@ -19622,7 +19622,7 @@
                     return t.tabs[e] = Object.assign({}, n, a), t
                 })
             }),
-            wn = B(function(e, t) {
+            On = B(function(e, t) {
                 var n = t.tabs[e];
                 return Object(r.b)(w, {
                     act: "a_get_pinned_message",
@@ -19634,7 +19634,7 @@
                     return n.pinned = r || null, t
                 })
             }),
-            kn = B(function(e, t, n) {
+            wn = B(function(e, t, n) {
                 var a = n.tabs[e];
                 return Object(r.b)(w, {
                     act: "a_get_message_local_id",
@@ -19643,7 +19643,7 @@
                     hash: a.hash
                 })
             }),
-            Cn = B(function(e, t) {
+            kn = B(function(e, t) {
                 var n = t.tabs[e];
                 return n.membersLoaded ? Promise.resolve(t) : Object(r.b)(w, {
                     act: "a_get_chat_members",
@@ -19661,8 +19661,8 @@
                     }), n.membersLoaded = !0, t
                 })
             }),
-            Sn = B(function(e, t) {
-                return Promise.all([Cn(e, t), function(e, t) {
+            Cn = B(function(e, t) {
+                return Promise.all([kn(e, t), function(e, t) {
                     var n = t.tabs[e];
                     return Object(r.b)(w, {
                         act: "a_get_chat_details",
@@ -19677,7 +19677,7 @@
                     return t
                 })
             }),
-            En = B(function(e, t, n) {
+            Sn = B(function(e, t, n) {
                 var a = n.tabs[e];
                 return Object(r.b)(w, {
                     act: "a_update_flags",
@@ -19686,7 +19686,7 @@
                     flags: t
                 })
             }),
-            In = B(function(e, t) {
+            En = B(function(e, t) {
                 var n = t.tabs[e];
                 return Object(r.b)("al_page.php", {
                     act: "owner_photo_remove",
@@ -19698,7 +19698,7 @@
                 })
             });
 
-        function xn(e, t, n) {
+        function In(e, t, n) {
             var r = n.tabs[e];
             return r.memberIds = r.memberIds.filter(function(e) {
                 return e !== t
@@ -19706,7 +19706,7 @@
                 return e !== t
             }), r.membersCount = r.memberIds.length, Promise.resolve(n)
         }
-        var Tn = B(function(e, t, n) {
+        var xn = B(function(e, t, n) {
             var a = n.tabs[e];
             return Object(r.b)(w, {
                 act: "a_kick_user",
@@ -19722,7 +19722,7 @@
             })
         });
 
-        function Pn(e, t, n, r) {
+        function Tn(e, t, n, r) {
             var a = r.tabs[e];
             return a.adminIds = n ? [].concat(a.adminIds, t).filter(function(e, t, n) {
                 return n.indexOf(e) === t
@@ -19730,7 +19730,7 @@
                 return e !== t
             }), Promise.resolve(r)
         }
-        var Mn = B(function(e, t, n, a) {
+        var Pn = B(function(e, t, n, a) {
             var i = a.tabs[e];
             return Object(r.b)(w, {
                 act: "a_toggle_admin",
@@ -19739,25 +19739,25 @@
                 mid: t,
                 is_admin: +n
             }).then(function() {
-                return Pn(e, t, n, a)
+                return Tn(e, t, n, a)
             })
         });
 
-        function Ln(e, t, n, r) {
+        function Mn(e, t, n, r) {
             var a = Object(d.m)(e, n, t).userId;
-            return Object(m.c)(r, a) ? Promise.resolve(r) : pt(j({}, n, [a]), r)
+            return Object(m.c)(r, a) ? Promise.resolve(r) : mt(j({}, n, [a]), r)
         }
 
-        function Bn() {
+        function Ln() {
             ajax.post("al_im.php", {
                 act: "a_hide_promo_tooltip"
             })
         }
 
-        function Dn() {
+        function Bn() {
             cur.videoAutoplayScrollHandler && cur.videoAutoplayScrollHandler()
         }
-        var Nn = B(function(e, t) {
+        var Dn = B(function(e, t) {
                 return t.tabs[e].top_banner = void 0, Object(r.b)(w, {
                     act: "a_hide_banner",
                     peer_id: e,
@@ -19767,7 +19767,7 @@
                     return t
                 })
             }),
-            An = B(function(e, t, n) {
+            Nn = B(function(e, t, n) {
                 n.tabs[e].top_banner = void 0;
                 var a = n.tabs[e];
                 return Object(r.b)(w, {
@@ -19780,7 +19780,7 @@
                 })
             });
 
-        function Hn(e, t) {
+        function An(e, t) {
             return Object(r.b)(w, {
                 act: "a_load_banner",
                 peer_id: e,
@@ -19791,18 +19791,18 @@
             })
         }
 
-        function Rn(e, t, n) {
-            return n.tabs[e].keyboard = t && t.buttons ? t : null, qn(e, !1, !0, n)
+        function Hn(e, t, n) {
+            return n.tabs[e].keyboard = t && t.buttons ? t : null, Fn(e, !1, !0, n)
         }
 
-        function Fn(e, t) {
-            return Rn(e, null, t)
+        function Rn(e, t) {
+            return Hn(e, null, t)
         }
 
-        function qn(e, t, n, r) {
+        function Fn(e, t, n, r) {
             return ((r.tabs || {})[e] || {}).keyboard && (r.tabs[e].keyboard.hide = t, n && ls.set("is_keyboards_hide", Object.assign(ls.get("is_keyboards_hide") || {}, j({}, e, t)))), Promise.resolve(r)
         }
-        var Un = B(function(e, t) {
+        var qn = B(function(e, t) {
             var n = t.tabs[e];
             return Object(r.b)(w, {
                 act: "a_get_keyboard",
@@ -19810,11 +19810,11 @@
                 hash: n.hash
             }).then(function(n) {
                 var r = y(n, 1)[0];
-                return Rn(e, r, t)
+                return Hn(e, r, t)
             })
         });
 
-        function zn(e, t, n, a) {
+        function Un(e, t, n, a) {
             var i = a.tabs[e];
             return i.caccess[t] = n, Object(r.b)(w, {
                 act: "a_change_caccess",
@@ -19828,7 +19828,7 @@
                 throw i.caccess[t] = !n, e
             })
         }
-        var Wn = B(function(e, t) {
+        var zn = B(function(e, t) {
             var n = t.tabs[t.peer];
             return Object(r.b)(w, {
                 act: "a_delete_template",
@@ -19844,7 +19844,7 @@
             })
         });
 
-        function Kn(e, t, n) {
+        function Wn(e, t, n) {
             var a = n.tabs[n.peer];
             return Object(r.b)(w, {
                 act: "a_create_template",
@@ -19858,7 +19858,7 @@
             })
         }
 
-        function Vn(e, t, n, a) {
+        function Kn(e, t, n, a) {
             var i = a.tabs[a.peer];
             return Object(r.b)(w, {
                 act: "a_update_template",
@@ -19877,7 +19877,7 @@
             })
         }
 
-        function Qn(e, t) {
+        function Vn(e, t) {
             if (Object(l.Oa)(t, e)) {
                 var n = Object(d.t)(t, e);
                 n.allShown = !1, n.lastReset = Date.now()
