@@ -1957,9 +1957,19 @@ a.ads_ad_box2:hover {
     opacity: 0.1
 }
 
+.ads_special_promo_title {
+    padding: 0;
+    line-height: 15px;
+    color: #42648b;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
 .ads_special_promo_citymobil_domain {
     color: #939699;
     font-size: 12px;
-    line-height: 1.08;
-    letter-spacing: -0.1px
+    letter-spacing: -0.1px;
+    padding-top: 1px;
+    line-height: 15px
 }
