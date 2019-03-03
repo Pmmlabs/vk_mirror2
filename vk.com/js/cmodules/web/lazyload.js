@@ -166,7 +166,7 @@
                         s = a.height;
                     if ("window" !== a.from && i) return "continue";
                     if (d > o - 1.5 * t && o + 1.5 * t > d - s) {
-                        Object(e.Ha)(c, "lazyload_need_load"), r.splice(n, 1), n--;
+                        Object(e.hb)(c, "lazyload_need_load"), r.splice(n, 1), n--;
                         var p = Object(e.c)(c, "data-lazyload-src");
                         (function(n) {
                             var r = Object(l.L)();
@@ -177,7 +177,7 @@
                                 }, o.error = e, o.src = n
                             })
                         })(p).then(function(n) {
-                            n < 10 && Object(e.a)(c, "lazyload_no_animation"), "IMG" === c.tagName ? Object(e.c)(c, "src", p) : Object(e.Qa)(c, "background-image", "url(" + p + ")"), Object(e.a)(c, "lazyload_loaded"), Object(e.Fa)(Object(e.H)("lazyload_preview", c))
+                            n < 10 && Object(e.a)(c, "lazyload_no_animation"), "IMG" === c.tagName ? Object(e.c)(c, "src", p) : Object(e.qb)(c, "background-image", "url(" + p + ")"), Object(e.a)(c, "lazyload_loaded"), Object(e.fb)(Object(e.H)("lazyload_preview", c))
                         })
                     }
                     u = n

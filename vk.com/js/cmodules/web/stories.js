@@ -69,7 +69,7 @@
     a.push = e, a = a.slice();
     for (var l = 0; l < a.length; l++) e(a[l]);
     var d = c;
-    s.push([123, "common", "3f6ca25f0583c2970408ef8edec7a8b0"]), r()
+    s.push([123, "common", "bundles/vendors"]), r()
 }({
     123: function(t, e, r) {
         t.exports = r("EJ7F")
@@ -2742,7 +2742,7 @@
                         var n = i - 100;
                         "next" === t ? s += n : s -= n
                     }
-                    cur.storiesPos = Math.max(0, Math.min(s, o.scrollWidth - i)), e ? Object(bt.Ha)(o, "animated") : Object(bt.a)(o, "animated"), setStyle(o, "transform", "translateX(-" + cur.storiesPos + "px)"), Ct.updateFeedArrows()
+                    cur.storiesPos = Math.max(0, Math.min(s, o.scrollWidth - i)), e ? Object(bt.hb)(o, "animated") : Object(bt.a)(o, "animated"), setStyle(o, "transform", "translateX(-" + cur.storiesPos + "px)"), Ct.updateFeedArrows()
                 },
                 feedScrollToOwner: function(t) {
                     var e = Object(bt.F)("stories_feed_items").offsetWidth,
@@ -2760,7 +2760,7 @@
                             var o = function(t, o) {
                                 e && e.cb && e.cb(), r._setList("feed", o);
                                 var i = Object(bt.F)("stories_feed_items");
-                                i && (t ? (setStyle(i, "transform", "translateX(0px)"), Object(bt.Ya)(i, t), i.children.length < 6 ? Object(bt.a)("stories_feed_wrap", "stories_feed_not_nav_buttons") : Object(bt.Ha)("stories_feed_wrap", "stories_feed_not_nav_buttons")) : re("stories_feed_wrap"), cur.storiesPos = 0, Ct.updateFeedArrows(), show("stories_feed_wrap"))
+                                i && (t ? (setStyle(i, "transform", "translateX(0px)"), Object(bt.yb)(i, t), i.children.length < 6 ? Object(bt.a)("stories_feed_wrap", "stories_feed_not_nav_buttons") : Object(bt.hb)("stories_feed_wrap", "stories_feed_not_nav_buttons")) : re("stories_feed_wrap"), cur.storiesPos = 0, Ct.updateFeedArrows(), show("stories_feed_wrap"))
                             };
                             if (e && e.stories) {
                                 var i = e.stories;
@@ -2785,7 +2785,7 @@
                         cur.storiesPos || (cur.storiesPos = 0);
                         var e = Object(bt.H)("stories_feed_wrap").offsetWidth,
                             r = t.scrollWidth - e;
-                        0 === cur.storiesPos ? Object(bt.a)("stories_feed_arrow_left", "disabled") : Object(bt.Ha)("stories_feed_arrow_left", "disabled"), cur.storiesPos === r || r <= 0 ? Object(bt.a)("stories_feed_arrow_right", "disabled") : Object(bt.Ha)("stories_feed_arrow_right", "disabled")
+                        0 === cur.storiesPos ? Object(bt.a)("stories_feed_arrow_left", "disabled") : Object(bt.hb)("stories_feed_arrow_left", "disabled"), cur.storiesPos === r || r <= 0 ? Object(bt.a)("stories_feed_arrow_right", "disabled") : Object(bt.hb)("stories_feed_arrow_right", "disabled")
                     }
                 },
                 showBlackList: function() {
@@ -2805,7 +2805,7 @@
                 blackListItemClick: function(t, e) {
                     cancelEvent(e);
                     var r = intval(attr(t, "data-id"));
-                    cur.storiesBlackListShown[r] ? (delete cur.storiesBlackListShown[r], Object(bt.Ha)(t, "olist_item_wrap_on")) : (cur.storiesBlackListShown[r] = 1, Object(bt.a)(t, "olist_item_wrap_on"))
+                    cur.storiesBlackListShown[r] ? (delete cur.storiesBlackListShown[r], Object(bt.hb)(t, "olist_item_wrap_on")) : (cur.storiesBlackListShown[r] = 1, Object(bt.a)(t, "olist_item_wrap_on"))
                 },
                 saveBlackList: function(t) {
                     var e = Object.keys(cur.storiesBlackListShown);
@@ -2836,7 +2836,7 @@
                                 }) : c.name;
                             n += cur.storiesBlackList.tpl.replace(/\{id\}/g, c.id).replace("{photo}", c.photo).replace("{name}", l).replace("{href}", c.href).replace("{class_name}", cur.storiesBlackListShown[c.id] ? " olist_item_wrap_on" : "")
                         }
-                        n || (n = '<div class="no_rows">' + Object(St.d)("global_search_not_found").replace("{search}", clean(e)) + "</div>"), Object(bt.Ya)(Object(bt.H)("olist", "stories_black_list_result"), n)
+                        n || (n = '<div class="no_rows">' + Object(St.d)("global_search_not_found").replace("{search}", clean(e)) + "</div>"), Object(bt.yb)(Object(bt.H)("olist", "stories_black_list_result"), n)
                     }
                 },
                 blackListInit: function(t) {
@@ -2857,9 +2857,9 @@
                 },
                 showNextRepliesChunk: function(t) {
                     var e = gpeByClass("stories_feedback_replies_items", t);
-                    Object(bt.Ha)(Object(bt.H)("stories_replies_chunk_hidden", e), "stories_replies_chunk_hidden");
+                    Object(bt.hb)(Object(bt.H)("stories_replies_chunk_hidden", e), "stories_replies_chunk_hidden");
                     var r = Object(bt.H)("stories_replies_chunk_hidden", e);
-                    r ? Object(bt.Ya)(t, langNumeric(Object(St.d)("stories_replies_more_button", intval(attr(r, "data-size"))))) : re(t), cur.storyLayer && cur.storyLayer.activeStory && cur.storyLayer.activeStory.feedbackTooltipReInitHeaders(), cur.storyLayer && cur.storyLayer.activeStory && cur.storyLayer.activeStory.updateFeedbackTTPos()
+                    r ? Object(bt.yb)(t, langNumeric(Object(St.d)("stories_replies_more_button", intval(attr(r, "data-size"))))) : re(t), cur.storyLayer && cur.storyLayer.activeStory && cur.storyLayer.activeStory.feedbackTooltipReInitHeaders(), cur.storyLayer && cur.storyLayer.activeStory && cur.storyLayer.activeStory.updateFeedbackTTPos()
                 },
                 groupStoriesBlockUpdate: function() {
                     var t = Ct._getList("group_stories"),
@@ -2870,12 +2870,12 @@
                         }
                         var i = Object(bt.H)("stories_groups_block_stories_wrap"),
                             s = Object(bt.H)("stories_groups_block_stories_button", i);
-                        Object(bt.Va)(i, "has_unread", r > 0), Object(bt.Va)(i, "has_stories", e.length > 0), Object(bt.Va)(s, "has_stories", e.length > 0);
+                        Object(bt.vb)(i, "has_unread", r > 0), Object(bt.vb)(i, "has_stories", e.length > 0), Object(bt.vb)(s, "has_stories", e.length > 0);
                         var n = Object(kt.d)(cur.storiesPreviews),
                             a = n.splice(n.length - r, 3);
                         a.length < 3 && (a = a.concat(n.slice(0, 3 - a.length))), a.reverse();
                         for (var c = "", l = a.length - 1; l >= 0; l--) c += cur.storiesPreviewsRowHtml.replace("{url}", a[l]);
-                        Object(bt.Ya)(Object(bt.H)("stories_groups_block_stories_rows", i), c)
+                        Object(bt.yb)(Object(bt.H)("stories_groups_block_stories_rows", i), c)
                     }
                 },
                 isLiveShown: function(t) {

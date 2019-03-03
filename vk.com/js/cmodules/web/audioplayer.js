@@ -766,10 +766,10 @@
                     }), extra.claim && nav.objLoc.claim && (audioObject.isSetClaimed ? actions.push(["claim_btn", AudioUtils.unclaim.bind(_this, audio, audioEl, extra.claim), "Unclaim"]) : actions.push(["claim_btn", AudioUtils.claim.bind(_this, audio, audioEl, extra.claim), "Claim"]))
                 }
                 if (moreActions.length && actions.push(["more"]), actions.length) {
-                    var actionsEl = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.Ma)('<div class="_audio_row__actions audio_row__actions"></div>');
+                    var actionsEl = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.mb)('<div class="_audio_row__actions audio_row__actions"></div>');
                     each(actions, function(t, e) {
                         var i = AudioUtils.getRowActionName(e[0], audioObject, audioEl),
-                            r = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.Ma)('<button aria-label="' + i + '" data-action="' + e[0] + '" class="audio_row__action audio_row__action_' + e[0] + " _audio_row__action_" + e[0] + (e[4] || "") + '" ' + (e[3] || "") + ">" + (e[2] || "") + "</button>");
+                            r = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.mb)('<button aria-label="' + i + '" data-action="' + e[0] + '" class="audio_row__action audio_row__action_' + e[0] + " _audio_row__action_" + e[0] + (e[4] || "") + '" ' + (e[3] || "") + ">" + (e[2] || "") + "</button>");
                         r.addEventListener("click", function(t) {
                             return e[1] && e[1].call(window, audioEl, audioObject, audio), Object(_lib_dom_events__WEBPACK_IMPORTED_MODULE_1__.c)(t)
                         }), actionsEl.appendChild(r)
@@ -778,14 +778,14 @@
                         rowDurationEl = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.H)("_audio_row__duration", audioEl),
                         rowAlreadyActionsEl = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.H)("_audio_row__actions", audioEl);
                     if (!rowInfoEl) return;
-                    Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.Fa)(rowAlreadyActionsEl), Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.Qa)(rowDurationEl, "visibility", "hidden"), rowInfoEl.appendChild(actionsEl);
+                    Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.fb)(rowAlreadyActionsEl), Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.qb)(rowDurationEl, "visibility", "hidden"), rowInfoEl.appendChild(actionsEl);
                     var moreActionsBtnEl = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.H)("_audio_row__action_more", actionsEl);
                     if (moreActions.length && moreActionsBtnEl) {
                         var classicImEl = gpeByClass("im-page_classic", audioEl),
                             imWEl = gpeByClass("_im_peer_history_w", audioEl),
                             imEl = gpeByClass("_im_peer_history", audioEl),
                             imWrapEl = gpeByClass("_im_chat_body_abs", audioEl),
-                            moreActionsContentEls = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.Ma)('<div class="_audio_row__more_actions audio_row__more_actions"></div>'),
+                            moreActionsContentEls = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.mb)('<div class="_audio_row__more_actions audio_row__more_actions"></div>'),
                             extendedOptions = imEl ? {
                                 getWrapEl: function() {
                                     return classicImEl ? null : imWrapEl
@@ -813,7 +813,7 @@
                                 }
                             }, extendedOptions));
                         each(moreActions, function(t, e) {
-                            var i = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.Ma)(Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.La)(AudioUtils.AUDIO_ROW_ACTION_ROW_ITEM, e));
+                            var i = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.mb)(Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.lb)(AudioUtils.AUDIO_ROW_ACTION_ROW_ITEM, e));
                             if ("add_to_playlist" == e[0]) {
                                 var r = void 0,
                                     n = void 0;
@@ -4587,7 +4587,7 @@
                 }, E.prototype.invm = function(t) {
                     return this.imod(t._invmp(this.m).mul(this.r2))._forceRed(this)
                 }
-            }(void 0 === t || t, this)
+            }(t, this)
         }).call(this, i("YuTi")(t))
     },
     OfWw: function(t, e, i) {
@@ -6256,7 +6256,7 @@
     ZDAU: function(t, e, i) {
         var r = i("hwdV").Buffer,
             n = i("1IWx").Transform,
-            o = i("qiJe").StringDecoder;
+            o = i("fXKp").StringDecoder;
 
         function a(t) {
             n.call(this), this.hashMode = "string" == typeof t, this.hashMode ? this[t] = this._finalOrDigest : this.final = this._finalOrDigest, this._final && (this.__final = this._final, this._final = null), this._decoder = null, this._encoding = null
@@ -6571,7 +6571,7 @@
                 }), addEvent(Object(n.F)("top_audio"), "mousedown", function(t) {
                     return !0 !== checkEvent(t) && (r.a.getLayer().toggle(), cancelEvent(t))
                 }), browser.safari || addEvent(document, "keydown keyup", function(t) {
-                    Object(n.Va)(Object(n.F)("top_audio_play"), "shuffle", t.shiftKey)
+                    Object(n.vb)(Object(n.F)("top_audio_play"), "shuffle", t.shiftKey)
                 }), this.onPlay(this.ap.getCurrentAudio())
             }, t.prototype.onPlay = function(e, i, o) {
                 var a = this,
@@ -6582,27 +6582,27 @@
                         setTimeout(function() {
                             var t = r.a.getLayer();
                             t && t.isShown() && t.updatePosition()
-                        }, 1), Object(n.Va)(a._el, "audio_player_podcast", r.a.isPodcast(i.getCurrentAudio())), Object(n.a)(a._el, s), Object(n.Va)(a._el, "top_audio_player_playing", i.isPlaying());
+                        }, 1), Object(n.vb)(a._el, "audio_player_podcast", r.a.isPodcast(i.getCurrentAudio())), Object(n.a)(a._el, s), Object(n.vb)(a._el, "top_audio_player_playing", i.isPlaying());
                         var d = Object(n.H)("_top_audio_player_play_blind_label");
                         d && (d.innerHTML = i.isPlaying() ? getLang("global_audio_pause") : getLang("global_audio_play")), e = r.a.asObject(e), clearTimeout(a._currTitleReTO);
                         var u = Object(n.H)("top_audio_player_title_out", a._el);
-                        Object(n.Fa)(u);
+                        Object(n.fb)(u);
                         var c = Object(n.H)("top_audio_player_title", a._el);
                         if (0 != o) {
                             var f = o < 0 ? -10 : 10,
                                 l = "opacity: 0; top: " + f + "px; left: " + c.offsetLeft + "px",
                                 h = e.performer + " &ndash; " + e.title,
-                                p = Object(n.Ma)('<div class="top_audio_player_title top_audio_player_title_next" style="' + l + '">' + h + "</div>");
-                            p.setAttribute("onmouseover", "setTitle(this)"), o > 0 ? domInsertAfter(p, c) : domInsertBefore(p, c), Object(n.a)(c, "top_audio_player_title_out"), Object(n.Qa)(c, {
+                                p = Object(n.mb)('<div class="top_audio_player_title top_audio_player_title_next" style="' + l + '">' + h + "</div>");
+                            p.setAttribute("onmouseover", "setTitle(this)"), o > 0 ? domInsertAfter(p, c) : domInsertBefore(p, c), Object(n.a)(c, "top_audio_player_title_out"), Object(n.qb)(c, {
                                 top: -f,
                                 opacity: 0
                             }), setTimeout(function() {
-                                Object(n.Qa)(p, {
+                                Object(n.qb)(p, {
                                     top: 0,
                                     opacity: 1
                                 })
                             }, 10), clearTimeout(a._currTitleReTO), a._currTitleReTO = setTimeout(function() {
-                                Object(n.Fa)(c), Object(n.Ha)(p, "top_audio_player_title_next")
+                                Object(n.fb)(c), Object(n.hb)(p, "top_audio_player_title_next")
                             }, t.TITLE_CHANGE_ANIM_SPEED)
                         } else c && (c.innerHTML = e.performer + " &ndash; " + e.title, c.titleSet = 0, c.setAttribute("onmouseover", "setTitle(this)"))
                     };
@@ -6610,14 +6610,14 @@
                         Object(n.W)(a._audioBtnGroup), d()
                     }, 150))
                 } else {
-                    Object(n.Ha)(this._playIconBtn, s), Object(n.Ha)(this._el, s), Object(n.Ha)(this._el, "top_audio_player_playing"), Object(n.Ha)(this._el, "audio_player_podcast"), Object(n.Ta)(this._audioBtnGroup);
+                    Object(n.hb)(this._playIconBtn, s), Object(n.hb)(this._el, s), Object(n.hb)(this._el, "top_audio_player_playing"), Object(n.hb)(this._el, "audio_player_podcast"), Object(n.tb)(this._audioBtnGroup);
                     var u = Object(n.H)("top_audio_play__button", this._audioBtnGroup);
-                    u && Object(n.Ha)(u, "loading");
+                    u && Object(n.hb)(u, "loading");
                     var c = r.a.getLayer();
                     c && c.isShown() && c.updatePosition()
                 }
             }, t.prototype.onPause = function() {
-                Object(n.Ha)(this._el, "top_audio_player_playing");
+                Object(n.hb)(this._el, "top_audio_player_playing");
                 var t = Object(n.H)("_top_audio_player_play_blind_label");
                 t && (t.innerHTML = getLang("global_audio_play"))
             }, t.prototype.onNext = function() {}, t
@@ -6916,7 +6916,7 @@
             }, t.prototype._stopFrequencyAnalise = function() {
                 this._stopFrequencyAnaliseCallback && this._stopFrequencyAnaliseCallback(), delete this._stopFrequencyAnaliseCallback, clearInterval(this._freqUpdateInterval), this.opts.onFrequency([0, 0, 0, 0])
             }, t.prototype.destroy = function() {
-                Object(n.Fa)("flash_audio")
+                Object(n.fb)("flash_audio")
             }, t.prototype.onReady = function(t) {
                 var e = this;
                 if (this._player) return t(!0);
@@ -8784,6 +8784,158 @@
             }
         }).call(this, i("tjlA").Buffer)
     },
+    fXKp: function(t, e, i) {
+        "use strict";
+        var r = i("hwdV").Buffer,
+            n = r.isEncoding || function(t) {
+                switch ((t = "" + t) && t.toLowerCase()) {
+                    case "hex":
+                    case "utf8":
+                    case "utf-8":
+                    case "ascii":
+                    case "binary":
+                    case "base64":
+                    case "ucs2":
+                    case "ucs-2":
+                    case "utf16le":
+                    case "utf-16le":
+                    case "raw":
+                        return !0;
+                    default:
+                        return !1
+                }
+            };
+
+        function o(t) {
+            var e;
+            switch (this.encoding = function(t) {
+                var e = function(t) {
+                    if (!t) return "utf8";
+                    for (var e;;) switch (t) {
+                        case "utf8":
+                        case "utf-8":
+                            return "utf8";
+                        case "ucs2":
+                        case "ucs-2":
+                        case "utf16le":
+                        case "utf-16le":
+                            return "utf16le";
+                        case "latin1":
+                        case "binary":
+                            return "latin1";
+                        case "base64":
+                        case "ascii":
+                        case "hex":
+                            return t;
+                        default:
+                            if (e) return;
+                            t = ("" + t).toLowerCase(), e = !0
+                    }
+                }(t);
+                if ("string" != typeof e && (r.isEncoding === n || !n(t))) throw new Error("Unknown encoding: " + t);
+                return e || t
+            }(t), this.encoding) {
+                case "utf16le":
+                    this.text = d, this.end = u, e = 4;
+                    break;
+                case "utf8":
+                    this.fillLast = s, e = 4;
+                    break;
+                case "base64":
+                    this.text = c, this.end = f, e = 3;
+                    break;
+                default:
+                    return this.write = l, void(this.end = h)
+            }
+            this.lastNeed = 0, this.lastTotal = 0, this.lastChar = r.allocUnsafe(e)
+        }
+
+        function a(t) {
+            return t <= 127 ? 0 : t >> 5 == 6 ? 2 : t >> 4 == 14 ? 3 : t >> 3 == 30 ? 4 : t >> 6 == 2 ? -1 : -2
+        }
+
+        function s(t) {
+            var e = this.lastTotal - this.lastNeed,
+                i = function(t, e, i) {
+                    if (128 != (192 & e[0])) return t.lastNeed = 0, "�";
+                    if (t.lastNeed > 1 && e.length > 1) {
+                        if (128 != (192 & e[1])) return t.lastNeed = 1, "�";
+                        if (t.lastNeed > 2 && e.length > 2 && 128 != (192 & e[2])) return t.lastNeed = 2, "�"
+                    }
+                }(this, t);
+            return void 0 !== i ? i : this.lastNeed <= t.length ? (t.copy(this.lastChar, e, 0, this.lastNeed), this.lastChar.toString(this.encoding, 0, this.lastTotal)) : (t.copy(this.lastChar, e, 0, t.length), void(this.lastNeed -= t.length))
+        }
+
+        function d(t, e) {
+            if ((t.length - e) % 2 == 0) {
+                var i = t.toString("utf16le", e);
+                if (i) {
+                    var r = i.charCodeAt(i.length - 1);
+                    if (r >= 55296 && r <= 56319) return this.lastNeed = 2, this.lastTotal = 4, this.lastChar[0] = t[t.length - 2], this.lastChar[1] = t[t.length - 1], i.slice(0, -1)
+                }
+                return i
+            }
+            return this.lastNeed = 1, this.lastTotal = 2, this.lastChar[0] = t[t.length - 1], t.toString("utf16le", e, t.length - 1)
+        }
+
+        function u(t) {
+            var e = t && t.length ? this.write(t) : "";
+            if (this.lastNeed) {
+                var i = this.lastTotal - this.lastNeed;
+                return e + this.lastChar.toString("utf16le", 0, i)
+            }
+            return e
+        }
+
+        function c(t, e) {
+            var i = (t.length - e) % 3;
+            return 0 === i ? t.toString("base64", e) : (this.lastNeed = 3 - i, this.lastTotal = 3, 1 === i ? this.lastChar[0] = t[t.length - 1] : (this.lastChar[0] = t[t.length - 2], this.lastChar[1] = t[t.length - 1]), t.toString("base64", e, t.length - i))
+        }
+
+        function f(t) {
+            var e = t && t.length ? this.write(t) : "";
+            return this.lastNeed ? e + this.lastChar.toString("base64", 0, 3 - this.lastNeed) : e
+        }
+
+        function l(t) {
+            return t.toString(this.encoding)
+        }
+
+        function h(t) {
+            return t && t.length ? this.write(t) : ""
+        }
+        e.StringDecoder = o, o.prototype.write = function(t) {
+            if (0 === t.length) return "";
+            var e, i;
+            if (this.lastNeed) {
+                if (void 0 === (e = this.fillLast(t))) return "";
+                i = this.lastNeed, this.lastNeed = 0
+            } else i = 0;
+            return i < t.length ? e ? e + this.text(t, i) : this.text(t, i) : e || ""
+        }, o.prototype.end = function(t) {
+            var e = t && t.length ? this.write(t) : "";
+            return this.lastNeed ? e + "�" : e
+        }, o.prototype.text = function(t, e) {
+            var i = function(t, e, i) {
+                var r = e.length - 1;
+                if (r < i) return 0;
+                var n = a(e[r]);
+                if (n >= 0) return n > 0 && (t.lastNeed = n - 1), n;
+                if (--r < i || -2 === n) return 0;
+                if ((n = a(e[r])) >= 0) return n > 0 && (t.lastNeed = n - 2), n;
+                if (--r < i || -2 === n) return 0;
+                if ((n = a(e[r])) >= 0) return n > 0 && (2 === n ? n = 0 : t.lastNeed = n - 3), n;
+                return 0
+            }(this, t, e);
+            if (!this.lastNeed) return t.toString("utf8", e);
+            this.lastTotal = i;
+            var r = t.length - (i - this.lastNeed);
+            return t.copy(this.lastChar, 0, r), t.toString("utf8", e, r)
+        }, o.prototype.fillLast = function(t) {
+            if (this.lastNeed <= t.length) return t.copy(this.lastChar, this.lastTotal - this.lastNeed, 0, this.lastNeed), this.lastChar.toString(this.encoding, 0, this.lastTotal);
+            t.copy(this.lastChar, this.lastTotal - this.lastNeed, 0, t.length), this.lastNeed -= t.length
+        }
+    },
     fZJM: function(t, e, i) {
         var r = e;
         r.utils = i("w8CP"), r.common = i("7ckf"), r.sha = i("WRkp"), r.ripemd = i("u0Sq"), r.hmac = i("ITfd"), r.sha1 = r.sha.sha1, r.sha256 = r.sha.sha256, r.sha224 = r.sha.sha224, r.sha384 = r.sha.sha384, r.sha512 = r.sha.sha512, r.ripemd160 = r.ripemd.ripemd160
@@ -8899,7 +9051,7 @@
                             n < 16 && (e[r + n++] = l[t])
                         }); n < 16;) e[r + n++] = 0;
                     return e
-                }, A.unparse = p, A.BufferClass = c, A._rng = a, A._mathRNG = s, A._nodeRNG = d, A._whatwgRNG = u, void 0 !== t && t.exports ? t.exports = A : void 0 === (n = function() {
+                }, A.unparse = p, A.BufferClass = c, A._rng = a, A._mathRNG = s, A._nodeRNG = d, A._whatwgRNG = u, t.exports ? t.exports = A : void 0 === (n = function() {
                     return A
                 }.call(e, i, e, t)) || (t.exports = n)
             }("undefined" != typeof window ? window : null)
@@ -10005,13 +10157,13 @@
             toggleAudioLyrics: function(t, e) {
                 var i = Object(o.H)("_audio_row__lyrics", t);
                 if (i)
-                    if (Object(o.Ua)(i)) {
+                    if (Object(o.ub)(i)) {
                         var r = Object(o.N)(t)[1],
                             n = Object(o.N)(i)[1];
-                        Object(o.Qa)(t, "height", r + n), Object(o.i)(t, "prevHeight", r)
+                        Object(o.qb)(t, "height", r + n), Object(o.i)(t, "prevHeight", r)
                     } else {
                         var a = Object(o.i)(t, "prevHeight");
-                        Object(o.Qa)(t, "height", a)
+                        Object(o.qb)(t, "height", a)
                     }
                 else {
                     Object(o.a)(t, "audio_loading");
@@ -10022,7 +10174,7 @@
                     };
                     AudioUtils.isPodcast(e) && (s.podcast = !0), ajax.post("al_audio.php", s, {
                         onDone: function(r) {
-                            Object(o.Ha)(t, "audio_loading"), i = Object(o.Ma)('<div class="_audio_row__lyrics audio_row__lyrics" data-nodrag="1" style="display:none;"><div class="audio_row__lyrics_inner">' + r + "</div></div>"), Object(o.H)("_audio_row_content", t).appendChild(i), AudioUtils.toggleAudioLyrics(t, e)
+                            Object(o.hb)(t, "audio_loading"), i = Object(o.mb)('<div class="_audio_row__lyrics audio_row__lyrics" data-nodrag="1" style="display:none;"><div class="audio_row__lyrics_inner">' + r + "</div></div>"), Object(o.H)("_audio_row_content", t).appendChild(i), AudioUtils.toggleAudioLyrics(t, e)
                         }
                     })
                 }
@@ -10110,7 +10262,7 @@
                     c = Object(o.F)("audio_atp_search"),
                     f = Object(o.H)("_audio_atp_empty"),
                     l = Object(o.N)(d)[1];
-                Object(o.Qa)(u, {
+                Object(o.qb)(u, {
                     height: l - Object(o.N)(c)[1]
                 });
                 var h = "",
@@ -10121,7 +10273,7 @@
                     var t = [];
                     t = h ? n.filter(function(t) {
                         return t[2].toLowerCase().indexOf(h) >= 0
-                    }) : n, Object(o.Ua)(u, 0 != t.length), Object(o.Ua)(f, 0 == t.length), p = new AutoList(u, {
+                    }) : n, Object(o.ub)(u, 0 != t.length), Object(o.ub)(f, 0 == t.length), p = new AutoList(u, {
                         onNeedRows: function(e, i) {
                             for (var r = [], n = i, o = Math.min(t.length, i + 30), a = n; a < o; a++) {
                                 var s = t[a];
@@ -10142,7 +10294,7 @@
                 addEvent(u, "click", function(t) {
                     var e = Object(o.n)("_ape_pl_item", t.target),
                         i = Object(o.s)(e, "id");
-                    Object(o.Va)(e, "ape_selected") ? (b[i] = !0, delete y[i]) : (y[i] = !0, delete b[i])
+                    Object(o.vb)(e, "ape_selected") ? (b[i] = !0, delete y[i]) : (y[i] = !0, delete b[i])
                 }), s.removeButtons(), s.addButton(getLang("global_save"), function(t) {
                     var n = Object.keys(b),
                         o = Object.keys(y);
@@ -10200,7 +10352,7 @@
                     onDone: function(r) {
                         var n = JSON.parse(e.extra).claim.original;
                         n[AudioUtils.AUDIO_ITEM_INDEX_ID] = r, n[AudioUtils.AUDIO_ITEM_INDEX_OWNER_ID] = e.ownerId;
-                        var a = Object(o.Ma)(AudioUtils.drawAudio(n));
+                        var a = Object(o.mb)(AudioUtils.drawAudio(n));
                         t.parentElement.insertBefore(a, t), t.parentElement.removeChild(t), i && i()
                     },
                     onFail: i
@@ -10229,7 +10381,7 @@
             },
             deleteCurrentAudio: function(t, e) {
                 var i = getAudioPlayer().getCurrentPlaylist();
-                i && i.removeAudio(e.fullId), Object(o.Fa)(t)
+                i && i.removeAudio(e.fullId), Object(o.fb)(t)
             },
             deleteRecomsAudio: function(t, e) {
                 AudioUtils.deleteAudio(t, e, !1, !0)
@@ -10263,13 +10415,13 @@
                         })
                     }, getLang("global_cancel"));
                     else {
-                        if (d ? Object(o.Fa)(t) : Object(o.a)(t, "audio_row__deleted"), n) {
+                        if (d ? Object(o.fb)(t) : Object(o.a)(t, "audio_row__deleted"), n) {
                             ajax.post("al_audio.php", {
                                 act: "remove_listened",
                                 audio_id: e.id,
                                 audio_owner_id: e.ownerId,
                                 hash: e.actionHash
-                            }), Object(o.Fa)(t);
+                            }), Object(o.fb)(t);
                             var f = getAudioPlayer().getCurrentPlaylist();
                             f.getType() == AudioPlaylist.TYPE_RECOM && f.getAlbumId() == AudioUtils.AUDIO_RECOMS_TYPE_LISTENED && f.removeAudio(e.fullId)
                         } else if (r) {
@@ -10336,7 +10488,7 @@
                 if (vk.widget) return !0;
                 if (!n || !(n.metaKey && browser.mac || n.ctrlKey)) {
                     var s = null;
-                    return window.Photoview && window.cur && cur.pvShown && (s = clone(nav.objLoc), Photoview.hide(!0)), boxRefreshCoords(boxLoader), Object(o.Ta)(boxLoader), Object(o.Ta)(boxLayerWrap), stManager.add(["auto_list.js", "audio.css"], function() {
+                    return window.Photoview && window.cur && cur.pvShown && (s = clone(nav.objLoc), Photoview.hide(!0)), boxRefreshCoords(boxLoader), Object(o.tb)(boxLoader), Object(o.tb)(boxLayerWrap), stManager.add(["auto_list.js", "audio.css"], function() {
                         new AudioPlaylist({
                             type: AudioPlaylist.TYPE_PLAYLIST,
                             ownerId: t,
@@ -10358,7 +10510,7 @@
                             var h = extend(nav.objLoc, {
                                 z: "audio_playlist" + t + "_" + e + (i ? "/" + i : "")
                             });
-                            nav.setLoc(h), window.audioPlaylistLayerWrap || (window.audioPlaylistLayerWrap = Object(o.Ma)('<div class="ap_layer_wrap"></div>'), bodyNode.appendChild(window.audioPlaylistLayerWrap)), window.audioPlaylistLayerWrap.innerHTML = "";
+                            nav.setLoc(h), window.audioPlaylistLayerWrap || (window.audioPlaylistLayerWrap = Object(o.mb)('<div class="ap_layer_wrap"></div>'), bodyNode.appendChild(window.audioPlaylistLayerWrap)), window.audioPlaylistLayerWrap.innerHTML = "";
                             var p = c.getAudiosList().length,
                                 _ = c.isBlocked && c.isBlocked(),
                                 y = getTemplate("audio_playlist_snippet", {
@@ -10383,7 +10535,7 @@
                                     context: r,
                                     followButtonText: c.isFollowed() ? getLang("audio_playlist_btn_added") : getLang("audio_playlist_btn_add")
                                 });
-                            if (cur.apLayer = Object(o.Ma)('\n        <div class="ap_layer">\n          <div class="ap_layer__content">\n            ' + y + '\n          </div>\n          <div class="ap_layer__close _ap_layer__close"></div>\n        </div>\n      '), _) {
+                            if (cur.apLayer = Object(o.mb)('\n        <div class="ap_layer">\n          <div class="ap_layer__content">\n            ' + y + '\n          </div>\n          <div class="ap_layer__close _ap_layer__close"></div>\n        </div>\n      '), _) {
                                 var b = Object(o.H)("audio_pl_snippet__body", cur.apLayer);
                                 b.innerHTML = getTemplate("playlist_snippet_stub")
                             }
@@ -10415,7 +10567,7 @@
                             d = void 0;
 
                         function u(t) {
-                            boxQueue.hideAll(), cur.apLayerAutoList && (cur.apLayerAutoList.destroy(), cur.apLayerAutoList = null), layers.wraphide(window.audioPlaylistLayerWrap), layers.fullhide = !1, n && removeEvent(window.audioPlaylistLayerWrap, "click", n), d && removeEvent(bodyNode, "keydown", d), delete cur.apLayer, delete cur.apLayerPlaylistId, Object(o.Ha)(layerBG, "ap_layer_bg_dark"), s ? nav.change(s) : nav.change({
+                            boxQueue.hideAll(), cur.apLayerAutoList && (cur.apLayerAutoList.destroy(), cur.apLayerAutoList = null), layers.wraphide(window.audioPlaylistLayerWrap), layers.fullhide = !1, n && removeEvent(window.audioPlaylistLayerWrap, "click", n), d && removeEvent(bodyNode, "keydown", d), delete cur.apLayer, delete cur.apLayerPlaylistId, Object(o.hb)(layerBG, "ap_layer_bg_dark"), s ? nav.change(s) : nav.change({
                                 z: !1
                             }), layerQueue.pop()
                         }
@@ -10446,7 +10598,7 @@
                     s = s.replace("audio_pl__followed", ""), r && (s += " audio_pl__followed"), f.mergeWith({
                         addClasses: s
                     }), each(Object(o.G)("_audio_pl_" + e + "_" + i), function(e, i) {
-                        Object(o.Va)(i, "audio_pl__followed", r);
+                        Object(o.vb)(i, "audio_pl__followed", r);
                         var n = i.querySelectorAll(".audio_pl_snippet__action_btn_add")[0];
                         n && (n.innerHTML = t.innerHTML)
                     })
@@ -10472,7 +10624,7 @@
                     }
                 }
                 var d = Object(o.T)("_audio_pl", t),
-                    c = Object(o.Va)(d, "audio_pl__followed"),
+                    c = Object(o.vb)(d, "audio_pl__followed"),
                     f = getAudioPlayer().getPlaylist(AudioPlaylist.TYPE_PLAYLIST, e, i);
                 a(c), s(c), ajax.post("al_audio.php", {
                     act: "follow_playlist",
@@ -10501,7 +10653,7 @@
             },
             toggleAudioHQBodyClass: function() {
                 var t = getAudioPlayer().showHQLabel();
-                Object(o.Va)(document.body, AudioUtils.AUDIO_HQ_LABEL_CLS, t)
+                Object(o.vb)(document.body, AudioUtils.AUDIO_HQ_LABEL_CLS, t)
             },
             hasAudioHQBodyClass: function() {
                 return Object(o.V)(document.body, AudioUtils.AUDIO_HQ_LABEL_CLS)
@@ -10555,7 +10707,7 @@
                         onDone: function() {
                             i(!1)
                         }
-                    }), Object(o.Ha)(t, "audio_row__deleted"), delete a[e.fullId], AudioUtils.onRowOver(t, !1, !0)) : "added" == d.state && (ajax.post("al_audio.php", {
+                    }), Object(o.hb)(t, "audio_row__deleted"), delete a[e.fullId], AudioUtils.onRowOver(t, !1, !0)) : "added" == d.state && (ajax.post("al_audio.php", {
                         act: "delete_audio",
                         oid: d.audio.ownerId,
                         aid: d.audio.id,
@@ -10565,7 +10717,7 @@
                         onDone: function() {
                             r && getAudioPlayer().getPlaylist(AudioPlaylist.TYPE_PLAYLIST, n ? -n : vk.id, AudioPlaylist.DEFAULT_PLAYLIST_ID).removeAudio(d.addedFullId), i(!1)
                         }
-                    }), Object(o.Ha)(t, "audio_row__added"), u && Object(o.Ha)(u, "audio_row__added"), delete a[e.fullId], getAudioPlayer().notify(AudioPlayer.EVENT_REMOVED, e.fullId, d.addedFullId)) : (ajax.post("al_audio.php", h, {
+                    }), Object(o.hb)(t, "audio_row__added"), u && Object(o.hb)(u, "audio_row__added"), delete a[e.fullId], getAudioPlayer().notify(AudioPlayer.EVENT_REMOVED, e.fullId, d.addedFullId)) : (ajax.post("al_audio.php", h, {
                         onDone: function(t) {
                             if (t) {
                                 var r = t[AudioUtils.AUDIO_ITEM_INDEX_OWNER_ID] + "_" + t[AudioUtils.AUDIO_ITEM_INDEX_ID];
@@ -10582,7 +10734,7 @@
                                 title: getLang("global_error")
                             }).content(e).setButtons("Ok", function() {
                                 curBox().hide()
-                            }).show(), Object(o.Ha)(t, "audio_row__added"), i(!1), !0
+                            }).show(), Object(o.hb)(t, "audio_row__added"), i(!1), !0
                         }
                     }), Object(o.a)(t, "audio_row__added"), u && Object(o.a)(u, "audio_row__added"), getAudioPlayer().notify(AudioPlayer.EVENT_ADDED, e.fullId), r && c && r.onUserAction(e, c))
                 }
@@ -10593,7 +10745,7 @@
                 }, nav.go("audios" + t), cancelEvent(e)
             },
             chooseAudioBox: function(t, e, i) {
-                if (void 0 !== t.selected) cur.lastAddMedia.unchooseMedia(t.selected), t.selected = void 0, Object(o.Ha)(Object(o.z)(t), "audio_selected"), t.innerHTML = e.labels.add;
+                if (void 0 !== t.selected) cur.lastAddMedia.unchooseMedia(t.selected), t.selected = void 0, Object(o.hb)(Object(o.z)(t), "audio_selected"), t.innerHTML = e.labels.add;
                 else {
                     var r = cur.attachCount && cur.attachCount() || 0;
                     cur.chooseMedia("audio", e.owner_id + "_" + e.id, e.info), (!cur.attachCount || cur.attachCount() > r) && cur.lastAddMedia && (t.selected = cur.lastAddMedia.chosenMedias.length - 1, Object(o.a)(Object(o.z)(t), "audio_selected"), t.innerHTML = e.labels.cancel)
@@ -10703,7 +10855,7 @@
                         M = cur.wallQuery || "",
                         O = Object(o.F)("wall_search"),
                         k = inArray(cur.wallType, ["own", "full_own"]) ? "own" : "all";
-                    h = hashCode(k + "_" + M), "wall" == cur.module && Object(o.Ya)(O) && (M = Object(o.Ya)(O)), T && (p = {
+                    h = hashCode(k + "_" + M), "wall" == cur.module && Object(o.yb)(O) && (M = Object(o.yb)(O)), T && (p = {
                         postId: T,
                         wallQuery: M,
                         wallType: k
@@ -10721,7 +10873,7 @@
                     e = ls.get(AudioUtils.LOG_LS_KEY) || [];
                 t && each(e, function(e, i) {
                     var r = new Date(i.shift()).toUTCString();
-                    i = i.join(", "), t.appendChild(Object(o.Ma)('<div class="audio_diag_log_row"><span class="audio_diag_log_time">' + r + "</span>" + i + "</div>"))
+                    i = i.join(", "), t.appendChild(Object(o.mb)('<div class="audio_diag_log_row"><span class="audio_diag_log_time">' + r + "</span>" + i + "</div>"))
                 })
             },
             claim: function(t, e, i) {
@@ -10734,7 +10886,7 @@
                 })
             },
             unclaim: function(t, e, i) {
-                Object(o.Ha)(e, "audio_moder_claimed"), AudioUtils.onRowOver(e, !1, !0), t = AudioUtils.asObject(t), ajax.post("al_claims.php", {
+                Object(o.hb)(e, "audio_moder_claimed"), AudioUtils.onRowOver(e, !1, !0), t = AudioUtils.asObject(t), ajax.post("al_claims.php", {
                     act: "a_unclaim",
                     claim_id: i,
                     type: "audio",
@@ -10770,7 +10922,7 @@
                     act: "cancel_replacement",
                     hash: e,
                     audio_id: t
-                }), Object(o.Fa)(i)
+                }), Object(o.fb)(i)
             },
             removeFromGroup: function(t, e, i) {
                 var r = t + "_" + e;
@@ -10855,14 +11007,14 @@
                                             var r = Object(C.l)(i[n.AUDIO_ITEM_INDEX_EXTRA]);
                                             r && delete r.claim, i[n.AUDIO_ITEM_INDEX_RESTRICTION] = 0, i[n.AUDIO_ITEM_INDEX_FLAGS] &= ~n.AUDIO_ITEM_CLAIMED_BIT, i[n.AUDIO_ITEM_INDEX_EXTRA] = JSON.stringify(r);
                                             var a = Object(L.j)().getCurrentPlaylist(),
-                                                s = Object(o.Ma)(_(i, "no_extra"));
+                                                s = Object(o.mb)(_(i, "no_extra"));
                                             if (a) {
                                                 var d = i[n.AUDIO_ITEM_INDEX_OWNER_ID] + "_" + i[n.AUDIO_ITEM_INDEX_ID],
                                                     u = a.getAudio(d);
                                                 u && (u[n.AUDIO_ITEM_INDEX_RESTRICTION] = i[n.AUDIO_ITEM_INDEX_RESTRICTION], u[n.AUDIO_ITEM_INDEX_FLAGS] = i[n.AUDIO_ITEM_INDEX_FLAGS], u[n.AUDIO_ITEM_INDEX_EXTRA] = i[n.AUDIO_ITEM_INDEX_EXTRA])
                                             }
                                             return each(e, function(t, e) {
-                                                var r = t > 0 ? Object(o.Ma)(_(i, "no_extra")) : s;
+                                                var r = t > 0 ? Object(o.mb)(_(i, "no_extra")) : s;
                                                 e.parentElement.insertBefore(r, e), e.parentElement.removeChild(e)
                                             }), s
                                         }(i.audio ? b(i.audio) : t),
@@ -10918,12 +11070,12 @@
                 if ((!e || !e.isShown()) && (clearTimeout(window.audioRowHoverTO), Object(o.i)(t, "actions"))) {
                     var i = Object(o.H)("_audio_row__actions", t),
                         r = Object(o.H)("_audio_row__duration", t);
-                    re(i), Object(o.Qa)(r, "visibility", "visible"), Object(o.i)(t, "actions", 0)
+                    re(i), Object(o.qb)(r, "visibility", "visible"), Object(o.i)(t, "actions", 0)
                 }
             },
             onAudioAddedToPlaylist: function(t, e, i, r) {
                 getAudioPlayer().getPlaylist(AudioPlaylist.TYPE_PLAYLIST, t, e).addAudio(r, 0), each(Object(o.G)("_audio_pl_" + t + "_" + e), function(t, e) {
-                    domReplaceEl(e, Object(o.Ma)(i))
+                    domReplaceEl(e, Object(o.mb)(i))
                 })
             },
             onAudioChoose: function(t, e, i, r) {
@@ -10932,9 +11084,9 @@
                     if (cur.chooseMedia("audio", i.fullId, r), (!cur.attachCount || cur.attachCount() > n) && cur.lastAddMedia) {
                         e.selected = cur.lastAddMedia.chosenMedias.length - 1, Object(o.a)(Object(o.z)(e), "audio_selected");
                         var a = Object(o.N)(e)[0];
-                        Object(o.Qa)(e, "width", a), e.innerHTML = getLang("global_cancel")
+                        Object(o.qb)(e, "width", a), e.innerHTML = getLang("global_cancel")
                     }
-                } else cur.lastAddMedia.unchooseMedia(e.selected), e.selected = void 0, Object(o.Ha)(Object(o.z)(e), "audio_selected"), e.innerHTML = getLang("global_add_media");
+                } else cur.lastAddMedia.unchooseMedia(e.selected), e.selected = void 0, Object(o.hb)(Object(o.z)(e), "audio_selected"), e.innerHTML = getLang("global_add_media");
                 return Object(d.c)(t)
             },
             onPlaylistChoose: function(t, e) {
@@ -10956,7 +11108,7 @@
                     u = i.morePlaylists;
                 AudioUtils.copiedToPlaylistAudios = AudioUtils.copiedToPlaylistAudios || {}, AudioUtils.copiedToPlaylistAudiosHashes = AudioUtils.copiedToPlaylistAudiosHashes || {};
                 var c = e,
-                    f = Object(o.Ma)(Object(o.La)(AudioUtils.AUDIO_ROW_ACTION_ROW_ITEM, ["pl_new", 0, getLang("audio_add_to_new_pl"), "audio_row__action_playlist"]));
+                    f = Object(o.mb)(Object(o.lb)(AudioUtils.AUDIO_ROW_ACTION_ROW_ITEM, ["pl_new", 0, getLang("audio_add_to_new_pl"), "audio_row__action_playlist"]));
                 if (domInsertAfter(f, c), c = f, f.addEventListener("click", function() {
                         AudioUtils.editPlaylist(r, !1, "edit", {
                             addAudio: a,
@@ -10968,7 +11120,7 @@
                             a = AudioUtils.copiedToPlaylistAudios[r],
                             s = "audio_row__action_playlist";
                         (e[3] || a) && (i = !1, s += " audio_row__more_playlist_added");
-                        var d = Object(o.Ma)(Object(o.La)(AudioUtils.AUDIO_ROW_ACTION_ROW_ITEM, ["pl_" + e[0] + "_" + e[1], 0, e[2], s]));
+                        var d = Object(o.mb)(Object(o.lb)(AudioUtils.AUDIO_ROW_ACTION_ROW_ITEM, ["pl_" + e[0] + "_" + e[1], 0, e[2], s]));
                         domInsertAfter(d, c), c = d;
                         var u = !1;
                         d.addEventListener("click", function() {
@@ -10989,11 +11141,11 @@
                                     onDone: function(t, n, o) {
                                         AudioUtils.copiedToPlaylistAudios[r] = !!i && o, e[4] = i ? t : AudioUtils.copiedToPlaylistAudiosHashes[r], i = !i, u = !1
                                     }
-                                }), Object(o.Va)(d, "audio_row__more_playlist_added", i)
+                                }), Object(o.vb)(d, "audio_row__more_playlist_added", i)
                             }
                         })
                     }), u) {
-                    var l = Object(o.Ma)(Object(o.La)(AudioUtils.AUDIO_ROW_ACTION_ROW_ITEM, ["pl_more", 0, getLang("audio_row_show_all_playlists"), "audio_row__action_playlist"]));
+                    var l = Object(o.mb)(Object(o.lb)(AudioUtils.AUDIO_ROW_ACTION_ROW_ITEM, ["pl_more", 0, getLang("audio_row_show_all_playlists"), "audio_row__action_playlist"]));
                     l.addEventListener("click", function() {
                         showBox("al_audio.php?act=more_playlists_add", {
                             owner_id: r,
@@ -11046,158 +11198,6 @@
             }
             t.exports = o, o.getr = a
         }).call(this, i("tjlA").Buffer)
-    },
-    qiJe: function(t, e, i) {
-        "use strict";
-        var r = i("hwdV").Buffer,
-            n = r.isEncoding || function(t) {
-                switch ((t = "" + t) && t.toLowerCase()) {
-                    case "hex":
-                    case "utf8":
-                    case "utf-8":
-                    case "ascii":
-                    case "binary":
-                    case "base64":
-                    case "ucs2":
-                    case "ucs-2":
-                    case "utf16le":
-                    case "utf-16le":
-                    case "raw":
-                        return !0;
-                    default:
-                        return !1
-                }
-            };
-
-        function o(t) {
-            var e;
-            switch (this.encoding = function(t) {
-                var e = function(t) {
-                    if (!t) return "utf8";
-                    for (var e;;) switch (t) {
-                        case "utf8":
-                        case "utf-8":
-                            return "utf8";
-                        case "ucs2":
-                        case "ucs-2":
-                        case "utf16le":
-                        case "utf-16le":
-                            return "utf16le";
-                        case "latin1":
-                        case "binary":
-                            return "latin1";
-                        case "base64":
-                        case "ascii":
-                        case "hex":
-                            return t;
-                        default:
-                            if (e) return;
-                            t = ("" + t).toLowerCase(), e = !0
-                    }
-                }(t);
-                if ("string" != typeof e && (r.isEncoding === n || !n(t))) throw new Error("Unknown encoding: " + t);
-                return e || t
-            }(t), this.encoding) {
-                case "utf16le":
-                    this.text = d, this.end = u, e = 4;
-                    break;
-                case "utf8":
-                    this.fillLast = s, e = 4;
-                    break;
-                case "base64":
-                    this.text = c, this.end = f, e = 3;
-                    break;
-                default:
-                    return this.write = l, void(this.end = h)
-            }
-            this.lastNeed = 0, this.lastTotal = 0, this.lastChar = r.allocUnsafe(e)
-        }
-
-        function a(t) {
-            return t <= 127 ? 0 : t >> 5 == 6 ? 2 : t >> 4 == 14 ? 3 : t >> 3 == 30 ? 4 : t >> 6 == 2 ? -1 : -2
-        }
-
-        function s(t) {
-            var e = this.lastTotal - this.lastNeed,
-                i = function(t, e, i) {
-                    if (128 != (192 & e[0])) return t.lastNeed = 0, "�";
-                    if (t.lastNeed > 1 && e.length > 1) {
-                        if (128 != (192 & e[1])) return t.lastNeed = 1, "�";
-                        if (t.lastNeed > 2 && e.length > 2 && 128 != (192 & e[2])) return t.lastNeed = 2, "�"
-                    }
-                }(this, t);
-            return void 0 !== i ? i : this.lastNeed <= t.length ? (t.copy(this.lastChar, e, 0, this.lastNeed), this.lastChar.toString(this.encoding, 0, this.lastTotal)) : (t.copy(this.lastChar, e, 0, t.length), void(this.lastNeed -= t.length))
-        }
-
-        function d(t, e) {
-            if ((t.length - e) % 2 == 0) {
-                var i = t.toString("utf16le", e);
-                if (i) {
-                    var r = i.charCodeAt(i.length - 1);
-                    if (r >= 55296 && r <= 56319) return this.lastNeed = 2, this.lastTotal = 4, this.lastChar[0] = t[t.length - 2], this.lastChar[1] = t[t.length - 1], i.slice(0, -1)
-                }
-                return i
-            }
-            return this.lastNeed = 1, this.lastTotal = 2, this.lastChar[0] = t[t.length - 1], t.toString("utf16le", e, t.length - 1)
-        }
-
-        function u(t) {
-            var e = t && t.length ? this.write(t) : "";
-            if (this.lastNeed) {
-                var i = this.lastTotal - this.lastNeed;
-                return e + this.lastChar.toString("utf16le", 0, i)
-            }
-            return e
-        }
-
-        function c(t, e) {
-            var i = (t.length - e) % 3;
-            return 0 === i ? t.toString("base64", e) : (this.lastNeed = 3 - i, this.lastTotal = 3, 1 === i ? this.lastChar[0] = t[t.length - 1] : (this.lastChar[0] = t[t.length - 2], this.lastChar[1] = t[t.length - 1]), t.toString("base64", e, t.length - i))
-        }
-
-        function f(t) {
-            var e = t && t.length ? this.write(t) : "";
-            return this.lastNeed ? e + this.lastChar.toString("base64", 0, 3 - this.lastNeed) : e
-        }
-
-        function l(t) {
-            return t.toString(this.encoding)
-        }
-
-        function h(t) {
-            return t && t.length ? this.write(t) : ""
-        }
-        e.StringDecoder = o, o.prototype.write = function(t) {
-            if (0 === t.length) return "";
-            var e, i;
-            if (this.lastNeed) {
-                if (void 0 === (e = this.fillLast(t))) return "";
-                i = this.lastNeed, this.lastNeed = 0
-            } else i = 0;
-            return i < t.length ? e ? e + this.text(t, i) : this.text(t, i) : e || ""
-        }, o.prototype.end = function(t) {
-            var e = t && t.length ? this.write(t) : "";
-            return this.lastNeed ? e + "�" : e
-        }, o.prototype.text = function(t, e) {
-            var i = function(t, e, i) {
-                var r = e.length - 1;
-                if (r < i) return 0;
-                var n = a(e[r]);
-                if (n >= 0) return n > 0 && (t.lastNeed = n - 1), n;
-                if (--r < i || -2 === n) return 0;
-                if ((n = a(e[r])) >= 0) return n > 0 && (t.lastNeed = n - 2), n;
-                if (--r < i || -2 === n) return 0;
-                if ((n = a(e[r])) >= 0) return n > 0 && (2 === n ? n = 0 : t.lastNeed = n - 3), n;
-                return 0
-            }(this, t, e);
-            if (!this.lastNeed) return t.toString("utf8", e);
-            this.lastTotal = i;
-            var r = t.length - (i - this.lastNeed);
-            return t.copy(this.lastChar, 0, r), t.toString("utf8", e, r)
-        }, o.prototype.fillLast = function(t) {
-            if (this.lastNeed <= t.length) return t.copy(this.lastChar, this.lastTotal - this.lastNeed, 0, this.lastNeed), this.lastChar.toString(this.encoding, 0, this.lastTotal);
-            t.copy(this.lastChar, this.lastTotal - this.lastNeed, 0, t.length), this.lastNeed -= t.length
-        }
     },
     qlaj: function(t, e, i) {
         "use strict";
@@ -11308,7 +11308,7 @@
                 var n = t.highWaterMark,
                     a = t.readableHighWaterMark,
                     s = this.objectMode ? 16 : 16384;
-                this.highWaterMark = n || 0 === n ? n : r && (a || 0 === a) ? a : s, this.highWaterMark = Math.floor(this.highWaterMark), this.buffer = new _, this.length = 0, this.pipes = null, this.pipesCount = 0, this.flowing = null, this.ended = !1, this.endEmitted = !1, this.reading = !1, this.sync = !0, this.needReadable = !1, this.emittedReadable = !1, this.readableListening = !1, this.resumeScheduled = !1, this.destroyed = !1, this.defaultEncoding = t.defaultEncoding || "utf8", this.awaitDrain = 0, this.readingMore = !1, this.decoder = null, this.encoding = null, t.encoding && (p || (p = i("qiJe").StringDecoder), this.decoder = new p(t.encoding), this.encoding = t.encoding)
+                this.highWaterMark = n || 0 === n ? n : r && (a || 0 === a) ? a : s, this.highWaterMark = Math.floor(this.highWaterMark), this.buffer = new _, this.length = 0, this.pipes = null, this.pipesCount = 0, this.flowing = null, this.ended = !1, this.endEmitted = !1, this.reading = !1, this.sync = !0, this.needReadable = !1, this.emittedReadable = !1, this.readableListening = !1, this.resumeScheduled = !1, this.destroyed = !1, this.defaultEncoding = t.defaultEncoding || "utf8", this.awaitDrain = 0, this.readingMore = !1, this.decoder = null, this.encoding = null, t.encoding && (p || (p = i("fXKp").StringDecoder), this.decoder = new p(t.encoding), this.encoding = t.encoding)
             }
 
             function v(t) {
@@ -11358,7 +11358,7 @@
             }, v.prototype.isPaused = function() {
                 return !1 === this._readableState.flowing
             }, v.prototype.setEncoding = function(t) {
-                return p || (p = i("qiJe").StringDecoder), this._readableState.decoder = new p(t), this._readableState.encoding = t, this
+                return p || (p = i("fXKp").StringDecoder), this._readableState.decoder = new p(t), this._readableState.encoding = t, this
             };
             var w = 8388608;
 

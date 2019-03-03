@@ -182,7 +182,7 @@
                     return (e = d.read(e, !0)).buffer || (e = new Uint8Array(e)), assert(e.buffer), e
                 }, d.load = function(e) {
                     ga(read(e))
-                }, d.thisProgram || (d.thisProgram = 1 < process.argv.length ? process.argv[1].replace(/\\/g, "/") : "unknown-program"), d.arguments = process.argv.slice(2), void 0 !== module && (module.exports = d), process.on("uncaughtException", function(e) {
+                }, d.thisProgram || (d.thisProgram = 1 < process.argv.length ? process.argv[1].replace(/\\/g, "/") : "unknown-program"), d.arguments = process.argv.slice(2), module.exports = d, process.on("uncaughtException", function(e) {
                     if (!(e instanceof t)) throw e
                 }), d.inspect = function() {
                     return "[Emscripten Module object]"

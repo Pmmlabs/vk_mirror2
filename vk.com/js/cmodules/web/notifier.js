@@ -69,7 +69,7 @@
     s.push = t, s = s.slice();
     for (var l = 0; l < s.length; l++) t(s[l]);
     var u = c;
-    r.push([102, "common", "aeb2c429ba59463ed20c2363198ad4df"]), i()
+    r.push([102, "common", "37d6fe1fee6fb6accf5867cbca2cda9c"]), i()
 }({
     102: function(e, t, i) {
         e.exports = i("8S/u")
@@ -758,7 +758,7 @@
 
                 function n(e, t) {
                     var a = FastChat.getTab(e);
-                    Object(p.Ha)(e) && t && a && !a.data.members[t] && (i[e] ? -1 === i[e].indexOf(t) && i[e].push(t) : i[e] = [t])
+                    Object(p.hb)(e) && t && a && !a.data.members[t] && (i[e] ? -1 === i[e].indexOf(t) && i[e].push(t) : i[e] = [t])
                 }
                 return a.forEach(function(e) {
                     t.isTabLoaded(e.peerId) && n(e.peerId, e.userId)
@@ -1681,13 +1681,13 @@
                     i = e.userIds,
                     a = this.getTab(t),
                     o = i[0],
-                    r = Object(p.Ha)(t) ? a.data.members[o] : a,
+                    r = Object(p.hb)(t) ? a.data.members[o] : a,
                     n = function(e) {
                         return e.fname || e.name || ""
                     };
-                if (1 === i.length || !Object(p.Ha)(t)) return langSex(r.sex, getLang("mail_im_typing")).replace("{user}", n(r));
+                if (1 === i.length || !Object(p.hb)(t)) return langSex(r.sex, getLang("mail_im_typing")).replace("{user}", n(r));
                 var s = i[i.length - 1],
-                    c = Object(p.Ha)(t) ? a.data.members[s] : a;
+                    c = Object(p.hb)(t) ? a.data.members[s] : a;
                 return getLang("mail_im_multi_typing").replace("{users}", n(r)).replace("{last_user}", n(c))
             },
             markMessagesAsRead: function(e) {
@@ -2290,14 +2290,14 @@
                     i = Object(h.b)(e),
                     a = this.getTab(e.peerId);
                 if (!a || !i) return {};
-                var o = Object(h.k)(e) ? curFastChat.me : Object(p.Ha)(t) ? a.data.members[i] : a,
+                var o = Object(h.k)(e) ? curFastChat.me : Object(p.hb)(t) ? a.data.members[i] : a,
                     r = o.name,
                     n = o.link,
                     s = o.photo,
                     c = o.fname,
                     l = o.first_name;
                 return {
-                    fname: Object(p.Ha)(t) ? c || l : "",
+                    fname: Object(p.hb)(t) ? c || l : "",
                     name: r,
                     link: n,
                     photo: s,
@@ -2394,9 +2394,9 @@
                     default:
                         return "mail_no_support"
                 }
-                if (s = (s = langSex(n.sex, getLang(s, "raw"))).replace("{from}", Object(p.Ib)(n.link, n.name, !0)), r && r !== a) {
+                if (s = (s = langSex(n.sex, getLang(s, "raw"))).replace("{from}", Object(p.ic)(n.link, n.name, !0)), r && r !== a) {
                     var l = t.source_email;
-                    if (l) s = s.replace("{user}", Object(p.Ib)("/im?email=" + encodeURIComponent(l), "email", !0));
+                    if (l) s = s.replace("{user}", Object(p.ic)("/im?email=" + encodeURIComponent(l), "email", !0));
                     else {
                         var u = this.getMember(i, r) || {
                                 name_inv_case: "",
@@ -2404,7 +2404,7 @@
                                 link: ""
                             },
                             d = o === p.c ? u.name_kick_case : u.name_inv_case;
-                        s = s.replace("{user}", Object(p.Ib)(u.link, d, !0))
+                        s = s.replace("{user}", Object(p.ic)(u.link, d, !0))
                     }
                 }
                 if (t.source_text) {
@@ -2413,17 +2413,17 @@
                 }
                 if (t.source_act === p.f || t.source_act === p.h)
                     if (t.source_message) {
-                        var h = Object(p.Fb)(Emoji.emojiToHTML(stripHTML(t.source_message.replace(/<br\s?\/?>/gi, " ")), !0)),
-                            _ = Object(p.Ib)("", h, !1, "im_srv_mess_link");
+                        var h = Object(p.fc)(Emoji.emojiToHTML(stripHTML(t.source_message.replace(/<br\s?\/?>/gi, " ")), !0)),
+                            _ = Object(p.ic)("", h, !1, "im_srv_mess_link");
                         s = s.replace("{msg}", _)
                     } else s = s.replace(/{link}(.+){\/link}/i, function(e, t) {
-                        return Object(p.Ib)("", t, !1, "im_srv_mess_link")
+                        return Object(p.ic)("", t, !1, "im_srv_mess_link")
                     });
                 return s
             },
             getMember: function(e, t) {
                 var i = this.getTab(e);
-                return Object(p.Ha)(e) && i ? i.data.members[t] : i || null
+                return Object(p.hb)(e) && i ? i.data.members[t] : i || null
             },
             needMsgMedia: function(e, t) {
                 t <= 0 || (FastChat.lcSend("needMedia", {
@@ -3070,59 +3070,59 @@
                         e.ts && n(a.ts, e.ts, e.updates.map(function(e) {
                             switch (e[0]) {
                                 case 0:
-                                    return r.Ga(e);
+                                    return r.gb(e);
                                 case 1:
-                                    return r.Va(e);
+                                    return r.vb(e);
                                 case 2:
-                                    return r.db(e);
+                                    return r.Db(e);
                                 case 3:
-                                    return r.Za(e);
+                                    return r.zb(e);
                                 case 4:
                                     return r.Z(e);
                                 case 5:
-                                    return r.Ha(e);
-                                case 6:
-                                    return r.Pa(e);
-                                case 7:
-                                    return r.Qa(e);
-                                case 8:
-                                    return r.Ma(e);
-                                case 9:
-                                    return r.La(e);
-                                case 10:
-                                    return r.Ya(e);
-                                case 11:
-                                    return r.Ua(e);
-                                case 12:
-                                    return r.cb(e);
-                                case 13:
-                                    return r.Fa(e);
-                                case 18:
-                                    return r.Wa(e);
-                                case 51:
-                                    return r.Da(e);
-                                case 52:
-                                    return r.Ea(e);
-                                case 63:
-                                    return r.fb(e);
-                                case 64:
-                                    return r.Ra(e);
-                                case 70:
                                     return r.hb(e);
+                                case 6:
+                                    return r.pb(e);
+                                case 7:
+                                    return r.qb(e);
+                                case 8:
+                                    return r.mb(e);
+                                case 9:
+                                    return r.lb(e);
+                                case 10:
+                                    return r.yb(e);
+                                case 11:
+                                    return r.ub(e);
+                                case 12:
+                                    return r.Cb(e);
+                                case 13:
+                                    return r.fb(e);
+                                case 18:
+                                    return r.wb(e);
+                                case 51:
+                                    return r.db(e);
+                                case 52:
+                                    return r.eb(e);
+                                case 63:
+                                    return r.Fb(e);
+                                case 64:
+                                    return r.rb(e);
+                                case 70:
+                                    return r.Hb(e);
                                 case 80:
-                                    return r.gb(e);
+                                    return r.Gb(e);
                                 case 114:
-                                    return r.Oa(e);
+                                    return r.ob(e);
                                 case 116:
-                                    return r.Ta(e);
+                                    return r.tb(e);
                                 case 117:
-                                    return r.Aa(e);
+                                    return r.ab(e);
                                 case -1:
-                                    return r.bb();
+                                    return r.Bb();
                                 case -2:
-                                    return r.Sa(e);
+                                    return r.sb(e);
                                 default:
-                                    return r.Ja(e)
+                                    return r.jb(e)
                             }
                         }))
                     },

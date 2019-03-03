@@ -144,7 +144,7 @@
                         }
                         if (s !== this.lastDestinationCardIndex) {
                             var n = this.cardsElements.indexOf(this.draggingCard);
-                            s > this.lastDestinationCardIndex ? s > n ? (this.wrapperTransitions(!0, this.cardsElements[s]), Object(o.a)(this.cardsElements[s], "pretty-card_dragging_left")) : s <= n && Object(o.Ha)(this.cardsElements[this.lastDestinationCardIndex], "pretty-card_dragging_right") : s < this.lastDestinationCardIndex && (s >= n ? Object(o.Ha)(this.cardsElements[this.lastDestinationCardIndex], "pretty-card_dragging_left") : s < n && (this.wrapperTransitions(!0, this.cardsElements[s]), Object(o.a)(this.cardsElements[s], "pretty-card_dragging_right"))), this.lastDestinationCardIndex = s
+                            s > this.lastDestinationCardIndex ? s > n ? (this.wrapperTransitions(!0, this.cardsElements[s]), Object(o.a)(this.cardsElements[s], "pretty-card_dragging_left")) : s <= n && Object(o.hb)(this.cardsElements[this.lastDestinationCardIndex], "pretty-card_dragging_right") : s < this.lastDestinationCardIndex && (s >= n ? Object(o.hb)(this.cardsElements[this.lastDestinationCardIndex], "pretty-card_dragging_left") : s < n && (this.wrapperTransitions(!0, this.cardsElements[s]), Object(o.a)(this.cardsElements[s], "pretty-card_dragging_right"))), this.lastDestinationCardIndex = s
                         }
                     }
                 }
@@ -197,7 +197,7 @@
                     })
                 }, this.lastChosenUrl, this.options.owner_id)
             }, t.prototype.wrapperTransitions = function(t, e, r) {
-                e && (t ? Object(o.a)(e, !0 === r ? "pretty-card_transitions_long" : "pretty-card_transitions_on") : (Object(o.Ha)(e, "pretty-card_transitions_long"), Object(o.Ha)(e, "pretty-card_transitions_on")))
+                e && (t ? Object(o.a)(e, !0 === r ? "pretty-card_transitions_long" : "pretty-card_transitions_on") : (Object(o.hb)(e, "pretty-card_transitions_long"), Object(o.hb)(e, "pretty-card_transitions_on")))
             }, t.prototype.addCard = function(t) {
                 var e = this;
                 if (this.options.card_template_html && (!(this.cardsElements.length >= intval(this.options.cards_max)) || this.placeholderElement)) {
@@ -216,7 +216,7 @@
                         }
                         t.photo_url && this.setPhoto(i, t.photo_url), t.photo && (i.prettyCardPhoto = t.photo), t.allowed_buttons && (i.prettyCardAllowedButtons = t.allowed_buttons, t.button_key ? this.setButton(Object(o.H)("pretty-card__button", i), t.button_key, i.prettyCardAllowedButtons) : t.button_action && this.setButtonRaw(Object(o.H)("pretty-card__button", i), t.button_action, t.button_text))
                     }
-                    this.wrapperTransitions(!1, i), Object(o.a)(i, "pretty-card_removing_yes"), this.cardsElements.splice(this.cardsElements.length - 1, 0, i), this.placeholderElement && (this.wrapperTransitions(!1, this.placeholderElement), this.wrapper.insertBefore(i, this.placeholderElement), Object(o.a)(this.placeholderElement, "pretty-card_adding_yes"), this.placeholderElement.offsetHeight), i.offsetHeight, this.wrapperTransitions(!0, this.placeholderElement), this.wrapperTransitions(!0, i), Object(o.Ha)(i, "pretty-card_removing_yes"), this.placeholderElement && Object(o.Ha)(this.placeholderElement, "pretty-card_adding_yes"), r ? setTimeout(function() {
+                    this.wrapperTransitions(!1, i), Object(o.a)(i, "pretty-card_removing_yes"), this.cardsElements.splice(this.cardsElements.length - 1, 0, i), this.placeholderElement && (this.wrapperTransitions(!1, this.placeholderElement), this.wrapper.insertBefore(i, this.placeholderElement), Object(o.a)(this.placeholderElement, "pretty-card_adding_yes"), this.placeholderElement.offsetHeight), i.offsetHeight, this.wrapperTransitions(!0, this.placeholderElement), this.wrapperTransitions(!0, i), Object(o.hb)(i, "pretty-card_removing_yes"), this.placeholderElement && Object(o.hb)(this.placeholderElement, "pretty-card_adding_yes"), r ? setTimeout(function() {
                         e.placeholderElement && (re(e.placeholderElement), delete e.placeholderElement), e.cardsElements.splice(e.cardsElements.length - 1, 1), e.scroll(0, !1)
                     }, this.TRANSFORM_ANIMATION_DELAY) : setTimeout(this.scroll.bind(this, 0, !1), this.TRANSFORM_ANIMATION_DELAY), geByClass("pretty-card__price-adder", i).map(function(t) {
                         addEvent(t, "click", e.priceAdderClicked.bind(e, t)), addEvent(Object(o.H)("pretty-card__editor-button_type_remove", domNS(t)), "click", e.priceRemoverClicked.bind(e, t))
@@ -244,7 +244,7 @@
                             re(i);
                             for (var t = r; t < e.cardsElements.length; ++t) {
                                 var s = e.cardsElements[t];
-                                e.wrapperTransitions(!1, s), Object(o.Ha)(s, "pretty-card_adding_yes")
+                                e.wrapperTransitions(!1, s), Object(o.hb)(s, "pretty-card_adding_yes")
                             }
                         }, d)
                     }), addEvent(l, "mouseover", function() {
@@ -294,7 +294,7 @@
             }, t.prototype.onPhotoUploadError = function(t, e, r) {
                 debugLog("Upload error, msg:", r), r = "При загрузке произошла ошибка, проверьте, что размер изображения не менее 400х400 пикселей и удовлетворяет требованиям.", showFastBox({
                     title: getLang("global_error")
-                }, r), hideProgress(t), Object(o.Ha)(t, "pretty-card__upload-progress_shown_yes"), Upload.embed(e)
+                }, r), hideProgress(t), Object(o.hb)(t, "pretty-card__upload-progress_shown_yes"), Upload.embed(e)
             }, t.prototype.onPhotoUploadComplete = function(t, e, r, i) {
                 var s;
                 debugLog("Upload complete", e, r, i);
@@ -302,7 +302,7 @@
                     s = parseJSON(i)
                 } catch (t) {}
                 s && s.photo ? UploadPhotoTransform.getPhotoUrl(s, this.options.stored_photo_size_list, function(r) {
-                    debugLog("Success uploading photo"), this.setPhoto(e, r), e.prettyCardPhoto = s.photo, hideProgress(t), Object(o.Ha)(t, "pretty-card__upload-progress_shown_yes")
+                    debugLog("Success uploading photo"), this.setPhoto(e, r), e.prettyCardPhoto = s.photo, hideProgress(t), Object(o.hb)(t, "pretty-card__upload-progress_shown_yes")
                 }.bind(this), function() {
                     debugLog("Error uploading photo"), hideProgress(t), hide(t)
                 }.bind(this)) : Upload.onUploadError(r)
@@ -318,7 +318,7 @@
                 }), hide(Object(o.H)("pretty-card__upload-photo-button", r)), Object(o.a)(i, "pretty-card__photo-fader_top_yes"), setTimeout(function() {
                     setStyle(r, {
                         backgroundImage: "url(" + e + ")"
-                    }), Object(o.Ha)(i, "pretty-card__photo-fader_top_yes"), Object(o.Ha)(r, "pretty-card__photo_upload_yes")
+                    }), Object(o.hb)(i, "pretty-card__photo-fader_top_yes"), Object(o.hb)(r, "pretty-card__photo_upload_yes")
                 }, 200)
             }, t.prototype.onCardMouseDown = function(t, e) {
                 if (!this.draggingCard && hasClass(e.target, "pretty-card__draghandle")) return this.draggingCard = t, this.draggingStartingX = e.clientX, this.draggingStartingTranslateX = this.translateX, this.draggingContainerX = this.wrapperOuter.getBoundingClientRect().left, this.cardDraggingPointX = e.clientX - t.getBoundingClientRect().left, this.lastDestinationCardIndex = this.cardsElements.indexOf(t), this.wrapperTransitions(!0, t), Object(o.a)(t, "pretty-card_dragging_yes"), Object(o.a)(t, "pretty-card_ontop_yes"), setTimeout(this.wrapperTransitions.pbind(!1, t), this.TRANSFORM_ANIMATION_DURATION), e.cancelBubble = !0, e.returnValue = !1, !1
@@ -331,15 +331,15 @@
                     this.cardsElements[i];
                     this.wrapperTransitions(!0, t), setStyle(t, {
                         transform: "translateX(" + (i - r) * (this.CARD_WIDTH + this.CARDS_MARGIN) + "px)"
-                    }), Object(o.Ha)(t, "pretty-card_dragging_yes"), setTimeout(function() {
-                        Object(o.Ha)(t, "pretty-card_ontop_yes");
+                    }), Object(o.hb)(t, "pretty-card_dragging_yes"), setTimeout(function() {
+                        Object(o.hb)(t, "pretty-card_ontop_yes");
                         var s = !0,
                             n = !1,
                             a = void 0;
                         try {
                             for (var d, l = e.cardsElements[Symbol.iterator](); !(s = (d = l.next()).done); s = !0) {
                                 var c = d.value;
-                                e.wrapperTransitions(!1, c), Object(o.Ha)(c, "pretty-card_dragging_right"), Object(o.Ha)(c, "pretty-card_dragging_left"), setStyle(c, {
+                                e.wrapperTransitions(!1, c), Object(o.hb)(c, "pretty-card_dragging_right"), Object(o.hb)(c, "pretty-card_dragging_left"), setStyle(c, {
                                     transform: ""
                                 })
                             }
@@ -375,7 +375,7 @@
                     top: e.clientHeight + this.POST_PADDING_TOP + t.offsetTop + t.clientHeight
                 }), Page.actionsDropdown(this.buttonEditorDropdown)
             }, t.prototype.setButtonRaw = function(t, e, r) {
-                Object(o.Ha)(t, "button_contour"), Object(o.a)(t, "button_bright_blue"), Object(o.H)("pretty-card__button-editor-label", t).innerHTML = r
+                Object(o.hb)(t, "button_contour"), Object(o.a)(t, "button_bright_blue"), Object(o.H)("pretty-card__button-editor-label", t).innerHTML = r
             }, t.prototype.setButton = function(t, e, r) {
                 var o = r[e],
                     i = o[0],
@@ -384,7 +384,7 @@
             }, t.prototype.buttonActionClicked = function(t, e, r) {
                 this.setButton(t, e, r), Page.actionsDropdownHide(this.buttonEditorDropdown, 1)
             }, t.prototype.buttonRemoveClicked = function(t) {
-                return Object(o.a)(t, "button_contour"), Object(o.Ha)(t, "button_bright_blue"), Object(o.H)("pretty-card__button-editor-label", t).innerHTML = getLang("global_wall_pretty_cards_add_button"), Page.actionsDropdownHide(this.buttonEditorDropdown, 1), t.prettyCardButtonKey = "", !1
+                return Object(o.a)(t, "button_contour"), Object(o.hb)(t, "button_bright_blue"), Object(o.H)("pretty-card__button-editor-label", t).innerHTML = getLang("global_wall_pretty_cards_add_button"), Page.actionsDropdownHide(this.buttonEditorDropdown, 1), t.prettyCardButtonKey = "", !1
             }, t.prototype.togglePrice = function(t, e) {
                 toggleClass(t, "pretty-card__price_hidden_yes", !!e), toggleClass(domNS(t), "pretty-card__price-wrapper_hidden_yes", !e)
             }, t.prototype.priceAdderClicked = function(t) {
@@ -414,8 +414,8 @@
                     a = this.scrollPosition,
                     d = this.scrollPosition * (this.CARD_WIDTH + this.CARDS_MARGIN);
                 !n && s > this.VIEWPORT_CARDS ? d -= 2 * i : a && (d -= i), this.translateX = d, e && (Object(o.a)(this.wrapper, "pretty-cards__wrapper_transition_long"), setTimeout(function() {
-                    Object(o.Ha)(r.wrapper, "pretty-cards__wrapper_transition_long")
-                }, this.TRANSFORM_ANIMATION_DURATION_LONG)), Object(o.Ha)(this.wrapper, "pretty-cards__wrapper_transition_off"), setStyle(this.wrapper, "transform", "translateX(" + -d + "px)"), toggleClass(this.scrollerRight, "pretty-cards__scroller_hidden_right", !n), toggleClass(this.scrollerLeft, "pretty-cards__scroller_hidden_left", !a), toggleClass(this.scrollerProtector, "pretty-cards__scroller_position_left", t < 0), toggleClass(this.scrollerProtector, "pretty-cards__scroller_position_right", t >= 0), show(this.scrollerProtector);
+                    Object(o.hb)(r.wrapper, "pretty-cards__wrapper_transition_long")
+                }, this.TRANSFORM_ANIMATION_DURATION_LONG)), Object(o.hb)(this.wrapper, "pretty-cards__wrapper_transition_off"), setStyle(this.wrapper, "transform", "translateX(" + -d + "px)"), toggleClass(this.scrollerRight, "pretty-cards__scroller_hidden_right", !n), toggleClass(this.scrollerLeft, "pretty-cards__scroller_hidden_left", !a), toggleClass(this.scrollerProtector, "pretty-cards__scroller_position_left", t < 0), toggleClass(this.scrollerProtector, "pretty-cards__scroller_position_right", t >= 0), show(this.scrollerProtector);
                 return this.draggingCard && this.cardsElements.indexOf(this.draggingCard), this.cardsPos = d, !1
             }, t.prototype.updateCardsIds = function(t) {
                 var e = !0,
@@ -458,7 +458,7 @@
                                         l = !1;
                                     d > r.VIEWPORT_CARDS - 1 ? (r.scroll(d - (r.VIEWPORT_CARDS - 1)), l = !0) : d < 0 && (r.scroll(d), l = !0);
                                     setTimeout(function() {
-                                        Object(o.a)(a, "pretty-card_error_yes"), setTimeout(o.Ha.pbind(a, "pretty-card_error_yes"), 1e3)
+                                        Object(o.a)(a, "pretty-card_error_yes"), setTimeout(o.hb.pbind(a, "pretty-card_error_yes"), 1e3)
                                     }, l ? r.TRANSFORM_ANIMATION_DURATION + 300 : 300)
                                 }
                             }
