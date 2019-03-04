@@ -610,6 +610,9 @@
                         noStickersStore: !0,
                         ref: "stories",
                         ttWrap: this.refs.controls,
+                        checkEditable: function() {
+                            t.props.story.isActiveLive() && VideoChat.checkTextLen(t.refs.messageInput)
+                        },
                         onSend: function() {
                             return t.props.story._onAnswerSend(void 0, function() {
                                 return t._emojiDidKeyAction()
@@ -899,13 +902,13 @@
                 })
             }, e.prototype.pause = function() {}, e.prototype.play = function() {
                 this.player && !this.liveEnded && (t.prototype.play.call(this), this.player && this.player.play())
-            }, e.prototype.sendMessage = function(t) {
-                ajax.post("al_video.php?act=post_comment", {
+            }, e.prototype.sendMessage = function(t, e) {
+                t.length > mvcur.maxChatReplyLength || (ajax.post("al_video.php?act=post_comment", {
                     comment: t,
                     video: this.videoRaw,
                     hash: this.mvData.hash,
-                    videoviewer: 1
-                })
+                    videoviewer_chat: 1
+                }), cur.storyLayer.activeStory._onAnswerSended(e))
             }, e.prototype.volumeUpdate = function() {
                 this.player.setVolume(m())
             }, e.prototype._onCanPlay = function() {
@@ -913,6 +916,7 @@
             }, e.prototype._onPlayerInited = function() {
                 this._onCanPlay(), this.player = window.cur.videoInlinePlayer, this.play(), cur.storyLayer._sendNavigationStatEvents("live_player_show"), browser.safari && this.player.toggleMute(!0, !1), this.mvData = Videoview.getMvData(), window.mvcur = {
                     chatMode: !0,
+                    maxChatReplyLength: this.mvData.maxChatReplyLength,
                     mvData: this.mvData,
                     mvShown: !0,
                     queueKey: this.mvData.queue_params.key,
@@ -1500,27 +1504,29 @@
                     var r = this,
                         o = this._getSendText();
                     if (!o || !this.story) return cancelEvent(t);
-                    if (this.isActiveLive()) return this.story.sendMessage(o), void this._onAnswerSended(e);
-                    var i = this.story.data.narrative,
-                        s = void 0;
-                    s = i ? "narrative:" + i.raw_id : "story:" + this.story.getId(), this.layer._sendNavigationStatEvents("comment_send"), ajax.post("al_im.php", {
-                        act: "a_send",
-                        msg: o,
-                        hash: this.data.send_hash,
-                        media: s,
-                        entrypoint: "stories_comment",
-                        to: this.getOwnerId()
-                    }, {
-                        onDone: function() {
-                            r._onAnswerSended(e)
-                        },
-                        showProgress: function() {
-                            val(r.sendFormButton, r._getLoaderHtml()), et(r.sendFormButton, "sending")
-                        },
-                        hideProgress: function() {
-                            val(r.sendFormButton, ""), rt(r.sendFormButton, "sending")
-                        }
-                    })
+                    if (this.isActiveLive()) this.story.sendMessage(o, e);
+                    else {
+                        var i = this.story.data.narrative,
+                            s = void 0;
+                        s = i ? "narrative:" + i.raw_id : "story:" + this.story.getId(), this.layer._sendNavigationStatEvents("comment_send"), ajax.post("al_im.php", {
+                            act: "a_send",
+                            msg: o,
+                            hash: this.data.send_hash,
+                            media: s,
+                            entrypoint: "stories_comment",
+                            to: this.getOwnerId()
+                        }, {
+                            onDone: function() {
+                                r._onAnswerSended(e)
+                            },
+                            showProgress: function() {
+                                val(r.sendFormButton, r._getLoaderHtml()), et(r.sendFormButton, "sending")
+                            },
+                            hideProgress: function() {
+                                val(r.sendFormButton, ""), rt(r.sendFormButton, "sending")
+                            }
+                        })
+                    }
                 }, t.prototype._onAnswerSended = function(t) {
                     var e = this;
                     this.isActiveLive() || this._showMessage(Q("stories_answer_sent")).then(function() {
