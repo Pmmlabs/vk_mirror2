@@ -1998,7 +1998,7 @@
                     return !0
                 }
             }), AudioPlaylist.prototype.getNextAudio = function(t, e) {
-                if (!t) return t = this.getAudioAt(0), e && _utils__WEBPACK_IMPORTED_MODULE_0__.a.asObject(t).isClaimed ? this.getNextAudio(t, !0) : t;
+                if (!t) return !!(t = this.getAudioAt(0)) && (e && _utils__WEBPACK_IMPORTED_MODULE_0__.a.asObject(t).isClaimed ? this.getNextAudio(t, !0) : t);
                 var i = this.indexOfAudio(t);
                 if (i < 0) return !1;
                 if (i + 1 < this.getAudiosCount()) {
@@ -2028,7 +2028,7 @@
                     };
                 if (isArray(t) && isArray(t[0]))
                     for (var o = 0, a = t.length; o < a; o++) n(t[o]);
-                else t.length && n(t)
+                else t && t.length && n(t)
             }, AudioPlaylist.prototype.moveAudio = function(t, e) {
                 this._unref();
                 var i = this._list.splice(t, 1);
@@ -2037,10 +2037,13 @@
                 if (!t) return -1;
                 var e = void 0;
                 isString(t) ? e = t.split("_") : isObject(t) ? e = [t.ownerId, t.id] : isArray(t) && (e = [t[_utils__WEBPACK_IMPORTED_MODULE_0__.a.AUDIO_ITEM_INDEX_OWNER_ID], t[_utils__WEBPACK_IMPORTED_MODULE_0__.a.AUDIO_ITEM_INDEX_ID]]);
-                for (var i = this.getSelf()._list, r = 0, n = i.length; r < n; r++)
+                var i = this.getSelf()._list;
+                if (!i) return -1;
+                for (var r = 0, n = i.length; r < n; r++)
                     if (i[r] && e[0] == i[r][_utils__WEBPACK_IMPORTED_MODULE_0__.a.AUDIO_ITEM_INDEX_OWNER_ID] && e[1] == i[r][_utils__WEBPACK_IMPORTED_MODULE_0__.a.AUDIO_ITEM_INDEX_ID]) return r;
                 return -1
             }, AudioPlaylist.prototype.getAudio = function(t) {
+                if (!t) return null;
                 var e = this.getSelf();
                 t = t.split("_");
                 for (var i = 0, r = e._list.length; i < r; i++)
@@ -6962,6 +6965,8 @@
                 return this._currProgress || 0
             }, t.prototype.getCurrentBuffered = function() {
                 return this._currBuffered || 0
+            }, t.prototype.stop = function() {
+                this._player && this._player.stopAudio(), this._stopFrequencyAnalise()
             }, t.prototype._checkFlashLoaded = function() {
                 var t = this,
                     e = Object(n.F)("player");
@@ -8076,14 +8081,17 @@
                 })
             }
         }, AudioPlayer.prototype._sendPlayerErrorStats = function(t) {
-            var e = r.a.asObject(this.getCurrentAudio()).full_id,
-                i = extend({
-                    audio: e,
-                    impl_type: t.type,
-                    progress: this.getCurrentProgress(),
-                    buffered: this.getCurrentBuffered()
-                }, t.getErrorData());
-            ajax.post("al_audio.php?act=player_error_stats", i)
+            var e = r.a.asObject(this.getCurrentAudio());
+            if (e) {
+                var i = e.full_id,
+                    n = extend({
+                        audio: i,
+                        impl_type: t.type,
+                        progress: this.getCurrentProgress(),
+                        buffered: this.getCurrentBuffered()
+                    }, t.getErrorData());
+                ajax.post("al_audio.php?act=player_error_stats", n)
+            }
         }, AudioPlayer.prototype.playLive = function(t, e) {
             var i = this.getPlaylist(a.a.TYPE_LIVE, vk.id, data[0]);
             i.mergeWith({
@@ -8099,7 +8107,7 @@
             }, extend(e, {
                 onDone: function(t, e, n) {
                     i.mergeWith({
-                        title: e.title,
+                        title: e && e.title,
                         list: [t]
                     }), r.play(t, i, n)
                 }
@@ -8167,28 +8175,30 @@
             var i = [];
             this._currentUrlEnsure = this._currentUrlEnsure || {};
             var n = r.a.asObject(t);
-            if (n.url) return e && e(t);
-            var o = this.getCurrentPlaylist(),
-                a = o.indexOfAudio(t);
-            if (a >= 0)
-                for (var s = a; s < a + 5; s++) {
-                    var d = r.a.asObject(o.getAudioAt(s));
-                    !d || d.url || this._currentUrlEnsure[d.fullId] || (i.push(d.fullId + "_" + d.actionHash + "_" + d.urlHash), this._currentUrlEnsure[d.fullId] = !0)
-                }
-            if (i.push(n.fullId), i.length) {
-                var u = this;
-                ajax.post("al_audio.php", {
-                    act: "reload_audio",
-                    ids: i.join(",")
-                }, {
-                    onDone: function(i, o, a, s) {
-                        getAudioPlayer().setStatusExportInfo(o), u._listenedHash = a, s && getAudioPlayer()._podcastSaveData(s), each(i, function(e, i) {
-                            i = r.a.asObject(i);
-                            var o = {};
-                            o[r.a.AUDIO_ITEM_INDEX_URL] = i.url, o[r.a.AUDIO_ITEM_INDEX_ADS] = i.ads, n.fullId == i.fullId && (o[r.a.AUDIO_ITEM_INDEX_FLAGS] = i.flags, o[r.a.AUDIO_ITEM_INDEX_EXTRA] = i.extra), u.updateAudio(i.fullId, o), n.fullId == i.fullId && (t[r.a.AUDIO_ITEM_INDEX_URL] = i.url, t[r.a.AUDIO_ITEM_INDEX_ADS] = i.ads, t[r.a.AUDIO_ITEM_INDEX_FLAGS] = i.flags, t[r.a.AUDIO_ITEM_INDEX_EXTRA] = i.extra), u._currentAudio && r.a.asObject(u._currentAudio).fullId == i.fullId && (u._currentAudio[r.a.AUDIO_ITEM_INDEX_URL] = i.url, u._currentAudio[r.a.AUDIO_ITEM_INDEX_ADS] = i.ads, u._currentAudio[r.a.AUDIO_ITEM_INDEX_FLAGS] = i.flags, u._currentAudio[r.a.AUDIO_ITEM_INDEX_EXTRA] = i.extra), delete u._currentUrlEnsure[i.fullId]
-                        }), e && e(t)
+            if (n) {
+                if (n.url) return e && e(t);
+                var o = this.getCurrentPlaylist(),
+                    a = o.indexOfAudio(t);
+                if (a >= 0)
+                    for (var s = a; s < a + 5; s++) {
+                        var d = r.a.asObject(o.getAudioAt(s));
+                        !d || d.url || this._currentUrlEnsure[d.fullId] || (i.push(d.fullId + "_" + d.actionHash + "_" + d.urlHash), this._currentUrlEnsure[d.fullId] = !0)
                     }
-                })
+                if (i.push(n.fullId), i.length) {
+                    var u = this;
+                    ajax.post("al_audio.php", {
+                        act: "reload_audio",
+                        ids: i.join(",")
+                    }, {
+                        onDone: function(i, o, a, s) {
+                            getAudioPlayer().setStatusExportInfo(o), u._listenedHash = a, s && getAudioPlayer()._podcastSaveData(s), each(i, function(e, i) {
+                                i = r.a.asObject(i);
+                                var o = {};
+                                o[r.a.AUDIO_ITEM_INDEX_URL] = i.url, o[r.a.AUDIO_ITEM_INDEX_ADS] = i.ads, n.fullId == i.fullId && (o[r.a.AUDIO_ITEM_INDEX_FLAGS] = i.flags, o[r.a.AUDIO_ITEM_INDEX_EXTRA] = i.extra), u.updateAudio(i.fullId, o), n.fullId == i.fullId && (t[r.a.AUDIO_ITEM_INDEX_URL] = i.url, t[r.a.AUDIO_ITEM_INDEX_ADS] = i.ads, t[r.a.AUDIO_ITEM_INDEX_FLAGS] = i.flags, t[r.a.AUDIO_ITEM_INDEX_EXTRA] = i.extra), u._currentAudio && r.a.asObject(u._currentAudio).fullId == i.fullId && (u._currentAudio[r.a.AUDIO_ITEM_INDEX_URL] = i.url, u._currentAudio[r.a.AUDIO_ITEM_INDEX_ADS] = i.ads, u._currentAudio[r.a.AUDIO_ITEM_INDEX_FLAGS] = i.flags, u._currentAudio[r.a.AUDIO_ITEM_INDEX_EXTRA] = i.extra), delete u._currentUrlEnsure[i.fullId]
+                            }), e && e(t)
+                        }
+                    })
+                }
             }
         }, AudioPlayer.prototype.toggleAudio = function(t, e) {
             if (vk && vk.widget && !vk.id && window.Widgets) return Widgets.oauth(), !1;
@@ -8296,7 +8306,7 @@
                     var t = d.getNextAudio(!1, !0);
                     t && n.play(t, d, r)
                 };
-                d.load(0, u, null, o.trackType), d.getAudiosCount() && !o.shuffled ? u() : this._impl.preparePlay && !this.isAdPlaying() && this._impl.preparePlay()
+                d.load(0, u, null, o.trackType), d.getAudiosCount() && !o.shuffled ? u() : this._impl && this._impl.preparePlay && !this.isAdPlaying() && this._impl.preparePlay()
             }
         }, AudioPlayer.prototype._initPlayingContext = function(t) {
             this._playingContext = t
@@ -10423,7 +10433,7 @@
                                 hash: e.actionHash
                             }), Object(o.fb)(t);
                             var f = getAudioPlayer().getCurrentPlaylist();
-                            f.getType() == AudioPlaylist.TYPE_RECOM && f.getAlbumId() == AudioUtils.AUDIO_RECOMS_TYPE_LISTENED && f.removeAudio(e.fullId)
+                            f && f.getType() == AudioPlaylist.TYPE_RECOM && f.getAlbumId() == AudioUtils.AUDIO_RECOMS_TYPE_LISTENED && f.removeAudio(e.fullId)
                         } else if (r) {
                             var l = {
                                 act: "hide_recommendation",

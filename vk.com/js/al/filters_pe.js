@@ -1007,7 +1007,8 @@ var FiltersPE = {
             hash: cur.filterHash,
             filter_num: cur.filterApplied,
             conf: FiltersPE.toStr(),
-            text: cur.peDesc
+            text: cur.peDesc,
+            auto_tries: cur._autoCorrectiontOnceTried,
         };
         if (info) {
             if (info.hash) {

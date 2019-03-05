@@ -10,6 +10,8 @@ function PhotoEdit(parentEl, photoSrc, bigPhotoSrc, options, initCallback, sizeU
 
     cur.pe = this;
 
+    cur._autoCorrectiontOnceTried = 0
+
     var imageEl = new Image(),
         bigImageEl = new Image();
 
@@ -1622,6 +1624,8 @@ function PhotoEdit(parentEl, photoSrc, bigPhotoSrc, options, initCallback, sizeU
 
 
     this.applyAuto = function(enabled) {
+        cur._autoCorrectiontOnceTried += 1;
+
         this.autoEnabled = (enabled === undefined) ? !this.autoEnabled : enabled;
         if (this.autoEnabled) {
             this._auto();
