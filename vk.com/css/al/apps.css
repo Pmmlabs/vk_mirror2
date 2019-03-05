@@ -7757,14 +7757,6 @@ td.apps_cat_new_h {
     max-width: 300px
 }
 
-.vk_app_modal_container--qr img {
-    width: 140px;
-    height: 140px;
-    border-radius: 0;
-    margin-top: -12px;
-    margin-bottom: -18px
-}
-
 .vk_app_modal_close_btn {
     position: absolute;
     top: 20px;

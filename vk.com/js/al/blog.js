@@ -398,11 +398,11 @@ var blog = {
             }
         });
     },
-    setFollow: function(action, hash) {
+    setFollow: function(action, hash, separateCategory) {
         var act = 'un';
         if (action == 'follow') {
             act = '';
-            lockButton('blog_follow_btn');
+            lockButton(geByClass1('BlogFollowBlock__btn'));
         } else if (action == 'unfollow_box') {
             curBox().showProgress();
         }
@@ -415,11 +415,12 @@ var blog = {
 
         ajax.post('blog.php', {
             act: act + 'follow',
-            hash: hash
+            hash: hash,
+            category: separateCategory,
         }, {
             onDone: function(res, data) {
                 if (action == 'follow') {
-                    unlockButton('blog_follow_btn');
+                    unlockButton(geByClass1('BlogFollowBlock__btn'));
                 }
                 if (res == 'confirm_email') {
                     var mbindBox = MessageBox({
@@ -431,13 +432,16 @@ var blog = {
                     return;
                 }
                 val('blog_follow_descr', data);
+                var blogFollowBlockEl = geByClass1('BlogFollowBlock');
                 if (act == 'un') {
-                    hide('blog_followed_state');
-                    show('blog_follow_btn');
+                    removeClass(blogFollowBlockEl, 'BlogFollowBlock--withState');
+                    addClass(blogFollowBlockEl, 'BlogFollowBlock--withBtn');
                 } else {
-                    hide('blog_follow_btn');
-                    show('blog_followed_state');
-                    blog.showEmailSettings(hash);
+                    addClass(blogFollowBlockEl, 'BlogFollowBlock--withState');
+                    removeClass(blogFollowBlockEl, 'BlogFollowBlock--withBtn');
+                    if (!separateCategory) {
+                        blog.showEmailSettings(hash);
+                    }
                 }
                 if (action == 'unfollow_box') {
                     curBox().hide();
@@ -486,7 +490,12 @@ var blog = {
 
         lockButton(btn);
         ajax.post('blog.php', query, {
-            onDone: function() {
+            onDone: function(data) {
+                if (data) {
+                    val('blog_follow_descr', data);
+                    removeClass(blogFollowBlockEl, 'BlogFollowBlock--withState');
+                    addClass(blogFollowBlockEl, 'BlogFollowBlock--withBtn');
+                }
                 curBox().hide();
             }
         });

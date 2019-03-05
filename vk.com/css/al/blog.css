@@ -19,7 +19,6 @@
 .blog_iphone_video_wrap.blog_android_video,
 .blog_iphone_video_wrap.blog_iphone_black_video,
 .blog_job_icon,
-.blog_link_icon,
 .blog_nav_link_ic,
 .blog_new_entry_icon {
     -ms-high-contrast-adjust: none
@@ -547,27 +546,42 @@
     line-height: 19px
 }
 
-.blog_follow_btn {
+.BlogFollowBlock__btn {
+    display: none;
     width: 100%;
     margin-top: 15px
 }
 
-.blog_followed_state {
+.BlogFollowBlock__state {
+    display: none;
     margin-top: 10px;
     line-height: 15px;
     font-size: 12.5px
 }
 
-.blog_followed_state .pr {
+.BlogFollowBlock__state .pr {
     display: inline
 }
 
-.blog_followed_state.loading .blog_unfollow_text {
+.BlogFollowBlock__state.loading .blog_unfollow_text {
     display: none
 }
 
-.blog_followed_state .pr_bt {
+.BlogFollowBlock__state .pr_bt {
     margin-top: 7px
+}
+
+.BlogFollowBlock__settings {
+    display: none
+}
+
+.BlogFollowBlock--withSettings .BlogFollowBlock__settings {
+    display: inline
+}
+
+.BlogFollowBlock--withBtn .BlogFollowBlock__btn,
+.BlogFollowBlock--withState .BlogFollowBlock__state {
+    display: block
 }
 
 .blog_more_btn_wrap {
@@ -635,8 +649,8 @@
 
 .blog_link {
     display: block;
-    line-height: 17px;
-    margin-bottom: 22px;
+    line-height: 18px;
+    margin-bottom: 21px;
     position: relative;
     padding-left: 34px
 }
@@ -647,33 +661,28 @@
 
 .blog_link_icon {
     position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 20px;
-    height: 17px;
-    background-position: 0px 0px;
-    background-image: url(/images/blog/blog_icons.png);
-    background-repeat: no-repeat
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .blog_link_icon {
-        background-image: url(/images/blog/blog_icons_2x.png);
-        background-size: 22px 80px
-    }
+    top: -4px;
+    left: -4px;
+    width: 24px;
+    height: 24px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%22120%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20stroke%3D%22%237D9AB7%22%20stroke-width%3D%222.038%22%20d%3D%22M14%2020v-4a2%202%200%201%200-4%200v4H5.566A.57.57%200%200%201%205%2019.426V15l-1.892-.946c-.059-.03-.073-.093-.03-.14l8.546-9.497a.497.497%200%200%201%20.75%200l8.548%209.497c.038.041.03.11-.03.14L19%2015v4.426a.569.569%200%200%201-.566.574H14z%22%2F%3E%3Cpath%20d%3D%22M0%2024h24v24H0z%22%2F%3E%3Cpath%20stroke%3D%22%237D9AB7%22%20stroke-width%3D%221.8%22%20d%3D%22M8.846%2027h6.308c1.337%200%201.822.14%202.311.4.49.262.873.646%201.134%201.135.262.489.401.974.401%202.31v10.31c0%201.336-.14%201.821-.4%202.31a2.726%202.726%200%200%201-1.135%201.134c-.489.262-.974.401-2.31.401h-6.31c-1.336%200-1.821-.14-2.31-.4A2.726%202.726%200%200%201%205.4%2043.464c-.262-.489-.401-.974-.401-2.31v-10.31c0-1.336.14-1.821.4-2.31A2.726%202.726%200%200%201%206.536%2027.4c.489-.262.974-.401%202.31-.401z%22%2F%3E%3Cpath%20stroke%3D%22%237D9AB7%22%20stroke-width%3D%221.8%22%20d%3D%22M11%2041h2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M0%2048h24v24H0z%22%2F%3E%3Cpath%20stroke%3D%22%237D9AB7%22%20stroke-width%3D%221.8%22%20d%3D%22M8.846%2052h6.308c1.337%200%201.822.14%202.311.4.49.262.873.646%201.134%201.135.262.489.401.974.401%202.31v8.31c0%201.336-.14%201.821-.4%202.31a2.726%202.726%200%200%201-1.135%201.134c-.489.262-.974.401-2.31.401h-6.31c-1.336%200-1.821-.14-2.31-.4A2.726%202.726%200%200%201%205.4%2066.464c-.262-.489-.401-.974-.401-2.31v-8.31c0-1.336.14-1.821.4-2.31A2.726%202.726%200%200%201%206.536%2052.4c.489-.262.974-.401%202.31-.401z%22%2F%3E%3Cpath%20stroke%3D%22%237D9AB7%22%20stroke-width%3D%221.8%22%20d%3D%22M9%2057h6-6zm0%203h6-6zm0%203h3-3z%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cg%3E%3Cpath%20d%3D%22M0%2072h24v24H0z%22%2F%3E%3Cpath%20stroke%3D%22%237D9AB7%22%20stroke-width%3D%221.8%22%20d%3D%22M9.547%2076h4.906C18.933%2076%2020%2077.067%2020%2081.547v4.906C20%2090.933%2018.933%2092%2014.453%2092H9.547C5.067%2092%204%2090.933%204%2086.453v-4.906C4%2077.067%205.067%2076%209.547%2076z%22%2F%3E%3Cpath%20fill%3D%22%237D9AB7%22%20d%3D%22M16.645%2081.593c.067-.227%200-.393-.32-.393h-1.057a.457.457%200%200%200-.46.302s-.538%201.325-1.3%202.185c-.247.249-.359.328-.493.328-.067%200-.165-.08-.165-.306v-2.116c0-.272-.078-.393-.302-.393h-1.662c-.168%200-.269.126-.269.246%200%20.257.381.317.42%201.04v1.574c0%20.345-.061.408-.196.408-.358%200-1.23-1.33-1.748-2.853-.1-.295-.203-.415-.473-.415H7.563c-.303%200-.363.144-.363.302%200%20.283.359%201.687%201.67%203.543C9.742%2086.313%2010.974%2087%2012.094%2087c.672%200%20.755-.153.755-.416v-.958c0-.305.064-.366.277-.366.157%200%20.426.08%201.053.69.717.725.835%201.05%201.239%201.05h1.057c.302%200%20.453-.153.366-.454-.095-.3-.438-.736-.892-1.252-.246-.294-.616-.611-.728-.77-.157-.203-.112-.294%200-.475%200%200%201.288-1.834%201.423-2.456z%22%2F%3E%3C%2Fg%3E%3Cg%3E%3Cpath%20d%3D%22M0%2096h24v24H0z%22%2F%3E%3Cpath%20stroke%3D%22%237D9AB7%22%20stroke-width%3D%221.8%22%20d%3D%22M4%20106.002A2.999%202.999%200%200%201%207.01%20103h9.98a3.002%203.002%200%200%201%203.01%203.002v3A1.997%201.997%200%200%201%2018.006%20111H5.994A1.991%201.991%200%200%201%204%20109.002v-3z%22%2F%3E%3Cpath%20stroke%3D%22%237D9AB7%22%20stroke-width%3D%221.8%22%20d%3D%22M8%20103.01a3.002%203.002%200%200%201%203.002-3.01h1.996A3.007%203.007%200%200%201%2016%20103.01m4%204.99v3.99a3.003%203.003%200%200%201-3.01%203.01H7.01A3.01%203.01%200%200%201%204%20111.99V108%22%2F%3E%3Cpath%20stroke%3D%22%237D9AB7%22%20stroke-width%3D%221.8%22%20d%3D%22M11%20108h2%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E') 0 0;
+    background-size: 100%
 }
 
 .blog_link_icon_products {
-    background-position: 3px -21px;
-    height: 20px;
-    top: -1px
+    background-position: 0 -24px
+}
+
+.blog_link_icon_presskit {
+    background-position: 0 -48px
+}
+
+.blog_link_icon_brand {
+    background-position: 0 -72px
 }
 
 .blog_link_icon_jobs {
-    background-position: 1px -45px;
-    height: 16px
+    background-position: 0 -96px
 }
 
 .blog_about_page {

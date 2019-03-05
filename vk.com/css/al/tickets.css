@@ -1363,8 +1363,7 @@ body.dev a.tickets_rated {
     color: #777
 }
 
-.tickets_new_link,
-.tickets_stats_link {
+.tickets_new_link {
     float: right;
     padding: 16px 10px 0;
     font-size: 13px

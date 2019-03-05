@@ -983,7 +983,6 @@ var Settings = {
             });
         }, 200);
     },
-
     videoadsCheck: function() {
         clearTimeout(cur.videoadsUpdateTO);
         cur.videoadsUpdateTO = setTimeout(Settings.videoadsSubmit, 200);

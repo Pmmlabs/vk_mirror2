@@ -353,6 +353,37 @@ a.ui_box_header_link {
     display: none
 }
 
+.compact_ui_subtabs {
+    font-size: 12px
+}
+
+.compact_ui_subtabs .ui_tab,
+.compact_ui_subtabs .ui_tab_plain {
+    padding: 13px 2px 11px;
+    margin-left: 2px;
+    margin-right: 2px
+}
+
+.compact_ui_subtabs .ui_tab_group {
+    padding-bottom: 10px!important
+}
+
+.compact_ui_subtabs.ui_tabs .ui_tab:hover,
+.compact_ui_subtabs.ui_tabs .ui_tab_sel {
+    padding-bottom: 10px
+}
+
+.compact_ui_subtabs .ui_tab_count {
+    font-size: 11px;
+    padding-left: 4px
+}
+
+.compact_ui_tab_link {
+    float: right;
+    font-size: 12px;
+    padding: 13px 5px 0
+}
+
 .ui_box_search {
     display: block;
     background: url(/images/search_icon_popup_blue.png) no-repeat 12px 20px;

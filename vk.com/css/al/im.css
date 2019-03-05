@@ -95,6 +95,11 @@
     bottom: 0
 }
 
+body,
+.BlinkText {
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
+}
+
 .BlinkText {
     color: #939393;
     vertical-align: middle;
@@ -103,7 +108,6 @@
     opacity: 0;
     font-size: 13px;
     line-height: 19px;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
     -o-transition: opacity .4s ease;
     transition: opacity .4s ease;
     cursor: default;
@@ -2036,33 +2040,181 @@ textarea.EditableLabel__textarea {
     display: inline-flex;
     -ms-flex-align: center;
     align-items: center;
-    cursor: pointer
+    cursor: pointer;
+    position: relative;
+    font-size: 13px;
+    line-height: 15px
 }
 
-.CheckBox>input[type=checkbox] {
-    display: none
+.CheckBox__input {
+    display: inline-block;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    clip: rect(1px, 1px, 1px, 1px);
+    opacity: 0;
+    overflow: hidden;
+    outline: none
 }
 
-.CheckBox:before {
-    content: '';
+.CheckBox__indicator {
     display: block;
     margin: 0 7px 0 0;
     width: 15px;
     height: 15px;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2215%22%20height%3D%2215%22%20viewBox%3D%220%200%2015%2015%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Crect%20id%3D%22a%22%20width%3D%2215%22%20height%3D%2215%22%20rx%3D%223%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cuse%20fill%3D%22%23FFF%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Crect%20width%3D%2214%22%20height%3D%2214%22%20x%3D%22.5%22%20y%3D%22.5%22%20stroke%3D%22%23C1C9D1%22%20rx%3D%223%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 0
 }
 
-.is_rtl1 .CheckBox:before {
-    margin: 0 0 0 7px
+.CheckBox__input:checked+.CheckBox__indicator {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2215%22%20height%3D%2215%22%20viewBox%3D%220%200%2015%2015%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2215%22%20height%3D%2215%22%20fill%3D%22%235181B8%22%20rx%3D%223%22%2F%3E%3Cpath%20stroke%3D%22%23FFF%22%20stroke-width%3D%221.7%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M4%207.5L6.5%2010%2011%204.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 0
 }
 
-.CheckBox--checked:before {
-    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2215%22%20height%3D%2215%22%20viewBox%3D%220%200%2015%2015%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2215%22%20height%3D%2215%22%20fill%3D%22%235181B8%22%20rx%3D%223%22%2F%3E%3Cpath%20stroke%3D%22%23FFF%22%20stroke-width%3D%221.7%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M4%207.5L6.5%2010%2011%204.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 0
+.is_rtl1 .CheckBox__indicator {
+    margin: 0 0 0 7px
 }
 
 .CheckBox--disabled {
     cursor: default;
     opacity: 0.5
+}
+
+.BaseModal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    z-index: 1000
+}
+
+.BaseModal__backdrop {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .7)
+}
+
+.BaseModal__scrollbarMeasure {
+    position: absolute;
+    top: -9999px;
+    width: 50px;
+    height: 50px;
+    overflow: scroll
+}
+
+.BaseModal__bodyHiddenOverflow {
+    overflow: hidden
+}
+
+.BaseModal__content {
+    position: relative;
+    background-color: #fff;
+    border-radius: 4px;
+    overflow-y: auto;
+    max-height: 100%;
+    z-index: 1001
+}
+
+.Modal .BaseModal__content {
+    max-width: 800px;
+    overflow-y: hidden;
+    max-height: inherit
+}
+
+.Modal__header--white {
+    background-color: #f2f4f7;
+    border-bottom: 1px solid #e7e8ec
+}
+
+.Modal__header--blue {
+    color: #fff;
+    background-color: #6187ae;
+    border-bottom: 1px solid #6187ae
+}
+
+.Modal__header--blue .Modal__headerTitle {
+    color: #fff
+}
+
+.Modal__header--blue .Modal__headerCross:before {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%2232%20155%2024%2024%22%3E%3Cg%20style%3D%22fill%3Anone%3B%22%3E%3Crect%20x%3D%2232%22%20y%3D%22155%22%20width%3D%2224%22%20height%3D%2224%22%2F%3E%3Cpath%20d%3D%22M44%20165.6L40.2%20161.8C39.8%20161.4%2039.2%20161.4%2038.8%20161.8%2038.4%20162.2%2038.4%20162.8%2038.8%20163.2L42.6%20167%2038.8%20170.8C38.4%20171.2%2038.4%20171.8%2038.8%20172.2%2039.2%20172.6%2039.8%20172.6%2040.2%20172.2L44%20168.4%2047.8%20172.2C48.2%20172.6%2048.8%20172.6%2049.2%20172.2%2049.6%20171.8%2049.6%20171.2%2049.2%20170.8L45.4%20167%2049.2%20163.2C49.6%20162.8%2049.6%20162.2%2049.2%20161.8%2048.8%20161.4%2048.2%20161.4%2047.8%20161.8L44%20165.6Z%22%20fill%3D%22%23FFFFFF%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.Modal__headerInner {
+    padding-left: 25px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.Modal__headerTitle {
+    margin: 0;
+    padding: 19px 10px 19px 0;
+    font-size: 14px;
+    font-weight: 400
+}
+
+.Modal__headerCross {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    padding: 0;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 62px;
+    height: 54px;
+    font-size: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.7;
+    -o-transition: opacity, 0.2s;
+    transition: opacity, 0.2s
+}
+
+.Modal__headerCross:hover {
+    opacity: 1
+}
+
+.Modal__headerCross:before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%2232%20155%2024%2024%22%3E%3Cg%20style%3D%22fill%3Anone%3B%22%3E%3Crect%20x%3D%2232%22%20y%3D%22155%22%20width%3D%2224%22%20height%3D%2224%22%2F%3E%3Cpath%20d%3D%22M44%20165.6L40.2%20161.8C39.8%20161.4%2039.2%20161.4%2038.8%20161.8%2038.4%20162.2%2038.4%20162.8%2038.8%20163.2L42.6%20167%2038.8%20170.8C38.4%20171.2%2038.4%20171.8%2038.8%20172.2%2039.2%20172.6%2039.8%20172.6%2040.2%20172.2L44%20168.4%2047.8%20172.2C48.2%20172.6%2048.8%20172.6%2049.2%20172.2%2049.6%20171.8%2049.6%20171.2%2049.2%20170.8L45.4%20167%2049.2%20163.2C49.6%20162.8%2049.6%20162.2%2049.2%20161.8%2048.8%20161.4%2048.2%20161.4%2047.8%20161.8L44%20165.6Z%22%20fill%3D%22%23828A99%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.Modal__body {
+    padding: 0 25px;
+    max-height: 80vh;
+    overflow-y: auto
+}
+
+.Modal__footer {
+    border-top: 1px solid #e7e8ec;
+    background-color: #f7f8fa;
+    box-sizing: border-box
+}
+
+.Modal__footerInner {
+    padding: 14px 25px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: end;
+    justify-content: flex-end
 }
 
 .Keyboard {
