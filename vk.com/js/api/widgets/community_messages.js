@@ -570,10 +570,10 @@ var CommunityWidget = {
 
             if (domain.match(/^([a-zA-Z0-9\.\_\-]+\.)?(vkontakte\.ru|vk\.com|vkadre\.ru|vshtate\.ru|userapi\.com|vk\.me|([a-zA-Z0-9\-]\.)?snapster\.io)$/)) {
                 url = replaceEntities(url).replace(/([^a-zA-Z0-9#%;_\-.\/?&=\[\]])/g, encodeURIComponent);
-                return prefix + '<a href="' + (protocol + url).replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '" target="_blank">' + full + '</a>';
+                return prefix + '<a href="' + (protocol + url).replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '" target="_blank" rel="noopener">' + full + '</a>';
             }
 
-            return prefix + '<a href="/away.php?utf=1&to=' + encodeURIComponent(protocol + replaceEntities(url)) + '" target="_blank">' + full + '</a>';
+            return prefix + '<a href="/away.php?utf=1&to=' + encodeURIComponent(protocol + replaceEntities(url)) + '" target="_blank" rel="noopener">' + full + '</a>';
         });
 
         return text;
@@ -904,16 +904,16 @@ var CommunityWidget = {
                 case 'doc':
                     var class_name = CommunityWidget.getAttachFileClass(item.ext);
                     res += '<div class="wcm_attach_item clear_fix wcm_attach_doc">\
-            <a href="' + item.url + '" target="_blank"><div class="wcm_attach_doc_ic fl_l ' + class_name + '"></div></a>\
+            <a href="' + item.url + '" target="_blank" rel="noopener"><div class="wcm_attach_doc_ic fl_l ' + class_name + '"></div></a>\
             <div class="wcm_attach_doc_cont">\
-              <div class="wcm_attach_doc_title"><a href="' + item.url + '" target="_blank">' + clean(unclean(unclean(item.title))) + '</a></div>\
+              <div class="wcm_attach_doc_title"><a href="' + item.url + '" target="_blank" rel="noopener">' + clean(unclean(unclean(item.title))) + '</a></div>\
               <div class="wcm_attach_doc_size">' + item.size + '</div>\
             </div>\
           </div>';
                     //res += '<a href="'+item.url+'" target="_blank" class="fc_msg_att_lnk"><span class="fc_msg_att_icon_doc"></span><span class="fc_msg_att_text">'+item.title+'</span></a>';
                     break;
                 case 'geo':
-                    res += '<div class="wcm_attach_item"><a href="' + item.url + '" target="_blank"><div class="page_media_map_point"></div><img class="page_media_map" width="188" height="74" src="' + item.img + '" /></a></div>';
+                    res += '<div class="wcm_attach_item"><a href="' + item.url + '" target="_blank" rel="noopener"><div class="page_media_map_point"></div><img class="page_media_map" width="188" height="74" src="' + item.img + '" /></a></div>';
                     break;
                 case 'sticker':
                     res += '<img class="wcm_attach_item wcm_attach_sticker" height="' + item.size + '" src="' + item.src + '">';
@@ -932,7 +932,7 @@ var CommunityWidget = {
                     res += item.html;
                     break;
                 case 'audio_playlist':
-                    res += '<a href="' + item.href + '" target="_blank" class="wcm_attach_item wcm_audio_playlist clear_fix">\
+                    res += '<a href="' + item.href + '" target="_blank" rel="noopener" class="wcm_attach_item wcm_audio_playlist clear_fix">\
             <div class="wcm_audio_playlist_cover" style="' + item.thumb + '">' + item.grid_covers + '</div>\
             <div class="wcm_audio_playlist_info">\
               <div class="wcm_audio_playlist_title">' + clean(item.title) + '</div>\

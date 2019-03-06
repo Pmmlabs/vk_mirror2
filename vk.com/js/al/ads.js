@@ -401,7 +401,7 @@ Ads.showIntroBox = function(section, event) {
 Ads.showAnnouncementVideoBox = function(title, player_link, title_link) {
     var content = '<iframe frameborder="0" src="' + player_link + '" style="width:720px;height:405px;" allowfullscreen></iframe>';
     if (title_link) {
-        title = '<a href="' + title_link + '" target="_blank">' + title + '</a>';
+        title = '<a href="' + title_link + '" target="_blank" rel="noopener">' + title + '</a>';
     }
     showFastBox({
         title: title,

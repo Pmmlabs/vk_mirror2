@@ -4122,7 +4122,8 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 (min-resolution: 192dpi) {
     .podcast_episode_layer__cover {
         background-image: url(/images/podcast_placeholder_150_2x.png);
-        background-size: 150px 150px
+        background-size: 150px 150px;
+        background-size: cover
     }
 }
 

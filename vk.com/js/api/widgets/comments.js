@@ -646,7 +646,7 @@ var MediaPoster = function(postType, target, preview, msgBox, toId, types) {
                 obj = '<div class="attach_app fl_l"><span><img src="' + info[1] + '"/></span><span>' + info[0] + '</span></div>';
                 break;
             case 'share':
-                obj = '<div class="attach_url fl_l"><span>' + getLang('wall_link_label') + ': <a href="' + base_domain + 'away.php?to=' + encodeURIComponent(info[1]) + '" target="_blank">' + info[0] + '</a></span></div>';
+                obj = '<div class="attach_url fl_l"><span>' + getLang('wall_link_label') + ': <a href="' + base_domain + 'away.php?to=' + encodeURIComponent(info[1]) + '" target="_blank" rel="noopener">' + info[0] + '</a></span></div>';
                 shareLoadPreview(info[1]);
                 break;
             case 'poll':
@@ -1037,8 +1037,8 @@ function ShareTooltip(target, options) {
     } else {
         var away_url = 'away.php?to=' + encodeURIComponent(options.full_url || '') + (parseInt(getCookie('remixsettings_bits')) & 1 ? '&h=' + options.full_url_h || '' : '');
     }
-    options.footer = '<a href="' + away_url + '" target="_blank">' + link_text + '</a>';
-    options.title = '<a href="' + away_url + '" target="_blank">' + (options.title || '') + '</a>';
+    options.footer = '<a href="' + away_url + '" target="_blank" rel="noopener">' + link_text + '</a>';
+    options.title = '<a href="' + away_url + '" target="_blank" rel="noopener">' + (options.title || '') + '</a>';
 
     return new BaseTooltip(target, extend({
         width: 350,

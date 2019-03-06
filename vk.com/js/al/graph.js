@@ -2256,10 +2256,10 @@ if (!window.Graph)
                 var s = (_2x ? '_2x' : '');
                 var content = getLang('stats_good_browser_box_msg') + '\
     <div id="stats_good_browsers" class="clear_fix">\
-      <a href="http://www.mozilla-europe.org/" target="_blank" style="background: url(/images/firefox' + s + '.png) no-repeat 50% 17px;">Mozilla Firefox</a>\
-      <a href="http://www.google.com/chrome/" target="_blank" style="background: url(/images/chrome' + s + '.png) no-repeat 50% 17px;">Google Chrome</a>\
-      <a href="http://www.opera.com/" target="_blank" style="background: url(/images/opera' + s + '.png) no-repeat 50% 15px;">Opera</a>\
-      <a href="http://www.apple.com/safari/" target="_blank" style="background: url(/images/safari' + s + '.png) no-repeat 50% 12px;">Safari</a>\
+      <a href="http://www.mozilla-europe.org/" target="_blank" rel="noopener" style="background: url(/images/firefox' + s + '.png) no-repeat 50% 17px;">Mozilla Firefox</a>\
+      <a href="http://www.google.com/chrome/" target="_blank" rel="noopener" style="background: url(/images/chrome' + s + '.png) no-repeat 50% 17px;">Google Chrome</a>\
+      <a href="http://www.opera.com/" target="_blank" rel="noopener" style="background: url(/images/opera' + s + '.png) no-repeat 50% 15px;">Opera</a>\
+      <a href="http://www.apple.com/safari/" target="_blank" rel="noopener" style="background: url(/images/safari' + s + '.png) no-repeat 50% 12px;">Safari</a>\
     </div>\
     <style>\
       #stats_good_browsers {\

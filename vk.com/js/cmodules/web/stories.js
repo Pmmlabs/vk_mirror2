@@ -503,6 +503,7 @@
                         className: "stories_link_wrap"
                     }, o.createElement("a", {
                         target: "_blank",
+                        rel: "noopener",
                         className: r,
                         href: e.url,
                         title: e.text,

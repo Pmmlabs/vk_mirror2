@@ -12914,7 +12914,7 @@
 
         function Jt(e, t, n) {
             var r = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : "";
-            return n ? '<a class="im_srv_lnk ' + r + '" target="_blank" href="' + e + '">' + t + "</a>" : '<span class="' + r + '">' + t + "</span>"
+            return n ? '<a class="im_srv_lnk ' + r + '" target="_blank" rel="noopener" href="' + e + '">' + t + "</a>" : '<span class="' + r + '">' + t + "</span>"
         }
 
         function Zt(e, t, n) {
@@ -16339,9 +16339,9 @@
                     f = "";
                 return m >= 0 ? d = i.substr(m + 1) : (m = i.indexOf("#!")) >= 0 && (d = "/" + i.substr(m + 2).replace(/^\//, "")), (u = d.match(r.B)) && u[1].length < 32 && (f = ' mention_id="' + u[1] + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)"'), '<a href="' + function(e) {
                     return e.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-                }(n + i + a) + '" target="_blank"' + f + ">" + l + "</a>"
+                }(n + i + a) + '" target="_blank" rel="noopener"' + f + ">" + l + "</a>"
             }
-            return '<a href="' + ("away.php?utf=1&to=" + encodeURIComponent(n + s(i + a))) + '" target="_blank" onclick="' + ("return goAway('" + o((n + i + a).replace(/'/g, "\\'")) + "', {}, event);") + '">' + l + "</a>"
+            return '<a href="' + ("away.php?utf=1&to=" + encodeURIComponent(n + s(i + a))) + '" target="_blank" rel="noopener" onclick="' + ("return goAway('" + o((n + i + a).replace(/'/g, "\\'")) + "', {}, event);") + '">' + l + "</a>"
         }
     },
     rCUf: function(e, t, n) {

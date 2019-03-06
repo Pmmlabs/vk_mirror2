@@ -212,7 +212,7 @@ var VideoYoutube = {
   <div id="video_yt_popup" class="hidden" onclick="VideoYoutube.togglePlay()" ondblclick="VideoYoutube.toggleFullscreen()">\
     <div class="video_yt_popup_play video_yt_icon"></div>\
     <div class="video_yt_popup_title" style="' + (vars.no_title ? 'display:none' : '') + '">' + vars.title + '</div>\
-    <a href="' + vars.author_href + '" target="_blank" onclick="event.stopPropagation()" class="video_yt_popup_author">' + vars.author_name + '</a>\
+    <a href="' + vars.author_href + '" target="_blank" ref="noopener" onclick="event.stopPropagation()" class="video_yt_popup_author">' + vars.author_name + '</a>\
   </div>\
 \
   <div id="video_yt_tip">\

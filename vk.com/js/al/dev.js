@@ -778,7 +778,7 @@ var Dev = {
                         displayUrl = str;
                     }
 
-                    str = '<a href="' + str + '" target="_blank" ' + onmouseover + '>' + displayUrl + '</a>';
+                    str = '<a href="' + str + '" target="_blank" rel="noopener"' + onmouseover + '>' + displayUrl + '</a>';
                 }
                 str = str.replace(/\n/g, '<br />');
                 html += '<span class="dev_result_str">"' + str + '"</span>';

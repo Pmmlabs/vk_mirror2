@@ -2302,7 +2302,7 @@
                         Object(i.K)(a) || (a = "/away.php?to=" + encodeURIComponent(a) + "&utf=1"), t._linkTooltip = new ElementTooltip(r, {
                             cls: "article_editor_link_show_tt",
                             appendTo: t._els.editor,
-                            content: V('<a target="_blank" href="' + a + '" class="article_editor_link">' + o + "</a>")
+                            content: V('<a target="_blank" rel="noopener" href="' + a + '" class="article_editor_link">' + o + "</a>")
                         })
                     }
                 })

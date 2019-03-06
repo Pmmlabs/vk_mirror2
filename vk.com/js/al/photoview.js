@@ -1598,7 +1598,7 @@ var Photoview = {
                             actionsHtml += '<div class="pv_more_act_item" onmouseover="' + (act[3] || '') + '" onclick="' + (act[2] || '') + '" id="pv_more_act_' + act[0] + '">' + act[1] + '</div>';
                         }
                     });
-                    actionsHtml += '<a class="pv_more_act_item" id="pv_more_act_download" target="_blank" href="' + Photoview.genData(ph, 'w').src + '">' + getLang('photos_pv_act_open_original') + '</a>';
+                    actionsHtml += '<a class="pv_more_act_item" id="pv_more_act_download" target="_blank" rel="noopener" href="' + Photoview.genData(ph, 'w').src + '">' + getLang('photos_pv_act_open_original') + '</a>';
                     actionsHtml = '<div class="pv_more_acts">' + actionsHtml + '</div>';
 
                     if (actions.length) {
@@ -1606,7 +1606,7 @@ var Photoview = {
                         actions = actions.replace(/\"/g, '&quot;');
                         _actionsHTML.push('<a class="pv_actions_more" data-items="' + actions + '">' + getLang('photos_actions_more') + '</a>');
                     } else if (inArray(nav.objLoc[0], ['support', 'helpdesk'])) {
-                        _actionsHTML.push('<a id="pv_more_act_download" target="_blank" href="' + Photoview.genData(ph, 'w').src + '">' + getLang('photos_pv_act_open_original') + '</a>');
+                        _actionsHTML.push('<a id="pv_more_act_download" target="_blank" rel="noopener" href="' + Photoview.genData(ph, 'w').src + '">' + getLang('photos_pv_act_open_original') + '</a>');
                     }
 
                     _actionsHTML = _actionsHTML.join('<span class="divider"></span>');
