@@ -234,11 +234,12 @@ var Profile = {
                     } else if (ttText) {
                         ajax.preload('al_friends.php', {
                             act: 'friend_tt',
-                            mid: cur.oid
-                        }, [ttText, ttScript])
+                            mid: cur.oid,
+                            hash: hash
+                        }, [ttText, ttScript]);
                         setTimeout(Profile.friendTooltip, 0);
                     }
-                    Profile.frDropdownClear();
+                    Profile.frDropdownClear(hash);
                 },
                 showProgress: function() {
                     if (btn.tagName == 'BUTTON') lockButton(btn);
@@ -282,7 +283,7 @@ var Profile = {
             });
             removeEvent(document, 'click', Profile.friendTTHide);
         },
-        friendTooltip: function(status) {
+        friendTooltip: function(status, hash) {
             if (cur.viewAsBox) {
                 return;
             }
@@ -307,7 +308,8 @@ var Profile = {
                 url: 'al_friends.php',
                 params: {
                     act: 'friend_tt',
-                    mid: cur.oid
+                    mid: cur.oid,
+                    hash: hash
                 },
                 cache: 1,
                 slide: 15,
@@ -330,12 +332,13 @@ var Profile = {
                 }
             }, e);
         },
-        frDropdownPreload: function(el, sh) {
+        frDropdownPreload: function(el, sh, hash) {
             if (cur.viewAsBox || !cur.oid) return;
 
             ajax.post('al_friends.php', {
                 act: 'friend_dd',
-                mid: cur.oid
+                mid: cur.oid,
+                hash: hash
             }, {
                 onDone: function(html, js) {
                     if (!sh) return;
@@ -348,10 +351,11 @@ var Profile = {
                 cache: 1
             });
         },
-        frDropdownClear: function() {
+        frDropdownClear: function(hash) {
             ajax.preload('al_friends.php', {
                 act: 'friend_dd',
-                mid: cur.oid
+                mid: cur.oid,
+                hash: hash
             }, false);
         },
         frListsDDShow: function(ev) {

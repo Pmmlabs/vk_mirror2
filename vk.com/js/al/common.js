@@ -5179,7 +5179,8 @@ function leftBlockToggleFriend(mid, type, hash, act, ev) {
             if (ttText) {
                 ajax.preload('al_friends.php', {
                     act: 'friend_tt',
-                    mid: mid
+                    mid: mid,
+                    hash: hash
                 }, [ttText, ttScript])
                 setTimeout(leftBlockFriendTooltip, 0);
             }
@@ -5209,13 +5210,14 @@ function leftBlockToggleFriend(mid, type, hash, act, ev) {
     cancelEvent(ev);
 }
 
-function leftBlockFriendTooltip() {
+function leftBlockFriendTooltip(hash) {
     return showTooltip(ge('left_friend_subscribed'), {
         url: 'al_friends.php',
         params: {
             act: 'friend_tt',
             mid: cur.mfid,
-            from: 'leftblock'
+            from: 'leftblock',
+            hash: hash
         },
         slide: 15,
         hidedt: 500,

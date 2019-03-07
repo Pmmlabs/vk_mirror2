@@ -15773,8 +15773,8 @@
         function w(e, t) {
             if (t && t.status && e.lpstat) {
                 var n = Math.floor(t.status / 100);
-                t.status >= 500 && t.status < 600 && statlogsValueEvent("fc_longpoll", 1, n + "0x", t.getResponseHeader("x-frontend")), y[n] = n in y ? y[n] + 1 : 1, Date.now() - j >= v && (Object.keys(y).forEach(function(e) {
-                    statlogsValueEvent("fc_longpoll", y[e], e + "0x", t.getResponseHeader("x-frontend"))
+                t.status >= 500 && t.status < 600 && statlogsValueEvent("fc_longpoll", 1, n, t.getResponseHeader("x-frontend")), y[n] = n in y ? y[n] + 1 : 1, Date.now() - j >= v && (Object.keys(y).forEach(function(e) {
+                    statlogsValueEvent("fc_longpoll", y[e], e, t.getResponseHeader("x-frontend"))
                 }), y = {}, j = Date.now())
             }
         }
