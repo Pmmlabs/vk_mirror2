@@ -3804,6 +3804,15 @@
                 }), e.concat(t).forEach(function(e) {
                     a.appendChild(e)
                 }), val(i, ""), i.appendChild(a))
+            },
+            showCommonFriendsBox: function(e, t) {
+                return showTabbedBox("al_page.php", {
+                    act: "box",
+                    oid: t,
+                    tab: "common"
+                }, {
+                    cache: 1
+                }, e), !1
             }
         }
     },

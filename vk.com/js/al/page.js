@@ -2208,6 +2208,14 @@ var Page = {
                 domInsertBefore(croppedAttachesEls, croppedAttaches);
                 re(croppedAttaches);
                 re(btn);
+
+                var postEl = gpeByClass('post', btn);
+                var postId = post ? domData(postEl, 'post-id') : '';
+
+                if (postId) {
+                    var ref = (cur.module === 'feed' && feed) ? feed.getModuleRef() : cur.module;
+                    statlogsValueEvent('post_activity', 'expand_attach', postId, ref);
+                }
             }
 
             return event && cancelEvent(event);
@@ -7729,6 +7737,12 @@ var Wall = {
                             }
                         }
                     });
+
+                    if (window.IMBRIDGE) {
+                        // because of removeClassDelayed above
+                        setTimeout(IMBRIDGE.syncHistory.bind(IMBRIDGE), 0);
+                    }
+
                     if (vk.widget && window.WPoll) {
                         window.WPoll.resizeWidget();
                     }
