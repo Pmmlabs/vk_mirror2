@@ -447,33 +447,6 @@
     width: 42px
 }
 
-.videoplayer_live_app {
-    padding-left: 0
-}
-
-.videoplayer_live_app_link {
-    display: block;
-    padding: 0 6px;
-    border-radius: 3px;
-    line-height: 20px;
-    background: -o-linear-gradient(135deg, #ff2bab, #f65148);
-    background: linear-gradient(-45deg, #ff2bab, #f65148);
-    color: #fff;
-    font-size: 12px;
-    font-weight: 600;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto
-}
-
-.videoplayer_live_app_link:hover {
-    text-decoration: none
-}
-
-body[data-useragent=safari] .videoplayer_live_app_link {
-    display: inline-block;
-    vertical-align: middle
-}
-
 .videoplayer_volume_icon {
     width: 24px;
     height: 24px

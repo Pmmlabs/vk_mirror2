@@ -5,7 +5,6 @@
 .media-video-thumb-background,
 .media-video-thumb-wrap-background,
 .video_choose_upload_area_label,
-.video_desktop_live_intro_wrap,
 .video_empty_placeholder.no_rows,
 .video_item .video_item_thumb,
 .video_item .video_item_thumb_wrap,
@@ -1140,36 +1139,6 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
 
 .video_search_filters_wrap {
     padding: 20px
-}
-
-.video_desktop_live_intro_wrap {
-    padding: 20px 20px 20px 140px;
-    background: url(/images/video/live_stream_logo.png) #fff no-repeat 20px 20px
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .video_desktop_live_intro_wrap {
-        background-image: url(/images/video/live_stream_logo_2x.png);
-        background-size: 100px 100px
-    }
-}
-
-.video_desktop_live_intro_title {
-    margin: 8px 0 5px;
-    font-size: 19px;
-    line-height: 23px
-}
-
-.video_desktop_live_intro_description {
-    margin: 5px 0 15px;
-    line-height: 19px
-}
-
-.video_desktop_live_intro_btn {
-    float: left;
-    margin-right: 10px
 }
 
 .video_choose_upload_area_cont {

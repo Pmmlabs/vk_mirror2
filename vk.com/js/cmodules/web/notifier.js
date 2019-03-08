@@ -3193,7 +3193,7 @@
 
         function y(e, t) {
             if (t && t.status && e.lpstat) {
-                var i = Math.floor(t.status / 100);
+                var i = t.status;
                 t.status >= 500 && t.status < 600 && statlogsValueEvent("fc_longpoll", 1, i, t.getResponseHeader("x-frontend")), C[i] = i in C ? C[i] + 1 : 1, Date.now() - w >= b && (Object.keys(C).forEach(function(e) {
                     statlogsValueEvent("fc_longpoll", C[e], e, t.getResponseHeader("x-frontend"))
                 }), C = {}, w = Date.now())

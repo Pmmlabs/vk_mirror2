@@ -3856,9 +3856,9 @@
                         M = 0 | a[6],
                         O = 8191 & M,
                         k = M >>> 13,
-                        D = 0 | a[7],
-                        C = 8191 & D,
-                        L = D >>> 13,
+                        C = 0 | a[7],
+                        D = 8191 & C,
+                        L = C >>> 13,
                         x = 0 | a[8],
                         R = 8191 & x,
                         U = x >>> 13,
@@ -3909,31 +3909,31 @@
                     var At = (u + (r = r + Math.imul(f, it) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(f, rt) | 0) + Math.imul(l, it) | 0)) << 13) | 0;
                     u = ((o = o + Math.imul(l, rt) | 0) + (n >>> 13) | 0) + (At >>> 26) | 0, At &= 67108863, r = Math.imul(O, V), n = (n = Math.imul(O, H)) + Math.imul(k, V) | 0, o = Math.imul(k, H), r = r + Math.imul(S, X) | 0, n = (n = n + Math.imul(S, z) | 0) + Math.imul(T, X) | 0, o = o + Math.imul(T, z) | 0, r = r + Math.imul(E, K) | 0, n = (n = n + Math.imul(E, Y) | 0) + Math.imul(P, K) | 0, o = o + Math.imul(P, Y) | 0, r = r + Math.imul(m, Z) | 0, n = (n = n + Math.imul(m, Q) | 0) + Math.imul(A, Z) | 0, o = o + Math.imul(A, Q) | 0, r = r + Math.imul(b, $) | 0, n = (n = n + Math.imul(b, tt) | 0) + Math.imul(g, $) | 0, o = o + Math.imul(g, tt) | 0, r = r + Math.imul(p, it) | 0, n = (n = n + Math.imul(p, rt) | 0) + Math.imul(_, it) | 0, o = o + Math.imul(_, rt) | 0;
                     var wt = (u + (r = r + Math.imul(f, ot) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(f, at) | 0) + Math.imul(l, ot) | 0)) << 13) | 0;
-                    u = ((o = o + Math.imul(l, at) | 0) + (n >>> 13) | 0) + (wt >>> 26) | 0, wt &= 67108863, r = Math.imul(C, V), n = (n = Math.imul(C, H)) + Math.imul(L, V) | 0, o = Math.imul(L, H), r = r + Math.imul(O, X) | 0, n = (n = n + Math.imul(O, z) | 0) + Math.imul(k, X) | 0, o = o + Math.imul(k, z) | 0, r = r + Math.imul(S, K) | 0, n = (n = n + Math.imul(S, Y) | 0) + Math.imul(T, K) | 0, o = o + Math.imul(T, Y) | 0, r = r + Math.imul(E, Z) | 0, n = (n = n + Math.imul(E, Q) | 0) + Math.imul(P, Z) | 0, o = o + Math.imul(P, Q) | 0, r = r + Math.imul(m, $) | 0, n = (n = n + Math.imul(m, tt) | 0) + Math.imul(A, $) | 0, o = o + Math.imul(A, tt) | 0, r = r + Math.imul(b, it) | 0, n = (n = n + Math.imul(b, rt) | 0) + Math.imul(g, it) | 0, o = o + Math.imul(g, rt) | 0, r = r + Math.imul(p, ot) | 0, n = (n = n + Math.imul(p, at) | 0) + Math.imul(_, ot) | 0, o = o + Math.imul(_, at) | 0;
+                    u = ((o = o + Math.imul(l, at) | 0) + (n >>> 13) | 0) + (wt >>> 26) | 0, wt &= 67108863, r = Math.imul(D, V), n = (n = Math.imul(D, H)) + Math.imul(L, V) | 0, o = Math.imul(L, H), r = r + Math.imul(O, X) | 0, n = (n = n + Math.imul(O, z) | 0) + Math.imul(k, X) | 0, o = o + Math.imul(k, z) | 0, r = r + Math.imul(S, K) | 0, n = (n = n + Math.imul(S, Y) | 0) + Math.imul(T, K) | 0, o = o + Math.imul(T, Y) | 0, r = r + Math.imul(E, Z) | 0, n = (n = n + Math.imul(E, Q) | 0) + Math.imul(P, Z) | 0, o = o + Math.imul(P, Q) | 0, r = r + Math.imul(m, $) | 0, n = (n = n + Math.imul(m, tt) | 0) + Math.imul(A, $) | 0, o = o + Math.imul(A, tt) | 0, r = r + Math.imul(b, it) | 0, n = (n = n + Math.imul(b, rt) | 0) + Math.imul(g, it) | 0, o = o + Math.imul(g, rt) | 0, r = r + Math.imul(p, ot) | 0, n = (n = n + Math.imul(p, at) | 0) + Math.imul(_, ot) | 0, o = o + Math.imul(_, at) | 0;
                     var Et = (u + (r = r + Math.imul(f, dt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(f, ut) | 0) + Math.imul(l, dt) | 0)) << 13) | 0;
-                    u = ((o = o + Math.imul(l, ut) | 0) + (n >>> 13) | 0) + (Et >>> 26) | 0, Et &= 67108863, r = Math.imul(R, V), n = (n = Math.imul(R, H)) + Math.imul(U, V) | 0, o = Math.imul(U, H), r = r + Math.imul(C, X) | 0, n = (n = n + Math.imul(C, z) | 0) + Math.imul(L, X) | 0, o = o + Math.imul(L, z) | 0, r = r + Math.imul(O, K) | 0, n = (n = n + Math.imul(O, Y) | 0) + Math.imul(k, K) | 0, o = o + Math.imul(k, Y) | 0, r = r + Math.imul(S, Z) | 0, n = (n = n + Math.imul(S, Q) | 0) + Math.imul(T, Z) | 0, o = o + Math.imul(T, Q) | 0, r = r + Math.imul(E, $) | 0, n = (n = n + Math.imul(E, tt) | 0) + Math.imul(P, $) | 0, o = o + Math.imul(P, tt) | 0, r = r + Math.imul(m, it) | 0, n = (n = n + Math.imul(m, rt) | 0) + Math.imul(A, it) | 0, o = o + Math.imul(A, rt) | 0, r = r + Math.imul(b, ot) | 0, n = (n = n + Math.imul(b, at) | 0) + Math.imul(g, ot) | 0, o = o + Math.imul(g, at) | 0, r = r + Math.imul(p, dt) | 0, n = (n = n + Math.imul(p, ut) | 0) + Math.imul(_, dt) | 0, o = o + Math.imul(_, ut) | 0;
+                    u = ((o = o + Math.imul(l, ut) | 0) + (n >>> 13) | 0) + (Et >>> 26) | 0, Et &= 67108863, r = Math.imul(R, V), n = (n = Math.imul(R, H)) + Math.imul(U, V) | 0, o = Math.imul(U, H), r = r + Math.imul(D, X) | 0, n = (n = n + Math.imul(D, z) | 0) + Math.imul(L, X) | 0, o = o + Math.imul(L, z) | 0, r = r + Math.imul(O, K) | 0, n = (n = n + Math.imul(O, Y) | 0) + Math.imul(k, K) | 0, o = o + Math.imul(k, Y) | 0, r = r + Math.imul(S, Z) | 0, n = (n = n + Math.imul(S, Q) | 0) + Math.imul(T, Z) | 0, o = o + Math.imul(T, Q) | 0, r = r + Math.imul(E, $) | 0, n = (n = n + Math.imul(E, tt) | 0) + Math.imul(P, $) | 0, o = o + Math.imul(P, tt) | 0, r = r + Math.imul(m, it) | 0, n = (n = n + Math.imul(m, rt) | 0) + Math.imul(A, it) | 0, o = o + Math.imul(A, rt) | 0, r = r + Math.imul(b, ot) | 0, n = (n = n + Math.imul(b, at) | 0) + Math.imul(g, ot) | 0, o = o + Math.imul(g, at) | 0, r = r + Math.imul(p, dt) | 0, n = (n = n + Math.imul(p, ut) | 0) + Math.imul(_, dt) | 0, o = o + Math.imul(_, ut) | 0;
                     var Pt = (u + (r = r + Math.imul(f, ft) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(f, lt) | 0) + Math.imul(l, ft) | 0)) << 13) | 0;
-                    u = ((o = o + Math.imul(l, lt) | 0) + (n >>> 13) | 0) + (Pt >>> 26) | 0, Pt &= 67108863, r = Math.imul(N, V), n = (n = Math.imul(N, H)) + Math.imul(B, V) | 0, o = Math.imul(B, H), r = r + Math.imul(R, X) | 0, n = (n = n + Math.imul(R, z) | 0) + Math.imul(U, X) | 0, o = o + Math.imul(U, z) | 0, r = r + Math.imul(C, K) | 0, n = (n = n + Math.imul(C, Y) | 0) + Math.imul(L, K) | 0, o = o + Math.imul(L, Y) | 0, r = r + Math.imul(O, Z) | 0, n = (n = n + Math.imul(O, Q) | 0) + Math.imul(k, Z) | 0, o = o + Math.imul(k, Q) | 0, r = r + Math.imul(S, $) | 0, n = (n = n + Math.imul(S, tt) | 0) + Math.imul(T, $) | 0, o = o + Math.imul(T, tt) | 0, r = r + Math.imul(E, it) | 0, n = (n = n + Math.imul(E, rt) | 0) + Math.imul(P, it) | 0, o = o + Math.imul(P, rt) | 0, r = r + Math.imul(m, ot) | 0, n = (n = n + Math.imul(m, at) | 0) + Math.imul(A, ot) | 0, o = o + Math.imul(A, at) | 0, r = r + Math.imul(b, dt) | 0, n = (n = n + Math.imul(b, ut) | 0) + Math.imul(g, dt) | 0, o = o + Math.imul(g, ut) | 0, r = r + Math.imul(p, ft) | 0, n = (n = n + Math.imul(p, lt) | 0) + Math.imul(_, ft) | 0, o = o + Math.imul(_, lt) | 0;
+                    u = ((o = o + Math.imul(l, lt) | 0) + (n >>> 13) | 0) + (Pt >>> 26) | 0, Pt &= 67108863, r = Math.imul(N, V), n = (n = Math.imul(N, H)) + Math.imul(B, V) | 0, o = Math.imul(B, H), r = r + Math.imul(R, X) | 0, n = (n = n + Math.imul(R, z) | 0) + Math.imul(U, X) | 0, o = o + Math.imul(U, z) | 0, r = r + Math.imul(D, K) | 0, n = (n = n + Math.imul(D, Y) | 0) + Math.imul(L, K) | 0, o = o + Math.imul(L, Y) | 0, r = r + Math.imul(O, Z) | 0, n = (n = n + Math.imul(O, Q) | 0) + Math.imul(k, Z) | 0, o = o + Math.imul(k, Q) | 0, r = r + Math.imul(S, $) | 0, n = (n = n + Math.imul(S, tt) | 0) + Math.imul(T, $) | 0, o = o + Math.imul(T, tt) | 0, r = r + Math.imul(E, it) | 0, n = (n = n + Math.imul(E, rt) | 0) + Math.imul(P, it) | 0, o = o + Math.imul(P, rt) | 0, r = r + Math.imul(m, ot) | 0, n = (n = n + Math.imul(m, at) | 0) + Math.imul(A, ot) | 0, o = o + Math.imul(A, at) | 0, r = r + Math.imul(b, dt) | 0, n = (n = n + Math.imul(b, ut) | 0) + Math.imul(g, dt) | 0, o = o + Math.imul(g, ut) | 0, r = r + Math.imul(p, ft) | 0, n = (n = n + Math.imul(p, lt) | 0) + Math.imul(_, ft) | 0, o = o + Math.imul(_, lt) | 0;
                     var It = (u + (r = r + Math.imul(f, pt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(f, _t) | 0) + Math.imul(l, pt) | 0)) << 13) | 0;
-                    u = ((o = o + Math.imul(l, _t) | 0) + (n >>> 13) | 0) + (It >>> 26) | 0, It &= 67108863, r = Math.imul(N, X), n = (n = Math.imul(N, z)) + Math.imul(B, X) | 0, o = Math.imul(B, z), r = r + Math.imul(R, K) | 0, n = (n = n + Math.imul(R, Y) | 0) + Math.imul(U, K) | 0, o = o + Math.imul(U, Y) | 0, r = r + Math.imul(C, Z) | 0, n = (n = n + Math.imul(C, Q) | 0) + Math.imul(L, Z) | 0, o = o + Math.imul(L, Q) | 0, r = r + Math.imul(O, $) | 0, n = (n = n + Math.imul(O, tt) | 0) + Math.imul(k, $) | 0, o = o + Math.imul(k, tt) | 0, r = r + Math.imul(S, it) | 0, n = (n = n + Math.imul(S, rt) | 0) + Math.imul(T, it) | 0, o = o + Math.imul(T, rt) | 0, r = r + Math.imul(E, ot) | 0, n = (n = n + Math.imul(E, at) | 0) + Math.imul(P, ot) | 0, o = o + Math.imul(P, at) | 0, r = r + Math.imul(m, dt) | 0, n = (n = n + Math.imul(m, ut) | 0) + Math.imul(A, dt) | 0, o = o + Math.imul(A, ut) | 0, r = r + Math.imul(b, ft) | 0, n = (n = n + Math.imul(b, lt) | 0) + Math.imul(g, ft) | 0, o = o + Math.imul(g, lt) | 0;
+                    u = ((o = o + Math.imul(l, _t) | 0) + (n >>> 13) | 0) + (It >>> 26) | 0, It &= 67108863, r = Math.imul(N, X), n = (n = Math.imul(N, z)) + Math.imul(B, X) | 0, o = Math.imul(B, z), r = r + Math.imul(R, K) | 0, n = (n = n + Math.imul(R, Y) | 0) + Math.imul(U, K) | 0, o = o + Math.imul(U, Y) | 0, r = r + Math.imul(D, Z) | 0, n = (n = n + Math.imul(D, Q) | 0) + Math.imul(L, Z) | 0, o = o + Math.imul(L, Q) | 0, r = r + Math.imul(O, $) | 0, n = (n = n + Math.imul(O, tt) | 0) + Math.imul(k, $) | 0, o = o + Math.imul(k, tt) | 0, r = r + Math.imul(S, it) | 0, n = (n = n + Math.imul(S, rt) | 0) + Math.imul(T, it) | 0, o = o + Math.imul(T, rt) | 0, r = r + Math.imul(E, ot) | 0, n = (n = n + Math.imul(E, at) | 0) + Math.imul(P, ot) | 0, o = o + Math.imul(P, at) | 0, r = r + Math.imul(m, dt) | 0, n = (n = n + Math.imul(m, ut) | 0) + Math.imul(A, dt) | 0, o = o + Math.imul(A, ut) | 0, r = r + Math.imul(b, ft) | 0, n = (n = n + Math.imul(b, lt) | 0) + Math.imul(g, ft) | 0, o = o + Math.imul(g, lt) | 0;
                     var St = (u + (r = r + Math.imul(p, pt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(p, _t) | 0) + Math.imul(_, pt) | 0)) << 13) | 0;
-                    u = ((o = o + Math.imul(_, _t) | 0) + (n >>> 13) | 0) + (St >>> 26) | 0, St &= 67108863, r = Math.imul(N, K), n = (n = Math.imul(N, Y)) + Math.imul(B, K) | 0, o = Math.imul(B, Y), r = r + Math.imul(R, Z) | 0, n = (n = n + Math.imul(R, Q) | 0) + Math.imul(U, Z) | 0, o = o + Math.imul(U, Q) | 0, r = r + Math.imul(C, $) | 0, n = (n = n + Math.imul(C, tt) | 0) + Math.imul(L, $) | 0, o = o + Math.imul(L, tt) | 0, r = r + Math.imul(O, it) | 0, n = (n = n + Math.imul(O, rt) | 0) + Math.imul(k, it) | 0, o = o + Math.imul(k, rt) | 0, r = r + Math.imul(S, ot) | 0, n = (n = n + Math.imul(S, at) | 0) + Math.imul(T, ot) | 0, o = o + Math.imul(T, at) | 0, r = r + Math.imul(E, dt) | 0, n = (n = n + Math.imul(E, ut) | 0) + Math.imul(P, dt) | 0, o = o + Math.imul(P, ut) | 0, r = r + Math.imul(m, ft) | 0, n = (n = n + Math.imul(m, lt) | 0) + Math.imul(A, ft) | 0, o = o + Math.imul(A, lt) | 0;
+                    u = ((o = o + Math.imul(_, _t) | 0) + (n >>> 13) | 0) + (St >>> 26) | 0, St &= 67108863, r = Math.imul(N, K), n = (n = Math.imul(N, Y)) + Math.imul(B, K) | 0, o = Math.imul(B, Y), r = r + Math.imul(R, Z) | 0, n = (n = n + Math.imul(R, Q) | 0) + Math.imul(U, Z) | 0, o = o + Math.imul(U, Q) | 0, r = r + Math.imul(D, $) | 0, n = (n = n + Math.imul(D, tt) | 0) + Math.imul(L, $) | 0, o = o + Math.imul(L, tt) | 0, r = r + Math.imul(O, it) | 0, n = (n = n + Math.imul(O, rt) | 0) + Math.imul(k, it) | 0, o = o + Math.imul(k, rt) | 0, r = r + Math.imul(S, ot) | 0, n = (n = n + Math.imul(S, at) | 0) + Math.imul(T, ot) | 0, o = o + Math.imul(T, at) | 0, r = r + Math.imul(E, dt) | 0, n = (n = n + Math.imul(E, ut) | 0) + Math.imul(P, dt) | 0, o = o + Math.imul(P, ut) | 0, r = r + Math.imul(m, ft) | 0, n = (n = n + Math.imul(m, lt) | 0) + Math.imul(A, ft) | 0, o = o + Math.imul(A, lt) | 0;
                     var Tt = (u + (r = r + Math.imul(b, pt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(b, _t) | 0) + Math.imul(g, pt) | 0)) << 13) | 0;
-                    u = ((o = o + Math.imul(g, _t) | 0) + (n >>> 13) | 0) + (Tt >>> 26) | 0, Tt &= 67108863, r = Math.imul(N, Z), n = (n = Math.imul(N, Q)) + Math.imul(B, Z) | 0, o = Math.imul(B, Q), r = r + Math.imul(R, $) | 0, n = (n = n + Math.imul(R, tt) | 0) + Math.imul(U, $) | 0, o = o + Math.imul(U, tt) | 0, r = r + Math.imul(C, it) | 0, n = (n = n + Math.imul(C, rt) | 0) + Math.imul(L, it) | 0, o = o + Math.imul(L, rt) | 0, r = r + Math.imul(O, ot) | 0, n = (n = n + Math.imul(O, at) | 0) + Math.imul(k, ot) | 0, o = o + Math.imul(k, at) | 0, r = r + Math.imul(S, dt) | 0, n = (n = n + Math.imul(S, ut) | 0) + Math.imul(T, dt) | 0, o = o + Math.imul(T, ut) | 0, r = r + Math.imul(E, ft) | 0, n = (n = n + Math.imul(E, lt) | 0) + Math.imul(P, ft) | 0, o = o + Math.imul(P, lt) | 0;
+                    u = ((o = o + Math.imul(g, _t) | 0) + (n >>> 13) | 0) + (Tt >>> 26) | 0, Tt &= 67108863, r = Math.imul(N, Z), n = (n = Math.imul(N, Q)) + Math.imul(B, Z) | 0, o = Math.imul(B, Q), r = r + Math.imul(R, $) | 0, n = (n = n + Math.imul(R, tt) | 0) + Math.imul(U, $) | 0, o = o + Math.imul(U, tt) | 0, r = r + Math.imul(D, it) | 0, n = (n = n + Math.imul(D, rt) | 0) + Math.imul(L, it) | 0, o = o + Math.imul(L, rt) | 0, r = r + Math.imul(O, ot) | 0, n = (n = n + Math.imul(O, at) | 0) + Math.imul(k, ot) | 0, o = o + Math.imul(k, at) | 0, r = r + Math.imul(S, dt) | 0, n = (n = n + Math.imul(S, ut) | 0) + Math.imul(T, dt) | 0, o = o + Math.imul(T, ut) | 0, r = r + Math.imul(E, ft) | 0, n = (n = n + Math.imul(E, lt) | 0) + Math.imul(P, ft) | 0, o = o + Math.imul(P, lt) | 0;
                     var Mt = (u + (r = r + Math.imul(m, pt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(m, _t) | 0) + Math.imul(A, pt) | 0)) << 13) | 0;
-                    u = ((o = o + Math.imul(A, _t) | 0) + (n >>> 13) | 0) + (Mt >>> 26) | 0, Mt &= 67108863, r = Math.imul(N, $), n = (n = Math.imul(N, tt)) + Math.imul(B, $) | 0, o = Math.imul(B, tt), r = r + Math.imul(R, it) | 0, n = (n = n + Math.imul(R, rt) | 0) + Math.imul(U, it) | 0, o = o + Math.imul(U, rt) | 0, r = r + Math.imul(C, ot) | 0, n = (n = n + Math.imul(C, at) | 0) + Math.imul(L, ot) | 0, o = o + Math.imul(L, at) | 0, r = r + Math.imul(O, dt) | 0, n = (n = n + Math.imul(O, ut) | 0) + Math.imul(k, dt) | 0, o = o + Math.imul(k, ut) | 0, r = r + Math.imul(S, ft) | 0, n = (n = n + Math.imul(S, lt) | 0) + Math.imul(T, ft) | 0, o = o + Math.imul(T, lt) | 0;
+                    u = ((o = o + Math.imul(A, _t) | 0) + (n >>> 13) | 0) + (Mt >>> 26) | 0, Mt &= 67108863, r = Math.imul(N, $), n = (n = Math.imul(N, tt)) + Math.imul(B, $) | 0, o = Math.imul(B, tt), r = r + Math.imul(R, it) | 0, n = (n = n + Math.imul(R, rt) | 0) + Math.imul(U, it) | 0, o = o + Math.imul(U, rt) | 0, r = r + Math.imul(D, ot) | 0, n = (n = n + Math.imul(D, at) | 0) + Math.imul(L, ot) | 0, o = o + Math.imul(L, at) | 0, r = r + Math.imul(O, dt) | 0, n = (n = n + Math.imul(O, ut) | 0) + Math.imul(k, dt) | 0, o = o + Math.imul(k, ut) | 0, r = r + Math.imul(S, ft) | 0, n = (n = n + Math.imul(S, lt) | 0) + Math.imul(T, ft) | 0, o = o + Math.imul(T, lt) | 0;
                     var Ot = (u + (r = r + Math.imul(E, pt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(E, _t) | 0) + Math.imul(P, pt) | 0)) << 13) | 0;
-                    u = ((o = o + Math.imul(P, _t) | 0) + (n >>> 13) | 0) + (Ot >>> 26) | 0, Ot &= 67108863, r = Math.imul(N, it), n = (n = Math.imul(N, rt)) + Math.imul(B, it) | 0, o = Math.imul(B, rt), r = r + Math.imul(R, ot) | 0, n = (n = n + Math.imul(R, at) | 0) + Math.imul(U, ot) | 0, o = o + Math.imul(U, at) | 0, r = r + Math.imul(C, dt) | 0, n = (n = n + Math.imul(C, ut) | 0) + Math.imul(L, dt) | 0, o = o + Math.imul(L, ut) | 0, r = r + Math.imul(O, ft) | 0, n = (n = n + Math.imul(O, lt) | 0) + Math.imul(k, ft) | 0, o = o + Math.imul(k, lt) | 0;
+                    u = ((o = o + Math.imul(P, _t) | 0) + (n >>> 13) | 0) + (Ot >>> 26) | 0, Ot &= 67108863, r = Math.imul(N, it), n = (n = Math.imul(N, rt)) + Math.imul(B, it) | 0, o = Math.imul(B, rt), r = r + Math.imul(R, ot) | 0, n = (n = n + Math.imul(R, at) | 0) + Math.imul(U, ot) | 0, o = o + Math.imul(U, at) | 0, r = r + Math.imul(D, dt) | 0, n = (n = n + Math.imul(D, ut) | 0) + Math.imul(L, dt) | 0, o = o + Math.imul(L, ut) | 0, r = r + Math.imul(O, ft) | 0, n = (n = n + Math.imul(O, lt) | 0) + Math.imul(k, ft) | 0, o = o + Math.imul(k, lt) | 0;
                     var kt = (u + (r = r + Math.imul(S, pt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(S, _t) | 0) + Math.imul(T, pt) | 0)) << 13) | 0;
-                    u = ((o = o + Math.imul(T, _t) | 0) + (n >>> 13) | 0) + (kt >>> 26) | 0, kt &= 67108863, r = Math.imul(N, ot), n = (n = Math.imul(N, at)) + Math.imul(B, ot) | 0, o = Math.imul(B, at), r = r + Math.imul(R, dt) | 0, n = (n = n + Math.imul(R, ut) | 0) + Math.imul(U, dt) | 0, o = o + Math.imul(U, ut) | 0, r = r + Math.imul(C, ft) | 0, n = (n = n + Math.imul(C, lt) | 0) + Math.imul(L, ft) | 0, o = o + Math.imul(L, lt) | 0;
-                    var Dt = (u + (r = r + Math.imul(O, pt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(O, _t) | 0) + Math.imul(k, pt) | 0)) << 13) | 0;
-                    u = ((o = o + Math.imul(k, _t) | 0) + (n >>> 13) | 0) + (Dt >>> 26) | 0, Dt &= 67108863, r = Math.imul(N, dt), n = (n = Math.imul(N, ut)) + Math.imul(B, dt) | 0, o = Math.imul(B, ut), r = r + Math.imul(R, ft) | 0, n = (n = n + Math.imul(R, lt) | 0) + Math.imul(U, ft) | 0, o = o + Math.imul(U, lt) | 0;
-                    var Ct = (u + (r = r + Math.imul(C, pt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(C, _t) | 0) + Math.imul(L, pt) | 0)) << 13) | 0;
-                    u = ((o = o + Math.imul(L, _t) | 0) + (n >>> 13) | 0) + (Ct >>> 26) | 0, Ct &= 67108863, r = Math.imul(N, ft), n = (n = Math.imul(N, lt)) + Math.imul(B, ft) | 0, o = Math.imul(B, lt);
+                    u = ((o = o + Math.imul(T, _t) | 0) + (n >>> 13) | 0) + (kt >>> 26) | 0, kt &= 67108863, r = Math.imul(N, ot), n = (n = Math.imul(N, at)) + Math.imul(B, ot) | 0, o = Math.imul(B, at), r = r + Math.imul(R, dt) | 0, n = (n = n + Math.imul(R, ut) | 0) + Math.imul(U, dt) | 0, o = o + Math.imul(U, ut) | 0, r = r + Math.imul(D, ft) | 0, n = (n = n + Math.imul(D, lt) | 0) + Math.imul(L, ft) | 0, o = o + Math.imul(L, lt) | 0;
+                    var Ct = (u + (r = r + Math.imul(O, pt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(O, _t) | 0) + Math.imul(k, pt) | 0)) << 13) | 0;
+                    u = ((o = o + Math.imul(k, _t) | 0) + (n >>> 13) | 0) + (Ct >>> 26) | 0, Ct &= 67108863, r = Math.imul(N, dt), n = (n = Math.imul(N, ut)) + Math.imul(B, dt) | 0, o = Math.imul(B, ut), r = r + Math.imul(R, ft) | 0, n = (n = n + Math.imul(R, lt) | 0) + Math.imul(U, ft) | 0, o = o + Math.imul(U, lt) | 0;
+                    var Dt = (u + (r = r + Math.imul(D, pt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(D, _t) | 0) + Math.imul(L, pt) | 0)) << 13) | 0;
+                    u = ((o = o + Math.imul(L, _t) | 0) + (n >>> 13) | 0) + (Dt >>> 26) | 0, Dt &= 67108863, r = Math.imul(N, ft), n = (n = Math.imul(N, lt)) + Math.imul(B, ft) | 0, o = Math.imul(B, lt);
                     var Lt = (u + (r = r + Math.imul(R, pt) | 0) | 0) + ((8191 & (n = (n = n + Math.imul(R, _t) | 0) + Math.imul(U, pt) | 0)) << 13) | 0;
                     u = ((o = o + Math.imul(U, _t) | 0) + (n >>> 13) | 0) + (Lt >>> 26) | 0, Lt &= 67108863;
                     var xt = (u + (r = Math.imul(N, pt)) | 0) + ((8191 & (n = (n = Math.imul(N, _t)) + Math.imul(B, pt) | 0)) << 13) | 0;
-                    return u = ((o = Math.imul(B, _t)) + (n >>> 13) | 0) + (xt >>> 26) | 0, xt &= 67108863, d[0] = yt, d[1] = bt, d[2] = gt, d[3] = vt, d[4] = mt, d[5] = At, d[6] = wt, d[7] = Et, d[8] = Pt, d[9] = It, d[10] = St, d[11] = Tt, d[12] = Mt, d[13] = Ot, d[14] = kt, d[15] = Dt, d[16] = Ct, d[17] = Lt, d[18] = xt, 0 !== u && (d[19] = u, i.length++), i
+                    return u = ((o = Math.imul(B, _t)) + (n >>> 13) | 0) + (xt >>> 26) | 0, xt &= 67108863, d[0] = yt, d[1] = bt, d[2] = gt, d[3] = vt, d[4] = mt, d[5] = At, d[6] = wt, d[7] = Et, d[8] = Pt, d[9] = It, d[10] = St, d[11] = Tt, d[12] = Mt, d[13] = Ot, d[14] = kt, d[15] = Ct, d[16] = Dt, d[17] = Lt, d[18] = xt, 0 !== u && (d[19] = u, i.length++), i
                 };
 
                 function p(t, e, i) {
@@ -5529,16 +5529,16 @@
             for (; M < 160; M += 2) {
                 var O = e[M - 30],
                     k = e[M - 30 + 1],
-                    D = h(O, k),
-                    C = p(k, O),
+                    C = h(O, k),
+                    D = p(k, O),
                     L = _(O = e[M - 4], k = e[M - 4 + 1]),
                     x = y(k, O),
                     R = e[M - 14],
                     U = e[M - 14 + 1],
                     j = e[M - 32],
                     N = e[M - 32 + 1],
-                    B = C + U | 0,
-                    F = D + R + b(B, C) | 0;
+                    B = D + U | 0,
+                    F = C + R + b(B, D) | 0;
                 F = (F = F + L + b(B = B + x | 0, x) | 0) + j + b(B = B + N | 0, N) | 0, e[M] = F, e[M + 1] = B
             }
             for (var V = 0; V < 160; V += 2) {
@@ -6699,7 +6699,7 @@
             for (var e, i, r = 0, n = 0, o = ""; i = t.charAt(n++);) ~(i = u.indexOf(i)) && (e = r % 4 ? 64 * e + i : i, r++ % 4) && (o += String.fromCharCode(255 & e >> (-2 * r & 6)));
             return o
         }
-        var h = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=",
+        var h = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA",
             p = function() {
                 function t(e) {
                     ! function(t, e) {
@@ -6709,10 +6709,18 @@
                 return t.prototype.destroy = function() {}, t.prototype.getPlayedTime = function() {
                     for (var t = this._currentAudioEl.played, e = 0, i = 0; i < t.length; i++) e += t.end(i) - t.start(i);
                     return e
+                }, t.prototype.clearAudioNode = function() {
+                    this._currentAudioEl = this._createAudioNode(h)
                 }, t.prototype._setAudioNodeUrl = function(t, e) {
                     var i = f(e),
                         r = i === h;
-                    Object(n.i)(t, "setUrlTime", r ? 0 : vkNow()), this._currentHls && (t === this._currentAudioEl || r) && (this._currentHls.destroy(), this._currentHls = null), this._isHlsUrl(i) ? this._initHls(t, i) : t.src = i
+                    if (Object(n.i)(t, "setUrlTime", r ? 0 : vkNow()), this._currentHls && (t === this._currentAudioEl || r)) {
+                        var o = this._currentHls;
+                        d(function() {
+                            return o && o.destroy()
+                        }), this._currentHls = null
+                    }
+                    this._isHlsUrl(i) ? this._initHls(t, i) : t.src = i
                 }, t.prototype._isHlsUrl = function(t) {
                     return /\.m3u8/.test(f(t))
                 }, t.prototype._initHls = function(t, e) {
@@ -7275,7 +7283,7 @@
                 function t(e) {
                     ! function(t, e) {
                         if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                    }(this, t), this.playerAdapter = e, this.listenedData = null, this.sendTimeout = null, this.currentAudioId = null, this.currentAudioTrackCode = null, this.pausedAudioId = null, this.playlistChanged = !1, this.currentPosition = 0, this.currentListened = 0, this.playedTime = 0, this.adsCompleted = !1, this.debug = e.isDebug(), this.onVolume = S(this.onVolume.bind(this), O), this.playerAdapter.listenPlay(this.onPlay, this), this.playerAdapter.listenPause(this.onPause, this), this.playerAdapter.listenProgress(this.onProgress, this), this.playerAdapter.listenVolume(this.onVolume, this), this.playerAdapter.listenSeek(this.onSeek, this), this.playerAdapter.listenPlaylistChanged(this.onPlaylistChanged, this), this.playerAdapter.listenEnded(this.onEnded, this), this.playerAdapter.listenPlayNext(this.onPlayNext, this), this.playerAdapter.listenAdCompleted(this.onAdCompleted, this), this.onPageClose = this.onPageClose.bind(this), addEvent(window, "beforeunload", this.onPageClose)
+                    }(this, t), this.playerAdapter = e, this.listenedData = null, this.sendTimeout = null, this.currentAudioId = null, this.currentAudioTrackCode = null, this.pausedAudioId = null, this.playlistChanged = !1, this.currentPosition = 0, this.currentListened = 0, this.playedTime = 0, this.adsCompleted = !1, this.wasEnded = !1, this.debug = e.isDebug(), this.onVolume = S(this.onVolume.bind(this), O), this.playerAdapter.listenPlay(this.onPlay, this), this.playerAdapter.listenPause(this.onPause, this), this.playerAdapter.listenProgress(this.onProgress, this), this.playerAdapter.listenVolume(this.onVolume, this), this.playerAdapter.listenSeek(this.onSeek, this), this.playerAdapter.listenPlaylistChanged(this.onPlaylistChanged, this), this.playerAdapter.listenEnded(this.onEnded, this), this.playerAdapter.listenPlayNext(this.onPlayNext, this), this.playerAdapter.listenAdCompleted(this.onAdCompleted, this), this.onPageClose = this.onPageClose.bind(this), addEvent(window, "beforeunload", this.onPageClose)
                 }
                 return t.prototype.canOperate = function() {
                     return !this.playerAdapter.isPodcast() && !this.playerAdapter.isAdPlaying() && this.playerAdapter.useNewStats()
@@ -7311,17 +7319,17 @@
                         var t = this.playerAdapter.getAudioId(),
                             e = this.currentAudioId === t,
                             i = this.playerAdapter.getListenedTime();
-                        e || this.onTrackSwitch(this.currentAudioId, this.currentAudioTrackCode, this.currentPlaylistId, t), this.playedTime = vkNow(), this.currentAudioId = t, this.currentAudioTrackCode = this.playerAdapter.getAudioTrackCode(), this.currentPlaylistId = this.playerAdapter.getPlaylistId(), !this.playerAdapter.hasPrevAudio() || this.pausedAudioId && !this.playerAdapter.isAutoPlayed() ? this.currentPosition = this.playerAdapter.getProgressInSeconds() : (this.currentPosition = 0, i = 0), this.currentListened = i, this.sendCurrentAudioEvent({
+                        e || this.onTrackSwitch(this.currentAudioId, this.currentAudioTrackCode, this.currentPlaylistId, t), this.playedTime = vkNow(), this.currentAudioId = t, this.currentAudioTrackCode = this.playerAdapter.getAudioTrackCode(), this.currentPlaylistId = this.playerAdapter.getPlaylistId(), this.wasEnded || this.playerAdapter.hasPrevAudio() && (!this.pausedAudioId || this.playerAdapter.isAutoPlayed()) ? (this.currentPosition = 0, i = 0) : this.currentPosition = this.playerAdapter.getProgressInSeconds(), this.currentListened = i, this.sendCurrentAudioEvent({
                             type: "start",
                             subtype: this.getPlaySubtype(),
                             position: this.currentPosition,
                             listened: i
-                        }), this.pausedAudioId = null, this.playlistChanged = !1
+                        }), this.pausedAudioId = null, this.playlistChanged = !1, this.wasEnded = !1
                     }
                 }, t.prototype.onPause = function() {
                     var t = this;
                     this.canOperate() && (this.pausedAudioId = this.playerAdapter.getAudioId(), this.collectListenedData(), this.sendListenedDataDelayed(1e3), setTimeout(function() {
-                        if (!(vkNow() - t.playedTime < 50)) {
+                        if (!(vkNow() - t.playedTime < 150)) {
                             var e = t.playerAdapter.getPausedBy(t.playedTime);
                             t.sendCurrentAudioEvent({
                                 type: "stop",
@@ -7330,7 +7338,7 @@
                         }
                     }))
                 }, t.prototype.onProgress = function() {
-                    this.currentPosition = this.playerAdapter.getProgressInSeconds(), this.currentListened = this.playerAdapter.getListenedTime(), !this.pausedAudioId && vkNow() - this.playedTime > 50 && this.collectListenedData(), this.adsCompleted && (this.sendCurrentAudioEvent({
+                    this.currentPosition = this.playerAdapter.getProgressInSeconds(), this.currentListened = this.playerAdapter.getListenedTime(), !this.pausedAudioId && vkNow() - this.playedTime > 150 && this.collectListenedData(), this.adsCompleted && (this.sendCurrentAudioEvent({
                         type: "start",
                         subtype: this.getPlaySubtype(),
                         position: this.currentPosition
@@ -7354,7 +7362,10 @@
                 }, t.prototype.onPlaylistChanged = function() {
                     this.canOperate() && (this.playlistChanged = !0)
                 }, t.prototype.onEnded = function() {
-                    this.listenedData && this.playerAdapter.isLastTrack() && (this.listenedData.end_stream_reason = "session_end"), this.playerAdapter.isRepeatCurrentAudio() ? (this.collectListenedData(), this.sendListenedData()) : this.sendListenedDataDelayed(150)
+                    this.listenedData && this.playerAdapter.isLastTrack() && (this.listenedData.end_stream_reason = "session_end"), this.wasEnded = !0, this.playerAdapter.isRepeatCurrentAudio() ? (this.sendCurrentAudioEvent({
+                        type: "stop",
+                        subtype: "auto"
+                    }), this.collectListenedData(), this.sendListenedData()) : this.sendListenedDataDelayed(150)
                 }, t.prototype.onPlayNext = function(t, e) {
                     if (this.canOperate()) {
                         var i = e.split("_"),
@@ -7372,13 +7383,13 @@
                     this.playerAdapter.useNewStats() && (this.adsCompleted = !0)
                 }, t.prototype.onTrackSwitch = function(t, e, i) {
                     if (t) {
-                        var r = "default",
+                        var r = "new",
                             n = this.playerAdapter.getSequence(),
                             o = t.split("_"),
                             a = P(o, 2),
                             s = a[0],
                             d = a[1];
-                        n && !this.playerAdapter.isAutoPlayed() && (r = n > 0 ? "next_track" : "prev_track"), this.sendCurrentAudioEvent({
+                        this.playerAdapter.isAutoPlayed() ? r = "auto" : n && (r = n > 0 ? "next_track" : "prev_track"), this.sendCurrentAudioEvent({
                             type: "stop",
                             subtype: r,
                             position: this.currentPosition,
@@ -7389,7 +7400,7 @@
                             audioId: d
                         })
                     }
-                    this.collectListenedDataSwitch(), this.sendListenedData()
+                    this.wasEnded = !0, this.collectListenedDataSwitch(), this.sendListenedData()
                 }, t.prototype.onPageClose = function() {
                     this.playerAdapter.isPlaying() && (this.sendCurrentAudioEvent({
                         type: "stop",
@@ -7455,7 +7466,7 @@
                 }, t
             }();
 
-        function D(t, e, i) {
+        function C(t, e, i) {
             var r = t.getContext("2d");
             r.clearRect(0, 0, t.width, t.height), r.fillStyle = i ? "#3D6899" : "#ffffff";
             for (var n = 0; n < 4; n++) {
@@ -7491,7 +7502,7 @@
                                 i = 0, e.hide()
                             }, 3e3), this.notify(AudioPlayer.EVENT_ENDED), void this.notify(AudioPlayer.EVENT_FAILED)
                         }
-                        r.a.isPodcast(this.getCurrentAudio()) ? (this._isPlaying = !1, this.notify(AudioPlayer.EVENT_PAUSE), this.notify(AudioPlayer.EVENT_ENDED), this.stop()) : this._repeatCurrent ? (this.notify(AudioPlayer.EVENT_ENDED), this.notify(AudioPlayer.EVENT_PLAY), this.notify(AudioPlayer.EVENT_PROGRESS, 0), this._implSeekImmediate(0), this._implPlay()) : (this._isPlaying = !1, this.notify(AudioPlayer.EVENT_PAUSE), this.notify(AudioPlayer.EVENT_ENDED), this.playNext(!0)), this._sendListenedData()
+                        r.a.isPodcast(this.getCurrentAudio()) ? (this._isPlaying = !1, this.notify(AudioPlayer.EVENT_PAUSE), this.notify(AudioPlayer.EVENT_ENDED), this.stop()) : this._repeatCurrent ? (this._autoNext = !0, this.notify(AudioPlayer.EVENT_ENDED), this.notify(AudioPlayer.EVENT_PLAY), this.notify(AudioPlayer.EVENT_PROGRESS, 0), this._implSeekImmediate(0), this._impl && this._impl.clearAudioNode && (this._impl.clearAudioNode(), this._implSetUrl(this.getCurrentAudio())), this._implPlay()) : (this._isPlaying = !1, this.notify(AudioPlayer.EVENT_PAUSE), this.notify(AudioPlayer.EVENT_ENDED), this.playNext(!0)), this._sendListenedData()
                     }
                 }.bind(this),
                 o = {
@@ -7632,8 +7643,8 @@
                         if (d = se('<canvas class="audio_row__sound_bars"></canvas>'), n.isPodcastListSnippet ? geByClass1("podcast_list_snippet__cover", t).appendChild(d) : t.appendChild(d), d.width = r.a.AUDIO_ROW_COVER_SIZE * (isRetina() ? 2 : 1), d.height = r.a.AUDIO_ROW_COVER_SIZE * (isRetina() ? 2 : 1), d.style.width = r.a.AUDIO_ROW_COVER_SIZE, d.style.height = r.a.AUDIO_ROW_COVER_SIZE, isRetina()) d.getContext("2d").scale(2, 2);
                         var c = n.isNumeric;
                         this.on(t, AudioPlayer.EVENT_FREQ_UPDATE, function(t, e) {
-                            D(d, e, c)
-                        }), D(d, [0, 0, 0, 0], c), data(t, "bars", d)
+                            C(d, e, c)
+                        }), C(d, [0, 0, 0, 0], c), data(t, "bars", d)
                     }
                     toggleClass(t, r.a.AUDIO_PLAYING_CLS, this.isPlaying())
                 } else {
@@ -10077,7 +10088,7 @@
             }, function(e, i) {
                 return function(t, e) {
                     if (t === T)
-                        if (e.failed) D(!0);
+                        if (e.failed) C(!0);
                         else
                             for (var i = getAudioPlayer(), r = i.isPlaying(), n = i.getCurrentAudio(), o = AudioUtils.isPodcast(n), a = 0; a < e.events.length; a++) {
                                 var s = e.events[a].data;
@@ -10100,11 +10111,11 @@
                             }
                 }(t.key, i)
             }), O = setTimeout(function() {
-                return D(!0)
+                return C(!0)
             }, S))
         }
 
-        function D(t) {
+        function C(t) {
             var e = getAudioPlayer().getCurrentAudio(),
                 i = window.Notifier && e && !vk.widget,
                 r = !t && T,
@@ -10123,7 +10134,7 @@
                 }
             }))
         }
-        var C = i("aong"),
+        var D = i("aong"),
             L = i("/PiP"),
             x = i("EasH"),
             R = i("XzvV");
@@ -11012,9 +11023,9 @@
                                     var r = function(t) {
                                             var e = Object(o.G)("_audio_row_" + t.fullId);
                                             if (!e || !e.length) return !1;
-                                            var i = Object(C.l)(Object(o.s)(e[0], "audio"));
+                                            var i = Object(D.l)(Object(o.s)(e[0], "audio"));
                                             if (!i) return !1;
-                                            var r = Object(C.l)(i[n.AUDIO_ITEM_INDEX_EXTRA]);
+                                            var r = Object(D.l)(i[n.AUDIO_ITEM_INDEX_EXTRA]);
                                             r && delete r.claim, i[n.AUDIO_ITEM_INDEX_RESTRICTION] = 0, i[n.AUDIO_ITEM_INDEX_FLAGS] &= ~n.AUDIO_ITEM_CLAIMED_BIT, i[n.AUDIO_ITEM_INDEX_EXTRA] = JSON.stringify(r);
                                             var a = Object(L.j)().getCurrentPlaylist(),
                                                 s = Object(o.mb)(_(i, "no_extra"));
@@ -11056,7 +11067,7 @@
                 var r = location.protocol + "//" + location.host + "/music?z=audio_playlist" + t + "_" + e;
                 i && (r += "/" + i), statlogsValueEvent("audio_copy_link", vk.id), Object(I.b)(r), showDoneBox(getLang("audio_playlist_link_copied"))
             },
-            connectListenQueue: D,
+            connectListenQueue: C,
             getAlbumParts: function(t) {
                 if (t && t.getAudiosCount() && t.isFullyLoadable() && !t.hasMore()) {
                     for (var e = t.getAudiosList(), i = t.getAudiosCount(), r = [], o = 0, a = 0; a < i; a++) {
@@ -11409,7 +11420,7 @@
                 for (h("flow", e.flowing); e.flowing && null !== t.read(););
             }
 
-            function D(t, e) {
+            function C(t, e) {
                 return 0 === e.length ? null : (e.objectMode ? i = e.buffer.shift() : !t || t >= e.length ? (i = e.decoder ? e.buffer.join("") : 1 === e.buffer.length ? e.buffer.head.data : e.buffer.concat(e.length), e.buffer.clear()) : i = function(t, e, i) {
                     var r;
                     t < e.head.data.length ? (r = e.head.data.slice(0, t), e.head.data = e.head.data.slice(t)) : r = t === e.head.data.length ? e.shift() : i ? function(t, e) {
@@ -11446,7 +11457,7 @@
                 var i
             }
 
-            function C(t) {
+            function D(t) {
                 var e = t._readableState;
                 if (e.length > 0) throw new Error('"endReadable()" called on non-empty stream');
                 e.endEmitted || (e.ended = !0, n.nextTick(L, e, t))
@@ -11465,10 +11476,10 @@
                 h("read", t), t = parseInt(t, 10);
                 var e = this._readableState,
                     i = t;
-                if (0 !== t && (e.emittedReadable = !1), 0 === t && e.needReadable && (e.length >= e.highWaterMark || e.ended)) return h("read: emitReadable", e.length, e.ended), 0 === e.length && e.ended ? C(this) : P(this), null;
-                if (0 === (t = E(t, e)) && e.ended) return 0 === e.length && C(this), null;
+                if (0 !== t && (e.emittedReadable = !1), 0 === t && e.needReadable && (e.length >= e.highWaterMark || e.ended)) return h("read: emitReadable", e.length, e.ended), 0 === e.length && e.ended ? D(this) : P(this), null;
+                if (0 === (t = E(t, e)) && e.ended) return 0 === e.length && D(this), null;
                 var r, n = e.needReadable;
-                return h("need readable", n), (0 === e.length || e.length - t < e.highWaterMark) && h("length less than watermark", n = !0), e.ended || e.reading ? h("reading or ended", n = !1) : n && (h("do read"), e.reading = !0, e.sync = !0, 0 === e.length && (e.needReadable = !0), this._read(e.highWaterMark), e.sync = !1, e.reading || (t = E(i, e))), null === (r = t > 0 ? D(t, e) : null) ? (e.needReadable = !0, t = 0) : e.length -= t, 0 === e.length && (e.ended || (e.needReadable = !0), i !== t && e.ended && C(this)), null !== r && this.emit("data", r), r
+                return h("need readable", n), (0 === e.length || e.length - t < e.highWaterMark) && h("length less than watermark", n = !0), e.ended || e.reading ? h("reading or ended", n = !1) : n && (h("do read"), e.reading = !0, e.sync = !0, 0 === e.length && (e.needReadable = !0), this._read(e.highWaterMark), e.sync = !1, e.reading || (t = E(i, e))), null === (r = t > 0 ? C(t, e) : null) ? (e.needReadable = !0, t = 0) : e.length -= t, 0 === e.length && (e.ended || (e.needReadable = !0), i !== t && e.ended && D(this)), null !== r && this.emit("data", r), r
             }, v.prototype._read = function(t) {
                 this.emit("error", new Error("_read() is not implemented"))
             }, v.prototype.pipe = function(t, e) {
@@ -11586,7 +11597,7 @@
                 get: function() {
                     return this._readableState.highWaterMark
                 }
-            }), v._fromList = D
+            }), v._fromList = C
         }).call(this, i("yLpj"), i("8oxB"))
     },
     roQf: function(t, e, i) {
@@ -11918,7 +11929,7 @@
             return i < 0 && (i += 4294967296), i
         }
 
-        function D(t, e) {
+        function C(t, e) {
             var i = s(t, e, 19) ^ s(e, t, 29) ^ u(t, e, 6);
             return i < 0 && (i += 4294967296), i
         }
@@ -11926,7 +11937,7 @@
             for (var i = this.W, r = 0; r < 32; r++) i[r] = t[e + r];
             for (; r < i.length; r += 2) {
                 var n = k(i[r - 4], i[r - 3]),
-                    o = D(i[r - 4], i[r - 3]),
+                    o = C(i[r - 4], i[r - 3]),
                     a = i[r - 14],
                     s = i[r - 13],
                     d = M(i[r - 30], i[r - 29]),
@@ -11952,12 +11963,12 @@
                 M = this.h[11],
                 O = this.h[12],
                 k = this.h[13],
-                D = this.h[14],
-                C = this.h[15];
+                C = this.h[14],
+                D = this.h[15];
             o(this.k.length === i.length);
             for (var L = 0; L < i.length; L += 2) {
-                var x = D,
-                    R = C,
+                var x = C,
+                    R = D,
                     U = S(b, g),
                     j = T(b, g),
                     N = m(b, g, v, M, O),
@@ -11971,9 +11982,9 @@
                 x = P(r, n), R = I(r, n), U = w(r, n, a, s, d), j = E(r, n, a, s, d, u);
                 var W = f(x, R, U, j),
                     K = l(x, R, U, j);
-                D = O, C = k, O = v, k = M, v = b, M = g, b = f(h, p, X, z), g = l(p, p, X, z), h = d, p = u, d = a, u = s, a = r, s = n, r = f(X, z, W, K), n = l(X, z, W, K)
+                C = O, D = k, O = v, k = M, v = b, M = g, b = f(h, p, X, z), g = l(p, p, X, z), h = d, p = u, d = a, u = s, a = r, s = n, r = f(X, z, W, K), n = l(X, z, W, K)
             }
-            c(this.h, 0, r, n), c(this.h, 2, a, s), c(this.h, 4, d, u), c(this.h, 6, h, p), c(this.h, 8, b, g), c(this.h, 10, v, M), c(this.h, 12, O, k), c(this.h, 14, D, C)
+            c(this.h, 0, r, n), c(this.h, 2, a, s), c(this.h, 4, d, u), c(this.h, 6, h, p), c(this.h, 8, b, g), c(this.h, 10, v, M), c(this.h, 12, O, k), c(this.h, 14, C, D)
         }, v.prototype._digest = function(t) {
             return "hex" === t ? r.toHex32(this.h, "big") : r.split32(this.h, "big")
         }
@@ -12472,12 +12483,12 @@
                 return n
             }
 
-            function D(t, e, i) {
+            function C(t, e, i) {
                 if (t % 1 != 0 || t < 0) throw new RangeError("offset is not uint");
                 if (t + e > i) throw new RangeError("Trying to access beyond buffer length")
             }
 
-            function C(t, e, i, r, n, o) {
+            function D(t, e, i, r, n, o) {
                 if (!d.isBuffer(t)) throw new TypeError('"buffer" argument must be a Buffer instance');
                 if (e > n || e < o) throw new RangeError('"value" argument is out of bounds');
                 if (i + r > t.length) throw new RangeError("Index out of range")
@@ -12515,79 +12526,79 @@
                 }
                 return i
             }, d.prototype.readUIntLE = function(t, e, i) {
-                t |= 0, e |= 0, i || D(t, e, this.length);
+                t |= 0, e |= 0, i || C(t, e, this.length);
                 for (var r = this[t], n = 1, o = 0; ++o < e && (n *= 256);) r += this[t + o] * n;
                 return r
             }, d.prototype.readUIntBE = function(t, e, i) {
-                t |= 0, e |= 0, i || D(t, e, this.length);
+                t |= 0, e |= 0, i || C(t, e, this.length);
                 for (var r = this[t + --e], n = 1; e > 0 && (n *= 256);) r += this[t + --e] * n;
                 return r
             }, d.prototype.readUInt8 = function(t, e) {
-                return e || D(t, 1, this.length), this[t]
+                return e || C(t, 1, this.length), this[t]
             }, d.prototype.readUInt16LE = function(t, e) {
-                return e || D(t, 2, this.length), this[t] | this[t + 1] << 8
+                return e || C(t, 2, this.length), this[t] | this[t + 1] << 8
             }, d.prototype.readUInt16BE = function(t, e) {
-                return e || D(t, 2, this.length), this[t] << 8 | this[t + 1]
+                return e || C(t, 2, this.length), this[t] << 8 | this[t + 1]
             }, d.prototype.readUInt32LE = function(t, e) {
-                return e || D(t, 4, this.length), (this[t] | this[t + 1] << 8 | this[t + 2] << 16) + 16777216 * this[t + 3]
+                return e || C(t, 4, this.length), (this[t] | this[t + 1] << 8 | this[t + 2] << 16) + 16777216 * this[t + 3]
             }, d.prototype.readUInt32BE = function(t, e) {
-                return e || D(t, 4, this.length), 16777216 * this[t] + (this[t + 1] << 16 | this[t + 2] << 8 | this[t + 3])
+                return e || C(t, 4, this.length), 16777216 * this[t] + (this[t + 1] << 16 | this[t + 2] << 8 | this[t + 3])
             }, d.prototype.readIntLE = function(t, e, i) {
-                t |= 0, e |= 0, i || D(t, e, this.length);
+                t |= 0, e |= 0, i || C(t, e, this.length);
                 for (var r = this[t], n = 1, o = 0; ++o < e && (n *= 256);) r += this[t + o] * n;
                 return r >= (n *= 128) && (r -= Math.pow(2, 8 * e)), r
             }, d.prototype.readIntBE = function(t, e, i) {
-                t |= 0, e |= 0, i || D(t, e, this.length);
+                t |= 0, e |= 0, i || C(t, e, this.length);
                 for (var r = e, n = 1, o = this[t + --r]; r > 0 && (n *= 256);) o += this[t + --r] * n;
                 return o >= (n *= 128) && (o -= Math.pow(2, 8 * e)), o
             }, d.prototype.readInt8 = function(t, e) {
-                return e || D(t, 1, this.length), 128 & this[t] ? -1 * (255 - this[t] + 1) : this[t]
+                return e || C(t, 1, this.length), 128 & this[t] ? -1 * (255 - this[t] + 1) : this[t]
             }, d.prototype.readInt16LE = function(t, e) {
-                e || D(t, 2, this.length);
+                e || C(t, 2, this.length);
                 var i = this[t] | this[t + 1] << 8;
                 return 32768 & i ? 4294901760 | i : i
             }, d.prototype.readInt16BE = function(t, e) {
-                e || D(t, 2, this.length);
+                e || C(t, 2, this.length);
                 var i = this[t + 1] | this[t] << 8;
                 return 32768 & i ? 4294901760 | i : i
             }, d.prototype.readInt32LE = function(t, e) {
-                return e || D(t, 4, this.length), this[t] | this[t + 1] << 8 | this[t + 2] << 16 | this[t + 3] << 24
+                return e || C(t, 4, this.length), this[t] | this[t + 1] << 8 | this[t + 2] << 16 | this[t + 3] << 24
             }, d.prototype.readInt32BE = function(t, e) {
-                return e || D(t, 4, this.length), this[t] << 24 | this[t + 1] << 16 | this[t + 2] << 8 | this[t + 3]
+                return e || C(t, 4, this.length), this[t] << 24 | this[t + 1] << 16 | this[t + 2] << 8 | this[t + 3]
             }, d.prototype.readFloatLE = function(t, e) {
-                return e || D(t, 4, this.length), n.read(this, t, !0, 23, 4)
+                return e || C(t, 4, this.length), n.read(this, t, !0, 23, 4)
             }, d.prototype.readFloatBE = function(t, e) {
-                return e || D(t, 4, this.length), n.read(this, t, !1, 23, 4)
+                return e || C(t, 4, this.length), n.read(this, t, !1, 23, 4)
             }, d.prototype.readDoubleLE = function(t, e) {
-                return e || D(t, 8, this.length), n.read(this, t, !0, 52, 8)
+                return e || C(t, 8, this.length), n.read(this, t, !0, 52, 8)
             }, d.prototype.readDoubleBE = function(t, e) {
-                return e || D(t, 8, this.length), n.read(this, t, !1, 52, 8)
+                return e || C(t, 8, this.length), n.read(this, t, !1, 52, 8)
             }, d.prototype.writeUIntLE = function(t, e, i, r) {
-                (t = +t, e |= 0, i |= 0, r) || C(this, t, e, i, Math.pow(2, 8 * i) - 1, 0);
+                (t = +t, e |= 0, i |= 0, r) || D(this, t, e, i, Math.pow(2, 8 * i) - 1, 0);
                 var n = 1,
                     o = 0;
                 for (this[e] = 255 & t; ++o < i && (n *= 256);) this[e + o] = t / n & 255;
                 return e + i
             }, d.prototype.writeUIntBE = function(t, e, i, r) {
-                (t = +t, e |= 0, i |= 0, r) || C(this, t, e, i, Math.pow(2, 8 * i) - 1, 0);
+                (t = +t, e |= 0, i |= 0, r) || D(this, t, e, i, Math.pow(2, 8 * i) - 1, 0);
                 var n = i - 1,
                     o = 1;
                 for (this[e + n] = 255 & t; --n >= 0 && (o *= 256);) this[e + n] = t / o & 255;
                 return e + i
             }, d.prototype.writeUInt8 = function(t, e, i) {
-                return t = +t, e |= 0, i || C(this, t, e, 1, 255, 0), d.TYPED_ARRAY_SUPPORT || (t = Math.floor(t)), this[e] = 255 & t, e + 1
+                return t = +t, e |= 0, i || D(this, t, e, 1, 255, 0), d.TYPED_ARRAY_SUPPORT || (t = Math.floor(t)), this[e] = 255 & t, e + 1
             }, d.prototype.writeUInt16LE = function(t, e, i) {
-                return t = +t, e |= 0, i || C(this, t, e, 2, 65535, 0), d.TYPED_ARRAY_SUPPORT ? (this[e] = 255 & t, this[e + 1] = t >>> 8) : L(this, t, e, !0), e + 2
+                return t = +t, e |= 0, i || D(this, t, e, 2, 65535, 0), d.TYPED_ARRAY_SUPPORT ? (this[e] = 255 & t, this[e + 1] = t >>> 8) : L(this, t, e, !0), e + 2
             }, d.prototype.writeUInt16BE = function(t, e, i) {
-                return t = +t, e |= 0, i || C(this, t, e, 2, 65535, 0), d.TYPED_ARRAY_SUPPORT ? (this[e] = t >>> 8, this[e + 1] = 255 & t) : L(this, t, e, !1), e + 2
+                return t = +t, e |= 0, i || D(this, t, e, 2, 65535, 0), d.TYPED_ARRAY_SUPPORT ? (this[e] = t >>> 8, this[e + 1] = 255 & t) : L(this, t, e, !1), e + 2
             }, d.prototype.writeUInt32LE = function(t, e, i) {
-                return t = +t, e |= 0, i || C(this, t, e, 4, 4294967295, 0), d.TYPED_ARRAY_SUPPORT ? (this[e + 3] = t >>> 24, this[e + 2] = t >>> 16, this[e + 1] = t >>> 8, this[e] = 255 & t) : x(this, t, e, !0), e + 4
+                return t = +t, e |= 0, i || D(this, t, e, 4, 4294967295, 0), d.TYPED_ARRAY_SUPPORT ? (this[e + 3] = t >>> 24, this[e + 2] = t >>> 16, this[e + 1] = t >>> 8, this[e] = 255 & t) : x(this, t, e, !0), e + 4
             }, d.prototype.writeUInt32BE = function(t, e, i) {
-                return t = +t, e |= 0, i || C(this, t, e, 4, 4294967295, 0), d.TYPED_ARRAY_SUPPORT ? (this[e] = t >>> 24, this[e + 1] = t >>> 16, this[e + 2] = t >>> 8, this[e + 3] = 255 & t) : x(this, t, e, !1), e + 4
+                return t = +t, e |= 0, i || D(this, t, e, 4, 4294967295, 0), d.TYPED_ARRAY_SUPPORT ? (this[e] = t >>> 24, this[e + 1] = t >>> 16, this[e + 2] = t >>> 8, this[e + 3] = 255 & t) : x(this, t, e, !1), e + 4
             }, d.prototype.writeIntLE = function(t, e, i, r) {
                 if (t = +t, e |= 0, !r) {
                     var n = Math.pow(2, 8 * i - 1);
-                    C(this, t, e, i, n - 1, -n)
+                    D(this, t, e, i, n - 1, -n)
                 }
                 var o = 0,
                     a = 1,
@@ -12597,7 +12608,7 @@
             }, d.prototype.writeIntBE = function(t, e, i, r) {
                 if (t = +t, e |= 0, !r) {
                     var n = Math.pow(2, 8 * i - 1);
-                    C(this, t, e, i, n - 1, -n)
+                    D(this, t, e, i, n - 1, -n)
                 }
                 var o = i - 1,
                     a = 1,
@@ -12605,15 +12616,15 @@
                 for (this[e + o] = 255 & t; --o >= 0 && (a *= 256);) t < 0 && 0 === s && 0 !== this[e + o + 1] && (s = 1), this[e + o] = (t / a >> 0) - s & 255;
                 return e + i
             }, d.prototype.writeInt8 = function(t, e, i) {
-                return t = +t, e |= 0, i || C(this, t, e, 1, 127, -128), d.TYPED_ARRAY_SUPPORT || (t = Math.floor(t)), t < 0 && (t = 255 + t + 1), this[e] = 255 & t, e + 1
+                return t = +t, e |= 0, i || D(this, t, e, 1, 127, -128), d.TYPED_ARRAY_SUPPORT || (t = Math.floor(t)), t < 0 && (t = 255 + t + 1), this[e] = 255 & t, e + 1
             }, d.prototype.writeInt16LE = function(t, e, i) {
-                return t = +t, e |= 0, i || C(this, t, e, 2, 32767, -32768), d.TYPED_ARRAY_SUPPORT ? (this[e] = 255 & t, this[e + 1] = t >>> 8) : L(this, t, e, !0), e + 2
+                return t = +t, e |= 0, i || D(this, t, e, 2, 32767, -32768), d.TYPED_ARRAY_SUPPORT ? (this[e] = 255 & t, this[e + 1] = t >>> 8) : L(this, t, e, !0), e + 2
             }, d.prototype.writeInt16BE = function(t, e, i) {
-                return t = +t, e |= 0, i || C(this, t, e, 2, 32767, -32768), d.TYPED_ARRAY_SUPPORT ? (this[e] = t >>> 8, this[e + 1] = 255 & t) : L(this, t, e, !1), e + 2
+                return t = +t, e |= 0, i || D(this, t, e, 2, 32767, -32768), d.TYPED_ARRAY_SUPPORT ? (this[e] = t >>> 8, this[e + 1] = 255 & t) : L(this, t, e, !1), e + 2
             }, d.prototype.writeInt32LE = function(t, e, i) {
-                return t = +t, e |= 0, i || C(this, t, e, 4, 2147483647, -2147483648), d.TYPED_ARRAY_SUPPORT ? (this[e] = 255 & t, this[e + 1] = t >>> 8, this[e + 2] = t >>> 16, this[e + 3] = t >>> 24) : x(this, t, e, !0), e + 4
+                return t = +t, e |= 0, i || D(this, t, e, 4, 2147483647, -2147483648), d.TYPED_ARRAY_SUPPORT ? (this[e] = 255 & t, this[e + 1] = t >>> 8, this[e + 2] = t >>> 16, this[e + 3] = t >>> 24) : x(this, t, e, !0), e + 4
             }, d.prototype.writeInt32BE = function(t, e, i) {
-                return t = +t, e |= 0, i || C(this, t, e, 4, 2147483647, -2147483648), t < 0 && (t = 4294967295 + t + 1), d.TYPED_ARRAY_SUPPORT ? (this[e] = t >>> 24, this[e + 1] = t >>> 16, this[e + 2] = t >>> 8, this[e + 3] = 255 & t) : x(this, t, e, !1), e + 4
+                return t = +t, e |= 0, i || D(this, t, e, 4, 2147483647, -2147483648), t < 0 && (t = 4294967295 + t + 1), d.TYPED_ARRAY_SUPPORT ? (this[e] = t >>> 24, this[e + 1] = t >>> 16, this[e + 2] = t >>> 8, this[e + 3] = 255 & t) : x(this, t, e, !1), e + 4
             }, d.prototype.writeFloatLE = function(t, e, i) {
                 return U(this, t, e, !0, i)
             }, d.prototype.writeFloatBE = function(t, e, i) {

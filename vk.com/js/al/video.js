@@ -2960,13 +2960,6 @@ var Video = {
         }, 50);
     },
 
-    hideDesktopLiveIntroBlock: function(hash) {
-        slideUp('video_desktop_live_intro_block', 300);
-        ajax.post('al_video.php?act=hide_desktop_live_intro', {
-            hash: hash
-        });
-    },
-
     copyAlbumVideosList: function() {
         var section = Video._getCurrentSectionType();
         var oid = cur.getOwnerId();

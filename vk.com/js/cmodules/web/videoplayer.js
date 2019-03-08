@@ -274,8 +274,8 @@
             T = i("2faE"),
             C = L.f,
             E = T.f,
-            A = k.f,
-            P = n.Symbol,
+            P = k.f,
+            A = n.Symbol,
             x = n.JSON,
             V = x && x.stringify,
             I = !1,
@@ -285,7 +285,7 @@
             O = c("symbol-registry"),
             B = c("symbols"),
             F = Object.prototype,
-            N = "function" == typeof P,
+            N = "function" == typeof A,
             j = n.QObject,
             H = s && h(function() {
                 return 7 != S(E({}, "a", {
@@ -300,7 +300,7 @@
                 n && delete F[e], E(t, e, i), n && t !== F && E(F, e, n)
             } : E,
             U = function(t) {
-                var e = B[t] = S(P.prototype);
+                var e = B[t] = S(A.prototype);
                 return e._k = t, s && I && H(F, t, {
                     configurable: !0,
                     set: function(e) {
@@ -308,10 +308,10 @@
                     }
                 }), e
             },
-            z = N && "symbol" == typeof P.iterator ? function(t) {
+            z = N && "symbol" == typeof A.iterator ? function(t) {
                 return "symbol" == typeof t
             } : function(t) {
-                return t instanceof P
+                return t instanceof A
             },
             Q = function(t, e, i) {
                 return _(t), e = b(e, !0), _(i), o(B, e) ? (i.enumerable ? (o(t, M) && t[M][e] && (t[M][e] = !1), i = S(i, {
@@ -332,26 +332,26 @@
                 return !i || !o(B, e) || o(t, M) && t[M][e] || (i.enumerable = !0), i
             },
             Y = function(t) {
-                for (var e, i = A(m(t)), n = [], r = 0; i.length > r;) o(B, e = i[r++]) || e == M || e == u || n.push(e);
+                for (var e, i = P(m(t)), n = [], r = 0; i.length > r;) o(B, e = i[r++]) || e == M || e == u || n.push(e);
                 return n
             },
             K = function(t) {
-                for (var e, i = A(m(t)), n = [], r = 0; i.length > r;) o(B, e = i[r++]) && n.push(B[e]);
+                for (var e, i = P(m(t)), n = [], r = 0; i.length > r;) o(B, e = i[r++]) && n.push(B[e]);
                 return n
             },
             X = h(function() {
-                var t = P();
+                var t = A();
                 return "[null]" != V([t]) || "{}" != V({
                     a: t
                 }) || "{}" != V(Object(t))
             });
-        N || (l((P = function() {
-            if (this instanceof P) throw TypeError("Symbol is not a constructor!");
+        N || (l((A = function() {
+            if (this instanceof A) throw TypeError("Symbol is not a constructor!");
             return U(p(arguments.length > 0 ? arguments[0] : void 0))
         }).prototype, "toString", function() {
             return this._k
         }), L.f = G, T.f = Q, i("ar/p").f = k.f = Y, i("NV0k").f = q, i("mqlF").f = K, s && !i("uOPS") && l(F, "propertyIsEnumerable", q, !0)), a(a.G + a.W + a.F * !N, {
-            Symbol: P
+            Symbol: A
         });
         for (var J = "hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(","), Z = 0; J.length > Z;) {
             var $ = J[Z++],
@@ -363,7 +363,7 @@
         }
         j && j.prototype && j.prototype.findChild || (I = !0), a(a.S + a.F * !N, "Symbol", {
             for: function(t) {
-                return o(O, t += "") ? O[t] : O[t] = P(t)
+                return o(O, t += "") ? O[t] : O[t] = A(t)
             },
             keyFor: function(t) {
                 if (z(t)) return y(O, t);
@@ -393,7 +393,7 @@
                     }), n[1] = e, V.apply(x, n)
                 }
             }
-        }), P.prototype[R] || i("NegM")(P.prototype, R, P.prototype.valueOf), d(P, "Symbol"), d(Math, "Math", !0), d(n.JSON, "JSON", !0)
+        }), A.prototype[R] || i("NegM")(A.prototype, R, A.prototype.valueOf), d(A, "Symbol"), d(Math, "Math", !0), d(n.JSON, "JSON", !0)
     },
     "B+OT": function(t, e) {
         var i = {}.hasOwnProperty;
@@ -497,7 +497,7 @@
                     e = t, i = n
                 }), this.resolve = d(e), this.reject = d(i)
             },
-            A = function(t) {
+            P = function(t) {
                 try {
                     t()
                 } catch (t) {
@@ -506,7 +506,7 @@
                     }
                 }
             },
-            P = function(t, e) {
+            A = function(t, e) {
                 if (!t._n) {
                     t._n = !0;
                     var i = t._c;
@@ -529,7 +529,7 @@
             x = function(t) {
                 v.call(a, function() {
                     var e, i, n, r = t._v;
-                    if (V(t) && (e = A(function() {
+                    if (V(t) && (e = P(function() {
                             w ? m.emit("unhandledRejection", r, t) : (i = a.onunhandledrejection) ? i({
                                 promise: t,
                                 reason: r
@@ -554,7 +554,7 @@
             },
             M = function(t) {
                 var e = this;
-                e._d || (e._d = !0, (e = e._w || e)._v = t, e._s = 2, e._a || (e._a = e._c.slice()), P(e, !0))
+                e._d || (e._d = !0, (e = e._w || e)._v = t, e._s = 2, e._a || (e._a = e._c.slice()), A(e, !0))
             },
             R = function(t) {
                 var e, i = this;
@@ -572,7 +572,7 @@
                             } catch (t) {
                                 M.call(n, t)
                             }
-                        }): (i._v = t, i._s = 1, P(i, !1))
+                        }): (i._v = t, i._s = 1, A(i, !1))
                     } catch (t) {
                         M.call({
                             _w: i,
@@ -593,7 +593,7 @@
         }).prototype = i("XJU/")(b.prototype, {
             then: function(t, e) {
                 var i = C(y(this, b));
-                return i.ok = "function" != typeof t || t, i.fail = "function" == typeof e && e, i.domain = w ? m.domain : void 0, this._c.push(i), this._a && this._a.push(i), this._s && P(this, !1), i.promise
+                return i.ok = "function" != typeof t || t, i.fail = "function" == typeof e && e, i.domain = w ? m.domain : void 0, this._c.push(i), this._a && this._a.push(i), this._s && A(this, !1), i.promise
             },
             catch: function(t) {
                 return this.then(void 0, t)
@@ -622,7 +622,7 @@
                     i = C(e),
                     n = i.resolve,
                     r = i.reject,
-                    o = A(function() {
+                    o = P(function() {
                         var i = [],
                             o = 0,
                             s = 1;
@@ -640,7 +640,7 @@
                 var e = this,
                     i = C(e),
                     n = i.reject,
-                    r = A(function() {
+                    r = P(function() {
                         f(t, !1, function(t) {
                             e.resolve(t).then(i.resolve, n)
                         })
@@ -724,16 +724,16 @@
                 T = !1,
                 C = t.prototype,
                 E = C[d] || C["@@iterator"] || v && C[v],
-                A = E || S(v),
-                P = v ? L ? S("entries") : A : void 0,
+                P = E || S(v),
+                A = v ? L ? S("entries") : P : void 0,
                 x = "Array" == e && C.entries || E;
-            if (x && (w = c(x.call(new t))) !== Object.prototype && (h(w, k, !0), n || a(w, d) || s(w, d, f)), L && E && "values" !== E.name && (T = !0, A = function() {
+            if (x && (w = c(x.call(new t))) !== Object.prototype && (h(w, k, !0), n || a(w, d) || s(w, d, f)), L && E && "values" !== E.name && (T = !0, P = function() {
                     return E.call(this)
-                }), n && !_ || !p && !T && C[d] || s(C, d, A), l[e] = A, l[k] = f, v)
+                }), n && !_ || !p && !T && C[d] || s(C, d, P), l[e] = P, l[k] = f, v)
                 if (m = {
-                        values: L ? A : S("values"),
-                        keys: g ? A : S("keys"),
-                        entries: P
+                        values: L ? P : S("values"),
+                        keys: g ? P : S("keys"),
+                        entries: A
                     }, _)
                     for (b in m) b in C || o(C, b, m[b]);
                 else r(r.P + r.F * (p || T), e, m);
@@ -1143,9 +1143,9 @@
         }), i.d(n, "SUBSCRIBED", function() {
             return E
         }), i.d(n, "LIVE_PHASE_CHANGE", function() {
-            return A
-        }), i.d(n, "LIVE_DONATION", function() {
             return P
+        }), i.d(n, "LIVE_DONATION", function() {
+            return A
         }), i.d(n, "MEDIA_TIMEUPDATE", function() {
             return x
         }), i.d(n, "MEDIA_PROGRESS", function() {
@@ -1239,8 +1239,8 @@
             T = "videoAdd",
             C = "videoBookmark",
             E = "subscribed",
-            A = "livePhaseChange",
-            P = "liveDonation",
+            P = "livePhaseChange",
+            A = "liveDonation",
             x = "media.timeupdate",
             V = "media.progress",
             I = "media.volumechange",
@@ -2159,8 +2159,8 @@
             }
             return null
         }
-        var At, Pt = (At = 0, function(t) {
-                return t + At++
+        var Pt, At = (Pt = 0, function(t) {
+                return t + Pt++
             }),
             xt = function() {
                 function t(t, e) {
@@ -2198,7 +2198,7 @@
                     var e = ce("div");
                     renderFlash(e, {
                         url: "/swf/video_lite.swf",
-                        id: Pt("flashprovider"),
+                        id: At("flashprovider"),
                         version: 11,
                         preventhide: 1
                     }, {
@@ -3680,7 +3680,7 @@
                         n.toggleControl(n.btnExpand, !1)
                     }), n.playerListen(tt, n.onLinearAdStarted), n.playerListen(et, n.onLinearAdCompleted), n.playerListen($, function(t, e, i) {
                         n.updateTime(t)
-                    }), n.playerListen(A, n.onLivePhaseChange), n.playerListen(f, function(t) {
+                    }), n.playerListen(P, n.onLivePhaseChange), n.playerListen(f, function(t) {
                         n.toggleControl(n.btnSubtitles, n.isControlAvailable("subtitles"))
                     }), n.playerListen(v, function() {
                         var t = n.player.getSubtitleTrack();
@@ -3701,7 +3701,7 @@
                     var t = this;
                     this.el = se('\n<div class="videoplayer_controls">\n  <div class="videoplayer_controls_item videoplayer_btn videoplayer_btn_play" role="button" tabindex="0" aria-label="' + this.getLang("play") + '">\n    ' + Bt("videoplayer_btn_icon videoplayer_play_icon") + '\n  </div>\n  <div class="videoplayer_controls_item videoplayer_btn videoplayer_btn_next" role="button" tabindex="0" aria-label="' + this.getLang("next") + '">\n    <div class="videoplayer_btn_icon videoplayer_next_icon"></div>\n  </div>\n  <div class="videoplayer_controls_item videoplayer_live" style="display:none;">\n    ' + function() {
                         return '\n<svg class="' + (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "") + '" viewBox="84 14 42 20" xmlns="http://www.w3.org/2000/svg" focusable="false">\n  <g fill="none" fill-rule="evenodd" transform="translate(84 14)">\n    <rect fill="#F75148" width="42" height="20" rx="2"/>\n    <path d="M26.874 6.486l-2.464 7.562c-.17.523-.756.952-1.307.952h-.206c-.552 0-1.136-.426-1.307-.952l-2.464-7.562c-.06-.11-.103-.233-.12-.363L19 6.1h.005C19.002 6.067 19 6.034 19 6c0-.552.448-1 1-1 .52 0 .945.395.995.9H21l2 6.4 2-6.4h.005c.05-.505.476-.9.995-.9.552 0 1 .448 1 1 0 .034-.002.067-.005.1H27l-.007.023c-.016.13-.058.253-.12.363zM31 9V7h3.01c.54 0 .99-.448.99-1 0-.556-.444-1-.99-1h-4.02c-.268 0-.515.11-.696.29-.184.184-.294.432-.294.705v8.01c0 .268.11.516.29.697.18.188.428.298.7.298h4.02c.54 0 .99-.448.99-1 0-.556-.444-1-.99-1H31v-2h3.01c.54 0 .99-.448.99-1 0-.556-.444-1-.99-1H31zM9 13V5.995C9 5.455 8.552 5 8 5c-.556 0-1 .446-1 .995v8.01c0 .268.11.516.29.697.18.188.428.298.7.298h4.02c.54 0 .99-.448.99-1 0-.556-.444-1-.99-1H9zm6-7.005c0-.55.444-.995 1-.995.552 0 1 .456 1 .995v8.01c0 .55-.444.995-1 .995-.552 0-1-.456-1-.995v-8.01z" fill="#F0F2F5"/>\n  </g>\n</svg>\n  '
-                    }("videoplayer_btn_icon videoplayer_live_icon") + '\n  </div>\n  <div class="videoplayer_controls_item videoplayer_live_app" style="display:none;">\n    <a href="//vk.cc/liveapp" target="_blank" rel="noopener" class="videoplayer_live_app_link">' + this.getLang("live_download_app") + '</a>\n  </div>\n  <div class="videoplayer_controls_item videoplayer_timeline"></div>\n  <div class="videoplayer_controls_item videoplayer_time">\n    <span class="_time_current"></span><span class="_time_duration"></span>\n  </div>\n  <div class="videoplayer_controls_item videoplayer_btn videoplayer_btn_mute" role="button" tabindex="0" aria-label="' + this.getLang("volume_off") + '">\n    ' + function() {
+                    }("videoplayer_btn_icon videoplayer_live_icon") + '\n  </div>\n  <div class="videoplayer_controls_item videoplayer_timeline"></div>\n  <div class="videoplayer_controls_item videoplayer_time">\n    <span class="_time_current"></span><span class="_time_duration"></span>\n  </div>\n  <div class="videoplayer_controls_item videoplayer_btn videoplayer_btn_mute" role="button" tabindex="0" aria-label="' + this.getLang("volume_off") + '">\n    ' + function() {
                         return '\n<svg class="' + (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "") + '" xmlns="http://www.w3.org/2000/svg">\n  <g fill="#fff" fill-rule="evenodd">\n    <path class="_wave2" d="M12.980843 18.8227621c-.032051 1.2070086-.6704932 1.608931-1.8287519.6202507-1.7185995-1.4687545-3.60887471-3.1942931-4.24215929-3.7215065-.63217937-.528454-1.64491897-.6202511-3.07284859-.6202511-1.42682441 0-1.81505873-.6202511-1.81505873-1.2405016s-.01369327-1.8288162-.01369327-2.001246c0-.0549443.00464608-.085056.01369327-.1291845.01954957-.0953551-.05817756-.9728525 0-1.591076.08510106-.90556663.38823432-1.24050252 1.81505873-1.24050252 1.42792962 0 2.44066922-.09179716 3.07284859-.62025109.63328458-.52845393 2.52355979-2.25275186 4.24215929-3.72150644 1.1582587-.98868024 1.7967003-.58675756 1.8287514.62025106.0431031 1.60645033 5e-7 3.85020301 5e-7 6.68226949 0 2.8295855.0431032 5.3568042 0 6.9632545zm2.9004386-8.7040437c-.3417088-.34170872-.3417088-.89572808 0-1.23743683.3417087-.34170876.8957281-.34170876 1.2374368 0 .1762598.17625972.4111566.46988072.6409943.87209686C18.1429358 10.4240187 18.375 11.1782274 18.375 12s-.2320642 1.5759813-.6152873 2.2466216c-.2298377.4022161-.4647345.6958371-.6409943.8720968-.3417087.3417088-.8957281.3417088-1.2374368 0-.3417088-.3417087-.3417088-.8957281 0-1.2374368.0737402-.0737403.2138434-.2488693.3590057-.5029032C16.4820642 12.9552687 16.625 12.4907274 16.625 12s-.1429358-.9552687-.3847127-1.3783784c-.1451623-.2540339-.2852655-.4291629-.3590057-.5029032zm3-1.99999997c-.3417088-.34170875-.3417088-.89572811 0-1.23743686.3417087-.34170876.8957281-.34170876 1.2374368 0 .2637116.26371158.6207023.73969919.9665078 1.43131016.5167785 1.03355701.842501 2.25503497.8892639 3.71655167-.0467629 1.4032299-.3724854 2.6247079-.8892639 3.6582649-.3458055.6916109-.7027962 1.1675985-.9665078 1.4313101-.3417087.3417088-.8957281.3417088-1.2374368 0-.3417088-.3417087-.3417088-.8957281 0-1.2374368.1375896-.1375897.3825507-.4642045.638697-.9764971.4071252-.8142505.6673665-1.7901701.7054825-2.8756411-.038116-1.1437578-.2983573-2.11967743-.7054825-2.93392787-.2561463-.51229266-.5011074-.83890747-.638697-.9764971z"/>\n    <path class="_wave1" d="M12.980843 18.8227621c-.032051 1.2070086-.6704932 1.608931-1.8287519.6202507-1.7185995-1.4687545-3.60887471-3.1942931-4.24215929-3.7215065-.63217937-.528454-1.64491897-.6202511-3.07284859-.6202511-1.42682441 0-1.81505873-.6202511-1.81505873-1.2405016s-.01369327-1.8288162-.01369327-2.001246c0-.0549443.00464608-.085056.01369327-.1291845.01954957-.0953551-.05817756-.9728525 0-1.591076.08510106-.90556663.38823432-1.24050252 1.81505873-1.24050252 1.42792962 0 2.44066922-.09179716 3.07284859-.62025109.63328458-.52845393 2.52355979-2.25275186 4.24215929-3.72150644 1.1582587-.98868024 1.7967003-.58675756 1.8287514.62025106.0431031 1.60645033 5e-7 3.85020301 5e-7 6.68226949 0 2.8295855.0431032 5.3568042 0 6.9632545zm2.9004386-8.7040437c-.3417088-.34170872-.3417088-.89572808 0-1.23743683.3417087-.34170876.8957281-.34170876 1.2374368 0 .1762598.17625972.4111566.46988072.6409943.87209686C18.1429358 10.4240187 18.375 11.1782274 18.375 12s-.2320642 1.5759813-.6152873 2.2466216c-.2298377.4022161-.4647345.6958371-.6409943.8720968-.3417087.3417088-.8957281.3417088-1.2374368 0-.3417088-.3417087-.3417088-.8957281 0-1.2374368.0737402-.0737403.2138434-.2488693.3590057-.5029032C16.4820642 12.9552687 16.625 12.4907274 16.625 12s-.1429358-.9552687-.3847127-1.3783784c-.1451623-.2540339-.2852655-.4291629-.3590057-.5029032z"/>\n    <path class="_cross" d="M20 10.7625631l2.3812816-2.38128153c.3417087-.34170876.8957281-.34170876 1.2374368 0 .3417088.34170875.3417088.89572811 0 1.23743686L21.2374369 12l2.3812815 2.3812816c.3417088.3417087.3417088.8957281 0 1.2374368-.3417087.3417088-.8957281.3417088-1.2374368 0L20 13.2374369l-2.3812816 2.3812815c-.3417087.3417088-.8957281.3417088-1.2374368 0-.3417088-.3417087-.3417088-.8957281 0-1.2374368L18.7625631 12l-2.3812815-2.38128157c-.3417088-.34170875-.3417088-.89572811 0-1.23743686.3417087-.34170876.8957281-.34170876 1.2374368 0zm-7.019157 8.060199c-.032051 1.2070086-.6704932 1.608931-1.8287519.6202507-1.7185995-1.4687545-3.60887471-3.1942931-4.24215929-3.7215065-.63217937-.528454-1.64491897-.6202511-3.07284859-.6202511-1.42682441 0-1.81505873-.6202511-1.81505873-1.2405016s-.01369327-1.8288162-.01369327-2.001246c0-.0549443.00464608-.085056.01369327-.1291845.01954957-.0953551-.05817756-.9728525 0-1.591076.08510106-.90556663.38823432-1.24050252 1.81505873-1.24050252 1.42792962 0 2.44066922-.09179716 3.07284859-.62025109.63328458-.52845393 2.52355979-2.25275186 4.24215929-3.72150644 1.1582587-.98868024 1.7967003-.58675756 1.8287514.62025106.0431031 1.60645033 5e-7 3.85020301 5e-7 6.68226949 0 2.8295855.0431032 5.3568042 0 6.9632545z"/>\n  </g>\n</svg>\n  '
                     }("videoplayer_btn_icon videoplayer_volume_icon") + '\n  </div>\n  <div class="videoplayer_controls_item videoplayer_volume"></div>\n  <div class="videoplayer_controls_item videoplayer_btn videoplayer_btn_expand" style="display:none;" role="button" tabindex="0" aria-label="' + this.getLang("expand") + '">\n    ' + function() {
                         return '\n<svg class="' + (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "") + '" viewBox="729 480 16 16" xmlns="http://www.w3.org/2000/svg" focusable="false">\n  <path d="M729 481.994c0-1.1.895-1.994 1.994-1.994h12.012c1.1 0 1.994.895 1.994 1.994v12.012c0 1.1-.895 1.994-1.994 1.994h-12.012c-1.1 0-1.994-.895-1.994-1.994v-12.012zm2 4.004c0-.55.456-.998 1.002-.998h9.996c.553 0 1.002.446 1.002.998v7.004c0 .55-.456.998-1.002.998h-9.996c-.553 0-1.002-.446-1.002-.998v-7.004z" fill="#FFF" fill-rule="evenodd"/>\n</svg>\n  '
@@ -3709,7 +3709,7 @@
                         return '\n<svg class="' + (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "") + '" xmlns="http://www.w3.org/2000/svg">\n  <g fill="#fff" fill-rule="evenodd">\n    <path class="_enter" d="M10.5 19c0 .5522847-.4477153 1-1 1H5c-.55228475 0-1-.4477153-1-1v-4.5c0-.5522847.44771525-1 1-1s1 .4477153 1 1v2.0715l3.36290054-3.3643932.00012963-.0001296c.39052429-.3905243 1.02368923-.3905243 1.41421353 0l.0157791.0157791.0001297.0001296c.3904527.3905959.3903366 1.0237609-.0002593 1.4142136L7.4285 18H9.5c.5522847 0 1 .4477153 1 1zM18 7.4285l-3.3629005 3.3643932c-.0000432.0000432-.0000865.0000864-.0001297.0001296-.3905243.3905243-1.0236892.3905243-1.4142135 0l-.0157791-.0157791c-.0000433-.0000432-.0000865-.0000864-.0001297-.0001296-.3904527-.3905959-.3903366-1.02376087.0002593-1.41421356L16.5715 6H14.5c-.5522847 0-1-.44771525-1-1s.4477153-1 1-1H19c.5522847 0 1 .44771525 1 1v4.5c0 .5522847-.4477153 1-1 1s-1-.4477153-1-1z"/>\n    <path class="_exit" d="M4.57969048 13.9787492c0-.5464165.44295809-.9893746.9893746-.9893746h4.45218572c.5464165 0 .9893746.4429581.9893746.9893746v4.4521857c0 .5464165-.4429581.9893746-.9893746.9893746-.54641651 0-.98937461-.4429581-.98937461-.9893746v-2.0494895l-3.3196551 3.3211319-.00012963.0001297c-.39052429.3905243-1.02368927.3905243-1.41421356 0l-.00058487-.0005849-.00012964-.0001297c-.39045268-.3905958-.3903366-1.0237608.00025929-1.4142135l3.32113189-3.3196551H5.56906508c-.54641651 0-.9893746-.4429581-.9893746-.9893746zM14.9681238 7.61855457l3.3196551-3.32113189.0001296-.00012966c.3905243-.39052429 1.0236893-.39052429 1.4142136 0l.0005849.00058488.0001296.00012965c.3904527.39059589.3903366 1.02376086-.0002593 1.41421354l-3.3211319 3.3196551h2.0494895c.5464165 0 .9893746.4429581.9893746.98937461 0 .5464165-.4429581.9893746-.9893746.9893746h-4.4415603c-.5522847 0-1-.4477153-1-1V5.56906508c0-.54641651.4429581-.9893746.9893746-.9893746s.9893746.44295809.9893746.9893746z"/>\n  </g>\n</svg>\n  '
                     }("videoplayer_btn_icon videoplayer_fullscreen_icon") + '\n  </div>\n  \x3c!--<div class="videoplayer_controls_item videoplayer_quality" role="button" tabindex="0" aria-haspopup="true" aria-label="' + this.getLang("hdsd") + '"></div>--\x3e\n  <a class="videoplayer_controls_item videoplayer_btn videoplayer_btn_vk" style="display:none;" target="_blank" rel="noopener" aria-label="' + this.getLang("goto_orig_video") + '">\n    ' + function() {
                         return '\n<svg class="' + (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "") + '" viewBox="916 568 28 16" xmlns="http://www.w3.org/2000/svg" focusable="false">\n  <path d="M938.55 575.79s3.6-5.068 3.974-6.79c.188-.625-.187-1-.813-1h-3.065c-.75 0-1.064.313-1.252.75 0 0-1.5 3.66-3.63 6.04-.687.687-1 .906-1.375.906-.188 0-.47-.22-.47-.844v-5.85c0-.752-.094-1.002-.72-1.002h-4.817c-.47 0-.688.264-.688.594 0 .712 1.064.876 1.064 2.88v4.348c0 .813-.063 1.126-.438 1.126-1 0-3.436-3.677-4.88-7.884-.284-.818-.59-1.064-1.346-1.064h-3.13c-.5 0-.812.313-.812.75 0 .783 1 4.663 4.662 9.793 2.44 3.504 5.756 5.32 8.885 5.32 1.877 0 2.315-.314 2.315-1.065v-2.628c0-.563.094-1.032.688-1.032.438 0 1.19.22 2.94 1.908 2.004 2.003 2.19 2.816 3.318 2.816h3.504c.375 0 .688-.188.688-.75 0-.814-1.064-2.19-2.565-3.88-.69-.814-1.72-1.69-2.034-2.128-.437-.563-.312-.813 0-1.314" fill="#FFF" fill-rule="evenodd"/>\n</svg>\n  '
-                    }("videoplayer_btn_icon videoplayer_vk_icon") + "\n  </a>\n</div>\n    "), this.btnSettings = domByClass(this.el, "videoplayer_btn_settings"), this.btnSubtitles = domByClass(this.el, "videoplayer_btn_subtitles"), this.btnPlay = domByClass(this.el, "videoplayer_btn_play"), this.btnNext = domByClass(this.el, "videoplayer_btn_next"), this.btnMute = domByClass(this.el, "videoplayer_btn_mute"), this.btnMuteIcon = domByClass(this.el, "videoplayer_volume_icon"), this.btnExpand = domByClass(this.el, "videoplayer_btn_expand"), this.btnFullscreen = domByClass(this.el, "videoplayer_btn_fullscreen"), this.btnLogo = domByClass(this.el, "videoplayer_btn_vk"), this.liveLabel = domByClass(this.el, "videoplayer_live"), this.liveApp = domByClass(this.el, "videoplayer_live_app"), this.liveAppLink = domByClass(this.el, "videoplayer_live_app_link"), this.timeLabel = domByClass(this.el, "videoplayer_time"), this.timeLabelCurrent = domByClass(this.timeLabel, "_time_current"), this.timeLabelDuration = domByClass(this.timeLabel, "_time_duration"), this.timelineContainer = domByClass(this.el, "videoplayer_timeline"), this.volumeContainer = domByClass(this.el, "videoplayer_volume"), this.domListen(this.btnPlay, "click", function() {
+                    }("videoplayer_btn_icon videoplayer_vk_icon") + "\n  </a>\n</div>\n    "), this.btnSettings = domByClass(this.el, "videoplayer_btn_settings"), this.btnSubtitles = domByClass(this.el, "videoplayer_btn_subtitles"), this.btnPlay = domByClass(this.el, "videoplayer_btn_play"), this.btnNext = domByClass(this.el, "videoplayer_btn_next"), this.btnMute = domByClass(this.el, "videoplayer_btn_mute"), this.btnMuteIcon = domByClass(this.el, "videoplayer_volume_icon"), this.btnExpand = domByClass(this.el, "videoplayer_btn_expand"), this.btnFullscreen = domByClass(this.el, "videoplayer_btn_fullscreen"), this.btnLogo = domByClass(this.el, "videoplayer_btn_vk"), this.liveLabel = domByClass(this.el, "videoplayer_live"), this.timeLabel = domByClass(this.el, "videoplayer_time"), this.timeLabelCurrent = domByClass(this.timeLabel, "_time_current"), this.timeLabelDuration = domByClass(this.timeLabel, "_time_duration"), this.timelineContainer = domByClass(this.el, "videoplayer_timeline"), this.volumeContainer = domByClass(this.el, "videoplayer_volume"), this.domListen(this.btnPlay, "click", function() {
                         return t.player.togglePlay()
                     }), this.domListen(this.btnNext, "click", function() {
                         return t.player.nextVideo()
@@ -3765,7 +3765,7 @@
                 }, e.prototype.buildSettingsMenu = function() {
                     this.settingsMenu = new Gt(this.player, this.btnSettings), this.el.appendChild(this.settingsMenu.el)
                 }, e.prototype.initVideo = function(t) {
-                    Ct(this.timeLabelCurrent, formatTime(0)), Ct(this.timeLabelDuration, formatTime(this.player.getDuration())), this.toggleControl(this.timelineSlider.el, this.isControlAvailable("timeline")), this.toggleControl(this.timeLabel, this.isControlAvailable("time_label")), this.toggleControl(this.liveLabel, this.isControlAvailable("live_label")), this.toggleControl(this.liveApp, this.isControlAvailable("live_app")), attr(this.liveAppLink, "href", "//vk.cc/liveapp" + (t.target_mob_os ? "?" + t.target_mob_os : "")), this.toggleControl(this.btnPlay, this.isControlAvailable("play")), this.toggleControl(this.btnNext, this.isControlAvailable("next")), this.toggleControl(this.btnExpand, this.isControlAvailable("expand")), this.toggleControl(this.btnFullscreen, this.isControlAvailable("fullscreen")), this.toggleControl(this.btnLogo, this.isControlAvailable("logo")), this.toggleControl(this.btnSubtitles, !1), this.toggleControl(this.btnSettings, this.isControlAvailable("settings")), attr(this.btnLogo, "href", "/video" + t.oid + "_" + t.vid), this.toggleControl(this.btnSettings, this.isControlAvailable("settings")), toggleClass(this.el, "_lite_controls", !!t.app_promo), toggleClass(this.el, "_has_logo", this.isControlAvailable("logo")), toggleClass(this.el, "_has_fullscreen", this.isControlAvailable("fullscreen")), toggleClass(this.btnSubtitles, "active", !1), this.timelineSlider.enable(), this.settingsMenu.enable(), this.getVar("ads_snippet_video") && !this._isTimeReversed && this.toggleTime(!0, !0), this.startTimelineAnimation()
+                    Ct(this.timeLabelCurrent, formatTime(0)), Ct(this.timeLabelDuration, formatTime(this.player.getDuration())), this.toggleControl(this.timelineSlider.el, this.isControlAvailable("timeline")), this.toggleControl(this.timeLabel, this.isControlAvailable("time_label")), this.toggleControl(this.liveLabel, this.isControlAvailable("live_label")), this.toggleControl(this.btnPlay, this.isControlAvailable("play")), this.toggleControl(this.btnNext, this.isControlAvailable("next")), this.toggleControl(this.btnExpand, this.isControlAvailable("expand")), this.toggleControl(this.btnFullscreen, this.isControlAvailable("fullscreen")), this.toggleControl(this.btnLogo, this.isControlAvailable("logo")), this.toggleControl(this.btnSubtitles, !1), this.toggleControl(this.btnSettings, this.isControlAvailable("settings")), attr(this.btnLogo, "href", "/video" + t.oid + "_" + t.vid), this.toggleControl(this.btnSettings, this.isControlAvailable("settings")), toggleClass(this.el, "_lite_controls", !!t.app_promo), toggleClass(this.el, "_has_logo", this.isControlAvailable("logo")), toggleClass(this.el, "_has_fullscreen", this.isControlAvailable("fullscreen")), toggleClass(this.btnSubtitles, "active", !1), this.timelineSlider.enable(), this.settingsMenu.enable(), this.getVar("ads_snippet_video") && !this._isTimeReversed && this.toggleTime(!0, !0), this.startTimelineAnimation()
                 }, e.prototype.deinitVideo = function() {
                     Ct(this.timeLabelCurrent, formatTime(0)), Ct(this.timeLabelDuration, formatTime(0)), this.stopTimelineAnimation(), this.timelineSlider.setLoaded(0), this.timelineSlider.setFilled(0), this.timelineSlider.disable(), this.timelinePreview.hide(), this.settingsMenu.disable()
                 }, e.prototype.toggleControl = function(t, e) {
@@ -3785,8 +3785,6 @@
                             return !e.live || this.player.getLivePhase() == st;
                         case "live_label":
                             return this.player.isActiveLive();
-                        case "live_app":
-                            return this.player.isActiveLive() && !!e.live_app_btn && !e.ads_snippet_video;
                         case "expand":
                             return !!e.is_inline && !e.app_promo && !e.ads_snippet_video;
                         case "fullscreen":
@@ -3886,7 +3884,7 @@
                         t.volumeSlider.toggleVisibility(!1)
                     }, 100))
                 }, e.prototype.onLivePhaseChange = function(t) {
-                    toggle(this.timelineSlider.el, this.isControlAvailable("timeline")), toggle(this.timeLabel, this.isControlAvailable("time_label")), toggle(this.liveLabel, this.isControlAvailable("live_label")), toggle(this.liveApp, this.isControlAvailable("live_app"))
+                    toggle(this.timelineSlider.el, this.isControlAvailable("timeline")), toggle(this.timeLabel, this.isControlAvailable("time_label")), toggle(this.liveLabel, this.isControlAvailable("live_label"))
                 }, e.prototype.onSeek = function(t) {
                     var e = t / this.player.getDuration();
                     this.timelineSlider.setFilled(e), Ct(this.timeLabelCurrent, formatTime(t))
@@ -4028,7 +4026,7 @@
                     if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
                     return !e || "object" != typeof e && "function" != typeof e ? t : e
                 }(this, t.call(this, i));
-                return n.el = se('\n<div class="videoplayer_context_menu hidden">\n  <div class="_item" data-action="copy_link">' + n.getLang("cmenu_copy_video_link") + '</div>\n  <div class="_item" data-action="copy_timecoded_link">' + n.getLang("cmenu_copy_timecode_link") + '</div>\n  <div class="_item" data-action="copy_embed_code">' + n.getLang("cmenu_copy_embed_code") + '</div>\n  <div class="_item" data-action="toggle_pip">' + n.getLang("cmenu_enable_pip_mode") + '</div>\n  <div class="_item" data-action="toggle_loop">' + n.getLang("cmenu_enable_loop") + '</div>\n  \x3c!--<div class="_item" data-action="playback_rate">' + n.getLang("cmenu_playback_speed") + '</div>--\x3e\n  <div class="_item" data-action="rotate_video">' + n.getLang("cmenu_rotate") + '</div>\n  <a class="_item" href="/support?act=new&from=v" target="_blank">' + n.getLang("cmenu_report_error") + '</a>\n  <div class="_item" data-action="copy_debug_data">' + n.getLang("cmenu_copy_debug") + "</div>\n</div>\n    "), n.domListen(n.player.el, "contextmenu", n.onContextmenu), n.domListen(n.el, "click", n.onMenuClick), n.domListen(document.body, "click", n.onLostFocus), n.domListen(n.player.el, "click", n.onLostFocus), n.domListen(window, "blur", n.onLostFocus), n.playerListen(b, n.updateButtonsVisibility), n.playerListen(A, n.updateButtonsVisibility), n.playerListen(H, n.updateButtonsVisibility), n
+                return n.el = se('\n<div class="videoplayer_context_menu hidden">\n  <div class="_item" data-action="copy_link">' + n.getLang("cmenu_copy_video_link") + '</div>\n  <div class="_item" data-action="copy_timecoded_link">' + n.getLang("cmenu_copy_timecode_link") + '</div>\n  <div class="_item" data-action="copy_embed_code">' + n.getLang("cmenu_copy_embed_code") + '</div>\n  <div class="_item" data-action="toggle_pip">' + n.getLang("cmenu_enable_pip_mode") + '</div>\n  <div class="_item" data-action="toggle_loop">' + n.getLang("cmenu_enable_loop") + '</div>\n  \x3c!--<div class="_item" data-action="playback_rate">' + n.getLang("cmenu_playback_speed") + '</div>--\x3e\n  <div class="_item" data-action="rotate_video">' + n.getLang("cmenu_rotate") + '</div>\n  <a class="_item" href="/support?act=new&from=v" target="_blank">' + n.getLang("cmenu_report_error") + '</a>\n  <div class="_item" data-action="copy_debug_data">' + n.getLang("cmenu_copy_debug") + "</div>\n</div>\n    "), n.domListen(n.player.el, "contextmenu", n.onContextmenu), n.domListen(n.el, "click", n.onMenuClick), n.domListen(document.body, "click", n.onLostFocus), n.domListen(n.player.el, "click", n.onLostFocus), n.domListen(window, "blur", n.onLostFocus), n.playerListen(b, n.updateButtonsVisibility), n.playerListen(P, n.updateButtonsVisibility), n.playerListen(H, n.updateButtonsVisibility), n
             }
             return function(t, e) {
                 if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
@@ -4416,7 +4414,7 @@
                         return i
                     }
                     return Array.from(t)
-                }(i.getSize())), n.playerListen(P, n.pushDonation), n.playerListen(d, n.onStateChange), n
+                }(i.getSize())), n.playerListen(A, n.pushDonation), n.playerListen(d, n.onStateChange), n
             }
             return function(t, e) {
                 if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
@@ -4945,7 +4943,7 @@
                     innerHTML: '<div class="videoplayer_autoplay_timer_equalizer" style="display:none;"><div class="_col"></div><div class="_col"></div><div class="_col"></div></div><span class="videoplayer_autoplay_timer_text"></span>'
                 }), n.autoplayTimerEqualizer = domByClass(n.autoplayTimer, "videoplayer_autoplay_timer_equalizer"), n.autoplayTimerText = domByClass(n.autoplayTimer, "videoplayer_autoplay_timer_text"), n.el.appendChild(n.autoplayTimer), n.autoplayHint = ce("div", {
                     className: "videoplayer_autoplay_hint hidden"
-                }), n.el.appendChild(n.autoplayHint), n.timedButtons = new de(i), n.el.appendChild(n.timedButtons.el), n.domListen(i.el, "keydown", n.onKeyDown), n.domListen(i.el, "keyup", n.onKeyUp), n.domListen(i.el, "blur", n.onBlur), n.domListen(i.el, "mousedown", n.onMouseDown), n.domListen(i.el, "click", n.onClick), n.domListen(i.el, "dblclick", n.onDoubleClick), n.domListen(i.el, "mouseenter", n.onMouseEnter), n.domListen(i.el, "mousemove", n.onMouseMove), n.domListen(i.el, "mouseleave", n.onMouseLeave), n.playerListen(d, n.onStateChange), n.playerListen(_, n.onFullscreenChange), n.playerListen(A, n.onLivePhaseChange), n.playerListen(D, n.onMediaPlaying), n.playerListen(x, n.onMediaTimeupdate), n.playerListen(R, n.updateWaiting), n.playerListen(U, n.showLiveWarning), n.playerListen(Z, n.updateWaiting), n.playerListen(tt, n.onLinearAdStarted), n.playerListen(et, n.onLinearAdCompleted), n.playerListen(b, n.onPlayerExpanded), n.playerListen(g, n._onSubtitleCueChange), n.playerListen(v, n._onSubtitlesSwitched), n.playerListen(f, n._showSubtitlesIntro), n._mouseInside = !1, n._lastUserActivity = Date.now(), n._checkUserActivityInterval = setInterval(n.checkUserActivity.bind(n), 100), n
+                }), n.el.appendChild(n.autoplayHint), n.timedButtons = new de(i), n.el.appendChild(n.timedButtons.el), n.domListen(i.el, "keydown", n.onKeyDown), n.domListen(i.el, "keyup", n.onKeyUp), n.domListen(i.el, "blur", n.onBlur), n.domListen(i.el, "mousedown", n.onMouseDown), n.domListen(i.el, "click", n.onClick), n.domListen(i.el, "dblclick", n.onDoubleClick), n.domListen(i.el, "mouseenter", n.onMouseEnter), n.domListen(i.el, "mousemove", n.onMouseMove), n.domListen(i.el, "mouseleave", n.onMouseLeave), n.playerListen(d, n.onStateChange), n.playerListen(_, n.onFullscreenChange), n.playerListen(P, n.onLivePhaseChange), n.playerListen(D, n.onMediaPlaying), n.playerListen(x, n.onMediaTimeupdate), n.playerListen(R, n.updateWaiting), n.playerListen(U, n.showLiveWarning), n.playerListen(Z, n.updateWaiting), n.playerListen(tt, n.onLinearAdStarted), n.playerListen(et, n.onLinearAdCompleted), n.playerListen(b, n.onPlayerExpanded), n.playerListen(g, n._onSubtitleCueChange), n.playerListen(v, n._onSubtitlesSwitched), n.playerListen(f, n._showSubtitlesIntro), n._mouseInside = !1, n._lastUserActivity = Date.now(), n._checkUserActivityInterval = setInterval(n.checkUserActivity.bind(n), 100), n
             }
             return function(t, e) {
                 if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
@@ -5945,7 +5943,7 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }(),
-            Ae = function() {
+            Pe = function() {
                 function t(t, e) {
                     for (var i = 0; i < e.length; i++) {
                         var n = e[i];
@@ -5957,7 +5955,7 @@
                 }
             }();
 
-        function Pe(t) {
+        function Ae(t) {
             if (Array.isArray(t)) {
                 for (var e = 0, i = Array(t.length); e < t.length; e++) i[e] = t[e];
                 return i
@@ -6164,7 +6162,7 @@
                 }, t.prototype.changeLivePhase = function(t) {
                     if (t != this._livePhase) {
                         var e = this._livePhase;
-                        this._livePhase = t, this.trigger(A, t, e), this.isActiveLive() || this.stopLiveHeartbeat()
+                        this._livePhase = t, this.trigger(P, t, e), this.isActiveLive() || this.stopLiveHeartbeat()
                     }
                 }, t.prototype.isActiveLive = function() {
                     var t = this.getLivePhase();
@@ -6336,7 +6334,7 @@
                 }, t.prototype.resize = function() {
                     addClass(this.el, "no_transition");
                     var t = this.getSize(!0);
-                    this.trigger.apply(this, [h].concat(Pe(t))), removeClassDelayed(this.el, "no_transition")
+                    this.trigger.apply(this, [h].concat(Ae(t))), removeClassDelayed(this.el, "no_transition")
                 }, t.prototype.isMinimized = function() {
                     return !(!window.Videoview || !Videoview.isMinimized())
                 }, t.prototype.getEnvLayoutType = function() {
@@ -6413,7 +6411,7 @@
                 }, t.prototype.setSuggestions = function(t) {
                     this._suggestions = t
                 }, t.prototype.pushDonation = function(t, e) {
-                    this.isActiveLive() && this.trigger(P, t, e)
+                    this.isActiveLive() && this.trigger(A, t, e)
                 }, t.prototype.pushNotice = function(t) {
                     this.ui.pushNotice(t)
                 }, t.prototype.pushLiveMidroll = function(t) {
@@ -6441,9 +6439,9 @@
                         n = void 0 === i ? "log" : i,
                         r = e.force,
                         o = void 0 !== r && r;
-                    if (this.isInited() && (this.vars.dbg_on || o)) try {
+                    if (this.isInited() && (window.__dev || o)) try {
                         var s;
-                        (s = console)[n].apply(s, Pe(["%c videoplayer ", "background:#9ddcf7;"].concat(t)))
+                        (s = console)[n].apply(s, Ae(["%c videoplayer ", "background:#9ddcf7;"].concat(t)))
                     } catch (t) {}
                 }, t.prototype.changeState = function(t) {
                     var e = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
@@ -6546,7 +6544,7 @@
                         }
                         n.dispatchEvent(r)
                     }
-                }, Ae(t, [{
+                }, Pe(t, [{
                     key: "preferredVolume",
                     get: function() {
                         var t = wt.getPref("volume");
@@ -6738,7 +6736,7 @@
                     }, h.values = V, x.prototype = {
                         constructor: x,
                         reset: function(t) {
-                            if (this.prev = 0, this.next = 0, this.sent = this._sent = i, this.done = !1, this.delegate = null, this.method = "next", this.arg = i, this.tryEntries.forEach(P), !t)
+                            if (this.prev = 0, this.next = 0, this.sent = this._sent = i, this.done = !1, this.delegate = null, this.method = "next", this.arg = i, this.tryEntries.forEach(A), !t)
                                 for (var e in this) "t" === e.charAt(0) && r.call(this, e) && !isNaN(+e.slice(1)) && (this[e] = i)
                         },
                         stop: function() {
@@ -6792,7 +6790,7 @@
                         finish: function(t) {
                             for (var e = this.tryEntries.length - 1; e >= 0; --e) {
                                 var i = this.tryEntries[e];
-                                if (i.finallyLoc === t) return this.complete(i.completion, i.afterLoc), P(i), y
+                                if (i.finallyLoc === t) return this.complete(i.completion, i.afterLoc), A(i), y
                             }
                         },
                         catch: function(t) {
@@ -6802,7 +6800,7 @@
                                     var n = i.completion;
                                     if ("throw" === n.type) {
                                         var r = n.arg;
-                                        P(i)
+                                        A(i)
                                     }
                                     return r
                                 }
@@ -6930,14 +6928,14 @@
                     return o ? o.done ? (e[t.resultName] = o.value, e.next = t.nextLoc, "return" !== e.method && (e.method = "next", e.arg = i), e.delegate = null, y) : o : (e.method = "throw", e.arg = new TypeError("iterator result is not an object"), e.delegate = null, y)
                 }
 
-                function A(t) {
+                function P(t) {
                     var e = {
                         tryLoc: t[0]
                     };
                     1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e)
                 }
 
-                function P(t) {
+                function A(t) {
                     var e = t.completion || {};
                     e.type = "normal", delete e.arg, t.completion = e
                 }
@@ -6945,7 +6943,7 @@
                 function x(t) {
                     this.tryEntries = [{
                         tryLoc: "root"
-                    }], t.forEach(A, this), this.reset(!0)
+                    }], t.forEach(P, this), this.reset(!0)
                 }
 
                 function V(t) {
