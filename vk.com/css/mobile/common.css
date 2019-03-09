@@ -10874,6 +10874,10 @@ only screen and (min-device-pixel-ratio: 2) {
     padding-bottom: 15px
 }
 
+.wall_item.informer.wi_head {
+    background: #fff
+}
+
 .informer.informer_view_1:not(.gift_informer) {
     padding-top: 0!important;
     padding-left: 0!important;
