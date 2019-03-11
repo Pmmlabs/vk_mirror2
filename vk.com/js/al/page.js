@@ -3120,6 +3120,7 @@ var Wall = {
 
                 toggle(more, newOffset < count);
                 more.onclick = Wall.showSearch.pbind(query, newOffset);
+                saveSearchAttemptStats(cur.oid > 0 ? 'wall_users' : 'wall_groups', 0, count);
             },
             showProgress: function() {
                 uiSearch.showProgress('wall_search');

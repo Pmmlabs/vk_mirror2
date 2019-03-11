@@ -5559,7 +5559,7 @@
                     n = this.player,
                     r = this.getVars(),
                     o = Le({
-                        ts: Date.now(),
+                        ts: Math.round(Date.now() / 1e3),
                         video_id: n.getVideoId(),
                         position: n.curTime(),
                         player_type: n.getEnvLayoutType(),
@@ -5575,7 +5575,7 @@
                 var a = function() {
                     i._sendEvents(s), i._saveToStorage([])
                 };
-                clearTimeout(this._flushTimeout), s.length >= 50 ? a() : this._flushTimeout = setTimeout(a, 500)
+                clearTimeout(this._flushTimeout), s.length >= 30 ? a() : this._flushTimeout = setTimeout(a, 500)
             }, e.prototype._sendEvents = function(t) {
                 var e = this.getVars(),
                     i = [e.action_hash, e.oid, e.vid, e.viewer_id].join("_");
@@ -5621,7 +5621,7 @@
                         }
                     }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
                 }(e, t), e.prototype.initVideo = function(t) {
-                    this.initTime = Date.now(), this.viewCounterIncremented = !1, this.lastPlayProgressSent = 0, this.needViewSegments = !(!t.vsegs_size || !t.vsegs_hash), this.playFinishedSent = !1, this.requestedPlay = 0, this.startedPlay = 0, this.startQuality = 0, this.pausedBeforeStart = !1, this.stallsCount = 0, this.seekDurations = [], this.hlsFirstLevelLoadTime = 0, this.hlsFirstFragLoadTime = 0, this.collectWatchStat = !0, this.maxTimePosition = 0, this.lastVolume = this.player.isMuted() ? 0 : this.player.getVolume(), this.liveHeartbeatEventsQueue = [], this.ownerId = t.oid, this.videoId = t.vid, this.initViewSegments(t), this.flushWatchData(), this.flushCandyData(), this.initComScoreLib(), this.sendTnsStat("init")
+                    this.initTime = Date.now(), this.viewCounterIncremented = !1, this.lastPlayProgressSent = 0, this.needViewSegments = !(!t.vsegs_size || !t.vsegs_hash), this.playFinishedSent = !1, this.requestedPlay = 0, this.startedPlay = 0, this.startQuality = 0, this.pausedBeforeStart = !1, this.stallsCount = 0, this.seekDurations = [], this.hlsFirstLevelLoadTime = 0, this.hlsFirstFragLoadTime = 0, this.collectWatchStat = !0, this.maxTimePosition = 0, this.maxTimePercent = 0, this.lastVolume = this.player.isMuted() ? 0 : this.player.getVolume(), this.liveHeartbeatEventsQueue = [], this.ownerId = t.oid, this.videoId = t.vid, this.initViewSegments(t), this.flushWatchData(), this.flushCandyData(), this.initComScoreLib(), this.sendTnsStat("init")
                 }, e.prototype.deinitVideo = function() {
                     this.comScoreTag && (this.comScoreTag.stop(), this.comScoreTag = null), this._bigTvTimeout && (clearTimeout(this._bigTvTimeout), this._bigTvTimeout = null), this.flushWatchData(), this.flushCandyData()
                 }, e.prototype.initViewSegments = function(t) {
@@ -5708,11 +5708,11 @@
                     if (t > this.maxTimePosition) {
                         var n = this.player.getDuration() || 1,
                             r = this.maxTimePosition,
-                            o = r / n * 100,
+                            o = this.maxTimePercent,
                             s = t / n * 100;
                         this.player.isLooped() && n - t < .5 && (s = 100), t >= 3 && r < 3 && (this.trackEvents.trackVideoPlay("3s"), this.sendAdPostStatEvent("video_play_3s")), t >= 10 && r < 10 && this.trackEvents.trackVideoPlay("10s"), each([25, 50, 75, 95, 100], function(t, i) {
                             s >= i && o < i && (e.trackEvents.trackVideoPlay(i), e.sendAdPostStatEvent("video_play_" + i), e.sendMediascopeStat(i + "%"))
-                        }), this.maxTimePosition = t
+                        }), this.maxTimePosition = t, this.maxTimePercent = s
                     }
                 }, e.prototype.onMediaVolumeChange = function(t) {
                     this.player.isTouchedByUser() && (t ? t && !this.lastVolume && this.sendAdPostStatEvent("video_volume_on") : this.sendAdPostStatEvent("video_volume_off")), this.lastVolume = t
