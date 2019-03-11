@@ -244,7 +244,7 @@ var stVersions = {
     'owner_photo.js': 3368798011,
     'owner_photo.css': 18487321623,
     'page.js': 3536433373,
-    'page.css': 74602948287,
+    'page.css': 76118367626,
     'page_help.css': 25071167737,
     'public.css': 28974919343,
     'cmodules/web/public.js': "2bbdae3965afc3b2d2f40b66634472b19",
@@ -393,7 +393,7 @@ var stVersions = {
     'call.js': 4217435992,
     'call.css': 3256039661,
     'aes_light.css': 27869173628,
-    'aes_light.js': 1877853443,
+    'aes_light.js': 4212813824,
     'ads.css': 67029378424,
     'ads_bonus.css': 1294533291,
     'ads.js': 2818935101,
@@ -566,7 +566,7 @@ var stVersions = {
     'landings/ads_cases.css': 28996932315,
     'landings/digital_day_2018.css': 21505378407,
     'surveys.css': 25584213005,
-    'cmodules/web/surveys.js': "140c0bb07bf4898a5edd893ada3ae65eb",
+    'cmodules/web/surveys.js': "14bddc827a79f51a9a18feb4e31f65a74",
     'landings/author_guide.css': 25002246621,
     'language.js': 3551638980,
     'language.css': 18311720501,
@@ -614,7 +614,7 @@ var stVersions = {
     'cmodules/bundles/37d6fe1fee6fb6accf5867cbca2cda9c.js': '3f331e8db61f92e2146e',
     'cmodules/bundles/4960b7a44f576ec717e62f0cb27b92d7.js': '0832165c300e9a297e78',
     'cmodules/bundles/4e9ebb028b98a4976ef0fa54cb4e993f.js': '4966acb808b5b73bcd69',
-    'cmodules/bundles/63cc894c1323b715b7b33772086e4b56.js': '659dc90dbbbba0b29e55',
+    'cmodules/bundles/63cc894c1323b715b7b33772086e4b56.js': '0d42fd59e00801bdfd64',
     'cmodules/bundles/6d669e070da493537223b2032427707c.js': '12ddb624ed5fd5808f19',
     'cmodules/bundles/6deb4edfcbfb465064078145a4a266bf.js': '9c65d67e5e1be9cb16ac',
     'cmodules/bundles/922212473b83a11bea81153804d90f9d.js': '2e27ac5e54275a48cbc1',
@@ -721,7 +721,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 3220;
+var _rnd = 4473;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],

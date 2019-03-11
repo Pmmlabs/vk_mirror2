@@ -2457,7 +2457,7 @@
 
         googletag.cmd.push(function() {
             each(vk__adsLight.GPTBlocks, function(index, blockID) {
-                var slot = googletag.defineSlot('/59246935/vk_native_left', ['fluid'], blockID);
+                var slot = googletag.defineSlot('/21802649096/vk_native_left', ['fluid'], blockID);
                 vk__adsLight.GPTAdSlots[blockID] = slot;
                 slot.addService(googletag.pubads());
             });
