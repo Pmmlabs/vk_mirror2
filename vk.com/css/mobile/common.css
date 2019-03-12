@@ -221,6 +221,19 @@ ul {
     text-decoration: none
 }
 
+.link_header .slim_header {
+    color: #d3dbe3
+}
+
+.slim_header_label {
+    color: #657e9b
+}
+
+.slim_header_lnk {
+    font-weight: 400;
+    color: #657e9b
+}
+
 .slim_header_rl {
     padding-left: 5px;
     color: #3c6a9e;
@@ -298,6 +311,11 @@ ul {
 
 .divider {
     padding: 0 2px
+}
+
+.divider_dot:before {
+    content: "\00b7";
+    display: inline-block
 }
 
 .row_dash {
@@ -1448,6 +1466,7 @@ input.wide_button {
     background-position: 0 -426px
 }
 
+.friendsRecommendedSlider .verified.top_author,
 .mark_top_verified .wi_author .verified.top_author,
 .pic_from .verified.top_author {
     background-position: 0 -403px
@@ -2597,6 +2616,10 @@ input.wide_button {
 
 .profile_info_custom {
     padding: 0
+}
+
+.profile_info_friends_recs {
+    padding-top: 12px
 }
 
 .profile_info_null {
@@ -30355,13 +30378,13 @@ a.feedBlocks__article:hover {
     background-size: 8px 14px!important
 }
 
-.feedAssistance_recommendedFriends .prettyCard {
+.friendsRecommendedSlider .prettyCard {
     width: 138px;
     margin-right: 8px;
     margin-bottom: 12px
 }
 
-.feedAssistance_recommendedFriends .prettyCard__photo {
+.friendsRecommendedSlider .prettyCard__photo {
     position: relative;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -30377,11 +30400,11 @@ a.feedBlocks__article:hover {
     border: none
 }
 
-._ioff .feedAssistance_recommendedFriends .prettyCard__photo {
+._ioff .friendsRecommendedSlider .prettyCard__photo {
     background: #edf1f5!important
 }
 
-.feedAssistance_recommendedFriends .prettyCard__photo:before {
+.friendsRecommendedSlider .prettyCard__photo:before {
     content: '';
     position: absolute;
     -webkit-box-sizing: border-box;
@@ -30398,19 +30421,19 @@ a.feedBlocks__article:hover {
     z-index: 1
 }
 
-.feedAssistance_recommendedFriends .prettyCard__body {
+.friendsRecommendedSlider .prettyCard__body {
     -webkit-border-radius: 0 0 6px 6px;
     -moz-border-radius: 0 0 6px 6px;
     border-radius: 0 0 6px 6px
 }
 
-.feedAssistance_recommendedFriends .prettyCard__bodyLink {
+.friendsRecommendedSlider .prettyCard__bodyLink {
     height: 46px;
     padding: 10px 8px
 }
 
-.feedAssistance_recommendedFriends .prettyCard__desc,
-.feedAssistance_recommendedFriends .prettyCard__title {
+.friendsRecommendedSlider .prettyCard__desc,
+.friendsRecommendedSlider .prettyCard__title {
     text-align: center;
     font-size: 13px;
     overflow: hidden;
@@ -30418,12 +30441,37 @@ a.feedBlocks__article:hover {
     text-overflow: ellipsis
 }
 
-.feedAssistance_recommendedFriends .prettyCard__title:last-child {
+.friendsRecommendedSlider .prettyCard__title {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    height: 16px;
+    line-height: 16px
+}
+
+.friendsRecommendedSlider .prettyCard__title:last-child {
+    height: 46px;
     line-height: 46px
 }
 
-.feedAssistance_recommendedFriends .prettyCard__descs,
-.feedAssistance_recommendedFriends .prettyCard__long_desc {
+.friendsRecommendedSlider .prettyCard__title_text {
+    -webkit-flex-shrink: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis
+}
+
+.friendsRecommendedSlider .prettyCard__descs,
+.friendsRecommendedSlider .prettyCard__long_desc {
     font-size: 12px;
     line-height: 1.17;
     margin-top: 2px;
@@ -30431,7 +30479,7 @@ a.feedBlocks__article:hover {
     text-align: center
 }
 
-.feedAssistance_recommendedFriends .prettyCard__long_desc {
+.friendsRecommendedSlider .prettyCard__long_desc {
     height: 28px;
     padding-bottom: 2px;
     margin-bottom: -2px;
@@ -30455,22 +30503,22 @@ a.feedBlocks__article:hover {
     align-items: center
 }
 
-.feedAssistance_recommendedFriends .prettyCard__long_desc_content {
+.friendsRecommendedSlider .prettyCard__long_desc_content {
     max-height: 28px
 }
 
-.feedAssistance_recommendedFriends .prettyCard__descs_line {
+.friendsRecommendedSlider .prettyCard__descs_line {
     overflow: hidden;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis
 }
 
-.feedAssistance_recommendedFriends .prettyCard__buttonWrap {
+.friendsRecommendedSlider .prettyCard__buttonWrap {
     padding: 0 10px 10px;
     margin-top: -2px
 }
 
-.feedAssistance_recommendedFriends .prettyCard__button {
+.friendsRecommendedSlider .prettyCard__button {
     padding: 6px 7px 7px 10px;
     margin: 0 1px 1px;
     font-size: 12px!important;
@@ -30480,7 +30528,7 @@ a.feedBlocks__article:hover {
     text-transform: uppercase
 }
 
-.feedAssistance_recommendedFriends .prettyCard__button:before {
+.friendsRecommendedSlider .prettyCard__button:before {
     content: '';
     display: inline-block;
     position: relative;
@@ -30499,7 +30547,7 @@ a.feedBlocks__article:hover {
     background-image: linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/add_16.svg')
 }
 
-.vk_2x .feedAssistance_recommendedFriends .prettyCard__button:before {
+.vk_2x .friendsRecommendedSlider .prettyCard__button:before {
     background-image: url('/images/icons/add_2x.png');
     background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(transparent)), url('/images/mobile/svg_icons/add_16.svg');
     background-image: -webkit-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/add_16.svg');
@@ -30508,7 +30556,7 @@ a.feedBlocks__article:hover {
     background-image: linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/add_16.svg')
 }
 
-.feedAssistance_recommendedFriends .prettyCard__button.prettyCard__button_accepted {
+.friendsRecommendedSlider .prettyCard__button.prettyCard__button_accepted {
     font-weight: 400;
     background: transparent;
     color: #909499;
@@ -30516,12 +30564,12 @@ a.feedBlocks__article:hover {
     text-transform: none
 }
 
-.feedAssistance_recommendedFriends .prettyCard__button.prettyCard__button_accepted:before,
-.feedAssistance_recommendedFriends .prettyCard__button.prettyCard__button_loading:before {
+.friendsRecommendedSlider .prettyCard__button.prettyCard__button_accepted:before,
+.friendsRecommendedSlider .prettyCard__button.prettyCard__button_loading:before {
     display: none
 }
 
-.feedAssistance_recommendedFriends .prettyCard__closeButton {
+.friendsRecommendedSlider .prettyCard__closeButton {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
@@ -30538,7 +30586,7 @@ a.feedBlocks__article:hover {
     background-size: 80%
 }
 
-.vk_2x .feedAssistance_recommendedFriends .prettyCard__closeButton {
+.vk_2x .friendsRecommendedSlider .prettyCard__closeButton {
     background-image: url('/images/hide_16_2x.png');
     background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(transparent)), url('/images/mobile/svg_icons/hide_16.svg');
     background-image: -webkit-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/hide_16.svg');
@@ -30547,11 +30595,11 @@ a.feedBlocks__article:hover {
     background-image: linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/hide_16.svg')
 }
 
-.feedAssistance_recommendedFriends.feedAssistance_circleFriends .prettyCard {
+.friendsRecommendedSlider.friendsRecommendedSlider_circleFriends .prettyCard {
     width: 144px
 }
 
-.feedAssistance_recommendedFriends.feedAssistance_circleFriends .prettyCard__photo {
+.friendsRecommendedSlider.friendsRecommendedSlider_circleFriends .prettyCard__photo {
     width: 100px;
     height: 100px;
     margin: 12px 22px 0;
@@ -30560,7 +30608,7 @@ a.feedBlocks__article:hover {
     border-radius: 50%
 }
 
-.feedAssistance_recommendedFriends.feedAssistance_circleFriends .prettyCard__photo:before {
+.friendsRecommendedSlider.friendsRecommendedSlider_circleFriends .prettyCard__photo:before {
     width: 144px;
     height: 112px;
     right: -22px;
@@ -30568,7 +30616,7 @@ a.feedBlocks__article:hover {
     border-bottom: 0
 }
 
-.feedAssistance_recommendedFriends.feedAssistance_circleFriends .prettyCard__closeButton {
+.friendsRecommendedSlider.friendsRecommendedSlider_circleFriends .prettyCard__closeButton {
     background-image: url('/images/mobile/skins/icon/base.png');
     -moz-background-size: 100%;
     -o-background-size: 100%;
@@ -30581,12 +30629,40 @@ a.feedBlocks__article:hover {
     right: 6px
 }
 
-.vk_2x .feedAssistance_recommendedFriends.feedAssistance_circleFriends .prettyCard__closeButton {
+.vk_2x .friendsRecommendedSlider.friendsRecommendedSlider_circleFriends .prettyCard__closeButton {
     background-image: url('/images/mobile/skins/icon/base_2x.png')
 }
 
-.feedAssistance_recommendedFriends .prettyCard__button.goodAuthorSubscribe:before {
+.friendsRecommendedSlider .prettyCard__button.goodAuthorSubscribe:before {
     display: none
+}
+
+.friendsRecommendedSlider .prettyCard_promo_authors_rec .prettyCard__long_desc {
+    height: 42px
+}
+
+.friendsRecommendedSlider .prettyCard_promo_authors_rec .prettyCard__long_desc_content {
+    max-height: 42px
+}
+
+.friendsRecommendedSlider .prettyCard_promo_authors_rec .prettyCard__buttonWrap {
+    text-align: center
+}
+
+.friendsRecommendedSlider .prettyCard_promo_authors_rec .prettyCard__link {
+    position: relative;
+    top: -9px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #5181b8
+}
+
+.friendsRecommendedSliderWrap .slim_header_lnk {
+    text-transform: none
+}
+
+.friendsRecommendedSliderWrap .profile_info_friends_recs {
+    margin-top: 8px
 }
 
 .vk__page_newCreatePost .Control {

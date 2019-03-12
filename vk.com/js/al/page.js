@@ -646,7 +646,7 @@ var Page = {
             if (!window._postsExtras) {
                 _postsExtras = {};
             }
-            var now = vkNow();
+            var now = Date.now();
             var ch = false;
             for (i in posts) {
                 for (j in posts[i]) {
@@ -670,7 +670,7 @@ var Page = {
             if (!window._postsExtras) {
                 _postsExtras = {};
             }
-            var now = vkNow();
+            var now = Date.now();
             var adBlockSeenStorage = Page._adBlockSeenStorage;
             var postElem;
 
@@ -760,7 +760,7 @@ var Page = {
             var seen = ls.get('posts_seen') || {};
             var modules = ls.get('posts_seen_modules') || {};
             var extras = ls.get('posts_extras') || {};
-            var t = Math.floor((vk.ts + Math.floor((vkNow() - vk.started) / 1000)) / 3600);
+            var t = Math.floor((vk.ts + Math.floor((Date.now() - vk.started) / 1000)) / 3600);
             var adBlockSeenStorage = Page._adBlockSeenStorage;
             var ch, i, p, snt, sn;
             if (!window._postsExtras) {
@@ -990,7 +990,7 @@ var Page = {
             }
 
             debugLog('cleaning ls..');
-            var t = Math.floor((vk.ts + Math.floor((vkNow() - vk.started) / 1000)) / 3600);
+            var t = Math.floor((vk.ts + Math.floor((Date.now() - vk.started) / 1000)) / 3600);
             var sent = ls.get('posts_sent') || {},
                 i, j, k, ch = 0;
             for (i in sent) {
@@ -1903,7 +1903,7 @@ var Page = {
                     if (inViewport) {
                         if (!isPlaying && !isLoading) {
                             var params = _getVideoParams(thumb);
-                            var beforeInitTime = vkNow();
+                            var beforeInitTime = Date.now();
                             lastAutoPlayVideo = thumb;
 
                             showInlineVideo(params.video, params.list, {
@@ -1912,11 +1912,11 @@ var Page = {
                                 cache: 1,
                                 addParams: params
                             }, false, thumb);
-                            statlogsValueEvent('page_show_inline_video', vkNow() - beforeInitTime);
+                            statlogsValueEvent('page_show_inline_video', Date.now() - beforeInitTime);
                             _sendLoadEvent(params);
                             cur.videoAutoplayStat = {
                                 video: params.video,
-                                launched: vkNow(),
+                                launched: Date.now(),
                                 preloaded: _isPreloaded(params.video)
                             };
                         }
@@ -3735,7 +3735,7 @@ var Wall = {
                             !share.url ||
                             !share.title && (!share.images || !share.images.length) && !share.photo_url && !share.video
                         ) {
-                            if (cur.shareLastParseSubmitted && vkNow() - cur.shareLastParseSubmitted < 2000) {
+                            if (cur.shareLastParseSubmitted && Date.now() - cur.shareLastParseSubmitted < 2000) {
                                 params.delayed = true;
                                 return false;
                             } else {
@@ -4378,7 +4378,7 @@ var Wall = {
                             !share.url ||
                             !share.title && (!share.images || !share.images.length) && !share.photo_url && !share.video
                         ) {
-                            if (cur.shareLastParseSubmitted && vkNow() - cur.shareLastParseSubmitted < 2000) {
+                            if (cur.shareLastParseSubmitted && Date.now() - cur.shareLastParseSubmitted < 2000) {
                                 ret = true;
                                 return false;
                             } else {
@@ -4733,7 +4733,7 @@ var Wall = {
         if (!r) return; // fixme: shortcut solution that prevents js error when clicking on name of replied person in comments
 
         var openEl = r.nextSibling;
-        var a = vkNow();
+        var a = Date.now();
         if (hl) {
             var h = r.offsetHeight;
             r.innerHTML = replies;
@@ -8161,7 +8161,7 @@ var Wall = {
     },
     getAbsDate: function(ts, cur) {
         cur = cur || window.cur;
-        var date = new Date(ts || vkNow()),
+        var date = new Date(ts || Date.now()),
             hours = date.getHours(),
             minutes = date.getMinutes(),
             ampm = '',
@@ -8176,7 +8176,7 @@ var Wall = {
     },
     getNowRelTime: function(cur) {
         cur = cur || window.cur;
-        var ts = vkNow();
+        var ts = Date.now();
         return '<span class="rel_date rel_date_needs_update" time="' + intval(ts / 1000 - (cur.tsDiff || 0)) + '" abs_time="' + Wall.getAbsDate(ts, cur) + '">' + getLang('wall_just_now') + '</span>';
     },
     getNewPostHTML: function(ev, adminLevel, extendCb, cur) {
@@ -8414,7 +8414,7 @@ var Wall = {
         if (!(cur.lang || {}).wall_X_seconds_ago_words) {
             return;
         }
-        var timeNow = intval(vkNow() / 1000),
+        var timeNow = intval(Date.now() / 1000),
             toClean = [];
         timeNow -= cur.tsDiff;
         each(geByClass('rel_date_needs_update', cont || ge('page_wall_posts'), 'span'), function(k, v) {
@@ -9071,7 +9071,7 @@ var Wall = {
             wallType: opts.wall_type,
             wallTpl: opts.wall_tpl,
             wallMyDeleted: {},
-            tsDiff: opts.wall_tpl && opts.wall_tpl.abs_timestamp ? Math.round((vkNow() / 1000 - opts.wall_tpl.abs_timestamp) / 900.0) * 900 : 0,
+            tsDiff: opts.wall_tpl && opts.wall_tpl.abs_timestamp ? Math.round((Date.now() / 1000 - opts.wall_tpl.abs_timestamp) / 900.0) * 900 : 0,
             wallMyOpened: {},
             wallMyReplied: {},
             wallMentions: [],
@@ -10350,21 +10350,96 @@ var Wall = {
         });
     },
 
+    friendsRecommInit: function(gallery, galleryOpts) {
+        if (!gallery) {
+            return;
+        }
+
+        galleryOpts = galleryOpts || {};
+
+        var blockType = domData(gallery, 'from') || 'user_rec';
+        var trackCode = domData(gallery, 'code');
+
+        var opts = {
+            scrollY: false,
+            onViewItem: function(item, index) {
+                if (galleryOpts.checkViewItem && !galleryOpts.checkViewItem(item)) {
+                    return;
+                }
+
+                Wall.onViewFriendRecomm(item, index, blockType);
+            },
+            onDestroy: function() {
+                if (galleryOpts.onDestroy) {
+                    galleryOpts.onDestroy();
+                }
+            }
+        };
+
+        var recommFrom = domData(gallery, 'next');
+
+        if (recommFrom) {
+            opts.onLoadMore = function() {
+                ajax.post('al_friends.php', {
+                    act: 'a_recomm_friends_gallery',
+                    next: domData(gallery, 'next'),
+                    track_code: trackCode,
+                    friend_id: galleryOpts.friendId || 0,
+                }, {
+                    onDone: function(html, newFrom) {
+                        var items = [];
+
+                        if (html) {
+                            items = domChildren(ce('div', {
+                                innerHTML: html
+                            }));
+                        }
+
+                        uiGetGallery(gallery).addMore(items, !newFrom);
+
+                        domData(gallery, 'next', newFrom || null);
+                    }
+                });
+            };
+        }
+
+        new UIGallery(gallery, opts);
+    },
+
+    onViewFriendRecomm: function(item, index, blockType) {
+        if (item.viewed || !hasClass(item, 'ui_gallery_item')) {
+            return;
+        }
+
+        var mid = +domData(item, 'uid');
+        var ref = (cur.module === 'feed' && feed) ? feed.getModuleRef() : cur.module;
+        var trackCode = Wall._friendsRecommGetTrackCode(item);
+
+        Wall.friendsRecommLogSave(['show_user_rec', mid, Date.now(), index, ref, blockType, trackCode]);
+
+        item.viewed = true;
+    },
+
     toggleRecommFriend: function(btn, ev, hash) {
-        var card = gpeByClass('friend_recomm_card', btn);
-        var mid = card && +domData(card, 'uid');
-        var from = domData(gpeByClass('ui_gallery', btn), 'from') || 'user_rec';
+        var item = gpeByClass('friend_recomm_card', btn);
+        var mid = item && +domData(item, 'uid');
 
         if (!mid) {
             return;
         }
 
+        var fromType = 'user_rec';
+        var ref = (cur.module === 'feed' && feed) ? feed.getModuleRef() : cur.module;
+        var trackCode = Wall._friendsRecommGetTrackCode(item);
+
         var params = {
             act: 'add',
             mid: mid,
             hash: hash,
-            from: from,
-            ts: vkNow()
+            from: fromType,
+            ref: ref,
+            track_code: trackCode,
+            ts: Date.now(),
         };
         var midLogs = Wall.friendsRecommLogGet(true, mid);
 
@@ -10378,8 +10453,8 @@ var Wall = {
                 val(btn, text);
                 addClass(btn, 'secondary');
                 disableButton(btn, true);
-                addClass(card, 'friend_recomm_card_accepted');
-                re(geByClass1('wall_card_text_special', card));
+                addClass(item, 'friend_recomm_card_accepted');
+                re(geByClass1('wall_card_text_special', item));
             },
             onFail: function(text) {
                 if (midLogs) {
@@ -10399,19 +10474,23 @@ var Wall = {
     },
 
     hideRecommFriend: function(btn, ev, hash) {
-        var card = gpeByClass('friend_recomm_card', btn);
-        var mid = card && +domData(card, 'uid');
-        var from = domData(gpeByClass('ui_gallery', btn), 'from') || 'user_rec';
+        var item = gpeByClass('friend_recomm_card', btn);
+        var mid = item && +domData(item, 'uid');
 
         if (!mid) {
             return;
         }
 
+        var gallery = gpeByClass('ui_gallery', btn);
+        var ref = (cur.module === 'feed' && feed) ? feed.getModuleRef() : cur.module;
+        var trackCode = domData(item, 'code') || domData(gallery, 'code') || '';
+
         ajax.post('al_friends.php', {
             act: 'hide_possible',
             mid: mid,
+            ref: ref,
+            track_code: trackCode,
             hash: hash,
-            from: from
         }, {
             onDone: function() {
                 var gallery = uiGetGallery(gpeByClass('ui_gallery', btn));
@@ -10434,16 +10513,32 @@ var Wall = {
         return false;
     },
 
-    onClickRecommFriend: function(el) {
-        var mid = +domData(el, 'uid');
-        var from = domData(gpeByClass('ui_gallery', el), 'from') || 'user_rec';
+    onClickRecommFriend: function(item) {
+        if (!hasClass(item, 'ui_gallery_item')) {
+            item = gpeByClass('ui_gallery_item', item);
+        }
 
-        if (!mid) {
+        if (!item) {
             return;
         }
 
-        Wall.friendsRecommLogAddVisited(mid, from);
-        Wall.friendsRecommLogSave(['open_user', mid, vkNow(), from]);
+        var mid = +domData(item, 'uid');
+        var ref = (cur.module === 'feed' && feed) ? feed.getModuleRef() : cur.module;
+        var trackCode = Wall._friendsRecommGetTrackCode(item);
+
+        Wall.friendsRecommLogAddVisited(mid, ref, trackCode);
+        Wall.friendsRecommLogSave(['open_user', mid, Date.now(), ref, trackCode]);
+    },
+
+    _friendsRecommGetTrackCode(item) {
+        var trackCode = domData(item, 'code');
+        var gallery;
+
+        if (!trackCode) {
+            gallery = gpeByClass('ui_gallery', item);
+            trackCode = domData(gallery, 'code');
+        }
+        return trackCode || '';
     },
 
     friendsRecommLogSave: function(log, force) {
@@ -10489,9 +10584,12 @@ var Wall = {
         Wall.friendsRecommLogCleanVisited(mid);
     },
 
-    friendsRecommLogAddVisited: function(mid, from) {
+    friendsRecommLogAddVisited: function(mid, ref, trackCode) {
         var visited = ls.get('friends_recomm_visited') || {};
-        visited[mid] = from;
+        visited[mid] = {
+            ref: ref,
+            trackCode: trackCode
+        };
         ls.set('friends_recomm_visited', visited);
     },
 
@@ -11937,7 +12035,7 @@ Composer = {
                             !share.url ||
                             !share.title && (!share.images || !share.images.length) && !share.photo_url && !share.video
                         ) {
-                            if (cur.shareLastParseSubmitted && vkNow() - cur.shareLastParseSubmitted < 2000) {
+                            if (cur.shareLastParseSubmitted && Date.now() - cur.shareLastParseSubmitted < 2000) {
                                 params.delayed = true;
                                 return false;
                             } else {

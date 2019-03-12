@@ -2711,20 +2711,8 @@ div.feed_recom {
     margin-right: 20px
 }
 
-.feed_friends_recomm .wall_card__button:before {
-    content: '';
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    margin-right: 5px;
-    position: relative;
-    top: 2px;
-    left: -1px;
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M7%205v-4.1c0-.5-.4-.9-1-.9s-1%20.4-1%20.9v4.1h-4.1c-.5%200-.9.4-.9%201s.4%201%20.9%201h4.1v4.1c0%20.5.4.9%201%20.9s1-.4%201-.9v-4.1h4.1c.5%200%20.9-.4.9-1s-.4-1-.9-1h-4.1z%22%2F%3E%3C%2Fsvg%3E") no-repeat 50% / cover
-}
-
-.feed_friends_recomm .wall_card__button.flat_btn_lock:before {
-    display: none
+.feed_friends_recomm .ui_gallery__arrow {
+    background-position-y: 58px!important
 }
 
 .feed_friends_recomm.feed_good_authors_recomm .feed_friends_recomm__title {
@@ -2757,16 +2745,6 @@ div.feed_recom {
 
 .feed_friends_recomm.feed_good_authors_recomm .feed_friends_recomm__all {
     margin-top: 18px
-}
-
-.feed_friends_recomm .friend_recomm_card_accepted .button_disabled {
-    opacity: 1;
-    font-weight: 400
-}
-
-.feed_friends_recomm .friend_recomm_card_accepted .button_disabled:before,
-.feed_friends_recomm .friend_recomm_card_accepted .feed_card__close {
-    display: none
 }
 
 .fave_photos_page_block .fave_photos_block_rows {

@@ -2499,11 +2499,12 @@ var Feed = {
                     } else if (geByClass1('feed_friends_recomm', el)) {
                         var gallery = geByClass1('ui_gallery', el);
                         var blockType = domData(gallery, 'from');
+                        var trackCode = domData(gallery, 'code') || '';
 
-                        Wall.friendsRecommLogSave(['view_block', blockType, postRaws.index, vkNow(), postRaws.module], true);
+                        Wall.friendsRecommLogSave(['view_block', blockType, postRaws.index, vkNow(), postRaws.module, trackCode], true);
 
                         uiGetGallery(gallery).getVisibleItems().forEach(function(item) {
-                            Feed.onViewFriendRecomm(item[0], item[1], blockType);
+                            Wall.onViewFriendRecomm(item[0], item[1], blockType);
                         });
 
                         gallery.visible = true;
@@ -3419,57 +3420,17 @@ var Feed = {
         var gallery = geByClass1('ui_gallery', post);
 
         if (gallery) {
-            var blockType = domData(gallery, 'from') || 'user_rec';
-
-            var opts = {
-                scrollY: false,
-                onViewItem: function(item, index) {
-                    if (gallery.visible) {
-                        Feed.onViewFriendRecomm(item, index, blockType);
-                    }
+            Wall.friendsRecommInit(gallery, {
+                checkViewItem: function() {
+                    return gallery.visible;
                 },
                 onDestroy: function() {
                     re(post);
-                }
-            };
-
-            if (cur.friends_recomm_from) {
-                opts.onLoadMore = function() {
-                    ajax.post('al_feed.php', {
-                        act: 'a_recomm_friends_gallery',
-                        from: cur.friends_recomm_from
-                    }, {
-                        onDone: function(html, newFrom) {
-                            var items = [];
-
-                            if (html) {
-                                items = domChildren(ce('div', {
-                                    innerHTML: html
-                                }));
-                            }
-
-                            uiGetGallery(gallery).addMore(items, !newFrom);
-
-                            cur.friends_recomm_from = newFrom;
-                        }
-                    });
-                };
-            }
-
-            new UIGallery(gallery, opts);
+                },
+            });
         }
 
         Wall.onPostLoaded(post, maybeWrappedElement);
-    },
-
-    onViewFriendRecomm: function(item, index, blockType) {
-        if (!item.viewed) {
-            var mid = +domData(item, 'uid');
-
-            Wall.friendsRecommLogSave(['show_user_rec', mid, vkNow(), index, blockType]);
-
-            item.viewed = true;
-        }
     },
 
     openPostSuggest: function(suggestId, postData, event) {
@@ -3531,6 +3492,10 @@ var Feed = {
             hash: hash
         });
         return false;
+    },
+
+    onViewFriendRecomm: function(item, index, blockType) {
+        Wall.onViewFriendRecomm(item, index, blockType);
     }
 };
 window.feed = Feed;

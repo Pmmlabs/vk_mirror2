@@ -1581,3 +1581,19 @@ div.profile_online {
 .profile__staging-status b {
     font-weight: 500
 }
+
+.module.profile_friends_recomm .module_header .header_top {
+    padding: 3px 16px 0 20px
+}
+
+.module.profile_friends_recomm .ui_gallery {
+    padding: 11px 0 14px
+}
+
+.module.profile_friends_recomm .ui_gallery_item:first-child {
+    margin-left: 20px
+}
+
+.module.profile_friends_recomm .ui_gallery_item:last-child {
+    margin-right: 20px
+}

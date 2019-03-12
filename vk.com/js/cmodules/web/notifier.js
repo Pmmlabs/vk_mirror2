@@ -4293,7 +4293,8 @@
                 }, t || {}))
             },
             canNotifyUi: function() {
-                return !ls.get("im_ui_notify_off") && DesktopNotifications.supported() && DesktopNotifications.checkPermission() <= 0 && !cur.noDisturbMode
+                var e = !ls.get("im_ui_notify_off") && DesktopNotifications.supported() && DesktopNotifications.checkPermission() <= 0;
+                return !ls.get("im_notify_flag") && e && ls.set("im_notify_flag", 1), e && !cur.noDisturbMode
             },
             showEventUi: function showEventUi(ev) {
                 if (!this.canNotifyUi()) return !1;

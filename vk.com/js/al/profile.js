@@ -190,14 +190,18 @@ var Profile = {
             };
             var midLogs;
 
-            var ref = Wall.friendsRecommLogCheckVisited(cur.oid);
+            var recommInfo = Wall.friendsRecommLogCheckVisited(cur.oid);
 
-            if (ref) {
-                params.ref = ref;
+            if (recommInfo) {
+                params.ref = (cur.module === 'feed' && feed) ? feed.getModuleRef() : cur.module;
+
+                if (recommInfo.trackCode) {
+                    params.track_code = recommInfo.trackCode;
+                }
             }
 
             if (act) {
-                var midLogs = Wall.friendsRecommLogGet(true, cur.oid);
+                midLogs = Wall.friendsRecommLogGet(true, cur.oid);
 
                 if (midLogs.length) {
                     Wall.friendsRecommLogClear(cur.oid);
@@ -206,7 +210,7 @@ var Profile = {
             }
 
             ajax.post('al_friends.php', params, {
-                onDone: function(text, vis, ttText, ttScript, doReload) {
+                onDone: function(text, vis, ttText, ttScript, doReload, friendsRecomm) {
                     if (act && cur.onFriendAdd) {
                         cur.onFriendAdd();
                     }
@@ -229,15 +233,22 @@ var Profile = {
                     (vis ? show : hide)('friend_remove');
                     if (doReload || cur.options.bannedhim) {
                         nav.reload({
-                            noscroll: true
+                            noscroll: true,
+                            params: {
+                                friends_recomm: 1
+                            },
                         });
-                    } else if (ttText) {
-                        ajax.preload('al_friends.php', {
-                            act: 'friend_tt',
-                            mid: cur.oid,
-                            hash: hash
-                        }, [ttText, ttScript]);
-                        setTimeout(Profile.friendTooltip, 0);
+                    } else {
+                        if (ttText) {
+                            ajax.preload('al_friends.php', {
+                                act: 'friend_tt',
+                                mid: cur.oid,
+                                hash: hash
+                            }, [ttText, ttScript]);
+                            setTimeout(Profile.friendTooltip, 0);
+                        }
+
+                        Profile.addFriendsRecommends(friendsRecomm);
                     }
                     Profile.frDropdownClear(hash);
                 },
@@ -319,6 +330,47 @@ var Profile = {
                 forcetodown: true,
                 onHide: removeClass.pbind('profile_am_subscribed', 'profile_frdd_active')
             });
+        },
+        addFriendsRecommends: function(blockHtml) {
+            if (!blockHtml) {
+                return;
+            }
+
+            var friendsBlock = ge('profile_friends_recomm');
+
+            if (friendsBlock) {
+                return;
+            }
+
+            friendsBlock = se(blockHtml);
+
+            domInsertAfter(friendsBlock, domPN(ge('page_info_wrap')));
+
+            var gallery = geByClass1('ui_gallery', friendsBlock);
+
+            Profile.friendsRecommInit(gallery);
+        },
+        friendsRecommInit: function(gallery) {
+            Wall.friendsRecommInit(gallery, {
+                friendId: cur.oid,
+                onDestroy: function() {
+                    var friendsBlock = domPN(gallery);
+                    re(friendsBlock);
+                },
+            });
+        },
+        friendsRecommHide: function(el, event) {
+            var friendsBlock = ge('profile_friends_recomm');
+
+            if (friendsBlock) {
+                var gallery = geByClass1('ui_gallery', friendsBlock);
+                var trackCode = domData(gallery, 'code') || '';
+
+                uiGetGallery(gallery).destroy();
+                Wall.friendsRecommLogSave(['hide_block', vkNow(), cur.module, trackCode], true);
+            }
+
+            return event && cancelEvent(event);
         },
         addRequestMessage: function(hash, e) {
             return !showBox('al_friends.php', {
@@ -846,6 +898,13 @@ var Profile = {
                 Profile.render1AprilStickers(opts.stickers_1april);
             } else {
                 addClass(geByClass1('page_avatar_wrap'), 'no_stickers_1april');
+            }
+
+            var friendsBlock = ge('profile_friends_recomm');
+
+            if (friendsBlock) {
+                var friendsGallery = geByClass1('ui_gallery', friendsBlock);
+                Profile.friendsRecommInit(friendsGallery);
             }
 
             setTimeout(Wall.friendsRecommLogSend, 100);

@@ -2659,10 +2659,44 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 .deep_active.wall_module .replies .replies_wrap_deep .replies_short_text_deep,
 .deep_active.wall_module .wl_replies_block_wrap .replies_wrap_deep .replies_short_text_deep,
 .deep_active .wl_replies_block_wrap .replies_wrap_deep .replies_short_text_deep {
-    display: block;
+    display: -ms-flexbox;
+    display: flex;
     padding-left: 34px;
+    margin-right: 64px;
     height: 24px;
-    line-height: 24px
+    line-height: 24px;
+    white-space: nowrap;
+    overflow: hidden
+}
+
+.deep_active .replies .replies_wrap_deep .replies_short_text_deep .replies_short_text_name,
+.deep_active.wall_module .replies .replies_wrap_deep .replies_short_text_deep .replies_short_text_name,
+.deep_active.wall_module .wl_replies_block_wrap .replies_wrap_deep .replies_short_text_deep .replies_short_text_name,
+.deep_active .wl_replies_block_wrap .replies_wrap_deep .replies_short_text_deep .replies_short_text_name {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.deep_active .replies .replies_wrap_deep .replies_short_text_deep .replies_short_text_name b,
+.deep_active.wall_module .replies .replies_wrap_deep .replies_short_text_deep .replies_short_text_name b,
+.deep_active.wall_module .wl_replies_block_wrap .replies_wrap_deep .replies_short_text_deep .replies_short_text_name b,
+.deep_active .wl_replies_block_wrap .replies_wrap_deep .replies_short_text_deep .replies_short_text_name b {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    margin-right: 4px
+}
+
+.deep_active .replies .replies_wrap_deep .replies_short_text_deep .divide,
+.deep_active.wall_module .replies .replies_wrap_deep .replies_short_text_deep .divide,
+.deep_active.wall_module .wl_replies_block_wrap .replies_wrap_deep .replies_short_text_deep .divide,
+.deep_active .wl_replies_block_wrap .replies_wrap_deep .replies_short_text_deep .divide {
+    line-height: 23px
 }
 
 .deep_active .replies .replies_wrap_deep .replies_next,

@@ -219,6 +219,19 @@ ul {
     text-decoration: none
 }
 
+.link_header .slim_header {
+    color: #d3dbe3
+}
+
+.slim_header_label {
+    color: #657e9b
+}
+
+.slim_header_lnk {
+    font-weight: 400;
+    color: #657e9b
+}
+
 .slim_header_rl {
     padding-left: 5px;
     color: #3c6a9e;
@@ -296,6 +309,11 @@ ul {
 
 .divider {
     padding: 0 2px
+}
+
+.divider_dot:before {
+    content: "\00b7";
+    display: inline-block
 }
 
 .row_dash {
@@ -1439,6 +1457,7 @@ input.wide_button {
     background-position: 0 -426px
 }
 
+.friendsRecommendedSlider .verified.top_author,
 .mark_top_verified .wi_author .verified.top_author,
 .pic_from .verified.top_author {
     background-position: 0 -403px
@@ -2582,6 +2601,10 @@ input.wide_button {
 
 .profile_info_custom {
     padding: 0
+}
+
+.profile_info_friends_recs {
+    padding-top: 12px
 }
 
 .profile_info_null {
