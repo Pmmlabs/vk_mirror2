@@ -3224,7 +3224,8 @@
     },
     j0Lq: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
         "use strict";
-        var _lib_debug_tools__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("98sY");
+        var _lib_debug_tools__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("98sY"),
+            _lib_user_env__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("8+we");
         window.TopNotifierCur || (window.TopNotifierCur = {
             link: "top_notify_btn",
             count: "top_notify_count",
@@ -3235,7 +3236,9 @@
             },
             loaded: !1,
             loading: !1,
-            from: ""
+            from: "",
+            viewsObserver: null,
+            viewedNotifications: []
         }), window.TopNotifier = {
             onBellMouseDown: function(e) {
                 return !checkKeyboardEvent(e) && TopNotifier.show(e)
@@ -3260,8 +3263,23 @@
                     } catch (e) {
                         Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_0__.d)(e, evalExpr)
                     }
-                    TopNotifierCur.loaded = !0, val(TopNotifier.getContentNode(), rows), TopNotifier.refreshHeader(header), TopNotifier.cleanCount(), TopNotifier.refreshCounters(), TopNotifierCur.from = from
+                    TopNotifierCur.loaded = !0, val(TopNotifier.getContentNode(), rows), TopNotifier.trackViews(), TopNotifier.refreshHeader(header), TopNotifier.cleanCount(), TopNotifier.refreshCounters(), TopNotifierCur.from = from
                 }
+            },
+            trackViews: function() {
+                if (!Object(_lib_user_env__WEBPACK_IMPORTED_MODULE_1__.a)("notifications_views")) return !1;
+                var e = ge("top_notify_cont");
+                "IntersectionObserver" in window && (TopNotifierCur.viewsObserver && TopNotifierCur.viewsObserver.disconnect(), TopNotifierCur.viewsObserver = new IntersectionObserver(function(e) {
+                    e.forEach(function(e) {
+                        var t = e.target.parentNode.dataset.notification_id;
+                        e.isIntersecting && -1 === TopNotifierCur.viewedNotifications.indexOf(t) && (TopNotifierCur.viewedNotifications.push(t), statlogsValueEvent("notifications_views", t))
+                    })
+                }, {
+                    root: e,
+                    threshold: .6
+                }), geByClass("feedback_row", e).forEach(function(e) {
+                    TopNotifierCur.viewsObserver.observe(e)
+                }))
             },
             refreshHeader: function(e) {
                 var t = void 0,
@@ -3353,7 +3371,7 @@
                             }
                             if (rows) {
                                 for (var row = null, cont = TopNotifier.getContentNode(), au = cf(rows); row = au.firstChild;) cont.insertBefore(row, btn);
-                                TopNotifier.refreshHeader()
+                                TopNotifier.refreshHeader(), TopNotifier.trackViews()
                             }
                             newFrom ? TopNotifierCur.from = newFrom : re(btn)
                         }
@@ -3398,11 +3416,11 @@
                         global: !0,
                         stopScrollPropagationAlways: !0,
                         onmore: TopNotifier.loadMore
-                    })), TopNotifierCur.loaded || TopNotifier.refresh(), cancelStackPush("top_notifier", TopNotifier.hide.bind(TopNotifier), !0), cancelEvent(e)
+                    })), TopNotifierCur.loaded ? TopNotifier.trackViews() : TopNotifier.refresh(), cancelStackPush("top_notifier", TopNotifier.hide.bind(TopNotifier), !0), cancelEvent(e)
                 }
             },
             hide: function() {
-                TopNotifier.shown() && (removeClass(TopNotifierCur.link, "active"), clearInterval(TopNotifierCur.timeUpdateInt), cancelStackFilter("top_notifier", !0), 1 === cur.groupNotify_enabled && "" !== TopNotifierCur._qParams.list && (TopNotifierCur._qParams.list = "", TopNotifier.invalidate()))
+                TopNotifier.shown() && (TopNotifierCur.viewedNotifications = [], removeClass(TopNotifierCur.link, "active"), clearInterval(TopNotifierCur.timeUpdateInt), cancelStackFilter("top_notifier", !0), 1 === cur.groupNotify_enabled && "" !== TopNotifierCur._qParams.list && (TopNotifierCur._qParams.list = "", TopNotifier.invalidate()))
             },
             shown: function() {
                 return hasClass(TopNotifierCur.link, "active")
@@ -3489,7 +3507,7 @@
                     if (!e && cur.topNotifyTTKey && (e = cur.topNotifyTTKey, delete cur.topNotifyTTKey), e) {
                         var t = e.split(":"),
                             i = ls.get("ntfseen") || {};
-                        2 == t.length && (i[0] = parseInt((new Date).getTime() / 1e3), i[t[0]] = t[1], ls.set("ntfseen", i))
+                        2 === t.length && (i[0] = parseInt((new Date).getTime() / 1e3), i[t[0]] = t[1], ls.set("ntfseen", i))
                     }
                 }
             }),
@@ -3553,7 +3571,7 @@
                     o = !1,
                     r = /(feedback_sticky_text|feedback_sticky_icon|feedback_row)/;
                 do {
-                    if (!i || i == e || i.onclick || i.onmousedown || inArray(i.tagName, ["A", "IMG", "TEXTAREA", "EMBED", "OBJECT"]) || (o = i.className.match(r))) break
+                    if (!i || i === e || i.onclick || i.onmousedown || inArray(i.tagName, ["A", "IMG", "TEXTAREA", "EMBED", "OBJECT"]) || (o = i.className.match(r))) break
                 } while (a-- && (i = i.parentNode));
                 if (!o) return !1;
                 if (i && i.className) {
@@ -3569,7 +3587,7 @@
                         }
                     }
                     for (a = 0; a < l.length; ++a)
-                        if (l[a] == i) {
+                        if (l[a] === i) {
                             c = a;
                             break
                         }
@@ -3612,30 +3630,32 @@
                 uiActionsMenu.hide(e)
             },
             frProcess: function(e, t, i, a) {
-                var o;
-                isButtonLocked(i) || (o = a ? {
-                    act: "add",
-                    mid: e,
-                    hash: t,
-                    request: 1,
-                    from: "top_notifier"
-                } : {
-                    act: "remove",
-                    mid: e,
-                    hash: t,
-                    report_spam: 1,
-                    from: "top_notifier"
-                }, statlogsValueEvent("feed_top_notify", 0, "friends", o.act), ajax.post("/al_friends.php", o, {
-                    onDone: function(t) {
-                        var o = domPN(i);
-                        val(o, t), addClass(o, "feedback_buttons_response"), "friends" == cur.module && window.Friends && (val("request_controls_" + e, t), window.Friends.processRequest(e, a))
-                    },
-                    onFail: function(e) {
-                        if (e) return setTimeout(showFastBox(getLang("global_error"), e).hide, 3e3), !0
-                    },
-                    showProgress: lockButton.pbind(i),
-                    hideProgress: unlockButton.pbind(i)
-                }))
+                if (!isButtonLocked(i)) {
+                    var o = void 0;
+                    o = a ? {
+                        act: "add",
+                        mid: e,
+                        hash: t,
+                        request: 1,
+                        from: "top_notifier"
+                    } : {
+                        act: "remove",
+                        mid: e,
+                        hash: t,
+                        report_spam: 1,
+                        from: "top_notifier"
+                    }, statlogsValueEvent("feed_top_notify", 0, "friends", o.act), ajax.post("/al_friends.php", o, {
+                        onDone: function(t) {
+                            var o = domPN(i);
+                            val(o, t), addClass(o, "feedback_buttons_response"), "friends" == cur.module && window.Friends && (val("request_controls_" + e, t), window.Friends.processRequest(e, a))
+                        },
+                        onFail: function(e) {
+                            if (e) return setTimeout(showFastBox(getLang("global_error"), e).hide, 3e3), !0
+                        },
+                        showProgress: lockButton.pbind(i),
+                        hideProgress: unlockButton.pbind(i)
+                    })
+                }
             },
             apiCallProcess: function(e, t, i, a, o, r, n, s) {
                 if (isButtonLocked(s)) return !1;
@@ -3795,15 +3815,15 @@
                 }), vk.counts.ntf = i, TopNotifier.setCount(i, !0), t > 0 ? (addClass(a, "unmuted"), val(a, t)) : (removeClass(a, "unmuted"), val(a, e > 0 ? e : ""))
             },
             refreshTooltip: function() {
-                var e = [],
+                var e = geByClass1("groups", geByClass1("notify_sources")),
                     t = [],
-                    i = geByClass1("groups", geByClass1("notify_sources")),
+                    i = [],
                     a = ce("div");
-                i && (geByClass("line_cell", i).forEach(function(i, a) {
-                    val(geByClass1("ui_rmenu_count", i)) > 0 ? e.push(i) : t.push(i)
-                }), e.concat(t).forEach(function(e) {
+                e && (geByClass("line_cell", e).forEach(function(e, a) {
+                    val(geByClass1("ui_rmenu_count", e)) > 0 ? t.push(e) : i.push(e)
+                }), t.concat(i).forEach(function(e) {
                     a.appendChild(e)
-                }), val(i, ""), i.appendChild(a))
+                }), val(e, ""), e.appendChild(a))
             },
             showCommonFriendsBox: function(e, t) {
                 return showTabbedBox("al_page.php", {

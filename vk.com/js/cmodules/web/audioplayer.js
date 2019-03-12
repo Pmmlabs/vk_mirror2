@@ -7413,7 +7413,7 @@
                             e = this.getListenedTime(),
                             i = this.playerAdapter.getSequence(),
                             r = null;
-                        i && !t ? r = i > 0 ? "next_btn" : "prev" : this.playlistChanged && (r = "playlist_change"), !r && t && (r = "playlist_next"), this.listenedData.end_stream_reason = r || "unknown", e && (this.listenedData.listened = e)
+                        i && !t ? r = i > 0 ? "next_btn" : "prev" : this.playlistChanged && (r = "playlist_change"), !r && t && (r = "playlist_next"), this.listenedData.end_stream_reason = r || "new", e && (this.listenedData.listened = e)
                     }
                 }, t.prototype.collectListenedData = function() {
                     if (this.canOperate()) {

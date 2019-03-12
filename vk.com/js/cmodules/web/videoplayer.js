@@ -5628,12 +5628,9 @@
                     this.curSegments = t.vsegs ? t.vsegs.split("|").pop() : ""
                 }, e.prototype.loadComScoreLib = function() {
                     var t = this;
-                    this._comScoreLoader = loadScript("/js/lib/streamsense.5.1.1.160316.min.js", {
+                    loadScript("/js/lib/streamsense.5.1.1.160316.min.js", {
                         onLoad: function() {
-                            t._comsScoreLoader = null, t.initComScoreLib()
-                        },
-                        onError: function() {
-                            t._comScoreLoader = null
+                            t.initComScoreLib()
                         }
                     })
                 }, e.prototype.initComScoreLib = function() {
@@ -5686,8 +5683,14 @@
                     var t = wt.get("video_live_candy_stat");
                     t && (ajax.post("al_video.php?act=live_candy_stat", t, {}), wt.remove("video_live_candy_stat"))
                 }, e.prototype.onMediaPlaying = function() {
-                    var t = this.player.curTime();
-                    this.startedPlay || (this.startedPlay = Date.now(), this.getVar("hls") || (this.startQuality = this.player.getQuality()), this.player.isActiveLive() && this.addLiveHeartbeatStatsEvent("play_started"), this.trackEvents.trackVideoPlay(t < 1 ? "start" : "continue"), this.saveWatchData(), this.sendPlayStarted(), this.sendPladformStat(), this.sendAdPostStatEvent("video_start"), this.sendTnsStat("started"), this.sendMediascopeStat("started"), this.initBigTvStats())
+                    if (!this.startedPlay) {
+                        this.startedPlay = Date.now(), this.getVar("hls") || (this.startQuality = this.player.getQuality());
+                        var t = this.player.curTime(),
+                            e = this.player.isActiveLive();
+                        e && this.addLiveHeartbeatStatsEvent("play_started");
+                        var i = t < 1 || e ? "start" : "continue";
+                        this.trackEvents.trackVideoPlay(i), this.saveWatchData(), this.sendPlayStarted(), this.sendPladformStat(), this.sendAdPostStatEvent("video_start"), this.sendTnsStat("started"), this.sendMediascopeStat("started"), this.initBigTvStats()
+                    }
                 }, e.prototype.onMediaWaiting = function(t, e) {
                     t && e && (this.stallsCount++, this.saveWatchData(), this.player.isActiveLive() && this.addLiveHeartbeatStatsEvent("stall"))
                 }, e.prototype.onMediaSeeking = function(t) {
@@ -5701,11 +5704,11 @@
                     this.playFinishedSent || (this.playFinishedSent = !0, this.sendPlayFinished(), this.sendTnsStat("ended"), this.sendMediascopeStat("ended")), this.saveWatchData()
                 }, e.prototype.onMediaTimeupdate = function(t) {
                     var e = this;
-                    if (this.viewCounterIncremented || this.player.isPlayingLinearAd() || (this.player.getPlayedSeconds() > 5 || this.player.getDuration() < 5) && (this.sendIncViewCounter(), this.viewCounterIncremented = !0), Date.now() - this.lastPlayProgressSent > 1e3 && (this.lastPlayProgressSent = Date.now(), this.sendPlayProgress(t), this.saveWatchData(), this.needViewSegments)) {
+                    if (this.viewCounterIncremented || this.player.isPlayingLinearAd() || (this.player.getPlayedSeconds() > 5 || this.player.getDuration() < 5) && (this.sendIncViewCounter(), this.viewCounterIncremented = !0), !this.player.isActiveLive() && Date.now() - this.lastPlayProgressSent > 1e3 && (this.lastPlayProgressSent = Date.now(), this.sendPlayProgress(t), this.saveWatchData(), this.needViewSegments)) {
                         var i = this.getViewSegments();
                         i != this.curSegments && (this.curSegments = i, this.sendViewSegments(i))
                     }
-                    if (t > this.maxTimePosition) {
+                    if (!this.player.isActiveLive() && t > this.maxTimePosition) {
                         var n = this.player.getDuration() || 1,
                             r = this.maxTimePosition,
                             o = this.maxTimePercent,
