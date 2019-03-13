@@ -758,7 +758,7 @@
                                 audioObject.isClaimed || cur.viewAsBox || moreActions.push(["add_to_playlist", "", getLang("audio_add_to_playlist")]);
                                 break;
                             case "open_album":
-                                audioObject.album && moreActions.push(["open_album", AudioUtils.showAudioAlbum, getLang("audio_open_album")]);
+                                !audioObject.isClaimed && audioObject.album && moreActions.push(["open_album", AudioUtils.showAudioAlbum, getLang("audio_open_album")]);
                                 break;
                             case "open_episode":
                                 AudioUtils.isPodcast(audioObject) && moreActions.push(["open_episode", AudioUtils.openEpisode, getLang("audio_podcast_open_episode")])

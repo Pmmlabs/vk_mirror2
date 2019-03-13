@@ -10530,7 +10530,7 @@ var Wall = {
         Wall.friendsRecommLogSave(['open_user', mid, Date.now(), ref, trackCode]);
     },
 
-    _friendsRecommGetTrackCode(item) {
+    _friendsRecommGetTrackCode: function(item) {
         var trackCode = domData(item, 'code');
         var gallery;
 

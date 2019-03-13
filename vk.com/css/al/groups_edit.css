@@ -4533,28 +4533,122 @@ a.group_ad_post_link.deleted.deleted:hover {
     vertical-align: text-bottom
 }
 
-.groups_edit_event_log_page .groups_edit_event_log_item {
-    margin: 10px 20px;
-    padding: 5px 10px 10px;
-    border-bottom: 1px solid #e7e8ec
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap {
+    border-top: 1px solid #e7e8ec
 }
 
-.groups_edit_event_log_page .groups_edit_event_log_item:last-child {
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap:first-child {
+    border-top: 0
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap:last-child .groups_edit_event_log_item:last-child {
+    border-radius: 0 0 4px 4px;
     border-bottom: 0
 }
 
-.groups_edit_event_log_page .groups_edit_event_log_item_title {
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap:last-child .groups_edit_event_log_item_wrap:last-child {
+    border-radius: 0 0 4px 4px
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item {
+    padding: 15px 20px;
+    border-bottom: 1px solid #e7e8ec
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap {
+    border-bottom: 1px solid #e7e8ec
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap:last-child {
+    border-bottom: 0
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap:hover,
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap_active {
+    background-color: #fafbfc
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap .groups_edit_event_log_items_additional {
+    display: none
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap_active .groups_edit_event_log_item_wrap_toggle {
+    opacity: 1;
+    filter: none
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap_active .groups_edit_event_log_items_additional {
+    border-top: 1px solid #e7e8ec;
+    display: block
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap_toggle {
+    float: right;
+    width: 24px;
+    height: 24px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%22944%201152%208%204%22%3E%3Cpath%20d%3D%22M945.2%201152.2C944.9%201152%20944.5%201152%20944.3%201152.3%20944.1%201152.6%20944.1%201153%20944.4%201153.2L947.6%201155.8C947.8%201156%20948.2%201156%20948.4%201155.8L951.6%201153.2C951.9%201153%20951.9%201152.6%20951.7%201152.3%20951.5%201152%20951.1%201152%20950.8%201152.2L948%201154.5%20945.2%201152.2Z%22%20fill%3D%22%2398a3b3%22%2F%3E%3C%2Fsvg%3E") no-repeat;
+    margin-top: 10px;
+    margin-right: 12px;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    -o-transition: opacity 200ms ease-in-out;
+    transition: opacity 200ms ease-in-out;
+    background-size: 11px;
+    background-position: 50%
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_extended .groups_edit_event_log_item_controls {
+    margin-left: 120px
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item:last-child {
+    border-bottom: 0
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_title {
     margin-bottom: 10px;
     font-size: 13px;
     font-weight: 500
 }
 
-.groups_edit_event_log_page .groups_edit_event_log_item_description {
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_description {
     margin-bottom: 10px
 }
 
-.groups_edit_event_log_page .groups_edit_event_log_item_controls .groups_edit_event_log_item_date {
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_controls .groups_edit_event_log_item_date {
     color: #939393
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_row {
+    margin-top: 5px
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_row:first-child {
+    margin-top: 0;
+    margin-bottom: 10px
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_label {
+    float: left;
+    width: 120px;
+    height: 18px;
+    line-height: 1.38;
+    color: #656565
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_labeled {
+    float: left;
+    width: 370px;
+    line-height: 1.38
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_labeled_type {
+    font-weight: 500
+}
+
+.groups_edit_event_log_more {
+    margin: 15px auto;
+    display: block
 }
 
 @-o-keyframes groups_edit_event_log_loader_anim {

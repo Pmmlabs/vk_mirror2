@@ -192,6 +192,14 @@
     color: #42648b
 }
 
+.bt_reporter_card_positive_comment {
+    color: #37902a
+}
+
+.bt_reporter_card_negative_comment {
+    color: #dc343b
+}
+
 .bt_page_content {
     padding: 15px 20px
 }
