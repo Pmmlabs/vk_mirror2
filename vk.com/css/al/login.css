@@ -15,8 +15,8 @@
 .login_app_device_wp .login_app_device_screen.login_app_device_en,
 .login_app_device_wp .login_app_device_screen.login_app_device_ua,
 .login_app_download_icon,
-.login_blocked_wrap .unblock_form .header .antispam_team_logo,
-.login_mobile_close {
+.login_mobile_close,
+.unban-form__content__header .antispam_team_logo {
     -ms-high-contrast-adjust: none
 }
 
@@ -29,6 +29,402 @@
     -moz-osx-font-smoothing: auto;
     margin: 0;
     padding: 0
+}
+
+.UnbanTooltip {
+    position: absolute;
+    width: 0;
+    height: 0;
+    display: -ms-flexbox;
+    display: flex;
+    pointer-events: none;
+    -o-animation: fadeIn .3s ease;
+    animation: fadeIn .3s ease;
+    -o-transition: opacity .2s ease, visibility .2s ease;
+    transition: opacity .2s ease, visibility .2s ease;
+    z-index: 1001;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
+}
+
+.UnbanTooltip__in {
+    position: relative;
+    padding: 4px 9px 5px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    line-height: 15px;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    direction: ltr
+}
+
+.UnbanTooltip__in:before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 5px solid transparent
+}
+
+.UnbanTooltip--removed {
+    visibility: hidden;
+    opacity: 0
+}
+
+.UnbanTooltip--black .UnbanTooltip__in {
+    color: #fff;
+    background: hsla(0, 0%, 5%, .7)
+}
+
+.UnbanTooltip--black.UnbanTooltip--t .UnbanTooltip__in:before {
+    border-top-color: hsla(0, 0%, 5%, .7)
+}
+
+.UnbanTooltip--black.UnbanTooltip--r .UnbanTooltip__in:before {
+    border-right-color: hsla(0, 0%, 5%, .7)
+}
+
+.UnbanTooltip--black.UnbanTooltip--b .UnbanTooltip__in:before {
+    border-bottom-color: hsla(0, 0%, 5%, .7)
+}
+
+.UnbanTooltip--black.UnbanTooltip--l .UnbanTooltip__in:before {
+    border-left-color: hsla(0, 0%, 5%, .7)
+}
+
+.UnbanTooltip--white .UnbanTooltip__in {
+    color: #000;
+    background: #fff;
+    border: 1px solid #c5d0db;
+    padding: 12px 14px 13px;
+    border-radius: 2px
+}
+
+.UnbanTooltip--white .UnbanTooltip__in:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 5px solid transparent
+}
+
+.UnbanTooltip--white.UnbanTooltip--t .UnbanTooltip__in:before {
+    border-top-color: #c5d0db
+}
+
+.UnbanTooltip--white.UnbanTooltip--r .UnbanTooltip__in:before {
+    border-right-color: #c5d0db
+}
+
+.UnbanTooltip--white.UnbanTooltip--b .UnbanTooltip__in:before {
+    border-bottom-color: #c5d0db
+}
+
+.UnbanTooltip--white.UnbanTooltip--l .UnbanTooltip__in:before {
+    border-left-color: #c5d0db
+}
+
+.UnbanTooltip--white.UnbanTooltip--t .UnbanTooltip__in:after {
+    border-top-color: #fff
+}
+
+.UnbanTooltip--white.UnbanTooltip--r .UnbanTooltip__in:after {
+    border-right-color: #fff
+}
+
+.UnbanTooltip--white.UnbanTooltip--b .UnbanTooltip__in:after {
+    border-bottom-color: #fff
+}
+
+.UnbanTooltip--white.UnbanTooltip--l .UnbanTooltip__in:after {
+    border-left-color: #fff
+}
+
+.UnbanTooltip--t {
+    -ms-flex-align: end;
+    align-items: flex-end
+}
+
+.UnbanTooltip--t .UnbanTooltip__in {
+    bottom: 5px
+}
+
+.UnbanTooltip--t .UnbanTooltip__in:after,
+.UnbanTooltip--t .UnbanTooltip__in:before {
+    top: 100%
+}
+
+.UnbanTooltip--t .UnbanTooltip__in:after {
+    margin-top: -1px
+}
+
+.UnbanTooltip--r {
+    -ms-flex-pack: left;
+    justify-content: left;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.UnbanTooltip--r .UnbanTooltip__in {
+    left: 5px
+}
+
+.UnbanTooltip--r .UnbanTooltip__in:after,
+.UnbanTooltip--r .UnbanTooltip__in:before {
+    right: 100%;
+    top: 50%;
+    margin-top: -5px
+}
+
+.UnbanTooltip--r .UnbanTooltip__in:after {
+    margin-right: -1px
+}
+
+.UnbanTooltip--b {
+    -ms-flex-align: start;
+    align-items: flex-start
+}
+
+.UnbanTooltip--b .UnbanTooltip__in {
+    top: 5px
+}
+
+.UnbanTooltip--b .UnbanTooltip__in:after,
+.UnbanTooltip--b .UnbanTooltip__in:before {
+    bottom: 100%
+}
+
+.UnbanTooltip--b .UnbanTooltip__in:after {
+    margin-bottom: -1px
+}
+
+.UnbanTooltip--l {
+    -ms-flex-pack: left;
+    justify-content: left;
+    -ms-flex-align: center;
+    align-items: center;
+    direction: rtl
+}
+
+.UnbanTooltip--l .UnbanTooltip__in {
+    right: 5px
+}
+
+.UnbanTooltip--l .UnbanTooltip__in:after,
+.UnbanTooltip--l .UnbanTooltip__in:before {
+    left: 100%;
+    top: 50%;
+    margin-top: -5px
+}
+
+.UnbanTooltip--l .UnbanTooltip__in:after {
+    margin-left: -1px
+}
+
+.UnbanTooltip--align-left {
+    -ms-flex-pack: left;
+    justify-content: left
+}
+
+.UnbanTooltip--align-left .UnbanTooltip__in {
+    right: 14px
+}
+
+.UnbanTooltip--align-left .UnbanTooltip__in:after,
+.UnbanTooltip--align-left .UnbanTooltip__in:before {
+    left: 14px;
+    margin-left: -5px
+}
+
+.UnbanTooltip--align-center {
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.UnbanTooltip--align-center .UnbanTooltip__in {
+    -ms-transform: translateX(-50%)
+}
+
+.UnbanTooltip--align-center .UnbanTooltip__in:after,
+.UnbanTooltip--align-center .UnbanTooltip__in:before {
+    left: 50%;
+    margin-left: -5px
+}
+
+.UnbanTooltip--align-right {
+    -ms-flex-pack: left;
+    justify-content: left;
+    direction: rtl
+}
+
+.UnbanTooltip--align-right .UnbanTooltip__in {
+    left: 14px
+}
+
+.UnbanTooltip--align-right .UnbanTooltip__in:after,
+.UnbanTooltip--align-right .UnbanTooltip__in:before {
+    right: 14px;
+    margin-right: -5px
+}
+
+@-o-keyframes fadeIn {
+    0% {
+        opacity: 0
+    }
+    to {
+        opacity: 100%
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0
+    }
+    to {
+        opacity: 100%
+    }
+}
+
+.unban-form__content {
+    padding-bottom: 50px
+}
+
+.unban-form__content__header {
+    margin-bottom: 40px
+}
+
+.unban-form__content__header .antispam_team_logo {
+    background: url(/images/spamfight_brown.png) no-repeat;
+    height: 160px;
+    width: 160px;
+    margin-top: 20px;
+    margin-left: 120px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .unban-form__content__header .antispam_team_logo {
+        background-image: url(/images/spamfight_brown_2x.png);
+        background-size: 160px 160px
+    }
+}
+
+.unban-form__content__header .reason {
+    text-align: center;
+    margin-top: 12px
+}
+
+.unban-form__content__inputs .input {
+    margin: 0px 100px 22px
+}
+
+.unban-form__content__inputs .input .label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.unban-form__content__inputs .input input {
+    width: 200px;
+    font-size: 13px
+}
+
+.unban-form__content__inputs .input input.finished {
+    background: #ebf1f8
+}
+
+.unban-form__content__inputs .input.phone_number_prefix_input.finished {
+    pointer-events: none
+}
+
+.unban-form__content__inputs .input.phone_number_prefix_input.finished #phone_number_prefix_filter_wrap .selector_container {
+    background-color: #ebf1f8
+}
+
+.unban-form__content__inputs .input.phone_number_input .prefix_input_wrap.finished {
+    background: #ebf1f8
+}
+
+.unban-form__content__inputs .input.phone_number_input .prefix_input_wrap .prefix_input {
+    font-size: 13px
+}
+
+.unban-form__content__inputs .input.verification_code_input {
+    margin-bottom: 18px
+}
+
+.unban-form__content__inputs .input.new_password_input {
+    height: 81px
+}
+
+.unban-form__content__inputs .input.new_password_input .blocked_pwd_level0 {
+    display: none
+}
+
+.unban-form__content__inputs .input.new_password_input .blocked_pwd_level1 {
+    background: #cd4849;
+    width: 25%
+}
+
+.unban-form__content__inputs .input.new_password_input .blocked_pwd_level2 {
+    background: #ff762d;
+    width: 50%
+}
+
+.unban-form__content__inputs .input.new_password_input .blocked_pwd_level3 {
+    background: #c9b72d;
+    width: 75%
+}
+
+.unban-form__content__inputs .input.new_password_input .blocked_pwd_level4 {
+    background: #60b92b;
+    width: 100%
+}
+
+.unban-form__content__inputs .input.new_password_input .blocked_pass_strength {
+    color: #777
+}
+
+.unban-form__content__inputs .input.new_password_input #blocked_about_pass {
+    position: absolute;
+    margin-top: -1px;
+    height: 5px;
+    width: 200px;
+    overflow: hidden
+}
+
+.unban-form__content__inputs .input.new_password_input .blocked_about_login {
+    padding-top: 5px;
+    margin-left: 2px;
+    font-size: 12px;
+    color: #777
+}
+
+.unban-form__content__inputs .input ._change_phone_button {
+    display: block;
+    position: absolute;
+    right: 135px;
+    margin-top: 5px;
+    z-index: 5
+}
+
+.unban-form__content__inputs .unban-form__mainButton {
+    width: 200px;
+    margin: 3px 100px 0px
+}
+
+.unban-form__content__inputs .resend_button_wrap {
+    margin-top: 16px;
+    text-align: center
+}
+
+.unban-form__content__inputs .resend_button_wrap .resend_button {
+    color: #828282
+}
+
+.unban-form .submit_error {
+    line-height: 20px
 }
 
 .page_section {
@@ -449,127 +845,6 @@
 .login_blocked_wrap .login_blocked_bad_form {
     width: 200px;
     margin: 20px auto 0
-}
-
-.login_blocked_wrap .unblock_form .header {
-    margin-bottom: 40px
-}
-
-.login_blocked_wrap .unblock_form .header .antispam_team_logo {
-    background: url(/images/spamfight_brown.png) no-repeat;
-    height: 160px;
-    width: 160px;
-    margin-top: 20px;
-    margin-left: 120px
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .login_blocked_wrap .unblock_form .header .antispam_team_logo {
-        background-image: url(/images/spamfight_brown_2x.png);
-        background-size: 160px 160px
-    }
-}
-
-.login_blocked_wrap .unblock_form .header .reason {
-    text-align: center;
-    margin-top: 12px
-}
-
-.login_blocked_wrap .unblock_form .inputs {
-    margin: 0px 100px
-}
-
-.login_blocked_wrap .unblock_form .inputs .input {
-    margin-bottom: 22px
-}
-
-.login_blocked_wrap .unblock_form .inputs .input .label {
-    margin-bottom: 8px;
-    font-weight: 500;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto
-}
-
-.login_blocked_wrap .unblock_form .inputs .input input {
-    width: 200px;
-    font-size: 13px
-}
-
-.login_blocked_wrap .unblock_form .inputs .input input.finished {
-    background: #e1e7ed
-}
-
-.login_blocked_wrap .unblock_form .inputs .input.new_password_input .blocked_pwd_level0 {
-    display: none
-}
-
-.login_blocked_wrap .unblock_form .inputs .input.new_password_input .blocked_pwd_level1 {
-    background: #cd4849;
-    width: 25%
-}
-
-.login_blocked_wrap .unblock_form .inputs .input.new_password_input .blocked_pwd_level2 {
-    background: #ff762d;
-    width: 50%
-}
-
-.login_blocked_wrap .unblock_form .inputs .input.new_password_input .blocked_pwd_level3 {
-    background: #c9b72d;
-    width: 75%
-}
-
-.login_blocked_wrap .unblock_form .inputs .input.new_password_input .blocked_pwd_level4 {
-    background: #60b92b;
-    width: 100%
-}
-
-.login_blocked_wrap .unblock_form .inputs .input.new_password_input .blocked_pass_strength {
-    color: #777
-}
-
-.login_blocked_wrap .unblock_form .inputs .input.new_password_input #blocked_about_pass {
-    position: absolute;
-    margin-top: -1px;
-    height: 5px;
-    width: 200px;
-    overflow: hidden
-}
-
-.login_blocked_wrap .unblock_form .inputs .input.new_password_input .blocked_about_login {
-    padding-top: 5px;
-    margin-left: 2px;
-    font-size: 12px;
-    color: #777
-}
-
-.login_blocked_wrap .unblock_form .inputs .input ._change_phone_button {
-    display: block;
-    position: absolute;
-    right: 135px;
-    margin-top: 5px
-}
-
-.login_blocked_wrap .unblock_form .inputs .input .resend_button_wrap {
-    text-align: center
-}
-
-.login_blocked_wrap .unblock_form .inputs .input .resend_button_wrap ._resend_code_button {
-    display: inline-block;
-    margin-top: 8px
-}
-
-.login_blocked_wrap .unblock_form .inputs .check_code_button,
-.login_blocked_wrap .unblock_form .inputs .receive_code_button,
-.login_blocked_wrap .unblock_form .inputs .unblock_button {
-    width: 200px;
-    margin-top: 3px;
-    margin-bottom: 30px
-}
-
-.login_blocked_wrap .unblock_form .submit_error {
-    line-height: 20px
 }
 
 .login_blocked_wrap .login_blocked_reason_wout_msg {

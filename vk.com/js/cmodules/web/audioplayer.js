@@ -2105,22 +2105,9 @@
             }, AudioPlaylist.prototype.mergeWith = function(t) {
                 var e = this;
                 if (!isObject(this._ref)) {
-                    var i = t.list;
-                    if (i) {
-                        var r = getAudioPlayer().getCurrentAudio();
-                        if (r && this.indexOfAudio(r) >= 0) {
-                            for (var n = -1, o = 0, a = i.length; o < a; o++)
-                                if (r[_utils__WEBPACK_IMPORTED_MODULE_0__.a.AUDIO_ITEM_INDEX_OWNER_ID] == i[o][_utils__WEBPACK_IMPORTED_MODULE_0__.a.AUDIO_ITEM_INDEX_OWNER_ID] && r[_utils__WEBPACK_IMPORTED_MODULE_0__.a.AUDIO_ITEM_INDEX_ID] == i[o][_utils__WEBPACK_IMPORTED_MODULE_0__.a.AUDIO_ITEM_INDEX_ID]) {
-                                    n = o;
-                                    break
-                                }
-                            n >= 0 && this.clean()
-                        }
-                        this.addAudio(t.list)
-                    }
-                    if (t.items) {
+                    if (t.list && this.addAudio(t.list), t.items) {
                         this._items = this._items || [];
-                        for (var s = 0, d = t.items.length; s < d; s++) this._items.push(t.items[s])
+                        for (var i = 0, r = t.items.length; i < r; i++) this._items.push(t.items[i])
                     }
                     each(["accessHash", "addClasses", "artistsBlock", "authorLine", "authorHref", "authorName", "communitiesBlock", "coverUrl", "description", "gridCovers", "editHash", "feedFrom", "feedOffset", "followHash", "hasMore", "infoLine1", "infoLine2", "isAdsAllowed", "isFollowed", "isOfficial", "isBlocked", "lastUpdated", "listens", "live", "nextOffset", "originalList", "playlistsBlock", "postId", "rawId", "rawDescription", "searchQid", "searchParams", "shuffle", "subTitle", "title", "totalCount", "totalCountHash", "wallQuery", "wallType"], function(i, r) {
                         void 0 !== t[r] && (e["_" + r] = t[r])
@@ -10776,8 +10763,9 @@
             getAudioArtistsString: function(t, e) {
                 var i = "";
                 return t.forEach(function(r, n) {
-                    var o = "/audio?performer=1&q=" + encodeURIComponent(r.name);
-                    r.id && (o = "/artist/" + r.id), i += e ? '<a class="artist_link" href="' + o + '">' + r.name + "</a>" : r.name, n < t.length - 1 && (i += ", ")
+                    var o = "/audio?performer=1&q=" + encodeURIComponent(r.name),
+                        a = window.getWebHost ? window.getWebHost() : "";
+                    r.id && (o = "/artist/" + r.id), i += e ? '<a class="artist_link" href="' + a + o + '">' + r.name + "</a>" : r.name, n < t.length - 1 && (i += ", ")
                 }), i
             },
             getAudioPerformers: c,

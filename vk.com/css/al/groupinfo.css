@@ -232,6 +232,11 @@ input.BlockSearchInput {
     margin: auto
 }
 
+.Button.Button--link.ButtonWithProgress.ButtonWithProgress--loading:focus,
+.Button.Button--link.ButtonWithProgress.ButtonWithProgress--loading:hover {
+    text-decoration: none
+}
+
 .Dropdown {
     position: absolute;
     width: 0;

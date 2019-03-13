@@ -652,41 +652,6 @@ var Settings = {
             slideUp(ge("daytime_from_to"), 200);
         }
     },
-    smsUnsubscribe: function(lnk, oid, hash, ev) {
-        var name = '<a href="' + lnk.href + '">' + lnk.innerHTML + '</a>',
-            row = 1;
-        if (oid < 0) {
-            row = ev ? 3 : 2;
-            var msg = ev ? getLang('settings_confirm_unsubscribe_event_msg') : getLang('settings_confirm_unsubscribe_group_msg');
-        } else {
-            var msg = getLang('settings_confirm_unsubscribe_fan_msg');
-        }
-        msg = msg.replace('{name}', name);
-        showFastBox({
-            title: getLang('settings_confirm_unsubscribe_title'),
-            dark: 1,
-            bodyStyle: 'padding: 20px; line-height: 160%;'
-        }, msg, getLang('box_yes'), function() {
-            ajax.post('/settings', {
-                act: 'a_sms_unsubscribe',
-                hash: hash,
-                oid: oid,
-                row: row
-            }, {
-                onDone: function(t) {
-                    var el = ge('sms_subscribes_row' + row);
-                    if (t) {
-                        el.innerHTML = t;
-                    } else {
-                        hide(el.parentNode);
-                    }
-                    curBox().hide();
-                },
-                progress: curBox().progress
-            });
-        }, getLang('box_no'));
-        return false;
-    },
 
     checkPIN: function(o) {
         var v = o.value.replace(/[^0-9]/g, "");

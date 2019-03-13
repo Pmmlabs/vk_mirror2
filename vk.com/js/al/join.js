@@ -661,11 +661,11 @@ var Join = {
         });
     },
 
-    tipShow: function(el, key, shift, addClass) {
+    tipShow: function(el, msg, shift, addClass) {
         el = ge(el);
         var showTT = function() {
             showTooltip(el, {
-                text: getLang(key),
+                text: msg,
                 dir: 'left',
                 slideX: 15,
                 className: 'join_finish_tt' + (addClass ? (' ' + addClass) : ''),
@@ -686,28 +686,28 @@ var Join = {
             if (el && el.tt && el.tt.hide) el.tt.hide();
         }
     },
-    phoneTip: function() {
+    phoneTip: function(msg) {
         var field = ge('join_phone'),
             size = getSize(field);
         if (field.readOnly) return;
-        Join.tipShow(field, 'join_phone_tip', [-(size[0] + 10), -Math.floor(size[1] / 2)], 'join_phone_tt');
+        Join.tipShow(field, msg, [-(size[0] + 10), -Math.floor(size[1] / 2)], 'join_phone_tt');
     },
     codeTip: function() {
         var field = ge('join_code'),
             size = getSize(field);
         if (field.readOnly) return;
-        Join.tipShow(field, cur.strongCode ? 'join_code_voice_tip' : 'join_code_tip', [-(size[0] + 10), -Math.floor(size[1] / 2)]);
+        Join.tipShow(field, getLang(cur.strongCode ? 'join_code_voice_tip' : 'join_code_tip'), [-(size[0] + 10), -Math.floor(size[1] / 2)]);
     },
     codeCallTip: function() {
         var field = ge('join_called_phone'),
             size = getSize(field);
         if (field.readOnly) return;
-        Join.tipShow(field, 'join_code_call_tip', [-(size[0] + 10), -Math.floor(size[1] / 2)]);
+        Join.tipShow(field, getLang('join_code_call_tip'), [-(size[0] + 10), -Math.floor(size[1] / 2)]);
     },
     passTip: function() {
         var field = ge('join_pass'),
             size = getSize(field);
-        return Join.tipShow(field, 'join_pass_tip', [-(size[0] + 10), -Math.floor(size[1] / 2)]);
+        return Join.tipShow(field, getLang('join_pass_tip'), [-(size[0] + 10), -Math.floor(size[1] / 2)]);
     },
 
     switchToDefSign: function(hash, obj) {
@@ -953,6 +953,48 @@ var Join = {
         }, {
             onDone: onDone
         });
+    },
+
+    phoneOnKeyUp: function() {
+        clearTimeout(Join.checkPhoneTimeout);
+        let phone = Join.getPhone();
+        if (phone && phone !== Join.prevPhone) {
+            if (phone.length > 4) {
+                Join.checkPhoneTimeout = setTimeout(function() {
+                    ajax.post('activation.php', {
+                        act: 'mrg_check_phone',
+                        phone: phone,
+                        rnd: Join.phoneMrgInstanceId
+                    }, {
+                        onDone: function(msg) {
+                            Join.prevPhone = phone;
+                            if (msg || !Join.defaultPhoneTip) {
+                                Join.destroyPhoneTip();
+                                if (msg) {
+                                    Join.phoneTip(msg);
+                                    if (ge('join_phone_prefixed')) {
+                                        notaBene('join_phone_prefixed')
+                                    } else {
+                                        notaBene('join_phone');
+                                    }
+                                    Join.defaultPhoneTip = false;
+                                }
+                            }
+                        }
+                    })
+                }, 500);
+            } else {
+                Join.prevPhone = phone;
+                if (!Join.defaultPhoneTip) {
+                    Join.destroyPhoneTip();
+                }
+            }
+        }
+    },
+
+    destroyPhoneTip: function() {
+        let el = ge('join_phone');
+        if (el && el.tt) el.tt.destroy();
     }
 };
 

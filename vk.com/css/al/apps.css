@@ -21,7 +21,7 @@
 .appAchievementsNotice_4.right,
 .appAchievementsNotice_5,
 .appAchievementsNotice_5.right,
-.appCatalogNotice.ny2019,
+.appCatalogNotice.market,
 .apps_access_icon,
 .apps_cat_header_icon,
 .apps_cat_header_link:after,
@@ -1018,7 +1018,6 @@
 .appAchievementsNotice {
     width: 430px;
     height: 130px;
-    float: left;
     box-sizing: border-box;
     padding: 20px;
     display: -ms-flexbox;
@@ -1907,22 +1906,6 @@
 }
 
 .apps_feed_block.eight_games .apps_feed_wrap {
-    height: 259px
-}
-
-.apps_feed_block.with_achievements {
-    height: 460px
-}
-
-.apps_feed_block.with_achievements .apps_feed_wrap {
-    height: 404px
-}
-
-.apps_feed_block.with_achievements.with_right_notice {
-    height: 315px
-}
-
-.apps_feed_block.with_achievements.with_right_notice .apps_feed_wrap {
     height: 259px
 }
 
@@ -8150,18 +8133,26 @@ td.apps_cat_new_h {
     pointer-events: none
 }
 
+.appCatalogNoticeList {
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.appCatalogNoticeList,
 .appCatalogNotice {
-    width: 430px;
-    height: 130px;
-    float: left;
-    box-sizing: border-box;
-    padding: 20px;
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
     -ms-flex-pack: justify;
     justify-content: space-between
+}
+
+.appCatalogNotice {
+    width: 348px;
+    height: 130px;
+    box-sizing: border-box;
+    padding: 20px;
+    -ms-flex-direction: column;
+    flex-direction: column
 }
 
 .appCatalogNotice__clearFix {
@@ -8219,17 +8210,16 @@ td.apps_cat_new_h {
     background: #f0f2f5
 }
 
-.appCatalogNotice.ny2019 {
-    height: 148px;
-    background: url(/images/apps/ny2019/best_games_bg.png) no-repeat 50% #000
+.appCatalogNotice.market {
+    background: url(/images/apps/market/games_market.png) no-repeat 50% #000
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
-    .appCatalogNotice.ny2019 {
-        background-image: url(/images/apps/ny2019/best_games_bg_2x.png);
-        background-size: 430px 148px
+    .appCatalogNotice.market {
+        background-image: url(/images/apps/market/games_market_2x.png);
+        background-size: 348px 130px
     }
 }
 
@@ -8249,6 +8239,7 @@ body.apps_vkpayMobileTransfer .scroll_fix {
 
 body.apps_vkpayMobileTransfer .app_container {
     margin: 0;
+    font-size: 0;
     width: 100%!important
 }
 
