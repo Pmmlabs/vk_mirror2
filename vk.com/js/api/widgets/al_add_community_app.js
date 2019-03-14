@@ -1,6 +1,6 @@
 window.WAddCommunityApp = {
 
-    popupInit: function() {
+    popupInit: function(callback = false) {
         extend(cur, {
             popupSelectedGroups: {},
             popupSubmitBtnEl: geByClass1('_add_community_app_submit'),
@@ -16,7 +16,7 @@ window.WAddCommunityApp = {
         each(cur.popupGroupsEls, function(k, v) {
             addEvent(v, 'click', this.popupSelectGroup.bind(this, v));
         }.bind(this));
-        addEvent(cur.popupSubmitBtnEl, 'click', this.popupSubmit.bind(this, false));
+        addEvent(cur.popupSubmitBtnEl, 'click', this.popupSubmit.bind(this, false, callback));
 
         window.opener && show(cur.popupCancelBtnEl);
     },
@@ -46,7 +46,7 @@ window.WAddCommunityApp = {
         disableButton(cur.popupSubmitBtnEl, !Object.keys(cur.popupSelectedGroups).length);
     },
 
-    popupSubmit: function(no_check) {
+    popupSubmit: function(no_check, callback) {
         var group = null,
             gids = Object.keys(cur.popupSelectedGroups);
 
@@ -83,6 +83,9 @@ window.WAddCommunityApp = {
                             group_ids: gids,
                             app_id: cur.aid
                         }, '*');
+                    }
+                    if (callback) {
+                        callback(gids);
                     }
                 },
                 showProgress: lockButton.pbind(cur.popupSubmitBtnEl),

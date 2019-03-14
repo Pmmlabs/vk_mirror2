@@ -2214,6 +2214,10 @@ textarea.EditableLabel__textarea {
     font-size: 14px
 }
 
+.SureBox .SureBox__content .SureBox__content__title {
+    margin-bottom: 10px
+}
+
 .uploaded_stories_rows {
     padding: 10px
 }

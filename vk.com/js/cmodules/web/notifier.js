@@ -4081,6 +4081,9 @@
                             case "friend_request":
                                 ev.add.fr_count ? handlePageCount("fr", ev.add.fr_count) : handlePageCount("fr", ev.add);
                                 break;
+                            case "friend_request_counter":
+                                handlePageCount("fr", ev.add.fr_count), push = 0;
+                                break;
                             case "ach_achieved":
                                 ev.add.cnt && handlePageCount("ach", ev.add.cnt);
                                 break;
