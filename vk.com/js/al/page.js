@@ -2815,9 +2815,10 @@ var Wall = {
             FullWall.updateSummary(cur.pgCount);
         }
 
-        if (cur.posterWpe && cur.posterWpeSend) {
-            cur.posterWpe.closePoster(null, true);
-            cur.posterWpe.destroy();
+        cur.postWpeIsPoster = !!cur.posterWpeSendParams;
+
+        if (cur.posterWpe && cur.posterWpeSendParams) {
+            WallEdit.posterDestroy();
         }
 
         if (postponed) {
@@ -3510,7 +3511,9 @@ var Wall = {
         }
     },
     postChanged: function(force) {
-        if (!cur.posterActive && !isVisible('submit_post') || !hasClass(ge('submit_post_box'), 'shown')) Wall.showEditPost();
+        var posterEditorOpened = Wall.isPosterEditorOpen();
+
+        if (!posterEditorOpened && !isVisible('submit_post') || !hasClass(ge('submit_post_box'), 'shown')) Wall.showEditPost();
         if (vk.id && !vk.widget && !cur.options.no_draft) {
             clearTimeout(cur.postAutosave);
             var saveCallback = (intval(cur.oid) == vk.id) ? Wall.saveDraft : Wall.saveOwnerDraftText.pbind(cur.oid);
@@ -3521,7 +3524,9 @@ var Wall = {
             }
         }
 
-        cur.poster && cur.poster.checkState();
+        if (!posterEditorOpened) {
+            setTimeout(Wall.checkPosterAvailability);
+        }
     },
     ownerDraftKey: function(ownerId) {
         return 'wall_draft' + vk.id + '_' + ownerId;
@@ -3588,7 +3593,8 @@ var Wall = {
         var data = Wall.ownerDraftData(),
             lsText = ls.get(Wall.ownerDraftKey(ownerId)) || {},
             draftData = Wall.getDraftData(),
-            content = clean(draftData.message || '');
+            content = clean(draftData.message || ''),
+            bkg = null;
 
         data.txt = content;
         each(lsText.medias || {}, function(i, v) {
@@ -3607,9 +3613,24 @@ var Wall = {
                     break;
             }
         });
+
+        if (content && draftData.bkg_id) {
+            bkg = {
+                id: draftData.bkg_id
+            };
+
+            if (cur.poster && cur.poster.isCustomBkgId(draftData.bkg_id)) {
+                extend(bkg, cur.poster.getCustomBkg());
+            }
+
+            if (lsText.bkg_id) {
+                delete lsText.bkg_id; // clean old type draft of bkg
+            }
+        }
+
         extend(lsText, {
             txt: content,
-            bkg_id: content ? cur.posterBkgId : null
+            bkg: bkg
         });
         if (cur.shareShowImg) {
             extend(lsText, {
@@ -3635,7 +3656,7 @@ var Wall = {
             from: intval(draft.from),
             signed: intval(draft.signed),
             shareShowImg: intval(draft.shareShowImg)
-        }, draft.bkg_id];
+        }, draft.bkg];
     },
     saveOwnerDraftMedia: function(ownerId, type, id, object) {
         if (cur.options.no_draft) {
@@ -3699,13 +3720,30 @@ var Wall = {
         var addmedia = cur.wallAddMedia || {},
             media = addmedia.chosenMedia || {},
             medias = cur.wallAddMedia ? addmedia.getMedias() : [],
-            share = (addmedia.shareData || {})
-        msg = trim((window.Emoji ? Emoji.editableVal : val)(ge('post_field'))), attachI = 0,
-            bkg_id = msg ? cur.posterBkgId : null,
-            params = {
-                message: msg,
-                bkg_id: bkg_id
-            };
+            share = (addmedia.shareData || {}),
+            msg = '',
+            attachI = 0,
+            bkg_id = null;
+
+        if (Wall.isPosterEditorOpen()) {
+            msg = cur.poster.getText();
+            bkg_id = msg ? cur.poster.getBkgId() : null;
+        } else {
+            var postField = ge('post_field');
+
+            if (window.Emoji) {
+                msg = Emoji.editableVal(postField);
+            } else {
+                msg = val(postField);
+            }
+
+            msg = trim(msg);
+        }
+
+        var params = {
+            message: msg,
+            bkg_id: bkg_id
+        };
 
         if (isArray(media) && media.length) {
             medias.push(clone(media));
@@ -3806,20 +3844,38 @@ var Wall = {
             return;
         }
 
-        var backgroundId = data[4];
+        var background = data[4]; // data[4] is bkg_id (old draft) or bkg object
 
-        if (!backgroundId) { // data[4] == bkg_id
+        if (!background) {
             Emoji.val(field, clean(replaceEntities(data[0] || '')).replace(/\n/g, '<br/>'));
         }
         Wall.showEditPost(function() {
             setTimeout(function() {
-                if (data[4] && cur.poster) {
+                if (background && cur.poster) {
                     Wall.hidePosterFeatureTooltip();
+                    var posterParams = {
+                        text: data[0] || ''
+                    };
 
-                    cur.poster.openPoster({
-                        text: data[0],
-                        bkgId: +data[4]
-                    });
+                    if (isString(background)) {
+                        posterParams.bkgId = data[4];
+                    } else if (isObject(background)) {
+                        if (cur.poster.isCustomBkgId(background.id)) {
+                            cur.poster.addCustomBkg(background);
+                        }
+
+                        posterParams.bkgId = background.id;
+                    }
+
+                    if (isVisible(Wall.getMainPostBlock())) {
+                        Wall.openPosterEditor(posterParams);
+                    } else {
+                        cur.poster.setBkg(posterParams.bkgId, true);
+                        cur.poster.setText(posterParams.text);
+
+                        Emoji.val(field, clean(replaceEntities(data[0])).replace(/\n/g, '<br/>'));
+                        return;
+                    }
                 }
                 if (data[1] && cur.wallAddMedia) {
                     for (var i in data[1]) {
@@ -3827,6 +3883,8 @@ var Wall = {
                         cur.wallAddMedia.chooseMedia.apply(cur.wallAddMedia, data[1][i]);
                     }
                 }
+
+                Wall.checkPosterAvailability();
             }, 0);
         });
 
@@ -3912,7 +3970,6 @@ var Wall = {
         Wall.hideEditPostReply();
         addClass('submit_post_box', 'shown');
         cur.editing = 0;
-        cur.poster && cur.poster.checkState();
 
         Wall.showPosterFeatureTooltip();
 
@@ -3929,10 +3986,12 @@ var Wall = {
 
     postBoxFocus: function(event, scrollToScreenTop) {
         stopEvent(event || window.event);
-        if ((cur.postField && window.Emoji) || (cur.poster && cur.posterActive)) {
+        var posterEditorOpened = Wall.isPosterEditorOpen();
+
+        if ((cur.postField && window.Emoji) || posterEditorOpened) {
             setTimeout(function() {
                 if (scrollToScreenTop) {
-                    if (cur.poster && cur.posterActive) {
+                    if (posterEditorOpened) {
                         cur.poster.focusPoster();
                         scrollToY(getXY(cur.poster.getPosterElement())[1] - 15);
                     } else {
@@ -3940,7 +3999,7 @@ var Wall = {
                         scrollToY(getXY(cur.postField)[1] - 15);
                     }
                 } else {
-                    if (cur.poster && cur.posterActive) {
+                    if (posterEditorOpened) {
                         cur.poster.focusPoster();
                     } else {
                         Emoji.focus(cur.postField, true, ge('submit_post_box'));
@@ -4233,15 +4292,16 @@ var Wall = {
             fromGroup: isChecked(el)
         });
     },
-    sendPost: function(skipLocked, submitFromPoster) {
+    sendPost: function(skipLocked, posterSendParams) {
         var addmedia = cur.wallAddMedia || {},
             media = addmedia.chosenMedia || {},
             medias = cur.wallAddMedia ? addmedia.getMedias() : [],
             share = (addmedia.shareData || {}),
-            msg = submitFromPoster ? cur.poster.getMessage() : (trim((window.Emoji ? Emoji.editableVal : val)(ge('post_field')))),
+            submitFromPoster = !!posterSendParams,
+            msg = submitFromPoster ? posterSendParams.text : (trim((window.Emoji ? Emoji.editableVal : val)(ge('post_field')))),
             postponePost = false,
             isAnon = Wall.isAnonPost(),
-            sendBtn = submitFromPoster ? ge('poster-send-btn') : ge('send_post');
+            sendBtn = submitFromPoster ? null : ge('send_post');
 
         var pType = cur.options.suggesting ? 'suggest' : cur.wallType;
 
@@ -4286,7 +4346,6 @@ var Wall = {
             mute_notifications: ge('mute_notifications') ? (isChecked('mute_notifications') ? 1 : 0) : '',
             mark_as_ads: isChecked('mark_as_ads') ? 1 : 0,
             official: official,
-            poster_bkg_id: submitFromPoster ? cur.posterBkgId : '',
             signed: isChecked('signed'),
             anonymous: isAnon,
             hash: cur.options.post_hash,
@@ -4303,20 +4362,26 @@ var Wall = {
             medias.push(clone(media));
         }
 
-        if (submitFromPoster && cur.posterUploadPhoto) {
-            medias.push([
-                'photo',
-                cur.posterUploadPhoto.owner_id + '_' + cur.posterUploadPhoto.id,
-                false
-            ]);
+        if (submitFromPoster) {
+            params.poster_bkg_id = posterSendParams.bkgId;
+            params.poster_bkg_access_hash = posterSendParams.accessHash;
 
-            params.poster_photo_hash = cur.posterUploadPhoto.post_hash;
+            if (posterSendParams.fallbackObj) {
+                medias.push([
+                    'photo',
+                    posterSendParams.fallbackObj.owner_id + '_' + posterSendParams.fallbackObj.id,
+                    false
+                ]);
+
+                params.poster_photo_hash = posterSendParams.fallbackObj.post_hash;
+            }
         }
 
         hide('submit_post_error');
 
         function showError(errorMessage) {
-            ge('submit_post_error').innerHTML = (errorMessage.length > 60 ? ('<div class="msg_text">' + errorMessage + '</div>') : errorMessage);
+            var errorElem = ge('submit_post_error');
+            errorElem.innerHTML = errorMessage.length > 60 ? ('<div class="msg_text">' + errorMessage + '</div>') : errorMessage;
             if (!isVisible('submit_post_error')) {
                 slideDown('submit_post_error', 100);
                 animate(ge('box_layer_wrap'), {
@@ -4324,8 +4389,10 @@ var Wall = {
                 });
             }
 
-            if (cur.poster && cur.posterActive) {
-                cur.poster.showError();
+            if (Wall.isPosterEditorOpen()) {
+                var errorWrapper = cur.poster.getErrorWrapperElement();
+                errorWrapper.innerHTML = '';
+                errorWrapper.appendChild(errorElem);
             }
         }
 
@@ -4605,9 +4672,7 @@ var Wall = {
                 onDone: function(rows, names) {
                     if (cur.poster && submitFromPoster) {
                         cur.poster.unlockEditPoster();
-                        cur.poster.resetPoster();
-                        cur.poster.closePoster(null, true);
-                    } else if (cur.poster && cur.posterHidden) {
+                        cur.poster.closeEditor();
                         cur.poster.resetPoster();
                     }
 
@@ -4706,14 +4771,20 @@ var Wall = {
                     if (!msg) {
                         return true;
                     }
-                    ge('submit_post_error').innerHTML = (msg.length > 60 ? '<div class="msg_text">' + msg + '</div>' : msg);
+
+                    var errorElem = ge('submit_post_error');
+                    errorElem.innerHTML = (msg.length > 60 ? '<div class="msg_text">' + msg + '</div>' : msg);
+
                     if (!isVisible('submit_post_error')) {
                         slideDown('submit_post_error', 100);
                     }
 
-                    if (cur.poster && cur.posterActive) {
-                        cur.poster.showError();
+                    if (Wall.isPosterEditorOpen()) {
+                        var errorWrapper = cur.poster.getErrorWrapperElement();
+                        errorWrapper.innerHTML = '';
+                        errorWrapper.appendChild(errorElem);
                     }
+
                     return true;
                 },
                 showProgress: function() {
@@ -9188,6 +9259,10 @@ var Wall = {
         removeEvent(document, 'click', Wall.hideEditPostReply);
         addEvent(document, 'click', Wall.hideEditPostReply);
 
+        if (opts.poster_options) {
+            Wall.initPosterEditor(opts.poster_options);
+        }
+
         if (opts.media_types) {
             cur.wallAddMedia = new MediaSelector(ge('page_add_media'), 'media_preview', opts.media_types, extend({
                 onAddMediaChange: function(type) {
@@ -9204,11 +9279,7 @@ var Wall = {
                         Wall.saveOwnerDraftMedia.apply(window, args);
                     }
 
-                    if (cur.poster) {
-                        setTimeout(function() {
-                            cur.poster && cur.poster.checkState();
-                        });
-                    }
+                    setTimeout(Wall.checkPosterAvailability);
                 },
                 onMediaChange: function() {
                     Wall.postChanged();
@@ -9220,6 +9291,7 @@ var Wall = {
                 from: 'post',
                 sortable: 1,
                 postponeBtnCont: ge('post_actions_btns'),
+                poster: cur.poster,
             }, opts.media_opts || {}));
 
             var podcastMenu = domByClass(cur.wallAddMedia.menu.menuNode, '_type_podcast');
@@ -9231,7 +9303,7 @@ var Wall = {
         }
 
         if (ge('post_visibility_btn')) {
-            Wall.createVisibilityPostTooltip();
+            Wall.createVisibilityPostTooltip(cur.wallAddMedia.id);
         }
 
         cur.withUpload = window.WallUpload && !browser.safari_mobile && inArray(cur.wallType, ['all', 'own', 'feed', 'full_all', 'ads_promoted_stealth']) && Wall.withMentions && cur.wallUploadOpts;
@@ -9290,6 +9362,341 @@ var Wall = {
             }, 800);
         }
     },
+
+    initPosterEditor: function(options) {
+        var posterBlockEl = se('<div class="page_block"></div>');
+        var mainPostBlockEl = Wall.getMainPostBlock();
+
+        domInsertAfter(posterBlockEl, mainPostBlockEl);
+
+        if (cur.module === 'feed') {
+            addClass(posterBlockEl, 'feed_post_field_wrap');
+        }
+
+        var onPostOpenCallback = function() {
+            var posterTextInput = cur.poster.getTextInputEl();
+
+            Wall.restoreCaretPositionForPoster(posterTextInput);
+        };
+
+        var onPreHideCallback = function() {
+            Wall.saveCaretPositionForPoster(cur.poster.getTextInputEl());
+            Wall.closeFancyTooltipsInPost(); // need close all fancy toooltips in post
+
+            var errorElem = ge('submit_post_error');
+            var submitPostBox = ge('submit_post_box');
+            var postActionBtnsWrapper = ge('post_actions_btns');
+            var postFieldWrapper = domPN(cur.postField);
+
+            postFieldWrapper.appendChild(postActionBtnsWrapper);
+
+            if (isVisible(errorElem)) {
+                domInsertAfter(errorElem, domFC(submitPostBox));
+            }
+        };
+
+        var onPostHideCallback = function() {
+            var gearEl = ge('post_settings_btn');
+            var checkSignedBtn = cur.options.suggesting && ge('check_sign');
+
+            if (gearEl) {
+                domInsertBefore(gearEl, cur.openPosterBtn);
+            }
+
+            if (checkSignedBtn) {
+                domInsertBefore(checkSignedBtn, cur.openPosterBtn);
+            }
+
+            show(mainPostBlockEl);
+
+            var text = cur.poster.getTextAsHtml();
+
+            if (text && text.match(Emoji.emojiRegex)) {
+                text = text.replace(Emoji.emojiRegex, Emoji.emojiReplace);
+            }
+
+            cur.postField.innerHTML = text;
+            Wall.restoreCaretPositionForPoster(cur.postField);
+
+            setTimeout(function() {
+                Composer.updateArticleConvertSuggest(data(cur.postField, 'composer'));
+            });
+        };
+
+        var onOverTextLimitCallback = function() {
+            Wall.disablePoster(true);
+
+            cur.poster.closeEditor();
+            cur.poster.sendStatsInfo('auto_disable');
+            cur.poster.state.toggled = true;
+        };
+
+        var saveFocus = function() {
+            return false;
+        };
+
+        var onSendCallback = function(posterParams) {
+            Wall.sendPost(true, posterParams);
+        };
+
+        var onClickPosterBtnHandler = function() {
+            Wall.closeFancyTooltipsInPost(); // need close all fancy toooltips in post
+            Wall.openPosterEditor();
+        };
+
+        var onPreUploaderOpenCallback = function() {
+            var posterTextInput = cur.poster.getTextInputEl();
+            Wall.saveCaretPositionForPoster(posterTextInput);
+        };
+
+        var onPostUploaderCloseCallback = function() {
+            var posterTextInput = cur.poster.getTextInputEl();
+            Wall.restoreCaretPositionForPoster(posterTextInput);
+        };
+
+        var onDestroyCallback = function() {
+            re(posterBlockEl);
+        };
+
+        var getPostOwnerId = function() {
+            return +domData(ge('submit_post_box'), 'from-oid');
+        };
+
+        var posterSettings = {
+            onPostOpen: onPostOpenCallback,
+            onPreHide: onPreHideCallback,
+            onPostHide: onPostHideCallback,
+            onPreUploaderOpen: onPreUploaderOpenCallback,
+            onPostUploaderClose: onPostUploaderCloseCallback,
+            onOverTextLimit: onOverTextLimitCallback,
+            onChangeData: Wall.postChanged,
+            onSend: onSendCallback,
+            onDestroy: onDestroyCallback,
+            getPostOwnerId: getPostOwnerId,
+            width: Wall.getMainPostBlock().clientWidth,
+            containerClasses: 'poster_wall-creating',
+            placeholder: attr(cur.postField, 'placeholder'),
+            appendToElem: posterBlockEl
+        };
+
+        cur.openPosterBtn = ge('page_poster_btn');
+        cur.poster = new Poster(options.poster_config, posterSettings);
+
+        addEvent(cur.openPosterBtn, 'click', onClickPosterBtnHandler);
+        addEvent(cur.openPosterBtn, 'mousedown', saveFocus);
+
+        cur.destroy.push(function() {
+            removeEvent(cur.openPosterBtn, 'click', onClickPosterBtnHandler);
+            removeEvent(cur.openPosterBtn, 'mousedown', saveFocus);
+        });
+    },
+
+    openPosterEditor: function(customData) {
+        if (!cur.poster || cur.poster.state.disabled || cur.poster.state.opened) {
+            return;
+        }
+
+        customData = customData || {};
+
+        if (cur.posterFeatureTT) {
+            cur.posterFeatureTT.hide();
+        }
+
+        var postBlockEl = Wall.getMainPostBlock();
+        var bkgId = customData.bkgId;
+        var isOldBrowser = window.browser.windows7 || window.browser.windowsVista || window.browser.windowsXp;
+
+        Wall.saveCaretPositionForPoster(cur.postField);
+
+        var text = customData.text || cur.postField.innerHTML;
+
+        text = text.replace(/\n/g, '<br/>');
+        text = text.replace(/<img[^>]*>/g, function(str) {
+            var img = ce('div', {
+                innerHTML: str
+            }).firstChild;
+            var code = Emoji.getCode(img);
+
+            if (code) {
+                return isOldBrowser ? ' ' : Emoji.codeToChr(code);
+            }
+
+            return str;
+        });
+
+        if (!isVisible(postBlockEl)) {
+            cur.poster.setBkg(bkgId, true);
+            cur.poster.setText(text);
+
+            return;
+        }
+
+        hide(postBlockEl);
+
+        var gearEl = ge('post_settings_btn');
+        var errorElem = ge('submit_post_error');
+        var checkSignedBtn = cur.options.suggesting && ge('check_sign');
+        var optionsWrapper = cur.poster.getPostOptionsWrapperEl();
+
+        if (gearEl) {
+            optionsWrapper.appendChild(gearEl);
+        }
+
+        if (checkSignedBtn) {
+            optionsWrapper.appendChild(checkSignedBtn);
+        }
+
+        if (isVisible(errorElem)) {
+            var errorWrapper = cur.poster.getErrorWrapperElement();
+
+            errorWrapper.innerHTML = '';
+            errorWrapper.appendChild(errorElem);
+        }
+
+        var posterBtnsWrapper = cur.poster.getBtnsWrapper();
+        var postActionBtnsWrapper = ge('post_actions_btns');
+
+        if (postActionBtnsWrapper) {
+            if (posterBtnsWrapper.firstChild) {
+                domInsertBefore(postActionBtnsWrapper, posterBtnsWrapper.firstChild);
+            } else {
+                posterBtnsWrapper.appendChild(postActionBtnsWrapper);
+            }
+
+            if (postActionBtnsWrapper.children.length || posterBtnsWrapper.children.length > 1) {
+                show(posterBtnsWrapper);
+            } else {
+                hide(posterBtnsWrapper);
+            }
+        }
+
+        cur.poster.setBkg(bkgId, true);
+        cur.poster.setText(text);
+        cur.poster.openEditor();
+        cur.poster.sendStatsInfo('open');
+    },
+
+    checkPosterAvailability: function() {
+        if (!cur.poster) {
+            return;
+        }
+
+        var attaches = cur.wallAddMedia ? cur.wallAddMedia.getMedias() : [];
+        var isTextValid = cur.poster.isTextFieldValid(cur.postField);
+        var isAttachesValid = Wall.checkAttachesForPoster(attaches);
+        var isPosterEnable = isTextValid && isAttachesValid;
+
+        if (!isPosterEnable !== cur.poster.state.disabled) {
+            Wall.disablePoster(!isPosterEnable);
+        }
+
+        if (isPosterEnable) {
+            if (cur.poster.state.toggled) {
+                Wall.openPosterEditor();
+                cur.poster.sendStatsInfo('auto_enable');
+                cur.poster.state.toggled = false;
+            }
+        }
+    },
+
+    checkAttachesForPoster(attaches) {
+        if (!isArray(attaches)) {
+            return false;
+        }
+
+        if (!attaches.length) {
+            return true;
+        }
+
+        if (attaches.length === 1) {
+            for (var i = 0; i < attaches.length; i++) {
+                var attach = attaches[i];
+
+                if (isArray(attach) && attach[0] == 'postpone') {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    },
+
+    disablePoster: function(state) {
+        if (!cur.poster) {
+            return
+        }
+
+        if (state === undefined) {
+            state = true;
+        }
+
+        cur.poster.state.disabled = state;
+        toggleClass(cur.openPosterBtn, '_disable', state);
+    },
+
+    isPosterEditorOpen: function() {
+        return cur.poster && cur.poster.isOpen();
+    },
+
+    saveCaretPositionForPoster: function(input) {
+        if (document.activeElement !== input) {
+            return;
+        }
+
+        var startMarker = ce('span');
+        var endMarker = ce('span');
+
+        startMarker.classList.add('poster__marker', 'poster__marker_start');
+        endMarker.classList.add('poster__marker', 'poster__marker_end');
+
+        var selection = getSelection();
+        var selRange = selection.getRangeAt(0);
+
+        selRange = selRange.cloneRange();
+
+        selRange.insertNode(startMarker);
+        selRange.collapse(false);
+        selRange.insertNode(endMarker);
+    },
+
+    restoreCaretPositionForPoster: function(input) {
+        var startEl = geByClass1('poster__marker_start', input);
+        var endEl = geByClass1('poster__marker_end', input);
+
+        if (!startEl || !endEl) {
+            wall.focusOnEnd(input);
+            return;
+        }
+
+        var range = document.createRange();
+        range.setStartBefore(startEl);
+        range.setEndBefore(endEl);
+
+        re(startEl);
+        re(endEl);
+
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+    },
+
+    getMainPostBlock: function() {
+        var postBlock = cur.mainPostBlock;
+
+        if (!postBlock) {
+            postBlock = domPN(ge('submit_post_box'));
+            cur.mainPostBlock = postBlock;
+        }
+
+        return postBlock;
+    },
+
+    closeFancyTooltipsInPost: function() {
+        var mediaId = cur.wallAddMedia.lnkId;
+        cur['postPostponeTT' + mediaId] && cur['postPostponeTT' + mediaId].hide();
+        cur['postVisibilityTT' + mediaId] && cur['postVisibilityTT' + mediaId].hide();
+    },
+
     switchOwner: function(obj) {
         toggleClass(geByClass1('_ui_toggler', obj), 'on');
         uiSearch.showProgress('wall_search');
@@ -10231,6 +10638,7 @@ var Wall = {
             els: buttons
         };
 
+        var offset = [-12 * (vk.rtl ? -1 : 1), 7];
         var postVisibilityTT = new ElementTooltip(btnEl, {
             appendTo: btnWrapEl,
             forceSide: 'bottom',
@@ -10238,7 +10646,7 @@ var Wall = {
             cls: 'eltt_fancy eltt_fancy_actions',
             noOverflow: false,
             centerShift: 0,
-            offset: [-12, 7],
+            offset: offset,
             content: ttContentEl,
             align: 'left',
             onFirstTimeShow: function() {
@@ -11968,7 +12376,7 @@ Composer = {
 
 
         var input = composer.input;
-        var message = cur.posterWpe && cur.posterWpeSend ? cur.posterWpe.getMessage() : trim(window.Emoji ? Emoji.editableVal(input) : val(input));
+        var message = cur.posterWpe && cur.posterWpeSendParams ? cur.posterWpeSendParams.text : trim(window.Emoji ? Emoji.editableVal(input) : val(input));
         var params = {
             message: message
         };

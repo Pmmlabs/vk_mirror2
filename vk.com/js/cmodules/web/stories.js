@@ -817,6 +817,8 @@
                 return 0
             }, t.prototype.getId = function() {
                 return this.data.raw_id
+            }, t.prototype.getTrackCode = function() {
+                return this.data.track_code
             }, t.prototype.getDate = function() {
                 return this.data.date
             }, t.prototype.getViews = function() {
@@ -1130,6 +1132,8 @@
                     return this.index >= this.data.items.length - 1
                 }, t.prototype.getRawId = function() {
                     return !!this.story && this.story.getId()
+                }, t.prototype.getTrackCode = function() {
+                    return !!this.story && this.story.getTrackCode()
                 }, t.prototype.getReadHash = function() {
                     return this.data.read_hash
                 }, t.prototype.getType = function() {
@@ -2340,9 +2344,14 @@
                     }
                 }, t.prototype._onPlayStory = function(t) {
                     var e = this._getStoryInstanceByIndex(t);
-                    e && (this.storiesReadHash = e.getReadHash(), this.storiesToRead.push(e.getRawId()), this._markReadPrevStories(e), this.storiesToRead > 10 && this._readStories(), this._updateBadge(e));
-                    var r = this._getStoryInstanceByIndex(t + 1);
-                    r && r.preloadNextStory(r.getIndex())
+                    if (e) {
+                        this.storiesReadHash = e.getReadHash();
+                        var r = e.getRawId(),
+                            o = e.getTrackCode();
+                        o && (r += "_" + o), this.storiesToRead.push(r), this._markReadPrevStories(e), this.storiesToRead > 10 && this._readStories(), this._updateBadge(e)
+                    }
+                    var i = this._getStoryInstanceByIndex(t + 1);
+                    i && i.preloadNextStory(i.getIndex())
                 }, t.prototype._getStoryInstanceByIndex = function(t) {
                     var e = this.storiesList[t];
                     if (!e) return !1;
