@@ -1397,6 +1397,11 @@ var Feed = {
             if (nextRows.firstChild) {
                 while (nextRows.firstChild) {
                     el = nextRows.firstChild;
+
+                    if (cur.rowsCont !== domPN(nextRows)) {
+                        Feed.sendInsertBeforeError();
+                    }
+
                     cur.rowsCont.insertBefore(el, nextRows);
                     Feed.onPostLoaded(el, true);
                 }
@@ -1921,6 +1926,14 @@ var Feed = {
                 ge('notify_mark_spam_' + item).innerHTML = html;
             }
         })
+    },
+    sendInsertBeforeError: function() {
+        ajax.post('al_page.php', {
+            act: 'insert_before_error',
+            trace: new Error().stack,
+            owner_id: cur.oid,
+            module: cur.module
+        });
     },
     notifyDeleteAll: function(uid, hash, item, btn) {
         if (!cur.notifyDeletingAll) cur.notifyDeletingAll = {};

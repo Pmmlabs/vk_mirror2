@@ -5,8 +5,10 @@ var Restore = {
     requestTypeFull: 0,
     requestTypeSimple: 4,
 
-    onlineNoOwner: 1,
-    onlineOwner: 2,
+    onlineInDayNoOwner: 1,
+    onlineInDayOwner: 2,
+    onlineInWeeksNoOwner: 3,
+    onlineInWeeksOwner: 4,
 
     submitAuthCode: function(hash) {
         var btn = ge('authBtn'),
@@ -1014,20 +1016,11 @@ var Restore = {
                     return;
                 }
                 if (code == -5) {
-                    var box = new MessageBox({
-                        title: getLang('global_action_confirmation')
-                    });
-                    box.addButton(getLang('restore_last_online_yes'), function() {
-                        cur.requestParams.no_online = Restore.onlineOwner;
-                        box.hide();
-                        Restore.submitFullRequest();
-                    });
-                    box.addButton(getLang('restore_last_online_no'), function() {
-                        cur.requestParams.no_online = Restore.onlineNoOwner;
-                        box.hide();
-                        Restore.submitFullRequest();
-                    }, 'gray');
-                    box.content(getLang('restore_last_online_modal')).show();
+                    Restore.getNoOnlineBox('restore_last_online_modal', Restore.onlineInDayOwner, Restore.onlineInDayNoOwner).show();
+                    return;
+                }
+                if (code == -6) {
+                    Restore.getNoOnlineBox('restore_last_weeks_online_modal', Restore.onlineInWeeksOwner, Restore.onlineInWeeksNoOwner).show();
                     return;
                 }
                 if (step == 'back_link') {
@@ -1100,6 +1093,23 @@ var Restore = {
                 }
             }
         });
+    },
+    getNoOnlineBox: function(messageKey, yesCode, noCode) {
+        var box = new MessageBox({
+            title: getLang('global_action_confirmation')
+        });
+        box.addButton(getLang('restore_last_online_yes'), function() {
+            cur.requestParams.no_online = yesCode;
+            box.hide();
+            Restore.submitFullRequest();
+        });
+        box.addButton(getLang('restore_last_online_no'), function() {
+            cur.requestParams.no_online = noCode;
+            box.hide();
+            Restore.submitFullRequest();
+        }, 'gray');
+        box.content(getLang(messageKey));
+        return box;
     }
 };
 

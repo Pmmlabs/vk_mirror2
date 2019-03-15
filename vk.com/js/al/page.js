@@ -1486,6 +1486,11 @@ var Page = {
             var progressIconEl = domFC(previewContainerEl);
             previewContainerEl.appendChild(previewEl);
             cur.activeGif = previewContainerEl;
+
+            if (containerEl !== domPN(linkEl)) {
+                Wall.sendInsertBeforeError();
+            }
+
             containerEl.insertBefore(previewContainerEl, linkEl);
             hide(linkEl);
 
@@ -3283,8 +3288,14 @@ var Wall = {
                 }
 
                 if (revert) {
+                    if (posts !== domPN(insertPositionEl)) {
+                        Wall.sendInsertBeforeError();
+                    }
                     posts.insertBefore(el, insertPositionEl);
                 } else {
+                    if (posts !== domPN(insertPositionEl.nextSibling)) {
+                        Wall.sendInsertBeforeError();
+                    }
                     posts.insertBefore(el, insertPositionEl.nextSibling);
                 }
             }
@@ -3323,6 +3334,9 @@ var Wall = {
                         break;
                     }
                     if (insertPositionEl) {
+                        if (posts !== domPN(insertPositionEl)) {
+                            Wall.sendInsertBeforeError();
+                        }
                         posts.insertBefore(adsPostData.el, insertPositionEl);
                         positionErr = false;
                         break;
@@ -8658,6 +8672,11 @@ var Wall = {
                         while (insBefore && (insBefore.tagName == 'INPUT' || insBefore.nodeType != 1 || hasClass(insBefore, 'post_fixed'))) {
                             insBefore = insBefore.nextSibling;
                         }
+
+                        if (cont !== domPN(insBefore)) {
+                            Wall.sendInsertBeforeError();
+                        }
+
                         cont.insertBefore(newEl, insBefore);
                         Wall.votingUpdateByPostRaw(post_id);
                         updH = newEl.offsetHeight + mt;
@@ -9442,6 +9461,8 @@ var Wall = {
         var onClickPosterBtnHandler = function() {
             Wall.closeFancyTooltipsInPost(); // need close all fancy toooltips in post
             Wall.openPosterEditor();
+
+            cur.poster.sendStatsInfo('open');
         };
 
         var onPreUploaderOpenCallback = function() {
@@ -9573,7 +9594,6 @@ var Wall = {
         cur.poster.setBkg(bkgId, true);
         cur.poster.setText(text);
         cur.poster.openEditor();
-        cur.poster.sendStatsInfo('open');
     },
 
     checkPosterAvailability: function() {
@@ -9689,6 +9709,15 @@ var Wall = {
         }
 
         return postBlock;
+    },
+
+    sendInsertBeforeError: function() {
+        ajax.post('al_page.php', {
+            act: 'insert_before_error',
+            trace: new Error().stack,
+            owner_id: cur.oid,
+            module: cur.module
+        });
     },
 
     closeFancyTooltipsInPost: function() {
@@ -12156,6 +12185,9 @@ Composer = {
                 if (!beforeElem) {
                     inputWrapEl.appendChild(composer.articleConvertEl)
                 } else {
+                    if (inputWrapEl !== domPN(beforeElem)) {
+                        Wall.sendInsertBeforeError();
+                    }
                     inputWrapEl.insertBefore(composer.articleConvertEl, beforeElem)
                 }
 

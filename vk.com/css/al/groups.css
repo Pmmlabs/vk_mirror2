@@ -2994,6 +2994,18 @@ textarea.EditableLabel__textarea {
     color: #000
 }
 
+.configurations .Configuration:not(:first-child) {
+    margin-top: 20px
+}
+
+.configurations .Configuration .Configuration__title {
+    font-weight: 500
+}
+
+.configurations .Configuration .Configuration__input {
+    margin-top: 10px
+}
+
 .already-active-layer .already-active-layer__background {
     position: absolute;
     top: 0;

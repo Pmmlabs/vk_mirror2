@@ -30657,12 +30657,22 @@ a.feedBlocks__article:hover {
     color: #5181b8
 }
 
+.friendsRecommendedSliderWrap {
+    background-color: #fff
+}
+
 .friendsRecommendedSliderWrap .slim_header_lnk {
     text-transform: none
 }
 
 .friendsRecommendedSliderWrap .profile_info_friends_recs {
     margin-top: 8px
+}
+
+.ClosedProfileWall+.friendsRecommendedSliderWrap {
+    -webkit-box-shadow: inset 0 0.5px 0 0 rgba(0, 0, 0, .12);
+    -moz-box-shadow: inset 0 0.5px 0 0 rgba(0, 0, 0, .12);
+    box-shadow: inset 0 0.5px 0 0 rgba(0, 0, 0, .12)
 }
 
 .vk__page_newCreatePost .Control {
@@ -42152,6 +42162,20 @@ body.apps_settingsPageBody .basis__content {
     margin: auto
 }
 
+.RecommendHeader__title {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: none
+}
+
+@media (min-width: 882px) {
+    .RecommendHeader__title {
+        display: block
+    }
+}
+
 .Voting {
     padding: 0 12px 4px;
     position: relative;
@@ -51250,14 +51274,17 @@ a .BookmarkListItem__subtitle:hover {
     display: flex
 }
 
-.n .messenger__layer_main:after {
+.n .messenger__layer_main:after,
+.n .messenger__layer_page:after {
     content: "";
-    height: 48px;
+    height: 49px;
+    min-height: 49px;
     display: block
 }
 
 @media (min-width: 882px) {
-    .n .messenger__layer_main:after {
+    .n .messenger__layer_main:after,
+    .n .messenger__layer_page:after {
         content: none;
         display: none
     }
