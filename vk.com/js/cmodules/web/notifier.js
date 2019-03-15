@@ -4060,7 +4060,7 @@
                     };
                     var push = cnt ? 0 : 1;
                     if (ev.version !== curNotifier.version) return debugLog("Notifier old version: " + ev.version + " !== " + curNotifier.version), !1;
-                    if ("update_cnt" === ev.type) return "nws" === ev.author_photo ? (handlePageCount("ntf", ev.add), 0) : (handlePageCount(ev.author_photo, ev.author_link, ev.text, ev.add_photo), 0);
+                    if ("update_cnt" === ev.type) return handlePageCount(ev.author_photo, ev.author_link, ev.text, ev.add_photo), 0;
                     if (ev._eval) {
                         var evalExpr = "(" + ev._eval + ")";
                         try {

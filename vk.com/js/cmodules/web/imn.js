@@ -16481,8 +16481,7 @@
                         c = t.video_hash,
                         l = 0;
                     ! function t() {
-                        ajax.post("al_video.php", {
-                            act: "encode_progress",
+                        ajax.post("al_video.php?act=encode_progress", {
                             oid: i,
                             vid: a,
                             hash: c,
